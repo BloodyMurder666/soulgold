@@ -33,7 +33,7 @@ Based on expansion port of Pokemon Heart and Soul. Feature list to be made later
 - Pokeabbie battle speed up
 - [agsmgmaster64](https://github.com/agsmgmaster64/worldlinkdeluxe-ame) Game corner expansion port
 - [heypc](https://github.com/heyopc/pokeemerald-gamecorner-expansion) game corner expansion
-- [aarant/merrp:](https://github.com/aarant) [icons branch](https://github.com/aarant/pokeemerald/tree/icons)
+- [aarant/merrp:](https://github.com/aarant) [icons branch](https://github.com/aarant/pokeemerald/tree/icons) and key item wheel
 - [msikma:](https://github.com/msikma) [pokesprite](https://github.com/msikma/pokesprite) (Generation 1-7 regular + shiny icons)
 - Generation 8 icons: leparagon, LarryTurbo, Phasma, Pokerogue Team, StarrWolf (some shinies), Someonealive-QN (other shinies)
 - [Ezerart:](https://www.deviantart.com/ezerart) [Gen 9 regular icons](https://www.deviantart.com/ezerart/art/Pokemon-Gen-9-Icon-sprites-3DS-Style-944211258), [Gen 9 shiny icons](https://www.deviantart.com/ezerart/art/Shiny-Pokemon-Gen-9-Icon-sprites-3DS-Style-944778082)

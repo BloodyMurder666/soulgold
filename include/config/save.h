@@ -17,7 +17,8 @@
 
 // Explicit future-use space at the end of SaveBlock1. Consume bytes from this
 // reserve for new SaveBlock1 fields to avoid shifting existing savedata.
-#define SAVEBLOCK1_FUTURE_RESERVED_BYTES    (2048 - 48)
+#define SAVEBLOCK_MULTIREG_ITEMS            (MAX_REGISTERED_ITEMS * 2)
+#define SAVEBLOCK1_FUTURE_RESERVED_BYTES    (2048 - 48 - SAVEBLOCK_MULTIREG_ITEMS)
 
 // SaveBlock2 configs
 #define FREE_BATTLE_TOWER_E_READER          TRUE   // Frees up Battle Tower E-Reader data (188 bytes).
