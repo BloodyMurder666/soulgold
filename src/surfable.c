@@ -74,7 +74,6 @@ u32 CreateSurfablePokemonSprite(void)
     SetSpritePosToOffsetMapCoords((s16 *)&gFieldEffectArguments[0], (s16 *)&gFieldEffectArguments[1], 8, 8);
 
     sCurrentSurfMon = GetSurfablePokemonSprite();
-    DebugPrintf("current:%d", sCurrentSurfMon);
     if (sCurrentSurfMon != 0xFFFF)
     {
         LoadSurfOverworldPalette();
@@ -85,8 +84,8 @@ u32 CreateSurfablePokemonSprite(void)
         }
     }
     else
-    { // Create surf blob
-        LoadObjectEventPalette(FLDEFFOBJ_SURF_BLOB);
+    {
+        // Create surf blob
         spriteId = CreateSpriteAtEnd(gFieldEffectObjectTemplatePointers[FLDEFFOBJ_SURF_BLOB], gFieldEffectArguments[0], gFieldEffectArguments[1], 0x96);
     }
 
@@ -95,6 +94,9 @@ u32 CreateSurfablePokemonSprite(void)
         sprite = &gSprites[spriteId];
         sprite->coordOffsetEnabled = TRUE;
         sprite->data[2] = gFieldEffectArguments[2];
+        // Can use either gender's palette, so try to use the one that should be loaded
+        if (sCurrentSurfMon == 0xFFFF)
+            sprite->oam.paletteNum = LoadPlayerObjectEventPalette(gSaveBlock2Ptr->playerGender);
         sprite->data[3] = -1;
         sprite->data[6] = -1;
         sprite->data[7] = -1;
