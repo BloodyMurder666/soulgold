@@ -39,20 +39,14 @@ static EWRAM_DATA u16 sCurrentSurfMon = {0};
 
 static u16 GetSurfMonSpecies(void)
 {
-    u8 i;
-	u16 species;
-	
-	i = VarGet(VAR_SURF_MON_SLOT);
-	species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES);
-    return species;
+    return GetMonData(&gPlayerParty[VarGet(VAR_SURF_MON_SLOT)], MON_DATA_SPECIES);
 }
 
 static u16 GetSurfablePokemonSprite(void)
 {
-    u8 i;
     u16 mon = GetSurfMonSpecies();
 
-    for (i = 0; i < ARRAY_COUNT(gSurfablePokemon); i++)
+    for (u32 i = 0; i < ARRAY_COUNT(gSurfablePokemon); i++)
     {
         if (mon == gSurfablePokemon[i].species)
             return i;
@@ -80,6 +74,7 @@ u32 CreateSurfablePokemonSprite(void)
     SetSpritePosToOffsetMapCoords((s16 *)&gFieldEffectArguments[0], (s16 *)&gFieldEffectArguments[1], 8, 8);
 
     sCurrentSurfMon = GetSurfablePokemonSprite();
+    DebugPrintf("current:%d", sCurrentSurfMon);
     if (sCurrentSurfMon != 0xFFFF)
     {
         LoadSurfOverworldPalette();
@@ -135,7 +130,7 @@ static void UpdateSurfMonOverlay(struct Sprite *sprite)
     struct ObjectEvent *playerObj;
     struct Sprite *linkedSprite;
     u8 subpriority;
-	
+
     playerObj = &gObjectEvents[gPlayerAvatar.objectEventId];
     linkedSprite = &gSprites[playerObj->spriteId];
 
@@ -157,4 +152,3 @@ if (linkedSprite->animNum < MOVEMENT_ACTION_DELAY_16)
     if (!(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_SURFING))
         DestroySprite(sprite);
 }
-
