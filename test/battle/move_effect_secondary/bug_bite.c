@@ -4,7 +4,7 @@
 ASSUMPTIONS
 {
     ASSUME(MoveHasAdditionalEffect(MOVE_BUG_BITE, MOVE_EFFECT_BUG_BITE));
-    ASSUME(gMovesInfo[MOVE_BUG_BITE].pp == 20);
+    ASSUME(GetMovePP(MOVE_BUG_BITE) == 20);
 }
 
 // Pretty much copy/paste of the Berry Fling Test.
@@ -131,5 +131,20 @@ SINGLE_BATTLE_TEST("Tanga Berry activates before Bug Bite")
         HP_BAR(opponent);
     } THEN {
         EXPECT_EQ(player->item, ITEM_NONE);
+    }
+}
+
+SINGLE_BATTLE_TEST("Bug Bite ignores Unnerve")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { HP(1); }
+        OPPONENT(SPECIES_TYRANITAR) { Ability(ABILITY_UNNERVE); Item(ITEM_ORAN_BERRY); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_BUG_BITE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_BUG_BITE, player);
+        HP_BAR(player);
+    } THEN {
+        EXPECT_EQ(opponent->item, ITEM_NONE);
     }
 }
