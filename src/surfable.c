@@ -18,8 +18,8 @@ extern const struct OamData gObjectEventBaseOam_32x32;
 extern const struct OamData gObjectEventBaseOam_64x64;
 extern const struct SpriteTemplate *const gFieldEffectObjectTemplatePointers[];
 
-extern void SynchroniseSurfAnim(struct ObjectEvent *playerObj, struct Sprite *sprite);
-extern void SynchroniseSurfPosition(struct ObjectEvent *playerObj, struct Sprite *sprite);
+extern void SynchronizeSurfAnim(struct ObjectEvent *playerObj, struct Sprite *sprite);
+extern void SynchronizeSurfPosition(struct ObjectEvent *playerObj, struct Sprite *sprite);
 
 static void CreateOverlaySprite(void);
 static void UpdateSurfMonOverlay(struct Sprite *sprite);
@@ -136,8 +136,8 @@ static void UpdateSurfMonOverlay(struct Sprite *sprite)
     playerObj = &gObjectEvents[gPlayerAvatar.objectEventId];
     linkedSprite = &gSprites[playerObj->spriteId];
 
-    SynchroniseSurfAnim(playerObj, sprite);
-    SynchroniseSurfPosition(playerObj, sprite);
+    SynchronizeSurfAnim(playerObj, sprite);
+    SynchronizeSurfPosition(playerObj, sprite);
 
     // Reset the subpriority for the overlay sprite so it shows on top of the player
     // We need this here so the subprio is correct after a screen transition (e.g. after exiting a battle)
