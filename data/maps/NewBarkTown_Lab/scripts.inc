@@ -1137,7 +1137,7 @@ NewBarkTownLab_Movement_Elm_Right:
 # 569 "data/maps/NewBarkTown_Lab/scripts.pory"
 NewBarkTownLab_Movement_Elm_Down:
 # 570 "data/maps/NewBarkTown_Lab/scripts.pory"
-    face_Down
+    face_down
 # 571 "data/maps/NewBarkTown_Lab/scripts.pory"
     step_end
 # 572 "data/maps/NewBarkTown_Lab/scripts.pory"
