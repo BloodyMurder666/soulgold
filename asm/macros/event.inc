@@ -2715,12 +2715,12 @@
 	@HnS applymovement but doesnt remove follower. 
 	.macro applymovement2 localId:req, movements:req, map
 		.ifb \map
-			.byte 0xe8
+			.byte SCR_OP_APPLYMOVEMENT2
 			.2byte \localId
 			.4byte \movements
 		.else
 			@ Really only useful if the object has followed from one map to another (e.g. Wally during the catching event).
-			.byte 0x50
+			.byte SCR_OP_APPLYMOVEMENTAT
 			.2byte \localId
 			.4byte \movements
 			map \map
@@ -2746,27 +2746,27 @@
 	@ Removes PokÃ©mon from player's party. 1 = KENYA, 2 = SHUCKIE
 	@ VAR_RESULT will be set to MON_GIVEN_TO_PARTY, MON_CANT_GIVE depending on the outcome.
 	.macro remove5mons 
-	.byte 0xeb
+	.byte SCR_OP_REMOVE5MONS
 	.endm
 
 	@ Gives the player a PokÃ©mon. 1 = KENYA, 2 = SHUCKIE, 3 = EEVEE
 	@ VAR_RESULT will be set to MON_GIVEN_TO_PARTY, MON_GIVEN_TO_PC, or MON_CANT_GIVE depending on the outcome.
 	.macro givenamedmon number:req
-	.byte 0xe9
+	.byte SCR_OP_GIVENAMEDMON
 	.2byte \number
 	.endm
 
 	@ Removes PokÃ©mon from player's party. 1 = KENYA, 2 = SHUCKIE
 	@ VAR_RESULT will be set to MON_GIVEN_TO_PARTY, MON_CANT_GIVE depending on the outcome.
 	.macro removenamedmon number:req
-	.byte 0xea
+	.byte SCR_OP_REMOVENAMEDMON
 	.2byte \number
 	.endm
 
 	@ Removes PokÃ©mon from player's party. If species in VAR_0x8004 matches the species passed in as number, it will remove the mon.
 	@ VAR_RESULT will be set to TRUE if it works. FALSE if it doesn't.
 	.macro removegenericmon number:req
-	.byte 0xed
+	.byte SCR_OP_REMOVEGENERICMON
 	.2byte \number
 	.endm
 
@@ -2775,20 +2775,20 @@
 	@ Result: gSpecialVar_Result = TRUE if the mon at VAR_0x8004 matches the allowed
 	@ species list for the given case; FALSE otherwise.
 	.macro baobacheckmon number:req
-	.byte 0xee
+	.byte SCR_OP_BAOBACHECKMON
 	.2byte \number
 	.endm
 
 	@ Gives the player the odd egg. If name matches, 100% shiny. If not, 14% shiny. Input parameter 1-7
 	@ VAR_RESULT will be set to MON_GIVEN_TO_PARTY, or MON_CANT_GIVE depending on the outcome.
 	.macro giveoddegg number:req
-	.byte 0xef
+	.byte SCR_OP_GIVEODDEGG
 	.2byte \number
 	.endm
 
 	@ Gives the player the number of BP (battle points) inputted
 	.macro givebp number:req
-	.byte 0xf0
+	.byte SCR_OP_GIVEBP
 	.2byte \number
 	.endm
 
@@ -2804,7 +2804,7 @@
 @ Prepares to start a wild battle against a 'species' at 'level' holding 'item'. Running this command will not affect
 	@ normal wild battles. You start the prepared battle with dowildbattle.
 	.macro setwildbattleshiny species:req, level:req, item=ITEM_NONE
-	.byte 0xec
+	.byte SCR_OP_SETWILDBATTLESHINY
 	.2byte \species
 	.byte \level
 	.2byte \item
@@ -2812,7 +2812,7 @@
 
 	@ Checks to see if the player has a Pokemon in their party. Result returns to VAR_RESULT
     .macro checkpartymonlevel level:req
-    .byte 0xe4
+    .byte SCR_OP_CHECKPARTYMONLEVEL
     .2byte \level
     .endm
 	@ Manually buffer a string as the speaker's name for namebox.
