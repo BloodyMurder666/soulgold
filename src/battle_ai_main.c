@@ -2042,10 +2042,6 @@ static s32 AI_CheckBadMove(enum BattlerId battlerAtk, enum BattlerId battlerDef,
               || DoesPartnerHaveSameMoveEffect(BATTLE_PARTNER(battlerAtk), battlerDef, move, aiData->partnerMove))
                 ADJUST_SCORE(-10);
             break;
-        case EFFECT_MAGNITUDE:
-            if (aiData->abilities[battlerDef] == ABILITY_LEVITATE)
-                ADJUST_SCORE(-10);
-            break;
         case EFFECT_PARTING_SHOT:
             if (CountUsablePartyMons(battlerAtk) == 0)
                 ADJUST_SCORE(-10);
@@ -2764,7 +2760,7 @@ static s32 AI_CheckBadMove(enum BattlerId battlerAtk, enum BattlerId battlerDef,
                 ADJUST_SCORE(-10);
             break;
         case EFFECT_FLING:
-            if (!CanFling(battlerAtk, battlerDef))
+            if (!CanFling(battlerAtk))
             {
                 ADJUST_SCORE(-10);
             }
@@ -3318,10 +3314,35 @@ static s32 AI_DoubleBattle(enum BattlerId battlerAtk, enum BattlerId battlerDef,
         }
         else
         {
-            ADJUST_SCORE(IncreaseStatUpScore(battlerAtkPartner, BATTLE_OPPOSITE(battlerAtk), STAT_CHANGE_ATK));
-            ADJUST_SCORE(IncreaseStatUpScore(battlerAtkPartner, BATTLE_OPPOSITE(battlerAtk), STAT_CHANGE_DEF));
-            ADJUST_SCORE(IncreaseStatUpScore(battlerAtkPartner, BATTLE_OPPOSITE(battlerAtkPartner), STAT_CHANGE_ATK));
-            ADJUST_SCORE(IncreaseStatUpScore(battlerAtkPartner, BATTLE_OPPOSITE(battlerAtkPartner), STAT_CHANGE_DEF));
+            s32 statUpScore = 0;
+            s32 tempScore = 0;
+            enum BattlerId foe = LEFT_FOE(battlerAtk);
+
+            if (IsBattlerAlive(foe))
+            {
+                tempScore += IncreaseStatUpScore(battlerAtkPartner, foe, STAT_CHANGE_ATK);
+                tempScore += IncreaseStatUpScore(battlerAtkPartner, foe, STAT_CHANGE_DEF);
+                if (tempScore == 0)
+                    break;
+                statUpScore += tempScore;
+            }
+
+            tempScore = 0;
+            foe = RIGHT_FOE(battlerAtk);
+
+            if (IsBattlerAlive(foe))
+            {
+                tempScore += IncreaseStatUpScore(battlerAtkPartner, foe, STAT_CHANGE_ATK);
+                tempScore += IncreaseStatUpScore(battlerAtkPartner, foe, STAT_CHANGE_DEF);
+                if (tempScore == 0)
+                    break;
+                statUpScore += tempScore;
+            }
+
+            if (statUpScore > BEST_EFFECT)
+                ADJUST_SCORE(BEST_EFFECT);
+            else
+                ADJUST_SCORE(statUpScore);
         }
         break;
     default:
@@ -3929,7 +3950,6 @@ static bool32 DoesAbilityBenefitFromSunOrRain(enum BattlerId battler, enum Abili
         return (weather & B_WEATHER_RAIN);
     case ABILITY_HARVEST:
         if (GetItemPocket(gAiLogicData->items[battler]) != POCKET_BERRIES
-            && GetItemPocket(gBattleStruct->changedItems[battler]) != POCKET_BERRIES
             && GetItemPocket(GetBattlerPartyState(battler)->usedHeldItem) != POCKET_BERRIES)
         {
             return FALSE;

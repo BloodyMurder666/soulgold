@@ -597,7 +597,14 @@ enum AnimBattler
 #define B_ANIM_POWER_CONSTRUCT          53
 #define B_ANIM_SWAP_TO_SUBSTITUTE       54
 #define B_ANIM_SWAP_FROM_SUBSTITUTE     55
-#define NUM_B_ANIMS_GENERAL             56
+#define B_ANIM_MON_SCARED               56
+#define B_ANIM_GHOST_GET_OUT            57
+#define B_ANIM_SILPH_SCOPED             58
+#define B_ANIM_ROCK_THROW               59
+#define B_ANIM_SAFARI_REACTION          60
+#define B_ANIM_FORM_CHANGE_INSTANT      61
+#define B_ANIM_FORM_CHANGE_DISGUISE     62
+#define NUM_B_ANIMS_GENERAL             63
 
 // special animations table (sBattleAnims_Special)
 #define B_ANIM_LVL_UP                   0
@@ -678,6 +685,7 @@ enum SpeciesGfxChange
 {
     SPECIES_GFX_CHANGE_TRANSFORM,
     SPECIES_GFX_CHANGE_FORM_CHANGE,
+    SPECIES_GFX_CHANGE_FORM_CHANGE_INSTANT,
     SPECIES_GFX_CHANGE_ILLUSION_OFF,
 };
 
@@ -699,5 +707,8 @@ enum SpeciesGfxChange
 // The below are only used by AnimTask_BlendBattleAnimPal to get battler sprite palettes by position rather than by role.
 // It's redundant with F_PAL_BATTLERS, because they're only ever used together to refer to all the battlers at once.
 #define F_PAL_BATTLERS_2  (1 << 7 | 1 << 8 | 1 << 9 | 1 << 10)
+
+enum { SHAKE_BG_X, SHAKE_BG_Y, SHAKE_MON_X, SHAKE_MON_Y };
+enum { SHAKE_MON_ATTACKER, SHAKE_MON_TARGET, SHAKE_MON_BOTH };
 
 #endif // GUARD_CONSTANTS_BATTLE_ANIM_H
