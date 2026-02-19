@@ -206,15 +206,15 @@ static const struct WindowTemplate sMenuWindowTemplates[] =
 //
 //  Graphics Pointers to Tilemaps, Tilesets, Spritesheets, Palettes
 //
-static const u32 sCaseTiles[]   = INCBIN_U32("graphics/ui_birch_case/case_tiles.4bpp.lz");
-static const u32 sCaseTilemap[] = INCBIN_U32("graphics/ui_birch_case/case_tiles.bin.lz");
+static const u32 sCaseTiles[]   = INCBIN_U32("graphics/ui_birch_case/case_tiles.4bpp.smol");
+static const u32 sCaseTilemap[] = INCBIN_U32("graphics/ui_birch_case/case_tiles.bin.smolTM");
 static const u16 sCasePalette[] = INCBIN_U16("graphics/ui_birch_case/case_tiles.gbapal");
 
-static const u32 sTextBgTiles[]   = INCBIN_U32("graphics/ui_birch_case/text_bg_tiles.4bpp.lz");
-static const u32 sTextBgTilemap[] = INCBIN_U32("graphics/ui_birch_case/text_bg_tiles.bin.lz");
+static const u32 sTextBgTiles[]   = INCBIN_U32("graphics/ui_birch_case/text_bg_tiles.4bpp.smol");
+static const u32 sTextBgTilemap[] = INCBIN_U32("graphics/ui_birch_case/text_bg_tiles.bin.smolTM");
 static const u16 sTextBgPalette[] = INCBIN_U16("graphics/ui_birch_case/text_bg_tiles.gbapal");
 
-static const u32 sPokeballHand_Gfx[] = INCBIN_U32("graphics/ui_birch_case/pokeball_hand.4bpp.lz");
+static const u32 sPokeballHand_Gfx[] = INCBIN_U32("graphics/ui_birch_case/pokeball_hand.4bpp.smol");
 static const u16 sPokeballHand_Pal[] = INCBIN_U16("graphics/ui_birch_case/pokeball_hand.gbapal");
 
 //

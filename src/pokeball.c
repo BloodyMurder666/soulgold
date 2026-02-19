@@ -16,6 +16,7 @@
 #include "data.h"
 #include "item.h"
 #include "constants/songs.h"
+#include "palette.h"
 
 static void Task_DoPokeballSendOutAnim(u8 taskId);
 static inline void DoPokeballSendOutSoundEffect(enum BattlerId battler);
@@ -1403,6 +1404,8 @@ void LoadBallGfx(u8 ballId)
     {
         LoadCompressedSpriteSheetUsingHeap(&gPokeBalls[ballId].pic);
         LoadSpritePalette(&gPokeBalls[ballId].palette);
+        if (gMain.inBattle)
+            TimeMixBattleSpritePalette(OBJ_PLTT_ID(LoadSpritePalette(&gPokeBalls[ballId].palette)));
     }
 
     switch (ballId)

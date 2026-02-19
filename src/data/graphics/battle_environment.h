@@ -59,7 +59,7 @@ const u16 gBattleEnvironmentPalette_StadiumLance[] = INCBIN_U16("graphics/battle
 const u32 gBattleEnvironmentTiles_TallGrass_2[] = INCBIN_U32("graphics/battle_environment/tall_grass_2/tiles.4bpp.smol");
 const u16 gBattleEnvironmentPalette_TallGrass_2[] = INCBIN_U16("graphics/battle_environment/tall_grass_2/palette.gbapal");
 const u32 gBattleEnvironmentTilemap_TallGrass_2[] = INCBIN_U32("graphics/battle_environment/tall_grass_2/map.bin.smolTM");
-const u16 gBattleEnvironmentPalette_TallGrass_2_Night[] = INCBIN_U16("graphics/battle_environment/tall_grass_2/palette_night.gbapal.lz");
+const u16 gBattleEnvironmentPalette_TallGrass_Night[] = INCBIN_U16("graphics/battle_environment/tall_grass_2/palette_night.gbapal.lz");
 
 const u32 gBattleEnvironmentTiles_LongGrass_2[] = INCBIN_U32("graphics/battle_environment/long_grass_2/tiles.4bpp.smol");
 const u16 gBattleEnvironmentPalette_LongGrass_2[] = INCBIN_U16("graphics/battle_environment/long_grass_2/palette.gbapal");
