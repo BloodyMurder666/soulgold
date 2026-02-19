@@ -17,8 +17,8 @@ struct DoorGraphics
     u16 metatileNum;
     u8 sound;
     u8 size;
-    const void *tiles;
-    const void *palettes;
+    const u8 *tiles;
+    const u8 *palettes;
 };
 
 enum {
@@ -421,12 +421,22 @@ static const struct DoorGraphics sDoorAnimGraphicsTable[] =
 #define DOOR_TILE_START_SIZE1 (NUM_TILES_TOTAL - 8)
 #define DOOR_TILE_START_SIZE2 (NUM_TILES_TOTAL - 16)
 
-static void UNUSED CopyDoorTilesToVram(const struct DoorGraphics *gfx, const struct DoorAnimFrame *frame)
+// NOTE: The tiles of a door's animation must be copied to VRAM because they are
+//       not already part of any given tileset. This means that if there are any
+//       pre-existing tiles in this copied region that are visible when the door
+//       animation is played, they will be overwritten.
+#define DOOR_TILE_START (434)//(NUM_TILES_TOTAL - 8)
+
+//Door anims have a conflict with Hoenn water animations, as they use the same VRAM space (around 432 - 434)
+//When in the BF, the door anims use a different allocation. Anywhere else, default.
+#define DOOR_TILE_START_FRONTIER 1000
+
+static void CopyDoorTilesToVram(const u8 *tiles)
 {
-    if (gfx->size == 2)
-        CpuFastCopy(gfx->tiles + frame->offset, (void *)(VRAM + TILE_OFFSET_4BPP(DOOR_TILE_START_SIZE2)), 16 * TILE_SIZE_4BPP);
+    if (gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER) 
+        CpuFastCopy(tiles, (void *)(VRAM + TILE_OFFSET_4BPP(DOOR_TILE_START)), 8 * TILE_SIZE_4BPP);
     else
-        CpuFastCopy(gfx->tiles + frame->offset, (void *)(VRAM + TILE_OFFSET_4BPP(DOOR_TILE_START_SIZE1)), 8 * TILE_SIZE_4BPP);
+        CpuFastCopy(tiles, (void *)(VRAM + TILE_OFFSET_4BPP(DOOR_TILE_START_FRONTIER)), 8 * TILE_SIZE_4BPP);
 }
 
 static void BuildDoorTiles(u16 *tiles, u16 tileNum, const u8 *paletteNums)
@@ -449,41 +459,35 @@ static void BuildDoorTiles(u16 *tiles, u16 tileNum, const u8 *paletteNums)
     }
 }
 
-static void DrawCurrentDoorAnimFrame(const struct DoorGraphics *gfx, u32 x, u32 y, const u8 *paletteNums)
+static void DrawCurrentDoorAnimFrame(const struct DoorGraphics *gfx, int x, int y, const u8 *paletteNums)
 {
-    u16 tiles[24];
-
-    if (gfx->size == 2)
+    u16 tiles[8];
+    if (gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER) 
     {
-        // Top left metatile
-        BuildDoorTiles(&tiles[8], DOOR_TILE_START_SIZE2 + 0, &paletteNums[0]);
-        DrawDoorMetatileAt(x, y - 1, &tiles[8]);
+        if (gfx->size == DOOR_SIZE_1x1)
+            BuildDoorTiles(tiles, DOOR_TILE_START, paletteNums);
 
-        // Bottom left metatile
-        BuildDoorTiles(&tiles[8], DOOR_TILE_START_SIZE2 + 4, &paletteNums[4]);
-        DrawDoorMetatileAt(x, y, &tiles[8]);
-
-        // Top right metatile
-        BuildDoorTiles(&tiles[8], DOOR_TILE_START_SIZE2 + 8, &paletteNums[0]);
-        DrawDoorMetatileAt(x + 1, y - 1, &tiles[8]);
-
-        // Bottom right metatile
-        BuildDoorTiles(&tiles[8], DOOR_TILE_START_SIZE2 + 12, &paletteNums[4]);
-        DrawDoorMetatileAt(x + 1, y, &tiles[8]);
+        else
+        {
+            BuildDoorTiles(tiles, DOOR_TILE_START, paletteNums);
+            DrawDoorMetatileAt(x, y - 1, tiles);
+            BuildDoorTiles(tiles, DOOR_TILE_START + 4, &paletteNums[4]);
+        }
     }
     else
     {
-        // Top metatile
-        BuildDoorTiles(&tiles[0], DOOR_TILE_START_SIZE1 + 0, &paletteNums[0]);
-        if (gfx->size == DOOR_SIZE_1x2)
-        {
-            DrawDoorMetatileAt(x, y - 1, &tiles[0]);
+        if (gfx->size == DOOR_SIZE_1x1)
+            BuildDoorTiles(tiles, DOOR_TILE_START_FRONTIER, paletteNums);
 
-            // Bottom metatile
-            BuildDoorTiles(&tiles[0], DOOR_TILE_START_SIZE1 + 4, &paletteNums[4]);
+        else
+        {
+            BuildDoorTiles(tiles, DOOR_TILE_START_FRONTIER, paletteNums);
+            DrawDoorMetatileAt(x, y - 1, tiles);
+            BuildDoorTiles(tiles, DOOR_TILE_START_FRONTIER + 4, &paletteNums[4]);
         }
-        DrawDoorMetatileAt(x, y, &tiles[0]);
     }
+
+    DrawDoorMetatileAt(x, y, tiles);
 }
 
 static void DrawClosedDoorTiles(const struct DoorGraphics *gfx, u32 x, u32 y)
@@ -499,9 +503,9 @@ static void DrawClosedDoorTiles(const struct DoorGraphics *gfx, u32 x, u32 y)
     }
 }
 
-static void DrawDoor(const struct DoorGraphics *gfx, const struct DoorAnimFrame *frame, u32 x, u32 y)
+static void DrawDoor(const struct DoorGraphics *gfx, const struct DoorAnimFrame *frames, int x, int y)
 {
-    if (frame->offset == CLOSED_DOOR_TILES_OFFSET)
+    if (frames->offset == CLOSED_DOOR_TILES_OFFSET)
     {
         DrawClosedDoorTiles(gfx, x, y);
         if (ShouldUseMultiCorridorDoor())
@@ -509,18 +513,7 @@ static void DrawDoor(const struct DoorGraphics *gfx, const struct DoorAnimFrame 
     }
     else
     {
-        u32 offset, size;
-        if (gfx->size == DOOR_SIZE_2x2)
-        {
-            offset = TILE_OFFSET_4BPP(DOOR_TILE_START_SIZE2);
-            size = 16 * TILE_SIZE_4BPP;
-        }
-        else
-        {
-            offset = TILE_OFFSET_4BPP(DOOR_TILE_START_SIZE1);
-            size = 8 * TILE_SIZE_4BPP;
-        }
-        CpuFastCopy(gfx->tiles + frame->offset, (void *)(VRAM + offset), size);
+        CopyDoorTilesToVram(&gfx->tiles[frames->offset]);
         DrawCurrentDoorAnimFrame(gfx, x, y, gfx->palettes);
         if (ShouldUseMultiCorridorDoor())
             DrawCurrentDoorAnimFrame(gfx, gSpecialVar_0x8004 + MAP_OFFSET, gSpecialVar_0x8005 + MAP_OFFSET, gfx->palettes);
