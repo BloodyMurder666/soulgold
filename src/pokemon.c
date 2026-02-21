@@ -6390,6 +6390,7 @@ u32 GetFormChangeTargetSpecies_Internal(struct FormChangeContext ctx)
         case FORM_CHANGE_DEPOSIT:
         case FORM_CHANGE_FAINT:
         case FORM_CHANGE_DAYS_PASSED:
+        case FORM_CHANGE_BEGIN_WILD_ENCOUNTER:
             targetSpecies = formChanges[i].targetSpecies;
             break;
         case FORM_CHANGE_STATUS:
@@ -6432,7 +6433,7 @@ u32 GetFormChangeTargetSpecies_Internal(struct FormChangeContext ctx)
             {
                 // We multiply by 100 to make sure that integer division doesn't mess with the health check.
                 u32 hpCheck = ctx.hp * 100 * 100 / ctx.maxHP;
-                switch(formChanges[i].param2)
+                switch (formChanges[i].param2)
                 {
                 case HP_HIGHER_THAN:
                     if (hpCheck > formChanges[i].param3 * 100)
@@ -6452,7 +6453,7 @@ u32 GetFormChangeTargetSpecies_Internal(struct FormChangeContext ctx)
             {
                 // We multiply by 100 to make sure that integer division doesn't mess with the health check.
                 u32 hpCheck = ctx.hp * 100 * 100 / ctx.maxHP;
-                switch(formChanges[i].param2)
+                switch (formChanges[i].param2)
                 {
                 case HP_HIGHER_THAN:
                     if (hpCheck > formChanges[i].param3 * 100)
