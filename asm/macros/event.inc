@@ -2933,4 +2933,19 @@
 	closemessage
 	.endm
 
+	@ Prepares to start a wild battle against a 'species' at 'level' holding 'item' with moves 'move1' 'move2' 'move3' move4' ability 'ability' and 'isShiny'.
+	@ Running this command will not affect normal wild battles. You start the prepared battle with dowildbattle.
+	.macro setwildbattle2 species:req, level:req, item=ITEM_NONE, abilityNum:req, move1:req, move2:req, move3:req, move4:req, isShiny:req
+	.byte SCR_OP_SETWILDBATTLE2
+	.2byte \species
+	.byte \level
+	.2byte \item
+	.byte \abilityNum
+	.2byte \move1
+	.2byte \move2
+	.2byte \move3
+	.2byte \move4
+	.byte \isShiny
+	.endm
+
 @@@ custom end

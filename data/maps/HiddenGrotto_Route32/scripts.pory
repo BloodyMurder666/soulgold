@@ -1,0 +1,36 @@
+mapscripts HiddenGrotto_Route32_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        goto(handleRoute32GrottoEvent)
+    }
+}
+
+script handleRoute32GrottoEvent {
+    if (flag(FLAG_ROUTE32_GROTTO) == FALSE) {
+            random(2)
+            switch (var(VAR_RESULT)) {
+                case 0: setobjectxyperm(2, 8, 4)
+                case 1: setobjectxyperm(1, 8, 4)
+            }
+        }
+}
+
+script Route32GrottoApplin {
+    lock
+    faceplayer
+    setwildbattle2(SPECIES_APPLIN, 10, ITEM_SITRUS_BERRY, 2, MOVE_ASTONISH, MOVE_WITHDRAW, MOVE_RECYCLE, MOVE_ROLLOUT, FALSE)
+    waitse
+    playmoncry(SPECIES_APPLIN, CRY_MODE_ENCOUNTER)
+    delay(40)
+    waitmoncry
+    setflag(FLAG_ROUTE32_GROTTO)
+    dowildbattle
+    removeobject(2)
+    release
+    end
+}
+
+script FindItem_Route32Grotto {
+	finditem(ITEM_GROWTH_MULCH)
+	removeobject(1)
+    end
+}

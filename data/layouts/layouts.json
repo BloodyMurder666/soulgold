@@ -8760,6 +8760,16 @@
       "secondary_tileset": "gTileset_WhirlIslands",
       "border_filepath": "data/layouts/WhirlIslands_B1F_Inner/border.bin",
       "blockdata_filepath": "data/layouts/WhirlIslands_B1F_Inner/map.bin"
+    },
+    {
+      "id": "LAYOUT_HIDDEN_GROTTO_ROUTE32",
+      "name": "HiddenGrotto_Route32_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Johto_NorthEast",
+      "secondary_tileset": "gTileset_Route32",
+      "border_filepath": "data/layouts/HiddenGrotto_Route32/border.bin",
+      "blockdata_filepath": "data/layouts/HiddenGrotto_Route32/map.bin"
     }
   ]
 }

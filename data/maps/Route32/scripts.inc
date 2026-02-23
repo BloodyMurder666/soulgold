@@ -1,508 +1,1040 @@
+# 1 "data/maps/Route32/scripts.pory"
+
+# 2 "data/maps/Route32/scripts.pory"
 .set LOCALID_ROUTE32_BALDINGMAN, 1
+# 3 "data/maps/Route32/scripts.pory"
 .set LOCALID_SLOWPOKETAIL_MAN, 14
+# 4 "data/maps/Route32/scripts.pory"
 
+# 5 "data/maps/Route32/scripts.pory"
 
+# 6 "data/maps/Route32/scripts.pory"
 Route32_MapScripts::
+# 7 "data/maps/Route32/scripts.pory"
 	map_script MAP_SCRIPT_ON_TRANSITION, Route32_OnTransition
+# 8 "data/maps/Route32/scripts.pory"
 	map_script MAP_SCRIPT_ON_RESUME, SetTimeEncounters
+# 9 "data/maps/Route32/scripts.pory"
 	.byte 0
+# 10 "data/maps/Route32/scripts.pory"
 
+# 11 "data/maps/Route32/scripts.pory"
 Route32_OnTransition: 
+# 12 "data/maps/Route32/scripts.pory"
 	callnative SetTimeBasedEncounters
+# 13 "data/maps/Route32/scripts.pory"
 	end
+# 14 "data/maps/Route32/scripts.pory"
 
+# 15 "data/maps/Route32/scripts.pory"
 Route32_EventScript_FisherJustin::
+# 16 "data/maps/Route32/scripts.pory"
 	trainerbattle_single TRAINER_JUSTIN Route32_Text_FisherJustin_Seen, Route32_Text_FisherJustin_Beaten
+# 17 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_FisherJustin_After, MSGBOX_AUTOCLOSE
+# 18 "data/maps/Route32/scripts.pory"
 	end
+# 19 "data/maps/Route32/scripts.pory"
 
+# 20 "data/maps/Route32/scripts.pory"
 Route32_EventScript_FisherRalph::
+# 21 "data/maps/Route32/scripts.pory"
 	trainerbattle_single TRAINER_RALPH Route32_Text_FisherRalph1_Seen, Route32_Text_FisherRalph1_Beaten
+# 22 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_FisherRalph1_After, MSGBOX_AUTOCLOSE
+# 23 "data/maps/Route32/scripts.pory"
 	end
+# 24 "data/maps/Route32/scripts.pory"
 
+# 25 "data/maps/Route32/scripts.pory"
 Route32_EventScript_FisherHenry::
+# 26 "data/maps/Route32/scripts.pory"
 	trainerbattle_single TRAINER_HENRY Route32_Text_FisherHenry_Seen, Route32_Text_FisherHenry_Beaten
+# 27 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_FisherHenry_After, MSGBOX_AUTOCLOSE
+# 28 "data/maps/Route32/scripts.pory"
 	end
+# 29 "data/maps/Route32/scripts.pory"
 
+# 30 "data/maps/Route32/scripts.pory"
 Route32_EventScript_YoungsterAlbert::
+# 31 "data/maps/Route32/scripts.pory"
 	trainerbattle_single TRAINER_ALBERT Route32_Text_YoungsterAlbert_Seen, Route32_Text_YoungsterAlbert_Beaten
+# 32 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_YoungsterAlbert_After, MSGBOX_AUTOCLOSE
+# 33 "data/maps/Route32/scripts.pory"
 	end
+# 34 "data/maps/Route32/scripts.pory"
 
+# 35 "data/maps/Route32/scripts.pory"
 Route32_EventScript_YoungsterGordon::
+# 36 "data/maps/Route32/scripts.pory"
 	trainerbattle_single TRAINER_GORDON Route32_Text_YoungsterGordon_Seen, Route32_Text_YoungsterGordon_Beaten
+# 37 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_YoungsterGordon_After, MSGBOX_AUTOCLOSE
+# 38 "data/maps/Route32/scripts.pory"
 	end
+# 39 "data/maps/Route32/scripts.pory"
 
+# 40 "data/maps/Route32/scripts.pory"
 Route32_EventScript_CamperRoland::
+# 41 "data/maps/Route32/scripts.pory"
 	trainerbattle_single TRAINER_ROLAND Route32_Text_CamperRoland_Seen, Route32_Text_CamperRoland_Beaten
+# 42 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_CamperRoland_After, MSGBOX_AUTOCLOSE
+# 43 "data/maps/Route32/scripts.pory"
 	end
+# 44 "data/maps/Route32/scripts.pory"
 
+# 45 "data/maps/Route32/scripts.pory"
 Route32_EventScript_PicnickerLiz::
+# 46 "data/maps/Route32/scripts.pory"
 	trainerbattle_single TRAINER_LIZ Route32_Text_PicnickerLiz1_Seen, Route32_Text_PicnickerLiz1_Beaten
+# 47 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_PicnickerLiz1_After, MSGBOX_AUTOCLOSE
+# 48 "data/maps/Route32/scripts.pory"
 	end
+# 49 "data/maps/Route32/scripts.pory"
 
+# 50 "data/maps/Route32/scripts.pory"
 Route32_EventScript_BirdkeeperPeter::
+# 51 "data/maps/Route32/scripts.pory"
 	trainerbattle_single TRAINER_PETER Route32_Text_BirdKeeperPeter_Seen, Route32_Text_BirdKeeperPeter_Beaten
+# 52 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_BirdKeeperPeter_After, MSGBOX_AUTOCLOSE
+# 53 "data/maps/Route32/scripts.pory"
 	end
+# 54 "data/maps/Route32/scripts.pory"
 
+# 55 "data/maps/Route32/scripts.pory"
 Route32_EventScript_Roar::
+# 56 "data/maps/Route32/scripts.pory"
 	lock
+# 57 "data/maps/Route32/scripts.pory"
 	faceplayer
+# 58 "data/maps/Route32/scripts.pory"
 	checkitem ITEM_TM_ROAR
+# 59 "data/maps/Route32/scripts.pory"
 	goto_if_eq VAR_RESULT, TRUE, Route32_EventScript_Roar2
+# 60 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_RoarIntro, MSGBOX_DEFAULT
+# 61 "data/maps/Route32/scripts.pory"
 	giveitem ITEM_TM_ROAR
+# 62 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_RoarOutro, MSGBOX_DEFAULT
+# 63 "data/maps/Route32/scripts.pory"
 	closemessage
+# 64 "data/maps/Route32/scripts.pory"
 	release
+# 65 "data/maps/Route32/scripts.pory"
 	end
+# 66 "data/maps/Route32/scripts.pory"
 Route32_EventScript_Roar2::
+# 67 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_RoarOutro, MSGBOX_DEFAULT
+# 68 "data/maps/Route32/scripts.pory"
 	closemessage
+# 69 "data/maps/Route32/scripts.pory"
 	release
+# 70 "data/maps/Route32/scripts.pory"
 	end
+# 71 "data/maps/Route32/scripts.pory"
 
+# 72 "data/maps/Route32/scripts.pory"
 Route32_EventScript_SlowpokeTail_TriggerLeft::
+# 73 "data/maps/Route32/scripts.pory"
 	lock
+# 74 "data/maps/Route32/scripts.pory"
 	turnobject LOCALID_SLOWPOKETAIL_MAN, DIR_EAST
+# 75 "data/maps/Route32/scripts.pory"
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_WEST
+# 76 "data/maps/Route32/scripts.pory"
 	playse SE_PIN
+# 77 "data/maps/Route32/scripts.pory"
 	applymovement LOCALID_SLOWPOKETAIL_MAN, Common_Movement_ExclamationMark
+# 78 "data/maps/Route32/scripts.pory"
 	delay 60
+# 79 "data/maps/Route32/scripts.pory"
 	applymovement LOCALID_SLOWPOKETAIL_MAN, Route32_Movement_SlowpokeLeft
+# 80 "data/maps/Route32/scripts.pory"
 	waitmovement 0
+# 81 "data/maps/Route32/scripts.pory"
 	goto Route32_EventScript_SlowpokeTail_Trigger
+# 82 "data/maps/Route32/scripts.pory"
 
+# 83 "data/maps/Route32/scripts.pory"
 Route32_EventScript_SlowpokeTail_TriggerMid::
+# 84 "data/maps/Route32/scripts.pory"
 	lock
+# 85 "data/maps/Route32/scripts.pory"
 	turnobject LOCALID_SLOWPOKETAIL_MAN, DIR_EAST
+# 86 "data/maps/Route32/scripts.pory"
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_WEST
+# 87 "data/maps/Route32/scripts.pory"
 	playse SE_PIN
+# 88 "data/maps/Route32/scripts.pory"
 	applymovement LOCALID_SLOWPOKETAIL_MAN, Common_Movement_ExclamationMark
+# 89 "data/maps/Route32/scripts.pory"
 	delay 60
+# 90 "data/maps/Route32/scripts.pory"
 	applymovement LOCALID_SLOWPOKETAIL_MAN, Route32_Movement_SlowpokeMid
+# 91 "data/maps/Route32/scripts.pory"
 	waitmovement 0
+# 92 "data/maps/Route32/scripts.pory"
 	goto Route32_EventScript_SlowpokeTail_Trigger
+# 93 "data/maps/Route32/scripts.pory"
 
+# 94 "data/maps/Route32/scripts.pory"
 Route32_EventScript_SlowpokeTail_TriggerRight::
+# 95 "data/maps/Route32/scripts.pory"
 	lock
+# 96 "data/maps/Route32/scripts.pory"
 	turnobject LOCALID_SLOWPOKETAIL_MAN, DIR_EAST
+# 97 "data/maps/Route32/scripts.pory"
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_WEST
+# 98 "data/maps/Route32/scripts.pory"
 	playse SE_PIN
+# 99 "data/maps/Route32/scripts.pory"
 	applymovement LOCALID_SLOWPOKETAIL_MAN, Common_Movement_ExclamationMark
+# 100 "data/maps/Route32/scripts.pory"
 	delay 60
+# 101 "data/maps/Route32/scripts.pory"
 	applymovement LOCALID_SLOWPOKETAIL_MAN, Route32_Movement_SlowpokeRight
+# 102 "data/maps/Route32/scripts.pory"
 	waitmovement 0
+# 103 "data/maps/Route32/scripts.pory"
 	goto Route32_EventScript_SlowpokeTail_Trigger
+# 104 "data/maps/Route32/scripts.pory"
 
+# 105 "data/maps/Route32/scripts.pory"
 Route32_EventScript_SlowpokeTail_Trigger::
+# 106 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_SlowpokeTailOffer, MSGBOX_YESNO
+# 107 "data/maps/Route32/scripts.pory"
 	goto_if_eq VAR_RESULT, TRUE, Route32_EventScript_SlowpokeTail_Trigger2
+# 108 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_RefusedSlowpokeTail, MSGBOX_DEFAULT
+# 109 "data/maps/Route32/scripts.pory"
 	closemessage
+# 110 "data/maps/Route32/scripts.pory"
 	setvar VAR_SLOWPOKE_TAIL, 1
+# 111 "data/maps/Route32/scripts.pory"
 	release
+# 112 "data/maps/Route32/scripts.pory"
 	end	
+# 113 "data/maps/Route32/scripts.pory"
 Route32_EventScript_SlowpokeTail_Trigger2::
+# 114 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_ThoughtKidsLoaded, MSGBOX_DEFAULT
+# 115 "data/maps/Route32/scripts.pory"
 	closemessage
+# 116 "data/maps/Route32/scripts.pory"
 	getplayerxy VAR_TEMP_0, VAR_TEMP_1
+# 117 "data/maps/Route32/scripts.pory"
 	call_if_eq VAR_TEMP_0, 16, Route32_EventScript_Movement_Left
+# 118 "data/maps/Route32/scripts.pory"
 	call_if_eq VAR_TEMP_0, 17, 	Route32_EventScript_Movement_Right
+# 119 "data/maps/Route32/scripts.pory"
 	setvar VAR_SLOWPOKE_TAIL, 1
+# 120 "data/maps/Route32/scripts.pory"
 	release
+# 121 "data/maps/Route32/scripts.pory"
 	end
+# 122 "data/maps/Route32/scripts.pory"
 
+# 123 "data/maps/Route32/scripts.pory"
 Route32_EventScript_Movement_Left::
+# 124 "data/maps/Route32/scripts.pory"
 	applymovement LOCALID_SLOWPOKETAIL_MAN, Common_Movement_WalkLeft1
+# 125 "data/maps/Route32/scripts.pory"
 	waitmovement 0
+# 126 "data/maps/Route32/scripts.pory"
 	turnobject LOCALID_SLOWPOKETAIL_MAN, DIR_EAST
+# 127 "data/maps/Route32/scripts.pory"
 	return 
+# 128 "data/maps/Route32/scripts.pory"
 
+# 129 "data/maps/Route32/scripts.pory"
 Route32_EventScript_Movement_Right::
+# 130 "data/maps/Route32/scripts.pory"
 	applymovement LOCALID_SLOWPOKETAIL_MAN, Common_Movement_WalkLeft1
+# 131 "data/maps/Route32/scripts.pory"
 	waitmovement 0
+# 132 "data/maps/Route32/scripts.pory"
 	applymovement LOCALID_SLOWPOKETAIL_MAN, Common_Movement_WalkLeft1
+# 133 "data/maps/Route32/scripts.pory"
 	waitmovement 0
+# 134 "data/maps/Route32/scripts.pory"
 	turnobject LOCALID_SLOWPOKETAIL_MAN, DIR_EAST
+# 135 "data/maps/Route32/scripts.pory"
 	return 	
+# 136 "data/maps/Route32/scripts.pory"
 
+# 137 "data/maps/Route32/scripts.pory"
 Route32_EventScript_SlowpokeTail::
+# 138 "data/maps/Route32/scripts.pory"
 	lock
+# 139 "data/maps/Route32/scripts.pory"
 	faceplayer
+# 140 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_SlowpokeTailOffer, MSGBOX_YESNO
+# 141 "data/maps/Route32/scripts.pory"
 	goto_if_eq VAR_RESULT, TRUE, Route32_EventScript_SlowpokeTail2
+# 142 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_RefusedSlowpokeTail, MSGBOX_DEFAULT
+# 143 "data/maps/Route32/scripts.pory"
 	closemessage
+# 144 "data/maps/Route32/scripts.pory"
 	release
+# 145 "data/maps/Route32/scripts.pory"
 	end
+# 146 "data/maps/Route32/scripts.pory"
 Route32_EventScript_SlowpokeTail2::
+# 147 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_ThoughtKidsLoaded, MSGBOX_DEFAULT
+# 148 "data/maps/Route32/scripts.pory"
 	closemessage
+# 149 "data/maps/Route32/scripts.pory"
 	release
+# 150 "data/maps/Route32/scripts.pory"
 	end
+# 151 "data/maps/Route32/scripts.pory"
 
+# 152 "data/maps/Route32/scripts.pory"
 
+# 153 "data/maps/Route32/scripts.pory"
 Route32_EventScript_Frieda::
+# 154 "data/maps/Route32/scripts.pory"
 	lock
+# 155 "data/maps/Route32/scripts.pory"
 	faceplayer
+# 156 "data/maps/Route32/scripts.pory"
 	goto_if_set FLAG_GOT_POISON_BARB, Route32_EventScript_FriedaCompleted
+# 157 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_MeetFrieda, MSGBOX_DEFAULT
+# 158 "data/maps/Route32/scripts.pory"
 	closemessage
+# 159 "data/maps/Route32/scripts.pory"
 	multichoice 20, 0, MULTI_DAYS_OF_WEEK, FALSE
+# 160 "data/maps/Route32/scripts.pory"
 	switch VAR_RESULT
+# 161 "data/maps/Route32/scripts.pory"
 	case 0, Route32_EventScript_FriedaNope
+# 162 "data/maps/Route32/scripts.pory"
 	case 1, Route32_EventScript_FriedaNope
+# 163 "data/maps/Route32/scripts.pory"
 	case 2, Route32_EventScript_FriedaNope
+# 164 "data/maps/Route32/scripts.pory"
 	case 3, Route32_EventScript_FriedaNope
+# 165 "data/maps/Route32/scripts.pory"
 	case 4, Route32_EventScript_FriedaNope
+# 166 "data/maps/Route32/scripts.pory"
 	case 5, Route32_EventScript_FriedaYes
+# 167 "data/maps/Route32/scripts.pory"
 	case 6, Route32_EventScript_FriedaNope
+# 168 "data/maps/Route32/scripts.pory"
 	case 7, Route32_EventScript_FriedaCancel
+# 169 "data/maps/Route32/scripts.pory"
 	case MULTI_B_PRESSED, Route32_EventScript_FriedaCancel
+# 170 "data/maps/Route32/scripts.pory"
 	closemessage
+# 171 "data/maps/Route32/scripts.pory"
 	release
+# 172 "data/maps/Route32/scripts.pory"
 	end
+# 173 "data/maps/Route32/scripts.pory"
 Route32_EventScript_FriedaYes::
+# 174 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_FriedaGivesGift, MSGBOX_DEFAULT
+# 175 "data/maps/Route32/scripts.pory"
 	giveitem ITEM_POISON_BARB
+# 176 "data/maps/Route32/scripts.pory"
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+# 177 "data/maps/Route32/scripts.pory"
 	setflag FLAG_GOT_POISON_BARB
+# 178 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_FriedaGaveGift, MSGBOX_DEFAULT
+# 179 "data/maps/Route32/scripts.pory"
 	closemessage
+# 180 "data/maps/Route32/scripts.pory"
 	release
+# 181 "data/maps/Route32/scripts.pory"
 	end
+# 182 "data/maps/Route32/scripts.pory"
 Route32_EventScript_FriedaNope::
+# 183 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_FriedaNope, MSGBOX_DEFAULT
+# 184 "data/maps/Route32/scripts.pory"
 	closemessage
+# 185 "data/maps/Route32/scripts.pory"
 	release
+# 186 "data/maps/Route32/scripts.pory"
 	end
+# 187 "data/maps/Route32/scripts.pory"
 Route32_EventScript_FriedaCancel::
+# 188 "data/maps/Route32/scripts.pory"
 	closemessage
+# 189 "data/maps/Route32/scripts.pory"
 	release
+# 190 "data/maps/Route32/scripts.pory"
 	end
+# 191 "data/maps/Route32/scripts.pory"
 Route32_EventScript_FriedaCompleted::
+# 192 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_FriedaFriday, MSGBOX_DEFAULT
+# 193 "data/maps/Route32/scripts.pory"
 	closemessage
+# 194 "data/maps/Route32/scripts.pory"
 	release
+# 195 "data/maps/Route32/scripts.pory"
 	end
+# 196 "data/maps/Route32/scripts.pory"
 
+# 197 "data/maps/Route32/scripts.pory"
 Route32_EventScript_BaldingMan::
+# 198 "data/maps/Route32/scripts.pory"
 	lock
+# 199 "data/maps/Route32/scripts.pory"
 	faceplayer
+# 200 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_CooltrainerM_Experiences, MSGBOX_DEFAULT
+# 201 "data/maps/Route32/scripts.pory"
 	closemessage
+# 202 "data/maps/Route32/scripts.pory"
 	turnobject LOCALID_ROUTE32_BALDINGMAN, DIR_EAST
+# 203 "data/maps/Route32/scripts.pory"
 	release
+# 204 "data/maps/Route32/scripts.pory"
 	end
+# 205 "data/maps/Route32/scripts.pory"
 
+# 206 "data/maps/Route32/scripts.pory"
 Route32_EventScript_BaldingManTriggerLeft::
+# 207 "data/maps/Route32/scripts.pory"
 	lock
+# 208 "data/maps/Route32/scripts.pory"
 	playse SE_PIN
+# 209 "data/maps/Route32/scripts.pory"
 	applymovement LOCALID_ROUTE32_BALDINGMAN, Common_Movement_ExclamationMark
+# 210 "data/maps/Route32/scripts.pory"
 	delay 60
+# 211 "data/maps/Route32/scripts.pory"
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_WEST
+# 212 "data/maps/Route32/scripts.pory"
 	goto Route32_EventScript_BaldingManCheck
+# 213 "data/maps/Route32/scripts.pory"
 	end
+# 214 "data/maps/Route32/scripts.pory"
 Route32_EventScript_BaldingManTriggerMid::
+# 215 "data/maps/Route32/scripts.pory"
 	lock
+# 216 "data/maps/Route32/scripts.pory"
 	playse SE_PIN
+# 217 "data/maps/Route32/scripts.pory"
 	applymovement LOCALID_ROUTE32_BALDINGMAN, Common_Movement_ExclamationMark
+# 218 "data/maps/Route32/scripts.pory"
 	delay 60
+# 219 "data/maps/Route32/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, Route32_Movement_StartMid
+# 220 "data/maps/Route32/scripts.pory"
 	waitmovement 0
+# 221 "data/maps/Route32/scripts.pory"
 	goto Route32_EventScript_BaldingManCheck
+# 222 "data/maps/Route32/scripts.pory"
 	end
+# 223 "data/maps/Route32/scripts.pory"
 Route32_EventScript_BaldingManTriggerRight::
+# 224 "data/maps/Route32/scripts.pory"
 	lock
+# 225 "data/maps/Route32/scripts.pory"
 	playse SE_PIN
+# 226 "data/maps/Route32/scripts.pory"
 	applymovement LOCALID_ROUTE32_BALDINGMAN, Common_Movement_ExclamationMark
+# 227 "data/maps/Route32/scripts.pory"
 	delay 60
+# 228 "data/maps/Route32/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, Route32_Movment_StartRight
+# 229 "data/maps/Route32/scripts.pory"
 	waitmovement 0
+# 230 "data/maps/Route32/scripts.pory"
 	goto Route32_EventScript_BaldingManCheck
+# 231 "data/maps/Route32/scripts.pory"
 	end
+# 232 "data/maps/Route32/scripts.pory"
 Route32_EventScript_BaldingManCheck::
+# 233 "data/maps/Route32/scripts.pory"
 	goto_if_unset FLAG_HIDE_SPROUT_TOWER_SILVER, Route32_EventScript_BaldingManTower
+# 234 "data/maps/Route32/scripts.pory"
 	goto_if_unset FLAG_DEFEATED_VIOLET_GYM, Route32_EventScript_BaldingManGym
+# 235 "data/maps/Route32/scripts.pory"
 	goto_if_unset FLAG_RECEIVED_TOGEPI_EGG, Route32_EventScript_BaldingManEgg
+# 236 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_CooltrainerM_HaveThisSeed, MSGBOX_DEFAULT
+# 237 "data/maps/Route32/scripts.pory"
 	giveitem ITEM_MIRACLE_SEED
+# 238 "data/maps/Route32/scripts.pory"
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+# 239 "data/maps/Route32/scripts.pory"
 	closemessage
+# 240 "data/maps/Route32/scripts.pory"
 	setvar VAR_VIOLET_CITY_STATE, 5
+# 241 "data/maps/Route32/scripts.pory"
 	release
+# 242 "data/maps/Route32/scripts.pory"
 	end
+# 243 "data/maps/Route32/scripts.pory"
 Route32_EventScript_BaldingManTower::
+# 244 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_CooltrainerM_WhatsTheHurry, MSGBOX_DEFAULT
+# 245 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_CooltrainerM_SproutTower, MSGBOX_DEFAULT
+# 246 "data/maps/Route32/scripts.pory"
 	closemessage
+# 247 "data/maps/Route32/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, Route32_Movement_Turnback
+# 248 "data/maps/Route32/scripts.pory"
 	waitmovement 0
+# 249 "data/maps/Route32/scripts.pory"
 	release
+# 250 "data/maps/Route32/scripts.pory"
 	end
+# 251 "data/maps/Route32/scripts.pory"
 Route32_EventScript_BaldingManGym::
+# 252 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_CooltrainerM_WhatsTheHurry, MSGBOX_DEFAULT
+# 253 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_CooltrainerM_VioletGym, MSGBOX_DEFAULT
+# 254 "data/maps/Route32/scripts.pory"
 	closemessage
+# 255 "data/maps/Route32/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, Route32_Movement_Turnback
+# 256 "data/maps/Route32/scripts.pory"
 	waitmovement 0
+# 257 "data/maps/Route32/scripts.pory"
 	release
+# 258 "data/maps/Route32/scripts.pory"
 	end
+# 259 "data/maps/Route32/scripts.pory"
 Route32_EventScript_BaldingManEgg::
+# 260 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_CooltrainerM_WhatsTheHurry, MSGBOX_DEFAULT
+# 261 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_CooltrainerM_AideIsWaiting, MSGBOX_DEFAULT
+# 262 "data/maps/Route32/scripts.pory"
 	closemessage
+# 263 "data/maps/Route32/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, Route32_Movement_Turnback
+# 264 "data/maps/Route32/scripts.pory"
 	waitmovement 0
+# 265 "data/maps/Route32/scripts.pory"
 	release
+# 266 "data/maps/Route32/scripts.pory"
 	end
+# 267 "data/maps/Route32/scripts.pory"
 
+# 268 "data/maps/Route32/scripts.pory"
 Route32_EventScript_Sign1::
+# 269 "data/maps/Route32/scripts.pory"
 	lock
+# 270 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_Sign1, MSGBOX_SIGN
+# 271 "data/maps/Route32/scripts.pory"
 	closemessage
+# 272 "data/maps/Route32/scripts.pory"
 	release
+# 273 "data/maps/Route32/scripts.pory"
 	end
+# 274 "data/maps/Route32/scripts.pory"
 
+# 275 "data/maps/Route32/scripts.pory"
 Route32_EventScript_Sign2::
+# 276 "data/maps/Route32/scripts.pory"
 	lock
+# 277 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_Sign2, MSGBOX_SIGN
+# 278 "data/maps/Route32/scripts.pory"
 	closemessage
+# 279 "data/maps/Route32/scripts.pory"
 	release
+# 280 "data/maps/Route32/scripts.pory"
 	end
+# 281 "data/maps/Route32/scripts.pory"
 
+# 282 "data/maps/Route32/scripts.pory"
 Route32_EventScript_Sign3::
+# 283 "data/maps/Route32/scripts.pory"
 	lock
+# 284 "data/maps/Route32/scripts.pory"
 	msgbox Route32_Text_Sign3, MSGBOX_SIGN
+# 285 "data/maps/Route32/scripts.pory"
 	closemessage
+# 286 "data/maps/Route32/scripts.pory"
+	release
+# 287 "data/maps/Route32/scripts.pory"
+	end
+# 288 "data/maps/Route32/scripts.pory"
+
+# 289 "data/maps/Route32/scripts.pory"
+Route32_Movement_Turnback:
+# 290 "data/maps/Route32/scripts.pory"
+	walk_up
+# 291 "data/maps/Route32/scripts.pory"
+	step_end
+# 292 "data/maps/Route32/scripts.pory"
+
+# 293 "data/maps/Route32/scripts.pory"
+Route32_Movement_StartMid:
+# 294 "data/maps/Route32/scripts.pory"
+	walk_left
+# 295 "data/maps/Route32/scripts.pory"
+	step_end
+# 296 "data/maps/Route32/scripts.pory"
+
+# 297 "data/maps/Route32/scripts.pory"
+Route32_Movment_StartRight:
+# 298 "data/maps/Route32/scripts.pory"
+	walk_left
+# 299 "data/maps/Route32/scripts.pory"
+	walk_left
+# 300 "data/maps/Route32/scripts.pory"
+	step_end
+# 301 "data/maps/Route32/scripts.pory"
+
+# 302 "data/maps/Route32/scripts.pory"
+Route32_Movement_SlowpokeLeft::
+# 303 "data/maps/Route32/scripts.pory"
+	step_end
+# 304 "data/maps/Route32/scripts.pory"
+
+# 305 "data/maps/Route32/scripts.pory"
+Route32_Movement_SlowpokeMid::
+# 306 "data/maps/Route32/scripts.pory"
+	walk_right
+# 307 "data/maps/Route32/scripts.pory"
+	step_end
+# 308 "data/maps/Route32/scripts.pory"
+
+# 309 "data/maps/Route32/scripts.pory"
+Route32_Movement_SlowpokeRight::
+# 310 "data/maps/Route32/scripts.pory"
+	walk_right
+# 311 "data/maps/Route32/scripts.pory"
+	walk_right
+# 312 "data/maps/Route32/scripts.pory"
+	step_end
+# 313 "data/maps/Route32/scripts.pory"
+
+# 314 "data/maps/Route32/scripts.pory"
+Route32_Text_CooltrainerM_WhatsTheHurry:
+# 315 "data/maps/Route32/scripts.pory"
+	.string "Wait up!\n"
+# 316 "data/maps/Route32/scripts.pory"
+	.string "What's the hurry?$"
+# 317 "data/maps/Route32/scripts.pory"
+
+# 318 "data/maps/Route32/scripts.pory"
+Route32_Text_CooltrainerM_AideIsWaiting:
+# 319 "data/maps/Route32/scripts.pory"
+	.string "{PLAYER}, right?\n"
+# 320 "data/maps/Route32/scripts.pory"
+	.string "Some guy wearing glasses\p"
+# 321 "data/maps/Route32/scripts.pory"
+	.string "was looking for you.\p"
+# 322 "data/maps/Route32/scripts.pory"
+	.string "See for yourself. He's waiting for\n"
+# 323 "data/maps/Route32/scripts.pory"
+	.string "you at the POKéMON CENTER.$"
+# 324 "data/maps/Route32/scripts.pory"
+
+# 325 "data/maps/Route32/scripts.pory"
+Route32_Text_CooltrainerM_SproutTower:
+# 326 "data/maps/Route32/scripts.pory"
+	.string "Have you gone to SPROUT TOWER?\n"
+# 327 "data/maps/Route32/scripts.pory"
+	.string "If you ever visit VIOLET CITY,\p"
+# 328 "data/maps/Route32/scripts.pory"
+	.string "they'll expect you to train there.\n"
+# 329 "data/maps/Route32/scripts.pory"
+	.string "That's basic for trainers.\p"
+# 330 "data/maps/Route32/scripts.pory"
+	.string "Go to SPROUT TOWER!$"
+# 331 "data/maps/Route32/scripts.pory"
+
+# 332 "data/maps/Route32/scripts.pory"
+Route32_Text_CooltrainerM_VioletGym:
+# 333 "data/maps/Route32/scripts.pory"
+	.string "Have you gone to the POKéMON GYM?\n"
+# 334 "data/maps/Route32/scripts.pory"
+	.string "You can test your POKéMON and\p"
+# 335 "data/maps/Route32/scripts.pory"
+	.string "yourself there.\n"
+# 336 "data/maps/Route32/scripts.pory"
+	.string "It's a rite of passage for all\p"
+# 337 "data/maps/Route32/scripts.pory"
+	.string "trainers!$"
+# 338 "data/maps/Route32/scripts.pory"
+
+# 339 "data/maps/Route32/scripts.pory"
+Route32_Text_CooltrainerM_HaveThisSeed:
+# 340 "data/maps/Route32/scripts.pory"
+	.string "You have some good POKéMON there.\n"
+# 341 "data/maps/Route32/scripts.pory"
+	.string "It must be from the training you\p"
+# 342 "data/maps/Route32/scripts.pory"
+	.string "gave them around VIOLET CITY.\n"
+# 343 "data/maps/Route32/scripts.pory"
+	.string "The training at the GYM must have\p"
+# 344 "data/maps/Route32/scripts.pory"
+	.string "been especially helpful. As a\n"
+# 345 "data/maps/Route32/scripts.pory"
+	.string "souvenir of VIOLET CITY, take this.\p"
+# 346 "data/maps/Route32/scripts.pory"
+	.string "It increases the power of GRASS-\n"
+# 347 "data/maps/Route32/scripts.pory"
+	.string "type moves.$"
+# 348 "data/maps/Route32/scripts.pory"
+
+# 349 "data/maps/Route32/scripts.pory"
+Route32_Text_CooltrainerM_Experiences:
+# 350 "data/maps/Route32/scripts.pory"
+	.string "Your experiences in VIOLET CITY\n"
+# 351 "data/maps/Route32/scripts.pory"
+	.string "should be useful for your journey.$"
+# 352 "data/maps/Route32/scripts.pory"
+
+# 353 "data/maps/Route32/scripts.pory"
+Route32_Text_SlowpokeTailOffer:
+# 354 "data/maps/Route32/scripts.pory"
+	.string "How would you like to have this\n"
+# 355 "data/maps/Route32/scripts.pory"
+	.string "tasty, nutritious SLOWPOKE TAIL?\p"
+# 356 "data/maps/Route32/scripts.pory"
+	.string "For you right now, just\n"
+# 357 "data/maps/Route32/scripts.pory"
+	.string "¥1,000,000!\p"
+# 358 "data/maps/Route32/scripts.pory"
+	.string "You'll want this!$"
+# 359 "data/maps/Route32/scripts.pory"
+
+# 360 "data/maps/Route32/scripts.pory"
+Route32_Text_ThoughtKidsLoaded:
+# 361 "data/maps/Route32/scripts.pory"
+	.string "Tch! I thought kids\n"
+# 362 "data/maps/Route32/scripts.pory"
+	.string "these days were loaded…$"
+# 363 "data/maps/Route32/scripts.pory"
+
+# 364 "data/maps/Route32/scripts.pory"
+Route32_Text_RefusedSlowpokeTail:
+# 365 "data/maps/Route32/scripts.pory"
+	.string "You don't want it?\n"
+# 366 "data/maps/Route32/scripts.pory"
+	.string "Then scram. Shoo!$"
+# 367 "data/maps/Route32/scripts.pory"
+
+# 368 "data/maps/Route32/scripts.pory"
+Route32_Text_FisherJustin_Seen:
+# 369 "data/maps/Route32/scripts.pory"
+	.string "Whoa!\p"
+# 370 "data/maps/Route32/scripts.pory"
+	.string "You made me lose that fish!$"
+# 371 "data/maps/Route32/scripts.pory"
+
+# 372 "data/maps/Route32/scripts.pory"
+Route32_Text_FisherJustin_Beaten:
+# 373 "data/maps/Route32/scripts.pory"
+	.string "Sploosh!$"
+# 374 "data/maps/Route32/scripts.pory"
+
+# 375 "data/maps/Route32/scripts.pory"
+Route32_Text_FisherJustin_After:
+# 376 "data/maps/Route32/scripts.pory"
+	.string "Calm, collected… The essence of\n"
+# 377 "data/maps/Route32/scripts.pory"
+	.string "fishing and POKéMON is the same.$"
+# 378 "data/maps/Route32/scripts.pory"
+
+# 379 "data/maps/Route32/scripts.pory"
+Route32_Text_FisherRalph1_Seen:
+# 380 "data/maps/Route32/scripts.pory"
+	.string "I'm really good at both\n"
+# 381 "data/maps/Route32/scripts.pory"
+	.string "fishing and POKéMON.\p"
+# 382 "data/maps/Route32/scripts.pory"
+	.string "I'm not about to lose to any kid!$"
+# 383 "data/maps/Route32/scripts.pory"
+
+# 384 "data/maps/Route32/scripts.pory"
+Route32_Text_FisherRalph1_Beaten:
+# 385 "data/maps/Route32/scripts.pory"
+	.string "Tch! I tried to rush\n"
+# 386 "data/maps/Route32/scripts.pory"
+	.string "things…$"
+# 387 "data/maps/Route32/scripts.pory"
+
+# 388 "data/maps/Route32/scripts.pory"
+Route32_Text_FisherRalph1_After:
+# 389 "data/maps/Route32/scripts.pory"
+	.string "Fishing is a lifelong\n"
+# 390 "data/maps/Route32/scripts.pory"
+	.string "passion.\p"
+# 391 "data/maps/Route32/scripts.pory"
+	.string "POKéMON are lifelong friends!$"
+# 392 "data/maps/Route32/scripts.pory"
+
+# 393 "data/maps/Route32/scripts.pory"
+Route32_Text_FisherHenry_Seen:
+# 394 "data/maps/Route32/scripts.pory"
+	.string "My POKéMON? Freshly caught!$"
+# 395 "data/maps/Route32/scripts.pory"
+
+# 396 "data/maps/Route32/scripts.pory"
+Route32_Text_FisherHenry_Beaten:
+# 397 "data/maps/Route32/scripts.pory"
+	.string "SPLASH?$"
+# 398 "data/maps/Route32/scripts.pory"
+
+# 399 "data/maps/Route32/scripts.pory"
+Route32_Text_FisherHenry_After:
+# 400 "data/maps/Route32/scripts.pory"
+	.string "Freshly caught POKéMON are\n"
+# 401 "data/maps/Route32/scripts.pory"
+	.string "no match for properly raised ones.$"
+# 402 "data/maps/Route32/scripts.pory"
+
+# 403 "data/maps/Route32/scripts.pory"
+Route32_Text_YoungsterAlbert_Seen:
+# 404 "data/maps/Route32/scripts.pory"
+	.string "I haven't seen you around before.\n"
+# 405 "data/maps/Route32/scripts.pory"
+	.string "So you think you are pretty tough?$"
+# 406 "data/maps/Route32/scripts.pory"
+
+# 407 "data/maps/Route32/scripts.pory"
+Route32_Text_YoungsterAlbert_Beaten:
+# 408 "data/maps/Route32/scripts.pory"
+	.string "You're strong!$"
+# 409 "data/maps/Route32/scripts.pory"
+
+# 410 "data/maps/Route32/scripts.pory"
+Route32_Text_YoungsterAlbert_After:
+# 411 "data/maps/Route32/scripts.pory"
+	.string "I'm going to try to be the\n"
+# 412 "data/maps/Route32/scripts.pory"
+	.string "best with my favorites.\p"
+# 413 "data/maps/Route32/scripts.pory"
+	.string "I'm not using the same tough\n"
+# 414 "data/maps/Route32/scripts.pory"
+	.string "POKéMON as everyone else.$"
+# 415 "data/maps/Route32/scripts.pory"
+
+# 416 "data/maps/Route32/scripts.pory"
+Route32_Text_YoungsterGordon_Seen:
+# 417 "data/maps/Route32/scripts.pory"
+	.string "I found some good POKéMON\n"
+# 418 "data/maps/Route32/scripts.pory"
+	.string "in the grass!\p"
+# 419 "data/maps/Route32/scripts.pory"
+	.string "I think they'll do it for me!$"
+# 420 "data/maps/Route32/scripts.pory"
+
+# 421 "data/maps/Route32/scripts.pory"
+Route32_Text_YoungsterGordon_Beaten:
+# 422 "data/maps/Route32/scripts.pory"
+	.string "Darn. I thought I could win.$"
+# 423 "data/maps/Route32/scripts.pory"
+
+# 424 "data/maps/Route32/scripts.pory"
+Route32_Text_YoungsterGordon_After:
+# 425 "data/maps/Route32/scripts.pory"
+	.string "The grass is full of\n"
+# 426 "data/maps/Route32/scripts.pory"
+	.string "clingy things.$"
+# 427 "data/maps/Route32/scripts.pory"
+
+# 428 "data/maps/Route32/scripts.pory"
+Route32_Text_CamperRoland_Seen:
+# 429 "data/maps/Route32/scripts.pory"
+	.string "That glance… It's intriguing.$"
+# 430 "data/maps/Route32/scripts.pory"
+
+# 431 "data/maps/Route32/scripts.pory"
+Route32_Text_CamperRoland_Beaten:
+# 432 "data/maps/Route32/scripts.pory"
+	.string "Hmmm. This is disappointing.$"
+# 433 "data/maps/Route32/scripts.pory"
+
+# 434 "data/maps/Route32/scripts.pory"
+Route32_Text_CamperRoland_After:
+# 435 "data/maps/Route32/scripts.pory"
+	.string "If you don't want to battle,\n"
+# 436 "data/maps/Route32/scripts.pory"
+	.string "just avoid eye contact.$"
+# 437 "data/maps/Route32/scripts.pory"
+
+# 438 "data/maps/Route32/scripts.pory"
+Route32_Text_PicnickerLiz1_Seen:
+# 439 "data/maps/Route32/scripts.pory"
+	.string "Uh-huh. Yeah, and you know…\p"
+# 440 "data/maps/Route32/scripts.pory"
+	.string "Pardon? Battle? I'm on the phone.\n"
+# 441 "data/maps/Route32/scripts.pory"
+	.string "Oh, all right. But make it fast.$"
+# 442 "data/maps/Route32/scripts.pory"
+
+# 443 "data/maps/Route32/scripts.pory"
+Route32_Text_PicnickerLiz1_Beaten:
+# 444 "data/maps/Route32/scripts.pory"
+	.string "Oh! I've got to relieve\n"
+# 445 "data/maps/Route32/scripts.pory"
+	.string "my anger!$"
+# 446 "data/maps/Route32/scripts.pory"
+
+# 447 "data/maps/Route32/scripts.pory"
+Route32_Text_PicnickerLiz1_After:
+# 448 "data/maps/Route32/scripts.pory"
+	.string "I was having a nice chat too.$"
+# 449 "data/maps/Route32/scripts.pory"
+
+# 450 "data/maps/Route32/scripts.pory"
+Route32_Text_BirdKeeperPeter_Seen:
+# 451 "data/maps/Route32/scripts.pory"
+	.string "That BADGE! It's from VIOLET CITY!\n"
+# 452 "data/maps/Route32/scripts.pory"
+	.string "You beat FALKNER?$"
+# 453 "data/maps/Route32/scripts.pory"
+
+# 454 "data/maps/Route32/scripts.pory"
+Route32_Text_BirdKeeperPeter_Beaten:
+# 455 "data/maps/Route32/scripts.pory"
+	.string "I know what my weaknesses are.$"
+# 456 "data/maps/Route32/scripts.pory"
+
+# 457 "data/maps/Route32/scripts.pory"
+Route32_Text_BirdKeeperPeter_After:
+# 458 "data/maps/Route32/scripts.pory"
+	.string "I should train again at the\n"
+# 459 "data/maps/Route32/scripts.pory"
+	.string "GYM in VIOLET CITY.$"
+# 460 "data/maps/Route32/scripts.pory"
+
+# 461 "data/maps/Route32/scripts.pory"
+Route32_Text_RoarIntro:
+# 462 "data/maps/Route32/scripts.pory"
+	.string "WROOOOAR! PEOPLE RUN WHEN I\n"
+# 463 "data/maps/Route32/scripts.pory"
+	.string "ROAR! BUT YOU CAME LOOKING!\p"
+# 464 "data/maps/Route32/scripts.pory"
+	.string "THAT PLEASES ME! NOW TAKE THIS!$"
+# 465 "data/maps/Route32/scripts.pory"
+
+# 466 "data/maps/Route32/scripts.pory"
+Route32_Text_RoarOutro:
+# 467 "data/maps/Route32/scripts.pory"
+	.string "WROOOOAR! IT'S ROAR!\p"
+# 468 "data/maps/Route32/scripts.pory"
+	.string "EVEN POKéMON RUN FROM A GOOD\n"
+# 469 "data/maps/Route32/scripts.pory"
+	.string "ROAR!$"
+# 470 "data/maps/Route32/scripts.pory"
+
+# 471 "data/maps/Route32/scripts.pory"
+Route32_Text_MeetFrieda:
+# 472 "data/maps/Route32/scripts.pory"
+	.string "FRIEDA: Yahoo!\p"
+# 473 "data/maps/Route32/scripts.pory"
+	.string "I'm FRIEDA of the WEEKDAY FAMILY!\n"
+# 474 "data/maps/Route32/scripts.pory"
+	.string "Nice to meet you!\p"
+# 475 "data/maps/Route32/scripts.pory"
+	.string "If you can guess my favorite day,\n"
+# 476 "data/maps/Route32/scripts.pory"
+	.string "I'll give you a reward.$"
+# 477 "data/maps/Route32/scripts.pory"
+
+# 478 "data/maps/Route32/scripts.pory"
+Route32_Text_FriedaGivesGift:
+# 479 "data/maps/Route32/scripts.pory"
+	.string "Here's a POISON BARB for you!$"
+# 480 "data/maps/Route32/scripts.pory"
+
+# 481 "data/maps/Route32/scripts.pory"
+Route32_Text_FriedaGaveGift:
+# 482 "data/maps/Route32/scripts.pory"
+	.string "FRIEDA: Give it to a POKéMON\n"
+# 483 "data/maps/Route32/scripts.pory"
+	.string "that has POISON-type moves.\p"
+# 484 "data/maps/Route32/scripts.pory"
+	.string "Oh!\p"
+# 485 "data/maps/Route32/scripts.pory"
+	.string "It's wicked!\p"
+# 486 "data/maps/Route32/scripts.pory"
+	.string "You'll be shocked how good it\n"
+# 487 "data/maps/Route32/scripts.pory"
+	.string "makes poison moves!$"
+# 488 "data/maps/Route32/scripts.pory"
+
+# 489 "data/maps/Route32/scripts.pory"
+Route32_Text_FriedaFriday:
+# 490 "data/maps/Route32/scripts.pory"
+	.string "FRIEDA: Hiya! What day do\n"
+# 491 "data/maps/Route32/scripts.pory"
+	.string "you like?\p"
+# 492 "data/maps/Route32/scripts.pory"
+	.string "I love Friday. No doubt about\n"
+# 493 "data/maps/Route32/scripts.pory"
+	.string "it!\p"
+# 494 "data/maps/Route32/scripts.pory"
+	.string "Don't you think it's great too?$"
+# 495 "data/maps/Route32/scripts.pory"
+
+# 496 "data/maps/Route32/scripts.pory"
+Route32_Text_FriedaNope:
+# 497 "data/maps/Route32/scripts.pory"
+	.string "FRIEDA: Not that one!$"
+# 498 "data/maps/Route32/scripts.pory"
+
+# 499 "data/maps/Route32/scripts.pory"
+Route32_Text_Sign1:
+# 500 "data/maps/Route32/scripts.pory"
+	.string "ROUTE 32\p"
+# 501 "data/maps/Route32/scripts.pory"
+	.string "VIOLET CITY - AZALEA TOWN$"
+# 502 "data/maps/Route32/scripts.pory"
+
+# 503 "data/maps/Route32/scripts.pory"
+Route32_Text_Sign2:
+# 504 "data/maps/Route32/scripts.pory"
+	.string "RUINS OF ALPH\n"
+# 505 "data/maps/Route32/scripts.pory"
+	.string "EAST ENTRANCE$"
+# 506 "data/maps/Route32/scripts.pory"
+
+# 507 "data/maps/Route32/scripts.pory"
+Route32_Text_Sign3:
+# 508 "data/maps/Route32/scripts.pory"
+	.string "UNION CAVE\n"
+# 509 "data/maps/Route32/scripts.pory"
+	.string "AHEAD$"
+
+Route32HiddenGrottoWarp::
+# 513 "data/maps/Route32/scripts.pory"
+	msgbox Route32HiddenGrottoWarp_Text_0, MSGBOX_YESNO
+# 515 "data/maps/Route32/scripts.pory"
+	compare VAR_RESULT, YES
+	goto_if_eq Route32HiddenGrottoWarp_2
+Route32HiddenGrottoWarp_1:
+# 518 "data/maps/Route32/scripts.pory"
 	release
 	end
 
-Route32_Movement_Turnback:
-	walk_up
-	step_end
+Route32HiddenGrottoWarp_2:
+# 516 "data/maps/Route32/scripts.pory"
+	warp MAP_HIDDEN_GROTTO_ROUTE32, 0
+	goto Route32HiddenGrottoWarp_1
 
-Route32_Movement_StartMid:
-	walk_left
-	step_end
 
-Route32_Movment_StartRight:
-	walk_left
-	walk_left
-	step_end
-
-Route32_Movement_SlowpokeLeft::
-	step_end
-
-Route32_Movement_SlowpokeMid::
-	walk_right
-	step_end
-
-Route32_Movement_SlowpokeRight::
-	walk_right
-	walk_right
-	step_end
-
-Route32_Text_CooltrainerM_WhatsTheHurry:
-	.string "Wait up!\n"
-	.string "What's the hurry?$"
-
-Route32_Text_CooltrainerM_AideIsWaiting:
-	.string "{PLAYER}, right?\n"
-	.string "Some guy wearing glasses\p"
-	.string "was looking for you.\p"
-	.string "See for yourself. He's waiting for\n"
-	.string "you at the POKéMON CENTER.$"
-
-Route32_Text_CooltrainerM_SproutTower:
-	.string "Have you gone to SPROUT TOWER?\n"
-	.string "If you ever visit VIOLET CITY,\p"
-	.string "they'll expect you to train there.\n"
-	.string "That's basic for trainers.\p"
-	.string "Go to SPROUT TOWER!$"
-
-Route32_Text_CooltrainerM_VioletGym:
-	.string "Have you gone to the POKéMON GYM?\n"
-	.string "You can test your POKéMON and\p"
-	.string "yourself there.\n"
-	.string "It's a rite of passage for all\p"
-	.string "trainers!$"
-
-Route32_Text_CooltrainerM_HaveThisSeed:
-	.string "You have some good POKéMON there.\n"
-	.string "It must be from the training you\p"
-	.string "gave them around VIOLET CITY.\n"
-	.string "The training at the GYM must have\p"
-	.string "been especially helpful. As a\n"
-	.string "souvenir of VIOLET CITY, take this.\p"
-	.string "It increases the power of GRASS-\n"
-	.string "type moves.$"
-
-Route32_Text_CooltrainerM_Experiences:
-	.string "Your experiences in VIOLET CITY\n"
-	.string "should be useful for your journey.$"
-
-Route32_Text_SlowpokeTailOffer:
-	.string "How would you like to have this\n"
-	.string "tasty, nutritious SLOWPOKE TAIL?\p"
-	.string "For you right now, just\n"
-	.string "¥1,000,000!\p"
-	.string "You'll want this!$"
-
-Route32_Text_ThoughtKidsLoaded:
-	.string "Tch! I thought kids\n"
-	.string "these days were loaded…$"
-
-Route32_Text_RefusedSlowpokeTail:
-	.string "You don't want it?\n"
-	.string "Then scram. Shoo!$"
-
-Route32_Text_FisherJustin_Seen:
-	.string "Whoa!\p"
-	.string "You made me lose that fish!$"
-
-Route32_Text_FisherJustin_Beaten:
-	.string "Sploosh!$"
-
-Route32_Text_FisherJustin_After:
-	.string "Calm, collected… The essence of\n"
-	.string "fishing and POKéMON is the same.$"
-
-Route32_Text_FisherRalph1_Seen:
-	.string "I'm really good at both\n"
-	.string "fishing and POKéMON.\p"
-	.string "I'm not about to lose to any kid!$"
-
-Route32_Text_FisherRalph1_Beaten:
-	.string "Tch! I tried to rush\n"
-	.string "things…$"
-
-Route32_Text_FisherRalph1_After:
-	.string "Fishing is a lifelong\n"
-	.string "passion.\p"
-	.string "POKéMON are lifelong friends!$"
-
-Route32_Text_FisherHenry_Seen:
-	.string "My POKéMON? Freshly caught!$"
-
-Route32_Text_FisherHenry_Beaten:
-	.string "SPLASH?$"
-
-Route32_Text_FisherHenry_After:
-	.string "Freshly caught POKéMON are\n"
-	.string "no match for properly raised ones.$"
-
-Route32_Text_YoungsterAlbert_Seen:
-	.string "I haven't seen you around before.\n"
-	.string "So you think you are pretty tough?$"
-
-Route32_Text_YoungsterAlbert_Beaten:
-	.string "You're strong!$"
-
-Route32_Text_YoungsterAlbert_After:
-	.string "I'm going to try to be the\n"
-	.string "best with my favorites.\p"
-	.string "I'm not using the same tough\n"
-	.string "POKéMON as everyone else.$"
-
-Route32_Text_YoungsterGordon_Seen:
-	.string "I found some good POKéMON\n"
-	.string "in the grass!\p"
-	.string "I think they'll do it for me!$"
-
-Route32_Text_YoungsterGordon_Beaten:
-	.string "Darn. I thought I could win.$"
-
-Route32_Text_YoungsterGordon_After:
-	.string "The grass is full of\n"
-	.string "clingy things.$"
-
-Route32_Text_CamperRoland_Seen:
-	.string "That glance… It's intriguing.$"
-
-Route32_Text_CamperRoland_Beaten:
-	.string "Hmmm. This is disappointing.$"
-
-Route32_Text_CamperRoland_After:
-	.string "If you don't want to battle,\n"
-	.string "just avoid eye contact.$"
-
-Route32_Text_PicnickerLiz1_Seen:
-	.string "Uh-huh. Yeah, and you know…\p"
-	.string "Pardon? Battle? I'm on the phone.\n"
-	.string "Oh, all right. But make it fast.$"
-
-Route32_Text_PicnickerLiz1_Beaten:
-	.string "Oh! I've got to relieve\n"
-	.string "my anger!$"
-
-Route32_Text_PicnickerLiz1_After:
-	.string "I was having a nice chat too.$"
-
-Route32_Text_BirdKeeperPeter_Seen:
-	.string "That BADGE! It's from VIOLET CITY!\n"
-	.string "You beat FALKNER?$"
-
-Route32_Text_BirdKeeperPeter_Beaten:
-	.string "I know what my weaknesses are.$"
-
-Route32_Text_BirdKeeperPeter_After:
-	.string "I should train again at the\n"
-	.string "GYM in VIOLET CITY.$"
-
-Route32_Text_RoarIntro:
-	.string "WROOOOAR! PEOPLE RUN WHEN I\n"
-	.string "ROAR! BUT YOU CAME LOOKING!\p"
-	.string "THAT PLEASES ME! NOW TAKE THIS!$"
-
-Route32_Text_RoarOutro:
-	.string "WROOOOAR! IT'S ROAR!\p"
-	.string "EVEN POKéMON RUN FROM A GOOD\n"
-	.string "ROAR!$"
-
-Route32_Text_MeetFrieda:
-	.string "FRIEDA: Yahoo!\p"
-	.string "I'm FRIEDA of the WEEKDAY FAMILY!\n"
-	.string "Nice to meet you!\p"
-	.string "If you can guess my favorite day,\n"
-	.string "I'll give you a reward.$"
-
-Route32_Text_FriedaGivesGift:
-	.string "Here's a POISON BARB for you!$"
-
-Route32_Text_FriedaGaveGift:
-	.string "FRIEDA: Give it to a POKéMON\n"
-	.string "that has POISON-type moves.\p"
-	.string "Oh!\p"
-	.string "It's wicked!\p"
-	.string "You'll be shocked how good it\n"
-	.string "makes poison moves!$"
-
-Route32_Text_FriedaFriday:
-	.string "FRIEDA: Hiya! What day do\n"
-	.string "you like?\p"
-	.string "I love Friday. No doubt about\n"
-	.string "it!\p"
-	.string "Don't you think it's great too?$"
-
-Route32_Text_FriedaNope:
-	.string "FRIEDA: Not that one!$"
-
-Route32_Text_Sign1:
-	.string "ROUTE 32\p"
-	.string "VIOLET CITY - AZALEA TOWN$"
-
-Route32_Text_Sign2:
-	.string "RUINS OF ALPH\n"
-	.string "EAST ENTRANCE$"
-
-Route32_Text_Sign3:
-	.string "UNION CAVE\n"
-	.string "AHEAD$"
+Route32HiddenGrottoWarp_Text_0:
+# 513 "data/maps/Route32/scripts.pory"
+	.string "There seems to be a path behind the\n"
+	.string "trees. Enter?$"

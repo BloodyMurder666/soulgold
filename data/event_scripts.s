@@ -2082,3 +2082,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/Gate_Route40_TrainerHill_Courtyard/scripts.inc"
 
 	.include "data/scripts/apricorn_tree.inc"
+
+	.include "data/maps/HiddenGrotto_Route32/scripts.inc"
