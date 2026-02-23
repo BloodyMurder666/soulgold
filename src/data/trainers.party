@@ -2330,11 +2330,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Spearow
-Level: 10
+Level: 11
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Wattrel
-Level: 10
+Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_NEAL ===
@@ -8360,11 +8360,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Pidgey
-Level: 10
+Level: 11
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Natu
-Level: 10
+Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_BILL ===
@@ -10302,7 +10302,7 @@ AI: Smart Trainer
 Mugshot: Blue
 
 Pidgey
-Level: 11
+Level: 12
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Tackle
 - Mud Slap

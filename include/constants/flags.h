@@ -1520,9 +1520,9 @@
 #define FLAG_NURSE_UNION_ROOM_REMINDER              (SYSTEM_FLAGS + 0x8E)
 #define FLAG_SYS_PC_BILL                           (SYSTEM_FLAGS + 0x8F) // Unused Flag
 #define FLAG_SYS_LAKE_OF_RAGE_TIDE                  (SYSTEM_FLAGS + 0x90) // Unused Flag
-#define FLAG_UNUSED_0x8F1                           (SYSTEM_FLAGS + 0x91) // Unused Flag
-#define FLAG_UNUSED_0x8F2                           (SYSTEM_FLAGS + 0x92) // Unused Flag
-#define FLAG_UNUSED_0x8F3                           (SYSTEM_FLAGS + 0x93) // Unused Flag
+#define FLAG_RECEIVED_BADGE_5                       (SYSTEM_FLAGS + 0x91)
+#define FLAG_RECEIVED_BADGE_6                       (SYSTEM_FLAGS + 0x92)
+#define FLAG_RECEIVED_BADGE_7                       (SYSTEM_FLAGS + 0x93)
 #define FLAG_UNUSED_0x8F4                           (SYSTEM_FLAGS + 0x94) // Unused Flag
 #define FLAG_UNUSED_0x8F5                           (SYSTEM_FLAGS + 0x95) // Unused Flag
 #define FLAG_UNUSED_0x8F6                           (SYSTEM_FLAGS + 0x96) // Unused Flag
