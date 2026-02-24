@@ -18,13 +18,13 @@ PewterCity_Gym_EventScript_Brock::
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox PewterCity_Gym_Text_Brock_FightDone, MSGBOX_DEFAULT
-	giveitem ITEM_TM_EARTHQUAKE
 	setflag FLAG_BADGE09_GET
 	setflag FLAG_DEFEATED_PEWTER_GYM
 	addvar VAR_NUM_BADGES, 1
 	setvar VAR_0x8008, 9
 	call Common_EventScript_SetGymTrainers
-	clearflag FLAG_HIDE_DIGLETT_BROCK
+	giveitem ITEM_TM_EARTHQUAKE
+	msgbox PewterCity_Gym_Text_EarthquakeSpeech, MSGBOX_DEFAULT
 	closemessage
 	release
 	end
@@ -61,6 +61,13 @@ PewterCity_Gym_Text_Brock_BoulderBadge:
 	.string "upset.\p"
 	.string "That BOULDERBADGE will make your\n"
 	.string "POKéMON even more powerful.$"
+
+PewterCity_Gym_Text_EarthquakeSpeech:
+    .string "That TM contains EARTHQUAKE.\p"
+    .string "It's a powerful attack that\n"
+    .string "shakes up the battlefield.\p"
+    .string "But be careful not to\n"
+    .string "undermine your own POKéMON!$"
 
 PewterCity_Gym_Text_Brock_FightDone:
 	.string "BROCK: The world is huge. There are\n"

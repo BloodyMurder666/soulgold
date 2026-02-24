@@ -4,26 +4,30 @@ ViridianCity_Gym_MapScripts::
 ViridianCity_Gym_EventScript_Blue::
 	lock
 	faceplayer
-	goto_if_unset FLAG_HIDE_DOJO_BLUE, ViridianCity_Gym_EventScript_BlueAtDojo
-	goto_if_set FLAG_DEFEATED_VIRIDIAN_GYM, ViridianCity_Gym_EventScript_BlueGotoDojo
+	
+	@ if Blue is already at dojo, just do defeated dialogue
+	goto_if_unset FLAG_HIDE_DOJO_BLUE, ViridianCity_Gym_EventScript_Blue_Defeated
+	@ if Blue is not already at dojo, but player is kanto champion, send him to dojo
+	goto_if_set FLAG_IS_KANTO_CHAMPION, ViridianCity_Gym_EventScript_BlueGotoDojo
+	@ if player is not champion yet, just do defeated dialogue
 	goto_if_set FLAG_DEFEATED_VIRIDIAN_GYM, ViridianCity_Gym_EventScript_Blue_Defeated
+	
 	msgbox ViridianCity_Gym_Text_LeaderBlue_Before, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_BLUE, ViridianCity_Gym_Text_LeaderBlue_Win
 	message ViridianCity_Gym_Text_ReceivedEarthBadge
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox ViridianCity_Gym_Text_LeaderBlue_After, MSGBOX_DEFAULT
-	giveitem ITEM_TM_BULK_UP
 	setflag FLAG_BADGE16_GET
 	setflag FLAG_DEFEATED_VIRIDIAN_GYM
 	addvar VAR_NUM_BADGES, 1
 	setvar VAR_0x8008, 16
 	call Common_EventScript_SetGymTrainers
+	giveitem ITEM_TM_BULK_UP
+	msgbox ViridianCity_Gym_Text_BulkUpSpeech, MSGBOX_DEFAULT
 	closemessage
 	setflag FLAG_HIDE_LEAGUE_BLACKBELT
 	setflag FLAG_HIDE_CERULEANCAVE_GUARD
-	setflag FLAG_HIDE_SEAFOAM_BLAINE
-	clearflag FLAG_HIDE_CINNABAR_BLAINE
 	release
 	end
 
@@ -44,12 +48,6 @@ ViridianCity_Gym_Text_BlueGotoDojo:
 	.string "BLUE: Back for more already?\p"
 	.string "If you want another shot at me,\n"
 	.string "come to the FIGHTING DOJO!$"
-
-ViridianCity_Gym_EventScript_BlueAtDojo::
-	msgbox ViridianCity_Gym_Text_LeaderBlue_Epilogue, MSGBOX_DEFAULT
-	closemessage
-	release
-	end
 
 ViridianCity_Gym_Text_LeaderBlue_Before:
 	.string "BLUE: Yo! Finally got here, huh?\p"
@@ -74,6 +72,15 @@ ViridianCity_Gym_Text_LeaderBlue_Win:
 
 ViridianCity_Gym_Text_ReceivedEarthBadge:
 	.string "{PLAYER} received EARTHBADGE.$"
+
+ViridianCity_Gym_Text_BulkUpSpeech:
+    .string "That TM contains BULK UP.\p"
+    .string "It lets a POKéMON become an\n"
+    .string "unstoppable force and an\l"
+	.string "immovable object all at once!\p"
+    .string "Don't let anyone tell you\n"
+    .string "that you have to choose\l"
+	.string "between offense and defense.$"
 
 ViridianCity_Gym_Text_LeaderBlue_After:
 	.string "BLUE: …\p"

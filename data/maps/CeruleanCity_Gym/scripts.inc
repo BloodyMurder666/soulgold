@@ -196,7 +196,7 @@ CeruleanCity_Gym_EventScript_Misty::
 	call Common_EventScript_SetGymTrainers
 	msgbox CeruleanGym_Text_MistyTm, MSGBOX_DEFAULT
 	giveitem ITEM_TM_WATER_PULSE
-	clearflag FLAG_HIDE_CAPE_MISTY
+	msgbox CeruleanCity_Gym_Text_WaterPulseSpeech, MSGBOX_DEFAULT
 	call_if_eq VAR_SUICUNE_ENCOUNTERS, 5, CeruleanCity_Gym_SetSuicuneScene
 	closemessage
 	release
@@ -212,6 +212,13 @@ CeruleanCity_Gym_EventScript_Misty_Defeated::
 	closemessage
 	release
 	end
+
+CeruleanCity_Gym_Text_WaterPulseSpeech:
+    .string "That TM contains WATER PULSE.\p"
+    .string "It can sometimes confuse your foe.\p"
+    .string "You've managed to defeat TRAINERS\n"
+    .string "all the way from JOHTO. I'm sure\l"
+	.string "you have a good use for it.$"
 
 CeruleanGym_Text_GruntIntro:
 	.string "Oops! I so sorry! You not hurt,\n"

@@ -79,6 +79,7 @@ PokemonLeague_HallOfFame_EventScript_SetGameClearFlags::
 	clearflag FLAG_HIDE_MOLTRES
 	clearflag FLAG_ITEM_GS_BALL
 	setflag FLAG_HIDE_BATTLEFRONTIER_ENGINEER
+	call_if_unset FLAG_IS_KANTO_CHAMPION, PokemonLeague_HallOfFame_EventScript_SpawnKantoLeaderRematches
 	setflag FLAG_IS_KANTO_CHAMPION
 	setvar VAR_COMPLETED_LUGIA, 4
 	clearflag FLAG_HIDE_LUGIA
@@ -105,6 +106,21 @@ PokemonLeague_HallOfFame_EventScript_SpawnSuicune::
 
 PokemonLeague_HallOfFame_EventScript_SpawnSecondCelebi::
 	clearflag FLAG_HIDE_ILEX_FOREST_SECOND_CELEBI
+	return
+
+PokemonLeague_HallOfFame_EventScript_SpawnKantoLeaderRematches::
+	clearflag FLAG_HIDE_DIGLETT_BROCK
+	clearflag FLAG_HIDE_CAPE_MISTY
+	clearflag FLAG_HIDE_PLANT_SURGE
+	clearflag FLAG_HIDE_FOUNTAIN_ERIKA
+	clearflag FLAG_HIDE_ROUTE22_JANINE
+	clearflag FLAG_HIDE_OLIVINE_SABRINA
+
+	@ move Blaine from Seafoam Gym to Cinnabar Rematch location
+	setflag FLAG_HIDE_SEAFOAM_BLAINE
+	clearflag FLAG_HIDE_CINNABAR_BLAINE
+
+	@ nothing to do for Blue
 	return
 
 PokemonLeague_HallOfFame_Movement_LanceEnter:

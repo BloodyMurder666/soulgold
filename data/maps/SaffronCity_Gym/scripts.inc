@@ -46,7 +46,6 @@ SaffronCity_Gym_EventScript_Sabrina::
 	setvar VAR_0x8008, 13
 	call Common_EventScript_SetGymTrainers
 	closemessage
-	clearflag FLAG_HIDE_OLIVINE_SABRINA
 	release
 	end
 
