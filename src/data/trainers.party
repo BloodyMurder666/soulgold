@@ -352,7 +352,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Nidoran M
-Level: 9
+Level: 12
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Cottonee
+Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_LYLE ===
@@ -1473,12 +1477,12 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Spearow
-Level: 8
+Natu
+Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Natu
-Level: 8
+Wattrel
+Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_SHANE ===
@@ -4514,7 +4518,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Nidoran F
-Level: 9
+Level: 12
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Petilil
+Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_MARTIN ===
@@ -4892,7 +4900,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Tentacool
-Level: 7
+Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ALLEN ===
@@ -7296,8 +7304,8 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move
 
-Wooper
-Level: 10
+Mareep
+Level: 13
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_EDMOND ===
@@ -7647,8 +7655,16 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
+Magikarp
+Level: 5
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
 Goldeen
-Level: 8
+Level: 10
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Qwilfish
+Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ROBERT ===
@@ -8948,11 +8964,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Marill
-Level: 7
+Level: 11
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Poliwag
-Level: 7
+Shellder
+Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_VANCE ===
@@ -9338,12 +9354,12 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move
 
-Sentret
-Level: 7
+Ekans
+Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Zubat
-Level: 7
+Wooper Paldea
+Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_BERKE ===

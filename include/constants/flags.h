@@ -1257,7 +1257,7 @@
 #define FLAG_ITEM_ROUTE_32_GREATBALL                                0x4B0 
 #define FLAG_ITEM_ROUTE_32_GREATBALL2                               0x4B1 
 #define FLAG_ITEM_ROUTE_32_POTION                                   0x4B2 
-#define FLAG_ITEM_ROUTE_32_SUPERPOTION                              0x4B3 
+#define FLAG_ITEM_ROUTE_32_TERRAIN_EXTENDER                         0x4B3 
 #define FLAG_ITEM_UNION_CAVE_POTION                                 0x4B4 
 #define FLAG_ITEM_UNION_CAVE_GREAT_BALL                             0x4B5 
 #define FLAG_ITEM_UNION_CAVE_X_ATTACK                               0x4B6 

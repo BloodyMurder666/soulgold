@@ -144,8 +144,8 @@ const struct BattleEnvironment gBattleEnvironmentInfo[BATTLE_ENVIRONMENT_COUNT] 
         .camouflageType = TYPE_WATER,
         .camouflageBlend = RGB(11, 22, 31),
         .entry = ENVIRONMENT_ENTRY(Water),
-        .background = ENVIRONMENT_BACKGROUND(Water),
-        .palette = gBattleEnvironmentPalette_Water,
+        .background = ENVIRONMENT_BACKGROUND(Water_2),
+        .palette = gBattleEnvironmentPalette_Water_2,
         .battleIntroSlide = BattleIntroSlide2,
     },
 
