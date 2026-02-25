@@ -20,6 +20,7 @@ enum InGameTradeID
     INGAME_TRADE_BELDUM,
     INGAME_TRADE_BONSLY,
     INGAME_TRADE_STEELIX,
+    INGAME_TRADE_SLOWPOKE,
 };
 
 // Return values for CanTradeSelectedMon and CanSpinTradeMon

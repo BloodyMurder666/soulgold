@@ -8770,6 +8770,16 @@
       "secondary_tileset": "gTileset_Route32",
       "border_filepath": "data/layouts/HiddenGrotto_Route32/border.bin",
       "blockdata_filepath": "data/layouts/HiddenGrotto_Route32/map.bin"
+    },
+    {
+      "id": "LAYOUT_AZALEA_TOWN_HOUSE2",
+      "name": "AzaleaTown_House2_Layout",
+      "width": 11,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Building",
+      "secondary_tileset": "gTileset_House_Lab",
+      "border_filepath": "data/layouts/AzaleaTown_House2/border.bin",
+      "blockdata_filepath": "data/layouts/AzaleaTown_House2/map.bin"
     }
   ]
 }

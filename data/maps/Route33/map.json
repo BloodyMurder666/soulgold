@@ -65,7 +65,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MACHOP)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ROCKRUFF)",
       "x": 33,
       "y": 27,
       "elevation": 0,
@@ -78,7 +78,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(EKANS)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(BUDEW)",
       "x": 18,
       "y": 15,
       "elevation": 0,
@@ -130,7 +130,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(RATTATA)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(BUDEW)",
       "x": 5,
       "y": 14,
       "elevation": 0,

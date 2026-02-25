@@ -1175,6 +1175,22 @@ static const struct InGameTrade sIngameTrades[] =
         .otGender = MALE,
         .sheen = 10,
         .requestedSpecies = SPECIES_MEOWTH
+    },
+    [INGAME_TRADE_SLOWPOKE] =
+    {
+        .nickname = _("CHUM"),
+        .species = SPECIES_SLOWPOKE_GALAR,
+        .ivs = {28, 28, 28, 28, 28, 28},
+        .abilityNum = 2,
+        .otId = 74845,
+        .conditions = {30, 5, 5, 5, 5},
+        .personality = 0x84,
+        .heldItem = ITEM_CHESTO_BERRY,
+        .mailNum = -1,
+        .otName = _("RICK"),
+        .otGender = FEMALE,
+        .sheen = 10,
+        .requestedSpecies = SPECIES_SLOWPOKE
     }
 };
 

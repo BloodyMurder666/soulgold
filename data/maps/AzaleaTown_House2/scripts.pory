@@ -1,0 +1,35 @@
+mapscripts AzaleaTown_House2_MapScripts {}
+
+script Azalea_SlowpokeTrade {
+    lock
+    faceplayer
+    if (flag(FLAG_SLOWPOKE_TRADE)) {
+        msgbox("Have you been amassing more slowpokes?")
+    } else {
+        ingame_trade(INGAME_TRADE_SLOWPOKE, "I love Slowpokes! They are adorable,
+                                         cuddly, cute, sweet, amazing and
+                                         awesome! How about I prove it to you?
+                                         I'll give you one of my finest slowpokes
+                                         if you give me one of yours.", 
+                                         SlowpokeTrade_Declined,
+                                         SlowpokeTrade_NotRequested,
+                                         "Another one joins the cult of slowpoke.")
+        setflag(FLAG_SLOWPOKE_TRADE)
+    }
+    release
+    end
+}
+
+script SlowpokeTrade_Declined {
+    msgbox("Huh? Don't you understand how amazing
+           slowpokes are?!?")
+    release
+    end                                 
+}
+
+script SlowpokeTrade_NotRequested {
+    msgbox("Hey! That's not a real slowpoke! Are you
+            trying to offer me an inferior Pokémon?")
+    release
+    end
+}

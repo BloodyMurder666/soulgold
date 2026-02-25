@@ -717,7 +717,7 @@
 #define FLAG_UNUSED_0x29E      0x29E // Unused Flag
 #define FLAG_RAN_FROM_BATTLE  0x29F // Unused Flag
 #define FLAG_NAMED_SILVER  0x2A0 // Unused Flag
-#define FLAG_RANDOMIZER    0x2A1 // Unused Flag
+#define FLAG_SLOWPOKE_TRADE    0x2A1
 #define FLAG_ROUTE31_EXPERT  0x2A2 // Flag for defeating Route 31 expert
 #define FLAG_UNUSED_0x2A3  0x2A3 // Unused Flag
 #define FLAG_UNUSED_0x2A4  0x2A4 // Unused Flag
@@ -1263,7 +1263,7 @@
 #define FLAG_ITEM_UNION_CAVE_X_ATTACK                               0x4B6 
 #define FLAG_ITEM_UNION_CAVE_AWAKENING                              0x4B7 
 #define FLAG_ITEM_UNION_CAVE_SECRET_POWER                           0x4B8 
-#define FLAG_ITEM_UNION_CAVE_X_DEFEND                               0x4B9 
+#define FLAG_ITEM_UNION_CAVE_DAMP_ROCK                              0x4B9 
 #define FLAG_ITEM_UNION_CAVE_ETHER                                  0x4BA 
 #define FLAG_ITEM_UNION_CAVE_HYPERPOTION                            0x4BB 
 #define FLAG_ITEM_UNION_CAVE_MAXREVIVE                              0x4BC 

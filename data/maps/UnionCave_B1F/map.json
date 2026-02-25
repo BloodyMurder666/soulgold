@@ -12,7 +12,7 @@
   "allow_running": true,
   "show_map_name": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": 0,
+  "connections": null,
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_HIKER",
@@ -75,9 +75,9 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "ITEM_X_DEFEND",
+      "trainer_sight_or_berry_tree_id": "ITEM_DAMP_ROCK",
       "script": "Common_EventScript_FindItem",
-      "flag": "FLAG_ITEM_UNION_CAVE_X_DEFEND"
+      "flag": "FLAG_ITEM_UNION_CAVE_DAMP_ROCK"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD",
@@ -119,7 +119,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GEODUDE)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MAWILE)",
       "x": 23,
       "y": 21,
       "elevation": 0,
@@ -132,7 +132,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ZUBAT)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MAWILE)",
       "x": 5,
       "y": 33,
       "elevation": 0,
