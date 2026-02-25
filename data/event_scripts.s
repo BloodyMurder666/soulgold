@@ -48,6 +48,7 @@
 #include "constants/move_relearner.h"
 #include "constants/moves.h"
 #include "constants/party_menu.h"
+#include "constants/pokeball.h"
 #include "constants/pokedex.h"
 #include "constants/pokemon.h"
 #include "constants/rtc.h"
