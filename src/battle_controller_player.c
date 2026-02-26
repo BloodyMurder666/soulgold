@@ -241,17 +241,6 @@ static void HandleInputChooseAction(enum BattlerId battler)
         gPlayerDpadHoldFrames++;
     else
         gPlayerDpadHoldFrames = 0;
-    if ((gSaveBlock2Ptr->optionsRunType == 0) && JOY_HELD(L_BUTTON) && JOY_HELD(A_BUTTON))
-        {
-            if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER)) // If wild battle, pressing R+A moves cursor to "Run".
-            {
-                PlaySE(SE_SELECT);
-                ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
-                gActionSelectionCursor[battler] = 3;
-                ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
-                FlagSet(FLAG_RAN_FROM_BATTLE);
-            }
-        }
 
     if (B_LAST_USED_BALL == TRUE && B_LAST_USED_BALL_CYCLE == TRUE
     && !(B_LAST_USED_BALL_BUTTON == L_BUTTON && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A))
@@ -390,7 +379,7 @@ static void HandleInputChooseAction(enum BattlerId battler)
             BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_CANCEL_PARTNER, 0);
             BtlController_Complete(battler);
         }
-        else if ((B_QUICK_MOVE_CURSOR_TO_RUN) || gSaveBlock2Ptr->optionsRunType == 1)
+        else if (B_QUICK_MOVE_CURSOR_TO_RUN)
         {
             if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER)) // If wild battle, pressing B moves cursor to "Run".
             {
@@ -398,7 +387,6 @@ static void HandleInputChooseAction(enum BattlerId battler)
                 ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
                 gActionSelectionCursor[battler] = 3;
                 ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
-                FlagSet(FLAG_RAN_FROM_BATTLE);
             }
         }
     }

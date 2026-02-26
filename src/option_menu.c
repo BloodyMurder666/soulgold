@@ -31,12 +31,8 @@ EWRAM_DATA static u8 sCurrPage = 0;
 
 #define tFont data[8]
 #define tEXPShare data[9]
-#define tAutoHMs data[10]
-#define tFollowers data[11]
-#define tPSS data[12]
-#define tTerrain data[13]
-#define tRunType data[14]
-#define tDifficulty data[15]
+#define tFollowers data[10]
+#define tAutorun data[11]
 
 enum
 {
@@ -55,12 +51,8 @@ enum
 enum
 {
     MENUITEM_EXP_SHARE,
-    MENUITEM_AUTO_HMS,
     MENUITEM_FOLLOWERS,
-    MENUITEM_PSS,
-    MENUITEM_TERRAIN,
-    MENUITEM_RUN_TYPE,
-    MENUITEM_DIFFICULTY,
+    MENUITEM_AUTORUN,
     MENUITEM_CANCELPG2,
     MENUITEM_COUNT_PG2,
 };
@@ -79,13 +71,11 @@ enum
 #define YPOS_FRAMETYPE    (MENUITEM_FRAMETYPE * 16)
 #define YPOS_FONT    (MENUITEM_FONT * 16)
 #define YPOS_MUSIC        (MENUITEM_MUSIC * 16)
+
+
 #define YPOS_EXP_SHARE    (MENUITEM_EXP_SHARE * 16)
-#define YPOS_AUTO_HMS  (MENUITEM_AUTO_HMS * 16)
 #define YPOS_FOLLOWERS  (MENUITEM_FOLLOWERS * 16)
-#define YPOS_PSS       (MENUITEM_PSS * 16)
-#define YPOS_TERRAIN   (MENUITEM_TERRAIN * 16)
-#define YPOS_RUN_TYPE    (MENUITEM_RUN_TYPE * 16)
-#define YPOS_DIFFICULTY    (MENUITEM_DIFFICULTY * 16)
+#define YPOS_AUTORUN (MENUITEM_AUTORUN * 16) 
 
 #define PAGE_COUNT  2
 
@@ -113,20 +103,12 @@ static u8 Font_ProcessInput(u8 selection);
 static void Font_DrawChoices(u8 selection);
 static u8 EXPShare_ProcessInput(u8 selection);
 static void EXPShare_DrawChoices(u8 selection);
-static u8 AutoHMs_ProcessInput(u8 selection);
-static void AutoHMs_DrawChoices(u8 selection);
 static u8 Followers_ProcessInput(u8 selection);
 static void Followers_DrawChoices(u8 selection);
-static u8 PSS_ProcessInput(u8 selection);
-static void PSS_DrawChoices(u8 selection);
-static u8 Terrain_ProcessInput(u8 selection);
-static void Terrain_DrawChoices(u8 selection);
-static u8 RunType_ProcessInput(u8 selection);
-static void RunType_DrawChoices(u8 selection);
-static u8 Difficulty_ProcessInput(u8 selection);
-static void Difficulty_DrawChoices(u8 selection);
 static u8 Music_ProcessInput(u8 selection);
 static void Music_DrawChoices(u8 selection);
+static u8   Autorun_ProcessInput(u8 selection);
+static void Autorun_DrawChoices(u8 selection);
 
 static void DrawTextOption(void);
 
@@ -151,6 +133,8 @@ static const u8 gText_FrameTypeNumber[]    = _("{COLOR GREEN}{SHADOW LIGHT_GREEN
 static const u8 gText_ButtonTypeNormal[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}NORMAL");
 static const u8 gText_ButtonTypeLR[]       = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}LR");
 static const u8 gText_ButtonTypeLEqualsA[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}L=A");
+static const u8 gText_AutorunOn[]            = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}ON");
+static const u8 gText_AutorunOff[]          = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}OFF");
 
 static const u16 sOptionMenuText_Pal[] = INCBIN_U16("graphics/interface/option_menu_text.gbapal");
 // note: this is only used in the Japanese release
@@ -171,12 +155,9 @@ static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
 static const u8 *const sOptionMenuItemsNames_Pg2[MENUITEM_COUNT_PG2] =
 {
     [MENUITEM_EXP_SHARE]        = gText_EXPShare,
-    [MENUITEM_AUTO_HMS]        = gText_AutoHMs,
     [MENUITEM_FOLLOWERS]        = gText_Followers,
-    [MENUITEM_PSS]        = gText_PSS,
-    [MENUITEM_TERRAIN]        = gText_Terrain,
-    [MENUITEM_RUN_TYPE]        = gText_RunType,
-    [MENUITEM_DIFFICULTY]        = gText_Difficulty,
+    [MENUITEM_AUTORUN]         = COMPOUND_STRING("AUTORUN"),
+    [MENUITEM_CANCELPG2]      = COMPOUND_STRING("CANCEL"),
 };
 
 static const struct WindowTemplate sOptionMenuWinTemplates[] =
@@ -252,13 +233,9 @@ static void ReadAllCurrentSettings(u8 taskId)
         gTasks[taskId].tWindowFrameType = gSaveBlock2Ptr->optionsWindowFrameType;
         gTasks[taskId].tFont = gSaveBlock2Ptr->optionsFont;
         gTasks[taskId].tEXPShare = gSaveBlock2Ptr->optionsEXPShare;
-        gTasks[taskId].tAutoHMs = gSaveBlock2Ptr->optionsAutoHMs;
         gTasks[taskId].tFollowers = gSaveBlock2Ptr->optionsFollowers;
-        gTasks[taskId].tPSS = gSaveBlock2Ptr->optionsPSS;
-        gTasks[taskId].tTerrain = gSaveBlock2Ptr->optionsTerrain;
-        gTasks[taskId].tRunType = gSaveBlock2Ptr->optionsRunType;
-        gTasks[taskId].tDifficulty = gSaveBlock2Ptr->optionsDifficulty;
         gTasks[taskId].tMusic = gSaveBlock2Ptr->optionsMusic;
+        gTasks[taskId].tAutorun = gSaveBlock2Ptr->optionsAutorun;
 }
 
 static void DrawOptionsPg1(u8 taskId)
@@ -279,12 +256,8 @@ static void DrawOptionsPg2(u8 taskId)
 {
     ReadAllCurrentSettings(taskId);
     EXPShare_DrawChoices(gTasks[taskId].tEXPShare);
-    AutoHMs_DrawChoices(gTasks[taskId].tAutoHMs);
     Followers_DrawChoices(gTasks[taskId].tFollowers);
-    PSS_DrawChoices(gTasks[taskId].tPSS);
-    Terrain_DrawChoices(gTasks[taskId].tTerrain);
-    RunType_DrawChoices(gTasks[taskId].tRunType);
-    Difficulty_DrawChoices(gTasks[taskId].tDifficulty);
+    Autorun_DrawChoices(gTasks[taskId].tAutorun);
     HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
     CopyWindowToVram(WIN_OPTIONS, COPYWIN_FULL);
 }
@@ -558,12 +531,12 @@ static void Task_OptionMenuProcessInput_Pg2(u8 taskId)
         if (gTasks[taskId].tMenuSelection > 0)
             gTasks[taskId].tMenuSelection--;
         else
-            gTasks[taskId].tMenuSelection = MENUITEM_DIFFICULTY;
+            gTasks[taskId].tMenuSelection = MENUITEM_CANCELPG2;
         HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
     }
     else if (JOY_NEW(DPAD_DOWN))
     {
-        if (gTasks[taskId].tMenuSelection < MENUITEM_DIFFICULTY)
+        if (gTasks[taskId].tMenuSelection < MENUITEM_CANCELPG2)
             gTasks[taskId].tMenuSelection++;
         else
             gTasks[taskId].tMenuSelection = 0;
@@ -582,17 +555,6 @@ static void Task_OptionMenuProcessInput_Pg2(u8 taskId)
             if (previousOption != gTasks[taskId].tEXPShare)
                 EXPShare_DrawChoices(gTasks[taskId].tEXPShare);
             break;
-        case MENUITEM_AUTO_HMS:
-            previousOption = gTasks[taskId].tAutoHMs;
-            gTasks[taskId].tAutoHMs = AutoHMs_ProcessInput(gTasks[taskId].tAutoHMs);
-
-            if (previousOption != gTasks[taskId].tAutoHMs)
-                AutoHMs_DrawChoices(gTasks[taskId].tAutoHMs);
-            if (gSaveBlock2Ptr->optionsAutoHMs == TRUE)
-                FlagSet(FLAG_AUTO_HMS);
-            if (gSaveBlock2Ptr->optionsAutoHMs == FALSE)
-                FlagClear(FLAG_AUTO_HMS);
-            break;
         case MENUITEM_FOLLOWERS:
             previousOption = gTasks[taskId].tFollowers;
             gTasks[taskId].tFollowers = Followers_ProcessInput(gTasks[taskId].tFollowers);
@@ -600,41 +562,12 @@ static void Task_OptionMenuProcessInput_Pg2(u8 taskId)
             if (previousOption != gTasks[taskId].tFollowers)
                 Followers_DrawChoices(gTasks[taskId].tFollowers);
             break;
+        case MENUITEM_AUTORUN:
+            previousOption = gTasks[taskId].tAutorun;
+            gTasks[taskId].tAutorun = Autorun_ProcessInput(gTasks[taskId].tAutorun);
 
-
-        case MENUITEM_PSS:
-            previousOption = gTasks[taskId].tPSS;
-            gTasks[taskId].tPSS = PSS_ProcessInput(gTasks[taskId].tPSS);
-
-            if (previousOption != gTasks[taskId].tPSS)
-                PSS_DrawChoices(gTasks[taskId].tPSS);
-            break;
-
-
-        case MENUITEM_TERRAIN:
-            previousOption = gTasks[taskId].tTerrain;
-            gTasks[taskId].tTerrain = Terrain_ProcessInput(gTasks[taskId].tTerrain);
-
-            if (previousOption != gTasks[taskId].tTerrain)
-                Terrain_DrawChoices(gTasks[taskId].tTerrain);
-            break;
-
-
-        case MENUITEM_RUN_TYPE:
-            previousOption = gTasks[taskId].tRunType;
-            gTasks[taskId].tRunType = RunType_ProcessInput(gTasks[taskId].tRunType);
-
-            if (previousOption != gTasks[taskId].tRunType)
-                RunType_DrawChoices(gTasks[taskId].tRunType);
-            break;
-
-
-        case MENUITEM_DIFFICULTY:
-            previousOption = gTasks[taskId].tDifficulty;
-            gTasks[taskId].tDifficulty = Difficulty_ProcessInput(gTasks[taskId].tDifficulty);
-
-            if (previousOption != gTasks[taskId].tDifficulty)
-                Difficulty_DrawChoices(gTasks[taskId].tDifficulty);
+            if (previousOption != gTasks[taskId].tAutorun)
+                Autorun_DrawChoices(gTasks[taskId].tAutorun);
             break;
         default:
             return;
@@ -681,13 +614,9 @@ static void Task_OptionMenuSave(u8 taskId)
     gSaveBlock2Ptr->optionsWindowFrameType = gTasks[taskId].tWindowFrameType;
     gSaveBlock2Ptr->optionsFont = gTasks[taskId].tFont;
     gSaveBlock2Ptr->optionsEXPShare = gTasks[taskId].tEXPShare;
-    gSaveBlock2Ptr->optionsAutoHMs = gTasks[taskId].tAutoHMs;
     gSaveBlock2Ptr->optionsFollowers = gTasks[taskId].tFollowers;
-    gSaveBlock2Ptr->optionsPSS = gTasks[taskId].tPSS;
-    gSaveBlock2Ptr->optionsTerrain = gTasks[taskId].tTerrain;
-    gSaveBlock2Ptr->optionsRunType = gTasks[taskId].tRunType;
-    gSaveBlock2Ptr->optionsDifficulty = gTasks[taskId].tDifficulty;
     gSaveBlock2Ptr->optionsMusic = gTasks[taskId].tMusic;
+    gSaveBlock2Ptr->optionsAutorun = gTasks[taskId].tAutorun;
 
     BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
     gTasks[taskId].func = Task_OptionMenuFadeOut;
@@ -994,29 +923,6 @@ static void EXPShare_DrawChoices(u8 selection)
     DrawOptionMenuChoice(gText_BattleSceneOn, 104, YPOS_EXP_SHARE, styles[0]);
     DrawOptionMenuChoice(gText_BattleSceneOff, GetStringRightAlignXOffset(FONT_NORMAL, gText_BattleSceneOff, 198), YPOS_EXP_SHARE, styles[1]);
 }
-static u8 AutoHMs_ProcessInput(u8 selection)
-{
-    if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
-    {
-        selection ^= 1;
-        sArrowPressed = TRUE;
-    }
-
-    return selection;
-}
-
-
-static void AutoHMs_DrawChoices(u8 selection)
-{
-    u8 styles[2];
-
-    styles[0] = 0;
-    styles[1] = 0;
-    styles[selection] = 1;
-    
-    DrawOptionMenuChoice(gText_BattleSceneOn, 104, YPOS_AUTO_HMS, styles[0]);
-    DrawOptionMenuChoice(gText_BattleSceneOff, GetStringRightAlignXOffset(FONT_NORMAL, gText_BattleSceneOff, 198), YPOS_AUTO_HMS, styles[1]);
-}
 static u8 Followers_ProcessInput(u8 selection)
 {
     if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
@@ -1040,7 +946,8 @@ static void Followers_DrawChoices(u8 selection)
     DrawOptionMenuChoice(gText_BattleSceneOn, 104, YPOS_FOLLOWERS, styles[0]);
     DrawOptionMenuChoice(gText_BattleSceneOff, GetStringRightAlignXOffset(FONT_NORMAL, gText_BattleSceneOff, 198), YPOS_FOLLOWERS, styles[1]);
 }
-static u8 PSS_ProcessInput(u8 selection)
+
+static u8 Autorun_ProcessInput(u8 selection)
 {
     if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
     {
@@ -1051,132 +958,14 @@ static u8 PSS_ProcessInput(u8 selection)
     return selection;
 }
 
-
-static void PSS_DrawChoices(u8 selection)
+static void Autorun_DrawChoices(u8 selection)
 {
     u8 styles[2];
-
     styles[0] = 0;
     styles[1] = 0;
     styles[selection] = 1;
-    
-    DrawOptionMenuChoice(gText_Gen4Plus, 104, YPOS_PSS, styles[0]);
-    DrawOptionMenuChoice(gText_Gen3andLower, GetStringRightAlignXOffset(FONT_NORMAL, gText_Gen3andLower, 198), YPOS_PSS, styles[1]);
-}
-static u8 Terrain_ProcessInput(u8 selection)
-{
-    if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
-    {
-        selection ^= 1;
-        sArrowPressed = TRUE;
-    }
-
-    return selection;
-}
-
-
-static void Terrain_DrawChoices(u8 selection)
-{
-    u8 styles[2];
-
-    styles[0] = 0;
-    styles[1] = 0;
-    styles[selection] = 1;
-    
-    DrawOptionMenuChoice(gText_TerrainModern, 104, YPOS_TERRAIN, styles[0]);
-    DrawOptionMenuChoice(gText_TerrainGeneric, GetStringRightAlignXOffset(FONT_NORMAL, gText_TerrainGeneric, 198), YPOS_TERRAIN, styles[1]);
-}
-static u8 RunType_ProcessInput(u8 selection)
-{
-    if (JOY_NEW(DPAD_RIGHT))
-    {
-        if (selection <= 1)
-            selection++;
-        else
-            selection = 0;
-
-        sArrowPressed = TRUE;
-    }
-    if (JOY_NEW(DPAD_LEFT))
-    {
-        if (selection != 0)
-            selection--;
-        else
-            selection = 2;
-
-        sArrowPressed = TRUE;
-    }
-    return selection;
-}
-
-
-static void RunType_DrawChoices(u8 selection)
-{
-    s32 widthRun1, widthRun2, widthRun3, xOption2;
-    u8 styles[3];
-
-    styles[0] = 0;
-    styles[1] = 0;
-    styles[2] = 0;
-    styles[selection] = 1;
-
-    DrawOptionMenuChoice(gText_RunOptionEnabled1, 104, YPOS_RUN_TYPE, styles[0]);
-
-    widthRun1 = GetStringWidth(FONT_NORMAL, gText_RunOptionEnabled1, 0);
-    widthRun2 = GetStringWidth(FONT_NORMAL, gText_RunOptionEnabled2, 0);
-    widthRun3 = GetStringWidth(FONT_NORMAL, gText_RunOptionDisabled, 0);
-
-    widthRun2 -= 94;
-    xOption2 = (widthRun1 - widthRun2 - widthRun3) / 2 + 104;
-    DrawOptionMenuChoice(gText_RunOptionEnabled2, xOption2, YPOS_RUN_TYPE, styles[1]);
-
-    DrawOptionMenuChoice(gText_RunOptionDisabled, GetStringRightAlignXOffset(FONT_NORMAL, gText_RunOptionDisabled, 198), YPOS_RUN_TYPE, styles[2]);
-}
-static u8 Difficulty_ProcessInput(u8 selection)
-{
-    if (JOY_NEW(DPAD_RIGHT))
-    {
-        if (selection <= 1)
-            selection++;
-        else
-            selection = 0;
-
-        sArrowPressed = TRUE;
-    }
-    if (JOY_NEW(DPAD_LEFT))
-    {
-        if (selection != 0)
-            selection--;
-        else
-            selection = 2;
-
-        sArrowPressed = TRUE;
-    }
-    return selection;
-}
-
-
-static void Difficulty_DrawChoices(u8 selection)
-{
-    s32 widthEasy, widthNormal, widthHard, xNormal;
-    u8 styles[3];
-
-    styles[0] = 0;
-    styles[1] = 0;
-    styles[2] = 0;
-    styles[selection] = 1;
-
-    DrawOptionMenuChoice(gText_EasyOption, 104, YPOS_DIFFICULTY, styles[0]);
-
-    widthEasy = GetStringWidth(FONT_NORMAL, gText_EasyOption, 0);
-    widthNormal = GetStringWidth(FONT_NORMAL, gText_NormalOption, 0);
-    widthHard = GetStringWidth(FONT_NORMAL, gText_HardOption, 0);
-
-    widthNormal -= 94;
-    xNormal = (widthEasy - widthNormal - widthHard) / 2 + 104;
-    DrawOptionMenuChoice(gText_NormalOption, xNormal, YPOS_DIFFICULTY, styles[1]);
-
-    DrawOptionMenuChoice(gText_HardOption, GetStringRightAlignXOffset(FONT_NORMAL, gText_HardOption, 198), YPOS_DIFFICULTY, styles[2]);
+    DrawOptionMenuChoice(gText_AutorunOn, 104, YPOS_AUTORUN, styles[0]);
+    DrawOptionMenuChoice(gText_AutorunOff, GetStringRightAlignXOffset(FONT_NORMAL, gText_AutorunOff, 198), YPOS_AUTORUN, styles[1]);
 }
 
 static u8 Music_ProcessInput(u8 selection)

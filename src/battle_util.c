@@ -550,10 +550,6 @@ bool32 TryRunFromBattle(enum BattlerId battler)
     // If this flag is set, running will never be successful under any circumstances.
     if (FlagGet(B_FLAG_NO_RUNNING))
         return effect;
-    if (FlagGet(FLAG_RAN_FROM_BATTLE))
-    {
-        effect++;
-    } 
     if (gBattleMons[battler].item == ITEM_ENIGMA_BERRY_E_READER)
         holdEffect = gEnigmaBerries[battler].holdEffect;
     else
@@ -4962,8 +4958,6 @@ bool32 CanBattlerEscape(enum BattlerId battler) // no ability check
         return FALSE;
     else if (gBattleMons[battler].volatiles.semiInvulnerable == STATE_SKY_DROP)
         return FALSE;
-    else if (FlagSet(FLAG_RAN_FROM_BATTLE))
-        return TRUE;
     else
         return TRUE;
 }
@@ -8984,8 +8978,6 @@ enum DamageCategory GetBattleMoveCategory(enum Move move)
     }
 
     if (B_PHYSICAL_SPECIAL_SPLIT < GEN_4)
-        return gTypesInfo[GetBattleMoveType(move)].damageCategory;
-    if (gSaveBlock2Ptr->optionsPSS == TRUE)
         return gTypesInfo[GetBattleMoveType(move)].damageCategory;
 
     return GetMoveCategory(move);

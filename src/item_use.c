@@ -1379,8 +1379,6 @@ bool32 CannotUseItemsInBattle(enum Item itemId, struct Pokemon *mon)
     return cannotUse;
 }
 
-//(gSaveBlock2Ptr->optionsDifficulty == OPTIONS_DIFFICULTY_HARD)
-
 void ItemUseInBattle_BagMenu(u8 taskId)
 {
     gPartyMenu.slotId = gBattleStruct->itemPartyIndex[gBattlerInMenuId] = gBattlerPartyIndexes[gBattlerInMenuId];

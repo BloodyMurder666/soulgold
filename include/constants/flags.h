@@ -715,7 +715,7 @@
 #define FLAG_HIDE_BATTLE_FRONTIER_RECEPTION_GATE_SCOTT  0x29C // Unused Flag
 #define FLAG_SYS_BUG_CONTEST_MODE  0x29D // Unused Flag
 #define FLAG_UNUSED_0x29E      0x29E // Unused Flag
-#define FLAG_RAN_FROM_BATTLE  0x29F // Unused Flag
+#define FLAG_UNUSED_0x29F  0x29F // Unused Flag
 #define FLAG_NAMED_SILVER  0x2A0 // Unused Flag
 #define FLAG_SLOWPOKE_TRADE    0x2A1
 #define FLAG_ROUTE31_EXPERT  0x2A2 // Flag for defeating Route 31 expert

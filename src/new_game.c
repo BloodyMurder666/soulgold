@@ -107,10 +107,7 @@ static void SetDefaultOptions(void)
     gSaveBlock2Ptr->optionsEXPShare = FALSE;
     gSaveBlock2Ptr->optionsAutoHMs = FALSE;
     gSaveBlock2Ptr->optionsFollowers = TRUE;
-    gSaveBlock2Ptr->optionsPSS = FALSE;
-    gSaveBlock2Ptr->optionsTerrain = FALSE;
-    gSaveBlock2Ptr->optionsRunType = 0;
-    gSaveBlock2Ptr->optionsDifficulty = OPTIONS_DIFFICULTY_NORMAL;
+    gSaveBlock2Ptr->optionsAutorun = FALSE;
     gSaveBlock2Ptr->optionsFont = 0;
     gSaveBlock2Ptr->optionsMusic = 0;
                
