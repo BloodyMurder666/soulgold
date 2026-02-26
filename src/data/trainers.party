@@ -677,7 +677,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Yanma
-Level: 12
+Level: 19
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_BRIDGET ===
@@ -794,17 +794,17 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Koffing
-Level: 12
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Slowpoke
-Level: 13
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Nosepass
+Level: 17
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 Houndour
-Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 17
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 31 Spe
+
+Porygon
+Level: 18
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 === TRAINER_KAREN_2 ===
 Name: Karen
@@ -2896,21 +2896,21 @@ Double Battle: No
 AI: Basic Trainer
 Mugshot: Yellow
 
-Zubat
-Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Absorb
-- Supersonic
-- Poison Sting
-- Astonish
+Haunter
+Level: 20
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Shadow Punch
+- Confuse Ray
+- Night Shade
+- Lick
 
-Larvitar
-Level: 16
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Bite
-- Rock Throw
-- Screech
-- Sandstorm
+Pawniard
+Level: 20
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+Pidgeotto
+Level: 21
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 Croconaw
 Level: 18
@@ -3260,13 +3260,13 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move
 
-Kakuna
-Level: 9
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Butterfree
+Level: 17
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 Beedrill
-Level: 12
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 18
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 === TRAINER_BROOKE ===
 Name: Brooke
@@ -3682,21 +3682,21 @@ Double Battle: No
 AI: Basic Trainer
 Mugshot: Yellow
 
-Zubat
-Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Absorb
-- Supersonic
-- Poison Sting
-- Astonish
+Haunter
+Level: 20
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Shadow Punch
+- Confuse Ray
+- Night Shade
+- Lick
 
-Larvitar
-Level: 16
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Bite
-- Rock Throw
-- Screech
-- Sandstorm
+Pawniard
+Level: 20
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+Pidgeotto
+Level: 21
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 Bayleef
 Level: 18
@@ -5224,29 +5224,25 @@ Double Battle: No
 AI: Basic Trainer
 Mugshot: Yellow
 
-Zubat
-Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Absorb
-- Supersonic
-- Poison Sting
-- Astonish
+Haunter
+Level: 20
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Shadow Punch
+- Confuse Ray
+- Night Shade
+- Lick
 
-Larvitar
-Level: 16
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Bite
-- Rock Throw
-- Screech
-- Sandstorm
+Pawniard
+Level: 20
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+Pidgeotto
+Level: 21
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 Quilava
-Level: 18
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Leer
-- Smokescreen
-- Ember
-- Tackle
+Level: 22
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 === TRAINER_HEIDI ===
 Name: Heidi
@@ -5990,12 +5986,12 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Rattata
-Level: 9
+Rattata Alola
+Level: 16
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Rattata
-Level: 11
+Zigzagoon Galar
+Level: 16
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_20 ===
@@ -6045,12 +6041,12 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Rattata
-Level: 9
+Zubat
+Level: 16
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Zubat
-Level: 9
+Slowpoke
+Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JACLYN ===
@@ -6573,16 +6569,8 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Elekid
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Magby
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Smoochum
-Level: 11
+Mightyena
+Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_LEA_AND_PIA ===
@@ -7207,12 +7195,12 @@ Double Battle: Yes
 AI: Check Bad Move
 
 Ledyba
-Level: 12
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 17
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 Spinarak
-Level: 12
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 17
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 === TRAINER_MEG_AND_PEG ===
 Name: Meg&Peg
@@ -8920,21 +8908,20 @@ Class: Leader
 Pic: Leader Bugsy
 Gender: Male
 Music: Male
-Items: Potion / Potion
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Purple
 
-Pineco
-Level: 15
+Whirlipede
+Level: 19
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Pin Missile
-- Headbutt
-- Bullet Seed
-- Harden
+- Spikes
+- Screech
+- Rollout
 
 Ledian
-Level: 15
+Level: 19
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Bullet Seed
 - Comet Punch
@@ -8942,11 +8929,11 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Reflect
 
 Scyther @ Berry Juice
-Level: 16
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Level: 20
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 - Quick Attack
 - Fury Cutter
-- Bullet Seed
+- U turn
 - Pursuit
 
 === TRAINER_BOB ===
@@ -9081,12 +9068,12 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move
 
-Metapod
-Level: 9
+Skorupi
+Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Butterfree
-Level: 12
+Swadloon
+Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_KENNY ===
