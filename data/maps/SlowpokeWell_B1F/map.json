@@ -54,7 +54,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GEODUDE)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SILICOBRA)",
       "x": 2,
       "y": 2,
       "elevation": 0,
@@ -67,7 +67,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GEODUDE)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SILICOBRA)",
       "x": 32,
       "y": 12,
       "elevation": 0,
