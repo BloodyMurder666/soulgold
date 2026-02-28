@@ -35988,7 +35988,7 @@
           "map": "MAP_ROUTE32",
           "base_label": "gRoute32",
           "land_mons": {
-            "encounter_rate": 20,
+            "encounter_rate": 18,
             "mons": [
               {
                 "min_level": 7,
@@ -36821,62 +36821,62 @@
             "encounter_rate": 20,
             "mons": [
               {
-                "min_level": 9,
-                "max_level": 11,
-                "species": "SPECIES_MACHOP"
-              },
-              {
-                "min_level": 9,
-                "max_level": 12,
-                "species": "SPECIES_EKANS"
-              },
-              {
-                "min_level": 9,
+                "min_level": 10,
                 "max_level": 12,
                 "species": "SPECIES_MACHOP"
               },
               {
-                "min_level": 9,
+                "min_level": 10,
                 "max_level": 13,
                 "species": "SPECIES_EKANS"
               },
               {
-                "min_level": 9,
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_MACHOP"
+              },
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_EKANS"
+              },
+              {
+                "min_level": 10,
                 "max_level": 13,
                 "species": "SPECIES_VULPIX"
               },
               {
-                "min_level": 9,
-                "max_level": 13,
-                "species": "SPECIES_BUDEW"
-              },
-              {
-                "min_level": 9,
-                "max_level": 13,
-                "species": "SPECIES_VULPIX"
-              },
-              {
-                "min_level": 9,
+                "min_level": 10,
                 "max_level": 13,
                 "species": "SPECIES_BUDEW"
               },
               {
                 "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_VULPIX"
+              },
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_BUDEW"
+              },
+              {
+                "min_level": 11,
                 "max_level": 14,
                 "species": "SPECIES_BUIZEL"
               },
               {
-                "min_level": 10,
+                "min_level": 11,
                 "max_level": 14,
                 "species": "SPECIES_ROCKRUFF"
               },
               {
-                "min_level": 10,
+                "min_level": 11,
                 "max_level": 14,
                 "species": "SPECIES_BUIZEL"
               },
               {
-                "min_level": 10,
+                "min_level": 11,
                 "max_level": 14,
                 "species": "SPECIES_ROCKRUFF"
               }
