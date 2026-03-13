@@ -3744,8 +3744,8 @@ static enum MoveEndResult MoveEndDancer(void)
     // Set target for other Dancer mons; set bit so that mon cannot activate Dancer off of its own move
     if (!gSpecialStatuses[gBattlerAttacker].dancerUsedMove)
     {
-        gBattleScripting.savedBattler = gBattlerTarget | 0x4;
-        gBattleScripting.savedBattler |= (gBattlerAttacker << 4);
+        gBattleStruct->dancerSavedTarget = gBattlerTarget;
+        gBattleStruct->dancerSavedAttacker = gBattlerAttacker;
         gSpecialStatuses[gBattlerAttacker].dancerUsedMove = TRUE;
     }
 
