@@ -2589,11 +2589,14 @@ static s32 AI_CheckBadMove(enum BattlerId battlerAtk, enum BattlerId battlerDef,
         case EFFECT_YAWN:
             if (gBattleMons[battlerDef].volatiles.yawn)
                 ADJUST_SCORE(-10);
+            else if ((aiData->holdEffects[battlerDef] == HOLD_EFFECT_FLAME_ORB && CanBeBurned(battlerDef, battlerDef, abilityDef))
+                || (aiData->holdEffects[battlerDef] == HOLD_EFFECT_TOXIC_ORB && CanBePoisoned(battlerDef, battlerDef, abilityDef, abilityDef)))
+                ADJUST_SCORE(-10);
             else if (!AI_CanPutToSleep(battlerAtk, battlerDef, aiData->abilities[battlerDef], move, aiData->partnerMove))
                 ADJUST_SCORE(-10);
             if (PartnerMoveActivatesSleepClause(aiData->partnerMove))
                 ADJUST_SCORE(-20);
-            break;
+        break;
         case EFFECT_DOODLE:
         case EFFECT_ENTRAINMENT:
         case EFFECT_GASTRO_ACID:
