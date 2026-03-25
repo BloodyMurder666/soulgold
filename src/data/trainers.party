@@ -6543,8 +6543,12 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Snubbull
-Level: 15
+Minccino
+Level: 20
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Aipom
+Level: 21
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_STAN ===
@@ -7258,16 +7262,12 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move
 
-Teddiursa
-Level: 12
+Raticate
+Level: 21
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Sandshrew
-Level: 10
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Spearow
-Level: 12
+Linoone
+Level: 21
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_CARA ===
@@ -8992,12 +8992,12 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move
 
-Mankey
-Level: 12
+Applin
+Level: 21
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Diglett
-Level: 14
+Dunsparce
+Level: 21
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_CAMERON ===
@@ -9133,7 +9133,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Azumarill
-Level: 15
+Level: 22
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JOHNNY ===
@@ -9316,7 +9316,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Growlithe
-Level: 16
+Level: 21
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_HARVEY ===
@@ -10117,12 +10117,12 @@ Music: Hg Girl 1
 Double Battle: No
 AI: Check Bad Move
 
-Skiploom
-Level: 14
+Thwackey
+Level: 21
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Bulbasaur
-Level: 14
+Ivysaur
+Level: 21
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_IVAN ===
