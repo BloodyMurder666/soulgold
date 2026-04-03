@@ -6868,6 +6868,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .soundMove = TRUE,
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
+        .parentalBondBanned = TRUE,
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_UPROAR,
             .self = TRUE,
