@@ -5881,12 +5881,12 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Staryu
-Level: 24
+Starmie
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Starmie
-Level: 26
+Lanturn
+Level: 36
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_25 ===
@@ -8257,12 +8257,12 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Goldeen
-Level: 22
+Seaking
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Seaking
-Level: 24
+Jellicent
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_SAMANTHA ===
@@ -8886,12 +8886,12 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Shellder
-Level: 26
+Cloyster
+Level: 36
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Cloyster
-Level: 28
+Clodsire
+Level: 38
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_BUGSY_1 ===
