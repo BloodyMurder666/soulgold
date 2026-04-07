@@ -1523,7 +1523,7 @@
 #define FLAG_RECEIVED_BADGE_5                       (SYSTEM_FLAGS + 0x91)
 #define FLAG_RECEIVED_BADGE_6                       (SYSTEM_FLAGS + 0x92)
 #define FLAG_RECEIVED_BADGE_7                       (SYSTEM_FLAGS + 0x93)
-#define FLAG_UNUSED_0x8F4                           (SYSTEM_FLAGS + 0x94) // Unused Flag
+#define FLAG_GOLDEN_COLOSSEUM                           (SYSTEM_FLAGS + 0x94) // Permission to enter goldenrod underground colosseum
 #define FLAG_UNUSED_0x8F5                           (SYSTEM_FLAGS + 0x95) // Unused Flag
 #define FLAG_UNUSED_0x8F6                           (SYSTEM_FLAGS + 0x96) // Unused Flag
 #define FLAG_UNUSED_0x8F7                           (SYSTEM_FLAGS + 0x97) // Unused Flag
