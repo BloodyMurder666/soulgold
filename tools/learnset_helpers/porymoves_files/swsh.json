@@ -12641,6 +12641,7 @@
     ],
     "PreEvoMoves": [],
     "TMMoves": [
+      "MOVE_CUT",
       "MOVE_DIG",
       "MOVE_SCREECH",
       "MOVE_REST",
@@ -12769,6 +12770,7 @@
     ],
     "PreEvoMoves": [],
     "TMMoves": [
+      "MOVE_CUT",
       "MOVE_MEGA_KICK",
       "MOVE_HYPER_BEAM",
       "MOVE_GIGA_IMPACT",

@@ -5146,8 +5146,8 @@ Charjabug
 Level: 20
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
-Ribombee
-Level: 21
+Beedrill
+Level: 20
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 === TRAINER_SCOTT ===
@@ -7266,10 +7266,6 @@ Raticate
 Level: 21
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Linoone
-Level: 21
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
 === TRAINER_CARA ===
 Name: Cara
 Class: Cooltrainer
@@ -8901,8 +8897,16 @@ Pic: Leader Bugsy
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Smart Trainer
+AI: Smart Trainer 
 Mugshot: Purple
+
+Scyther @ Berry Juice
+Level: 20
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Quick Attack
+- Fury Cutter
+- U turn
+- Pursuit
 
 Whirlipede
 Level: 19
@@ -8919,14 +8923,6 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Comet Punch
 - Supersonic
 - Reflect
-
-Scyther @ Berry Juice
-Level: 20
-IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
-- Quick Attack
-- Fury Cutter
-- U turn
-- Pursuit
 
 === TRAINER_BOB ===
 Name: Bob

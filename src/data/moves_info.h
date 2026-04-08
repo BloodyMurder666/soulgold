@@ -508,7 +508,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
             "scythes, claws, etc."),
         .effect = EFFECT_HIT,
         .power = 50,
-        .type = TYPE_BUG,
+        .type = TYPE_STEEL,
         .accuracy = 95,
         .pp = 30,
         .target = TARGET_SELECTED,

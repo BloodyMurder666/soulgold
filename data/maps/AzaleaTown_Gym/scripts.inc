@@ -680,9 +680,6 @@ AzaleaTown_Gym_Text_BugsyIntro:
 	.string "to bug POKéMON.\p"
 	.string "My research is going to make me the\n"
 	.string "authority on bug POKéMON!\p"
-	.string "For example, did you know\n"
-	.string "that the move CUT is\l"
-	.string "actually a BUG-type move?\p"
 	.string "Let me demonstrate all I've\n"
 	.string "learned from my studies.$"
 
@@ -781,15 +778,15 @@ AzaleaTown_Gym_Text_TwinsAmyMay1Beaten:
 AzaleaTown_Gym_Text_TwinsAmyMay1After:
 	.string "AMY: You're really strong!\p"
 	.string "But BUGSY's even stronger!\n"
-	.string "His SCYTHER's CUT almost\l"
-	.string "always makes critical hits!$"
+	.string "His SCYTHER's U-Turn almost\l"
+	.string "always makes turns the tide!$"
 
 AzaleaTown_Gym_Text_TwinsAmyMay2Seen:
 	.string "MAY: You want to see the\n"
 	.string "LEADER? Good luck!\p"
 	.string "BUGSY is so strong!\n"
-	.string "His SCYTHER's CUT always\l"
-	.string "seems to crit!$"
+	.string "His SCYTHER's U-turn always\l"
+	.string "seems to turn tides!$"
 
 AzaleaTown_Gym_Text_TwinsAmyMay2Beaten:
 	.string "AMY & MAY: Oh, double\n"
@@ -811,8 +808,6 @@ AzaleaTown_Gym_Text_GymGuide:
 	.string "Let's see… BUGSY's bagworm POKéMON\n"
 	.string "knows a move that covers its\l"
 	.string "ROCK-type weakness.\p"
-	.string "He's also developed a new verison\n"
-	.string "of CUT that is BUG-type.\p"
 	.string "Oh, and don't forget about those\n"
 	.string "nasty critical hits! Good luck!$"
 
