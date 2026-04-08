@@ -1,4 +1,5 @@
-
+8.4.2026
+- Playtest up to Route 34, bugfixing along the way.
 
 7.4.2026
 - Merge HGSS Battle UI
