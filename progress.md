@@ -1,5 +1,6 @@
 8.4.2026
 - Playtest up to Route 34, bugfixing along the way.
+- Fix moves bg pal and hp bar text
 
 7.4.2026
 - Merge HGSS Battle UI
