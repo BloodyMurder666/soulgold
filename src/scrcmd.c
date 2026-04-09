@@ -3672,13 +3672,13 @@ bool8 ScrCmd_istmrelearneractive(struct ScriptContext *ctx)
 // ====================== HnS: giveoddegg ======================
 static const u16 sOddEggSpecies[8] = {
     SPECIES_NONE,        // [0] unused
-    SPECIES_PICHU,       // 1
-    SPECIES_CLEFFA,      // 2
-    SPECIES_IGGLYBUFF,   // 3
-    SPECIES_TYROGUE,     // 4
-    SPECIES_SMOOCHUM,    // 5
-    SPECIES_ELEKID,      // 6
-    SPECIES_MAGBY        // 7
+    SPECIES_ELEKID,      // 1
+    SPECIES_MAGBY,       // 2
+    SPECIES_FEEBAS,      // 3
+    SPECIES_RIOLU,       // 4
+    SPECIES_ZORUA,       // 5
+    SPECIES_ZORUA_HISUI, // 6
+    SPECIES_GOOMY,       // 7
 };
 
 // EDIT THIS LIST: exact-match names that force 100% shiny eggs
@@ -3717,6 +3717,11 @@ static const u8 sOddEggShinyNameList[][PLAYER_NAME_LENGTH + 1] = {
     _("Brick"),
     _("Kino"),
     _("JIRAIYA"),
+    _("Rahtak"),
+    _("Eemeli"),
+    _("Doves"),
+    _("Drac"),
+    _("Nem")
 };
 
 static bool8 IsPlayerNameInShinyList(void)
@@ -3798,7 +3803,6 @@ static bool8 GiveOddEgg_Internal(u16 species, bool8 forceShiny, bool8 allow14Per
             }
 
             // You can set met location/ball/etc. here if you want.
-            SetMonMoveSlot(mon, MOVE_DIZZY_PUNCH, 1);
             CalculateMonStats(mon);
             gSpecialVar_Result = MON_GIVEN_TO_PARTY;
             return TRUE;
