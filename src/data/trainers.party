@@ -4833,7 +4833,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Lickitung
-Level: 14
+Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_LTSURGE ===
@@ -4947,11 +4947,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Slowpoke
-Level: 15
+Level: 22
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Slowpoke
-Level: 15
+Tangela
+Level: 23
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_CALVIN ===
@@ -7880,16 +7880,16 @@ Music: Hg Suspicious 1
 Double Battle: No
 AI: Check Bad Move
 
-Voltorb
-Level: 14
+Pawmo
+Level: 22
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Magnemite
-Level: 14
+Voltorb-Hisui
+Level: 22
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Porygon
-Level: 14
+Eelektrik
+Level: 22
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_HANK ===
@@ -10982,10 +10982,10 @@ Music: Hg Suspicious 1
 Double Battle: No
 AI: Check Bad Move
 
-Grimer
-Level: 15
+Grimer-Alola
+Level: 23
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Cubone
-Level: 15
+Morgrem
+Level: 23
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
