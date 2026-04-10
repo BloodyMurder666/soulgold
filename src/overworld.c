@@ -1577,6 +1577,8 @@ void UpdateTimeOfDay(void)
         gTimeBlend.weight = TIME_BLEND_WEIGHT(MORNING_HOUR_BEGIN, MORNING_HOUR_MIDDLE);
         gTimeBlend.altWeight = (DEFAULT_WEIGHT - gTimeBlend.weight) / 2;
         gTimeOfDay = TIME_MORNING;
+        FlagClear(FLAG_NIGHT_POKEMON);
+        FlagSet(FLAG_DAY_POKEMON);
     }
     else if (IsBetweenHours(hours, MORNING_HOUR_MIDDLE, MORNING_HOUR_END)) // morning->day
     {
@@ -1585,6 +1587,8 @@ void UpdateTimeOfDay(void)
         gTimeBlend.weight = TIME_BLEND_WEIGHT(MORNING_HOUR_MIDDLE, MORNING_HOUR_END);
         gTimeBlend.altWeight = (DEFAULT_WEIGHT - gTimeBlend.weight) / 2 + (DEFAULT_WEIGHT / 2);
         gTimeOfDay = TIME_MORNING;
+        FlagSet(FLAG_NIGHT_POKEMON);
+        FlagClear(FLAG_DAY_POKEMON);
     }
     else if (IsBetweenHours(hours, EVENING_HOUR_BEGIN, EVENING_HOUR_END)) // evening
     {
@@ -1593,6 +1597,8 @@ void UpdateTimeOfDay(void)
         gTimeBlend.weight = TIME_BLEND_WEIGHT(EVENING_HOUR_BEGIN, EVENING_HOUR_END);
         gTimeBlend.altWeight = gTimeBlend.weight / 2 + (DEFAULT_WEIGHT / 2);
         gTimeOfDay = TIME_EVENING;
+        FlagSet(FLAG_NIGHT_POKEMON);
+        FlagClear(FLAG_DAY_POKEMON);
     }
     else if (IsBetweenHours(hours, NIGHT_HOUR_BEGIN, NIGHT_HOUR_BEGIN + 1)) // evening->night
     {
@@ -1601,6 +1607,8 @@ void UpdateTimeOfDay(void)
         gTimeBlend.weight = TIME_BLEND_WEIGHT(NIGHT_HOUR_BEGIN, NIGHT_HOUR_BEGIN + 1);
         gTimeBlend.altWeight = gTimeBlend.weight / 2;
         gTimeOfDay = TIME_NIGHT;
+        FlagSet(FLAG_DAY_POKEMON);
+        FlagClear(FLAG_NIGHT_POKEMON);
     }
     else if (IsBetweenHours(hours, NIGHT_HOUR_BEGIN, NIGHT_HOUR_END)) // night
     {
@@ -1608,12 +1616,16 @@ void UpdateTimeOfDay(void)
         gTimeBlend.altWeight = 0;
         gTimeBlend.startBlend = gTimeBlend.endBlend = gTimeOfDayBlend[TIME_NIGHT];
         gTimeOfDay = TIME_NIGHT;
+        FlagClear(FLAG_NIGHT_POKEMON);
+        FlagSet(FLAG_DAY_POKEMON);
     }
     else // day
     {
         gTimeBlend.weight = gTimeBlend.altWeight = DEFAULT_WEIGHT;
         gTimeBlend.startBlend = gTimeBlend.endBlend = gTimeOfDayBlend[TIME_DAY];
         gTimeOfDay = TIME_DAY;
+        FlagSet(FLAG_NIGHT_POKEMON);
+        FlagClear(FLAG_DAY_POKEMON);
     }
 }
 
