@@ -279,6 +279,7 @@ static const struct MenuAction MultichoiceList_GameCornerCoins[] =
 {
     {COMPOUND_STRING("  50 COINS    ¥1,000")},
     {COMPOUND_STRING("500 COINS  ¥10,000")},
+    {COMPOUND_STRING("2000 COINS  ¥35,000")},
     {gText_Exit},
 };
 
@@ -847,10 +848,10 @@ static const struct MenuAction MultichoiceList_VermilionHarborRed[] =
 
 static const struct MenuAction MultichoiceList_PrizeMons[] = 
 {
-    {gText_Abra},
-    {gText_Clefairy},
+    {gText_Pawniard},
     {gText_Munchlax},
-    {gText_Dratini},
+    {gText_Sneasel},
+    {gText_Deino},
     {gText_Porygon},
     {gText_Exit},
 };

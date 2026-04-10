@@ -2204,10 +2204,10 @@ extern const u8 gText_Heavy[];
 extern const u8 gText_Fast[];
 extern const u8 gText_LevelBall[];
 
-extern const u8 gText_Abra[];
-extern const u8 gText_Clefairy[];
+extern const u8 gText_Pawniard[];
+extern const u8 gText_Sneasel[];
 extern const u8 gText_Munchlax[];
-extern const u8 gText_Dratini[];
+extern const u8 gText_Deino[];
 extern const u8 gText_Porygon[];
 
 extern const u8 gText_Pal[];

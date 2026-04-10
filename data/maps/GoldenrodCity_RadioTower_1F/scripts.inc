@@ -88,7 +88,7 @@ RadioTower1F_EventScript_ReceptionQuiz1::
 
 RadioTower1F_EventScript_ReceptionQuiz2::
 	msgbox RadioTower1F_Text_QuizQuestion2, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, TRUE, RadioTower1F_EventScript_ReceptionQuiz3
+	goto_if_eq VAR_RESULT, FALSE, RadioTower1F_EventScript_ReceptionQuiz3
 	msgbox RadioTower1F_Text_WrongAnswer, MSGBOX_DEFAULT
 	closemessage
 	release

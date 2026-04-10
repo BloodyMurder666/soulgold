@@ -809,7 +809,7 @@
 #define FLAG_GOLDENROD_MACHOKE_1                                    0x2F6
 #define FLAG_GOLDENROD_MACHOKE_2                                    0x2F7
 #define FLAG_GOLDENROD_MACHOKE_3                                    0x2F8
-#define FLAG_GOLDENROD_NPC_TRADE_COMPLETED                          0x2F9
+#define FLAG_GOLDENROD_NPC_TRADE_COMPLETED                          0x2F9 // Honedge trade
 #define FLAG_GOT_SKILL_SWAP                                         0x2FA
 #define FLAG_HIDE_DEOXYS                                            0x2FB 
 #define FLAG_HIDE_BIRTH_ISLAND_DEOXYS_TRIANGLE                      0x2FC
@@ -1282,7 +1282,7 @@
 #define FLAG_ITEM_ROUTE34_SOFTSAND                                  0x4C9 
 #define FLAG_ITEM_GOLDENROD_UNDERGROUND_COIN_CASE                   0x4CA 
 #define FLAG_ITEM_GOLDENROD_UNDERGROUND_SUPER_POTION                0x4CB 
-#define FLAG_ITEM_GOLDENROD_UNDERGROUND_PARALYZE_HEAL               0x4CC 
+#define FLAG_ITEM_UNUSED_0x4CC                                      0x4CC //UNUSED
 #define FLAG_ITEM_GOLDENROD_UNDERGROUND_ANTIDOTE                    0x4CD 
 #define FLAG_ITEM_GOLDENROD_UNDERGROUND_AMULET_COIN                 0x4CE 
 #define FLAG_ITEM_GOLDENROD_UNDERGROUND_EXP_SHARE                   0x4CF 

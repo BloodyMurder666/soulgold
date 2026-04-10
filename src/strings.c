@@ -1240,11 +1240,11 @@ const u8 gText_Moon[] =         _("MOON    / CHESTO / (DRK/GST/PSN)");
 const u8 gText_Fast[] =         _("FAST    / ASPEAR / (ELC/FIG/FIR)");
 const u8 gText_LevelBall[] =    _("LEVEL  / PERSIM / (NRM/FLY/ICE)");
 
-const u8 gText_Abra[] = _("ABRA{CLEAR_TO 0x40}120 COINS");
-const u8 gText_Clefairy[] = _("CLEFAIRY{CLEAR_TO 0x40}500 COINS");
-const u8 gText_Munchlax[] = _("MUNCHLAX{CLEAR_TO 0x40}2,800 COINS");
-const u8 gText_Dratini[] = _("DRATINI{CLEAR_TO 0x40}5,500 COINS");
-const u8 gText_Porygon[] = _("PORYGON{CLEAR_TO 0x40}6,500 COINS");
+const u8 gText_Pawniard[] = _("PAWNIARD{CLEAR_TO 0x40}250 COINS");
+const u8 gText_Munchlax[] = _("MUNCHLAX{CLEAR_TO 0x40}500 COINS");
+const u8 gText_Sneasel[] =  _("H-SNEASEL{CLEAR_TO 0x40}1,200 COINS");
+const u8 gText_Deino[] =    _("DEINO{CLEAR_TO 0x40}2,400 COINS");
+const u8 gText_Porygon[] =  _("PORYGON{CLEAR_TO 0x40}3,000 COINS");
 
 const u8 gText_Pal[] = _("Pal");
 const u8 gText_Underling[] = _("Underling");

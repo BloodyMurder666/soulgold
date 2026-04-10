@@ -1032,21 +1032,21 @@ static const struct InGameTrade sIngameTrades[] =
         .sheen = 10,
         .requestedSpecies = SPECIES_SKITTY
     },
-    [INGAME_TRADE_MACHOP] =
+    [INGAME_TRADE_HONEDGE] =
     {
-        .nickname = _("MUSCLE"),
-        .species = SPECIES_MACHOP,
-        .ivs = {4, 4, 4, 5, 5, 4},
+        .nickname = _("Slicer"),
+        .species = SPECIES_HONEDGE,
+        .ivs = {25, 25, 25, 25, 25, 25},
         .abilityNum = 0,
         .otId = 44312,
         .conditions = {5, 5, 30, 5, 5},
         .personality = 0x19,
         .heldItem = ITEM_MACHO_BRACE,
         .mailNum = 0,
-        .otName = _("JOSE"),
+        .otName = _("Jose"),
         .otGender = MALE,
         .sheen = 10,
-        .requestedSpecies = SPECIES_DROWZEE
+        .requestedSpecies = SPECIES_CLEFAIRY
     },
     [INGAME_TRADE_VOLTORB] =
     {
@@ -1178,7 +1178,7 @@ static const struct InGameTrade sIngameTrades[] =
     },
     [INGAME_TRADE_SLOWPOKE] =
     {
-        .nickname = _("CHUM"),
+        .nickname = _("Chum"),
         .species = SPECIES_SLOWPOKE_GALAR,
         .ivs = {28, 28, 28, 28, 28, 28},
         .abilityNum = 2,
@@ -1187,7 +1187,7 @@ static const struct InGameTrade sIngameTrades[] =
         .personality = 0x84,
         .heldItem = ITEM_CHESTO_BERRY,
         .mailNum = -1,
-        .otName = _("RICK"),
+        .otName = _("Rick"),
         .otGender = FEMALE,
         .sheen = 10,
         .requestedSpecies = SPECIES_SLOWPOKE

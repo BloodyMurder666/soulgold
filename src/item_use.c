@@ -1673,7 +1673,7 @@ static void DisplayRadioMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnField
     if (gMapHeader.regionMapSectionId == MAPSEC_RUINS_OF_ALPH)
     {
         DisplayCannotUseItemMessage(taskId, isUsingRegisteredKeyItemOnField, gText_UnownMessage);
-        PlayBGM(MUS_HG_RADIO_UNOWN);
+        //PlayBGM(MUS_HG_RADIO_UNOWN);
         return;
     }
 
@@ -1696,7 +1696,7 @@ static void DisplayRadioMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnField
         {
             // Has Kanto radio: play Poké Flute program with placeholder text
             DisplayCannotUseItemMessage(taskId, isUsingRegisteredKeyItemOnField, gText_RadioKantoPokeFlute); // <-- add your final text string later
-            PlayBGM(MUS_HG_RADIO_POKE_FLUTE);
+            //PlayBGM(MUS_HG_RADIO_POKE_FLUTE);
         }
         return;
     }
@@ -1705,7 +1705,7 @@ static void DisplayRadioMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnField
     if (FlagGet(FLAG_HIDE_GOLDENROD_ROCKETS) == FALSE)
     {
         DisplayCannotUseItemMessage(taskId, isUsingRegisteredKeyItemOnField, gText_RocketRadio);
-        PlayBGM(MUS_HG_RADIO_ROCKET);
+        //PlayBGM(MUS_HG_RADIO_ROCKET);
     }
     else
     {
@@ -1725,7 +1725,7 @@ static void DisplayRadioMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnField
         SeedRng(gMain.vblankCounter1);
         const u8 *selectedMsg = sOakRadioMessages[Random() % ARRAY_COUNT(sOakRadioMessages)];
         DisplayCannotUseItemMessage(taskId, isUsingRegisteredKeyItemOnField, selectedMsg);
-        PlayBGM(MUS_HG_RADIO_OAK);
+        //PlayBGM(MUS_HG_RADIO_OAK);
     }
 }
 
