@@ -128,10 +128,10 @@ bool8 JudgeBugContestMon(void)
     }
 
         // Reward tables
-    static const u16 sFirstPlaceRewards[]  = { ITEM_MOON_STONE, ITEM_SUN_STONE, ITEM_LEAF_STONE};
+    static const u16 sFirstPlaceRewards[]  = { ITEM_MOON_STONE, ITEM_SUN_STONE, ITEM_LEAF_STONE, ITEM_DAWN_STONE, ITEM_SHINY_STONE, ITEM_LUCKY_EGG, ITEM_DUSK_STONE};
     static const u16 sSecondPlaceRewards[] = { ITEM_FIRE_STONE, ITEM_THUNDER_STONE, ITEM_WATER_STONE };
     static const u16 sThirdPlaceRewards[]  = {
-        ITEM_ORAN_BERRY, ITEM_CHERI_BERRY, ITEM_PERSIM_BERRY,
+        ITEM_ORAN_BERRY, ITEM_CHERI_BERRY, ITEM_PERSIM_BERRY, ITEM_SITRUS_BERRY,
         ITEM_PECHA_BERRY, ITEM_RAWST_BERRY, ITEM_ASPEAR_BERRY, ITEM_CHESTO_BERRY
     };
 

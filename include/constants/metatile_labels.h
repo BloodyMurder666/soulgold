@@ -135,6 +135,7 @@
 #define METATILE_Cave_CrackedFloor                       0x22F
 #define METATILE_Cave_CrackedFloor_Hole                  0x206
 #define METATILE_Cave_EntranceCover                      0x229
+#define METATILE_Cave_Ice_CrackedFloor_Hole              0x39F
 #define METATILE_Cave_SealedChamberBraille_Mid           0x235
 #define METATILE_Cave_SealedChamberEntrance_BottomLeft   0x232
 #define METATILE_Cave_SealedChamberEntrance_BottomMid    0x233
@@ -146,9 +147,6 @@
 #define METATILE_Cave_ShoalCave_BlueStone_Small          0x35B
 #define METATILE_Cave_ShoalCave_DirtPile_Large           0x358
 #define METATILE_Cave_ShoalCave_DirtPile_Small           0x35A
-
-// gTileset_Cave_Ice
-#define METATILE_Cave_Ice_CrackedFloor_Hole  0x39F
 
 // gTileset_CeruleanCity
 #define METATILE_CeruleanCity_Cerulean  0x298

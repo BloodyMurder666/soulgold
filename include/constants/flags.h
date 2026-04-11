@@ -1282,7 +1282,7 @@
 #define FLAG_ITEM_ROUTE34_SOFTSAND                                  0x4C9 
 #define FLAG_ITEM_GOLDENROD_UNDERGROUND_COIN_CASE                   0x4CA 
 #define FLAG_ITEM_GOLDENROD_UNDERGROUND_SUPER_POTION                0x4CB 
-#define FLAG_ITEM_UNUSED_0x4CC                                      0x4CC //UNUSED
+#define FLAG_ITEM_NATIONAL_PARK_HERACRONITE                         0x4CC
 #define FLAG_ITEM_GOLDENROD_UNDERGROUND_ANTIDOTE                    0x4CD 
 #define FLAG_ITEM_GOLDENROD_UNDERGROUND_AMULET_COIN                 0x4CE 
 #define FLAG_ITEM_GOLDENROD_UNDERGROUND_EXP_SHARE                   0x4CF 

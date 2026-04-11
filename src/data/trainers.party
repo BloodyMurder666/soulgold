@@ -132,8 +132,8 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Raichu
-Level: 15
+Raichu Alola @ Sitrus Berry
+Level: 25
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ANDREW ===
@@ -1022,11 +1022,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Growlithe
-Level: 16
+Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Houndour
-Level: 16
+Growlithe Hisui
+Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JOEL ===
@@ -1317,16 +1317,12 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Pidgey
-Level: 16
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
 Pidgeotto
-Level: 18
+Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Spearow
-Level: 18
+Staravia
+Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_PETREL_2 ===
@@ -2108,12 +2104,12 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move
 
-Sunflora
-Level: 16
+Exeggcute
+Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Voltorb
-Level: 17
+Pikachu
+Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_PAULA ===
@@ -2143,7 +2139,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Vulpix
-Level: 18
+Level: 23
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Cottonee
+Level: 23
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT ===
@@ -2235,8 +2235,8 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Snubbull
-Level: 20
+Swirlix
+Level: 25
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_BLAKE ===
@@ -3277,8 +3277,8 @@ Music: Hg Girl 1
 Double Battle: No
 AI: Check Bad Move
 
-Pikachu
-Level: 18
+Raichu
+Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_SHIRLEY ===
@@ -5860,16 +5860,12 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move
 
-Abra
-Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Abra
-Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
 Kadabra
-Level: 16
+Level: 25
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Espathra
+Level: 25
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JENN ===
@@ -6358,11 +6354,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Magmar
-Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Magmar
-Level: 15
+Level: 25
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JAMES ===
@@ -7491,11 +7483,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Yanma
-Level: 18
+Level: 23
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Venonat
-Level: 18
+Level: 23
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_15 ===
@@ -8487,11 +8479,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Skiploom
-Level: 17
+Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Cubone
-Level: 16
+Breloom
+Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_EDGAR ===
@@ -9393,15 +9385,15 @@ Double Battle: No
 AI: Check Bad Move
 
 Voltorb
-Level: 16
+Level: 22
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Pineco
-Level: 16
+Voltorb Hisui
+Level: 22
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Voltorb
-Level: 16
+Charjabug
+Level: 22
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ZUKI ===
@@ -9485,12 +9477,8 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move
 
-Sandshrew
-Level: 16
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Marill
-Level: 16
+Azumarill
+Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_DUNCAN ===
@@ -10130,12 +10118,12 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move
 
-Eevee
-Level: 16
+Lairon
+Level: 23
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Diglett
-Level: 16
+Mawile
+Level: 23
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_BURT ===
