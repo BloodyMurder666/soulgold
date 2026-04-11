@@ -689,13 +689,13 @@ Music: Hg Girl 1
 Double Battle: No
 AI: Check Bad Move
 
-Aipom
-Level: 16
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Munchlax @ Sitrus Berry
+Level: 24
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
-Munchlax
-Level: 16
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Kirlia
+Level: 24
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 === TRAINER_HARRIS ===
 Name: Harris
@@ -4017,35 +4017,83 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Name: Whitney
 Class: Leader
 Pic: Leader Whitney
-Gender: Male
-Music: Male
-Items: Super Potion / Potion
+Gender: Female
+Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Yellow
 
-Clefairy
-Level: 20
-IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
-- Headbutt
-- Charm
-- Sweet Kiss
+Clefairy @ Salac Berry
+Level: 24
+Ability: Magic Guard
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Reflect
+- Zen Headbutt
 - Metronome
+- Covet
 
-Teddiursa
-Level: 20
-IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
-- Fury Swipes
-- Fake Tears
-- Lick
-- Mud Slap
+Girafarig @ Twisted Spoon
+Level: 26
+Ability: Inner Focus
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Headbutt
+- Psybeam
+- Future Sight
+- Trailblaze
 
 Miltank @ Sitrus Berry
-Level: 21
-IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
+Level: 26
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 - Rollout
 - Attract
 - Stomp
+- Defense Curl
+
+=== TRAINER_WHITNEY_1 ===
+Name: Whitney
+Class: Leader
+Pic: Leader Whitney
+Gender: Female
+Music: Female
+Double Battle: Yes
+AI: Smart Trainer
+Mugshot: Yellow
+Difficulty: Hard
+
+Maushold @ Salac Berry
+Level: 26
+Ability: Friend Guard
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Headbutt
+- Bite
+- Tidy Up
+- Low Kick
+
+Tinkatuff @ Eject Button
+Level: 26
+Ability: Mold Breaker
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Reflect
+- Light Screen
+- Brutal Swing
+- Fake Out
+
+Cinccino @ Sitrus Berry
+Level: 26
+Ability: Skill Link
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Tail Slap
+- Bullet Seed
+- Helping Hand
+- Encore
+
+Miltank @ Rocky Helmet
+Level: 27
+Ability: Thick Fat
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Icy Wind
+- Fire Punch
+- Body Slam
 - Milk Drink
 
 === TRAINER_WHITNEY_2 ===
@@ -7825,9 +7873,9 @@ Music: Hg Girl 1
 Double Battle: No
 AI: Check Bad Move
 
-Happiny
-Level: 18
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Ponyta Galar
+Level: 24
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 === TRAINER_VALERIE ===
 Name: Valerie
@@ -7974,12 +8022,12 @@ Double Battle: No
 AI: Check Bad Move
 
 Teddiursa
-Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 23
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
-Furret
-Level: 17
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Togetic
+Level: 23
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 === TRAINER_HARRY ===
 Name: Harry
@@ -8262,9 +8310,9 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Meowth
-Level: 18
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Persian
+Level: 24
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 === TRAINER_JEREMY ===
 Name: Jeremy
