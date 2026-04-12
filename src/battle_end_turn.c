@@ -60,8 +60,8 @@ static bool32 HandleEndTurnVarious(enum BattlerId battler)
         if (gBattleMons[i].volatiles.throatChopTimer > 0)
             gBattleMons[i].volatiles.throatChopTimer--;
 
-        if (gBattleMons[i].volatiles.lockOn > 0)
-            gBattleMons[i].volatiles.lockOn--;
+        if (gBattleMons[i].volatiles.lockOn > 0 && --gBattleMons[i].volatiles.lockOn == 0)
+            gBattleMons[i].volatiles.battlerWithSureHit = 0;
 
         if (B_CHARGE < GEN_9 && gBattleMons[i].volatiles.chargeTimer > 0)
             gBattleMons[i].volatiles.chargeTimer--;
@@ -1324,12 +1324,26 @@ static bool32 HandleEndTurnFormChange(enum BattlerId battler)
     {
         gBattleScripting.battler = battler;
         gBattleScripting.abilityPopupOverwrite = ability; // To prevent the new form's ability from pop up
-        if (ability == ABILITY_POWER_CONSTRUCT) // Special animation
+        switch (ability)
+        {
+        case ABILITY_POWER_CONSTRUCT:
             BattleScriptExecute(BattleScript_PowerConstruct);
-        else if (ability == ABILITY_HUNGER_SWITCH)
+            break;
+        case ABILITY_HUNGER_SWITCH:
             BattleScriptExecute(BattleScript_BattlerFormChangeEnd3NoPopup);
-        else
+            break;
+        case ABILITY_ZEN_MODE:
+            if (gBattleMons[battler].species == SPECIES_DARMANITAN_ZEN
+            || gBattleMons[battler].species == SPECIES_DARMANITAN_GALAR_ZEN)
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_ZEN_MODE_TRIGGERED;
+            else
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_ZEN_MODE_ENDED;
+            BattleScriptExecute(BattleScript_ZenMode);
+            break;
+        default:
             BattleScriptExecute(BattleScript_BattlerFormChangeEnd2); // Generic animation
+            break;
+        }
         effect = TRUE;
     }
 

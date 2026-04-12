@@ -45,16 +45,6 @@ EVs: 252 Atk / 252 SpD / 6 Spe
 - Double Team
 - Steel Wing
 
-Aggron
-Adamant Nature
-Level: 44
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 252 SpA / 6 SpD
-- Thunder
-- Protect
-- Solar Beam
-- Dragon Claw
-
 === PARTNER_DUMMY ===
 Name:
 Class: Pkmn Trainer 1
