@@ -11,61 +11,137 @@ HiddenGrotto_Route32_MapScripts_MAP_SCRIPT_ON_TRANSITION:
 
 handleRoute32GrottoEvent::
 # 8 "data/maps/HiddenGrotto_Route32/scripts.pory"
-	goto_if_unset FLAG_ROUTE32_GROTTO, handleRoute32GrottoEvent_1
-	return
-
-handleRoute32GrottoEvent_1:
+	special HiddenGrotto_InitializeCurrent
 # 9 "data/maps/HiddenGrotto_Route32/scripts.pory"
-	random 2
-# 10 "data/maps/HiddenGrotto_Route32/scripts.pory"
 	switch VAR_RESULT
-# 11 "data/maps/HiddenGrotto_Route32/scripts.pory"
-	case 0, handleRoute32GrottoEvent_4
-# 12 "data/maps/HiddenGrotto_Route32/scripts.pory"
+# 10 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	case 2, handleRoute32GrottoEvent_2
+# 14 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	case 3, handleRoute32GrottoEvent_3
+# 18 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	case 4, handleRoute32GrottoEvent_4
+# 22 "data/maps/HiddenGrotto_Route32/scripts.pory"
 	case 1, handleRoute32GrottoEvent_5
+# 26 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	case 0, handleRoute32GrottoEvent_6
 	return
 
-handleRoute32GrottoEvent_4:
+handleRoute32GrottoEvent_2:
 # 11 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	clearflag FLAG_ROUTE32_GROTTO
+# 12 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	setobjectxyperm 1, 17, 18
+# 13 "data/maps/HiddenGrotto_Route32/scripts.pory"
 	setobjectxyperm 2, 8, 4
 	return
 
-handleRoute32GrottoEvent_5:
-# 12 "data/maps/HiddenGrotto_Route32/scripts.pory"
+handleRoute32GrottoEvent_3:
+# 15 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	clearflag FLAG_ROUTE32_GROTTO
+# 16 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	setobjectxyperm 2, 16, 18
+# 17 "data/maps/HiddenGrotto_Route32/scripts.pory"
 	setobjectxyperm 1, 8, 4
+	return
+
+handleRoute32GrottoEvent_4:
+# 19 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	clearflag FLAG_ROUTE32_GROTTO
+# 20 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	setobjectxyperm 1, 17, 18
+# 21 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	setobjectxyperm 2, 16, 18
+	return
+
+handleRoute32GrottoEvent_5:
+# 23 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	setflag FLAG_ROUTE32_GROTTO
+# 24 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	setobjectxyperm 1, 17, 18
+# 25 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	setobjectxyperm 2, 16, 18
+	return
+
+handleRoute32GrottoEvent_6:
+# 27 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	clearflag FLAG_ROUTE32_GROTTO
+# 28 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	setobjectxyperm 1, 17, 18
+# 29 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	setobjectxyperm 2, 16, 18
 	return
 
 
 Route32GrottoApplin::
-# 18 "data/maps/HiddenGrotto_Route32/scripts.pory"
+# 34 "data/maps/HiddenGrotto_Route32/scripts.pory"
 	lock
-# 19 "data/maps/HiddenGrotto_Route32/scripts.pory"
+# 35 "data/maps/HiddenGrotto_Route32/scripts.pory"
 	faceplayer
-# 20 "data/maps/HiddenGrotto_Route32/scripts.pory"
-	setwildbattle2 SPECIES_APPLIN, 10, ITEM_SITRUS_BERRY, 2, MOVE_ASTONISH, MOVE_WITHDRAW, MOVE_RECYCLE, MOVE_ROLLOUT, FALSE
-# 21 "data/maps/HiddenGrotto_Route32/scripts.pory"
+# 36 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	special HiddenGrotto_GetCurrentContentId
+# 37 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	copyvar VAR_0x8004, VAR_RESULT
+# 38 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	playmoncry VAR_0x8004, CRY_MODE_ENCOUNTER
+# 39 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	special HiddenGrotto_CreateCurrentMon
+# 40 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	compare VAR_RESULT, FALSE
+	goto_if_eq Route32GrottoApplin_2
+# 44 "data/maps/HiddenGrotto_Route32/scripts.pory"
 	waitse
-# 22 "data/maps/HiddenGrotto_Route32/scripts.pory"
-	playmoncry SPECIES_APPLIN, CRY_MODE_ENCOUNTER
-# 23 "data/maps/HiddenGrotto_Route32/scripts.pory"
+# 45 "data/maps/HiddenGrotto_Route32/scripts.pory"
 	delay 40
-# 24 "data/maps/HiddenGrotto_Route32/scripts.pory"
+# 46 "data/maps/HiddenGrotto_Route32/scripts.pory"
 	waitmoncry
-# 25 "data/maps/HiddenGrotto_Route32/scripts.pory"
+# 47 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	special HiddenGrotto_EmptyCurrent
+# 48 "data/maps/HiddenGrotto_Route32/scripts.pory"
 	setflag FLAG_ROUTE32_GROTTO
-# 26 "data/maps/HiddenGrotto_Route32/scripts.pory"
+# 49 "data/maps/HiddenGrotto_Route32/scripts.pory"
 	dowildbattle
-# 27 "data/maps/HiddenGrotto_Route32/scripts.pory"
+# 50 "data/maps/HiddenGrotto_Route32/scripts.pory"
 	removeobject 2
-# 28 "data/maps/HiddenGrotto_Route32/scripts.pory"
+# 51 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	release
+	end
+
+Route32GrottoApplin_2:
+# 41 "data/maps/HiddenGrotto_Route32/scripts.pory"
 	release
 	end
 
 
 FindItem_Route32Grotto::
-# 33 "data/maps/HiddenGrotto_Route32/scripts.pory"
-	finditem ITEM_GROWTH_MULCH
-# 34 "data/maps/HiddenGrotto_Route32/scripts.pory"
+# 56 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	special HiddenGrotto_GetCurrentContentId
+# 57 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	finditem VAR_RESULT
+# 58 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	special HiddenGrotto_EmptyCurrent
+# 59 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	setflag FLAG_ROUTE32_GROTTO
+# 60 "data/maps/HiddenGrotto_Route32/scripts.pory"
 	removeobject 1
+	end
+
+
+FindHiddenItem_Route32Grotto::
+# 65 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	special HiddenGrotto_GetCurrentContentType
+# 66 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	compare VAR_RESULT, 4
+	goto_if_ne FindHiddenItem_Route32Grotto_2
+# 70 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	special HiddenGrotto_GetCurrentContentId
+# 71 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	finditem VAR_RESULT
+# 72 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	special HiddenGrotto_EmptyCurrent
+# 73 "data/maps/HiddenGrotto_Route32/scripts.pory"
+	setflag FLAG_ROUTE32_GROTTO
+	end
+
+FindHiddenItem_Route32Grotto_2:
 	end
 

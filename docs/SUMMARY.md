@@ -41,6 +41,7 @@
   - [Time-Based Encounters](tutorials/how_to_time_of_day_encounters.md)
   - [How to use Trainer Party Pools](tutorials/how_to_trainer_party_pool.md)
   - [How to Apricorn Tree](tutorials/how_to_apricorn_tree.md)
+  - [How to add Hidden Grottoes](tutorials/how_to_hidden_grotto.md)
   - [How to Namebox](tutorials/how_to_namebox.md)
   - [Vs. Seeker](tutorials/vs_seeker.md)
   - [Teachable Learnsets Explanations](tutorials/teachable_learnsets.md)

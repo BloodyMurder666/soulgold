@@ -1019,22 +1019,26 @@ Route32_Text_Sign3:
 
 Route32HiddenGrottoWarp::
 # 513 "data/maps/Route32/scripts.pory"
+	lock
+# 514 "data/maps/Route32/scripts.pory"
 	msgbox Route32HiddenGrottoWarp_Text_0, MSGBOX_YESNO
-# 515 "data/maps/Route32/scripts.pory"
+# 516 "data/maps/Route32/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq Route32HiddenGrottoWarp_2
 Route32HiddenGrottoWarp_1:
-# 518 "data/maps/Route32/scripts.pory"
+# 520 "data/maps/Route32/scripts.pory"
 	release
 	end
 
 Route32HiddenGrottoWarp_2:
-# 516 "data/maps/Route32/scripts.pory"
+# 517 "data/maps/Route32/scripts.pory"
 	warp MAP_HIDDEN_GROTTO_ROUTE32, 0
+# 518 "data/maps/Route32/scripts.pory"
+	waitstate
 	goto Route32HiddenGrottoWarp_1
 
 
 Route32HiddenGrottoWarp_Text_0:
-# 513 "data/maps/Route32/scripts.pory"
+# 514 "data/maps/Route32/scripts.pory"
 	.string "There seems to be a path behind the\n"
 	.string "trees. Enter?$"

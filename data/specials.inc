@@ -594,3 +594,9 @@ gSpecials::
 	def_special CanTeachMoveBoxMon
 	def_special ObjectEventInteractionGetApricornTreeData
 	def_special ObjectEventInteractionPickApricornTree
+	def_special HiddenGrotto_InitializeCurrent
+	def_special HiddenGrotto_EmptyCurrent
+	def_special HiddenGrotto_GetCurrentContentType
+	def_special HiddenGrotto_GetCurrentContentId
+	def_special HiddenGrotto_CreateCurrentMon
+	def_special HiddenGrotto_TestCurrentMonBounds

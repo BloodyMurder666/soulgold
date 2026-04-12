@@ -13,8 +13,9 @@
 #include "rtc.h"
 #include "ui_birch_case.h"
 #include "task.h"
+#include "field_screen_effect.h"
 #include "field_weather.h"
-
+#include "task.h"
 #include "dexnav.h"
 
 #define RAM_SCRIPT_MAGIC 51
@@ -79,6 +80,7 @@ void SetupNativeScript(struct ScriptContext *ctx, bool8 (*ptr)(void))
 
 void StopScript(struct ScriptContext *ctx)
 {
+    assertf(!FuncIsActiveTask(Task_WarpAndLoadMap), "Leaving script while a warp is in progress: try adding a waitstate");
     ctx->mode = SCRIPT_MODE_STOPPED;
     ctx->scriptPtr = NULL;
 }
