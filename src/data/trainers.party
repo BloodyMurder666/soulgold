@@ -73,13 +73,12 @@ Comments can be added as C comment blocks
 /*Comments can also be on a single line*/
 
 === TRAINER_NONE ===
-Name: Unknown
+Name:
 Class: Pkmn Trainer 1
 Pic: Hiker
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
 
 === TRAINER_DAVID ===
 Name: David

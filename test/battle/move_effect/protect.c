@@ -991,3 +991,4 @@ DOUBLE_BATTLE_TEST("Protect is not ignored after a new mon switched in because o
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_POUND, opponentRight);
     }
 }
+
