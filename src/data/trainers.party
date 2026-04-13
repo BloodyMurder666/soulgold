@@ -2654,13 +2654,13 @@ Music: Hg Girl 1
 Double Battle: Yes
 AI: Check Bad Move
 
-Clefairy
-Level: 18
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Clefable
+Level: 28
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
-Furret
-Level: 18
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Wigglytuff
+Level: 28
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 === TRAINER_LANCE_1 ===
 Name: Lance
@@ -3954,12 +3954,16 @@ Class: Psychic M
 Pic: Psychic M
 Gender: Male
 Music: Hg Boy 1
-Double Battle: No
+Double Battle: Yes
 AI: Check Bad Move
 
 Stantler
-Level: 22
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 28
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+Meostic
+Level: 28
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 === TRAINER_KAREN_1 ===
 Name: Karen

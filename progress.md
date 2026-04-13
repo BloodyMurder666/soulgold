@@ -1,3 +1,10 @@
+13.4.2026
+- Hidden grottos
+- tests now work, fully merged minus frlg commit
+- Tested up to goldenrod gym
+- Hardmode double battle mode for gyms
+- Route 37
+
 8.4.2026
 - Playtest up to Route 34, bugfixing along the way.
 - Fix moves bg pal and hp bar text
