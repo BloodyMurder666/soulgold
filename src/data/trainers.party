@@ -688,11 +688,11 @@ Music: Hg Girl 1
 Double Battle: No
 AI: Check Bad Move
 
-Munchlax @ Sitrus Berry
+Buneary
 Level: 24
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
-Kirlia
+Munchlax
 Level: 24
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
@@ -4022,14 +4022,14 @@ Double Battle: No
 AI: Smart Trainer
 Mugshot: Yellow
 
-Clefairy @ Salac Berry
+Audino @ Salac Berry
 Level: 24
-Ability: Magic Guard
+Ability: Regenerator
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 - Reflect
-- Zen Headbutt
-- Metronome
-- Covet
+- Mega Punch
+- Misty Terrain
+- Draining Kiss
 
 Girafarig @ Twisted Spoon
 Level: 26
@@ -4042,11 +4042,12 @@ IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
 Miltank @ Sitrus Berry
 Level: 26
+Ability: Thick Fat
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 - Rollout
 - Attract
 - Stomp
-- Defense Curl
+- Milk Drink
 
 === TRAINER_WHITNEY_1 ===
 Name: Whitney
@@ -4068,14 +4069,14 @@ IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 - Tidy Up
 - Low Kick
 
-Tinkatuff @ Eject Button
+Audino @ Eject Button
 Level: 26
-Ability: Mold Breaker
+Ability: Regenerator
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 - Reflect
 - Light Screen
-- Brutal Swing
-- Fake Out
+- Draining Kiss
+- Mega Punch
 
 Cinccino @ Sitrus Berry
 Level: 26
@@ -4088,7 +4089,7 @@ IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
 Miltank @ Rocky Helmet
 Level: 27
-Ability: Thick Fat
+Ability: Scrappy
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 - Icy Wind
 - Fire Punch
@@ -7872,7 +7873,7 @@ Music: Hg Girl 1
 Double Battle: No
 AI: Check Bad Move
 
-Ponyta Galar
+Wigglytuff
 Level: 24
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 

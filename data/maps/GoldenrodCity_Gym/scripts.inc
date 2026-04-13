@@ -473,62 +473,56 @@ GoldenrodCity_Gym_Text_GymGuide:
 # 237 "data/maps/GoldenrodCity_Gym/scripts.pory"
     .string "This GYM is home to WHITNEY, the\n"
 # 238 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "master of NORMAL- and FAIRY-type\p"
+    .string "master of NORMAL-type POKéMON.\p"
 # 239 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "POKéMON. Be cautious of her cute team.\p"
+    .string "Be cautious of her cute team.\p"
 # 240 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "Some of the POKéMON in this gym\n"
-# 241 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "have the newly discovered FAIRY\l"
-# 242 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "type as well.\p"
-# 243 "data/maps/GoldenrodCity_Gym/scripts.pory"
     .string "Check ROUTE 34 if you need a\n"
-# 244 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "FIGHTING-type or POISON-type.$"
-# 245 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 241 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "FIGHTING-type POKéMON.$"
+# 242 "data/maps/GoldenrodCity_Gym/scripts.pory"
 
-# 246 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 243 "data/maps/GoldenrodCity_Gym/scripts.pory"
 GoldenrodCity_Gym_Text_GymGuideWin:
-# 247 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 244 "data/maps/GoldenrodCity_Gym/scripts.pory"
     .string "You won? Great! I was busy admiring\n"
-# 248 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 245 "data/maps/GoldenrodCity_Gym/scripts.pory"
     .string "the ladies here.$"
 
 WhitneyChooseDifficulty::
-# 253 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 250 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	msgbox WhitneyChooseDifficulty_Text_0
-# 259 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 256 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	dynmultichoice 0, 0, FALSE, 5, 0, DYN_MULTICHOICE_CB_NONE, WhitneyChooseDifficulty_Text_1, WhitneyChooseDifficulty_Text_2, WhitneyChooseDifficulty_Text_3
-# 260 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 257 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	switch VAR_RESULT
-# 261 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 258 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	case 0, WhitneyChooseDifficulty_3
-# 265 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 262 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	case 1, WhitneyChooseDifficulty_4
-# 270 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 267 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	release
 	end
 
 	return
 
 WhitneyChooseDifficulty_3:
-# 262 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 259 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	setdifficulty DIFFICULTY_NORMAL
-# 263 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 260 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	trainerbattle_no_intro TRAINER_WHITNEY_1, GoldenrodCity_Gym_Text_WhitneyShouldntBeSoSerious
 	return
 
 WhitneyChooseDifficulty_4:
-# 266 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 263 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	setdifficulty DIFFICULTY_HARD
-# 267 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 264 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	trainerbattle_no_intro TRAINER_WHITNEY_1, GoldenrodCity_Gym_Text_WhitneyShouldntBeSoSerious
 	return
 
 
 WhitneyChooseDifficulty_Text_0:
-# 253 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 250 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	.string "Hi I'm Whitney!\n"
 	.string "Everyone was into Pokémon so I got\l"
 	.string "into it too!\l"
@@ -537,13 +531,13 @@ WhitneyChooseDifficulty_Text_0:
 	.string "against my normal team or bestie team?$"
 
 WhitneyChooseDifficulty_Text_1:
-# 259 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 256 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	.string "Regular$"
 
 WhitneyChooseDifficulty_Text_2:
-# 259 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 256 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	.string "Hard$"
 
 WhitneyChooseDifficulty_Text_3:
-# 259 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 256 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	.string "Cancel$"

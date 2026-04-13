@@ -208,7 +208,7 @@
       "flag": "FLAG_HIDE_GOLDENROD_ROCKETS"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SNUBBULL"),
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(AUDINO"),
       "x": 35,
       "y": 32,
       "elevation": 0,

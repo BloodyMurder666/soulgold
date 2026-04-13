@@ -211,7 +211,7 @@ GoldenrodCity_EventScript_Snubbull::
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_SNUBBULL, CRY_MODE_NORMAL
+	playmoncry SPECIES_AUDINO, CRY_MODE_NORMAL
 	msgbox GoldenrodCity_Text_Snubbull, MSGBOX_DEFAULT
 	waitmoncry
 	release
@@ -306,7 +306,7 @@ GoldenrodCity_Text_HikerNight:
 	.string "in there?!$"
 
 GoldenrodCity_Text_Snubbull:
-	.string "SNUBBULL: SNUUUBUUUULL!$"
+	.string "AUDINO: AUDIIINII!$"
 
 GoldenrodCity_Text_MrMime:
 	.string "............................$"

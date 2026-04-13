@@ -425,7 +425,7 @@ GoldenrodCity_EventScript_Snubbull::
 # 213 "data/maps/GoldenrodCity/scripts.pory"
 	waitse
 # 214 "data/maps/GoldenrodCity/scripts.pory"
-	playmoncry SPECIES_SNUBBULL, CRY_MODE_NORMAL
+	playmoncry SPECIES_AUDINO, CRY_MODE_NORMAL
 # 215 "data/maps/GoldenrodCity/scripts.pory"
 	msgbox GoldenrodCity_Text_Snubbull, MSGBOX_DEFAULT
 # 216 "data/maps/GoldenrodCity/scripts.pory"
@@ -615,7 +615,7 @@ GoldenrodCity_Text_HikerNight:
 # 308 "data/maps/GoldenrodCity/scripts.pory"
 GoldenrodCity_Text_Snubbull:
 # 309 "data/maps/GoldenrodCity/scripts.pory"
-	.string "SNUBBULL: SNUUUBUUUULL!$"
+	.string "AUDINO: AUDIIINII!$"
 # 310 "data/maps/GoldenrodCity/scripts.pory"
 
 # 311 "data/maps/GoldenrodCity/scripts.pory"

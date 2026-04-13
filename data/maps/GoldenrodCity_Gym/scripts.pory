@@ -235,13 +235,10 @@ GoldenrodCity_Gym_Text_BeautySamanthaAfter:
 GoldenrodCity_Gym_Text_GymGuide:
     .string "Yo! CHAMP in making!\p"
     .string "This GYM is home to WHITNEY, the\n"
-    .string "master of NORMAL- and FAIRY-type\p"
-    .string "POKéMON. Be cautious of her cute team.\p"
-    .string "Some of the POKéMON in this gym\n"
-    .string "have the newly discovered FAIRY\l"
-    .string "type as well.\p"
+    .string "master of NORMAL-type POKéMON.\p"
+    .string "Be cautious of her cute team.\p"
     .string "Check ROUTE 34 if you need a\n"
-    .string "FIGHTING-type or POISON-type.$"
+    .string "FIGHTING-type POKéMON.$"
 
 GoldenrodCity_Gym_Text_GymGuideWin:
     .string "You won? Great! I was busy admiring\n"
