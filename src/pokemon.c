@@ -3680,6 +3680,9 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, enum Item item, u8 partyIndex, 
     u8 effectFlags;
     s8 evChange;
     u16 evCount;
+    u8 levelBefore;
+    bool8 didLevelUp = FALSE;
+    bool8 isLevelUpItem;
 
     // Determine the EV cap to use
     u32 maxAllowedEVs = !B_EV_ITEMS_CAP ? MAX_TOTAL_EVS : GetCurrentEVCap();
@@ -3701,6 +3704,8 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, enum Item item, u8 partyIndex, 
 
     // Get item effect
     itemEffect = GetItemEffect(item);
+    isLevelUpItem = (itemEffect[3] & ITEM3_LEVEL_UP) != 0;
+    levelBefore = GetMonData(mon, MON_DATA_LEVEL, NULL);
 
     // Do item effect
     for (i = 0; i < ITEM_EFFECT_ARG_START; i++)
@@ -3755,6 +3760,8 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, enum Item item, u8 partyIndex, 
                 {
                     SetMonData(mon, MON_DATA_EXP, &dataUnsigned);
                     CalculateMonStats(mon);
+                    if (GetMonData(mon, MON_DATA_LEVEL, NULL) > levelBefore)
+                        didLevelUp = TRUE;
                     retVal = FALSE;
                 }
             }
@@ -3873,6 +3880,11 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, enum Item item, u8 partyIndex, 
                     {
                         u32 currentHP = GetMonData(mon, MON_DATA_HP);
                         u32 maxHP = GetMonData(mon, MON_DATA_MAX_HP);
+                        if (isLevelUpItem && !didLevelUp && (effectFlags & (ITEM4_REVIVE >> 2)))
+                        {
+                            itemEffectParam++;
+                            break;
+                        }
                         // Check use validity.
                         if ((effectFlags & (ITEM4_REVIVE >> 2) && currentHP != 0)
                               || (!(effectFlags & (ITEM4_REVIVE >> 2)) && currentHP == 0))
@@ -6390,6 +6402,7 @@ u32 GetFormChangeTargetSpecies_Internal(struct FormChangeContext ctx)
         case FORM_CHANGE_DEPOSIT:
         case FORM_CHANGE_FAINT:
         case FORM_CHANGE_DAYS_PASSED:
+        case FORM_CHANGE_BEGIN_WILD_ENCOUNTER:
             targetSpecies = formChanges[i].targetSpecies;
             break;
         case FORM_CHANGE_STATUS:
@@ -6432,7 +6445,7 @@ u32 GetFormChangeTargetSpecies_Internal(struct FormChangeContext ctx)
             {
                 // We multiply by 100 to make sure that integer division doesn't mess with the health check.
                 u32 hpCheck = ctx.hp * 100 * 100 / ctx.maxHP;
-                switch(formChanges[i].param2)
+                switch (formChanges[i].param2)
                 {
                 case HP_HIGHER_THAN:
                     if (hpCheck > formChanges[i].param3 * 100)
@@ -6452,7 +6465,7 @@ u32 GetFormChangeTargetSpecies_Internal(struct FormChangeContext ctx)
             {
                 // We multiply by 100 to make sure that integer division doesn't mess with the health check.
                 u32 hpCheck = ctx.hp * 100 * 100 / ctx.maxHP;
-                switch(formChanges[i].param2)
+                switch (formChanges[i].param2)
                 {
                 case HP_HIGHER_THAN:
                     if (hpCheck > formChanges[i].param3 * 100)
@@ -6930,7 +6943,7 @@ u16 GetSpeciesPreEvolution(u16 species)
 
         for (j = 0; evolutions[j].method != EVOLUTIONS_END; j++)
         {
-            if (SanitizeSpeciesId(evolutions[j].targetSpecies) == species)
+            if (IsSpeciesEnabled(evolutions[j].targetSpecies) && SanitizeSpeciesId(evolutions[j].targetSpecies) == species)
                 return i;
         }
     }

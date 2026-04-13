@@ -1,0 +1,68 @@
+=== PARTNER_NONE ===
+Name:
+Class: Pkmn Trainer 1
+Pic: Brendan
+Gender: Male
+Music: Male
+Back Pic: Brendan
+
+=== PARTNER_STEVEN ===
+Name: Lance
+Class: Rival
+Pic: Steven
+Gender: Male
+Music: Male
+Back Pic: Steven
+AI: Basic Trainer
+
+Dragonite
+Adamant Nature
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Level: 42
+EVs: 252 Atk / 252 Def / 6 SpD
+- Hyper Beam
+- Thunder
+- Safeguard
+- Outrage
+
+Dragonair
+Adamant Nature
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Level: 35
+EVs: 252 HP / 6 SpD / 252 Spe
+- Blizzard
+- Thunder Wave
+- Flamethrower
+- Quick Attack
+
+Charizard
+Adamant Nature
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Level: 36
+EVs: 252 Atk / 252 SpD / 6 Spe
+- Flamethrower
+- Wing Attack
+- Double Team
+- Steel Wing
+
+Aggron
+Adamant Nature
+Level: 44
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 252 SpA / 6 SpD
+- Thunder
+- Protect
+- Solar Beam
+- Dragon Claw
+
+=== PARTNER_DUMMY ===
+Name:
+Class: Pkmn Trainer 1
+Pic: Brendan
+Gender: Male
+Music: Male
+Back Pic: Brendan
+Party Size: 0
+
+Wynaut
+

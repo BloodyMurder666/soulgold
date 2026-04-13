@@ -601,7 +601,8 @@ struct BattleStruct
     u8 sleepClauseNotBlocked:1;
     u8 isSkyBattle:1;
     u8 unableToUseMove:1; // for the current action only, to check if the battler failed to act at end turn use the DisableStruct member
-    u8 unused:4;
+    u8 triAttackBurn:1;
+    u8 unused:3;
     void (*savedCallback)(void);
     u16 chosenItem[MAX_BATTLERS_COUNT];
     u16 choicedMove[MAX_BATTLERS_COUNT];
@@ -1069,9 +1070,15 @@ static inline bool32 IsBattlerAlive(enum BattlerId battler)
         return TRUE;
 }
 
-static inline bool32 IsBattlerTurnDamaged(enum BattlerId battler)
+enum SubCheck
 {
-    return gSpecialStatuses[battler].damagedByAttack;
+    EXCLUDING_SUBSTITUTES,
+    INCLUDING_SUBSTITUTES
+};
+
+static inline bool32 IsBattlerTurnDamaged(enum BattlerId battler, enum SubCheck subCheck)
+{
+    return gSpecialStatuses[battler].damagedByAttack || ((subCheck == INCLUDING_SUBSTITUTES) && gBattleStruct->moveDamage[battler] > 0);
 }
 
 static inline bool32 IsBattlerAtMaxHp(enum BattlerId battler)

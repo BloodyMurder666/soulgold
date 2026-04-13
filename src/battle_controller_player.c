@@ -46,7 +46,6 @@
 #include "pokemon_summary_screen.h"
 #include "type_icons.h"
 #include "pokedex.h"
-#include "event_data.h"
 #include "test/battle.h"
 #include "test/test_runner_battle.h"
 
@@ -1101,7 +1100,7 @@ void HandleMoveSwitching(enum BattlerId battler)
             }
         }
 
-        gBattlerControllerFuncs[battler] = HandleInputChooseMove;
+            gBattlerControllerFuncs[battler] = HandleInputChooseMove;
         gMoveSelectionCursor[battler] = gMultiUsePlayerCursor;
         MoveSelectionCreateCursorAt(gMoveSelectionCursor[battler], 0);
         if (B_SHOW_EFFECTIVENESS)
