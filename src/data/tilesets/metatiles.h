@@ -510,3 +510,8 @@ const u16 gMetatileAttributes_InsideBuilding_TrainerHill[] = INCBIN_U16("data/ti
 
 const u16 gMetatiles_InsideBuilding_Contest[] = INCBIN_U16("data/tilesets/primary/building_contest/metatiles.bin");
 const u16 gMetatileAttributes_InsideBuilding_Contest[] = INCBIN_U16("data/tilesets/primary/building_contest/metatile_attributes.bin");
+const u16 gMetatiles_HiddenGrotto1[] = INCBIN_U16("data/tilesets/secondary/hidden_grotto_1/metatiles.bin");
+const u16 gMetatileAttributes_HiddenGrotto1[] = INCBIN_U16("data/tilesets/secondary/hidden_grotto_1/metatile_attributes.bin");
+
+const u16 gMetatiles_Grotto1[] = INCBIN_U16("data/tilesets/primary/grotto_1/metatiles.bin");
+const u16 gMetatileAttributes_Grotto1[] = INCBIN_U16("data/tilesets/primary/grotto_1/metatile_attributes.bin");

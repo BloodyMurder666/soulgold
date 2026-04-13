@@ -2087,3 +2087,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/HiddenGrotto_Route32/scripts.inc"
 
 	.include "data/maps/AzaleaTown_House2/scripts.inc"
+
+	.include "data/maps/TestingMap/scripts.inc"

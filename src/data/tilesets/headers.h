@@ -2020,3 +2020,24 @@ const struct Tileset gTileset_Cave_MtMoon =
     .metatileAttributes = gMetatileAttributes_Cave_MtMoon,
     .callback = NULL,
 };
+const struct Tileset gTileset_HiddenGrotto1 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HiddenGrotto1,
+    .palettes = gTilesetPalettes_HiddenGrotto1,
+    .metatiles = gMetatiles_HiddenGrotto1,
+    .metatileAttributes = gMetatileAttributes_HiddenGrotto1,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_Grotto1 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .tiles = gTilesetTiles_Grotto1,
+    .palettes = gTilesetPalettes_Grotto1,
+    .metatiles = gMetatiles_Grotto1,
+    .metatileAttributes = gMetatileAttributes_Grotto1,
+    .callback = NULL,
+};
