@@ -7,30 +7,31 @@ mapscripts HiddenGrotto_Route32_MapScripts {
 script handleRoute32GrottoEvent {
     special(HiddenGrotto_InitializeCurrent)
     switch (var(VAR_RESULT)) {
-        case 2:
-            clearflag(FLAG_ROUTE32_GROTTO)
-            setobjectxyperm(1, 17, 18)
-            setobjectxyperm(2, 8, 4)
-        case 3:
-            clearflag(FLAG_ROUTE32_GROTTO)
-            setobjectxyperm(2, 16, 18)
-            setobjectxyperm(1, 8, 4)
-        case 4:
-            clearflag(FLAG_ROUTE32_GROTTO)
-            setobjectxyperm(1, 17, 18)
-            setobjectxyperm(2, 16, 18)
-        case 1:
-            setflag(FLAG_ROUTE32_GROTTO)
-            setobjectxyperm(1, 17, 18)
-            setobjectxyperm(2, 16, 18)
         case 0:
-            clearflag(FLAG_ROUTE32_GROTTO)
-            setobjectxyperm(1, 17, 18)
-            setobjectxyperm(2, 16, 18)
+            clearflag(FLAG_ROUTE32_GROTTO) //HIDDEN_GROTTO_UNSET, should never land on this anyway
+            setobjectxyperm(1, 28, 27)
+            setobjectxyperm(2, 28, 27)
+        case 1:
+            setflag(FLAG_ROUTE32_GROTTO) // HIDDEN_GROTTO_EMPTY
+            setobjectxyperm(1, 28, 27)
+            setobjectxyperm(2, 28, 27)
+        case 2:
+            clearflag(FLAG_ROUTE32_GROTTO) //HIDDEN_GROTTO_POKEMON
+            setobjectxyperm(1, 28, 27)
+            setobjectxyperm(2, 14, 11)
+        case 3:
+            clearflag(FLAG_ROUTE32_GROTTO) //HIDDEN_GROTTO_ITEM
+            setobjectxyperm(2, 28, 27)
+            setobjectxyperm(1, 14, 11)
+        case 4:
+            clearflag(FLAG_ROUTE32_GROTTO) //HIDDEN_GROTTO_HIDDEN_ITEM
+            setobjectxyperm(1, 28, 27)
+            setobjectxyperm(2, 28, 27)
+
     }
 }
 
-script Route32GrottoApplin {
+script Route32GrottoPokemon {
     lock
     faceplayer
     special(HiddenGrotto_GetCurrentContentId)

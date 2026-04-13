@@ -292,18 +292,18 @@ static void PopulateCurrentHiddenGrotto(void)
     switch (Random() % 5)
     {
     case 0:
+    case 1:
         content->type = HIDDEN_GROTTO_POKEMON;
         content->id = GetRandomHiddenGrottoSpecies(grotto);
         break;
-    case 1:
     case 2:
+    case 3:
         value = GetWeightedTableEntry(sHiddenGrottoItems, ARRAY_COUNT(sHiddenGrottoItems), 160);
         if (value == ITEM_FROM_GROTTO_DATA)
             value = grotto->rareItem;
         content->type = HIDDEN_GROTTO_ITEM;
         content->id = value;
         break;
-    case 3:
     case 4:
     default:
         value = GetWeightedTableEntry(sHiddenGrottoHiddenItems, ARRAY_COUNT(sHiddenGrottoHiddenItems), 160);
@@ -350,9 +350,6 @@ static void UpdateCurrentHiddenGrottoMonGraphics(u16 species)
         return;
 
     graphicsId = species + OBJ_EVENT_MON;
-
-    // The grotto placeholder uses OBJ_EVENT_GFX_VAR_0 in the map template,
-    // so the template source must be updated before/while the object spawns.
     VarSet(VAR_OBJ_GFX_ID_0, graphicsId);
 
     if (TryGetObjectEventIdByLocalIdAndMap(grotto->monObjectLocalId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, &objectEventId))
