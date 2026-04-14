@@ -15,6 +15,7 @@
   "connections": null,
   "object_events": [
     {
+      "local_id": "LOCALID_BUGCONTEST_BC1",
       "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
       "x": 11,
       "y": 13,
@@ -28,6 +29,7 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_BUGCONTEST_BC2",
       "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
       "x": 26,
       "y": 9,
@@ -145,6 +147,7 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_BUGCONTEST_ATTENDANT",
       "graphics_id": "OBJ_EVENT_GFX_MYSTERY_GIFT_MAN",
       "x": 10,
       "y": 49,
@@ -158,6 +161,7 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_BUGCONTEST_BOY",
       "graphics_id": "OBJ_EVENT_GFX_LITTLE_BOY",
       "x": 29,
       "y": 27,
@@ -171,6 +175,7 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_BUGCONTEST_GIRL",
       "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_F",
       "x": 14,
       "y": 28,
@@ -223,6 +228,7 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_BUGCONTEST_ATTENDANT_SIDE",
       "graphics_id": "OBJ_EVENT_GFX_MYSTERY_GIFT_MAN",
       "x": 40,
       "y": 19,
@@ -236,6 +242,7 @@
       "flag": "FLAG_HIDE_BUG_CONTEST_ATTENDANT_SIDE"
     },
     {
+      "local_id": "LOCALID_BUGCONTEST_BUG1",
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(WEEDLE)",
       "x": 22,
       "y": -3,
@@ -249,6 +256,7 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_BUGCONTEST_BUG2",
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(PINSIR)",
       "x": 24,
       "y": -3,
@@ -262,6 +270,7 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_BUGCONTEST_BUG3",
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(BUTTERFREE)",
       "x": 18,
       "y": -3,
@@ -275,6 +284,7 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_BUGCONTEST_BUG4",
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(METAPOD)",
       "x": 16,
       "y": -3,
@@ -288,6 +298,7 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_BUGCONTEST_CATERPIE",
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(CATERPIE)",
       "x": -3,
       "y": -3,
@@ -301,6 +312,7 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_BUGCONTEST_WEEDLE",
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(WEEDLE)",
       "x": -2,
       "y": -3,
@@ -314,6 +326,7 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_BUGCONTEST_METAPOD",
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(METAPOD)",
       "x": -3,
       "y": -2,
@@ -327,6 +340,7 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_BUGCONTEST_KAKUNA",
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(KAKUNA)",
       "x": -2,
       "y": -2,
@@ -340,6 +354,7 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_BUGCONTEST_PARAS",
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(PARAS)",
       "x": -3,
       "y": -1,
@@ -353,6 +368,7 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_BUGCONTEST_VENONAT",
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(VENONAT)",
       "x": -2,
       "y": -1,
@@ -366,6 +382,7 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_BUGCONTEST_BUTTERFREE",
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(BUTTERFREE)",
       "x": -3,
       "y": 0,
@@ -379,6 +396,7 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_BUGCONTEST_BEEDRILL",
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(BEEDRILL)",
       "x": -2,
       "y": 0,
@@ -392,6 +410,7 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_BUGCONTEST_SCYTHER",
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(SCYTHER)",
       "x": -3,
       "y": 1,
@@ -405,6 +424,7 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_BUGCONTEST_PINSIR",
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(PINSIR)",
       "x": -2,
       "y": 1,

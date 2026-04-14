@@ -1,15 +1,3 @@
-.set LOCALID_BUGCONTEST_ATTENDANT, 11
-.set LOCALID_BUGCONTEST_GIRL, 13
-.set LOCALID_BUGCONTEST_BC1, 1
-.set LOCALID_BUGCONTEST_BC2, 2
-.set LOCALID_BUGCONTEST_BOY, 12
-.set LOCALID_BUGCONTEST_BUG1, 18
-.set LOCALID_BUGCONTEST_BUG2, 19
-.set LOCALID_BUGCONTEST_BUG3, 20
-.set LOCALID_BUGCONTEST_BUG4, 21
-.set LOCALID_BUGCONTEST_ATTENDANT_SIDE, 17
-
-
 NationalPark_BugContest_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, NationalPark_BugContest_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, NationalPark_BugContest_OnFrame
@@ -87,7 +75,7 @@ NationalPark_BugContest_EventScript_Trash::
 	end
 
 NationalPark_BugContest_EventScript_JudgeScene::
-	@special ShowBugContestChosenMon
+	special ShowBugContestChosenMon
 	setobjectxyperm VAR_RESULT, 20, 29
 	setobjectxyperm LOCALID_BUGCONTEST_BUG1, 24, 29
 	setobjectxyperm LOCALID_BUGCONTEST_BUG2, 22, 29
@@ -100,7 +88,6 @@ NationalPark_BugContest_EventScript_JudgeScene::
 	setobjectxyperm LOCALID_BUGCONTEST_BOY, 16, 28
 	setobjectxyperm LOCALID_BUGCONTEST_ATTENDANT, 20, 26
 
-	setobjectmovementtype OBJ_EVENT_ID_PLAYER, MOVEMENT_TYPE_FACE_UP
 	setobjectmovementtype LOCALID_BUGCONTEST_GIRL, MOVEMENT_TYPE_FACE_UP
 	setobjectmovementtype LOCALID_BUGCONTEST_BC1, MOVEMENT_TYPE_FACE_UP
 	setobjectmovementtype LOCALID_BUGCONTEST_BC2, MOVEMENT_TYPE_FACE_UP
@@ -229,4 +216,3 @@ NationalParkBugContest_Text_TrainerTips:
 	.string "The NATIONAL PARK has different\n"
 	.string "POKéMON during the BUG-CATCHING\l"
 	.string "CONTEST.$"
-

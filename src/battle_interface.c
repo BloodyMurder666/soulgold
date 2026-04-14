@@ -25,6 +25,7 @@
 #include "pokemon_summary_screen.h"
 #include "strings.h"
 #include "battle_debug.h"
+#include "bug_contest.h"
 #include "item.h"
 #include "item_icon.h"
 #include "item_use.h"
@@ -2848,15 +2849,29 @@ void TryAddLastUsedBallItemSprites(void)
     if (gLastThrownBall == 0
       || (gLastThrownBall != 0 && !CheckBagHasItem(gLastThrownBall, 1)))
     {
-        // we're out of the last used ball, so just set it to the first ball in the bag
-        u16 firstBall;
+        u16 ballToDisplay = ITEM_NONE;
 
         // we have to compact the bag first bc it is typically only compacted when you open it
         CompactItemsInBagPocket(POCKET_POKE_BALLS);
 
-        firstBall = GetBagItemId(POCKET_POKE_BALLS, 0);
-        if (firstBall > ITEM_NONE)
-            gBallToDisplay = firstBall;
+        if (GetBugContestFlag())
+        {
+            s32 i;
+
+            for (i = BAG_POKEBALLS_COUNT - 1; i >= 0; i--)
+            {
+                ballToDisplay = GetBagItemId(POCKET_POKE_BALLS, i);
+                if (ballToDisplay != ITEM_NONE)
+                    break;
+            }
+        }
+        else
+        {
+            ballToDisplay = GetBagItemId(POCKET_POKE_BALLS, 0);
+        }
+
+        if (ballToDisplay != ITEM_NONE)
+            gBallToDisplay = ballToDisplay;
     }
 
     if (!CanThrowLastUsedBall())
