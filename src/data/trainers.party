@@ -456,12 +456,12 @@ Music: Hg Girl 1
 Double Battle: No
 AI: Check Bad Move
 
-Flaaffy
-Level: 19
+Swablu
+Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Psyduck
-Level: 20
+Altaria
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_VERONICA ===
@@ -983,15 +983,15 @@ Class: Bird Keeper
 Pic: Bird Keeper
 Gender: Male
 Music: Male
-Double Battle: No
+Double Battle: Yes
 AI: Check Bad Move
 
-Doduo
-Level: 22
+Staravia
+Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Doduo
-Level: 22
+Corvisquire
+Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_HAROLD ===
@@ -2175,12 +2175,12 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Poliwhirl
-Level: 20
+Sealeo
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Tauros
-Level: 22
+Machoke
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_CODY ===
@@ -2323,8 +2323,8 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Pikachu
-Level: 23
+Oricorio Sensu
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ABE ===
@@ -2849,7 +2849,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Corsola
-Level: 21
+Level: 32
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Corsola Galar
+Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_TED ===
@@ -3838,8 +3842,8 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Umbreon
-Level: 20
+Leafeon
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_CHUCK_1_3 ===
@@ -4906,12 +4910,12 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Pikachu
-Level: 22
+Rapidash
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Ponyta
-Level: 22
+Rapidash Galar
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ISSAC ===
@@ -5863,11 +5867,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Mr Mime
-Level: 22
+Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Magnemite
-Level: 22
+Mr Rime
+Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_MARC ===
@@ -7125,15 +7129,15 @@ Class: Psychic M
 Pic: Psychic M
 Gender: Male
 Music: Hg Boy 1
-Double Battle: No
+Double Battle: Yes
 AI: Check Bad Move
 
-Slowpoke
-Level: 22
+Meowstic M
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Slowpoke
-Level: 23
+Meowstic F
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_PRYCE_1_3 ===
@@ -7930,15 +7934,15 @@ Class: Beauty
 Pic: Beauty
 Gender: Male
 Music: Hg Girl 2
-Double Battle: No
+Double Battle: Yes
 AI: Check Bad Move
 
-Skiploom
-Level: 22
+Tauros
+Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Miltank
-Level: 21
+Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_KIPP ===
@@ -8086,7 +8090,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Quagsire
-Level: 23
+Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_KENDRA ===
