@@ -720,9 +720,9 @@
 #define FLAG_SLOWPOKE_TRADE    0x2A1
 #define FLAG_ROUTE31_EXPERT  0x2A2 // Flag for defeating Route 31 expert
 #define FLAG_UNUSED_0x2A3  0x2A3 // Unused Flag
-#define FLAG_UNUSED_0x2A4  0x2A4 // Unused Flag
-#define FLAG_UNUSED_0x2A5  0x2A5 // Unused Flag
-#define FLAG_UNUSED_0x2A6  0x2A6 // Unused Flag
+#define FLAG_DEXNAV_SEARCHING  0x2A4
+#define FLAG_DEXNAV_OBTAINED  0x2A5
+#define FLAG_DN_HIDDEN_MODE  0x2A6
 #define FLAG_UNUSED_0x2A7  0x2A7 // Unused Flag
 #define FLAG_UNUSED_0x2A8  0x2A8 // Unused Flag
 #define FLAG_UNUSED_0x2A9  0x2A9 // Unused Flag

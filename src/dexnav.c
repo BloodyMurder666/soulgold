@@ -5,6 +5,7 @@
 #include "data.h"
 #include "daycare.h"
 #include "decompress.h"
+#include "caps.h"
 #include "dexnav.h"
 #include "event_data.h"
 #include "event_object_movement.h"
@@ -1232,6 +1233,8 @@ static u8 DexNavTryGenerateMonLevel(u16 species, enum EncounterType environment)
 
     if (levelBase + levelBonus > MAX_LEVEL)
         return MAX_LEVEL;
+    else if (levelBase + levelBonus > GetCurrentLevelCap())
+        return GetCurrentLevelCap();
     else
         return levelBase + levelBonus;
 }

@@ -204,9 +204,9 @@
 #define VAR_PLAYER_STARTER_SPECIES                           0x40B8
 #define VAR_DAY_OF_WEEK                                  0x40B9 // 0 = Sunday, 1 = Monday etc.
 #define VAR_DIFFICULTY                                   0x40BA // Sets difficulty of gym leaders and other important trainers by player hoice
-#define VAR_UNUSED_0x40BB                                0x40BB // Unused
-#define VAR_UNUSED_0x40BC                                0x40BC // Unused
-#define VAR_UNUSED_0x40BD                                0x40BD // Unused
+#define VAR_DEXNAV_SPECIES                                0x40BB
+#define VAR_STEP_COUNTER                                0x40BC
+#define VAR_LAST_REPEL                                0x40BD
 #define VAR_UNUSED_0x40BE                                0x40BE // Unused
 #define VAR_UNUSED_0x40BF                                0x40BF // Unused
 #define VAR_SOOTOPOLIS_MYSTERY_EVENTS_STATE              0x40C0
