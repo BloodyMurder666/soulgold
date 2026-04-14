@@ -14,6 +14,7 @@ bool8 TransferBugContestMon(void);
 void CB2_EndBugContestBattle(void);
 void BugContestRetirePrompt(void);
 bool8 RemoveSafariBalls(void);
+bool8 ValidateBugContestSelectedMon(void);
 bool8 ShowBugContestChosenMon(void);
 
 extern const u8 BugContest_EventScript_TimesUp[];

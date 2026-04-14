@@ -586,6 +586,7 @@ gSpecials::
 	def_special TransferBugContestMon
 	def_special JudgeBugContestMon
 	def_special RemoveSafariBalls
+	def_special ValidateBugContestSelectedMon
 	def_special ShowBugContestChosenMon
 	def_special LevelCapToString
 	def_special NameRival

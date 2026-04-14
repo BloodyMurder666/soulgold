@@ -18,10 +18,13 @@
 #include "pokemon.h"
 #include "string_util.h"
 #include "constants/map_event_ids.h"
+#include "constants/party_menu.h"
 extern const struct SpeciesInfo gSpeciesInfo[];
 static bool32 IsPlayerDefeated(u32 battleOutcome);
 static u32 sBugContestStartTime;
 static bool8 sBugContestTimerActive;
+static u32 sBugContestLeadPersonality;
+static u32 sBugContestLeadOtId;
 
 
 bool32 GetBugContestFlag(void)
@@ -40,12 +43,16 @@ void EnterBugContestMode(void)
     FlagSet(FLAG_SYS_BUG_CONTEST_MODE);
     sBugContestStartTime = gMain.vblankCounter1;
     sBugContestTimerActive = TRUE;
+    sBugContestLeadPersonality = GetMonData(&gPlayerParty[0], MON_DATA_PERSONALITY);
+    sBugContestLeadOtId = GetMonData(&gPlayerParty[0], MON_DATA_OT_ID);
 }
 
 void ExitBugContestMode(void)
 {
     FlagClear(FLAG_SYS_BUG_CONTEST_MODE);
     sBugContestTimerActive = FALSE;
+    sBugContestLeadPersonality = 0;
+    sBugContestLeadOtId = 0;
 }
 
 bool8 BugContestCheckTimeLimit(void)
@@ -215,6 +222,25 @@ bool8 RemoveSafariBalls(void)
     if (count > 0)
         RemoveBagItem(ITEM_SAFARI_BALL, count);
 
+    return FALSE;
+}
+
+bool8 ValidateBugContestSelectedMon(void)
+{
+    u16 monIndex = VarGet(VAR_0x8004);
+    u32 personality;
+    u32 otId;
+
+    if (monIndex == PARTY_NOTHING_CHOSEN || monIndex >= PARTY_SIZE)
+    {
+        gSpecialVar_Result = FALSE;
+        return FALSE;
+    }
+
+    personality = GetMonData(&gPlayerParty[monIndex], MON_DATA_PERSONALITY);
+    otId = GetMonData(&gPlayerParty[monIndex], MON_DATA_OT_ID);
+
+    gSpecialVar_Result = !(personality == sBugContestLeadPersonality && otId == sBugContestLeadOtId);
     return FALSE;
 }
 
