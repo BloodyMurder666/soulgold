@@ -51,7 +51,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Gate_NationalPark_EventScript_BAttendant",
-      "flag": "0"
+      "flag": "FLAG_DAILY_BUG_DONE"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MYSTERY_GIFT_MAN",
@@ -64,7 +64,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Gate_NationalPark_EventScript_Attendant",
-      "flag": "0"
+      "flag": "FLAG_DAILY_BUG_DONE"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ROCKER",
