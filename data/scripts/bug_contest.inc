@@ -74,6 +74,7 @@ BugContest_EventScript_First::
 	msgbox BugContest_Text_First3, MSGBOX_DEFAULT
 	playfanfare MUS_OBTAIN_BADGE
 	waitfanfare
+	call BugContest_EventScript_ChooseFirstPlaceReward
 	closemessage
 	return
 
@@ -87,6 +88,7 @@ BugContest_EventScript_Second::
 	msgbox BugContest_Text_Second3, MSGBOX_DEFAULT
 	playfanfare MUS_OBTAIN_BADGE
 	waitfanfare
+	call BugContest_EventScript_ChooseSecondPlaceReward
 	closemessage
 	return
 
@@ -101,6 +103,76 @@ BugContest_EventScript_Third::
 	playfanfare MUS_OBTAIN_BADGE
 	waitfanfare
 	closemessage
+	return
+
+BugContest_EventScript_ChooseFirstPlaceReward::
+	msgbox BugContest_Text_FirstPlaceRewardPrompt, MSGBOX_DEFAULT
+	call BugContest_EventScript_ChooseFirstPlaceRewardLoop
+	return
+
+BugContest_EventScript_ChooseFirstPlaceRewardLoop::
+	dynmultichoice 0, 0, TRUE, 5, 0, DYN_MULTICHOICE_CB_NONE, BugContest_Text_FirstRewardMoonStone, BugContest_Text_FirstRewardSunStone, BugContest_Text_FirstRewardLeafStone, BugContest_Text_FirstRewardDawnStone, BugContest_Text_FirstRewardShinyStone, BugContest_Text_FirstRewardDuskStone, BugContest_Text_FirstRewardLuckyEgg
+	switch VAR_RESULT
+	case 0, BugContest_EventScript_SetFirstPlaceMoonStone
+	case 1, BugContest_EventScript_SetFirstPlaceSunStone
+	case 2, BugContest_EventScript_SetFirstPlaceLeafStone
+	case 3, BugContest_EventScript_SetFirstPlaceDawnStone
+	case 4, BugContest_EventScript_SetFirstPlaceShinyStone
+	case 5, BugContest_EventScript_SetFirstPlaceDuskStone
+	case 6, BugContest_EventScript_SetFirstPlaceLuckyEgg
+	return
+
+BugContest_EventScript_SetFirstPlaceMoonStone::
+	setvar VAR_0x8005, ITEM_MOON_STONE
+	return
+
+BugContest_EventScript_SetFirstPlaceSunStone::
+	setvar VAR_0x8005, ITEM_SUN_STONE
+	return
+
+BugContest_EventScript_SetFirstPlaceLeafStone::
+	setvar VAR_0x8005, ITEM_LEAF_STONE
+	return
+
+BugContest_EventScript_SetFirstPlaceDawnStone::
+	setvar VAR_0x8005, ITEM_DAWN_STONE
+	return
+
+BugContest_EventScript_SetFirstPlaceShinyStone::
+	setvar VAR_0x8005, ITEM_SHINY_STONE
+	return
+
+BugContest_EventScript_SetFirstPlaceDuskStone::
+	setvar VAR_0x8005, ITEM_DUSK_STONE
+	return
+
+BugContest_EventScript_SetFirstPlaceLuckyEgg::
+	setvar VAR_0x8005, ITEM_LUCKY_EGG
+	return
+
+BugContest_EventScript_ChooseSecondPlaceReward::
+	msgbox BugContest_Text_SecondPlaceRewardPrompt, MSGBOX_DEFAULT
+	call BugContest_EventScript_ChooseSecondPlaceRewardLoop
+	return
+
+BugContest_EventScript_ChooseSecondPlaceRewardLoop::
+	dynmultichoice 0, 0, TRUE, 5, 0, DYN_MULTICHOICE_CB_NONE, BugContest_Text_SecondRewardFireStone, BugContest_Text_SecondRewardThunderStone, BugContest_Text_SecondRewardWaterStone
+	switch VAR_RESULT
+	case 0, BugContest_EventScript_SetSecondPlaceFireStone
+	case 1, BugContest_EventScript_SetSecondPlaceThunderStone
+	case 2, BugContest_EventScript_SetSecondPlaceWaterStone
+	return
+
+BugContest_EventScript_SetSecondPlaceFireStone::
+	setvar VAR_0x8005, ITEM_FIRE_STONE
+	return
+
+BugContest_EventScript_SetSecondPlaceThunderStone::
+	setvar VAR_0x8005, ITEM_THUNDER_STONE
+	return
+
+BugContest_EventScript_SetSecondPlaceWaterStone::
+	setvar VAR_0x8005, ITEM_WATER_STONE
 	return
 
 BugContest_EventScript_End::
@@ -199,3 +271,41 @@ BugContest_Text_TransferAndReturn:
 	.string "Your chosen BUG Pokémon will now\n"
 	.string "be sent to the PC and your party\l"
 	.string "will be returned to you.$"
+
+BugContest_Text_FirstPlaceRewardPrompt:
+	.string "As the winner, you may choose one\n"
+	.string "special prize.$"
+
+BugContest_Text_SecondPlaceRewardPrompt:
+	.string "For second place, please choose\n"
+	.string "one of these stones.$"
+
+BugContest_Text_FirstRewardMoonStone:
+	.string "Moon Stone$"
+
+BugContest_Text_FirstRewardSunStone:
+	.string "Sun Stone$"
+
+BugContest_Text_FirstRewardLeafStone:
+	.string "Leaf Stone$"
+
+BugContest_Text_FirstRewardDawnStone:
+	.string "Dawn Stone$"
+
+BugContest_Text_FirstRewardShinyStone:
+	.string "Shiny Stone$"
+
+BugContest_Text_FirstRewardLuckyEgg:
+	.string "Lucky Egg$"
+
+BugContest_Text_FirstRewardDuskStone:
+	.string "Dusk Stone$"
+
+BugContest_Text_SecondRewardFireStone:
+	.string "Fire Stone$"
+
+BugContest_Text_SecondRewardThunderStone:
+	.string "Thunder Stone$"
+
+BugContest_Text_SecondRewardWaterStone:
+	.string "Water Stone$"

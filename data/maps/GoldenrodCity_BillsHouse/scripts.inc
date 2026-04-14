@@ -41,8 +41,7 @@ GoldenrodCity_BillsHouse_EventScript_Bill_Eevee::
 	@HnS named gift pokemon setup
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_EEVEE
 	bufferspeciesname STR_VAR_1, SPECIES_EEVEE
-	givenamedmon 3
-	call Common_EventScript_GiftMonNamed
+	givemon SPECIES_EEVEE, 25, ITEM_SILK_SCARF
 
     
 
