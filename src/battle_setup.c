@@ -35,6 +35,7 @@
 #include "battle_frontier.h"
 #include "battle_pike.h"
 #include "battle_pyramid.h"
+#include "bug_contest.h"
 #include "fldeff.h"
 #include "fldeff_misc.h"
 #include "field_control_avatar.h"
@@ -598,7 +599,10 @@ static void CB2_EndWildBattle(void)
 
     if (IsPlayerDefeated(gBattleOutcome) == TRUE && CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE && !InBattlePike())
     {
-        SetMainCallback2(CB2_WhiteOut);
+        if (GetBugContestFlag())
+            SetMainCallback2(CB2_BugContestWhiteOut);
+        else
+            SetMainCallback2(CB2_WhiteOut);
     }
     else
     {
@@ -2048,4 +2052,3 @@ void SetMultiTrainerBattle(struct ScriptContext *ctx)
     TRAINER_BATTLE_PARAM.defeatTextB = (u8*)ScriptReadWord(ctx);
     gPartnerTrainerId = TRAINER_PARTNER(ScriptReadHalfword(ctx));
 };
-

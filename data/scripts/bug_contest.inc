@@ -111,6 +111,7 @@ BugContest_EventScript_End::
 	special RemoveSafariBalls
 	goto_if_eq VAR_TEMP_1, 1, BugContest_EventScript_SideEnd
 	warp MAP_GATE_NATIONAL_PARK, 7, 2
+	waitstate
 	releaseall
 	end
 
