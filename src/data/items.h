@@ -14106,9 +14106,9 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_PowderJar,
     },
 
-    [ITEM_WAILMER_PAIL] =
+    [ITEM_SQUIRTBOTTLE] =
     {
-        .name = ITEM_NAME("Wailmer Pail"),
+        .name = ITEM_NAME("Squirtbottle"),
         .price = 0,
         .description = COMPOUND_STRING(
             "A tool used for\n"

@@ -16,7 +16,7 @@ GoldenrodCity_FlowerShop_EventScript_GiveSquirtBottle::
 	lock
 	faceplayer
 	msgbox GoldenrodCity_FlowerShop_Text_Owner2, MSGBOX_DEFAULT
-	giveitem ITEM_WAILMER_PAIL
+	giveitem ITEM_SQUIRTBOTTLE
 	setflag FLAG_RECEIVED_SQUIRTBOTTLE
 	closemessage
 	release

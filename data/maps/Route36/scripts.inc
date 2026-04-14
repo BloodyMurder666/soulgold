@@ -91,7 +91,7 @@ Route36_EventScript_ArthurCompleted::
 Route36_EventScript_SudoWoodo::
 	lock
 	msgbox Route36_Text_OddTree, MSGBOX_DEFAULT
-	checkitem ITEM_WAILMER_PAIL
+	checkitem ITEM_SQUIRTBOTTLE
 	goto_if_eq VAR_RESULT, TRUE, Route36_EventScript_SudoWoodoChoice
 	closemessage
 	release
@@ -118,7 +118,7 @@ Route36_EventScript_SudoWoodoWater::
 	delay 40
 	waitmoncry
 	setvar VAR_LAST_TALKED, LOCALID_ROUTE36_SUDOWOODO
-	setwildbattle SPECIES_SUDOWOODO, 20
+	setwildbattle SPECIES_SUDOWOODO, 30
 	@setflag FLAG_GARBAGEFLAG
 	dowildbattle
 	@clearflag FLAG_GARBAGEFLAG
