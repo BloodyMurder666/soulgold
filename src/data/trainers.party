@@ -1960,13 +1960,13 @@ Music: Female
 Double Battle: No
 AI: Check Bad Move
 
-Haunter
-Level: 20
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Litwick
+Level: 30
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
-Houndour
-Level: 20
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Lampent
+Level: 30
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 === TRAINER_GEORGIA ===
 Name: Georgia
@@ -2506,15 +2506,15 @@ Double Battle: No
 AI: Check Bad Move
 
 Gastly
-Level: 21
+Level: 29
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Haunter
-Level: 21
+Level: 29
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Murkrow
-Level: 21
+Misdreavus
+Level: 30
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_LI ===
@@ -4379,29 +4379,28 @@ Class: Leader
 Pic: Leader Morty
 Gender: Male
 Music: Male
-Items: Super Potion / Super Potion
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Purple
 
-Haunter
-Level: 24
+Corsola Galar
+Level: 33
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Hypnosis
-- Nightmare
+- Hex
+- Confuse Ray
 - Curse
-- Night Shade
+- Ancient Power
 
-Stantler
-Level: 23
+Doublade
+Level: 33
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Swift
-- Hypnosis
-- Nightmare
-- Leer
+- Night Slash
+- Psycho Cut
+- Aerial Ace
+- Shadow Sneak
 
-Misdreavus
-Level: 24
+Misdreavus @ Spell Tag
+Level: 33
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Shadow Ball
 - Pain Split
@@ -4409,12 +4408,65 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Psywave
 
 Gengar @ Sitrus Berry
-Level: 25
+Level: 34
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Hypnosis
 - Shadow Ball
-- Mean Look
+- Shock Wave
 - Dream Eater
+
+=== TRAINER_MORTY_1 ===
+Name: Morty
+Class: Leader
+Pic: Leader Morty
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Smart Trainer
+Mugshot: Purple
+Difficulty: Hard
+
+Mimikyu
+Level: 34
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Slash
+- Shadow Sneak
+- Curse
+- Draining Kiss
+
+Misdreavus @ Spell Tag
+Level: 34
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Shadow Ball
+- Pain Split
+- Perish Song
+- Mean Look
+
+Shedinja @ Heavy-Duty Boots
+Level: 34
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Ability: Wonder Guard
+- Shadow Sneak
+- Dream Eater
+- Absorb
+- Toxic
+
+Doublade @ Eviolite
+Level: 34
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Night Slash
+- Iron Defense
+- Aerial Ace
+- Shadow Sneak
+
+Gengar @ Sitrus Berry
+Level: 35
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Hypnosis
+- Shadow Ball
+- Thunderbolt
+- Dream Eater
+
 
 === TRAINER_WILL_2 ===
 Name: Will
@@ -5738,9 +5790,9 @@ Music: Hg Sage
 Double Battle: No
 AI: Check Bad Move
 
-Misdreavus
-Level: 22
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Sableye
+Level: 31
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 === TRAINER_DEAN ===
 Name: Dean
