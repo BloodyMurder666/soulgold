@@ -182,7 +182,7 @@
       "flag": "FLAG_ITEM_ROUTE35_BIG_NUGGET"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GROWLITHE)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(YANMA)",
       "x": 26,
       "y": 45,
       "elevation": 0,
@@ -221,7 +221,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SNUBBULL)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MINCCINO)",
       "x": 4,
       "y": 18,
       "elevation": 0,
@@ -234,7 +234,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GROWLITHE)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SWIRLIX)",
       "x": 7,
       "y": 18,
       "elevation": 0,
@@ -247,7 +247,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ABRA)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(RALTS)",
       "x": 7,
       "y": 39,
       "elevation": 0,
@@ -273,7 +273,7 @@
       "flag": "FLAG_NIGHT_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ABRA)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KIRLIA)",
       "x": 38,
       "y": 33,
       "elevation": 0,

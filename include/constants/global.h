@@ -99,9 +99,12 @@ enum Language
 
 // Bag constants
 #define BAG_ITEMS_COUNT 150
+#define BAG_MEDICINE_COUNT 40
+#define BAG_BATTLE_ITEMS_COUNT 100
 #define BAG_KEYITEMS_COUNT 50
 #define BAG_POKEBALLS_COUNT 27
 #define BAG_TMHM_COUNT 128
+#define BAG_MEGA_STONES_COUNT 70
 #define BAG_BERRIES_COUNT 70
 
 // Number of facilities for Ranking Hall.

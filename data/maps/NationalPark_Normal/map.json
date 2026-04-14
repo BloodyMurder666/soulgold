@@ -184,19 +184,6 @@
       "flag": "FLAG_ITEM_NATIONAL_PARK_SOOTHE_BELL"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(NIDORAN_M)",
-      "x": 9,
-      "y": 35,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
-    },
-    {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(SUNKERN)",
       "x": 25,
       "y": 44,
@@ -223,7 +210,7 @@
       "flag": "FLAG_DAY_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(PSYDUCK)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MARILL)",
       "x": 24,
       "y": 20,
       "elevation": 0,
@@ -234,19 +221,6 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
       "flag": "FLAG_NIGHT_POKEMON"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(NIDORAN_F)",
-      "x": 10,
-      "y": 35,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(MURKROW)",
@@ -275,7 +249,7 @@
       "flag": "FLAG_NIGHT_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(VENONAT)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SEWADDLE)",
       "x": 26,
       "y": 49,
       "elevation": 0,
@@ -444,6 +418,14 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "NationalPark_BugContest_EventScript_Trash"
+    },
+    {
+      "type": "sign",
+      "x": 15,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NULL"
     }
   ]
 }
