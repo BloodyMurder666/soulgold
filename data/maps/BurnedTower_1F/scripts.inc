@@ -127,6 +127,7 @@ BurnedTower_1F_EventScript_Silver::
 	waitmessage
 	warphole MAP_BURNED_TOWER_B1F
 	setvar VAR_ECRUTEAK_CITY_STATE, 3
+	waitstate
 	release
 	end
 

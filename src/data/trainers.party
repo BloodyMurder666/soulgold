@@ -5143,7 +5143,7 @@ Name: Sawyer
 Class: Philip
 Pic: Burglar
 Gender: Male
-Music: Hg Boy 2
+Music: Hg Suspicious 2
 Double Battle: No
 AI: Basic Trainer
 
@@ -8106,7 +8106,7 @@ Name: Glenn
 Class: Burglar
 Pic: Burglar
 Gender: Male
-Music: Male
+Music: Hg Suspicious 2
 Double Battle: No
 AI: Check Bad Move
 
@@ -8845,7 +8845,7 @@ Name: Eddie
 Class: Burglar
 Pic: Burglar
 Gender: Male
-Music: Male
+Music: Hg Suspicious 2
 Double Battle: No
 AI: Check Bad Move
 
@@ -9257,7 +9257,7 @@ Name: Richardo
 Class: Burglar
 Pic: Burglar
 Gender: Male
-Music: Male
+Music: Hg Suspicious 2
 Double Battle: No
 AI: Check Bad Move
 
@@ -9529,7 +9529,7 @@ Name: Duncan
 Class: Burglar
 Pic: Burglar
 Gender: Male
-Music: Male
+Music: Hg Suspicious 2
 Double Battle: No
 AI: Check Bad Move
 
