@@ -8800,6 +8800,16 @@
       "secondary_tileset": "gTileset_Goldenrod",
       "border_filepath": "data/layouts/GoldenrodShore/border.bin",
       "blockdata_filepath": "data/layouts/GoldenrodShore/map.bin"
+    },
+    {
+      "id": "LAYOUT_HIDDEN_GROTTO_GOLDENROD_SHORE",
+      "name": "HiddenGrotto_Goldenrod_Shore_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_Grotto1",
+      "secondary_tileset": "gTileset_Route32",
+      "border_filepath": "data/layouts/HiddenGrotto_Goldenrod_Shore/border.bin",
+      "blockdata_filepath": "data/layouts/HiddenGrotto_Goldenrod_Shore/map.bin"
     }
   ]
 }

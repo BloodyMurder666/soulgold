@@ -49,7 +49,8 @@ script GoldenrodShore_HiddenGrotto {
     msgbox("There seems to be a path behind the
             trees. Enter?", MSGBOX_YESNO)
     if (var(VAR_RESULT) == YES) {
-        warp(MAP_HIDDEN_GROTTO_ROUTE32, 0)
+        warp(MAP_HIDDEN_GROTTO_GOLDENROD_SHORE, 0)
+        waitstate
     }
     release
     end

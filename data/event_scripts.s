@@ -2091,3 +2091,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/TestingMap/scripts.inc"
 
 	.include "data/maps/GoldenrodShore/scripts.inc"
+
+	.include "data/maps/HiddenGrotto_Goldenrod_Shore/scripts.inc"

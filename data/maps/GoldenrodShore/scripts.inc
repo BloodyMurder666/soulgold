@@ -145,13 +145,15 @@ GoldenrodShore_HiddenGrotto::
 	compare VAR_RESULT, YES
 	goto_if_eq GoldenrodShore_HiddenGrotto_2
 GoldenrodShore_HiddenGrotto_1:
-# 54 "data/maps/GoldenrodShore/scripts.pory"
+# 55 "data/maps/GoldenrodShore/scripts.pory"
 	release
 	end
 
 GoldenrodShore_HiddenGrotto_2:
 # 52 "data/maps/GoldenrodShore/scripts.pory"
-	warp MAP_HIDDEN_GROTTO_ROUTE32, 0
+	warp MAP_HIDDEN_GROTTO_GOLDENROD_SHORE, 0
+# 53 "data/maps/GoldenrodShore/scripts.pory"
+	waitstate
 	goto GoldenrodShore_HiddenGrotto_1
 
 

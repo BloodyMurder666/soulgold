@@ -17,6 +17,7 @@
 enum HiddenGrottoId
 {
     HIDDEN_GROTTO_ROUTE32,
+    HIDDEN_GROTTO_GOLDENROD_SHORE,
 };
 
 enum
@@ -72,6 +73,21 @@ static const struct HiddenGrottoData sHiddenGrottoData[NUM_HIDDEN_GROTTOES] =
             { SPECIES_WOOPER_PALDEA, 0 },
             { SPECIES_EKANS, 0 },
             { SPECIES_MISDREAVUS, 0 },
+        },
+    },
+    [HIDDEN_GROTTO_GOLDENROD_SHORE] =
+    {
+        .mapGroup = MAP_GROUP(MAP_HIDDEN_GROTTO_GOLDENROD_SHORE),
+        .mapNum = MAP_NUM(MAP_HIDDEN_GROTTO_GOLDENROD_SHORE),
+        .monLevel = 20,
+        .monObjectLocalId = HIDDEN_GROTTO_OBJ_MON,
+        .rareItem = ITEM_LIGHT_CLAY,
+        .mons =
+        {
+            { SPECIES_MINCCINO, 0 },
+            { SPECIES_SHROOMISH, 0 },
+            { SPECIES_ROCKRUFF_OWN_TEMPO, 0 },
+            { SPECIES_FROAKIE, 0 },
         },
     },
 };

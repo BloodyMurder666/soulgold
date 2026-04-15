@@ -1,30 +1,30 @@
-mapscripts HiddenGrotto_Route32_MapScripts {
+mapscripts HiddenGrotto_Goldenrod_Shore_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
-        goto(handleRoute32GrottoEvent)
+        goto(handleGoldenrodShoreGrottoEvent)
     }
 }
 
-script handleRoute32GrottoEvent {
+script handleGoldenrodShoreGrottoEvent {
     special(HiddenGrotto_InitializeCurrent)
     switch (var(VAR_RESULT)) {
         case 0:
-            clearflag(FLAG_ROUTE32_GROTTO) //HIDDEN_GROTTO_UNSET, should never land on this anyway
+            clearflag(FLAG_GOLDENROD_SHORE_GROTTO) //HIDDEN_GROTTO_UNSET, should never land on this anyway
             setobjectxyperm(1, 28, 27)
             setobjectxyperm(2, 28, 27)
         case 1:
-            setflag(FLAG_ROUTE32_GROTTO) // HIDDEN_GROTTO_EMPTY
+            setflag(FLAG_GOLDENROD_SHORE_GROTTO) // HIDDEN_GROTTO_EMPTY
             setobjectxyperm(1, 28, 27)
             setobjectxyperm(2, 28, 27)
         case 2:
-            clearflag(FLAG_ROUTE32_GROTTO) //HIDDEN_GROTTO_POKEMON
+            clearflag(FLAG_GOLDENROD_SHORE_GROTTO) //HIDDEN_GROTTO_POKEMON
             setobjectxyperm(1, 28, 27)
             setobjectxyperm(2, 14, 11)
         case 3:
-            clearflag(FLAG_ROUTE32_GROTTO) //HIDDEN_GROTTO_ITEM
+            clearflag(FLAG_GOLDENROD_SHORE_GROTTO) //HIDDEN_GROTTO_ITEM
             setobjectxyperm(2, 28, 27)
             setobjectxyperm(1, 14, 11)
         case 4:
-            clearflag(FLAG_ROUTE32_GROTTO) //HIDDEN_GROTTO_HIDDEN_ITEM
+            clearflag(FLAG_GOLDENROD_SHORE_GROTTO) //HIDDEN_GROTTO_HIDDEN_ITEM
             setobjectxyperm(1, 28, 27)
             setobjectxyperm(2, 28, 27)
             setobjectxyperm(0, 14, 11)
@@ -32,7 +32,7 @@ script handleRoute32GrottoEvent {
     }
 }
 
-script Route32GrottoPokemon {
+script GoldenrodShore_GrottoPokemon {
     lock
     faceplayer
     special(HiddenGrotto_GetCurrentContentId)
@@ -47,23 +47,23 @@ script Route32GrottoPokemon {
     delay(40)
     waitmoncry
     special(HiddenGrotto_EmptyCurrent)
-    setflag(FLAG_ROUTE32_GROTTO)
+    setflag(FLAG_GOLDENROD_SHORE_GROTTO)
     dowildbattle
     removeobject(2)
     release
     end
 }
 
-script FindItem_Route32Grotto {
+script FindItem_GoldenrodShore_Grotto {
     special(HiddenGrotto_GetCurrentContentId)
 	finditem(VAR_RESULT)
     special(HiddenGrotto_EmptyCurrent)
-    setflag(FLAG_ROUTE32_GROTTO)
+    setflag(FLAG_GOLDENROD_SHORE_GROTTO)
 	removeobject(1)
     end
 }
 
-script FindHiddenItem_Route32Grotto {
+script FindHiddenItem_GoldenrodShore_Grotto {
     special(HiddenGrotto_GetCurrentContentType)
     if (var(VAR_RESULT) != 4) {
         end
@@ -72,6 +72,6 @@ script FindHiddenItem_Route32Grotto {
     special(HiddenGrotto_GetCurrentContentId)
     finditem(VAR_RESULT)
     special(HiddenGrotto_EmptyCurrent)
-    setflag(FLAG_ROUTE32_GROTTO)
+    setflag(FLAG_GOLDENROD_SHORE_GROTTO)
     end
 }
