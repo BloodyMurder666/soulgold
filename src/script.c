@@ -15,8 +15,9 @@
 #include "rtc.h"
 #include "ui_birch_case.h"
 #include "task.h"
+#include "field_screen_effect.h"
 #include "field_weather.h"
-
+#include "task.h"
 #include "dexnav.h"
 
 #define RAM_SCRIPT_MAGIC 51

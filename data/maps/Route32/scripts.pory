@@ -510,10 +510,12 @@ Route32_Text_Sign3:
 `
 
 script Route32HiddenGrottoWarp {
+	lock
     msgbox("There seems to be a path behind the
             trees. Enter?", MSGBOX_YESNO)
     if (var(VAR_RESULT) == YES) {
         warp(MAP_HIDDEN_GROTTO_ROUTE32, 0)
+		waitstate
     }
     release
     end
