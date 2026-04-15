@@ -2089,3 +2089,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/AzaleaTown_House2/scripts.inc"
 
 	.include "data/maps/TestingMap/scripts.inc"
+
+	.include "data/maps/GoldenrodShore/scripts.inc"

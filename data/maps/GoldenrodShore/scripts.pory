@@ -1,0 +1,57 @@
+mapscripts GoldenrodShore_MapScripts {}
+
+script GoldenrodShore_Expert {
+    lock
+    faceplayer
+    if (flag(FLAG_GOLDENRODSHORE_EXPERT)) {
+        msgbox("Guess I'm free to go home now
+                that I no longer have to maintain
+                this route expert title.")
+        release
+        end
+    }
+    msgbox("Hi! I'm the route expert of local area!
+            If you can beat every trainer on routes
+            34, 35 and 36. Come have a battle with
+            me.")
+    if (defeated(TRAINER_SAMUEL) && defeated(TRAINER_BRANDON) && defeated(TRAINER_TODD) && defeated(TRAINER_IAN) && defeated(TRAINER_GINA) 
+        && defeated(TRAINER_KIM) && defeated(TRAINER_ELLIOT) && defeated(TRAINER_BROOKE) && defeated(TRAINER_IVAN) && defeated(TRAINER_IRWIN) && defeated(TRAINER_WALT) && defeated(TRAINER_ARNIE) && defeated(TRAINER_BRYAN)
+        && defeated(TRAINER_MARK) && defeated(TRAINER_ALAN)) {
+        msgbox("I've heard the words of your victories.
+                Let's have a battle then, I'll show
+                you a new type of strategy!")
+        trainerbattle_no_intro(TRAINER_GOLDENROD_SHORE_EXPERT, "Outsmarted!")
+        msgbox("Even against my unrelenting tide
+                of attacks, you prevailed. Please,
+                have this item to boost your odds
+                of keeping up the winning streak.")
+        giveitem(ITEM_LOADED_DICE)
+        setflag(FLAG_GOLDENRODSHORE_EXPERT)
+        msgbox("Loaded Dice boosts the minimum hit 
+                count of multi-hit moves, you should 
+                try it with moves like Bullet Seed!")        
+    }
+    release
+    end
+}
+
+script GoldenrodShore_Sign {
+    msgbox("Goldenrod Shore, no littering!", MSGBOX_SIGN)
+}
+
+script GoldenrodShore_Engineer {
+    msgbox("Alright, time to start digging a path 
+            here. The Pokéathlon construction
+            starts here!", MSGBOX_NPC)
+}
+
+script GoldenrodShore_HiddenGrotto {
+    msgbox("There seems to be a path behind the
+            trees. Enter?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        warp(MAP_HIDDEN_GROTTO_ROUTE32, 0)
+    }
+    release
+    end
+}
+

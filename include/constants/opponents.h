@@ -869,7 +869,7 @@
 #define TRAINER_KIP2                      863 //85F
 
 #define TRAINER_ROUTE_31_EXPERT           864
-#define TRAINER_ROUTE_35_EXPERT           865
+#define TRAINER_GOLDENROD_SHORE_EXPERT    865
 #define TRAINER_UNUSED_2                  866
 #define TRAINER_UNUSED_3                  867
 #define TRAINER_UNUSED_4                  868

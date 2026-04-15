@@ -723,7 +723,7 @@
 #define FLAG_DEXNAV_SEARCHING  0x2A4
 #define FLAG_DEXNAV_OBTAINED  0x2A5
 #define FLAG_DN_HIDDEN_MODE  0x2A6
-#define FLAG_UNUSED_0x2A7  0x2A7 // Unused Flag
+#define FLAG_GOLDENRODSHORE_EXPERT  0x2A7
 #define FLAG_UNUSED_0x2A8  0x2A8 // Unused Flag
 #define FLAG_UNUSED_0x2A9  0x2A9 // Unused Flag
 #define FLAG_UNUSED_0x2AA  0x2AA // Unused Flag

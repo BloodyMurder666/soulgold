@@ -5633,6 +5633,39 @@ IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Thunder Wave
 - Growl
 
+=== TRAINER_GOLDENROD_SHORE_EXPERT ===
+Name: Kiana
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Hg Boy 2
+Double Battle: No
+AI: Smart Trainer
+
+Breloom @ Loaded Dice
+Level: 26
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Bullet Seed
+- Mach Punch
+- Rock Tomb
+- Growth
+
+Lycanroc @ Loaded Dice
+Level: 26
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Rock Blast
+- Taunt
+- Bite
+- Mud Slap
+
+Cinccino @ Loaded Dice
+Level: 26
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Tail Slap
+- Rock Blast
+- Bullet Seed
+- Encore
+
 === TRAINER_ETHAN ===
 Name: Ethan
 Class: Pokemaniac

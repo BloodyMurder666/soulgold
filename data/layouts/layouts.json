@@ -8790,6 +8790,16 @@
       "secondary_tileset": "gTileset_HiddenGrotto1",
       "border_filepath": "data/layouts/TestingMap/border.bin",
       "blockdata_filepath": "data/layouts/TestingMap/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_SHORE",
+      "name": "GoldenrodShore_Layout",
+      "width": 30,
+      "height": 40,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_Goldenrod",
+      "border_filepath": "data/layouts/GoldenrodShore/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodShore/map.bin"
     }
   ]
 }

@@ -45,6 +45,8 @@ BugContestEventScript_Judging::
 	call_if_eq VAR_RESULT, 1, BugContest_EventScript_First
 	call_if_eq VAR_RESULT, 2, BugContest_EventScript_Second
 	call_if_eq VAR_RESULT, 3, BugContest_EventScript_Third
+
+BugContestEventScript_JudgingFinish::
 	special TransferBugContestMon
 	delay 20
 	giveitem VAR_0x8005
@@ -76,7 +78,7 @@ BugContest_EventScript_First::
 	waitfanfare
 	call BugContest_EventScript_ChooseFirstPlaceReward
 	closemessage
-	return
+	goto BugContestEventScript_JudgingFinish
 
 BugContest_EventScript_Second::
 	msgbox BugContest_Text_Second1, MSGBOX_DEFAULT
@@ -90,7 +92,7 @@ BugContest_EventScript_Second::
 	waitfanfare
 	call BugContest_EventScript_ChooseSecondPlaceReward
 	closemessage
-	return
+	goto BugContestEventScript_JudgingFinish
 
 BugContest_EventScript_Third::
 	msgbox BugContest_Text_Third1, MSGBOX_DEFAULT
@@ -103,7 +105,7 @@ BugContest_EventScript_Third::
 	playfanfare MUS_OBTAIN_BADGE
 	waitfanfare
 	closemessage
-	return
+	goto BugContestEventScript_JudgingFinish
 
 BugContest_EventScript_ChooseFirstPlaceReward::
 	msgbox BugContest_Text_FirstPlaceRewardPrompt, MSGBOX_DEFAULT
@@ -183,7 +185,7 @@ BugContest_EventScript_End::
 	special RemoveSafariBalls
 	setflag FLAG_DAILY_BUG_DONE
 	goto_if_eq VAR_TEMP_1, 1, BugContest_EventScript_SideEnd
-	warp MAP_GATE_NATIONAL_PARK, 7, 2
+	warp MAP_GATE_NATIONAL_PARK, 18, 2
 	waitstate
 	releaseall
 	end
