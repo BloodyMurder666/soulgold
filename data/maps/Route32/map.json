@@ -663,6 +663,14 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route32HiddenGrottoWarp"
+    },
+    {
+      "type": "sign",
+      "x": 14,
+      "y": 24,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Route32HiddenGrottoWarp"
     }
   ]
 }

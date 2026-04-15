@@ -61,3 +61,5 @@ tools/aif2pcm/aif2pcm
 *.fastSmol
 *.smolTM
 __pycache__
+.mp4
+.codex
