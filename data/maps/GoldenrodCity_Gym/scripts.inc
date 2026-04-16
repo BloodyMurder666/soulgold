@@ -521,6 +521,22 @@ WhitneyChooseDifficulty_4:
 	return
 
 
+WhitneyMiltank::
+# 274 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	lock
+# 275 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	faceplayer
+# 276 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	playmoncry SPECIES_MILTANK, CRY_MODE_NORMAL
+# 277 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	msgbox WhitneyMiltank_Text_0
+# 278 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	waitmoncry
+# 279 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	release
+	end
+
+
 WhitneyChooseDifficulty_Text_0:
 # 250 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	.string "Hi I'm Whitney!\n"
@@ -541,3 +557,7 @@ WhitneyChooseDifficulty_Text_2:
 WhitneyChooseDifficulty_Text_3:
 # 256 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	.string "Cancel$"
+
+WhitneyMiltank_Text_0:
+# 277 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	.string "Mooo!$"

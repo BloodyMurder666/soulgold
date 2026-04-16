@@ -3,7 +3,7 @@
   "name": "GoldenrodShore",
   "layout": "LAYOUT_GOLDENROD_SHORE",
   "music": "MUS_DP_SUNYSHORE_DAY",
-  "region_map_section": "MAPSEC_GOLDENROD_CITY",
+  "region_map_section": "MAPSEC_GOLDENROD_SHORE",
   "requires_flash": false,
   "weather": "WEATHER_RAIN",
   "map_type": "MAP_TYPE_ROUTE",

@@ -25,9 +25,9 @@ script handleGoldenrodShoreGrottoEvent {
             setobjectxyperm(1, 14, 11)
         case 4:
             clearflag(FLAG_GOLDENROD_SHORE_GROTTO) //HIDDEN_GROTTO_HIDDEN_ITEM
-            setobjectxyperm(1, 28, 27)
-            setobjectxyperm(2, 28, 27)
-            setobjectxyperm(0, 14, 11)
+            setobjectxyperm(LOCALID_GROTTO_ITEM_GOLDENROD, 28, 27)
+            setobjectxyperm(LOCALID_GROTTO_POKEMON_GOLDENROD, 28, 27)
+            setobjectxyperm(LOCALID_GROTTO_HIDDEN_ITEM_GOLDENROD, 14, 11)
 
     }
 }

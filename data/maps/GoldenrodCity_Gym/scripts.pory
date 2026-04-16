@@ -269,3 +269,13 @@ script WhitneyChooseDifficulty {
         }
         return
 }
+
+script WhitneyMiltank {
+    lock
+    faceplayer
+    playmoncry(SPECIES_MILTANK, CRY_MODE_NORMAL)
+    msgbox("Mooo!")
+    waitmoncry
+    release
+    end
+}

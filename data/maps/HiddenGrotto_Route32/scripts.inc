@@ -66,11 +66,11 @@ handleRoute32GrottoEvent_6:
 # 27 "data/maps/HiddenGrotto_Route32/scripts.pory"
 	clearflag FLAG_ROUTE32_GROTTO
 # 28 "data/maps/HiddenGrotto_Route32/scripts.pory"
-	setobjectxyperm 1, 28, 27
+	setobjectxyperm LOCALID_GROTTO_ITEM_ROUTE32, 28, 27
 # 29 "data/maps/HiddenGrotto_Route32/scripts.pory"
-	setobjectxyperm 2, 28, 27
+	setobjectxyperm LOCALID_GROTTO_POKEMON_ROUTE32, 28, 27
 # 30 "data/maps/HiddenGrotto_Route32/scripts.pory"
-	setobjectxyperm 0, 14, 11
+	setobjectxyperm LOCALID_GROTTO_HIDDEN_ITEM_ROUTE32, 14, 11
 	return
 
 

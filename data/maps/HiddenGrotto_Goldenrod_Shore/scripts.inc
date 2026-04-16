@@ -66,11 +66,11 @@ handleGoldenrodShoreGrottoEvent_6:
 # 27 "data/maps/HiddenGrotto_Goldenrod_Shore/scripts.pory"
 	clearflag FLAG_GOLDENROD_SHORE_GROTTO
 # 28 "data/maps/HiddenGrotto_Goldenrod_Shore/scripts.pory"
-	setobjectxyperm 1, 28, 27
+	setobjectxyperm LOCALID_GROTTO_ITEM_GOLDENROD, 28, 27
 # 29 "data/maps/HiddenGrotto_Goldenrod_Shore/scripts.pory"
-	setobjectxyperm 2, 28, 27
+	setobjectxyperm LOCALID_GROTTO_POKEMON_GOLDENROD, 28, 27
 # 30 "data/maps/HiddenGrotto_Goldenrod_Shore/scripts.pory"
-	setobjectxyperm 0, 14, 11
+	setobjectxyperm LOCALID_GROTTO_HIDDEN_ITEM_GOLDENROD, 14, 11
 	return
 
 

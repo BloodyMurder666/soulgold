@@ -130,11 +130,7 @@
     },
     {
       "id": "MAPSEC_ROUTE_113",
-      "name": "ROUTE 113",
-      "x": 4,
-      "y": 0,
-      "width": 4,
-      "height": 1
+      "name": "ROUTE 113"
     },
     {
       "id": "MAPSEC_ROUTE_114",
@@ -387,8 +383,8 @@
     {
       "id": "MAPSEC_ABANDONED_SHIP",
       "name": "ABANDONED SHIP",
-      "x": 6,
-      "y": 14,
+      "x": 4,
+      "y": 7,
       "width": 1,
       "height": 1
     },
@@ -669,11 +665,19 @@
     },
     {
       "id": "MAPSEC_ROUTE_1",
-      "name": "ROUTE 1"
+      "name": "ROUTE 1",
+      "x": 19,
+      "y": 8,
+      "width": 1,
+      "height": 3
     },
     {
       "id": "MAPSEC_ROUTE_2",
-      "name": "ROUTE 2"
+      "name": "ROUTE 2",
+      "x": 19,
+      "y": 6,
+      "width": 1,
+      "height": 1
     },
     {
       "id": "MAPSEC_ROUTE_3",
@@ -805,7 +809,11 @@
     },
     {
       "id": "MAPSEC_POKEMON_MANSION",
-      "name": "POKéMON MANSION"
+      "name": "POKéMON MANSION",
+      "x": 19,
+      "y": 13,
+      "width": 1,
+      "height": 1
     },
     {
       "id": "MAPSEC_KANTO_SAFARI_ZONE",
@@ -817,7 +825,11 @@
     },
     {
       "id": "MAPSEC_POKEMON_LEAGUE",
-      "name": "POKéMON LEAGUE"
+      "name": "POKéMON LEAGUE",
+      "x": 16,
+      "y": 2,
+      "width": 1,
+      "height": 1
     },
     {
       "id": "MAPSEC_ROCK_TUNNEL",
@@ -834,14 +846,18 @@
     {
       "id": "MAPSEC_CERULEAN_CAVE",
       "name": "CERULEAN CAVE",
-      "x": 21,
-      "y": 5,
+      "x": 23,
+      "y": 1,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_POWER_PLANT",
-      "name": "POWER PLANT"
+      "name": "POWER PLANT",
+      "x": 28,
+      "y": 4,
+      "width": 1,
+      "height": 1
     },
     {
       "id": "MAPSEC_ONE_ISLAND",
@@ -950,10 +966,6 @@
     {
       "id": "MAPSEC_SEVAULT_CANYON",
       "name": "SEVAULT CANYON"
-    },
-    {
-      "id": "MAPSEC_TANOBY_RUINS",
-      "name": "TANOBY RUINS"
     },
     {
       "id": "MAPSEC_SEVII_ISLE_22",
@@ -1182,8 +1194,8 @@
     {
       "id": "MAPSEC_GOLDENROD_CITY",
       "name": "Goldenrod Shore",
-      "x": 8,
-      "y": 8,
+      "x": 5,
+      "y": 7,
       "width": 1,
       "height": 2
     },
@@ -1485,16 +1497,16 @@
     {
       "id": "MAPSEC_ILEX_FOREST",
       "name": "ILEX FOREST",
-      "x": 4,
+      "x": 5,
       "y": 11,
-      "width": 2,
+      "width": 1,
       "height": 2
     },
     {
       "id": "MAPSEC_NATIONAL_PARK",
       "name": "NATIONAL PARK",
-      "x": 8,
-      "y": 4,
+      "x": 5,
+      "y": 5,
       "width": 1,
       "height": 1
     },
@@ -1509,8 +1521,8 @@
     {
       "id": "MAPSEC_CLIFF_CAVE",
       "name": "CLIFF CAVE",
-      "x": 3,
-      "y": 11,
+      "x": 0,
+      "y": 10,
       "width": 1,
       "height": 1
     },
@@ -1533,9 +1545,9 @@
     {
       "id": "MAPSEC_ICE_PATH",
       "name": "ICE PATH",
-      "x": 17,
-      "y": 1,
-      "width": 1,
+      "x": 11,
+      "y": 2,
+      "width": 2,
       "height": 1
     },
     {
@@ -1549,8 +1561,8 @@
     {
       "id": "MAPSEC_TOHJO_FALLS",
       "name": "TOHJO FALLS",
-      "x": 20,
-      "y": 9,
+      "x": 15,
+      "y": 11,
       "width": 1,
       "height": 1
     },
@@ -1621,8 +1633,16 @@
     {
       "id": "MAPSEC_OLIVINE_LIGHTHOUSE",
       "name": "LIGHTHOUSE",
-      "x": 4,
+      "x": 3,
       "y": 6,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_GOLDENROD_SHORE",
+      "name": "Goldenrod Shore",
+      "x": 4,
+      "y": 7,
       "width": 1,
       "height": 1
     }

@@ -9048,6 +9048,50 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Supersonic
 - Reflect
 
+=== TRAINER_BUGSY_1 ===
+Name: Bugsy
+Class: Leader
+Pic: Leader Bugsy
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Smart Trainer 
+Mugshot: Purple
+Difficulty: Hard
+
+Scizor @ Berry Juice
+Level: 20
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Steel Wing
+- Fury Cutter
+- U turn
+- Pursuit
+
+Beedrill @ Berry Juice
+Level: 20
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Twineedle
+- Fury Attack
+- Pursuit
+- Poison Sting
+
+Pinsir
+Level: 20
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Seismic Toss
+- Bug Bite
+- Focus Energy
+- Storm Throw
+
+Larvesta
+Level: 20
+Ability: Flame Body
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Bug Bite
+- Fire Spin
+- Absorb
+- String Shot
+
 === TRAINER_BOB ===
 Name: Bob
 Class: Bird Keeper
@@ -10436,6 +10480,61 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Mud Slap
 - Confusion
 - Peck
+
+=== TRAINER_FALKNER_1 ===
+Name: Falkner
+Class: Leader
+Pic: Leader Falkner
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Smart Trainer
+Mugshot: Blue
+Difficulty: Hard
+
+Rufflet @ Pecha Berry
+Hasty Nature
+Level: 12
+Ability: Hustle
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Tailwind
+- Hone Claws
+- Swift
+- Helping Hand
+
+Noibat
+Hardy Nature
+Level: 12
+Ability: Infiltrator
+IVs: 20 HP / 10 Atk / 21 Def / 21 SpA / 21 SpD / 21 Spe
+Shiny: No
+- Wing Attack
+- Air Cutter
+- Absorb
+- Taunt
+
+Gligar
+Careful Nature
+Level: 13
+Ability: Immunity
+IVs: 10 HP / 10 Atk / 11 Def / 11 SpA / 11 SpD / 11 Spe
+Shiny: No
+- Quick Attack
+- Fury Cutter
+- Harden
+- Poison Sting
+
+Pidgeotto @ Oran Berry
+Hasty Nature
+Level: 13
+Ability: Big Pecks
+IVs: 20 HP / 10 Atk / 21 Def / 21 SpA / 21 SpD / 21 Spe
+EVs: 4 HP / 100 Atk / 100 SpD / 100 Spe
+Shiny: No
+- Wing Attack
+- Air Cutter
+- Quick Attack
+- Twister
 
 === TRAINER_CHUCK_1 ===
 Name: Chuck

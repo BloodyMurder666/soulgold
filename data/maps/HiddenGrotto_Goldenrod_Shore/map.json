@@ -3,7 +3,7 @@
   "name": "HiddenGrotto_Goldenrod_Shore",
   "layout": "LAYOUT_HIDDEN_GROTTO_GOLDENROD_SHORE",
   "music": "MUS_NONE",
-  "region_map_section": "MAPSEC_ROUTE_35",
+  "region_map_section": "MAPSEC_GOLDENROD_SHORE",
   "requires_flash": false,
   "weather": "WEATHER_SHADE",
   "map_type": "MAP_TYPE_ROUTE",
@@ -15,6 +15,7 @@
   "connections": null,
   "object_events": [
     {
+      "local_id": "LOCALID_GROTTO_ITEM_GOLDENROD",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "x": 28,
       "y": 28,
@@ -24,10 +25,11 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "FindItem_Route32Grotto",
+      "script": "FindItem_GoldenrodShore_Grotto",
       "flag": "FLAG_GOLDENROD_SHORE_GROTTO"
     },
     {
+      "local_id": "LOCALID_GROTTO_POKEMON_GOLDENROD",
       "graphics_id": "OBJ_EVENT_GFX_VAR_0",
       "x": 27,
       "y": 28,
@@ -37,7 +39,21 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route32GrottoPokemon",
+      "script": "GoldenrodShore_GrottoPokemon",
+      "flag": "FLAG_GOLDENROD_SHORE_GROTTO"
+    },
+    {
+      "local_id": "LOCALID_GROTTO_HIDDEN_ITEM_GOLDENROD",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 29,
+      "y": 28,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "FindHiddenItem_GoldenrodShore_Grotto",
       "flag": "FLAG_GOLDENROD_SHORE_GROTTO"
     }
   ],
@@ -51,14 +67,5 @@
     }
   ],
   "coord_events": [],
-  "bg_events": [
-    {
-      "type": "sign",
-      "x": 29,
-      "y": 28,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "FindHiddenItem_Route32Grotto"
-    }
-  ]
+  "bg_events": []
 }
