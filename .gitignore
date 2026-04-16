@@ -63,3 +63,6 @@ tools/aif2pcm/aif2pcm
 __pycache__
 .mp4
 .codex
+/tools/species_distribution_report_icons
+/tools/species_distribution_report.html
+/tools/species_distribution_report.py
