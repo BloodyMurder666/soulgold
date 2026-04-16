@@ -2612,7 +2612,7 @@ static void Task_ShowContestEntryMonPic(u8 taskId)
     struct Task *task = &gTasks[taskId];
     struct Sprite *sprite;
 
-    switch(task->data[0])
+    switch (task->data[0])
     {
     case 0:
         task->data[0]++;
@@ -2628,7 +2628,7 @@ static void Task_ShowContestEntryMonPic(u8 taskId)
         sprite = &gSprites[task->data[2]];
         FreeSpritePaletteByTag(GetSpritePaletteTagByPaletteNum(sprite->oam.paletteNum));
 
-        if(sprite->oam.affineMode)
+        if (sprite->oam.affineMode)
             FreeOamMatrix(sprite->oam.matrixNum);
 
         DestroySprite(sprite);

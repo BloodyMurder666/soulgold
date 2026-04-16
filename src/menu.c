@@ -1593,12 +1593,12 @@ u16 copy_decompressed_tile_data_to_vram(u8 bgId, const void *src, u16 size, u16 
 {
     switch (mode)
     {
-        case 0:
-            return LoadBgTiles(bgId, src, size, offset);
-        case 1:
-            return LoadBgTilemap(bgId, src, size, offset);
-        default:
-            return -1;
+    case 0:
+        return LoadBgTiles(bgId, src, size, offset);
+    case 1:
+        return LoadBgTilemap(bgId, src, size, offset);
+    default:
+        return -1;
     }
 }
 
@@ -1856,16 +1856,16 @@ void ListMenuLoadStdPalAt(u8 palOffset, u8 palId)
 
     switch (palId)
     {
-        case 0:
-        default:
-            palette = gMenuInfoElements1_Pal;
-            break;
-        case 1:
-            palette = gMenuInfoElements2_Pal;
-            break;
-        case 2:
-            palette = gMenuInfoElements3_Pal;
-            break;
+    case 0:
+    default:
+        palette = gMenuInfoElements1_Pal;
+        break;
+    case 1:
+        palette = gMenuInfoElements2_Pal;
+        break;
+    case 2:
+        palette = gMenuInfoElements3_Pal;
+        break;
     }
 
     LoadPalette(palette, palOffset, PLTT_SIZE_4BPP);
@@ -1952,7 +1952,7 @@ void HBlankCB_DoublePopupWindow(void)
     if (scanline < 80 || scanline > 160)
     {
         REG_BG0VOFS = offset;
-        if(OW_POPUP_BW_ALPHA_BLEND && !IsWeatherAlphaBlend())
+        if (OW_POPUP_BW_ALPHA_BLEND && !IsWeatherAlphaBlend())
             REG_BLDALPHA = BLDALPHA_BLEND(15, 5);
     }
     else

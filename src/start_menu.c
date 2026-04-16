@@ -594,7 +594,7 @@ void Task_ShowStartMenu(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
 
-    switch(task->data[0])
+    switch (task->data[0])
     {
     case 0:
         if (InUnionRoom() == TRUE)

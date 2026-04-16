@@ -92,14 +92,6 @@
   "coord_events": [],
   "bg_events": [
     {
-      "type": "hidden_item",
-      "x": 11,
-      "y": 8,
-      "elevation": 0,
-      "item": "ITEM_LEFTOVERS",
-      "flag": "FLAG_ITEM_CELADON_LEFTOVERS"
-    },
-    {
       "type": "sign",
       "x": 4,
       "y": 1,

@@ -24,6 +24,8 @@ static void CreateHealthboxSprite(enum BattlerId battler);
 static void ClearBattleBgCntBaseBlocks(void);
 static void CreateCaughtMonSprite(void);
 
+#define CATCH_TUTORIAL_TRAINER_PIC_BACK TRAINER_PIC_BACK_WALLY
+
 void ReshowBattleScreenDummy(void)
 {
 
@@ -82,6 +84,7 @@ static void CB2_ReshowBattleScreenAfterMenu(void)
     case 6:
         if (BattleLoadAllHealthBoxesGfx(gBattleScripting.reshowHelperState))
         {
+            LoadIndicatorSpritesGfx();
             gBattleScripting.reshowHelperState = 0;
         }
         else
@@ -322,9 +325,10 @@ void CreateBattlerSprite(enum BattlerId battler)
         }
         else if (gBattleTypeFlags & BATTLE_TYPE_SAFARI && position == B_POSITION_PLAYER_LEFT)
         {
-            SetMultiuseSpriteTemplateToTrainerBack(gSaveBlock2Ptr->playerGender, position);
+            enum TrainerPicID trainerPicId = (gSaveBlock2Ptr->playerGender == FEMALE) ? TRAINER_BACK_PIC_PLAYER_FEMALE : TRAINER_BACK_PIC_PLAYER_MALE;
+            SetMultiuseSpriteTemplateToTrainerBack(trainerPicId, position);
             gBattlerSpriteIds[battler] = CreateSprite(&gMultiuseSpriteTemplate, 0x50,
-                                                (8 - gTrainerBacksprites[gSaveBlock2Ptr->playerGender].coordinates.size) * 4 + 80,
+                                                (8 - gTrainerBacksprites[trainerPicId].coordinates.size) * 4 + 80,
                                                  GetBattlerSpriteSubpriority(0));
             gSprites[gBattlerSpriteIds[battler]].oam.paletteNum = IndexOfSpritePaletteTag(gTrainerBacksprites[gSaveBlock2Ptr->playerGender].palette.tag);
             gSprites[gBattlerSpriteIds[battler]].callback = SpriteCallbackDummy;

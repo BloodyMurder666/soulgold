@@ -1525,8 +1525,8 @@
 #define FLAG_RECEIVED_BADGE_7                       (SYSTEM_FLAGS + 0x93)
 #define FLAG_GOLDEN_COLOSSEUM                       (SYSTEM_FLAGS + 0x94) // Permission to enter goldenrod underground colosseum
 #define FLAG_NEVER_TURNED_OFF_HARD                  (SYSTEM_FLAGS + 0x95) // If player never chose normal mode during important battles
-#define FLAG_UNUSED_0x8F6                           (SYSTEM_FLAGS + 0x96) // Unused Flag
-#define FLAG_UNUSED_0x8F7                           (SYSTEM_FLAGS + 0x97) // Unused Flag
+#define FLAG_TRAINER_LEVELSCALING                   (SYSTEM_FLAGS + 0x96)
+#define FLAG_WILD_LEVELSCALING                      (SYSTEM_FLAGS + 0x97)
 #define FLAG_UNUSED_0x8F8                           (SYSTEM_FLAGS + 0x98) // Unused Flag
 #define FLAG_UNUSED_0x8F9                           (SYSTEM_FLAGS + 0x99) // Unused Flag
 #define FLAG_UNUSED_0x8FA                           (SYSTEM_FLAGS + 0x9A) // Unused Flag

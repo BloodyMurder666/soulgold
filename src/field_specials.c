@@ -93,7 +93,6 @@ static EWRAM_DATA u32 sBikeCyclingTimer = 0;
 static EWRAM_DATA u8 sSlidingDoorNextFrameCounter = 0;
 static EWRAM_DATA u8 sSlidingDoorFrame = 0;
 static EWRAM_DATA u8 sTutorMoveAndElevatorWindowId = 0;
-static EWRAM_DATA u16 sLilycoveDeptStore_NeverRead = 0;
 static EWRAM_DATA u16 sLilycoveDeptStore_DefaultFloorChoice = 0;
 static EWRAM_DATA struct ListMenuItem *sScrollableMultichoice_ListMenuItem = NULL;
 
@@ -1313,7 +1312,7 @@ void SpawnCameraObject(void)
                                                   LOCALID_CAMERA,
                                                   gSaveBlock1Ptr->pos.x + MAP_OFFSET,
                                                   gSaveBlock1Ptr->pos.y + MAP_OFFSET,
-                                                  3); // elevation
+                                                  ELEVATION_DEFAULT);
     gObjectEvents[obj].invisible = TRUE;
     CameraObjectSetFollowedSpriteId(gObjectEvents[obj].spriteId);
 }
@@ -1833,7 +1832,6 @@ void SetDeptStoreFloor(void)
 
 u16 GetDeptStoreDefaultFloorChoice(void)
 {
-    sLilycoveDeptStore_NeverRead = 0;
     sLilycoveDeptStore_DefaultFloorChoice = 0;
 
     if (gSaveBlock1Ptr->dynamicWarp.mapGroup == MAP_GROUP(MAP_LILYCOVE_CITY_DEPARTMENT_STORE_1F))
@@ -1841,23 +1839,18 @@ u16 GetDeptStoreDefaultFloorChoice(void)
         switch (gSaveBlock1Ptr->dynamicWarp.mapNum)
         {
         case MAP_NUM(MAP_LILYCOVE_CITY_DEPARTMENT_STORE_5F):
-            sLilycoveDeptStore_NeverRead = 0;
             sLilycoveDeptStore_DefaultFloorChoice = 0;
             break;
         case MAP_NUM(MAP_LILYCOVE_CITY_DEPARTMENT_STORE_4F):
-            sLilycoveDeptStore_NeverRead = 0;
             sLilycoveDeptStore_DefaultFloorChoice = 1;
             break;
         case MAP_NUM(MAP_LILYCOVE_CITY_DEPARTMENT_STORE_3F):
-            sLilycoveDeptStore_NeverRead = 0;
             sLilycoveDeptStore_DefaultFloorChoice = 2;
             break;
         case MAP_NUM(MAP_LILYCOVE_CITY_DEPARTMENT_STORE_2F):
-            sLilycoveDeptStore_NeverRead = 0;
             sLilycoveDeptStore_DefaultFloorChoice = 3;
             break;
         case MAP_NUM(MAP_LILYCOVE_CITY_DEPARTMENT_STORE_1F):
-            sLilycoveDeptStore_NeverRead = 0;
             sLilycoveDeptStore_DefaultFloorChoice = 4;
             break;
         }
@@ -4231,27 +4224,27 @@ static void BufferFanClubTrainerName_(u8 whichLinkTrainer, u8 whichNPCTrainer)
 {
     switch (whichNPCTrainer)
     {
-        case 0:
-            StringCopy(gStringVar1, sText_Wallace);
-            break;
-        case 1:
-            StringCopy(gStringVar1, sText_Steven);
-            break;
-        case 2:
-            StringCopy(gStringVar1, sText_Brawly);
-            break;
-        case 3:
-            StringCopy(gStringVar1, sText_Winona);
-            break;
-        case 4:
-            StringCopy(gStringVar1, sText_Phoebe);
-            break;
-        case 5:
-            StringCopy(gStringVar1, sText_Glacia);
-            break;
-        default:
-            StringCopy(gStringVar1, sText_Wallace);
-            break;
+    case 0:
+        StringCopy(gStringVar1, sText_Wallace);
+        break;
+    case 1:
+        StringCopy(gStringVar1, sText_Steven);
+        break;
+    case 2:
+        StringCopy(gStringVar1, sText_Brawly);
+        break;
+    case 3:
+        StringCopy(gStringVar1, sText_Winona);
+        break;
+    case 4:
+        StringCopy(gStringVar1, sText_Phoebe);
+        break;
+    case 5:
+        StringCopy(gStringVar1, sText_Glacia);
+        break;
+    default:
+        StringCopy(gStringVar1, sText_Wallace);
+        break;
     }
 }
 #endif //FREE_LINK_BATTLE_RECORDS
@@ -4516,6 +4509,41 @@ void ChooseItemFromBag(void)
         break;
     }
 }
+
+u8 GetLeadMonFriendship(void)
+{
+    struct Pokemon * pokemon = &gPlayerParty[GetLeadMonIndex()];
+    if (GetMonData(pokemon, MON_DATA_FRIENDSHIP) == 255)
+        return 6;
+    else if (GetMonData(pokemon, MON_DATA_FRIENDSHIP) >= 200)
+        return 5;
+    else if (GetMonData(pokemon, MON_DATA_FRIENDSHIP) >= 150)
+        return 4;
+    else if (GetMonData(pokemon, MON_DATA_FRIENDSHIP) >= 100)
+        return 3;
+    else if (GetMonData(pokemon, MON_DATA_FRIENDSHIP) >= 50)
+        return 2;
+    else if (GetMonData(pokemon, MON_DATA_FRIENDSHIP) > 0)
+        return 1;
+    else
+        return 0;
+}
+
+enum Move GetFirstPartnerMove(u16 species)
+{
+    switch (species)
+    {
+    case SPECIES_VENUSAUR:
+        return MOVE_FRENZY_PLANT;
+    case SPECIES_CHARIZARD:
+        return MOVE_BLAST_BURN;
+    case SPECIES_BLASTOISE:
+        return MOVE_HYDRO_CANNON;
+    default:
+        return MOVE_NONE;
+    }
+}
+
 // Sets the HP Stat of the Pokémon according to the current value of var 0x8000 
 void SetHpStat(void)
 {

@@ -76,6 +76,8 @@
 
 extern u16 gSpecialVar_ItemId;
 
+extern u16 gSpecialVar_ItemId;
+
 #define FRIENDSHIP_EVO_THRESHOLD ((P_FRIENDSHIP_EVO_THRESHOLD >= GEN_8) ? 160 : 220)
 
 struct SpeciesItem
@@ -1216,13 +1218,13 @@ static bool32 IsValidGender(u32 gender)
 {
     switch (gender)
     {
-        case MON_MALE:
-        case MON_FEMALE:
-        case MON_GENDERLESS:
-        case MON_GENDER_RANDOM:
-            return TRUE;
-        default:
-            return FALSE;
+    case MON_MALE:
+    case MON_FEMALE:
+    case MON_GENDERLESS:
+    case MON_GENDER_RANDOM:
+        return TRUE;
+    default:
+        return FALSE;
     }
 }
 
@@ -4134,7 +4136,7 @@ bool8 HealStatusConditions(struct Pokemon *mon, u32 healMask, enum BattlerId bat
         if (gMain.inBattle && battler != MAX_BATTLERS_COUNT)
         {
             gBattleMons[battler].status1 &= ~healMask;
-            if((healMask & STATUS1_SLEEP))
+            if ((healMask & STATUS1_SLEEP))
             {
                 u32 i = 0;
                 u32 battlerSide = GetBattlerSide(battler);
@@ -4318,24 +4320,24 @@ u8 *UseStatIncreaseItem(enum Item itemId)
 
     switch (itemEffect[1])
     {
-        case ITEM1_X_ATTACK:
-            BufferStatRoseMessage(STAT_ATK);
-            break;
-        case ITEM1_X_DEFENSE:
-            BufferStatRoseMessage(STAT_DEF);
-            break;
-        case ITEM1_X_SPEED:
-            BufferStatRoseMessage(STAT_SPEED);
-            break;
-        case ITEM1_X_SPATK:
-            BufferStatRoseMessage(STAT_SPATK);
-            break;
-        case ITEM1_X_SPDEF:
-            BufferStatRoseMessage(STAT_SPDEF);
-            break;
-        case ITEM1_X_ACCURACY:
-            BufferStatRoseMessage(STAT_ACC);
-            break;
+    case ITEM1_X_ATTACK:
+        BufferStatRoseMessage(STAT_ATK);
+        break;
+    case ITEM1_X_DEFENSE:
+        BufferStatRoseMessage(STAT_DEF);
+        break;
+    case ITEM1_X_SPEED:
+        BufferStatRoseMessage(STAT_SPEED);
+        break;
+    case ITEM1_X_SPATK:
+        BufferStatRoseMessage(STAT_SPATK);
+        break;
+    case ITEM1_X_SPDEF:
+        BufferStatRoseMessage(STAT_SPDEF);
+        break;
+    case ITEM1_X_ACCURACY:
+        BufferStatRoseMessage(STAT_ACC);
+        break;
     }
 
     if (itemEffect[3] & ITEM3_GUARD_SPEC)
@@ -4415,7 +4417,7 @@ bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct Evoluti
         enum EvolutionConditions condition = params[i].condition;
         bool32 currentCondition = FALSE;
 
-        switch(condition)
+        switch (condition)
         {
         // Gen 2
         case IF_GENDER:
@@ -6584,7 +6586,7 @@ u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove)
     {
         sLearningMoveTableID = 0;
     }
-    while(learnset[sLearningMoveTableID].move != LEVEL_UP_MOVE_END)
+    while (learnset[sLearningMoveTableID].move != LEVEL_UP_MOVE_END)
     {
         while ((learnset[sLearningMoveTableID].level == 0 || learnset[sLearningMoveTableID].level == level)
              && !(P_EVOLUTION_LEVEL_1_LEARN >= GEN_8 && learnset[sLearningMoveTableID].level == 1))
@@ -6634,7 +6636,7 @@ void TryScriptEvolution(void)
         {
             GetEvolutionTargetSpecies(&gPlayerParty[i], EVO_MODE_SCRIPT_TRIGGER, 0, NULL, &canStopEvo, DO_EVO);
             sTriedEvolving |= 1u << i;
-            if(gMain.callback2 == TryScriptEvolution) // This fixes small graphics glitches.
+            if (gMain.callback2 == TryScriptEvolution) // This fixes small graphics glitches.
                 EvolutionScene(&gPlayerParty[i], targetSpecies, canStopEvo, i);
             else
                 BeginEvolutionScene(&gPlayerParty[i], targetSpecies, canStopEvo, i);
@@ -6665,7 +6667,7 @@ void TrySpecialOverworldEvo(void)
         {
             GetEvolutionTargetSpecies(&gPlayerParty[i], EVO_MODE_OVERWORLD_SPECIAL, 0, NULL, &canStopEvo, DO_EVO);
             sTriedEvolving |= 1u << i;
-            if(gMain.callback2 == TrySpecialOverworldEvo) // This fixes small graphics glitches.
+            if (gMain.callback2 == TrySpecialOverworldEvo) // This fixes small graphics glitches.
                 EvolutionScene(&gPlayerParty[i], targetSpecies, canStopEvo, i);
             else
                 BeginEvolutionScene(&gPlayerParty[i], targetSpecies, canStopEvo, i);

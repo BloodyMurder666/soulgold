@@ -88,13 +88,6 @@
   ],
   "coord_events": [],
   "bg_events": [
-    {
-      "type": "hidden_item",
-      "x": 25,
-      "y": 5,
-      "elevation": 0,
-      "item": "ITEM_LUCKY_EGG",
-      "flag": "FLAG_CERULEAN_CAVE_LUCKY_EGG"
-    }
+
   ]
 }

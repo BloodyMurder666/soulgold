@@ -28,8 +28,8 @@ enum
 
 typedef struct MatchCallTextDataStruct {
     const u8 *text;
-    u16 flag;
-    u16 flag2;
+    u16 availabilityFlag;
+    u16 flagToSetOnCompletion;
 } match_call_text_data_t;
 
 struct MatchCallStructCommon {
@@ -156,6 +156,10 @@ static void MatchCall_GetNameAndDesc_Rival(match_call_t, const u8 **, const u8 *
 static void MatchCall_BufferCallMessageText(const match_call_text_data_t *, u8 *);
 static void MatchCall_BufferCallMessageTextByRematchTeam(const match_call_text_data_t *, u16, u8 *);
 static void MatchCall_GetNameAndDescByRematchIdx(u32, const u8 **, const u8 **);
+
+#define ALWAYS_AVAILABLE 0xFFFF
+#define NO_FLAG_TO_SET   0xFFFF
+#define MATCH_CALL_TEXT_END {NULL, ALWAYS_AVAILABLE, NO_FLAG_TO_SET}
 
 // .rodata
 
@@ -368,11 +372,11 @@ static const struct MatchCallStructNPC sScottMatchCallHeader =
 };
 
 static const match_call_text_data_t sRoxanneTextScripts[] = {
-    { MatchCall_Text_Roxanne1, 0xFFFE,              0xFFFF },
-    { MatchCall_Text_Roxanne2, 0xFFFF,              0xFFFF },
-    { MatchCall_Text_Roxanne3, 0xFFFF,              0xFFFF },
-    { MatchCall_Text_Roxanne4, FLAG_SYS_GAME_CLEAR, 0xFFFF },
-    { NULL,                    0xFFFF,              0xFFFF }
+    { MatchCall_Text_Roxanne1, 0xFFFE,              NO_FLAG_TO_SET },
+    { MatchCall_Text_Roxanne2, ALWAYS_AVAILABLE,    NO_FLAG_TO_SET },
+    { MatchCall_Text_Roxanne3, ALWAYS_AVAILABLE,    NO_FLAG_TO_SET },
+    { MatchCall_Text_Roxanne4, FLAG_SYS_GAME_CLEAR, NO_FLAG_TO_SET },
+    MATCH_CALL_TEXT_END
 };
 
 static const struct MatchCallStructTrainer sRoxanneMatchCallHeader =
@@ -387,11 +391,11 @@ static const struct MatchCallStructTrainer sRoxanneMatchCallHeader =
 };
 
 static const match_call_text_data_t sBrawlyTextScripts[] = {
-    { MatchCall_Text_Brawly1, 0xFFFE,              0xFFFF },
-    { MatchCall_Text_Brawly2, 0xFFFF,              0xFFFF },
-    { MatchCall_Text_Brawly3, 0xFFFF,              0xFFFF },
-    { MatchCall_Text_Brawly4, FLAG_SYS_GAME_CLEAR, 0xFFFF },
-    { NULL,                   0xFFFF,              0xFFFF }
+    { MatchCall_Text_Brawly1, 0xFFFE,              NO_FLAG_TO_SET },
+    { MatchCall_Text_Brawly2, ALWAYS_AVAILABLE,    NO_FLAG_TO_SET },
+    { MatchCall_Text_Brawly3, ALWAYS_AVAILABLE,    NO_FLAG_TO_SET },
+    { MatchCall_Text_Brawly4, FLAG_SYS_GAME_CLEAR, NO_FLAG_TO_SET },
+    MATCH_CALL_TEXT_END
 };
 
 static const struct MatchCallStructTrainer sBrawlyMatchCallHeader =
@@ -406,11 +410,11 @@ static const struct MatchCallStructTrainer sBrawlyMatchCallHeader =
 };
 
 static const match_call_text_data_t sWattsonTextScripts[] = {
-    { MatchCall_Text_Wattson1, 0xFFFE,              0xFFFF },
-    { MatchCall_Text_Wattson2, 0xFFFF,              0xFFFF },
-    { MatchCall_Text_Wattson3, 0xFFFF,              0xFFFF },
-    { MatchCall_Text_Wattson4, FLAG_SYS_GAME_CLEAR, 0xFFFF },
-    { NULL,                    0xFFFF,              0xFFFF }
+    { MatchCall_Text_Wattson1, 0xFFFE,              NO_FLAG_TO_SET },
+    { MatchCall_Text_Wattson2, ALWAYS_AVAILABLE,    NO_FLAG_TO_SET },
+    { MatchCall_Text_Wattson3, ALWAYS_AVAILABLE,    NO_FLAG_TO_SET },
+    { MatchCall_Text_Wattson4, FLAG_SYS_GAME_CLEAR, NO_FLAG_TO_SET },
+    MATCH_CALL_TEXT_END
 };
 
 static const struct MatchCallStructTrainer sWattsonMatchCallHeader =
@@ -425,11 +429,11 @@ static const struct MatchCallStructTrainer sWattsonMatchCallHeader =
 };
 
 static const match_call_text_data_t sFlanneryTextScripts[] = {
-    { MatchCall_Text_Flannery1, 0xFFFE,              0xFFFF },
-    { MatchCall_Text_Flannery2, 0xFFFF,              0xFFFF },
-    { MatchCall_Text_Flannery3, 0xFFFF,              0xFFFF },
-    { MatchCall_Text_Flannery4, FLAG_SYS_GAME_CLEAR, 0xFFFF },
-    { NULL,                     0xFFFF,              0xFFFF }
+    { MatchCall_Text_Flannery1, 0xFFFE,              NO_FLAG_TO_SET },
+    { MatchCall_Text_Flannery2, ALWAYS_AVAILABLE,    NO_FLAG_TO_SET },
+    { MatchCall_Text_Flannery3, ALWAYS_AVAILABLE,    NO_FLAG_TO_SET },
+    { MatchCall_Text_Flannery4, FLAG_SYS_GAME_CLEAR, NO_FLAG_TO_SET },
+    MATCH_CALL_TEXT_END
 };
 
 static const struct MatchCallStructTrainer sFlanneryMatchCallHeader =
@@ -444,11 +448,11 @@ static const struct MatchCallStructTrainer sFlanneryMatchCallHeader =
 };
 
 static const match_call_text_data_t sWinonaTextScripts[] = {
-    { MatchCall_Text_Winona1, 0xFFFE,              0xFFFF },
-    { MatchCall_Text_Winona2, 0xFFFF,              0xFFFF },
-    { MatchCall_Text_Winona3, 0xFFFF,              0xFFFF },
-    { MatchCall_Text_Winona4, FLAG_SYS_GAME_CLEAR, 0xFFFF },
-    { NULL,                   0xFFFF,              0xFFFF }
+    { MatchCall_Text_Winona1, 0xFFFE,              NO_FLAG_TO_SET },
+    { MatchCall_Text_Winona2, ALWAYS_AVAILABLE,    NO_FLAG_TO_SET },
+    { MatchCall_Text_Winona3, ALWAYS_AVAILABLE,    NO_FLAG_TO_SET },
+    { MatchCall_Text_Winona4, FLAG_SYS_GAME_CLEAR, NO_FLAG_TO_SET },
+    MATCH_CALL_TEXT_END
 };
 
 static const struct MatchCallStructTrainer sWinonaMatchCallHeader =
@@ -463,11 +467,11 @@ static const struct MatchCallStructTrainer sWinonaMatchCallHeader =
 };
 
 static const match_call_text_data_t sTateLizaTextScripts[] = {
-    { MatchCall_Text_TateLiza1, 0xFFFE,              0xFFFF },
-    { MatchCall_Text_TateLiza2, 0xFFFF,              0xFFFF },
-    { MatchCall_Text_TateLiza3, 0xFFFF,              0xFFFF },
-    { MatchCall_Text_TateLiza4, FLAG_SYS_GAME_CLEAR, 0xFFFF },
-    { NULL,                     0xFFFF,              0xFFFF }
+    { MatchCall_Text_TateLiza1, 0xFFFE,              NO_FLAG_TO_SET },
+    { MatchCall_Text_TateLiza2, ALWAYS_AVAILABLE,    NO_FLAG_TO_SET },
+    { MatchCall_Text_TateLiza3, ALWAYS_AVAILABLE,    NO_FLAG_TO_SET },
+    { MatchCall_Text_TateLiza4, FLAG_SYS_GAME_CLEAR, NO_FLAG_TO_SET },
+    MATCH_CALL_TEXT_END
 };
 
 static const struct MatchCallStructTrainer sTateLizaMatchCallHeader =
@@ -482,11 +486,11 @@ static const struct MatchCallStructTrainer sTateLizaMatchCallHeader =
 };
 
 static const match_call_text_data_t sJuanTextScripts[] = {
-    { MatchCall_Text_Juan1, 0xFFFE,              0xFFFF },
-    { MatchCall_Text_Juan2, 0xFFFF,              0xFFFF },
-    { MatchCall_Text_Juan3, 0xFFFF,              0xFFFF },
-    { MatchCall_Text_Juan4, FLAG_SYS_GAME_CLEAR, 0xFFFF },
-    { NULL,                 0xFFFF,              0xFFFF }
+    { MatchCall_Text_Juan1, 0xFFFE,              NO_FLAG_TO_SET },
+    { MatchCall_Text_Juan2, ALWAYS_AVAILABLE,    NO_FLAG_TO_SET },
+    { MatchCall_Text_Juan3, ALWAYS_AVAILABLE,    NO_FLAG_TO_SET },
+    { MatchCall_Text_Juan4, FLAG_SYS_GAME_CLEAR, NO_FLAG_TO_SET },
+    MATCH_CALL_TEXT_END
 };
 
 static const struct MatchCallStructTrainer sJuanMatchCallHeader =
@@ -503,8 +507,8 @@ static const struct MatchCallStructTrainer sJuanMatchCallHeader =
 static const u8 gText_EliteFourMatchCallDesc[] = _("ELITE FOUR");
 
 static const match_call_text_data_t sSidneyTextScripts[] = {
-    { MatchCall_Text_Sidney, 0xFFFF, 0xFFFF },
-    { NULL,                  0xFFFF, 0xFFFF }
+    { MatchCall_Text_Sidney, ALWAYS_AVAILABLE, NO_FLAG_TO_SET },
+    MATCH_CALL_TEXT_END
 };
 
 static const struct MatchCallStructTrainer sSidneyMatchCallHeader =
@@ -519,8 +523,8 @@ static const struct MatchCallStructTrainer sSidneyMatchCallHeader =
 };
 
 static const match_call_text_data_t sPhoebeTextScripts[] = {
-    { MatchCall_Text_Phoebe, 0xFFFF, 0xFFFF },
-    { NULL,                  0xFFFF, 0xFFFF }
+    { MatchCall_Text_Phoebe, ALWAYS_AVAILABLE, NO_FLAG_TO_SET },
+    MATCH_CALL_TEXT_END
 };
 
 static const struct MatchCallStructTrainer sPhoebeMatchCallHeader =
@@ -535,8 +539,8 @@ static const struct MatchCallStructTrainer sPhoebeMatchCallHeader =
 };
 
 static const match_call_text_data_t sGlaciaTextScripts[] = {
-    { MatchCall_Text_Glacia, 0xFFFF, 0xFFFF },
-    { NULL,                  0xFFFF, 0xFFFF }
+    { MatchCall_Text_Glacia, ALWAYS_AVAILABLE, NO_FLAG_TO_SET },
+    MATCH_CALL_TEXT_END
 };
 
 static const struct MatchCallStructTrainer sGlaciaMatchCallHeader =
@@ -551,8 +555,8 @@ static const struct MatchCallStructTrainer sGlaciaMatchCallHeader =
 };
 
 static const match_call_text_data_t sDrakeTextScripts[] = {
-    { MatchCall_Text_Drake, 0xFFFF, 0xFFFF },
-    { NULL,                 0xFFFF, 0xFFFF }
+    { MatchCall_Text_Drake, ALWAYS_AVAILABLE, NO_FLAG_TO_SET },
+    MATCH_CALL_TEXT_END
 };
 
 static const struct MatchCallStructTrainer sDrakeMatchCallHeader =
@@ -567,8 +571,8 @@ static const struct MatchCallStructTrainer sDrakeMatchCallHeader =
 };
 
 static const match_call_text_data_t sWallaceTextScripts[] = {
-    { MatchCall_Text_Wallace, 0xFFFF, 0xFFFF },
-    { NULL,                   0xFFFF, 0xFFFF }
+    { MatchCall_Text_Wallace, ALWAYS_AVAILABLE, NO_FLAG_TO_SET },
+    MATCH_CALL_TEXT_END
 };
 
 static const struct MatchCallStructTrainer sWallaceMatchCallHeader =
@@ -718,18 +722,18 @@ static u32 MatchCallGetFunctionIndex(match_call_t matchCall)
 {
     switch (matchCall.common->type)
     {
-        default:
-        case MC_TYPE_NPC:
-            return 0;
-        case MC_TYPE_TRAINER:
-        case MC_TYPE_LEADER:
-            return 1;
-        case MC_TYPE_WALLY:
-            return 2;
-        case MC_TYPE_RIVAL:
-            return 3;
-        case MC_TYPE_BIRCH:
-            return 4;
+    default:
+    case MC_TYPE_NPC:
+        return 0;
+    case MC_TYPE_TRAINER:
+    case MC_TYPE_LEADER:
+        return 1;
+    case MC_TYPE_WALLY:
+        return 2;
+    case MC_TYPE_RIVAL:
+        return 3;
+    case MC_TYPE_BIRCH:
+        return 4;
     }
 }
 
@@ -1019,12 +1023,12 @@ static void MatchCall_BufferCallMessageText(const match_call_text_data_t *textDa
         i--;
     while (i)
     {
-        if (textData[i].flag != 0xFFFF && FlagGet(textData[i].flag) == TRUE)
+        if (textData[i].availabilityFlag != ALWAYS_AVAILABLE && FlagGet(textData[i].availabilityFlag) == TRUE)
             break;
         i--;
     }
-    if (textData[i].flag2 != 0xFFFF)
-        FlagSet(textData[i].flag2);
+    if (textData[i].flagToSetOnCompletion != NO_FLAG_TO_SET)
+        FlagSet(textData[i].flagToSetOnCompletion);
     StringExpandPlaceholders(dest, textData[i].text);
 }
 
@@ -1034,17 +1038,17 @@ static void MatchCall_BufferCallMessageTextByRematchTeam(const match_call_text_d
     u32 i;
     for (i = 0; textData[i].text != NULL; i++)
     {
-        if (textData[i].flag == 0xFFFE)
+        if (textData[i].availabilityFlag == 0xFFFE)
             break;
-        if (textData[i].flag != 0xFFFF && !FlagGet(textData[i].flag))
+        if (textData[i].availabilityFlag != ALWAYS_AVAILABLE && !FlagGet(textData[i].availabilityFlag))
             break;
     }
-    if (textData[i].flag != 0xFFFE)
+    if (textData[i].availabilityFlag != 0xFFFE)
     {
         if (i)
             i--;
-        if (textData[i].flag2 != 0xFFFF)
-            FlagSet(textData[i].flag2);
+        if (textData[i].flagToSetOnCompletion != NO_FLAG_TO_SET)
+            FlagSet(textData[i].flagToSetOnCompletion);
         StringExpandPlaceholders(dest, textData[i].text);
     }
     else
