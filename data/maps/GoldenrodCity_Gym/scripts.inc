@@ -498,9 +498,9 @@ WhitneyChooseDifficulty::
 	switch VAR_RESULT
 # 258 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	case 0, WhitneyChooseDifficulty_3
-# 262 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 263 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	case 1, WhitneyChooseDifficulty_4
-# 267 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 268 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	release
 	end
 
@@ -510,29 +510,31 @@ WhitneyChooseDifficulty_3:
 # 259 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	setdifficulty DIFFICULTY_NORMAL
 # 260 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	clearflag FLAG_NEVER_TURNED_OFF_HARD
+# 261 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	trainerbattle_no_intro TRAINER_WHITNEY_1, GoldenrodCity_Gym_Text_WhitneyShouldntBeSoSerious
 	return
 
 WhitneyChooseDifficulty_4:
-# 263 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	setdifficulty DIFFICULTY_HARD
 # 264 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	setdifficulty DIFFICULTY_HARD
+# 265 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	trainerbattle_no_intro TRAINER_WHITNEY_1, GoldenrodCity_Gym_Text_WhitneyShouldntBeSoSerious
 	return
 
 
 WhitneyMiltank::
-# 274 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	lock
 # 275 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	faceplayer
+	lock
 # 276 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	playmoncry SPECIES_MILTANK, CRY_MODE_NORMAL
+	faceplayer
 # 277 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	msgbox WhitneyMiltank_Text_0
+	playmoncry SPECIES_MILTANK, CRY_MODE_NORMAL
 # 278 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	waitmoncry
+	msgbox WhitneyMiltank_Text_0
 # 279 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	waitmoncry
+# 280 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	release
 	end
 
@@ -559,5 +561,5 @@ WhitneyChooseDifficulty_Text_3:
 	.string "Cancel$"
 
 WhitneyMiltank_Text_0:
-# 277 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 278 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	.string "Mooo!$"

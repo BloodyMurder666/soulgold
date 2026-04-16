@@ -121,7 +121,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "AzaleaTown_Gym_EventScript_Bugsy",
       "flag": "0"
     },
     {
@@ -134,7 +134,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "GoldenrodCity_Gym_EventScript_Whitney",
       "flag": "0"
     },
     {
@@ -160,7 +160,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "EcruteakCity_Gym_EventScript_Morty",
       "flag": "0"
     },
     {
@@ -524,7 +524,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "VioletCity_Gym_EventScript_Falkner",
       "flag": "0"
     },
     {

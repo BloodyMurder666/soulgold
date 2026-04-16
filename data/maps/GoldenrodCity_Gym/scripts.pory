@@ -257,6 +257,7 @@ script WhitneyChooseDifficulty {
     switch(var(VAR_RESULT)) {
         case 0: // Regular
             setdifficulty(DIFFICULTY_NORMAL)
+            clearflag(FLAG_NEVER_TURNED_OFF_HARD)
             trainerbattle_no_intro(TRAINER_WHITNEY_1, GoldenrodCity_Gym_Text_WhitneyShouldntBeSoSerious)
             return
         case 1: // Hard
