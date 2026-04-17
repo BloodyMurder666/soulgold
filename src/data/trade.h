@@ -984,12 +984,12 @@ static const struct InGameTrade sIngameTrades[] =
         .sheen = 10,
         .requestedSpecies = SPECIES_RALTS
     },
-    [INGAME_TRADE_ONIX] =
+    [INGAME_TRADE_PAWMI] =
     {
-        .nickname = _("WOOFE"),
-        .species = SPECIES_ROCKRUFF_OWN_TEMPO,
+        .nickname = _("FLUFF"),
+        .species = SPECIES_PAWMI,
         .ivs = {31, 31, 31, 31, 31, 31},
-        .abilityNum = 0,
+        .abilityNum = 2,
         .otId = 48926,
         .conditions = {30, 30, 30, 30, 30},
         .personality = 0x96,

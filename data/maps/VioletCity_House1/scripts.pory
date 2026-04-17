@@ -1,0 +1,52 @@
+raw `
+VioletCity_House1_MapScripts::
+	.byte 0
+
+VioletCity_House1_EventScript_Kyle::
+	lock
+	faceplayer
+	msgbox VioletCity_House1_Text_PokefanM, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+VioletCity_House1_Text_PokefanM:
+	.string "A POKéMON you get in a trade\n"
+	.string "grows quickly.\p"
+	.string "But if you don't have the right\n"
+	.string "GYM BADGE, they may disobey you.$"
+
+`
+
+script Violet_PawmiTrade {
+    lock
+    faceplayer
+    if (flag(FLAG_VIOLET_NPC_TRADE_COMPLETED)) {
+        msgbox("Hi, how is my old Pawmi doing?")
+    } else {
+        ingame_trade(INGAME_TRADE_PAWMI, "I collect Pokémon
+                                         Do you have a Cottonee?
+                                         Want to trade it for my
+                                         Pawmi?", 
+                                         PawmiTrade_Declined,
+                                         PawmiTrade_NotRequested,
+                                         "Yay! I got myself a Cottonee!
+                                          Pawmi, you take care!")
+        setflag(FLAG_VIOLET_NPC_TRADE_COMPLETED)
+    }
+    release
+    end
+}
+
+script PawmiTrade_Declined {
+    msgbox("You don't want to trade? Aww...")
+    release
+    end                                 
+}
+
+script PawmiTrade_NotRequested {
+    msgbox("Uh, no, I don't think so.
+            That doesn't look like a Cottonee.")
+    release
+    end
+}
