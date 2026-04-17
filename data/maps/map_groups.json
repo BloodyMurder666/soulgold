@@ -351,7 +351,8 @@
     "SafariZoneGate_PokemonCenter",
     "SafariZoneGate_SafariZoneEntrance",
     "Route27_House",
-    "MtSilver_PokemonCenter"
+    "MtSilver_PokemonCenter",
+    "Gate_Route39North"
   ],
   "gMapGroup_IndoorKantoRoutes": [
     "Route26_House1",

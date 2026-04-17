@@ -1,0 +1,86 @@
+mapscripts Gate_Route39North_MapScripts {}
+
+script Route39North_Police {
+    msgbox("If you want to head further north, you
+            should find yourself some protection
+            against the cold. The higher altitude
+            takes a toll on the body.", MSGBOX_NPC)
+}
+
+script Route39North_Elder {
+    msgbox("When I was younger, I would hike the
+            trail to the mountain every day, uphill
+            both ways! I didn't have any pokémon
+            carrying me or any of those fancy bikes
+            you kids have these days!", MSGBOX_NPC)
+}
+
+script Route39North_Hiker {
+    lock
+    faceplayer
+    if (flag(FLAG_R39_NORTH_ROCKY_HELMET)) {
+        msgbox("Rocky Helmet makes sure your enemies
+                will also suffer the pain they inflict
+                upon you!")
+        release
+        end
+    }
+    msgbox("Tired of only taking the beating? Try
+            this!")
+    giveitem(ITEM_ROCKY_HELMET)
+    setflag(FLAG_R39_NORTH_ROCKY_HELMET)
+    msgbox("That should put the pain back to your
+            enemies.")
+    release
+    end
+}
+
+script Route39North_Poster {
+    msgbox("There's a sign about a large bird 
+            Pokémon being sighted in the mountains.", MSGBOX_SIGN)
+}
+
+script Route39North_Binoculars {
+    msgbox("You peer into the binoculars...
+            ...
+            ..!
+            A majestic snowmountain towers in the
+            distance!", MSGBOX_SIGN)
+}
+
+
+script Route39North_Gameboykid {
+    lock
+    faceplayer
+    if (flag(FLAG_R39_NORTH_TRADE)) {
+        msgbox("I hear Rotom can posses common
+                household appliances to change
+                form.")
+    } else {
+        ingame_trade(INGAME_TRADE_ROTOM, "There's this rare Pokémon
+                                          I've been seeking for a while.
+                                          Would you happen to have a Zorua?
+                                          I would trade it for Rotom.", 
+                                         RotomTrade_Declined,
+                                         RotomTrade_NotRequested,
+                                         "Much appreciated! I'm a huge fan
+                                         of Unova, I can't wait to show this
+                                         to my friends!")
+        setflag(FLAG_R39_NORTH_TRADE)
+    }
+    release
+    end
+}
+
+script RotomTrade_Declined {
+    msgbox("Shame, it is quite a rare Pokémon.")
+    release
+    end                                 
+}
+
+script RotomTrade_NotRequested {
+    msgbox("Uh, no, I don't think so.
+            That doesn't look like a Zorua.")
+    release
+    end
+}

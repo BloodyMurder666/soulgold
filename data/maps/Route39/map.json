@@ -27,8 +27,8 @@
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_PSYCHIC_M",
-      "x": 29,
-      "y": 17,
+      "x": 28,
+      "y": 24,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_RIGHT",
       "movement_range_x": 4,
@@ -307,6 +307,20 @@
       "elevation": 0,
       "dest_map": "MAP_ROUTE39_BARN",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 30,
+      "y": 16,
+      "elevation": 0,
+      "dest_map": "MAP_GATE_ROUTE39NORTH",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 31,
+      "y": 16,
+      "elevation": 0,
+      "dest_map": "MAP_GATE_ROUTE39NORTH",
+      "dest_warp_id": "2"
     }
   ],
   "coord_events": [
@@ -407,6 +421,14 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route39_EventScript_Sign2"
+    },
+    {
+      "type": "sign",
+      "x": 33,
+      "y": 17,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Route39_NorthSign"
     }
   ]
 }

@@ -1186,11 +1186,27 @@ static const struct InGameTrade sIngameTrades[] =
         .conditions = {30, 5, 5, 5, 5},
         .personality = 0x84,
         .heldItem = ITEM_CHESTO_BERRY,
-        .mailNum = -1,
+        .mailNum = 0,
         .otName = _("Rick"),
         .otGender = FEMALE,
         .sheen = 10,
         .requestedSpecies = SPECIES_SLOWPOKE
+    },
+    [INGAME_TRADE_ROTOM] =
+    {
+        .nickname = _("Sparkle"),
+        .species = SPECIES_ROTOM,
+        .ivs = {28, 28, 28, 28, 28, 28},
+        .abilityNum = 2,
+        .otId = 74845,
+        .conditions = {30, 5, 5, 5, 5},
+        .personality = 0x84,
+        .heldItem = ITEM_ABSORB_BULB,
+        .mailNum = 0,
+        .otName = _("Jorda"),
+        .otGender = FEMALE,
+        .sheen = 10,
+        .requestedSpecies = SPECIES_ZORUA
     }
 };
 

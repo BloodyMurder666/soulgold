@@ -21,6 +21,7 @@ enum InGameTradeID
     INGAME_TRADE_BONSLY,
     INGAME_TRADE_STEELIX,
     INGAME_TRADE_SLOWPOKE, // Azalea Town
+    INGAME_TRADE_ROTOM // Route 39 North Gatehouse
 };
 
 // Return values for CanTradeSelectedMon and CanSpinTradeMon

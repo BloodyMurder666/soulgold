@@ -2117,3 +2117,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/GoldenrodShore/scripts.inc"
 
 	.include "data/maps/HiddenGrotto_Goldenrod_Shore/scripts.inc"
+
+	.include "data/maps/Gate_Route39North/scripts.inc"

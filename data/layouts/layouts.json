@@ -8810,6 +8810,16 @@
       "secondary_tileset": "gTileset_Route32",
       "border_filepath": "data/layouts/HiddenGrotto_Goldenrod_Shore/border.bin",
       "blockdata_filepath": "data/layouts/HiddenGrotto_Goldenrod_Shore/map.bin"
+    },
+    {
+      "id": "LAYOUT_GATE_ROUTE39NORTH",
+      "name": "Gate_Route39North_Layout",
+      "width": 39,
+      "height": 12,
+      "primary_tileset": "gTileset_Johto_Building",
+      "secondary_tileset": "gTileset_Gate_Standard",
+      "border_filepath": "data/layouts/Gate_Route39North/border.bin",
+      "blockdata_filepath": "data/layouts/Gate_Route39North/map.bin"
     }
   ]
 }
