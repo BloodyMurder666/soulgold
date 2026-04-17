@@ -205,6 +205,5 @@
       "script": "MtPyre_Summit_EventScript_ArchieMaxieTrigger2"
     }
   ],
-  "bg_events": [
-  ]
+  "bg_events": []
 }

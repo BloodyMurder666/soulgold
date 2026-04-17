@@ -226,6 +226,5 @@
       "script": "JaggedPass_EventScript_OpenMagmaHideout"
     }
   ],
-  "bg_events": [
-  ]
+  "bg_events": []
 }

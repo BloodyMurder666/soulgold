@@ -111,6 +111,5 @@
       "script": "MtPyre_Exterior_EventScript_FogTrigger"
     }
   ],
-  "bg_events": [
-  ]
+  "bg_events": []
 }

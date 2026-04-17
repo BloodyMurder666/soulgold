@@ -190,7 +190,5 @@
       "script": "VictoryRoad_1F_EventScript_WallyBattleTrigger2"
     }
   ],
-  "bg_events": [
-
-  ]
+  "bg_events": []
 }
