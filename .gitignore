@@ -66,3 +66,4 @@ __pycache__
 /tools/species_distribution_report_icons
 /tools/species_distribution_report.html
 /tools/species_distribution_report.py
+.map_version
