@@ -100,7 +100,7 @@ LakeOfRage_EventScript_Gyarados::
 	delay 40
 	waitmoncry
 	setflag FLAG_SET_SHINY
-	setwildbattle SPECIES_GYARADOS, 30
+	setwildbattle SPECIES_GYARADOS, 35
 	dowildbattle
 	clearflag FLAG_SET_SHINY
 	specialvar VAR_RESULT, GetBattleOutcome

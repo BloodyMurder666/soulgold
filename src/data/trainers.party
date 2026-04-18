@@ -114,12 +114,12 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Gyarados
-Level: 25
+Feebas
+Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Gyarados
-Level: 25
+Milotic
+Level: 35
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_WILLIAM ===
@@ -405,12 +405,12 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Psyduck
-Level: 27
+Golduck
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Seaking
-Level: 26
+Lumineon
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_EUSINE ===
@@ -423,28 +423,20 @@ Items: Full Restore / Full Restore
 Double Battle: No
 AI: Basic Trainer
 
-Politoed
-Level: 27
-IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
-- Bubble Beam
-- Rain Dance
-- Hypnosis
-- Icy Wind
+Golisopod
+Level: 36
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
-Hypno
-Level: 27
-IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
-- Hypnosis
-- Disable
-- Confusion
-- Dream Eater
+Wobbuffet
+Level: 36
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
-Electrode
-Level: 27
-IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
+Magnezone
+Level: 36
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Tri Attack
 - Thunder Wave
-- Sonic Boom
-- Body Slam
+- Flash Cannon
 - Thunderbolt
 
 === TRAINER_DANA ===
@@ -1176,15 +1168,15 @@ Double Battle: No
 AI: Check Bad Move
 
 Seaking
-Level: 24
+Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Lanturn
-Level: 24
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Quagsire
-Level: 24
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ELAINE ===
@@ -1197,7 +1189,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Starmie
-Level: 25
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_LISA ===
@@ -1257,11 +1249,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Gyarados
-Level: 24
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Gyarados
-Level: 24
+Level: 35
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_CLYDE ===
@@ -1493,12 +1481,12 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Nidorino
-Level: 24
+Nidoqueen
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Nidoking
-Level: 24
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_LEONARD ===
@@ -2007,15 +1995,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Dunsparce
-Level: 26
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Dunsparce
-Level: 26
+Level: 36
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Dudunsparce
-Level: 27
+Level: 37
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_BENJAMIN ===
@@ -2069,16 +2053,16 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Ivysaur
-Level: 27
+Charizard
+Level: 36
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Charmeleon
-Level: 27
+Blastoise
+Level: 36
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Wartortle
-Level: 27
+Venusaur
+Level: 36
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_DOUG ===
@@ -2121,11 +2105,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Staryu
-Level: 25
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Shellder
-Level: 26
+Mareanie
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_KIM ===
@@ -2218,11 +2202,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Cloyster
-Level: 26
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Tentacruel
-Level: 26
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_BEVERLY ===
@@ -2831,11 +2815,11 @@ Music: Hg Girl 1
 Double Battle: No
 AI: Check Bad Move
 
-Clefable
+Tropius
 Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Wigglytuff
+Floatzel
 Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -3199,7 +3183,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Noctowl
-Level: 22
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ETHEL ===
@@ -3364,11 +3348,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Sandslash
-Level: 25
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Golbat
-Level: 25
+Sandslash Alola
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GREGORY ===
@@ -3398,11 +3382,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Tentacool
-Level: 25
+Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Tentacool
-Level: 25
+Tentacruel
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_DENIS ===
@@ -3414,12 +3398,8 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Pidgeotto
-Level: 24
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Fearow
-Level: 24
+Staraptor
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JIM ===
@@ -4158,12 +4138,12 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Shellder
-Level: 25
+Shellos West
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Wartortle
-Level: 25
+Gastrodon West
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_KAZU ===
@@ -4553,12 +4533,12 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Growlithe
-Level: 22
+Arcanine
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Vulpix
-Level: 22
+Arcanine Hisui
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_PARKER ===
@@ -5152,8 +5132,8 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Poliwhirl
-Level: 24
+Politoed
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_TROY ===
@@ -5195,16 +5175,16 @@ Level: 56
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_SAWYER_1 ===
-Name: Sawyer
-Class: Philip
+Name: Philip
+Class: Burglar
 Pic: Burglar
 Gender: Male
 Music: Hg Suspicious 2
 Double Battle: No
 AI: Basic Trainer
 
-Cloyster
-Level: 43
+Sneasel
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_RYAN ===
@@ -5496,12 +5476,12 @@ Music: Girl
 Double Battle: Yes
 AI: Check Bad Move
 
-Onix
-Level: 26
+Steelix
+Level: 37
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Cloyster
-Level: 26
+Gliscor
+Level: 38
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_RILEY ===
@@ -5565,7 +5545,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Gyarados
-Level: 27
+Level: 35
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_CYBIL ===
@@ -5811,11 +5791,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Lickitung
-Level: 26
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Ivysaur
-Level: 26
+Lickilicky
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_PING ===
@@ -6587,16 +6567,12 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Machop
-Level: 22
+Corsola
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Poliwhirl
-Level: 24
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Quagsire
-Level: 24
+Heracross
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_SEAN ===
@@ -7114,12 +7090,12 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Horsea
-Level: 25
+Seadra
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Starmie
-Level: 26
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_FRANKLIN ===
@@ -7792,17 +7768,17 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Name: Lois
 Class: Cooltrainer
 Pic: Cooltrainer F
-Gender: Male
+Gender: Female
 Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Skiploom
-Level: 28
+Jumpluff
+Level: 35
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Ninetales
-Level: 27
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_CAROL ===
@@ -8093,7 +8069,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Lapras
-Level: 27
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_VICTORIA ===
@@ -8296,11 +8272,11 @@ Music: Girl
 Double Battle: Yes
 AI: Check Bad Move
 
-Electabuzz
+Electivire
 Level: 26
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Magmar
+Magmortar
 Level: 26
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -8314,7 +8290,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Murkrow
-Level: 23
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_CONNIE ===
@@ -8327,11 +8303,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Ponyta
-Level: 21
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Weepinbell
-Level: 22
+Rapidash
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ED ===
@@ -8428,12 +8404,12 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Nidoking
-Level: 26
+Misdreavus
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Charmeleon
-Level: 26
+Mismagius
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ROB ===
@@ -8513,8 +8489,8 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Vaporeon
-Level: 28
+Toxapex
+Level: 35
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_RICHARD ===
@@ -8765,8 +8741,8 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Qwilfish
-Level: 24
+Qwilfish Hisui
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_DAVE ===
@@ -9207,12 +9183,12 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move
 
-Skiploom
-Level: 26
+Kilowattrel
+Level: 36
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Marill
-Level: 26
+Drampa
+Level: 36
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_AL ===
@@ -9442,11 +9418,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Poliwhirl
-Level: 20
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Machop
-Level: 22
+Machoke
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_RUSS ===
@@ -9523,7 +9499,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Qwilfish
-Level: 27
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_PAUL ===
@@ -10210,12 +10186,12 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Horsea
-Level: 26
+Carvanha
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Seadra
-Level: 27
+Sharpedo
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_NED ===
@@ -10248,16 +10224,16 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Tentacool
-Level: 26
+Mantine
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Remoraid
-Level: 26
+Finizen
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Staryu
-Level: 26
+Pyukumuku
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GINA ===
@@ -10418,12 +10394,12 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Krabby
-Level: 26
+Kingler
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Qwilfish
-Level: 26
+Toxapex
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_KOJI ===
@@ -10819,12 +10795,12 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Slowbro
-Level: 26
+Naclstack
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Wartortle
-Level: 26
+Rhydon
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_KENT ===
@@ -10836,12 +10812,12 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Shellder
-Level: 23
+Wartortle
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Chinchou
-Level: 23
+Azumarill
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_PRYCE_2 ===
