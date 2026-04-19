@@ -1050,19 +1050,19 @@ static const struct InGameTrade sIngameTrades[] =
     },
     [INGAME_TRADE_VOLTORB] =
     {
-        .nickname = _("BILLY"),
-        .species = SPECIES_VOLTORB,
-        .ivs = {4, 4, 4, 5, 5, 4},
-        .abilityNum = 1,
+        .nickname = _("Old Bolt"),
+        .species = SPECIES_VOLTORB_HISUI,
+        .ivs = {25, 25, 25, 25, 25, 25},
+        .abilityNum = 2,
         .otId = 29189,
         .conditions = {5, 5, 30, 5, 5},
         .personality = 0x00000000,
-        .heldItem = ITEM_CHERI_BERRY,
+        .heldItem = ITEM_MAGNET,
         .mailNum = 0,
         .otName = _("TIM"),
         .otGender = MALE,
         .sheen = 10,
-        .requestedSpecies = SPECIES_KRABBY
+        .requestedSpecies = SPECIES_MAREANIE
     },
     [INGAME_TRADE_MR_MIME] =
     {

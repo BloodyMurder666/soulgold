@@ -1,68 +1,69 @@
+# 1 "data/maps/OlivineCity_House1/scripts.pory"
+
+# 2 "data/maps/OlivineCity_House1/scripts.pory"
 OlivineCity_House1_MapScripts::
+# 3 "data/maps/OlivineCity_House1/scripts.pory"
 	.byte 0
 
-OlivineCity_House1_EventScript_Tim::
+Olivine_VoltorbTrade::
+# 9 "data/maps/OlivineCity_House1/scripts.pory"
 	lock
+# 10 "data/maps/OlivineCity_House1/scripts.pory"
 	faceplayer
-	goto_if_set FLAG_OLIVINE_NPC_TRADE_COMPLETED, OlivineCity_House1_EventScript_TradeCompleted
-	setvar VAR_0x8008, INGAME_TRADE_VOLTORB
-	copyvar VAR_0x8004, VAR_0x8008
-	specialvar VAR_RESULT, GetInGameTradeSpeciesInfo
-	copyvar VAR_0x8009, VAR_RESULT
-	msgbox OlivineCity_House1_Text_YouWillTradeWontYou, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, OlivineCity_House1_EventScript_DeclineTrade
-	special ChoosePartyMon
-	waitstate
-	copyvar VAR_0x800A, VAR_0x8004
-	goto_if_eq VAR_0x8004, PARTY_NOTHING_CHOSEN, OlivineCity_House1_EventScript_DeclineTrade
-	copyvar VAR_0x8005, VAR_0x800A
-	specialvar VAR_RESULT, GetTradeSpecies
-	copyvar VAR_0x800B, VAR_RESULT
-	goto_if_ne VAR_RESULT, VAR_0x8009, OlivineCity_House1_EventScript_NotRequestedMon
-	copyvar VAR_0x8004, VAR_0x8008
-	copyvar VAR_0x8005, VAR_0x800A
-	special CreateInGameTradePokemon
-	special DoInGameTradeScene
-	waitstate
-	bufferspeciesname STR_VAR_1, VAR_0x8009
-	msgbox OlivineCity_House1_Text_MonYouTakeCare, MSGBOX_DEFAULT
-	closemessage
+# 11 "data/maps/OlivineCity_House1/scripts.pory"
+	goto_if_set FLAG_OLIVINE_NPC_TRADE_COMPLETED, Olivine_VoltorbTrade_2
+# 14 "data/maps/OlivineCity_House1/scripts.pory"
+	ingame_trade INGAME_TRADE_VOLTORB, Olivine_VoltorbTrade_Text_1, VoltorbTrade_Declined, VoltorbTrade_NotRequested, Olivine_VoltorbTrade_Text_2
+# 22 "data/maps/OlivineCity_House1/scripts.pory"
 	setflag FLAG_OLIVINE_NPC_TRADE_COMPLETED
+Olivine_VoltorbTrade_1:
+# 24 "data/maps/OlivineCity_House1/scripts.pory"
 	release
 	end
 
-OlivineCity_House1_EventScript_DeclineTrade::
-	msgbox OlivineCity_House1_Text_YouWontTradeMe, MSGBOX_DEFAULT
+Olivine_VoltorbTrade_2:
+# 12 "data/maps/OlivineCity_House1/scripts.pory"
+	msgbox Olivine_VoltorbTrade_Text_0
+	goto Olivine_VoltorbTrade_1
+
+
+VoltorbTrade_Declined::
+# 29 "data/maps/OlivineCity_House1/scripts.pory"
+	msgbox VoltorbTrade_Declined_Text_0
+# 30 "data/maps/OlivineCity_House1/scripts.pory"
 	release
 	end
 
-OlivineCity_House1_EventScript_NotRequestedMon::
-	bufferspeciesname STR_VAR_1, VAR_0x8009
-	msgbox OlivineCity_House1_Text_ThisIsntAMon, MSGBOX_DEFAULT
+
+VoltorbTrade_NotRequested::
+# 35 "data/maps/OlivineCity_House1/scripts.pory"
+	msgbox VoltorbTrade_NotRequested_Text_0
+# 37 "data/maps/OlivineCity_House1/scripts.pory"
 	release
 	end
 
-OlivineCity_House1_EventScript_TradeCompleted::
-	msgbox OlivineCity_House1_Text_After, MSGBOX_DEFAULT
-	release
-	end
 
-OlivineCity_House1_Text_YouWillTradeWontYou:
-	.string "I collect POKéMON!\n"
-	.string "Do you have a {STR_VAR_1}?\p"
-	.string "Want to trade it for my\n"
-	.string "{STR_VAR_2}?$"
+Olivine_VoltorbTrade_Text_0:
+# 12 "data/maps/OlivineCity_House1/scripts.pory"
+	.string "Hi, how is my old Voltorb doing?$"
 
-OlivineCity_House1_Text_MonYouTakeCare:
-	.string "Yay! I got myself {STR_VAR_1}!\p"
-	.string "{STR_VAR_2}, you take care!$"
+Olivine_VoltorbTrade_Text_1:
+# 14 "data/maps/OlivineCity_House1/scripts.pory"
+	.string "I collect Pokémon\n"
+	.string "Do you have a Mareanie?\l"
+	.string "Want to trade it for my\l"
+	.string "Hisuian Voltorb?$"
 
-OlivineCity_House1_Text_ThisIsntAMon:
-	.string "Uh, no, I don't think so.\n"
-	.string "That isn't a {STR_VAR_1}.$"
+Olivine_VoltorbTrade_Text_2:
+# 20 "data/maps/OlivineCity_House1/scripts.pory"
+	.string "Yay! I got myself a Mareanie!\n"
+	.string "Voltorb, you take care!$"
 
-OlivineCity_House1_Text_YouWontTradeMe:
+VoltorbTrade_Declined_Text_0:
+# 29 "data/maps/OlivineCity_House1/scripts.pory"
 	.string "You don't want to trade? Aww...$"
 
-OlivineCity_House1_Text_After:
-	.string "Hi, how's my old VOLTORB doing?$"
+VoltorbTrade_NotRequested_Text_0:
+# 35 "data/maps/OlivineCity_House1/scripts.pory"
+	.string "Uh, no, I don't think so.\n"
+	.string "That doesn't look like a Mareanie.$"

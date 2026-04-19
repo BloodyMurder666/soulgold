@@ -478,7 +478,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_LEVEL_BALL] =
     {
         .name = ITEM_NAME("Level Ball"),
-        .price = (I_PRICE >= GEN_7) ? 0 : 300,
+        .price = (I_PRICE >= GEN_7) ? 500 : 300,
         .description = COMPOUND_STRING(
             "A Ball that works\n"
             "well on lower\n"
