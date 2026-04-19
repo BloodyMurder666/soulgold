@@ -88,7 +88,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "ITEM_MAX_ETHER",
+      "trainer_sight_or_berry_tree_id": "ITEM_SMOOTH_ROCK",
       "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_MTMORTAR4_MAX_ETHER"
     },
@@ -101,7 +101,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "ITEM_HYPER_POTION",
+      "trainer_sight_or_berry_tree_id": "ITEM_DUSK_STONE",
       "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_MTMORTAR4_HYPER_POTION"
     },
