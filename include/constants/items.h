@@ -1062,6 +1062,7 @@ enum __attribute__((packed)) Item
     ITEM_CLEAR_BELL = 882,
     ITEM_TIDAL_BELL = 883,
     ITEM_RADIO = 884,
+    ITEM_CANDY_JAR = 885,
 
     ITEMS_COUNT,
     ITEM_FIELD_ARROW = ITEMS_COUNT,

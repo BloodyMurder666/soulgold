@@ -14106,6 +14106,22 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_PowderJar,
     },
 
+    [ITEM_CANDY_JAR] =
+    {
+        .name = ITEM_NAME("Candy Jar"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Stores EXP drawn\n"
+            "from battle, then\n"
+            "makes Exp. Candy M."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CandyJar,
+        .iconPic = gItemIcon_PowderJar,
+        .iconPalette = gItemIconPalette_PowderJar,
+    },
+
     [ITEM_SQUIRTBOTTLE] =
     {
         .name = ITEM_NAME("Squirtbottle"),
