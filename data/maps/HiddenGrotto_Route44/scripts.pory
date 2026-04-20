@@ -1,0 +1,77 @@
+mapscripts HiddenGrotto_Route44_MapScripts  {
+    MAP_SCRIPT_ON_TRANSITION {
+        goto(handleROUTE44GrottoEvent)
+    }
+}
+
+script handleROUTE44GrottoEvent {
+    special(HiddenGrotto_InitializeCurrent)
+    switch (var(VAR_RESULT)) {
+        case 0:
+            clearflag(FLAG_ROUTE44_GROTTO) //HIDDEN_GROTTO_UNSET, should never land on this anyway
+            setobjectxyperm(1, 28, 27)
+            setobjectxyperm(2, 28, 27)
+        case 1:
+            setflag(FLAG_ROUTE44_GROTTO) // HIDDEN_GROTTO_EMPTY
+            setobjectxyperm(1, 28, 27)
+            setobjectxyperm(2, 28, 27)
+        case 2:
+            clearflag(FLAG_ROUTE44_GROTTO) //HIDDEN_GROTTO_POKEMON
+            setobjectxyperm(1, 28, 27)
+            setobjectxyperm(2, 14, 11)
+        case 3:
+            clearflag(FLAG_ROUTE44_GROTTO) //HIDDEN_GROTTO_ITEM
+            setobjectxyperm(2, 28, 27)
+            setobjectxyperm(1, 14, 11)
+        case 4:
+            clearflag(FLAG_ROUTE44_GROTTO) //HIDDEN_GROTTO_HIDDEN_ITEM
+            setobjectxyperm(LOCALID_GROTTO_ITEM_ROUTE44, 28, 27)
+            setobjectxyperm(LOCALID_GROTTO_POKEMON_ROUTE44, 28, 27)
+            setobjectxyperm(LOCALID_GROTTO_HIDDEN_ITEM_ROUTE44, 14, 11)
+
+    }
+}
+
+script ROUTE44_GrottoPokemon {
+    lock
+    faceplayer
+    special(HiddenGrotto_GetCurrentContentId)
+    copyvar(VAR_0x8004, VAR_RESULT)
+    playmoncry(VAR_0x8004, CRY_MODE_ENCOUNTER)
+    special(HiddenGrotto_CreateCurrentMon)
+    if (var(VAR_RESULT) == FALSE) {
+        release
+        end
+    }
+    waitse
+    delay(40)
+    waitmoncry
+    special(HiddenGrotto_EmptyCurrent)
+    setflag(FLAG_ROUTE44_GROTTO)
+    dowildbattle
+    removeobject(2)
+    release
+    end
+}
+
+script FindItem_ROUTE44_Grotto {
+    special(HiddenGrotto_GetCurrentContentId)
+	finditem(VAR_RESULT)
+    special(HiddenGrotto_EmptyCurrent)
+    setflag(FLAG_ROUTE44_GROTTO)
+	removeobject(1)
+    end
+}
+
+script FindHiddenItem_ROUTE44_Grotto {
+    special(HiddenGrotto_GetCurrentContentType)
+    if (var(VAR_RESULT) != 4) {
+        end
+    }
+
+    special(HiddenGrotto_GetCurrentContentId)
+    finditem(VAR_RESULT)
+    special(HiddenGrotto_EmptyCurrent)
+    setflag(FLAG_ROUTE44_GROTTO)
+    end
+}

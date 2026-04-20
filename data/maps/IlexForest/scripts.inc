@@ -1611,3 +1611,27 @@ showilexfollower:
 	set_visible
 # 808 "data/maps/IlexForest/scripts.pory"
 	step_end
+
+Ilex_HiddenGrotto::
+# 812 "data/maps/IlexForest/scripts.pory"
+	msgbox Ilex_HiddenGrotto_Text_0, MSGBOX_YESNO
+# 814 "data/maps/IlexForest/scripts.pory"
+	compare VAR_RESULT, YES
+	goto_if_eq Ilex_HiddenGrotto_2
+Ilex_HiddenGrotto_1:
+# 818 "data/maps/IlexForest/scripts.pory"
+	release
+	end
+
+Ilex_HiddenGrotto_2:
+# 815 "data/maps/IlexForest/scripts.pory"
+	warp MAP_HIDDEN_GROTTO_ILEX, 0
+# 816 "data/maps/IlexForest/scripts.pory"
+	waitstate
+	goto Ilex_HiddenGrotto_1
+
+
+Ilex_HiddenGrotto_Text_0:
+# 812 "data/maps/IlexForest/scripts.pory"
+	.string "There seems to be a path behind the\n"
+	.string "trees. Enter?$"

@@ -384,6 +384,13 @@
       "elevation": 0,
       "dest_map": "MAP_ICE_PATH_1F",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 38,
+      "y": 13,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE44",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],
@@ -410,7 +417,7 @@
       "y": 12,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "NULL"
+      "script": "Route44_HiddenGrotto"
     },
     {
       "type": "sign",
@@ -418,7 +425,7 @@
       "y": 12,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "NULL"
+      "script": "Route44_HiddenGrotto"
     }
   ]
 }

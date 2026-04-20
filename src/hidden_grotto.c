@@ -16,6 +16,7 @@
 
 enum HiddenGrottoId
 {
+    //Johto Grottos
     HIDDEN_GROTTO_ROUTE32,
     HIDDEN_GROTTO_GOLDENROD_SHORE,
     HIDDEN_GROTTO_ROUTE35,
@@ -25,6 +26,19 @@ enum HiddenGrottoId
     HIDDEN_GROTTO_ROUTE44,
     HIDDEN_GROTTO_LAKEOFRAGE,
     HIDDEN_GROTTO_ROUTE47,
+    HIDDEN_GROTTO_JOHTO_UNUSED1,
+    HIDDEN_GROTTO_JOHTO_UNUSED2,
+    
+    // Kanto Grottos
+    HIDDEN_GROTTO_KANTO_UNUSED1,
+    HIDDEN_GROTTO_KANTO_UNUSED2,
+    HIDDEN_GROTTO_KANTO_UNUSED3,
+    HIDDEN_GROTTO_KANTO_UNUSED4,
+    HIDDEN_GROTTO_KANTO_UNUSED5,
+    HIDDEN_GROTTO_KANTO_UNUSED6,
+    HIDDEN_GROTTO_KANTO_UNUSED7,
+    HIDDEN_GROTTO_KANTO_UNUSED8,
+    HIDDEN_GROTTO_KANTO_UNUSED9,
 };
 
 enum
@@ -97,6 +111,281 @@ static const struct HiddenGrottoData sHiddenGrottoData[NUM_HIDDEN_GROTTOES] =
             { SPECIES_FROAKIE, 0 },
         },
     },
+    [HIDDEN_GROTTO_ROUTE35] =
+    {
+        .mapGroup = MAP_GROUP(MAP_HIDDEN_GROTTO_ROUTE35),
+        .mapNum = MAP_NUM(MAP_HIDDEN_GROTTO_ROUTE35),
+        .monLevel = 18,
+        .monObjectLocalId = HIDDEN_GROTTO_OBJ_MON,
+        .rareItem = ITEM_UNREMARKABLE_TEACUP,
+        .mons =
+        {
+            { SPECIES_ROOKIDEE, 0 },
+            { SPECIES_MEOWTH, 0 },
+            { SPECIES_POLTCHAGEIST, 0 },
+            { SPECIES_CHIMCHAR, 0 },
+        },
+    },
+    [HIDDEN_GROTTO_ILEX] =
+    {
+        .mapGroup = MAP_GROUP(MAP_HIDDEN_GROTTO_ILEX),
+        .mapNum = MAP_NUM(MAP_HIDDEN_GROTTO_ILEX),
+        .monLevel = 15,
+        .monObjectLocalId = HIDDEN_GROTTO_OBJ_MON,
+        .rareItem = ITEM_LEAF_STONE,
+        .mons =
+        {
+            { SPECIES_ODDISH, 0 },
+            { SPECIES_CHERUBI, 0 },
+            { SPECIES_ROSELIA, 0 },
+            { SPECIES_LARVESTA, 0 },
+        },
+    },
+    [HIDDEN_GROTTO_ROUTE33] =
+    {
+        .mapGroup = MAP_GROUP(MAP_HIDDEN_GROTTO_ROUTE33),
+        .mapNum = MAP_NUM(MAP_HIDDEN_GROTTO_ROUTE33),
+        .monLevel = 14,
+        .monObjectLocalId = HIDDEN_GROTTO_OBJ_MON,
+        .rareItem = ITEM_SUN_STONE,
+        .mons =
+        {
+            { SPECIES_BUIZEL, 0 },
+            { SPECIES_MIENFOO, 0 },
+            { SPECIES_DARUMAKA, 0 },
+            { SPECIES_COTTONEE, 0 },
+        },
+    },
+    [HIDDEN_GROTTO_ROUTE38] =
+    {
+        .mapGroup = MAP_GROUP(MAP_HIDDEN_GROTTO_ROUTE38),
+        .mapNum = MAP_NUM(MAP_HIDDEN_GROTTO_ROUTE38),
+        .monLevel = 30,
+        .monObjectLocalId = HIDDEN_GROTTO_OBJ_MON,
+        .rareItem = ITEM_SYRUPY_APPLE,
+        .mons =
+        {
+            { SPECIES_MUNCHLAX, 0 },
+            { SPECIES_MEOWSTIC_M, 0 },
+            { SPECIES_MEOWSTIC_F, 0 },
+            { SPECIES_ESPATHRA, 0 },
+        },
+    },
+    [HIDDEN_GROTTO_ROUTE44] =
+    {
+        .mapGroup = MAP_GROUP(MAP_HIDDEN_GROTTO_ROUTE44),
+        .mapNum = MAP_NUM(MAP_HIDDEN_GROTTO_ROUTE44),
+        .monLevel = 40,
+        .monObjectLocalId = HIDDEN_GROTTO_OBJ_MON,
+        .rareItem = ITEM_ICE_STONE,
+        .mons =
+        {
+            { SPECIES_ARCTIBAX, 0 },
+            { SPECIES_BERGMITE, 0 },
+            { SPECIES_LOPUNNY, 0 },
+            { SPECIES_ZORUA_HISUI, 0 },
+        },
+    },
+    [HIDDEN_GROTTO_LAKEOFRAGE] =
+    {
+        .mapGroup = MAP_GROUP(MAP_HIDDEN_GROTTO_LAKEOFRAGE),
+        .mapNum = MAP_NUM(MAP_HIDDEN_GROTTO_LAKEOFRAGE),
+        .monLevel = 35,
+        .monObjectLocalId = HIDDEN_GROTTO_OBJ_MON,
+        .rareItem = ITEM_EVIOLITE,
+        .mons =
+        {
+            { SPECIES_SKARMORY, 0 },
+            { SPECIES_MAUSHOLD, 0 },
+            { SPECIES_INDEEDEE, 0 },
+            { SPECIES_EEVEE, 0 },
+        },
+    },
+    [HIDDEN_GROTTO_ROUTE47] =
+    {
+        .mapGroup = MAP_GROUP(MAP_HIDDEN_GROTTO_ROUTE47),
+        .mapNum = MAP_NUM(MAP_HIDDEN_GROTTO_ROUTE47),
+        .monLevel = 40,
+        .monObjectLocalId = HIDDEN_GROTTO_OBJ_MON,
+        .rareItem = ITEM_LUCKY_EGG,
+        .mons =
+        {
+            { SPECIES_CHANSEY, 0 },
+            { SPECIES_TYNAMO, 0 },
+            { SPECIES_DITTO, 0 },
+            { SPECIES_ZORUA, 0 },
+        },
+    },
+    [HIDDEN_GROTTO_JOHTO_UNUSED1] =
+    {
+        .mapGroup = MAP_GROUP(MAP_HIDDEN_GROTTO_UNUSED),
+        .mapNum = MAP_NUM(MAP_HIDDEN_GROTTO_UNUSED),
+        .monLevel = 100,
+        .monObjectLocalId = HIDDEN_GROTTO_OBJ_MON,
+        .rareItem = ITEM_MOON_STONE,
+        .mons =
+        {
+            { SPECIES_CYNDAQUIL, 0 },
+            { SPECIES_TOTODILE, 0 },
+            { SPECIES_CHIKORITA, 0 },
+            { SPECIES_CELEBI, 0 },
+        },
+    },
+
+    [HIDDEN_GROTTO_JOHTO_UNUSED2] =
+    {
+        .mapGroup = MAP_GROUP(MAP_HIDDEN_GROTTO_UNUSED),
+        .mapNum = MAP_NUM(MAP_HIDDEN_GROTTO_UNUSED),
+        .monLevel = 100,
+        .monObjectLocalId = HIDDEN_GROTTO_OBJ_MON,
+        .rareItem = ITEM_MOON_STONE,
+        .mons =
+        {
+            { SPECIES_CYNDAQUIL, 0 },
+            { SPECIES_TOTODILE, 0 },
+            { SPECIES_CHIKORITA, 0 },
+            { SPECIES_CELEBI, 0 },
+        },
+    },
+
+    // KANTO
+
+    [HIDDEN_GROTTO_KANTO_UNUSED1] =
+    {
+        .mapGroup = MAP_GROUP(MAP_HIDDEN_GROTTO_UNUSED),
+        .mapNum = MAP_NUM(MAP_HIDDEN_GROTTO_UNUSED),
+        .monLevel = 100,
+        .monObjectLocalId = HIDDEN_GROTTO_OBJ_MON,
+        .rareItem = ITEM_MOON_STONE,
+        .mons =
+        {
+            { SPECIES_CHARMANDER, 0 },
+            { SPECIES_SQUIRTLE, 0 },
+            { SPECIES_BULBASAUR, 0 },
+            { SPECIES_PIKACHU, 0 },
+        },
+    },
+    [HIDDEN_GROTTO_KANTO_UNUSED2] =
+    {
+        .mapGroup = MAP_GROUP(MAP_HIDDEN_GROTTO_UNUSED),
+        .mapNum = MAP_NUM(MAP_HIDDEN_GROTTO_UNUSED),
+        .monLevel = 100,
+        .monObjectLocalId = HIDDEN_GROTTO_OBJ_MON,
+        .rareItem = ITEM_MOON_STONE,
+        .mons =
+        {
+            { SPECIES_CHARMANDER, 0 },
+            { SPECIES_SQUIRTLE, 0 },
+            { SPECIES_BULBASAUR, 0 },
+            { SPECIES_PIKACHU, 0 },
+        },
+    },
+    [HIDDEN_GROTTO_KANTO_UNUSED3] =
+    {
+        .mapGroup = MAP_GROUP(MAP_HIDDEN_GROTTO_UNUSED),
+        .mapNum = MAP_NUM(MAP_HIDDEN_GROTTO_UNUSED),
+        .monLevel = 100,
+        .monObjectLocalId = HIDDEN_GROTTO_OBJ_MON,
+        .rareItem = ITEM_MOON_STONE,
+        .mons =
+        {
+            { SPECIES_CHARMANDER, 0 },
+            { SPECIES_SQUIRTLE, 0 },
+            { SPECIES_BULBASAUR, 0 },
+            { SPECIES_PIKACHU, 0 },
+        },
+    },
+    [HIDDEN_GROTTO_KANTO_UNUSED4] =
+    {
+        .mapGroup = MAP_GROUP(MAP_HIDDEN_GROTTO_UNUSED),
+        .mapNum = MAP_NUM(MAP_HIDDEN_GROTTO_UNUSED),
+        .monLevel = 100,
+        .monObjectLocalId = HIDDEN_GROTTO_OBJ_MON,
+        .rareItem = ITEM_MOON_STONE,
+        .mons =
+        {
+            { SPECIES_CHARMANDER, 0 },
+            { SPECIES_SQUIRTLE, 0 },
+            { SPECIES_BULBASAUR, 0 },
+            { SPECIES_PIKACHU, 0 },
+        },
+    },
+    [HIDDEN_GROTTO_KANTO_UNUSED5] =
+    {
+        .mapGroup = MAP_GROUP(MAP_HIDDEN_GROTTO_UNUSED),
+        .mapNum = MAP_NUM(MAP_HIDDEN_GROTTO_UNUSED),
+        .monLevel = 100,
+        .monObjectLocalId = HIDDEN_GROTTO_OBJ_MON,
+        .rareItem = ITEM_MOON_STONE,
+        .mons =
+        {
+            { SPECIES_CHARMANDER, 0 },
+            { SPECIES_SQUIRTLE, 0 },
+            { SPECIES_BULBASAUR, 0 },
+            { SPECIES_PIKACHU, 0 },
+        },
+    },
+    [HIDDEN_GROTTO_KANTO_UNUSED6] =
+    {
+        .mapGroup = MAP_GROUP(MAP_HIDDEN_GROTTO_UNUSED),
+        .mapNum = MAP_NUM(MAP_HIDDEN_GROTTO_UNUSED),
+        .monLevel = 100,
+        .monObjectLocalId = HIDDEN_GROTTO_OBJ_MON,
+        .rareItem = ITEM_MOON_STONE,
+        .mons =
+        {
+            { SPECIES_CHARMANDER, 0 },
+            { SPECIES_SQUIRTLE, 0 },
+            { SPECIES_BULBASAUR, 0 },
+            { SPECIES_PIKACHU, 0 },
+        },
+    },
+    [HIDDEN_GROTTO_KANTO_UNUSED7] =
+    {
+        .mapGroup = MAP_GROUP(MAP_HIDDEN_GROTTO_UNUSED),
+        .mapNum = MAP_NUM(MAP_HIDDEN_GROTTO_UNUSED),
+        .monLevel = 100,
+        .monObjectLocalId = HIDDEN_GROTTO_OBJ_MON,
+        .rareItem = ITEM_MOON_STONE,
+        .mons =
+        {
+            { SPECIES_CHARMANDER, 0 },
+            { SPECIES_SQUIRTLE, 0 },
+            { SPECIES_BULBASAUR, 0 },
+            { SPECIES_PIKACHU, 0 },
+        },
+    },
+    [HIDDEN_GROTTO_KANTO_UNUSED8] =
+    {
+        .mapGroup = MAP_GROUP(MAP_HIDDEN_GROTTO_UNUSED),
+        .mapNum = MAP_NUM(MAP_HIDDEN_GROTTO_UNUSED),
+        .monLevel = 100,
+        .monObjectLocalId = HIDDEN_GROTTO_OBJ_MON,
+        .rareItem = ITEM_MOON_STONE,
+        .mons =
+        {
+            { SPECIES_CHARMANDER, 0 },
+            { SPECIES_SQUIRTLE, 0 },
+            { SPECIES_BULBASAUR, 0 },
+            { SPECIES_PIKACHU, 0 },
+        },
+    },
+    [HIDDEN_GROTTO_KANTO_UNUSED9] =
+    {
+        .mapGroup = MAP_GROUP(MAP_HIDDEN_GROTTO_UNUSED),
+        .mapNum = MAP_NUM(MAP_HIDDEN_GROTTO_UNUSED),
+        .monLevel = 100,
+        .monObjectLocalId = HIDDEN_GROTTO_OBJ_MON,
+        .rareItem = ITEM_MOON_STONE,
+        .mons =
+        {
+            { SPECIES_CHARMANDER, 0 },
+            { SPECIES_SQUIRTLE, 0 },
+            { SPECIES_BULBASAUR, 0 },
+            { SPECIES_PIKACHU, 0 },
+        },
+    },
+
 };
 
 static const struct HiddenGrottoWeightedEntry sHiddenGrottoPokemonIndexes[] =

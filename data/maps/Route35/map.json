@@ -340,6 +340,13 @@
       "elevation": 0,
       "dest_map": "MAP_GATE_NATIONAL_PARK",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 26,
+      "y": 16,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE35",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],
@@ -366,7 +373,7 @@
       "y": 15,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "NULL"
+      "script": "Route35_HiddenGrotto"
     },
     {
       "type": "sign",
@@ -374,7 +381,7 @@
       "y": 15,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "NULL"
+      "script": "Route35_HiddenGrotto"
     }
   ]
 }

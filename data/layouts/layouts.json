@@ -8820,6 +8820,86 @@
       "secondary_tileset": "gTileset_Gate_Standard",
       "border_filepath": "data/layouts/Gate_Route39North/border.bin",
       "blockdata_filepath": "data/layouts/Gate_Route39North/map.bin"
+    },
+    {
+      "id": "LAYOUT_HIDDEN_GROTTO_ROUTE35",
+      "name": "HiddenGrotto_Route35_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_Grotto1",
+      "secondary_tileset": "gTileset_Route32",
+      "border_filepath": "data/layouts/HiddenGrotto_Route35/border.bin",
+      "blockdata_filepath": "data/layouts/HiddenGrotto_Route35/map.bin"
+    },
+    {
+      "id": "LAYOUT_HIDDEN_GROTTO_ILEX",
+      "name": "HiddenGrotto_Ilex_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_Grotto1",
+      "secondary_tileset": "gTileset_Route32",
+      "border_filepath": "data/layouts/HiddenGrotto_Ilex/border.bin",
+      "blockdata_filepath": "data/layouts/HiddenGrotto_Ilex/map.bin"
+    },
+    {
+      "id": "LAYOUT_HIDDEN_GROTTO_ROUTE33",
+      "name": "HiddenGrotto_Route33_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_Grotto1",
+      "secondary_tileset": "gTileset_Route32",
+      "border_filepath": "data/layouts/HiddenGrotto_Route33/border.bin",
+      "blockdata_filepath": "data/layouts/HiddenGrotto_Route33/map.bin"
+    },
+    {
+      "id": "LAYOUT_HIDDEN_GROTTO_ROUTE38",
+      "name": "HiddenGrotto_Route38_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_Grotto1",
+      "secondary_tileset": "gTileset_Route32",
+      "border_filepath": "data/layouts/HiddenGrotto_Route38/border.bin",
+      "blockdata_filepath": "data/layouts/HiddenGrotto_Route38/map.bin"
+    },
+    {
+      "id": "LAYOUT_HIDDEN_GROTTO_ROUTE44",
+      "name": "HiddenGrotto_Route44_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_Grotto1",
+      "secondary_tileset": "gTileset_Route32",
+      "border_filepath": "data/layouts/HiddenGrotto_Route44/border.bin",
+      "blockdata_filepath": "data/layouts/HiddenGrotto_Route44/map.bin"
+    },
+    {
+      "id": "LAYOUT_HIDDEN_GROTTO_LAKEOFRAGE",
+      "name": "HiddenGrotto_Lakeofrage_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_Grotto1",
+      "secondary_tileset": "gTileset_Route32",
+      "border_filepath": "data/layouts/HiddenGrotto_Lakeofrage/border.bin",
+      "blockdata_filepath": "data/layouts/HiddenGrotto_Lakeofrage/map.bin"
+    },
+    {
+      "id": "LAYOUT_HIDDEN_GROTTO_ROUTE47",
+      "name": "HiddenGrotto_Route47_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_Grotto1",
+      "secondary_tileset": "gTileset_Route32",
+      "border_filepath": "data/layouts/HiddenGrotto_Route47/border.bin",
+      "blockdata_filepath": "data/layouts/HiddenGrotto_Route47/map.bin"
+    },
+    {
+      "id": "LAYOUT_HIDDEN_GROTTO_UNUSED",
+      "name": "HiddenGrotto_Unused_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_Grotto1",
+      "secondary_tileset": "gTileset_Route32",
+      "border_filepath": "data/layouts/HiddenGrotto_Unused/border.bin",
+      "blockdata_filepath": "data/layouts/HiddenGrotto_Unused/map.bin"
     }
   ]
 }

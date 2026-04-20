@@ -4986,7 +4986,7 @@
               {
                 "min_level": 11,
                 "max_level": 14,
-                "species": "SPECIES_BUIZEL"
+                "species": "SPECIES_ROCKRUFF"
               },
               {
                 "min_level": 11,
@@ -4996,7 +4996,7 @@
               {
                 "min_level": 11,
                 "max_level": 14,
-                "species": "SPECIES_BUIZEL"
+                "species": "SPECIES_ROCKRUFF"
               },
               {
                 "min_level": 11,
@@ -5446,8 +5446,8 @@
               },
               {
                 "min_level": 12,
-                "max_level": 16,
-                "species": "SPECIES_CHARJABUG"
+                "max_level": 18,
+                "species": "SPECIES_ODDISH"
               }
             ]
           },
@@ -6028,41 +6028,41 @@
               {
                 "min_level": 14,
                 "max_level": 17,
-                "species": "SPECIES_MEOWTH_GALAR"
-              },
-              {
-                "min_level": 15,
-                "max_level": 17,
-                "species": "SPECIES_MINCCINO"
-              },
-              {
-                "min_level": 15,
-                "max_level": 17,
-                "species": "SPECIES_MEOWTH_GALAR"
-              },
-              {
-                "min_level": 15,
-                "max_level": 17,
-                "species": "SPECIES_MINCCINO"
-              },
-              {
-                "min_level": 14,
-                "max_level": 18,
                 "species": "SPECIES_SWIRLIX"
               },
               {
-                "min_level": 14,
-                "max_level": 18,
-                "species": "SPECIES_CORVISQUIRE"
+                "min_level": 15,
+                "max_level": 17,
+                "species": "SPECIES_MINCCINO"
+              },
+              {
+                "min_level": 15,
+                "max_level": 17,
+                "species": "SPECIES_SWIRLIX"
+              },
+              {
+                "min_level": 15,
+                "max_level": 17,
+                "species": "SPECIES_MINCCINO"
               },
               {
                 "min_level": 14,
                 "max_level": 18,
+                "species": "SPECIES_TANDEMAUS"
+              },
+              {
+                "min_level": 14,
+                "max_level": 18,
+                "species": "SPECIES_TANDEMAUS"
+              },
+              {
+                "min_level": 16,
+                "max_level": 20,
                 "species": "SPECIES_KIRLIA"
               },
               {
-                "min_level": 14,
-                "max_level": 18,
+                "min_level": 16,
+                "max_level": 20,
                 "species": "SPECIES_KIRLIA"
               }
             ]
@@ -8610,12 +8610,12 @@
               {
                 "min_level": 33,
                 "max_level": 40,
-                "species": "SPECIES_DITTO"
+                "species": "SPECIES_BLISSEY"
               },
               {
                 "min_level": 33,
                 "max_level": 40,
-                "species": "SPECIES_DITTO"
+                "species": "SPECIES_BLISSEY"
               }
             ]
           },

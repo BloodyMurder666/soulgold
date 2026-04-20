@@ -1578,10 +1578,10 @@
 #define FLAG_DAILY_BUG_CONTEST_COMPLETED            (DAILY_FLAGS_START + 0x3)  // Unused Flag
 #define FLAG_DAILY_BUG_DONE                         (DAILY_FLAGS_START + 0x4)  // Daily bug catching contest completed
 #define FLAG_GOLDENROD_SHORE_GROTTO                 (DAILY_FLAGS_START + 0x5)
-#define FLAG_UNUSED_0x926                           (DAILY_FLAGS_START + 0x6)  // Unused Flag
-#define FLAG_UNUSED_0x927                           (DAILY_FLAGS_START + 0x7)  // Unused Flag
-#define FLAG_UNUSED_0x928                           (DAILY_FLAGS_START + 0x8)  // Unused Flag
-#define FLAG_UNUSED_0x929                           (DAILY_FLAGS_START + 0x9)  // Unused Flag
+#define FLAG_ROUTE35_GROTTO                         (DAILY_FLAGS_START + 0x6)
+#define FLAG_ILEX_GROTTO                            (DAILY_FLAGS_START + 0x7)
+#define FLAG_ROUTE33_GROTTO                         (DAILY_FLAGS_START + 0x8)
+#define FLAG_ROUTE44_GROTTO                         (DAILY_FLAGS_START + 0x9)
 #define FLAG_DAILY_PICKED_LOTO_TICKET               (DAILY_FLAGS_START + 0xA)
 #define FLAG_DAILY_ROUTE_114_RECEIVED_BERRY         (DAILY_FLAGS_START + 0xB)
 #define FLAG_DAILY_ROUTE_111_RECEIVED_BERRY         (DAILY_FLAGS_START + 0xC)
@@ -1591,11 +1591,11 @@
 #define FLAG_DAILY_FLOWER_SHOP_RECEIVED_BERRY       (DAILY_FLAGS_START + 0x10)
 #define FLAG_DAILY_BERRY_MASTERS_WIFE               (DAILY_FLAGS_START + 0x11)
 #define FLAG_DAILY_SOOTOPOLIS_RECEIVED_BERRY        (DAILY_FLAGS_START + 0x12)
-#define FLAG_UNUSED_0x933                           (DAILY_FLAGS_START + 0x13) // Unused Flag
+#define FLAG_LAKEOFRAGE_GROTTO                      (DAILY_FLAGS_START + 0x13)
 #define FLAG_DAILY_APPRENTICE_LEAVES                (DAILY_FLAGS_START + 0x14)
 
-#define FLAG_UNUSED_0x935                           (DAILY_FLAGS_START + 0x15) // Unused Flag
-#define FLAG_UNUSED_0x936                           (DAILY_FLAGS_START + 0x16) // Unused Flag
+#define FLAG_ROUTE47_GROTTO                         (DAILY_FLAGS_START + 0x15)
+#define FLAG_ROUTE38_GROTTO                         (DAILY_FLAGS_START + 0x16)
 #define FLAG_UNUSED_0x937                           (DAILY_FLAGS_START + 0x17) // Unused Flag
 #define FLAG_UNUSED_0x938                           (DAILY_FLAGS_START + 0x18) // Unused Flag
 #define FLAG_UNUSED_0x939                           (DAILY_FLAGS_START + 0x19) // Unused Flag

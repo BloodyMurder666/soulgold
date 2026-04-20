@@ -2119,3 +2119,19 @@ Common_Text_ReceivedMon:
 	.include "data/maps/HiddenGrotto_Goldenrod_Shore/scripts.inc"
 
 	.include "data/maps/Gate_Route39North/scripts.inc"
+
+	.include "data/maps/HiddenGrotto_Route35/scripts.inc"
+
+	.include "data/maps/HiddenGrotto_Ilex/scripts.inc"
+
+	.include "data/maps/HiddenGrotto_Route33/scripts.inc"
+
+	.include "data/maps/HiddenGrotto_Route38/scripts.inc"
+
+	.include "data/maps/HiddenGrotto_Route44/scripts.inc"
+
+	.include "data/maps/HiddenGrotto_Lakeofrage/scripts.inc"
+
+	.include "data/maps/HiddenGrotto_Route47/scripts.inc"
+
+	.include "data/maps/HiddenGrotto_Unused/scripts.inc"

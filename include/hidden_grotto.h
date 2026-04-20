@@ -26,6 +26,6 @@ void HiddenGrotto_GetCurrentContentId(void);
 void HiddenGrotto_CreateCurrentMon(void);
 void HiddenGrotto_TestCurrentMonBounds(void);
 
-#define NUM_HIDDEN_GROTTOES 9
+#define NUM_HIDDEN_GROTTOES 20
 
 #endif // GUARD_HIDDEN_GROTTO_H

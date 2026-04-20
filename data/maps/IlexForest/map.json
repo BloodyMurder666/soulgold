@@ -536,6 +536,13 @@
       "elevation": 0,
       "dest_map": "MAP_GATE_ILEX_FOREST_ROUTE34",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 10,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_ILEX_FOREST",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [
@@ -590,7 +597,7 @@
       "y": 23,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "NULL"
+      "script": "Ilex_HiddenGrotto"
     }
   ]
 }
