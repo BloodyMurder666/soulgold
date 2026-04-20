@@ -124,7 +124,7 @@ static const struct HiddenGrottoData sHiddenGrottoData[NUM_HIDDEN_GROTTOES] =
         .mons =
         {
             { SPECIES_ROOKIDEE, 0 },
-            { SPECIES_MEOWTH, 0 },
+            { SPECIES_PIKACHU, 0 },
             { SPECIES_POLTCHAGEIST, 0 },
             { SPECIES_CHIMCHAR, 0 },
         },
