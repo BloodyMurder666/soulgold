@@ -13,6 +13,9 @@
 #include "constants/species.h"
 
 #define ITEM_FROM_GROTTO_DATA 0xFFFF
+#define HIDDEN_GROTTO_MON_TOTAL_WEIGHT 40
+#define HIDDEN_GROTTO_ITEM_TOTAL_WEIGHT 100
+#define HIDDEN_GROTTO_HIDDEN_ITEM_TOTAL_WEIGHT 160
 
 enum HiddenGrottoId
 {
@@ -390,37 +393,34 @@ static const struct HiddenGrottoData sHiddenGrottoData[NUM_HIDDEN_GROTTOES] =
 
 static const struct HiddenGrottoWeightedEntry sHiddenGrottoPokemonIndexes[] =
 {
-    { 15, 0 },
-    { 15, 1 },
-    {  8, 2 },
-    {  2, 3 },
+    { 10, 0 },
+    { 10, 1 },
+    { 10, 2 },
+    { 10, 3 },
 };
 
 static const struct HiddenGrottoWeightedEntry sHiddenGrottoItems[] =
 {
-    { 50, ITEM_POKE_BALL },
     { 20, ITEM_GREAT_BALL },
     {  8, ITEM_ULTRA_BALL },
-    { 25, ITEM_POTION },
     { 10, ITEM_SUPER_POTION },
     {  4, ITEM_HYPER_POTION },
-    { 25, ITEM_REPEL },
     { 10, ITEM_SUPER_REPEL },
     {  4, ITEM_MAX_REPEL },
-    {  4, ITEM_FROM_GROTTO_DATA },
+    { 44, ITEM_FROM_GROTTO_DATA },
 };
 
 static const struct HiddenGrottoWeightedEntry sHiddenGrottoHiddenItems[] =
 {
-    { 99, ITEM_GROWTH_MULCH },
-    { 30, ITEM_TINYMUSHROOM },
-    { 10, ITEM_BIG_MUSHROOM },
-    {  1, ITEM_BALMMUSHROOM },
-    {  8, ITEM_HEART_SCALE },
-    {  8, ITEM_PEARL },
-    {  1, ITEM_RARE_CANDY },
-    {  2, ITEM_PP_UP },
-    {  1, ITEM_PP_MAX },
+    { 30, ITEM_GROWTH_MULCH },
+    { 20, ITEM_TINYMUSHROOM },
+    { 12, ITEM_BIG_MUSHROOM },
+    {  4, ITEM_BALMMUSHROOM },
+    { 10, ITEM_HEART_SCALE },
+    { 10, ITEM_PEARL },
+    {  5, ITEM_RARE_CANDY },
+    {  5, ITEM_PP_UP },
+    {  4, ITEM_PP_MAX },
 };
 
 void DailyResetHiddenGrottoes(void)
@@ -601,24 +601,29 @@ static void PopulateCurrentHiddenGrotto(void)
         return;
     }
 
-    switch (Random() % 5)
+    switch (Random() % 10)
     {
     case 0:
     case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
         content->type = HIDDEN_GROTTO_POKEMON;
         content->id = GetRandomHiddenGrottoSpecies(grotto);
         break;
-    case 2:
-    case 3:
-        value = GetWeightedTableEntry(sHiddenGrottoItems, ARRAY_COUNT(sHiddenGrottoItems), 160);
+    case 6:
+    case 7:
+        value = GetWeightedTableEntry(sHiddenGrottoItems, ARRAY_COUNT(sHiddenGrottoItems), HIDDEN_GROTTO_ITEM_TOTAL_WEIGHT);
         if (value == ITEM_FROM_GROTTO_DATA)
             value = grotto->rareItem;
         content->type = HIDDEN_GROTTO_ITEM;
         content->id = value;
         break;
-    case 4:
+    case 8:
+    case 9:
     default:
-        value = GetWeightedTableEntry(sHiddenGrottoHiddenItems, ARRAY_COUNT(sHiddenGrottoHiddenItems), 160);
+        value = GetWeightedTableEntry(sHiddenGrottoHiddenItems, ARRAY_COUNT(sHiddenGrottoHiddenItems), HIDDEN_GROTTO_HIDDEN_ITEM_TOTAL_WEIGHT);
         content->type = HIDDEN_GROTTO_HIDDEN_ITEM;
         content->id = value;
         break;
@@ -647,7 +652,7 @@ static u16 GetHiddenGrottoSpecies(const struct HiddenGrottoMonEntry *entry)
 
 static u16 GetRandomHiddenGrottoSpecies(const struct HiddenGrottoData *grotto)
 {
-    u16 monIndex = GetWeightedTableEntry(sHiddenGrottoPokemonIndexes, ARRAY_COUNT(sHiddenGrottoPokemonIndexes), 40);
+    u16 monIndex = GetWeightedTableEntry(sHiddenGrottoPokemonIndexes, ARRAY_COUNT(sHiddenGrottoPokemonIndexes), HIDDEN_GROTTO_MON_TOTAL_WEIGHT);
 
     return GetHiddenGrottoSpecies(&grotto->mons[monIndex]);
 }
