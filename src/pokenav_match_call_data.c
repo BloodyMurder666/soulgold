@@ -233,7 +233,7 @@ static const struct MatchCallStructNPC sMomMatchCallHeader =
     .type = MC_TYPE_NPC,
     .mapSec = MAPSEC_NEW_BARK_TOWN,
     .flag = 0xFFFF,
-    .desc = COMPOUND_STRING("Smithk200's Mom Isn't Kind"),
+    .desc = COMPOUND_STRING("Mom"),
     .name = COMPOUND_STRING("Mom"),
     .textData = sMomTextScripts
 };
