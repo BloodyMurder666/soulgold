@@ -1291,8 +1291,8 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Hitmonchan
-Level: 29
+Hitmontop
+Level: 38
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_BRYAN ===
@@ -7124,16 +7124,12 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Mankey
-Level: 27
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
 Machoke
-Level: 27
+Level: 37
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Primeape
-Level: 27
+Level: 37
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_NORMAN ===
@@ -8162,12 +8158,8 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Machop
-Level: 27
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Machoke
-Level: 27
+Mienshao
+Level: 37
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GLENN ===
@@ -10522,42 +10514,99 @@ Class: Leader
 Pic: Leader Chuck
 Gender: Male
 Music: Male
-Items: Super Potion / Super Potion
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Pink
 
 Hitmontop
-Level: 30
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Ability: Intimidate
+Level: 40
+IVs: 20 HP / 20 Atk / 20 Def / 12 SpA / 12 SpD / 12 Spe
 - Triple Kick
-- Rolling Kick
+- Rapid Spin
 - Dig
 - Pursuit
 
-Primeape
-Level: 29
+Mienshao
+Level: 40
+Ability: Regenerator
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Low Kick
-- Karate Chop
-- Ice Punch
-- Rage
-
-Sudowoodo
-Level: 30
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Rock Slide
-- Thunder Punch
-- Low Kick
-- Faint Attack
+- U Turn
+- Bounce
+- Knock Off
 
 Poliwrath @ Black Belt
-Level: 31
+Level: 41
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Hypnosis
-- Mind Reader
+- Drain Punch
 - Surf
 - Dynamic Punch
+
+Annihilape @ Chesto Berry
+Level: 42
+IVs: 20 HP / 20 Atk / 20 Def / 12 SpA / 12 SpD / 12 Spe
+- Brick Break
+- Taunt
+- Assurance
+- Phantom Force
+
+=== TRAINER_CHUCK_1 ===
+Name: Chuck
+Class: Leader
+Pic: Leader Chuck
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Pink
+Difficulty: Hard
+
+Hitmontop @ Adrenaline Orb
+Ability: Intimidate
+Level: 44
+IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
+- Triple Axel
+- Rapid Spin
+- Bullet Punch
+- Pursuit
+
+Sirfetch'd @ Assault Vest
+Level: 44
+Ability: Scrappy
+IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
+- Slash
+- Brutal Swing
+- Leaf Blade
+- Brick Break
+
+Mienshao @ Sitrus Berry
+Level: 44
+Ability: Regenerator
+IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
+- U turn
+- Drain Punch
+- Ice Spinner
+- Knock Off
+
+Poliwrath @ Black Belt
+Level: 44
+IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
+- Hypnosis
+- Mind Reader
+- Waterfall
+- Dynamic Punch
+
+Falinks @ Falinksite
+Ability: Defiant
+Level: 45
+IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
+- First Impression
+- No Retreat
+- Megahorn
+- Zen Headbutt
+
 
 === TRAINER_CHUCK_2 ===
 Name: Chuck
@@ -10719,7 +10768,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Hitmonlee
-Level: 29
+Level: 38
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_10 ===
