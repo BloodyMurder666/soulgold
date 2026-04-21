@@ -3724,19 +3724,34 @@ static void DebugAction_TimeMenu_ChangeWeekdays(u8 taskId)
 // *******************************
 // Actions PCBag
 
+static bool8 Debug_TryAdvanceToEnabledSpecies(u16 *species)
+{
+    while (*species < NUM_SPECIES)
+    {
+        if (*species != SPECIES_EGG && IsSpeciesEnabled(*species))
+            return TRUE;
+        (*species)++;
+    }
+
+    return FALSE;
+}
+
 static void DebugAction_PCBag_Fill_PCBoxes_Fast(u8 taskId) //Credit: Sierraffinity
 {
     int boxId, boxPosition;
     struct BoxPokemon boxMon;
-    u16 species = SPECIES_BULBASAUR;
+    u16 species = SPECIES_VICTINI;
     u8 speciesName[POKEMON_NAME_LENGTH + 1];
+
+    if (!Debug_TryAdvanceToEnabledSpecies(&species))
+        goto done;
 
     CreateBoxMon(&boxMon, species, 100, Random32(), OTID_STRUCT_PLAYER_ID);
     //mons are created with 0 IVs
 
-    for (boxId = 0; boxId < TOTAL_BOXES_COUNT; boxId++)
+    for (boxId = 0; boxId < TOTAL_BOXES_COUNT && species < NUM_SPECIES; boxId++)
     {
-        for (boxPosition = 0; boxPosition < IN_BOX_COUNT; boxPosition++, species++)
+        for (boxPosition = 0; boxPosition < IN_BOX_COUNT && Debug_TryAdvanceToEnabledSpecies(&species); boxPosition++, species++)
         {
             if (!GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SANITY_HAS_SPECIES))
             {
@@ -3749,6 +3764,7 @@ static void DebugAction_PCBag_Fill_PCBoxes_Fast(u8 taskId) //Credit: Sierraffini
         }
     }
 
+done:
     // Set flag for user convenience
     FlagSet(FLAG_SYS_POKEMON_GET);
     Debug_DestroyMenu_Full(taskId);
