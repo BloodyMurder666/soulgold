@@ -240,7 +240,7 @@ OlivineCity_Gym_EventScript_JasmineVictory::
 	addvar VAR_NUM_BADGES, 1
 	setvar VAR_0x8008, 6
 	call Common_EventScript_SetGymTrainers
-	giveitem ITEM_TM_IRON_TAIL
+	giveitem ITEM_TM_GYRO_BALL
 	msgbox OlivineCity_Gym_Text_JasmineIronTailSpeech, MSGBOX_DEFAULT
 	setvar VAR_OLIVINE_CITY_STATE, 8
 	closemessage

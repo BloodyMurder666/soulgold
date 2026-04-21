@@ -67,7 +67,7 @@ GoldenrodCity_RadioTower_3F_EventScript_Cooltrainer2::
 	faceplayer
 	msgbox GoldenrodCity_RadioTower_3F_Text_CooltrainerFHeroGift, MSGBOX_DEFAULT
 	closemessage
-	giveitem ITEM_TM_SKILL_SWAP
+	giveitem ITEM_TM_ROUND
 	setflag FLAG_GOT_SKILL_SWAP
 	msgbox GoldenrodCity_RadioTower_3F_Text_CooltrainerFSunnyDay, MSGBOX_DEFAULT
 	closemessage

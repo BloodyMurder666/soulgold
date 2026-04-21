@@ -66,7 +66,7 @@ CianwoodGym_EventScript_ChuckVictory::
 	addvar VAR_NUM_BADGES, 1
 	setvar VAR_0x8008, 5
 	call Common_EventScript_SetGymTrainers
-	giveitem ITEM_TM_FOCUS_PUNCH
+	giveitem ITEM_TM_BULK_UP
 	msgbox CianwoodGym_Text_ChuckTMSpeech, MSGBOX_DEFAULT
 	setvar VAR_GETFLY, 1
 	setrespawn HEAL_LOCATION_CIANWOOD_CITY

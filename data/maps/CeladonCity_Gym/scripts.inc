@@ -12,7 +12,7 @@ CeladonCity_Gym_EventScript_Erika::
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox CeladonCity_Gym_Text_ErikaExplainTM, MSGBOX_DEFAULT
-	giveitem ITEM_TM_GIGA_DRAIN
+	giveitem ITEM_TM_ENERGY_BALL
 	setflag FLAG_BADGE12_GET
 	setflag FLAG_DEFEATED_CELADON_GYM
 	addvar VAR_NUM_BADGES, 1
