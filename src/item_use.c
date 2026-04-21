@@ -6,6 +6,7 @@
 #include "battle_pyramid_bag.h"
 #include "berry.h"
 #include "berry_powder.h"
+#include "candy_jar.h"
 #include "bike.h"
 #include "coins.h"
 #include "data.h"
@@ -87,6 +88,8 @@ static const u8 sText_ItemFinderOnTop[] = _("Oh!\nThe ITEMFINDER's shaking wildl
 static const u8 sText_ItemFinderNothing[] = _("… … … …Nope!\nThere's no response.{PAUSE_UNTIL_PRESS}");
 static const u8 sText_CoinCase[] = _("Your COINS:\n{STR_VAR_1}{PAUSE_UNTIL_PRESS}");
 static const u8 sText_PowderQty[] = _("POWDER QTY: {STR_VAR_1}{PAUSE_UNTIL_PRESS}");
+static const u8 sText_CandyJarQty[] = _("CANDY EXP: {STR_VAR_1}\nNEXT CANDY: {STR_VAR_2}{PAUSE_UNTIL_PRESS}");
+static const u8 sText_CandyJarMadeCandy[] = _("The CANDY JAR made\n{STR_VAR_1}!\pStored EXP left:\n{STR_VAR_2}{PAUSE_UNTIL_PRESS}");
 static const u8 sText_BootedUpTM[] = _("Booted up a TM.");
 static const u8 sText_BootedUpHM[] = _("Booted up an HM.");
 static const u8 sText_TMHMContainedVar1[] = _("It contained\n{STR_VAR_1}.\pTeach {STR_VAR_1}\nto a POKéMON?");
@@ -782,6 +785,42 @@ void ItemUseOutOfBattle_PowderJar(u8 taskId)
     {
         DisplayItemMessageOnField(taskId, gStringVar4, Task_CloseCantUseKeyItemMessage);
     }
+}
+
+void ItemUseOutOfBattle_CandyJar(u8 taskId)
+{
+    u32 storedExp = GetCandyJarExp();
+    u32 candiesToMake = storedExp / EXP_CANDY_M_THRESHOLD;
+
+    if (candiesToMake == 0)
+    {
+        ConvertIntToDecimalStringN(gStringVar1, storedExp, STR_CONV_MODE_LEFT_ALIGN, 8);
+        ConvertIntToDecimalStringN(gStringVar2, EXP_CANDY_M_THRESHOLD - storedExp, STR_CONV_MODE_LEFT_ALIGN, 4);
+        StringExpandPlaceholders(gStringVar4, sText_CandyJarQty);
+    }
+    else
+    {
+        u32 bagSpace = GetFreeSpaceForItemInBag(ITEM_EXP_CANDY_M);
+        u32 candiesToAdd = min(candiesToMake, bagSpace);
+
+        if (candiesToAdd == 0)
+        {
+            StringCopy(gStringVar4, gText_BagIsFull);
+        }
+        else
+        {
+            AddBagItem(ITEM_EXP_CANDY_M, candiesToAdd);
+            TakeCandyJarExp(candiesToAdd * EXP_CANDY_M_THRESHOLD);
+            CopyItemNameHandlePlural(ITEM_EXP_CANDY_M, gStringVar1, candiesToAdd);
+            ConvertIntToDecimalStringN(gStringVar2, GetCandyJarExp(), STR_CONV_MODE_LEFT_ALIGN, 8);
+            StringExpandPlaceholders(gStringVar4, sText_CandyJarMadeCandy);
+        }
+    }
+
+    if (!gTasks[taskId].tUsingRegisteredKeyItem)
+        DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, CloseItemMessage);
+    else
+        DisplayItemMessageOnField(taskId, gStringVar4, Task_CloseCantUseKeyItemMessage);
 }
 
 void ItemUseOutOfBattle_Berry(u8 taskId)
