@@ -81,6 +81,8 @@ static void SetDistanceOfClosestHiddenItem(u8, s16, s16);
 static void CB2_OpenPokeblockFromBag(void);
 static void ItemUseOnFieldCB_Honey(u8 taskId);
 static bool32 IsValidLocationForVsSeeker(void);
+static u32 ConvertCandyJarExpToCandies(u8 *summaryDst);
+static bool8 AppendCandyJarRewardLine(u8 *summaryDst, enum Item itemId, u32 count);
 
 static const u8 sText_CantDismountBike[] = _("You can't dismount your bike here.{PAUSE_UNTIL_PRESS}");
 static const u8 sText_ItemFinderNearby[] = _("Huh?\nThe ITEMFINDER's responding!\pThere's an item buried around here!{PAUSE_UNTIL_PRESS}");
@@ -89,7 +91,7 @@ static const u8 sText_ItemFinderNothing[] = _("… … … …Nope!\nThere's no 
 static const u8 sText_CoinCase[] = _("Your COINS:\n{STR_VAR_1}{PAUSE_UNTIL_PRESS}");
 static const u8 sText_PowderQty[] = _("POWDER QTY: {STR_VAR_1}{PAUSE_UNTIL_PRESS}");
 static const u8 sText_CandyJarQty[] = _("CANDY EXP: {STR_VAR_1}\nNEXT CANDY: {STR_VAR_2}{PAUSE_UNTIL_PRESS}");
-static const u8 sText_CandyJarMadeCandy[] = _("The CANDY JAR made\n{STR_VAR_1}!\pStored EXP left:\n{STR_VAR_2}{PAUSE_UNTIL_PRESS}");
+static const u8 sText_CandyJarMadeCandy[] = _("The CANDY JAR made:\n{STR_VAR_1}\pStored EXP left:\n{STR_VAR_2}{PAUSE_UNTIL_PRESS}");
 static const u8 sText_BootedUpTM[] = _("Booted up a TM.");
 static const u8 sText_BootedUpHM[] = _("Booted up an HM.");
 static const u8 sText_TMHMContainedVar1[] = _("It contained\n{STR_VAR_1}.\pTeach {STR_VAR_1}\nto a POKéMON?");
@@ -98,6 +100,10 @@ static const u8 sText_UsedVar2WildRepelled[] = _("{PLAYER} used the\n{STR_VAR_2}
 static const u8 sText_PlayedPokeFluteCatchy[] = _("Played the POKé FLUTE.\pNow, that's a catchy tune!{PAUSE_UNTIL_PRESS}");
 static const u8 sText_PlayedPokeFlute[] = _("Played the POKé FLUTE.");
 static const u8 sText_PokeFluteAwakenedMon[] = _("The POKé FLUTE awakened sleeping\nPOKéMON.{PAUSE_UNTIL_PRESS}");
+
+#ifndef UINT16_MAX
+#define UINT16_MAX USHRT_MAX
+#endif
 
 // EWRAM variables
 EWRAM_DATA static TaskFunc sItemUseOnFieldCB = NULL;
@@ -790,29 +796,24 @@ void ItemUseOutOfBattle_PowderJar(u8 taskId)
 void ItemUseOutOfBattle_CandyJar(u8 taskId)
 {
     u32 storedExp = GetCandyJarExp();
-    u32 candiesToMake = storedExp / EXP_CANDY_M_THRESHOLD;
 
-    if (candiesToMake == 0)
+    if (storedExp < 100)
     {
         ConvertIntToDecimalStringN(gStringVar1, storedExp, STR_CONV_MODE_LEFT_ALIGN, 8);
-        ConvertIntToDecimalStringN(gStringVar2, EXP_CANDY_M_THRESHOLD - storedExp, STR_CONV_MODE_LEFT_ALIGN, 4);
+        ConvertIntToDecimalStringN(gStringVar2, 100 - storedExp, STR_CONV_MODE_LEFT_ALIGN, 4);
         StringExpandPlaceholders(gStringVar4, sText_CandyJarQty);
     }
     else
     {
-        u32 bagSpace = GetFreeSpaceForItemInBag(ITEM_EXP_CANDY_M);
-        u32 candiesToAdd = min(candiesToMake, bagSpace);
+        u32 remainingExp = ConvertCandyJarExpToCandies(gStringVar1);
 
-        if (candiesToAdd == 0)
+        if (remainingExp == storedExp)
         {
             StringCopy(gStringVar4, gText_BagIsFull);
         }
         else
         {
-            AddBagItem(ITEM_EXP_CANDY_M, candiesToAdd);
-            TakeCandyJarExp(candiesToAdd * EXP_CANDY_M_THRESHOLD);
-            CopyItemNameHandlePlural(ITEM_EXP_CANDY_M, gStringVar1, candiesToAdd);
-            ConvertIntToDecimalStringN(gStringVar2, GetCandyJarExp(), STR_CONV_MODE_LEFT_ALIGN, 8);
+            ConvertIntToDecimalStringN(gStringVar2, remainingExp, STR_CONV_MODE_LEFT_ALIGN, 8);
             StringExpandPlaceholders(gStringVar4, sText_CandyJarMadeCandy);
         }
     }
@@ -821,6 +822,61 @@ void ItemUseOutOfBattle_CandyJar(u8 taskId)
         DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, CloseItemMessage);
     else
         DisplayItemMessageOnField(taskId, gStringVar4, Task_CloseCantUseKeyItemMessage);
+}
+
+static u32 ConvertCandyJarExpToCandies(u8 *summaryDst)
+{
+    static const struct
+    {
+        enum Item itemId;
+        u32 expYield;
+    } sCandyInfo[] =
+    {
+        {ITEM_EXP_CANDY_XL, 30000},
+        {ITEM_EXP_CANDY_L, 10000},
+        {ITEM_EXP_CANDY_M, 3000},
+        {ITEM_EXP_CANDY_S, 800},
+        {ITEM_EXP_CANDY_XS, 100},
+    };
+
+    u32 remainingExp = GetCandyJarExp();
+
+    summaryDst[0] = EOS;
+
+    for (u32 i = 0; i < ARRAY_COUNT(sCandyInfo); i++)
+    {
+        u32 count = min(remainingExp / sCandyInfo[i].expYield, GetFreeSpaceForItemInBag(sCandyInfo[i].itemId));
+        u16 countToAdd;
+
+        count = min(count, 999);
+        countToAdd = min(count, UINT16_MAX);
+
+        if (countToAdd == 0)
+            continue;
+
+        AddBagItem(sCandyInfo[i].itemId, countToAdd);
+        remainingExp -= countToAdd * sCandyInfo[i].expYield;
+        AppendCandyJarRewardLine(summaryDst, sCandyInfo[i].itemId, countToAdd);
+    }
+
+    TakeCandyJarExp(GetCandyJarExp() - remainingExp);
+    return remainingExp;
+}
+
+static bool8 AppendCandyJarRewardLine(u8 *summaryDst, enum Item itemId, u32 count)
+{
+    u8 countText[8];
+    u8 itemName[ITEM_NAME_LENGTH + 10];
+
+    if (summaryDst[0] != EOS)
+        StringAppend(summaryDst, COMPOUND_STRING("\n"));
+
+    ConvertIntToDecimalStringN(countText, count, STR_CONV_MODE_LEFT_ALIGN, 3);
+    CopyItemNameHandlePlural(itemId, itemName, count);
+    StringAppend(summaryDst, countText);
+    StringAppend(summaryDst, COMPOUND_STRING(" "));
+    StringAppend(summaryDst, itemName);
+    return TRUE;
 }
 
 void ItemUseOutOfBattle_Berry(u8 taskId)
