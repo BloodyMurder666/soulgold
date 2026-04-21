@@ -6,6 +6,43 @@
 #include "test/overworld_script.h"
 #include "test/test.h"
 
+TEST("Items are stored in their correct bag pockets")
+{
+    struct BagPocket *medicinePocket = &gBagPockets[POCKET_MEDICINE];
+    struct BagPocket *battleItemsPocket = &gBagPockets[POCKET_BATTLE_ITEMS];
+    struct BagPocket *megaStonesPocket = &gBagPockets[POCKET_MEGASTONES];
+
+    memset(medicinePocket->itemSlots, 0, sizeof(gSaveBlock1Ptr->bag.medicine));
+    memset(battleItemsPocket->itemSlots, 0, sizeof(gSaveBlock1Ptr->bag.battleItems));
+    memset(megaStonesPocket->itemSlots, 0, sizeof(gSaveBlock1Ptr->bag.megaStones));
+
+    EXPECT_EQ(GetItemPocket(ITEM_POTION), POCKET_MEDICINE);
+    EXPECT_EQ(GetItemPocket(ITEM_LEFTOVERS), POCKET_BATTLE_ITEMS);
+    EXPECT_EQ(GetItemPocket(ITEM_ROCKY_HELMET), POCKET_BATTLE_ITEMS);
+    EXPECT_EQ(GetItemPocket(ITEM_VENUSAURITE), POCKET_MEGASTONES);
+
+    RUN_OVERWORLD_SCRIPT(
+        additem ITEM_POTION;
+        additem ITEM_LEFTOVERS;
+        additem ITEM_ROCKY_HELMET;
+        additem ITEM_VENUSAURITE;
+    );
+
+    EXPECT_EQ(medicinePocket->itemSlots[0].itemId, ITEM_POTION);
+    EXPECT_EQ(medicinePocket->itemSlots[0].quantity, 1);
+    EXPECT_EQ(medicinePocket->itemSlots[1].itemId, ITEM_NONE);
+
+    EXPECT_EQ(battleItemsPocket->itemSlots[0].itemId, ITEM_LEFTOVERS);
+    EXPECT_EQ(battleItemsPocket->itemSlots[0].quantity, 1);
+    EXPECT_EQ(battleItemsPocket->itemSlots[1].itemId, ITEM_ROCKY_HELMET);
+    EXPECT_EQ(battleItemsPocket->itemSlots[1].quantity, 1);
+    EXPECT_EQ(battleItemsPocket->itemSlots[2].itemId, ITEM_NONE);
+
+    EXPECT_EQ(megaStonesPocket->itemSlots[0].itemId, ITEM_VENUSAURITE);
+    EXPECT_EQ(megaStonesPocket->itemSlots[0].quantity, 1);
+    EXPECT_EQ(megaStonesPocket->itemSlots[1].itemId, ITEM_NONE);
+}
+
 TEST("TMs and HMs are sorted correctly in the bag")
 {
     struct BagPocket *pocket = &gBagPockets[POCKET_TM_HM];

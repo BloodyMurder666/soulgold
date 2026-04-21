@@ -81,7 +81,7 @@ enum Language
 #define POKEBLOCKS_COUNT 40
 #define OBJECT_EVENTS_COUNT 16
 #define MAIL_COUNT (10 + PARTY_SIZE)
-#define SECRET_BASES_COUNT 20
+#define SECRET_BASES_COUNT 1
 #define POKE_NEWS_COUNT 16
 #define PC_ITEMS_COUNT 50
 #define OBJECT_EVENT_TEMPLATES_COUNT 64
@@ -95,16 +95,16 @@ enum Language
 #define GIFT_RIBBONS_COUNT 11
 #define SAVED_TRENDS_COUNT 5
 #define PYRAMID_BAG_ITEMS_COUNT 10
-#define ROAMER_COUNT 1 // Number of maximum concurrent active roamers
+#define ROAMER_COUNT 3 // Number of maximum concurrent active roamers
 
 // Bag constants
 #define BAG_ITEMS_COUNT 150
-#define BAG_MEDICINE_COUNT 40
+#define BAG_MEDICINE_COUNT 55
 #define BAG_BATTLE_ITEMS_COUNT 100
 #define BAG_KEYITEMS_COUNT 50
 #define BAG_POKEBALLS_COUNT 27
 #define BAG_TMHM_COUNT 128
-#define BAG_MEGA_STONES_COUNT 70
+#define BAG_MEGA_STONES_COUNT 93
 #define BAG_BERRIES_COUNT 70
 
 // Number of facilities for Ranking Hall.
