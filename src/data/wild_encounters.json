@@ -8712,63 +8712,63 @@
             "encounter_rate": 20,
             "mons": [
               {
-                "min_level": 22,
-                "max_level": 26,
+                "min_level": 30,
+                "max_level": 32,
                 "species": "SPECIES_TAUROS"
               },
               {
-                "min_level": 22,
-                "max_level": 26,
+                "min_level": 30,
+                "max_level": 32,
                 "species": "SPECIES_GLOOM"
               },
               {
-                "min_level": 22,
-                "max_level": 26,
+                "min_level": 30,
+                "max_level": 33,
                 "species": "SPECIES_SKIPLOOM"
               },
               {
-                "min_level": 22,
-                "max_level": 26,
+                "min_level": 30,
+                "max_level": 33,
                 "species": "SPECIES_FARFETCHD"
               },
               {
-                "min_level": 22,
-                "max_level": 26,
+                "min_level": 30,
+                "max_level": 33,
                 "species": "SPECIES_SKIPLOOM"
               },
               {
-                "min_level": 22,
-                "max_level": 23,
+                "min_level": 30,
+                "max_level": 33,
                 "species": "SPECIES_RUFFLET"
               },
               {
-                "min_level": 22,
-                "max_level": 26,
+                "min_level": 30,
+                "max_level": 33,
                 "species": "SPECIES_CHATOT"
               },
               {
-                "min_level": 22,
-                "max_level": 26,
+                "min_level": 30,
+                "max_level": 33,
                 "species": "SPECIES_RUFFLET"
               },
               {
-                "min_level": 22,
-                "max_level": 26,
+                "min_level": 30,
+                "max_level": 33,
                 "species": "SPECIES_CHATOT"
               },
               {
-                "min_level": 22,
-                "max_level": 26,
+                "min_level": 30,
+                "max_level": 34,
                 "species": "SPECIES_FARFETCHD"
               },
               {
-                "min_level": 22,
-                "max_level": 26,
+                "min_level": 30,
+                "max_level": 34,
                 "species": "SPECIES_FLAMIGO"
               },
               {
-                "min_level": 22,
-                "max_level": 26,
+                "min_level": 30,
+                "max_level": 34,
                 "species": "SPECIES_FLAMIGO"
               }
             ]

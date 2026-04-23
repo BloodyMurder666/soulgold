@@ -464,7 +464,7 @@ NewBarkTown_Lab_EventScript_Elm_Togepi_Seen::
 	waitmessage
 	msgbox NewBarkTown_Lab_Text_ElmGiveEverstone1, MSGBOX_DEFAULT
 	waitmessage
-	giveitem ITEM_EVERSTONE
+	giveitem ITEM_SHINY_STONE
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	msgbox NewBarkTown_Lab_Text_ElmGiveEverstone2, MSGBOX_DEFAULT
 	closemessage
@@ -806,13 +806,11 @@ NewBarkTown_Lab_Text_ElmGiveEverstone1:
 	.string "token of our appreciation.$"
 
 NewBarkTown_Lab_Text_ElmGiveEverstone2:
-	.string "That's an EVERSTONE.\p"
+	.string "That's a Shiny Stone.\p"
 	.string "Some species of POKéMON evolve\n"
 	.string "when they grow to certain levels.\p"
-	.string "A POKéMON holding the EVERSTONE\n"
-	.string "won't evolve.\p"
-	.string "Give it to a POKéMON you don't\n"
-	.string "want to evolve.$"
+	.string "A Togetic will evolve\n"
+	.string "with this one.$"
 
 NewBarkTown_Lab_Text_ElmCallYou:
 	.string "ELM: {PLAYER}, I'll call you if\n"

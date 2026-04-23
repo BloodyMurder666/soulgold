@@ -5493,11 +5493,11 @@ Double Battle: Yes
 AI: Check Bad Move
 
 Steelix
-Level: 37
+Level: 45
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Gliscor
-Level: 38
+Level: 45
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_RILEY ===
@@ -7822,48 +7822,104 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Name: Jasmine
 Class: Leader
 Pic: Leader Jasmine
-Gender: Male
-Music: Male
-Items: Super Potion / Super Potion
+Gender: Female
+Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
+Difficulty: Normal
 Mugshot: Blue
 
 Skarmory
-Level: 35
+Level: 43
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Spikes
-- Drill Peck
+- Brave Bird
 - Swagger
 - Steel Wing
 
-Corsola
-Level: 35
+Tinkaton
+Level: 43
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Rain Dance
-- Surf
-- Recover
-- Ancient Power
+- Light Screen
+- Fake Out
+- Gigaton Hammer
+- Brutal Swing
 
-Magneton
-Level: 35
+Magneton @ Magnet
+Level: 44
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Thunderbolt
 - Tri Attack
-- Rain Dance
+- Flash Cannon
 - Thunder
 
-Scizor @ Focus Band
-Level: 36
+Scizor @ Sitrus Berry
+Level: 44
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Twineedle
-- Metal Claw
-- Agility
+- U Turn
+- Bullet Punch
+- Bug Bite
+- Wing Attack
+
+Steelix @ Steelixite
+Level: 45
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Crunch
+- Earthquake
+- Rock Slide
+- Iron Tail
+
+=== TRAINER_JASMINE_1 ===
+Name: Jasmine
+Class: Leader
+Pic: Leader Jasmine
+Gender: Female
+Music: Male
+Double Battle: Yes
+AI: Smart Trainer
+Mugshot: Blue
+Difficulty: Hard
+
+Corviknight @ Rocky Helmet
+Level: 45
+Ability: Mirror Armor
+IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
+- Body Press
+- Iron Defense
+- Roost
+- Steel Wing
+
+Tinkaton @ Shuca Berry
+Level: 45
+Ability: Own Tempo
+IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
+- Light Screen
+- Fake Out
+- Gigaton Hammer
+- Thunder Wave
+
+Magnezone @ Leftovers
+Level: 45
+Ability: Analytic
+IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
+- Thunderbolt
+- Tri Attack
+- Flash Cannon
+- Discharge
+
+Scizor @ Sitrus Berry
+Level: 45
+Ability: Technician
+IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
+- U Turn
+- Bullet Punch
+- Bug Bite
 - Swords Dance
 
-Steelix @ Quick Claw
-Level: 36
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Steelix @ Steelixite
+Level: 45
+Ability: Sheer Force
+IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - Crunch
 - Earthquake
 - Rock Slide

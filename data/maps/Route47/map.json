@@ -55,7 +55,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "ITEM_REVIVE",
+      "trainer_sight_or_berry_tree_id": "ITEM_DUSK_STONE",
       "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_ROUTE47_REVIVE"
     },
@@ -281,7 +281,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(FEAROW)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(BRAVIARY)",
       "x": 100,
       "y": 31,
       "elevation": 0,
@@ -294,7 +294,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(FEAROW)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(BRAVIARY)",
       "x": 46,
       "y": 37,
       "elevation": 0,
@@ -359,7 +359,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(RATICATE)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SCRAFTY)",
       "x": 37,
       "y": 12,
       "elevation": 0,
@@ -372,7 +372,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(FARFETCHD)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(TROPIUS)",
       "x": 64,
       "y": 24,
       "elevation": 0,
