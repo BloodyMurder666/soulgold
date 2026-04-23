@@ -431,6 +431,33 @@ static const mapsec_u16_t sRedOutlineFlyDestinations[][2] =
     }
 };
 
+static const mapsec_u16_t sFlyDestinations[][2] =
+{
+    {MAPSEC_VIOLET_CITY,      FLAG_VISITED_VIOLET_CITY},
+    {MAPSEC_AZALEA_TOWN,      FLAG_VISITED_AZALEA_TOWN},
+    {MAPSEC_GOLDENROD_CITY,   FLAG_VISITED_GOLDENROD_CITY},
+    {MAPSEC_ECRUTEAK_CITY,    FLAG_VISITED_ECRUTEAK_CITY},
+    {MAPSEC_OLIVINE_CITY,     FLAG_VISITED_OLIVINE_CITY},
+    {MAPSEC_CIANWOOD_CITY,    FLAG_VISITED_CIANWOOD_CITY},
+    {MAPSEC_SAFARI_ZONE_GATE, FLAG_VISITED_SAFARI_ZONE_GATE},
+    {MAPSEC_MAHOGANY_TOWN,    FLAG_VISITED_MAHOGANY_TOWN},
+    {MAPSEC_BLACKTHORN_CITY,  FLAG_VISITED_BLACKTHORN_CITY},
+    {MAPSEC_CHERRYGROVE_CITY, FLAG_VISITED_CHERRYGROVE_CITY},
+    {MAPSEC_INDIGO_PLATEAU,   FLAG_VISITED_INDIGO_PLATEAU},
+    {MAPSEC_NEW_BARK_TOWN,    FLAG_VISITED_NEWBARK_TOWN},
+    {MAPSEC_PALLET_TOWN,      FLAG_VISITED_PALLET_TOWN},
+    {MAPSEC_VIRIDIAN_CITY,    FLAG_VISITED_VIRIDIAN_CITY},
+    {MAPSEC_PEWTER_CITY,      FLAG_VISITED_PEWTER_CITY},
+    {MAPSEC_CERULEAN_CITY,    FLAG_VISITED_CERULEAN_CITY},
+    {MAPSEC_LAVENDER_TOWN,    FLAG_VISITED_LAVENDER_TOWN},
+    {MAPSEC_VERMILION_CITY,   FLAG_VISITED_VERMILION_CITY},
+    {MAPSEC_CELADON_CITY,     FLAG_VISITED_CELADON_CITY},
+    {MAPSEC_FUCHSIA_CITY,     FLAG_VISITED_FUCHSIA_CITY},
+    {MAPSEC_CINNABAR_ISLAND,  FLAG_VISITED_CINNABAR_ISLAND},
+    {MAPSEC_SAFFRON_CITY,     FLAG_VISITED_SAFFRON_CITY},
+    {MAPSEC_BATTLE_FRONTIER,  FLAG_LANDMARK_BATTLE_FRONTIER},
+};
+
 static const struct OamData sFlyDestIcon_OamData =
 {
     .shape = SPRITE_SHAPE(8x8),
@@ -1256,6 +1283,8 @@ static u8 GetMapsecType(u16 mapSecId)
         return FlagGet(FLAG_VISITED_RECEPTION_GATE) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
     case MAPSEC_ROUTE_10:
         return FlagGet(FLAG_VISITED_ROUTE10) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+    case MAPSEC_BATTLE_FRONTIER:
+        return FlagGet(FLAG_LANDMARK_BATTLE_FRONTIER) ? MAPSECTYPE_BATTLE_FRONTIER : MAPSECTYPE_NONE;
     default:
         return MAPSECTYPE_ROUTE;
     }
@@ -1880,8 +1909,9 @@ static void LoadFlyDestIcons(void)
 
 static void CreateFlyDestIcons(void)
 {
-    u16 canFlyFlag;
     mapsec_u16_t mapSecId;
+    u16 canFlyFlag;
+    u16 i;
     u16 x;
     u16 y;
     u16 width;
@@ -1889,12 +1919,13 @@ static void CreateFlyDestIcons(void)
     u16 shape;
     u8 spriteId;
 
-    canFlyFlag = FLAG_VISITED_NEWBARK_TOWN;
-    for (mapSecId = MAPSEC_NEW_BARK_TOWN; mapSecId <= MAPSEC_INDIGO_PLATEAU; mapSecId++)
+    for (i = 0; i < ARRAY_COUNT(sFlyDestinations); i++)
     {
+        mapSecId = sFlyDestinations[i][0];
+        canFlyFlag = sFlyDestinations[i][1];
         GetMapSecDimensions(mapSecId, &x, &y, &width, &height);
         x = (x + MAPCURSOR_X_MIN) * 8 + 4;
-        y = (y + MAPCURSOR_Y_MIN) * 8 + 4;
+        y = (y + MAPCURSOR_Y_MIN) * 8 + 5;
 
         if (width == 2)
             shape = SPRITE_SHAPE(16x8);
@@ -1916,7 +1947,6 @@ static void CreateFlyDestIcons(void)
             StartSpriteAnim(&gSprites[spriteId], shape);
             gSprites[spriteId].sIconMapSec = mapSecId;
         }
-        canFlyFlag++;
     }
 }
 
@@ -1953,7 +1983,7 @@ static void TryCreateRedOutlineFlyDestIcons(void)
     }
 }
 
-// Flickers fly destination icon color (by hiding the fly icon sprite) if the cursor is currently on it
+// Flickers visited fly destination icons on when the cursor is currently on them.
 static void SpriteCB_FlyDestIcon(struct Sprite *sprite)
 {
     if (sFlyMap->regionMap.mapSecId == sprite->sIconMapSec)
@@ -1967,7 +1997,7 @@ static void SpriteCB_FlyDestIcon(struct Sprite *sprite)
     else
     {
         sprite->sFlickerTimer = 16;
-        sprite->invisible = FALSE;
+        sprite->invisible = TRUE;
     }
 }
 

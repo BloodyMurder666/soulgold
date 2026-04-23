@@ -31,13 +31,11 @@ EWRAM_DATA static u8 sCurrPage = 0;
 #define tWindowFrameType data[6]
 #define tLevelCaps data[7]
 
-#define tFont data[8]
-#define tEXPShare data[9]
-#define tFollowers data[10]
-#define tAutorun data[11]
-#define tTrainerLevelScaling data[12]
-#define tWildLevelScaling data[13]
-#define tDifficulty data[14]
+#define tFollowers data[8]
+#define tAutorun data[9]
+#define tTrainerLevelScaling data[10]
+#define tWildLevelScaling data[11]
+#define tDifficulty data[12]
 
 enum
 {
@@ -45,7 +43,7 @@ enum
     MENUITEM_BATTLESCENE,
     MENUITEM_BATTLESTYLE,
     MENUITEM_SOUND,
-    MENUITEM_FONT,
+    MENUITEM_BUTTONMODE,
     MENUITEM_FRAMETYPE,
     MENUITEM_LEVELCAPS,
     MENUITEM_CANCEL,
@@ -55,7 +53,6 @@ enum
 // Menu items Pg2
 enum
 {
-    MENUITEM_EXP_SHARE,
     MENUITEM_FOLLOWERS,
     MENUITEM_AUTORUN,
     MENUITEM_TRAINER_LEVEL_SCALING,
@@ -75,13 +72,11 @@ enum
 #define YPOS_BATTLESCENE  (MENUITEM_BATTLESCENE * 16)
 #define YPOS_BATTLESTYLE  (MENUITEM_BATTLESTYLE * 16)
 #define YPOS_SOUND        (MENUITEM_SOUND * 16)
-#define YPOS_BUTTONMODE   (0 * 16)
+#define YPOS_BUTTONMODE   (MENUITEM_BUTTONMODE * 16)
 #define YPOS_FRAMETYPE    (MENUITEM_FRAMETYPE * 16)
-#define YPOS_FONT    (MENUITEM_FONT * 16)
 #define YPOS_LEVELCAPS        (MENUITEM_LEVELCAPS * 16)
 
 
-#define YPOS_EXP_SHARE    (MENUITEM_EXP_SHARE * 16)
 #define YPOS_FOLLOWERS  (MENUITEM_FOLLOWERS * 16)
 #define YPOS_AUTORUN (MENUITEM_AUTORUN * 16) 
 #define YPOS_TRAINER_LEVEL_SCALING (MENUITEM_TRAINER_LEVEL_SCALING * 16)
@@ -110,10 +105,6 @@ static void FrameType_DrawChoices(u8 selection);
 static u8 ButtonMode_ProcessInput(u8 selection);
 static void ButtonMode_DrawChoices(u8 selection);
 
-static u8 Font_ProcessInput(u8 selection);
-static void Font_DrawChoices(u8 selection);
-static u8 EXPShare_ProcessInput(u8 selection);
-static void EXPShare_DrawChoices(u8 selection);
 static u8 Followers_ProcessInput(u8 selection);
 static void Followers_DrawChoices(u8 selection);
 static u8 LevelCaps_ProcessInput(u8 selection);
@@ -170,15 +161,14 @@ static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
     [MENUITEM_BATTLESCENE] = COMPOUND_STRING("Battle scene"),
     [MENUITEM_BATTLESTYLE] = COMPOUND_STRING("Battle style"),
     [MENUITEM_SOUND]       = COMPOUND_STRING("Sound"),
-    [MENUITEM_FONT]        = COMPOUND_STRING("Font"),
+    [MENUITEM_BUTTONMODE]  = COMPOUND_STRING("Button mode"),
     [MENUITEM_FRAMETYPE]   = COMPOUND_STRING("Frame"),
-    [MENUITEM_LEVELCAPS]       = COMPOUND_STRING("Level Caps"),
+    [MENUITEM_LEVELCAPS]       = COMPOUND_STRING("Level caps"),
     [MENUITEM_CANCEL]      = COMPOUND_STRING("Cancel"),
 };
 
 static const u8 *const sOptionMenuItemsNames_Pg2[MENUITEM_COUNT_PG2] =
 {
-    [MENUITEM_EXP_SHARE]        = gText_EXPShare,
     [MENUITEM_FOLLOWERS]        = gText_Followers,
     [MENUITEM_AUTORUN]         = COMPOUND_STRING("Autorun"),
     [MENUITEM_TRAINER_LEVEL_SCALING] = COMPOUND_STRING("Trainer scaling"),
@@ -256,10 +246,8 @@ static void ReadAllCurrentSettings(u8 taskId)
         gTasks[taskId].tBattleSceneOff = gSaveBlock2Ptr->optionsBattleSceneOff;
         gTasks[taskId].tBattleStyle = gSaveBlock2Ptr->optionsBattleStyle;
         gTasks[taskId].tSound = gSaveBlock2Ptr->optionsSound;
-        gTasks[taskId].tFont = gSaveBlock2Ptr->optionsFont;
+        gTasks[taskId].tButtonMode = gSaveBlock2Ptr->optionsButtonMode;
         gTasks[taskId].tWindowFrameType = gSaveBlock2Ptr->optionsWindowFrameType;
-        gTasks[taskId].tFont = gSaveBlock2Ptr->optionsFont;
-        gTasks[taskId].tEXPShare = gSaveBlock2Ptr->optionsEXPShare;
         gTasks[taskId].tFollowers = gSaveBlock2Ptr->optionsFollowers;
         gTasks[taskId].tLevelCaps = gSaveBlock2Ptr->optionsLevelCaps;
         gTasks[taskId].tAutorun = gSaveBlock2Ptr->optionsAutorun;
@@ -275,7 +263,7 @@ static void DrawOptionsPg1(u8 taskId)
     BattleScene_DrawChoices(gTasks[taskId].tBattleSceneOff);
     BattleStyle_DrawChoices(gTasks[taskId].tBattleStyle);
     Sound_DrawChoices(gTasks[taskId].tSound);
-    Font_DrawChoices(gTasks[taskId].tFont);
+    ButtonMode_DrawChoices(gTasks[taskId].tButtonMode);
     FrameType_DrawChoices(gTasks[taskId].tWindowFrameType);
     LevelCaps_DrawChoices(gTasks[taskId].tLevelCaps);
     HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
@@ -285,7 +273,6 @@ static void DrawOptionsPg1(u8 taskId)
 static void DrawOptionsPg2(u8 taskId)
 {
     ReadAllCurrentSettings(taskId);
-    EXPShare_DrawChoices(gTasks[taskId].tEXPShare);
     Followers_DrawChoices(gTasks[taskId].tFollowers);
     Autorun_DrawChoices(gTasks[taskId].tAutorun);
     TrainerLevelScaling_DrawChoices(gTasks[taskId].tTrainerLevelScaling);
@@ -503,12 +490,12 @@ static void Task_OptionMenuProcessInput(u8 taskId)
             if (previousOption != gTasks[taskId].tSound)
                 Sound_DrawChoices(gTasks[taskId].tSound);
             break;
-        case MENUITEM_FONT:
-            previousOption = gTasks[taskId].tFont;
-            gTasks[taskId].tFont = Font_ProcessInput(gTasks[taskId].tFont);
+        case MENUITEM_BUTTONMODE:
+            previousOption = gTasks[taskId].tButtonMode;
+            gTasks[taskId].tButtonMode = ButtonMode_ProcessInput(gTasks[taskId].tButtonMode);
 
-            if (previousOption != gTasks[taskId].tFont)
-                Font_DrawChoices(gTasks[taskId].tFont);
+            if (previousOption != gTasks[taskId].tButtonMode)
+                ButtonMode_DrawChoices(gTasks[taskId].tButtonMode);
             break;
         case MENUITEM_FRAMETYPE:
             previousOption = gTasks[taskId].tWindowFrameType;
@@ -581,13 +568,6 @@ static void Task_OptionMenuProcessInput_Pg2(u8 taskId)
 
         switch (gTasks[taskId].tMenuSelection)
         {
-        case MENUITEM_EXP_SHARE:
-            previousOption = gTasks[taskId].tEXPShare;
-            gTasks[taskId].tEXPShare = EXPShare_ProcessInput(gTasks[taskId].tEXPShare);
-
-            if (previousOption != gTasks[taskId].tEXPShare)
-                EXPShare_DrawChoices(gTasks[taskId].tEXPShare);
-            break;
         case MENUITEM_FOLLOWERS:
             previousOption = gTasks[taskId].tFollowers;
             gTasks[taskId].tFollowers = Followers_ProcessInput(gTasks[taskId].tFollowers);
@@ -666,8 +646,6 @@ static void Task_OptionMenuSave(u8 taskId)
     gSaveBlock2Ptr->optionsSound = gTasks[taskId].tSound;
     gSaveBlock2Ptr->optionsButtonMode = gTasks[taskId].tButtonMode;
     gSaveBlock2Ptr->optionsWindowFrameType = gTasks[taskId].tWindowFrameType;
-    gSaveBlock2Ptr->optionsFont = gTasks[taskId].tFont;
-    gSaveBlock2Ptr->optionsEXPShare = gTasks[taskId].tEXPShare;
     gSaveBlock2Ptr->optionsFollowers = gTasks[taskId].tFollowers;
     gSaveBlock2Ptr->optionsLevelCaps = gTasks[taskId].tLevelCaps;
     gSaveBlock2Ptr->optionsAutorun = gTasks[taskId].tAutorun;
@@ -910,7 +888,7 @@ static u8 ButtonMode_ProcessInput(u8 selection)
     return selection;
 }
 
-static void UNUSED ButtonMode_DrawChoices(u8 selection)
+static void ButtonMode_DrawChoices(u8 selection)
 {
     s32 widthNormal, widthLR, widthLA, xLR;
     u8 styles[3];
@@ -934,52 +912,6 @@ static void UNUSED ButtonMode_DrawChoices(u8 selection)
 }
 
 
-static u8 Font_ProcessInput(u8 selection)
-{
-    if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
-    {
-        selection ^= 1;
-        sArrowPressed = TRUE;
-    }
-
-    return selection;
-}
-
-
-static void Font_DrawChoices(u8 selection)
-{
-    u8 styles[2];
-
-    styles[0] = 0;
-    styles[1] = 0;
-    styles[selection] = 1;
-    
-    DrawOptionMenuChoice(gText_OptionFontEmerald, 104, YPOS_FONT, styles[0]);
-    DrawOptionMenuChoice(gText_OptionFontFireRed, GetStringRightAlignXOffset(FONT_NORMAL, gText_OptionFontFireRed, 198), YPOS_FONT, styles[1]);
-}
-static u8 EXPShare_ProcessInput(u8 selection)
-{
-    if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
-    {
-        selection ^= 1;
-        sArrowPressed = TRUE;
-    }
-
-    return selection;
-}
-
-
-static void EXPShare_DrawChoices(u8 selection)
-{
-    u8 styles[2];
-
-    styles[0] = 0;
-    styles[1] = 0;
-    styles[selection] = 1;
-    
-    DrawOptionMenuChoice(gText_BattleSceneOn, 104, YPOS_EXP_SHARE, styles[0]);
-    DrawOptionMenuChoice(gText_BattleSceneOff, GetStringRightAlignXOffset(FONT_NORMAL, gText_BattleSceneOff, 198), YPOS_EXP_SHARE, styles[1]);
-}
 static u8 Followers_ProcessInput(u8 selection)
 {
     if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))

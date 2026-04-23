@@ -145,11 +145,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Marowak
-Level: 24
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Marowak
-Level: 24
+Marowak Alola
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_COLIN ===
@@ -1498,12 +1498,12 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Geodude
-Level: 23
+Graveler
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Machop
-Level: 25
+Graveler Alola
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_RACHAEL ===
@@ -2571,11 +2571,19 @@ Pic: Cooltrainer F
 Gender: Male
 Music: Hg Girl 2
 Double Battle: No
-AI: Check Bad Move
+AI: Smart Trainer
 
-Poliwhirl
-Level: 28
+Electrode
+Level: 36
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Lucario
+Level: 36
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Manectric @ Manectite
+Level: 36
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
 === TRAINER_MIKI ===
 Name: Miki
@@ -2878,6 +2886,8 @@ Mugshot: Purple
 Totodile
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Scratch
+- Leer
 
 === TRAINER_RIVAL_TOTODILE_2 ===
 Name: {RIVAL}
@@ -3609,6 +3619,8 @@ Mugshot: Purple
 Chikorita
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Tackle
+- Growl
 
 === TRAINER_RIVAL_CHIKORITA_3 ===
 Name: {RIVAL}
@@ -5043,7 +5055,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Kangaskhan
-Level: 26
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GARRETT ===
@@ -6790,20 +6802,24 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Eevee
-Level: 26
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
 Flareon
-Level: 23
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Vaporeon
-Level: 24
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Jolteon
-Level: 25
+Level: 33
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Umbreon
+Level: 33
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Espeon
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_OTIS ===
@@ -8872,16 +8888,16 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Charmander
-Level: 26
+Infernape
+Level: 36
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Squirtle
-Level: 26
+Empoleon
+Level: 36
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Bulbasaur
-Level: 26
+Torterra
+Level: 36
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_EDNA ===
@@ -9752,6 +9768,8 @@ Mugshot: Purple
 Cyndaquil
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Tackle
+- Leer
 
 === TRAINER_RIVAL_CYNDAQUIL_3 ===
 Name: {RIVAL}

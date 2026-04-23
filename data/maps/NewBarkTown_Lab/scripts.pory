@@ -218,7 +218,7 @@ NewBarkTown_Lab_EventScript_MrPokemon::
 	applymovement LOCALID_ELM, NewBarkTown_Lab_Movement_CheckEmailSlow
 	waitmovement 0
 	clearflag FLAG_RECEIVED_FIRST_BALLS
-	clearflag FLAG_RECEIVED_FIRST_POTION
+	clearflag FLAG_RECEIVED_EXP_SHARE
 	setvar VAR_NEWBARK_TOWN_STATE, 3
 	release
 	end
@@ -227,7 +227,7 @@ NewBarkTown_Lab_EventScript_MrPokemonMovementSafe::
 	applymovement LOCALID_ELM, NewBarkTown_Lab_Movement_GotoComputerSafe
 	waitmovement 0
 	clearflag FLAG_RECEIVED_FIRST_BALLS
-	clearflag FLAG_RECEIVED_FIRST_POTION
+	clearflag FLAG_RECEIVED_EXP_SHARE
 	setvar VAR_NEWBARK_TOWN_STATE, 3
 	release
 	end
@@ -264,8 +264,9 @@ NewBarkTown_Lab_EventScript_TriggerAideGivePotion::
 	msgbox NewBarkTown_Lab_Text_AideGivePotion, MSGBOX_DEFAULT
 	closemessage
 	giveitem ITEM_POTION
+	giveitem ITEM_EXP_SHARE
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
-	setflag FLAG_RECEIVED_FIRST_POTION
+	setflag FLAG_RECEIVED_EXP_SHARE
 	setvar VAR_NEWBARKTOWN_LABSTATE, 3
 	applymovement LOCALID_AIDE1, NewBarkTown_Lab_Movement_Aide1LeavePlayer
 	waitmovement 0

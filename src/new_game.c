@@ -104,9 +104,8 @@ static void SetDefaultOptions(void)
     gSaveBlock2Ptr->optionsSound = OPTIONS_SOUND_STEREO;
     gSaveBlock2Ptr->optionsBattleStyle = OPTIONS_BATTLE_STYLE_SET;
     gSaveBlock2Ptr->optionsBattleSceneOff = FALSE;
+    gSaveBlock2Ptr->optionsButtonMode = OPTIONS_BUTTON_MODE_NORMAL;
     gSaveBlock2Ptr->regionMapZoom = FALSE;
-    gSaveBlock2Ptr->optionsEXPShare = TRUE;
-    gSaveBlock2Ptr->optionsAutoHMs = FALSE;
     gSaveBlock2Ptr->optionsFollowers = TRUE;
     gSaveBlock2Ptr->optionsAutorun = TRUE;
     gSaveBlock2Ptr->optionsFont = 0;

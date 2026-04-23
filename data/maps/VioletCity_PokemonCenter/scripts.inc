@@ -44,8 +44,6 @@ VioletCity_PokemonCenter_EventScript_Aide_Accepted::
 	closemessage
 	giveegg SPECIES_TOGEPI
 	setflag FLAG_RECEIVED_TOGEPI_EGG
-	msgbox VioletCity_PokeCenter_Text_ElmsAideGiveItem, MSGBOX_DEFAULT
-	giveitem ITEM_EXP_SHARE
 	setflag FLAG_HIDE_VIOLET_CITY_AIDE
 	setvar VAR_VIOLET_CITY_KIMONO_GIRL, 1
 	clearflag FLAG_HIDE_VIOLET_CITY_KIMONO_GIRL

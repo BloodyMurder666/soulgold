@@ -2245,6 +2245,10 @@ extern const u8 gText_RegirockDollAndPrice[];
 extern const u8 gText_RegiceDollAndPrice[];
 extern const u8 gText_RegisteelDollAndPrice[];
 
+// Exp. Share
+extern const u8 gText_ExpShareOn[];
+extern const u8 gText_ExpShareOff[];
+
 extern const u8 gText_OptionMenuSave[];   //tx_optionsPlus
 extern const u8 gText_FollowerEnable[];   //tx_optionsPlus
 extern const u8 gText_AutorunEnable[];   //tx_optionsPlus
@@ -2288,8 +2292,7 @@ extern const u8 gText_AutoHMs[];
 extern const u8 gText_OptionFontEmerald[];
 extern const u8 gText_OptionFontFireRed[];
 extern const u8 gText_Font[];
-extern const u8 gText_EXPShare[];
-extern const u8 gText_AutoHMs[];
+
 extern const u8 gText_Followers[];
 extern const u8 gText_PSS[];
 extern const u8 gText_Terrain[];
