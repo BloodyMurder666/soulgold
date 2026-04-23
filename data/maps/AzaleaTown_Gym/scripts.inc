@@ -1075,7 +1075,7 @@ AzaleaTown_Gym_EventScript_Bugsy::
 # 538 "data/maps/AzaleaTown_Gym/scripts.pory"
 	msgbox AzaleaTown_Gym_Text_BugsyIntro, MSGBOX_DEFAULT
 # 539 "data/maps/AzaleaTown_Gym/scripts.pory"
-	call BugsyChooseDifficulty
+	trainerbattle_no_intro TRAINER_BUGSY_1, AzaleaTown_Gym_Text_BugsyBeaten
 # 540 "data/maps/AzaleaTown_Gym/scripts.pory"
 	message AzaleaTown_Gym_Text_ReceivedHiveBadge
 # 541 "data/maps/AzaleaTown_Gym/scripts.pory"
@@ -1636,54 +1636,3 @@ AzaleaTown_Gym_Text_GymGuideWin:
 	.string "With people like you, the\n"
 # 819 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "future of POKéMON is bright!$"
-
-BugsyChooseDifficulty::
-# 823 "data/maps/AzaleaTown_Gym/scripts.pory"
-	msgbox BugsyChooseDifficulty_Text_0
-# 825 "data/maps/AzaleaTown_Gym/scripts.pory"
-	dynmultichoice 0, 0, FALSE, 5, 0, DYN_MULTICHOICE_CB_NONE, BugsyChooseDifficulty_Text_1, BugsyChooseDifficulty_Text_2, BugsyChooseDifficulty_Text_3
-# 826 "data/maps/AzaleaTown_Gym/scripts.pory"
-	switch VAR_RESULT
-# 827 "data/maps/AzaleaTown_Gym/scripts.pory"
-	case 0, BugsyChooseDifficulty_3
-# 832 "data/maps/AzaleaTown_Gym/scripts.pory"
-	case 1, BugsyChooseDifficulty_4
-# 837 "data/maps/AzaleaTown_Gym/scripts.pory"
-	release
-	end
-
-	return
-
-BugsyChooseDifficulty_3:
-# 828 "data/maps/AzaleaTown_Gym/scripts.pory"
-	setdifficulty DIFFICULTY_NORMAL
-# 829 "data/maps/AzaleaTown_Gym/scripts.pory"
-	clearflag FLAG_NEVER_TURNED_OFF_HARD
-# 830 "data/maps/AzaleaTown_Gym/scripts.pory"
-	trainerbattle_no_intro TRAINER_BUGSY_1, AzaleaTown_Gym_Text_BugsyBeaten
-	return
-
-BugsyChooseDifficulty_4:
-# 833 "data/maps/AzaleaTown_Gym/scripts.pory"
-	setdifficulty DIFFICULTY_HARD
-# 834 "data/maps/AzaleaTown_Gym/scripts.pory"
-	trainerbattle_no_intro TRAINER_BUGSY_1, AzaleaTown_Gym_Text_BugsyBeaten
-	return
-
-
-BugsyChooseDifficulty_Text_0:
-# 823 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "Would you prefer the demonstration\n"
-	.string "with my best bugs or the regular one?$"
-
-BugsyChooseDifficulty_Text_1:
-# 825 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "Regular$"
-
-BugsyChooseDifficulty_Text_2:
-# 825 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "Hard$"
-
-BugsyChooseDifficulty_Text_3:
-# 825 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "Cancel$"

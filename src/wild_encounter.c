@@ -474,7 +474,7 @@ static u8 PickWildMonNature(u32 species)
 void CreateWildMon(u16 species, u8 level)
 {
     // Apply level scaling for wild encounters
-#if B_LEVEL_SCALING_ENABLED && B_WILD_SCALING_ENABLED
+#if B_LEVEL_SCALING_ENABLED
     level = CalculateWildScaledLevel(species, level);
     // Apply species scaling (evolution management)
     species = CalculateWildScaledSpecies(species, level);

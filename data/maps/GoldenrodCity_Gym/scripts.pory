@@ -47,7 +47,8 @@ GoldenrodCity_Gym_EventScript_Whitney::
 	goto_if_eq VAR_GOLDENROD_CITY_STATE, 3, GoldenrodCity_Gym_EventScript_WhitneyCrying
 	goto_if_eq VAR_GOLDENROD_CITY_STATE, 4, GoldenrodCity_Gym_EventScript_WhitneyBadge
 	goto_if_set FLAG_DEFEATED_GOLDENROD_CITY_GYM, GoldenrodCity_Gym_EventScript_WhitneyDefeated
-	call WhitneyChooseDifficulty
+	msgbox GoldenrodCity_Gym_Text_WhitneyBefore, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_WHITNEY_1, GoldenrodCity_Gym_Text_WhitneyShouldntBeSoSerious
 	msgbox GoldenrodCity_Gym_Text_WhitneyYouMeanie, MSGBOX_DEFAULT
 	setvar VAR_GOLDENROD_CITY_STATE, 3
 	closemessage
@@ -245,31 +246,6 @@ GoldenrodCity_Gym_Text_GymGuideWin:
     .string "the ladies here.$"
 
 `
-
-script WhitneyChooseDifficulty {
-    msgbox("Hi I'm Whitney!
-            Everyone was into Pokémon so I got
-            into it too!
-            Pokémon are super cute!
-            You want to battle? Do you want to do
-            against my normal team or bestie team?")
-    dynmultichoice(0,0, FALSE, 5, 0, DYN_MULTICHOICE_CB_NONE, "Regular", "Hard", "Cancel")
-    switch(var(VAR_RESULT)) {
-        case 0: // Regular
-            setdifficulty(DIFFICULTY_NORMAL)
-            clearflag(FLAG_NEVER_TURNED_OFF_HARD)
-            trainerbattle_no_intro(TRAINER_WHITNEY_1, GoldenrodCity_Gym_Text_WhitneyShouldntBeSoSerious)
-            return
-        case 1: // Hard
-            setdifficulty(DIFFICULTY_HARD)
-            trainerbattle_no_intro(TRAINER_WHITNEY_1, GoldenrodCity_Gym_Text_WhitneyShouldntBeSoSerious)
-            return
-        default: // Cancel
-            release
-            end
-        }
-        return
-}
 
 script WhitneyMiltank {
     lock

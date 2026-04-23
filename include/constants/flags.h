@@ -714,7 +714,7 @@
 #define FLAG_FRONTIER_SECOND_CLERK  0x29B // Unused Flag
 #define FLAG_HIDE_BATTLE_FRONTIER_RECEPTION_GATE_SCOTT  0x29C // Unused Flag
 #define FLAG_SYS_BUG_CONTEST_MODE  0x29D // Unused Flag
-#define FLAG_HM_EXPLANATION      0x29E
+#define FLAG_UNUSED_0x29E      0x29E // Unused Flag
 #define FLAG_LEVEL_SCALING_ON  0x29F
 #define FLAG_NAMED_SILVER  0x2A0 // Unused Flag
 #define FLAG_SLOWPOKE_TRADE    0x2A1

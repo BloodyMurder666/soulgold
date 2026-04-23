@@ -1896,7 +1896,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
     u8 monsCount;
 
     // Invalidate party level cache at start of battle for level scaling
-    #if B_LEVEL_SCALING_ENABLED && B_TRAINER_SCALING_ENABLED
+    #if B_LEVEL_SCALING_ENABLED
     if (firstTrainer == TRUE)
         InvalidatePartyLevelCache();
     #endif
@@ -1920,15 +1920,31 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             monsCount = trainer->partySize;
         }
 
+        const struct TrainerMon *partyData = trainer->party;
         u32 monIndices[monsCount];
         DoTrainerPartyPool(trainer, monIndices, monsCount, battleTypeFlags);
+
+        #if B_LEVEL_SCALING_ENABLED
+        const struct LevelScalingConfig *scalingConfig = GetTrainerLevelScalingConfig(trainerId);
+        u8 originalHighestLevel = 1;
+        u8 scaledHighestLevel = 1;
+
+        if (scalingConfig->mode != LEVEL_SCALING_NONE)
+        {
+            for (i = 0; i < monsCount; i++)
+            {
+                if (partyData[monIndices[i]].lvl > originalHighestLevel)
+                    originalHighestLevel = partyData[monIndices[i]].lvl;
+            }
+            scaledHighestLevel = CalculateTrainerScaledLevel(scalingConfig, originalHighestLevel, trainerId);
+        }
+        #endif
 
         for (i = 0; i < monsCount; i++)
         {
             u32 monIndex = monIndices[i];
             s32 ball = -1;
             u32 personalityHash = GeneratePartyHash(trainer, i);
-            const struct TrainerMon *partyData = trainer->party;
             struct OriginalTrainerId otId = OTID_STRUCT_RANDOM_NO_SHINY;
             u32 abilityNum = 0;
 
@@ -1954,16 +1970,26 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             }
 
             // Apply level scaling
-            #if B_LEVEL_SCALING_ENABLED && B_TRAINER_SCALING_ENABLED
+            #if B_LEVEL_SCALING_ENABLED
             u8 scaledLevel = partyData[monIndex].lvl;
             u16 scaledSpecies = partyData[monIndex].species;
-            const struct LevelScalingConfig *config = GetTrainerLevelScalingConfig(trainerId);
-            if (config->mode != LEVEL_SCALING_NONE)
+            if (scalingConfig->mode != LEVEL_SCALING_NONE)
             {
-                // Calculate scaled level for this mon
-                scaledLevel = CalculateScaledLevel(config, partyData[monIndex].lvl);
-                // Validate species for the scaled level
-                scaledSpecies = ValidateSpeciesForLevel(partyData[monIndex].species, scaledLevel, config->manageEvolutions);
+                u8 levelDelta = originalHighestLevel - partyData[monIndex].lvl;
+
+                if (scaledHighestLevel > levelDelta)
+                    scaledLevel = scaledHighestLevel - levelDelta;
+                else
+                    scaledLevel = 1;
+
+                if (scalingConfig->minLevel > 0 && scaledLevel < scalingConfig->minLevel)
+                    scaledLevel = scalingConfig->minLevel;
+                if (scalingConfig->maxLevel > 0 && scaledLevel > scalingConfig->maxLevel)
+                    scaledLevel = scalingConfig->maxLevel;
+                if (scaledLevel > MAX_LEVEL)
+                    scaledLevel = MAX_LEVEL;
+
+                scaledSpecies = ValidateSpeciesForLevel(partyData[monIndex].species, scaledLevel, scalingConfig->manageEvolutions);
             }
             CreateMon(&party[i], scaledSpecies, scaledLevel, personalityValue, otId);
             #else

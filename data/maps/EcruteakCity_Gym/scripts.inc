@@ -83,7 +83,7 @@ EcruteakCity_Gym_EventScript_Morty::
 # 42 "data/maps/EcruteakCity_Gym/scripts.pory"
 	msgbox MortyIntroText, MSGBOX_DEFAULT
 # 43 "data/maps/EcruteakCity_Gym/scripts.pory"
-    call MortyChooseDifficulty
+    trainerbattle_no_intro TRAINER_MORTY_1, MortyWinLossText
 # 44 "data/maps/EcruteakCity_Gym/scripts.pory"
 	message Text_ReceivedFogBadge
 # 45 "data/maps/EcruteakCity_Gym/scripts.pory"
@@ -444,53 +444,3 @@ EcruteakCity_GymClosedText:
 	.string "leave.\p"
 # 223 "data/maps/EcruteakCity_Gym/scripts.pory"
 	.string "Hohohoho.$"
-
-MortyChooseDifficulty::
-# 227 "data/maps/EcruteakCity_Gym/scripts.pory"
-	msgbox MortyChooseDifficulty_Text_0
-# 228 "data/maps/EcruteakCity_Gym/scripts.pory"
-	dynmultichoice 0, 0, FALSE, 5, 0, DYN_MULTICHOICE_CB_NONE, MortyChooseDifficulty_Text_1, MortyChooseDifficulty_Text_2, MortyChooseDifficulty_Text_3
-# 229 "data/maps/EcruteakCity_Gym/scripts.pory"
-	switch VAR_RESULT
-# 230 "data/maps/EcruteakCity_Gym/scripts.pory"
-	case 0, MortyChooseDifficulty_3
-# 235 "data/maps/EcruteakCity_Gym/scripts.pory"
-	case 1, MortyChooseDifficulty_4
-# 240 "data/maps/EcruteakCity_Gym/scripts.pory"
-	release
-	end
-
-	return
-
-MortyChooseDifficulty_3:
-# 231 "data/maps/EcruteakCity_Gym/scripts.pory"
-	setdifficulty DIFFICULTY_NORMAL
-# 232 "data/maps/EcruteakCity_Gym/scripts.pory"
-	clearflag FLAG_NEVER_TURNED_OFF_HARD
-# 233 "data/maps/EcruteakCity_Gym/scripts.pory"
-	trainerbattle_no_intro TRAINER_MORTY_1, MortyWinLossText
-	return
-
-MortyChooseDifficulty_4:
-# 236 "data/maps/EcruteakCity_Gym/scripts.pory"
-	setdifficulty DIFFICULTY_HARD
-# 237 "data/maps/EcruteakCity_Gym/scripts.pory"
-	trainerbattle_no_intro TRAINER_MORTY_1, MortyWinLossText
-	return
-
-
-MortyChooseDifficulty_Text_0:
-# 227 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Now, how will you face me?$"
-
-MortyChooseDifficulty_Text_1:
-# 228 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Regular$"
-
-MortyChooseDifficulty_Text_2:
-# 228 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Hard$"
-
-MortyChooseDifficulty_Text_3:
-# 228 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Cancel$"

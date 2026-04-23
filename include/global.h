@@ -606,10 +606,13 @@ struct SaveBlock2
              u16 optionsFollowers:1;
              u16 optionsAutorun:1;
              u16 unused1:1;
-             u16 unused2:3;
-             u16 unused3:3; //0,1,2
+             u16 optionsTrainerLevelScaling:1; //0 = off, 1 = on
+             u16 optionsWildLevelScaling:1; //0 = off, 1 = on
+             u16 optionsDifficulty:1; //0 = normal, 1 = hard
+             u16 unused3:1;
+             u16 unused2:2;
              u16 optionsFont:2; //0 = emerald, 1 = fire red
-             u16 optionsMusic:3; //0 = johto, 1 = sinnoh, 2 = hoenn
+             u16 optionsLevelCaps:3; //0 = no caps, 1 = soft caps, 2 = hard caps
              u8 rivalName[PLAYER_NAME_LENGTH + 1];
              //u16 padding1:4;
              //u16 padding2;

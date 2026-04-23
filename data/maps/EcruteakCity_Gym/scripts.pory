@@ -40,7 +40,7 @@ EcruteakCity_Gym_EventScript_Morty::
 	faceplayer
 	goto_if_set FLAG_DEFEATED_ECRUTEAK_CITY_GYM, EcruteakCity_Gym_EventScript_Morty_Defeated
 	msgbox MortyIntroText, MSGBOX_DEFAULT
-    call MortyChooseDifficulty
+    trainerbattle_no_intro TRAINER_MORTY_1, MortyWinLossText
 	message Text_ReceivedFogBadge
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
@@ -222,23 +222,3 @@ EcruteakCity_GymClosedText:
 	.string "leave.\p"
 	.string "Hohohoho.$"
 `
-
-script MortyChooseDifficulty {
-    msgbox("Now, how will you face me?")
-    dynmultichoice(0,0, FALSE, 5, 0, DYN_MULTICHOICE_CB_NONE, "Regular", "Hard", "Cancel")
-    switch(var(VAR_RESULT)) {
-        case 0: // Regular
-            setdifficulty(DIFFICULTY_NORMAL)
-            clearflag(FLAG_NEVER_TURNED_OFF_HARD)
-            trainerbattle_no_intro(TRAINER_MORTY_1, MortyWinLossText)
-            return
-        case 1: // Hard
-            setdifficulty(DIFFICULTY_HARD)
-            trainerbattle_no_intro(TRAINER_MORTY_1, MortyWinLossText)
-            return
-        default: // Cancel
-            release
-            end
-        }
-        return
-}

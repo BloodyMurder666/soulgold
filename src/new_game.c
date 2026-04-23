@@ -6,6 +6,7 @@
 #include "pokemon_size_record.h"
 #include "script.h"
 #include "lottery_corner.h"
+#include "level_scaling.h"
 #include "play_time.h"
 #include "mauville_old_man.h"
 #include "match_call.h"
@@ -104,12 +105,14 @@ static void SetDefaultOptions(void)
     gSaveBlock2Ptr->optionsBattleStyle = OPTIONS_BATTLE_STYLE_SET;
     gSaveBlock2Ptr->optionsBattleSceneOff = FALSE;
     gSaveBlock2Ptr->regionMapZoom = FALSE;
-    gSaveBlock2Ptr->optionsEXPShare = FALSE;
+    gSaveBlock2Ptr->optionsEXPShare = TRUE;
     gSaveBlock2Ptr->optionsAutoHMs = FALSE;
     gSaveBlock2Ptr->optionsFollowers = TRUE;
-    gSaveBlock2Ptr->optionsAutorun = FALSE;
+    gSaveBlock2Ptr->optionsAutorun = TRUE;
     gSaveBlock2Ptr->optionsFont = 0;
-    gSaveBlock2Ptr->optionsMusic = 0;
+    gSaveBlock2Ptr->optionsLevelCaps = B_EXP_CAP_TYPE;
+    gSaveBlock2Ptr->optionsTrainerLevelScaling = LEVEL_SCALING_OPTION_OFF;
+    gSaveBlock2Ptr->optionsWildLevelScaling = LEVEL_SCALING_OPTION_OFF;
                
 }
 

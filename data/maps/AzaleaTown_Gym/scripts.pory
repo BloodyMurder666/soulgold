@@ -536,7 +536,7 @@ AzaleaTown_Gym_EventScript_Bugsy::
 	faceplayer
 	goto_if_set FLAG_DEFEATED_AZALEA_TOWN_GYM, AzaleaTown_Gym_EventScript_Bugsy_Defeated
 	msgbox AzaleaTown_Gym_Text_BugsyIntro, MSGBOX_DEFAULT
-	call BugsyChooseDifficulty
+	trainerbattle_no_intro TRAINER_BUGSY_1, AzaleaTown_Gym_Text_BugsyBeaten
 	message AzaleaTown_Gym_Text_ReceivedHiveBadge
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
@@ -818,24 +818,3 @@ AzaleaTown_Gym_Text_GymGuideWin:
 	.string "With people like you, the\n"
 	.string "future of POKéMON is bright!$"
 `
-
-script BugsyChooseDifficulty {
-    msgbox("Would you prefer the demonstration
-            with my best bugs or the regular one?")
-    dynmultichoice(0,0, FALSE, 5, 0, DYN_MULTICHOICE_CB_NONE, "Regular", "Hard", "Cancel")
-    switch(var(VAR_RESULT)) {
-        case 0: // Regular
-            setdifficulty(DIFFICULTY_NORMAL)
-            clearflag(FLAG_NEVER_TURNED_OFF_HARD)
-            trainerbattle_no_intro(TRAINER_BUGSY_1, AzaleaTown_Gym_Text_BugsyBeaten)
-            return
-        case 1: // Hard
-            setdifficulty(DIFFICULTY_HARD)
-            trainerbattle_no_intro(TRAINER_BUGSY_1, AzaleaTown_Gym_Text_BugsyBeaten)
-            return
-        default: // Cancel
-            release
-            end
-        }
-        return
-}

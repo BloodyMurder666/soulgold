@@ -41,7 +41,6 @@ void BugContestRetirePrompt(void)
 void EnterBugContestMode(void)
 {
     FlagSet(FLAG_SYS_BUG_CONTEST_MODE);
-    FlagClear(FLAG_WILD_LEVELSCALING);
     sBugContestStartTime = gMain.vblankCounter1;
     sBugContestTimerActive = TRUE;
     sBugContestLeadPersonality = GetMonData(&gPlayerParty[0], MON_DATA_PERSONALITY);
@@ -51,9 +50,6 @@ void EnterBugContestMode(void)
 void ExitBugContestMode(void)
 {
     FlagClear(FLAG_SYS_BUG_CONTEST_MODE);
-    if (FlagGet(FLAG_LEVEL_SCALING_ON)) {
-        FlagSet(FLAG_WILD_LEVELSCALING);
-    }
     sBugContestTimerActive = FALSE;
     sBugContestLeadPersonality = 0;
     sBugContestLeadOtId = 0;
