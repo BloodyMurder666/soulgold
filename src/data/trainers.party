@@ -520,8 +520,8 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Jynx
-Level: 30
+Sealeo
+Level: 45
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_SAYO ===
@@ -4889,8 +4889,8 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Dewgong
-Level: 31
+Glalie
+Level: 46
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_DEREK ===
@@ -6410,12 +6410,12 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Dewgong
-Level: 29
+Seel
+Level: 43
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Delibird
-Level: 30
+Dewgong
+Level: 45
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_STEPHEN ===
@@ -7167,50 +7167,128 @@ Class: Leader
 Pic: Leader Pryce
 Gender: Male
 Music: Male
-Items: Full Restore / Full Restore
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Green
 
-Cloyster
-Level: 37
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Surf
-- Spikes
-- Aurora Beam
-- Rain Dance
+Ninetales-Alola @ Salac Berry
+Level: 46
+Ability: Snow Warning  
+EVs: 88 SpA / 88 Spe  
+Hasty Nature  
+IVs: 0 Atk  
+- Aurora Veil  
+- Blizzard  
+- Dazzling Gleam  
+- Freeze-Dry  
 
-Sneasel
-Level: 37
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Faint Attack
-- Metal Claw
-- Reflect
-- Blizzard
+Mamoswine @ Air Balloon
+Level: 46
+Ability: Thick Fat  
+EVs: 108 Atk / 128 SpA  
+Mild Nature  
+- Blizzard  
+- Ancient Power  
+- Body Slam  
+- Earthquake  
 
-Jynx
-Level: 37
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Ice Punch
-- Psychic
-- Shadow Ball
-- Lovely Kiss
+Glaceon @ Life Orb
+Level: 46
+Ability: Ice Body  
+EVs: 84 SpA / 92 Spe  
+IVs: 0 Atk  
+- Alluring Voice  
+- Blizzard  
+- Chilling Water  
+- Ice Beam  
 
-Dewgong
-Level: 37
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Surf
-- Aurora Beam
-- Snore
-- Rest
+Weavile @ Chople Berry
+Level: 46
+Ability: Pressure  
+EVs: 116 Atk / 128 Spe  
+- Brick Break  
+- Knock Off  
+- Ice Spinner  
+- Poison Jab  
 
-Mamoswine @ Sitrus Berry
-Level: 38
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Headbutt
-- Earthquake
-- Rock Smash
-- Blizzard
+Froslass (F) @ Froslassite
+Level: 48
+Ability: Snow Cloak  
+EVs: 100 HP / 148 Def / 156 SpA  
+- Blizzard  
+- Draining Kiss  
+- Poltergeist  
+- Shadow Ball 
+
+=== TRAINER_PRYCE_1_3 ===
+Name: Pryce
+Class: Leader
+Pic: Leader Pryce
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Smart Trainer
+Mugshot: Green
+Difficulty: Hard
+
+Darmanitan-Galar @ Adrenaline Orb  
+Ability: Zen Mode  
+Level: 47  
+Tera Type: Ice  
+EVs: 116 Atk / 112 Spe  
+- Ice Punch  
+- Hammer Arm  
+- Rock Slide  
+- Avalanche
+
+Ninetales-Alola @ Salac Berry
+Level: 46
+Ability: Snow Warning  
+EVs: 88 SpA / 88 Spe  
+Hasty Nature  
+IVs: 0 Atk  
+- Aurora Veil  
+- Blizzard  
+- Dazzling Gleam  
+- Freeze-Dry  
+
+Mamoswine @ Air Balloon
+Level: 46
+Ability: Thick Fat  
+EVs: 108 Atk / 128 SpA  
+Mild Nature  
+- Blizzard  
+- Ancient Power  
+- Body Slam  
+- Earthquake  
+
+Glaceon @ Life Orb
+Level: 46
+Ability: Ice Body  
+EVs: 84 SpA / 92 Spe  
+IVs: 0 Atk  
+- Alluring Voice  
+- Blizzard  
+- Chilling Water  
+- Ice Beam  
+
+Weavile @ Chople Berry
+Level: 46
+Ability: Pressure  
+EVs: 116 Atk / 128 Spe  
+- Brick Break  
+- Knock Off  
+- Ice Spinner  
+- Poison Jab  
+
+Froslass (F) @ Froslassite
+Level: 48
+Ability: Snow Cloak  
+EVs: 100 HP / 148 Def / 156 SpA  
+- Blizzard  
+- Draining Kiss  
+- Poltergeist  
+- Shadow Ball 
 
 === TRAINER_PRYCE_1_2 ===
 Name: Pryce
@@ -7218,50 +7296,128 @@ Class: Leader
 Pic: Leader Pryce
 Gender: Male
 Music: Male
-Items: Full Restore / Full Restore
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Green
 
-Cloyster
-Level: 33
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Surf
-- Spikes
-- Aurora Beam
-- Rain Dance
+Ninetales-Alola @ Salac Berry
+Level: 43
+Ability: Snow Warning  
+EVs: 88 SpA / 88 Spe  
+Hasty Nature  
+IVs: 0 Atk  
+- Aurora Veil  
+- Blizzard  
+- Dazzling Gleam  
+- Freeze-Dry  
 
-Sneasel
-Level: 34
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Faint Attack
-- Metal Claw
-- Reflect
-- Ice Punch
+Mamoswine @ Air Balloon
+Level: 43
+Ability: Thick Fat  
+EVs: 108 Atk / 128 SpA  
+Mild Nature  
+- Blizzard  
+- Ancient Power  
+- Body Slam  
+- Earthquake  
 
-Jynx
-Level: 33
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Ice Punch
-- Psychic
-- Rain Dance
-- Lovely Kiss
+Glaceon @ Life Orb
+Level: 43
+Ability: Ice Body  
+EVs: 84 SpA / 92 Spe  
+IVs: 0 Atk  
+- Alluring Voice  
+- Blizzard  
+- Chilling Water  
+- Ice Beam  
 
-Dewgong
-Level: 34
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Surf
-- Aurora Beam
-- Snore
-- Rest
+Weavile @ Chople Berry
+Level: 44
+Ability: Pressure  
+EVs: 116 Atk / 128 Spe  
+- Brick Break  
+- Knock Off  
+- Ice Spinner  
+- Poison Jab  
 
-Piloswine @ Sitrus Berry
-Level: 35
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Headbutt
-- Earthquake
-- Rock Smash
-- Blizzard
+Froslass (F) @ Froslassite
+Level: 45
+Ability: Snow Cloak  
+EVs: 100 HP / 148 Def / 156 SpA  
+- Blizzard  
+- Draining Kiss  
+- Poltergeist  
+- Shadow Ball  
+
+=== TRAINER_PRYCE_1_2 ===
+Name: Pryce
+Class: Leader
+Pic: Leader Pryce
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Smart Trainer
+Mugshot: Green
+Difficulty: Hard
+
+Darmanitan-Galar @ Adrenaline Orb  
+Ability: Zen Mode  
+Level: 42  
+Tera Type: Ice  
+EVs: 116 Atk / 112 Spe  
+- Ice Punch  
+- Hammer Arm  
+- Rock Slide  
+- Avalanche
+
+Ninetales-Alola @ Salac Berry
+Level: 43
+Ability: Snow Warning  
+EVs: 88 SpA / 88 Spe  
+Hasty Nature  
+IVs: 0 Atk  
+- Aurora Veil  
+- Blizzard  
+- Dazzling Gleam  
+- Freeze-Dry  
+
+Mamoswine @ Air Balloon
+Level: 43
+Ability: Thick Fat  
+EVs: 108 Atk / 128 SpA  
+Mild Nature  
+- Blizzard  
+- Ancient Power  
+- Body Slam  
+- Earthquake  
+
+Glaceon @ Life Orb
+Level: 43
+Ability: Ice Body  
+EVs: 84 SpA / 92 Spe  
+IVs: 0 Atk  
+- Alluring Voice  
+- Blizzard  
+- Chilling Water  
+- Ice Beam  
+
+Weavile @ Chople Berry
+Level: 44
+Ability: Pressure  
+EVs: 116 Atk / 128 Spe  
+- Brick Break  
+- Knock Off  
+- Ice Spinner  
+- Poison Jab  
+
+Froslass (F) @ Froslassite
+Level: 45
+Ability: Snow Cloak  
+EVs: 100 HP / 148 Def / 156 SpA  
+- Blizzard  
+- Draining Kiss  
+- Poltergeist  
+- Shadow Ball  
 
 === TRAINER_STEVE ===
 Name: Steve
@@ -10868,13 +11024,14 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Swinub
-Level: 30
+Sneasel @ Eviolite
+Level: 45
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Sneasel
-Level: 30
+Piloswine
+Level: 45
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
 
 === TRAINER_SAM ===
 Name: Sam
@@ -10987,42 +11144,129 @@ Class: Leader
 Pic: Leader Pryce
 Gender: Male
 Music: Male
-Items: Super Potion / Super Potion
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Green
 
-Dewgong
-Level: 31
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Surf
-- Aurora Beam
-- Rain Dance
-- Rest
+Ninetales-Alola @ Salac Berry
+Level: 40
+Ability: Snow Warning  
+EVs: 88 SpA / 88 Spe  
+Hasty Nature  
+IVs: 0 Atk  
+- Aurora Veil  
+- Blizzard  
+- Dazzling Gleam  
+- Freeze-Dry  
 
-Sneasel
-Level: 32
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Faint Attack
-- Metal Claw
-- Reflect
-- Icy Wind
+Mamoswine @ Air Balloon
+Level: 40
+Ability: Thick Fat  
+EVs: 108 Atk / 128 SpA  
+Mild Nature  
+- Blizzard  
+- Ancient Power  
+- Body Slam  
+- Earthquake  
 
-Jynx
-Level: 31
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Glaceon @ Life Orb
+Level: 41
+Ability: Ice Body  
+EVs: 84 SpA / 92 Spe  
+IVs: 0 Atk  
+- Alluring Voice  
+- Blizzard  
+- Chilling Water  
+- Ice Beam  
+
+Weavile @ Chople Berry
+Level: 41
+Ability: Pressure  
+EVs: 116 Atk / 128 Spe  
+- Brick Break  
+- Knock Off  
+- Ice Spinner  
+- Poison Jab  
+
+Froslass (F) @ Sitrus Berry
+Level: 42
+Ability: Snow Cloak  
+EVs: 100 HP / 148 Def / 156 SpA  
+- Blizzard  
+- Draining Kiss  
+- Poltergeist  
+- Shadow Ball  
+
+=== TRAINER_PRYCE_1 ===
+Name: Pryce
+Class: Leader
+Pic: Leader Pryce
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Green
+Difficulty: Hard
+
+Ninetales-Alola @ Salac Berry
+Level: 40
+Ability: Snow Warning  
+EVs: 88 SpA / 88 Spe  
+Hasty Nature  
+IVs: 0 Atk  
+- Aurora Veil  
+- Blizzard  
+- Dazzling Gleam  
+- Freeze-Dry  
+
+Darmanitan-Galar @ Adrenaline Orb
+Ability: Zen Mode
+Level: 40
+Tera Type: Ice
+EVs: 116 Atk / 112 Spe
 - Ice Punch
-- Psychic
-- Rain Dance
-- Lovely Kiss
+- Hammer Arm
+- Rock Slide
+- Avalanche
 
-Piloswine @ Sitrus Berry
-Level: 33
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Headbutt
-- Earthquake
-- Rock Smash
-- Blizzard
+Mamoswine @ Air Balloon
+Level: 40
+Ability: Thick Fat  
+EVs: 108 Atk / 128 SpA  
+Mild Nature  
+- Blizzard  
+- Ancient Power  
+- Body Slam  
+- Earthquake  
+
+Glaceon @ Life Orb
+Level: 41
+Ability: Ice Body  
+EVs: 84 SpA / 92 Spe  
+IVs: 0 Atk  
+- Alluring Voice  
+- Blizzard  
+- Chilling Water  
+- Ice Beam  
+
+Weavile @ Chople Berry
+Level: 41
+Ability: Pressure  
+EVs: 116 Atk / 128 Spe  
+- Brick Break  
+- Knock Off  
+- Ice Spinner  
+- Poison Jab  
+
+Froslass (F) @ Sitrus Berry
+Level: 42
+Ability: Snow Cloak  
+EVs: 100 HP / 148 Def / 156 SpA  
+- Blizzard  
+- Draining Kiss  
+- Poltergeist  
+- Shadow Ball  
+
 
 === TRAINER_HILLARY ===
 Name: Hillary
@@ -11183,17 +11427,21 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Shellder
-Level: 28
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Seel
-Level: 28
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
 Cloyster
-Level: 30
+Level: 46
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Shell Smash
+- Icicle Spear
+- Surf
+- Supersonic
+
+Glaceon
+Level: 46
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Blizzard
+- Shadow Ball
+- Snowscape
+- Freeze-Dry
 
 === TRAINER_WARREN ===
 Name: Warren
