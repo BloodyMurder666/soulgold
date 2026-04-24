@@ -209,8 +209,6 @@ MahoganyTown_Pokemart:
 	.2byte ITEM_DRAGON_SCALE
 	.2byte ITEM_KINGS_ROCK
 	.2byte ITEM_UP_GRADE
-	.2byte ITEM_SPELL_TAG
-	.2byte ITEM_NEVER_MELT_ICE
 	.2byte ITEM_NONE
 	release
 	end

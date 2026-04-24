@@ -1360,41 +1360,40 @@ Class: RocketA
 Pic: Petrel
 Gender: Male
 Music: Rocket
-Items: Full Restore / Full Restore
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
-Pineco
-Level: 30
+Scrafty
+Level: 44
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Pin Missile
-- Explosion
-- Spikes
-- Spike Cannon
+- Hi Jump Kick
+- Crunch
+- Parting Shot
+- Iron Tail
 
-Larvitar
-Level: 30
+Persian Alola
+Level: 44
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Rock Tomb
-- Screech
-- Bite
-- Thrash
+- Slash
+- Night Slash
+- Parting Shot
+- Play Rough
 
-Magcargo
-Level: 30
+Pyroar @ Pyroarite
+Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Smog
 - Flamethrower
-- Rock Slide
-- Curse
+- Hyper Voice
+- Earth Power
+- Snarl
 
-Cloyster
-Level: 30
+Weezing Galar
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Ice Beam
-- Clamp
-- Spike Cannon
-- Surf
+- Heat Wave
+- Sludge Bomb
+- Gyro Ball
+- Thunderbolt
 
 === TRAINER_MICHELLE ===
 Name: Michelle
@@ -1619,29 +1618,26 @@ Gender: Male
 Music: Rocket
 Items: Full Restore / Full Restore
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
 Arbok
-Level: 31
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Leer
-- Sludge Bomb
-- Bite
-- Wrap
 
-Persian
-Level: 30
+Toxapex
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Faint Attack
-- Pay Day
-- Mud Slap
-- Slash
+
+Dragalge @ Dragalgite
+Level: 46
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
 Vileplume
-Level: 30
+Level: 45
+Ability: Chlorophyll
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Sweet Scent
-- Sleep Powder
+- Sunny Day
+- Solar Beam
 - Sludge Bomb
 - Giga Drain
 
@@ -2738,16 +2734,16 @@ Name: Ross
 Class: Collector
 Pic: Collector
 Gender: Male
-Music: Male
+Music: Hg Suspicious 2
 Double Battle: No
 AI: Check Bad Move
 
-Koffing
-Level: 28
+Weezing
+Level: 43
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Raichu
-Level: 28
+Raichu Alola
+Level: 43
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ALLAN ===
@@ -2793,12 +2789,12 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Magnemite
-Level: 28
+Porygon @ Eviolite
+Level: 42
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Porygon
-Level: 28
+Galvantula
+Level: 42
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_CINDY ===
@@ -5726,12 +5722,12 @@ Name: Mitch
 Class: Collector
 Pic: Collector
 Gender: Male
-Music: Male
+Music: Hg Suspicious 2
 Double Battle: No
 AI: Check Bad Move
 
-Electrode
-Level: 28
+Electrode Hisui
+Level: 43
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_DALE ===
@@ -6191,12 +6187,12 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Arbok
-Level: 28
+Zoroark
+Level: 43
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Sneasel
-Level: 28
+Sneasler
+Level: 43
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_28 ===
@@ -6685,7 +6681,7 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Mightyena
+Sandile
 Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -7551,16 +7547,12 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Golbat
-Level: 27
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
 Ariados
-Level: 27
+Level: 42
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Raticate
-Level: 27
+Raticate Alola
+Level: 42
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_19 ===
@@ -7620,19 +7612,15 @@ Class: Team Rocket
 Pic: Rocket Grunt M
 Gender: Male
 Music: Rocket
-Double Battle: No
+Double Battle: Yes
 AI: Check Bad Move
 
-Raticate
-Level: 26
+Gliscor
+Level: 43
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Grimer
-Level: 27
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Golbat
-Level: 26
+Muk
+Level: 43
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_16 ===
@@ -7644,8 +7632,8 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Venomoth
-Level: 31
+Muk Alola
+Level: 43
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_17 ===
@@ -7657,12 +7645,12 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Drowzee
-Level: 26
+Golbat
+Level: 42
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Gligar
-Level: 26
+Linoone Galar
+Level: 42
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_SIDNEY ===
@@ -7729,8 +7717,8 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Kangaskhan
-Level: 28
+Tauros Paldea Combat
+Level: 43
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_KYLE ===
@@ -8629,20 +8617,8 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Jynx
-Level: 28
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Poliwhirl
-Level: 28
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Magmar
-Level: 28
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Electabuzz
-Level: 28
+Krookodile
+Level: 44
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_KRISE ===
@@ -10807,8 +10783,8 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Golbat
-Level: 29
+Scrafty
+Level: 43
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_FRITZ ===

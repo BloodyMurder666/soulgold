@@ -489,7 +489,7 @@ RocketHideout_B2F_EventScript_Electrode::
 	playmoncry SPECIES_ELECTRODE, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
-	setwildbattle SPECIES_ELECTRODE, 30
+	setwildbattle SPECIES_ELECTRODE, 40
 	dowildbattle
 	specialvar VAR_RESULT, GetBattleOutcome
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, RocketHideout_B2F_EventScript_Ran_Electrode
@@ -527,7 +527,7 @@ RocketHideout_B2F_EventScript_ElectrodeDone::
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
 	delay 30
 	msgbox RocketHideout_B2F_Text_LanceElectrodeDone, MSGBOX_DEFAULT
-	giveitem ITEM_HM_DIVE
+	giveitem ITEM_HM_DIVE @ should be dive
 	msgbox RocketHideout_B2F_Text_LanceWhirlpool, MSGBOX_DEFAULT
 	closemessage
 	turnobject LOCALID_ROCKETHIDEOUT2_LANCE, DIR_SOUTH
