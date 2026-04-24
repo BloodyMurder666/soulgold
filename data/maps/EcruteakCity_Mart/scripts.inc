@@ -81,7 +81,7 @@ Ecruteak_Mart2::
 # 44 "data/maps/EcruteakCity_Mart/scripts.pory"
 Ecruteak2:
 # 45 "data/maps/EcruteakCity_Mart/scripts.pory"
-	.2byte ITEM_HEAL_BALL
+	.2byte ITEM_QUICK_BALL
 # 46 "data/maps/EcruteakCity_Mart/scripts.pory"
 	.2byte ITEM_NET_BALL
 # 47 "data/maps/EcruteakCity_Mart/scripts.pory"
