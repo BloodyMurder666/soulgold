@@ -1000,6 +1000,7 @@ const u16 gBattleAnimSpritePal_Tendrils[] = INCBIN_U16("graphics/battle_anims/sp
 
 const u32 gHealthboxSinglesPlayerGfx[] = INCBIN_U32("graphics/battle_interface/healthbox_singles_player.4bpp.smol");
 const u32 gHealthboxSinglesOpponentGfx[] = INCBIN_U32("graphics/battle_interface/healthbox_singles_opponent.4bpp.smol");
+const u32 gHealthboxSinglesOpponentShinyGfx[] = INCBIN_U32("graphics/battle_interface/healthbox_singles_opponent_shiny.4bpp.smol");
 const u32 gHealthboxDoublesPlayerGfx[] = INCBIN_U32( "graphics/battle_interface/healthbox_doubles_player.4bpp.smol");
 const u32 gHealthboxDoublesOpponentGfx[] = INCBIN_U32("graphics/battle_interface/healthbox_doubles_opponent.4bpp.smol");
 const u32 gHealthboxSafariGfx[] = INCBIN_U32("graphics/battle_interface/healthbox_safari.4bpp.smol");
@@ -2124,5 +2125,4 @@ const u16 gBattleIcons_Pal2[] = INCBIN_U16("graphics/types/battle_icons2.gbapal"
 
 const u32 gTilesetTiles_General_Frontier_East[] = INCBIN_U32("data/tilesets/primary/general_frontier_east/tiles.4bpp.smol");
 const u32 gTilesetTiles_General_Frontier_West[] = INCBIN_U32("data/tilesets/primary/general_frontier_west/tiles.4bpp.smol");
-
 

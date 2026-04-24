@@ -38,6 +38,7 @@ static bool8 ShouldAnimBeDoneRegardlessOfSubstitute(u8 animId);
 static void Task_ClearBitWhenBattleTableAnimDone(u8 taskId);
 static void Task_ClearBitWhenSpecialAnimDone(u8 taskId);
 static void ClearSpritesBattlerHealthboxAnimData(void);
+static bool8 ShouldUseSinglesOpponentShinyHealthbox(void);
 
 // const rom data
 static const struct CompressedSpriteSheet sSpriteSheet_SinglesPlayerHealthbox =
@@ -48,6 +49,11 @@ static const struct CompressedSpriteSheet sSpriteSheet_SinglesPlayerHealthbox =
 static const struct CompressedSpriteSheet sSpriteSheet_SinglesOpponentHealthbox =
 {
     gHealthboxSinglesOpponentGfx, 0x1000, TAG_HEALTHBOX_OPPONENT1_TILE
+};
+
+static const struct CompressedSpriteSheet sSpriteSheet_SinglesOpponentShinyHealthbox =
+{
+    gHealthboxSinglesOpponentShinyGfx, 0x1000, TAG_HEALTHBOX_OPPONENT1_TILE
 };
 
 static const struct CompressedSpriteSheet sSpriteSheets_DoublesPlayerHealthbox[2] =
@@ -109,6 +115,14 @@ static const struct OamData sOamData_EnemyShadow =
     .paletteNum = 0,
     .affineParam = 0
 };
+
+static bool8 ShouldUseSinglesOpponentShinyHealthbox(void)
+{
+    if (gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_SAFARI | BATTLE_TYPE_WALLY_TUTORIAL | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_TRAINER_HILL))
+        return FALSE;
+
+    return GetMonData(&gEnemyParty[0], MON_DATA_IS_SHINY);
+}
 
 const struct SpriteTemplate gSpriteTemplate_EnemyShadow =
 {
@@ -763,7 +777,10 @@ bool8 BattleLoadAllHealthBoxesGfx(u8 state)
             }
             else if (state == 3)
             {
-                LoadCompressedSpriteSheet(&sSpriteSheet_SinglesOpponentHealthbox);
+                if (ShouldUseSinglesOpponentShinyHealthbox())
+                    LoadCompressedSpriteSheet(&sSpriteSheet_SinglesOpponentShinyHealthbox);
+                else
+                    LoadCompressedSpriteSheet(&sSpriteSheet_SinglesOpponentHealthbox);
             }
             else if (state == 4)
             {
