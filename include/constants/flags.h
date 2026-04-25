@@ -726,7 +726,7 @@
 #define FLAG_GOLDENRODSHORE_EXPERT  0x2A7
 #define FLAG_R39_NORTH_TRADE  0x2A8
 #define FLAG_R39_NORTH_ROCKY_HELMET  0x2A9
-#define FLAG_UNUSED_0x2AA  0x2AA // Unused Flag
+#define FLAG_COLLISION  0x2AA // Debug
 #define FLAG_UNUSED_0x2AB  0x2AB // Unused Flag
 #define FLAG_UNUSED_0x2AC  0x2AC // Unused Flag
 #define FLAG_UNUSED_0x2AD  0x2AD // Unused Flag

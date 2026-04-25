@@ -550,8 +550,8 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Porygon
-Level: 40
+Magnezone
+Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_RICK ===
@@ -732,49 +732,100 @@ Class: RocketA
 Pic: Proton
 Gender: Male
 Music: Rocket
-Items: Full Restore / Full Restore
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
-Muk
-Level: 36
+Crobat
+Level: 48
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Sludge Bomb
-- Pound
-- Acid Armor
-- Minimize
+- Air Slash
+- Leech Life
+- Confuse Ray
 
-Nidoqueen
-Level: 37
+Farigiraf
+Level: 48
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Sludge Bomb
+- Twin Beam
 - Double Kick
-- Thunder Punch
-- Body Slam
+- Dazzling Gleam
+- Thunder Wave
 
-Weezing
-Level: 36
+Porygon Z
+Level: 48
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Sludge Bomb
-- Self Destruct
-- Haze
-- Tackle
+- Tri Attack
+- Ice Beam
+- Thunderbolt
+- Flamethrower
 
 Nidoking
-Level: 37
+Level: 49
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Sludge Bomb
 - Double Kick
 - Ice Punch
 - Thrash
 
-Rhydon
-Level: 38
+Absol @ Absolite
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Earthquake
-- Surf
-- Fissure
-- Rock Slide
+EVs: 252 Atk
+- Shadow Claw
+- Night Slash
+- Play Rough
+- Stone Edge
+
+=== TRAINER_PROTON_2 ===
+Name: Proton
+Class: RocketA
+Pic: Proton
+Gender: Male
+Music: Rocket
+Double Battle: No
+AI: Smart Trainer
+Difficulty: Hard
+
+Crobat @ Poison Gem
+Level: 48
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Sludge Bomb
+- Air Slash
+- Leech Life
+- Confuse Ray
+
+Farigiraf @ Leftovers
+Level: 48
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Twin Beam
+- Double Kick
+- Dazzling Gleam
+- Thunder Wave
+
+Porygon Z @ Chople Berry
+Level: 48
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Tri Attack
+- Ice Beam
+- Thunderbolt
+- Flamethrower
+
+Nidoking @ Black Sludge
+Level: 49
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Sludge Bomb
+- Double Kick
+- Ice Punch
+- Thrash
+
+Absol @ Absolite
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk
+- Shadow Claw
+- Night Slash
+- Play Rough
+- Stone Edge
 
 === TRAINER_PROTON_1 ===
 Name: Proton
@@ -1318,41 +1369,48 @@ Class: RocketA
 Pic: Petrel
 Gender: Male
 Music: Rocket
-Items: Full Restore / Full Restore
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
-Forretress
-Level: 38
+Scrafty
+Level: 46
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Pin Missile
-- Explosion
-- Spikes
-- Spike Cannon
+- Hi Jump Kick
+- Crunch
+- Parting Shot
+- Iron Tail
 
-Pupitar
-Level: 38
+Sharpedo
+Level: 46
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Rock Slide
-- Screech
-- Bite
-- Thrash
-
-Magcargo
-Level: 39
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Smog
-- Flamethrower
-- Rock Slide
-- Curse
-
-Cloyster
-Level: 38
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Ice Beam
-- Clamp
-- Spike Cannon
 - Surf
+- Aqua Jet
+- Ice Beam
+- Crunch 
+
+Persian Alola
+Level: 46
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Slash
+- Night Slash
+- Parting Shot
+- Play Rough
+
+Pyroar @ Pyroarite
+Level: 49
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Flamethrower
+- Hyper Voice
+- Earth Power
+- Snarl
+
+Weezing Galar
+Level: 46
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Heat Wave
+- Sludge Bomb
+- Gyro Ball
+- Thunderbolt
 
 === TRAINER_PETREL_1 ===
 Name: Petrel
@@ -1566,28 +1624,27 @@ Class: RocketA
 Pic: Ariana
 Gender: Male
 Music: Rocket
-Items: Full Restore / Full Restore
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
 Arbok
-Level: 39
+Level: 49
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Screech
-- Bite
+- Flamethrower
+- Dark Pulse
 - Glare
 - Sludge Bomb
 
-Persian
-Level: 40
+Toxapex 
+Level: 49
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Bite
-- Screech
-- Charm
-- Slash
+- Scald
+- Toxic
+- Baneful Bunker
+- Sludge Bomb
 
 Vileplume
-Level: 39
+Level: 49
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Sleep Powder
 - Sludge Bomb
@@ -1595,20 +1652,70 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Giga Drain
 
 Gyarados
-Level: 40
+Level: 49
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Strength
-- Twister
-- Gust
-- Surf
+- Ice Fang
+- Crunch
+- Waterfall
 
-Murkrow
-Level: 40
+Dragalge @ Dragalgite
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Pursuit
+- Hydro Pump
+- Sludge Bomb
+- Icy Wind
+- Focus Blast
+
+=== TRAINER_ARIANA_2 ===
+Name: Ariana
+Class: RocketA
+Pic: Ariana
+Gender: Male
+Music: Rocket
+Double Battle: No
+AI: Smart Trainer
+Difficulty: Hard
+
+Arbok @ Life Orb
+Level: 49
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Flamethrower
+- Dark Pulse
+- Glare
+- Sludge Bomb
+
+Toxapex @ Leftovers
+Level: 49
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Scald
 - Toxic
-- Faint Attack
-- Fly
+- Baneful Bunker
+- Sludge Bomb
+
+Vileplume @ Black Sludge
+Level: 49
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Sleep Powder
+- Sludge Bomb
+- Stun Spore
+- Giga Drain
+
+Gyarados @ Water Gem
+Level: 49
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Strength
+- Ice Fang
+- Crunch
+- Waterfall
+
+Dragalge @ Dragalgite
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Hydro Pump
+- Sludge Bomb
+- Icy Wind
+- Focus Blast
 
 === TRAINER_ARIANA_1 ===
 Name: Ariana
@@ -1723,49 +1830,106 @@ Class: RocketA
 Pic: Archer
 Gender: Male
 Music: Rocket
-Items: Full Restore / Full Restore
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
-Porygon Z
-Level: 39
+Ninetales
+Ability: Drought
+Level: 49
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Tri Attack
-- Zap Cannon
+- Psychic
+- Sunny Day
 - Flamethrower
-- Ice Beam
+- Energy Ball
 
-Tauros
-Level: 38
+Tauros Paldea Blaze
+Level: 49
+Ability: Intimidate
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Headbutt
-- Rock Smash
-- Pursuit
-- Frustration
+- Raging Bull
+- Zen Headbutt
+- Sunny Day
+- Wild Charge
 
-Gyarados
-Level: 39
+Marowak Alola
+Level: 50
+Ability: Lightning Rod
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Bite
-- Strength
-- Gust
+- Flare Blitz
+- Bonemerang
+- Brutal Swing
+- Rock Slide
+
+Slowking Galar
+Level: 50
+Ability: Regenerator
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Power Gem
 - Surf
-
-Houndoom
-Level: 38
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Bite
-- Smog
-- Roar
+- Psychic
 - Flamethrower
 
-Slowbro
-Level: 40
+Houndoom @ Houndoominite
+Level: 51
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Confusion
-- Curse
-- Amnesia
+- Solar Beam
+- Sludge Bomb
+- Dark Pulse
+- Flamethrower
+
+=== TRAINER_ARCHER ===
+Name: Archer
+Class: RocketA
+Pic: Archer
+Gender: Male
+Music: Rocket
+Double Battle: No
+AI: Smart Trainer
+Difficulty: Hard
+
+Ninetales @ Heat Rock
+Ability: Drought
+Level: 49
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Psychic
+- Sunny Day
+- Flamethrower
+- Energy Ball
+
+Tauros Paldea Blaze @ Life Orb
+Level: 49
+Ability: Intimidate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Raging Bull
+- Zen Headbutt
+- Sunny Day
+- Wild Charge
+
+Marowak Alola @ Choice Scarf
+Level: 50
+Ability: Lightning Rod
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Flare Blitz
+- Bonemerang
+- Brutal Swing
+- Rock Slide
+
+Slowking Galar
+Level: 51
+Ability: Regenerator
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Power Gem
 - Surf
+- Psychic
+- Flamethrower
+
+Houndoom @ Houndoominite
+Level: 52
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Solar Beam
+- Sludge Bomb
+- Dark Pulse
+- Flamethrower
 
 === TRAINER_RUSSELL ===
 Name: Russell
@@ -2961,50 +3125,100 @@ Class: Rival
 Pic: Silver
 Gender: Male
 Music: Silver
-Items: Super Potion
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Blue
 
-Pupitar
-Level: 39
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Thrash
-- Rock Slide
-- Screech
-- Bite
+Gengar
+Level: 47
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Hypnosis
+- Thunderbolt
+- Shadow Ball
+- Dream Eater
+
+Bisharp
+Level: 47
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Night Slash
+- Low Sweep
+- Iron Head
+- Aerial Ace
+
+Staraptor
+Level: 47
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Brave Bird
+- Close Combat
+- U-Turn
+- Facade
 
 Victreebel
-Level: 39
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Sludge
-- Razor Leaf
+Level: 47
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Solar Beam
+- Giga Drain
+- Sludge Bomb
 - Sleep Powder
-- Growth
 
-Houndoom
-Level: 38
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Flamethrower
-- Iron Tail
-- Bite
-- Double Team
-
-Golbat
-Level: 39
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Toxic
-- Double Team
-- Confuse Ray
-- Wing Attack
-
-Feraligatr
-Level: 40
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Feraligatr @ Life Orb
+Level: 48
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Crunch
 - Ice Punch
-- Surf
-- Slash
-- Bite
+- Liquidation
+- Strength
+
+=== TRAINER_RIVAL_TOTODILE_4 ===
+Name: {RIVAL}
+Class: Rival
+Pic: Silver
+Gender: Male
+Music: Silver
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Blue
+Difficulty: Hard
+
+Gengar @ Focus Sash
+Level: 47
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Hypnosis
+- Thunderbolt
+- Shadow Ball
+- Dream Eater
+
+Bisharp @ Chople Berry
+Level: 47
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Night Slash
+- Low Sweep
+- Iron Head
+- Aerial Ace
+
+Staraptor @ Sharp Beak
+Level: 47
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Brave Bird
+- Close Combat
+- U-Turn
+- Facade
+
+Victreebel @ Black Sludge
+Level: 47
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Solar Beam
+- Giga Drain
+- Sludge Bomb
+- Sleep Powder
+
+Feraligatr @ Life Orb
+Level: 48
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Crunch
+- Ice Punch
+- Liquidation
+- Strength
 
 === TRAINER_RIVAL_TOTODILE_5 ===
 Name: {RIVAL}
@@ -5434,50 +5648,100 @@ Class: Rival
 Pic: Silver
 Gender: Male
 Music: Silver
-Items: Super Potion
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Blue
 
-Pupitar
-Level: 39
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Thrash
-- Rock Slide
-- Screech
-- Bite
+Gengar
+Level: 47
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Hypnosis
+- Thunderbolt
+- Shadow Ball
+- Dream Eater
 
-Victreebel
-Level: 39
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Sludge
-- Razor Leaf
-- Sleep Powder
-- Growth
+Bisharp
+Level: 47
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Night Slash
+- Low Sweep
+- Iron Head
+- Aerial Ace
 
-Octillery
-Level: 38
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Octazooka
-- Psybeam
-- Aurora Beam
-- None
+Staraptor
+Level: 47
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Brave Bird
+- Close Combat
+- U-Turn
+- Facade
 
-Golbat
-Level: 39
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Toxic
-- Double Team
-- Confuse Ray
-- Wing Attack
+Clodsire
+Level: 47
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Earthquake
+- Sludge Bomb
+- Yawn
+- Muddy Water
 
-Typhlosion
-Level: 40
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Thunder Punch
+Typhlosion @ Charcoal
+Level: 48
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Flamethrower
-- Quick Attack
-- Iron Tail
+- Scorching Sands
+- Swift
+- Focus Blast
+
+=== TRAINER_RIVAL_CYNDAQUIL_4 ===
+Name: {RIVAL}
+Class: Rival
+Pic: Silver
+Gender: Male
+Music: Silver
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Blue
+Difficulty: Hard
+
+Gengar @ Focus Sash
+Level: 47
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Hypnosis
+- Thunderbolt
+- Shadow Ball
+- Dream Eater
+
+Bisharp @ Chople Berry
+Level: 47
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Night Slash
+- Low Sweep
+- Iron Head
+- Aerial Ace
+
+Staraptor @ Sharp Beak
+Level: 47
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Brave Bird
+- Close Combat
+- U-Turn
+- Facade
+
+Clodsire @ Shuca Berry
+Level: 47
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Earthquake
+- Sludge Bomb
+- Yawn
+- Muddy Water
+
+Typhlosion @ Choice Specs
+Level: 48
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Flamethrower
+- Scorching Sands
+- Swift
+- Focus Blast
 
 === TRAINER_DUFF_AND_EDA ===
 Name: Duff & Eda
@@ -5752,24 +6016,12 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Poliwrath
-Level: 36
+Krookodile
+Level: 48
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Magmar
-Level: 36
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Jynx
-Level: 36
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Electabuzz
-Level: 36
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Rhydon
-Level: 36
+Rhyperior
+Level: 48
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JARED ===
@@ -5908,8 +6160,8 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Omastar
-Level: 37
+Porygon2
+Level: 46
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JAY ===
@@ -6061,20 +6313,17 @@ Double Battle: No
 AI: Check Bad Move
 
 Vileplume
-Level: 35
+Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Pinsir
-Level: 35
+Level: 46
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Arbok
-Level: 35
+Scizor
+Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Murkrow
-Level: 36
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_26 ===
 Name: Grunt
@@ -6085,12 +6334,12 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Arbok
-Level: 35
+Banette
+Level: 45
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Gloom
-Level: 35
+Lilligant
+Level: 46
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_21 ===
@@ -6119,12 +6368,12 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Golbat
-Level: 36
+Crobat
+Level: 46
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Arbok
-Level: 37
+Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_23 ===
@@ -6204,20 +6453,12 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Arbok
-Level: 36
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Gloom
-Level: 35
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
 Ariados
-Level: 36
+Level: 46
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Vileplume
-Level: 36
+Level: 46
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JOYCE ===
@@ -6258,12 +6499,12 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Tauros
-Level: 35
+Golbat
+Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Slowbro
-Level: 35
+Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_9 ===
@@ -6275,16 +6516,8 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Exeggutor
-Level: 35
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Electrode
-Level: 35
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Electabuzz
-Level: 35
+Exeggutor Alola
+Level: 46
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_2 ===
@@ -6296,16 +6529,12 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Raticate
-Level: 33
+Persian
+Level: 45
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Raticate
-Level: 33
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Raticate
-Level: 33
+Persian Alola
+Level: 45
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_3 ===
@@ -6318,11 +6547,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Weezing
-Level: 33
+Level: 45
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Muk
-Level: 33
+Houndoom
+Level: 46
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_6 ===
@@ -6334,17 +6563,14 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Aipom
-Level: 34
+Honchkrow
+Level: 46
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Murkrow
-Level: 34
+Bisharp
+Level: 46
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Forretress
-Level: 34
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_7 ===
 Name: Grunt
@@ -6355,12 +6581,12 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Muk
-Level: 34
+Tauros
+Level: 46
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Venomoth
-Level: 34
+Tauros Paldea Aqua
+Level: 46
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_4 ===
@@ -6372,16 +6598,16 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Aipom
-Level: 34
+Ambipom
+Level: 45
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Koffing
-Level: 34
+Magmar @ Eviolite
+Level: 45
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Aipom
-Level: 34
+Hariyama
+Level: 45
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_5 ===
@@ -6393,12 +6619,12 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Gligar
-Level: 34
+Muk
+Level: 45
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Hypno
-Level: 34
+Qwilfish Hisui
+Level: 46
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_RONALD ===
@@ -7720,8 +7946,8 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Weezing
-Level: 37
+Dusknoir
+Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_CARTER ===
@@ -7835,12 +8061,12 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Golbat
-Level: 36
+Honchkrow
+Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Weezing
-Level: 37
+Gliscor
+Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_12 ===
@@ -7852,16 +8078,12 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Weezing
-Level: 35
+Probopass
+Level: 46
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Gligar
-Level: 37
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Hypno
-Level: 35
+Absol
+Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_13 ===
@@ -9114,12 +9336,14 @@ Music: Hg Suspicious 2
 Double Battle: No
 AI: Check Bad Move
 
-Arcanine
-Level: 35
+Weavile
+Level: 47
+Ability: Pickpocket
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Weezing
-Level: 35
+Tinkaton
+Level: 47
+Ability: Pickpocket
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_COLETTE ===
@@ -9842,12 +10066,12 @@ Music: Hg Suspicious 2
 Double Battle: No
 AI: Check Bad Move
 
-Delibird
-Level: 35
+Sableye
+Level: 46
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Magmar
-Level: 35
+Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_HORTON ===
@@ -9881,50 +10105,100 @@ Class: Rival
 Pic: Silver
 Gender: Male
 Music: Silver
-Items: Hyper Potion
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Pink
 
-Pupitar
-Level: 39
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Thrash
-- Rock Slide
-- Screech
-- Bite
+Floatzel
+Level: 47
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Ice Spinner
+- Liquidation
+- Brick Break
+- Taunt
 
-Houndoom
-Level: 39
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Bisharp
+Level: 47
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Night Slash
+- Low Sweep
+- Iron Head
+- Aerial Ace
+
+Staraptor
+Level: 47
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Brave Bird
+- Close Combat
+- U-Turn
+- Facade
+
+Chandelure
+Level: 47
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Flamethrower
-- Iron Tail
-- Bite
-- Double Team
+- Shadow Ball
+- Energy Ball
+- Acid Armor
 
-Octillery
-Level: 38
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Octazooka
-- Psybeam
-- Aurora Beam
-- None
+Meganium @ Big Root
+Level: 48
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Giga Drain
+- Draining Kiss
+- Light Screen
+- Leech Seed
 
-Golbat
-Level: 39
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Toxic
-- Double Team
-- Confuse Ray
-- Wing Attack
+=== TRAINER_RIVAL_CHIKORITA_4 ===
+Name: {RIVAL}
+Class: Rival
+Pic: Silver
+Gender: Male
+Music: Silver
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Pink
+Difficulty: Hard
 
-Meganium
-Level: 40
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Synthesis
-- Razor Leaf
-- Sunny Day
-- Body Slam
+Floatzel @ Focus Sash
+Level: 47
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Ice Spinner
+- Liquidation
+- Brick Break
+- Taunt
+
+Bisharp @ Chople Berry
+Level: 47
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Night Slash
+- Low Sweep
+- Iron Head
+- Aerial Ace
+
+Staraptor @ Sharp Beak
+Level: 47
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Brave Bird
+- Close Combat
+- U-Turn
+- Facade
+
+Chandelure @ Charcoal
+Level: 47
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Flamethrower
+- Shadow Ball
+- Energy Ball
+- Acid Armor
+
+Meganium @ Big Root
+Level: 48
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Giga Drain
+- Draining Kiss
+- Light Screen
+- Leech Seed
 
 === TRAINER_JO_AND_ZOE ===
 Name: Jo&Zoe
@@ -10986,12 +11260,12 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Golbat
-Level: 36
+Arcanine
+Level: 46
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Muk
-Level: 37
+Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_CHOW ===
