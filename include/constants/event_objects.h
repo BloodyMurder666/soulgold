@@ -497,6 +497,7 @@
 #define OBJ_EVENT_PAL_TAG_TOWER_BEAM              0x1144
 #define OBJ_EVENT_PAL_TAG_CASE                    0x1145
 #define OBJ_EVENT_PAL_TAG_BILL                    0x1146
+#define OBJ_EVENT_PAL_TAG_ARCHER                  0x1147
 
 #if OW_FOLLOWERS_POKEBALLS
 // Vanilla

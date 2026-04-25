@@ -35,6 +35,7 @@ GoldenrodCity_RadioTower_5F_EventScript_Petrel::
 	waitmovement 0
 	setflag FLAG_HIDE_GOLDENROD_RADIOTOWER_DIRECTOR
 	removeobject LOCALID_DIRECTOR_OFFICE
+    removeobject LOCALID_RADIOTOWER_OAK
 	clearflag FLAG_HIDE_GOLDENROD_RADIOTOWER_PETREL
 	addobject LOCALID_PETREL_OFFICE
 	applymovement LOCALID_PETREL_OFFICE, GoldenrodCity_RadioTower_5F_Movement_Spin2
@@ -207,6 +208,7 @@ GoldenrodCity_RadioTower_5F_EventScript_Archer::
 	clearflag FLAG_HIDE_GOLDENROD_RADIOTOWER_DIRECTOR
 	removeobject LOCALID_PETREL_OFFICE
 	addobject LOCALID_DIRECTOR_STUDIO
+    addobject LOCALID_RADIOTOWER_OAK
 	playbgm MUS_HG_GOLDENROD, TRUE
 	delay 120
 	fadescreen FADE_FROM_BLACK
@@ -305,6 +307,7 @@ GoldenrodCity_RadioTower_5F_Fakeout::
 	setflag FLAG_HIDE_GOLDENROD_RADIOTOWER_DIRECTOR_2
 	removeobject LOCALID_DIRECTOR_STUDIO
 	setvar VAR_MAHOGANY_TOWN_STATE, 17
+    goto OakRadioTowerF5
 	release
 	end
 
@@ -543,3 +546,23 @@ GoldenrodCity_RadioTower_5F_Text_DirectorOfficeSign:
 GoldenrodCity_RadioTower_5F_Text_Studio1Sign:
 	.string "5F STUDIO 1$"
 `
+
+script OakRadioTowerF5 {
+    moveobjecttocoords(OBJ_EVENT_ID_PLAYER, 28, 11, DIR_NORTH)
+    waitmovement(0)
+    playbgm(MUS_HG_OAK, TRUE)
+    moveobjecttocoords(LOCALID_RADIOTOWER_OAK, 28, 10, DIR_SOUTH)
+    waitmovement(0)
+    msgbox(format("{PLAYER}! You've pulled off a miracle by taking down Team Rocket!"))
+    msgbox(format("I knew it was the right choice to entrust Pokédex to you. I want you to have this, I think you've more than earned it."))
+    giveitem(ITEM_MEGA_RING)
+    msgbox(format("That is a Mega Ring. When combined with a Mega stone, it allows the bond between trainer and Pokémon to fully manifest. I'm sure you'll be able to pull it off."))
+    msgbox(format("Now I must start heading back to Kanto, I hope you'll pay a visit to the Pallet Town at some point! Give my regards to Prof. Elm."))
+    fadescreenswapbuffers(FADE_TO_BLACK)
+    removeobject(LOCALID_RADIOTOWER_OAK)
+    fadedefaultbgm
+    delay(100)
+    fadescreenswapbuffers(FADE_FROM_BLACK)
+    release
+    end
+}
