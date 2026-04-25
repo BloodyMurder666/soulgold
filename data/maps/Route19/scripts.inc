@@ -76,14 +76,14 @@ Route19_Text_SwimmermHaroldAfterBattle:
 
 Route19_Text_SwimmermTuckerSeen:
 	.string "Pant, pant… Just… a little…\p"
-	.string "farther… to… FUCHSIA…$"
+	.string "farther… to… Fuchsia…$"
 
 Route19_Text_SwimmermTuckerBeaten:
 	.string "I'm drowning!$"
 
 Route19_Text_SwimmermTuckerAfterBattle:
 	.string "I… asked my girlfriend to swim to\n"
-	.string "FUCHSIA… Gasp…$"
+	.string "Fuchsia… Gasp…$"
 
 Route19_Text_SwimmerfDawnSeen:
 	.string "I'm disgusted by wimpy people!$"
@@ -92,8 +92,8 @@ Route19_Text_SwimmerfDawnBeaten:
 	.string "I could beat you at swimming…$"
 
 Route19_Text_SwimmerfDawnAfterBattle:
-	.string "It's a quick swim between FUCHSIA\n"
-	.string "and SEAFOAM ISLANDS…\p"
+	.string "It's a quick swim between Fuchsia\n"
+	.string "and Seafoam Islands…\p"
 	.string "Sheesh, some big man my boyfriend\n"
 	.string "is! What a wimp!$"
 
@@ -112,34 +112,34 @@ Route19_Text_SwimmermJeromeAfterBattle:
 Route19_Text_Fisher1:
 	.string "Sorry. This road is closed for\n"
 	.string "construction.\p"
-	.string "If you want to get to CINNABAR,\n"
-	.string "you'd better go south from PALLET\n"
-	.string "TOWN.$"
+	.string "If you want to get to Cinnabar,\n"
+	.string "you'd better go south from Pallet\n"
+	.string "Town.$"
 
 Route19_Text_Kingler:
-	.string "KINGLER: KEEEEEEEEEEEE$"
+	.string "Kingler: Keeeeeeeeeeee$"
 
 Route19_Text_Fisher1_RocksCleared:
 	.string "I'm all sweaty. Time for a swim!$"
 
 Route19_Text_Fisher2:
-	.string "Aw man, KINGLER is blocking the\n"
+	.string "Aw man, Kingler is blocking the\n"
 	.string "beach.$"
 
 Route19_Text_FisherBefore:
-	.string "No fishing until these KINGLER\n"
+	.string "No fishing until these Kingler\n"
 	.string "clear out.$"
 
 Route19_Text_Fisher2_RocksCleared:
-	.string "Those KINGLER finally left!\p"
+	.string "Those Kingler finally left!\p"
 	.string "Now I can go fishing again.$"
 
 Route19_Text_Sign:
-	.string "ROUTE 19\p"
-	.string "FUCHSIA CITY - SEAFOAM ISLANDS$"
+	.string "Route 19\p"
+	.string "Fuchsia City - Seafoam Islands$"
 
 Route19_Text_CarefulSwimmingSign:
 	.string "Please be careful if you are\n"
-	.string "swimming to SEAFOAM ISLANDS.\p"
-	.string "FUCHSIA POLICE$"
+	.string "swimming to Seafoam Islands.\p"
+	.string "Fuchsia Police$"
 

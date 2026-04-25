@@ -105,13 +105,13 @@ Route47_EventScript_Kae::
 # 53 "data/maps/Route47/scripts.pory"
 Route47_Text_Couple1Seen::
 # 54 "data/maps/Route47/scripts.pory"
-	.string "THOM: One plus one is two. But the\n"
+	.string "Thom: One plus one is two. But the\n"
 # 55 "data/maps/Route47/scripts.pory"
 	.string "two of us together is much\l"
 # 56 "data/maps/Route47/scripts.pory"
 	.string "stronger!\p"
 # 57 "data/maps/Route47/scripts.pory"
-	.string "KAE: The two of us aren't just some\n"
+	.string "Kae: The two of us aren't just some\n"
 # 58 "data/maps/Route47/scripts.pory"
 	.string "boring pair!$"
 # 59 "data/maps/Route47/scripts.pory"
@@ -119,15 +119,15 @@ Route47_Text_Couple1Seen::
 # 60 "data/maps/Route47/scripts.pory"
 Route47_Text_Couple1Beaten::
 # 61 "data/maps/Route47/scripts.pory"
-	.string "THOM: That wasn't what I expected.\l"
+	.string "Thom: That wasn't what I expected.\l"
 # 62 "data/maps/Route47/scripts.pory"
-	.string "KAE: You're unusual too!$"
+	.string "Kae: You're unusual too!$"
 # 63 "data/maps/Route47/scripts.pory"
 
 # 64 "data/maps/Route47/scripts.pory"
 Route47_Text_Couple1After1::
 # 65 "data/maps/Route47/scripts.pory"
-	.string "THOM: It seems your power is\n"
+	.string "Thom: It seems your power is\n"
 # 66 "data/maps/Route47/scripts.pory"
 	.string "impossible to predict!$"
 # 67 "data/maps/Route47/scripts.pory"
@@ -135,7 +135,7 @@ Route47_Text_Couple1After1::
 # 68 "data/maps/Route47/scripts.pory"
 Route47_Text_Couple1After2::
 # 69 "data/maps/Route47/scripts.pory"
-	.string "KAE: I figured you were an ordinary\n"
+	.string "Kae: I figured you were an ordinary\n"
 # 70 "data/maps/Route47/scripts.pory"
 	.string "lone trainer. Boy was I wrong!$"
 # 71 "data/maps/Route47/scripts.pory"
@@ -165,11 +165,11 @@ Route47_EventScript_Eda::
 # 83 "data/maps/Route47/scripts.pory"
 Route47_Text_Couple2Seen::
 # 84 "data/maps/Route47/scripts.pory"
-	.string "DUFF: Watching over my girlfriend\n"
+	.string "Duff: Watching over my girlfriend\n"
 # 85 "data/maps/Route47/scripts.pory"
 	.string "makes my heart soar!\p"
 # 86 "data/maps/Route47/scripts.pory"
-	.string "EDA: My heart's feelings for my\n"
+	.string "Eda: My heart's feelings for my\n"
 # 87 "data/maps/Route47/scripts.pory"
 	.string "boyfriend are as wide and deep\l"
 # 88 "data/maps/Route47/scripts.pory"
@@ -179,15 +179,15 @@ Route47_Text_Couple2Seen::
 # 90 "data/maps/Route47/scripts.pory"
 Route47_Text_Couple2Beaten::
 # 91 "data/maps/Route47/scripts.pory"
-	.string "DUFF: I was no match for you...\l"
+	.string "Duff: I was no match for you...\l"
 # 92 "data/maps/Route47/scripts.pory"
-	.string "EDA: You are really something...$"
+	.string "Eda: You are really something...$"
 # 93 "data/maps/Route47/scripts.pory"
 
 # 94 "data/maps/Route47/scripts.pory"
 Route47_Text_Couple2After1::
 # 95 "data/maps/Route47/scripts.pory"
-	.string "DUFF: Thank you for the awe-\n"
+	.string "Duff: Thank you for the awe-\n"
 # 96 "data/maps/Route47/scripts.pory"
 	.string "inspiring battle! Bye!$"
 # 97 "data/maps/Route47/scripts.pory"
@@ -195,7 +195,7 @@ Route47_Text_Couple2After1::
 # 98 "data/maps/Route47/scripts.pory"
 Route47_Text_Couple2After2::
 # 99 "data/maps/Route47/scripts.pory"
-	.string "EDA: You should really find a\n"
+	.string "Eda: You should really find a\n"
 # 100 "data/maps/Route47/scripts.pory"
 	.string "wonderful partner, too!$"
 # 101 "data/maps/Route47/scripts.pory"
@@ -281,7 +281,7 @@ Route47_EventScript_Chinchou::
 # 141 "data/maps/Route47/scripts.pory"
 Route47_Text_Chinchou:
 # 142 "data/maps/Route47/scripts.pory"
-	.string "CHINCHOU: Chou!$"
+	.string "Chinchou: Chou!$"
 
 Route47_HiddenGrotto::
 # 146 "data/maps/Route47/scripts.pory"

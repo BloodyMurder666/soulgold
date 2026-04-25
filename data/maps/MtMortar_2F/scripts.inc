@@ -13,15 +13,15 @@ MtMortar_2F_EventScript_Nerd::
 	end
 
 MtMortar_2F_Text_SupernerdHughSeen::
-	.string "Yo! MARKUS!$"
+	.string "Yo! Markus!$"
 
 MtMortar_2F_Text_SupernerdHughBeaten:
 	.string "Sorry, my mistake.\n"
 	.string "I misjudged you.$"
 
 MtMortar_2F_Text_SupernerdHughAfter:
-	.string "I'm investigating MT.MORTAR,\n"
-	.string "but my pal's gone AWOL.\p"
+	.string "I'm investigating Mt.Mortar,\n"
+	.string "but my pal's gone Awol.\p"
 	.string "Have you seen a trainer who\n"
-	.string "has a SLOWPOKE that can use\l"
-	.string "STRENGTH?$"
+	.string "has a Slowpoke that can use\l"
+	.string "Strength?$"

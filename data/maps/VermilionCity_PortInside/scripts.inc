@@ -12,10 +12,10 @@ VermilionPortIndoor_EventScript_Nerd::
 	end
 
 VermilionPortPassage_Text_Teacher:
-	.string "The FAST SHIP sails every day!$"
+	.string "The Fast Ship sails every day!$"
 
 VermilionPort_Text_SuperNerd:
-	.string "You came from JOHTO?\p"
+	.string "You came from Johto?\p"
 	.string "I hear many rare POKéMON live\n"
 	.string "over there.$"
 
@@ -179,8 +179,8 @@ VermilionPort_Movement_BoatLeave:
 
 VermilionPort_Text_SailorCantSail:
 	.string "There's been a break-in at the\n"
-	.string "POWER PLANT, so we cannot set sail\l"
-	.string "until the THIEF is found.$"
+	.string "Power Plant, so we cannot set sail\l"
+	.string "until the Thief is found.$"
 
 VermilionPort_Text_NoPass:
     .string "{PLAYER} tried to show the\n"
@@ -201,23 +201,23 @@ VermilionPort_Text_WhereSail:
     .string "Where would you like to sail?$"
 
 VermilionPort_Text_AskBoard:
-    .string "Welcome to FAST SHIP S.S.AQUA.\p"
+    .string "Welcome to Fast Ship S.S.Aqua.\p"
     .string "Will you be boarding today?$"
 
 VermilionPort_Text_AskTicket:
-    .string "May I see your S.S.TICKET?$"
+    .string "May I see your S.S.Ticket?$"
 
 VermilionPort_Text_ComeAgain:
     .string "We hope to see you again!$"
 
 VermilionPort_Text_FlashTicket:
-    .string "{PLAYER} flashed the S.S.TICKET.\p"
+    .string "{PLAYER} flashed the S.S.Ticket.\p"
     .string "That's it. Thank you!$"
 
 VermilionPort_Text_NoTicket:
     .string "{PLAYER} tried to show the\n"
-    .string "S.S.TICKET…\p"
-    .string "…But no TICKET!\p"
+    .string "S.S.Ticket…\p"
+    .string "…But no Ticket!\p"
     .string "Sorry!\n"
     .string "You may board only\l"
-    .string "if you have an S.S.TICKET.$"
+    .string "if you have an S.S.Ticket.$"

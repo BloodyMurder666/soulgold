@@ -56,15 +56,15 @@ Route13_Text_PokefanmAlexAfterBattle:
 
 Route13_Text_PokefanmJoshuaSeen:
 	.string "Nihihi! Would you like to battle\n"
-	.string "my PIKACHU gang?$"
+	.string "my Pikachu gang?$"
 
 Route13_Text_PokefanmJoshuaBeaten:
-	.string "PI-PIKACHU!$"
+	.string "Pi-Pikachu!$"
 
 Route13_Text_PokefanmJoshuaAfterBattle:
 	.string "You look like you have many\n"
 	.string "POKéMON,\p"
-	.string "but PIKACHU is still the best.$"
+	.string "but Pikachu is still the best.$"
 
 Route13_Text_BirdKeeperPerrySeen:
 	.string "Agility is the key attribute of\n"
@@ -90,8 +90,8 @@ Route13_Text_BirdKeeperBretAfterBattle:
 	.string "happy.$"
 
 Route13_Text_HikerKennySeen:
-	.string "I should go to ROCK TUNNEL to get\n"
-	.string "myself an ONIX.$"
+	.string "I should go to Rock Tunnel to get\n"
+	.string "myself an Onix.$"
 
 Route13_Text_HikerKennyBeaten:
 	.string "I lost…$"
@@ -103,15 +103,15 @@ Route13_Text_HikerKennyAfterBattle:
 	.string "by little.$"
 
 Route13_Text_TrainerTips:
-	.string "TRAINER TIPS\p"
+	.string "Trainer Tips\p"
 	.string "Look! Right there, at the left\n"
 	.string "side of the post.$"
 
 Route13_Text_Sign:
-	.string "ROUTE 13\p"
-	.string "NORTH TO SILENCE BRIDGE$"
+	.string "Route 13\p"
+	.string "North To Silence Bridge$"
 
 Route13_Text_DirectionsSign:
-	.string "NORTH TO LAVENDER TOWN\p"
-	.string "WEST TO FUCHSIA CITY$"
+	.string "North To Lavender Town\p"
+	.string "West To Fuchsia City$"
 

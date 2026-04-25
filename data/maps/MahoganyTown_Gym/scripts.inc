@@ -39,15 +39,15 @@ MahoganyTown_Gym_EventScript_Statue2::
 # 20 "data/maps/MahoganyTown_Gym/scripts.pory"
 MahoganyTown_Gym_Text_GymStatue:
 # 21 "data/maps/MahoganyTown_Gym/scripts.pory"
-	.string "MAHOGANY TOWN POKéMON GYM$"
+	.string "Mahogany Town POKéMON Gym$"
 # 22 "data/maps/MahoganyTown_Gym/scripts.pory"
 
 # 23 "data/maps/MahoganyTown_Gym/scripts.pory"
 MahoganyTown_Gym_Text_GymStatueCertified:
 # 24 "data/maps/MahoganyTown_Gym/scripts.pory"
-	.string "MAHOGANY TOWN POKéMON GYM\p"
+	.string "Mahogany Town POKéMON Gym\p"
 # 25 "data/maps/MahoganyTown_Gym/scripts.pory"
-	.string "PRYCE'S CERTIFIED TRAINERS:\n"
+	.string "Pryce'S Certified Trainers:\n"
 # 26 "data/maps/MahoganyTown_Gym/scripts.pory"
 	.string "{PLAYER}$"
 # 27 "data/maps/MahoganyTown_Gym/scripts.pory"
@@ -265,7 +265,7 @@ MahoganyTown_Gym_Text_PryceIntro:
 # 133 "data/maps/MahoganyTown_Gym/scripts.pory"
     .string "I do not lose easily.\p"
 # 134 "data/maps/MahoganyTown_Gym/scripts.pory"
-    .string "I, PRYCE--the winter trainer--\n"
+    .string "I, Pryce--the winter trainer--\n"
 # 135 "data/maps/MahoganyTown_Gym/scripts.pory"
     .string "shall demonstrate my power!$"
 # 136 "data/maps/MahoganyTown_Gym/scripts.pory"
@@ -281,25 +281,25 @@ MahoganyTown_Gym_Text_PryceImpressed:
 # 141 "data/maps/MahoganyTown_Gym/scripts.pory"
     .string "will overcome all life's obstacles.\p"
 # 142 "data/maps/MahoganyTown_Gym/scripts.pory"
-    .string "You are worthy of this BADGE!$"
+    .string "You are worthy of this Badge!$"
 # 143 "data/maps/MahoganyTown_Gym/scripts.pory"
 
 # 144 "data/maps/MahoganyTown_Gym/scripts.pory"
 MahoganyTown_Gym_Text_ReceivedBadge:
 # 145 "data/maps/MahoganyTown_Gym/scripts.pory"
-    .string "{PLAYER} received GLACIERBADGE.$"
+    .string "{PLAYER} received Glacierbadge.$"
 # 146 "data/maps/MahoganyTown_Gym/scripts.pory"
 
 # 147 "data/maps/MahoganyTown_Gym/scripts.pory"
 MahoganyTown_Gym_Text_GlacierBadgeSpeech:
 # 148 "data/maps/MahoganyTown_Gym/scripts.pory"
-    .string "That BADGE will raise the SPECIAL\n"
+    .string "That Badge will raise the Special\n"
 # 149 "data/maps/MahoganyTown_Gym/scripts.pory"
-    .string "ATTACK of POKéMON.\p"
+    .string "Attack of POKéMON.\p"
 # 150 "data/maps/MahoganyTown_Gym/scripts.pory"
     .string "It also lets your POKéMON use\n"
 # 151 "data/maps/MahoganyTown_Gym/scripts.pory"
-    .string "WHIRLPOOL to get across\l"
+    .string "Whirlpool to get across\l"
 # 152 "data/maps/MahoganyTown_Gym/scripts.pory"
     .string "real whirlpools.\p"
 # 153 "data/maps/MahoganyTown_Gym/scripts.pory"
@@ -309,7 +309,7 @@ MahoganyTown_Gym_Text_GlacierBadgeSpeech:
 # 155 "data/maps/MahoganyTown_Gym/scripts.pory"
 MahoganyTown_Gym_Text_HailSpeech:
 # 156 "data/maps/MahoganyTown_Gym/scripts.pory"
-    .string "That TM contains HAIL.\p"
+    .string "That TM contains Hail.\p"
 # 157 "data/maps/MahoganyTown_Gym/scripts.pory"
     .string "It inflicts damage every\n"
 # 158 "data/maps/MahoganyTown_Gym/scripts.pory"
@@ -337,7 +337,7 @@ MahoganyTown_Gym_Text_CherishPokemon:
 # 169 "data/maps/MahoganyTown_Gym/scripts.pory"
 MahoganyTown_Gym_Text_PryceRematch:
 # 170 "data/maps/MahoganyTown_Gym/scripts.pory"
-    .string "Ah, JOHTO CHAMPION!\p"
+    .string "Ah, Johto Champion!\p"
 # 171 "data/maps/MahoganyTown_Gym/scripts.pory"
     .string "Your skills are indeed\n"
 # 172 "data/maps/MahoganyTown_Gym/scripts.pory"
@@ -349,7 +349,7 @@ MahoganyTown_Gym_Text_PryceRematch:
 # 175 "data/maps/MahoganyTown_Gym/scripts.pory"
     .string "learn from each other.\p"
 # 176 "data/maps/MahoganyTown_Gym/scripts.pory"
-    .string "I, PRYCE--the winter trainer--\n"
+    .string "I, Pryce--the winter trainer--\n"
 # 177 "data/maps/MahoganyTown_Gym/scripts.pory"
     .string "still have a few tricks left.\p"
 # 178 "data/maps/MahoganyTown_Gym/scripts.pory"
@@ -371,7 +371,7 @@ MahoganyTown_Gym_Text_PryceRematchDefeat:
 # 186 "data/maps/MahoganyTown_Gym/scripts.pory"
 MahoganyTown_Gym_Text_Guide:
 # 187 "data/maps/MahoganyTown_Gym/scripts.pory"
-    .string "PRYCE is a veteran who has\n"
+    .string "Pryce is a veteran who has\n"
 # 188 "data/maps/MahoganyTown_Gym/scripts.pory"
     .string "trained POKéMON for some 50 years.\p"
 # 189 "data/maps/MahoganyTown_Gym/scripts.pory"
@@ -389,7 +389,7 @@ MahoganyTown_Gym_Text_Guide:
 # 195 "data/maps/MahoganyTown_Gym/scripts.pory"
 MahoganyTown_Gym_Text_GuideWin:
 # 196 "data/maps/MahoganyTown_Gym/scripts.pory"
-    .string "PRYCE is something, but you're\n"
+    .string "Pryce is something, but you're\n"
 # 197 "data/maps/MahoganyTown_Gym/scripts.pory"
     .string "something else!\p"
 # 198 "data/maps/MahoganyTown_Gym/scripts.pory"
@@ -425,7 +425,7 @@ MahoganyTown_Gym_Text_BoarderRonaldAfter:
 # 213 "data/maps/MahoganyTown_Gym/scripts.pory"
 MahoganyTown_Gym_Text_BoarderBradSeen:
 # 214 "data/maps/MahoganyTown_Gym/scripts.pory"
-    .string "This GYM has a slippery floor.\p"
+    .string "This Gym has a slippery floor.\p"
 # 215 "data/maps/MahoganyTown_Gym/scripts.pory"
     .string "It's fun, isn't it?\p"
 # 216 "data/maps/MahoganyTown_Gym/scripts.pory"
@@ -443,7 +443,7 @@ MahoganyTown_Gym_Text_BoarderBradBeaten:
 # 222 "data/maps/MahoganyTown_Gym/scripts.pory"
 MahoganyTown_Gym_Text_BoarderBradAfter:
 # 223 "data/maps/MahoganyTown_Gym/scripts.pory"
-    .string "This GYM is great.\n"
+    .string "This Gym is great.\n"
 # 224 "data/maps/MahoganyTown_Gym/scripts.pory"
     .string "I love boarding with my\l"
 # 225 "data/maps/MahoganyTown_Gym/scripts.pory"
@@ -453,19 +453,19 @@ MahoganyTown_Gym_Text_BoarderBradAfter:
 # 227 "data/maps/MahoganyTown_Gym/scripts.pory"
 MahoganyTown_Gym_Text_BoarderDouglasSeen:
 # 228 "data/maps/MahoganyTown_Gym/scripts.pory"
-    .string "I know PRYCE's secret.$"
+    .string "I know Pryce's secret.$"
 # 229 "data/maps/MahoganyTown_Gym/scripts.pory"
 
 # 230 "data/maps/MahoganyTown_Gym/scripts.pory"
 MahoganyTown_Gym_Text_BoarderDouglasBeaten:
 # 231 "data/maps/MahoganyTown_Gym/scripts.pory"
-    .string "OK. I'll tell you PRYCE's secret.$"
+    .string "Ok. I'll tell you Pryce's secret.$"
 # 232 "data/maps/MahoganyTown_Gym/scripts.pory"
 
 # 233 "data/maps/MahoganyTown_Gym/scripts.pory"
 MahoganyTown_Gym_Text_BoarderDouglasAfter:
 # 234 "data/maps/MahoganyTown_Gym/scripts.pory"
-    .string "The secret behind PRYCE's power…\p"
+    .string "The secret behind Pryce's power…\p"
 # 235 "data/maps/MahoganyTown_Gym/scripts.pory"
     .string "He meditates under a waterfall\n"
 # 236 "data/maps/MahoganyTown_Gym/scripts.pory"
@@ -477,7 +477,7 @@ MahoganyTown_Gym_Text_BoarderDouglasAfter:
 # 239 "data/maps/MahoganyTown_Gym/scripts.pory"
 MahoganyTown_Gym_Text_SkierRoxanneSeen:
 # 240 "data/maps/MahoganyTown_Gym/scripts.pory"
-    .string "To get to PRYCE, our GYM LEADER,\n"
+    .string "To get to Pryce, our Gym Leader,\n"
 # 241 "data/maps/MahoganyTown_Gym/scripts.pory"
     .string "you need to think before you skate.$"
 # 242 "data/maps/MahoganyTown_Gym/scripts.pory"
@@ -493,7 +493,7 @@ MahoganyTown_Gym_Text_SkierRoxanneAfter:
 # 247 "data/maps/MahoganyTown_Gym/scripts.pory"
     .string "If you don't skate with precision,\n"
 # 248 "data/maps/MahoganyTown_Gym/scripts.pory"
-    .string "you won't get far in this GYM.$"
+    .string "you won't get far in this Gym.$"
 # 249 "data/maps/MahoganyTown_Gym/scripts.pory"
 
 # 250 "data/maps/MahoganyTown_Gym/scripts.pory"

@@ -76,7 +76,7 @@ AzaleaTown_House1_EventScript_Farfetchd::
 
 
 CharcoalKiln_Text_Boss1:
-	.string "All the SLOWPOKE have disappeared\n"
+	.string "All the Slowpoke have disappeared\n"
 	.string "from the town.\p"
 	.string "The forest's protector may be\n"
 	.string "angry with us…\p"
@@ -84,37 +84,37 @@ CharcoalKiln_Text_Boss1:
 	.string "stay in.$"
 
 CharcoalKiln_Text_Boss2:
-	.string "The SLOWPOKE have returned…$"
+	.string "The Slowpoke have returned…$"
 
 CharcoalKiln_Text_Boss3:
-	.string "The SLOWPOKE have returned…\p"
-	.string "But my APPRENTICE hasn't come back\n"
-	.string "from ILEX FOREST.\p"
+	.string "The Slowpoke have returned…\p"
+	.string "But my Apprentice hasn't come back\n"
+	.string "from Ilex Forest.\p"
 	.string "Where in the world is that lazy guy?$"
 
 CharcoalKiln_Text_Boss4:
-	.string "You chased off TEAM ROCKET and\n"
-	.string "went to ILEX FOREST alone?\p"
+	.string "You chased off Team Rocket and\n"
+	.string "went to Ilex Forest alone?\p"
 	.string "That takes guts! I like that.\n"
 	.string "Come train with us.$"
 
 CharcoalKiln_Text_Apprentice1:
-	.string "Where have all the SLOWPOKE gone?\p"
+	.string "Where have all the Slowpoke gone?\p"
 	.string "Are they out playing somewhere?$"
 
 CharcoalKiln_Text_Apprentice2:
-	.string "The SLOWPOKE came back!$"
+	.string "The Slowpoke came back!$"
 
 CharcoalKiln_Text_Apprentice3:
 	.string "I'm sorry--I forgot to thank you.\p"
-	.string "This is CHARCOAL that I made.\p"
-	.string "FIRE-type POKéMON would be happy\n"
+	.string "This is Charcoal that I made.\p"
+	.string "Fire-type POKéMON would be happy\n"
 	.string "to hold that.$"
 
 CharcoalKiln_Text_Apprentice4:
-	.string "The SLOWPOKE came back, and you even\n"
-	.string "found FARFETCH'D.\p"
+	.string "The Slowpoke came back, and you even\n"
+	.string "found Farfetch'D.\p"
 	.string "You're the coolest, man!$"
 
 CharcoalKiln_Text_Farfetchd:
-	.string "FARFETCH'D: Kwaa!$"
+	.string "Farfetch'D: Kwaa!$"

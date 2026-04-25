@@ -59,24 +59,24 @@ Route10_PowerPlantBackRoom_EventScript_Engineer::
 	end
 
 Route10_PowerPlantBackRoom_Text_ManagerWhoWouldRuinMyGenerator:
-	.string "MANAGER: I, I, I'm ready to blast\n"
+	.string "Manager: I, I, I'm ready to blast\n"
 	.string "someone!\p"
 	.string "Who would dare ruin my\n"
 	.string "generator?\p"
 	.string "I spent so much time on it!\p"
 	.string "If I catch him, he's going to\n"
-	.string "get a taste of my ZAP CANNON!$"
+	.string "get a taste of my Zap Cannon!$"
 
 Route10_PowerPlantBackRoom_Text_ManagerIWontForgiveCulprit:
-	.string "MANAGER: I won't forgive him!\p"
+	.string "Manager: I won't forgive him!\p"
 	.string "The culprit can cry and\n"
 	.string "apologize,\p"
 	.string "but I'll still hammer him!\p"
 	.string "Gahahahah!$"
 
 Route10_PowerPlantBackRoom_Text_ManagerThatsThePart:
-	.string "MANAGER: Ah! Yeah!\p"
-	.string "That's the missing PART from my\n"
+	.string "Manager: Ah! Yeah!\p"
+	.string "That's the missing Part from my\n"
 	.string "beloved generator! You found it?$"
 
 Route10_PowerPlantBackRoom_Text_ManagerTakeThisTM:
@@ -84,14 +84,14 @@ Route10_PowerPlantBackRoom_Text_ManagerTakeThisTM:
 	.string "Here! Take this TM as a reward!$"
 
 Route10_PowerPlantBackRoom_Text_ManagerTM07IsZapCannon:
-	.string "MANAGER: That TM is THUNDER.\p"
+	.string "Manager: That TM is Thunder.\p"
 	.string "It's a powerful technique!\p"
 	.string "It's not what anyone would\n"
 	.string "consider accurate, but it packs a\l"
 	.string "wallop!$"
 
 Route10_PowerPlantBackRoom_Text_ManagerMyBelovedGenerator:
-	.string "MANAGER: My beloved generator!\p"
+	.string "Manager: My beloved generator!\p"
 	.string "Keep pumping the electricity out!$"
 
 Route10_PowerPlantBackRoom_Text_Engineer:

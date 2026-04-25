@@ -25,11 +25,11 @@ AzaleaTown_Mart_EventScriptBugCatcher::
 # 13 "data/maps/AzaleaTown_Mart/scripts.pory"
 AzaleaMart_Text_BugCatcher:
 # 14 "data/maps/AzaleaTown_Mart/scripts.pory"
-	.string "A GREAT BALL is better for catch-\n"
+	.string "A Great Ball is better for catch-\n"
 # 15 "data/maps/AzaleaTown_Mart/scripts.pory"
-	.string "ing POKéMON than a POKé BALL.\p"
+	.string "ing POKéMON than a POKé Ball.\p"
 # 16 "data/maps/AzaleaTown_Mart/scripts.pory"
-	.string "But KURT's might be better some-\n"
+	.string "But Kurt's might be better some-\n"
 # 17 "data/maps/AzaleaTown_Mart/scripts.pory"
 	.string "times.$"
 

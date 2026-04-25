@@ -46,7 +46,7 @@ Route27_Movement_FollowerJump:
 SandstormHouse_Text_Woman1:
     .string "Where are you off to with\n"
     .string "POKéMON?\p"
-    .string "POKéMON LEAGUE?\p"
+    .string "POKéMON League?\p"
     .string "Are your POKéMON loyal enough for\n"
     .string "you to win?\p"
     .string "Let me see…$"
@@ -58,7 +58,7 @@ SandstormHouse_Text_LoyalMon:
     .string "Here. A gift for your journey.$"
 
 SandstormHouse_Text_TM37Description:
-    .string "TM37 happens to be SANDSTORM.\p"
+    .string "TM37 happens to be Sandstorm.\p"
     .string "It's a move that inflicts damage\n"
     .string "on both battlers.\p"
     .string "It's for advanced trainers only.\p"

@@ -54,8 +54,8 @@ Route45_Text_HikerErikBeaten:
     .string "Oh, I lost that!$"
 
 Route45_Text_HikerErikAfter:
-    .string "I'll head back to BLACKTHORN's\n"
-    .string "ICE PATH and train some more.$"
+    .string "I'll head back to Blackthorn's\n"
+    .string "Ice Path and train some more.$"
 
 Route45_Text_HikerMichaelSeen:
     .string "Yo! You're spunky! But you know\n"
@@ -67,7 +67,7 @@ Route45_Text_HikerMichaelBeaten:
     .string "My POKéMON weren't spunky enough!$"
 
 Route45_Text_HikerMichaelAfter:
-    .string "Boy, do I love HP UP! Mmmm, yum!\p"
+    .string "Boy, do I love Hp Up! Mmmm, yum!\p"
     .string "I keep drinking my POKéMON's!\p"
     .string "I can't help it!$"
 
@@ -155,12 +155,12 @@ Route45_Text_CamperQuentinSeen:
     .string "I'm really, really tough!$"
 
 Route45_Text_CamperQuentinBeaten:
-    .string "I was tough at the BATTLE TOWER…$"
+    .string "I was tough at the Battle Tower…$"
 
 Route45_Text_CamperQuentinAfter:
-    .string "Have you been to the BATTLE TOWER?\p"
+    .string "Have you been to the Battle Tower?\p"
     .string "I never, ever lose there, but…$"
 
 Route45_Text_Sign:
-    .string "ROUTE 45\n"
-    .string "MOUNTAIN RD. AHEAD$"
+    .string "Route 45\n"
+    .string "Mountain Rd. Ahead$"

@@ -18,7 +18,7 @@ CliffEdgeGate_EventScript_Picnicker::
 	end
 
 CliffEdgeGate_Text_IntroOpen:
-	.string "Did you know? There's a SAFARI ZONE\n"
+	.string "Did you know? There's a Safari Zone\n"
 	.string "just around the corner.\p"
 	.string "It's really fun!\n"
 	.string "You will see many different kinds of\l"
@@ -43,6 +43,6 @@ CliffEdgeGate_EventScript_CaveSign::
 CliffEdgeGate_Text_SignOpen:
 	.string "Everything Is Thrilling!\n"
 	.string "Explore to Find Wild POKéMON!\l"
-	.string "Warden BAOBA's SAFARI ZONE\l"
+	.string "Warden Baoba's Safari Zone\l"
 	.string "Up and Running!$"
 

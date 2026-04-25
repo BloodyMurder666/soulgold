@@ -33,12 +33,12 @@ CeladonMansionRoofHouse_Text_PharmacistIntro:
 CeladonMansionRoofHouse_Text_PharmacistNotNight:
 	.string "Then again, it's not as scary\n"
 	.string "while it's still light outside.\p"
-	.string "Come back after sunset, OK?$"
+	.string "Come back after sunset, Ok?$"
 
 CeladonMansionRoofHouse_Text_PharmacistStory:
 	.string "Once upon a time, there was a\n"
 	.string "little boy who was given a new\l"
-	.string "BICYCLE…\p"
+	.string "Bicycle…\p"
 	.string "He wanted to try it right away…\p"
 	.string "He was having so much fun that\n"
 	.string "he didn't notice the sun had set…\p"
@@ -53,16 +53,16 @@ CeladonMansionRoofHouse_Text_PharmacistStory:
 	.string "oblivion!\p"
 	.string "…\p"
 	.string "…\p"
-	.string "SHRIEEEEK!\p"
+	.string "Shrieeeek!\p"
 	.string "The boy had been riding uphill on\n"
-	.string "CYCLING ROAD!\p"
+	.string "Cycling Road!\p"
 	.string "…\n"
 	.string "Ba-dum ba-dum!\p"
 	.string "For listening so patiently, you\n"
 	.string "may take this--TM44!$"
 
 CeladonMansionRoofHouse_Text_PharmacistCurse:
-	.string "TM44 is REST.\p"
+	.string "TM44 is Rest.\p"
 	.string "It will allow your POKéMON to nap\n"
 	.string "mid-battle and regain health.\p"
 	.string "But good luck sleeping after that\n"

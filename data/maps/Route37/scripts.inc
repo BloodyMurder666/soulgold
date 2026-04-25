@@ -81,27 +81,27 @@ Route37_EventScript_Sign::
 	end
 
 Route37_Text_TwinsAnnAndAnne1_Seen:
-	.string "ANN: ANNE and I are in this\n"
+	.string "Ann: Anne and I are in this\n"
 	.string "together!$"
 
 Route37_Text_TwinsAnnAndAnne1_Beaten:
-	.string "ANN & ANNE: Nnn… A little too\n"
+	.string "Ann & Anne: Nnn… A little too\n"
 	.string "strong.$"
 
 Route37_Text_TwinsAnnAndAnne1_After:
-	.string "ANN: I can tell what my sister and\n"
+	.string "Ann: I can tell what my sister and\n"
 	.string "my POKéMON are thinking.$"
 
 Route37_Text_TwinsAnnAndAnne2_Seen:
-	.string "ANNE: ANN and I are in this\n"
+	.string "Anne: Ann and I are in this\n"
 	.string "together!$"
 
 Route37_Text_TwinsAnnAndAnne2_Beaten:
-	.string "ANN & ANNE: Nnn… A little too\n"
+	.string "Ann & Anne: Nnn… A little too\n"
 	.string "strong.$"
 
 Route37_Text_TwinsAnnAndAnne2_After:
-	.string "ANNE: We share the same feelings as\n"
+	.string "Anne: We share the same feelings as\n"
 	.string "our POKéMON.$"
 
 Route37_Text_PsychicGreg_Seen:
@@ -117,8 +117,8 @@ Route37_Text_PsychicGreg_After:
 	.string "ing them are good battle techniques.$"
 
 Route37_Text_Sunny_Meet:
-	.string "SUNNY: Hi!\p"
-	.string "I'm SUNNY of the WEEKDAY family!\p"
+	.string "Sunny: Hi!\p"
+	.string "I'm Sunny of the Weekday family!\p"
 	.string "If you can guess my favorite day,\n"
 	.string "I'll give you a reward.$"
 
@@ -131,26 +131,26 @@ Route37_Text_Sunny_GiveGift2:
 	.string "you!$"
 
 Route37_Text_Sunny_GaveGift:
-	.string "SUNNY: That thing…\p"
+	.string "Sunny: That thing…\p"
 	.string "Um…\p"
 	.string "… What was it now…\p"
 	.string "…\p"
 	.string "Oh! I remember now!\p"
 	.string "A POKéMON that knows electric\n"
 	.string "moves should hold it.\p"
-	.string "My sis MONICA said it powers up\n"
+	.string "My sis Monica said it powers up\n"
 	.string "electric moves!$"
 
 Route37_Text_Sunny_Sunday:
-	.string "SUNNY: My sisters and brothers are\n"
-	.string "MONICA, TUSCANY, WESLEY, ARTHUR,\l"
-	.string "FRIEDA and SANTOS.\p"
+	.string "Sunny: My sisters and brothers are\n"
+	.string "Monica, Tuscany, Wesley, Arthur,\l"
+	.string "Frieda and Santos.\p"
 	.string "They're all older than me!$"
 
 Route37_Text_Sunny_NotSunday:
-	.string "SUNNY: Isn't today Sunday?\n"
+	.string "Sunny: Isn't today Sunday?\n"
 	.string "Um… I forgot!$"
 
 Route37_Text_Sign:
-	.string "ROUTE 37\n"
-	.string "ECRUTEAK CITY AHEAD$"
+	.string "Route 37\n"
+	.string "Ecruteak City Ahead$"

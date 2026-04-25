@@ -92,7 +92,7 @@ GoldenrodDeptStore_Text_5FReceptionistWait:
 GoldenrodDeptStore_Text_5FReceptionistPutInSomeMoreEffort:
 	.string "Hmm…\n"
 	.string "It's not bad, but it's also not good.\p"
-	.string "You, as the TRAINER, need to put in\n"
+	.string "You, as the Trainer, need to put in\n"
 	.string "some more effort.$"
 
 
@@ -121,12 +121,12 @@ GoldenrodDeptStore_Text_5FPokefanM:
     .string "original trainer's feelings for it.$"
 
 GoldenrodDeptStore_Text_Girl:
-	.string "A kind lady gave me RETURN\n"
+	.string "A kind lady gave me Return\n"
     .string "last Sunday!$"
 
 GoldenrodDeptStore_Text_5FDirectory:
     .string "Customize Your POKéMON\p"
-    .string "5F TM CORNER$"
+    .string "5F TM Corner$"
 
 `
 

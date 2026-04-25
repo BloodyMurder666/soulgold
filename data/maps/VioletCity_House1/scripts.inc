@@ -31,7 +31,7 @@ VioletCity_House1_Text_PokefanM:
 # 16 "data/maps/VioletCity_House1/scripts.pory"
 	.string "But if you don't have the right\n"
 # 17 "data/maps/VioletCity_House1/scripts.pory"
-	.string "GYM BADGE, they may disobey you.$"
+	.string "Gym Badge, they may disobey you.$"
 
 Violet_PawmiTrade::
 # 22 "data/maps/VioletCity_House1/scripts.pory"

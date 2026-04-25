@@ -264,9 +264,9 @@ MahoganyTown_Movement_PlayerMerchant2:
 
 MahoganyTown_Text_RageCandyBarMerchantTryOne:
 	.string "Hiya, kid!\p"
-	.string "I see you're new in MAHOGANY TOWN.\p"
+	.string "I see you're new in Mahogany Town.\p"
 	.string "Since you're new, you should try a\n"
-	.string "yummy RAGECANDYBAR!\p"
+	.string "yummy Ragecandybar!\p"
 	.string "Right now, it can be yours for just\n"
 	.string "¥300! Want one?$"
 
@@ -280,17 +280,17 @@ MahoganyTown_Text_RageCandyBarMerchantRefused:
     .string "Oh, fine then…$"
 
 MahoganyTown_Text_RageCandyBarMerchantSoldOut:
-    .string "RAGECANDYBAR's sold out.\p"
+    .string "Ragecandybar's sold out.\p"
     .string "I'm packing up. Don't bother me,\n"
     .string "kiddo.$"
 
 MahoganyTown_Text_Gramps:
-    .string "Are you off to see the GYARADOS\n"
-    .string "rampage at the LAKE?$"
+    .string "Are you off to see the Gyarados\n"
+    .string "rampage at the Lake?$"
 
 MahoganyTown_Text_GrampsClearedRocketHideout:
-    .string "MAGIKARP have returned to LAKE\n"
-    .string "OF RAGE.\p"
+    .string "Magikarp have returned to Lake\n"
+    .string "Of Rage.\p"
     .string "That should be good news for the\n"
     .string "anglers there.$"
 
@@ -298,50 +298,50 @@ MahoganyTown_Text_Fisher:
     .string "Since you came this far, take the\n"
     .string "time to do some sightseeing.\p"
     .string "You should head north and check\n"
-    .string "out LAKE OF RAGE right now.$"
+    .string "out Lake Of Rage right now.$"
 
 MahoganyTown_Text_Lass:
     .string "Visit Grandma's shop. She sells\n"
     .string "stuff that nobody else has.$"
 
 MahoganyTown_Text_Sign:
-    .string "MAHOGANY TOWN\p"
+    .string "Mahogany Town\p"
     .string "Welcome to the Home of the Ninja$"
 
 MahoganyTown_Text_RagecandybarSign:
-    .string "While visiting MAHOGANY TOWN, try\n"
-    .string "a RAGECANDYBAR!$"
+    .string "While visiting Mahogany Town, try\n"
+    .string "a Ragecandybar!$"
 
 MahoganyTown_Text_GymSign:
-    .string "MAHOGANY TOWN POKéMON GYM\p"
-    .string "LEADER: PRYCE\p"
+    .string "Mahogany Town POKéMON Gym\p"
+    .string "Leader: Pryce\p"
     .string "The Teacher of Winter's Harshness$"
 
 ElmPhoneRadioTowerRocketTakeoverText:
-	.string "PROF.ELM: {PLAYER}, how are\n"
+	.string "Prof.Elm: {PLAYER}, how are\n"
 	.string "things going?\p"
 	.string "I called because something weird\n"
 	.string "is happening with the radio\l"
 	.string "broadcasts.\p"
-	.string "They were talking about TEAM\n"
-	.string "ROCKET.\p"
+	.string "They were talking about Team\n"
+	.string "Rocket.\p"
 	.string "{PLAYER}, do you know anything\n"
 	.string "about it?\p"
-	.string "Maybe TEAM ROCKET has returned.\n"
+	.string "Maybe Team Rocket has returned.\n"
 	.string "No, that just can't be true.\p"
 	.string "Sorry to bug you.\n"
 	.string "Take care!$"
 
 ElmPhoneRoute39LegendaryText:
-	.string "PROF.ELM: WOAH!\n"
+	.string "Prof.Elm: Woah!\n"
 	.string "{PLAYER}, did you see that?!\p"
 	.string "A massive POKéMON just flew over\n"
-	.string "ECRUTEAK CITY!\l"
-	.string "I could see it from my LAB!\p"
+	.string "Ecruteak City!\l"
+	.string "I could see it from my Lab!\p"
 	.string "Could it be one of the legendary\n"
 	.string "POKéMON??\p"
 	.string "It looked like it was headed West,\n"
-	.string "toward ROUTE 39.\p"
+	.string "toward Route 39.\p"
 	.string "{PLAYER}!\n"
 	.string "This may be a rare opportunity\l"
 	.string "to give chase!$"

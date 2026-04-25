@@ -298,31 +298,31 @@ SaffronMagnetTrainStation_Text_OfficerTrainHasntComeIn:
     .string "That won't work.$"
 
 SaffronMagnetTrainStation_Text_OfficerComingAboard:
-    .string "We'll soon depart for GOLDENROD.\p"
+    .string "We'll soon depart for Goldenrod.\p"
     .string "Are you coming aboard?$"
 
 SaffronMagnetTrainStation_Text_OfficerRightThisWay:
-    .string "May I see your rail PASS, please?\p"
-    .string "OK. Right this way, please.$"
+    .string "May I see your rail Pass, please?\p"
+    .string "Ok. Right this way, please.$"
 
 SaffronMagnetTrainStation_Text_OfficerNoRailPass:
-    .string "Sorry. You don't have a rail PASS.$"
+    .string "Sorry. You don't have a rail Pass.$"
 
 SaffronMagnetTrainStation_Text_OfficerHopeToSeeYouAgain:
     .string "We hope to see you again!$"
 
 SaffronMagnetTrainStation_Text_OfficerArrivedInSaffron:
-    .string "We have arrived in SAFFRON.\p"
+    .string "We have arrived in Saffron.\p"
     .string "We hope to see you again.$"
 
 @=============================================================================================================================
 
 SaffronMagnetTrainStation_Text_Officer_TrainNotOperating:
-	.string "I'm sorry, but the MAGNET TRAIN\n"
+	.string "I'm sorry, but the Magnet Train\n"
 	.string "isn't operating now.$"
 
 SaffronMagnetTrainStation_Text_GymGuide:
-	.string "The MAGNET TRAIN is a super-modern\n"
+	.string "The Magnet Train is a super-modern\n"
 	.string "rail liner that uses electricity\p"
 	.string "and magnets to attain incredible\n"
 	.string "speed.\p"
@@ -332,16 +332,16 @@ SaffronMagnetTrainStation_Text_GymGuide:
 SaffronMagnetTrainStation_Text_GymGuide_ReturnedPart:
 	.string "Whew…\p"
 	.string "How many times have I gone back\n"
-	.string "and forth between KANTO and JOHTO?$"
+	.string "and forth between Kanto and Johto?$"
 
 SaffronMagnetTrainStation_Text_Teacher:
-	.string "Before the MAGNET TRAIN STATION\n"
+	.string "Before the Magnet Train Station\n"
 	.string "was built, there was a house there.\p"
-	.string "A little girl named COPYCAT used\n"
+	.string "A little girl named Copycat used\n"
 	.string "to live there.$"
 
 SaffronMagnetTrainStation_Text_Lass:
-	.string "Hi. Do you have a rail PASS?\n"
+	.string "Hi. Do you have a rail Pass?\n"
 	.string "I have one.\p"
-	.string "All the people in SAFFRON who ride\n"
-	.string "the MAGNET TRAIN have PASSES.$"
+	.string "All the people in Saffron who ride\n"
+	.string "the Magnet Train have Passes.$"

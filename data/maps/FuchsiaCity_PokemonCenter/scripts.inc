@@ -47,15 +47,15 @@ FuchsiaCity_PokemonCenter_EventScript_JanineClone::
 FuchsiaCity_PokemonCenter1F_Text_CooltrainerM:
 	.string "Hey! You have a brand new kind of\n"
 	.string "POKéDEX.\p"
-	.string "Did PROF.OAK give that to you?$"
+	.string "Did Prof.Oak give that to you?$"
 
 FuchsiaCity_PokemonCenter1F_Text_CooltrainerF:
-	.string "I got quite a shock at the GYM.\p"
+	.string "I got quite a shock at the Gym.\p"
 	.string "There were all these girls who\n"
 	.string "looked identical.$"
 
 FuchsiaCity_PokemonCenter1F_Text_JanineImpersonator1:
-	.string "I'm JANINE! Hocus-pocus… Poof!$"
+	.string "I'm Janine! Hocus-pocus… Poof!$"
 
 FuchsiaCity_PokemonCenter1F_Text_JanineImpersonator2:
 	.string "See? I look just like her now!$"

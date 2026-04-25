@@ -57,11 +57,11 @@ SproutTower_Text_1F_Sage1:
 	.string "you obtain an HM.$"
 
 SproutTower_Text_1F_Sage2:
-	.string "SPROUT TOWER was built long ago\n"
+	.string "Sprout Tower was built long ago\n"
 	.string "as a place for POKéMON training.$"
 
 SproutTower_Text_1F_Granny:
-	.string "A BELLSPROUT over 100 feet\n"
+	.string "A Bellsprout over 100 feet\n"
 	.string "tall…\p"
 	.string "People say that it became the\n"
 	.string "center pillar here.$"

@@ -140,43 +140,43 @@ Route39_Barn_EventScript_TwinsAfter::
 	end
 
 Route39_Text_BarnTwinMoomooIsSick:
-	.string "MOOMOO is sick…\p"
-	.string "She needs lots of ORAN BERRIES.$"
+	.string "Moomoo is sick…\p"
+	.string "She needs lots of Oran Berries.$"
 
 Route39_Text_BarnTwinFeedingMoomoo:
-	.string "MOOMOO is all better!\n"
+	.string "Moomoo is all better!\n"
 	.string "Thank you!$"
 
 Route39_Text_MoomooWeakMoo:
-	.string "MILTANK: …Moo…$"
+	.string "Miltank: …Moo…$"
 
 Route39_Text_BarnCryIsWeak:
 	.string "Its cry is weak…\n"
-	.string "Give an ORAN BERRY to MILTANK?$"
+	.string "Give an Oran Berry to Miltank?$"
 
 Route39_Text_MoomooHappyMoo:
-	.string "MILTANK: Mooo!$"
+	.string "Miltank: Mooo!$"
 
 Route39_Text_BarnGaveBerry:
-	.string "{PLAYER} gave an ORAN BERRY to\n"
-	.string "MILTANK.$"
+	.string "{PLAYER} gave an Oran Berry to\n"
+	.string "Miltank.$"
 
 Route39_Text_BarnLittleHealthier:
-	.string "MILTANK became a little\n"
+	.string "Miltank became a little\n"
 	.string "healthier!$"
 
 Route39_Text_BarnQuiteHealthy:
-	.string "MILTANK became quite\n"
+	.string "Miltank became quite\n"
 	.string "healthy!$"
 
 Route39_Text_BarnTotallyHealthy:
-	.string "MILTANK became totally\n"
+	.string "Miltank became totally\n"
 	.string "healthy!$"
 
 Route39_Text_BarnNoBerries:
-	.string "{PLAYER} has no ORAN BERRIES…$"
+	.string "{PLAYER} has no Oran Berries…$"
 
 Route39_Text_BarnRefusedBerry:
 	.string "{PLAYER} wouldn't give an\n"
-	.string "ORAN BERRY.\p"
-	.string "MILTANK looks sad.$"
+	.string "Oran Berry.\p"
+	.string "Miltank looks sad.$"

@@ -59,26 +59,26 @@ GoldenrodCity_BillsHouse_EventScript_Bill_Refused::
 	end
 
 BillHouse_Text_TakeThisEevee:
-    .string "BILL: Hi, {PLAYER}! Do us a favor and\n"
-    .string "take this EEVEE.\p"
+    .string "Bill: Hi, {PLAYER}! Do us a favor and\n"
+    .string "take this Eevee.\p"
     .string "It came over when I was adjusting\n"
-    .string "the TIME CAPSULE.\p"
+    .string "the Time Capsule.\p"
     .string "Someone has to take care of it,\n"
     .string "but I don't like being outside.\p"
     .string "Can I count on you to play with it,\n"
     .string "{PLAYER}?$"
 
 BillHouse_Text_CountingOnYou:
-    .string "BILL: I knew you'd come through!\p"
+    .string "Bill: I knew you'd come through!\p"
     .string "Way to go! You're the real deal!\p"
-    .string "OK, I'm counting on you.\p"
+    .string "Ok, I'm counting on you.\p"
     .string "Take good care of it!$"
 
 BillHouse_Text_ReceivedEevee:
-    .string "{PLAYER} received EEVEE!$"
+    .string "{PLAYER} received Eevee!$"
 
 BillHouse_Text_EeveeMayEvolve:
-    .string "BILL: PROF.ELM claims EEVEE may\n"
+    .string "Bill: Prof.Elm claims Eevee may\n"
     .string "evolve in new and unknown ways.$"
 
 BillHouse_Text_PartyFull:
@@ -89,22 +89,22 @@ BillHouse_Text_NoEevee:
     .string "Oh… Now what to do?$"
 
 BillHouse_Text_PopWontWork:
-    .string "BILL: My pop, he won't work. All he\n"
+    .string "Bill: My pop, he won't work. All he\n"
     .string "does is goof off all day long.\p"
     .string "He's getting to be a real headache…$"
 
 BillHouse_Text_MomBeforeEcruteak:
     .string "Oh, you collect POKéMON? My son\n"
-    .string "BILL is an expert.\p"
+    .string "Bill is an expert.\p"
     .string "He just got called to the POKéMON\n"
-    .string "CENTER in ECRUTEAK CITY.\p"
-    .string "My husband went off to the GAME\n"
-    .string "CORNER without being called…$"
+    .string "Center in Ecruteak City.\p"
+    .string "My husband went off to the Game\n"
+    .string "Corner without being called…$"
 
 BillHouse_Text_MomAfterEcruteak:
     .string "My husband was once known as a\n"
     .string "POKéMANIAC.\p"
-    .string "BILL must have taken after his\n"
+    .string "Bill must have taken after his\n"
     .string "father.$"
 
 BillHouse_Text_SisterUsefulNumber:
@@ -113,17 +113,17 @@ BillHouse_Text_SisterUsefulNumber:
     .string "for you.$"
 
 BillHouse_Text_RecordedBillsNumber:
-    .string "{PLAYER} recorded BILL's number.$"
+    .string "{PLAYER} recorded Bill's number.$"
 
 BillHouse_Text_SisterRefusedNumber:
     .string "My brother made the PC POKéMON\n"
     .string "storage system.\p"
-    .string "I was going to give you BILL's\n"
+    .string "I was going to give you Bill's\n"
     .string "number…$"
 
 BillHouse_Text_SisterPhoneFull:
     .string "You can't record any more numbers.$"
 
 BillHouse_Text_SisterStorageSystem:
-    .string "My big brother BILL made the PC\n"
+    .string "My big brother Bill made the PC\n"
     .string "POKéMON storage system.$"

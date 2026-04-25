@@ -21,22 +21,22 @@ SSAqua_RoomSW_Text_BeautyCassieBeaten:
 SSAqua_RoomSW_Text_BeautyCassieAfterBattle:
     .string "A voyage is best for getting over\n"
     .string "a broken heart.\p"
-    .string "But a FAST SHIP trip is too short\n"
+    .string "But a Fast Ship trip is too short\n"
     .string "for grieving.$"
 
 SSAqua_RoomSW_Text_GuitaristClydeSeen:
     .string "I'm going to audition my songs\n"
-    .string "at GOLDENROD's RADIO STATION.$"
+    .string "at Goldenrod's Radio Station.$"
 
 SSAqua_RoomSW_Text_GuitaristClydeBeaten:
     .string "Yowza! Total distortion!$"
 
 SSAqua_RoomSW_Text_GuitaristClydeAfterBattleMobile:
     .string "I was going to make my debut at\n"
-    .string "the BATTLE TOWER…\p"
-    .string "I should go back to VERMILION and\n"
+    .string "the Battle Tower…\p"
+    .string "I should go back to Vermilion and\n"
     .string "redo my training…$"
 
 SSAqua_RoomSW_Text_GuitaristClydeAfterBattle:
-    .string "Speaking of the RADIO STATION,\n"
+    .string "Speaking of the Radio Station,\n"
     .string "what's this week's lucky number?$"

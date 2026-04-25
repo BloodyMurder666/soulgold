@@ -181,7 +181,7 @@ DragonsDen_Shrine_EventScript_ElderQuizFinish::
 DragonsDen_Shrine_Text_ElderGreeting:
     .string "Hm… Good to see you here.\p"
     .string "No need to explain why you came.\n"
-    .string "CLAIR sent you here, didn't she?\p"
+    .string "Clair sent you here, didn't she?\p"
     .string "That girl is a handful…\n"
     .string "I am sorry, but I must test you.\p"
     .string "Not to worry, you are to answer\n"
@@ -223,7 +223,7 @@ DragonsDen_Shrine_Text_PassedTest:
     .string "important!\p"
     .string "{PLAYER}, don't lose that belief.\p"
     .string "It will see you through at the\n"
-    .string "POKéMON LEAGUE.$"
+    .string "POKéMON League.$"
 
 DragonsDen_Shrine_EventScript_ClairEnter::
 	clearflag FLAG_HIDE_DRAGONS_DEN_SHRINE_CLAIR
@@ -352,25 +352,25 @@ DragonsDen_Shrine_Text_ClairYoureLying:
     .string "Even I haven't been approved!$"
 
 DragonsDen_Shrine_Text_MustIInformLance:
-    .string "CLAIR!\p"
+    .string "Clair!\p"
     .string "This child is impeccable,\n"
     .string "in skill and spirit!\p"
     .string "Admit defeat and confer the\n"
-    .string "RISINGBADGE!\p"
-    .string "…Or must I inform LANCE of this?$"
+    .string "Risingbadge!\p"
+    .string "…Or must I inform Lance of this?$"
 
 DragonsDen_Shrine_Text_IUnderstand:
     .string "I-I understand…$"
 
 DragonsDen_Shrine_Text_HereRisingBadge:
-    .string "Here, this is the RISINGBADGE…\p"
+    .string "Here, this is the Risingbadge…\p"
     .string "Hurry up! Take it!$"
 
 DragonsDen_Shrine_Text_PlayerReceivedRisingBadge:
-    .string "{PLAYER} received RISINGBADGE.$"
+    .string "{PLAYER} received Risingbadge.$"
 
 DragonsDen_Shrine_Text_RisingBadgeExplanation:
-    .string "RISINGBADGE will enable your\n"
+    .string "Risingbadge will enable your\n"
     .string "POKéMON to use the move for\l"
     .string "climbing waterfalls.\p"
     .string "Also, all POKéMON will recognize\n"
@@ -378,7 +378,7 @@ DragonsDen_Shrine_Text_RisingBadgeExplanation:
     .string "every command without question.$"
 
 DragonsDen_Shrine_Text_ElderScoldsClair:
-    .string "CLAIR…\p"
+    .string "Clair…\p"
     .string "Reflect upon what it is that you\n"
     .string "lack and this child has.$"
 
@@ -391,7 +391,7 @@ DragonsDen_Shrine_Text_ComeAgain:
 DragonsDen_Shrine_Text_SilverIsInTraining:
     .string "A boy close to your age is in\n"
     .string "training here.\p"
-    .string "He is much like CLAIR when she was\n"
+    .string "He is much like Clair when she was\n"
     .string "younger. It is a little worrisome…$"
 
 DragonsDen_Shrine_EventScript_Elder2::
@@ -404,13 +404,13 @@ DragonsDen_Shrine_EventScript_Elder3::
 
 DragonsDen_Shrine_Text_Elder2:
     .string "It's been quite some time since a\n"
-    .string "trainer has gained our MASTER's\l"
+    .string "trainer has gained our Master's\l"
     .string "rare approval.\p"
-    .string "In fact, not since Master LANCE.$"
+    .string "In fact, not since Master Lance.$"
 
 DragonsDen_Shrine_Text_Elder3:
-    .string "You know young Master LANCE?\p"
-    .string "He looks so much like our MASTER\n"
+    .string "You know young Master Lance?\p"
+    .string "He looks so much like our Master\n"
     .string "did in his youth.\p"
     .string "It's in their blood.$"
 
@@ -455,7 +455,7 @@ DragonsDen_Shrine_Text_TakeThisDratini:
     .string "Hm… Good to see you here.\p"
     .string "Your arrival is most fortunate.\p"
     .string "I have something for you.\p"
-    .string "Take this DRATINI as proof that I\n"
+    .string "Take this Dratini as proof that I\n"
     .string "have recognized your worth.$"
 
 DragonsDen_Shrine_Text_SymbolicDragon:
@@ -465,6 +465,6 @@ DragonsDen_Shrine_Text_SymbolicDragon:
     .string "entrusted with one.$"
 
 DragonsDen_Shrine_Text_ClairsGrandfather:
-    .string "CLAIR appears to have learned an\n"
+    .string "Clair appears to have learned an\n"
     .string "invaluable lesson from you.\p"
     .string "I thank you as her grandfather.$"

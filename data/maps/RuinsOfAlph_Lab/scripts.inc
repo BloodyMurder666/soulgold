@@ -26,18 +26,18 @@ RuinsOfAlph_Lab_EventScript_Fossils::
 	end
 
 RuinsOfAlph_Lab_Text_Scientist1:
-	.string "The RUINS are about 1500 years old.\p"
+	.string "The Ruins are about 1500 years old.\p"
 	.string "But it's not known why they were\n"
 	.string "built--or by whom.$"
 
 RuinsOfAlph_Lab_Text_Scientist2:
 	.string "There are odd patterns drawn on\n"
-	.string "on the walls of the RUINS.\p"
+	.string "on the walls of the Ruins.\p"
 	.string "They must be the keys for\n"
-	.string "unraveling the RUINS' mystery.$"
+	.string "unraveling the Ruins' mystery.$"
 
 RuinsOfAlph_Lab_Text_Fossils:
-	.string "Fossils found within the RUINS.\n"
+	.string "Fossils found within the Ruins.\n"
 	.string "Maybe there are more somewhere...$"
 
 
@@ -555,18 +555,18 @@ RuinsOfAlph_Lab_Text_DeviceForTalkingToPokemon:
 
 RuinsOfAlph_Lab_Text_DevelopingNewBalls:
 	.string "I'm developing new kinds of\n"
-	.string "POKé BALLS…\p"
+	.string "POKé Balls…\p"
 	.string "But I haven't made much headway…$"
 
 RuinsOfAlph_Lab_Text_WeFinallyMadeNewBalls:
 	.string "We finally made new kinds of\n"
-	.string "POKé BALLS!\p"
-	.string "The REPEAT BALL makes it easier to\n"
+	.string "POKé Balls!\p"
+	.string "The Repeat Ball makes it easier to\n"
 	.string "catch POKéMON you've caught before.\p"
-	.string "The TIMER BALL gets better at catching\n"
+	.string "The Timer Ball gets better at catching\n"
 	.string "POKéMON the longer a battle runs.\p"
 	.string "Both are proudly developed by\n"
-	.string "the DEVON CORPORATION.\p"
+	.string "the Devon Corporation.\p"
 	.string "Please give them a try!$"
 
 RuinsOfAlph_Lab_Text_IMadePokenav:
@@ -578,7 +578,7 @@ RuinsOfAlph_Lab_Text_WowThatsAPokenav:
 	.string "Oh, wow!\n"
 	.string "That's a POKéNAV!\p"
 	.string "It came about as a result of our\n"
-	.string "PRESIDENT's desire to learn about\l"
+	.string "President's desire to learn about\l"
 	.string "the feelings of POKéMON.\p"
 	.string "Would you like me to describe its\n"
 	.string "features in detail?\p"
@@ -602,7 +602,7 @@ RuinsOfAlph_Lab_Text_WantToBringFossilBackToLife:
 	.string "Would you like to bring that POKéMON\n"
 	.string "back to life?\p"
 	.string "I can with my newly developed\n"
-	.string "FOSSIL REGENERATOR.$"
+	.string "Fossil Regenerator.$"
 
 RuinsOfAlph_Lab_Text_OhIsThatSo:
 	.string "Oh, is that so?\p"
@@ -625,10 +625,10 @@ RuinsOfAlph_Lab_Text_HandedFossilToResearcher:
 	.string "Excellent!\n"
 	.string "Let's do this right away.\p"
 	.string "{PLAYER} handed the {STR_VAR_1} to\n"
-	.string "the RUINS RESEARCHER.$"
+	.string "the Ruins Researcher.$"
 
 RuinsOfAlph_Lab_Text_FossilRegeneratorTakesTime:
-	.string "The FOSSIL REGENERATOR, which I made,\n"
+	.string "The Fossil Regenerator, which I made,\n"
 	.string "is incredible.\p"
 	.string "But it has one drawback--it takes\n"
 	.string "a long time to work.\p"
@@ -644,7 +644,7 @@ RuinsOfAlph_Lab_Text_FossilizedMonBroughtBackToLife:
 
 RuinsOfAlph_Lab_Text_ReceivedMonFromResearcher:
 	.string "{PLAYER} received {STR_VAR_2} from\n"
-	.string "the RESEARCHER.$"
+	.string "the Researcher.$"
 
 @ Unused
 RuinsOfAlph_Lab_Text_TooManyPokemon:

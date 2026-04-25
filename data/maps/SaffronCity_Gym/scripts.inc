@@ -56,53 +56,53 @@ SaffronCity_Gym_EventScript_Sabrina_Defeated::
 	end
 
 SaffronCity_Gym_Text_SabrinaIntro:
-	.string "SABRINA: I knew you were coming…\p"
+	.string "Sabrina: I knew you were coming…\p"
 	.string "Three years ago I had a vision\n"
 	.string "of your arrival.\p"
-	.string "You're after my BADGE.\p"
+	.string "You're after my Badge.\p"
 	.string "I don't enjoy battling, but it's\n"
-	.string "my duty as a LEADER to confer\l"
-	.string "BADGES on anyone who has proven\l"
+	.string "my duty as a Leader to confer\l"
+	.string "Badges on anyone who has proven\l"
 	.string "him- or herself worthy.\p"
 	.string "Since you wish it, I will show\n"
 	.string "you my psychic powers!$"
 
 SaffronCity_Gym_Text_SabrinaWinLoss:
-	.string "SABRINA: Your power…\p"
+	.string "Sabrina: Your power…\p"
 	.string "It far exceeds what I foresaw…\p"
 	.string "Maybe it isn't possible to fully\n"
 	.string "predict what the future holds…\p"
-	.string "OK, you win. You earned yourself\n"
-	.string "MARSHBADGE.$"
+	.string "Ok, you win. You earned yourself\n"
+	.string "Marshbadge.$"
 
 SaffronCity_Gym_Text_ReceivedMarshBadge:
-	.string "{PLAYER} received MARSHBADGE.$"
+	.string "{PLAYER} received Marshbadge.$"
 
 SaffronCity_Gym_Text_MarshBadgeInfo:
-	.string "SABRINA: MARSHBADGE draws out\n"
+	.string "Sabrina: Marshbadge draws out\n"
 	.string "your subliminal powers…\p"
 	.string "Although I failed to accurately\n"
 	.string "predict your power, this much I\l"
 	.string "know to be true.\p"
 	.string "You will become a celebrated and\n"
-	.string "beloved CHAMPION!$"
+	.string "beloved Champion!$"
 
 SaffronCity_Gym_Text_SabrinaPostBattle:
-	.string "SABRINA: Your love for your\n"
+	.string "Sabrina: Your love for your\n"
 	.string "POKéMON overwhelmed my psychic\l"
 	.string "power…\p"
 	.string "The power of love, I think, is\n"
 	.string "also a kind of psychic power…$"
 
 SaffronCity_Gym_Text_SabrinaRematch:
-	.string "SABRINA: Ah, the KANTO CHAMPION.\p"
+	.string "Sabrina: Ah, the Kanto Champion.\p"
 	.string "I sensed your return.\p"
 	.string "Your power has grown immensely.\p"
 	.string "Even now, I feel your aura.\p"
 	.string "Want to have a rematch with me?$"
 
 SaffronCity_Gym_Text_SabrinaRematchDefeat:
-	.string "SABRINA: Your love for your\n"
+	.string "Sabrina: Your love for your\n"
 	.string "POKéMON again overwhelmed my\l"
 	.string "psychic power…$"
 
@@ -140,22 +140,22 @@ SaffronCity_Gym_Text_MediumDorisAfter:
 	.string "would lose to you.$"
 
 SaffronCity_Gym_Text_PsychicJaredSeen:
-	.string "The FIGHTING DOJO next door was\n"
-	.string "once this city's GYM.$"
+	.string "The Fighting Dojo next door was\n"
+	.string "once this city's Gym.$"
 
 SaffronCity_Gym_Text_PsychicJaredBeaten:
 	.string "I was no match…$"
 
 SaffronCity_Gym_Text_PsychicJaredAfter:
-	.string "KARATE KING, the master of the\n"
-	.string "FIGHTING DOJO, was just destroyed\l"
-	.string "by SABRINA.$"
+	.string "Karate King, the master of the\n"
+	.string "Fighting Dojo, was just destroyed\l"
+	.string "by Sabrina.$"
 
 SaffronCity_Gym_Text_GymGuideIntro:
-	.string "Yo, CHAMP in making!\p"
+	.string "Yo, Champ in making!\p"
 	.string "A trainer as skilled as you\n"
 	.string "doesn't need to be told how to\l"
-	.string "deal with PSYCHIC-type POKéMON,\l"
+	.string "deal with Psychic-type POKéMON,\l"
 	.string "right?\p"
 	.string "I expect great things from you!\p"
 	.string "Good luck!$"
@@ -177,13 +177,13 @@ SaffronCity_Gym_EventScript_GymStatuePostVictory::
 
 
 SaffronCity_Gym_Text_GymStatue::
-    .string "SAFFRON POKéMON GYM\n"
-    .string "LEADER: SABRINA\p"
-	.string "WINNING TRAINERS:\n"
-	.string "BLUE, RED$"
+    .string "Saffron POKéMON Gym\n"
+    .string "Leader: Sabrina\p"
+	.string "Winning Trainers:\n"
+	.string "Blue, Red$"
 
 SaffronCity_Gym_Text_GymStatuePlayerWon::
-    .string "SAFFRON POKéMON GYM\n"
-    .string "LEADER: SABRINA\p"
-    .string "WINNING TRAINERS:\n"
-	.string "BLUE, RED, {PLAYER}$"
+    .string "Saffron POKéMON Gym\n"
+    .string "Leader: Sabrina\p"
+    .string "Winning Trainers:\n"
+	.string "Blue, Red, {PLAYER}$"

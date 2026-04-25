@@ -23,7 +23,7 @@ CeruleanCity_PokemonCenter1F_Text_SuperNerd:
 	.string "caught POKéMON.$"
 
 CeruleanCity_PokemonCenter1F_Text_GymGuide:
-	.string "The MAGNET TRAIN travels at over\n"
-	.string "340 mph. It goes between KANTO and\l"
-	.string "JOHTO in almost no time at all.\p"
-	.string "It really makes JOHTO accessible.$"
+	.string "The Magnet Train travels at over\n"
+	.string "340 mph. It goes between Kanto and\l"
+	.string "Johto in almost no time at all.\p"
+	.string "It really makes Johto accessible.$"

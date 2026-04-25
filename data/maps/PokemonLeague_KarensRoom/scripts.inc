@@ -52,7 +52,7 @@ PokemonLeague_KarensRoom_EventScript_KarenDefeated::
 	end
 
 PokemonLeague_KarensRoom_Text_RematchBefore:
-    .string "KAREN: Ah, it's you again.\p"
+    .string "Karen: Ah, it's you again.\p"
     .string "I trust you haven't forgotten\n"
     .string "my belief:\p"
     .string "True strength arises from trust\n"
@@ -66,9 +66,9 @@ PokemonLeague_KarensRoom_Text_RematchBefore:
     .string "with your POKéMON.$"
 
 PokemonLeague_KarensRoom_Text_Before:
-    .string "I am KAREN of the ELITE FOUR.\p"
+    .string "I am Karen of the Elite Four.\p"
     .string "You're {PLAYER}? How amusing.\p"
-    .string "I love DARK-type POKéMON.\p"
+    .string "I love Dark-type POKéMON.\p"
     .string "I find their wild, tough image\n"
     .string "to be so appealing. And they're\l"
     .string "so strong.\p"
@@ -89,5 +89,5 @@ PokemonLeague_KarensRoom_Text_Defeat:
     .string "try to win with their favorites.\p"
     .string "I like your style. You understand\n"
     .string "what's important.\p"
-    .string "Go on--the CHAMPION is waiting.$"
+    .string "Go on--the Champion is waiting.$"
 

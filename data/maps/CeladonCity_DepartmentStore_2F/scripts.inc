@@ -27,5 +27,5 @@ CeladonDeptStore2F_Text_Youngster:
 
 CeladonDeptStore2F_Text_Directory:
 	.string "Top Grade Items for Trainers!\p"
-	.string "2F: TRAINER'S MARKET$"
+	.string "2F: Trainer'S Market$"
 

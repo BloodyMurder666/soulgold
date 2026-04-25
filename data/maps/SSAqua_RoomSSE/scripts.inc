@@ -79,7 +79,7 @@ SSAqua_RoomSSE_Text_CantFindGranddaughter:
     .string "I still can't find my\n"
     .string "granddaughter.\p"
     .string "If she's on the ship,\n"
-    .string "that's OK.\p"
+    .string "that's Ok.\p"
     .string "She's an energetic child,\n"
     .string "so she may be bugging someone\l"
     .string "I'm worried…$"
@@ -101,7 +101,7 @@ SSAqua_RoomSSE_Text_GrandpaTravelling:
 SSAqua_RoomSSE_Text_GranddaughterWasPlaying:
     .string "Grandpa, here I am!\n"
     .string "I was playing with\l"
-    .string "the CAPTAIN and this person!$"
+    .string "the Captain and this person!$"
 
 SSAqua_RoomSSE_Text_GranddaughterHadFun:
     .string "I had lots of fun playing!$"

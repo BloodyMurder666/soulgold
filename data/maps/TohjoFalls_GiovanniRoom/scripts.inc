@@ -190,17 +190,17 @@ TohjoFalls_Movement_GiovanniLeave:
 	step_end
 
 TohjoFalls_GiovanniRoom_Text_Radio:
-	.string "RADIO: ... ...\n"
-	.string "Ahem, we are TEAM ROCKET!\l"
+	.string "Radio: ... ...\n"
+	.string "Ahem, we are Team Rocket!\l"
 	.string "After three years of preparation,\l"
 	.string "we have risen again from the ashes!\l"
-	.string "GIOVANNI! Can you hear us?\l"
+	.string "Giovanni! Can you hear us?\l"
 	.string "We did it!\l"
 	.string "Where is our boss?\l"
 	.string "Is he listening?$"
 
 TohjoFalls_GiovanniRoom_Text_GiovanniIntro:
-	.string "GIOVANNI: ...\p"
+	.string "Giovanni: ...\p"
 	.string "I don't know why you have come\n"
 	.string "here.\p"
 	.string "Anyway, I have to warn you that\n"
@@ -211,7 +211,7 @@ TohjoFalls_GiovanniRoom_Text_GiovanniIntro:
 	.string "in front of me three years ago...\p"
 	.string "You have the same eyes...\p"
 	.string "...\p"
-	.string "I'm on my way to GOLDENROD CITY\n"
+	.string "I'm on my way to Goldenrod City\n"
 	.string "to answer the call and join my team.\l"
 	.string "Are you going to get in my way?$"
 
@@ -224,11 +224,11 @@ TohjoFalls_GiovanniRoom_Text_GiovanniDefeat:
 	.string "What in the world are you?$"
 
 TohjoFalls_GiovanniRoom_Text_GiovanniAfter:
-	.string "GIOVANNI: How is this possible...?\n"
+	.string "Giovanni: How is this possible...?\n"
 	.string "The past three years have been a\l"
 	.string "waste...?\p"
 	.string "How can a kid like you manage to\n"
 	.string "destroy my dream once again?\p"
-	.string "The precious dream of TEAM ROCKET\n"
+	.string "The precious dream of Team Rocket\n"
 	.string "has become little more than an\l"
 	.string "illusion...$"

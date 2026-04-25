@@ -56,10 +56,10 @@ VioletCity_Gym_EventScript_Falkner_Defeated::
 	end
 
 VioletGym_Text_Falkner_Intro:
-	.string "I'm FALKNER, the VIOLET POKéMON\n"
-	.string "GYM leader!\p"
+	.string "I'm Falkner, the Violet POKéMON\n"
+	.string "Gym leader!\p"
 	.string "People say you can clip\n"
-	.string "FLYING-type POKéMON's wings\p"
+	.string "Flying-type POKéMON's wings\p"
 	.string "with a jolt of electricity…\n"
 	.string "I won't allow such insults to bird\l"
 	.string "POKéMON!\p"
@@ -70,41 +70,41 @@ VioletGym_Text_Falkner_WinLoss:
 	.string "…Darn! My dad's cherished bird\n"
 	.string "POKéMON…\p"
 	.string "All right. Take this.\p"
-	.string "It's the official POKéMON LEAGUE\n"
-	.string "ZEPHYRBADGE.$"
+	.string "It's the official POKéMON League\n"
+	.string "Zephyrbadge.$"
 
 VioletGym_Text_ReceivedZephyrBadge:
-	.string "{PLAYER} received ZEPHYRBADGE.$"
+	.string "{PLAYER} received Zephyrbadge.$"
 
 VioletGym_Text_Falkner_BadgeExplain:
-	.string "ZEPHYRBADGE raises the ATTACK\n"
+	.string "Zephyrbadge raises the Attack\n"
 	.string "power of POKéMON.\p"
 	.string "It also enables POKéMON to use\n"
-	.string "FLASH, if they can learn it,\l"
+	.string "Flash, if they can learn it,\l"
 	.string "anytime.\p"
 	.string "Here--take this too.$"
 
 VioletGym_Text_Falkner_TMExplain:
 	.string "By using a TM, a POKéMON will\n"
 	.string "instantly learn a new move.\p"
-	.string "TM32 contains DOUBLE TEAM.\p"
+	.string "TM32 contains Double Team.\p"
 	.string "It increase a POKéMON's evasion.\p"
 	.string "In other words, your POKéMON\n"
 	.string "will be harder to hit.$"
 
 VioletGym_Text_Falkner_AfterFight:
-	.string "There are POKéMON GYMS in cities\n"
+	.string "There are POKéMON Gyms in cities\n"
 	.string "and towns ahead.\p"
 	.string "You should test your skills at\n"
-	.string "these GYMS.\p"
+	.string "these Gyms.\p"
 	.string "I'm going to train harder to\n"
 	.string "become the greatest bird master!$"
 
 VioletGym_Text_Falkner_Rematch:
 	.string "Congratulations on defeating\n"
-	.string "the ELITE 4!\p"
+	.string "the Elite 4!\p"
 	.string "I've been training my\n"
-	.string "FLYING-type POKéMON even harder.\p"
+	.string "Flying-type POKéMON even harder.\p"
 	.string "Think you can take on the power\n"
 	.string "of the skies again?$"
 
@@ -123,13 +123,13 @@ VioletGym_Text_BirdKeeperRod_Beaten:
 	.string "Gaaah!$"
 
 VioletGym_Text_BirdKeeperRod_After:
-	.string "FALKNER's skills are for real!\p"
+	.string "Falkner's skills are for real!\p"
 	.string "Don't get cocky just because\n"
 	.string "you beat me!$"
 
 VioletGym_Text_BirdKeeperAbe_Seen:
 	.string "Let me see if you are good\n"
-	.string "enough to face FALKNER!$"
+	.string "enough to face Falkner!$"
 
 VioletGym_Text_BirdKeeperAbe_Beaten:
 	.string "This can't be true!$"
@@ -144,21 +144,21 @@ VioletGym_Text_GymGuide_Intro:
 	.string "Believe me! If you believe, a\n"
 	.string "championship dream can come true.\p"
 	.string "You believe? Then listen.\p"
-	.string "FALKNER's ace is a bulky owl\n"
-	.string "that loves to eat BERRIES.\p"
+	.string "Falkner's ace is a bulky owl\n"
+	.string "that loves to eat Berries.\p"
 	.string "While it's not the strongest,\n"
 	.string "it can take a lot of hits.\p"
-	.string "You can hurt it with ELECTRIC \n"
-	.string "and ROCK-type moves, but watch out\l"
-	.string "for MUD-SLAP!\p"
+	.string "You can hurt it with Electric \n"
+	.string "and Rock-type moves, but watch out\l"
+	.string "for Mud-Slap!\p"
 	.string "If you want more help, go visit the\n"
-	.string "POKéMON ACADEMY.\p"
+	.string "POKéMON Academy.\p"
 	.string "The students there really know\n"
 	.string "their stuff!$"
 
 VioletGym_Text_GymGuide_Win:
 	.string "Nice battle! Keep it up,\n"
-	.string "and you'll be the CHAMP in no\l"
+	.string "and you'll be the Champ in no\l"
 	.string "time at all!$"
 
 VioletCity_Gym_EventScript_Statue::
@@ -176,11 +176,11 @@ VioletCity_Gym_EventScript_Statue2::
 	end
 
 VioletCity_Gym_Text_GymStatue:
-	.string "VIOLET CITY POKéMON GYM$"
+	.string "Violet City POKéMON Gym$"
 
 VioletCity_Gym_Text_GymStatueCertified:
-	.string "VIOLET CITY POKéMON GYM\p"
-	.string "FALKNER'S CERTIFIED TRAINERS:\n"
+	.string "Violet City POKéMON Gym\p"
+	.string "Falkner'S Certified Trainers:\n"
 	.string "{PLAYER}$"
 
 `

@@ -18,13 +18,13 @@ ReceptionGate_EventScript_Janine::
     end
 
 ReceptionGate_Text_Janine:
-    .string "JAINE: I'm on the way to my dad's\n"
+    .string "Jaine: I'm on the way to my dad's\n"
     .string "house to give him his lunch.\p"
-    .string "The ELITE FOUR has no time to rest\n"
+    .string "The Elite Four has no time to rest\n"
     .string "day or night. It's such hard work,\l"
     .string "you know?\p"
     .string "If you're ready for another battle,\n"
-    .string "I'll be at the DOJO later.$"
+    .string "I'll be at the Dojo later.$"
 
 
 ReceptionGate_EventScript_Officer::
@@ -74,25 +74,25 @@ VictoryRoadGate_Text_Officer:
 
 VictoryRoadGate_Text_Kimono:
     .string "Sorry kid, this way is closed until\n"
-    .string "someone deals with that LEGENDARY\l"
+    .string "someone deals with that Legendary\l"
     .string "POKéMON...$"
 
 VictoryRoadGate_Text_NotEnoughBadges:
-    .string "You don't have all the GYM BADGES\n"
-    .string "of JOHTO.\p"
+    .string "You don't have all the Gym Badges\n"
+    .string "of Johto.\p"
     .string "I'm sorry, but I can't let you go\n"
     .string "through.$"
 
 VictoryRoadGate_Text_EightBadges:
-    .string "Oh! The eight BADGES of JOHTO!\p"
+    .string "Oh! The eight Badges of Johto!\p"
     .string "Please, go right on through!$"
 
 VictoryRoadGate_Text_LeftBlackBelt:
-    .string "This way leads to MT.SILVER.\p"
+    .string "This way leads to Mt.Silver.\p"
     .string "You'll see scary-strong POKéMON out\n"
     .string "there.$"
 
 VictoryRoadGate_Text_RightBlackBelt:
-    .string "Off to the POKéMON LEAGUE, are you?\p"
-    .string "The ELITE FOUR are so strong it's\n"
+    .string "Off to the POKéMON League, are you?\p"
+    .string "The Elite Four are so strong it's\n"
     .string "scary, and they're ready for you!$"

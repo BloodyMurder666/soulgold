@@ -26,14 +26,14 @@ DarkCave2_EventScript_BlackGlassesGot::
 
 DarkCave2_Text_Nerd:
     .string "Whoa! You startled me there!\p"
-    .string "I had my BLACK-GLASSES on, so I\n"
+    .string "I had my Black-Glasses on, so I\n"
     .string "didn't notice you at all.\p"
     .string "What am I doing here?\p"
     .string "Hey, don't you worry about it.\p"
-    .string "I'll give you a pair of BLACK-\n"
-    .string "GLASSES, so forget you saw me,\n"
-    .string "OK?$"
+    .string "I'll give you a pair of Black-\n"
+    .string "Glasses, so forget you saw me,\n"
+    .string "Ok?$"
 
 DarkCave2_Text_Nerd2:
-    .string "BLACK-GLASSES ups the power of\n"
-    .string "DARK-type moves.$"
+    .string "Black-Glasses ups the power of\n"
+    .string "Dark-type moves.$"

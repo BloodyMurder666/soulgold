@@ -44,25 +44,25 @@ GoldenrodCity_BikeShop_EventScript_Bike::
 GoldenrodCity_BikeShop_Text_Clerk2:
 	.string "Riding the bike is as simple as\n"
 	.string "pressing a button if you\l"
-	.string "REGISTER it from the BAG.$"
+	.string "Register it from the Bag.$"
 
 GoldenrodCity_BikeShop_Text_ClerkIntro:
     .string "…sigh… I moved here, but I can't\n"
-    .string "sell my BICYCLES. Why is that?\p"
-    .string "Could you ride a BICYCLE and\n"
+    .string "sell my Bicycles. Why is that?\p"
+    .string "Could you ride a Bicycle and\n"
     .string "advertise for me?$"
 
 GoldenrodCity_BikeShop_Text_ClerkAgreed:
     .string "Really? Great!\p"
     .string "Give me your name and phone number,\n"
-    .string "and I'll loan you a BICYCLE.$"
+    .string "and I'll loan you a Bicycle.$"
 
 GoldenrodCity_BikeShop_Text_BorrowedBicycle:
-    .string "{PLAYER} borrowed a BICYCLE.$"
+    .string "{PLAYER} borrowed a Bicycle.$"
 
 GoldenrodCity_BikeShop_Text_Mainshop:
-	.string "The main shop is at CERULEAN back\n"
-	.string "in KANTO.\p"
+	.string "The main shop is at Cerulean back\n"
+	.string "in Kanto.\p"
 	.string "Say hello to the shop manager if\n"
 	.string "if you happen to go there!$"
 
@@ -72,7 +72,7 @@ GoldenrodCity_BikeShop_Text_Refused:
 
 GoldenrodCity_BikeShop_Text_JustReleasedCompact:
     .string "Just released!\p"
-    .string "First-rate compact BICYCLES!$"
+    .string "First-rate compact Bicycles!$"
 
 GoldenrodCity_BikeShop_Text_Bicycle:
-    .string "It's a shiny new BICYCLE!$"
+    .string "It's a shiny new Bicycle!$"

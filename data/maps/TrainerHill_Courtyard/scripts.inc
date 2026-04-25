@@ -67,12 +67,12 @@ TrainerHill_Courtyard_EventScript_Sailor::
 	end
 
 BattleTowerOutsideYoungsterText:
-	.string "Wow, the TRAINER HILL is huge!\p"
+	.string "Wow, the Trainer Hill is huge!\p"
 	.string "There must be many kinds of\n"
 	.string "POKéMON in there!$"
 
 BattleTowerOutsideBeautyText:
-	.string "In the BATTLE TENTS, you can\n"
+	.string "In the Battle Tents, you can\n"
 	.string "use only three POKéMON.\p"
 	.string "It's so hard to decide which\n"
 	.string "three should go into battle…$"
@@ -83,25 +83,25 @@ BattleTowerOutsideSailorText:
 	.string "I have to win it all. That I must!$"
 
 BattleTowerOutsideSignText:
-	.string "{UP_ARROW} TRAINER HILL ENTRANCE\p"
+	.string "{UP_ARROW} Trainer Hill Entrance\p"
 	.string "“Scale the heights, you hot-blooded\n"
-	.string "TRAINERS!”\p"
-	.string "{RIGHT_ARROW} BATTLE TENTS.$"
+	.string "Trainers!”\p"
+	.string "{RIGHT_ARROW} Battle Tents.$"
 
 BattleTower_Battle_Tent_Text_Factory:
-	.string "BATTLE TENT: FACTORY\n"
+	.string "Battle Tent: Factory\n"
 	.string "“Find it! The ultimate POKéMON!”$"
 
 BattleTower_Battle_Tent_Text_Palace:
-	.string "BATTLE TENT: PALACE\n"
+	.string "Battle Tent: Palace\n"
 	.string "“Feast Your Eyes on Battles!”$"
 
 BattleTower_Battle_Tent_Text_Arena:
-	.string "BATTLE TENT: ARENA\n"
+	.string "Battle Tent: Arena\n"
 	.string "“May the Greatest Teams Gather!”$"
 
 BattleTowerOutsideText_Closed:
-	.string "The TRAINER HILL is currently\n"
+	.string "The Trainer Hill is currently\n"
 	.string "closed for repairs.$"
 
 
@@ -452,9 +452,9 @@ TrainerHill_Courtyard_EventScript_ChooseNewMove::
 TrainerHill_Courtyard_Text_LeftTutorIntro:
 	.string "Buhahaha!\p"
 	.string "You couldn't tell it from looking now,\n"
-	.string "but I used to be one tough TRAINER.\p"
+	.string "but I used to be one tough Trainer.\p"
 	.string "I had a reputation as the toughest\n"
-	.string "BEAUTY around, I tell you!\p"
+	.string "Beauty around, I tell you!\p"
 	.string "… … … … … …\p"
 	.string "What is it now?\n"
 	.string "You don't believe me.\p"
@@ -501,9 +501,9 @@ TrainerHill_Courtyard_Text_YouDontWantTo:
 TrainerHill_Courtyard_Text_RightTutorIntro:
 	.string "Ihihihi!\p"
 	.string "I know it's hard to see now, but I used\n"
-	.string "to be one fantastic TRAINER.\p"
+	.string "to be one fantastic Trainer.\p"
 	.string "I had a reputation as the most\n"
-	.string "invincible SWIMMER around, I tell you!\p"
+	.string "invincible Swimmer around, I tell you!\p"
 	.string "… … … … … …\p"
 	.string "What's wrong?\n"
 	.string "You don't believe me.\p"
@@ -529,9 +529,9 @@ TrainerHill_Courtyard_Text_ThinkLadiesDontGetAlong:
 	.string "stay out here together, would they?$"
 
 TrainerHill_Courtyard_Text_LadiesWereStrongAndBeautiful:
-	.string "When I was just a wee YOUNGSTER,\n"
+	.string "When I was just a wee Youngster,\n"
 	.string "those ladies were strong and beautiful.\p"
-	.string "They were idols among us TRAINERS.\p"
+	.string "They were idols among us Trainers.\p"
 	.string "Even now, age hasn't dulled their\n"
 	.string "abilities.\p"
 	.string "In fact, their POKéMON moves have\n"
@@ -543,7 +543,7 @@ TrainerHill_Courtyard_Text_LadiesWereStrongAndBeautiful:
 TrainerHill_Courtyard_Text_SoftboiledDesc::
 	.string "Recovers up to\n"
 	.string "half the user's\n"
-	.string "maximum HP.$"
+	.string "maximum Hp.$"
 
 TrainerHill_Courtyard_Text_SeismicTossDesc::
 	.string "Inflicts damage\n"
@@ -588,12 +588,12 @@ TrainerHill_Courtyard_Text_ThunderWaveDesc::
 TrainerHill_Courtyard_Text_SwordsDanceDesc::
 	.string "A fighting dance\n"
 	.string "that sharply\n"
-	.string "raises ATTACK.$"
+	.string "raises Attack.$"
 
 TrainerHill_Courtyard_Text_DefenseCurlDesc::
 	.string "Curls up to con-\n"
 	.string "ceal weak spots\n"
-	.string "and raise DEFENSE.$"
+	.string "and raise Defense.$"
 
 TrainerHill_Courtyard_Text_SnoreDesc::
 	.string "A loud attack\n"
@@ -613,7 +613,7 @@ TrainerHill_Courtyard_Text_SwiftDesc::
 TrainerHill_Courtyard_Text_IcyWindDesc::
 	.string "A chilling attack\n"
 	.string "that lowers the\n"
-	.string "foe's SPEED.$"
+	.string "foe's Speed.$"
 
 TrainerHill_Courtyard_Text_EndureDesc::
 	.string "Endures any at-\n"
@@ -644,10 +644,10 @@ TrainerHill_Courtyard_Text_ElementalTutorIntro::
 	.string "Zzzzzz…\p"
 	.string "What, how, what?\p"
 	.string "Oh, sorry, I was snoozing a bit.\p"
-	.string "I'm the ELEMENTAL TUTOR.\p"
+	.string "I'm the Elemental Tutor.\p"
 	.string "I have the power to teach the most\n"
-	.string "powerful moves to GRASS, FIRE and\l"
-	.string "WATER TYPE POKéMON.\p"
+	.string "powerful moves to Grass, Fire and\l"
+	.string "Water Type POKéMON.\p"
 	.string "Did you come to learn such a strong\n"
 	.string "power?$"
 
@@ -1114,12 +1114,12 @@ TrainerHill_Courtyard_ExchangeServiceCorner_Text_YouAlreadyHaveThis:
 
 TrainerHill_Courtyard_ExchangeServiceCorner_EventScript_OldWTMan_Text:
 	.string "Hi! If you are looking for the\n"
-	.string "WONDERTRADE, they're now located in\l"
-	.string "every POKéMON CENTER. Have fun!$"
+	.string "Wondertrade, they're now located in\l"
+	.string "every POKéMON Center. Have fun!$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_WelcomePleaseChoosePrize:
-	.string "Hello, this is the EXCHANGE SERVICE\n"
-	.string "CORNER.\p"
+	.string "Hello, this is the Exchange Service\n"
+	.string "Corner.\p"
 	.string "We exchange the Battle Points you\n"
 	.string "have collected for lovely prizes.\p"
 	.string "Please choose a prize from this list.$"
@@ -1129,123 +1129,123 @@ TrainerHill_Courtyard_ExchangeServiceCorner_Text_PleaseChoosePrize:
 	.string "Please choose a prize from this list.$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmKissPoster:
-	.string "You've chosen the KISS POSTER.\n"
+	.string "You've chosen the Kiss Poster.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmKissCushion:
-	.string "You've chosen the KISS CUSHION.\n"
+	.string "You've chosen the Kiss Cushion.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmSmoochumDoll:
-	.string "You've chosen the SMOOCHUM DOLL.\n"
+	.string "You've chosen the Smoochum Doll.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmTogepiDoll:
-	.string "You've chosen the TOGEPI DOLL.\n"
+	.string "You've chosen the Togepi Doll.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmMeowthDoll:
-	.string "You've chosen the MEOWTH DOLL.\n"
+	.string "You've chosen the Meowth Doll.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmClefairyDoll:
-	.string "You've chosen the CLEFAIRY DOLL.\n"
+	.string "You've chosen the Clefairy Doll.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmDittoDoll:
-	.string "You've chosen the DITTO DOLL.\n"
+	.string "You've chosen the Ditto Doll.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmCyndaquilDoll:
-	.string "You've chosen the CYNDAQUIL DOLL.\n"
+	.string "You've chosen the Cyndaquil Doll.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmChikoritaDoll:
-	.string "You've chosen the CHIKORITA DOLL.\n"
+	.string "You've chosen the Chikorita Doll.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmTotodileDoll:
-	.string "You've chosen the TOTODILE DOLL.\n"
+	.string "You've chosen the Totodile Doll.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmLaprasDoll:
-	.string "You've chosen the LAPRAS DOLL.\n"
+	.string "You've chosen the Lapras Doll.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmSnorlaxDoll:
-	.string "You've chosen the SNORLAX DOLL.\n"
+	.string "You've chosen the Snorlax Doll.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmVenusaurDoll:
-	.string "You've chosen the VENUSAUR DOLL.\n"
+	.string "You've chosen the Venusaur Doll.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmCharizardDoll:
-	.string "You've chosen the CHARIZARD DOLL.\n"
+	.string "You've chosen the Charizard Doll.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmBlastoiseDoll:
-	.string "You've chosen the BLASTOISE DOLL.\n"
+	.string "You've chosen the Blastoise Doll.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmProtein:
-	.string "You've chosen the PROTEIN.\n"
+	.string "You've chosen the Protein.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmCalcium:
-	.string "You've chosen the CALCIUM.\n"
+	.string "You've chosen the Calcium.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmIron:
-	.string "You've chosen the IRON.\n"
+	.string "You've chosen the Iron.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmZinc:
-	.string "You've chosen the ZINC.\n"
+	.string "You've chosen the Zinc.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmCarbos:
-	.string "You've chosen the CARBOS.\n"
+	.string "You've chosen the Carbos.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmHpUp:
-	.string "You've chosen the HP UP.\n"
+	.string "You've chosen the Hp Up.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmBrightpowder:
-	.string "You've chosen the BRIGHTPOWDER.\n"
+	.string "You've chosen the Brightpowder.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmWhiteHerb:
-	.string "You've chosen the WHITE HERB.\n"
+	.string "You've chosen the White Herb.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmQuickClaw:
-	.string "You've chosen the QUICK CLAW.\n"
+	.string "You've chosen the Quick Claw.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmMentalHerb:
-	.string "You've chosen the MENTAL HERB.\n"
+	.string "You've chosen the Mental Herb.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmChoiceBand:
-	.string "You've chosen the CHOICE BAND.\n"
+	.string "You've chosen the Choice Band.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmKingsRock:
-	.string "You've chosen the KING'S ROCK.\n"
+	.string "You've chosen the King'S Rock.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmFocusBand:
-	.string "You've chosen the FOCUS BAND.\n"
+	.string "You've chosen the Focus Band.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmScopeLens:
-	.string "You've chosen the SCOPE LENS.\n"
+	.string "You've chosen the Scope Lens.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ConfirmLeftovers:
-	.string "You've chosen the LEFTOVERS.\n"
+	.string "You've chosen the Leftovers.\n"
 	.string "Is that correct?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_WellSendItToPC:
@@ -1276,8 +1276,8 @@ TrainerHill_Courtyard_ExchangeServiceCorner_Text_WishIHadAllDolls:
 	.string "Oh, they're so nice!\n"
 	.string "I wish I had them!\l"
 	.string "Cute cushions!\l"
-	.string "Big plush DOLLS!\l"
-	.string "Little plush DOLLS!\l"
+	.string "Big plush Dolls!\l"
+	.string "Little plush Dolls!\l"
 	.string "I wish I had them all!$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_GetYouAnythingYouWant:
@@ -1297,55 +1297,55 @@ TrainerHill_Courtyard_ExchangeServiceCorner_Text_GoGetYourOwnDoll:
 	.string "I don't like you staring at my plush\n"
 	.string "doll like that.\p"
 	.string "If you want it, go get one yourself!\n"
-	.string "Isn't that right, SMOOCHUM?$"
+	.string "Isn't that right, Smoochum?$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_MoreBattlePointsForRecord:
 	.string "Did you know?\p"
 	.string "If you stretch your record at any of\n"
-	.string "the BATTLE facilities, they start\l"
+	.string "the Battle facilities, they start\l"
 	.string "giving you more and more Battle Points.$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_KissPosterDesc::
-	.string "A large poster with a SMOOCHUM print.$"
+	.string "A large poster with a Smoochum print.$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_KissCushionDesc::
-	.string "A SMOOCHUM cushion.\n"
+	.string "A Smoochum cushion.\n"
 	.string "Place it on a mat or a desk.$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_SmoochumDollDesc::
-	.string "A SMOOCHUM DOLL.\n"
+	.string "A Smoochum Doll.\n"
 	.string "Place it on a mat or a desk.$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_TogepiDollDesc::
-	.string "A TOGEPI DOLL.\n"
+	.string "A Togepi Doll.\n"
 	.string "Place it on a mat or a desk.$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_MeowthDollDesc::
-	.string "A MEOWTH DOLL.\n"
+	.string "A Meowth Doll.\n"
 	.string "Place it on a mat or a desk.$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ClefairyDollDesc::
-	.string "A CLEFAIRY DOLL.\n"
+	.string "A Clefairy Doll.\n"
 	.string "Place it on a mat or a desk.$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_DittoDollDesc::
-	.string "A DITTO DOLL.\n"
+	.string "A Ditto Doll.\n"
 	.string "Place it on a mat or a desk.$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_CyndaquilDollDesc::
-	.string "A CYNDAQUIL DOLL.\n"
+	.string "A Cyndaquil Doll.\n"
 	.string "Place it on a mat or a desk.$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ChikoritaDollDesc::
-	.string "A CHIKORITA DOLL.\n"
+	.string "A Chikorita Doll.\n"
 	.string "Place it on a mat or a desk.$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_TotodileDollDesc::
-	.string "A TOTODILE DOLL.\n"
+	.string "A Totodile Doll.\n"
 	.string "Place it on a mat or a desk.$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_LargeDollDesc::
-	.string "A large DOLL.\n"
+	.string "A large Doll.\n"
 	.string "Place it on a mat or a desk.$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ProteinDesc::
@@ -1369,11 +1369,11 @@ TrainerHill_Courtyard_ExchangeServiceCorner_Text_CarbosDesc::
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_HPUpDesc::
 	.string "A peculiar box made\n"
-	.string "by SILPH CO.$"  
+	.string "by Silph Co.$"  
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_LeftoversDesc::
 	.string "A hold item that gradually restores\n"
-	.string "HP in battle.$"
+	.string "Hp in battle.$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_WhiteHerbDesc::
 	.string "A hold item that restores any\n"

@@ -34,17 +34,17 @@ Route26_EventScript_Richard::
 
 Route26_Text_CooltrainermJakeSeen:
     .string "I'm making my final preparations\n"
-    .string "for the POKéMON LEAGUE.$"
+    .string "for the POKéMON League.$"
 
 Route26_Text_CooltrainermJakeBeaten:
     .string "I blew it!$"
 
 Route26_Text_CooltrainermJakeAfter:
     .string "It's going to be tough to win at\n"
-    .string "the LEAGUE.\p"
+    .string "the League.\p"
     .string "I need to do some more training.\p"
-    .string "I hear that the LEAGUE's ELITE\n"
-    .string "FOUR are tougher than GYM LEADERS.$"
+    .string "I hear that the League's Elite\n"
+    .string "Four are tougher than Gym Leaders.$"
 
 Route26_Text_CooltrainermGavenSeen:
     .string "By experiencing tough battles, you\n"
@@ -54,9 +54,9 @@ Route26_Text_CooltrainermGavenBeaten:
     .string "Gaah! Life is even tougher!$"
 
 Route26_Text_CooltrainermGavenAfter:
-    .string "To get to POKéMON LEAGUE, you have\n"
-    .string "to get through VICTORY ROAD.\p"
-    .string "But VICTORY ROAD is tough.\p"
+    .string "To get to POKéMON League, you have\n"
+    .string "to get through Victory Road.\p"
+    .string "But Victory Road is tough.\p"
     .string "Practically nobody goes there!$"
 
 Route26_Text_CooltrainerfJoyceSeen:
@@ -69,12 +69,12 @@ Route26_Text_CooltrainerfJoyceBeaten:
     .string "No! I don't believe this!$"
 
 Route26_Text_CooltrainerfJoyceAfter:
-    .string "I've defeated eight GYM LEADERS,\n"
+    .string "I've defeated eight Gym Leaders,\n"
     .string "so I was feeling confident.\p"
     .string "I'll have to try harder next time.$"
 
 Route26_Text_CooltrainerfBethSeen:
-    .string "I lost to a trainer named SILVER.\p"
+    .string "I lost to a trainer named Silver.\p"
     .string "He was really strong, but…\p"
     .string "It was as if he absolutely had to\n"
     .string "win at any cost.\p"
@@ -88,7 +88,7 @@ Route26_Text_CooltrainerfBethAfter:
     .string "partners.$"
 
 Route26_Text_PsychicRichardSeen:
-    .string "Wow, look at all those BADGES!\n"
+    .string "Wow, look at all those Badges!\n"
     .string "I'm impressed.\p"
     .string "But you're not satisfied by just\n"
     .string "collecting them, right?$"
@@ -102,7 +102,7 @@ Route26_Text_PsychicRichardAfter:
     .string "Don't get lazy and complacent.$"
 
 Route26_Text_Sign:
-    .string "ROUTE 26\p"
-    .string "POKéMON LEAGUE\n"
-    .string "RECEPTION GATE$"
+    .string "Route 26\p"
+    .string "POKéMON League\n"
+    .string "Reception Gate$"
 

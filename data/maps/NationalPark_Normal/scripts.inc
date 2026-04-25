@@ -72,7 +72,7 @@ NationalPark_Normal_Text_Lass:
 	.string "POKéDEX and stuck them on my bag.$"
 
 NationalPark_Normal_Text_PokefanF:
-	.string "This is MAIL I got from my daughter.\n"
+	.string "This is Mail I got from my daughter.\n"
 	.string "It cheers me up.$"
 
 NationalPark_Normal_Text_Teacher1:
@@ -84,7 +84,7 @@ NationalPark_Normal_Text_Teacher1:
 	.string "want you to have this.$"
 
 NationalPark_Normal_Text_Teacher1_QuickClaw:
-	.string "Let a POKéMON hold that QUICK CLAW.\p"
+	.string "Let a POKéMON hold that Quick Claw.\p"
 	.string "Sometimes it will strike first\n"
 	.string "during battle.$"
 
@@ -97,14 +97,14 @@ NationalPark_Normal_Text_Youngster2:
 	.string "if I win.$"
 
 NationalPark_Normal_Text_Teacher2:
-	.string "I take walks in the PARK, but I\n"
+	.string "I take walks in the Park, but I\n"
 	.string "never go into the grass.\p"
 	.string "Trainers always want to battle…\p"
 	.string "You must have been in many battles.\n"
 	.string "Let me heal your POKéMON for you.$"
 
 NationalPark_Normal_Text_Persian:
-	.string "PERSIAN: Fufushaa!$"
+	.string "Persian: Fufushaa!$"
 
 NationalPark_Normal_EventScript_Jack::
 	trainerbattle_single TRAINER_JACK NationalPark_Normal_Text_SchoolboyJack1_Seen, NationalPark_Normal_Text_SchoolboyJack1_Beaten
@@ -156,7 +156,7 @@ NationalPark_Normal_Text_PokefanFBeverly_After:
 NationalPark_Normal_Text_PokefanmWilliam_Seen:
 	.string "We adore our POKéMON, even if they\n"
 	.string "dislike us.\p"
-	.string "That's what being a FAN is about.$"
+	.string "That's what being a Fan is about.$"
 
 NationalPark_Normal_Text_PokefanmWilliam_Beaten:
 	.string "M-my POKéMON!$"
@@ -177,15 +177,15 @@ NationalPark_Normal_Text_LassKrise_After:
 	.string "because I'm cute!$"
 
 NationalPark_Normal_Text_Sign_RelaxationSquare:
-	.string "RELAXATION SQUARE\n"
-	.string "NATIONAL PARK$"
+	.string "Relaxation Square\n"
+	.string "National Park$"
 
 NationalPark_Normal_Text_Sign_BattleNotice:
 	.string "What is this notice?\p"
 	.string "Please battle only in the grass.\p"
-	.string "NATIONAL PARK WARDEN'S OFFICE$"
+	.string "National Park Warden'S Office$"
 
 NationalPark_Normal_Text_TrainerTips:
-	.string "TRAINER TIPS\p"
-	.string "Print out MAIL by opening it then\n"
-	.string "pressing START.$"
+	.string "Trainer Tips\p"
+	.string "Print out Mail by opening it then\n"
+	.string "pressing Start.$"

@@ -25,25 +25,25 @@ BlackthornMart_EventScript_BlackBelt::
 # 13 "data/maps/BlackthornCity_Mart/scripts.pory"
 BlackthornMart_Text_CooltrainerM:
 # 14 "data/maps/BlackthornCity_Mart/scripts.pory"
-	.string "You can't buy MAX REVIVE, but it\n"
+	.string "You can't buy Max Revive, but it\n"
 # 15 "data/maps/BlackthornCity_Mart/scripts.pory"
 	.string "fully restores a fainted POKéMON.\p"
 # 16 "data/maps/BlackthornCity_Mart/scripts.pory"
 	.string "Beware--it won't restore PP, the\n"
 # 17 "data/maps/BlackthornCity_Mart/scripts.pory"
-	.string "POWER POINTS needed for moves.$"
+	.string "Power Points needed for moves.$"
 # 18 "data/maps/BlackthornCity_Mart/scripts.pory"
 
 # 19 "data/maps/BlackthornCity_Mart/scripts.pory"
 BlackthornMart_Text_BlackBelt:
 # 20 "data/maps/BlackthornCity_Mart/scripts.pory"
-	.string "MAX REPEL keeps weak POKéMON away\n"
+	.string "Max Repel keeps weak POKéMON away\n"
 # 21 "data/maps/BlackthornCity_Mart/scripts.pory"
 	.string "from you.\p"
 # 22 "data/maps/BlackthornCity_Mart/scripts.pory"
 	.string "It's the longest lasting of the\n"
 # 23 "data/maps/BlackthornCity_Mart/scripts.pory"
-	.string "REPEL sprays.$"
+	.string "Repel sprays.$"
 
 Blackthorn_Mart2::
 # 27 "data/maps/BlackthornCity_Mart/scripts.pory"

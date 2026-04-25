@@ -32,12 +32,12 @@ Route25_EventScript_MistyRematch::
     end
 
 Route25_Text_Misty:
-    .string "MISTY: I love the sunset here!\n"
+    .string "Misty: I love the sunset here!\n"
 	.string "It gives me the courage to go on,\l"
 	.string "you know?\p"
 	.string "Right!\p"
 	.string "If you're ready for a real splash,\n"
-	.string "meet me at the FIGHTING DOJO!$"
+	.string "meet me at the Fighting Dojo!$"
 
 Route25_EventScript_Dudley::
 	trainerbattle_single TRAINER_DUDLEY Route25_Text_SchoolboyDudleySeen, Route25_Text_SchoolboyDudleyBeaten
@@ -184,19 +184,19 @@ Route25_EventScript_SuicuneMerge::
 	end
 	
 Route25_Text_Eusine1:
-	.string "EUSINE: Puff, puff...\n"
+	.string "Eusine: Puff, puff...\n"
 	.string "I am... no match for you.\p"
 	.string "...As I predicted.\n"
 	.string "..........................\l"
 	.string "... Go ahead.\p"
-	.string "Since I met you in the BURNED TOWER\n"
-	.string "at ECRUTEAK CITY, I've sort of\l"
-	.string "known that SUICUNE would choose\l"
+	.string "Since I met you in the Burned Tower\n"
+	.string "at Ecruteak City, I've sort of\l"
+	.string "known that Suicune would choose\l"
 	.string "you.$"
 
 Route25_Text_Eusine2:
 	.string "Take a look at it!\p"
-	.string "SUICUNE is waiting for you!\n"
+	.string "Suicune is waiting for you!\n"
 	.string "It has been waiting for a battle\l"
 	.string "with a worthy trainer to whom it\l"
 	.string "can entrust itself.$"
@@ -207,7 +207,7 @@ Route25_Text_Eusine3:
 	.string "I have never seen a battle this\n"
 	.string "intense!\l"
 	.string "I have no regrets...\p"
-	.string "Farewell, SUICUNE!\n"
+	.string "Farewell, Suicune!\n"
 	.string "Farewell... {PLAYER}!$"
 
 Route25_EventScript_Eusine::
@@ -372,21 +372,21 @@ Route25_Movement_MistyWalkToPlayerLeft:
 	step_end
 
 Route25_Text_MistyDate:
-	.string "MISTY: Aww! Why did you have to\n"
+	.string "Misty: Aww! Why did you have to\n"
 	.string "show up and bug us now?\p"
 	.string "Do you know what they call\n"
 	.string "people like you?\p"
 	.string "Pests! You heard me right,\n"
 	.string "pest!\p"
 	.string "…\p"
-	.string "…Oh? Those BADGES you have…\n"
-	.string "Are they JOHTO GYM BADGES?\p"
+	.string "…Oh? Those Badges you have…\n"
+	.string "Are they Johto Gym Badges?\p"
 	.string "If you have eight, you must be\n"
 	.string "good.\p"
-	.string "OK, then. Come to CERULEAN GYM.\p"
+	.string "Ok, then. Come to Cerulean Gym.\p"
 	.string "I'll be happy to take you on.\p"
-	.string "I'm MISTY, the GYM LEADER in\n"
-	.string "CERULEAN.$"
+	.string "I'm Misty, the Gym Leader in\n"
+	.string "Cerulean.$"
 
 Route25_Text_SchoolboyDudleySeen:
 	.string "Beat the six of us trainers to\n"
@@ -434,7 +434,7 @@ Route25_Text_LassLauraAfter:
 	.string "I have no regrets.$"
 
 Route25_Text_CamperLloydSeen:
-	.string "OK! I'm No. 5.\n"
+	.string "Ok! I'm No. 5.\n"
 	.string "I'll stomp you!$"
 
 Route25_Text_CamperLloydBeaten:
@@ -492,6 +492,6 @@ Route25_Text_CooltrainerKevinAfter:
 	.string "outstanding!$"
 
 Route25_Text_BillsHouseSign:
-	.string "SEA COTTAGE\n"
-	.string "BILL'S HOUSE$"
+	.string "Sea Cottage\n"
+	.string "Bill'S House$"
 

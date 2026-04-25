@@ -29,7 +29,7 @@ Route21_Text_SwimmermSethBeaten:
 	.string "Glug…$"
 
 Route21_Text_SwimmermSethAfterBattle:
-	.string "This arrogant guy was at CINNABAR's\n"
+	.string "This arrogant guy was at Cinnabar's\n"
 	.string "volcano.$"
 
 Route21_Text_SwimmerfNikkiSeen:

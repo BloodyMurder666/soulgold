@@ -25,14 +25,14 @@ SproutTower_2F_EventScript_Statue::
 
 SproutTower_Text_SageNico_Seen:
 	.string "However hard we battle,\n"
-	.string "the TOWER will stand strong.$"
+	.string "the Tower will stand strong.$"
 
 SproutTower_Text_SageNico_Beaten:
 	.string "I fought hard but I'm too weak.$"
 
 SproutTower_Text_SageNico_AfterBattle:
 	.string "The flexible pillar protects the\n"
-	.string "TOWER, even from earthquakes.$"
+	.string "Tower, even from earthquakes.$"
 
 SproutTower_Text_SageEdmond_Seen:
 	.string "…Sway like leaves in the wind…$"
@@ -41,7 +41,7 @@ SproutTower_Text_SageEdmond_Beaten:
 	.string "Oh, I'm weak!$"
 
 SproutTower_Text_SageEdmond_AfterBattle:
-	.string "I tried to copy BELLSPROUT's\n"
+	.string "I tried to copy Bellsprout's\n"
 	.string "gentle movements for battle…\p"
 	.string "But I didn't train well enough.$"
 

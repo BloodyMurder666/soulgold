@@ -21,10 +21,10 @@ MahoganyTown_PokemonCenter_EventScript_Girl::
 	end
 
 MahoganyTown_PokemonCenter_Text_PokefanM:
-    .string "What's this? TEAM ROCKET has come\n"
+    .string "What's this? Team Rocket has come\n"
     .string "back?\p"
-    .string "I saw some men in black at LAKE OF\n"
-    .string "RAGE…$"
+    .string "I saw some men in black at Lake Of\n"
+    .string "Rage…$"
 
 MahoganyTown_PokemonCenter_Text_Youngster:
     .string "I stop my POKéMON from evolving too\n"

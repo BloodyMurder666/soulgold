@@ -60,7 +60,7 @@ PewterCity_Museum_1F_Text_FossilWoman:
 
 PewterCity_Museum_1F_Text_FossilWomanAfter:
 	.string "We often share research with the\n"
-	.string "RUINS OF ALPH researchers.\p"
+	.string "Ruins Of Alph researchers.\p"
 	.string "We even share fossils with them\n"
 	.string "through the PC!$"
 

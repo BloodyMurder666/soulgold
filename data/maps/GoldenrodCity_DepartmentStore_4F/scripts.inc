@@ -36,12 +36,12 @@ GoldenrodDeptStore4_EventScript_Sign::
 
 GoldenrodDeptStore_Text_4FCooltrainerM:
     .string "Hey. I love strong POKéMON.\p"
-    .string "I feed them PROTEIN to crank up\n"
-    .string "their ATTACK.$"
+    .string "I feed them Protein to crank up\n"
+    .string "their Attack.$"
 
 GoldenrodDeptStore_Text_4FBugCatcher:
-    .string "IRON adds to your POKéMON's\n"
-    .string "DEFENSE.$"
+    .string "Iron adds to your POKéMON's\n"
+    .string "Defense.$"
 
 GoldenrodDeptStore_Text_4FGameboyKid:
     .string "There were rumours that some\n"
@@ -52,11 +52,11 @@ GoldenrodDeptStore_Text_4FGameboyKid:
     .string "Such misinformation.\p"
     .string "I know some of the rumoured\n"
     .string "POKéMON:\l"
-    .string "MACHOKE, KADABRA, HAUNTER and,\l"
-    .string "um, GRAVELER,\l"
+    .string "Machoke, Kadabra, Haunter and,\l"
+    .string "um, Graveler,\l"
     .string "but they all evolve through\l"
     .string "level up.$"
 
 GoldenrodDeptStore_Text_4FDirectory:
     .string "Let Us Pump Up Your POKéMON!\p"
-    .string "4F MEDICINE BOX$"
+    .string "4F Medicine Box$"

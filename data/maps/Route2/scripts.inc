@@ -64,9 +64,9 @@ Route2_Text_BugCatcherDoug_AfterBattle:
 	.string "I love how they feel!$"
 
 Route2_Text_Sign:
-	.string "ROUTE 2\p"
-	.string "VIRIDIAN CITY - PEWTER CITY$"
+	.string "Route 2\p"
+	.string "Viridian City - Pewter City$"
 
 Route2_Text_DiglettsCaveSign:
-	.string "DIGLETT'S CAVE$"
+	.string "Diglett'S Cave$"
 

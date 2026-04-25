@@ -62,8 +62,8 @@ EverGrandeCity_DrakesRoom_EventScript_Defeated::
 	end
 
 EverGrandeCity_DrakesRoom_Text_IntroSpeech:
-	.string "I am the last of the POKéMON LEAGUE\n"
-	.string "ELITE FOUR, DRAKE the DRAGON master!\p"
+	.string "I am the last of the POKéMON League\n"
+	.string "Elite Four, Drake the Dragon master!\p"
 	.string "In their natural state, POKéMON are\n"
 	.string "wild living things. They are free.\p"
 	.string "At times, they hinder us.\n"
@@ -79,14 +79,14 @@ EverGrandeCity_DrakesRoom_Text_Defeat:
 
 EverGrandeCity_DrakesRoom_Text_PostBattleSpeech:
 	.string "You deserve every credit for coming\n"
-	.string "this far as a TRAINER of POKéMON.\p"
+	.string "this far as a Trainer of POKéMON.\p"
 	.string "You do seem to know what is needed.\p"
-	.string "Yes, what a TRAINER needs is a\n"
+	.string "Yes, what a Trainer needs is a\n"
 	.string "virtuous heart.\p"
 	.string "POKéMON touch the good hearts of\n"
-	.string "TRAINERS and learn good from wrong.\p"
+	.string "Trainers and learn good from wrong.\p"
 	.string "They touch the good hearts of\n"
-	.string "TRAINERS and grow strong.\p"
+	.string "Trainers and grow strong.\p"
 	.string "Go! Go onwards!\n"
-	.string "The CHAMPION is waiting!$"
+	.string "The Champion is waiting!$"
 

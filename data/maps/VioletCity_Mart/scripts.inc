@@ -79,7 +79,7 @@ VioletCity_Mart_Text_CooltrainerM:
 # 40 "data/maps/VioletCity_Mart/scripts.pory"
 	.string "POKéMON can hold items like\n"
 # 41 "data/maps/VioletCity_Mart/scripts.pory"
-	.string "POTION and ANTIDOTE.\p"
+	.string "Potion and Antidote.\p"
 # 42 "data/maps/VioletCity_Mart/scripts.pory"
 	.string "But they don't appear to know\n"
 # 43 "data/maps/VioletCity_Mart/scripts.pory"

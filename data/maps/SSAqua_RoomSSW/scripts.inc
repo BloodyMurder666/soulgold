@@ -12,7 +12,7 @@ SSAqua_RoomSSW_EventScript_Ken::
 	end
 
 SSAqua_RoomSSW_Text_FirebreatherLyleSeen:
-    .string "I'm going to KANTO to put\n"
+    .string "I'm going to Kanto to put\n"
     .string "on fire-breathing shows!$"
 
 SSAqua_RoomSSW_Text_FirebreatherLyleBeaten:
@@ -31,4 +31,4 @@ SSAqua_RoomSSW_Text_BugCatcherKenBeaten:
 
 SSAqua_RoomSSW_Text_BugCatcherKenAfterBattle:
     .string "You can find lots of POKéMON\n"
-    .string "in the trees of JOHTO!$"
+    .string "in the trees of Johto!$"

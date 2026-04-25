@@ -205,7 +205,7 @@ Route35_Text_PicnickerBrookeAfter:
 # 103 "data/maps/Route35/scripts.pory"
 Route35_Text_PicnickerKimSeen:
 # 104 "data/maps/Route35/scripts.pory"
-	.string "Are you going to the GYM? Me too!$"
+	.string "Are you going to the Gym? Me too!$"
 # 105 "data/maps/Route35/scripts.pory"
 
 # 106 "data/maps/Route35/scripts.pory"
@@ -217,7 +217,7 @@ Route35_Text_PicnickerKimBeaten:
 # 109 "data/maps/Route35/scripts.pory"
 Route35_Text_PicnickerKimAfter:
 # 110 "data/maps/Route35/scripts.pory"
-	.string "The GYM BADGES are pretty. I collect\n"
+	.string "The Gym Badges are pretty. I collect\n"
 # 111 "data/maps/Route35/scripts.pory"
 	.string "them.$"
 # 112 "data/maps/Route35/scripts.pory"
@@ -225,7 +225,7 @@ Route35_Text_PicnickerKimAfter:
 # 113 "data/maps/Route35/scripts.pory"
 Route35_Text_BirdKeeperBryanSeen:
 # 114 "data/maps/Route35/scripts.pory"
-	.string "What kinds of BALLS do you use?$"
+	.string "What kinds of Balls do you use?$"
 # 115 "data/maps/Route35/scripts.pory"
 
 # 116 "data/maps/Route35/scripts.pory"
@@ -239,21 +239,21 @@ Route35_Text_BirdKeeperBryanAfter:
 # 120 "data/maps/Route35/scripts.pory"
 	.string "Some POKéMON flee right away.\p"
 # 121 "data/maps/Route35/scripts.pory"
-	.string "Try catching them with KURT's FAST\n"
+	.string "Try catching them with Kurt's Fast\n"
 # 122 "data/maps/Route35/scripts.pory"
-	.string "BALL.\p"
+	.string "Ball.\p"
 # 123 "data/maps/Route35/scripts.pory"
-	.string "Whenever I find a WHT APRICORN, I\n"
+	.string "Whenever I find a Wht Apricorn, I\n"
 # 124 "data/maps/Route35/scripts.pory"
-	.string "take it to KURT.\p"
+	.string "take it to Kurt.\p"
 # 125 "data/maps/Route35/scripts.pory"
-	.string "He turns it into a custom BALL.$"
+	.string "He turns it into a custom Ball.$"
 # 126 "data/maps/Route35/scripts.pory"
 
 # 127 "data/maps/Route35/scripts.pory"
 Route35_Text_JugglerIrwinSeen:
 # 128 "data/maps/Route35/scripts.pory"
-	.string "Behold my graceful BALL dexterity!$"
+	.string "Behold my graceful Ball dexterity!$"
 # 129 "data/maps/Route35/scripts.pory"
 
 # 130 "data/maps/Route35/scripts.pory"
@@ -289,15 +289,15 @@ Route35_Text_BugCatcherArnieBeaten:
 # 145 "data/maps/Route35/scripts.pory"
 Route35_Text_BugCatcherArnieAfter:
 # 146 "data/maps/Route35/scripts.pory"
-	.string "My VENONAT won me the Bug-Catching\n"
+	.string "My Venonat won me the Bug-Catching\n"
 # 147 "data/maps/Route35/scripts.pory"
-	.string "Contest at the NATIONAL PARK.$"
+	.string "Contest at the National Park.$"
 # 148 "data/maps/Route35/scripts.pory"
 
 # 149 "data/maps/Route35/scripts.pory"
 Route35_Text_BugCatcherArnieYanma:
 # 150 "data/maps/Route35/scripts.pory"
-	.string "Wow… Look at all those YANMA!\p"
+	.string "Wow… Look at all those Yanma!\p"
 # 151 "data/maps/Route35/scripts.pory"
 	.string "I'm so blown away, I can't move.$"
 # 152 "data/maps/Route35/scripts.pory"
@@ -341,7 +341,7 @@ Route35_Text_OfficerDirkAfter:
 # 171 "data/maps/Route35/scripts.pory"
 	.string "own ways.\p"
 # 172 "data/maps/Route35/scripts.pory"
-	.string "But don't overdo it, OK?$"
+	.string "But don't overdo it, Ok?$"
 # 173 "data/maps/Route35/scripts.pory"
 
 # 174 "data/maps/Route35/scripts.pory"
@@ -355,13 +355,13 @@ Route35_Text_OfficerDirkTough:
 # 178 "data/maps/Route35/scripts.pory"
 Route35_Text_Sign:
 # 179 "data/maps/Route35/scripts.pory"
-	.string "ROUTE 35$"
+	.string "Route 35$"
 # 180 "data/maps/Route35/scripts.pory"
 
 # 181 "data/maps/Route35/scripts.pory"
 Route35_Text_Sign2:
 # 182 "data/maps/Route35/scripts.pory"
-	.string "NATIONAL PARK GATE$"
+	.string "National Park Gate$"
 
 Route35_HiddenGrotto::
 # 186 "data/maps/Route35/scripts.pory"

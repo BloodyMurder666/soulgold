@@ -96,9 +96,9 @@ FuchsiaCity_SafariZoneEntrance_StevenAfter::
 
 FuchsiaCity_SafariZoneEntrance_Text_StevenChamp:
 	.string "Oh, hey {PLAYER}.\n"
-	.string "Or should I say KANTO champion?\p"
+	.string "Or should I say Kanto champion?\p"
 	.string "You know, for some time, I was the\n"
-	.string "champion of the HOENN region.\p"
+	.string "champion of the Hoenn region.\p"
 	.string "So welcome to the club, {PLAYER}.\p"
 	.string "In fact, here.\n"
 	.string "Consider this a welcome gift.$"
@@ -223,16 +223,16 @@ FuchsiaCity_SafariZoneEntrance_Movement_ReturnToTable:
 	step_end
 
 FuchsiaCity_SafariZoneEntrance_Text_StevenWelcome:
-	.string "My name is STEVEN. My family's\n"
+	.string "My name is Steven. My family's\n"
 	.string "company recently purchased this\l"
-	.string "SAFARI ZONE, and we've made many\l"
+	.string "Safari Zone, and we've made many\l"
 	.string "improvements.\p"
 	.string "You'll find very exotic POKéMON\n"
 	.string "here. Especially if you increase\l"
-	.string "your SAFARI LEVEL.\p"
+	.string "your Safari Level.\p"
 	.string "Just speak to the attendant here\n"
-	.string "any time to increase your SAFARI\l"
-	.string "LEVEL.$"
+	.string "any time to increase your Safari\l"
+	.string "Level.$"
 
 FuchsiaCity_SafariZoneEntrance_UpgradeGuy::
 	goto_if_eq VAR_KANTO_SAFARI_ZONE_PROGRESS, 1, FuchsiaCity_SafariZoneEntrance_UpgradeGuy1
@@ -298,34 +298,34 @@ FuchsiaCity_SafariZoneEntrance_UpgradeGuyNotEnoughMoney::
 
 FuchsiaCity_SafariZoneEntrance_Text_Steven:
 	.string "Oh, hey, {PLAYER}.\p"
-	.string "I hope you're enjoying the SAFARI.\p"
+	.string "I hope you're enjoying the Safari.\p"
 	.string "Have you seen any rare stones\n"
 	.string "lately?$"
 
 FuchsiaCity_SafariZoneEntrance_Text_Level1:
 	.string "Hello {PLAYER}, would you\n"
-	.string "like to increase your SAFARI LEVEL\l"
+	.string "like to increase your Safari Level\l"
 	.string "to 2? It will cost you ¥200,000$"
 
 FuchsiaCity_SafariZoneEntrance_Text_Level2:
 	.string "Hello {PLAYER}, would you\n"
-	.string "like to increase your SAFARI LEVEL\l"
+	.string "like to increase your Safari Level\l"
 	.string "to 3? It will cost you ¥300,000$"
 
 FuchsiaCity_SafariZoneEntrance_Text_Level3:
 	.string "Hello {PLAYER}, would you\n"
-	.string "like to increase your SAFARI LEVEL\l"
+	.string "like to increase your Safari Level\l"
 	.string "to 4? It will cost you ¥400,000$"
 
 FuchsiaCity_SafariZoneEntrance_Text_UpgradeGuyDeclined:
 	.string "Oh, that's too bad, then... $"
 
 FuchsiaCity_SafariZoneEntrance_Text_UpgradeGuyAccepted:
-	.string "Enjoy the premium SAFARI ZONE\n"
+	.string "Enjoy the premium Safari Zone\n"
 	.string "experience!$"
 
 FuchsiaCity_SafariZoneEntrance_Text_MaxLevel:
 	.string "Hello {PLAYER}, thank you for\n"
 	.string "continuing to be a premium member\l"
-	.string "at the FUCHSIA SAFARI ZONE.$"
+	.string "at the Fuchsia Safari Zone.$"
 

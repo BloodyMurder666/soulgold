@@ -78,20 +78,20 @@ CeladonCity_House1_Text_Fisher3MunchMunch:
 
 CeladonCity_House1_Text_Fisher3GoldenrodIsBest:
 	.string "The food is good here, but\n"
-	.string "GOLDENROD has the best food\l"
+	.string "Goldenrod has the best food\l"
 	.string "anywhere.$"
 
 CeladonCity_House1_Text_TeacherCrunchCrunch:
 	.string "Crunch… Crunch…$"
 
 CeladonCity_House1_Text_TeacherNoCoinCase:
-	.string "Nobody here will give you a COIN\n"
-	.string "CASE. You should look in JOHTO.$"
+	.string "Nobody here will give you a Coin\n"
+	.string "Case. You should look in Johto.$"
 
 CeladonCity_House1_Text_TeacherKeepEating:
 	.string "Crunch… Crunch…\p"
 	.string "I can keep eating!\p"
-	.string "More, CHEF!$"
+	.string "More, Chef!$"
 
 CeladonCity_House1_Text_EatathonContestPoster:
 	.string "Eatathon Contest! No time limit!\p"

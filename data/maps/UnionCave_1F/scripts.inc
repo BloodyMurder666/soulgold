@@ -55,7 +55,7 @@ UnionCave_1F_EventScript_FirebreatherRay::
 	end	
 
 UnionCave_1F_Text_HikerRussellSeen:
-	.string "You're headed to AZALEA, are you?\p"
+	.string "You're headed to Azalea, are you?\p"
 	.string "Let my POKéMON see if you are good\n"
 	.string "enough to battle.$"
 
@@ -89,11 +89,11 @@ UnionCave_1F_Text_HikerDanielBeaten:
 
 UnionCave_1F_Text_HikerDanielAfter:
 	.string "I was conned into buying a\n"
-	.string "SLOWPOKETAIL.\p"
+	.string "Slowpoketail.\p"
 	.string "I feel sorry for the poor POKéMON.$"
 
 UnionCave_1F_Text_FirebreatherBillSeen:
-	.string "ZUBAT's SUPERSONIC keeps confusing\n"
+	.string "Zubat's Supersonic keeps confusing\n"
 	.string "my POKéMON.\p"
 	.string "I'm seriously upset about that!$"
 
@@ -110,7 +110,7 @@ UnionCave_1F_Text_FirebreatherRaySeen:
 	.string "scary.$"
 
 UnionCave_1F_Text_FirebreatherRayBeaten:
-	.string "FLASH!$"
+	.string "Flash!$"
 
 UnionCave_1F_Text_FirebreatherRayAfter:
 	.string "It's my POKéMON's fire that lights\n"

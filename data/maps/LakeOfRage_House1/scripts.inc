@@ -27,7 +27,7 @@ HiddenPowerGuy_Text_Intro:
     .string "POKéMON. Take this, child.$"
 
 HiddenPowerGuy_Text_Explanation:
-    .string "Do you see it? It is HIDDEN POWER!\p"
+    .string "Do you see it? It is Hidden Power!\p"
     .string "It draws out the power of POKéMON\n"
     .string "for attacking.\p"
     .string "Remember this: its type and power\n"

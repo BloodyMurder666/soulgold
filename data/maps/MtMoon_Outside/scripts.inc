@@ -16,9 +16,9 @@ MtMoon_Outside_EventScript_Clefairy::
 	end
 
 MtMoon_Outside_Text_DontLitterSign:
-	.string "MT.MOON SQUARE\n"
-	.string "DON'T LITTER$"
+	.string "Mt.Moon Square\n"
+	.string "Don'T Litter$"
 
 MtMoon_Outside_Text_Clefairy:
-    .string "CLEFAIRY: Pi pippippi!$"
+    .string "Clefairy: Pi pippippi!$"
 

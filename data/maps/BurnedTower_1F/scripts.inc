@@ -51,13 +51,13 @@ BurnedTower_Movement_Eusine2:
 
 
 BurnedTower_1FEusineIntroText:
-	.string "EUSINE: My name's EUSINE.\p"
+	.string "Eusine: My name's Eusine.\p"
 	.string "I'm on the trail of a POKéMON\n"
-	.string "called SUICUNE.\p"
+	.string "called Suicune.\p"
 	.string "And you are...?\p"
 	.string "{PLAYER}? Glad to meet you!\p"
-	.string "I heard SUICUNE might be in\n"
-	.string "this BURNED TOWER, so I came\l"
+	.string "I heard Suicune might be in\n"
+	.string "this Burned Tower, so I came\l"
 	.string "to check it out.\p"
 	.string "But where exactly could it be?$"
 
@@ -78,19 +78,19 @@ BurnedTower_1F_EventScript_Morty::
 	end
 
 BurnedTower_1FEusineText:
-	.string "EUSINE: I heard SUICUNE might\n"
-	.string "be in this BURNED TOWER, so I\l"
+	.string "Eusine: I heard Suicune might\n"
+	.string "be in this Burned Tower, so I\l"
 	.string "came to check it out.\p"
 	.string "But where exactly could it be?$"
 
 BurnedTower_1FMortyText:
-	.string "MORTY: ECRUTEAK's GYM LEADER\n"
+	.string "Morty: Ecruteak's Gym Leader\n"
 	.string "has to study what are said to\l"
 	.string "be the legendary POKéMON--\l"
-	.string "SUICUNE, ENTEI and RAIKOU.\p"
-	.string "EUSINE is here, so I've\n"
+	.string "Suicune, Entei and Raikou.\p"
+	.string "Eusine is here, so I've\n"
 	.string "decided to investigate the\l"
-	.string "TOWER with him.$"
+	.string "Tower with him.$"
 
 BurnedTower_1F_EventScript_Silver::
 	lock
@@ -201,7 +201,7 @@ BurnedTower_Text_NardAfter:
 
 BurnedTower_Text_RichardoSeen:
 	.string "I'm practicing my stealing in the\n"
-	.string "BURNED TOWER! Don't try this at\p"
+	.string "Burned Tower! Don't try this at\p"
 	.string "home!$"
 BurnedTower_Text_RichardoBeaten:
 	.string "Pfffffffffffffff.$"

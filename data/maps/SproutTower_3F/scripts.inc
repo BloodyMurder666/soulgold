@@ -153,7 +153,7 @@ SproutTower_3F_Movement_EscapeRope:
 	step_end
 
 SproutTower_Text_ElderLecturesRival:
-	.string "ELDER: You are indeed skilled\n"
+	.string "Elder: You are indeed skilled\n"
 	.string "as a trainer.\p"
 	.string "As promised, here is your HM.\p"
 	.string "But let me say this: You should\n"
@@ -165,7 +165,7 @@ SproutTower_Text_ElderLecturesRival:
 SproutTower_Text_RivalOnlyCaresStrong:
 	.string "…\n"
 	.string "…Humph!\p"
-	.string "He claims to be the ELDER but\n"
+	.string "He claims to be the Elder but\n"
 	.string "he's weak.\p"
 	.string "It stands to reason.\p"
 	.string "I'd never lose to fools who babble\n"
@@ -176,11 +176,11 @@ SproutTower_Text_RivalOnlyCaresStrong:
 	.string "about weak POKéMON.$"
 
 SproutTower_Text_RivalUsedEscapeRope:
-	.string "{RIVAL} used an ESCAPE ROPE!$"
+	.string "{RIVAL} used an Escape Rope!$"
 
 SproutTower_Text_SageLi_Seen:
 	.string "So good of you to come here!\p"
-	.string "SPROUT TOWER is a place of\n"
+	.string "Sprout Tower is a place of\n"
 	.string "training.\p"
 	.string "People and POKéMON test their\n"
 	.string "bonds to build a bright future\l"
@@ -195,13 +195,13 @@ SproutTower_Text_SageLi_Beaten:
 SproutTower_Text_SageLi_TakeFlash:
 	.string "You and your POKéMON should\n"
 	.string "have no problem using this move.\p"
-	.string "Take this FLASH HM.$"
+	.string "Take this Flash HM.$"
 
 SproutTower_Text_SageLi_FlashExplain:
-	.string "FLASH illuminates even the\n"
+	.string "Flash illuminates even the\n"
 	.string "darkest of all places.\p"
 	.string "But to use it out of battle, you\n"
-	.string "need the BADGE from VIOLET'S GYM.$"
+	.string "need the Badge from Violet'S Gym.$"
 
 SproutTower_Text_SageLi_AfterBattle:
 	.string "I hope you learn and grow from\n"
@@ -229,10 +229,10 @@ SproutTower_Text_SageTroy_Beaten:
 	.string "Yes, your trust is real!$"
 
 SproutTower_Text_SageTroy_AfterBattle:
-	.string "It is not far to the ELDER.$"
+	.string "It is not far to the Elder.$"
 
 SproutTower_Text_SageNeal_Seen:
-	.string "The ELDER's HM lights even\n"
+	.string "The Elder's HM lights even\n"
 	.string "pitch-black darkness.$"
 
 SproutTower_Text_SageNeal_Beaten:
@@ -244,4 +244,4 @@ SproutTower_Text_SageNeal_AfterBattle:
 
 SproutTower_Text_3F_Painting:
 	.string "It's a powerful painting of a\n"
-	.string "BELLSPROUT.$"
+	.string "Bellsprout.$"

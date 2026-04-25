@@ -224,13 +224,13 @@ NewBarkTown_Movement_FaceDown:
 	step_end
 
 NewBarkTown_Text_LabSign:
-	.string "PROF.ELM's LAB$"
+	.string "Prof.Elm's Lab$"
 
 NewBarkTown_Text_Door:
 	.string "The door is locked.$"
 
 NewBarkTown_Text_Wooper:
-	.string "WOOPER: Woooooop.$"
+	.string "Wooper: Woooooop.$"
 
 NewBarkTown_Text_FatManState2:
 	.string "Wow, your POKéGEAR is impressive!\n"
@@ -238,7 +238,7 @@ NewBarkTown_Text_FatManState2:
 
 NewBarkTown_Text_FatManState3:
 	.string "Yo, {PLAYER}!\p"
-	.string "I hear PROF.ELM discovered\n"
+	.string "I hear Prof.Elm discovered\n"
 	.string "some new POKéMON.$"
 
 NewBarkTown_Text_LassState2:
@@ -263,14 +263,14 @@ NewBarkTown_Text_LassState5:
 
 NewBarkTown_Text_Silver1:
 	.string ". . .\p"
-	.string "So this is the famous ELM\n"
-	.string "POKéMON LAB…$"
+	.string "So this is the famous Elm\n"
+	.string "POKéMON Lab…$"
 
 NewBarkTown_Text_Silver2:
 	.string "…What are you staring at?$"
 
 NewBarkTown_Text_Sign:
-	.string "NEW BARK TOWN\p"
+	.string "New Bark Town\p"
 	.string "The Town Where the Winds of\n"
 	.string "a New Beginning Blow$"
 
@@ -286,4 +286,4 @@ NewBarkTown_Text_PlayersHouse:
 	.string "{PLAYER}'s House$"
 
 NewBarkTown_Text_ElmsHouse:
-	.string "PROF.ELM's House$"
+	.string "Prof.Elm's House$"

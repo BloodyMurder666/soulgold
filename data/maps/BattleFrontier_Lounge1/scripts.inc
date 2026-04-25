@@ -153,11 +153,11 @@ BattleFrontier_Lounge1_EventScript_Boy2::
 BattleFrontier_Lounge1_Text_PokemonBreederIntro:
 	.string "For 70 years I have raised POKéMON!\n"
 	.string "I am the man they revere as\l"
-	.string "the legendary top POKéMON BREEDER!\p"
+	.string "the legendary top POKéMON Breeder!\p"
 	.string "If you ever become as seasoned as me,\n"
 	.string "you'll see the abilities of POKéMON\l"
 	.string "at a glance.\p"
-	.string "You're a TRAINER. Doesn't it interest\n"
+	.string "You're a Trainer. Doesn't it interest\n"
 	.string "you to know your own POKéMON's\l"
 	.string "abilities?\p"
 	.string "Here!\n"
@@ -185,27 +185,27 @@ BattleFrontier_Lounge1_Text_OutstandingAbility:
 
 BattleFrontier_Lounge1_Text_BestAspectHP:
 	.string "Incidentally, the best aspect of it,\n"
-	.string "I would say, is its HP…$"
+	.string "I would say, is its Hp…$"
 
 BattleFrontier_Lounge1_Text_BestAspectAtk:
 	.string "Incidentally, the best aspect of it,\n"
-	.string "I would say, is its ATTACK…$"
+	.string "I would say, is its Attack…$"
 
 BattleFrontier_Lounge1_Text_BestAspectDef:
 	.string "Incidentally, the best aspect of it,\n"
-	.string "I would say, is its DEFENSE…$"
+	.string "I would say, is its Defense…$"
 
 BattleFrontier_Lounge1_Text_BestAspectSpAtk:
 	.string "Incidentally, the best aspect of it,\n"
-	.string "I would say, is its SPECIAL ATTACK…$"
+	.string "I would say, is its Special Attack…$"
 
 BattleFrontier_Lounge1_Text_BestAspectSpDef:
 	.string "Incidentally, the best aspect of it,\n"
-	.string "I would say, is its SPECIAL DEFENSE…$"
+	.string "I would say, is its Special Defense…$"
 
 BattleFrontier_Lounge1_Text_BestAspectSpeed:
 	.string "Incidentally, the best aspect of it,\n"
-	.string "I would say, is its SPEED…$"
+	.string "I would say, is its Speed…$"
 
 BattleFrontier_Lounge1_Text_StatRelativelyGood:
 	.string "That stat is relatively good.\n"

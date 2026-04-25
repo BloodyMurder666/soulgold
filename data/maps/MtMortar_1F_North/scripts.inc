@@ -33,16 +33,16 @@ MountMortar2_Text_PokemaniacMillerAfter:
 	.string "I wonder how he is?$"
 
 MountMortar2_Text_SupernerdMarkusSeen:
-	.string "Hey! HUGH!$"
+	.string "Hey! Hugh!$"
 
 MountMortar2_Text_SupernerdMarkusBeaten:
 	.string "I mistook you for someone\n"
 	.string "else…$"
 
 MountMortar2_Text_SupernerdMarkusAfter:
-	.string "I came to explore MT.MORTAR,\n"
+	.string "I came to explore Mt.Mortar,\n"
 	.string "but I got separated from my\l"
 	.string "partner…\p"
 	.string "Did you run into a trainer\n"
-	.string "who uses a SEADRA that knows\l"
-	.string "WATERFALL?$"
+	.string "who uses a Seadra that knows\l"
+	.string "Waterfall?$"

@@ -40,9 +40,9 @@ Route41_Text_SwimmermGeorgeBeaten:
 	.string "Pant, pant…$"
 
 Route41_Text_SwimmermGeorgeAfter:
-	.string "It's so far to CIANWOOD.\p"
+	.string "It's so far to Cianwood.\p"
 	.string "But it's no easy return trip\n"
-	.string "to OLIVINE either.\p"
+	.string "to Olivine either.\p"
 	.string "What should I do?$"
 
 Route41_EventScript_Berke::
@@ -90,13 +90,13 @@ Route41_EventScript_Mathew::
 
 Route41_Text_SwimmermMathewSeen:
 	.string "Are you seeking the secrets\n"
-	.string "of WHIRL ISLANDS?$"
+	.string "of Whirl Islands?$"
 
 Route41_Text_SwimmermMathewBeaten:
 	.string "Ooh, you've got great endurance!$"
 
 Route41_Text_SwimmermMathewAfter:
-	.string "A secret about WHIRL ISLANDS…\p"
+	.string "A secret about Whirl Islands…\p"
 	.string "It's pitch-black inside!$"
 
 Route41_EventScript_Kaylee::
@@ -105,7 +105,7 @@ Route41_EventScript_Kaylee::
 	end
 
 Route41_Text_SwimmerfKayleeSeen:
-	.string "I'm on my way to WHIRL ISLANDS.\p"
+	.string "I'm on my way to Whirl Islands.\p"
 	.string "I'm going exploring with friends.$"
 
 Route41_Text_SwimmerfKayleeBeaten:
@@ -113,7 +113,7 @@ Route41_Text_SwimmerfKayleeBeaten:
 
 Route41_Text_SwimmerfKayleeAfter:
 	.string "There's supposed to be a big\n"
-	.string "POKéMON deep beneath WHIRL ISLANDS.\p"
+	.string "POKéMON deep beneath Whirl Islands.\p"
 	.string "I wonder what it could be?$"
 
 Route41_EventScript_Susie::
@@ -130,7 +130,7 @@ Route41_Text_SwimmerfSusieBeaten:
 
 Route41_Text_SwimmerfSusieAfter:
 	.string "Wasn't there a hit song about\n"
-	.string "a boy riding a LAPRAS?$"
+	.string "a boy riding a Lapras?$"
 
 Route41_EventScript_Denise::
 	trainerbattle_single TRAINER_DENISE, Route41_Text_SwimmerfDeniseSeen, Route41_Text_SwimmerfDeniseBeaten
@@ -165,7 +165,7 @@ Route41_Text_SwimmerfKaraBeaten:
 
 Route41_Text_SwimmerfKaraAfter:
 	.string "I heard roars from deep inside\n"
-	.string "the ISLANDS.$"
+	.string "the Islands.$"
 
 Route41_EventScript_Wendy::
 	trainerbattle_single TRAINER_WENDY, Route41_Text_SwimmerfWendySeen, Route41_Text_SwimmerfWendyBeaten
@@ -173,14 +173,14 @@ Route41_EventScript_Wendy::
 	end
 
 Route41_Text_SwimmerfWendySeen:
-	.string "At night, STARYU gather near\n"
+	.string "At night, Staryu gather near\n"
 	.string "the water's surface.$"
 
 Route41_Text_SwimmerfWendyBeaten:
 	.string "Oh, dear…$"
 
 Route41_Text_SwimmerfWendyAfter:
-	.string "The clusters of STARYU light up\n"
+	.string "The clusters of Staryu light up\n"
 	.string "at the same time.\p"
 	.string "It's so beautiful, it's scary.$"
 
@@ -285,11 +285,11 @@ Route41_EventScript_TentacruelAttack4::
 	end
 
 Route41_Text_Tentacruel:
-	.string "TENTACRUEL: Cruooo...$"
+	.string "Tentacruel: Cruooo...$"
 
 Route41_Text_TentacruelAttack:
-	.string "TENTACRUEL: CRUOOOOOO!$"
+	.string "Tentacruel: Cruoooooo!$"
 
 Route41_Text_TentacruelHeal:
-	.string "The TENTACRUEL used RECOVER!\n"
+	.string "The Tentacruel used Recover!\n"
 	.string "It is fully healed!$"

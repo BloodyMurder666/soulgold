@@ -18,7 +18,7 @@ OlivineCity_EventScript_PunisherBoy::
 	end
 
 OlivineCity_Text_PunishmentBro:
-	.string "Along the way to CIANWOOD,\n"
+	.string "Along the way to Cianwood,\n"
 	.string "there are four deserted islands.\p"
 	.string "Bad kids are taken to those\n"
 	.string "islands as punishment!$"

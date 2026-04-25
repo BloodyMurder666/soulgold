@@ -321,17 +321,17 @@ Route32_Text_CooltrainerM_AideIsWaiting:
 	.string "Some guy wearing glasses\p"
 	.string "was looking for you.\p"
 	.string "See for yourself. He's waiting for\n"
-	.string "you at the POKéMON CENTER.$"
+	.string "you at the POKéMON Center.$"
 
 Route32_Text_CooltrainerM_SproutTower:
-	.string "Have you gone to SPROUT TOWER?\n"
-	.string "If you ever visit VIOLET CITY,\p"
+	.string "Have you gone to Sprout Tower?\n"
+	.string "If you ever visit Violet City,\p"
 	.string "they'll expect you to train there.\n"
 	.string "That's basic for trainers.\p"
-	.string "Go to SPROUT TOWER!$"
+	.string "Go to Sprout Tower!$"
 
 Route32_Text_CooltrainerM_VioletGym:
-	.string "Have you gone to the POKéMON GYM?\n"
+	.string "Have you gone to the POKéMON Gym?\n"
 	.string "You can test your POKéMON and\p"
 	.string "yourself there.\n"
 	.string "It's a rite of passage for all\p"
@@ -340,20 +340,20 @@ Route32_Text_CooltrainerM_VioletGym:
 Route32_Text_CooltrainerM_HaveThisSeed:
 	.string "You have some good POKéMON there.\n"
 	.string "It must be from the training you\p"
-	.string "gave them around VIOLET CITY.\n"
-	.string "The training at the GYM must have\p"
+	.string "gave them around Violet City.\n"
+	.string "The training at the Gym must have\p"
 	.string "been especially helpful. As a\n"
-	.string "souvenir of VIOLET CITY, take this.\p"
-	.string "It increases the power of GRASS-\n"
+	.string "souvenir of Violet City, take this.\p"
+	.string "It increases the power of Grass-\n"
 	.string "type moves.$"
 
 Route32_Text_CooltrainerM_Experiences:
-	.string "Your experiences in VIOLET CITY\n"
+	.string "Your experiences in Violet City\n"
 	.string "should be useful for your journey.$"
 
 Route32_Text_SlowpokeTailOffer:
 	.string "How would you like to have this\n"
-	.string "tasty, nutritious SLOWPOKE TAIL?\p"
+	.string "tasty, nutritious Slowpoke Tail?\p"
 	.string "For you right now, just\n"
 	.string "¥1,000,000!\p"
 	.string "You'll want this!$"
@@ -395,7 +395,7 @@ Route32_Text_FisherHenry_Seen:
 	.string "My POKéMON? Freshly caught!$"
 
 Route32_Text_FisherHenry_Beaten:
-	.string "SPLASH?$"
+	.string "Splash?$"
 
 Route32_Text_FisherHenry_After:
 	.string "Freshly caught POKéMON are\n"
@@ -449,65 +449,65 @@ Route32_Text_PicnickerLiz1_After:
 	.string "I was having a nice chat too.$"
 
 Route32_Text_BirdKeeperPeter_Seen:
-	.string "That BADGE! It's from VIOLET CITY!\n"
-	.string "You beat FALKNER?$"
+	.string "That Badge! It's from Violet City!\n"
+	.string "You beat Falkner?$"
 
 Route32_Text_BirdKeeperPeter_Beaten:
 	.string "I know what my weaknesses are.$"
 
 Route32_Text_BirdKeeperPeter_After:
 	.string "I should train again at the\n"
-	.string "GYM in VIOLET CITY.$"
+	.string "Gym in Violet City.$"
 
 Route32_Text_RoarIntro:
-	.string "WROOOOAR! PEOPLE RUN WHEN I\n"
-	.string "ROAR! BUT YOU CAME LOOKING!\p"
-	.string "THAT PLEASES ME! NOW TAKE THIS!$"
+	.string "Wrooooar! People Run When I\n"
+	.string "Roar! But You Came Looking!\p"
+	.string "That Pleases Me! Now Take This!$"
 
 Route32_Text_RoarOutro:
-	.string "WROOOOAR! IT'S ROAR!\p"
-	.string "EVEN POKéMON RUN FROM A GOOD\n"
-	.string "ROAR!$"
+	.string "Wrooooar! It'S Roar!\p"
+	.string "Even POKéMON Run From A Good\n"
+	.string "Roar!$"
 
 Route32_Text_MeetFrieda:
-	.string "FRIEDA: Yahoo!\p"
-	.string "I'm FRIEDA of the WEEKDAY FAMILY!\n"
+	.string "Frieda: Yahoo!\p"
+	.string "I'm Frieda of the Weekday Family!\n"
 	.string "Nice to meet you!\p"
 	.string "If you can guess my favorite day,\n"
 	.string "I'll give you a reward.$"
 
 Route32_Text_FriedaGivesGift:
-	.string "Here's a POISON BARB for you!$"
+	.string "Here's a Poison Barb for you!$"
 
 Route32_Text_FriedaGaveGift:
-	.string "FRIEDA: Give it to a POKéMON\n"
-	.string "that has POISON-type moves.\p"
+	.string "Frieda: Give it to a POKéMON\n"
+	.string "that has Poison-type moves.\p"
 	.string "Oh!\p"
 	.string "It's wicked!\p"
 	.string "You'll be shocked how good it\n"
 	.string "makes poison moves!$"
 
 Route32_Text_FriedaFriday:
-	.string "FRIEDA: Hiya! What day do\n"
+	.string "Frieda: Hiya! What day do\n"
 	.string "you like?\p"
 	.string "I love Friday. No doubt about\n"
 	.string "it!\p"
 	.string "Don't you think it's great too?$"
 
 Route32_Text_FriedaNope:
-	.string "FRIEDA: Not that one!$"
+	.string "Frieda: Not that one!$"
 
 Route32_Text_Sign1:
-	.string "ROUTE 32\p"
-	.string "VIOLET CITY - AZALEA TOWN$"
+	.string "Route 32\p"
+	.string "Violet City - Azalea Town$"
 
 Route32_Text_Sign2:
-	.string "RUINS OF ALPH\n"
-	.string "EAST ENTRANCE$"
+	.string "Ruins Of Alph\n"
+	.string "East Entrance$"
 
 Route32_Text_Sign3:
-	.string "UNION CAVE\n"
-	.string "AHEAD$"
+	.string "Union Cave\n"
+	.string "Ahead$"
 `
 
 script Route32HiddenGrottoWarp {

@@ -169,7 +169,7 @@ Route29_Text_OldManExplanation:
 	.string "Then, throw a ball at them from\n"
 	.string "your bag! Any ball will do.\p"
 	.string "If you want to learn more,\n"
-	.string "go to the ACADEMY in VIOLET CITY!\p"
+	.string "go to the Academy in Violet City!\p"
 	.string "The students there know a lot\n"
 	.string "about POKéMON.$"
 
@@ -180,7 +180,7 @@ Route29_Text_OldManDeclined:
 	.string "Your POKéDEX shows where you can\n"
 	.string "find them too!\p"
 	.string "If you want to learn more,\n"
-	.string "go to the ACADEMY in VIOLET CITY!\p"
+	.string "go to the Academy in Violet City!\p"
 	.string "The students know a lot about\n"
 	.string "POKéMON.$"
 
@@ -192,7 +192,7 @@ Route29_Text_Youngster:
 Route29_Text_Lass:
 	.string "See those ledges?\n"
 	.string "It's scary to jump off them.\p"
-	.string "But you can go to NEW BARK\n"
+	.string "But you can go to New Bark\n"
 	.string "without walking through the grass.$"
 
 Route29_Text_Girl:
@@ -208,9 +208,9 @@ Route29_Text_Boy_WaitingForNight:
 	.string "appear only at night.$"
 
 Route29_Text_MeetTuscany:
-	.string "TUSCANY: I do believe that this\n"
+	.string "Tuscany: I do believe that this\n"
 	.string "is the first time we've met?\p"
-	.string "I'm TUSCANY of the WEEKDAY FAMILY.\p"
+	.string "I'm Tuscany of the Weekday Family.\p"
 	.string "If you can guess my favorite day,\n"
 	.string "I'll give you a reward.$"
 
@@ -219,24 +219,24 @@ Route29_Text_TuscanyNope:
 
 Route29_Text_TuscanyGivesGift:
 	.string "Yes! By way of introduction,\n"
-	.string "please accept this gift, a SILK\l"
-	.string "SCARF.$"
+	.string "please accept this gift, a Silk\l"
+	.string "Scarf.$"
 
 Route29_Text_TuscanyGaveGift:
-	.string "TUSCANY: Wouldn't you agree\n"
+	.string "Tuscany: Wouldn't you agree\n"
 	.string "that it is most adorable?\p"
-	.string "It strengthens NORMAL-type\n"
+	.string "It strengthens Normal-type\n"
 	.string "moves.\p"
 	.string "I am certain it will be of use.$"
 
 Route29_Text_TuscanyTuesday:
-	.string "TUSCANY: Have you met MONICA,\n"
+	.string "Tuscany: Have you met Monica,\n"
 	.string "my older sister?\p"
-	.string "Or my younger brother, WESLEY?\p"
+	.string "Or my younger brother, Wesley?\p"
 	.string "I am the third of seven\n"
 	.string "children.$"
 
 Route29_Text_Sign1:
-	.string "ROUTE 29\p"
-	.string "CHERRYGROVE CITY - NEW BARK TOWN$"
+	.string "Route 29\p"
+	.string "Cherrygrove City - New Bark Town$"
 

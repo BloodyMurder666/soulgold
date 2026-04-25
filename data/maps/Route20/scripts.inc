@@ -64,13 +64,13 @@ Route20_Text_Headlocker:
 	.string "I've been fishing here for hours!$"
 
 Route20_Text_Seel:
-	.string "SEEL: Seel seel!$"
+	.string "Seel: Seel seel!$"
 
 Route20_Text_Dewgong:
-	.string "DEWGONG: Goooong!$"
+	.string "Dewgong: Goooong!$"
 
 Route20_Text_SeafoamSign:
-	.string "SEAFOAM ISLANDS$"
+	.string "Seafoam Islands$"
 
 Route20_Text_SwimmerfNicoleSeen:
 	.string "I feel so much lighter in water.$"
@@ -84,18 +84,18 @@ Route20_Text_SwimmerfNicoleAfterBattle:
 
 Route20_Text_SwimmerfLoriSeen:
 	.string "What an impressive collection of\n"
-	.string "GYM BADGES. We should battle!$"
+	.string "Gym Badges. We should battle!$"
 
 Route20_Text_SwimmerfLoriBeaten:
 	.string "No!$"
 
 Route20_Text_SwimmerfLoriAfterBattle:
-	.string "SURF is no longer the only HM move\n"
+	.string "Surf is no longer the only HM move\n"
 	.string "you use in water.$"
 
 Route20_Text_SwimmermCameronSeen:
 	.string "I guess it's impossible to swim\n"
-	.string "all the way to JOHTO.$"
+	.string "all the way to Johto.$"
 
 Route20_Text_SwimmermCameronBeaten:
 	.string "Aiyah!$"
@@ -106,5 +106,5 @@ Route20_Text_SwimmermCameronAfterBattle:
 
 Route20_Text_CinnabarIsland_GymUnusedSign:
 	.string "What does this sign say?\p"
-	.string "CINNABAR GYM LEADER: BLAINE$"
+	.string "Cinnabar Gym Leader: Blaine$"
 

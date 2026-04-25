@@ -78,16 +78,16 @@ EcruteakCity_Gym_EventScript_Statue2::
 	end
 
 EcruteakCity_Gym_Text_GymStatue:
-	.string "ECRUTEAK CITY POKéMON GYM$"
+	.string "Ecruteak City POKéMON Gym$"
 
 EcruteakCity_Gym_Text_GymStatueCertified:
-	.string "ECRUTEAK CITY POKéMON GYM\p"
-	.string "MORTY'S CERTIFIED TRAINERS:\n"
+	.string "Ecruteak City POKéMON Gym\p"
+	.string "Morty'S Certified Trainers:\n"
 	.string "{PLAYER}$"
 
 MortyIntroText:
 	.string "Good of you to have come.\p"
-	.string "Here in ECRUTEAK, POKéMON have\n"
+	.string "Here in Ecruteak, POKéMON have\n"
 	.string "always been revered.\p"
 	.string "It's said that a rainbow-colored\n"
 	.string "POKéMON will come down to\l"
@@ -105,23 +105,23 @@ MortyIntroText:
 
 MortyWinLossText:
 	.string "I'm not good enough yet...\p"
-	.string "All right. This BADGE is yours.$"
+	.string "All right. This Badge is yours.$"
 
 Text_ReceivedFogBadge:
-	.string "{PLAYER} received the FOGBADGE.$"
+	.string "{PLAYER} received the Fogbadge.$"
 
 MortyText_FogBadgeSpeech:
-	.string "With the FOGBADGE, POKéMON up\n"
+	.string "With the Fogbadge, POKéMON up\n"
 	.string "to Level 50 will obey you.\p"
 	.string "Also, any POKéMON that knows\n"
-	.string "SURF will be able to use it\l"
+	.string "Surf will be able to use it\l"
 	.string "anytime.\p"
 	.string "I want you to have this too.$"
 
 MortyText_ShadowBallSpeech:
-	.string "That's SHADOW BALL.\n"
+	.string "That's Shadow Ball.\n"
 	.string "It causes damage and may\l"
-	.string "lower SP. DEF.\p"
+	.string "lower Sp. Def.\p"
 	.string "Use it if it suits you.$"
 
 MortyFightDoneText:
@@ -133,12 +133,12 @@ MortyFightDoneText:
 	.string "I envy you for that...$"
 
 MortyRematchText:
-	.string "Ah, the JOHTO CHAMPION!\n"
+	.string "Ah, the Johto Champion!\n"
 	.string "Good of you to come.\p"
 	.string "You've shown strength and skill,\n"
 	.string "but have you grown since we\l"
 	.string "last battled?\p"
-	.string "I've trained with my GHOST-type\n"
+	.string "I've trained with my Ghost-type\n"
 	.string "POKéMON ever since.\p"
 	.string "Let's see if you can overcome\n"
 	.string "the shadows again.\p"
@@ -172,8 +172,8 @@ SagePingBeatenText:
 	.string "Ah! Well done!$"
 
 SagePingAfterBattleText:
-	.string "We use GHOST-type POKéMON.\p"
-	.string "No NORMAL-type attacks can\n"
+	.string "We use Ghost-type POKéMON.\p"
+	.string "No Normal-type attacks can\n"
 	.string "harm them!$"
 
 MediumMarthaSeenText:
@@ -200,11 +200,11 @@ MediumGraceAfterBattleText:
 	.string "your eyes!$"
 
 EcruteakCity_GymGuideText:
-	.string "Hey CHAMP! You're almost\n"
+	.string "Hey Champ! You're almost\n"
 	.string "halfway there!\p"
-	.string "Trainers here use GHOST- and\n"
-	.string "DARK-type POKéMON.\p"
-	.string "While MORTY is a GHOST-type\n"
+	.string "Trainers here use Ghost- and\n"
+	.string "Dark-type POKéMON.\p"
+	.string "While Morty is a Ghost-type\n"
 	.string "expert, be wary of his mystic\l"
 	.string "deer.\p"
 	.string "It's said to cause strange\n"
@@ -216,7 +216,7 @@ EcruteakCity_GymGuideWinText:
 	.string "out of pure terror!$"
 
 EcruteakCity_GymClosedText:
-	.string "MORTY, the GYM LEADER, is\n"
+	.string "Morty, the Gym Leader, is\n"
 	.string "absent.\p"
 	.string "Sorry, but you'll have to\n"
 	.string "leave.\p"

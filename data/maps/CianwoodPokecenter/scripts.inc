@@ -70,20 +70,20 @@ CianwoodGym_EventScript_GymGuideAfter::
 	end
 
 CianwoodCity_Text_GymGuide:
-	.string "The POKéMON GYM trainers here are\n"
+	.string "The POKéMON Gym trainers here are\n"
 	.string "macho bullies.\p"
 	.string "If I stick around, they might\n"
 	.string "come after me.\p"
-	.string "Here's some advice: the GYM LEADER\n"
-	.string "uses the FIGHTING-type.\p"
+	.string "Here's some advice: the Gym Leader\n"
+	.string "uses the Fighting-type.\p"
 	.string "So you should confound him with\n"
 	.string "psychic POKéMON.\p"
 	.string "Wipe out his POKéMON before they\n"
 	.string "can use their physical strength.\p"
 	.string "And those boulders in the middle\n"
-	.string "of the GYM?\p"
+	.string "of the Gym?\p"
 	.string "If you don't move them correctly,\n"
-	.string "you won't reach the GYM LEADER.\p"
+	.string "you won't reach the Gym Leader.\p"
 	.string "If you get stuck, go outside.$"
 
 CianwoodCity_Text_GymGuideWin:

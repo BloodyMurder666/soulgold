@@ -101,31 +101,31 @@ Route35_Text_PicnickerBrookeAfter:
 	.string "my boyfriend.$"
 
 Route35_Text_PicnickerKimSeen:
-	.string "Are you going to the GYM? Me too!$"
+	.string "Are you going to the Gym? Me too!$"
 
 Route35_Text_PicnickerKimBeaten:
 	.string "Oh. I couldn't win…$"
 
 Route35_Text_PicnickerKimAfter:
-	.string "The GYM BADGES are pretty. I collect\n"
+	.string "The Gym Badges are pretty. I collect\n"
 	.string "them.$"
 
 Route35_Text_BirdKeeperBryanSeen:
-	.string "What kinds of BALLS do you use?$"
+	.string "What kinds of Balls do you use?$"
 
 Route35_Text_BirdKeeperBryanBeaten:
 	.string "Yikes! Not fast enough!$"
 
 Route35_Text_BirdKeeperBryanAfter:
 	.string "Some POKéMON flee right away.\p"
-	.string "Try catching them with KURT's FAST\n"
-	.string "BALL.\p"
-	.string "Whenever I find a WHT APRICORN, I\n"
-	.string "take it to KURT.\p"
-	.string "He turns it into a custom BALL.$"
+	.string "Try catching them with Kurt's Fast\n"
+	.string "Ball.\p"
+	.string "Whenever I find a Wht Apricorn, I\n"
+	.string "take it to Kurt.\p"
+	.string "He turns it into a custom Ball.$"
 
 Route35_Text_JugglerIrwinSeen:
-	.string "Behold my graceful BALL dexterity!$"
+	.string "Behold my graceful Ball dexterity!$"
 
 Route35_Text_JugglerIrwinBeaten:
 	.string "Whew! That was a jolt!$"
@@ -143,11 +143,11 @@ Route35_Text_BugCatcherArnieBeaten:
 	.string "Huh? I shouldn't have lost that…$"
 
 Route35_Text_BugCatcherArnieAfter:
-	.string "My VENONAT won me the Bug-Catching\n"
-	.string "Contest at the NATIONAL PARK.$"
+	.string "My Venonat won me the Bug-Catching\n"
+	.string "Contest at the National Park.$"
 
 Route35_Text_BugCatcherArnieYanma:
-	.string "Wow… Look at all those YANMA!\p"
+	.string "Wow… Look at all those Yanma!\p"
 	.string "I'm so blown away, I can't move.$"
 
 Route35_Text_FirebreatherWaltSeen:
@@ -169,17 +169,17 @@ Route35_Text_OfficerDirkBeaten:
 Route35_Text_OfficerDirkAfter:
 	.string "You know, nighttime is fun in its\n"
 	.string "own ways.\p"
-	.string "But don't overdo it, OK?$"
+	.string "But don't overdo it, Ok?$"
 
 Route35_Text_OfficerDirkTough:
 	.string "Your POKéMON look pretty tough.\p"
 	.string "You could go anywhere safely.$"
 
 Route35_Text_Sign:
-	.string "ROUTE 35$"
+	.string "Route 35$"
 
 Route35_Text_Sign2:
-	.string "NATIONAL PARK GATE$"
+	.string "National Park Gate$"
 `
 
 script Route35_HiddenGrotto {

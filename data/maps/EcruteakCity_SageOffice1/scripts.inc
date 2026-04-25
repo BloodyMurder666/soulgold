@@ -90,15 +90,15 @@ EcruteakCity_SageOffice2_Movement_StandAside:
 	step_end
 
 EcruteakTinTowerEntrance_Text_SageNoBadge:
-	.string "TIN TOWER is off limits to the\n"
+	.string "Tin Tower is off limits to the\n"
 	.string "unworthy. Sorry but you'll have\l"
 	.string "to leave.$"
 
 EcruteakTinTowerEntrance_Text_SageWithBadge:
-	.string "TIN TOWER is off limits to anyone\n"
-	.string "without ECRUTEAK GYM's BADGE.\p"
+	.string "Tin Tower is off limits to anyone\n"
+	.string "without Ecruteak Gym's Badge.\p"
 	.string "Ah!\p"
-	.string "ECRUTEAK's GYM BADGE! Please, go\n"
+	.string "Ecruteak's Gym Badge! Please, go\n"
 	.string "right through.$"
 
 EcruteakTinTowerEntrance_Text_SageNoClearBell:
@@ -106,7 +106,7 @@ EcruteakTinTowerEntrance_Text_SageNoClearBell:
 	.string "I beg your pardon, but I must ask\n"
 	.string "you to leave.\p"
 	.string "…What soothes the soul…\p"
-	.string "The WISE TRIO say things that are\n"
+	.string "The Wise Trio say things that are\n"
 	.string "so very difficult to understand…$"
 
 EcruteakTinTowerEntrance_Text_SageHearsClearBell1:
@@ -116,7 +116,7 @@ EcruteakTinTowerEntrance_Text_SageHearsClearBell1:
 	.string "..............................$"
 EcruteakTinTowerEntrance_Text_SageHearsClearBell2:
 	.string "Ah!\p"
-	.string "The sound of that CLEAR BELL!\p"
+	.string "The sound of that Clear Bell!\p"
 	.string "It… It's sublime!\p"
 	.string "I've never heard so beautiful a\n"
 	.string "sound before!\p"
@@ -124,7 +124,7 @@ EcruteakTinTowerEntrance_Text_SageHearsClearBell2:
 	.string "the bearer's soul.\p"
 	.string "You…\p"
 	.string "You may be able to make it through\n"
-	.string "TIN TOWER.\p"
+	.string "Tin Tower.\p"
 	.string "Please, do go on.$"
 
 EcruteakTinTowerEntrance_Text_SagePleaseDoGoOn:
@@ -137,13 +137,13 @@ EcruteakTinTowerEntrance_Text_SageDone:
 	.string "Truly are worthy.$"
 
 EcruteakTinTowerEntrance_Text_WanderingSage:
-	.string "The TIN TOWER ahead is a nine-\n"
+	.string "The Tin Tower ahead is a nine-\n"
 	.string "tier tower of divine beauty.\p"
 	.string "It soothes the soul of all who\n"
 	.string "see it.$"
 
 EcruteakTinTowerEntrance_Text_WanderingSageClearBell:
-	.string "The TIN TOWER shook! A POKéMON must\n"
+	.string "The Tin Tower shook! A POKéMON must\n"
 	.string "have returned to the top!$"
 
 EcruteakTinTowerEntrance_Text_Gramps:

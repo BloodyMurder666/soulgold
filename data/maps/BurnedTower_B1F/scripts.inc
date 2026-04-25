@@ -190,20 +190,20 @@ BurnedTower_B1F_Movement_EusineLeave:
 	step_end
 
 BurnedTowerB1FEusineText:
-	.string "EUSINE: I'm shocked!\p"
-	.string "SUICUNE raced by like a blur,\n"
+	.string "Eusine: I'm shocked!\p"
+	.string "Suicune raced by like a blur,\n"
 	.string "right in front of my eyes!\p"
 	.string "For ten years I chased\n"
-	.string "SUICUNE, and I finally got to\l"
+	.string "Suicune, and I finally got to\l"
 	.string "see it.\p"
 	.string "I'm all choked up!\p"
 	.string "{PLAYER}, I owe this all to you!\p"
 	.string "Thank you!\p"
 	.string "I heard that the legendary\n"
-	.string "POKéMON of ECRUTEAK test\l"
+	.string "POKéMON of Ecruteak test\l"
 	.string "chosen humans by allowing them\l"
 	.string "to get close.\p"
-	.string "I'm going to track SUICUNE.\p"
+	.string "I'm going to track Suicune.\p"
 	.string "{PLAYER}, let's meet again!\p"
 	.string "Farewell!$"
 

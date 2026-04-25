@@ -41,16 +41,16 @@ PalletTown_Text_Fisher:
 	.string "across time like e-mail.$"
 
 PalletTown_Text_Sign:
-	.string "PALLET TOWN\p"
+	.string "Pallet Town\p"
 	.string "A Tranquil Setting of Peace\n"
 	.string "& Purity$"
 
 PalletTown_Text_RedsHouseSign:
-	.string "RED'S HOUSE$"
+	.string "Red'S House$"
 
 PalletTown_Text_OaksLabSign:
-	.string "OAK POKéMON\n"
-	.string "RESEARCH LAB$"
+	.string "Oak POKéMON\n"
+	.string "Research Lab$"
 
 PalletTown_Text_BluesHouseSign:
-	.string "BLUE'S HOUSE$"
+	.string "Blue'S House$"

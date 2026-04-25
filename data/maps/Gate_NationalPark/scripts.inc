@@ -213,19 +213,19 @@ Route35NationalParkGate_Text_OfficerAskToParticipate:
 	.string "Would you like to give it a try?$"
 
 Route35NationalParkGate_Text_OfficerGiveParkBalls:
-	.string "Any EXP your POKéMON gains during\n"
+	.string "Any Exp your POKéMON gains during\n"
 	.string "the contest will be reverted when\l"
 	.string "you leave.\p"
-	.string "Here are the SAFARI BALLS for the\n"
+	.string "Here are the Safari Balls for the\n"
 	.string "Contest.$"
 
 Route35NationalParkGate_Text_ReceivedParkBalls:
-	.string "{PLAYER} received SAFARI BALLS.$"
+	.string "{PLAYER} received Safari Balls.$"
 
 Route35NationalParkGate_Text_OfficerExplainRules:
 	.string "The person who gets the strongest\n"
 	.string "bug POKéMON is the winner.\p"
-	.string "If you run out of SAFARI BALLS,\n"
+	.string "If you run out of Safari Balls,\n"
 	.string "you're done.\p"
 	.string "You can catch up to 5 POKéMON. The\n"
 	.string "last one caught will be the only\l"
@@ -237,7 +237,7 @@ Route35NationalParkGate_Text_OfficerAskToUseFirstMon:
 	.string "If you have more than one POKéMON,\n"
 	.string "you'll have to use the\l"
 	.string "first POKéMON in your party.\p"
-	.string "Is that OK with you?$"
+	.string "Is that Ok with you?$"
 
 Route35NationalParkGate_Text_OfficerHoldYourMon:
 	.string "Fine, we'll hold your other POKéMON\n"
@@ -245,14 +245,14 @@ Route35NationalParkGate_Text_OfficerHoldYourMon:
 
 Route35NationalParkGate_Text_MonLeftWithHelper:
 	.string "{PLAYER}'s POKéMON were left with the\n"
-	.string "CONTEST HELPER.$"
+	.string "Contest Helper.$"
 
 Route35NationalParkGate_Text_ChooseMonAndComeBack:
 	.string "Please choose the POKéMON to be used\n"
 	.string "in the Contest, then come see me.$"
 
 Route35NationalParkGate_Text_TakePartInFuture:
-	.string "OK. We hope you'll take part in the\n"
+	.string "Ok. We hope you'll take part in the\n"
 	.string "future.$"
 
 Route35NationalParkGate_Text_FirstMonCantBattle:
@@ -263,14 +263,14 @@ Route35NationalParkGate_Text_FirstMonCantBattle:
 
 Route35NationalParkGate_Text_MakeRoom:
 	.string "Uh-oh… Both your party and your\n"
-	.string "PC BOX are full.\p"
+	.string "PC Box are full.\p"
 	.string "You have no room to put the bug\n"
 	.string "POKéMON you catch.\p"
 	.string "Please make room in your party or\n"
-	.string "your PC BOX, then come see me.$"
+	.string "your PC Box, then come see me.$"
 
 Route35NationalParkGate_Text_EggAsFirstMon:
-	.string "Uh-oh… You have an EGG as the first\n"
+	.string "Uh-oh… You have an Egg as the first\n"
 	.string "POKéMON in your party.\p"
 	.string "Please switch it with the POKéMON\n"
 	.string "you want to use, then come see me.$"
@@ -321,18 +321,18 @@ Route35NationalParkGate_EventScript_Beauty::
 
 Route35NationalParkGate_Text_Rocker:
 	.string "I love bird POKéMON! I found a\n"
-	.string "DARK-TYPE bird in the park\l"
+	.string "Dark-Type bird in the park\l"
 	.string "last night!$"
 
 Route35NationalParkGate_Text_BC2:
-	.string "I caught a whopping SCYTHER!$"
+	.string "I caught a whopping Scyther!$"
 
 Route35NationalParkGate_Text_Beauty:
 	.string "He always wins these contests!$"
 
 Route35NationalParkGate_Text_WeHoldContests:
 	.string "We hold Contests regularly in the\n"
-	.string "PARK. You should give it a shot.$"
+	.string "Park. You should give it a shot.$"
 
 Route35NationalParkGate_Text_YoungsterWonders:
 	.string "When is the next Bug-Catching Contest\n"

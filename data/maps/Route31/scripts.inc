@@ -181,7 +181,7 @@ Route31_EventScript_ItemAntidote::
 # 91 "data/maps/Route31/scripts.pory"
 Route31_Text_CooltrainerM:
 # 92 "data/maps/Route31/scripts.pory"
-	.string "DARK CAVE…\p"
+	.string "Dark Cave…\p"
 # 93 "data/maps/Route31/scripts.pory"
 	.string "If POKéMON could light it up,\n"
 # 94 "data/maps/Route31/scripts.pory"
@@ -211,7 +211,7 @@ Route31_Text_BugCatcherWade1_After:
 # 106 "data/maps/Route31/scripts.pory"
 	.string "If you catch one, it'll go to\n"
 # 107 "data/maps/Route31/scripts.pory"
-	.string "your BOX automatically.$"
+	.string "your Box automatically.$"
 # 108 "data/maps/Route31/scripts.pory"
 
 # 109 "data/maps/Route31/scripts.pory"
@@ -237,7 +237,7 @@ Route31_Text_SleepyManGotMail:
 # 119 "data/maps/Route31/scripts.pory"
 	.string "…Zzzz… Huh?\p"
 # 120 "data/maps/Route31/scripts.pory"
-	.string "What's that? You have MAIL\n"
+	.string "What's that? You have Mail\n"
 # 121 "data/maps/Route31/scripts.pory"
 	.string "for me?$"
 # 122 "data/maps/Route31/scripts.pory"
@@ -253,7 +253,7 @@ Route31_Text_HandOverMailMon:
 # 127 "data/maps/Route31/scripts.pory"
 	.string "{PLAYER} handed over the\n"
 # 128 "data/maps/Route31/scripts.pory"
-	.string "POKéMON holding the MAIL.$"
+	.string "POKéMON holding the Mail.$"
 # 129 "data/maps/Route31/scripts.pory"
 
 # 130 "data/maps/Route31/scripts.pory"
@@ -281,7 +281,7 @@ Route31_Text_ReadingMail:
 # 141 "data/maps/Route31/scripts.pory"
 Route31_Text_DescribeNightmare:
 # 142 "data/maps/Route31/scripts.pory"
-	.string "That TM contains TORMENT.\p"
+	.string "That TM contains Torment.\p"
 # 143 "data/maps/Route31/scripts.pory"
 	.string "It's a wicked move that\n"
 # 144 "data/maps/Route31/scripts.pory"
@@ -295,7 +295,7 @@ Route31_Text_DescribeNightmare:
 # 148 "data/maps/Route31/scripts.pory"
 Route31_Text_WrongMail:
 # 149 "data/maps/Route31/scripts.pory"
-	.string "This MAIL isn't for me.$"
+	.string "This Mail isn't for me.$"
 # 150 "data/maps/Route31/scripts.pory"
 
 # 151 "data/maps/Route31/scripts.pory"
@@ -303,7 +303,7 @@ Route31_Text_MissingMail:
 # 152 "data/maps/Route31/scripts.pory"
 	.string "Why is this POKéMON so special?\p"
 # 153 "data/maps/Route31/scripts.pory"
-	.string "It doesn't have any MAIL.$"
+	.string "It doesn't have any Mail.$"
 # 154 "data/maps/Route31/scripts.pory"
 
 # 155 "data/maps/Route31/scripts.pory"
@@ -329,31 +329,31 @@ Route31_Text_CantTakeLastMon:
 # 165 "data/maps/Route31/scripts.pory"
 Route31_Text_Youngster:
 # 166 "data/maps/Route31/scripts.pory"
-	.string "I found a good POKéMON in DARK\n"
+	.string "I found a good POKéMON in Dark\n"
 # 167 "data/maps/Route31/scripts.pory"
-	.string "CAVE.\p"
+	.string "Cave.\p"
 # 168 "data/maps/Route31/scripts.pory"
 	.string "I'm going to raise it to take\n"
 # 169 "data/maps/Route31/scripts.pory"
-	.string "on FALKNER.\p"
+	.string "on Falkner.\p"
 # 170 "data/maps/Route31/scripts.pory"
-	.string "He's the leader of VIOLET\n"
+	.string "He's the leader of Violet\n"
 # 171 "data/maps/Route31/scripts.pory"
-	.string "CITY's GYM.$"
+	.string "City's Gym.$"
 # 172 "data/maps/Route31/scripts.pory"
 
 # 173 "data/maps/Route31/scripts.pory"
 Route31_Text_Sign:
 # 174 "data/maps/Route31/scripts.pory"
-	.string "ROUTE 31\p"
+	.string "Route 31\p"
 # 175 "data/maps/Route31/scripts.pory"
-	.string "VIOLET CITY - CHERRYGROVE CITY$"
+	.string "Violet City - Cherrygrove City$"
 # 176 "data/maps/Route31/scripts.pory"
 
 # 177 "data/maps/Route31/scripts.pory"
 Route31_Text_DarkCaveSign:
 # 178 "data/maps/Route31/scripts.pory"
-	.string "DARK CAVE$"
+	.string "Dark Cave$"
 
 Route31_Expert::
 # 182 "data/maps/Route31/scripts.pory"

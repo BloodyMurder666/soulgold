@@ -28,7 +28,7 @@ OlivineCityHouse3_EventScriptFishingGuruRefused::
 	end
 
 OlivineCity_Text_OfferGoodRod:
-	.string "OLIVINE is on the sea!\p"
+	.string "Olivine is on the sea!\p"
 	.string "And if it's on the sea, there\n"
 	.string "are bound to be fish!\p"
 	.string "I've fished here for 30 years.\p"

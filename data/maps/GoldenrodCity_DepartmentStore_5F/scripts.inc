@@ -187,7 +187,7 @@ GoldenrodDeptStore_Text_5FReceptionistPutInSomeMoreEffort:
 # 94 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
 	.string "It's not bad, but it's also not good.\p"
 # 95 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
-	.string "You, as the TRAINER, need to put in\n"
+	.string "You, as the Trainer, need to put in\n"
 # 96 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
 	.string "some more effort.$"
 # 97 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
@@ -245,7 +245,7 @@ GoldenrodDeptStore_Text_5FPokefanM:
 # 123 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
 GoldenrodDeptStore_Text_Girl:
 # 124 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
-	.string "A kind lady gave me RETURN\n"
+	.string "A kind lady gave me Return\n"
 # 125 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
     .string "last Sunday!$"
 # 126 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
@@ -255,7 +255,7 @@ GoldenrodDeptStore_Text_5FDirectory:
 # 128 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
     .string "Customize Your POKéMON\p"
 # 129 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
-    .string "5F TM CORNER$"
+    .string "5F TM Corner$"
 
 GoldenrodDeptSundayNpc::
 # 134 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"

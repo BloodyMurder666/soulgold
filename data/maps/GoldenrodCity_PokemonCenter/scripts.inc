@@ -46,7 +46,7 @@ GoldenrodCity_PokemonCenter_GrannyText:
     .string "trainer, like you!$"
 
 GoldenrodCity_PokemonCenter_GameboyKidText1:
-    .string "This is a special POKéMON CENTER.\n"
+    .string "This is a special POKéMON Center.\n"
     .string "The roof is made of gold!$"
 
 GoldenrodCity_PokemonCenter_GameboyKidText2:
@@ -65,7 +65,7 @@ GoldenrodCity_PokemonCenter_LassText:
 GoldenrodPokeCenter_LinkReceptionistPleaseAcceptGSBallText:
     .string "{PLAYER}, isn't it?\p"
     .string "Congratulations!\p"
-    .string "As a special deal, a GS BALL has\n"
+    .string "As a special deal, a Gs Ball has\n"
     .string "been sent just for you!\p"
     .string "Please accept it!$"
 
@@ -75,12 +75,12 @@ GoldenrodPokeCenter_LinkReceptionistPleaseDoComeAgainText:
 GoldenrodCity_PokemonCenter_PokefanFDoYouHaveEonMailText:
     .string "Oh my, your pack looks so heavy!\p"
     .string "Oh! Do you happen to have\n"
-    .string "something named EON MAIL?\p"
+    .string "something named Eon Mail?\p"
     .string "My daughter is after one.\p"
     .string "You can part with one, can't you?$"
 
 GoldenrodCity_PokemonCenter_AskGiveAwayAnEonMailText:
-    .string "Give away an EON MAIL?$"
+    .string "Give away an Eon Mail?$"
 
 GoldenrodCity_PokemonCenter_PokefanFThisIsForYouText:
     .string "Oh, that's great! Thank you,\n"
@@ -97,4 +97,4 @@ GoldenrodCity_PokemonCenter_PokefanFAnotherTimeThenText:
     .string "Oh… Well, another time, then.$"
 
 GoldenrodCity_PokemonCenter_PlayerGaveAwayTheEonMailText:
-    .string "{PLAYER} gave away the EON MAIL.$"
+    .string "{PLAYER} gave away the Eon Mail.$"

@@ -401,7 +401,7 @@ RuinsOfAlph_PuzzleAndRewardChambers_Text_Kabuto:
 	.string "Eyes on its back scanned the area.$"
 
 RuinsOfAlph_PuzzleAndRewardChambers_Text_UnownText:
-	.string "It's UNOWN text!$"
+	.string "It's Unown text!$"
 
 RuinsOfAlph_PuzzleAndRewardChambers_Text_Statue:
 	.string "It's a replica of an ancient\n"

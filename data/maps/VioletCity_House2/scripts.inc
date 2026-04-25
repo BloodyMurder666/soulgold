@@ -34,7 +34,7 @@ VioletCity_NicknameHouse_Text_Teacher:
 	.string "her POKéMON, I mean.$"
 
 VioletCity_NicknameHouse_Text_Lass:
-	.string "I call my PIDGEY STRAWBERRY!$"
+	.string "I call my Pidgey Strawberry!$"
 
 VioletCity_NicknameHouse_Text_Bird:
-	.string "STRAWBERRY: Pijji!$"
+	.string "Strawberry: Pijji!$"

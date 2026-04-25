@@ -55,7 +55,7 @@ CeladonGameCorner_Text_Fisher2:
 	.string "things for other people!$"
 
 CeladonGameCorner_Text_GymGuide:
-	.string "Hey! CHAMP in making!\p"
+	.string "Hey! Champ in making!\p"
 	.string "Are you playing the slots too?\p"
 	.string "I'm trying to get enough coins for\n"
 	.string "a prize POKéMON.\p"
@@ -63,5 +63,5 @@ CeladonGameCorner_Text_GymGuide:
 
 CeladonGameCorner_Text_Gramps:
 	.string "Hmmm… The odds are surely better\n"
-	.string "better for PIKACHU's line,\l"
+	.string "better for Pikachu's line,\l"
 	.string "but... what to do?$"

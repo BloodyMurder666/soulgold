@@ -24,9 +24,9 @@ OlivineCity_Text_MartCooltrainerF:
 	.string "across water?$"
 
 OlivineCity_Text_MartLass:
-	.string "My BUTTERFREE came from my\n"
+	.string "My Butterfree came from my\n"
 	.string "boyfriend overseas.\p"
-	.string "It carried some MAIL from him.\p"
+	.string "It carried some Mail from him.\p"
 	.string "Want to know what it says?\p"
 	.string "Let's see... Nope! It's a\n"
 	.string "secret!$"

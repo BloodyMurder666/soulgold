@@ -20,7 +20,7 @@ NewBarkTown_House2_EventScript_ElmsSon::
 
 NewBarkTown_House2_Text_ElmsWife:
 	.string "Hi, {PLAYER}! My husband's always\n"
-	.string "so busy--I hope he's OK.\p"
+	.string "so busy--I hope he's Ok.\p"
 	.string "When he's caught up in his\n"
 	.string "POKéMON research, he even\l"
 	.string "forgets to eat.$"

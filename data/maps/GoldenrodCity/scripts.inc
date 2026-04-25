@@ -575,19 +575,19 @@ GoldenrodCity_EventScript_Beauty::
 # 288 "data/maps/GoldenrodCity/scripts.pory"
 GoldenrodCity_Text_Beauty:
 # 289 "data/maps/GoldenrodCity/scripts.pory"
-	.string "This is the GOLDENROD GYM!\p"
+	.string "This is the Goldenrod Gym!\p"
 # 290 "data/maps/GoldenrodCity/scripts.pory"
-	.string "Our leader WHITNEY is not here\n"
+	.string "Our leader Whitney is not here\n"
 # 291 "data/maps/GoldenrodCity/scripts.pory"
 	.string "right now. She might be at the\l"
 # 292 "data/maps/GoldenrodCity/scripts.pory"
-	.string "RADIO TOWER.$"
+	.string "Radio Tower.$"
 # 293 "data/maps/GoldenrodCity/scripts.pory"
 
 # 294 "data/maps/GoldenrodCity/scripts.pory"
 GoldenrodCity_Text_Woman:
 # 295 "data/maps/GoldenrodCity/scripts.pory"
-	.string "I used to train in WHITNEY's GYM,\n"
+	.string "I used to train in Whitney's Gym,\n"
 # 296 "data/maps/GoldenrodCity/scripts.pory"
 	.string "but all her crying gave me a\l"
 # 297 "data/maps/GoldenrodCity/scripts.pory"
@@ -597,7 +597,7 @@ GoldenrodCity_Text_Woman:
 # 299 "data/maps/GoldenrodCity/scripts.pory"
 GoldenrodCity_Text_HikerDay:
 # 300 "data/maps/GoldenrodCity/scripts.pory"
-	.string "When I went into the GAME CORNER\n"
+	.string "When I went into the Game Corner\n"
 # 301 "data/maps/GoldenrodCity/scripts.pory"
 	.string "it was night time... How long was I\l"
 # 302 "data/maps/GoldenrodCity/scripts.pory"
@@ -607,7 +607,7 @@ GoldenrodCity_Text_HikerDay:
 # 304 "data/maps/GoldenrodCity/scripts.pory"
 GoldenrodCity_Text_HikerNight:
 # 305 "data/maps/GoldenrodCity/scripts.pory"
-	.string "When I went into the GAME CORNER\n"
+	.string "When I went into the Game Corner\n"
 # 306 "data/maps/GoldenrodCity/scripts.pory"
 	.string "it was day time... How long was I\l"
 # 307 "data/maps/GoldenrodCity/scripts.pory"
@@ -617,7 +617,7 @@ GoldenrodCity_Text_HikerNight:
 # 309 "data/maps/GoldenrodCity/scripts.pory"
 GoldenrodCity_Text_Snubbull:
 # 310 "data/maps/GoldenrodCity/scripts.pory"
-	.string "AUDINO: AUDIIINII!$"
+	.string "Audino: Audiiinii!$"
 # 311 "data/maps/GoldenrodCity/scripts.pory"
 
 # 312 "data/maps/GoldenrodCity/scripts.pory"
@@ -629,7 +629,7 @@ GoldenrodCity_Text_MrMime:
 # 315 "data/maps/GoldenrodCity/scripts.pory"
 GoldenrodCity_Text_ElmCall:
 # 316 "data/maps/GoldenrodCity/scripts.pory"
-	.string "ELM: Hello, {PLAYER}?\n"
+	.string "Elm: Hello, {PLAYER}?\n"
 # 317 "data/maps/GoldenrodCity/scripts.pory"
 	.string "Has that egg hatched yet?\p"
 # 318 "data/maps/GoldenrodCity/scripts.pory"
@@ -643,7 +643,7 @@ GoldenrodCity_Text_ElmCall:
 # 322 "data/maps/GoldenrodCity/scripts.pory"
 GoldenrodCity_Text_PokefanM:
 # 323 "data/maps/GoldenrodCity/scripts.pory"
-	.string "They built the new RADIO TOWER\n"
+	.string "They built the new Radio Tower\n"
 # 324 "data/maps/GoldenrodCity/scripts.pory"
 	.string "to replace the old creaky one.$"
 # 325 "data/maps/GoldenrodCity/scripts.pory"
@@ -651,7 +651,7 @@ GoldenrodCity_Text_PokefanM:
 # 326 "data/maps/GoldenrodCity/scripts.pory"
 GoldenrodCity_Text_Youngster1:
 # 327 "data/maps/GoldenrodCity/scripts.pory"
-	.string "I know there's a new BIKE SHOP,\n"
+	.string "I know there's a new Bike Shop,\n"
 # 328 "data/maps/GoldenrodCity/scripts.pory"
 	.string "but I can't find it anywhere.$"
 # 329 "data/maps/GoldenrodCity/scripts.pory"
@@ -661,7 +661,7 @@ GoldenrodCity_Text_CooltrainerF1:
 # 331 "data/maps/GoldenrodCity/scripts.pory"
 	.string "Is that man in black dressed up\n"
 # 332 "data/maps/GoldenrodCity/scripts.pory"
-	.string "like a TEAM ROCKET member?\p"
+	.string "like a Team Rocket member?\p"
 # 333 "data/maps/GoldenrodCity/scripts.pory"
 	.string "How silly!$"
 # 334 "data/maps/GoldenrodCity/scripts.pory"
@@ -671,13 +671,13 @@ GoldenrodCity_Text_CooltrainerF1_Cleared:
 # 336 "data/maps/GoldenrodCity/scripts.pory"
 	.string "Was that man in black really part\n"
 # 337 "data/maps/GoldenrodCity/scripts.pory"
-	.string "of TEAM ROCKET? I can't believe it!$"
+	.string "of Team Rocket? I can't believe it!$"
 # 338 "data/maps/GoldenrodCity/scripts.pory"
 
 # 339 "data/maps/GoldenrodCity/scripts.pory"
 GoldenrodCity_Text_CooltrainerF2:
 # 340 "data/maps/GoldenrodCity/scripts.pory"
-	.string "The RADIO TOWER in GOLDENROD CITY\n"
+	.string "The Radio Tower in Goldenrod City\n"
 # 341 "data/maps/GoldenrodCity/scripts.pory"
 	.string "is quite the landmark.\p"
 # 342 "data/maps/GoldenrodCity/scripts.pory"
@@ -685,7 +685,7 @@ GoldenrodCity_Text_CooltrainerF2:
 # 343 "data/maps/GoldenrodCity/scripts.pory"
 	.string "They'll give you a shiny new\n"
 # 344 "data/maps/GoldenrodCity/scripts.pory"
-	.string "RADIO if you can pass their quiz.$"
+	.string "Radio if you can pass their quiz.$"
 # 345 "data/maps/GoldenrodCity/scripts.pory"
 
 # 346 "data/maps/GoldenrodCity/scripts.pory"
@@ -703,7 +703,7 @@ GoldenrodCity_Text_Youngster2:
 # 352 "data/maps/GoldenrodCity/scripts.pory"
 	.string "I got in trouble for playing in\n"
 # 353 "data/maps/GoldenrodCity/scripts.pory"
-	.string "the DEPT.STORE basement.$"
+	.string "the Dept.Store basement.$"
 # 354 "data/maps/GoldenrodCity/scripts.pory"
 
 # 355 "data/maps/GoldenrodCity/scripts.pory"
@@ -727,7 +727,7 @@ GoldenrodCity_Text_Gramps:
 # 364 "data/maps/GoldenrodCity/scripts.pory"
 GoldenrodCity_Text_RocketScout1:
 # 365 "data/maps/GoldenrodCity/scripts.pory"
-	.string "So this is the RADIO TOWER…$"
+	.string "So this is the Radio Tower…$"
 # 366 "data/maps/GoldenrodCity/scripts.pory"
 
 # 367 "data/maps/GoldenrodCity/scripts.pory"
@@ -749,7 +749,7 @@ GoldenrodCity_Text_Rocket1:
 # 375 "data/maps/GoldenrodCity/scripts.pory"
 GoldenrodCity_Text_Rocket2:
 # 376 "data/maps/GoldenrodCity/scripts.pory"
-	.string "Take over the RADIO TOWER…\p"
+	.string "Take over the Radio Tower…\p"
 # 377 "data/maps/GoldenrodCity/scripts.pory"
 	.string "What? It's none of your business!$"
 # 378 "data/maps/GoldenrodCity/scripts.pory"
@@ -783,19 +783,19 @@ GoldenrodCity_Text_Rocket6:
 # 392 "data/maps/GoldenrodCity/scripts.pory"
 	.string "Come and taste the terror of\n"
 # 393 "data/maps/GoldenrodCity/scripts.pory"
-	.string "TEAM ROCKET!$"
+	.string "Team Rocket!$"
 # 394 "data/maps/GoldenrodCity/scripts.pory"
 
 # 395 "data/maps/GoldenrodCity/scripts.pory"
 GoldenrodCity_Text_StationSign:
 # 396 "data/maps/GoldenrodCity/scripts.pory"
-	.string "GOLDENROD CITY STATION$"
+	.string "Goldenrod City Station$"
 # 397 "data/maps/GoldenrodCity/scripts.pory"
 
 # 398 "data/maps/GoldenrodCity/scripts.pory"
 GoldenrodCity_Text_RadioTowerSign:
 # 399 "data/maps/GoldenrodCity/scripts.pory"
-	.string "GOLDENROD CITY RADIO TOWER$"
+	.string "Goldenrod City Radio Tower$"
 # 400 "data/maps/GoldenrodCity/scripts.pory"
 
 # 401 "data/maps/GoldenrodCity/scripts.pory"
@@ -803,15 +803,15 @@ GoldenrodCity_Text_DeptStoreSign:
 # 402 "data/maps/GoldenrodCity/scripts.pory"
 	.string "Full Selection of POKéMON Goods!\p"
 # 403 "data/maps/GoldenrodCity/scripts.pory"
-	.string "GOLDENROD CITY DEPT.STORE$"
+	.string "Goldenrod City Dept.Store$"
 # 404 "data/maps/GoldenrodCity/scripts.pory"
 
 # 405 "data/maps/GoldenrodCity/scripts.pory"
 GoldenrodCity_Text_GymSign:
 # 406 "data/maps/GoldenrodCity/scripts.pory"
-	.string "GOLDENROD CITY POKéMON GYM\n"
+	.string "Goldenrod City POKéMON Gym\n"
 # 407 "data/maps/GoldenrodCity/scripts.pory"
-	.string "LEADER: WHITNEY\p"
+	.string "Leader: Whitney\p"
 # 408 "data/maps/GoldenrodCity/scripts.pory"
 	.string "The Incredibly Pretty Girl!$"
 # 409 "data/maps/GoldenrodCity/scripts.pory"
@@ -819,7 +819,7 @@ GoldenrodCity_Text_GymSign:
 # 410 "data/maps/GoldenrodCity/scripts.pory"
 GoldenrodCity_Text_CitySign:
 # 411 "data/maps/GoldenrodCity/scripts.pory"
-	.string "GOLDENROD CITY\p"
+	.string "Goldenrod City\p"
 # 412 "data/maps/GoldenrodCity/scripts.pory"
 	.string "The Festive City of Opulent Charm$"
 # 413 "data/maps/GoldenrodCity/scripts.pory"
@@ -829,7 +829,7 @@ GoldenrodCity_Text_BikeShopSign:
 # 415 "data/maps/GoldenrodCity/scripts.pory"
 	.string "The World is a Cycle Path!\n"
 # 416 "data/maps/GoldenrodCity/scripts.pory"
-	.string "BIKE SHOP$"
+	.string "Bike Shop$"
 # 417 "data/maps/GoldenrodCity/scripts.pory"
 
 # 418 "data/maps/GoldenrodCity/scripts.pory"
@@ -837,13 +837,13 @@ GoldenrodCity_Text_GameCornerSign:
 # 419 "data/maps/GoldenrodCity/scripts.pory"
 	.string "Your Playground!\p"
 # 420 "data/maps/GoldenrodCity/scripts.pory"
-	.string "GOLDENROD CITY GAME CORNER$"
+	.string "Goldenrod City Game Corner$"
 # 421 "data/maps/GoldenrodCity/scripts.pory"
 
 # 422 "data/maps/GoldenrodCity/scripts.pory"
 GoldenrodCity_Text_NameRaterSign:
 # 423 "data/maps/GoldenrodCity/scripts.pory"
-	.string "NAME RATER\p"
+	.string "Name Rater\p"
 # 424 "data/maps/GoldenrodCity/scripts.pory"
 	.string "Get Your POKéMON Nicknames Rated$"
 # 425 "data/maps/GoldenrodCity/scripts.pory"
@@ -851,13 +851,13 @@ GoldenrodCity_Text_NameRaterSign:
 # 426 "data/maps/GoldenrodCity/scripts.pory"
 GoldenrodCity_Text_UndergroundNorthSign:
 # 427 "data/maps/GoldenrodCity/scripts.pory"
-	.string "UNDERGROUND ENTRANCE$"
+	.string "Underground Entrance$"
 # 428 "data/maps/GoldenrodCity/scripts.pory"
 
 # 429 "data/maps/GoldenrodCity/scripts.pory"
 GoldenrodCity_Text_UndergroundSouthSign:
 # 430 "data/maps/GoldenrodCity/scripts.pory"
-	.string "UNDERGROUND ENTRANCE$"
+	.string "Underground Entrance$"
 # 431 "data/maps/GoldenrodCity/scripts.pory"
 
 # 432 "data/maps/GoldenrodCity/scripts.pory"
@@ -865,7 +865,7 @@ GoldenrodCity_Text_UndergroundSouthSign:
 # 433 "data/maps/GoldenrodCity/scripts.pory"
 GoldenrodCity_Text_FlowerShopSign:
 # 434 "data/maps/GoldenrodCity/scripts.pory"
-	.string "Blooming Beautiful FLOWER SHOP$"
+	.string "Blooming Beautiful Flower Shop$"
 # 435 "data/maps/GoldenrodCity/scripts.pory"
 
 # 436 "data/maps/GoldenrodCity/scripts.pory"

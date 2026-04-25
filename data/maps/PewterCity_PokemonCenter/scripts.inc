@@ -17,15 +17,15 @@ PewterCity_PokemonCenter_EventScript_BugCatcher::
 	end
 
 PewterCity_PokemonCenter1F_Text_Teacher:
-	.string "…Yeah, and the GYM in CINNABAR's gone.\p"
+	.string "…Yeah, and the Gym in Cinnabar's gone.\p"
 	.string "I was really amazed.\p"
 	.string "…Yes? I'm on the phone. Go away!$"
 
 PewterCity_PokemonCenter1F_Text_Jigglypuff:
-	.string "JIGGLYPUFF: Puu pupuu.$"
+	.string "Jigglypuff: Puu pupuu.$"
 
 PewterCity_PokemonCenter1F_Text_BugCatcher:
 	.string "Most POKéMON get drowsy if they hear a\n"
-	.string "JIGGLYPUFF singing.\p"
+	.string "Jigglypuff singing.\p"
 	.string "There are several moves that can be\n"
 	.string "used only while a POKéMON is asleep.$"

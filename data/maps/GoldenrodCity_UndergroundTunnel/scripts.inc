@@ -609,11 +609,11 @@ GoldenrodCity_UndergroundTunnel_EventScript_DoorAlreadyOpened::
 # 305 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 GoldenrodUnderground_Text_YoungerBrotherOffer:
 # 306 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "Welcome to the POKéMON SALON!\p"
+    .string "Welcome to the POKéMON Salon!\p"
 # 307 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
     .string "I'm the younger and less expensive\n"
 # 308 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "of the two HAIRCUT BROTHERS.\p"
+    .string "of the two Haircut Brothers.\p"
 # 309 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
     .string "I'll spiff up your POKéMON for just\n"
 # 310 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
@@ -625,13 +625,13 @@ GoldenrodUnderground_Text_YoungerBrotherOffer:
 # 313 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 GoldenrodUnderground_Text_YoungerBrotherAskWhich:
 # 314 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "OK, which POKéMON should I do?$"
+    .string "Ok, which POKéMON should I do?$"
 # 315 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
 # 316 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 GoldenrodUnderground_Text_YoungerBrotherLookCool:
 # 317 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "OK! I'll make it look cool!$"
+    .string "Ok! I'll make it look cool!$"
 # 318 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
 # 319 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
@@ -669,11 +669,11 @@ GoldenrodUnderground_Text_OlderBrotherOffer:
 # 335 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
     .string "Welcome!\p"
 # 336 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "I run the POKéMON SALON!\p"
+    .string "I run the POKéMON Salon!\p"
 # 337 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
     .string "I'm the older and better of the two\n"
 # 338 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "HAIRCUT BROTHERS.\p"
+    .string "Haircut Brothers.\p"
 # 339 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
     .string "I can make your POKéMON beautiful\n"
 # 340 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
@@ -691,7 +691,7 @@ GoldenrodUnderground_Text_OlderBrotherAskWhich:
 # 346 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 GoldenrodUnderground_Text_OlderBrotherWatchItBeautiful:
 # 347 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "OK! Watch it become beautiful!$"
+    .string "Ok! Watch it become beautiful!$"
 # 348 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
 # 349 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
@@ -723,7 +723,7 @@ GoldenrodUnderground_Text_OlderBrotherOnePerDay:
 # 362 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 GoldenrodUnderground_Text_SupernerdEricSeen:
 # 363 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "I got booted out of the GAME CORNER.\p"
+    .string "I got booted out of the Game Corner.\p"
 # 364 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
     .string "I was trying to cheat using my\n"
 # 365 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
@@ -811,9 +811,9 @@ GoldenrodUnderground_Text_PokemaniacDonaldBeaten:
 # 406 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 GoldenrodUnderground_Text_PokemaniacDonaldAfterBattle:
 # 407 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	.string "When I was walking near the BIKE\n"
+	.string "When I was walking near the Bike\n"
 # 408 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	.string "SHOP last night, I felt like I was\l"
+	.string "Shop last night, I felt like I was\l"
 # 409 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	.string "being watched from the rooftops...$"
 # 410 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
@@ -825,7 +825,7 @@ GoldenrodUnderground_Text_PokemaniacDonaldAfterBattleOld:
 # 413 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
     .string "hot tip.\p"
 # 414 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "The HIKER on ROUTE 33, ANTHONY, is a\n"
+    .string "The Hiker on Route 33, Anthony, is a\n"
 # 415 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
     .string "good guy.\p"
 # 416 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
@@ -849,13 +849,13 @@ GoldenrodUnderground_Text_DoorIsOpen:
 # 425 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 GoldenrodUnderground_Text_KeyOpenedDoor:
 # 426 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "The BASEMENT KEY opened the door.$"
+    .string "The Basement Key opened the door.$"
 # 427 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
 # 428 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 GoldenrodUnderground_Text_NoEntry:
 # 429 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "NO ENTRY BEYOND THIS POINT$"
+    .string "No Entry Beyond This Point$"
 
 goldenrod_utility_shop_girl::
 # 434 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"

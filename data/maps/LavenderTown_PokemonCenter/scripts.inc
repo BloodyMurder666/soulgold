@@ -26,25 +26,25 @@ LavenderTown_PokemonCenter_EventScript_YoungsterReturnedMachinePart::
 	end
 
 LavenderTown_PokemonCenter1F_Text_Gentleman:
-	.string "To the north of LAVENDER is ROCK\n"
-	.string "TUNNEL. Go through it to get to\l"
-	.string "the POWER PLANT.$"
+	.string "To the north of Lavender is Rock\n"
+	.string "Tunnel. Go through it to get to\l"
+	.string "the Power Plant.$"
 
 LavenderTown_PokemonCenter1F_Text_Teacher:
 	.string "There's a radio program that plays\n"
-	.string "POKé FLUTE music.\p"
-	.string "Oh? Ah, your radio needs an EXPN\n"
-	.string "CARD to tune into it.$"
+	.string "POKé Flute music.\p"
+	.string "Oh? Ah, your radio needs an Expn\n"
+	.string "Card to tune into it.$"
 
 LavenderTown_PokemonCenter1F_Text_Youngster:
-	.string "If the POWER PLANT isn't running,\n"
-	.string "the MAGNET TRAIN won't run either…\p"
-	.string "It also means the RADIO STATION\n"
+	.string "If the Power Plant isn't running,\n"
+	.string "the Magnet Train won't run either…\p"
+	.string "It also means the Radio Station\n"
 	.string "can't broadcast…$"
 
 LavenderTown_PokemonCenter1F_Text_Youngster_ReturnedMachinePart:
-	.string "The DIRECTOR of the RADIO STATION\n"
+	.string "The Director of the Radio Station\n"
 	.string "sure was happy.\p"
 	.string "He said they're back on the air\n"
-	.string "because the POWER PLANT is running\l"
+	.string "because the Power Plant is running\l"
 	.string "smoothly again.$"

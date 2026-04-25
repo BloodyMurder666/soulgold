@@ -114,8 +114,8 @@ Route27_Text_FisherHey:
 Route27_Text_FisherMessage:
     .string "Do you know what you just did?\p"
     .string "You've taken your first step into\n"
-    .string "KANTO.\p"
-    .string "Check your POKéGEAR MAP and see.$"
+    .string "Kanto.\p"
+    .string "Check your POKéGEAR Map and see.$"
 
 Route27_Text_CooltrainermBlakeSeen:
     .string "You look pretty strong.\n"
@@ -171,14 +171,14 @@ Route27_Text_PsychicGilbertSeen:
     .string "Let me guess what you're thinking.\p"
     .string "Mmmmmmm…\p"
     .string "I got it! You're on the POKéMON\n"
-    .string "LEAGUE challenge!$"
+    .string "League challenge!$"
 
 Route27_Text_PsychicGilbertBeaten:
     .string "You're too much!$"
 
 Route27_Text_PsychicGilbertAfter:
     .string "With your skills, you'll do well at\n"
-    .string "the LEAGUE.\p"
+    .string "the League.\p"
     .string "That's what my premonition says.$"
 
 Route27_Text_BirdKeeperJoseSeen:
@@ -188,17 +188,17 @@ Route27_Text_BirdKeeperJoseBeaten:
     .string "Tweet!$"
 
 Route27_Text_BirdKeeperJoseAfter:
-    .string "BIRD KEEPERS like me mimic bird\n"
+    .string "Bird Keepers like me mimic bird\n"
     .string "whistles to command POKéMON.$"
 
 TohjoFalls_Text_Sign:
-    .string "TOHJO FALLS\p"
-    .string "THE LINK BETWEEN KANTO AND JOHTO$"
+    .string "Tohjo Falls\p"
+    .string "The Link Between Kanto And Johto$"
 
 Route27_Text_FisherScottSeen:
     .string "I'm feeling great today!\p"
     .string "I feel like I could boot even the\n"
-    .string "LEAGUE CHAMP!$"
+    .string "League Champ!$"
 
 Route27_Text_FisherScottBeaten:
     .string "No! Not in this battle!$"

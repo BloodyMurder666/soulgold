@@ -16,17 +16,17 @@ FuchsiaCity_House2_EventScript_Photo::
 	end
 
 FuchsiaCity_House2_Text_WardensGranddaughter1:
-	.string "My grandpa is the SAFARI ZONE\n"
-	.string "WARDEN.\p"
+	.string "My grandpa is the Safari Zone\n"
+	.string "Warden.\p"
 	.string "At least he was…\p"
 	.string "He decided to go on a vacation and\n"
 	.string "took off overseas all by himself.\p"
-	.string "He quit running SAFARI ZONE just\n"
+	.string "He quit running Safari Zone just\n"
 	.string "like that.$"
 
 FuchsiaCity_House2_Text_WardensGranddaughter2:
 	.string "Many people were disappointed that\n"
-	.string "SAFARI ZONE closed down, but Grandpa\l"
+	.string "Safari Zone closed down, but Grandpa\l"
 	.string "is so stubborn…$"
 
 FuchsiaCity_House2_Text_WardenPhoto:

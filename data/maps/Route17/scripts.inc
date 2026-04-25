@@ -28,16 +28,16 @@ Route17_EventScript_Charles::
 	end
 
 Route17_Text_BikerRileySeen:
-	.string "Hey, you! You're from JOHTO, huh?$"
+	.string "Hey, you! You're from Johto, huh?$"
 
 Route17_Text_BikerRileyBeaten:
 	.string "Whoa, you kick!$"
 
 Route17_Text_BikerRileyAfterBattle:
-	.string "Don't get cocky, you JOHTO punk!$"
+	.string "Don't get cocky, you Johto punk!$"
 
 Route17_Text_BikerJoelSeen:
-	.string "Wow. That's a cool BICYCLE!$"
+	.string "Wow. That's a cool Bicycle!$"
 
 Route17_Text_BikerJoelBeaten:
 	.string "But you don't just look cool…$"
@@ -55,7 +55,7 @@ Route17_Text_BikerGlennBeaten:
 
 Route17_Text_BikerGlennAfterBattle:
 	.string "Hands-free riding is considered\n"
-	.string "cool on CYCLING ROAD.$"
+	.string "cool on Cycling Road.$"
 
 Route17_Text_BikerCharlesSeen:
 	.string "We're fearless highway stars!$"

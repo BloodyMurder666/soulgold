@@ -65,7 +65,7 @@ Route33_Text_HikerAnthony2Beaten:
 # 33 "data/maps/Route33/scripts.pory"
 Route33_Text_HikerAnthony2After:
 # 34 "data/maps/Route33/scripts.pory"
-	.string "We HIKERS are at our best\n"
+	.string "We Hikers are at our best\n"
 # 35 "data/maps/Route33/scripts.pory"
 	.string "in the mountains.$"
 # 36 "data/maps/Route33/scripts.pory"
@@ -73,7 +73,7 @@ Route33_Text_HikerAnthony2After:
 # 37 "data/maps/Route33/scripts.pory"
 Route33_Text_HikerAnthonyDunsparce:
 # 38 "data/maps/Route33/scripts.pory"
-	.string "Hey, did you get a DUNSPARCE?\p"
+	.string "Hey, did you get a Dunsparce?\p"
 # 39 "data/maps/Route33/scripts.pory"
 	.string "I caught one too.\p"
 # 40 "data/maps/Route33/scripts.pory"
@@ -93,7 +93,7 @@ Route33_Text_Lass:
 # 47 "data/maps/Route33/scripts.pory"
 	.string "I got too tired exploring\n"
 # 48 "data/maps/Route33/scripts.pory"
-	.string "for MARILL, so I came outside.$"
+	.string "for Marill, so I came outside.$"
 
 Route33_HiddenGrotto::
 # 52 "data/maps/Route33/scripts.pory"

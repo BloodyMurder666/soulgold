@@ -174,7 +174,7 @@ GoldenrodCity_DepartmentStoreBasement_Movement_Boulder3:
 
 
 GoldenrodDeptStore_Text_BlackBeltMove:
-	.string "MACHOKE, help us move that boulder!$"
+	.string "Machoke, help us move that boulder!$"
 
 GoldenrodDeptStore_Text_B1FBlackBelt1:
     .string "Hey, kid! You're holding us up!\p"
@@ -197,4 +197,4 @@ GoldenrodDeptStore_Text_B1FBlackBelt3After:
     .string "Take it if you want it!$"
 
 GoldenrodDeptStore_Text_B1FMachoke:
-    .string "MACHOKE: Maaacho!$"
+    .string "Machoke: Maaacho!$"

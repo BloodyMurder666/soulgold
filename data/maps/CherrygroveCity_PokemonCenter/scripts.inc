@@ -56,4 +56,4 @@ CherryGrove_Pokecenter_Text_Lass:
 	.string "in the POKéCENTER makes time fly!$"
 
 CherryGrove_Pokecenter_Text_Chansey:
-	.string "CHANSEY: Chaan! Sii!$"
+	.string "Chansey: Chaan! Sii!$"

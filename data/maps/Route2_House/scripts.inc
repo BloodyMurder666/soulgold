@@ -28,6 +28,6 @@ Route2_House_Text_Fisher:
 	.string "little present.$"
 
 Route2_House_Text_Fisher_GotNugget:
-	.string "That's a NUGGET.\p"
+	.string "That's a Nugget.\p"
 	.string "I can't give you any nuggets of\n"
 	.string "wisdom, so that'll have to do!$"

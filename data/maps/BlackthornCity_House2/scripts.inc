@@ -65,4 +65,4 @@ BlackthornCity_House2_Text_YouWontTradeMe:
 	.string "You don't want to trade? Aww...$"
 
 BlackthornCity_House2_Text_After:
-	.string "Hi, how's my old MR MIME doing?$"
+	.string "Hi, how's my old Mr Mime doing?$"

@@ -12,7 +12,7 @@ RuinsOfAlph_Outside_EventScript_Quagsire::
 	end
 
 RuinsOfAlph_Outside_Text_Quagsire:
-	.string "QUAGSIRE: Quag Quag$"
+	.string "Quagsire: Quag Quag$"
 
 RuinsOfAlph_Outside_EventScript_Stan::
 	trainerbattle_single TRAINER_STAN, RuinsOfAlph_Outside_Text_SuperNerdStan_Seen, RuinsOfAlph_Outside_Text_SuperNerdStan_Beaten
@@ -86,7 +86,7 @@ RuinsOfAlph_Outside_Text_Scientist:
 	.string "What is this POKéMON?\p"
 	.string "It looks like the strange\n"
 	.string "writing on the walls of the\p"
-	.string "RUINS.\p"
+	.string "Ruins.\p"
 	.string "If those drawings are really\n"
 	.string "POKéMON, there should be many\n"
 	.string "more.\p"
@@ -103,7 +103,7 @@ RuinsOfAlph_Outside_Text_SuperNerdStan_Beaten:
 	.string "real understanding…$"
 
 RuinsOfAlph_Outside_Text_SuperNerdStan_After:
-	.string "The RUINS are from about 1500\n"
+	.string "The Ruins are from about 1500\n"
 	.string "years ago.\p"
 	.string "Nobody knows who built them.\p"
 	.string "It's also not known if the POKéMON\n"
@@ -120,29 +120,29 @@ RuinsOfAlph_Outside_Text_PsychicNathan_After:
 	.string "I like thinking here.$"
 
 RuinsOfAlph_Outside_Text_MysteryChamberSign:
-	.string "MYSTERY STONE PANEL CHAMBER$"
+	.string "Mystery Stone Panel Chamber$"
 
 RuinsOfAlph_Outside_Text_MainSign:
-	.string "RUINS OF ALPH\n"
-	.string "VISITORS WELCOME$"
+	.string "Ruins Of Alph\n"
+	.string "Visitors Welcome$"
 
 RuinsOfAlph_Outside_Text_ResearchSign:
-	.string "RUINS OF ALPH RESEARCH CENTER\p"
-	.string "THE AUTHORITY ON THE\n"
-	.string "RUINS OF ALPH$"
+	.string "Ruins Of Alph Research Center\p"
+	.string "The Authority On The\n"
+	.string "Ruins Of Alph$"
 
 RuinsOfAlph_Outside_Text_Fisher1:
-	.string "While exploring the RUINS, we\n"
+	.string "While exploring the Ruins, we\n"
 	.string "suddenly noticed an odd presence.\p"
 	.string "We all got scared and ran away.\n"
 	.string "You should be careful too.$"
 
 RuinsOfAlph_Outside_Text_Fisher2:
-	.string "The RUINS hide a huge secret!\p"
+	.string "The Ruins hide a huge secret!\p"
 	.string "…I think…$"
 
 RuinsOfAlph_Outside_Text_Youngster1:
-	.string "There are many kinds of UNOWN, so\n"
+	.string "There are many kinds of Unown, so\n"
 	.string "we use them for our secret codes.$"
 
 RuinsOfAlph_Outside_Text_Youngster2:

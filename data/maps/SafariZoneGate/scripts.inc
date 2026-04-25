@@ -135,7 +135,7 @@ SafariZoneGate_EventScript_SlowpokeLady::
 # 68 "data/maps/SafariZoneGate/scripts.pory"
 SafariZone_Text_ForeignFeeling:
 # 69 "data/maps/SafariZoneGate/scripts.pory"
-	.string "SAFARI ZONE...\n"
+	.string "Safari Zone...\n"
 # 70 "data/maps/SafariZoneGate/scripts.pory"
 	.string "It makes me feel like I am in a\l"
 # 71 "data/maps/SafariZoneGate/scripts.pory"
@@ -155,17 +155,17 @@ SafariZone_Text_SilentNPC:
 # 78 "data/maps/SafariZoneGate/scripts.pory"
 SafariZone_Text_Kangaskhan:
 # 79 "data/maps/SafariZoneGate/scripts.pory"
-	.string "KANGASKHAN: ..................$"
+	.string "Kangaskhan: ..................$"
 # 80 "data/maps/SafariZoneGate/scripts.pory"
 
 # 81 "data/maps/SafariZoneGate/scripts.pory"
 SafariZone_Text_JigglypuffTrainer:
 # 82 "data/maps/SafariZoneGate/scripts.pory"
-	.string "This SAFARI ZONE is great!\n"
+	.string "This Safari Zone is great!\n"
 # 83 "data/maps/SafariZoneGate/scripts.pory"
 	.string "I just kept going after POKéMON!\p"
 # 84 "data/maps/SafariZoneGate/scripts.pory"
-	.string "That made my JIGGLYPUFF upset though.$"
+	.string "That made my Jigglypuff upset though.$"
 # 85 "data/maps/SafariZoneGate/scripts.pory"
 
 # 86 "data/maps/SafariZoneGate/scripts.pory"
@@ -173,7 +173,7 @@ SafariZone_Text_FirstCatch:
 # 87 "data/maps/SafariZoneGate/scripts.pory"
 	.string "I have always wanted to catch my first\n"
 # 88 "data/maps/SafariZoneGate/scripts.pory"
-	.string "POKéMON at the SAFARI ZONE.$"
+	.string "POKéMON at the Safari Zone.$"
 # 89 "data/maps/SafariZoneGate/scripts.pory"
 
 # 90 "data/maps/SafariZoneGate/scripts.pory"
@@ -183,7 +183,7 @@ SafariZone_Text_SlowpokeFan:
 # 92 "data/maps/SafariZoneGate/scripts.pory"
 	.string "but nothing beats the cuteness of\l"
 # 93 "data/maps/SafariZoneGate/scripts.pory"
-	.string "SLOWPOKE.\p"
+	.string "Slowpoke.\p"
 # 94 "data/maps/SafariZoneGate/scripts.pory"
 	.string "People often say that I look like one!$"
 # 95 "data/maps/SafariZoneGate/scripts.pory"
@@ -195,7 +195,7 @@ SafariZone_Text_CustomSystem:
 # 98 "data/maps/SafariZoneGate/scripts.pory"
 	.string "is a sophisticated system to\l"
 # 99 "data/maps/SafariZoneGate/scripts.pory"
-	.string "customizing the SAFARI ZONE, right?\p"
+	.string "customizing the Safari Zone, right?\p"
 # 100 "data/maps/SafariZoneGate/scripts.pory"
 	.string "The real truth is that...$"
 # 101 "data/maps/SafariZoneGate/scripts.pory"
@@ -203,7 +203,7 @@ SafariZone_Text_CustomSystem:
 # 102 "data/maps/SafariZoneGate/scripts.pory"
 SafariZone_Text_Sign:
 # 103 "data/maps/SafariZoneGate/scripts.pory"
-	.string "SAFARI ZONE\n"
+	.string "Safari Zone\n"
 # 104 "data/maps/SafariZoneGate/scripts.pory"
 	.string "This is where everything is thrilling.\p"
 # 105 "data/maps/SafariZoneGate/scripts.pory"
@@ -341,7 +341,7 @@ SafariZoneGate_Pokemart_VitaminGuru:
 # 171 "data/maps/SafariZoneGate/scripts.pory"
 SafariZoneGate_Text_VitaminGuruSellWhatYouNeed:
 # 172 "data/maps/SafariZoneGate/scripts.pory"
-	.string "I'm the rare item GURU! I'll go for it and\n"
+	.string "I'm the rare item Guru! I'll go for it and\n"
 # 173 "data/maps/SafariZoneGate/scripts.pory"
 	.string "sell you what you need!$"
 

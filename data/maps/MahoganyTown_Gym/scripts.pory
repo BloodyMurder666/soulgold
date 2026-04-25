@@ -18,11 +18,11 @@ MahoganyTown_Gym_EventScript_Statue2::
 	end
 
 MahoganyTown_Gym_Text_GymStatue:
-	.string "MAHOGANY TOWN POKéMON GYM$"
+	.string "Mahogany Town POKéMON Gym$"
 
 MahoganyTown_Gym_Text_GymStatueCertified:
-	.string "MAHOGANY TOWN POKéMON GYM\p"
-	.string "PRYCE'S CERTIFIED TRAINERS:\n"
+	.string "Mahogany Town POKéMON Gym\p"
+	.string "Pryce'S Certified Trainers:\n"
 	.string "{PLAYER}$"
 
 
@@ -131,7 +131,7 @@ MahoganyTown_Gym_Text_PryceIntro:
     .string "I have been with POKéMON since\n"
     .string "before you were born.\p"
     .string "I do not lose easily.\p"
-    .string "I, PRYCE--the winter trainer--\n"
+    .string "I, Pryce--the winter trainer--\n"
     .string "shall demonstrate my power!$"
 
 MahoganyTown_Gym_Text_PryceImpressed:
@@ -139,21 +139,21 @@ MahoganyTown_Gym_Text_PryceImpressed:
     .string "prowess.\p"
     .string "With your strong will, I know you\n"
     .string "will overcome all life's obstacles.\p"
-    .string "You are worthy of this BADGE!$"
+    .string "You are worthy of this Badge!$"
 
 MahoganyTown_Gym_Text_ReceivedBadge:
-    .string "{PLAYER} received GLACIERBADGE.$"
+    .string "{PLAYER} received Glacierbadge.$"
 
 MahoganyTown_Gym_Text_GlacierBadgeSpeech:
-    .string "That BADGE will raise the SPECIAL\n"
-    .string "ATTACK of POKéMON.\p"
+    .string "That Badge will raise the Special\n"
+    .string "Attack of POKéMON.\p"
     .string "It also lets your POKéMON use\n"
-    .string "WHIRLPOOL to get across\l"
+    .string "Whirlpool to get across\l"
     .string "real whirlpools.\p"
     .string "And this… This is a gift from me!$"
 
 MahoganyTown_Gym_Text_HailSpeech:
-    .string "That TM contains HAIL.\p"
+    .string "That TM contains Hail.\p"
     .string "It inflicts damage every\n"
     .string "turn for 5 turns.\p"
     .string "It demonstrates the harshness\n"
@@ -167,13 +167,13 @@ MahoganyTown_Gym_Text_CherishPokemon:
     .string "Cherish your time together!$"
 
 MahoganyTown_Gym_Text_PryceRematch:
-    .string "Ah, JOHTO CHAMPION!\p"
+    .string "Ah, Johto Champion!\p"
     .string "Your skills are indeed\n"
     .string "remarkable.\p"
     .string "I am impressed.\p"
     .string "But even now, there is much to\n"
     .string "learn from each other.\p"
-    .string "I, PRYCE--the winter trainer--\n"
+    .string "I, Pryce--the winter trainer--\n"
     .string "still have a few tricks left.\p"
     .string "Want to have a rematch with me?$"
 
@@ -184,7 +184,7 @@ MahoganyTown_Gym_Text_PryceRematchDefeat:
     .string "will overcome all life's obstacles.$"
 
 MahoganyTown_Gym_Text_Guide:
-    .string "PRYCE is a veteran who has\n"
+    .string "Pryce is a veteran who has\n"
     .string "trained POKéMON for some 50 years.\p"
     .string "He's got a solid lineup of\n"
     .string "POKéMON to cover whatever\l"
@@ -193,7 +193,7 @@ MahoganyTown_Gym_Text_Guide:
     .string "but watch out for the rain!$"
 
 MahoganyTown_Gym_Text_GuideWin:
-    .string "PRYCE is something, but you're\n"
+    .string "Pryce is something, but you're\n"
     .string "something else!\p"
     .string "That was a hot battle that\n"
     .string "bridged the generation gap!$"
@@ -211,7 +211,7 @@ MahoganyTown_Gym_Text_BoarderRonaldAfter:
     .string "frozen.$"
 
 MahoganyTown_Gym_Text_BoarderBradSeen:
-    .string "This GYM has a slippery floor.\p"
+    .string "This Gym has a slippery floor.\p"
     .string "It's fun, isn't it?\p"
     .string "But hey--we're not playing\n"
     .string "games here!$"
@@ -220,24 +220,24 @@ MahoganyTown_Gym_Text_BoarderBradBeaten:
     .string "Do you see how serious we are?$"
 
 MahoganyTown_Gym_Text_BoarderBradAfter:
-    .string "This GYM is great.\n"
+    .string "This Gym is great.\n"
     .string "I love boarding with my\l"
     .string "POKéMON!$"
 
 MahoganyTown_Gym_Text_BoarderDouglasSeen:
-    .string "I know PRYCE's secret.$"
+    .string "I know Pryce's secret.$"
 
 MahoganyTown_Gym_Text_BoarderDouglasBeaten:
-    .string "OK. I'll tell you PRYCE's secret.$"
+    .string "Ok. I'll tell you Pryce's secret.$"
 
 MahoganyTown_Gym_Text_BoarderDouglasAfter:
-    .string "The secret behind PRYCE's power…\p"
+    .string "The secret behind Pryce's power…\p"
     .string "He meditates under a waterfall\n"
     .string "daily to strengthen his mind\l"
     .string "and body.$"
 
 MahoganyTown_Gym_Text_SkierRoxanneSeen:
-    .string "To get to PRYCE, our GYM LEADER,\n"
+    .string "To get to Pryce, our Gym Leader,\n"
     .string "you need to think before you skate.$"
 
 MahoganyTown_Gym_Text_SkierRoxanneBeaten:
@@ -245,7 +245,7 @@ MahoganyTown_Gym_Text_SkierRoxanneBeaten:
 
 MahoganyTown_Gym_Text_SkierRoxanneAfter:
     .string "If you don't skate with precision,\n"
-    .string "you won't get far in this GYM.$"
+    .string "you won't get far in this Gym.$"
 
 MahoganyTown_Gym_Text_SkierClarissaSeen:
     .string "Check out my parallel turn!$"

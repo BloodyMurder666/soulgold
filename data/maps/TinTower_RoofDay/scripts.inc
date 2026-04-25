@@ -291,7 +291,7 @@ TinTower_RoofDay_EventScript_KuniAfter::
 	end
 
 TinTower_RoofDay_Text_Kimono_AfterNotCaught:
-	.string "You have not only made HO-OH\n"
+	.string "You have not only made Ho-Oh\n"
 	.string "appear, but you have also defeated\l"
 	.string "it...\p"
 	.string "There is nothing more for us to\n"
@@ -299,7 +299,7 @@ TinTower_RoofDay_Text_Kimono_AfterNotCaught:
 	.string "journey...$"
 
 TinTower_RoofDay_Text_Kimono_AfterCaught:
-	.string "You have not only made HO-OH\n"
+	.string "You have not only made Ho-Oh\n"
 	.string "appear, but you have also caught\l"
 	.string "it...\p"
 	.string "There is nothing more for us to\n"
@@ -559,27 +559,27 @@ TinTower_RoofDay_Movement_Kimono_Dance_Shift_Right2:
 	step_end
 
 TinTower_RoofDay_Text_Zuki_Before::
-	.string "ZUKI: Go, face HO-OH. $"
+	.string "Zuki: Go, face Ho-Oh. $"
 TinTower_RoofDay_Text_Naoko_Before::
-	.string "NAOKO: Go, face HO-OH. $"
+	.string "Naoko: Go, face Ho-Oh. $"
 TinTower_RoofDay_Text_Miki_Before::
-	.string "MIKI: Go, face HO-OH. $"
+	.string "Miki: Go, face Ho-Oh. $"
 TinTower_RoofDay_Text_Sayo_Before::
-	.string "SAYO: Go, face HO-OH. $"
+	.string "Sayo: Go, face Ho-Oh. $"
 TinTower_RoofDay_Text_Kuni_Before::
-	.string "KUNI: Go, face HO-OH. $"
+	.string "Kuni: Go, face Ho-Oh. $"
 
 TinTower_RoofDay_Text_Kimono_Opening::
-	.string "KIMONO GIRL: That's right.\n"
-	.string "This is where we welcome HO-OH.\p"
+	.string "Kimono Girl: That's right.\n"
+	.string "This is where we welcome Ho-Oh.\p"
 	.string "When the dance we practiced many\n"
 	.string "days becomes one with the sound of the\p"
 	.string "Clear Bell we entrusted to you, then\n"
-	.string "HO-OH shall come down from the great\l"
+	.string "Ho-Oh shall come down from the great\l"
 	.string "arch of the sky once again. $"
 
 TinTower_RoofDay_Text_Kimono_Closing1::
-	.string "That is indeed HO-OH...\n"
+	.string "That is indeed Ho-Oh...\n"
 	.string "The guardian of the sky from\p"
 	.string "ancient times... \p"
 	.string "So many have tried again and again,\n"
@@ -588,10 +588,10 @@ TinTower_RoofDay_Text_Kimono_Closing1::
 	.string "harmony with the Clear Bell has finally\p"
 	.string "allowed it to appear...\n"
 	.string "{PLAYER}, don't you see?\p"
-	.string "HO-OH... It must have been waiting for\n"
+	.string "Ho-Oh... It must have been waiting for\n"
 	.string "someone like you all this time.\p"
 	.string "Wouldn't you agree? $"
 
 TinTower_RoofDay_Text_Kimono_After::
 	.string "You have done a great job.\n"
-	.string "Say hello to PROF. ELM for us.$"
+	.string "Say hello to Prof. Elm for us.$"

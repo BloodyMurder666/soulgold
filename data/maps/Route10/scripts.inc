@@ -41,7 +41,7 @@ Route10_Text_Surge:
 	.string "Keep your guard up out here,\n"
 	.string "this place is cracklin' with power!\p"
 	.string "If you want a rematch, report to\n"
-	.string "the FIGHTING DOJO!$"
+	.string "the Fighting Dojo!$"
 
 Route10_EventScript_Jim::
 	trainerbattle_single TRAINER_JIM Route10_Text_HikerJimSeen, Route10_Text_HikerJimBeaten
@@ -93,7 +93,7 @@ Route10_Text_HikerJimBeaten:
 
 Route10_Text_HikerJimAfter:
 	.string "Hay fever is making me sneeze!\n"
-	.string "Ahahah-CHOO!$"
+	.string "Ahahah-Choo!$"
 
 Route10_Text_PokefanmRobertSeen:
 	.string "You like POKéMON, don't you?\p"
@@ -107,8 +107,8 @@ Route10_Text_PokefanmRobertAfter:
 	.string "I won't forget this…$"
 
 Route10_Text_PowerPlant:
-	.string "POWER PLANT$"
+	.string "Power Plant$"
 
 Route10_Text_Sign:
-	.string "ROUTE 10\p"
-	.string "CERULEAN CITY - LAVENDER TOWN$"
+	.string "Route 10\p"
+	.string "Cerulean City - Lavender Town$"

@@ -46,19 +46,19 @@ RadioTower1F_EventScript_Whitney::
 	end
 
 RadioTower1F_Text_Whitney1::
-	.string "WHITNEY: Hi!\p"
-	.string "My name is WHITNEY!\p"
+	.string "Whitney: Hi!\p"
+	.string "My name is Whitney!\p"
 	.string "I heard about the Quiz to win a\n"
-	.string "RADIO, so I came here to get\l"
+	.string "Radio, so I came here to get\l"
 	.string "one...\p"
 	.string "But this Quiz is so hard!$"
 
 RadioTower1F_Text_Whitney2::
-	.string "WHITNEY: Wow, you did it!\p"
+	.string "Whitney: Wow, you did it!\p"
 	.string "I thought the answer to the third\n"
 	.string "question was surely apricorns!\l"
 	.string "Oops!\p"
-	.string "It's time to go back to the GYM!$"
+	.string "It's time to go back to the Gym!$"
 
 RadioTower1F_EventScript_Reception::
 	lock
@@ -173,7 +173,7 @@ RadioTower1F_Text_RadioCardWomanOfferQuiz:
     .string "We have a special quiz campaign on\n"
     .string "right now.\p"
     .string "Answer five questions correctly to\n"
-    .string "win a RADIO.\p"
+    .string "win a Radio.\p"
     .string "You and your POKéMON can use it to\n"
     .string "play music anytime, anywhere.\p"
     .string "Would you like to take the quiz?$"
@@ -187,7 +187,7 @@ RadioTower1F_Text_QuizQuestion2:
     .string "Correct!\n"
     .string "Question 2:\p"
     .string "Is this statement correct?\p"
-    .string "You can't buy a BERRY at a MART.$"
+    .string "You can't buy a Berry at a Mart.$"
 
 RadioTower1F_Text_QuizQuestion3:
     .string "Bull's-eye!\n"
@@ -198,19 +198,19 @@ RadioTower1F_Text_QuizQuestion3:
 RadioTower1F_Text_QuizQuestion4:
     .string "So far so good!\n"
     .string "Question 4:\p"
-    .string "Is FALKNER the VIOLET GYM LEADER\n"
+    .string "Is Falkner the Violet Gym Leader\n"
     .string "who uses bird POKéMON?$"
 
 RadioTower1F_Text_QuizQuestion5:
     .string "Wow! Right again!\n"
     .string "Here's the final question:\p"
-    .string "Do GOLDENROD GAME CORNER's slots\n"
-    .string "have CHARMANDER on their reels?$"
+    .string "Do Goldenrod Game Corner's slots\n"
+    .string "have Charmander on their reels?$"
 
 RadioTower1F_Text_QuizWin:
     .string "Bingo! You got it!\n"
     .string "Congratulations!\p"
-    .string "Here's your prize, a RADIO!$"
+    .string "Here's your prize, a Radio!$"
 
 RadioTower1F_Text_PokegearRadio:
     .string "{PLAYER}'s POKéGEAR can now double as\n"
@@ -229,19 +229,19 @@ RadioTower1F_Text_DeclineQuiz:
     .string "change your mind.$"
 
 RadioTower1F_Text_Lass:
-    .string "BEN is a fabulous DJ.\p"
+    .string "Ben is a fabulous Dj.\p"
     .string "His sweet voice makes me melt!$"
 
 RadioTower1F_Text_Youngster:
-    .string "I love MARY, from POKéMON TALK.\p"
+    .string "I love Mary, from POKéMON Talk.\p"
     .string "I only know what she sounds like,\n"
     .string "though.$"
 
 RadioTower1F_Text_GruntM3Seen:
     .string "We've finally taken over the\n"
-    .string "RADIO TOWER!\p"
+    .string "Radio Tower!\p"
     .string "Now everyone will get to experience\n"
-    .string "the true terror of TEAM ROCKET!\p"
+    .string "the true terror of Team Rocket!\p"
     .string "We'll show you how scary we are!$"
 
 RadioTower1F_Text_GruntM3Beaten:
@@ -253,11 +253,11 @@ RadioTower1F_Text_GruntM3After:
     .string "warn the others…$"
 
 RadioTower1F_Text_Directory:
-    .string "1F RECEPTION\n"
-    .string "2F SALES\p"
-    .string "3F PERSONNEL\n"
-    .string "4F PRODUCTION\p"
-    .string "5F DIRECTOR'S OFFICE$"
+    .string "1F Reception\n"
+    .string "2F Sales\p"
+    .string "3F Personnel\n"
+    .string "4F Production\p"
+    .string "5F Director'S Office$"
 
 
 GoldenrodCity_RadioTower_1F_EventScript_LotteryClerk::
@@ -368,12 +368,12 @@ GoldenrodCity_RadioTower_1F_EventScript_GivePrizeFromEarlier::
 	end
 
 GoldenrodCity_RadioTower_1F_Text_LotteryCornerDrawTicket:
-	.string "This is the POKéMON LOTTERY CORNER.\p"
-	.string "If the LOTO TICKET's number matches\n"
-	.string "the ID number of any of your POKéMON,\l"
+	.string "This is the POKéMON Lottery Corner.\p"
+	.string "If the Loto Ticket's number matches\n"
+	.string "the Id number of any of your POKéMON,\l"
 	.string "you will receive a fabulous gift.\p"
 	.string "Would you like to draw a POKéMON\n"
-	.string "LOTO TICKET?$"
+	.string "Loto Ticket?$"
 
 GoldenrodCity_RadioTower_1F_Text_ComeBackTomorrow:
 	.string "Please come back tomorrow.$"
@@ -382,26 +382,26 @@ GoldenrodCity_RadioTower_1F_Text_PleaseVisitAgain:
 	.string "Please do visit again.$"
 
 GoldenrodCity_RadioTower_1F_Text_PleasePickTicket:
-	.string "Please pick a LOTO TICKET.\n"
+	.string "Please pick a Loto Ticket.\n"
 	.string "…{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}…{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}…{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}$"
 
 GoldenrodCity_RadioTower_1F_Text_TicketNumberIsXPleaseWait:
-	.string "The LOTO TICKET number is {STR_VAR_1}.\p"
+	.string "The Loto Ticket number is {STR_VAR_1}.\p"
 	.string "I need to run a check on this number\n"
 	.string "to see if it matches any of your\l"
-	.string "POKéMON's ID numbers. Please wait.$"
+	.string "POKéMON's Id numbers. Please wait.$"
 
 GoldenrodCity_RadioTower_1F_Text_TicketMatchesPartyMon:
 	.string "Congratulations!\p"
-	.string "The ID number of your team's\n"
+	.string "The Id number of your team's\n"
 	.string "{STR_VAR_1} matches your\l"
-	.string "LOTO TICKET's number!$"
+	.string "Loto Ticket's number!$"
 
 GoldenrodCity_RadioTower_1F_Text_TicketMatchesPCMon:
 	.string "Congratulations!\p"
-	.string "The ID number of your PC-boxed\n"
+	.string "The Id number of your PC-boxed\n"
 	.string "{STR_VAR_1} matches your\l"
-	.string "LOTO TICKET's number!$"
+	.string "Loto Ticket's number!$"
 
 GoldenrodCity_RadioTower_1F_Text_NoNumbersMatched:
 	.string "I'm sorry.\n"
@@ -431,7 +431,7 @@ GoldenrodCity_RadioTower_1F_Text_AllFiveDigitsMatched:
 GoldenrodCity_RadioTower_1F_Text_NoRoomForThis:
 	.string "Oh?\n"
 	.string "You seem to have no room for this.\p"
-	.string "Please make room in your BAG and\n"
+	.string "Please make room in your Bag and\n"
 	.string "let me know.$"
 
 GoldenrodCity_RadioTower_1F_Text_PrizeWeveBeenHolding:

@@ -39,8 +39,8 @@ MagmaHideout_3F_1R_EntranceTrigger::
 	end
 
 MagmaHideout_3F_1R_EntranceTrigger_Text:
-	.string "A big roar echoes around MAGMA\n"
-	.string "HIDEOUT.\p"
+	.string "A big roar echoes around Magma\n"
+	.string "Hideout.\p"
 	.string "It seems that the echoing roars\n"
 	.string "come from a menacing POKéMON.\p"
 	.string "However... It looks distressed.\n"
@@ -297,7 +297,7 @@ MagmaHideout_3F_1R_Entei_EnteiBattle4_Stats::
 	return
 
 MagmaHideout_3F_1R_EnteiBattleFinal_Text:
-	.string "ENTEI looks exhausted.\n"
+	.string "Entei looks exhausted.\n"
 	.string "Can it be captured now?$"
 
 MagmaHideout_3F_1R_EnteiFinalBattle_Won::

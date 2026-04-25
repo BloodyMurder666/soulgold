@@ -287,7 +287,7 @@ VermilionCity_Gym_EventScript_Surge_Defeated::
 	end
 
 VermilionGym_Text_LtSurgeIntro:
-	.string "SURGE: Hey, you little tyke!\p"
+	.string "Surge: Hey, you little tyke!\p"
 	.string "I have to hand it to you.\n"
 	.string "It may not be very smart to\l"
 	.string "challenge me, but it takes guts!\p"
@@ -299,14 +299,14 @@ VermilionGym_Text_LtSurgeIntro:
 	.string "enemies in war!$"
 
 VermilionGym_Text_LtSurgeWinLoss:
-	.string "SURGE: Arrrgh! You are strong!\p"
-	.string "OK, kid. You get THUNDERBADGE!$"
+	.string "Surge: Arrrgh! You are strong!\p"
+	.string "Ok, kid. You get Thunderbadge!$"
 
 VermilionGym_Text_ReceivedThunderBadge:
-	.string "{PLAYER} received THUNDERBADGE.$"
+	.string "{PLAYER} received Thunderbadge.$"
 
 VermilionGym_Text_ThunderBadgeInfo:
-	.string "SURGE: THUNDERBADGE increases\n"
+	.string "Surge: Thunderbadge increases\n"
 	.string "POKéMON's speed.\p"
 	.string "Consider it proof that you\n"
 	.string "defeated me.\p"
@@ -322,35 +322,35 @@ VermilionGym_Text_LtSurgeThunderstone:
 
 
 VermilionGym_Text_LtSurgePostBattle:
-	.string "SURGE: Hey, kid! Still slugging\n"
+	.string "Surge: Hey, kid! Still slugging\n"
 	.string "and chugging away?\p"
 	.string "My POKéMON and I are still at it!$"
 
 VermilionGym_Text_SurgeRematch:
-	.string "SURGE: So, you're now KANTO\n"
-	.string "CHAMPION!\p"
+	.string "Surge: So, you're now Kanto\n"
+	.string "Champion!\p"
 	.string "Impressive work, kid!\n"
 	.string "But don't think I'm done!\p"
 	.string "How about we have a go again?$"
 
 VermilionGym_Text_SurgeRematchDefeat:
-	.string "SURGE: Arrrgh! You're still just\n"
+	.string "Surge: Arrrgh! You're still just\n"
 	.string "as strong!$"
 
 VermilionGym_Text_GentlemanGregorySeen:
-	.string "You're here to defeat LT.SURGE?\p"
+	.string "You're here to defeat Lt.Surge?\p"
 	.string "Not if I can help it!$"
 
 VermilionGym_Text_GentlemanGregoryBeaten:
 	.string "Sorry I failed you,\n"
-	.string "LT.SURGE, sir!$"
+	.string "Lt.Surge, sir!$"
 
 VermilionGym_Text_GentlemanGregoryAfter:
 	.string "When I was still in the army,\n"
-	.string "LT.SURGE saved my life.$"
+	.string "Lt.Surge saved my life.$"
 
 VermilionGym_Text_GuitaristVincentSeen:
-	.string "LT.SURGE recognized my potential\n"
+	.string "Lt.Surge recognized my potential\n"
 	.string "with electric POKéMON.\p"
 	.string "Think you can beat me?$"
 
@@ -358,7 +358,7 @@ VermilionGym_Text_GuitaristVincentBeaten:
 	.string "Ooh, how shocking!$"
 
 VermilionGym_Text_GuitaristVincentAfter:
-	.string "If the GYM's traps were working,\n"
+	.string "If the Gym's traps were working,\n"
 	.string "you would have been toast…$"
 
 VermilionGym_Text_JugglerHortonSeen:
@@ -371,20 +371,20 @@ VermilionGym_Text_JugglerHortonBeaten:
 VermilionGym_Text_JugglerHortonAfter:
 	.string "Don't get too comfortable about\n"
 	.string "beating me…\p"
-	.string "LT.SURGE is tough.$"
+	.string "Lt.Surge is tough.$"
 
 VermilionCity_Gym_Text_GymGuyAdvice::
     .string "Yo!\n"
     .string "Champ in the making!\p"
-    .string "LT. SURGE has a nickname.\p"
+    .string "Lt. Surge has a nickname.\p"
     .string "People refer to him as the\n"
     .string "Lightning American!\p"
     .string "He's an expert on electric\n"
     .string "POKéMON.\p"
-    .string "FLYING/WATER-type POKéMON match\n"
-    .string "poorly against the ELECTRIC type.\p"
+    .string "Flying/Water-type POKéMON match\n"
+    .string "poorly against the Electric type.\p"
     .string "Beware of paralysis, too.\p"
-    .string "LT. SURGE is very cautious.\p"
+    .string "Lt. Surge is very cautious.\p"
     .string "He's locked himself in, so it won't\n"
     .string "be easy getting to him.$"
 
@@ -394,17 +394,17 @@ VermilionCity_Gym_Text_GymGuyPostVictory::
 	.string "It sure made me nervous.$"
 
 VermilionCity_Gym_Text_GymStatue::
-    .string "VERMILION POKéMON GYM\n"
-    .string "LEADER: LT. SURGE\p"
-	.string "WINNING TRAINERS:\n"
-	.string "BLUE, RED$"
+    .string "Vermilion POKéMON Gym\n"
+    .string "Leader: Lt. Surge\p"
+	.string "Winning Trainers:\n"
+	.string "Blue, Red$"
 
 
 VermilionCity_Gym_Text_GymStatuePlayerWon::
-    .string "VERMILION POKéMON GYM\n"
-    .string "LEADER: LT. SURGE\p"
-    .string "WINNING TRAINERS:\n"
-    .string "BLUE, RED, {PLAYER}$"
+    .string "Vermilion POKéMON Gym\n"
+    .string "Leader: Lt. Surge\p"
+    .string "Winning Trainers:\n"
+    .string "Blue, Red, {PLAYER}$"
 
 VermilionCity_Gym_Text_NopeOnlyTrashHere::
     .string "Nope!\n"

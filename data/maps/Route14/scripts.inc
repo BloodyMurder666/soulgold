@@ -181,19 +181,19 @@ Route14_EventScript_Trevor::
 
 
 Route14_Text_Eusine:
-	.string "EUSINE: {PLAYER}! Not again!\n"
+	.string "Eusine: {PLAYER}! Not again!\n"
 	.string "I'll be there first next time!\p"
 	.string "Having followed it here, I'm\n"
-	.string "starting to understand what SUICUNE\l"
+	.string "starting to understand what Suicune\l"
 	.string "is after.\p"
 	.string "To be honest, I would like to keep\n"
 	.string "this information to myself.\p"
 	.string "But I want to be an honest trainer\n"
-	.string "in front of SUICUNE!\p"
+	.string "in front of Suicune!\p"
 	.string "That's why I am sharing a clue with\n"
 	.string "you.\p"
 	.string "It seems that...\n"
-	.string "SUICUNE prefers a hilly place...\l"
+	.string "Suicune prefers a hilly place...\l"
 	.string "Near water...\l"
 	.string "Somewhere north...\p"
 	.string "I don't know exactly where yet.\n"
@@ -209,7 +209,7 @@ Route14_Text_PokefanmCarterBeaten:
 	.string "Awaaah!$"
 
 Route14_Text_PokefanmCarterAfterBattle:
-	.string "TOTODILE, CYNDAQUIL, CHIKORITA…\p"
+	.string "Totodile, Cyndaquil, Chikorita…\p"
 	.string "I think that's a well-balanced mix.$"
 
 Route14_Text_BirdKeeperRoySeen:
@@ -221,7 +221,7 @@ Route14_Text_BirdKeeperRoyBeaten:
 
 Route14_Text_BirdKeeperRoyAfterBattle:
 	.string "You have POKéMON that know the HM\n"
-	.string "move FLY, don't you? I envy you.$"
+	.string "move Fly, don't you? I envy you.$"
 
 Route14_Text_PokefanmTrevorSeen:
 	.string "Hi. Did you know…?\p"
@@ -230,7 +230,7 @@ Route14_Text_PokefanmTrevorSeen:
 	.string "remember.$"
 
 Route14_Text_PokefanmTrevorBeaten:
-	.string "Where did I meet this SCIZOR?$"
+	.string "Where did I meet this Scizor?$"
 
 Route14_Text_PokefanmTrevorAfterBattle:
 	.string "If only there were an easy way to\n"
@@ -325,11 +325,11 @@ Route14_Movement_StuckPidgeottoJump:
 	step_end
 
 Route14_Text_Pidgeotto:
-	.string "PIDGEOTTO: Kaaaaa!$"
+	.string "Pidgeotto: Kaaaaa!$"
 Route14_Text_PidgeottoBerry:
-	.string "Give the PIDGEOTTO a BERRY?$"
+	.string "Give the Pidgeotto a Berry?$"
 Route14_Text_PidgeottoAteBerry:
-	.string "PIDGEOTTO enjoyed the QUALOT BERRY!$"
+	.string "Pidgeotto enjoyed the Qualot Berry!$"
 Route14_Text_PidgeottoTurnedAway:
-	.string "PIDGEOTTO doesn't like it!$"
+	.string "Pidgeotto doesn't like it!$"
 

@@ -38,19 +38,19 @@ AzaleaPokecenter_Text_Gentleman:
 	.string "your POKéMON has fainted.$"
 
 AzaleaPokecenter_Text_UnusedPCExplanation:
-	.string "This BILL guy created the system\n"
+	.string "This Bill guy created the system\n"
 	.string "for storing POKéMON in a PC.\p"
-	.string "BILL's PC can store up to 30\n"
-	.string "POKéMON per BOX.$"
+	.string "Bill's PC can store up to 30\n"
+	.string "POKéMON per Box.$"
 
 AzaleaPokecenter_Text_FishingGuru:
-	.string "BILL's PC can store up to 30\n"
-	.string "POKéMON per BOX.$"
+	.string "Bill's PC can store up to 30\n"
+	.string "POKéMON per Box.$"
 
 AzaleaPokecenter_Text_PokefanF:
-	.string "Do you know about BERRIES?\p"
+	.string "Do you know about Berries?\p"
 	.string "Crack one open, hollow it out and\n"
 	.string "fit it with a special device.\p"
 	.string "Then you can catch POKéMON with it.\p"
-	.string "Before POKé BALLS were invented,\n"
-	.string "everyone used BERRIES.$"
+	.string "Before POKé Balls were invented,\n"
+	.string "everyone used Berries.$"
