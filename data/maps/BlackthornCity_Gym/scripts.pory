@@ -429,5 +429,5 @@ BlackthornGym_Text_GymStatueCertified:
 `
 script BlackthornCity_Gym_EventScript_Kingdra {
     playmoncry(SPECIES_KINGDRA, CRY_MODE_NORMAL)
-    msgbox("KING!!", MSGBOX_NPC)
+    msgbox("King!!", MSGBOX_NPC)
 }
