@@ -1152,5 +1152,6 @@ OakRadioTowerF5_Text_2:
 OakRadioTowerF5_Text_3:
 # 560 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	.string "Now I must start heading back to Kanto,\n"
-	.string "I hope you pay visit to Pallet Town at\l"
-	.string "some point! Give my regards to Prof. Elm.$"
+	.string "I hope you'll pay a visit to the Pallet\l"
+	.string "Town at some point! Give my regards to\l"
+	.string "Prof. Elm.$"

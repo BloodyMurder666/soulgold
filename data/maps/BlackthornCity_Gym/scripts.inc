@@ -865,4 +865,4 @@ BlackthornCity_Gym_EventScript_Kingdra::
 
 BlackthornCity_Gym_EventScript_Kingdra_Text_0:
 # 432 "data/maps/BlackthornCity_Gym/scripts.pory"
-	.string "King!!$"
+	.string "KING!!$"
