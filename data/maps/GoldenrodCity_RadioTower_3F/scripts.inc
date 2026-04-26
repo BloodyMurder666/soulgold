@@ -149,7 +149,7 @@ GoldenrodCity_RadioTower_3F_Text_SuperNerd:
 	.string "We have recordings of the cries\n"
 	.string "of all Pokémon that have been\l"
 	.string "found.\p"
-	.string "We must have about 400 kinds.$"
+	.string "We must have over 1000 kinds.$"
 
 GoldenrodCity_RadioTower_3F_Text_GymGuideRockets:
 	.string "To trainers, Pokémon are their\n"
