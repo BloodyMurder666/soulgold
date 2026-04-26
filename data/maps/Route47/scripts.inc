@@ -61,7 +61,7 @@ Route47_Text_CamperSeen::
 # 31 "data/maps/Route47/scripts.pory"
 	.string "I'm camping out here with my\l"
 # 32 "data/maps/Route47/scripts.pory"
-	.string "POKéMON!$"
+	.string "Pokémon!$"
 # 33 "data/maps/Route47/scripts.pory"
 
 # 34 "data/maps/Route47/scripts.pory"

@@ -706,7 +706,7 @@ PetalburgCity_Text_WhereIsWally:
 PetalburgCity_Text_AreYouRookieTrainer:
 	.string "Hiya! Are you maybe…\n"
 	.string "A rookie Trainer?\p"
-	.string "Do you know what POKéMON Trainers\n"
+	.string "Do you know what Pokémon Trainers\n"
 	.string "do when they reach a new town?\p"
 	.string "They first check what kind of Gym\n"
 	.string "is in the town.$"
@@ -726,13 +726,13 @@ PetalburgCity_Text_WaterReflection:
 	.string "What do you see reflected in your face?$"
 
 PetalburgCity_Text_FullPartyExplanation:
-	.string "Let's say you have six POKéMON.\n"
+	.string "Let's say you have six Pokémon.\n"
 	.string "If you catch another one…\p"
 	.string "It is automatically sent to a Storage\n"
 	.string "Box over a PC connection.$"
 
 PetalburgCity_Text_GymSign:
-	.string "Petalburg City POKéMON Gym\n"
+	.string "Petalburg City Pokémon Gym\n"
 	.string "Leader: Norman\l"
 	.string "“A man in pursuit of power!”$"
 
@@ -746,7 +746,7 @@ PetalburgCity_Text_WallyHouseSign:
 PetalburgCity_Text_AreYouATrainer:
 	.string "Excuse me!\p"
 	.string "Let me guess, from the way you're\n"
-	.string "dressed, are you a POKéMON Trainer?$"
+	.string "dressed, are you a Pokémon Trainer?$"
 
 PetalburgCity_Text_WellMaybeNot:
 	.string "… … … … … …\p"

@@ -911,17 +911,17 @@ Route110_TrickHousePuzzle5_Text_Mechadoll1Intro:
 
 Route110_TrickHousePuzzle5_Text_Mechadoll1Quiz1:
 	.string "Mechadoll 1 Quiz.\p"
-	.string "One of these POKéMON is not found\n"
+	.string "One of these Pokémon is not found\n"
 	.string "on Route 110. Which one is it?$"
 
 Route110_TrickHousePuzzle5_Text_Mechadoll1Quiz2:
 	.string "Mechadoll 1 Quiz.\p"
-	.string "One of these POKéMON is not of the\n"
+	.string "One of these Pokémon is not of the\n"
 	.string "Water type. Which one is it?$"
 
 Route110_TrickHousePuzzle5_Text_Mechadoll1Quiz3:
 	.string "Mechadoll 1 Quiz.\p"
-	.string "One of these POKéMON does not use\n"
+	.string "One of these Pokémon does not use\n"
 	.string "Leech Life. Which one is it?$"
 
 Route110_TrickHousePuzzle5_Text_CorrectGoThrough:
@@ -947,17 +947,17 @@ Route110_TrickHousePuzzle5_Text_Mechadoll2Intro:
 
 Route110_TrickHousePuzzle5_Text_Mechadoll2Quiz1:
 	.string "Mechadoll 2 Quiz.\p"
-	.string "Which of these POKéMON did Wally\n"
+	.string "Which of these Pokémon did Wally\n"
 	.string "borrow from your father?$"
 
 Route110_TrickHousePuzzle5_Text_Mechadoll2Quiz2:
 	.string "Mechadoll 2 Quiz.\p"
-	.string "Which of these POKéMON was chasing\n"
+	.string "Which of these Pokémon was chasing\n"
 	.string "Prof. Birch?$"
 
 Route110_TrickHousePuzzle5_Text_Mechadoll2Quiz3:
 	.string "Mechadoll 2 Quiz.\p"
-	.string "Which of these POKéMON did Team Aqua\n"
+	.string "Which of these Pokémon did Team Aqua\n"
 	.string "use in Petalburg Forest?$"
 
 Route110_TrickHousePuzzle5_Text_Mechadoll3Intro:
@@ -1008,8 +1008,8 @@ Route110_TrickHousePuzzle5_Text_Mechadoll5Intro:
 
 Route110_TrickHousePuzzle5_Text_Mechadoll5Quiz1:
 	.string "Mechadoll 5 Quiz.\p"
-	.string "In Slateport's POKéMON Fan Club,\n"
-	.string "how many POKéMON were there?$"
+	.string "In Slateport's Pokémon Fan Club,\n"
+	.string "how many Pokémon were there?$"
 
 Route110_TrickHousePuzzle5_Text_Mechadoll5Quiz2:
 	.string "Mechadoll 5 Quiz.\p"

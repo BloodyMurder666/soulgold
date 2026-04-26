@@ -76,7 +76,7 @@ CeladonCity_EventScript_Lass::
 CeladonCity_Text_Fisher:
 	.string "This Poliwrath is my partner.\p"
 	.string "I wonder if it'll ever evolve\n"
-	.string "into a frog POKéMON.$"
+	.string "into a frog Pokémon.$"
 
 CeladonCity_Text_Poliwrath:
 	.string "Poliwrath: Croak!$"
@@ -148,7 +148,7 @@ CeladonCity_Text_Sign:
 	.string "The City of Rainbow Dreams$"
 
 CeladonGym_Text_Sign:
-	.string "Celadon City POKéMON Gym Leader:\n"
+	.string "Celadon City Pokémon Gym Leader:\n"
 	.string "Erika\p"
 	.string "The Nature-Loving Princess$"
 
@@ -165,7 +165,7 @@ CeladonCity_Text_GameCornerSign:
 
 CeladonCity_Text_TrainerTips:
 	.string "Trainer Tips\p"
-	.string "Guard Spec. protects POKéMON\n"
+	.string "Guard Spec. protects Pokémon\n"
 	.string "against Special attacks such as\n"
 	.string "fire and water.\p"
 	.string "Get your items at Celadon Dept.\n"

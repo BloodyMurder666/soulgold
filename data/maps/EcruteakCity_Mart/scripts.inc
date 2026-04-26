@@ -55,7 +55,7 @@ EcruteakMart_Text_SuperNerd:
 # 28 "data/maps/EcruteakCity_Mart/scripts.pory"
 EcruteakMart_Text_Granny:
 # 29 "data/maps/EcruteakCity_Mart/scripts.pory"
-	.string "If you use Revive, a POKéMON that's\n"
+	.string "If you use Revive, a Pokémon that's\n"
 # 30 "data/maps/EcruteakCity_Mart/scripts.pory"
 	.string "fainted will wake right up.$"
 

@@ -641,7 +641,7 @@ GoldenrodCity_GameCorner_Text_CooltrainerF:
 # 321 "data/maps/GoldenrodCity_GameCorner/scripts.pory"
 GoldenrodCity_GameCorner_Text_Gentleman:
 # 322 "data/maps/GoldenrodCity_GameCorner/scripts.pory"
-    .string "I taught Blizzard to my POKéMON.\p"
+    .string "I taught Blizzard to my Pokémon.\p"
 # 323 "data/maps/GoldenrodCity_GameCorner/scripts.pory"
     .string "It was hard to get enough coins for\n"
 # 324 "data/maps/GoldenrodCity_GameCorner/scripts.pory"

@@ -142,17 +142,17 @@ DragonsDen_Cavern_Text_ClairDescribeDragonclaw:
 
 DragonsDen_Cavern_Text_ClairWhatsTheMatter:
     .string "What's the matter? Aren't\n"
-    .string "you going on to the POKéMON\l"
+    .string "you going on to the Pokémon\l"
     .string "League?\p"
     .string "After you become Champion, you\n"
     .string "can rematch any Gym Leader you\l"
     .string "want.\p"
-    .string "Go to the POKéMON League.\p"
+    .string "Go to the Pokémon League.\p"
     .string "Do you know how to get there?\p"
     .string "From here, go to New Bark Town.\p"
-    .string "Then Surf east to POKéMON League.\p"
+    .string "Then Surf east to Pokémon League.\p"
     .string "The route there is very tough.\p"
-    .string "Don't you dare lose at the POKéMON\n"
+    .string "Don't you dare lose at the Pokémon\n"
     .string "League!\p"
     .string "If you do, I'll feel even worse\n"
     .string "about having lost to you!\p"
@@ -185,7 +185,7 @@ DragonsDen_Cavern_EventScript_TwinPia::
 DragonsDen_Cavern_Text_DragonShrineSign:
     .string "Dragon Shrine\p"
     .string "A shrine honoring the dragon\n"
-    .string "POKéMON\p"
+    .string "Pokémon\p"
     .string "said to have lived in Dragon'S\n"
     .string "Den.$"
 
@@ -193,11 +193,11 @@ DragonsDen_Cavern_Text_SilverTraining1:
     .string "…\n"
     .string "What? {PLAYER}?\p"
     .string "…No, I won't battle you now…\p"
-    .string "My POKéMON aren't ready to beat\n"
+    .string "My Pokémon aren't ready to beat\n"
     .string "you.\p"
     .string "I can't push them too hard now.\p"
     .string "I have to be disciplined to become\n"
-    .string "the greatest POKéMON trainer…$"
+    .string "the greatest Pokémon trainer…$"
 
 DragonsDen_Cavern_Text_SilverTraining2:
     .string "…\p"

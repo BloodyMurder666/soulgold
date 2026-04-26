@@ -15,7 +15,7 @@ Route22_EventScript_Sign::
 	end
 
 Route22_Text_VictoryRoadEntranceSign:
-	.string "POKéMON League\p"
+	.string "Pokémon League\p"
 	.string "Victory Road Entrance$"
 
 Route22_EventScript_ResetActivation::

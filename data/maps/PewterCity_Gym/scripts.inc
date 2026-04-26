@@ -40,14 +40,14 @@ PewterCity_Gym_Text_Brock_Intro:
 	.string "Brock: Wow, it's not often that we get a\n"
 	.string "challenger from Johto.\p"
 	.string "I'm Brock, the Pewter Gym Leader.\p"
-	.string "I'm an expert on rock-type POKéMON.\p"
-	.string "My POKéMON are impervious to most\n"
+	.string "I'm an expert on rock-type Pokémon.\p"
+	.string "My Pokémon are impervious to most\n"
 	.string "physical attacks. You'll have a hard\l"
 	.string "time inflicting any damage.\p"
 	.string "Come on!$"
 
 PewterCity_Gym_Text_Brock_WinLoss:
-	.string "Brock: Your POKéMON's powerful attacks\n"
+	.string "Brock: Your Pokémon's powerful attacks\n"
 	.string "overcame my rock-hard defense…\p"
 	.string "You're stronger than I expected…\p"
 	.string "Go ahead--take this Badge.$"
@@ -60,14 +60,14 @@ PewterCity_Gym_Text_Brock_BoulderBadge:
 	.string "battling you, even though I am a bit\l"
 	.string "upset.\p"
 	.string "That Boulderbadge will make your\n"
-	.string "POKéMON even more powerful.$"
+	.string "Pokémon even more powerful.$"
 
 PewterCity_Gym_Text_EarthquakeSpeech:
     .string "That TM contains Earthquake.\p"
     .string "It's a powerful attack that\n"
     .string "shakes up the battlefield.\p"
     .string "But be careful not to\n"
-    .string "undermine your own POKéMON!$"
+    .string "undermine your own Pokémon!$"
 
 PewterCity_Gym_Text_Brock_FightDone:
 	.string "Brock: The world is huge. There are\n"
@@ -77,7 +77,7 @@ PewterCity_Gym_Text_Brock_FightDone:
 
 PewterCity_Gym_Text_CamperJerry_Seen:
 	.string "The trainers of this Gym use rock-type\n"
-	.string "POKéMON.\p"
+	.string "Pokémon.\p"
 	.string "The rock-type has high Defense.\p"
 	.string "Battles could end up going a long time.\n"
 	.string "Are you ready for this?$"
@@ -127,13 +127,13 @@ PewterCity_Gym_EventScript_GymStatuePostVictory::
 	end
 
 PewterCity_Gym_Text_GymStatue::
-    .string "Pewter POKéMON Gym\n"
+    .string "Pewter Pokémon Gym\n"
     .string "Leader: Brock\p"
 	.string "Winning Trainers:\n"
 	.string "Blue, Red$"
 
 PewterCity_Gym_Text_GymStatuePlayerWon::
-    .string "Pewter POKéMON Gym\n"
+    .string "Pewter Pokémon Gym\n"
     .string "Leader: Brock\p"
     .string "Winning Trainers:\n"
 	.string "Blue, Red, {PLAYER}$"

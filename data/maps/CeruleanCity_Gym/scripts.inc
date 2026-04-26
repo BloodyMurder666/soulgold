@@ -161,13 +161,13 @@ CeruleanCity_Gym_EventScript_GymGuyAfter::
 	end
 
 CeruleanCity_Gym_Text_GymStatue::
-    .string "Cerulean POKéMON Gym\n"
+    .string "Cerulean Pokémon Gym\n"
     .string "Leader: Misty\p"
 	.string "Winning Trainers:\n"
 	.string "Blue, Red$"
 
 CeruleanCity_Gym_Text_GymStatuePlayerWon::
-    .string "Cerulean POKéMON Gym\n"
+    .string "Cerulean Pokémon Gym\n"
     .string "Leader: Misty\p"
     .string "Winning Trainers:\n"
 	.string "Blue, Red, {PLAYER}$"
@@ -250,7 +250,7 @@ CeruleanGym_Text_MistyIntro:
 	.string "You may have a lot of Johto Gym\n"
 	.string "Badges, but you'd better not\l"
 	.string "take me too lightly.\p"
-	.string "My Water-type POKéMON are\n"
+	.string "My Water-type Pokémon are\n"
 	.string "tough!$"
 
 CeruleanGym_Text_MistyWinLoss:

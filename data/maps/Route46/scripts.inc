@@ -75,7 +75,7 @@ Route46_Text_HikerBaileySeen:
 # 38 "data/maps/Route46/scripts.pory"
 	.string "Awright! I'll show you the\n"
 # 39 "data/maps/Route46/scripts.pory"
-	.string "power of mountain POKéMON!$"
+	.string "power of mountain Pokémon!$"
 # 40 "data/maps/Route46/scripts.pory"
 
 # 41 "data/maps/Route46/scripts.pory"
@@ -97,7 +97,7 @@ Route46_Text_HikerBaileyAfterBattle:
 # 49 "data/maps/Route46/scripts.pory"
 Route46_Text_CamperTedSeen:
 # 50 "data/maps/Route46/scripts.pory"
-	.string "I'm raising POKéMON too!\p"
+	.string "I'm raising Pokémon too!\p"
 # 51 "data/maps/Route46/scripts.pory"
 	.string "Will you battle with me?$"
 # 52 "data/maps/Route46/scripts.pory"
@@ -121,7 +121,7 @@ Route46_Text_CamperTedAfterBattle:
 # 61 "data/maps/Route46/scripts.pory"
 Route46_Text_PicnickerErinSeen:
 # 62 "data/maps/Route46/scripts.pory"
-	.string "I raise POKéMON too!\p"
+	.string "I raise Pokémon too!\p"
 # 63 "data/maps/Route46/scripts.pory"
 	.string "Will you battle with me?$"
 # 64 "data/maps/Route46/scripts.pory"

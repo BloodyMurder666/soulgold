@@ -30,12 +30,12 @@ FuchsiaCity_Text_Baoba:
 	.string "My old Safari Zone in Fuchsia City\l"
 	.string "was bought out and reopened!\p"
 	.string "And apparently it has exotic new\n"
-	.string "POKéMON!\p"
+	.string "Pokémon!\p"
 	.string "It's hurting my business!\p"
 	.string "{PLAYER}, you must venture into the\n"
-	.string "new Safari Zone and catch a POKéMON\l"
+	.string "new Safari Zone and catch a Pokémon\l"
 	.string "to show me. I must know about these\l"
-	.string "'exotic' POKéMON.\p"
+	.string "'exotic' Pokémon.\p"
 	.string "Please {PLAYER}, my business depends\n"
 	.string "on you!$"
 
@@ -111,14 +111,14 @@ FuchsiaCity_Text_PokefanM:
 FuchsiaCity_Text_Teacher:
 	.string "The Safari Zone is under new\n"
 	.string "management.\p"
-	.string "And it has tons of new POKéMON!$"
+	.string "And it has tons of new Pokémon!$"
 
 FuchsiaCity_Text_Sign:
 	.string "Fuchsia City\p"
 	.string "Behold! It's Passion Pink!$"
 
 FuchsiaCity_Text_GymSign:
-	.string "Fuchsia City POKéMON Gym\n"
+	.string "Fuchsia City Pokémon Gym\n"
 	.string "Leader: Janine\p"
 	.string "The Poisonous Ninja Master$"
 

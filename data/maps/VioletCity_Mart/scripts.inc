@@ -61,7 +61,7 @@ VioletCity_Mart_EventScript_Rocker::
 # 31 "data/maps/VioletCity_Mart/scripts.pory"
 VioletCity_Mart_Text_Granny:
 # 32 "data/maps/VioletCity_Mart/scripts.pory"
-	.string "When you first catch a POKéMON,\n"
+	.string "When you first catch a Pokémon,\n"
 # 33 "data/maps/VioletCity_Mart/scripts.pory"
 	.string "it may be weak.\p"
 # 34 "data/maps/VioletCity_Mart/scripts.pory"
@@ -69,7 +69,7 @@ VioletCity_Mart_Text_Granny:
 # 35 "data/maps/VioletCity_Mart/scripts.pory"
 	.string "be strong.\p"
 # 36 "data/maps/VioletCity_Mart/scripts.pory"
-	.string "It's important to treat POKéMON\n"
+	.string "It's important to treat Pokémon\n"
 # 37 "data/maps/VioletCity_Mart/scripts.pory"
 	.string "with love.$"
 # 38 "data/maps/VioletCity_Mart/scripts.pory"
@@ -77,7 +77,7 @@ VioletCity_Mart_Text_Granny:
 # 39 "data/maps/VioletCity_Mart/scripts.pory"
 VioletCity_Mart_Text_CooltrainerM:
 # 40 "data/maps/VioletCity_Mart/scripts.pory"
-	.string "POKéMON can hold items like\n"
+	.string "Pokémon can hold items like\n"
 # 41 "data/maps/VioletCity_Mart/scripts.pory"
 	.string "Potion and Antidote.\p"
 # 42 "data/maps/VioletCity_Mart/scripts.pory"

@@ -253,7 +253,7 @@ SSAqua_1F_Text_Sailor1_ToOlivine:
 
 SSAqua_1F_Text_Sailor2_FirstTime:
     .string "Here's your cabin.\p"
-    .string "If your POKéMON are hurt, take a\n"
+    .string "If your Pokémon are hurt, take a\n"
     .string "nap in the bed.\p"
     .string "That will heal them.$"
 

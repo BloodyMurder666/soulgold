@@ -171,7 +171,7 @@ GoldenrodDeptStore5_EventScript_Receptionist_Already::
 # 86 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
 GoldenrodDeptStore_Text_5FReceptionistOhYourMon:
 # 87 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
-    .string "Hello. Oh, your POKéMON…$"
+    .string "Hello. Oh, your Pokémon…$"
 # 88 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
 
 # 89 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
@@ -219,7 +219,7 @@ GoldenrodDeptStore_Text_5FReceptionistThereAreTMsPerfectForMon:
 # 110 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
     .string "There are sure to be TMs that are\n"
 # 111 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
-    .string "just perfect for your POKéMON.$"
+    .string "just perfect for your Pokémon.$"
 # 112 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
 
 # 113 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
@@ -233,7 +233,7 @@ GoldenrodDeptStore_Text_5FLass:
 # 117 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
 GoldenrodDeptStore_Text_5FPokefanM:
 # 118 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
-    .string "You can't rename a POKéMON you get\n"
+    .string "You can't rename a Pokémon you get\n"
 # 119 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
     .string "in a trade.\p"
 # 120 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
@@ -253,7 +253,7 @@ GoldenrodDeptStore_Text_Girl:
 # 127 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
 GoldenrodDeptStore_Text_5FDirectory:
 # 128 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
-    .string "Customize Your POKéMON\p"
+    .string "Customize Your Pokémon\p"
 # 129 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
     .string "5F TM Corner$"
 

@@ -102,7 +102,7 @@ Route119_WeatherInstitute_1F_Text_EveryoneWentUpstairs:
 
 Route119_WeatherInstitute_1F_Text_WowYoureStrong:
 	.string "Wow, you're really strong!\p"
-	.string "I wish I could be a POKéMON Trainer\n"
+	.string "I wish I could be a Pokémon Trainer\n"
 	.string "like you!$"
 
 Route119_WeatherInstitute_1F_Text_ProfStudyingRain:

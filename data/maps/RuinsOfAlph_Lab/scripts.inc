@@ -550,7 +550,7 @@ RuinsOfAlph_Lab_EventScript_WorkOnNext::
 
 RuinsOfAlph_Lab_Text_DeviceForTalkingToPokemon:
 	.string "We're developing a device for talking\n"
-	.string "with POKéMON.\p"
+	.string "with Pokémon.\p"
 	.string "But we haven't had much success…$"
 
 RuinsOfAlph_Lab_Text_DevelopingNewBalls:
@@ -562,9 +562,9 @@ RuinsOfAlph_Lab_Text_WeFinallyMadeNewBalls:
 	.string "We finally made new kinds of\n"
 	.string "POKé Balls!\p"
 	.string "The Repeat Ball makes it easier to\n"
-	.string "catch POKéMON you've caught before.\p"
+	.string "catch Pokémon you've caught before.\p"
 	.string "The Timer Ball gets better at catching\n"
-	.string "POKéMON the longer a battle runs.\p"
+	.string "Pokémon the longer a battle runs.\p"
 	.string "Both are proudly developed by\n"
 	.string "the Devon Corporation.\p"
 	.string "Please give them a try!$"
@@ -579,7 +579,7 @@ RuinsOfAlph_Lab_Text_WowThatsAPokenav:
 	.string "That's a POKéNAV!\p"
 	.string "It came about as a result of our\n"
 	.string "President's desire to learn about\l"
-	.string "the feelings of POKéMON.\p"
+	.string "the feelings of Pokémon.\p"
 	.string "Would you like me to describe its\n"
 	.string "features in detail?\p"
 	.string "No, no. I think you'll find out just by\n"
@@ -588,18 +588,18 @@ RuinsOfAlph_Lab_Text_WowThatsAPokenav:
 RuinsOfAlph_Lab_Text_DeviceToVisualizePokemonDreams:
 	.string "I'm trying to develop a device that\n"
 	.string "visually reproduces the dreams of\l"
-	.string "POKéMON…\p"
+	.string "Pokémon…\p"
 	.string "But it's not going well.$"
 
 RuinsOfAlph_Lab_Text_DevelopDeviceToResurrectFossils:
 	.string "I've been trying to develop a device\n"
-	.string "that resurrects POKéMON from fossils…\p"
+	.string "that resurrects Pokémon from fossils…\p"
 	.string "And, it's working!$"
 
 RuinsOfAlph_Lab_Text_WantToBringFossilBackToLife:
 	.string "Wait! That thing you have there…\n"
-	.string "Is that a POKéMON fossil?\p"
-	.string "Would you like to bring that POKéMON\n"
+	.string "Is that a Pokémon fossil?\p"
+	.string "Would you like to bring that Pokémon\n"
 	.string "back to life?\p"
 	.string "I can with my newly developed\n"
 	.string "Fossil Regenerator.$"
@@ -617,7 +617,7 @@ RuinsOfAlph_Lab_Text_TwoFossilsPickOne:
 	.string "Oh, now that's a surprise!\n"
 	.string "You have more than one fossil?\p"
 	.string "Unfortunately, my machine can only\n"
-	.string "regenerate one POKéMON at a time.\p"
+	.string "regenerate one Pokémon at a time.\p"
 	.string "Which fossil would you like to\n"
 	.string "regenerate?$"
 
@@ -637,9 +637,9 @@ RuinsOfAlph_Lab_Text_FossilRegeneratorTakesTime:
 
 RuinsOfAlph_Lab_Text_FossilizedMonBroughtBackToLife:
 	.string "Thanks for waiting!\p"
-	.string "Your fossilized POKéMON has been\n"
+	.string "Your fossilized Pokémon has been\n"
 	.string "brought back to life!\p"
-	.string "The fossil was an ancient POKéMON.\n"
+	.string "The fossil was an ancient Pokémon.\n"
 	.string "{STR_VAR_2}, it was!$"
 
 RuinsOfAlph_Lab_Text_ReceivedMonFromResearcher:
@@ -648,7 +648,7 @@ RuinsOfAlph_Lab_Text_ReceivedMonFromResearcher:
 
 @ Unused
 RuinsOfAlph_Lab_Text_TooManyPokemon:
-	.string "Uh-oh, you've got too many POKéMON.\n"
+	.string "Uh-oh, you've got too many Pokémon.\n"
 	.string "You have no room for this one.$"
 
 RuinsOfAlph_Lab_Text_DevelopNewPokenavFeature:

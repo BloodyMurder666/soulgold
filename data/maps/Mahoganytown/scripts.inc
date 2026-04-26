@@ -313,7 +313,7 @@ MahoganyTown_Text_RagecandybarSign:
     .string "a Ragecandybar!$"
 
 MahoganyTown_Text_GymSign:
-    .string "Mahogany Town POKéMON Gym\p"
+    .string "Mahogany Town Pokémon Gym\p"
     .string "Leader: Pryce\p"
     .string "The Teacher of Winter's Harshness$"
 
@@ -335,11 +335,11 @@ ElmPhoneRadioTowerRocketTakeoverText:
 ElmPhoneRoute39LegendaryText:
 	.string "Prof.Elm: Woah!\n"
 	.string "{PLAYER}, did you see that?!\p"
-	.string "A massive POKéMON just flew over\n"
+	.string "A massive Pokémon just flew over\n"
 	.string "Ecruteak City!\l"
 	.string "I could see it from my Lab!\p"
 	.string "Could it be one of the legendary\n"
-	.string "POKéMON??\p"
+	.string "Pokémon??\p"
 	.string "It looked like it was headed West,\n"
 	.string "toward Route 39.\p"
 	.string "{PLAYER}!\n"

@@ -278,7 +278,7 @@ LavaridgeTown_Text_MayNiceBadgesTakeThis:
 	.string "Oh? While I visited the hot springs,\n"
 	.string "you got the Lavaridge Gym Badge.\p"
 	.string "You must have collected\n"
-	.string "good POKéMON…\l"
+	.string "good Pokémon…\l"
 	.string "No, I believe you raised some.\p"
 	.string "I guess it would be okay for you to\n"
 	.string "have this.$"
@@ -307,7 +307,7 @@ LavaridgeTown_Text_BrendanExplainGoGogglesChallengeDad:
 	.string "Brendan: Keep those with you if you're\n"
 	.string "planning on going into that desert near\l"
 	.string "Route 111.\p"
-	.string "There should be some POKéMON that\n"
+	.string "There should be some Pokémon that\n"
 	.string "are exclusively desert-dwellers.\l"
 	.string "You might look around for those.\p"
 	.string "As for me…\n"
@@ -323,10 +323,10 @@ LavaridgeTown_Text_HaveEggWillYouTakeIt:
 	.string "hot sand by the hot springs.\l"
 	.string "But that doesn't seem to be enough…\p"
 	.string "I've heard it would be best if it were\n"
-	.string "kept together with POKéMON and\l"
+	.string "kept together with Pokémon and\l"
 	.string "carried about.\p"
 	.string "You are a Trainer, yes?\n"
-	.string "And your POKéMON radiate vitality.\p"
+	.string "And your Pokémon radiate vitality.\p"
 	.string "So, what say you?\n"
 	.string "Will you take this Egg to hatch?$"
 
@@ -338,7 +338,7 @@ LavaridgeTown_Text_ReceivedTheEgg:
 	.string "{PLAYER} received the Egg.$"
 
 LavaridgeTown_Text_NoRoomForThisEgg:
-	.string "Oh? You've too many POKéMON.\n"
+	.string "Oh? You've too many Pokémon.\n"
 	.string "There's no room for this Egg…$"
 
 LavaridgeTown_Text_AsYouWishThen:
@@ -348,7 +348,7 @@ LavaridgeTown_Text_AsYouWishThen:
 
 LavaridgeTown_Text_EverySoOftenEggFoundAtDayCare:
 	.string "Every so often, an Egg will be found at\n"
-	.string "the POKéMON Day Care.\p"
+	.string "the Pokémon Day Care.\p"
 	.string "Or at least that's how the rumor goes.$"
 
 LavaridgeTown_Text_HotSpringsNeverRunDry:
@@ -365,7 +365,7 @@ LavaridgeTown_Text_PokemonNippedBackside:
 	.string "Sigh…\p"
 	.string "So warm and heavenly…\p"
 	.string "Eh? Gyaah! Ouch!\p"
-	.string "A POKéMON nipped my backside!$"
+	.string "A Pokémon nipped my backside!$"
 
 LavaridgeTown_Text_OhYouLikeHotSprings:
 	.string "Oh, you like hot springs, do you?\p"
@@ -378,7 +378,7 @@ LavaridgeTown_Text_BatheInHotSpringsEveryDay:
 	.string "Gym Leader like Flannery.$"
 
 LavaridgeTown_Text_IfPokemonInHotSprings:
-	.string "If people put POKéMON in hot springs,\n"
+	.string "If people put Pokémon in hot springs,\n"
 	.string "it might be seriously strange.\p"
 	.string "Why, it might be an electric bath, or\n"
 	.string "a bubble bath, or even a lava bath…$"
@@ -392,15 +392,15 @@ LavaridgeTown_Text_HotSpringsClaims:
 
 LavaridgeTown_Text_TownSign:
 	.string "Lavaridge Town\p"
-	.string "“POKéMON Center Hot Springs\n"
+	.string "“Pokémon Center Hot Springs\n"
 	.string "An excellent place for relaxing!”$"
 
 LavaridgeTown_Text_GymSign:
-	.string "Lavaridge Town POKéMON Gym\n"
+	.string "Lavaridge Town Pokémon Gym\n"
 	.string "Leader: Flannery\l"
 	.string "“One with a fiery passion that burns!”$"
 
 LavaridgeTown_Text_HerbShopSign:
-	.string "POKéMON Herb Shop\n"
+	.string "Pokémon Herb Shop\n"
 	.string "“Bitter taste--better cure!”$"
 

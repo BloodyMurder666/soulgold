@@ -637,7 +637,7 @@ DewfordTown_Text_TownSign:
 	.string "“A tiny island in the blue sea.”$"
 
 DewfordTown_Text_GymSign:
-	.string "Dewford Town POKéMON Gym\n"
+	.string "Dewford Town Pokémon Gym\n"
 	.string "Leader: Brawly\l"
 	.string "“A big wave in fighting!”$"
 

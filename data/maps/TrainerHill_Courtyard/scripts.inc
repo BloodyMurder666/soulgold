@@ -69,11 +69,11 @@ TrainerHill_Courtyard_EventScript_Sailor::
 BattleTowerOutsideYoungsterText:
 	.string "Wow, the Trainer Hill is huge!\p"
 	.string "There must be many kinds of\n"
-	.string "POKéMON in there!$"
+	.string "Pokémon in there!$"
 
 BattleTowerOutsideBeautyText:
 	.string "In the Battle Tents, you can\n"
-	.string "use only three POKéMON.\p"
+	.string "use only three Pokémon.\p"
 	.string "It's so hard to decide which\n"
 	.string "three should go into battle…$"
 
@@ -90,7 +90,7 @@ BattleTowerOutsideSignText:
 
 BattleTower_Battle_Tent_Text_Factory:
 	.string "Battle Tent: Factory\n"
-	.string "“Find it! The ultimate POKéMON!”$"
+	.string "“Find it! The ultimate Pokémon!”$"
 
 BattleTower_Battle_Tent_Text_Palace:
 	.string "Battle Tent: Palace\n"
@@ -461,7 +461,7 @@ TrainerHill_Courtyard_Text_LeftTutorIntro:
 	.string "I'm not like that blowhard woman over\n"
 	.string "there. I'm actually talented!\p"
 	.string "Let me prove it to you.\n"
-	.string "I can teach your POKéMON special and\l"
+	.string "I can teach your Pokémon special and\l"
 	.string "yet cute moves.\p"
 	.string "But my lessons don't come free.\n"
 	.string "How about paying for the moves I teach\l"
@@ -470,7 +470,7 @@ TrainerHill_Courtyard_Text_LeftTutorIntro:
 TrainerHill_Courtyard_Text_LeftTutorWelcomeBack:
 	.string "Buhahaha!\p"
 	.string "Are you back to learn special and\n"
-	.string "yet cute POKéMON moves?$"
+	.string "yet cute Pokémon moves?$"
 
 TrainerHill_Courtyard_Text_TeachWhichMove:
 	.string "Fine, fine, look here!\n"
@@ -481,7 +481,7 @@ TrainerHill_Courtyard_Text_MoveWillBeXBattlePoints:
 	.string "That will be {STR_VAR_2} Battle Points, okay?$"
 
 TrainerHill_Courtyard_Text_TeachMoveToWhichMon:
-	.string "Fine, fine, now pick the POKéMON\n"
+	.string "Fine, fine, now pick the Pokémon\n"
 	.string "I should teach the move to.$"
 
 TrainerHill_Courtyard_Text_HaventGotEnoughPoints:
@@ -510,7 +510,7 @@ TrainerHill_Courtyard_Text_RightTutorIntro:
 	.string "I'm not like that buffoonish woman over\n"
 	.string "there. I'm actually experienced!\p"
 	.string "I can prove it to you.\n"
-	.string "I can teach your POKéMON hard and\l"
+	.string "I can teach your Pokémon hard and\l"
 	.string "yet pretty moves.\p"
 	.string "But my lessons don't come free.\n"
 	.string "How about paying for the moves I teach\l"
@@ -519,7 +519,7 @@ TrainerHill_Courtyard_Text_RightTutorIntro:
 TrainerHill_Courtyard_Text_RightTutorWelcomeBack:
 	.string "Ihihihi!\p"
 	.string "Have you come to learn hard and\n"
-	.string "yet pretty POKéMON moves?$"
+	.string "yet pretty Pokémon moves?$"
 
 TrainerHill_Courtyard_Text_ThinkLadiesDontGetAlong:
 	.string "Those ladies, the way they bad-mouth\n"
@@ -534,7 +534,7 @@ TrainerHill_Courtyard_Text_LadiesWereStrongAndBeautiful:
 	.string "They were idols among us Trainers.\p"
 	.string "Even now, age hasn't dulled their\n"
 	.string "abilities.\p"
-	.string "In fact, their POKéMON moves have\n"
+	.string "In fact, their Pokémon moves have\n"
 	.string "grown even more polished.\p"
 	.string "But… For some reason, I can't help\n"
 	.string "but feel this…\p"
@@ -647,7 +647,7 @@ TrainerHill_Courtyard_Text_ElementalTutorIntro::
 	.string "I'm the Elemental Tutor.\p"
 	.string "I have the power to teach the most\n"
 	.string "powerful moves to Grass, Fire and\l"
-	.string "Water Type POKéMON.\p"
+	.string "Water Type Pokémon.\p"
 	.string "Did you come to learn such a strong\n"
 	.string "power?$"
 
@@ -659,7 +659,7 @@ TrainerHill_Courtyard_Text_ElementalTutorWelcomeBack:
 
 TrainerHill_Courtyard_Text_TeachWhichMoveElemental::
 	.string "Which move do you think is suitable\n"
-	.string "for your POKéMON?$"
+	.string "for your Pokémon?$"
 
 TrainerHill_Courtyard_Text_StrongElementalMoveDesc::
 	.string "Powerful, but\n"
@@ -1115,7 +1115,7 @@ TrainerHill_Courtyard_ExchangeServiceCorner_Text_YouAlreadyHaveThis:
 TrainerHill_Courtyard_ExchangeServiceCorner_EventScript_OldWTMan_Text:
 	.string "Hi! If you are looking for the\n"
 	.string "Wondertrade, they're now located in\l"
-	.string "every POKéMON Center. Have fun!$"
+	.string "every Pokémon Center. Have fun!$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_WelcomePleaseChoosePrize:
 	.string "Hello, this is the Exchange Service\n"
@@ -1287,7 +1287,7 @@ TrainerHill_Courtyard_ExchangeServiceCorner_Text_GetYouAnythingYouWant:
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_ItemsWillGetMonTougher:
 	.string "If I can get hold of the items here,\n"
-	.string "my POKéMON will get tougher.\p"
+	.string "my Pokémon will get tougher.\p"
 	.string "You bet they will!\n"
 	.string "No question about it!$"
 
@@ -1384,7 +1384,7 @@ TrainerHill_Courtyard_ExchangeServiceCorner_Text_QuickClawDesc::
 	.string "the first strike.$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_MentalHerbDesc::
-	.string "A hold item that snaps POKéMON out\n"
+	.string "A hold item that snaps Pokémon out\n"
 	.string "of infatuation.$"
 
 TrainerHill_Courtyard_ExchangeServiceCorner_Text_BrightpowderDesc::

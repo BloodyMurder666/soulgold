@@ -151,7 +151,7 @@ SlowpokeWell_B1F_Text_KurtIntro:
 # 76 "data/maps/SlowpokeWell_B1F/scripts.pory"
 	.string "so I can't move.\p"
 # 77 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "Rats! If I were fit, my POKéMON\n"
+	.string "Rats! If I were fit, my Pokémon\n"
 # 78 "data/maps/SlowpokeWell_B1F/scripts.pory"
 	.string "would've punished them…\p"
 # 79 "data/maps/SlowpokeWell_B1F/scripts.pory"

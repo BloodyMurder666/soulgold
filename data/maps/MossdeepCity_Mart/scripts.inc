@@ -38,13 +38,13 @@ MossdeepCity_Mart_EventScript_Sailor::
 
 MossdeepCity_Mart_Text_ReviveIsFantastic:
 	.string "Revive is fantastic!\p"
-	.string "Give it to a fainted POKéMON,\n"
-	.string "and the POKéMON will arise.\p"
+	.string "Give it to a fainted Pokémon,\n"
+	.string "and the Pokémon will arise.\p"
 	.string "But be careful, Revive doesn't restore\n"
 	.string "the used-up PP of moves.$"
 
 MossdeepCity_Mart_Text_MaxRepelLastsLongest:
-	.string "Max Repel keeps all weak POKéMON away.\p"
+	.string "Max Repel keeps all weak Pokémon away.\p"
 	.string "Out of all the Repel sprays, it lasts\n"
 	.string "the longest.$"
 
@@ -52,7 +52,7 @@ MossdeepCity_Mart_Text_NetAndDiveBallsRare:
 	.string "The Net and Dive Balls are rare POKé\n"
 	.string "Balls that are only made in Mossdeep.\p"
 	.string "A Net Ball is effective against\n"
-	.string "Bug-type and Water-type POKéMON.\p"
-	.string "A Dive Ball works best on POKéMON\n"
+	.string "Bug-type and Water-type Pokémon.\p"
+	.string "A Dive Ball works best on Pokémon\n"
 	.string "at the bottom of the sea.$"
 

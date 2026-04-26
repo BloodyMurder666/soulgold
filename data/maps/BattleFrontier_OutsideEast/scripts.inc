@@ -276,7 +276,7 @@ BattleFrontier_OutsideEast_Text_BattleTowerSign:
 
 BattleFrontier_OutsideEast_Text_BattlePalaceSign:
 	.string "This is the Battle Palace!\n"
-	.string "Keep your eyes on POKéMON battles!$"
+	.string "Keep your eyes on Pokémon battles!$"
 
 BattleFrontier_OutsideEast_Text_BattleArenaSign:
 	.string "This is the Battle Arena!\n"
@@ -303,7 +303,7 @@ BattleFrontier_OutsideEast_Text_BattleTowerFeelsSpecial:
 
 BattleFrontier_OutsideEast_Text_ConquerLeagueAndFrontier:
 	.string "My grand ambition is to conquer both\n"
-	.string "the Battle Frontier and the POKéMON\l"
+	.string "the Battle Frontier and the Pokémon\l"
 	.string "League.\p"
 	.string "And if my dream comes true…\p"
 	.string "I… I'm going to ask Mimi next door\n"
@@ -370,7 +370,7 @@ BattleFrontier_OutsideEast_Text_FastOnBikeAndBattles:
 
 BattleFrontier_OutsideEast_Text_BetterThanDaddyAtPokemon:
 	.string "I'm better than my daddy\n"
-	.string "at POKéMON.$"
+	.string "at Pokémon.$"
 
 BattleFrontier_OutsideEast_Text_GoRackUpSomeWinsForDaddy:
 	.string "Go on, my baby sweetie!\n"
@@ -390,7 +390,7 @@ BattleFrontier_OutsideEast_Text_HeardPrettyGirlAtBattleArena:
 BattleFrontier_OutsideEast_Text_SometimesImportantOldManInThere:
 	.string "I sometimes see this really important-\n"
 	.string "looking old man going in there.\p"
-	.string "He has these really awesome POKéMON.\n"
+	.string "He has these really awesome Pokémon.\n"
 	.string "He seems really nice, though.$"
 
 BattleFrontier_OutsideEast_Text_LegendOfBattlePyramid:
@@ -472,7 +472,7 @@ BattleFrontier_OutsideEast_Text_OnceAnOddTreePastHere:
 BattleFrontier_OutsideEast_Text_StickyMonWithLongTail:
 	.string "I…\n"
 	.string "I saw it!\p"
-	.string "There was a sticky sort of a POKéMON\n"
+	.string "There was a sticky sort of a Pokémon\n"
 	.string "with a long tail up ahead!\p"
 	.string "It was hiding under a boulder, and\n"
 	.string "it kept staring at me!$"

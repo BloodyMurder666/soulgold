@@ -70,7 +70,7 @@ Route114_FossilManiacsTunnel_Text_DevonCorpRevivingFossils:
 	.string "What are you going to do with that\n"
 	.string "Fossil?\p"
 	.string "From what I've heard, Devon is doing\n"
-	.string "research on reviving POKéMON from\l"
+	.string "research on reviving Pokémon from\l"
 	.string "Fossils…\p"
 	.string "I love my Fossils, so I would never\n"
 	.string "do anything like that…$"

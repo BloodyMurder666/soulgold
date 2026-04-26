@@ -321,31 +321,31 @@ EcruteakCity_Text_Lass2:
 	.string "I hear there are ghosts in it now.$"
 
 EcruteakCity_Text_Lass2_ReleasedBeasts:
-	.string "Three big POKéMON ran off in different\n"
+	.string "Three big Pokémon ran off in different\n"
 	.string "directions. What were they?$"
 
 EcruteakCity_Text_Fisher:
 	.string "I heard a rumor about Olivine\n"
 	.string "Lighthouse.\p"
-	.string "The POKéMON that serves as the\n"
+	.string "The Pokémon that serves as the\n"
 	.string "beacon fell ill. Sounds like they\l"
 	.string "are in trouble.$"
 
 EcruteakCity_Text_Fisher_JasmineReturned:
-	.string "The POKéMON at Olivine Lighthouse\n"
+	.string "The Pokémon at Olivine Lighthouse\n"
 	.string "has been cured.\p"
 	.string "Boats can safely sail out to sea at\n"
 	.string "night again.$"
 
 EcruteakCity_Text_Youngster:
-	.string "I hear POKéMON are rampaging at the\n"
+	.string "I hear Pokémon are rampaging at the\n"
 	.string "Lake Of Rage. I'd like to see that.$"
 
 EcruteakCity_Text_Gramps3:
 	.string "In the distant past…\p"
 	.string "This tower burned in a fire. Three\n"
-	.string "nameless POKéMON perished in it.\p"
-	.string "A rainbow-colored POKéMON descended\n"
+	.string "nameless Pokémon perished in it.\p"
+	.string "A rainbow-colored Pokémon descended\n"
 	.string "from the sky and resurrected them…\p"
 	.string "It's a legend that has been passed\n"
 	.string "down by Ecruteak Gym Leaders.\p"
@@ -365,7 +365,7 @@ EcruteakCity_Text_Sign:
 
 EcruteakCity_Text_TinTowerSign:
 	.string "Tin Tower\p"
-	.string "A legendary POKéMON is said to\n"
+	.string "A legendary Pokémon is said to\n"
 	.string "roost here.$"
 
 EcruteakCity_Text_OfficeSign:
@@ -373,7 +373,7 @@ EcruteakCity_Text_OfficeSign:
 	.string "No Tresspassing by the Unworthy.$"
 
 EcruteakCity_Text_GymSign:
-	.string "Ecruteak City POKéMON Gym\n"
+	.string "Ecruteak City Pokémon Gym\n"
 	.string "Leader: Morty\p"
 	.string "The Mystic Seer of the Future$"
 

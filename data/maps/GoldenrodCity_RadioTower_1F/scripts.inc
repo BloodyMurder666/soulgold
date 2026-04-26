@@ -174,13 +174,13 @@ RadioTower1F_Text_RadioCardWomanOfferQuiz:
     .string "right now.\p"
     .string "Answer five questions correctly to\n"
     .string "win a Radio.\p"
-    .string "You and your POKéMON can use it to\n"
+    .string "You and your Pokémon can use it to\n"
     .string "play music anytime, anywhere.\p"
     .string "Would you like to take the quiz?$"
 
 RadioTower1F_Text_QuizQuestion1:
     .string "Question 1:\p"
-    .string "Is there a POKéMON that appears only\n"
+    .string "Is there a Pokémon that appears only\n"
     .string "in the daytime?$"
 
 RadioTower1F_Text_QuizQuestion2:
@@ -199,7 +199,7 @@ RadioTower1F_Text_QuizQuestion4:
     .string "So far so good!\n"
     .string "Question 4:\p"
     .string "Is Falkner the Violet Gym Leader\n"
-    .string "who uses bird POKéMON?$"
+    .string "who uses bird Pokémon?$"
 
 RadioTower1F_Text_QuizQuestion5:
     .string "Wow! Right again!\n"
@@ -233,7 +233,7 @@ RadioTower1F_Text_Lass:
     .string "His sweet voice makes me melt!$"
 
 RadioTower1F_Text_Youngster:
-    .string "I love Mary, from POKéMON Talk.\p"
+    .string "I love Mary, from Pokémon Talk.\p"
     .string "I only know what she sounds like,\n"
     .string "though.$"
 
@@ -368,11 +368,11 @@ GoldenrodCity_RadioTower_1F_EventScript_GivePrizeFromEarlier::
 	end
 
 GoldenrodCity_RadioTower_1F_Text_LotteryCornerDrawTicket:
-	.string "This is the POKéMON Lottery Corner.\p"
+	.string "This is the Pokémon Lottery Corner.\p"
 	.string "If the Loto Ticket's number matches\n"
-	.string "the Id number of any of your POKéMON,\l"
+	.string "the Id number of any of your Pokémon,\l"
 	.string "you will receive a fabulous gift.\p"
-	.string "Would you like to draw a POKéMON\n"
+	.string "Would you like to draw a Pokémon\n"
 	.string "Loto Ticket?$"
 
 GoldenrodCity_RadioTower_1F_Text_ComeBackTomorrow:
@@ -389,7 +389,7 @@ GoldenrodCity_RadioTower_1F_Text_TicketNumberIsXPleaseWait:
 	.string "The Loto Ticket number is {STR_VAR_1}.\p"
 	.string "I need to run a check on this number\n"
 	.string "to see if it matches any of your\l"
-	.string "POKéMON's Id numbers. Please wait.$"
+	.string "Pokémon's Id numbers. Please wait.$"
 
 GoldenrodCity_RadioTower_1F_Text_TicketMatchesPartyMon:
 	.string "Congratulations!\p"

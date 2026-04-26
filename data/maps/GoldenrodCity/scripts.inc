@@ -711,7 +711,7 @@ GoldenrodCity_Text_Lass:
 # 356 "data/maps/GoldenrodCity/scripts.pory"
 	.string "That man inside rates your\n"
 # 357 "data/maps/GoldenrodCity/scripts.pory"
-	.string "POKéMON nicknames.\p"
+	.string "Pokémon nicknames.\p"
 # 358 "data/maps/GoldenrodCity/scripts.pory"
 	.string "He can even rename them.$"
 # 359 "data/maps/GoldenrodCity/scripts.pory"
@@ -757,7 +757,7 @@ GoldenrodCity_Text_Rocket2:
 # 379 "data/maps/GoldenrodCity/scripts.pory"
 GoldenrodCity_Text_Rocket3:
 # 380 "data/maps/GoldenrodCity/scripts.pory"
-	.string "POKéMON? They're just tools\n"
+	.string "Pokémon? They're just tools\n"
 # 381 "data/maps/GoldenrodCity/scripts.pory"
 	.string "we use to make money!$"
 # 382 "data/maps/GoldenrodCity/scripts.pory"
@@ -801,7 +801,7 @@ GoldenrodCity_Text_RadioTowerSign:
 # 401 "data/maps/GoldenrodCity/scripts.pory"
 GoldenrodCity_Text_DeptStoreSign:
 # 402 "data/maps/GoldenrodCity/scripts.pory"
-	.string "Full Selection of POKéMON Goods!\p"
+	.string "Full Selection of Pokémon Goods!\p"
 # 403 "data/maps/GoldenrodCity/scripts.pory"
 	.string "Goldenrod City Dept.Store$"
 # 404 "data/maps/GoldenrodCity/scripts.pory"
@@ -809,7 +809,7 @@ GoldenrodCity_Text_DeptStoreSign:
 # 405 "data/maps/GoldenrodCity/scripts.pory"
 GoldenrodCity_Text_GymSign:
 # 406 "data/maps/GoldenrodCity/scripts.pory"
-	.string "Goldenrod City POKéMON Gym\n"
+	.string "Goldenrod City Pokémon Gym\n"
 # 407 "data/maps/GoldenrodCity/scripts.pory"
 	.string "Leader: Whitney\p"
 # 408 "data/maps/GoldenrodCity/scripts.pory"
@@ -845,7 +845,7 @@ GoldenrodCity_Text_NameRaterSign:
 # 423 "data/maps/GoldenrodCity/scripts.pory"
 	.string "Name Rater\p"
 # 424 "data/maps/GoldenrodCity/scripts.pory"
-	.string "Get Your POKéMON Nicknames Rated$"
+	.string "Get Your Pokémon Nicknames Rated$"
 # 425 "data/maps/GoldenrodCity/scripts.pory"
 
 # 426 "data/maps/GoldenrodCity/scripts.pory"
@@ -871,7 +871,7 @@ GoldenrodCity_Text_FlowerShopSign:
 # 436 "data/maps/GoldenrodCity/scripts.pory"
 GoldenrodCity_Text_MoveTutorAsk:
 # 437 "data/maps/GoldenrodCity/scripts.pory"
-	.string "I can teach your POKéMON some\n"
+	.string "I can teach your Pokémon some\n"
 # 438 "data/maps/GoldenrodCity/scripts.pory"
 	.string "amazing moves!\p"
 # 439 "data/maps/GoldenrodCity/scripts.pory"

@@ -609,13 +609,13 @@ GoldenrodCity_UndergroundTunnel_EventScript_DoorAlreadyOpened::
 # 305 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 GoldenrodUnderground_Text_YoungerBrotherOffer:
 # 306 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "Welcome to the POKéMON Salon!\p"
+    .string "Welcome to the Pokémon Salon!\p"
 # 307 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
     .string "I'm the younger and less expensive\n"
 # 308 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
     .string "of the two Haircut Brothers.\p"
 # 309 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "I'll spiff up your POKéMON for just\n"
+    .string "I'll spiff up your Pokémon for just\n"
 # 310 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
     .string "¥300.\p"
 # 311 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
@@ -625,7 +625,7 @@ GoldenrodUnderground_Text_YoungerBrotherOffer:
 # 313 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 GoldenrodUnderground_Text_YoungerBrotherAskWhich:
 # 314 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "Ok, which POKéMON should I do?$"
+    .string "Ok, which Pokémon should I do?$"
 # 315 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
 # 316 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
@@ -669,13 +669,13 @@ GoldenrodUnderground_Text_OlderBrotherOffer:
 # 335 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
     .string "Welcome!\p"
 # 336 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "I run the POKéMON Salon!\p"
+    .string "I run the Pokémon Salon!\p"
 # 337 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
     .string "I'm the older and better of the two\n"
 # 338 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
     .string "Haircut Brothers.\p"
 # 339 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "I can make your POKéMON beautiful\n"
+    .string "I can make your Pokémon beautiful\n"
 # 340 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
     .string "for just ¥500.\p"
 # 341 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
@@ -685,7 +685,7 @@ GoldenrodUnderground_Text_OlderBrotherOffer:
 # 343 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 GoldenrodUnderground_Text_OlderBrotherAskWhich:
 # 344 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "Which POKéMON should I work on?$"
+    .string "Which Pokémon should I work on?$"
 # 345 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
 # 346 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
@@ -727,7 +727,7 @@ GoldenrodUnderground_Text_SupernerdEricSeen:
 # 364 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
     .string "I was trying to cheat using my\n"
 # 365 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "POKéMON…$"
+    .string "Pokémon…$"
 # 366 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
 # 367 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
@@ -765,15 +765,15 @@ GoldenrodUnderground_Text_SupernerdTeruBeaten:
 # 383 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 GoldenrodUnderground_Text_SupernerdTeruAfterBattle:
 # 384 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "I know my POKéMON type alignments.\p"
+    .string "I know my Pokémon type alignments.\p"
 # 385 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "But I only use one type of POKéMON.$"
+    .string "But I only use one type of Pokémon.$"
 # 386 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
 # 387 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 GoldenrodUnderground_Text_PokemaniacIssacSeen:
 # 388 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "My POKéMON just got a haircut!\p"
+    .string "My Pokémon just got a haircut!\p"
 # 389 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
     .string "I'll show you how strong it is!$"
 # 390 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
@@ -787,7 +787,7 @@ GoldenrodUnderground_Text_PokemaniacIssacBeaten:
 # 394 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 GoldenrodUnderground_Text_PokemaniacIssacAfterBattle:
 # 395 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "Your POKéMON will like you more if\n"
+    .string "Your Pokémon will like you more if\n"
 # 396 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
     .string "you give them haircuts.$"
 # 397 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
@@ -795,7 +795,7 @@ GoldenrodUnderground_Text_PokemaniacIssacAfterBattle:
 # 398 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 GoldenrodUnderground_Text_PokemaniacDonaldSeen:
 # 399 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "I think you have some rare POKéMON\n"
+    .string "I think you have some rare Pokémon\n"
 # 400 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
     .string "with you.\p"
 # 401 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
@@ -831,7 +831,7 @@ GoldenrodUnderground_Text_PokemaniacDonaldAfterBattleOld:
 # 416 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
     .string "He'll phone you if he sees any rare\n"
 # 417 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "POKéMON.$"
+    .string "Pokémon.$"
 # 418 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
 # 419 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"

@@ -185,21 +185,21 @@ SafariZoneGate_SafariZoneEntrance_Text_BaobaBeachDone:
 	.string "Thank you, {PLAYER}!\n"
 	.string "Here, take this money to upgrade\l"
 	.string "your Safari Level and show me an\l"
-	.string "exotic POKéMON from the Brush area\l"
+	.string "exotic Pokémon from the Brush area\l"
 	.string "next!$"
 	
 SafariZoneGate_SafariZoneEntrance_Text_BaobaBrushDone:
 	.string "Thank you, {PLAYER}!\n"
 	.string "Here, take this money to upgrade\l"
 	.string "your Safari Level and show me an\l"
-	.string "exotic POKéMON from the Mountain\l"
+	.string "exotic Pokémon from the Mountain\l"
 	.string "area next!$"
 
 SafariZoneGate_SafariZoneEntrance_Text_BaobaMountainDone:
 	.string "Thank you, {PLAYER}!\n"
 	.string "Here, take this money to upgrade\l"
 	.string "your Safari Level and show me an\l"
-	.string "exotic POKéMON from the Cave area\l"
+	.string "exotic Pokémon from the Cave area\l"
 	.string "next!$"
 
 SafariZoneGate_SafariZoneEntrance_Text_BaobaCaveDone:
@@ -215,25 +215,25 @@ SafariZoneGate_SafariZoneEntrance_Text_BaobaWrong:
 
 SafariZoneGate_SafariZoneEntrance_Text_BaobaBeach:
 	.string "Ah, {PLAYER}!\p"
-	.string "Did you bring an exotic POKéMON\n"
+	.string "Did you bring an exotic Pokémon\n"
 	.string "from the Beach area of the Fuchsia\l"
 	.string "Safari Zone to show me?$"
 
 SafariZoneGate_SafariZoneEntrance_Text_BaobaBrush:
 	.string "Ah, {PLAYER}!\p"
-	.string "Did you bring an exotic POKéMON\n"
+	.string "Did you bring an exotic Pokémon\n"
 	.string "from the Brush area of the Fuchsia\l"
 	.string "Safari Zone to show me?$"
 
 SafariZoneGate_SafariZoneEntrance_Text_BaobaMountain:
 	.string "Ah, {PLAYER}!\p"
-	.string "Did you bring an exotic POKéMON\n"
+	.string "Did you bring an exotic Pokémon\n"
 	.string "from the Mountain area of the\l"
 	.string "Fuchsia Safari Zone to show me?$"
 
 SafariZoneGate_SafariZoneEntrance_Text_BaobaCave:
 	.string "Ah, {PLAYER}!\p"
-	.string "Did you bring an exotic POKéMON\n"
+	.string "Did you bring an exotic Pokémon\n"
 	.string "from the Cave area of the Fuchsia\l"
 	.string "Safari Zone to show me?$"
 
@@ -242,7 +242,7 @@ SafariZoneGate_SafariZoneEntrance_Text_BaobaDeclined:
 	.string "We'll never keep up with Devon!$"
 
 SafariZoneGate_SafariZoneEntrance_Text_BaobaLastMon:
-	.string "I can't take your last POKéMON!$"
+	.string "I can't take your last Pokémon!$"
 
 SafariZoneGate_SafariZoneEntrance_Text_BaobaDone:
 	.string "Ah, {PLAYER}!\p"

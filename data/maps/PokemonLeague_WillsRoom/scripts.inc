@@ -94,13 +94,13 @@ PokemonLeague_WillsRoom_EventScript_WillDefeated::
 	end
 
 PokemonLeague_WillsRoom_Text_Before:
-    .string "Welcome to POKéMON League,\n"
+    .string "Welcome to Pokémon League,\n"
     .string "{PLAYER}.\p"
     .string "Allow me to introduce myself.\n"
     .string "I am Will.\p"
     .string "I have trained all around the\n"
     .string "world, making my psychic\l"
-    .string "POKéMON powerful.\p"
+    .string "Pokémon powerful.\p"
     .string "And, at last, I've been accepted\n"
     .string "into the Elite Four.\p"
     .string "I can only keep getting better!\p"
@@ -121,7 +121,7 @@ PokemonLeague_WillsRoom_Text_Defeat:
 PokemonLeague_WillsRoom_Text_RematchBefore:
     .string "Will: Ah, welcome back.\p"
     .string "I have foreseen this encounter.\p"
-    .string "My psychic POKéMON and I have\n"
+    .string "My psychic Pokémon and I have\n"
     .string "evolved,\l"
     .string "developing new tactics.\p"
     .string "Prepare yourself for a battle of\n"

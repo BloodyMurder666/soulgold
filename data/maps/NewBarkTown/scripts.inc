@@ -239,17 +239,17 @@ NewBarkTown_Text_FatManState2:
 NewBarkTown_Text_FatManState3:
 	.string "Yo, {PLAYER}!\p"
 	.string "I hear Prof.Elm discovered\n"
-	.string "some new POKéMON.$"
+	.string "some new Pokémon.$"
 
 NewBarkTown_Text_LassState2:
 	.string "Wait, {PLAYER}!\p"
 	.string "It's dangerous to go out\n"
-	.string "without a POKéMON!\p"
-	.string "Wild POKéMON jump out of the grass\n"
+	.string "without a Pokémon!\p"
+	.string "Wild Pokémon jump out of the grass\n"
 	.string "on the way to the next town.$"
 
 NewBarkTown_Text_LassState3:
-	.string "Oh! Your POKéMON is adorable!\n"
+	.string "Oh! Your Pokémon is adorable!\n"
 	.string "I wish I had one!$"
 
 NewBarkTown_Text_LassState4:
@@ -264,7 +264,7 @@ NewBarkTown_Text_LassState5:
 NewBarkTown_Text_Silver1:
 	.string ". . .\p"
 	.string "So this is the famous Elm\n"
-	.string "POKéMON Lab…$"
+	.string "Pokémon Lab…$"
 
 NewBarkTown_Text_Silver2:
 	.string "…What are you staring at?$"

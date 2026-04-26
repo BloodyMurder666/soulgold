@@ -753,7 +753,7 @@ Route110_Text_AquaActionsBringSmiles:
 Route110_Text_MayLetsBattle:
 	.string "May: Hi, {PLAYER}{KUN}, long time no see!\p"
 	.string "While I was searching for other\n"
-	.string "POKéMON, my POKéMON grew stronger.\p"
+	.string "Pokémon, my Pokémon grew stronger.\p"
 	.string "So…\n"
 	.string "How about a little battle?$"
 
@@ -780,7 +780,7 @@ Route110_Text_BrendanLetsBattle:
 	.string "Brendan: Hey, {PLAYER}.\n"
 	.string "So this is where you were.\l"
 	.string "How's it going?\p"
-	.string "Have you been raising your POKéMON?\n"
+	.string "Have you been raising your Pokémon?\n"
 	.string "I'll check for you.$"
 
 Route110_Text_BrendanDefeated:
@@ -800,7 +800,7 @@ Route110_Text_BrendanExplainItemfinder:
 	.string "If it senses something, it emits\n"
 	.string "a sound.\p"
 	.string "Anyway, I'm off to look for new\n"
-	.string "POKéMON.$"
+	.string "Pokémon.$"
 
 Route110_Text_RideBikeAtFullSpeed:
 	.string "Wouldn't it be great to ride a Bike\n"
@@ -830,7 +830,7 @@ Route110_Text_YouGotBikeFromRydel:
 
 Route110_Text_TwoRoads:
 	.string "The two roads, one above, one below…\p"
-	.string "A road each for people and POKéMON.\n"
+	.string "A road each for people and Pokémon.\n"
 	.string "Perhaps that is right and fair.$"
 
 Route110_Text_WalkOnTheLowRoad:
@@ -847,7 +847,7 @@ Route110_Text_WhichShouldIChoose:
 	.string "Which should I choose?\p"
 	.string "Make a beeline for Mauville on\n"
 	.string "Cycling Road, or take the low road\l"
-	.string "and look for POKéMON?$"
+	.string "and look for Pokémon?$"
 
 Route110_Text_CyclingChallengeResultSummary:
 	.string "Number of collisions:\n"
@@ -934,7 +934,7 @@ Route110_Text_TrainerTipsPrlzSleep:
 	.string "The foe can be made helpless by\n"
 	.string "paralyzing it or causing it to sleep.\p"
 	.string "It is an important technique for\n"
-	.string "POKéMON battles.$"
+	.string "Pokémon battles.$"
 
 Route110_Text_TrainerTipsRegisterItems:
 	.string "Trainer Tips\p"

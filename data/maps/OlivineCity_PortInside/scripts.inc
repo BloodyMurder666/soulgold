@@ -88,7 +88,7 @@ OlivineCity_PortInside_Text_Nationaldex4:
 	.string "Goldenrod Radio Tower.\p"
 	.string "You must be heading for Kanto.\p"
 	.string "If you come near Pallet Town, do\n"
-	.string "drop by my POKéMON Research Lab!$"
+	.string "drop by my Pokémon Research Lab!$"
 
 OlivinePort_EventScript_CooltrainerF::
 	msgbox OlivinePort_Text_CooltrainerF, MSGBOX_NPC
@@ -310,14 +310,14 @@ OlivinePort_Text_FishingGuru1:
 OlivinePort_Text_FishingGuru2:
     .string "How many Rods do you have?\p"
     .string "Different Rods catch different\n"
-    .string "POKéMON.$"
+    .string "Pokémon.$"
 
 OlivinePort_Text_Youngster:
     .string "S.S.Aqua uses jets to skim\n"
     .string "over the waves!$"
 
 OlivinePort_Text_CooltrainerF:
-    .string "There are lots of POKéMON in Kanto.\p"
+    .string "There are lots of Pokémon in Kanto.\p"
     .string "I wish I could go…$"
 
 OlivinePort_Text_SailorBeforeHOF:

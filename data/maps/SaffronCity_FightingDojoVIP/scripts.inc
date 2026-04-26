@@ -1803,7 +1803,7 @@ SaffronCity_FightingDojoVIP_Text_Falkner_Rematch:
 	.string "Congratulations on defeating\n"
 	.string "the Elite 4!\p"
 	.string "I've been training my\n"
-	.string "Flying-type POKéMON even harder.\p"
+	.string "Flying-type Pokémon even harder.\p"
 	.string "Think you can take on the power\n"
 	.string "of the skies again?$"
 
@@ -1846,7 +1846,7 @@ SaffronCity_FightingDojoVIP_Text_Morty_Rematch:
 	.string "skill, but have you improved\l"
 	.string "since our last battle?\p"
 	.string "I've been training with my\n"
-	.string "Ghost-type POKéMON.\p"
+	.string "Ghost-type Pokémon.\p"
 	.string "Let's see if you can overcome\n"
 	.string "the shadows once again.\p"
 	.string "Want to have a rematch with me?$"
@@ -1922,7 +1922,7 @@ SaffronCity_FightingDojoVIP_Text_Brock_Rematch:
 	.string "Want to have a rematch with me?$"
 
 SaffronCity_FightingDojoVIP_Text_Brock_RematchDefeat:
-	.string "Brock: Your POKéMON once again\n"
+	.string "Brock: Your Pokémon once again\n"
 	.string "overcame my rock-hard defense…$"
 
 SaffronCity_FightingDojoVIP_Text_Misty_Rematch:
@@ -1971,7 +1971,7 @@ SaffronCity_FightingDojoVIP_Text_Sabrina_Rematch:
 
 SaffronCity_FightingDojoVIP_Text_Sabrina_RematchDefeat:
 	.string "Sabrina: Your love for your\n"
-	.string "POKéMON again overwhelmed my\l"
+	.string "Pokémon again overwhelmed my\l"
 	.string "psychic power…$"
 
 SaffronCity_FightingDojoVIP_Text_Janine_Rematch:

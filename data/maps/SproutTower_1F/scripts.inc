@@ -41,7 +41,7 @@ SproutTower_1F_EventScript_Teacher::
 SproutTower_Text_SageChow_Seen:
 	.string "We stand guard in this tower.\p"
 	.string "Here, we express our gratitude\n"
-	.string "to honor all POKéMON.$"
+	.string "to honor all Pokémon.$"
 
 SproutTower_Text_SageChow_Beaten:
 	.string "Th-Thank you!$"
@@ -58,7 +58,7 @@ SproutTower_Text_1F_Sage1:
 
 SproutTower_Text_1F_Sage2:
 	.string "Sprout Tower was built long ago\n"
-	.string "as a place for POKéMON training.$"
+	.string "as a place for Pokémon training.$"
 
 SproutTower_Text_1F_Granny:
 	.string "A Bellsprout over 100 feet\n"
@@ -71,5 +71,5 @@ SproutTower_Text_1F_Teacher:
 	.string "People are training upstairs.$"
 
 SproutTower_Text_1F_Statue:
-	.string "A POKéMON statue…\p"
+	.string "A Pokémon statue…\p"
 	.string "It looks very distinguished.$"

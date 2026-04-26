@@ -139,7 +139,7 @@ Route35_EventScript_Sign2::
 # 70 "data/maps/Route35/scripts.pory"
 Route35_Text_CamperIvanSeen:
 # 71 "data/maps/Route35/scripts.pory"
-	.string "I've been getting POKéMON data off\n"
+	.string "I've been getting Pokémon data off\n"
 # 72 "data/maps/Route35/scripts.pory"
 	.string "my radio. I think I'm good.$"
 # 73 "data/maps/Route35/scripts.pory"
@@ -155,7 +155,7 @@ Route35_Text_CamperIvanAfter:
 # 78 "data/maps/Route35/scripts.pory"
 	.string "Music on the radio changes the\n"
 # 79 "data/maps/Route35/scripts.pory"
-	.string "moods of wild POKéMON.$"
+	.string "moods of wild Pokémon.$"
 # 80 "data/maps/Route35/scripts.pory"
 
 # 81 "data/maps/Route35/scripts.pory"
@@ -197,7 +197,7 @@ Route35_Text_PicnickerBrookeBeaten:
 # 99 "data/maps/Route35/scripts.pory"
 Route35_Text_PicnickerBrookeAfter:
 # 100 "data/maps/Route35/scripts.pory"
-	.string "I can count on my POKéMON more than\n"
+	.string "I can count on my Pokémon more than\n"
 # 101 "data/maps/Route35/scripts.pory"
 	.string "my boyfriend.$"
 # 102 "data/maps/Route35/scripts.pory"
@@ -237,7 +237,7 @@ Route35_Text_BirdKeeperBryanBeaten:
 # 119 "data/maps/Route35/scripts.pory"
 Route35_Text_BirdKeeperBryanAfter:
 # 120 "data/maps/Route35/scripts.pory"
-	.string "Some POKéMON flee right away.\p"
+	.string "Some Pokémon flee right away.\p"
 # 121 "data/maps/Route35/scripts.pory"
 	.string "Try catching them with Kurt's Fast\n"
 # 122 "data/maps/Route35/scripts.pory"
@@ -267,7 +267,7 @@ Route35_Text_JugglerIrwinAfter:
 # 134 "data/maps/Route35/scripts.pory"
 	.string "I was going to dazzle you with my\n"
 # 135 "data/maps/Route35/scripts.pory"
-	.string "prize POKéMON.\p"
+	.string "prize Pokémon.\p"
 # 136 "data/maps/Route35/scripts.pory"
 	.string "But your prowess electrified me!$"
 # 137 "data/maps/Route35/scripts.pory"
@@ -275,7 +275,7 @@ Route35_Text_JugglerIrwinAfter:
 # 138 "data/maps/Route35/scripts.pory"
 Route35_Text_BugCatcherArnieSeen:
 # 139 "data/maps/Route35/scripts.pory"
-	.string "I'll go anywhere if bug POKéMON\n"
+	.string "I'll go anywhere if bug Pokémon\n"
 # 140 "data/maps/Route35/scripts.pory"
 	.string "appear there.$"
 # 141 "data/maps/Route35/scripts.pory"
@@ -317,9 +317,9 @@ Route35_Text_FirebreatherWaltBeaten:
 # 159 "data/maps/Route35/scripts.pory"
 Route35_Text_FirebreatherWaltAfter:
 # 160 "data/maps/Route35/scripts.pory"
-	.string "The POKéMON March on the radio\n"
+	.string "The Pokémon March on the radio\n"
 # 161 "data/maps/Route35/scripts.pory"
-	.string "lures wild POKéMON.$"
+	.string "lures wild Pokémon.$"
 # 162 "data/maps/Route35/scripts.pory"
 
 # 163 "data/maps/Route35/scripts.pory"
@@ -347,7 +347,7 @@ Route35_Text_OfficerDirkAfter:
 # 174 "data/maps/Route35/scripts.pory"
 Route35_Text_OfficerDirkTough:
 # 175 "data/maps/Route35/scripts.pory"
-	.string "Your POKéMON look pretty tough.\p"
+	.string "Your Pokémon look pretty tough.\p"
 # 176 "data/maps/Route35/scripts.pory"
 	.string "You could go anywhere safely.$"
 # 177 "data/maps/Route35/scripts.pory"

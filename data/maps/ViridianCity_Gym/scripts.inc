@@ -75,7 +75,7 @@ ViridianCity_Gym_Text_ReceivedEarthBadge:
 
 ViridianCity_Gym_Text_BulkUpSpeech:
     .string "That TM contains Bulk Up.\p"
-    .string "It lets a POKéMON become an\n"
+    .string "It lets a Pokémon become an\n"
     .string "unstoppable force and an\l"
 	.string "immovable object all at once!\p"
     .string "Don't let anyone tell you\n"
@@ -132,13 +132,13 @@ ViridianCity_Gym_EventScript_GymStatuePostVictory::
 	end
 
 ViridianCity_Gym_Text_GymStatue::
-    .string "Viridian POKéMON Gym\n"
+    .string "Viridian Pokémon Gym\n"
     .string "Leader: Blue\p"
 	.string "Winning Trainers:\n"
 	.string "Blue, Red$"
 
 ViridianCity_Gym_Text_GymStatuePlayerWon::
-    .string "Viridian POKéMON Gym\n"
+    .string "Viridian Pokémon Gym\n"
     .string "Leader: Blue\p"
     .string "Winning Trainers:\n"
 	.string "Blue, Red, {PLAYER}$"

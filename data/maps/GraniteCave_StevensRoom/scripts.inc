@@ -96,10 +96,10 @@ GraniteCave_StevensRoom_Text_ThankYouTakeThis:
 	.string "Steel Wing.$"
 
 GraniteCave_StevensRoom_Text_CouldBecomeChampionLetsRegister:
-	.string "Steven: Your POKéMON appear quite\n"
+	.string "Steven: Your Pokémon appear quite\n"
 	.string "capable.\p"
 	.string "If you keep training, you could even\n"
-	.string "become the Champion of the POKéMON\l"
+	.string "become the Champion of the Pokémon\l"
 	.string "League one day. That's what I think.\p"
 	.string "I know, since we've gotten to know each\n"
 	.string "other, let's register one another in\l"

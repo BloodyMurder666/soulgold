@@ -64,7 +64,7 @@ AquaHideout_1F_Text_WhereMightMagmaHideoutBe:
 	.string "What? What?\n"
 	.string "Are you a Team Magma grunt?\p"
 	.string "I hear that Team Magma is trying to\n"
-	.string "awaken an awesome POKéMON at their\l"
+	.string "awaken an awesome Pokémon at their\l"
 	.string "Hideout.\p"
 	.string "But where might their Hideout be?$"
 
@@ -92,8 +92,8 @@ AquaHideout_1F_Text_TeamMagmaAtMtChimney:
 	.string "What? What?\n"
 	.string "Are you a Team Magma grunt?\p"
 	.string "I hear that Team Magma is after\n"
-	.string "an awesome POKéMON at Mt. Chimney.\p"
-	.string "But what is that POKéMON like?$"
+	.string "an awesome Pokémon at Mt. Chimney.\p"
+	.string "But what is that Pokémon like?$"
 
 AquaHideout_1F_Text_BossIsInSlateportCity:
 	.string "What? What? What do you want with\n"

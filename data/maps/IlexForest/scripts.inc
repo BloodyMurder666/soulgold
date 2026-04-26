@@ -1359,7 +1359,7 @@ IlexForest_Text_ApprenticeAfter:
 # 680 "data/maps/IlexForest/scripts.pory"
 	.string "Wow! Thanks a whole bunch!\p"
 # 681 "data/maps/IlexForest/scripts.pory"
-	.string "My boss's POKéMON won't obey me\n"
+	.string "My boss's Pokémon won't obey me\n"
 # 682 "data/maps/IlexForest/scripts.pory"
 	.string "because I don't have a Badge.$"
 # 683 "data/maps/IlexForest/scripts.pory"
@@ -1367,7 +1367,7 @@ IlexForest_Text_ApprenticeAfter:
 # 684 "data/maps/IlexForest/scripts.pory"
 IlexForest_Text_ItsTheMissingPokemon:
 # 685 "data/maps/IlexForest/scripts.pory"
-	.string "It's the missing POKéMON!$"
+	.string "It's the missing Pokémon!$"
 # 686 "data/maps/IlexForest/scripts.pory"
 
 # 687 "data/maps/IlexForest/scripts.pory"
@@ -1399,7 +1399,7 @@ IlexForest_Text_CharcoalMasterOutro:
 # 700 "data/maps/IlexForest/scripts.pory"
 	.string "That's the Cut HM.\n"
 # 701 "data/maps/IlexForest/scripts.pory"
-	.string "Teach that to a POKéMON to clear\l"
+	.string "Teach that to a Pokémon to clear\l"
 # 702 "data/maps/IlexForest/scripts.pory"
 	.string "small trees.\p"
 # 703 "data/maps/IlexForest/scripts.pory"
@@ -1425,7 +1425,7 @@ MoveTutor_Text_HeadbuttTeach:
 # 713 "data/maps/IlexForest/scripts.pory"
 	.string "I'm shaking trees using Headbutt.\p"
 # 714 "data/maps/IlexForest/scripts.pory"
-	.string "Do you think your POKéMON will\n"
+	.string "Do you think your Pokémon will\n"
 # 715 "data/maps/IlexForest/scripts.pory"
 	.string "want to Headbutt, too?\p"
 # 716 "data/maps/IlexForest/scripts.pory"
@@ -1439,7 +1439,7 @@ MoveTutor_Text_HeadbuttWhichMon:
 # 720 "data/maps/IlexForest/scripts.pory"
 	.string "Ehehe, sure thing! It'd be great if\n"
 # 721 "data/maps/IlexForest/scripts.pory"
-	.string "the POKéMON looked like me.$"
+	.string "the Pokémon looked like me.$"
 # 722 "data/maps/IlexForest/scripts.pory"
 
 # 723 "data/maps/IlexForest/scripts.pory"
@@ -1455,7 +1455,7 @@ MoveTutor_Text_HeadbuttTaught:
 # 728 "data/maps/IlexForest/scripts.pory"
 	.string "Rattle trees with Headbutt.\n"
 # 729 "data/maps/IlexForest/scripts.pory"
-	.string "Sometimes, sleeping POKéMON fall out.$"
+	.string "Sometimes, sleeping Pokémon fall out.$"
 # 730 "data/maps/IlexForest/scripts.pory"
 
 # 731 "data/maps/IlexForest/scripts.pory"
@@ -1537,19 +1537,19 @@ IlexForest_Text_BugCatcherWayneSeen:
 # 769 "data/maps/IlexForest/scripts.pory"
 	.string "Don't sneak up on me like that!\p"
 # 770 "data/maps/IlexForest/scripts.pory"
-	.string "You frightened a POKéMON away!$"
+	.string "You frightened a Pokémon away!$"
 # 771 "data/maps/IlexForest/scripts.pory"
 
 # 772 "data/maps/IlexForest/scripts.pory"
 IlexForest_Text_BugCatcherWayneBeaten:
 # 773 "data/maps/IlexForest/scripts.pory"
-	.string "I hadn't seen that POKéMON before…$"
+	.string "I hadn't seen that Pokémon before…$"
 # 774 "data/maps/IlexForest/scripts.pory"
 
 # 775 "data/maps/IlexForest/scripts.pory"
 IlexForest_Text_BugCatcherWayneAfter:
 # 776 "data/maps/IlexForest/scripts.pory"
-	.string "A POKéMON I've never seen before\n"
+	.string "A Pokémon I've never seen before\n"
 # 777 "data/maps/IlexForest/scripts.pory"
 	.string "fell out of the tree when I used\l"
 # 778 "data/maps/IlexForest/scripts.pory"
@@ -1597,7 +1597,7 @@ IlexForest_Text_Kimono_Girl4:
 # 799 "data/maps/IlexForest/scripts.pory"
 	.string "to get out?\p"
 # 800 "data/maps/IlexForest/scripts.pory"
-	.string "You are such a smart POKéMON!$"
+	.string "You are such a smart Pokémon!$"
 # 801 "data/maps/IlexForest/scripts.pory"
 
 # 802 "data/maps/IlexForest/scripts.pory"

@@ -71,7 +71,7 @@ RustboroCity_Mart_Text_BuyingHealsInCaseOfShroomish:
 	.string "in Petalburg Woods.$"
 
 RustboroCity_Mart_Text_ShouldBuySuperPotionsInstead:
-	.string "My POKéMON evolved.\n"
+	.string "My Pokémon evolved.\n"
 	.string "It has a lot of Hp now.\p"
 	.string "I should buy Super Potions for it\n"
 	.string "instead of ordinary Potions.$"

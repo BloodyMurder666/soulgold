@@ -172,35 +172,35 @@ NationalParkBugContest_Text_ContestantBelinda:
 	.string "Don't bother me.$"
 
 NationalParkBugContest_Text_Contestant2A:
-	.string "Ed: My Parasect puts POKéMON to\n"
+	.string "Ed: My Parasect puts Pokémon to\n"
 	.string "sleep with Spore.$"
 
 NationalParkBugContest_Text_ContestantShaun:
 	.string "Shaun: I'm not concerned about\n"
 	.string "winning.\p"
-	.string "I'm just looking for rare POKéMON.$"
+	.string "I'm just looking for rare Pokémon.$"
 
 NationalParkBugContest_Text_Contestant6A:
 	.string "Barry: You should weaken bug\n"
-	.string "POKéMON first,\p"
+	.string "Pokémon first,\p"
 	.string "then throw a Ball.$"
 
 NationalParkBugContest_Text_Contestant7A:
-	.string "Cindy: I love bug POKéMON.\p"
+	.string "Cindy: I love bug Pokémon.\p"
 	.string "I guess you must like them too.$"
 
 NationalParkBugContest_Text_Contestant8A:
 	.string "Josh: I've been collecting bug\n"
-	.string "POKéMON since I was just a baby.\p"
+	.string "Pokémon since I was just a baby.\p"
 	.string "There's no way I'm going to lose!$"
 
 NationalParkBugContest_Text_Contestant9A:
 	.string "Samuel: If you've got the time to\n"
-	.string "chat, go find some bug POKéMON.$"
+	.string "chat, go find some bug Pokémon.$"
 
 NationalParkBugContest_Text_Contestant10A:
 	.string "Kipp: I've studied about bug\n"
-	.string "POKéMON a lot.\p"
+	.string "Pokémon a lot.\p"
 	.string "I'm going to win for sure.$"
 
 NationalParkBugContest_Text_Sign_RelaxationSquare:
@@ -214,5 +214,5 @@ NationalParkBugContest_Text_Sign_BattleNotice:
 
 NationalParkBugContest_Text_TrainerTips:
 	.string "The National Park has different\n"
-	.string "POKéMON during the Bug-Catching\l"
+	.string "Pokémon during the Bug-Catching\l"
 	.string "Contest.$"

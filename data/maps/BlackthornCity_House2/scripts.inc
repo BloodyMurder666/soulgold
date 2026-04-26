@@ -48,7 +48,7 @@ BlackthornCity_House2_EventScript_TradeCompleted::
 	end
 
 BlackthornCity_House2_Text_YouWillTradeWontYou:
-	.string "I collect POKéMON!\n"
+	.string "I collect Pokémon!\n"
 	.string "Do you have a {STR_VAR_1}?\p"
 	.string "Want to trade it for my\n"
 	.string "{STR_VAR_2}?$"

@@ -208,7 +208,7 @@ EcruteakCity_Theater_Text_KimonoRocket3:
 	.string "correct? That was indeed\l"
 	.string "excellent.\p"
 	.string "Kind and strong... Good at\n"
-	.string "raising POKéMON as well...\p"
+	.string "raising Pokémon as well...\p"
 	.string "That person does know what\n"
 	.string "to look for in people...\p"
 	.string "Ohoho! That was just me\n"
@@ -259,7 +259,7 @@ EcruteakCity_Theater_Text_Kimono:
 	.string "dancing is everything.\p"
 	.string "I have never gone a day\n"
 	.string "without a dance practice.\p"
-	.string "POKéMON are the same.\n"
+	.string "Pokémon are the same.\n"
 	.string "They grow with you little\l"
 	.string "by little each day.$"
 
@@ -425,13 +425,13 @@ EcruteakCity_Theater_Text_SurfGuyGiveSurf:
 
 EcruteakCity_Theater_Text_SurfGuyGaveSurf:
 	.string "That's Surf.\n"
-	.string "It's a move that lets POKéMON\l"
+	.string "It's a move that lets Pokémon\l"
 	.string "swim across water with ease.$"
 
 EcruteakCity_Theater_Text_SurfGuyAfter:
 	.string "Not only are the Kimono GIRLs\n"
 	.string "great dancers, they're also\l"
-	.string "skilled at POKéMON.\p"
+	.string "skilled at Pokémon.\p"
 	.string "But they battle only for good\n"
 	.string "reasons.\p"
 	.string "I don't know if you could beat\n"
@@ -451,9 +451,9 @@ EcruteakCity_Theater_Text_Boy:
 EcruteakCity_Theater_Text_Granny:
 	.string "That man's always with his\n"
 	.string "Psyduck.\p"
-	.string "Says he wants a POKéMON that\n"
+	.string "Says he wants a Pokémon that\n"
 	.string "can Surf and dance.\p"
-	.string "Is he trying to make a POKéMON\n"
+	.string "Is he trying to make a Pokémon\n"
 	.string "that stars in synchronized\l"
 	.string "swimming?$"
 
@@ -977,14 +977,14 @@ EcruteakCity_Theater_Text_ZukiSeen:
 	.string "City.\p"
 	.string "To bring back {STR_VAR_1}, we\n"
 	.string "needed someone with the right bond\l"
-	.string "with POKéMON.\p"
-	.string "We asked Mr. POKéMON to give this\n"
+	.string "with Pokémon.\p"
+	.string "We asked Mr. Pokémon to give this\n"
 	.string "Mystery Egg to\l"
 	.string "whoever showed potential.\p"
-	.string "The Egg went from Mr. POKéMON\n"
+	.string "The Egg went from Mr. Pokémon\n"
 	.string "to Prof. Elm, then to you.\p"
 	.string "But being pure alone is not enough\n"
-	.string "to face the power of this POKéMON.$"
+	.string "to face the power of this Pokémon.$"
 
 EcruteakCity_Theater_Text_ZukiSeenAgain:
 	.string "I will test you to see if you are\n"
@@ -1005,7 +1005,7 @@ EcruteakCity_Theater_Text_NaokoSeen:
 	.string "when Kurt was in trouble at\l"
 	.string "the Slowpoke Well.\p"
 	.string "Let me challenge you and your\n"
-	.string "POKéMON!$"
+	.string "Pokémon!$"
 
 EcruteakCity_Theater_Text_MikiSeen:
 	.string "You're quite the Trainer. I\n"
@@ -1017,7 +1017,7 @@ EcruteakCity_Theater_Text_MikiSeen:
 	.string "the least!\p"
 	.string "I am Miki--the Kimono Girl!\p"
 	.string "Let me challenge you and your\n"
-	.string "POKéMON!$"
+	.string "Pokémon!$"
 
 EcruteakCity_Theater_Text_SayoSeen:
 	.string "Excellent spirit! You got me\n"
@@ -1027,7 +1027,7 @@ EcruteakCity_Theater_Text_SayoSeen:
 	.string "I listened in the Dragon's Den\n"
 	.string "when you passed the Elder's test.\p"
 	.string "Let me challenge you and your\n"
-	.string "POKéMON!$"
+	.string "Pokémon!$"
 
 EcruteakCity_Theater_Text_KuniSeen:
 	.string "I'm the last one.\p"
@@ -1039,7 +1039,7 @@ EcruteakCity_Theater_Text_KuniSeen:
 	.string "plan to take the Radio Tower.\p"
 	.string "Now show me your strength!\n"
 	.string "Let me challenge you and your\l"
-	.string "POKéMON!$"
+	.string "Pokémon!$"
 
 EcruteakCity_Theater_Text_ZukiDone:
 	.string "We were not wrong about you.\n"
@@ -1048,13 +1048,13 @@ EcruteakCity_Theater_Text_ZukiDone:
 
 EcruteakCity_Theater_Text_GirlHooh:
 	.string "Big sisters! I just saw the\n"
-	.string "big shadow of a POKéMON over\l"
+	.string "big shadow of a Pokémon over\l"
 	.string "the Tin Tower!\p"
 	.string "It could be...$"
 
 EcruteakCity_Theater_Text_GirlLugia:
 	.string "Big sisters! I just saw the\n"
-	.string "big shadow of a POKéMON in the\l"
+	.string "big shadow of a Pokémon in the\l"
 	.string "Whirl Islands' waters!\p"
 	.string "It could be...$"
 
@@ -1075,11 +1075,11 @@ EcruteakCity_Theater_Text_ZukiAfterAll:
 	.string "Thank you for your help the\n"
 	.string "other day.\p"
 	.string "You've shown the bond between\n"
-	.string "people can grow with POKéMON...\p"
+	.string "people can grow with Pokémon...\p"
 	.string "We appreciate how you lived up\n"
 	.string "to our hopes, {PLAYER}!\p"
 	.string "If you learned anything from\n"
-	.string "this, thank Mr. POKéMON and\l"
+	.string "this, thank Mr. Pokémon and\l"
 	.string "Prof. Elm...$"
 
 EcruteakCity_Theater_Text_KimonoGirlsBeforeBattle:

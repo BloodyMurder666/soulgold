@@ -222,7 +222,7 @@ RustboroCity_DevonCorp_3F_Text_ReceivedPokenav:
 
 RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenavRestUp:
 	.string "Mr. Stone: That device…\p"
-	.string "It's a POKéMON Navigator, or POKéNAV\n"
+	.string "It's a Pokémon Navigator, or POKéNAV\n"
 	.string "for short.\p"
 	.string "It's an indispensable tool for any\n"
 	.string "Trainer on an adventure.\p"
@@ -249,13 +249,13 @@ RustboroCity_DevonCorp_3F_Text_ThankYouForDeliveringLetter:
 	.string "It should help you, a Trainer.$"
 
 RustboroCity_DevonCorp_3F_Text_ExplainExpShare:
-	.string "Mr. Stone: A POKéMON holding that\n"
+	.string "Mr. Stone: A Pokémon holding that\n"
 	.string "Exp. Share will be given some of the\l"
 	.string "Exp Points from battle.\p"
 	.string "It will get Exp Points even if it didn't\n"
 	.string "actually battle.\p"
 	.string "I would say Exp. Share is quite useful\n"
-	.string "for raising weak POKéMON.$"
+	.string "for raising weak Pokémon.$"
 
 RustboroCity_DevonCorp_3F_Text_NotFamiliarWithTrends:
 	.string "Mr. Stone: Since my youth, I've immersed\n"
@@ -263,7 +263,7 @@ RustboroCity_DevonCorp_3F_Text_NotFamiliarWithTrends:
 	.string "Consequently, I'm not familiar with\n"
 	.string "trends and that sort of thing.\p"
 	.string "But do young people all want to be\n"
-	.string "Trainers in the POKéMON League?$"
+	.string "Trainers in the Pokémon League?$"
 
 RustboroCity_DevonCorp_3F_Text_ThisIs3rdFloorWaitHere:
 	.string "This is the Devon Corporation's\n"

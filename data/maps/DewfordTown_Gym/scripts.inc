@@ -286,11 +286,11 @@ DewfordTown_Gym_Text_GymGuideAdvice:
 	.string "Hey, how's it going, Champion-\n"
 	.string "bound {PLAYER}?\p"
 	.string "Dewford's Gym Leader Brawly commands\n"
-	.string "Fighting-type POKéMON.\p"
+	.string "Fighting-type Pokémon.\p"
 	.string "Going against him with Normal-type\n"
-	.string "POKéMON is asking for trouble.\p"
-	.string "Fighting POKéMON will lay a serious\n"
-	.string "smack down on Normal POKéMON,\l"
+	.string "Pokémon is asking for trouble.\p"
+	.string "Fighting Pokémon will lay a serious\n"
+	.string "smack down on Normal Pokémon,\l"
 	.string "so be careful!\p"
 	.string "What's worse, the Gym is as dark as\n"
 	.string "the ocean floor.\p"
@@ -326,7 +326,7 @@ DewfordTown_Gym_Text_JocelynPostBattle:
 	.string "I'm not going to waste this loss.\n"
 	.string "I'll use it to motivate me to train!\p"
 	.string "One day I'll become a Gym Leader…\p"
-	.string "No, I'll become the POKéMON League\n"
+	.string "No, I'll become the Pokémon League\n"
 	.string "Champion!$"
 
 DewfordTown_Gym_Text_LauraIntro:
@@ -400,7 +400,7 @@ DewfordTown_Gym_Text_ReceivedKnuckleBadge:
 	.string "from Brawly.$"
 
 DewfordTown_Gym_Text_KnuckleBadgeInfoTakeThis:
-	.string "The Knuckle Badge makes all POKéMON\n"
+	.string "The Knuckle Badge makes all Pokémon\n"
 	.string "up to Level 30, even those you get in\l"
 	.string "trades, obey without question.\p"
 	.string "And, you'll be able to use the HM move\n"
@@ -424,10 +424,10 @@ DewfordTown_Gym_Text_BrawlyPostBattle:
 	.string "among Trainers one day!$"
 
 DewfordTown_Gym_Text_GymStatue:
-	.string "Dewford Town POKéMON Gym$"
+	.string "Dewford Town Pokémon Gym$"
 
 DewfordTown_Gym_Text_GymStatueCertified:
-	.string "Dewford Town POKéMON Gym\p"
+	.string "Dewford Town Pokémon Gym\p"
 	.string "Brawly'S Certified Trainers:\n"
 	.string "{PLAYER}$"
 
@@ -453,7 +453,7 @@ DewfordTown_Gym_Text_BrawlyRematchNeedTwoMons:
 	.string "always returns to the shore.\p"
 	.string "A giant wave of a talent like you…\n"
 	.string "I knew you would return!\p"
-	.string "Oh? You only have one POKéMON\n"
+	.string "Oh? You only have one Pokémon\n"
 	.string "that can battle.\p"
 	.string "I'm sorry, but I'd like you to come back\n"
-	.string "with at least two POKéMON.$"
+	.string "with at least two Pokémon.$"

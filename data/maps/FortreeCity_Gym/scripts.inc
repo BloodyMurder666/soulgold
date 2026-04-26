@@ -138,7 +138,7 @@ FortreeCity_Gym_Text_GymGuideAdvice:
 	.string "Yo, how's it going, Champion-\n"
 	.string "bound {PLAYER}?\p"
 	.string "Fortree Gym Leader Winona is\n"
-	.string "a master of Flying-type POKéMON.\p"
+	.string "a master of Flying-type Pokémon.\p"
 	.string "She's waiting at the back of this Gym,\n"
 	.string "behind the rotating doors.\p"
 	.string "She's waiting for new challengers\n"
@@ -151,7 +151,7 @@ FortreeCity_Gym_Text_GymGuidePostVictory:
 
 FortreeCity_Gym_Text_JaredIntro:
 	.string "Behold the elegant battle style of\n"
-	.string "Bird POKéMON!$"
+	.string "Bird Pokémon!$"
 
 FortreeCity_Gym_Text_JaredDefeat:
 	.string "You…\n"
@@ -164,7 +164,7 @@ FortreeCity_Gym_Text_JaredPostBattle:
 	.string "our Leader?$"
 
 FortreeCity_Gym_Text_EdwardoIntro:
-	.string "The lovers of Bird POKéMON aspire\n"
+	.string "The lovers of Bird Pokémon aspire\n"
 	.string "to join this Gym.\p"
 	.string "As a member of the Fortree Gym,\n"
 	.string "I'm not allowed to lose!$"
@@ -221,7 +221,7 @@ FortreeCity_Gym_Text_HumbertoPostBattle:
 
 FortreeCity_Gym_Text_DariusIntro:
 	.string "You'd better know that there are all\n"
-	.string "sorts of Flying-type POKéMON.\p"
+	.string "sorts of Flying-type Pokémon.\p"
 	.string "You do know that, right?$"
 
 FortreeCity_Gym_Text_DariusDefeat:
@@ -230,21 +230,21 @@ FortreeCity_Gym_Text_DariusDefeat:
 FortreeCity_Gym_Text_DariusPostBattle:
 	.string "Sure, you beat me all right.\n"
 	.string "But you'd better watch it! Our Leader\l"
-	.string "Winona's POKéMON are all business.$"
+	.string "Winona's Pokémon are all business.$"
 
 FortreeCity_Gym_Text_WinonaIntro:
 	.string "I am Winona. I am the Leader of\n"
-	.string "the Fortree POKéMON Gym.\p"
-	.string "I have become one with Bird POKéMON\n"
+	.string "the Fortree Pokémon Gym.\p"
+	.string "I have become one with Bird Pokémon\n"
 	.string "and have soared the skies…\p"
 	.string "However grueling the battle, we have\n"
 	.string "triumphed with grace…\p"
 	.string "Witness the elegant choreography\n"
-	.string "of Bird POKéMON and I!$"
+	.string "of Bird Pokémon and I!$"
 
 FortreeCity_Gym_Text_WinonaDefeat:
 	.string "Never before have I seen a Trainer\n"
-	.string "command POKéMON with more grace\l"
+	.string "command Pokémon with more grace\l"
 	.string "than I…\p"
 	.string "In recognition of your prowess,\n"
 	.string "I present to you this Gym Badge.$"
@@ -254,7 +254,7 @@ FortreeCity_Gym_Text_ReceivedFeatherBadge:
 	.string "from Winona.$"
 
 FortreeCity_Gym_Text_ExplainFeatherBadgeTakeThis:
-	.string "With the Feather Badge, all POKéMON up\n"
+	.string "With the Feather Badge, all Pokémon up\n"
 	.string "to Lv 70, even those received through\l"
 	.string "trades, will obey your every command.\p"
 	.string "You will also be able to use\n"
@@ -265,7 +265,7 @@ FortreeCity_Gym_Text_ExplainFeatherBadgeTakeThis:
 FortreeCity_Gym_Text_ExplainAerialAce:
 	.string "TM40 contains Aerial Ace.\p"
 	.string "Its speed…\n"
-	.string "No POKéMON should be able to avoid it.\p"
+	.string "No Pokémon should be able to avoid it.\p"
 	.string "… … … … … …$"
 
 FortreeCity_Gym_Text_RegisteredWinona:
@@ -274,13 +274,13 @@ FortreeCity_Gym_Text_RegisteredWinona:
 
 FortreeCity_Gym_Text_WinonaPostBattle:
 	.string "Though I fell to you, I will remain\n"
-	.string "devoted to Bird POKéMON.$"
+	.string "devoted to Bird Pokémon.$"
 
 FortreeCity_Gym_Text_GymStatue:
-	.string "Fortree City POKéMON Gym$"
+	.string "Fortree City Pokémon Gym$"
 
 FortreeCity_Gym_Text_GymStatueCertified:
-	.string "Fortree City POKéMON Gym\p"
+	.string "Fortree City Pokémon Gym\p"
 	.string "Winona'S Certified Trainers:\n"
 	.string "{PLAYER}$"
 
@@ -314,6 +314,6 @@ FortreeCity_Gym_Text_WinonaRematchNeedTwoMons:
 	.string "Please, allow me to see your power\n"
 	.string "at full flight!\p"
 	.string "Oh, no… Do you have but one\n"
-	.string "POKéMON with you?\p"
-	.string "Please return with two POKéMON\n"
+	.string "Pokémon with you?\p"
+	.string "Please return with two Pokémon\n"
 	.string "at the very least.$"

@@ -1145,7 +1145,7 @@ PetalburgCity_Gym_Text_DadYoureHereWithYourPokemon:
 	.string "I'm surprised that you managed to\n"
 	.string "get here by yourself.\p"
 	.string "Oh, I see.\n"
-	.string "You're with your POKéMON.\p"
+	.string "You're with your Pokémon.\p"
 	.string "Hm… Then I guess you're going to\n"
 	.string "become a Trainer like me, {PLAYER}.\p"
 	.string "That's great news!\n"
@@ -1153,7 +1153,7 @@ PetalburgCity_Gym_Text_DadYoureHereWithYourPokemon:
 
 PetalburgCity_Gym_Text_WallyIdLikeAPokemon:
 	.string "Um… I…\n"
-	.string "I'd like to get a POKéMON, please…$"
+	.string "I'd like to get a Pokémon, please…$"
 
 PetalburgCity_Gym_Text_DadOhYoureWallyRight:
 	.string "Dad: Hm? You're… Uh… Oh, right.\n"
@@ -1163,8 +1163,8 @@ PetalburgCity_Gym_Text_WallyIveNeverCaughtAPokemon:
 	.string "Wally: I'm going to go stay with my\n"
 	.string "relatives in Verdanturf Town.\p"
 	.string "I thought I would be lonely by myself,\n"
-	.string "so I wanted to take a POKéMON along.\p"
-	.string "But I've never caught a POKéMON before.\n"
+	.string "so I wanted to take a Pokémon along.\p"
+	.string "But I've never caught a Pokémon before.\n"
 	.string "I don't know how…$"
 
 PetalburgCity_Gym_Text_DadHmISee:
@@ -1174,15 +1174,15 @@ PetalburgCity_Gym_Text_DadPlayerGoWithWally:
 	.string "Dad: {PLAYER}, you heard that,\n"
 	.string "right?\p"
 	.string "Go with Wally and make sure that he\n"
-	.string "safely catches a POKéMON.$"
+	.string "safely catches a Pokémon.$"
 
 PetalburgCity_Gym_Text_IllLoanYouMyZigzagoon:
-	.string "Wally, here, I'll loan you my POKéMON.\p"
+	.string "Wally, here, I'll loan you my Pokémon.\p"
 	.string "Wally received a Zigzagoon!$"
 
 PetalburgCity_Gym_Text_WallyThankYouAndDadGivesPokeBall:
 	.string "Wally: Oh, wow!\n"
-	.string "A POKéMON!\p"
+	.string "A Pokémon!\p"
 	.string "Dad: Hm. I'll give you a POKé Ball, too.\n"
 	.string "Go for it!\p"
 	.string "Wally received a POKé Ball!$"
@@ -1200,11 +1200,11 @@ PetalburgCity_Gym_Text_DadSoDidItWorkOut:
 
 PetalburgCity_Gym_Text_WallyThankYouBye:
 	.string "Wally: Thank you, yes, it did.\n"
-	.string "Here's your POKéMON back.\p"
+	.string "Here's your Pokémon back.\p"
 	.string "{PLAYER}, thank you for coming along\n"
 	.string "with me.\p"
 	.string "You two are why I was able to catch\n"
-	.string "my POKéMON.\p"
+	.string "my Pokémon.\p"
 	.string "I promise I'll take really good\n"
 	.string "care of it.\p"
 	.string "Oh! My mom's waiting for me,\n"
@@ -1219,7 +1219,7 @@ PetalburgCity_Gym_Text_DadGoCollectBadges:
 	.string "town.\p"
 	.string "There, you should challenge\n"
 	.string "the Gym Leader, Roxanne.\p"
-	.string "After her, go on to other POKéMON\n"
+	.string "After her, go on to other Pokémon\n"
 	.string "Gyms and defeat their Leaders.\p"
 	.string "Collect Badges from them,\n"
 	.string "understood?\p"
@@ -1230,7 +1230,7 @@ PetalburgCity_Gym_Text_DadGoCollectBadges:
 
 PetalburgCity_Gym_Text_NormanGoToRustboro:
 	.string "Dad: Hm? Aren't you going to the\n"
-	.string "POKéMON Gym in Rustboro City?\p"
+	.string "Pokémon Gym in Rustboro City?\p"
 	.string "There's no challenge for me to\n"
 	.string "battle a greenhorn Trainer.\p"
 	.string "{PLAYER}, I want you to challenge me\n"
@@ -1257,7 +1257,7 @@ PetalburgCity_Gym_Text_NormanIntro:
 	.string "Dad: Hm…\n"
 	.string "So, you did get four Gym Badges.\p"
 	.string "Fine, as I promised, we will have\n"
-	.string "a POKéMON battle.\p"
+	.string "a Pokémon battle.\p"
 	.string "{PLAYER}…\p"
 	.string "I'm so happy that I can have\n"
 	.string "a real battle with my own child.\p"
@@ -1281,8 +1281,8 @@ PetalburgCity_Gym_Text_ReceivedBalanceBadge:
 
 PetalburgCity_Gym_Text_ExplainBalanceBadgeTakeThis:
 	.string "Dad: With that Badge, the Defense\n"
-	.string "of all your POKéMON will increase.\p"
-	.string "POKéMON that know the HM move Surf\n"
+	.string "of all your Pokémon will increase.\p"
+	.string "Pokémon that know the HM move Surf\n"
 	.string "will be able to travel over water.\p"
 	.string "This is my gift to you. {PLAYER}, I'm\n"
 	.string "sure you can use it correctly.$"
@@ -1290,7 +1290,7 @@ PetalburgCity_Gym_Text_ExplainBalanceBadgeTakeThis:
 PetalburgCity_Gym_Text_ExplainFacade:
 	.string "Dad: TM42 contains Facade.\p"
 	.string "It doubles the power of moves if\n"
-	.string "the POKéMON is poisoned, paralyzed,\l"
+	.string "the Pokémon is poisoned, paralyzed,\l"
 	.string "or burned.\p"
 	.string "It might be able to turn a bad\n"
 	.string "situation into an advantage.$"
@@ -1321,7 +1321,7 @@ PetalburgCity_Gym_Text_DadGoingToKeepTraining:
 
 PetalburgCity_Gym_Text_DadNoAmountOfTrainingIsEnough:
 	.string "Dad: {PLAYER}, how are things going?\p"
-	.string "The world of POKéMON is deep.\p"
+	.string "The world of Pokémon is deep.\p"
 	.string "I honestly think that no amount of\n"
 	.string "training would ever be enough.$"
 
@@ -1368,14 +1368,14 @@ PetalburgCity_Gym_Text_RandallPostBattle:
 PetalburgCity_Gym_Text_RandallPostBadge:
 	.string "Whomever you beat, and whomever you\n"
 	.string "may lose to, you never shirk from\l"
-	.string "training yourself and your POKéMON.\p"
+	.string "training yourself and your Pokémon.\p"
 	.string "That's what I think being a\n"
 	.string "Gym Leader is all about.$"
 
 PetalburgCity_Gym_Text_ParkerIntro:
 	.string "This is the Confusion Room.\p"
 	.string "Let me see how well bonded you are\n"
-	.string "with your POKéMON!$"
+	.string "with your Pokémon!$"
 
 PetalburgCity_Gym_Text_ParkerDefeat:
 	.string "I couldn't confuse your team enough…\n"
@@ -1418,7 +1418,7 @@ PetalburgCity_Gym_Text_BerkeIntro:
 	.string "I'm not going to take it easy just\n"
 	.string "because you're our Leader's kid.\p"
 	.string "I'll show you how horrid it is for\n"
-	.string "a POKéMON to take a critical hit!$"
+	.string "a Pokémon to take a critical hit!$"
 
 PetalburgCity_Gym_Text_BerkeDefeat:
 	.string "Your power…\n"
@@ -1451,14 +1451,14 @@ PetalburgCity_Gym_Text_MaryPostBattle:
 	.string "Trainers waiting for you.\p"
 	.string "The left is the Defense Room, and\n"
 	.string "the right is the Recovery Room.\p"
-	.string "Your POKéMON's Attack power will be\n"
+	.string "Your Pokémon's Attack power will be\n"
 	.string "on trial either way.$"
 
 PetalburgCity_Gym_Text_MaryPostBadge:
 	.string "Do you know what we're trying to\n"
 	.string "achieve as Trainers?\p"
 	.string "We're striving to become soul mates\n"
-	.string "with our POKéMON.$"
+	.string "with our Pokémon.$"
 
 PetalburgCity_Gym_Text_AlexiaIntro:
 	.string "The higher the Defense, the more\n"
@@ -1490,17 +1490,17 @@ PetalburgCity_Gym_Text_JodyDefeat:
 	.string "But… I went all out!$"
 
 PetalburgCity_Gym_Text_JodyPostBattle:
-	.string "The way you use your POKéMON…\n"
+	.string "The way you use your Pokémon…\n"
 	.string "It's like your father's style.\p"
 	.string "Go on through! The Gym Leader, your\n"
 	.string "father, is waiting!$"
 
 PetalburgCity_Gym_Text_JodyPostBadge:
-	.string "Sure, it's fine to make your POKéMON\n"
+	.string "Sure, it's fine to make your Pokémon\n"
 	.string "stronger.\p"
 	.string "But what decides the winner?\p"
 	.string "Why, it's the feelings Trainers have\n"
-	.string "for their POKéMON.$"
+	.string "for their Pokémon.$"
 
 PetalburgCity_Gym_Text_DoorAppearsLocked:
 	.string "This door appears to be locked\n"
@@ -1541,15 +1541,15 @@ PetalburgCity_Gym_Text_EnterOHKORoom:
 
 PetalburgCity_Gym_Text_EnterGymLeadersRoom:
 	.string "“Gym Leader'S Room\p"
-	.string "“See for yourself what POKéMON await\n"
+	.string "“See for yourself what Pokémon await\n"
 	.string "you!” the sign says.\p"
 	.string "Do you want to go through?$"
 
 PetalburgCity_Gym_Text_GymStatue:
-	.string "Petalburg City POKéMON Gym$"
+	.string "Petalburg City Pokémon Gym$"
 
 PetalburgCity_Gym_Text_GymStatueCertified:
-	.string "Petalburg City POKéMON Gym\p"
+	.string "Petalburg City Pokémon Gym\p"
 	.string "Norman'S Certified Trainers:\n"
 	.string "{PLAYER}$"
 
@@ -1585,8 +1585,8 @@ PetalburgCity_Gym_Text_NormanRematchNeedTwoMons:
 	.string "Inside a Gym, it doesn't matter that\n"
 	.string "we are a parent and child.\p"
 	.string "Hm? Wait a second, {PLAYER}.\p"
-	.string "Do you only have one POKéMON that is\n"
+	.string "Do you only have one Pokémon that is\n"
 	.string "capable of battle?\p"
 	.string "Sorry, but you'll have to come back\n"
-	.string "with at least two POKéMON.$"
+	.string "with at least two Pokémon.$"
 

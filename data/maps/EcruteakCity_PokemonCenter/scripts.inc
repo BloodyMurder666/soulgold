@@ -106,13 +106,13 @@ EcruteakCity_PokemonCenter1F_Text_Bill1:
 
 EcruteakCity_PokemonCenter1F_Text_Bill2:
 	.string "I just finished adjustments on my\n"
-	.string "POKéMON Storage System.\p"
+	.string "Pokémon Storage System.\p"
 	.string "You know that PC you use to store\n"
-	.string "all your POKéMON?\p"
+	.string "all your Pokémon?\p"
 	.string "I developed that myself!\p"
 	.string "Now that I've installed this one,\n"
 	.string "my PC is running at all\l"
-	.string "POKéMON Centers in Johto and Kanto.\p"
+	.string "Pokémon Centers in Johto and Kanto.\p"
 	.string "I have to hurry on back to\n"
 	.string "Goldenrod and see my folks. Feel\l"
 	.string "free to visit anytime!\p"
@@ -122,7 +122,7 @@ EcruteakCity_PokemonCenter1F_Text_PokefanM:
 	.string "The way the Kimono Girls dance is\n"
 	.string "marvelous.\p"
 	.string "Just like the way they use their\n"
-	.string "POKéMON.$"
+	.string "Pokémon.$"
 
 EcruteakCity_PokemonCenter1F_Text_PokefanM_Mobile:
 	.string "You must be hoping to battle more\n"
@@ -135,7 +135,7 @@ EcruteakCity_PokemonCenter1F_Text_PokefanM_Mobile:
 EcruteakCity_PokemonCenter1F_Text_CooltrainerF:
 	.string "Morty, the Gym Leader, is soooo\n"
 	.string "cool.\p"
-	.string "His POKéMON are really tough too.$"
+	.string "His Pokémon are really tough too.$"
 
 EcruteakCity_PokemonCenter1F_Text_GymGuide:
 	.string "Lake Of Rage…\p"

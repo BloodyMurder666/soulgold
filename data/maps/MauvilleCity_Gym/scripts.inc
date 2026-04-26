@@ -260,9 +260,9 @@ MauvilleCity_Gym_Text_GymGuideAdvice:
 	.string "Hey, how's it going, Champion-\n"
 	.string "bound {PLAYER}?\p"
 	.string "Wattson, the Leader of Mauville\n"
-	.string "Gym, uses Electric-type POKéMON.\p"
+	.string "Gym, uses Electric-type Pokémon.\p"
 	.string "If you challenge him with Water-type\n"
-	.string "POKéMON, he'll zap them! Bzzt!\p"
+	.string "Pokémon, he'll zap them! Bzzt!\p"
 	.string "And, he's put in switch-controlled\n"
 	.string "doors all over his Gym! Eccentric!\p"
 	.string "Hey, go for it!$"
@@ -280,7 +280,7 @@ MauvilleCity_Gym_Text_KirkDefeat:
 	.string "over-driven electric, man!$"
 
 MauvilleCity_Gym_Text_KirkPostBattle:
-	.string "POKéMON and rock, it's all about heart,\n"
+	.string "Pokémon and rock, it's all about heart,\n"
 	.string "whoa-yeah!$"
 
 MauvilleCity_Gym_Text_ShawnIntro:
@@ -308,7 +308,7 @@ MauvilleCity_Gym_Text_BenPostBattle:
 	.string "little traps with switches.$"
 
 MauvilleCity_Gym_Text_VivianIntro:
-	.string "With my charm and my POKéMON's moves,\n"
+	.string "With my charm and my Pokémon's moves,\n"
 	.string "you'll be shocked!$"
 
 MauvilleCity_Gym_Text_VivianDefeat:
@@ -356,9 +356,9 @@ MauvilleCity_Gym_Text_ReceivedDynamoBadge:
 	.string "from Wattson.$"
 
 MauvilleCity_Gym_Text_ExplainDynamoBadgeTakeThis:
-	.string "With the Dynamo Badge, POKéMON can\n"
+	.string "With the Dynamo Badge, Pokémon can\n"
 	.string "use Rock Smash out of battle.\p"
-	.string "And, it will make your POKéMON a little\n"
+	.string "And, it will make your Pokémon a little\n"
 	.string "bit faster, too.\p"
 	.string "Hmm…\n"
 	.string "You should take this, too!$"
@@ -382,17 +382,17 @@ MauvilleCity_Gym_Text_WattsonGoForthAndEndeavor:
 	.string "Go forth and endeavor, youngster!$"
 
 MauvilleCity_Gym_Text_GymStatue:
-	.string "Mauville City POKéMON Gym$"
+	.string "Mauville City Pokémon Gym$"
 
 MauvilleCity_Gym_Text_GymStatueCertified:
-	.string "Mauville City POKéMON Gym\p"
+	.string "Mauville City Pokémon Gym\p"
 	.string "Wattson'S Certified Trainers:\n"
 	.string "{PLAYER}$"
 
 MauvilleCity_Gym_Text_WattsonPreRematch:
 	.string "Wattson: Ah-ha! Here at last!\n"
 	.string "I know what you want.\l"
-	.string "You want to battle my POKéMON!\p"
+	.string "You want to battle my Pokémon!\p"
 	.string "Wahahahaha!\p"
 	.string "I'll make sparks fly from you!\n"
 	.string "Don't say I didn't warn you!$"
@@ -412,10 +412,10 @@ MauvilleCity_Gym_Text_WattsonPostRematch:
 MauvilleCity_Gym_Text_WattsonRematchNeedTwoMons:
 	.string "Wattson: Ah-ha! Here at last!\n"
 	.string "I know what you want.\l"
-	.string "You want to battle my POKéMON!\p"
+	.string "You want to battle my Pokémon!\p"
 	.string "Wahahahaha!\p"
 	.string "Oops! Wait!\n"
-	.string "You've only one POKéMON with you!\p"
+	.string "You've only one Pokémon with you!\p"
 	.string "Come see me with two or more\n"
-	.string "POKéMON, all right?$"
+	.string "Pokémon, all right?$"
 

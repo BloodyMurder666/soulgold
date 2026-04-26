@@ -18,8 +18,8 @@ ViridianForest_EventScript_Bugsy::
 
 ViridianForest_Text_Bugsy:
 	.string "Bugsy: I came to Kanto to look for\n"
-	.string "Bug-Type POKéMON, so I can become\l"
-	.string "a stronger Bug-Type POKéMON\l"
+	.string "Bug-Type Pokémon, so I can become\l"
+	.string "a stronger Bug-Type Pokémon\l"
 	.string "Trainer!\p"
     .string "If you're ready for another match,\n"
     .string "I'll be at the Dojo in Saffron!$"

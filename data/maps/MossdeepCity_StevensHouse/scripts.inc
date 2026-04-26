@@ -176,7 +176,7 @@ MossdeepCity_StevensHouse_Text_UnderwateCavernBetweenMossdeepSootopolis:
 
 MossdeepCity_StevensHouse_Text_TakeBallContainingBeldum:
 	.string "{PLAYER} checked the POKé Ball.\p"
-	.string "It contained the POKéMON\n"
+	.string "It contained the Pokémon\n"
 	.string "Beldum.\p"
 	.string "Take the POKé Ball?$"
 
@@ -185,7 +185,7 @@ MossdeepCity_StevensHouse_Text_ObtainedBeldum:
 
 @ Unused
 MossdeepCity_StevensHouse_Text_NoSpaceForAnotherMon:
-	.string "There is no space for another POKéMON.$"
+	.string "There is no space for another Pokémon.$"
 
 MossdeepCity_StevensHouse_Text_LeftPokeBallWhereItWas:
 	.string "{PLAYER} left the POKé Ball where\n"
@@ -203,7 +203,7 @@ MossdeepCity_StevensHouse_Text_LetterFromSteven:
 	.string "I want you to take the POKé Ball on\n"
 	.string "the desk.\p"
 	.string "Inside it is a Beldum, my favorite\n"
-	.string "POKéMON.\p"
+	.string "Pokémon.\p"
 	.string "I'm counting on you.\p"
 	.string "May our paths cross someday.\p"
 	.string "Steven Stone$"

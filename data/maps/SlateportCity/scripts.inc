@@ -941,7 +941,7 @@ SlateportCity_Text_PutEffortRibbonOnMon:
 
 SlateportCity_Text_GoForItLittleHarder:
 	.string "You have to go for it a little harder.\p"
-	.string "If you do, I'll give your POKéMON\n"
+	.string "If you do, I'll give your Pokémon\n"
 	.string "something nice.$"
 
 SlateportCity_Text_EffortRibbonLooksGoodOnIt:
@@ -951,7 +951,7 @@ SlateportCity_Text_EffortRibbonLooksGoodOnIt:
 SlateportCity_Text_WonderIfLighthouseStartlesPokemon:
 	.string "The light of the lighthouse reaches\n"
 	.string "dozens of miles away.\p"
-	.string "I wonder if it doesn't startle POKéMON\n"
+	.string "I wonder if it doesn't startle Pokémon\n"
 	.string "in the sea.$"
 
 SlateportCity_Text_SeaweedFullOfLife:
@@ -984,7 +984,7 @@ SlateportCity_Text_GoingToCompeteInBattleTent:
 	.string "Wroooar! I'm going to compete in\n"
 	.string "the Battle Tent, too!\p"
 	.string "But before that, I need to catch\n"
-	.string "some POKéMON!$"
+	.string "some Pokémon!$"
 
 SlateportCity_Text_BushedHikingFromMauville:
 	.string "Whew… I'm just bushed…\p"
@@ -1075,35 +1075,35 @@ SlateportCity_Text_HotSpringsAfterOperation:
 SlateportCity_Text_SeaIsSoWet:
 	.string "The sea is just so vast…\p"
 	.string "Could the sea have been made by\n"
-	.string "the tears shed by POKéMON?$"
+	.string "the tears shed by Pokémon?$"
 
 SlateportCity_Text_SinkOldBoats:
 	.string "Do you know what they do with old\n"
 	.string "ships that become too creaky to sail?\p"
 	.string "They sink them in the sea so they\n"
-	.string "become habitats for POKéMON.$"
+	.string "become habitats for Pokémon.$"
 
 SlateportCity_Text_BuyTooMuch:
 	.string "Whenever I visit here, I get carried\n"
 	.string "away and buy too much.$"
 
 SlateportCity_Text_GetNameRaterToHelpYou:
-	.string "If you want to change your POKéMON's\n"
+	.string "If you want to change your Pokémon's\n"
 	.string "nickname, you'll have to get the Name\l"
 	.string "Rater to help you.$"
 
 SlateportCity_Text_CantChangeTradeMonName:
-	.string "Any POKéMON you get in a trade,\n"
+	.string "Any Pokémon you get in a trade,\n"
 	.string "you can't change its nickname.\p"
 	.string "The original Trainer's love for that\n"
-	.string "POKéMON is in the nickname.$"
+	.string "Pokémon is in the nickname.$"
 
 SlateportCity_Text_BattleTentBuiltRecently:
 	.string "Recently, a Battle Tent was built\n"
 	.string "in Slateport.\p"
 	.string "Gyms are fun, but the Battle Tent's\n"
 	.string "awesome in its own way.\p"
-	.string "You should go find tough POKéMON\n"
+	.string "You should go find tough Pokémon\n"
 	.string "for the Battle Tent!$"
 
 SlateportCity_Text_CaptSternBeingInterviewed:
@@ -1168,7 +1168,7 @@ SlateportCity_Text_OhPlayerWeMadeDiscovery:
 	.string "seafloor exploration.\p"
 	.string "We found an underwater cavern on\n"
 	.string "Route 128.\p"
-	.string "We think it's the habitat of a POKéMON\n"
+	.string "We think it's the habitat of a Pokémon\n"
 	.string "that's said to have been long extinct.$"
 
 SlateportCity_Text_AquaWillAssumeControlOfSubmarine:
@@ -1199,7 +1199,7 @@ SlateportCity_Text_PleaseComeWithMe:
 
 SlateportCity_Text_BattleTentSign:
 	.string "Battle Tent Slateport Site\n"
-	.string "“Find it! The ultimate POKéMON!”$"
+	.string "“Find it! The ultimate Pokémon!”$"
 
 SlateportCity_Text_SternsShipyardWantedSign:
 	.string "Stern'S Shipyard\p"
@@ -1219,8 +1219,8 @@ SlateportCity_Text_SternsShipyardFerryComplete:
 	.string "Harbor.”$"
 
 SlateportCity_Text_PokemonFanClubSign:
-	.string "POKéMON Fan Club\n"
-	.string "“Calling all fans of POKéMON!”$"
+	.string "Pokémon Fan Club\n"
+	.string "“Calling all fans of Pokémon!”$"
 
 SlateportCity_Text_OceanicMuseumSign:
 	.string "“The endless sea sustains\n"
@@ -1229,7 +1229,7 @@ SlateportCity_Text_OceanicMuseumSign:
 
 SlateportCity_Text_CitySign:
 	.string "Slateport City\p"
-	.string "“The port where people and POKéMON\n"
+	.string "“The port where people and Pokémon\n"
 	.string "cross paths.”$"
 
 SlateportCity_Text_MarketSign:
@@ -1250,10 +1250,10 @@ SlateportCity_Text_HarborSign:
 
 SlateportCity_Text_NameRatersHouseSign:
 	.string "Name Rater'S House\n"
-	.string "“POKéMON nicknames rated.”$"
+	.string "“Pokémon nicknames rated.”$"
 
 SlateportCity_Text_ExplainBerries:
-	.string "If a wild POKéMON gets hurt, it heals\n"
+	.string "If a wild Pokémon gets hurt, it heals\n"
 	.string "itself by chewing on Berries.\p"
 	.string "Did you know that?\p"
 	.string "Somebody saw that and got the idea\n"
@@ -1269,7 +1269,7 @@ SlateportCity_Text_ExplainBerries:
 
 SlateportCity_Text_ExplainBerryPowder:
 	.string "I recently had machines installed at\n"
-	.string "POKéMON Centers for crushing Berries.\p"
+	.string "Pokémon Centers for crushing Berries.\p"
 	.string "The Berry Crush machines are at\n"
 	.string "the Direct Corner upstairs.\p"
 	.string "Did you know?\p"

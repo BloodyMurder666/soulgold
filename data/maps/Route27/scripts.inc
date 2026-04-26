@@ -142,7 +142,7 @@ Route27_Text_CooltrainermBrianAfter:
 
 Route27_Text_CooltrainerfReenaSeen:
     .string "You shouldn't underestimate the\n"
-    .string "wild POKéMON in these parts.$"
+    .string "wild Pokémon in these parts.$"
 
 Route27_Text_CooltrainerfReenaBeaten:
     .string "Oh! You're much too strong!$"
@@ -160,9 +160,9 @@ Route27_Text_CooltrainerfMeganBeaten:
 
 Route27_Text_CooltrainerfMeganAfter:
     .string "I'm checking out pre- and post-\n"
-    .string "evolution POKéMON.\p"
+    .string "evolution Pokémon.\p"
     .string "Evolution really does make\n"
-    .string "POKéMON stronger.\p"
+    .string "Pokémon stronger.\p"
     .string "But evolved forms also learn\n"
     .string "moves later on.$"
 
@@ -170,7 +170,7 @@ Route27_Text_PsychicGilbertSeen:
     .string "Don't say a thing!\p"
     .string "Let me guess what you're thinking.\p"
     .string "Mmmmmmm…\p"
-    .string "I got it! You're on the POKéMON\n"
+    .string "I got it! You're on the Pokémon\n"
     .string "League challenge!$"
 
 Route27_Text_PsychicGilbertBeaten:
@@ -189,7 +189,7 @@ Route27_Text_BirdKeeperJoseBeaten:
 
 Route27_Text_BirdKeeperJoseAfter:
     .string "Bird Keepers like me mimic bird\n"
-    .string "whistles to command POKéMON.$"
+    .string "whistles to command Pokémon.$"
 
 TohjoFalls_Text_Sign:
     .string "Tohjo Falls\p"
@@ -205,4 +205,4 @@ Route27_Text_FisherScottBeaten:
 
 Route27_Text_FisherScottAfter:
     .string "Just like in fish-ing, it's all over\n"
-    .string "in POKéMON if you give up.$"
+    .string "in Pokémon if you give up.$"

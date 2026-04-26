@@ -95,7 +95,7 @@ CianwoodCity_Text_ChucksWifeEasierToFly:
 	.string "You crossed the sea to get here?\p"
 	.string "That must have been hard.\p"
 	.string "It would be much easier if your\n"
-	.string "POKéMON knew how to Fly...$"
+	.string "Pokémon knew how to Fly...$"
 
 CianwoodCity_Text_ChucksWifeBeatChuck:
 	.string "But you can't use Fly without this\n"
@@ -109,7 +109,7 @@ CianwoodCity_Text_ChucksWifeGiveHM:
 	.string "Then you should take this HM.$"
 
 CianwoodCity_Text_ChucksWifeFlySpeech:
-	.string "Teach Fly to your POKéMON.\p"
+	.string "Teach Fly to your Pokémon.\p"
 	.string "You will be able to Fly instantly\n"
 	.string "to anywhere you have visited.$"
 
@@ -143,7 +143,7 @@ CianwoodCity_Text_PokefanM:
 	.string "Boulders to the north of town can\n"
 	.string "be crushed.\p"
 	.string "They may be hiding something.\p"
-	.string "Your POKéMON could use Rock Smash\n"
+	.string "Your Pokémon could use Rock Smash\n"
 	.string "to break them.$"
 
 CianwoodCity_EventScript_Lass::
@@ -156,7 +156,7 @@ CianwoodCity_EventScript_Lass::
 
 CianwoodCity_Text_Lass:
 	.string "Chuck, the Gym Leader, spars with\n"
-	.string "his fighting POKéMON.$"
+	.string "his fighting Pokémon.$"
 
 CianwoodCity_EventScript_SuicuneTrigger::
 	lock
@@ -293,7 +293,7 @@ CianwoodCity_Text_EusineBeaten:
 
 CianwoodCity_Text_EusineAfter:
 	.string "You're amazing, {PLAYER}!\p"
-	.string "No wonder POKéMON gravitate to you.\p"
+	.string "No wonder Pokémon gravitate to you.\p"
 	.string "I get it now.\p"
 	.string "I'm going to keep searching for\n"
 	.string "Suicune.\p"
@@ -319,7 +319,7 @@ CianwoodCity_EventScript_GymSign::
 	end
 
 CianwoodCity_Text_GymSign:
-	.string "Cianwood City POKéMON Gym\p"
+	.string "Cianwood City Pokémon Gym\p"
 	.string "Leader: Chuck\p"
 	.string "His Roaring Fists Do the Talking$"
 

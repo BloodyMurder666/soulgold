@@ -413,7 +413,7 @@ BattleFrontier_ExchangeServiceCorner_Text_YouAlreadyHaveThis:
 BattleFrontier_ExchangeServiceCorner_EventScript_OldWTMan_Text:
 	.string "Hi! If you are looking for the\n"
 	.string "Wondertrade, they're now located in\l"
-	.string "every POKéMON Center. Have fun!$"
+	.string "every Pokémon Center. Have fun!$"
 
 BattleFrontier_ExchangeServiceCorner_Text_WelcomePleaseChoosePrize:
 	.string "Hello, this is the Exchange Service\n"
@@ -493,7 +493,7 @@ BattleFrontier_ExchangeServiceCorner_Text_GetYouAnythingYouWant:
 
 BattleFrontier_ExchangeServiceCorner_Text_ItemsWillGetMonTougher:
 	.string "If I can get hold of the items here,\n"
-	.string "my POKéMON will get tougher.\p"
+	.string "my Pokémon will get tougher.\p"
 	.string "You bet they will!\n"
 	.string "No question about it!$"
 
@@ -557,26 +557,26 @@ BattleFrontier_ExchangeServiceCorner_Text_LargeDollDesc::
 
 BattleFrontier_ExchangeServiceCorner_Text_ProteinDesc::
 	.string "Raises the stat Attack of one\n"
-	.string "POKéMON.$"
+	.string "Pokémon.$"
 
 BattleFrontier_ExchangeServiceCorner_Text_CalciumDesc::
 	.string "Raises the stat Sp. Atk of one\n"
-	.string "POKéMON.$"
+	.string "Pokémon.$"
 
 BattleFrontier_ExchangeServiceCorner_Text_IronDesc::
 	.string "Raises the stat Defense of one\n"
-	.string "POKéMON.$"
+	.string "Pokémon.$"
 
 BattleFrontier_ExchangeServiceCorner_Text_ZincDesc::
 	.string "Raises the stat Sp. Def of one\n"
-	.string "POKéMON.$"
+	.string "Pokémon.$"
 
 BattleFrontier_ExchangeServiceCorner_Text_CarbosDesc::
 	.string "Raises the stat Speed of one\n"
-	.string "POKéMON.$"
+	.string "Pokémon.$"
 
 BattleFrontier_ExchangeServiceCorner_Text_HPUpDesc::
-	.string "Raises the Hp of one POKéMON.$"
+	.string "Raises the Hp of one Pokémon.$"
 
 BattleFrontier_ExchangeServiceCorner_Text_LeftoversDesc::
 	.string "A hold item that gradually restores\n"
@@ -591,7 +591,7 @@ BattleFrontier_ExchangeServiceCorner_Text_QuickClawDesc::
 	.string "the first strike.$"
 
 BattleFrontier_ExchangeServiceCorner_Text_MentalHerbDesc::
-	.string "A hold item that snaps POKéMON out\n"
+	.string "A hold item that snaps Pokémon out\n"
 	.string "of infatuation.$"
 
 BattleFrontier_ExchangeServiceCorner_Text_BrightpowderDesc::
@@ -749,7 +749,7 @@ EventScript_End::
 EventScript_DoWonderTrade_Text_Welcome:
 	.string "Welcome to the Wondertrade\n"
 	.string "Station of the POKéCENTER!\p"
-	.string "Please select the POKéMON that\n"
+	.string "Please select the Pokémon that\n"
 	.string "is going to get Wondertraded.$"
 
 EventScript_NoMoreForToday_Text:
@@ -764,10 +764,10 @@ EventScript_FirstTimeWonder_Text:
 	.string "Wondertrade is a techonology developed\n"
 	.string "by Devon Corp. to Trade anonimously.\p"
 	.string "You basically send a selected\n"
-	.string "POKéMON to someone, and they send\p"
+	.string "Pokémon to someone, and they send\p"
 	.string "you another one in exchange.\n"
 	.string "Neither you nor the other trainer\p"
-	.string "know which POKéMON is going to\n"
+	.string "know which Pokémon is going to\n"
 	.string "show up. And that is the fun of\p"
 	.string "Wondertrade! Oh, also, to not\n"
 	.string "overload the server, there is a\p"
@@ -782,10 +782,10 @@ EventScript_FirstTimeWonder_Text_Unlimited:
 	.string "Wondertrade is a techonology developed\n"
 	.string "by Devon Corp. to Trade anonimously.\p"
 	.string "You basically send a selected\n"
-	.string "POKéMON to someone, and they send\p"
+	.string "Pokémon to someone, and they send\p"
 	.string "you another one in exchange.\n"
 	.string "Neither you nor the other trainer\p"
-	.string "know which POKéMON is going to\n"
+	.string "know which Pokémon is going to\n"
 	.string "show up. And that is the fun of\l"
 	.string "Wondertrade!\p"
 	.string "We hope you have a great\n"
@@ -798,7 +798,7 @@ EventScript_DoWonderTrade_Text_Done:
 EventScript_DoWonderTrade_Text_Challenges:
 	.string "Looks like you have challenges\n"
 	.string "activated. Please come back\l"
-	.string "again after the POKéMON League.$"
+	.string "again after the Pokémon League.$"
 
 EventScript_DoWonderTrade_Text_FiveBadges:
 	.string "Sadly, the Wondertrade System is\n"

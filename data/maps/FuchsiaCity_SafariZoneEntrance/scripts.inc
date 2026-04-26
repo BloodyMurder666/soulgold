@@ -227,7 +227,7 @@ FuchsiaCity_SafariZoneEntrance_Text_StevenWelcome:
 	.string "company recently purchased this\l"
 	.string "Safari Zone, and we've made many\l"
 	.string "improvements.\p"
-	.string "You'll find very exotic POKéMON\n"
+	.string "You'll find very exotic Pokémon\n"
 	.string "here. Especially if you increase\l"
 	.string "your Safari Level.\p"
 	.string "Just speak to the attendant here\n"

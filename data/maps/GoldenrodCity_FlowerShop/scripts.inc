@@ -395,4 +395,4 @@ GoldenrodCity_FlowerShop_Text_FloriaYouBeatWhitney:
 # 198 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
 GoldenrodCity_FlowerShop_Text_FloriaItWasAMon:
 # 199 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-    .string "So it really was a POKéMON!$"
+    .string "So it really was a Pokémon!$"

@@ -104,7 +104,7 @@ SootopolisCity_LotadAndSeedotHouse_EventScript_LotadSizeRecord::
 	end
 
 SootopolisCity_LotadAndSeedotHouse_Text_PleaseShowMeBigSeedot:
-	.string "Do you know the POKéMON Seedot?\n"
+	.string "Do you know the Pokémon Seedot?\n"
 	.string "It's hardly ever seen in Sootopolis.\p"
 	.string "Anyway, I love big Seedot.\n"
 	.string "The bigger the better.\p"
@@ -153,7 +153,7 @@ SootopolisCity_LotadAndSeedotHouse_Text_BiggestSeedotInHistory:
 	.string "always wanted!$"
 
 SootopolisCity_LotadAndSeedotHouse_Text_PleaseShowMeBigLotad:
-	.string "Do you know the POKéMON Lotad?\n"
+	.string "Do you know the Pokémon Lotad?\n"
 	.string "It's rarely seen in Sootopolis.\p"
 	.string "I love, I mean love, big Lotad!\p"
 	.string "My big brother says that Seedot is\n"

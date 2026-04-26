@@ -179,7 +179,7 @@ SootopolisCity_Gym_1F_Text_GymGuideAdvice:
 	.string "Yo! How's it going, Champion-\n"
 	.string "bound {PLAYER}?\p"
 	.string "Sootopolis's Gym Leader Juan is\n"
-	.string "a master of Water-type POKéMON.\p"
+	.string "a master of Water-type Pokémon.\p"
 	.string "And, to get to Juan, an icy floor\n"
 	.string "will hamper your progress…\p"
 	.string "Listen, I'm sorry, but that's all the\n"
@@ -192,14 +192,14 @@ SootopolisCity_Gym_1F_Text_GymGuidePostVictory:
 	.string "was supposedly the best in all Hoenn!\p"
 	.string "Okay! Check out your Trainer Card.\p"
 	.string "If you've gotten all the Badges, you're\n"
-	.string "set for the POKéMON League challenge!$"
+	.string "set for the Pokémon League challenge!$"
 
 SootopolisCity_Gym_1F_Text_JuanIntro:
 	.string "Let me ask you.\n"
 	.string "Did you know?\l"
 	.string "Ah, I should not be so coy.\p"
 	.string "It was I who taught Wallace everything\n"
-	.string "there is to know about POKéMON.\p"
+	.string "there is to know about Pokémon.\p"
 	.string "Once, I had given up my position as\n"
 	.string "the Gym Leader.\p"
 	.string "In my place, I had entrusted Wallace\n"
@@ -211,7 +211,7 @@ SootopolisCity_Gym_1F_Text_JuanIntro:
 	.string "Please, you shall bear witness to\n"
 	.string "our artistry.\p"
 	.string "A grand illusion of water sculpted\n"
-	.string "by POKéMON and myself!$"
+	.string "by Pokémon and myself!$"
 
 @ NOTE: This defeat text actually causes a buffer overflow. It's about 50 bytes too long for
 @ the gDisplayedStringBattle buffer that it's put into, and it stomps all over the gBattleTextBuffs
@@ -238,7 +238,7 @@ SootopolisCity_Gym_1F_Text_ReceivedRainBadge:
 
 SootopolisCity_Gym_1F_Text_ExplainRainBadgeTakeThis:
 	.string "Having the Rain Badge shall assure you\n"
-	.string "the full obedience of all your POKéMON\l"
+	.string "the full obedience of all your Pokémon\l"
 	.string "to your every command.\p"
 	.string "The Rain Badge also allows the use\n"
 	.string "of the HM move Waterfall to scale\l"
@@ -261,24 +261,24 @@ SootopolisCity_Gym_1F_Text_JuanPostBattle:
 	.string "The Trainers who have gathered all\n"
 	.string "the Gym Badges of Hoenn should make\l"
 	.string "way to the ultimate destination.\p"
-	.string "The POKéMON League.\p"
+	.string "The Pokémon League.\p"
 	.string "Travel to the easternmost reaches\n"
 	.string "of Hoenn, to the island Ever Grande.\p"
-	.string "There, you shall find the POKéMON\n"
+	.string "There, you shall find the Pokémon\n"
 	.string "League.$"
 
 SootopolisCity_Gym_1F_Text_GoGetFortreeBadge:
 	.string "There remains but one Badge to\n"
 	.string "obtain in Hoenn.\p"
-	.string "If you wish to challenge the POKéMON\n"
+	.string "If you wish to challenge the Pokémon\n"
 	.string "League, you must obtain the last\l"
 	.string "Badge from the Gym in Fortree.$"
 
 SootopolisCity_Gym_1F_Text_GymStatue:
-	.string "Sootopolis City POKéMON Gym$"
+	.string "Sootopolis City Pokémon Gym$"
 
 SootopolisCity_Gym_1F_Text_GymStatueCertified:
-	.string "Sootopolis City POKéMON Gym\p"
+	.string "Sootopolis City Pokémon Gym\p"
 	.string "Juan'S Certified Trainers:\n"
 	.string "{PLAYER}$"
 
@@ -313,7 +313,7 @@ SootopolisCity_Gym_1F_Text_JuanRematchNeedTwoMons:
 	.string "Well, my friend, most certainly!\n"
 	.string "I shall be delighted to dance with you…\p"
 	.string "Ah, no, no, no.\n"
-	.string "You have with you but one POKéMON.\p"
+	.string "You have with you but one Pokémon.\p"
 	.string "I wish that you would return with\n"
-	.string "two, perhaps more, POKéMON, please.$"
+	.string "two, perhaps more, Pokémon, please.$"
 

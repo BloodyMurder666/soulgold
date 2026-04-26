@@ -439,7 +439,7 @@ OlivineCity_Gym_Text_GymGuidePreText:
 # 220 "data/maps/OlivineCity_Gym/scripts.pory"
 	.string "Lighthouse.\p"
 # 221 "data/maps/OlivineCity_Gym/scripts.pory"
-	.string "She's been tending to a sick POKéMON.\p"
+	.string "She's been tending to a sick Pokémon.\p"
 # 222 "data/maps/OlivineCity_Gym/scripts.pory"
 	.string "A strong trainer has to be\n"
 # 223 "data/maps/OlivineCity_Gym/scripts.pory"
@@ -603,7 +603,7 @@ OlivineCity_Gym_Text_ReceivedMineralBadge:
 # 302 "data/maps/OlivineCity_Gym/scripts.pory"
 OlivineCity_Gym_Text_JasmineBadgeSpeech:
 # 303 "data/maps/OlivineCity_Gym/scripts.pory"
-	.string "Mineralbadge raises POKéMON's \n"
+	.string "Mineralbadge raises Pokémon's \n"
 # 304 "data/maps/OlivineCity_Gym/scripts.pory"
 	.string "Special Defense.\p"
 # 305 "data/maps/OlivineCity_Gym/scripts.pory"
@@ -679,13 +679,13 @@ OlivineCity_Gym_EventScript_Statue2::
 # 340 "data/maps/OlivineCity_Gym/scripts.pory"
 OlivineCity_Gym_Text_GymStatue:
 # 341 "data/maps/OlivineCity_Gym/scripts.pory"
-	.string "Olivine City POKéMON Gym$"
+	.string "Olivine City Pokémon Gym$"
 # 342 "data/maps/OlivineCity_Gym/scripts.pory"
 
 # 343 "data/maps/OlivineCity_Gym/scripts.pory"
 OlivineCity_Gym_Text_GymStatueCertified:
 # 344 "data/maps/OlivineCity_Gym/scripts.pory"
-	.string "Olivine City POKéMON Gym\p"
+	.string "Olivine City Pokémon Gym\p"
 # 345 "data/maps/OlivineCity_Gym/scripts.pory"
 	.string "Jasmine'S Certified Trainers:\n"
 # 346 "data/maps/OlivineCity_Gym/scripts.pory"

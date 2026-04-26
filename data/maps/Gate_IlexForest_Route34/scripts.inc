@@ -25,7 +25,7 @@ Route34IlexForestGate_Text_Lass:
 	.string "It watches over the Forest from\n"
 	.string "across time.\p"
 	.string "I think that it must be a\n"
-	.string "Grass-type POKéMON.$"
+	.string "Grass-type Pokémon.$"
 
 Route34IlexForestGate_Text_Butterfree:
 	.string "Butterfree: Freeh!$"

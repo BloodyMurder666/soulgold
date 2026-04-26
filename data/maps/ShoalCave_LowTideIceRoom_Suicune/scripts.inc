@@ -93,7 +93,7 @@ ShoalCave_LowTideIceRoom_Suicune_SuicuneBattle1_Movement:
 	step_end
 
 ShoalCave_LowTideIceRoom_Suicune_SuicuneBattle1_Text:
-	.string "The POKéMON swiftly ran away!$"
+	.string "The Pokémon swiftly ran away!$"
 
 @@Second encounter with Suicune. Level 80. High defenses
 

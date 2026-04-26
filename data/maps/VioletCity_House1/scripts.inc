@@ -25,7 +25,7 @@ VioletCity_House1_EventScript_Kyle::
 # 13 "data/maps/VioletCity_House1/scripts.pory"
 VioletCity_House1_Text_PokefanM:
 # 14 "data/maps/VioletCity_House1/scripts.pory"
-	.string "A POKéMON you get in a trade\n"
+	.string "A Pokémon you get in a trade\n"
 # 15 "data/maps/VioletCity_House1/scripts.pory"
 	.string "grows quickly.\p"
 # 16 "data/maps/VioletCity_House1/scripts.pory"

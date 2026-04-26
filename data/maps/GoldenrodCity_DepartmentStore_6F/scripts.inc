@@ -87,7 +87,7 @@ GoldenrodCity_DepartmentStore_6F_EventScript_TradeCompleted::
 # 44 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
 GoldenrodCity_DepartmentStore_6F_Text_YouWillTradeWontYou:
 # 45 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
-	.string "I collect POKéMON!\n"
+	.string "I collect Pokémon!\n"
 # 46 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
 	.string "Do you have a {STR_VAR_1}?\p"
 # 47 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
@@ -179,7 +179,7 @@ GoldenrodDeptStore_Text_6FLass:
 # 90 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
     .string "Do you listen to Lucky Channel?\p"
 # 91 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
-    .string "If you want to win, trade POKéMON\n"
+    .string "If you want to win, trade Pokémon\n"
 # 92 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
     .string "with as many people as possible to\l"
 # 93 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
@@ -193,7 +193,7 @@ GoldenrodDeptStore_Text_6FSuperNerd:
 # 97 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
     .string "machine's drinks.\p"
 # 98 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
-    .string "Your POKéMON will love them too.$"
+    .string "Your Pokémon will love them too.$"
 # 99 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
 
 # 100 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"

@@ -18,10 +18,10 @@ Route30_House_EventScript_BaldMan2::
 
 Route30_BerryHouse_Text_MonEatBerries:
 	.string "When you follow that path up north,\n"
-	.string "you will see Mr. POKéMON’s house.\p"
+	.string "you will see Mr. Pokémon’s house.\p"
 	.string "But before you go, allow me to\n"
 	.string "tell you about Berries!\p"
-	.string "POKéMON get healthier by eating\n"
+	.string "Pokémon get healthier by eating\n"
 	.string "Berries.\p"
 	.string "They can even eat Berries\n"
 	.string "they're holding in battle.\p"

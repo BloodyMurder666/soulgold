@@ -645,7 +645,7 @@ Route32_Text_CooltrainerM_AideIsWaiting:
 # 323 "data/maps/Route32/scripts.pory"
 	.string "See for yourself. He's waiting for\n"
 # 324 "data/maps/Route32/scripts.pory"
-	.string "you at the POKéMON Center.$"
+	.string "you at the Pokémon Center.$"
 # 325 "data/maps/Route32/scripts.pory"
 
 # 326 "data/maps/Route32/scripts.pory"
@@ -665,9 +665,9 @@ Route32_Text_CooltrainerM_SproutTower:
 # 333 "data/maps/Route32/scripts.pory"
 Route32_Text_CooltrainerM_VioletGym:
 # 334 "data/maps/Route32/scripts.pory"
-	.string "Have you gone to the POKéMON Gym?\n"
+	.string "Have you gone to the Pokémon Gym?\n"
 # 335 "data/maps/Route32/scripts.pory"
-	.string "You can test your POKéMON and\p"
+	.string "You can test your Pokémon and\p"
 # 336 "data/maps/Route32/scripts.pory"
 	.string "yourself there.\n"
 # 337 "data/maps/Route32/scripts.pory"
@@ -679,7 +679,7 @@ Route32_Text_CooltrainerM_VioletGym:
 # 340 "data/maps/Route32/scripts.pory"
 Route32_Text_CooltrainerM_HaveThisSeed:
 # 341 "data/maps/Route32/scripts.pory"
-	.string "You have some good POKéMON there.\n"
+	.string "You have some good Pokémon there.\n"
 # 342 "data/maps/Route32/scripts.pory"
 	.string "It must be from the training you\p"
 # 343 "data/maps/Route32/scripts.pory"
@@ -753,7 +753,7 @@ Route32_Text_FisherJustin_After:
 # 377 "data/maps/Route32/scripts.pory"
 	.string "Calm, collected… The essence of\n"
 # 378 "data/maps/Route32/scripts.pory"
-	.string "fishing and POKéMON is the same.$"
+	.string "fishing and Pokémon is the same.$"
 # 379 "data/maps/Route32/scripts.pory"
 
 # 380 "data/maps/Route32/scripts.pory"
@@ -761,7 +761,7 @@ Route32_Text_FisherRalph1_Seen:
 # 381 "data/maps/Route32/scripts.pory"
 	.string "I'm really good at both\n"
 # 382 "data/maps/Route32/scripts.pory"
-	.string "fishing and POKéMON.\p"
+	.string "fishing and Pokémon.\p"
 # 383 "data/maps/Route32/scripts.pory"
 	.string "I'm not about to lose to any kid!$"
 # 384 "data/maps/Route32/scripts.pory"
@@ -781,13 +781,13 @@ Route32_Text_FisherRalph1_After:
 # 391 "data/maps/Route32/scripts.pory"
 	.string "passion.\p"
 # 392 "data/maps/Route32/scripts.pory"
-	.string "POKéMON are lifelong friends!$"
+	.string "Pokémon are lifelong friends!$"
 # 393 "data/maps/Route32/scripts.pory"
 
 # 394 "data/maps/Route32/scripts.pory"
 Route32_Text_FisherHenry_Seen:
 # 395 "data/maps/Route32/scripts.pory"
-	.string "My POKéMON? Freshly caught!$"
+	.string "My Pokémon? Freshly caught!$"
 # 396 "data/maps/Route32/scripts.pory"
 
 # 397 "data/maps/Route32/scripts.pory"
@@ -799,7 +799,7 @@ Route32_Text_FisherHenry_Beaten:
 # 400 "data/maps/Route32/scripts.pory"
 Route32_Text_FisherHenry_After:
 # 401 "data/maps/Route32/scripts.pory"
-	.string "Freshly caught POKéMON are\n"
+	.string "Freshly caught Pokémon are\n"
 # 402 "data/maps/Route32/scripts.pory"
 	.string "no match for properly raised ones.$"
 # 403 "data/maps/Route32/scripts.pory"
@@ -827,13 +827,13 @@ Route32_Text_YoungsterAlbert_After:
 # 414 "data/maps/Route32/scripts.pory"
 	.string "I'm not using the same tough\n"
 # 415 "data/maps/Route32/scripts.pory"
-	.string "POKéMON as everyone else.$"
+	.string "Pokémon as everyone else.$"
 # 416 "data/maps/Route32/scripts.pory"
 
 # 417 "data/maps/Route32/scripts.pory"
 Route32_Text_YoungsterGordon_Seen:
 # 418 "data/maps/Route32/scripts.pory"
-	.string "I found some good POKéMON\n"
+	.string "I found some good Pokémon\n"
 # 419 "data/maps/Route32/scripts.pory"
 	.string "in the grass!\p"
 # 420 "data/maps/Route32/scripts.pory"
@@ -935,7 +935,7 @@ Route32_Text_RoarOutro:
 # 468 "data/maps/Route32/scripts.pory"
 	.string "Wrooooar! It'S Roar!\p"
 # 469 "data/maps/Route32/scripts.pory"
-	.string "Even POKéMON Run From A Good\n"
+	.string "Even Pokémon Run From A Good\n"
 # 470 "data/maps/Route32/scripts.pory"
 	.string "Roar!$"
 # 471 "data/maps/Route32/scripts.pory"
@@ -963,7 +963,7 @@ Route32_Text_FriedaGivesGift:
 # 482 "data/maps/Route32/scripts.pory"
 Route32_Text_FriedaGaveGift:
 # 483 "data/maps/Route32/scripts.pory"
-	.string "Frieda: Give it to a POKéMON\n"
+	.string "Frieda: Give it to a Pokémon\n"
 # 484 "data/maps/Route32/scripts.pory"
 	.string "that has Poison-type moves.\p"
 # 485 "data/maps/Route32/scripts.pory"

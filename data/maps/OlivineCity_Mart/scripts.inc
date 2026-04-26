@@ -41,7 +41,7 @@ OlivineCity_EventScript_Lass::
 # 21 "data/maps/OlivineCity_Mart/scripts.pory"
 OlivineCity_Text_MartCooltrainerF:
 # 22 "data/maps/OlivineCity_Mart/scripts.pory"
-	.string "Do your POKéMON already know\n"
+	.string "Do your Pokémon already know\n"
 # 23 "data/maps/OlivineCity_Mart/scripts.pory"
 	.string "the move for carrying people\l"
 # 24 "data/maps/OlivineCity_Mart/scripts.pory"
