@@ -1,68 +1,67 @@
+# 1 "data/maps/BlackthornCity_House2/scripts.pory"
+
+# 2 "data/maps/BlackthornCity_House2/scripts.pory"
 BlackthornCity_House2_MapScripts::
+# 3 "data/maps/BlackthornCity_House2/scripts.pory"
 	.byte 0
 
-BlackthornCity_House2_EventScript_Emy::
+Blackthorn_GabiteTrade::
+# 8 "data/maps/BlackthornCity_House2/scripts.pory"
 	lock
+# 9 "data/maps/BlackthornCity_House2/scripts.pory"
 	faceplayer
-	goto_if_set FLAG_BLACKTHORN_NPC_TRADE_COMPLETED, BlackthornCity_House2_EventScript_TradeCompleted
-	setvar VAR_0x8008, INGAME_TRADE_MR_MIME
-	copyvar VAR_0x8004, VAR_0x8008
-	specialvar VAR_RESULT, GetInGameTradeSpeciesInfo
-	copyvar VAR_0x8009, VAR_RESULT
-	msgbox BlackthornCity_House2_Text_YouWillTradeWontYou, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, BlackthornCity_House2_EventScript_DeclineTrade
-	special ChoosePartyMon
-	waitstate
-	copyvar VAR_0x800A, VAR_0x8004
-	goto_if_eq VAR_0x8004, PARTY_NOTHING_CHOSEN, BlackthornCity_House2_EventScript_DeclineTrade
-	copyvar VAR_0x8005, VAR_0x800A
-	specialvar VAR_RESULT, GetTradeSpecies
-	copyvar VAR_0x800B, VAR_RESULT
-	goto_if_ne VAR_RESULT, VAR_0x8009, BlackthornCity_House2_EventScript_NotRequestedMon
-	copyvar VAR_0x8004, VAR_0x8008
-	copyvar VAR_0x8005, VAR_0x800A
-	special CreateInGameTradePokemon
-	special DoInGameTradeScene
-	waitstate
-	bufferspeciesname STR_VAR_1, VAR_0x8009
-	msgbox BlackthornCity_House2_Text_MonYouTakeCare, MSGBOX_DEFAULT
-	closemessage
+# 10 "data/maps/BlackthornCity_House2/scripts.pory"
+	goto_if_set FLAG_BLACKTHORN_NPC_TRADE_COMPLETED, Blackthorn_GabiteTrade_2
+# 13 "data/maps/BlackthornCity_House2/scripts.pory"
+	ingame_trade INGAME_TRADE_GABITE, Blackthorn_GabiteTrade_Text_1, GabiteTrade_Declined, GabiteTrade_NotRequested, Blackthorn_GabiteTrade_Text_2
+# 19 "data/maps/BlackthornCity_House2/scripts.pory"
 	setflag FLAG_BLACKTHORN_NPC_TRADE_COMPLETED
-	releaseall
-	end
-
-BlackthornCity_House2_EventScript_DeclineTrade::
-	msgbox BlackthornCity_House2_Text_YouWontTradeMe, MSGBOX_DEFAULT
+Blackthorn_GabiteTrade_1:
+# 21 "data/maps/BlackthornCity_House2/scripts.pory"
 	release
 	end
 
-BlackthornCity_House2_EventScript_NotRequestedMon::
-	bufferspeciesname STR_VAR_1, VAR_0x8009
-	msgbox BlackthornCity_House2_Text_ThisIsntAMon, MSGBOX_DEFAULT
+Blackthorn_GabiteTrade_2:
+# 11 "data/maps/BlackthornCity_House2/scripts.pory"
+	msgbox Blackthorn_GabiteTrade_Text_0
+	goto Blackthorn_GabiteTrade_1
+
+
+GabiteTrade_Declined::
+# 26 "data/maps/BlackthornCity_House2/scripts.pory"
+	msgbox GabiteTrade_Declined_Text_0
+# 27 "data/maps/BlackthornCity_House2/scripts.pory"
 	release
 	end
 
-BlackthornCity_House2_EventScript_TradeCompleted::
-	msgbox BlackthornCity_House2_Text_After, MSGBOX_DEFAULT
+
+GabiteTrade_NotRequested::
+# 32 "data/maps/BlackthornCity_House2/scripts.pory"
+	msgbox GabiteTrade_NotRequested_Text_0
+# 34 "data/maps/BlackthornCity_House2/scripts.pory"
 	release
 	end
 
-BlackthornCity_House2_Text_YouWillTradeWontYou:
-	.string "I collect Pokémon!\n"
-	.string "Do you have a {STR_VAR_1}?\p"
-	.string "Want to trade it for my\n"
-	.string "{STR_VAR_2}?$"
 
-BlackthornCity_House2_Text_MonYouTakeCare:
-	.string "Yay! I got myself {STR_VAR_1}!\p"
-	.string "{STR_VAR_2}, you take care!$"
+Blackthorn_GabiteTrade_Text_0:
+# 11 "data/maps/BlackthornCity_House2/scripts.pory"
+	.string "How has my Gabite been?$"
 
-BlackthornCity_House2_Text_ThisIsntAMon:
-	.string "Uh, no, I don't think so.\n"
-	.string "That isn't a {STR_VAR_1}.$"
+Blackthorn_GabiteTrade_Text_1:
+# 13 "data/maps/BlackthornCity_House2/scripts.pory"
+	.string "Hello. I gather Dragon-type Pokémon.\n"
+	.string "Do you have Dragonair? I'm willing to \l"
+	.string "trade it for Gabite.$"
 
-BlackthornCity_House2_Text_YouWontTradeMe:
-	.string "You don't want to trade? Aww...$"
+Blackthorn_GabiteTrade_Text_2:
+# 18 "data/maps/BlackthornCity_House2/scripts.pory"
+	.string "Thank you very much.$"
 
-BlackthornCity_House2_Text_After:
-	.string "Hi, how's my old Mr Mime doing?$"
+GabiteTrade_Declined_Text_0:
+# 26 "data/maps/BlackthornCity_House2/scripts.pory"
+	.string "If you find one, come trade with me!$"
+
+GabiteTrade_NotRequested_Text_0:
+# 32 "data/maps/BlackthornCity_House2/scripts.pory"
+	.string "That doesn't look like a Dragonair to\n"
+	.string "me.$"

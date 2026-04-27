@@ -2,7 +2,7 @@
   "id": "MAP_ICE_PATH_DEPTHS2",
   "name": "IcePath_Depths2",
   "layout": "LAYOUT_ICE_PATH_DEPTHS2",
-  "music": "MUS_HG_ICE_PATH",
+  "music": "MUS_HG_SINJOU_RUINS",
   "region_map_section": "MAPSEC_ICE_PATH",
   "requires_flash": false,
   "weather": "WEATHER_SNOW",

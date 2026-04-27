@@ -1064,21 +1064,21 @@ static const struct InGameTrade sIngameTrades[] =
         .sheen = 10,
         .requestedSpecies = SPECIES_MAREANIE
     },
-    [INGAME_TRADE_MR_MIME] =
+    [INGAME_TRADE_GABITE] =
     {
-        .nickname = _("MIMIEN"),
-        .species = SPECIES_MR_MIME,
-        .ivs = {4, 4, 4, 5, 5, 4},
-        .abilityNum = 0,
+        .nickname = _("DRACO"),
+        .species = SPECIES_GABITE,
+        .ivs = {25, 25, 25, 25, 25, 25},
+        .abilityNum = 2,
         .otId = 10283,
         .conditions = {5, 5, 30, 5, 5},
         .personality = 0x00000008,
-        .heldItem = ITEM_SMOKE_BALL,
+        .heldItem = ITEM_DRACO_PLATE,
         .mailNum = 0,
         .otName = _("EMY"),
         .otGender = FEMALE,
         .sheen = 10,
-        .requestedSpecies = SPECIES_DODRIO
+        .requestedSpecies = SPECIES_DRAGONAIR
     },
     [INGAME_TRADE_MAGNETON] =
     {
