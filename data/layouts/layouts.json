@@ -8900,6 +8900,26 @@
       "secondary_tileset": "gTileset_Route32",
       "border_filepath": "data/layouts/HiddenGrotto_Unused/border.bin",
       "blockdata_filepath": "data/layouts/HiddenGrotto_Unused/map.bin"
+    },
+    {
+      "id": "LAYOUT_ICE_PATH_DEPTHS",
+      "name": "IcePath_Depths_Layout",
+      "width": 30,
+      "height": 38,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_Cave_Ice",
+      "border_filepath": "data/layouts/IcePath_Depths/border.bin",
+      "blockdata_filepath": "data/layouts/IcePath_Depths/map.bin"
+    },
+    {
+      "id": "LAYOUT_ICE_PATH_DEPTHS2",
+      "name": "IcePath_Depths2_Layout",
+      "width": 21,
+      "height": 20,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_Cave_Ice",
+      "border_filepath": "data/layouts/IcePath_Depths2/border.bin",
+      "blockdata_filepath": "data/layouts/IcePath_Depths2/map.bin"
     }
   ]
 }

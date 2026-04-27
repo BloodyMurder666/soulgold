@@ -2135,3 +2135,7 @@ Common_Text_ReceivedMon:
 	.include "data/maps/HiddenGrotto_Route47/scripts.inc"
 
 	.include "data/maps/HiddenGrotto_Unused/scripts.inc"
+
+	.include "data/maps/IcePath_Depths/scripts.inc"
+
+	.include "data/maps/IcePath_Depths2/scripts.inc"

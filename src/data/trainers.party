@@ -5217,12 +5217,12 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Charmeleon
-Level: 35
+Charizard
+Level: 48
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Electabuzz
-Level: 37
+Whiscash
+Level: 48
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_VIRGIL ===
@@ -5834,15 +5834,15 @@ Double Battle: No
 AI: Check Bad Move
 
 Butterfree
-Level: 40
+Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Bellossom
-Level: 37
+Chimecho
+Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Quagsire
-Level: 38
+Ludicolo
+Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ROY ===
@@ -7838,15 +7838,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Xatu
-Level: 36
+Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Kadabra
-Level: 36
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Girafarig
-Level: 36
+Farigiraf
+Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GAVEN ===
@@ -8563,16 +8559,13 @@ Double Battle: No
 AI: Check Bad Move
 
 Qwilfish
-Level: 38
+Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Octillery
-Level: 36
+Basculegion
+Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Seaking
-Level: 36
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_TREVOR ===
 Name: Trevor
@@ -9025,17 +9018,14 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Octillery
-Level: 38
+Mantine
+Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Gyarados
-Level: 36
+Wugtrio
+Level: 48
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Seaking
-Level: 36
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_SABRINA ===
 Name: Sabrina
@@ -9531,20 +9521,12 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Pidgeot
-Level: 36
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Murkrow
-Level: 36
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Xatu
-Level: 36
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
 Skarmory
-Level: 37
+Level: 47
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Corviknight
+Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_IAN ===
@@ -10556,16 +10538,12 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Rhydon
-Level: 40
+Slowbro Galar
+Level: 48
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Pupitar
-Level: 37
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Heracross
-Level: 38
+Flamigo
+Level: 48
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_HOPE ===

@@ -728,9 +728,9 @@
 #define FLAG_R39_NORTH_ROCKY_HELMET  0x2A9
 #define FLAG_COLLISION  0x2AA // Debug
 #define FLAG_HIDE_RADIOTOWER_OAK    0x2AB
-#define FLAG_UNUSED_0x2AC  0x2AC // Unused Flag
-#define FLAG_UNUSED_0x2AD  0x2AD // Unused Flag
-#define FLAG_UNUSED_0x2AE  0x2AE // Unused Flag
+#define FLAG_ICEPATH_DEPTHS_FROSLASSITE  0x2AC
+#define FLAG_ICEPATH_DEPTHS_BOOTS  0x2AD 
+#define FLAG_HIDE_CHIENPAO  0x2AE
 #define FLAG_UNUSED_0x2AF  0x2AF // Unused Flag
 #define FLAG_UNUSED_0x2B0  0x2B0 // Unused Flag
 #define FLAG_UNUSED_0x2B1  0x2B1 // Unused Flag

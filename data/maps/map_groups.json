@@ -485,7 +485,9 @@
     "HiddenGrotto_Route44",
     "HiddenGrotto_Lakeofrage",
     "HiddenGrotto_Route47",
-    "HiddenGrotto_Unused"
+    "HiddenGrotto_Unused",
+    "IcePath_Depths",
+    "IcePath_Depths2"
   ],
   "gMapGroup_IndoorDynamic": [],
   "gMapGroup_SpecialArea": [
