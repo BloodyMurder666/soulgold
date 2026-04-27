@@ -31,6 +31,7 @@
 #include "overworld.h"
 #include "field_weather.h"
 #include "battle_tower.h"
+#include "pokemon.h"
 #include "gym_leader_rematch.h"
 #include "battle_frontier.h"
 #include "battle_pike.h"
@@ -538,6 +539,19 @@ void BattleSetup_StartLegendaryBattle(void)
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
     IncrementDailyWildBattles();
     TryUpdateGymLeaderRematchFromWild();
+}
+
+void BattleSetup_StartLegendaryEncounter(void)
+{
+    gSpecialVar_0x8006 = ITEM_NONE;
+    CreateEnemyEventMon();
+    BattleSetup_StartLegendaryBattle();
+}
+
+void BattleSetup_FinishLegendaryEncounter(void)
+{
+    RemoveObjectEventByLocalIdAndMap(gSpecialVar_0x8006, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
+    FlagSet(gSpecialVar_0x8007);
 }
 
 void StartGroudonKyogreBattle(void)

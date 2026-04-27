@@ -2129,6 +2129,24 @@
 	special CreateEnemyEventMon
 	.endm
 
+	@ Runs a single static legendary encounter and hides its object unless the player ran.
+	.macro legendaryencounter species:req, level:req, localid:req, flag:req
+	playmoncry \species, CRY_MODE_ENCOUNTER
+	waitmoncry
+	setvar VAR_0x8004, \species
+	setvar VAR_0x8005, \level
+	special BattleSetup_StartLegendaryEncounter
+	waitstate
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, .LlegendaryEncounterRan\@
+	fadescreenswapbuffers FADE_TO_BLACK
+	setvar VAR_0x8006, \localid
+	setvar VAR_0x8007, \flag
+	special BattleSetup_FinishLegendaryEncounter
+	fadescreenswapbuffers FADE_FROM_BLACK
+.LlegendaryEncounterRan\@:
+	.endm
+
 	.macro setdynamicaifunc func:req
 	callnative ScriptSetDynamicAiFunc, requests_effects=1
 	.4byte \func
