@@ -2268,12 +2268,12 @@
               {
                 "min_level": 2,
                 "max_level": 3,
-                "species": "SPECIES_ZIGZAGOON_GALAR"
+                "species": "SPECIES_ZIGZAGOON"
               },
               {
                 "min_level": 2,
                 "max_level": 3,
-                "species": "SPECIES_ZIGZAGOON_GALAR"
+                "species": "SPECIES_ZIGZAGOON"
               },
               {
                 "min_level": 2,
@@ -2288,7 +2288,7 @@
               {
                 "min_level": 2,
                 "max_level": 3,
-                "species": "SPECIES_RATTATA_ALOLA"
+                "species": "SPECIES_HOPPIP"
               },
               {
                 "min_level": 2,
@@ -2298,7 +2298,7 @@
               {
                 "min_level": 2,
                 "max_level": 2,
-                "species": "SPECIES_RATTATA_ALOLA"
+                "species": "SPECIES_RATTATA"
               },
               {
                 "min_level": 2,
@@ -2308,7 +2308,7 @@
               {
                 "min_level": 2,
                 "max_level": 2,
-                "species": "SPECIES_RATTATA_ALOLA"
+                "species": "SPECIES_RATTATA"
               },
               {
                 "min_level": 2,
@@ -3047,12 +3047,12 @@
               {
                 "min_level": 5,
                 "max_level": 5,
-                "species": "SPECIES_MEOWTH_ALOLA"
+                "species": "SPECIES_MEOWTH"
               },
               {
                 "min_level": 5,
                 "max_level": 6,
-                "species": "SPECIES_MEOWTH_ALOLA"
+                "species": "SPECIES_MEOWTH"
               },
               {
                 "min_level": 4,
@@ -6058,12 +6058,12 @@
               {
                 "min_level": 16,
                 "max_level": 20,
-                "species": "SPECIES_KIRLIA"
+                "species": "SPECIES_LUXIO"
               },
               {
                 "min_level": 16,
                 "max_level": 20,
-                "species": "SPECIES_KIRLIA"
+                "species": "SPECIES_LUXIO"
               }
             ]
           },
@@ -6182,7 +6182,7 @@
               {
                 "min_level": 14,
                 "max_level": 17,
-                "species": "SPECIES_MEOWTH_GALAR"
+                "species": "SPECIES_LUXIO"
               },
               {
                 "min_level": 15,
@@ -6192,7 +6192,7 @@
               {
                 "min_level": 15,
                 "max_level": 17,
-                "species": "SPECIES_MEOWTH_GALAR"
+                "species": "SPECIES_LUXIO"
               },
               {
                 "min_level": 15,
@@ -6212,12 +6212,12 @@
               {
                 "min_level": 14,
                 "max_level": 18,
-                "species": "SPECIES_KIRLIA"
+                "species": "SPECIES_SWIRLIX"
               },
               {
                 "min_level": 14,
                 "max_level": 18,
-                "species": "SPECIES_KIRLIA"
+                "species": "SPECIES_SWIRLIX"
               }
             ]
           },
@@ -8907,7 +8907,7 @@
               {
                 "min_level": 20,
                 "max_level": 25,
-                "species": "SPECIES_FEAROW"
+                "species": "SPECIES_APPLIN"
               },
               {
                 "min_level": 21,
@@ -8917,7 +8917,7 @@
               {
                 "min_level": 22,
                 "max_level": 25,
-                "species": "SPECIES_FEAROW"
+                "species": "SPECIES_APPLIN"
               },
               {
                 "min_level": 21,
@@ -8927,7 +8927,7 @@
               {
                 "min_level": 22,
                 "max_level": 26,
-                "species": "SPECIES_FEAROW"
+                "species": "SPECIES_APPLIN"
               },
               {
                 "min_level": 22,
@@ -9061,7 +9061,7 @@
               {
                 "min_level": 20,
                 "max_level": 25,
-                "species": "SPECIES_FEAROW"
+                "species": "SPECIES_APPLIN"
               },
               {
                 "min_level": 21,
@@ -9071,7 +9071,7 @@
               {
                 "min_level": 22,
                 "max_level": 25,
-                "species": "SPECIES_FEAROW"
+                "species": "SPECIES_APPLIN"
               },
               {
                 "min_level": 21,
@@ -9081,7 +9081,7 @@
               {
                 "min_level": 22,
                 "max_level": 26,
-                "species": "SPECIES_FEAROW"
+                "species": "SPECIES_APPLIN"
               },
               {
                 "min_level": 22,
