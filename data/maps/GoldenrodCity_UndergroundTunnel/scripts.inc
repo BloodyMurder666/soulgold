@@ -15,7 +15,7 @@ GoldenrodCity_UndergroundTunnel_OnLoad::
 # 8 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	call GoldenrodCity_UndergroundTunnel_MapScript_TryOpenDoor
 # 9 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	call_if_ge VAR_NEWBARK_TOWN_STATE, 11, Goldenrod_TryOpenRocketArcadeDoor
+	call_if_ge VAR_NEWBARK_TOWN_STATE, 12, Goldenrod_TryOpenRocketArcadeDoor
 # 10 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	end
 # 11 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
@@ -898,7 +898,7 @@ suspiciousdoor_goldenrod_underground::
 # 454 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	lock
 # 455 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	compare VAR_NEWBARK_TOWN_STATE, 11
+	compare VAR_NEWBARK_TOWN_STATE, 12
 	goto_if_lt suspiciousdoor_goldenrod_underground_2
 # 462 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	msgbox suspiciousdoor_goldenrod_underground_Text_1
@@ -921,7 +921,7 @@ rocket_bouncer::
 # 473 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	faceplayer
 # 474 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	compare VAR_NEWBARK_TOWN_STATE, 11
+	compare VAR_NEWBARK_TOWN_STATE, 12
 	goto_if_ge rocket_bouncer_2
 # 478 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	msgbox rocket_bouncer_Text_1
