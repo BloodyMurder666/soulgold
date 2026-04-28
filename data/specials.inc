@@ -603,3 +603,4 @@ gSpecials::
 	def_special HiddenGrotto_GetCurrentContentId
 	def_special HiddenGrotto_CreateCurrentMon
 	def_special HiddenGrotto_TestCurrentMonBounds
+	def_special GetStarterMegaStone

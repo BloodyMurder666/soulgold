@@ -392,6 +392,7 @@ NewBarkTown_Lab_EventScript_ElmMasterBall::
 	delay 60
 	msgbox NewBarkTown_Lab_Text_KimonoGirls, MSGBOX_DEFAULT
 	closemessage
+	call NewBarkTown_Lab_GiveStarterMega
 	setvar VAR_NEWBARKTOWN_LABSTATE, 8
 	setvar VAR_ECRUTEAK_CITY_THEATER, 4
 	setflag FLAG_HIDE_ECRUTEAK_SILVER
@@ -965,3 +966,16 @@ NewBarkTown_Lab_Text_Elm_CallMe:
 	.string "I'm busy now, but call me sometime\l"
 	.string "and I can check your progress!$"
 `
+
+script NewBarkTown_Lab_GiveStarterMega {
+	msgbox("Oh, and you got a Mega Ring from 
+			Prof. Oak?
+			Then I think you are ready to handle
+			this.")
+	special(GetStarterMegaStone)
+	giveitem(VAR_RESULT, 1)
+	msgbox("It's a special Mega Stone, specifically
+			for your starter Pokémon. I expect 
+			great things from you, {PLAYER}!")
+	return
+}

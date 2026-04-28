@@ -69,6 +69,7 @@
 #include "constants/songs.h"
 #include "constants/moves.h"
 #include "constants/party_menu.h"
+#include "constants/species.h"
 #include "constants/battle_frontier.h"
 #include "constants/weather.h"
 #include "constants/metatile_labels.h"
@@ -4368,6 +4369,61 @@ bool32 CheckPartyHasSpecies(u32 givenSpecies)
             return TRUE;
 
     return FALSE;
+}
+
+void GetStarterMegaStone(void)
+{
+    switch (VarGet(VAR_PLAYER_STARTER_SPECIES))
+    {
+    case SPECIES_CHESPIN:
+    case SPECIES_QUILLADIN:
+    case SPECIES_CHESNAUGHT:
+        gSpecialVar_Result = ITEM_CHESNAUGHTITE;
+        break;
+    case SPECIES_FENNEKIN:
+    case SPECIES_BRAIXEN:
+    case SPECIES_DELPHOX:
+        gSpecialVar_Result = ITEM_DELPHOXITE;
+        break;
+    case SPECIES_FROAKIE:
+    case SPECIES_FROGADIER:
+    case SPECIES_GRENINJA:
+        gSpecialVar_Result = ITEM_GRENINJITE;
+        break;
+    case SPECIES_CHIKORITA:
+    case SPECIES_BAYLEEF:
+    case SPECIES_MEGANIUM:
+        gSpecialVar_Result = ITEM_MEGANIUMITE;
+        break;
+    case SPECIES_TOTODILE:
+    case SPECIES_CROCONAW:
+    case SPECIES_FERALIGATR:
+        gSpecialVar_Result = ITEM_FERALIGITE;
+        break;
+    case SPECIES_CYNDAQUIL:
+    case SPECIES_QUILAVA:
+    case SPECIES_TYPHLOSION:
+        gSpecialVar_Result = ITEM_TYPHLOSIONITE;
+        break;
+    case SPECIES_SPRIGATITO:
+    case SPECIES_FLORAGATO:
+    case SPECIES_MEOWSCARADA:
+        gSpecialVar_Result = ITEM_MEOWSCARADITE;
+        break;
+    case SPECIES_TORCHIC:
+    case SPECIES_COMBUSKEN:
+    case SPECIES_BLAZIKEN:
+        gSpecialVar_Result = ITEM_BLAZIKENITE;
+        break;
+    case SPECIES_POPPLIO:
+    case SPECIES_BRIONNE:
+    case SPECIES_PRIMARINA:
+        gSpecialVar_Result = ITEM_PRIMARINITE;
+        break;
+    default:
+        gSpecialVar_Result = ITEM_NONE;
+        break;
+    }
 }
 
 void UseBlankMessageToCancelPokemonPic(void)
