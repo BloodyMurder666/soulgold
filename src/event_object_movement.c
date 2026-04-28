@@ -22,6 +22,7 @@
 #include "follower_helper.h"
 #include "gpu_regs.h"
 #include "graphics.h"
+#include "item.h"
 #include "mauville_old_man.h"
 #include "metatile_behavior.h"
 #include "overworld.h"
@@ -2224,6 +2225,10 @@ static bool8 GetMonInfo(struct Pokemon *mon, u32 *species, bool32 *shiny, bool32
     *species = GetMonData(mon, MON_DATA_SPECIES);
     *shiny = IsMonShiny(mon) ? OBJ_EVENT_MON_SHINY : 0;
     *female = GetMonGender(mon) == MON_FEMALE ? OBJ_EVENT_MON_FEMALE : 0;
+#if OW_BATTLE_ONLY_FORMS
+    if (CheckBagHasItem(ITEM_MEGA_RING, 1))
+        *species = GetFormChangeTargetSpecies(mon, FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM);
+#endif
     switch (*species)
     {
     case SPECIES_UNOWN:
