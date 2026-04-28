@@ -641,6 +641,9 @@ static const u16 sTyphlosionFormSpeciesIdTable[] = {
 #if P_HISUIAN_FORMS
     SPECIES_TYPHLOSION_HISUI,
 #endif
+#if P_GEN_9_MEGA_EVOLUTIONS
+    SPECIES_TYPHLOSION_MEGA,
+#endif
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_CYNDAQUIL
@@ -2028,6 +2031,16 @@ static const u16 sMimikyuFormSpeciesIdTable[] = {
 };
 #endif //P_FAMILY_MIMIKYU
 
+#if P_FAMILY_POPPLIO
+static const u16 sPrimarinaFormSpeciesIdTable[] = {
+    SPECIES_PRIMARINA,
+#if P_GEN_9_MEGA_EVOLUTIONS
+    SPECIES_PRIMARINA_MEGA,
+#endif
+    FORM_SPECIES_END,
+};
+#endif //P_FAMILY_POPPLIO
+
 #if P_FAMILY_DRAMPA
 static const u16 sDrampaFormSpeciesIdTable[] = {
     SPECIES_DRAMPA,
@@ -2495,6 +2508,16 @@ static const u16 sGlimmoraFormSpeciesIdTable[] = {
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_GLIMMET
+
+#if P_FAMILY_SPRIGATITO
+static const u16 sMeowscaradaFormSpeciesIdTable[] = {
+    SPECIES_MEOWSCARADA,
+#if P_GEN_9_MEGA_EVOLUTIONS
+    SPECIES_MEOWSCARADA_MEGA,
+#endif
+    FORM_SPECIES_END,
+};
+#endif //P_FAMILY_SPRIGATITO
 
 #if P_FAMILY_TATSUGIRI
 static const u16 sTatsugiriFormSpeciesIdTable[] = {

@@ -1110,16 +1110,16 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Rhyhorn
-Level: 38
+Rhyperior
+Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Donphan
-Level: 38
+Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Golem
-Level: 38
+Lycanroc Dusk
+Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_DANNY ===
@@ -1270,16 +1270,16 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Piloswine
-Level: 45
+Mamoswine
+Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Dugtrio
-Level: 45
+Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Steelix
-Level: 48
+Dugtrio Alola
+Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_KIRK ===
@@ -2458,7 +2458,7 @@ Mugshot: Green
 Difficulty: Hard
 
 Archaludon @ Choice Specs
-Level: 56
+Level: 58
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Electro Shot
 - Dragon Pulse
@@ -2466,7 +2466,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Dark Pulse
 
 Gyarados @ Damp Rock
-Level: 56
+Level: 58
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 31 Spe
 EVs: 252 Spe
 - Crunch
@@ -2475,7 +2475,7 @@ EVs: 252 Spe
 - Rain Dance
 
 Dragonite @ Chesto Berry
-Level: 57
+Level: 59
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Outrage
 - Ice Beam
@@ -2483,7 +2483,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Hurricane
 
 Altaria @ Altarianite
-Level: 57
+Level: 59
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Moonblast
 - Thunder
@@ -2491,7 +2491,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Dragon Pulse
 
 Hydrapple @ Yache Berry
-Level: 58
+Level: 60
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Earth Power
 - Syrup Bomb
@@ -2499,8 +2499,10 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Fickle Beam
 
 Kingdra @ Leftovers
-Level: 58
+Level: 60
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+Ability: Swift Swim
+EVs: 252 SpA / 252 Spe
 - Draco Meteor
 - Surf
 - Rain Dance
@@ -3062,16 +3064,16 @@ Double Battle: No
 AI: Check Bad Move
 
 Ursaring
-Level: 40
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Primeape
-Level: 40
+Level: 59
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Nidoking
-Level: 40
+Level: 59
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Earthquake
+- Poison Jab
+- Fire Blast
+- Megahorn
 
 === TRAINER_RIVAL_TOTODILE_1 ===
 Name: ???
@@ -3709,7 +3711,7 @@ Bagon
 Level: 50
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Shellgon
+Shelgon
 Level: 55
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -4834,19 +4836,19 @@ Double Battle: No
 AI: Check Bad Move
 
 Togetic
-Level: 37
+Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Ampharos
-Level: 37
+Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Tangela
-Level: 37
+Tangrowth
+Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Blastoise
-Level: 38
+Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_LIZ ===
@@ -5458,16 +5460,12 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Pidgeot
-Level: 37
+Pidgeot @ Pidgeotite
+Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Electabuzz
-Level: 37
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Magmar
-Level: 37
+Staraptor
+Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_WAYNE ===
@@ -6001,21 +5999,18 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Dugtrio
-Level: 38
+Garganacl
+Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Gligar
-Level: 39
+Wugtrio
+Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Graveler
-Level: 38
+Bisharp
+Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Dugtrio
-Level: 38
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_MITCH ===
 Name: Mitch
@@ -8652,23 +8647,23 @@ Class: Black Belt
 Pic: Black Belt
 Gender: Male
 Music: Hg Boy 2
-Double Battle: No
+Double Battle: Yes
 AI: Check Bad Move
 
-Onix
-Level: 33
+Steelix
+Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Machamp
-Level: 38
+Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Steelix
-Level: 33
+Mienshao
+Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Hitmonlee
-Level: 36
+Lucario
+Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JERRY ===
@@ -9212,23 +9207,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Golem
-Level: 40
+Level: 59
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Golem
-Level: 40
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Golem
-Level: 40
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Golem
-Level: 40
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Golem
-Level: 40
+Golem Alola
+Level: 59
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JEFF ===
@@ -10775,20 +10758,16 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move
 
-Fearow
-Level: 38
+Whimsicott
+Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Primeape
-Level: 38
+Annihilape
+Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Tauros
-Level: 38
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Raichu
-Level: 38
+Tauros Paldea Aqua
+Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ANTHONY ===
@@ -11630,19 +11609,19 @@ Double Battle: No
 AI: Check Bad Move
 
 Rapidash
-Level: 40
+Level: 59
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Nidoqueen
-Level: 38
+Sylveon
+Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Raichu
-Level: 38
+Lycanroc Midday
+Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Rapidash
-Level: 40
+Dondozo
+Level: 59
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ARCHER_4 ===
@@ -11742,16 +11721,16 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Machoke
-Level: 37
+Steelix
+Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Golem
-Level: 38
+Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Kangaskhan
-Level: 37
+Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JULIA ===

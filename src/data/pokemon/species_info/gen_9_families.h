@@ -194,7 +194,64 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         )
         .levelUpLearnset = sMeowscaradaLevelUpLearnset,
         .teachableLearnset = sMeowscaradaTeachableLearnset,
+        .formSpeciesIdTable = sMeowscaradaFormSpeciesIdTable,
+        .formChangeTable = sMeowscaradaFormChangeTable,
     },
+
+#if P_GEN_9_MEGA_EVOLUTIONS
+    [SPECIES_MEOWSCARADA_MEGA] =
+    {
+        .baseHP        = 76,
+        .baseAttack    = 140,
+        .baseDefense   = 90,
+        .baseSpeed     = 153,
+        .baseSpAttack  = 91,
+        .baseSpDefense = 90,
+        .types = MON_TYPES(TYPE_GRASS, TYPE_DARK),
+        .catchRate = 45,
+        .expYield = 265,
+        .evYield_Speed = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_GRASS),
+        .abilities = { ABILITY_MAGICIAN, ABILITY_NONE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Meowscarada"),
+        .cryId = CRY_MEOWSCARADA,
+        .natDexNum = NATIONAL_DEX_MEOWSCARADA,
+        .categoryName = _("Magician"),
+        .height = 17,
+        .weight = 372,
+        .description = COMPOUND_STRING(
+            "Mega Evolution sharpens its misdirection.\n"
+            "In the instant its cape flashes, it can\n"
+            "make a flower, a blade, or even itself\n"
+            "seem to vanish."),
+        .frontPic = gMonFrontPic_Meowscarada,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_Meowscarada,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 0,
+        //.backAnimId = BACK_ANIM_NONE,
+        .palette = gMonPalette_Meowscarada,
+        .shinyPalette = gMonShinyPalette_Meowscarada,
+        .iconSprite = gMonIcon_Meowscarada,
+        .iconPalIndex = 1,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        FOOTPRINT(Meowscarada)
+        SHADOW(-3, 14, SHADOW_SIZE_S)
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sMeowscaradaLevelUpLearnset,
+        .teachableLearnset = sMeowscaradaTeachableLearnset,
+        .formSpeciesIdTable = sMeowscaradaFormSpeciesIdTable,
+        .formChangeTable = sMeowscaradaFormChangeTable,
+    },
+#endif //P_GEN_9_MEGA_EVOLUTIONS
 #endif //P_FAMILY_SPRIGATITO
 
 #if P_FAMILY_FUECOCO

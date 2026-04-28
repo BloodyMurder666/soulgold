@@ -665,7 +665,64 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         )
         .levelUpLearnset = sPrimarinaLevelUpLearnset,
         .teachableLearnset = sPrimarinaTeachableLearnset,
+        .formSpeciesIdTable = sPrimarinaFormSpeciesIdTable,
+        .formChangeTable = sPrimarinaFormChangeTable,
     },
+
+#if P_GEN_9_MEGA_EVOLUTIONS
+    [SPECIES_PRIMARINA_MEGA] =
+    {
+        .baseHP        = 80,
+        .baseAttack    = 84,
+        .baseDefense   = 94,
+        .baseSpeed     = 80,
+        .baseSpAttack  = 156,
+        .baseSpDefense = 146,
+        .types = MON_TYPES(TYPE_WATER, TYPE_FAIRY),
+        .catchRate = 45,
+        .expYield = 265,
+        .evYield_SpAttack = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_FIELD),
+        .abilities = { ABILITY_LIQUID_VOICE, ABILITY_NONE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Primarina"),
+        .cryId = CRY_PRIMARINA,
+        .natDexNum = NATIONAL_DEX_PRIMARINA,
+        .categoryName = _("Soloist"),
+        .height = 20,
+        .weight = 520,
+        .description = COMPOUND_STRING(
+            "Mega Evolution magnifies its voice until\n"
+            "each note ripples like a tide. It shapes\n"
+            "those waves into glittering spheres that\n"
+            "burst on command."),
+        .frontPic = gMonFrontPic_Primarina,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        .frontAnimId = ANIM_SHAKE_GLOW_BLUE_SLOW,
+        .backPic = gMonBackPic_Primarina,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 0,
+        //.backAnimId = BACK_ANIM_NONE,
+        .palette = gMonPalette_Primarina,
+        .shinyPalette = gMonShinyPalette_Primarina,
+        .iconSprite = gMonIcon_Primarina,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        FOOTPRINT(Primarina)
+        SHADOW(-6, 11, SHADOW_SIZE_L)
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sPrimarinaLevelUpLearnset,
+        .teachableLearnset = sPrimarinaTeachableLearnset,
+        .formSpeciesIdTable = sPrimarinaFormSpeciesIdTable,
+        .formChangeTable = sPrimarinaFormChangeTable,
+    },
+#endif //P_GEN_9_MEGA_EVOLUTIONS
 #endif //P_FAMILY_POPPLIO
 
 #if P_FAMILY_PIKIPEK

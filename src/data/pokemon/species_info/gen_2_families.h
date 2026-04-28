@@ -505,7 +505,67 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sTyphlosionLevelUpLearnset,
         .teachableLearnset = sTyphlosionTeachableLearnset,
         .formSpeciesIdTable = sTyphlosionFormSpeciesIdTable,
+        .formChangeTable = sTyphlosionFormChangeTable,
     },
+
+#if P_GEN_9_MEGA_EVOLUTIONS
+    [SPECIES_TYPHLOSION_MEGA] =
+    {
+        .baseHP        = 78,
+        .baseAttack    = 94,
+        .baseDefense   = 98,
+        .baseSpeed     = 120,
+        .baseSpAttack  = 149,
+        .baseSpDefense = 95,
+        .types = MON_TYPES(TYPE_FIRE, TYPE_GROUND),
+        .catchRate = 45,
+        .expYield = 267,
+        .evYield_SpAttack = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+        .abilities = { ABILITY_DROUGHT, ABILITY_NONE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Typhlosion"),
+        .cryId = CRY_TYPHLOSION,
+        .natDexNum = NATIONAL_DEX_TYPHLOSION,
+        .categoryName = _("Volcano"),
+        .height = 19,
+        .weight = 895,
+        .description = COMPOUND_STRING(
+            "Mega Evolution turns the air around it\n"
+            "into a wavering inferno. Its explosive\n"
+            "blasts can scour a battlefield clean in\n"
+            "a single roaring flash."),
+        .frontPic = gMonFrontPic_Typhlosion,
+        .frontPicSize = MON_COORDS_SIZE(56, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 40),
+            ANIMCMD_FRAME(0, 5),
+        ),
+        .frontAnimId = ANIM_V_SHAKE,
+        .frontAnimDelay = 20,
+        .backPic = gMonBackPic_Typhlosion,
+        .backPicSize = P_GBA_STYLE_SPECIES_GFX ? MON_COORDS_SIZE(64, 56) : MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = P_GBA_STYLE_SPECIES_GFX ? 4 : 3,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
+        .palette = gMonPalette_Typhlosion,
+        .shinyPalette = gMonShinyPalette_Typhlosion,
+        .iconSprite = gMonIcon_Typhlosion,
+        .iconPalIndex = P_GBA_STYLE_SPECIES_ICONS ? 1 : 3,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        FOOTPRINT(Typhlosion)
+        SHADOW(4, 14, SHADOW_SIZE_L)
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sTyphlosionLevelUpLearnset,
+        .teachableLearnset = sTyphlosionTeachableLearnset,
+        .formSpeciesIdTable = sTyphlosionFormSpeciesIdTable,
+        .formChangeTable = sTyphlosionFormChangeTable,
+    },
+#endif //P_GEN_9_MEGA_EVOLUTIONS
 
 #if P_HISUIAN_FORMS
     [SPECIES_TYPHLOSION_HISUI] =
