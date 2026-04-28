@@ -11895,6 +11895,71 @@
                 "species": "SPECIES_DRAGONAIR"
               }
             ]
+          },
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_BAGON"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_DREEPY"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_BAGON"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_DREEPY"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_APPLIN"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_JANGMO_O"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_APPLIN"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_JANGMO_O"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_NOIBAT"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_NOIBAT"
+              },
+              {
+                "min_level": 45,
+                "max_level": 55,
+                "species": "SPECIES_NOIVERN"
+              },
+              {
+                "min_level": 45,
+                "max_level": 55,
+                "species": "SPECIES_NOIVERN"
+              }
+            ]
           }
         },
         {
@@ -11982,6 +12047,71 @@
                 "min_level": 30,
                 "max_level": 30,
                 "species": "SPECIES_DRAGONAIR"
+              }
+            ]
+          },
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_BAGON"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_DREEPY"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_BAGON"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_DREEPY"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_APPLIN"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_JANGMO_O"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_APPLIN"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_JANGMO_O"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_NOIBAT"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_NOIBAT"
+              },
+              {
+                "min_level": 45,
+                "max_level": 55,
+                "species": "SPECIES_NOIVERN"
+              },
+              {
+                "min_level": 45,
+                "max_level": 55,
+                "species": "SPECIES_NOIVERN"
               }
             ]
           }

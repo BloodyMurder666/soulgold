@@ -250,21 +250,13 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Dragonair
-Level: 41
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Kommo-O
+Level: 54
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
-Mantine
-Level: 42
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Lanturn
-Level: 41
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Dragonair
-Level: 42
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Fraxure
+Level: 55
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 === TRAINER_ZEKE ===
 Name: Zeke
@@ -2336,20 +2328,17 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Seadra
-Level: 42
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Dragonair
-Level: 41
+Level: 53
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Golduck
-Level: 43
+Drakloak
+Level: 53
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Dragonair
-Level: 42
+Arctibax
+Level: 53
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_CHARLIE ===
@@ -2413,50 +2402,109 @@ Class: Leader
 Pic: Leader Clair
 Gender: Male
 Music: Male
-Items: Full Restore / Full Restore
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Green
 
-Dragonair
-Level: 42
+Altaria @ Assault Vest
+Level: 54
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Thunder Wave
+- Moonblast
 - Thunderbolt
 - Flamethrower
 - Dragon Breath
 
-Gyarados @ Focus Band
-Level: 43
+Gyarados @ Gyaradosite
+Level: 54
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Bite
+- Crunch
 - Waterfall
-- Fly
+- Dragon Dance
 - Twister
 
-Lapras @ Chesto Berry
-Level: 43
+Dragonite @ Chesto Berry
+Level: 55
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Surf
+- Outrage
 - Ice Beam
 - Body Slam
-- Rest
+- Thunderbolt
 
-Dudunsparce @ Sitrus Berry
-Level: 44
+Hydrapple @ Yache Berry
+Level: 56
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Glare
-- Ancient Power
-- Rest
-- Poison Jab
+- Earth Power
+- Syrup Bomb
+- Dragon Pulse
+- Fickle Beam
 
 Kingdra @ Leftovers
-Level: 45
+Level: 57
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Smokescreen
+- Dragon Pulse
 - Surf
-- Hyper Beam
-- Dragon Breath
+- Rain Dance
+- Ice Beam
+
+=== TRAINER_CLAIR_1 ===
+Name: Clair
+Class: Leader
+Pic: Leader Clair
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Smart Trainer
+Mugshot: Green
+Difficulty: Hard
+
+Archaludon @ Choice Specs
+Level: 56
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Electro Shot
+- Dragon Pulse
+- Flash Cannon
+- Dark Pulse
+
+Gyarados @ Damp Rock
+Level: 56
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 31 Spe
+EVs: 252 Spe
+- Crunch
+- Waterfall
+- Ice Fang
+- Rain Dance
+
+Dragonite @ Chesto Berry
+Level: 57
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Outrage
+- Ice Beam
+- Thunder
+- Hurricane
+
+Altaria @ Altarianite
+Level: 57
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Moonblast
+- Thunder
+- Flamethrower
+- Dragon Pulse
+
+Hydrapple @ Yache Berry
+Level: 58
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Earth Power
+- Syrup Bomb
+- Dragon Pulse
+- Fickle Beam
+
+Kingdra @ Leftovers
+Level: 58
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Draco Meteor
+- Surf
+- Rain Dance
+- Ice Beam
 
 === TRAINER_RUTH ===
 Name: Ruth
@@ -2771,16 +2819,8 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Gyarados
-Level: 42
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Dragonair
-Level: 43
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Vaporeon
-Level: 42
+Duraludon
+Level: 55
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_HERMAN ===
@@ -3665,20 +3705,16 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Dragonair
-Level: 42
+Bagon
+Level: 50
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Dragonair
-Level: 42
+Shellgon
+Level: 55
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Dragonair
-Level: 42
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Dragonair
-Level: 42
+Salamence
+Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_KEVIN ===
@@ -5486,15 +5522,15 @@ Double Battle: No
 AI: Check Bad Move
 
 Seadra
-Level: 41
+Level: 53
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Gyarados
-Level: 41
+Level: 53
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Dragonair
-Level: 41
+Level: 53
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_NICOLE ===
@@ -6920,20 +6956,20 @@ Music: Hg Girl 1
 Double Battle: Yes
 AI: Check Bad Move
 
-Dragonair
-Level: 41
+Gabite
+Level: 55
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Gyarados
-Level: 42
+Arctibax
+Level: 56
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Dragonair
-Level: 41
+Haxorus
+Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Gyarados
-Level: 42
+Noivern
+Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_SHANNON ===
@@ -7762,19 +7798,15 @@ Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Male
 Music: Hg Girl 2
-Double Battle: No
+Double Battle: Yes
 AI: Check Bad Move
 
-Seadra
-Level: 40
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Seadra
-Level: 41
+Kingdra
+Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Gyarados
-Level: 42
+Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GORDON ===
@@ -9917,20 +9949,13 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Dratini
-Level: 34
+
+Gabite
+Level: 53
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Dragonair
-Level: 40
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Dragonair
-Level: 40
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Dragonair
-Level: 40
+Appletun
+Level: 54
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_IRWIN ===
