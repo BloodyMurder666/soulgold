@@ -1198,6 +1198,19 @@ struct SaveBlock1
     /*0x3???*/ struct TrainerHillSave trainerHill;
 #endif //FREE_TRAINER_HILL
     /*0x3???*/ struct WaldaPhrase waldaPhrase;
+
+    // To add new persistent SaveBlock1 data later, place it here and reduce
+    // SAVEBLOCK1_FUTURE_RESERVED_BYTES by the exact number of bytes consumed.
+    //
+    // Example:
+    //     /*0x3???*/ u32 newFeatureCounter; // 4 bytes
+    //     /*0x3???*/ u8 newFeatureState[12]; // 12 bytes
+    //
+    // Then change:
+    //     #define SAVEBLOCK1_FUTURE_RESERVED_BYTES 8192
+    // to:
+    //     #define SAVEBLOCK1_FUTURE_RESERVED_BYTES (8192 - 16)
+    /*0x3???*/ u8 futureReserved[SAVEBLOCK1_FUTURE_RESERVED_BYTES];
     // sizeof: 0x3???
 };
 
