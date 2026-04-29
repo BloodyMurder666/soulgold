@@ -1020,7 +1020,7 @@ static void RevealHiddenMon(void)
         DrawSearchWindow(species, sDexNavSearchDataPtr->potential, TRUE);
         DrawDexNavSearchMonIcon(species, &sDexNavSearchDataPtr->iconSpriteId, FALSE);
         // whiteout icon
-        index = IndexOfSpritePaletteTag(gSprites[sDexNavSearchDataPtr->iconSpriteId].template->paletteTag);
+        index = gSprites[sDexNavSearchDataPtr->iconSpriteId].oam.paletteNum;
         CpuCopy16(&gPlttBufferUnfaded[OBJ_PLTT_ID(index)], sDexNavSearchDataPtr->palBuffer, 32);
         TintPalette_CustomTone(sDexNavSearchDataPtr->palBuffer, 16, 510, 510, 510);
         LoadPalette(sDexNavSearchDataPtr->palBuffer, OBJ_PLTT_ID(index), PLTT_SIZE_4BPP);
@@ -1973,15 +1973,13 @@ static void DexNavLoadEncounterData(void)
 
 static void TryDrawIconInSlot(u16 species, s16 x, s16 y)
 {
-    u8 spriteId;
     if (species == SPECIES_NONE || species > NUM_SPECIES)
     {
         CreateNoDataIcon(x, y);   //'X' in slot
     }
     else if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN))
     {
-        spriteId = CreateMonIconNoPalette(species, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF); // Loads grayscale copy of palette to slots 3-6
-        gSprites[spriteId].oam.paletteNum += 3; // Use grayscale palette for this icon
+        CreateMonIconNoPalette(species, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF);
     }
     else
     {

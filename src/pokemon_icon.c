@@ -10,7 +10,8 @@
 #include "constants/pokemon_icon.h"
 
 #define POKE_ICON_SPECIES_BASE_PAL_TAG (POKE_ICON_BASE_PAL_TAG + 16)
-#define POKE_ICON_SPECIES_MAX_PAL_TAG (POKE_ICON_SPECIES_BASE_PAL_TAG + NUM_SPECIES + SPECIES_SHINY_TAG)
+#define POKE_ICON_BLACKENED_PAL_TAG (POKE_ICON_SPECIES_BASE_PAL_TAG + NUM_SPECIES + SPECIES_SHINY_TAG)
+#define POKE_ICON_SPECIES_MAX_PAL_TAG (POKE_ICON_BLACKENED_PAL_TAG + 1)
 
 #define IS_MON_ICON_TAG(x) (((x) >= POKE_ICON_BASE_PAL_TAG && (x) < POKE_ICON_BASE_PAL_TAG + ARRAY_COUNT(gMonIconPaletteTable)) || \
                             ((x) >= POKE_ICON_SPECIES_BASE_PAL_TAG && (x) < POKE_ICON_SPECIES_MAX_PAL_TAG))
@@ -29,6 +30,8 @@ struct MonIconSpriteTemplate
 
 static u8 CreateMonIconSprite(struct MonIconSpriteTemplate *, s16, s16, u8);
 static void FreeAndDestroyMonIconSprite_(struct Sprite *sprite);
+
+static const u16 sBlackenedMonIconPalette[16] = {0};
 
 const struct SpritePalette gMonIconPaletteTable[] =
 {
@@ -218,36 +221,18 @@ u8 CreateMonIcon3(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, 
 
 u8 CreateMonIconNoPalette(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u32 personality)
 {
-    u8 spriteId;
-    u16 palIndex;
-    struct MonIconSpriteTemplate iconTemplate =
+    u32 paletteNum;
+
+    if ((paletteNum = IndexOfSpritePaletteTag(POKE_ICON_BLACKENED_PAL_TAG)) >= 16)
     {
-        .oam = &sMonIconOamData,
-        .image = GetMonIconPtr(species, personality),
-        .anims = sMonIconAnims,
-        .affineAnims = sMonIconAffineAnims,
-        .callback = callback,
-        .paletteTag = POKE_ICON_BASE_PAL_TAG + gSpeciesInfo[species].iconPalIndex,
-    };
-    species = SanitizeSpeciesId(species);
-    palIndex = IndexOfSpritePaletteTag(iconTemplate.paletteTag);
-    memcpy(&gPlttBufferUnfaded[OBJ_PLTT_ID(palIndex+3)], &gPlttBufferUnfaded[palIndex+3], 16);
-    memcpy(&gPlttBufferFaded[OBJ_PLTT_ID(palIndex+3)], &gPlttBufferFaded[palIndex+3], 16);
-    TintPalette_CustomTone(&gPlttBufferFaded[OBJ_PLTT_ID(palIndex+3)], 16, 0, 0, 0);
-    TintPalette_CustomTone(&gPlttBufferUnfaded[OBJ_PLTT_ID(palIndex+3)], 16, 0, 0, 0);
+        if ((paletteNum = FindFreeIconPaletteSlot(POKE_ICON_BLACKENED_PAL_TAG)) < 16)
+        {
+            SetSpritePaletteTagByPaletteNum(paletteNum, POKE_ICON_BLACKENED_PAL_TAG);
+            LoadPalette(sBlackenedMonIconPalette, OBJ_PLTT_ID(paletteNum), PLTT_SIZE_4BPP);
+        }
+    }
 
-    if (species > NUM_SPECIES)
-        iconTemplate.paletteTag = POKE_ICON_BASE_PAL_TAG;
-#if P_GENDER_DIFFERENCES
-    else if (gSpeciesInfo[species].iconSpriteFemale != NULL && IsPersonalityFemale(species, personality))
-        iconTemplate.paletteTag = POKE_ICON_BASE_PAL_TAG + gSpeciesInfo[species].iconPalIndexFemale;
-#endif
-
-    spriteId = CreateMonIconSprite(&iconTemplate, x, y, subpriority);
-
-    UpdateMonIconFrame(&gSprites[spriteId]);
-
-    return spriteId;
+    return CreateMonIcon3(species, callback, x, y, subpriority, personality, paletteNum, FALSE);
 }
 
 // Like CreateMonIcon, but also accepts isShiny
