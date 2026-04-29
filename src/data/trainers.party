@@ -377,16 +377,24 @@ Class: Kimono Girl
 Pic: Kimono Girl
 Gender: Female
 Music: Female
-Double Battle: No
-AI: Basic Trainer
+Double Battle: Yes
+AI: Smart Trainer
 
-Vaporeon
-Level: 48
+Eevee @ Normal Gem
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Helping Hand
+- Return
+- Last Resort
+- Hyper Voice
+
+Vaporeon @ Water Gem
+Level: 60
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Surf
-- Quick Attack
-- Aurora Beam
-- Endeavor
+- Ice Beam
+- Yawn
+- Aqua Ring
 
 === TRAINER_SUSIE ===
 Name: Susie
@@ -522,16 +530,25 @@ Class: Kimono Girl
 Pic: Kimono Girl
 Gender: Female
 Music: Female
-Double Battle: No
-AI: Basic Trainer
+Double Battle: Yes
+AI: Smart Trainer
 
-Jolteon
-Level: 48
+Eevee @ Normal Gem
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Helping Hand
+- Return
+- Last Resort
+- Hyper Voice
+
+
+Jolteon @ Electric Gem
+Level: 60
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Thunderbolt
-- Double Team
+- Thunder
 - Thunder Wave
-- Endeavor
+- Shadow Ball
 
 === TRAINER_RICH ===
 Name: Rich
@@ -2801,16 +2818,24 @@ Class: Kimono Girl
 Pic: Kimono Girl
 Gender: Female
 Music: Female
-Double Battle: No
-AI: Basic Trainer
+Double Battle: Yes
+AI: Smart Trainer
 
-Flareon
-Level: 48
+Eevee @ Normal Gem
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Helping Hand
+- Return
+- Last Resort
+- Hyper Voice
+
+Flareon @ Fire Gem
+Level: 60
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Fire Blast
-- Quick Attack
-- Will O Wisp
-- Endeavor
+- Eruption
+- Weather Ball
+- Scorching Sands
 
 === TRAINER_MIKE ===
 Name: Mike
@@ -3767,16 +3792,24 @@ Class: Kimono Girl
 Pic: Kimono Girl
 Gender: Female
 Music: Female
-Double Battle: No
-AI: Basic Trainer
+Double Battle: Yes
+AI: Smart Trainer
 
-Espeon
-Level: 48
+Eevee @ Normal Gem
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Helping Hand
+- Return
+- Last Resort
+- Hyper Voice
+
+Espeon @ Psychic Gem
+Level: 60
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Psychic
-- Psych Up
+- Shadow Ball
 - Swift
-- Endeavor
+- Dazzling Gleam
 
 === TRAINER_RIVAL_CHIKORITA_7 ===
 Name: {RIVAL}
@@ -9968,11 +10001,19 @@ Class: Kimono Girl
 Pic: Kimono Girl
 Gender: Female
 Music: Female
-Double Battle: No
-AI: Basic Trainer
+Double Battle: Yes
+AI: Smart Trainer
 
-Umbreon
-Level: 48
+Eevee @ Normal Gem
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Helping Hand
+- Return
+- Last Resort
+- Hyper Voice
+
+Umbreon @ Dark Gem
+Level: 60
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Dark Pulse
 - Confuse Ray
