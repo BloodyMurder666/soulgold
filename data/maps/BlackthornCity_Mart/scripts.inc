@@ -27,7 +27,7 @@ BlackthornMart_Text_CooltrainerM:
 # 14 "data/maps/BlackthornCity_Mart/scripts.pory"
 	.string "You can't buy Max Revive, but it\n"
 # 15 "data/maps/BlackthornCity_Mart/scripts.pory"
-	.string "fully restores a fainted Pokémon.\p"
+	.string "fully restores a fainted POKéMON.\p"
 # 16 "data/maps/BlackthornCity_Mart/scripts.pory"
 	.string "Beware--it won't restore PP, the\n"
 # 17 "data/maps/BlackthornCity_Mart/scripts.pory"
@@ -37,7 +37,7 @@ BlackthornMart_Text_CooltrainerM:
 # 19 "data/maps/BlackthornCity_Mart/scripts.pory"
 BlackthornMart_Text_BlackBelt:
 # 20 "data/maps/BlackthornCity_Mart/scripts.pory"
-	.string "Max Repel keeps weak Pokémon away\n"
+	.string "Max Repel keeps weak POKéMON away\n"
 # 21 "data/maps/BlackthornCity_Mart/scripts.pory"
 	.string "from you.\p"
 # 22 "data/maps/BlackthornCity_Mart/scripts.pory"
@@ -67,13 +67,13 @@ Blackthorn_Mart2::
 # 37 "data/maps/BlackthornCity_Mart/scripts.pory"
 Blackthorn2:
 # 38 "data/maps/BlackthornCity_Mart/scripts.pory"
-	.2byte ITEM_DUSK_BALL
+	.2byte ITEM_QUICK_BALL
 # 39 "data/maps/BlackthornCity_Mart/scripts.pory"
-	.2byte ITEM_PREMIER_BALL
+	.2byte ITEM_DUSK_BALL
 # 40 "data/maps/BlackthornCity_Mart/scripts.pory"
-	.2byte ITEM_LUXURY_BALL
+	.2byte ITEM_PREMIER_BALL
 # 41 "data/maps/BlackthornCity_Mart/scripts.pory"
-	.2byte ITEM_NET_BALL
+	.2byte ITEM_LUXURY_BALL
 # 42 "data/maps/BlackthornCity_Mart/scripts.pory"
 	.2byte ITEM_RETRO_MAIL
 	.2byte ITEM_NONE

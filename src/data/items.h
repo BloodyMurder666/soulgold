@@ -3287,9 +3287,10 @@ const struct ItemInfo gItemsInfo[] =
             "depicts a Pokémon\n"
             "from Alola."),
         .pocket = POCKET_ITEMS,
-        .sortType = ITEM_TYPE_RELIC,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .sortType = ITEM_TYPE_EVOLUTION_STONE,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
         .flingPower = 30,
         .iconPic = gItemIcon_StrangeSouvenir,
         .iconPalette = gItemIconPalette_StrangeSouvenir,

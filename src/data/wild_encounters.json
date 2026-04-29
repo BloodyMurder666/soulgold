@@ -3169,63 +3169,63 @@
             "encounter_rate": 5,
             "mons": [
               {
-                "min_level": 2,
-                "max_level": 2,
+                "min_level": 3,
+                "max_level": 6,
                 "species": "SPECIES_ZUBAT"
               },
               {
-                "min_level": 2,
-                "max_level": 2,
+                "min_level": 3,
+                "max_level": 6,
                 "species": "SPECIES_ZUBAT"
               },
               {
-                "min_level": 2,
-                "max_level": 2,
+                "min_level": 3,
+                "max_level": 6,
                 "species": "SPECIES_TEDDIURSA"
               },
               {
                 "min_level": 3,
-                "max_level": 4,
+                "max_level": 6,
                 "species": "SPECIES_GEODUDE"
               },
               {
                 "min_level": 3,
-                "max_level": 4,
+                "max_level": 6,
                 "species": "SPECIES_GEODUDE"
               },
               {
                 "min_level": 3,
-                "max_level": 4,
+                "max_level": 6,
                 "species": "SPECIES_NACLI"
               },
               {
-                "min_level": 2,
-                "max_level": 2,
+                "min_level": 3,
+                "max_level": 6,
                 "species": "SPECIES_DUNSPARCE"
               },
               {
                 "min_level": 3,
-                "max_level": 4,
+                "max_level": 6,
                 "species": "SPECIES_NACLI"
               },
               {
-                "min_level": 2,
-                "max_level": 2,
+                "min_level": 3,
+                "max_level": 6,
                 "species": "SPECIES_TEDDIURSA"
               },
               {
-                "min_level": 2,
-                "max_level": 2,
+                "min_level": 3,
+                "max_level": 6,
                 "species": "SPECIES_LARVITAR"
               },
               {
                 "min_level": 4,
-                "max_level": 4,
+                "max_level": 6,
                 "species": "SPECIES_LARVITAR"
               },
               {
                 "min_level": 4,
-                "max_level": 4,
+                "max_level": 6,
                 "species": "SPECIES_DUNSPARCE"
               }
             ]
@@ -11811,6 +11811,71 @@
         {
           "map": "MAP_DRAGONS_DEN_CAVERN",
           "base_label": "gDragonsDen_Cavern",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_BAGON"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_DREEPY"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_BAGON"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_DREEPY"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_APPLIN"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_JANGMO_O"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_APPLIN"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_JANGMO_O"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_NOIBAT"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_NOIBAT"
+              },
+              {
+                "min_level": 45,
+                "max_level": 55,
+                "species": "SPECIES_NOIVERN"
+              },
+              {
+                "min_level": 45,
+                "max_level": 55,
+                "species": "SPECIES_NOIVERN"
+              }
+            ]
+          },
           "water_mons": {
             "encounter_rate": 7,
             "mons": [
@@ -11893,71 +11958,6 @@
                 "min_level": 30,
                 "max_level": 55,
                 "species": "SPECIES_DRAGONAIR"
-              }
-            ]
-          },
-          "land_mons": {
-            "encounter_rate": 10,
-            "mons": [
-              {
-                "min_level": 42,
-                "max_level": 45,
-                "species": "SPECIES_BAGON"
-              },
-              {
-                "min_level": 42,
-                "max_level": 45,
-                "species": "SPECIES_DREEPY"
-              },
-              {
-                "min_level": 42,
-                "max_level": 45,
-                "species": "SPECIES_BAGON"
-              },
-              {
-                "min_level": 42,
-                "max_level": 45,
-                "species": "SPECIES_DREEPY"
-              },
-              {
-                "min_level": 42,
-                "max_level": 45,
-                "species": "SPECIES_APPLIN"
-              },
-              {
-                "min_level": 42,
-                "max_level": 45,
-                "species": "SPECIES_JANGMO_O"
-              },
-              {
-                "min_level": 42,
-                "max_level": 45,
-                "species": "SPECIES_APPLIN"
-              },
-              {
-                "min_level": 42,
-                "max_level": 45,
-                "species": "SPECIES_JANGMO_O"
-              },
-              {
-                "min_level": 42,
-                "max_level": 45,
-                "species": "SPECIES_NOIBAT"
-              },
-              {
-                "min_level": 42,
-                "max_level": 45,
-                "species": "SPECIES_NOIBAT"
-              },
-              {
-                "min_level": 45,
-                "max_level": 55,
-                "species": "SPECIES_NOIVERN"
-              },
-              {
-                "min_level": 45,
-                "max_level": 55,
-                "species": "SPECIES_NOIVERN"
               }
             ]
           }
@@ -11965,6 +11965,71 @@
         {
           "map": "MAP_DRAGONS_DEN_CAVERN",
           "base_label": "gDragonsDen_Cavern_Night",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_BAGON"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_DREEPY"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_BAGON"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_DREEPY"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_APPLIN"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_JANGMO_O"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_APPLIN"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_JANGMO_O"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_NOIBAT"
+              },
+              {
+                "min_level": 42,
+                "max_level": 45,
+                "species": "SPECIES_NOIBAT"
+              },
+              {
+                "min_level": 45,
+                "max_level": 55,
+                "species": "SPECIES_NOIVERN"
+              },
+              {
+                "min_level": 45,
+                "max_level": 55,
+                "species": "SPECIES_NOIVERN"
+              }
+            ]
+          },
           "water_mons": {
             "encounter_rate": 7,
             "mons": [
@@ -12047,71 +12112,6 @@
                 "min_level": 30,
                 "max_level": 55,
                 "species": "SPECIES_DRAGONAIR"
-              }
-            ]
-          },
-          "land_mons": {
-            "encounter_rate": 10,
-            "mons": [
-              {
-                "min_level": 42,
-                "max_level": 45,
-                "species": "SPECIES_BAGON"
-              },
-              {
-                "min_level": 42,
-                "max_level": 45,
-                "species": "SPECIES_DREEPY"
-              },
-              {
-                "min_level": 42,
-                "max_level": 45,
-                "species": "SPECIES_BAGON"
-              },
-              {
-                "min_level": 42,
-                "max_level": 45,
-                "species": "SPECIES_DREEPY"
-              },
-              {
-                "min_level": 42,
-                "max_level": 45,
-                "species": "SPECIES_APPLIN"
-              },
-              {
-                "min_level": 42,
-                "max_level": 45,
-                "species": "SPECIES_JANGMO_O"
-              },
-              {
-                "min_level": 42,
-                "max_level": 45,
-                "species": "SPECIES_APPLIN"
-              },
-              {
-                "min_level": 42,
-                "max_level": 45,
-                "species": "SPECIES_JANGMO_O"
-              },
-              {
-                "min_level": 42,
-                "max_level": 45,
-                "species": "SPECIES_NOIBAT"
-              },
-              {
-                "min_level": 42,
-                "max_level": 45,
-                "species": "SPECIES_NOIBAT"
-              },
-              {
-                "min_level": 45,
-                "max_level": 55,
-                "species": "SPECIES_NOIVERN"
-              },
-              {
-                "min_level": 45,
-                "max_level": 55,
-                "species": "SPECIES_NOIVERN"
               }
             ]
           }
