@@ -732,9 +732,9 @@
 #define FLAG_ICEPATH_DEPTHS_BOOTS  0x2AD 
 #define FLAG_HIDE_CHIENPAO  0x2AE
 #define FLAG_LEGENDARY_STORY_CAP   0x2AF // Cap until legendary event (ho oh/lugia) has been seen but before player heads to e4
-#define FLAG_UNUSED_0x2B0  0x2B0 // Unused Flag
-#define FLAG_UNUSED_0x2B1  0x2B1 // Unused Flag
-#define FLAG_UNUSED_0x2B2  0x2B2 // Unused Flag
+#define FLAG_CHOICE_SCARF_ITEM_R26  0x2B0
+#define FLAG_CHOICE_SPECS_ITEM_LOR  0x2B1
+#define FLAG_ABILITY_PATCH_R27  0x2B2
 #define FLAG_UNUSED_0x2B3  0x2B3 // Unused Flag
 #define FLAG_UNUSED_0x2B4  0x2B4 // Unused Flag
 #define FLAG_UNUSED_0x2B5  0x2B5 // Unused Flag
