@@ -183,11 +183,11 @@ TinTower_RoofDay_EventScript_HoOh::
 	delay 30
 	waitmoncry
 	playbgm MUS_HG_VS_HO_OH, 0
-	seteventmon SPECIES_HO_OH, 50
-	setflag FLAG_GARBAGEFLAG
+	seteventmon SPECIES_HO_OH, 60
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	special BattleSetup_StartLegendaryBattle
 	waitstate
-	clearflag FLAG_GARBAGEFLAG
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
 	setvar VAR_LAST_TALKED, LOCALID_HO_OH
 	specialvar VAR_RESULT, GetBattleOutcome
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, TinTower_RoofDay_EventScript_RanFromHoOh
@@ -210,7 +210,7 @@ TinTower_RoofDay_EventScript_HoOhPostgame::
 	delay 30
 	waitmoncry
 	playbgm MUS_HG_VS_HO_OH, 0
-	seteventmon SPECIES_HO_OH, 70
+	seteventmon SPECIES_HO_OH, 80
 	setflag FLAG_GARBAGEFLAG
 	special BattleSetup_StartLegendaryBattle
 	waitstate

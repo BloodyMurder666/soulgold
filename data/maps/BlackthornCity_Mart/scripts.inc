@@ -27,7 +27,7 @@ BlackthornMart_Text_CooltrainerM:
 # 14 "data/maps/BlackthornCity_Mart/scripts.pory"
 	.string "You can't buy Max Revive, but it\n"
 # 15 "data/maps/BlackthornCity_Mart/scripts.pory"
-	.string "fully restores a fainted POKéMON.\p"
+	.string "fully restores a fainted Pokémon.\p"
 # 16 "data/maps/BlackthornCity_Mart/scripts.pory"
 	.string "Beware--it won't restore PP, the\n"
 # 17 "data/maps/BlackthornCity_Mart/scripts.pory"
@@ -37,7 +37,7 @@ BlackthornMart_Text_CooltrainerM:
 # 19 "data/maps/BlackthornCity_Mart/scripts.pory"
 BlackthornMart_Text_BlackBelt:
 # 20 "data/maps/BlackthornCity_Mart/scripts.pory"
-	.string "Max Repel keeps weak POKéMON away\n"
+	.string "Max Repel keeps weak Pokémon away\n"
 # 21 "data/maps/BlackthornCity_Mart/scripts.pory"
 	.string "from you.\p"
 # 22 "data/maps/BlackthornCity_Mart/scripts.pory"

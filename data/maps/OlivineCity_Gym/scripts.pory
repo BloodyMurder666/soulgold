@@ -218,7 +218,7 @@ OlivineCity_Gym_Text_GymGuideWinText:
 OlivineCity_Gym_Text_GymGuidePreText:
 	.string "Jasmine, the Gym Leader, is at the\n"
 	.string "Lighthouse.\p"
-	.string "She's been tending to a sick POKéMON.\p"
+	.string "She's been tending to a sick Pokémon.\p"
 	.string "A strong trainer has to be\n"
 	.string "compassionate.$"
 
@@ -300,7 +300,7 @@ OlivineCity_Gym_Text_ReceivedMineralBadge:
 	.string "{PLAYER} received Mineralbadge.$"
 
 OlivineCity_Gym_Text_JasmineBadgeSpeech:
-	.string "Mineralbadge raises POKéMON's \n"
+	.string "Mineralbadge raises Pokémon's \n"
 	.string "Special Defense.\p"
 	.string "…Um… Please take this too…$"
 
@@ -338,10 +338,10 @@ OlivineCity_Gym_EventScript_Statue2::
 	end
 
 OlivineCity_Gym_Text_GymStatue:
-	.string "Olivine City POKéMON Gym$"
+	.string "Olivine City Pokémon Gym$"
 
 OlivineCity_Gym_Text_GymStatueCertified:
-	.string "Olivine City POKéMON Gym\p"
+	.string "Olivine City Pokémon Gym\p"
 	.string "Jasmine'S Certified Trainers:\n"
 	.string "{PLAYER}$"
 

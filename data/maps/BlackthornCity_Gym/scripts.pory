@@ -236,7 +236,7 @@ BlackthornGym_Text_ClairIntroText:
     .string "I am Clair.\p"
     .string "The world's best dragon master.\p"
     .string "I can hold my own against even the\n"
-    .string "POKéMON League's Elite Four.\p"
+    .string "Pokémon League's Elite Four.\p"
     .string "Do you still want to take me on?\p"
     .string "…Fine. Let's do it!\p"
     .string "As a Gym Leader, I will use my full\n"
@@ -250,7 +250,7 @@ BlackthornGym_Text_ClairWinText:
 BlackthornGym_Text_ClairText_GoToDragonsDen:
     .string "I won't admit this.\p"
     .string "I may have lost, but you're still\n"
-    .string "not ready for the POKéMON League.\p"
+    .string "not ready for the Pokémon League.\p"
     .string "I know. You should take the dragon\n"
     .string "user challenge.\p"
     .string "Behind this Gym is a place called\n"
@@ -276,13 +276,13 @@ BlackthornGym_Text_ClairText_DescribeTM:
 
 BlackthornGym_Text_ClairText_League:
     .string "What's the matter?\p"
-    .string "Aren't you headed to the POKéMON\n"
+    .string "Aren't you headed to the Pokémon\n"
     .string "League?\p"
     .string "Don't you know where it is?\p"
     .string "From here, go to New Bark Town.\p"
     .string "Then Surf east. The route there is\n"
     .string "very tough.\p"
-    .string "Don't you dare lose at the POKéMON\n"
+    .string "Don't you dare lose at the Pokémon\n"
     .string "League!\p"
     .string "If you do, I'll feel even worse\n"
     .string "about having lost to you!\p"
@@ -310,14 +310,14 @@ BlackthornGym_Text_ClairRematchDefeatText:
 
 BlackthornGym_Text_CooltrainermCodySeenText:
     .string "I just got access to use Dragon-\n"
-    .string "type POKéMON!$"
+    .string "type Pokémon!$"
 
 BlackthornGym_Text_CooltrainermCodyBeatenText:
     .string "Rats! If only I had a Dragonite!$"
 
 BlackthornGym_Text_CooltrainermCodyAfterBattleText:
     .string "Members of our dragon-user clan\n"
-    .string "can use dragon POKéMON only after\l"
+    .string "can use dragon Pokémon only after\l"
     .string "our Master allows it.$"
 
 BlackthornGym_Text_CooltrainerfFranSeenText:
@@ -336,7 +336,7 @@ BlackthornGym_Text_CooltrainermPaulSeenText:
     .string "I'll show you how tough they are!$"
 
 BlackthornGym_Text_CooltrainermPaulBeatenText:
-    .string "My dragon POKéMON lost?$"
+    .string "My dragon Pokémon lost?$"
 
 BlackthornGym_Text_CooltrainermPaulAfterBattleText:
     .string "Lance told you that he'd like to\n"
@@ -355,7 +355,7 @@ BlackthornGym_Text_CooltrainermMikeAfterBattleText:
     .string "Thanks for showing me!$"
 
 BlackthornGym_Text_CooltrainerfLolaSeenText:
-    .string "Dragons are sacred POKéMON.\p"
+    .string "Dragons are sacred Pokémon.\p"
     .string "They are full of life energy.\p"
     .string "If you're not serious, you won't\n"
     .string "be able to beat them.$"
@@ -399,10 +399,10 @@ BlackthornGym_Text_GuideText:
 
 BlackthornGym_Text_GuideWinText:
     .string "You were great to beat Clair!\p"
-    .string "All that's left is the POKéMON\n"
+    .string "All that's left is the Pokémon\n"
     .string "League challenge.\p"
     .string "You're on the way to becoming the\n"
-    .string "POKéMON Champion!$"
+    .string "Pokémon Champion!$"
 
 
 BlackthornGym_EventScript_Statue::
@@ -420,10 +420,10 @@ BlackthornGym_EventScript_Statue2::
 	end
 
 BlackthornGym_Text_GymStatue:
-	.string "Blackthorn City POKéMON Gym$"
+	.string "Blackthorn City Pokémon Gym$"
 
 BlackthornGym_Text_GymStatueCertified:
-	.string "Blackthorn City POKéMON Gym\p"
+	.string "Blackthorn City Pokémon Gym\p"
 	.string "Clair'S Certified Trainers:\n"
 	.string "{PLAYER}$"
 `
