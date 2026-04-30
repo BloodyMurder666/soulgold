@@ -13,6 +13,7 @@ TODO
 - devolov for using HMs without teaching
 - fisham33 for level scaling
 - Mont for swsh party menu
+- Leob0505 for backgrounds
 
 Based off RHH's pokeemerald-expansion 1.15.0 https://github.com/rh-hideout/pokeemerald-expansion/
 

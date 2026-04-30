@@ -184,8 +184,9 @@ WhirlIslands_LugiaChamber_EventScript_Lugia::
 	delay 30
 	waitmoncry
 	playbgm MUS_HG_VS_LUGIA, 0
-	seteventmon SPECIES_LUGIA, 60
+	seteventmon SPECIES_LUGIA, 65
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	settotemboost B_POSITION_OPPONENT_LEFT, 1, 1, 1, 1, 1, 0, 0
 	special BattleSetup_StartLegendaryBattle
 	waitstate
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
@@ -196,6 +197,7 @@ WhirlIslands_LugiaChamber_EventScript_Lugia::
 	call_if_eq VAR_RESULT, B_OUTCOME_WON, WhirlIslands_LugiaChamber_EventScript_LugiaFlewAway
 	call_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, WhirlIslands_LugiaChamber_EventScript_CaughtLugia
 	setflag FLAG_HIDE_WHIRL_ISLANDS_KIMONO_GIRLS
+	setflag FLAG_LEGENDARY_STORY_CAP
 	applymovement LOCALID_KIMONO_MID, WhirlIslands_LugiaChamber_Movement_Kimono_Dance_Shift_Right2
 	waitmovement 0
 	clearflag FLAG_HIDE_ECRUTEAK_CITY_THEATER_KIMONOS
