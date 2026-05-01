@@ -3820,8 +3820,13 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, enum Item item, u8 partyIndex, 
                         evCount = GetMonEVCount(mon);
                         temp2 = itemEffect[itemEffectParam];
                         dataSigned = GetMonData(mon, sGetMonDataEVConstants[temp1]);
-                        s8 evDelta = (s8)itemEffect[itemEffectParam];
-                        s16 evChange = evDelta * itemCount;
+                        if (itemEffect[itemEffectParam] == ITEM6_MAX_EV)
+                            evChange = MAX_PER_STAT_EVS;
+                        else
+                        {
+                            s8 evDelta = (s8)itemEffect[itemEffectParam];
+                            evChange = evDelta * itemCount;
+                        }
 
                         if (evChange > 0) // Increasing EV (HP or Atk)
                         {
@@ -4019,8 +4024,13 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, enum Item item, u8 partyIndex, 
                         evCount = GetMonEVCount(mon);
                         temp2 = itemEffect[itemEffectParam];
                         dataSigned = GetMonData(mon, sGetMonDataEVConstants[temp1 + 2]);
-                        s8 evDelta = (s8)itemEffect[itemEffectParam];
-                        evChange = evDelta * itemCount;
+                        if (itemEffect[itemEffectParam] == ITEM6_MAX_EV)
+                            evChange = MAX_PER_STAT_EVS;
+                        else
+                        {
+                            s8 evDelta = (s8)itemEffect[itemEffectParam];
+                            evChange = evDelta * itemCount;
+                        }
                         if (evChange > 0) // Increasing EV
                         {
                             // Check if the total EV limit is reached

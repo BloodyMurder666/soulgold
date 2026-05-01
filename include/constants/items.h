@@ -1066,6 +1066,14 @@ enum __attribute__((packed)) Item
     ITEM_PRIMARINITE = 886,
     ITEM_MEOWSCARADITE = 887,
 
+    // Super vitamins
+    ITEM_HP_UP_EX = 888,
+    ITEM_PROTEIN_EX = 889,
+    ITEM_IRON_EX = 890,
+    ITEM_CALCIUM_EX = 891,
+    ITEM_ZINC_EX = 892,
+    ITEM_CARBOS_EX = 893,
+
     ITEMS_COUNT,
     ITEM_FIELD_ARROW = ITEMS_COUNT,
 };

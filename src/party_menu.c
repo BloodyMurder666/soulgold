@@ -4734,7 +4734,9 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
     u16 hp = 0;
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
     enum Item item = gSpecialVar_ItemId;
-    bool8 canHeal, cannotUse;
+    enum ItemEffectType itemEffectType = GetItemEffectType(item);
+    bool8 canHeal = FALSE;
+    bool8 cannotUse;
     u32 oldStatus = GetMonData(mon, MON_DATA_STATUS);
 
     if (NotUsingHPEVItemOnShedinja(mon, item) == FALSE)
@@ -4767,6 +4769,21 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
     }
     else
     {
+        switch (itemEffectType)
+        {
+        case ITEM_EFFECT_HP_EV:
+        case ITEM_EFFECT_ATK_EV:
+        case ITEM_EFFECT_DEF_EV:
+        case ITEM_EFFECT_SPEED_EV:
+        case ITEM_EFFECT_SPATK_EV:
+        case ITEM_EFFECT_SPDEF_EV:
+            ExecuteTableBasedItemEffect(mon, item, gPartyMenu.slotId, 0, 1, 1);
+            break;
+        default:
+            break;
+        }
+        if (itemEffectType == ITEM_EFFECT_HP_EV)
+            UpdateMonDisplayInfoAfterRareCandy(gPartyMenu.slotId, mon);
         gPartyMenuUseExitCallback = TRUE;
         if (!IsItemFlute(item))
         {
@@ -4777,9 +4794,21 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
         {
             PlaySE(SE_GLASS_FLUTE);
         }
-        SetPartyMonAilmentGfx(mon, &sPartyMenuBoxes[gPartyMenu.slotId]);
-        //if (gSprites[sPartyMenuBoxes[gPartyMenu.slotId].statusSpriteId].invisible)
-        DisplayPartyPokemonLevelCheck(mon, &sPartyMenuBoxes[gPartyMenu.slotId], 1);
+        switch (itemEffectType)
+        {
+        case ITEM_EFFECT_HP_EV:
+        case ITEM_EFFECT_ATK_EV:
+        case ITEM_EFFECT_DEF_EV:
+        case ITEM_EFFECT_SPEED_EV:
+        case ITEM_EFFECT_SPATK_EV:
+        case ITEM_EFFECT_SPDEF_EV:
+            break;
+        default:
+            SetPartyMonAilmentGfx(mon, &sPartyMenuBoxes[gPartyMenu.slotId]);
+            if (gSprites[sPartyMenuBoxes[gPartyMenu.slotId].statusSpriteId].invisible)
+                DisplayPartyPokemonLevelCheck(mon, &sPartyMenuBoxes[gPartyMenu.slotId], 1);
+            break;
+        }
         if (canHeal == TRUE)
         {
             if (hp == 0)

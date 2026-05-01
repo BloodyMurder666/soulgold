@@ -6457,7 +6457,8 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
     u16 hp = 0;
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
     enum Item item = gSpecialVar_ItemId;
-    bool8 canHeal, cannotUse;
+    bool8 canHeal = FALSE;
+    bool8 cannotUse;
     u32 oldStatus = GetMonData(mon, MON_DATA_STATUS);
     tItemEffect = GetItemEffectType(item);
     u16 ev = ItemEffectToMonEv(mon, tItemEffect);
@@ -6494,7 +6495,7 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
     }
     else
     {
-        if (DoesItemIncreaseEV(tItemEffect) && tQuantityInBag > 1)
+        if (DoesItemIncreaseEV(tItemEffect) && tQuantityInBag > 1 && GetItemEffect(item)[6] != ITEM6_MAX_EV)
         {
             PlaySE(SE_SELECT);
             DisplayGiveHowManyMessage();
@@ -6526,9 +6527,23 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
             {
                 PlaySE(SE_GLASS_FLUTE);
             }
-            SetPartyMonAilmentGfx(mon, &sPartyMenuBoxes[gPartyMenu.slotId]);
-            if (gSprites[sPartyMenuBoxes[gPartyMenu.slotId].statusSpriteId].invisible)
-                DisplayPartyPokemonLevelCheck(mon, &sPartyMenuBoxes[gPartyMenu.slotId], 1);
+            switch (tItemEffect)
+            {
+            case ITEM_EFFECT_HP_EV:
+                UpdateMonDisplayInfoAfterRareCandy(gPartyMenu.slotId, mon);
+                break;
+            case ITEM_EFFECT_ATK_EV:
+            case ITEM_EFFECT_DEF_EV:
+            case ITEM_EFFECT_SPEED_EV:
+            case ITEM_EFFECT_SPATK_EV:
+            case ITEM_EFFECT_SPDEF_EV:
+                break;
+            default:
+                SetPartyMonAilmentGfx(mon, &sPartyMenuBoxes[gPartyMenu.slotId]);
+                if (gSprites[sPartyMenuBoxes[gPartyMenu.slotId].statusSpriteId].invisible)
+                    DisplayPartyPokemonLevelCheck(mon, &sPartyMenuBoxes[gPartyMenu.slotId], 1);
+                break;
+            }
             if (canHeal == TRUE)
             {
                 if (hp == 0)

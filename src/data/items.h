@@ -1440,6 +1440,24 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_HPUp,
     },
 
+    [ITEM_HP_UP_EX] =
+    {
+        .name = ITEM_NAME("HP Up EX"),
+        .price = (I_PRICE >= GEN_7) ? 20000 : 19600,
+        .description = COMPOUND_STRING(
+            "Maximizes the\n"
+            "effort value of a\n"
+            "Pokémon's HP."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_STAT_BOOST_DRINK,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .effect = gItemEffect_HPUpEX,
+        .flingPower = 30,
+        .iconPic = gItemIcon_HPUp,
+        .iconPalette = gItemIconPalette_HPUp,
+    },
+
     [ITEM_PROTEIN] =
     {
         .name = ITEM_NAME("Protein"),
@@ -1453,6 +1471,24 @@ const struct ItemInfo gItemsInfo[] =
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
         .effect = gItemEffect_Protein,
+        .flingPower = 30,
+        .iconPic = gItemIcon_Vitamin,
+        .iconPalette = gItemIconPalette_Protein,
+    },
+
+    [ITEM_PROTEIN_EX] =
+    {
+        .name = ITEM_NAME("Protein EX"),
+        .price = (I_PRICE >= GEN_7) ? 20000 : 19600,
+        .description = COMPOUND_STRING(
+            "Maximizes the\n"
+            "effort value of a\n"
+            "Pokémon's Attack."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_STAT_BOOST_DRINK,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .effect = gItemEffect_ProteinEX,
         .flingPower = 30,
         .iconPic = gItemIcon_Vitamin,
         .iconPalette = gItemIconPalette_Protein,
@@ -1476,6 +1512,24 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_Iron,
     },
 
+    [ITEM_IRON_EX] =
+    {
+        .name = ITEM_NAME("Iron EX"),
+        .price = (I_PRICE >= GEN_7) ? 20000 : 19600,
+        .description = COMPOUND_STRING(
+            "Maximizes the\n"
+            "effort value of a\n"
+            "Pokémon's Defense."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_STAT_BOOST_DRINK,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .effect = gItemEffect_IronEX,
+        .flingPower = 30,
+        .iconPic = gItemIcon_Vitamin,
+        .iconPalette = gItemIconPalette_Iron,
+    },
+
     [ITEM_CALCIUM] =
     {
         .name = ITEM_NAME("Calcium"),
@@ -1489,6 +1543,24 @@ const struct ItemInfo gItemsInfo[] =
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
         .effect = gItemEffect_Calcium,
+        .flingPower = 30,
+        .iconPic = gItemIcon_Vitamin,
+        .iconPalette = gItemIconPalette_Calcium,
+    },
+
+    [ITEM_CALCIUM_EX] =
+    {
+        .name = ITEM_NAME("Calcium EX"),
+        .price = (I_PRICE >= GEN_7) ? 20000 : 19600,
+        .description = COMPOUND_STRING(
+            "Maximizes the\n"
+            "effort value of a\n"
+            "Pokémon's Sp. Atk."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_STAT_BOOST_DRINK,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .effect = gItemEffect_CalciumEX,
         .flingPower = 30,
         .iconPic = gItemIcon_Vitamin,
         .iconPalette = gItemIconPalette_Calcium,
@@ -1512,6 +1584,24 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_Zinc,
     },
 
+    [ITEM_ZINC_EX] =
+    {
+        .name = ITEM_NAME("Zinc EX"),
+        .price = (I_PRICE >= GEN_7) ? 20000 : 19600,
+        .description = COMPOUND_STRING(
+            "Maximizes the\n"
+            "effort value of a\n"
+            "Pokémon's Sp. Def."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_STAT_BOOST_DRINK,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .effect = gItemEffect_ZincEX,
+        .flingPower = 30,
+        .iconPic = gItemIcon_Vitamin,
+        .iconPalette = gItemIconPalette_Zinc,
+    },
+
     [ITEM_CARBOS] =
     {
         .name = ITEM_NAME("Carbos"),
@@ -1526,6 +1616,25 @@ const struct ItemInfo gItemsInfo[] =
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
         .effect = gItemEffect_Carbos,
+        .flingPower = 30,
+        .iconPic = gItemIcon_Vitamin,
+        .iconPalette = gItemIconPalette_Carbos,
+    },
+
+    [ITEM_CARBOS_EX] =
+    {
+        .name = ITEM_NAME("Carbos EX"),
+        .pluralName = ITEM_PLURAL_NAME("Carbos EX"),
+        .price = (I_PRICE >= GEN_7) ? 20000 : 19600,
+        .description = COMPOUND_STRING(
+            "Maximizes the\n"
+            "effort value of a\n"
+            "Pokémon's Speed."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_STAT_BOOST_DRINK,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .effect = gItemEffect_CarbosEX,
         .flingPower = 30,
         .iconPic = gItemIcon_Vitamin,
         .iconPalette = gItemIconPalette_Carbos,

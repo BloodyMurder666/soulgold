@@ -187,12 +187,24 @@ const u8 gItemEffect_HPUp[11] = {
     [10] = ITEM10_IS_VITAMIN,
 };
 
+const u8 gItemEffect_HPUpEX[11] = {
+    [4] = ITEM4_EV_HP,
+    [5] = ITEM5_FRIENDSHIP_ALL,
+    [6] = ITEM6_MAX_EV,
+};
+
 const u8 gItemEffect_Protein[11] = {
     [4] = ITEM4_EV_ATK,
     [5] = ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_ADD_EV,
     VITAMIN_FRIENDSHIP_CHANGE(7),
     [10] = ITEM10_IS_VITAMIN,
+};
+
+const u8 gItemEffect_ProteinEX[11] = {
+    [4] = ITEM4_EV_ATK,
+    [5] = ITEM5_FRIENDSHIP_ALL,
+    [6] = ITEM6_MAX_EV,
 };
 
 const u8 gItemEffect_Iron[11] = {
@@ -202,11 +214,21 @@ const u8 gItemEffect_Iron[11] = {
     [10] = ITEM10_IS_VITAMIN,
 };
 
+const u8 gItemEffect_IronEX[11] = {
+    [5] = ITEM5_EV_DEF | ITEM5_FRIENDSHIP_ALL,
+    [6] = ITEM6_MAX_EV,
+};
+
 const u8 gItemEffect_Carbos[11] = {
     [5] = ITEM5_EV_SPEED | ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_ADD_EV,
     VITAMIN_FRIENDSHIP_CHANGE(7),
     [10] = ITEM10_IS_VITAMIN,
+};
+
+const u8 gItemEffect_CarbosEX[11] = {
+    [5] = ITEM5_EV_SPEED | ITEM5_FRIENDSHIP_ALL,
+    [6] = ITEM6_MAX_EV,
 };
 
 const u8 gItemEffect_Calcium[11] = {
@@ -216,11 +238,21 @@ const u8 gItemEffect_Calcium[11] = {
     [10] = ITEM10_IS_VITAMIN,
 };
 
+const u8 gItemEffect_CalciumEX[11] = {
+    [5] = ITEM5_EV_SPATK | ITEM5_FRIENDSHIP_ALL,
+    [6] = ITEM6_MAX_EV,
+};
+
 const u8 gItemEffect_Zinc[11] = {
     [5] = ITEM5_EV_SPDEF | ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_ADD_EV,
     VITAMIN_FRIENDSHIP_CHANGE(7),
     [10] = ITEM10_IS_VITAMIN,
+};
+
+const u8 gItemEffect_ZincEX[11] = {
+    [5] = ITEM5_EV_SPDEF | ITEM5_FRIENDSHIP_ALL,
+    [6] = ITEM6_MAX_EV,
 };
 
 #define FEATHER_FRIENDSHIP_CHANGE(i)             \
