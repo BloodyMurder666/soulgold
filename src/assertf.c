@@ -153,9 +153,9 @@ static bool32 Putp(u32 *x, u32 *y, const void *p)
     return TRUE;
 }
 
-static bool32 Puts(u32 *x, u32 *y, const char *s)
+static bool32 Puts(u32 *x, u32 *y, s32 n, const char *s)
 {
-    while (*s != '\0')
+    while (*s != '\0' && n-- > 0)
     {
         if (!Putc(x, y, *s++))
             return FALSE;
@@ -163,9 +163,9 @@ static bool32 Puts(u32 *x, u32 *y, const char *s)
     return TRUE;
 }
 
-static bool32 PutS(u32 *x, u32 *y, const u8 *s)
+static bool32 PutS(u32 *x, u32 *y, s32 n, const u8 *s)
 {
-    while (*s != EOS)
+    while (*s != EOS && n-- > 0)
     {
         char c;
         if (CHAR_a <= *s && *s <= CHAR_z)
@@ -223,6 +223,7 @@ static bool32 Putx(u32 *x, u32 *y, unsigned u)
 static void Vprintf(enum Mode mode, const void *return1, const void *return0, const char *fmt, va_list va)
 {
     u32 x, y;
+    s32 n;
 
     if (mode == MODE_ASSERTF)
     {
@@ -237,6 +238,16 @@ static void Vprintf(enum Mode mode, const void *return1, const void *return0, co
     y = 0;
     while (TRUE)
     {
+        if (fmt[0] == '.' && fmt[1] == '*')
+        {
+            fmt += 2;
+            n = va_arg(va, int);
+        }
+        else
+        {
+            n = INT_MAX;
+        }
+
         char c = *fmt++;
         if (c == '\0')
         {
@@ -260,11 +271,11 @@ static void Vprintf(enum Mode mode, const void *return1, const void *return0, co
                     return;
                 break;
             case 's':
-                if (!Puts(&x, &y, va_arg(va, const char *)))
+                if (!Puts(&x, &y, n, va_arg(va, const char *)))
                     return;
                 break;
             case 'S':
-                if (!PutS(&x, &y, va_arg(va, const u8 *)))
+                if (!PutS(&x, &y, n, va_arg(va, const u8 *)))
                     return;
                 break;
             case 'x':
@@ -280,11 +291,11 @@ static void Vprintf(enum Mode mode, const void *return1, const void *return0, co
         }
     }
 
-    if (!Puts(&x, &y, "\n  in: "))
+    if (!Puts(&x, &y, INT_MAX, "\n  in: "))
         return;
     if (!Putp(&x, &y, return1))
         return;
-    if (!Puts(&x, &y, "\n  in: "))
+    if (!Puts(&x, &y, INT_MAX, "\n  in: "))
         return;
     if (!Putp(&x, &y, return0))
         return;
