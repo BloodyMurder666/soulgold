@@ -4693,50 +4693,141 @@ Class: Elite Four
 Pic: Elite Four Will
 Gender: Male
 Music: Elite Four
-Items: Full Restore / Full Restore
+Double Battle: Yes
+AI: Smart Trainer
+Mugshot: Purple
+Difficulty: Hard
+
+Farigiraf @ Safety Goggles
+Ability: Armor Tail  
+Level: 68  
+EVs: 252 HP / 252 SpD  
+Hasty Nature  
+- Trick Room  
+- Helping Hand  
+- Psychic  
+- Hyper Voice  
+
+Reuniclus @ Rocky Helmet  
+Ability: Magic Guard  
+Level: 69  
+Tera Type: Psychic  
+EVs: 252 Def / 252 SpA  
+- Psychic 
+- Calm Mind  
+- Shadow Ball  
+- Mystical Fire 
+
+Espeon @ Choice Specs  
+Ability: Magic Bounce  
+Level: 68  
+Tera Type: Psychic  
+EVs: 252 SpA / 252 HP
+- Draining Kiss  
+- Expanding Force  
+- Power Gem  
+- Psychic  
+
+Slowbro @ Leftovers  
+Ability: Regenerator  
+Level: 68  
+Tera Type: Water  
+EVs: 192 HP / 64 SpA / 252 SpD  
+- Blizzard  
+- Scald  
+- Slack Off  
+- Psychic  
+
+Braviary-Hisui @ Twisted Spoon 
+Ability: Tinted Lens  
+Level: 68  
+Tera Type: Psychic  
+EVs: 252 SpA / 252 SpD  
+- Air Slash  
+- Esper Wing  
+- U-turn  
+- Psychic Terrain
+
+Alakazam @ Alakazite  
+Ability: Magic Guard  
+Level: 69  
+Tera Type: Psychic  
+EVs: 252 SpA / 252 HP  
+- Shadow Ball
+- Psychic
+- Recover
+- Expanding Force
+
+=== TRAINER_WILL_1 ===
+Name: Will
+Class: Elite Four
+Pic: Elite Four Will
+Gender: Male
+Music: Elite Four
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Purple
 
-Girafarig
-Level: 48
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Psychic
-- Rock Smash
-- Agility
-- Baton Pass
+Farigiraf @ Ability Shield  
+Ability: Armor Tail  
+Level: 66  
+Tera Type: Normal  
+EVs: 252 SpA / 252 Spe  
+Hasty Nature  
+- Calm Mind  
+- Dazzling Gleam  
+- Psychic  
+- Hyper Voice  
 
-Slowking
-Level: 49
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Amnesia
-- Flamethrower
-- Surf
-- Psychic
+Espeon @ Choice Specs  
+Ability: Magic Bounce  
+Level: 66  
+Tera Type: Psychic  
+EVs: 252 SpA / 252 Spe  
+- Draining Kiss  
+- Grass Knot  
+- Power Gem  
+- Psychic  
 
-Espeon
-Level: 48
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Psychic
+Slowbro @ Leftovers  
+Ability: Regenerator  
+Level: 66  
+Tera Type: Water  
+EVs: 192 HP / 64 SpA / 252 SpD  
+- Blizzard  
+- Scald  
+- Slack Off  
+- Psychic  
+
+Reuniclus @ Rocky Helmet  
+Ability: Magic Guard  
+Level: 66  
+Tera Type: Psychic  
+EVs: 252 Def / 252 SpA  
+- Acid Armor  
+- Calm Mind  
+- Psychic Noise  
+- Trick Room  
+
+Alakazam @ Alakazite  
+Ability: Magic Guard  
+Level: 67  
+Tera Type: Psychic  
+EVs: 252 SpA / 252 Spe  
 - Shadow Ball
-- Reflect
-- Headbutt
-
-Slowbro @ Quick Claw
-Level: 49
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Curse
-- Rock Smash
-- Body Slam
 - Psychic
-
-Xatu @ Twisted Spoon
-Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Drill Peck
 - Recover
-- Confuse Ray
-- Psychic
+- Hidden Power
+
+Braviary-Hisui @ Twisted Spoon 
+Ability: Tinted Lens  
+Level: 66  
+Tera Type: Psychic  
+EVs: 252 SpA / 252 Spe  
+- Air Slash  
+- Esper Wing  
+- U-turn  
+- Hyper Beam
 
 === TRAINER_MORTY_1 ===
 Name: Morty
@@ -5201,50 +5292,137 @@ Class: Elite Four
 Pic: Elite Four Koga
 Gender: Male
 Music: Elite Four
-Items: Full Restore / Full Restore
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Pink
 
-Ariados @ Kings Rock
-Level: 50
+Toxapex @ Payapa Berry
+Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP
+- Scald
+- Sludge Bomb
+- Baneful Bunker
+- Toxic
+
+Roserade @ Grass Gem
+Level: 67
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Technician
+EVs: 252 SpA / 252 Spe
+- Weather Ball
+- Toxic
+- Magical Leaf
+- Sludge Bomb
+
+Muk Alola @ Leftovers
+Level: 67
+Ability: Sticky Hold
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk
+- Gunk Shot
+- Shadow Punch
+- Knock Off
+- Pain Split
+
+Overqwil @ Sitrus Berry 
+Level: 67
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 252 Spe
+Ability: Intimidate
+- Barb Barrage
+- Crunch
+- Destiny Bond
+- Fell Stinger
+
+Scolipede @ Scolipite
+Level: 68
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Speed Boost
+EVs: 252 Atk / 252 HP
 - Megahorn
-- Giga Drain
-- Double Team
-- Toxic
+- Poison Jab
+- Swords Dance
+- Earthquake
 
-Qwilfish
-Level: 51
+Crobat @ Charti Berry
+Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Surf
-- Toxic
-- Protect
+EVs: 252 SpA / 252 Spe
 - Sludge Bomb
-
-Muk @ Leftovers
-Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Minimize
-- Fire Blast
-- Sludge Bomb
-- Toxic
-
-Venomoth
-Level: 51
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Air Cutter
 - Leech Life
-- Psychic
-- Sludge Bomb
-- Sleep Powder
+- Giga Drain
 
-Crobat @ Bright Powder
-Level: 52
+
+=== TRAINER_KOGA_1 ===
+Name: Koga
+Class: Elite Four
+Pic: Elite Four Koga
+Gender: Male
+Music: Elite Four
+Double Battle: Yes
+AI: Smart Trainer
+Mugshot: Pink
+Difficulty: Hard
+
+Toxapex @ Payapa Berry
+Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Double Team
+EVs: 252 HP
+- Scald
+- Sludge Bomb
+- Baneful Bunker
 - Toxic
-- Bite
-- Confuse Ray
+
+Overqwil @ Sitrus Berry 
+Level: 69
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 252 Spe
+Ability: Intimidate
+- Barb Barrage
+- Crunch
+- Destiny Bond
+- Fell Stinger
+
+Roserade @ Grass Gem
+Level: 68
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Technician
+EVs: 252 SpA / 252 Spe
+- Weather Ball
+- Toxic
+- Magical Leaf
+- Sludge Bomb
+
+Muk Alola @ Leftovers
+Level: 68
+Ability: Sticky Hold
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk
+- Gunk Shot
+- Shadow Punch
+- Knock Off
+- Pain Split
+
+Scolipede @ Scolipite
+Level: 69
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Speed Boost
+EVs: 252 Atk / 252 HP
+- Megahorn
+- Poison Jab
+- Swords Dance
+- Earthquake
+
+Crobat @ Charti Berry
+Level: 69
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 Spe
+- Sludge Bomb
+- Air Cutter
+- Leech Life
+- Giga Drain
 
 === TRAINER_CLARISSA ===
 Name: Clarissa
