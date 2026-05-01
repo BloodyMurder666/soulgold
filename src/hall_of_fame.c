@@ -317,6 +317,8 @@ static const u16 sHallOfFame_Pal[] = INCBIN_U16("graphics/misc/japanese_hof.gbap
 
 static const u32 sHallOfFame_Gfx[] = INCBIN_U32("graphics/misc/japanese_hof.4bpp.smol");
 
+static const u16 sHallOfFame_Tilemap[] = INCBIN_U16("graphics/misc/japanese_hof.bin");
+
 static const struct HallofFameMon sDummyFameMon =
 {
     .tid = 0x3EA03EA,
@@ -365,8 +367,8 @@ static bool8 InitHallOfFameScreen(void)
         gMain.state++;
         break;
     case 2:
-        SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG1 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_ALL);
-        SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(16, 7));
+        SetGpuReg(REG_OFFSET_BLDCNT, 0);
+        SetGpuReg(REG_OFFSET_BLDALPHA, 0);
         SetGpuReg(REG_OFFSET_BLDY, 0);
         InitHofBgs();
         sHofGfxPtr->state = 0;
@@ -437,7 +439,12 @@ static void Task_Hof_InitMonData(u8 taskId)
         u8 nickname[POKEMON_NAME_LENGTH + 1];
         if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES))
         {
-            sHofMonPtr->mon[i].species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG);
+            u32 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG);
+
+            if (species != SPECIES_EGG)
+                species = GetFormChangeTargetSpecies(&gPlayerParty[i], FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM);
+
+            sHofMonPtr->mon[i].species = species;
             sHofMonPtr->mon[i].tid = GetMonData(&gPlayerParty[i], MON_DATA_OT_ID);
             sHofMonPtr->mon[i].isShiny = GetMonData(&gPlayerParty[i], MON_DATA_IS_SHINY);
             sHofMonPtr->mon[i].personality = GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY);
@@ -624,7 +631,7 @@ static void Task_Hof_TryDisplayAnotherMon(u8 taskId)
         if (gTasks[taskId].tDisplayedMonId < PARTY_SIZE - 1 && currMon[1].species != SPECIES_NONE) // there is another Pokémon to display
         {
             gTasks[taskId].tDisplayedMonId++;
-            BeginNormalPaletteFade(sHofFadePalettes, 0, 12, 12, RGB(16, 29, 24));
+            //BeginNormalPaletteFade(sHofFadePalettes, 0, 12, 12, RGB(16, 29, 24));
             gSprites[gTasks[taskId].tMonSpriteId(currPokeID)].oam.priority = 1;
             gTasks[taskId].func = Task_Hof_DisplayMon;
         }
@@ -671,7 +678,6 @@ static void Task_Hof_DoConfetti(u8 taskId)
             if (gTasks[taskId].tMonSpriteId(i) != SPRITE_NONE)
                 gSprites[gTasks[taskId].tMonSpriteId(i)].oam.priority = 1;
         }
-        BeginNormalPaletteFade(sHofFadePalettes, 0, 12, 12, RGB(16, 29, 24));
         FillWindowPixelBuffer(0, PIXEL_FILL(0));
         CopyWindowToVram(0, COPYWIN_FULL);
         gTasks[taskId].tFrameCount = 7;
@@ -697,7 +703,6 @@ static void Task_Hof_DisplayPlayer(u8 taskId)
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
     ShowBg(0);
     ShowBg(1);
-    ShowBg(3);
     gTasks[taskId].tPlayerSpriteID = CreateTrainerPicSprite(PlayerGenderToFrontTrainerPicId_Debug(gSaveBlock2Ptr->playerGender, TRUE), TRUE, 120, 72, 6, TAG_NONE);
     AddWindow(&sHof_WindowTemplate);
     LoadWindowGfx(1, gSaveBlock2Ptr->optionsWindowFrameType, 0x21D, BG_PLTT_ID(13));
@@ -1314,13 +1319,9 @@ static bool8 LoadHofBgs(void)
             return TRUE;
         break;
     case 2:
-        FillBgTilemapBufferRect_Palette0(1, 1, 0, 0, 0x20, 2);
-        FillBgTilemapBufferRect_Palette0(1, 0, 0, 3, 0x20, 0xB);
-        FillBgTilemapBufferRect_Palette0(1, 1, 0, 0xE, 0x20, 6);
-        FillBgTilemapBufferRect_Palette0(3, 2, 0, 0, 0x20, 0x20);
+        CopyToBgTilemapBufferRect(1, sHallOfFame_Tilemap, 0, 0, 0x20, 0x20);
 
         CopyBgTilemapBufferToVram(1);
-        CopyBgTilemapBufferToVram(3);
         break;
     case 3:
         InitStandardTextBoxWindows();
@@ -1330,7 +1331,6 @@ static bool8 LoadHofBgs(void)
         SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON);
         ShowBg(0);
         ShowBg(1);
-        ShowBg(3);
         sHofGfxPtr->state = 0;
         return FALSE;
     }

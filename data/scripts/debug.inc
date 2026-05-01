@@ -156,27 +156,33 @@ Debug_EventScript_Text_DefensiveIVs:
 @ QUICK PARTY SETUP FOR LEVEL SCALING TESTS
 @ ============================================================================
 
+Debug_EventScript_HiddenGrottoTestCurrentMonBounds::
+	special HiddenGrotto_TestCurrentMonBounds
+	goto_if_eq VAR_RESULT, 0xFFFF, Debug_EventScript_HiddenGrottoTestCurrentMonBounds_NoCurrent
+	buffernumberstring STR_VAR_1, VAR_RESULT
+	buffernumberstring STR_VAR_2, VAR_0x8005
+	buffernumberstring STR_VAR_3, VAR_0x8006
+	msgbox Debug_EventScript_Text_HiddenGrottoTestCurrentMonBounds, MSGBOX_DEFAULT
+	release
+	end
+
+Debug_EventScript_HiddenGrottoTestCurrentMonBounds_NoCurrent:
+	msgbox Debug_EventScript_Text_HiddenGrottoTestCurrentMonBounds_NoCurrent, MSGBOX_DEFAULT
+	release
+	end
+
+Debug_EventScript_Text_HiddenGrottoTestCurrentMonBounds:
+	.string "Hidden Grotto bounds test done.\p"
+	.string "Invalid: {STR_VAR_1}\n"
+	.string "Min species: {STR_VAR_2}\n"
+	.string "Max species: {STR_VAR_3}$"
+
+Debug_EventScript_Text_HiddenGrottoTestCurrentMonBounds_NoCurrent:
+	.string "No current Hidden Grotto for this map.$"
+
 Debug_EventScript_Script_1::
-	msgbox Debug_LevelScaling_PartySetup_Intro, MSGBOX_DEFAULT
-	@ Clear existing party
-	special HealPlayerParty
-	@ Give test party with strong Pokemon at varied levels
-	givemon SPECIES_LUCARIO, 60, item=ITEM_NONE, ball=BALL_POKE, nature=NATURE_JOLLY, hpEv=0, atkEv=252, defEv=0, speedEv=0, spAtkEv=0, spDefEv=252, hpIv=31, atkIv=31, defIv=31, speedIv=31, spAtkIv=31, spDefIv=31, move1=MOVE_CLOSE_COMBAT, move2=MOVE_EXTREME_SPEED, move3=MOVE_ICE_PUNCH, move4=MOVE_SWORDS_DANCE
-	givemon SPECIES_DRAGONITE, 10, item=ITEM_NONE, ball=BALL_POKE, nature=NATURE_ADAMANT, hpEv=252, atkEv=0, defEv=252, speedEv=0, spAtkEv=0, spDefEv=0, hpIv=31, atkIv=31, defIv=31, speedIv=31, spAtkIv=31, spDefIv=31, move1=MOVE_DRAGON_CLAW, move2=MOVE_EARTHQUAKE, move3=MOVE_FIRE_PUNCH, move4=MOVE_DRAGON_DANCE
-	givemon SPECIES_METAGROSS, 20, item=ITEM_NONE, ball=BALL_POKE, nature=NATURE_ADAMANT, hpEv=252, atkEv=0, defEv=252, speedEv=0, spAtkEv=0, spDefEv=0, hpIv=31, atkIv=31, defIv=31, speedIv=31, spAtkIv=31, spDefIv=31, move1=MOVE_METEOR_MASH, move2=MOVE_EARTHQUAKE, move3=MOVE_ZEN_HEADBUTT, move4=MOVE_BULLET_PUNCH
-	givemon SPECIES_GARCHOMP, 30, item=ITEM_NONE, ball=BALL_POKE, nature=NATURE_JOLLY, hpEv=0, atkEv=252, defEv=0, speedEv=0, spAtkEv=0, spDefEv=252, hpIv=31, atkIv=31, defIv=31, speedIv=31, spAtkIv=31, spDefIv=31, move1=MOVE_EARTHQUAKE, move2=MOVE_DRAGON_CLAW, move3=MOVE_STONE_EDGE, move4=MOVE_SWORDS_DANCE
-	givemon SPECIES_SALAMENCE, 40, item=ITEM_NONE, ball=BALL_POKE, nature=NATURE_JOLLY, hpEv=0, atkEv=252, defEv=0, speedEv=0, spAtkEv=0, spDefEv=252, hpIv=31, atkIv=31, defIv=31, speedIv=31, spAtkIv=31, spDefIv=31, move1=MOVE_DRAGON_CLAW, move2=MOVE_EARTHQUAKE, move3=MOVE_FLAMETHROWER, move4=MOVE_DRAGON_DANCE
-	givemon SPECIES_TYRANITAR, 50, item=ITEM_NONE, ball=BALL_POKE, nature=NATURE_ADAMANT, hpEv=252, atkEv=252, defEv=0, speedEv=0, spAtkEv=0, spDefEv=0, hpIv=31, atkIv=31, defIv=31, speedIv=31, spAtkIv=31, spDefIv=31, move1=MOVE_STONE_EDGE, move2=MOVE_CRUNCH, move3=MOVE_EARTHQUAKE, move4=MOVE_DRAGON_DANCE
-	@ Set all badges for level cap testing
-	setflag FLAG_BADGE01_GET
-	setflag FLAG_BADGE02_GET
-	setflag FLAG_BADGE03_GET
-	setflag FLAG_BADGE04_GET
-	setflag FLAG_BADGE05_GET
-	setflag FLAG_BADGE06_GET
-	setflag FLAG_BADGE07_GET
-	setflag FLAG_BADGE08_GET
-	msgbox Debug_LevelScaling_PartySetup_Complete, MSGBOX_DEFAULT
+	special GameClear
+	waitstate
 	release
 	end
 
