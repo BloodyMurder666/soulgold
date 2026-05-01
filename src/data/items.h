@@ -32,28 +32,54 @@ static const u8 sMaxReviveDesc[]      = _("Revives a fainted\n"
                                           "its HP.");
 
 static const u8 sHealthFeatherDesc[]  = _("An item that raises\n"
+                                          "the Innate HP value\n"
+                                          "of a Pokémon.");
+static const u8 sHealthMochiDesc[]    = _("An item that raises\n"
                                           "the base HP of\n"
                                           "a Pokémon.");
 
 static const u8 sMuscleFeatherDesc[]  = _("An item that raises\n"
+                                          "the Innate Attack\n"
+                                          "value of a Pokémon.");
+static const u8 sMuscleMochiDesc[]    = _("An item that raises\n"
                                           "the base Attack of\n"
                                           "a Pokémon.");
 
 static const u8 sResistFeatherDesc[]  = _("An item that raises\n"
+                                          "the Innate Defense\n"
+                                          "value of a Pokémon.");
+static const u8 sResistMochiDesc[]    = _("An item that raises\n"
                                           "the base Defense\n"
                                           "of a Pokémon.");
 
 static const u8 sGeniusFeatherDesc[]  = _("An item that raises\n"
+                                          "the Innate Sp. Atk\n"
+                                          "value of a Pokémon.");
+static const u8 sGeniusMochiDesc[]    = _("An item that raises\n"
                                           "the base Sp. Atk.\n"
                                           "of a Pokémon.");
 
 static const u8 sCleverFeatherDesc[]  = _("An item that raises\n"
+                                          "the Innate Sp. Def\n"
+                                          "value of a Pokémon.");
+static const u8 sCleverMochiDesc[]    = _("An item that raises\n"
                                           "the base Sp. Def.\n"
                                           "of a Pokémon.");
 
 static const u8 sSwiftFeatherDesc[]   = _("An item that raises\n"
+                                          "the Innate Speed\n"
+                                          "value of a Pokémon.");
+static const u8 sSwiftMochiDesc[]     = _("An item that raises\n"
                                           "the base Speed of\n"
                                           "a Pokémon.");
+
+static const u8 sRustyCharmDesc[]     = _("An item that zeroes\n"
+                                          "the Innate Attack\n"
+                                          "value of Pokémon.");
+
+static const u8 sLaggingCharmDesc[]   = _("An item that zeroes\n"
+                                          "the Innate Speed\n"
+                                          "value of Pokémon.");
 
 static const u8 sBigMushroomDesc[]    = _("A rare mushroom\n"
                                           "that would sell at a\n"
@@ -1638,6 +1664,36 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 30,
         .iconPic = gItemIcon_Vitamin,
         .iconPalette = gItemIconPalette_Carbos,
+    },
+
+    [ITEM_RUSTY_CHARM] =
+    {
+        .name = ITEM_NAME("Grimy Herb"),
+        .price = 20000,
+        .description = sRustyCharmDesc,
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_STAT_BOOST_FEATHER,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .effect = gItemEffect_ZeroAtkIV,
+        .flingPower = 20,
+        .iconPic = gItemIcon_Mint,
+        .iconPalette = gItemIconPalette_RedMint,
+    },
+
+    [ITEM_LAGGING_CHARM] =
+    {
+        .name = ITEM_NAME("Goopy Herb"),
+        .price = 20000,
+        .description = sLaggingCharmDesc,
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_STAT_BOOST_FEATHER,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .effect = gItemEffect_ZeroSpeedIV,
+        .flingPower = 20,
+        .iconPic = gItemIcon_Mint,
+        .iconPalette = gItemIconPalette_GreenMint,
     },
 
     [ITEM_PP_UP] =
@@ -15662,7 +15718,7 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Health Mochi"),
         .pluralName = ITEM_PLURAL_NAME("Health Mochi"),
         .price = 500,
-        .description = sHealthFeatherDesc,
+        .description = sHealthMochiDesc,
         .pocket = POCKET_ITEMS,
         .sortType = ITEM_TYPE_STAT_BOOST_MOCHI,
         .type = ITEM_USE_PARTY_MENU,
@@ -15678,7 +15734,7 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Muscle Mochi"),
         .pluralName = ITEM_PLURAL_NAME("Muscle Mochi"),
         .price = 500,
-        .description = sMuscleFeatherDesc,
+        .description = sMuscleMochiDesc,
         .pocket = POCKET_ITEMS,
         .sortType = ITEM_TYPE_STAT_BOOST_MOCHI,
         .type = ITEM_USE_PARTY_MENU,
@@ -15694,7 +15750,7 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Resist Mochi"),
         .pluralName = ITEM_PLURAL_NAME("Resist Mochi"),
         .price = 500,
-        .description = sResistFeatherDesc,
+        .description = sResistMochiDesc,
         .pocket = POCKET_ITEMS,
         .sortType = ITEM_TYPE_STAT_BOOST_MOCHI,
         .type = ITEM_USE_PARTY_MENU,
@@ -15710,7 +15766,7 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Genius Mochi"),
         .pluralName = ITEM_PLURAL_NAME("Genius Mochi"),
         .price = 500,
-        .description = sGeniusFeatherDesc,
+        .description = sGeniusMochiDesc,
         .pocket = POCKET_ITEMS,
         .sortType = ITEM_TYPE_STAT_BOOST_MOCHI,
         .type = ITEM_USE_PARTY_MENU,
@@ -15726,7 +15782,7 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Clever Mochi"),
         .pluralName = ITEM_PLURAL_NAME("Clever Mochi"),
         .price = 500,
-        .description = sCleverFeatherDesc,
+        .description = sCleverMochiDesc,
         .pocket = POCKET_ITEMS,
         .sortType = ITEM_TYPE_STAT_BOOST_MOCHI,
         .type = ITEM_USE_PARTY_MENU,
@@ -15742,7 +15798,7 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Swift Mochi"),
         .pluralName = ITEM_PLURAL_NAME("Swift Mochi"),
         .price = 500,
-        .description = sSwiftFeatherDesc,
+        .description = sSwiftMochiDesc,
         .pocket = POCKET_ITEMS,
         .sortType = ITEM_TYPE_STAT_BOOST_MOCHI,
         .type = ITEM_USE_PARTY_MENU,

@@ -255,53 +255,55 @@ const u8 gItemEffect_ZincEX[11] = {
     [6] = ITEM6_MAX_EV,
 };
 
+const u8 gItemEffect_ZeroAtkIV[11] = {
+    [9] = ITEM9_ZERO_IV_ATK,
+    [10] = ITEM10_ZERO_IV,
+};
+
+const u8 gItemEffect_ZeroSpeedIV[11] = {
+    [9] = ITEM9_ZERO_IV_SPEED,
+    [10] = ITEM10_ZERO_IV,
+};
+
 #define FEATHER_FRIENDSHIP_CHANGE(i)             \
     [(i) + 0] = 3, /* Friendship change, low */  \
     [(i) + 1] = 2, /* Friendship change, mid */  \
     [(i) + 2] = 1  /* Friendship change, high */
 
 const u8 gItemEffect_HpFeather[11] = {
-    [4] = ITEM4_EV_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
-    [6] = ITEM6_ADD_ONE_EV,
-    FEATHER_FRIENDSHIP_CHANGE(7),
-    [10] = 0,
+    FEATHER_FRIENDSHIP_CHANGE(6),
+    [10] = ITEM10_IV_HP,
 };
 
 const u8 gItemEffect_AtkFeather[11] = {
-    [4] = ITEM4_EV_ATK,
     [5] = ITEM5_FRIENDSHIP_ALL,
-    [6] = ITEM6_ADD_ONE_EV,
-    FEATHER_FRIENDSHIP_CHANGE(7),
-    [10] = 0,
+    FEATHER_FRIENDSHIP_CHANGE(6),
+    [10] = ITEM10_IV_ATK,
 };
 
 const u8 gItemEffect_DefFeather[11] = {
-    [5] = ITEM5_EV_DEF | ITEM5_FRIENDSHIP_ALL,
-    [6] = ITEM6_ADD_ONE_EV,
-    FEATHER_FRIENDSHIP_CHANGE(7),
-    [10] = 0,
+    [5] = ITEM5_FRIENDSHIP_ALL,
+    FEATHER_FRIENDSHIP_CHANGE(6),
+    [10] = ITEM10_IV_DEF,
 };
 
 const u8 gItemEffect_SpeedFeather[11] = {
-    [5] = ITEM5_EV_SPEED | ITEM5_FRIENDSHIP_ALL,
-    [6] = ITEM6_ADD_ONE_EV,
-    FEATHER_FRIENDSHIP_CHANGE(7),
-    [10] = 0,
+    [5] = ITEM5_FRIENDSHIP_ALL,
+    FEATHER_FRIENDSHIP_CHANGE(6),
+    [10] = ITEM10_IV_SPEED,
 };
 
 const u8 gItemEffect_SpatkFeather[11] = {
-    [5] = ITEM5_EV_SPATK | ITEM5_FRIENDSHIP_ALL,
-    [6] = ITEM6_ADD_ONE_EV,
-    FEATHER_FRIENDSHIP_CHANGE(7),
-    [10] = 0,
+    [5] = ITEM5_FRIENDSHIP_ALL,
+    FEATHER_FRIENDSHIP_CHANGE(6),
+    [10] = ITEM10_IV_SPATK,
 };
 
 const u8 gItemEffect_SpdefFeather[11] = {
-    [5] = ITEM5_EV_SPDEF | ITEM5_FRIENDSHIP_ALL,
-    [6] = ITEM6_ADD_ONE_EV,
-    FEATHER_FRIENDSHIP_CHANGE(7),
-    [10] = 0,
+    [5] = ITEM5_FRIENDSHIP_ALL,
+    FEATHER_FRIENDSHIP_CHANGE(6),
+    [10] = ITEM10_IV_SPDEF,
 };
 
 const u8 gItemEffect_HpMochi[11] = {

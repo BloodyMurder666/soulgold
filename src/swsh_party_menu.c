@@ -6392,6 +6392,38 @@ static void GetMedicineItemEffectMessage(enum Item item, u32 statusCured)
         StringCopy(gStringVar2, gText_SpDef3);
         StringExpandPlaceholders(gStringVar4, gText_PkmnBaseVar2StatIncreased);
         break;
+    case ITEM_EFFECT_HP_IV:
+        StringCopy(gStringVar2, gText_HP3);
+        StringExpandPlaceholders(gStringVar4, gText_PkmnBaseVar2StatIncreased);
+        break;
+    case ITEM_EFFECT_ATK_IV:
+        StringCopy(gStringVar2, gText_Attack3);
+        StringExpandPlaceholders(gStringVar4, gText_PkmnBaseVar2StatIncreased);
+        break;
+    case ITEM_EFFECT_DEF_IV:
+        StringCopy(gStringVar2, gText_Defense3);
+        StringExpandPlaceholders(gStringVar4, gText_PkmnBaseVar2StatIncreased);
+        break;
+    case ITEM_EFFECT_SPEED_IV:
+        StringCopy(gStringVar2, gText_Speed2);
+        StringExpandPlaceholders(gStringVar4, gText_PkmnBaseVar2StatIncreased);
+        break;
+    case ITEM_EFFECT_SPATK_IV:
+        StringCopy(gStringVar2, gText_SpAtk3);
+        StringExpandPlaceholders(gStringVar4, gText_PkmnBaseVar2StatIncreased);
+        break;
+    case ITEM_EFFECT_SPDEF_IV:
+        StringCopy(gStringVar2, gText_SpDef3);
+        StringExpandPlaceholders(gStringVar4, gText_PkmnBaseVar2StatIncreased);
+        break;
+    case ITEM_EFFECT_ATK_IV_ZERO:
+        StringCopy(gStringVar2, gText_Attack3);
+        StringExpandPlaceholders(gStringVar4, gText_PkmnVar2IVWasMinimized);
+        break;
+    case ITEM_EFFECT_SPEED_IV_ZERO:
+        StringCopy(gStringVar2, gText_Speed2);
+        StringExpandPlaceholders(gStringVar4, gText_PkmnVar2IVWasMinimized);
+        break;
     case ITEM_EFFECT_PP_UP:
     case ITEM_EFFECT_PP_MAX:
         StringExpandPlaceholders(gStringVar4, gText_MovesPPIncreased);
@@ -6530,6 +6562,7 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
             switch (tItemEffect)
             {
             case ITEM_EFFECT_HP_EV:
+            case ITEM_EFFECT_HP_IV:
                 UpdateMonDisplayInfoAfterRareCandy(gPartyMenu.slotId, mon);
                 break;
             case ITEM_EFFECT_ATK_EV:
@@ -6537,6 +6570,13 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
             case ITEM_EFFECT_SPEED_EV:
             case ITEM_EFFECT_SPATK_EV:
             case ITEM_EFFECT_SPDEF_EV:
+            case ITEM_EFFECT_ATK_IV:
+            case ITEM_EFFECT_DEF_IV:
+            case ITEM_EFFECT_SPEED_IV:
+            case ITEM_EFFECT_SPATK_IV:
+            case ITEM_EFFECT_SPDEF_IV:
+            case ITEM_EFFECT_ATK_IV_ZERO:
+            case ITEM_EFFECT_SPEED_IV_ZERO:
                 break;
             default:
                 SetPartyMonAilmentGfx(mon, &sPartyMenuBoxes[gPartyMenu.slotId]);
@@ -8805,6 +8845,22 @@ enum ItemEffectType GetItemEffectType(enum Item item)
         return ITEM_EFFECT_SPEED_EV;
     else if (itemEffect[5] & ITEM5_EV_DEF)
         return ITEM_EFFECT_DEF_EV;
+    else if (itemEffect[10] & ITEM10_IV_HP)
+        return ITEM_EFFECT_HP_IV;
+    else if (itemEffect[10] & ITEM10_IV_ATK)
+        return ITEM_EFFECT_ATK_IV;
+    else if (itemEffect[10] & ITEM10_IV_DEF)
+        return ITEM_EFFECT_DEF_IV;
+    else if (itemEffect[10] & ITEM10_IV_SPEED)
+        return ITEM_EFFECT_SPEED_IV;
+    else if (itemEffect[10] & ITEM10_IV_SPATK)
+        return ITEM_EFFECT_SPATK_IV;
+    else if (itemEffect[10] & ITEM10_IV_SPDEF)
+        return ITEM_EFFECT_SPDEF_IV;
+    else if ((itemEffect[10] & ITEM10_ZERO_IV) && (itemEffect[9] & ITEM9_ZERO_IV_ATK))
+        return ITEM_EFFECT_ATK_IV_ZERO;
+    else if ((itemEffect[10] & ITEM10_ZERO_IV) && (itemEffect[9] & ITEM9_ZERO_IV_SPEED))
+        return ITEM_EFFECT_SPEED_IV_ZERO;
     else if (itemEffect[4] & ITEM4_EVO_STONE)
         return ITEM_EFFECT_EVO_STONE;
     else if (itemEffect[4] & ITEM4_PP_UP)

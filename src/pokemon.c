@@ -858,6 +858,16 @@ static const u8 sGetMonDataEVConstants[] =
     MON_DATA_SPATK_EV
 };
 
+static const u8 sGetMonDataIVConstants[] =
+{
+    MON_DATA_HP_IV,
+    MON_DATA_ATK_IV,
+    MON_DATA_DEF_IV,
+    MON_DATA_SPEED_IV,
+    MON_DATA_SPDEF_IV,
+    MON_DATA_SPATK_IV
+};
+
 // For stat-raising items
 static const enum Stat sStatsToRaise[] =
 {
@@ -3708,6 +3718,59 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, enum Item item, u8 partyIndex, 
     itemEffect = GetItemEffect(item);
     isLevelUpItem = (itemEffect[3] & ITEM3_LEVEL_UP) != 0;
     levelBefore = GetMonData(mon, MON_DATA_LEVEL, NULL);
+
+    if (itemEffect[10] & ITEM10_IVS_ALL)
+    {
+        u8 ivFlags = (itemEffect[10] & ITEM10_IVS_ALL) >> 1;
+
+        for (temp1 = 0; temp1 < NUM_STATS; temp1++)
+        {
+            if (ivFlags & (1 << temp1))
+            {
+                dataUnsigned = GetMonData(mon, sGetMonDataIVConstants[temp1]);
+                if (dataUnsigned >= MAX_PER_STAT_IVS)
+                    return TRUE;
+
+                if (modifyStats)
+                {
+                    dataUnsigned++;
+                    SetMonData(mon, sGetMonDataIVConstants[temp1], &dataUnsigned);
+                    CalculateMonStats(mon);
+                }
+                retVal = FALSE;
+            }
+        }
+    }
+
+    if ((itemEffect[10] & ITEM10_ZERO_IV) && (itemEffect[9] & ITEM9_ZERO_IV_ATK))
+    {
+        dataUnsigned = GetMonData(mon, MON_DATA_ATK_IV);
+        if (dataUnsigned == 0)
+            return TRUE;
+
+        if (modifyStats)
+        {
+            dataUnsigned = 0;
+            SetMonData(mon, MON_DATA_ATK_IV, &dataUnsigned);
+            CalculateMonStats(mon);
+        }
+        retVal = FALSE;
+    }
+
+    if ((itemEffect[10] & ITEM10_ZERO_IV) && (itemEffect[9] & ITEM9_ZERO_IV_SPEED))
+    {
+        dataUnsigned = GetMonData(mon, MON_DATA_SPEED_IV);
+        if (dataUnsigned == 0)
+            return TRUE;
+
+        if (modifyStats)
+        {
+            dataUnsigned = 0;
+            SetMonData(mon, MON_DATA_SPEED_IV, &dataUnsigned);
+            CalculateMonStats(mon);
+        }
+        retVal = FALSE;
+    }
 
     // Do item effect
     for (i = 0; i < ITEM_EFFECT_ARG_START; i++)

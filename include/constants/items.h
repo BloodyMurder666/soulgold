@@ -1073,6 +1073,8 @@ enum __attribute__((packed)) Item
     ITEM_CALCIUM_EX = 891,
     ITEM_ZINC_EX = 892,
     ITEM_CARBOS_EX = 893,
+    ITEM_RUSTY_CHARM = 894,
+    ITEM_LAGGING_CHARM = 895,
 
     ITEMS_COUNT,
     ITEM_FIELD_ARROW = ITEMS_COUNT,

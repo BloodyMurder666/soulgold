@@ -49,6 +49,19 @@
 #define ITEM5_FRIENDSHIP_ALL    (ITEM5_FRIENDSHIP_LOW | ITEM5_FRIENDSHIP_MID | ITEM5_FRIENDSHIP_HIGH)
 
 #define ITEM10_IS_VITAMIN       0x1
+#define ITEM10_IV_HP            0x2
+#define ITEM10_IV_ATK           0x4
+#define ITEM10_IV_DEF           0x8
+#define ITEM10_IV_SPEED         0x10
+#define ITEM10_IV_SPDEF         0x20
+#define ITEM10_IV_SPATK         0x40
+#define ITEM10_ZERO_IV          0x80
+
+#define ITEM10_IVS_ALL          (ITEM10_IV_HP | ITEM10_IV_ATK | ITEM10_IV_DEF | ITEM10_IV_SPEED | ITEM10_IV_SPDEF | ITEM10_IV_SPATK)
+
+// field 9 masks
+#define ITEM9_ZERO_IV_ATK       0x1
+#define ITEM9_ZERO_IV_SPEED     0x2
 
 // fields 6 and onwards (except field 10) are item-specific arguments
 #define ITEM_EFFECT_ARG_START 6
@@ -90,6 +103,14 @@ enum ItemEffectType
     ITEM_EFFECT_SPDEF_EV,
     ITEM_EFFECT_SPEED_EV,
     ITEM_EFFECT_DEF_EV,
+    ITEM_EFFECT_HP_IV,
+    ITEM_EFFECT_ATK_IV,
+    ITEM_EFFECT_DEF_IV,
+    ITEM_EFFECT_SPEED_IV,
+    ITEM_EFFECT_SPATK_IV,
+    ITEM_EFFECT_SPDEF_IV,
+    ITEM_EFFECT_ATK_IV_ZERO,
+    ITEM_EFFECT_SPEED_IV_ZERO,
     ITEM_EFFECT_EVO_STONE,
     ITEM_EFFECT_PP_UP,
     ITEM_EFFECT_PP_MAX,
