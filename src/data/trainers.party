@@ -2005,50 +2005,140 @@ Class: Elite Four
 Pic: Elite Four Bruno
 Gender: Male
 Music: Elite Four
-Items: Full Restore / Full Restore
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Yellow
 
-Hitmonchan @ Scope Lens
-Level: 53
+Hitmontop @ White Herb
+Ability: Intimidate
+Level: 67
+EVs: 252 HP / 252 Atk
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Mach Punch
-- Pursuit
-- Dizzy Punch
+- Rapid Spin
+- Close Combat
+- Ice Spinner
 - Thunder Punch
 
-Heracross
-Level: 52
+Heracross @ Flame Orb
+Level: 68
+EVs: 252 Atk / 252 Spe
+Ability: Guts
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Cross Chop
+- Shadow Claw
 - Megahorn
-- Take Down
+- Close Combat
 - Earthquake
 
-Hitmonlee @ Silk Scarf
-Level: 53
+Staraptor @ Staraptite
+Level: 69
+EVs: 252 Atk / 252 Spe
+Ability: Intimidate
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Body Slam
-- Meditate
-- Reversal
-- Hi Jump Kick
+- Brave Bird
+- Close Combat
+- Knock Off
+- Blaze Kick
 
-Steelix
-Level: 53
+Annihilape @ Leftovers
+Level: 68
+EVs: 252 Atk / 252 HP
+Ability: Anger Point
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Crunch
-- Earthquake
-- Rock Slide
-- Iron Tail
+- Rage Fist
+- Bulk Up
+- Close Combat
+- Outrage
 
-Machamp @ Black Belt
-Level: 54
+Kommo O @ Dragon Gem
+Level: 69
+EVs: 252 Atk / 252 HP
+Ability: Soundproof
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Dragon Dance
+- Dragon Claw
+- Close Combat
+- Clanging Scales
+
+Machamp @ Expert Belt
+Level: 69
+Ability: No Guard
+EVs: 252 Atk / 252 Spe
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Rock Slide
-- Fire Punch
-- Vital Throw
+- Ice Punch
+- Dynamic Punch
 - Cross Chop
+
+=== TRAINER_BRUNO_1 ===
+Name: Bruno
+Class: Elite Four
+Pic: Elite Four Bruno
+Gender: Male
+Music: Elite Four
+Double Battle: Yes
+AI: Smart Trainer
+Mugshot: Yellow
+Difficulty: Hard
+
+Hitmontop @ White Herb
+Ability: Intimidate
+Level: 69
+EVs: 252 HP / 252 Atk
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Rapid Spin
+- Close Combat
+- Ice Spinner
+- Thunder Punch
+
+Staraptor @ Staraptite
+Level: 69
+EVs: 252 Atk / 252 Spe
+Ability: Intimidate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Brave Bird
+- Close Combat
+- Knock Off
+- Blaze Kick
+
+Gallade @ Choice Scarf
+Level: 69
+EVs: 252 Atk / 252 Spe
+Ability: Sharpness
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Shadow Claw
+- Leaf Blade
+- Close Combat
+- Psycho Cut
+
+Annihilape @ Leftovers
+Level: 70
+EVs: 252 Atk / 252 HP
+Ability: Anger Point
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Rage Fist
+- Bulk Up
+- Drain Punch
+- Outrage
+
+Kommo O @ Dragon Gem
+Level: 70
+EVs: 252 Atk / 252 HP
+Ability: Soundproof
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Dragon Dance
+- Dragon Claw
+- Close Combat
+- Clanging Scales
+
+Machamp @ Expert Belt
+Level: 70
+Ability: No Guard
+EVs: 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Rock Slide
+- Ice Punch
+- Dynamic Punch
+- Fissure
 
 === TRAINER_BRUNO_2 ===
 Name: Bruno
@@ -2893,58 +2983,154 @@ Class: Champion
 Pic: Champion Lance
 Gender: Male
 Music: Hg Champion
-Items: Full Restore / Full Restore
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Purple
 
-Gyarados @ Leftovers
-Level: 54
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Surf
-- Rain Dance
-- Hyper Beam
-- Rock Smash
+Exeggutor-Alola @ Sitrus Berry  
+Ability: Harvest  
+Level: 69  
+Tera Type: Grass  
+EVs: 252 HP / 252 Atk / 4 SpD  
+Adamant Nature  
+- Dragon Hammer  
+- Earthquake  
+- Seed Bomb  
+- Zen Headbutt
 
-Dragonite @ Sitrus Berry
-Level: 55
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Blizzard
-- Fire Blast
-- Thunder
-- Extreme Speed
-
-Charizard @ Charcoal
-Level: 54
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Flamethrower
-- Wing Attack
-- Double Team
-- Steel Wing
-
-Dragonite
-Level: 55
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Bounce
+Dragonite @ Dragoninite  
+Ability: Multiscale  
+Level: 71  
+Tera Type: Dragon  
+Shiny: Yes
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Adamant Nature  
+- Dragon Dance  
+- Dual Wingbeat  
+- Iron Head  
 - Dragon Claw
-- Waterfall
-- Dragon Dance
 
-Aerodactyl @ Silk Scarf
-Level: 54
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Wing Attack
-- Rock Slide
-- Hyper Beam
-- Earthquake
+Baxcalibur @ Ability Shield  
+Ability: Thermal Exchange  
+Level: 70  
+Tera Type: Dragon  
+EVs: 252 HP / 252 Atk / 4 SpD  
+Adamant Nature  
+- Glaive Rush  
+- High Horsepower  
+- Icicle Crash  
+- Substitute
 
-Dragonite @ Sitrus Berry
-Level: 56
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Thunder
-- Safeguard
+Hydrapple @ Yache Berry  
+Ability: Sticky Hold  
+Level: 70  
+Tera Type: Grass  
+EVs: 252 Atk / 252 SpA  
+- Draco Meteor  
+- Leaf Storm  
+- Giga Drain  
 - Outrage
-- Hyper Beam
+
+Dragapult @ Choice Scarf  
+Ability: Infiltrator  
+Level: 70  
+Tera Type: Dragon  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Dragon Darts  
+- Phantom Force  
+- Body Slam  
+- Trick
+
+Goodra-Hisui @ Assault Vest  
+Ability: Sap Sipper  
+Level: 70  
+Tera Type: Steel  
+EVs: 252 HP / 252 SpA / 4 SpD  
+Modest Nature  
+IVs: 0 Atk  
+- Blizzard  
+- Draco Meteor  
+- Fire Blast  
+- Flash Cannon
+
+=== TRAINER_LANCE_1 ===
+Name: Lance
+Class: Champion
+Pic: Champion Lance
+Gender: Male
+Music: Hg Champion
+Double Battle: Yes
+AI: Smart Trainer
+Mugshot: Purple
+Difficulty: Hard
+
+Baxcalibur @ Ability Shield  
+Ability: Thermal Exchange  
+Level: 70  
+Tera Type: Dragon  
+EVs: 252 HP / 252 Atk / 4 SpD  
+Adamant Nature  
+- Glaive Rush  
+- High Horsepower  
+- Icicle Crash  
+- Substitute
+
+Dragonite @ Dragoninite  
+Ability: Multiscale  
+Level: 71  
+Shiny: Yes
+Tera Type: Dragon  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Adamant Nature  
+- Draco Meteor  
+- Hurricane 
+- Flamethrower
+- Ice Beam
+
+Exeggutor-Alola @ Sitrus Berry  
+Ability: Harvest  
+Level: 69  
+Tera Type: Grass  
+EVs: 252 HP / 252 Atk / 4 SpD  
+Adamant Nature  
+- Dragon Hammer  
+- Earthquake  
+- Seed Bomb  
+- Zen Headbutt
+
+Hydrapple @ Yache Berry  
+Ability: Sticky Hold  
+Level: 70  
+Tera Type: Grass  
+EVs: 252 Atk / 252 SpA  
+- Draco Meteor  
+- Leaf Storm  
+- Giga Drain  
+- Outrage
+
+Dragapult @ Choice Scarf  
+Ability: Infiltrator  
+Level: 70  
+Tera Type: Dragon  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Dragon Darts  
+- Phantom Force  
+- Body Slam  
+- Trick
+
+Goodra-Hisui @ Assault Vest  
+Ability: Sap Sipper  
+Level: 70  
+Tera Type: Steel  
+EVs: 252 HP / 252 SpA / 4 SpD  
+Modest Nature  
+IVs: 0 Atk  
+- Blizzard  
+- Draco Meteor  
+- Fire Blast  
+- Flash Cannon
 
 === TRAINER_THERESA ===
 Name: Theresa
@@ -4323,50 +4509,138 @@ Class: Elite Four
 Pic: Elite Four Karen
 Gender: Male
 Music: Elite Four
-Items: Full Restore / Full Restore
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Blue
 
-Umbreon @ Sitrus Berry
-Level: 54
+Grimmsnarl @ Light Clay
+Level: 69
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Faint Attack
-- Double Team
+EVs: 252 HP / 252 Atk
+Ability: Prankster
+- Reflect
+- Light Screen
+- Parting Shot
+- Play Rough
+
+Umbreon @ Sitrus Berry
+Level: 69
+Ability: Synchronize
+EVs: 252 HP / 252 Def
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Wish
+- Foul Play
 - Baton Pass
 - Moonlight
 
-Gengar
-Level: 53
+Kingambit @ Blackglasses
+Level: 69
+EVs: 252 Atk / 252 SpD
+Ability: Supreme Overlord
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Shadow Ball
-- Hypnosis
-- Dream Eater
-- Confuse Ray
+- Kowtow Cleave
+- Iron Head
+- Sucker Punch
+- Brick Break
 
-Vileplume @ Leftovers
-Level: 53
+Scrafty @ Leftovers
+Level: 69
+Ability: Shed Skin
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Sleep Powder
-- Giga Drain
-- Leech Seed
-- Substitute
-
-Honchkrow @ Sharp Beak
-Level: 53
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Drill Peck
-- Faint Attack
-- Steel Wing
-- Haze
-
-Houndoom @ Black Glasses
-Level: 55
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Flamethrower
+EVs: 252 Atk / 252 Spe
+- Hi Jump Kick
 - Crunch
-- Iron Tail
-- Reversal
+- Parting Shot
+- Head Smash
+
+Honchkrow @ Life Orb
+Level: 69
+Ability: Moxie
+EVs: 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Heat Wave
+- Dark Pulse
+- Steel Wing
+- Brave Bird
+
+Absol @ Absolite Z
+Level: 70
+EVs: 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Shadow Claw
+- Night Slash
+- Swords Dance
+- Play Rough
+
+=== TRAINER_KAREN_1 ===
+Name: Karen
+Class: Elite Four
+Pic: Elite Four Karen
+Gender: Male
+Music: Elite Four
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Blue
+Difficulty: Hard
+
+Grimmsnarl @ Light Clay
+Level: 70
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk
+Ability: Prankster
+- Reflect
+- Light Screen
+- Parting Shot
+- Play Rough
+
+Absol @ Absolite Z
+Level: 71
+EVs: 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Shadow Claw
+- Night Slash
+- Swords Dance
+- Play Rough
+
+Umbreon @ Sitrus Berry
+Level: 70
+Ability: Synchronize
+EVs: 252 HP / 252 Def
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Wish
+- Foul Play
+- Baton Pass
+- Moonlight
+
+Kingambit @ Blackglasses
+Level: 70
+EVs: 252 Atk / 252 SpD
+Ability: Supreme Overlord
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Kowtow Cleave
+- Iron Head
+- Sucker Punch
+- Brick Break
+
+Scrafty @ Leftovers
+Level: 70
+Ability: Intimidate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 252 Spe
+- Hi Jump Kick
+- Crunch
+- Parting Shot
+- Head Smash
+
+Honchkrow @ Life Orb
+Level: 70
+Ability: Moxie
+EVs: 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Heat Wave
+- Dark Pulse
+- Steel Wing
+- Brave Bird
 
 === TRAINER_WHITNEY_1 ===
 Name: Whitney
