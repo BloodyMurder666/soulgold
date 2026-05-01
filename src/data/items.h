@@ -3281,11 +3281,11 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_STRANGE_SOUVENIR] =
     {
         .name = ITEM_NAME("Strange Souvenir"),
-        .price = (I_PRICE >= GEN_7) ? 3000 : 10,
+        .price = (I_PRICE >= GEN_7) ? 8500 : 10,
         .description = COMPOUND_STRING(
             "An ornament that\n"
             "depicts a Pokémon\n"
-            "from Alola."),
+            "from another region."),
         .pocket = POCKET_ITEMS,
         .sortType = ITEM_TYPE_EVOLUTION_STONE,
         .type = ITEM_USE_PARTY_MENU,
@@ -11003,7 +11003,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_UTILITY_UMBRELLA] =
     {
         .name = ITEM_NAME("Utility Umbrella"),
-        .price = (I_PRICE >= GEN_9) ? 15000 : 4000,
+        .price = (I_PRICE >= GEN_9) ? 5000 : 4000,
         .holdEffect = HOLD_EFFECT_UTILITY_UMBRELLA,
         .description = COMPOUND_STRING(
             "An umbrella that\n"
@@ -15461,7 +15461,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_UNREMARKABLE_TEACUP] =
     {
         .name = ITEM_NAME("Unremarkable Teacup"),
-        .price = 1600,
+        .price = 5000,
         .description = COMPOUND_STRING(
             "A cracked teacup\n"
             "that makes certain\n"

@@ -8795,7 +8795,7 @@
       "id": "LAYOUT_GOLDENROD_SHORE",
       "name": "GoldenrodShore_Layout",
       "width": 30,
-      "height": 40,
+      "height": 33,
       "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_OlivineCity",
       "border_filepath": "data/layouts/GoldenrodShore/border.bin",

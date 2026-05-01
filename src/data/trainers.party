@@ -3292,58 +3292,143 @@ Class: Rival
 Pic: Silver
 Gender: Male
 Music: Silver
-Items: Hyper Potion
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Pink
 
-Ursaring @ Chesto Berry
-Level: 45
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Slash
-- Faint Attack
-- Rock Smash
-- Rest
+Gengar @ Air Balloon  
+Ability: Cursed Body  
+Level: 65  
+Tera Type: Ghost  
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe 
+- Hypnosis  
+- Thunderbolt  
+- Shadow Ball  
+- Dream Eater  
 
-Golbat
-Level: 45
+Kingambit @ Air Balloon  
+Ability: Supreme Overlord  
+Level: 65  
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Toxic
-- Double Team
-- Confuse Ray
-- Wing Attack
+Tera Type: Dark  
+- Kowtow Cleave  
+- Iron Head  
+- Low Kick  
+- Zen Headbutt  
 
-Victreebel @ Quick Claw
-Level: 46
+Staraptor @ Sharp Beak  
+Ability: Intimidate  
+Level: 65  
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Sludge Bomb
-- Giga Drain
-- Sleep Powder
-- Growth
+Tera Type: Normal  
+- Brave Bird  
+- Close Combat  
+- U-Turn  
+- Facade  
 
-Houndoom
-Level: 46
+Victreebel @ Occa Berry  
+Ability: Gluttony  
+Level: 65  
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Flamethrower
-- Iron Tail
-- Crunch
-- Double Team
+Tera Type: Grass  
+- Solar Beam  
+- Giga Drain  
+- Sludge Bomb  
+- Sleep Powder  
 
-Feraligatr @ Mystic Water
-Level: 47
+Feraligatr @ Feraligite  
+Ability: Sheer Force  
+Level: 65  
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Ice Punch
-- Surf
-- Slash
-- Bite
+Tera Type: Water  
+- Crunch  
+- Ice Punch  
+- Liquidation  
+- Aqua Jet  
 
-Tyranitar
-Level: 48
+Armarouge @ Salac Berry  
+Ability: Flash Fire  
+Level: 65  
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Crunch
-- Earthquake
-- Rock Slide
-- Fire Punch
+Tera Type: Fire  
+Quirky Nature  
+- Armor Cannon  
+- Aura Sphere  
+- Calm Mind  
+- Energy Ball
+
+=== TRAINER_RIVAL_TOTODILE_5 ===
+Name: {RIVAL}
+Class: Rival
+Pic: Silver
+Gender: Male
+Music: Silver
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Pink
+Difficulty: Hard
+
+Gengar @ Air Balloon  
+Ability: Cursed Body  
+Level: 66  
+EVs: 252 Spe / 252 SpA
+Tera Type: Ghost  
+IVs: 0 Atk  
+- Hypnosis  
+- Thunderbolt  
+- Shadow Ball  
+- Dream Eater  
+
+Kingambit @ Air Balloon  
+Ability: Supreme Overlord  
+Level: 67 
+EVs: 252 HP / 252 Atk 
+Tera Type: Dark  
+- Kowtow Cleave  
+- Iron Head  
+- Low Kick  
+- Sucker Punch  
+
+Staraptor @ Sharp Beak  
+Ability: Intimidate  
+EVs: 252 Atk / 252 Spe
+Level: 66  
+Tera Type: Normal  
+- Brave Bird  
+- Close Combat  
+- U-Turn  
+- Facade  
+
+Victreebel @ Occa Berry  
+Ability: Gluttony  
+Level: 67  
+Tera Type: Grass
+EVs: 252 SpA / 252 HP  
+- Solar Beam  
+- Giga Drain  
+- Sludge Bomb  
+- Sleep Powder  
+
+Feraligatr @ Feraligite  
+Ability: Sheer Force  
+EVs: 252 Atk / 252 Spe
+Level: 67  
+Tera Type: Water  
+- Crunch  
+- Ice Punch  
+- Liquidation  
+- Aqua Jet  
+
+Armarouge @ Salac Berry  
+Ability: Flash Fire  
+Level: 66  
+EVs: 252 SpA / 252 Spe
+Tera Type: Fire  
+Quirky Nature  
+- Armor Cannon  
+- Aura Sphere  
+- Calm Mind  
+- Energy Ball
 
 === TRAINER_RIVAL_TOTODILE_6 ===
 Name: {RIVAL}
@@ -5644,58 +5729,136 @@ Class: Rival
 Pic: Silver
 Gender: Male
 Music: Silver
-Items: Hyper Potion
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Pink
 
-Ursaring @ Chesto Berry
-Level: 45
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Slash
-- Faint Attack
-- Rock Smash
-- Rest
+Gengar @ Air Balloon  
+Ability: Cursed Body  
+Level: 65  
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe 
+- Hypnosis  
+- Thunderbolt  
+- Shadow Ball  
+- Dream Eater  
 
-Golbat
-Level: 45
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Toxic
-- Double Team
-- Confuse Ray
-- Wing Attack
+Kingambit @ Expert Belt  
+Ability: Supreme Overlord  
+Level: 65  
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe 
+- Kowtow Cleave  
+- Iron Head  
+- Grass Knot  
+- Poison Jab  
 
-Octillery @ Quick Claw
-Level: 46
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Surf
-- Ice Beam
-- Psybeam
-- Hyper Beam
+Staraptor @ Sharp Beak  
+Ability: Intimidate  
+Level: 65  
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe 
+- Brave Bird  
+- Close Combat  
+- U-Turn  
+- Facade  
 
-Victreebel
-Level: 46
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Sludge Bomb
-- Giga Drain
-- Sleep Powder
-- Growth
+Clodsire @ Rocky Helmet  
+Ability: Water Absorb  
+Level: 65  
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe 
+- Earthquake  
+- Sludge Bomb  
+- Yawn  
+- Muddy Water  
 
-Typhlosion @ Charcoal
-Level: 47
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Flamethrower
-- Quick Attack
-- Iron Tail
-- Thunder Punch
+Typhlosion @ Typhlosionite
+Ability: Flash Fire  
+Level: 65  
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe 
+- Flamethrower  
+- Scorching Sands  
+- Wild Charge  
+- Focus Blast  
 
-Tyranitar
-Level: 48
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Crunch
-- Earthquake
-- Rock Slide
-- Fire Punch
+Eelektross @ Leftovers  
+Ability: Levitate  
+Level: 65  
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe 
+- Body Press  
+- Bulk Up  
+- Thunder Punch  
+- Crunch 
+
+
+=== TRAINER_RIVAL_CYNDAQUIL_5 ===
+Name: {RIVAL}
+Class: Rival
+Pic: Silver
+Gender: Male
+Music: Silver
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Pink
+Difficulty: Hard
+
+Gengar @ Air Balloon  
+Ability: Cursed Body  
+Level: 66  
+EVs: 252 Spe / 252 SpA
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe  
+- Hypnosis  
+- Thunderbolt  
+- Shadow Ball  
+- Dream Eater  
+
+Kingambit @ Expert Belt  
+Ability: Supreme Overlord  
+EVs: 252 Atk / 252 HP
+Level: 67  
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe  
+- Kowtow Cleave  
+- Iron Head  
+- Grass Knot  
+- Poison Jab  
+
+Staraptor @ Sharp Beak  
+Ability: Intimidate  
+EVs: 252 Atk / 252 Spe
+Level: 66  
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe  
+- Brave Bird  
+- Close Combat  
+- U-Turn  
+- Facade  
+
+Clodsire @ Rocky Helmet  
+Ability: Water Absorb  
+EVs: 252 HP / 252 Def
+Level: 67  
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe  
+- Earthquake  
+- Sludge Bomb  
+- Yawn  
+- Muddy Water  
+
+Typhlosion @ Typhlosionite
+Ability: Flash Fire  
+EVs: 252 SpA / 252 Spe
+Level: 67  
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe  
+- Flamethrower  
+- Scorching Sands  
+- Eruption  
+- Focus Blast  
+
+Eelektross @ Leftovers  
+Ability: Levitate  
+EVs: 252 HP / 252 Atk
+Level: 66  
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe  
+- Body Press  
+- Bulk Up  
+- Thunder Punch  
+- Crunch 
+
 
 === TRAINER_RIVAL_CYNDAQUIL_4 ===
 Name: {RIVAL}
@@ -9168,58 +9331,138 @@ Class: Rival
 Pic: Silver
 Gender: Male
 Music: Silver
-Items: Hyper Potion
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Pink
 
-Ursaring @ Chesto Berry
-Level: 45
+Floatzel @ Salac Berry  
+Ability: Water Veil  
+Level: 65  
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Slash
-- Faint Attack
-- Rock Smash
-- Rest
+Jolly Nature  
+- Ice Spinner  
+- Liquidation  
+- Brick Break  
+- Flip Turn  
 
-Golbat
-Level: 45
+Kingambit @ Expert Belt  
+Ability: Supreme Overlord  
+Level: 65  
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Toxic
-- Double Team
-- Confuse Ray
-- Wing Attack
+- Kowtow Cleave  
+- Iron Head  
+- Facade  
+- Low Kick  
 
-Octillery @ Quick Claw
-Level: 46
+Staraptor @ Sharp Beak  
+Ability: Intimidate  
+Level: 65  
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Surf
-- Ice Beam
-- Psybeam
-- Hyper Beam
+- Brave Bird  
+- Close Combat  
+- U-Turn  
+- Facade  
 
-Houndoom
-Level: 46
+Chandelure @ Absorb Bulb  
+Ability: Flash Fire  
+Level: 65  
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Flamethrower
-- Iron Tail
-- Crunch
-- Sunny Day
+- Flamethrower  
+- Shadow Ball  
+- Energy Ball  
+- Dark Pulse  
 
-Meganium @ Miracle Seed
-Level: 47
+Meganium @ Meganiumite  
+Ability: Leaf Guard  
+Level: 65  
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Sunny Day
-- Giga Drain
-- Body Slam
-- Synthesis
+Mild Nature  
+- Giga Drain  
+- Draining Kiss  
+- Light Screen  
+- Solar Beam  
 
-Tyranitar
-Level: 48
+Haxorus @ Assault Vest  
+Ability: Mold Breaker  
+Level: 65  
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Crunch
-- Earthquake
-- Rock Slide
-- Fire Punch
+- Dragon Claw  
+- Earthquake  
+- First Impression  
+- Iron Head  
+
+=== TRAINER_RIVAL_CHIKORITA_5 ===
+Name: {RIVAL}
+Class: Rival
+Pic: Silver
+Gender: Male
+Music: Silver
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Pink
+Difficulty: Hard
+
+Floatzel @ Salac Berry  
+Ability: Water Veil  
+Level: 66  
+EVs: 252 Spe / 252 Atk
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Jolly Nature  
+- Ice Spinner  
+- Liquidation  
+- Brick Break  
+- Flip Turn  
+
+Kingambit @ Expert Belt  
+Ability: Supreme Overlord
+EVs: 252 Atk / 252 HP  
+Level: 67  
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Kowtow Cleave  
+- Iron Head  
+- Sucker Punch
+- Low Kick  
+
+Staraptor @ Sharp Beak  
+Ability: Intimidate  
+EVs: 252 Atk / 252 Spe
+Level: 66  
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Brave Bird  
+- Close Combat  
+- U-Turn  
+- Facade  
+
+Chandelure @ Absorb Bulb  
+Ability: Flash Fire  
+EVs: 252 SpA / 252 Spe
+Level: 66  
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Flamethrower  
+- Shadow Ball  
+- Energy Ball  
+- Dark Pulse  
+
+Meganium @ Meganiumite  
+Ability: Leaf Guard  
+EVs: 252 SpA / 252 HP
+Level: 67  
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Mild Nature  
+- Giga Drain  
+- Draining Kiss  
+- Light Screen  
+- Solar Beam  
+
+Haxorus @ Assault Vest  
+Ability: Mold Breaker  
+EVs: 252 Atk / 252 Spe
+Level: 66  
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Dragon Claw  
+- Earthquake  
+- First Impression  
+- Iron Head  
 
 === TRAINER_TULLY ===
 Name: Tully
