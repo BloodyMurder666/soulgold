@@ -1,0 +1,26 @@
+{
+  "id": "MAP_KITAKAMI_BORDER",
+  "name": "KitakamiBorder",
+  "layout": "LAYOUT_KITAKAMI_BORDER",
+  "music": "MUS_DP_ROUTE203_NIGHT",
+  "region_map_section": "MAPSEC_KITAKAMI_BORDER",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_NONE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_ROUTE45",
+      "offset": -75,
+      "direction": "left"
+    }
+  ],
+  "object_events": [],
+  "warp_events": [],
+  "coord_events": [],
+  "bg_events": []
+}

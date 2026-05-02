@@ -8920,6 +8920,16 @@
       "secondary_tileset": "gTileset_Cave_Ice",
       "border_filepath": "data/layouts/IcePath_Depths2/border.bin",
       "blockdata_filepath": "data/layouts/IcePath_Depths2/map.bin"
+    },
+    {
+      "id": "LAYOUT_KITAKAMI_BORDER",
+      "name": "KitakamiBorder_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Johto_NorthEast",
+      "secondary_tileset": "gTileset_Blackthorn",
+      "border_filepath": "data/layouts/KitakamiBorder/border.bin",
+      "blockdata_filepath": "data/layouts/KitakamiBorder/map.bin"
     }
   ]
 }
