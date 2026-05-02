@@ -1154,11 +1154,11 @@ static void HallOfFameRecordEffect_Init(struct Task *task)
     task->tState++;
     task->tBallSpriteId = CreateGlowingPokeballsEffect(task->tNumMons, task->tFirstBallX, task->tFirstBallY, FALSE);
     taskId = FindTaskIdByFunc(Task_HallOfFameRecord);
-    CreateHofMonitorSprite(taskId, 120, 24, FALSE);
-    CreateHofMonitorSprite(taskId, 40, 8, TRUE);
-    CreateHofMonitorSprite(taskId, 72, 8, TRUE);
-    CreateHofMonitorSprite(taskId, 168, 8, TRUE);
-    CreateHofMonitorSprite(taskId, 200, 8, TRUE);
+    //CreateHofMonitorSprite(taskId, 120, 24, FALSE);
+    //CreateHofMonitorSprite(taskId, 40, 8, TRUE);
+    //CreateHofMonitorSprite(taskId, 72, 8, TRUE);
+    //CreateHofMonitorSprite(taskId, 168, 8, TRUE);
+    //CreateHofMonitorSprite(taskId, 200, 8, TRUE);
 }
 
 static void HallOfFameRecordEffect_WaitForBallPlacement(struct Task *task)

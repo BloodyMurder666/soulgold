@@ -71,11 +71,15 @@ enum
 // Category headers
 
 static const u8 sCreditsText_EmptyString[]                     = _("");
-static const u8 sCreditsText_PkmnHnS[]                         = _("POKéMON HEART & SOUL");
-static const u8 sCreditsText_LeadDeveloper[]                   = _("Lead Developer");
+static const u8 sCreditsText_PkmnSoulGold[]                    = _("Pokémon Soulgold");
+static const u8 sCreditsText_PkmnHnS[]                         = _("Pokémon Heart and Soul");
+static const u8 sCreditsText_LeadDeveloper[]                   = _("Soulgold Developer");
+static const u8 sCreditsText_Rahtak[]                          = _("Rahtak");
+static const u8 sCreditsText_DevelopedBy[]                   = _("H&S Lead Developer");
+
 static const u8 sCreditsText_LilDill[]                         = _("LIL DILL");
 static const u8 sCreditsText_Assets[]                          = _("Assets Sourced");
-static const u8 sCreditsText_Developers[]                      = _("Developers");
+static const u8 sCreditsText_Developers[]                      = _("H&S Devs");
 static const u8 sCreditsText_InfiniteBacon42[]                 = _("InfiniteBacon42");
 static const u8 sCreditsText_Exclsior[]                        = _("Exclsior");
 static const u8 sCreditsText_TixoRebel[]                       = _("TixoRebel");
@@ -85,9 +89,9 @@ static const u8 sCreditsText_Resetes[]                         = _("Resetes");
 static const u8 sCreditsText_Jozuno[]                          = _("Jozuno");
 
 static const u8 sCreditsText_Porter[]                          = _("Expansion Port");
-static const u8 sCreditsText_IAmAwesome2[]                          = _("IAmAwesome2");
+static const u8 sCreditsText_IAmAwesome2[]                      = _("IAmAwesome2");
 
-static const u8 sCreditsText_Playtesters[]                     = _("Playtesters");
+static const u8 sCreditsText_Playtesters[]                     = _("Original Playtesters");
 static const u8 sCreditsText_MearaTheDigger[]                  = _("MearaTheDigger");
 static const u8 sCreditsText_Kingofrocks[]                     = _("Kingofrocks");
 static const u8 sCreditsText_Ferropexola[]                     = _("Ferropexola");
@@ -342,12 +346,13 @@ static const u8 sCreditsText_ShellieDow[]                     = _("Shellie Dow")
 static const u8 sCreditsText_ErikJohnson[]                    = _("Erik Johnson");
 
 // Title and header
-static const struct CreditsEntry sCreditsEntry_PkmnHnS                           = {7,  TRUE, sCreditsText_PkmnHnS};
+static const struct CreditsEntry sCreditsEntry_PkmnHnS                           = {7,  TRUE, sCreditsText_PkmnSoulGold};
 static const struct CreditsEntry sCreditsEntry_Credits                          = {11,  TRUE, sCreditsText_Credits};
 
 // Executive Director
-static const struct CreditsEntry sCreditsEntry_ExecutiveDirector                = {8,  TRUE, sCreditsText_ExecutiveDirector};
+static const struct CreditsEntry sCreditsEntry_ExecutiveDirector                = {8,  TRUE, sCreditsText_DevelopedBy};
 static const struct CreditsEntry sCreditsEntry_LilDill                            = {11, FALSE, sCreditsText_LilDill};
+static const struct CreditsEntry sCreditsEntry_Rahtak                            = {11, FALSE, sCreditsText_Rahtak};
 
 static const struct CreditsEntry sCreditsEntry_LeadDeveloper    = {8, TRUE, sCreditsText_LeadDeveloper};
 static const struct CreditsEntry sCreditsEntry_Developers    = {8, TRUE, sCreditsText_Developers};
@@ -608,9 +613,9 @@ static const struct CreditsEntry *const sCreditsEntryPointerTable[PAGE_COUNT][EN
     [PAGE_HNS_DIRECTOR] = {
         &sCreditsEntry_Director,
         &sCreditsEntry_LeadDeveloper,
+        &sCreditsEntry_Rahtak,
+        &sCreditsEntry_ExecutiveDirector,
         &sCreditsEntry_LilDill,
-        _,
-        _,
     },
     [PAGE_HNS_DEVS] = {
         &sCreditsEntry_Developers,
@@ -758,7 +763,7 @@ static const struct CreditsEntry *const sCreditsEntryPointerTable[PAGE_COUNT][EN
         &sCreditsEntry_l1ghtt,
         _,
         _,
-    },
+    }, 
     [PAGE_PARAMETRIC_DESIGNERS] = {
        _,
         &sCreditsEntry_PkmnEmeraldVersion,

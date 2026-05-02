@@ -535,6 +535,14 @@ void BattleSetup_StartLegendaryBattle(void)
     case SPECIES_CHIEN_PAO:
         CreateBattleStartTask(B_TRANSITION_BLUR, MUS_DP_VS_LEGEND);
         break;
+    case SPECIES_MOLTRES:
+    case SPECIES_ZAPDOS:
+    case SPECIES_ARTICUNO:
+    case SPECIES_MOLTRES_GALAR:
+    case SPECIES_ZAPDOS_GALAR:
+    case SPECIES_ARTICUNO_GALAR:
+        CreateBattleStartTask(B_TRANSITION_GRID_SQUARES, MUS_RG_VS_LEGEND);
+        break;
     }
 
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);

@@ -2042,7 +2042,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Annihilape @ Leftovers
 Level: 68
 EVs: 252 Atk / 252 HP
-Ability: Anger Point
+Ability: Inner Focus
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Rage Fist
 - Bulk Up
@@ -2113,7 +2113,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Annihilape @ Leftovers
 Level: 70
 EVs: 252 Atk / 252 HP
-Ability: Anger Point
+Ability: Inner Focus
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Rage Fist
 - Bulk Up
@@ -2990,7 +2990,6 @@ Mugshot: Purple
 Exeggutor-Alola @ Sitrus Berry  
 Ability: Harvest  
 Level: 69  
-Tera Type: Grass  
 EVs: 252 HP / 252 Atk / 4 SpD  
 Adamant Nature  
 - Dragon Hammer  
@@ -3001,11 +3000,10 @@ Adamant Nature
 Dragonite @ Dragoninite  
 Ability: Multiscale  
 Level: 71  
-Tera Type: Dragon  
 Shiny: Yes
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Adamant Nature  
-- Dragon Dance  
+- Thunderbolt 
 - Dual Wingbeat  
 - Iron Head  
 - Dragon Claw
@@ -3013,7 +3011,6 @@ Adamant Nature
 Baxcalibur @ Ability Shield  
 Ability: Thermal Exchange  
 Level: 70  
-Tera Type: Dragon  
 EVs: 252 HP / 252 Atk / 4 SpD  
 Adamant Nature  
 - Glaive Rush  
@@ -3024,7 +3021,6 @@ Adamant Nature
 Hydrapple @ Yache Berry  
 Ability: Sticky Hold  
 Level: 70  
-Tera Type: Grass  
 EVs: 252 Atk / 252 SpA  
 - Draco Meteor  
 - Leaf Storm  
@@ -3034,7 +3030,6 @@ EVs: 252 Atk / 252 SpA
 Dragapult @ Choice Scarf  
 Ability: Infiltrator  
 Level: 70  
-Tera Type: Dragon  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
 - Dragon Darts  
@@ -3045,7 +3040,6 @@ Jolly Nature
 Goodra-Hisui @ Assault Vest  
 Ability: Sap Sipper  
 Level: 70  
-Tera Type: Steel  
 EVs: 252 HP / 252 SpA / 4 SpD  
 Modest Nature  
 IVs: 0 Atk  
@@ -3068,7 +3062,6 @@ Difficulty: Hard
 Baxcalibur @ Ability Shield  
 Ability: Thermal Exchange  
 Level: 70  
-Tera Type: Dragon  
 EVs: 252 HP / 252 Atk / 4 SpD  
 Adamant Nature  
 - Glaive Rush  
@@ -3080,7 +3073,6 @@ Dragonite @ Dragoninite
 Ability: Multiscale  
 Level: 71  
 Shiny: Yes
-Tera Type: Dragon  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Adamant Nature  
 - Draco Meteor  
@@ -3091,7 +3083,6 @@ Adamant Nature
 Exeggutor-Alola @ Sitrus Berry  
 Ability: Harvest  
 Level: 69  
-Tera Type: Grass  
 EVs: 252 HP / 252 Atk / 4 SpD  
 Adamant Nature  
 - Dragon Hammer  
@@ -3102,7 +3093,6 @@ Adamant Nature
 Hydrapple @ Yache Berry  
 Ability: Sticky Hold  
 Level: 70  
-Tera Type: Grass  
 EVs: 252 Atk / 252 SpA  
 - Draco Meteor  
 - Leaf Storm  
@@ -3112,7 +3102,6 @@ EVs: 252 Atk / 252 SpA
 Dragapult @ Choice Scarf  
 Ability: Infiltrator  
 Level: 70  
-Tera Type: Dragon  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
 - Dragon Darts  
@@ -3123,7 +3112,6 @@ Jolly Nature
 Goodra-Hisui @ Assault Vest  
 Ability: Sap Sipper  
 Level: 70  
-Tera Type: Steel  
 EVs: 252 HP / 252 SpA / 4 SpD  
 Modest Nature  
 IVs: 0 Atk  
@@ -3485,7 +3473,6 @@ Mugshot: Pink
 Gengar @ Air Balloon  
 Ability: Cursed Body  
 Level: 65  
-Tera Type: Ghost  
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe 
 - Hypnosis  
 - Thunderbolt  
@@ -3496,7 +3483,6 @@ Kingambit @ Air Balloon
 Ability: Supreme Overlord  
 Level: 65  
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-Tera Type: Dark  
 - Kowtow Cleave  
 - Iron Head  
 - Low Kick  
@@ -3506,7 +3492,6 @@ Staraptor @ Sharp Beak
 Ability: Intimidate  
 Level: 65  
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-Tera Type: Normal  
 - Brave Bird  
 - Close Combat  
 - U-Turn  
@@ -3516,7 +3501,6 @@ Victreebel @ Occa Berry
 Ability: Gluttony  
 Level: 65  
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-Tera Type: Grass  
 - Solar Beam  
 - Giga Drain  
 - Sludge Bomb  
@@ -3526,7 +3510,6 @@ Feraligatr @ Feraligite
 Ability: Sheer Force  
 Level: 65  
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-Tera Type: Water  
 - Crunch  
 - Ice Punch  
 - Liquidation  
@@ -3536,7 +3519,6 @@ Armarouge @ Salac Berry
 Ability: Flash Fire  
 Level: 65  
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-Tera Type: Fire  
 Quirky Nature  
 - Armor Cannon  
 - Aura Sphere  
@@ -3558,7 +3540,6 @@ Gengar @ Air Balloon
 Ability: Cursed Body  
 Level: 66  
 EVs: 252 Spe / 252 SpA
-Tera Type: Ghost  
 IVs: 0 Atk  
 - Hypnosis  
 - Thunderbolt  
@@ -3569,7 +3550,6 @@ Kingambit @ Air Balloon
 Ability: Supreme Overlord  
 Level: 67 
 EVs: 252 HP / 252 Atk 
-Tera Type: Dark  
 - Kowtow Cleave  
 - Iron Head  
 - Low Kick  
@@ -3579,7 +3559,6 @@ Staraptor @ Sharp Beak
 Ability: Intimidate  
 EVs: 252 Atk / 252 Spe
 Level: 66  
-Tera Type: Normal  
 - Brave Bird  
 - Close Combat  
 - U-Turn  
@@ -3588,7 +3567,6 @@ Tera Type: Normal
 Victreebel @ Occa Berry  
 Ability: Gluttony  
 Level: 67  
-Tera Type: Grass
 EVs: 252 SpA / 252 HP  
 - Solar Beam  
 - Giga Drain  
@@ -3599,7 +3577,6 @@ Feraligatr @ Feraligite
 Ability: Sheer Force  
 EVs: 252 Atk / 252 Spe
 Level: 67  
-Tera Type: Water  
 - Crunch  
 - Ice Punch  
 - Liquidation  
@@ -3609,7 +3586,6 @@ Armarouge @ Salac Berry
 Ability: Flash Fire  
 Level: 66  
 EVs: 252 SpA / 252 Spe
-Tera Type: Fire  
 Quirky Nature  
 - Armor Cannon  
 - Aura Sphere  
@@ -4565,12 +4541,12 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
 Absol @ Absolite Z
 Level: 70
-EVs: 252 Atk / 252 Spe
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Spe
+IVs: 31 HP / 10 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Shadow Claw
 - Night Slash
 - Swords Dance
-- Play Rough
+- Slash
 
 === TRAINER_KAREN_1 ===
 Name: Karen
@@ -4985,7 +4961,6 @@ Hasty Nature
 Reuniclus @ Rocky Helmet  
 Ability: Magic Guard  
 Level: 69  
-Tera Type: Psychic  
 EVs: 252 Def / 252 SpA  
 - Psychic 
 - Calm Mind  
@@ -4995,7 +4970,6 @@ EVs: 252 Def / 252 SpA
 Espeon @ Choice Specs  
 Ability: Magic Bounce  
 Level: 68  
-Tera Type: Psychic  
 EVs: 252 SpA / 252 HP
 - Draining Kiss  
 - Expanding Force  
@@ -5005,7 +4979,6 @@ EVs: 252 SpA / 252 HP
 Slowbro @ Leftovers  
 Ability: Regenerator  
 Level: 68  
-Tera Type: Water  
 EVs: 192 HP / 64 SpA / 252 SpD  
 - Blizzard  
 - Scald  
@@ -5015,7 +4988,6 @@ EVs: 192 HP / 64 SpA / 252 SpD
 Braviary-Hisui @ Twisted Spoon 
 Ability: Tinted Lens  
 Level: 68  
-Tera Type: Psychic  
 EVs: 252 SpA / 252 SpD  
 - Air Slash  
 - Esper Wing  
@@ -5025,7 +4997,6 @@ EVs: 252 SpA / 252 SpD
 Alakazam @ Alakazite  
 Ability: Magic Guard  
 Level: 69  
-Tera Type: Psychic  
 EVs: 252 SpA / 252 HP  
 - Shadow Ball
 - Psychic
@@ -5045,7 +5016,6 @@ Mugshot: Purple
 Farigiraf @ Ability Shield  
 Ability: Armor Tail  
 Level: 66  
-Tera Type: Normal  
 EVs: 252 SpA / 252 Spe  
 Hasty Nature  
 - Calm Mind  
@@ -5056,7 +5026,6 @@ Hasty Nature
 Espeon @ Choice Specs  
 Ability: Magic Bounce  
 Level: 66  
-Tera Type: Psychic  
 EVs: 252 SpA / 252 Spe  
 - Draining Kiss  
 - Grass Knot  
@@ -5066,7 +5035,6 @@ EVs: 252 SpA / 252 Spe
 Slowbro @ Leftovers  
 Ability: Regenerator  
 Level: 66  
-Tera Type: Water  
 EVs: 192 HP / 64 SpA / 252 SpD  
 - Blizzard  
 - Scald  
@@ -5076,7 +5044,6 @@ EVs: 192 HP / 64 SpA / 252 SpD
 Reuniclus @ Rocky Helmet  
 Ability: Magic Guard  
 Level: 66  
-Tera Type: Psychic  
 EVs: 252 Def / 252 SpA  
 - Acid Armor  
 - Calm Mind  
@@ -5086,7 +5053,6 @@ EVs: 252 Def / 252 SpA
 Alakazam @ Alakazite  
 Ability: Magic Guard  
 Level: 67  
-Tera Type: Psychic  
 EVs: 252 SpA / 252 Spe  
 - Shadow Ball
 - Psychic
@@ -5096,7 +5062,6 @@ EVs: 252 SpA / 252 Spe
 Braviary-Hisui @ Twisted Spoon 
 Ability: Tinted Lens  
 Level: 66  
-Tera Type: Psychic  
 EVs: 252 SpA / 252 Spe  
 - Air Slash  
 - Esper Wing  
@@ -5591,7 +5556,6 @@ EVs: 252 SpA / 252 Spe
 
 Muk Alola @ Leftovers
 Level: 67
-Ability: Sticky Hold
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk
 - Gunk Shot
@@ -5671,7 +5635,6 @@ EVs: 252 SpA / 252 Spe
 
 Muk Alola @ Leftovers
 Level: 68
-Ability: Sticky Hold
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk
 - Gunk Shot
@@ -8155,7 +8118,6 @@ Difficulty: Hard
 Darmanitan-Galar @ Adrenaline Orb  
 Ability: Zen Mode  
 Level: 47  
-Tera Type: Ice  
 EVs: 116 Atk / 112 Spe  
 - Ice Punch  
 - Hammer Arm  
@@ -8284,7 +8246,6 @@ Difficulty: Hard
 Darmanitan-Galar @ Adrenaline Orb  
 Ability: Zen Mode  
 Level: 42  
-Tera Type: Ice  
 EVs: 116 Atk / 112 Spe  
 - Ice Punch  
 - Hammer Arm  
@@ -12228,7 +12189,6 @@ IVs: 0 Atk
 Darmanitan-Galar @ Adrenaline Orb
 Ability: Zen Mode
 Level: 40
-Tera Type: Ice
 EVs: 116 Atk / 112 Spe
 - Ice Punch
 - Hammer Arm

@@ -5790,7 +5790,6 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
     {
         BufferMonStatsToTaskData(mon, arrayPtr);
         cannotUseEffect = ExecuteTableBasedItemEffect(mon, *itemPtr, gPartyMenu.slotId, 0, 0, 1);
-        BufferMonStatsToTaskData(mon, &ptr->data[NUM_STATS]);
     }
     else
     {
@@ -5830,6 +5829,8 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
     }
     else
     {
+        ExecuteTableBasedItemEffect(mon, *itemPtr, gPartyMenu.slotId, 0, 1, 1);
+        BufferMonStatsToTaskData(mon, &ptr->data[NUM_STATS]);
         sFinalLevel = GetMonData(mon, MON_DATA_LEVEL);
         gPartyMenuUseExitCallback = TRUE;
         UpdateMonDisplayInfoAfterRareCandy(gPartyMenu.slotId, mon);

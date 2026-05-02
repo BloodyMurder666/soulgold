@@ -126,6 +126,7 @@ PokemonLeague_WillsRoom_EventScript_LanceOnDefeatJohto::
 	closemessage
 	setvar VAR_LEAGUE_STATE, 6
 	warpsilent MAP_POKEMON_LEAGUE_HALL_OF_FAME, 0
+	waitstate
 	releaseall
 	end
 
@@ -193,6 +194,7 @@ PokemonLeague_WillsRoom_EventScript_LanceOnDefeatKanto::
 	closemessage
 	setvar VAR_LEAGUE_STATE, 6
 	warpsilent MAP_POKEMON_LEAGUE_HALL_OF_FAME, 0
+	waitstate
 	releaseall
 	end
 

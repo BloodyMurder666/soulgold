@@ -73,11 +73,20 @@ PokemonLeague_HallOfFame_EventScript_SetGameClearFlags::
 	clearflag FLAG_HIDE_MEWTWO
 	clearflag FLAG_HIDE_VERMILION_SNORLAX
 	clearflag FLAG_HIDE_UNION_CAVE_LAPRAS
-	clearflag FLAG_HIDE_SUDOWOODO
 	clearflag FLAG_HIDE_ZAPDOS
 	clearflag FLAG_HIDE_ARTICUNO
 	clearflag FLAG_HIDE_MOLTRES
 	clearflag FLAG_ITEM_GS_BALL
+	clearflag FLAG_HIDE_CHIENPAO
+	clearflag FLAG_HIDE_MANAPHY
+	clearflag FLAG_HIDE_SHAYMIN 
+	clearflag FLAG_HIDE_VICITNI 
+	clearflag FLAG_HIDE_CHI_YU 
+	clearflag FLAG_HIDE_MELOETTA 
+	clearflag FLAG_HIDE_DIANCIE 
+	clearflag FLAG_HIDE_OGERPON 
+	clearflag FLAG_HIDE_MAGERNA 
+	clearflag FLAG_HIDE_FEZANDIPITI 
 	setflag FLAG_HIDE_BATTLEFRONTIER_ENGINEER
 	call_if_unset FLAG_IS_KANTO_CHAMPION, PokemonLeague_HallOfFame_EventScript_SpawnKantoLeaderRematches
 	setflag FLAG_IS_KANTO_CHAMPION
