@@ -8924,8 +8924,8 @@
     {
       "id": "LAYOUT_KITAKAMI_BORDER",
       "name": "KitakamiBorder_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 62,
+      "height": 30,
       "primary_tileset": "gTileset_Johto_NorthEast",
       "secondary_tileset": "gTileset_Blackthorn",
       "border_filepath": "data/layouts/KitakamiBorder/border.bin",

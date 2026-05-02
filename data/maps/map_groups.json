@@ -31,7 +31,8 @@
     "gMapGroup_Emerald2",
     "gMapGroup_Emerald3",
     "gMapGroup_Emerald4",
-    "gMapGroup_Emerald5"
+    "gMapGroup_Emerald5",
+    "gMapGroup_JohtoDiveMaps"
   ],
   "gMapGroup_TownsAndRoutes": [
     "NewBarkTown",
@@ -1063,5 +1064,6 @@
     "Route119_WeatherInstitute_2F",
     "Route119_House",
     "Route124_DivingTreasureHuntersHouse"
-  ]
+  ],
+  "gMapGroup_JohtoDiveMaps": []
 }
