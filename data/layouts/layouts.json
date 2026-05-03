@@ -8930,6 +8930,16 @@
       "secondary_tileset": "gTileset_Blackthorn",
       "border_filepath": "data/layouts/KitakamiBorder/border.bin",
       "blockdata_filepath": "data/layouts/KitakamiBorder/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHERRYGROVE_UNDERWATER",
+      "name": "CherrygroveUnderwater_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_Underwater",
+      "border_filepath": "data/layouts/CherrygroveUnderwater/border.bin",
+      "blockdata_filepath": "data/layouts/CherrygroveUnderwater/map.bin"
     }
   ]
 }

@@ -1065,5 +1065,7 @@
     "Route119_House",
     "Route124_DivingTreasureHuntersHouse"
   ],
-  "gMapGroup_JohtoDiveMaps": []
+  "gMapGroup_JohtoDiveMaps": [
+    "CherrygroveUnderwater"
+  ]
 }

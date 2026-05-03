@@ -2141,3 +2141,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/IcePath_Depths2/scripts.inc"
 
 	.include "data/maps/KitakamiBorder/scripts.inc"
+
+	.include "data/maps/CherrygroveUnderwater/scripts.inc"
