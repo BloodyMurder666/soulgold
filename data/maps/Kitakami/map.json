@@ -17,6 +17,11 @@
       "map": "MAP_KITAKAMI_BORDER",
       "offset": -9,
       "direction": "left"
+    },
+    {
+      "map": "MAP_KITAKAMI_MOUNTAIN",
+      "offset": 0,
+      "direction": "up"
     }
   ],
   "object_events": [

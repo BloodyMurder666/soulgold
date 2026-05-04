@@ -8954,10 +8954,10 @@
     {
       "id": "LAYOUT_KITAKAMI_MOUNTAIN",
       "name": "KitakamiMountain_Layout",
-      "width": 45,
-      "height": 40,
+      "width": 35,
+      "height": 25,
       "primary_tileset": "gTileset_Johto_NorthEast",
-      "secondary_tileset": "gTileset_MtSilverSnow",
+      "secondary_tileset": "gTileset_Ecruteak_City",
       "border_filepath": "data/layouts/KitakamiMountain/border.bin",
       "blockdata_filepath": "data/layouts/KitakamiMountain/map.bin"
     },
@@ -8980,6 +8980,16 @@
       "secondary_tileset": "gTileset_House_Lab",
       "border_filepath": "data/layouts/Kitakami_Houses/border.bin",
       "blockdata_filepath": "data/layouts/Kitakami_Houses/map.bin"
+    },
+    {
+      "id": "LAYOUT_KITAKAMI_MOUNTAIN1F",
+      "name": "KitakamiMountain1F_Layout",
+      "width": 35,
+      "height": 25,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_Cave_Gray",
+      "border_filepath": "data/layouts/KitakamiMountain1F/border.bin",
+      "blockdata_filepath": "data/layouts/KitakamiMountain1F/map.bin"
     }
   ]
 }
