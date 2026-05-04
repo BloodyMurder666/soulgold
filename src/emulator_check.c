@@ -385,7 +385,7 @@ static bool32 EmulatorCheck_LoadGraphics(void)
         sEmulatorCheckData->loadState++;
         break;
     case 1:
-        LZDecompressVram(sErrorScreen_Map, (void *)BG_SCREEN_ADDR(8));
+        DecompressDataWithHeaderVram(sErrorScreen_Map, (void *)BG_SCREEN_ADDR(8));
         sEmulatorCheckData->loadState++;
         break;
     case 2:

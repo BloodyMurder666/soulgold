@@ -14,6 +14,7 @@ TODO
 - fisham33 for level scaling
 - Mont for swsh party menu
 - Leob0505 for backgrounds
+- Emulator accuracy check by Wiz1989 (also thanks to mudskip, grunt-lucas, archie, drazden)
 
 Based off RHH's pokeemerald-expansion 1.15.0 https://github.com/rh-hideout/pokeemerald-expansion/
 
