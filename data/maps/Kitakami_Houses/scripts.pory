@@ -72,7 +72,6 @@ script KitakamiHouses_2_Steven {
                         explore new places now. I hope our 
                         paths cross again some day, {PLAYER}.")
                 waitmessage
-                waitbuttonpress
                 closemessage
                 setflag(FLAG_BEAT_STEVEN_KITAKAMI)
                 moveobjecttocoords(LOCALID_KITAKAMI_STEVEN, 28, 8, DIR_NONE)

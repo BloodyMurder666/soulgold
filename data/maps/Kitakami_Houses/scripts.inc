@@ -139,13 +139,13 @@ KitakamiHouses_2_Steven_11:
 # 74 "data/maps/Kitakami_Houses/scripts.pory"
 	waitmessage
 # 75 "data/maps/Kitakami_Houses/scripts.pory"
-	waitbuttonpress
-# 76 "data/maps/Kitakami_Houses/scripts.pory"
 	closemessage
+# 76 "data/maps/Kitakami_Houses/scripts.pory"
+	hidefollower
 # 77 "data/maps/Kitakami_Houses/scripts.pory"
 	setflag FLAG_BEAT_STEVEN_KITAKAMI
 # 78 "data/maps/Kitakami_Houses/scripts.pory"
-	moveobjecttocoords LOCALID_KITAKAMI_STEVEN, 28, 8, DIR_SOUTH
+	moveobjecttocoords LOCALID_KITAKAMI_STEVEN, 28, 8, DIR_NONE
 # 79 "data/maps/Kitakami_Houses/scripts.pory"
 	waitmovement LOCALID_KITAKAMI_STEVEN
 # 80 "data/maps/Kitakami_Houses/scripts.pory"
