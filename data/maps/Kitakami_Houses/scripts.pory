@@ -42,6 +42,7 @@ script KitakamiHouses_2_Steven {
                 applymovement(LOCALID_KITAKAMI_STEVEN, Common_Movement_ExclamationMark)
                 applymovement(LOCALID_KITAKAMI_STEVEN, moves(face_player))
                 waitmovement(0)
+                waitse
                 msgbox("That face of determination... I assume
                         you have become the Champion of Johto?
                         ...
@@ -74,7 +75,7 @@ script KitakamiHouses_2_Steven {
                 waitmessage
                 closemessage
                 setflag(FLAG_BEAT_STEVEN_KITAKAMI)
-                moveobjecttocoords(LOCALID_KITAKAMI_STEVEN, 28, 8, DIR_NONE)
+                moveobjecttocoords(LOCALID_KITAKAMI_STEVEN, 28, 8, DIR_SOUTH)
                 waitmovement(LOCALID_KITAKAMI_STEVEN)
                 delay(15)
                 playse(SE_EXIT)
@@ -133,9 +134,13 @@ script PorygonPC {
 }
 
 script KitakamiHouses_3_Lady {
-    msgbox("TODO", MSGBOX_NPC)
+    msgbox("Life is peaceful here with my family,
+            I couldn't ask for much else.", MSGBOX_NPC)
 }
 
 script KitakamiHouses_3_Man {
-    msgbox("TODO", MSGBOX_NPC)
+    msgbox("This town is protected by Ogerpon, who
+            sometimes visits this town. Personally
+            I have never seen it, but kids say
+            they have.", MSGBOX_NPC)
 }

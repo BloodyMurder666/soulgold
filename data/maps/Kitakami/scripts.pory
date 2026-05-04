@@ -15,12 +15,14 @@ script Kitakami_Trigger {
 
 script Kitakami_OgerponTrigger {
     lock
+    playse(SE_PIN)
     applymovement(LOCALID_PLAYER, Common_Movement_ExclamationMark)
-    waitmovement(0)
     applymovement(LOCALID_KITAKAMI_OGERPON, Common_Movement_ExclamationMark)
     applymovement(LOCALID_KITAKAMI_OGERPON, moves(face_down))
     waitmovement(0)
     delay(48)
+    playmoncry(SPECIES_OGERPON, CRY_MODE_NORMAL)
+    waitmoncry
     applymovement(LOCALID_KITAKAMI_OGERPON, moves(jump_in_place_down,
                                                   jump_in_place_up,
                                                   jump_in_place_down,
@@ -52,7 +54,7 @@ script Kitakami_Battlegirl {
 script Kitakami_Littlegirl {
     msgbox("Mom used to say bad children are taken
             to the well. But actually it's a place
-            where we Fezandipiti sometimes roosts.", MSGBOX_NPC)
+            where Fezandipiti roosts sometimes.", MSGBOX_NPC)
 }
 
 script Kitakami_WestSign {

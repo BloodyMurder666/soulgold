@@ -99,9 +99,9 @@ KitakamiHouses_2_Steven_5:
 # 40 "data/maps/Kitakami_Houses/scripts.pory"
 	goto_if_unset FLAG_TEMP_10, KitakamiHouses_2_Steven_9
 KitakamiHouses_2_Steven_8:
-# 54 "data/maps/Kitakami_Houses/scripts.pory"
-	msgbox KitakamiHouses_2_Steven_Text_1, MSGBOX_YESNO
 # 55 "data/maps/Kitakami_Houses/scripts.pory"
+	msgbox KitakamiHouses_2_Steven_Text_1, MSGBOX_YESNO
+# 56 "data/maps/Kitakami_Houses/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq KitakamiHouses_2_Steven_11
 # 88 "data/maps/Kitakami_Houses/scripts.pory"
@@ -118,34 +118,34 @@ KitakamiHouses_2_Steven_9:
 # 44 "data/maps/Kitakami_Houses/scripts.pory"
 	waitmovement 0
 # 45 "data/maps/Kitakami_Houses/scripts.pory"
+	waitse
+# 46 "data/maps/Kitakami_Houses/scripts.pory"
 	msgbox KitakamiHouses_2_Steven_Text_0
-# 52 "data/maps/Kitakami_Houses/scripts.pory"
+# 53 "data/maps/Kitakami_Houses/scripts.pory"
 	setflag FLAG_TEMP_10
 	goto KitakamiHouses_2_Steven_8
 
 KitakamiHouses_2_Steven_11:
-# 57 "data/maps/Kitakami_Houses/scripts.pory"
+# 58 "data/maps/Kitakami_Houses/scripts.pory"
 	msgbox KitakamiHouses_2_Steven_Text_2
-# 59 "data/maps/Kitakami_Houses/scripts.pory"
+# 60 "data/maps/Kitakami_Houses/scripts.pory"
 	trainerbattle_no_intro TRAINER_STEVEN, KitakamiHouses_2_Steven_Text_3
-# 61 "data/maps/Kitakami_Houses/scripts.pory"
+# 62 "data/maps/Kitakami_Houses/scripts.pory"
 	msgbox KitakamiHouses_2_Steven_Text_4
-# 69 "data/maps/Kitakami_Houses/scripts.pory"
-	giveitem ITEM_JADE_ORB
 # 70 "data/maps/Kitakami_Houses/scripts.pory"
-	waitmessage
+	giveitem ITEM_JADE_ORB
 # 71 "data/maps/Kitakami_Houses/scripts.pory"
-	msgbox KitakamiHouses_2_Steven_Text_5
-# 74 "data/maps/Kitakami_Houses/scripts.pory"
 	waitmessage
+# 72 "data/maps/Kitakami_Houses/scripts.pory"
+	msgbox KitakamiHouses_2_Steven_Text_5
 # 75 "data/maps/Kitakami_Houses/scripts.pory"
-	closemessage
+	waitmessage
 # 76 "data/maps/Kitakami_Houses/scripts.pory"
-	hidefollower
+	closemessage
 # 77 "data/maps/Kitakami_Houses/scripts.pory"
 	setflag FLAG_BEAT_STEVEN_KITAKAMI
 # 78 "data/maps/Kitakami_Houses/scripts.pory"
-	moveobjecttocoords LOCALID_KITAKAMI_STEVEN, 28, 8, DIR_NONE
+	moveobjecttocoords LOCALID_KITAKAMI_STEVEN, 28, 8, DIR_SOUTH
 # 79 "data/maps/Kitakami_Houses/scripts.pory"
 	waitmovement LOCALID_KITAKAMI_STEVEN
 # 80 "data/maps/Kitakami_Houses/scripts.pory"
@@ -178,8 +178,8 @@ KitakamiHouses_3_Lady::
 
 
 KitakamiHouses_3_Man::
-# 141 "data/maps/Kitakami_Houses/scripts.pory"
-	msgbox KitakamiHouses_3_Lady_Text_0, MSGBOX_NPC
+# 142 "data/maps/Kitakami_Houses/scripts.pory"
+	msgbox KitakamiHouses_3_Man_Text_0, MSGBOX_NPC
 	return
 
 
@@ -201,7 +201,7 @@ KitakamiHouses_1_Oldman_Text_1:
 	.string "batch!$"
 
 KitakamiHouses_2_Steven_Text_0:
-# 45 "data/maps/Kitakami_Houses/scripts.pory"
+# 46 "data/maps/Kitakami_Houses/scripts.pory"
 	.string "That face of determination... I assume\n"
 	.string "you have become the Champion of Johto?\l"
 	.string "...\l"
@@ -211,21 +211,21 @@ KitakamiHouses_2_Steven_Text_0:
 	.string "now, if you are alright with that.$"
 
 KitakamiHouses_2_Steven_Text_1:
-# 54 "data/maps/Kitakami_Houses/scripts.pory"
+# 55 "data/maps/Kitakami_Houses/scripts.pory"
 	.string "Are you ready to face me?$"
 
 KitakamiHouses_2_Steven_Text_2:
-# 57 "data/maps/Kitakami_Houses/scripts.pory"
+# 58 "data/maps/Kitakami_Houses/scripts.pory"
 	.string "Splendid, I'll hold nothing back\n"
 	.string "and I expect you to do the same!$"
 
 KitakamiHouses_2_Steven_Text_3:
-# 59 "data/maps/Kitakami_Houses/scripts.pory"
+# 60 "data/maps/Kitakami_Houses/scripts.pory"
 	.string "Outstanding, you truly have earned\n"
 	.string "the title of a Champion.$"
 
 KitakamiHouses_2_Steven_Text_4:
-# 61 "data/maps/Kitakami_Houses/scripts.pory"
+# 62 "data/maps/Kitakami_Houses/scripts.pory"
 	.string "It cannot be overstated how happy\n"
 	.string "this battle made me. You are a\l"
 	.string "trainer of exceptional skill.\p"
@@ -235,7 +235,7 @@ KitakamiHouses_2_Steven_Text_4:
 	.string "use for it near Route 46.$"
 
 KitakamiHouses_2_Steven_Text_5:
-# 71 "data/maps/Kitakami_Houses/scripts.pory"
+# 72 "data/maps/Kitakami_Houses/scripts.pory"
 	.string "I think I'll start heading out to \n"
 	.string "explore new places now. I hope our \l"
 	.string "paths cross again some day, {PLAYER}.$"
@@ -279,4 +279,12 @@ PorygonPC_Text_0:
 
 KitakamiHouses_3_Lady_Text_0:
 # 137 "data/maps/Kitakami_Houses/scripts.pory"
-	.string "TODO$"
+	.string "Life is peaceful here with my family,\n"
+	.string "I couldn't ask for much else.$"
+
+KitakamiHouses_3_Man_Text_0:
+# 142 "data/maps/Kitakami_Houses/scripts.pory"
+	.string "This town is protected by Ogerpon, who\n"
+	.string "sometimes visits this town. Personally\l"
+	.string "I have never seen it, but kids say\l"
+	.string "they have.$"
