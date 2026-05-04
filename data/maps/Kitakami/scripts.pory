@@ -1,0 +1,64 @@
+mapscripts Kitakami_MapScripts {}
+
+script Kitakami_OldLady {
+    msgbox("Oh a visitor? Where are you from?
+            ...
+            Newbark Town? That's quite a journey
+            to get here!", MSGBOX_NPC)
+}
+
+script Kitakami_Trigger {
+    setflag(FLAG_VISITED_KITAKAMI)
+    setvar(VAR_KITAKAMI_STATE, 1)
+    end
+}
+
+script Kitakami_OgerponTrigger {
+    lock
+    applymovement(LOCALID_PLAYER, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    applymovement(LOCALID_KITAKAMI_OGERPON, Common_Movement_ExclamationMark)
+    applymovement(LOCALID_KITAKAMI_OGERPON, moves(face_down))
+    waitmovement(0)
+    delay(48)
+    applymovement(LOCALID_KITAKAMI_OGERPON, moves(jump_in_place_down,
+                                                  jump_in_place_up,
+                                                  jump_in_place_down,
+                                                  delay_16))
+    waitmovement(0)
+    playmoncry(SPECIES_OGERPON, CRY_MODE_NORMAL)
+    waitmoncry
+    delay(20)
+    applymovement(LOCALID_KITAKAMI_OGERPON, moves(jump_2_up, jump_2_up))
+    waitmovement(0)
+    setflag(FLAG_HIDE_KITAKAMI_OGERPON)
+    removeobject(LOCALID_KITAKAMI_OGERPON)
+    setvar(VAR_KITAKAMI_STATE, 2)
+    release
+    end
+}
+
+script Kitakami_Fatman {
+    msgbox("There's no technology here!
+            WHAT DO I DO?", MSGBOX_NPC)
+}
+
+script Kitakami_Battlegirl {
+    msgbox("I come here to train once a year. It's a
+            nice middle ground between the busy
+            city life and harshness of Mt. Silver.", MSGBOX_NPC)
+}
+
+script Kitakami_Littlegirl {
+    msgbox("Mom used to say bad children are taken
+            to the well. But actually it's a place
+            where we Fezandipiti sometimes roosts.", MSGBOX_NPC)
+}
+
+script Kitakami_WestSign {
+    msgbox("Kitakami Town - Timeless traditions", MSGBOX_SIGN)
+}
+
+script Kitakami_WellSign {
+    msgbox("Kitakami Well - Careful with the ladder!", MSGBOX_SIGN)
+}

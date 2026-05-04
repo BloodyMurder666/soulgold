@@ -6,7 +6,7 @@
   "region_map_section": "MAPSEC_KITAKAMI_BORDER",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
-  "map_type": "MAP_TYPE_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
   "allow_cycling": true,
   "allow_escaping": false,
   "allow_running": true,
@@ -17,6 +17,11 @@
       "map": "MAP_ROUTE45",
       "offset": -62,
       "direction": "left"
+    },
+    {
+      "map": "MAP_KITAKAMI",
+      "offset": 9,
+      "direction": "right"
     }
   ],
   "object_events": [
@@ -144,6 +149,13 @@
       "y": 28,
       "elevation": 0,
       "dest_map": "MAP_KITAKAMI_BORDER",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 56,
+      "y": 29,
+      "elevation": 0,
+      "dest_map": "MAP_GATE_KITAKAMI_BORDER",
       "dest_warp_id": "0"
     }
   ],

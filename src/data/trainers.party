@@ -12493,3 +12493,67 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Morgrem
 Level: 23
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+=== TRAINER_STEVEN ===
+Name: Steven
+Class: Champion
+Pic: Steven
+Gender: Male
+Music: Hg Boy 2
+Double Battle: No
+AI: Smart Trainer / Prediction
+Mugshot: Purple
+
+Skarmory @ Sitrus Berry  
+Ability: Sturdy  
+Level: 80  
+EVs: 252 HP / 252 SpD / 4 Atk   
+- Toxic
+- Spikes  
+- Brave Bird  
+- Steel Wing
+
+Aggron @ Air Balloon
+Ability: Rock Head
+EVs: 252 HP / 252 Atk
+Level: 81
+- Head Smash
+- Avalanche
+- Earthquake
+- Heavy Slam
+
+Cradily @ Expert Belt
+Ability: Suction Cups
+EVs: 252 HP / 252 SpD
+Level: 80
+- Stone Edge
+- Seed Bomb
+- Sandstorm
+- Earthquake
+
+Excadrill @ Focus Sash
+Ability: Sand Rush
+EVs: 252 Atk / 252 Spe
+Level: 81
+- X-scissor
+- Earthquake
+- Stone Edge
+- Iron Head
+
+Archeops @ Sitrus Berry
+Ability: Defeatist
+EVs: 252 Atk / 252 Spe
+Level: 81
+- Head Smash
+- Acrobatics
+- Earthquake
+- Quick Attack
+
+Metagross @ Metagrossite
+Ability: Clear Body
+Level: 82
+EVs: 252 Atk / 252 Spe
+- Bullet Punch
+- Meteor Mash
+- Earthquake
+- Zen Headbutt

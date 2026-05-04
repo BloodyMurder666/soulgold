@@ -522,6 +522,18 @@
       "map": "MAP_ROUTE10",
       "x": 21,
       "y": 21
+    },
+    {
+      "id": "HEAL_LOCATION_KITAKAMI",
+      "map": "MAP_KITAKAMI",
+      "x": 27,
+      "y": 18
+    },
+    {
+      "id": "HEAL_LOCATION_KITAKAMI_BORDER",
+      "map": "MAP_KITAKAMI_BORDER",
+      "x": 39,
+      "y": 29
     }
   ]
 }

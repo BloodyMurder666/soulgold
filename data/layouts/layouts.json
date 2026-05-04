@@ -8924,7 +8924,7 @@
     {
       "id": "LAYOUT_KITAKAMI_BORDER",
       "name": "KitakamiBorder_Layout",
-      "width": 62,
+      "width": 65,
       "height": 43,
       "primary_tileset": "gTileset_Johto_NorthEast",
       "secondary_tileset": "gTileset_Blackthorn",
@@ -8940,6 +8940,46 @@
       "secondary_tileset": "gTileset_Underwater",
       "border_filepath": "data/layouts/CherrygroveUnderwater/border.bin",
       "blockdata_filepath": "data/layouts/CherrygroveUnderwater/map.bin"
+    },
+    {
+      "id": "LAYOUT_KITAKAMI",
+      "name": "Kitakami_Layout",
+      "width": 45,
+      "height": 40,
+      "primary_tileset": "gTileset_Johto_NorthEast",
+      "secondary_tileset": "gTileset_Ecruteak_City",
+      "border_filepath": "data/layouts/Kitakami/border.bin",
+      "blockdata_filepath": "data/layouts/Kitakami/map.bin"
+    },
+    {
+      "id": "LAYOUT_KITAKAMI_MOUNTAIN",
+      "name": "KitakamiMountain_Layout",
+      "width": 45,
+      "height": 40,
+      "primary_tileset": "gTileset_Johto_NorthEast",
+      "secondary_tileset": "gTileset_MtSilverSnow",
+      "border_filepath": "data/layouts/KitakamiMountain/border.bin",
+      "blockdata_filepath": "data/layouts/KitakamiMountain/map.bin"
+    },
+    {
+      "id": "LAYOUT_GATE_KITAKAMI_BORDER",
+      "name": "Gate_KitakamiBorder_Layout",
+      "width": 13,
+      "height": 9,
+      "primary_tileset": "gTileset_Johto_Building",
+      "secondary_tileset": "gTileset_Gate_Standard",
+      "border_filepath": "data/layouts/Gate_KitakamiBorder/border.bin",
+      "blockdata_filepath": "data/layouts/Gate_KitakamiBorder/map.bin"
+    },
+    {
+      "id": "LAYOUT_KITAKAMI_HOUSES",
+      "name": "Kitakami_Houses_Layout",
+      "width": 34,
+      "height": 24,
+      "primary_tileset": "gTileset_Johto_Building",
+      "secondary_tileset": "gTileset_House_Lab",
+      "border_filepath": "data/layouts/Kitakami_Houses/border.bin",
+      "blockdata_filepath": "data/layouts/Kitakami_Houses/map.bin"
     }
   ]
 }

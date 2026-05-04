@@ -704,8 +704,8 @@
 #define FLAG_HIDE_DOJO_BLAINE  0x290 
 #define FLAG_HIDE_DOJO_BLUE  0x291 
 #define FLAG_SET_SHINY  0x293 //shiny flag/ red Gyarados
-#define FLAG_VISITED_ROUTE10  0x294 //no collision
-#define FLAG_AUTO_HMS  0x295 // auto hms
+#define FLAG_VISITED_ROUTE10  0x294
+#define FLAG_MET_STEVEN  0x295 // Kitakami flags
 #define FLAG_EXP_SHARE_OPTION  0x296 // exp. share
 #define FLAG_WONDERTRADE1  0x297 // Unused Flag
 #define FLAG_WONDERTRADE2  0x298 // Unused Flag
@@ -719,7 +719,7 @@
 #define FLAG_NAMED_SILVER  0x2A0 // Unused Flag
 #define FLAG_SLOWPOKE_TRADE    0x2A1
 #define FLAG_ROUTE31_EXPERT  0x2A2 // Flag for defeating Route 31 expert
-#define FLAG_UNUSED_0x2A3  0x2A3 // Unused Flag
+#define FLAG_VISITED_KITAKAMI  0x2A3
 #define FLAG_DEXNAV_SEARCHING  0x2A4
 #define FLAG_DEXNAV_OBTAINED  0x2A5
 #define FLAG_DN_HIDDEN_MODE  0x2A6
@@ -774,7 +774,7 @@
 #define FLAG_HIDE_PETALBURG_WOODS_AQUA_GRUNT                        0x2D5
 #define FLAG_HIDE_PETALBURG_CITY_WALLY                              0x2D6
 #define FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_INVISIBLE_NINJA_BOY   0x2D7
-#define FLAG_HIDE_PETALBURG_CITY_WALLYS_MOM                         0x2D8
+#define FLAG_HIDE_KITAKAMI_OGERPON                                  0x2D8
 
 #define FLAG_HIDE_PYROARITE                                           0x2D9
 
@@ -1527,7 +1527,7 @@
 #define FLAG_NEVER_TURNED_OFF_HARD                  (SYSTEM_FLAGS + 0x95) // If player never chose normal mode during important battles
 #define FLAG_TRAINER_LEVELSCALING                   (SYSTEM_FLAGS + 0x96)
 #define FLAG_WILD_LEVELSCALING                      (SYSTEM_FLAGS + 0x97)
-#define FLAG_UNUSED_0x8F8                           (SYSTEM_FLAGS + 0x98) // Unused Flag
+#define FLAG_BEAT_STEVEN_KITAKAMI                   (SYSTEM_FLAGS + 0x98)
 #define FLAG_UNUSED_0x8F9                           (SYSTEM_FLAGS + 0x99) // Unused Flag
 #define FLAG_UNUSED_0x8FA                           (SYSTEM_FLAGS + 0x9A) // Unused Flag
 #define FLAG_UNUSED_0x8FB                           (SYSTEM_FLAGS + 0x9B) // Unused Flag
@@ -1596,7 +1596,7 @@
 
 #define FLAG_ROUTE47_GROTTO                         (DAILY_FLAGS_START + 0x15)
 #define FLAG_ROUTE38_GROTTO                         (DAILY_FLAGS_START + 0x16)
-#define FLAG_UNUSED_0x937                           (DAILY_FLAGS_START + 0x17) // Unused Flag
+#define FLAG_CANDY_KITAKAMI                         (DAILY_FLAGS_START + 0x17)
 #define FLAG_UNUSED_0x938                           (DAILY_FLAGS_START + 0x18) // Unused Flag
 #define FLAG_UNUSED_0x939                           (DAILY_FLAGS_START + 0x19) // Unused Flag
 #define FLAG_UNUSED_0x93A                           (DAILY_FLAGS_START + 0x1A) // Unused Flag

@@ -5844,6 +5844,22 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_BlueOrb,
     },
 
+    [ITEM_JADE_ORB] =
+    {
+        .name = ITEM_NAME("Jade Orb"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A Green, glowing orb\n"
+            "said to contain an\n"
+            "ancient power."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .importance = 1,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_JadeOrb,
+        .iconPalette = gItemIconPalette_JadeOrb,
+    },
+
 // Mega Stones
 
     [ITEM_VENUSAURITE] =

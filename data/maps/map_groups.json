@@ -107,7 +107,9 @@
     "Route27",
     "Route28",
     "GoldenrodShore",
-    "KitakamiBorder"
+    "KitakamiBorder",
+    "Kitakami",
+    "KitakamiMountain"
   ],
   "gMapGroup_IndoorNewBark": [
     "NewBarkTown_Lab",
@@ -354,7 +356,9 @@
     "SafariZoneGate_SafariZoneEntrance",
     "Route27_House",
     "MtSilver_PokemonCenter",
-    "Gate_Route39North"
+    "Gate_Route39North",
+    "Gate_KitakamiBorder",
+    "Kitakami_Houses"
   ],
   "gMapGroup_IndoorKantoRoutes": [
     "Route26_House1",

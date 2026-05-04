@@ -207,7 +207,7 @@
 #define VAR_DEXNAV_SPECIES                                0x40BB
 #define VAR_STEP_COUNTER                                0x40BC
 #define VAR_LAST_REPEL                                0x40BD
-#define VAR_UNUSED_0x40BE                                0x40BE // Unused
+#define VAR_KITAKAMI_STATE                                0x40BE
 #define VAR_UNUSED_0x40BF                                0x40BF // Unused
 #define VAR_SOOTOPOLIS_MYSTERY_EVENTS_STATE              0x40C0
 #define VAR_TRICK_HOUSE_PRIZE_PICKUP                     0x40C1

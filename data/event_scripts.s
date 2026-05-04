@@ -2143,3 +2143,11 @@ Common_Text_ReceivedMon:
 	.include "data/maps/KitakamiBorder/scripts.inc"
 
 	.include "data/maps/CherrygroveUnderwater/scripts.inc"
+
+	.include "data/maps/Kitakami/scripts.inc"
+
+	.include "data/maps/KitakamiMountain/scripts.inc"
+
+	.include "data/maps/Gate_KitakamiBorder/scripts.inc"
+
+	.include "data/maps/Kitakami_Houses/scripts.inc"

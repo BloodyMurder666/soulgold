@@ -965,6 +965,8 @@ extern const u32 gItemIcon_RedOrb[];
 extern const u16 gItemIconPalette_RedOrb[];
 extern const u32 gItemIcon_BlueOrb[];
 extern const u16 gItemIconPalette_BlueOrb[];
+extern const u32 gItemIcon_JadeOrb[];
+extern const u16 gItemIconPalette_JadeOrb[];
 // Mega Stones
 extern const u32 gItemIcon_Venusaurite[];
 extern const u16 gItemIconPalette_Venusaurite[];
