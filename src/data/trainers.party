@@ -12501,7 +12501,7 @@ Pic: Steven
 Gender: Male
 Music: Hg Boy 2
 Double Battle: No
-AI: Smart Trainer / Prediction
+AI: Smart Trainer
 Mugshot: Purple
 
 Skarmory @ Sitrus Berry  
@@ -12552,6 +12552,72 @@ Level: 81
 Metagross @ Metagrossite
 Ability: Clear Body
 Level: 82
+EVs: 252 Atk / 252 Spe
+- Bullet Punch
+- Meteor Mash
+- Earthquake
+- Zen Headbutt
+
+=== TRAINER_STEVEN ===
+Name: Steven
+Class: Champion
+Pic: Steven
+Gender: Male
+Music: Hg Boy 2
+Double Battle: Yes
+AI: Smart Trainer
+Mugshot: Purple
+Difficulty: Hard
+
+Gholdengo @ Metal Coat  
+Ability: Good As Gold  
+Level: 84  
+EVs: 252 HP / 252 SpD / 4 Atk
+Nature: Modest   
+- Make It Rain
+- Dazzling Gleam
+- Protect
+- Nasty Plot
+
+Aggron @ Air Balloon
+Ability: Rock Head
+EVs: 252 HP / 252 Atk
+Level: 85
+- Head Smash
+- Avalanche
+- Earthquake
+- Heavy Slam
+
+Cradily @ Expert Belt
+Ability: Suction Cups
+EVs: 252 HP / 252 SpD
+Level: 85
+- Stone Edge
+- Seed Bomb
+- Sandstorm
+- Earthquake
+
+Excadrill @ Focus Sash
+Ability: Sand Rush
+EVs: 252 Atk / 252 Spe
+Level: 85
+- X-scissor
+- Earthquake
+- Stone Edge
+- Iron Head
+
+Archeops @ Sitrus Berry
+Ability: Defeatist
+EVs: 252 Atk / 252 Spe
+Level: 85
+- Head Smash
+- Acrobatics
+- Earthquake
+- Quick Attack
+
+Metagross @ Metagrossite
+Ability: Clear Body
+Level: 86
 EVs: 252 Atk / 252 Spe
 - Bullet Punch
 - Meteor Mash
