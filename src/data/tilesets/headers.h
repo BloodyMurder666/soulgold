@@ -2052,3 +2052,25 @@ const struct Tileset gTileset_g4cave =
     .metatileAttributes = gMetatileAttributes_g4cave,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_SeviiIslands123 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_SeviiIslands123,
+    .palettes = gTilesetPalettes_SeviiIslands123,
+    .metatiles = gMetatiles_SeviiIslands123,
+    .metatileAttributes = gMetatileAttributes_SeviiIslands123,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_MtEmber =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_MtEmber,
+    .palettes = gTilesetPalettes_MtEmber,
+    .metatiles = gMetatiles_MtEmber,
+    .metatileAttributes = gMetatileAttributes_MtEmber,
+    .callback = InitTilesetAnim_MtEmber,
+};

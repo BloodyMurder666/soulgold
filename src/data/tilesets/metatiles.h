@@ -518,3 +518,9 @@ const u16 gMetatileAttributes_Grotto1[] = INCBIN_U16("data/tilesets/primary/grot
 
 const u16 gMetatiles_g4cave[] = INCBIN_U16("data/tilesets/secondary/g_4cave/metatiles.bin");
 const u16 gMetatileAttributes_g4cave[] = INCBIN_U16("data/tilesets/secondary/g_4cave/metatile_attributes.bin");
+
+const u16 gMetatiles_SeviiIslands123[] = INCBIN_U16("data/tilesets/secondary/sevii_islands_123/metatiles.bin");
+const u16 gMetatileAttributes_SeviiIslands123[] = INCBIN_U16("data/tilesets/secondary/sevii_islands_123/metatile_attributes.bin");
+
+const u16 gMetatiles_MtEmber[] = INCBIN_U16("data/tilesets/secondary/mt_ember_frlg/metatiles.bin");
+const u16 gMetatileAttributes_MtEmber[] = INCBIN_U16("data/tilesets/secondary/mt_ember_frlg/metatile_attributes.bin");

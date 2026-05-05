@@ -109,7 +109,10 @@
     "GoldenrodShore",
     "KitakamiBorder",
     "Kitakami",
-    "KitakamiMountain"
+    "KitakamiMountain",
+    "OneIsland",
+    "OneIsland_KindleRoad_Frlg",
+    "OneIsland_TreasureBeach_Frlg"
   ],
   "gMapGroup_IndoorNewBark": [
     "NewBarkTown_Lab",
@@ -388,7 +391,12 @@
     "Gate_FuchsiaCity_Route18",
     "Route12_House",
     "Route4_PokemonCenter",
-    "Route25_BillsHouse"
+    "Route25_BillsHouse",
+    "OneIsland_PokemonCenter_1F_Frlg",
+    "OneIsland_PokemonCenter_2F_Frlg",
+    "OneIsland_House1_Frlg",
+    "OneIsland_House2_Frlg",
+    "OneIsland_Harbor_Frlg"
   ],
   "gMapGroup_Dungeons": [
     "DarkCave_SouthSide",
@@ -496,7 +504,20 @@
     "IcePath_Depths2",
     "KitakamiMountain1F",
     "KitakamiMountainEnclave",
-    "KitakamiWell_B1F"
+    "KitakamiWell_B1F",
+    "MtEmber_RubyPath_B4F_Frlg",
+    "MtEmber_Exterior_Frlg",
+    "MtEmber_SummitPath_1F_Frlg",
+    "MtEmber_SummitPath_2F_Frlg",
+    "MtEmber_SummitPath_3F_Frlg",
+    "MtEmber_Summit_Frlg",
+    "MtEmber_RubyPath_B5F_Frlg",
+    "MtEmber_RubyPath_1F_Frlg",
+    "MtEmber_RubyPath_B1F_Frlg",
+    "MtEmber_RubyPath_B2F_Frlg",
+    "MtEmber_RubyPath_B3F_Frlg",
+    "MtEmber_RubyPath_B1F_Stairs_Frlg",
+    "MtEmber_RubyPath_B2F_Stairs_Frlg"
   ],
   "gMapGroup_IndoorDynamic": [],
   "gMapGroup_SpecialArea": [
@@ -527,7 +548,8 @@
     "SafariZone3",
     "SafariZoneIndoor",
     "Saffron_Temp",
-    "TestingMap"
+    "TestingMap",
+    "OneIsland_KindleRoad_EmberSpa_Frlg"
   ],
   "gMapGroup_Emerald1": [
     "InsideOfTruck",

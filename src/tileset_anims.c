@@ -522,6 +522,18 @@ const u16 *const gTilesetAnims_Rustboro_WindyWater[] = {
     gTilesetAnims_Rustboro_WindyWater_Frame7
 };
 
+static const u16 sTilesetAnims_MtEmber_Steam_Frame0[] = INCBIN_U16("data/tilesets/secondary/mt_ember_frlg/anim/steam/0.4bpp");
+static const u16 sTilesetAnims_MtEmber_Steam_Frame1[] = INCBIN_U16("data/tilesets/secondary/mt_ember_frlg/anim/steam/1.4bpp");
+static const u16 sTilesetAnims_MtEmber_Steam_Frame2[] = INCBIN_U16("data/tilesets/secondary/mt_ember_frlg/anim/steam/2.4bpp");
+static const u16 sTilesetAnims_MtEmber_Steam_Frame3[] = INCBIN_U16("data/tilesets/secondary/mt_ember_frlg/anim/steam/3.4bpp");
+
+static const u16 *const sTilesetAnims_MtEmber_Steam[] = {
+    sTilesetAnims_MtEmber_Steam_Frame0,
+    sTilesetAnims_MtEmber_Steam_Frame1,
+    sTilesetAnims_MtEmber_Steam_Frame2,
+    sTilesetAnims_MtEmber_Steam_Frame3
+};
+
 const u16 gTilesetAnims_Rustboro_Fountain_Frame0[] = INCBIN_U16("data/tilesets/secondary/rustboro/anim/fountain/0.4bpp");
 const u16 gTilesetAnims_Rustboro_Fountain_Frame1[] = INCBIN_U16("data/tilesets/secondary/rustboro/anim/fountain/1.4bpp");
 const u16 tileset_anims_space_2[16] = {};
@@ -1321,6 +1333,24 @@ static void TilesetAnim_EverGrande(u16 timer)
         QueueAnimTiles_EverGrande_Flowers(timer / 8, 6);
     if (timer % 8 == 7)
         QueueAnimTiles_EverGrande_Flowers(timer / 8, 7);
+}
+
+static void QueueAnimTiles_MtEmber_Steam(u16 timer)
+{
+    AppendTilesetAnimToBuffer(sTilesetAnims_MtEmber_Steam[timer % ARRAY_COUNT(sTilesetAnims_MtEmber_Steam)], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(896)), 8 * TILE_SIZE_4BPP);
+}
+
+static void TilesetAnim_MtEmber(u16 timer)
+{
+    if (timer % 16 == 0)
+        QueueAnimTiles_MtEmber_Steam(timer / 16);
+}
+
+void InitTilesetAnim_MtEmber(void)
+{
+    sSecondaryTilesetAnimCounter = 0;
+    sSecondaryTilesetAnimCounterMax = 256;
+    sSecondaryTilesetAnimCallback = TilesetAnim_MtEmber;
 }
 
 static void TilesetAnim_Pacifidlog(u16 timer)

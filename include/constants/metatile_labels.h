@@ -454,6 +454,9 @@
 // gTileset_MossdeepGym
 #define METATILE_MossdeepGym_YellowArrow_Right  0x250
 
+// gTileset_MtEmber
+#define METATILE_MtEmber_CaveEntrance  0x346
+
 // gTileset_NewBarkTown
 #define METATILE_NewBarkTown_Door_Blue    0x2CB
 #define METATILE_NewBarkTown_Door_Red     0x2BD
@@ -833,6 +836,9 @@
 #define METATILE_SecretBase_YellowBrick_Bottom          0x22E
 #define METATILE_SecretBase_YellowBrick_Top             0x226
 
+// gTileset_SeviiIslands123
+#define METATILE_SeviiIslands123_Door  0x297
+
 // gTileset_Shop
 #define METATILE_Shop_Door_Elevator   0x285
 #define METATILE_Shop_Laptop1_Flash   0x258
@@ -1004,7 +1010,6 @@
 #define METATILE_JohtoShop_Door                                          0x28D
 #define METATILE_Mart_CounterMid_Bottom                                  0x2C0
 #define METATILE_Mart_CounterMid_Top                                     0x2BF
-#define METATILE_MtEmber_CaveEntrance                                    0x346
 #define METATILE_Olivine_6_Door                                          0x312
 #define METATILE_Olivine_6_Vermilion                                     0x29E
 #define METATILE_Pewter_Pewter                                           0x2CE
@@ -1082,9 +1087,6 @@
 #define METATILE_SeafoamIslands_IceHole                                  0x35B
 #define METATILE_SeafoamIslands_SlidingIce                               0x34B
 #define METATILE_SeafoamIslands_UncrackedIce                             0x359
-#define METATILE_SeviiIslands123_Door                                    0x297
-#define METATILE_SeviiIslands123_GameCornerDoor                          0x29B
-#define METATILE_SeviiIslands123_PokeCenterDoor                          0x2EB
 #define METATILE_SeviiIslands45_DayCareDoor                              0x2B9
 #define METATILE_SeviiIslands45_Door                                     0x29A
 #define METATILE_SeviiIslands45_RocketWarehouseDoor_Locked               0x30B

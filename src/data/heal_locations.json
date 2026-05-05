@@ -534,6 +534,12 @@
       "map": "MAP_KITAKAMI_BORDER",
       "x": 39,
       "y": 29
+    },
+    {
+      "id": "HEAL_LOCATION_ONE_ISLAND",
+      "map": "MAP_ONE_ISLAND",
+      "x": 14,
+      "y": 6
     }
   ]
 }
