@@ -9000,6 +9000,16 @@
       "secondary_tileset": "gTileset_Cave_Gray",
       "border_filepath": "data/layouts/KitakamiMountainEnclave/border.bin",
       "blockdata_filepath": "data/layouts/KitakamiMountainEnclave/map.bin"
+    },
+    {
+      "id": "LAYOUT_KITAKAMI_WELL_B1F",
+      "name": "KitakamiWell_B1F_Layout",
+      "width": 38,
+      "height": 36,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_Cave_Gray",
+      "border_filepath": "data/layouts/KitakamiWell_B1F/border.bin",
+      "blockdata_filepath": "data/layouts/KitakamiWell_B1F/map.bin"
     }
   ]
 }

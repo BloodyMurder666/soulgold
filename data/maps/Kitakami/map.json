@@ -242,35 +242,7 @@
       "x": 35,
       "y": 19,
       "elevation": 0,
-      "dest_map": "MAP_KITAKAMI",
-      "dest_warp_id": "0"
-    },
-    {
-      "x": 20,
-      "y": 8,
-      "elevation": 0,
-      "dest_map": "MAP_KITAKAMI",
-      "dest_warp_id": "0"
-    },
-    {
-      "x": 21,
-      "y": 8,
-      "elevation": 0,
-      "dest_map": "MAP_KITAKAMI",
-      "dest_warp_id": "0"
-    },
-    {
-      "x": 22,
-      "y": 8,
-      "elevation": 0,
-      "dest_map": "MAP_KITAKAMI",
-      "dest_warp_id": "0"
-    },
-    {
-      "x": 23,
-      "y": 8,
-      "elevation": 0,
-      "dest_map": "MAP_KITAKAMI",
+      "dest_map": "MAP_KITAKAMI_WELL_B1F",
       "dest_warp_id": "0"
     },
     {
