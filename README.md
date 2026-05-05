@@ -15,7 +15,8 @@ TODO
 - Mont for swsh party menu
 - Leob0505 for backgrounds
 - Emulator accuracy check by Wiz1989 (also thanks to mudskip, grunt-lucas, archie, drazden)
-
+- Ghoulslash (sideway stairs)
+- Kyledove (various graphics)
 Based off RHH's pokeemerald-expansion 1.15.0 https://github.com/rh-hideout/pokeemerald-expansion/
 
 The DS party screen functionality comes from TheXaman: https://github.com/TheXaman/pokeemerald/tree/tx_ui_party_screen_ds_style_2

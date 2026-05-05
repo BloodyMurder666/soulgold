@@ -3868,3 +3868,22 @@ const u16 gTilesetPalettes_Grotto1[][16] =
 };
 
 const u32 gTilesetTiles_Grotto1[] = INCBIN_U32("data/tilesets/primary/grotto_1/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_g4cave[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/g_4cave/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/g_4cave/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/g_4cave/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/g_4cave/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/g_4cave/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/g_4cave/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/g_4cave/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/g_4cave/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/g_4cave/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/g_4cave/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/g_4cave/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/g_4cave/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/g_4cave/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_g4cave[] = INCBIN_U32("data/tilesets/secondary/g_4cave/tiles.4bpp.lz");

@@ -2153,3 +2153,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/Kitakami_Houses/scripts.inc"
 
 	.include "data/maps/KitakamiMountain1F/scripts.inc"
+
+	.include "data/maps/KitakamiMountainEnclave/scripts.inc"

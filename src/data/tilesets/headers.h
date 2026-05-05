@@ -2041,3 +2041,14 @@ const struct Tileset gTileset_Grotto1 =
     .metatileAttributes = gMetatileAttributes_Grotto1,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_g4cave =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_g4cave,
+    .palettes = gTilesetPalettes_g4cave,
+    .metatiles = gMetatiles_g4cave,
+    .metatileAttributes = gMetatileAttributes_g4cave,
+    .callback = NULL,
+};
