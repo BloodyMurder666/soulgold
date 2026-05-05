@@ -610,7 +610,7 @@ struct SaveBlock2
              u16 optionsWildLevelScaling:1; //0 = off, 1 = on
              u16 optionsDifficulty:1; //0 = normal, 1 = hard
              u16 unused3:1;
-             u16 unused2:2;
+             u16 optionsBattleSpeed:2;
              u16 optionsFont:2; //0 = emerald, 1 = fire red
              u16 optionsLevelCaps:3; //0 = no caps, 1 = soft caps, 2 = hard caps
              u8 rivalName[PLAYER_NAME_LENGTH + 1];
