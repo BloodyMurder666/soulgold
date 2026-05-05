@@ -2,6 +2,7 @@ Johto + Sevii hack with expanded dex and various changes based on expansion port
 
 ## CREDITS
 - HnS Dev Team for their amazing work!
+- [smithk200](https://github.com/smithk200/Gold-And-Silver-Gen-3-Decomp) for porting most of HnS to expansion!
 - RHH and pokeemerald expansion dev team, of course!
 - TeamAquaHideout for help, resources and feature branches (new birch case)
 - Estellar for pathfinding
