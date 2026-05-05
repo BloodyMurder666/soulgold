@@ -49,6 +49,7 @@
 #include "constants/items.h"
 #include "difficulty.h"
 #include "follower_npc.h"
+#include "config/battle.h"
 #include "constants/heal_locations.h"
 #include "main_menu.h"
 #include "constants/flags.h"
@@ -112,6 +113,7 @@ static void SetDefaultOptions(void)
     gSaveBlock2Ptr->optionsLevelCaps = B_EXP_CAP_TYPE;
     gSaveBlock2Ptr->optionsTrainerLevelScaling = LEVEL_SCALING_OPTION_OFF;
     gSaveBlock2Ptr->optionsWildLevelScaling = LEVEL_SCALING_OPTION_OFF;
+    gSaveBlock2Ptr->optionsFastIntroNoSlide = B_FAST_INTRO_NO_SLIDE;
                
 }
 

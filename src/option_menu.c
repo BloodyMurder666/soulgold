@@ -40,6 +40,7 @@ EWRAM_DATA static u8 sCurrPage = 0;
 #define tDifficulty data[12]
 #define tOverworldSpeedup data[13]
 #define tBattleSpeed data[14]
+#define tFastIntroNoSlide data[15]
 
 enum
 {
@@ -67,6 +68,13 @@ enum
     MENUITEM_COUNT_PG2,
 };
 
+// Menu items Pg3
+enum
+{
+    MENUITEM_INTRO_SLIDE,
+    MENUITEM_COUNT_PG3,
+};
+
 enum
 {
     WIN_HEADER,
@@ -90,14 +98,19 @@ enum
 #define YPOS_WILD_LEVEL_SCALING (MENUITEM_WILD_LEVEL_SCALING * 16)
 #define YPOS_DIFFICULTY (MENUITEM_DIFFICULTY * 16)
 
-#define PAGE_COUNT  2
+#define YPOS_INTRO_SLIDE (MENUITEM_INTRO_SLIDE * 16)
+
+#define PAGE_COUNT  3
 
 static void Task_OptionMenuFadeIn(u8 taskId);
 static void Task_OptionMenuProcessInput(u8 taskId);
 static void Task_OptionMenuFadeIn_Pg2(u8 taskId);
 static void Task_OptionMenuProcessInput_Pg2(u8 taskId);
+static void Task_OptionMenuFadeIn_Pg3(u8 taskId);
+static void Task_OptionMenuProcessInput_Pg3(u8 taskId);
 static void Task_OptionMenuSave(u8 taskId);
 static void Task_OptionMenuFadeOut(u8 taskId);
+static void SaveCurrentSettings(u8 taskId);
 static void HighlightOptionMenuItem(u8 selection);
 static u8 TextSpeed_ProcessInput(u8 selection);
 static void TextSpeed_DrawChoices(u8 selection);
@@ -127,6 +140,8 @@ static u8 OverworldSpeedup_ProcessInput(u8 selection);
 static void OverworldSpeedup_DrawChoices(u8 selection);
 static u8 BattleSpeed_ProcessInput(u8 selection);
 static void BattleSpeed_DrawChoices(u8 selection);
+static u8 IntroSlide_ProcessInput(u8 selection);
+static void IntroSlide_DrawChoices(u8 selection);
 
 static void DrawTextOption(void);
 
@@ -169,6 +184,8 @@ static const u8 gText_BattleSpeed1x[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN
 static const u8 gText_BattleSpeed2x[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}2x");
 static const u8 gText_BattleSpeed3x[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}3x");
 static const u8 gText_BattleSpeed4x[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}4x");
+static const u8 gText_IntroSlideOn[]       = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}On");
+static const u8 gText_IntroSlideOff[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Off");
 
 static const u16 sOptionMenuText_Pal[] = INCBIN_U16("graphics/interface/option_menu_text.gbapal");
 // note: this is only used in the Japanese release
@@ -195,6 +212,11 @@ static const u8 *const sOptionMenuItemsNames_Pg2[MENUITEM_COUNT_PG2] =
     [MENUITEM_TRAINER_LEVEL_SCALING] = COMPOUND_STRING("Trainer scaling"),
     [MENUITEM_WILD_LEVEL_SCALING] = COMPOUND_STRING("Wild scaling"),
     [MENUITEM_DIFFICULTY] = COMPOUND_STRING("Difficulty"),
+};
+
+static const u8 *const sOptionMenuItemsNames_Pg3[MENUITEM_COUNT_PG3] =
+{
+    [MENUITEM_INTRO_SLIDE] = COMPOUND_STRING("Battle intro"),
 };
 
 static const struct WindowTemplate sOptionMenuWinTemplates[] =
@@ -276,6 +298,7 @@ static void ReadAllCurrentSettings(u8 taskId)
         gTasks[taskId].tDifficulty = GetCurrentDifficultyLevel() == DIFFICULTY_HARD;
         gTasks[taskId].tOverworldSpeedup = VarGet(VAR_OVERWORLD_SPEEDUP);
         gTasks[taskId].tBattleSpeed = VarGet(VAR_BATTLE_SPEED);
+        gTasks[taskId].tFastIntroNoSlide = gSaveBlock2Ptr->optionsFastIntroNoSlide;
 }
 
 static void DrawOptionsPg1(u8 taskId)
@@ -302,6 +325,14 @@ static void DrawOptionsPg2(u8 taskId)
     TrainerLevelScaling_DrawChoices(gTasks[taskId].tTrainerLevelScaling);
     WildLevelScaling_DrawChoices(gTasks[taskId].tWildLevelScaling);
     Difficulty_DrawChoices(gTasks[taskId].tDifficulty);
+    HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
+    CopyWindowToVram(WIN_OPTIONS, COPYWIN_FULL);
+}
+
+static void DrawOptionsPg3(u8 taskId)
+{
+    ReadAllCurrentSettings(taskId);
+    IntroSlide_DrawChoices(gTasks[taskId].tFastIntroNoSlide);
     HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
     CopyWindowToVram(WIN_OPTIONS, COPYWIN_FULL);
 }
@@ -392,7 +423,11 @@ void CB2_InitOptionMenu(void)
         case 1:
             taskId = CreateTask(Task_OptionMenuFadeIn_Pg2, 0);
             DrawOptionsPg2(taskId);
-            break;            
+            break;
+        case 2:
+            taskId = CreateTask(Task_OptionMenuFadeIn_Pg3, 0);
+            DrawOptionsPg3(taskId);
+            break;
         }
     }
     case 11:
@@ -437,6 +472,10 @@ static void Task_ChangePage(u8 taskId)
         DrawOptionsPg2(taskId);
         gTasks[taskId].func = Task_OptionMenuFadeIn_Pg2;
         break;
+    case 2:
+        DrawOptionsPg3(taskId);
+        gTasks[taskId].func = Task_OptionMenuFadeIn_Pg3;
+        break;
     }
 }
 
@@ -450,7 +489,7 @@ static void Task_OptionMenuProcessInput(u8 taskId)
 {
     if (JOY_NEW(L_BUTTON) || JOY_NEW(R_BUTTON))
    {
-        gTasks[taskId].func = Task_OptionMenuSave; 
+        SaveCurrentSettings(taskId);
         FillWindowPixelBuffer(WIN_OPTIONS, PIXEL_FILL(1));
         ClearStdWindowAndFrame(WIN_OPTIONS, FALSE);
         sCurrPage = Process_ChangePage(sCurrPage);
@@ -556,7 +595,7 @@ static void Task_OptionMenuProcessInput_Pg2(u8 taskId)
 {
     if (JOY_NEW(L_BUTTON) || JOY_NEW(R_BUTTON))
     {
-        gTasks[taskId].func = Task_OptionMenuSave;
+        SaveCurrentSettings(taskId);
         FillWindowPixelBuffer(WIN_OPTIONS, PIXEL_FILL(1));
         ClearStdWindowAndFrame(WIN_OPTIONS, FALSE);
         sCurrPage = Process_ChangePage(sCurrPage);
@@ -652,6 +691,70 @@ static void Task_OptionMenuProcessInput_Pg2(u8 taskId)
     }
 }
 
+static void Task_OptionMenuFadeIn_Pg3(u8 taskId)
+{
+    if (!gPaletteFade.active)
+        gTasks[taskId].func = Task_OptionMenuProcessInput_Pg3;
+}
+
+static void Task_OptionMenuProcessInput_Pg3(u8 taskId)
+{
+    if (JOY_NEW(L_BUTTON) || JOY_NEW(R_BUTTON))
+    {
+        SaveCurrentSettings(taskId);
+        FillWindowPixelBuffer(WIN_OPTIONS, PIXEL_FILL(1));
+        ClearStdWindowAndFrame(WIN_OPTIONS, FALSE);
+        sCurrPage = Process_ChangePage(sCurrPage);
+        gTasks[taskId].func = Task_ChangePage;
+    }
+    else if (JOY_NEW(A_BUTTON))
+    {
+        gTasks[taskId].func = Task_OptionMenuSave;
+    }
+    else if (JOY_NEW(B_BUTTON))
+    {
+        gTasks[taskId].func = Task_OptionMenuSave;
+    }
+    else if (JOY_NEW(DPAD_UP))
+    {
+        if (gTasks[taskId].tMenuSelection > 0)
+            gTasks[taskId].tMenuSelection--;
+        else
+            gTasks[taskId].tMenuSelection = MENUITEM_INTRO_SLIDE;
+        HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
+    }
+    else if (JOY_NEW(DPAD_DOWN))
+    {
+        if (gTasks[taskId].tMenuSelection < MENUITEM_INTRO_SLIDE)
+            gTasks[taskId].tMenuSelection++;
+        else
+            gTasks[taskId].tMenuSelection = 0;
+        HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
+    }
+    else
+    {
+        u8 previousOption;
+
+        switch (gTasks[taskId].tMenuSelection)
+        {
+        case MENUITEM_INTRO_SLIDE:
+            previousOption = gTasks[taskId].tFastIntroNoSlide;
+            gTasks[taskId].tFastIntroNoSlide = IntroSlide_ProcessInput(gTasks[taskId].tFastIntroNoSlide);
+
+            if (previousOption != gTasks[taskId].tFastIntroNoSlide)
+                IntroSlide_DrawChoices(gTasks[taskId].tFastIntroNoSlide);
+            break;
+        default:
+            return;
+        }
+        if (sArrowPressed)
+        {
+            sArrowPressed = FALSE;
+            CopyWindowToVram(WIN_OPTIONS, COPYWIN_GFX);
+        }
+    }
+}
+
 
 static void DrawTextOption(void)
 {
@@ -676,7 +779,7 @@ AddTextPrinterParameterized(WIN_HEADER, FONT_NORMAL, gText_PageNav, GetStringRig
 CopyWindowToVram(WIN_HEADER, COPYWIN_FULL);
 }
 
-static void Task_OptionMenuSave(u8 taskId)
+static void SaveCurrentSettings(u8 taskId)
 {
     gSaveBlock2Ptr->optionsTextSpeed = gTasks[taskId].tTextSpeed;
     gSaveBlock2Ptr->optionsBattleSceneOff = gTasks[taskId].tBattleSceneOff;
@@ -693,7 +796,12 @@ static void Task_OptionMenuSave(u8 taskId)
     VarSet(VAR_OVERWORLD_SPEEDUP, gTasks[taskId].tOverworldSpeedup);
     gSaveBlock2Ptr->optionsBattleSpeed = gTasks[taskId].tBattleSpeed;
     VarSet(VAR_BATTLE_SPEED, gTasks[taskId].tBattleSpeed);
+    gSaveBlock2Ptr->optionsFastIntroNoSlide = gTasks[taskId].tFastIntroNoSlide;
+}
 
+static void Task_OptionMenuSave(u8 taskId)
+{
+    SaveCurrentSettings(taskId);
     BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
     gTasks[taskId].func = Task_OptionMenuFadeOut;
 }
@@ -1088,6 +1196,35 @@ static void BattleSpeed_DrawChoices(u8 selection)
     DrawOptionMenuChoice(gText_BattleSpeed4x, GetStringRightAlignXOffset(FONT_NORMAL, gText_BattleSpeed4x, 198), YPOS_BATTLE_SPEED, styles[OPTIONS_BATTLE_SCENE_4X]);
 }
 
+static u8 IntroSlide_ProcessInput(u8 selection)
+{
+    if (selection > TRUE)
+        selection = FALSE;
+
+    if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
+    {
+        selection ^= 1;
+        sArrowPressed = TRUE;
+    }
+
+    return selection;
+}
+
+static void IntroSlide_DrawChoices(u8 selection)
+{
+    u8 styles[2];
+
+    if (selection > TRUE)
+        selection = FALSE;
+
+    styles[0] = 0;
+    styles[1] = 0;
+    styles[selection] = 1;
+
+    DrawOptionMenuChoice(gText_IntroSlideOn, 104, YPOS_INTRO_SLIDE, styles[FALSE]);
+    DrawOptionMenuChoice(gText_IntroSlideOff, GetStringRightAlignXOffset(FONT_NORMAL, gText_IntroSlideOff, 198), YPOS_INTRO_SLIDE, styles[TRUE]);
+}
+
 static u8 LevelCaps_ProcessInput(u8 selection)
 {
     if (JOY_NEW(DPAD_RIGHT))
@@ -1237,7 +1374,11 @@ static void DrawOptionMenuTexts(void)
     case 1:
         items = MENUITEM_COUNT_PG2;
         menu = sOptionMenuItemsNames_Pg2;
-        break;    
+        break;
+    case 2:
+        items = MENUITEM_COUNT_PG3;
+        menu = sOptionMenuItemsNames_Pg3;
+        break;
     }
 
     FillWindowPixelBuffer(WIN_OPTIONS, PIXEL_FILL(1));

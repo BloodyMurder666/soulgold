@@ -178,6 +178,11 @@ EWRAM_DATA enum BattlerId gBattlerTarget = 0;
 EWRAM_DATA enum BattlerId gBattlerFainted = 0;
 EWRAM_DATA enum BattlerId gEffectBattler = 0;
 EWRAM_DATA enum BattlerId gPotentialItemEffectBattler = 0;
+
+bool32 IsFastIntroNoSlideEnabled(void)
+{
+    return gSaveBlock2Ptr->optionsFastIntroNoSlide;
+}
 EWRAM_DATA u8 gAbsentBattlerFlags = 0;
 EWRAM_DATA u8 gMultiHitCounter = 0;
 EWRAM_DATA const u8 *gBattlescriptCurrInstr = NULL;
@@ -503,7 +508,7 @@ static void CB2_InitBattleInternal(void)
     {
         gBattle_WIN0V = WIN_RANGE(DISPLAY_HEIGHT / 2, DISPLAY_HEIGHT / 2 + 1);
         ScanlineEffect_Clear();
-        if (B_FAST_INTRO_NO_SLIDE == FALSE && !gTestRunnerHeadless)
+        if (!IsFastIntroNoSlideEnabled() && !gTestRunnerHeadless)
         {
             for (i = 0; i < DISPLAY_HEIGHT / 2; i++)
             {
@@ -542,7 +547,7 @@ static void CB2_InitBattleInternal(void)
     LoadBattleTextboxAndBackground();
     ResetSpriteData();
     ResetTasks();
-    if (B_FAST_INTRO_NO_SLIDE == FALSE && !gTestRunnerHeadless)
+    if (!IsFastIntroNoSlideEnabled() && !gTestRunnerHeadless)
         DrawBattleEntryBackground();
     FreeAllSpritePalettes();
     gReservedSpritePaletteCount = MAX_BATTLERS_COUNT;
@@ -2770,7 +2775,7 @@ void SpriteCB_WildMon(struct Sprite *sprite)
 {
     sprite->callback = SpriteCB_MoveWildMonToRight;
     StartSpriteAnimIfDifferent(sprite, 0);
-    if (B_FAST_INTRO_NO_SLIDE == FALSE && !gTestRunnerHeadless)
+    if (!IsFastIntroNoSlideEnabled() && !gTestRunnerHeadless)
     {
         if (WILD_DOUBLE_BATTLE)
             BeginNormalPaletteFade((0x10000 << sprite->sBattler) | (0x10000 << BATTLE_PARTNER(sprite->sBattler)), 0, 10, 10, RGB(8, 8, 8));
@@ -2783,7 +2788,7 @@ static void SpriteCB_MoveWildMonToRight(struct Sprite *sprite)
 {
     if ((gIntroSlideFlags & 1) == 0)
     {
-        if (B_FAST_INTRO_NO_SLIDE == FALSE && !gTestRunnerHeadless)
+        if (!IsFastIntroNoSlideEnabled() && !gTestRunnerHeadless)
             sprite->x2 = MoveIntroOffsetTowardZero(sprite->x2, 2 * Rogue_GetBattleSpeedScale(FALSE));
         else
             sprite->x2 = 0;
@@ -2803,7 +2808,7 @@ static void SpriteCB_WildMonShowHealthbox(struct Sprite *sprite)
         SetHealthboxSpriteVisible(gHealthboxSpriteIds[sprite->sBattler]);
         sprite->callback = SpriteCB_WildMonAnimate;
         StartSpriteAnimIfDifferent(sprite, 0);
-        if (B_FAST_INTRO_NO_SLIDE == FALSE && !gTestRunnerHeadless)
+        if (!IsFastIntroNoSlideEnabled() && !gTestRunnerHeadless)
         {
             if (WILD_DOUBLE_BATTLE)
                 BeginNormalPaletteFade((0x10000 << sprite->sBattler) | (0x10000 << BATTLE_PARTNER(sprite->sBattler)), 0, 10, 0, RGB(8, 8, 8));

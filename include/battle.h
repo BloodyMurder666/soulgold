@@ -1047,6 +1047,8 @@ extern struct QueuedStatBoost gQueuedStatBoosts[MAX_BATTLERS_COUNT];
 extern MainCallback gPreBattleCallback1;
 extern void (*gBattleMainFunc)(void);
 extern struct BattleResults gBattleResults;
+
+bool32 IsFastIntroNoSlideEnabled(void);
 extern u8 gLeveledUpInBattle;
 extern u8 gHealthboxSpriteIds[MAX_BATTLERS_COUNT];
 extern u8 gMultiUsePlayerCursor;
