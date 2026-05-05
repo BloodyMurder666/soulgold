@@ -2748,6 +2748,24 @@ u32 GetBattleWindowTemplatePixelWidth(u32 windowsType, u32 tableId)
 #define sBattler            data[0]
 #define sSpeciesId          data[2]
 
+static s16 MoveIntroOffsetTowardZero(s16 offset, s16 step)
+{
+    if (offset > 0)
+    {
+        offset -= step;
+        if (offset < 0)
+            offset = 0;
+    }
+    else if (offset < 0)
+    {
+        offset += step;
+        if (offset > 0)
+            offset = 0;
+    }
+
+    return offset;
+}
+
 void SpriteCB_WildMon(struct Sprite *sprite)
 {
     sprite->callback = SpriteCB_MoveWildMonToRight;
@@ -2766,7 +2784,7 @@ static void SpriteCB_MoveWildMonToRight(struct Sprite *sprite)
     if ((gIntroSlideFlags & 1) == 0)
     {
         if (B_FAST_INTRO_NO_SLIDE == FALSE && !gTestRunnerHeadless)
-            sprite->x2 += 2;
+            sprite->x2 = MoveIntroOffsetTowardZero(sprite->x2, 2 * Rogue_GetBattleSpeedScale(FALSE));
         else
             sprite->x2 = 0;
 
@@ -2902,7 +2920,7 @@ static void SpriteCB_BattleSpriteSlideLeft(struct Sprite *sprite)
 {
     if (!(gIntroSlideFlags & 1))
     {
-        sprite->x2 -= 2;
+        sprite->x2 = MoveIntroOffsetTowardZero(sprite->x2, 2 * Rogue_GetBattleSpeedScale(FALSE));
         if (sprite->x2 == 0)
         {
             sprite->callback = SpriteCB_Idle;
