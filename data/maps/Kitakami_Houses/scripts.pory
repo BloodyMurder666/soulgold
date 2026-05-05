@@ -31,6 +31,16 @@ script KitakamiHouses_1_Oldman {
 
 }
 
+script KitakamiHouses_3_Sinistea {
+    lock
+    faceplayer
+    playmoncry(SPECIES_SINISTEA, CRY_MODE_NORMAL)
+    msgbox("SIIII!")
+    waitmoncry
+    release
+    end
+}
+
 script KitakamiHouses_2_Steven {
     lock
     faceplayer
