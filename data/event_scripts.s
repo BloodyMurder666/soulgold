@@ -2181,3 +2181,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/MtEmber_RubyPath_B3F_Frlg/scripts.inc"
 	.include "data/maps/MtEmber_RubyPath_B1F_Stairs_Frlg/scripts.inc"
 	.include "data/maps/MtEmber_RubyPath_B2F_Stairs_Frlg/scripts.inc"
+
+	.include "data/maps/VajraDesert/scripts.inc"

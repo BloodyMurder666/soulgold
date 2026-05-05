@@ -2074,3 +2074,14 @@ const struct Tileset gTileset_MtEmber =
     .metatileAttributes = gMetatileAttributes_MtEmber,
     .callback = InitTilesetAnim_MtEmber,
 };
+
+const struct Tileset gTileset_Desert =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_Desert,
+    .palettes = gTilesetPalettes_Desert,
+    .metatiles = gMetatiles_Desert,
+    .metatileAttributes = gMetatileAttributes_Desert,
+    .callback = NULL,
+};

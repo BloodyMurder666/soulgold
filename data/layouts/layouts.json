@@ -9284,6 +9284,16 @@
       "blockdata_filepath": "data/layouts/House5_Frlg/map.bin",
       "border_height": 2,
       "border_width": 2
+    },
+    {
+      "id": "LAYOUT_VAJRA_DESERT",
+      "name": "VajraDesert_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_Desert",
+      "border_filepath": "data/layouts/VajraDesert/border.bin",
+      "blockdata_filepath": "data/layouts/VajraDesert/map.bin"
     }
   ]
 }
