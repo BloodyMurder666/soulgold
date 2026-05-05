@@ -19,6 +19,7 @@ TODO
 - Kyledove (various graphics and tiles)
 - Hyo for various sprites including frlg style emerald overworlds and gold sprites
 - Poffin Case various overworld sprites
+- HashtagMarky for overworld speedup
 Based off RHH's pokeemerald-expansion 1.15.0 https://github.com/rh-hideout/pokeemerald-expansion/
 
 The DS party screen functionality comes from TheXaman: https://github.com/TheXaman/pokeemerald/tree/tx_ui_party_screen_ds_style_2

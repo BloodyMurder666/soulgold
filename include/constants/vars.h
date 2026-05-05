@@ -208,7 +208,7 @@
 #define VAR_STEP_COUNTER                                0x40BC
 #define VAR_LAST_REPEL                                0x40BD
 #define VAR_KITAKAMI_STATE                                0x40BE
-#define VAR_UNUSED_0x40BF                                0x40BF // Unused
+#define VAR_OVERWORLD_SPEEDUP                            0x40BF
 #define VAR_SOOTOPOLIS_MYSTERY_EVENTS_STATE              0x40C0
 #define VAR_TRICK_HOUSE_PRIZE_PICKUP                     0x40C1
 #define VAR_PACIFIDLOG_TM_RECEIVED_DAY                   0x40C2

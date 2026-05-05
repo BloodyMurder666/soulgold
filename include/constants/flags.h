@@ -1530,7 +1530,7 @@
 #define FLAG_BEAT_STEVEN_KITAKAMI                   (SYSTEM_FLAGS + 0x98)
 #define FLAG_CHOICEBAND_KITAKAMI                    (SYSTEM_FLAGS + 0x99) // Kitakami mountain itemball
 #define FLAG_HIDE_MAREANIES                         (SYSTEM_FLAGS + 0x9A) //Hacky workaround for sequence skip with goldenrod shore
-#define FLAG_UNUSED_0x8FB                           (SYSTEM_FLAGS + 0x9B) // Unused Flag
+#define FLAG_PREVENT_OVERWORLD_SPEEDUP              (SYSTEM_FLAGS + 0x9B)
 #define FLAG_UNUSED_0x8FC                           (SYSTEM_FLAGS + 0x9C) // Unused Flag
 #define FLAG_UNUSED_0x8FD                           (SYSTEM_FLAGS + 0x9D) // Unused Flag
 #define FLAG_UNUSED_0x8FE                           (SYSTEM_FLAGS + 0x9E) // Unused Flag

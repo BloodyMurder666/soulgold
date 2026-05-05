@@ -7,6 +7,7 @@
 #include "level_scaling.h"
 #include "main.h"
 #include "menu.h"
+#include "overworld.h"
 #include "palette.h"
 #include "scanline_effect.h"
 #include "sprite.h"
@@ -18,6 +19,7 @@
 #include "window.h"
 #include "gba/m4a_internal.h"
 #include "constants/rgb.h"
+#include "constants/vars.h"
 #include "event_data.h"
 
 EWRAM_DATA static u8 sCurrPage = 0;
@@ -36,6 +38,7 @@ EWRAM_DATA static u8 sCurrPage = 0;
 #define tTrainerLevelScaling data[10]
 #define tWildLevelScaling data[11]
 #define tDifficulty data[12]
+#define tOverworldSpeedup data[13]
 
 enum
 {
@@ -55,6 +58,7 @@ enum
 {
     MENUITEM_FOLLOWERS,
     MENUITEM_AUTORUN,
+    MENUITEM_OVERWORLD_SPEEDUP,
     MENUITEM_TRAINER_LEVEL_SCALING,
     MENUITEM_WILD_LEVEL_SCALING,
     MENUITEM_DIFFICULTY,
@@ -79,6 +83,7 @@ enum
 
 #define YPOS_FOLLOWERS  (MENUITEM_FOLLOWERS * 16)
 #define YPOS_AUTORUN (MENUITEM_AUTORUN * 16) 
+#define YPOS_OVERWORLD_SPEEDUP (MENUITEM_OVERWORLD_SPEEDUP * 16)
 #define YPOS_TRAINER_LEVEL_SCALING (MENUITEM_TRAINER_LEVEL_SCALING * 16)
 #define YPOS_WILD_LEVEL_SCALING (MENUITEM_WILD_LEVEL_SCALING * 16)
 #define YPOS_DIFFICULTY (MENUITEM_DIFFICULTY * 16)
@@ -116,6 +121,8 @@ static u8 Difficulty_ProcessInput(u8 selection);
 static void Difficulty_DrawChoices(u8 selection);
 static u8   Autorun_ProcessInput(u8 selection);
 static void Autorun_DrawChoices(u8 selection);
+static u8 OverworldSpeedup_ProcessInput(u8 selection);
+static void OverworldSpeedup_DrawChoices(u8 selection);
 
 static void DrawTextOption(void);
 
@@ -150,6 +157,10 @@ static const u8 gText_ScalingOff[]         = _("{COLOR GREEN}{SHADOW LIGHT_GREEN
 static const u8 gText_ScalingOn[]          = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}ON");
 static const u8 gText_DifficultyNormal[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Normal");
 static const u8 gText_DifficultyHard[]     = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Hard");
+static const u8 gText_OverworldSpeed1x[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}1x");
+static const u8 gText_OverworldSpeed2x[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}2x");
+static const u8 gText_OverworldSpeed4x[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}4x");
+static const u8 gText_OverworldSpeed8x[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}8x");
 
 static const u16 sOptionMenuText_Pal[] = INCBIN_U16("graphics/interface/option_menu_text.gbapal");
 // note: this is only used in the Japanese release
@@ -171,6 +182,7 @@ static const u8 *const sOptionMenuItemsNames_Pg2[MENUITEM_COUNT_PG2] =
 {
     [MENUITEM_FOLLOWERS]        = gText_Followers,
     [MENUITEM_AUTORUN]         = COMPOUND_STRING("Autorun"),
+    [MENUITEM_OVERWORLD_SPEEDUP] = COMPOUND_STRING("OW speed"),
     [MENUITEM_TRAINER_LEVEL_SCALING] = COMPOUND_STRING("Trainer scaling"),
     [MENUITEM_WILD_LEVEL_SCALING] = COMPOUND_STRING("Wild scaling"),
     [MENUITEM_DIFFICULTY] = COMPOUND_STRING("Difficulty"),
@@ -254,6 +266,7 @@ static void ReadAllCurrentSettings(u8 taskId)
         gTasks[taskId].tTrainerLevelScaling = gSaveBlock2Ptr->optionsTrainerLevelScaling;
         gTasks[taskId].tWildLevelScaling = gSaveBlock2Ptr->optionsWildLevelScaling;
         gTasks[taskId].tDifficulty = GetCurrentDifficultyLevel() == DIFFICULTY_HARD;
+        gTasks[taskId].tOverworldSpeedup = VarGet(VAR_OVERWORLD_SPEEDUP);
 }
 
 static void DrawOptionsPg1(u8 taskId)
@@ -275,6 +288,7 @@ static void DrawOptionsPg2(u8 taskId)
     ReadAllCurrentSettings(taskId);
     Followers_DrawChoices(gTasks[taskId].tFollowers);
     Autorun_DrawChoices(gTasks[taskId].tAutorun);
+    OverworldSpeedup_DrawChoices(gTasks[taskId].tOverworldSpeedup);
     TrainerLevelScaling_DrawChoices(gTasks[taskId].tTrainerLevelScaling);
     WildLevelScaling_DrawChoices(gTasks[taskId].tWildLevelScaling);
     Difficulty_DrawChoices(gTasks[taskId].tDifficulty);
@@ -582,6 +596,13 @@ static void Task_OptionMenuProcessInput_Pg2(u8 taskId)
             if (previousOption != gTasks[taskId].tAutorun)
                 Autorun_DrawChoices(gTasks[taskId].tAutorun);
             break;
+        case MENUITEM_OVERWORLD_SPEEDUP:
+            previousOption = gTasks[taskId].tOverworldSpeedup;
+            gTasks[taskId].tOverworldSpeedup = OverworldSpeedup_ProcessInput(gTasks[taskId].tOverworldSpeedup);
+
+            if (previousOption != gTasks[taskId].tOverworldSpeedup)
+                OverworldSpeedup_DrawChoices(gTasks[taskId].tOverworldSpeedup);
+            break;
         case MENUITEM_TRAINER_LEVEL_SCALING:
             previousOption = gTasks[taskId].tTrainerLevelScaling;
             gTasks[taskId].tTrainerLevelScaling = LevelScaling_ProcessInput(gTasks[taskId].tTrainerLevelScaling);
@@ -652,6 +673,7 @@ static void Task_OptionMenuSave(u8 taskId)
     gSaveBlock2Ptr->optionsTrainerLevelScaling = gTasks[taskId].tTrainerLevelScaling;
     gSaveBlock2Ptr->optionsWildLevelScaling = gTasks[taskId].tWildLevelScaling;
     SetCurrentDifficultyLevel(gTasks[taskId].tDifficulty ? DIFFICULTY_HARD : DIFFICULTY_NORMAL);
+    VarSet(VAR_OVERWORLD_SPEEDUP, gTasks[taskId].tOverworldSpeedup);
 
     BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
     gTasks[taskId].func = Task_OptionMenuFadeOut;
@@ -955,6 +977,51 @@ static void Autorun_DrawChoices(u8 selection)
     styles[selection] = 1;
     DrawOptionMenuChoice(gText_AutorunOn, 104, YPOS_AUTORUN, styles[0]);
     DrawOptionMenuChoice(gText_AutorunOff, GetStringRightAlignXOffset(FONT_NORMAL, gText_AutorunOff, 198), YPOS_AUTORUN, styles[1]);
+}
+
+static u8 OverworldSpeedup_ProcessInput(u8 selection)
+{
+    if (selection > OPTIONS_OVERWORLD_SPEED_8X)
+        selection = OPTIONS_OVERWORLD_SPEED_1X;
+
+    if (JOY_NEW(DPAD_RIGHT))
+    {
+        if (selection < OPTIONS_OVERWORLD_SPEED_8X)
+            selection++;
+        else
+            selection = OPTIONS_OVERWORLD_SPEED_1X;
+
+        sArrowPressed = TRUE;
+    }
+    if (JOY_NEW(DPAD_LEFT))
+    {
+        if (selection > OPTIONS_OVERWORLD_SPEED_1X)
+            selection--;
+        else
+            selection = OPTIONS_OVERWORLD_SPEED_8X;
+
+        sArrowPressed = TRUE;
+    }
+    return selection;
+}
+
+static void OverworldSpeedup_DrawChoices(u8 selection)
+{
+    u8 styles[4];
+
+    if (selection > OPTIONS_OVERWORLD_SPEED_8X)
+        selection = OPTIONS_OVERWORLD_SPEED_1X;
+
+    styles[0] = 0;
+    styles[1] = 0;
+    styles[2] = 0;
+    styles[3] = 0;
+    styles[selection] = 1;
+
+    DrawOptionMenuChoice(gText_OverworldSpeed1x, 88, YPOS_OVERWORLD_SPEEDUP, styles[OPTIONS_OVERWORLD_SPEED_1X]);
+    DrawOptionMenuChoice(gText_OverworldSpeed2x, 122, YPOS_OVERWORLD_SPEEDUP, styles[OPTIONS_OVERWORLD_SPEED_2X]);
+    DrawOptionMenuChoice(gText_OverworldSpeed4x, 156, YPOS_OVERWORLD_SPEEDUP, styles[OPTIONS_OVERWORLD_SPEED_4X]);
+    DrawOptionMenuChoice(gText_OverworldSpeed8x, GetStringRightAlignXOffset(FONT_NORMAL, gText_OverworldSpeed8x, 198), YPOS_OVERWORLD_SPEEDUP, styles[OPTIONS_OVERWORLD_SPEED_8X]);
 }
 
 static u8 LevelCaps_ProcessInput(u8 selection)
