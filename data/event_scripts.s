@@ -2183,3 +2183,9 @@ Common_Text_ReceivedMon:
 	.include "data/maps/MtEmber_RubyPath_B2F_Stairs_Frlg/scripts.inc"
 
 	.include "data/maps/VajraDesert/scripts.inc"
+
+	.include "data/maps/AcuityCavern/scripts.inc"
+
+	.include "data/maps/ValorCavern/scripts.inc"
+
+	.include "data/maps/VerityCavern/scripts.inc"

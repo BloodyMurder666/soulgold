@@ -1,0 +1,43 @@
+{
+  "id": "MAP_VERITY_CAVERN",
+  "name": "VerityCavern",
+  "layout": "LAYOUT_VERITY_CAVERN",
+  "music": "MUS_DP_LAKE_CAVERNS",
+  "region_map_section": "MAPSEC_ROUTE_47",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": true,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "local_id": "LOCALID_VERITY_MESPRIT",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MESPRIT)",
+      "x": 9,
+      "y": 8,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VerityCavern_Mesprit",
+      "flag": "FLAG_HIDE_MESPRIT"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 9,
+      "y": 17,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE47",
+      "dest_warp_id": "6"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": []
+}

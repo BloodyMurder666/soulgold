@@ -183,6 +183,13 @@
       "elevation": 0,
       "dest_map": "MAP_MAHOGANY_TOWN_POKEMON_CENTER",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 33,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_VALOR_CAVERN",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

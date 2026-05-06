@@ -5498,6 +5498,9 @@ bool8 PlayerHasMove(enum Move move)
     case MOVE_DIVE:
         item = ITEM_HM_DIVE;
         break;
+    case MOVE_ROCK_CLIMB:
+        item = ITEM_HM_ROCK_SMASH;
+        break;
     default:
         return FALSE;
         break;

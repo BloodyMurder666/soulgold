@@ -535,6 +535,11 @@ void BattleSetup_StartLegendaryBattle(void)
     case SPECIES_CHIEN_PAO:
         CreateBattleStartTask(B_TRANSITION_BLUR, MUS_DP_VS_LEGEND);
         break;
+    case SPECIES_MESPRIT:
+    case SPECIES_UXIE:
+    case SPECIES_AZELF:
+        CreateBattleStartTask(B_TRANSITION_RIPPLE, MUS_DP_VS_UXIE_MESPRIT_AZELF);
+        break;
     case SPECIES_MOLTRES:
     case SPECIES_ZAPDOS:
     case SPECIES_ARTICUNO:

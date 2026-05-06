@@ -9294,6 +9294,36 @@
       "secondary_tileset": "gTileset_Desert",
       "border_filepath": "data/layouts/VajraDesert/border.bin",
       "blockdata_filepath": "data/layouts/VajraDesert/map.bin"
+    },
+    {
+      "id": "LAYOUT_ACUITY_CAVERN",
+      "name": "AcuityCavern_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_Cave_Gray",
+      "border_filepath": "data/layouts/AcuityCavern/border.bin",
+      "blockdata_filepath": "data/layouts/AcuityCavern/map.bin"
+    },
+    {
+      "id": "LAYOUT_VALOR_CAVERN",
+      "name": "ValorCavern_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_Cave_Gray",
+      "border_filepath": "data/layouts/ValorCavern/border.bin",
+      "blockdata_filepath": "data/layouts/ValorCavern/map.bin"
+    },
+    {
+      "id": "LAYOUT_VERITY_CAVERN",
+      "name": "VerityCavern_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_Cave_Gray",
+      "border_filepath": "data/layouts/VerityCavern/border.bin",
+      "blockdata_filepath": "data/layouts/VerityCavern/map.bin"
     }
   ]
 }

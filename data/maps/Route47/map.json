@@ -453,6 +453,13 @@
       "elevation": 0,
       "dest_map": "MAP_ROUTE47",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 68,
+      "y": 17,
+      "elevation": 0,
+      "dest_map": "MAP_VERITY_CAVERN",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],
