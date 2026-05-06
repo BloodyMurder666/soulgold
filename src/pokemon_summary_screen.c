@@ -174,7 +174,7 @@ static EWRAM_DATA struct PokemonSummaryScreenData
         enum Type teraType;
         u8 mintNature;
         #if MAX_MON_TRAITS > 1
-            u8 innates[MAX_MON_INNATES];
+            enum Ability innates[MAX_MON_INNATES];
         #endif
     } summary;
     u16 bgTilemapBuffers[PSS_PAGE_COUNT][2][0x400];
@@ -3948,6 +3948,8 @@ static void PrintEggMemo(void)
     PrintTextOnWindow(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_MEMO), text, 0, 1, 0, 0);
 }
 #if MAX_MON_TRAITS > 1
+    static const u8 sText_InnateUnlockLevel[] = _("Lvl. ");
+
     static void PrintTraits(void)
     {
         PrintMonTraits(0);
@@ -3985,24 +3987,36 @@ static void PrintEggMemo(void)
     {
         u16 trait = 0;
         struct PokeSummary* sum = &sMonSummaryScreen->summary;
+        u8 windowId;
 
         if (innateIndex == 0)
             trait = GetAbilityBySpecies(sMonSummaryScreen->summary.species, sMonSummaryScreen->summary.abilityNum);
         else if (innateIndex <= MAX_MON_INNATES)
-            trait = gSpeciesInfo[sum->species].innates[innateIndex-1];
+            trait = sum->innates[innateIndex - 1];
             
         int x = GetStringRightAlignXOffset(FONT_NORMAL, gAbilitiesInfo[trait].name, 18*8);
+        windowId = AddWindowFromTemplateList(sPageTraitsTemplate, innateIndex);
 
         if (trait == 0)
         {
             StringCopy(gStringVar1, gText_Blank);
-            PrintTextOnWindow(AddWindowFromTemplateList(sPageTraitsTemplate, innateIndex), gStringVar1, x, 1, 0, 1);
-            PrintTextOnWindow(AddWindowFromTemplateList(sPageTraitsTemplate, innateIndex), gStringVar1, 0, 17, 0, 0);
+            PrintTextOnWindow(windowId, gStringVar1, x, 1, 0, 1);
+            PrintTextOnWindow(windowId, gStringVar1, 0, 17, 0, 0);
+        }
+        else if (innateIndex > 0 && !IsInnateUnlockedByLevel(innateIndex, sum->level))
+        {
+            StringCopy(gStringVar1, sText_InnateUnlockLevel);
+            ConvertIntToDecimalStringN(gStringVar2, GetInnateUnlockLevel(innateIndex), STR_CONV_MODE_LEFT_ALIGN, 3);
+            StringAppend(gStringVar1, gStringVar2);
+
+            PrintTextOnWindow(windowId, gAbilitiesInfo[trait].name, x, 1, 0, 1);
+            x = GetStringRightAlignXOffset(FONT_NORMAL, gStringVar1, 18*8);
+            PrintTextOnWindow(windowId, gStringVar1, x, 17, 0, 0);
         }
         else
         {
-            PrintTextOnWindow(AddWindowFromTemplateList(sPageTraitsTemplate, innateIndex), gAbilitiesInfo[trait].name, x, 1, 0, 1);
-            PrintTextOnWindow(AddWindowFromTemplateList(sPageTraitsTemplate, innateIndex), gAbilitiesInfo[trait].description, 0, 17, 0, 0);
+            PrintTextOnWindow(windowId, gAbilitiesInfo[trait].name, x, 1, 0, 1);
+            PrintTextOnWindow(windowId, gAbilitiesInfo[trait].description, 0, 17, 0, 0);
         }
     }
 #endif

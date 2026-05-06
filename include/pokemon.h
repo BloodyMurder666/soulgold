@@ -949,7 +949,10 @@ u32 BoxMonHasItemHoldEffect(struct BoxPokemon *mon, enum HoldEffect holdEffect);
 u32 SwitchInCandidateHeldItemWithEffect(struct BattlePokemon switchinCandidate, enum HoldEffect holdEffect);
 
 u32 SpeciesHasInnate(u32 species, enum Ability ability);
+u32 SpeciesHasInnateAtLevel(u32 species, enum Ability ability, u32 level);
 enum Ability GetSpeciesInnate(u32 species, u32 traitNum);
+u8 GetInnateUnlockLevel(u32 innateNum);
+bool32 IsInnateUnlockedByLevel(u32 innateNum, u32 level);
 bool32 BoxMonHasInnate(struct BoxPokemon* boxmon, enum Ability ability);
 bool32 MonHasTrait(struct Pokemon* mon, enum Ability ability);
 #endif // GUARD_POKEMON_H

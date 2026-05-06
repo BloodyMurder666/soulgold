@@ -11537,6 +11537,9 @@ enum Ability GetBattlerTrait(enum BattlerId battlerId, u32 traitNum, bool32 igno
         // Load natural Innate if not a Test
         if (ability == ABILITIES_COUNT)
             ability = GetSpeciesInnate(gBattleMons[battlerId].species, traitNum);
+
+        if (!IsInnateUnlockedByLevel(traitNum, gBattleMons[battlerId].level))
+            return ABILITY_NONE;
         
         //DebugPrintf("Trait %d: %S", traitNum, gAbilitiesInfo[ability].name);
         
@@ -11566,11 +11569,12 @@ u32 BattlerHasInnate(enum BattlerId battlerId, enum Ability ability)
 
     for (u32 i = 0; i < MAX_MON_INNATES; i++)
     {
-        if (gBattleMons[battlerId].innates[i] == ability)
+        if (gBattleMons[battlerId].innates[i] == ability
+         && IsInnateUnlockedByLevel(i + 1, gBattleMons[battlerId].level))
             return i + 2;
     }
 
-    return SpeciesHasInnate(gBattleMons[battlerId].species, ability); 
+    return SpeciesHasInnateAtLevel(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].level); 
 }
 
 //Returns the trait slot number of the given ability. Starts at 1 for the primary Ability and returns 0 if the ability is not found. Use for individual checks.
