@@ -2026,7 +2026,7 @@ static void SetNextBattleTentOpponent(void)
 
 static void FillTentTrainerParty_(u16 trainerId, u8 firstMonId, u8 monCount)
 {
-    s32 i, j;
+    s32 i, j, k, l;
     u16 chosenMonIndices[MAX_FRONTIER_PARTY_SIZE];
     u8 level = SetTentPtrsGetLevel();
     u8 fixedIV = 0;
@@ -2065,10 +2065,21 @@ static void FillTentTrainerParty_(u16 trainerId, u8 firstMonId, u8 monCount)
         // Ensure this Pokemon's held item isn't a duplicate.
         for (j = 0; j < i + firstMonId; j++)
         {
-            if (GetMonData(&gEnemyParty[j], MON_DATA_HELD_ITEM) != ITEM_NONE
-             && GetMonData(&gEnemyParty[j], MON_DATA_HELD_ITEM) == gFacilityTrainerMons[monId].heldItem)
-                break;
+            for (k = 0; k < MAX_MON_ITEMS; k++)
+            {
+                if (GetMonData(&gEnemyParty[j], MON_DATA_HELD_ITEM + k) != ITEM_NONE)
+                {
+                    for (l = 0; l < MAX_MON_ITEMS; l++)
+                    {                            
+                        if (GetMonData(&gEnemyParty[j], MON_DATA_HELD_ITEM + k) == gFacilityTrainerMons[monId].heldItem[l])
+                        {
+                            goto tentmatch;
+                        }
+                    }
+                }
+            }
         }
+        tentmatch:
         if (j != i + firstMonId)
             continue;
 

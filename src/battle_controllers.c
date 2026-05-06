@@ -1440,12 +1440,15 @@ static u32 GetBattlerMonData(enum BattlerId battler, struct Pokemon *party, u32 
     s16 data16;
     u32 data32;
     s32 size = 0;
+    u32 i;
 
     switch (gBattleResources->bufferA[battler][1])
     {
     case REQUEST_ALL_BATTLE:
         battleMon.species = GetMonData(&party[monId], MON_DATA_SPECIES);
-        battleMon.item = GetMonData(&party[monId], MON_DATA_HELD_ITEM);
+        battleMon.item = GetMonData(&party[monId], MON_DATA_HELD_ITEM);  //Not used (Multi)
+        for (size = 0; size < MAX_MON_ITEMS; size++)
+            battleMon.items[size] = GetMonData(&party[monId], MON_DATA_HELD_ITEM + size);
         for (size = 0; size < MAX_MON_MOVES; size++)
         {
             battleMon.moves[size] = GetMonData(&party[monId], MON_DATA_MOVE1 + size);
@@ -1477,6 +1480,21 @@ static u32 GetBattlerMonData(enum BattlerId battler, struct Pokemon *party, u32 
         GetMonData(&party[monId], MON_DATA_NICKNAME, nickname);
         StringCopy_Nickname(battleMon.nickname, nickname);
         GetMonData(&party[monId], MON_DATA_OT_NAME, battleMon.otName);
+
+         for (i = 0; i < MAX_MON_INNATES; i++)
+         {
+             #if TESTING
+             if (gTestRunnerEnabled)
+             {
+                 u32 array = (!IsPartnerMonFromSameTrainer(battler)) ? battler : GetBattlerSide(battler);
+                 battleMon.innates[i] = TestRunner_Battle_GetForcedInnates(array, monId, i);
+                 gBattleMons[battler].innates[i] = TestRunner_Battle_GetForcedInnates(array, monId, i);
+             }
+             #else
+                 battleMon.innates[i] = GetSpeciesInnate(battleMon.species, i + 1);
+             #endif
+         }
+
         src = (u8 *)&battleMon;
         for (size = 0; size < sizeof(battleMon); size++)
             dst[size] = src[size];
@@ -1487,6 +1505,7 @@ static u32 GetBattlerMonData(enum BattlerId battler, struct Pokemon *party, u32 
             u32 partyIndex = gBattlerPartyIndexes[battler];
             if (TestRunner_Battle_GetForcedAbility(trainer, partyIndex))
                 gBattleMons[battler].ability = TestRunner_Battle_GetForcedAbility(trainer, partyIndex);
+            gBattleMons[battler].item = gBattleMons[battler].items[0];
         }
         #endif
         break;
@@ -1498,6 +1517,12 @@ static u32 GetBattlerMonData(enum BattlerId battler, struct Pokemon *party, u32 
         break;
     case REQUEST_HELDITEM_BATTLE:
         data16 = GetMonData(&party[monId], MON_DATA_HELD_ITEM);
+        dst[0] = data16;
+        dst[1] = data16 >> 8;
+        size = 2;
+        break;
+    case REQUEST_HELDITEM_BATTLE_TWO:
+        data16 = GetMonData(&party[monId], MON_DATA_HELD_ITEM_TWO);
         dst[0] = data16;
         dst[1] = data16 >> 8;
         size = 2;
@@ -1762,7 +1787,10 @@ static void SetBattlerMonData(enum BattlerId battler, struct Pokemon *party, u32
             u8 iv;
 
             SetMonData(&party[monId], MON_DATA_SPECIES, &battlePokemon->species);
-            SetMonData(&party[monId], MON_DATA_HELD_ITEM, &battlePokemon->item);
+            for (i = 0; i < MAX_MON_ITEMS; i++)
+            {
+                SetMonData(&party[monId], MON_DATA_HELD_ITEM + i, &battlePokemon->items[i]);  
+            }
             for (i = 0; i < MAX_MON_MOVES; i++)
             {
                 SetMonData(&party[monId], MON_DATA_MOVE1 + i, &battlePokemon->moves[i]);
@@ -1800,6 +1828,9 @@ static void SetBattlerMonData(enum BattlerId battler, struct Pokemon *party, u32
         break;
     case REQUEST_HELDITEM_BATTLE:
         SetMonData(&party[monId], MON_DATA_HELD_ITEM, &gBattleResources->bufferA[battler][3]);
+        break;
+    case REQUEST_HELDITEM_BATTLE_TWO:
+        SetMonData(&party[monId], MON_DATA_HELD_ITEM_TWO, &gBattleResources->bufferA[battler][3]);
         break;
     case REQUEST_MOVES_PP_BATTLE:
         for (i = 0; i < MAX_MON_MOVES; i++)
@@ -3272,7 +3303,7 @@ void UpdateFriendshipFromXItem(enum BattlerId battler)
 
     if (friendship < X_ITEM_MAX_FRIENDSHIP)
     {
-        friendship += CalculateFriendshipBonuses(GetBattlerMon(battler), X_ITEM_FRIENDSHIP_INCREASE, GetItemHoldEffect(heldItem));
+        friendship += CalculateFriendshipBonuses(GetBattlerMon(battler), X_ITEM_FRIENDSHIP_INCREASE);
 
         if (friendship > MAX_FRIENDSHIP)
             friendship = MAX_FRIENDSHIP;

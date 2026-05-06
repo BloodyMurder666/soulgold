@@ -21,3 +21,19 @@ SINGLE_BATTLE_TEST("Magnitude message is printed before failing because of Levit
         ABILITY_POPUP(opponent, ABILITY_LEVITATE);
     }
 }
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Magnitude message is printed before failing because of Levitate")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_FLYGON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_LEVITATE); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_MAGNITUDE); }
+    } SCENE {
+        MESSAGE("Magnitude 10!");
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_MAGNITUDE, player);
+        ABILITY_POPUP(opponent, ABILITY_LEVITATE);
+    }
+}
+#endif

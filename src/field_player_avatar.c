@@ -523,6 +523,10 @@ static bool8 DoForcedMovement(enum Direction direction, void (*moveFunc)(enum Di
 
         playerAvatar->runningState = MOVING;
         moveFunc(direction);
+        if (PlayerHasFollowerNPC()
+         && gObjectEvents[GetFollowerNPCObjectId()].invisible == FALSE
+         && FindTaskIdByFunc(Task_MoveNPCFollowerAfterForcedMovement) == TASK_NONE)
+            CreateTask(Task_MoveNPCFollowerAfterForcedMovement, 3);
         return TRUE;
     }
 }

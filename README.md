@@ -8,6 +8,7 @@ Johto + Sevii hack with expanded dex and various changes based on expansion port
 - Estellar for pathfinding
 - LinathanZel for help window
 - Kasenn for tinting battle bgs
+- [bassforte123](https://github.com/bassforte123/pokeemerald-complete/tree/Trait-and-Items) for multi ability system
 - PurrfectDoodle, RavePossum and Ruki for battle backgrounds
 - Ravepossum for HGSS ui
 - Greenphx9 for party menu, pc backgrounds and pokemon icons for g1-9

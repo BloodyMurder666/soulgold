@@ -166,3 +166,31 @@ SINGLE_BATTLE_TEST("Rage volatile behavior on miss depends on generation")
         }
     }
 }
+
+#if MAX_MON_ITEMS > 1
+SINGLE_BATTLE_TEST("Rage volatile behavior on miss depends on generation (Items)")
+{
+    u32 config;
+    // PARAMETRIZE { config = GEN_3; }
+    PARAMETRIZE { config = GEN_4; }
+    GIVEN {
+        WITH_CONFIG(B_RAGE_BUILDS, config);
+        PLAYER(SPECIES_WOBBUFFET) { Speed(10); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(5); Items(ITEM_PECHA_BERRY, ITEM_BRIGHTPOWDER); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_RAGE); MOVE(opponent, MOVE_TACKLE); }
+        TURN { MOVE(player, MOVE_RAGE, hit: FALSE); MOVE(opponent, MOVE_TACKLE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_RAGE, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
+        MESSAGE("Wobbuffet's rage is building!");
+        MESSAGE("Wobbuffet's attack missed!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
+        if (config == GEN_3) {
+            MESSAGE("Wobbuffet's rage is building!");
+        } else {
+            NOT MESSAGE("Wobbuffet's rage is building!");
+        }
+    }
+}
+#endif

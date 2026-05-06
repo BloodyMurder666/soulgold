@@ -1145,4 +1145,7 @@
 //  Move animation testing
 #define T_SHOULD_RUN_MOVE_ANIM  FALSE       //  If TRUE, enables the move animation tests, these are very computationally heavy and takes a long time to run.
 
+// Innate testing
+#define T_SHOULD_TEST_DEFAULT_INNATES FALSE // If TRUE, tests will use a pokemon's default Innates whenever one is not specified in the test. Not recommended unless you've heavily adjusted tests to accomodate.
+
 #endif // GUARD_CONFIG_TEST_H

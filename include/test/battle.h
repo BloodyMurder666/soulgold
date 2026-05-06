@@ -786,6 +786,7 @@ struct BattleTestData
     u8 nature;
     bool8 isShiny;
     enum Ability forcedAbilities[MAX_BATTLE_TRAINERS][PARTY_SIZE];
+    enum Ability forcedInnates[MAX_BATTLERS_COUNT][PARTY_SIZE][MAX_MON_INNATES_INTERNAL];
     u8 chosenGimmick[MAX_BATTLE_TRAINERS][PARTY_SIZE];
     enum BattleTrainer partyTrainers[NUM_BATTLE_SIDES][PARTY_SIZE];
     u8 forcedEnvironment;
@@ -1025,6 +1026,7 @@ struct moveWithPP {
 #define Gender(gender) Gender_(__LINE__, gender)
 #define Nature(nature) Nature_(__LINE__, nature)
 #define Ability(ability) Ability_(__LINE__, ability)
+#define Innates(innate1, ... ) do { enum Ability innates_[MAX_MON_INNATES_INTERNAL] = {innate1, __VA_ARGS__}; Innates_(__LINE__, innates_); } while(0)
 #define Level(level) Level_(__LINE__, level)
 #define MaxHP(maxHP) MaxHP_(__LINE__, maxHP)
 #define HP(hp) HP_(__LINE__, hp)
@@ -1040,6 +1042,7 @@ struct moveWithPP {
 #define SpDefenseIV(spDefenseIV) SpDefenseIV_(__LINE__, spDefenseIV)
 #define SpeedIV(speedIV) SpeedIV_(__LINE__, speedIV)
 #define Item(item) Item_(__LINE__, item)
+#define Items(item1, ...) do { u32 items_[MAX_MON_ITEMS_INTERNAL] = {item1, __VA_ARGS__}; Items_(__LINE__, items_); } while(0)
 #define Moves(move1, ...) do { u16 moves_[MAX_MON_MOVES] = {move1, __VA_ARGS__}; Moves_(__LINE__, moves_); } while (0)
 #define MovesWithPP(movewithpp1, ...) MovesWithPP_(__LINE__, (struct moveWithPP[MAX_MON_MOVES]) {movewithpp1, __VA_ARGS__})
 #define Friendship(friendship) Friendship_(__LINE__, friendship)
@@ -1070,6 +1073,7 @@ void AILogScores(u32 sourceLine);
 void Gender_(u32 sourceLine, u32 gender);
 void Nature_(u32 sourceLine, u32 nature);
 void Ability_(u32 sourceLine, enum Ability ability);
+void Innates_(u32 sourceLine, enum Ability innates[MAX_MON_INNATES_INTERNAL]);
 void Level_(u32 sourceLine, u32 level);
 void MaxHP_(u32 sourceLine, u32 maxHP);
 void HP_(u32 sourceLine, u32 hp);
@@ -1085,6 +1089,7 @@ void SpAttackIV_(u32 sourceLine, u32 spAttackIV);
 void SpDefenseIV_(u32 sourceLine, u32 spDefenseIV);
 void SpeedIV_(u32 sourceLine, u32 speedIV);
 void Item_(u32 sourceLine, u32 item);
+void Items_(u32 sourceLine, u32 items[MAX_MON_ITEMS_INTERNAL]);
 void Moves_(u32 sourceLine, u16 moves[MAX_MON_MOVES]);
 void MovesWithPP_(u32 sourceLine, struct moveWithPP moveWithPP[MAX_MON_MOVES]);
 void Friendship_(u32 sourceLine, u32 friendship);

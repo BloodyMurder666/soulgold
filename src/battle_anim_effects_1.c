@@ -1,5 +1,7 @@
 #include "global.h"
 #include "malloc.h"
+#include "battle.h"
+#include "battle_ai_main.h"
 #include "battle_anim.h"
 #include "battle_anim_internal.h"
 #include "battle_interface.h"
@@ -6756,12 +6758,11 @@ static void AnimTask_AllySwitchDataSwap(u8 taskId)
     // For Snipe Shot and abilities Stalwart/Propeller Tail - keep the original target.
     for (i = 0; i < gBattlersCount; i++)
     {
-        enum Ability ability = GetBattlerAbility(i);
         // if not targeting a slot that got switched, continue
         if (!IsBattlerAlly(gBattleStruct->moveTarget[i], battlerAtk))
             continue;
 
-        if (GetMoveEffect(gChosenMoveByBattler[i]) == EFFECT_SNIPE_SHOT || ability == ABILITY_PROPELLER_TAIL || ability == ABILITY_STALWART)
+        if (GetMoveEffect(gChosenMoveByBattler[i]) == EFFECT_SNIPE_SHOT || BattlerHasTrait(i, ABILITY_PROPELLER_TAIL) || BattlerHasTrait(i, ABILITY_STALWART))
             gBattleStruct->moveTarget[i] ^= BIT_FLANK;
     }
 

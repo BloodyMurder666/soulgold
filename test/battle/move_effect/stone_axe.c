@@ -109,3 +109,37 @@ SINGLE_BATTLE_TEST("Stone Axe will set up rocks if the target is behind a Substi
         HP_BAR(player);
     }
 }
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Stone Axe sets up hazards after any ability activation (Traits)")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_SKARMORY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WEAK_ARMOR); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_STONE_AXE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_STONE_AXE, player);
+        ABILITY_POPUP(opponent, ABILITY_WEAK_ARMOR);
+        MESSAGE("Pointed stones float in the air around the opposing team!");
+    }
+}
+#endif
+
+#if MAX_MON_ITEMS > 1
+SINGLE_BATTLE_TEST("Stone Axe fails to set up hazards if user faints (Items)")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { HP(1); }
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET) { Items(ITEM_PECHA_BERRY, ITEM_ROCKY_HELMET); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_STONE_AXE); SEND_OUT(player, 1); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_STONE_AXE, player);
+        HP_BAR(player);
+        MESSAGE("Wobbuffet was hurt by the opposing Wobbuffet's Rocky Helmet!");
+        NOT MESSAGE("Pointed stones float in the air around the opposing team!");
+    }
+}
+#endif

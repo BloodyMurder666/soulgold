@@ -73,7 +73,6 @@ static const struct GMaxMove sGMaxMoveTable[] =
 bool32 CanDynamax(enum BattlerId battler)
 {
     u16 species = GetBattlerVisualSpecies(battler);
-    enum HoldEffect holdEffect = GetBattlerHoldEffectIgnoreNegation(battler);
 
     // Prevents Zigzagoon from dynamaxing in vanilla.
     if (gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE && !IsOnPlayerSide(battler))
@@ -108,7 +107,7 @@ bool32 CanDynamax(enum BattlerId battler)
         return FALSE;
 
     // Check if battler is holding a Z-Crystal or Mega Stone.
-    if (!TESTING && (holdEffect == HOLD_EFFECT_Z_CRYSTAL || holdEffect == HOLD_EFFECT_MEGA_STONE))  // tests make this check already
+    if (!TESTING && (BattlerHasHeldItemEffect(battler, HOLD_EFFECT_Z_CRYSTAL, FALSE) || BattlerHasHeldItemEffect(battler, HOLD_EFFECT_MEGA_STONE, FALSE)))  // tests make this check already
         return FALSE;
 
     // TODO: Cannot Dynamax in a Max Raid if you don't have Dynamax Energy.
@@ -188,7 +187,7 @@ void ActivateDynamax(enum BattlerId battler)
 
     // Try Gigantamax form change.
     if (!gBattleMons[battler].volatiles.transformed) // Ditto cannot Gigantamax.
-        TryBattleFormChange(battler, FORM_CHANGE_BATTLE_GIGANTAMAX, GetBattlerAbility(battler));
+        TryBattleFormChange(battler, FORM_CHANGE_BATTLE_GIGANTAMAX);
 
     BattleScriptPushCursorAndCallback(BattleScript_DynamaxBegins);
 }
@@ -211,7 +210,7 @@ void UndoDynamax(enum BattlerId battler)
 
     // Undo form change if needed.
     if (IsGigantamaxed(battler))
-        TryBattleFormChange(battler, FORM_CHANGE_END_BATTLE, GetBattlerAbility(battler));
+        TryBattleFormChange(battler, FORM_CHANGE_END_BATTLE);
 }
 
 // Certain moves are blocked by Max Guard that normally ignore protection.
@@ -240,10 +239,9 @@ static enum Move GetTypeBasedMaxMove(enum BattlerId battler, enum Type type)
     u32 i;
     u32 species = gBattleMons[battler].species;
     u32 targetSpecies = species;
-    enum Ability ability = GetBattlerAbility(battler);
 
     if (!gSpeciesInfo[species].isGigantamax)
-        targetSpecies = GetBattleFormChangeTargetSpecies(battler, FORM_CHANGE_BATTLE_GIGANTAMAX, ability);
+        targetSpecies = GetBattleFormChangeTargetSpecies(battler, FORM_CHANGE_BATTLE_GIGANTAMAX);
 
     if (targetSpecies != species)
         species = targetSpecies;

@@ -177,3 +177,91 @@ TO_DO_BATTLE_TEST("OHKO moves's accuracy increases by 1% for every level the use
 TO_DO_BATTLE_TEST("OHKO moves's ignores non-stage accuracy modifiers") // Gravity, Wide Lens, Compound Eyes
 TO_DO_BATTLE_TEST("OHKO moves ignore non-stage accuracy modifiers") // Gravity, Wide Lens, Compound Eyes
 TO_DO_BATTLE_TEST("OHKO: Sheer Cold's accuracy decreasaes by 10% if the user is not Ice type")
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("OHKO moves can hit semi-invulnerable mons when the user has No-Guard (Traits)")
+{
+    GIVEN {
+        ASSUME(GetItemHoldEffect(ITEM_FOCUS_SASH) == HOLD_EFFECT_FOCUS_SASH);
+        PLAYER(SPECIES_MACHAMP) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_NO_GUARD); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_FLY); }
+        TURN { MOVE(player, MOVE_FISSURE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FISSURE, player);
+        HP_BAR(opponent, hp: 0);
+    }
+}
+
+SINGLE_BATTLE_TEST("OHKO moves can can be endured by Sturdy (Traits)")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_GEODUDE) { Ability(ABILITY_ROCK_HEAD); Innates(ABILITY_STURDY); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_FISSURE); }
+    } SCENE {
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_FISSURE, player);
+        ABILITY_POPUP(opponent, ABILITY_STURDY);
+    }
+}
+
+SINGLE_BATTLE_TEST("Sheer Cold can hit semi-invulnerable mons when the user has No-Guard (Traits)")
+{
+    GIVEN {
+        ASSUME(GetItemHoldEffect(ITEM_FOCUS_SASH) == HOLD_EFFECT_FOCUS_SASH);
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_NO_GUARD); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_FLY); }
+        TURN { MOVE(player, MOVE_SHEER_COLD); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SHEER_COLD, player);
+        HP_BAR(opponent, hp: 0);
+    }
+}
+
+SINGLE_BATTLE_TEST("Sheer Cold can be endured by Sturdy (Traits)")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_GEODUDE) { Ability(ABILITY_SAND_VEIL); Innates(ABILITY_STURDY); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SHEER_COLD); }
+    } SCENE {
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_SHEER_COLD, player);
+        ABILITY_POPUP(opponent, ABILITY_STURDY);
+    }
+}
+#endif
+
+#if MAX_MON_ITEMS > 1
+SINGLE_BATTLE_TEST("OHKO moves can can be endured by Focus Sash (Items)")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET) { Items(ITEM_PECHA_BERRY, ITEM_FOCUS_SASH); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_FISSURE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FISSURE, player);
+        HP_BAR(opponent, hp: 1);
+        MESSAGE("The opposing Wobbuffet hung on using its Focus Sash!");
+    }
+}
+
+SINGLE_BATTLE_TEST("Sheer Cold can be endured by Focus Sash (Items)")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET) { Items(ITEM_PECHA_BERRY, ITEM_FOCUS_SASH); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SHEER_COLD); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SHEER_COLD, player);
+        HP_BAR(opponent, hp: 1);
+        MESSAGE("The opposing Wobbuffet hung on using its Focus Sash!");
+    }
+}
+#endif
