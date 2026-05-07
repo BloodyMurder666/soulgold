@@ -5,6 +5,8 @@ on:
     branches:
       - master
       - upcoming
+    paths:
+      - nightly.bps
   workflow_dispatch:
 
 permissions:
@@ -15,18 +17,10 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  GAME_VERSION: EMERALD
-  GAME_REVISION: 0
-  GAME_LANGUAGE: ENGLISH
-  COMPARE: 0
-  UNUSED_ERROR: 1
-  DEPRECATED_ERROR: 1
-  BASE_ROM: clean.gba
-  BUILT_ROM: pokeemerald.gba
   PATCH_FILE: nightly.bps
 
 jobs:
-  release-nightly-bps:
+  publish-nightly-bps:
     if: github.actor != 'allcontributors[bot]'
     runs-on: ubuntu-latest
 
@@ -36,54 +30,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install dependencies
+      - name: Validate BPS patch
         run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends \
-            binutils-arm-none-eabi \
-            build-essential \
-            ca-certificates \
-            gcc-arm-none-eabi \
-            git \
-            libnewlib-arm-none-eabi \
-            libpng-dev \
-            python3
-
-      - name: Cache build tools
-        uses: actions/cache@v4
-        with:
-          path: |
-            tools/bin2c/bin2c
-            tools/gbafix/gbafix
-            tools/gbagfx/gbagfx
-            tools/jsonproc/jsonproc
-            tools/mapjson/mapjson
-            tools/mid2agb/mid2agb
-            tools/preproc/preproc
-            tools/ramscrgen/ramscrgen
-            tools/rsfont/rsfont
-            tools/scaninc/scaninc
-            tools/trainerproc/trainerproc
-            tools/compresSmol/compresSmol
-            tools/compresSmol/compresSmolTilemap
-            tools/wav2agb/wav2agb
-          key: tools-${{ runner.os }}-${{ hashFiles('tools/*/Makefile', 'tools/**/*.c', 'tools/**/*.cpp', 'tools/**/*.h') }}
-
-      - name: Build ROM
-        run: make -j"$(nproc)" -O all
-
-      - name: Build Floating IPS
-        run: |
-          git clone --depth 1 --branch v198 https://github.com/Alcaro/Flips.git /tmp/flips
-          cd /tmp/flips
-          bash ./make-linux.sh
-
-      - name: Create BPS patch
-        run: |
-          test -f "$BASE_ROM"
-          test -f "$BUILT_ROM"
-          /tmp/flips/flips --create --bps "$BASE_ROM" "$BUILT_ROM" "$PATCH_FILE"
-          sha256sum "$PATCH_FILE" "$BUILT_ROM" > checksums.txt
+          test -f "$PATCH_FILE"
+          sha256sum "$PATCH_FILE" > checksums.txt
 
       - name: Replace nightly release
         env:
@@ -93,5 +43,5 @@ jobs:
           gh release create nightly "$PATCH_FILE" checksums.txt \
             --target "$GITHUB_SHA" \
             --title "Nightly BPS Patch" \
-            --notes "Automatic nightly BPS patch generated from $GITHUB_SHA." \
+            --notes "Nightly BPS patch from $GITHUB_SHA." \
             --prerelease
