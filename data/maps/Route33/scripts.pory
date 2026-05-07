@@ -58,3 +58,14 @@ script Route33_HiddenGrotto {
     release
     end
 }
+
+script fisherMan_Route33 {
+	lock
+	faceplayer
+	msgbox("Those mountain Pokémon are always
+			eyeing my catches, ready to steal
+			them. Their sorry eyes always
+			make me share some with them.")
+	release
+	end
+}

@@ -4986,7 +4986,7 @@
               {
                 "min_level": 11,
                 "max_level": 14,
-                "species": "SPECIES_ROCKRUFF"
+                "species": "SPECIES_BUIZEL"
               },
               {
                 "min_level": 11,
@@ -4996,7 +4996,7 @@
               {
                 "min_level": 11,
                 "max_level": 14,
-                "species": "SPECIES_ROCKRUFF"
+                "species": "SPECIES_BUIZEL"
               },
               {
                 "min_level": 11,
@@ -5004,73 +5004,89 @@
                 "species": "SPECIES_ROCKRUFF"
               }
             ]
-          }
-        },
-        {
-          "map": "MAP_ROUTE33",
-          "base_label": "gRoute33_Night",
-          "land_mons": {
-            "encounter_rate": 20,
+          },
+          "fishing_mons": {
+            "encounter_rate": 30,
             "mons": [
               {
-                "min_level": 8,
-                "max_level": 9,
-                "species": "SPECIES_MACHOP"
-              },
-              {
-                "min_level": 8,
-                "max_level": 9,
-                "species": "SPECIES_EKANS"
-              },
-              {
-                "min_level": 8,
-                "max_level": 9,
-                "species": "SPECIES_MACHOP"
-              },
-              {
-                "min_level": 8,
-                "max_level": 9,
-                "species": "SPECIES_EKANS"
-              },
-              {
-                "min_level": 8,
-                "max_level": 9,
-                "species": "SPECIES_VULPIX"
-              },
-              {
-                "min_level": 8,
-                "max_level": 8,
-                "species": "SPECIES_BUDEW"
-              },
-              {
-                "min_level": 8,
-                "max_level": 8,
-                "species": "SPECIES_VULPIX"
-              },
-              {
-                "min_level": 8,
-                "max_level": 9,
-                "species": "SPECIES_BUDEW"
+                "min_level": 9,
+                "max_level": 12,
+                "species": "SPECIES_STARYU"
               },
               {
                 "min_level": 9,
-                "max_level": 9,
-                "species": "SPECIES_BUIZEL"
+                "max_level": 12,
+                "species": "SPECIES_MAGIKARP"
               },
               {
-                "min_level": 8,
-                "max_level": 8,
-                "species": "SPECIES_ROCKRUFF"
+                "min_level": 10,
+                "max_level": 25,
+                "species": "SPECIES_STARYU"
               },
               {
-                "min_level": 8,
-                "max_level": 8,
-                "species": "SPECIES_BUIZEL"
+                "min_level": 10,
+                "max_level": 25,
+                "species": "SPECIES_STARYU"
               },
               {
-                "min_level": 8,
-                "max_level": 8,
-                "species": "SPECIES_ROCKRUFF"
+                "min_level": 10,
+                "max_level": 25,
+                "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 30,
+                "max_level": 40,
+                "species": "SPECIES_STARMIE"
+              },
+              {
+                "min_level": 30,
+                "max_level": 40,
+                "species": "SPECIES_STARMIE"
+              },
+              {
+                "min_level": 30,
+                "max_level": 40,
+                "species": "SPECIES_STARMIE"
+              },
+              {
+                "min_level": 30,
+                "max_level": 50,
+                "species": "SPECIES_GYARADOS"
+              },
+              {
+                "min_level": 30,
+                "max_level": 50,
+                "species": "SPECIES_GYARADOS"
+              }
+            ]
+          },
+          "water_mons": {
+            "encounter_rate": 7,
+            "mons": [
+              {
+                "min_level": 30,
+                "max_level": 35,
+                "species": "SPECIES_MAREANIE"
+              },
+              {
+                "min_level": 30,
+                "max_level": 35,
+                "species": "SPECIES_MAREANIE"
+              },
+              {
+                "min_level": 30,
+                "max_level": 35,
+                "species": "SPECIES_MANTINE"
+              },
+              {
+                "min_level": 30,
+                "max_level": 35,
+                "species": "SPECIES_MANTINE"
+              },
+              {
+                "min_level": 30,
+                "max_level": 35,
+                "species": "SPECIES_FINIZEN"
               }
             ]
           }
