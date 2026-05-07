@@ -16,6 +16,7 @@ NewBarkTown_OnLoad::
 NewBarkTown_OnFrame::
 	map_script_2 VAR_NEWBARK_TOWN_STATE, 6, NewBarkTown_EventScript_ElmCallAfterLeague
     map_script_2 VAR_RIVAL_STATE, 0, NewBarkTown_EventScript_RivalIntro
+    map_script_2 VAR_RIVAL_STATE, 2, NewBarkTown_EventScript_RivalBattle
 	.2byte 0
 
 NewBarkTown_EventScript_ElmCallAfterLeague::
@@ -329,8 +330,68 @@ script NewBarkTown_EventScript_RivalIntro {
     setflag(FLAG_HIDE_NEWBARK_RIVALMARILL)
     removeobject(LOCALID_NEWBARK_RIVAL)
     removeobject(LOCALID_NEWBARK_MARILL)
+    removeobject(LOCALID_NEWBARK_MARILL2)
     setvar(VAR_RIVAL_STATE, 1)
     fadedefaultbgm
+    release
+    end
+}
+
+script NewBarkTown_EventScript_RivalBattle {
+    lock
+    playbgm(MUS_HG_LYRA, TRUE)
+    applymovement(LOCALID_NEWBARK_MARILL2, moves(jump_in_place_right))
+    playse(SE_LEDGE)
+    waitmovement(0)
+    applymovement(LOCALID_NEWBARK_MARILL2, moves(jump_in_place_right))
+    playse(SE_LEDGE)
+    waitmovement(0)
+    applymovement(LOCALID_NEWBARK_MARILL2, moves(walk_fast_up, walk_fast_right*2, walk_fast_down*2, walk_fast_left*2
+                                                 walk_fast_up*2, walk_fast_right*2, walk_fast_down, face_left))
+    applymovement(LOCALID_NEWBARK_RIVAL, moves(face_up))
+    waitmovement(LOCALID_NEWBARK_MARILL2)
+    applymovement(LOCALID_NEWBARK_RIVAL, Common_Movement_ExclamationMark)
+    playse(SE_PIN)
+    waitmovement(0)
+    applymovement(LOCALID_PLAYER, moves(walk_down*3, walk_right))
+    waitmovement(0)
+    applymovement(LOCALID_NEWBARK_RIVAL, moves(face_left))
+    waitmovement(0)
+    msgbox("{PLAYER}!")
+    bufferleadmonspeciesname(STR_VAR_1)
+    msgbox("So you picked...
+            a {STR_VAR_1}!")
+    msgbox("That's a cute Pokémon you have!")
+    msgbox("When you walk with it, it'll become
+            more friendly!")
+    msgbox("You should turn around and talk to it
+            sometimes, too.")
+    msgbox("Hey, why don't we have a battle?
+            That's what trainers usually do when
+            they meet!")
+    setflag(FLAG_NO_WHITEOUT)
+    checkplayergender
+    if (var(VAR_RESULT) == MALE) {
+        trainerbattle_no_intro(TRAINER_RIVALCRYSTAL1, "You did really well, {PLAYER}!")
+    } else {
+        trainerbattle_no_intro(TRAINER_RIVALGOLD1, "You did really well, {PLAYER}!")
+    }
+    clearflag(FLAG_NO_WHITEOUT)
+    special(HealPlayerParty)
+    msgbox("That was really fun, and both of our
+            Pokémon did their best!")
+    msgbox("You got a task from Elm right?
+            I'll leave you to it then.
+            See ya!")
+    closemessage
+    applymovement(LOCALID_NEWBARK_RIVAL, moves(walk_down*6))
+    applymovement(LOCALID_NEWBARK_MARILL2, moves(walk_left, walk_down*6))
+    waitmovement(0)
+    removeobject(LOCALID_NEWBARK_RIVAL)
+    removeobject(LOCALID_NEWBARK_MARILL)
+    removeobject(LOCALID_NEWBARK_MARILL2)
+    fadedefaultbgm
+    setvar(VAR_RIVAL_STATE, 3)
     release
     end
 }

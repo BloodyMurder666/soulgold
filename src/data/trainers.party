@@ -12623,3 +12623,35 @@ EVs: 252 Atk / 252 Spe
 - Meteor Mash
 - Earthquake
 - Zen Headbutt
+
+=== TRAINER_RIVALCRYSTAL1 ===
+Name: Crystal
+Pic: May
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Basic Trainer
+Mugshot: Purple
+
+Marill
+Level: 4
+Ability: Thick Fat
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Pound
+- Tail Whip
+
+=== TRAINER_RIVALGOLD1 ===
+Name: Gold
+Pic: Brendan
+Gender: Male
+Music: Hg Girl 1
+Double Battle: No
+AI: Basic Trainer
+Mugshot: Purple
+
+Marill
+Level: 4
+Ability: Thick Fat
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Pound
+- Tail Whip

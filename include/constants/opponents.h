@@ -870,8 +870,8 @@
 
 #define TRAINER_ROUTE_31_EXPERT           864
 #define TRAINER_GOLDENROD_SHORE_EXPERT    865
-#define TRAINER_UNUSED_2                  866
-#define TRAINER_UNUSED_3                  867
+#define TRAINER_RIVALGOLD1                866
+#define TRAINER_RIVALCRYSTAL1             867
 #define TRAINER_UNUSED_4                  868
 #define TRAINER_UNUSED_5                  869
 #define TRAINER_UNUSED_6                  870

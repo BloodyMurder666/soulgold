@@ -460,7 +460,7 @@
 // gTileset_NewBarkTown
 #define METATILE_NewBarkTown_Door_Blue    0x2CB
 #define METATILE_NewBarkTown_Door_Red     0x2BD
-#define METATILE_NewBarkTown_Door_Yellow  0x309
+#define METATILE_NewBarkTown_Door_Yellow  0x2E7
 
 // gTileset_Pacifidlog
 #define METATILE_Pacifidlog_Door                               0x21A

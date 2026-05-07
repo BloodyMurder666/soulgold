@@ -891,6 +891,7 @@ static void Task_BirchCaseConfirmSelection(u8 taskId)
         sLastStarterPicIsShiny = isShiny;
         sLastStarterPicPersonality = personality;
         GiveScriptedMonToPlayer(starter, PARTY_SIZE);
+        gSaveBlock2Ptr->optionsFollowers = FALSE;
         gTasks[taskId].func = Task_BirchCaseRecievedMon;
         return;
     }
