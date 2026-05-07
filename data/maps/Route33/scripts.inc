@@ -114,7 +114,26 @@ Route33_HiddenGrotto_2:
 	goto Route33_HiddenGrotto_1
 
 
+fisherMan_Route33::
+# 63 "data/maps/Route33/scripts.pory"
+	lock
+# 64 "data/maps/Route33/scripts.pory"
+	faceplayer
+# 65 "data/maps/Route33/scripts.pory"
+	msgbox fisherMan_Route33_Text_0
+# 69 "data/maps/Route33/scripts.pory"
+	release
+	end
+
+
 Route33_HiddenGrotto_Text_0:
 # 52 "data/maps/Route33/scripts.pory"
 	.string "There seems to be a path behind the\n"
 	.string "trees. Enter?$"
+
+fisherMan_Route33_Text_0:
+# 65 "data/maps/Route33/scripts.pory"
+	.string "Those mountain Pokémon are always\n"
+	.string "eyeing my catches, ready to steal\l"
+	.string "them. Their sorry eyes always\l"
+	.string "make me share some with them.$"
