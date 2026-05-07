@@ -1534,7 +1534,7 @@
 #define FLAG_HIDE_UXIE                              (SYSTEM_FLAGS + 0x9C)
 #define FLAG_HIDE_AZELF                             (SYSTEM_FLAGS + 0x9D)
 #define FLAG_HIDE_MESPRIT                           (SYSTEM_FLAGS + 0x9E)
-#define FLAG_UNUSED_0x8FF                           (SYSTEM_FLAGS + 0x9F) // Unused Flag
+#define FLAG_HIDE_NEWBARK_RIVALMARILL               (SYSTEM_FLAGS + 0x9F)
 #define FLAG_UNUSED_0x900                           (SYSTEM_FLAGS + 0xA0) // Unused Flag
 #define FLAG_UNUSED_0x901                           (SYSTEM_FLAGS + 0xA1) // Unused Flag
 #define FLAG_UNUSED_0x902                           (SYSTEM_FLAGS + 0xA2) // Unused Flag
