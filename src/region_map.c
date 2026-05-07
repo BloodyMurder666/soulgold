@@ -6,6 +6,7 @@
 #include "gpu_regs.h"
 #include "palette.h"
 #include "party_menu.h"
+#include "comfy_anim.h"
 #include "trig.h"
 #include "overworld.h"
 #include "event_data.h"
@@ -44,6 +45,8 @@
 #define MAPCURSOR_Y_MIN 2
 #define MAPCURSOR_X_MAX (MAPCURSOR_X_MIN + MAP_WIDTH - 1)
 #define MAPCURSOR_Y_MAX (MAPCURSOR_Y_MIN + MAP_HEIGHT - 1)
+#define MAP_PAGE_SCROLL_X DISPLAY_WIDTH
+#define MAP_PAGE_SCROLL_DURATION 20
 
 #define FLYDESTICON_RED_OUTLINE 6
 
@@ -51,6 +54,11 @@ enum {
     TAG_CURSOR,
     TAG_PLAYER_ICON,
     TAG_FLY_ICON,
+};
+
+enum {
+    REGION_MAP_PAGE_MAIN,
+    REGION_MAP_PAGE_SEVII123,
 };
 
 // Window IDs for the fly map
@@ -83,9 +91,16 @@ static bool32 sDrawFlyDestTextWindow;
 
 static u8 ProcessRegionMapInput_Full(void);
 static u8 MoveRegionMapCursor_Full(void);
+static u8 MoveRegionMapPage_Full(void);
 static u8 ProcessRegionMapInput_Zoomed(void);
 static u8 MoveRegionMapCursor_Zoomed(void);
 static void CalcZoomScrollParams(s16 scrollX, s16 scrollY, s16 c, s16 d, u16 e, u16 f, u8 rotation);
+static u8 TryScrollRegionMapPage_Full(void);
+static void SetRegionMapPage_Full(u8 page);
+static bool8 StartRegionMapPageScroll_Full(u8 page);
+static void FinishRegionMapPageScroll_Full(void);
+static s16 GetRegionMapPageScrollX(void);
+static void UpdateRegionMapSecAt(u16 x, u16 y);
 static mapsec_u16_t GetMapSecIdAt(u16 x, u16 y);
 static void RegionMap_SetBG2XAndBG2Y(s16 x, s16 y);
 static void InitMapBasedOnPlayerLocation(void);
@@ -111,7 +126,9 @@ static void DrawFlyDestTextWindow(void);
 static void LoadFlyDestIcons(void);
 static void CreateFlyDestIcons(void);
 static void TryCreateRedOutlineFlyDestIcons(void);
+static bool8 UpdateFlyDestIconPageVisibility(struct Sprite *sprite);
 static void SpriteCB_FlyDestIcon(struct Sprite *sprite);
+static void SpriteCB_FlyDestIconCantFly(struct Sprite *sprite);
 static void CB_FadeInFlyMap(void);
 static void CB_HandleFlyMapInput(void);
 static void CB_ExitFlyMap(void);
@@ -540,6 +557,9 @@ void InitRegionMapData(struct RegionMap *regionMap, const struct BgTemplate *tem
     sRegionMap = regionMap;
     sRegionMap->initStep = 0;
     sRegionMap->zoomed = zoomed;
+    sRegionMap->mapPage = REGION_MAP_PAGE_MAIN;
+    sRegionMap->targetMapPage = REGION_MAP_PAGE_MAIN;
+    sRegionMap->mapPageScrollAnim = INVALID_COMFY_ANIM;
     sRegionMap->inputCallback = zoomed == TRUE ? ProcessRegionMapInput_Zoomed : ProcessRegionMapInput_Full;
     if (template != NULL)
     {
@@ -560,6 +580,9 @@ void InitRegionMapData(struct RegionMap *regionMap, const struct BgTemplate *tem
 void ShowRegionMapForPokedexAreaScreen(struct RegionMap *regionMap)
 {
     sRegionMap = regionMap;
+    sRegionMap->mapPage = REGION_MAP_PAGE_MAIN;
+    sRegionMap->targetMapPage = REGION_MAP_PAGE_MAIN;
+    sRegionMap->mapPageScrollAnim = INVALID_COMFY_ANIM;
     InitMapBasedOnPlayerLocation();
     sRegionMap->playerIconSpritePosX = sRegionMap->cursorPosX;
     sRegionMap->playerIconSpritePosY = sRegionMap->cursorPosY;
@@ -607,7 +630,9 @@ bool8 LoadRegionMapGfx(void)
     case 6:
         if (sRegionMap->zoomed == FALSE)
         {
-            CalcZoomScrollParams(0, 0, 0, 0, 0x100, 0x100, 0);
+            sRegionMap->scrollX = GetRegionMapPageScrollX();
+            sRegionMap->scrollY = 0;
+            CalcZoomScrollParams(sRegionMap->scrollX, sRegionMap->scrollY, 0, 0, 0x100, 0x100, 0);
         }
         else
         {
@@ -650,6 +675,11 @@ void BlendRegionMap(u16 color, u32 coeff)
 
 void FreeRegionMapIconResources(void)
 {
+    if (sRegionMap->mapPageScrollAnim != INVALID_COMFY_ANIM)
+    {
+        ReleaseComfyAnim(sRegionMap->mapPageScrollAnim);
+        sRegionMap->mapPageScrollAnim = INVALID_COMFY_ANIM;
+    }
     if (sRegionMap->cursorSprite != NULL)
     {
         DestroySprite(sRegionMap->cursorSprite);
@@ -708,6 +738,8 @@ static u8 ProcessRegionMapInput_Full(void)
     {
         input = MAP_INPUT_R_BUTTON;
     }
+    if (input == MAP_INPUT_NONE)
+        input = TryScrollRegionMapPage_Full();
     if (input == MAP_INPUT_MOVE_START)
     {
         sRegionMap->cursorMovementFrameCounter = 4;
@@ -718,8 +750,6 @@ static u8 ProcessRegionMapInput_Full(void)
 
 static u8 MoveRegionMapCursor_Full(void)
 {
-    mapsec_u16_t mapSecId;
-
     if (sRegionMap->cursorMovementFrameCounter != 0)
         return MAP_INPUT_MOVE_CONT;
 
@@ -740,23 +770,142 @@ static u8 MoveRegionMapCursor_Full(void)
         sRegionMap->cursorPosY--;
     }
 
-    mapSecId = GetMapSecIdAt(sRegionMap->cursorPosX, sRegionMap->cursorPosY);
+    UpdateRegionMapSecAt(sRegionMap->cursorPosX, sRegionMap->cursorPosY);
+    GetPositionOfCursorWithinMapSec();
+    sRegionMap->inputCallback = ProcessRegionMapInput_Full;
+    return MAP_INPUT_MOVE_END;
+}
+
+static u8 TryScrollRegionMapPage_Full(void)
+{
+    if (JOY_HELD(DPAD_RIGHT)
+        && sRegionMap->mapPage == REGION_MAP_PAGE_MAIN
+        && sRegionMap->cursorPosX == MAPCURSOR_X_MAX)
+    {
+        if (StartRegionMapPageScroll_Full(REGION_MAP_PAGE_SEVII123))
+            return MAP_INPUT_MOVE_CONT;
+
+        SetRegionMapPage_Full(REGION_MAP_PAGE_SEVII123);
+        FinishRegionMapPageScroll_Full();
+        return MAP_INPUT_MOVE_END;
+    }
+
+    if (JOY_HELD(DPAD_LEFT)
+        && sRegionMap->mapPage == REGION_MAP_PAGE_SEVII123
+        && sRegionMap->cursorPosX == MAPCURSOR_X_MIN)
+    {
+        if (StartRegionMapPageScroll_Full(REGION_MAP_PAGE_MAIN))
+            return MAP_INPUT_MOVE_CONT;
+
+        SetRegionMapPage_Full(REGION_MAP_PAGE_MAIN);
+        FinishRegionMapPageScroll_Full();
+        return MAP_INPUT_MOVE_END;
+    }
+
+    return MAP_INPUT_NONE;
+}
+
+static u8 MoveRegionMapPage_Full(void)
+{
+    struct ComfyAnim *anim;
+
+    if (sRegionMap->mapPageScrollAnim == INVALID_COMFY_ANIM)
+    {
+        FinishRegionMapPageScroll_Full();
+        sRegionMap->inputCallback = ProcessRegionMapInput_Full;
+        return MAP_INPUT_MOVE_END;
+    }
+
+    AdvanceComfyAnimations();
+    anim = &gComfyAnims[sRegionMap->mapPageScrollAnim];
+    if (anim->inUse)
+    {
+        sRegionMap->scrollX = ReadComfyAnimValueSmooth(anim);
+        sRegionMap->scrollY = 0;
+        CalcZoomScrollParams(sRegionMap->scrollX, sRegionMap->scrollY, 0, 0, 0x100, 0x100, 0);
+        if (!anim->completed)
+            return MAP_INPUT_MOVE_CONT;
+    }
+
+    ReleaseComfyAnim(sRegionMap->mapPageScrollAnim);
+    sRegionMap->mapPageScrollAnim = INVALID_COMFY_ANIM;
+    sRegionMap->mapPage = sRegionMap->targetMapPage;
+    sRegionMap->scrollX = GetRegionMapPageScrollX();
+    CalcZoomScrollParams(sRegionMap->scrollX, sRegionMap->scrollY, 0, 0, 0x100, 0x100, 0);
+    FinishRegionMapPageScroll_Full();
+    sRegionMap->inputCallback = ProcessRegionMapInput_Full;
+    return MAP_INPUT_MOVE_END;
+}
+
+static void SetRegionMapPage_Full(u8 page)
+{
+    sRegionMap->mapPage = page;
+    sRegionMap->targetMapPage = page;
+    sRegionMap->scrollX = GetRegionMapPageScrollX();
+    sRegionMap->scrollY = 0;
+    CalcZoomScrollParams(sRegionMap->scrollX, sRegionMap->scrollY, 0, 0, 0x100, 0x100, 0);
+    if (sRegionMap->playerIconSprite != NULL)
+        sRegionMap->playerIconSprite->x2 = -sRegionMap->scrollX;
+}
+
+static bool8 StartRegionMapPageScroll_Full(u8 page)
+{
+    struct ComfyAnimEasingConfig config;
+
+    if (sRegionMap->mapPageScrollAnim != INVALID_COMFY_ANIM)
+        ReleaseComfyAnim(sRegionMap->mapPageScrollAnim);
+
+    sRegionMap->targetMapPage = page;
+    InitComfyAnimConfig_Easing(&config);
+    config.durationFrames = MAP_PAGE_SCROLL_DURATION;
+    config.easingFunc = ComfyAnimEasing_EaseOutCubic;
+    config.from = Q_24_8(sRegionMap->scrollX);
+    config.to = Q_24_8(page * MAP_PAGE_SCROLL_X);
+    sRegionMap->mapPageScrollAnim = CreateComfyAnim_Easing(&config);
+    if (sRegionMap->mapPageScrollAnim == INVALID_COMFY_ANIM)
+        return FALSE;
+
+    sRegionMap->inputCallback = MoveRegionMapPage_Full;
+    return TRUE;
+}
+
+static void FinishRegionMapPageScroll_Full(void)
+{
+    if (sRegionMap->mapPage == REGION_MAP_PAGE_SEVII123)
+        sRegionMap->cursorPosX = MAPCURSOR_X_MIN;
+    else
+        sRegionMap->cursorPosX = MAPCURSOR_X_MAX;
+
+    if (sRegionMap->cursorSprite != NULL)
+        sRegionMap->cursorSprite->x = 8 * sRegionMap->cursorPosX + 4;
+    UpdateRegionMapSecAt(sRegionMap->cursorPosX, sRegionMap->cursorPosY);
+    GetPositionOfCursorWithinMapSec();
+}
+
+static s16 GetRegionMapPageScrollX(void)
+{
+    return sRegionMap->mapPage * MAP_PAGE_SCROLL_X;
+}
+
+static void UpdateRegionMapSecAt(u16 x, u16 y)
+{
+    mapsec_u16_t mapSecId = GetMapSecIdAt(x, y);
+
     sRegionMap->mapSecType = GetMapsecType(mapSecId);
     if (mapSecId != sRegionMap->mapSecId)
     {
         sRegionMap->mapSecId = mapSecId;
         GetMapName(sRegionMap->mapSecName, sRegionMap->mapSecId, MAP_NAME_LENGTH);
     }
-    GetPositionOfCursorWithinMapSec();
-    sRegionMap->inputCallback = ProcessRegionMapInput_Full;
-    return MAP_INPUT_MOVE_END;
 }
 
 static u8 ProcessRegionMapInput_Zoomed(void)
 {
     u8 input;
+    s16 pageScrollX;
 
     input = MAP_INPUT_NONE;
+    pageScrollX = GetRegionMapPageScrollX();
     sRegionMap->zoomedCursorDeltaX = 0;
     sRegionMap->zoomedCursorDeltaY = 0;
     if (JOY_HELD(DPAD_UP) && sRegionMap->scrollY > -0x34)
@@ -769,12 +918,12 @@ static u8 ProcessRegionMapInput_Zoomed(void)
         sRegionMap->zoomedCursorDeltaY = +1;
         input = MAP_INPUT_MOVE_START;
     }
-    if (JOY_HELD(DPAD_LEFT) && sRegionMap->scrollX > -0x2c)
+    if (JOY_HELD(DPAD_LEFT) && sRegionMap->scrollX > pageScrollX - 0x2c)
     {
         sRegionMap->zoomedCursorDeltaX = -1;
         input = MAP_INPUT_MOVE_START;
     }
-    if (JOY_HELD(DPAD_RIGHT) && sRegionMap->scrollX < 0xac)
+    if (JOY_HELD(DPAD_RIGHT) && sRegionMap->scrollX < pageScrollX + 0xac)
     {
         sRegionMap->zoomedCursorDeltaX = +1;
         input = MAP_INPUT_MOVE_START;
@@ -803,6 +952,7 @@ static u8 MoveRegionMapCursor_Zoomed(void)
 {
     u16 x;
     u16 y;
+    s16 pageScrollX;
     mapsec_u16_t mapSecId;
 
     sRegionMap->scrollY += sRegionMap->zoomedCursorDeltaY;
@@ -811,7 +961,8 @@ static u8 MoveRegionMapCursor_Zoomed(void)
     sRegionMap->zoomedCursorMovementFrameCounter++;
     if (sRegionMap->zoomedCursorMovementFrameCounter == 8)
     {
-        x = (sRegionMap->scrollX + 0x2c) / 8 + 1;
+        pageScrollX = GetRegionMapPageScrollX();
+        x = (sRegionMap->scrollX - pageScrollX + 0x2c) / 8 + 1;
         y = (sRegionMap->scrollY + 0x34) / 8 + 2;
         if (x != sRegionMap->zoomedCursorPosX || y != sRegionMap->zoomedCursorPosY)
         {
@@ -838,12 +989,12 @@ void SetRegionMapDataForZoom(void)
     if (sRegionMap->zoomed == FALSE)
     {
         sRegionMap->scrollY = 0;
-        sRegionMap->scrollX = 0;
+        sRegionMap->scrollX = GetRegionMapPageScrollX();
         sRegionMap->unk_040 = 0;
-        sRegionMap->unk_03c = 0;
-        sRegionMap->unk_060 = sRegionMap->cursorPosX * 8 - 0x34;
+        sRegionMap->unk_03c = sRegionMap->scrollX * 0x100;
+        sRegionMap->unk_060 = GetRegionMapPageScrollX() + sRegionMap->cursorPosX * 8 - 0x34;
         sRegionMap->unk_062 = sRegionMap->cursorPosY * 8 - 0x44;
-        sRegionMap->unk_044 = (sRegionMap->unk_060 << 8) / 16;
+        sRegionMap->unk_044 = ((sRegionMap->unk_060 - sRegionMap->scrollX) << 8) / 16;
         sRegionMap->unk_048 = (sRegionMap->unk_062 << 8) / 16;
         sRegionMap->zoomedCursorPosX = sRegionMap->cursorPosX;
         sRegionMap->zoomedCursorPosY = sRegionMap->cursorPosY;
@@ -854,10 +1005,10 @@ void SetRegionMapDataForZoom(void)
     {
         sRegionMap->unk_03c = sRegionMap->scrollX * 0x100;
         sRegionMap->unk_040 = sRegionMap->scrollY * 0x100;
-        sRegionMap->unk_060 = 0;
+        sRegionMap->unk_060 = GetRegionMapPageScrollX();
         sRegionMap->unk_062 = 0;
-        sRegionMap->unk_044 = -(sRegionMap->unk_03c / 16);
-        sRegionMap->unk_048 = -(sRegionMap->unk_040 / 16);
+        sRegionMap->unk_044 = ((sRegionMap->unk_060 << 8) - sRegionMap->unk_03c) / 16;
+        sRegionMap->unk_048 = ((sRegionMap->unk_062 << 8) - sRegionMap->unk_040) / 16;
         sRegionMap->cursorPosX = sRegionMap->zoomedCursorPosX;
         sRegionMap->cursorPosY = sRegionMap->zoomedCursorPosY;
         sRegionMap->unk_04c = 0x8000;
@@ -1017,7 +1168,14 @@ static mapsec_u16_t GetMapSecIdAt(u16 x, u16 y)
     }
     y -= MAPCURSOR_Y_MIN;
     x -= MAPCURSOR_X_MIN;
-    return sRegionMap_MapSectionLayout[y][x];
+    switch (sRegionMap->mapPage)
+    {
+    case REGION_MAP_PAGE_SEVII123:
+        return sRegionMapSections_Sevii123[y][x];
+    case REGION_MAP_PAGE_MAIN:
+    default:
+        return sRegionMap_MapSectionLayout[y][x];
+    }
 }
 
 static void InitMapBasedOnPlayerLocation(void)
@@ -1578,7 +1736,7 @@ static void UnhideRegionMapPlayerIcon(void)
         {
             sRegionMap->playerIconSprite->x = sRegionMap->playerIconSpritePosX * 8 + 4;
             sRegionMap->playerIconSprite->y = sRegionMap->playerIconSpritePosY * 8 + 4;
-            sRegionMap->playerIconSprite->x2 = 0;
+            sRegionMap->playerIconSprite->x2 = -sRegionMap->scrollX;
             sRegionMap->playerIconSprite->y2 = 0;
             sRegionMap->playerIconSprite->callback = SpriteCB_PlayerIconMapFull;
             sRegionMap->playerIconSprite->invisible = FALSE;
@@ -1610,7 +1768,19 @@ static void SpriteCB_PlayerIconMapZoomed(struct Sprite *sprite)
 
 static void SpriteCB_PlayerIconMapFull(struct Sprite *sprite)
 {
-    SpriteCB_PlayerIcon(sprite);
+    sprite->x2 = -sRegionMap->scrollX;
+    sprite->y2 = -sRegionMap->scrollY;
+    sprite->sY = sprite->y + sprite->y2 + sprite->centerToCornerVecY;
+    sprite->sX = sprite->x + sprite->x2 + sprite->centerToCornerVecX;
+    if (sprite->sY < -8 || sprite->sY > DISPLAY_HEIGHT + 8 || sprite->sX < -8 || sprite->sX > DISPLAY_WIDTH + 8)
+        sprite->sVisible = FALSE;
+    else
+        sprite->sVisible = TRUE;
+
+    if (sprite->sVisible == TRUE)
+        SpriteCB_PlayerIcon(sprite);
+    else
+        sprite->invisible = TRUE;
 }
 
 static void SpriteCB_PlayerIcon(struct Sprite *sprite)
@@ -1816,6 +1986,7 @@ static void VBlankCB_FlyMap(void)
     LoadOam();
     ProcessSpriteCopyRequests();
     TransferPlttBuffer();
+    UpdateRegionMapVideoRegs();
 }
 
 static void CB2_FlyMap(void)
@@ -1946,7 +2117,10 @@ static void CreateFlyDestIcons(void)
             if (FlagGet(canFlyFlag))
                 gSprites[spriteId].callback = SpriteCB_FlyDestIcon;
             else
+            {
                 shape += 3;
+                gSprites[spriteId].callback = SpriteCB_FlyDestIconCantFly;
+            }
 
             StartSpriteAnim(&gSprites[spriteId], shape);
             gSprites[spriteId].sIconMapSec = mapSecId;
@@ -1987,9 +2161,30 @@ static void TryCreateRedOutlineFlyDestIcons(void)
     }
 }
 
+static bool8 UpdateFlyDestIconPageVisibility(struct Sprite *sprite)
+{
+    s16 x;
+    s16 y;
+
+    sprite->x2 = -sFlyMap->regionMap.scrollX;
+    sprite->y2 = -sFlyMap->regionMap.scrollY;
+    x = sprite->x + sprite->x2 + sprite->centerToCornerVecX;
+    y = sprite->y + sprite->y2 + sprite->centerToCornerVecY;
+    if (x < -16 || x > DISPLAY_WIDTH + 16 || y < -16 || y > DISPLAY_HEIGHT + 16)
+    {
+        sprite->invisible = TRUE;
+        return FALSE;
+    }
+
+    return TRUE;
+}
+
 // Flickers visited fly destination icons on when the cursor is currently on them.
 static void SpriteCB_FlyDestIcon(struct Sprite *sprite)
 {
+    if (!UpdateFlyDestIconPageVisibility(sprite))
+        return;
+
     if (sFlyMap->regionMap.mapSecId == sprite->sIconMapSec)
     {
         if (++sprite->sFlickerTimer > 16)
@@ -2003,6 +2198,12 @@ static void SpriteCB_FlyDestIcon(struct Sprite *sprite)
         sprite->sFlickerTimer = 16;
         sprite->invisible = TRUE;
     }
+}
+
+static void SpriteCB_FlyDestIconCantFly(struct Sprite *sprite)
+{
+    if (UpdateFlyDestIconPageVisibility(sprite))
+        sprite->invisible = FALSE;
 }
 
 #undef sIconMapSec

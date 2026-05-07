@@ -893,7 +893,11 @@
     },
     {
       "id": "MAPSEC_KINDLE_ROAD",
-      "name": "KINDLE ROAD"
+      "name": "KINDLE ROAD",
+      "x": 2,
+      "y": 5,
+      "width": 1,
+      "height": 3
     },
     {
       "id": "MAPSEC_TREASURE_BEACH",
