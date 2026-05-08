@@ -6286,7 +6286,7 @@ static void DisplayMonLearnedMove(u8 taskId, u16 move)
 
 static bool8 TryDisplayMonUnlockedInnate(u8 taskId, TaskFunc task)
 {
-    static const u8 sText_PkmnUnlockedInnate[] = _("{STR_VAR_1} unlocked Innate\n{STR_VAR_2}!{PAUSE_UNTIL_PRESS}");
+    static const u8 sText_PkmnUnlockedInnate[] = _("{STR_VAR_1} unlocked innate potential:\n{STR_VAR_2}!{PAUSE_UNTIL_PRESS}");
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
 
     if (sLevelUpInnateLevel != sInitialLevel)
