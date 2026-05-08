@@ -7,6 +7,9 @@
 #define T_SAVEBLOCK1_SIZE 15568
 #define T_SAVEBLOCK2_SIZE 3884
 #define T_SAVEBLOCK3_SIZE 4
+#define T_POKEMON_SECURE_DATA_SIZE 48
+#define T_BOX_POKEMON_SIZE 80
+#define T_POKEMON_SIZE 100
 #define T_POKEMONSTORAGE_SIZE 34144
 
 TEST("SaveBlock1 is backwards compatible")
@@ -31,7 +34,17 @@ TEST("PokemonStorage is backwards compatible")
     EXPECT_EQ(sizeof(struct PokemonStorage), T_POKEMONSTORAGE_SIZE);
 }
 
+TEST("Pokemon save structs are expected sizes")
+{
+    EXPECT_EQ(sizeof(struct PokemonSecureData), T_POKEMON_SECURE_DATA_SIZE);
+    EXPECT_EQ(sizeof(struct BoxPokemon), T_BOX_POKEMON_SIZE);
+    EXPECT_EQ(sizeof(struct Pokemon), T_POKEMON_SIZE);
+}
+
 #undef T_SAVEBLOCK1_SIZE
 #undef T_SAVEBLOCK2_SIZE
 #undef T_SAVEBLOCK3_SIZE
+#undef T_POKEMON_SECURE_DATA_SIZE
+#undef T_BOX_POKEMON_SIZE
+#undef T_POKEMON_SIZE
 #undef T_POKEMONSTORAGE_SIZE
