@@ -358,6 +358,9 @@ script NewBarkTown_EventScript_RivalBattle {
     applymovement(LOCALID_NEWBARK_RIVAL, moves(face_left))
     waitmovement(0)
     msgbox("{PLAYER}!")
+	applymovement(OBJ_EVENT_ID_FOLLOWER, moves(walk_fast_left, face_right, exit_pokeball, set_visible))
+	playse(SE_BALL_OPEN)
+	waitmovement(0)
     bufferleadmonspeciesname(STR_VAR_1)
     msgbox("So you picked...
             a {STR_VAR_1}!")
@@ -394,4 +397,16 @@ script NewBarkTown_EventScript_RivalBattle {
     setvar(VAR_RIVAL_STATE, 3)
     release
     end
+}
+
+script RivalsMailbox {
+	lock
+	checkplayergender
+	if (var(VAR_RESULT) == MALE) {
+		msgbox("Crystal's house")
+	} else {
+		msgbox("Gold's house")
+	}
+	release
+	end
 }

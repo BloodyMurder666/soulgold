@@ -2189,3 +2189,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/ValorCavern/scripts.inc"
 
 	.include "data/maps/VerityCavern/scripts.inc"
+
+	.include "data/maps/NewBarkTown_House3/scripts.inc"

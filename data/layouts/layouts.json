@@ -9324,6 +9324,16 @@
       "secondary_tileset": "gTileset_Cave_Gray",
       "border_filepath": "data/layouts/VerityCavern/border.bin",
       "blockdata_filepath": "data/layouts/VerityCavern/map.bin"
+    },
+    {
+      "id": "LAYOUT_NEW_BARK_TOWN_HOUSE3",
+      "name": "NewBarkTown_House3_Layout",
+      "width": 35,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Building",
+      "secondary_tileset": "gTileset_PlayersHouse",
+      "border_filepath": "data/layouts/NewBarkTown_House3/border.bin",
+      "blockdata_filepath": "data/layouts/NewBarkTown_House3/map.bin"
     }
   ]
 }
