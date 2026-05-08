@@ -4188,6 +4188,7 @@ static const struct LevelUpMove sGlaceonLevelUpLearnset[] = {
     LEVEL_UP_MOVE(45, MOVE_MIRROR_COAT),
     LEVEL_UP_MOVE(50, MOVE_BLIZZARD),
     LEVEL_UP_MOVE(55, MOVE_LAST_RESORT),
+    LEVEL_UP_MOVE(65, MOVE_GLACIATE),
     LEVEL_UP_END
 };
 #endif //P_GEN_4_CROSS_EVOS

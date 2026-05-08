@@ -4406,6 +4406,12 @@ BattleScript_LearnedNewMove::
 BattleScript_LearnMoveReturn::
 	return
 
+BattleScript_InnateUnlocked::
+	fanfare MUS_LEVEL_UP
+	printstring STRINGID_PKMNUNLOCKEDINNATE
+	waitmessage B_WAIT_TIME_LONG
+	return
+
 BattleScript_WeatherAbilityActivates::
 	pause B_WAIT_TIME_SHORT
 	call BattleScript_AbilityPopUp

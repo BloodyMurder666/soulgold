@@ -5945,9 +5945,43 @@ static void Cmd_handlelearnnewmove(void)
 {
     CMD_ARGS(const u8 *learnedMovePtr, const u8 *nothingToLearnPtr, bool8 isFirstMove);
 
+    static bool8 sCheckingInnateUnlocks = FALSE;
+    static u8 sInnateUnlockIndex = 0;
+
     enum Move learnMove = MOVE_NONE;
     u32 monId = gBattleStruct->expGetterMonId;
     u32 currLvl = GetMonData(&gPlayerParty[monId], MON_DATA_LEVEL);
+    u32 prevLvl = gBattleResources->beforeLvlUp->level;
+
+    if (cmd->isFirstMove && !sCheckingInnateUnlocks)
+    {
+        sCheckingInnateUnlocks = TRUE;
+        sInnateUnlockIndex = 0;
+    }
+
+    if (sCheckingInnateUnlocks && !RECORDED_WILD_BATTLE)
+    {
+        if (prevLvl >= currLvl)
+            prevLvl = currLvl - 1;
+
+        while (sInnateUnlockIndex < MAX_MON_INNATES)
+        {
+            u32 innateNum = sInnateUnlockIndex + 1;
+            u32 unlockLevel = GetInnateUnlockLevel(innateNum);
+            enum Ability innate = GetMonData(&gPlayerParty[monId], MON_DATA_INNATE1 + sInnateUnlockIndex);
+
+            sInnateUnlockIndex++;
+
+            if (innate != ABILITY_NONE && prevLvl < unlockLevel && currLvl >= unlockLevel)
+            {
+                PREPARE_ABILITY_BUFFER(gBattleTextBuff2, innate);
+                BattleScriptCall(BattleScript_InnateUnlocked);
+                return;
+            }
+        }
+    }
+
+    sCheckingInnateUnlocks = FALSE;
 
     if (!gBattleResources->beforeLvlUp->learnMultipleMoves && gBattleResources->beforeLvlUp->level != (currLvl - 1))
         gBattleResources->beforeLvlUp->learnMultipleMoves = TRUE;

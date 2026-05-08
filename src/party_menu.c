@@ -225,6 +225,9 @@ static EWRAM_DATA u16 sPartyMenuItemId = 0;
 EWRAM_DATA u8 gBattlePartyCurrentOrder[PARTY_SIZE / 2] = {0}; // bits 0-3 are the current pos of Slot 1, 4-7 are Slot 2, and so on
 static EWRAM_DATA u8 sInitialLevel = 0;
 static EWRAM_DATA u8 sFinalLevel = 0;
+static EWRAM_DATA u8 sLevelUpInnateLevel = 0;
+static EWRAM_DATA u8 sLevelUpInnateIndex = 0;
+static EWRAM_DATA TaskFunc sLevelUpInnateNextTask = NULL;
 
 // IWRAM common
 COMMON_DATA void (*gItemUseCB)(u8, TaskFunc) = NULL;
@@ -414,9 +417,14 @@ static void DisplayLevelUpStatsPg1(u8);
 static void Task_DisplayLevelUpStatsPg2(u8);
 static void DisplayLevelUpStatsPg2(u8);
 static void Task_TryLearnNewMoves(u8);
+static void Task_TryLearnNewMovesAfterInnateText(u8);
+static void Task_TryLearningNextMoveAfterInnateText(u8);
 static void PartyMenuTryEvolution(u8);
 static void DisplayMonNeedsToReplaceMove(u8);
 static void DisplayMonLearnedMove(u8, u16);
+static bool8 TryDisplayMonUnlockedInnate(u8, TaskFunc);
+static void Task_DoInnateUnlockedFanfareAfterText(u8);
+static void Task_ContinueAfterInnateUnlockedFanfare(u8);
 static void UseSacredAsh(u8);
 static void Task_SacredAshLoop(u8);
 static void Task_SacredAshDisplayHPRestored(u8);
@@ -6083,6 +6091,8 @@ static void Task_DisplayLevelUpStatsPg2(u8 taskId)
         PlaySE(SE_SELECT);
         DisplayLevelUpStatsPg2(taskId);
         sInitialLevel += 1; // so the Pokemon doesn't learn a move meant for its previous level
+        sLevelUpInnateLevel = 0;
+        sLevelUpInnateIndex = 0;
         gTasks[taskId].func = Task_TryLearnNewMoves;
     }
 }
@@ -6116,6 +6126,8 @@ static void Task_TryLearnNewMoves(u8 taskId)
         for (; sInitialLevel <= sFinalLevel; sInitialLevel++)
         {
             SetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_LEVEL, &sInitialLevel);
+            if (TryDisplayMonUnlockedInnate(taskId, Task_TryLearnNewMovesAfterInnateText))
+                break;
             learnMove = MonTryLearningNewMove(&gPlayerParty[gPartyMenu.slotId], TRUE);
             gPartyMenu.learnMoveState = 1;
             switch (learnMove)
@@ -6140,12 +6152,50 @@ static void Task_TryLearnNewMoves(u8 taskId)
     }
 }
 
+static void Task_TryLearnNewMovesAfterInnateText(u8 taskId)
+{
+    u16 learnMove;
+
+    if (IsPartyMenuTextPrinterActive() != TRUE)
+    {
+        SetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_LEVEL, &sInitialLevel);
+        if (TryDisplayMonUnlockedInnate(taskId, Task_TryLearnNewMovesAfterInnateText))
+            return;
+
+        learnMove = MonTryLearningNewMove(&gPlayerParty[gPartyMenu.slotId], TRUE);
+        gPartyMenu.learnMoveState = 1;
+        switch (learnMove)
+        {
+        case 0: // No moves to learn
+            if (sInitialLevel >= sFinalLevel)
+                PartyMenuTryEvolution(taskId);
+            else
+            {
+                sInitialLevel++;
+                gTasks[taskId].func = Task_TryLearnNewMovesAfterInnateText;
+            }
+            break;
+        case MON_HAS_MAX_MOVES:
+            DisplayMonNeedsToReplaceMove(taskId);
+            break;
+        case MON_ALREADY_KNOWS_MOVE:
+            gTasks[taskId].func = Task_TryLearningNextMove;
+            break;
+        default:
+            DisplayMonLearnedMove(taskId, learnMove);
+            break;
+        }
+    }
+}
+
 static void Task_TryLearningNextMove(u8 taskId)
 {
     u16 result;
     for (; sInitialLevel <= sFinalLevel; sInitialLevel++)
     {
         SetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_LEVEL, &sInitialLevel);
+        if (TryDisplayMonUnlockedInnate(taskId, Task_TryLearningNextMoveAfterInnateText))
+            break;
         result = MonTryLearningNewMove(&gPlayerParty[gPartyMenu.slotId], FALSE);
         switch (result)
         {
@@ -6166,6 +6216,12 @@ static void Task_TryLearningNextMove(u8 taskId)
         if (result)
             break;
     }
+}
+
+static void Task_TryLearningNextMoveAfterInnateText(u8 taskId)
+{
+    if (IsPartyMenuTextPrinterActive() != TRUE)
+        Task_TryLearningNextMove(taskId);
 }
 
 static void CB2_ReturnToPartyMenuUsingRareCandy(void)
@@ -6226,6 +6282,55 @@ static void DisplayMonLearnedMove(u8 taskId, u16 move)
     ScheduleBgCopyTilemapToVram(2);
     gPartyMenu.data1 = move;
     gTasks[taskId].func = Task_DoLearnedMoveFanfareAfterText;
+}
+
+static bool8 TryDisplayMonUnlockedInnate(u8 taskId, TaskFunc task)
+{
+    static const u8 sText_PkmnUnlockedInnate[] = _("{STR_VAR_1} unlocked Innate\n{STR_VAR_2}!{PAUSE_UNTIL_PRESS}");
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+
+    if (sLevelUpInnateLevel != sInitialLevel)
+    {
+        sLevelUpInnateLevel = sInitialLevel;
+        sLevelUpInnateIndex = 0;
+    }
+
+    for (; sLevelUpInnateIndex < MAX_MON_INNATES; sLevelUpInnateIndex++)
+    {
+        u32 innateNum = sLevelUpInnateIndex + 1;
+        u32 unlockLevel = GetInnateUnlockLevel(innateNum);
+        enum Ability innate = GetMonData(mon, MON_DATA_INNATE1 + sLevelUpInnateIndex);
+
+        if (innate != ABILITY_NONE && unlockLevel == sInitialLevel)
+        {
+            sLevelUpInnateIndex++;
+            GetMonNickname(mon, gStringVar1);
+            StringCopy(gStringVar2, gAbilitiesInfo[innate].name);
+            StringExpandPlaceholders(gStringVar4, sText_PkmnUnlockedInnate);
+            DisplayPartyMenuMessage(gStringVar4, TRUE);
+            ScheduleBgCopyTilemapToVram(2);
+            sLevelUpInnateNextTask = task;
+            gTasks[taskId].func = Task_DoInnateUnlockedFanfareAfterText;
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+static void Task_DoInnateUnlockedFanfareAfterText(u8 taskId)
+{
+    if (IsPartyMenuTextPrinterActive() != TRUE)
+    {
+        PlayFanfare(MUS_LEVEL_UP);
+        gTasks[taskId].func = Task_ContinueAfterInnateUnlockedFanfare;
+    }
+}
+
+static void Task_ContinueAfterInnateUnlockedFanfare(u8 taskId)
+{
+    if (IsFanfareTaskInactive() && ((JOY_NEW(A_BUTTON)) || (JOY_NEW(B_BUTTON))))
+        gTasks[taskId].func = sLevelUpInnateNextTask;
 }
 
 static void BufferMonStatsToTaskData(struct Pokemon *mon, s16 *data)
