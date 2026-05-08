@@ -80,6 +80,25 @@ TEST("Setting a nickname terminates unused nickname storage")
     EXPECT_EQ(storedNickname[11], EOS);
 }
 
+TEST("Pokemon save bit repack preserves extended met location and flags")
+{
+    struct Pokemon mon;
+    u16 metLocation = 0x7FFF;
+    u8 abilityNum = 2;
+    u8 enabled = TRUE;
+
+    CreateMon(&mon, SPECIES_WOBBUFFET, 50, 0, OTID_STRUCT_PLAYER_ID);
+    SetMonData(&mon, MON_DATA_MET_LOCATION, &metLocation);
+    SetMonData(&mon, MON_DATA_ABILITY_NUM, &abilityNum);
+    SetMonData(&mon, MON_DATA_IS_SHADOW, &enabled);
+    SetMonData(&mon, MON_DATA_MODERN_FATEFUL_ENCOUNTER, &enabled);
+
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_MET_LOCATION), metLocation);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_ABILITY_NUM), abilityNum);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_IS_SHADOW), enabled);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_MODERN_FATEFUL_ENCOUNTER), enabled);
+}
+
 TEST("Terastallization type defaults to primary or secondary type")
 {
     u32 i;

@@ -89,6 +89,8 @@ struct SpeciesItem
 
 static metloc_u16_t GetBoxMonMetLocation(struct BoxPokemon *boxMon);
 static void SetBoxMonMetLocation(struct BoxPokemon *boxMon, metloc_u16_t metLocation);
+static u8 GetBoxMonMetLocationHi(struct BoxPokemon *boxMon);
+static void SetBoxMonMetLocationHi(struct BoxPokemon *boxMon, u8 metLocationHi);
 static void Task_PlayMapChosenOrBattleBGM(u8 taskId);
 void TrySpecialOverworldEvo();
 
@@ -2159,17 +2161,27 @@ union EvolutionTracker
 
 static metloc_u16_t GetBoxMonMetLocation(struct BoxPokemon *boxMon)
 {
-    if (!boxMon->secure.metLocationExtended)
-        return boxMon->secure.metLocation;
+    return boxMon->secure.metLocation | (GetBoxMonMetLocationHi(boxMon) << 8);
+}
 
-    return boxMon->secure.metLocation | (boxMon->secure.metLocationHi << 8);
+static u8 GetBoxMonMetLocationHi(struct BoxPokemon *boxMon)
+{
+    return boxMon->secure.metLocationHiBit0
+         | (boxMon->secure.metLocationHiBits1_5 << 1)
+         | (boxMon->secure.metLocationHiBit6 << 6);
 }
 
 static void SetBoxMonMetLocation(struct BoxPokemon *boxMon, metloc_u16_t metLocation)
 {
     boxMon->secure.metLocation = metLocation;
-    boxMon->secure.metLocationHi = metLocation >> 8;
-    boxMon->secure.metLocationExtended = metLocation > 0xFF;
+    SetBoxMonMetLocationHi(boxMon, metLocation >> 8);
+}
+
+static void SetBoxMonMetLocationHi(struct BoxPokemon *boxMon, u8 metLocationHi)
+{
+    boxMon->secure.metLocationHiBit0 = metLocationHi & 1;
+    boxMon->secure.metLocationHiBits1_5 = (metLocationHi >> 1) & 0x1F;
+    boxMon->secure.metLocationHiBit6 = (metLocationHi >> 6) & 1;
 }
 
 static bool32 IsBadEgg(struct BoxPokemon *boxMon)
@@ -2372,58 +2384,26 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
             break;
         }
         case MON_DATA_COOL_RIBBON:
-            retVal = boxMon->secure.coolRibbon;
-            break;
         case MON_DATA_BEAUTY_RIBBON:
-            retVal = boxMon->secure.beautyRibbon;
-            break;
         case MON_DATA_CUTE_RIBBON:
-            retVal = boxMon->secure.cuteRibbon;
-            break;
         case MON_DATA_SMART_RIBBON:
-            retVal = boxMon->secure.smartRibbon;
-            break;
         case MON_DATA_TOUGH_RIBBON:
-            retVal = boxMon->secure.toughRibbon;
-            break;
         case MON_DATA_CHAMPION_RIBBON:
-            retVal = boxMon->secure.championRibbon;
-            break;
         case MON_DATA_WINNING_RIBBON:
-            retVal = boxMon->secure.winningRibbon;
-            break;
         case MON_DATA_VICTORY_RIBBON:
-            retVal = boxMon->secure.victoryRibbon;
-            break;
         case MON_DATA_ARTIST_RIBBON:
-            retVal = boxMon->secure.artistRibbon;
-            break;
         case MON_DATA_EFFORT_RIBBON:
-            retVal = boxMon->secure.effortRibbon;
-            break;
         case MON_DATA_MARINE_RIBBON:
-            retVal = 0;
-            break;
         case MON_DATA_LAND_RIBBON:
-            retVal = 0;
-            break;
         case MON_DATA_SKY_RIBBON:
-            retVal = 0;
-            break;
         case MON_DATA_COUNTRY_RIBBON:
-            retVal = 0;
-            break;
         case MON_DATA_NATIONAL_RIBBON:
-            retVal = 0;
-            break;
         case MON_DATA_EARTH_RIBBON:
-            retVal = 0;
-            break;
         case MON_DATA_WORLD_RIBBON:
             retVal = 0;
             break;
         case MON_DATA_MODERN_FATEFUL_ENCOUNTER:
-            retVal = boxMon->secure.modernFatefulEncounter;
+            retVal = boxMon->modernFatefulEncounter;
             break;
         case MON_DATA_SPECIES_OR_EGG:
             retVal = boxMon->secure.species;
@@ -2459,35 +2439,10 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
             }
             break;
         case MON_DATA_RIBBON_COUNT:
-            if (boxMon->secure.species && !IsEggOrBadEgg(boxMon))
-            {
-                retVal = 0;
-                retVal += boxMon->secure.coolRibbon;
-                retVal += boxMon->secure.beautyRibbon;
-                retVal += boxMon->secure.cuteRibbon;
-                retVal += boxMon->secure.smartRibbon;
-                retVal += boxMon->secure.toughRibbon;
-                retVal += boxMon->secure.championRibbon;
-                retVal += boxMon->secure.winningRibbon;
-                retVal += boxMon->secure.victoryRibbon;
-                retVal += boxMon->secure.artistRibbon;
-                retVal += boxMon->secure.effortRibbon;
-            }
+            retVal = 0;
             break;
         case MON_DATA_RIBBONS:
-            if (boxMon->secure.species && !IsEggOrBadEgg(boxMon))
-            {
-                retVal = boxMon->secure.championRibbon
-                       | (boxMon->secure.coolRibbon << 1)
-                       | (boxMon->secure.beautyRibbon << 4)
-                       | (boxMon->secure.cuteRibbon << 7)
-                       | (boxMon->secure.smartRibbon << 10)
-                       | (boxMon->secure.toughRibbon << 13)
-                       | (boxMon->secure.winningRibbon << 16)
-                       | (boxMon->secure.victoryRibbon << 17)
-                       | (boxMon->secure.artistRibbon << 18)
-                       | (boxMon->secure.effortRibbon << 19);
-            }
+            retVal = 0;
             break;
         case MON_DATA_HYPER_TRAINED_HP:
             retVal = boxMon->secure.hyperTrainedHP;
@@ -2508,7 +2463,7 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
             retVal = boxMon->secure.hyperTrainedSpDefense;
             break;
         case MON_DATA_IS_SHADOW:
-            retVal = boxMon->secure.isShadow;
+            retVal = boxMon->isShadow;
             break;
         case MON_DATA_DYNAMAX_LEVEL:
             retVal = boxMon->secure.dynamaxLevel;
@@ -2862,51 +2817,25 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             SET8(boxMon->secure.abilityNum);
             break;
         case MON_DATA_COOL_RIBBON:
-            SET8(boxMon->secure.coolRibbon);
-            break;
         case MON_DATA_BEAUTY_RIBBON:
-            SET8(boxMon->secure.beautyRibbon);
-            break;
         case MON_DATA_CUTE_RIBBON:
-            SET8(boxMon->secure.cuteRibbon);
-            break;
         case MON_DATA_SMART_RIBBON:
-            SET8(boxMon->secure.smartRibbon);
-            break;
         case MON_DATA_TOUGH_RIBBON:
-            SET8(boxMon->secure.toughRibbon);
-            break;
         case MON_DATA_CHAMPION_RIBBON:
-            SET8(boxMon->secure.championRibbon);
-            break;
         case MON_DATA_WINNING_RIBBON:
-            SET8(boxMon->secure.winningRibbon);
-            break;
         case MON_DATA_VICTORY_RIBBON:
-            SET8(boxMon->secure.victoryRibbon);
-            break;
         case MON_DATA_ARTIST_RIBBON:
-            SET8(boxMon->secure.artistRibbon);
-            break;
         case MON_DATA_EFFORT_RIBBON:
-            SET8(boxMon->secure.effortRibbon);
-            break;
         case MON_DATA_MARINE_RIBBON:
-            break;
         case MON_DATA_LAND_RIBBON:
-            break;
         case MON_DATA_SKY_RIBBON:
-            break;
         case MON_DATA_COUNTRY_RIBBON:
-            break;
         case MON_DATA_NATIONAL_RIBBON:
-            break;
         case MON_DATA_EARTH_RIBBON:
-            break;
         case MON_DATA_WORLD_RIBBON:
             break;
         case MON_DATA_MODERN_FATEFUL_ENCOUNTER:
-            SET8(boxMon->secure.modernFatefulEncounter);
+            SET8(boxMon->modernFatefulEncounter);
             break;
         case MON_DATA_IVS:
         {
@@ -2939,7 +2868,7 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             SET8(boxMon->secure.hyperTrainedSpDefense);
             break;
         case MON_DATA_IS_SHADOW:
-            SET8(boxMon->secure.isShadow);
+            SET8(boxMon->isShadow);
             break;
         case MON_DATA_DYNAMAX_LEVEL:
             SET8(boxMon->secure.dynamaxLevel);

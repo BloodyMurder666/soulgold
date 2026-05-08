@@ -83,10 +83,10 @@ STATIC_ASSERT(sizeof(struct SaveBlock1) <= SECTOR_DATA_SIZE * (SECTOR_ID_SAVEBLO
 STATIC_ASSERT(sizeof(struct PokemonStorage) <= SECTOR_DATA_SIZE * (SECTOR_ID_PKMN_STORAGE_END - SECTOR_ID_PKMN_STORAGE_START + 1), PokemonStorageFreeSpace);
 
 // Save-format sentinels. Update these only when intentionally accepting a save break.
-STATIC_ASSERT(sizeof(struct PokemonSecureData) == 48, SaveFormatPokemonSecureDataSizeChanged);
-STATIC_ASSERT(sizeof(struct BoxPokemon) == 80, SaveFormatBoxPokemonSizeChanged);
-STATIC_ASSERT(sizeof(struct Pokemon) == 100, SaveFormatPokemonSizeChanged);
-STATIC_ASSERT(sizeof(struct PokemonStorage) == 34144, SaveFormatPokemonStorageSizeChanged);
+STATIC_ASSERT(sizeof(struct PokemonSecureData) == 44, SaveFormatPokemonSecureDataSizeChanged);
+STATIC_ASSERT(sizeof(struct BoxPokemon) == 76, SaveFormatBoxPokemonSizeChanged);
+STATIC_ASSERT(sizeof(struct Pokemon) == 96, SaveFormatPokemonSizeChanged);
+STATIC_ASSERT(sizeof(struct PokemonStorage) == 32448, SaveFormatPokemonStorageSizeChanged);
 
 COMMON_DATA u16 gLastWrittenSector = 0;
 COMMON_DATA u32 gLastSaveCounter = 0;
