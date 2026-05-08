@@ -58,7 +58,8 @@ enum {
 
 enum {
     REGION_MAP_PAGE_MAIN,
-    REGION_MAP_PAGE_SEVII123,
+    REGION_MAP_PAGE_SECOND,
+    REGION_MAP_PAGE_COUNT,
 };
 
 // Window IDs for the fly map
@@ -154,6 +155,15 @@ static const u8 sRegionMapPlayerIcon_LeafGfx[] = INCBIN_U8("graphics/pokenav/reg
 #include "data/region_map/region_map_layout_sevii45.h"
 #include "data/region_map/region_map_layout_sevii67.h"
 #include "data/region_map/region_map_entries.h"
+
+// Change this to your second regions sRegionMapSections_
+#define REGION_MAP_SECOND_PAGE_LAYOUT sRegionMapSections_Sevii123
+
+static const mapsec_u16_t (*const sRegionMapPageLayouts[REGION_MAP_PAGE_COUNT])[MAP_WIDTH] =
+{
+    [REGION_MAP_PAGE_MAIN] = sRegionMap_MapSectionLayout,
+    [REGION_MAP_PAGE_SECOND] = REGION_MAP_SECOND_PAGE_LAYOUT,
+};
 
 static const mapsec_u16_t sRegionMap_SpecialPlaceLocations[][2] =
 {
@@ -782,16 +792,16 @@ static u8 TryScrollRegionMapPage_Full(void)
         && sRegionMap->mapPage == REGION_MAP_PAGE_MAIN
         && sRegionMap->cursorPosX == MAPCURSOR_X_MAX)
     {
-        if (StartRegionMapPageScroll_Full(REGION_MAP_PAGE_SEVII123))
+        if (StartRegionMapPageScroll_Full(REGION_MAP_PAGE_SECOND))
             return MAP_INPUT_MOVE_CONT;
 
-        SetRegionMapPage_Full(REGION_MAP_PAGE_SEVII123);
+        SetRegionMapPage_Full(REGION_MAP_PAGE_SECOND);
         FinishRegionMapPageScroll_Full();
         return MAP_INPUT_MOVE_END;
     }
 
     if (JOY_HELD(DPAD_LEFT)
-        && sRegionMap->mapPage == REGION_MAP_PAGE_SEVII123
+        && sRegionMap->mapPage == REGION_MAP_PAGE_SECOND
         && sRegionMap->cursorPosX == MAPCURSOR_X_MIN)
     {
         if (StartRegionMapPageScroll_Full(REGION_MAP_PAGE_MAIN))
@@ -856,6 +866,8 @@ static bool8 StartRegionMapPageScroll_Full(u8 page)
         ReleaseComfyAnim(sRegionMap->mapPageScrollAnim);
 
     sRegionMap->targetMapPage = page;
+    if (sRegionMap->cursorSprite != NULL)
+        sRegionMap->cursorSprite->invisible = TRUE;
     InitComfyAnimConfig_Easing(&config);
     config.durationFrames = MAP_PAGE_SCROLL_DURATION;
     config.easingFunc = ComfyAnimEasing_EaseOutCubic;
@@ -871,13 +883,16 @@ static bool8 StartRegionMapPageScroll_Full(u8 page)
 
 static void FinishRegionMapPageScroll_Full(void)
 {
-    if (sRegionMap->mapPage == REGION_MAP_PAGE_SEVII123)
+    if (sRegionMap->mapPage != REGION_MAP_PAGE_MAIN)
         sRegionMap->cursorPosX = MAPCURSOR_X_MIN;
     else
         sRegionMap->cursorPosX = MAPCURSOR_X_MAX;
 
     if (sRegionMap->cursorSprite != NULL)
+    {
         sRegionMap->cursorSprite->x = 8 * sRegionMap->cursorPosX + 4;
+        sRegionMap->cursorSprite->invisible = FALSE;
+    }
     UpdateRegionMapSecAt(sRegionMap->cursorPosX, sRegionMap->cursorPosY);
     GetPositionOfCursorWithinMapSec();
 }
@@ -1168,14 +1183,10 @@ static mapsec_u16_t GetMapSecIdAt(u16 x, u16 y)
     }
     y -= MAPCURSOR_Y_MIN;
     x -= MAPCURSOR_X_MIN;
-    switch (sRegionMap->mapPage)
-    {
-    case REGION_MAP_PAGE_SEVII123:
-        return sRegionMapSections_Sevii123[y][x];
-    case REGION_MAP_PAGE_MAIN:
-    default:
-        return sRegionMap_MapSectionLayout[y][x];
-    }
+    if (sRegionMap->mapPage >= REGION_MAP_PAGE_COUNT)
+        return MAPSEC_NONE;
+
+    return sRegionMapPageLayouts[sRegionMap->mapPage][y][x];
 }
 
 static void InitMapBasedOnPlayerLocation(void)
