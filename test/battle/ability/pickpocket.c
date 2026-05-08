@@ -697,7 +697,7 @@ SINGLE_BATTLE_TEST("Pickpocket activates after an Item was knocked off (Traits)"
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_KNOCK_OFF) == EFFECT_KNOCK_OFF);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_POTION); }
-        OPPONENT(SPECIES_SNEASEL) { Ability(ABILITY_KEEN_EYE); Innates(ABILITY_PICKPOCKET); Ability(ITEM_POTION); }
+        OPPONENT(SPECIES_SNEASEL) { Ability(ABILITY_KEEN_EYE); Innates(ABILITY_PICKPOCKET); Item(ITEM_POTION); }
     } WHEN {
         TURN { MOVE(player, MOVE_KNOCK_OFF); }
     } SCENE {

@@ -4,6 +4,7 @@
 #include "event_data.h"
 #include "new_game.h"
 #include "pokemon.h"
+#include "string_util.h"
 #include "test/overworld_script.h"
 #include "test/test.h"
 #include "constants/characters.h"
@@ -27,6 +28,56 @@ TEST("Nature independent from Hidden Nature")
     SetMonData(&mon, MON_DATA_HIDDEN_NATURE, &hiddenNature);
     EXPECT_EQ(GetNature(&mon), nature);
     EXPECT_EQ(GetMonData(&mon, MON_DATA_HIDDEN_NATURE), hiddenNature);
+}
+
+TEST("BoxPokemon secure data is plaintext and fixed-order")
+{
+    struct Pokemon mon;
+    enum Item item = ITEM_LEFTOVERS;
+    u32 species;
+    u32 heldItem;
+
+    CreateMon(&mon, SPECIES_WOBBUFFET, 50, 0, OTID_STRUCT_PLAYER_ID);
+    SetMonData(&mon, MON_DATA_HELD_ITEM, &item);
+    species = mon.box.secure.substructs[SUBSTRUCT_TYPE_0].type0.species;
+    heldItem = mon.box.secure.substructs[SUBSTRUCT_TYPE_0].type0.heldItem;
+
+    EXPECT_EQ(species, SPECIES_WOBBUFFET);
+    EXPECT_EQ(heldItem, ITEM_LEFTOVERS);
+}
+
+TEST("Updating personality does not move BoxPokemon substruct data")
+{
+    struct Pokemon mon;
+    u32 oldPersonality = 0;
+    u32 newPersonality = 5;
+    enum Item item = ITEM_LEFTOVERS;
+
+    CreateMon(&mon, SPECIES_WOBBUFFET, 50, oldPersonality, OTID_STRUCT_PLAYER_ID);
+    SetMonData(&mon, MON_DATA_HELD_ITEM, &item);
+    SetMonMoveSlot(&mon, MOVE_SPLASH, 0);
+    UpdateMonPersonality(&mon.box, newPersonality);
+
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_PERSONALITY), newPersonality);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES), SPECIES_WOBBUFFET);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_HELD_ITEM), ITEM_LEFTOVERS);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_MOVE1), MOVE_SPLASH);
+}
+
+TEST("Setting a nickname terminates unused extended nickname storage")
+{
+    struct Pokemon mon;
+    u8 nickname[POKEMON_NAME_LENGTH + 1];
+    u8 storedNickname[POKEMON_NAME_LENGTH + 1];
+
+    CreateMon(&mon, SPECIES_ANNIHILAPE, 50, 0, OTID_STRUCT_PLAYER_ID);
+    StringCopy(nickname, COMPOUND_STRING("Annihilape"));
+    nickname[11] = CHAR_G;
+    SetMonData(&mon, MON_DATA_NICKNAME, nickname);
+    GetMonData(&mon, MON_DATA_NICKNAME, storedNickname);
+
+    EXPECT_EQ(StringCompare(storedNickname, COMPOUND_STRING("Annihilape")), 0);
+    EXPECT_EQ(storedNickname[11], EOS);
 }
 
 TEST("Terastallization type defaults to primary or secondary type")
