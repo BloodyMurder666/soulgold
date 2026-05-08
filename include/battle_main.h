@@ -96,9 +96,9 @@ u8 IsRunningFromBattleImpossible(enum BattlerId battler);
 void SwitchTwoBattlersInParty(enum BattlerId battler, enum BattlerId battler2);
 void SwitchPartyOrder(enum BattlerId battler);
 void SwapTurnOrder(u8 id1, u8 id2);
-u32 GetBattlerTotalSpeedStat(enum BattlerId battler, enum Ability ability, enum HoldEffect holdEffect);
-s32 GetChosenMovePriority(enum BattlerId battler, enum Ability ability);
-s32 GetBattleMovePriority(enum BattlerId battler, enum Ability ability, enum Move move);
+u32 GetBattlerTotalSpeedStat(enum BattlerId battler);
+s32 GetChosenMovePriority(enum BattlerId battler);
+s32 GetBattleMovePriority(enum BattlerId battler, enum Move move);
 s32 GetWhichBattlerFasterArgs(struct BattleCalcValues *calcValues, bool32 ignoreChosenMoves, u32 speedBattler1, u32 speedBattler2, s32 priority1, s32 priority2);
 s32 GetWhichBattlerFasterOrTies(struct BattleCalcValues *calcValues, bool32 ignoreChosenMoves);
 s32 GetWhichBattlerFaster(struct BattleCalcValues *calcValues, bool32 ignoreChosenMoves);
@@ -135,5 +135,15 @@ extern const u8 gStatusConditionString_ConfusionJpn[8];
 extern const u8 gStatusConditionString_LoveJpn[8];
 
 extern const u8 *const gStatusConditionStringsTable[7][2];
+
+static inline u32 SearchTraits(enum Ability *battlerTraits, enum Ability abilityToCheck)
+{
+  for (u32 i = 0; i < MAX_MON_TRAITS; i++)
+  {
+    if (battlerTraits[i] == abilityToCheck)
+      return i + 1;
+  }
+  return 0;
+}
 
 #endif // GUARD_BATTLE_MAIN_H

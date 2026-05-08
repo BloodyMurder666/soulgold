@@ -491,7 +491,7 @@ void HiddenGrotto_CreateCurrentMon(void)
      || content->id >= NUM_SPECIES)
         return;
 
-    CreateScriptedWildMon(content->id, GetHiddenGrottoMonLevel(grotto), ITEM_NONE);
+    CreateScriptedWildMon(content->id, GetHiddenGrottoMonLevel(grotto), ITEM_NONE, ITEM_NONE);
     SetMonData(&gEnemyParty[0], MON_DATA_ABILITY_NUM, &abilityNum);
     CalculateMonStats(&gEnemyParty[0]);
     gSpecialVar_Result = TRUE;

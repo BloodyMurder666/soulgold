@@ -117,3 +117,135 @@ SINGLE_BATTLE_TEST("Gem is consumed if the move type is changed")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FEINT_ATTACK, player);
     }
 }
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Gem is consumed if the move type is changed (Traits)")
+{
+    GIVEN {
+        PLAYER(SPECIES_DELCATTY) { Ability(ABILITY_CUTE_CHARM); Innates(ABILITY_NORMALIZE); Item(ITEM_NORMAL_GEM); };
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN {
+            MOVE(player, MOVE_FEINT_ATTACK);
+        }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
+        MESSAGE("The Normal Gem strengthened Delcatty's power!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FEINT_ATTACK, player);
+    }
+}
+#endif
+
+#if MAX_MON_ITEMS > 1
+SINGLE_BATTLE_TEST("Gem is consumed when it corresponds to the type of a move (Items)")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Items(ITEM_PECHA_BERRY, ITEM_NORMAL_GEM); };
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_EMBER); }
+        TURN { MOVE(player, MOVE_SCRATCH); }
+    } SCENE {
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
+            MESSAGE("The Fire Gem strengthened Wobbuffet's power!");
+        }
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_EMBER, player);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
+        MESSAGE("The Normal Gem strengthened Wobbuffet's power!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
+    }
+}
+
+SINGLE_BATTLE_TEST("Gem is not consumed when using Struggle (Items)", s16 damage)
+{
+    enum Item item = ITEM_NONE;
+
+    PARAMETRIZE { item = ITEM_NONE; }
+    PARAMETRIZE { item = ITEM_NORMAL_GEM; }
+
+    GIVEN {
+        if (item != ITEM_NONE) {
+            ASSUME(GetItemHoldEffect(item) == HOLD_EFFECT_GEMS);
+            ASSUME(GetItemSecondaryId(item) == GetMoveType(MOVE_STRUGGLE));
+        }
+        PLAYER(SPECIES_WOBBUFFET) { Items(ITEM_PECHA_BERRY, item); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_STRUGGLE); }
+    } SCENE {
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
+            MESSAGE("The Normal Gem strengthened Wobbuffet's power!");
+        }
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_STRUGGLE, player);
+        HP_BAR(opponent, captureDamage: &results[i].damage);
+    } FINALLY {
+        EXPECT_EQ(results[0].damage, results[1].damage);
+    }
+}
+
+SINGLE_BATTLE_TEST("Gem boost is only applied once (Items)")
+{
+    s16 boostedHit;
+    s16 normalHit;
+
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Items(ITEM_PECHA_BERRY, ITEM_NORMAL_GEM); };
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SCRATCH); }
+        TURN { MOVE(player, MOVE_SCRATCH); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
+        MESSAGE("The Normal Gem strengthened Wobbuffet's power!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
+        HP_BAR(opponent, captureDamage: &boostedHit);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
+        HP_BAR(opponent, captureDamage: &normalHit);
+    } THEN {
+        if (I_GEM_BOOST_POWER >= GEN_6)
+            EXPECT_MUL_EQ(normalHit, Q_4_12(1.3), boostedHit);
+        else
+            EXPECT_MUL_EQ(normalHit, Q_4_12(1.5), boostedHit);
+    }
+}
+
+SINGLE_BATTLE_TEST("Gem modifier is used for all hits of Multi Hit Moves (Items)")
+{
+    s16 firstHit;
+    s16 secondHit;
+
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Items(ITEM_PECHA_BERRY, ITEM_NORMAL_GEM); };
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN {
+            MOVE(player, MOVE_DOUBLE_HIT);
+        }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DOUBLE_HIT, player);
+        HP_BAR(opponent, captureDamage: &firstHit);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DOUBLE_HIT, player);
+        HP_BAR(opponent, captureDamage: &secondHit);
+    } THEN {
+        EXPECT_EQ(firstHit, secondHit);
+    }
+}
+
+SINGLE_BATTLE_TEST("Gem is consumed if the move type is changed (Items)")
+{
+    GIVEN {
+        PLAYER(SPECIES_DELCATTY) { Ability(ABILITY_NORMALIZE); Items(ITEM_PECHA_BERRY, ITEM_NORMAL_GEM); };
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN {
+            MOVE(player, MOVE_FEINT_ATTACK);
+        }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
+        MESSAGE("The Normal Gem strengthened Delcatty's power!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FEINT_ATTACK, player);
+    }
+}
+#endif

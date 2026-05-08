@@ -3577,4 +3577,7 @@ extern const u16 gItemIcon_Palette_TidalBell[];
 extern const u32 gItemIcon_Radio[];
 extern const u16 gItemIcon_Palette_Radio[];
 
+//New Summary Pages
+extern const u32 gSummaryPage_Traits_Tilemap[];
+
 #endif //GUARD_GRAPHICS_H

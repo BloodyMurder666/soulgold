@@ -306,3 +306,78 @@ AI_SINGLE_BATTLE_TEST("Retaliate sees damage correctly on the field")
         }
     }
 }
+
+#if MAX_MON_TRAITS > 1
+AI_SINGLE_BATTLE_TEST("Fillet Away AI handling")
+{
+    enum Move move;
+    PARAMETRIZE { move = MOVE_SCALD; }
+    PARAMETRIZE { move = MOVE_THUNDERBOLT; }
+    ASSUME(GetMovePower(MOVE_THUNDERBOLT) == (B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 95));
+    ASSUME(GetMovePower(MOVE_SCALD) == 80);
+
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_SMART_SWITCHING | AI_FLAG_SMART_MON_CHOICES | AI_FLAG_OMNISCIENT);
+        PLAYER(SPECIES_SLOWBRO){ Level(100); Nature(NATURE_BOLD); Ability(ABILITY_OBLIVIOUS); Innates(ABILITY_REGENERATOR); Speed(96); Moves(move); }
+        OPPONENT(SPECIES_VELUZA){ Level(100); Nature(NATURE_ADAMANT); Ability(ABILITY_MOLD_BREAKER); Innates(ABILITY_SHARPNESS); Speed(176); Moves(MOVE_FILLET_AWAY, MOVE_AQUA_CUTTER); }
+    } WHEN {
+        TURN { MOVE(player, move); EXPECT_MOVE(opponent, move == MOVE_SCALD ? MOVE_FILLET_AWAY : MOVE_AQUA_CUTTER); }
+    }
+}
+AI_SINGLE_BATTLE_TEST("Retaliate sees damage correctly on the field (Traits)")
+{
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_SMART_SWITCHING | AI_FLAG_SMART_MON_CHOICES | AI_FLAG_OMNISCIENT);
+        PLAYER(SPECIES_WOBBUFFET) { Level(50); HP(100); Nature(NATURE_QUIRKY); Ability(ABILITY_TELEPATHY); Speed(58); Moves(MOVE_TACKLE); }
+        OPPONENT(SPECIES_RATTATA){ Level(1); HP(1); Nature(NATURE_QUIRKY); Speed(1); Moves(MOVE_TACKLE);}
+        OPPONENT(SPECIES_KANGASKHAN) { Level(50); Nature(NATURE_QUIRKY); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INNER_FOCUS); Speed(251); Moves(MOVE_RETALIATE, MOVE_SLASH); }
+    } WHEN {
+        TURN {
+            MOVE(player, MOVE_TACKLE);
+            EXPECT_MOVE(opponent, MOVE_TACKLE);
+            EXPECT_SEND_OUT(opponent, 1);
+        }
+        TURN {
+            MOVE(player, MOVE_TACKLE);
+            SCORE_EQ_VAL(opponent, MOVE_RETALIATE,      (AI_SCORE_DEFAULT + BEST_DAMAGE_MOVE + FAST_KILL));
+            SCORE_EQ_VAL(opponent, MOVE_SLASH,      (AI_SCORE_DEFAULT));
+        }
+    }
+}
+#endif
+
+#if MAX_MON_ITEMS > 1
+AI_SINGLE_BATTLE_TEST("HasMoveThatChangesKOThreshold - AI should not see self-targeted speed drops as preventing setup moves in 2hko cases (Items)")
+{
+    enum Move move;
+    PARAMETRIZE { move = MOVE_EARTHQUAKE; }
+    PARAMETRIZE { move = MOVE_BULLDOZE; }
+    GIVEN {
+        ASSUME(MoveHasAdditionalEffectSelf(MOVE_HAMMER_ARM, MOVE_EFFECT_SPD_MINUS_1) == TRUE);
+        ASSUME(MoveHasAdditionalEffect(MOVE_BULLDOZE, MOVE_EFFECT_SPD_MINUS_1) == TRUE);
+        ASSUME(GetMoveEffect(MOVE_NASTY_PLOT) == EFFECT_SPECIAL_ATTACK_UP_2);
+        ASSUME(GetMovePower(MOVE_EARTHQUAKE) == 100);
+        ASSUME(GetMovePower(MOVE_HAMMER_ARM) == 100);
+        ASSUME(GetMovePower(MOVE_BULLDOZE) == 60);
+        ASSUME(GetMovePower(MOVE_AURA_SPHERE) == 80);
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_SMART_SWITCHING | AI_FLAG_SMART_MON_CHOICES | AI_FLAG_OMNISCIENT);
+        PLAYER(SPECIES_RHYDON) { Level(100); Nature(NATURE_ADAMANT); Items(ITEM_PECHA_BERRY, ITEM_EVIOLITE); Speed(1); Ability(ABILITY_LIGHTNING_ROD); Moves(MOVE_HAMMER_ARM, move); }
+        OPPONENT(SPECIES_GRIMMSNARL) { Level(100); Nature(NATURE_JOLLY); Ability(ABILITY_INFILTRATOR); Speed(2); HP(300); Moves(MOVE_NASTY_PLOT, MOVE_AURA_SPHERE); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_HAMMER_ARM); EXPECT_MOVE(opponent, move == MOVE_EARTHQUAKE ? MOVE_NASTY_PLOT : MOVE_AURA_SPHERE); }
+    }
+}
+
+AI_SINGLE_BATTLE_TEST("AI_IsMoveEffectInPlus - AI should not see secondary effect of Sheer Force boosted moves as beneficial (Items)")
+{
+    GIVEN {
+        ASSUME(GetMovePower(MOVE_PSYCHIC) == 90);
+        ASSUME(MoveHasAdditionalEffect(MOVE_PSYCHIC, MOVE_EFFECT_SP_DEF_MINUS_1) == TRUE);
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_SMART_SWITCHING | AI_FLAG_SMART_MON_CHOICES | AI_FLAG_OMNISCIENT);
+        PLAYER(SPECIES_STEELIX) { Level(100); Nature(NATURE_SASSY); Items(ITEM_PECHA_BERRY, ITEM_STEELIXITE); Ability(ABILITY_STURDY); Speed(58); Moves(MOVE_GYRO_BALL); }
+        OPPONENT(SPECIES_BRAVIARY_HISUI) { Level(100); Nature(NATURE_TIMID); Ability(ABILITY_SHEER_FORCE); Speed(251); Moves(MOVE_PSYCHIC, MOVE_NIGHT_SHADE); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_GYRO_BALL); SCORE_EQ_VAL(opponent, MOVE_PSYCHIC, 101); SCORE_EQ_VAL(opponent, MOVE_NIGHT_SHADE, 101); }
+    }
+}
+#endif

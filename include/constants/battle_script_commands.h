@@ -108,7 +108,7 @@ enum BattleScriptOpcode
     B_SCR_OP_YESNOBOX,
     B_SCR_OP_CANCELALLACTIONS,
     B_SCR_OP_SETGRAVITY,
-    B_SCR_OP_REMOVEITEM,
+    B_SCR_OP_REMOVEITEMWITHEFFECT,
     B_SCR_OP_ATKNAMEINBUFF1,
     B_SCR_OP_DRAWLVLUPBOX,
     B_SCR_OP_RESETSENTMONSVALUE,
@@ -295,7 +295,7 @@ enum BattleScriptOpcode
 #define sSPECIAL_TRAINER_BATTLE_TYPE (gBattleScripting + 0x26) // specialTrainerBattleType
 #define sMON_CAUGHT                  (gBattleScripting + 0x27) // monCaught
 #define sSAVED_DMG                   (gBattleScripting + 0x28) // savedDmg
-#define sUNUSED_0x2C                 (gBattleScripting + 0x2C) // unused_0x2c
+#define sUNUSED_0x2C                (gBattleScripting + 0x2C)  // unused_0x2c
 #define sMOVE_EFFECT                 (gBattleScripting + 0x2E) // moveEffect
 #define sUNUSED_0x30                 (gBattleScripting + 0x30) // unused_0x30
 #define sILLUSION_NICK_HACK          (gBattleScripting + 0x32) // illusionNickHack
@@ -339,6 +339,7 @@ enum BattleScriptOpcode
 #define BS_OPPONENT2                14
 #define BS_ABILITY_BATTLER          15
 #define BS_ATTACKER_PARTNER         16
+#define BS_SCRIPTING_PARTNER        17 // for BattleScript_HealerActivates
 
 // compare operands
 #define CMP_EQUAL               0

@@ -111,3 +111,21 @@ SINGLE_BATTLE_TEST("Ceaseless Edge will set up rocks if the target is behind a S
         HP_BAR(player);
     }
 }
+
+#if MAX_MON_ITEMS > 1
+SINGLE_BATTLE_TEST("Ceaseless Edge fails to set up hazards if user faints (Items)")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { HP(1); }
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET) { Items(ITEM_PECHA_BERRY, ITEM_ROCKY_HELMET); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_CEASELESS_EDGE); SEND_OUT(player, 1); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CEASELESS_EDGE, player);
+        HP_BAR(player);
+        MESSAGE("Wobbuffet was hurt by the opposing Wobbuffet's Rocky Helmet!");
+        NOT MESSAGE("Spikes were scattered on the ground all around the opposing team!");
+    }
+}
+#endif

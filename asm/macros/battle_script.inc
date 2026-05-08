@@ -629,9 +629,10 @@
 	.4byte \failInstr
 	.endm
 
-	.macro removeitem battler:req
-	.byte B_SCR_OP_REMOVEITEM
+	.macro removeitemwitheffect battler:req, effect:req
+	.byte B_SCR_OP_REMOVEITEMWITHEFFECT
 	.byte \battler
+	.4byte \effect
 	.endm
 
 	.macro atknameinbuff1
@@ -1122,8 +1123,9 @@
 	.4byte \jumpInstr
 	.endm
 
-	.macro tryrecycleitem failInstr:req
+	.macro tryrecycleitem type:req, failInstr:req
 	.byte B_SCR_OP_TRYRECYCLEITEM
+	.byte \type
 	.4byte \failInstr
 	.endm
 
@@ -1729,10 +1731,10 @@
 	jumpifholdeffect \battler, \holdEffect, \jumpInstr, FALSE
 	.endm
 
-	.macro jumpifholdeffect battler:req, holdEffect:req, jumpInstr:req, equal:req
+	.macro jumpifholdeffect battler:req, holdEffect:req, jumpInstr:req, equal=TRUE
 	callnative BS_JumpIfHoldEffect
 	.byte \battler
-	.byte \holdEffect
+	.4byte \holdEffect
 	.4byte \jumpInstr
 	.byte \equal
 	.endm
@@ -1743,9 +1745,17 @@
 	.4byte \jumpInstr
 	.endm
 
-	.macro setlastuseditem battler:req
+	.macro setlastuseditem battler:req, holdEffect:req
 	callnative BS_SetLastUsedItem
 	.byte \battler
+	.4byte \holdEffect
+	.endm
+
+	.macro setlastuseditemcorrosivefling battler:req, opposingBattler:req, type:req
+	callnative BS_SetLastUsedItemCorrosiveFling
+	.byte \battler
+	.byte \opposingBattler
+	.byte \type
 	.endm
 
 	.macro trysetfairylock failInstr:req
@@ -2171,6 +2181,11 @@
 	callnative BS_BattlerItemToLastUsedItem
 	.endm
 
+	.macro lastuseditemtobattlerberry battler:req
+	callnative BS_LastUsedItemToBattlerBerry
+	.byte \battler
+	.endm
+
 	.macro setallytonexttarget jumpInstr:req
 	jumpifbyte CMP_GREATER_THAN, gBattlerTarget, 0x1, 1f
 	addbyte gBattlerTarget, 0x2
@@ -2251,4 +2266,10 @@
 	callnative BS_TryActivateAbilityWithAbilityShield
 	.byte \battler
 	.byte \switchedItems
+	.endm
+
+	.macro pushtraitstack battler:req, ability:req
+	callnative BS_PushTraitStack
+	.byte \battler
+	.2byte \ability
 	.endm

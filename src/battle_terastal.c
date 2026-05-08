@@ -1,5 +1,6 @@
 #include "global.h"
 #include "battle.h"
+#include "battle_ai_main.h"
 #include "battle_anim.h"
 #include "battle_controllers.h"
 #include "battle_interface.h"
@@ -34,7 +35,7 @@ void ActivateTera(enum BattlerId battler)
 
     // Execute battle script.
     PREPARE_TYPE_BUFFER(gBattleTextBuff1, GetBattlerTeraType(battler));
-    if (TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_TERASTALLIZATION, GetBattlerAbility(gBattlerAttacker)))
+    if (TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_TERASTALLIZATION))
         BattleScriptPushCursorAndCallback(BattleScript_TeraFormChange);
     else if (gBattleStruct->illusion[gBattlerAttacker].state == ILLUSION_ON
           && DoesSpeciesHaveFormChangeMethod(GetIllusionMonSpecies(gBattlerAttacker), FORM_CHANGE_BATTLE_TERASTALLIZATION))
@@ -61,8 +62,6 @@ void ApplyBattlerVisualsForTeraAnim(enum BattlerId battler)
 // Returns whether a battler can Terastallize.
 bool32 CanTerastallize(enum BattlerId battler)
 {
-    enum HoldEffect holdEffect = GetBattlerHoldEffectIgnoreNegation(battler);
-
     if (gBattleMons[battler].volatiles.transformed && GET_BASE_SPECIES_ID(gBattleMons[battler].species) == SPECIES_TERAPAGOS)
         return FALSE;
 
@@ -100,7 +99,7 @@ bool32 CanTerastallize(enum BattlerId battler)
         return FALSE;
 
     // Check if battler is holding a Z-Crystal or Mega Stone.
-    if (!TESTING && (holdEffect == HOLD_EFFECT_Z_CRYSTAL || holdEffect == HOLD_EFFECT_MEGA_STONE)) // tests make this check already
+    if (!TESTING && (BattlerHasHeldItemEffect(battler, HOLD_EFFECT_Z_CRYSTAL, FALSE) || BattlerHasHeldItemEffect(battler, HOLD_EFFECT_MEGA_STONE, FALSE))) // tests make this check already
         return FALSE;
 
     // Every check passed!
@@ -134,6 +133,7 @@ bool32 IsTypeStellarBoosted(enum BattlerId battler, enum Type type)
 uq4_12_t GetTeraMultiplier(struct BattleContext *ctx)
 {
     enum Type teraType = GetBattlerTeraType(ctx->battlerAtk);
+    bool32 hasAdaptability = (BattlerHasTrait(ctx->battlerAtk, ABILITY_ADAPTABILITY));
 
     // Safety check.
     if (GetActiveGimmick(ctx->battlerAtk) != GIMMICK_TERA)
@@ -158,7 +158,7 @@ uq4_12_t GetTeraMultiplier(struct BattleContext *ctx)
     // Base and Tera type.
     if (ctx->moveType == teraType && IS_BATTLER_OF_BASE_TYPE(ctx->battlerAtk, ctx->moveType))
     {
-        if (ctx->abilityAtk == ABILITY_ADAPTABILITY)
+        if (hasAdaptability)
             return UQ_4_12(2.25);
         else
             return UQ_4_12(2.0);
@@ -166,7 +166,7 @@ uq4_12_t GetTeraMultiplier(struct BattleContext *ctx)
     // Tera type only (Adaptability applies).
     else if (ctx->moveType == teraType && !IS_BATTLER_OF_BASE_TYPE(ctx->battlerAtk, ctx->moveType))
     {
-        if (ctx->abilityAtk == ABILITY_ADAPTABILITY)
+        if (hasAdaptability)
             return UQ_4_12(2.0);
         else
             return UQ_4_12(1.5);

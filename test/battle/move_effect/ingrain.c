@@ -128,3 +128,25 @@ SINGLE_BATTLE_TEST("Ingrain's effect is passed by Baton Pass")
 }
 
 TO_DO_BATTLE_TEST("Red Card and forced switch moves (Roar/Whirlwind) cannot force out a rooted Pokémon");
+
+#if MAX_MON_ITEMS > 1
+SINGLE_BATTLE_TEST("Ingrain restores 30% more HP when holding Big Root (Items)")
+{
+    u32 item;
+    u16 expectedHp;
+    PARAMETRIZE { item = ITEM_NONE; expectedHp = 58; }
+    PARAMETRIZE { item = ITEM_BIG_ROOT; expectedHp = 60; }
+
+    GIVEN {
+        ASSUME(gItemsInfo[ITEM_BIG_ROOT].holdEffect == HOLD_EFFECT_BIG_ROOT);
+        PLAYER(SPECIES_WOBBUFFET) { HP(50); MaxHP(128); Items(ITEM_PECHA_BERRY, item); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_INGRAIN); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_INGRAIN, player);
+    } THEN {
+        EXPECT_EQ(player->hp, expectedHp);
+    }
+}
+#endif

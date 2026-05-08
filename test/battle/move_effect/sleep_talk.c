@@ -204,3 +204,63 @@ DOUBLE_BATTLE_TEST("Sleep Talk called move target will be random")
         HP_BAR(opponentRight);
     }
 }
+
+#if MAX_MON_TRAITS > 1
+DOUBLE_BATTLE_TEST("Sleep Talk calls move and that move may be redirected by Lightning Rod (Traits)")
+{
+    PASSES_RANDOMLY(1, 2, RNG_RANDOM_TARGET);
+    GIVEN {
+        ASSUME(GetMoveType(MOVE_SPARK) == TYPE_ELECTRIC);
+        PLAYER(SPECIES_WOBBUFFET) { Status1(STATUS1_SLEEP); Moves(MOVE_SLEEP_TALK, MOVE_SPARK, MOVE_FLY, MOVE_DIG); }
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_RAICHU) { Ability(ABILITY_STATIC); Innates(ABILITY_LIGHTNING_ROD); }
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_SLEEP_TALK); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SLEEP_TALK, playerLeft);
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_SPARK, playerLeft);
+        MESSAGE("The opposing Raichu's Lightning Rod took the attack!");
+        ABILITY_POPUP(opponentRight, ABILITY_LIGHTNING_ROD);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Sleep Talk calls move and that move may be redirected by Storm Drain (Traits)")
+{
+    PASSES_RANDOMLY(1, 2, RNG_RANDOM_TARGET);
+    GIVEN {
+        ASSUME(GetMoveType(MOVE_WATER_GUN) == TYPE_WATER);
+        PLAYER(SPECIES_WOBBUFFET) { Status1(STATUS1_SLEEP); Moves(MOVE_SLEEP_TALK, MOVE_WATER_GUN, MOVE_FLY, MOVE_DIG); }
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_GASTRODON) { Ability(ABILITY_STICKY_HOLD); Innates(ABILITY_STORM_DRAIN); }
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_SLEEP_TALK); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SLEEP_TALK, playerLeft);
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_GUN, playerLeft);
+        MESSAGE("The opposing Gastrodon's Storm Drain took the attack!");
+        ABILITY_POPUP(opponentRight, ABILITY_STORM_DRAIN);
+    }
+}
+#endif
+
+#if MAX_MON_ITEMS > 1
+SINGLE_BATTLE_TEST("Sleep Talk can use moves while choiced into Sleep Talk (Items)")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Items(ITEM_PECHA_BERRY, ITEM_CHOICE_BAND); Status1(STATUS1_SLEEP); Moves(MOVE_SLEEP_TALK, MOVE_SCRATCH, MOVE_FLY, MOVE_DIG); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SLEEP_TALK); }
+        TURN { MOVE(player, MOVE_SLEEP_TALK); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SLEEP_TALK, player);
+        NOT MESSAGE("But it failed!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SLEEP_TALK, player);
+        NOT MESSAGE("But it failed!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH);
+    }
+}
+#endif

@@ -237,6 +237,7 @@ static const u8 sText_Ability[] = _("Ability");
 static const u8 sText_HeldItem[] = _("Held Item");
 static const u8 sText_HoldEffect[] = _("Hold Effect");
 static const u8 sText_EmptyString[] = _("");
+static const u8 sText_IsSwitching[] = _("Switching to ");
 
 static const struct BitfieldInfo sStatus1Bitfield[] =
 {
@@ -903,7 +904,7 @@ static const u8 *const sAiInfoItemNames[] =
 
 static void PutAiInfoText(struct BattleDebugMenu *data)
 {
-    u32 i;
+    u32 i, j;
     u8 *text = Alloc(0x50);
 
     FillWindowPixelBuffer(data->aiMovesWindowId, 0x11);
@@ -917,15 +918,18 @@ static void PutAiInfoText(struct BattleDebugMenu *data)
     // items info
     for (enum BattlerId battler = 0; battler < gBattlersCount; battler++)
     {
-        if (IsOnPlayerSide(battler) && IsBattlerAlive(battler))
+        for (j = 0; j < MAX_MON_ITEMS; j++)
         {
-            enum Ability ability = gAiLogicData->abilities[battler];
-            enum HoldEffect holdEffect = gAiLogicData->holdEffects[battler];
-            enum Item item = gAiLogicData->items[battler];
-            u8 x = (GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT) ? 83 + battler * 75 : 83 + (battler - 1) * 75;
-            AddTextPrinterParameterized(data->aiMovesWindowId, FONT_SMALL, gAbilitiesInfo[ability].name, x, 0, 0, NULL);
-            AddTextPrinterParameterized(data->aiMovesWindowId, FONT_SMALL, GetItemName(item), x, 15, 0, NULL);
-            AddTextPrinterParameterized(data->aiMovesWindowId, FONT_SMALL, GetHoldEffectName(holdEffect), x, 30, 0, NULL);
+            if (IsOnPlayerSide(battler) && IsBattlerAlive(battler))
+            {
+                enum Ability ability = gAiLogicData->abilities[battler];
+                enum HoldEffect holdEffect = gAiLogicData->holdEffects[battler][j];
+                enum Item item = gAiLogicData->items[battler][j];
+                u8 x = (GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT) ? 83 + battler * 75 : 83 + (battler - 1) * 75;
+                AddTextPrinterParameterized(data->aiMovesWindowId, FONT_SMALL, gAbilitiesInfo[ability].name, x, 0, 0, NULL);
+                AddTextPrinterParameterized(data->aiMovesWindowId, FONT_SMALL, GetItemName(item), x, 15, 0, NULL);
+                AddTextPrinterParameterized(data->aiMovesWindowId, FONT_SMALL, GetHoldEffectName(holdEffect), x, 30, 0, NULL);
+            }
         }
     }
 
@@ -967,7 +971,7 @@ static void PutAiPartyText(struct BattleDebugMenu *data)
             AddTextPrinterParameterized5(data->aiMovesWindowId, FONT_SMALL_NARROW, text, i * 41, 35 + j * 15, 0, NULL, 0, 0);
         }
 
-        txtPtr = StringCopyN(text, GetHoldEffectName(aiMons[i].heldEffect), 7);
+        txtPtr = StringCopyN(text, GetHoldEffectName(aiMons[i].heldEffects[0]), 7);
         *txtPtr = EOS;
         AddTextPrinterParameterized5(data->aiMovesWindowId, FONT_SMALL_NARROW, text, i * 41, 35 + j * 15, 0, NULL, 0, 0);
 
@@ -1489,7 +1493,7 @@ static void PrintSecondaryEntries(struct BattleDebugMenu *data)
         AddTextPrinter(&printer, 0, NULL);
         break;
     case LIST_ITEM_HELD_ITEM:
-        PadString(GetItemName(gBattleMons[data->battlerId].item), text);
+        PadString(GetItemName(gBattleMons[data->battlerId].items[0]), text);
         printer.currentY = printer.y = sSecondaryListTemplate.upText_Y;
         AddTextPrinter(&printer, 0, NULL);
         break;
@@ -1917,9 +1921,9 @@ static void SetUpModifyArrows(struct BattleDebugMenu *data)
         data->modifyArrows.minValue = 0;
         data->modifyArrows.maxValue = ITEMS_COUNT - 1;
         data->modifyArrows.maxDigits = 3;
-        data->modifyArrows.modifiedValPtr = &gBattleMons[data->battlerId].item;
+        data->modifyArrows.modifiedValPtr = &gBattleMons[data->battlerId].items[0];
         data->modifyArrows.typeOfVal = VAL_U16;
-        data->modifyArrows.currValue = gBattleMons[data->battlerId].item;
+        data->modifyArrows.currValue = gBattleMons[data->battlerId].items[0];
         break;
     case LIST_ITEM_TYPES:
         data->modifyArrows.minValue = 0;
@@ -2149,7 +2153,8 @@ static void UpdateMonData(struct BattleDebugMenu *data)
             struct Pokemon *mon = GetBattlerMon(i);
             struct BattlePokemon *battleMon = &gBattleMons[i];
 
-            SetMonData(mon, MON_DATA_HELD_ITEM, &battleMon->item);
+            for(j = 0; j < MAX_MON_ITEMS; j++)
+                SetMonData(mon, MON_DATA_HELD_ITEM + j, &battleMon->items[j]);
             SetMonData(mon, MON_DATA_STATUS, &battleMon->status1);
             SetMonData(mon, MON_DATA_HP, &battleMon->hp);
             SetMonData(mon, MON_DATA_MAX_HP, &battleMon->maxHP);

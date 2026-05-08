@@ -1715,7 +1715,11 @@ const u32 gSummaryScreen_Gfx[]                = INCBIN_U32("graphics/summary_scr
 #endif // P_SUMMARY_SCREEN_IV_EV_TILESET
 const u16 gSummaryScreen_Pal[]                = INCBIN_U16("graphics/summary_screen/tiles.gbapal");
 const u32 gSummaryPage_Info_Tilemap[]         = INCBIN_U32("graphics/summary_screen/page_info.bin.smolTM");
-const u32 gSummaryPage_Skills_Tilemap[]       = INCBIN_U32("graphics/summary_screen/page_skills.bin.smolTM");
+#if MAX_MON_ITEMS <= 1
+	const u32 gSummaryPage_Skills_Tilemap[]       = INCBIN_U32("graphics/summary_screen/page_skills_default.bin.smolTM");
+#else
+    const u32 gSummaryPage_Skills_Tilemap[]       = INCBIN_U32("graphics/summary_screen/page_skills_helditems.bin.smolTM");
+#endif
 const u32 gSummaryPage_BattleMoves_Tilemap[]  = INCBIN_U32("graphics/summary_screen/page_battle_moves.bin.smolTM");
 const u32 gSummaryPage_ContestMoves_Tilemap[] = INCBIN_U32("graphics/summary_screen/page_contest_moves.bin.smolTM");
 const u32 gSummaryPage_InfoEgg_Tilemap[]      = INCBIN_U32("graphics/summary_screen/page_info_egg.bin.smolTM");
@@ -2121,3 +2125,8 @@ const u16 gBattleIcons_Pal2[] = INCBIN_U16("graphics/types/battle_icons2.gbapal"
 
 const u32 gTilesetTiles_General_Frontier_East[] = INCBIN_U32("data/tilesets/primary/general_frontier_east/tiles.4bpp.smol");
 const u32 gTilesetTiles_General_Frontier_West[] = INCBIN_U32("data/tilesets/primary/general_frontier_west/tiles.4bpp.smol");
+
+//New Summary Pages
+#if MAX_MON_TRAITS > 1
+    const u32 gSummaryPage_Traits_Tilemap[]      = INCBIN_U32("graphics/summary_screen/page_traits.bin.smolTM");
+#endif

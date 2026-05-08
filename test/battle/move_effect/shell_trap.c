@@ -302,3 +302,35 @@ DOUBLE_BATTLE_TEST("Shell Trap activates on both opposing Targets")
     }
 }
 
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Shell Trap does not activate if attacker's Sheer Force applied (Traits)")
+{
+    enum Move move;
+    bool32 activate;
+    PARAMETRIZE { move = MOVE_SCRATCH; activate = TRUE; }
+    PARAMETRIZE { move = MOVE_STOMP; activate = FALSE; }
+
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_TAUROS) { Ability(ABILITY_ANGER_POINT); Innates(ABILITY_SHEER_FORCE); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SHELL_TRAP); MOVE(opponent, move); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SHELL_TRAP_SETUP, player);
+        MESSAGE("Wobbuffet set a shell trap!");
+        ANIMATION(ANIM_TYPE_MOVE, move, opponent);
+        if (activate) {
+            MESSAGE("Wobbuffet used Shell Trap!");
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SHELL_TRAP, player);
+            HP_BAR(opponent);
+        } else {
+            MESSAGE("Wobbuffet's shell trap didn't work!");
+            NONE_OF {
+                MESSAGE("Wobbuffet used Shell Trap!");
+                ANIMATION(ANIM_TYPE_MOVE, MOVE_SHELL_TRAP, player);
+                HP_BAR(opponent);
+            }
+        }
+    }
+}
+#endif

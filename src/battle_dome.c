@@ -2391,7 +2391,7 @@ static int GetTypeEffectivenessPoints(enum Move move, int targetSpecies, int mod
     defAbility = GetSpeciesAbility(targetSpecies, 0);
     moveType = GetMoveType(move);
 
-    if (defAbility == ABILITY_LEVITATE && moveType == TYPE_GROUND)
+    if ((defAbility == ABILITY_LEVITATE || SpeciesHasInnate(targetSpecies, ABILITY_LEVITATE)) && moveType == TYPE_GROUND)
     {
         // They likely meant to return here, as 8 is the number of points normally used in this mode for moves with no effect.
         // Because there's no return the value instead gets interpreted by the switch, and the number of points becomes 0.
@@ -2412,7 +2412,7 @@ static int GetTypeEffectivenessPoints(enum Move move, int targetSpecies, int mod
         if (defType2 != defType1)
             typePower = (typeEffectiveness2 * typePower) / 10;
 
-        if (defAbility == ABILITY_WONDER_GUARD && typeEffectiveness1 != TYPE_x1 && typeEffectiveness2 != TYPE_x1)
+        if ((defAbility == ABILITY_WONDER_GUARD || SpeciesHasInnate(targetSpecies, ABILITY_WONDER_GUARD)) && typeEffectiveness1 != TYPE_x1 && typeEffectiveness2 != TYPE_x1)
             typePower = 0;
     }
 
@@ -5126,7 +5126,6 @@ static u16 GetWinningMove(int winnerTournamentId, int loserTournamentId, u8 roun
             {
                 u32 personality = 0;
                 u32 targetSpecies = 0;
-                enum Ability targetAbility = 0;
                 uq4_12_t typeMultiplier = 0;
                 do
                 {
@@ -5135,12 +5134,7 @@ static u16 GetWinningMove(int winnerTournamentId, int loserTournamentId, u8 roun
 
                 targetSpecies = gFacilityTrainerMons[DOME_MONS[loserTournamentId][k]].species;
 
-                if (personality & 1)
-                    targetAbility = GetSpeciesAbility(targetSpecies, 1);
-                else
-                    targetAbility = GetSpeciesAbility(targetSpecies, 0);
-
-                typeMultiplier = CalcPartyMonTypeEffectivenessMultiplier(moves[i * 4 + j], targetSpecies, targetAbility);
+                typeMultiplier = CalcPartyMonTypeEffectivenessMultiplier(moves[i * 4 + j], targetSpecies, 0);
                 if (typeMultiplier == UQ_4_12(0))
                     moveScores[moveIndex] += 0;
                 else if (typeMultiplier >= UQ_4_12(2.0))
@@ -5682,13 +5676,16 @@ static void ResetSketchedMoves(void)
 
 static void RestoreDomePlayerPartyHeldItems(void)
 {
-    int i;
+    int i, j;
 
     for (i = 0; i < DOME_BATTLE_PARTY_SIZE; i++)
     {
         int playerMonId = gSaveBlock2Ptr->frontier.selectedPartyMons[gSelectedOrderFromParty[i] - 1] - 1;
-        enum Item item = GetMonData(GetSavedPlayerPartyMon(playerMonId), MON_DATA_HELD_ITEM);
-        SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &item);
+        for(j = 0; j < MAX_MON_ITEMS; j++)
+        {
+            enum Item item = GetMonData(GetSavedPlayerPartyMon(playerMonId), MON_DATA_HELD_ITEM + j);
+            SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM + j, &item);
+        }
     }
 }
 
