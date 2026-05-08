@@ -130,7 +130,7 @@ enum MonData {
     MON_DATA_INNATE3,
 };
 
-struct PokemonSubstruct0
+struct PokemonSecureData
 {
     u16 species:11; // 2047 species.
     enum Type teraType:5; // 30 types.
@@ -143,16 +143,13 @@ struct PokemonSubstruct0
     u8 friendship;
     u16 nickname11:8; // 11th character of nickname.
     u16 nickname12:8; // 12th character of nickname.
-};
 
-struct PokemonSubstruct1
-{
     enum Move move1:11; // 2047 moves.
     u16 evolutionTracker1:5;
     enum Move move2:11; // 2047 moves.
     u16 evolutionTracker2:5;
     enum Move move3:11; // 2047 moves.
-    u16 unused_04:5;
+    u16 unused_08:5;
     enum Move move4:11; // 2047 moves.
     u16 unused_06:3;
     u16 hyperTrainedHP:1;
@@ -165,10 +162,7 @@ struct PokemonSubstruct1
     u8 hyperTrainedSpAttack:1;
     u8 pp4:7; // 127 PP.
     u8 hyperTrainedSpDefense:1;
-};
 
-struct PokemonSubstruct2
-{
     u8 hpEV;
     u8 attackEV;
     u8 defenseEV;
@@ -181,10 +175,7 @@ struct PokemonSubstruct2
     u8 smart;
     u8 tough;
     u8 sheen;
-};
 
-struct PokemonSubstruct3
-{
     u8 pokerus;
     u8 metLocation;
     u16 metLevel:7;
@@ -223,32 +214,6 @@ struct PokemonSubstruct3
     u32 modernFatefulEncounter:1;
 };
 
-// Number of bytes in the largest Pokémon substruct.
-// They are assumed to be the same size, and will be padded to
-// the largest size by the union.
-// By default they are all 12 bytes.
-#define NUM_SUBSTRUCT_BYTES (max(sizeof(struct PokemonSubstruct0),     \
-                             max(sizeof(struct PokemonSubstruct1),     \
-                             max(sizeof(struct PokemonSubstruct2),     \
-                                 sizeof(struct PokemonSubstruct3)))))
-
-enum SubstructType
-{
-    SUBSTRUCT_TYPE_0,
-    SUBSTRUCT_TYPE_1,
-    SUBSTRUCT_TYPE_2,
-    SUBSTRUCT_TYPE_3,
-};
-
-union PokemonSubstruct
-{
-    struct PokemonSubstruct0 type0;
-    struct PokemonSubstruct1 type1;
-    struct PokemonSubstruct2 type2;
-    struct PokemonSubstruct3 type3;
-    u16 raw[NUM_SUBSTRUCT_BYTES / 2]; // /2 because it's u16, not u8
-};
-
 struct BoxPokemon
 {
     u32 personality;
@@ -270,11 +235,7 @@ struct BoxPokemon
     u16 shinyModifier:1;
     u16 unused_1E:1;
 
-    union
-    {
-        u32 raw[(NUM_SUBSTRUCT_BYTES * 4) / 4]; // *4 because there are 4 substructs, /4 because it's u32, not u8
-        union PokemonSubstruct substructs[4];
-    } secure;
+    struct PokemonSecureData secure;
 };
 
 struct Pokemon
