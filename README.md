@@ -14,6 +14,7 @@ Johto + Sevii hack with expanded dex and various changes based on expansion port
 - devolov for using HMs without teaching
 - fisham33 for level scaling
 - TheXaman for gen 4 party menu 
+- Lhea for modern type icons
 - Mont for swsh party menu
 - Leob0505 for backgrounds
 - Emulator accuracy check by Wiz1989 (also thanks to mudskip, grunt-lucas, archie, drazden)

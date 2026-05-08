@@ -157,6 +157,13 @@
       "elevation": 0,
       "dest_map": "MAP_GATE_KITAKAMI_BORDER",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 31,
+      "y": 12,
+      "elevation": 0,
+      "dest_map": "MAP_KITAKAMI_BORDER",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],

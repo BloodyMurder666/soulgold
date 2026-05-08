@@ -138,7 +138,7 @@ Kitakami_Littlegirl_Text_0:
 # 55 "data/maps/Kitakami/scripts.pory"
 	.string "Mom used to say bad children are taken\n"
 	.string "to the well. But actually it's a place\l"
-	.string "where we Fezandipiti sometimes roosts.$"
+	.string "where Fezandipiti roosts sometimes.$"
 
 Kitakami_WestSign_Text_0:
 # 61 "data/maps/Kitakami/scripts.pory"
