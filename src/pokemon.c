@@ -87,7 +87,6 @@ struct SpeciesItem
     enum Item item2;
 };
 
-static u16 CalculateBoxMonChecksum(struct BoxPokemon *boxMon);
 static metloc_u16_t GetBoxMonMetLocation(struct BoxPokemon *boxMon);
 static void SetBoxMonMetLocation(struct BoxPokemon *boxMon, metloc_u16_t metLocation);
 static void Task_PlayMapChosenOrBattleBGM(u8 taskId);
@@ -1138,7 +1137,6 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u32 personal
 {
     u8 speciesName[POKEMON_NAME_LENGTH + 1];
     u32 value;
-    u16 checksum;
     bool32 isShiny;
 
     ZeroBoxMonData(boxMon);
@@ -1197,8 +1195,6 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u32 personal
     SetBoxMonData(boxMon, MON_DATA_PERSONALITY, &personality);
     SetBoxMonData(boxMon, MON_DATA_OT_ID, &value);
 
-    checksum = CalculateBoxMonChecksum(boxMon);
-    SetBoxMonData(boxMon, MON_DATA_CHECKSUM, &checksum);
     SetBoxMonData(boxMon, MON_DATA_IS_SHINY, &isShiny);
     StringCopy(speciesName, GetSpeciesName(species));
     SetBoxMonData(boxMon, MON_DATA_NICKNAME, speciesName);
@@ -1535,17 +1531,6 @@ void CreateEnemyEventMon(void)
         if (slot != MAX_MON_ITEMS)
             SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM + slot, heldItem);  //leaving as one item to not mess with the specialVar (Multi)
     }
-}
-
-static u16 CalculateBoxMonChecksum(struct BoxPokemon *boxMon)
-{
-    u32 checksum = 0;
-    const u8 *raw = (const u8 *)&boxMon->secure;
-
-    for (u32 i = 0; i < sizeof(boxMon->secure); i += 2)
-        checksum += raw[i] | (raw[i + 1] << 8);
-
-    return checksum;
 }
 
 void CalculateMonStats(struct Pokemon *mon)
@@ -2189,19 +2174,7 @@ static void SetBoxMonMetLocation(struct BoxPokemon *boxMon, metloc_u16_t metLoca
 
 static bool32 IsBadEgg(struct BoxPokemon *boxMon)
 {
-    if (boxMon->isBadEgg)
-        return TRUE;
-
-    if (CalculateBoxMonChecksum(boxMon) != boxMon->checksum)
-    {
-        boxMon->isBadEgg = TRUE;
-        boxMon->isEgg = TRUE;
-        boxMon->secure.isEgg = TRUE;
-
-        return TRUE;
-    }
-
-    return FALSE;
+    return boxMon->isBadEgg;
 }
 
 static ALWAYS_INLINE bool32 IsEggOrBadEgg(struct BoxPokemon *boxMon)
@@ -2218,8 +2191,6 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
     s32 i;
     u32 retVal = 0;
 
-    // Any field greater than MON_DATA_ENCRYPT_SEPARATOR is covered by the
-    // BoxPokemon checksum and should be accessed through this API.
     if (field > MON_DATA_ENCRYPT_SEPARATOR)
     {
         switch (field)
@@ -2256,39 +2227,10 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
             else
             {
                 retVal = 0;
-                while (retVal < min(sizeof(boxMon->nickname), POKEMON_NAME_LENGTH))
+                while (retVal < POKEMON_NAME_LENGTH)
                 {
                     data[retVal] = boxMon->nickname[retVal];
                     retVal++;
-                }
-
-                // Vanilla Pokémon have 0s in nickname11 and nickname12
-                // so if both are 0 we assume that this is a vanilla
-                // Pokémon and replace them with EOS. This means that
-                // two CHAR_SPACE at the end of a nickname are trimmed.
-                if (field != MON_DATA_NICKNAME10 && POKEMON_NAME_LENGTH >= 12)
-                {
-                    if (boxMon->secure.nickname11 == 0 && boxMon->secure.nickname12 == 0)
-                    {
-                        data[retVal++] = EOS;
-                        data[retVal++] = EOS;
-                    }
-                    else
-                    {
-                        data[retVal++] = boxMon->secure.nickname11;
-                        data[retVal++] = boxMon->secure.nickname12;
-                    }
-                }
-                else if (field != MON_DATA_NICKNAME10 && POKEMON_NAME_LENGTH >= 11)
-                {
-                    if (boxMon->secure.nickname11 == 0)
-                    {
-                        data[retVal++] = EOS;
-                    }
-                    else
-                    {
-                        data[retVal++] = boxMon->secure.nickname11;
-                    }
                 }
 
                 data[retVal] = EOS;
@@ -2648,7 +2590,7 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
             retVal = boxMon->markings;
             break;
         case MON_DATA_CHECKSUM:
-            retVal = boxMon->checksum;
+            retVal = 0;
             break;
         case MON_DATA_IS_SHINY:
         {
@@ -2759,14 +2701,6 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
 
     if (field > MON_DATA_ENCRYPT_SEPARATOR)
     {
-        if (CalculateBoxMonChecksum(boxMon) != boxMon->checksum)
-        {
-            boxMon->isBadEgg = TRUE;
-            boxMon->isEgg = TRUE;
-            boxMon->secure.isEgg = TRUE;
-            return;
-        }
-
         switch (field)
         {
         case MON_DATA_NICKNAME:
@@ -2774,8 +2708,9 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         {
             s32 i;
             bool32 reachedEOS = FALSE;
+            u32 length = field == MON_DATA_NICKNAME10 ? min(10, POKEMON_NAME_LENGTH) : POKEMON_NAME_LENGTH;
 
-            for (i = 0; i < POKEMON_NAME_LENGTH; i++)
+            for (i = 0; i < length; i++)
             {
                 u8 chr = EOS;
 
@@ -2786,22 +2721,11 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
                         reachedEOS = TRUE;
                 }
 
-                if (i < sizeof(boxMon->nickname))
-                    boxMon->nickname[i] = chr;
-                else if (field != MON_DATA_NICKNAME10)
-                {
-                    if (i == 10 && POKEMON_NAME_LENGTH >= 11)
-                        boxMon->secure.nickname11 = chr;
-                    else if (i == 11 && POKEMON_NAME_LENGTH >= 12)
-                        boxMon->secure.nickname12 = chr;
-                }
+                boxMon->nickname[i] = chr;
             }
 
-            if (field == MON_DATA_NICKNAME10)
-            {
-                boxMon->secure.nickname11 = EOS;
-                boxMon->secure.nickname12 = EOS;
-            }
+            for (; i < POKEMON_NAME_LENGTH; i++)
+                boxMon->nickname[i] = EOS;
             break;
         }
         case MON_DATA_SPECIES:
@@ -3081,7 +3005,6 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             SET8(boxMon->markings);
             break;
         case MON_DATA_CHECKSUM:
-            SET16(boxMon->checksum);
             break;
         case MON_DATA_IS_SHINY:
         {
@@ -3104,9 +3027,6 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             break;
         }
     }
-
-    if (field > MON_DATA_ENCRYPT_SEPARATOR)
-        boxMon->checksum = CalculateBoxMonChecksum(boxMon);
 }
 
 void CopyMon(void *dest, void *src, size_t size)

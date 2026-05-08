@@ -141,8 +141,6 @@ struct PokemonSecureData
     u32 unused_04:1;
     u8 ppBonuses;
     u8 friendship;
-    u16 nickname11:8; // 11th character of nickname.
-    u16 nickname12:8; // 12th character of nickname.
 
     enum Move move1:11; // 2047 moves.
     u16 evolutionTracker1:5;
@@ -218,7 +216,7 @@ struct BoxPokemon
 {
     u32 personality;
     u32 otId;
-    u8 nickname[min(10, POKEMON_NAME_LENGTH)];
+    u8 nickname[POKEMON_NAME_LENGTH];
     u8 language:3;
     u8 hiddenNatureModifier:5; // 31 natures.
     u8 isBadEgg:1;
@@ -230,7 +228,6 @@ struct BoxPokemon
     u8 otName[PLAYER_NAME_LENGTH];
     u8 markings:4;
     u8 compressedStatus:4;
-    u16 checksum;
     u16 hpLost:14; // 16383 HP.
     u16 shinyModifier:1;
     u16 unused_1E:1;

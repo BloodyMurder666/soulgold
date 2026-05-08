@@ -64,7 +64,7 @@ TEST("Updating personality does not move BoxPokemon secure data")
     EXPECT_EQ(GetMonData(&mon, MON_DATA_MOVE1), MOVE_SPLASH);
 }
 
-TEST("Setting a nickname terminates unused extended nickname storage")
+TEST("Setting a nickname terminates unused nickname storage")
 {
     struct Pokemon mon;
     u8 nickname[POKEMON_NAME_LENGTH + 1];
