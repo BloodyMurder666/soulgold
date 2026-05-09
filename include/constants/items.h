@@ -1076,6 +1076,7 @@ enum __attribute__((packed)) Item
     ITEM_RUSTY_CHARM = 894,
     ITEM_LAGGING_CHARM = 895,
     ITEM_JADE_ORB = 896,
+    ITEM_BECKONING_BELL = 897,
 
     ITEMS_COUNT,
     ITEM_FIELD_ARROW = ITEMS_COUNT,

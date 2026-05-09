@@ -1332,7 +1332,7 @@ Cherrygrove_FriendlyTrader_Text_4:
 Cherrygrove_FriendlyTrader_Text_5:
 # 637 "data/maps/CherrygroveCity/scripts.pory"
 	.string "Take good care of my {STR_VAR_1}!\n"
-	.string "Say hi to my uncle Baoba if you are\l"
+	.string "Say hi to my uncle, Baoba if you are\l"
 	.string "ever visiting the Safari Zone!$"
 
 Cherrygrove_FriendlyTrader_Text_6:
