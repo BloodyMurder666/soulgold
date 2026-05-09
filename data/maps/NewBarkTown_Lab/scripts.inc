@@ -595,37 +595,37 @@ NewBarkTown_Lab_EventScript_PoliceNameRival::
 # 298 "data/maps/NewBarkTown_Lab/scripts.pory"
 	special NameRival
 # 299 "data/maps/NewBarkTown_Lab/scripts.pory"
-	setflag FLAG_NAMED_SILVER
+	waitstate
 # 300 "data/maps/NewBarkTown_Lab/scripts.pory"
-	goto NewBarkTown_Lab_EventScript_PoliceYes3
+	setflag FLAG_NAMED_SILVER
 # 301 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	goto NewBarkTown_Lab_EventScript_PoliceYes3
 # 302 "data/maps/NewBarkTown_Lab/scripts.pory"
 
 # 303 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_EventScript_PoliceNameRival2::
+
 # 304 "data/maps/NewBarkTown_Lab/scripts.pory"
-	msgbox NewBarkTown_Lab_Text_Officer3, MSGBOX_DEFAULT
+NewBarkTown_Lab_EventScript_PoliceNameRival2::
 # 305 "data/maps/NewBarkTown_Lab/scripts.pory"
-	closemessage
+	msgbox NewBarkTown_Lab_Text_Officer3, MSGBOX_DEFAULT
 # 306 "data/maps/NewBarkTown_Lab/scripts.pory"
-	goto NewBarkTown_Lab_EventScript_PoliceYes3
-# 307 "data/maps/NewBarkTown_Lab/scripts.pory"
-
-# 308 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_EventScript_PoliceYes::
-# 309 "data/maps/NewBarkTown_Lab/scripts.pory"
-	msgbox NewBarkTown_Lab_Text_Officer2, MSGBOX_DEFAULT
-# 310 "data/maps/NewBarkTown_Lab/scripts.pory"
 	closemessage
-# 311 "data/maps/NewBarkTown_Lab/scripts.pory"
-	goto NewBarkTown_Lab_EventScript_PoliceYes2
-# 312 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 307 "data/maps/NewBarkTown_Lab/scripts.pory"
+	goto NewBarkTown_Lab_EventScript_PoliceYes3
+# 308 "data/maps/NewBarkTown_Lab/scripts.pory"
 
+# 309 "data/maps/NewBarkTown_Lab/scripts.pory"
+NewBarkTown_Lab_EventScript_PoliceYes::
+# 310 "data/maps/NewBarkTown_Lab/scripts.pory"
+	msgbox NewBarkTown_Lab_Text_Officer2, MSGBOX_DEFAULT
+# 311 "data/maps/NewBarkTown_Lab/scripts.pory"
+	closemessage
+# 312 "data/maps/NewBarkTown_Lab/scripts.pory"
+	goto NewBarkTown_Lab_EventScript_PoliceYes2
 # 313 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_EventScript_PoliceYes3::
+
 # 314 "data/maps/NewBarkTown_Lab/scripts.pory"
-	msgbox NewBarkTown_Lab_Text_Officer3, MSGBOX_DEFAULT @okay, for some reason this script doesn't take effect at all... Added a duplicate after this because it was a workaround.
+NewBarkTown_Lab_EventScript_PoliceYes3::
 # 315 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox NewBarkTown_Lab_Text_Officer3, MSGBOX_DEFAULT
 # 316 "data/maps/NewBarkTown_Lab/scripts.pory"
