@@ -6,3 +6,4 @@ Larger TODOs:
   - Same for caves, should have a small crack in wall
 - More overworld npc types
 - Add missing item ball items and flags (kitakami, road, new spots)
+- Duplicate level up learnsets for stone evos like arcannine/growlithe
