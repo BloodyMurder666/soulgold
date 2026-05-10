@@ -6884,7 +6884,6 @@ BattleScript_BattlerAbilityStatRaiseOnSwitchInIntrepid::
 	call BattleScript_AbilityPopUpScripting
 	setstatchanger STAT_ATK, 1, FALSE
 	statbuffchange BS_SCRIPTING, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN, BattleScript_BattlerAbilityStatRaiseOnSwitchInIntrepidRet
-	waitanimation
 	printstring STRINGID_SCRIPTINGABILITYSTATRAISE
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_BattlerAbilityStatRaiseOnSwitchInIntrepidRet:
@@ -6894,7 +6893,6 @@ BattleScript_BattlerAbilityStatRaiseOnSwitchInDauntless::
 	call BattleScript_AbilityPopUpScripting
 	setstatchanger STAT_DEF, 1, FALSE
 	statbuffchange BS_SCRIPTING, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN, BattleScript_BattlerAbilityStatRaiseOnSwitchInDauntlessRet
-	waitanimation
 	printstring STRINGID_SCRIPTINGABILITYSTATRAISE
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_BattlerAbilityStatRaiseOnSwitchInDauntlessRet:
@@ -6904,7 +6902,6 @@ BattleScript_BattlerAbilityStatRaiseOnSwitchInWindRider::
 	call BattleScript_AbilityPopUpScripting
 	setstatchanger STAT_ATK, 1, FALSE
 	statbuffchange BS_SCRIPTING, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN, BattleScript_BattlerAbilityStatRaiseOnSwitchInWindRiderRet
-	waitanimation
 	printstring STRINGID_SCRIPTINGABILITYSTATRAISE
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_BattlerAbilityStatRaiseOnSwitchInWindRiderRet:
@@ -6914,7 +6911,6 @@ BattleScript_BattlerAbilityStatRaiseOnSwitchInEmbodyAspectTeal::
 	call BattleScript_AbilityPopUpScripting
 	setstatchanger STAT_SPEED, 1, FALSE
 	statbuffchange BS_SCRIPTING, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN, BattleScript_BattlerAbilityStatRaiseOnSwitchInEmbodyAspectTealRet
-	waitanimation
 	printstring STRINGID_SCRIPTINGABILITYSTATRAISE
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_BattlerAbilityStatRaiseOnSwitchInEmbodyAspectTealRet:
@@ -6924,7 +6920,6 @@ BattleScript_BattlerAbilityStatRaiseOnSwitchInEmbodyAspectHearthFlame::
 	call BattleScript_AbilityPopUpScripting
 	setstatchanger STAT_ATK, 1, FALSE
 	statbuffchange BS_SCRIPTING, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN, BattleScript_BattlerAbilityStatRaiseOnSwitchInEmbodyAspectHearthFlameRet
-	waitanimation
 	printstring STRINGID_SCRIPTINGABILITYSTATRAISE
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_BattlerAbilityStatRaiseOnSwitchInEmbodyAspectHearthFlameRet:
@@ -6934,7 +6929,6 @@ BattleScript_BattlerAbilityStatRaiseOnSwitchInEmbodyAspectWellSpring::
 	call BattleScript_AbilityPopUpScripting
 	setstatchanger STAT_SPDEF, 1, FALSE
 	statbuffchange BS_SCRIPTING, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN, BattleScript_BattlerAbilityStatRaiseOnSwitchInEmbodyAspectWellSpringRet
-	waitanimation
 	printstring STRINGID_SCRIPTINGABILITYSTATRAISE
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_BattlerAbilityStatRaiseOnSwitchInEmbodyAspectWellSpringRet:
@@ -6944,7 +6938,6 @@ BattleScript_BattlerAbilityStatRaiseOnSwitchInEmbodyAspectCornerStone::
 	call BattleScript_AbilityPopUpScripting
 	setstatchanger STAT_DEF, 1, FALSE
 	statbuffchange BS_SCRIPTING, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN, BattleScript_BattlerAbilityStatRaiseOnSwitchInEmbodyAspectCornerStoneRet
-	waitanimation
 	printstring STRINGID_SCRIPTINGABILITYSTATRAISE
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_BattlerAbilityStatRaiseOnSwitchInEmbodyAspectCornerStoneRet:
