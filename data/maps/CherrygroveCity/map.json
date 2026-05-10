@@ -32,7 +32,7 @@
   "object_events": [
     {
       "local_id": "LOCALID_GUIDE_GENT",
-      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_1",
+      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_2",
       "x": 57,
       "y": 8,
       "elevation": 0,
