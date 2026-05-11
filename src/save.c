@@ -92,7 +92,7 @@ struct
 // These will produce an error if a save struct is larger than the space
 // alloted for it in the flash.
 STATIC_ASSERT(sizeof(struct SaveBlock3) <= SAVE_BLOCK_3_CHUNK_SIZE * NUM_SECTORS_PER_SLOT, SaveBlock3FreeSpace);
-STATIC_ASSERT(sizeof(struct SaveBlock2) <= SECTOR_DATA_SIZE, SaveBlock2FreeSpace);
+STATIC_ASSERT(sizeof(struct SaveBlock2) <= SECTOR_DATA_SIZE * (SECTOR_ID_SAVEBLOCK2_END - SECTOR_ID_SAVEBLOCK2_START + 1), SaveBlock2FreeSpace);
 STATIC_ASSERT(sizeof(struct SaveBlock1) <= SECTOR_DATA_SIZE * (SECTOR_ID_SAVEBLOCK1_END - SECTOR_ID_SAVEBLOCK1_START + 1), SaveBlock1FreeSpace);
 STATIC_ASSERT(sizeof(struct PokemonStorage) <= SECTOR_DATA_SIZE * (SECTOR_ID_PKMN_STORAGE_END - SECTOR_ID_PKMN_STORAGE_START + 1), PokemonStorageFreeSpace);
 
@@ -200,7 +200,7 @@ static u8 HandleWriteSector(u16 sectorId, const struct SaveSectorLocation *locat
     // Adjust sector id for current save slot
     sector = sectorId + gLastWrittenSector;
     sector %= NUM_SECTORS_PER_SLOT;
-    sector += NUM_SECTORS_PER_SLOT * (gSaveCounter % NUM_SAVE_SLOTS);
+    
 
     // Get current save data
     data = locations[sectorId].data;
@@ -336,7 +336,7 @@ static u8 HandleReplaceSector(u16 sectorId, const struct SaveSectorLocation *loc
     // Adjust sector id for current save slot
     sector = sectorId + gLastWrittenSector;
     sector %= NUM_SECTORS_PER_SLOT;
-    sector += NUM_SECTORS_PER_SLOT * (gSaveCounter % NUM_SAVE_SLOTS);
+    
 
     // Get current save data
     data = locations[sectorId].data;
@@ -417,7 +417,7 @@ static u8 WriteSectorSignatureByte_NoOffset(u16 sectorId, const struct SaveSecto
     // This first line lacking -1 is the only difference from WriteSectorSignatureByte
     u16 sector = sectorId + gLastWrittenSector;
     sector %= NUM_SECTORS_PER_SLOT;
-    sector += NUM_SECTORS_PER_SLOT * (gSaveCounter % NUM_SAVE_SLOTS);
+    
 
     // Write just the first byte of the signature field, which was skipped by HandleReplaceSector
     if (ProgramFlashByte(sector, SECTOR_SIGNATURE_OFFSET, SECTOR_SIGNATURE & 0xFF))
@@ -441,7 +441,7 @@ static u8 CopySectorSignatureByte(u16 sectorId, const struct SaveSectorLocation 
     // Adjust sector id for current save slot
     u16 sector = sectorId + gLastWrittenSector - 1;
     sector %= NUM_SECTORS_PER_SLOT;
-    sector += NUM_SECTORS_PER_SLOT * (gSaveCounter % NUM_SAVE_SLOTS);
+    
 
     // Copy just the first byte of the signature field from the read/write buffer
     if (ProgramFlashByte(sector, SECTOR_SIGNATURE_OFFSET, ((u8 *)gReadWriteSector)[SECTOR_SIGNATURE_OFFSET]))
@@ -465,7 +465,7 @@ static u8 WriteSectorSignatureByte(u16 sectorId, const struct SaveSectorLocation
     // Adjust sector id for current save slot
     u16 sector = sectorId + gLastWrittenSector - 1;
     sector %= NUM_SECTORS_PER_SLOT;
-    sector += NUM_SECTORS_PER_SLOT * (gSaveCounter % NUM_SAVE_SLOTS);
+    
 
     // Write just the first byte of the signature field, which was skipped by HandleReplaceSector
     if (ProgramFlashByte(sector, SECTOR_SIGNATURE_OFFSET, SECTOR_SIGNATURE & 0xFF))
@@ -539,7 +539,7 @@ static u8 GetSaveValidStatus(const struct SaveSectorLocation *locations)
     u32 saveSlotCounter = 0;
     u32 validSectorFlags = 0;
     bool8 signatureValid = FALSE;
-    u8 saveSlotStatus;
+    //u8 saveSlotStatus;
 
     for (i = 0; i < NUM_SECTORS_PER_SLOT; i++)
     {
