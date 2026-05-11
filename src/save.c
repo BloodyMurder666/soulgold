@@ -100,7 +100,7 @@ STATIC_ASSERT(sizeof(struct PokemonStorage) <= SECTOR_DATA_SIZE * (SECTOR_ID_PKM
 STATIC_ASSERT(sizeof(struct PokemonSecureData) == 44, SaveFormatPokemonSecureDataSizeChanged);
 STATIC_ASSERT(sizeof(struct BoxPokemon) == 76, SaveFormatBoxPokemonSizeChanged);
 STATIC_ASSERT(sizeof(struct Pokemon) == 96, SaveFormatPokemonSizeChanged);
-STATIC_ASSERT(sizeof(struct PokemonStorage) == 32448, SaveFormatPokemonStorageSizeChanged);
+STATIC_ASSERT(sizeof(struct PokemonStorage) == 46188, SaveFormatPokemonStorageSizeChanged);
 
 COMMON_DATA u16 gLastWrittenSector = 0;
 COMMON_DATA u32 gLastSaveCounter = 0;
