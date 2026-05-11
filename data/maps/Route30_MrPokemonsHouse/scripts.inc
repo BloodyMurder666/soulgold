@@ -64,6 +64,7 @@ MrPokemonHouse_EventScript_GiveEgg::
 	setflag FLAG_HIDE_SILVER_NEWBARKTOWN
 	setflag FLAG_SYS_POKEDEX_GET
 	setflag FLAG_SYS_NATIONAL_DEX
+	special EnableNationalPokedex
 	setflag FLAG_DEXNAV_OBTAINED
 	clearflag FLAG_HIDE_LAB_POLICEMAN
 	setvar VAR_CHERRYGROVE_CITY_STATE, 2
