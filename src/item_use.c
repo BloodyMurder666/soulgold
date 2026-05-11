@@ -47,6 +47,7 @@
 #include "constants/item_effects.h"
 #include "constants/items.h"
 #include "constants/songs.h"
+#include "hidden_grotto.h"
 
 static void SetUpItemUseCallback(u8);
 static void FieldCB_UseItemOnField(void);
@@ -95,6 +96,7 @@ static const u8 sText_UsedVar2WildRepelled[] = _("{PLAYER} used the\n{STR_VAR_2}
 static const u8 sText_PlayedPokeFluteCatchy[] = _("Played the POKé FLUTE.\pNow, that's a catchy tune!{PAUSE_UNTIL_PRESS}");
 static const u8 sText_PlayedPokeFlute[] = _("Played the POKé FLUTE.");
 static const u8 sText_PokeFluteAwakenedMon[] = _("The POKé FLUTE awakened sleeping\nPOKéMON.{PAUSE_UNTIL_PRESS}");
+static const u8 sText_BeckoningBellChimes[] = _("The bell chimes, renewing all\nhidden grottos!{PAUSE_UNTIL_PRESS}");
 
 // EWRAM variables
 EWRAM_DATA static TaskFunc sItemUseOnFieldCB = NULL;
@@ -1733,6 +1735,14 @@ void ItemUseOutOfBattle_Radio(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
     DisplayRadioMessage(taskId, tUsingRegisteredKeyItem);
+}
+
+void ItemUseOutOfBattle_BeckoningBell(u8 taskId)
+{
+    DailyResetHiddenGrottoes();
+    PlaySE(SE_M_HEAL_BELL);
+    RemoveUsedItem();
+    DisplayItemMessage(taskId, FONT_NORMAL, sText_BeckoningBellChimes, CloseItemMessage);
 }
 
 #undef tUsingRegisteredKeyItem

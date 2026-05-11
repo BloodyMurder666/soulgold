@@ -17083,6 +17083,24 @@ const struct ItemInfo gItemsInfo[] =
         .iconPic = gItemIcon_Radio,
         .iconPalette = gItemIcon_Palette_Radio,
     }, 
+    [ITEM_BECKONING_BELL] =
+    {
+        .name = ITEM_NAME("Beckoning Bell"),
+        .price = 3500,
+        .holdEffectParam = 100,
+        .description = COMPOUND_STRING(
+            "An ornate bell that\n"
+            "renews hidden\n"
+            "grottos once."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_FIELD_USE,
+        .heldSlot = 0,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_BeckoningBell,
+        .flingPower = 30,
+        .iconPic = gItemIcon_SootheBell,
+        .iconPalette = gItemIconPalette_SootheBell,
+    },
 };
 
 #undef ITEM_NAME

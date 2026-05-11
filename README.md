@@ -11,7 +11,7 @@ Johto + Sevii hack with expanded dex and various changes based on expansion port
 - [bassforte123](https://github.com/bassforte123/pokeemerald-complete/tree/Trait-and-Items) for multi ability system
 - PurrfectDoodle, RavePossum and Ruki for battle backgrounds
 - Ravepossum for HGSS ui
-- Greenphx9 for party menu, pc backgrounds and pokemon icons for g1-9
+- Greenphx9 for party menu, pc wallpapers and pokemon icons for g1-9
 - devolov for using HMs without teaching
 - fisham33 for level scaling
 - TheXaman for gen 4 party menu 

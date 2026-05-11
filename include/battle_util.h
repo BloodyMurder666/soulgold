@@ -207,6 +207,7 @@ void HandleAction_TryFinish(void);
 void HandleAction_NothingIsFainted(void);
 void HandleAction_ActionFinished(void);
 enum BattlerId GetBattlerForBattleScript(u8 caseId);
+bool32 CanRunBattleScriptCommands(void);
 bool32 IsBattlerMarkedForControllerExec(enum BattlerId battler);
 void MarkBattlerForControllerExec(enum BattlerId battler);
 void MarkBattlerReceivedLinkData(enum BattlerId battler);

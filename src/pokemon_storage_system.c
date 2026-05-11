@@ -147,9 +147,32 @@ enum {
     MENU_INFO,
     MENU_SCENERY_1,
     MENU_SCENERY_2,
-    MENU_SCENERY_3,
-    MENU_ETCETERA,
+    MENU_ETCETERA_1,
+    MENU_ETCETERA_2,
+    MENU_ETCETERA_3,
+    MENU_ETCETERA_4,
     MENU_FRIENDS,
+    MENU_HEART,
+    MENU_SOUL,
+    MENU_SPIKYPIKA,
+    MENU_TRIO3,
+    MENU_PIKAPIKA2,
+    MENU_KIMONOGIRL,
+    MENU_TRIO1,
+    MENU_RENEGADE,
+    MENU_TRIO2,
+    MENU_TIMEANDSPACE,
+    MENU_NOSTALGIC2,
+    MENU_SEAFLOOR,
+    MENU_NOSTALGIC1,
+    MENU_DISTORTION,
+    MENU_SPACE,
+    MENU_BACKYARD,
+    MENU_TORCHIC,
+    MENU_PIKAPIKA1,
+    MENU_CONTEST,
+    MENU_REVIVAL,
+    MENU_CROAGUNK,
     MENU_FOREST,
     MENU_CITY,
     MENU_DESERT,
@@ -159,17 +182,20 @@ enum {
     MENU_SNOW,
     MENU_CAVE,
     MENU_BEACH,
-    MENU_SEAFLOOR,
     MENU_RIVER,
     MENU_SKY,
     MENU_POLKADOT,
     MENU_POKECENTER,
     MENU_MACHINE,
     MENU_SIMPLE,
+    MENU_GALACTIC1,
+    MENU_GALACTIC2,
+    MENU_BIGBROTHER,
+    MENU_POKEATHLON,
     MENU_SELECT,
 };
 #define MENU_WALLPAPER_SETS_START MENU_SCENERY_1
-#define MENU_WALLPAPERS_START MENU_FOREST
+#define MENU_WALLPAPERS_START MENU_HEART
 #define SPECIES_MASK 0x3FFF
 
 // Return IDs for input handlers
@@ -3603,8 +3629,10 @@ static void Task_HandleWallpapers(u8 taskId)
             break;
         case MENU_SCENERY_1:
         case MENU_SCENERY_2:
-        case MENU_SCENERY_3:
-        case MENU_ETCETERA:
+        case MENU_ETCETERA_1:
+        case MENU_ETCETERA_2:
+        case MENU_ETCETERA_3:
+        case MENU_ETCETERA_4:
             PlaySE(SE_SELECT);
             RemoveMenu();
             sStorage->wallpaperSetId -= MENU_WALLPAPER_SETS_START;
@@ -4579,8 +4607,10 @@ static void AddWallpaperSetsMenu(void)
     InitMenu();
     SetMenuText(MENU_SCENERY_1);
     SetMenuText(MENU_SCENERY_2);
-    SetMenuText(MENU_SCENERY_3);
-    SetMenuText(MENU_ETCETERA);
+    SetMenuText(MENU_ETCETERA_1);
+    SetMenuText(MENU_ETCETERA_2);
+    SetMenuText(MENU_ETCETERA_3);
+    SetMenuText(MENU_ETCETERA_4);
     if (IsWaldaWallpaperUnlocked())
         SetMenuText(MENU_FRIENDS);
     AddMenu();
@@ -4596,24 +4626,52 @@ static void AddWallpapersMenu(u8 wallpaperSet)
         SetMenuText(MENU_CITY);
         SetMenuText(MENU_DESERT);
         SetMenuText(MENU_SAVANNA);
-        break;
-    case MENU_SCENERY_2 - MENU_WALLPAPER_SETS_START:
         SetMenuText(MENU_CRAG);
         SetMenuText(MENU_VOLCANO);
         SetMenuText(MENU_SNOW);
-        SetMenuText(MENU_CAVE);
         break;
-    case MENU_SCENERY_3 - MENU_WALLPAPER_SETS_START:
+    case MENU_SCENERY_2 - MENU_WALLPAPER_SETS_START:
+        SetMenuText(MENU_CAVE);
         SetMenuText(MENU_BEACH);
         SetMenuText(MENU_SEAFLOOR);
         SetMenuText(MENU_RIVER);
         SetMenuText(MENU_SKY);
         break;
-    case MENU_ETCETERA - MENU_WALLPAPER_SETS_START:
+    case MENU_ETCETERA_1 - MENU_WALLPAPER_SETS_START:
         SetMenuText(MENU_POLKADOT);
         SetMenuText(MENU_POKECENTER);
         SetMenuText(MENU_MACHINE);
         SetMenuText(MENU_SIMPLE);
+        SetMenuText(MENU_SPACE);
+        SetMenuText(MENU_BACKYARD);
+        SetMenuText(MENU_NOSTALGIC1);
+        break;
+    case MENU_ETCETERA_2 - MENU_WALLPAPER_SETS_START:
+        SetMenuText(MENU_TORCHIC);
+        SetMenuText(MENU_TRIO1);
+        SetMenuText(MENU_PIKAPIKA1);
+        SetMenuText(MENU_TIMEANDSPACE);
+        SetMenuText(MENU_GALACTIC1);
+        SetMenuText(MENU_DISTORTION);
+        SetMenuText(MENU_CONTEST);
+        break;
+    case MENU_ETCETERA_3 - MENU_WALLPAPER_SETS_START:
+        SetMenuText(MENU_NOSTALGIC2);
+        SetMenuText(MENU_CROAGUNK);
+        SetMenuText(MENU_TRIO2);
+        SetMenuText(MENU_PIKAPIKA2);
+        SetMenuText(MENU_RENEGADE);
+        SetMenuText(MENU_GALACTIC2);
+        SetMenuText(MENU_HEART);
+        break;
+    case MENU_ETCETERA_4 - MENU_WALLPAPER_SETS_START:
+        SetMenuText(MENU_SOUL);
+        SetMenuText(MENU_BIGBROTHER);
+        SetMenuText(MENU_POKEATHLON);
+        SetMenuText(MENU_TRIO3);
+        SetMenuText(MENU_SPIKYPIKA);
+        SetMenuText(MENU_KIMONOGIRL);
+        SetMenuText(MENU_REVIVAL);
         break;
     }
     AddMenu();
@@ -8482,27 +8540,53 @@ static const u8 *const sMenuTexts[] =
     [MENU_SWITCH]     = COMPOUND_STRING("SWITCH"),
     [MENU_BAG]        = COMPOUND_STRING("BAG"),
     [MENU_INFO]       = COMPOUND_STRING("INFO"),
-    [MENU_SCENERY_1]  = COMPOUND_STRING("SCENERY 1"),
-    [MENU_SCENERY_2]  = COMPOUND_STRING("SCENERY 2"),
-    [MENU_SCENERY_3]  = COMPOUND_STRING("SCENERY 3"),
-    [MENU_ETCETERA]   = COMPOUND_STRING("ETCETERA"),
-    [MENU_FRIENDS]    = COMPOUND_STRING("FRIENDS"),
-    [MENU_FOREST]     = COMPOUND_STRING("FOREST"),
-    [MENU_CITY]       = COMPOUND_STRING("CITY"),
-    [MENU_DESERT]     = COMPOUND_STRING("DESERT"),
-    [MENU_SAVANNA]    = COMPOUND_STRING("SAVANNA"),
-    [MENU_CRAG]       = COMPOUND_STRING("CRAG"),
-    [MENU_VOLCANO]    = COMPOUND_STRING("VOLCANO"),
-    [MENU_SNOW]       = COMPOUND_STRING("SNOW"),
-    [MENU_CAVE]       = COMPOUND_STRING("CAVE"),
-    [MENU_BEACH]      = COMPOUND_STRING("BEACH"),
-    [MENU_SEAFLOOR]   = COMPOUND_STRING("SEAFLOOR"),
-    [MENU_RIVER]      = COMPOUND_STRING("RIVER"),
-    [MENU_SKY]        = COMPOUND_STRING("SKY"),
-    [MENU_POLKADOT]   = COMPOUND_STRING("POLKA-DOT"),
-    [MENU_POKECENTER] = COMPOUND_STRING("POKéCENTER"),
-    [MENU_MACHINE]    = COMPOUND_STRING("MACHINE"),
-    [MENU_SIMPLE]     = COMPOUND_STRING("SIMPLE"),
+    [MENU_SCENERY_1]  = gPCText_Scenery1,
+    [MENU_SCENERY_2]  = gPCText_Scenery2,
+    [MENU_ETCETERA_1] = gPCText_Etcetera1,
+    [MENU_ETCETERA_2] = gPCText_Etcetera2,
+    [MENU_ETCETERA_3] = gPCText_Etcetera3,
+    [MENU_ETCETERA_4] = gPCText_Etcetera4,
+    [MENU_FRIENDS]    = gPCText_Friends,
+    [MENU_FOREST]     = gPCText_Forest,
+    [MENU_CITY]       = gPCText_City,
+    [MENU_DESERT]     = gPCText_Desert,
+    [MENU_SAVANNA]    = gPCText_Savanna,
+    [MENU_CRAG]       = gPCText_Crag,
+    [MENU_VOLCANO]    = gPCText_Volcano,
+    [MENU_SNOW]       = gPCText_Snow,
+    [MENU_CAVE]       = gPCText_Cave,
+    [MENU_BEACH]      = gPCText_Beach,
+    [MENU_SEAFLOOR]   = gPCText_Seafloor,
+    [MENU_RIVER]      = gPCText_River,
+    [MENU_SKY]        = gPCText_Sky,
+    [MENU_POLKADOT]   = gPCText_PolkaDot,
+    [MENU_POKECENTER] = gPCText_Pokecenter,
+    [MENU_MACHINE]    = gPCText_Machine,
+    [MENU_SIMPLE]     = gPCText_Simple,
+    [MENU_SPACE]      = gPCText_Space,
+    [MENU_BACKYARD]   = gPCText_Backyard,
+    [MENU_NOSTALGIC1] = gPCText_Nostalgic1,
+    [MENU_TORCHIC]    = gPCText_Torchic,
+    [MENU_TRIO1]      = gPCText_Trio1,
+    [MENU_PIKAPIKA1]  = gPCText_PikaPika1,
+    [MENU_TIMEANDSPACE] = gPCText_TimeAndSpace,
+    [MENU_GALACTIC1]  = gPCText_Galactic1,
+    [MENU_DISTORTION] = gPCText_Distortion,
+    [MENU_CONTEST]    = gPCText_Contest,
+    [MENU_NOSTALGIC2] = gPCText_Nostalgic2,
+    [MENU_CROAGUNK]   = gPCText_Croagunk,
+    [MENU_TRIO2]      = gPCText_Trio2,
+    [MENU_PIKAPIKA2]  = gPCText_PikaPika2,
+    [MENU_RENEGADE]   = gPCText_Renegade,
+    [MENU_GALACTIC2]  = gPCText_Galactic2,
+    [MENU_HEART]      = gPCText_Heart,
+    [MENU_SOUL]       = gPCText_Soul,
+    [MENU_BIGBROTHER] = gPCText_BigBrother,
+    [MENU_POKEATHLON] = gPCText_Pokeathlon,
+    [MENU_TRIO3]      = gPCText_Trio3,
+    [MENU_SPIKYPIKA]  = gPCText_SpikyPika,
+    [MENU_KIMONOGIRL] = gPCText_KimonoGirl,
+    [MENU_REVIVAL]    = gPCText_Revival,
     [MENU_SELECT]     = COMPOUND_STRING("SELECT"),
 };
 

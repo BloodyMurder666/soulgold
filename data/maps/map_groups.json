@@ -118,10 +118,10 @@
   "gMapGroup_IndoorNewBark": [
     "NewBarkTown_Lab",
     "NewBarkTown_House2",
+    "NewBarkTown_House3",
     "NewBarkTown_House1",
     "NewBarkTown_PlayersHouse_1F",
-    "NewBarkTown_PlayersHouse_2F",
-    "NewBarkTown_House3"
+    "NewBarkTown_PlayersHouse_2F"
   ],
   "gMapGroup_IndoorCherrygrove": [
     "CherrygroveCity_PokemonCenter",

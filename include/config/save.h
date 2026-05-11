@@ -14,6 +14,11 @@
 #define FREE_LINK_BATTLE_RECORDS            FALSE   // Frees up link battle record data (88 bytes).
 #define FREE_MYSTERY_GIFT                   TRUE   // Frees up Mystery Gift data (876 bytes).
                                             // SaveBlock1 total: 2516 bytes
+
+// Explicit future-use space at the end of SaveBlock1. Consume bytes from this
+// reserve for new SaveBlock1 fields to avoid shifting existing savedata.
+#define SAVEBLOCK1_FUTURE_RESERVED_BYTES    4096
+
 // SaveBlock2 configs
 #define FREE_BATTLE_TOWER_E_READER          TRUE   // Frees up Battle Tower E-Reader data (188 bytes).
 #define FREE_POKEMON_JUMP                   FALSE   // Frees up Pokémon Jump data (16 bytes).

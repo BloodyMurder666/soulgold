@@ -31,7 +31,8 @@
   ],
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_1",
+      "local_id": "LOCALID_GUIDE_GENT",
+      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_2",
       "x": 57,
       "y": 8,
       "elevation": 0,
@@ -58,8 +59,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BOY",
-      "x": 48,
-      "y": 12,
+      "x": 45,
+      "y": 15,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -109,19 +110,6 @@
       "flag": "FLAG_NIGHT_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KRABBY)",
-      "x": 27,
-      "y": 20,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "CherryGroveCity_EventScript_Krabby",
-      "flag": "0"
-    },
-    {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(CORSOLA)",
       "x": 25,
       "y": 8,
@@ -136,8 +124,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(KRABBY)",
-      "x": 29,
-      "y": 19,
+      "x": 27,
+      "y": 26,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 0,
@@ -200,6 +188,7 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_CHERRYGROVE_SILVER",
       "graphics_id": "OBJ_EVENT_GFX_SILVER",
       "x": 65,
       "y": 10,
@@ -220,6 +209,73 @@
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
       "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 43,
+      "y": 22,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cherrygrove_FriendlyTrader",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_CHERRY_ZIGZAGOON",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ZIGZAGOON_GALAR)",
+      "x": 42,
+      "y": 22,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cherrygrove_Zigzagoon",
+      "flag": "FLAG_PICKED_ZIGZAGOON"
+    },
+    {
+      "local_id": "LOCALID_CHERRY_RATTATA",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(RATTATA_ALOLA)",
+      "x": 44,
+      "y": 22,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cherrygrove_Rattata",
+      "flag": "FLAG_PICKED_RATTATA"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_LITTLE_GIRL",
+      "x": 33,
+      "y": 23,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Cherrygrove_Littlegirl",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SENTRET)",
+      "x": 35,
+      "y": 20,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
@@ -327,6 +383,22 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "CherryGroveCity_EventScript_Sign"
+    },
+    {
+      "type": "sign",
+      "x": 28,
+      "y": 21,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Cherrygrove_FadedSign"
+    },
+    {
+      "type": "sign",
+      "x": 29,
+      "y": 20,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Cherrygrove_DarkraiEventDoor"
     }
   ]
 }

@@ -296,6 +296,7 @@ NewBarkTown_Lab_EventScript_PoliceNo::
 
 NewBarkTown_Lab_EventScript_PoliceNameRival::
 	special NameRival
+	waitstate
 	setflag FLAG_NAMED_SILVER
 	goto NewBarkTown_Lab_EventScript_PoliceYes3
 
@@ -311,7 +312,6 @@ NewBarkTown_Lab_EventScript_PoliceYes::
 	goto NewBarkTown_Lab_EventScript_PoliceYes2
 
 NewBarkTown_Lab_EventScript_PoliceYes3::
-	msgbox NewBarkTown_Lab_Text_Officer3, MSGBOX_DEFAULT @okay, for some reason this script doesn't take effect at all... Added a duplicate after this because it was a workaround.
 	msgbox NewBarkTown_Lab_Text_Officer3, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_COP, NewBarkTown_Lab_Movement_CopLeaves

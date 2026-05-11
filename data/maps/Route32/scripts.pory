@@ -1,6 +1,4 @@
 raw `
-.set LOCALID_ROUTE32_BALDINGMAN, 1
-.set LOCALID_SLOWPOKETAIL_MAN, 14
 
 
 Route32_MapScripts::
@@ -9,6 +7,7 @@ Route32_MapScripts::
 	.byte 0
 
 Route32_OnTransition: 
+	call Common_EventScript_SetupRivalGfxId
 	callnative SetTimeBasedEncounters
 	end
 
@@ -520,4 +519,70 @@ script Route32HiddenGrottoWarp {
     }
     release
     end
+}
+
+script Route32RivalGrottoTutorial {
+	lock
+	msgbox("{PLAYER}! I see you managed to get
+			your first badge!")
+	playbgm(MUS_HG_LYRA, TRUE)
+	closemessage
+	moveobjecttocoords(LOCALID_PLAYER, 25, 25, DIR_SOUTH)
+	applymovement(LOCALID_ROUTE32_RIVAL, moves(walk_up*5))
+	applymovement(LOCALID_ROUTE32_MARILL, moves(walk_up*5, walk_right, walk_up))
+	waitmovement(0)
+	applymovement(LOCALID_ROUTE32_MARILL, moves(jump_in_place_up))
+	playse(SE_LEDGE)
+	waitmovement(0)
+	applymovement(LOCALID_ROUTE32_MARILL, moves(jump_in_place_up))
+	playse(SE_LEDGE)
+	waitmovement(0)
+	msgbox("Even Marill wanted to congratulate you!")
+	msgbox("Listen, there's something you should
+			see. I came across it when exploring
+			the route. Follow me!")
+	closemessage
+	applymovement(LOCALID_ROUTE32_RIVAL, moves(walk_left*12, walk_up, face_right))
+	applymovement(LOCALID_ROUTE32_MARILL, moves(walk_left*14, walk_up, face_right))
+	applymovement(LOCALID_PLAYER, moves(walk_left*11))
+	waitmovement(LOCALID_ROUTE32_MARILL)
+	msgbox("See this small spot between the trees?
+			It leads to a Hidden Grotto.
+
+			I hear they may contain Pokémon that
+			are sometimes quite rare, or items
+			dropped by them.
+			 
+			I'll let you explore
+			this one, since it's your first time
+			seeing one! 
+			Even if you don't manage to find
+			a Pokémon there today, 
+			you should check it again another day.")
+	msgbox("Marill and I will take a trip to
+			the Goldenrod City, I hope to see
+			you there! Good luck with the
+			next Gym, {PLAYER}!")
+	closemessage
+	applymovement(LOCALID_ROUTE32_RIVAL, moves(walk_down))
+	applymovement(LOCALID_ROUTE32_MARILL, moves(walk_right, face_down))
+	waitmovement
+	applymovement(LOCALID_ROUTE32_RIVAL, (moves(walk_down*7)))
+	applymovement(LOCALID_ROUTE32_MARILL, (moves(walk_down*4, face_up)))
+	waitmovement(0)
+	applymovement(LOCALID_ROUTE32_MARILL, moves(jump_in_place_up))
+	playse(SE_LEDGE)
+	waitmovement(0)
+	applymovement(LOCALID_ROUTE32_MARILL, moves(jump_in_place_up))
+	playse(SE_LEDGE)
+	waitmovement(0)
+	applymovement(LOCALID_ROUTE32_MARILL, (moves(walk_fast_down*3)))
+	waitmovement(0)
+	removeobject(LOCALID_ROUTE32_RIVAL)
+	removeobject(LOCALID_ROUTE32_MARILL)
+	setflag(FLAG_HIDE_ROUTE32_RIVAL)
+	setvar(VAR_RIVAL_STATE, 5)
+	fadedefaultbgm
+	release
+	end
 }

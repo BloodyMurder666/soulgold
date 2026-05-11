@@ -274,14 +274,12 @@
 #define VAR_FREEZE_SURF_BLOB                             0x40FE // Added new VAR for Surfing Overworld Sprites - Set on surf init to stop blob overlay being offset incorrectly
 #define VAR_GARBAGEVAR                                   0x40FF // Used to replace little root state
 
-#define VARS_END                                         0x40FF
 
-/*
 // unused vars
 #define VAR_0x4100
 
 #define VARS_END                                         0x42FF
-*/
+
 #define VARS_COUNT                                       (VARS_END - VARS_START + 1)
 
 #define SPECIAL_VARS_START            0x8000
