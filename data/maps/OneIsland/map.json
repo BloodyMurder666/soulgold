@@ -17,6 +17,11 @@
       "map": "MAP_ONE_ISLAND_TREASURE_BEACH",
       "offset": 0,
       "direction": "down"
+    },
+    {
+      "map": "MAP_ONE_ISLAND_KINDLE_ROAD",
+      "offset": -120,
+      "direction": "right"
     }
   ],
   "object_events": [
