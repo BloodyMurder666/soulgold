@@ -1568,10 +1568,24 @@
 #define FLAG_SYS_HIDDEN_GROTTO_FIRST_VISIT         (SYSTEM_FLAGS + 0xBE)
 #define FLAG_UNUSED_0x91F                           (SYSTEM_FLAGS + 0xBF) // Unused Flag
 
+// Infinite free flags
+#define FLAG_0x920                                  0x920
+#define FLAG_0x921                                  0x921
+#define FLAG_0x922                                  0x922
+#define FLAG_0x923                                  0x923
+#define FLAG_0x924                                  0x924
+#define FLAG_0x925                                  0x925
+#define FLAG_0x926                                  0x926
+#define FLAG_0x927                                  0x927
+#define FLAG_0x928                                  0x928
+#define FLAG_0x929                                  0x929
+#define FLAG_0x92A                                  0x92A
+
+#define FLAG_0x1500                                 0x1500
 // Daily Flags
 // These flags are cleared once per day
 // The start and end are byte-aligned because the flags are cleared in byte increments
-#define DAILY_FLAGS_START                           (FLAG_UNUSED_0x91F + (8 - FLAG_UNUSED_0x91F % 8))
+#define DAILY_FLAGS_START                           (FLAG_0x1500 + (8 - FLAG_0x1500 % 8))
 #define FLAG_ROUTE32_GROTTO                         (DAILY_FLAGS_START + 0x0)
 #define FLAG_DAILY_CONTEST_LOBBY_RECEIVED_BERRY     (DAILY_FLAGS_START + 0x1)
 #define FLAG_DAILY_SECRET_BASE                      (DAILY_FLAGS_START + 0x2)
@@ -1642,13 +1656,6 @@
 
 #define FLAGS_COUNT (DAILY_FLAGS_END + 1)
 
-/*
-// unused flags
-#define FLAG_0xA00                                  0xA00
-#define FLAG_0x1500                                 0x1500
-
-#define FLAGS_COUNT (FLAG_0x1500 + 1)
-*/
 
 // Special Flags (Stored in EWRAM (sSpecialFlags), not in the SaveBlock)
 #define SPECIAL_FLAGS_START                     0x4000
