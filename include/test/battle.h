@@ -615,6 +615,7 @@ enum
     QUEUED_SUB_HIT_EVENT,
     QUEUED_EXP_EVENT,
     QUEUED_MESSAGE_EVENT,
+    QUEUED_MESSAGE_DURING_STAT_ANIM_EVENT,
     QUEUED_STATUS_EVENT,
     QUEUED_CATCH_CHANCE_EVENT,
 };
@@ -661,6 +662,7 @@ struct QueuedExpEvent
 struct QueuedMessageEvent
 {
     const u8 *pattern;
+    enum BattlerId statAnimBattler:3;
 };
 
 struct QueuedStatusEvent
@@ -763,6 +765,8 @@ struct BattleTrialData
     u8 lastActionTurn;
     u8 queuedEvent;
     u8 aiActionsPlayed[MAX_BATTLERS_COUNT];
+    bool8 statAnimInProgress[MAX_BATTLERS_COUNT];
+    bool8 concurrentStatAnimMessage[MAX_BATTLERS_COUNT];
     u8 scoreTieCount;
     u8 targetTieCount;
 };
@@ -1237,6 +1241,7 @@ void SendOut(u32 sourceLine, struct BattlePokemon *, u32 partyIndex);
 #define EXPERIENCE_BAR(battler, ...) QueueExp(__LINE__, battler, (struct ExpEventContext) { R_APPEND_TRUE(__VA_ARGS__) })
 // Static const is needed to make the modern compiler put the pattern variable in the .rodata section, instead of putting it on stack(which can break the game).
 #define MESSAGE(pattern) do {static const u8 msg[] = _(pattern); QueueMessage(__LINE__, msg);} while (0)
+#define MESSAGE_DURING_STAT_ANIM(pattern, battler) do {static const u8 msg[] = _(pattern); QueueMessageDuringStatAnim(__LINE__, msg, battler);} while (0)
 #define STATUS_ICON(battler, status) QueueStatus(__LINE__, battler, (struct StatusEventContext) { status })
 #define CATCHING_CHANCE(address) QueueCatchingChance(__LINE__, address)
 #define FREEZE_OR_FROSTBURN_STATUS(battler, isFrostbite) \
@@ -1327,6 +1332,7 @@ void QueueHP(u32 sourceLine, struct BattlePokemon *battler, struct HPEventContex
 void QueueSubHit(u32 sourceLine, struct BattlePokemon *battler, struct SubHitEventContext);
 void QueueExp(u32 sourceLine, struct BattlePokemon *battler, struct ExpEventContext);
 void QueueMessage(u32 sourceLine, const u8 *pattern);
+void QueueMessageDuringStatAnim(u32 sourceLine, const u8 *pattern, struct BattlePokemon *battler);
 void QueueStatus(u32 sourceLine, struct BattlePokemon *battler, struct StatusEventContext);
 void QueueCatchingChance(u32 sourceLine, u32 *captureAdress);
 

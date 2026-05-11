@@ -974,6 +974,29 @@ bool32 IsBattlerMarkedForControllerExec(enum BattlerId battler)
         return IsBattleControllerActiveOnLocal(battler);
 }
 
+bool32 CanRunBattleScriptCommands(void)
+{
+    enum BattlerId battler;
+
+    if (gBattleControllerExecFlags == 0)
+        return TRUE;
+
+    if (gBattleTypeFlags & BATTLE_TYPE_LINK)
+        return FALSE;
+
+    for (battler = 0; battler < gBattlersCount; battler++)
+    {
+        if (!IsBattlerMarkedForControllerExec(battler))
+            continue;
+
+        if (gBattleResources->bufferA[battler][0] != CONTROLLER_BATTLEANIMATION
+         || gBattleResources->bufferA[battler][1] != B_ANIM_STATS_CHANGE)
+            return FALSE;
+    }
+
+    return TRUE;
+}
+
 void MarkBattlerForControllerExec(enum BattlerId battler)
 {
     if (gBattleTypeFlags & BATTLE_TYPE_LINK)
@@ -5934,7 +5957,7 @@ void ClearVariousBattlerFlags(enum BattlerId battler)
 
 void HandleAction_RunBattleScript(void) // identical to RunBattleScriptCommands
 {
-    if (gBattleControllerExecFlags == 0)
+    if (CanRunBattleScriptCommands())
         gBattleScriptingCommandsTable[*gBattlescriptCurrInstr]();
 }
 

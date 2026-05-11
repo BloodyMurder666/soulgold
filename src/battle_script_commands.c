@@ -371,6 +371,11 @@ static void Cmd_effectivenesssound(void);
 static void Cmd_resultmessage(void);
 static void Cmd_printstring(void);
 static void Cmd_printselectionstring(void);
+static bool32 IsStatChangeMessage(enum StringID stringId);
+static void RecordStatChangeAnimationForTest(enum BattlerId battler);
+static void ClearStatChangeAnimationForTest(void);
+static void RecordConcurrentStatAnimMessageForTest(void);
+static enum BattlerId GetBattlerForConcurrentStatAnimMessage(enum BattlerId battler, bool32 isStatChangeMessage);
 static void Cmd_waitmessage(void);
 static void Cmd_printfromtable(void);
 static void Cmd_setpreattackadditionaleffect(void);
@@ -1654,6 +1659,8 @@ static void Cmd_waitanimation(void)
     gCountAllocs = FALSE;
     #endif
 
+    ClearStatChangeAnimationForTest();
+
     if (TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_HP_PERCENT_DURING_MOVE))
     {
         // Only execute B_ANIM_FORM_CHANGE_INSTANT for those who have changed forms
@@ -2147,12 +2154,13 @@ static void Cmd_printstring(void)
 {
     CMD_ARGS(u16 id);
 
-    if (gBattleControllerExecFlags == 0)
-    {
-        u16 id = (cmd->id == 0 ? gBattleScripting.savedStringId : cmd->id);
+    u16 id = (cmd->id == 0 ? gBattleScripting.savedStringId : cmd->id);
+    enum BattlerId battler = GetBattlerForConcurrentStatAnimMessage(gBattlerAttacker, IsStatChangeMessage(id));
 
+    if (battler != MAX_BATTLERS_COUNT)
+    {
         gBattlescriptCurrInstr = cmd->nextInstr;
-        PrepareStringBattle(id, gBattlerAttacker);
+        PrepareStringBattle(id, battler);
         gBattleCommunication[MSG_DISPLAY] = 1;
     }
 }
@@ -2168,6 +2176,108 @@ static void Cmd_printselectionstring(void)
 
     gBattlescriptCurrInstr = cmd->nextInstr;
     gBattleCommunication[MSG_DISPLAY] = 1;
+}
+
+static bool32 IsStatChangeMessage(enum StringID stringId)
+{
+    switch (stringId)
+    {
+    case STRINGID_ATTACKERSSTATROSE:
+    case STRINGID_DEFENDERSSTATROSE:
+    case STRINGID_ATTACKERSSTATFELL:
+    case STRINGID_DEFENDERSSTATFELL:
+    case STRINGID_SCRIPTINGSTATROSE:
+    case STRINGID_USINGITEMSTATOFPKMNROSE:
+    case STRINGID_USINGITEMSTATOFPKMNFELL:
+    case STRINGID_TARGETABILITYSTATRAISE:
+    case STRINGID_ATTACKERABILITYSTATRAISE:
+    case STRINGID_TARGETABILITYSTATLOWER:
+    case STRINGID_SCRIPTINGABILITYSTATRAISE:
+    case STRINGID_PKMNCUTSATTACKWITH:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
+static bool32 IsBattlerRunningStatChangeAnimation(enum BattlerId battler)
+{
+    return IsBattlerMarkedForControllerExec(battler)
+        && gBattleResources->bufferA[battler][0] == CONTROLLER_BATTLEANIMATION
+        && gBattleResources->bufferA[battler][1] == B_ANIM_STATS_CHANGE;
+}
+
+static void RecordStatChangeAnimationForTest(enum BattlerId battler)
+{
+#if TESTING
+    if (gTestRunnerEnabled)
+        gBattleTestRunnerState->data.trial.statAnimInProgress[battler] = TRUE;
+#endif
+}
+
+static void ClearStatChangeAnimationForTest(void)
+{
+#if TESTING
+    if (gTestRunnerEnabled)
+        memset(gBattleTestRunnerState->data.trial.statAnimInProgress, 0, sizeof(gBattleTestRunnerState->data.trial.statAnimInProgress));
+#endif
+}
+
+static void RecordConcurrentStatAnimMessageForTest(void)
+{
+#if TESTING
+    enum BattlerId i;
+
+    if (!gTestRunnerEnabled)
+        return;
+
+    for (i = 0; i < gBattlersCount; i++)
+    {
+        if (IsBattlerRunningStatChangeAnimation(i) || gBattleTestRunnerState->data.trial.statAnimInProgress[i])
+            gBattleTestRunnerState->data.trial.concurrentStatAnimMessage[i] = TRUE;
+    }
+#endif
+}
+
+static enum BattlerId GetBattlerForConcurrentStatAnimMessage(enum BattlerId battler, bool32 isStatChangeMessage)
+{
+    enum BattlerId i;
+
+    if (gBattleControllerExecFlags == 0)
+    {
+        if (isStatChangeMessage)
+            RecordConcurrentStatAnimMessageForTest();
+        return battler;
+    }
+
+    if (!isStatChangeMessage)
+        return MAX_BATTLERS_COUNT;
+
+    if (gBattleTypeFlags & BATTLE_TYPE_LINK)
+        return MAX_BATTLERS_COUNT;
+
+    for (i = 0; i < gBattlersCount; i++)
+    {
+        if (IsBattlerMarkedForControllerExec(i) && !IsBattlerRunningStatChangeAnimation(i))
+            return MAX_BATTLERS_COUNT;
+    }
+
+    if (!IsBattlerMarkedForControllerExec(battler))
+    {
+        RecordConcurrentStatAnimMessageForTest();
+        return battler;
+    }
+
+    for (i = 0; i < gBattlersCount; i++)
+    {
+        if (!IsBattlerMarkedForControllerExec(i))
+        {
+            RecordConcurrentStatAnimMessageForTest();
+            return i;
+        }
+    }
+
+    return MAX_BATTLERS_COUNT;
 }
 
 static void Cmd_waitmessage(void)
@@ -2199,13 +2309,14 @@ static void Cmd_printfromtable(void)
 {
     CMD_ARGS(const u16 *ptr);
 
-    if (gBattleControllerExecFlags == 0)
-    {
-        const u16 *ptr = cmd->ptr;
-        ptr += gBattleCommunication[MULTISTRING_CHOOSER];
+    const u16 *ptr = cmd->ptr;
+    u16 id = ptr[gBattleCommunication[MULTISTRING_CHOOSER]];
+    enum BattlerId battler = GetBattlerForConcurrentStatAnimMessage(gBattlerAttacker, IsStatChangeMessage(id));
 
+    if (battler != MAX_BATTLERS_COUNT)
+    {
         gBattlescriptCurrInstr = cmd->nextInstr;
-        PrepareStringBattle(*ptr, gBattlerAttacker);
+        PrepareStringBattle(id, battler);
         gBattleCommunication[MSG_DISPLAY] = 1;
     }
 }
@@ -5103,6 +5214,8 @@ static void PlayAnimation(enum BattlerId battler, u8 animId, const u16 *argPtr, 
     {
         BtlController_EmitBattleAnimation(battler, B_COMM_TO_CONTROLLER, animId, *argPtr);
         MarkBattlerForControllerExec(battler);
+        if (animId == B_ANIM_STATS_CHANGE)
+            RecordStatChangeAnimationForTest(battler);
         gBattlescriptCurrInstr = nextInstr;
     }
     else if (gHitMarker & (HITMARKER_NO_ANIMATIONS | HITMARKER_DISABLE_ANIMATION) && animId != B_ANIM_RESTORE_BG)
@@ -7837,6 +7950,7 @@ static void TryPlayStatChangeAnimation(enum BattlerId battler, enum Ability abil
     {
         BtlController_EmitBattleAnimation(battler, B_COMM_TO_CONTROLLER, B_ANIM_STATS_CHANGE, statAnimId);
         MarkBattlerForControllerExec(battler);
+        RecordStatChangeAnimationForTest(battler);
         if (changeableStatsCount > 1)
             gBattleScripting.statAnimPlayed = TRUE;
     }
