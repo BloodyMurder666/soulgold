@@ -247,6 +247,10 @@ static void Vprintf(enum Mode mode, const void *return1, const void *return0, co
             char f = *fmt++;
             switch (f)
             {
+            case '%':
+                if (!Putc(&x, &y, '%'))
+                    return;
+                break;
             case 'd':
                 if (!Puti(&x, &y, va_arg(va, int)))
                     return;
