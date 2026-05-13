@@ -40,7 +40,7 @@ prefabs.json
 *.sna
 *.diff
 *.sym
-*.js
+
 /pokeemerald-*.png
 src/data/map_group_count.h
 include/constants/heal_locations.h
