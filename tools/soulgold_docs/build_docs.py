@@ -178,10 +178,11 @@ def preprocess(include_path: str) -> str:
     result = subprocess.run(
         ["gcc", "-E", "-P", str(temp), "-I.", "-Iinclude", "-Isrc"],
         cwd=REPO_ROOT,
-        check=True,
         capture_output=True,
         text=True,
     )
+    if result.returncode != 0:
+        raise RuntimeError(f"gcc failed for {include_path}:\n{result.stderr}")
     return result.stdout
 
 
