@@ -486,7 +486,6 @@ dialog::backdrop { background: rgb(0 0 0 / 70%); }
 .rod-divider {
   margin: 12px 0 6px;
   padding-top: 10px;
-  border-top: 1px solid var(--line);
   color: var(--gold);
   font-weight: 800;
 }
