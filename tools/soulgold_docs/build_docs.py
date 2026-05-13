@@ -6,6 +6,7 @@ import json
 import re
 import shutil
 import subprocess
+import ast
 from collections import defaultdict
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -42,6 +43,11 @@ ENCOUNTER_SLOT_RATES = {
     "water_mons": [60, 30, 5, 4, 1],
     "rock_smash_mons": [60, 30, 5, 4, 1],
     "fishing_mons": [70, 30, 60, 20, 20, 40, 40, 15, 4, 1],
+}
+
+JOHTO_ROUTE_PROGRESS = {
+    route: index
+    for index, route in enumerate([29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48])
 }
 
 TYPE_ICON_FILES = {
@@ -87,6 +93,7 @@ class SpeciesRow:
     tmhm: list[str] = field(default_factory=list)
     tutors: list[str] = field(default_factory=list)
     evolutions: list[dict[str, str]] = field(default_factory=list)
+    locations: list[dict[str, Any]] = field(default_factory=list)
 
 
 def read(path: Path) -> str:
@@ -230,10 +237,102 @@ def extract_field(entry: str, field_name: str) -> str | None:
     return None
 
 
+def split_top_level_ternary(expr: str) -> tuple[str, str, str] | None:
+    depth = 0
+    question_index: int | None = None
+    nested = 0
+    for index, char in enumerate(expr):
+        if char in "({[":
+            depth += 1
+        elif char in ")}]":
+            depth -= 1
+        elif depth == 0 and char == "?":
+            if question_index is None:
+                question_index = index
+            else:
+                nested += 1
+        elif depth == 0 and char == ":" and question_index is not None:
+            if nested:
+                nested -= 1
+                continue
+            return expr[:question_index], expr[question_index + 1:index], expr[index + 1:]
+    return None
+
+
+def eval_numeric_ast(node: ast.AST) -> int | bool:
+    if isinstance(node, ast.Expression):
+        return eval_numeric_ast(node.body)
+    if isinstance(node, ast.Constant) and isinstance(node.value, (int, bool)):
+        return node.value
+    if isinstance(node, ast.UnaryOp) and isinstance(node.op, (ast.UAdd, ast.USub, ast.Not)):
+        value = eval_numeric_ast(node.operand)
+        if isinstance(node.op, ast.UAdd):
+            return int(value)
+        if isinstance(node.op, ast.USub):
+            return -int(value)
+        return not bool(value)
+    if isinstance(node, ast.BinOp) and isinstance(node.op, (ast.Add, ast.Sub, ast.Mult, ast.Div, ast.FloorDiv, ast.Mod)):
+        left = int(eval_numeric_ast(node.left))
+        right = int(eval_numeric_ast(node.right))
+        if isinstance(node.op, ast.Add):
+            return left + right
+        if isinstance(node.op, ast.Sub):
+            return left - right
+        if isinstance(node.op, ast.Mult):
+            return left * right
+        if isinstance(node.op, (ast.Div, ast.FloorDiv)):
+            return left // right
+        return left % right
+    if isinstance(node, ast.BoolOp) and isinstance(node.op, (ast.And, ast.Or)):
+        values = [bool(eval_numeric_ast(value)) for value in node.values]
+        return all(values) if isinstance(node.op, ast.And) else any(values)
+    if isinstance(node, ast.Compare):
+        left = eval_numeric_ast(node.left)
+        for op, comparator in zip(node.ops, node.comparators):
+            right = eval_numeric_ast(comparator)
+            if isinstance(op, ast.Eq) and not left == right:
+                return False
+            if isinstance(op, ast.NotEq) and not left != right:
+                return False
+            if isinstance(op, ast.Lt) and not left < right:
+                return False
+            if isinstance(op, ast.LtE) and not left <= right:
+                return False
+            if isinstance(op, ast.Gt) and not left > right:
+                return False
+            if isinstance(op, ast.GtE) and not left >= right:
+                return False
+            left = right
+        return True
+    raise ValueError(f"unsupported expression: {ast.dump(node)}")
+
+
+def eval_int_expr(expr: str) -> int | None:
+    expr = expr.strip()
+    ternary = split_top_level_ternary(expr)
+    if ternary:
+        condition, true_expr, false_expr = ternary
+        branch = true_expr if eval_int_expr(condition) else false_expr
+        return eval_int_expr(branch)
+
+    expr = re.sub(r"\b([0-9]+)[uUlL]+\b", r"\1", expr)
+    expr = expr.replace("&&", " and ").replace("||", " or ")
+    expr = re.sub(r"!(?!=)", " not ", expr)
+    if re.search(r"[A-Za-z_]", expr):
+        return None
+    try:
+        return int(eval_numeric_ast(ast.parse(expr, mode="eval")))
+    except (SyntaxError, ValueError, ZeroDivisionError):
+        return None
+
+
 def extract_number(entry: str, field_name: str, default: int = 0) -> int:
     expr = extract_field(entry, field_name)
     if not expr:
         return default
+    value = eval_int_expr(expr)
+    if value is not None:
+        return value
     match = re.search(r"-?\d+", expr)
     return int(match.group(0)) if match else default
 
@@ -577,10 +676,15 @@ def copy_type_icons() -> dict[str, str]:
 def parse_wild_encounters(by_species: dict[str, SpeciesRow]) -> list[dict[str, Any]]:
     data = json.loads(read(WILD_ENCOUNTERS_JSON))
     rows = []
+    original_index = 0
     for group in data.get("wild_encounter_groups", []):
+        if group.get("label") == "gBattlePyramidWildMonHeaders":
+            continue
         for encounter in group.get("encounters", []):
             map_const = encounter.get("map", "UNKNOWN_MAP")
             label = map_const.removeprefix("MAP_").replace("_", " ").title()
+            base_label = encounter.get("base_label", "")
+            time_label = "Night" if base_label.endswith("_Night") else "Day"
             methods = []
             for method, payload in encounter.items():
                 if not isinstance(payload, dict) or "mons" not in payload:
@@ -592,16 +696,104 @@ def parse_wild_encounters(by_species: dict[str, SpeciesRow]) -> list[dict[str, A
                     species = by_species.get(species_const)
                     mons.append({
                         "species": species_const,
+                        "hasSpecies": species is not None,
                         "name": species.name if species else clean_constant_name(species_const, "SPECIES_"),
                         "sprite": species.sprite if species else None,
                         "minLevel": mon.get("min_level"),
                         "maxLevel": mon.get("max_level"),
                         "rate": slot_rates[slot] if slot < len(slot_rates) else mon.get("encounter_rate"),
                     })
-                methods.append({"method": method.replace("_", " ").title(), "mons": mons})
+                methods.append({"key": method, "method": method.replace("_", " ").title(), "mons": mons})
             if methods:
-                rows.append({"map": map_const, "name": label, "baseLabel": encounter.get("base_label", ""), "methods": methods})
+                rows.append({
+                    "map": map_const,
+                    "name": label,
+                    "baseLabel": base_label,
+                    "time": time_label,
+                    "methods": methods,
+                    "_order": original_index,
+                })
+                original_index += 1
+    rows = merge_time_variant_encounters(rows)
+    rows.sort(key=wild_encounter_sort_key)
+    for row in rows:
+        row.pop("_order", None)
     return rows
+
+
+def canonical_encounter_label(base_label: str) -> str:
+    return re.sub(r"_Night$", "", base_label or "")
+
+
+def merge_time_variant_encounters(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    merged: dict[tuple[str, str], dict[str, Any]] = {}
+    for row in rows:
+        key = (row["map"], canonical_encounter_label(row["baseLabel"]))
+        if key not in merged:
+            merged[key] = {
+                "map": row["map"],
+                "name": row["name"],
+                "baseLabel": canonical_encounter_label(row["baseLabel"]) or row["baseLabel"],
+                "variants": [],
+                "_order": row["_order"],
+            }
+        target = merged[key]
+        target["_order"] = min(target["_order"], row["_order"])
+        target["variants"].append({
+            "time": row["time"],
+            "baseLabel": row["baseLabel"],
+            "methods": row["methods"],
+            "_order": row["_order"],
+        })
+
+    for row in merged.values():
+        row["variants"].sort(key=lambda variant: (variant["time"] == "Night", variant["_order"]))
+        has_night_variant = any(variant["time"] == "Night" for variant in row["variants"])
+        row["hasTimeVariants"] = has_night_variant
+        for variant in row["variants"]:
+            variant["showTime"] = has_night_variant
+            variant.pop("_order", None)
+    return list(merged.values())
+
+
+def wild_encounter_sort_key(encounter: dict[str, Any]) -> tuple[int, int, int]:
+    haystack = f"{encounter.get('map', '')} {encounter.get('baseLabel', '')} {encounter.get('name', '')}"
+    match = re.search(r"\b(?:MAP_)?ROUTE_?(\d+)\b|\bRoute\s*(\d+)\b|\bgRoute(\d+)\b", haystack, re.IGNORECASE)
+    route = int(next(group for group in match.groups() if group)) if match else None
+    if route in JOHTO_ROUTE_PROGRESS:
+        return (0, JOHTO_ROUTE_PROGRESS[route], encounter["_order"])
+    return (1, encounter["_order"], 0)
+
+
+def build_species_locations(encounters: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
+    locations: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    seen: dict[str, set[tuple[Any, ...]]] = defaultdict(set)
+    for encounter in encounters:
+        for variant in encounter.get("variants", [{"time": "", "methods": encounter.get("methods", [])}]):
+            time = variant.get("time", "") if variant.get("showTime") else ""
+            for method in variant["methods"]:
+                for mon in method["mons"]:
+                    key = (
+                        encounter["map"],
+                        time,
+                        method["method"],
+                        mon.get("minLevel"),
+                        mon.get("maxLevel"),
+                        mon.get("rate"),
+                    )
+                    if key in seen[mon["species"]]:
+                        continue
+                    seen[mon["species"]].add(key)
+                    locations[mon["species"]].append({
+                        "map": encounter["map"],
+                        "name": encounter["name"],
+                        "time": time,
+                        "method": method["method"],
+                        "minLevel": mon.get("minLevel"),
+                        "maxLevel": mon.get("maxLevel"),
+                        "rate": mon.get("rate"),
+                    })
+    return dict(locations)
 
 
 def build() -> None:
@@ -640,6 +832,11 @@ def build() -> None:
             sprite_path = sprite_dir / f"{row.constant.removeprefix('SPECIES_').lower()}.png"
             process_sprite(front_sources[row.front_pic_symbol], sprite_path)
             row.sprite = str(sprite_path.relative_to(OUT_DIR))
+
+    encounters = parse_wild_encounters(by_species)
+    species_locations = build_species_locations(encounters)
+    for row in species:
+        row.locations = species_locations.get(row.constant, [])
 
     ability_usage: dict[str, dict[str, list[dict[str, Any]]]] = defaultdict(lambda: {"base": [], "innate": []})
     for row in species:
@@ -688,6 +885,7 @@ def build() -> None:
                 "tmhm": row.tmhm,
                 "tutors": row.tutors,
                 "evolutions": row.evolutions,
+                "locations": row.locations,
             }
             for row in species
         ],
@@ -697,7 +895,7 @@ def build() -> None:
             for key, value in abilities.items()
         },
         "tms": tms,
-        "encounters": parse_wild_encounters(by_species),
+        "encounters": encounters,
         "typeIcons": type_icons,
     }
     (OUT_DIR / "data" / "romhack-docs.json").write_text(json.dumps(payload, indent=2), encoding="utf-8")

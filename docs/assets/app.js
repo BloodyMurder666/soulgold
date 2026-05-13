@@ -39,7 +39,7 @@ function sprite(src, className = "sprite") {
 }
 
 async function init() {
-  const response = await fetch("data/romhack-docs.json");
+  const response = await fetch("data/romhack-docs.json?v=20260513-9");
   state.data = await response.json();
   state.filteredSpecies = state.data.species;
   bindEvents();
@@ -56,16 +56,22 @@ function bindEvents() {
     renderActive();
   });
   document.getElementById("dexScroller").addEventListener("scroll", renderDexRows);
-  document.getElementById("closeDialog").addEventListener("click", () => document.getElementById("detailDialog").close());
+  const dialog = document.getElementById("detailDialog");
+  document.getElementById("closeDialog").addEventListener("click", () => closeDetailDialog());
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) closeDetailDialog();
+  });
   document.body.addEventListener("click", handleAbilityClick, true);
   document.body.addEventListener("pointerover", handleAbilityHover);
   document.body.addEventListener("pointerout", hideAbilityTooltip);
-  document.body.addEventListener("click", handleEvolutionClick, true);
+  document.body.addEventListener("click", handleSpeciesLinkClick, true);
   document.body.addEventListener("pointerover", handleMoveHover);
   document.body.addEventListener("pointerout", hideMoveTooltip);
 }
 
 function setTab(tab) {
+  hideAbilityTooltip();
+  hideMoveTooltip();
   state.activeTab = tab;
   state.query = "";
   document.getElementById("globalSearch").value = "";
@@ -124,16 +130,27 @@ function renderDexRows() {
   });
 }
 
+function closeDetailDialog() {
+  hideAbilityTooltip();
+  hideMoveTooltip();
+  document.getElementById("detailDialog").close();
+}
+
+function getScopedTooltip(root, id, className) {
+  let tooltip = [...root.children].find((child) => child.id === id);
+  if (!tooltip) {
+    tooltip = el("div", className);
+    tooltip.id = id;
+    root.appendChild(tooltip);
+  }
+  return tooltip;
+}
+
 function showAbilityTooltip(button) {
   const ability = state.data.abilities[button.dataset.ability];
   if (!ability) return;
   const root = button.closest("dialog[open]") || document.body;
-  let tooltip = root.querySelector("#abilityTooltip");
-  if (!tooltip) {
-    tooltip = el("div", "ability-tooltip");
-    tooltip.id = "abilityTooltip";
-    root.appendChild(tooltip);
-  }
+  const tooltip = getScopedTooltip(root, "abilityTooltip", "ability-tooltip");
   tooltip.innerHTML = `<strong>${ability.name}</strong><span>${ability.description}</span>`;
   const rect = button.getBoundingClientRect();
   const left = Math.min(window.innerWidth - 340, Math.max(12, rect.left));
@@ -166,12 +183,7 @@ function showMoveTooltip(button) {
   const move = state.data.moves[button.dataset.move];
   if (!move) return;
   const root = button.closest("dialog[open]") || document.body;
-  let tooltip = root.querySelector("#moveTooltip");
-  if (!tooltip) {
-    tooltip = el("div", "ability-tooltip move-tooltip");
-    tooltip.id = "moveTooltip";
-    root.appendChild(tooltip);
-  }
+  const tooltip = getScopedTooltip(root, "moveTooltip", "ability-tooltip move-tooltip");
   tooltip.innerHTML = `<strong>${move.name}</strong><span>${move.description || "No description."}</span>`;
   const rect = button.getBoundingClientRect();
   const left = Math.min(window.innerWidth - 340, Math.max(12, rect.left));
@@ -192,11 +204,12 @@ function handleMoveHover(event) {
   if (button) showMoveTooltip(button);
 }
 
-function handleEvolutionClick(event) {
-  const button = event.target.closest(".evolution-name");
+function handleSpeciesLinkClick(event) {
+  const button = event.target.closest(".species-link");
   if (!button) return;
   event.preventDefault();
   event.stopPropagation();
+  event.stopImmediatePropagation();
   openSpeciesByConstant(button.dataset.species);
 }
 
@@ -261,9 +274,9 @@ function evolutionChain(mon) {
       const target = bySpecies.get(edge.target);
       return `
         <div class="evolution-line">
-          <button class="evolution-name" type="button" data-species="${source.constant}">${sprite(source.sprite, "tiny-sprite")}<strong>${source.name}</strong></button>
+          <button class="evolution-name species-link" type="button" data-species="${source.constant}">${sprite(source.sprite, "tiny-sprite")}<strong>${source.name}</strong></button>
           <span class="evolution-arrow">-&gt;</span>
-          <button class="evolution-name" type="button" data-species="${edge.target}">${sprite(target?.sprite, "tiny-sprite")}<strong>${target?.name || edge.target.replace("SPECIES_", "").replaceAll("_", " ")}</strong></button>
+          <button class="evolution-name species-link" type="button" data-species="${edge.target}">${sprite(target?.sprite, "tiny-sprite")}<strong>${target?.name || edge.target.replace("SPECIES_", "").replaceAll("_", " ")}</strong></button>
           <span class="evolution-method">${edge.label}</span>
         </div>
         ${renderFrom(edge.target)}
@@ -273,6 +286,21 @@ function evolutionChain(mon) {
 
   const html = [...roots].map(renderFrom).join("");
   return html || `<p class="muted">No evolution data.</p>`;
+}
+
+function locationRows(locations) {
+  if (!locations?.length) return `<p class="muted">Not found in wild encounters.</p>`;
+  return `<div class="location-list">
+    <div class="location-row location-head"><span>Area</span><span>Method</span><span>Level</span><span>Odds</span></div>
+    ${locations.map((location) => `
+      <div class="location-row">
+        <strong>${location.name}</strong>
+        <span>${location.time ? `${location.time} / ` : ""}${location.method}</span>
+        <span>Lv ${location.minLevel ?? "?"}-${location.maxLevel ?? "?"}</span>
+        <span>${location.rate ?? "-"}%</span>
+      </div>
+    `).join("")}
+  </div>`;
 }
 
 function openSpecies(mon) {
@@ -292,8 +320,10 @@ function openSpecies(mon) {
     <div class="evolution-chain">${evolutionChain(mon)}</div>
     <div class="detail-grid">
       <section><h3 class="section-title">Base Stats</h3>${statBars(mon)}</section>
-      <section><h3 class="section-title">Level-Up Learnset</h3>${moveRows(mon.levelUp)}</section>
+      <section><h3 class="section-title">Locations in wild</h3>${locationRows(mon.locations)}</section>
     </div>
+    <h3 class="section-title">Level-Up Learnset</h3>
+    ${moveRows(mon.levelUp)}
     <h3 class="section-title">TM/HM Compatibility</h3>
     ${moveRows(mon.tmhm)}
     <h3 class="section-title">Tutor Compatibility</h3>
@@ -312,33 +342,45 @@ function openSpeciesByConstant(constant) {
 
 function renderEncounters() {
   const container = document.getElementById("encounterList");
-  const rows = state.data.encounters.filter((encounter) => matches(`${encounter.name} ${encounter.methods.map((m) => m.mons.map((mon) => mon.name).join(" ")).join(" ")}`));
+  const rows = state.data.encounters.filter((encounter) => matches(`${encounter.name} ${encounter.variants.map((variant) => variant.methods.map((m) => m.mons.map((mon) => mon.name).join(" ")).join(" ")).join(" ")}`));
   container.innerHTML = rows.map((encounter) => `
     <article class="card">
       <h2>${encounter.name}</h2>
+      ${encounter.variants.map((variant) => encounterVariant(variant, encounter.hasTimeVariants)).join("")}
+    </article>
+  `).join("");
+}
+
+function encounterVariant(variant, showTime) {
+  return `
+    <section class="encounter-variant">
+      ${showTime ? `<h3 class="encounter-time">${variant.time}</h3>` : ""}
       <div class="encounter-methods">
-        ${encounter.methods.map((method) => `
+        ${variant.methods.map((method) => `
           <section>
-            <h3 class="section-title">${method.method}</h3>
+            <h4 class="section-title">${method.method}</h4>
             <div class="encounter-mon encounter-head">
               <span></span>
               <span>Species</span>
               <span>Level</span>
               <span>Odds</span>
             </div>
-            ${method.method === "Fishing Mons" ? fishingMons(method.mons) : method.mons.map((mon) => encounterMon(mon)).join("")}
+            ${method.key === "fishing_mons" ? fishingMons(method.mons) : method.mons.map((mon) => encounterMon(mon)).join("")}
           </section>
         `).join("")}
       </div>
-    </article>
-  `).join("");
+    </section>
+  `;
 }
 
 function encounterMon(mon) {
+  const name = mon.hasSpecies
+    ? `<button class="encounter-species species-link" type="button" data-species="${mon.species}"><strong>${mon.name}</strong></button>`
+    : `<strong>${mon.name}</strong>`;
   return `
     <div class="encounter-mon">
       ${sprite(mon.sprite, "mini-sprite")}
-      <strong>${mon.name}</strong>
+      ${name}
       <span>Lv ${mon.minLevel ?? "?"}-${mon.maxLevel ?? "?"}</span>
       <span>${mon.rate ?? "-"}%</span>
     </div>
@@ -360,8 +402,10 @@ function fishingMons(mons) {
 function renderTms() {
   const tbody = document.getElementById("tmRows");
   const rows = state.data.tms.filter((tm) => matches(`${tm.label} ${tm.moveName} ${tm.type} ${tm.description}`));
-  tbody.innerHTML = rows.map((tm) => `
-    <tr>
+  tbody.innerHTML = "";
+  rows.forEach((tm) => {
+    const row = el("tr", "tm-row");
+    row.innerHTML = `
       <td><strong>${tm.label}</strong></td>
       <td>${tm.moveName}</td>
       <td>${typePills([tm.type])}</td>
@@ -371,8 +415,39 @@ function renderTms() {
       <td>${tm.pp || "-"}</td>
       <td>${tm.description}</td>
       <td class="muted">${tm.location || "TBD"}</td>
-    </tr>
-  `).join("");
+    `;
+    row.addEventListener("click", (event) => {
+      if (event.target.closest("button, a, .species-link, .ability-pill, .move-name")) return;
+      openTm(tm);
+    });
+    tbody.appendChild(row);
+  });
+}
+
+function speciesCards(list) {
+  if (!list.length) return `<p class="muted">None.</p>`;
+  return `<div class="ability-grid">${list.map((mon) => `
+    <button class="card species-card species-link" type="button" data-species="${mon.constant || mon.species}">
+      ${sprite(mon.sprite, "mini-sprite")}
+      <strong>#${mon.dex || ""} ${mon.name}</strong>
+    </button>
+  `).join("")}</div>`;
+}
+
+function openTm(tm) {
+  const compatible = state.data.species.filter((mon) => mon.tmhm.includes(tm.move));
+  document.getElementById("modalTitle").textContent = `${tm.label} ${tm.moveName}`;
+  document.getElementById("modalBody").innerHTML = `
+    <div class="tm-detail">
+      <div>${typePills([tm.type])}</div>
+      <p><strong>${fmtCategory(tm.category || "")}</strong> / Power ${tm.power || "-"} / Accuracy ${tm.accuracy || "-"} / PP ${tm.pp || "-"}</p>
+      <p>${tm.description || "No description."}</p>
+      <p class="muted">${tm.location || "Location TBD"}</p>
+    </div>
+    <h3 class="section-title">Compatible Pokemon</h3>
+    ${speciesCards(compatible)}
+  `;
+  document.getElementById("detailDialog").showModal();
 }
 
 function renderAbilities() {
@@ -391,13 +466,7 @@ function renderAbilities() {
 }
 
 function usageList(list) {
-  if (!list.length) return `<p class="muted">None.</p>`;
-  return `<div class="ability-grid">${list.map((mon) => `
-    <div class="card">
-      ${sprite(mon.sprite, "mini-sprite")}
-      <strong>#${mon.dex || ""} ${mon.name}</strong>
-    </div>
-  `).join("")}</div>`;
+  return speciesCards(list);
 }
 
 function openAbility(ability) {
