@@ -616,9 +616,13 @@ def build() -> None:
     teachables = parse_teachable_learnsets(tmhm_moves)
     front_sources = parse_front_pic_sources()
 
-    if OUT_DIR.exists():
-        shutil.rmtree(OUT_DIR)
-    shutil.copytree(SRC_DIR, OUT_DIR)
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    for item in SRC_DIR.rglob("*"):
+        dest = OUT_DIR / item.relative_to(SRC_DIR)
+        if item.is_dir():
+            dest.mkdir(parents=True, exist_ok=True)
+        else:
+            shutil.copy2(item, dest)
     (OUT_DIR / ".nojekyll").write_text("", encoding="utf-8")
     (OUT_DIR / "data").mkdir(parents=True, exist_ok=True)
     sprite_dir = OUT_DIR / "sprites" / "pokemon"
