@@ -256,3 +256,108 @@ SINGLE_BATTLE_TEST("Strength Sap will drain users HP if target has Liquid Ooze")
         EXPECT_EQ(lostHp, atkStat);
     }
 }
+
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Strength Sap will not drain users hp due to Liquid Ooze if user is Magic Guard protected (Traits)")
+{
+    GIVEN {
+        PLAYER(SPECIES_TENTACOOL) { Ability(ABILITY_RAIN_DISH); Innates(ABILITY_LIQUID_OOZE); }
+        OPPONENT(SPECIES_CLEFAIRY) { HP(1); Ability(ABILITY_CUTE_CHARM); Innates(ABILITY_MAGIC_GUARD); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_STRENGTH_SAP); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_STRENGTH_SAP, opponent);
+        ABILITY_POPUP(player, ABILITY_LIQUID_OOZE);
+        NOT HP_BAR(opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Strength Sap does not fail if target has Contrary and is at +6 Atk (Traits)")
+{
+    GIVEN {
+        PLAYER(SPECIES_SNIVY) { Ability(ABILITY_OVERGROW); Innates(ABILITY_CONTRARY); }
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_CHARM); }
+        TURN { MOVE(opponent, MOVE_CHARM); }
+        TURN { MOVE(opponent, MOVE_CHARM); }
+        TURN { MOVE(opponent, MOVE_STRENGTH_SAP); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CHARM, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CHARM, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CHARM, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_STRENGTH_SAP, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Strength Sap does not fail if user is at full hp and target has Clear Body (Traits)")
+{
+    GIVEN {
+        PLAYER(SPECIES_BELDUM) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CLEAR_BODY); }
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_STRENGTH_SAP); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_STRENGTH_SAP, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Strength Sap will drain users HP if target has Liquid Ooze (Traits)")
+{
+    s16 lostHp;
+    s32 atkStat;
+
+    PARAMETRIZE { atkStat = 100; }
+    PARAMETRIZE { atkStat = 490; } // Checks that attacker can faint with no problems.
+
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_TENTACOOL) { Attack(atkStat); Ability(ABILITY_RAIN_DISH); Innates(ABILITY_LIQUID_OOZE); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_STRENGTH_SAP); if (atkStat == 490) { SEND_OUT(player, 1); } }
+    } SCENE {
+        MESSAGE("Wobbuffet used Strength Sap!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_STRENGTH_SAP, player);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+        MESSAGE("The opposing Tentacool's Attack fell!");
+        ABILITY_POPUP(opponent, ABILITY_LIQUID_OOZE);
+        HP_BAR(player, captureDamage: &lostHp);
+        MESSAGE("Wobbuffet sucked up the liquid ooze!");
+        if (atkStat >= 490) {
+            MESSAGE("Wobbuffet fainted!");
+            SEND_IN_MESSAGE("Wobbuffet");
+        }
+    } THEN {
+        EXPECT_EQ(lostHp, atkStat);
+    }
+}
+#endif
+
+#if MAX_MON_ITEMS > 1
+SINGLE_BATTLE_TEST("Strength Sap restores more HP if Big Root is held (Items)", s16 hp)
+{
+    enum Item item;
+
+    PARAMETRIZE { item = ITEM_NONE; }
+    PARAMETRIZE { item = ITEM_BIG_ROOT; }
+
+    GIVEN {
+        ASSUME(gItemsInfo[ITEM_BIG_ROOT].holdEffect == HOLD_EFFECT_BIG_ROOT);
+        PLAYER(SPECIES_WOBBUFFET) { HP(200); Items(ITEM_PECHA_BERRY, item); }
+        OPPONENT(SPECIES_WOBBUFFET) { Attack(100); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_STRENGTH_SAP); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Strength Sap!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_STRENGTH_SAP, player);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+        MESSAGE("The opposing Wobbuffet's Attack fell!");
+        HP_BAR(player, captureDamage: &results[i].hp);
+        MESSAGE("The opposing Wobbuffet had its energy drained!");
+    } FINALLY {
+        EXPECT_GT(abs(results[1].hp), abs(results[0].hp));
+    }
+}
+#endif

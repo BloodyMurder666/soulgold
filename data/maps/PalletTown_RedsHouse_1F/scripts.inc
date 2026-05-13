@@ -23,7 +23,7 @@ PalletTown_RedsHouse_1F_EventScript_TV::
 
 RedsHouse_Text_Mom1:
 	.string "Hi!\p"
-	.string "RED's been away for a long time.\p"
+	.string "Red's been away for a long time.\p"
 	.string "He hasn't called either, so I have\n"
 	.string "no idea where he is or what he's\l"
 	.string "been doing.\p"
@@ -32,11 +32,11 @@ RedsHouse_Text_Mom1:
 	.string "about him.$"
 
 RedsHouse_Text_Mom2:
-	.string "I worry about RED getting hurt or\n"
+	.string "I worry about Red getting hurt or\n"
 	.string "sick, but he's a boy.\p"
 	.string "I'm proud that he is doing what he\n"
 	.string "wants to do.$"
 
 RedsHouse_Text_TV:
 	.string "They have programs that aren't\n"
-	.string "shown in JOHTO…$"
+	.string "shown in Johto…$"

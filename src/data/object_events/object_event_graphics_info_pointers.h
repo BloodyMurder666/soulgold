@@ -326,6 +326,8 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedMauvi
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedMauvilleOldMan2;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_ApricornTree;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Case;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_TMBall;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Megastone;
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
     [OBJ_EVENT_GFX_BRENDAN_NORMAL] =           &gObjectEventGraphicsInfo_BrendanNormal,
@@ -653,6 +655,8 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_TOWER_BEAM] =                &gObjectEventGraphicsInfo_TowerBeam,
     [OBJ_EVENT_GFX_APRICORN_TREE] =            &gObjectEventGraphicsInfo_ApricornTree,
     [OBJ_EVENT_GFX_CASE] =                    &gObjectEventGraphicsInfo_Case,
+    [OBJ_EVENT_GFX_TMBALL] =                  &gObjectEventGraphicsInfo_TMBall,
+    [OBJ_EVENT_GFX_MEGASTONE] =                  &gObjectEventGraphicsInfo_Megastone,
 };
 
 const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {

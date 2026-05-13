@@ -55,8 +55,8 @@ UnionCave_1F_EventScript_FirebreatherRay::
 	end	
 
 UnionCave_1F_Text_HikerRussellSeen:
-	.string "You're headed to AZALEA, are you?\p"
-	.string "Let my POKéMON see if you are good\n"
+	.string "You're headed to Azalea, are you?\p"
+	.string "Let my Pokémon see if you are good\n"
 	.string "enough to battle.$"
 
 UnionCave_1F_Text_HikerRussellBeaten:
@@ -64,20 +64,20 @@ UnionCave_1F_Text_HikerRussellBeaten:
 
 UnionCave_1F_Text_HikerRussellAfter:
 	.string "All right, then! I've decided.\p"
-	.string "I'm not leaving until my POKéMON\n"
+	.string "I'm not leaving until my Pokémon\n"
 	.string "get tougher!$"
 
 UnionCave_1F_Text_PokemaniacLarrySeen:
 	.string "I roam far and wide in search of\n"
-	.string "POKéMON.\p"
-	.string "Are you looking for POKéMON too?\p"
+	.string "Pokémon.\p"
+	.string "Are you looking for Pokémon too?\p"
 	.string "Then you're my collecting rival!$"
 
 UnionCave_1F_Text_PokemaniacLarryBeaten:
-	.string "Ugh. My poor POKéMON…$"
+	.string "Ugh. My poor Pokémon…$"
 
 UnionCave_1F_Text_PokemaniacLarryAfter:
-	.string "Every Friday, you can hear POKéMON\n"
+	.string "Every Friday, you can hear Pokémon\n"
 	.string "roars from deep inside the cave.$"
 
 UnionCave_1F_Text_HikerDanielSeen:
@@ -89,12 +89,12 @@ UnionCave_1F_Text_HikerDanielBeaten:
 
 UnionCave_1F_Text_HikerDanielAfter:
 	.string "I was conned into buying a\n"
-	.string "SLOWPOKETAIL.\p"
-	.string "I feel sorry for the poor POKéMON.$"
+	.string "Slowpoketail.\p"
+	.string "I feel sorry for the poor Pokémon.$"
 
 UnionCave_1F_Text_FirebreatherBillSeen:
-	.string "ZUBAT's SUPERSONIC keeps confusing\n"
-	.string "my POKéMON.\p"
+	.string "Zubat's Supersonic keeps confusing\n"
+	.string "my Pokémon.\p"
 	.string "I'm seriously upset about that!$"
 
 UnionCave_1F_Text_FirebreatherBillBeaten:
@@ -106,12 +106,12 @@ UnionCave_1F_Text_FirebreatherBillAfter:
 
 UnionCave_1F_Text_FirebreatherRaySeen:
 	.string "If it's light, a cave isn't scary.\p"
-	.string "If you're strong, POKéMON aren't\n"
+	.string "If you're strong, Pokémon aren't\n"
 	.string "scary.$"
 
 UnionCave_1F_Text_FirebreatherRayBeaten:
-	.string "FLASH!$"
+	.string "Flash!$"
 
 UnionCave_1F_Text_FirebreatherRayAfter:
-	.string "It's my POKéMON's fire that lights\n"
+	.string "It's my Pokémon's fire that lights\n"
 	.string "up this cave.$"

@@ -16,8 +16,8 @@
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(DELIBIRD)",
-      "x": 22,
-      "y": 21,
+      "x": 17,
+      "y": 23,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 0,
@@ -29,8 +29,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(SWINUB)",
-      "x": 22,
-      "y": 21,
+      "x": 23,
+      "y": 23,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 0,
@@ -41,7 +41,7 @@
       "flag": "FLAG_DAY_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GOLBAT)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SNEASEL)",
       "x": 24,
       "y": 12,
       "elevation": 0,
@@ -54,7 +54,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SWINUB)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SNORUNT)",
       "x": 3,
       "y": 21,
       "elevation": 0,
@@ -67,7 +67,7 @@
       "flag": "FLAG_DAY_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SWINUB)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SPHEAL)",
       "x": 2,
       "y": 19,
       "elevation": 0,

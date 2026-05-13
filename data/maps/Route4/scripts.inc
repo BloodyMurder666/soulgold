@@ -27,14 +27,14 @@ Route4_EventScript_Sign::
 	end
 
 Route4_Text_BirdKeeperHank_Seen:
-	.string "I'm raising my POKéMON. Want to battle\n"
+	.string "I'm raising my Pokémon. Want to battle\n"
 	.string "with me?$"
 
 Route4_Text_BirdKeeperHank_Beaten:
 	.string "Ack! I lost that one…$"
 
 Route4_Text_BirdKeeperHank_AfterBattle:
-	.string "If you have a specific POKéMON that you\n"
+	.string "If you have a specific Pokémon that you\n"
 	.string "want to raise, put it out first, then\n"
 	.string "switch it right away.\p"
 	.string "That's how to do it.$"
@@ -47,7 +47,7 @@ Route4_Text_PicnickerHope_Beaten:
 	.string "Aww, you are too strong.$"
 
 Route4_Text_PicnickerHope_AfterBattle:
-	.string "I heard CLEFAIRY appear at MT.MOON.\p"
+	.string "I heard Clefairy appear at Mt.Moon.\p"
 	.string "But where could they be?$"
 
 Route4_Text_PicnickerSharon_Seen:
@@ -61,6 +61,6 @@ Route4_Text_PicnickerSharon_AfterBattle:
 	.string "……I'll go train some more…$"
 
 Route4_Text_MtMoonSquareSign:
-	.string "MT.MOON SQUARE\p"
+	.string "Mt.Moon Square\p"
 	.string "Just go up the stairs.$"
 

@@ -28,7 +28,7 @@ ShoalCave_LowTideIceRoom_Suicune_EntranceTrigger::
 
 ShoalCave_LowTideIceRoom_Suicune_EntranceTrigger_Text:
 	.string "A chilling roar echoes around\n"
-	.string "SHOAL CAVE.\p"
+	.string "Shoal Cave.\p"
 	.string "There's something or someone here.$"
 
 ShoalCave_LowTideIceRoom_Suicune_EntranceTriggerMovement:
@@ -93,7 +93,7 @@ ShoalCave_LowTideIceRoom_Suicune_SuicuneBattle1_Movement:
 	step_end
 
 ShoalCave_LowTideIceRoom_Suicune_SuicuneBattle1_Text:
-	.string "The POKéMON swiftly ran away!$"
+	.string "The Pokémon swiftly ran away!$"
 
 @@Second encounter with Suicune. Level 80. High defenses
 
@@ -188,7 +188,7 @@ ShoalCave_LowTideIceRoom_Suicune_SuicuneBattle3_Stats::
 	return
 
 ShoalCave_LowTideIceRoom_Suicune_SuicuneFinalBattle_Text:
-	.string "SUICUNE doesn't have anywhere\n"
+	.string "Suicune doesn't have anywhere\n"
 	.string "else to hide.\p"
 	.string "Can it be captured now?$"
 

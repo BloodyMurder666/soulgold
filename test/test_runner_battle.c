@@ -4,6 +4,7 @@
 #include "battle_anim.h"
 #include "battle_controllers.h"
 #include "battle_setup.h"
+#include "battle_util.h"
 #include "battle_gimmick.h"
 #include "battle_z_move.h"
 #include "event_data.h"
@@ -30,6 +31,7 @@
 #undef TestRunner_Battle_AfterLastTurn
 #undef TestRunner_Battle_CheckBattleRecordActionType
 #undef TestRunner_Battle_GetForcedAbility
+#undef TestRunner_Battle_GetForcedInnates
 #endif
 
 #define INVALID(fmt, ...) Test_ExitWithResult(TEST_RESULT_INVALID, sourceLine, ":L%s:%d: " fmt, gTestRunnerState.test->filename, sourceLine, ##__VA_ARGS__)
@@ -1523,6 +1525,20 @@ void TestRunner_Battle_RecordExp(enum BattlerId battlerId, u32 oldExp, u32 newEx
     }
 }
 
+static bool32 IsStatChangeAnimationPendingOrActive(enum BattlerId battler)
+{
+    if (DATA.trial.concurrentStatAnimMessage[battler])
+    {
+        DATA.trial.concurrentStatAnimMessage[battler] = FALSE;
+        return TRUE;
+    }
+
+    return gBattleSpritesDataPtr->healthBoxesData[battler].animFromTableActive
+        || (IsBattlerMarkedForControllerExec(battler)
+         && gBattleResources->bufferA[battler][0] == CONTROLLER_BATTLEANIMATION
+         && gBattleResources->bufferA[battler][1] == B_ANIM_STATS_CHANGE);
+}
+
 static s32 TryMessage(s32 i, s32 n, const u8 *string)
 {
     s32 j, k;
@@ -1530,7 +1546,8 @@ static s32 TryMessage(s32 i, s32 n, const u8 *string)
     s32 iMax = i + n;
     for (; i < iMax; i++)
     {
-        if (DATA.queuedEvents[i].type != QUEUED_MESSAGE_EVENT)
+        if (DATA.queuedEvents[i].type != QUEUED_MESSAGE_EVENT
+         && DATA.queuedEvents[i].type != QUEUED_MESSAGE_DURING_STAT_ANIM_EVENT)
             continue;
 
         event = &DATA.queuedEvents[i].as.message;
@@ -1563,6 +1580,9 @@ static s32 TryMessage(s32 i, s32 n, const u8 *string)
             }
             else if (string[j] == EOS)
             {
+                if (DATA.queuedEvents[i].type == QUEUED_MESSAGE_DURING_STAT_ANIM_EVENT
+                 && !IsStatChangeAnimationPendingOrActive(event->statAnimBattler))
+                    break;
                 return i;
             }
         }
@@ -1749,6 +1769,7 @@ static const char *const sEventTypeMacros[] =
     [QUEUED_SUB_HIT_EVENT] = "SUB_HIT",
     [QUEUED_EXP_EVENT] = "EXPERIENCE_BAR",
     [QUEUED_MESSAGE_EVENT] = "MESSAGE",
+    [QUEUED_MESSAGE_DURING_STAT_ANIM_EVENT] = "MESSAGE_DURING_STAT_ANIM",
     [QUEUED_STATUS_EVENT] = "STATUS_ICON",
     [QUEUED_CATCH_CHANCE_EVENT] = "CATCH_CHANCE",
 };
@@ -2240,6 +2261,20 @@ void Ability_(u32 sourceLine, enum Ability ability)
     }
 }
 
+void Innates_(u32 sourceLine, enum Ability innates[MAX_MON_INNATES_INTERNAL])
+{
+    s32 i;
+    INVALID_IF(!DATA.currentMon, "Innates outside of PLAYER/OPPONENT");
+
+    // Overwrites the target pokemon with the given Innate list.
+    // If the list is empty, the pokemon will have no Innates to remain compatible with vanilla tests.
+    for (i = 0; i < MAX_MON_INNATES; i++)
+    {
+        INVALID_IF(innates[i] >= ABILITIES_COUNT, "Illegal ability id: %d", innates[i]);
+        DATA.forcedInnates[DATA.battleTrainer][DATA.currentPartyIndex][i] = innates[i];
+    }
+}
+
 void Level_(u32 sourceLine, u32 level)
 {
     // TODO: Preserve any explicitly-set stats.
@@ -2374,6 +2409,23 @@ void Item_(u32 sourceLine, u32 item)
         break;
     default:
         break;
+    }
+}
+
+void Items_(u32 sourceLine, u32 items[MAX_MON_ITEMS_INTERNAL])
+{
+    s32 i;
+    INVALID_IF(!DATA.currentMon, "Item outside of PLAYER/OPPONENT");
+    
+    for (i = 0; i < MAX_MON_ITEMS; i++)
+    {
+        INVALID_IF(items[i] >= ITEMS_COUNT, "Illegal item: %d", items[i]);
+            
+        SetMonData(DATA.currentMon, MON_DATA_HELD_ITEM + i, &items[i]);
+        if (GetItemHoldEffect(items[i]) == HOLD_EFFECT_MEGA_STONE)
+            SetGimmick(sourceLine, DATA.battleTrainer, DATA.currentPartyIndex, GIMMICK_MEGA);
+        if (GetItemHoldEffect(items[i]) == HOLD_EFFECT_Z_CRYSTAL)
+            SetGimmick(sourceLine, DATA.battleTrainer, DATA.currentPartyIndex, GIMMICK_Z_MOVE);
     }
 }
 
@@ -2759,19 +2811,31 @@ void MoveGetIdAndSlot(enum BattlerId battlerId, struct MoveContext *ctx, u32 *mo
 
     if (ctx->explicitGimmick && ctx->gimmick != GIMMICK_NONE)
     {
-        enum Item item = GetMonData(mon, MON_DATA_HELD_ITEM);
-        enum HoldEffect holdEffect = GetItemHoldEffect(item);
+        enum Item item = ITEM_NONE;
         u32 species = GetMonData(mon, MON_DATA_SPECIES);
+        bool32 hasMegaStone = FALSE;
+        bool32 hasZCrystal = FALSE;
+
+        for (u32 i = 0; i < MAX_MON_ITEMS; i++)
+        {
+            if (GetItemHoldEffect(GetMonData(mon, MON_DATA_HELD_ITEM + i)) == HOLD_EFFECT_MEGA_STONE)
+                hasMegaStone = TRUE;
+            if (GetItemHoldEffect(GetMonData(mon, MON_DATA_HELD_ITEM + i)) == HOLD_EFFECT_Z_CRYSTAL)
+                {
+                    item = GetMonData(mon, MON_DATA_HELD_ITEM + i);
+                    hasZCrystal = TRUE;
+                }
+        }
 
         // Check invalid item usage.
-        INVALID_IF(ctx->gimmick == GIMMICK_MEGA && holdEffect != HOLD_EFFECT_MEGA_STONE && species != SPECIES_RAYQUAZA, "Cannot Mega Evolve without a Mega Stone");
-        INVALID_IF(ctx->gimmick == GIMMICK_Z_MOVE && holdEffect != HOLD_EFFECT_Z_CRYSTAL, "Cannot use a Z-Move without a Z-Crystal");
+        INVALID_IF(ctx->gimmick == GIMMICK_MEGA && !hasMegaStone && species != SPECIES_RAYQUAZA, "Cannot Mega Evolve without a Mega Stone");
+        INVALID_IF(ctx->gimmick == GIMMICK_Z_MOVE && !hasZCrystal, "Cannot use a Z-Move without a Z-Crystal");
         INVALID_IF(ctx->gimmick == GIMMICK_Z_MOVE && GetItemSecondaryId(item) != GetMoveType(*moveId)
                    && GetSignatureZMove(*moveId, species, item) == MOVE_NONE
                    && *moveId != MOVE_PHOTON_GEYSER, // exception because test won't recognize Ultra Necrozma pre-Burst
                    "Cannot turn %S into a Z-Move with %S", GetMoveName(ctx->move), GetItemName(item));
-        INVALID_IF(ctx->gimmick != GIMMICK_MEGA && holdEffect == HOLD_EFFECT_MEGA_STONE, "Cannot use another gimmick while holding a Mega Stone");
-        INVALID_IF(ctx->gimmick != GIMMICK_Z_MOVE && ctx->gimmick != GIMMICK_ULTRA_BURST && holdEffect == HOLD_EFFECT_Z_CRYSTAL, "Cannot use another gimmick while holding a Z-Crystal");
+        INVALID_IF(ctx->gimmick != GIMMICK_MEGA && hasMegaStone, "Cannot use another gimmick while holding a Mega Stone");
+        INVALID_IF(ctx->gimmick != GIMMICK_Z_MOVE && ctx->gimmick != GIMMICK_ULTRA_BURST && hasZCrystal, "Cannot use another gimmick while holding a Z-Crystal");
 
         // Check multiple gimmick use.
         SetGimmick(sourceLine, CurrentTrainer(battlerId), DATA.currentMonIndexes[battlerId], ctx->gimmick);
@@ -3418,6 +3482,29 @@ void QueueMessage(u32 sourceLine, const u8 *pattern)
         .groupSize = 1,
         .as = { .message = {
             .pattern = pattern,
+            .statAnimBattler = MAX_BATTLERS_COUNT,
+        }},
+    };
+}
+
+void QueueMessageDuringStatAnim(u32 sourceLine, const u8 *pattern, struct BattlePokemon *battler)
+{
+    enum BattlerId battlerId = battler - gBattleMons;
+
+    if (gTestRunnerState.expectedFailState == EXPECT_FAIL_OPEN)
+        gTestRunnerState.expectedFailState = EXPECT_FAIL_SCENE_OPEN;
+
+    INVALID_IF(!STATE->runScene, "MESSAGE_DURING_STAT_ANIM outside of SCENE");
+    if (DATA.queuedEventsCount == MAX_QUEUED_EVENTS)
+        Test_ExitWithResult(TEST_RESULT_ERROR, sourceLine, ":L%s:%d: MESSAGE_DURING_STAT_ANIM exceeds MAX_QUEUED_EVENTS", gTestRunnerState.test->filename, sourceLine);
+    DATA.queuedEvents[DATA.queuedEventsCount++] = (struct QueuedEvent) {
+        .type = QUEUED_MESSAGE_DURING_STAT_ANIM_EVENT,
+        .sourceLineOffset = SourceLineOffset(sourceLine),
+        .groupType = QUEUE_GROUP_NONE,
+        .groupSize = 1,
+        .as = { .message = {
+            .pattern = pattern,
+            .statAnimBattler = battlerId,
         }},
     };
 }
@@ -3491,6 +3578,11 @@ void ValidateFinally(u32 sourceLine)
 u32 TestRunner_Battle_GetForcedAbility(enum BattleTrainer trainer, u32 partyIndex)
 {
     return DATA.forcedAbilities[trainer][partyIndex];
+}
+
+u32 TestRunner_Battle_GetForcedInnates(u32 array, u32 partyIndex, s32 i)
+{
+    return DATA.forcedInnates[array][partyIndex][i];
 }
 
 u32 TestRunner_Battle_GetForcedEnvironment(void)

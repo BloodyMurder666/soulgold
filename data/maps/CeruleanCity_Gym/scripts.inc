@@ -161,23 +161,23 @@ CeruleanCity_Gym_EventScript_GymGuyAfter::
 	end
 
 CeruleanCity_Gym_Text_GymStatue::
-    .string "CERULEAN POKéMON GYM\n"
-    .string "LEADER: MISTY\p"
-	.string "WINNING TRAINERS:\n"
-	.string "BLUE, RED$"
+    .string "Cerulean Pokémon Gym\n"
+    .string "Leader: Misty\p"
+	.string "Winning Trainers:\n"
+	.string "Blue, Red$"
 
 CeruleanCity_Gym_Text_GymStatuePlayerWon::
-    .string "CERULEAN POKéMON GYM\n"
-    .string "LEADER: MISTY\p"
-    .string "WINNING TRAINERS:\n"
-	.string "BLUE, RED, {PLAYER}$"
+    .string "Cerulean Pokémon Gym\n"
+    .string "Leader: Misty\p"
+    .string "Winning Trainers:\n"
+	.string "Blue, Red, {PLAYER}$"
 
 CeruleanGym_Text_Note:
 	.string "Sorry, I'll be out for a while.\n"
-	.string "MISTY, GYM LEADER\p"
-	.string "Since MISTY's out, we'll be away\n"
+	.string "Misty, Gym Leader\p"
+	.string "Since Misty's out, we'll be away\n"
 	.string "too.\l"
-	.string "GYM TRAINERS$"
+	.string "Gym Trainers$"
 
 
 CeruleanCity_Gym_EventScript_Misty::
@@ -214,10 +214,10 @@ CeruleanCity_Gym_EventScript_Misty_Defeated::
 	end
 
 CeruleanCity_Gym_Text_WaterPulseSpeech:
-    .string "That TM contains WATER PULSE.\p"
+    .string "That TM contains Water Pulse.\p"
     .string "It can sometimes confuse your foe.\p"
-    .string "You've managed to defeat TRAINERS\n"
-    .string "all the way from JOHTO. I'm sure\l"
+    .string "You've managed to defeat Trainers\n"
+    .string "all the way from Johto. I'm sure\l"
 	.string "you have a good use for it.$"
 
 CeruleanGym_Text_GruntIntro:
@@ -240,45 +240,45 @@ CeruleanGym_Text_GruntBye:
 
 CeruleanGym_Text_Note1:
 	.string "Sorry, I'll be out for a while.\n"
-	.string "MISTY, GYM LEADER\p"
-	.string "Since MISTY's out, we'll be away\n"
-	.string "too. GYM TRAINERS$"
+	.string "Misty, Gym Leader\p"
+	.string "Since Misty's out, we'll be away\n"
+	.string "too. Gym Trainers$"
 
 CeruleanGym_Text_MistyIntro:
-	.string "MISTY: I was expecting you, you\n"
+	.string "Misty: I was expecting you, you\n"
 	.string "pest!\p"
-	.string "You may have a lot of JOHTO GYM\n"
-	.string "BADGES, but you'd better not\l"
+	.string "You may have a lot of Johto Gym\n"
+	.string "Badges, but you'd better not\l"
 	.string "take me too lightly.\p"
-	.string "My WATER-type POKéMON are\n"
+	.string "My Water-type Pokémon are\n"
 	.string "tough!$"
 
 CeruleanGym_Text_MistyWinLoss:
-	.string "MISTY: You really are good…\p"
+	.string "Misty: You really are good…\p"
 	.string "I'll admit that you are skilled…\p"
-	.string "Here you go. It's CASCADEBADGE.$"
+	.string "Here you go. It's Cascadebadge.$"
 
 CeruleanGym_Text_ReceivedBadge:
-	.string "{PLAYER} received CASCADEBADGE.$"
+	.string "{PLAYER} received Cascadebadge.$"
 
 CeruleanGym_Text_MistyFightDone:
-	.string "MISTY: Are there many strong\n"
-	.string "trainers in JOHTO? Like you, I\l"
+	.string "Misty: Are there many strong\n"
+	.string "trainers in Johto? Like you, I\l"
 	.string "mean.\p"
 	.string "I'm going to travel one day, so\n"
 	.string "I can battle some skilled\l"
 	.string "trainers.$"
 
 CeruleanGym_Text_MistyRematch:
-	.string "MISTY: Wow, you're the KANTO\n"
-	.string "CHAMPION now!\p"
+	.string "Misty: Wow, you're the Kanto\n"
+	.string "Champion now!\p"
 	.string "That's amazing! You've come a\n"
 	.string "long way, {PLAYER}.\p"
 	.string "But I'm not backing down.\p"
 	.string "Want to have a rematch with me?$"
 
 CeruleanGym_Text_MistyRematchDefeat:
-	.string "MISTY: You really are good…$"
+	.string "Misty: You really are good…$"
 
 CeruleanGym_Text_SwimmerfDianaSeen:
 	.string "Sorry about being away. Let's get\n"
@@ -300,7 +300,7 @@ CeruleanGym_Text_SwimmerfBrianaBeaten:
 CeruleanGym_Text_SwimmerfBrianaAfter:
 	.string "Don't be too smug about beating\n"
 	.string "me.\p"
-	.string "MISTY will destroy you if you get\n"
+	.string "Misty will destroy you if you get\n"
 	.string "complacent.$"
 
 CeruleanGym_Text_SwimmermParkerSeen:
@@ -311,14 +311,14 @@ CeruleanGym_Text_SwimmermParkerBeaten:
 	.string "This can't be…$"
 
 CeruleanGym_Text_SwimmermParkerAfter:
-	.string "MISTY has gotten much better in\n"
+	.string "Misty has gotten much better in\n"
 	.string "the past few years.\p"
 	.string "Don't let your guard down, or\n"
 	.string "you'll be crushed!$"
 
 CeruleanGym_Text_GuideIntro:
-	.string "Yo! CHAMP in making!\p"
-	.string "Since MISTY was away, I went out\p"
+	.string "Yo! Champ in making!\p"
+	.string "Since Misty was away, I went out\p"
 	.string "for some fun too. He-he-he.$"
 
 CeruleanGym_Text_GuideWin:

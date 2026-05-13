@@ -97,6 +97,9 @@ ifeq ($(RELEASE),1)
 endif
 
 ROM_NAME := $(FILE_NAME).gba
+BPS_BASE ?= clean.gba
+BPS_PATCH ?= nightly.bps
+BPS_TOOL ?= tools/flips/flips$(EXE)
 OBJ_DIR_NAME := $(BUILD_DIR)/$(BUILD_NAME)
 OBJ_DIR_NAME_TEST := $(BUILD_DIR)/$(BUILD_NAME)-test
 OBJ_DIR_NAME_DEBUG := $(BUILD_DIR)/$(BUILD_NAME)-debug
@@ -269,7 +272,7 @@ MAKEFLAGS += --no-print-directory
 .DELETE_ON_ERROR:
 
 RULES_NO_SCAN += libagbsyscall clean clean-assets tidy tidymodern tidycheck tidyrelease generated clean-generated clean-teachables clean-teachables_intermediates
-.PHONY: all rom agbcc modern compare check debug release
+.PHONY: all rom bps nightly-bps agbcc modern compare check debug release
 .PHONY: $(RULES_NO_SCAN)
 
 infoshell = $(foreach line, $(shell $1 | sed "s/ /__SPACE__/g"), $(info $(subst __SPACE__, ,$(line))))
@@ -369,6 +372,16 @@ rom: $(ROM)
 ifeq ($(COMPARE),1)
 	@$(SHA1) rom.sha1
 endif
+
+bps nightly-bps: $(BPS_PATCH)
+
+$(BPS_PATCH): $(ROM) $(BPS_TOOL)
+	@test -f "$(BPS_BASE)" || { echo "Missing base ROM: $(BPS_BASE). Keep it local; do not commit it."; exit 1; }
+	@rm -f $@
+	$(BPS_TOOL) --create --bps "$(BPS_BASE)" "$(ROM)" "$@"
+
+$(BPS_TOOL):
+	@$(MAKE) -C tools/flips
 
 syms: $(SYM)
 

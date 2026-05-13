@@ -112,7 +112,6 @@ bool32 IsZMove(enum Move move)
 
 bool32 CanUseZMove(enum BattlerId battler)
 {
-    enum HoldEffect holdEffect = GetBattlerHoldEffectIgnoreNegation(battler);
     enum BattlerPosition position = GetBattlerPosition(battler);
 
     // Check if Player has Z-Power Ring.
@@ -134,7 +133,7 @@ bool32 CanUseZMove(enum BattlerId battler)
         return FALSE;
 
     // Check if battler isn't holding a Z-Crystal.
-    if (holdEffect != HOLD_EFFECT_Z_CRYSTAL)
+    if (!BattlerHasHeldItemEffectIgnoreAbility(battler, HOLD_EFFECT_Z_CRYSTAL, FALSE))
         return FALSE;
 
     // All checks passed!
@@ -143,11 +142,9 @@ bool32 CanUseZMove(enum BattlerId battler)
 
 enum Move GetUsableZMove(enum BattlerId battler, enum Move move)
 {
-    enum Item item = gBattleMons[battler].item;
-    enum HoldEffect holdEffect = GetBattlerHoldEffectIgnoreNegation(battler);
-
-    if (holdEffect == HOLD_EFFECT_Z_CRYSTAL)
+    if (BattlerHasHeldItemEffectIgnoreAbility(battler, HOLD_EFFECT_Z_CRYSTAL, FALSE))
     {
+        u32 item = GetBattlerHeldItemWithEffect(battler, HOLD_EFFECT_Z_CRYSTAL, FALSE);
         enum Move zMove = GetSignatureZMove(move, gBattleMons[battler].species, item);
         if (zMove != MOVE_NONE)
             return zMove;  // Signature z move exists
@@ -166,11 +163,7 @@ void ActivateZMove(enum BattlerId battler)
 
 bool32 IsViableZMove(enum BattlerId battler, enum Move move)
 {
-    enum Item item;
-    enum HoldEffect holdEffect = GetBattlerHoldEffectIgnoreNegation(battler);
     int moveSlotIndex;
-
-    item = gBattleMons[battler].item;
 
     if (gBattleStruct->gimmick.usableGimmick[battler] != GIMMICK_Z_MOVE)
         return FALSE;
@@ -190,8 +183,9 @@ bool32 IsViableZMove(enum BattlerId battler, enum Move move)
     }
 
     // Check for signature Z-Move or type-based Z-Move.
-    if (holdEffect == HOLD_EFFECT_Z_CRYSTAL)
+    if (BattlerHasHeldItemEffect(battler, HOLD_EFFECT_Z_CRYSTAL, FALSE))
     {
+        u32 item = GetBattlerHeldItemWithEffect(battler, HOLD_EFFECT_Z_CRYSTAL, FALSE);
         enum Move zMove = GetSignatureZMove(move, gBattleMons[battler].species, item);
         if (zMove != MOVE_NONE)
             return TRUE;

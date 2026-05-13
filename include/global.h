@@ -336,7 +336,7 @@ struct ApprenticeMon
 {
     u16 species;
     enum Move moves[MAX_MON_MOVES];
-    enum Item item;
+    enum Item item[MAX_MON_ITEMS_INTERNAL];
 };
 
 // This is for past players Apprentices or Apprentices received via Record Mix.
@@ -360,7 +360,7 @@ struct Apprentice
 struct BattleTowerPokemon
 {
     u16 species;
-    u16 heldItem;
+    u16 heldItem[MAX_MON_ITEMS_INTERNAL];
     enum Move moves[MAX_MON_MOVES];
     u8 level;
     u8 ppBonuses;
@@ -512,7 +512,7 @@ struct BattleFrontier
               u8 pikeHintedRoomType:4;
               u8 pikeHealingRoomsDisabled:1;
     /*0xE11*/ //u8 padding2;
-    /*0xE12*/ u16 pikeHeldItemsBackup[FRONTIER_PARTY_SIZE];
+    /*0xE12*/ u16 pikeHeldItemsBackup[FRONTIER_PARTY_SIZE][MAX_MON_ITEMS_INTERNAL];
     /*0xE18*/ u16 pyramidPrize;
     /*0xE1A*/ u16 pyramidWinStreaks[FRONTIER_LVL_MODE_COUNT];
     /*0xE1E*/ u16 pyramidRecordStreaks[FRONTIER_LVL_MODE_COUNT];
@@ -602,15 +602,18 @@ struct SaveBlock2
              u16 optionsBattleStyle:1; // OPTIONS_BATTLE_STYLE_[SHIFT/SET]
              u16 optionsBattleSceneOff:1; // whether battle animations are disabled
              u16 regionMapZoom:1; // whether the map is zoomed in
-             u16 optionsEXPShare:1;
-             u16 optionsAutoHMs:1;
+             u16 unused4:1;
+             u16 unused0:1;
              u16 optionsFollowers:1;
              u16 optionsAutorun:1;
              u16 unused1:1;
-             u16 unused2:3;
-             u16 unused3:3; //0,1,2
+             u16 optionsTrainerLevelScaling:1; //0 = off, 1 = on
+             u16 optionsWildLevelScaling:1; //0 = off, 1 = on
+             u16 optionsDifficulty:1; //0 = normal, 1 = hard
+             u16 optionsFastIntroNoSlide:1; //0 = show intro slide, 1 = skip intro slide
+             u16 optionsBattleSpeed:2;
              u16 optionsFont:2; //0 = emerald, 1 = fire red
-             u16 optionsMusic:3; //0 = johto, 1 = sinnoh, 2 = hoenn
+             u16 optionsLevelCaps:3; //0 = no caps, 1 = soft caps, 2 = hard caps
              u8 rivalName[PLAYER_NAME_LENGTH + 1];
              //u16 padding1:4;
              //u16 padding2;
@@ -644,7 +647,7 @@ struct SecretBaseParty
     u32 personality[PARTY_SIZE];
     enum Move moves[PARTY_SIZE * MAX_MON_MOVES];
     u16 species[PARTY_SIZE];
-    u16 heldItems[PARTY_SIZE];
+    u16 heldItem[PARTY_SIZE][MAX_MON_ITEMS_INTERNAL];
     u8 levels[PARTY_SIZE];
     u8 EVs[PARTY_SIZE];
 };
@@ -1199,6 +1202,19 @@ struct SaveBlock1
     /*0x3???*/ struct TrainerHillSave trainerHill;
 #endif //FREE_TRAINER_HILL
     /*0x3???*/ struct WaldaPhrase waldaPhrase;
+
+    // To add new persistent SaveBlock1 data later, place it here and reduce
+    // SAVEBLOCK1_FUTURE_RESERVED_BYTES by the exact number of bytes consumed.
+    //
+    // Example:
+    //     /*0x3???*/ u32 newFeatureCounter; // 4 bytes
+    //     /*0x3???*/ u8 newFeatureState[12]; // 12 bytes
+    //
+    // Then change:
+    //     #define SAVEBLOCK1_FUTURE_RESERVED_BYTES 8192
+    // to:
+    //     #define SAVEBLOCK1_FUTURE_RESERVED_BYTES (8192 - 16)
+    /*0x3???*/ u8 futureReserved[SAVEBLOCK1_FUTURE_RESERVED_BYTES];
     // sizeof: 0x3???
 };
 

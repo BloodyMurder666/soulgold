@@ -32,32 +32,32 @@ CeruleanCity_EventScript_Guard::
 	end
 
 CeruleanCity_Text_ThisIsCeruleanCave::
-    .string "This is CERULEAN CAVE.\p"
-    .string "Horribly strong POKéMON live inside\n"
+    .string "This is Cerulean Cave.\p"
+    .string "Horribly strong Pokémon live inside\n"
     .string "there.\p"
-    .string "It takes a very special TRAINER to\n"
+    .string "It takes a very special Trainer to\n"
     .string "be allowed inside there.\p"
     .string "You'd have to be strong enough to\n"
-    .string "become the KANTO POKéMON LEAGUE\l"
-    .string "CHAMPION for starters.\p"
+    .string "become the Kanto Pokémon League\l"
+    .string "Champion for starters.\p"
     .string "And, you would have to have\n"
     .string "made a great achievement.$"
 
 CeruleanCity_Text_CooltrainerM1:
-	.string "KANTO's POWER PLANT?\p"
-	.string "It's near the end of ROUTE 9, the\n"
+	.string "Kanto's Power Plant?\p"
+	.string "It's near the end of Route 9, the\n"
 	.string "road that heads east from here.\p"
 	.string "I think there was an accident of\n"
 	.string "some sort there.$"
 
 CeruleanCity_Text_CooltrainerM2:
 	.string "You're collecting every single\n"
-	.string "kind of POKéMON?\p"
+	.string "kind of Pokémon?\p"
 	.string "That must be quite a challenge,\n"
 	.string "but it sounds fun too.$"
 
 CeruleanCity_Text_SuperNerd:
-	.string "The CAPE in the north is a good\n"
+	.string "The Cape in the north is a good\n"
 	.string "place for dates.\p"
 	.string "Girls like it!$"
 
@@ -72,7 +72,7 @@ CeruleanCity_EventScript_Slowbro::
 	end
 
 CeruleanCity_Text_Slowbro:
-	.string "SLOWBRO: Yarah?$"
+	.string "Slowbro: Yarah?$"
 
 CeruleanCity_EventScript_SlowbroWoman::
 	msgbox CeruleanCity_Text_CooltrainerF1, MSGBOX_NPC
@@ -91,11 +91,11 @@ CeruleanCity_EventScript_SlowbroWoman::
 	end
 
 CeruleanCity_Text_CooltrainerF1:
-	.string "My SLOWBRO and I make an awesome\n"
+	.string "My Slowbro and I make an awesome\n"
 	.string "combination!$"
 
 CeruleanCity_Text_CooltrainerF2:
-	.string "SLOWBRO, show me your CONFUSION!$"
+	.string "Slowbro, show me your Confusion!$"
 
 CeruleanCity_Text_CooltrainerF3:
 	.string "…$"
@@ -110,12 +110,12 @@ CeruleanCity_EventScript_FisherDuringRocket::
 	end
 
 CeruleanCity_Text_Fisher:
-	.string "I'm a huge fan of CERULEAN GYM's\n"
-	.string "MISTY.$"
+	.string "I'm a huge fan of Cerulean Gym's\n"
+	.string "Misty.$"
 
 CeruleanCity_Text_Fisher_RocketTip:
 	.string "I saw this shady guy go off toward\n"
-	.string "CERULEAN's CAPE.$"
+	.string "Cerulean's Cape.$"
 
 CeruleanCity_EventScript_Youngster::
 	msgbox CeruleanCity_Text_Youngster1, MSGBOX_NPC
@@ -123,11 +123,11 @@ CeruleanCity_EventScript_Youngster::
 
 CeruleanCity_Text_Youngster1:
 	.string "The cave north of town has\n"
-	.string "horribly powerful POKéMON in it.$"
+	.string "horribly powerful Pokémon in it.$"
 
 CeruleanCity_Text_Youngster2:
 	.string "Ayuh?\p"
-	.string "My ITEMFINDER is responding…$"
+	.string "My Itemfinder is responding…$"
 
 CeruleanCity_EventScript_Sign::
 	msgbox CeruleanCity_Text_Sign, MSGBOX_SIGN
@@ -150,30 +150,30 @@ CeruleanCity_EventScript_CapeSign::
 	end
 
 CeruleanCity_Text_Sign:
-	.string "CERULEAN CITY\p"
+	.string "Cerulean City\p"
 	.string "A Mysterious Blue Aura Surrounds It$"
 
 CeruleanCity_Text_GymSign:
-	.string "CERULEAN CITY\n"
-	.string "POKéMON GYM\n"
-	.string "LEADER: MISTY\p"
+	.string "Cerulean City\n"
+	.string "Pokémon Gym\n"
+	.string "Leader: Misty\p"
 	.string "The Tomboyish Mermaid$"
 
 CeruleanCity_Text_BikeShopSign:
 	.string "There's a notice here…\p"
-	.string "The BIKE SHOP has moved to\n"
-	.string "GOLDENROD CITY in JOHTO…$"
+	.string "The Bike Shop has moved to\n"
+	.string "Goldenrod City in Johto…$"
 
 CeruleanCity_Text_PoliceSign:
 	.string "There's a notice here…\p"
 	.string "Stamp out thievery and make the\n"
 	.string "city a friendlier, more cheerful\l"
 	.string "place!\p"
-	.string "CERULEAN POLICE$"
+	.string "Cerulean Police$"
 
 CeruleanCity_Text_CapeSign:
-	.string "CERULEAN CAPE\n"
-	.string "AHEAD$"
+	.string "Cerulean Cape\n"
+	.string "Ahead$"
 
 CeruleanCity_Text_LockedDoor:
 	.string "It's locked…$"

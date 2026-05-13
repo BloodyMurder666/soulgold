@@ -65,7 +65,7 @@ Route33_Text_HikerAnthony2Beaten:
 # 33 "data/maps/Route33/scripts.pory"
 Route33_Text_HikerAnthony2After:
 # 34 "data/maps/Route33/scripts.pory"
-	.string "We HIKERS are at our best\n"
+	.string "We Hikers are at our best\n"
 # 35 "data/maps/Route33/scripts.pory"
 	.string "in the mountains.$"
 # 36 "data/maps/Route33/scripts.pory"
@@ -73,7 +73,7 @@ Route33_Text_HikerAnthony2After:
 # 37 "data/maps/Route33/scripts.pory"
 Route33_Text_HikerAnthonyDunsparce:
 # 38 "data/maps/Route33/scripts.pory"
-	.string "Hey, did you get a DUNSPARCE?\p"
+	.string "Hey, did you get a Dunsparce?\p"
 # 39 "data/maps/Route33/scripts.pory"
 	.string "I caught one too.\p"
 # 40 "data/maps/Route33/scripts.pory"
@@ -93,7 +93,7 @@ Route33_Text_Lass:
 # 47 "data/maps/Route33/scripts.pory"
 	.string "I got too tired exploring\n"
 # 48 "data/maps/Route33/scripts.pory"
-	.string "for MARILL, so I came outside.$"
+	.string "for Marill, so I came outside.$"
 
 Route33_HiddenGrotto::
 # 52 "data/maps/Route33/scripts.pory"
@@ -114,7 +114,26 @@ Route33_HiddenGrotto_2:
 	goto Route33_HiddenGrotto_1
 
 
+fisherMan_Route33::
+# 63 "data/maps/Route33/scripts.pory"
+	lock
+# 64 "data/maps/Route33/scripts.pory"
+	faceplayer
+# 65 "data/maps/Route33/scripts.pory"
+	msgbox fisherMan_Route33_Text_0
+# 69 "data/maps/Route33/scripts.pory"
+	release
+	end
+
+
 Route33_HiddenGrotto_Text_0:
 # 52 "data/maps/Route33/scripts.pory"
 	.string "There seems to be a path behind the\n"
 	.string "trees. Enter?$"
+
+fisherMan_Route33_Text_0:
+# 65 "data/maps/Route33/scripts.pory"
+	.string "Those mountain Pokémon are always\n"
+	.string "eyeing my catches, ready to steal\l"
+	.string "them. Their sorry eyes always\l"
+	.string "make me share some with them.$"

@@ -792,11 +792,11 @@ static const struct SpriteFrameImage sPicTable_Onix[] = {
 };
 #if P_GEN_2_CROSS_EVOS
 static const struct SpriteFrameImage sPicTable_Steelix[] = {
-    overworld_ascending_frames(gObjectEventPic_Steelix, 8, 8),
+    overworld_ascending_frames(gObjectEventPic_Steelix, 4, 4),
 };
 #if P_GENDER_DIFFERENCES
 static const struct SpriteFrameImage sPicTable_SteelixF[] = {
-    overworld_ascending_frames(gObjectEventPic_SteelixF, 8, 8),
+    overworld_ascending_frames(gObjectEventPic_SteelixF, 4, 4),
 };
 #endif //P_GENDER_DIFFERENCES
 #if OW_BATTLE_ONLY_FORMS

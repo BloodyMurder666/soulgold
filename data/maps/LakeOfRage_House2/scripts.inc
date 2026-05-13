@@ -104,39 +104,39 @@ LakeOfRage_House2_EventScript_FisherSatisfied::
 	end
 
 LakeOfRage_House2_Text_LakeHistory:
-    .string "LAKE OF RAGE is actually a crater\n"
-    .string "made by rampaging GYARADOS.\p"
+    .string "Lake Of Rage is actually a crater\n"
+    .string "made by rampaging Gyarados.\p"
     .string "The crater filled up with rainwater\n"
-    .string "and the LAKE was formed.\p"
+    .string "and the Lake was formed.\p"
     .string "That's the story passed on from my\n"
     .string "Grandpa's great-great-grandpa.\p"
     .string "It used to be that you could catch\n"
-    .string "lively MAGIKARP there, but…\p"
+    .string "lively Magikarp there, but…\p"
     .string "I don't understand what's happening.$"
 
 LakeOfRage_House2_Text_MenInBlack:
-    .string "The LAKE hasn't been normal since\n"
+    .string "The Lake hasn't been normal since\n"
     .string "those men wearing black arrived.$"
 
 LakeOfRage_House2_Text_LastMon:
     .string "Well don't let me take your last\n"
-    .string "POKéMON!$"
+    .string "Pokémon!$"
 
 LakeOfRage_House2_Text_WorldsLargest:
-    .string "LAKE OF RAGE is back to normal.\p"
-    .string "The MAGIKARP have returned.\p"
+    .string "Lake Of Rage is back to normal.\p"
+    .string "The Magikarp have returned.\p"
     .string "I may yet realize my dream of own-\n"
-    .string "ing the world's largest MAGIKARP.\p"
+    .string "ing the world's largest Magikarp.\p"
     .string "In fact... I'll pay you ¥2000 for\n"
-	.string "every MAGIKARP you give me, and\l"
-	.string "¥100,000 for a HUGE MAGIKARP!$"
+	.string "every Magikarp you give me, and\l"
+	.string "¥100,000 for a Huge Magikarp!$"
 
 LakeOfRage_House2_Text_ForMe:
-	.string "So... Do you have a MAGIKARP for\n"
+	.string "So... Do you have a Magikarp for\n"
 	.string "me?$"
 
 LakeOfRage_House2_Text_HaveMagikarp:
-    .string "Ah, you have a MAGIKARP! Let's\n"
+    .string "Ah, you have a Magikarp! Let's\n"
     .string "see how big that baby is.$"
 
 LakeOfRage_House2_Text_BigPayout:
@@ -156,7 +156,7 @@ LakeOfRage_House2_Text_TooShort:
     .string "I guess it's worth something.$"
 
 LakeOfRage_House2_Text_NotMagikarp:
-    .string "What? That's not a MAGIKARP!$"
+    .string "What? That's not a Magikarp!$"
 
 LakeOfRage_House2_Text_Refused:
     .string "Oh… So you didn't get one good\n"

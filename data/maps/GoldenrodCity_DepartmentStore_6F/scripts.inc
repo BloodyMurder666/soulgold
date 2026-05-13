@@ -45,11 +45,11 @@ GoldenrodDeptStore6_Text_Whitney:
 # 23 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
 	.string "I'm picking up something for\n"
 # 24 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
-	.string "my MILTANK.\p"
+	.string "my Miltank.\p"
 # 25 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
 	.string "If you want another battle, come to\n"
 # 26 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
-	.string "the FIGHTING DOJO!$"
+	.string "the Fighting Dojo!$"
 # 27 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
 
 # 28 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
@@ -87,7 +87,7 @@ GoldenrodCity_DepartmentStore_6F_EventScript_TradeCompleted::
 # 44 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
 GoldenrodCity_DepartmentStore_6F_Text_YouWillTradeWontYou:
 # 45 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
-	.string "I collect POKéMON!\n"
+	.string "I collect Pokémon!\n"
 # 46 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
 	.string "Do you have a {STR_VAR_1}?\p"
 # 47 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
@@ -121,7 +121,7 @@ GoldenrodCity_DepartmentStore_6F_Text_YouWontTradeMe:
 # 61 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
 GoldenrodCity_DepartmentStore_6F_Text_After:
 # 62 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
-	.string "Hi, how's my old MACHOP doing?$"
+	.string "Hi, how's my old Machop doing?$"
 # 63 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
 
 # 64 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
@@ -177,13 +177,13 @@ GoldenrodDeptStore6_EventScript_Sign::
 # 89 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
 GoldenrodDeptStore_Text_6FLass:
 # 90 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
-    .string "Do you listen to LUCKY CHANNEL?\p"
+    .string "Do you listen to Lucky Channel?\p"
 # 91 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
-    .string "If you want to win, trade POKéMON\n"
+    .string "If you want to win, trade Pokémon\n"
 # 92 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
     .string "with as many people as possible to\l"
 # 93 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
-    .string "get different ID numbers.$"
+    .string "get different Id numbers.$"
 # 94 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
 
 # 95 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
@@ -193,7 +193,7 @@ GoldenrodDeptStore_Text_6FSuperNerd:
 # 97 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
     .string "machine's drinks.\p"
 # 98 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
-    .string "Your POKéMON will love them too.$"
+    .string "Your Pokémon will love them too.$"
 # 99 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
 
 # 100 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
@@ -201,7 +201,7 @@ GoldenrodDeptStore_Text_6FDirectory:
 # 101 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
     .string "Take a Break from Shopping!\p"
 # 102 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
-    .string "6F TRANQUIL SQUARE$"
+    .string "6F Tranquil Square$"
 
 GoldenrodCity_DepartmentStore_6F_EventScript_Jose::
 # 106 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"

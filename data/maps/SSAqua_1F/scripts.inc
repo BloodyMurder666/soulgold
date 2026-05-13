@@ -240,20 +240,20 @@ SSAqua_1F_Movement_GrandpaLeave:
 	step_end
 
 SSAqua_1F_Text_Sailor1_ToVermilion:
-    .string "FAST SHIP S.S.AQUA is en route to\n"
-    .string "VERMILION CITY.\p"
+    .string "Fast Ship S.S.Aqua is en route to\n"
+    .string "Vermilion City.\p"
     .string "We will make an announcement when\n"
     .string "we arrive.$"
 
 SSAqua_1F_Text_Sailor1_ToOlivine:
-    .string "FAST SHIP S.S.AQUA is en route to\n"
-    .string "OLIVINE CITY.\p"
+    .string "Fast Ship S.S.Aqua is en route to\n"
+    .string "Olivine City.\p"
     .string "We will make an announcement when\n"
     .string "we arrive.$"
 
 SSAqua_1F_Text_Sailor2_FirstTime:
     .string "Here's your cabin.\p"
-    .string "If your POKéMON are hurt, take a\n"
+    .string "If your Pokémon are hurt, take a\n"
     .string "nap in the bed.\p"
     .string "That will heal them.$"
 
@@ -269,14 +269,14 @@ SSAqua_1F_Text_Grandpa:
     .string "her, please let me know!$"
 
 SSAqua_1F_Text_Sailor1_InOlivine:
-    .string "FAST SHIP S.S.AQUA has arrived in\n"
-    .string "OLIVINE CITY.$"
+    .string "Fast Ship S.S.Aqua has arrived in\n"
+    .string "Olivine City.$"
 
 SSAqua_1F_Text_Sailor1_InVermilion:
-    .string "FAST SHIP S.S.AQUA has arrived in\n"
-    .string "VERMILION CITY.$"
+    .string "Fast Ship S.S.Aqua has arrived in\n"
+    .string "Vermilion City.$"
 
 
 SSAqua_1F_Text_SailorDoorArrived:
-    .string "We have arrived in VERMILION CITY.\n"
+    .string "We have arrived in Vermilion City.\n"
     .string "Would you like to disembark?$"

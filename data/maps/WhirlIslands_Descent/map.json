@@ -12,7 +12,7 @@
   "allow_running": false,
   "show_map_name": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": 0,
+  "connections": null,
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
@@ -23,8 +23,8 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "WhirlIslands_Descent_EventScript_Item_PP_Max",
+      "trainer_sight_or_berry_tree_id": "ITEM_PP_MAX",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_WHIRL_ISLANDS_B1F_PP_MAX"
     },
     {
@@ -36,8 +36,8 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "WhirlIslands_Descent_EventScript_Item_Full_Restore",
+      "trainer_sight_or_berry_tree_id": "ITEM_FULL_RESTORE",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_WHIRL_ISLANDS_B1F_FULL_RESTORE"
     },
     {
@@ -49,12 +49,12 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "WhirlIslands_Descent_EventScript_Item_Max_Revive",
+      "trainer_sight_or_berry_tree_id": "ITEM_ABILITY_PATCH",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_WHIRL_ISLANDS_B1F_MAX_REVIVE"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(TENTACRUEL)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(DEWGONG)",
       "x": 35,
       "y": 86,
       "elevation": 0,
@@ -366,7 +366,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GOLBAT)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KABUTO)",
       "x": 50,
       "y": 10,
       "elevation": 0,
@@ -405,7 +405,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GOLBAT)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KABUTO)",
       "x": 47,
       "y": 12,
       "elevation": 0,
@@ -457,7 +457,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GOLBAT)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KABUTO)",
       "x": 51,
       "y": 26,
       "elevation": 0,
@@ -470,7 +470,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GOLBAT)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KABUTO)",
       "x": 49,
       "y": 40,
       "elevation": 0,
@@ -483,7 +483,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GOLBAT)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KABUTO)",
       "x": 60,
       "y": 45,
       "elevation": 0,
@@ -496,7 +496,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(TENTACRUEL)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(DEWGONG)",
       "x": 16,
       "y": 48,
       "elevation": 0,
@@ -509,7 +509,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(TENTACRUEL)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(DEWGONG)",
       "x": 18,
       "y": 46,
       "elevation": 0,
@@ -522,7 +522,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(TENTACRUEL)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(DEWGONG)",
       "x": 23,
       "y": 69,
       "elevation": 0,
@@ -535,7 +535,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(TENTACRUEL)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(DEWGONG)",
       "x": 19,
       "y": 68,
       "elevation": 0,
@@ -548,7 +548,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GOLBAT)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KABUTO)",
       "x": 47,
       "y": 69,
       "elevation": 0,
@@ -561,7 +561,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GOLBAT)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KABUTO)",
       "x": 61,
       "y": 82,
       "elevation": 0,
@@ -600,7 +600,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(TENTACRUEL)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(DEWGONG)",
       "x": 28,
       "y": 96,
       "elevation": 0,
@@ -613,7 +613,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(TENTACRUEL)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(DEWGONG)",
       "x": 61,
       "y": 91,
       "elevation": 0,

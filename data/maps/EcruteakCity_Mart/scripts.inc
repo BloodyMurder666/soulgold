@@ -41,21 +41,21 @@ EcruteakCity_Mart_EventScript_Granny::
 # 21 "data/maps/EcruteakCity_Mart/scripts.pory"
 EcruteakMart_Text_SuperNerd:
 # 22 "data/maps/EcruteakCity_Mart/scripts.pory"
-	.string "My EEVEE evolved into an ESPEON.\p"
+	.string "My Eevee evolved into an Espeon.\p"
 # 23 "data/maps/EcruteakCity_Mart/scripts.pory"
-	.string "But my friend's EEVEE turned into\n"
+	.string "But my friend's Eevee turned into\n"
 # 24 "data/maps/EcruteakCity_Mart/scripts.pory"
-	.string "an UMBREON.\p"
+	.string "an Umbreon.\p"
 # 25 "data/maps/EcruteakCity_Mart/scripts.pory"
 	.string "I wonder why? We both were raising\n"
 # 26 "data/maps/EcruteakCity_Mart/scripts.pory"
-	.string "our EEVEE in the same way…$"
+	.string "our Eevee in the same way…$"
 # 27 "data/maps/EcruteakCity_Mart/scripts.pory"
 
 # 28 "data/maps/EcruteakCity_Mart/scripts.pory"
 EcruteakMart_Text_Granny:
 # 29 "data/maps/EcruteakCity_Mart/scripts.pory"
-	.string "If you use REVIVE, a POKéMON that's\n"
+	.string "If you use Revive, a Pokémon that's\n"
 # 30 "data/maps/EcruteakCity_Mart/scripts.pory"
 	.string "fainted will wake right up.$"
 
@@ -81,7 +81,7 @@ Ecruteak_Mart2::
 # 44 "data/maps/EcruteakCity_Mart/scripts.pory"
 Ecruteak2:
 # 45 "data/maps/EcruteakCity_Mart/scripts.pory"
-	.2byte ITEM_HEAL_BALL
+	.2byte ITEM_QUICK_BALL
 # 46 "data/maps/EcruteakCity_Mart/scripts.pory"
 	.2byte ITEM_NET_BALL
 # 47 "data/maps/EcruteakCity_Mart/scripts.pory"

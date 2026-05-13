@@ -75,7 +75,7 @@ Route46_Text_HikerBaileySeen:
 # 38 "data/maps/Route46/scripts.pory"
 	.string "Awright! I'll show you the\n"
 # 39 "data/maps/Route46/scripts.pory"
-	.string "power of mountain POKéMON!$"
+	.string "power of mountain Pokémon!$"
 # 40 "data/maps/Route46/scripts.pory"
 
 # 41 "data/maps/Route46/scripts.pory"
@@ -91,13 +91,13 @@ Route46_Text_HikerBaileyAfterBattle:
 # 46 "data/maps/Route46/scripts.pory"
 	.string "It's over. I don't mind.\n"
 # 47 "data/maps/Route46/scripts.pory"
-	.string "We HIKERS are like that.$"
+	.string "We Hikers are like that.$"
 # 48 "data/maps/Route46/scripts.pory"
 
 # 49 "data/maps/Route46/scripts.pory"
 Route46_Text_CamperTedSeen:
 # 50 "data/maps/Route46/scripts.pory"
-	.string "I'm raising POKéMON too!\p"
+	.string "I'm raising Pokémon too!\p"
 # 51 "data/maps/Route46/scripts.pory"
 	.string "Will you battle with me?$"
 # 52 "data/maps/Route46/scripts.pory"
@@ -121,7 +121,7 @@ Route46_Text_CamperTedAfterBattle:
 # 61 "data/maps/Route46/scripts.pory"
 Route46_Text_PicnickerErinSeen:
 # 62 "data/maps/Route46/scripts.pory"
-	.string "I raise POKéMON too!\p"
+	.string "I raise Pokémon too!\p"
 # 63 "data/maps/Route46/scripts.pory"
 	.string "Will you battle with me?$"
 # 64 "data/maps/Route46/scripts.pory"
@@ -135,9 +135,9 @@ Route46_Text_PicnickerErinBeaten:
 # 68 "data/maps/Route46/scripts.pory"
 Route46_Text_PicnickerErinAfterBattle:
 # 69 "data/maps/Route46/scripts.pory"
-	.string "I've been to many GYMS, but the\n"
+	.string "I've been to many Gyms, but the\n"
 # 70 "data/maps/Route46/scripts.pory"
-	.string "GYM in GOLDENROD is my favorite.\p"
+	.string "Gym in Goldenrod is my favorite.\p"
 # 71 "data/maps/Route46/scripts.pory"
 	.string "It's filled with pretty flowers!$"
 # 72 "data/maps/Route46/scripts.pory"
@@ -161,9 +161,9 @@ Route46_Text_PicnickerErin2Beaten:
 # 81 "data/maps/Route46/scripts.pory"
 Route46_Text_Sign:
 # 82 "data/maps/Route46/scripts.pory"
-	.string "ROUTE 46\n"
+	.string "Route 46\n"
 # 83 "data/maps/Route46/scripts.pory"
-	.string "MOUNTAIN RD. AHEAD$"
+	.string "Mountain Rd. Ahead$"
 
 Route46_ConfusedBugCatcher::
 # 87 "data/maps/Route46/scripts.pory"

@@ -6,6 +6,7 @@
 #include "pokemon_size_record.h"
 #include "script.h"
 #include "lottery_corner.h"
+#include "level_scaling.h"
 #include "play_time.h"
 #include "mauville_old_man.h"
 #include "match_call.h"
@@ -49,6 +50,7 @@
 #include "constants/items.h"
 #include "difficulty.h"
 #include "follower_npc.h"
+#include "config/battle.h"
 #include "constants/heal_locations.h"
 #include "main_menu.h"
 #include "constants/flags.h"
@@ -104,13 +106,15 @@ static void SetDefaultOptions(void)
     gSaveBlock2Ptr->optionsSound = OPTIONS_SOUND_STEREO;
     gSaveBlock2Ptr->optionsBattleStyle = OPTIONS_BATTLE_STYLE_SET;
     gSaveBlock2Ptr->optionsBattleSceneOff = FALSE;
+    gSaveBlock2Ptr->optionsButtonMode = OPTIONS_BUTTON_MODE_NORMAL;
     gSaveBlock2Ptr->regionMapZoom = FALSE;
-    gSaveBlock2Ptr->optionsEXPShare = FALSE;
-    gSaveBlock2Ptr->optionsAutoHMs = FALSE;
     gSaveBlock2Ptr->optionsFollowers = TRUE;
-    gSaveBlock2Ptr->optionsAutorun = FALSE;
+    gSaveBlock2Ptr->optionsAutorun = TRUE;
     gSaveBlock2Ptr->optionsFont = 0;
-    gSaveBlock2Ptr->optionsMusic = 0;
+    gSaveBlock2Ptr->optionsLevelCaps = B_EXP_CAP_TYPE;
+    gSaveBlock2Ptr->optionsTrainerLevelScaling = LEVEL_SCALING_OPTION_OFF;
+    gSaveBlock2Ptr->optionsWildLevelScaling = LEVEL_SCALING_OPTION_OFF;
+    gSaveBlock2Ptr->optionsFastIntroNoSlide = B_FAST_INTRO_NO_SLIDE;
                
 }
 
@@ -222,6 +226,7 @@ void NewGameInitData(void)
     ResetTrainerHillResults();
     ResetContestLinkResults();
     SetCurrentDifficultyLevel(DIFFICULTY_NORMAL);
+    VarSet(VAR_BATTLE_SPEED, 1);
     ResetItemFlags();
     ResetDexNav();
     ClearFollowerNPCData();

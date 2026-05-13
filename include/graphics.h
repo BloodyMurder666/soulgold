@@ -965,6 +965,8 @@ extern const u32 gItemIcon_RedOrb[];
 extern const u16 gItemIconPalette_RedOrb[];
 extern const u32 gItemIcon_BlueOrb[];
 extern const u16 gItemIconPalette_BlueOrb[];
+extern const u32 gItemIcon_JadeOrb[];
+extern const u16 gItemIconPalette_JadeOrb[];
 // Mega Stones
 extern const u32 gItemIcon_Venusaurite[];
 extern const u16 gItemIconPalette_Venusaurite[];
@@ -2174,6 +2176,7 @@ extern const u32 gBattleAnimSpriteGfx_SubstituteBack[];
 extern const u16 gBattleAnimSpritePal_Substitute[];
 extern const u32 gHealthboxSinglesPlayerGfx[];
 extern const u32 gHealthboxSinglesOpponentGfx[];
+extern const u32 gHealthboxSinglesOpponentShinyGfx[];
 extern const u32 gHealthboxDoublesPlayerGfx[];
 extern const u32 gHealthboxDoublesOpponentGfx[];
 extern const u32 gHealthboxSafariGfx[];
@@ -2192,14 +2195,11 @@ extern const u16 gBattlePyramidFloor_Pal[][16];
 
 extern const u16 gStandardMenuPalette[];
 
-extern const u32 gTitleScreenEmeraldVersionGfx[];
 extern const u32 gTitleScreenPressStartGfx[];
 extern const u32 gTitleScreenPokemonLogoGfx[];
 extern const u32 gTitleScreenPokemonLogoTilemap[];
-extern const u32 gTitleScreenCloudsTilemap[];
 extern const u16 gTitleScreenBgPalettes[];
 extern const u16 gTitleScreenPressStartPal[];
-extern const u16 gTitleScreenEmeraldVersionPal[];
 
 // Battle Dome
 extern const u32 gDomeTourneyInfoCard_Gfx[];
@@ -3576,5 +3576,8 @@ extern const u16 gItemIcon_Palette_TidalBell[];
 
 extern const u32 gItemIcon_Radio[];
 extern const u16 gItemIcon_Palette_Radio[];
+
+//New Summary Pages
+extern const u32 gSummaryPage_Traits_Tilemap[];
 
 #endif //GUARD_GRAPHICS_H

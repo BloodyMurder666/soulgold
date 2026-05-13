@@ -375,6 +375,7 @@ extern const u8 Debug_EventScript_KoPokemon[];
 extern const u8 Debug_EventScript_SetHiddenNature[];
 extern const u8 Debug_EventScript_SetAbility[];
 extern const u8 Debug_EventScript_SetFriendship[];
+extern const u8 Debug_EventScript_HiddenGrottoTestCurrentMonBounds[];
 extern const u8 Debug_EventScript_Script_1[];
 extern const u8 Debug_EventScript_Script_2[];
 extern const u8 Debug_EventScript_Script_3[];
@@ -648,8 +649,8 @@ static const struct DebugMenuOption sDebugMenu_Actions_Player[] =
 
 static const struct DebugMenuOption sDebugMenu_Actions_Scripts[] =
 {
-    { COMPOUND_STRING("Script 1"), DebugAction_ExecuteScript, HiddenGrotto_TestCurrentMonBounds },
-    { COMPOUND_STRING("Script 2"), DebugAction_ExecuteScript, Debug_EventScript_Script_2 },
+    { COMPOUND_STRING("Script 1"), DebugAction_ExecuteScript, Debug_EventScript_HiddenGrottoTestCurrentMonBounds },
+    { COMPOUND_STRING("Script 2"), DebugAction_ExecuteScript, Debug_EventScript_Script_1 },
     { COMPOUND_STRING("Script 3"), DebugAction_ExecuteScript, Debug_EventScript_Script_3 },
     { COMPOUND_STRING("Script 4"), DebugAction_ExecuteScript, Debug_EventScript_Script_4 },
     { COMPOUND_STRING("Script 5"), DebugAction_ExecuteScript, Debug_EventScript_Script_5 },
@@ -1124,6 +1125,7 @@ static const u16 sLocationFlags[] =
     FLAG_VISITED_AZALEA_TOWN,
     FLAG_VISITED_GOLDENROD_CITY,
     FLAG_VISITED_ECRUTEAK_CITY,
+    FLAG_VISITED_KITAKAMI,
     FLAG_VISITED_OLIVINE_CITY,
     FLAG_VISITED_CIANWOOD_CITY,
     FLAG_VISITED_SAFARI_ZONE_GATE,
@@ -2823,7 +2825,6 @@ static void DebugAction_Give_PokemonSimple(u8 taskId)
     gTasks[taskId].tIsEgg = FALSE;
 
     FreeMonIconPalettes();
-    LoadMonIconPalettePersonality(species, 0);
     gTasks[taskId].tSpriteId = CreateMonIcon(species, SpriteCB_MonIcon, DEBUG_NUMBER_ICON_X, DEBUG_NUMBER_ICON_Y, 4, 0);
     gSprites[gTasks[taskId].tSpriteId].oam.priority = 0;
 }
@@ -2864,7 +2865,6 @@ static void DebugAction_Give_PokemonComplex(u8 taskId)
     gTasks[taskId].tIsEgg = FALSE;
 
     FreeMonIconPalettes();
-    LoadMonIconPalettePersonality(species, 0);
     gTasks[taskId].tSpriteId = CreateMonIcon(species, SpriteCB_MonIcon, DEBUG_NUMBER_ICON_X, DEBUG_NUMBER_ICON_Y, 4, 0);
     gSprites[gTasks[taskId].tSpriteId].oam.priority = 0;
     gTasks[taskId].tIterator = 0;
@@ -2907,7 +2907,6 @@ static void DebugAction_Give_NewEgg(u8 taskId)
     gTasks[taskId].tIsEgg = TRUE;
 
     FreeMonIconPalettes();
-    LoadMonIconPalette(species);
     gTasks[taskId].tSpriteId = CreateMonIcon(species, SpriteCB_MonIcon, DEBUG_NUMBER_ICON_X, DEBUG_NUMBER_ICON_Y, 4, 0);
     gSprites[gTasks[taskId].tSpriteId].oam.priority = 0;
 }
@@ -2933,7 +2932,6 @@ static void DebugAction_Give_Pokemon_SelectId(u8 taskId)
         Debug_Display_SpeciesInfo(species, gTasks[taskId].tInput, gTasks[taskId].tDigit, gTasks[taskId].tSubWindowId);
         FreeAndDestroyMonIconSprite(&gSprites[gTasks[taskId].tSpriteId]);
         FreeMonIconPalettes();
-        LoadMonIconPalettePersonality(species, 0);
         gTasks[taskId].tSpriteId = CreateMonIcon(species, SpriteCB_MonIcon, DEBUG_NUMBER_ICON_X, DEBUG_NUMBER_ICON_Y, 4, 0);
         gSprites[gTasks[taskId].tSpriteId].oam.priority = 0;
     }
@@ -3001,7 +2999,7 @@ static void DebugAction_Give_Pokemon_SelectLevel(u8 taskId)
         if (gTasks[taskId].tIsComplex == FALSE)
         {
             PlaySE(MUS_LEVEL_UP);
-            ScriptGiveMon(sDebugMonData->species, gTasks[taskId].tInput, ITEM_NONE);
+            ScriptGiveMon(sDebugMonData->species, gTasks[taskId].tInput, ITEM_NONE, ITEM_NONE);
             // Set flag for user convenience
             FlagSet(FLAG_SYS_POKEMON_GET);
             Free(sDebugMonData);
@@ -3742,6 +3740,7 @@ static void DebugAction_PCBag_Fill_PCBoxes_Fast(u8 taskId) //Credit: Sierraffini
     struct BoxPokemon boxMon;
     u16 species = SPECIES_VICTINI;
     u8 speciesName[POKEMON_NAME_LENGTH + 1];
+    bool32 isShiny = TRUE;
 
     if (!Debug_TryAdvanceToEnabledSpecies(&species))
         goto done;
@@ -3755,12 +3754,25 @@ static void DebugAction_PCBag_Fill_PCBoxes_Fast(u8 taskId) //Credit: Sierraffini
         {
             if (!GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SANITY_HAS_SPECIES))
             {
+                isShiny = Random32() % 2;
                 StringCopy(speciesName, GetSpeciesName(species));
                 SetBoxMonData(&boxMon, MON_DATA_NICKNAME, &speciesName);
                 SetBoxMonData(&boxMon, MON_DATA_SPECIES, &species);
+                SetBoxMonData(&boxMon, MON_DATA_IS_SHINY, &isShiny);
                 GiveBoxMonInitialMoveset(&boxMon);
                 gPokemonStoragePtr->boxes[boxId][boxPosition] = boxMon;
             }
+
+            if (species == SPECIES_ENAMORUS_INCARNATE)
+                species = SPECIES_MEOWTH_GALAR - 1;
+            if (species == SPECIES_DECIDUEYE_HISUI)
+                species = SPECIES_CRAMORANT_GULPING - 1;
+            if (species == SPECIES_POLTEAGEIST_ANTIQUE)
+                species = SPECIES_EISCUE_NOICE - 1;
+            if (species == SPECIES_BASCULEGION_F)
+                species = SPECIES_VENUSAUR_GMAX - 1;
+            if (species == SPECIES_URSHIFU_RAPID_STRIKE_GMAX)
+                return;
         }
     }
 

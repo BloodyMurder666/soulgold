@@ -100,29 +100,29 @@ EcruteakCity_PokemonCenter_Movement_BillBot:
 
 
 EcruteakCity_PokemonCenter1F_Text_Bill1:
-	.string "Hi, I'm BILL. And who are you?\p"
+	.string "Hi, I'm Bill. And who are you?\p"
 	.string "Hmm, {PLAYER}, huh?\n"
 	.string "You've come at the right time.$"
 
 EcruteakCity_PokemonCenter1F_Text_Bill2:
 	.string "I just finished adjustments on my\n"
-	.string "POKéMON STORAGE SYSTEM.\p"
+	.string "Pokémon Storage System.\p"
 	.string "You know that PC you use to store\n"
-	.string "all your POKéMON?\p"
+	.string "all your Pokémon?\p"
 	.string "I developed that myself!\p"
 	.string "Now that I've installed this one,\n"
 	.string "my PC is running at all\l"
-	.string "POKéMON CENTERS in JOHTO and KANTO.\p"
+	.string "Pokémon Centers in Johto and Kanto.\p"
 	.string "I have to hurry on back to\n"
-	.string "GOLDENROD and see my folks. Feel\l"
+	.string "Goldenrod and see my folks. Feel\l"
 	.string "free to visit anytime!\p"
 	.string "Buh-bye!$"
 
 EcruteakCity_PokemonCenter1F_Text_PokefanM:
-	.string "The way the KIMONO GIRLS dance is\n"
+	.string "The way the Kimono Girls dance is\n"
 	.string "marvelous.\p"
 	.string "Just like the way they use their\n"
-	.string "POKéMON.$"
+	.string "Pokémon.$"
 
 EcruteakCity_PokemonCenter1F_Text_PokefanM_Mobile:
 	.string "You must be hoping to battle more\n"
@@ -130,16 +130,16 @@ EcruteakCity_PokemonCenter1F_Text_PokefanM_Mobile:
 	.string "There's apparently some place where\n"
 	.string "trainers gather.\p"
 	.string "Where, you ask?\p"
-	.string "It's a little past OLIVINE CITY.$"
+	.string "It's a little past Olivine City.$"
 
 EcruteakCity_PokemonCenter1F_Text_CooltrainerF:
-	.string "MORTY, the GYM LEADER, is soooo\n"
+	.string "Morty, the Gym Leader, is soooo\n"
 	.string "cool.\p"
-	.string "His POKéMON are really tough too.$"
+	.string "His Pokémon are really tough too.$"
 
 EcruteakCity_PokemonCenter1F_Text_GymGuide:
-	.string "LAKE OF RAGE…\p"
-	.string "The appearance of a GYARADOS\n"
+	.string "Lake Of Rage…\p"
+	.string "The appearance of a Gyarados\n"
 	.string "swarm…\p"
 	.string "I smell a conspiracy. I know it!$"
 

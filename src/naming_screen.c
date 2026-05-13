@@ -1419,7 +1419,8 @@ static void NamingScreen_CreateMonIcon(void)
     u8 spriteId;
 
     LoadMonIconPalettes();
-    spriteId = CreateMonIcon(sNamingScreen->monSpecies, SpriteCallbackDummy, 56, 40, 0, sNamingScreen->monPersonality);
+    // todo: add isShiny
+    spriteId = CreateMonIcon2(sNamingScreen->monSpecies, SpriteCallbackDummy, 56, 40, 0, FALSE, sNamingScreen->monPersonality, FALSE);
     gSprites[spriteId].oam.priority = 3;
 }
 

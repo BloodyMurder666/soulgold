@@ -156,7 +156,7 @@ struct InGameTrade {
     u32 otId;
     u8 conditions[CONTEST_CATEGORIES_COUNT];
     u32 personality;
-    u16 heldItem;
+    u16 heldItem[MAX_MON_ITEMS_INTERNAL];
     u8 mailNum;
     u8 otName[TRAINER_NAME_LENGTH + 1];
     u8 otGender;
@@ -307,7 +307,7 @@ static void SpriteCB_BouncingPokeballDepart(struct Sprite *);
 static void SpriteCB_BouncingPokeballDepartEnd(struct Sprite *);
 static void SpriteCB_BouncingPokeballArrive(struct Sprite *);
 static void BufferInGameTradeMonName(void);
-static void GetInGameTradeMail(struct Mail *, const struct InGameTrade *);
+static void GetInGameTradeMail(struct Mail *, const struct InGameTrade *, u8 slot);
 static void CB2_UpdateLinkTrade(void);
 static void CB2_WaitTradeComplete(void);
 static void CB2_SaveAndEndTrade(void);
@@ -424,7 +424,7 @@ static void InitTradeMenu(void)
         FillBgTilemapBufferRect(0, 0, 0, 0, DISPLAY_TILE_WIDTH, DISPLAY_TILE_HEIGHT, 15);
         LoadUserWindowBorderGfx_(0, 20, BG_PLTT_ID(12));
         LoadUserWindowBorderGfx(2, 1, BG_PLTT_ID(14));
-        LoadMonIconPalettes();
+        //LoadMonIconPalettes();
         sTradeMenu->bufferPartyState = 0;
         sTradeMenu->callbackId = CB_MAIN_MENU;
         sTradeMenu->neverRead_70 = 0;
@@ -565,23 +565,28 @@ static void CB2_CreateTradeMenu(void)
         for (i = 0; i < sTradeMenu->partyCounts[TRADE_PLAYER]; i++)
         {
             struct Pokemon *mon = &gPlayerParty[i];
+            u32 index = LoadSpritePaletteWithTag(GetMonFrontSpritePal(mon), GetMonData(mon, MON_DATA_SPECIES_OR_EGG));
             sTradeMenu->partySpriteIds[TRADE_PLAYER][i] = CreateMonIcon(GetMonData(mon, MON_DATA_SPECIES_OR_EGG),
                                                          SpriteCB_MonIcon,
                                                          (sTradeMonSpriteCoords[i][0] * 8) + 14,
                                                          (sTradeMonSpriteCoords[i][1] * 8) - 12,
                                                          1,
                                                          GetMonData(mon, MON_DATA_PERSONALITY));
+
+            gSprites[sTradeMenu->partySpriteIds[TRADE_PLAYER][i]].oam.paletteNum = index;
         }
 
         for (i = 0; i < sTradeMenu->partyCounts[TRADE_PARTNER]; i++)
         {
             struct Pokemon *mon = &gEnemyParty[i];
+            u32 index = LoadSpritePaletteWithTag(GetMonFrontSpritePal(mon), GetMonData(mon, MON_DATA_SPECIES_OR_EGG));
             sTradeMenu->partySpriteIds[TRADE_PARTNER][i] = CreateMonIcon(GetMonData(mon, MON_DATA_SPECIES_OR_EGG),
                                                          SpriteCB_MonIcon,
                                                          (sTradeMonSpriteCoords[i + PARTY_SIZE][0] * 8) + 14,
                                                          (sTradeMonSpriteCoords[i + PARTY_SIZE][1] * 8) - 12,
                                                          1,
                                                          GetMonData(mon, MON_DATA_PERSONALITY));
+            gSprites[sTradeMenu->partySpriteIds[TRADE_PARTNER][i]].oam.paletteNum = index;
         }
         gMain.state++;
         break;
@@ -754,23 +759,27 @@ static void CB2_ReturnToTradeMenu(void)
         for (i = 0; i < sTradeMenu->partyCounts[TRADE_PLAYER]; i++)
         {
             struct Pokemon *mon = &gPlayerParty[i];
+            u32 index = LoadSpritePaletteWithTag(GetMonFrontSpritePal(mon), GetMonData(mon, MON_DATA_SPECIES_OR_EGG));
             sTradeMenu->partySpriteIds[TRADE_PLAYER][i] = CreateMonIcon(GetMonData(mon, MON_DATA_SPECIES_OR_EGG),
                                                          SpriteCB_MonIcon,
                                                          (sTradeMonSpriteCoords[i][0] * 8) + 14,
                                                          (sTradeMonSpriteCoords[i][1] * 8) - 12,
                                                          1,
                                                          GetMonData(mon, MON_DATA_PERSONALITY));
+            gSprites[sTradeMenu->partySpriteIds[TRADE_PLAYER][i]].oam.paletteNum = index;
         }
 
         for (i = 0; i < sTradeMenu->partyCounts[TRADE_PARTNER]; i++)
         {
             struct Pokemon *mon = &gEnemyParty[i];
+            u32 index = LoadSpritePaletteWithTag(GetMonFrontSpritePal(mon), GetMonData(mon, MON_DATA_SPECIES_OR_EGG));
             sTradeMenu->partySpriteIds[TRADE_PARTNER][i] = CreateMonIcon(GetMonData(mon, MON_DATA_SPECIES_OR_EGG),
                                                          SpriteCB_MonIcon,
                                                          (sTradeMonSpriteCoords[i + PARTY_SIZE][0] * 8) + 14,
                                                          (sTradeMonSpriteCoords[i + PARTY_SIZE][1] * 8) - 12,
                                                          1,
                                                          GetMonData(mon, MON_DATA_PERSONALITY));
+            gSprites[sTradeMenu->partySpriteIds[TRADE_PARTNER][i]].oam.paletteNum = index;
         }
         gMain.state++;
         break;
@@ -889,6 +898,7 @@ static void VBlankCB_TradeMenu(void)
     LoadOam();
     ProcessSpriteCopyRequests();
     TransferPlttBuffer();
+
 }
 
 static void CB_FadeToStartTrade(void)
@@ -1894,7 +1904,6 @@ static void DrawSelectedMonScreen(u8 whichParty)
         StoreSpriteCallbackInData6(&gSprites[sTradeMenu->partySpriteIds[selectedMonParty][partyIdx]], SpriteCB_MonIcon);
         sTradeMenu->drawSelectedMonState[whichParty]++;
         Trade_MoveSelectedMonToTarget(&gSprites[sTradeMenu->partySpriteIds[selectedMonParty][partyIdx]]);
-
         CopyToBgTilemapBufferRect_ChangePalette(1, sTradePartyBoxTilemap, whichParty * 15, 0, 15, 17, 0);
         CopyBgTilemapBufferToVram(1);
         CopyBgTilemapBufferToVram(0);
@@ -4564,7 +4573,7 @@ static void CreateInGameTradePokemonInternal(u8 whichPlayerMon, u8 whichInGameTr
     u32 level = GetLevelFromBoxMonExp(boxmon);
 
     struct Mail mail;
-    metloc_u8_t metLocation = METLOC_IN_GAME_TRADE;
+    metloc_u16_t metLocation = METLOC_IN_GAME_TRADE;
     u8 mailNum;
     struct Pokemon *pokemon = &gEnemyParty[0];
 
@@ -4590,24 +4599,27 @@ static void CreateInGameTradePokemonInternal(u8 whichPlayerMon, u8 whichInGameTr
     SetMonData(pokemon, MON_DATA_MET_LOCATION, &metLocation);
 
     mailNum = 0;
-    if (inGameTrade->heldItem != ITEM_NONE)
+    for (u32 i = 0; i < MAX_MON_ITEMS; i++)
     {
-        if (ItemIsMail(inGameTrade->heldItem))
+        if (inGameTrade->heldItem[i] != ITEM_NONE)
         {
-            GetInGameTradeMail(&mail, inGameTrade);
-            gTradeMail[0] = mail;
-            SetMonData(pokemon, MON_DATA_MAIL, &mailNum);
-            SetMonData(pokemon, MON_DATA_HELD_ITEM, &inGameTrade->heldItem);
-        }
-        else
-        {
-            SetMonData(pokemon, MON_DATA_HELD_ITEM, &inGameTrade->heldItem);
+            if (ItemIsMail(inGameTrade->heldItem[i]))
+            {
+                GetInGameTradeMail(&mail, inGameTrade, i);
+                gTradeMail[0] = mail;
+                SetMonData(pokemon, MON_DATA_MAIL, &mailNum);
+                SetMonData(pokemon, MON_DATA_HELD_ITEM + i, &inGameTrade->heldItem[i]);
+            }
+            else
+            {
+                SetMonData(pokemon, MON_DATA_HELD_ITEM + i, &inGameTrade->heldItem[i]);
+            }
         }
     }
     CalculateMonStats(&gEnemyParty[0]);
 }
 
-static void GetInGameTradeMail(struct Mail *mail, const struct InGameTrade *trade)
+static void GetInGameTradeMail(struct Mail *mail, const struct InGameTrade *trade, u8 slot)
 {
     s32 i;
 
@@ -4622,7 +4634,8 @@ static void GetInGameTradeMail(struct Mail *mail, const struct InGameTrade *trad
     mail->trainerId[2] = trade->otId >> 8;
     mail->trainerId[3] = trade->otId;
     mail->species = trade->species;
-    mail->itemId = trade->heldItem;
+    
+    mail->itemId = trade->heldItem[slot];
 }
 
 u16 GetTradeSpecies(void)

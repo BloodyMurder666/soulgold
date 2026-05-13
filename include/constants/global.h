@@ -82,7 +82,7 @@ enum Language
 #define OBJECT_EVENTS_COUNT 16
 #define MAIL_COUNT (10 + PARTY_SIZE)
 #define SECRET_BASES_COUNT 1
-#define POKE_NEWS_COUNT 16
+#define POKE_NEWS_COUNT 15
 #define PC_ITEMS_COUNT 50
 #define OBJECT_EVENT_TEMPLATES_COUNT 64
 #define DECOR_MAX_SECRET_BASE 16
@@ -95,7 +95,7 @@ enum Language
 #define GIFT_RIBBONS_COUNT 11
 #define SAVED_TRENDS_COUNT 5
 #define PYRAMID_BAG_ITEMS_COUNT 10
-#define ROAMER_COUNT 3 // Number of maximum concurrent active roamers
+#define ROAMER_COUNT 2 // Number of maximum concurrent active roamers
 
 // Bag constants
 #define BAG_ITEMS_COUNT 150
@@ -126,8 +126,17 @@ enum FrontierLevelMode
 #define TRAINER_ID_LENGTH 4
 #define MAX_MON_MOVES 4
 #define ALL_MOVES_MASK ((1 << MAX_MON_MOVES) - 1)
-
 #define CONTESTANT_COUNT 4
+#define MAX_MON_INNATES_INTERNAL 3 // The max number of Innates that a pokemon can have in the species definition lists.
+#define MAX_MON_TRAITS (MAX_MON_INNATES + 1) // The max number of Innates with Abilities included
+#define MAX_MON_ITEMS_INTERNAL 2 // Max number of Items that pokemon can have in code, currently minimum 2 to accomodate minimum multi item variable definitions.
+
+// ---Traits and Items customization settings---
+#define MAX_MON_INNATES 3 // (Minimum 0, Max 3 (MAX_MON_INNATES_INTERNAL)) The max number of Innates that are enabled in gameplay. Could be altered in game if you add an option for it.
+#define MAX_MON_ITEMS 1 // (Minimum 1, Max 2 (MAX_MON_ITEMS_INTERNAL)) Number of items that can be held by a pokemon during gameplay
+#define INNATE_1_UNLOCK_LEVEL 65
+#define INNATE_2_UNLOCK_LEVEL 80
+#define INNATE_3_UNLOCK_LEVEL 95
 
 enum ContestCategories
 {
@@ -196,6 +205,13 @@ enum Gender
 #define OPTIONS_DIFFICULTY_NORMAL 1
 #define OPTIONS_DIFFICULTY_HARD 2
 
+#define OPTIONS_BATTLE_SCENE_1X         0
+#define OPTIONS_BATTLE_SCENE_2X         1
+#define OPTIONS_BATTLE_SCENE_3X         2
+#define OPTIONS_BATTLE_SCENE_4X         3
+#define OPTIONS_BATTLE_SCENE_DISABLED   4
+#define OPTIONS_BATTLE_SCENE_COUNT      5
+
 enum __attribute__((packed)) Direction
 {
     DIR_NONE,
@@ -225,5 +241,15 @@ enum Connection
 #if TESTING
 #include "config/test.h"
 #endif
+
+// Multi Items
+#define RECYCLE_ITEM_RECYCLE    1
+#define RECYCLE_ITEM_PICKUP     2
+#define RECYCLE_ITEM_HARVEST    3
+#define LAST_ITEM_CORROSIVE     1
+#define LAST_ITEM_FLING         2
+#define TRIGGER_HARVEST         1
+#define TRIGGER_BALL_FETCH      2
+#define TRIGGER_PICKUP          3
 
 #endif // GUARD_CONSTANTS_GLOBAL_H

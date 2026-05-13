@@ -54,15 +54,15 @@ Route38_EventScript_Sign2::
 
 Route38_Text_BirdKeeperTobySeen:
 	.string "Fly high into the sky,\n"
-	.string "my beloved bird POKéMON!$"
+	.string "my beloved bird Pokémon!$"
 
 Route38_Text_BirdKeeperTobyBeaten:
 	.string "I feel like just flying\n"
 	.string "away now.$"
 
 Route38_Text_BirdKeeperTobyAfter:
-	.string "I plan to train in CIANWOOD CITY\n"
-	.string "to teach my POKéMON how to FLY.$"
+	.string "I plan to train in Cianwood City\n"
+	.string "to teach my Pokémon how to Fly.$"
 
 Route38_Text_SchoolboyChad1Seen:
 	.string "Let me try something\n"
@@ -75,13 +75,13 @@ Route38_Text_SchoolboyChad1Beaten:
 Route38_Text_SchoolboyChadAfter:
 	.string "I have to take so many\n"
 	.string "tests, I don't have much\l"
-	.string "time for POKéMON.\p"
+	.string "time for Pokémon.\p"
 	.string "So when I do get to play,\n"
 	.string "I really concentrate.$"
 
 Route38_Text_LassDana1Seen:
 	.string "You seem to be good at\n"
-	.string "POKéMON.\p"
+	.string "Pokémon.\p"
 	.string "If you are, how about\n"
 	.string "giving me some advice?$"
 
@@ -91,26 +91,26 @@ Route38_Text_LassDana1Beaten:
 
 Route38_Text_LassDanaAfter:
 	.string "I know something good!\p"
-	.string "MOOMOO FARM's milk is\n"
+	.string "Moomoo Farm's milk is\n"
 	.string "famous for its flavor.$"
 
 Route38_Text_BeautyValerieSeen:
 	.string "Hi! Aren't you a cute\n"
 	.string "trainer!\p"
-	.string "May I see your POKéMON?$"
+	.string "May I see your Pokémon?$"
 
 Route38_Text_BeautyValerieBeaten:
 	.string "I'm glad I got to see\n"
-	.string "your POKéMON!$"
+	.string "your Pokémon!$"
 
 Route38_Text_BeautyValerieAfter:
-	.string "When I see POKéMON, it\n"
+	.string "When I see Pokémon, it\n"
 	.string "seems to soothe my nerves.$"
 
 Route38_Text_SailorHarrySeen:
 	.string "I've been overseas, so I\n"
 	.string "know about all sorts of\l"
-	.string "POKéMON!$"
+	.string "Pokémon!$"
 
 Route38_Text_SailorHarryBeaten:
 	.string "Your skill is world class!$"
@@ -118,40 +118,40 @@ Route38_Text_SailorHarryBeaten:
 Route38_Text_SailorHarryAfter:
 	.string "All kinds of people around\n"
 	.string "the world live happily with\l"
-	.string "POKéMON.$"
+	.string "Pokémon.$"
 
 Route38_Text_BeautyOliviaSeen:
-	.string "Don't you think my POKéMON\n"
+	.string "Don't you think my Pokémon\n"
 	.string "and I are beautiful?$"
 
 Route38_Text_BeautyOliviaBeaten:
-	.string "We drink MOOMOO MILK every\n"
+	.string "We drink Moomoo Milk every\n"
 	.string "day.$"
 
 Route38_Text_BeautyOliviaAfter:
-	.string "MOOMOO MILK is good for\n"
+	.string "Moomoo Milk is good for\n"
 	.string "beauty and health,\p"
 	.string "but inconveniently, they\n"
 	.string "only sell one bottle at a time.$"
 
 Route38_Text_Sign:
-	.string "ROUTE 38\p"
-	.string "OLIVINE CITY - ECRUTEAK CITY$"
+	.string "Route 38\p"
+	.string "Olivine City - Ecruteak City$"
 
 Route38_Text_TrainerTips:
-	.string "TRAINER TIPS\p"
-	.string "If a POKéMON is trying to\n"
+	.string "Trainer Tips\p"
+	.string "If a Pokémon is trying to\n"
 	.string "evolve, you can stop it.\p"
 	.string "Press the B Button during\n"
 	.string "evolution to cancel it.\p"
-	.string "That startles the POKéMON\n"
+	.string "That startles the Pokémon\n"
 	.string "and stops its evolution.$"
 
 
 Route38_Text_WaterSign:
-	.string "NO SWIMMING OR FISHING.\n"
-	.string "WATER FOR FARMING ONLY.\p"
-	.string "-ECRUTEAK COUNCIL$"
+	.string "No Swimming Or Fishing.\n"
+	.string "Water For Farming Only.\p"
+	.string "-Ecruteak Council$"
 `
 
 script Route38_HiddenGrotto {

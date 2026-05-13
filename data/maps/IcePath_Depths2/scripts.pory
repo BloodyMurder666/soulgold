@@ -1,0 +1,13 @@
+raw `
+IcePath_Depths2_MapScripts::
+	.byte 0
+
+`
+
+script icePathDepthsChienPao {
+    lock
+    faceplayer
+    legendaryencounter(SPECIES_CHIEN_PAO, 50, 1, FLAG_HIDE_CHIENPAO)
+    release
+    end
+}

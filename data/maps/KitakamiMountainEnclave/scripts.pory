@@ -1,0 +1,10 @@
+mapscripts KitakamiMountainEnclave_MapScripts {}
+
+script KitakamiMountainEnclave_Ogerpon {
+    lock
+    faceplayer
+    settotemboost(B_POSITION_OPPONENT_LEFT, 1, 1, 1, 1, 1, 0, 0)
+    legendaryencounter(SPECIES_OGERPON, 55, LOCALID_KITAKAMIMOUNTAIN_OGERPON, FLAG_HIDE_OGERPON)
+    release
+    end
+}

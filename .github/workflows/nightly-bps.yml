@@ -1,0 +1,47 @@
+name: Nightly BPS Release
+
+on:
+  push:
+    branches:
+      - master
+      - upcoming
+    paths:
+      - nightly.bps
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nightly-bps-release
+  cancel-in-progress: true
+
+env:
+  PATCH_FILE: nightly.bps
+
+jobs:
+  publish-nightly-bps:
+    if: github.actor != 'allcontributors[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate BPS patch
+        run: |
+          test -f "$PATCH_FILE"
+          sha256sum "$PATCH_FILE" > checksums.txt
+
+      - name: Replace nightly release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete nightly --yes --cleanup-tag || true
+          gh release create nightly "$PATCH_FILE" checksums.txt \
+            --target "$GITHUB_SHA" \
+            --title "Nightly BPS Patch" \
+            --notes "Nightly BPS patch from $GITHUB_SHA." \
+            --prerelease

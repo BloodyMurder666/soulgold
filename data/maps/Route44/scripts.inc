@@ -109,7 +109,7 @@ Route44_Text_FisherWilton1Seen:
 # 55 "data/maps/Route44/scripts.pory"
     .string "Aack!\p"
 # 56 "data/maps/Route44/scripts.pory"
-    .string "You made me lose a POLIWAG!\n"
+    .string "You made me lose a Poliwag!\n"
 # 57 "data/maps/Route44/scripts.pory"
     .string "What are you going to do about it?$"
 # 58 "data/maps/Route44/scripts.pory"
@@ -123,7 +123,7 @@ Route44_Text_FisherWilton1Beaten:
 # 62 "data/maps/Route44/scripts.pory"
 Route44_Text_FisherWiltonHugePoliwag:
 # 63 "data/maps/Route44/scripts.pory"
-    .string "That POLIWAG that got away…\n"
+    .string "That Poliwag that got away…\n"
 # 64 "data/maps/Route44/scripts.pory"
     .string "it was huge.\p"
 # 65 "data/maps/Route44/scripts.pory"
@@ -141,7 +141,7 @@ Route44_Text_FisherEdgarSeen:
 # 71 "data/maps/Route44/scripts.pory"
     .string "That's my relationship with my\n"
 # 72 "data/maps/Route44/scripts.pory"
-    .string "POKéMON.$"
+    .string "Pokémon.$"
 # 73 "data/maps/Route44/scripts.pory"
 
 # 74 "data/maps/Route44/scripts.pory"
@@ -163,7 +163,7 @@ Route44_Text_BirdKeeperVance1Seen:
 # 82 "data/maps/Route44/scripts.pory"
     .string "Do you know about the legendary\n"
 # 83 "data/maps/Route44/scripts.pory"
-    .string "bird POKéMON?$"
+    .string "bird Pokémon?$"
 # 84 "data/maps/Route44/scripts.pory"
 
 # 85 "data/maps/Route44/scripts.pory"
@@ -175,9 +175,9 @@ Route44_Text_BirdKeeperVance1Beaten:
 # 88 "data/maps/Route44/scripts.pory"
 Route44_Text_BirdKeeperVanceBirds:
 # 89 "data/maps/Route44/scripts.pory"
-    .string "ARTICUNO, ZAPDOS and MOLTRES are\n"
+    .string "Articuno, Zapdos and Moltres are\n"
 # 90 "data/maps/Route44/scripts.pory"
-    .string "the three legendary bird POKéMON.\p"
+    .string "the three legendary bird Pokémon.\p"
 # 91 "data/maps/Route44/scripts.pory"
     .string "I heard there are other legendary\n"
 # 92 "data/maps/Route44/scripts.pory"
@@ -209,13 +209,13 @@ Route44_Text_PokemaniacZachSeen:
 # 105 "data/maps/Route44/scripts.pory"
     .string "I'll do anything to get my hands\n"
 # 106 "data/maps/Route44/scripts.pory"
-    .string "on rare POKéMON!$"
+    .string "on rare Pokémon!$"
 # 107 "data/maps/Route44/scripts.pory"
 
 # 108 "data/maps/Route44/scripts.pory"
 Route44_Text_PokemaniacZachBeaten:
 # 109 "data/maps/Route44/scripts.pory"
-    .string "Oooh, your POKéMON are so\n"
+    .string "Oooh, your Pokémon are so\n"
 # 110 "data/maps/Route44/scripts.pory"
     .string "appealing.$"
 # 111 "data/maps/Route44/scripts.pory"
@@ -223,7 +223,7 @@ Route44_Text_PokemaniacZachBeaten:
 # 112 "data/maps/Route44/scripts.pory"
 Route44_Text_PokemaniacZachAfter:
 # 113 "data/maps/Route44/scripts.pory"
-    .string "If a POKéMON has different colors\n"
+    .string "If a Pokémon has different colors\n"
 # 114 "data/maps/Route44/scripts.pory"
     .string "from usual, it's more valuable.\p"
 # 115 "data/maps/Route44/scripts.pory"
@@ -237,7 +237,7 @@ Route44_Text_CooltrainermAllenSeen:
 # 119 "data/maps/Route44/scripts.pory"
     .string "by looking at you.\p"
 # 120 "data/maps/Route44/scripts.pory"
-    .string "I'm good at POKéMON, and I can\n"
+    .string "I'm good at Pokémon, and I can\n"
 # 121 "data/maps/Route44/scripts.pory"
     .string "see that you are too.$"
 # 122 "data/maps/Route44/scripts.pory"
@@ -251,11 +251,11 @@ Route44_Text_CooltrainermAllenBeaten:
 # 126 "data/maps/Route44/scripts.pory"
 Route44_Text_CooltrainermAllenAfter:
 # 127 "data/maps/Route44/scripts.pory"
-    .string "Wow. You have a lot of BADGES.\p"
+    .string "Wow. You have a lot of Badges.\p"
 # 128 "data/maps/Route44/scripts.pory"
     .string "No wonder you're so tough.\p"
 # 129 "data/maps/Route44/scripts.pory"
-    .string "I wonder if ECRUTEAK GYM's MORTY\n"
+    .string "I wonder if Ecruteak Gym's Morty\n"
 # 130 "data/maps/Route44/scripts.pory"
     .string "is still in training?\p"
 # 131 "data/maps/Route44/scripts.pory"
@@ -293,17 +293,17 @@ Route44_Text_CooltrainerfCybilAfter:
 # 147 "data/maps/Route44/scripts.pory"
 Route44_Text_Sign1:
 # 148 "data/maps/Route44/scripts.pory"
-    .string "ROUTE 44\n"
+    .string "Route 44\n"
 # 149 "data/maps/Route44/scripts.pory"
-    .string "ICE PATH AHEAD$"
+    .string "Ice Path Ahead$"
 # 150 "data/maps/Route44/scripts.pory"
 
 # 151 "data/maps/Route44/scripts.pory"
 Route44_Text_Sign2:
 # 152 "data/maps/Route44/scripts.pory"
-    .string "ROUTE 44\p"
+    .string "Route 44\p"
 # 153 "data/maps/Route44/scripts.pory"
-    .string "MAHOGANY TOWN - BLACKTHORN CITY$"
+    .string "Mahogany Town - Blackthorn City$"
 
 Route44_HiddenGrotto::
 # 157 "data/maps/Route44/scripts.pory"

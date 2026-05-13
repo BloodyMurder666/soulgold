@@ -24,7 +24,7 @@ PewterCity_Museum_2F_EventScript_Meteor::
 
 PewterCity_Museum_2F_Text_Nerd:
 	.string "They say that meteorites struck\n"
-	.string "BIRTH ISLAND.\p"
+	.string "Birth Island.\p"
 	.string "We would love to display them here\n"
 	.string "in our museum, but...\p"
 	.string "These meteorites are said to emit\n"
@@ -32,16 +32,16 @@ PewterCity_Museum_2F_Text_Nerd:
 	.string "carried away...$"
 
 PewterCity_Museum_2F_Text_AskedDaddyToCatchPikachu::
-    .string "I want a PIKACHU!\n"
+    .string "I want a Pikachu!\n"
     .string "It's so cute!\p"
     .string "I asked my daddy to catch me one!$"
 
 PewterCity_Museum_2F_Text_PikachuSoonIPromise::
-    .string "Yeah, a PIKACHU soon, I promise!$"
+    .string "Yeah, a Pikachu soon, I promise!$"
 
 PewterCity_Museum_2F_Text_SpaceShuttle::
     .string "Space Shuttle$"
 
 PewterCity_Museum_2F_Text_MeteoriteThatFellOnMtMoon::
-    .string "A meteorite that fell on MT. MOON.\n"
-    .string "It is thought to be a MOON STONE.$"
+    .string "A meteorite that fell on Mt. Moon.\n"
+    .string "It is thought to be a Moon Stone.$"

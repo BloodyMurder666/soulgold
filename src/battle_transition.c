@@ -5,6 +5,7 @@
 #include "bg.h"
 #include "decompress.h"
 #include "event_object_movement.h"
+#include "event_data.h"
 #include "field_camera.h"
 #include "field_effect.h"
 #include "field_weather.h"
@@ -23,6 +24,7 @@
 #include "battle_setup.h"
 #include "data.h"
 #include "constants/field_effects.h"
+#include "constants/vars.h"
 #include "constants/songs.h"
 #include "constants/trainers.h"
 #include "constants/rgb.h"
@@ -286,6 +288,8 @@ static bool8 MugshotTrainerPic_Slide(struct Sprite *);
 static bool8 MugshotTrainerPic_SlideSlow(struct Sprite *);
 static bool8 MugshotTrainerPic_SlidePartner(struct Sprite *);
 static bool8 MugshotTrainerPic_SlideOffscreen(struct Sprite *);
+static u8 GetBattleTransitionSpeedScale(void);
+static void RunBattleTransitionStateFuncs(u8 taskId, const TransitionStateFunc *funcs);
 
 static s16 sDebug_RectangularSpiralData;
 static u8 sTestingTransitionId;
@@ -293,6 +297,22 @@ static u8 sTestingTransitionState;
 static struct RectangularSpiralLine sRectangularSpiralLines[4];
 
 EWRAM_DATA static struct TransitionData *sTransitionData = NULL;
+
+static u8 GetBattleTransitionSpeedScale(void)
+{
+    return 1 + OverworldSpeedup_AdditionalIterations(VarGet(VAR_OVERWORLD_SPEEDUP), TRUE);
+}
+
+static void RunBattleTransitionStateFuncs(u8 taskId, const TransitionStateFunc *funcs)
+{
+    u8 i;
+    u8 speed = GetBattleTransitionSpeedScale();
+
+    for (i = 0; i < speed && gTasks[taskId].isActive; i++)
+    {
+        while (gTasks[taskId].isActive && funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    }
+}
 
 static const u32 sBigPokeball_Tileset[] = INCBIN_U32("graphics/battle_transitions/big_pokeball.4bpp");
 static const u32 sPokeballTrail_Tileset[] = INCBIN_U32("graphics/battle_transitions/pokeball_trail.4bpp");
@@ -1116,7 +1136,7 @@ static void Task_Intro(u8 taskId)
 
 static void Task_Blur(u8 taskId)
 {
-    while (sBlur_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sBlur_Funcs);
 }
 
 static bool8 Blur_Init(struct Task *task)
@@ -1169,7 +1189,7 @@ static bool8 Blur_End(struct Task *task)
 
 static void Task_Swirl(u8 taskId)
 {
-    while (sSwirl_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sSwirl_Funcs);
 }
 
 static bool8 Swirl_Init(struct Task *task)
@@ -1233,7 +1253,7 @@ static void HBlankCB_Swirl(void)
 
 static void Task_Shuffle(u8 taskId)
 {
-    while (sShuffle_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sShuffle_Funcs);
 }
 
 static bool8 Shuffle_Init(struct Task *task)
@@ -1320,38 +1340,38 @@ static void HBlankCB_Shuffle(void)
 
 static void Task_BigPokeball(u8 taskId)
 {
-    while (sBigPokeball_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sBigPokeball_Funcs);
 }
 
 static void Task_Aqua(u8 taskId)
 {
-    while (sAqua_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sAqua_Funcs);
 }
 
 static void Task_Magma(u8 taskId)
 {
-    while (sMagma_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sMagma_Funcs);
 }
 
 
 static void Task_Regice(u8 taskId)
 {
-    while (sRegice_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sRegice_Funcs);
 }
 
 static void Task_Registeel(u8 taskId)
 {
-    while (sRegisteel_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sRegisteel_Funcs);
 }
 
 static void Task_Regirock(u8 taskId)
 {
-    while (sRegirock_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sRegirock_Funcs);
 }
 
 static void Task_Kyogre(u8 taskId)
 {
-    while (sKyogre_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sKyogre_Funcs);
 }
 
 static void InitPatternWeaveTransition(struct Task *task)
@@ -1749,7 +1769,7 @@ static void VBlankCB_CircularMask(void)
 
 static void Task_PokeballsTrail(u8 taskId)
 {
-    while (sPokeballsTrail_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sPokeballsTrail_Funcs);
 }
 
 static bool8 PokeballsTrail_Init(struct Task *task)
@@ -1815,40 +1835,48 @@ bool8 FldEff_PokeballTrail(void)
 
 static void SpriteCB_FldEffPokeballTrail(struct Sprite *sprite)
 {
+    u8 i;
+    u8 speedScale = GetBattleTransitionSpeedScale();
     s16 speeds[ARRAY_COUNT(sPokeballsTrail_Speeds)];
     memcpy(speeds, sPokeballsTrail_Speeds, sizeof(sPokeballsTrail_Speeds));
 
-    if (sprite->sDelay != 0)
+    for (i = 0; i < speedScale; i++)
     {
-        sprite->sDelay--;
-    }
-    else
-    {
-        if (sprite->x >= 0 && sprite->x <= DISPLAY_WIDTH)
+        if (sprite->sDelay != 0)
         {
-            // Set Pokéball position
-            s16 posX = sprite->x >> 3;
-            s16 posY = sprite->y >> 3;
-
-            // If Pokéball moved forward clear trail behind it
-            if (posX != sprite->sPrevX)
+            sprite->sDelay--;
+        }
+        else
+        {
+            if (sprite->x >= 0 && sprite->x <= DISPLAY_WIDTH)
             {
-                u32 var;
-                u16 *ptr;
+                // Set Pokéball position
+                s16 posX = sprite->x >> 3;
+                s16 posY = sprite->y >> 3;
 
-                sprite->sPrevX = posX;
-                var = ((REG_BG0CNT >> 8) & 0x1F) << 11;
-                ptr = (u16 *)(BG_VRAM + var);
+                // If Pokéball moved forward clear trail behind it
+                if (posX != sprite->sPrevX)
+                {
+                    u32 var;
+                    u16 *ptr;
 
-                SET_TILE(ptr, posY - 2, posX, 1);
-                SET_TILE(ptr, posY - 1, posX, 1);
-                SET_TILE(ptr, posY - 0, posX, 1);
-                SET_TILE(ptr, posY + 1, posX, 1);
+                    sprite->sPrevX = posX;
+                    var = ((REG_BG0CNT >> 8) & 0x1F) << 11;
+                    ptr = (u16 *)(BG_VRAM + var);
+
+                    SET_TILE(ptr, posY - 2, posX, 1);
+                    SET_TILE(ptr, posY - 1, posX, 1);
+                    SET_TILE(ptr, posY - 0, posX, 1);
+                    SET_TILE(ptr, posY + 1, posX, 1);
+                }
+            }
+            sprite->x += speeds[sprite->sSide];
+            if (sprite->x < -15 || sprite->x > DISPLAY_WIDTH + 15)
+            {
+                FieldEffectStop(sprite, FLDEFF_POKEBALL_TRAIL);
+                return;
             }
         }
-        sprite->x += speeds[sprite->sSide];
-        if (sprite->x < -15 || sprite->x > DISPLAY_WIDTH + 15)
-            FieldEffectStop(sprite, FLDEFF_POKEBALL_TRAIL);
     }
 }
 
@@ -1862,7 +1890,7 @@ static void SpriteCB_FldEffPokeballTrail(struct Sprite *sprite)
 
 static void Task_ClockwiseWipe(u8 taskId)
 {
-    while (sClockwiseWipe_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sClockwiseWipe_Funcs);
 }
 
 static bool8 ClockwiseWipe_Init(struct Task *task)
@@ -2061,7 +2089,7 @@ static void VBlankCB_ClockwiseWipe(void)
 
 static void Task_Ripple(u8 taskId)
 {
-    while (sRipple_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sRipple_Funcs);
 }
 
 static bool8 Ripple_Init(struct Task *task)
@@ -2146,7 +2174,7 @@ static void HBlankCB_Ripple(void)
 
 static void Task_Wave(u8 taskId)
 {
-    while (sWave_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sWave_Funcs);
 }
 
 static bool8 Wave_Init(struct Task *task)
@@ -2248,7 +2276,7 @@ static void VBlankCB_Wave(void)
 
 static void Task_Mugshot(u8 taskId)
 {
-    while (sMugshot_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sMugshot_Funcs);
 }
 
 static bool8 Mugshot_Init(struct Task *task)
@@ -2665,12 +2693,20 @@ static void Mugshots_CreateTrainerPics(struct Task *task)
 
 static void SpriteCB_MugshotTrainerPic(struct Sprite *sprite)
 {
-    while (sMugshotTrainerPicFuncs[sprite->sState](sprite));
+    u8 i;
+    u8 speedScale = GetBattleTransitionSpeedScale();
+
+    for (i = 0; i < speedScale; i++)
+        while (sMugshotTrainerPicFuncs[sprite->sState](sprite));
 }
 
 static void SpriteCB_MugshotTrainerPicPartner(struct Sprite *sprite)
 {
-    while (sMugshotTrainerPicFuncsPartner[sprite->sState](sprite));
+    u8 i;
+    u8 speedScale = GetBattleTransitionSpeedScale();
+
+    for (i = 0; i < speedScale; i++)
+        while (sMugshotTrainerPicFuncsPartner[sprite->sState](sprite));
 }
 
 
@@ -2787,7 +2823,7 @@ static s16 IsTrainerPicSlideDone(s16 spriteId)
 
 static void Task_Slice(u8 taskId)
 {
-    while (sSlice_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sSlice_Funcs);
 }
 
 static bool8 Slice_Init(struct Task *task)
@@ -2906,7 +2942,7 @@ static void HBlankCB_Slice(void)
 
 static void Task_ShredSplit(u8 taskId)
 {
-    while (sShredSplit_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sShredSplit_Funcs);
 }
 
 static bool8 ShredSplit_Init(struct Task *task)
@@ -3076,12 +3112,12 @@ static bool8 ShredSplit_End(struct Task *task)
 
 static void Task_Blackhole(u8 taskId)
 {
-    while (sBlackhole_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sBlackhole_Funcs);
 }
 
 static void Task_BlackholePulsate(u8 taskId)
 {
-    while (sBlackholePulsate_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sBlackholePulsate_Funcs);
 }
 
 // Init is shared by both transitions
@@ -3227,7 +3263,7 @@ static bool8 BlackholePulsate_Main(struct Task *task)
 
 static void Task_RectangularSpiral(u8 taskId)
 {
-    while (sRectangularSpiral_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sRectangularSpiral_Funcs);
 }
 
 static bool8 RectangularSpiral_Init(struct Task *task)
@@ -3412,7 +3448,7 @@ static bool16 UpdateRectangularSpiralLine(const s16 *const *moveDataTable, struc
 
 static void Task_Groudon(u8 taskId)
 {
-    while (sGroudon_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sGroudon_Funcs);
 }
 
 static bool8 Groudon_Init(struct Task *task)
@@ -3475,7 +3511,7 @@ static bool8 Groudon_PaletteBrighten(struct Task *task)
 
 static void Task_Rayquaza(u8 taskId)
 {
-    while (sRayquaza_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sRayquaza_Funcs);
 }
 
 static bool8 Rayquaza_Init(struct Task *task)
@@ -3628,7 +3664,7 @@ static void VBlankCB_Rayquaza(void)
 
 static void Task_WhiteBarsFade(u8 taskId)
 {
-    while (sWhiteBarsFade_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sWhiteBarsFade_Funcs);
 }
 
 static bool8 WhiteBarsFade_Init(struct Task *task)
@@ -3752,44 +3788,51 @@ static void HBlankCB_WhiteBarsFade(void)
 
 static void SpriteCB_WhiteBarFade(struct Sprite *sprite)
 {
-    if (sprite->sDelay)
+    u8 speedScale = GetBattleTransitionSpeedScale();
+    u8 j;
+
+    for (j = 0; j < speedScale; j++)
     {
-        sprite->sDelay--;
-        if (sprite->sIsMainSprite)
-            sTransitionData->VBlank_DMA = 1;
-    }
-    else
-    {
-        u16 i;
-        u16 *ptr1 = &gScanlineEffectRegBuffers[0][sprite->y];
-        u16 *ptr2 = &gScanlineEffectRegBuffers[0][sprite->y + DISPLAY_HEIGHT];
-        for (i = 0; i < DISPLAY_HEIGHT / NUM_WHITE_BARS; i++)
+        if (sprite->sDelay)
         {
-            ptr1[i] = sprite->sFade >> 8;
-            ptr2[i] = (u8)sprite->x;
+            sprite->sDelay--;
+            if (sprite->sIsMainSprite)
+                sTransitionData->VBlank_DMA = 1;
         }
-        if (sprite->x == 0 && sprite->sFade == FADE_TARGET)
-            sprite->sFinished = TRUE;
-
-        sprite->x -= 16;
-        sprite->sFade += FADE_TARGET / 32;
-
-        if (sprite->x < 0)
-            sprite->x = 0;
-        if (sprite->sFade > FADE_TARGET)
-            sprite->sFade = FADE_TARGET;
-
-        if (sprite->sIsMainSprite)
-            sTransitionData->VBlank_DMA = 1;
-
-        if (sprite->sFinished)
+        else
         {
-            // If not the main sprite, destroy self. Otherwise, wait until the
-            // others have destroyed themselves, or until enough time has elapsed.
-            if (!sprite->sIsMainSprite || (sTransitionData->counter >= NUM_WHITE_BARS - 1 && sprite->sDestroyAttempts++ > 7))
+            u16 i;
+            u16 *ptr1 = &gScanlineEffectRegBuffers[0][sprite->y];
+            u16 *ptr2 = &gScanlineEffectRegBuffers[0][sprite->y + DISPLAY_HEIGHT];
+            for (i = 0; i < DISPLAY_HEIGHT / NUM_WHITE_BARS; i++)
             {
-                sTransitionData->counter++;
-                DestroySprite(sprite);
+                ptr1[i] = sprite->sFade >> 8;
+                ptr2[i] = (u8)sprite->x;
+            }
+            if (sprite->x == 0 && sprite->sFade == FADE_TARGET)
+                sprite->sFinished = TRUE;
+
+            sprite->x -= 16;
+            sprite->sFade += FADE_TARGET / 32;
+
+            if (sprite->x < 0)
+                sprite->x = 0;
+            if (sprite->sFade > FADE_TARGET)
+                sprite->sFade = FADE_TARGET;
+
+            if (sprite->sIsMainSprite)
+                sTransitionData->VBlank_DMA = 1;
+
+            if (sprite->sFinished)
+            {
+                // If not the main sprite, destroy self. Otherwise, wait until the
+                // others have destroyed themselves, or until enough time has elapsed.
+                if (!sprite->sIsMainSprite || (sTransitionData->counter >= NUM_WHITE_BARS - 1 && sprite->sDestroyAttempts++ > 7))
+                {
+                    sTransitionData->counter++;
+                    DestroySprite(sprite);
+                    return;
+                }
             }
         }
     }
@@ -3810,7 +3853,7 @@ static void SpriteCB_WhiteBarFade(struct Sprite *sprite)
 
 static void Task_GridSquares(u8 taskId)
 {
-    while (sGridSquares_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sGridSquares_Funcs);
 }
 
 static bool8 GridSquares_Init(struct Task *task)
@@ -3870,7 +3913,7 @@ static bool8 GridSquares_End(struct Task *task)
 
 static void Task_AngledWipes(u8 taskId)
 {
-    while (sAngledWipes_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sAngledWipes_Funcs);
 }
 
 static bool8 AngledWipes_Init(struct Task *task)
@@ -4030,7 +4073,7 @@ static bool8 IsIntroTaskDone(void)
 
 void Task_BattleTransition_Intro(u8 taskId)
 {
-    while (sTransitionIntroFuncs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sTransitionIntroFuncs);
 }
 
 static bool8 TransitionIntro_FadeToGray(struct Task *task)
@@ -4328,7 +4371,7 @@ static bool8 FrontierLogoWiggle_SetGfx(struct Task *task)
 
 static void Task_FrontierLogoWiggle(u8 taskId)
 {
-    while (sFrontierLogoWiggle_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sFrontierLogoWiggle_Funcs);
 }
 
 #undef tSinIndex
@@ -4348,7 +4391,7 @@ static void Task_FrontierLogoWiggle(u8 taskId)
 
 static void Task_FrontierLogoWave(u8 taskId)
 {
-    while (sFrontierLogoWave_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sFrontierLogoWave_Funcs);
 }
 
 static bool8 FrontierLogoWave_Init(struct Task *task)
@@ -4497,17 +4540,17 @@ static void HBlankCB_FrontierLogoWave(void)
 
 static void Task_FrontierSquares(u8 taskId)
 {
-    while (sFrontierSquares_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sFrontierSquares_Funcs);
 }
 
 static void Task_FrontierSquaresSpiral(u8 taskId)
 {
-    while (sFrontierSquaresSpiral_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sFrontierSquaresSpiral_Funcs);
 }
 
 static void Task_FrontierSquaresScroll(u8 taskId)
 {
-    while (sFrontierSquaresScroll_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
+    RunBattleTransitionStateFuncs(taskId, sFrontierSquaresScroll_Funcs);
 }
 
 static bool8 FrontierSquares_Init(struct Task *task)

@@ -31,10 +31,10 @@ VioletCity_NicknameHouse_Text_Teacher:
 	.string "She uses the names of her\n"
 	.string "favorite things to eat.\p"
 	.string "For the nicknames she gives to\n"
-	.string "her POKéMON, I mean.$"
+	.string "her Pokémon, I mean.$"
 
 VioletCity_NicknameHouse_Text_Lass:
-	.string "I call my PIDGEY STRAWBERRY!$"
+	.string "I call my Pidgey Strawberry!$"
 
 VioletCity_NicknameHouse_Text_Bird:
-	.string "STRAWBERRY: Pijji!$"
+	.string "Strawberry: Pijji!$"

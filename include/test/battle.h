@@ -615,6 +615,7 @@ enum
     QUEUED_SUB_HIT_EVENT,
     QUEUED_EXP_EVENT,
     QUEUED_MESSAGE_EVENT,
+    QUEUED_MESSAGE_DURING_STAT_ANIM_EVENT,
     QUEUED_STATUS_EVENT,
     QUEUED_CATCH_CHANCE_EVENT,
 };
@@ -661,6 +662,7 @@ struct QueuedExpEvent
 struct QueuedMessageEvent
 {
     const u8 *pattern;
+    enum BattlerId statAnimBattler:3;
 };
 
 struct QueuedStatusEvent
@@ -763,6 +765,8 @@ struct BattleTrialData
     u8 lastActionTurn;
     u8 queuedEvent;
     u8 aiActionsPlayed[MAX_BATTLERS_COUNT];
+    bool8 statAnimInProgress[MAX_BATTLERS_COUNT];
+    bool8 concurrentStatAnimMessage[MAX_BATTLERS_COUNT];
     u8 scoreTieCount;
     u8 targetTieCount;
 };
@@ -786,6 +790,7 @@ struct BattleTestData
     u8 nature;
     bool8 isShiny;
     enum Ability forcedAbilities[MAX_BATTLE_TRAINERS][PARTY_SIZE];
+    enum Ability forcedInnates[MAX_BATTLERS_COUNT][PARTY_SIZE][MAX_MON_INNATES_INTERNAL];
     u8 chosenGimmick[MAX_BATTLE_TRAINERS][PARTY_SIZE];
     enum BattleTrainer partyTrainers[NUM_BATTLE_SIDES][PARTY_SIZE];
     u8 forcedEnvironment;
@@ -1025,6 +1030,7 @@ struct moveWithPP {
 #define Gender(gender) Gender_(__LINE__, gender)
 #define Nature(nature) Nature_(__LINE__, nature)
 #define Ability(ability) Ability_(__LINE__, ability)
+#define Innates(innate1, ... ) do { enum Ability innates_[MAX_MON_INNATES_INTERNAL] = {innate1, __VA_ARGS__}; Innates_(__LINE__, innates_); } while(0)
 #define Level(level) Level_(__LINE__, level)
 #define MaxHP(maxHP) MaxHP_(__LINE__, maxHP)
 #define HP(hp) HP_(__LINE__, hp)
@@ -1040,6 +1046,7 @@ struct moveWithPP {
 #define SpDefenseIV(spDefenseIV) SpDefenseIV_(__LINE__, spDefenseIV)
 #define SpeedIV(speedIV) SpeedIV_(__LINE__, speedIV)
 #define Item(item) Item_(__LINE__, item)
+#define Items(item1, ...) do { u32 items_[MAX_MON_ITEMS_INTERNAL] = {item1, __VA_ARGS__}; Items_(__LINE__, items_); } while(0)
 #define Moves(move1, ...) do { u16 moves_[MAX_MON_MOVES] = {move1, __VA_ARGS__}; Moves_(__LINE__, moves_); } while (0)
 #define MovesWithPP(movewithpp1, ...) MovesWithPP_(__LINE__, (struct moveWithPP[MAX_MON_MOVES]) {movewithpp1, __VA_ARGS__})
 #define Friendship(friendship) Friendship_(__LINE__, friendship)
@@ -1070,6 +1077,7 @@ void AILogScores(u32 sourceLine);
 void Gender_(u32 sourceLine, u32 gender);
 void Nature_(u32 sourceLine, u32 nature);
 void Ability_(u32 sourceLine, enum Ability ability);
+void Innates_(u32 sourceLine, enum Ability innates[MAX_MON_INNATES_INTERNAL]);
 void Level_(u32 sourceLine, u32 level);
 void MaxHP_(u32 sourceLine, u32 maxHP);
 void HP_(u32 sourceLine, u32 hp);
@@ -1085,6 +1093,7 @@ void SpAttackIV_(u32 sourceLine, u32 spAttackIV);
 void SpDefenseIV_(u32 sourceLine, u32 spDefenseIV);
 void SpeedIV_(u32 sourceLine, u32 speedIV);
 void Item_(u32 sourceLine, u32 item);
+void Items_(u32 sourceLine, u32 items[MAX_MON_ITEMS_INTERNAL]);
 void Moves_(u32 sourceLine, u16 moves[MAX_MON_MOVES]);
 void MovesWithPP_(u32 sourceLine, struct moveWithPP moveWithPP[MAX_MON_MOVES]);
 void Friendship_(u32 sourceLine, u32 friendship);
@@ -1232,6 +1241,7 @@ void SendOut(u32 sourceLine, struct BattlePokemon *, u32 partyIndex);
 #define EXPERIENCE_BAR(battler, ...) QueueExp(__LINE__, battler, (struct ExpEventContext) { R_APPEND_TRUE(__VA_ARGS__) })
 // Static const is needed to make the modern compiler put the pattern variable in the .rodata section, instead of putting it on stack(which can break the game).
 #define MESSAGE(pattern) do {static const u8 msg[] = _(pattern); QueueMessage(__LINE__, msg);} while (0)
+#define MESSAGE_DURING_STAT_ANIM(pattern, battler) do {static const u8 msg[] = _(pattern); QueueMessageDuringStatAnim(__LINE__, msg, battler);} while (0)
 #define STATUS_ICON(battler, status) QueueStatus(__LINE__, battler, (struct StatusEventContext) { status })
 #define CATCHING_CHANCE(address) QueueCatchingChance(__LINE__, address)
 #define FREEZE_OR_FROSTBURN_STATUS(battler, isFrostbite) \
@@ -1322,6 +1332,7 @@ void QueueHP(u32 sourceLine, struct BattlePokemon *battler, struct HPEventContex
 void QueueSubHit(u32 sourceLine, struct BattlePokemon *battler, struct SubHitEventContext);
 void QueueExp(u32 sourceLine, struct BattlePokemon *battler, struct ExpEventContext);
 void QueueMessage(u32 sourceLine, const u8 *pattern);
+void QueueMessageDuringStatAnim(u32 sourceLine, const u8 *pattern, struct BattlePokemon *battler);
 void QueueStatus(u32 sourceLine, struct BattlePokemon *battler, struct StatusEventContext);
 void QueueCatchingChance(u32 sourceLine, u32 *captureAdress);
 

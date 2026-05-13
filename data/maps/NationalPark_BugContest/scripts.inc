@@ -161,58 +161,58 @@ NationalPark_BugContest_Text_Trash:
 	.string "Nothing here.$"
 
 NationlParkBugContest_Text_EnjoyTheContest:
-	.string "ATTENDANT: Enjoy the contest!$"
+	.string "Attendant: Enjoy the contest!$"
 
 NationalParkBugContest_Text_Attendant:
-	.string "ATTENDANT: Would you like to end\n"
+	.string "Attendant: Would you like to end\n"
 	.string "the contest?$"
 
 NationalParkBugContest_Text_ContestantBelinda:
-	.string "BELINDA: I'm going to win!\n"
+	.string "Belinda: I'm going to win!\n"
 	.string "Don't bother me.$"
 
 NationalParkBugContest_Text_Contestant2A:
-	.string "ED: My PARASECT puts POKéMON to\n"
-	.string "sleep with SPORE.$"
+	.string "Ed: My Parasect puts Pokémon to\n"
+	.string "sleep with Spore.$"
 
 NationalParkBugContest_Text_ContestantShaun:
-	.string "SHAUN: I'm not concerned about\n"
+	.string "Shaun: I'm not concerned about\n"
 	.string "winning.\p"
-	.string "I'm just looking for rare POKéMON.$"
+	.string "I'm just looking for rare Pokémon.$"
 
 NationalParkBugContest_Text_Contestant6A:
-	.string "BARRY: You should weaken bug\n"
-	.string "POKéMON first,\p"
-	.string "then throw a BALL.$"
+	.string "Barry: You should weaken bug\n"
+	.string "Pokémon first,\p"
+	.string "then throw a Ball.$"
 
 NationalParkBugContest_Text_Contestant7A:
-	.string "CINDY: I love bug POKéMON.\p"
+	.string "Cindy: I love bug Pokémon.\p"
 	.string "I guess you must like them too.$"
 
 NationalParkBugContest_Text_Contestant8A:
-	.string "JOSH: I've been collecting bug\n"
-	.string "POKéMON since I was just a baby.\p"
+	.string "Josh: I've been collecting bug\n"
+	.string "Pokémon since I was just a baby.\p"
 	.string "There's no way I'm going to lose!$"
 
 NationalParkBugContest_Text_Contestant9A:
-	.string "SAMUEL: If you've got the time to\n"
-	.string "chat, go find some bug POKéMON.$"
+	.string "Samuel: If you've got the time to\n"
+	.string "chat, go find some bug Pokémon.$"
 
 NationalParkBugContest_Text_Contestant10A:
-	.string "KIPP: I've studied about bug\n"
-	.string "POKéMON a lot.\p"
+	.string "Kipp: I've studied about bug\n"
+	.string "Pokémon a lot.\p"
 	.string "I'm going to win for sure.$"
 
 NationalParkBugContest_Text_Sign_RelaxationSquare:
-	.string "RELAXATION SQUARE\n"
-	.string "NATIONAL PARK$"
+	.string "Relaxation Square\n"
+	.string "National Park$"
 
 NationalParkBugContest_Text_Sign_BattleNotice:
 	.string "What is this notice?\p"
 	.string "Please battle only in the grass.\p"
-	.string "NATIONAL PARK WARDEN'S OFFICE$"
+	.string "National Park Warden'S Office$"
 
 NationalParkBugContest_Text_TrainerTips:
-	.string "The NATIONAL PARK has different\n"
-	.string "POKéMON during the BUG-CATCHING\l"
-	.string "CONTEST.$"
+	.string "The National Park has different\n"
+	.string "Pokémon during the Bug-Catching\l"
+	.string "Contest.$"

@@ -96,15 +96,15 @@ GoldenrodDeptStore_Text_RoofSuperNerdQuitBotheringMe:
 GoldenrodDeptStore_Text_RoofPokefanM:
     .string "There's something I really want,\n"
     .string "but I don't have the necessary cash…\p"
-    .string "Maybe I'll sell off the BERRIES I've\n"
+    .string "Maybe I'll sell off the Berries I've\n"
     .string "collected…$"
 
 GoldenrodDeptStore_Text_RoofTeacher:
     .string "Oh, everything is so cheap!\p"
-    .string "I bought so much, my PACK's crammed!$"
+    .string "I bought so much, my Pack's crammed!$"
 
 GoldenrodDeptStore_Text_RoofBugCatcher:
-    .string "My POKéMON always get paralyzed or\n"
+    .string "My Pokémon always get paralyzed or\n"
     .string "poisoned when the chips are down…\p"
-    .string "So I came to buy some FULL HEAL.\p"
+    .string "So I came to buy some Full Heal.\p"
     .string "I wonder if there's any left?$"

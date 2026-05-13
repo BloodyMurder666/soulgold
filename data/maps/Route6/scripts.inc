@@ -27,35 +27,35 @@ Route6_EventScript_Sign::
 
 Route6_Text_PokefanM:
 	.string "The road is closed until the\n"
-	.string "problem at the POWER PLANT is\l"
+	.string "problem at the Power Plant is\l"
 	.string "solved.$"
 
 Route6_Text_UndergroundPathSign:
-	.string "UNDERGROUND PATH\p"
-	.string "CERULEAN CITY - VERMILION CITY$"
+	.string "Underground Path\p"
+	.string "Cerulean City - Vermilion City$"
 
 PokefanM_Text_RexSeen:
-	.string "My STANTLER is the cutest in the\n"
+	.string "My Stantler is the cutest in the\n"
 	.string "world.$"
 
 PokefanM_Text_RexBeaten:
-	.string "My STANTLER!$"
+	.string "My Stantler!$"
 
 PokefanM_Text_RexAfter:
-	.string "Look how adorable my STANTLER\n"
+	.string "Look how adorable my Stantler\n"
 	.string "acts!\p"
 	.string "Isn't it cute enough to make\n"
 	.string "your heart melt?$"
 
 PokefanM_Text_AllanSeen:
-	.string "My GRANBULL is the cutest in the\n"
+	.string "My Granbull is the cutest in the\n"
 	.string "world.$"
 
 PokefanM_Text_AllanBeaten:
-	.string "My GRANBULL!$"
+	.string "My Granbull!$"
 
 PokefanM_Text_AllanAfter:
-	.string "Look how adorable my GRANBULL\n"
+	.string "Look how adorable my Granbull\n"
 	.string "acts!\p"
 	.string "Isn't it cute enough to make\n"
 	.string "your heart melt?$"

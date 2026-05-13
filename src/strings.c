@@ -14,18 +14,18 @@ const u8 gText_XsYWereSwapped[] = _("{STR_VAR_1}'s {STR_VAR_2} were swapped!{PAU
 const u8 gText_ExpandedPlaceholder_Empty[] = _("");
 const u8 gText_ExpandedPlaceholder_Kun[] = _("");
 const u8 gText_ExpandedPlaceholder_Chan[] = _("");
-const u8 gText_ExpandedPlaceholder_Sapphire[] = _("SAPPHIRE");
-const u8 gText_ExpandedPlaceholder_Ruby[] = _("RUBY");
-const u8 gText_ExpandedPlaceholder_Emerald[] = _("EMERALD");
-const u8 gText_ExpandedPlaceholder_Aqua[] = _("AQUA");
-const u8 gText_ExpandedPlaceholder_Magma[] = _("MAGMA");
-const u8 gText_ExpandedPlaceholder_Archie[] = _("ARCHIE");
-const u8 gText_ExpandedPlaceholder_Maxie[] = _("MAXIE");
-const u8 gText_ExpandedPlaceholder_Kyogre[] = _("KYOGRE");
-const u8 gText_ExpandedPlaceholder_Groudon[] = _("GROUDON");
-const u8 gText_ExpandedPlaceholder_Brendan[] = _("BRENDAN");
-const u8 gText_ExpandedPlaceholder_May[] = _("MAY");
-const u8 gText_EggNickname[POKEMON_NAME_LENGTH + 1] = _("EGG");
+const u8 gText_ExpandedPlaceholder_Sapphire[] = _("Sapphire");
+const u8 gText_ExpandedPlaceholder_Ruby[] = _("Ruby");
+const u8 gText_ExpandedPlaceholder_Emerald[] = _("Emerald");
+const u8 gText_ExpandedPlaceholder_Aqua[] = _("Aqua");
+const u8 gText_ExpandedPlaceholder_Magma[] = _("Magma");
+const u8 gText_ExpandedPlaceholder_Archie[] = _("Archie");
+const u8 gText_ExpandedPlaceholder_Maxie[] = _("Maxie");
+const u8 gText_ExpandedPlaceholder_Kyogre[] = _("Kyogre");
+const u8 gText_ExpandedPlaceholder_Groudon[] = _("Groudon");
+const u8 gText_ExpandedPlaceholder_Brendan[] = _("Brendan");
+const u8 gText_ExpandedPlaceholder_May[] = _("May");
+const u8 gText_EggNickname[POKEMON_NAME_LENGTH + 1] = _("Egg");
 const u8 gText_Pokemon[POKEMON_NAME_LENGTH + 1] = _("Pokémon");
 const u8 gText_Player[] = _("Player"); // Unused
 const u8 gText_Pokedex[] = _("Pokédex"); // Unused
@@ -35,8 +35,8 @@ const u8 gText_AButton[] = _("A Button"); // Unused
 const u8 gText_BButton[] = _("B Button"); // Unused
 const u8 gText_RButton[] = _("R Button"); // Unused
 const u8 gText_LButton[] = _("L Button"); // Unused
-const u8 gText_Start[] = _("START"); // Unused
-const u8 gText_Select[] = _("SELECT"); // Unused
+const u8 gText_Start[] = _("Start"); // Unused
+const u8 gText_Select[] = _("Select"); // Unused
 const u8 gText_ControlPad[] = _("+ Control Pad"); // Unused
 const u8 gText_LButtonRButton[] = _("L Button  R Button"); // Unused
 const u8 gText_Controls[] = _("Controls"); // Unused
@@ -56,32 +56,32 @@ const u8 gText_EmptyPkmnCategory[] = _("                       Pokémon"); // Un
 const u8 gText_EmptyHeight[] = _("{CLEAR_TO 0x0C}    '    ”"); // Unused
 const u8 gText_EmptyWeight[] = _("        .   lbs."); // Unused
 const u8 gText_EmptyPokedexInfo1[] = _(""); // Unused
-const u8 gText_CryOf[] = _("CRY OF");
+const u8 gText_CryOf[] = _("Cry of");
 const u8 gText_EmptyPokedexInfo2[] = _(""); // Unused
-const u8 gText_SizeComparedTo[] = _("SIZE COMPARED TO ");
-const u8 gText_PokedexRegistration[] = _("POKéDEX registration completed.");
-const u8 gText_HTHeight[] = _("HT");
-const u8 gText_WTWeight[] = _("WT");
+const u8 gText_SizeComparedTo[] = _("Size Compared To ");
+const u8 gText_PokedexRegistration[] = _("Pokédex registration completed.");
+const u8 gText_HTHeight[] = _("Ht");
+const u8 gText_WTWeight[] = _("Wt");
 const u8 gText_SearchingPleaseWait[] = _("Searching…\nPlease wait.");
 const u8 gText_SearchCompleted[] = _("Search completed.");
 const u8 gText_NoMatchingPkmnWereFound[] = _("No matching Pokémon were found.");
 const u8 gText_SearchForPkmnBasedOnParameters[] = _("Search for Pokémon based on\nselected parameters.");
-const u8 gText_SwitchPokedexListings[] = _("Switch POKéDEX listings.");
-const u8 gText_ReturnToPokedex[] = _("Return to the POKéDEX.");
-const u8 gText_SelectPokedexMode[] = _("Select the POKéDEX mode.");
-const u8 gText_SelectPokedexListingMode[] = _("Select the POKéDEX listing mode.");
+const u8 gText_SwitchPokedexListings[] = _("Switch Pokédex listings.");
+const u8 gText_ReturnToPokedex[] = _("Return to the Pokédex.");
+const u8 gText_SelectPokedexMode[] = _("Select the Pokédex mode.");
+const u8 gText_SelectPokedexListingMode[] = _("Select the Pokédex listing mode.");
 const u8 gText_ListByFirstLetter[] = _("List by the first letter in the name.\nSpotted Pokémon only.");
 const u8 gText_ListByBodyColor[] = _("List by body color.\nSpotted Pokémon only.");
 const u8 gText_ListByType[] = _("List by type.\nOwned Pokémon only.");
 const u8 gText_ExecuteSearchSwitch[] = _("Execute search/switch.");
-const u8 gText_DexHoennTitle[] = _("HOENN DEX");
-const u8 gText_DexNatTitle[] = _("NATIONAL DEX");
-const u8 gText_DexSortNumericalTitle[] = _("NUMERICAL MODE");
-const u8 gText_DexSortAtoZTitle[] = _("A TO Z MODE");
-const u8 gText_DexSortHeaviestTitle[] = _("HEAVIEST MODE");
-const u8 gText_DexSortLightestTitle[] = _("LIGHTEST MODE");
-const u8 gText_DexSortTallestTitle[] = _("TALLEST MODE");
-const u8 gText_DexSortSmallestTitle[] = _("SMALLEST MODE");
+const u8 gText_DexHoennTitle[] = _("Hoenn Dex");
+const u8 gText_DexNatTitle[] = _("National Dex");
+const u8 gText_DexSortNumericalTitle[] = _("Numerical Mode");
+const u8 gText_DexSortAtoZTitle[] = _("A To Z Mode");
+const u8 gText_DexSortHeaviestTitle[] = _("Heaviest Mode");
+const u8 gText_DexSortLightestTitle[] = _("Lightest Mode");
+const u8 gText_DexSortTallestTitle[] = _("Tallest Mode");
+const u8 gText_DexSortSmallestTitle[] = _("Smallest Mode");
 const u8 gText_DexSearchAlphaABC[] = _("ABC");
 const u8 gText_DexSearchAlphaDEF[] = _("DEF");
 const u8 gText_DexSearchAlphaGHI[] = _("GHI");
@@ -91,18 +91,18 @@ const u8 gText_DexSearchAlphaPQR[] = _("PQR");
 const u8 gText_DexSearchAlphaSTU[] = _("STU");
 const u8 gText_DexSearchAlphaVWX[] = _("VWX");
 const u8 gText_DexSearchAlphaYZ[] = _("YZ");
-const u8 gText_DexSearchColorRed[] = _("RED");
-const u8 gText_DexSearchColorBlue[] = _("BLUE");
-const u8 gText_DexSearchColorYellow[] = _("YELLOW");
-const u8 gText_DexSearchColorGreen[] = _("GREEN");
-const u8 gText_DexSearchColorBlack[] = _("BLACK");
-const u8 gText_DexSearchColorBrown[] = _("BROWN");
-const u8 gText_DexSearchColorPurple[] = _("PURPLE");
-const u8 gText_DexSearchColorGray[] = _("GRAY");
-const u8 gText_DexSearchColorWhite[] = _("WHITE");
-const u8 gText_DexSearchColorPink[] = _("PINK");
-const u8 gText_DexHoennDescription[] = _("HOENN region's POKéDEX");
-const u8 gText_DexNatDescription[] = _("National edition POKéDEX");
+const u8 gText_DexSearchColorRed[] = _("Red");
+const u8 gText_DexSearchColorBlue[] = _("Blue");
+const u8 gText_DexSearchColorYellow[] = _("Yellow");
+const u8 gText_DexSearchColorGreen[] = _("Green");
+const u8 gText_DexSearchColorBlack[] = _("Black");
+const u8 gText_DexSearchColorBrown[] = _("Brown");
+const u8 gText_DexSearchColorPurple[] = _("Purple");
+const u8 gText_DexSearchColorGray[] = _("Gray");
+const u8 gText_DexSearchColorWhite[] = _("White");
+const u8 gText_DexSearchColorPink[] = _("Pink");
+const u8 gText_DexHoennDescription[] = _("Hoenn region's Pokédex");
+const u8 gText_DexNatDescription[] = _("National edition Pokédex");
 const u8 gText_DexSortNumericalDescription[] = _("Pokémon are listed according to their\nnumber.");
 const u8 gText_DexSortAtoZDescription[] = _("Spotted and owned Pokémon are listed\nalphabetically.");
 const u8 gText_DexSortHeaviestDescription[] = _("Owned Pokémon are listed from the\nheaviest to the lightest.");
@@ -110,22 +110,22 @@ const u8 gText_DexSortLightestDescription[] = _("Owned Pokémon are listed from 
 const u8 gText_DexSortTallestDescription[] = _("Owned Pokémon are listed from the\ntallest to the smallest.");
 const u8 gText_DexSortSmallestDescription[] = _("Owned Pokémon are listed from the\nsmallest to the tallest.");
 const u8 gText_DexEmptyString[] = _("");
-const u8 gText_DexSearchDontSpecify[] = _("DON'T SPECIFY.");
-const u8 gText_DexSearchTypeNone[] = _("NONE");
+const u8 gText_DexSearchDontSpecify[] = _("Don'T Specify.");
+const u8 gText_DexSearchTypeNone[] = _("None");
 const u8 gText_SelectorArrow[] = _("▶");
 const u8 gText_EmptySpace[] = _(" "); // Unused
 const u8 gText_WelcomeToHOF[] = _("Welcome to the Hall of Fame!");
-const u8 gText_HOFDexRating[] = _("Spotted Pokémon: {STR_VAR_1}!\nOwned Pokémon: {STR_VAR_2}!\pPROF. BIRCH's POKéDEX rating!\pPROF. BIRCH: Let's see…\p");
+const u8 gText_HOFDexRating[] = _("Spotted Pokémon: {STR_VAR_1}!\nOwned Pokémon: {STR_VAR_2}!\pPROF. Birch's Pokédex rating!\pPROF. Birch: Let's see…\p");
 const u8 gText_HOFDexSaving[] = _("Saving…\nDon't turn off the power.");
 const u8 gText_HOFCorrupted[] = _("The Hall of Fame data is corrupted.");
 const u8 gText_HOFNumber[] = _("Hall of Fame No. {STR_VAR_1}");
-const u8 gText_LeagueChamp[] = _("LEAGUE CHAMPION!\nCONGRATULATIONS!");
+const u8 gText_LeagueChamp[] = _("League Champion!\nCongratulations!");
 const u8 gText_Number[] = _("No. ");
 const u8 gText_Level[] = _("Lv. ");
 const u8 gText_IdNumberSlash[] = _("IDNo. /"); // Unused
-const u8 gText_Name[] = _("NAME");
+const u8 gText_Name[] = _("Name");
 const u8 gText_IDNumber[] = _("IDNo.");
-const u8 gText_BirchInTrouble[] = _("PROF. BIRCH is in trouble!\nRelease a Pokémon and rescue him!");
+const u8 gText_BirchInTrouble[] = _("Prof. Birch is in trouble!\nRelease a Pokémon and rescue him!");
 const u8 gText_ConfirmStarterChoice[] = _("Do you choose this Pokémon?");
 const u8 gText_Pokemon4[] = _("Pokémon"); // Unused
 const u8 gText_FlyToWhere[] = _("Fly to where?");
@@ -153,10 +153,10 @@ const u8 gText_Space[] = _(" ");
 const u8 gText_SelectorArrow2[] = _("▶");
 const u8 gText_GoBackPrevMenu[] = _("Go back to the\nprevious menu.");
 const u8 gText_WhatWouldYouLike[] = _("What would you like to do?");
-const u8 gMenuText_Give2[] = _("GIVE");
+const u8 gMenuText_Give2[] = _("Give");
 const u8 gText_xVar1[] = _("×{STR_VAR_1}");
-const u8 gText_Berry2[] = _(" BERRY"); // Unused
-const u8 gText_Coins[] = _("{STR_VAR_1} COINS");
+const u8 gText_Berry2[] = _(" Berry"); // Unused
+const u8 gText_Coins[] = _("{STR_VAR_1} Coins");
 const u8 gText_CloseBag[] = _("Close Bag");
 const u8 gText_Var1IsSelected[] = _("{STR_VAR_1}\nis selected.");
 const u8 gText_CantWriteMail[] = _("You can't write\nMAIL here.");
@@ -168,12 +168,12 @@ const u8 gText_ThrewAwayVar2Var1s[] = _("Threw away {STR_VAR_2}\n{STR_VAR_1}.");
 const u8 gText_ConfirmTossItems[] = _("Is it okay to\nthrow away {STR_VAR_2}\n{STR_VAR_1}?");
 const u8 gText_DadsAdvice[] = _("Mom's advice…\n{PLAYER}, there's a time and place for\leverything!{PAUSE_UNTIL_PRESS}");
 const u8 gText_PlayerUsedVar2[] = _("{PLAYER} used the\n{STR_VAR_2}.{PAUSE_UNTIL_PRESS}");
-const u8 gText_RepelEffectsLingered[] = _("But the effects of a REPEL\nlingered from earlier.{PAUSE_UNTIL_PRESS}");
+const u8 gText_RepelEffectsLingered[] = _("But the effects of a Repel\nlingered from earlier.{PAUSE_UNTIL_PRESS}");
 const u8 gText_LureEffectsLingered[] = _("But the effects of a Lure\nlingered from earlier.{PAUSE_UNTIL_PRESS}");
-const u8 gText_BoxFull[] = _("The BOX is full.{PAUSE_UNTIL_PRESS}");
+const u8 gText_BoxFull[] = _("The Box is full.{PAUSE_UNTIL_PRESS}");
 const u8 gText_TheField[] = _("the field");
 const u8 gText_TheBattle[] = _("the battle");
-const u8 gText_ThePokemonList[] = _("the Pokémon LIST");
+const u8 gText_ThePokemonList[] = _("the Pokémon List");
 const u8 gText_TheShop[] = _("the shop");
 const u8 gText_ThePC[] = _("the PC");
 
@@ -239,16 +239,16 @@ const u8 gText_NoMoreRoomForThis[] = _("You have no more room for this\nitem.{PA
 const u8 gText_SpaceForVar1Full[] = _("The space for {STR_VAR_1} is full.{PAUSE_UNTIL_PRESS}");
 const u8 gText_AnythingElseICanHelp[] = _("Is there anything else I can help\nyou with?");
 const u8 gText_CanIHelpWithAnythingElse[] = _("Can I help you with anything else?");
-const u8 gText_ThrowInPremierBall[] = _("I'll throw in a PREMIER BALL, too.{PAUSE_UNTIL_PRESS}");
-const u8 gText_ThrowInPremierBalls[] = _("I'll throw in {STR_VAR_1} PREMIER BALLS, too.{PAUSE_UNTIL_PRESS}");
+const u8 gText_ThrowInPremierBall[] = _("I'll throw in a Premier Ball, too.{PAUSE_UNTIL_PRESS}");
+const u8 gText_ThrowInPremierBalls[] = _("I'll throw in {STR_VAR_1} Premier Balls, too.{PAUSE_UNTIL_PRESS}");
 const u8 gText_CantBuyKeyItem[] = _("{STR_VAR_2}? Oh, no.\nI can't buy that.{PAUSE_UNTIL_PRESS}");
 const u8 gText_HowManyToSell[] = _("{STR_VAR_2}?\nHow many would you like to sell?");
 const u8 gText_ICanPayVar1[] = _("I can pay ¥{STR_VAR_1}.\nWould that be okay?");
 const u8 gText_TurnedOverVar1ForVar2[] = _("Turned over the {STR_VAR_2}\nand received ¥{STR_VAR_1}.");
 const u8 gText_PokedollarVar1[] = _("¥{STR_VAR_1}");
 const u8 gText_HP3[] = _("HP");
-const u8 gText_SpAtk3[] = _("SP. Atk");
-const u8 gText_SpDef3[] = _("SP. Def");
+const u8 gText_SpAtk3[] = _("Sp. Atk");
+const u8 gText_SpDef3[] = _("Sp. Def");
 const u8 gText_WontHaveEffect[] = _("It won't have any effect.{PAUSE_UNTIL_PRESS}");
 const u8 gText_NextFusionMon[] = _("Choose {PKMN} to fuse with.");
 const u8 gText_CantBeUsedOnPkmn[] = _("This can't be used on\nthat Pokémon.{PAUSE_UNTIL_PRESS}");
@@ -257,23 +257,23 @@ const u8 gText_PkmnAlreadyInBattle[] = _("{STR_VAR_1} is already\nin battle!{PAU
 const u8 gText_PkmnAlreadySelected[] = _("{STR_VAR_1} has already been\nselected.{PAUSE_UNTIL_PRESS}");
 const u8 gText_PkmnHasNoEnergy[] = _("{STR_VAR_1} has no energy\nleft to battle!{PAUSE_UNTIL_PRESS}");
 const u8 gText_CantSwitchWithAlly[] = _("You can't switch {STR_VAR_1}'s\nPokémon with one of yours!{PAUSE_UNTIL_PRESS}");
-const u8 gText_EggCantBattle[] = _("An EGG can't battle!{PAUSE_UNTIL_PRESS}");
+const u8 gText_EggCantBattle[] = _("An Egg can't battle!{PAUSE_UNTIL_PRESS}");
 const u8 gText_CantUseUntilNewBadge[] = _("This can't be used until a new\nBADGE is obtained.{PAUSE_UNTIL_PRESS}");
-const u8 gText_NoMoreThanVar1Pkmn[] = _("No more than {STR_VAR_1} Pokémon\nmay enter.{PAUSE_UNTIL_PRESS}");
+const u8 gText_NoMoreThanVar1Pkmn[] = _("No more than {STR_VAR_1} POKéMON\nmay enter.{PAUSE_UNTIL_PRESS}");
 const u8 gText_SendMailToPC[] = _("Send the removed MAIL to\nyour PC?");
 const u8 gText_MailSentToPC[] = _("The MAIL was sent to your PC.{PAUSE_UNTIL_PRESS}");
 const u8 gText_PCMailboxFull[] = _("Your PC's MAILBOX is full.{PAUSE_UNTIL_PRESS}");
 const u8 gText_MailMessageWillBeLost[] = _("If the MAIL is removed, the\nmessage will be lost. Okay?");
-const u8 gText_RemoveMailBeforeItem[] = _("MAIL must be removed before\nholding an item.{PAUSE_UNTIL_PRESS}");
+const u8 gText_RemoveMailBeforeItem[] = _("MAIL must be removed before\nholding another item.{PAUSE_UNTIL_PRESS}");
 const u8 gText_PkmnWasGivenItem[] = _("{STR_VAR_1} was given the\n{STR_VAR_2} to hold.{PAUSE_UNTIL_PRESS}");
 const u8 gText_PkmnAlreadyHoldingItemSwitch[] = _("{STR_VAR_1} is already holding\none {STR_VAR_2}.\pWould you like to switch the\ntwo items?");
 const u8 gText_PkmnNotHolding[] = _("{STR_VAR_1} isn't holding\nanything.{PAUSE_UNTIL_PRESS}");
 const u8 gText_ReceivedItemFromPkmn[] = _("Received the {STR_VAR_2}\nfrom {STR_VAR_1}.{PAUSE_UNTIL_PRESS}");
-const u8 gText_MailTakenFromPkmn[] = _("MAIL was taken from the\nPokémon.{PAUSE_UNTIL_PRESS}");
+const u8 gText_MailTakenFromPkmn[] = _("Mail was taken from the\nPokémon.{PAUSE_UNTIL_PRESS}");
 const u8 gText_SwitchedPkmnItem[] = _("The {STR_VAR_2} was taken and\nreplaced with the {STR_VAR_1}.{PAUSE_UNTIL_PRESS}");
-const u8 gText_PkmnHoldingItemCantHoldMail[] = _("This Pokémon is holding an\nitem. It cannot hold MAIL.{PAUSE_UNTIL_PRESS}");
-const u8 gText_MailTransferredFromMailbox[] = _("MAIL was transferred from\nthe MAILBOX.{PAUSE_UNTIL_PRESS}");
-const u8 gText_BagFullCouldNotRemoveItem[] = _("The BAG is full. The Pokémon's\nitem could not be removed.{PAUSE_UNTIL_PRESS}");
+const u8 gText_PkmnHoldingItemCantHoldMail[] = _("This Pokémon is holding an\nitem. It cannot hold Mail.{PAUSE_UNTIL_PRESS}");
+const u8 gText_MailTransferredFromMailbox[] = _("Mail was transferred from\nthe Mailbox.{PAUSE_UNTIL_PRESS}");
+const u8 gText_BagFullCouldNotRemoveItem[] = _("The Bag is full. The Pokémon's\nitem could not be removed.{PAUSE_UNTIL_PRESS}");
 const u8 gText_PkmnLearnedMove3[] = _("{STR_VAR_1} learned\n{STR_VAR_2}!");
 const u8 gText_PkmnLearnedMove4[] = _("{STR_VAR_1} learned\n{STR_VAR_2}!{PAUSE_UNTIL_PRESS}");
 const u8 gText_PkmnCantLearnMove[] = _("{STR_VAR_1} and {STR_VAR_2}\nare not compatible.\p{STR_VAR_2} can't be\nlearned.{PAUSE_UNTIL_PRESS}");
@@ -298,6 +298,7 @@ const u8 gText_PkmnElevatedToLvVar2[] = _("{STR_VAR_1} was elevated to\nLv. {STR
 const u8 gText_PkmnGainedExp[] = _("{STR_VAR_1} gained {STR_VAR_2} Exp. Points!{PAUSE_UNTIL_PRESS}");
 const u8 gText_PkmnGainedExpAndElevatedToLvVar3[] = _("{STR_VAR_1} gained {STR_VAR_2} Exp. Points\nand was elevated to Lv. {STR_VAR_3}!");
 const u8 gText_PkmnBaseVar2StatIncreased[] = _("{STR_VAR_1}'s base {STR_VAR_2}\nstat was raised.{PAUSE_UNTIL_PRESS}");
+const u8 gText_PkmnVar2IVWasMinimized[] = _("{STR_VAR_1}'s {STR_VAR_2} IV\nwas minimized.{PAUSE_UNTIL_PRESS}");
 const u8 gText_PkmnFriendlyBaseVar2Fell[] = _("{STR_VAR_1} turned friendly.\nThe base {STR_VAR_2} fell!{PAUSE_UNTIL_PRESS}");
 const u8 gText_PkmnAdoresBaseVar2Fell[] = _("{STR_VAR_1} adores you!\nThe base {STR_VAR_2} fell!{PAUSE_UNTIL_PRESS}");
 const u8 gText_PkmnFriendlyBaseVar2CantFall[] = _("{STR_VAR_1} turned friendly.\nThe base {STR_VAR_2} can't fall!{PAUSE_UNTIL_PRESS}");
@@ -327,7 +328,7 @@ const u8 gText_PokemonAreNeeded[] = _("{STR_VAR_1} Pokémon are needed.");
 const u8 gText_PokemonCantBeSame[] = _("Pokémon can't be the same.");
 const u8 gText_NoIdenticalHoldItems[] = _("No identical hold items.");
 const u8 gText_CurrentIsTooFast[] = _("The current is much too fast!");
-const u8 gText_DoWhatWithMail[] = _("Do what with the MAIL?");
+const u8 gText_DoWhatWithMail[] = _("Do what with the Mail?");
 const u8 gText_ChoosePokemonCancel[] = _("Choose Pokémon or Cancel.");
 const u8 gText_ChoosePokemonConfirm[] = _("Choose Pokémon and confirm.");
 const u8 gText_SendWhichMonToPC[] = _("Send which Pokémon to the PC?");
@@ -340,18 +341,18 @@ const u8 gText_Able[] = _("Able");
 const u8 gText_First_PM[] = _("First");
 const u8 gText_Second_PM[] = _("Seond");
 const u8 gText_Third_PM[] = _("Third");
-const u8 gText_Able2[] = _("ABLE");
-const u8 gText_NotAble[] = _("NOT ABLE");
+const u8 gText_Able2[] = _("Able");
+const u8 gText_NotAble[] = _("Not Able");
 const u8 gText_Able3[] = _("Able!");
 const u8 gText_NotAble2[] = _("Not Able!");
 const u8 gText_Learned[] = _("Learned");
 const u8 gText_Have[] = _("Have");
 const u8 gText_DontHave[] = _("Don't Have");
-const u8 gText_Fourth[] = _("FOURTH");
+const u8 gText_Fourth[] = _("Fourth");
 const u8 gText_PkmnCantParticipate[] = _("That Pokémon can't participate.{PAUSE_UNTIL_PRESS}");
 const u8 gText_CancelParticipation[] = _("Cancel participation?");
 const u8 gText_CancelBattle[] = _("Cancel the battle?");
-const u8 gText_ReturnToWaitingRoom[] = _("Return to the WAITING ROOM?");
+const u8 gText_ReturnToWaitingRoom[] = _("Return to the Waiting Room?");
 const u8 gText_CancelChallenge[] = _("Cancel the challenge?");
 const u8 gText_EscapeFromHere[] = _("Want to escape from here and return\nto {STR_VAR_1}?");
 const u8 gText_ReturnToHealingSpot[] = _("Want to return to the healing spot\nused last in {STR_VAR_1}?");
@@ -360,13 +361,13 @@ const u8 gJPText_AreYouSureYouWantToSpinTradeMon[] = _("{STR_VAR_1}を ぐるぐ
 ALIGNED(4) const u8 gText_OnlyPkmnForBattle[] = _("That's your only\nPokémon for battle.");
 ALIGNED(4) const u8 gText_PkmnCantBeTradedNow[] = _("That Pokémon can't be traded\nnow.");
 ALIGNED(4) const u8 gText_PkmnCantBeTraded[] = _("That Pokémon can't be traded.");
-ALIGNED(4) const u8 gText_EggCantBeTradedNow[] = _("An EGG can't be traded now.");
-ALIGNED(4) const u8 gText_OtherTrainersPkmnCantBeTraded[] = _("The other TRAINER's Pokémon\ncan't be traded now.");
-ALIGNED(4) const u8 gText_OtherTrainerCantAcceptPkmn[] = _("The other TRAINER can't accept\nthat Pokémon now.");
-ALIGNED(4) const u8 gText_CantTradeWithTrainer[] = _("You can't trade with that\nTRAINER now.");
-ALIGNED(4) const u8 gText_NotPkmnOtherTrainerWants[] = _("That isn't the type of Pokémon\nthat the other TRAINER wants.");
-ALIGNED(4) const u8 gText_ThatIsntAnEgg[] = _("That isn't an EGG.");
-const u8 gText_Register[] = _("REGISTER");
+ALIGNED(4) const u8 gText_EggCantBeTradedNow[] = _("An Egg can't be traded now.");
+ALIGNED(4) const u8 gText_OtherTrainersPkmnCantBeTraded[] = _("The other Trainer's Pokémon\ncan't be traded now.");
+ALIGNED(4) const u8 gText_OtherTrainerCantAcceptPkmn[] = _("The other Trainer can't accept\nthat Pokémon now.");
+ALIGNED(4) const u8 gText_CantTradeWithTrainer[] = _("You can't trade with that\nTrainer now.");
+ALIGNED(4) const u8 gText_NotPkmnOtherTrainerWants[] = _("That isn't the type of Pokémon\nthat the other Trainer wants.");
+ALIGNED(4) const u8 gText_ThatIsntAnEgg[] = _("That isn't an Egg.");
+const u8 gText_Register[] = _("Register");
 const u8 gText_Attack3[] = _("Attack");
 const u8 gText_Defense3[] = _("Defense");
 const u8 gText_SpAtk4[] = _("Sp. Atk");
@@ -374,26 +375,26 @@ const u8 gText_SpDef4[] = _("Sp. Def");
 const u8 gText_Speed2[] = _("Speed");
 const u8 gText_HP4[] = _("HP");
 const u8 gText_EmptyString8[] = _(""); // Unused
-const u8 gText_OTSlash[] = _("OT/");
-const u8 gText_RentalPkmn[] = _("RENTAL Pokémon");
+const u8 gText_OTSlash[] = _("Ot/");
+const u8 gText_RentalPkmn[] = _("Rental Pokémon");
 const u8 gText_TypeSlash[] = _("Type/");
 const u8 gText_Power[] = _("Power");
 const u8 gText_Accuracy2[] = _("Accuracy");
-const u8 gText_Appeal[] = _("APPEAL");
-const u8 gText_Jam[] = _("JAM");
-const u8 gText_Status[] = _("STATUS");
-const u8 gText_ExpPoints[] = _("EXP. POINTS");
+const u8 gText_Appeal[] = _("Appeal");
+const u8 gText_Jam[] = _("Jam");
+const u8 gText_Status[] = _("Status");
+const u8 gText_ExpPoints[] = _("Exp. Points");
 const u8 gText_NextLv[] = _("Next Lv.");
-const u8 gText_RibbonsVar1[] = _("RIBBONS: {STR_VAR_1}");
+const u8 gText_RibbonsVar1[] = _("Ribbons: {STR_VAR_1}");
 const u8 gText_EmptyString5[] = _("");
-const u8 gText_Events[] = _("EVENTS"); // Unused
-const u8 gText_Switch[] = _("SWITCH");
+const u8 gText_Events[] = _("Events"); // Unused
+const u8 gText_Switch[] = _("Switch");
 const u8 gText_PkmnInfo[] = _("Pokémon Info");
 const u8 gText_PkmnSkills[] = _("Pokémon Skills");
 const u8 gText_BattleMoves[] = _("Battle Moves");
 const u8 gText_ContestMoves[] = _("Contest Moves");
 const u8 gText_Info[] = _("Info");
-const u8 gText_EggWillTakeALongTime[] = _("It looks like this EGG will\ntake a long time to hatch.");
+const u8 gText_EggWillTakeALongTime[] = _("It looks like this Egg will\ntake a long time to hatch.");
 const u8 gText_EggWillTakeSomeTime[] = _("What will hatch from this?\nIt will take some time.");
 const u8 gText_EggWillHatchSoon[] = _("It moves occasionally.\nIt should hatch soon.");
 const u8 gText_EggAboutToHatch[] = _("It's making sounds.\nIt's about to hatch!");
@@ -406,42 +407,42 @@ const u8 gText_XNatureProbablyMetAt[] = _("{DYNAMIC 0}{DYNAMIC 2}{DYNAMIC 1}{DYN
 const u8 gText_XNature[] = _("{DYNAMIC 0}{DYNAMIC 2}{DYNAMIC 1}{DYNAMIC 5} nature");
 const u8 gText_XNatureMetSomewhereAt[] = _("{DYNAMIC 0}{DYNAMIC 2}{DYNAMIC 1}{DYNAMIC 5} nature,\nmet somewhere at {LV_2}{DYNAMIC 0}{DYNAMIC 3}{DYNAMIC 1}.");
 const u8 gText_XNatureHatchedSomewhereAt[] = _("{DYNAMIC 0}{DYNAMIC 2}{DYNAMIC 1}{DYNAMIC 5} nature,\nhatched somewhere at {LV_2}{DYNAMIC 0}{DYNAMIC 3}{DYNAMIC 1}.");
-const u8 gText_OddEggFoundByCouple[] = _("An odd Pokémon EGG found\nby the DAY CARE couple.");
-const u8 gText_PeculiarEggNicePlace[] = _("A peculiar Pokémon EGG\nobtained at the nice place.");
-const u8 gText_PeculiarEggTrade[] = _("A peculiar Pokémon EGG\nobtained in a trade.");
-const u8 gText_EggFromHotSprings[] = _("A Pokémon EGG obtained\nat the hot springs.");
-const u8 gText_EggFromTraveler[] = _("An odd Pokémon EGG\nobtained from a traveler.");
-const u8 gText_ApostropheSBase[] = _("'s BASE");
-const u8 gText_OkayToDeleteFromRegistry[] = _("Is it okay to delete {STR_VAR_1}\nfrom the REGISTRY?");
+const u8 gText_OddEggFoundByCouple[] = _("An odd Pokémon Egg found\nby the Day Care couple.");
+const u8 gText_PeculiarEggNicePlace[] = _("A peculiar Pokémon Egg\nobtained at the nice place.");
+const u8 gText_PeculiarEggTrade[] = _("A peculiar Pokémon Egg\nobtained in a trade.");
+const u8 gText_EggFromHotSprings[] = _("A Pokémon Egg obtained\nat the hot springs.");
+const u8 gText_EggFromTraveler[] = _("An odd Pokémon Egg\nobtained from a traveler.");
+const u8 gText_ApostropheSBase[] = _("'s Base");
+const u8 gText_OkayToDeleteFromRegistry[] = _("Is it okay to delete {STR_VAR_1}\nfrom the Registry?");
 const u8 gText_RegisteredDataDeleted[] = _("The registered data was deleted.{PAUSE_UNTIL_PRESS}");
-const u8 gText_NoRegistry[] = _("There is no REGISTRY.{PAUSE_UNTIL_PRESS}");
-const u8 gText_DelRegist[] = _("DEL REGIST.");
+const u8 gText_NoRegistry[] = _("There is no Registry.{PAUSE_UNTIL_PRESS}");
+const u8 gText_DelRegist[] = _("Del Regist.");
 const u8 gText_Var3Var1SlashVar2[] = _("{STR_VAR_3}{STR_VAR_1}/{STR_VAR_2}"); // Unused
-const u8 gText_Decorate[] = _("DECORATE");
-const u8 gText_PutAway[] = _("PUT AWAY");
-const u8 gText_Toss2[] = _("TOSS");
+const u8 gText_Decorate[] = _("Decorate");
+const u8 gText_PutAway[] = _("Put Away");
+const u8 gText_Toss2[] = _("Toss");
 const u8 gText_Color161Shadow161[] = _("{COLOR 161}{SHADOW 161}");
 const u8 gText_PutOutSelectedDecorItem[] = _("Put out the selected decoration item.");
 const u8 gText_StoreChosenDecorInPC[] = _("Store the chosen decoration in the PC.");
 const u8 gText_ThrowAwayUnwantedDecors[] = _("Throw away unwanted decorations.");
 const u8 gText_NoDecorations[] = _("There are no decorations.{PAUSE_UNTIL_PRESS}");
-const u8 gText_Desk[] = _("DESK");
-const u8 gText_Chair[] = _("CHAIR");
-const u8 gText_Plant[] = _("PLANT");
-const u8 gText_Ornament[] = _("ORNAMENT");
-const u8 gText_Mat[] = _("MAT");
-const u8 gText_Poster[] = _("POSTER");
-const u8 gText_Doll[] = _("DOLL");
-const u8 gText_Cushion[] = _("CUSHION");
-const u8 gText_Gold[] = _("GOLD");
-const u8 gText_Silver[] = _("SILVER");
+const u8 gText_Desk[] = _("Desk");
+const u8 gText_Chair[] = _("Chair");
+const u8 gText_Plant[] = _("Plant");
+const u8 gText_Ornament[] = _("Ornament");
+const u8 gText_Mat[] = _("Mat");
+const u8 gText_Poster[] = _("Poster");
+const u8 gText_Doll[] = _("Doll");
+const u8 gText_Cushion[] = _("Cushion");
+const u8 gText_Gold[] = _("Gold");
+const u8 gText_Silver[] = _("Silver");
 const u8 gText_PlaceItHere[] = _("Place it here?");
 const u8 gText_CantBePlacedHere[] = _("It can't be placed here.");
 const u8 gText_CancelDecorating[] = _("Cancel decorating?");
 const u8 gText_InUseAlready[] = _("This is in use already.");
 const u8 gText_NoMoreDecorations[] = _("No more decorations can be placed.\nThe most that can be placed are {STR_VAR_1}.");
 const u8 gText_NoMoreDecorations2[] = _("No more decorations can be placed.\nThe most that can be placed are {STR_VAR_1}.");
-const u8 gText_MustBePlacedOnDesk[] = _("This can't be placed here.\nIt must be on a DESK, etc."); // Unused
+const u8 gText_MustBePlacedOnDesk[] = _("This can't be placed here.\nIt must be on a Desk, etc."); // Unused
 const u8 gText_CantPlaceInRoom[] = _("This decoration can't be placed in\nyour own room.");
 const u8 gText_CantThrowAwayInUse[] = _("This decoration is in use.\nIt can't be thrown away.");
 const u8 gText_DecorationWillBeDiscarded[] = _("This {STR_VAR_1} will be discarded.\nIs that okay?");
@@ -452,46 +453,46 @@ const u8 gText_ReturnDecorationToPC[] = _("Return this decoration to the PC?");
 const u8 gText_DecorationReturnedToPC[] = _("The decoration was returned to the PC.");
 const u8 gText_NoDecorationsInUse[] = _("There are no decorations in use.{PAUSE_UNTIL_PRESS}");
 const u8 gText_NoItems[] = _("There are no items.{PAUSE_UNTIL_PRESS}");
-const u8 gText_NoMailHere[] = _("There's no MAIL here.{PAUSE_UNTIL_PRESS}");
-const u8 gText_WhatToDoWithVar1sMail[] = _("What would you like to do with\n{STR_VAR_1}'s MAIL?");
+const u8 gText_NoMailHere[] = _("There's no Mail here.{PAUSE_UNTIL_PRESS}");
+const u8 gText_WhatToDoWithVar1sMail[] = _("What would you like to do with\n{STR_VAR_1}'s Mail?");
 const u8 gText_MessageWillBeLost[] = _("The message will be lost.\nIs that okay?");
 const u8 gText_BagIsFull[] = _("The Bag is full.{PAUSE_UNTIL_PRESS}");
-const u8 gText_MailToBagMessageErased[] = _("The MAIL was returned to the BAG\nwith its message erased.{PAUSE_UNTIL_PRESS}");
-const u8 gText_Dad[] = _("DAD");
-const u8 gText_Mom[] = _("MOM");
-const u8 gText_Info2[] = _("INFO");
-const u8 gText_CoolnessContest[] = _("COOLNESS CONTEST");
-const u8 gText_BeautyContest[] = _("BEAUTY CONTEST");
-const u8 gText_CutenessContest[] = _("CUTENESS CONTEST");
-const u8 gText_SmartnessContest[] = _("SMARTNESS CONTEST");
-const u8 gText_ToughnessContest[] = _("TOUGHNESS CONTEST");
-const u8 gText_Decoration2[] = _("DECORATION");
-const u8 gText_PackUp[] = _("PACK UP");
-const u8 gText_Registry[] = _("REGISTRY");
-const u8 gText_Information[] = _("INFORMATION");
+const u8 gText_MailToBagMessageErased[] = _("The Mail was returned to the Bag\nwith its message erased.{PAUSE_UNTIL_PRESS}");
+const u8 gText_Dad[] = _("Dad");
+const u8 gText_Mom[] = _("Mom");
+const u8 gText_Info2[] = _("Info");
+const u8 gText_CoolnessContest[] = _("Coolness Contest");
+const u8 gText_BeautyContest[] = _("Beauty Contest");
+const u8 gText_CutenessContest[] = _("Cuteness Contest");
+const u8 gText_SmartnessContest[] = _("Smartness Contest");
+const u8 gText_ToughnessContest[] = _("Toughness Contest");
+const u8 gText_Decoration2[] = _("Decoration");
+const u8 gText_PackUp[] = _("Pack Up");
+const u8 gText_Registry[] = _("Registry");
+const u8 gText_Information[] = _("Information");
 const u8 gText_Yes[] = _("Yes");
 const u8 gText_No[] = _("No");
-const u8 gText_Lv50[] = _("LV. 50");
-const u8 gText_OpenLevel[] = _("OPEN LEVEL");
-const u8 gText_RedShard[] = _("RED SHARD");
-const u8 gText_YellowShard[] = _("YELLOW SHARD");
-const u8 gText_BlueShard[] = _("BLUE SHARD");
-const u8 gText_GreenShard[] = _("GREEN SHARD");
+const u8 gText_Lv50[] = _("Lv. 50");
+const u8 gText_OpenLevel[] = _("Open Level");
+const u8 gText_RedShard[] = _("Red Shard");
+const u8 gText_YellowShard[] = _("Yellow Shard");
+const u8 gText_BlueShard[] = _("Blue Shard");
+const u8 gText_GreenShard[] = _("Green Shard");
 const u8 gText_BattleFrontier[] = _("Battle Frontier");
-const u8 gText_Cool[] = _("COOL");
-const u8 gText_Beauty[] = _("BEAUTY");
-const u8 gText_Cute[] = _("CUTE");
-const u8 gText_Smart[] = _("SMART");
-const u8 gText_Tough[] = _("TOUGH");
-const u8 gText_Normal[] = _("NORMAL");
-const u8 gText_Super[] = _("SUPER");
-const u8 gText_Hyper[] = _("HYPER");
-const u8 gText_Master[] = _("MASTER");
-const u8 gText_Cool2[] = _("COOL");
-const u8 gText_Beauty2[] = _("BEAUTY");
-const u8 gText_Cute2[] = _("CUTE");
-const u8 gText_Smart2[] = _("SMART");
-const u8 gText_Tough2[] = _("TOUGH");
+const u8 gText_Cool[] = _("Cool");
+const u8 gText_Beauty[] = _("Beauty");
+const u8 gText_Cute[] = _("Cute");
+const u8 gText_Smart[] = _("Smart");
+const u8 gText_Tough[] = _("Tough");
+const u8 gText_Normal[] = _("Normal");
+const u8 gText_Super[] = _("Super");
+const u8 gText_Hyper[] = _("Hyper");
+const u8 gText_Master[] = _("Master");
+const u8 gText_Cool2[] = _("Cool");
+const u8 gText_Beauty2[] = _("Beauty");
+const u8 gText_Cute2[] = _("Cute");
+const u8 gText_Smart2[] = _("Smart");
+const u8 gText_Tough2[] = _("Tough");
 const u8 gText_Items[] = _("Items");
 const u8 gText_Medicine[] = _("Medicine");
 const u8 gText_Key_Items[] = _("Key Items");
@@ -505,17 +506,17 @@ const u8 gText_LanettesPC[] = _("Pokémon Boxes");
 const u8 gText_PlayersPC[] = _("Items");
 const u8 gText_HallOfFame[] = _("Hall of Fame");
 const u8 gText_LogOff[] = _("Log Off");
-const u8 gText_Opponent[] = _("OPPONENT");
-const u8 gText_Tourney_Tree[] = _("TOURNEY TREE");
-const u8 gText_ReadyToStart[] = _("READY TO START");
-const u8 gText_Single2[] = _("SINGLE");
-const u8 gText_Double2[] = _("DOUBLE");
-const u8 gText_Multi[] = _("MULTI");
-const u8 gText_MultiLink[] = _("MULTI-LINK");
+const u8 gText_Opponent[] = _("Opponent");
+const u8 gText_Tourney_Tree[] = _("Tourney Tree");
+const u8 gText_ReadyToStart[] = _("Ready To Start");
+const u8 gText_Single2[] = _("Single");
+const u8 gText_Double2[] = _("Double");
+const u8 gText_Multi[] = _("Multi");
+const u8 gText_MultiLink[] = _("Multi-Link");
 const u8 gText_MenuOptionPokedex[] = _("Pokédex");
 const u8 gText_MenuOptionPokemon[] = _("Pokémon");
 const u8 gText_MenuOptionBag[] = _("Bag");
-const u8 gText_MenuOptionPokenav[] = _("Pokénav");
+const u8 gText_MenuOptionPokenav[] = _("PokéNav");
 const u8 gText_Blank[] = _("");
 const u8 gText_MenuOptionSave[] = _("Save");
 const u8 gText_MenuOptionOption[] = _("Option");
@@ -523,34 +524,34 @@ const u8 gText_MenuOptionExit[] = _("Exit");
 const u8 gText_SouthernIsland[] = _("Southern Island");
 const u8 gText_BirthIsland[] = _("Birth Island");
 const u8 gText_FarawayIsland[] = _("Faraway Island");
-const u8 gText_NavelRock[] = _("NAVEL ROCK");
-const u8 gText_NormalTagMatch[] = _("NORMAL TAG MATCH");
-const u8 gText_VarietyTagMatch[] = _("VARIETY TAG MATCH");
-const u8 gText_UniqueTagMatch[] = _("UNIQUE TAG MATCH");
-const u8 gText_ExpertTagMatch[] = _("EXPERT TAG MATCH");
-const u8 gText_TradeCenter[] = _("TRADE CENTER");
-const u8 gText_Colosseum[] = _("COLOSSEUM");
-const u8 gText_RecordCorner[] = _("RECORD CORNER");
-const u8 gText_BerryCrush3[] = _("BERRY CRUSH");
-const u8 gText_BattleRules[] = _("BATTLE RULES");
-const u8 gText_JudgeMind[] = _("JUDGE: MIND");
-const u8 gText_JudgeSkill[] = _("JUDGE: SKILL");
-const u8 gText_JudgeBody[] = _("JUDGE: BODY");
-const u8 gText_BasicRules[] = _("BASIC RULES");
-const u8 gText_SwapPartners[] = _("SWAP: PARTNER");
-const u8 gText_SwapNumber[] = _("SWAP: NUMBER");
-const u8 gText_SwapNotes[] = _("SWAP: NOTES");
-const u8 gText_BattleBasics[] = _("BATTLE BASICS");
-const u8 gText_PokemonNature[] = _("Pokémon NATURE");
-const u8 gText_PokemonMoves[] = _("Pokémon MOVES");
-const u8 gText_Underpowered[] = _("UNDERPOWERED");
-const u8 gText_WhenInDanger[] = _("WHEN IN DANGER");
-const u8 gText_BattlePokemon[] = _("BATTLE Pokémon");
-const u8 gText_BattleTrainers[] = _("BATTLE TRAINERS");
-const u8 gText_GoOn[] = _("GO ON");
-const u8 gText_Record2[] = _("RECORD");
-const u8 gText_Rest[] = _("REST");
-const u8 gText_Retire[] = _("RETIRE");
+const u8 gText_NavelRock[] = _("Navel Rock");
+const u8 gText_NormalTagMatch[] = _("Normal Tag Match");
+const u8 gText_VarietyTagMatch[] = _("Variety Tag Match");
+const u8 gText_UniqueTagMatch[] = _("Unique Tag Match");
+const u8 gText_ExpertTagMatch[] = _("Expert Tag Match");
+const u8 gText_TradeCenter[] = _("Trade Center");
+const u8 gText_Colosseum[] = _("Colosseum");
+const u8 gText_RecordCorner[] = _("Record Corner");
+const u8 gText_BerryCrush3[] = _("Berry Crush");
+const u8 gText_BattleRules[] = _("Battle Rules");
+const u8 gText_JudgeMind[] = _("Judge: Mind");
+const u8 gText_JudgeSkill[] = _("Judge: Skill");
+const u8 gText_JudgeBody[] = _("Judge: Body");
+const u8 gText_BasicRules[] = _("Basic Rules");
+const u8 gText_SwapPartners[] = _("Swap: Partner");
+const u8 gText_SwapNumber[] = _("Swap: Number");
+const u8 gText_SwapNotes[] = _("Swap: Notes");
+const u8 gText_BattleBasics[] = _("Battle Basics");
+const u8 gText_PokemonNature[] = _("Pokémon Nature");
+const u8 gText_PokemonMoves[] = _("Pokémon Moves");
+const u8 gText_Underpowered[] = _("Underpowered");
+const u8 gText_WhenInDanger[] = _("When In Danger");
+const u8 gText_BattlePokemon[] = _("Battle Pokémon");
+const u8 gText_BattleTrainers[] = _("Battle Trainers");
+const u8 gText_GoOn[] = _("Go On");
+const u8 gText_Record2[] = _("Record");
+const u8 gText_Rest[] = _("Rest");
+const u8 gText_Retire[] = _("Retire");
 const u8 gText_1F[] = _("1F");
 const u8 gText_2F[] = _("2F");
 const u8 gText_3F[] = _("3F");
@@ -566,16 +567,96 @@ const u8 gText_B1F[] = _("B1F");
 const u8 gText_B2F[] = _("B2F");
 const u8 gText_B3F[] = _("B3F");
 const u8 gText_B4F[] = _("B4F");
-const u8 gText_Rooftop[] = _("ROOFTOP");
+const u8 gText_Rooftop[] = _("Rooftop");
 const u8 gText_ElevatorNowOn[] = _("Now on:");
 const u8 gText_BP[] = _("BP");
-const u8 gText_RankingHall[] = _("RANKING HALL");
-const u8 gText_ExchangeService[] = _("EXCHANGE SERVICE");
-const u8 gText_LilycoveCity[] = _("LILYCOVE CITY");
-const u8 gText_SlateportCity[] = _("SLATEPORT CITY");
+const u8 gText_RankingHall[] = _("Ranking Hall");
+const u8 gText_ExchangeService[] = _("Exchange Service");
+const u8 gText_LilycoveCity[] = _("Lilycove City");
+const u8 gText_SlateportCity[] = _("Slateport City");
 const u8 gText_Exit[] = _("Exit");
 const u8 gText_YourPartysFull[] = _("Your party's full!{PAUSE_UNTIL_PRESS}");
-const u8 gText_InParty[] = _("IN PARTY");
+const u8 gText_InParty[] = _("In Party");
+
+const u8 gText_YoureHoldingAPkmn[] = _("You're holding a POKéMON!");
+const u8 gText_WhichOneWillYouTake[] = _("Which one will you take?");
+const u8 gText_YouCantReleaseAnEgg[] = _("You can't release an EGG.");
+const u8 gText_ContinueBoxOperations[] = _("Continue BOX operations?");
+const u8 gText_PkmnCameBack[] = _("{DYNAMIC 0} came back!");
+const u8 gText_WasItWorriedAboutYou[] = _("Was it worried about you?");
+const u8 gText_FourEllipsesExclamation[] = _("… … … … !");
+const u8 gText_PleaseRemoveTheMail[] = _("Please remove the MAIL.");
+const u8 gText_GiveToAPkmn[] = _("GIVE to a POKéMON?");
+const u8 gText_PlacedItemInBag[] = _("Placed item in the BAG.");
+const u8 gText_BagIsFull2[] = _("The BAG is full.");
+const u8 gText_PutItemInBag[] = _("Put this item in the BAG?");
+const u8 gText_ItemIsNowHeld[] = _("{DYNAMIC 0} is now held.");
+const u8 gText_ChangedToNewItem[] = _("Changed to {DYNAMIC 0}.");
+const u8 gText_MailCantBeStored[] = _("MAIL can't be stored!");
+const u8 gPCText_Cancel[] = _("CANCEL");
+const u8 gPCText_Store[] = _("STORE");
+const u8 gPCText_Withdraw[] = _("WITHDRAW");
+const u8 gPCText_Shift[] = _("SHIFT");
+const u8 gPCText_Move[] = _("MOVE");
+const u8 gPCText_Place[] = _("PLACE");
+const u8 gPCText_Summary[] = _("SUMMARY");
+const u8 gPCText_Release[] = _("RELEASE");
+const u8 gPCText_Mark[] = _("MARK");
+const u8 gPCText_Name[] = _("NAME");
+const u8 gPCText_Jump[] = _("JUMP");
+const u8 gPCText_Wallpaper[] = _("WALLPAPER");
+const u8 gPCText_Take[] = _("TAKE");
+const u8 gPCText_Give[] = _("GIVE");
+const u8 gPCText_Switch[] = _("SWITCH");
+const u8 gPCText_Bag[] = _("BAG");
+const u8 gPCText_Info[] = _("INFO");
+const u8 gPCText_Scenery1[] = _("SCENERY 1");
+const u8 gPCText_Scenery2[] = _("SCENERY 2");
+const u8 gPCText_Etcetera1[] = _("ETCETERA 1");
+const u8 gPCText_Etcetera2[] = _("ETCETERA 2");
+const u8 gPCText_Etcetera3[] = _("ETCETERA 3");
+const u8 gPCText_Etcetera4[] = _("ETCETERA 4");
+const u8 gPCText_Friends[] = _("FRIENDS");
+const u8 gPCText_Forest[] = _("FOREST");
+const u8 gPCText_City[] = _("CITY");
+const u8 gPCText_Desert[] = _("DESERT");
+const u8 gPCText_Savanna[] = _("SAVANNA");
+const u8 gPCText_Crag[] = _("CRAG");
+const u8 gPCText_Volcano[] = _("VOLCANO");
+const u8 gPCText_Snow[] = _("SNOW");
+const u8 gPCText_Cave[] = _("CAVE");
+const u8 gPCText_Beach[] = _("BEACH");
+const u8 gPCText_Seafloor[] = _("SEAFLOOR");
+const u8 gPCText_River[] = _("RIVER");
+const u8 gPCText_Sky[] = _("SKY");
+const u8 gPCText_PolkaDot[] = _("POLKA-DOT");
+const u8 gPCText_Pokecenter[] = _("POKéCENTER");
+const u8 gPCText_Machine[] = _("MACHINE");
+const u8 gPCText_Simple[] = _("SIMPLE");
+const u8 gPCText_Space[] = _("SPACE");
+const u8 gPCText_Backyard[] = _("BACKYARD");
+const u8 gPCText_Nostalgic1[] = _("NOSTALGIC 1");
+const u8 gPCText_Torchic[] = _("TORCHIC");
+const u8 gPCText_Trio1[] = _("TRIO 1");
+const u8 gPCText_PikaPika1[] = _("PIKAPIKA 1");
+const u8 gPCText_TimeAndSpace[] = _("TIME N SPACE");
+const u8 gPCText_Galactic1[] = _("GALACTIC 1");
+const u8 gPCText_Distortion[] = _("DISTORTION");
+const u8 gPCText_Contest[] = _("CONTEST");
+const u8 gPCText_Nostalgic2[] = _("NOSTALGIC 2");
+const u8 gPCText_Croagunk[] = _("CROAGUNK");
+const u8 gPCText_Trio2[] = _("TRIO 2");
+const u8 gPCText_PikaPika2[] = _("PIKAPIKA 2");
+const u8 gPCText_Renegade[] = _("RENEGADE");
+const u8 gPCText_Galactic2[] = _("GALACTIC 2");
+const u8 gPCText_Heart[] = _("HEART");
+const u8 gPCText_Soul[] = _("SOUL");
+const u8 gPCText_BigBrother[] = _("BIG BROTHER");
+const u8 gPCText_Pokeathlon[] = _("POKéATHLON");
+const u8 gPCText_Trio3[] = _("TRIO 3");
+const u8 gPCText_SpikyPika[] = _("SPIKY PIKA");
+const u8 gPCText_KimonoGirl[] = _("KIMONO GIRL");
+const u8 gPCText_Revival[] = _("REVIVAL");
 const u8 gText_PokemonMaleLv[] = _("{DYNAMIC 0}{BACKGROUND WHITE}{TEXT_COLORS LIGHT_RED GREEN WHITE}♂{BACKGROUND WHITE}{TEXT_COLORS DARK_GRAY LIGHT_GRAY WHITE}/{LV}{DYNAMIC 1}"); // Unused
 const u8 gText_PokemonFemaleLv[] = _("{DYNAMIC 0}{BACKGROUND WHITE}{TEXT_COLORS LIGHT_GREEN BLUE WHITE}♀{BACKGROUND WHITE}{TEXT_COLORS DARK_GRAY LIGHT_GRAY WHITE}/{LV}{DYNAMIC 1}"); // Unused
 const u8 gText_PokemonNoGenderLv[] = _("{DYNAMIC 0}/{LV}{DYNAMIC 1}"); // Unused
@@ -592,14 +673,14 @@ const u8 gText_WithFourPhrases[] = _("With four phrases,"); // Unused
 const u8 gText_CombineNineWordsOrPhrases[] = _("Combine nine words or phrases");
 const u8 gText_AndMakeAMessage2[] = _("and make a message.");
 const u8 gText_ChangeJustOneWordOrPhrase[] = _("Change just one word or phrase");
-const u8 gText_AndImproveTheBardsSong[] = _("and improve the BARD's song.");
+const u8 gText_AndImproveTheBardsSong[] = _("and improve the Bard's song.");
 const u8 gText_YourProfile[] = _("Your profile");
 const u8 gText_YourFeelingAtTheBattlesStart[] = _("Your feeling at the battle's start");
 const u8 gText_WhatYouSayIfYouWin[] = _("What you say if you win a battle");
 const u8 gText_WhatYouSayIfYouLose[] = _("What you say if you lose a battle");
 const u8 gText_TheAnswer[] = _("The answer");
-const u8 gText_TheMailMessage[] = _("The MAIL message");
-const u8 gText_TheMailSalutation[] = _("The MAIL salutation"); // Unused
+const u8 gText_TheMailMessage[] = _("The Mail message");
+const u8 gText_TheMailSalutation[] = _("The Mail salutation"); // Unused
 const u8 gText_TheBardsSong2[] = _("The new song");
 const u8 gText_CombineTwoWordsOrPhrases[] = _("Combine two words or phrases");
 const u8 gText_AndMakeATrendySaying[] = _("and make a trendy saying.");
@@ -608,7 +689,7 @@ const u8 gText_IsAsShownOkay[] = _("is as shown. Okay?");
 const u8 gText_CombineTwoWordsOrPhrases2[] = _("Combine two words or phrases");
 const u8 gText_ToTeachHerAGoodSaying[] = _("to teach her a good saying.");
 const u8 gText_FindWordsWhichFit[] = _("Find words which fit");
-const u8 gText_TheTrainersImage[] = _("the TRAINER's image.");
+const u8 gText_TheTrainersImage[] = _("the Trainer's image.");
 const u8 gText_TheImage[] = _("The image:");
 const u8 gText_OutOfTheListedChoices[] = _("Out of the listed choices,");
 const u8 gText_SelectTheAnswerToTheQuiz[] = _("select the answer to the quiz!");
@@ -619,7 +700,7 @@ const u8 gText_TheAnswerColon[] = _("The answer:");
 const u8 gText_TheQuizColon[] = _("The quiz:"); // Unused
 const u8 gText_ApprenticePhrase[] = _("Apprentice's phrase:");
 const u8 gText_QuitEditing[] = _("Quit editing?");
-const u8 gText_StopGivingPkmnMail[] = _("Stop giving the Pokémon MAIL?");
+const u8 gText_StopGivingPkmnMail[] = _("Stop giving the Pokémon Mail?");
 const u8 gText_AndFillOutTheQuestionnaire[] = _("and fill out the questionnaire.");
 const u8 gText_LetsReplyToTheInterview[] = _("Let's reply to the interview!");
 const u8 gText_AllTextBeingEditedWill[] = _("All the text being edited will");
@@ -634,22 +715,22 @@ const u8 gText_OriginalSongWillBeUsed[] = _("The original song will be used.");
 const u8 gText_ThatsTrendyAlready[] = _("That's trendy already!"); // Unused
 const u8 gText_CombineTwoWordsOrPhrases3[] = _("Combine two words or phrases.");
 const u8 gText_QuitGivingInfo[] = _("Quit giving information?"); // Unused
-const u8 gText_StopGivingPkmnMail2[] = _("Stop giving the Pokémon MAIL?"); // Unused
+const u8 gText_StopGivingPkmnMail2[] = _("Stop giving the Pokémon Mail?"); // Unused
 const u8 gText_CreateAQuiz2[] = _("Create a quiz!"); // Unused
 const u8 gText_SetTheAnswer[] = _("Set the answer!"); // Unused
 const u8 gText_CancelSelection[] = _("Cancel the selection?"); // Unused
-const u8 gText_Profile[] = _("PROFILE");
+const u8 gText_Profile[] = _("Profile");
 const u8 gText_AtTheBattlesStart[] = _("At the battle's start:");
 const u8 gText_UponWinningABattle[] = _("Upon winning a battle:");
 const u8 gText_UponLosingABattle[] = _("Upon losing a battle:");
-const u8 gText_TheBardsSong[] = _("The BARD's Song");
+const u8 gText_TheBardsSong[] = _("The Bard's Song");
 const u8 gText_WhatsHipAndHappening[] = _("What's hip and happening?");
 const u8 gText_Interview[] = _("Interview");
 const u8 gText_GoodSaying[] = _("Good saying");
 const u8 gText_FansQuestion[] = _("Fan's question");
 const u8 gJPText_WhatIsTheQuizAnswer[] = _("クイズの こたえは？"); // Unused
 const u8 gText_ApprenticesPhrase[] = _("Apprentice's phrase");
-const u8 gText_Questionnaire[] = _("QUESTIONNAIRE");
+const u8 gText_Questionnaire[] = _("Questionnaire");
 const u8 gText_YouCannotQuitHere[] = _("You cannot quit here.");
 const u8 gText_SectionMustBeCompleted[] = _("This section must be completed.");
 const u8 gText_F700sQuiz[] = _("{DYNAMIC 0}'s quiz");
@@ -659,12 +740,12 @@ const u8 gText_QuestionPressTheAButton[] = _("question, press the A Button.");
 const u8 gText_TheQuizAnswerIs[] = _("The quiz answer is?");
 const u8 gText_LikeToQuitQuiz[] = _("Would you like to quit this quiz");
 const u8 gText_ChallengeQuestionMark[] = _("challenge?");
-const u8 gText_IsThisQuizOK[] = _("Is this quiz OK?");
+const u8 gText_IsThisQuizOK[] = _("Is this quiz Ok?");
 const u8 gText_CreateAQuiz[] = _("Create a quiz!");
 const u8 gText_SelectTheAnswer[] = _("Select the answer!");
 const u8 gText_LyricsCantBeDeleted[] = _("The lyrics can't be deleted.");
-const u8 gText_PokemonLeague[] = _("POKéMON LEAGUE");
-const u8 gText_PokemonCenter[] = _("POKéMON CENTER");
+const u8 gText_PokemonLeague[] = _("POKéMON League");
+const u8 gText_PokemonCenter[] = _("POKéMON Center");
 const u8 gText_Coolness[] = _("Coolness ");
 const u8 gText_Beauty3[] = _("Beauty ");
 const u8 gText_Cuteness[] = _("Cuteness ");
@@ -676,9 +757,9 @@ const u8 gText_GamePlayCannotBeContinued[] = _("{COLOR RED}“Game play cannot b
 const u8 gText_CheckCompleted[] = _("Check completed.\nAttempting to save again.\nPlease wait.");
 const u8 gText_SaveCompleteGameCannotContinue[] = _("Save completed.\n{COLOR RED}“Game play cannot be continued.\nReturning to the title screen.”");
 const u8 gText_SaveCompletePressA[] = _("Save completed.\n{COLOR RED}“Please press the A Button.”");
-const u8 gText_Ferry[] = _("FERRY");
-const u8 gText_SecretBase[] = _("SECRET BASE");
-const u8 gText_Hideout[] = _("HIDEOUT");
+const u8 gText_Ferry[] = _("Ferry");
+const u8 gText_SecretBase[] = _("Secret Base");
+const u8 gText_Hideout[] = _("Hideout");
 const u8 gText_ResetRTCConfirmCancel[] = _("Reset RTC?\nA: Confirm, B: Cancel");
 const u8 gText_PresentTime[] = _("Present time in game");
 const u8 gText_PreviousTime[] = _("Previous time in game");
@@ -693,8 +774,8 @@ const u8 gText_Dry2[] = _("dry");
 const u8 gText_Sweet2[] = _("sweet");
 const u8 gText_Bitter2[] = _("bitter");
 const u8 gText_Sour2[] = _("sour");
-const u8 gText_Single[] = _("SINGLE");
-const u8 gText_Double[] = _("DOUBLE");
+const u8 gText_Single[] = _("Single");
+const u8 gText_Double[] = _("Double");
 const u8 gText_First[] = _("first");
 const u8 gText_Second[] = _("second");
 const u8 gText_Third[] = _("third");
@@ -703,45 +784,45 @@ const u8 gText_PkmnFainted_FldPsn[] = _("{STR_VAR_1} fainted…\p\n");
 #else
 const u8 gText_PkmnFainted_FldPsn[] = _("{STR_VAR_1} survived the poisoning.\nThe poison faded away!\p");
 #endif
-const u8 gText_Marco[] = _("MARCO");
-const u8 gText_TrainerCardName[] = _("NAME: ");
+const u8 gText_Marco[] = _("Marco");
+const u8 gText_TrainerCardName[] = _("Name: ");
 const u8 gText_TrainerCardIDNo[] = _("IDNo.");
-const u8 gText_TrainerCardMoney[] = _("MONEY");
+const u8 gText_TrainerCardMoney[] = _("Money");
 const u8 gText_PokeDollar[] = _("¥"); // Unused
 const u8 gText_TrainerCardPokedex[] = _("Pokédex");
 const u8 gText_EmptyString6[] = _("");
 const u8 gText_Colon2[] = _(":");
 const u8 gText_Points[] = _(" points"); // Unused
-const u8 gText_TrainerCardTime[] = _("TIME");
+const u8 gText_TrainerCardTime[] = _("Time");
 const u8 gJPText_BattlePoints[] = _("ゲ-ムポイント"); // Unused. Name presumed, translation is Game Points
 const u8 gText_Var1sTrainerCard[] = _("{STR_VAR_1}'s Trainer Card");
 const u8 gText_HallOfFameDebut[] = _("Hall of Fame Debut  ");
-const u8 gText_LinkBattles[] = _("LINK BATTLES");
-const u8 gText_LinkCableBattles[] = _("LINK CABLE BATTLES");
+const u8 gText_LinkBattles[] = _("Link Battles");
+const u8 gText_LinkCableBattles[] = _("Link Cable Battles");
 const u8 gText_WinsLosses[] = _("W:{COLOR RED}{SHADOW LIGHT_RED}{STR_VAR_1}{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}  L:{COLOR RED}{SHADOW LIGHT_RED}{STR_VAR_2}{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}");
-const u8 gText_PokemonTrades[] = _("Pokémon TRADES");
-const u8 gText_UnionTradesAndBattles[] = _("UNION TRADES & BATTLES");
-const u8 gText_BerryCrush[] = _("BERRY CRUSH");
-const u8 gText_WaitingTrainerFinishReading[] = _("Waiting for the other TRAINER to\nfinish reading your TRAINER CARD.");
-const u8 gText_PokeblocksWithFriends[] = _("{POKEBLOCK}S W/FRIENDS");
+const u8 gText_PokemonTrades[] = _("Pokémon Trades");
+const u8 gText_UnionTradesAndBattles[] = _("Union Trades & Battles");
+const u8 gText_BerryCrush[] = _("Berry Crush");
+const u8 gText_WaitingTrainerFinishReading[] = _("Waiting for the other Trainer to\nfinish reading your Trainer Card.");
+const u8 gText_PokeblocksWithFriends[] = _("{POKEBLOCK}S W/Friends");
 const u8 gText_NumPokeblocks[] = _("{STR_VAR_1}{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}");
-const u8 gText_WonContestsWFriends[] = _("WON CONTESTS W/FRIENDS");
-const u8 gText_BattlePtsWon[] = _("BATTLE POINTS WON");
+const u8 gText_WonContestsWFriends[] = _("Won Contests W/Friends");
+const u8 gText_BattlePtsWon[] = _("Battle Points Won");
 const u8 gText_NumBP[] = _("{STR_VAR_1}{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}BP");
-const u8 gText_BattleTower[] = _("BATTLE TOWER");
-const u8 gText_WinsStraight[] = _("W/{COLOR RED}{SHADOW LIGHT_RED}{STR_VAR_1}{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}  STRAIGHT/{COLOR RED}{SHADOW LIGHT_RED}{STR_VAR_2}");
-const u8 gText_BattleTower2[] = _("BATTLE TOWER");
-const u8 gText_BattleDome[] = _("BATTLE DOME");
-const u8 gText_BattlePalace[] = _("BATTLE PALACE");
-const u8 gText_BattleFactory[] = _("BATTLE FACTORY");
-const u8 gText_BattleArena[] = _("BATTLE ARENA");
-const u8 gText_BattlePike[] = _("BATTLE PIKE");
-const u8 gText_BattlePyramid[] = _("BATTLE PYRAMID");
+const u8 gText_BattleTower[] = _("Battle Tower");
+const u8 gText_WinsStraight[] = _("W/{COLOR RED}{SHADOW LIGHT_RED}{STR_VAR_1}{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}  Straight/{COLOR RED}{SHADOW LIGHT_RED}{STR_VAR_2}");
+const u8 gText_BattleTower2[] = _("Battle Tower");
+const u8 gText_BattleDome[] = _("Battle Dome");
+const u8 gText_BattlePalace[] = _("Battle Palace");
+const u8 gText_BattleFactory[] = _("Battle Factory");
+const u8 gText_BattleArena[] = _("Battle Arena");
+const u8 gText_BattlePike[] = _("Battle Pike");
+const u8 gText_BattlePyramid[] = _("Battle Pyramid");
 
-ALIGNED(4) const u8 gText_FacilitySingle[] = _("{STR_VAR_1} SINGLE");
-ALIGNED(4) const u8 gText_FacilityDouble[] = _("{STR_VAR_1} DOUBLE");
-ALIGNED(4) const u8 gText_FacilityMulti[] = _("{STR_VAR_1} MULTI");
-ALIGNED(4) const u8 gText_FacilityLink[] = _("{STR_VAR_1} LINK");
+ALIGNED(4) const u8 gText_FacilitySingle[] = _("{STR_VAR_1} Single");
+ALIGNED(4) const u8 gText_FacilityDouble[] = _("{STR_VAR_1} Double");
+ALIGNED(4) const u8 gText_FacilityMulti[] = _("{STR_VAR_1} Multi");
+ALIGNED(4) const u8 gText_FacilityLink[] = _("{STR_VAR_1} Link");
 ALIGNED(4) const u8 gText_Facility[] = _("{STR_VAR_1}");
 
 const u8 gText_Give[] = _("Give");
@@ -758,11 +839,11 @@ const u8 gText_EmptySpace2[] = _(" "); // Unused
 const u8 gText_HealthboxGender_Male[] = _("{COLOR DYNAMIC_COLOR2}♂");
 const u8 gText_HealthboxGender_Female[] = _("{COLOR DYNAMIC_COLOR1}♀");
 const u8 gText_HealthboxGender_None[] = _("{COLOR DYNAMIC_COLOR2}");
-const u8 gText_Upper[] = _("UPPER");
+const u8 gText_Upper[] = _("Upper");
 const u8 gText_Lower[] = _("lower");
-const u8 gText_Others[] = _("OTHERS");
-const u8 gText_Symbols[] = _("SYMBOLS");
-const u8 gText_Register2[] = _("REGISTER");
+const u8 gText_Others[] = _("Others");
+const u8 gText_Symbols[] = _("Symbols");
+const u8 gText_Register2[] = _("Register");
 const u8 gText_Exit2[] = _("Exit");
 const u8 gText_QuitChatting[] = _("Quit chatting?");
 const u8 gText_RegisterTextWhere[] = _("Register text where?");
@@ -773,38 +854,38 @@ const u8 gText_F700LeftChat[] = _("{DYNAMIC 0} left the chat.");
 const u8 gJPText_PlayersXPokemon[] = _("{DYNAMIC 0}の{DYNAMIC 1}ひきめ:"); // Unused
 const u8 gJPText_PlayersXPokmonDoesNotExist[] = _("{DYNAMIC 0}の{DYNAMIC 1}ひきめは いません"); // Unused
 const u8 gText_ExitingChat[] = _("Exiting the chat…");
-const u8 gText_LeaderLeftEndingChat[] = _("The LEADER, {DYNAMIC 0}, has\nleft, ending the chat.");
+const u8 gText_LeaderLeftEndingChat[] = _("The Leader, {DYNAMIC 0}, has\nleft, ending the chat.");
 const u8 gText_RegisteredTextChangedOKToSave[] = _("The registered text has been changed.\nIs it okay to save the game?");
 const u8 gText_AlreadySavedFile_Chat[] = _("There is already a saved file.\nIs it okay to overwrite it?");
-const u8 gText_SavingDontTurnOff_Chat[] = _("SAVING…\nDON'T TURN OFF THE POWER.");
+const u8 gText_SavingDontTurnOff_Chat[] = _("Saving…\nDon't Turn off The power.");
 const u8 gText_PlayerSavedGame_Chat[] = _("{DYNAMIC 0} saved the game.");
-const u8 gText_IfLeaderLeavesChatEnds[] = _("If the LEADER leaves, the chat\nwill end. Is that okay?");
-const u8 gText_Hello[] = _("HELLO");
+const u8 gText_IfLeaderLeavesChatEnds[] = _("If the Leader leaves, the chat\nwill end. Is that okay?");
+const u8 gText_Hello[] = _("Hello");
 const u8 gText_Pokemon2[] = _("Pokémon");
-const u8 gText_Trade[] = _("TRADE");
-const u8 gText_Battle[] = _("BATTLE");
-const u8 gText_Lets[] = _("LET'S");
-const u8 gText_Ok[] = _("OK!");
-const u8 gText_Sorry[] = _("SORRY");
+const u8 gText_Trade[] = _("Trade");
+const u8 gText_Battle[] = _("Battle");
+const u8 gText_Lets[] = _("Let'S");
+const u8 gText_Ok[] = _("Ok!");
+const u8 gText_Sorry[] = _("Sorry");
 const u8 gText_YaySmileEmoji[] = _("YAY{EMOJI_BIGSMILE}");
-const u8 gText_ThankYou[] = _("THANK YOU");
-const u8 gText_ByeBye[] = _("BYE-BYE!");
-const u8 gText_HatchedFromEgg[] = _("{STR_VAR_1} hatched from the EGG!");
+const u8 gText_ThankYou[] = _("Thank You");
+const u8 gText_ByeBye[] = _("Bye-Bye!");
+const u8 gText_HatchedFromEgg[] = _("{STR_VAR_1} hatched from the Egg!");
 const u8 gText_NicknameHatchPrompt[] = _("Would you like to nickname the newly\nhatched {STR_VAR_1}?");
-ALIGNED(4) const u8 gText_ReadyPickBerry[] = _("Are you ready to BERRY-CRUSH?\nPlease pick a BERRY for use.\p");
-ALIGNED(4) const u8 gText_WaitForAllChooseBerry[] = _("Please wait while each member\nchooses a BERRY.");
-ALIGNED(4) const u8 gText_EndedWithXUnitsPowder[] = _("{PAUSE_MUSIC}{PLAY_BGM MUS_LEVEL_UP}You ended up with {STR_VAR_1} units of\nsilky-smooth BERRY POWDER.{RESUME_MUSIC}\pYour total amount of BERRY POWDER\nis {STR_VAR_2}.\p");
+ALIGNED(4) const u8 gText_ReadyPickBerry[] = _("Are you ready to Berry-Crush?\nPlease pick a Berry for use.\p");
+ALIGNED(4) const u8 gText_WaitForAllChooseBerry[] = _("Please wait while each member\nchooses a Berry.");
+ALIGNED(4) const u8 gText_EndedWithXUnitsPowder[] = _("{PAUSE_MUSIC}{PLAY_BGM MUS_LEVEL_UP}You ended up with {STR_VAR_1} units of\nsilky-smooth Berry Powder.{RESUME_MUSIC}\pYour total amount of Berry Powder\nis {STR_VAR_2}.\p");
 ALIGNED(4) const u8 gText_RecordingGameResults[] = _("Recording your game results in the\nsave file.\lPlease wait.");
-ALIGNED(4) const u8 gText_PlayBerryCrushAgain[] = _("Want to play BERRY CRUSH again?");
-ALIGNED(4) const u8 gText_YouHaveNoBerries[] = _("You have no BERRIES.\nThe game will be canceled.");
+ALIGNED(4) const u8 gText_PlayBerryCrushAgain[] = _("Want to play Berry Crush again?");
+ALIGNED(4) const u8 gText_YouHaveNoBerries[] = _("You have no Berries.\nThe game will be canceled.");
 ALIGNED(4) const u8 gText_MemberDroppedOut[] = _("A member dropped out.\nThe game will be canceled.");
-ALIGNED(4) const u8 gText_TimesUpNoGoodPowder[] = _("Time's up.\pGood BERRY POWDER could not be\nmade…\p");
+ALIGNED(4) const u8 gText_TimesUpNoGoodPowder[] = _("Time's up.\pGood Berry Powder could not be\nmade…\p");
 ALIGNED(4) const u8 gText_CommunicationStandby2[] = _("Communication standby…");
 ALIGNED(4) const u8 gText_1DotBlueF700[] = _("1. {COLOR BLUE}{SHADOW LIGHT_BLUE}{DYNAMIC 0}");
 ALIGNED(4) const u8 gText_1DotF700[] = _("1. {DYNAMIC 0}");
 ALIGNED(4) const u8 gText_SpaceTimes2[] = _(" time(s)");
 ALIGNED(4) const u8 gText_XDotY[] = _("{STR_VAR_1}.{STR_VAR_2}");
-ALIGNED(4) const u8 gText_Var1Berry[] = _("{STR_VAR_1} BERRY");
+ALIGNED(4) const u8 gText_Var1Berry[] = _("{STR_VAR_1} Berry");
 ALIGNED(4) const u8 gText_TimeColon[] = _("Time:");
 ALIGNED(4) const u8 gText_PressingSpeed[] = _("Pressing Speed:");
 ALIGNED(4) const u8 gText_Silkiness[] = _("Silkiness:");
@@ -820,18 +901,18 @@ ALIGNED(4) const u8 gText_CrushingResults[] = _("Crushing Results");
 ALIGNED(4) const u8 gText_NeatnessRankings[] = _("Neatness Rankings");
 ALIGNED(4) const u8 gText_CoopRankings[] = _("Cooperative Rankings");
 ALIGNED(4) const u8 gText_PressingPowerRankings[] = _("Pressing-Power Rankings");
-const u8 gText_BerryCrush2[] = _("BERRY CRUSH");
+const u8 gText_BerryCrush2[] = _("Berry Crush");
 const u8 gText_PressingSpeedRankings[] = _("Pressing-Speed Rankings");
-const u8 gText_Var1Players[] = _("{STR_VAR_1} PLAYERS");
+const u8 gText_Var1Players[] = _("{STR_VAR_1} Players");
 const u8 gText_SymbolsEarned[] = _("Symbols Earned");
 const u8 gText_BattleRecord[] = _("Battle Record");
 const u8 gText_BattlePoints[] = _("Battle Points");
 const u8 gText_UnusedCancel[] = _("Cancel"); // Unused
 const u8 gText_EmptyString7[] = _("");
-const u8 gText_CheckFrontierMap[] = _("Check BATTLE FRONTIER MAP.");
-const u8 gText_CheckTrainerCard[] = _("Check TRAINER CARD.");
+const u8 gText_CheckFrontierMap[] = _("Check Battle Frontier Map.");
+const u8 gText_CheckTrainerCard[] = _("Check Trainer Card.");
 const u8 gText_ViewRecordedBattle[] = _("View recorded battle.");
-const u8 gText_PutAwayFrontierPass[] = _("Put away the FRONTIER PASS.");
+const u8 gText_PutAwayFrontierPass[] = _("Put away the Frontier Pass.");
 const u8 gText_CurrentBattlePoints[] = _("Your current Battle Points.");
 const u8 gText_CollectedSymbols[] = _("Your collected Symbols.");
 const u8 gText_BattleTowerAbilitySymbol[] = _("Battle Tower - Ability Symbol");
@@ -842,26 +923,26 @@ const u8 gText_BattleFactoryKnowledgeSymbol[] = _("Battle Factory - Knowledge Sy
 const u8 gText_BattlePikeLuckSymbol[] = _("Battle Pike - Luck Symbol");
 const u8 gText_BattlePyramidBraveSymbol[] = _("Battle Pyramid - Brave Symbol");
 const u8 gText_ThereIsNoBattleRecord[] = _("There is no Battle Record.");
-const u8 gText_BattleTower3[] = _("BATTLE TOWER");
-const u8 gText_BattleDome2[] = _("BATTLE DOME");
-const u8 gText_BattlePalace2[] = _("BATTLE PALACE");
-const u8 gText_BattleArena2[] = _("BATTLE ARENA");
-const u8 gText_BattleFactory2[] = _("BATTLE FACTORY");
-const u8 gText_BattlePike2[] = _("BATTLE PIKE");
-const u8 gText_BattlePyramid2[] = _("BATTLE PYRAMID");
-const u8 gText_BattleTowerDesc[] = _("KO opponents and aim for the top!\nYour ability will be tested.");
+const u8 gText_BattleTower3[] = _("Battle Tower");
+const u8 gText_BattleDome2[] = _("Battle Dome");
+const u8 gText_BattlePalace2[] = _("Battle Palace");
+const u8 gText_BattleArena2[] = _("Battle Arena");
+const u8 gText_BattleFactory2[] = _("Battle Factory");
+const u8 gText_BattlePike2[] = _("Battle Pike");
+const u8 gText_BattlePyramid2[] = _("Battle Pyramid");
+const u8 gText_BattleTowerDesc[] = _("Ko opponents and aim for the top!\nYour ability will be tested.");
 const u8 gText_BattleDomeDesc[] = _("Keep winning at the tournament!\nYour tactics will be tested.");
 const u8 gText_BattlePalaceDesc[] = _("Watch your Pokémon battle!\nYour spirit will be tested.");
 const u8 gText_BattleArenaDesc[] = _("Win battles with teamed-up Pokémon!\nYour guts will be tested.");
 const u8 gText_BattleFactoryDesc[] = _("Aim for victory using rental Pokémon!\nYour knowledge will be tested.");
 const u8 gText_BattlePikeDesc[] = _("Select one of three paths to battle!\nYour luck will be tested.");
 const u8 gText_BattlePyramidDesc[] = _("Aim for the top with exploration!\nYour bravery will be tested.");
-const u8 gText_Powder[] = _("POWDER");
-const u8 gText_BerryPickingRecords[] = _("DODRIO BERRY-PICKING RECORDS");
-const u8 gText_BerriesPicked[] = _("BERRIES picked:");
+const u8 gText_Powder[] = _("Powder");
+const u8 gText_BerryPickingRecords[] = _("Dodrio Berry-Picking Records");
+const u8 gText_BerriesPicked[] = _("Berries picked:");
 const u8 gText_BestScore[] = _("Best score:");
-const u8 gText_BerriesInRowFivePlayers[] = _("BERRIES picked in a row with\nfive players:");
-const u8 gText_BerryPickingResults[] = _("Announcing BERRY-PICKING results!");
+const u8 gText_BerriesInRowFivePlayers[] = _("Berries picked in a row with\nfive players:");
+const u8 gText_BerryPickingResults[] = _("Announcing Berry-Picking results!");
 const u8 gText_10P30P50P50P[] = _("{CLEAR_TO 0x03}10P{CLEAR_TO 0x2B}30P{CLEAR_TO 0x53}50P{CLEAR_TO 0x77}{EMOJI_MINUS}50P");
 const u8 gText_AnnouncingRankings[] = _("Announcing rankings!");
 const u8 gText_AnnouncingPrizes[] = _("Announcing prizes!");
@@ -879,10 +960,10 @@ const u8 gText_SpacePoints[] = _(" points");
 const u8 gText_CommunicationStandby3[] = _("Communication standby…");
 const u8 gText_SpacePoints2[] = _(" points");
 const u8 gText_SpaceTimes3[] = _(" time(s)");
-const u8 gText_PkmnJumpRecords[] = _("Pokémon JUMP RECORDS");
+const u8 gText_PkmnJumpRecords[] = _("Pokémon Jump Records");
 const u8 gText_JumpsInARow[] = _("Jumps in a row:");
 const u8 gText_BestScore2[] = _("Best score:");
-const u8 gText_ExcellentsInARow[] = _("EXCELLENTS in a row:");
+const u8 gText_ExcellentsInARow[] = _("Excellents in a row:");
 const u8 gText_AwesomeWonF701F700[] = _("Awesome score! You've\nwon {DYNAMIC 1} {DYNAMIC 0}!");
 const u8 gText_FilledStorageSpace2[] = _("It filled its storage space.");
 const u8 gText_CantHoldMore[] = _("You can't hold any more!");
@@ -895,7 +976,7 @@ const u8 gText_2nd[] = _("2nd");
 const u8 gText_3rd[] = _("3rd");
 const u8 gText_4th[] = _("4th");
 const u8 gText_Friend[] = _("Friend");
-const u8 gText_Pokemon3[] = _("POKeMON"); // Unused
+const u8 gText_Pokemon3[] = _("Pokemon"); // Unused
 const u8 gJPText_MysteryGift[] = _("ふしぎなもらいもの");
 const u8 gJPText_DecideStop[] = _("{A_BUTTON}けってい {B_BUTTON}やめる");
 const u8 gJPText_ReceiveMysteryGiftWithEReader[] = _("カードeリーダー{PLUS}　で\nふしぎなもらいものを　よみこみます");
@@ -922,16 +1003,16 @@ const u8 gText_DoubleBattleTourneyResults[] = _("{PLAYER}'s Double Battle Tourne
 const u8 gText_SingleBattleHallResults[] = _("{PLAYER}'s Single Battle Hall Results");
 const u8 gText_DoubleBattleHallResults[] = _("{PLAYER}'s Double Battle Hall Results");
 const u8 gText_BattleChoiceResults[] = _("{PLAYER}'s Battle Choice Results");
-const u8 gText_SetKOTourneyResults[] = _("{PLAYER}'s Set KO Tourney Results");
+const u8 gText_SetKOTourneyResults[] = _("{PLAYER}'s Set Ko Tourney Results");
 const u8 gText_BattleSwapSingleResults[] = _("{PLAYER}'s Battle Swap Single Results");
 const u8 gText_BattleSwapDoubleResults[] = _("{PLAYER}'s Battle Swap Double Results");
 const u8 gText_BattleQuestResults[] = _("{PLAYER}'s Battle Quest Results");
-const u8 gText_Lv502[] = _("LV. 50");
-const u8 gText_OpenLv[] = _("OPEN LV.");
+const u8 gText_Lv502[] = _("Lv. 50");
+const u8 gText_OpenLv[] = _("Open Lv.");
 const u8 gText_WinStreak[] = _("Win streak: {STR_VAR_1}");
-const u8 gText_Current[] = _("CURRENT");
-const u8 gText_Record[] = _("RECORD");
-const u8 gText_Prev[] = _("PREV.");
+const u8 gText_Current[] = _("Current");
+const u8 gText_Record[] = _("Record");
+const u8 gText_Prev[] = _("Prev.");
 const u8 gText_RentalSwap[] = _("Rental/Swap");
 const u8 gText_Total[] = _("Total");
 const u8 gText_ClearStreak[] = _("Clear streak: {STR_VAR_1}");
@@ -942,8 +1023,8 @@ const u8 gText_KOsInARow[] = _("KOs in a row: {STR_VAR_1}");
 const u8 gText_TimesVar1[] = _("Times: {STR_VAR_1}");
 const u8 gText_FloorsCleared[] = _("Floors cleared: {STR_VAR_1}");
 
-ALIGNED(4) const u8 gText_RecordsLv50[] = _("LV. 50");
-ALIGNED(4) const u8 gText_RecordsOpenLevel[] = _("OPEN LEVEL");
+ALIGNED(4) const u8 gText_RecordsLv50[] = _("Lv. 50");
+ALIGNED(4) const u8 gText_RecordsOpenLevel[] = _("Open Level");
 ALIGNED(4) const u8 gText_FrontierFacilityWinStreak[] = _("Win streak: {STR_VAR_2}");
 ALIGNED(4) const u8 gText_FrontierFacilityClearStreak[] = _("Clear streak: {STR_VAR_2}");
 ALIGNED(4) const u8 gText_FrontierFacilityRoomsCleared[] = _("Rooms cleared: {STR_VAR_2}");
@@ -954,10 +1035,10 @@ const u8 gText_FrontierFacilityTotalCaughtSpeciesBanned[] = _(" and {STR_VAR_2} 
 const u8 gText_FrontierFacilityIncluding[] = _(".\pThese include ");
 const u8 gText_FrontierFacilityAreInelegible[] = _(" are inelegible");
 
-const u8 gText_YesNo[] = _("YES\nNO");
+const u8 gText_YesNo[] = _("Yes\nNO");
 const u8 gText_SelectorArrow3[] = _("▶");
-const u8 gText_Peekaboo[] = _("PEEKABOO!");
-const u8 gText_CommErrorCheckConnections[] = _("Communication error…\nPlease check all connections,\nthen turn the power OFF and ON.");
+const u8 gText_Peekaboo[] = _("Peekaboo!");
+const u8 gText_CommErrorCheckConnections[] = _("Communication error…\nPlease check all connections,\nthen turn the power Off and On.");
 const u8 gText_CommErrorEllipsis[] = _("Communication error…");
 const u8 gText_MoveCloserToLinkPartner[] = _("Move closer to your link partner(s).\nAvoid obstacles between partners.");
 const u8 gText_ABtnRegistrationCounter[] = _("A Button: Registration Counter");
@@ -971,14 +1052,14 @@ const u8 gText_BattleScene[] = _("Battle Scene");
 const u8 gText_BattleStyle[] = _("Battle Style");
 const u8 gText_Sound[] = _("Sound");
 const u8 gText_Frame[] = _("Frame");
-const u8 gText_NumPlayerLink[] = _("{STR_VAR_1}P LINK");
-const u8 gText_BronzeCard[] = _("BRONZE");
-const u8 gText_CopperCard[] = _("COPPER");
-const u8 gText_SilverCard[] = _("SILVER");
-const u8 gText_GoldCard[] = _("GOLD");
-const u8 gText_Day[] = _("DAY");
+const u8 gText_NumPlayerLink[] = _("{STR_VAR_1}P Link");
+const u8 gText_BronzeCard[] = _("Bronze");
+const u8 gText_CopperCard[] = _("Copper");
+const u8 gText_SilverCard[] = _("Silver");
+const u8 gText_GoldCard[] = _("Gold");
+const u8 gText_Day[] = _("Day");
 const u8 gText_Colon3[] = _(":");
-const u8 gText_Confirm2[] = _("CONFIRM");
+const u8 gText_Confirm2[] = _("Confirm");
 const u8 gText_Days[] = _("Days"); // Unused
 const u8 gText_TimeColon2[] = _("Time:"); // Unused
 const u8 gText_GameTime[] = _("Game time"); // Unused
@@ -987,15 +1068,15 @@ const u8 gText_UpdatedTime[] = _("Updated time"); // Unused
 const u8 gText_MenuPokedex[] = _("Pokédex");
 const u8 gText_MenuPokemon[] = _("Pokémon");
 const u8 gText_MenuBag[] = _("Bag");
-const u8 gText_MenuPokenav[] = _("Pokénav");
+const u8 gText_MenuPokenav[] = _("PokéNav");
 const u8 gText_MenuPlayer[] = _("{PLAYER}");
 const u8 gText_MenuSave[] = _("Save");
 const u8 gText_MenuOption[] = _("Option");
 const u8 gText_MenuExit[] = _("Exit");
-const u8 gText_MenuRetire[] = _("RETIRE");
-const u8 gText_MenuRest[] = _("REST");
-const u8 gText_MenuDexNav[] = _("DEXNAV");
-const u8 gText_SafariBallStock[] = _("SAFARI BALLS\nStock: {STR_VAR_1}");
+const u8 gText_MenuRetire[] = _("Retire");
+const u8 gText_MenuRest[] = _("Rest");
+const u8 gText_MenuDexNav[] = _("Dexnav");
+const u8 gText_SafariBallStock[] = _("Safari Balls\nStock: {STR_VAR_1}");
 const u8 gText_MenuSafariStats[] = _("{STR_VAR_1}/{STR_VAR_2}\nBALLS  {STR_VAR_3}");
 const u8 gText_BattlePyramidFloor[] = _("Battle Pyramid\n{STR_VAR_1}");
 const u8 gText_Floor1[] = _("Floor 1");
@@ -1014,12 +1095,12 @@ const u8 gText_EventSafelyLoaded[] = _("The event was safely loaded.");
 const u8 gText_LoadErrorEndingSession[] = _("Loading error.\nEnding session.");
 const u8 gJPText_Player[] = _("プレイヤー"); // Unused
 const u8 gJPText_Sama[] = _("さま"); // Unused
-const u8 gText_DexHoenn[] = _("HOENN");
-const u8 gText_DexNational[] = _("NATIONAL");
-const u8 gText_PokedexDiploma[] = _("PLAYER: {CLEAR 0x10}{COLOR RED}{SHADOW LIGHT_RED}{PLAYER}{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}\n\nThis document certifies\nthat you have successfully\ncompleted your\n{STR_VAR_1} Pokédex.\n\n{CLEAR_TO 0x42}{COLOR RED}{SHADOW LIGHT_RED}GAME FREAK");
+const u8 gText_DexHoenn[] = _("Johto");
+const u8 gText_DexNational[] = _("National");
+const u8 gText_PokedexDiploma[] = _("Player: {CLEAR 0x10}{COLOR RED}{SHADOW LIGHT_RED}{PLAYER}{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}\n\nThis document certifies\nthat you have successfully\ncompleted your\n{STR_VAR_1} Pokédex.\n\n{CLEAR_TO 0x42}{COLOR RED}{SHADOW LIGHT_RED}GAME Freak");
 const u8 gJPText_GameFreak[] = _("{COLOR RED}{SHADOW LIGHT_RED}ゲ-ムフリ-ク"); // Unused
 const u8 gText_DiplomaEmpty[] = _("{COLOR RED}{SHADOW LIGHT_RED}"); // Unused
-const u8 gText_Hoenn[] = _("HOENN");
+const u8 gText_Hoenn[] = _("Johto");
 const u8 gText_Map[] = _("Map");
 const u8 gText_XWillBeSentToY[] = _("{STR_VAR_2} will be\nsent to {STR_VAR_1}.");
 const u8 gText_ByeByeVar1[] = _("Bye-bye, {STR_VAR_2}!");
@@ -1037,31 +1118,31 @@ const u8 gText_Plus[] = _("{PLUS}");
 const u8 gText_Dash[] = _("-");
 const u8 gText_MixingRecords[] = _("Mixing records…");
 const u8 gText_RecordMixingComplete[] = _("Record mixing completed.\nThank you for waiting.");
-const u8 gText_RentalPkmn2[] = _("RENTAL POKéMON");
+const u8 gText_RentalPkmn2[] = _("Rental POKéMON");
 const u8 gText_SelectFirstPkmn[] = _("Select the first POKéMON.");
 const u8 gText_SelectSecondPkmn[] = _("Select the second POKéMON.");
 const u8 gText_SelectThirdPkmn[] = _("Select the third POKéMON.");
-const u8 gText_Rent[] = _("RENT");
+const u8 gText_Rent[] = _("Rent");
 const u8 gText_Summary[] = _("Summary");
 const u8 gText_Others2[] = _("Others");
 const u8 gText_Deselect[] = _("Deselect");
-const u8 gText_TheseThreePkmnOkay[] = _("Are these three Pokémon OK?");
+const u8 gText_TheseThreePkmnOkay[] = _("Are these three Pokémon Ok?");
 const u8 gText_Yes2[] = _("Yes");
 const u8 gText_No2[] = _("No");
 const u8 gText_CantSelectSamePkmn[] = _("Can't select same {PKMN}.");
-const u8 gText_PkmnSwap[] = _("Pokémon SWAP");
+const u8 gText_PkmnSwap[] = _("Pokémon Swap");
 const u8 gText_SelectPkmnToSwap[] = _("Select Pokémon to swap.");
 const u8 gText_SelectPkmnToAccept[] = _("Select Pokémon to accept.");
-const u8 gText_Swap[] = _("SWAP");
+const u8 gText_Swap[] = _("Swap");
 const u8 gText_Summary2[] = _("Summary");
 const u8 gText_Rechoose[] = _("Rechoose");
 const u8 gText_QuitSwapping[] = _("Quit swapping?");
 const u8 gText_Yes3[] = _("Yes");
 const u8 gText_No3[] = _("No");
-const u8 gText_PkmnForSwap[] = _("{PKMN} FOR SWAP");
+const u8 gText_PkmnForSwap[] = _("{PKMN} For Swap");
 const u8 gText_Cancel3[] = _("Cancel");
-const u8 gText_Swap2[] = _("SWAP"); // Unused
-const u8 gText_Accept[] = _("ACCEPT"); // Unused
+const u8 gText_Swap2[] = _("Swap"); // Unused
+const u8 gText_Accept[] = _("Accept"); // Unused
 const u8 gText_AcceptThisPkmn[] = _("Accept this Pokémon?");
 const u8 gText_4Spaces[] = _("    "); // Unused
 const u8 gText_SamePkmnInPartyAlready[] = _("Same {PKMN} in party already.");
@@ -1073,7 +1154,7 @@ const u8 gText_SavingTime[] = _("Time");
 const u8 gText_WirelessCommStatus[] = _("Wireless Communication Status");
 const u8 gText_PeopleTrading[] = _("People trading:");
 const u8 gText_PeopleBattling[] = _("People battling:");
-const u8 gText_PeopleInUnionRoom[] = _("People in the UNION ROOM:");
+const u8 gText_PeopleInUnionRoom[] = _("People in the Union Room:");
 const u8 gText_PeopleCommunicating[] = _("People communicating:");
 const u8 gText_F700Players[] = _("{DYNAMIC 0} players");
 const u8 gText_F701Players[] = _("{DYNAMIC 1} players");
@@ -1087,68 +1168,68 @@ const u8 *const gTextTable_Players[] = {
     gText_F703Players
 };
 
-ALIGNED(4) const u8 gText_WonderCards[] = _("WONDER CARDS");
-ALIGNED(4) const u8 gText_WonderNews[] = _("WONDER NEWS");
-ALIGNED(4) const u8 gText_WirelessCommunication[] = _("WIRELESS COMMUNICATION");
-ALIGNED(4) const u8 gText_Friend2[] = _("FRIEND");
+ALIGNED(4) const u8 gText_WonderCards[] = _("Wonder Cards");
+ALIGNED(4) const u8 gText_WonderNews[] = _("Wonder News");
+ALIGNED(4) const u8 gText_WirelessCommunication[] = _("Wireless Communication");
+ALIGNED(4) const u8 gText_Friend2[] = _("Friend");
 ALIGNED(4) const u8 gText_Exit3[] = _("Exit");
-ALIGNED(4) const u8 gText_Receive[] = _("RECEIVE");
-ALIGNED(4) const u8 gText_Send[] = _("SEND");
-ALIGNED(4) const u8 gText_Toss[] = _("TOSS");
+ALIGNED(4) const u8 gText_Receive[] = _("Receive");
+ALIGNED(4) const u8 gText_Send[] = _("Send");
+ALIGNED(4) const u8 gText_Toss[] = _("Toss");
 ALIGNED(4) const u8 gText_VarietyOfEventsImportedWireless[] = _("A variety of events will be imported\nover Wireless Communication.");
-ALIGNED(4) const u8 gText_WonderCardsInPossession[] = _("Read the WONDER CARDS in your\npossession.");
-ALIGNED(4) const u8 gText_ReadNewsThatArrived[] = _("Read the NEWS that arrived.");
+ALIGNED(4) const u8 gText_WonderCardsInPossession[] = _("Read the Wonder Cards in your\npossession.");
+ALIGNED(4) const u8 gText_ReadNewsThatArrived[] = _("Read the News that arrived.");
 ALIGNED(4) const u8 gText_ReturnToTitle[] = _("Return to the title screen.");
-ALIGNED(4) const u8 gText_DontHaveCardNewOneInput[] = _("You don't have a WONDER CARD,\nso a new CARD will be input.");
-ALIGNED(4) const u8 gText_DontHaveNewsNewOneInput[] = _("You don't have any WONDER NEWS,\nso new NEWS will be input.");
-ALIGNED(4) const u8 gText_WhereShouldCardBeAccessed[] = _("Where should the WONDER CARD\nbe accessed?");
-ALIGNED(4) const u8 gText_WhereShouldNewsBeAccessed[] = _("Where should the WONDER NEWS\nbe accessed?");
+ALIGNED(4) const u8 gText_DontHaveCardNewOneInput[] = _("You don't have a Wonder Card,\nso a new Card will be input.");
+ALIGNED(4) const u8 gText_DontHaveNewsNewOneInput[] = _("You don't have any Wonder News,\nso new News will be input.");
+ALIGNED(4) const u8 gText_WhereShouldCardBeAccessed[] = _("Where should the Wonder Card\nbe accessed?");
+ALIGNED(4) const u8 gText_WhereShouldNewsBeAccessed[] = _("Where should the Wonder News\nbe accessed?");
 ALIGNED(4) const u8 gText_CommunicationStandbyBButtonCancel[] = _("Communication standby…\nB Button: Cancel"); // Unused
 ALIGNED(4) const u8 gText_Communicating[] = _("Communicating…");
 ALIGNED(4) const u8 gText_CommunicationCompleted[] = _("Communication completed.");
 ALIGNED(4) const u8 gText_CommunicationError[] = _("Communication error.");
 ALIGNED(4) const u8 gText_CommunicationCanceled[] = _("Communication has been canceled.");
-ALIGNED(4) const u8 gText_ThrowAwayWonderCard[] = _("Throw away the WONDER CARD\nand input a new CARD?");
-ALIGNED(4) const u8 gText_HaventReceivedCardsGift[] = _("You haven't received the CARD's gift\nyet. Input a new CARD anyway?");
-ALIGNED(4) const u8 gText_WonderCardReceivedFrom[] = _("A WONDER CARD has been received\nfrom {STR_VAR_1}.");
-ALIGNED(4) const u8 gText_WonderNewsReceivedFrom[] = _("A WONDER NEWS item has been\nreceived from {STR_VAR_1}.");
-ALIGNED(4) const u8 gText_WonderCardReceived[] = _("A new WONDER CARD has been\nreceived.");
-ALIGNED(4) const u8 gText_WonderNewsReceived[] = _("A new WONDER NEWS item has been\nreceived.");
-ALIGNED(4) const u8 gText_NewStampReceived[] = _("A new STAMP has been received.");
-ALIGNED(4) const u8 gText_NewTrainerReceived[] = _("A new TRAINER has arrived.");
-ALIGNED(4) const u8 gText_AlreadyHadCard[] = _("You already had that\nWONDER CARD.");
-ALIGNED(4) const u8 gText_AlreadyHadNews[] = _("You already had that\nWONDER NEWS item.");
+ALIGNED(4) const u8 gText_ThrowAwayWonderCard[] = _("Throw away the Wonder Card\nand input a new Card?");
+ALIGNED(4) const u8 gText_HaventReceivedCardsGift[] = _("You haven't received the Card's gift\nyet. Input a new Card anyway?");
+ALIGNED(4) const u8 gText_WonderCardReceivedFrom[] = _("A Wonder Card has been received\nfrom {STR_VAR_1}.");
+ALIGNED(4) const u8 gText_WonderNewsReceivedFrom[] = _("A Wonder News item has been\nreceived from {STR_VAR_1}.");
+ALIGNED(4) const u8 gText_WonderCardReceived[] = _("A new Wonder Card has been\nreceived.");
+ALIGNED(4) const u8 gText_WonderNewsReceived[] = _("A new Wonder News item has been\nreceived.");
+ALIGNED(4) const u8 gText_NewStampReceived[] = _("A new Stamp has been received.");
+ALIGNED(4) const u8 gText_NewTrainerReceived[] = _("A new Trainer has arrived.");
+ALIGNED(4) const u8 gText_AlreadyHadCard[] = _("You already had that\nWonder Card.");
+ALIGNED(4) const u8 gText_AlreadyHadNews[] = _("You already had that\nWonder News item.");
 ALIGNED(4) const u8 gText_AlreadyHadStamp[] = _("You already had that\nSTAMP.");
 ALIGNED(4) const u8 gText_NoMoreRoomForStamps[] = _("There's no more room for adding\nSTAMPS.");
-ALIGNED(4) const u8 gText_RecordUploadedViaWireless[] = _("Your record has been uploaded via\nWIRELESS COMMUNICATION.");
-ALIGNED(4) const u8 gText_CantAcceptCardFromTrainer[] = _("You can't accept a WONDER CARD\nfrom this TRAINER.");
-ALIGNED(4) const u8 gText_CantAcceptNewsFromTrainer[] = _("You can't accept WONDER NEWS\nfrom this TRAINER.");
+ALIGNED(4) const u8 gText_RecordUploadedViaWireless[] = _("Your record has been uploaded via\nWIRELESS Communication.");
+ALIGNED(4) const u8 gText_CantAcceptCardFromTrainer[] = _("You can't accept a Wonder Card\nfrom this Trainer.");
+ALIGNED(4) const u8 gText_CantAcceptNewsFromTrainer[] = _("You can't accept Wonder News\nfrom this Trainer.");
 ALIGNED(4) const u8 gText_NothingSentOver[] = _("Nothing was sent over…");
-ALIGNED(4) const u8 gText_WhatToDoWithCards[] = _("What would you like to do\nwith the WONDER CARDS?");
-ALIGNED(4) const u8 gText_WhatToDoWithNews[] = _("What would you like to do\nwith the WONDER NEWS?");
-ALIGNED(4) const u8 gText_SendingWonderCard[] = _("Sending your WONDER CARD…");
-ALIGNED(4) const u8 gText_SendingWonderNews[] = _("Sending your WONDER NEWS item…");
-ALIGNED(4) const u8 gText_WonderCardSentTo[] = _("Your WONDER CARD has been sent\nto {STR_VAR_1}.");
-ALIGNED(4) const u8 gText_WonderNewsSentTo[] = _("Your WONDER NEWS item has been\nsent to {STR_VAR_1}.");
-ALIGNED(4) const u8 gText_StampSentTo[] = _("A STAMP has been sent to {STR_VAR_1}.");
-ALIGNED(4) const u8 gText_GiftSentTo[] = _("A GIFT has been sent to {STR_VAR_1}.");
-ALIGNED(4) const u8 gText_OtherTrainerHasCard[] = _("The other TRAINER has the same\nWONDER CARD already.");
-ALIGNED(4) const u8 gText_OtherTrainerHasNews[] = _("The other TRAINER has the same\nWONDER NEWS already.");
-ALIGNED(4) const u8 gText_OtherTrainerHasStamp[] = _("The other TRAINER has the same\nSTAMP already.");
-ALIGNED(4) const u8 gText_OtherTrainerCanceled[] = _("The other TRAINER canceled\ncommunication.");
-ALIGNED(4) const u8 gText_CantSendGiftToTrainer[] = _("You can't send a MYSTERY GIFT to\nthis TRAINER.");
-ALIGNED(4) const u8 gText_IfThrowAwayCardEventWontHappen[] = _("If you throw away the CARD,\nits event won't happen. Okay?");
+ALIGNED(4) const u8 gText_WhatToDoWithCards[] = _("What would you like to do\nwith the Wonder Cards?");
+ALIGNED(4) const u8 gText_WhatToDoWithNews[] = _("What would you like to do\nwith the Wonder News?");
+ALIGNED(4) const u8 gText_SendingWonderCard[] = _("Sending your Wonder Card…");
+ALIGNED(4) const u8 gText_SendingWonderNews[] = _("Sending your Wonder News item…");
+ALIGNED(4) const u8 gText_WonderCardSentTo[] = _("Your Wonder Card has been sent\nto {STR_VAR_1}.");
+ALIGNED(4) const u8 gText_WonderNewsSentTo[] = _("Your Wonder News item has been\nsent to {STR_VAR_1}.");
+ALIGNED(4) const u8 gText_StampSentTo[] = _("A Stamp has been sent to {STR_VAR_1}.");
+ALIGNED(4) const u8 gText_GiftSentTo[] = _("A Gift has been sent to {STR_VAR_1}.");
+ALIGNED(4) const u8 gText_OtherTrainerHasCard[] = _("The other Trainer has the same\nWonder Card already.");
+ALIGNED(4) const u8 gText_OtherTrainerHasNews[] = _("The other Trainer has the same\nWonder News already.");
+ALIGNED(4) const u8 gText_OtherTrainerHasStamp[] = _("The other Trainer has the same\nSTAMP already.");
+ALIGNED(4) const u8 gText_OtherTrainerCanceled[] = _("The other Trainer canceled\ncommunication.");
+ALIGNED(4) const u8 gText_CantSendGiftToTrainer[] = _("You can't send a Mystery Gift to\nthis Trainer.");
+ALIGNED(4) const u8 gText_IfThrowAwayCardEventWontHappen[] = _("If you throw away the Card,\nits event won't happen. Okay?");
 ALIGNED(4) const u8 gText_OkayToDiscardNews[] = _("Is it okay to discard this\nNEWS item?");
 ALIGNED(4) const u8 gText_HaventReceivedGiftOkayToDiscard[] = _("You haven't received the\nGIFT. Is it okay to discard?");
 ALIGNED(4) const u8 gText_DataWillBeSaved[] = _("Data will be saved.\nPlease wait.");
 ALIGNED(4) const u8 gText_SaveCompletedPressA[] = _("Save completed.\nPlease press the A Button.");
-ALIGNED(4) const u8 gText_WonderCardThrownAway[] = _("The WONDER CARD was thrown away.");
-ALIGNED(4) const u8 gText_WonderNewsThrownAway[] = _("The WONDER NEWS was thrown away.");
-ALIGNED(4) const u8 gText_MysteryGift[] = _("MYSTERY GIFT");
+ALIGNED(4) const u8 gText_WonderCardThrownAway[] = _("The Wonder Card was thrown away.");
+ALIGNED(4) const u8 gText_WonderNewsThrownAway[] = _("The Wonder News was thrown away.");
+ALIGNED(4) const u8 gText_MysteryGift[] = _("Mystery Gift");
 ALIGNED(4) const u8 gText_PickOKExit[] = _("{DPAD_UPDOWN}Pick {A_BUTTON}OK {B_BUTTON}Exit");
 ALIGNED(4) const u8 gText_PickOKCancel[] = _("{DPAD_UPDOWN}Pick {A_BUTTON}OK {B_BUTTON}Cancel");
-const u8 gText_PlayersBattleResults[] = _("{PLAYER}'s BATTLE RESULTS");
-const u8 gText_TotalRecordWLD[] = _("TOTAL RECORD W:{STR_VAR_1} L:{STR_VAR_2} D:{STR_VAR_3}");
+const u8 gText_PlayersBattleResults[] = _("{PLAYER}'s Battle Results");
+const u8 gText_TotalRecordWLD[] = _("Total Record W:{STR_VAR_1} L:{STR_VAR_2} D:{STR_VAR_3}");
 const u8 gText_WinLoseDraw[] = _("{CLEAR_TO 0x53}WIN{CLEAR_TO 0x80}LOSE{CLEAR_TO 0xB0}DRAW");
 const u8 gText_CommunicationStandby5[] = _("Communication standby…");
 const u8 gDaycareText_GetAlongVeryWell[] = _("The two seem to get along\nvery well.");
@@ -1158,8 +1239,8 @@ const u8 gDaycareText_PlayOther[] = _("The two prefer to play with other\nPokém
 const u8 gText_NewLine2[] = _("\n");
 const u8 gText_Exit4[] = _("Exit");
 const u8 gText_Lv[] = _("{LV}");
-const u8 gText_TimeBoard[] = _("TIME BOARD");
-const u8 gText_TimeCleared[] = _("TIME CLEARED ");
+const u8 gText_TimeBoard[] = _("Time Board");
+const u8 gText_TimeCleared[] = _("Time Cleared ");
 const u8 gText_XMinYDotZSec[] = _("{STR_VAR_1} min. {STR_VAR_2}.{STR_VAR_3} sec.");
 const u8 gText_TrainerHill1F[] = _("1F");
 const u8 gText_TrainerHill2F[] = _("2F");
@@ -1175,83 +1256,83 @@ const u8 gText_MoveRelearnerPkmnForgotMoveAndLearnedNew[] = _("{STR_VAR_1} forgo
 const u8 gText_MoveRelearnedPkmnDidNotLearnMove[] = _("{STR_VAR_1} did not learn the\nmove {STR_VAR_2}."); // Unused
 const u8 gText_MoveRelearnerGiveUp[] = _("Give up trying to teach a new\nmove to {STR_VAR_1}?");
 const u8 gText_MoveRelearnerWhichMoveToForget[] = _("Which move should be\nforgotten?\p");
-const u8 gText_MoveRelearnerBattleMoves[] = _("BATTLE MOVES");
-const u8 gText_MoveRelearnerContestMovesTitle[] = _("CONTEST MOVES");
-const u8 gText_MoveRelearnerType[] = _("TYPE/"); // Unused
+const u8 gText_MoveRelearnerBattleMoves[] = _("Battle Moves");
+const u8 gText_MoveRelearnerContestMovesTitle[] = _("Contest Moves");
+const u8 gText_MoveRelearnerType[] = _("Type/"); // Unused
 const u8 gText_MoveRelearnerPP[] = _("PP/");
-const u8 gText_MoveRelearnerPower[] = _("POWER/");
-const u8 gText_MoveRelearnerAccuracy[] = _("ACCURACY/");
-const u8 gText_MoveRelearnerAppeal[] = _("APPEAL");
-const u8 gText_MoveRelearnerJam[] = _("JAM");
+const u8 gText_MoveRelearnerPower[] = _("Power/");
+const u8 gText_MoveRelearnerAccuracy[] = _("Accuracy/");
+const u8 gText_MoveRelearnerAppeal[] = _("Appeal");
+const u8 gText_MoveRelearnerJam[] = _("Jam");
 const u8 gText_ClearAllSaveData[] = _("Clear all save data areas?");
 const u8 gText_ClearingData[] = _("Clearing data…\nPlease wait.");
 const u8 gText_IsThisTheCorrectTime[] = _("Is this the correct time?");
-const u8 gText_Confirm3[] = _("CONFIRM");
+const u8 gText_Confirm3[] = _("Confirm");
 const u8 gText_Cancel4[] = _("Cancel");
 const u8 gText_CommStandbyAwaitingOtherPlayer[] = _("Communication standby…\nAwaiting another player to choose.");
 const u8 gText_BattleWasRefused[] = _("The battle was refused.{PAUSE 60}");
 const u8 gText_RefusedBattle[] = _("Refused the battle.{PAUSE 60}");
-const u8 gText_NoWeather[] = _("NO WEATHER"); // Below are unused debug names for weather types
-const u8 gText_Sunny[] = _("SUNNY"); // Unused
+const u8 gText_NoWeather[] = _("No Weather"); // Below are unused debug names for weather types
+const u8 gText_Sunny[] = _("Sunny"); // Unused
 const u8 gText_Sunny2[] = _("SUNNY2"); // Unused
-const u8 gText_Rain[] = _("RAIN"); // Unused
-const u8 gText_Snow[] = _("SNOW"); // Unused
-const u8 gText_Lightning[] = _("LIGHTNING"); // Unused
-const u8 gText_Fog[] = _("FOG"); // Unused
-const u8 gText_VolcanoAsh[] = _("VOLCANO ASH"); // Unused
-const u8 gText_Sandstorm[] = _("SANDSTORM"); // Unused
+const u8 gText_Rain[] = _("Rain"); // Unused
+const u8 gText_Snow[] = _("Snow"); // Unused
+const u8 gText_Lightning[] = _("Lightning"); // Unused
+const u8 gText_Fog[] = _("Fog"); // Unused
+const u8 gText_VolcanoAsh[] = _("Volcano Ash"); // Unused
+const u8 gText_Sandstorm[] = _("Sandstorm"); // Unused
 const u8 gText_Fog2[] = _("FOG2"); // Unused
-const u8 gText_Seafloor[] = _("SEAFLOOR"); // Unused
-const u8 gText_Cloudy[] = _("CLOUDY"); // Unused
+const u8 gText_Seafloor[] = _("Seafloor"); // Unused
+const u8 gText_Cloudy[] = _("Cloudy"); // Unused
 const u8 gText_Sunny3[] = _("SUNNY3"); // Unused
-const u8 gText_HeavyRain[] = _("HEAVY RAIN"); // Unused
+const u8 gText_HeavyRain[] = _("Heavy Rain"); // Unused
 const u8 gText_Seafloor2[] = _("SEAFLOOR2"); // Unused
-const u8 gText_DelAll[] = _("DEL. ALL");
+const u8 gText_DelAll[] = _("Del. All");
 const u8 gText_Cancel5[] = _("Cancel");
-const u8 gText_Ok2[] = _("OK");
-const u8 gText_Quiz[] = _("QUIZ");
-const u8 gText_Answer[] = _("ANSWER");
-const u8 gText_PokeBalls[] = _("POKé BALLS");
-const u8 gText_Berry[] = _("BERRY");
-const u8 gText_Berries[] = _("BERRIES");
+const u8 gText_Ok2[] = _("Ok");
+const u8 gText_Quiz[] = _("Quiz");
+const u8 gText_Answer[] = _("Answer");
+const u8 gText_PokeBalls[] = _("Poké Balls");
+const u8 gText_Berry[] = _("Berry");
+const u8 gText_Berries[] = _("Berries");
 const u8 gText_ExpShareOn[] = _("The Exp. Share has been turned on.{PAUSE_UNTIL_PRESS}");
 const u8 gText_ExpShareOff[] = _("The Exp. Share has been turned off.{PAUSE_UNTIL_PRESS}");
 const u8 gText_BasePointsResetToZero[] = _("{STR_VAR_1}'s base points\nwere all reset to zero!{PAUSE_UNTIL_PRESS}");
 const u8 gText_AM[] = _("AM");
 const u8 gText_PM[] = _("PM");
-const u8 gText_Relearn[] = _("{START_BUTTON} RELEARN"); // future note: don't decap this, because it mimics the summary screen BG graphics which will not get decapped
-const u8 gText_Relearn_LevelUp[] = _("{START_BUTTON} RELEARN LEVEL");
-const u8 gText_Relearn_Egg[] = _("{START_BUTTON} RELEARN EGG");
-const u8 gText_Relearn_TM[] = _("{START_BUTTON} RELEARN TM");
-const u8 gText_Relearn_Tutor[] = _("{START_BUTTON} RELEARN TUTOR");
-const u8 gText_Rename[] = _("RENAME");
+const u8 gText_Relearn[] = _("{START_BUTTON} Relearn"); // future note: don't decap this, because it mimics the summary screen BG graphics which will not get decapped
+const u8 gText_Relearn_LevelUp[] = _("{START_BUTTON} Relearn Level");
+const u8 gText_Relearn_Egg[] = _("{START_BUTTON} Relearn Egg");
+const u8 gText_Relearn_TM[] = _("{START_BUTTON} Relearn TM");
+const u8 gText_Relearn_Tutor[] = _("{START_BUTTON} Relearn Tutor");
+const u8 gText_Rename[] = _("Rename");
 const u8 gText_CannotSendMonToBoxHM[] = _("Cannot send that mon to the box,\nbecause it knows a HM move.{PAUSE_UNTIL_PRESS}");
 const u8 gText_CannotSendMonToBoxActive[] = _("Cannot send an active battler\nto the box.{PAUSE_UNTIL_PRESS}");
 const u8 gText_CannotSendMonToBoxPartner[] = _("Cannot send a mon that doesn't,\nbelong to you to the box.{PAUSE_UNTIL_PRESS}");
 const u8 gText_Vermilion[] = _("Vermilion");
 const u8 gText_Olivine[] = _("Olivine");
 //HnS texts
-const u8 gText_Sunday[] = _("SUNDAY");
-const u8 gText_Monday[] = _("MONDAY");
-const u8 gText_Tuesday[] = _("TUESDAY");
-const u8 gText_Wednesday[] = _("WEDNESDAY");
-const u8 gText_Thursday[] = _("THURSDAY");
-const u8 gText_Friday[] = _("FRIDAY");
-const u8 gText_Saturday[] = _("SATURDAY");
+const u8 gText_Sunday[] = _("Sunday");
+const u8 gText_Monday[] = _("Monday");
+const u8 gText_Tuesday[] = _("Tuesday");
+const u8 gText_Wednesday[] = _("Wednesday");
+const u8 gText_Thursday[] = _("Thursday");
+const u8 gText_Friday[] = _("Friday");
+const u8 gText_Saturday[] = _("Saturday");
 
-const u8 gText_LoveBall[] =     _("LOVE    / PECHA  / (FRY/PSY)");
-const u8 gText_Lure[] =         _("LURE    / RAWST  / (WTR/DRG)");
-const u8 gText_FriendBall[] =   _("FRIEND / CHERI  / (BUG/GRS)");
-const u8 gText_Heavy[] =        _("HEAVY   / ORAN   / (RCK/GND/STL)");
-const u8 gText_Moon[] =         _("MOON    / CHESTO / (DRK/GST/PSN)");
-const u8 gText_Fast[] =         _("FAST    / ASPEAR / (ELC/FIG/FIR)");
-const u8 gText_LevelBall[] =    _("LEVEL  / PERSIM / (NRM/FLY/ICE)");
+const u8 gText_LoveBall[] =     _("Love    / Pecha  / (Fry/Psy)");
+const u8 gText_Lure[] =         _("Lure    / Rawst  / (Wtr/Drg)");
+const u8 gText_FriendBall[] =   _("Friend / Cheri  / (Bug/Grs)");
+const u8 gText_Heavy[] =        _("Heavy   / Oran   / (Rck/Gnd/Stl)");
+const u8 gText_Moon[] =         _("Moon    / Chesto / (Drk/Gst/Psn)");
+const u8 gText_Fast[] =         _("Fast    / Aspear / (Elc/Fig/Fir)");
+const u8 gText_LevelBall[] =    _("Level  / Persim / (Nrm/Fly/Ice)");
 
-const u8 gText_Pawniard[] = _("PAWNIARD{CLEAR_TO 0x40}250 COINS");
-const u8 gText_Munchlax[] = _("MUNCHLAX{CLEAR_TO 0x40}500 COINS");
-const u8 gText_Sneasel[] =  _("H-SNEASEL{CLEAR_TO 0x40}1,200 COINS");
-const u8 gText_Deino[] =    _("DEINO{CLEAR_TO 0x40}2,400 COINS");
-const u8 gText_Porygon[] =  _("PORYGON{CLEAR_TO 0x40}3,000 COINS");
+const u8 gText_Pawniard[] = _("Pawniard{CLEAR_TO 0x40}250 Coins");
+const u8 gText_Munchlax[] = _("Munchlax{CLEAR_TO 0x40}500 Coins");
+const u8 gText_Sneasel[] =  _("H-Sneasel{CLEAR_TO 0x40}1,200 Coins");
+const u8 gText_Deino[] =    _("Deino{CLEAR_TO 0x40}2,400 Coins");
+const u8 gText_Porygon[] =  _("Porygon{CLEAR_TO 0x40}3,000 Coins");
 
 const u8 gText_Pal[] = _("Pal");
 const u8 gText_Underling[] = _("Underling");
@@ -1272,13 +1353,13 @@ const u8 gText_Tough3[] = _("Tough");
 const u8 gText_Weak[] = _("Weak");
 const u8 gText_Both[] = _("Both");
 
-const u8 gText_BlueStone[] = _("BLUE STONE");
-const u8 gText_GreenStone[] = _("GREEN STONE");
-const u8 gText_RedStone[] = _("RED STONE");
+const u8 gText_BlueStone[] = _("Blue Stone");
+const u8 gText_GreenStone[] = _("Green Stone");
+const u8 gText_RedStone[] = _("Red Stone");
 const u8 gText_Floor0[] = _("Floor 0");
-const u8 gText_RegirockDollAndPrice[] = _("REGIROCK DOLL   9,000 C.");
-const u8 gText_RegiceDollAndPrice[] = _("REGICE DOLL       9,000 C.");
-const u8 gText_RegisteelDollAndPrice[] = _("REGISTEEL DOLL 9,000 C.");
+const u8 gText_RegirockDollAndPrice[] = _("Regirock Doll   9,000 C.");
+const u8 gText_RegiceDollAndPrice[] = _("Regice Doll       9,000 C.");
+const u8 gText_RegisteelDollAndPrice[] = _("Registeel Doll 9,000 C.");
 const u8 gText_FollowerEnable[] = _("{PKMN} Follower");  //tx_optionsPlus
 const u8 gText_AutorunEnable[] = _("Autorun");  //tx_optionsPlus
 const u8 gText_OptionMatchCalls[] = _("Match Calls");  //tx_optionsPlus
@@ -1287,152 +1368,152 @@ const u8 gText_OptionStyle[] = _("Move Split");  //tx_optionsPlus
 const u8 gText_OptionDifficulty[] = _("Difficulty");  //tx_optionsPlus
 const u8 gText_Easy[] = _("Easy");
 const u8 gText_Hard[] = _("Hard");
-const u8 gText_Modern[] = _("MODERN");
+const u8 gText_Modern[] = _("Modern");
 const u8 gText_OakTalk_Clefairy[] = _(
-    "MARY: Tonight on POKéMON TALK,\n"
+    "Mary: Tonight on POKéMON Talk,\n"
     "a rare moonlight moment!\l"
-    "OAK: We're spotlighting the\l"
-    "mystical CLEFAIRY!\l"
+    "Oak: We're spotlighting the\l"
+    "mystical Clefairy!\l"
     "Trainers say they gather at\l"
-    "MT. MOON under full moons.\l"
-    "MARY: They DANCE in circles!\l"
+    "Mt. Moon under full moons.\l"
+    "Mary: They Dance in circles!\l"
     "So adorably weird!\l"
-    "OAK: A timeless mystery\l"
+    "Oak: A timeless mystery\l"
     "and a sight to behold!\l"
-    "MARY: Don't miss the chance!\l"
+    "Mary: Don't miss the chance!\l"
     "Bring a camera!{PAUSE_UNTIL_PRESS}");
 
 const u8 gText_OakTalk_Lapras[] = _(
-    "MARY: A gentle giant takes the\n"
+    "Mary: A gentle giant takes the\n"
     "stage on today's show!\l"
-    "OAK: It's the ocean ferry,\l"
-    "our beloved LAPRAS!\l"
-    "Seen in UNION CAVE, but only\l"
+    "Oak: It's the ocean ferry,\l"
+    "our beloved Lapras!\l"
+    "Seen in Union Cave, but only\l"
     "on Evenings. How curious!\l"
-    "MARY: So rare and peaceful!\l"
+    "Mary: So rare and peaceful!\l"
     "And it sings, too!\l"
-    "OAK: Some say its songs calm\l"
+    "Oak: Some say its songs calm\l"
     "the soul of the sea.\l"
-    "MARY: We love you, LAPRAS!\l"
+    "Mary: We love you, Lapras!\l"
     "Don't ever change!{PAUSE_UNTIL_PRESS}");
 
 const u8 gText_OakTalk_Ampharos[] = _(
-    "MARY: Welcome back, everyone!\n"
-    "Time for POKéMON TALK!\l"
-    "OAK: Let's shine a light on\l"
-    "our friend AMPHAROS!\l"
+    "Mary: Welcome back, everyone!\n"
+    "Time for POKéMON Talk!\l"
+    "Oak: Let's shine a light on\l"
+    "our friend Ampharos!\l"
     "Its bright tail glows through\l"
     "fog to guide lost folks.\l"
-    "MARY: It's powerful, elegant,\l"
+    "Mary: It's powerful, elegant,\l"
     "and undeniably friendly!\l"
-    "OAK: And it's a key part of\l"
+    "Oak: And it's a key part of\l"
     "many lighthouse stories!\l"
-    "MARY: More tales soon!\l"
+    "Mary: More tales soon!\l"
     "Don't touch that dial!{PAUSE_UNTIL_PRESS}");
 
 const u8 gText_OakTalk_Sudowoodo[] = _(
-    "MARY: Up next is a real oddball\n"
-    "on ROUTE 36...\l"
-    "OAK: SUDOWOODO! Looks like a\l"
+    "Mary: Up next is a real oddball\n"
+    "on Route 36...\l"
+    "Oak: Sudowoodo! Looks like a\l"
     "tree, but isn't one!\l"
     "It blocks the road and won't\l"
     "budge without water.\l"
-    "MARY: Trainers report it reacts\l"
-    "only to a SQUIRTBOTTLE!\l"
-    "OAK: That's no bush it's a\l"
+    "Mary: Trainers report it reacts\l"
+    "only to a Squirtbottle!\l"
+    "Oak: That's no bush it's a\l"
     "rock - type in disguise!\l"
-    "MARY: Don't be fooled!\l"
+    "Mary: Don't be fooled!\l"
     "Give it a splash!{PAUSE_UNTIL_PRESS}");
 
 const u8 gText_OakTalk_RedGyarados[] = _(
-    "MARY: Today's story is a\n"
-    "shocking one from JOHTO!\l"
-    "OAK: Trainers spotted a RED\l"
-    "GYARADOS at LAKE OF RAGE!\l"
+    "Mary: Today's story is a\n"
+    "shocking one from Johto!\l"
+    "Oak: Trainers spotted a Red\l"
+    "Gyarados at Lake Of Rage!\l"
     "Unlike the usual blue ones,\l"
     "this one's bright crimson!\l"
-    "MARY: People say it's linked to\l"
+    "Mary: People say it's linked to\l"
     "some strange radio waves!\l"
-    "OAK: A mysterious evolution...\l"
+    "Oak: A mysterious evolution...\l"
     "Possibly unnatural.\l"
-    "MARY: Whatever the cause,\l"
+    "Mary: Whatever the cause,\l"
     "it's making waves!{PAUSE_UNTIL_PRESS}");
 
 const u8 gText_OakTalk_Unown[] = _(
-    "MARY: Ever visited the RUINS\n"
-    "OF ALPH? Spooky stuff!\l"
-    "OAK: Strange symbols line the\l"
+    "Mary: Ever visited the Ruins\n"
+    "Of Alph? Spooky stuff!\l"
+    "Oak: Strange symbols line the\l"
     "walls - like ancient runes.\l"
-    "Inside, you'll find UNOWN...\l"
+    "Inside, you'll find Unown...\l"
     "each shaped like letters!\l"
-    "MARY: They spell things, maybe?\l"
+    "Mary: They spell things, maybe?\l"
     "Or just freak us out!\l"
-    "OAK: A true puzzle of nature,\l"
+    "Oak: A true puzzle of nature,\l"
     "still unsolved to this day.\l"
-    "MARY: Let us know what you\l"
+    "Mary: Let us know what you\l"
     "think they mean!{PAUSE_UNTIL_PRESS}");
 
 const u8 gText_OakTalk_Snubbull[] = _(
-    "MARY: GOLDENROD residents are\n"
+    "Mary: Goldenrod residents are\n"
     "searching high and low!\l"
-    "OAK: A SNUBBULL has gone rogue\l"
+    "Oak: A Snubbull has gone rogue\l"
     "and is on the run!\l"
     "Usually shy and fussy, it's\l"
     "been seen near the station.\l"
-    "MARY: Maybe it's chasing love...\l"
+    "Mary: Maybe it's chasing love...\l"
     "or just adventure!\l"
-    "OAK: Either way, keep your eyes\l"
+    "Oak: Either way, keep your eyes\l"
     "peeled - and your leash ready.\l"
-    "MARY: SNUBBULL, come home!\l"
+    "Mary: Snubbull, come home!\l"
     "We miss you!{PAUSE_UNTIL_PRESS}");
 
 const u8 gText_OakTalk_Slowpoke[] = _(
-    "MARY: Big news from AZALEA\n"
-    "TOWN this week!\l"
-    "OAK: SLOWPOKE have returned to\l"
+    "Mary: Big news from Azalea\n"
+    "Town this week!\l"
+    "Oak: Slowpoke have returned to\l"
     "their well after a crisis!\l"
-    "Team ROCKET had been cutting\l"
+    "Team Rocket had been cutting\l"
     "off their tails - horrible!\l"
-    "MARY: But a brave young trainer\l"
+    "Mary: But a brave young trainer\l"
     "shut them down!\l"
-    "OAK: The SLOWPOKE are safe now\l"
+    "Oak: The Slowpoke are safe now\l"
     "and happily dozing again.\l"
-    "MARY: Justice served and nap\l"
+    "Mary: Justice served and nap\l"
     "time restored!{PAUSE_UNTIL_PRESS}");
 
 const u8 gText_OakTalk_LavenderTower[] = _(
-    "MARY: LAVENDER TOWN's tower\n"
+    "Mary: Lavender Town's tower\n"
     "has changed tunes!\l"
-    "OAK: The old ghost tower is\l"
-    "now a RADIO STATION!\l"
+    "Oak: The old ghost tower is\l"
+    "now a Radio Station!\l"
     "Some locals say it still\l"
     "feels... spooky.\l"
-    "MARY: I swear I saw a GASTLY\l"
+    "Mary: I swear I saw a Gastly\l"
     "near the mic booth!\l"
-    "OAK: Might be static... or\l"
+    "Oak: Might be static... or\l"
     "specters!\l"
-    "MARY: Either way, great music!\l"
+    "Mary: Either way, great music!\l"
     "Probably. Eep!{PAUSE_UNTIL_PRESS}");
 
 const u8 gText_OakTalk_TentacruelWhirl[] = _(
-    "MARY: Weird news from the\n"
-    "WHIRL ISLANDS today!\l"
-    "OAK: TENTACRUEL have been seen\l"
+    "Mary: Weird news from the\n"
+    "Whirl Islands today!\l"
+    "Oak: Tentacruel have been seen\l"
     "surrounding cave entrances!\l"
     "They're massive - and acting\l"
     "almost territorial.\l"
-    "MARY: Trainers say they block\l"
+    "Mary: Trainers say they block\l"
     "the way without attacking...\l"
-    "OAK: As if guarding something\l"
+    "Oak: As if guarding something\l"
     "deep beneath the waves.\l"
-    "MARY: What are they hiding?\l"
+    "Mary: What are they hiding?\l"
     "Or protecting?{PAUSE_UNTIL_PRESS}");
 
 
-const u8 gText_RocketRadio[] = _("... ... Ahem, we are\nTEAM ROCKET!\lAfter three years of preparation,\lwe have risen again from the ashes!\lGiovanni! Can you hear us?\lWe did it!\lWhere is our boss?\lIs he listening?{PAUSE_UNTIL_PRESS}");
+const u8 gText_RocketRadio[] = _("... ... Ahem, we are\nTeam Rocket!\lAfter three years of preparation,\lwe have risen again from the ashes!\lGiovanni! Can you hear us?\lWe did it!\lWhere is our boss?\lIs he listening?{PAUSE_UNTIL_PRESS}");
 const u8 gText_RadioNoSignal[] = _("There's no signal here, try\n somewhere else.{PAUSE_UNTIL_PRESS}");
 const u8 gText_UnownMessage[] = _("??????????????????????????????????\l??????????????????????????????????\l??????????????????????????????????\l??????????????????????????????????{PAUSE_UNTIL_PRESS}");
-const u8 gText_RadioKantoPokeFlute[] = _("POKé FLUTE RADIO.{PAUSE_UNTIL_PRESS}");
+const u8 gText_RadioKantoPokeFlute[] = _("POKé Flute Radio.{PAUSE_UNTIL_PRESS}");
 
 const u8 gText_TerrainModern[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Modern");
 const u8 gText_TerrainGeneric[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Default");
@@ -1441,22 +1522,14 @@ const u8 gText_RunOptionEnabled1[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}L+A");
 const u8 gText_RunOptionEnabled2[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}(B)");
 const u8 gText_OptionFontEmerald[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Emerald");
 const u8 gText_OptionFontFireRed[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Fire Red");
-const u8 gText_Font[] = _("Font");
-const u8 gText_EXPShare[] = _("EXP. Share");
-const u8 gText_AutoHMs[] = _("Auto-HMs");
 const u8 gText_Followers[] = _("Followers");
-const u8 gText_PSS[] = _("Move Split");
-const u8 gText_Terrain[] = _("Terrain");
 const u8 gText_RunType[] = _("Run Type");
 const u8 gText_Difficulty[] = _("Difficulty");
 const u8 gText_Music[] = _("Music");
-const u8 gText_MusicJohto[]= _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Johto");
-const u8 gText_MusicSinnoh[]= _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Sinnoh");
-const u8 gText_MusicHoenn[]= _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Hoenn");
 const u8 gText_NormalOption[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Normal");
 const u8 gText_EasyOption[]= _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Easy");
 const u8 gText_HardOption[]= _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Hard");
-const u8 gText_HnS[]= _("SOULGOLD");
-const u8 gText_ExpandedPlaceholder_Silver[]= _("SILVER");
-const u8 gText_Gen4Plus[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Gen IV+");
-const u8 gText_Gen3andLower[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Gen I-III");
+const u8 gText_HnS[]= _("Soulgold");
+const u8 gText_ExpandedPlaceholder_Silver[]= _("Silver");
+//New Summary Screen Pages
+const u8 gText_PkmnTraits[] = _("TRAITS");

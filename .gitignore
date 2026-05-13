@@ -56,6 +56,7 @@ test/battle/partner_control.h
 tools/compresSmol/compresSmol
 tools/compresSmol/compresSmolTilemap
 tools/aif2pcm/aif2pcm
+tools/flips/flips
 *.Identifier
 *.smol
 *.fastSmol
@@ -64,6 +65,4 @@ __pycache__
 .mp4
 .codex
 /tools/species_distribution_report_icons
-/tools/species_distribution_report.html
-/tools/species_distribution_report.py
 .map_version

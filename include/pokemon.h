@@ -43,6 +43,7 @@ enum MonData {
     MON_DATA_NICKNAME10,
     MON_DATA_SPECIES,
     MON_DATA_HELD_ITEM,
+    MON_DATA_HELD_ITEM_TWO,
     MON_DATA_MOVE1,
     MON_DATA_MOVE2,
     MON_DATA_MOVE3,
@@ -124,7 +125,9 @@ enum MonData {
     MON_DATA_GIGANTAMAX_FACTOR,
     MON_DATA_TERA_TYPE,
     MON_DATA_EVOLUTION_TRACKER,
-    MON_DATA_IS_DEAD,
+    MON_DATA_INNATE1,
+    MON_DATA_INNATE2,
+    MON_DATA_INNATE3,
 };
 
 struct PokemonSubstruct0
@@ -132,15 +135,14 @@ struct PokemonSubstruct0
     u16 species:11; // 2047 species.
     enum Type teraType:5; // 30 types.
     u16 heldItem:10; // 1023 items.
-    u16 unused_02:6;
+    u16 pokeball:6; // 63 balls.
     u32 experience:21;
-    u32 nickname11:8; // 11th character of nickname.
-    u32 unused_04:3;
+    u32 heldItem2:10; // 1023 items.
+    u32 unused_04:1;
     u8 ppBonuses;
     u8 friendship;
-    u16 pokeball:6; // 63 balls.
+    u16 nickname11:8; // 11th character of nickname.
     u16 nickname12:8; // 12th character of nickname.
-    u16 unused_0A:2;
 };
 
 struct PokemonSubstruct1
@@ -207,15 +209,9 @@ struct PokemonSubstruct3
     u32 victoryRibbon:1;  // Given at the Battle Tower's Level 100 challenge by winning a set of seven battles that extends the current streak to 56 or more.
     u32 artistRibbon:1;   // Given at the Contest Hall by winning a Master Rank contest with at least 800 points, and agreeing to have the Pokémon's portrait placed in the museum after being offered.
     u32 effortRibbon:1;   // Given at Slateport's market to Pokémon with maximum EVs.
-    u32 marineRibbon:1;   // Never distributed.
-    u32 landRibbon:1;     // Never distributed.
-    u32 skyRibbon:1;      // Never distributed.
-    u32 countryRibbon:1;  // Distributed during Pokémon Festa '04 and '05 to tournament winners.
-    u32 nationalRibbon:1; // Given to purified Shadow Pokémon in Colosseum/XD.
-    u32 earthRibbon:1;    // Given to teams that have beaten Mt. Battle's 100-battle challenge in Colosseum/XD.
-    u32 worldRibbon:1;    // Distributed during Pokémon Festa '04 and '05 to tournament winners.
+    u32 metLocationHi:7;  // High bits for extended met locations. Replaces low-value Gen 3 event ribbons for this POC.
     u32 isShadow:1;
-    u32 unused_0B:1;
+    u32 metLocationExtended:1;
     u32 abilityNum:2;
 
     // The functionality of this bit changed in FRLG:
@@ -359,7 +355,7 @@ struct BattlePokemon
     /*0x2B*/ u8 level;
     /*0x2C*/ u8 friendship;
     /*0x2D*/ u16 maxHP;
-    /*0x2F*/ enum Item item;
+    /*0x2F*/ enum Item items[MAX_MON_ITEMS_INTERNAL]; //Set to at least 2 for this standalone mod branch
     /*0x31*/ u8 nickname[POKEMON_NAME_LENGTH + 1];
     /*0x3C*/ u8 ppBonuses;
     /*0x3D*/ u8 otName[PLAYER_NAME_LENGTH + 1];
@@ -370,6 +366,8 @@ struct BattlePokemon
     /*0x5D*/ u32 otId;
     /*0x61*/ u8 metLevel;
     /*0x62*/ bool8 isShiny;
+    /*0x64*/ enum Ability innates[MAX_MON_INNATES_INTERNAL];
+    /*0x66*/ enum Item item; //Only to allow vanilla tests to pass without errors
 };
 
 struct EvolutionParam
@@ -416,6 +414,7 @@ struct SpeciesInfo /*0xC4*/
     u8 eggGroups[2];
     enum Ability abilities[NUM_ABILITY_SLOTS]; // 3 abilities, no longer u8 because we have over 255 abilities now.
     u8 safariZoneFleeRate;
+    enum Ability innates[MAX_MON_INNATES_INTERNAL];
 
     // Pokédex data
     u8 categoryName[13];
@@ -447,6 +446,8 @@ struct SpeciesInfo /*0xC4*/
     const u16 *paletteFemale;
     const u16 *shinyPaletteFemale;
     const u8 *iconSpriteFemale;
+    const u16 *iconPaletteFemale;
+    const u16 *shinyIconPaletteFemale;
 #endif //P_GENDER_DIFFERENCES
 #if P_FOOTPRINTS
     const u8 *footprint;
@@ -467,6 +468,8 @@ struct SpeciesInfo /*0xC4*/
     u8 paddingF:3;
 #endif //P_GENDER_DIFFERENCES
     u8 pokemonJumpType:2; // According to the clerk, the Pokémon allowed in Pokémon Jump are all <= 28 inches/71 cm, and do not only swim, burrow, or fly.
+    const u16 *iconPalette;
+    const u16 *shinyIconPalette;
     u8 enemyMonElevation; // This determines how much higher above the usual position the enemy Pokémon is during battle. Species that float or fly have nonzero values.
     // Flags
     u32 isRestrictedLegendary:1;
@@ -636,8 +639,8 @@ struct FormChangeContext
     u16 currentSpecies;
     u16 partyItemUsed;
     u16 multichoiceSelection;
-    u16 heldItem;
-    u16 ability;
+    u16 heldItems[MAX_MON_ITEMS_INTERNAL];
+    u16 traits[MAX_MON_TRAITS];
     u16 learnedMove;
     u32 status;
     u16 moves[MAX_MON_MOVES];
@@ -856,7 +859,7 @@ s32 GetBattlerMultiplayerId(u16 id);
 u8 GetTrainerEncounterMusicId(u16 trainerOpponentId);
 u16 ModifyStatByNature(u8 nature, u16 stat, enum Stat statIndex);
 void AdjustFriendship(struct Pokemon *mon, u8 event);
-s32 CalculateFriendshipBonuses(struct Pokemon *mon, s32 modifier, enum HoldEffect itemHoldEffect);
+s32 CalculateFriendshipBonuses(struct Pokemon *mon, s32 modifier);
 void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies);
 u16 GetMonEVCount(struct Pokemon *mon);
 bool8 TryIncrementMonLevel(struct Pokemon *mon);
@@ -938,5 +941,18 @@ u16 GetSpeciesRandomSeeded(u16 species, u8 type, u16 additionalOffset);
 struct BoxPokemon *GetSelectedBoxMonFromPcOrParty(void);
 u32 GiveScriptedMonToPlayer(struct Pokemon *mon, u8 slot);
 void ChangePokemonNicknameWithCallback(void (*callback)(void));
+// Multi Items
+u32 MonHasItem(struct Pokemon *mon, enum Item item);
+u32 MonHasItemHoldEffect(struct Pokemon *mon, enum HoldEffect holdEffect);
+u32 BoxMonHasItem(struct BoxPokemon *mon, enum Item item);
+u32 BoxMonHasItemHoldEffect(struct BoxPokemon *mon, enum HoldEffect holdEffect);
+u32 SwitchInCandidateHeldItemWithEffect(struct BattlePokemon switchinCandidate, enum HoldEffect holdEffect);
 
+u32 SpeciesHasInnate(u32 species, enum Ability ability);
+u32 SpeciesHasInnateAtLevel(u32 species, enum Ability ability, u32 level);
+enum Ability GetSpeciesInnate(u32 species, u32 traitNum);
+u8 GetInnateUnlockLevel(u32 innateNum);
+bool32 IsInnateUnlockedByLevel(u32 innateNum, u32 level);
+bool32 BoxMonHasInnate(struct BoxPokemon* boxmon, enum Ability ability);
+bool32 MonHasTrait(struct Pokemon* mon, enum Ability ability);
 #endif // GUARD_POKEMON_H

@@ -84,8 +84,8 @@ Route15_Text_SchoolboyTommyAfterBattle:
 	.string "my Japanese class.$"
 
 Route15_Text_SchoolboyJohnnySeen:
-	.string "We're on a field trip to LAVENDER\n"
-	.string "RADIO TOWER for social studies.$"
+	.string "We're on a field trip to Lavender\n"
+	.string "Radio Tower for social studies.$"
 
 Route15_Text_SchoolboyJohnnyBeaten:
 	.string "You're wickedly tough!$"
@@ -101,10 +101,10 @@ Route15_Text_SchoolboyBillyBeaten:
 	.string "Oh, no! How could I lose?$"
 
 Route15_Text_SchoolboyBillyAfterBattle:
-	.string "If POKéMON were a subject at\n"
+	.string "If Pokémon were a subject at\n"
 	.string "school, I'd be the best!$"
 
 Route15_Text_Sign:
-	.string "ROUTE 15\p"
-	.string "FUCHSIA CITY - LAVENDER TOWN$"
+	.string "Route 15\p"
+	.string "Fuchsia City - Lavender Town$"
 

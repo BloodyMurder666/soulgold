@@ -112,3 +112,59 @@ SINGLE_BATTLE_TEST("Terrain started after the one which started the battle lasts
         ResetStartingStatuses();
     }
 }
+
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Terrain started after the one which started the battle lasts only 5 turns (Traits)")
+{
+    bool32 viaMove;
+
+    PARAMETRIZE { viaMove = TRUE; }
+    PARAMETRIZE { viaMove = FALSE; }
+
+    SetStartingStatus(STARTING_STATUS_ELECTRIC_TERRAIN);
+
+    GIVEN {
+        PLAYER(SPECIES_TAPU_BULU) { Ability(ABILITY_LIGHT_METAL); Innates(viaMove == TRUE ? ABILITY_TELEPATHY : ABILITY_GRASSY_SURGE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        // More than 5 turns
+        TURN { MOVE(player, viaMove == TRUE ? MOVE_GRASSY_TERRAIN : MOVE_CELEBRATE); }
+        TURN { ; }
+        TURN { ; }
+        TURN { ; }
+        TURN { ; }
+        TURN { ; }
+        TURN { ; }
+    } SCENE {
+        // Electric Terrain at battle's start
+        MESSAGE("An electric current is running across the battlefield!");
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_RESTORE_BG);
+        // Player uses Grassy Terrain
+        if (viaMove) {
+            MESSAGE("Tapu Bulu used Grassy Terrain!");
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_GRASSY_TERRAIN, player);
+            MESSAGE("Grass grew to cover the battlefield!");
+        } else {
+            ABILITY_POPUP(player, ABILITY_GRASSY_SURGE);
+            MESSAGE("Grass grew to cover the battlefield!");
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_RESTORE_BG);
+        }
+
+        // 5 turns
+        MESSAGE("Tapu Bulu used Celebrate!");
+        MESSAGE("The opposing Wobbuffet used Celebrate!");
+
+        MESSAGE("Tapu Bulu used Celebrate!");
+        MESSAGE("The opposing Wobbuffet used Celebrate!");
+
+        MESSAGE("Tapu Bulu used Celebrate!");
+        MESSAGE("The opposing Wobbuffet used Celebrate!");
+
+        MESSAGE("The grass disappeared from the battlefield.");
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_RESTORE_BG);
+    } THEN {
+        ResetStartingStatuses();
+    }
+}
+#endif // B_VAR_STARTING_STATUS

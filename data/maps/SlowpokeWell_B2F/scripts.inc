@@ -79,4 +79,4 @@ SlowpokeWell_Movement_RainDance4:
 	step_end
 
 SlowpokeWell_Text_Slowking:
-	.string "SLOWKING: ........................$"
+	.string "Slowking: ........................$"

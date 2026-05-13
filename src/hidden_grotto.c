@@ -401,12 +401,12 @@ static const struct HiddenGrottoWeightedEntry sHiddenGrottoPokemonIndexes[] =
 
 static const struct HiddenGrottoWeightedEntry sHiddenGrottoItems[] =
 {
-    { 20, ITEM_GREAT_BALL },
-    {  8, ITEM_ULTRA_BALL },
-    { 10, ITEM_SUPER_POTION },
-    {  4, ITEM_HYPER_POTION },
-    { 10, ITEM_SUPER_REPEL },
-    {  4, ITEM_MAX_REPEL },
+    { 20, ITEM_HEALTH_WING },
+    {  8, ITEM_GENIUS_FEATHER },
+    { 10, ITEM_MUSCLE_FEATHER },
+    {  4, ITEM_RESIST_FEATHER },
+    { 10, ITEM_CLEVER_FEATHER },
+    {  4, ITEM_SWIFT_FEATHER },
     { 44, ITEM_FROM_GROTTO_DATA },
 };
 
@@ -491,7 +491,7 @@ void HiddenGrotto_CreateCurrentMon(void)
      || content->id >= NUM_SPECIES)
         return;
 
-    CreateScriptedWildMon(content->id, GetHiddenGrottoMonLevel(grotto), ITEM_NONE);
+    CreateScriptedWildMon(content->id, GetHiddenGrottoMonLevel(grotto), ITEM_NONE, ITEM_NONE);
     SetMonData(&gEnemyParty[0], MON_DATA_ABILITY_NUM, &abilityNum);
     CalculateMonStats(&gEnemyParty[0]);
     gSpecialVar_Result = TRUE;

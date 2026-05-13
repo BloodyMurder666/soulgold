@@ -47,43 +47,43 @@ Route43_EventScript_Sign2::
 	end
 
 Route43_Text_PokemaniacBenSeen:
-    .string "I love POKéMON!\p"
+    .string "I love Pokémon!\p"
     .string "That's why I started--and why I'll\n"
-    .string "keep on collecting POKéMON!$"
+    .string "keep on collecting Pokémon!$"
 
 Route43_Text_PokemaniacBenBeaten:
     .string "How could you do this to me?$"
 
 Route43_Text_PokemaniacBenAfter:
     .string "What else do I like besides\n"
-    .string "POKéMON?\p"
-    .string "MARY on the radio. I bet she's\n"
+    .string "Pokémon?\p"
+    .string "Mary on the radio. I bet she's\n"
     .string "cute!$"
 
 Route43_Text_PokemaniacBrentSeen:
     .string "Hey! Do you have any rare\n"
-    .string "POKéMON?$"
+    .string "Pokémon?$"
 
 Route43_Text_PokemaniacBrentBeaten:
-    .string "Oh, my poor POKéMON! Darlings!$"
+    .string "Oh, my poor Pokémon! Darlings!$"
 
 Route43_Text_PokemaniacBrentAfter:
     .string "I'd be happy just to own a single\n"
-    .string "rare POKéMON.$"
+    .string "rare Pokémon.$"
 
 Route43_Text_PokemaniacRonSeen:
     .string "Would you get this?\p"
-    .string "Some SILVER guy made fun of my\n"
-    .string "POKéMON!\p"
-    .string "Darn it! My POKéMON's great!$"
+    .string "Some Silver guy made fun of my\n"
+    .string "Pokémon!\p"
+    .string "Darn it! My Pokémon's great!$"
 
 Route43_Text_PokemaniacRonBeaten:
-    .string "My NIDOKING did pretty right on!$"
+    .string "My Nidoking did pretty right on!$"
 
 Route43_Text_PokemaniacRonAfter:
     .string "It's okay for people to like\n"
-    .string "different types of POKéMON.\p"
-    .string "POKéMON isn't just about having the\n"
+    .string "different types of Pokémon.\p"
+    .string "Pokémon isn't just about having the\n"
     .string "most powerful one.$"
 
 Route43_Text_FisherMarvinSeen:
@@ -95,46 +95,46 @@ Route43_Text_FisherMarvinBeaten:
     .string "I lost, but I feel better anyway.$"
 
 Route43_Text_FisherMarvinAfter:
-    .string "KURT's LURE BALL is the best for\n"
-    .string "catching hooked POKéMON.\p"
+    .string "Kurt's Lure Ball is the best for\n"
+    .string "catching hooked Pokémon.\p"
     .string "It's much more effective than a\n"
-    .string "ULTRA BALL.$"
+    .string "Ultra Ball.$"
 
 Route43_Text_CamperSpencerSeen:
     .string "I can do so much with my\n"
-    .string "POKéMON--it's super-fun!$"
+    .string "Pokémon--it's super-fun!$"
 
 Route43_Text_CamperSpencerBeaten:
     .string "Losing isn't fun at all…$"
 
 Route43_Text_CamperSpencerAfter:
-    .string "What is going on at LAKE OF RAGE?\p"
+    .string "What is going on at Lake Of Rage?\p"
     .string "We were planning to camp there.$"
 
 Route43_Text_PicnickerTiffanySeen:
-    .string "Are you going to LAKE OF RAGE too?\p"
+    .string "Are you going to Lake Of Rage too?\p"
     .string "Let's play for a little while!$"
 
 Route43_Text_PicnickerTiffanyBeaten:
     .string "I played too much!$"
 
 Route43_Text_PicnickerTiffanyWantsPicnic:
-    .string "I'm having a picnic with POKéMON.\p"
+    .string "I'm having a picnic with Pokémon.\p"
     .string "Won't you join us?$"
 
 Route43_Sign1:
-    .string "ROUTE 43\p"
-    .string "LAKE OF RAGE - MAHOGANY TOWN$"
+    .string "Route 43\p"
+    .string "Lake Of Rage - Mahogany Town$"
 
 Route43_Sign2:
-    .string "ROUTE 43\p"
-    .string "LAKE OF RAGE - MAHOGANY TOWN$"
+    .string "Route 43\p"
+    .string "Lake Of Rage - Mahogany Town$"
 
 Route43_TrainerTips:
-    .string "TRAINER TIPS\p"
-    .string "All POKéMON have pros and cons\n"
+    .string "Trainer Tips\p"
+    .string "All Pokémon have pros and cons\n"
     .string "depending on their types.\p"
     .string "If their types differ, a higher-\n"
-    .string "level POKéMON may lose in battle.\p"
+    .string "level Pokémon may lose in battle.\p"
     .string "Learn which types are strong and\n"
-    .string "weak against your POKéMON's type.$"
+    .string "weak against your Pokémon's type.$"

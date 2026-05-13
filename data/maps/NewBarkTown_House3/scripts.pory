@@ -1,0 +1,62 @@
+raw `
+NewBarkTown_House3_MapScripts::
+    map_script MAP_SCRIPT_ON_TRANSITION, NewBarkTown_House3_OnTransition
+	.byte 0
+
+NewBarkTown_House3_OnTransition::
+    call Common_EventScript_SetupRivalGfxId
+    end
+`
+
+script NewBarkTown_RivalsMom {
+    lock
+    faceplayer
+    checkplayergender
+    msgbox("Oh, hello {PLAYER}!")
+    if (var(VAR_RESULT) == MALE) {
+        msgbox("Crystal is currently upstairs if
+                you are looking for her. She is playing
+                with her Marill.")
+    } else {
+        msgbox("Gold is currently upstairs if
+                you are looking for her. She is playing
+                with his Marill.")
+    }
+    release
+    end
+}
+
+script NewBarkTown_RivalsSister {
+    lock
+    faceplayer
+    checkplayergender
+    if (var(VAR_RESULT) == MALE) {
+        msgbox("Elm gave my sister a Marill, I hope I
+                can get a Pokémon to play with 
+                soon, too!")
+    } else {
+        msgbox("Elm gave my brother a Marill, I hope I
+                can get a Pokémon to play with 
+                soon, too!")
+    }  
+    release
+    end 
+    
+}
+
+script NewBarkTownRivalHouseRival {
+    // Postgame and progression based comments?
+    // Cresselia quest?
+    msgbox("Hey {PLAYER}! Have you visited
+            any new places?", MSGBOX_NPC)
+}
+
+script NewBarkTownRivalHouseMarill {
+	lock
+    faceplayer
+    playmoncry(SPECIES_MARILL, CRY_MODE_NORMAL)
+    msgbox("Marii!")
+    waitmoncry
+    release
+    end
+}

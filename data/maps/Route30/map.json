@@ -352,6 +352,13 @@
       "elevation": 0,
       "dest_map": "MAP_ROUTE30_MR_POKEMONS_HOUSE",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 48,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_ACUITY_CAVERN",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

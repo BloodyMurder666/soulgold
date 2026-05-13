@@ -45,37 +45,37 @@ ViridianCity_Gym_EventScript_BlueGotoDojo::
 	end
 
 ViridianCity_Gym_Text_BlueGotoDojo:
-	.string "BLUE: Back for more already?\p"
+	.string "Blue: Back for more already?\p"
 	.string "If you want another shot at me,\n"
-	.string "come to the FIGHTING DOJO!$"
+	.string "come to the Fighting Dojo!$"
 
 ViridianCity_Gym_Text_LeaderBlue_Before:
-	.string "BLUE: Yo! Finally got here, huh?\p"
-	.string "I wasn't in the mood at CINNABAR,\p"
+	.string "Blue: Yo! Finally got here, huh?\p"
+	.string "I wasn't in the mood at Cinnabar,\p"
 	.string "but now I'm ready to battle you.\p"
 	.string "…\p"
 	.string "You're telling me you conquered all\n"
-	.string "the GYMS in JOHTO?\p"
-	.string "Heh! JOHTO's GYMS must be pretty\n"
+	.string "the Gyms in Johto?\p"
+	.string "Heh! Johto's Gyms must be pretty\n"
 	.string "pathetic then.\p"
 	.string "Hey, don't worry about it.\p"
 	.string "I'll know if you are good or not by\n"
 	.string "battling you right now.\p"
-	.string "Ready, JOHTO CHAMP?$"
+	.string "Ready, Johto Champ?$"
 
 ViridianCity_Gym_Text_LeaderBlue_Win:
-	.string "BLUE: What?\p"
+	.string "Blue: What?\p"
 	.string "How the heck did I lose to you?\p"
 	.string "…\p"
 	.string "Tch, all right… Here, take this--it's\n"
-	.string "EARTHBADGE.$"
+	.string "Earthbadge.$"
 
 ViridianCity_Gym_Text_ReceivedEarthBadge:
-	.string "{PLAYER} received EARTHBADGE.$"
+	.string "{PLAYER} received Earthbadge.$"
 
 ViridianCity_Gym_Text_BulkUpSpeech:
-    .string "That TM contains BULK UP.\p"
-    .string "It lets a POKéMON become an\n"
+    .string "That TM contains Bulk Up.\p"
+    .string "It lets a Pokémon become an\n"
     .string "unstoppable force and an\l"
 	.string "immovable object all at once!\p"
     .string "Don't let anyone tell you\n"
@@ -83,14 +83,14 @@ ViridianCity_Gym_Text_BulkUpSpeech:
 	.string "between offense and defense.$"
 
 ViridianCity_Gym_Text_LeaderBlue_After:
-	.string "BLUE: …\p"
+	.string "Blue: …\p"
 	.string "All right, I was wrong. You're the\n"
 	.string "real deal. You are a good trainer.\p"
 	.string "But I'm going to beat you someday.\p"
 	.string "Don't you forget it!$"
 
 ViridianCity_Gym_Text_LeaderBlue_Epilogue:
-	.string "BLUE: Listen, you.\p"
+	.string "Blue: Listen, you.\p"
 	.string "You'd better not lose until I beat\n"
 	.string "you. Got it?$"
 
@@ -105,11 +105,11 @@ ViridianCity_Gym_EventScript_GymGuyAfter::
 	end
 
 ViridianCity_Gym_Text_Guide:
-	.string "Yo, CHAMP in making!\p"
+	.string "Yo, Champ in making!\p"
 	.string "How's it going? Looks like you're on\n"
 	.string "a roll.\p"
-	.string "The GYM LEADER is a guy who battled\n"
-	.string "the CHAMPION three years ago.\p"
+	.string "The Gym Leader is a guy who battled\n"
+	.string "the Champion three years ago.\p"
 	.string "He's no pushover.\p"
 	.string "Give it everything you've got!$"
 
@@ -132,14 +132,14 @@ ViridianCity_Gym_EventScript_GymStatuePostVictory::
 	end
 
 ViridianCity_Gym_Text_GymStatue::
-    .string "VIRIDIAN POKéMON GYM\n"
-    .string "LEADER: BLUE\p"
-	.string "WINNING TRAINERS:\n"
-	.string "BLUE, RED$"
+    .string "Viridian Pokémon Gym\n"
+    .string "Leader: Blue\p"
+	.string "Winning Trainers:\n"
+	.string "Blue, Red$"
 
 ViridianCity_Gym_Text_GymStatuePlayerWon::
-    .string "VIRIDIAN POKéMON GYM\n"
-    .string "LEADER: BLUE\p"
-    .string "WINNING TRAINERS:\n"
-	.string "BLUE, RED, {PLAYER}$"
+    .string "Viridian Pokémon Gym\n"
+    .string "Leader: Blue\p"
+    .string "Winning Trainers:\n"
+	.string "Blue, Red, {PLAYER}$"
 

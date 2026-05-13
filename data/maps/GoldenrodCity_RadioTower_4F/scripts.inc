@@ -88,51 +88,51 @@ GoldenrodCity_RadioTower_4F4_EventScript_Meowth::
 
 
 GoldenrodCity_RadioTower_4F4_Text_Proton_Seen:
-	.string "PROTON: Now wait just one second!\p"
+	.string "Proton: Now wait just one second!\p"
 	.string "Aren't you the one who got in our\n"
-	.string "way at SLOWPOKE WELL?\p"
+	.string "way at Slowpoke Well?\p"
 	.string "I see... You're doing all this\n"
 	.string "because you want to make me angry.\l"
 	.string "Be careful!\p"
 	.string "But since you seem to wish it, I'll\n"
-	.string "show you the full extent of a TEAM\l"
-	.string "ROCKET EXECUTIVE'S wrath!$"
+	.string "show you the full extent of a Team\l"
+	.string "Rocket Executive'S wrath!$"
 
 GoldenrodCity_RadioTower_4F4_Text_Proton_Beaten:
 	.string "Phew...$"
 
 GoldenrodCity_RadioTower_4F4_Text_Proton_After:
-	.string "PROTON: You may have won this\n"
+	.string "Proton: You may have won this\n"
 	.string "time... But all you did was make\p"
-	.string "TEAM ROCKET's wrath grow.$"
+	.string "Team Rocket's wrath grow.$"
 
 GoldenrodCity_RadioTower_4F4_Text_Fisher:
 	.string "I listened to the radio while I was\n"
-	.string "at the RUINS.\p"
+	.string "at the Ruins.\p"
 	.string "I heard a strange broadcast there.$"
 
 GoldenrodCity_RadioTower_4F4_Text_DJMary:
-	.string "MARY: Why? Why do I have to suffer\n"
+	.string "Mary: Why? Why do I have to suffer\n"
 	.string "through this?\p"
-	.string "MEOWTH, help me!$"
+	.string "Meowth, help me!$"
 
 GoldenrodCity_RadioTower_4F4_Text_DJMaryCleared:
-	.string "MARY: Oh! You're my little savior!\p"
+	.string "Mary: Oh! You're my little savior!\p"
 	.string "Will you take this as my thanks?$"
 
 GoldenrodCity_RadioTower_4F4_Text_DJMaryPinkBow:
-	.string "MARY: It's good for dodging the"
+	.string "Mary: It's good for dodging the\p"
 	.string "enemy's attacks.$"
 
 GoldenrodCity_RadioTower_4F4_Text_DJMaryAfter:
-	.string "MARY: Please tune into me on PROF.\n"
-	.string "OAK'S POKéMON TALK show!$"
+	.string "Mary: Please tune into me on Prof.\n"
+	.string "Oak'S Pokémon Talk show!$"
 
 GoldenrodCity_RadioTower_4F4_Text_Meowth:
-	.string "MEOWTH: Meowth…$"
+	.string "Meowth: Meowth…$"
 
 GoldenrodCity_RadioTower_4F4_Text_GruntM10Seen:
-	.string "You plan to rescue the DIRECTOR?\p"
+	.string "You plan to rescue the Director?\p"
 	.string "That won't be possible because I'm\n"
 	.string "going to beat you!$"
 
@@ -143,7 +143,7 @@ GoldenrodCity_RadioTower_4F4_Text_GruntM10After:
 	.string "I don't believe it! I was beaten!$"
 
 GoldenrodCity_RadioTower_4F4_Text_ExecutiveM2Seen:
-	.string "Stop! I'm known as the TEAM ROCKET\n"
+	.string "Stop! I'm known as the Team Rocket\n"
 	.string "fortress!\p"
 	.string "You're not taking another step!$"
 
@@ -157,8 +157,8 @@ GoldenrodCity_RadioTower_4F4_Text_ExecutiveM2After:
 	.string "back.$"
 
 GoldenrodCity_RadioTower_4F4_Text_GruntF4Seen:
-	.string "Don't I think POKéMON are cute?\p"
-	.string "I'll think my POKéMON are cute--\p"
+	.string "Don't I think Pokémon are cute?\p"
+	.string "I'll think my Pokémon are cute--\p"
 	.string "after they beat yours!$"
 
 GoldenrodCity_RadioTower_4F4_Text_GruntF4Beaten:
@@ -166,11 +166,11 @@ GoldenrodCity_RadioTower_4F4_Text_GruntF4Beaten:
 
 GoldenrodCity_RadioTower_4F4_Text_GruntF4After:
 	.string "I love my beautiful self!\p"
-	.string "Who cares about POKéMON?$"
+	.string "Who cares about Pokémon?$"
 
 GoldenrodCity_RadioTower_4F4_Text_ScientistRichSeen:
 	.string "Most excellent.\p"
-	.string "This RADIO TOWER will fulfill our\n"
+	.string "This Radio Tower will fulfill our\n"
 	.string "grand design.$"
 
 GoldenrodCity_RadioTower_4F4_Text_ScientistRichBeaten:
@@ -179,10 +179,10 @@ GoldenrodCity_RadioTower_4F4_Text_ScientistRichBeaten:
 
 GoldenrodCity_RadioTower_4F4_Text_ScientistRichAfter:
 	.string "Do you honestly believe you can stop\n"
-	.string "TEAM ROCKET?$"
+	.string "Team Rocket?$"
 
 GoldenrodCity_RadioTower_4F4_Text_ProductionSign:
-	.string "4F PRODUCTION$"
+	.string "4F Production$"
 
 GoldenrodCity_RadioTower_4F4_Text_Studio2Sign:
-	.string "4F STUDIO 2$"
+	.string "4F Studio 2$"

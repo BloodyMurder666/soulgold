@@ -35,6 +35,7 @@
 #include "test/battle.h"
 #include "test/test.h"
 #include "test/test_runner_battle.h"
+#include "event_data.h"
 
 static EWRAM_DATA u8 sLinkSendTaskId = 0;
 static EWRAM_DATA u8 sLinkReceiveTaskId = 0;
@@ -1439,12 +1440,15 @@ static u32 GetBattlerMonData(enum BattlerId battler, struct Pokemon *party, u32 
     s16 data16;
     u32 data32;
     s32 size = 0;
+    u32 i;
 
     switch (gBattleResources->bufferA[battler][1])
     {
     case REQUEST_ALL_BATTLE:
         battleMon.species = GetMonData(&party[monId], MON_DATA_SPECIES);
-        battleMon.item = GetMonData(&party[monId], MON_DATA_HELD_ITEM);
+        battleMon.item = GetMonData(&party[monId], MON_DATA_HELD_ITEM);  //Not used (Multi)
+        for (size = 0; size < MAX_MON_ITEMS; size++)
+            battleMon.items[size] = GetMonData(&party[monId], MON_DATA_HELD_ITEM + size);
         for (size = 0; size < MAX_MON_MOVES; size++)
         {
             battleMon.moves[size] = GetMonData(&party[monId], MON_DATA_MOVE1 + size);
@@ -1476,6 +1480,21 @@ static u32 GetBattlerMonData(enum BattlerId battler, struct Pokemon *party, u32 
         GetMonData(&party[monId], MON_DATA_NICKNAME, nickname);
         StringCopy_Nickname(battleMon.nickname, nickname);
         GetMonData(&party[monId], MON_DATA_OT_NAME, battleMon.otName);
+
+         for (i = 0; i < MAX_MON_INNATES; i++)
+         {
+             #if TESTING
+             if (gTestRunnerEnabled)
+             {
+                 u32 array = (!IsPartnerMonFromSameTrainer(battler)) ? battler : GetBattlerSide(battler);
+                 battleMon.innates[i] = TestRunner_Battle_GetForcedInnates(array, monId, i);
+                 gBattleMons[battler].innates[i] = TestRunner_Battle_GetForcedInnates(array, monId, i);
+             }
+             #else
+                 battleMon.innates[i] = GetSpeciesInnate(battleMon.species, i + 1);
+             #endif
+         }
+
         src = (u8 *)&battleMon;
         for (size = 0; size < sizeof(battleMon); size++)
             dst[size] = src[size];
@@ -1486,6 +1505,7 @@ static u32 GetBattlerMonData(enum BattlerId battler, struct Pokemon *party, u32 
             u32 partyIndex = gBattlerPartyIndexes[battler];
             if (TestRunner_Battle_GetForcedAbility(trainer, partyIndex))
                 gBattleMons[battler].ability = TestRunner_Battle_GetForcedAbility(trainer, partyIndex);
+            gBattleMons[battler].item = gBattleMons[battler].items[0];
         }
         #endif
         break;
@@ -1497,6 +1517,12 @@ static u32 GetBattlerMonData(enum BattlerId battler, struct Pokemon *party, u32 
         break;
     case REQUEST_HELDITEM_BATTLE:
         data16 = GetMonData(&party[monId], MON_DATA_HELD_ITEM);
+        dst[0] = data16;
+        dst[1] = data16 >> 8;
+        size = 2;
+        break;
+    case REQUEST_HELDITEM_BATTLE_TWO:
+        data16 = GetMonData(&party[monId], MON_DATA_HELD_ITEM_TWO);
         dst[0] = data16;
         dst[1] = data16 >> 8;
         size = 2;
@@ -1581,8 +1607,10 @@ static u32 GetBattlerMonData(enum BattlerId battler, struct Pokemon *party, u32 
         size = 1;
         break;
     case REQUEST_MET_LOCATION_BATTLE:
-        dst[0] = GetMonData(&party[monId], MON_DATA_MET_LOCATION);
-        size = 1;
+        data16 = GetMonData(&party[monId], MON_DATA_MET_LOCATION);
+        dst[0] = data16;
+        dst[1] = data16 >> 8;
+        size = 2;
         break;
     case REQUEST_MET_LEVEL_BATTLE:
         dst[0] = GetMonData(&party[monId], MON_DATA_MET_LEVEL);
@@ -1759,7 +1787,10 @@ static void SetBattlerMonData(enum BattlerId battler, struct Pokemon *party, u32
             u8 iv;
 
             SetMonData(&party[monId], MON_DATA_SPECIES, &battlePokemon->species);
-            SetMonData(&party[monId], MON_DATA_HELD_ITEM, &battlePokemon->item);
+            for (i = 0; i < MAX_MON_ITEMS; i++)
+            {
+                SetMonData(&party[monId], MON_DATA_HELD_ITEM + i, &battlePokemon->items[i]);  
+            }
             for (i = 0; i < MAX_MON_MOVES; i++)
             {
                 SetMonData(&party[monId], MON_DATA_MOVE1 + i, &battlePokemon->moves[i]);
@@ -1797,6 +1828,9 @@ static void SetBattlerMonData(enum BattlerId battler, struct Pokemon *party, u32
         break;
     case REQUEST_HELDITEM_BATTLE:
         SetMonData(&party[monId], MON_DATA_HELD_ITEM, &gBattleResources->bufferA[battler][3]);
+        break;
+    case REQUEST_HELDITEM_BATTLE_TWO:
+        SetMonData(&party[monId], MON_DATA_HELD_ITEM_TWO, &gBattleResources->bufferA[battler][3]);
         break;
     case REQUEST_MOVES_PP_BATTLE:
         for (i = 0; i < MAX_MON_MOVES; i++)
@@ -2448,7 +2482,7 @@ void BtlController_HandleDrawTrainerPic(enum BattlerId battler, enum TrainerPicI
         gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].x2 = DISPLAY_WIDTH;
         gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].sSpeedX = -2;
     }
-    if (B_FAST_INTRO_NO_SLIDE || gTestRunnerHeadless)
+    if (IsFastIntroNoSlideEnabled() || gTestRunnerHeadless)
         gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].callback = SpriteCB_TrainerSpawn;
     else
         gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].callback = SpriteCB_TrainerSlideIn;
@@ -2990,6 +3024,55 @@ void BtlController_HandleBattleAnimation(enum BattlerId battler)
     }
 }
 
+u32 Rogue_GetBattleSpeedScale(bool32 forHealthbar)
+{
+    u8 battleSceneOption = VarGet(B_BATTLE_SPEED); // Originally GetBattleSceneOption() with a saveblock stored value;
+
+    // Hold L to slow down
+    if(JOY_HELD(L_BUTTON))
+        return 1;
+
+    // We want to speed up all anims until input selection starts
+    if(InBattleChoosingMoves())
+        gBattleStruct->hasBattleInputStarted = TRUE;
+
+    if(gBattleStruct->hasBattleInputStarted)
+    {
+        // Always run at 1x speed here
+        if(InBattleChoosingMoves())
+            return 1;
+
+        // When battle anims are turned off, it's a bit too hard to read text, so force running at normal speed
+        if(!forHealthbar && battleSceneOption == OPTIONS_BATTLE_SCENE_DISABLED && InBattleRunningActions())
+            return 1;
+    }
+
+    // We don't need to speed up health bar anymore as that passively happens now
+    switch (battleSceneOption)
+    {
+    case OPTIONS_BATTLE_SCENE_1X:
+        return forHealthbar ? 1 : 1;
+
+    case OPTIONS_BATTLE_SCENE_2X:
+        return forHealthbar ? 1 : 2;
+
+    case OPTIONS_BATTLE_SCENE_3X:
+        return forHealthbar ? 1 : 3;
+
+    case OPTIONS_BATTLE_SCENE_4X:
+        return forHealthbar ? 1 : 4;
+
+    // Print text at a readable speed still
+    case OPTIONS_BATTLE_SCENE_DISABLED:
+        if(gBattleStruct->hasBattleInputStarted)
+            return forHealthbar ? 10 : 1;
+        else
+            return 4;
+    }
+
+    return 1;
+}
+
 void AnimateMonAfterPokeBallFail(enum BattlerId battler)
 {
     if (B_ANIMATE_MON_AFTER_FAILED_POKEBALL == FALSE)
@@ -3220,7 +3303,7 @@ void UpdateFriendshipFromXItem(enum BattlerId battler)
 
     if (friendship < X_ITEM_MAX_FRIENDSHIP)
     {
-        friendship += CalculateFriendshipBonuses(GetBattlerMon(battler), X_ITEM_FRIENDSHIP_INCREASE, GetItemHoldEffect(heldItem));
+        friendship += CalculateFriendshipBonuses(GetBattlerMon(battler), X_ITEM_FRIENDSHIP_INCREASE);
 
         if (friendship > MAX_FRIENDSHIP)
             friendship = MAX_FRIENDSHIP;

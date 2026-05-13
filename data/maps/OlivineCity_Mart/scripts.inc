@@ -41,7 +41,7 @@ OlivineCity_EventScript_Lass::
 # 21 "data/maps/OlivineCity_Mart/scripts.pory"
 OlivineCity_Text_MartCooltrainerF:
 # 22 "data/maps/OlivineCity_Mart/scripts.pory"
-	.string "Do your POKéMON already know\n"
+	.string "Do your Pokémon already know\n"
 # 23 "data/maps/OlivineCity_Mart/scripts.pory"
 	.string "the move for carrying people\l"
 # 24 "data/maps/OlivineCity_Mart/scripts.pory"
@@ -51,11 +51,11 @@ OlivineCity_Text_MartCooltrainerF:
 # 26 "data/maps/OlivineCity_Mart/scripts.pory"
 OlivineCity_Text_MartLass:
 # 27 "data/maps/OlivineCity_Mart/scripts.pory"
-	.string "My BUTTERFREE came from my\n"
+	.string "My Butterfree came from my\n"
 # 28 "data/maps/OlivineCity_Mart/scripts.pory"
 	.string "boyfriend overseas.\p"
 # 29 "data/maps/OlivineCity_Mart/scripts.pory"
-	.string "It carried some MAIL from him.\p"
+	.string "It carried some Mail from him.\p"
 # 30 "data/maps/OlivineCity_Mart/scripts.pory"
 	.string "Want to know what it says?\p"
 # 31 "data/maps/OlivineCity_Mart/scripts.pory"

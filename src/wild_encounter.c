@@ -356,8 +356,7 @@ static u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon, u8 wildMonIn
         // check ability for max level mon
         if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
         {
-            enum Ability ability = GetMonAbility(&gPlayerParty[0]);
-            if (ability == ABILITY_HUSTLE || ability == ABILITY_VITAL_SPIRIT || ability == ABILITY_PRESSURE)
+            if (MonHasTrait(&gPlayerParty[0], ABILITY_HUSTLE) || MonHasTrait(&gPlayerParty[0], ABILITY_VITAL_SPIRIT) || MonHasTrait(&gPlayerParty[0], ABILITY_PRESSURE))
             {
                 if (Random() % 2 == 0)
                     return max;
@@ -474,7 +473,7 @@ static u8 PickWildMonNature(u32 species)
 void CreateWildMon(u16 species, u8 level)
 {
     // Apply level scaling for wild encounters
-#if B_LEVEL_SCALING_ENABLED && B_WILD_SCALING_ENABLED
+#if B_LEVEL_SCALING_ENABLED
     level = CalculateWildScaledLevel(species, level);
     // Apply species scaling (evolution management)
     species = CalculateWildScaledSpecies(species, level);
@@ -608,27 +607,25 @@ static bool8 WildEncounterCheck(u32 encounterRate, bool8 ignoreAbility)
         encounterRate *= 2;
     if (!ignoreAbility && !GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
     {
-        enum Ability ability = GetMonAbility(&gPlayerParty[0]);
-
-        if (ability == ABILITY_STENCH && gMapHeader.mapLayoutId == LAYOUT_BATTLE_FRONTIER_BATTLE_PYRAMID_FLOOR)
+        if (MonHasTrait(&gPlayerParty[0], ABILITY_STENCH) && gMapHeader.mapLayoutId == LAYOUT_BATTLE_FRONTIER_BATTLE_PYRAMID_FLOOR)
             encounterRate = encounterRate * 3 / 4;
-        else if (ability == ABILITY_STENCH)
+        else if (MonHasTrait(&gPlayerParty[0], ABILITY_STENCH))
             encounterRate /= 2;
-        else if (ability == ABILITY_ILLUMINATE)
+        else if (MonHasTrait(&gPlayerParty[0], ABILITY_ILLUMINATE))
             encounterRate *= 2;
-        else if (ability == ABILITY_WHITE_SMOKE)
+        else if (MonHasTrait(&gPlayerParty[0], ABILITY_WHITE_SMOKE))
             encounterRate /= 2;
-        else if (ability == ABILITY_ARENA_TRAP)
+        else if (MonHasTrait(&gPlayerParty[0], ABILITY_ARENA_TRAP))
             encounterRate *= 2;
-        else if (ability == ABILITY_SAND_VEIL && gSaveBlock1Ptr->weather == WEATHER_SANDSTORM)
+        else if (MonHasTrait(&gPlayerParty[0], ABILITY_SAND_VEIL) && gSaveBlock1Ptr->weather == WEATHER_SANDSTORM)
             encounterRate /= 2;
-        else if (ability == ABILITY_SNOW_CLOAK && gSaveBlock1Ptr->weather == WEATHER_SNOW)
+        else if (MonHasTrait(&gPlayerParty[0], ABILITY_SNOW_CLOAK) && gSaveBlock1Ptr->weather == WEATHER_SNOW)
             encounterRate /= 2;
-        else if (ability == ABILITY_QUICK_FEET)
+        else if (MonHasTrait(&gPlayerParty[0], ABILITY_QUICK_FEET))
             encounterRate /= 2;
-        else if (ability == ABILITY_INFILTRATOR && OW_INFILTRATOR >= GEN_8)
+        else if (MonHasTrait(&gPlayerParty[0], ABILITY_INFILTRATOR) && OW_INFILTRATOR >= GEN_8)
             encounterRate /= 2;
-        else if (ability == ABILITY_NO_GUARD)
+        else if (MonHasTrait(&gPlayerParty[0], ABILITY_NO_GUARD))
             encounterRate *= 2;
     }
     if (encounterRate > MAX_ENCOUNTER_RATE)
@@ -1081,13 +1078,11 @@ static bool8 IsWildLevelAllowedByRepel(u8 wildLevel)
 
 static bool8 IsAbilityAllowingEncounter(u8 level)
 {
-    enum Ability ability;
-
     if (GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
         return TRUE;
 
-    ability = GetMonAbility(&gPlayerParty[0]);
-    if (ability == ABILITY_KEEN_EYE || ability == ABILITY_INTIMIDATE)
+    //ability = GetMonAbility(&gPlayerParty[0]);
+    if (MonHasTrait(&gPlayerParty[0], ABILITY_KEEN_EYE) || MonHasTrait(&gPlayerParty[0], ABILITY_INTIMIDATE))
     {
         u8 playerMonLevel = GetMonData(&gPlayerParty[0], MON_DATA_LEVEL);
         if (playerMonLevel > 5 && level <= playerMonLevel - 5 && !(Random() % 2))
@@ -1180,7 +1175,7 @@ static void ApplyFluteEncounterRateMod(u32 *encRate)
 
 static void ApplyCleanseTagEncounterRateMod(u32 *encRate)
 {
-    if (GetMonData(&gPlayerParty[0], MON_DATA_HELD_ITEM) == ITEM_CLEANSE_TAG)
+    if (MonHasItem(&gPlayerParty[0], ITEM_CLEANSE_TAG))
         *encRate = *encRate * 2 / 3;
 }
 

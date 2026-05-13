@@ -13,8 +13,8 @@ MtSilver_PokemonCenter_EventScript_Meara::
 	end
 
 MtSilver_PokemonCenter_Text_Meara:
-	.string "I'm a researcher from the PEWTER\n"
-	.string "CITY museum.\p"
+	.string "I'm a researcher from the Pewter\n"
+	.string "City museum.\p"
 	.string "An unusual amount of artifacts have\n"
 	.string "been discovered in this area, so\l"
 	.string "I've come here to investigate.\p"

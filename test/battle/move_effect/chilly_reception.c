@@ -157,3 +157,23 @@ SINGLE_BATTLE_TEST("Chilly Reception doesn't announce its move if it's called by
         SEND_IN_MESSAGE("Wobbuffet");
     }
 }
+
+#if MAX_MON_ITEMS > 1
+SINGLE_BATTLE_TEST("Chilly Reception switches the user out, even if the weather does not change (Items)")
+{
+    GIVEN {
+        PLAYER(SPECIES_SLOWKING_GALAR);
+        PLAYER(SPECIES_SLOWPOKE_GALAR);
+        OPPONENT(SPECIES_KYOGRE)  { Items(ITEM_PECHA_BERRY, ITEM_BLUE_ORB); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_CHILLY_RECEPTION); SEND_OUT(player, 1); }
+    } SCENE {
+        MESSAGE("Slowking is preparing to tell a chillingly bad joke!");
+        MESSAGE("There is no relief from this heavy rain!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CHILLY_RECEPTION, player);
+        MESSAGE("Slowking went back to 1!");
+        SEND_IN_MESSAGE("Slowpoke");
+        MESSAGE("Rain continues to fall.");
+    }
+}
+#endif

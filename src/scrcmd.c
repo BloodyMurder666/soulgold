@@ -58,6 +58,7 @@
 #include "text_window.h"
 #include "trainer_see.h"
 #include "tv.h"
+#include "ui_birch_case.h"
 #include "window.h"
 #include "list_menu.h"
 #include "malloc.h"
@@ -2003,10 +2004,15 @@ bool8 ScrCmd_showmonpic(struct ScriptContext *ctx)
     u16 species = VarGet(ScriptReadHalfword(ctx));
     u8 x = ScriptReadByte(ctx);
     u8 y = ScriptReadByte(ctx);
+    bool8 isShiny;
+    u32 personality;
 
     Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
 
-    ScriptMenu_ShowPokemonPic(species, x, y);
+    if (BirchCase_TryGetLastStarterPicData(species, &isShiny, &personality))
+        ScriptMenu_ShowPokemonPicShiny(species, isShiny, personality, x, y);
+    else
+        ScriptMenu_ShowPokemonPic(species, x, y);
     return FALSE;
 }
 
@@ -2523,20 +2529,22 @@ bool8 ScrCmd_setwildbattle(struct ScriptContext *ctx)
     u16 species = ScriptReadHalfword(ctx);
     u8 level = ScriptReadByte(ctx);
     enum Item item = ScriptReadHalfword(ctx);
+    u16 item2 = ScriptReadHalfword(ctx);
     u16 species2 = ScriptReadHalfword(ctx);
     u8 level2 = ScriptReadByte(ctx);
-    enum Item item2 = ScriptReadHalfword(ctx);
+    enum Item item3 = ScriptReadHalfword(ctx);
+    u16 item4 = ScriptReadHalfword(ctx);
 
     Script_RequestEffects(SCREFF_V1);
 
     if (species2 == SPECIES_NONE)
     {
-        CreateScriptedWildMon(species, level, item);
+        CreateScriptedWildMon(species, level, item, item2);
         sIsScriptedWildDouble = FALSE;
     }
     else
     {
-        CreateScriptedDoubleWildMon(species, level, item, species2, level2, item2);
+        CreateScriptedDoubleWildMon(species, level, item, item2, species2, level2, item3, item4);
         sIsScriptedWildDouble = TRUE;
     }
 
@@ -3029,7 +3037,7 @@ bool8 ScrCmd_warpspinenter(struct ScriptContext *ctx)
 bool8 ScrCmd_setmonmetlocation(struct ScriptContext *ctx)
 {
     u16 partyIndex = VarGet(ScriptReadHalfword(ctx));
-    u8 location = ScriptReadByte(ctx);
+    metloc_u16_t location = ScriptReadHalfword(ctx);
 
     Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE);
 

@@ -84,12 +84,15 @@ struct SpeciesItem
 {
     u16 species;
     enum Item item;
+    enum Item item2;
 };
 
 static u16 CalculateBoxMonChecksum(struct BoxPokemon *boxMon);
 static u16 CalculateBoxMonChecksumDecrypt(struct BoxPokemon *boxMon);
 static u16 CalculateBoxMonChecksumReencrypt(struct BoxPokemon *boxMon);
 static union PokemonSubstruct *GetSubstruct(struct BoxPokemon *boxMon, u32 personality, enum SubstructType substructType);
+static metloc_u16_t GetBoxMonMetLocation(struct BoxPokemon *boxMon);
+static void SetBoxMonMetLocation(struct BoxPokemon *boxMon, metloc_u16_t metLocation);
 static void EncryptBoxMon(struct BoxPokemon *boxMon);
 static void DecryptBoxMon(struct BoxPokemon *boxMon);
 static void Task_PlayMapChosenOrBattleBGM(u8 taskId);
@@ -809,6 +812,16 @@ static const u8 sGetMonDataEVConstants[] =
     MON_DATA_SPATK_EV
 };
 
+static const u8 sGetMonDataIVConstants[] =
+{
+    MON_DATA_HP_IV,
+    MON_DATA_ATK_IV,
+    MON_DATA_DEF_IV,
+    MON_DATA_SPEED_IV,
+    MON_DATA_SPDEF_IV,
+    MON_DATA_SPATK_IV
+};
+
 // For stat-raising items
 static const enum Stat sStatsToRaise[] =
 {
@@ -917,6 +930,7 @@ STATIC_ASSERT(MAX_LEVEL < (1 << 7), PokemonSubstruct3_metLevel_TooSmall);
 STATIC_ASSERT(NUM_VERSIONS < (1 << 4), PokemonSubstruct3_metGame_TooSmall);
 STATIC_ASSERT(MAX_DYNAMAX_LEVEL < (1 << 4), PokemonSubstruct3_dynamaxLevel_TooSmall);
 STATIC_ASSERT(MAX_PER_STAT_IVS < (1 << 5), PokemonSubstruct3_ivs_TooSmall);
+STATIC_ASSERT(MAPSEC_COUNT <= (1 << 15), PokemonSubstruct3_metLocationHi_TooSmall);
 STATIC_ASSERT(NUM_NATURES <= (1 << 5), BoxPokemon_hiddenNatureModifier_TooSmall);
 
 static u32 CompressStatus(u32 status)
@@ -1239,7 +1253,8 @@ void CreateBattleTowerMon(struct Pokemon *mon, struct BattleTowerPokemon *src)
         SetMonMoveSlot(mon, src->moves[i], i);
 
     SetMonData(mon, MON_DATA_PP_BONUSES, &src->ppBonuses);
-    SetMonData(mon, MON_DATA_HELD_ITEM, &src->heldItem);
+    for (i = 0; i < MAX_MON_ITEMS; i++)
+        SetMonData(mon, MON_DATA_HELD_ITEM + i, &src->heldItem[i]);
     SetMonData(mon, MON_DATA_FRIENDSHIP, &src->friendship);
 
     StringCopy(nickname, src->nickname);
@@ -1301,7 +1316,8 @@ void CreateBattleTowerMon_HandleLevel(struct Pokemon *mon, struct BattleTowerPok
         SetMonMoveSlot(mon, src->moves[i], i);
 
     SetMonData(mon, MON_DATA_PP_BONUSES, &src->ppBonuses);
-    SetMonData(mon, MON_DATA_HELD_ITEM, &src->heldItem);
+    for (i = 0; i < MAX_MON_ITEMS; i++)
+        SetMonData(mon, MON_DATA_HELD_ITEM + i, &src->heldItem[i]);
     SetMonData(mon, MON_DATA_FRIENDSHIP, &src->friendship);
 
     StringCopy(nickname, src->nickname);
@@ -1357,7 +1373,8 @@ void CreateApprenticeMon(struct Pokemon *mon, const struct Apprentice *src, u8 m
               personality,
               OTID_STRUCT_PRESET(otId),
               MAX_PER_STAT_IVS);
-    SetMonData(mon, MON_DATA_HELD_ITEM, &src->party[monId].item);
+    for (i = 0; i < MAX_MON_ITEMS; i++)
+        SetMonData(mon, MON_DATA_HELD_ITEM + i, &src->party[monId].item[i]);
     for (i = 0; i < MAX_MON_MOVES; i++)
         SetMonMoveSlot(mon, src->party[monId].moves[i], i);
 
@@ -1374,15 +1391,19 @@ void CreateApprenticeMon(struct Pokemon *mon, const struct Apprentice *src, u8 m
 void ConvertPokemonToBattleTowerPokemon(struct Pokemon *mon, struct BattleTowerPokemon *dest)
 {
     s32 i;
-    u16 heldItem;
+    u16 heldItem[MAX_MON_ITEMS_INTERNAL];
 
     dest->species = GetMonData(mon, MON_DATA_SPECIES);
-    heldItem = GetMonData(mon, MON_DATA_HELD_ITEM);
+    
+    for (i = 0; i < MAX_MON_ITEMS; i++)
+    {
+        heldItem[i] = GetMonData(mon, MON_DATA_HELD_ITEM + i);
 
-    if (heldItem == ITEM_ENIGMA_BERRY_E_READER)
-        heldItem = ITEM_NONE;
+        if (heldItem[i] == ITEM_ENIGMA_BERRY_E_READER)
+            heldItem[i] = ITEM_NONE;
 
-    dest->heldItem = heldItem;
+        dest->heldItem[i] = heldItem[i];
+    }
 
     for (i = 0; i < MAX_MON_MOVES; i++)
         dest->moves[i] = GetMonData(mon, MON_DATA_MOVE1 + i);
@@ -1452,6 +1473,7 @@ void CreateEnemyEventMon(void)
     s32 species = gSpecialVar_0x8004;
     s32 level = gSpecialVar_0x8005;
     s32 itemId = gSpecialVar_0x8006;
+    u16 slot;
 
     ZeroEnemyPartyMons();
 
@@ -1463,7 +1485,11 @@ void CreateEnemyEventMon(void)
         u8 heldItem[2];
         heldItem[0] = itemId;
         heldItem[1] = itemId >> 8;
-        SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, heldItem);
+
+        slot = GetMonNextEmptySlot(&gEnemyParty[0], itemId);
+        
+        if (slot != MAX_MON_ITEMS)
+            SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM + slot, heldItem);  //leaving as one item to not mess with the specialVar (Multi)
     }
 }
 
@@ -2180,6 +2206,23 @@ static ALWAYS_INLINE struct PokemonSubstruct3 *GetSubstruct3(struct BoxPokemon *
     return &(GetSubstruct(boxMon, boxMon->personality, SUBSTRUCT_TYPE_3)->type3);
 }
 
+static metloc_u16_t GetBoxMonMetLocation(struct BoxPokemon *boxMon)
+{
+    struct PokemonSubstruct3 *substruct3 = GetSubstruct3(boxMon);
+    if (!substruct3->metLocationExtended)
+        return substruct3->metLocation;
+
+    return substruct3->metLocation | (substruct3->metLocationHi << 8);
+}
+
+static void SetBoxMonMetLocation(struct BoxPokemon *boxMon, metloc_u16_t metLocation)
+{
+    struct PokemonSubstruct3 *substruct3 = GetSubstruct3(boxMon);
+    substruct3->metLocation = metLocation;
+    substruct3->metLocationHi = metLocation >> 8;
+    substruct3->metLocationExtended = metLocation > 0xFF;
+}
+
 static bool32 IsBadEgg(struct BoxPokemon *boxMon)
 {
     if (boxMon->isBadEgg)
@@ -2296,6 +2339,9 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
         case MON_DATA_HELD_ITEM:
             retVal = GetSubstruct0(boxMon)->heldItem;
             break;
+        case MON_DATA_HELD_ITEM_TWO:
+            retVal = GetSubstruct0(boxMon)->heldItem2;
+            break;
         case MON_DATA_EXP:
             retVal = GetSubstruct0(boxMon)->experience;
             break;
@@ -2375,7 +2421,7 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
             retVal = (GetSubstruct3(boxMon)->pokerus & 0x0F);
             break;
         case MON_DATA_MET_LOCATION:
-            retVal = GetSubstruct3(boxMon)->metLocation;
+            retVal = GetBoxMonMetLocation(boxMon);
             break;
         case MON_DATA_MET_LEVEL:
             retVal = GetSubstruct3(boxMon)->metLevel;
@@ -2413,6 +2459,14 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
         case MON_DATA_ABILITY_NUM:
             retVal = GetSubstruct3(boxMon)->abilityNum;
             break;
+        case MON_DATA_INNATE1:
+        case MON_DATA_INNATE2:
+        case MON_DATA_INNATE3:
+        {
+            u32 species = GetSubstruct0(boxMon)->species;
+            retVal = GetSpeciesInnate(species, field - MON_DATA_INNATE1 + 1);
+            break;
+        }
         case MON_DATA_COOL_RIBBON:
             retVal = GetSubstruct3(boxMon)->coolRibbon;
             break;
@@ -2444,25 +2498,25 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
             retVal = GetSubstruct3(boxMon)->effortRibbon;
             break;
         case MON_DATA_MARINE_RIBBON:
-            retVal = GetSubstruct3(boxMon)->marineRibbon;
+            retVal = 0;
             break;
         case MON_DATA_LAND_RIBBON:
-            retVal = GetSubstruct3(boxMon)->landRibbon;
+            retVal = 0;
             break;
         case MON_DATA_SKY_RIBBON:
-            retVal = GetSubstruct3(boxMon)->skyRibbon;
+            retVal = 0;
             break;
         case MON_DATA_COUNTRY_RIBBON:
-            retVal = GetSubstruct3(boxMon)->countryRibbon;
+            retVal = 0;
             break;
         case MON_DATA_NATIONAL_RIBBON:
-            retVal = GetSubstruct3(boxMon)->nationalRibbon;
+            retVal = 0;
             break;
         case MON_DATA_EARTH_RIBBON:
-            retVal = GetSubstruct3(boxMon)->earthRibbon;
+            retVal = 0;
             break;
         case MON_DATA_WORLD_RIBBON:
-            retVal = GetSubstruct3(boxMon)->worldRibbon;
+            retVal = 0;
             break;
         case MON_DATA_MODERN_FATEFUL_ENCOUNTER:
             retVal = GetSubstruct3(boxMon)->modernFatefulEncounter;
@@ -2517,13 +2571,6 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
                 retVal += substruct3->victoryRibbon;
                 retVal += substruct3->artistRibbon;
                 retVal += substruct3->effortRibbon;
-                retVal += substruct3->marineRibbon;
-                retVal += substruct3->landRibbon;
-                retVal += substruct3->skyRibbon;
-                retVal += substruct3->countryRibbon;
-                retVal += substruct3->nationalRibbon;
-                retVal += substruct3->earthRibbon;
-                retVal += substruct3->worldRibbon;
             }
             break;
         case MON_DATA_RIBBONS:
@@ -2539,14 +2586,7 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
                        | (substruct3->winningRibbon << 16)
                        | (substruct3->victoryRibbon << 17)
                        | (substruct3->artistRibbon << 18)
-                       | (substruct3->effortRibbon << 19)
-                       | (substruct3->marineRibbon << 20)
-                       | (substruct3->landRibbon << 21)
-                       | (substruct3->skyRibbon << 22)
-                       | (substruct3->countryRibbon << 23)
-                       | (substruct3->nationalRibbon << 24)
-                       | (substruct3->earthRibbon << 25)
-                       | (substruct3->worldRibbon << 26);
+                       | (substruct3->effortRibbon << 19);
             }
             break;
         case MON_DATA_HYPER_TRAINED_HP:
@@ -2811,6 +2851,9 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         case MON_DATA_HELD_ITEM:
             SET16(GetSubstruct0(boxMon)->heldItem);
             break;
+        case MON_DATA_HELD_ITEM_TWO:
+            SET16(GetSubstruct0(boxMon)->heldItem2);
+            break;
         case MON_DATA_EXP:
             SET32(GetSubstruct0(boxMon)->experience);
             break;
@@ -2890,7 +2933,7 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             GetSubstruct3(boxMon)->pokerus = (GetSubstruct3(boxMon)->pokerus & 0xF0) | *data;
             break;
         case MON_DATA_MET_LOCATION:
-            SET8(GetSubstruct3(boxMon)->metLocation);
+            SetBoxMonMetLocation(boxMon, data[0] | (data[1] << 8));
             break;
         case MON_DATA_MET_LEVEL:
             SET8(GetSubstruct3(boxMon)->metLevel);
@@ -2960,25 +3003,18 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             SET8(GetSubstruct3(boxMon)->effortRibbon);
             break;
         case MON_DATA_MARINE_RIBBON:
-            SET8(GetSubstruct3(boxMon)->marineRibbon);
             break;
         case MON_DATA_LAND_RIBBON:
-            SET8(GetSubstruct3(boxMon)->landRibbon);
             break;
         case MON_DATA_SKY_RIBBON:
-            SET8(GetSubstruct3(boxMon)->skyRibbon);
             break;
         case MON_DATA_COUNTRY_RIBBON:
-            SET8(GetSubstruct3(boxMon)->countryRibbon);
             break;
         case MON_DATA_NATIONAL_RIBBON:
-            SET8(GetSubstruct3(boxMon)->nationalRibbon);
             break;
         case MON_DATA_EARTH_RIBBON:
-            SET8(GetSubstruct3(boxMon)->earthRibbon);
             break;
         case MON_DATA_WORLD_RIBBON:
-            SET8(GetSubstruct3(boxMon)->worldRibbon);
             break;
         case MON_DATA_MODERN_FATEFUL_ENCOUNTER:
             SET8(GetSubstruct3(boxMon)->modernFatefulEncounter);
@@ -3310,7 +3346,8 @@ void CreateSecretBaseEnemyParty(struct SecretBase *secretBaseRecord)
                 gBattleResources->secretBase->party.personality[i],
                 OTID_STRUCT_RANDOM_NO_SHINY,
                 15);
-            SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gBattleResources->secretBase->party.heldItems[i]);
+            for (j = 0; j < MAX_MON_ITEMS; j++)
+                SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM + j, &gBattleResources->secretBase->party.heldItem[i][j]);
 
             for (j = 0; j < NUM_STATS; j++)
                 SetMonData(&gEnemyParty[i], MON_DATA_HP_EV + j, &gBattleResources->secretBase->party.EVs[i]);
@@ -3537,7 +3574,8 @@ void PokemonToBattleMon(struct Pokemon *src, struct BattlePokemon *dst)
     }
 
     dst->species = GetMonData(src, MON_DATA_SPECIES);
-    dst->item = GetMonData(src, MON_DATA_HELD_ITEM);
+    for (i = 0; i < MAX_MON_ITEMS; i++)
+        dst->items[i] = GetMonData(src, MON_DATA_HELD_ITEM + i);
     dst->ppBonuses = GetMonData(src, MON_DATA_PP_BONUSES);
     dst->friendship = GetMonData(src, MON_DATA_FRIENDSHIP);
     dst->experience = GetMonData(src, MON_DATA_EXP);
@@ -3571,6 +3609,11 @@ void PokemonToBattleMon(struct Pokemon *src, struct BattlePokemon *dst)
     for (i = 0; i < NUM_BATTLE_STATS; i++)
         dst->statStages[i] = DEFAULT_STAT_STAGE;
 
+    for (i = 0; i < MAX_MON_INNATES; i++)
+    {
+        dst->innates[i] = GetSpeciesInnate(dst->species, i + 1);
+    }
+
     memset(&dst->volatiles, 0, sizeof(struct Volatiles));
 }
 
@@ -3595,7 +3638,7 @@ bool8 ExecuteTableBasedItemEffect(struct Pokemon *mon, enum Item item, u8 partyI
     {                                                                                                   \
         friendshipChange = itemEffect[itemEffectParam];                                                 \
         friendship = GetMonData(mon, MON_DATA_FRIENDSHIP);                                              \
-        friendship += CalculateFriendshipBonuses(mon,friendshipChange,holdEffect);                      \
+        friendship += CalculateFriendshipBonuses(mon,friendshipChange);                                 \
         if (friendship < 0)                                                                             \
             friendship = 0;                                                                             \
         if (friendship > MAX_FRIENDSHIP)                                                                \
@@ -3626,10 +3669,8 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, enum Item item, u8 partyIndex, 
     u8 itemEffectParam = ITEM_EFFECT_ARG_START;
     u32 temp1, temp2;
     s8 friendshipChange = 0;
-    enum HoldEffect holdEffect;
     enum BattlerId battler = MAX_BATTLERS_COUNT;
     bool32 friendshipOnly = FALSE;
-    enum Item heldItem;
     u8 effectFlags;
     s16 evChange;
     u16 evCount;
@@ -3640,17 +3681,6 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, enum Item item, u8 partyIndex, 
     // Determine the EV cap to use
     u32 maxAllowedEVs = !B_EV_ITEMS_CAP ? MAX_TOTAL_EVS : GetCurrentEVCap();
 
-    // Get item hold effect
-    heldItem = GetMonData(mon, MON_DATA_HELD_ITEM);
-    if (heldItem == ITEM_ENIGMA_BERRY_E_READER)
-    #if FREE_ENIGMA_BERRY == FALSE
-        holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
-    #else
-        holdEffect = 0;
-    #endif //FREE_ENIGMA_BERRY
-    else
-        holdEffect = GetItemHoldEffect(heldItem);
-
     // Skip using the item if it won't do anything
     if (GetItemEffect(item) == NULL && item != ITEM_ENIGMA_BERRY_E_READER)
         return TRUE;
@@ -3659,6 +3689,59 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, enum Item item, u8 partyIndex, 
     itemEffect = GetItemEffect(item);
     isLevelUpItem = (itemEffect[3] & ITEM3_LEVEL_UP) != 0;
     levelBefore = GetMonData(mon, MON_DATA_LEVEL, NULL);
+
+    if (itemEffect[10] & ITEM10_IVS_ALL)
+    {
+        u8 ivFlags = (itemEffect[10] & ITEM10_IVS_ALL) >> 1;
+
+        for (temp1 = 0; temp1 < NUM_STATS; temp1++)
+        {
+            if (ivFlags & (1 << temp1))
+            {
+                dataUnsigned = GetMonData(mon, sGetMonDataIVConstants[temp1]);
+                if (dataUnsigned >= MAX_PER_STAT_IVS)
+                    return TRUE;
+
+                if (modifyStats)
+                {
+                    dataUnsigned++;
+                    SetMonData(mon, sGetMonDataIVConstants[temp1], &dataUnsigned);
+                    CalculateMonStats(mon);
+                }
+                retVal = FALSE;
+            }
+        }
+    }
+
+    if ((itemEffect[10] & ITEM10_ZERO_IV) && (itemEffect[9] & ITEM9_ZERO_IV_ATK))
+    {
+        dataUnsigned = GetMonData(mon, MON_DATA_ATK_IV);
+        if (dataUnsigned == 0)
+            return TRUE;
+
+        if (modifyStats)
+        {
+            dataUnsigned = 0;
+            SetMonData(mon, MON_DATA_ATK_IV, &dataUnsigned);
+            CalculateMonStats(mon);
+        }
+        retVal = FALSE;
+    }
+
+    if ((itemEffect[10] & ITEM10_ZERO_IV) && (itemEffect[9] & ITEM9_ZERO_IV_SPEED))
+    {
+        dataUnsigned = GetMonData(mon, MON_DATA_SPEED_IV);
+        if (dataUnsigned == 0)
+            return TRUE;
+
+        if (modifyStats)
+        {
+            dataUnsigned = 0;
+            SetMonData(mon, MON_DATA_SPEED_IV, &dataUnsigned);
+            CalculateMonStats(mon);
+        }
+        retVal = FALSE;
+    }
 
     // Do item effect
     for (i = 0; i < ITEM_EFFECT_ARG_START; i++)
@@ -3697,7 +3780,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, enum Item item, u8 partyIndex, 
                     u16 species = GetMonData(mon, MON_DATA_SPECIES);
                     dataUnsigned = (sExpCandyExperienceTable[param - 1] * itemCount) + GetMonData(mon, MON_DATA_EXP);
 
-                    if (B_RARE_CANDY_CAP && B_EXP_CAP_TYPE == EXP_CAP_HARD)
+                    if (B_RARE_CANDY_CAP && GetCurrentExpCapType() == EXP_CAP_HARD)
                     {
                         u32 currentLevelCap = GetCurrentLevelCap();
                         if (dataUnsigned > gExperienceTables[gSpeciesInfo[species].growthRate][currentLevelCap])
@@ -3771,8 +3854,13 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, enum Item item, u8 partyIndex, 
                         evCount = GetMonEVCount(mon);
                         temp2 = itemEffect[itemEffectParam];
                         dataSigned = GetMonData(mon, sGetMonDataEVConstants[temp1]);
-                        s8 evDelta = (s8)itemEffect[itemEffectParam];
-                        s16 evChange = evDelta * itemCount;
+                        if (itemEffect[itemEffectParam] == ITEM6_MAX_EV)
+                            evChange = MAX_PER_STAT_EVS;
+                        else
+                        {
+                            s8 evDelta = (s8)itemEffect[itemEffectParam];
+                            evChange = evDelta * itemCount;
+                        }
 
                         if (evChange > 0) // Increasing EV (HP or Atk)
                         {
@@ -3970,8 +4058,13 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, enum Item item, u8 partyIndex, 
                         evCount = GetMonEVCount(mon);
                         temp2 = itemEffect[itemEffectParam];
                         dataSigned = GetMonData(mon, sGetMonDataEVConstants[temp1 + 2]);
-                        s8 evDelta = (s8)itemEffect[itemEffectParam];
-                        evChange = evDelta * itemCount;
+                        if (itemEffect[itemEffectParam] == ITEM6_MAX_EV)
+                            evChange = MAX_PER_STAT_EVS;
+                        else
+                        {
+                            s8 evDelta = (s8)itemEffect[itemEffectParam];
+                            evChange = evDelta * itemCount;
+                        }
                         if (evChange > 0) // Increasing EV
                         {
                             // Check if the total EV limit is reached
@@ -4345,7 +4438,6 @@ u32 GetGMaxTargetSpecies(u32 species)
 bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct EvolutionParam *params, struct Pokemon *tradePartner, u32 partyId, bool32 *canStopEvo, enum EvoState evoState)
 {
     u32 i, j;
-    u32 heldItem = GetMonData(mon, MON_DATA_HELD_ITEM);
     u32 gender = GetMonGender(mon);
     u32 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, 0);
     u32 attack = GetMonData(mon, MON_DATA_ATK, 0);
@@ -4358,28 +4450,16 @@ bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct Evoluti
     u32 removeBagItem = ITEM_NONE;
     u32 removeBagItemCount = 0;
     u32 evolutionTracker = GetMonData(mon, MON_DATA_EVOLUTION_TRACKER, 0);
-    u32 partnerSpecies, partnerHeldItem;
-    enum HoldEffect partnerHoldEffect;
+    u32 partnerSpecies;
+    u8 slot;
 
     if (tradePartner != NULL)
     {
         partnerSpecies = GetMonData(tradePartner, MON_DATA_SPECIES, 0);
-        partnerHeldItem = GetMonData(tradePartner, MON_DATA_HELD_ITEM, 0);
-
-        if (partnerHeldItem == ITEM_ENIGMA_BERRY_E_READER)
-        #if FREE_ENIGMA_BERRY == FALSE
-            partnerHoldEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
-        #else
-            partnerHoldEffect = 0;
-        #endif //FREE_ENIGMA_BERRY
-        else
-            partnerHoldEffect = GetItemHoldEffect(partnerHeldItem);
     }
     else
     {
         partnerSpecies = SPECIES_NONE;
-        partnerHeldItem = ITEM_NONE;
-        partnerHoldEffect = HOLD_EFFECT_NONE;
     }
 
     // Check for additional conditions (only if the primary method passes). Skips if there's no additional conditions.
@@ -4421,8 +4501,9 @@ bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct Evoluti
                 currentCondition = TRUE;
             break;
         case IF_HOLD_ITEM:
-            if (heldItem == params[i].arg1)
+            if (MonHasItem(mon, params[i].arg1))
             {
+                slot = i;
                 currentCondition = TRUE;
                 removeHoldItem = TRUE;
             }
@@ -4502,7 +4583,7 @@ bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct Evoluti
             break;
         // Gen 5
         case IF_TRADE_PARTNER_SPECIES:
-            if (params[i].arg1 == partnerSpecies && partnerHoldEffect != HOLD_EFFECT_PREVENT_EVOLVE)
+            if (params[i].arg1 == partnerSpecies && MonHasItemHoldEffect(tradePartner, HOLD_EFFECT_PREVENT_EVOLVE) == FALSE)
                 currentCondition = TRUE;
             break;
         // Gen 6
@@ -4510,8 +4591,8 @@ bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct Evoluti
             for (j = 0; j < PARTY_SIZE; j++)
             {
                 u16 currSpecies = GetMonData(&gPlayerParty[j], MON_DATA_SPECIES);
-                if (GetSpeciesType(currSpecies, 0) == params[i].arg1
-                 || GetSpeciesType(currSpecies, 1) == params[i].arg1)
+                if (gSpeciesInfo[currSpecies].types[0] == params[i].arg1
+                 || gSpeciesInfo[currSpecies].types[1] == params[i].arg1)
                 {
                     currentCondition = TRUE;
                     break;
@@ -4656,7 +4737,12 @@ bool32 DoesMonMeetAdditionalConditions(struct Pokemon *mon, const struct Evoluti
             if (removeHoldItem)
             {
                 u32 heldItem = ITEM_NONE;
-                SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
+                for (i = 0; i < MAX_MON_ITEMS; i++)
+                {
+                    if (GetMonData(mon, MON_DATA_HELD_ITEM + i) == params[slot].arg1) 
+                        SetMonData(mon, MON_DATA_HELD_ITEM + i, &heldItem);
+                }
+                
             }
 
             if (removeBagItem != ITEM_NONE)
@@ -4675,25 +4761,14 @@ u32 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
     int i;
     u32 targetSpecies = SPECIES_NONE;
     u32 species = GetMonData(mon, MON_DATA_SPECIES, 0);
-    u32 heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
     u32 level = GetMonData(mon, MON_DATA_LEVEL, 0);
-    enum HoldEffect holdEffect;
     const struct Evolution *evolutions = GetSpeciesEvolutions(species);
 
     if (evolutions == NULL)
         return SPECIES_NONE;
 
-    if (heldItem == ITEM_ENIGMA_BERRY_E_READER)
-    #if FREE_ENIGMA_BERRY == FALSE
-        holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
-    #else
-        holdEffect = 0;
-    #endif //FREE_ENIGMA_BERRY
-    else
-        holdEffect = GetItemHoldEffect(heldItem);
-
     // Prevent evolution with Everstone, unless we're just viewing the party menu with an evolution item
-    if (holdEffect == HOLD_EFFECT_PREVENT_EVOLVE
+    if (MonHasItemHoldEffect(mon, HOLD_EFFECT_PREVENT_EVOLVE)
         && mode != EVO_MODE_ITEM_CHECK
         && (P_KADABRA_EVERSTONE < GEN_4 || species != SPECIES_KADABRA))
         return SPECIES_NONE;
@@ -5135,31 +5210,13 @@ u16 ModifyStatByNature(u8 nature, u16 stat, enum Stat statIndex)
 
 void AdjustFriendship(struct Pokemon *mon, u8 event)
 {
-    u16 species, heldItem;
-    enum HoldEffect holdEffect;
+    u16 species;
     s8 mod;
 
     if (ShouldSkipFriendshipChange())
         return;
 
     species = GetMonData(mon, MON_DATA_SPECIES_OR_EGG, 0);
-    heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
-
-    if (heldItem == ITEM_ENIGMA_BERRY_E_READER)
-    {
-        if (gMain.inBattle)
-            holdEffect = gEnigmaBerries[0].holdEffect;
-        else
-        #if FREE_ENIGMA_BERRY == FALSE
-            holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
-        #else
-            holdEffect = 0;
-        #endif //FREE_ENIGMA_BERRY
-    }
-    else
-    {
-        holdEffect = GetItemHoldEffect(heldItem);
-    }
 
     if (species && species != SPECIES_EGG)
     {
@@ -5190,7 +5247,7 @@ void AdjustFriendship(struct Pokemon *mon, u8 event)
         }
 
         mod = sFriendshipEventModifiers[event][friendshipLevel];
-        friendship += CalculateFriendshipBonuses(mon,mod,holdEffect);
+        friendship += CalculateFriendshipBonuses(mon,mod);
 
         if (friendship < 0)
             friendship = 0;
@@ -5201,11 +5258,11 @@ void AdjustFriendship(struct Pokemon *mon, u8 event)
     }
 }
 
-s32 CalculateFriendshipBonuses(struct Pokemon *mon, s32 modifier, enum HoldEffect itemHoldEffect)
+s32 CalculateFriendshipBonuses(struct Pokemon *mon, s32 modifier)
 {
     s32 bonus = 0;
 
-    if ((modifier > 0) && (itemHoldEffect == HOLD_EFFECT_FRIENDSHIP_UP))
+    if ((modifier > 0) && (MonHasItemHoldEffect(mon, HOLD_EFFECT_FRIENDSHIP_UP)))
         bonus += 150 * modifier / 100;
     else
         bonus += modifier;
@@ -5228,107 +5285,123 @@ void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
     u16 evIncrease = 0;
     u16 totalEVs = 0;
     u16 heldItem;
-    enum HoldEffect holdEffect;
+    u8 holdEffect;
     enum Stat i;
-    int multiplier;
+    int j;
+    int multiplier = 1;
     u8 stat;
     u8 bonus;
     u32 currentEVCap = GetCurrentEVCap();
+    u16 braceCount = 0;
 
-    heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
-    if (heldItem == ITEM_ENIGMA_BERRY_E_READER)
+    for (j = 0; j < MAX_MON_ITEMS; j++)
     {
-        if (gMain.inBattle)
-            holdEffect = gEnigmaBerries[0].holdEffect;
-        else
-        #if FREE_ENIGMA_BERRY == FALSE
-            holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
-        #else
-            holdEffect = 0;
-        #endif //FREE_ENIGMA_BERRY
-    }
-    else
-    {
-        holdEffect = GetItemHoldEffect(heldItem);
-    }
-
-    stat = GetItemSecondaryId(heldItem);
-    bonus = GetItemHoldEffectParam(heldItem);
-
-    for (i = 0; i < NUM_STATS; i++)
-    {
-        evs[i] = GetMonData(mon, MON_DATA_HP_EV + i, 0);
-        totalEVs += evs[i];
-    }
-
-    for (i = 0; i < NUM_STATS; i++)
-    {
-        if (totalEVs >= currentEVCap)
-            break;
-
-        if (CheckMonHasHadPokerus(mon))
-            multiplier = 2;
-        else
-            multiplier = 1;
-
-        switch (i)
+        if (GetItemHoldEffect(GetMonData(mon, MON_DATA_HELD_ITEM + j)) == HOLD_EFFECT_MACHO_BRACE
+        && (braceCount == 0 || GetConfig(B_ALLOW_HELD_DUPES)))
         {
-        case STAT_HP:
-            if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_HP)
-                evIncrease = (gSpeciesInfo[defeatedSpecies].evYield_HP + bonus) * multiplier;
+            braceCount++;
+        }
+    }
+
+    for (j = 0; j < MAX_MON_ITEMS; j++)
+    {
+        heldItem = GetMonData(mon, MON_DATA_HELD_ITEM + j, 0);
+        
+        if (heldItem == ITEM_ENIGMA_BERRY_E_READER)
+        {
+            if (gMain.inBattle)
+                holdEffect = gEnigmaBerries[0].holdEffect;
             else
-                evIncrease = gSpeciesInfo[defeatedSpecies].evYield_HP * multiplier;
-            break;
-        case STAT_ATK:
-            if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_ATK)
-                evIncrease = (gSpeciesInfo[defeatedSpecies].evYield_Attack + bonus) * multiplier;
-            else
-                evIncrease = gSpeciesInfo[defeatedSpecies].evYield_Attack * multiplier;
-            break;
-        case STAT_DEF:
-            if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_DEF)
-                evIncrease = (gSpeciesInfo[defeatedSpecies].evYield_Defense + bonus) * multiplier;
-            else
-                evIncrease = gSpeciesInfo[defeatedSpecies].evYield_Defense * multiplier;
-            break;
-        case STAT_SPEED:
-            if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_SPEED)
-                evIncrease = (gSpeciesInfo[defeatedSpecies].evYield_Speed + bonus) * multiplier;
-            else
-                evIncrease = gSpeciesInfo[defeatedSpecies].evYield_Speed * multiplier;
-            break;
-        case STAT_SPATK:
-            if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_SPATK)
-                evIncrease = (gSpeciesInfo[defeatedSpecies].evYield_SpAttack + bonus) * multiplier;
-            else
-                evIncrease = gSpeciesInfo[defeatedSpecies].evYield_SpAttack * multiplier;
-            break;
-        case STAT_SPDEF:
-            if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_SPDEF)
-                evIncrease = (gSpeciesInfo[defeatedSpecies].evYield_SpDefense + bonus) * multiplier;
-            else
-                evIncrease = gSpeciesInfo[defeatedSpecies].evYield_SpDefense * multiplier;
-            break;
-        default:
-            break;
+            #if FREE_ENIGMA_BERRY == FALSE
+                holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
+            #else
+                holdEffect = 0;
+            #endif //FREE_ENIGMA_BERRY
+        }
+        else
+        {
+            holdEffect = GetItemHoldEffect(heldItem);
         }
 
-        if (holdEffect == HOLD_EFFECT_MACHO_BRACE)
-            evIncrease *= 2;
+        stat = GetItemSecondaryId(heldItem);
+        bonus = GetItemHoldEffectParam(heldItem);
 
-        if (totalEVs + (s16)evIncrease > currentEVCap)
-            evIncrease = ((s16)evIncrease + currentEVCap) - (totalEVs + evIncrease);
-
-        if (evs[i] + (s16)evIncrease > MAX_PER_STAT_EVS)
+        for (i = 0; i < NUM_STATS; i++)
         {
-            int val1 = (s16)evIncrease + MAX_PER_STAT_EVS;
-            int val2 = evs[i] + evIncrease;
-            evIncrease = val1 - val2;
+            evs[i] = GetMonData(mon, MON_DATA_HP_EV + i, 0);
+            totalEVs += evs[i];
         }
+        
+        for (i = 0; i < NUM_STATS; i++)
+        {
+            evIncrease = 0;
+            
+            if (totalEVs >= currentEVCap)
+                break;
 
-        evs[i] += evIncrease;
-        totalEVs += evIncrease;
-        SetMonData(mon, MON_DATA_HP_EV + i, &evs[i]);
+            switch (i)
+            {
+            case STAT_HP:
+                if (j == 0) // Base defeated pokemon EVs should only be added once
+                    evIncrease += gSpeciesInfo[defeatedSpecies].evYield_HP;
+                if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_HP)
+                    evIncrease += bonus;
+                break;
+            case STAT_ATK:
+                if (j == 0)
+                    evIncrease += gSpeciesInfo[defeatedSpecies].evYield_Attack;
+                if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_ATK)
+                    evIncrease += bonus;
+                break;
+            case STAT_DEF:
+                if (j == 0)
+                    evIncrease += gSpeciesInfo[defeatedSpecies].evYield_Defense;
+                if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_DEF)
+                    evIncrease += bonus;
+                break;
+            case STAT_SPEED:
+                if (j == 0)
+                    evIncrease += gSpeciesInfo[defeatedSpecies].evYield_Speed;
+                if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_SPEED)
+                    evIncrease += bonus;
+                break;
+            case STAT_SPATK:
+                if (j == 0)
+                    evIncrease += gSpeciesInfo[defeatedSpecies].evYield_SpAttack;
+                if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_SPATK)
+                    evIncrease += bonus;
+                break;
+            case STAT_SPDEF:
+                if (j == 0)
+                    evIncrease += gSpeciesInfo[defeatedSpecies].evYield_SpDefense;
+                if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_SPDEF)
+                    evIncrease += bonus;
+                break;
+            default:
+                break;
+            }
+
+            if (CheckMonHasHadPokerus(mon))
+                multiplier *= 2;
+
+            if (braceCount > 0)
+                multiplier *= braceCount + 1;
+             
+            evIncrease *= multiplier; // Multiplier split out so that multi item additions happen first and then the multiplier is only applied once
+
+            if (totalEVs + (s16)evIncrease > currentEVCap)
+                evIncrease = ((s16)evIncrease + currentEVCap) - (totalEVs + evIncrease);
+
+            if (evs[i] + (s16)evIncrease > MAX_PER_STAT_EVS)
+            {
+                int val1 = (s16)evIncrease + MAX_PER_STAT_EVS;
+                int val2 = evs[i] + evIncrease;
+                evIncrease = val1 - val2;
+            }
+            evs[i] += evIncrease;
+            totalEVs += evIncrease;
+            SetMonData(mon, MON_DATA_HP_EV + i, &evs[i]);
+        }
     }
 }
 
@@ -5460,45 +5533,17 @@ u16 GetBattleBGM(void)
         case TRAINER_CLASS_MAGMA_ADMIN:
             return MUS_VS_AQUA_MAGMA;
         case TRAINER_CLASS_TEAM_ROCKET:
-            if (gSaveBlock2Ptr->optionsMusic == 0)
-                return MUS_HG_VS_ROCKET;
-            if (gSaveBlock2Ptr->optionsMusic == 1)
-                return MUS_DP_VS_GALACTIC;
-            return MUS_VS_AQUA_MAGMA;
+            return MUS_HG_VS_ROCKET;
         case TRAINER_CLASS_ROCKETA:
-            if (gSaveBlock2Ptr->optionsMusic == 0)
-                return MUS_HG_VS_ROCKET;
-            if (gSaveBlock2Ptr->optionsMusic == 1)
-                return MUS_DP_VS_GALACTIC_BOSS;
-            return MUS_VS_AQUA_MAGMA;
+            return MUS_HG_VS_ROCKET;
         case TRAINER_CLASS_LEADER:
-            if (gSaveBlock2Ptr->optionsMusic == 0)
-                return MUS_HG_VS_GYM_LEADER;
-            if (gSaveBlock2Ptr->optionsMusic == 1)
-                return MUS_DP_VS_GYM_LEADER;
-            return MUS_VS_GYM_LEADER;
+            return MUS_HG_VS_GYM_LEADER;
         case TRAINER_CLASS_CHAMPION:
-            if (gSaveBlock2Ptr->optionsMusic == 0)
-                return MUS_HG_VS_CHAMPION;
-            if (gSaveBlock2Ptr->optionsMusic == 1)
-                return MUS_DP_VS_CHAMPION;
-            return MUS_VS_CHAMPION;
+            return MUS_HG_VS_CHAMPION;
         case TRAINER_CLASS_RIVAL:
-            if (gSaveBlock2Ptr->optionsMusic == 0)
-                return MUS_HG_VS_RIVAL;
-            if (gSaveBlock2Ptr->optionsMusic == 1)
-                return MUS_DP_VS_RIVAL;
-            if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
-                return MUS_VS_RIVAL;
-            if (!StringCompare(GetTrainerNameFromId(TRAINER_BATTLE_PARAM.opponentA), gText_BattleWallyName))
-                return MUS_VS_TRAINER;
-            return MUS_VS_RIVAL;
+            return MUS_HG_VS_RIVAL;
         case TRAINER_CLASS_ELITE_FOUR:
-            if (gSaveBlock2Ptr->optionsMusic == 0)
-                return MUS_HG_VS_GYM_LEADER;
-            if (gSaveBlock2Ptr->optionsMusic == 1)
-                return MUS_DP_VS_ELITE_FOUR;
-            return MUS_VS_ELITE_FOUR;
+            return MUS_HG_VS_GYM_LEADER;
         case TRAINER_CLASS_SALON_MAIDEN:
         case TRAINER_CLASS_DOME_ACE:
         case TRAINER_CLASS_PALACE_MAVEN:
@@ -5508,20 +5553,12 @@ u16 GetBattleBGM(void)
         case TRAINER_CLASS_PYRAMID_KING:
             return MUS_VS_FRONTIER_BRAIN;
         default:
-            if (gSaveBlock2Ptr->optionsMusic == 0)
-                return MUS_HG_VS_TRAINER;
-            if (gSaveBlock2Ptr->optionsMusic == 1)
-                return MUS_DP_VS_TRAINER;
-            return MUS_VS_TRAINER;
+            return MUS_HG_VS_TRAINER;
         }
     }
     else
     {
-        if (gSaveBlock2Ptr->optionsMusic == 0)
-                return MUS_HG_VS_WILD;
-        if (gSaveBlock2Ptr->optionsMusic == 1)
-            return MUS_DP_VS_WILD;
-        return MUS_VS_WILD;
+        return MUS_HG_VS_WILD;
     }
 }
 
@@ -5736,14 +5773,13 @@ static s32 GetWildMonTableIdInAlteringCave(u16 species)
 
 static inline bool32 CanFirstMonBoostHeldItemRarity(void)
 {
-    enum Ability ability;
     if (GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
         return FALSE;
 
-    ability = GetMonAbility(&gPlayerParty[0]);
-    if (ability == ABILITY_COMPOUND_EYES)
+    //ability = GetMonAbility(&gPlayerParty[0]);
+    if (MonHasTrait(&gPlayerParty[0], ABILITY_COMPOUND_EYES))
         return TRUE;
-    else if ((OW_SUPER_LUCK >= GEN_8) && ability == ABILITY_SUPER_LUCK)
+    else if ((OW_SUPER_LUCK >= GEN_8) && MonHasTrait(&gPlayerParty[0], ABILITY_SUPER_LUCK))
         return TRUE;
     return FALSE;
 }
@@ -5755,15 +5791,15 @@ void SetWildMonHeldItem(void)
         u16 rnd;
         u16 species;
         u16 count = (WILD_DOUBLE_BATTLE) ? 2 : 1;
-        u16 i;
+        u16 i, slot;
         bool32 itemHeldBoost = CanFirstMonBoostHeldItemRarity();
         u16 chanceNoItem = itemHeldBoost ? 20 : 45;
         u16 chanceNotRare = itemHeldBoost ? 80 : 95;
 
         for (i = 0; i < count; i++)
         {
-            if (GetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM) != ITEM_NONE)
-                continue; // prevent overwriting previously set item
+            // prevent overwriting previously set item
+            // handled with empty slot checks (Multi)
 
             rnd = Random() % 100;
             species = GetMonData(&gEnemyParty[i], MON_DATA_SPECIES, 0);
@@ -5775,7 +5811,9 @@ void SetWildMonHeldItem(void)
                     // In active Altering Cave, use special item list
                     if (rnd < chanceNotRare)
                         continue;
-                    SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &sAlteringCaveWildMonHeldItems[alteringCaveId].item);
+                    slot = GetMonNextEmptySlot(&gEnemyParty[i], sAlteringCaveWildMonHeldItems[alteringCaveId].item);
+                    if (slot != MAX_MON_ITEMS)
+                        SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM + slot, &sAlteringCaveWildMonHeldItems[alteringCaveId].item);
                 }
                 else
                 {
@@ -5783,9 +5821,17 @@ void SetWildMonHeldItem(void)
                     if (rnd < chanceNoItem)
                         continue;
                     if (rnd < chanceNotRare)
-                        SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gSpeciesInfo[species].itemCommon);
+                    {
+                        slot = GetMonNextEmptySlot(&gEnemyParty[i], gSpeciesInfo[species].itemCommon);
+                        if (slot != MAX_MON_ITEMS)
+                            SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM + slot, &gSpeciesInfo[species].itemCommon);
+                    }
                     else
-                        SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gSpeciesInfo[species].itemRare);
+                    {
+                        slot = GetMonNextEmptySlot(&gEnemyParty[i], gSpeciesInfo[species].itemRare);
+                        if (slot != MAX_MON_ITEMS)
+                            SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM + slot, &gSpeciesInfo[species].itemRare);
+                    }
                 }
             }
             else
@@ -5793,16 +5839,26 @@ void SetWildMonHeldItem(void)
                 if (gSpeciesInfo[species].itemCommon == gSpeciesInfo[species].itemRare && gSpeciesInfo[species].itemCommon != ITEM_NONE)
                 {
                     // Both held items are the same, 100% chance to hold item
-                    SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gSpeciesInfo[species].itemCommon);
+                    slot = GetMonNextEmptySlot(&gEnemyParty[i], gSpeciesInfo[species].itemCommon);
+                    if (slot != MAX_MON_ITEMS)
+                        SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM + slot, &gSpeciesInfo[species].itemCommon);
                 }
                 else
                 {
                     if (rnd < chanceNoItem)
                         continue;
                     if (rnd < chanceNotRare)
-                        SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gSpeciesInfo[species].itemCommon);
+                    {
+                        slot = GetMonNextEmptySlot(&gEnemyParty[i], gSpeciesInfo[species].itemCommon);
+                        if (slot != MAX_MON_ITEMS)
+                            SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM + slot, &gSpeciesInfo[species].itemCommon);
+                    }
                     else
-                        SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gSpeciesInfo[species].itemRare);
+                    {
+                        slot = GetMonNextEmptySlot(&gEnemyParty[i], gSpeciesInfo[species].itemRare);
+                        if (slot != MAX_MON_ITEMS)
+                            SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM + slot, &gSpeciesInfo[species].itemRare);
+                    }
                 }
             }
         }
@@ -6272,6 +6328,7 @@ u8 GetFormIdFromFormSpeciesId(u16 formSpeciesId)
 // Returns the current species if no form change is possible
 u32 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *boxMon, enum FormChanges method)
 {
+    u32 i;
     u32 species = GetBoxMonData(boxMon, MON_DATA_SPECIES, NULL);
     const struct FormChange *formChanges = GetSpeciesFormChanges(species);
 
@@ -6282,12 +6339,20 @@ u32 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *boxMon, enum FormChanges
     {
         .method = method,
         .currentSpecies = species,
-        .heldItem = GetBoxMonData(boxMon, MON_DATA_HELD_ITEM),
-        .ability = GetAbilityBySpecies(species, GetBoxMonData(boxMon, MON_DATA_ABILITY_NUM)),
         .partyItemUsed = gSpecialVar_ItemId,
         .multichoiceSelection = gSpecialVar_Result,
         .status = GetBoxMonData(boxMon, MON_DATA_STATUS),
     };
+
+    for (i = 0; i < MAX_MON_ITEMS; i++)
+        ctx.heldItems[i] = GetBoxMonData(boxMon, MON_DATA_HELD_ITEM + i);
+    for (i = 0; i < MAX_MON_TRAITS; i++)
+    {
+        if (i == 0)
+            ctx.traits[0] = GetAbilityBySpecies(species, GetBoxMonData(boxMon, MON_DATA_ABILITY_NUM));
+        else
+            ctx.traits[i] = gSpeciesInfo[ctx.currentSpecies].innates[i];
+    }
 
     return GetFormChangeTargetSpecies_Internal(ctx);
 }
@@ -6296,6 +6361,26 @@ u32 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *boxMon, enum FormChanges
 u32 GetFormChangeTargetSpecies(struct Pokemon *mon, enum FormChanges method)
 {
     return GetFormChangeTargetSpeciesBoxMon(&mon->box, method);
+}
+
+u32 FormChangeHasItem(struct FormChangeContext ctx, enum Item item)
+{
+    for (u32 i = 0; i < MAX_MON_ITEMS; i++)
+    {
+        if (ctx.heldItems[i] == item)
+            return TRUE;
+    }
+    return FALSE;
+}
+
+u32 FormChangeHasTrait(struct FormChangeContext ctx, enum Ability ability)
+{
+    for (u32 i = 0; i < MAX_MON_TRAITS; i++)
+    {
+        if (ctx.traits[i] == ability)
+            return TRUE;
+    }
+    return FALSE;
 }
 
 u32 GetFormChangeTargetSpecies_Internal(struct FormChangeContext ctx)
@@ -6315,8 +6400,8 @@ u32 GetFormChangeTargetSpecies_Internal(struct FormChangeContext ctx)
         switch (ctx.method)
         {
         case FORM_CHANGE_ITEM_HOLD:
-            if ((ctx.heldItem == formChanges[i].param1 || formChanges[i].param1 == ITEM_NONE)
-                && (ctx.ability == formChanges[i].param2 || formChanges[i].param2 == ABILITY_NONE))
+            if ((FormChangeHasItem(ctx, formChanges[i].param1) || formChanges[i].param1 == ITEM_NONE)
+                && (FormChangeHasTrait(ctx, formChanges[i].param2) || formChanges[i].param2 == ABILITY_NONE))
             {
                 // This is to prevent reverting to base form when giving the item to the corresponding form.
                 // Eg. Giving a Zap Plate to an Electric Arceus without an item (most likely to happen when using givemon)
@@ -6324,7 +6409,7 @@ u32 GetFormChangeTargetSpecies_Internal(struct FormChangeContext ctx)
                 for (u32 j = 0; formChanges[j].method != FORM_CHANGE_TERMINATOR; j++)
                 {
                     if (ctx.currentSpecies == formChanges[j].targetSpecies
-                        && formChanges[j].param1 == ctx.heldItem
+                        && FormChangeHasItem(ctx, formChanges[j].param1)
                         && formChanges[j].param1 != ITEM_NONE)
                     {
                         currentItemForm = TRUE;
@@ -6371,7 +6456,7 @@ u32 GetFormChangeTargetSpecies_Internal(struct FormChangeContext ctx)
             break;
         case FORM_CHANGE_BEGIN_BATTLE:
         case FORM_CHANGE_END_BATTLE:
-            if (ctx.heldItem == formChanges[i].param1 || formChanges[i].param1 == ITEM_NONE)
+            if (FormChangeHasItem(ctx, formChanges[i].param1) || formChanges[i].param1 == ITEM_NONE)
                 targetSpecies = formChanges[i].targetSpecies;
             break;
         case FORM_CHANGE_END_BATTLE_ENVIRONMENT:
@@ -6405,7 +6490,7 @@ u32 GetFormChangeTargetSpecies_Internal(struct FormChangeContext ctx)
         case FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM:
         case FORM_CHANGE_BATTLE_PRIMAL_REVERSION:
         case FORM_CHANGE_BATTLE_ULTRA_BURST:
-            if (ctx.heldItem == formChanges[i].param1)
+            if (FormChangeHasItem(ctx, formChanges[i].param1))
                 targetSpecies = formChanges[i].targetSpecies;
             break;
         case FORM_CHANGE_BATTLE_MEGA_EVOLUTION_MOVE:
@@ -6416,11 +6501,11 @@ u32 GetFormChangeTargetSpecies_Internal(struct FormChangeContext ctx)
                 targetSpecies = formChanges[i].targetSpecies;
             break;
         case FORM_CHANGE_BATTLE_SWITCH_OUT:
-            if (formChanges[i].param1 == ctx.ability || formChanges[i].param1 == ABILITY_NONE)
+            if (FormChangeHasTrait(ctx, formChanges[i].param1) || formChanges[i].param1 == ABILITY_NONE)
                 targetSpecies = formChanges[i].targetSpecies;
             break;
         case FORM_CHANGE_BATTLE_HP_PERCENT_DURING_MOVE:
-            if (ctx.ability == formChanges[i].param1
+            if (FormChangeHasTrait(ctx, formChanges[i].param1)
                 && gCurrentMove == formChanges[i].param4)
             {
                 // We multiply by 100 to make sure that integer division doesn't mess with the health check.
@@ -6440,7 +6525,7 @@ u32 GetFormChangeTargetSpecies_Internal(struct FormChangeContext ctx)
             break;
         case FORM_CHANGE_BATTLE_HP_PERCENT_TURN_END:
         case FORM_CHANGE_BATTLE_HP_PERCENT_SEND_OUT:
-            if (ctx.ability == formChanges[i].param1
+            if (FormChangeHasTrait(ctx, formChanges[i].param1)
                 && ctx.level >= formChanges[i].param4)
             {
                 // We multiply by 100 to make sure that integer division doesn't mess with the health check.
@@ -6466,7 +6551,7 @@ u32 GetFormChangeTargetSpecies_Internal(struct FormChangeContext ctx)
             // Check if there is a required ability and if the battler's ability does not match it
             // or is suppressed. If so, revert to the no weather form.
             if (formChanges[i].param2
-                && ctx.ability != formChanges[i].param2
+                && !FormChangeHasTrait(ctx, formChanges[i].param2)
                 && formChanges[i].param1 == B_WEATHER_NONE)
             {
                 targetSpecies = formChanges[i].targetSpecies;
@@ -6485,14 +6570,14 @@ u32 GetFormChangeTargetSpecies_Internal(struct FormChangeContext ctx)
             }
             break;
         case FORM_CHANGE_BATTLE_HIT_BY_MOVE_CATEGORY:
-            if (ctx.ability == formChanges[i].param1
+            if (FormChangeHasTrait(ctx, formChanges[i].param1)
                 && formChanges[i].param2 == GetBattleMoveCategory(gCurrentMove))
                 targetSpecies = formChanges[i].targetSpecies;
             break;
         case FORM_CHANGE_BATTLE_SWITCH_IN:
         case FORM_CHANGE_BATTLE_TURN_END:
         case FORM_CHANGE_BATTLE_HIT_BY_CONFUSION_SELF_DMG:
-            if (formChanges[i].param1 == ctx.ability)
+            if (FormChangeHasTrait(ctx, formChanges[i].param1))
                 targetSpecies = formChanges[i].targetSpecies;
             break;
         case FORM_CHANGE_BATTLE_TERASTALLIZATION:
@@ -6502,12 +6587,12 @@ u32 GetFormChangeTargetSpecies_Internal(struct FormChangeContext ctx)
         case FORM_CHANGE_BATTLE_BEFORE_MOVE:
         case FORM_CHANGE_BATTLE_AFTER_MOVE:
             if (formChanges[i].param1 == gCurrentMove
-                && (formChanges[i].param2 == ABILITY_NONE || formChanges[i].param2 == ctx.ability))
+                && (formChanges[i].param2 == ABILITY_NONE || FormChangeHasTrait(ctx, formChanges[i].param2)))
                 targetSpecies = formChanges[i].targetSpecies;
             break;
         case FORM_CHANGE_BATTLE_BEFORE_MOVE_CATEGORY:
             if (formChanges[i].param1 == GetBattleMoveCategory(gCurrentMove)
-                && (formChanges[i].param2 == ABILITY_NONE || formChanges[i].param2 == ctx.ability))
+                && (formChanges[i].param2 == ABILITY_NONE || FormChangeHasTrait(ctx, formChanges[i].param2)))
                 targetSpecies = formChanges[i].targetSpecies;
             break;
         case FORM_CHANGE_OVERWORLD_WEATHER:
@@ -6669,7 +6754,9 @@ bool32 SpeciesHasGenderDifferences(u16 species)
      || gSpeciesInfo[species].backPicFemale != NULL
      || gSpeciesInfo[species].paletteFemale != NULL
      || gSpeciesInfo[species].shinyPaletteFemale != NULL
-     || gSpeciesInfo[species].iconSpriteFemale != NULL)
+     || gSpeciesInfo[species].iconSpriteFemale != NULL
+     || gSpeciesInfo[species].iconPaletteFemale != NULL
+     || gSpeciesInfo[species].shinyIconPaletteFemale != NULL)
         return TRUE;
 #endif
 
@@ -7612,4 +7699,144 @@ void ChangePokemonNicknameWithCallback(void (*callback)(void))
     GetBoxMonData(boxMon, MON_DATA_NICKNAME, gStringVar3);
     GetBoxMonData(boxMon, MON_DATA_NICKNAME, gStringVar2);
     DoNamingScreen(NAMING_SCREEN_NICKNAME, gStringVar2, GetBoxMonData(boxMon, MON_DATA_SPECIES), GetBoxMonGender(boxMon), GetBoxMonData(boxMon, MON_DATA_PERSONALITY), callback);
+}
+//Traits Block
+
+u8 GetInnateUnlockLevel(u32 innateNum)
+{
+    static const u8 sInnateUnlockLevels[MAX_MON_INNATES_INTERNAL] =
+    {
+        INNATE_1_UNLOCK_LEVEL,
+        INNATE_2_UNLOCK_LEVEL,
+        INNATE_3_UNLOCK_LEVEL,
+    };
+
+    if (innateNum == 0 || innateNum > MAX_MON_INNATES_INTERNAL)
+        return 0;
+
+    return sInnateUnlockLevels[innateNum - 1];
+}
+
+bool32 IsInnateUnlockedByLevel(u32 innateNum, u32 level)
+{
+    u32 unlockLevel = GetInnateUnlockLevel(innateNum);
+
+    return unlockLevel == 0 || level >= unlockLevel;
+}
+
+//Returns the slot the Innate is found in, assuming the Ability is already slot 1. Returns 0 if not found.
+u32 SpeciesHasInnate(u32 species, enum Ability ability)
+{
+    u32 innateNum = 0;
+
+    for (u32 i = 0; i < MAX_MON_INNATES; i++)
+    {
+        if (gSpeciesInfo[species].innates[i] == ability)
+            {
+                innateNum = i + 2;
+                //DebugPrintf("INNATE FOUND: %d", innateNum - 1);
+            }
+    }
+
+        return innateNum;
+}
+
+u32 SpeciesHasInnateAtLevel(u32 species, enum Ability ability, u32 level)
+{
+    u32 innateNum = SpeciesHasInnate(species, ability);
+
+    if (innateNum == 0)
+        return 0;
+
+    return IsInnateUnlockedByLevel(innateNum - 1, level) ? innateNum : 0;
+}
+
+bool32 BoxMonHasInnate(struct BoxPokemon *boxmon,  enum Ability ability)
+{
+    u32 species = GetBoxMonData(boxmon, MON_DATA_SPECIES, NULL);
+    u32 level = GetBoxMonData(boxmon, MON_DATA_LEVEL, NULL);
+
+    return SpeciesHasInnateAtLevel(species, ability, level);
+}
+
+bool32 MonHasTrait(struct Pokemon *mon,  enum Ability ability)
+{
+    u32 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+    u32 level = GetMonData(mon, MON_DATA_LEVEL, NULL);
+
+    return (GetMonAbility(mon) == ability || SpeciesHasInnateAtLevel(species, ability, level));
+} 
+
+enum Ability GetSpeciesInnate(u32 species, u32 traitNum)
+{
+    if (MAX_MON_INNATES > 0)
+            return gSpeciesInfo[species].innates[traitNum - 1];
+    else
+        return 0;
+}
+
+//Multi Item Block
+u32 MonHasItem(struct Pokemon *mon, enum Item item)
+{
+    for(u32 i = 0; i < MAX_MON_ITEMS; i++)
+        if(item == GetMonData(mon, MON_DATA_HELD_ITEM + i))
+            return TRUE;
+
+    return FALSE;
+}
+u32 MonHasItemHoldEffect(struct Pokemon *mon, enum HoldEffect holdEffect)
+{
+    enum Item item;
+    enum HoldEffect itemHoldEffect;
+
+    for(u32 i = 0; i < MAX_MON_ITEMS; i++)
+    {
+        item = GetMonData(mon, MON_DATA_HELD_ITEM + i);
+        itemHoldEffect = GetItemHoldEffect(item);
+        if(holdEffect == itemHoldEffect)
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
+u32 BoxMonHasItem(struct BoxPokemon *mon, enum Item item)
+{
+    u32 helditem;
+
+    for(u32 i = 0; i < MAX_MON_ITEMS; i++)
+    {
+        helditem = GetBoxMonData(mon, MON_DATA_HELD_ITEM + i);
+        if(item == helditem)
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
+u32 BoxMonHasItemHoldEffect(struct BoxPokemon *mon, enum HoldEffect holdEffect)
+{
+    u32 helditem;
+
+    for(u32 i = 0; i < MAX_MON_ITEMS; i++)
+    {
+        helditem = GetBoxMonData(mon, MON_DATA_HELD_ITEM + i);
+        if(GetItemHoldEffect(helditem) == holdEffect)
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
+u32 SwitchInCandidateHeldItemWithEffect(struct BattlePokemon switchinCandidate, enum HoldEffect holdEffect)
+{
+    enum Item item = ITEM_NONE;
+
+    for (u32 i = 0; i < MAX_MON_ITEMS; i++)
+    {
+        item = switchinCandidate.items[i];
+        if(GetItemHoldEffect(item) == holdEffect)
+            return item;
+    }
+    return ITEM_NONE;
 }

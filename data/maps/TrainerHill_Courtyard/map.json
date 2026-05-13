@@ -403,14 +403,14 @@
       "x": 12,
       "y": 10,
       "elevation": 0,
-      "dest_map": "MAP_TRAINER_HILL_ENTRANCE",
+      "dest_map": "MAP_BATTLE_FRONTIER_BATTLE_TOWER_LOBBY",
       "dest_warp_id": "0"
     },
     {
       "x": 27,
       "y": 19,
       "elevation": 0,
-      "dest_map": "MAP_FALLARBOR_TOWN_BATTLE_TENT_LOBBY",
+      "dest_map": "MAP_BATTLE_FRONTIER_BATTLE_FACTORY_LOBBY",
       "dest_warp_id": "0"
     },
     {

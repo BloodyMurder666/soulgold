@@ -41,15 +41,15 @@ GoldenrodDeptStore_Text_2FYoungster:
     .string "to keep.$"
 
 GoldenrodDeptStore_Text_2FCooltrainerF:
-    .string "I got my ABRA at the GAME CORNER.\p"
+    .string "I got my Abra at the Game Corner.\p"
     .string "Now it's my best partner.$"
 
 GoldenrodDeptStore_Text_2FGentleman:
-    .string "This DEPT.STORE makes me realize\n"
-    .string "that GOLDENROD is a big city.\p"
+    .string "This Dept.Store makes me realize\n"
+    .string "that Goldenrod is a big city.\p"
     .string "The selection here is unmatched\n"
     .string "anywhere else.$"
 
 GoldenrodDeptStore_Text_2FDirectory:
     .string "Your Travel Companion\p"
-    .string "2F TRAINER'S MARKET$"
+    .string "2F Trainer'S Market$"

@@ -2135,3 +2135,59 @@ Common_Text_ReceivedMon:
 	.include "data/maps/HiddenGrotto_Route47/scripts.inc"
 
 	.include "data/maps/HiddenGrotto_Unused/scripts.inc"
+
+	.include "data/maps/IcePath_Depths/scripts.inc"
+
+	.include "data/maps/IcePath_Depths2/scripts.inc"
+
+	.include "data/maps/KitakamiBorder/scripts.inc"
+
+	.include "data/maps/CherrygroveUnderwater/scripts.inc"
+
+	.include "data/maps/Kitakami/scripts.inc"
+
+	.include "data/maps/KitakamiMountain/scripts.inc"
+
+	.include "data/maps/Gate_KitakamiBorder/scripts.inc"
+
+	.include "data/maps/Kitakami_Houses/scripts.inc"
+
+	.include "data/maps/KitakamiMountain1F/scripts.inc"
+
+	.include "data/maps/KitakamiMountainEnclave/scripts.inc"
+
+	.include "data/maps/KitakamiWell_B1F/scripts.inc"
+
+	.include "data/maps/OneIsland/scripts.inc"
+	.include "data/maps/OneIsland_KindleRoad_EmberSpa_Frlg/scripts.inc"
+	.include "data/maps/OneIsland_KindleRoad_Frlg/scripts.inc"
+	.include "data/maps/OneIsland_TreasureBeach_Frlg/scripts.inc"
+	.include "data/maps/OneIsland_PokemonCenter_1F_Frlg/scripts.inc"
+	.include "data/maps/OneIsland_PokemonCenter_2F_Frlg/scripts.inc"
+	.include "data/maps/OneIsland_House1_Frlg/scripts.inc"
+	.include "data/maps/OneIsland_House2_Frlg/scripts.inc"
+	.include "data/maps/OneIsland_Harbor_Frlg/scripts.inc"
+
+	.include "data/maps/MtEmber_RubyPath_B4F_Frlg/scripts.inc"
+	.include "data/maps/MtEmber_Exterior_Frlg/scripts.inc"
+	.include "data/maps/MtEmber_SummitPath_1F_Frlg/scripts.inc"
+	.include "data/maps/MtEmber_SummitPath_2F_Frlg/scripts.inc"
+	.include "data/maps/MtEmber_SummitPath_3F_Frlg/scripts.inc"
+	.include "data/maps/MtEmber_Summit_Frlg/scripts.inc"
+	.include "data/maps/MtEmber_RubyPath_B5F_Frlg/scripts.inc"
+	.include "data/maps/MtEmber_RubyPath_1F_Frlg/scripts.inc"
+	.include "data/maps/MtEmber_RubyPath_B1F_Frlg/scripts.inc"
+	.include "data/maps/MtEmber_RubyPath_B2F_Frlg/scripts.inc"
+	.include "data/maps/MtEmber_RubyPath_B3F_Frlg/scripts.inc"
+	.include "data/maps/MtEmber_RubyPath_B1F_Stairs_Frlg/scripts.inc"
+	.include "data/maps/MtEmber_RubyPath_B2F_Stairs_Frlg/scripts.inc"
+
+	.include "data/maps/VajraDesert/scripts.inc"
+
+	.include "data/maps/AcuityCavern/scripts.inc"
+
+	.include "data/maps/ValorCavern/scripts.inc"
+
+	.include "data/maps/VerityCavern/scripts.inc"
+
+	.include "data/maps/NewBarkTown_House3/scripts.inc"

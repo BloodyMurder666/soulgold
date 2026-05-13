@@ -575,7 +575,7 @@ GoldenrodCity_GameCorner_Text_PrizeVendorNoMoreRoom:
 # 288 "data/maps/GoldenrodCity_GameCorner/scripts.pory"
 GoldenrodCity_GameCorner_Text_PrizeVendorQuit:
 # 289 "data/maps/GoldenrodCity_GameCorner/scripts.pory"
-    .string "OK. Please save your coins and come\n"
+    .string "Ok. Please save your coins and come\n"
 # 290 "data/maps/GoldenrodCity_GameCorner/scripts.pory"
     .string "again!$"
 # 291 "data/maps/GoldenrodCity_GameCorner/scripts.pory"
@@ -583,7 +583,7 @@ GoldenrodCity_GameCorner_Text_PrizeVendorQuit:
 # 292 "data/maps/GoldenrodCity_GameCorner/scripts.pory"
 GoldenrodCity_GameCorner_Text_PrizeVendorNoCoinCase:
 # 293 "data/maps/GoldenrodCity_GameCorner/scripts.pory"
-    .string "Oh? You don't have a COIN CASE.$"
+    .string "Oh? You don't have a Coin Case.$"
 # 294 "data/maps/GoldenrodCity_GameCorner/scripts.pory"
 
 # 295 "data/maps/GoldenrodCity_GameCorner/scripts.pory"
@@ -609,7 +609,7 @@ GoldenrodCity_GameCorner_Text_PokefanM1:
 # 305 "data/maps/GoldenrodCity_GameCorner/scripts.pory"
     .string "It's more of a challenge than the\n"
 # 306 "data/maps/GoldenrodCity_GameCorner/scripts.pory"
-    .string "ones in CELADON.$"
+    .string "ones in Celadon.$"
 # 307 "data/maps/GoldenrodCity_GameCorner/scripts.pory"
 
 # 308 "data/maps/GoldenrodCity_GameCorner/scripts.pory"
@@ -641,7 +641,7 @@ GoldenrodCity_GameCorner_Text_CooltrainerF:
 # 321 "data/maps/GoldenrodCity_GameCorner/scripts.pory"
 GoldenrodCity_GameCorner_Text_Gentleman:
 # 322 "data/maps/GoldenrodCity_GameCorner/scripts.pory"
-    .string "I taught BLIZZARD to my POKéMON.\p"
+    .string "I taught Blizzard to my Pokémon.\p"
 # 323 "data/maps/GoldenrodCity_GameCorner/scripts.pory"
     .string "It was hard to get enough coins for\n"
 # 324 "data/maps/GoldenrodCity_GameCorner/scripts.pory"
@@ -657,7 +657,7 @@ GoldenrodCity_GameCorner_Text_PokefanM2:
 # 329 "data/maps/GoldenrodCity_GameCorner/scripts.pory"
     .string "I got so furious, I tossed out my\n"
 # 330 "data/maps/GoldenrodCity_GameCorner/scripts.pory"
-    .string "COIN CASE in the UNDERGROUND.$"
+    .string "Coin Case in the Underground.$"
 # 331 "data/maps/GoldenrodCity_GameCorner/scripts.pory"
 
 # 332 "data/maps/GoldenrodCity_GameCorner/scripts.pory"

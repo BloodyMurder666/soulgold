@@ -419,3 +419,90 @@ DOUBLE_BATTLE_TEST("Instruct message references the correct battlers")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, playerRight);
     }
 }
+
+#if MAX_MON_TRAITS > 1
+DOUBLE_BATTLE_TEST("Instruct fails if target is picked up by Sky Drop even if one of the battlers has No Guard (Traits)")
+{
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_SKY_DROP) == EFFECT_SKY_DROP);
+        PLAYER(SPECIES_WOBBUFFET) { Speed(3); Moves(MOVE_INSTRUCT, MOVE_CELEBRATE); }
+        PLAYER(SPECIES_MACHAMP) { Speed(2); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_NO_GUARD); Moves(MOVE_SCRATCH, MOVE_CELEBRATE); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(4); Moves(MOVE_SKY_DROP, MOVE_CELEBRATE); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(1); }
+    } WHEN {
+        TURN { MOVE(opponentLeft, MOVE_CELEBRATE); MOVE(playerRight, MOVE_SCRATCH, target: opponentLeft); }
+        TURN { MOVE(opponentLeft, MOVE_SKY_DROP, target: playerRight); MOVE(playerLeft, MOVE_INSTRUCT, target: playerRight); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, playerRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SKY_DROP, opponentLeft);
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerLeft);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Instruct fails if target doesn't know the last move it used (Traits)")
+{
+    GIVEN {
+        ASSUME(IsDanceMove(MOVE_DRAGON_DANCE));
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ORICORIO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DANCER); Moves(MOVE_SCRATCH, MOVE_POUND, MOVE_SCRATCH, MOVE_CELEBRATE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponentLeft, MOVE_DRAGON_DANCE); MOVE(playerLeft, MOVE_INSTRUCT, target: playerRight); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_DANCE, opponentLeft);
+        ABILITY_POPUP(playerRight, ABILITY_DANCER);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_DANCE, playerRight);
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerLeft);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_DANCE, playerRight);
+        }
+    }
+}
+
+DOUBLE_BATTLE_TEST("Instructed move will be redirected and absorbed by Lightning Rod if it turns into an Electric Type move (Traits)")
+{
+    struct BattlePokemon *moveTarget = NULL;
+    PARAMETRIZE { moveTarget = opponentLeft; }
+    PARAMETRIZE { moveTarget = opponentRight; }
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_PIKACHU) { Ability(ABILITY_STATIC); Innates(ABILITY_LIGHTNING_ROD); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN {
+            MOVE(playerLeft, MOVE_SCRATCH, target: moveTarget);
+            MOVE(opponentLeft, MOVE_PLASMA_FISTS, target: playerLeft);
+            MOVE(playerRight, MOVE_INSTRUCT, target: playerLeft);
+            MOVE(opponentRight, MOVE_CELEBRATE);
+        }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, playerLeft);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_PLASMA_FISTS, opponentLeft);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerRight);
+        ABILITY_POPUP(opponentLeft, ABILITY_LIGHTNING_ROD);
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, playerLeft);
+    }
+}
+#endif
+
+#if MAX_MON_ITEMS > 1
+DOUBLE_BATTLE_TEST("Instruct-called status moves don't fail if holding Assault Vest (Items)")
+{
+    GIVEN {
+        ASSUME(gItemsInfo[ITEM_ASSAULT_VEST].holdEffect == HOLD_EFFECT_ASSAULT_VEST);
+        ASSUME(GetMoveEffect(MOVE_TRICK) == EFFECT_TRICK);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET) { Moves(MOVE_SCRATCH, MOVE_POUND, MOVE_SCRATCH, MOVE_TRICK); }
+        OPPONENT(SPECIES_WOBBUFFET) { Items(ITEM_PECHA_BERRY, ITEM_ASSAULT_VEST); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(playerRight, MOVE_TRICK, target: opponentLeft); MOVE(playerLeft, MOVE_INSTRUCT, target: playerRight); MOVE(opponentLeft, MOVE_SCRATCH, target: playerLeft); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TRICK, playerRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerLeft);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TRICK, playerRight);
+    }
+}
+#endif

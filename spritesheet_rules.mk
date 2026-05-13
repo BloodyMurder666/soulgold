@@ -1613,10 +1613,10 @@ $(POKEMONGFXDIR)/gligar/overworldf.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 $(POKEMONGFXDIR)/steelix/overworld.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -mwidth 8 -mheight 8
+	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 $(POKEMONGFXDIR)/steelix/overworldf.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -mwidth 8 -mheight 8
+	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 $(POKEMONGFXDIR)/steelix/mega/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 8 -mheight 8
@@ -4961,6 +4961,9 @@ $(BATINTGFXDIR)/healthbox_safari.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 8 -mheight 8
 
 $(BATINTGFXDIR)/healthbox_singles_opponent.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 8 -mheight 4
+
+$(BATINTGFXDIR)/healthbox_singles_opponent_shiny.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 8 -mheight 4
 
 $(BATINTGFXDIR)/healthbox_singles_player.4bpp: %.4bpp: %.png

@@ -28,6 +28,16 @@
 
 #define SKIP_OBJECT_EVENT_LOAD  1
 
+#define OPTIONS_OVERWORLD_SPEED_1X                          0
+#define OPTIONS_OVERWORLD_SPEED_2X                          1
+#define OPTIONS_OVERWORLD_SPEED_4X                          2
+#define OPTIONS_OVERWORLD_SPEED_8X                          3
+#define OPTIONS_OVERWORLD_SPEED_1X_EXTRA_ITERATIONS         0
+#define OPTIONS_OVERWORLD_SPEED_2X_EXTRA_ITERATIONS         1
+#define OPTIONS_OVERWORLD_SPEED_4X_EXTRA_ITERATIONS         3
+#define OPTIONS_OVERWORLD_SPEED_8X_EXTRA_ITERATIONS         7
+u8 OverworldSpeedup_AdditionalIterations(u16 speed, bool32 overworld);
+
 // trigger a time-of-day blend once
 #define HOURS_BLEND_ONCE 25
 // don't update gTimeBlend
@@ -136,8 +146,8 @@ enum MapType GetLastUsedWarpMapType(void);
 bool8 IsMapTypeOutdoors(enum MapType mapType);
 bool8 Overworld_MapTypeAllowsTeleportAndFly(enum MapType mapType);
 bool8 IsMapTypeIndoors(enum MapType mapType);
-mapsec_u8_t GetSavedWarpRegionMapSectionId(void);
-mapsec_u8_t GetCurrentRegionMapSectionId(void);
+mapsec_u16_t GetSavedWarpRegionMapSectionId(void);
+mapsec_u16_t GetCurrentRegionMapSectionId(void);
 enum MapBattleScene GetCurrentMapBattleScene(void);
 void CleanupOverworldWindowsAndTilemaps(void);
 bool32 IsOverworldLinkActive(void);

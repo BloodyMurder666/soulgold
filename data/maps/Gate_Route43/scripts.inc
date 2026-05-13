@@ -91,7 +91,7 @@ Gate_Route43_Rocket_Text_KickOut:
 Gate_Route43_Rocket_Text_MakingABundle:
     .string "He-he-he. We're making a bundle.\p"
     .string "Everyone wants to see what's going\n"
-    .string "on up at LAKE OF RAGE.$"
+    .string "on up at Lake Of Rage.$"
 
 Route43Gate_Text_OfficerFoundTM:
     .string "I got chased from my post by these\n"

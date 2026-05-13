@@ -15,9 +15,10 @@ u32 GetCurrentLevelCap(void)
         {FLAG_BADGE04_GET, 34},
         {FLAG_BADGE05_GET, 45},
         {FLAG_BADGE06_GET, 45},
-        {FLAG_BADGE07_GET, 45},
-        {FLAG_BADGE08_GET, 50},
-        {FLAG_IS_CHAMPION, 60},
+        {FLAG_BADGE07_GET, 46},
+        {FLAG_BADGE08_GET, 58},
+        {FLAG_LEGENDARY_STORY_CAP, 61},
+        {FLAG_IS_CHAMPION, 70},
     };
 
     u32 i;
@@ -38,6 +39,21 @@ u32 GetCurrentLevelCap(void)
     return MAX_LEVEL;
 }
 
+u32 GetCurrentExpCapType(void)
+{
+    switch (gSaveBlock2Ptr->optionsLevelCaps)
+    {
+    case EXP_CAP_NONE:
+        return EXP_CAP_NONE;
+    case EXP_CAP_SOFT:
+        return EXP_CAP_SOFT;
+    case EXP_CAP_HARD:
+        return EXP_CAP_HARD;
+    default:
+        return B_EXP_CAP_TYPE;
+    }
+}
+
 u32 GetSoftLevelCapExpValue(u32 level, u32 expValue)
 {
     static const u32 sExpScalingDown[5] = { 4, 8, 16, 32, 64 };
@@ -45,8 +61,9 @@ u32 GetSoftLevelCapExpValue(u32 level, u32 expValue)
 
     u32 levelDifference;
     u32 currentLevelCap = GetCurrentLevelCap();
+    u32 expCapType = GetCurrentExpCapType();
 
-    if (B_EXP_CAP_TYPE == EXP_CAP_NONE)
+    if (expCapType == EXP_CAP_NONE)
         return expValue;
 
     if (level < currentLevelCap)
@@ -64,11 +81,11 @@ u32 GetSoftLevelCapExpValue(u32 level, u32 expValue)
             return expValue;
         }
     }
-    else if (B_EXP_CAP_TYPE == EXP_CAP_HARD)
+    else if (expCapType == EXP_CAP_HARD)
     {
         return 0;
     }
-    else if (B_EXP_CAP_TYPE == EXP_CAP_SOFT)
+    else if (expCapType == EXP_CAP_SOFT)
     {
         levelDifference = level - currentLevelCap;
         if (levelDifference > ARRAY_COUNT(sExpScalingDown) - 1)

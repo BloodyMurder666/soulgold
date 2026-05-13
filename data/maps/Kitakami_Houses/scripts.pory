@@ -1,0 +1,156 @@
+mapscripts Kitakami_Houses_MapScripts {}
+
+script KitakamiHouses_1_Oldman {
+    lock
+    faceplayer
+    if (flag(FLAG_CANDY_KITAKAMI)) {
+        msgbox("Come back tomorrow when I have
+                prepared another batch!")
+        release
+        end
+    }
+    msgbox("Ho ho ho, I'm the best candy baker in
+            Johto! Here, have some from my daily
+            batch!")
+    random(3)
+    switch (var(VAR_RESULT)) {
+        case 0:
+        giveitem(ITEM_EXP_CANDY_M, 3)
+        case 1:
+        giveitem(ITEM_EXP_CANDY_L, 2)
+        giveitem(ITEM_EXP_CANDY_M, 1)
+        case 2:
+        giveitem(ITEM_EXP_CANDY_XL, 1)
+        giveitem(ITEM_EXP_CANDY_L, 1)
+    }
+    setflag(FLAG_CANDY_KITAKAMI)
+    msgbox("Come back tomorrow when I have
+            prepared another batch!")
+    release
+    end
+
+}
+
+script KitakamiHouses_3_Sinistea {
+    lock
+    faceplayer
+    playmoncry(SPECIES_SINISTEA, CRY_MODE_NORMAL)
+    msgbox("SIIII!")
+    waitmoncry
+    release
+    end
+}
+
+script KitakamiHouses_2_Steven {
+    lock
+    faceplayer
+    if (flag(FLAG_MET_STEVEN)) {
+        if (flag(FLAG_IS_CHAMPION)) {
+            // Champion and received Beldum
+            if (!flag(FLAG_TEMP_10)) {
+                playse(SE_PIN)
+                applymovement(LOCALID_KITAKAMI_STEVEN, Common_Movement_ExclamationMark)
+                applymovement(LOCALID_KITAKAMI_STEVEN, moves(face_player))
+                waitmovement(0)
+                waitse
+                msgbox("That face of determination... I assume
+                        you have become the Champion of Johto?
+                        ...
+                        Impressive, I was right about your
+                        potential as a trainer. 
+                        I'd be more than happy to battle you
+                        now, if you are alright with that.")
+                setflag(FLAG_TEMP_10)
+            }
+            msgbox("Are you ready to face me?", MSGBOX_YESNO)
+            if (var(VAR_RESULT) == YES) {
+                //Do battle
+                msgbox("Splendid, I'll hold nothing back
+                        and I expect you to do the same!")
+                trainerbattle_no_intro(TRAINER_STEVEN, "Outstanding, you truly have earned
+                                                        the title of a Champion.")
+                msgbox("It cannot be overstated how happy
+                        this battle made me. You are a
+                        trainer of exceptional skill.
+                        
+                        I want you to have this as a gift
+                        of our meeting. I excavated it from
+                        nearby mountain. You might find some
+                        use for it near Route 46.")
+                giveitem(ITEM_JADE_ORB)
+                waitmessage
+                msgbox("I think I'll start heading out to 
+                        explore new places now. I hope our 
+                        paths cross again some day, {PLAYER}.")
+                waitmessage
+                closemessage
+                setflag(FLAG_BEAT_STEVEN_KITAKAMI)
+                moveobjecttocoords(LOCALID_KITAKAMI_STEVEN, 28, 8, DIR_SOUTH)
+                waitmovement(LOCALID_KITAKAMI_STEVEN)
+                delay(15)
+                playse(SE_EXIT)
+                
+                removeobject(LOCALID_KITAKAMI_STEVEN)
+                release
+                end
+            } else {
+                // Decline Battle
+                release
+                end
+            }
+        } else {
+            // Not yet champion but received Beldum
+            msgbox("If you end up becoming a Champion of
+                    the region, you should come see me.
+                    I would love to battle you with my
+                    full strength.")
+        }
+        release
+        end
+    }
+    // First time meeting
+    msgbox("Oh, hello. Who might you be?
+            ...
+            {PLAYER}? Nice to meet you.
+            My name is Steven, I hail from the Hoenn
+            region in search of rare stones.")
+    msgbox("You look like a trainer, are you on the
+            quest to collect badges in Johto?
+            Hmm.. Perhaps... Yes, you may have the
+            potential for what it takes.
+            Would you be willing to hear my request?
+            I would like you to have this Beldum.
+            It's a rare Pokémon from Hoenn. 
+            Take care of it and come see me again
+            if you become the Champion. I would
+            like to battle you then.")
+    setvar(VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_BELDUM)
+	bufferspeciesname(STR_VAR_1, SPECIES_BELDUM)
+    givemon(SPECIES_BELDUM, 15, ITEM_METAGROSSITE, ITEM_LUXURY_BALL)
+    call(Common_EventScript_GiftMon)
+    setflag(FLAG_MET_STEVEN)
+    msgbox("I have high expectations for you.")
+    waitmessage
+    release
+    end
+}
+
+script PorygonPC {
+    lockall
+	playmoncry(SPECIES_PORYGON_Z, CRY_MODE_NORMAL)
+	msgbox("{PLAYER} booted up the Porygon 
+            remote PC.")
+	goto(EventScript_PCMainMenu)
+}
+
+script KitakamiHouses_3_Lady {
+    msgbox("Life is peaceful here with my family,
+            I couldn't ask for much else.", MSGBOX_NPC)
+}
+
+script KitakamiHouses_3_Man {
+    msgbox("This town is protected by Ogerpon, who
+            sometimes visits this town. Personally
+            I have never seen it, but kids say
+            they have.", MSGBOX_NPC)
+}

@@ -172,6 +172,13 @@
       "elevation": 0,
       "dest_map": "MAP_ICE_PATH_B3F",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 16,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_ICE_PATH_DEPTHS",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],

@@ -52,7 +52,7 @@ PokemonLeague_BrunosRoom_EventScript_BrunoDefeated::
 	end
 
 PokemonLeague_BrunosRoom_Text_RematchBefore:
-    .string "BRUNO: Welcome back, young\n"
+    .string "Bruno: Welcome back, young\n"
     .string "warrior.\p"
     .string "Through rigorous training, we have\n"
     .string "grown stronger.\p"
@@ -65,7 +65,7 @@ PokemonLeague_BrunosRoom_Text_RematchBefore:
     .string "Hoo hah!$"
 
 PokemonLeague_BrunosRoom_Text_Before:
-    .string "I am BRUNO of the ELITE FOUR.\p"
+    .string "I am Bruno of the Elite Four.\p"
     .string "I always train to the extreme be-\n"
     .string "cause I believe in our potential.\p"
     .string "That is how we became strong.\p"

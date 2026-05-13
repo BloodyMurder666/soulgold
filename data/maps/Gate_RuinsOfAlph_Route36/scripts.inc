@@ -26,12 +26,12 @@ Gate_RuinsOfAlph_Route36_EventScript_Youngster::
 	end
 
 Gate_RuinsOfAlph_Route36_Text_Officer:
-	.string "RUINS OF ALPH\p"
+	.string "Ruins Of Alph\p"
 	.string "A Look-and-Touch Tourist Site\p"
 	.string "Try the sliding stone panels!$"
 
 Gate_RuinsOfAlph_Route36_Text_PokefanM:
-	.string "You're studying the RUINS?\p"
+	.string "You're studying the Ruins?\p"
 	.string "I see a scientist in the making.$"
 
 Gate_RuinsOfAlph_Route36_Text_Youngster:

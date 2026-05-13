@@ -1,10 +1,13 @@
 #include "global.h"
 #include "option_menu.h"
 #include "bg.h"
+#include "difficulty.h"
 #include "gpu_regs.h"
 #include "international_string_util.h"
+#include "level_scaling.h"
 #include "main.h"
 #include "menu.h"
+#include "overworld.h"
 #include "palette.h"
 #include "scanline_effect.h"
 #include "sprite.h"
@@ -16,6 +19,7 @@
 #include "window.h"
 #include "gba/m4a_internal.h"
 #include "constants/rgb.h"
+#include "constants/vars.h"
 #include "event_data.h"
 
 EWRAM_DATA static u8 sCurrPage = 0;
@@ -27,12 +31,16 @@ EWRAM_DATA static u8 sCurrPage = 0;
 #define tSound data[4]
 #define tButtonMode data[5]
 #define tWindowFrameType data[6]
-#define tMusic data[7]
+#define tLevelCaps data[7]
 
-#define tFont data[8]
-#define tEXPShare data[9]
-#define tFollowers data[10]
-#define tAutorun data[11]
+#define tFollowers data[8]
+#define tAutorun data[9]
+#define tTrainerLevelScaling data[10]
+#define tWildLevelScaling data[11]
+#define tDifficulty data[12]
+#define tOverworldSpeedup data[13]
+#define tBattleSpeed data[14]
+#define tFastIntroNoSlide data[15]
 
 enum
 {
@@ -40,9 +48,9 @@ enum
     MENUITEM_BATTLESCENE,
     MENUITEM_BATTLESTYLE,
     MENUITEM_SOUND,
-    MENUITEM_FONT,
+    MENUITEM_BUTTONMODE,
     MENUITEM_FRAMETYPE,
-    MENUITEM_MUSIC,
+    MENUITEM_LEVELCAPS,
     MENUITEM_CANCEL,
     MENUITEM_COUNT,
 };
@@ -50,11 +58,21 @@ enum
 // Menu items Pg2
 enum
 {
-    MENUITEM_EXP_SHARE,
     MENUITEM_FOLLOWERS,
     MENUITEM_AUTORUN,
-    MENUITEM_CANCELPG2,
+    MENUITEM_OVERWORLD_SPEEDUP,
+    MENUITEM_BATTLE_SPEED,
+    MENUITEM_TRAINER_LEVEL_SCALING,
+    MENUITEM_WILD_LEVEL_SCALING,
+    MENUITEM_DIFFICULTY,
     MENUITEM_COUNT_PG2,
+};
+
+// Menu items Pg3
+enum
+{
+    MENUITEM_INTRO_SLIDE,
+    MENUITEM_COUNT_PG3,
 };
 
 enum
@@ -67,24 +85,32 @@ enum
 #define YPOS_BATTLESCENE  (MENUITEM_BATTLESCENE * 16)
 #define YPOS_BATTLESTYLE  (MENUITEM_BATTLESTYLE * 16)
 #define YPOS_SOUND        (MENUITEM_SOUND * 16)
-#define YPOS_BUTTONMODE   (0 * 16)
+#define YPOS_BUTTONMODE   (MENUITEM_BUTTONMODE * 16)
 #define YPOS_FRAMETYPE    (MENUITEM_FRAMETYPE * 16)
-#define YPOS_FONT    (MENUITEM_FONT * 16)
-#define YPOS_MUSIC        (MENUITEM_MUSIC * 16)
+#define YPOS_LEVELCAPS        (MENUITEM_LEVELCAPS * 16)
 
 
-#define YPOS_EXP_SHARE    (MENUITEM_EXP_SHARE * 16)
 #define YPOS_FOLLOWERS  (MENUITEM_FOLLOWERS * 16)
 #define YPOS_AUTORUN (MENUITEM_AUTORUN * 16) 
+#define YPOS_OVERWORLD_SPEEDUP (MENUITEM_OVERWORLD_SPEEDUP * 16)
+#define YPOS_BATTLE_SPEED (MENUITEM_BATTLE_SPEED * 16)
+#define YPOS_TRAINER_LEVEL_SCALING (MENUITEM_TRAINER_LEVEL_SCALING * 16)
+#define YPOS_WILD_LEVEL_SCALING (MENUITEM_WILD_LEVEL_SCALING * 16)
+#define YPOS_DIFFICULTY (MENUITEM_DIFFICULTY * 16)
 
-#define PAGE_COUNT  2
+#define YPOS_INTRO_SLIDE (MENUITEM_INTRO_SLIDE * 16)
+
+#define PAGE_COUNT  3
 
 static void Task_OptionMenuFadeIn(u8 taskId);
 static void Task_OptionMenuProcessInput(u8 taskId);
 static void Task_OptionMenuFadeIn_Pg2(u8 taskId);
 static void Task_OptionMenuProcessInput_Pg2(u8 taskId);
+static void Task_OptionMenuFadeIn_Pg3(u8 taskId);
+static void Task_OptionMenuProcessInput_Pg3(u8 taskId);
 static void Task_OptionMenuSave(u8 taskId);
 static void Task_OptionMenuFadeOut(u8 taskId);
+static void SaveCurrentSettings(u8 taskId);
 static void HighlightOptionMenuItem(u8 selection);
 static u8 TextSpeed_ProcessInput(u8 selection);
 static void TextSpeed_DrawChoices(u8 selection);
@@ -99,16 +125,23 @@ static void FrameType_DrawChoices(u8 selection);
 static u8 ButtonMode_ProcessInput(u8 selection);
 static void ButtonMode_DrawChoices(u8 selection);
 
-static u8 Font_ProcessInput(u8 selection);
-static void Font_DrawChoices(u8 selection);
-static u8 EXPShare_ProcessInput(u8 selection);
-static void EXPShare_DrawChoices(u8 selection);
 static u8 Followers_ProcessInput(u8 selection);
 static void Followers_DrawChoices(u8 selection);
-static u8 Music_ProcessInput(u8 selection);
-static void Music_DrawChoices(u8 selection);
+static u8 LevelCaps_ProcessInput(u8 selection);
+static void LevelCaps_DrawChoices(u8 selection);
+static u8 LevelScaling_ProcessInput(u8 selection);
+static void TrainerLevelScaling_DrawChoices(u8 selection);
+static void WildLevelScaling_DrawChoices(u8 selection);
+static u8 Difficulty_ProcessInput(u8 selection);
+static void Difficulty_DrawChoices(u8 selection);
 static u8   Autorun_ProcessInput(u8 selection);
 static void Autorun_DrawChoices(u8 selection);
+static u8 OverworldSpeedup_ProcessInput(u8 selection);
+static void OverworldSpeedup_DrawChoices(u8 selection);
+static u8 BattleSpeed_ProcessInput(u8 selection);
+static void BattleSpeed_DrawChoices(u8 selection);
+static u8 IntroSlide_ProcessInput(u8 selection);
+static void IntroSlide_DrawChoices(u8 selection);
 
 static void DrawTextOption(void);
 
@@ -119,22 +152,40 @@ static void DrawBgWindowFrames(void);
 EWRAM_DATA static bool8 sArrowPressed = FALSE;
 
 static const u8 gText_Option[]             = _("OPTION");
-static const u8 gText_TextSpeedSlow[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}SLOW");
-static const u8 gText_TextSpeedMid[]       = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}MID");
-static const u8 gText_TextSpeedFast[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}FAST");
-static const u8 gText_BattleSceneOn[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}ON");
-static const u8 gText_BattleSceneOff[]     = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}OFF");
-static const u8 gText_BattleStyleShift[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}SHIFT");
-static const u8 gText_BattleStyleSet[]     = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}SET");
-static const u8 gText_SoundMono[]          = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}MONO");
-static const u8 gText_SoundStereo[]        = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}STEREO");
-static const u8 gText_FrameType[]          = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}TYPE");
+static const u8 gText_TextSpeedSlow[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Slow");
+static const u8 gText_TextSpeedMid[]       = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Mid");
+static const u8 gText_TextSpeedFast[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Fast");
+static const u8 gText_BattleSceneOn[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}On");
+static const u8 gText_BattleSceneOff[]     = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Off");
+static const u8 gText_BattleStyleShift[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Shift");
+static const u8 gText_BattleStyleSet[]     = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Set");
+static const u8 gText_SoundMono[]          = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Mono");
+static const u8 gText_SoundStereo[]        = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Stereo");
+static const u8 gText_FrameType[]          = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Type");
 static const u8 gText_FrameTypeNumber[]    = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}");
-static const u8 gText_ButtonTypeNormal[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}NORMAL");
+static const u8 gText_ButtonTypeNormal[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Normal");
 static const u8 gText_ButtonTypeLR[]       = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}LR");
 static const u8 gText_ButtonTypeLEqualsA[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}L=A");
-static const u8 gText_AutorunOn[]            = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}ON");
-static const u8 gText_AutorunOff[]          = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}OFF");
+static const u8 gText_AutorunOn[]            = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}On");
+static const u8 gText_AutorunOff[]          = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Off");
+
+static const u8 gText_NoCaps[]             = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}None");
+static const u8 gText_SoftCaps[]             = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Soft");
+static const u8 gText_HardCaps[]             = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Hard");
+static const u8 gText_ScalingOff[]         = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}OFF");
+static const u8 gText_ScalingOn[]          = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}ON");
+static const u8 gText_DifficultyNormal[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Normal");
+static const u8 gText_DifficultyHard[]     = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Hard");
+static const u8 gText_OverworldSpeed1x[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}1x");
+static const u8 gText_OverworldSpeed2x[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}2x");
+static const u8 gText_OverworldSpeed4x[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}4x");
+static const u8 gText_OverworldSpeed8x[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}8x");
+static const u8 gText_BattleSpeed1x[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}1x");
+static const u8 gText_BattleSpeed2x[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}2x");
+static const u8 gText_BattleSpeed3x[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}3x");
+static const u8 gText_BattleSpeed4x[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}4x");
+static const u8 gText_IntroSlideOn[]       = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}On");
+static const u8 gText_IntroSlideOff[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Off");
 
 static const u16 sOptionMenuText_Pal[] = INCBIN_U16("graphics/interface/option_menu_text.gbapal");
 // note: this is only used in the Japanese release
@@ -142,22 +193,30 @@ static const u8 sEqualSignGfx[] = INCBIN_U8("graphics/interface/option_menu_equa
 
 static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
 {
-    [MENUITEM_TEXTSPEED]   = COMPOUND_STRING("TEXT SPEED"),
-    [MENUITEM_BATTLESCENE] = COMPOUND_STRING("BATTLE SCENE"),
-    [MENUITEM_BATTLESTYLE] = COMPOUND_STRING("BATTLE STYLE"),
-    [MENUITEM_SOUND]       = COMPOUND_STRING("SOUND"),
-    [MENUITEM_FONT]        = COMPOUND_STRING("FONT"),
-    [MENUITEM_FRAMETYPE]   = COMPOUND_STRING("FRAME"),
-    [MENUITEM_MUSIC]       = COMPOUND_STRING("MUSIC"),
-    [MENUITEM_CANCEL]      = COMPOUND_STRING("CANCEL"),
+    [MENUITEM_TEXTSPEED]   = COMPOUND_STRING("Text speed"),
+    [MENUITEM_BATTLESCENE] = COMPOUND_STRING("Battle scene"),
+    [MENUITEM_BATTLESTYLE] = COMPOUND_STRING("Battle style"),
+    [MENUITEM_SOUND]       = COMPOUND_STRING("Sound"),
+    [MENUITEM_BUTTONMODE]  = COMPOUND_STRING("Button mode"),
+    [MENUITEM_FRAMETYPE]   = COMPOUND_STRING("Frame"),
+    [MENUITEM_LEVELCAPS]       = COMPOUND_STRING("Level caps"),
+    [MENUITEM_CANCEL]      = COMPOUND_STRING("Cancel"),
 };
 
 static const u8 *const sOptionMenuItemsNames_Pg2[MENUITEM_COUNT_PG2] =
 {
-    [MENUITEM_EXP_SHARE]        = gText_EXPShare,
     [MENUITEM_FOLLOWERS]        = gText_Followers,
-    [MENUITEM_AUTORUN]         = COMPOUND_STRING("AUTORUN"),
-    [MENUITEM_CANCELPG2]      = COMPOUND_STRING("CANCEL"),
+    [MENUITEM_AUTORUN]         = COMPOUND_STRING("Autorun"),
+    [MENUITEM_OVERWORLD_SPEEDUP] = COMPOUND_STRING("OW speed"),
+    [MENUITEM_BATTLE_SPEED] = COMPOUND_STRING("Battle speed"),
+    [MENUITEM_TRAINER_LEVEL_SCALING] = COMPOUND_STRING("Trainer scaling"),
+    [MENUITEM_WILD_LEVEL_SCALING] = COMPOUND_STRING("Wild scaling"),
+    [MENUITEM_DIFFICULTY] = COMPOUND_STRING("Difficulty"),
+};
+
+static const u8 *const sOptionMenuItemsNames_Pg3[MENUITEM_COUNT_PG3] =
+{
+    [MENUITEM_INTRO_SLIDE] = COMPOUND_STRING("Battle intro"),
 };
 
 static const struct WindowTemplate sOptionMenuWinTemplates[] =
@@ -229,13 +288,17 @@ static void ReadAllCurrentSettings(u8 taskId)
         gTasks[taskId].tBattleSceneOff = gSaveBlock2Ptr->optionsBattleSceneOff;
         gTasks[taskId].tBattleStyle = gSaveBlock2Ptr->optionsBattleStyle;
         gTasks[taskId].tSound = gSaveBlock2Ptr->optionsSound;
-        gTasks[taskId].tFont = gSaveBlock2Ptr->optionsFont;
+        gTasks[taskId].tButtonMode = gSaveBlock2Ptr->optionsButtonMode;
         gTasks[taskId].tWindowFrameType = gSaveBlock2Ptr->optionsWindowFrameType;
-        gTasks[taskId].tFont = gSaveBlock2Ptr->optionsFont;
-        gTasks[taskId].tEXPShare = gSaveBlock2Ptr->optionsEXPShare;
         gTasks[taskId].tFollowers = gSaveBlock2Ptr->optionsFollowers;
-        gTasks[taskId].tMusic = gSaveBlock2Ptr->optionsMusic;
+        gTasks[taskId].tLevelCaps = gSaveBlock2Ptr->optionsLevelCaps;
         gTasks[taskId].tAutorun = gSaveBlock2Ptr->optionsAutorun;
+        gTasks[taskId].tTrainerLevelScaling = gSaveBlock2Ptr->optionsTrainerLevelScaling;
+        gTasks[taskId].tWildLevelScaling = gSaveBlock2Ptr->optionsWildLevelScaling;
+        gTasks[taskId].tDifficulty = GetCurrentDifficultyLevel() == DIFFICULTY_HARD;
+        gTasks[taskId].tOverworldSpeedup = VarGet(VAR_OVERWORLD_SPEEDUP);
+        gTasks[taskId].tBattleSpeed = VarGet(VAR_BATTLE_SPEED);
+        gTasks[taskId].tFastIntroNoSlide = gSaveBlock2Ptr->optionsFastIntroNoSlide;
 }
 
 static void DrawOptionsPg1(u8 taskId)
@@ -245,9 +308,9 @@ static void DrawOptionsPg1(u8 taskId)
     BattleScene_DrawChoices(gTasks[taskId].tBattleSceneOff);
     BattleStyle_DrawChoices(gTasks[taskId].tBattleStyle);
     Sound_DrawChoices(gTasks[taskId].tSound);
-    Font_DrawChoices(gTasks[taskId].tFont);
+    ButtonMode_DrawChoices(gTasks[taskId].tButtonMode);
     FrameType_DrawChoices(gTasks[taskId].tWindowFrameType);
-    Music_DrawChoices(gTasks[taskId].tMusic);
+    LevelCaps_DrawChoices(gTasks[taskId].tLevelCaps);
     HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
     CopyWindowToVram(WIN_OPTIONS, COPYWIN_FULL);
 }
@@ -255,9 +318,21 @@ static void DrawOptionsPg1(u8 taskId)
 static void DrawOptionsPg2(u8 taskId)
 {
     ReadAllCurrentSettings(taskId);
-    EXPShare_DrawChoices(gTasks[taskId].tEXPShare);
     Followers_DrawChoices(gTasks[taskId].tFollowers);
     Autorun_DrawChoices(gTasks[taskId].tAutorun);
+    OverworldSpeedup_DrawChoices(gTasks[taskId].tOverworldSpeedup);
+    BattleSpeed_DrawChoices(gTasks[taskId].tBattleSpeed);
+    TrainerLevelScaling_DrawChoices(gTasks[taskId].tTrainerLevelScaling);
+    WildLevelScaling_DrawChoices(gTasks[taskId].tWildLevelScaling);
+    Difficulty_DrawChoices(gTasks[taskId].tDifficulty);
+    HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
+    CopyWindowToVram(WIN_OPTIONS, COPYWIN_FULL);
+}
+
+static void DrawOptionsPg3(u8 taskId)
+{
+    ReadAllCurrentSettings(taskId);
+    IntroSlide_DrawChoices(gTasks[taskId].tFastIntroNoSlide);
     HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
     CopyWindowToVram(WIN_OPTIONS, COPYWIN_FULL);
 }
@@ -348,7 +423,11 @@ void CB2_InitOptionMenu(void)
         case 1:
             taskId = CreateTask(Task_OptionMenuFadeIn_Pg2, 0);
             DrawOptionsPg2(taskId);
-            break;            
+            break;
+        case 2:
+            taskId = CreateTask(Task_OptionMenuFadeIn_Pg3, 0);
+            DrawOptionsPg3(taskId);
+            break;
         }
     }
     case 11:
@@ -393,6 +472,10 @@ static void Task_ChangePage(u8 taskId)
         DrawOptionsPg2(taskId);
         gTasks[taskId].func = Task_OptionMenuFadeIn_Pg2;
         break;
+    case 2:
+        DrawOptionsPg3(taskId);
+        gTasks[taskId].func = Task_OptionMenuFadeIn_Pg3;
+        break;
     }
 }
 
@@ -406,7 +489,7 @@ static void Task_OptionMenuProcessInput(u8 taskId)
 {
     if (JOY_NEW(L_BUTTON) || JOY_NEW(R_BUTTON))
    {
-        gTasks[taskId].func = Task_OptionMenuSave; 
+        SaveCurrentSettings(taskId);
         FillWindowPixelBuffer(WIN_OPTIONS, PIXEL_FILL(1));
         ClearStdWindowAndFrame(WIN_OPTIONS, FALSE);
         sCurrPage = Process_ChangePage(sCurrPage);
@@ -425,12 +508,12 @@ static void Task_OptionMenuProcessInput(u8 taskId)
         if (gTasks[taskId].tMenuSelection > 0)
             gTasks[taskId].tMenuSelection--;
         else
-            gTasks[taskId].tMenuSelection = MENUITEM_MUSIC;
+            gTasks[taskId].tMenuSelection = MENUITEM_LEVELCAPS;
         HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
     }
     else if (JOY_NEW(DPAD_DOWN))
     {
-        if (gTasks[taskId].tMenuSelection < MENUITEM_MUSIC)
+        if (gTasks[taskId].tMenuSelection < MENUITEM_LEVELCAPS)
             gTasks[taskId].tMenuSelection++;
         else
             gTasks[taskId].tMenuSelection = 0;
@@ -470,12 +553,12 @@ static void Task_OptionMenuProcessInput(u8 taskId)
             if (previousOption != gTasks[taskId].tSound)
                 Sound_DrawChoices(gTasks[taskId].tSound);
             break;
-        case MENUITEM_FONT:
-            previousOption = gTasks[taskId].tFont;
-            gTasks[taskId].tFont = Font_ProcessInput(gTasks[taskId].tFont);
+        case MENUITEM_BUTTONMODE:
+            previousOption = gTasks[taskId].tButtonMode;
+            gTasks[taskId].tButtonMode = ButtonMode_ProcessInput(gTasks[taskId].tButtonMode);
 
-            if (previousOption != gTasks[taskId].tFont)
-                Font_DrawChoices(gTasks[taskId].tFont);
+            if (previousOption != gTasks[taskId].tButtonMode)
+                ButtonMode_DrawChoices(gTasks[taskId].tButtonMode);
             break;
         case MENUITEM_FRAMETYPE:
             previousOption = gTasks[taskId].tWindowFrameType;
@@ -484,12 +567,12 @@ static void Task_OptionMenuProcessInput(u8 taskId)
             if (previousOption != gTasks[taskId].tWindowFrameType)
                 FrameType_DrawChoices(gTasks[taskId].tWindowFrameType);
             break;
-        case MENUITEM_MUSIC:
-            previousOption = gTasks[taskId].tMusic;
-            gTasks[taskId].tMusic = Music_ProcessInput(gTasks[taskId].tMusic);
+        case MENUITEM_LEVELCAPS:
+            previousOption = gTasks[taskId].tLevelCaps;
+            gTasks[taskId].tLevelCaps = LevelCaps_ProcessInput(gTasks[taskId].tLevelCaps);
 
-            if (previousOption != gTasks[taskId].tMusic)
-                Music_DrawChoices(gTasks[taskId].tMusic);
+            if (previousOption != gTasks[taskId].tLevelCaps)
+                LevelCaps_DrawChoices(gTasks[taskId].tLevelCaps);
             break;
         default:
             return;
@@ -512,7 +595,7 @@ static void Task_OptionMenuProcessInput_Pg2(u8 taskId)
 {
     if (JOY_NEW(L_BUTTON) || JOY_NEW(R_BUTTON))
     {
-        gTasks[taskId].func = Task_OptionMenuSave;
+        SaveCurrentSettings(taskId);
         FillWindowPixelBuffer(WIN_OPTIONS, PIXEL_FILL(1));
         ClearStdWindowAndFrame(WIN_OPTIONS, FALSE);
         sCurrPage = Process_ChangePage(sCurrPage);
@@ -531,12 +614,12 @@ static void Task_OptionMenuProcessInput_Pg2(u8 taskId)
         if (gTasks[taskId].tMenuSelection > 0)
             gTasks[taskId].tMenuSelection--;
         else
-            gTasks[taskId].tMenuSelection = MENUITEM_CANCELPG2;
+            gTasks[taskId].tMenuSelection = MENUITEM_DIFFICULTY;
         HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
     }
     else if (JOY_NEW(DPAD_DOWN))
     {
-        if (gTasks[taskId].tMenuSelection < MENUITEM_CANCELPG2)
+        if (gTasks[taskId].tMenuSelection < MENUITEM_DIFFICULTY)
             gTasks[taskId].tMenuSelection++;
         else
             gTasks[taskId].tMenuSelection = 0;
@@ -548,13 +631,6 @@ static void Task_OptionMenuProcessInput_Pg2(u8 taskId)
 
         switch (gTasks[taskId].tMenuSelection)
         {
-        case MENUITEM_EXP_SHARE:
-            previousOption = gTasks[taskId].tEXPShare;
-            gTasks[taskId].tEXPShare = EXPShare_ProcessInput(gTasks[taskId].tEXPShare);
-
-            if (previousOption != gTasks[taskId].tEXPShare)
-                EXPShare_DrawChoices(gTasks[taskId].tEXPShare);
-            break;
         case MENUITEM_FOLLOWERS:
             previousOption = gTasks[taskId].tFollowers;
             gTasks[taskId].tFollowers = Followers_ProcessInput(gTasks[taskId].tFollowers);
@@ -568,6 +644,105 @@ static void Task_OptionMenuProcessInput_Pg2(u8 taskId)
 
             if (previousOption != gTasks[taskId].tAutorun)
                 Autorun_DrawChoices(gTasks[taskId].tAutorun);
+            break;
+        case MENUITEM_OVERWORLD_SPEEDUP:
+            previousOption = gTasks[taskId].tOverworldSpeedup;
+            gTasks[taskId].tOverworldSpeedup = OverworldSpeedup_ProcessInput(gTasks[taskId].tOverworldSpeedup);
+
+            if (previousOption != gTasks[taskId].tOverworldSpeedup)
+                OverworldSpeedup_DrawChoices(gTasks[taskId].tOverworldSpeedup);
+            break;
+        case MENUITEM_BATTLE_SPEED:
+            previousOption = gTasks[taskId].tBattleSpeed;
+            gTasks[taskId].tBattleSpeed = BattleSpeed_ProcessInput(gTasks[taskId].tBattleSpeed);
+
+            if (previousOption != gTasks[taskId].tBattleSpeed)
+                BattleSpeed_DrawChoices(gTasks[taskId].tBattleSpeed);
+            break;
+        case MENUITEM_TRAINER_LEVEL_SCALING:
+            previousOption = gTasks[taskId].tTrainerLevelScaling;
+            gTasks[taskId].tTrainerLevelScaling = LevelScaling_ProcessInput(gTasks[taskId].tTrainerLevelScaling);
+
+            if (previousOption != gTasks[taskId].tTrainerLevelScaling)
+                TrainerLevelScaling_DrawChoices(gTasks[taskId].tTrainerLevelScaling);
+            break;
+        case MENUITEM_WILD_LEVEL_SCALING:
+            previousOption = gTasks[taskId].tWildLevelScaling;
+            gTasks[taskId].tWildLevelScaling = LevelScaling_ProcessInput(gTasks[taskId].tWildLevelScaling);
+
+            if (previousOption != gTasks[taskId].tWildLevelScaling)
+                WildLevelScaling_DrawChoices(gTasks[taskId].tWildLevelScaling);
+            break;
+        case MENUITEM_DIFFICULTY:
+            previousOption = gTasks[taskId].tDifficulty;
+            gTasks[taskId].tDifficulty = Difficulty_ProcessInput(gTasks[taskId].tDifficulty);
+
+            if (previousOption != gTasks[taskId].tDifficulty)
+                Difficulty_DrawChoices(gTasks[taskId].tDifficulty);
+            break;
+        default:
+            return;
+        }
+        if (sArrowPressed)
+        {
+            sArrowPressed = FALSE;
+            CopyWindowToVram(WIN_OPTIONS, COPYWIN_GFX);
+        }
+    }
+}
+
+static void Task_OptionMenuFadeIn_Pg3(u8 taskId)
+{
+    if (!gPaletteFade.active)
+        gTasks[taskId].func = Task_OptionMenuProcessInput_Pg3;
+}
+
+static void Task_OptionMenuProcessInput_Pg3(u8 taskId)
+{
+    if (JOY_NEW(L_BUTTON) || JOY_NEW(R_BUTTON))
+    {
+        SaveCurrentSettings(taskId);
+        FillWindowPixelBuffer(WIN_OPTIONS, PIXEL_FILL(1));
+        ClearStdWindowAndFrame(WIN_OPTIONS, FALSE);
+        sCurrPage = Process_ChangePage(sCurrPage);
+        gTasks[taskId].func = Task_ChangePage;
+    }
+    else if (JOY_NEW(A_BUTTON))
+    {
+        gTasks[taskId].func = Task_OptionMenuSave;
+    }
+    else if (JOY_NEW(B_BUTTON))
+    {
+        gTasks[taskId].func = Task_OptionMenuSave;
+    }
+    else if (JOY_NEW(DPAD_UP))
+    {
+        if (gTasks[taskId].tMenuSelection > 0)
+            gTasks[taskId].tMenuSelection--;
+        else
+            gTasks[taskId].tMenuSelection = MENUITEM_INTRO_SLIDE;
+        HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
+    }
+    else if (JOY_NEW(DPAD_DOWN))
+    {
+        if (gTasks[taskId].tMenuSelection < MENUITEM_INTRO_SLIDE)
+            gTasks[taskId].tMenuSelection++;
+        else
+            gTasks[taskId].tMenuSelection = 0;
+        HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
+    }
+    else
+    {
+        u8 previousOption;
+
+        switch (gTasks[taskId].tMenuSelection)
+        {
+        case MENUITEM_INTRO_SLIDE:
+            previousOption = gTasks[taskId].tFastIntroNoSlide;
+            gTasks[taskId].tFastIntroNoSlide = IntroSlide_ProcessInput(gTasks[taskId].tFastIntroNoSlide);
+
+            if (previousOption != gTasks[taskId].tFastIntroNoSlide)
+                IntroSlide_DrawChoices(gTasks[taskId].tFastIntroNoSlide);
             break;
         default:
             return;
@@ -604,7 +779,7 @@ AddTextPrinterParameterized(WIN_HEADER, FONT_NORMAL, gText_PageNav, GetStringRig
 CopyWindowToVram(WIN_HEADER, COPYWIN_FULL);
 }
 
-static void Task_OptionMenuSave(u8 taskId)
+static void SaveCurrentSettings(u8 taskId)
 {
     gSaveBlock2Ptr->optionsTextSpeed = gTasks[taskId].tTextSpeed;
     gSaveBlock2Ptr->optionsBattleSceneOff = gTasks[taskId].tBattleSceneOff;
@@ -612,12 +787,21 @@ static void Task_OptionMenuSave(u8 taskId)
     gSaveBlock2Ptr->optionsSound = gTasks[taskId].tSound;
     gSaveBlock2Ptr->optionsButtonMode = gTasks[taskId].tButtonMode;
     gSaveBlock2Ptr->optionsWindowFrameType = gTasks[taskId].tWindowFrameType;
-    gSaveBlock2Ptr->optionsFont = gTasks[taskId].tFont;
-    gSaveBlock2Ptr->optionsEXPShare = gTasks[taskId].tEXPShare;
     gSaveBlock2Ptr->optionsFollowers = gTasks[taskId].tFollowers;
-    gSaveBlock2Ptr->optionsMusic = gTasks[taskId].tMusic;
+    gSaveBlock2Ptr->optionsLevelCaps = gTasks[taskId].tLevelCaps;
     gSaveBlock2Ptr->optionsAutorun = gTasks[taskId].tAutorun;
+    gSaveBlock2Ptr->optionsTrainerLevelScaling = gTasks[taskId].tTrainerLevelScaling;
+    gSaveBlock2Ptr->optionsWildLevelScaling = gTasks[taskId].tWildLevelScaling;
+    SetCurrentDifficultyLevel(gTasks[taskId].tDifficulty ? DIFFICULTY_HARD : DIFFICULTY_NORMAL);
+    VarSet(VAR_OVERWORLD_SPEEDUP, gTasks[taskId].tOverworldSpeedup);
+    gSaveBlock2Ptr->optionsBattleSpeed = gTasks[taskId].tBattleSpeed;
+    VarSet(VAR_BATTLE_SPEED, gTasks[taskId].tBattleSpeed);
+    gSaveBlock2Ptr->optionsFastIntroNoSlide = gTasks[taskId].tFastIntroNoSlide;
+}
 
+static void Task_OptionMenuSave(u8 taskId)
+{
+    SaveCurrentSettings(taskId);
     BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
     gTasks[taskId].func = Task_OptionMenuFadeOut;
 }
@@ -877,52 +1061,6 @@ static void ButtonMode_DrawChoices(u8 selection)
 }
 
 
-static u8 Font_ProcessInput(u8 selection)
-{
-    if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
-    {
-        selection ^= 1;
-        sArrowPressed = TRUE;
-    }
-
-    return selection;
-}
-
-
-static void Font_DrawChoices(u8 selection)
-{
-    u8 styles[2];
-
-    styles[0] = 0;
-    styles[1] = 0;
-    styles[selection] = 1;
-    
-    DrawOptionMenuChoice(gText_OptionFontEmerald, 104, YPOS_FONT, styles[0]);
-    DrawOptionMenuChoice(gText_OptionFontFireRed, GetStringRightAlignXOffset(FONT_NORMAL, gText_OptionFontFireRed, 198), YPOS_FONT, styles[1]);
-}
-static u8 EXPShare_ProcessInput(u8 selection)
-{
-    if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
-    {
-        selection ^= 1;
-        sArrowPressed = TRUE;
-    }
-
-    return selection;
-}
-
-
-static void EXPShare_DrawChoices(u8 selection)
-{
-    u8 styles[2];
-
-    styles[0] = 0;
-    styles[1] = 0;
-    styles[selection] = 1;
-    
-    DrawOptionMenuChoice(gText_BattleSceneOn, 104, YPOS_EXP_SHARE, styles[0]);
-    DrawOptionMenuChoice(gText_BattleSceneOff, GetStringRightAlignXOffset(FONT_NORMAL, gText_BattleSceneOff, 198), YPOS_EXP_SHARE, styles[1]);
-}
 static u8 Followers_ProcessInput(u8 selection)
 {
     if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
@@ -968,7 +1106,126 @@ static void Autorun_DrawChoices(u8 selection)
     DrawOptionMenuChoice(gText_AutorunOff, GetStringRightAlignXOffset(FONT_NORMAL, gText_AutorunOff, 198), YPOS_AUTORUN, styles[1]);
 }
 
-static u8 Music_ProcessInput(u8 selection)
+static u8 OverworldSpeedup_ProcessInput(u8 selection)
+{
+    if (selection > OPTIONS_OVERWORLD_SPEED_8X)
+        selection = OPTIONS_OVERWORLD_SPEED_1X;
+
+    if (JOY_NEW(DPAD_RIGHT))
+    {
+        if (selection < OPTIONS_OVERWORLD_SPEED_8X)
+            selection++;
+        else
+            selection = OPTIONS_OVERWORLD_SPEED_1X;
+
+        sArrowPressed = TRUE;
+    }
+    if (JOY_NEW(DPAD_LEFT))
+    {
+        if (selection > OPTIONS_OVERWORLD_SPEED_1X)
+            selection--;
+        else
+            selection = OPTIONS_OVERWORLD_SPEED_8X;
+
+        sArrowPressed = TRUE;
+    }
+    return selection;
+}
+
+static void OverworldSpeedup_DrawChoices(u8 selection)
+{
+    u8 styles[4];
+
+    if (selection > OPTIONS_OVERWORLD_SPEED_8X)
+        selection = OPTIONS_OVERWORLD_SPEED_1X;
+
+    styles[0] = 0;
+    styles[1] = 0;
+    styles[2] = 0;
+    styles[3] = 0;
+    styles[selection] = 1;
+
+    DrawOptionMenuChoice(gText_OverworldSpeed1x, 88, YPOS_OVERWORLD_SPEEDUP, styles[OPTIONS_OVERWORLD_SPEED_1X]);
+    DrawOptionMenuChoice(gText_OverworldSpeed2x, 122, YPOS_OVERWORLD_SPEEDUP, styles[OPTIONS_OVERWORLD_SPEED_2X]);
+    DrawOptionMenuChoice(gText_OverworldSpeed4x, 156, YPOS_OVERWORLD_SPEEDUP, styles[OPTIONS_OVERWORLD_SPEED_4X]);
+    DrawOptionMenuChoice(gText_OverworldSpeed8x, GetStringRightAlignXOffset(FONT_NORMAL, gText_OverworldSpeed8x, 198), YPOS_OVERWORLD_SPEEDUP, styles[OPTIONS_OVERWORLD_SPEED_8X]);
+}
+
+static u8 BattleSpeed_ProcessInput(u8 selection)
+{
+    if (selection > OPTIONS_BATTLE_SCENE_4X)
+        selection = OPTIONS_BATTLE_SCENE_1X;
+
+    if (JOY_NEW(DPAD_RIGHT))
+    {
+        if (selection < OPTIONS_BATTLE_SCENE_4X)
+            selection++;
+        else
+            selection = OPTIONS_BATTLE_SCENE_1X;
+
+        sArrowPressed = TRUE;
+    }
+    if (JOY_NEW(DPAD_LEFT))
+    {
+        if (selection > OPTIONS_BATTLE_SCENE_1X)
+            selection--;
+        else
+            selection = OPTIONS_BATTLE_SCENE_4X;
+
+        sArrowPressed = TRUE;
+    }
+    return selection;
+}
+
+static void BattleSpeed_DrawChoices(u8 selection)
+{
+    u8 styles[4];
+
+    if (selection > OPTIONS_BATTLE_SCENE_4X)
+        selection = OPTIONS_BATTLE_SCENE_1X;
+
+    styles[0] = 0;
+    styles[1] = 0;
+    styles[2] = 0;
+    styles[3] = 0;
+    styles[selection] = 1;
+
+    DrawOptionMenuChoice(gText_BattleSpeed1x, 88, YPOS_BATTLE_SPEED, styles[OPTIONS_BATTLE_SCENE_1X]);
+    DrawOptionMenuChoice(gText_BattleSpeed2x, 122, YPOS_BATTLE_SPEED, styles[OPTIONS_BATTLE_SCENE_2X]);
+    DrawOptionMenuChoice(gText_BattleSpeed3x, 156, YPOS_BATTLE_SPEED, styles[OPTIONS_BATTLE_SCENE_3X]);
+    DrawOptionMenuChoice(gText_BattleSpeed4x, GetStringRightAlignXOffset(FONT_NORMAL, gText_BattleSpeed4x, 198), YPOS_BATTLE_SPEED, styles[OPTIONS_BATTLE_SCENE_4X]);
+}
+
+static u8 IntroSlide_ProcessInput(u8 selection)
+{
+    if (selection > TRUE)
+        selection = FALSE;
+
+    if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
+    {
+        selection ^= 1;
+        sArrowPressed = TRUE;
+    }
+
+    return selection;
+}
+
+static void IntroSlide_DrawChoices(u8 selection)
+{
+    u8 styles[2];
+
+    if (selection > TRUE)
+        selection = FALSE;
+
+    styles[0] = 0;
+    styles[1] = 0;
+    styles[selection] = 1;
+
+    DrawOptionMenuChoice(gText_IntroSlideOn, 104, YPOS_INTRO_SLIDE, styles[FALSE]);
+    DrawOptionMenuChoice(gText_IntroSlideOff, GetStringRightAlignXOffset(FONT_NORMAL, gText_IntroSlideOff, 198), YPOS_INTRO_SLIDE, styles[TRUE]);
+}
+
+static u8 LevelCaps_ProcessInput(u8 selection)
 {
     if (JOY_NEW(DPAD_RIGHT))
     {
@@ -991,9 +1248,9 @@ static u8 Music_ProcessInput(u8 selection)
     return selection;
 }
 
-static void Music_DrawChoices(u8 selection)
+static void LevelCaps_DrawChoices(u8 selection)
 {
-    s32 widthJohto, widthSinnoh, widthHoenn, xSinnoh;
+    s32 widthNoCaps, widthSoftCaps, widthHardCaps, xHardCaps;
     u8 styles[3];
 
     styles[0] = 0;
@@ -1001,17 +1258,83 @@ static void Music_DrawChoices(u8 selection)
     styles[2] = 0;
     styles[selection] = 1;
 
-    DrawOptionMenuChoice(gText_MusicJohto, 92, YPOS_MUSIC, styles[0]);
+    DrawOptionMenuChoice(gText_NoCaps, 92, YPOS_LEVELCAPS, styles[0]);
 
-    widthJohto = GetStringWidth(FONT_NORMAL, gText_MusicJohto, 0);
-    widthSinnoh = GetStringWidth(FONT_NORMAL, gText_MusicSinnoh, 0);
-    widthHoenn = GetStringWidth(FONT_NORMAL, gText_MusicHoenn, 0);
+    widthNoCaps = GetStringWidth(FONT_NORMAL, gText_NoCaps, 0);
+    widthSoftCaps = GetStringWidth(FONT_NORMAL, gText_SoftCaps, 0);
+    widthHardCaps = GetStringWidth(FONT_NORMAL, gText_HardCaps, 0);
 
-    widthSinnoh -= 94;
-    xSinnoh = (widthJohto - widthSinnoh - widthHoenn) / 2 + 100;
-    DrawOptionMenuChoice(gText_MusicSinnoh, xSinnoh, YPOS_MUSIC, styles[1]);
+    widthHardCaps -= 94;
+    xHardCaps = (widthNoCaps - widthHardCaps - widthSoftCaps) / 2 + 100;
+    DrawOptionMenuChoice(gText_SoftCaps, xHardCaps, YPOS_LEVELCAPS, styles[1]);
 
-    DrawOptionMenuChoice(gText_MusicHoenn, GetStringRightAlignXOffset(FONT_NORMAL, gText_MusicHoenn, 198), YPOS_MUSIC, styles[2]);
+    DrawOptionMenuChoice(gText_HardCaps, GetStringRightAlignXOffset(FONT_NORMAL, gText_HardCaps, 198), YPOS_LEVELCAPS, styles[2]);
+}
+
+static u8 LevelScaling_ProcessInput(u8 selection)
+{
+    if (selection > LEVEL_SCALING_OPTION_ON)
+        selection = LEVEL_SCALING_OPTION_OFF;
+
+    if (JOY_NEW(DPAD_RIGHT))
+    {
+        selection ^= 1;
+        sArrowPressed = TRUE;
+    }
+    if (JOY_NEW(DPAD_LEFT))
+    {
+        selection ^= 1;
+        sArrowPressed = TRUE;
+    }
+    return selection;
+}
+
+static void LevelScaling_DrawChoices(u8 selection, u8 y)
+{
+    u8 styles[2];
+
+    if (selection > LEVEL_SCALING_OPTION_ON)
+        selection = LEVEL_SCALING_OPTION_OFF;
+
+    styles[0] = 0;
+    styles[1] = 0;
+    styles[selection] = 1;
+
+    DrawOptionMenuChoice(gText_ScalingOn, 104, y, styles[LEVEL_SCALING_OPTION_ON]);
+    DrawOptionMenuChoice(gText_ScalingOff, GetStringRightAlignXOffset(FONT_NORMAL, gText_ScalingOff, 198), y, styles[LEVEL_SCALING_OPTION_OFF]);
+}
+
+static void TrainerLevelScaling_DrawChoices(u8 selection)
+{
+    LevelScaling_DrawChoices(selection, YPOS_TRAINER_LEVEL_SCALING);
+}
+
+static void WildLevelScaling_DrawChoices(u8 selection)
+{
+    LevelScaling_DrawChoices(selection, YPOS_WILD_LEVEL_SCALING);
+}
+
+static u8 Difficulty_ProcessInput(u8 selection)
+{
+    if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
+    {
+        selection ^= 1;
+        sArrowPressed = TRUE;
+    }
+
+    return selection;
+}
+
+static void Difficulty_DrawChoices(u8 selection)
+{
+    u8 styles[2];
+
+    styles[0] = 0;
+    styles[1] = 0;
+    styles[selection] = 1;
+
+    DrawOptionMenuChoice(gText_DifficultyNormal, 104, YPOS_DIFFICULTY, styles[0]);
+    DrawOptionMenuChoice(gText_DifficultyHard, GetStringRightAlignXOffset(FONT_NORMAL, gText_DifficultyHard, 198), YPOS_DIFFICULTY, styles[1]);
 }
 
 static void DrawHeaderText(void)
@@ -1051,7 +1374,11 @@ static void DrawOptionMenuTexts(void)
     case 1:
         items = MENUITEM_COUNT_PG2;
         menu = sOptionMenuItemsNames_Pg2;
-        break;    
+        break;
+    case 2:
+        items = MENUITEM_COUNT_PG3;
+        menu = sOptionMenuItemsNames_Pg3;
+        break;
     }
 
     FillWindowPixelBuffer(WIN_OPTIONS, PIXEL_FILL(1));

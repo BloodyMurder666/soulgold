@@ -198,7 +198,7 @@ SINGLE_BATTLE_TEST("Protect: Spiky Shield does 1/8 dmg of max hp of attackers ma
 
 SINGLE_BATTLE_TEST("Protect: Spiky Shield doesn't hurt attacker when charging a two turn move")
 {
-    u32 move;
+    enum Move move;
     PARAMETRIZE { move = MOVE_BOUNCE; }
     PARAMETRIZE { move = MOVE_DIG; }
 
@@ -276,7 +276,7 @@ SINGLE_BATTLE_TEST("Protect: Baneful Bunker can't poison Pokémon if they are al
 
 SINGLE_BATTLE_TEST("Protect: Baneful Bunker doesn't poison attacker when charging a two turn move")
 {
-    u32 move;
+    enum Move move;
     PARAMETRIZE { move = MOVE_BOUNCE; }
     PARAMETRIZE { move = MOVE_DIG; }
 
@@ -354,7 +354,7 @@ SINGLE_BATTLE_TEST("Protect: Burning Bulwark can't burn Pokémon if they are alr
 
 SINGLE_BATTLE_TEST("Protect: Burning Bulwark doesn't burn attacker when charging a two turn move")
 {
-    u32 move;
+    enum Move move;
     PARAMETRIZE { move = MOVE_BOUNCE; }
     PARAMETRIZE { move = MOVE_DIG; }
 
@@ -685,7 +685,7 @@ DOUBLE_BATTLE_TEST("Crafty Shield protects self and ally from opposing status mo
 
 DOUBLE_BATTLE_TEST("Crafty Shield does not protect against status moves used on the user's side")
 {
-    u32 move;
+    enum Move move;
 
     PARAMETRIZE { move = MOVE_AROMATHERAPY; }
     PARAMETRIZE { move = MOVE_ACUPRESSURE; }
@@ -720,7 +720,7 @@ DOUBLE_BATTLE_TEST("Crafty Shield does not protect against status moves used on 
 
 DOUBLE_BATTLE_TEST("Crafty Shield does not protect against entry hazard moves")
 {
-    u32 move;
+    enum Move move;
 
     PARAMETRIZE { move = MOVE_SPIKES; }
     PARAMETRIZE { move = MOVE_STEALTH_ROCK; }
@@ -798,7 +798,7 @@ DOUBLE_BATTLE_TEST("Crafty Shield protects self and ally from Confide and Decora
 
 DOUBLE_BATTLE_TEST("Crafty Shield does not protect against moves that target all battlers")
 {
-    u32 move;
+    enum Move move;
 
     PARAMETRIZE { move = MOVE_FLOWER_SHIELD; }
     PARAMETRIZE { move = MOVE_PERISH_SONG; }
@@ -992,3 +992,137 @@ DOUBLE_BATTLE_TEST("Protect is not ignored after a new mon switched in because o
     }
 }
 
+
+#if MAX_MON_TRAITS > 1
+DOUBLE_BATTLE_TEST("Protect is not transferred to a mon that is switched in due to Eject Button (Traits)")
+{
+    GIVEN {
+        PLAYER(SPECIES_URSHIFU) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_UNSEEN_FIST); };
+        PLAYER(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WYNAUT) { Item(ITEM_EJECT_BUTTON); }
+        OPPONENT(SPECIES_SQUIRTLE);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN {
+            MOVE(opponentRight, MOVE_PROTECT);
+            MOVE(playerLeft, MOVE_POUND, target: opponentRight);
+            SEND_OUT(opponentRight, 2);
+            MOVE(playerRight, MOVE_POUND, target: opponentRight);
+            SEND_OUT(opponentRight, 3);
+        }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_PROTECT, opponentRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_POUND, playerLeft);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponentRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_POUND, playerRight);
+        HP_BAR(opponentRight);
+    }
+}
+#endif
+
+#if MAX_MON_ITEMS > 1
+SINGLE_BATTLE_TEST("Protect: Quick Guard, Wide Guard and Crafty Shield don't reduce Z-Move demage (Items)", s16 damage)
+{
+    bool32 protected;
+    enum Move move;
+
+    PARAMETRIZE { protected = TRUE; move = MOVE_WIDE_GUARD; }
+    PARAMETRIZE { protected = FALSE; move = MOVE_WIDE_GUARD; }
+
+    PARAMETRIZE { protected = TRUE; move = MOVE_QUICK_GUARD; }
+    PARAMETRIZE { protected = FALSE; move = MOVE_QUICK_GUARD; }
+
+    PARAMETRIZE { protected = TRUE; move = MOVE_CRAFTY_SHIELD; }
+    PARAMETRIZE { protected = FALSE; move = MOVE_CRAFTY_SHIELD; }
+
+    GIVEN {
+        ASSUME(GetMoveType(MOVE_SCRATCH) == TYPE_NORMAL);
+        PLAYER(SPECIES_WOBBUFFET) { Items(ITEM_PECHA_BERRY, ITEM_NORMALIUM_Z); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        if (protected)
+            TURN { MOVE(player, MOVE_SCRATCH, gimmick: GIMMICK_Z_MOVE); MOVE(opponent, move); }
+        else
+            TURN { MOVE(player, MOVE_SCRATCH, gimmick: GIMMICK_Z_MOVE); }
+    } SCENE {
+        HP_BAR(opponent, captureDamage: &results[i].damage);
+    } FINALLY {
+        EXPECT_EQ(results[0].damage, results[1].damage);
+        EXPECT_EQ(results[2].damage, results[3].damage);
+        EXPECT_EQ(results[4].damage, results[5].damage);
+    }
+}
+
+SINGLE_BATTLE_TEST("Protect: Protective Pads protects from secondary effects (Items)")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Items(ITEM_PECHA_BERRY, ITEM_PROTECTIVE_PADS); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_BURNING_BULWARK); MOVE(player, MOVE_SCRATCH); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_BURNING_BULWARK, opponent);
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
+            HP_BAR(opponent);
+            STATUS_ICON(player, STATUS1_BURN);
+        }
+    }
+}
+
+DOUBLE_BATTLE_TEST("Protect is not transferred to a mon that is switched in due to Eject Button (Items)")
+{
+    GIVEN {
+        PLAYER(SPECIES_URSHIFU) { Ability(ABILITY_UNSEEN_FIST); };
+        PLAYER(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WYNAUT) { Items(ITEM_PECHA_BERRY, ITEM_EJECT_BUTTON); }
+        OPPONENT(SPECIES_SQUIRTLE);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN {
+            MOVE(opponentRight, MOVE_PROTECT);
+            MOVE(playerLeft, MOVE_POUND, target: opponentRight);
+            SEND_OUT(opponentRight, 2);
+            MOVE(playerRight, MOVE_POUND, target: opponentRight);
+            SEND_OUT(opponentRight, 3);
+        }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_PROTECT, opponentRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_POUND, playerLeft);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponentRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_POUND, playerRight);
+        HP_BAR(opponentRight);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Wide Guard is still activate even if user is switched out due to Eject Button (Items)")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WYNAUT) { Items(ITEM_PECHA_BERRY, ITEM_EJECT_BUTTON); }
+        OPPONENT(SPECIES_SQUIRTLE);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN {
+            MOVE(opponentRight, MOVE_WIDE_GUARD);
+            MOVE(playerLeft, MOVE_POUND, target: opponentRight);
+            SEND_OUT(opponentRight, 2);
+            MOVE(playerRight, MOVE_HYPER_VOICE, target: opponentRight);
+            SEND_OUT(opponentRight, 3);
+        }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_WIDE_GUARD, opponentRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_POUND, playerLeft);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponentRight);
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_HYPER_VOICE, playerRight);
+            HP_BAR(opponentLeft);
+            HP_BAR(opponentRight);
+        }
+    }
+}
+#endif

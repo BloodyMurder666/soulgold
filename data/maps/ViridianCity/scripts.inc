@@ -69,7 +69,7 @@ ViridianCity_Text_CoffeeGramps_Question:
 	.string "I need to talk to someone, so you'll\n"
 	.string "have to do!\p"
 	.string "I might not look like much now, but\n"
-	.string "I was an expert at catching POKéMON.\p"
+	.string "I was an expert at catching Pokémon.\p"
 	.string "Do you believe me?$"
 
 ViridianCity_Text_CoffeeGramps_Believed:
@@ -83,14 +83,14 @@ ViridianCity_Text_CoffeeGramps_Doubted:
 	.string "show you a thing or two. Humph!$"
 
 ViridianCity_Text_GrampsNearGym:
-	.string "This GYM didn't have a LEADER\n"
+	.string "This Gym didn't have a Leader\n"
 	.string "until recently.\p"
-	.string "A young man from PALLET became\n"
-	.string "the LEADER, but he's often away.$"
+	.string "A young man from Pallet became\n"
+	.string "the Leader, but he's often away.$"
 
 ViridianCity_Text_GrampsNearGym_BlueReturned:
 	.string "Are you going to battle the\n"
-	.string "LEADER?\p"
+	.string "Leader?\p"
 	.string "Good luck to you. You'll need it.$"
 
 ViridianCity_Text_DreamEaterFisherNew:
@@ -107,7 +107,7 @@ ViridianCity_Text_DreamEaterFisher_GotTM::
 ViridianCity_Text_DreamEaterFisher:
 	.string "Yawn!\p"
 	.string "I must have dozed off in the sun.\p"
-	.string "…I had this dream about a DROWZEE\n"
+	.string "…I had this dream about a Drowzee\n"
 	.string "eating my dream. Weird, huh?\p"
 	.string "Huh? What's this?\p"
 	.string "Where did this TM come from?\p"
@@ -115,26 +115,26 @@ ViridianCity_Text_DreamEaterFisher:
 	.string "this TM.$"
 
 ViridianCity_Text_DreamEaterFisher_GotDreamEater:
-	.string "TM42 contains DREAM EATER…\p"
+	.string "TM42 contains Dream Eater…\p"
 	.string "…Zzzzz…$"
 
 ViridianCity_Text_Youngster:
 	.string "I heard that there are many items\n"
-	.string "on the ground in VIRIDIAN FOREST.$"
+	.string "on the ground in Viridian Forest.$"
 
 ViridianCity_Text_Sign:
-	.string "VIRIDIAN CITY\p"
+	.string "Viridian City\p"
 	.string "The Eternally Green Paradise$"
 
 ViridianCity_Text_GymSign:
-	.string "VIRIDIAN CITY POKéMON GYM\n"
-	.string "LEADER: …\p"
+	.string "Viridian City Pokémon Gym\n"
+	.string "Leader: …\p"
 	.string "The rest of the text is illegible…$"
 
 ViridianCity_Text_WelcomeSign:
-	.string "WELCOME TO VIRIDIAN CITY,\p"
-	.string "THE GATEWAY TO INDIGO PLATEAU$"
+	.string "Welcome To Viridian City,\p"
+	.string "The Gateway To Indigo Plateau$"
 
 ViridianCity_Text_TrainerHouseSign:
-	.string "TRAINER HOUSE\p"
+	.string "Trainer House\p"
 	.string "The Club for Top Trainer Battles$"

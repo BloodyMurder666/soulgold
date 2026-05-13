@@ -330,6 +330,8 @@ gSpecials::
 	def_special ShakeCamera
 	def_special StartGroudonKyogreBattle
 	def_special BattleSetup_StartLegendaryBattle
+	def_special BattleSetup_StartLegendaryEncounter
+	def_special BattleSetup_FinishLegendaryEncounter
 	def_special StartRegiBattle
 	def_special SetTrainerFacingDirection
 	def_special DoSealedChamberShakingEffect_Short
@@ -601,3 +603,4 @@ gSpecials::
 	def_special HiddenGrotto_GetCurrentContentId
 	def_special HiddenGrotto_CreateCurrentMon
 	def_special HiddenGrotto_TestCurrentMonBounds
+	def_special GetStarterMegaStone

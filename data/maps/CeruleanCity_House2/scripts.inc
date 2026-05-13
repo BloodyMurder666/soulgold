@@ -29,4 +29,4 @@ CeruleanPolice_Text_PokefanF:
 	.string "We were held up by robbers before.$"
 
 CeruleanPolice_Text_Diglett:
-	.string "DIGLETT: Dug dug.$"
+	.string "Diglett: Dug dug.$"

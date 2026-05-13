@@ -19,7 +19,7 @@ Gate_RuinsOfAlph_Route32_EventScript_Youngster::
 	end
 
 Gate_RuinsOfAlph_Route32_Text_PokefanM:
-	.string "You're studying the RUINS?\n"
+	.string "You're studying the Ruins?\n"
 	.string "I see a scientist in the making.$"
 
 Gate_RuinsOfAlph_Route32_Text_Youngster:

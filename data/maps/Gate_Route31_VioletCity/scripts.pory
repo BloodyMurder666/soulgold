@@ -1,0 +1,67 @@
+raw `
+Gate_Route31_VioletCity_MapScripts::
+    map_script MAP_SCRIPT_ON_TRANSITION, Gate_Route31_VioletCity_OnTransition
+	.byte 0
+
+Gate_Route31_VioletCity_OnTransition::
+    call Common_EventScript_SetupRivalGfxId
+    end
+
+Gate_Route31_VioletCity_EventScript_Policeman::
+	lock
+	faceplayer
+	msgbox Gate_Route31_VioletCity_Text_Policeman, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+Gate_Route31_VioletCity_EventScript_CooltrainerF::
+	lock
+	faceplayer
+	msgbox Gate_Route31_VioletCity_Text_CooltrainerF, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+Gate_Route31_VioletCity_Text_Policeman:
+	.string "Hi there! Did you visit\n"
+	.string "Sprout Tower?$"
+
+Gate_Route31_VioletCity_Text_CooltrainerF:
+	.string "I saw the cutest Pokémon out\n"
+	.string "there.\p"
+	.string "It looked a lot like Pikachu!$"
+`
+
+script Gate_Route31_VioletCity_RivalExpShare {
+    lock
+    playse(SE_EXIT)
+    playbgm(MUS_HG_LYRA, TRUE)
+    msgbox("{PLAYER}! Wait up!")
+    closemessage
+    moveobjecttocoords(LOCALID_PLAYER, 6, 5, DIR_EAST)
+    clearflag(FLAG_HIDE_RIVAL_VIOLETGATEHOUSE)
+    addobject(LOCALID_GATEHOUSE_RIVAL)
+    applymovement(LOCALID_GATEHOUSE_RIVAL, moves(walk_left*4))
+    waitmovement(0)
+    msgbox("Professor Elm forgot to give you this.")
+    giveitem(ITEM_EXP_SHARE)
+    setflag(FLAG_RECEIVED_EXP_SHARE)
+    msgbox("It lets you train multiple Pokémon at
+            at once, quite a handy piece of tech!")
+    msgbox("If you haven't already, you should make
+            use of those Pokéballs and catch lots
+            of new Pokémon.")
+    msgbox("Anyway, I need to head back home.
+            Hope to see you soon {PLAYER}!")
+    closemessage
+    setflag(FLAG_HIDE_RIVAL_VIOLETGATEHOUSE)
+    setvar(VAR_RIVAL_STATE, 4)
+    applymovement(LOCALID_GATEHOUSE_RIVAL, moves(walk_right*4))
+    waitmovement(0)
+    playse(SE_EXIT)
+    removeobject(LOCALID_GATEHOUSE_RIVAL)
+    fadedefaultbgm
+    release
+    end
+}

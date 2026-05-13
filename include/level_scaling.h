@@ -16,6 +16,12 @@ enum LevelScalingMode
     LEVEL_SCALING_PARTY_LOWEST,            // Scale to player's lowest level
 };
 
+enum LevelScalingOption
+{
+    LEVEL_SCALING_OPTION_OFF,
+    LEVEL_SCALING_OPTION_ON,
+};
+
 // Scaling configuration for a single entity (trainer or wild encounter)
 struct LevelScalingConfig
 {
@@ -88,8 +94,13 @@ struct EvolutionOverride
 // Get current scaling config for a trainer
 const struct LevelScalingConfig *GetTrainerLevelScalingConfig(u16 trainerId);
 
+// Get current runtime scaling modes from player options
+u8 GetCurrentTrainerLevelScalingMode(void);
+u8 GetCurrentWildLevelScalingMode(void);
+
 // Calculate scaled level for a trainer mon (internal use in battle_main.c)
 u8 CalculateScaledLevel(const struct LevelScalingConfig *config, u8 originalLevel);
+u8 CalculateTrainerScaledLevel(const struct LevelScalingConfig *config, u8 originalLevel, u16 trainerId);
 
 // Calculate scaled level for a wild Pokémon
 u8 CalculateWildScaledLevel(u16 species, u8 originalLevel);

@@ -155,9 +155,9 @@ bool32 ShouldUseItem(enum BattlerId battler)
                     break;
                 }
 
-                if (gAiLogicData->abilities[battler] == ABILITY_SUPER_LUCK
-                 || gAiLogicData->abilities[battler] == ABILITY_SNIPER
-                 || gAiLogicData->holdEffects[battler] == HOLD_EFFECT_SCOPE_LENS
+                if (Ai_BattlerHasHoldEffect(battler, ABILITY_SUPER_LUCK, gAiLogicData)
+                 || Ai_BattlerHasHoldEffect(battler, ABILITY_SNIPER, gAiLogicData)
+                 || Ai_BattlerHasHoldEffect(battler, HOLD_EFFECT_SCOPE_LENS, gAiLogicData)
                  || HasMoveWithFlag(battler, GetMoveCriticalHitStage))
                     shouldUse = TRUE;
             }

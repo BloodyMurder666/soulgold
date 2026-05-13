@@ -22,6 +22,7 @@
 #include "follower_helper.h"
 #include "gpu_regs.h"
 #include "graphics.h"
+#include "item.h"
 #include "mauville_old_man.h"
 #include "metatile_behavior.h"
 #include "overworld.h"
@@ -558,6 +559,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Pink,                  OBJ_EVENT_PAL_TAG_NPC_PINK},
     {gObjectEventPal_Case,                  OBJ_EVENT_PAL_TAG_CASE},
     {gObjectEventPal_Bill,                  OBJ_EVENT_PAL_TAG_BILL},
+    {gObjectEventPal_Archer,                  OBJ_EVENT_PAL_TAG_ARCHER},
     
     
 
@@ -2223,6 +2225,10 @@ static bool8 GetMonInfo(struct Pokemon *mon, u32 *species, bool32 *shiny, bool32
     *species = GetMonData(mon, MON_DATA_SPECIES);
     *shiny = IsMonShiny(mon) ? OBJ_EVENT_MON_SHINY : 0;
     *female = GetMonGender(mon) == MON_FEMALE ? OBJ_EVENT_MON_FEMALE : 0;
+#if OW_BATTLE_ONLY_FORMS
+    if (CheckBagHasItem(ITEM_MEGA_RING, 1))
+        *species = GetFormChangeTargetSpecies(mon, FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM);
+#endif
     switch (*species)
     {
     case SPECIES_UNOWN:
@@ -2583,7 +2589,7 @@ void GetFollowerAction(struct ScriptContext *ctx) // Essentially a big switch fo
     }
 
     emotion = RandomWeightedIndex(emotion_weight, FOLLOWER_EMOTION_LENGTH);
-    if ((mon->status & STATUS1_PSN_ANY) && GetMonAbility(mon) != ABILITY_POISON_HEAL)
+    if ((mon->status & STATUS1_PSN_ANY) && !MonHasTrait(mon, ABILITY_POISON_HEAL))
         emotion = FOLLOWER_EMOTION_POISONED;
 
     // end special conditions
@@ -5568,7 +5574,6 @@ static bool32 TryStartFollowerTransformEffect(struct ObjectEvent *objectEvent, s
 {
     u32 multi;
     struct Pokemon *mon;
-    enum Ability ability;
     if (DoesSpeciesHaveFormChangeMethod(OW_SPECIES(objectEvent), FORM_CHANGE_OVERWORLD_WEATHER)
         && OW_SPECIES(objectEvent) != (multi = GetOverworldWeatherSpecies(OW_SPECIES(objectEvent))))
     {
@@ -5578,9 +5583,9 @@ static bool32 TryStartFollowerTransformEffect(struct ObjectEvent *objectEvent, s
     }
 
     if (OW_FOLLOWERS_COPY_WILD_PKMN
-        && (MonKnowsMove(mon = GetFirstLiveMon(), MOVE_TRANSFORM)
-         || (ability = GetMonAbility(mon)) == ABILITY_IMPOSTER || ability == ABILITY_ILLUSION)
-        && (Random() & 0xFFFF) < 18 && GetLocalWildMon(FALSE))
+         && (MonKnowsMove(mon = GetFirstLiveMon(), MOVE_TRANSFORM)
+         || MonHasTrait(mon, ABILITY_IMPOSTER) || MonHasTrait(mon, ABILITY_ILLUSION))
+         && (Random() & 0xFFFF) < 18 && GetLocalWildMon(FALSE))
     {
         sprite->data[7] = TRANSFORM_TYPE_RANDOM_WILD << 8;
         PlaySE(SE_M_MINIMIZE);

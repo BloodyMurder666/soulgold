@@ -354,8 +354,8 @@ GoldenrodCity_UndergroundSwitches_EventScript_SilverTriggerTop::
 	playse SE_EXIT
 	setflag FLAG_HIDE_GOLDENROD_UNDERGROUND_SILVER
 	removeobject LOCALID_GOLDENROD_UNDERGROUND_SILVER
-	fadedefaultbgm
 	setvar VAR_GOLDENROD_CITY_STATE, 9
+	fadedefaultbgm
 	release
 	end
 
@@ -387,8 +387,8 @@ GoldenrodCity_UndergroundSwitches_EventScript_SilverTriggerBot::
 	playse SE_EXIT
 	setflag FLAG_HIDE_GOLDENROD_UNDERGROUND_SILVER
 	removeobject LOCALID_GOLDENROD_UNDERGROUND_SILVER
-	fadedefaultbgm
 	setvar VAR_GOLDENROD_CITY_STATE, 9
+	fadedefaultbgm
 	release
 	end
 
@@ -495,7 +495,7 @@ GoldenrodUnderground_Text_SilverBefore:
     .string "Hold it!\p"
     .string "I saw you, so I tailed you.\p"
     .string "I don't need you underfoot while I\n"
-    .string "take care of TEAM ROCKET.\p"
+    .string "take care of Team Rocket.\p"
     .string "…Wait a second. You beat me before,\n"
     .string "didn't you?\p"
     .string "That was just a fluke.\p"
@@ -504,14 +504,14 @@ GoldenrodUnderground_Text_SilverBefore:
 
 GoldenrodUnderground_Text_SilverWin:
     .string "…Why… Why do I lose?\p"
-    .string "I've assembled the toughest POKéMON.\p"
+    .string "I've assembled the toughest Pokémon.\p"
     .string "I didn't ease up on the gas.\p"
     .string "So why do I lose?$"
 
 GoldenrodUnderground_Text_SilverAfter:
     .string "…I don't understand…\p"
-    .string "Is what that LANCE guy said true?\p"
-    .string "That I don't treat POKéMON properly?\p"
+    .string "Is what that Lance guy said true?\p"
+    .string "That I don't treat Pokémon properly?\p"
     .string "Love…\p"
     .string "Trust…\p"
     .string "Are they really what I lack?\p"
@@ -520,12 +520,12 @@ GoldenrodUnderground_Text_SilverAfter:
     .string "But it's not going to end here.\p"
     .string "Not now. Not because of this.\p"
     .string "I won't give up my dream of becoming\n"
-    .string "the world's best POKéMON trainer!$"
+    .string "the world's best Pokémon trainer!$"
 
 GoldenrodUnderground_Text_SilverLoss:
     .string "Humph. This is my real power, wimp.\p"
-    .string "I'll make TEAM ROCKET history.\p"
-    .string "And I'm going to grind that LANCE\n"
+    .string "I'll make Team Rocket history.\p"
+    .string "And I'm going to grind that Lance\n"
     .string "under my heels.$"
 
 GoldenrodUnderground_Text_GruntM11Seen:
@@ -573,7 +573,7 @@ GoldenrodUnderground_Text_BurglarEddieBeaten:
     .string "Over the top!$"
 
 GoldenrodUnderground_Text_BurglarEddieAfter:
-    .string "UNDERGROUND WAREHOUSE?\p"
+    .string "Underground Warehouse?\p"
     .string "What do you want to go there for?\p"
     .string "There's nothing down there.$"
 
@@ -587,7 +587,7 @@ GoldenrodUnderground_Text_GruntM13Beaten:
 
 GoldenrodUnderground_Text_GruntM13After:
     .string "You must have ice in your veins to\n"
-    .string "dis TEAM ROCKET.$"
+    .string "dis Team Rocket.$"
 
 GoldenrodUnderground_Text_GruntF3Seen:
     .string "Are you lost? No, you can't be.\p"
@@ -603,19 +603,19 @@ GoldenrodUnderground_Text_GruntF3After:
     .string "See if I care!$"
 
 GoldenrodUnderground_Text_Switch1:
-    .string "SWITCH 1 activated.$"
+    .string "Switch 1 activated.$"
 
 GoldenrodUnderground_Text_Switch2:
-    .string "SWITCH 2 activated.$"
+    .string "Switch 2 activated.$"
 
 GoldenrodUnderground_Text_Switch3:
-    .string "SWITCH 3 activated.$"
+    .string "Switch 3 activated.$"
 
 GoldenrodUnderground_Text_Switch1Off:
-    .string "SWITCH 1 deactivated.$"
+    .string "Switch 1 deactivated.$"
 
 GoldenrodUnderground_Text_Switch2Off:
-    .string "SWITCH 2 deactivated.$"
+    .string "Switch 2 deactivated.$"
 
 GoldenrodUnderground_Text_Switch3Off:
-    .string "SWITCH 3 deactivated.$"
+    .string "Switch 3 deactivated.$"

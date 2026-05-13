@@ -18,9 +18,9 @@ BlackthornCity_House1EventScript_Dratini::
 BlackthornCity_House1_Text_Granny:
 	.string "A clan of trainers who can freely\n"
 	.string "command dragons live right here in\l"
-	.string "BLACKTHORN.\p"
+	.string "Blackthorn.\p"
 	.string "As a result, there are many legends\n"
 	.string "about dragons in this town.$"
 
 BlackthornCity_House1_Text_Dratini:
-	.string "DRATINI: Draa!$"
+	.string "Dratini: Draa!$"

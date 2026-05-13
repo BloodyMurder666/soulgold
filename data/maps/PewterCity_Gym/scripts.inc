@@ -37,48 +37,48 @@ PewterCity_Gym_EventScript_Brock_Defeated::
 
 
 PewterCity_Gym_Text_Brock_Intro:
-	.string "BROCK: Wow, it's not often that we get a\n"
-	.string "challenger from JOHTO.\p"
-	.string "I'm BROCK, the PEWTER GYM LEADER.\p"
-	.string "I'm an expert on rock-type POKéMON.\p"
-	.string "My POKéMON are impervious to most\n"
+	.string "Brock: Wow, it's not often that we get a\n"
+	.string "challenger from Johto.\p"
+	.string "I'm Brock, the Pewter Gym Leader.\p"
+	.string "I'm an expert on rock-type Pokémon.\p"
+	.string "My Pokémon are impervious to most\n"
 	.string "physical attacks. You'll have a hard\l"
 	.string "time inflicting any damage.\p"
 	.string "Come on!$"
 
 PewterCity_Gym_Text_Brock_WinLoss:
-	.string "BROCK: Your POKéMON's powerful attacks\n"
+	.string "Brock: Your Pokémon's powerful attacks\n"
 	.string "overcame my rock-hard defense…\p"
 	.string "You're stronger than I expected…\p"
-	.string "Go ahead--take this BADGE.$"
+	.string "Go ahead--take this Badge.$"
 
 PewterCity_Gym_Text_ReceivedBoulderBadge:
-	.string "{PLAYER} received BOULDERBADGE.$"
+	.string "{PLAYER} received Boulderbadge.$"
 
 PewterCity_Gym_Text_Brock_BoulderBadge:
-	.string "BROCK: {PLAYER}, thanks. I enjoyed\n"
+	.string "Brock: {PLAYER}, thanks. I enjoyed\n"
 	.string "battling you, even though I am a bit\l"
 	.string "upset.\p"
-	.string "That BOULDERBADGE will make your\n"
-	.string "POKéMON even more powerful.$"
+	.string "That Boulderbadge will make your\n"
+	.string "Pokémon even more powerful.$"
 
 PewterCity_Gym_Text_EarthquakeSpeech:
-    .string "That TM contains EARTHQUAKE.\p"
+    .string "That TM contains Earthquake.\p"
     .string "It's a powerful attack that\n"
     .string "shakes up the battlefield.\p"
     .string "But be careful not to\n"
-    .string "undermine your own POKéMON!$"
+    .string "undermine your own Pokémon!$"
 
 PewterCity_Gym_Text_Brock_FightDone:
-	.string "BROCK: The world is huge. There are\n"
+	.string "Brock: The world is huge. There are\n"
 	.string "still many strong trainers like you.\p"
 	.string "Just wait and see. I'm going to become\n"
 	.string "a lot stronger too.$"
 
 PewterCity_Gym_Text_CamperJerry_Seen:
-	.string "The trainers of this GYM use rock-type\n"
-	.string "POKéMON.\p"
-	.string "The rock-type has high DEFENSE.\p"
+	.string "The trainers of this Gym use rock-type\n"
+	.string "Pokémon.\p"
+	.string "The rock-type has high Defense.\p"
 	.string "Battles could end up going a long time.\n"
 	.string "Are you ready for this?$"
 
@@ -86,20 +86,20 @@ PewterCity_Gym_Text_CamperJerry_Beaten:
 	.string "I have to win these battles…$"
 
 PewterCity_Gym_Text_CamperJerry_AfterBattle:
-	.string "Hey, you! Trainer from JOHTO! BROCK is\n"
+	.string "Hey, you! Trainer from Johto! Brock is\n"
 	.string "tough. He'll punish you if you don't\l"
 	.string "take him seriously.$"
 
 PewterCity_Gym_Text_Guide:
-	.string "Yo! CHAMP in making! You're really\n"
+	.string "Yo! Champ in making! You're really\n"
 	.string "rocking.\p"
-	.string "Are you battling the GYM LEADERS of\n"
-	.string "KANTO?\p"
+	.string "Are you battling the Gym Leaders of\n"
+	.string "Kanto?\p"
 	.string "They're strong and dedicated people,\n"
-	.string "just like JOHTO's GYM LEADERS.$"
+	.string "just like Johto's Gym Leaders.$"
 
 PewterCity_Gym_Text_Guide_Win:
-	.string "Yo! CHAMP in making! That GYM didn't\n"
+	.string "Yo! Champ in making! That Gym didn't\n"
 	.string "give you much trouble.\p"
 	.string "The way you took charge was really\n"
 	.string "inspiring. I mean that seriously.$"
@@ -127,15 +127,15 @@ PewterCity_Gym_EventScript_GymStatuePostVictory::
 	end
 
 PewterCity_Gym_Text_GymStatue::
-    .string "PEWTER POKéMON GYM\n"
-    .string "LEADER: BROCK\p"
-	.string "WINNING TRAINERS:\n"
-	.string "BLUE, RED$"
+    .string "Pewter Pokémon Gym\n"
+    .string "Leader: Brock\p"
+	.string "Winning Trainers:\n"
+	.string "Blue, Red$"
 
 PewterCity_Gym_Text_GymStatuePlayerWon::
-    .string "PEWTER POKéMON GYM\n"
-    .string "LEADER: BROCK\p"
-    .string "WINNING TRAINERS:\n"
-	.string "BLUE, RED, {PLAYER}$"
+    .string "Pewter Pokémon Gym\n"
+    .string "Leader: Brock\p"
+    .string "Winning Trainers:\n"
+	.string "Blue, Red, {PLAYER}$"
 
 

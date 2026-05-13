@@ -111,7 +111,7 @@ LakeOfRage_Text_Pryce:
 # 56 "data/maps/LakeOfRage/scripts.pory"
 	.string "If you wish to battle again, come\n"
 # 57 "data/maps/LakeOfRage/scripts.pory"
-	.string "to the FIGHTING DOJO.$"
+	.string "to the Fighting Dojo.$"
 # 58 "data/maps/LakeOfRage/scripts.pory"
 
 # 59 "data/maps/LakeOfRage/scripts.pory"
@@ -479,17 +479,17 @@ LakeOfRage_Movement_DragoniteLeave:
 # 240 "data/maps/LakeOfRage/scripts.pory"
 LakeOfRage_Text_Dragonite:
 # 241 "data/maps/LakeOfRage/scripts.pory"
-	.string "DRAGONITE: Gyafooha!$"
+	.string "Dragonite: Gyafooha!$"
 # 242 "data/maps/LakeOfRage/scripts.pory"
 
 # 243 "data/maps/LakeOfRage/scripts.pory"
 LakeOfRage_Text_LanceForcedToEvolve:
 # 244 "data/maps/LakeOfRage/scripts.pory"
-    .string "This lake is full of GYARADOS\n"
+    .string "This lake is full of Gyarados\n"
 # 245 "data/maps/LakeOfRage/scripts.pory"
     .string "but nothing else…\p"
 # 246 "data/maps/LakeOfRage/scripts.pory"
-    .string "So the MAGIKARP are being forced\n"
+    .string "So the Magikarp are being forced\n"
 # 247 "data/maps/LakeOfRage/scripts.pory"
     .string "to evolve…$"
 # 248 "data/maps/LakeOfRage/scripts.pory"
@@ -501,7 +501,7 @@ LakeOfRage_Text_LanceIntro1:
 # 251 "data/maps/LakeOfRage/scripts.pory"
     .string "the rumors?\p"
 # 252 "data/maps/LakeOfRage/scripts.pory"
-    .string "You're {PLAYER}? I'm LANCE, a\n"
+    .string "You're {PLAYER}? I'm Lance, a\n"
 # 253 "data/maps/LakeOfRage/scripts.pory"
     .string "trainer like you.$"
 # 254 "data/maps/LakeOfRage/scripts.pory"
@@ -535,15 +535,15 @@ LakeOfRage_Text_LanceIntro3:
 # 268 "data/maps/LakeOfRage/scripts.pory"
 LakeOfRage_Text_LanceRadioSignal:
 # 269 "data/maps/LakeOfRage/scripts.pory"
-    .string "LANCE: Excellent!\p"
+    .string "Lance: Excellent!\p"
 # 270 "data/maps/LakeOfRage/scripts.pory"
-    .string "It seems that the LAKE's MAGIKARP\n"
+    .string "It seems that the Lake's Magikarp\n"
 # 271 "data/maps/LakeOfRage/scripts.pory"
     .string "are being forced to evolve.\p"
 # 272 "data/maps/LakeOfRage/scripts.pory"
     .string "A mysterious radio broadcast\n"
 # 273 "data/maps/LakeOfRage/scripts.pory"
-    .string "coming from MAHOGANY is the cause.\p"
+    .string "coming from Mahogany is the cause.\p"
 # 274 "data/maps/LakeOfRage/scripts.pory"
     .string "We'll be waiting for you,\n"
 # 275 "data/maps/LakeOfRage/scripts.pory"
@@ -561,7 +561,7 @@ LakeOfRage_Text_LanceRefused:
 # 281 "data/maps/LakeOfRage/scripts.pory"
 LakeOfRage_Text_LanceAskHelp:
 # 282 "data/maps/LakeOfRage/scripts.pory"
-    .string "LANCE: Hm? Are you going to help\n"
+    .string "Lance: Hm? Are you going to help\n"
 # 283 "data/maps/LakeOfRage/scripts.pory"
     .string "us?$"
 # 284 "data/maps/LakeOfRage/scripts.pory"
@@ -569,13 +569,13 @@ LakeOfRage_Text_LanceAskHelp:
 # 285 "data/maps/LakeOfRage/scripts.pory"
 LakeOfRage_Text_GyaradosCry:
 # 286 "data/maps/LakeOfRage/scripts.pory"
-    .string "GYARADOS: Gyashaa!$"
+    .string "Gyarados: Gyashaa!$"
 # 287 "data/maps/LakeOfRage/scripts.pory"
 
 # 288 "data/maps/LakeOfRage/scripts.pory"
 LakeOfRage_Text_Gramps:
 # 289 "data/maps/LakeOfRage/scripts.pory"
-    .string "The GYARADOS are angry!\p"
+    .string "The Gyarados are angry!\p"
 # 290 "data/maps/LakeOfRage/scripts.pory"
     .string "It's a bad omen!$"
 # 291 "data/maps/LakeOfRage/scripts.pory"
@@ -583,7 +583,7 @@ LakeOfRage_Text_Gramps:
 # 292 "data/maps/LakeOfRage/scripts.pory"
 LakeOfRage_Text_GrampsCleared:
 # 293 "data/maps/LakeOfRage/scripts.pory"
-    .string "Hahah! The MAGIKARP are biting!$"
+    .string "Hahah! The Magikarp are biting!$"
 # 294 "data/maps/LakeOfRage/scripts.pory"
 
 # 295 "data/maps/LakeOfRage/scripts.pory"
@@ -591,7 +591,7 @@ LakeOfRage_Text_SuperNerd:
 # 296 "data/maps/LakeOfRage/scripts.pory"
     .string "I heard this lake was made by\n"
 # 297 "data/maps/LakeOfRage/scripts.pory"
-    .string "rampaging GYARADOS.\p"
+    .string "rampaging Gyarados.\p"
 # 298 "data/maps/LakeOfRage/scripts.pory"
     .string "I wonder if there is any\n"
 # 299 "data/maps/LakeOfRage/scripts.pory"
@@ -605,9 +605,9 @@ LakeOfRage_Text_CooltrainerF:
 # 303 "data/maps/LakeOfRage/scripts.pory"
     .string "Did my eyes deceive me? I saw a\n"
 # 304 "data/maps/LakeOfRage/scripts.pory"
-    .string "red GYARADOS in the LAKE…\p"
+    .string "red Gyarados in the Lake…\p"
 # 305 "data/maps/LakeOfRage/scripts.pory"
-    .string "But I thought GYARADOS were\n"
+    .string "But I thought Gyarados were\n"
 # 306 "data/maps/LakeOfRage/scripts.pory"
     .string "usually blue?$"
 # 307 "data/maps/LakeOfRage/scripts.pory"
@@ -691,7 +691,7 @@ LakeOfRage_Text_CooltrainerfLoisSeen:
 # 346 "data/maps/LakeOfRage/scripts.pory"
     .string "What happened to the red\n"
 # 347 "data/maps/LakeOfRage/scripts.pory"
-    .string "GYARADOS?\p"
+    .string "Gyarados?\p"
 # 348 "data/maps/LakeOfRage/scripts.pory"
     .string "It's gone?\p"
 # 349 "data/maps/LakeOfRage/scripts.pory"
@@ -713,7 +713,7 @@ LakeOfRage_Text_CooltrainerfLoisAfter:
 # 357 "data/maps/LakeOfRage/scripts.pory"
     .string "Come to think of it, I've seen a\n"
 # 358 "data/maps/LakeOfRage/scripts.pory"
-    .string "pink BUTTERFREE.$"
+    .string "pink Butterfree.$"
 # 359 "data/maps/LakeOfRage/scripts.pory"
 
 # 360 "data/maps/LakeOfRage/scripts.pory"
@@ -811,9 +811,9 @@ LakeOfRage_EventScript_WesleyCompleted::
 # 406 "data/maps/LakeOfRage/scripts.pory"
 LakeOfRage_Text_MeetWesley:
 # 407 "data/maps/LakeOfRage/scripts.pory"
-    .string "WESLEY: Well, how do you do?\p"
+    .string "Wesley: Well, how do you do?\p"
 # 408 "data/maps/LakeOfRage/scripts.pory"
-    .string "I'm a member of the WEEKDAY family!\n"
+    .string "I'm a member of the Weekday family!\n"
 # 409 "data/maps/LakeOfRage/scripts.pory"
 	.string "Can you guess my favorite day?$"
 # 410 "data/maps/LakeOfRage/scripts.pory"
@@ -829,7 +829,7 @@ LakeOfRage_Text_WesleyGivesGift:
 # 415 "data/maps/LakeOfRage/scripts.pory"
 LakeOfRage_Text_WesleyGaveGift:
 # 416 "data/maps/LakeOfRage/scripts.pory"
-    .string "WESLEY: BLACKBELT beefs up the\n"
+    .string "Wesley: Blackbelt beefs up the\n"
 # 417 "data/maps/LakeOfRage/scripts.pory"
     .string "power of fighting moves.$"
 # 418 "data/maps/LakeOfRage/scripts.pory"
@@ -837,7 +837,7 @@ LakeOfRage_Text_WesleyGaveGift:
 # 419 "data/maps/LakeOfRage/scripts.pory"
 LakeOfRage_Text_WesleyWednesday:
 # 420 "data/maps/LakeOfRage/scripts.pory"
-    .string "WESLEY: Since you found me, you\n"
+    .string "Wesley: Since you found me, you\n"
 # 421 "data/maps/LakeOfRage/scripts.pory"
     .string "must have met my brothers and\l"
 # 422 "data/maps/LakeOfRage/scripts.pory"
@@ -849,7 +849,7 @@ LakeOfRage_Text_WesleyWednesday:
 # 425 "data/maps/LakeOfRage/scripts.pory"
 LakeOfRage_Text_WesleyNotWednesday:
 # 426 "data/maps/LakeOfRage/scripts.pory"
-    .string "WESLEY: Not exactly...$"
+    .string "Wesley: Not exactly...$"
 # 427 "data/maps/LakeOfRage/scripts.pory"
 
 # 428 "data/maps/LakeOfRage/scripts.pory"
@@ -871,15 +871,15 @@ LakeOfRage_EventScript_Sign2::
 # 436 "data/maps/LakeOfRage/scripts.pory"
 LakeOfRage_Text_Sign:
 # 437 "data/maps/LakeOfRage/scripts.pory"
-    .string "LAKE OF RAGE,\n"
+    .string "Lake Of Rage,\n"
 # 438 "data/maps/LakeOfRage/scripts.pory"
-    .string "also known as GYARADOS LAKE.$"
+    .string "also known as Gyarados Lake.$"
 # 439 "data/maps/LakeOfRage/scripts.pory"
 
 # 440 "data/maps/LakeOfRage/scripts.pory"
 LakeOfRage_Text_FishingGuruSign:
 # 441 "data/maps/LakeOfRage/scripts.pory"
-    .string "FISHING GURU'S HOUSE$"
+    .string "Fishing Guru'S House$"
 
 Lakeofrage_HiddenGrotto::
 # 445 "data/maps/LakeOfRage/scripts.pory"

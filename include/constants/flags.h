@@ -704,8 +704,8 @@
 #define FLAG_HIDE_DOJO_BLAINE  0x290 
 #define FLAG_HIDE_DOJO_BLUE  0x291 
 #define FLAG_SET_SHINY  0x293 //shiny flag/ red Gyarados
-#define FLAG_VISITED_ROUTE10  0x294 //no collision
-#define FLAG_AUTO_HMS  0x295 // auto hms
+#define FLAG_VISITED_ROUTE10  0x294
+#define FLAG_MET_STEVEN  0x295 // Kitakami flags
 #define FLAG_EXP_SHARE_OPTION  0x296 // exp. share
 #define FLAG_WONDERTRADE1  0x297 // Unused Flag
 #define FLAG_WONDERTRADE2  0x298 // Unused Flag
@@ -714,36 +714,36 @@
 #define FLAG_FRONTIER_SECOND_CLERK  0x29B // Unused Flag
 #define FLAG_HIDE_BATTLE_FRONTIER_RECEPTION_GATE_SCOTT  0x29C // Unused Flag
 #define FLAG_SYS_BUG_CONTEST_MODE  0x29D // Unused Flag
-#define FLAG_HM_EXPLANATION      0x29E
+#define FLAG_AERODACTYLITE      0x29E
 #define FLAG_LEVEL_SCALING_ON  0x29F
 #define FLAG_NAMED_SILVER  0x2A0 // Unused Flag
 #define FLAG_SLOWPOKE_TRADE    0x2A1
 #define FLAG_ROUTE31_EXPERT  0x2A2 // Flag for defeating Route 31 expert
-#define FLAG_UNUSED_0x2A3  0x2A3 // Unused Flag
+#define FLAG_VISITED_KITAKAMI  0x2A3
 #define FLAG_DEXNAV_SEARCHING  0x2A4
 #define FLAG_DEXNAV_OBTAINED  0x2A5
 #define FLAG_DN_HIDDEN_MODE  0x2A6
 #define FLAG_GOLDENRODSHORE_EXPERT  0x2A7
 #define FLAG_R39_NORTH_TRADE  0x2A8
-#define FLAG_R39_NORTH_ROCKY_HELMET  0x2A9
-#define FLAG_UNUSED_0x2AA  0x2AA // Unused Flag
-#define FLAG_UNUSED_0x2AB  0x2AB // Unused Flag
-#define FLAG_UNUSED_0x2AC  0x2AC // Unused Flag
-#define FLAG_UNUSED_0x2AD  0x2AD // Unused Flag
-#define FLAG_UNUSED_0x2AE  0x2AE // Unused Flag
-#define FLAG_UNUSED_0x2AF  0x2AF // Unused Flag
-#define FLAG_UNUSED_0x2B0  0x2B0 // Unused Flag
-#define FLAG_UNUSED_0x2B1  0x2B1 // Unused Flag
-#define FLAG_UNUSED_0x2B2  0x2B2 // Unused Flag
-#define FLAG_UNUSED_0x2B3  0x2B3 // Unused Flag
-#define FLAG_UNUSED_0x2B4  0x2B4 // Unused Flag
-#define FLAG_UNUSED_0x2B5  0x2B5 // Unused Flag
-#define FLAG_UNUSED_0x2B6  0x2B6 // Unused Flag
-#define FLAG_UNUSED_0x2B7  0x2B7 // Unused Flag
-#define FLAG_UNUSED_0x2B8  0x2B8 // Unused Flag
-#define FLAG_UNUSED_0x2B9  0x2B9 // Unused Flag
-#define FLAG_UNUSED_0x2BA  0x2BA // Unused Flag
-#define FLAG_UNUSED_0x2BB  0x2BB // Unused Flag
+#define FLAG_R39_NORTH_ROCKY_HELMET  0x2A92
+#define FLAG_COLLISION  0x2AA // Debug
+#define FLAG_HIDE_RADIOTOWER_OAK    0x2AB
+#define FLAG_ICEPATH_DEPTHS_FROSLASSITE  0x2AC
+#define FLAG_ICEPATH_DEPTHS_BOOTS  0x2AD 
+#define FLAG_HIDE_CHIENPAO  0x2AE
+#define FLAG_LEGENDARY_STORY_CAP   0x2AF // Cap until legendary event (ho oh/lugia) has been seen but before player heads to e4
+#define FLAG_CHOICE_SCARF_ITEM_R26  0x2B0
+#define FLAG_GOLDENRODSHORE_ABILITYCAPSULE  0x2B1
+#define FLAG_ABILITY_PATCH_R27  0x2B2
+#define FLAG_HIDE_MANAPHY  0x2B3
+#define FLAG_HIDE_SHAYMIN  0x2B4
+#define FLAG_HIDE_VICITNI  0x2B5
+#define FLAG_HIDE_CHI_YU  0x2B6
+#define FLAG_HIDE_MELOETTA  0x2B7
+#define FLAG_HIDE_DIANCIE  0x2B8
+#define FLAG_HIDE_OGERPON  0x2B9
+#define FLAG_HIDE_MAGERNA  0x2BA
+#define FLAG_HIDE_FEZANDIPITI  0x2BB
 
 // Event Flags
 #define FLAG_HIDE_ROUTE_101_BIRCH_STARTERS_BAG                      0x2BC
@@ -774,9 +774,9 @@
 #define FLAG_HIDE_PETALBURG_WOODS_AQUA_GRUNT                        0x2D5
 #define FLAG_HIDE_PETALBURG_CITY_WALLY                              0x2D6
 #define FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_INVISIBLE_NINJA_BOY   0x2D7
-#define FLAG_HIDE_PETALBURG_CITY_WALLYS_MOM                         0x2D8
+#define FLAG_HIDE_KITAKAMI_OGERPON                                  0x2D8
 
-#define FLAG_ITEM_HEAVY_BALL                                           0x2D9 // Unused Flag
+#define FLAG_HIDE_PYROARITE                                           0x2D9
 
 #define FLAG_GOT_SILK_SCARF                                         0x2DA //HnS NormalFlags Block 2
 #define FLAG_GOT_MYSTICWATER                                        0x2DB
@@ -896,8 +896,8 @@
 #define FLAG_HIDE_RAYQUAZA                                          0x34D
 #define FLAG_HIDE_SEAFOAM_BLAINE                                    0x34E
 #define FLAG_HIDE_ILEX_FOREST_SECOND_CELEBI                         0x34F
-#define FLAG_HIDE_OLIVINE_PORT_OAK                                            0x350
-#define FLAG_HIDE_ROUTE22_GIOVANNI_SILVER                                            0x351
+#define FLAG_HIDE_OLIVINE_PORT_OAK                                  0x350
+#define FLAG_HIDE_ROUTE22_GIOVANNI_SILVER                           0x351
 #define FLAG_UNUSED_SET3                                            0x352
 #define FLAG_UNUSED_SET4                                            0x353
 #define FLAG_UNUSED_SET5                                            0x354
@@ -1527,22 +1527,22 @@
 #define FLAG_NEVER_TURNED_OFF_HARD                  (SYSTEM_FLAGS + 0x95) // If player never chose normal mode during important battles
 #define FLAG_TRAINER_LEVELSCALING                   (SYSTEM_FLAGS + 0x96)
 #define FLAG_WILD_LEVELSCALING                      (SYSTEM_FLAGS + 0x97)
-#define FLAG_UNUSED_0x8F8                           (SYSTEM_FLAGS + 0x98) // Unused Flag
-#define FLAG_UNUSED_0x8F9                           (SYSTEM_FLAGS + 0x99) // Unused Flag
-#define FLAG_UNUSED_0x8FA                           (SYSTEM_FLAGS + 0x9A) // Unused Flag
-#define FLAG_UNUSED_0x8FB                           (SYSTEM_FLAGS + 0x9B) // Unused Flag
-#define FLAG_UNUSED_0x8FC                           (SYSTEM_FLAGS + 0x9C) // Unused Flag
-#define FLAG_UNUSED_0x8FD                           (SYSTEM_FLAGS + 0x9D) // Unused Flag
-#define FLAG_UNUSED_0x8FE                           (SYSTEM_FLAGS + 0x9E) // Unused Flag
-#define FLAG_UNUSED_0x8FF                           (SYSTEM_FLAGS + 0x9F) // Unused Flag
-#define FLAG_UNUSED_0x900                           (SYSTEM_FLAGS + 0xA0) // Unused Flag
-#define FLAG_UNUSED_0x901                           (SYSTEM_FLAGS + 0xA1) // Unused Flag
-#define FLAG_UNUSED_0x902                           (SYSTEM_FLAGS + 0xA2) // Unused Flag
-#define FLAG_UNUSED_0x903                           (SYSTEM_FLAGS + 0xA3) // Unused Flag
-#define FLAG_UNUSED_0x904                           (SYSTEM_FLAGS + 0xA4) // Unused Flag
-#define FLAG_UNUSED_0x905                           (SYSTEM_FLAGS + 0xA5) // Unused Flag
-#define FLAG_UNUSED_0x906                           (SYSTEM_FLAGS + 0xA6) // Unused Flag
-#define FLAG_UNUSED_0x907                           (SYSTEM_FLAGS + 0xA7) // Unused Flag
+#define FLAG_BEAT_STEVEN_KITAKAMI                   (SYSTEM_FLAGS + 0x98)
+#define FLAG_CHOICEBAND_KITAKAMI                    (SYSTEM_FLAGS + 0x99) // Kitakami mountain itemball
+#define FLAG_HIDE_MAREANIES                         (SYSTEM_FLAGS + 0x9A) //Hacky workaround for sequence skip with goldenrod shore
+#define FLAG_PREVENT_OVERWORLD_SPEEDUP              (SYSTEM_FLAGS + 0x9B)
+#define FLAG_HIDE_UXIE                              (SYSTEM_FLAGS + 0x9C)
+#define FLAG_HIDE_AZELF                             (SYSTEM_FLAGS + 0x9D)
+#define FLAG_HIDE_MESPRIT                           (SYSTEM_FLAGS + 0x9E)
+#define FLAG_HIDE_NEWBARK_RIVALMARILL               (SYSTEM_FLAGS + 0x9F)
+#define FLAG_NO_WHITEOUT                            (SYSTEM_FLAGS + 0xA0)
+#define FLAG_HIDE_CRESSELIA                         (SYSTEM_FLAGS + 0xA1)
+#define FLAG_HIDE_RIVAL_VIOLETGATEHOUSE             (SYSTEM_FLAGS + 0xA2)
+#define FLAG_PICKED_ZIGZAGOON                       (SYSTEM_FLAGS + 0xA3)
+#define FLAG_PICKED_RATTATA                         (SYSTEM_FLAGS + 0xA4)
+#define FLAG_CHIMECHITE                             (SYSTEM_FLAGS + 0xA5)
+#define FLAG_HIDE_ROUTE32_RIVAL                     (SYSTEM_FLAGS + 0xA6)
+#define FLAG_HIDE_TUESCANY                           (SYSTEM_FLAGS + 0xA7)
 #define FLAG_UNUSED_0x908                           (SYSTEM_FLAGS + 0xA8) // Unused Flag
 #define FLAG_UNUSED_0x909                           (SYSTEM_FLAGS + 0xA9) // Unused Flag
 #define FLAG_UNUSED_0x90A                           (SYSTEM_FLAGS + 0xAA) // Unused Flag
@@ -1568,10 +1568,24 @@
 #define FLAG_SYS_HIDDEN_GROTTO_FIRST_VISIT         (SYSTEM_FLAGS + 0xBE)
 #define FLAG_UNUSED_0x91F                           (SYSTEM_FLAGS + 0xBF) // Unused Flag
 
+// Infinite free flags
+#define FLAG_0x920                                  0x920
+#define FLAG_0x921                                  0x921
+#define FLAG_0x922                                  0x922
+#define FLAG_0x923                                  0x923
+#define FLAG_0x924                                  0x924
+#define FLAG_0x925                                  0x925
+#define FLAG_0x926                                  0x926
+#define FLAG_0x927                                  0x927
+#define FLAG_0x928                                  0x928
+#define FLAG_0x929                                  0x929
+#define FLAG_0x92A                                  0x92A
+
+#define FLAG_0x1500                                 0x1500
 // Daily Flags
 // These flags are cleared once per day
 // The start and end are byte-aligned because the flags are cleared in byte increments
-#define DAILY_FLAGS_START                           (FLAG_UNUSED_0x91F + (8 - FLAG_UNUSED_0x91F % 8))
+#define DAILY_FLAGS_START                           (FLAG_0x1500 + (8 - FLAG_0x1500 % 8))
 #define FLAG_ROUTE32_GROTTO                         (DAILY_FLAGS_START + 0x0)
 #define FLAG_DAILY_CONTEST_LOBBY_RECEIVED_BERRY     (DAILY_FLAGS_START + 0x1)
 #define FLAG_DAILY_SECRET_BASE                      (DAILY_FLAGS_START + 0x2)
@@ -1596,7 +1610,7 @@
 
 #define FLAG_ROUTE47_GROTTO                         (DAILY_FLAGS_START + 0x15)
 #define FLAG_ROUTE38_GROTTO                         (DAILY_FLAGS_START + 0x16)
-#define FLAG_UNUSED_0x937                           (DAILY_FLAGS_START + 0x17) // Unused Flag
+#define FLAG_CANDY_KITAKAMI                         (DAILY_FLAGS_START + 0x17)
 #define FLAG_UNUSED_0x938                           (DAILY_FLAGS_START + 0x18) // Unused Flag
 #define FLAG_UNUSED_0x939                           (DAILY_FLAGS_START + 0x19) // Unused Flag
 #define FLAG_UNUSED_0x93A                           (DAILY_FLAGS_START + 0x1A) // Unused Flag
@@ -1641,6 +1655,7 @@
 #define NUM_DAILY_FLAGS                             (DAILY_FLAGS_END - DAILY_FLAGS_START + 1)
 
 #define FLAGS_COUNT (DAILY_FLAGS_END + 1)
+
 
 // Special Flags (Stored in EWRAM (sSpecialFlags), not in the SaveBlock)
 #define SPECIAL_FLAGS_START                     0x4000

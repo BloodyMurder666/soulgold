@@ -279,7 +279,7 @@ static void FillTrainerParty(u16 trainerId, u8 firstMonId, u8 monCount)
         for (j = 0; j < i + firstMonId; j++)
         {
             if (GetMonData(&gEnemyParty[j], MON_DATA_HELD_ITEM) != ITEM_NONE
-             && GetMonData(&gEnemyParty[j], MON_DATA_HELD_ITEM) == gFacilityTrainerMons[monId].heldItem)
+             && GetMonData(&gEnemyParty[j], MON_DATA_HELD_ITEM) == gFacilityTrainerMons[monId].heldItem[0])
                 break;
         }
         if (j != i + firstMonId)

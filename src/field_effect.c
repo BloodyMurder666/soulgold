@@ -973,7 +973,12 @@ u8 AddNewGameBirchObject(s16 x, s16 y, u8 subpriority)
 
 u8 CreateMonSprite_PicBox(u16 species, s16 x, s16 y, u8 subpriority)
 {
-    s32 spriteId = CreateMonPicSprite(species, FALSE, 0x8000, TRUE, x, y, 0, species);
+    return CreateMonSprite_PicBoxShiny(species, FALSE, 0x8000, x, y, subpriority);
+}
+
+u8 CreateMonSprite_PicBoxShiny(u16 species, bool8 isShiny, u32 personality, s16 x, s16 y, u8 subpriority)
+{
+    s32 spriteId = CreateMonPicSprite(species, isShiny, personality, TRUE, x, y, 0, species);
     PreservePaletteInWeather(IndexOfSpritePaletteTag(species) + 0x10);
     if (spriteId == 0xFFFF)
         return MAX_SPRITES;
@@ -1149,11 +1154,11 @@ static void HallOfFameRecordEffect_Init(struct Task *task)
     task->tState++;
     task->tBallSpriteId = CreateGlowingPokeballsEffect(task->tNumMons, task->tFirstBallX, task->tFirstBallY, FALSE);
     taskId = FindTaskIdByFunc(Task_HallOfFameRecord);
-    CreateHofMonitorSprite(taskId, 120, 24, FALSE);
-    CreateHofMonitorSprite(taskId, 40, 8, TRUE);
-    CreateHofMonitorSprite(taskId, 72, 8, TRUE);
-    CreateHofMonitorSprite(taskId, 168, 8, TRUE);
-    CreateHofMonitorSprite(taskId, 200, 8, TRUE);
+    //CreateHofMonitorSprite(taskId, 120, 24, FALSE);
+    //CreateHofMonitorSprite(taskId, 40, 8, TRUE);
+    //CreateHofMonitorSprite(taskId, 72, 8, TRUE);
+    //CreateHofMonitorSprite(taskId, 168, 8, TRUE);
+    //CreateHofMonitorSprite(taskId, 200, 8, TRUE);
 }
 
 static void HallOfFameRecordEffect_WaitForBallPlacement(struct Task *task)
@@ -3653,6 +3658,9 @@ static void SpriteCB_FlyBirdLeaveBall(struct Sprite *sprite)
 
 static void SpriteCB_FlyBirdSwoopDown(struct Sprite *sprite)
 {
+    if (sprite->sAnimCompleted && sprite->sPlayerSpriteId == MAX_SPRITES)
+        return;
+
     sprite->x2 = Cos(sprite->data[2], 0x8c);
     sprite->y2 = Sin(sprite->data[2], 0x48);
     sprite->data[2] = (sprite->data[2] + 4) & 0xff;

@@ -37,5 +37,6 @@ void InitTilesetAnim_NationalPark(void);
 void InitTilesetAnim_ecruteak_theater(void);
 void InitTilesetAnim_AzaleaTown_Gym(void);
 void InitTilesetAnim_CeladonCity(void);
+void InitTilesetAnim_MtEmber(void);
 
 #endif // GUARD_TILESET_ANIMS_H

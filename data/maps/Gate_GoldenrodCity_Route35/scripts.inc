@@ -78,9 +78,9 @@ Gate_GoldenrodCity_Route35_EventScript_Fisher::
 Route35GoldenrodGate_Text_RandyAskFavor:
 	.string "Excuse me, kid! Can you do a guy\n"
 	.string "a favor?\p"
-	.string "Can you take this POKéMON with MAIL\n"
+	.string "Can you take this Pokémon with Mail\n"
 	.string "to my friend?\p"
-	.string "He's on ROUTE 31.$"
+	.string "He's on Route 31.$"
 
 Route35GoldenrodGate_Text_RandyThanks:
 	.string "You will? Perfect! Thanks, kid!\p"
@@ -89,18 +89,18 @@ Route35GoldenrodGate_Text_RandyThanks:
 	.string "You'll recognize him right away!$"
 
 Route35GoldenrodGate_Text_ReceivedMonWithMail:
-	.string "{PLAYER} received a POKéMON with MAIL.$"
+	.string "{PLAYER} received a Pokémon with Mail.$"
 
 Route35GoldenrodGate_Text_RandyWeirdTree:
 	.string "Make sure to put it at the front of\n"
 	.string "your team when you find my friend!\p"
-	.string "ROUTE 31!\p"
+	.string "Route 31!\p"
 	.string "Oh, yeah. There was a weird tree\n"
 	.string "blocking the road.\p"
 	.string "I wonder if it's been cleared?$"
 
 Route35GoldenrodGate_Text_CantCarryMoreMon:
-	.string "You can't carry another POKéMON…$"
+	.string "You can't carry another Pokémon…$"
 
 Route35GoldenrodGate_Text_RandyNeverMind:
 	.string "Oh… Never mind, then…$"
@@ -118,16 +118,16 @@ Route35GoldenrodGate_Text_PokefanF_TreeBlocking:
 	.string "A strange tree is blocking the road.\p"
 	.string "It wriggles around if you talk to it.\p"
 	.string "I heard it became wild when someone\n"
-	.string "watered it with a SQUIRTBOTTLE.$"
+	.string "watered it with a Squirtbottle.$"
 
 Route35GoldenrodGate_Text_PokefanF_Lullaby:
-	.string "I like the POKéMON Lullaby they play\n"
+	.string "I like the Pokémon Lullaby they play\n"
 	.string "on the radio.$"
 
 Route35GoldenrodGate_Text_Fisher:
-	.string "I wonder how many kinds of POKéMON\n"
+	.string "I wonder how many kinds of Pokémon\n"
 	.string "there are in the world.\p"
-	.string "Three years ago, PROF.OAK said that\n"
+	.string "Three years ago, Prof.Oak said that\n"
 	.string "there were 150 different kinds.\p"
 	.string "But recently I heard there's\n"
 	.string "over 400!$"

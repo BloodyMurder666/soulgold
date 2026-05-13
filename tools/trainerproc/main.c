@@ -18,8 +18,11 @@
 #define MAX_TRAINER_ITEMS 4
 #define PARTY_SIZE 255
 #define MAX_MON_MOVES 4
+#define MAX_MON_ITEMS 2 // Separate from the battle_util MAX_MON_ITEMS option.
 #define MAX_MON_TAGS 32
 #define STARTING_STATUS_COUNT 64
+int excludedSlots[MAX_MON_ITEMS] = {}; //Used to designate slots that should not auto populate with form specific held items.  Only needed when using slot categories.
+
 
 struct String
 {
@@ -51,7 +54,7 @@ struct Pokemon
     struct String nickname;
     struct String species;
     enum Gender gender;
-    struct String item;
+    struct String item[MAX_MON_ITEMS];
     int header_line;
 
     struct Stats evs;
@@ -202,6 +205,16 @@ static bool ends_with(struct String s, const char *suffix)
         }
         return true;
     }
+}
+
+static bool is_excluded_slot(int slot)
+{
+    for (int i = 0; i < MAX_MON_ITEMS; i++)
+    {
+        if (excludedSlots[i] == slot)
+            return true;
+    }
+    return false;
 }
 
 static struct String literal_string(const char *s)
@@ -694,6 +707,7 @@ static bool parse_pokemon_header(struct Parser *p, struct Token *nickname, struc
     assert(p && nickname && species && gender && item);
     struct Parser p_ = *p;
     struct Token first = {}, second = {}, third = {};
+    int i = 0;
 
     if (!match_species_identifier(&p_, &first))
         return false;
@@ -743,20 +757,32 @@ static bool parse_pokemon_header(struct Parser *p, struct Token *nickname, struc
 
     skip_whitespace(&p_);
     if (match_exact(&p_, "@"))
-    {
-        skip_whitespace(&p_);
-        if (!match_human_identifier(&p_, item))
-            return set_parse_error(p, p_.location, "expected item");
+    { 
+        // clear item list
+for(i = 0; i < MAX_MON_ITEMS; ++i)
+            item[i] = (struct Token) {};
+
+         for (i = 0; i < MAX_MON_ITEMS; ++i)
+         {
+            skip_whitespace(&p_);
+            if (!match_human_identifier(&p_, &item[i])) //asigns token
+                return set_parse_error(p, p_.location, "expected item");
+            skip_whitespace(&p_);
+            if (match_eol(&p_))
+                break;
+            else if (!match_exact(&p_, "/"))
+                return set_parse_error(p, p_.location, "expected '/' or newline");
+        }
     }
     else
     {
-        *item = (struct Token) {};
+        for(i = 0; i < MAX_MON_ITEMS; ++i)
+            item[i] = (struct Token) {};
+        skip_whitespace(&p_);
+        if (!match_eol(&p_))
+            return set_parse_error(p, p_.location, "unexpected character in Pokemon header");
     }
-
-    skip_whitespace(&p_);
-    if (!match_eol(&p_))
-        return set_parse_error(p, p_.location, "unexpected character in Pokemon header");
-
+    
     *p = p_;
     return true;
 }
@@ -1156,7 +1182,7 @@ static bool parse_trainer(struct Parser *p, const struct Parsed *parsed, struct 
 
     while (match_empty_line(p)) {}
     struct Token id;
-    struct Token nickname, species, gender, item;
+    struct Token nickname, species, gender, item[MAX_MON_ITEMS];
     if (!parse_section(p, &id))
     {
         if (!p->error)
@@ -1327,7 +1353,7 @@ static bool parse_trainer(struct Parser *p, const struct Parsed *parsed, struct 
 
         // Continue if the line is the start of a new Pokemon.
         struct Parser p_ = *p;
-        if (!parse_pokemon_header(&p_, &nickname, &species, &gender, &item))
+        if (!parse_pokemon_header(&p_, &nickname, &species, &gender, item))
             return false;
     }
 
@@ -1337,7 +1363,7 @@ static bool parse_trainer(struct Parser *p, const struct Parsed *parsed, struct 
 
         // Parse first line.
         while (match_empty_line(p)) {}
-        if (!parse_pokemon_header(p, &nickname, &species, &gender, &item))
+        if (!parse_pokemon_header(p, &nickname, &species, &gender, item))
         {
             if (i > 0 || ends_with(trainer->id, "_NONE") || !is_empty_string(trainer->copy_pool))
                 break;
@@ -1365,7 +1391,11 @@ static bool parse_trainer(struct Parser *p, const struct Parsed *parsed, struct 
             pokemon->gender = GENDER_ANY;
         else if (!token_gender(p, &gender, &pokemon->gender))
             any_error = !show_parse_error(p);
-        pokemon->item = token_string(&item);
+        
+        for (int i = 0; i < MAX_MON_ITEMS; i++)
+        {
+            pokemon->item[i] = token_string(&item[i]);
+        }
         pokemon->header_line = species.location.line;
 
         for (int i = 0; gendered_species[i].species; i++)
@@ -1390,11 +1420,17 @@ static bool parse_trainer(struct Parser *p, const struct Parsed *parsed, struct 
 
         for (int i = 0; itemed_species[i].species; i++)
         {
-            if (is_literal_string(pokemon->species, itemed_species[i].form)
-             && is_empty_string(pokemon->item))
+            if (is_literal_string(pokemon->species, itemed_species[i].form))
             {
-                pokemon->species = literal_string(itemed_species[i].species);
-                pokemon->item = literal_string(itemed_species[i].item);
+                for (int j = 0; j < MAX_MON_ITEMS; j++)
+                {
+                    if (is_empty_string(pokemon->item[j]) && !is_excluded_slot(j))
+                    {
+                        pokemon->species = literal_string(itemed_species[i].species);
+                        pokemon->item[j] = literal_string(itemed_species[i].item);
+                        break;
+                    }
+                }
             }
         }
 
@@ -1552,7 +1588,7 @@ static bool parse_trainer(struct Parser *p, const struct Parsed *parsed, struct 
 
             // Continue if the line is the start of a new Pokemon.
             struct Parser p_ = *p;
-            if (!parse_pokemon_header(&p_, &nickname, &species, &gender, &item))
+            if (!parse_pokemon_header(&p_, &nickname, &species, &gender, item))
                 return false;
         }
     }
@@ -2002,12 +2038,17 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
                     break;
             }
 
-            if (!is_empty_string(pokemon->item))
+            if (!is_empty_string(pokemon->item[0]))
             {
                 fprintf(f, "#line %d\n", pokemon->header_line);
-                fprintf(f, "            .heldItem = ");
-                fprint_constant(f, "ITEM", pokemon->item);
-                fprintf(f, ",\n");
+                fprintf(f, "            .heldItem = { ");
+                for (int i = 0; i < MAX_MON_ITEMS; i++)
+                {
+                    if (i > 0)
+                        fprintf(f, ", ");
+                    fprint_constant(f, "ITEM", pokemon->item[i]);
+                }
+                fprintf(f, " },\n");
             }
 
             if (pokemon->evs_line)

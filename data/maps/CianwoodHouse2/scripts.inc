@@ -26,7 +26,7 @@ CianwoodHouse2_EventScript_Twin::
 	end
 	
 CianwoodCity_Text_LugiaHouseTeacher:
-	.string "You came from OLIVINE?\p"
+	.string "You came from Olivine?\p"
 	.string "Do you remember the four islands\n"
 	.string "along the way?\p"
 	.string "I heard that a mythical sea crea-\n"
@@ -34,7 +34,7 @@ CianwoodCity_Text_LugiaHouseTeacher:
 
 CianwoodCity_Text_LugiaHouseLass:
 	.string "I heard that you can only see it\n"
-	.string "if you have a SILVER WING.\p"
+	.string "if you have a Silver Wing.\p"
 	.string "It must have the same scent as\n"
 	.string "the creature.$"
 

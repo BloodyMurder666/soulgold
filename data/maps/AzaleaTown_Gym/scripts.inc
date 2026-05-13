@@ -1075,7 +1075,7 @@ AzaleaTown_Gym_EventScript_Bugsy::
 # 538 "data/maps/AzaleaTown_Gym/scripts.pory"
 	msgbox AzaleaTown_Gym_Text_BugsyIntro, MSGBOX_DEFAULT
 # 539 "data/maps/AzaleaTown_Gym/scripts.pory"
-	call BugsyChooseDifficulty
+	trainerbattle_no_intro TRAINER_BUGSY_1, AzaleaTown_Gym_Text_BugsyBeaten
 # 540 "data/maps/AzaleaTown_Gym/scripts.pory"
 	message AzaleaTown_Gym_Text_ReceivedHiveBadge
 # 541 "data/maps/AzaleaTown_Gym/scripts.pory"
@@ -1339,15 +1339,15 @@ AzaleaTown_Gym_EventScript_Statue2::
 # 670 "data/maps/AzaleaTown_Gym/scripts.pory"
 AzaleaTown_Gym_Text_GymStatue:
 # 671 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "AZALEA POKéMON GYM$"
+	.string "Azalea Pokémon Gym$"
 # 672 "data/maps/AzaleaTown_Gym/scripts.pory"
 
 # 673 "data/maps/AzaleaTown_Gym/scripts.pory"
 AzaleaTown_Gym_Text_GymStatueCertified:
 # 674 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "AZALEA TOWN POKéMON GYM\p"
+	.string "Azalea Town Pokémon Gym\p"
 # 675 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "BUGSY'S CERTIFIED TRAINERS:\n"
+	.string "Bugsy'S Certified Trainers:\n"
 # 676 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "{PLAYER}$"
 # 677 "data/maps/AzaleaTown_Gym/scripts.pory"
@@ -1355,15 +1355,15 @@ AzaleaTown_Gym_Text_GymStatueCertified:
 # 678 "data/maps/AzaleaTown_Gym/scripts.pory"
 AzaleaTown_Gym_Text_BugsyIntro:
 # 679 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "I'm BUGSY!\p"
+	.string "I'm Bugsy!\p"
 # 680 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "I never lose when it comes\n"
 # 681 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "to bug POKéMON.\p"
+	.string "to bug Pokémon.\p"
 # 682 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "My research is going to make me the\n"
 # 683 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "authority on bug POKéMON!\p"
+	.string "authority on bug Pokémon!\p"
 # 684 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "Let me demonstrate all I've\n"
 # 685 "data/maps/AzaleaTown_Gym/scripts.pory"
@@ -1375,21 +1375,21 @@ AzaleaTown_Gym_Text_BugsyBeaten:
 # 688 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "Whoa, amazing! You're an\n"
 # 689 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "expert on POKéMON!\p"
+	.string "expert on Pokémon!\p"
 # 690 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "My research isn't complete\n"
 # 691 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "yet.\p"
 # 692 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "OK, you win. Take this\n"
+	.string "Ok, you win. Take this\n"
 # 693 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "BADGE.$"
+	.string "Badge.$"
 # 694 "data/maps/AzaleaTown_Gym/scripts.pory"
 
 # 695 "data/maps/AzaleaTown_Gym/scripts.pory"
 AzaleaTown_Gym_Text_ReceivedHiveBadge:
 # 696 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "{PLAYER} received HIVEBADGE.$"
+	.string "{PLAYER} received Hivebadge.$"
 # 697 "data/maps/AzaleaTown_Gym/scripts.pory"
 
 # 698 "data/maps/AzaleaTown_Gym/scripts.pory"
@@ -1397,15 +1397,15 @@ AzaleaTown_Gym_Text_HiveBadgeSpeech:
 # 699 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "Do you know the benefits\n"
 # 700 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "of HIVEBADGE?\p"
+	.string "of Hivebadge?\p"
 # 701 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "If you have it, POKéMON up\n"
+	.string "If you have it, Pokémon up\n"
 # 702 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "to L30 will obey you,\l"
 # 703 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "even traded ones.\p"
 # 704 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "POKéMON that know CUT will be able\n"
+	.string "Pokémon that know Cut will be able\n"
 # 705 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "to use it outside of battle too.\p"
 # 706 "data/maps/AzaleaTown_Gym/scripts.pory"
@@ -1417,7 +1417,7 @@ AzaleaTown_Gym_Text_HiveBadgeSpeech:
 # 709 "data/maps/AzaleaTown_Gym/scripts.pory"
 AzaleaTown_Gym_Text_FuryCutterSpeech:
 # 710 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "TM09 contains BULLET SEED.\p"
+	.string "TM09 contains Bullet Seed.\p"
 # 711 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "It shoots a torrent of seeds\n"
 # 712 "data/maps/AzaleaTown_Gym/scripts.pory"
@@ -1435,7 +1435,7 @@ AzaleaTown_Gym_Text_FuryCutterSpeech:
 # 718 "data/maps/AzaleaTown_Gym/scripts.pory"
 AzaleaTown_Gym_Text_BugsyAdvice:
 # 719 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "Bug POKéMON are deep. There are\n"
+	.string "Bug Pokémon are deep. There are\n"
 # 720 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "many mysteries to be explored.\p"
 # 721 "data/maps/AzaleaTown_Gym/scripts.pory"
@@ -1445,7 +1445,7 @@ AzaleaTown_Gym_Text_BugsyAdvice:
 # 723 "data/maps/AzaleaTown_Gym/scripts.pory"
 AzaleaTown_Gym_Text_BugsyRematch:
 # 724 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "Wow, you're the JOHTO CHAMPION now!\p"
+	.string "Wow, you're the Johto Champion now!\p"
 # 725 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "Your skills are truly impressive!\p"
 # 726 "data/maps/AzaleaTown_Gym/scripts.pory"
@@ -1469,7 +1469,7 @@ AzaleaTown_Gym_Text_BugsyRematchDefeat:
 # 735 "data/maps/AzaleaTown_Gym/scripts.pory"
 AzaleaTown_Gym_Text_BugCatcherBennySeen:
 # 736 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "Bug POKéMON evolve young. So they\n"
+	.string "Bug Pokémon evolve young. So they\n"
 # 737 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "get stronger that much faster.$"
 # 738 "data/maps/AzaleaTown_Gym/scripts.pory"
@@ -1483,7 +1483,7 @@ AzaleaTown_Gym_Text_BugCatcherBennyBeaten:
 # 742 "data/maps/AzaleaTown_Gym/scripts.pory"
 AzaleaTown_Gym_Text_BugCatcherBennyAfter:
 # 743 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "POKéMON become stronger\n"
+	.string "Pokémon become stronger\n"
 # 744 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "if they evolve. Really!$"
 # 745 "data/maps/AzaleaTown_Gym/scripts.pory"
@@ -1491,7 +1491,7 @@ AzaleaTown_Gym_Text_BugCatcherBennyAfter:
 # 746 "data/maps/AzaleaTown_Gym/scripts.pory"
 AzaleaTown_Gym_Text_BugCatcherAlSeen:
 # 747 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "Bug POKéMON are cool and tough!\n"
+	.string "Bug Pokémon are cool and tough!\n"
 # 748 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "I'll prove it to you!$"
 # 749 "data/maps/AzaleaTown_Gym/scripts.pory"
@@ -1507,7 +1507,7 @@ AzaleaTown_Gym_Text_BugCatcherAlAfter:
 # 754 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "They're so cool, but most girls\n"
 # 755 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "don't like bug POKéMON.\p"
+	.string "don't like bug Pokémon.\p"
 # 756 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "I don't know why…$"
 # 757 "data/maps/AzaleaTown_Gym/scripts.pory"
@@ -1515,11 +1515,11 @@ AzaleaTown_Gym_Text_BugCatcherAlAfter:
 # 758 "data/maps/AzaleaTown_Gym/scripts.pory"
 AzaleaTown_Gym_Text_BugCatcherJoshSeen:
 # 759 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "You saved all the SLOWPOKE?\n"
+	.string "You saved all the Slowpoke?\n"
 # 760 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "Whew, you're mighty!\p"
 # 761 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "But my grown-up POKéMON are\n"
+	.string "But my grown-up Pokémon are\n"
 # 762 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "pretty tough too!$"
 # 763 "data/maps/AzaleaTown_Gym/scripts.pory"
@@ -1541,15 +1541,15 @@ AzaleaTown_Gym_Text_BugCatcherJoshAfter:
 # 771 "data/maps/AzaleaTown_Gym/scripts.pory"
 AzaleaTown_Gym_Text_TwinsAmyMay1Seen:
 # 772 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "AMY: Hi! Are you challenging\n"
+	.string "Amy: Hi! Are you challenging\n"
 # 773 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "the LEADER? No way!$"
+	.string "the Leader? No way!$"
 # 774 "data/maps/AzaleaTown_Gym/scripts.pory"
 
 # 775 "data/maps/AzaleaTown_Gym/scripts.pory"
 AzaleaTown_Gym_Text_TwinsAmyMay1Beaten:
 # 776 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "AMY & MAY: Oh, double\n"
+	.string "Amy & May: Oh, double\n"
 # 777 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "goodness!$"
 # 778 "data/maps/AzaleaTown_Gym/scripts.pory"
@@ -1557,11 +1557,11 @@ AzaleaTown_Gym_Text_TwinsAmyMay1Beaten:
 # 779 "data/maps/AzaleaTown_Gym/scripts.pory"
 AzaleaTown_Gym_Text_TwinsAmyMay1After:
 # 780 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "AMY: You're really strong!\p"
+	.string "Amy: You're really strong!\p"
 # 781 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "But BUGSY's even stronger!\n"
+	.string "But Bugsy's even stronger!\n"
 # 782 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "His SCYTHER's U-Turn almost\l"
+	.string "His Scyther's U-Turn almost\l"
 # 783 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "always makes turns the tide!$"
 # 784 "data/maps/AzaleaTown_Gym/scripts.pory"
@@ -1569,13 +1569,13 @@ AzaleaTown_Gym_Text_TwinsAmyMay1After:
 # 785 "data/maps/AzaleaTown_Gym/scripts.pory"
 AzaleaTown_Gym_Text_TwinsAmyMay2Seen:
 # 786 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "MAY: You want to see the\n"
+	.string "May: You want to see the\n"
 # 787 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "LEADER? Good luck!\p"
+	.string "Leader? Good luck!\p"
 # 788 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "BUGSY is so strong!\n"
+	.string "Bugsy is so strong!\n"
 # 789 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "His SCYTHER's U-turn always\l"
+	.string "His Scyther's U-turn always\l"
 # 790 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "seems to turn tides!$"
 # 791 "data/maps/AzaleaTown_Gym/scripts.pory"
@@ -1583,7 +1583,7 @@ AzaleaTown_Gym_Text_TwinsAmyMay2Seen:
 # 792 "data/maps/AzaleaTown_Gym/scripts.pory"
 AzaleaTown_Gym_Text_TwinsAmyMay2Beaten:
 # 793 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "AMY & MAY: Oh, double\n"
+	.string "Amy & May: Oh, double\n"
 # 794 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "goodness!$"
 # 795 "data/maps/AzaleaTown_Gym/scripts.pory"
@@ -1591,15 +1591,15 @@ AzaleaTown_Gym_Text_TwinsAmyMay2Beaten:
 # 796 "data/maps/AzaleaTown_Gym/scripts.pory"
 AzaleaTown_Gym_Text_TwinsAmyMay2After:
 # 797 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "MAY: Our bug POKéMON lost!\n"
+	.string "May: Our bug Pokémon lost!\n"
 # 798 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "Oh, what a shame.\p"
 # 799 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "BUGSY's won't lose though!\p"
+	.string "Bugsy's won't lose though!\p"
 # 800 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "His PINECO makes short work\n"
+	.string "His Pineco makes short work\n"
 # 801 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "of ROCK-type POKéMON!$"
+	.string "of Rock-type Pokémon!$"
 # 802 "data/maps/AzaleaTown_Gym/scripts.pory"
 
 # 803 "data/maps/AzaleaTown_Gym/scripts.pory"
@@ -1607,19 +1607,19 @@ AzaleaTown_Gym_Text_GymGuide:
 # 804 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "Yo, challenger!\p"
 # 805 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "BUGSY's young, but his knowledge\n"
+	.string "Bugsy's young, but his knowledge\n"
 # 806 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "of bug POKéMON is for real.\p"
+	.string "of bug Pokémon is for real.\p"
 # 807 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "It's going to be tough\n"
 # 808 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "without my advice.\p"
 # 809 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "Let's see… BUGSY's bagworm POKéMON\n"
+	.string "Let's see… Bugsy's bagworm Pokémon\n"
 # 810 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "knows a move that covers its\l"
 # 811 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "ROCK-type weakness.\p"
+	.string "Rock-type weakness.\p"
 # 812 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "Oh, and don't forget about those\n"
 # 813 "data/maps/AzaleaTown_Gym/scripts.pory"
@@ -1635,55 +1635,4 @@ AzaleaTown_Gym_Text_GymGuideWin:
 # 818 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "With people like you, the\n"
 # 819 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "future of POKéMON is bright!$"
-
-BugsyChooseDifficulty::
-# 823 "data/maps/AzaleaTown_Gym/scripts.pory"
-	msgbox BugsyChooseDifficulty_Text_0
-# 825 "data/maps/AzaleaTown_Gym/scripts.pory"
-	dynmultichoice 0, 0, FALSE, 5, 0, DYN_MULTICHOICE_CB_NONE, BugsyChooseDifficulty_Text_1, BugsyChooseDifficulty_Text_2, BugsyChooseDifficulty_Text_3
-# 826 "data/maps/AzaleaTown_Gym/scripts.pory"
-	switch VAR_RESULT
-# 827 "data/maps/AzaleaTown_Gym/scripts.pory"
-	case 0, BugsyChooseDifficulty_3
-# 832 "data/maps/AzaleaTown_Gym/scripts.pory"
-	case 1, BugsyChooseDifficulty_4
-# 837 "data/maps/AzaleaTown_Gym/scripts.pory"
-	release
-	end
-
-	return
-
-BugsyChooseDifficulty_3:
-# 828 "data/maps/AzaleaTown_Gym/scripts.pory"
-	setdifficulty DIFFICULTY_NORMAL
-# 829 "data/maps/AzaleaTown_Gym/scripts.pory"
-	clearflag FLAG_NEVER_TURNED_OFF_HARD
-# 830 "data/maps/AzaleaTown_Gym/scripts.pory"
-	trainerbattle_no_intro TRAINER_BUGSY_1, AzaleaTown_Gym_Text_BugsyBeaten
-	return
-
-BugsyChooseDifficulty_4:
-# 833 "data/maps/AzaleaTown_Gym/scripts.pory"
-	setdifficulty DIFFICULTY_HARD
-# 834 "data/maps/AzaleaTown_Gym/scripts.pory"
-	trainerbattle_no_intro TRAINER_BUGSY_1, AzaleaTown_Gym_Text_BugsyBeaten
-	return
-
-
-BugsyChooseDifficulty_Text_0:
-# 823 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "Would you prefer the demonstration\n"
-	.string "with my best bugs or the regular one?$"
-
-BugsyChooseDifficulty_Text_1:
-# 825 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "Regular$"
-
-BugsyChooseDifficulty_Text_2:
-# 825 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "Hard$"
-
-BugsyChooseDifficulty_Text_3:
-# 825 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "Cancel$"
+	.string "future of Pokémon is bright!$"

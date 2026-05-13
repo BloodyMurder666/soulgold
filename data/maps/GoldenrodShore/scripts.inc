@@ -157,6 +157,12 @@ GoldenrodShore_HiddenGrotto_2:
 	goto GoldenrodShore_HiddenGrotto_1
 
 
+MareaniesGoldenrodShore::
+# 60 "data/maps/GoldenrodShore/scripts.pory"
+	msgbox MareaniesGoldenrodShore_Text_0, MSGBOX_NPC
+	return
+
+
 GoldenrodShore_Expert_Text_0:
 # 7 "data/maps/GoldenrodShore/scripts.pory"
 	.string "Guess I'm free to go home now\n"
@@ -207,3 +213,8 @@ GoldenrodShore_HiddenGrotto_Text_0:
 # 49 "data/maps/GoldenrodShore/scripts.pory"
 	.string "There seems to be a path behind the\n"
 	.string "trees. Enter?$"
+
+MareaniesGoldenrodShore_Text_0:
+# 60 "data/maps/GoldenrodShore/scripts.pory"
+	.string "Mareanies seem to be blocking the way. \n"
+	.string "Perhaps there is another way to Olivine?$"

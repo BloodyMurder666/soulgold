@@ -1,0 +1,43 @@
+{
+  "id": "MAP_KITAKAMI_MOUNTAIN_ENCLAVE",
+  "name": "KitakamiMountainEnclave",
+  "layout": "LAYOUT_KITAKAMI_MOUNTAIN_ENCLAVE",
+  "music": "MUS_DUMMY",
+  "region_map_section": "MAPSEC_KITAKAMI_MOUNTAIN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": true,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "local_id": "LOCALID_KITAKAMIMOUNTAIN_OGERPON",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(OGERPON)",
+      "x": 17,
+      "y": 10,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "KitakamiMountainEnclave_Ogerpon",
+      "flag": "FLAG_HIDE_OGERPON"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 17,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_KITAKAMI_MOUNTAIN1F",
+      "dest_warp_id": "1"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": []
+}

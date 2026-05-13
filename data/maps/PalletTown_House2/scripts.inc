@@ -56,41 +56,41 @@ PalletTown_House2_EventScript_DaisyGrooming::
 	end
 
 PalletTown_House2_Text_Hello:
-	.string "DAISY: Hi! My kid brother is the\n"
-	.string "GYM LEADER in VIRIDIAN CITY.\p"
+	.string "Daisy: Hi! My kid brother is the\n"
+	.string "Gym Leader in Viridian City.\p"
 	.string "But he goes out of town so\n"
 	.string "often, it causes problems for\l"
 	.string "the trainers.$"
 
 PalletTown_House2_Text_OfferGrooming:
-	.string "DAISY: Hi! Good timing. I'm about\n"
+	.string "Daisy: Hi! Good timing. I'm about\n"
 	.string "to have some tea.\p"
 	.string "Would you like to join me?\p"
-	.string "Oh, your POKéMON are a bit dirty.\p"
+	.string "Oh, your Pokémon are a bit dirty.\p"
 	.string "Would you like me to groom one?$"
 
 PalletTown_House2_Text_WhichMon:
-	.string "DAISY: Which one should I groom?$"
+	.string "Daisy: Which one should I groom?$"
 
 PalletTown_House2_Text_Alright:
-	.string "DAISY: OK, I'll get it looking\n"
+	.string "Daisy: Ok, I'll get it looking\n"
 	.string "nice in no time.$"
 
 PalletTown_House2_Text_AllDone:
-	.string "DAISY: There you go! All done.\p"
+	.string "Daisy: There you go! All done.\p"
 	.string "See? Doesn't {STR_VAR_1} look\n"
 	.string "nice?\p"
-	.string "It's such a cute POKéMON.$"
+	.string "It's such a cute Pokémon.$"
 
 PalletTown_House2_Text_AlreadyGroomed:
-	.string "DAISY: I always have tea around\n"
+	.string "Daisy: I always have tea around\n"
 	.string "this time. Come join me.$"
 
 PalletTown_House2_Text_Refused:
-	.string "DAISY: You don't want to have one\n"
+	.string "Daisy: You don't want to have one\n"
 	.string "groomed?\p"
-	.string "OK, we'll just have tea.$"
+	.string "Ok, we'll just have tea.$"
 
 PalletTown_House2_Text_CantGroomEgg:
-	.string "DAISY: Oh, sorry. I honestly can't\n"
-	.string "groom an EGG.$"
+	.string "Daisy: Oh, sorry. I honestly can't\n"
+	.string "groom an Egg.$"

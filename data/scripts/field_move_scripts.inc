@@ -6,7 +6,6 @@ EventScript_CutTree::
 	setfieldeffectargument 0, VAR_RESULT
 	bufferpartymonnick STR_VAR_1, VAR_RESULT
 	buffermovename STR_VAR_2, MOVE_CUT
-	goto_if_set FLAG_AUTO_HMS, EventScript_CutATree
 	msgbox Text_WantToCut, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, EventScript_CancelCut
 	goto EventScript_CutATree
@@ -71,7 +70,6 @@ EventScript_RockSmash::
 	setfieldeffectargument 0, VAR_RESULT
 	bufferpartymonnick STR_VAR_1, VAR_RESULT
 	buffermovename STR_VAR_2, MOVE_ROCK_SMASH
-	goto_if_set FLAG_AUTO_HMS, EventScript_SmashARock
 	msgbox Text_WantToSmash, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, EventScript_CancelSmash
 	goto EventScript_SmashARock
@@ -234,7 +232,6 @@ EventScript_StrengthBoulder::
 	checkfieldmove FIELD_MOVE_STRENGTH, TRUE
 	goto_if_eq VAR_RESULT, PARTY_SIZE, EventScript_CantStrength
 	setfieldeffectargument 0, VAR_RESULT
-	goto_if_set FLAG_AUTO_HMS, EventScript_PushABoulderLikeBathanielNandy
 	msgbox Text_WantToStrength, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, EventScript_CancelStrength
 	closemessage
@@ -274,7 +271,7 @@ EventScript_CancelStrength::
 	end
 
 Text_WantToStrength:
-	.string "It's a big boulder, but a POKéMON\n"
+	.string "It's a big boulder, but a Pokémon\n"
 	.string "may be able to push it aside.\p"
 	.string "Would you like to use STRENGTH?$"
 
@@ -284,7 +281,7 @@ Text_MonUsedStrength:
 	.string "possible to move boulders around!$"
 
 Text_CantStrength:
-	.string "It's a big boulder, but a POKéMON\n"
+	.string "It's a big boulder, but a Pokémon\n"
 	.string "may be able to push it aside.$"
 
 Text_StrengthActivated:
@@ -297,7 +294,6 @@ EventScript_UseWaterfall::
 	goto_if_eq VAR_RESULT, PARTY_SIZE, EventScript_CantWaterfall
 	bufferpartymonnick STR_VAR_1, VAR_RESULT
 	setfieldeffectargument 0, VAR_RESULT
-	goto_if_set FLAG_AUTO_HMS, EventScript_MoveUpAWaterfall
 	msgbox Text_WantToWaterfall, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, EventScript_EndWaterfall
 	msgbox Text_MonUsedWaterfall, MSGBOX_DEFAULT
@@ -418,7 +414,7 @@ EventScript_UseCutGrass::
 	goto EventScript_CutGrassCommon
 
 Text_CantDive:
-	.string "The sea is deep here. A POKéMON\n"
+	.string "The sea is deep here. A Pokémon\n"
 	.string "may be able to go underwater.$"
 
 Text_WantToDive:
@@ -430,7 +426,7 @@ Text_MonUsedDive:
 
 Text_CantSurface:
 	.string "Light is filtering down from above.\n"
-	.string "A POKéMON may be able to surface.$"
+	.string "A Pokémon may be able to surface.$"
 
 Text_WantToSurface:
 	.string "Light is filtering down from above.\n"

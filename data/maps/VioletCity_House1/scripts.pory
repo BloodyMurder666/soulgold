@@ -11,10 +11,10 @@ VioletCity_House1_EventScript_Kyle::
 	end
 
 VioletCity_House1_Text_PokefanM:
-	.string "A POKéMON you get in a trade\n"
+	.string "A Pokémon you get in a trade\n"
 	.string "grows quickly.\p"
 	.string "But if you don't have the right\n"
-	.string "GYM BADGE, they may disobey you.$"
+	.string "Gym Badge, they may disobey you.$"
 
 `
 

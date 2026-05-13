@@ -73,11 +73,20 @@ PokemonLeague_HallOfFame_EventScript_SetGameClearFlags::
 	clearflag FLAG_HIDE_MEWTWO
 	clearflag FLAG_HIDE_VERMILION_SNORLAX
 	clearflag FLAG_HIDE_UNION_CAVE_LAPRAS
-	clearflag FLAG_HIDE_SUDOWOODO
 	clearflag FLAG_HIDE_ZAPDOS
 	clearflag FLAG_HIDE_ARTICUNO
 	clearflag FLAG_HIDE_MOLTRES
 	clearflag FLAG_ITEM_GS_BALL
+	clearflag FLAG_HIDE_CHIENPAO
+	clearflag FLAG_HIDE_MANAPHY
+	clearflag FLAG_HIDE_SHAYMIN 
+	clearflag FLAG_HIDE_VICITNI 
+	clearflag FLAG_HIDE_CHI_YU 
+	clearflag FLAG_HIDE_MELOETTA 
+	clearflag FLAG_HIDE_DIANCIE 
+	clearflag FLAG_HIDE_OGERPON 
+	clearflag FLAG_HIDE_MAGERNA 
+	clearflag FLAG_HIDE_FEZANDIPITI 
 	setflag FLAG_HIDE_BATTLEFRONTIER_ENGINEER
 	call_if_unset FLAG_IS_KANTO_CHAMPION, PokemonLeague_HallOfFame_EventScript_SpawnKantoLeaderRematches
 	setflag FLAG_IS_KANTO_CHAMPION
@@ -148,32 +157,32 @@ PokemonLeague_HallOfFame_Movement_PlayerEnter:
 	step_end
 
 PokemonLeague_HallOfFame_LanceText:
-    .string "LANCE: It's been a long time since I\n"
+    .string "Lance: It's been a long time since I\n"
     .string "last came here.\p"
-    .string "This is where we honor the LEAGUE\n"
-    .string "CHAMPIONS for all eternity.\p"
+    .string "This is where we honor the League\n"
+    .string "Champions for all eternity.\p"
     .string "Their courageous Pokémon are also\n"
     .string "inducted.\p"
     .string "Here today, we witnessed the rise\n"
-    .string "of a new LEAGUE CHAMPION--a\p"
+    .string "of a new League Champion--a\p"
     .string "trainer who feels compassion for,\n"
     .string "and trust toward, all Pokémon.\p"
     .string "A trainer who succeeded through\n"
     .string "perseverance and determination.\p"
-    .string "The new LEAGUE CHAMPION who has\n"
+    .string "The new League Champion who has\n"
     .string "all the makings of greatness!\p"
     .string "{PLAYER}, allow me to register you\n"
-    .string "and your partners as CHAMPIONS!$"
+    .string "and your partners as Champions!$"
 
 PokemonLeague_HallOfFame_Rematch_LanceText:
-    .string "LANCE: I remember, it wasn't long ago\n"
+    .string "Lance: I remember, it wasn't long ago\n"
     .string "I stood here, welcoming you as\p"
-    .string "the CHAMPION of JOHTO.\p"
+    .string "the Champion of Johto.\p"
     .string "And now, here we are again, in this\n"
     .string "sacred place where we honor the very\p"
     .string "best trainers and their Pokémon.\p"
     .string "Today, you've proven yourself not\n"
-    .string "just in JOHTO, but in KANTO as well,\l"
+    .string "just in Johto, but in Kanto as well,\l"
     .string "besting even my strongest team.\p"
     .string "You've shown remarkable compassion\n"
     .string "and trust in your Pokémon,\l"

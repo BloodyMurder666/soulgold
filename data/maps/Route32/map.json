@@ -36,6 +36,7 @@
   ],
   "object_events": [
     {
+      "local_id": "LOCALID_ROUTE32_BALDINGMAN",
       "graphics_id": "OBJ_EVENT_GFX_BALDING_MAN",
       "x": 26,
       "y": 10,
@@ -205,6 +206,7 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_SLOWPOKETAIL_MAN",
       "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
       "x": 14,
       "y": 80,
@@ -489,6 +491,34 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "VioletCity_EventScript_LiquidJustice",
       "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_ROUTE32_RIVAL",
+      "graphics_id": "OBJ_EVENT_GFX_VAR_0",
+      "x": 25,
+      "y": 31,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_HIDE_ROUTE32_RIVAL"
+    },
+    {
+      "local_id": "LOCALID_ROUTE32_MARILL",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MARILL)",
+      "x": 25,
+      "y": 32,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_HIDE_ROUTE32_RIVAL"
     }
   ],
   "warp_events": [
@@ -629,6 +659,60 @@
       "var": "VAR_SLOWPOKE_TAIL",
       "var_value": "0",
       "script": "Route32_EventScript_SlowpokeTail_TriggerLeft"
+    },
+    {
+      "type": "trigger",
+      "x": 25,
+      "y": 25,
+      "elevation": 0,
+      "var": "VAR_RIVAL_STATE",
+      "var_value": "4",
+      "script": "Route32RivalGrottoTutorial"
+    },
+    {
+      "type": "trigger",
+      "x": 24,
+      "y": 25,
+      "elevation": 0,
+      "var": "VAR_RIVAL_STATE",
+      "var_value": "4",
+      "script": "Route32RivalGrottoTutorial"
+    },
+    {
+      "type": "trigger",
+      "x": 23,
+      "y": 25,
+      "elevation": 0,
+      "var": "VAR_RIVAL_STATE",
+      "var_value": "4",
+      "script": "Route32RivalGrottoTutorial"
+    },
+    {
+      "type": "trigger",
+      "x": 22,
+      "y": 25,
+      "elevation": 0,
+      "var": "VAR_RIVAL_STATE",
+      "var_value": "4",
+      "script": "Route32RivalGrottoTutorial"
+    },
+    {
+      "type": "trigger",
+      "x": 26,
+      "y": 25,
+      "elevation": 0,
+      "var": "VAR_RIVAL_STATE",
+      "var_value": "4",
+      "script": "Route32RivalGrottoTutorial"
+    },
+    {
+      "type": "trigger",
+      "x": 27,
+      "y": 25,
+      "elevation": 0,
+      "var": "VAR_RIVAL_STATE",
+      "var_value": "4",
+      "script": "Route32RivalGrottoTutorial"
     }
   ],
   "bg_events": [

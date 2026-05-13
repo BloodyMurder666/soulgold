@@ -1,0 +1,12 @@
+mapscripts KitakamiBorder_MapScripts {}
+
+script KitakamiBorder_OldLady {
+    msgbox("I often come here to watch the valley
+            between here and Mt. Silver. It soothes
+            my mind.", MSGBOX_NPC)
+}
+
+script KitakamiBorder_HikerBenny {
+
+}
+

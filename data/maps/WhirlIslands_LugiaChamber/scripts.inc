@@ -184,8 +184,9 @@ WhirlIslands_LugiaChamber_EventScript_Lugia::
 	delay 30
 	waitmoncry
 	playbgm MUS_HG_VS_LUGIA, 0
-	seteventmon SPECIES_LUGIA, 50
+	seteventmon SPECIES_LUGIA, 65
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	settotemboost B_POSITION_OPPONENT_LEFT, 1, 1, 1, 1, 1, 0, 0
 	special BattleSetup_StartLegendaryBattle
 	waitstate
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
@@ -196,6 +197,7 @@ WhirlIslands_LugiaChamber_EventScript_Lugia::
 	call_if_eq VAR_RESULT, B_OUTCOME_WON, WhirlIslands_LugiaChamber_EventScript_LugiaFlewAway
 	call_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, WhirlIslands_LugiaChamber_EventScript_CaughtLugia
 	setflag FLAG_HIDE_WHIRL_ISLANDS_KIMONO_GIRLS
+	setflag FLAG_LEGENDARY_STORY_CAP
 	applymovement LOCALID_KIMONO_MID, WhirlIslands_LugiaChamber_Movement_Kimono_Dance_Shift_Right2
 	waitmovement 0
 	clearflag FLAG_HIDE_ECRUTEAK_CITY_THEATER_KIMONOS
@@ -211,7 +213,7 @@ WhirlIslands_LugiaChamber_EventScript_LugiaPostgame::
 	delay 30
 	waitmoncry
 	playbgm MUS_HG_VS_LUGIA, 0
-	seteventmon SPECIES_LUGIA, 70
+	seteventmon SPECIES_LUGIA, 80
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	special BattleSetup_StartLegendaryBattle
 	waitstate
@@ -296,7 +298,7 @@ WhirlIslands_LugiaChamber_EventScript_KuniAfter::
 	end
 
 WhirlIslands_LugiaChamber_Text_Kimono_AfterNotCaught:
-	.string "You have not only made LUGIA\n"
+	.string "You have not only made Lugia\n"
 	.string "appear, but you have also defeated\l"
 	.string "it...\p"
 	.string "There is nothing more for us to\n"
@@ -304,7 +306,7 @@ WhirlIslands_LugiaChamber_Text_Kimono_AfterNotCaught:
 	.string "journey...$"	
 
 WhirlIslands_LugiaChamber_Text_Kimono_AfterCaught:
-	.string "You have not only made LUGIA\n"
+	.string "You have not only made Lugia\n"
 	.string "appear, but you have also caught\l"
 	.string "it...\p"
 	.string "There is nothing more for us to\n"
@@ -567,27 +569,27 @@ WhirlIslands_LugiaChamber_Movement_Kimono_Dance_Shift_Right2:
 	step_end
 
 WhirlIslands_LugiaChamber_Text_Zuki_Before::
-	.string "ZUKI: Go, face LUGIA. $"
+	.string "Zuki: Go, face Lugia. $"
 WhirlIslands_LugiaChamber_Text_Naoko_Before::
-	.string "NAOKO: Go, face LUGIA. $"
+	.string "Naoko: Go, face Lugia. $"
 WhirlIslands_LugiaChamber_Text_Miki_Before::
-	.string "MIKI: Go, face LUGIA. $"
+	.string "Miki: Go, face Lugia. $"
 WhirlIslands_LugiaChamber_Text_Sayo_Before::
-	.string "SAYO: Go, face LUGIA. $"
+	.string "Sayo: Go, face Lugia. $"
 WhirlIslands_LugiaChamber_Text_Kuni_Before::
-	.string "KUNI: Go, face LUGIA. $"
+	.string "Kuni: Go, face Lugia. $"
 
 WhirlIslands_LugiaChamber_Text_Kimono_Opening::
-	.string "KIMONO GIRL: That's right.\n"
-	.string "This is where we welcome LUGIA.\p"
+	.string "Kimono Girl: That's right.\n"
+	.string "This is where we welcome Lugia.\p"
 	.string "When the dance we practiced many\n"
 	.string "days becomes one with the sound of the\l"
 	.string "Tidal Bell we entrusted to you, then\l"
-	.string "LUGIA shall come out from deep within\l"
+	.string "Lugia shall come out from deep within\l"
 	.string "the waterfall basin once again. $"
 
 WhirlIslands_LugiaChamber_Text_Kimono_Closing1::
-	.string "That is indeed LUGIA...\n"
+	.string "That is indeed Lugia...\n"
 	.string "The guardian of these islands from\l"
 	.string "ancient times... \p"
 	.string "So many have tried again and again,\n"
@@ -596,10 +598,10 @@ WhirlIslands_LugiaChamber_Text_Kimono_Closing1::
 	.string "harmony with the Tidal Bell has finally\l"
 	.string "allowed it to appear...\n"
 	.string "{PLAYER}, don't you see?\p"
-	.string "LUGIA... It must have been waiting for\n"
+	.string "Lugia... It must have been waiting for\n"
 	.string "someone like you all this time.\p"
 	.string "Wouldn't you agree? $"
 
 WhirlIslands_LugiaChamber_Text_Kimono_After::
-	.string "KIMONO GIRL: You've proven yourself\n"
+	.string "Kimono Girl: You've proven yourself\n"
 	.string "today, {PLAYER}.$"

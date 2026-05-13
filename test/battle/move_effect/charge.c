@@ -154,3 +154,61 @@ SINGLE_BATTLE_TEST("Charge will expire if user flinches while using an electric 
         EXPECT_EQ(damage[0], damage[1]);
     }
 }
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Charge's effect does not stack with Electromorphosis or Wind Power (Traits)")
+{
+    u32 species;
+    enum Ability ability;
+    s16 damage[2];
+
+    PARAMETRIZE { species = SPECIES_WATTREL; ability = ABILITY_WIND_POWER; }
+    PARAMETRIZE { species = SPECIES_TADBULB; ability = ABILITY_ELECTROMORPHOSIS; }
+
+    GIVEN {
+        ASSUME(IsWindMove(MOVE_AIR_CUTTER));
+        PLAYER(species) { Ability(ABILITY_OWN_TEMPO); Innates(ability);  }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_THUNDERBOLT); }
+        TURN { MOVE(player, MOVE_CHARGE); MOVE(opponent, MOVE_AIR_CUTTER); }
+        TURN { MOVE(player, MOVE_THUNDERBOLT); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_THUNDERBOLT, player);
+        HP_BAR(opponent, captureDamage: &damage[0]);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CHARGE, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_AIR_CUTTER, opponent);
+        ABILITY_POPUP(player, ability);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_THUNDERBOLT, player);
+        HP_BAR(opponent, captureDamage: &damage[1]);
+    } THEN {
+        EXPECT_MUL_EQ(damage[0], Q_4_12(2.0), damage[1]);
+    }
+}
+#endif
+
+#if MAX_MON_ITEMS > 1
+SINGLE_BATTLE_TEST("Charge will expire if user flinches while using an electric move (Items)")
+{
+    s16 damage[2];
+    GIVEN {
+         ASSUME(GetMoveAdditionalEffectById(MOVE_IRON_HEAD, 0)->moveEffect == MOVE_EFFECT_FLINCH);
+         PLAYER(SPECIES_WOBBUFFET);
+         OPPONENT(SPECIES_WOBBUFFET) { Items(ITEM_PECHA_BERRY, ITEM_LUM_BERRY); }
+    } WHEN {
+         TURN { MOVE(player, MOVE_THUNDERBOLT); }
+         TURN { MOVE(player, MOVE_CHARGE); }
+         TURN { MOVE(opponent, MOVE_IRON_HEAD); MOVE(player, MOVE_THUNDERBOLT); }
+         TURN { MOVE(opponent, MOVE_IRON_HEAD); MOVE(player, MOVE_THUNDERBOLT); }
+         TURN { MOVE(player, MOVE_THUNDERBOLT); }
+    } SCENE {
+         ANIMATION(ANIM_TYPE_MOVE, MOVE_THUNDERBOLT, player);
+         HP_BAR(opponent, captureDamage: &damage[0]);
+         ANIMATION(ANIM_TYPE_MOVE, MOVE_CHARGE, player);
+         ANIMATION(ANIM_TYPE_MOVE, MOVE_THUNDERBOLT, player);
+         HP_BAR(opponent, captureDamage: &damage[1]);
+    } THEN {
+        EXPECT_EQ(damage[0], damage[1]);
+    }
+}
+#endif

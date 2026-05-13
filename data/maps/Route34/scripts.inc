@@ -83,7 +83,7 @@ Route34_EventScript_Sign3::
 	end
 
 Route34_Text_YoungsterSamuel_Seen:
-	.string "Hey! I'm looking for MANKEY!$"
+	.string "Hey! I'm looking for Mankey!$"
 
 Route34_Text_YoungsterSamuel_Beaten:
 	.string "Beaten by a passing stranger!$"
@@ -91,11 +91,11 @@ Route34_Text_YoungsterSamuel_Beaten:
 Route34_Text_YoungsterSamuel_After:
 	.string "I'm going to train even harder.\p"
 	.string "After all, I'm trying to become\n"
-	.string "a GYM LEADER.$"
+	.string "a Gym Leader.$"
 
 Route34_Text_YoungsterIan_Seen:
 	.string "I'm the best in my class at\n"
-	.string "POKéMON.$"
+	.string "Pokémon.$"
 
 Route34_Text_YoungsterIan_Beaten:
 	.string "No! There are better trainers…$"
@@ -106,14 +106,14 @@ Route34_Text_YoungsterIan_After:
 
 Route34_Text_CamperTodd_Seen:
 	.string "I'm confident in my ability to\n"
-	.string "raise POKéMON.\p"
+	.string "raise Pokémon.\p"
 	.string "Want to see?$"
 
 Route34_Text_CamperTodd_Beaten:
 	.string "Did I screw up my training?$"
 
 Route34_Text_CamperTodd_After:
-	.string "Maybe I should take one to DAY-CARE,\n"
+	.string "Maybe I should take one to Day-Care,\n"
 	.string "or maybe use some items…$"
 
 Route34_Text_PicnickerGina_Seen:
@@ -143,80 +143,80 @@ Route34_Text_OfficerKeith_Daytime:
 	.string "individuals.$"
 
 Route34_Text_PokefanBrandon_Seen:
-	.string "I just got my POKéMON back from\n"
-	.string "DAY-CARE.\p"
+	.string "I just got my Pokémon back from\n"
+	.string "Day-Care.\p"
 	.string "Let's see how much stronger it got!$"
 
 Route34_Text_PokefanBrandon_Beaten:
 	.string "Why does it end this way?$"
 
 Route34_Text_PokefanBrandon_After:
-	.string "My POKéMON came back with new moves.\p"
+	.string "My Pokémon came back with new moves.\p"
 	.string "That confounded me to no end!$"
 
 Route34_Text_Sign_IlexForest:
-	.string "ILEX FOREST\n"
-	.string "THROUGH THE GATE$"
+	.string "Ilex Forest\n"
+	.string "Through The Gate$"
 
 Route34_Text_Sign_Route34:
-	.string "ROUTE 34\n"
-	.string "GOLDENROD CITY - AZALEA TOWN\p"
-	.string "ILEX FOREST SOMEWHERE BETWEEN$"
+	.string "Route 34\n"
+	.string "Goldenrod City - Azalea Town\p"
+	.string "Ilex Forest Somewhere Between$"
 
 Route34_Text_TrainerTips:
-	.string "TRAINER TIPS\p"
-	.string "BERRY trees grow new BERRIES\n"
+	.string "Trainer Tips\p"
+	.string "Berry trees grow new Berries\n"
 	.string "several times a day.\p"
 	.string "Note which trees bear which\n"
-	.string "BERRIES.$"
+	.string "Berries.$"
 
 Route34_Text_CooltrainerIrene_Seen:
-	.string "IRENE: Kyaaah! Someone found us!$"
+	.string "Irene: Kyaaah! Someone found us!$"
 
 Route34_Text_CooltrainerIrene_Beaten:
-	.string "IRENE: Ohhh! You're too strong!$"
+	.string "Irene: Ohhh! You're too strong!$"
 
 Route34_Text_CooltrainerIrene_After1:
-	.string "IRENE: My sister KATE will get you\n"
+	.string "Irene: My sister Kate will get you\n"
 	.string "for this!$"
 
 Route34_Text_CooltrainerIrene_After2:
-	.string "IRENE: Isn't this beach great?\p"
+	.string "Irene: Isn't this beach great?\p"
 	.string "It's our secret little getaway!$"
 
 Route34_Text_CooltrainerJenn_Seen:
-	.string "JENN: You can't beat IRENE and go\n"
+	.string "Jenn: You can't beat Irene and go\n"
 	.string "unpunished!$"
 
 Route34_Text_CooltrainerJenn_Beaten:
-	.string "JENN: So sorry, IRENE! Dear Sis!$"
+	.string "Jenn: So sorry, Irene! Dear Sis!$"
 
 Route34_Text_CooltrainerJenn_After1:
-	.string "JENN: Don't get cocky! My sister\n"
-	.string "KATE is tough!$"
+	.string "Jenn: Don't get cocky! My sister\n"
+	.string "Kate is tough!$"
 
 Route34_Text_CooltrainerJenn_After2:
-	.string "JENN: Sunlight makes your body\n"
+	.string "Jenn: Sunlight makes your body\n"
 	.string "stronger.$"
 
 Route34_Text_CooltrainerKate_Seen:
-	.string "KATE: You sure were mean to my\n"
+	.string "Kate: You sure were mean to my\n"
 	.string "little sisters!$"
 
 Route34_Text_CooltrainerKate_Beaten:
-	.string "KATE: No! I can't believe I lost.$"
+	.string "Kate: No! I can't believe I lost.$"
 
 Route34_Text_CooltrainerKate_GiveSoftSand:
-	.string "KATE: You're too strong. I didn't\n"
+	.string "Kate: You're too strong. I didn't\n"
 	.string "stand a chance. Here, you deserve\n"
 	.string "this.$"
 
 Route34_Text_CooltrainerKate_After:
-	.string "KATE: I'm sorry we jumped you.\p"
+	.string "Kate: I'm sorry we jumped you.\p"
 	.string "We never expected anyone to find\n"
 	.string "us here. You sure startled us.$"
 
 
 Route34_Text_Sign_DayCare:
-	.string "DAY-CARE\p"
-	.string "LET US RAISE YOUR POKéMON FOR YOU!$"
+	.string "Day-Care\p"
+	.string "Let Us Raise Your Pokémon For You!$"

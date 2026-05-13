@@ -44,5 +44,5 @@ Route1_Text_CooltrainerFQuinn_AfterBattle:
 	.string "hard.$"
 
 Route1_Text_Sign:
-	.string "ROUTE 1\p"
-	.string "PALLET TOWN - VIRIDIAN CITY$"
+	.string "Route 1\p"
+	.string "Pallet Town - Viridian City$"

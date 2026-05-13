@@ -78,3 +78,29 @@ DOUBLE_BATTLE_TEST("Assist can only call the current moves of a Transformed part
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, opponentLeft);
     }
 }
+
+#if MAX_MON_ITEMS > 1
+SINGLE_BATTLE_TEST("Assisted move triggers correct weakness berry (Items)")
+{
+    enum Item item;
+    PARAMETRIZE { item = ITEM_CHILAN_BERRY; }
+    PARAMETRIZE { item = ITEM_PASSHO_BERRY; }
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Moves(MOVE_ASSIST, MOVE_NONE, MOVE_NONE, MOVE_NONE); }
+        PLAYER(SPECIES_WOBBUFFET) { Moves(MOVE_SURF, MOVE_NONE, MOVE_NONE, MOVE_NONE); }
+        OPPONENT(SPECIES_ARON) { Items(ITEM_GREAT_BALL, item); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_ASSIST); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Assist!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ASSIST, player);
+        MESSAGE("Wobbuffet used Surf!");
+        if (item == ITEM_PASSHO_BERRY) {
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
+        } else {
+            NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
+        }
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SURF, player);
+    }
+}
+#endif

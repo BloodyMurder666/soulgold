@@ -303,21 +303,21 @@ GoldenrodMagnetTrainStation_Text_OfficerTrainHasntComeIn:
     .string "That won't work.$"
 
 GoldenrodMagnetTrainStation_Text_OfficerRightThisWay:
-    .string "May I see your rail PASS, please?\p"
-    .string "OK. Right this way, please.$"
+    .string "May I see your rail Pass, please?\p"
+    .string "Ok. Right this way, please.$"
 
 GoldenrodMagnetTrainStation_Text_OfficerNoRailPass:
-    .string "Sorry. You don't have a rail PASS.$"
+    .string "Sorry. You don't have a rail Pass.$"
 
 GoldenrodMagnetTrainStation_Text_GentlemanPresident:
-    .string "I'm the PRESIDENT.\p"
+    .string "I'm the President.\p"
     .string "My dream was to build a train that\n"
-    .string "is faster than any POKéMON.\p"
-    .string "It really brings JOHTO much closer\n"
-    .string "to KANTO.$"
+    .string "is faster than any Pokémon.\p"
+    .string "It really brings Johto much closer\n"
+    .string "to Kanto.$"
 
 GoldenrodCity_TrainStation_Text_Boy:
-	.string "You brought the MAGNET TRAIN PASS,\n"
+	.string "You brought the Magnet Train Pass,\n"
 	.string "right?$"
 
 GoldenrodCity_TrainStation_Text_Psychic:

@@ -182,8 +182,8 @@
     {
       "id": "HEAL_LOCATION_BATTLE_FRONTIER_OUTSIDE_EAST",
       "map": "MAP_BATTLE_FRONTIER_OUTSIDE_EAST",
-      "x": 3,
-      "y": 52,
+      "x": 12,
+      "y": 46,
       "respawn_map": "MAP_BATTLE_FRONTIER_POKEMON_CENTER_1F",
       "respawn_npc": "LOCALID_FRONTIER_NURSE"
     },
@@ -522,6 +522,24 @@
       "map": "MAP_ROUTE10",
       "x": 21,
       "y": 21
+    },
+    {
+      "id": "HEAL_LOCATION_KITAKAMI",
+      "map": "MAP_KITAKAMI",
+      "x": 27,
+      "y": 18
+    },
+    {
+      "id": "HEAL_LOCATION_KITAKAMI_BORDER",
+      "map": "MAP_KITAKAMI_BORDER",
+      "x": 39,
+      "y": 29
+    },
+    {
+      "id": "HEAL_LOCATION_ONE_ISLAND",
+      "map": "MAP_ONE_ISLAND",
+      "x": 14,
+      "y": 6
     }
   ]
 }

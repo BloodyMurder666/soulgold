@@ -37,7 +37,7 @@ CianwoodCity_Text_OldManIntro:
 	.string "I don't remember the last time\n"
 	.string "someone came to visit me.\p"
 	.string "When I was young, I was a\n"
-	.string "POKéMON Trainer, too.\l"
+	.string "Pokémon Trainer, too.\l"
 	.string "I tried to reach the tower and\n"
 	.string "dive into the ocean.\p"
 	.string "I put a lot of effort into many\n"
@@ -47,8 +47,8 @@ CianwoodCity_Text_OldManIntro:
 	.string "on this beach.$"
 
 CianwoodCity_Text_BellTowerStory:
-	.string "Have you heard of the TIN TOWER\n"
-	.string "in ECRUTEAK?\p"
+	.string "Have you heard of the Tin Tower\n"
+	.string "in Ecruteak?\p"
 	.string "There are what they call Clear Bells\n"
 	.string "on top of the tower.\p"
 	.string "They don't make a single noise\n"
@@ -62,7 +62,7 @@ CianwoodCity_Text_BellTowerStory:
 	.string "But I never got one...$"
 
 CianwoodCity_Text_WhirlIslandsStory:
-	.string "Have you heard of WHIRL ISLANDS?\p"
+	.string "Have you heard of Whirl Islands?\p"
 	.string "There are what they call Tidal Bells\n"
 	.string "at its waterfall basin.\p"
 	.string "They don't make a single noise\n"
@@ -85,7 +85,7 @@ CianwoodCity_Text_ClearBellReaction:
 	.string "...I can hear it!\p"
 	.string "The chime of the bells on the wind\n"
 	.string "coming from the direction of the\l"
-	.string "TIN TOWER...$"
+	.string "Tin Tower...$"
 
 CianwoodCity_Text_TidalBellReaction:
 	.string "Oh! You've managed to get a\n"
@@ -97,4 +97,4 @@ CianwoodCity_Text_TidalBellReaction:
 	.string "...I can hear it!\p"
 	.string "The chime of the bells on the sea\n"
 	.string "breeze coming from the direction of\l"
-	.string "the WHIRL ISLANDS...$"
+	.string "the Whirl Islands...$"

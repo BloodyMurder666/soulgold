@@ -261,7 +261,7 @@ RocketHideout_B1F_Text_CameraGrunt2Seen:
 
 RocketHideout_B1F_Text_CameraGrunt2Beaten:
     .string "Surveillance cams are in the\n"
-    .string "POKéMON statues.\p"
+    .string "Pokémon statues.\p"
     .string "We'll keep appearing until you\n"
     .string "trip a secret switch.$"
 
@@ -308,7 +308,7 @@ RocketHideout_B1F_EventScript_Persian::
 	end
 
 RocketHideout_B1F_Text_SecurityCameraStatue:
-    .string "It's a PERSIAN statue…$"
+    .string "It's a Persian statue…$"
 
 RocketHideout_B1F_EventScript_DummyPanel::
 	msgbox RocketHideout_B1F_Text_NothingThere, MSGBOX_SIGN

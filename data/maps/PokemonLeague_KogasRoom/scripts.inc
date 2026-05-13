@@ -52,7 +52,7 @@ PokemonLeague_KogasRoom_EventScript_KogaDefeated::
 	end
 
 PokemonLeague_KogasRoom_Text_RematchBefore:
-    .string "KOGA: Fwahahahaha!\p"
+    .string "Koga: Fwahahahaha!\p"
     .string "You return, brave challenger.\p"
     .string "My ninja skills have sharpened.\p"
     .string "New sinister traps await you.\p"
@@ -63,7 +63,7 @@ PokemonLeague_KogasRoom_Text_RematchBefore:
 
 PokemonLeague_KogasRoom_Text_Before:
     .string "Fwahahahaha!\p"
-    .string "I am KOGA of the ELITE FOUR.\p"
+    .string "I am Koga of the Elite Four.\p"
     .string "I live in shadows, a ninja!\p"
     .string "My intricate style will confound\n"
     .string "and destroy you!\p"
@@ -71,7 +71,7 @@ PokemonLeague_KogasRoom_Text_Before:
     .string "Prepare to be the victim of my\n"
     .string "sinister technique!\p"
     .string "Fwahahahaha!\p"
-    .string "POKéMON is not merely about brute\n"
+    .string "Pokémon is not merely about brute\n"
     .string "force--you shall see soon enough!$"
 
 PokemonLeague_KogasRoom_Text_Beaten:

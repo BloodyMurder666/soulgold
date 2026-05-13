@@ -236,6 +236,10 @@
 #define B_FRIEND_BALL_MODIFIER      GEN_LATEST // In Gen8+, Friend Ball's friendship boost was reduced from 200 to 150.
 #define B_SERENE_GRACE_BOOST        GEN_LATEST // In Gen5+, Serene Grace boosts the added flinch chance of King's Rock and Razor Fang.
 #define B_IRON_BALL                 GEN_LATEST // In Gen5+, Flying-type Pokemon holding Iron Ball take x1 damage from Ground-type moves regardless of their other types, except during Inverse Battles or if the Pokemon is grounded by any other effect.
+#define B_HELD_ITEM_CATEGORIZATION  FALSE      // If TRUE, items use their heldslot property to determine which item slot on a pokemon to get sent to.
+#define B_ALLOW_HELD_DUPES          FALSE      // If TRUE, passive held item effects can stack on eachother.  If False, only one instance of an effect will work at a time. (ex. Charcoal + Charcoal) Consumables are not affected.
+#define B_MULTI_ITEM_ORDER          0          // What order item slots are targeted in by Moves. 0 = latest to earliest, 1 = earliest to latest, 2 = random.
+#define B_FLYING_PRESS_RESIST       FALSE      // If TRUE, Flying Press and similar dualtype moves will be affected by damage reduction berries on their second type.
 
 // Flag settings
 // To use the following features, change the 0 for a flag present in include/constants/flags.h, preferably an unused one.
@@ -258,7 +262,7 @@
 #define B_FLAG_TERA_ORB_CHARGED     0     // If this flag is set, the Tera Orb is charged. It is automatically set upon healing and cleared upon Terastallizing once configured.
 #define B_FLAG_TERA_ORB_NO_COST     0     // If this flag is set, the Tera Orb does not use up its charge upon Terastallization. In S/V, this occurs after an event with Terapagos.
 #define B_FLAG_SLEEP_CLAUSE         0     // If this flag is set, sleep clause is enabled; if the player / AI has already put a Pokémon on the opponent's side to sleep and it is still sleeping, another one can't be put to sleep. AI requires AI_FLAG_CHECK_BAD_MOVE to understand.
-#define B_FLAG_NO_WHITEOUT          0     // If this flag is set, the player can not white out against Trainers. Please note that the party is not healed automatically!
+#define B_FLAG_NO_WHITEOUT          FLAG_NO_WHITEOUT     // If this flag is set, the player can not white out against Trainers. Please note that the party is not healed automatically!
 
 // Var Settings
 // To use the following features, change the 0 for a var present in include/constants/vars.h, preferably an unused one.
@@ -300,7 +304,7 @@
 #define B_ABILITY_WEATHER               GEN_LATEST // In Gen6+, ability-induced weather lasts 5 turns. Before, it lasted until the battle ended or until it was changed by a move or a different weather-affecting ability.
 #define B_SANDSTORM_SPDEF_BOOST         GEN_LATEST // In Gen4+, Sandstorm weather multiplies the Sp. Defense of Rock-type Pokémon by x1.5.
 #define B_SANDSTORM_SOLAR_BEAM          GEN_LATEST // In Gen3+, Sandstorm decreases the power of Solar Beam, when it didn't before.
-#define B_OVERWORLD_FOG                 GEN_LATEST // In Gen8+, overworld Fog summons Misty Terrain in battle. In Gen4 only, overworld Fog summons the unique fog weather condition in battle.
+#define B_OVERWORLD_FOG                 FALSE // In Gen8+, overworld Fog summons Misty Terrain in battle. In Gen4 only, overworld Fog summons the unique fog weather condition in battle.
 #define B_OVERWORLD_SNOW                GEN_LATEST // In Gen9+, overworld Snow will summon snow instead of hail in battle.
 #define B_SNOW_WARNING                  GEN_LATEST // In Gen9+, Snow Warning will summon snow instead of hail.
 #define B_PREFERRED_ICE_WEATHER         B_ICE_WEATHER_BOTH // Toggles Hail move effects to Snow and vice versa.
@@ -317,7 +321,7 @@
 
 // Interface settings
 #define B_FAST_INTRO_PKMN_TEXT              TRUE  // If set to TRUE, battle intro texts print at the same time as animation of a Pokémon, as opposing to waiting for the animation to end.
-#define B_FAST_INTRO_NO_SLIDE               FALSE // If set to TRUE, the slide animation that happens at the beginning of the battle is skipped.
+#define B_FAST_INTRO_NO_SLIDE               FALSE // Default value for the option that skips the slide animation at the beginning of battle.
 #define B_FAST_HP_DRAIN                     TRUE  // If set to TRUE, HP bars will move faster.
 #define B_FAST_EXP_GROW                     TRUE  // If set to TRUE, EXP bars will move faster.
 #define B_SHOW_TARGETS                      TRUE  // If set to TRUE, all available targets, for moves hitting 2 or 3 Pokémon, will be shown before selecting a move.
@@ -387,6 +391,8 @@
 #define B_NEW_MORNING_SUN_STAR_PARTICLE TRUE    // If set to TRUE, it updates Morning Sun's star particles.
 #define B_NEW_IMPACT_PALETTE            TRUE    // If set to TRUE, it updates the basic 'hit' palette.
 #define B_NEW_SURF_PARTICLE_PALETTE     TRUE    // If set to TRUE, it updates Surf's wave palette.
+
+#define B_BATTLE_SPEED VAR_BATTLE_SPEED // Usage with a variable
 
 // Poké Ball animation and sounds
 #define B_ENEMY_THROW_BALLS          GEN_LATEST  // In GEN_6+, enemy Trainers throw Poké Balls into battle instead of them just appearing on the ground and opening.

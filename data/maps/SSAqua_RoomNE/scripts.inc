@@ -20,18 +20,18 @@ SSAqua_RoomNE_Text_HikerNolandBeaten:
 
 SSAqua_RoomNE_Text_HikerNolandAfterBattle:
     .string "I wonder if there are any\n"
-    .string "mountains worth climbing in KANTO?$"
+    .string "mountains worth climbing in Kanto?$"
 
 SSAqua_RoomNE_Text_PokemaniacEthanSeen:
-    .string "Do you know LILY?\n"
-    .string "She's a hot DJ in KANTO.$"
+    .string "Do you know Lily?\n"
+    .string "She's a hot Dj in Kanto.$"
 
 SSAqua_RoomNE_Text_PokemaniacEthanBeaten:
     .string "Gyaaaah!$"
 
 SSAqua_RoomNE_Text_PokemaniacEthanAfterBattle:
-    .string "LILY's nice, but\n"
-    .string "MARY's the best!\n"
+    .string "Lily's nice, but\n"
+    .string "Mary's the best!\n"
     .string "I want to check\n"
-    .string "out JOHTO's radio\n"
+    .string "out Johto's radio\n"
     .string "programs!$"

@@ -209,8 +209,6 @@ MahoganyTown_Pokemart:
 	.2byte ITEM_DRAGON_SCALE
 	.2byte ITEM_KINGS_ROCK
 	.2byte ITEM_UP_GRADE
-	.2byte ITEM_SPELL_TAG
-	.2byte ITEM_NEVER_MELT_ICE
 	.2byte ITEM_NONE
 	release
 	end
@@ -221,20 +219,20 @@ MahoganyTown_Shop_Text_Granny:
 	.string "right now.$"
 
 MahoganyMart1F_Text_Pharmacist_Lance:
-    .string "ROCKETS have hijacked my basement!$"
+    .string "Rockets have hijacked my basement!$"
 
 MahoganyMart1F_Text_BlackBelt:
     .string "Heheh! The experi- ment worked like\n"
     .string "a charm.\p"
-    .string "MAGIKARP are just worthless, but\n"
-    .string "GYARADOS are big moneymakers.$"
+    .string "Magikarp are just worthless, but\n"
+    .string "Gyarados are big moneymakers.$"
 
 MahoganyMart1F_Text_BlackBelt_Lance:
     .string "Urrgh…\p"
-    .string "That guy's POKéMON are tough…$"
+    .string "That guy's Pokémon are tough…$"
 
 MahoganyMart1F_Text_Lance_HyperBeam:
-    .string "LANCE: DRAGONITE, HYPER BEAM.$"
+    .string "Lance: Dragonite, Hyper Beam.$"
 
 MahoganyMart1F_Text_Lance_Radio:
     .string "What took you, {PLAYER}?\p"
@@ -243,9 +241,9 @@ MahoganyMart1F_Text_Lance_Radio:
 
 MahoganyMart1F_Text_Lance_Stairs:
     .string "Excellent work finding the stairs,\n"
-	.string "DRAGONITE!$"
+	.string "Dragonite!$"
 
 MahoganyMart1F_Text_Lance_SplitUp:
-    .string "LANCE: {PLAYER}, we should split up\n"
+    .string "Lance: {PLAYER}, we should split up\n"
     .string "to check this place.\p"
     .string "I'll go first.$"

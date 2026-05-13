@@ -65,7 +65,7 @@ VioletCity_Gym_EventScript_Falkner::
 # 33 "data/maps/VioletCity_Gym/scripts.pory"
 	msgbox VioletGym_Text_Falkner_Intro, MSGBOX_DEFAULT
 # 34 "data/maps/VioletCity_Gym/scripts.pory"
-	call FalknerChooseDifficulty
+	trainerbattle_no_intro TRAINER_FALKNER_1, VioletGym_Text_Falkner_WinLoss
 # 35 "data/maps/VioletCity_Gym/scripts.pory"
 	message VioletGym_Text_ReceivedZephyrBadge
 # 36 "data/maps/VioletCity_Gym/scripts.pory"
@@ -91,362 +91,280 @@ VioletCity_Gym_EventScript_Falkner::
 # 46 "data/maps/VioletCity_Gym/scripts.pory"
 	setvar VAR_VIOLET_CITY_STATE, 3
 # 47 "data/maps/VioletCity_Gym/scripts.pory"
-	setrespawn HEAL_LOCATION_VIOLET_CITY
+	clearflag FLAG_HIDE_TUESCANY
 # 48 "data/maps/VioletCity_Gym/scripts.pory"
-	closemessage
+	setrespawn HEAL_LOCATION_VIOLET_CITY
 # 49 "data/maps/VioletCity_Gym/scripts.pory"
-	release
-# 50 "data/maps/VioletCity_Gym/scripts.pory"
-	end
-# 51 "data/maps/VioletCity_Gym/scripts.pory"
-
-# 52 "data/maps/VioletCity_Gym/scripts.pory"
-VioletCity_Gym_EventScript_Falkner_Defeated::
-# 53 "data/maps/VioletCity_Gym/scripts.pory"
-	msgbox VioletGym_Text_Falkner_AfterFight, MSGBOX_DEFAULT
-# 54 "data/maps/VioletCity_Gym/scripts.pory"
 	closemessage
-# 55 "data/maps/VioletCity_Gym/scripts.pory"
+# 50 "data/maps/VioletCity_Gym/scripts.pory"
 	release
-# 56 "data/maps/VioletCity_Gym/scripts.pory"
+# 51 "data/maps/VioletCity_Gym/scripts.pory"
 	end
+# 52 "data/maps/VioletCity_Gym/scripts.pory"
+
+# 53 "data/maps/VioletCity_Gym/scripts.pory"
+VioletCity_Gym_EventScript_Falkner_Defeated::
+# 54 "data/maps/VioletCity_Gym/scripts.pory"
+	msgbox VioletGym_Text_Falkner_AfterFight, MSGBOX_DEFAULT
+# 55 "data/maps/VioletCity_Gym/scripts.pory"
+	closemessage
+# 56 "data/maps/VioletCity_Gym/scripts.pory"
+	release
 # 57 "data/maps/VioletCity_Gym/scripts.pory"
-
+	end
 # 58 "data/maps/VioletCity_Gym/scripts.pory"
-VioletGym_Text_Falkner_Intro:
+
 # 59 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "I'm FALKNER, the VIOLET POKéMON\n"
+VioletGym_Text_Falkner_Intro:
 # 60 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "GYM leader!\p"
+	.string "I'm Falkner, the Violet Pokémon\n"
 # 61 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "People say you can clip\n"
+	.string "Gym leader!\p"
 # 62 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "FLYING-type POKéMON's wings\p"
+	.string "People say you can clip\n"
 # 63 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "with a jolt of electricity…\n"
+	.string "Flying-type Pokémon's wings\p"
 # 64 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "I won't allow such insults to bird\l"
+	.string "with a jolt of electricity…\n"
 # 65 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "POKéMON!$"
+	.string "I won't allow such insults to bird\l"
 # 66 "data/maps/VioletCity_Gym/scripts.pory"
-
+	.string "Pokémon!\p"
 # 67 "data/maps/VioletCity_Gym/scripts.pory"
-VioletGym_Text_Falkner_WinLoss:
+	.string "I'll show you the real power\n"
 # 68 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "…Darn! My dad's cherished bird\n"
+	.string "of the magnificent bird Pokémon!$"
 # 69 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "POKéMON…\p"
-# 70 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "All right. Take this.\p"
-# 71 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "It's the official POKéMON LEAGUE\n"
-# 72 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "ZEPHYRBADGE.$"
-# 73 "data/maps/VioletCity_Gym/scripts.pory"
 
+# 70 "data/maps/VioletCity_Gym/scripts.pory"
+VioletGym_Text_Falkner_WinLoss:
+# 71 "data/maps/VioletCity_Gym/scripts.pory"
+	.string "…Darn! My dad's cherished bird\n"
+# 72 "data/maps/VioletCity_Gym/scripts.pory"
+	.string "Pokémon…\p"
+# 73 "data/maps/VioletCity_Gym/scripts.pory"
+	.string "All right. Take this.\p"
 # 74 "data/maps/VioletCity_Gym/scripts.pory"
-VioletGym_Text_ReceivedZephyrBadge:
+	.string "It's the official Pokémon League\n"
 # 75 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "{PLAYER} received ZEPHYRBADGE.$"
+	.string "Zephyrbadge.$"
 # 76 "data/maps/VioletCity_Gym/scripts.pory"
 
 # 77 "data/maps/VioletCity_Gym/scripts.pory"
-VioletGym_Text_Falkner_BadgeExplain:
+VioletGym_Text_ReceivedZephyrBadge:
 # 78 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "ZEPHYRBADGE raises the ATTACK\n"
+	.string "{PLAYER} received Zephyrbadge.$"
 # 79 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "power of POKéMON.\p"
+
 # 80 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "It also enables POKéMON to use\n"
+VioletGym_Text_Falkner_BadgeExplain:
 # 81 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "FLASH, if they can learn it,\l"
+	.string "Zephyrbadge raises the Attack\n"
 # 82 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "anytime.\p"
+	.string "power of Pokémon.\p"
 # 83 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "Here--take this too.$"
+	.string "It also enables Pokémon to use\n"
 # 84 "data/maps/VioletCity_Gym/scripts.pory"
-
+	.string "Flash, if they can learn it,\l"
 # 85 "data/maps/VioletCity_Gym/scripts.pory"
-VioletGym_Text_Falkner_TMExplain:
+	.string "anytime.\p"
 # 86 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "By using a TM, a POKéMON will\n"
+	.string "Here--take this too.$"
 # 87 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "instantly learn a new move.\p"
+
 # 88 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "TM32 contains DOUBLE TEAM.\p"
+VioletGym_Text_Falkner_TMExplain:
 # 89 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "It increase a POKéMON's evasion.\p"
+	.string "By using a TM, a Pokémon will\n"
 # 90 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "In other words, your POKéMON\n"
+	.string "instantly learn a new move.\p"
 # 91 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "will be harder to hit.$"
+	.string "TM32 contains Double Team.\p"
 # 92 "data/maps/VioletCity_Gym/scripts.pory"
-
+	.string "It increase a Pokémon's evasion.\p"
 # 93 "data/maps/VioletCity_Gym/scripts.pory"
-VioletGym_Text_Falkner_AfterFight:
+	.string "In other words, your Pokémon\n"
 # 94 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "There are POKéMON GYMS in cities\n"
+	.string "will be harder to hit.$"
 # 95 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "and towns ahead.\p"
+
 # 96 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "You should test your skills at\n"
+VioletGym_Text_Falkner_AfterFight:
 # 97 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "these GYMS.\p"
+	.string "There are Pokémon Gyms in cities\n"
 # 98 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "I'm going to train harder to\n"
+	.string "and towns ahead.\p"
 # 99 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "become the greatest bird master!$"
+	.string "You should test your skills at\n"
 # 100 "data/maps/VioletCity_Gym/scripts.pory"
-
+	.string "these Gyms.\p"
 # 101 "data/maps/VioletCity_Gym/scripts.pory"
-VioletGym_Text_Falkner_Rematch:
-# 102 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "Congratulations on defeating\n"
-# 103 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "the ELITE 4!\p"
-# 104 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "I've been training my\n"
-# 105 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "FLYING-type POKéMON even harder.\p"
-# 106 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "Think you can take on the power\n"
-# 107 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "of the skies again?$"
-# 108 "data/maps/VioletCity_Gym/scripts.pory"
-
-# 109 "data/maps/VioletCity_Gym/scripts.pory"
-VioletGym_Text_Falkner_RematchLoss:
-# 110 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "Wow… You beat me again.\p"
-# 111 "data/maps/VioletCity_Gym/scripts.pory"
 	.string "I'm going to train harder to\n"
-# 112 "data/maps/VioletCity_Gym/scripts.pory"
+# 102 "data/maps/VioletCity_Gym/scripts.pory"
 	.string "become the greatest bird master!$"
+# 103 "data/maps/VioletCity_Gym/scripts.pory"
+
+# 104 "data/maps/VioletCity_Gym/scripts.pory"
+VioletGym_Text_Falkner_Rematch:
+# 105 "data/maps/VioletCity_Gym/scripts.pory"
+	.string "Congratulations on defeating\n"
+# 106 "data/maps/VioletCity_Gym/scripts.pory"
+	.string "the Elite 4!\p"
+# 107 "data/maps/VioletCity_Gym/scripts.pory"
+	.string "I've been training my\n"
+# 108 "data/maps/VioletCity_Gym/scripts.pory"
+	.string "Flying-type Pokémon even harder.\p"
+# 109 "data/maps/VioletCity_Gym/scripts.pory"
+	.string "Think you can take on the power\n"
+# 110 "data/maps/VioletCity_Gym/scripts.pory"
+	.string "of the skies again?$"
+# 111 "data/maps/VioletCity_Gym/scripts.pory"
+
+# 112 "data/maps/VioletCity_Gym/scripts.pory"
+VioletGym_Text_Falkner_RematchLoss:
 # 113 "data/maps/VioletCity_Gym/scripts.pory"
-
+	.string "Wow… You beat me again.\p"
 # 114 "data/maps/VioletCity_Gym/scripts.pory"
-VioletGym_Text_BirdKeeperRod_Seen:
+	.string "I'm going to train harder to\n"
 # 115 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "The keyword is guts!\p"
+	.string "become the greatest bird master!$"
 # 116 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "Those here are training night and\n"
-# 117 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "day to become bird POKéMON masters.\p"
-# 118 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "Come on!$"
-# 119 "data/maps/VioletCity_Gym/scripts.pory"
 
+# 117 "data/maps/VioletCity_Gym/scripts.pory"
+VioletGym_Text_BirdKeeperRod_Seen:
+# 118 "data/maps/VioletCity_Gym/scripts.pory"
+	.string "The keyword is guts!\p"
+# 119 "data/maps/VioletCity_Gym/scripts.pory"
+	.string "Those here are training night and\n"
 # 120 "data/maps/VioletCity_Gym/scripts.pory"
-VioletGym_Text_BirdKeeperRod_Beaten:
+	.string "day to become bird Pokémon masters.\p"
 # 121 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "Gaaah!$"
+	.string "Come on!$"
 # 122 "data/maps/VioletCity_Gym/scripts.pory"
 
 # 123 "data/maps/VioletCity_Gym/scripts.pory"
-VioletGym_Text_BirdKeeperRod_After:
+VioletGym_Text_BirdKeeperRod_Beaten:
 # 124 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "FALKNER's skills are for real!\p"
+	.string "Gaaah!$"
 # 125 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "Don't get cocky just because\n"
+
 # 126 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "you beat me!$"
+VioletGym_Text_BirdKeeperRod_After:
 # 127 "data/maps/VioletCity_Gym/scripts.pory"
-
+	.string "Falkner's skills are for real!\p"
 # 128 "data/maps/VioletCity_Gym/scripts.pory"
-VioletGym_Text_BirdKeeperAbe_Seen:
+	.string "Don't get cocky just because\n"
 # 129 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "Let me see if you are good\n"
+	.string "you beat me!$"
 # 130 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "enough to face FALKNER!$"
-# 131 "data/maps/VioletCity_Gym/scripts.pory"
 
+# 131 "data/maps/VioletCity_Gym/scripts.pory"
+VioletGym_Text_BirdKeeperAbe_Seen:
 # 132 "data/maps/VioletCity_Gym/scripts.pory"
-VioletGym_Text_BirdKeeperAbe_Beaten:
+	.string "Let me see if you are good\n"
 # 133 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "This can't be true!$"
+	.string "enough to face Falkner!$"
 # 134 "data/maps/VioletCity_Gym/scripts.pory"
 
 # 135 "data/maps/VioletCity_Gym/scripts.pory"
-VioletGym_Text_BirdKeeperAbe_After:
+VioletGym_Text_BirdKeeperAbe_Beaten:
 # 136 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "This is pathetic, losing to some\n"
+	.string "This can't be true!$"
 # 137 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "rookie trainer…$"
+
 # 138 "data/maps/VioletCity_Gym/scripts.pory"
-
+VioletGym_Text_BirdKeeperAbe_After:
 # 139 "data/maps/VioletCity_Gym/scripts.pory"
-VioletGym_Text_GymGuide_Intro:
+	.string "This is pathetic, losing to some\n"
 # 140 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "Hey! What's up? I'm no trainer,\n"
+	.string "rookie trainer…$"
 # 141 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "but I can give some advice!\p"
+
 # 142 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "Believe me! If you believe, a\n"
+VioletGym_Text_GymGuide_Intro:
 # 143 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "championship dream can come true.\p"
+	.string "Hey! What's up? I'm no trainer,\n"
 # 144 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "You believe? Then listen.\p"
+	.string "but I can give some advice!\p"
 # 145 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "FALKNER's ace is a bulky owl\n"
+	.string "Believe me! If you believe, a\n"
 # 146 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "that loves to eat BERRIES.\p"
+	.string "championship dream can come true.\p"
 # 147 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "While it's not the strongest,\n"
+	.string "You believe? Then listen.\p"
 # 148 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "it can take a lot of hits.\p"
+	.string "Falkner's ace is a bulky owl\n"
 # 149 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "You can hurt it with ELECTRIC \n"
+	.string "that loves to eat Berries.\p"
 # 150 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "and ROCK-type moves, but watch out\l"
+	.string "While it's not the strongest,\n"
 # 151 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "for MUD-SLAP!\p"
+	.string "it can take a lot of hits.\p"
 # 152 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "If you want more help, go visit the\n"
+	.string "You can hurt it with Electric \n"
 # 153 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "POKéMON ACADEMY.\p"
+	.string "and Rock-type moves, but watch out\l"
 # 154 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "The students there really know\n"
+	.string "for Mud-Slap!\p"
 # 155 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "their stuff!$"
+	.string "If you want more help, go visit the\n"
 # 156 "data/maps/VioletCity_Gym/scripts.pory"
-
+	.string "Pokémon Academy.\p"
 # 157 "data/maps/VioletCity_Gym/scripts.pory"
-VioletGym_Text_GymGuide_Win:
+	.string "The students there really know\n"
 # 158 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "Nice battle! Keep it up,\n"
+	.string "their stuff!$"
 # 159 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "and you'll be the CHAMP in no\l"
+
 # 160 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "time at all!$"
+VioletGym_Text_GymGuide_Win:
 # 161 "data/maps/VioletCity_Gym/scripts.pory"
-
+	.string "Nice battle! Keep it up,\n"
 # 162 "data/maps/VioletCity_Gym/scripts.pory"
-VioletCity_Gym_EventScript_Statue::
+	.string "and you'll be the Champ in no\l"
 # 163 "data/maps/VioletCity_Gym/scripts.pory"
-	lock
+	.string "time at all!$"
 # 164 "data/maps/VioletCity_Gym/scripts.pory"
-	goto_if_set FLAG_DEFEATED_VIOLET_GYM, VioletCity_Gym_EventScript_Statue2
+
 # 165 "data/maps/VioletCity_Gym/scripts.pory"
-	msgbox VioletCity_Gym_Text_GymStatue, MSGBOX_DEFAULT
+VioletCity_Gym_EventScript_Statue::
 # 166 "data/maps/VioletCity_Gym/scripts.pory"
-	closemessage
+	lock
 # 167 "data/maps/VioletCity_Gym/scripts.pory"
-	release
+	goto_if_set FLAG_DEFEATED_VIOLET_GYM, VioletCity_Gym_EventScript_Statue2
 # 168 "data/maps/VioletCity_Gym/scripts.pory"
-	end
+	msgbox VioletCity_Gym_Text_GymStatue, MSGBOX_DEFAULT
 # 169 "data/maps/VioletCity_Gym/scripts.pory"
-
-# 170 "data/maps/VioletCity_Gym/scripts.pory"
-VioletCity_Gym_EventScript_Statue2::
-# 171 "data/maps/VioletCity_Gym/scripts.pory"
-	msgbox VioletCity_Gym_Text_GymStatueCertified, MSGBOX_DEFAULT
-# 172 "data/maps/VioletCity_Gym/scripts.pory"
 	closemessage
-# 173 "data/maps/VioletCity_Gym/scripts.pory"
+# 170 "data/maps/VioletCity_Gym/scripts.pory"
 	release
-# 174 "data/maps/VioletCity_Gym/scripts.pory"
+# 171 "data/maps/VioletCity_Gym/scripts.pory"
 	end
-# 175 "data/maps/VioletCity_Gym/scripts.pory"
+# 172 "data/maps/VioletCity_Gym/scripts.pory"
 
+# 173 "data/maps/VioletCity_Gym/scripts.pory"
+VioletCity_Gym_EventScript_Statue2::
+# 174 "data/maps/VioletCity_Gym/scripts.pory"
+	msgbox VioletCity_Gym_Text_GymStatueCertified, MSGBOX_DEFAULT
+# 175 "data/maps/VioletCity_Gym/scripts.pory"
+	closemessage
 # 176 "data/maps/VioletCity_Gym/scripts.pory"
-VioletCity_Gym_Text_GymStatue:
+	release
 # 177 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "VIOLET CITY POKéMON GYM$"
+	end
 # 178 "data/maps/VioletCity_Gym/scripts.pory"
 
 # 179 "data/maps/VioletCity_Gym/scripts.pory"
-VioletCity_Gym_Text_GymStatueCertified:
+VioletCity_Gym_Text_GymStatue:
 # 180 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "VIOLET CITY POKéMON GYM\p"
+	.string "Violet City Pokémon Gym$"
 # 181 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "FALKNER'S CERTIFIED TRAINERS:\n"
+
 # 182 "data/maps/VioletCity_Gym/scripts.pory"
+VioletCity_Gym_Text_GymStatueCertified:
+# 183 "data/maps/VioletCity_Gym/scripts.pory"
+	.string "Violet City Pokémon Gym\p"
+# 184 "data/maps/VioletCity_Gym/scripts.pory"
+	.string "Falkner'S Certified Trainers:\n"
+# 185 "data/maps/VioletCity_Gym/scripts.pory"
 	.string "{PLAYER}$"
-
-FalknerChooseDifficulty::
-# 187 "data/maps/VioletCity_Gym/scripts.pory"
-	goto_if_set FLAG_HM_EXPLANATION, FalknerChooseDifficulty_2
-FalknerChooseDifficulty_1:
-# 199 "data/maps/VioletCity_Gym/scripts.pory"
-	msgbox FalknerChooseDifficulty_Text_1
-# 200 "data/maps/VioletCity_Gym/scripts.pory"
-	dynmultichoice 0, 0, FALSE, 5, 0, DYN_MULTICHOICE_CB_NONE, FalknerChooseDifficulty_Text_2, FalknerChooseDifficulty_Text_3, FalknerChooseDifficulty_Text_4
-# 201 "data/maps/VioletCity_Gym/scripts.pory"
-	switch VAR_RESULT
-# 202 "data/maps/VioletCity_Gym/scripts.pory"
-	case 0, FalknerChooseDifficulty_6
-# 209 "data/maps/VioletCity_Gym/scripts.pory"
-	case 1, FalknerChooseDifficulty_7
-# 217 "data/maps/VioletCity_Gym/scripts.pory"
-	release
-	end
-
-FalknerChooseDifficulty_2:
-# 188 "data/maps/VioletCity_Gym/scripts.pory"
-	msgbox FalknerChooseDifficulty_Text_0
-# 197 "data/maps/VioletCity_Gym/scripts.pory"
-	setflag FLAG_HM_EXPLANATION
-	goto FalknerChooseDifficulty_1
-
-	return
-
-FalknerChooseDifficulty_6:
-# 203 "data/maps/VioletCity_Gym/scripts.pory"
-	setdifficulty DIFFICULTY_NORMAL
-# 204 "data/maps/VioletCity_Gym/scripts.pory"
-	clearflag FLAG_NEVER_TURNED_OFF_HARD
-# 205 "data/maps/VioletCity_Gym/scripts.pory"
-	msgbox FalknerChooseDifficulty_Text_5
-# 207 "data/maps/VioletCity_Gym/scripts.pory"
-	trainerbattle_no_intro TRAINER_FALKNER_1, VioletGym_Text_Falkner_WinLoss
-	return
-
-FalknerChooseDifficulty_7:
-# 210 "data/maps/VioletCity_Gym/scripts.pory"
-	setdifficulty DIFFICULTY_HARD
-# 211 "data/maps/VioletCity_Gym/scripts.pory"
-	setflag FLAG_NEVER_TURNED_OFF_HARD
-# 212 "data/maps/VioletCity_Gym/scripts.pory"
-	msgbox FalknerChooseDifficulty_Text_6
-# 214 "data/maps/VioletCity_Gym/scripts.pory"
-	trainerbattle_no_intro TRAINER_FALKNER_1, VioletGym_Text_Falkner_WinLoss
-	return
-
-
-FalknerChooseDifficulty_Text_0:
-# 188 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "Before we do battle, there is something\n"
-	.string "you should know about Johto gyms. We\l"
-	.string "offer challengers a choice between\l"
-	.string "fighting against our standard, league\l"
-	.string "approved teams, or you may face off\l"
-	.string "against our real teams in doubles.\l"
-	.string "The choice is not binding and you may\l"
-	.string "opt to fight against our regular team\l"
-	.string "should you lose at any time.$"
-
-FalknerChooseDifficulty_Text_1:
-# 199 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "Now then, which way shall we do battle?$"
-
-FalknerChooseDifficulty_Text_2:
-# 200 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "Regular$"
-
-FalknerChooseDifficulty_Text_3:
-# 200 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "Hard$"
-
-FalknerChooseDifficulty_Text_4:
-# 200 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "Cancel$"
-
-FalknerChooseDifficulty_Text_5:
-# 205 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "I'll show you the power of the\n"
-	.string "magnificient bird Pokémon!$"
-
-FalknerChooseDifficulty_Text_6:
-# 212 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "I'll show you the real power of the\n"
-	.string "magnificient bird Pokémon!$"

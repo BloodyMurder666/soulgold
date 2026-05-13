@@ -1,4 +1,5 @@
 #include "global.h"
+#include "bug_contest.h"
 #include "level_scaling.h"
 #include "pokemon.h"
 #include "data.h"
@@ -20,6 +21,9 @@ static struct {
     u8 partyLowest;
     bool8 cached;
 } sPartyLevelCache = {0};
+
+static struct LevelScalingConfig sTrainerOptionConfig;
+static struct LevelScalingConfig sWildOptionConfig;
 
 // ============================================================================
 // Internal Helper Functions - Party Level Calculation
@@ -114,6 +118,30 @@ static u8 ApplyLevelVariation(u8 baseLevel, u8 variation)
         return baseLevel - reduction;
 
     return 1; // Never go below 1
+}
+
+static u8 GetDeterministicTrainerVariation(u16 trainerId, u8 variation)
+{
+    u32 seed;
+
+    if (variation == 0)
+        return 0;
+
+    seed = T1_READ_32(gSaveBlock2Ptr->playerTrainerId);
+    seed ^= trainerId * 1103515245;
+    seed ^= seed >> 16;
+    seed *= 2246822519U;
+    seed ^= seed >> 13;
+
+    return seed % (variation + 1);
+}
+
+static u8 ApplyLevelVariationAmount(u8 baseLevel, u8 reduction)
+{
+    if (baseLevel > reduction)
+        return baseLevel - reduction;
+
+    return 1;
 }
 
 static u8 ClampLevel(u8 level, u8 minLevel, u8 maxLevel)
@@ -222,6 +250,25 @@ const struct EvolutionOverride *GetEvolutionOverride(u16 species)
     return NULL;
 }
 
+u8 GetCurrentTrainerLevelScalingMode(void)
+{
+    if (gSaveBlock2Ptr->optionsTrainerLevelScaling == LEVEL_SCALING_OPTION_OFF)
+        return LEVEL_SCALING_NONE;
+
+    return B_TRAINER_SCALING_DEFAULT_MODE;
+}
+
+u8 GetCurrentWildLevelScalingMode(void)
+{
+    if (GetBugContestFlag())
+        return LEVEL_SCALING_NONE;
+
+    if (gSaveBlock2Ptr->optionsWildLevelScaling == LEVEL_SCALING_OPTION_OFF)
+        return LEVEL_SCALING_NONE;
+
+    return B_WILD_SCALING_DEFAULT_MODE;
+}
+
 u16 ValidateSpeciesForLevel(u16 species, u8 targetLevel, bool8 manageEvolutions)
 {
     if (!manageEvolutions)
@@ -318,48 +365,17 @@ u8 CalculatePlayerPartyBaseLevel(u8 mode, bool8 excludeFainted)
 
 const struct LevelScalingConfig *GetTrainerLevelScalingConfig(u16 trainerId)
 {
-    // Default configuration from config file
-    static const struct LevelScalingConfig sDefaultConfig = {
-        .mode = B_TRAINER_SCALING_DEFAULT_MODE,
-        .levelAugmentAdd = B_TRAINER_SCALING_LEVEL_AUGMENT,
-        .levelVariation = B_TRAINER_SCALING_LEVEL_VARIATION,
-        .minLevel = B_TRAINER_SCALING_MIN_LEVEL,
-        .maxLevel = B_TRAINER_SCALING_MAX_LEVEL,
-        .manageEvolutions = B_TRAINER_SCALING_MANAGE_EVOLUTIONS,
-        .excludeFainted = B_TRAINER_SCALING_EXCLUDE_FAINTED,
-    };
+    (void)trainerId;
 
-    // Check bounds
-    if (trainerId >= ARRAY_COUNT(gTrainerLevelScalingRules))
-        return &sDefaultConfig;
+    sTrainerOptionConfig.mode = GetCurrentTrainerLevelScalingMode();
+    sTrainerOptionConfig.levelAugmentAdd = B_TRAINER_SCALING_LEVEL_AUGMENT;
+    sTrainerOptionConfig.levelVariation = B_TRAINER_SCALING_LEVEL_VARIATION;
+    sTrainerOptionConfig.minLevel = B_TRAINER_SCALING_MIN_LEVEL;
+    sTrainerOptionConfig.maxLevel = B_TRAINER_SCALING_MAX_LEVEL;
+    sTrainerOptionConfig.manageEvolutions = B_TRAINER_SCALING_MANAGE_EVOLUTIONS;
+    sTrainerOptionConfig.excludeFainted = B_TRAINER_SCALING_EXCLUDE_FAINTED;
 
-    // Get config from rules array
-    const struct LevelScalingConfig *config = &gTrainerLevelScalingRules[trainerId];
-
-    // If mode is 0 (LEVEL_SCALING_NONE), check if this is:
-    // 1. An explicit opt-out (trainer has config with mode = NONE), OR
-    // 2. An undefined entry (zero-initialized)
-    //
-    // We distinguish by checking if ANY field is non-zero
-    // If all fields are zero, it's undefined and we use default
-    // If mode is NONE but other fields are set, it's an explicit opt-out
-    if (config->mode == LEVEL_SCALING_NONE)
-    {
-        // Check if any other field is non-zero (indicates explicit config)
-        if (config->levelAugmentAdd == 0 &&
-            config->levelVariation == 0 &&
-            config->minLevel == 0 &&
-            config->maxLevel == 0 &&
-            config->manageEvolutions == FALSE &&
-            config->excludeFainted == FALSE)
-        {
-            // All fields zero = undefined entry, use default
-            return &sDefaultConfig;
-        }
-        // else: Explicit NONE config, return it
-    }
-
-    return config;
+    return &sTrainerOptionConfig;
 }
 
 u8 CalculateScaledLevel(const struct LevelScalingConfig *config, u8 originalLevel)
@@ -395,34 +411,61 @@ u8 CalculateScaledLevel(const struct LevelScalingConfig *config, u8 originalLeve
     return (u8)adjustedLevel;
 }
 
+u8 CalculateTrainerScaledLevel(const struct LevelScalingConfig *config, u8 originalLevel, u16 trainerId)
+{
+    u8 baseLevel;
+    s16 adjustedLevel;
+    u8 reduction;
+
+    // Get base level from scaling mode
+    baseLevel = CalculatePlayerPartyBaseLevel(config->mode, config->excludeFainted);
+
+    // If mode is NONE, return original
+    if (baseLevel == 0)
+        return originalLevel;
+
+    // Apply augmentation (can be positive or negative)
+    adjustedLevel = (s16)baseLevel + (s16)config->levelAugmentAdd;
+
+    // Ensure we don't go negative
+    if (adjustedLevel < 1)
+        adjustedLevel = 1;
+
+    // Apply deterministic per-save, per-trainer variation
+    reduction = GetDeterministicTrainerVariation(trainerId, config->levelVariation);
+    adjustedLevel = ApplyLevelVariationAmount((u8)adjustedLevel, reduction);
+
+    // Clamp to configured min/max
+    adjustedLevel = ClampLevel((u8)adjustedLevel, config->minLevel, config->maxLevel);
+
+    return (u8)adjustedLevel;
+}
+
 u8 CalculateWildScaledLevel(u16 species, u8 originalLevel)
 {
-    #if B_WILD_SCALING_ENABLED
-    static const struct LevelScalingConfig sWildConfig = {
-        .mode = B_WILD_SCALING_DEFAULT_MODE,
-        .levelAugmentAdd = B_WILD_SCALING_LEVEL_AUGMENT,
-        .levelVariation = B_WILD_SCALING_LEVEL_VARIATION,
-        .minLevel = B_WILD_SCALING_MIN_LEVEL,
-        .maxLevel = B_WILD_SCALING_MAX_LEVEL,
-        .manageEvolutions = B_WILD_SCALING_MANAGE_EVOLUTIONS,
-        .excludeFainted = B_WILD_SCALING_EXCLUDE_FAINTED,
-    };
+    sWildOptionConfig.mode = GetCurrentWildLevelScalingMode();
+    sWildOptionConfig.levelAugmentAdd = B_WILD_SCALING_LEVEL_AUGMENT;
+    sWildOptionConfig.levelVariation = B_WILD_SCALING_LEVEL_VARIATION;
+    sWildOptionConfig.minLevel = B_WILD_SCALING_MIN_LEVEL;
+    sWildOptionConfig.maxLevel = B_WILD_SCALING_MAX_LEVEL;
+    sWildOptionConfig.manageEvolutions = B_WILD_SCALING_MANAGE_EVOLUTIONS;
+    sWildOptionConfig.excludeFainted = B_WILD_SCALING_EXCLUDE_FAINTED;
 
-    u8 newLevel = CalculateScaledLevel(&sWildConfig, originalLevel);
+    u8 newLevel = CalculateScaledLevel(&sWildOptionConfig, originalLevel);
 
     // Note: Species validation should happen in wild encounter code
     // as we can't modify the species from this function
 
     return newLevel;
-    #else
-    return originalLevel;
-    #endif
 }
 
 // Calculate scaled species for wild encounters (called from wild_encounter.c)
 u16 CalculateWildScaledSpecies(u16 species, u8 scaledLevel)
 {
-    #if B_WILD_SCALING_ENABLED && B_WILD_SCALING_MANAGE_EVOLUTIONS
+    #if B_WILD_SCALING_MANAGE_EVOLUTIONS
+    if (GetCurrentWildLevelScalingMode() == LEVEL_SCALING_NONE)
+        return species;
+
     return ValidateSpeciesForLevel(species, scaledLevel, TRUE);
     #else
     return species;

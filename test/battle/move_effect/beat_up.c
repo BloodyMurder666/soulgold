@@ -393,3 +393,126 @@ SINGLE_BATTLE_TEST("Beat Up ignores Choice Band", s16 damage)
             EXPECT_EQ(results[i].damage, results[0].damage);
     }
 }
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Beat Up doesn't consider Comatose as a status (Traits)")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_KOMALA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COMATOSE); }
+        PLAYER(SPECIES_WYNAUT) { HP(0); }
+        PLAYER(SPECIES_WYNAUT) { Status1(STATUS1_POISON); }
+        PLAYER(SPECIES_WYNAUT) { Status1(STATUS1_SLEEP); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_BEAT_UP); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_BEAT_UP, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_BEAT_UP, player);
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_BEAT_UP, player);
+        MESSAGE("The Pokémon was hit 2 time(s)!");
+    }
+}
+
+SINGLE_BATTLE_TEST("Beat Up's damage considers Huge Power and Choice Band (Gen5+) (Traits)", s16 damage)
+{
+    u16 ability;
+    enum Item item;
+
+    PARAMETRIZE { ability = ABILITY_THICK_FAT;   item = ITEM_NONE; }
+    PARAMETRIZE { ability = ABILITY_HUGE_POWER;  item = ITEM_NONE; }
+    PARAMETRIZE { ability = ABILITY_THICK_FAT;   item = ITEM_CHOICE_BAND; }
+
+    GIVEN {
+        WITH_CONFIG(B_BEAT_UP, GEN_5);
+        PLAYER(SPECIES_AZUMARILL) { Ability(ABILITY_SAP_SIPPER); Innates(ability); Item(item); Moves(MOVE_BEAT_UP); }
+        PLAYER(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_BEAT_UP); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_BEAT_UP, player);
+        HP_BAR(opponent, captureDamage: &results[i].damage);
+    } THEN {
+        if (i == 1)
+            EXPECT_GT(results[i].damage, results[0].damage);
+        if (i == 2)
+            EXPECT_GT(results[i].damage, results[0].damage);
+    }
+}
+
+SINGLE_BATTLE_TEST("Beat Up ignores Huge Power (Traits)", s16 damage)
+{
+    u16 ability;
+
+    PARAMETRIZE { ability = ABILITY_THICK_FAT; }
+    PARAMETRIZE { ability = ABILITY_HUGE_POWER; }
+
+    GIVEN {
+        WITH_CONFIG(B_BEAT_UP, GEN_3);
+        PLAYER(SPECIES_AZUMARILL) { Ability(ABILITY_SAP_SIPPER); Innates(ability); Moves(MOVE_BEAT_UP); }
+        PLAYER(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_BEAT_UP); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_BEAT_UP, player);
+        HP_BAR(opponent, captureDamage: &results[i].damage);
+    } THEN {
+        if (ability == ABILITY_HUGE_POWER)
+            EXPECT_EQ(results[i].damage, results[0].damage);
+    }
+}
+#endif
+
+#if MAX_MON_ITEMS > 1
+SINGLE_BATTLE_TEST("Beat Up's damage considers Huge Power and Choice Band (Gen5+) (Items)", s16 damage)
+{
+    u16 ability;
+    enum Item item;
+
+    PARAMETRIZE { ability = ABILITY_THICK_FAT;   item = ITEM_NONE; }
+    PARAMETRIZE { ability = ABILITY_HUGE_POWER;  item = ITEM_NONE; }
+    PARAMETRIZE { ability = ABILITY_THICK_FAT;   item = ITEM_CHOICE_BAND; }
+
+    GIVEN {
+        WITH_CONFIG(B_BEAT_UP, GEN_5);
+        PLAYER(SPECIES_AZUMARILL) { Ability(ability); Items(ITEM_GREAT_BALL, item); Moves(MOVE_BEAT_UP); }
+        PLAYER(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_BEAT_UP); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_BEAT_UP, player);
+        HP_BAR(opponent, captureDamage: &results[i].damage);
+    } THEN {
+        if (i == 1)
+            EXPECT_GT(results[i].damage, results[0].damage);
+        if (i == 2)
+            EXPECT_GT(results[i].damage, results[0].damage);
+    }
+}
+
+SINGLE_BATTLE_TEST("Beat Up ignores Choice Band (Items)", s16 damage)
+{
+    enum Item item;
+
+    PARAMETRIZE { item = ITEM_NONE; }
+    PARAMETRIZE { item = ITEM_CHOICE_BAND; }
+
+    GIVEN {
+        WITH_CONFIG(B_BEAT_UP, GEN_3);
+        PLAYER(SPECIES_URSARING) { Items(ITEM_GREAT_BALL, item); Moves(MOVE_BEAT_UP); }
+        PLAYER(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_BEAT_UP); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_BEAT_UP, player);
+        HP_BAR(opponent, captureDamage: &results[i].damage);
+    } THEN {
+        if (item == ITEM_CHOICE_BAND)
+            EXPECT_EQ(results[i].damage, results[0].damage);
+    }
+}
+#endif

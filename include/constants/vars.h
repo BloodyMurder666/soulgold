@@ -207,8 +207,8 @@
 #define VAR_DEXNAV_SPECIES                                0x40BB
 #define VAR_STEP_COUNTER                                0x40BC
 #define VAR_LAST_REPEL                                0x40BD
-#define VAR_UNUSED_0x40BE                                0x40BE // Unused
-#define VAR_UNUSED_0x40BF                                0x40BF // Unused
+#define VAR_KITAKAMI_STATE                                0x40BE
+#define VAR_OVERWORLD_SPEEDUP                            0x40BF
 #define VAR_SOOTOPOLIS_MYSTERY_EVENTS_STATE              0x40C0
 #define VAR_TRICK_HOUSE_PRIZE_PICKUP                     0x40C1
 #define VAR_PACIFIDLOG_TM_RECEIVED_DAY                   0x40C2
@@ -237,9 +237,9 @@
 #define VAR_HAS_TALKED_TO_SEAFLOOR_CAVERN_ENTRANCE_GRUNT 0x40D9
 #define VAR_REGISTER_BIRCH_STATE                         0x40DA
 #define VAR_BATTLE_TOWER_STREAK                          0x40DB
-#define VAR_UNUSED_0x40DC                                0x40DC // Unused Var
+#define VAR_BATTLE_SPEED                                 0x40DC
 #define VAR_GIFT_PICHU_SLOT                              0x40DD
-#define VAR_GIFT_UNUSED_1                                0x40DE // Var is written to, but never read
+#define VAR_RIVAL_STATE                                  0x40DE
 #define VAR_GIFT_UNUSED_2                                0x40DF // Var is written to, but never read
 #define VAR_GIFT_UNUSED_3                                0x40E0 // Var is written to, but never read
 #define VAR_GIFT_UNUSED_4                                0x40E1 // Var is written to, but never read
@@ -274,7 +274,12 @@
 #define VAR_FREEZE_SURF_BLOB                             0x40FE // Added new VAR for Surfing Overworld Sprites - Set on surf init to stop blob overlay being offset incorrectly
 #define VAR_GARBAGEVAR                                   0x40FF // Used to replace little root state
 
-#define VARS_END                                         0x40FF
+
+// unused vars
+#define VAR_0x4100
+
+#define VARS_END                                         0x42FF
+
 #define VARS_COUNT                                       (VARS_END - VARS_START + 1)
 
 #define SPECIAL_VARS_START            0x8000

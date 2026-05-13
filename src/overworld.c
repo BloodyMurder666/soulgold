@@ -1052,6 +1052,8 @@ bool32 Overworld_IsBikingAllowed(void)
 // Flash level of 8 is fully black
 void SetDefaultFlashLevel(void)
 {
+    if (CheckBagHasItem(ITEM_HM_FLASH ,1))
++        FlagSet(FLAG_SYS_USE_FLASH);
     if (!gMapHeader.cave)
         gSaveBlock1Ptr->flashLevel = 0;
     else if (FlagGet(FLAG_SYS_USE_FLASH))
@@ -1372,7 +1374,7 @@ void UpdateAmbientCry(s16 *state, u16 *delayCounter)
         for (i = 0; i < monsCount; i++)
         {
             if (!GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_EGG)
-                && GetMonAbility(&gPlayerParty[0]) == ABILITY_SWARM)
+                && MonHasTrait(&gPlayerParty[0], ABILITY_SWARM))
             {
                 divBy = 2;
                 break;
@@ -1465,12 +1467,12 @@ bool8 IsMapTypeIndoors(enum MapType mapType)
         return FALSE;
 }
 
-mapsec_u8_t GetSavedWarpRegionMapSectionId(void)
+mapsec_u16_t GetSavedWarpRegionMapSectionId(void)
 {
     return Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->dynamicWarp.mapGroup, gSaveBlock1Ptr->dynamicWarp.mapNum)->regionMapSectionId;
 }
 
-mapsec_u8_t GetCurrentRegionMapSectionId(void)
+mapsec_u16_t GetCurrentRegionMapSectionId(void)
 {
     return Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum)->regionMapSectionId;
 }
@@ -1737,6 +1739,28 @@ static void OverworldBasic(void)
     }
 }
 
+u8 OverworldSpeedup_AdditionalIterations(u16 speed, bool32 overworld)
+{
+    if (overworld
+        && VAR_OVERWORLD_SPEEDUP != 0
+        && (JOY_HELD(R_BUTTON)
+        || (FlagGet(FLAG_PREVENT_OVERWORLD_SPEEDUP) && FLAG_PREVENT_OVERWORLD_SPEEDUP != 0)
+        || FlagGet(FLAG_DEXNAV_SEARCHING) //       Other conditions when no speedup is wanted.
+        ))
+    {
+        return OPTIONS_OVERWORLD_SPEED_1X_EXTRA_ITERATIONS;
+    }
+
+    switch (speed)
+    {
+    case OPTIONS_OVERWORLD_SPEED_8X: return OPTIONS_OVERWORLD_SPEED_8X_EXTRA_ITERATIONS;
+    case OPTIONS_OVERWORLD_SPEED_4X: return OPTIONS_OVERWORLD_SPEED_4X_EXTRA_ITERATIONS;
+    case OPTIONS_OVERWORLD_SPEED_2X: return OPTIONS_OVERWORLD_SPEED_2X_EXTRA_ITERATIONS;
+    case OPTIONS_OVERWORLD_SPEED_1X: return OPTIONS_OVERWORLD_SPEED_1X_EXTRA_ITERATIONS;
+    default: return OPTIONS_OVERWORLD_SPEED_1X_EXTRA_ITERATIONS;
+    }
+}
+
 // This CB2 is used when starting
 void CB2_OverworldBasic(void)
 {
@@ -1746,9 +1770,18 @@ void CB2_OverworldBasic(void)
 void CB2_Overworld(void)
 {
     bool32 fading = (gPaletteFade.active != 0);
+    u8 loops;
     if (fading)
         SetVBlankCallback(NULL);
     OverworldBasic();
+
+    for (loops = 0; loops < OverworldSpeedup_AdditionalIterations(VarGet(VAR_OVERWORLD_SPEEDUP), TRUE); loops++)
+    {
+        AnimateSprites();
+        CameraUpdate();
+        UpdateCameraPanning();
+    }
+
     if (fading)
     {
         SetFieldVBlankCallback();

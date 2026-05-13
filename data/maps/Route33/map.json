@@ -56,7 +56,7 @@
       "x": 33,
       "y": 24,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WALK_DOWN_AND_UP",
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -66,10 +66,10 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(ROCKRUFF)",
-      "x": 33,
-      "y": 27,
+      "x": 34,
+      "y": 24,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WALK_UP_AND_DOWN",
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -157,8 +157,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
-      "x": 30,
-      "y": 26,
+      "x": 31,
+      "y": 23,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
       "movement_range_x": 0,
@@ -166,6 +166,19 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "BERRY_TREE_PECHA_1",
       "script": "BerryTreeScript",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_FISHER",
+      "x": 35,
+      "y": 26,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "fisherMan_Route33",
       "flag": "0"
     }
   ],

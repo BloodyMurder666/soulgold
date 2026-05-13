@@ -22,10 +22,10 @@ Route34IlexForestGate_EventScript_Butterfree::
 Route34IlexForestGate_Text_Lass:
 	.string "Did you see the shrine honoring\n"
 	.string "the protector?\p"
-	.string "It watches over the FOREST from\n"
+	.string "It watches over the Forest from\n"
 	.string "across time.\p"
 	.string "I think that it must be a\n"
-	.string "GRASS-type POKéMON.$"
+	.string "Grass-type Pokémon.$"
 
 Route34IlexForestGate_Text_Butterfree:
-	.string "BUTTERFREE: Freeh!$"
+	.string "Butterfree: Freeh!$"

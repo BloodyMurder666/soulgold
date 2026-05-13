@@ -329,11 +329,13 @@
 #define OBJ_EVENT_GFX_TOWER_BEAM                322
 #define OBJ_EVENT_GFX_APRICORN_TREE             323
 #define OBJ_EVENT_GFX_CASE                      324
+#define OBJ_EVENT_GFX_TMBALL                    325
+#define OBJ_EVENT_GFX_MEGASTONE                 326
 
 // NOTE: The maximum amount of object events has been expanded from 255 to 65535.
 // Since dynamic graphics ids still require at least 16 free values, the actual limit
 // is 65519, but even considering follower Pokémon, this should be more than enough :)
-#define NUM_OBJ_EVENT_GFX                        325
+#define NUM_OBJ_EVENT_GFX                        327
 
 
 // These are dynamic object gfx ids.
@@ -497,6 +499,7 @@
 #define OBJ_EVENT_PAL_TAG_TOWER_BEAM              0x1144
 #define OBJ_EVENT_PAL_TAG_CASE                    0x1145
 #define OBJ_EVENT_PAL_TAG_BILL                    0x1146
+#define OBJ_EVENT_PAL_TAG_ARCHER                  0x1147
 
 #if OW_FOLLOWERS_POKEBALLS
 // Vanilla

@@ -1,0 +1,36 @@
+raw `
+BlackthornCity_House2_MapScripts::
+	.byte 0
+`
+
+
+script Blackthorn_GabiteTrade {
+    lock
+    faceplayer
+    if (flag(FLAG_BLACKTHORN_NPC_TRADE_COMPLETED)) {
+        msgbox("How has my Gabite been?")
+    } else {
+        ingame_trade(INGAME_TRADE_GABITE, "Hello. I gather Dragon-type Pokémon.
+                                           Do you have Dragonair? I'm willing to 
+                                           trade it for Gabite.", 
+                                         GabiteTrade_Declined,
+                                         GabiteTrade_NotRequested,
+                                         "Thank you very much.")
+        setflag(FLAG_BLACKTHORN_NPC_TRADE_COMPLETED)
+    }
+    release
+    end
+}
+
+script GabiteTrade_Declined {
+    msgbox("If you find one, come trade with me!")
+    release
+    end                                 
+}
+
+script GabiteTrade_NotRequested {
+    msgbox("That doesn't look like a Dragonair to
+            me.")
+    release
+    end
+}

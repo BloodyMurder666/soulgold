@@ -13,10 +13,10 @@ Route40_Text_SwimmermSimonSeen:
 	.string "That's basic.$"
 
 Route40_Text_SwimmermSimonBeaten:
-	.string "OK! Uncle! I give!$"
+	.string "Ok! Uncle! I give!$"
 
 Route40_Text_SwimmermSimonAfter:
-	.string "CIANWOOD CITY is a good\n"
+	.string "Cianwood City is a good\n"
 	.string "distance away from here.$"
 
 Route40_EventScript_Randall::
@@ -35,7 +35,7 @@ BattleTower_Outside_EventScript_Engineer::
 
 Route40_Text_SwimmermRandallSeen:
 	.string "Hey, you're young and fit!\p"
-	.string "Don't ride your POKéMON!\n"
+	.string "Don't ride your Pokémon!\n"
 	.string "Swim!$"
 
 Route40_Text_SwimmermRandallBeaten:
@@ -51,7 +51,7 @@ Route40_EventScript_Elaine::
 	end
 
 Route40_Text_SwimmerfElaineSeen:
-	.string "Are you going to CIANWOOD?\p"
+	.string "Are you going to Cianwood?\p"
 	.string "How about a quick battle\n"
 	.string "first?$"
 
@@ -70,7 +70,7 @@ Route40_EventScript_Paula::
 Route40_Text_SwimmerfPaulaSeen:
 	.string "No inner tube for me.\p"
 	.string "I'm hanging on to a sea\n"
-	.string "POKéMON!$"
+	.string "Pokémon!$"
 
 Route40_Text_SwimmerfPaulaBeaten:
 	.string "Ooh, I'm feeling dizzy!$"
@@ -89,7 +89,7 @@ Route40_EventScript_Woman1::
 
 Route40_Text_Lass1:
 	.string "Although you can't see it from here,\n"
-	.string "CIANWOOD is across the sea.$"
+	.string "Cianwood is across the sea.$"
 
 Route40_EventScript_Woman2::
 	lock
@@ -100,7 +100,7 @@ Route40_EventScript_Woman2::
 	end
 
 Route40_Text_Lass2:
-	.string "I came to OLIVINE by ship to see\n"
+	.string "I came to Olivine by ship to see\n"
 	.string "the sights and soak up the\l"
 	.string "atmosphere.\p"
 	.string "Being a port, it feels so\n"
@@ -115,18 +115,18 @@ Route40_EventScript_Youngster::
 	end
 
 Route40_Text_StandingYoungster:
-	.string "Have you gone to the BATTLE\n"
-	.string "TOWER?\p"
+	.string "Have you gone to the Battle\n"
+	.string "Tower?\p"
 	.string "I think a lot of tough trainers\n"
 	.string "have gathered there already.\p"
 	.string "But since you have so many\n"
-	.string "BADGES,\p"
+	.string "Badges,\p"
 	.string "you shouldn't do badly\n"
 	.string "at all.$"
 
 Route40_Text_Monica:
-	.string "MONICA: Glad to meet you.\n"
-	.string "I'm MONICA of the WEEKDAY FAMILY.\p"
+	.string "Monica: Glad to meet you.\n"
+	.string "I'm Monica of the Weekday Family.\p"
 	.string "I bet you can't guess my favorite\n"
 	.string "day of the week!$"
 
@@ -136,19 +136,19 @@ Route40_Text_MonicaGivesGift:
 	.string "I have a gift for you!$"
 
 Route40_Text_MonicaGaveGift:
-	.string "MONICA: It's an item that raises\n"
-	.string "the power of FLYING-TYPE moves.\p"
+	.string "Monica: It's an item that raises\n"
+	.string "the power of Flying-Type moves.\p"
 	.string "You should equip a bird\n"
-	.string "POKéMON with that item.$"
+	.string "Pokémon with that item.$"
 
 Route40_Text_MonicaMonday:
-	.string "MONICA: My brothers and\n"
+	.string "Monica: My brothers and\n"
 	.string "sisters are all over the place.\p"
 	.string "See if you could find\n"
 	.string "them all!$"
 
 Route40_Text_MonicaNotMonday:
-	.string "MONICA: I don't think today\n"
+	.string "Monica: I don't think today\n"
 	.string "is Monday. How sad…$"
 
 Route40_Text_MonicaNope:

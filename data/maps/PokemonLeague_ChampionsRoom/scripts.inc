@@ -126,6 +126,7 @@ PokemonLeague_WillsRoom_EventScript_LanceOnDefeatJohto::
 	closemessage
 	setvar VAR_LEAGUE_STATE, 6
 	warpsilent MAP_POKEMON_LEAGUE_HALL_OF_FAME, 0
+	waitstate
 	releaseall
 	end
 
@@ -193,6 +194,7 @@ PokemonLeague_WillsRoom_EventScript_LanceOnDefeatKanto::
 	closemessage
 	setvar VAR_LEAGUE_STATE, 6
 	warpsilent MAP_POKEMON_LEAGUE_HALL_OF_FAME, 0
+	waitstate
 	releaseall
 	end
 
@@ -308,13 +310,13 @@ PokemonLeague_ChampionsRoom_Movement_MaryLeft:
 	step_end
 
 PokemonLeague_ChampionsRoom_Text_RematchBattleIntro:
-    .string "LANCE: Welcome back!\p"
-    .string "You've proven yourself in JOHTO,\p"
+    .string "Lance: Welcome back!\p"
+    .string "You've proven yourself in Johto,\p"
     .string "acquiring all 8 badges and even\n"
     .string "besting me once.\p"
     .string "But now, you're in the big\n"
     .string "leagues.\p"
-    .string "The KANTO LEAGUE!\p"
+    .string "The Kanto League!\p"
     .string "A region with its own trials and\n"
     .string "champions.\p"
     .string "Here, I am the final challenge,\n"
@@ -322,15 +324,15 @@ PokemonLeague_ChampionsRoom_Text_RematchBattleIntro:
     .string "before.\p"
     .string "This is the true test,\p"
     .string "a battle to determine the\n"
-    .string "CHAMPION of KANTO.\p"
+    .string "Champion of Kanto.\p"
     .string "Are you ready to rise to this new\n"
     .string "challenge?\p"
     .string "To prove yourself once more?\p"
     .string "Show me the strength that\n"
-    .string "conquered JOHTO, CHAMPION.$"
+    .string "conquered Johto, Champion.$"
 
 PokemonLeague_ChampionsRoom_Text_BattleIntro:
-    .string "LANCE: I've been waiting for you.\p"
+    .string "Lance: I've been waiting for you.\p"
     .string "{PLAYER}!\p"
     .string "I knew that you, with your skills,\n"
     .string "would eventually reach me here.\p"
@@ -338,8 +340,8 @@ PokemonLeague_ChampionsRoom_Text_BattleIntro:
     .string "We will battle to determine who is\n"
     .string "the stronger of the two of us.\p"
     .string "As the most powerful trainer and as\n"
-    .string "the POKéMON LEAGUE CHAMPION…\p"
-    .string "I, LANCE the dragon master, accept\n"
+    .string "the Pokémon League Champion…\p"
+    .string "I, Lance the dragon master, accept\n"
     .string "your challenge!$"
 
 PokemonLeague_ChampionsRoom_Text_BattleWin:
@@ -348,45 +350,45 @@ PokemonLeague_ChampionsRoom_Text_BattleWin:
     .string "I'm not angry that I lost. In fact,\n"
     .string "I feel happy.\p"
     .string "Happy that I witnessed the rise\n"
-    .string "of a great new CHAMPION!$"
+    .string "of a great new Champion!$"
 
 PokemonLeague_ChampionsRoom_Text_BattleAfter:
     .string "…Whew.\p"
     .string "You have become truly powerful,\n"
     .string "{PLAYER}.\p"
-    .string "Your POKéMON have responded to your\n"
+    .string "Your Pokémon have responded to your\n"
     .string "strong and upstanding nature.\p"
     .string "As a trainer, you will continue to\n"
-    .string "grow strong with your POKéMON.$"
+    .string "grow strong with your Pokémon.$"
 
 PokemonLeague_ChampionsRoom_Text_MaryOhNoOak:
-    .string "MARY: Oh, no! It's all over!\p"
-    .string "PROF.OAK, if you weren't so slow…$"
+    .string "Mary: Oh, no! It's all over!\p"
+    .string "Prof.Oak, if you weren't so slow…$"
 
 PokemonLeague_ChampionsRoom_Text_OakCongratulations:
-    .string "PROF.OAK: Ah, {PLAYER}!\p"
+    .string "Prof.Oak: Ah, {PLAYER}!\p"
     .string "It's been a long while.\p"
     .string "You certainly look more impressive.\p"
-    .string "Your conquest of the JOHTO LEAGUE\n"
+    .string "Your conquest of the Johto League\n"
     .string "is just fantastic!\p"
     .string "Your dedication, trust and love for\n"
-    .string "your POKéMON made this happen.\p"
-    .string "Your POKéMON were outstanding too.\p"
+    .string "your Pokémon made this happen.\p"
+    .string "Your Pokémon were outstanding too.\p"
     .string "Because they believed in you as a\n"
     .string "trainer, they persevered.\p"
     .string "Congratulations, {PLAYER}!$"
 
 PokemonLeague_ChampionsRoom_Text_RematchOakCongratulations:
-    .string "PROF.OAK: Ah, {PLAYER}!\p"
+    .string "Prof.Oak: Ah, {PLAYER}!\p"
     .string "I've been following your progress\n"
-    .string "since PROF. ELM sent you on your\l"
+    .string "since Prof. Elm sent you on your\l"
     .string "way.\p"
     .string "You've certainly become more\n"
     .string "impressive.\p"
-    .string "Conquering both the JOHTO and now\n"
-    .string "the KANTO LEAGUE is no small feat.\p"
+    .string "Conquering both the Johto and now\n"
+    .string "the Kanto League is no small feat.\p"
     .string "You've truly outdone yourself!\p"
-    .string "It's clear that your POKéMON trust\n"
+    .string "It's clear that your Pokémon trust\n"
     .string "you immensely,\p"
     .string "and that trust has been the\n"
     .string "foundation of your success.\p"
@@ -400,23 +402,23 @@ PokemonLeague_ChampionsRoom_Text_RematchOakCongratulations:
     .string "{PLAYER}!$"
 
 PokemonLeague_ChampionsRoom_Text_MaryInterview:
-    .string "MARY: Let's interview the brand new\n"
-    .string "JOHTO CHAMPION!$"
+    .string "Mary: Let's interview the brand new\n"
+    .string "Johto Champion!$"
 
 PokemonLeague_ChampionsRoom_Text_RematchMaryInterview:
-    .string "MARY: Let's interview the brand new\n"
-    .string "KANTO CHAMPION!$"
+    .string "Mary: Let's interview the brand new\n"
+    .string "Kanto Champion!$"
 
 PokemonLeague_ChampionsRoom_Text_Noisy:
-    .string "LANCE: This is getting to be a bit\n"
+    .string "Lance: This is getting to be a bit\n"
     .string "too noisy…\p"
     .string "{PLAYER}, could you come with me?$"
 
 PokemonLeague_ChampionsRoom_Text_MaryNoInterview:
-    .string "MARY: Oh, wait! We haven't done\n"
+    .string "Mary: Oh, wait! We haven't done\n"
     .string "the interview!$"
 
 PokemonLeague_ChampionsRoom_Text_RematchMaryNoInterview:
-    .string "MARY: Come on! You can't blow off\n"
-    .string "the interview AGAIN!$"
+    .string "Mary: Come on! You can't blow off\n"
+    .string "the interview Again!$"
 

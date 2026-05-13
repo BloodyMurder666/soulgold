@@ -24,5 +24,5 @@ Route28House_Text_Celebrity2:
 	.string "I just want to be left alone…$"
 
 Route28House_Text_Fearow:
-	.string "FEAROW: Feero!$"
+	.string "Fearow: Feero!$"
 

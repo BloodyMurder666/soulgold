@@ -76,7 +76,10 @@ struct RegionMap {
     /*0x081*/ u8 charBaseIdx;
     /*0x082*/ u8 mapBaseIdx;
     /*0x083*/ bool8 bgManaged;
-    /*0x084*/ u8 filler_084[0x100];
+    /*0x084*/ u8 mapPage;
+    /*0x085*/ u8 mapPageScrollAnim;
+    /*0x086*/ u8 targetMapPage;
+    /*0x087*/ u8 filler_087[0xfd];
     /*0x184*/ u8 cursorSmallImage[0x100];
     /*0x284*/ u8 cursorLargeImage[0x600];
 }; // size = 0x884
@@ -103,7 +106,7 @@ void FreeRegionMapIconResources(void);
 mapsec_u16_t GetRegionMapSecIdAt(u16 x, u16 y);
 void CreateRegionMapPlayerIcon(u16 tileTag, u16 paletteTag);
 void CreateRegionMapCursor(u16 tileTag, u16 paletteTag);
-bool32 IsEventIslandMapSecId(mapsec_u8_t mapSecId);
+bool32 IsEventIslandMapSecId(mapsec_u16_t mapSecId);
 u8 *GetMapName(u8 *dest, mapsec_u16_t regionMapId, u16 padLength);
 u8 *GetMapNameGeneric(u8 *dest, mapsec_u16_t mapSecId);
 u8 *GetMapNameHandleAquaHideout(u8 *dest, mapsec_u16_t mapSecId);

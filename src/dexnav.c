@@ -1,4 +1,5 @@
 #include "global.h"
+#include "battle.h"
 #include "battle_main.h"
 #include "battle_setup.h"
 #include "bg.h"
@@ -89,7 +90,7 @@ struct DexNavSearch
 {
     u16 species;
     u16 moves[MAX_MON_MOVES];
-    u16 heldItem;
+    u16 heldItem; // Wild pokemon start with one held item
     u8 abilityNum;
     u8 potential;
     u8 searchLevel;
@@ -415,7 +416,6 @@ static void DrawDexNavSearchMonIcon(u16 species, u8 *dst, bool8 owned)
 {
     u8 spriteId;
 
-    LoadMonIconPalette(species);
     spriteId = CreateMonIcon(species, SpriteCB_MonIcon, SPECIES_ICON_X - 6, GetSearchWindowY() + 8, 0, 0xFFFFFFFF);
     gSprites[spriteId].oam.priority = 0;
     *dst = spriteId;
@@ -550,7 +550,7 @@ static void RemoveDexNavWindowAndGfx(void)
     FreeSpriteTilesByTag(HIDDEN_MON_ICON_TAG);
     FreeSpriteTilesByTag(LIT_STAR_TILE_TAG);
     FreeSpritePaletteByTag(HELD_ITEM_TAG);
-    SafeFreeMonIconPalette(sDexNavSearchDataPtr->species);
+    FreeMonIconPalettes();
 
     // remove window
     ClearStdWindowAndFrameToTransparent(sDexNavSearchDataPtr->windowId, FALSE);
@@ -584,7 +584,6 @@ static bool8 DexNavPickTile(enum EncounterType environment, u8 areaX, u8 areaY, 
     s16 botY = topY + areaY;
     u8 i;
     bool8 nextIter;
-    u8 scale = 0;
     u8 weight = 0;
     enum MapType currMapType = GetCurrentMapType();
     u8 tileBehaviour;
@@ -642,25 +641,22 @@ static bool8 DexNavPickTile(enum EncounterType environment, u8 areaX, u8 areaY, 
                         if (IsElevationMismatchAt(gObjectEvents[gPlayerAvatar.spriteId].currentElevation, topX, topY))
                             break; //occurs at same z coord
 
-                        scale = 440 - (smallScan * 200) - (GetPlayerDistance(topX, topY) / 2)  - (2 * (topX + topY));
-                        weight = ((Random() % scale) < 1) && !MapGridGetCollisionAt(topX, topY);
+                        weight = !MapGridGetCollisionAt(topX, topY);
                     }
                     else
                     {
                         // outdoors: grass
-                        scale = 100 - (GetPlayerDistance(topX, topY) * 2);
-                        weight = (Random() % scale <= 5) && !MapGridGetCollisionAt(topX, topY);
+                        weight = !MapGridGetCollisionAt(topX, topY);
                     }
                 }
                 break;
             case ENCOUNTER_TYPE_WATER:
                 if (MetatileBehavior_IsSurfableWaterOrUnderwater(tileBehaviour))
                 {
-                    u8 scale = 320 - (smallScan * 200) - (GetPlayerDistance(topX, topY) / 2);
                     if (IsElevationMismatchAt(gObjectEvents[gPlayerAvatar.spriteId].currentElevation, topX, topY))
                         break;
 
-                    weight = (Random() % scale <= 1) && !MapGridGetCollisionAt(topX, topY);
+                    weight = !MapGridGetCollisionAt(topX, topY);
                 }
                 break;
             default:
@@ -1021,7 +1017,7 @@ static void RevealHiddenMon(void)
         DrawSearchWindow(species, sDexNavSearchDataPtr->potential, TRUE);
         DrawDexNavSearchMonIcon(species, &sDexNavSearchDataPtr->iconSpriteId, FALSE);
         // whiteout icon
-        index = IndexOfSpritePaletteTag(gSprites[sDexNavSearchDataPtr->iconSpriteId].template->paletteTag);
+        index = gSprites[sDexNavSearchDataPtr->iconSpriteId].oam.paletteNum;
         CpuCopy16(&gPlttBufferUnfaded[OBJ_PLTT_ID(index)], sDexNavSearchDataPtr->palBuffer, 32);
         TintPalette_CustomTone(sDexNavSearchDataPtr->palBuffer, 16, 510, 510, 510);
         LoadPalette(sDexNavSearchDataPtr->palBuffer, OBJ_PLTT_ID(index), PLTT_SIZE_4BPP);
@@ -1058,27 +1054,6 @@ bool32 OnStep_DexNavSearch(void)
             EndDexNavSearchSetupScript(EventScript_LostSignal);
             return TRUE;
         }
-    }
-
-    if (sDexNavSearchDataPtr->proximity <= CREEPING_PROXIMITY && !gPlayerAvatar.creeping && frameCount > 60)
-    { //should be creeping but player walks normally
-        if (sDexNavSearchDataPtr->hiddenSearch)
-        {
-            EndDexNavSearch();
-            return FALSE;
-        }
-        else
-        {
-            EndDexNavSearchSetupScript(EventScript_MovedTooFast);
-            return TRUE;
-        }
-    }
-
-    if (sDexNavSearchDataPtr->proximity <= SNEAKING_PROXIMITY && TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_DASH | PLAYER_AVATAR_FLAG_BIKE))
-    { // running/biking too close
-        //always do event script, even if player hasn't revealed a hidden mon. It's assumed they would be creeping towards it
-        EndDexNavSearchSetupScript(EventScript_MovedTooFast);
-        return TRUE;
     }
 
     if (frameCount > DEXNAV_TIMEOUT * 60)
@@ -1184,7 +1159,7 @@ static void CreateDexNavWildMon(u16 species, u8 potential, u8 level, u8 abilityN
 {
     struct Pokemon *mon = &gEnemyParty[0];
     u8 iv[3] = {NUM_STATS};
-    u8 i;
+    u8 i, slot;
     u8 perfectIv = 31;
 
     CreateWildMon(species, level);  // shiny rate bonus handled in CreateBoxMon
@@ -1209,7 +1184,11 @@ static void CreateDexNavWildMon(u16 species, u8 potential, u8 level, u8 abilityN
 
     // Set Held Item
     if (item)
-        SetMonData(mon, MON_DATA_HELD_ITEM, &item);
+    {
+        slot = GetMonNextEmptySlot(mon, item);
+        if (slot != MAX_MON_ITEMS)
+                SetMonData(mon, MON_DATA_HELD_ITEM + slot, &item);
+    }
 
     //Set moves
     for (i = 0; i < MAX_MON_MOVES; i++)
@@ -1975,11 +1954,17 @@ static void DexNavLoadEncounterData(void)
 static void TryDrawIconInSlot(u16 species, s16 x, s16 y)
 {
     if (species == SPECIES_NONE || species > NUM_SPECIES)
+    {
         CreateNoDataIcon(x, y);   //'X' in slot
+    }
     else if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN))
-        CreateMonIcon(SPECIES_NONE, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF); //question mark
+    {
+        CreateMonIconNoPalette(species, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF);
+    }
     else
+    {
         CreateMonIcon(species, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF);
+    }
 }
 
 static void DrawSpeciesIcons(void)

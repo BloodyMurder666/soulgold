@@ -20,8 +20,8 @@ NewMauville_Inside_Raikou_EntranceTrigger::
 	end
 
 NewMauville_Inside_Raikou_EntranceTrigger_Text:
-	.string "A big roar echoes around NEW\n"
-	.string "MAUVILLE.\p"
+	.string "A big roar echoes around New\n"
+	.string "Mauville.\p"
 	.string "Is there something hiding in\n"
 	.string "this place?$"
 
@@ -166,7 +166,7 @@ NewMauville_Inside_Raikou_RaikouBattle_3_Stats::
 	return
 
 NewMauville_Inside_Raikou_RaikouBattle_Text::
-	.string "RAIKOU stopped running away.\n"
+	.string "Raikou stopped running away.\n"
 	.string "Can it be captured now?$"
 
 NewMauville_Inside_Raikou_Won::

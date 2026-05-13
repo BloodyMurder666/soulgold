@@ -31,11 +31,11 @@ Route33_Text_HikerAnthony2Beaten:
 	.string "than me!$"
 
 Route33_Text_HikerAnthony2After:
-	.string "We HIKERS are at our best\n"
+	.string "We Hikers are at our best\n"
 	.string "in the mountains.$"
 
 Route33_Text_HikerAnthonyDunsparce:
-	.string "Hey, did you get a DUNSPARCE?\p"
+	.string "Hey, did you get a Dunsparce?\p"
 	.string "I caught one too.\p"
 	.string "Take a look at it in the light.\n"
 	.string "It's got a funny face!$"
@@ -45,7 +45,7 @@ Route33_Text_Lass:
 	.string "That cave was bigger than\n"
 	.string "I'd expected.\p"
 	.string "I got too tired exploring\n"
-	.string "for MARILL, so I came outside.$"
+	.string "for Marill, so I came outside.$"
 `
 
 script Route33_HiddenGrotto {
@@ -57,4 +57,15 @@ script Route33_HiddenGrotto {
     }
     release
     end
+}
+
+script fisherMan_Route33 {
+	lock
+	faceplayer
+	msgbox("Those mountain Pokémon are always
+			eyeing my catches, ready to steal
+			them. Their sorry eyes always
+			make me share some with them.")
+	release
+	end
 }

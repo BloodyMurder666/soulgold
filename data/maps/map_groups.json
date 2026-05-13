@@ -31,7 +31,8 @@
     "gMapGroup_Emerald2",
     "gMapGroup_Emerald3",
     "gMapGroup_Emerald4",
-    "gMapGroup_Emerald5"
+    "gMapGroup_Emerald5",
+    "gMapGroup_JohtoDiveMaps"
   ],
   "gMapGroup_TownsAndRoutes": [
     "NewBarkTown",
@@ -105,11 +106,19 @@
     "Route26North",
     "Route27",
     "Route28",
-    "GoldenrodShore"
+    "GoldenrodShore",
+    "KitakamiBorder",
+    "Kitakami",
+    "KitakamiMountain",
+    "OneIsland",
+    "OneIsland_KindleRoad_Frlg",
+    "OneIsland_TreasureBeach_Frlg",
+    "VajraDesert"
   ],
   "gMapGroup_IndoorNewBark": [
     "NewBarkTown_Lab",
     "NewBarkTown_House2",
+    "NewBarkTown_House3",
     "NewBarkTown_House1",
     "NewBarkTown_PlayersHouse_1F",
     "NewBarkTown_PlayersHouse_2F"
@@ -352,7 +361,9 @@
     "SafariZoneGate_SafariZoneEntrance",
     "Route27_House",
     "MtSilver_PokemonCenter",
-    "Gate_Route39North"
+    "Gate_Route39North",
+    "Gate_KitakamiBorder",
+    "Kitakami_Houses"
   ],
   "gMapGroup_IndoorKantoRoutes": [
     "Route26_House1",
@@ -382,7 +393,12 @@
     "Gate_FuchsiaCity_Route18",
     "Route12_House",
     "Route4_PokemonCenter",
-    "Route25_BillsHouse"
+    "Route25_BillsHouse",
+    "OneIsland_PokemonCenter_1F_Frlg",
+    "OneIsland_PokemonCenter_2F_Frlg",
+    "OneIsland_House1_Frlg",
+    "OneIsland_House2_Frlg",
+    "OneIsland_Harbor_Frlg"
   ],
   "gMapGroup_Dungeons": [
     "DarkCave_SouthSide",
@@ -485,7 +501,28 @@
     "HiddenGrotto_Route44",
     "HiddenGrotto_Lakeofrage",
     "HiddenGrotto_Route47",
-    "HiddenGrotto_Unused"
+    "HiddenGrotto_Unused",
+    "IcePath_Depths",
+    "IcePath_Depths2",
+    "KitakamiMountain1F",
+    "KitakamiMountainEnclave",
+    "KitakamiWell_B1F",
+    "MtEmber_RubyPath_B4F_Frlg",
+    "MtEmber_Exterior_Frlg",
+    "MtEmber_SummitPath_1F_Frlg",
+    "MtEmber_SummitPath_2F_Frlg",
+    "MtEmber_SummitPath_3F_Frlg",
+    "MtEmber_Summit_Frlg",
+    "MtEmber_RubyPath_B5F_Frlg",
+    "MtEmber_RubyPath_1F_Frlg",
+    "MtEmber_RubyPath_B1F_Frlg",
+    "MtEmber_RubyPath_B2F_Frlg",
+    "MtEmber_RubyPath_B3F_Frlg",
+    "MtEmber_RubyPath_B1F_Stairs_Frlg",
+    "MtEmber_RubyPath_B2F_Stairs_Frlg",
+    "AcuityCavern",
+    "ValorCavern",
+    "VerityCavern"
   ],
   "gMapGroup_IndoorDynamic": [],
   "gMapGroup_SpecialArea": [
@@ -516,7 +553,8 @@
     "SafariZone3",
     "SafariZoneIndoor",
     "Saffron_Temp",
-    "TestingMap"
+    "TestingMap",
+    "OneIsland_KindleRoad_EmberSpa_Frlg"
   ],
   "gMapGroup_Emerald1": [
     "InsideOfTruck",
@@ -1060,5 +1098,8 @@
     "Route119_WeatherInstitute_2F",
     "Route119_House",
     "Route124_DivingTreasureHuntersHouse"
+  ],
+  "gMapGroup_JohtoDiveMaps": [
+    "CherrygroveUnderwater"
   ]
 }

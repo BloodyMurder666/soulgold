@@ -31,6 +31,7 @@
 #include "overworld.h"
 #include "field_weather.h"
 #include "battle_tower.h"
+#include "pokemon.h"
 #include "gym_leader_rematch.h"
 #include "battle_frontier.h"
 #include "battle_pike.h"
@@ -523,11 +524,29 @@ void BattleSetup_StartLegendaryBattle(void)
         CreateBattleStartTask(B_TRANSITION_BLUR, MUS_RG_VS_DEOXYS);
         break;
     case SPECIES_LUGIA:
+        CreateBattleStartTask(B_TRANSITION_BLUR, MUS_HG_VS_LUGIA);
+        break;
     case SPECIES_HO_OH:
-        CreateBattleStartTask(B_TRANSITION_BLUR, MUS_RG_VS_LEGEND);
+        CreateBattleStartTask(B_TRANSITION_BLUR, MUS_HG_VS_HO_OH);
         break;
     case SPECIES_MEW:
         CreateBattleStartTask(B_TRANSITION_GRID_SQUARES, MUS_VS_MEW);
+        break;
+    case SPECIES_CHIEN_PAO:
+        CreateBattleStartTask(B_TRANSITION_BLUR, MUS_DP_VS_LEGEND);
+        break;
+    case SPECIES_MESPRIT:
+    case SPECIES_UXIE:
+    case SPECIES_AZELF:
+        CreateBattleStartTask(B_TRANSITION_RIPPLE, MUS_DP_VS_UXIE_MESPRIT_AZELF);
+        break;
+    case SPECIES_MOLTRES:
+    case SPECIES_ZAPDOS:
+    case SPECIES_ARTICUNO:
+    case SPECIES_MOLTRES_GALAR:
+    case SPECIES_ZAPDOS_GALAR:
+    case SPECIES_ARTICUNO_GALAR:
+        CreateBattleStartTask(B_TRANSITION_GRID_SQUARES, MUS_RG_VS_LEGEND);
         break;
     }
 
@@ -535,6 +554,19 @@ void BattleSetup_StartLegendaryBattle(void)
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
     IncrementDailyWildBattles();
     TryUpdateGymLeaderRematchFromWild();
+}
+
+void BattleSetup_StartLegendaryEncounter(void)
+{
+    gSpecialVar_0x8006 = ITEM_NONE;
+    CreateEnemyEventMon();
+    BattleSetup_StartLegendaryBattle();
+}
+
+void BattleSetup_FinishLegendaryEncounter(void)
+{
+    RemoveObjectEventByLocalIdAndMap(gSpecialVar_0x8006, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
+    FlagSet(gSpecialVar_0x8007);
 }
 
 void StartGroudonKyogreBattle(void)
@@ -604,6 +636,15 @@ static void CB2_EndWildBattle(void)
 {
     CpuFill16(0, (void *)(BG_PLTT), BG_PLTT_SIZE);
     ResetOamRange(0, 128);
+
+    if (IsNPCFollowerWildBattle())
+    {
+        RestorePartyAfterFollowerNPCBattle();
+        if (FNPC_FLAG_HEAL_AFTER_FOLLOWER_BATTLE != 0
+         && (FNPC_FLAG_HEAL_AFTER_FOLLOWER_BATTLE == FNPC_ALWAYS
+         || FlagGet(FNPC_FLAG_HEAL_AFTER_FOLLOWER_BATTLE)))
+            HealPlayerParty();
+    }
 
     if (IsNPCFollowerWildBattle())
     {
@@ -903,7 +944,7 @@ static void CB2_GiveStarter(void)
 
     *GetVarPointer(VAR_STARTER_MON) = gSpecialVar_Result;
     starterMon = GetStarterPokemon(gSpecialVar_Result);
-    ScriptGiveMon(starterMon, 5, ITEM_NONE);
+    ScriptGiveMon(starterMon, 5, ITEM_NONE, ITEM_NONE);
     ResetTasks();
     PlayBattleBGM();
     SetMainCallback2(CB2_StartFirstBattle);

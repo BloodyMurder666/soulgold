@@ -99,12 +99,12 @@ SaffronCity_SilphCo_Text_Steven1:
 	.string "I see...\n"
 	.string "I'll be on my way. See you soon.$"
 SaffronCity_SilphCo_Text_Steven2:
-	.string "STEVEN: You are... I remember your\n"
+	.string "Steven: You are... I remember your\n"
 	.string "eyes.\p"
 	.string "When I see a trainer whose eyes\n"
 	.string "twinkle, I always remember.\p"
 	.string "You have a POKéDEX! So you are\n"
-	.string "also in search of POKéMON!\l"
+	.string "also in search of Pokémon!\l"
 	.string "Let me see...\p"
 	.string "I think I can help you with that.\p"
 	.string "Let's say that you have stones in\n"
@@ -138,16 +138,16 @@ SaffronCity_SilphCo_EventScript_Sign2::
 	end
 
 SilphCo_Text_Sign1:
-	.string "SILPH CO.\n"
-	.string "1F RECEPTION.$"
+	.string "Silph Co.\n"
+	.string "1F Reception.$"
 
 SilphCo_Text_Sign2:
-	.string "SILPH CO.\n"
-	.string "ELEVATOR OUT OF SERVICE$"
+	.string "Silph Co.\n"
+	.string "Elevator Out Of Service$"
 
 SilphCo_Text_Receptionist:
-	.string "Welcome. This is SILPH CO.'s HEAD\n"
-	.string "OFFICE BUILDING.$"
+	.string "Welcome. This is Silph Co.'s Head\n"
+	.string "Office Building.$"
 
 SilphCo_Text_Officer:
 	.string "Only employees are permitted to\n"
@@ -157,5 +157,5 @@ SilphCo_Text_Officer:
 	.string "have this neat little souvenir.$"
 
 SilphCo_Text_Officer_GotUpGrade:
-	.string "It's SILPH CO.'s latest product.\p"
+	.string "It's Silph Co.'s latest product.\p"
 	.string "It's not for sale anywhere yet.$"

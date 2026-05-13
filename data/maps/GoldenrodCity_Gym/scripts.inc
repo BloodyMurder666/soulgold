@@ -97,469 +97,416 @@ GoldenrodCity_Gym_EventScript_Whitney::
 # 49 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	goto_if_set FLAG_DEFEATED_GOLDENROD_CITY_GYM, GoldenrodCity_Gym_EventScript_WhitneyDefeated
 # 50 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	call WhitneyChooseDifficulty
+	msgbox GoldenrodCity_Gym_Text_WhitneyBefore, MSGBOX_DEFAULT
 # 51 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	msgbox GoldenrodCity_Gym_Text_WhitneyYouMeanie, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_WHITNEY_1, GoldenrodCity_Gym_Text_WhitneyShouldntBeSoSerious
 # 52 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	setvar VAR_GOLDENROD_CITY_STATE, 3
-# 53 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	closemessage
-# 54 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	release
-# 55 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	end
-# 56 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
-# 57 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_EventScript_WhitneyCrying::
-# 58 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	lock
-# 59 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	faceplayer
-# 60 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	msgbox GoldenrodCity_Gym_Text_WhitneyYouMeanie, MSGBOX_DEFAULT
+# 53 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	setvar VAR_GOLDENROD_CITY_STATE, 3
+# 54 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	closemessage
+# 55 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	release
+# 56 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	end
+# 57 "data/maps/GoldenrodCity_Gym/scripts.pory"
+
+# 58 "data/maps/GoldenrodCity_Gym/scripts.pory"
+GoldenrodCity_Gym_EventScript_WhitneyCrying::
+# 59 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	lock
+# 60 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	faceplayer
 # 61 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	closemessage
+	msgbox GoldenrodCity_Gym_Text_WhitneyYouMeanie, MSGBOX_DEFAULT
 # 62 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	release
+	closemessage
 # 63 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	end
+	release
 # 64 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
+	end
 # 65 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_EventScript_WhitneyBadge::
+
 # 66 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	lock
+GoldenrodCity_Gym_EventScript_WhitneyBadge::
 # 67 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	faceplayer
-# 68 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	msgbox GoldenrodCity_Gym_Text_WhitneyWhatDoYouWant, MSGBOX_DEFAULT
-# 69 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	closemessage
-# 70 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	message GoldenrodCity_Gym_Text_PlayerReceivedPlainBadge
-# 71 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	waitmessage
-# 72 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	call Common_EventScript_PlayGymBadgeFanfare
-# 73 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	msgbox GoldenrodCity_Gym_Text_WhitneyPlainBadge, MSGBOX_DEFAULT
-# 74 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	setflag FLAG_BADGE03_GET
-# 75 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	setflag FLAG_DEFEATED_GOLDENROD_CITY_GYM
-# 76 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	addvar VAR_NUM_BADGES, 1
-# 77 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	setvar VAR_0x8008, 3
-# 78 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	call Common_EventScript_SetGymTrainers
-# 79 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	giveitem ITEM_TM_ATTRACT
-# 80 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	msgbox GoldenrodCity_Gym_Text_WhitneyAttract, MSGBOX_DEFAULT
-# 81 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	setvar VAR_GOLDENROD_CITY_STATE, 5
-# 82 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	closemessage
-# 83 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	release
-# 84 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	end
-# 85 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
-# 86 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_EventScript_WhitneyDefeated::
-# 87 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	lock
-# 88 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 68 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	faceplayer
+# 69 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	msgbox GoldenrodCity_Gym_Text_WhitneyWhatDoYouWant, MSGBOX_DEFAULT
+# 70 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	closemessage
+# 71 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	message GoldenrodCity_Gym_Text_PlayerReceivedPlainBadge
+# 72 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	waitmessage
+# 73 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	call Common_EventScript_PlayGymBadgeFanfare
+# 74 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	msgbox GoldenrodCity_Gym_Text_WhitneyPlainBadge, MSGBOX_DEFAULT
+# 75 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	setflag FLAG_BADGE03_GET
+# 76 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	setflag FLAG_DEFEATED_GOLDENROD_CITY_GYM
+# 77 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	addvar VAR_NUM_BADGES, 1
+# 78 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	setvar VAR_0x8008, 3
+# 79 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	call Common_EventScript_SetGymTrainers
+# 80 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	giveitem ITEM_TM_ATTRACT
+# 81 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	msgbox GoldenrodCity_Gym_Text_WhitneyAttract, MSGBOX_DEFAULT
+# 82 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	setvar VAR_GOLDENROD_CITY_STATE, 5
+# 83 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	closemessage
+# 84 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	release
+# 85 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	end
+# 86 "data/maps/GoldenrodCity_Gym/scripts.pory"
+
+# 87 "data/maps/GoldenrodCity_Gym/scripts.pory"
+GoldenrodCity_Gym_EventScript_WhitneyDefeated::
+# 88 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	lock
 # 89 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	msgbox GoldenrodCity_Gym_Text_WhitneyGoodCry, MSGBOX_DEFAULT
+	faceplayer
 # 90 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	closemessage
+	msgbox GoldenrodCity_Gym_Text_WhitneyGoodCry, MSGBOX_DEFAULT
 # 91 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	release
-# 92 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	end
-# 93 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
-# 94 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_EventScript_Trigger::	
-# 95 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	turnobject LOCALID_GOLDENROD_CITY_GYM_BRIDGET DIR_WEST
-# 96 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	msgbox GoldenrodCity_Gym_Text_BridgetWhitneyCries, MSGBOX_DEFAULT
-# 97 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkUp1
-# 98 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	waitmovement 0
-# 99 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	setvar VAR_GOLDENROD_CITY_STATE, 4
-# 100 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	closemessage
-# 101 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 92 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	release
-# 102 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 93 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	end
-# 103 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 94 "data/maps/GoldenrodCity_Gym/scripts.pory"
 
+# 95 "data/maps/GoldenrodCity_Gym/scripts.pory"
+GoldenrodCity_Gym_EventScript_Trigger::	
+# 96 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	turnobject LOCALID_GOLDENROD_CITY_GYM_BRIDGET DIR_WEST
+# 97 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	msgbox GoldenrodCity_Gym_Text_BridgetWhitneyCries, MSGBOX_DEFAULT
+# 98 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkUp1
+# 99 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	waitmovement 0
+# 100 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	setvar VAR_GOLDENROD_CITY_STATE, 4
+# 101 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	closemessage
+# 102 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	release
+# 103 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	end
 # 104 "data/maps/GoldenrodCity_Gym/scripts.pory"
 
 # 105 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_EventScript_Statue::
+
 # 106 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	lock
+GoldenrodCity_Gym_EventScript_Statue::
 # 107 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	goto_if_set FLAG_DEFEATED_GOLDENROD_CITY_GYM, GoldenrodCity_Gym_EventScript_Statue2
+	lock
 # 108 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	msgbox GoldenrodCity_Gym_Text_GymStatue, MSGBOX_DEFAULT
+	goto_if_set FLAG_DEFEATED_GOLDENROD_CITY_GYM, GoldenrodCity_Gym_EventScript_Statue2
 # 109 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	closemessage
+	msgbox GoldenrodCity_Gym_Text_GymStatue, MSGBOX_DEFAULT
 # 110 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	release
-# 111 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	end
-# 112 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
-# 113 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_EventScript_Statue2::
-# 114 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	msgbox GoldenrodCity_Gym_Text_GymStatueCertified, MSGBOX_DEFAULT
-# 115 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	closemessage
-# 116 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 111 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	release
-# 117 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 112 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	end
+# 113 "data/maps/GoldenrodCity_Gym/scripts.pory"
+
+# 114 "data/maps/GoldenrodCity_Gym/scripts.pory"
+GoldenrodCity_Gym_EventScript_Statue2::
+# 115 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	msgbox GoldenrodCity_Gym_Text_GymStatueCertified, MSGBOX_DEFAULT
+# 116 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	closemessage
+# 117 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	release
 # 118 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
+	end
 # 119 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_GymStatue:
+
 # 120 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	.string "GOLDENROD POKéMON GYM$"
+GoldenrodCity_Gym_Text_GymStatue:
 # 121 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
+	.string "Goldenrod Pokémon Gym$"
 # 122 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_GymStatueCertified:
+
 # 123 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	.string "GOLDENROD TOWN POKéMON GYM\p"
+GoldenrodCity_Gym_Text_GymStatueCertified:
 # 124 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	.string "WHITNEY'S CERTIFIED TRAINERS:\n"
+	.string "Goldenrod Town Pokémon Gym\p"
 # 125 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	.string "{PLAYER}$"
+	.string "Whitney'S Certified Trainers:\n"
 # 126 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
+	.string "{PLAYER}$"
 # 127 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_WhitneyBefore:
+
 # 128 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "Hi! I'm WHITNEY!\p"
+GoldenrodCity_Gym_Text_WhitneyBefore:
 # 129 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "Everyone was into POKéMON, so I got\n"
+    .string "Hi! I'm Whitney!\p"
 # 130 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "into it too!\p"
+    .string "Everyone was into Pokémon, so I got\n"
 # 131 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "POKéMON are super-cute!\p"
+    .string "into it too!\p"
 # 132 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "You want to battle? I'm warning\n"
+    .string "Pokémon are super-cute!\p"
 # 133 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "you- I'm good!$"
+    .string "You want to battle? I'm warning\n"
 # 134 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
+    .string "you- I'm good!$"
 # 135 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_WhitneyShouldntBeSoSerious:
-# 136 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "Sob…\p"
-# 137 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "…Waaaaaaah! You're mean!\p"
-# 138 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "You shouldn't be so serious! You…\n"
-# 139 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "you child, you!$"
-# 140 "data/maps/GoldenrodCity_Gym/scripts.pory"
 
+# 136 "data/maps/GoldenrodCity_Gym/scripts.pory"
+GoldenrodCity_Gym_Text_WhitneyShouldntBeSoSerious:
+# 137 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "Sob…\p"
+# 138 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "…Waaaaaaah! You're mean!\p"
+# 139 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "You shouldn't be so serious! You…\n"
+# 140 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "you child, you!$"
 # 141 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_WhitneyYouMeanie:
+
 # 142 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "Waaaaah!\p"
+GoldenrodCity_Gym_Text_WhitneyYouMeanie:
 # 143 "data/maps/GoldenrodCity_Gym/scripts.pory"
     .string "Waaaaah!\p"
 # 144 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "…Snivel, hic… …You meanie!$"
-# 145 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
-# 146 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_WhitneyWhatDoYouWant:
-# 147 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "…Sniff…\p"
-# 148 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "What? What do you want? A BADGE?\p"
-# 149 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "Oh, right. I forgot. Here's\n"
-# 150 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "PLAINBADGE.$"
-# 151 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
-# 152 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_PlayerReceivedPlainBadge:
-# 153 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "{PLAYER} received PLAINBADGE.$"
-# 154 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
-# 155 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_WhitneyPlainBadge:
-# 156 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "PLAINBADGE lets your POKéMON use\n"
-# 157 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "STRENGTH outside of battle.\p"
-# 158 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "It also boosts your POKéMON's\n"
-# 159 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	.string "DEFENSE.\p"
-# 160 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "Oh, you can have this too!$"
-# 161 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
-# 162 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_WhitneyAttract:
-# 163 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "It's ATTRACT! It makes full use of a\n"
-# 164 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "POKéMON's charm.\p"
-# 165 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "Isn't it just perfect for a cutie\n"
-# 166 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "like me?$"
-# 167 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
-# 168 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_WhitneyGoodCry:
-# 169 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "Ah, that was a good cry!$"
-# 170 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
-# 171 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_WhitneyRematch:
-# 172 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "Hi! It's you!\p"
-# 173 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "Wow, JOHTO CHAMPION now?\p"
-# 174 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "You really are amazing!\p"
-# 175 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "I want to see how strong you are.\p"
-# 176 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "Want to have a rematch with me?$"
-# 177 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
-# 178 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_WhitneyRematchDefeat:
-# 179 "data/maps/GoldenrodCity_Gym/scripts.pory"
     .string "Waaaaah!\p"
+# 145 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "…Snivel, hic… …You meanie!$"
+# 146 "data/maps/GoldenrodCity_Gym/scripts.pory"
+
+# 147 "data/maps/GoldenrodCity_Gym/scripts.pory"
+GoldenrodCity_Gym_Text_WhitneyWhatDoYouWant:
+# 148 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "…Sniff…\p"
+# 149 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "What? What do you want? A Badge?\p"
+# 150 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "Oh, right. I forgot. Here's\n"
+# 151 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "Plainbadge.$"
+# 152 "data/maps/GoldenrodCity_Gym/scripts.pory"
+
+# 153 "data/maps/GoldenrodCity_Gym/scripts.pory"
+GoldenrodCity_Gym_Text_PlayerReceivedPlainBadge:
+# 154 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "{PLAYER} received Plainbadge.$"
+# 155 "data/maps/GoldenrodCity_Gym/scripts.pory"
+
+# 156 "data/maps/GoldenrodCity_Gym/scripts.pory"
+GoldenrodCity_Gym_Text_WhitneyPlainBadge:
+# 157 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "Plainbadge lets your Pokémon use\n"
+# 158 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "Strength outside of battle.\p"
+# 159 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "It also boosts your Pokémon's\n"
+# 160 "data/maps/GoldenrodCity_Gym/scripts.pory"
+	.string "Defense.\p"
+# 161 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "Oh, you can have this too!$"
+# 162 "data/maps/GoldenrodCity_Gym/scripts.pory"
+
+# 163 "data/maps/GoldenrodCity_Gym/scripts.pory"
+GoldenrodCity_Gym_Text_WhitneyAttract:
+# 164 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "It's Attract! It makes full use of a\n"
+# 165 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "Pokémon's charm.\p"
+# 166 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "Isn't it just perfect for a cutie\n"
+# 167 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "like me?$"
+# 168 "data/maps/GoldenrodCity_Gym/scripts.pory"
+
+# 169 "data/maps/GoldenrodCity_Gym/scripts.pory"
+GoldenrodCity_Gym_Text_WhitneyGoodCry:
+# 170 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "Ah, that was a good cry!$"
+# 171 "data/maps/GoldenrodCity_Gym/scripts.pory"
+
+# 172 "data/maps/GoldenrodCity_Gym/scripts.pory"
+GoldenrodCity_Gym_Text_WhitneyRematch:
+# 173 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "Hi! It's you!\p"
+# 174 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "Wow, Johto Champion now?\p"
+# 175 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "You really are amazing!\p"
+# 176 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "I want to see how strong you are.\p"
+# 177 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "Want to have a rematch with me?$"
+# 178 "data/maps/GoldenrodCity_Gym/scripts.pory"
+
+# 179 "data/maps/GoldenrodCity_Gym/scripts.pory"
+GoldenrodCity_Gym_Text_WhitneyRematchDefeat:
 # 180 "data/maps/GoldenrodCity_Gym/scripts.pory"
     .string "Waaaaah!\p"
 # 181 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "…Snivel, hic… …You meanie!$"
+    .string "Waaaaah!\p"
 # 182 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
+    .string "…Snivel, hic… …You meanie!$"
 # 183 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_LassCarrieSeen:
+
 # 184 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "Don't let my POKéMON's cute looks\n"
+GoldenrodCity_Gym_Text_LassCarrieSeen:
 # 185 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "fool you.\p"
+    .string "Don't let my Pokémon's cute looks\n"
 # 186 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "They can whip you!$"
+    .string "fool you.\p"
 # 187 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
+    .string "They can whip you!$"
 # 188 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_LassCarrieBeaten:
+
 # 189 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "Darn… I thought you were weak…$"
+GoldenrodCity_Gym_Text_LassCarrieBeaten:
 # 190 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
+    .string "Darn… I thought you were weak…$"
 # 191 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_LassCarrieAfter:
+
 # 192 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "Do my POKéMON think I'm cute?$"
+GoldenrodCity_Gym_Text_LassCarrieAfter:
 # 193 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
+    .string "Do my Pokémon think I'm cute?$"
 # 194 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_LassBridgetSeen:
+
 # 195 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "I like cute POKéMON better than\n"
+GoldenrodCity_Gym_Text_LassBridgetSeen:
 # 196 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "strong POKéMON.\p"
+    .string "I like cute Pokémon better than\n"
 # 197 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "But I have strong and cute POKéMON!$"
+    .string "strong Pokémon.\p"
 # 198 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
+    .string "But I have strong and cute Pokémon!$"
 # 199 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_LassBridgetBeaten:
+
 # 200 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "Oh, no, no, no!$"
+GoldenrodCity_Gym_Text_LassBridgetBeaten:
 # 201 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
+    .string "Oh, no, no, no!$"
 # 202 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_LassBridgetAfter:
+
 # 203 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "I'm trying to beat WHITNEY, but…\n"
+GoldenrodCity_Gym_Text_LassBridgetAfter:
 # 204 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "It's depressing.\p"
+    .string "I'm trying to beat Whitney, but…\n"
 # 205 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "I'm okay! If I lose, I'll just try\n"
+    .string "It's depressing.\p"
 # 206 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "harder next time!$"
+    .string "I'm okay! If I lose, I'll just try\n"
 # 207 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
+    .string "harder next time!$"
 # 208 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_BridgetWhitneyCries:
+
 # 209 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "Oh, no. You made WHITNEY cry.\p"
+GoldenrodCity_Gym_Text_BridgetWhitneyCries:
 # 210 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "It's OK. She'll stop soon. She\n"
+    .string "Oh, no. You made Whitney cry.\p"
 # 211 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "always cries when she loses.$"
+    .string "It's Ok. She'll stop soon. She\n"
 # 212 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
+    .string "always cries when she loses.$"
 # 213 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_BeautyVictoriaSeen:
+
 # 214 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "Oh, you are a cute little trainer!\p"
+GoldenrodCity_Gym_Text_BeautyVictoriaSeen:
 # 215 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "I like you, but I won't hold back!$"
+    .string "Oh, you are a cute little trainer!\p"
 # 216 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
+    .string "I like you, but I won't hold back!$"
 # 217 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_BeautyVictoriaBeaten:
+
 # 218 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "Let's see… Oops, it's over?$"
+GoldenrodCity_Gym_Text_BeautyVictoriaBeaten:
 # 219 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
+    .string "Let's see… Oops, it's over?$"
 # 220 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_BeautyVictoriaAfter:
+
 # 221 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "Wow, you must be good to beat me!\n"
+GoldenrodCity_Gym_Text_BeautyVictoriaAfter:
 # 222 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "Keep it up!$"
+    .string "Wow, you must be good to beat me!\n"
 # 223 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
+    .string "Keep it up!$"
 # 224 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_BeautySamanthaSeen:
+
 # 225 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "Give it your best shot, or I'll take\n"
+GoldenrodCity_Gym_Text_BeautySamanthaSeen:
 # 226 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "you down!$"
+    .string "Give it your best shot, or I'll take\n"
 # 227 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
+    .string "you down!$"
 # 228 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_BeautySamanthaBeaten:
+
 # 229 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "No! Oh, MEOWTH, I'm so sorry!$"
+GoldenrodCity_Gym_Text_BeautySamanthaBeaten:
 # 230 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
+    .string "No! Oh, Meowth, I'm so sorry!$"
 # 231 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_BeautySamanthaAfter:
+
 # 232 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "I taught MEOWTH moves for taking on\n"
+GoldenrodCity_Gym_Text_BeautySamanthaAfter:
 # 233 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "any type…$"
+    .string "I taught Meowth moves for taking on\n"
 # 234 "data/maps/GoldenrodCity_Gym/scripts.pory"
-
+    .string "any type…$"
 # 235 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_GymGuide:
-# 236 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "Yo! CHAMP in making!\p"
-# 237 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "This GYM is home to WHITNEY, the\n"
-# 238 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "master of NORMAL-type POKéMON.\p"
-# 239 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "Be cautious of her cute team.\p"
-# 240 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "Check ROUTE 34 if you need a\n"
-# 241 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "FIGHTING-type POKéMON.$"
-# 242 "data/maps/GoldenrodCity_Gym/scripts.pory"
 
+# 236 "data/maps/GoldenrodCity_Gym/scripts.pory"
+GoldenrodCity_Gym_Text_GymGuide:
+# 237 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "Yo! Champ in making!\p"
+# 238 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "This Gym is home to Whitney, the\n"
+# 239 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "master of Normal-type Pokémon.\p"
+# 240 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "Be cautious of her cute team.\p"
+# 241 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "Check Route 34 if you need a\n"
+# 242 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "Fighting-type Pokémon.$"
 # 243 "data/maps/GoldenrodCity_Gym/scripts.pory"
-GoldenrodCity_Gym_Text_GymGuideWin:
+
 # 244 "data/maps/GoldenrodCity_Gym/scripts.pory"
-    .string "You won? Great! I was busy admiring\n"
+GoldenrodCity_Gym_Text_GymGuideWin:
 # 245 "data/maps/GoldenrodCity_Gym/scripts.pory"
+    .string "You won? Great! I was busy admiring\n"
+# 246 "data/maps/GoldenrodCity_Gym/scripts.pory"
     .string "the ladies here.$"
 
-WhitneyChooseDifficulty::
-# 250 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	msgbox WhitneyChooseDifficulty_Text_0
-# 256 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	dynmultichoice 0, 0, FALSE, 5, 0, DYN_MULTICHOICE_CB_NONE, WhitneyChooseDifficulty_Text_1, WhitneyChooseDifficulty_Text_2, WhitneyChooseDifficulty_Text_3
-# 257 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	switch VAR_RESULT
-# 258 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	case 0, WhitneyChooseDifficulty_3
-# 263 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	case 1, WhitneyChooseDifficulty_4
-# 268 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	release
-	end
-
-	return
-
-WhitneyChooseDifficulty_3:
-# 259 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	setdifficulty DIFFICULTY_NORMAL
-# 260 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	clearflag FLAG_NEVER_TURNED_OFF_HARD
-# 261 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	trainerbattle_no_intro TRAINER_WHITNEY_1, GoldenrodCity_Gym_Text_WhitneyShouldntBeSoSerious
-	return
-
-WhitneyChooseDifficulty_4:
-# 264 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	setdifficulty DIFFICULTY_HARD
-# 265 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	trainerbattle_no_intro TRAINER_WHITNEY_1, GoldenrodCity_Gym_Text_WhitneyShouldntBeSoSerious
-	return
-
-
 WhitneyMiltank::
-# 275 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 251 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	lock
-# 276 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 252 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	faceplayer
-# 277 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 253 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	playmoncry SPECIES_MILTANK, CRY_MODE_NORMAL
-# 278 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 254 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	msgbox WhitneyMiltank_Text_0
-# 279 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 255 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	waitmoncry
-# 280 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 256 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	release
 	end
 
-
-WhitneyChooseDifficulty_Text_0:
-# 250 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	.string "Hi I'm Whitney!\n"
-	.string "Everyone was into Pokémon so I got\l"
-	.string "into it too!\l"
-	.string "Pokémon are super cute!\l"
-	.string "You want to battle? Do you want to do\l"
-	.string "against my normal team or bestie team?$"
-
-WhitneyChooseDifficulty_Text_1:
-# 256 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	.string "Regular$"
-
-WhitneyChooseDifficulty_Text_2:
-# 256 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	.string "Hard$"
-
-WhitneyChooseDifficulty_Text_3:
-# 256 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	.string "Cancel$"
 
 WhitneyMiltank_Text_0:
-# 278 "data/maps/GoldenrodCity_Gym/scripts.pory"
+# 254 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	.string "Mooo!$"

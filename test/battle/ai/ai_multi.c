@@ -2,7 +2,7 @@
 #include "test/battle.h"
 #include "battle_ai_util.h"
 
-AI_MULTI_BATTLE_TEST("AI will only explode and kill everything on the field with Risky or Will Suicide (multi)")
+AI_MULTI_BATTLE_TEST("AI will only explode and kill everything on the field with Risky or Will Suicide (Items)")
 {
     ASSUME(GetMoveTarget(MOVE_EXPLOSION) == TARGET_FOES_AND_ALLY);
     ASSUME(IsExplosionMove(MOVE_EXPLOSION));
@@ -65,7 +65,7 @@ AI_ONE_VS_TWO_BATTLE_TEST("AI will only explode and kill everything on the field
 }
 
 // Used to test EXPECT_MOVE only on partner
-AI_MULTI_BATTLE_TEST("AI partner makes sensible move selections in battle (multi)")
+AI_MULTI_BATTLE_TEST("AI partner makes sensible move selections in battle (Items)")
 {
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
@@ -253,3 +253,46 @@ AI_MULTI_BATTLE_TEST("Pollen Puff: AI correctly scores moves with EFFECT_HIT_ENE
         }
     }
 }
+
+#if MAX_MON_TRAITS > 1
+AI_MULTI_BATTLE_TEST("AI opponents do not steal their partner pokemon in multi battle when forced out 2 (Traits)")
+{
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        BATTLER_AI_FLAGS(opponentLeft, AI_FLAG_ACE_POKEMON);
+        MULTI_PLAYER(SPECIES_WOBBUFFET) { }
+        MULTI_PARTNER(SPECIES_WOBBUFFET) { }
+        MULTI_OPPONENT_A(SPECIES_GOLISOPOD) { Moves(MOVE_CELEBRATE); HP(101); MaxHP(200); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_EMERGENCY_EXIT);}
+        MULTI_OPPONENT_A(SPECIES_VENUSAUR) { Moves(MOVE_GIGA_DRAIN); }
+        MULTI_OPPONENT_B(SPECIES_WYNAUT) { Moves(MOVE_CELEBRATE); }
+    } WHEN {
+        TURN {MOVE(playerLeft, MOVE_TACKLE, target: opponentLeft); }
+    } THEN {
+        EXPECT_EQ(SPECIES_VENUSAUR, opponentLeft->species);
+    }
+}
+#endif
+
+#if MAX_MON_ITEMS > 1
+AI_MULTI_BATTLE_TEST("AI opponents do not steal their partner pokemon in multi battle when forced out (Items)")
+{
+    enum Item item;
+    enum Move move;
+    PARAMETRIZE {item = ITEM_EJECT_BUTTON; move = MOVE_TACKLE;}
+    PARAMETRIZE {item = ITEM_EJECT_PACK; move = MOVE_TAIL_WHIP;}
+    PARAMETRIZE {item = ITEM_NONE; move = MOVE_ROAR;}
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        BATTLER_AI_FLAGS(opponentLeft, AI_FLAG_ACE_POKEMON);
+        MULTI_PLAYER(SPECIES_WOBBUFFET) { }
+        MULTI_PARTNER(SPECIES_WOBBUFFET) { }
+        MULTI_OPPONENT_A(SPECIES_WOBBUFFET) { Moves(MOVE_CELEBRATE); Items(ITEM_PECHA_BERRY, item);}
+        MULTI_OPPONENT_A(SPECIES_VENUSAUR) { Moves(MOVE_GIGA_DRAIN); }
+        MULTI_OPPONENT_B(SPECIES_WYNAUT) { Moves(MOVE_CELEBRATE); }
+    } WHEN {
+        TURN {MOVE(playerLeft, move, target: opponentLeft); }
+    } THEN {
+        EXPECT_EQ(SPECIES_VENUSAUR, opponentLeft->species);
+    }
+}
+#endif

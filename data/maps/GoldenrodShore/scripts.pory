@@ -56,3 +56,8 @@ script GoldenrodShore_HiddenGrotto {
     end
 }
 
+script MareaniesGoldenrodShore {
+    msgbox("Mareanies seem to be blocking the way. 
+            Perhaps there is another way to Olivine?", MSGBOX_NPC)
+}
+

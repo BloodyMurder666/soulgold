@@ -135,7 +135,7 @@ Route42_Movement_Eusine2:
 	step_end
 
 Route42_Text_EusineAdmireSuicune:
-	.string "EUSINE: SUICUNE...\n"
+	.string "Eusine: Suicune...\n"
 	.string "How brave it is!\p"
 	.string "How refreshing it is!\n"
 	.string "How beautiful it is!\p"
@@ -144,17 +144,17 @@ Route42_Text_EusineAdmireSuicune:
 Route42_Text_EusineJealous:
 	.string "{PLAYER}!\p"
 	.string "You seem to be around where\n"
-	.string "SUICUNE would appear.\p"
-	.string "Well, that's OK.\l"
+	.string "Suicune would appear.\p"
+	.string "Well, that's Ok.\l"
 	.string "My desire to search for\n"
-	.string "SUICUNE is far beyond yours...\p"
+	.string "Suicune is far beyond yours...\p"
 	.string "My grandpa was... quite into\n"
 	.string "myths.\p"
 	.string "I've heard so many stories\n"
-	.string "about SUICUNE from him.$"
+	.string "about Suicune from him.$"
 
 Route42_Text_EusineWontGiveUp:
-	.string "SUICUNE...\n"
+	.string "Suicune...\n"
 	.string "I won't stop following you\l"
 	.string "until I've found out what\l"
 	.string "you're after...\p"
@@ -209,7 +209,7 @@ Route42_Text_SawyerPostBattle:
 
 Route42_Text_FisherTullySeen:
 	.string "Let me demonstrate the power\n"
-	.string "of the POKéMON I caught!$"
+	.string "of the Pokémon I caught!$"
 
 Route42_Text_FisherTullyBeaten:
 	.string "What? That's not right.\n"
@@ -217,7 +217,7 @@ Route42_Text_FisherTullyBeaten:
 
 Route42_Text_FisherTullyAfter:
 	.string "I want to become the trainer\n"
-	.string "CHAMP using the POKéMON I\l"
+	.string "Champ using the Pokémon I\l"
 	.string "caught myself.\p"
 	.string "That's the best part of fishing!$"
 
@@ -234,25 +234,25 @@ Route42_Text_HikerBenjaminAfter:
 	.string "if you look up at the big sky!$"
 
 Route42_Text_PokemaniacShaneSeen:
-	.string "HEY!\p"
+	.string "Hey!\p"
 	.string "This is my secret place!\n"
 	.string "Get lost, you outsider!$"
 
 Route42_Text_PokemaniacShaneBeaten:
 	.string "I should have used my\n"
-	.string "MOON STONE…$"
+	.string "Moon Stone…$"
 
 Route42_Text_PokemaniacShaneAfter:
 	.string "You're working on a POKéDEX?\p"
 	.string "Wow, you must know some\n"
-	.string "pretty rare POKéMON!\p"
+	.string "pretty rare Pokémon!\p"
 	.string "May I please see it?\n"
 	.string "Please?$"
 
 Route42_Text_Sign1:
-	.string "ROUTE 42\p"
-	.string "ECRUTEAK CITY - MAHOGANY TOWN$"
+	.string "Route 42\p"
+	.string "Ecruteak City - Mahogany Town$"
 
 Route42_Text_MtMortarSign1:
-	.string "MT.MORTAR\p"
-	.string "WATERFALL CAVE INSIDE$"
+	.string "Mt.Mortar\p"
+	.string "Waterfall Cave Inside$"
