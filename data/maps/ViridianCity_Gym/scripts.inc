@@ -23,7 +23,7 @@ ViridianCity_Gym_EventScript_Blue::
 	addvar VAR_NUM_BADGES, 1
 	setvar VAR_0x8008, 16
 	call Common_EventScript_SetGymTrainers
-	giveitem ITEM_TM_BULK_UP
+	giveitem ITEM_POTION @ NOT POTION
 	msgbox ViridianCity_Gym_Text_BulkUpSpeech, MSGBOX_DEFAULT
 	closemessage
 	setflag FLAG_HIDE_LEAGUE_BLACKBELT

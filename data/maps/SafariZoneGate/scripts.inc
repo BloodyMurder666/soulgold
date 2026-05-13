@@ -277,7 +277,7 @@ SafariZoneGate_EventScript_IncenseClerkFinite::
 # 139 "data/maps/SafariZoneGate/scripts.pory"
 SafariZoneGate_Pokemart_Incenses2:
 # 140 "data/maps/SafariZoneGate/scripts.pory"
-	.2byte ITEM_TM_HIDDEN_POWER
+	.2byte ITEM_TM_VENOSHOCK
 # 141 "data/maps/SafariZoneGate/scripts.pory"
 	.2byte ITEM_TM_GIGA_IMPACT
 # 142 "data/maps/SafariZoneGate/scripts.pory"

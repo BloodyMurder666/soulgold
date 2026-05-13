@@ -85,7 +85,7 @@ VioletCity_Gym_EventScript_Falkner::
 # 43 "data/maps/VioletCity_Gym/scripts.pory"
 	call Common_EventScript_SetGymTrainers
 # 44 "data/maps/VioletCity_Gym/scripts.pory"
-	giveitem ITEM_TM_DOUBLE_TEAM
+	giveitem ITEM_TM_ROOST
 # 45 "data/maps/VioletCity_Gym/scripts.pory"
 	msgbox VioletGym_Text_Falkner_TMExplain, MSGBOX_DEFAULT
 # 46 "data/maps/VioletCity_Gym/scripts.pory"

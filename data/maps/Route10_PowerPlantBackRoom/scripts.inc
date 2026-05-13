@@ -37,7 +37,6 @@ Route10_PowerPlantBackRoom_EventScript_ManagerCheckPart::
 	removeitem ITEM_MACHINE_PART
 	msgbox Route10_PowerPlantBackRoom_Text_ManagerThatsThePart, MSGBOX_DEFAULT
 	msgbox Route10_PowerPlantBackRoom_Text_ManagerTakeThisTM, MSGBOX_DEFAULT
-	giveitem ITEM_TM_THUNDER
 	msgbox Route10_PowerPlantBackRoom_Text_ManagerTM07IsZapCannon, MSGBOX_DEFAULT
 	closemessage
 	setvar VAR_KANTO_ROCKET_STORY_STATE, 7
