@@ -160,6 +160,8 @@ def parse_enum_constants(path: Path, prefix: str) -> tuple[dict[str, int], dict[
     pattern = re.compile(rf"\b({prefix}[A-Z0-9_]+)\b(?:\s*=\s*([^,/\n]+))?")
     for raw in read(path).splitlines():
         line = raw.split("//", 1)[0].strip()
+        if not line or line.startswith("#"):
+            continue
         match = pattern.search(line)
         if not match:
             continue
@@ -387,7 +389,7 @@ def parse_named_table(
 
 
 def parse_species() -> tuple[list[SpeciesRow], dict[str, SpeciesRow]]:
-    _, id_to_species = parse_define_constants(SPECIES_H, "SPECIES_")
+    species_to_id, id_to_species = parse_define_constants(SPECIES_H, "SPECIES_")
     nat_to_id, _ = parse_enum_constants(POKEDEX_H, "NATIONAL_DEX_")
     text = preprocess("data/pokemon/species_info.h")
     entries = split_designated_entries(text)
@@ -404,7 +406,11 @@ def parse_species() -> tuple[list[SpeciesRow], dict[str, SpeciesRow]]:
         name = collect_strings(extract_field(entry, "speciesName") or "") or clean_constant_name(constant, "SPECIES_")
         nat_expr = extract_field(entry, "natDexNum") or "NATIONAL_DEX_NONE"
         nat_const = re.search(r"\bNATIONAL_DEX_[A-Z0-9_]+\b", nat_expr)
-        nat_dex = nat_to_id.get(nat_const.group(0), 0) if nat_const else extract_number(entry, "natDexNum")
+        if nat_const:
+            species_nat_const = nat_const.group(0).replace("NATIONAL_DEX_", "SPECIES_")
+            nat_dex = species_to_id.get(species_nat_const, nat_to_id.get(nat_const.group(0), 0))
+        else:
+            nat_dex = extract_number(entry, "natDexNum")
         stats = {short: extract_number(entry, field_name) for field_name, short in STAT_FIELDS.items()}
         types = extract_braced_constants(entry, "types", "TYPE_") or ["TYPE_NORMAL"]
         if len(types) == 1:

@@ -22,6 +22,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_GRASS),
         .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_PROTEAN },
+        .innates = { ABILITY_COMPOUND_EYES},
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Sprigatito"),
         .cryId = CRY_SPRIGATITO,

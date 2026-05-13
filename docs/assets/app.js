@@ -3,7 +3,6 @@ const state = {
   activeTab: "pokedex",
   query: "",
   filteredSpecies: [],
-  rowHeight: 112,
 };
 
 const typeName = (value) => value.replace("TYPE_", "").replaceAll("_", " ");
@@ -39,7 +38,7 @@ function sprite(src, className = "sprite") {
 }
 
 async function init() {
-  const response = await fetch("data/romhack-docs.json?v=20260513-9");
+  const response = await fetch("data/romhack-docs.json?v=20260513-12");
   state.data = await response.json();
   state.filteredSpecies = state.data.species;
   bindEvents();
@@ -52,10 +51,9 @@ function bindEvents() {
   });
   document.getElementById("globalSearch").addEventListener("input", (event) => {
     state.query = event.target.value.trim().toLowerCase();
-    document.getElementById("dexScroller").scrollTop = 0;
+    window.scrollTo(0, 0);
     renderActive();
   });
-  document.getElementById("dexScroller").addEventListener("scroll", renderDexRows);
   const dialog = document.getElementById("detailDialog");
   document.getElementById("closeDialog").addEventListener("click", () => closeDetailDialog());
   dialog.addEventListener("click", (event) => {
@@ -75,7 +73,7 @@ function setTab(tab) {
   state.activeTab = tab;
   state.query = "";
   document.getElementById("globalSearch").value = "";
-  document.getElementById("dexScroller").scrollTop = 0;
+  window.scrollTo(0, 0);
   document.querySelectorAll(".tab").forEach((button) => button.classList.toggle("active", button.dataset.tab === tab));
   document.querySelectorAll(".panel").forEach((panel) => panel.classList.toggle("active", panel.id === tab));
   renderActive();
@@ -101,19 +99,13 @@ function renderActive() {
 
 function renderDex() {
   state.filteredSpecies = state.data.species.filter((mon) => matches(`${mon.dex} ${mon.name} ${mon.types.join(" ")} ${mon.abilities.join(" ")} ${mon.innates.join(" ")}`));
-  document.getElementById("dexSpacer").style.height = `${state.filteredSpecies.length * state.rowHeight}px`;
   renderDexRows();
 }
 
 function renderDexRows() {
-  const scroller = document.getElementById("dexScroller");
   const container = document.getElementById("dexRows");
-  const start = Math.max(0, Math.floor(scroller.scrollTop / state.rowHeight) - 4);
-  const count = Math.ceil(scroller.clientHeight / state.rowHeight) + 8;
-  const visible = state.filteredSpecies.slice(start, start + count);
-  container.style.transform = `translateY(${start * state.rowHeight}px)`;
   container.innerHTML = "";
-  visible.forEach((mon) => {
+  state.filteredSpecies.forEach((mon) => {
     const row = el("div", "dex-row dex-entry");
     row.innerHTML = `
       <span>${mon.dex || mon.id}</span>
