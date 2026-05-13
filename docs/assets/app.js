@@ -330,12 +330,13 @@ function renderEncounters() {
 
 function encounterMon(mon) {
   return `
-              <div class="encounter-mon">
-                ${sprite(mon.sprite, "mini-sprite")}
-                <strong>${mon.name}</strong>
-                <span>${mon.rate ?? "-"}% Lv ${mon.minLevel ?? "?"}-${mon.maxLevel ?? "?"}</span>
-              </div>
-            `;
+    <div class="encounter-mon">
+      ${sprite(mon.sprite, "mini-sprite")}
+      <strong>${mon.name}</strong>
+      <span>Lv ${mon.minLevel ?? "?"}-${mon.maxLevel ?? "?"}</span>
+      <span>${mon.rate ?? "-"}%</span>
+    </div>
+  `;
 }
 
 function fishingMons(mons) {
