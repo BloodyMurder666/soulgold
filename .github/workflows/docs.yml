@@ -18,7 +18,7 @@ jobs:
       - name: Install docs dependencies
         run: python3 -m pip install pillow
       - name: Build romhack docs
-        run: python3 tools/romhack_docs/build_docs.py
+        run: python3 tools/soulgold_docs/build_docs.py
       - name: Check if Pages is enabled
         uses: octokit/request-action@v2.x
         id: check_pages

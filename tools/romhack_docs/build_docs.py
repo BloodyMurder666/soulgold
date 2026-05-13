@@ -15,8 +15,8 @@ from PIL import Image
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-SRC_DIR = REPO_ROOT / "docs_site" / "src"
-OUT_DIR = REPO_ROOT / "docs_site" / "dist"
+SRC_DIR = REPO_ROOT / "docs" / "src"
+OUT_DIR = REPO_ROOT / "docs"
 TYPE_GRAPHICS_DIR = REPO_ROOT / "graphics/types"
 
 SPECIES_H = REPO_ROOT / "include/constants/species.h"
@@ -173,7 +173,7 @@ def parse_enum_constants(path: Path, prefix: str) -> tuple[dict[str, int], dict[
 
 
 def preprocess(include_path: str) -> str:
-    temp = Path("/tmp/romhack_docs_preprocess.c")
+    temp = Path("/tmp/soulgold_docs_preprocess.c")
     temp.write_text(f'#include "global.h"\n#include "{include_path}"\n', encoding="utf-8")
     result = subprocess.run(
         ["gcc", "-E", "-P", str(temp), "-I.", "-Iinclude", "-Isrc"],
@@ -666,7 +666,7 @@ def build() -> None:
         })
 
     payload = {
-        "meta": {"generatedFrom": "tools/romhack_docs/build_docs.py"},
+        "meta": {"generatedFrom": "tools/soulgold_docs/build_docs.py"},
         "species": [
             {
                 "id": row.id,
