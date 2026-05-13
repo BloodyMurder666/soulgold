@@ -3224,7 +3224,7 @@
               {
                 "min_level": 10,
                 "max_level": 14,
-                "species": "SPECIES_PARAS"
+                "species": "SPECIES_METAPOD"
               },
               {
                 "min_level": 10,
@@ -3239,7 +3239,7 @@
               {
                 "min_level": 11,
                 "max_level": 15,
-                "species": "SPECIES_PARAS"
+                "species": "SPECIES_KAKUNA"
               },
               {
                 "min_level": 11,
@@ -3279,171 +3279,17 @@
               {
                 "min_level": 10,
                 "max_level": 19,
-                "species": "SPECIES_PSYDUCK"
+                "species": "SPECIES_WIMPOD"
               },
               {
                 "min_level": 10,
                 "max_level": 19,
-                "species": "SPECIES_PSYDUCK"
+                "species": "SPECIES_WIMPOD"
               },
               {
-                "min_level": 15,
-                "max_level": 19,
-                "species": "SPECIES_GOLDUCK"
-              },
-              {
-                "min_level": 10,
-                "max_level": 19,
-                "species": "SPECIES_MARILL"
-              },
-              {
-                "min_level": 10,
+                "min_level": 30,
                 "max_level": 30,
-                "species": "SPECIES_AZUMARILL"
-              }
-            ]
-          },
-          "fishing_mons": {
-            "encounter_rate": 30,
-            "mons": [
-              {
-                "min_level": 10,
-                "max_level": 10,
-                "species": "SPECIES_MAGIKARP"
-              },
-              {
-                "min_level": 10,
-                "max_level": 10,
-                "species": "SPECIES_POLIWAG"
-              },
-              {
-                "min_level": 20,
-                "max_level": 20,
-                "species": "SPECIES_POLIWAG"
-              },
-              {
-                "min_level": 20,
-                "max_level": 20,
-                "species": "SPECIES_MAGIKARP"
-              },
-              {
-                "min_level": 40,
-                "max_level": 40,
-                "species": "SPECIES_POLIWAG"
-              },
-              {
-                "min_level": 40,
-                "max_level": 40,
-                "species": "SPECIES_MAGIKARP"
-              },
-              {
-                "min_level": 40,
-                "max_level": 40,
-                "species": "SPECIES_POLIWHIRL"
-              },
-              {
-                "min_level": 20,
-                "max_level": 20,
-                "species": "SPECIES_POLIWAG"
-              },
-              {
-                "min_level": 10,
-                "max_level": 10,
-                "species": "SPECIES_MAGIKARP"
-              },
-              {
-                "min_level": 40,
-                "max_level": 40,
-                "species": "SPECIES_POLIWAG"
-              }
-            ]
-          }
-        },
-        {
-          "map": "MAP_ILEX_FOREST",
-          "base_label": "gIlexForest_Night",
-          "land_mons": {
-            "encounter_rate": 5,
-            "mons": [
-              {
-                "min_level": 10,
-                "max_level": 14,
-                "species": "SPECIES_KARRABLAST"
-              },
-              {
-                "min_level": 10,
-                "max_level": 14,
-                "species": "SPECIES_JOLTIK"
-              },
-              {
-                "min_level": 10,
-                "max_level": 14,
-                "species": "SPECIES_VENONAT"
-              },
-              {
-                "min_level": 10,
-                "max_level": 15,
-                "species": "SPECIES_KARRABLAST"
-              },
-              {
-                "min_level": 11,
-                "max_level": 15,
-                "species": "SPECIES_JOLTIK"
-              },
-              {
-                "min_level": 11,
-                "max_level": 15,
-                "species": "SPECIES_PARAS"
-              },
-              {
-                "min_level": 11,
-                "max_level": 15,
-                "species": "SPECIES_VENONAT"
-              },
-              {
-                "min_level": 11,
-                "max_level": 15,
-                "species": "SPECIES_VENIPEDE"
-              },
-              {
-                "min_level": 12,
-                "max_level": 15,
-                "species": "SPECIES_GRUBBIN"
-              },
-              {
-                "min_level": 12,
-                "max_level": 16,
-                "species": "SPECIES_VENIPEDE"
-              },
-              {
-                "min_level": 12,
-                "max_level": 16,
-                "species": "SPECIES_GRUBBIN"
-              },
-              {
-                "min_level": 12,
-                "max_level": 16,
-                "species": "SPECIES_CHARJABUG"
-              }
-            ]
-          },
-          "water_mons": {
-            "encounter_rate": 7,
-            "mons": [
-              {
-                "min_level": 10,
-                "max_level": 19,
-                "species": "SPECIES_PSYDUCK"
-              },
-              {
-                "min_level": 10,
-                "max_level": 19,
-                "species": "SPECIES_PSYDUCK"
-              },
-              {
-                "min_level": 15,
-                "max_level": 19,
-                "species": "SPECIES_GOLDUCK"
+                "species": "SPECIES_GOLISOPOD"
               },
               {
                 "min_level": 10,
