@@ -274,6 +274,14 @@ th {
   border-bottom: 1px solid #3b3c45;
 }
 
+.encounter-head {
+  font-weight: 800;
+  color: var(--muted);
+  font-size: 14px;
+  border-bottom: 2px solid var(--line);
+  padding-bottom: 6px;
+}
+
 .ability-list {
   display: grid;
   gap: 0;

@@ -320,6 +320,12 @@ function renderEncounters() {
         ${encounter.methods.map((method) => `
           <section>
             <h3 class="section-title">${method.method}</h3>
+            <div class="encounter-mon encounter-head">
+              <span></span>
+              <span>Species</span>
+              <span>Level</span>
+              <span>Odds</span>
+            </div>
             ${method.method === "Fishing Mons" ? fishingMons(method.mons) : method.mons.map((mon) => encounterMon(mon)).join("")}
           </section>
         `).join("")}
