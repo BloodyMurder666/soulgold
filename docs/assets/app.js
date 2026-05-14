@@ -38,7 +38,7 @@ function sprite(src, className = "sprite") {
 }
 
 async function init() {
-  const response = await fetch("data/romhack-docs.json?v=20260513-21");
+  const response = await fetch("data/romhack-docs.json?v=20260513-30");
   state.data = await response.json();
   state.filteredSpecies = state.data.species;
   bindEvents();
@@ -107,7 +107,7 @@ function renderActive() {
 }
 
 function renderDex() {
-  state.filteredSpecies = state.data.species.filter((mon) => matches(`${mon.dex} ${mon.name} ${speciesFormLabel(mon)} ${mon.constant} ${mon.types.join(" ")} ${mon.abilities.join(" ")} ${mon.innates.join(" ")}`));
+  state.filteredSpecies = state.data.species.filter((mon) => matches(`${mon.dex} ${mon.name} ${speciesFormLabel(mon)} ${mon.types.map(typeName).join(" ")}`));
   renderDexRows();
 }
 
@@ -121,9 +121,13 @@ function renderDexRows() {
       <span>${sprite(mon.sprite)}</span>
       <strong>${speciesFormLabel(mon)}</strong>
       <span>${typePills(mon.types)}</span>
-      <span>${mon.stats.hp}</span><span>${mon.stats.atk}</span><span>${mon.stats.def}</span>
-      <span>${mon.stats.spa}</span><span>${mon.stats.spd}</span><span>${mon.stats.spe}</span>
-      <strong>${mon.bst}</strong>
+      <span class="dex-stat" data-label="HP" style="--stat-pct:${Math.min(100, mon.stats.hp / 2)}%">${mon.stats.hp}</span>
+      <span class="dex-stat" data-label="Atk" style="--stat-pct:${Math.min(100, mon.stats.atk / 2)}%">${mon.stats.atk}</span>
+      <span class="dex-stat" data-label="Def" style="--stat-pct:${Math.min(100, mon.stats.def / 2)}%">${mon.stats.def}</span>
+      <span class="dex-stat" data-label="SpA" style="--stat-pct:${Math.min(100, mon.stats.spa / 2)}%">${mon.stats.spa}</span>
+      <span class="dex-stat" data-label="SpD" style="--stat-pct:${Math.min(100, mon.stats.spd / 2)}%">${mon.stats.spd}</span>
+      <span class="dex-stat" data-label="Spe" style="--stat-pct:${Math.min(100, mon.stats.spe / 2)}%">${mon.stats.spe}</span>
+      <strong class="dex-stat dex-stat-bst" data-label="BST" style="--stat-pct:${Math.min(100, mon.bst / 7.2)}%">${mon.bst}</strong>
       <span>${abilityPills(mon.abilities, "base")}${abilityPills(mon.innates, "innate")}</span>
     `;
     row.addEventListener("click", () => openSpecies(mon));
@@ -462,15 +466,15 @@ function renderTms() {
   rows.forEach((tm) => {
     const row = el("tr", "tm-row");
     row.innerHTML = `
-      <td><strong>${tm.label}</strong></td>
-      <td>${tm.moveName}</td>
-      <td>${typePills([tm.type])}</td>
-      <td>${fmtCategory(tm.category || "")}</td>
-      <td>${tm.power || "-"}</td>
-      <td>${tm.accuracy || "-"}</td>
-      <td>${tm.pp || "-"}</td>
-      <td>${tm.description}</td>
-      <td class="muted">${tm.location || "TBD"}</td>
+      <td data-label="ID"><strong>${tm.label}</strong></td>
+      <td data-label="Move">${tm.moveName}</td>
+      <td data-label="Type">${typePills([tm.type])}</td>
+      <td data-label="Cat">${fmtCategory(tm.category || "")}</td>
+      <td data-label="Pow">${tm.power || "-"}</td>
+      <td data-label="Acc">${tm.accuracy || "-"}</td>
+      <td data-label="PP">${tm.pp || "-"}</td>
+      <td data-label="Description">${tm.description}</td>
+      <td data-label="Location" class="muted">${tm.location || "TBD"}</td>
     `;
     row.addEventListener("click", (event) => {
       if (event.target.closest("button, a, .species-link, .ability-pill, .move-name")) return;
