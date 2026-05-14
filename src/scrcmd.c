@@ -66,6 +66,7 @@
 #include "constants/event_objects.h"
 #include "constants/map_types.h"
 #include "constants/battle_frontier.h"
+#include "daycare.h"
 
 typedef u16 (*SpecialFunc)(void);
 typedef void (*NativeFunc)(struct ScriptContext *ctx);
@@ -3696,6 +3697,10 @@ static const u16 sOddEggSpecies[8] = {
     SPECIES_GOOMY,       // 7
 };
 
+#define ODD_EGG_START_CYCLES 2
+
+static const u8 sOddEggNickname[] = _("タマゴ");
+
 // EDIT THIS LIST: exact-match names that force 100% shiny eggs
 static const u8 sOddEggShinyNameList[][PLAYER_NAME_LENGTH + 1] = {
     _("DYLAN"),
@@ -3765,10 +3770,11 @@ static u32 MakeNonShinyPidForOt(u32 otId)
 {
     u16 tid = (u16)(otId & 0xFFFF);
     u16 sid = (u16)(otId >> 16);
-    while (TRUE) {
+    while (TRUE)
+    {
         u16 hi = (u16)Random();
         u16 lo = (u16)Random();
-        if ( (tid ^ sid ^ hi ^ lo) >= 8 )
+        if ((tid ^ sid ^ hi ^ lo) >= 8)
             return ((u32)hi << 16) | lo;
     }
 }
@@ -3781,70 +3787,66 @@ static u32 GetPlayerOtId32(void)
          | ((u32)gSaveBlock2Ptr->playerTrainerId[3] << 24);
 }
 
-static bool8 GiveOddEgg_Internal(u16 species, bool8 forceShiny, bool8 allow14PercentShiny)
+static u8 GiveOddEgg_Internal(u16 species, bool8 forceShiny, bool8 allow14PercentShiny)
 {
-    // Find a free party slot
-    for (u8 i = 0; i < PARTY_SIZE; i++)
+    struct Pokemon mon;
+    u32 otId = GetPlayerOtId32();
+    bool8 makeShiny = forceShiny;
+    u32 pid;
+    enum PokeBall ball;
+    enum Language language;
+    u8 metLevel;
+    u8 isEgg;
+    u8 cycles;
+
+    if (!makeShiny && allow14PercentShiny)
     {
-        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) == SPECIES_NONE)
-        {
-            struct Pokemon *mon = &gPlayerParty[i];
-            ZeroMonData(mon);
-
-            // Decide shiny / personality
-            u32 otId = GetPlayerOtId32();
-            bool8 makeShiny = forceShiny;
-            if (!makeShiny && allow14PercentShiny) {
-                // 14% chance
-                makeShiny = ((Random() % 100) < 14);
-            }
-            u32 pid = makeShiny ? MakeShinyPidForOt(otId) : MakeNonShinyPidForOt(otId);
-
-            // Create as player's mon with fixed PID; IVs random.
-            // Level for eggs is arbitrary; 5 is conventional.
-            CreateBoxMonLegacy(&mon->box, species, 5, USE_RANDOM_IVS, TRUE, pid, OT_ID_PLAYER_ID, 0);
-            #define ODD_EGG_START_CYCLES 2
-            // Mark as egg + set cycles
-            {
-                bool8 isEgg = TRUE;
-                SetMonData(mon, MON_DATA_IS_EGG, &isEgg);
-            }
-            {
-                u8 cycles = gSpeciesInfo[species].eggCycles;
-                if (cycles > ODD_EGG_START_CYCLES)
-                    cycles = ODD_EGG_START_CYCLES;   // clamp down to "near hatch"
-                // If the species already has fewer cycles than the target, keep its lower value.
-                SetMonData(mon, MON_DATA_FRIENDSHIP, &cycles);
-            }
-
-            // You can set met location/ball/etc. here if you want.
-            CalculateMonStats(mon);
-            gSpecialVar_Result = MON_GIVEN_TO_PARTY;
-            return TRUE;
-        }
+        makeShiny = ((Random() % 100) < 14);
     }
-    gSpecialVar_Result = MON_CANT_GIVE;
-    return FALSE;
+    pid = makeShiny ? MakeShinyPidForOt(otId) : MakeNonShinyPidForOt(otId);
+
+    CreateMonLegacy(&mon, species, EGG_HATCH_LEVEL, USE_RANDOM_IVS, TRUE, pid, OT_ID_PLAYER_ID, 0);
+    ball = BALL_POKE;
+    language = LANGUAGE_JAPANESE;
+    metLevel = 0;
+    isEgg = TRUE;
+    cycles = gSpeciesInfo[species].eggCycles;
+    if (cycles > ODD_EGG_START_CYCLES)
+        cycles = ODD_EGG_START_CYCLES;
+
+    SetMonData(&mon, MON_DATA_POKEBALL, &ball);
+    SetMonData(&mon, MON_DATA_NICKNAME, sOddEggNickname);
+    SetMonData(&mon, MON_DATA_MET_LEVEL, &metLevel);
+    SetMonData(&mon, MON_DATA_LANGUAGE, &language);
+    SetMonData(&mon, MON_DATA_IS_EGG, &isEgg);
+    SetMonData(&mon, MON_DATA_FRIENDSHIP, &cycles);
+
+    return GiveCapturedMonToPlayer(&mon);
 }
 
 // Script command: giveoddegg <value:1..7>
-// Returns: gSpecialVar_Result = MON_GIVEN_TO_PARTY or MON_CANT_GIVE
+// Returns: gSpecialVar_Result = MON_GIVEN_TO_PARTY, MON_GIVEN_TO_PC, or MON_CANT_GIVE
 bool8 ScrCmd_giveoddegg(struct ScriptContext *ctx)
 {
     u16 which = VarGet(ScriptReadHalfword(ctx));   // support immediate or VAR
-    if (which == 0 || which >= ARRAY_COUNT(sOddEggSpecies)) {
+    u16 species;
+    bool8 forceShiny;
+
+    if (which == 0 || which >= ARRAY_COUNT(sOddEggSpecies))
+    {
         gSpecialVar_Result = MON_CANT_GIVE;
         return FALSE;
     }
 
-    u16 species = sOddEggSpecies[which];
-    if (species == SPECIES_NONE) {
+    species = sOddEggSpecies[which];
+    if (species == SPECIES_NONE)
+    {
         gSpecialVar_Result = MON_CANT_GIVE;
         return FALSE;
     }
 
-    bool8 forceShiny = IsPlayerNameInShinyList();
-    (void)GiveOddEgg_Internal(species, forceShiny, TRUE);
+    forceShiny = IsPlayerNameInShinyList();
+    gSpecialVar_Result = GiveOddEgg_Internal(species, forceShiny, TRUE);
     return FALSE;
 }
 // ====================== /END HnS: giveoddegg ======================

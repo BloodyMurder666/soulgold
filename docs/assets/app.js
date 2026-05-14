@@ -38,10 +38,11 @@ function sprite(src, className = "sprite") {
 }
 
 async function init() {
-  const response = await fetch("data/romhack-docs.json?v=20260513-12");
+  const response = await fetch("data/romhack-docs.json?v=20260513-21");
   state.data = await response.json();
   state.filteredSpecies = state.data.species;
   bindEvents();
+  updateStickyOffset();
   renderAll();
 }
 
@@ -65,11 +66,19 @@ function bindEvents() {
   document.body.addEventListener("click", handleSpeciesLinkClick, true);
   document.body.addEventListener("pointerover", handleMoveHover);
   document.body.addEventListener("pointerout", hideMoveTooltip);
+  window.addEventListener("resize", updateStickyOffset);
+}
+
+function updateStickyOffset() {
+  const chrome = document.querySelector(".top-chrome");
+  if (!chrome) return;
+  document.documentElement.style.setProperty("--top-chrome-height", `${Math.ceil(chrome.getBoundingClientRect().height)}px`);
 }
 
 function setTab(tab) {
   hideAbilityTooltip();
   hideMoveTooltip();
+  updateStickyOffset();
   state.activeTab = tab;
   state.query = "";
   document.getElementById("globalSearch").value = "";
@@ -98,7 +107,7 @@ function renderActive() {
 }
 
 function renderDex() {
-  state.filteredSpecies = state.data.species.filter((mon) => matches(`${mon.dex} ${mon.name} ${mon.types.join(" ")} ${mon.abilities.join(" ")} ${mon.innates.join(" ")}`));
+  state.filteredSpecies = state.data.species.filter((mon) => matches(`${mon.dex} ${mon.name} ${speciesFormLabel(mon)} ${mon.constant} ${mon.types.join(" ")} ${mon.abilities.join(" ")} ${mon.innates.join(" ")}`));
   renderDexRows();
 }
 
@@ -110,7 +119,7 @@ function renderDexRows() {
     row.innerHTML = `
       <span>${mon.dex || mon.id}</span>
       <span>${sprite(mon.sprite)}</span>
-      <strong>${mon.name}</strong>
+      <strong>${speciesFormLabel(mon)}</strong>
       <span>${typePills(mon.types)}</span>
       <span>${mon.stats.hp}</span><span>${mon.stats.atk}</span><span>${mon.stats.def}</span>
       <span>${mon.stats.spa}</span><span>${mon.stats.spd}</span><span>${mon.stats.spe}</span>
@@ -222,20 +231,31 @@ function statBars(mon) {
   `;
 }
 
-function moveRows(moves) {
+function moveRows(moves, options = {}) {
   if (!moves.length) return `<p class="muted">No moves listed.</p>`;
+  const showLevel = options.showLevel !== false;
+  const head = showLevel
+    ? `<div class="move-row move-head"><span>Lvl</span><span>Move</span><span>Type</span><span>Pow</span><span>Acc</span></div>`
+    : `<div class="move-row move-head move-head-compat"><span>Move</span><span>Type</span><span>Pow</span><span>Acc</span></div>`;
   return `<div class="move-list">
-    <div class="move-row move-head"><span>Lvl</span><span>Move</span><span>Type</span><span>Pow</span><span>Acc</span></div>
+    ${head}
     ${moves.map((entry) => {
     const constant = typeof entry === "string" ? entry : entry.move;
     const level = typeof entry === "string" ? "" : entry.level;
     const move = state.data.moves[constant] || {};
-    return `<div class="move-row"><span>${level}</span><button class="move-name" type="button" data-move="${constant}">${move.name || moveName(constant)}</button><span>${typePills([move.type || ""])}</span><span>${move.power || "-"}</span><span>${move.accuracy || "-"}</span></div>`;
+    const cells = showLevel ? `<span>${level}</span>` : "";
+    return `<div class="move-row ${showLevel ? "" : "move-row-compat"}">${cells}<button class="move-name" type="button" data-move="${constant}">${move.name || moveName(constant)}</button><span>${typePills([move.type || ""])}</span><span>${move.power || "-"}</span><span>${move.accuracy || "-"}</span></div>`;
   }).join("")}</div>`;
+}
+
+function baseSpeciesForForms(mon) {
+  if (!mon.constant.includes("_MEGA")) return mon;
+  return state.data.species.find((entry) => entry.dex === mon.dex && !entry.constant.includes("_MEGA")) || mon;
 }
 
 function evolutionChain(mon) {
   const bySpecies = new Map(state.data.species.map((entry) => [entry.constant, entry]));
+  const chainMon = baseSpeciesForForms(mon);
   const incoming = new Map();
   state.data.species.forEach((entry) => {
     entry.evolutions.forEach((edge) => {
@@ -244,14 +264,14 @@ function evolutionChain(mon) {
     });
   });
 
-  const roots = new Set([mon.constant]);
+  const roots = new Set([chainMon.constant]);
   const walkBack = (constant) => {
     const parents = incoming.get(constant) || [];
     if (!parents.length) roots.add(constant);
     parents.forEach((edge) => walkBack(edge.from));
   };
   roots.clear();
-  walkBack(mon.constant);
+  walkBack(chainMon.constant);
 
   const seenEdges = new Set();
   const renderFrom = (constant) => {
@@ -280,6 +300,50 @@ function evolutionChain(mon) {
   return html || `<p class="muted">No evolution data.</p>`;
 }
 
+function speciesFormLabel(mon) {
+  if (mon.constant.includes("_MEGA_X")) return `${mon.name} X`;
+  if (mon.constant.includes("_MEGA_Y")) return `${mon.name} Y`;
+  if (mon.constant.includes("_MEGA_Z")) return `${mon.name} Z`;
+  if (mon.constant.includes("_MEGA")) return `${mon.name} Mega`;
+  return mon.name;
+}
+
+function megaFormLinks(mon) {
+  const bySpecies = new Map(state.data.species.map((entry) => [entry.constant, entry]));
+  const chainMon = baseSpeciesForForms(mon);
+  const family = new Set([chainMon.constant]);
+  let changed = true;
+  while (changed) {
+    changed = false;
+    state.data.species.forEach((entry) => {
+      entry.evolutions.forEach((edge) => {
+        if (family.has(entry.constant) && !family.has(edge.target)) {
+          family.add(edge.target);
+          changed = true;
+        }
+        if (family.has(edge.target) && !family.has(entry.constant)) {
+          family.add(entry.constant);
+          changed = true;
+        }
+      });
+    });
+  }
+  const familyDex = new Set([...family].map((constant) => bySpecies.get(constant)?.dex).filter(Boolean));
+  const forms = state.data.species.filter((entry) => entry.constant.includes("_MEGA") && familyDex.has(entry.dex));
+  if (!forms.length) return "";
+  return forms.map((form) => {
+    const base = state.data.species.find((entry) => entry.dex === form.dex && !entry.constant.includes("_MEGA"));
+    return `
+      <div class="evolution-line">
+        <button class="evolution-name species-link" type="button" data-species="${base?.constant || chainMon.constant}">${sprite(base?.sprite || chainMon.sprite, "tiny-sprite")}<strong>${base?.name || chainMon.name}</strong></button>
+        <span class="evolution-arrow">-&gt;</span>
+        <button class="evolution-name species-link" type="button" data-species="${form.constant}">${sprite(form.sprite, "tiny-sprite")}<strong>${speciesFormLabel(form)}</strong></button>
+        <span class="evolution-method">Mega Evolution</span>
+      </div>
+    `;
+  }).join("");
+}
+
 function locationRows(locations) {
   if (!locations?.length) return `<p class="muted">Not found in wild encounters.</p>`;
   return `<div class="location-list">
@@ -296,7 +360,7 @@ function locationRows(locations) {
 }
 
 function openSpecies(mon) {
-  document.getElementById("modalTitle").textContent = `#${mon.dex || mon.id} ${mon.name}`;
+  document.getElementById("modalTitle").textContent = `#${mon.dex || mon.id} ${speciesFormLabel(mon)}`;
   document.getElementById("modalBody").innerHTML = `
     <div class="species-summary">
       ${sprite(mon.sprite)}
@@ -309,7 +373,7 @@ function openSpecies(mon) {
       </div>
     </div>
     <h3 class="section-title">Evolution</h3>
-    <div class="evolution-chain">${evolutionChain(mon)}</div>
+    <div class="evolution-chain">${evolutionChain(mon)}${megaFormLinks(mon)}</div>
     <div class="detail-grid">
       <section><h3 class="section-title">Base Stats</h3>${statBars(mon)}</section>
       <section><h3 class="section-title">Locations in wild</h3>${locationRows(mon.locations)}</section>
@@ -317,9 +381,9 @@ function openSpecies(mon) {
     <h3 class="section-title">Level-Up Learnset</h3>
     ${moveRows(mon.levelUp)}
     <h3 class="section-title">TM/HM Compatibility</h3>
-    ${moveRows(mon.tmhm)}
+    ${moveRows(mon.tmhm, { showLevel: false })}
     <h3 class="section-title">Tutor Compatibility</h3>
-    ${moveRows(mon.tutors)}
+    ${moveRows(mon.tutors, { showLevel: false })}
   `;
   const dialog = document.getElementById("detailDialog");
   if (!dialog.open) {

@@ -74,6 +74,37 @@ TYPE_ICON_FILES = {
     "TYPE_STELLAR": "stellar.png",
 }
 
+DEX_HIDDEN_SPECIES = {
+    "SPECIES_MIMIKYU_BUSTED",
+    "SPECIES_MIMIKYU_BUSTED_TOTEM",
+    "SPECIES_MIMIKYU_TOTEM_DISGUISED",
+    "SPECIES_MIMIKYU_TOTEM_BUSTED",
+}
+
+DEX_HIDDEN_PREFIXES = (
+    "SPECIES_ARCEUS_",
+    "SPECIES_UNOWN_",
+)
+
+DEX_HIDDEN_COLOR_FORMS = {
+    "SPECIES_FLABEBE_YELLOW",
+    "SPECIES_FLABEBE_ORANGE",
+    "SPECIES_FLABEBE_BLUE",
+    "SPECIES_FLABEBE_WHITE",
+    "SPECIES_FLOETTE_YELLOW",
+    "SPECIES_FLOETTE_ORANGE",
+    "SPECIES_FLOETTE_BLUE",
+    "SPECIES_FLOETTE_WHITE",
+    "SPECIES_FLORGES_YELLOW",
+    "SPECIES_FLORGES_ORANGE",
+    "SPECIES_FLORGES_BLUE",
+    "SPECIES_FLORGES_WHITE",
+}
+
+SPECIES_NAME_OVERRIDES = {
+    "SPECIES_FLOETTE_ETERNAL": "Floette Eternal",
+}
+
 
 @dataclass
 class SpeciesRow:
@@ -81,6 +112,8 @@ class SpeciesRow:
     constant: str
     name: str
     nat_dex: int
+    display_dex: int
+    dex_visible: bool
     types: list[str]
     stats: dict[str, int]
     abilities: list[str]
@@ -119,11 +152,17 @@ def normalize_token(value: str) -> str:
 
 
 def decode_c_string(value: str) -> str:
-    value = value.replace("\\p", "\n\n")
-    value = value.replace("\\n", " ")
-    value = value.replace("{PKMN}", "Pokemon")
-    value = value.replace("{POKEBLOCK}", "Pokeblock")
-    return bytes(value, "utf-8").decode("unicode_escape").strip()
+    value = value.replace("\\p", "\\n\\n")
+    try:
+        decoded = ast.literal_eval(f'"{value}"')
+    except (SyntaxError, ValueError):
+        decoded = value.replace("\\n", " ")
+    decoded = decoded.replace("\n", " ")
+    decoded = decoded.replace("{PKMN}", "Pokemon")
+    decoded = decoded.replace("{POKEBLOCK}", "Pokeblock")
+    decoded = decoded.replace("♀", " F").replace("♂", " M")
+    decoded = decoded.replace("é", "e")
+    return decoded.strip()
 
 
 def collect_strings(expr: str) -> str:
@@ -132,6 +171,16 @@ def collect_strings(expr: str) -> str:
     if decoded and len(set(decoded)) == 1:
         decoded = decoded[:1]
     return re.sub(r"\s+", " ", " ".join(decoded)).strip()
+
+
+def is_dex_visible_species(constant: str) -> bool:
+    if "_TOTEM" in constant:
+        return False
+    if constant in DEX_HIDDEN_SPECIES or constant in DEX_HIDDEN_COLOR_FORMS:
+        return False
+    if any(constant.startswith(prefix) for prefix in DEX_HIDDEN_PREFIXES):
+        return constant == "SPECIES_ARCEUS_NORMAL"
+    return True
 
 
 def strip_c_comments(text: str) -> str:
@@ -311,6 +360,21 @@ def eval_numeric_ast(node: ast.AST) -> int | bool:
 
 def eval_int_expr(expr: str) -> int | None:
     expr = expr.strip()
+    while expr.startswith("(") and expr.endswith(")"):
+        depth = 0
+        encloses_expr = True
+        for index, char in enumerate(expr):
+            if char == "(":
+                depth += 1
+            elif char == ")":
+                depth -= 1
+                if depth == 0 and index != len(expr) - 1:
+                    encloses_expr = False
+                    break
+        if not encloses_expr:
+            break
+        expr = expr[1:-1].strip()
+
     ternary = split_top_level_ternary(expr)
     if ternary:
         condition, true_expr, false_expr = ternary
@@ -403,7 +467,10 @@ def parse_species() -> tuple[list[SpeciesRow], dict[str, SpeciesRow]]:
         constant = id_to_species.get(species_id)
         if not constant or constant in {"SPECIES_NONE", "SPECIES_EGG"}:
             continue
-        name = collect_strings(extract_field(entry, "speciesName") or "") or clean_constant_name(constant, "SPECIES_")
+        name = SPECIES_NAME_OVERRIDES.get(
+            constant,
+            collect_strings(extract_field(entry, "speciesName") or "") or clean_constant_name(constant, "SPECIES_"),
+        )
         nat_expr = extract_field(entry, "natDexNum") or "NATIONAL_DEX_NONE"
         nat_const = re.search(r"\bNATIONAL_DEX_[A-Z0-9_]+\b", nat_expr)
         if nat_const:
@@ -428,6 +495,8 @@ def parse_species() -> tuple[list[SpeciesRow], dict[str, SpeciesRow]]:
             constant=constant,
             name=name,
             nat_dex=nat_dex,
+            display_dex=0,
+            dex_visible=is_dex_visible_species(constant),
             types=types[:2],
             stats=stats,
             abilities=abilities,
@@ -440,6 +509,17 @@ def parse_species() -> tuple[list[SpeciesRow], dict[str, SpeciesRow]]:
         by_constant[constant] = row
 
     rows.sort(key=lambda row: (row.nat_dex if row.nat_dex else 99999, row.id))
+    display_by_nat_dex: dict[int, int] = {}
+    for row in rows:
+        if not row.nat_dex or not row.dex_visible:
+            continue
+        if row.nat_dex not in display_by_nat_dex:
+            display_by_nat_dex[row.nat_dex] = len(display_by_nat_dex) + 1
+        row.display_dex = display_by_nat_dex[row.nat_dex]
+    for row in rows:
+        if row.display_dex or not row.nat_dex:
+            continue
+        row.display_dex = display_by_nat_dex.get(row.nat_dex, 0)
     return rows, by_constant
 
 
@@ -843,10 +923,11 @@ def build() -> None:
     species_locations = build_species_locations(encounters)
     for row in species:
         row.locations = species_locations.get(row.constant, [])
+    visible_species = [row for row in species if row.dex_visible]
 
     ability_usage: dict[str, dict[str, list[dict[str, Any]]]] = defaultdict(lambda: {"base": [], "innate": []})
-    for row in species:
-        mini = {"species": row.constant, "name": row.name, "dex": row.nat_dex, "sprite": row.sprite}
+    for row in visible_species:
+        mini = {"species": row.constant, "name": row.name, "dex": row.display_dex, "sprite": row.sprite}
         for ability in row.abilities:
             ability_usage[ability]["base"].append(mini)
         for ability in row.innates:
@@ -879,7 +960,7 @@ def build() -> None:
             {
                 "id": row.id,
                 "constant": row.constant,
-                "dex": row.nat_dex,
+                "dex": row.display_dex,
                 "name": row.name,
                 "types": row.types,
                 "stats": row.stats,
@@ -893,7 +974,7 @@ def build() -> None:
                 "evolutions": row.evolutions,
                 "locations": row.locations,
             }
-            for row in species
+            for row in visible_species
         ],
         "moves": moves,
         "abilities": {

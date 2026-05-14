@@ -169,6 +169,7 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_ROUTE34_DAYCAREMAN",
       "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_1",
       "x": 31,
       "y": 34,
@@ -273,7 +274,7 @@
       "flag": "FLAG_NIGHT_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SNUBBULL)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CLEFAIRY)",
       "x": 26,
       "y": 43,
       "elevation": 0,
@@ -338,7 +339,7 @@
       "flag": "FLAG_ITEM_ROUTE34_SUPERPOTION"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SNUBBULL)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CLEFAIRY)",
       "x": 24,
       "y": 45,
       "elevation": 0,
@@ -362,6 +363,20 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
       "flag": "FLAG_DAY_POKEMON"
+    },
+    {
+      "local_id": "LOCALID_ROUTE34_RIVAL",
+      "graphics_id": "OBJ_EVENT_GFX_VAR_0",
+      "x": 30,
+      "y": 34,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route34_RivalEncounter",
+      "flag": "FLAG_HIDE_ROUTE34_RIVAL"
     }
   ],
   "warp_events": [
@@ -437,6 +452,69 @@
       "var": "VAR_GOLDENROD_CITY_STATE",
       "var_value": "0",
       "script": "GoldenrodCity_EventScript_Trigger"
+    },
+    {
+      "type": "trigger",
+      "x": 30,
+      "y": 37,
+      "elevation": 0,
+      "var": "VAR_RIVAL_STATE",
+      "var_value": "5",
+      "script": "Route34_RivalEncounter"
+    },
+    {
+      "type": "trigger",
+      "x": 29,
+      "y": 37,
+      "elevation": 0,
+      "var": "VAR_RIVAL_STATE",
+      "var_value": "5",
+      "script": "Route34_RivalEncounter"
+    },
+    {
+      "type": "trigger",
+      "x": 28,
+      "y": 37,
+      "elevation": 0,
+      "var": "VAR_RIVAL_STATE",
+      "var_value": "5",
+      "script": "Route34_RivalEncounter"
+    },
+    {
+      "type": "trigger",
+      "x": 27,
+      "y": 37,
+      "elevation": 0,
+      "var": "VAR_RIVAL_STATE",
+      "var_value": "5",
+      "script": "Route34_RivalEncounter"
+    },
+    {
+      "type": "trigger",
+      "x": 26,
+      "y": 37,
+      "elevation": 0,
+      "var": "VAR_RIVAL_STATE",
+      "var_value": "5",
+      "script": "Route34_RivalEncounter"
+    },
+    {
+      "type": "trigger",
+      "x": 25,
+      "y": 37,
+      "elevation": 0,
+      "var": "VAR_RIVAL_STATE",
+      "var_value": "5",
+      "script": "Route34_RivalEncounter"
+    },
+    {
+      "type": "trigger",
+      "x": 24,
+      "y": 37,
+      "elevation": 0,
+      "var": "VAR_RIVAL_STATE",
+      "var_value": "5",
+      "script": "Route34_RivalEncounter"
     }
   ],
   "bg_events": [

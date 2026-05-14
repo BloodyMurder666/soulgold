@@ -10,8 +10,7 @@
   --gold: #d7b26d;
   --bar: #ca850f;
   --good: #48a12c;
-  --header-top: 114px;
-  --table-head-top: 187px;
+  --top-chrome-height: 187px;
   font-family: "Arial Narrow", "Trebuchet MS", Arial, sans-serif;
 }
 
@@ -24,10 +23,16 @@ body {
   font-size: 18px;
 }
 
-.site-header {
+.top-chrome {
   position: sticky;
   top: 0;
-  z-index: 30;
+  z-index: 40;
+  background: var(--bg);
+  border-bottom: 1px solid #30313a;
+  margin-bottom: 24px;
+}
+
+.site-header {
   display: flex;
   align-items: end;
   justify-content: space-between;
@@ -56,16 +61,12 @@ h1 { font-size: 42px; line-height: 1; }
 }
 
 .tabs {
-  position: sticky;
-  top: var(--header-top);
-  z-index: 29;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 8px;
   background: var(--bg);
-  border-bottom: 1px solid #30313a;
-  margin: 0 0 24px;
+  margin: 0;
   padding: 12px 20px;
 }
 
@@ -125,8 +126,11 @@ th, td {
 
 th {
   background: #111217;
+}
+
+#machines th {
   position: sticky;
-  top: var(--table-head-top);
+  top: var(--top-chrome-height);
   z-index: 20;
 }
 
@@ -142,7 +146,7 @@ th {
 
 .dex-head {
   position: sticky;
-  top: var(--table-head-top);
+  top: var(--top-chrome-height);
   z-index: 20;
   height: 50px;
   background: #111217;
@@ -490,6 +494,14 @@ dialog::backdrop { background: rgb(0 0 0 / 70%); }
   border-bottom: 1px solid #343640;
 }
 
+.move-row-compat {
+  grid-template-columns: minmax(220px, 1fr) 96px 64px 64px;
+}
+
+.move-head-compat {
+  grid-template-columns: minmax(220px, 1fr) 96px 64px 64px;
+}
+
 .move-name {
   justify-self: start;
   border: 0;
@@ -609,8 +621,7 @@ dialog::backdrop { background: rgb(0 0 0 / 70%); }
 
 @media (max-width: 780px) {
   :root {
-    --header-top: 164px;
-    --table-head-top: 276px;
+    --top-chrome-height: 276px;
   }
   body { font-size: 16px; }
   .site-header { align-items: stretch; flex-direction: column; }

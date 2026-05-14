@@ -1542,9 +1542,9 @@
 #define FLAG_PICKED_RATTATA                         (SYSTEM_FLAGS + 0xA4)
 #define FLAG_CHIMECHITE                             (SYSTEM_FLAGS + 0xA5)
 #define FLAG_HIDE_ROUTE32_RIVAL                     (SYSTEM_FLAGS + 0xA6)
-#define FLAG_HIDE_TUESCANY                           (SYSTEM_FLAGS + 0xA7)
-#define FLAG_UNUSED_0x908                           (SYSTEM_FLAGS + 0xA8) // Unused Flag
-#define FLAG_UNUSED_0x909                           (SYSTEM_FLAGS + 0xA9) // Unused Flag
+#define FLAG_HIDE_TUESCANY                          (SYSTEM_FLAGS + 0xA7)
+#define FLAG_HIDE_ROUTE34_RIVAL                     (SYSTEM_FLAGS + 0xA8)
+#define FLAG_DESTINYKNOT_GIFT                       (SYSTEM_FLAGS + 0xA9)
 #define FLAG_UNUSED_0x90A                           (SYSTEM_FLAGS + 0xAA) // Unused Flag
 #define FLAG_UNUSED_0x90B                           (SYSTEM_FLAGS + 0xAB) // Unused Flag
 #define FLAG_UNUSED_0x90C                           (SYSTEM_FLAGS + 0xAC) // Unused Flag

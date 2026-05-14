@@ -65,8 +65,6 @@ Route34_DayCare_EventScript_Clerk::
 	faceplayer
 	goto_if_set FLAG_RECEIVED_ODD_EGG, Route34_DayCare_EventScript_ClerkAfter
 	msgbox Route34_DayCare_Text_ClerkBefore, MSGBOX_DEFAULT
-	getpartysize
-	goto_if_eq VAR_RESULT, PARTY_SIZE, Route34_DayCare_EventScript_ClerkPartyFull
 	msgbox Route34_DayCare_Text_ClerkQuestion, MSGBOX_DEFAULT
 	closemessage
 	setvar VAR_0x8004, EASY_CHAT_TYPE_INTERVIEW
@@ -89,30 +87,37 @@ Route34_DayCare_EventScript_Clerk::
 
 Route34_DayCare_EventScript_GivePichu::
 	giveoddegg 1
+	goto_if_eq VAR_RESULT, MON_CANT_GIVE, Route34_DayCare_EventScript_ClerkPartyFull
 	goto Route34_DayCare_EventScript_Clerk_GaveEgg
 
 Route34_DayCare_EventScript_GiveCleffa::
 	giveoddegg 2
+	goto_if_eq VAR_RESULT, MON_CANT_GIVE, Route34_DayCare_EventScript_ClerkPartyFull
 	goto Route34_DayCare_EventScript_Clerk_GaveEgg
 
 Route34_DayCare_EventScript_GiveIgglybuff::
 	giveoddegg 3
+	goto_if_eq VAR_RESULT, MON_CANT_GIVE, Route34_DayCare_EventScript_ClerkPartyFull
 	goto Route34_DayCare_EventScript_Clerk_GaveEgg
 
 Route34_DayCare_EventScript_GiveTyrogue::
 	giveoddegg 4
+	goto_if_eq VAR_RESULT, MON_CANT_GIVE, Route34_DayCare_EventScript_ClerkPartyFull
 	goto Route34_DayCare_EventScript_Clerk_GaveEgg
 
 Route34_DayCare_EventScript_GiveSmoochum::
 	giveoddegg 5
+	goto_if_eq VAR_RESULT, MON_CANT_GIVE, Route34_DayCare_EventScript_ClerkPartyFull
 	goto Route34_DayCare_EventScript_Clerk_GaveEgg
 
 Route34_DayCare_EventScript_GiveElekid::
 	giveoddegg 6
+	goto_if_eq VAR_RESULT, MON_CANT_GIVE, Route34_DayCare_EventScript_ClerkPartyFull
 	goto Route34_DayCare_EventScript_Clerk_GaveEgg
 
 Route34_DayCare_EventScript_GiveMagby::
 	giveoddegg 7
+	goto_if_eq VAR_RESULT, MON_CANT_GIVE, Route34_DayCare_EventScript_ClerkPartyFull
 	goto Route34_DayCare_EventScript_Clerk_GaveEgg
 
 Route34_DayCare_EventScript_Clerk_GaveEgg::
@@ -123,6 +128,13 @@ Route34_DayCare_EventScript_Clerk_GaveEgg::
 	playfanfare MUS_OBTAIN_ITEM
 	message Route34_DayCare_Text_ReceivedOddEgg
 	waitfanfare
+	closemessage
+	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PC, Route34_DayCare_EventScript_Clerk_GaveEggToPC
+	release
+	end
+
+Route34_DayCare_EventScript_Clerk_GaveEggToPC::
+	msgbox Route34_DayCare_Text_OddEggSentToPC, MSGBOX_DEFAULT
 	closemessage
 	release
 	end
@@ -170,6 +182,9 @@ Route34_DayCare_Text_Rejection:
 
 Route34_DayCare_Text_ReceivedOddEgg:
 	.string "{PLAYER} Received the Odd Egg.$"
+
+Route34_DayCare_Text_OddEggSentToPC:
+	.string "The Odd Egg was sent to your PC.$"
 
 Route34_DayCare_Text_TakeCare:
 	.string "I knew you were the right trainer\n"
@@ -590,40 +605,26 @@ Route34_DayCare_Text_YoullBeLeftWithJustOne:
 	.string "some more, I dare say.$"
 `
 
-script daycareEggGift {
+script daycareDestinyKnotGift {
 	lock
 	faceplayer
-	if (flag(FLAG_RECEIVED_ODD_EGG)) {
-		msgbox("I hope you show lots of love and care
-				for the egg.")
-		release
-		end
+	if (flag(FLAG_DESTINYKNOT_GIFT)) {
+		msgbox("Destiny Knot will let Pokémon inherit
+				5 Innate values from their parents.")
+				release
+				end
 	}
-    msgbox("I'm learning from the couple on how to
-			raise Pokémon!
-			Do you know about eggs? I was raising
-			Pokémon as usual and suddenly they
-			had laid an egg! We were quite shocked!
-			Would you like to take care of it? Don't
-			be shy!", MSGBOX_YESNO)
-	if (var(VAR_RESULT) == YES) {
-		getpartysize
-		if (var(VAR_RESULT) == PARTY_SIZE) {
-			msgbox("You have no room for this egg!")
-			closemessage
-			release
-			end
-		}
-		random(7)
-		addvar(VAR_RESULT, 1)
-		giveoddegg(VAR_RESULT)
-		setflag(FLAG_RECEIVED_ODD_EGG)
-		playfanfare(MUS_HG_OBTAIN_ITEM)
-		message("{PLAYER} Received the Odd Egg.")
-		waitfanfare
-		msgbox("Please take good care of it!")
-		closemessage
-	}
+	msgbox("Hey! Have you tried putting your
+			Pokémon into daycare yet? Sometimes
+			the daycare couple might find an egg.
+			
+			If you plan to hoard a lot of eggs,
+			you might find this useful.")
+	giveitem(ITEM_DESTINY_KNOT)
+	setflag(FLAG_DESTINYKNOT_GIFT)
+	msgbox("Destiny Knot will let Pokémon inherit
+			5 Innate values from their parents.")
+	waitmessage
 	release
 	end
 }

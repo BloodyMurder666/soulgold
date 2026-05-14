@@ -3378,7 +3378,7 @@
               {
                 "min_level": 12,
                 "max_level": 14,
-                "species": "SPECIES_PONYTA_GALAR"
+                "species": "SPECIES_PONYTA"
               },
               {
                 "min_level": 13,
@@ -3393,7 +3393,7 @@
               {
                 "min_level": 13,
                 "max_level": 15,
-                "species": "SPECIES_PONYTA_GALAR"
+                "species": "SPECIES_PONYTA"
               },
               {
                 "min_level": 14,
