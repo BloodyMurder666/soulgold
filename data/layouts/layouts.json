@@ -906,8 +906,8 @@
       "name": "MauvilleCity_GameCorner_Layout",
       "width": 30,
       "height": 22,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_MauvilleGameCorner",
+      "primary_tileset": "gTileset_Casino",
+      "secondary_tileset": "gTileset_PokemonCenter_White",
       "border_filepath": "data/layouts/MauvilleCity_GameCorner/border.bin",
       "blockdata_filepath": "data/layouts/MauvilleCity_GameCorner/map.bin"
     },

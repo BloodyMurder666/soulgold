@@ -3946,3 +3946,22 @@ const u16 gTilesetPalettes_Desert[][16] =
 };
 
 const u32 gTilesetTiles_Desert[] = INCBIN_U32("data/tilesets/secondary/desert/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_Casino[][16] =
+{
+    INCBIN_U16("data/tilesets/primary/casino/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/primary/casino/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/primary/casino/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/primary/casino/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/primary/casino/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/primary/casino/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/primary/casino/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/primary/casino/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/primary/casino/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/primary/casino/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/primary/casino/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/primary/casino/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/primary/casino/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_Casino[] = INCBIN_U32("data/tilesets/primary/casino/tiles.4bpp.lz");

@@ -25,6 +25,8 @@ Johto + Sevii hack with expanded dex and various changes based on expansion port
 - Poffin Case various overworld sprites
 - HashtagMarky for overworld speedup
 - Pokeabbie battle speed up
+- [agsmgmaster64](https://github.com/agsmgmaster64/worldlinkdeluxe-ame) Game corner expansion port
+- [heypc](https://github.com/heyopc/pokeemerald-gamecorner-expansion) game corner expansion
 - [aarant/merrp:](https://github.com/aarant) [icons branch](https://github.com/aarant/pokeemerald/tree/icons)
 - [msikma:](https://github.com/msikma) [pokesprite](https://github.com/msikma/pokesprite) (Generation 1-7 regular + shiny icons)
 - Generation 8 icons: leparagon, LarryTurbo, Phasma, Pokerogue Team, StarrWolf (some shinies), Someonealive-QN (other shinies)
