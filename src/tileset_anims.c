@@ -34,6 +34,7 @@ static void TilesetAnim_Lavaridge(u16);
 static void TilesetAnim_EverGrande(u16);
 static void TilesetAnim_Pacifidlog(u16);
 static void TilesetAnim_Sootopolis(u16);
+static void TilesetAnim_Mauville_Game_Corner(u16);
 static void TilesetAnim_BattleFrontierOutsideWest(u16);
 static void TilesetAnim_BattleFrontierOutsideEast(u16);
 static void TilesetAnim_Underwater(u16);
@@ -91,6 +92,24 @@ static void TilesetAnim_ecruteak_theater(u16);
 static void QueueAnimTiles_OlivineCity_Gym_Flower(u16);
 static void TilesetAnim_AzaleaTown_Gym_29(u16);
 static void QueueAnimTiles_AzaleaTown_Gym_Flower(u16);
+
+static void QueueAnimTiles_Mauville_Game_Corner_Lights(u16);
+
+const u16 gTilesetAnims_MauvilleGameCorner_Lights_Frame0[] = INCBIN_U16("data/tilesets/secondary/mauville_game_corner/anim/lights/light_anim_0.4bpp");
+const u16 gTilesetAnims_MauvilleGameCorner_Lights_Frame1[] = INCBIN_U16("data/tilesets/secondary/mauville_game_corner/anim/lights/light_anim_1.4bpp");
+const u16 gTilesetAnims_MauvilleGameCorner_Lights_Frame2[] = INCBIN_U16("data/tilesets/secondary/mauville_game_corner/anim/lights/light_anim_2.4bpp");
+const u16 gTilesetAnims_MauvilleGameCorner_Lights_Frame3[] = INCBIN_U16("data/tilesets/secondary/mauville_game_corner/anim/lights/light_anim_3.4bpp");
+const u16 gTilesetAnims_MauvilleGameCorner_Lights_Frame4[] = INCBIN_U16("data/tilesets/secondary/mauville_game_corner/anim/lights/light_anim_4.4bpp");
+const u16 gTilesetAnims_MauvilleGameCorner_Lights_Frame5[] = INCBIN_U16("data/tilesets/secondary/mauville_game_corner/anim/lights/light_anim_5.4bpp");
+
+const u16 *const gTilesetAnims_Mauville_Game_Corner_Lights[] = {
+    gTilesetAnims_MauvilleGameCorner_Lights_Frame0,
+    gTilesetAnims_MauvilleGameCorner_Lights_Frame1,
+    gTilesetAnims_MauvilleGameCorner_Lights_Frame2,
+    gTilesetAnims_MauvilleGameCorner_Lights_Frame3,
+    gTilesetAnims_MauvilleGameCorner_Lights_Frame4,
+    gTilesetAnims_MauvilleGameCorner_Lights_Frame5
+};
 
 
 static const u16 gTilesetAnims_General_Flower_Frame0[] = INCBIN_U16("data/tilesets/primary/johto_general/anim/flower/0.4bpp");
@@ -1090,6 +1109,12 @@ static void QueueAnimTiles_AzaleaTown_Gym_Flower(u16 timer)
 
 
 
+static void QueueAnimTiles_Mauville_Game_Corner_Lights(u16 timer)
+{
+    u16 i = timer % 6; 
+    AppendTilesetAnimToBuffer(gTilesetAnims_Mauville_Game_Corner_Lights[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(521)), 0x40);
+}
+
 void InitTilesetAnim_Petalburg(void)
 {
     sSecondaryTilesetAnimCounter = 0;
@@ -1207,6 +1232,13 @@ void InitTilesetAnim_SootopolisGym(void)
     sSecondaryTilesetAnimCounter = 0;
     sSecondaryTilesetAnimCounterMax = 240;
     //sSecondaryTilesetAnimCallback = TilesetAnim_SootopolisGym;
+}
+
+void InitTilesetAnim_MauvilleGameCorner(void)
+{
+    sSecondaryTilesetAnimCounter = 0;
+    sSecondaryTilesetAnimCounterMax = 128;
+    sSecondaryTilesetAnimCallback = TilesetAnim_Mauville_Game_Corner;
 }
 
 void InitTilesetAnim_Cave(void)
@@ -1351,6 +1383,11 @@ void InitTilesetAnim_MtEmber(void)
     sSecondaryTilesetAnimCounter = 0;
     sSecondaryTilesetAnimCounterMax = 256;
     sSecondaryTilesetAnimCallback = TilesetAnim_MtEmber;
+}
+static void TilesetAnim_Mauville_Game_Corner(u16 timer)
+{
+    if (timer % 16 == 0)
+        QueueAnimTiles_Mauville_Game_Corner_Lights(timer / 16);
 }
 
 static void TilesetAnim_Pacifidlog(u16 timer)

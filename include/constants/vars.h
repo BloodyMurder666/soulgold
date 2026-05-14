@@ -276,7 +276,28 @@
 
 
 // unused vars
-#define VAR_0x4100
+#define VAR_DERBY_RACER_NAME_1                          0x4100
+#define VAR_DERBY_RACER_NAME_2                          0x4101
+#define VAR_DERBY_RACER_NAME_3                          0x4102
+#define VAR_DERBY_RACER_NAME_4                          0x4103
+#define VAR_DERBY_RACER_NAME_5                          0x4104
+#define VAR_DERBY_RACER_NAME_6                          0x4105
+#define VAR_DERBY_RACER_1                               0x4106
+#define VAR_DERBY_RACER_2                               0x4107
+#define VAR_DERBY_RACER_3                               0x4108
+#define VAR_DERBY_RACER_4                               0x4109
+#define VAR_DERBY_RACER_5                               0x410A
+#define VAR_DERBY_RACER_6                               0x410B
+#define VAR_FLIP_LEVEL                                  0x410C
+#define VAR_FLAPPY_HISCORE                              0x410D
+#define VAR_GAMECORNER_WINNINGS                         0x410E
+#define VAR_0x410F                                      0x410F
+#define VAR_0x4110                                      0x4110
+#define VAR_0x4111                                      0x4111
+#define VAR_0x4112                                      0x4112
+#define VAR_0x4113                                      0x4113
+#define VAR_0x4114                                      0x4114
+#define VAR_0x4115                                      0x4115
 
 #define VARS_END                                         0x42FF
 

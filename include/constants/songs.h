@@ -926,8 +926,23 @@
 #define MUS_HG_OBTAIN_B_POINTS 975
 #define MUS_HG_WIN_MINIGAME 976
 
-#define END_MUS                     MUS_HG_WIN_MINIGAME
+#define HG_MUS_END                  MUS_HG_WIN_MINIGAME
+#define MUS_CUSTOM_START            (HG_MUS_END + 1)
 
+#define MUS_HGSS_CASINO             MUS_CUSTOM_START
+#define MUS_CASINO_PLUS_1           (MUS_CUSTOM_START + 1)
+#define MUS_CASINO_PLUS_2           (MUS_CUSTOM_START + 2)
+#define MUS_CASINO_PLUS_3           (MUS_CUSTOM_START + 3)
+#define MUS_CASINO_PLUS_4           (MUS_CUSTOM_START + 4)
+#define MUS_CASINO_PLUS_5           (MUS_CUSTOM_START + 5)
+#define MUS_CASINO_PLUS_6           (MUS_CUSTOM_START + 6)
+#define MUS_CASINO_PLUS_7           (MUS_CUSTOM_START + 7)
+#define MUS_CASINO_PLUS_8           (MUS_CUSTOM_START + 8)
+#define MUS_CASINO_PLUS_9           (MUS_CUSTOM_START + 9)
+#define MUS_CASINO_PLUS_GACHA       (MUS_CUSTOM_START + 10)
+
+
+#define END_MUS                     MUS_CASINO_PLUS_GACHA
 
 #define MUS_ROUTE118                0x7FFF  // Map is split into 2 music sections. controlled by GetCurrLocationDefaultMusic().
 
