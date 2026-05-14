@@ -4,6 +4,7 @@
 #include "event_data.h"
 #include "new_game.h"
 #include "pokemon.h"
+#include "string_util.h"
 #include "test/overworld_script.h"
 #include "test/test.h"
 #include "constants/characters.h"
@@ -27,6 +28,75 @@ TEST("Nature independent from Hidden Nature")
     SetMonData(&mon, MON_DATA_HIDDEN_NATURE, &hiddenNature);
     EXPECT_EQ(GetNature(&mon), nature);
     EXPECT_EQ(GetMonData(&mon, MON_DATA_HIDDEN_NATURE), hiddenNature);
+}
+
+TEST("BoxPokemon secure data is plaintext and fixed-order")
+{
+    struct Pokemon mon;
+    enum Item item = ITEM_LEFTOVERS;
+    u32 species;
+    u32 heldItem;
+
+    CreateMon(&mon, SPECIES_WOBBUFFET, 50, 0, OTID_STRUCT_PLAYER_ID);
+    SetMonData(&mon, MON_DATA_HELD_ITEM, &item);
+    species = mon.box.secure.species;
+    heldItem = mon.box.secure.heldItem;
+
+    EXPECT_EQ(species, SPECIES_WOBBUFFET);
+    EXPECT_EQ(heldItem, ITEM_LEFTOVERS);
+}
+
+TEST("Updating personality does not move BoxPokemon secure data")
+{
+    struct Pokemon mon;
+    u32 oldPersonality = 0;
+    u32 newPersonality = 5;
+    enum Item item = ITEM_LEFTOVERS;
+
+    CreateMon(&mon, SPECIES_WOBBUFFET, 50, oldPersonality, OTID_STRUCT_PLAYER_ID);
+    SetMonData(&mon, MON_DATA_HELD_ITEM, &item);
+    SetMonMoveSlot(&mon, MOVE_SPLASH, 0);
+    UpdateMonPersonality(&mon.box, newPersonality);
+
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_PERSONALITY), newPersonality);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES), SPECIES_WOBBUFFET);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_HELD_ITEM), ITEM_LEFTOVERS);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_MOVE1), MOVE_SPLASH);
+}
+
+TEST("Setting a nickname terminates unused nickname storage")
+{
+    struct Pokemon mon;
+    u8 nickname[POKEMON_NAME_LENGTH + 1];
+    u8 storedNickname[POKEMON_NAME_LENGTH + 1];
+
+    CreateMon(&mon, SPECIES_ANNIHILAPE, 50, 0, OTID_STRUCT_PLAYER_ID);
+    StringCopy(nickname, COMPOUND_STRING("Annihilape"));
+    nickname[11] = CHAR_G;
+    SetMonData(&mon, MON_DATA_NICKNAME, nickname);
+    GetMonData(&mon, MON_DATA_NICKNAME, storedNickname);
+
+    EXPECT_EQ(StringCompare(storedNickname, COMPOUND_STRING("Annihilape")), 0);
+    EXPECT_EQ(storedNickname[11], EOS);
+}
+
+TEST("Pokemon save bit repack preserves extended met location and flags")
+{
+    struct Pokemon mon;
+    u16 metLocation = 0x7FFF;
+    u8 abilityNum = 2;
+    u8 enabled = TRUE;
+
+    CreateMon(&mon, SPECIES_WOBBUFFET, 50, 0, OTID_STRUCT_PLAYER_ID);
+    SetMonData(&mon, MON_DATA_MET_LOCATION, &metLocation);
+    SetMonData(&mon, MON_DATA_ABILITY_NUM, &abilityNum);
+    SetMonData(&mon, MON_DATA_IS_SHADOW, &enabled);
+    SetMonData(&mon, MON_DATA_MODERN_FATEFUL_ENCOUNTER, &enabled);
+
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_MET_LOCATION), metLocation);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_ABILITY_NUM), abilityNum);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_IS_SHADOW), enabled);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_MODERN_FATEFUL_ENCOUNTER), enabled);
 }
 
 TEST("Terastallization type defaults to primary or secondary type")
@@ -578,105 +648,4 @@ TEST("CalculateMonStats")
     EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPATK), 83);
     EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPDEF), 134);
 
-}
-
-TEST("BoxPokemon encryption works")
-{
-    // This test exists to ensure that expansion has not broken anything with regards to how BoxPokemon encryption works.
-    // If users make changes to the definitions of BoxPokemon, Pokemon, or any of their members, it is expected that this test will fail. To avoid the failing test from blocking CI, users can uncomment the KNOWN_FAILING declaration.
-
-    KNOWN_FAILING;
-    u32 raw[20] =
-    {
-        990384375,
-        2948624514,
-        3907508686,
-        14410461,
-        35316705,
-        3907508686,
-        64742109,
-        718729,
-        3102307966,
-        2160206402,
-        49956971,
-        2495766612,
-        1424318580,
-        273408756,
-        2371630199,
-        2708871082,
-        3059937332,
-        2529190026,
-        2290634828,
-        2870614922
-    };
-
-    struct Pokemon mon;
-    BoxMonToMon((struct BoxPokemon *)&raw, &mon);
-
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_SANITY_IS_BAD_EGG), 0);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES), SPECIES_TORCHIC);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_MARKINGS), 3);
-    const u8 *actualNickname = COMPOUND_STRING("Testing mon");
-    u8 nickname[12];
-    GetMonData(&mon, MON_DATA_NICKNAME, nickname);
-    u32 charIndex = 0;
-    while (actualNickname[charIndex] != EOS)
-    {
-        EXPECT_EQ(actualNickname[charIndex], nickname[charIndex]);
-        charIndex++;
-    }
-    EXPECT_EQ(GetNature(&mon), NATURE_HARDY);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_HIDDEN_NATURE), NATURE_ADAMANT);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_HP_LOST), 10);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_HELD_ITEM), ITEM_ORAN_BERRY);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_MOVE1), MOVE_TACKLE);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_MOVE2), MOVE_SCRATCH);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_MOVE3), MOVE_POUND);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_MOVE4), MOVE_GROWL);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_PP1), 1);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_PP2), 2);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_PP3), 3);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_PP4), 4);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_PP_BONUSES), 255);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_COOL), 10);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_BEAUTY), 20);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_CUTE), 30);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_SMART), 40);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_TOUGH), 50);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_SHEEN), 150);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_EXP), 12345);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_MET_LEVEL), 20);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_HP_EV), 11);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_ATK_EV), 22);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_DEF_EV), 33);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPEED_EV), 44);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPATK_EV), 55);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPDEF_EV), 66);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_FRIENDSHIP), 123);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_POKERUS), 2);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_POKEBALL), BALL_FRIEND);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_HP_IV), 31);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_ATK_IV), 30);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_DEF_IV), 29);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPEED_IV), 28);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPATK_IV), 27);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPDEF_IV), 26);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_CUTE_RIBBON), 1);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_BEAUTY_RIBBON), 0);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_TOUGH_RIBBON), 1);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_SMART_RIBBON), 0);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_CHAMPION_RIBBON), 1);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_VICTORY_RIBBON), 1);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_EFFORT_RIBBON), 1);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_LAND_RIBBON), 1);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_COUNTRY_RIBBON), 1);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_EARTH_RIBBON), 1);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_HYPER_TRAINED_HP), 1);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_HYPER_TRAINED_ATK), 1);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_HYPER_TRAINED_DEF), 1);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_HYPER_TRAINED_SPEED), 1);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_HYPER_TRAINED_SPATK), 1);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_HYPER_TRAINED_SPDEF), 1);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_DYNAMAX_LEVEL), 3);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_OT_GENDER), 0);
 }
