@@ -3613,6 +3613,12 @@ MauvilleCity_GameCorner_EventScript_ChooseNewPrize2_7:
 	goto MauvilleCity_GameCorner_EventScript_ChooseNewPrize2_1
 
 
+GachaExplainer::
+# 1801 "data/maps/MauvilleCity_GameCorner/scripts.pory"
+	msgbox GachaExplainer_Text_0, MSGBOX_NPC
+	return
+
+
 MauvilleCity_GameCorner_EventScript_ChooseNewPrize_Text_0:
 # 1765 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	.string "Old Amber{CLEAR_TO 0x40}4000$"
@@ -3652,3 +3658,13 @@ MauvilleCity_GameCorner_EventScript_ChooseNewPrize2_Text_2:
 MauvilleCity_GameCorner_EventScript_ChooseNewPrize2_Text_3:
 # 1787 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	.string "Leafstone$"
+
+GachaExplainer_Text_0:
+# 1801 "data/maps/MauvilleCity_GameCorner/scripts.pory"
+	.string "Hello! Fancy trying your luck with the\n"
+	.string "gachapon? For minimum wager of 4000\l"
+	.string "coins, receive one rare Pokémon!\p"
+	.string "The grand prize includes a very\n"
+	.string "special Eevee and Pikachu! Don't\l"
+	.string "miss out! Gamble to your heart's\l"
+	.string "content!$"

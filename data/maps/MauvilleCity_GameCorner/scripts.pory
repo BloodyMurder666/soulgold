@@ -1796,3 +1796,14 @@ script MauvilleCity_GameCorner_EventScript_ChooseNewPrize2 {
     }
 	end		
     }
+
+script GachaExplainer {
+	msgbox("Hello! Fancy trying your luck with the
+			gachapon? For minimum wager of 4000
+			coins, receive one rare Pokémon!
+			
+			The grand prize includes a very
+			special Eevee and Pikachu! Don't
+			miss out! Gamble to your heart's
+			content!", MSGBOX_NPC)
+}
