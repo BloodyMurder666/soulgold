@@ -5094,7 +5094,7 @@
     {
       "id": "LAYOUT_GOLDENROD_CITY",
       "name": "GoldenrodCity_Layout",
-      "width": 58,
+      "width": 71,
       "height": 46,
       "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_Goldenrod",
