@@ -647,35 +647,11 @@
     },
     {
       "type": "sign",
-      "x": 16,
-      "y": 11,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
-      "script": "MauvilleCity_GameCorner_EventScript_Gacha_Master"
-    },
-    {
-      "type": "sign",
       "x": 15,
       "y": 11,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
-      "script": "MauvilleCity_GameCorner_EventScript_Gacha_Ultra"
-    },
-    {
-      "type": "sign",
-      "x": 14,
-      "y": 11,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
-      "script": "MauvilleCity_GameCorner_EventScript_Gacha_Great"
-    },
-    {
-      "type": "sign",
-      "x": 13,
-      "y": 11,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
-      "script": "MauvilleCity_GameCorner_EventScript_Gacha_Basic"
+      "script": "MauvilleCity_GameCorner_EventScript_Gacha_Master"
     },
     {
       "type": "sign",
@@ -836,6 +812,14 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "MauvilleCity_GameCorner_EventScript_Blackjack"
+    },
+    {
+      "type": "sign",
+      "x": 14,
+      "y": 11,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "MauvilleCity_GameCorner_EventScript_Gacha_Master"
     }
   ]
 }
