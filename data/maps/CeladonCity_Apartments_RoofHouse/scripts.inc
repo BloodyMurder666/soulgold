@@ -8,7 +8,6 @@ CeladonCity_Apartments_RoofHouse_EventScript_BlackBelt::
 	msgbox CeladonMansionRoofHouse_Text_PharmacistIntro, MSGBOX_DEFAULT	
 	goto_if_set FLAG_NIGHT_POKEMON, CeladonCity_Apartments_RoofHouse_EventScript_BlackBeltRefused
 	msgbox CeladonMansionRoofHouse_Text_PharmacistStory, MSGBOX_NPC
-	giveitem ITEM_TM_REST
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_GOT_TM_REST
 	msgbox CeladonMansionRoofHouse_Text_PharmacistCurse, MSGBOX_NPC

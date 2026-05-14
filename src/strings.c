@@ -207,9 +207,12 @@ const u8 gText_ReturnToVar1[] = _("Return to\n{STR_VAR_1}.");
 const u8 *const gPocketNamesStringsTable[] =
 {
     [POCKET_ITEMS] =        COMPOUND_STRING("Items"),
+    [POCKET_MEDICINE] =     COMPOUND_STRING("Medicine"),
     [POCKET_POKE_BALLS] =   COMPOUND_STRING("Poké Balls"),
-    [POCKET_TM_HM]  =       COMPOUND_STRING("TMs & HMs"),
+    [POCKET_TM_HM] =        COMPOUND_STRING("TMs & HMs"),
     [POCKET_BERRIES] =      COMPOUND_STRING("Berries"),
+    [POCKET_MEGASTONES] =   COMPOUND_STRING("Mega Stones"),
+    [POCKET_BATTLE_ITEMS] = COMPOUND_STRING("Battle Items"),
     [POCKET_KEY_ITEMS] =    COMPOUND_STRING("Key Items")
 };
 
@@ -491,10 +494,13 @@ const u8 gText_Cute2[] = _("Cute");
 const u8 gText_Smart2[] = _("Smart");
 const u8 gText_Tough2[] = _("Tough");
 const u8 gText_Items[] = _("Items");
+const u8 gText_Medicine[] = _("Medicine");
 const u8 gText_Key_Items[] = _("Key Items");
 const u8 gText_Poke_Balls[] = _("Poké Balls");
 const u8 gText_TMs_Hms[] = _("TMs & HMs");
 const u8 gText_Berries2[] = _("Berries");
+const u8 gText_MegaStones[] = _("Mega Stones");
+const u8 gText_BattleItems[] = _("Battle Items");
 const u8 gText_SomeonesPC[] = _("Pokémon Boxes");
 const u8 gText_LanettesPC[] = _("Pokémon Boxes");
 const u8 gText_PlayersPC[] = _("Items");

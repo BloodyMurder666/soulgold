@@ -66,7 +66,7 @@ CianwoodGym_EventScript_ChuckVictory::
 	addvar VAR_NUM_BADGES, 1
 	setvar VAR_0x8008, 5
 	call Common_EventScript_SetGymTrainers
-	giveitem ITEM_TM_FOCUS_PUNCH
+	giveitem ITEM_TM_BULK_UP
 	msgbox CianwoodGym_Text_ChuckTMSpeech, MSGBOX_DEFAULT
 	setvar VAR_GETFLY, 1
 	setrespawn HEAL_LOCATION_CIANWOOD_CITY
@@ -170,9 +170,9 @@ CianwoodGym_Text_ChuckBadgeSpeech:
 	.string "Here, take this too!$"
 
 CianwoodGym_Text_ChuckTMSpeech:
-	.string "That is Focus Punch.\p"
-	.string "It moves slow but deals huge\n"
-	.string "damage. Just don't get hit first!$"
+	.string "That is Bulk Up.\p"
+	.string "It bolsters your Pokémon both \n"
+	.string "offensively and defensively!$"
 
 CianwoodGym_Text_ChuckAfter:
 	.string "Wahahah! I enjoyed battling you!\p"

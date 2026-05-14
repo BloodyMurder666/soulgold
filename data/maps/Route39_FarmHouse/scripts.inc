@@ -14,7 +14,7 @@ Route39House_EventScript_FarmerF::
 Route39House_EventScript_FarmerFAfter::
 	goto_if_set FLAG_GOT_TM_SNATCH, Route39House_EventScript_FarmerFAfterTM
 	msgbox Route39_Text_FarmerFHealedMiltank, MSGBOX_DEFAULT
-	giveitem ITEM_TM_SNATCH
+	giveitem ITEM_TM_ECHOED_VOICE
 	msgbox Route39_Text_FarmerFSnatchSpeech, MSGBOX_DEFAULT
 	closemessage 
 	setflag FLAG_GOT_TM_SNATCH

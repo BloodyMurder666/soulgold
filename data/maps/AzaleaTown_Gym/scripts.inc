@@ -1095,7 +1095,7 @@ AzaleaTown_Gym_EventScript_Bugsy::
 # 548 "data/maps/AzaleaTown_Gym/scripts.pory"
 	call Common_EventScript_SetGymTrainers
 # 549 "data/maps/AzaleaTown_Gym/scripts.pory"
-	giveitem ITEM_TM_BULLET_SEED
+	giveitem ITEM_TM_U_TURN
 # 550 "data/maps/AzaleaTown_Gym/scripts.pory"
 	msgbox AzaleaTown_Gym_Text_FuryCutterSpeech, MSGBOX_DEFAULT
 # 551 "data/maps/AzaleaTown_Gym/scripts.pory"

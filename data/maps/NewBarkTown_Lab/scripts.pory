@@ -882,7 +882,7 @@ NewBarkTown_Lab_Text_ElmGiveTicket1:
 	.string "something for you.\p"
 	.string "See? It's an S.S.Ticket.\p"
 	.string "Now you can catch Pokémon in\n"
-	.string "Kanto.$"
+	.string "Sevii.$"
 
 NewBarkTown_Lab_Text_ElmGiveTicket2:
 	.string "The ship departs from Olivine\n"
@@ -890,9 +890,7 @@ NewBarkTown_Lab_Text_ElmGiveTicket2:
 	.string "But you knew that already,\n"
 	.string "{PLAYER}.\p"
 	.string "After all, you've traveled all\n"
-	.string "over with your Pokémon.\p"
-	.string "Give my regards to Prof.Oak in\n"
-	.string "Kanto!$"
+	.string "over with your Pokémon.$"
 
 NewBarkTown_Lab_Text_LabMonEgg:
 	.string "It's the Pokémon Egg being\n"

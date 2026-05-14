@@ -485,7 +485,7 @@ OlivineCity_Gym_EventScript_JasmineVictory::
 # 243 "data/maps/OlivineCity_Gym/scripts.pory"
 	call Common_EventScript_SetGymTrainers
 # 244 "data/maps/OlivineCity_Gym/scripts.pory"
-	giveitem ITEM_TM_IRON_TAIL
+	giveitem ITEM_TM_FLASH_CANNON
 # 245 "data/maps/OlivineCity_Gym/scripts.pory"
 	msgbox OlivineCity_Gym_Text_JasmineIronTailSpeech, MSGBOX_DEFAULT
 # 246 "data/maps/OlivineCity_Gym/scripts.pory"
@@ -615,7 +615,7 @@ OlivineCity_Gym_Text_JasmineIronTailSpeech:
 # 308 "data/maps/OlivineCity_Gym/scripts.pory"
 	.string "…You could use that TM to teach\n"
 # 309 "data/maps/OlivineCity_Gym/scripts.pory"
-	.string "Iron Tail.$"
+	.string "Flash Cannon.$"
 # 310 "data/maps/OlivineCity_Gym/scripts.pory"
 
 # 311 "data/maps/OlivineCity_Gym/scripts.pory"

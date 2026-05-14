@@ -4378,6 +4378,11 @@ bool32 SetUpFieldMove_RockClimb(void)
     return FALSE;
 }
 
+bool32 SetUpFieldMove_Whirlpool(void)
+{
+    return FALSE;
+}
+
 static void FieldCallback_Dive(void)
 {
     gFieldEffectArguments[0] = GetCursorSelectionMonId();
@@ -5661,9 +5666,6 @@ bool8 PlayerHasMove(enum Move move)
     u16 item;
     switch (move)
     {
-    case MOVE_SECRET_POWER:
-        item = ITEM_TM_SECRET_POWER;
-        break;
     case MOVE_CUT:
         item = ITEM_HM_CUT;
         break;
@@ -5689,7 +5691,10 @@ bool8 PlayerHasMove(enum Move move)
         item = ITEM_HM_DIVE;
         break;
     case MOVE_ROCK_CLIMB:
-        item = ITEM_HM_ROCK_SMASH;
+        item = ITEM_HM_ROCK_CLIMB;
+        break;
+    case MOVE_WHIRLPOOL:
+        item = ITEM_HM_WHIRLPOOL;
         break;
     default:
         return FALSE;

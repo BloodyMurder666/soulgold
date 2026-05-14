@@ -12655,3 +12655,47 @@ Ability: Thick Fat
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Pound
 - Tail Whip
+
+=== TRAINER_RIVALCRYSTAL2 ===
+Name: Crystal
+Pic: May
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Purple
+
+Zorua
+Level: 22
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+Oricorio Sensu
+Level: 22
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+Azumarill
+Level: 23
+Ability: Thick Fat
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+=== TRAINER_RIVALGOLD2 ===
+Name: Gold
+Pic: Brendan
+Gender: Male
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Purple
+
+Zorua
+Level: 22
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+Oricorio Sensu
+Level: 22
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+Azumarill
+Level: 22
+Ability: Thick Fat
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe

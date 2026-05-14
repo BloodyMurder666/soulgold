@@ -16,7 +16,6 @@ SeafoamIslands_Gym_EventScript_Blaine::
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox SeafoamIslands_Gym_Text_TM, MSGBOX_DEFAULT
-	giveitem ITEM_TM_OVERHEAT
 	setflag FLAG_GARBAGEFLAG
 	setflag FLAG_DEFEATED_CINNABAR_ISLAND_GYM
 	addvar VAR_NUM_BADGES, 1

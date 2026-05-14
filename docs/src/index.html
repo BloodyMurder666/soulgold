@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Soulgold Documentation</title>
+    <link rel="stylesheet" href="assets/styles.css?v=20260513-21">
+  </head>
+  <body>
+    <div class="top-chrome">
+      <header class="site-header">
+        <div>
+          <h1>Soulgold Documentation</h1>
+          <p>Pokemon, encounters, machines, and abilities</p>
+        </div>
+        <input id="globalSearch" class="search" type="search" placeholder="Search">
+      </header>
+
+      <nav class="tabs" aria-label="Documentation sections">
+        <button class="tab active" data-tab="pokedex">Pokedex</button>
+        <button class="tab" data-tab="encounters">Wild Encounters</button>
+        <button class="tab" data-tab="machines">TMs/HMs</button>
+        <button class="tab" data-tab="abilities">Abilities</button>
+      </nav>
+    </div>
+
+    <main>
+      <section id="pokedex" class="panel active">
+        <div class="table-shell pokedex-shell">
+          <div class="dex-head dex-row">
+            <span>ID</span><span></span><span>Name</span><span>Types</span><span>HP</span><span>Atk</span><span>Def</span><span>SpA</span><span>SpD</span><span>Spe</span><span>BST</span><span>Abilities</span>
+          </div>
+          <div id="dexScroller" class="dex-scroller">
+            <div id="dexSpacer"></div>
+            <div id="dexRows"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="encounters" class="panel">
+        <div id="encounterList" class="stack"></div>
+      </section>
+
+      <section id="machines" class="panel">
+        <div class="table-shell">
+          <table>
+            <thead>
+              <tr><th>ID</th><th>Move</th><th>Type</th><th>Cat</th><th>Pow</th><th>Acc</th><th>PP</th><th>Description</th><th>Location</th></tr>
+            </thead>
+            <tbody id="tmRows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="abilities" class="panel">
+        <div id="abilityList" class="ability-list"></div>
+      </section>
+    </main>
+
+    <dialog id="detailDialog">
+      <div class="modal-head">
+        <h2 id="modalTitle"></h2>
+        <button id="closeDialog" class="icon-button" aria-label="Close">x</button>
+      </div>
+      <div id="modalBody"></div>
+    </dialog>
+
+    <script src="assets/app.js?v=20260513-21"></script>
+  </body>
+</html>

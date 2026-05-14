@@ -133,5 +133,6 @@ bool32 SetUpFieldMove_Fly(void);
 bool32 SetUpFieldMove_Waterfall(void);
 bool32 SetUpFieldMove_Dive(void);
 bool32 SetUpFieldMove_RockClimb(void);
+bool32 SetUpFieldMove_Whirlpool(void);
 
 #endif // GUARD_PARTY_MENU_H

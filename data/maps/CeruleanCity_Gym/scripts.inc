@@ -195,7 +195,6 @@ CeruleanCity_Gym_EventScript_Misty::
 	setvar VAR_0x8008, 10
 	call Common_EventScript_SetGymTrainers
 	msgbox CeruleanGym_Text_MistyTm, MSGBOX_DEFAULT
-	giveitem ITEM_TM_WATER_PULSE
 	msgbox CeruleanCity_Gym_Text_WaterPulseSpeech, MSGBOX_DEFAULT
 	call_if_eq VAR_SUICUNE_ENCOUNTERS, 5, CeruleanCity_Gym_SetSuicuneScene
 	closemessage
