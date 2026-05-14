@@ -689,6 +689,12 @@ def add_location(
         locations[item].append(entry)
 
 
+def format_tmhm_location(map_data: dict[str, Any], fallback_name: str, source: str) -> tuple[str, str]:
+    if map_data.get("layout") == "LAYOUT_MAUVILLE_CITY_GAME_CORNER":
+        return "Goldenrod City Game Corner", "Bought"
+    return format_identifier_name(map_data.get("name") or fallback_name), source
+
+
 def parse_tmhm_locations() -> dict[str, list[dict[str, str]]]:
     locations: dict[str, list[dict[str, str]]] = defaultdict(list)
     item_re = re.compile(r"\b(ITEM_(?:TM|HM)_[A-Z0-9_]+)\b")
@@ -698,21 +704,26 @@ def parse_tmhm_locations() -> dict[str, list[dict[str, str]]]:
             data = json.loads(read(map_json))
         except json.JSONDecodeError:
             continue
-        map_name = format_identifier_name(data.get("name") or map_json.parent.name)
+        map_name, source = format_tmhm_location(data, map_json.parent.name, "Item ball")
         for obj in data.get("object_events") or []:
             item = obj.get("trainer_sight_or_berry_tree_id", "")
             if item_re.fullmatch(item):
-                add_location(locations, item, map_name, "Item ball")
+                add_location(locations, item, map_name, source)
 
     for script in sorted((REPO_ROOT / "data/maps").glob("*/scripts.*")):
         text = read(script)
-        map_name = format_identifier_name(script.parent.name)
+        try:
+            map_data = json.loads(read(script.parent / "map.json"))
+        except (FileNotFoundError, json.JSONDecodeError):
+            map_data = {}
+        map_name, gift_source = format_tmhm_location(map_data, script.parent.name, "Gift")
+        mart_map_name, mart_source = format_tmhm_location(map_data, script.parent.name, "Mart")
         for item in re.findall(r"\bgiveitem\s+(ITEM_(?:TM|HM)_[A-Z0-9_]+)\b", text):
-            add_location(locations, item, map_name, "Gift")
+            add_location(locations, item, map_name, gift_source)
         for item in re.findall(r"\bfinditem\s+(ITEM_(?:TM|HM)_[A-Z0-9_]+)\b", text):
-            add_location(locations, item, map_name, "Gift")
+            add_location(locations, item, map_name, gift_source)
         for item in re.findall(r"\.2byte\s+(ITEM_(?:TM|HM)_[A-Z0-9_]+)\b", text):
-            add_location(locations, item, map_name, "Mart")
+            add_location(locations, item, mart_map_name, mart_source)
 
     return dict(locations)
 

@@ -38,7 +38,7 @@ function sprite(src, className = "sprite") {
 }
 
 async function init() {
-  const response = await fetch("data/romhack-docs.json?v=20260513-30");
+  const response = await fetch("data/romhack-docs.json?v=20260513-31");
   state.data = await response.json();
   state.filteredSpecies = state.data.species;
   bindEvents();

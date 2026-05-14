@@ -806,7 +806,7 @@ MauvilleCity_GameCorner_EventScript_BuyCandyJar::
 	checkitemspace ITEM_CANDY_JAR
 	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoRoomForNew
 	removecoins CANDY_JAR_COINS
-	additem ITEM_CANDY_JAR
+	giveitem ITEM_CANDY_JAR
 	setflag FLAG_BOUGHT_EXP_JAR
 	updatecoinsbox 1, 1
 	playse SE_SHOP
@@ -820,7 +820,7 @@ MauvilleCity_GameCorner_EventScript_BuyLinkingCord::
 	checkitemspace ITEM_LINKING_CORD
 	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoRoomForNew
 	removecoins LINKING_CORD_COINS
-	additem ITEM_LINKING_CORD
+	giveitem ITEM_LINKING_CORD
 	updatecoinsbox 1, 1
 	playse SE_SHOP
 	msgbox MauvilleCity_GameCorner_Text_HereYouGo, MSGBOX_DEFAULT
@@ -833,7 +833,7 @@ MauvilleCity_GameCorner_EventScript_BuyOldAmber::
 	checkitemspace ITEM_OLD_AMBER
 	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoRoomForNew
 	removecoins OLD_AMBER_COINS
-	additem ITEM_OLD_AMBER
+	giveitem ITEM_OLD_AMBER
 	updatecoinsbox 1, 1
 	playse SE_SHOP
 	msgbox MauvilleCity_GameCorner_Text_HereYouGo, MSGBOX_DEFAULT
@@ -846,7 +846,7 @@ MauvilleCity_GameCorner_EventScript_BuySunStone::
 	checkitemspace ITEM_SUN_STONE
 	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoRoomForNew
 	removecoins SUNSTONE_COINS
-	additem ITEM_SUN_STONE
+	giveitem ITEM_SUN_STONE
 	updatecoinsbox 1, 1
 	playse SE_SHOP
 	msgbox MauvilleCity_GameCorner_Text_HereYouGo, MSGBOX_DEFAULT
@@ -859,7 +859,7 @@ MauvilleCity_GameCorner_EventScript_BuyMoonStone::
 	checkitemspace ITEM_MOON_STONE
 	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoRoomForNew
 	removecoins MOONSTONE_COINS
-	additem ITEM_MOON_STONE
+	giveitem ITEM_MOON_STONE
 	updatecoinsbox 1, 1
 	playse SE_SHOP
 	msgbox MauvilleCity_GameCorner_Text_HereYouGo, MSGBOX_DEFAULT
@@ -872,7 +872,7 @@ MauvilleCity_GameCorner_EventScript_BuyFireStone::
 	checkitemspace ITEM_FIRE_STONE
 	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoRoomForNew2
 	removecoins FIRESTONE_COINS
-	additem ITEM_FIRE_STONE
+	giveitem ITEM_FIRE_STONE
 	updatecoinsbox 1, 1
 	playse SE_SHOP
 	msgbox MauvilleCity_GameCorner_Text_HereYouGo, MSGBOX_DEFAULT
@@ -885,7 +885,7 @@ MauvilleCity_GameCorner_EventScript_BuyThunderStone::
 	checkitemspace ITEM_THUNDER_STONE
 	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoRoomForNew2
 	removecoins THUNDERSTONE_COINS
-	additem ITEM_THUNDER_STONE
+	giveitem ITEM_THUNDER_STONE
 	updatecoinsbox 1, 1
 	playse SE_SHOP
 	msgbox MauvilleCity_GameCorner_Text_HereYouGo, MSGBOX_DEFAULT
@@ -898,7 +898,7 @@ MauvilleCity_GameCorner_EventScript_BuyWaterStone::
 	checkitemspace ITEM_WATER_STONE
 	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoRoomForNew2
 	removecoins WATERSTONE_COINS
-	additem ITEM_WATER_STONE
+	giveitem ITEM_WATER_STONE
 	updatecoinsbox 1, 1
 	playse SE_SHOP
 	msgbox MauvilleCity_GameCorner_Text_HereYouGo, MSGBOX_DEFAULT
@@ -911,7 +911,7 @@ MauvilleCity_GameCorner_EventScript_BuyLeafStone::
 	checkitemspace ITEM_LEAF_STONE
 	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoRoomForNew2
 	removecoins LEAFSTONE_COINS
-	additem ITEM_LEAF_STONE
+	giveitem ITEM_LEAF_STONE
 	updatecoinsbox 1, 1
 	playse SE_SHOP
 	msgbox MauvilleCity_GameCorner_Text_HereYouGo, MSGBOX_DEFAULT
@@ -966,7 +966,7 @@ MauvilleCity_GameCorner_EventScript_BuyTMDoubleTeam::
 	checkitemspace ITEM_TM_DOUBLE_TEAM
 	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoRoomForTM
 	removecoins TM_DOUBLE_TEAM_COINS
-	additem ITEM_TM_DOUBLE_TEAM
+	giveitem ITEM_TM_DOUBLE_TEAM
 	updatecoinsbox 1, 1
 	playse SE_SHOP
 	msgbox MauvilleCity_GameCorner_Text_HereYouGo, MSGBOX_DEFAULT
@@ -991,7 +991,7 @@ MauvilleCity_GameCorner_EventScript_BuyTMFlamethrower::
 	checkitemspace ITEM_TM_FLAMETHROWER
 	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoRoomForTM
 	removecoins TM_FLAMETHROWER_COINS
-	additem ITEM_TM_FLAMETHROWER
+	giveitem ITEM_TM_FLAMETHROWER
 	updatecoinsbox 1, 1
 	playse SE_SHOP
 	msgbox MauvilleCity_GameCorner_Text_HereYouGo, MSGBOX_DEFAULT
@@ -1016,7 +1016,7 @@ MauvilleCity_GameCorner_EventScript_BuyTMIceBeam::
 	checkitemspace ITEM_TM_ICE_BEAM
 	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoRoomForTM
 	removecoins TM_ICE_BEAM_COINS
-	additem ITEM_TM_ICE_BEAM
+	giveitem ITEM_TM_ICE_BEAM
 	updatecoinsbox 1, 1
 	playse SE_SHOP
 	msgbox MauvilleCity_GameCorner_Text_HereYouGo, MSGBOX_DEFAULT

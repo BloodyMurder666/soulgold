@@ -1615,7 +1615,7 @@ MauvilleCity_GameCorner_EventScript_BuyCandyJar::
 # 808 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	removecoins CANDY_JAR_COINS
 # 809 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	additem ITEM_CANDY_JAR
+	giveitem ITEM_CANDY_JAR
 # 810 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	setflag FLAG_BOUGHT_EXP_JAR
 # 811 "data/maps/MauvilleCity_GameCorner/scripts.pory"
@@ -1643,7 +1643,7 @@ MauvilleCity_GameCorner_EventScript_BuyLinkingCord::
 # 822 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	removecoins LINKING_CORD_COINS
 # 823 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	additem ITEM_LINKING_CORD
+	giveitem ITEM_LINKING_CORD
 # 824 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	updatecoinsbox 1, 1
 # 825 "data/maps/MauvilleCity_GameCorner/scripts.pory"
@@ -1669,7 +1669,7 @@ MauvilleCity_GameCorner_EventScript_BuyOldAmber::
 # 835 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	removecoins OLD_AMBER_COINS
 # 836 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	additem ITEM_OLD_AMBER
+	giveitem ITEM_OLD_AMBER
 # 837 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	updatecoinsbox 1, 1
 # 838 "data/maps/MauvilleCity_GameCorner/scripts.pory"
@@ -1695,7 +1695,7 @@ MauvilleCity_GameCorner_EventScript_BuySunStone::
 # 848 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	removecoins SUNSTONE_COINS
 # 849 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	additem ITEM_SUN_STONE
+	giveitem ITEM_SUN_STONE
 # 850 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	updatecoinsbox 1, 1
 # 851 "data/maps/MauvilleCity_GameCorner/scripts.pory"
@@ -1721,7 +1721,7 @@ MauvilleCity_GameCorner_EventScript_BuyMoonStone::
 # 861 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	removecoins MOONSTONE_COINS
 # 862 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	additem ITEM_MOON_STONE
+	giveitem ITEM_MOON_STONE
 # 863 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	updatecoinsbox 1, 1
 # 864 "data/maps/MauvilleCity_GameCorner/scripts.pory"
@@ -1747,7 +1747,7 @@ MauvilleCity_GameCorner_EventScript_BuyFireStone::
 # 874 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	removecoins FIRESTONE_COINS
 # 875 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	additem ITEM_FIRE_STONE
+	giveitem ITEM_FIRE_STONE
 # 876 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	updatecoinsbox 1, 1
 # 877 "data/maps/MauvilleCity_GameCorner/scripts.pory"
@@ -1773,7 +1773,7 @@ MauvilleCity_GameCorner_EventScript_BuyThunderStone::
 # 887 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	removecoins THUNDERSTONE_COINS
 # 888 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	additem ITEM_THUNDER_STONE
+	giveitem ITEM_THUNDER_STONE
 # 889 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	updatecoinsbox 1, 1
 # 890 "data/maps/MauvilleCity_GameCorner/scripts.pory"
@@ -1799,7 +1799,7 @@ MauvilleCity_GameCorner_EventScript_BuyWaterStone::
 # 900 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	removecoins WATERSTONE_COINS
 # 901 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	additem ITEM_WATER_STONE
+	giveitem ITEM_WATER_STONE
 # 902 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	updatecoinsbox 1, 1
 # 903 "data/maps/MauvilleCity_GameCorner/scripts.pory"
@@ -1825,7 +1825,7 @@ MauvilleCity_GameCorner_EventScript_BuyLeafStone::
 # 913 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	removecoins LEAFSTONE_COINS
 # 914 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	additem ITEM_LEAF_STONE
+	giveitem ITEM_LEAF_STONE
 # 915 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	updatecoinsbox 1, 1
 # 916 "data/maps/MauvilleCity_GameCorner/scripts.pory"
@@ -1935,7 +1935,7 @@ MauvilleCity_GameCorner_EventScript_BuyTMDoubleTeam::
 # 968 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	removecoins TM_DOUBLE_TEAM_COINS
 # 969 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	additem ITEM_TM_DOUBLE_TEAM
+	giveitem ITEM_TM_DOUBLE_TEAM
 # 970 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	updatecoinsbox 1, 1
 # 971 "data/maps/MauvilleCity_GameCorner/scripts.pory"
@@ -1985,7 +1985,7 @@ MauvilleCity_GameCorner_EventScript_BuyTMFlamethrower::
 # 993 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	removecoins TM_FLAMETHROWER_COINS
 # 994 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	additem ITEM_TM_FLAMETHROWER
+	giveitem ITEM_TM_FLAMETHROWER
 # 995 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	updatecoinsbox 1, 1
 # 996 "data/maps/MauvilleCity_GameCorner/scripts.pory"
@@ -2035,7 +2035,7 @@ MauvilleCity_GameCorner_EventScript_BuyTMIceBeam::
 # 1018 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	removecoins TM_ICE_BEAM_COINS
 # 1019 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	additem ITEM_TM_ICE_BEAM
+	giveitem ITEM_TM_ICE_BEAM
 # 1020 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	updatecoinsbox 1, 1
 # 1021 "data/maps/MauvilleCity_GameCorner/scripts.pory"
