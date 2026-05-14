@@ -983,6 +983,17 @@ gSongTable::
 	song mus_hg_obtain_castle_points, MUSIC_PLAYER_SE2, 2
 	song mus_hg_obtain_b_points, MUSIC_PLAYER_SE2, 2
 	song mus_hg_hall_of_fame, MUSIC_PLAYER_SE2, 2
+	song mus_hgss_casino, MUSIC_PLAYER_BGM, 0
+	song mus_casino_plus_1, MUSIC_PLAYER_BGM, 0
+	song mus_casino_plus_2, MUSIC_PLAYER_BGM, 0
+	song mus_casino_plus_3, MUSIC_PLAYER_BGM, 0
+	song mus_casino_plus_4, MUSIC_PLAYER_BGM, 0
+	song mus_casino_plus_5, MUSIC_PLAYER_BGM, 0
+	song mus_casino_plus_6, MUSIC_PLAYER_BGM, 0
+	song mus_casino_plus_7, MUSIC_PLAYER_BGM, 0
+	song mus_casino_plus_8, MUSIC_PLAYER_BGM, 0
+	song mus_casino_plus_9, MUSIC_PLAYER_BGM, 0
+	song mus_casino_plus_gacha, MUSIC_PLAYER_BGM, 0
 
 	.align 2
 dummy_song_header:

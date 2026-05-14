@@ -563,7 +563,7 @@ const struct Tileset gTileset_MauvilleGameCorner =
     .palettes = gTilesetPalettes_MauvilleGameCorner,
     .metatiles = gMetatiles_MauvilleGameCorner,
     .metatileAttributes = gMetatileAttributes_MauvilleGameCorner,
-    .callback = NULL,
+    .callback = InitTilesetAnim_MauvilleGameCorner,
 };
 
 const struct Tileset gTileset_RustboroGym =
@@ -2083,5 +2083,16 @@ const struct Tileset gTileset_Desert =
     .palettes = gTilesetPalettes_Desert,
     .metatiles = gMetatiles_Desert,
     .metatileAttributes = gMetatileAttributes_Desert,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_Casino =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .tiles = gTilesetTiles_Casino,
+    .palettes = gTilesetPalettes_Casino,
+    .metatiles = gMetatiles_Casino,
+    .metatileAttributes = gMetatileAttributes_Casino,
     .callback = NULL,
 };

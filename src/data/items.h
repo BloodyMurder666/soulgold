@@ -15245,9 +15245,9 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Candy Jar"),
         .price = 0,
         .description = COMPOUND_STRING(
-            "Stores EXP drawn\n"
-            "from battle, then\n"
-            "makes Exp. Candy M."),
+            "Stores overflow Exp\n"
+            "from battles and\n"
+            "then creates candy."),
         .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_BAG_MENU,
