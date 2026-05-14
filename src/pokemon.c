@@ -918,13 +918,12 @@ static const u32 sCompressedStatuses[] =
 STATIC_ASSERT(NUM_SPECIES < (1 << 11), PokemonSecureData_species_TooSmall);
 STATIC_ASSERT(NUMBER_OF_MON_TYPES + 1 <= (1 << 5), PokemonSecureData_teraType_TooSmall);
 STATIC_ASSERT(ITEMS_COUNT < (1 << 10), PokemonSecureData_heldItem_TooSmall);
-STATIC_ASSERT(MAX_LEVEL <= 100, PokemonSecureData_experience_PotentiallTooSmall); // Maximum of ~2 million exp.
+STATIC_ASSERT(MAX_LEVEL <= 150, PokemonSecureData_experience_PotentiallyTooSmall); // Maximum of ~16 million exp.
 STATIC_ASSERT(POKEBALL_COUNT <= (1 << 6), PokemonSecureData_pokeball_TooSmall);
 STATIC_ASSERT(MOVES_COUNT_ALL < (1 << 11), PokemonSecureData_moves_TooSmall);
 STATIC_ASSERT(ARRAY_COUNT(sCompressedStatuses) <= (1 << 4), PokemonSecureData_compressedStatus_TooSmall);
 STATIC_ASSERT(MAX_LEVEL < (1 << 7), PokemonSecureData_metLevel_TooSmall);
 STATIC_ASSERT(NUM_VERSIONS < (1 << 4), PokemonSecureData_metGame_TooSmall);
-STATIC_ASSERT(MAX_DYNAMAX_LEVEL < (1 << 4), PokemonSecureData_dynamaxLevel_TooSmall);
 STATIC_ASSERT(MAX_PER_STAT_IVS < (1 << 5), PokemonSecureData_ivs_TooSmall);
 STATIC_ASSERT(MAPSEC_COUNT <= (1 << 15), PokemonSecureData_metLocationHi_TooSmall);
 STATIC_ASSERT(sizeof(struct PokemonSecureData) % sizeof(u16) == 0, PokemonSecureData_SizeNotHalfwordAligned);
@@ -2414,10 +2413,10 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
             retVal = boxMon->secure.hyperTrainedSpDefense;
             break;
         case MON_DATA_IS_SHADOW:
-            retVal = boxMon->isShadow;
+            retVal = 0;
             break;
         case MON_DATA_DYNAMAX_LEVEL:
-            retVal = boxMon->secure.dynamaxLevel;
+            retVal = 0;
             break;
         case MON_DATA_GIGANTAMAX_FACTOR:
             retVal = boxMon->secure.gigantamaxFactor;
@@ -2819,10 +2818,8 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             SET8(boxMon->secure.hyperTrainedSpDefense);
             break;
         case MON_DATA_IS_SHADOW:
-            SET8(boxMon->isShadow);
             break;
         case MON_DATA_DYNAMAX_LEVEL:
-            SET8(boxMon->secure.dynamaxLevel);
             break;
         case MON_DATA_GIGANTAMAX_FACTOR:
             SET8(boxMon->secure.gigantamaxFactor);
@@ -7494,7 +7491,7 @@ u32 SpeciesHasInnateAtLevel(u32 species, enum Ability ability, u32 level)
 bool32 BoxMonHasInnate(struct BoxPokemon *boxmon,  enum Ability ability)
 {
     u32 species = GetBoxMonData(boxmon, MON_DATA_SPECIES, NULL);
-    u32 level = GetBoxMonData(boxmon, MON_DATA_LEVEL, NULL);
+    u32 level = GetLevelFromBoxMonExp(boxmon);
 
     return SpeciesHasInnateAtLevel(species, ability, level);
 }

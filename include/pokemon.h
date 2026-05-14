@@ -136,7 +136,7 @@ struct PokemonSecureData
     enum Type teraType:5; // 30 types.
     u16 heldItem:10; // 1023 items.
     u16 pokeball:6; // 63 balls.
-    u32 experience:21;
+    u32 experience:24; // 16777215 exp.
     u32 heldItem2:10; // 1023 items.
     u32 metLocationHiBit0:1;
     u8 ppBonuses;
@@ -179,7 +179,6 @@ struct PokemonSecureData
     u8 metLocation;
     u16 metLevel:7;
     u16 metGame:4;
-    u16 dynamaxLevel:4;
     u16 otGender:1;
     u32 hpIV:5;
     u32 attackIV:5;
@@ -203,7 +202,6 @@ struct BoxPokemon
     u8 isEgg:1;
     u8 blockBoxRS:1; // Unused, but Pokémon Box Ruby & Sapphire will refuse to deposit a Pokémon with this flag set.
     u8 daysSinceFormChange:3; // 7 days.
-    u8 isShadow:1;
     u8 otName[PLAYER_NAME_LENGTH];
     u8 markings:4;
     u8 compressedStatus:4;
