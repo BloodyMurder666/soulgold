@@ -175,7 +175,8 @@
     "GoldenrodCity_DepartmentStore_6F",
     "GoldenrodCity_DepartmentStore_7F",
     "GoldenrodCity_DepartmentStore_7FNight",
-    "GoldenrodCity_DepartmentStoreElevator"
+    "GoldenrodCity_DepartmentStoreElevator",
+    "GoldenrodApartment"
   ],
   "gMapGroup_IndoorEcruteak": [
     "EcruteakCity_PokemonCenter",

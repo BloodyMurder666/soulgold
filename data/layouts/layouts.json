@@ -9334,6 +9334,16 @@
       "secondary_tileset": "gTileset_Cave_Gray",
       "border_filepath": "data/layouts/VerityCavern/border.bin",
       "blockdata_filepath": "data/layouts/VerityCavern/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_APARTMENT",
+      "name": "GoldenrodApartment_Layout",
+      "width": 67,
+      "height": 23,
+      "primary_tileset": "gTileset_Kanto_Building",
+      "secondary_tileset": "gTileset_CeladonApartments",
+      "border_filepath": "data/layouts/GoldenrodApartment/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodApartment/map.bin"
     }
   ]
 }

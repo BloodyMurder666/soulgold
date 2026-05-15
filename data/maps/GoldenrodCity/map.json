@@ -274,7 +274,7 @@
       "flag": "FLAG_NIGHT_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GRIMER)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(RATTATA_ALOLA)",
       "x": 18,
       "y": 44,
       "elevation": 0,
