@@ -11,6 +11,7 @@
 #include "main.h"
 #include "main_menu.h"
 #include "palette.h"
+#include "random.h"
 #include "reset_rtc_screen.h"
 #include "berry_fix_program.h"
 #include "sound.h"
@@ -28,7 +29,7 @@ enum {
 };
 
 #define START_BANNER_X 128
-#define START_BANNER_Y 116
+#define START_BANNER_Y 86
 #define COPYRIGHT_BANNER_Y 152
 #define POKEMON_LOGO_Y -80
 
@@ -450,6 +451,7 @@ static void Task_TitleScreenPhase3(u8 taskId)
     if (JOY_NEW(A_BUTTON) || JOY_NEW(START_BUTTON))
     {
         FadeOutBGM(4);
+        PlayCry_Normal((Random() & 1) ? SPECIES_HO_OH : SPECIES_LUGIA, CRY_PRIORITY_AMBIENT);
         BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_WHITEALPHA);
         SetMainCallback2(CB2_GoToMainMenu);
     }
@@ -473,7 +475,7 @@ static void Task_TitleScreenPhase3(u8 taskId)
     else
     {
         ++gTasks[taskId].tCounter;
-        UpdateTitleScreenBgPulse(gTasks[taskId].tCounter);
+       //UpdateTitleScreenBgPulse(gTasks[taskId].tCounter);
         if ((gMPlayInfo_BGM.status & 0xFFFF) == 0)
         {
             BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_WHITEALPHA);
@@ -484,7 +486,7 @@ static void Task_TitleScreenPhase3(u8 taskId)
 
 static void CB2_GoToMainMenu(void)
 {
-    if (!UpdatePaletteFade())
+    if (!UpdatePaletteFade() && !IsCryPlaying())
         SetMainCallback2(CB2_InitMainMenu);
 }
 
@@ -515,7 +517,7 @@ static void CB2_GoToBerryFixScreen(void)
     }
 }
 
-static void UpdateTitleScreenBgPulse(u8 frameNum)
+static void UNUSED UpdateTitleScreenBgPulse(u8 frameNum)
 {
     u8 intensity = Q_8_8_TO_INT((Cos(frameNum, Q_8_8(0.5)) + Q_8_8(0.5)) * 6);
 

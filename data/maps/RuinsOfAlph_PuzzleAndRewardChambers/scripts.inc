@@ -124,7 +124,6 @@ RuinsOfAlph_PuzzleAndRewardChambers_MapScript_KabutoSuccess::
 	playse SE_CLICK
 	special DrawWholeMapView
 	delay 30
-	clearflag FLAG_ITEM_DOME_FOSSIL
 	setvar VAR_RUINSOFALPH_STATE, 1
 	applymovement OBJ_EVENT_ID_PLAYER, RuinsOfAlph_PuzzleAndRewardChambers_Movement_Fall
 	delay 30
@@ -170,7 +169,6 @@ RuinsOfAlph_PuzzleAndRewardChambers_MapScript_OmanyteSuccess::
 	playse SE_CLICK
 	special DrawWholeMapView
 	delay 30
-	clearflag FLAG_ITEM_HELIX_FOSSIL
 	applymovement OBJ_EVENT_ID_PLAYER, RuinsOfAlph_PuzzleAndRewardChambers_Movement_Fall
 	delay 30
 	special SpawnCameraObject
@@ -209,7 +207,6 @@ RuinsOfAlph_PuzzleAndRewardChambers_MapScript_AerodactylSuccess::
 	playse SE_CLICK
 	special DrawWholeMapView
 	delay 30
-	clearflag FLAG_ITEM_OLD_AMBER
 	applymovement OBJ_EVENT_ID_PLAYER, RuinsOfAlph_PuzzleAndRewardChambers_Movement_Fall
 	delay 30
 	special SpawnCameraObject
@@ -248,7 +245,6 @@ RuinsOfAlph_PuzzleAndRewardChambers_MapScript_HoohSuccess::
 	playse SE_CLICK
 	special DrawWholeMapView
 	delay 30
-	clearflag FLAG_ITEM_GS_BALL
 	applymovement OBJ_EVENT_ID_PLAYER, RuinsOfAlph_PuzzleAndRewardChambers_Movement_Fall
 	delay 30
 	special SpawnCameraObject

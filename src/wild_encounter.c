@@ -3,9 +3,11 @@
 #include "battle_pike.h"
 #include "battle_pyramid.h"
 #include "event_data.h"
+#include "field_effect.h"
 #include "fieldmap.h"
 #include "fishing.h"
 #include "follower_npc.h"
+#include "item.h"
 #include "random.h"
 #include "field_player_avatar.h"
 #include "link.h"
@@ -28,6 +30,7 @@
 #include "constants/item.h"
 #include "constants/items.h"
 #include "constants/layouts.h"
+#include "constants/region_map_sections.h"
 #include "constants/weather.h"
 #include "constants/pokemon.h"
 #include "level_scaling.h"
@@ -60,6 +63,13 @@ static bool8 TryGetAbilityInfluencedWildMonIndex(const struct WildPokemon *wildM
 static bool8 TryGetAbilityInfluencedWildMonIndex(const struct WildPokemon *wildMon, enum Type type, enum Ability ability, u8 *monIndex);
 #endif
 static bool8 IsAbilityAllowingEncounter(u8 level);
+struct RockSmashItem;
+struct RockSmashItemTable;
+static const struct RockSmashItemTable *GetRockSmashItemTable(void);
+static struct Pokemon *GetRockSmashUser(void);
+static u8 GetRockSmashItemChance(const struct RockSmashItemTable *table);
+static bool8 RockSmashItemTableHasLuckyShiftSlot(const struct RockSmashItem *items, u8 count);
+static enum Item ChooseRockSmashItem(const struct RockSmashItemTable *table);
 
 EWRAM_DATA static u8 sWildEncountersDisabled = 0;
 EWRAM_DATA static u32 sFeebasRngValue = 0;
@@ -70,6 +80,55 @@ EWRAM_DATA u8 gChainFishingDexNavStreak = 0;
 #include "data/wild_encounters.h"
 
 static const struct WildPokemon sWildFeebas = {20, 25, SPECIES_FEEBAS};
+
+#define ROCK_SMASH_DEFAULT_ITEM_CHANCE 50
+#define ROCK_SMASH_LUCKY_ITEM_WEIGHT 5
+
+struct RockSmashItem
+{
+    enum Item itemId;
+    u8 weight;
+};
+
+struct RockSmashItemTable
+{
+    u16 mapSection;
+    u8 itemChance;
+    const struct RockSmashItem *items;
+    u8 count;
+};
+
+static const struct RockSmashItem sRockSmashItems_General[] =
+{
+    {ITEM_RED_SHARD,    25},
+    {ITEM_BLUE_SHARD,   25},
+    {ITEM_YELLOW_SHARD, 25},
+    {ITEM_GREEN_SHARD,  25},
+};
+
+static const struct RockSmashItem sRockSmashItems_RuinsOfAlph[] =
+{
+    {ITEM_RED_SHARD,    10},
+    {ITEM_BLUE_SHARD,   10},
+    {ITEM_YELLOW_SHARD, 10},
+    {ITEM_GREEN_SHARD,  10},
+    {ITEM_DOME_FOSSIL,  10},
+    {ITEM_ROOT_FOSSIL,  10},
+    {ITEM_PLUME_FOSSIL, 10},
+    {ITEM_JAW_FOSSIL,   10},
+    {ITEM_SAIL_FOSSIL,  10},
+    {ITEM_OLD_AMBER,    10},
+};
+
+static const struct RockSmashItemTable sRockSmashItemTables[] =
+{
+    {
+        .mapSection = MAPSEC_RUINS_OF_ALPH,
+        .itemChance = 30,
+        .items = sRockSmashItems_RuinsOfAlph,
+        .count = ARRAY_COUNT(sRockSmashItems_RuinsOfAlph),
+    },
+};
 
 static const u16 sRoute119WaterTileData[] =
 {
@@ -815,7 +874,7 @@ void RockSmashWildEncounter(void)
         {
             gSpecialVar_Result = FALSE;
         }
-        else if (WildEncounterCheck(wildPokemonInfo->encounterRate, TRUE) == TRUE
+        else if (Random() % 100 < wildPokemonInfo->encounterRate
          && TryGenerateWildMon(wildPokemonInfo, WILD_AREA_ROCKS, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE) == TRUE)
         {
             if (TryDoDoubleWildBattle())
@@ -840,6 +899,120 @@ void RockSmashWildEncounter(void)
     {
         gSpecialVar_Result = FALSE;
     }
+}
+
+static const struct RockSmashItemTable *GetRockSmashItemTable(void)
+{
+    u32 i;
+
+    for (i = 0; i < ARRAY_COUNT(sRockSmashItemTables); i++)
+    {
+        if (sRockSmashItemTables[i].mapSection == gMapHeader.regionMapSectionId)
+            return &sRockSmashItemTables[i];
+    }
+
+    return NULL;
+}
+
+static struct Pokemon *GetRockSmashUser(void)
+{
+    u8 partyIndex = gFieldEffectArguments[0];
+
+    if (partyIndex >= PARTY_SIZE)
+        partyIndex = 0;
+
+    return &gPlayerParty[partyIndex];
+}
+
+static u8 GetRockSmashItemChance(const struct RockSmashItemTable *table)
+{
+    u8 chance = ROCK_SMASH_DEFAULT_ITEM_CHANCE;
+    struct Pokemon *mon = GetRockSmashUser();
+
+    if (table != NULL)
+        chance = table->itemChance;
+
+    if (gSpecialVar_0x8004 == TRUE)
+        chance += 5;
+
+    if (!GetMonData(mon, MON_DATA_SANITY_IS_EGG))
+    {
+        if (MonHasTrait(mon, ABILITY_KEEN_EYE))
+            chance += 5;
+        if (MonHasTrait(mon, ABILITY_MAGNET_PULL))
+            chance += 5;
+        if (MonHasTrait(mon, ABILITY_SUCTION_CUPS))
+            chance += 5;
+    }
+
+    if (chance > 100)
+        chance = 100;
+
+    return chance;
+}
+
+static bool8 RockSmashItemTableHasLuckyShiftSlot(const struct RockSmashItem *items, u8 count)
+{
+    u32 i;
+
+    for (i = 0; i < count; i++)
+    {
+        if (items[i].weight == ROCK_SMASH_LUCKY_ITEM_WEIGHT)
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
+static enum Item ChooseRockSmashItem(const struct RockSmashItemTable *table)
+{
+    u32 i;
+    u32 totalWeight = 0;
+    u32 roll;
+    const struct RockSmashItem *items = sRockSmashItems_General;
+    u8 count = ARRAY_COUNT(sRockSmashItems_General);
+    struct Pokemon *mon = GetRockSmashUser();
+    bool8 shiftItem = FALSE;
+
+    if (table != NULL)
+    {
+        items = table->items;
+        count = table->count;
+    }
+
+    for (i = 0; i < count; i++)
+        totalWeight += items[i].weight;
+
+    roll = Random() % totalWeight;
+    for (i = 0; i < count - 1; i++)
+    {
+        if (roll < items[i].weight)
+            break;
+        roll -= items[i].weight;
+    }
+
+    if (!GetMonData(mon, MON_DATA_SANITY_IS_EGG) && RockSmashItemTableHasLuckyShiftSlot(items, count))
+        shiftItem = MonHasTrait(mon, ABILITY_SERENE_GRACE) || MonHasTrait(mon, ABILITY_SUPER_LUCK);
+
+    if (shiftItem && i + 1 < count && items[i].weight != ROCK_SMASH_LUCKY_ITEM_WEIGHT)
+        i++;
+
+    return items[i].itemId;
+}
+
+void TryGetRockSmashItem(void)
+{
+    const struct RockSmashItemTable *table = GetRockSmashItemTable();
+
+    if (Random() % 100 >= GetRockSmashItemChance(table))
+    {
+        gSpecialVar_Result = FALSE;
+        return;
+    }
+
+    gSpecialVar_0x8000 = ChooseRockSmashItem(table);
+    gSpecialVar_0x8001 = 1;
+    gSpecialVar_Result = TRUE;
 }
 
 bool8 SweetScentWildEncounter(void)

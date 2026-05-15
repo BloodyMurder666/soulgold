@@ -76,7 +76,6 @@ PokemonLeague_HallOfFame_EventScript_SetGameClearFlags::
 	clearflag FLAG_HIDE_ZAPDOS
 	clearflag FLAG_HIDE_ARTICUNO
 	clearflag FLAG_HIDE_MOLTRES
-	clearflag FLAG_ITEM_GS_BALL
 	clearflag FLAG_HIDE_CHIENPAO
 	clearflag FLAG_HIDE_MANAPHY
 	clearflag FLAG_HIDE_SHAYMIN 

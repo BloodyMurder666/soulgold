@@ -1249,11 +1249,11 @@
 #define FLAG_ITEM_SPROUT_TOWER_X_DEFEND                             0x4A8 
 #define FLAG_ITEM_SPROUT_TOWER_POTION                               0x4A9 
 #define FLAG_ITEM_SPROUT_TOWER_ESCAPE_ROPE                          0x4AA 
-#define FLAG_ITEM_HELIX_FOSSIL                                      0x4AB 
-#define FLAG_ITEM_DOME_FOSSIL                                       0x4AC 
-#define FLAG_ITEM_OLD_AMBER                                         0x4AD 
-#define FLAG_ITEM_GS_BALL                                           0x4AE 
-#define FLAG_UNUSED_0x4AF                                           0x4AF 
+#define FLAG_UNUSED_0x4AB                                           0x4AB // Unused
+#define FLAG_UNUSED_0x4AC                                           0x4AC // Unused
+#define FLAG_UNUSED_0x4AD                                           0x4AD // Unused
+#define FLAG_ITEM_GS_BALL                                           0x4AE // Technically unused
+#define FLAG_UNUSED_0x4AF                                           0x4AF //  unused
 #define FLAG_ITEM_ROUTE_32_GREATBALL                                0x4B0 
 #define FLAG_ITEM_ROUTE_32_GREATBALL2                               0x4B1 
 #define FLAG_ITEM_ROUTE_32_POTION                                   0x4B2 
@@ -1545,9 +1545,9 @@
 #define FLAG_HIDE_TUESCANY                          (SYSTEM_FLAGS + 0xA7)
 #define FLAG_HIDE_ROUTE34_RIVAL                     (SYSTEM_FLAGS + 0xA8)
 #define FLAG_DESTINYKNOT_GIFT                       (SYSTEM_FLAGS + 0xA9)
-#define FLAG_DERBY_NICKNAME                           (SYSTEM_FLAGS + 0xAA) // Unused Flag
-#define FLAG_DERBY_RESET                           (SYSTEM_FLAGS + 0xAB) // Unused Flag
-#define FLAG_UNUSED_0x90C                           (SYSTEM_FLAGS + 0xAC) // Unused Flag
+#define FLAG_DERBY_NICKNAME                         (SYSTEM_FLAGS + 0xAA) 
+#define FLAG_DERBY_RESET                            (SYSTEM_FLAGS + 0xAB) 
+#define FLAG_RUINSOFALPH_NATUREPOWER                (SYSTEM_FLAGS + 0xAC) 
 #define FLAG_UNUSED_0x90D                           (SYSTEM_FLAGS + 0xAD) // Unused Flag
 #define FLAG_UNUSED_0x90E                           (SYSTEM_FLAGS + 0xAE) // Unused Flag
 #define FLAG_UNUSED_0x90F                           (SYSTEM_FLAGS + 0xAF) // Unused Flag
