@@ -1935,10 +1935,8 @@ NewBarkTown_Lab_GiveStarterMega::
 # 970 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox NewBarkTown_Lab_GiveStarterMega_Text_0
 # 974 "data/maps/NewBarkTown_Lab/scripts.pory"
-	special GetStarterMegaStone
+	giveitem ITEM_BONDSTONE, 1
 # 975 "data/maps/NewBarkTown_Lab/scripts.pory"
-	giveitem VAR_RESULT, 1
-# 976 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox NewBarkTown_Lab_GiveStarterMega_Text_1
 	return
 
@@ -1951,7 +1949,7 @@ NewBarkTown_Lab_GiveStarterMega_Text_0:
 	.string "this.$"
 
 NewBarkTown_Lab_GiveStarterMega_Text_1:
-# 976 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 975 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "It's a special Mega Stone, specifically\n"
 	.string "for your starter Pokémon. I expect \l"
 	.string "great things from you, {PLAYER}!$"

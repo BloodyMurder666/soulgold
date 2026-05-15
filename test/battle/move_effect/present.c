@@ -47,7 +47,7 @@ SINGLE_BATTLE_TEST("Present with Parental Bond hits twice when damaging, but onl
 {
     GIVEN {
         ASSUME(GetSpeciesAbility(SPECIES_KANGASKHAN_MEGA, 0) == ABILITY_PARENTAL_BOND);
-        PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
+        PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_NORMALITE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_PRESENT, gimmick: GIMMICK_MEGA, WITH_RNG(RNG_PRESENT, 1)); }
@@ -106,7 +106,7 @@ SINGLE_BATTLE_TEST("Present with Parental Bond hits twice when damaging, but onl
 {
     GIVEN {
         ASSUME(GetSpeciesAbility(SPECIES_KANGASKHAN_MEGA, 0) == ABILITY_PARENTAL_BOND);
-        PLAYER(SPECIES_KANGASKHAN) { Items(ITEM_PECHA_BERRY, ITEM_KANGASKHANITE); }
+        PLAYER(SPECIES_KANGASKHAN) { Items(ITEM_PECHA_BERRY, ITEM_NORMALITE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_PRESENT, gimmick: GIMMICK_MEGA, WITH_RNG(RNG_PRESENT, 1)); }

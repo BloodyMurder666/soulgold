@@ -96,14 +96,18 @@ function renderAll() {
   renderDex();
   renderEncounters();
   renderTms();
+  renderItems();
   renderAbilities();
+  renderTrainers();
 }
 
 function renderActive() {
   if (state.activeTab === "pokedex") renderDex();
   if (state.activeTab === "encounters") renderEncounters();
   if (state.activeTab === "machines") renderTms();
+  if (state.activeTab === "items") renderItems();
   if (state.activeTab === "abilities") renderAbilities();
+  if (state.activeTab === "trainers") renderTrainers();
 }
 
 function renderDex() {
@@ -484,6 +488,41 @@ function renderTms() {
   });
 }
 
+function renderItems() {
+  const tbody = document.getElementById("itemRows");
+  const rows = state.data.items.filter((item) => matches(`${item.name} ${item.description} ${item.location}`));
+  tbody.innerHTML = "";
+  rows.forEach((item) => {
+    const row = el("tr", "item-row");
+    row.innerHTML = `
+      <td data-label="Name"><strong>${item.name}</strong></td>
+      <td data-label="Description">${item.description || "No description."}</td>
+      <td data-label="Location" class="muted">${item.location || "TBD"}</td>
+    `;
+    row.addEventListener("click", () => openItem(item));
+    tbody.appendChild(row);
+  });
+}
+
+function openItem(item) {
+  document.getElementById("modalTitle").textContent = item.name;
+  document.getElementById("modalBody").innerHTML = `
+    <p>${item.description || "No description."}</p>
+    <h3 class="section-title">Locations</h3>
+    ${item.locations?.length ? `
+      <div class="item-location-list">
+        ${item.locations.map((location) => `
+          <div class="item-location-row">
+            <strong>${location.map}</strong>
+            <span>${location.source}</span>
+          </div>
+        `).join("")}
+      </div>
+    ` : `<p class="muted">Location TBD.</p>`}
+  `;
+  document.getElementById("detailDialog").showModal();
+}
+
 function speciesCards(list) {
   if (!list.length) return `<p class="muted">None.</p>`;
   return `<div class="ability-grid">${list.map((mon) => `
@@ -539,6 +578,45 @@ function openAbility(ability) {
     ${usageList(ability.usage.innate)}
   `;
   document.getElementById("detailDialog").showModal();
+}
+
+function renderTrainers() {
+  const tbody = document.getElementById("trainerRows");
+  const trainers = (state.data.trainers || []).filter((trainer) =>
+    matches(`${trainer.name} ${trainer.party.map((mon) => mon.name).join(" ")}`)
+  );
+  tbody.innerHTML = "";
+  trainers.forEach((trainer) => {
+    const row = el("tr", "trainer-row");
+    row.innerHTML = `
+      <td data-label="Name">
+        <div class="trainer-name-cell">
+          ${sprite(trainer.sprite, "trainer-sprite")}
+          <strong>${trainer.name}</strong>
+        </div>
+      </td>
+      <td data-label="Party">${trainerPartyHtml(trainer.party)}</td>
+    `;
+    tbody.appendChild(row);
+  });
+  if (!trainers.length) {
+    const row = el("tr");
+    row.innerHTML = `<td colspan="2" class="muted">No trainers found.</td>`;
+    tbody.appendChild(row);
+  }
+}
+
+function trainerPartyHtml(party) {
+  return `<div class="trainer-party">${party.map((mon) => {
+    return `
+      <div class="trainer-mon">
+        ${sprite(mon.sprite, "mini-sprite")}
+        <div class="trainer-mon-info">
+          <strong>${mon.displayName || mon.name}</strong>
+          <span class="muted">Lv ${mon.level || 100}</span>
+        </div>
+      </div>`;
+  }).join("")}</div>`;
 }
 
 init().catch((error) => {

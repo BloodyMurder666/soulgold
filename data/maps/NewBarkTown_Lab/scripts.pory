@@ -971,8 +971,7 @@ script NewBarkTown_Lab_GiveStarterMega {
 			Prof. Oak?
 			Then I think you are ready to handle
 			this.")
-	special(GetStarterMegaStone)
-	giveitem(VAR_RESULT, 1)
+	giveitem(ITEM_BONDSTONE, 1)
 	msgbox("It's a special Mega Stone, specifically
 			for your starter Pokémon. I expect 
 			great things from you, {PLAYER}!")

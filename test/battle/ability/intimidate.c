@@ -390,7 +390,7 @@ SINGLE_BATTLE_TEST("Intimidate does not lose timing after mega evolution and swi
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_U_TURN) == EFFECT_HIT_ESCAPE);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_MANECTRIC) { Item(ITEM_MANECTITE); }
+        OPPONENT(SPECIES_MANECTRIC) { Item(ITEM_ELECTRITE); }
         OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_INTIMIDATE); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_U_TURN, gimmick: GIMMICK_MEGA); SEND_OUT(opponent, 1); }
@@ -717,7 +717,7 @@ SINGLE_BATTLE_TEST("Intimidate does not lose timing after mega evolution and swi
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_U_TURN) == EFFECT_HIT_ESCAPE);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_MANECTRIC) { Item(ITEM_MANECTITE); }
+        OPPONENT(SPECIES_MANECTRIC) { Item(ITEM_ELECTRITE); }
         OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_UNNERVE); Innates(ABILITY_INTIMIDATE); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_U_TURN, gimmick: GIMMICK_MEGA); SEND_OUT(opponent, 1); }
@@ -893,7 +893,7 @@ SINGLE_BATTLE_TEST("Intimidate does not lose timing after mega evolution and swi
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_U_TURN) == EFFECT_HIT_ESCAPE);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_MANECTRIC) { Items(ITEM_GREAT_BALL, ITEM_MANECTITE); }
+        OPPONENT(SPECIES_MANECTRIC) { Items(ITEM_GREAT_BALL, ITEM_ELECTRITE); }
         OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_INTIMIDATE); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_U_TURN, gimmick: GIMMICK_MEGA); SEND_OUT(opponent, 1); }

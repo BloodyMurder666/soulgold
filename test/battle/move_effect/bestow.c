@@ -64,14 +64,14 @@ SINGLE_BATTLE_TEST("Bestow fails if the user is holding Mail")
 SINGLE_BATTLE_TEST("Bestow fails if the user's held item is a Mega Stone")
 {
     GIVEN {
-        PLAYER(SPECIES_BLAZIKEN) { Item(ITEM_BLAZIKENITE); }
+        PLAYER(SPECIES_BLAZIKEN) { Item(ITEM_BONDSTONE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_BESTOW); }
     } SCENE {
         MESSAGE("But it failed!");
     } THEN {
-        EXPECT(player->item == ITEM_BLAZIKENITE);
+        EXPECT(player->item == ITEM_BONDSTONE);
         EXPECT(opponent->item == ITEM_NONE);
     }
 }
@@ -195,14 +195,14 @@ SINGLE_BATTLE_TEST("Bestow fails if the user is holding Mail (Items)")
 SINGLE_BATTLE_TEST("Bestow fails if the user's held item is a Mega Stone (Items)")
 {
     GIVEN {
-        PLAYER(SPECIES_BLAZIKEN) { Items(ITEM_NONE, ITEM_BLAZIKENITE); }
+        PLAYER(SPECIES_BLAZIKEN) { Items(ITEM_NONE, ITEM_BONDSTONE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_BESTOW); }
     } SCENE {
         MESSAGE("But it failed!");
     } THEN {
-        EXPECT(player->items[1]== ITEM_BLAZIKENITE);
+        EXPECT(player->items[1]== ITEM_BONDSTONE);
         EXPECT(opponent->items[1]== ITEM_NONE);
     }
 }

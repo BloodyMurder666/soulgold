@@ -776,7 +776,7 @@
 #define FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_INVISIBLE_NINJA_BOY   0x2D7
 #define FLAG_HIDE_KITAKAMI_OGERPON                                  0x2D8
 
-#define FLAG_HIDE_PYROARITE                                           0x2D9
+#define FLAG_HIDE_DARKTITE                                          0x2D9
 
 #define FLAG_GOT_SILK_SCARF                                         0x2DA //HnS NormalFlags Block 2
 #define FLAG_GOT_MYSTICWATER                                        0x2DB

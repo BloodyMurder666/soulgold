@@ -342,7 +342,7 @@ SINGLE_BATTLE_TEST("Embargo doesn't prevent Mega Evolution")
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_CHARIZARD) { Item(ITEM_CHARIZARDITE_Y); }
+        OPPONENT(SPECIES_CHARIZARD) { Item(ITEM_FIRETITE); }
     } WHEN {
         TURN { MOVE(player, MOVE_EMBARGO); }
         TURN { MOVE(opponent, MOVE_BATON_PASS); SEND_OUT(opponent, 1); }
@@ -729,7 +729,7 @@ SINGLE_BATTLE_TEST("Embargo doesn't prevent Mega Evolution (Items)")
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_CHARIZARD) { Items(ITEM_PECHA_BERRY, ITEM_CHARIZARDITE_Y); };
+        OPPONENT(SPECIES_CHARIZARD) { Items(ITEM_PECHA_BERRY, ITEM_FIRETITE); };
     } WHEN {
         TURN { MOVE(player, MOVE_EMBARGO); }
         TURN { MOVE(opponent, MOVE_BATON_PASS); SEND_OUT(opponent, 1); }

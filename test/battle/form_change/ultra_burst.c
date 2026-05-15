@@ -103,7 +103,7 @@ SINGLE_BATTLE_TEST("Ultra Burst and Mega Evolution can happen on the same turn")
 {
     GIVEN {
         PLAYER(SPECIES_NECROZMA_DUSK_MANE) { Item(ITEM_ULTRANECROZIUM_Z); Speed(3); }
-        OPPONENT(SPECIES_GARDEVOIR) { Item(ITEM_GARDEVOIRITE); Speed(2); }
+        OPPONENT(SPECIES_GARDEVOIR) { Item(ITEM_PSYCHITE); Speed(2); }
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE, gimmick: GIMMICK_ULTRA_BURST); MOVE(opponent, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); }
     } SCENE {
@@ -261,7 +261,7 @@ SINGLE_BATTLE_TEST("Ultra Burst and Mega Evolution can happen on the same turn (
 {
     GIVEN {
         PLAYER(SPECIES_NECROZMA_DUSK_MANE) { Items(ITEM_PECHA_BERRY, ITEM_ULTRANECROZIUM_Z); Speed(3); }
-        OPPONENT(SPECIES_GARDEVOIR) { Items(ITEM_PECHA_BERRY, ITEM_GARDEVOIRITE); Speed(2); }
+        OPPONENT(SPECIES_GARDEVOIR) { Items(ITEM_PECHA_BERRY, ITEM_PSYCHITE); Speed(2); }
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE, gimmick: GIMMICK_ULTRA_BURST); MOVE(opponent, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); }
     } SCENE {

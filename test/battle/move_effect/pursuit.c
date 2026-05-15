@@ -363,7 +363,7 @@ SINGLE_BATTLE_TEST("Pursuit user mega evolves before attacking a switching foe a
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_ZIGZAGOON);
-        OPPONENT(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
+        OPPONENT(SPECIES_KANGASKHAN) { Item(ITEM_NORMALITE); }
     } WHEN {
         TURN { SWITCH(player, 1); MOVE(opponent, MOVE_PURSUIT, gimmick: GIMMICK_MEGA); }
     } SCENE {
@@ -379,11 +379,11 @@ SINGLE_BATTLE_TEST("Pursuit user mega evolves before attacking a switching foe a
 DOUBLE_BATTLE_TEST("Pursuit user mega evolves before attacking a switching foe and others mega evolve after switch")
 {
     GIVEN {
-        PLAYER(SPECIES_CHARIZARD) { Item(ITEM_CHARIZARDITE_X); }
+        PLAYER(SPECIES_CHARIZARD) { Item(ITEM_DRAGOTITE); }
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_ZIGZAGOON);
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
+        OPPONENT(SPECIES_KANGASKHAN) { Item(ITEM_NORMALITE); }
     } WHEN {
         TURN { SWITCH(playerRight, 2); MOVE(opponentRight, MOVE_PURSUIT, gimmick: GIMMICK_MEGA, target: playerRight); MOVE(playerLeft, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); }
     } SCENE {
@@ -876,7 +876,7 @@ SINGLE_BATTLE_TEST("Pursuit user mega evolves before attacking a switching foe a
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_ZIGZAGOON);
-        OPPONENT(SPECIES_KANGASKHAN) { Items(ITEM_PECHA_BERRY, ITEM_KANGASKHANITE); }
+        OPPONENT(SPECIES_KANGASKHAN) { Items(ITEM_PECHA_BERRY, ITEM_NORMALITE); }
     } WHEN {
         TURN { SWITCH(player, 1); MOVE(opponent, MOVE_PURSUIT, gimmick: GIMMICK_MEGA); }
     } SCENE {
@@ -892,11 +892,11 @@ SINGLE_BATTLE_TEST("Pursuit user mega evolves before attacking a switching foe a
 DOUBLE_BATTLE_TEST("Pursuit user mega evolves before attacking a switching foe and others mega evolve after switch (Items)")
 {
     GIVEN {
-        PLAYER(SPECIES_CHARIZARD) { Items(ITEM_PECHA_BERRY, ITEM_CHARIZARDITE_X); }
+        PLAYER(SPECIES_CHARIZARD) { Items(ITEM_PECHA_BERRY, ITEM_DRAGOTITE); }
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_ZIGZAGOON);
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_KANGASKHAN) { Items(ITEM_PECHA_BERRY, ITEM_KANGASKHANITE); }
+        OPPONENT(SPECIES_KANGASKHAN) { Items(ITEM_PECHA_BERRY, ITEM_NORMALITE); }
     } WHEN {
         TURN { SWITCH(playerRight, 2); MOVE(opponentRight, MOVE_PURSUIT, gimmick: GIMMICK_MEGA, target: playerRight); MOVE(playerLeft, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); }
     } SCENE {

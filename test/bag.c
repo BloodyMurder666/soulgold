@@ -19,13 +19,13 @@ TEST("Items are stored in their correct bag pockets")
     EXPECT_EQ(GetItemPocket(ITEM_POTION), POCKET_MEDICINE);
     EXPECT_EQ(GetItemPocket(ITEM_LEFTOVERS), POCKET_BATTLE_ITEMS);
     EXPECT_EQ(GetItemPocket(ITEM_ROCKY_HELMET), POCKET_BATTLE_ITEMS);
-    EXPECT_EQ(GetItemPocket(ITEM_VENUSAURITE), POCKET_MEGASTONES);
+    EXPECT_EQ(GetItemPocket(ITEM_GRASSTITE), POCKET_MEGASTONES);
 
     RUN_OVERWORLD_SCRIPT(
         additem ITEM_POTION;
         additem ITEM_LEFTOVERS;
         additem ITEM_ROCKY_HELMET;
-        additem ITEM_VENUSAURITE;
+        additem ITEM_GRASSTITE;
     );
 
     EXPECT_EQ(medicinePocket->itemSlots[0].itemId, ITEM_POTION);
@@ -38,7 +38,7 @@ TEST("Items are stored in their correct bag pockets")
     EXPECT_EQ(battleItemsPocket->itemSlots[1].quantity, 1);
     EXPECT_EQ(battleItemsPocket->itemSlots[2].itemId, ITEM_NONE);
 
-    EXPECT_EQ(megaStonesPocket->itemSlots[0].itemId, ITEM_VENUSAURITE);
+    EXPECT_EQ(megaStonesPocket->itemSlots[0].itemId, ITEM_GRASSTITE);
     EXPECT_EQ(megaStonesPocket->itemSlots[0].quantity, 1);
     EXPECT_EQ(megaStonesPocket->itemSlots[1].itemId, ITEM_NONE);
 }

@@ -12,7 +12,7 @@ AI_SINGLE_BATTLE_TEST("TESTING: forced illegal bench abilities are honored durin
             Level(76);
             Moves(MOVE_BULLET_SEED);
             Ability(ABILITY_GUTS);
-            Item(ITEM_HERACRONITE);
+            Item(ITEM_BUGTITE);
             Nature(NATURE_ADAMANT);
             Speed(157);
         }

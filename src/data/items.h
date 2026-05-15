@@ -7875,6 +7875,66 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_Falinksite,
     },
 
+#define TYPE_MEGA_STONE(itemId, itemName, typeName, iconName) \
+    [itemId] =                                                \
+    {                                                         \
+        .name = ITEM_NAME(itemName),                          \
+        .price = 0,                                           \
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,                 \
+        .description = COMPOUND_STRING(                       \
+            "A stone that lets\n"                             \
+            typeName "-type\n"                        \
+            "Mega Evolve."),                                  \
+        .pocket = POCKET_MEGASTONES,                          \
+        .sortType = ITEM_TYPE_MEGA_STONE,                     \
+        .heldSlot = 0,                                        \
+        .type = ITEM_USE_BAG_MENU,                            \
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,         \
+        .flingPower = 80,                                     \
+        .iconPic = CAT(gItemIcon_, iconName),                 \
+        .iconPalette = CAT(gItemIconPalette_, iconName),      \
+    }
+
+    TYPE_MEGA_STONE(ITEM_NORMALITE, "Normalite", "Normal", Pidgeotite),
+    TYPE_MEGA_STONE(ITEM_FIRETITE, "Firetite", "Fire", CharizarditeY),
+    TYPE_MEGA_STONE(ITEM_WATERTITE, "Watertite", "Water", Blastoisinite),
+    TYPE_MEGA_STONE(ITEM_ELECTRITE, "Electrite", "Electric", Ampharosite),
+    TYPE_MEGA_STONE(ITEM_GRASSTITE, "Grasstite", "Grass", Venusaurite),
+    TYPE_MEGA_STONE(ITEM_ICETITE, "Icetite", "Ice", Glalitite),
+    TYPE_MEGA_STONE(ITEM_FIGHTITE, "Fightite", "Fighting", Medichamite),
+    TYPE_MEGA_STONE(ITEM_POISONTITE, "Poisontite", "Poison", Dragalgite),
+    TYPE_MEGA_STONE(ITEM_GROUNDITE, "Groundite", "Ground", Garchompite),
+    TYPE_MEGA_STONE(ITEM_FLYINGITE, "Flyingite", "Flying", Staraptite),
+    TYPE_MEGA_STONE(ITEM_PSYCHITE, "Psychite", "Psychic", Alakazite),
+    TYPE_MEGA_STONE(ITEM_BUGTITE, "Bugtite", "Bug", Beedrillite),
+    TYPE_MEGA_STONE(ITEM_ROCKTITE, "Rocktite", "Rock", Aerodactylite),
+    TYPE_MEGA_STONE(ITEM_GHOSTITE, "Ghostite", "Ghost", Gengarite),
+    TYPE_MEGA_STONE(ITEM_DRAGOTITE, "Dragotite", "Dragon", Dragoninite),
+    TYPE_MEGA_STONE(ITEM_DARKTITE, "Darktite", "Dark", Houndoominite),
+    TYPE_MEGA_STONE(ITEM_STEELTITE, "Steeltite", "Steel", Steelixite),
+    TYPE_MEGA_STONE(ITEM_FAIRYTITE, "Fairytite", "Fairy", Gardevoirite),
+
+#undef TYPE_MEGA_STONE
+
+    [ITEM_BONDSTONE] =
+    {
+        .name = ITEM_NAME("Bondstone"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = COMPOUND_STRING(
+            "A stone that lets\n"
+            "your starter Mega\n"
+            "Evolve."),
+        .pocket = POCKET_MEGASTONES,
+        .sortType = ITEM_TYPE_MEGA_STONE,
+        .heldSlot = 0,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 80,
+        .iconPic = gItemIcon_Audinite,
+        .iconPalette = gItemIconPalette_Audinite,
+    },
+
 // Gems
     #if I_PRICE >= GEN_9
         #define GEM_PRICE 15000

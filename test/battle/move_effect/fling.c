@@ -99,7 +99,7 @@ SINGLE_BATTLE_TEST("Fling fails if the item changes the Pokémon's form")
 SINGLE_BATTLE_TEST("Fling works if the item changes a Pokémon's form but not the one holding it")
 {
     GIVEN {
-        PLAYER(SPECIES_VENUSAUR) { Item(ITEM_BLASTOISINITE); }
+        PLAYER(SPECIES_VENUSAUR) { Item(ITEM_WATERTITE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_FLING); }
@@ -498,8 +498,8 @@ SINGLE_BATTLE_TEST("Fling deals damage based on items fling power")
 
     GIVEN {
         ASSUME(GetMovePower(MOVE_CRUNCH) == 80);
-        ASSUME(gItemsInfo[ITEM_VENUSAURITE].flingPower == 80);
-        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_VENUSAURITE); }
+        ASSUME(gItemsInfo[ITEM_GRASSTITE].flingPower == 80);
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_GRASSTITE); }
         OPPONENT(SPECIES_REGIROCK);
     } WHEN {
         TURN { MOVE(player, MOVE_FLING); }
@@ -810,7 +810,7 @@ SINGLE_BATTLE_TEST("Fling fails if the item changes the Pokémon's form (Items)"
 SINGLE_BATTLE_TEST("Fling works if the item changes a Pokémon's form but not the one holding it (Items)")
 {
     GIVEN {
-        PLAYER(SPECIES_VENUSAUR) { Items(ITEM_NONE, ITEM_BLASTOISINITE); }
+        PLAYER(SPECIES_VENUSAUR) { Items(ITEM_NONE, ITEM_WATERTITE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_FLING); }
@@ -1209,8 +1209,8 @@ SINGLE_BATTLE_TEST("Fling deals damage based on items fling power (Items)")
 
     GIVEN {
         ASSUME(GetMovePower(MOVE_CRUNCH) == 80);
-        ASSUME(gItemsInfo[ITEM_VENUSAURITE].flingPower == 80);
-        PLAYER(SPECIES_WOBBUFFET) { Items(ITEM_NONE, ITEM_VENUSAURITE); }
+        ASSUME(gItemsInfo[ITEM_GRASSTITE].flingPower == 80);
+        PLAYER(SPECIES_WOBBUFFET) { Items(ITEM_NONE, ITEM_GRASSTITE); }
         OPPONENT(SPECIES_REGIROCK);
     } WHEN {
         TURN { MOVE(player, MOVE_FLING); }

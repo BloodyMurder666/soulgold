@@ -26,7 +26,10 @@ MOVES_H = REPO_ROOT / "include/constants/moves.h"
 ABILITIES_H = REPO_ROOT / "include/constants/abilities.h"
 TYPES_H = REPO_ROOT / "include/constants/pokemon.h"
 TMS_HMS_H = REPO_ROOT / "include/constants/tms_hms.h"
+ITEMS_H = REPO_ROOT / "include/constants/items.h"
+TRAINERS_H = REPO_ROOT / "src/data/trainers.party"
 GRAPHICS_POKEMON_H = REPO_ROOT / "src/data/graphics/pokemon.h"
+TRAINER_FRONT_PIC_DIR = REPO_ROOT / "graphics/trainers/front_pics"
 WILD_ENCOUNTERS_JSON = REPO_ROOT / "src/data/wild_encounters.json"
 
 STAT_FIELDS = {
@@ -105,6 +108,36 @@ SPECIES_NAME_OVERRIDES = {
     "SPECIES_FLOETTE_ETERNAL": "Floette Eternal",
 }
 
+ITEMS_HIDDEN_SORT_TYPES = {
+    "ITEM_TYPE_Z_CRYSTAL",
+}
+
+GENERIC_MEGA_STONE_ITEMS = {
+    "ITEM_NORMALITE",
+    "ITEM_FIRETITE",
+    "ITEM_WATERTITE",
+    "ITEM_ELECTRITE",
+    "ITEM_GRASSTITE",
+    "ITEM_ICETITE",
+    "ITEM_FIGHTITE",
+    "ITEM_POISONTITE",
+    "ITEM_GROUNDITE",
+    "ITEM_FLYINGITE",
+    "ITEM_PSYCHITE",
+    "ITEM_BUGTITE",
+    "ITEM_ROCKTITE",
+    "ITEM_GHOSTITE",
+    "ITEM_DRAGOTITE",
+    "ITEM_DARKTITE",
+    "ITEM_STEELTITE",
+    "ITEM_FAIRYTITE",
+    "ITEM_BONDSTONE",
+}
+
+IMPORTANT_ITEM_POCKETS = {
+    "POCKET_BATTLE_ITEMS",
+}
+
 
 @dataclass
 class SpeciesRow:
@@ -149,6 +182,10 @@ def format_identifier_name(value: str) -> str:
 
 def normalize_token(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "", value.lower())
+
+
+def slugify(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "_", value.lower()).strip("_")
 
 
 def decode_c_string(value: str) -> str:
@@ -260,6 +297,10 @@ def split_designated_entries(text: str) -> dict[str, str]:
             current_key = match.group(1)
             current = [line]
             depth = line.count("{") - line.count("}")
+            if "{" in line and depth <= 0:
+                entries[current_key] = "\n".join(current)
+                current_key = None
+                current = []
             continue
 
         current.append(line)
@@ -664,16 +705,31 @@ def parse_tmhm_list() -> list[dict[str, Any]]:
     return rows
 
 
-def parse_item_records() -> dict[str, dict[str, str]]:
+def parse_item_records() -> dict[str, dict[str, Any]]:
     text = preprocess("data/items.h")
+    source_text = read(REPO_ROOT / "src/data/items.h")
+    shared_strings = parse_shared_strings(source_text)
+    item_to_id, _ = parse_enum_constants(ITEMS_H, "ITEM_")
     entries = split_designated_entries(text)
-    records: dict[str, dict[str, str]] = {}
+    records: dict[str, dict[str, Any]] = {}
     for key, entry in entries.items():
-        if not key.startswith(("ITEM_TM_", "ITEM_HM_")):
+        if not key.startswith("ITEM_"):
             continue
+        desc_expr = extract_field(entry, "description") or ""
+        description = collect_strings(desc_expr)
+        if not description and desc_expr in shared_strings:
+            description = shared_strings[desc_expr]
+        pocket_expr = extract_field(entry, "pocket") or ""
+        pocket_match = re.search(r"\bPOCKET_[A-Z0-9_]+\b", pocket_expr)
+        sort_type_expr = extract_field(entry, "sortType") or ""
+        sort_type_match = re.search(r"\bITEM_TYPE_[A-Z0-9_]+\b", sort_type_expr)
         records[key] = {
+            "id": item_to_id.get(key, 0),
+            "constant": key,
             "name": collect_strings(extract_field(entry, "name") or ""),
-            "description": collect_strings(extract_field(entry, "description") or ""),
+            "description": description,
+            "pocket": pocket_match.group(0) if pocket_match else "",
+            "sortType": sort_type_match.group(0) if sort_type_match else "",
         }
     return records
 
@@ -689,10 +745,14 @@ def add_location(
         locations[item].append(entry)
 
 
-def format_tmhm_location(map_data: dict[str, Any], fallback_name: str, source: str) -> tuple[str, str]:
+def format_item_location(map_data: dict[str, Any], fallback_name: str, source: str) -> tuple[str, str]:
     if map_data.get("layout") == "LAYOUT_MAUVILLE_CITY_GAME_CORNER":
         return "Goldenrod City Game Corner", "Bought"
     return format_identifier_name(map_data.get("name") or fallback_name), source
+
+
+def format_tmhm_location(map_data: dict[str, Any], fallback_name: str, source: str) -> tuple[str, str]:
+    return format_item_location(map_data, fallback_name, source)
 
 
 def parse_tmhm_locations() -> dict[str, list[dict[str, str]]]:
@@ -726,6 +786,77 @@ def parse_tmhm_locations() -> dict[str, list[dict[str, str]]]:
             add_location(locations, item, mart_map_name, mart_source)
 
     return dict(locations)
+
+
+def parse_item_locations(item_constants: set[str]) -> dict[str, list[dict[str, str]]]:
+    locations: dict[str, list[dict[str, str]]] = defaultdict(list)
+    if not item_constants:
+        return {}
+
+    item_pattern = "|".join(sorted((re.escape(item) for item in item_constants), key=len, reverse=True))
+    item_re = re.compile(rf"\b({item_pattern})\b")
+
+    for map_json in sorted((REPO_ROOT / "data/maps").glob("*/map.json")):
+        try:
+            data = json.loads(read(map_json))
+        except json.JSONDecodeError:
+            continue
+        map_name, source = format_item_location(data, map_json.parent.name, "Item ball")
+        for obj in data.get("object_events") or []:
+            item = obj.get("trainer_sight_or_berry_tree_id", "")
+            if item in item_constants:
+                add_location(locations, item, map_name, source)
+
+    for script in sorted((REPO_ROOT / "data/maps").glob("*/scripts.*")):
+        text = read(script)
+        try:
+            map_data = json.loads(read(script.parent / "map.json"))
+        except (FileNotFoundError, json.JSONDecodeError):
+            map_data = {}
+        map_name, gift_source = format_item_location(map_data, script.parent.name, "Gift")
+        hidden_map_name, hidden_source = format_item_location(map_data, script.parent.name, "Hidden item")
+        mart_map_name, mart_source = format_item_location(map_data, script.parent.name, "Mart")
+        held_map_name, held_source = format_item_location(map_data, script.parent.name, "Gift Pokemon held item")
+
+        for item in re.findall(rf"\bgiveitem(?:\s+|\()\s*({item_pattern})\b", text):
+            add_location(locations, item, map_name, gift_source)
+        for item in re.findall(rf"\bfinditem(?:\s+|\()\s*({item_pattern})\b", text):
+            add_location(locations, item, hidden_map_name, hidden_source)
+        for item in re.findall(rf"\.2byte\s+({item_pattern})\b", text):
+            add_location(locations, item, mart_map_name, mart_source)
+        for match in re.finditer(rf"\bgivemon(?:\s+|\()(.*?)(?:\n|$)", text):
+            for item in item_re.findall(match.group(1)):
+                add_location(locations, item, held_map_name, held_source)
+
+    return dict(locations)
+
+
+def build_important_items(item_records: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
+    selected = {
+        constant
+        for constant, item in item_records.items()
+        if (item.get("pocket") in IMPORTANT_ITEM_POCKETS or constant in GENERIC_MEGA_STONE_ITEMS)
+        and item.get("sortType") not in ITEMS_HIDDEN_SORT_TYPES
+    }
+    locations = parse_item_locations(selected)
+    rows = []
+    for constant in sorted(selected, key=lambda item: item_records.get(item, {}).get("id", 0)):
+        item = item_records[constant]
+        item_locations = locations.get(constant, [])
+        rows.append({
+            "id": item.get("id", 0),
+            "constant": constant,
+            "name": item.get("name") or clean_constant_name(constant, "ITEM_"),
+            "description": item.get("description", ""),
+            "pocket": item.get("pocket", ""),
+            "sortType": item.get("sortType", ""),
+            "locations": item_locations,
+            "location": "; ".join(
+                f"{entry['map']} ({entry['source']})"
+                for entry in item_locations
+            ),
+        })
+    return rows
 
 
 def parse_front_pic_sources() -> dict[str, Path]:
@@ -893,6 +1024,222 @@ def build_species_locations(encounters: list[dict[str, Any]]) -> dict[str, list[
     return dict(locations)
 
 
+def parse_showdown_team(text: str) -> list[dict[str, Any]]:
+    """Parse a Pokemon Showdown export string into a list of Pokemon dicts."""
+    mons = []
+    current: dict[str, Any] | None = None
+    for raw_line in text.splitlines():
+        line = raw_line.strip()
+        if not line:
+            if current is not None:
+                mons.append(current)
+                current = None
+            continue
+
+        # First non-empty line of a new mon: "Name @ Item" or just "Name"
+        if current is None:
+            if line.startswith("-") or ":" in line.split("@")[0]:
+                # Looks like a move or field line without a header — malformed, skip
+                continue
+            if "@" in line:
+                name_part, item_part = line.split("@", 1)
+            else:
+                name_part, item_part = line, ""
+            species_match = re.search(r"\((SPECIES_[A-Z0-9_]+|[A-Za-z][A-Za-z0-9_ -]+)\)", name_part)
+            # Strip gender marker e.g. "(M)"
+            name_clean = re.sub(r"\s*\([MF]\)\s*", " ", name_part).strip()
+            if species_match and species_match.group(1) not in {"M", "F"}:
+                name_clean = species_match.group(1).strip()
+            current = {
+                "name": name_clean,
+                "item": item_part.strip(),
+                "level": 100,
+                "ability": "",
+                "nature": "",
+                "evs": {},
+                "ivs": {},
+                "moves": [],
+            }
+            continue
+
+        # Move line
+        if line.startswith("-"):
+            move = line.lstrip("- ").strip()
+            if move:
+                current["moves"].append(move)
+            continue
+
+        if ":" in line:
+            key, _, value = line.partition(":")
+            key = key.strip().lower()
+            value = value.strip()
+            if key == "ability":
+                current["ability"] = value
+            elif key == "level":
+                level = eval_int_expr(value)
+                current["level"] = level if level is not None else 100
+            elif key == "nature" or line.endswith("Nature"):
+                current["nature"] = value.replace("Nature", "").strip()
+            elif key == "evs":
+                current["evs"] = _parse_stat_spread(value)
+            elif key == "ivs":
+                current["ivs"] = _parse_stat_spread(value)
+            continue
+
+        # "Modest Nature" style (no colon)
+        if line.endswith("Nature"):
+            current["nature"] = line.replace("Nature", "").strip()
+
+    if current is not None:
+        mons.append(current)
+    return mons
+
+
+def _parse_stat_spread(text: str) -> dict[str, int]:
+    """Parse '252 HP / 4 Atk / 252 Spe' into {'hp': 252, 'atk': 4, 'spe': 252}."""
+    stat_aliases = {
+        "hp": "hp", "atk": "atk", "def": "def",
+        "spa": "spa", "spd": "spd", "spe": "spe",
+        "spatk": "spa", "spdef": "spd", "spd": "spd",
+    }
+    result: dict[str, int] = {}
+    for chunk in text.split("/"):
+        chunk = chunk.strip()
+        match = re.match(r"(\d+)\s+(.*)", chunk)
+        if not match:
+            continue
+        value, stat_name = int(match.group(1)), match.group(2).strip().lower().replace(" ", "")
+        canonical = stat_aliases.get(stat_name)
+        if canonical:
+            result[canonical] = value
+    return result
+
+
+def parse_trainer_front_pic_sources() -> dict[str, Path]:
+    sources: dict[str, Path] = {}
+    for path in sorted(TRAINER_FRONT_PIC_DIR.glob("*.png")):
+        sources[normalize_token(path.stem)] = path
+    return sources
+
+
+def trainer_pic_source(pic_name: str, trainer_front_sources: dict[str, Path]) -> Path | None:
+    candidates = [
+        normalize_token(pic_name),
+        normalize_token(slugify(pic_name)),
+        normalize_token(pic_name.replace("Trainer", "Trainer ")),
+    ]
+    for candidate in candidates:
+        if candidate in trainer_front_sources:
+            return trainer_front_sources[candidate]
+    return None
+
+
+def build_species_lookup(species: list[SpeciesRow]) -> dict[str, SpeciesRow]:
+    lookup: dict[str, SpeciesRow] = {}
+    for row in species:
+        names = {
+            row.name,
+            clean_constant_name(row.constant, "SPECIES_"),
+            row.constant.removeprefix("SPECIES_"),
+        }
+        for name in names:
+            lookup.setdefault(normalize_token(name), row)
+    return lookup
+
+
+def species_for_trainer_mon(name: str, species_lookup: dict[str, SpeciesRow]) -> SpeciesRow | None:
+    clean_name = re.sub(r"\s*\([^)]*\)\s*", " ", name)
+    clean_name = clean_name.split("@", 1)[0].strip()
+    return species_lookup.get(normalize_token(clean_name))
+
+
+def front_pic_symbol_for_name(name: str, front_sources: dict[str, Path]) -> str | None:
+    clean_name = name.removeprefix("SPECIES_")
+    pascal_name = "".join(part.capitalize() for part in re.findall(r"[A-Za-z0-9]+", clean_name))
+    candidates = [
+        f"gMonFrontPic_{pascal_name}",
+        f"gMonFrontPic_{pascal_name}Standard",
+    ]
+    for candidate in candidates:
+        if candidate in front_sources:
+            return candidate
+    return None
+
+
+def enrich_trainer_party(
+    party: list[dict[str, Any]],
+    species_lookup: dict[str, SpeciesRow],
+    front_sources: dict[str, Path],
+    sprite_dir: Path,
+) -> list[dict[str, Any]]:
+    enriched = []
+    for mon in party:
+        species = species_for_trainer_mon(mon["name"], species_lookup)
+        display_name = mon["name"]
+        if display_name.startswith("SPECIES_"):
+            display_name = species.name if species else clean_constant_name(display_name, "SPECIES_")
+        sprite = species.sprite if species else None
+        if sprite is None:
+            symbol = front_pic_symbol_for_name(display_name, front_sources)
+            if symbol:
+                sprite_path = sprite_dir / f"{slugify(display_name)}.png"
+                process_sprite(front_sources[symbol], sprite_path)
+                sprite = str(sprite_path.relative_to(OUT_DIR))
+        enriched.append({
+            **mon,
+            "constant": species.constant if species else "",
+            "displayName": display_name,
+            "sprite": sprite,
+        })
+    return enriched
+
+
+def parse_trainers(
+    species_lookup: dict[str, SpeciesRow],
+    front_sources: dict[str, Path],
+    trainer_front_sources: dict[str, Path],
+    sprite_dir: Path,
+    trainer_sprite_dir: Path,
+) -> list[dict[str, Any]]:
+    """Read trainers.party and parse each === TRAINER_* === block."""
+    if not TRAINERS_H.exists():
+        return []
+
+    text = strip_c_comments(read(TRAINERS_H))
+    trainers: list[dict[str, Any]] = []
+    header_re = re.compile(r"^===\s*(TRAINER_[A-Z0-9_]+)\s*===", re.MULTILINE)
+    matches = list(header_re.finditer(text))
+
+    for index, match in enumerate(matches):
+        constant = match.group(1)
+        start = match.end()
+        end = matches[index + 1].start() if index + 1 < len(matches) else len(text)
+        block = text[start:end].strip()
+        name_match = re.search(r"^Name:\s*(.*?)\s*$", block, re.MULTILINE)
+        pic_match = re.search(r"^Pic:\s*(.*?)\s*$", block, re.MULTILINE)
+        name = name_match.group(1).strip() if name_match and name_match.group(1).strip() else clean_constant_name(constant, "TRAINER_")
+        pic = pic_match.group(1).strip() if pic_match else ""
+        party = enrich_trainer_party(parse_showdown_team(block), species_lookup, front_sources, sprite_dir)
+        if not party:
+            continue
+
+        front_sprite = None
+        source = trainer_pic_source(pic, trainer_front_sources) if pic else None
+        if source:
+            target = trainer_sprite_dir / source.name
+            process_sprite(source, target)
+            front_sprite = str(target.relative_to(OUT_DIR))
+
+        trainers.append({
+            "constant": constant,
+            "name": name,
+            "pic": pic,
+            "sprite": front_sprite,
+            "party": party,
+        })
+    return trainers
+
+
 def build() -> None:
     moves = parse_named_table("data/moves_info.h", "MOVE_", "MOVE_")
     abilities = parse_named_table("data/abilities.h", "ABILITY_", "ABILITY_")
@@ -905,6 +1252,7 @@ def build() -> None:
     level_up = parse_level_up_learnsets()
     teachables = parse_teachable_learnsets(tmhm_moves)
     front_sources = parse_front_pic_sources()
+    trainer_front_sources = parse_trainer_front_pic_sources()
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     for item in SRC_DIR.rglob("*"):
@@ -916,6 +1264,7 @@ def build() -> None:
     (OUT_DIR / ".nojekyll").write_text("", encoding="utf-8")
     (OUT_DIR / "data").mkdir(parents=True, exist_ok=True)
     sprite_dir = OUT_DIR / "sprites" / "pokemon"
+    trainer_sprite_dir = OUT_DIR / "sprites" / "trainers"
     type_icons = copy_type_icons()
 
     for row in species:
@@ -935,6 +1284,7 @@ def build() -> None:
     for row in species:
         row.locations = species_locations.get(row.constant, [])
     visible_species = [row for row in species if row.dex_visible]
+    trainers = parse_trainers(build_species_lookup(species), front_sources, trainer_front_sources, sprite_dir, trainer_sprite_dir)
 
     ability_usage: dict[str, dict[str, list[dict[str, Any]]]] = defaultdict(lambda: {"base": [], "innate": []})
     for row in visible_species:
@@ -964,6 +1314,7 @@ def build() -> None:
                 for entry in tmhm_locations.get(row["item"], [])
             ),
         })
+    important_items = build_important_items(item_records)
 
     payload = {
         "meta": {"generatedFrom": "tools/soulgold_docs/build_docs.py"},
@@ -993,7 +1344,9 @@ def build() -> None:
             for key, value in abilities.items()
         },
         "tms": tms,
+        "items": important_items,
         "encounters": encounters,
+        "trainers": trainers,
         "typeIcons": type_icons,
     }
     (OUT_DIR / "data" / "romhack-docs.json").write_text(json.dumps(payload, indent=2), encoding="utf-8")

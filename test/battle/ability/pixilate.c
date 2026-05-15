@@ -11,7 +11,7 @@ SINGLE_BATTLE_TEST("Pixilate turns a Normal-type move into a Fairy-type move")
 {
     GIVEN {
         PLAYER(SPECIES_DRAGONITE);
-        OPPONENT(SPECIES_ALTARIA) { Item(ITEM_ALTARIANITE); }
+        OPPONENT(SPECIES_ALTARIA) { Item(ITEM_DRAGOTITE); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SCRATCH, gimmick: GIMMICK_MEGA); }
     } SCENE {
@@ -245,7 +245,7 @@ SINGLE_BATTLE_TEST("Pixilate turns a Normal-type move into a Fairy-type move (Tr
 {
     GIVEN {
         PLAYER(SPECIES_DRAGONITE);
-        OPPONENT(SPECIES_ALTARIA) { Ability(ABILITY_CLOUD_NINE); Innates(ABILITY_PIXILATE); Item(ITEM_ALTARIANITE); }
+        OPPONENT(SPECIES_ALTARIA) { Ability(ABILITY_CLOUD_NINE); Innates(ABILITY_PIXILATE); Item(ITEM_DRAGOTITE); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SCRATCH); }
     } SCENE {
@@ -388,7 +388,7 @@ SINGLE_BATTLE_TEST("Pixilate turns a Normal-type move into a Fairy-type move (It
 {
     GIVEN {
         PLAYER(SPECIES_DRAGONITE);
-        OPPONENT(SPECIES_ALTARIA) { Items(ITEM_PECHA_BERRY, ITEM_ALTARIANITE); }
+        OPPONENT(SPECIES_ALTARIA) { Items(ITEM_PECHA_BERRY, ITEM_DRAGOTITE); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SCRATCH, gimmick: GIMMICK_MEGA); }
     } SCENE {

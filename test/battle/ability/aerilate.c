@@ -11,7 +11,7 @@ SINGLE_BATTLE_TEST("Aerilate turns a Normal-type move into Flying-type move")
 {
     GIVEN {
         PLAYER(SPECIES_MEGANIUM);
-        OPPONENT(SPECIES_SALAMENCE) { Item(ITEM_SALAMENCITE); }
+        OPPONENT(SPECIES_SALAMENCE) { Item(ITEM_DRAGOTITE); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SCRATCH, gimmick: GIMMICK_MEGA); }
     } SCENE {
@@ -33,7 +33,7 @@ SINGLE_BATTLE_TEST("Aerilate can not turn certain moves into Flying type moves")
     PARAMETRIZE { move = MOVE_TERRAIN_PULSE; }
     GIVEN {
         PLAYER(SPECIES_MEGANIUM);
-        OPPONENT(SPECIES_SALAMENCE) { Item(ITEM_SALAMENCITE); }
+        OPPONENT(SPECIES_SALAMENCE) { Item(ITEM_DRAGOTITE); }
     } WHEN {
         TURN { MOVE(opponent, move, gimmick: GIMMICK_MEGA); }
     } SCENE {
@@ -59,7 +59,7 @@ SINGLE_BATTLE_TEST("Aerilate boosts power of affected moves by 20% (Gen7+) or 30
         ASSUME(GetMoveType(MOVE_TACKLE) == TYPE_NORMAL);
         ASSUME(GetMoveEffect(MOVE_SKILL_SWAP) == EFFECT_SKILL_SWAP);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_SALAMENCE) { Ability(ABILITY_MOXIE); Item(ITEM_SALAMENCITE); }
+        OPPONENT(SPECIES_SALAMENCE) { Ability(ABILITY_MOXIE); Item(ITEM_DRAGOTITE); }
     } WHEN {
         TURN { MOVE(opponent, move, gimmick: GIMMICK_MEGA); MOVE(player, MOVE_TACKLE); }
     } SCENE {
@@ -85,7 +85,7 @@ SINGLE_BATTLE_TEST("Aerilate doesn't affect Weather Ball's type", s16 damage)
         ASSUME(GetMoveEffect(MOVE_SKILL_SWAP) == EFFECT_SKILL_SWAP);
         ASSUME(GetSpeciesType(SPECIES_PINSIR, 0) == TYPE_BUG);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_PINSIR) { Ability(ABILITY_HYPER_CUTTER); Item(ITEM_PINSIRITE); }
+        OPPONENT(SPECIES_PINSIR) { Ability(ABILITY_HYPER_CUTTER); Item(ITEM_BUGTITE); }
     } WHEN {
         TURN { MOVE(opponent, move2, gimmick: GIMMICK_MEGA); MOVE(player, move1); }
         TURN { MOVE(player, MOVE_WEATHER_BALL); }
@@ -114,7 +114,7 @@ SINGLE_BATTLE_TEST("Aerilate doesn't affect Natural Gift's type")
         ASSUME(gNaturalGiftTable[ITEM_TO_BERRY(ITEM_PERSIM_BERRY)].type == TYPE_GROUND);
         ASSUME(GetSpeciesType(SPECIES_SALAMENCE_MEGA, 0) == TYPE_FLYING || GetSpeciesType(SPECIES_SALAMENCE_MEGA, 1) == TYPE_FLYING);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_PERSIM_BERRY); }
-        OPPONENT(SPECIES_SALAMENCE) { Item(ITEM_SALAMENCITE); }
+        OPPONENT(SPECIES_SALAMENCE) { Item(ITEM_DRAGOTITE); }
     } WHEN {
         TURN { MOVE(opponent, move, gimmick: GIMMICK_MEGA); MOVE(player, MOVE_NATURAL_GIFT); }
     } SCENE {
@@ -144,7 +144,7 @@ SINGLE_BATTLE_TEST("Aerilate doesn't affect Judgment / Techno Blast / Multi-Atta
         ASSUME(gItemsInfo[ITEM_ELECTRIC_MEMORY].secondaryId == TYPE_ELECTRIC);
         ASSUME(GetSpeciesType(SPECIES_DIGLETT, 0) == TYPE_GROUND);
         PLAYER(SPECIES_WOBBUFFET) { Item(item); }
-        OPPONENT(SPECIES_SALAMENCE) { Item(ITEM_SALAMENCITE); }
+        OPPONENT(SPECIES_SALAMENCE) { Item(ITEM_DRAGOTITE); }
         OPPONENT(SPECIES_DIGLETT);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SKILL_SWAP, gimmick: GIMMICK_MEGA); }
@@ -162,7 +162,7 @@ SINGLE_BATTLE_TEST("Aerilate doesn't affect Hidden Power's type")
         ASSUME(GetMoveEffect(MOVE_HIDDEN_POWER) == EFFECT_HIDDEN_POWER);
         ASSUME(gTypesInfo[TYPE_ELECTRIC].isHiddenPowerType == TRUE);
         ASSUME(GetSpeciesType(SPECIES_DIGLETT, 0) == TYPE_GROUND);
-        PLAYER(SPECIES_PINSIR) { Item(ITEM_PINSIRITE); HPIV(31); AttackIV(31); DefenseIV(31); SpAttackIV(30); SpDefenseIV(31); SpeedIV(31); } // HP Electric
+        PLAYER(SPECIES_PINSIR) { Item(ITEM_BUGTITE); HPIV(31); AttackIV(31); DefenseIV(31); SpAttackIV(30); SpDefenseIV(31); SpeedIV(31); } // HP Electric
         OPPONENT(SPECIES_DIGLETT);
     } WHEN {
         TURN { MOVE(player, MOVE_HIDDEN_POWER, gimmick: GIMMICK_MEGA); }
@@ -177,7 +177,7 @@ SINGLE_BATTLE_TEST("Aerilate doesn't override Electrify")
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_ELECTRIFY) == EFFECT_ELECTRIFY);
         ASSUME(GetSpeciesType(SPECIES_SANDSHREW, 0) == TYPE_GROUND || GetSpeciesType(SPECIES_SANDSHREW, 1) == TYPE_GROUND);
-        PLAYER(SPECIES_PINSIR) { Item(ITEM_PINSIRITE); Speed(1); }
+        PLAYER(SPECIES_PINSIR) { Item(ITEM_BUGTITE); Speed(1); }
         OPPONENT(SPECIES_SANDSHREW) { Moves(MOVE_ELECTRIFY); Speed(10); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_ELECTRIFY); MOVE(player, MOVE_SCRATCH, gimmick: GIMMICK_MEGA); }
@@ -193,7 +193,7 @@ SINGLE_BATTLE_TEST("Aerilate overrides Ion Deluge")
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_ION_DELUGE) == EFFECT_ION_DELUGE);
         ASSUME(GetSpeciesType(SPECIES_MACHOP, 0) == TYPE_FIGHTING || GetSpeciesType(SPECIES_MACHOP, 1) == TYPE_FIGHTING);
-        PLAYER(SPECIES_PINSIR) { Item(ITEM_PINSIRITE); Speed(1); }
+        PLAYER(SPECIES_PINSIR) { Item(ITEM_BUGTITE); Speed(1); }
         OPPONENT(SPECIES_MACHOP) { Moves(MOVE_ION_DELUGE); Speed(10); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_ION_DELUGE); MOVE(player, MOVE_SCRATCH, gimmick: GIMMICK_MEGA); }
@@ -212,7 +212,7 @@ SINGLE_BATTLE_TEST("Aerilate changes Tera Blast's type when not Terastallized")
         ASSUME(GetSpeciesType(SPECIES_MACHOP, 0) == TYPE_FIGHTING || GetSpeciesType(SPECIES_MACHOP, 1) == TYPE_FIGHTING);
         ASSUME(GetMoveEffect(MOVE_SKILL_SWAP) == EFFECT_SKILL_SWAP);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_SALAMENCE) { Item(ITEM_SALAMENCITE); Moves(MOVE_SKILL_SWAP); }
+        OPPONENT(SPECIES_SALAMENCE) { Item(ITEM_DRAGOTITE); Moves(MOVE_SKILL_SWAP); }
         OPPONENT(SPECIES_MACHOP);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SKILL_SWAP, gimmick: GIMMICK_MEGA, target: player); }
@@ -231,7 +231,7 @@ SINGLE_BATTLE_TEST("Aerilate doesn't change Tera Blast's type when Terastallized
         ASSUME(GetSpeciesType(SPECIES_MISDREAVUS, 0) == TYPE_GHOST);
         ASSUME(GetMoveEffect(MOVE_SKILL_SWAP) == EFFECT_SKILL_SWAP);
         PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_NORMAL); }
-        OPPONENT(SPECIES_SALAMENCE) { Item(ITEM_SALAMENCITE); Moves(MOVE_SKILL_SWAP); }
+        OPPONENT(SPECIES_SALAMENCE) { Item(ITEM_DRAGOTITE); Moves(MOVE_SKILL_SWAP); }
         OPPONENT(SPECIES_MISDREAVUS);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SKILL_SWAP, gimmick: GIMMICK_MEGA, target: player); }
@@ -250,7 +250,7 @@ SINGLE_BATTLE_TEST("Aerilate doesn't affect Terrain Pulse's type")
         ASSUME(GetMoveEffect(MOVE_SKILL_SWAP) == EFFECT_SKILL_SWAP);
         ASSUME(GetSpeciesType(SPECIES_SANDSHREW, 0) == TYPE_GROUND || GetSpeciesType(SPECIES_SANDSHREW, 1) == TYPE_GROUND);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_SALAMENCE) { Item(ITEM_SALAMENCITE); Moves(MOVE_SKILL_SWAP); }
+        OPPONENT(SPECIES_SALAMENCE) { Item(ITEM_DRAGOTITE); Moves(MOVE_SKILL_SWAP); }
         OPPONENT(SPECIES_SANDSHREW);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SKILL_SWAP, gimmick: GIMMICK_MEGA, target: player); MOVE(player, MOVE_ELECTRIC_TERRAIN); }
@@ -269,7 +269,7 @@ SINGLE_BATTLE_TEST("Aerilate doesn't affect damaging Z-Move types")
         ASSUME(GetSpeciesType(SPECIES_MACHOP, 0) == TYPE_FIGHTING || GetSpeciesType(SPECIES_MACHOP, 1) == TYPE_FIGHTING);
         ASSUME(GetMoveEffect(MOVE_SKILL_SWAP) == EFFECT_SKILL_SWAP);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_NORMALIUM_Z); }
-        OPPONENT(SPECIES_SALAMENCE) { Item(ITEM_SALAMENCITE); Moves(MOVE_SKILL_SWAP); }
+        OPPONENT(SPECIES_SALAMENCE) { Item(ITEM_DRAGOTITE); Moves(MOVE_SKILL_SWAP); }
         OPPONENT(SPECIES_MACHOP);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SKILL_SWAP, gimmick: GIMMICK_MEGA, target: player); }
@@ -299,7 +299,7 @@ SINGLE_BATTLE_TEST("Aerilate boosts power of affected moves by 20% (Gen7+) or 30
         ASSUME(GetMoveType(MOVE_TACKLE) == TYPE_NORMAL);
         ASSUME(GetMoveEffect(MOVE_SKILL_SWAP) == EFFECT_SKILL_SWAP);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_SALAMENCE) { Ability(ABILITY_INTIMIDATE); Innates(ABILITY_MOXIE); Item(ITEM_SALAMENCITE); }
+        OPPONENT(SPECIES_SALAMENCE) { Ability(ABILITY_INTIMIDATE); Innates(ABILITY_MOXIE); Item(ITEM_DRAGOTITE); }
     } WHEN {
         TURN { MOVE(opponent, move, gimmick: GIMMICK_MEGA); MOVE(player, MOVE_TACKLE); }
     } SCENE {
@@ -325,7 +325,7 @@ SINGLE_BATTLE_TEST("Aerilate doesn't affect Weather Ball's type (Traits)", s16 d
         ASSUME(GetMoveEffect(MOVE_SKILL_SWAP) == EFFECT_SKILL_SWAP);
         ASSUME(GetSpeciesType(SPECIES_PINSIR, 0) == TYPE_BUG);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_PINSIR) { Ability(ABILITY_MOXIE); Innates(ABILITY_HYPER_CUTTER); Item(ITEM_PINSIRITE); }
+        OPPONENT(SPECIES_PINSIR) { Ability(ABILITY_MOXIE); Innates(ABILITY_HYPER_CUTTER); Item(ITEM_BUGTITE); }
     } WHEN {
         TURN { MOVE(opponent, move2, gimmick: GIMMICK_MEGA); MOVE(player, move1); }
         TURN { MOVE(player, MOVE_WEATHER_BALL); }
@@ -375,7 +375,7 @@ SINGLE_BATTLE_TEST("Aerilate turns a Normal-type move into Flying-type move (Ite
 {
     GIVEN {
         PLAYER(SPECIES_MEGANIUM);
-        OPPONENT(SPECIES_SALAMENCE) { Items(ITEM_ORAN_BERRY, ITEM_SALAMENCITE); }
+        OPPONENT(SPECIES_SALAMENCE) { Items(ITEM_ORAN_BERRY, ITEM_DRAGOTITE); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SCRATCH, gimmick: GIMMICK_MEGA); }
     } SCENE {
@@ -397,7 +397,7 @@ SINGLE_BATTLE_TEST("Aerilate can not turn certain moves into Flying type moves (
     PARAMETRIZE { move = MOVE_TERRAIN_PULSE; }
     GIVEN {
         PLAYER(SPECIES_MEGANIUM);
-        OPPONENT(SPECIES_SALAMENCE) { Items(ITEM_ORAN_BERRY, ITEM_SALAMENCITE); }
+        OPPONENT(SPECIES_SALAMENCE) { Items(ITEM_ORAN_BERRY, ITEM_DRAGOTITE); }
     } WHEN {
         TURN { MOVE(opponent, move, gimmick: GIMMICK_MEGA); }
     } SCENE {
@@ -423,7 +423,7 @@ SINGLE_BATTLE_TEST("Aerilate boosts power of affected moves by 20% (Gen7+) or 30
         ASSUME(GetMoveType(MOVE_TACKLE) == TYPE_NORMAL);
         ASSUME(GetMoveEffect(MOVE_SKILL_SWAP) == EFFECT_SKILL_SWAP);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_SALAMENCE) { Ability(ABILITY_MOXIE); Items(ITEM_ORAN_BERRY, ITEM_SALAMENCITE); }
+        OPPONENT(SPECIES_SALAMENCE) { Ability(ABILITY_MOXIE); Items(ITEM_ORAN_BERRY, ITEM_DRAGOTITE); }
     } WHEN {
         TURN { MOVE(opponent, move, gimmick: GIMMICK_MEGA); MOVE(player, MOVE_TACKLE); }
     } SCENE {
@@ -449,7 +449,7 @@ SINGLE_BATTLE_TEST("Aerilate doesn't affect Weather Ball's type (Items)", s16 da
         ASSUME(GetMoveEffect(MOVE_SKILL_SWAP) == EFFECT_SKILL_SWAP);
         ASSUME(GetSpeciesType(SPECIES_PINSIR, 0) == TYPE_BUG);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_PINSIR) { Ability(ABILITY_HYPER_CUTTER); Items(ITEM_ORAN_BERRY, ITEM_PINSIRITE); }
+        OPPONENT(SPECIES_PINSIR) { Ability(ABILITY_HYPER_CUTTER); Items(ITEM_ORAN_BERRY, ITEM_BUGTITE); }
     } WHEN {
         TURN { MOVE(opponent, move2, gimmick: GIMMICK_MEGA); MOVE(player, move1); }
         TURN { MOVE(player, MOVE_WEATHER_BALL); }
@@ -478,7 +478,7 @@ SINGLE_BATTLE_TEST("Aerilate doesn't affect Natural Gift's type (Items)")
         ASSUME(gNaturalGiftTable[ITEM_TO_BERRY(ITEM_PERSIM_BERRY)].type == TYPE_GROUND);
         ASSUME(GetSpeciesType(SPECIES_SALAMENCE_MEGA, 0) == TYPE_FLYING || GetSpeciesType(SPECIES_SALAMENCE_MEGA, 1) == TYPE_FLYING);
         PLAYER(SPECIES_WOBBUFFET) { Items(ITEM_GREAT_BALL, ITEM_PERSIM_BERRY); }
-        OPPONENT(SPECIES_SALAMENCE) { Items(ITEM_ORAN_BERRY, ITEM_SALAMENCITE); }
+        OPPONENT(SPECIES_SALAMENCE) { Items(ITEM_ORAN_BERRY, ITEM_DRAGOTITE); }
     } WHEN {
         TURN { MOVE(opponent, move, gimmick: GIMMICK_MEGA); MOVE(player, MOVE_NATURAL_GIFT); }
     } SCENE {
@@ -508,7 +508,7 @@ SINGLE_BATTLE_TEST("Aerilate doesn't affect Judgment / Techno Blast / Multi-Atta
         ASSUME(gItemsInfo[ITEM_ELECTRIC_MEMORY].secondaryId == TYPE_ELECTRIC);
         ASSUME(GetSpeciesType(SPECIES_DIGLETT, 0) == TYPE_GROUND);
         PLAYER(SPECIES_WOBBUFFET) { Items(ITEM_ORAN_BERRY, item); }
-        OPPONENT(SPECIES_SALAMENCE) { Items(ITEM_ORAN_BERRY, ITEM_SALAMENCITE); }
+        OPPONENT(SPECIES_SALAMENCE) { Items(ITEM_ORAN_BERRY, ITEM_DRAGOTITE); }
         OPPONENT(SPECIES_DIGLETT);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SKILL_SWAP, gimmick: GIMMICK_MEGA); }

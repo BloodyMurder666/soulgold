@@ -4379,43 +4379,6 @@ bool32 CheckPartyHasSpecies(u32 givenSpecies)
     return FALSE;
 }
 
-void GetStarterMegaStone(void)
-{
-    switch (VarGet(VAR_PLAYER_STARTER_SPECIES))
-    {
-    case SPECIES_CHESPIN:
-        gSpecialVar_Result = ITEM_CHESNAUGHTITE;
-        break;
-    case SPECIES_FENNEKIN:
-        gSpecialVar_Result = ITEM_DELPHOXITE;
-        break;
-    case SPECIES_FROAKIE:
-        gSpecialVar_Result = ITEM_GRENINJITE;
-        break;
-    case SPECIES_CHIKORITA:
-        gSpecialVar_Result = ITEM_MEGANIUMITE;
-        break;
-    case SPECIES_TOTODILE:
-        gSpecialVar_Result = ITEM_FERALIGITE;
-        break;
-    case SPECIES_CYNDAQUIL:
-        gSpecialVar_Result = ITEM_TYPHLOSIONITE;
-        break;
-    case SPECIES_SPRIGATITO:
-        gSpecialVar_Result = ITEM_MEOWSCARADITE;
-        break;
-    case SPECIES_TORCHIC:
-        gSpecialVar_Result = ITEM_BLAZIKENITE;
-        break;
-    case SPECIES_POPPLIO:
-        gSpecialVar_Result = ITEM_PRIMARINITE;
-        break;
-    default:
-        gSpecialVar_Result = ITEM_NONE;
-        break;
-    }
-}
-
 void UseBlankMessageToCancelPokemonPic(void)
 {
     DeactivateSingleTextPrinter(0, WINDOW_TEXT_PRINTER);

@@ -96,7 +96,7 @@ MrPokemonHouse_EventScript_MrPokemon_RedScale::
 
 MrPokemonHouse_EventScript_MrPokemon_RedScale_Accepted::
 	removeitem ITEM_RED_SCALE
-	giveitem ITEM_GYARADOSITE
+	giveitem ITEM_EVIOLITE
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	release
 	end
@@ -235,7 +235,7 @@ MrPokemonHouse_Text_GimmeTheScale:
 	.string "That's rare! I, I want it…\p"
 	.string "{PLAYER}, would you care to\n"
 	.string "trade it?\p"
-	.string "I can offer this Mega Stone\n"
+	.string "I can offer this Eviolite\n"
 	.string "that I got from Prof.Oak.$"
 
 MrPokemonHouse_Text_Disappointed:
@@ -261,4 +261,4 @@ MrPokemonHouse_Text_StrangeCoins:
 	.string "country…$"
 
 MrPokemonHouse_Text_GotExpShare:
-	.string "{PLAYER} received Exp Share!$"
+	.string "{PLAYER} received Eviolite!$"

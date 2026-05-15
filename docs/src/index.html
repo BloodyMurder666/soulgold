@@ -11,7 +11,7 @@
       <header class="site-header">
         <div>
           <h1>Soulgold Documentation</h1>
-          <p>Pokemon, encounters, machines, and abilities</p>
+          <p>Pokemon, encounters, machines, items, trainers, and abilities</p>
         </div>
         <input id="globalSearch" class="search" type="search" placeholder="Search">
       </header>
@@ -20,6 +20,8 @@
         <button class="tab active" data-tab="pokedex">Pokedex</button>
         <button class="tab" data-tab="encounters">Wild Encounters</button>
         <button class="tab" data-tab="machines">TMs/HMs</button>
+        <button class="tab" data-tab="items">Items</button>
+        <button class="tab" data-tab="trainers">Trainers</button>
         <button class="tab" data-tab="abilities">Abilities</button>
       </nav>
     </div>
@@ -54,6 +56,28 @@
 
       <section id="abilities" class="panel">
         <div id="abilityList" class="ability-list"></div>
+      </section>
+
+      <section id="items" class="panel">
+        <div class="table-shell">
+          <table>
+            <thead>
+              <tr><th>Name</th><th>Description</th><th>Location</th></tr>
+            </thead>
+            <tbody id="itemRows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="trainers" class="panel">
+        <div class="table-shell">
+          <table>
+            <thead>
+              <tr><th>Name</th><th>Party</th></tr>
+            </thead>
+            <tbody id="trainerRows"></tbody>
+          </table>
+        </div>
       </section>
     </main>
 

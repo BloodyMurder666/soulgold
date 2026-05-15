@@ -226,7 +226,7 @@ SINGLE_BATTLE_TEST("Prankster-affected moves which are reflected by Magic Coat c
 SINGLE_BATTLE_TEST("Prankster-affected moves can still be bounced back by a Dark-type with Magic Bounce")
 {
     GIVEN {
-        PLAYER(SPECIES_ABSOL) { Item(ITEM_ABSOLITE); }
+        PLAYER(SPECIES_ABSOL) { Item(ITEM_DARKTITE); }
         OPPONENT(SPECIES_VOLBEAT) { Ability(ABILITY_PRANKSTER); }
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); MOVE(opponent, MOVE_CONFUSE_RAY); }
@@ -239,7 +239,7 @@ SINGLE_BATTLE_TEST("Prankster-affected moves can still be bounced back by a Dark
 SINGLE_BATTLE_TEST("Prankster-affected moves that are bounced back by Magic Bounce can affect Dark-type Pokémon")
 {
     GIVEN {
-        PLAYER(SPECIES_ABSOL) { Item(ITEM_ABSOLITE); }
+        PLAYER(SPECIES_ABSOL) { Item(ITEM_DARKTITE); }
         OPPONENT(SPECIES_MURKROW) { Ability(ABILITY_PRANKSTER); }
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); MOVE(opponent, MOVE_CONFUSE_RAY); }
@@ -474,7 +474,7 @@ SINGLE_BATTLE_TEST("Prankster-affected moves which are reflected by Magic Coat c
 SINGLE_BATTLE_TEST("Prankster-affected moves can still be bounced back by a Dark-type with Magic Bounce (Traits)")
 {
     GIVEN {
-        PLAYER(SPECIES_ABSOL) { Item(ITEM_ABSOLITE); }
+        PLAYER(SPECIES_ABSOL) { Item(ITEM_DARKTITE); }
         OPPONENT(SPECIES_VOLBEAT) { Ability(ABILITY_ILLUMINATE); Innates(ABILITY_PRANKSTER); }
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); MOVE(opponent, MOVE_CONFUSE_RAY); }
@@ -487,7 +487,7 @@ SINGLE_BATTLE_TEST("Prankster-affected moves can still be bounced back by a Dark
 SINGLE_BATTLE_TEST("Prankster-affected moves that are bounced back by Magic Bounce can affect Dark-type Pokémon (Traits)")
 {
     GIVEN {
-        PLAYER(SPECIES_ABSOL) { Item(ITEM_ABSOLITE); }
+        PLAYER(SPECIES_ABSOL) { Item(ITEM_DARKTITE); }
         OPPONENT(SPECIES_MURKROW) { Ability(ABILITY_KEEN_EYE); Innates(ABILITY_PRANKSTER); }
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); MOVE(opponent, MOVE_CONFUSE_RAY); }

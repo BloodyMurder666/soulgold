@@ -118,11 +118,13 @@ th, td {
   vertical-align: middle;
 }
 
-.tm-row {
+.tm-row,
+.item-row {
   cursor: pointer;
 }
 
-.tm-row:hover {
+.tm-row:hover,
+.item-row:hover {
   background: #30323a;
 }
 
@@ -130,7 +132,8 @@ th {
   background: #111217;
 }
 
-#machines th {
+#machines th,
+#items th {
   position: sticky;
   top: var(--top-chrome-height);
   z-index: 20;
@@ -541,6 +544,23 @@ dialog::backdrop { background: rgb(0 0 0 / 70%); }
   gap: 10px;
 }
 
+.item-location-list {
+  display: grid;
+  border: 1px solid #3a3b44;
+}
+
+.item-location-row {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(120px, 220px);
+  gap: 12px;
+  padding: 10px 12px;
+  border-bottom: 1px solid #343640;
+}
+
+.item-location-row span {
+  color: var(--muted);
+}
+
 .move-head {
   position: sticky;
   top: 0;
@@ -620,6 +640,58 @@ dialog::backdrop { background: rgb(0 0 0 / 70%); }
 .TYPE_DARK { background: #5f4b3d; }
 .TYPE_FAIRY { background: #cc78a6; }
 .TYPE_STELLAR { background: #377d86; }
+
+.trainer-party {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.trainer-row:hover {
+  background: #30323a;
+}
+
+.trainer-name-cell {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+}
+
+.trainer-sprite {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.trainer-mon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 150px;
+  background: var(--panel-2);
+  border: 1px solid #3a3b44;
+  padding: 8px 10px;
+  border-radius: 6px;
+}
+
+.trainer-mon-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 14px;
+  min-width: 0;
+}
+
+.trainer-mon-info strong {
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+#trainers td {
+  vertical-align: top;
+}
 
 @media (max-width: 1180px) {
   :root {
@@ -734,7 +806,9 @@ dialog::backdrop { background: rgb(0 0 0 / 70%); }
     max-height: none;
     overflow: visible;
   }
-  #machines .table-shell {
+  #machines .table-shell,
+  #items .table-shell,
+  #trainers .table-shell {
     border: 0;
     background: transparent;
     overflow: visible;
@@ -742,25 +816,41 @@ dialog::backdrop { background: rgb(0 0 0 / 70%); }
   #machines table,
   #machines tbody,
   #machines tr,
-  #machines td {
+  #machines td,
+  #items table,
+  #items tbody,
+  #items tr,
+  #items td,
+  #trainers table,
+  #trainers tbody,
+  #trainers tr,
+  #trainers td {
     display: block;
     width: 100%;
     min-width: 0;
   }
-  #machines table {
+  #machines table,
+  #items table,
+  #trainers table {
     border-collapse: separate;
   }
-  #machines thead {
+  #machines thead,
+  #items thead,
+  #trainers thead {
     display: none;
   }
-  #machines .tm-row {
+  #machines .tm-row,
+  #items .item-row,
+  #trainers .trainer-row {
     margin-bottom: 10px;
     border: 1px solid #30313a;
     border-radius: 8px;
     background: var(--panel);
     overflow: hidden;
   }
-  #machines td {
+  #machines td,
+  #items td,
+  #trainers td {
     display: grid;
     grid-template-columns: 102px minmax(0, 1fr);
     gap: 10px;
@@ -769,13 +859,23 @@ dialog::backdrop { background: rgb(0 0 0 / 70%); }
     border-bottom: 1px solid #343640;
     overflow-wrap: anywhere;
   }
-  #machines td::before {
+  #machines td::before,
+  #items td::before,
+  #trainers td::before {
     content: attr(data-label);
     color: var(--muted);
     font-weight: 800;
   }
-  #machines td:last-child {
+  #machines td:last-child,
+  #items td:last-child,
+  #trainers td:last-child {
     border-bottom: 0;
+  }
+  .trainer-party {
+    gap: 8px;
+  }
+  .trainer-mon {
+    width: min(100%, 150px);
   }
   .ability-list {
     max-height: none;
@@ -826,4 +926,8 @@ dialog::backdrop { background: rgb(0 0 0 / 70%); }
     font-size: 12px;
   }
   .evolution-line { flex-wrap: wrap; }
+  .trainer-mon {
+    min-width: 160px;
+    max-width: 100%;
+  }
 }

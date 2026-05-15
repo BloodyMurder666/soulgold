@@ -103,8 +103,8 @@ SINGLE_BATTLE_TEST("Trick fails if either battler holds a Mega Stone")
     u16 atkItem = ITEM_NONE, defItem = ITEM_NONE;
     u16 atkSpecies = SPECIES_WOBBUFFET, defSpecies = SPECIES_WOBBUFFET;
 
-    PARAMETRIZE { atkSpecies = SPECIES_BLAZIKEN; atkItem = ITEM_BLAZIKENITE; defSpecies = SPECIES_WOBBUFFET; defItem = ITEM_SITRUS_BERRY; }
-    PARAMETRIZE { atkSpecies = SPECIES_WOBBUFFET; atkItem = ITEM_SITRUS_BERRY; defSpecies = SPECIES_BLAZIKEN; defItem = ITEM_BLAZIKENITE; }
+    PARAMETRIZE { atkSpecies = SPECIES_BLAZIKEN; atkItem = ITEM_BONDSTONE; defSpecies = SPECIES_WOBBUFFET; defItem = ITEM_SITRUS_BERRY; }
+    PARAMETRIZE { atkSpecies = SPECIES_WOBBUFFET; atkItem = ITEM_SITRUS_BERRY; defSpecies = SPECIES_BLAZIKEN; defItem = ITEM_BONDSTONE; }
 
     GIVEN {
         PLAYER(atkSpecies) { Item(atkItem); }
@@ -317,8 +317,8 @@ SINGLE_BATTLE_TEST("Trick fails if either battler holds a Mega Stone (Items)")
     u16 atkItem = ITEM_NONE, defItem = ITEM_NONE;
     u16 atkSpecies = SPECIES_WOBBUFFET, defSpecies = SPECIES_WOBBUFFET;
 
-    PARAMETRIZE { atkSpecies = SPECIES_BLAZIKEN; atkItem = ITEM_BLAZIKENITE; defSpecies = SPECIES_WOBBUFFET; defItem = ITEM_SITRUS_BERRY; }
-    PARAMETRIZE { atkSpecies = SPECIES_WOBBUFFET; atkItem = ITEM_SITRUS_BERRY; defSpecies = SPECIES_BLAZIKEN; defItem = ITEM_BLAZIKENITE; }
+    PARAMETRIZE { atkSpecies = SPECIES_BLAZIKEN; atkItem = ITEM_BONDSTONE; defSpecies = SPECIES_WOBBUFFET; defItem = ITEM_SITRUS_BERRY; }
+    PARAMETRIZE { atkSpecies = SPECIES_WOBBUFFET; atkItem = ITEM_SITRUS_BERRY; defSpecies = SPECIES_BLAZIKEN; defItem = ITEM_BONDSTONE; }
 
     GIVEN {
         PLAYER(atkSpecies) { Items(ITEM_NONE, atkItem); }

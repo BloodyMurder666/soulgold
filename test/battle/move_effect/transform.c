@@ -162,7 +162,7 @@ SINGLE_BATTLE_TEST("Transform returns the user to normal at the end of the battl
     GIVEN {
         PLAYER(SPECIES_DITTO) { HP(1); }
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_PIDGEOT) { Item(ITEM_PIDGEOTITE); }
+        OPPONENT(SPECIES_PIDGEOT) { Item(ITEM_NORMALITE); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); MOVE(player, MOVE_TRANSFORM); }
         TURN { MOVE(opponent, MOVE_SCRATCH); SEND_OUT(player, 1); }
