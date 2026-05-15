@@ -4554,6 +4554,7 @@ void ChooseItemFromBag(void)
     case POCKET_BATTLE_ITEMS:
     case POCKET_KEY_ITEMS:
         GoToBagMenu(ITEMMENULOCATION_CHOOSE_ITEM, VarGet(VAR_TEMP_1), CB2_ReturnToFieldContinueScript);
+        break;
     default:
         break;
     }
