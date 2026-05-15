@@ -1296,11 +1296,16 @@ static void Debug_RefreshListMenu(u8 taskId)
 static void DebugTask_HandleMenuInput_General(u8 taskId)
 {
     const struct DebugMenuOption *options = Debug_GetCurrentCallbackMenu();
-    u32 input = ListMenu_ProcessInput(gTasks[taskId].tMenuTaskId);
-    struct DebugMenuOption option = options[input];
+    s32 input = ListMenu_ProcessInput(gTasks[taskId].tMenuTaskId);
 
     if (JOY_NEW(A_BUTTON))
     {
+        struct DebugMenuOption option;
+
+        if (input < 0)
+            return;
+
+        option = options[input];
         PlaySE(SE_SELECT);
         if (option.action != NULL)
         {
@@ -1973,6 +1978,14 @@ static void DebugAction_Trainers_ChooseFromMap(u8 taskId)
 #define tSelection  data[5]
 #define tInitial    data[6]
 
+static bool32 Debug_IsTrainerIdDefined(u32 trainerID)
+{
+    if (trainerID == TRAINER_NONE || trainerID == TRAINER_PARTNER(PARTNER_NONE))
+        return FALSE;
+
+    return GetTrainerNameFromId(trainerID) != NULL && GetTrainerPartyFromId(trainerID) != NULL;
+}
+
 static void Debug_Display_TrainerID(u32 trainerID, u32 selection, u32 digit, u8 windowId)
 {
     if (selection == TRAINERS_DEBUG_SELECTION_PARTNER)
@@ -1981,6 +1994,8 @@ static void Debug_Display_TrainerID(u32 trainerID, u32 selection, u32 digit, u8 
     u8 *end;
     if (trainerID == TRAINER_NONE || trainerID == TRAINER_PARTNER(PARTNER_NONE))
         end = StringCopy(gStringVar1, COMPOUND_STRING("None"));
+    else if (!Debug_IsTrainerIdDefined(trainerID))
+        end = StringCopy(gStringVar1, COMPOUND_STRING("Empty Trainer"));
     else
         end = StringCopy(gStringVar1, GetTrainerNameFromId(trainerID));
     WrapFontIdToFit(gStringVar1, end, DEBUG_MENU_FONT, WindowWidthPx(windowId));
@@ -2145,6 +2160,15 @@ static void DebugAction_Trainers_TryBattle(u8 taskId)
             lastMatch -= 1;
         trainer1Id = gRematchTable[rematchId].trainerIds[lastMatch];
     }
+
+    if (!Debug_IsTrainerIdDefined(trainer1Id)
+     || (trainer2Id != TRAINER_NONE && !Debug_IsTrainerIdDefined(trainer2Id))
+     || (partnerId != PARTNER_NONE && !Debug_IsTrainerIdDefined(TRAINER_PARTNER(partnerId))))
+    {
+        PlaySE(SE_FAILURE);
+        return;
+    }
+
     gBattleTypeFlags = BATTLE_TYPE_TRAINER;
     TRAINER_BATTLE_PARAM.opponentA = trainer1Id;
     TRAINER_BATTLE_PARAM.opponentB = 0xFFFF;

@@ -1,1 +1,60 @@
 mapscripts GoldenrodApartment_MapScripts {}
+
+script GoldenrodApartments_BasementGuard {
+    msgbox("Sorry kid, the basement is off limits.", MSGBOX_NPC)
+} 
+
+script GoldenrodApartments_OldLady {
+    msgbox("", MSGBOX_NPC)
+}
+
+script GoldenrodApartments_Child {
+    msgbox("Mom always comes home late...", MSGBOX_NPC)
+}
+
+script GoldenrodApartments_Girl {
+    msgbox("Our mother works at the radio tower,
+            which makes her very busy. Luckily
+            we have mom's Breloom to help with
+            everything!", MSGBOX_NPC)
+}
+
+script GoldenrodApartments_Breloom {
+    lock
+    playmoncry(SPECIES_BRELOOM, CRY_MODE_NORMAL)
+    waitmoncry
+    msgbox("Breloom is joyfully doing the dishes!")
+    waitmessage
+    release
+    end
+}
+
+script GoldenrodApartments_Gameboykid {
+    msgbox("", MSGBOX_NPC)
+}
+
+script GoldenrodApartments_ScientistF {
+    msgbox("", MSGBOX_NPC)
+}
+
+script GoldenrodApartments_ScientistM {
+    msgbox("", MSGBOX_NPC)
+}
+
+script GoldenrodApartments_LockedDoor {
+    msgbox("The way seems to be barred by a metal
+            door. A small keyhole is visible, but
+            you have nothing that would fit to it.", MSGBOX_SIGN)
+}
+
+script GoldenrodApartments_Apartment1 {
+
+}
+
+script GoldenrodApartments_Apartment2 {
+
+}
+
+script GoldenrodApartments_Apartment3 {
+
+}
