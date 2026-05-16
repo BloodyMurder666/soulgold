@@ -9311,7 +9311,7 @@
       "width": 20,
       "height": 20,
       "primary_tileset": "gTileset_Johto_General",
-      "secondary_tileset": "gTileset_Cave_Gray",
+      "secondary_tileset": "gTileset_g4cave",
       "border_filepath": "data/layouts/AcuityCavern/border.bin",
       "blockdata_filepath": "data/layouts/AcuityCavern/map.bin"
     },
@@ -9321,7 +9321,7 @@
       "width": 20,
       "height": 20,
       "primary_tileset": "gTileset_Johto_General",
-      "secondary_tileset": "gTileset_Cave_Gray",
+      "secondary_tileset": "gTileset_g4cave",
       "border_filepath": "data/layouts/ValorCavern/border.bin",
       "blockdata_filepath": "data/layouts/ValorCavern/map.bin"
     },
@@ -9331,7 +9331,7 @@
       "width": 20,
       "height": 20,
       "primary_tileset": "gTileset_Johto_General",
-      "secondary_tileset": "gTileset_Cave_Gray",
+      "secondary_tileset": "gTileset_g4cave",
       "border_filepath": "data/layouts/VerityCavern/border.bin",
       "blockdata_filepath": "data/layouts/VerityCavern/map.bin"
     },

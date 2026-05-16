@@ -21,6 +21,7 @@ VictoryRoadKanto_1F_Trigger::
 	call_if_eq VAR_STARTER_MON, 2, VictoryRoadKanto_1F_Silver_Battle_Chikorita
 	playbgm MUS_HG_RIVAL_EXIT, TRUE
 	msgbox VictoryRoad_Text_RivalAfter, MSGBOX_DEFAULT
+	giveitem(ITEM_HM_ROCK_CLIMB)
 	closemessage
 	applymovement LOCALID_VICTORYROAD_SILVER, VictoryRoadKanto_1F_Movement_SilverLeave
 	waitmovement 0
@@ -146,4 +147,6 @@ VictoryRoad_Text_RivalAfter:
     .string "When I do, I will challenge you.\p"
     .string "And I'll beat you down with all my\n"
     .string "power.\p"
-    .string "…Humph! You keep at it until then.$"
+    .string "…Humph! You keep at it until then.\p"
+	.string "You should take this, I have other\n"
+	.string "priorities now.$"
