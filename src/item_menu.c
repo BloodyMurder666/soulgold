@@ -268,6 +268,13 @@ static const struct BgTemplate sBgTemplates_ItemMenu[] =
         .priority = 2,
         .baseTile = 0,
     },
+    {
+		//Scrolling Background
+        .bg = 3,
+        .charBaseIndex = 3,
+        .mapBaseIndex = 28,
+        .priority = 3,
+    },
 };
 
 static const struct ListMenuTemplate sItemListMenu =
@@ -830,18 +837,23 @@ static bool8 SetupBagMenu(void)
 static void BagMenu_InitBGs(void)
 {
     ResetVramOamAndBgCntRegs();
-    memset(gBagMenu->tilemapBuffer, 0, sizeof(gBagMenu->tilemapBuffer));
+    memset(gBagMenu->tilemapBuffer[BAG_MENU_BG_NORMAL], 0, sizeof(gBagMenu->tilemapBuffer));
     ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sBgTemplates_ItemMenu, ARRAY_COUNT(sBgTemplates_ItemMenu));
-    SetBgTilemapBuffer(2, gBagMenu->tilemapBuffer);
+    SetBgTilemapBuffer(2, gBagMenu->tilemapBuffer[BAG_MENU_BG_NORMAL]);
+    SetBgTilemapBuffer(3, gBagMenu->tilemapBuffer[BAG_MENU_BG_SCROLLING]);
     ResetAllBgsCoordinates();
     ScheduleBgCopyTilemapToVram(2);
+    ScheduleBgCopyTilemapToVram(3);
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
     ShowBg(0);
     ShowBg(1);
     ShowBg(2);
+    ShowBg(3);
     SetGpuReg(REG_OFFSET_BLDCNT, 0);
 }
+
+const u32 sBagMenuScrollingBGTilemap[] = INCBIN_U32("graphics/bag/scrolling_bg.bin.smolTM");
 
 static bool8 LoadBagMenu_Graphics(void)
 {
@@ -860,20 +872,25 @@ static bool8 LoadBagMenu_Graphics(void)
         }
         break;
     case 2:
+        //Load Scrolling Background
+        DecompressDataWithHeaderVram(sBagMenuScrollingBGTilemap, gBagMenu->tilemapBuffer[BAG_MENU_BG_SCROLLING]);
+        gBagMenu->graphicsLoadState++;
+        break;
+    case 3:
         if (!IsWallysBag() && gSaveBlock2Ptr->playerGender != MALE)
             LoadPalette(gBagScreenFemale_Pal, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
         else
             LoadPalette(gBagScreenMale_Pal, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
         gBagMenu->graphicsLoadState++;
         break;
-    case 3:
+    case 4:
         if (IsWallysBag() == TRUE || gSaveBlock2Ptr->playerGender == MALE)
             LoadCompressedSpriteSheet(&gBagMaleSpriteSheet);
         else
             LoadCompressedSpriteSheet(&gBagFemaleSpriteSheet);
         gBagMenu->graphicsLoadState++;
         break;
-    case 4:
+    case 5:
         LoadSpritePalette(&gBagPaletteTable);
         gBagMenu->graphicsLoadState++;
         break;
@@ -1267,6 +1284,10 @@ static void Task_BagMenu_HandleInput(u8 taskId)
     u16 *cursorPos = &gBagPosition.cursorPosition[gBagPosition.pocket];
     s32 listPosition;
 
+    //Scrolling BG
+    //ChangeBgX(3, Q_8_8(-0.25), 2);
+    ChangeBgY(3,128, BG_COORD_ADD);
+
     if (MenuHelpers_ShouldWaitForLinkRecv() != TRUE && !gPaletteFade.active)
     {
         switch (GetSwitchBagPocketDirection())
@@ -1398,6 +1419,9 @@ static void SwitchBagPocket(u8 taskId, s16 deltaBagPocketId, bool16 skipEraseLis
 {
     s16 *data = gTasks[taskId].data;
     u8 newPocket;
+
+    //ChangeBgX(3, Q_8_8(-0.25), 2);
+    ChangeBgY(3,128, BG_COORD_ADD);
 
     tPocketSwitchState = 0;
     tPocketSwitchTimer = 0;
@@ -1541,6 +1565,9 @@ static void StartItemSwap(u8 taskId)
 static void Task_HandleSwappingItemsInput(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
+
+    //ChangeBgX(3, Q_8_8(-0.25), 2);
+    ChangeBgY(3,128, BG_COORD_ADD);
 
     if (MenuHelpers_ShouldWaitForLinkRecv() != TRUE)
     {
@@ -1789,6 +1816,8 @@ static void Task_ItemContext_Normal(u8 taskId)
 
 static void Task_ItemContext_SingleRow(u8 taskId)
 {
+    //ChangeBgX(3, Q_8_8(-0.25), 2);
+    ChangeBgY(3,128, BG_COORD_ADD);
     if (MenuHelpers_ShouldWaitForLinkRecv() != TRUE)
     {
         s8 selection = Menu_ProcessInputNoWrap();
@@ -1810,6 +1839,8 @@ static void Task_ItemContext_SingleRow(u8 taskId)
 
 static void Task_ItemContext_MultipleRows(u8 taskId)
 {
+    //ChangeBgX(3, Q_8_8(-0.25), 2);
+    ChangeBgY(3,128, BG_COORD_ADD);
     if (MenuHelpers_ShouldWaitForLinkRecv() != TRUE)
     {
         s8 cursorPos = Menu_GetCursorPos();
