@@ -69,3 +69,4 @@ node_modules/
 .map_version
 docs_site/dist/
 !docs_site/src/assets/app.js
+porytiles/

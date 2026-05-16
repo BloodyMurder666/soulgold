@@ -1,0 +1,61 @@
+../porytiles/porytiles decompile-secondary \
+  -o ../porytiles/decompiled-desert \
+    data/tilesets/secondary/desert \
+  ../porytiles/primary_blank \
+  include/constants/metatile_behaviors.h
+
+
+../porytiles/porytiles decompile-primary -o decompiled-primary-tileset data/tilesets/primary/johto_general   include/constants/metatile_behaviors.h
+
+../porytiles/porytiles decompile-secondary -o \  
+   porytiles/decompiled-desert \
+    data/tilesets/secondary/desert \
+  ../porytiles/primary_blank \
+  include/constants/metatile_behaviors.h
+
+
+  
+  ../porytiles/porytiles compile-primary \
+  -Wall -o foo -tiles-primary-override=640 \
+  -metatiles-primary-override=1024 \
+  -metatiles-total-override=2048 \
+  -pals-primary-override=7 \
+  -target-base-game=pokeemerald \
+  -o porytiles/compiled-primary-johto \
+  decompiled-primary-tileset \
+  include/constants/metatile_behaviors.h
+
+
+  ../porytiles/porytiles decompile-secondary --help
+
+
+  porytiles decompile-secondary 
+  -o decompiled-secondary-tileset 
+  $HOME/pokeemerald/data/tilesets/primary/porytiles_secondary_tutorial
+   $HOME/pokeemerald/data/tilesets/primary/porytiles_primary_tutorial
+    $HOME/pokeemerald/include/constants/metatile_behaviors.h
+
+
+// This works
+
+../porytiles/porytiles compile-secondary \
+  -metatiles-primary-override=1024 \
+  -metatiles-total-override=2048 \
+  -target-base-game=pokefirered \
+  -pals-primary-override=7 \
+  -o data/tilesets/secondary/desert \
+  compiled-desert \
+  ../porytiles/primary_blank \
+  include/constants/metatile_behaviors.h
+
+
+
+  ../porytiles/porytiles compile-secondary \
+  -target-base-game=pokefirered \
+  -tiles-primary-override=640 \
+  -metatiles-primary-override=640 \
+  -pals-primary-override=7 \
+  -output=compiled-mauville_game_corner-frlg_building_primary \
+  decompiled-mauville_game_corner-secondary \
+  decompiled-building-primary \
+  include/constants/metatile_behaviors.h
