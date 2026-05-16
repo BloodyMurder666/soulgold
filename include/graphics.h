@@ -1390,6 +1390,8 @@ extern const u32 gItemIcon_QuickClaw[];
 extern const u16 gItemIconPalette_QuickClaw[];
 extern const u32 gItemIcon_SootheBell[];
 extern const u16 gItemIconPalette_SootheBell[];
+extern const u32 gItemIcon_BeckoningBell[];
+extern const u16 gItemIconPalette_BeckoningBell[];
 extern const u16 gItemIconPalette_MentalHerb[];
 extern const u32 gItemIcon_KingsRock[];
 extern const u16 gItemIconPalette_KingsRock[];

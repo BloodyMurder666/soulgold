@@ -1425,7 +1425,7 @@ static void SwitchBagPocket(u8 taskId, s16 deltaBagPocketId, bool16 skipEraseLis
     }
     DrawPocketIndicatorSquare(gBagPosition.pocket, FALSE);
     DrawPocketIndicatorSquare(newPocket, TRUE);
-    FillBgTilemapBufferRect_Palette0(2, 11, 14, 2, 15, 16);
+    FillBgTilemapBufferRect_Palette0(2, 8, 14, 2, 15, 16);
     ScheduleBgCopyTilemapToVram(2);
     SetBagVisualPocketId(newPocket, TRUE);
     RemoveBagSprite(ITEMMENUSPRITE_BALL);
@@ -1493,9 +1493,9 @@ static void DrawPocketIndicatorSquare(u8 x, bool8 isCurrentPocket)
     static const u8 sPocketIndicatorXOffset = 4;
 
     if (!isCurrentPocket)
-        FillBgTilemapBufferRect_Palette0(2, 0x1017, x + sPocketIndicatorXOffset, 3, 1, 1);
+        FillBgTilemapBufferRect(2, 0x100C, x + sPocketIndicatorXOffset, 3, 1, 1, 0);
     else
-        FillBgTilemapBufferRect_Palette0(2, 0x102B, x + sPocketIndicatorXOffset, 3, 1, 1);
+        FillBgTilemapBufferRect(2, 0x1034, x + sPocketIndicatorXOffset, 3, 1, 1, 0);
     ScheduleBgCopyTilemapToVram(2);
 }
 

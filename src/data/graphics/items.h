@@ -1368,6 +1368,9 @@ const u16 gItemIconPalette_QuickClaw[] = INCBIN_U16("graphics/items/icon_palette
 const u32 gItemIcon_SootheBell[] = INCBIN_U32("graphics/items/icons/soothe_bell.4bpp.smol");
 const u16 gItemIconPalette_SootheBell[] = INCBIN_U16("graphics/items/icon_palettes/soothe_bell.gbapal");
 
+const u32 gItemIcon_BeckoningBell[] = INCBIN_U32("graphics/items/icons/beckoning_bell.4bpp.smol");
+const u16 gItemIconPalette_BeckoningBell[] = INCBIN_U16("graphics/items/icon_palettes/beckoning_bell.gbapal");
+
 const u16 gItemIconPalette_MentalHerb[] = INCBIN_U16("graphics/items/icon_palettes/mental_herb.gbapal");
 
 const u32 gItemIcon_KingsRock[] = INCBIN_U32("graphics/items/icons/kings_rock.4bpp.smol");

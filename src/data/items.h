@@ -17352,8 +17352,8 @@ const struct ItemInfo gItemsInfo[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_BeckoningBell,
         .flingPower = 30,
-        .iconPic = gItemIcon_SootheBell,
-        .iconPalette = gItemIconPalette_SootheBell,
+        .iconPic = gItemIcon_BeckoningBell,
+        .iconPalette = gItemIconPalette_BeckoningBell,
     },
 };
 
