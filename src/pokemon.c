@@ -6106,6 +6106,8 @@ u32 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *boxMon, enum FormChanges
 
     for (i = 0; i < MAX_MON_ITEMS; i++)
         ctx.heldItems[i] = GetBoxMonData(boxMon, MON_DATA_HELD_ITEM + i);
+    for (i = 0; i < MAX_MON_MOVES; i++)
+        ctx.moves[i] = GetBoxMonData(boxMon, MON_DATA_MOVE1 + i);
     for (i = 0; i < MAX_MON_TRAITS; i++)
     {
         if (i == 0)
@@ -6211,9 +6213,23 @@ u32 GetFormChangeTargetSpecies_Internal(struct FormChangeContext ctx)
             }
             break;
         case FORM_CHANGE_MOVE:
-            if (ctx.learnedMove != formChanges[i].param2)
+        {
+            bool32 hasMove = FALSE;
+
+            for (u32 j = 0; j < MAX_MON_MOVES; j++)
+            {
+                if (ctx.moves[j] == formChanges[i].param1)
+                {
+                    hasMove = TRUE;
+                    break;
+                }
+            }
+
+            if ((formChanges[i].param2 == WHEN_LEARNED && hasMove)
+             || (formChanges[i].param2 == WHEN_FORGOTTEN && !hasMove))
                 targetSpecies = formChanges[i].targetSpecies;
             break;
+        }
         case FORM_CHANGE_BEGIN_BATTLE:
         case FORM_CHANGE_END_BATTLE:
             if (FormChangeHasItem(ctx, formChanges[i].param1) || formChanges[i].param1 == ITEM_NONE)

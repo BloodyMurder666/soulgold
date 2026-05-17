@@ -2310,6 +2310,40 @@ void UpdateFollowingPokemon(void)
     sprite->data[6] = 0; // set animation data
 }
 
+void RefreshFollowingPokemon(void)
+{
+    struct ObjectEvent *objEvent = GetFollowerObject();
+    struct Sprite *sprite;
+    u32 species;
+    bool32 shiny;
+    bool32 female;
+
+    if (objEvent == NULL)
+    {
+        UpdateFollowingPokemon();
+        return;
+    }
+
+    if (OW_POKEMON_OBJECT_EVENTS == FALSE
+     || OW_FOLLOWERS_ENABLED == FALSE
+     || FlagGet(B_FLAG_FOLLOWERS_DISABLED)
+     || !GetFollowerInfo(&species, &shiny, &female)
+     || SpeciesToGraphicsInfo(species, shiny, female) == NULL
+     || (gMapHeader.mapType == MAP_TYPE_INDOOR && SpeciesToGraphicsInfo(species, shiny, female)->oam->size > ST_OAM_SIZE_2)
+     || FlagGet(FLAG_TEMP_HIDE_FOLLOWER)
+     || PlayerHasFollowerNPC()
+     || gSaveBlock2Ptr->optionsFollowers == TRUE)
+    {
+        RemoveFollowingPokemon();
+        return;
+    }
+
+    objEvent->graphicsId = GetGraphicsIdForMon(species, shiny, female);
+    RefreshFollowerGraphics(objEvent);
+    sprite = &gSprites[objEvent->spriteId];
+    sprite->data[6] = 0;
+}
+
 // Remove follower object. Idempotent.
 void RemoveFollowingPokemon(void)
 {

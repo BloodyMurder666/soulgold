@@ -2,11 +2,13 @@ mapscripts GoldenrodApartmentBasement_MapScripts {}
 
 script RotomMachine_Wash {
     lock
-    checkspecies(SPECIES_ROTOM, OPEN_PARTY_SCREEN)
-    
+    special(ChoosePartyMon)
+    waitstate
+    lock
+    setvar(VAR_0x8000, MOVE_HYDRO_PUMP)
+    special(ChangeRotomForm)
+
     if (var(VAR_RESULT) == TRUE) {
-        setvar(VAR_0x8000, 0)
-        special(ChangeRotomForm)
         msgbox("Rotom form was changed!")
     }
     release
@@ -15,11 +17,13 @@ script RotomMachine_Wash {
 
 script RotomMachine_Fan {
     lock
-    checkspecies(SPECIES_ROTOM, OPEN_PARTY_SCREEN)
-    
+    special(ChoosePartyMon)
+    waitstate
+    lock
+    setvar(VAR_0x8000, MOVE_AIR_SLASH)
+    special(ChangeRotomForm)
+
     if (var(VAR_RESULT) == TRUE) {
-        setvar(VAR_0x8000, 1)
-        special(ChangeRotomForm)   
         msgbox("Rotom form was changed!")
     }
     release
@@ -28,11 +32,13 @@ script RotomMachine_Fan {
 
 script RotomMachine_Fridge {
     lock
-    checkspecies(SPECIES_ROTOM, OPEN_PARTY_SCREEN)
-    
+    special(ChoosePartyMon)
+    waitstate
+    lock
+    setvar(VAR_0x8000, MOVE_BLIZZARD)
+    special(ChangeRotomForm)
+
     if (var(VAR_RESULT) == TRUE) {
-        setvar(VAR_0x8000, 2)
-        special(ChangeRotomForm)   
         msgbox("Rotom form was changed!")
     }
     release
@@ -41,11 +47,13 @@ script RotomMachine_Fridge {
 
 script RotomMachine_Lawnmower {
     lock
-    checkspecies(SPECIES_ROTOM, OPEN_PARTY_SCREEN)
-    
+    special(ChoosePartyMon)
+    waitstate
+    lock
+    setvar(VAR_0x8000, MOVE_LEAF_STORM)
+    special(ChangeRotomForm)
+
     if (var(VAR_RESULT) == TRUE) {
-        setvar(VAR_0x8000, 3)
-        special(ChangeRotomForm)   
         msgbox("Rotom form was changed!")
     }
     release
@@ -54,11 +62,13 @@ script RotomMachine_Lawnmower {
 
 script RotomMachine_Oven {
     lock
-    checkspecies(SPECIES_ROTOM, OPEN_PARTY_SCREEN)
-    
+    special(ChoosePartyMon)
+    waitstate
+    lock
+    setvar(VAR_0x8000, MOVE_OVERHEAT)
+    special(ChangeRotomForm)
+
     if (var(VAR_RESULT) == TRUE) {
-        setvar(VAR_0x8000, 4)
-        special(ChangeRotomForm)   
         msgbox("Rotom form was changed!")
     }
     release

@@ -7076,36 +7076,68 @@ static void Task_TryItemUseFormChange(u8 taskId)
     }
 }
 
-void ChangeRotomForm(void) 
+static bool32 IsRotomFormSpecies(u16 species)
 {
-    struct Pokemon *mon = &gPlayerParty[gSpecialVar_0x8004];
+    return GET_BASE_SPECIES_ID(species) == SPECIES_ROTOM;
+}
+
+static u16 GetRotomSpeciesForFormMove(enum Move move)
+{
+    switch (move)
+    {
+    case MOVE_THUNDER_SHOCK:
+        return SPECIES_ROTOM;
+    case MOVE_OVERHEAT:
+        return SPECIES_ROTOM_HEAT;
+    case MOVE_HYDRO_PUMP:
+        return SPECIES_ROTOM_WASH;
+    case MOVE_BLIZZARD:
+        return SPECIES_ROTOM_FROST;
+    case MOVE_AIR_SLASH:
+        return SPECIES_ROTOM_FAN;
+    case MOVE_LEAF_STORM:
+        return SPECIES_ROTOM_MOW;
+    default:
+        return SPECIES_NONE;
+    }
+}
+
+void ChangeRotomForm(void)
+{
+    struct Pokemon *mon;
     u32 i;
-    u16 move;
+    u16 move = gSpecialVar_0x8000;
+    u16 targetSpecies = GetRotomSpeciesForFormMove(move);
+    u16 currentSpecies;
+
+    gSpecialVar_Result = FALSE;
+    if (gSpecialVar_0x8004 >= PARTY_SIZE || targetSpecies == SPECIES_NONE)
+        return;
+
+    mon = &gPlayerParty[gSpecialVar_0x8004];
+    currentSpecies = GetMonData(mon, MON_DATA_SPECIES);
+    if (!IsRotomFormSpecies(currentSpecies))
+        return;
+
+    if (currentSpecies == targetSpecies)
+    {
+        targetSpecies = SPECIES_ROTOM;
+        move = MOVE_THUNDER_SHOCK;
+    }
+
     for (i = 0; i < ARRAY_COUNT(sRotomFormChangeMoves); i++)
         DeleteMove(mon, sRotomFormChangeMoves[i]);
 
-    switch (gSpecialVar_0x8000) {
-        case 0:
-            move = MOVE_HYDRO_PUMP;
-            break;
-        case 1:
-            move = MOVE_AIR_SLASH;
-            break;
-        case 2:
-            move = MOVE_BLIZZARD;
-            break;
-        case 3:
-            move = MOVE_LEAF_STORM;
-            break;
-        case 4:
-            move = MOVE_HEAT_WAVE;
-            break;
-        default:
-            move = MOVE_THUNDERSHOCK;
-            break;
+    if (move != MOVE_THUNDER_SHOCK || I_ROTOM_CATALOG_THUNDER_SHOCK >= GEN_9 || !DoesMonHaveAnyMoves(mon))
+    {
+        if (GiveMoveToMon(mon, move) == MON_HAS_MAX_MOVES)
+            SetMonMoveSlot(mon, move, MAX_MON_MOVES - 1);
     }
-    SetMonData(mon, MON_DATA_MOVE4, &move);
-    TryFormChange(mon, FORM_CHANGE_MOVE);
+
+    SetMonData(mon, MON_DATA_SPECIES, &targetSpecies);
+    CalculateMonStats(mon);
+    RefreshFollowingPokemon();
+    gSpecialVar_Result = TRUE;
 }
 
 bool32 TryItemUseFormChange(u8 taskId, TaskFunc task)

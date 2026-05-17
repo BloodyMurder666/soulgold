@@ -40,8 +40,8 @@ enum FormChanges
     // TODO: Form change that activates when the Pokémon learns or forgets the move.
     // param1: move to check for
     // param2:
-    // - WHEN_LEARNED if Form change that activates when move is forgotten
-    // - WHEN_FORGOTTEN if Form change that activates when move is learned
+    // - WHEN_LEARNED if Form change that activates when move is learned
+    // - WHEN_FORGOTTEN if Form change that activates when move is forgotten
     FORM_CHANGE_MOVE,
     // Form change that activates when the Pokémon is withdrawn from the PC or Daycare.
     // - No parameters.
