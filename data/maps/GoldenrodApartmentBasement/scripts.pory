@@ -9,7 +9,7 @@ script RotomMachine_Wash {
     special(ChangeRotomForm)
 
     if (var(VAR_RESULT) == TRUE) {
-        msgbox("Rotom form was changed!")
+        msgbox("Rotom's form was changed!")
     }
     release
     end
@@ -24,7 +24,7 @@ script RotomMachine_Fan {
     special(ChangeRotomForm)
 
     if (var(VAR_RESULT) == TRUE) {
-        msgbox("Rotom form was changed!")
+        msgbox("Rotom's form was changed!")
     }
     release
     end
@@ -39,7 +39,7 @@ script RotomMachine_Fridge {
     special(ChangeRotomForm)
 
     if (var(VAR_RESULT) == TRUE) {
-        msgbox("Rotom form was changed!")
+        msgbox("Rotom's form was changed!")
     }
     release
     end
@@ -54,7 +54,7 @@ script RotomMachine_Lawnmower {
     special(ChangeRotomForm)
 
     if (var(VAR_RESULT) == TRUE) {
-        msgbox("Rotom form was changed!")
+        msgbox("Rotom's form was changed!")
     }
     release
     end
@@ -69,7 +69,7 @@ script RotomMachine_Oven {
     special(ChangeRotomForm)
 
     if (var(VAR_RESULT) == TRUE) {
-        msgbox("Rotom form was changed!")
+        msgbox("Rotom's form was changed!")
     }
     release
     end
