@@ -5,7 +5,7 @@
   include/constants/metatile_behaviors.h
 
 
-../porytiles/porytiles decompile-primary -o decompiled-primary-tileset data/tilesets/primary/johto_general   include/constants/metatile_behaviors.h
+../porytiles/porytiles decompile-primary -o porytiles/decompiled-cave-default data/tilesets/secondary/cave_default   include/constants/metatile_behaviors.h
 
 ../porytiles/porytiles decompile-secondary -o \  
    porytiles/decompiled-desert \
@@ -39,12 +39,11 @@
 // This works
 
 ../porytiles/porytiles compile-secondary \
-  -metatiles-primary-override=1024 \
-  -metatiles-total-override=2048 \
-  -target-base-game=pokefirered \
+  -tiles-primary-override=640 \
+  -metatiles-primary-override=640 \
   -pals-primary-override=7 \
-  -o data/tilesets/secondary/desert \
-  compiled-desert \
+  -o data/tilesets/secondary/g_4cave \
+  porytiles/g4cave \
   ../porytiles/primary_blank \
   include/constants/metatile_behaviors.h
 

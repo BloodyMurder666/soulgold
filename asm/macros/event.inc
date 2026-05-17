@@ -2976,8 +2976,6 @@
 	.byte \isShiny
 	.endm
 
-@@@ custom end
-
 	@ Creates a movement script for approaching the given object by using Weighted A*.
 	@ This is meant to be used to remove branching in scripts,
 	@ since the algorithm can be slow.

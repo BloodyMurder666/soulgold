@@ -1,11 +1,37 @@
 mapscripts GoldenrodApartment_MapScripts {}
 
 script GoldenrodApartments_BasementGuard {
-    msgbox("Sorry kid, the basement is off limits.", MSGBOX_NPC)
+    msgbox("Sorry but this stairway leads to the
+            apartments storage. Besides, I don't
+            think there's any reason why a trainer
+            would want to check out old house
+            appliances that have been abandoned
+            due to rampant consumerism.")
+    checkspecies(SPECIES_ROTOM)
+    if (var(VAR_RESULT) == FALSE) {
+        release
+        end
+    }
+    msgbox("...What? You have a Rotom that wants
+            check out the appliances? Well... 
+            I suppose the tenants wouldn't
+            use them anyway. Let's say I never
+            saw you if anyone asks. I'm going to
+            have a coffee break.")
+    closemessage
+    setflag(FLAG_HIDE_GROD_APARTMENTS_GUARD)
+    fadescreenswapbuffers(FADE_TO_BLACK)
+    removeobject(LOCALID_APARTMENT_GUARD)
+    delay(60)
+    fadescreenswapbuffers(FADE_FROM_BLACK)
+    release
+    end
 } 
 
 script GoldenrodApartments_OldLady {
-    msgbox("", MSGBOX_NPC)
+    msgbox("The city has been expanding a lot in
+            recent years. I fear I've been left
+            behind by the rapid changes.", MSGBOX_NPC)
 }
 
 script GoldenrodApartments_Child {
@@ -30,15 +56,21 @@ script GoldenrodApartments_Breloom {
 }
 
 script GoldenrodApartments_Gameboykid {
-    msgbox("", MSGBOX_NPC)
+    msgbox("Strange noises can be heard from the
+            floor above this. I have never seen
+            anyone who lives there though, strange.", MSGBOX_NPC)
 }
 
 script GoldenrodApartments_ScientistF {
-    msgbox("", MSGBOX_NPC)
+    msgbox("Goldenrod recently invited scientists
+            from other regions to the Radio Tower
+            for a business meeting.", MSGBOX_NPC)
 }
 
 script GoldenrodApartments_ScientistM {
-    msgbox("", MSGBOX_NPC)
+    msgbox("These SkyBNB apartments are barely
+            equipped with the most basics of
+            tools... How vexing.", MSGBOX_NPC)
 }
 
 script GoldenrodApartments_LockedDoor {
@@ -48,13 +80,13 @@ script GoldenrodApartments_LockedDoor {
 }
 
 script GoldenrodApartments_Apartment1 {
-
+    msgbox("Goldenrod Sky Apartments F1", MSGBOX_SIGN)
 }
 
 script GoldenrodApartments_Apartment2 {
-
+    msgbox("Goldenrod Sky Apartments F2", MSGBOX_SIGN)
 }
 
 script GoldenrodApartments_Apartment3 {
-
+    msgbox("Goldenrod Sky Apartments F3", MSGBOX_SIGN)
 }

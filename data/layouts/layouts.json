@@ -9344,6 +9344,16 @@
       "secondary_tileset": "gTileset_CeladonApartments",
       "border_filepath": "data/layouts/GoldenrodApartment/border.bin",
       "blockdata_filepath": "data/layouts/GoldenrodApartment/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_APARTMENT_BASEMENT",
+      "name": "GoldenrodApartmentBasement_Layout",
+      "width": 11,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Building",
+      "secondary_tileset": "gTileset_PokemonDayCare",
+      "border_filepath": "data/layouts/GoldenrodApartmentBasement/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodApartmentBasement/map.bin"
     }
   ]
 }

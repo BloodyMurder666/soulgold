@@ -67,6 +67,7 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_APARTMENT_GUARD",
       "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
       "x": 5,
       "y": 19,
@@ -77,7 +78,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "GoldenrodApartments_BasementGuard",
-      "flag": "FLAG_DAY_POKEMON"
+      "flag": "FLAG_HIDE_GROD_APARTMENTS_GUARD"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
@@ -132,7 +133,50 @@
       "flag": "FLAG_GOLDENROD_APARTMENTS_SMARTSTRIKE"
     }
   ],
-  "warp_events": [],
+  "warp_events": [
+    {
+      "x": 5,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_APARTMENT_BASEMENT",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 15,
+      "y": 20,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_CITY",
+      "dest_warp_id": "16"
+    },
+    {
+      "x": 15,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_APARTMENT",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 38,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_APARTMENT",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 37,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_APARTMENT",
+      "dest_warp_id": "5"
+    },
+    {
+      "x": 62,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_APARTMENT",
+      "dest_warp_id": "4"
+    }
+  ],
   "coord_events": [],
   "bg_events": [
     {

@@ -1548,7 +1548,7 @@
 #define FLAG_DERBY_NICKNAME                         (SYSTEM_FLAGS + 0xAA) 
 #define FLAG_DERBY_RESET                            (SYSTEM_FLAGS + 0xAB) 
 #define FLAG_RUINSOFALPH_NATUREPOWER                (SYSTEM_FLAGS + 0xAC) 
-#define FLAG_UNUSED_0x90D                           (SYSTEM_FLAGS + 0xAD) // Unused Flag
+#define FLAG_HIDE_GROD_APARTMENTS_GUARD             (SYSTEM_FLAGS + 0xAD) // After showing rotom
 #define FLAG_UNUSED_0x90E                           (SYSTEM_FLAGS + 0xAE) // Unused Flag
 #define FLAG_UNUSED_0x90F                           (SYSTEM_FLAGS + 0xAF) // Unused Flag
 #define FLAG_UNUSED_0x910                           (SYSTEM_FLAGS + 0xB0) // Unused Flag

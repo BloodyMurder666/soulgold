@@ -1,0 +1,66 @@
+mapscripts GoldenrodApartmentBasement_MapScripts {}
+
+script RotomMachine_Wash {
+    lock
+    checkspecies(SPECIES_ROTOM, OPEN_PARTY_SCREEN)
+    
+    if (var(VAR_RESULT) == TRUE) {
+        setvar(VAR_0x8000, 0)
+        special(ChangeRotomForm)
+        msgbox("Rotom form was changed!")
+    }
+    release
+    end
+}
+
+script RotomMachine_Fan {
+    lock
+    checkspecies(SPECIES_ROTOM, OPEN_PARTY_SCREEN)
+    
+    if (var(VAR_RESULT) == TRUE) {
+        setvar(VAR_0x8000, 1)
+        special(ChangeRotomForm)   
+        msgbox("Rotom form was changed!")
+    }
+    release
+    end
+}
+
+script RotomMachine_Fridge {
+    lock
+    checkspecies(SPECIES_ROTOM, OPEN_PARTY_SCREEN)
+    
+    if (var(VAR_RESULT) == TRUE) {
+        setvar(VAR_0x8000, 2)
+        special(ChangeRotomForm)   
+        msgbox("Rotom form was changed!")
+    }
+    release
+    end
+}
+
+script RotomMachine_Lawnmower {
+    lock
+    checkspecies(SPECIES_ROTOM, OPEN_PARTY_SCREEN)
+    
+    if (var(VAR_RESULT) == TRUE) {
+        setvar(VAR_0x8000, 3)
+        special(ChangeRotomForm)   
+        msgbox("Rotom form was changed!")
+    }
+    release
+    end
+}
+
+script RotomMachine_Oven {
+    lock
+    checkspecies(SPECIES_ROTOM, OPEN_PARTY_SCREEN)
+    
+    if (var(VAR_RESULT) == TRUE) {
+        setvar(VAR_0x8000, 4)
+        special(ChangeRotomForm)   
+        msgbox("Rotom form was changed!")
+    }
+    release
+    end
+}

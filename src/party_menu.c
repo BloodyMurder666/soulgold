@@ -7076,6 +7076,38 @@ static void Task_TryItemUseFormChange(u8 taskId)
     }
 }
 
+void ChangeRotomForm(void) 
+{
+    struct Pokemon *mon = &gPlayerParty[gSpecialVar_0x8004];
+    u32 i;
+    u16 move;
+    for (i = 0; i < ARRAY_COUNT(sRotomFormChangeMoves); i++)
+        DeleteMove(mon, sRotomFormChangeMoves[i]);
+
+    switch (gSpecialVar_0x8000) {
+        case 0:
+            move = MOVE_HYDRO_PUMP;
+            break;
+        case 1:
+            move = MOVE_AIR_SLASH;
+            break;
+        case 2:
+            move = MOVE_BLIZZARD;
+            break;
+        case 3:
+            move = MOVE_LEAF_STORM;
+            break;
+        case 4:
+            move = MOVE_HEAT_WAVE;
+            break;
+        default:
+            move = MOVE_THUNDERSHOCK;
+            break;
+    }
+    SetMonData(mon, MON_DATA_MOVE4, &move);
+    TryFormChange(mon, FORM_CHANGE_MOVE);
+}
+
 bool32 TryItemUseFormChange(u8 taskId, TaskFunc task)
 {
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
