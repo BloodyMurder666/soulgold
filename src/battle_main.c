@@ -14,6 +14,7 @@
 #include "battle_scripts.h"
 #include "battle_setup.h"
 #include "battle_tower.h"
+#include "battle_util.h"
 #include "battle_z_move.h"
 #include "battle_gimmick.h"
 #include "berry.h"
@@ -4869,6 +4870,10 @@ u32 GetBattlerTotalSpeedStat(enum BattlerId battler)
         speed += baseSpeed / 2;
     if (SearchTraits(battlerTraits, ABILITY_SURGE_SURFER) && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
         speed += baseSpeed;
+    if (SearchTraits(battlerTraits, ABILITY_MYSTIC_FORCE) && gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN)
+        speed += baseSpeed;
+    if (SearchTraits(battlerTraits, ABILITY_ADRENALINE) && gBattleMons[battler].hp <= (gBattleMons[battler].maxHP / 3))
+        speed += (baseSpeed * 30) / 100;
     if (SearchTraits(battlerTraits, ABILITY_PROTOSYNTHESIS) && !(gBattleMons[battler].volatiles.transformed) && ((gBattleWeather & B_WEATHER_SUN && HasWeatherEffect()) || gBattleMons[battler].volatiles.boosterEnergyActivated))
         speed += (GetHighestStatId(battler) == STAT_SPEED) ? baseSpeed / 2 : 0;
     if (SearchTraits(battlerTraits, ABILITY_QUARK_DRIVE) && !(gBattleMons[battler].volatiles.transformed) && (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN || gBattleMons[battler].volatiles.boosterEnergyActivated))
@@ -4963,6 +4968,68 @@ s32 GetChosenMovePriority(enum BattlerId battler)
     return GetBattleMovePriority(battler, move);
 }
 
+static bool32 IsMoveExpectedToHitReactiveBattler(enum BattlerId battlerAtk, enum BattlerId battlerDef, enum Move move)
+{
+    enum MoveTarget target = GetBattlerMoveTargetType(battlerAtk, move);
+
+    if (IsBattlerAlly(battlerAtk, battlerDef))
+        return FALSE;
+
+    switch (target)
+    {
+    case TARGET_BOTH:
+    case TARGET_FOES_AND_ALLY:
+    case TARGET_ALL_BATTLERS:
+        return TRUE;
+    case TARGET_SELECTED:
+    case TARGET_SMART:
+    case TARGET_DEPENDS:
+    case TARGET_OPPONENT:
+    case TARGET_RANDOM:
+        if (!IsDoubleBattle())
+            return TRUE;
+        return gBattleStruct->moveTarget[battlerAtk] == battlerDef;
+    default:
+        return FALSE;
+    }
+}
+
+static bool32 IsReactiveMoveSuperEffective(enum BattlerId battlerAtk, enum BattlerId battlerDef, enum Move move)
+{
+    struct BattleContext ctx = {0};
+
+    if (move == MOVE_NONE || move == MOVE_UNAVAILABLE || IsBattleMoveStatus(move))
+        return FALSE;
+    if (!IsMoveExpectedToHitReactiveBattler(battlerAtk, battlerDef, move))
+        return FALSE;
+
+    ctx.battlerAtk = battlerAtk;
+    ctx.battlerDef = battlerDef;
+    ctx.move = move;
+    ctx.chosenMove = move;
+    ctx.moveType = GetBattleMoveType(move);
+    ctx.weather = GetCurrentBattleWeather();
+    ctx.fieldStatuses = gFieldStatuses;
+    ctx.updateFlags = FALSE;
+
+    return CalcTypeEffectivenessMultiplier(&ctx) > UQ_4_12(1.0);
+}
+
+static bool32 ShouldReactiveIncreasePriority(enum BattlerId battler)
+{
+    enum BattlerId opposingBattler;
+
+    for (opposingBattler = 0; opposingBattler < gBattlersCount; opposingBattler++)
+    {
+        if (!IsBattlerAlive(opposingBattler) || IsBattlerAlly(battler, opposingBattler))
+            continue;
+        if (IsReactiveMoveSuperEffective(opposingBattler, battler, GetBattlerChosenMove(opposingBattler)))
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
 s32 GetBattleMovePriority(enum BattlerId battler, enum Move move)
 {
     s32 priority = 0;
@@ -5001,6 +5068,13 @@ s32 GetBattleMovePriority(enum BattlerId battler, enum Move move)
     }
     if (SearchTraits(battlerTraits, ABILITY_TRIAGE) && IsHealingMove(move))
         priority += 3;
+    if (SearchTraits(battlerTraits, ABILITY_MANEUVERABILITY)
+     && !IsBattleMoveStatus(move)
+     && GetMovePower(move) > 0
+     && GetMovePower(move) < 60)
+        priority++;
+    if (SearchTraits(battlerTraits, ABILITY_REACTIVE) && ShouldReactiveIncreasePriority(battler))
+        priority++;
 
     return priority;
 }

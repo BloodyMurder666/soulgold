@@ -2413,6 +2413,67 @@ static inline uq4_12_t GetSupremeOverlordModifier(enum BattlerId battler)
     return UQ_4_12(1.0) + (PercentToUQ4_12(gBattleStruct->supremeOverlordCounter[battler] * 10));
 }
 
+static inline u32 GetPackLeaderAllyCount(enum BattlerId battler)
+{
+    u32 count = 0;
+    struct Pokemon *party = GetBattlerParty(battler);
+
+    for (u32 i = 0; i < PARTY_SIZE; i++)
+    {
+        if (i == gBattlerPartyIndexes[battler])
+            continue;
+        if (GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) == SPECIES_NONE
+         || GetMonData(&party[i], MON_DATA_IS_EGG)
+         || GetMonData(&party[i], MON_DATA_HP) == 0)
+            continue;
+        count++;
+    }
+
+    return min(5, count);
+}
+
+static inline uq4_12_t GetPackLeaderModifier(enum BattlerId battler)
+{
+    return UQ_4_12(1.0) + PercentToUQ4_12(GetPackLeaderAllyCount(battler) * 5);
+}
+
+static enum Type GetTypeBoostAbilityType(enum Ability ability)
+{
+    switch (ability)
+    {
+    case ABILITY_TRUE_GRIT:
+        return TYPE_NORMAL;
+    case ABILITY_WARRIOR_SPIRIT:
+        return TYPE_FIGHTING;
+    case ABILITY_WIND_FORCE:
+        return TYPE_FLYING;
+    case ABILITY_TOXIC_CORE:
+        return TYPE_POISON;
+    case ABILITY_EARTHBOUND:
+        return TYPE_GROUND;
+    case ABILITY_HIVE_FORCE:
+        return TYPE_BUG;
+    case ABILITY_SPECTRAL_FORCE:
+        return TYPE_GHOST;
+    case ABILITY_FIERY_HEART:
+        return TYPE_FIRE;
+    case ABILITY_SEABOUND:
+        return TYPE_WATER;
+    case ABILITY_VERDANT_SOUL:
+        return TYPE_GRASS;
+    case ABILITY_MIND_FORCE:
+        return TYPE_PSYCHIC;
+    case ABILITY_FROST_FORCE:
+        return TYPE_ICE;
+    case ABILITY_NIGHTFALL:
+        return TYPE_DARK;
+    case ABILITY_FAE_HEART:
+        return TYPE_FAIRY;
+    default:
+        return TYPE_NONE;
+    }
+}
+
 bool32 HadMoreThanHalfHpNowDoesnt(enum BattlerId battler)
 {
     // Had more than half of hp before, now has less
@@ -3318,6 +3379,15 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
             SaveBattlerAttacker(gBattlerAttacker);
             gBattlerAttacker = battler;
             effect += CommonSwitchInAbilities(battler, ABILITY_INTIMIDATE, traitCheck, BattleScript_IntimidateActivates);
+        }
+        if ((traitCheck = SearchTraits(battlerTraits, ABILITY_UNCANNY)) && !gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1]
+         && shouldAbilityTrigger
+         && !IsOpposingSideEmpty(battler))
+        {
+            PushTraitStack(battler, ABILITY_UNCANNY);
+            SaveBattlerAttacker(gBattlerAttacker);
+            gBattlerAttacker = battler;
+            effect += CommonSwitchInAbilities(battler, ABILITY_UNCANNY, traitCheck, BattleScript_UncannyActivates);
         }
         if ((traitCheck = SearchTraits(battlerTraits, ABILITY_SUPERSWEET_SYRUP)) && !gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1]
          && shouldAbilityTrigger
@@ -7120,6 +7190,8 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct BattleContext *ctx)
         modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
     if (SearchTraits(battlerTraits, ABILITY_SUPREME_OVERLORD))
         modifier = uq4_12_multiply(modifier, GetSupremeOverlordModifier(battlerAtk));
+    if (SearchTraits(battlerTraits, ABILITY_PACK_LEADER))
+        modifier = uq4_12_multiply(modifier, GetPackLeaderModifier(battlerAtk));
 
     // field abilities
     if ((IsAbilityOnField(ABILITY_DARK_AURA) && moveType == TYPE_DARK)
@@ -7475,6 +7547,14 @@ static inline u32 CalcAttackStat(struct BattleContext *ctx)
     if (SearchTraits(battlerTraits, ABILITY_ROCKY_PAYLOAD)
      && moveType == TYPE_ROCK)
         modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
+    for (u32 i = 0; i < MAX_MON_TRAITS; i++)
+    {
+        if (GetTypeBoostAbilityType(battlerTraits[i]) == moveType)
+        {
+            modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
+            break;
+        }
+    }
     if (SearchTraits(battlerTraits, ABILITY_PROTOSYNTHESIS)
      && !(gBattleMons[battlerAtk].volatiles.transformed))
     {

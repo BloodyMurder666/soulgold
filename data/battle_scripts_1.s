@@ -6333,6 +6333,42 @@ BattleScript_IntimidateInReverse::
 	call BattleScript_TryIntimidateHoldEffects
 	goto BattleScript_IntimidateLoopIncrement
 
+BattleScript_UncannyActivates::
+	savetarget
+	call BattleScript_AbilityPopUp
+	setbyte gBattlerTarget, 0
+BattleScript_UncannyLoop:
+	jumpiftargetally BattleScript_UncannyLoopIncrement
+	jumpifabsent BS_TARGET, BattleScript_UncannyLoopIncrement
+	jumpifvolatile BS_TARGET, VOLATILE_SUBSTITUTE, BattleScript_UncannyLoopIncrement
+BattleScript_UncannyEffect:
+	copybyte sBATTLER, gBattlerAttacker
+	setstatchanger STAT_SPATK, 1, TRUE
+	statbuffchange BS_TARGET, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_UncannyLoopIncrement
+	jumpifability BS_TARGET, ABILITY_CONTRARY, BattleScript_UncannyContrary
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_CHANGE, BattleScript_UncannyWontDecrease
+	printstring STRINGID_DEFENDERSSTATFELL
+BattleScript_UncannyEffect_WaitString:
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_UncannyLoopIncrement:
+	addbyte gBattlerTarget, 1
+	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_UncannyLoop
+	copybyte sBATTLER, gBattlerAttacker
+	destroyabilitypopup
+	restoretarget
+	restoreattacker
+	pause B_WAIT_TIME_MED
+	return
+
+BattleScript_UncannyWontDecrease:
+	printstring STRINGID_STATSWONTDECREASE
+	goto BattleScript_UncannyEffect_WaitString
+
+BattleScript_UncannyContrary:
+	pushtraitstack BS_TARGET ABILITY_CONTRARY
+	printstring STRINGID_DEFENDERSSTATROSE
+	goto BattleScript_UncannyEffect_WaitString
+
 BattleScript_SupersweetSyrupActivates::
  	savetarget
 	call BattleScript_AbilityPopUp

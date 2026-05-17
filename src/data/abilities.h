@@ -2552,4 +2552,144 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .aiRating = 4,
         .breakable = TRUE,
     },
+
+    [ABILITY_UNCANNY] =
+    {
+        .name = _("Uncanny"),
+        .description = COMPOUND_STRING("Lowers foes' Sp. Atk."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_MYSTIC_FORCE] =
+    {
+        .name = _("Mystic Force"),
+        .description = COMPOUND_STRING("Boosts Speed on Psychic Terrain."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_MANEUVERABILITY] =
+    {
+        .name = _("Maneuverability"),
+        .description = COMPOUND_STRING("Prioritizes weaker attacks."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_ADRENALINE] =
+    {
+        .name = _("Adrenaline"),
+        .description = COMPOUND_STRING("Boosts Speed in a pinch."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_PACK_LEADER] =
+    {
+        .name = _("Pack Leader"),
+        .description = COMPOUND_STRING("Boosts attacks with allies."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_REACTIVE] =
+    {
+        .name = _("Reactive"),
+        .description = COMPOUND_STRING("Reacts to supereffective moves."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_TRUE_GRIT] =
+    {
+        .name = _("True Grit"),
+        .description = COMPOUND_STRING("Powers up Normal moves."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_WARRIOR_SPIRIT] =
+    {
+        .name = _("Warrior Spirit"),
+        .description = COMPOUND_STRING("Powers up Fighting moves."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_WIND_FORCE] =
+    {
+        .name = _("Wind Force"),
+        .description = COMPOUND_STRING("Powers up Flying moves."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_TOXIC_CORE] =
+    {
+        .name = _("Toxic Core"),
+        .description = COMPOUND_STRING("Powers up Poison moves."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_EARTHBOUND] =
+    {
+        .name = _("Earthbound"),
+        .description = COMPOUND_STRING("Powers up Ground moves."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_HIVE_FORCE] =
+    {
+        .name = _("Hive Force"),
+        .description = COMPOUND_STRING("Powers up Bug moves."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_SPECTRAL_FORCE] =
+    {
+        .name = _("Spectral Force"),
+        .description = COMPOUND_STRING("Powers up Ghost moves."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_FIERY_HEART] =
+    {
+        .name = _("Fiery Heart"),
+        .description = COMPOUND_STRING("Powers up Fire moves."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_SEABOUND] =
+    {
+        .name = _("Seabound"),
+        .description = COMPOUND_STRING("Powers up Water moves."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_VERDANT_SOUL] =
+    {
+        .name = _("Verdant Soul"),
+        .description = COMPOUND_STRING("Powers up Grass moves."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_MIND_FORCE] =
+    {
+        .name = _("Mind Force"),
+        .description = COMPOUND_STRING("Powers up Psychic moves."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_FROST_FORCE] =
+    {
+        .name = _("Frost Force"),
+        .description = COMPOUND_STRING("Powers up Ice moves."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_NIGHTFALL] =
+    {
+        .name = _("Nightfall"),
+        .description = COMPOUND_STRING("Powers up Dark moves."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_FAE_HEART] =
+    {
+        .name = _("Fae Heart"),
+        .description = COMPOUND_STRING("Powers up Fairy moves."),
+        .aiRating = 6,
+    },
 };
