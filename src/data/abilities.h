@@ -2432,4 +2432,124 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .cantBeSwapped = TRUE,
         .cantBeTraced = TRUE,
     },
+
+    [ABILITY_NORMAL_ATE] =
+    {
+        .name = _("Normalate"),
+        .description = COMPOUND_STRING("Normal moves stay Normal."),
+        .aiRating = 7,
+    },
+
+    [ABILITY_FIGHTING_ATE] =
+    {
+        .name = _("Fightilate"),
+        .description = COMPOUND_STRING("Normal moves become Fighting."),
+        .aiRating = 8,
+    },
+
+    [ABILITY_POISON_ATE] =
+    {
+        .name = _("Venomate"),
+        .description = COMPOUND_STRING("Normal moves become Poison."),
+        .aiRating = 8,
+    },
+
+    [ABILITY_GROUND_ATE] =
+    {
+        .name = _("Terrate"),
+        .description = COMPOUND_STRING("Normal moves become Ground."),
+        .aiRating = 8,
+    },
+
+    [ABILITY_ROCK_ATE] =
+    {
+        .name = _("Rockate"),
+        .description = COMPOUND_STRING("Normal moves become Rock."),
+        .aiRating = 8,
+    },
+
+    [ABILITY_BUG_ATE] =
+    {
+        .name = _("Swarmate"),
+        .description = COMPOUND_STRING("Normal moves become Bug."),
+        .aiRating = 8,
+    },
+
+    [ABILITY_GHOST_ATE] =
+    {
+        .name = _("Spectrate"),
+        .description = COMPOUND_STRING("Normal moves become Ghost."),
+        .aiRating = 8,
+    },
+
+    [ABILITY_STEEL_ATE] =
+    {
+        .name = _("Steelate"),
+        .description = COMPOUND_STRING("Normal moves become Steel."),
+        .aiRating = 8,
+    },
+
+    [ABILITY_FIRE_ATE] =
+    {
+        .name = _("Flamilate"),
+        .description = COMPOUND_STRING("Normal moves become Fire."),
+        .aiRating = 8,
+    },
+
+    [ABILITY_WATER_ATE] =
+    {
+        .name = _("Aquate"),
+        .description = COMPOUND_STRING("Normal moves become Water."),
+        .aiRating = 8,
+    },
+
+    [ABILITY_GRASS_ATE] =
+    {
+        .name = _("Florate"),
+        .description = COMPOUND_STRING("Normal moves become Grass."),
+        .aiRating = 8,
+    },
+
+    [ABILITY_PSYCHIC_ATE] =
+    {
+        .name = _("Psychate"),
+        .description = COMPOUND_STRING("Normal moves become Psychic."),
+        .aiRating = 8,
+    },
+
+    [ABILITY_DRAGON_ATE] =
+    {
+        .name = _("Draconate"),
+        .description = COMPOUND_STRING("Normal moves become Dragon."),
+        .aiRating = 8,
+    },
+
+    [ABILITY_DARK_ATE] =
+    {
+        .name = _("Dreadate"),
+        .description = COMPOUND_STRING("Normal moves become Dark."),
+        .aiRating = 8,
+    },
+
+    [ABILITY_STEEL_FEET] =
+    {
+        .name = _("Steel Feet"),
+        .description = COMPOUND_STRING("Boosts kicking moves."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_DUAL_STRIKE] =
+    {
+        .name = _("Dual Strike"),
+        .description = COMPOUND_STRING("Moves hit twice."),
+        .aiRating = 10,
+    },
+
+    [ABILITY_UNSTOPPABLE] =
+    {
+        .name = _("Unstoppable"),
+        .description = COMPOUND_STRING("Prevents fatigue confusion."),
+        .aiRating = 4,
+        .breakable = TRUE,
+    },
 };

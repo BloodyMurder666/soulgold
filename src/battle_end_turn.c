@@ -338,7 +338,7 @@ static bool32 HandleEndTurnFirstEventBlock(enum BattlerId battler)
             else if (!gBattleMons[battler].volatiles.rampageTurns && gBattleMons[battler].volatiles.multipleTurns)
             {
                 gBattleMons[battler].volatiles.multipleTurns = FALSE;
-                if (!gBattleMons[battler].volatiles.confusionTurns)
+                if (!gBattleMons[battler].volatiles.confusionTurns && !BattlerHasTrait(battler, ABILITY_UNSTOPPABLE))
                 {
                     SetMoveEffect(battler, battler, MOVE_EFFECT_CONFUSION, gBattlescriptCurrInstr, EFFECT_PRIMARY);
                     if (gBattleMons[battler].volatiles.confusionTurns)

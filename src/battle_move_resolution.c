@@ -1867,7 +1867,7 @@ static bool32 IsMoveParentalBondAffected(struct BattleContext *ctx)
 {
     enum BattleMoveEffects effect = GetMoveEffect(ctx->move);
 
-    if (!BattlerHasTrait(ctx->battlerAtk, ABILITY_PARENTAL_BOND)
+    if (!(BattlerHasTrait(ctx->battlerAtk, ABILITY_PARENTAL_BOND) || BattlerHasTrait(ctx->battlerAtk, ABILITY_DUAL_STRIKE))
      || gBattleStruct->numSpreadTargets > 1
      || IsMoveParentalBondBanned(ctx->move)
      || GetMoveCategory(ctx->move) == DAMAGE_CATEGORY_STATUS

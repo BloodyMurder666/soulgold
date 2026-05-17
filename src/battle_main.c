@@ -3556,6 +3556,7 @@ const u8* FaintClearSetData(enum BattlerId battler)
                 // If the released mon can be confused, do so.
                 // Don't use CanBeConfused here, since it can cause issues in edge cases.
                 if (!(BattlerHasTrait(otherSkyDropper, ABILITY_OWN_TEMPO)
+                    || BattlerHasTrait(otherSkyDropper, ABILITY_UNSTOPPABLE)
                     || gBattleMons[otherSkyDropper].volatiles.confusionTurns
                     || IsMistyTerrainAffected(otherSkyDropper, gFieldStatuses)))
                 {
@@ -5966,14 +5967,12 @@ enum Type TrySetAteType(enum Move move, enum BattlerId battlerAtk, enum Ability 
         break;
     }
 
-    if (BattlerHasTrait(battlerAtk, ABILITY_PIXILATE))
-        ateType = TYPE_FAIRY;
-    else if (BattlerHasTrait(battlerAtk, ABILITY_REFRIGERATE))
-        ateType = TYPE_ICE;
-    else if (BattlerHasTrait(battlerAtk, ABILITY_AERILATE))
-        ateType = TYPE_FLYING;
-    else if (BattlerHasTrait(battlerAtk, ABILITY_GALVANIZE))
-        ateType = TYPE_ELECTRIC;
+    for (u32 i = 0; i < MAX_MON_TRAITS; i++)
+    {
+        ateType = GetAteAbilityType(GetBattlerTrait(battlerAtk, i, FALSE));
+        if (ateType != TYPE_NONE)
+            break;
+    }
 
     return ateType;
 }

@@ -239,6 +239,7 @@ bool32 CanMoveBeBlockedByTarget(struct BattleContext *ctx, s32 movePriority);
 bool32 CanAbilityAbsorbMove(struct BattleContext *ctx);
 bool32 TryFieldEffects(enum FieldEffectCases caseId);
 u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum Move move, bool32 shouldAbilityTrigger);
+enum Type GetAteAbilityType(enum Ability ability);
 bool32 TryPrimalReversion(enum BattlerId battler);
 bool32 IsNeutralizingGasOnField(void);
 bool32 HasMoldBreakerTypeAbility(enum BattlerId battler);

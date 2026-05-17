@@ -104,6 +104,7 @@ struct MoveInfo
     bool32 snatchAffected:1;
     bool32 ignoresKingsRock:1;
     bool32 punchingMove:1;
+    bool32 kickingMove:1;
     bool32 bitingMove:1;
     bool32 pulseMove:1;
     bool32 soundMove:1;
@@ -345,6 +346,11 @@ static inline bool32 MoveIgnoresKingsRock(enum Move moveId)
 static inline bool32 IsPunchingMove(enum Move moveId)
 {
     return gMovesInfo[SanitizeMoveId(moveId)].punchingMove;
+}
+
+static inline bool32 IsKickingMove(enum Move moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].kickingMove;
 }
 
 static inline bool32 IsBitingMove(enum Move moveId)

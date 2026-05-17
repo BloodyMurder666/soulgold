@@ -15262,7 +15262,9 @@ void BS_SkyDropYawn(void)
         gBattleStruct->skyDropTargets[gEffectBattler] = SKY_DROP_NO_TARGET;
 
         // If the target was in the middle of Outrage/Thrash/etc. when targeted by Sky Drop, confuse them on release and do proper animation
-        if (gBattleMons[gEffectBattler].volatiles.rampageTurns && CanBeConfused(gEffectBattler))
+        if (gBattleMons[gEffectBattler].volatiles.rampageTurns
+         && !BattlerHasTrait(gEffectBattler, ABILITY_UNSTOPPABLE)
+         && CanBeConfused(gEffectBattler))
         {
             gBattleMons[gEffectBattler].volatiles.rampageTurns = 0;
             gBattlerAttacker = gEffectBattler;

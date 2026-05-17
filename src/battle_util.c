@@ -74,6 +74,51 @@ extern const u8 *const gBattlescriptsForRunningByItem[];
 extern const u8 *const gBattlescriptsForUsingItem[];
 extern const u8 *const gBattlescriptsForSafariActions[];
 
+enum Type GetAteAbilityType(enum Ability ability)
+{
+    switch (ability)
+    {
+    case ABILITY_NORMAL_ATE:
+        return TYPE_NORMAL;
+    case ABILITY_FIGHTING_ATE:
+        return TYPE_FIGHTING;
+    case ABILITY_AERILATE:
+        return TYPE_FLYING;
+    case ABILITY_POISON_ATE:
+        return TYPE_POISON;
+    case ABILITY_GROUND_ATE:
+        return TYPE_GROUND;
+    case ABILITY_ROCK_ATE:
+        return TYPE_ROCK;
+    case ABILITY_BUG_ATE:
+        return TYPE_BUG;
+    case ABILITY_GHOST_ATE:
+        return TYPE_GHOST;
+    case ABILITY_STEEL_ATE:
+        return TYPE_STEEL;
+    case ABILITY_FIRE_ATE:
+        return TYPE_FIRE;
+    case ABILITY_WATER_ATE:
+        return TYPE_WATER;
+    case ABILITY_GRASS_ATE:
+        return TYPE_GRASS;
+    case ABILITY_GALVANIZE:
+        return TYPE_ELECTRIC;
+    case ABILITY_PSYCHIC_ATE:
+        return TYPE_PSYCHIC;
+    case ABILITY_REFRIGERATE:
+        return TYPE_ICE;
+    case ABILITY_DRAGON_ATE:
+        return TYPE_DRAGON;
+    case ABILITY_DARK_ATE:
+        return TYPE_DARK;
+    case ABILITY_PIXILATE:
+        return TYPE_FAIRY;
+    default:
+        return TYPE_NONE;
+    }
+}
+
 static const u8 sPkblToEscapeFactor[][3] = {
     {
         [B_MSG_MON_CURIOUS]    = 0,
@@ -1037,6 +1082,7 @@ const u8 *CheckSkyDropState(enum BattlerId battler, enum SkyDropState skyDropSta
         // Don't use CanBeConfused, can cause issues in edge cases.
         if (!(gBattleMons[otherSkyDropper].volatiles.confusionTurns > 0
             || IsAbilityAndRecord(otherSkyDropper, ABILITY_OWN_TEMPO)
+            || BattlerHasTrait(otherSkyDropper, ABILITY_UNSTOPPABLE)
             || IsMistyTerrainAffected(otherSkyDropper, gFieldStatuses)))
         {
             gBattleMons[otherSkyDropper].volatiles.confusionTurns = RandomUniform(RNG_CONFUSION_TURNS, 2, B_CONFUSION_TURNS); // 2-5 turns
@@ -7029,6 +7075,8 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct BattleContext *ctx)
         modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
     if (SearchTraits(battlerTraits, ABILITY_IRON_FIST) && IsPunchingMove(move))
         modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
+    if (SearchTraits(battlerTraits, ABILITY_STEEL_FEET) && IsKickingMove(move))
+        modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
     if (SearchTraits(battlerTraits, ABILITY_SHEER_FORCE) && MoveIsAffectedBySheerForce(move))
         {modifier = uq4_12_multiply(modifier, UQ_4_12(1.3));}
     if (SearchTraits(battlerTraits, ABILITY_SAND_FORCE) && (moveType == TYPE_STEEL || moveType == TYPE_ROCK || moveType == TYPE_GROUND)
@@ -7054,14 +7102,14 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct BattleContext *ctx)
         modifier = uq4_12_multiply(modifier, UQ_4_12(2.0));
     if (SearchTraits(battlerTraits, ABILITY_STEELWORKER) && moveType == TYPE_STEEL)
         modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
-    if (SearchTraits(battlerTraits, ABILITY_PIXILATE) && moveType == TYPE_FAIRY && gBattleStruct->battlerState[battlerAtk].ateBoost)
-        modifier = uq4_12_multiply(modifier, UQ_4_12(GetConfig(B_ATE_MULTIPLIER) >= GEN_7 ? 1.2 : 1.3));
-    if (SearchTraits(battlerTraits, ABILITY_GALVANIZE) && moveType == TYPE_ELECTRIC && gBattleStruct->battlerState[battlerAtk].ateBoost)
-        modifier = uq4_12_multiply(modifier, UQ_4_12(GetConfig(B_ATE_MULTIPLIER) >= GEN_7 ? 1.2 : 1.3));
-    if (SearchTraits(battlerTraits, ABILITY_REFRIGERATE) && moveType == TYPE_ICE && gBattleStruct->battlerState[battlerAtk].ateBoost)
-        modifier = uq4_12_multiply(modifier, UQ_4_12(GetConfig(B_ATE_MULTIPLIER) >= GEN_7 ? 1.2 : 1.3));
-    if (SearchTraits(battlerTraits, ABILITY_AERILATE) && moveType == TYPE_FLYING && gBattleStruct->battlerState[battlerAtk].ateBoost)
-        modifier = uq4_12_multiply(modifier, UQ_4_12(GetConfig(B_ATE_MULTIPLIER) >= GEN_7 ? 1.2 : 1.3));
+    for (u32 i = 0; i < MAX_MON_TRAITS; i++)
+    {
+        if (GetAteAbilityType(battlerTraits[i]) == moveType && gBattleStruct->battlerState[battlerAtk].ateBoost)
+        {
+            modifier = uq4_12_multiply(modifier, UQ_4_12(GetConfig(B_ATE_MULTIPLIER) >= GEN_7 ? 1.2 : 1.3));
+            break;
+        }
+    }
     if (SearchTraits(battlerTraits, ABILITY_NORMALIZE) && moveType == TYPE_NORMAL && gBattleStruct->battlerState[battlerAtk].ateBoost && GetConfig(B_ATE_MULTIPLIER) >= GEN_7)
         modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
     if (SearchTraits(battlerTraits, ABILITY_PUNK_ROCK) && IsSoundMove(move))
