@@ -772,7 +772,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Ice Punch
 - Thrash
 
-Absol @ Absolite
+Absol @ Darktite
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk
@@ -823,7 +823,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Ice Punch
 - Thrash
 
-Absol @ Absolite
+Absol @ Darktite
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk
@@ -1405,7 +1405,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Parting Shot
 - Play Rough
 
-Pyroar @ Pyroarite
+Pyroar @ Firetite
 Level: 49
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Flamethrower
@@ -1446,7 +1446,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Parting Shot
 - Play Rough
 
-Pyroar @ Pyroarite
+Pyroar @ Firetite
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Flamethrower
@@ -1668,7 +1668,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Crunch
 - Waterfall
 
-Dragalge @ Dragalgite
+Dragalge @ Poisontite
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Hydro Pump
@@ -1718,7 +1718,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Crunch
 - Waterfall
 
-Dragalge @ Dragalgite
+Dragalge @ Poisontite
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Hydro Pump
@@ -1744,7 +1744,7 @@ Toxapex
 Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
-Dragalge @ Dragalgite
+Dragalge @ Poisontite
 Level: 46
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
@@ -1878,7 +1878,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Psychic
 - Flamethrower
 
-Houndoom @ Houndoominite
+Houndoom @ Darktite
 Level: 51
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Solar Beam
@@ -1932,7 +1932,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Psychic
 - Flamethrower
 
-Houndoom @ Houndoominite
+Houndoom @ Darktite
 Level: 52
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Solar Beam
@@ -2029,7 +2029,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Close Combat
 - Earthquake
 
-Staraptor @ Staraptite
+Staraptor @ Normalite
 Level: 69
 EVs: 252 Atk / 252 Spe
 Ability: Intimidate
@@ -2090,7 +2090,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Ice Spinner
 - Thunder Punch
 
-Staraptor @ Staraptite
+Staraptor @ Normalite
 Level: 69
 EVs: 252 Atk / 252 Spe
 Ability: Intimidate
@@ -2520,7 +2520,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Flamethrower
 - Dragon Breath
 
-Gyarados @ Gyaradosite
+Gyarados @ Watertite
 Level: 54
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Crunch
@@ -2588,7 +2588,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Thunder
 - Hurricane
 
-Altaria @ Altarianite
+Altaria @ Dragotite
 Level: 59
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Moonblast
@@ -2897,7 +2897,7 @@ Lucario
 Level: 36
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Manectric @ Manectite
+Manectric @ Electrite
 Level: 36
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
@@ -2997,7 +2997,7 @@ Adamant Nature
 - Seed Bomb  
 - Zen Headbutt
 
-Dragonite @ Dragoninite  
+Dragonite @ Dragotite  
 Ability: Multiscale  
 Level: 71  
 Shiny: Yes
@@ -3069,7 +3069,7 @@ Adamant Nature
 - Icicle Crash  
 - Substitute
 
-Dragonite @ Dragoninite  
+Dragonite @ Dragotite  
 Ability: Multiscale  
 Level: 71  
 Shiny: Yes
@@ -3506,7 +3506,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Sludge Bomb  
 - Sleep Powder  
 
-Feraligatr @ Feraligite  
+Feraligatr @ Bondstone  
 Ability: Sheer Force  
 Level: 65  
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
@@ -3573,7 +3573,7 @@ EVs: 252 SpA / 252 HP
 - Sludge Bomb  
 - Sleep Powder  
 
-Feraligatr @ Feraligite  
+Feraligatr @ Bondstone  
 Ability: Sheer Force  
 EVs: 252 Atk / 252 Spe
 Level: 67  
@@ -4539,7 +4539,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Steel Wing
 - Brave Bird
 
-Absol @ Absolite Z
+Absol @ Ghostite
 Level: 70
 EVs: 252 Spe
 IVs: 31 HP / 10 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -4569,7 +4569,7 @@ Ability: Prankster
 - Parting Shot
 - Play Rough
 
-Absol @ Absolite Z
+Absol @ Ghostite
 Level: 71
 EVs: 252 Atk / 252 Spe
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -4994,7 +4994,7 @@ EVs: 252 SpA / 252 SpD
 - U-turn  
 - Psychic Terrain
 
-Alakazam @ Alakazite  
+Alakazam @ Psychite  
 Ability: Magic Guard  
 Level: 69  
 EVs: 252 SpA / 252 HP  
@@ -5050,7 +5050,7 @@ EVs: 252 Def / 252 SpA
 - Psychic Noise  
 - Trick Room  
 
-Alakazam @ Alakazite  
+Alakazam @ Psychite  
 Ability: Magic Guard  
 Level: 67  
 EVs: 252 SpA / 252 Spe  
@@ -5573,7 +5573,7 @@ Ability: Intimidate
 - Destiny Bond
 - Fell Stinger
 
-Scolipede @ Scolipite
+Scolipede @ Bugtite
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Speed Boost
@@ -5642,7 +5642,7 @@ EVs: 252 HP / 252 Atk
 - Knock Off
 - Pain Split
 
-Scolipede @ Scolipite
+Scolipede @ Bugtite
 Level: 69
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Speed Boost
@@ -5989,7 +5989,7 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Pidgeot @ Pidgeotite
+Pidgeot @ Normalite
 Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -6184,7 +6184,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Yawn  
 - Muddy Water  
 
-Typhlosion @ Typhlosionite
+Typhlosion @ Bondstone
 Ability: Flash Fire  
 Level: 65  
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe 
@@ -6254,7 +6254,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Yawn  
 - Muddy Water  
 
-Typhlosion @ Typhlosionite
+Typhlosion @ Bondstone
 Ability: Flash Fire  
 EVs: 252 SpA / 252 Spe
 Level: 67  
@@ -6756,7 +6756,7 @@ Venusaur
 Level: 60
 IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
 
-Victreebel @ Victreebelite
+Victreebel @ Grasstite
 Level: 60
 IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
 
@@ -7108,7 +7108,7 @@ IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
 - Sunny Day
 - Giga Drain
 
-Charizard @ Charizardite X
+Charizard @ Dragotite
 Level: 63
 IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
 - Fire Fang
@@ -8095,7 +8095,7 @@ EVs: 116 Atk / 128 Spe
 - Ice Spinner  
 - Poison Jab  
 
-Froslass (F) @ Froslassite
+Froslass (F) @ Icetite
 Level: 48
 Ability: Snow Cloak  
 EVs: 100 HP / 148 Def / 156 SpA  
@@ -8164,7 +8164,7 @@ EVs: 116 Atk / 128 Spe
 - Ice Spinner  
 - Poison Jab  
 
-Froslass (F) @ Froslassite
+Froslass (F) @ Icetite
 Level: 48
 Ability: Snow Cloak  
 EVs: 100 HP / 148 Def / 156 SpA  
@@ -8223,7 +8223,7 @@ EVs: 116 Atk / 128 Spe
 - Ice Spinner  
 - Poison Jab  
 
-Froslass (F) @ Froslassite
+Froslass (F) @ Icetite
 Level: 45
 Ability: Snow Cloak  
 EVs: 100 HP / 148 Def / 156 SpA  
@@ -8292,7 +8292,7 @@ EVs: 116 Atk / 128 Spe
 - Ice Spinner  
 - Poison Jab  
 
-Froslass (F) @ Froslassite
+Froslass (F) @ Icetite
 Level: 45
 Ability: Snow Cloak  
 EVs: 100 HP / 148 Def / 156 SpA  
@@ -8872,7 +8872,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Bug Bite
 - Wing Attack
 
-Steelix @ Steelixite
+Steelix @ Steeltite
 Level: 45
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Crunch
@@ -8927,7 +8927,7 @@ IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - Bug Bite
 - Swords Dance
 
-Steelix @ Steelixite
+Steelix @ Steeltite
 Level: 45
 Ability: Sheer Force
 IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
@@ -9785,7 +9785,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Energy Ball  
 - Dark Pulse  
 
-Meganium @ Meganiumite  
+Meganium @ Bondstone  
 Ability: Leaf Guard  
 Level: 65  
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
@@ -9856,7 +9856,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Energy Ball  
 - Dark Pulse  
 
-Meganium @ Meganiumite  
+Meganium @ Bondstone  
 Ability: Leaf Guard  
 EVs: 252 SpA / 252 HP
 Level: 67  
@@ -11771,7 +11771,7 @@ IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
 - Waterfall
 - Dynamic Punch
 
-Falinks @ Falinksite
+Falinks @ Fightite
 Ability: Defiant
 Level: 45
 IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
@@ -12549,7 +12549,7 @@ Level: 81
 - Earthquake
 - Quick Attack
 
-Metagross @ Metagrossite
+Metagross @ Steeltite
 Ability: Clear Body
 Level: 82
 EVs: 252 Atk / 252 Spe
@@ -12615,7 +12615,7 @@ Level: 85
 - Earthquake
 - Quick Attack
 
-Metagross @ Metagrossite
+Metagross @ Steeltite
 Ability: Clear Body
 Level: 86
 EVs: 252 Atk / 252 Spe

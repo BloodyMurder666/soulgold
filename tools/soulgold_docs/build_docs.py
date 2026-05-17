@@ -112,6 +112,8 @@ ITEMS_HIDDEN_SORT_TYPES = {
     "ITEM_TYPE_Z_CRYSTAL",
 }
 
+SPRITE_CACHE_VERSION = "alpha2"
+
 GENERIC_MEGA_STONE_ITEMS = {
     "ITEM_NORMALITE",
     "ITEM_FIRETITE",
@@ -1309,7 +1311,7 @@ def parse_trainers(
         if source:
             target = trainer_sprite_dir / source.name
             process_sprite(source, target)
-            front_sprite = str(target.relative_to(OUT_DIR))
+            front_sprite = f"{target.relative_to(OUT_DIR)}?v={SPRITE_CACHE_VERSION}"
 
         trainers.append({
             "constant": constant,

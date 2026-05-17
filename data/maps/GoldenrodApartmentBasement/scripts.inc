@@ -139,4 +139,4 @@ RotomMachine_Oven_2:
 
 RotomMachine_Wash_Text_0:
 # 12 "data/maps/GoldenrodApartmentBasement/scripts.pory"
-	.string "Rotom form was changed!$"
+	.string "Rotom's form was changed!$"
