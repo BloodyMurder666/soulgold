@@ -10,6 +10,7 @@ const moveName = (constant) => state.data.moves[constant]?.name || constant.repl
 const abilityName = (constant) => state.data.abilities[constant]?.name || constant.replace("ABILITY_", "").replaceAll("_", " ");
 const fmtTitle = (value, prefix = "") => value.replace(prefix, "").replaceAll("_", " ").toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
 const fmtCategory = (value) => fmtTitle(value, "DAMAGE_CATEGORY_");
+const statLabels = { hp: "HP", atk: "Atk", def: "Def", spa: "SpA", spd: "SpD", spe: "Spe" };
 
 function el(tag, className, html) {
   const node = document.createElement(tag);
@@ -50,6 +51,7 @@ function bindEvents() {
   document.querySelectorAll(".tab").forEach((button) => {
     button.addEventListener("click", () => setTab(button.dataset.tab));
   });
+  document.getElementById("backToTop").addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
   document.getElementById("globalSearch").addEventListener("input", (event) => {
     state.query = event.target.value.trim().toLowerCase();
     window.scrollTo(0, 0);
@@ -63,6 +65,7 @@ function bindEvents() {
   document.body.addEventListener("click", handleAbilityClick, true);
   document.body.addEventListener("pointerover", handleAbilityHover);
   document.body.addEventListener("pointerout", hideAbilityTooltip);
+  document.body.addEventListener("click", handleMoveClick, true);
   document.body.addEventListener("click", handleSpeciesLinkClick, true);
   document.body.addEventListener("pointerover", handleMoveHover);
   document.body.addEventListener("pointerout", hideMoveTooltip);
@@ -213,6 +216,14 @@ function handleMoveHover(event) {
   if (button) showMoveTooltip(button);
 }
 
+function handleMoveClick(event) {
+  const button = event.target.closest(".move-name");
+  if (!button) return;
+  event.preventDefault();
+  event.stopPropagation();
+  showMoveTooltip(button);
+}
+
 function handleSpeciesLinkClick(event) {
   const button = event.target.closest(".species-link");
   if (!button) return;
@@ -258,7 +269,11 @@ function moveRows(moves, options = {}) {
 
 function baseSpeciesForForms(mon) {
   if (!mon.constant.includes("_MEGA")) return mon;
-  return state.data.species.find((entry) => entry.dex === mon.dex && !entry.constant.includes("_MEGA")) || mon;
+  return state.data.species.find((entry) => entry.constant === baseConstantForMega(mon.constant)) || mon;
+}
+
+function baseConstantForMega(constant) {
+  return constant.replace(/_MEGA(?:_[XYZ])?$/, "");
 }
 
 function evolutionChain(mon) {
@@ -336,11 +351,10 @@ function megaFormLinks(mon) {
       });
     });
   }
-  const familyDex = new Set([...family].map((constant) => bySpecies.get(constant)?.dex).filter(Boolean));
-  const forms = state.data.species.filter((entry) => entry.constant.includes("_MEGA") && familyDex.has(entry.dex));
+  const forms = state.data.species.filter((entry) => entry.constant.includes("_MEGA") && family.has(baseConstantForMega(entry.constant)));
   if (!forms.length) return "";
   return forms.map((form) => {
-    const base = state.data.species.find((entry) => entry.dex === form.dex && !entry.constant.includes("_MEGA"));
+    const base = bySpecies.get(baseConstantForMega(form.constant));
     return `
       <div class="evolution-line">
         <button class="evolution-name species-link" type="button" data-species="${base?.constant || chainMon.constant}">${sprite(base?.sprite || chainMon.sprite, "tiny-sprite")}<strong>${base?.name || chainMon.name}</strong></button>
@@ -583,7 +597,10 @@ function openAbility(ability) {
 function renderTrainers() {
   const tbody = document.getElementById("trainerRows");
   const trainers = (state.data.trainers || []).filter((trainer) =>
-    matches(`${trainer.name} ${trainer.party.map((mon) => mon.name).join(" ")}`)
+    matches(`${trainer.name} ${trainer.displayName || ""} ${trainer.difficulty || ""} ${trainer.party.map((mon) => trainerMonSearchText(mon)).join(" ")}`)
+  ).sort((a, b) =>
+    (a.averageLevel ?? trainerAverageLevel(a.party)) - (b.averageLevel ?? trainerAverageLevel(b.party))
+    || (a.displayName || a.name).localeCompare(b.displayName || b.name)
   );
   tbody.innerHTML = "";
   trainers.forEach((trainer) => {
@@ -592,7 +609,7 @@ function renderTrainers() {
       <td data-label="Name">
         <div class="trainer-name-cell">
           ${sprite(trainer.sprite, "trainer-sprite")}
-          <strong>${trainer.name}</strong>
+          <strong>${trainer.displayName || trainer.name}</strong>
         </div>
       </td>
       <td data-label="Party">${trainerPartyHtml(trainer.party)}</td>
@@ -608,15 +625,80 @@ function renderTrainers() {
 
 function trainerPartyHtml(party) {
   return `<div class="trainer-party">${party.map((mon) => {
+    const monSprite = mon.constant
+      ? `<button class="trainer-mon-sprite species-link" type="button" data-species="${mon.constant}">${sprite(mon.sprite, "mini-sprite")}</button>`
+      : sprite(mon.sprite, "mini-sprite");
+    const monName = mon.constant
+      ? `<button class="trainer-mon-name species-link" type="button" data-species="${mon.constant}"><strong>${mon.displayName || mon.name}</strong></button>`
+      : `<strong>${mon.displayName || mon.name}</strong>`;
     return `
       <div class="trainer-mon">
-        ${sprite(mon.sprite, "mini-sprite")}
+        ${monSprite}
         <div class="trainer-mon-info">
-          <strong>${mon.displayName || mon.name}</strong>
-          <span class="muted">Lv ${mon.level || 100}</span>
+          <div class="trainer-mon-top">
+            <div class="trainer-mon-title">
+              ${monName}
+              <span class="muted">Lv ${mon.level || 100}</span>
+            </div>
+            ${trainerHeldItemIcon(mon)}
+          </div>
+          ${trainerMonDetailsHtml(mon)}
         </div>
       </div>`;
   }).join("")}</div>`;
+}
+
+function trainerAverageLevel(party) {
+  if (!party?.length) return 0;
+  return party.reduce((sum, mon) => sum + (mon.level || 100), 0) / party.length;
+}
+
+function trainerMonSearchText(mon) {
+  return [
+    mon.name,
+    mon.displayName,
+    mon.item,
+    mon.ability,
+    ...(mon.moves || []),
+    ...Object.entries(mon.evs || {}).map(([stat, value]) => `${value} ${statLabels[stat] || stat} EV`),
+    ...Object.entries(mon.ivs || {}).map(([stat, value]) => `${value} ${statLabels[stat] || stat} IV`),
+  ].filter(Boolean).join(" ");
+}
+
+function trainerTokenName(value, prefix) {
+  if (!value) return "";
+  if (!value.startsWith(prefix)) return value;
+  return fmtTitle(value, prefix);
+}
+
+function trainerMoveLabel(value) {
+  return state.data.moves[value]?.name || trainerTokenName(value, "MOVE_");
+}
+
+function trainerHeldItemIcon(mon) {
+  if (!mon.itemIcon) return "";
+  const itemName = trainerTokenName(mon.item, "ITEM_");
+  return `<img class="trainer-held-item" src="${mon.itemIcon}" alt="${itemName}" title="${itemName}">`;
+}
+
+function trainerStatSpreadHtml(label, values) {
+  const entries = Object.entries(values || {});
+  if (!entries.length) return "";
+  if (label === "IVs" && entries.length === 6 && entries.every(([, value]) => Number(value) === 0)) return "";
+  return `<div class="trainer-mon-detail trainer-stat-spread"><span>${label}:</span><strong>${entries.map(([stat, value]) => `${value} ${statLabels[stat] || stat}`).join(" / ")}</strong></div>`;
+}
+
+function trainerMonDetailsHtml(mon) {
+  const rows = [];
+  if (mon.ability) rows.push(`<div class="trainer-mon-detail"><span>Ability:</span><strong>${trainerTokenName(mon.ability, "ABILITY_")}</strong></div>`);
+  const evs = trainerStatSpreadHtml("EVs", mon.evs);
+  const ivs = trainerStatSpreadHtml("IVs", mon.ivs);
+  if (evs) rows.push(evs);
+  if (ivs) rows.push(ivs);
+  if (mon.moves?.length) {
+    rows.push(`<div class="trainer-mon-detail trainer-moves"><span>Moves:</span><strong>${mon.moves.map((move) => `- ${trainerMoveLabel(move)}`).join("<br>")}</strong></div>`);
+  }
+  return rows.length ? `<div class="trainer-mon-details">${rows.join("")}</div>` : "";
 }
 
 init().catch((error) => {

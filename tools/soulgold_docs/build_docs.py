@@ -1115,6 +1115,76 @@ def _parse_stat_spread(text: str) -> dict[str, int]:
     return result
 
 
+def normalize_trainer_mon_details(mon: dict[str, Any]) -> dict[str, Any]:
+    """Keep optional trainer set data present and consistently ordered for the docs UI."""
+    stat_order = ("hp", "atk", "def", "spa", "spd", "spe")
+    normalized = dict(mon)
+    normalized["item"] = normalized.get("item", "")
+    normalized["ability"] = normalized.get("ability", "")
+    normalized["evs"] = {stat: normalized.get("evs", {})[stat] for stat in stat_order if stat in normalized.get("evs", {})}
+    normalized["ivs"] = {stat: normalized.get("ivs", {})[stat] for stat in stat_order if stat in normalized.get("ivs", {})}
+    normalized["moves"] = [move for move in normalized.get("moves", []) if move]
+    return normalized
+
+
+def trainer_display_name(name: str, constant: str, difficulty: str) -> str:
+    display_name = name
+    variant_match = re.search(r"_(\d+)$", constant)
+    if variant_match and not re.search(rf"\b{variant_match.group(1)}\b$", display_name):
+        display_name = f"{display_name} {variant_match.group(1)}"
+    if difficulty.lower() == "hard":
+        display_name = f"{display_name} (Hard)"
+    return display_name
+
+
+def average_party_level(party: list[dict[str, Any]]) -> float:
+    if not party:
+        return 0
+    return sum(mon.get("level", 100) for mon in party) / len(party)
+
+
+def build_item_lookup(item_records: dict[str, dict[str, Any]]) -> dict[str, dict[str, Any]]:
+    lookup: dict[str, dict[str, Any]] = {}
+    for constant, item in item_records.items():
+        names = {
+            constant,
+            constant.removeprefix("ITEM_"),
+            item.get("name", ""),
+            clean_constant_name(constant, "ITEM_"),
+        }
+        for name in names:
+            if name:
+                lookup.setdefault(normalize_token(name), item)
+    return lookup
+
+
+def resolve_trainer_item(item_name: str, item_lookup: dict[str, dict[str, Any]]) -> dict[str, Any] | None:
+    return item_lookup.get(normalize_token(item_name))
+
+
+def copy_item_icon(item: dict[str, Any] | None, item_icon_dir: Path) -> str | None:
+    if not item:
+        return None
+    icon_name = f"{item['constant'].removeprefix('ITEM_').lower()}.png"
+    source = REPO_ROOT / "graphics" / "items" / "icons" / icon_name
+    if not source.exists():
+        return None
+    target = item_icon_dir / source.name
+    target.parent.mkdir(parents=True, exist_ok=True)
+    image = Image.open(source)
+    rgba = image.convert("RGBA")
+    if image.mode == "P":
+        transparent_index = image.info.get("transparency", 0)
+        pixels = [
+            (*pixel[:3], 0) if image.getpixel((x, y)) == transparent_index else pixel
+            for y in range(image.height)
+            for x, pixel in ((x, rgba.getpixel((x, y))) for x in range(image.width))
+        ]
+        rgba.putdata(pixels)
+    rgba.save(target)
+    return str(target.relative_to(OUT_DIR))
+
+
 def parse_trainer_front_pic_sources() -> dict[str, Path]:
     sources: dict[str, Path] = {}
     for path in sorted(TRAINER_FRONT_PIC_DIR.glob("*.png")):
@@ -1171,10 +1241,14 @@ def enrich_trainer_party(
     species_lookup: dict[str, SpeciesRow],
     front_sources: dict[str, Path],
     sprite_dir: Path,
+    item_lookup: dict[str, dict[str, Any]],
+    item_icon_dir: Path,
 ) -> list[dict[str, Any]]:
     enriched = []
     for mon in party:
+        mon = normalize_trainer_mon_details(mon)
         species = species_for_trainer_mon(mon["name"], species_lookup)
+        held_item = resolve_trainer_item(mon["item"], item_lookup)
         display_name = mon["name"]
         if display_name.startswith("SPECIES_"):
             display_name = species.name if species else clean_constant_name(display_name, "SPECIES_")
@@ -1189,6 +1263,8 @@ def enrich_trainer_party(
             **mon,
             "constant": species.constant if species else "",
             "displayName": display_name,
+            "itemConstant": held_item["constant"] if held_item else "",
+            "itemIcon": copy_item_icon(held_item, item_icon_dir),
             "sprite": sprite,
         })
     return enriched
@@ -1200,6 +1276,8 @@ def parse_trainers(
     trainer_front_sources: dict[str, Path],
     sprite_dir: Path,
     trainer_sprite_dir: Path,
+    item_records: dict[str, dict[str, Any]],
+    item_icon_dir: Path,
 ) -> list[dict[str, Any]]:
     """Read trainers.party and parse each === TRAINER_* === block."""
     if not TRAINERS_H.exists():
@@ -1209,6 +1287,7 @@ def parse_trainers(
     trainers: list[dict[str, Any]] = []
     header_re = re.compile(r"^===\s*(TRAINER_[A-Z0-9_]+)\s*===", re.MULTILINE)
     matches = list(header_re.finditer(text))
+    item_lookup = build_item_lookup(item_records)
 
     for index, match in enumerate(matches):
         constant = match.group(1)
@@ -1217,9 +1296,11 @@ def parse_trainers(
         block = text[start:end].strip()
         name_match = re.search(r"^Name:\s*(.*?)\s*$", block, re.MULTILINE)
         pic_match = re.search(r"^Pic:\s*(.*?)\s*$", block, re.MULTILINE)
+        difficulty_match = re.search(r"^Difficulty:\s*(.*?)\s*$", block, re.MULTILINE)
         name = name_match.group(1).strip() if name_match and name_match.group(1).strip() else clean_constant_name(constant, "TRAINER_")
         pic = pic_match.group(1).strip() if pic_match else ""
-        party = enrich_trainer_party(parse_showdown_team(block), species_lookup, front_sources, sprite_dir)
+        difficulty = difficulty_match.group(1).strip() if difficulty_match and difficulty_match.group(1).strip() else "Normal"
+        party = enrich_trainer_party(parse_showdown_team(block), species_lookup, front_sources, sprite_dir, item_lookup, item_icon_dir)
         if not party:
             continue
 
@@ -1233,11 +1314,14 @@ def parse_trainers(
         trainers.append({
             "constant": constant,
             "name": name,
+            "displayName": trainer_display_name(name, constant, difficulty),
+            "difficulty": difficulty,
+            "averageLevel": round(average_party_level(party), 2),
             "pic": pic,
             "sprite": front_sprite,
             "party": party,
         })
-    return trainers
+    return sorted(trainers, key=lambda trainer: (trainer["averageLevel"], trainer["displayName"], trainer["constant"]))
 
 
 def build() -> None:
@@ -1265,6 +1349,7 @@ def build() -> None:
     (OUT_DIR / "data").mkdir(parents=True, exist_ok=True)
     sprite_dir = OUT_DIR / "sprites" / "pokemon"
     trainer_sprite_dir = OUT_DIR / "sprites" / "trainers"
+    item_icon_dir = OUT_DIR / "sprites" / "items"
     type_icons = copy_type_icons()
 
     for row in species:
@@ -1284,7 +1369,7 @@ def build() -> None:
     for row in species:
         row.locations = species_locations.get(row.constant, [])
     visible_species = [row for row in species if row.dex_visible]
-    trainers = parse_trainers(build_species_lookup(species), front_sources, trainer_front_sources, sprite_dir, trainer_sprite_dir)
+    trainers = parse_trainers(build_species_lookup(species), front_sources, trainer_front_sources, sprite_dir, trainer_sprite_dir, item_records, item_icon_dir)
 
     ability_usage: dict[str, dict[str, list[dict[str, Any]]]] = defaultdict(lambda: {"base": [], "innate": []})
     for row in visible_species:
