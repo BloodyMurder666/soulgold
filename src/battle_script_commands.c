@@ -334,6 +334,7 @@ enum GiveCaughtMonStates
 #define TAG_LVLUP_BANNER_MON_ICON 55130
 
 static u32 ChangeStatBuffs(enum BattlerId battler, s8 statValue, enum Stat statId, union StatChangeFlags flags, u32 stats, const u8 *BS_ptr);
+static bool32 DoesAuraShieldBlockMove(enum BattlerId battler, enum Move move);
 static bool32 IsMonGettingExpSentOut(void);
 static void InitLevelUpBanner(void);
 static bool8 SlideInLevelUpBanner(void);
@@ -1410,6 +1411,8 @@ static inline bool32 DoesBattlerNegateDamage(enum BattlerId battler)
         return TRUE;
     if (BattlerHasTrait(battler, ABILITY_ICE_FACE) && species == SPECIES_EISCUE_ICE && GetBattleMoveCategory(gCurrentMove) == DAMAGE_CATEGORY_PHYSICAL)
         return TRUE;
+    if (BattlerHasTrait(battler, ABILITY_AURA_SHIELD) && gBattleMons[battler].volatiles.auraShieldState <= 1)
+        return TRUE;
 
     return FALSE;
 }
@@ -1482,7 +1485,7 @@ static inline bool32 TryTeraShellDistortTypeMatchups(enum BattlerId battlerDef)
 // It doesn't have any impact on gameplay and is only a visual thing which can be adjusted later.
 static inline bool32 TryActivateWeaknessBerry(enum BattlerId battlerDef)
 {
-    if (DoesDisguiseBlockMove(battlerDef, gCurrentMove))
+    if (DoesDisguiseBlockMove(battlerDef, gCurrentMove) || DoesAuraShieldBlockMove(battlerDef, gCurrentMove))
     {
         gSpecialStatuses[battlerDef].berryReduced = FALSE;
         return FALSE;
@@ -1684,7 +1687,8 @@ static void DoublesHPBarReduction(void)
          || gBattleStruct->moveDamage[battlerDef] == 0
          || DoesSubstituteBlockMove(gBattlerAttacker, battlerDef, gCurrentMove)
          || DoesDisguiseBlockMove(battlerDef, gCurrentMove)
-         || DoesIceFaceBlockMove(battlerDef, gCurrentMove))
+         || DoesIceFaceBlockMove(battlerDef, gCurrentMove)
+         || DoesAuraShieldBlockMove(battlerDef, gCurrentMove))
             continue;
 
         s32 dmgUpdate = min(gBattleStruct->moveDamage[battlerDef], 10000);
@@ -1724,7 +1728,8 @@ static void Cmd_healthbarupdate(void)
         }
         else if (!IsBattlerUnaffectedByMove(battler)
               && !DoesDisguiseBlockMove(battler, gCurrentMove)
-              && !DoesIceFaceBlockMove(battler, gCurrentMove))
+              && !DoesIceFaceBlockMove(battler, gCurrentMove)
+              && !DoesAuraShieldBlockMove(battler, gCurrentMove))
         {
             s32 damage = min(gBattleStruct->moveDamage[battler], 10000);
             BtlController_EmitHealthBarUpdate(battler, B_COMM_TO_CONTROLLER, damage);
@@ -1802,7 +1807,7 @@ static void MoveDamageDataHpUpdate(enum BattlerId battler, u32 scriptBattler, co
         }
         return;
     }
-    else if (DoesDisguiseBlockMove(battler, gCurrentMove) || DoesIceFaceBlockMove(battler, gCurrentMove))
+    else if (DoesDisguiseBlockMove(battler, gCurrentMove) || DoesIceFaceBlockMove(battler, gCurrentMove) || DoesAuraShieldBlockMove(battler, gCurrentMove))
     {
         // Damage deals typeless 0 HP.
         gBattleStruct->moveResultFlags[battler] &= ~(MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE);
@@ -2907,6 +2912,8 @@ void SetMoveEffect(enum BattlerId battlerAtk, enum BattlerId effectBattler, enum
         break;
     case MOVE_EFFECT_RECHARGE:
         if (B_SKIP_RECHARGE == GEN_1 && !IsBattlerAlive(gBattlerTarget))  // Skip recharge if gen 1 and foe is KO'd
+            break;
+        if (BattlerHasTrait(gEffectBattler, ABILITY_TIRELESS))
             break;
 
         gBattleMons[gEffectBattler].volatiles.rechargeTimer = 2;
@@ -10708,6 +10715,22 @@ bool32 DoesIceFaceBlockMove(enum BattlerId battler, enum Move move)
     else
         PushTraitStack(battler, ABILITY_DISGUISE);
         return TRUE;
+}
+
+static bool32 DoesAuraShieldBlockMove(enum BattlerId battler, enum Move move)
+{
+    if (gBattleMons[battler].volatiles.auraShieldState == 1)
+        return TRUE;
+
+    if (gBattleMons[battler].volatiles.auraShieldState != 0
+     || gBattleMons[battler].volatiles.transformed
+     || IsBattleMoveStatus(move)
+     || !IsAbilityAndRecord(battler, ABILITY_AURA_SHIELD))
+        return FALSE;
+
+    gBattleMons[battler].volatiles.auraShieldState = 1;
+    PushTraitStack(battler, ABILITY_AURA_SHIELD);
+    return TRUE;
 }
 
 static void Cmd_jumpifsubstituteblocks(void)

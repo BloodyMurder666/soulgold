@@ -2474,6 +2474,51 @@ static enum Type GetTypeBoostAbilityType(enum Ability ability)
     }
 }
 
+static enum Type GetAdditionalTypeAbilityType(enum Ability ability)
+{
+    switch (ability)
+    {
+    case ABILITY_PLAIN_SOUL:
+        return TYPE_NORMAL;
+    case ABILITY_FIGHTER_SOUL:
+        return TYPE_FIGHTING;
+    case ABILITY_WIND_SOUL:
+        return TYPE_FLYING;
+    case ABILITY_VENOM_SOUL:
+        return TYPE_POISON;
+    case ABILITY_EARTH_SOUL:
+        return TYPE_GROUND;
+    case ABILITY_STONE_SOUL:
+        return TYPE_ROCK;
+    case ABILITY_HIVE_SOUL:
+        return TYPE_BUG;
+    case ABILITY_PHANTOM_SOUL:
+        return TYPE_GHOST;
+    case ABILITY_STEEL_SOUL:
+        return TYPE_STEEL;
+    case ABILITY_FLAME_SOUL:
+        return TYPE_FIRE;
+    case ABILITY_SEA_SOUL:
+        return TYPE_WATER;
+    case ABILITY_VERDANT_SOUL_TYPE:
+        return TYPE_GRASS;
+    case ABILITY_THUNDER_SOUL:
+        return TYPE_ELECTRIC;
+    case ABILITY_MIND_SOUL:
+        return TYPE_PSYCHIC;
+    case ABILITY_FROST_SOUL:
+        return TYPE_ICE;
+    case ABILITY_DRAGON_SOUL:
+        return TYPE_DRAGON;
+    case ABILITY_NIGHT_SOUL:
+        return TYPE_DARK;
+    case ABILITY_FAE_SOUL:
+        return TYPE_FAIRY;
+    default:
+        return TYPE_MYSTERY;
+    }
+}
+
 bool32 HadMoreThanHalfHpNowDoesnt(enum BattlerId battler)
 {
     // Had more than half of hp before, now has less
@@ -4710,10 +4755,43 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
             SetMoveEffect(gBattlerAttacker, gBattlerTarget, MOVE_EFFECT_FLINCH, gBattlescriptCurrInstr, EFFECT_PRIMARY);
             effect++;
         }
+        else if (SearchTraits(battlerTraits, ABILITY_PLANTATION)
+         && IsBattlerAlive(gBattlerTarget)
+         && !gBattleStruct->unableToUseMove
+         && RandomPercentage(RNG_PLANTATION, 30)
+         && IsBattlerTurnDamaged(gBattlerTarget, EXCLUDING_SUBSTITUTES)
+         && !IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS)
+         && !gBattleMons[gBattlerTarget].volatiles.leechSeed)
+        {
+            PushTraitStack(gBattlerAttacker, ABILITY_PLANTATION);
+            BattleScriptCall(BattleScript_PlantationActivates);
+            effect++;
+        }
+        else if (SearchTraits(battlerTraits, ABILITY_ECHOING)
+         && IsBattlerAlive(gBattlerTarget)
+         && !gBattleStruct->unableToUseMove
+         && RandomPercentage(RNG_ECHOING, 30)
+         && IsSoundMove(gCurrentMove)
+         && IsBattlerTurnDamaged(gBattlerTarget, EXCLUDING_SUBSTITUTES)
+         && !MoveHasAdditionalEffect(gCurrentMove, MOVE_EFFECT_FLINCH))
+        {
+            SetMoveEffect(gBattlerAttacker, gBattlerTarget, MOVE_EFFECT_FLINCH, gBattlescriptCurrInstr, EFFECT_PRIMARY);
+            effect++;
+        }
     break;
     case ABILITYEFFECT_FORM_CHANGE_ON_HIT:
         speciesForm = gBattleMons[gBattlerTarget].species;
         ability = ABILITY_NONE;
+
+        if (BattlerHasTrait(battler, ABILITY_AURA_SHIELD) && gBattleMons[battler].volatiles.auraShieldState == 1)
+        {
+            gBattleMons[battler].volatiles.auraShieldState = 2;
+            gBattleScripting.battler = gBattlerAbility = battler;
+            PushTraitStack(battler, ABILITY_AURA_SHIELD);
+            BattleScriptCall(BattleScript_AuraShieldBlocks);
+            effect++;
+            break;
+        }
 
         if (BattlerHasTrait(battler, ABILITY_DISGUISE))
             ability = ABILITY_DISGUISE;
@@ -8658,7 +8736,11 @@ s32 GetAdjustedDamage(struct BattleContext *ctx, s32 damage)
 {
     if (DoesSubstituteBlockMove(ctx->battlerAtk, ctx->battlerDef, ctx->move)
      || DoesDisguiseBlockMove(ctx->battlerDef, ctx->move)
-     || DoesIceFaceBlockMove(ctx->battlerDef, ctx->move))
+     || DoesIceFaceBlockMove(ctx->battlerDef, ctx->move)
+     || (BattlerHasTrait(ctx->battlerDef, ABILITY_AURA_SHIELD)
+      && gBattleMons[ctx->battlerDef].volatiles.auraShieldState <= 1
+      && !gBattleMons[ctx->battlerDef].volatiles.transformed
+      && !IsBattleMoveStatus(ctx->move)))
         return damage; // No damage will be dealt
 
     if (gBattleMons[ctx->battlerDef].hp > damage)
@@ -10414,6 +10496,17 @@ void GetBattlerTypes(enum BattlerId battler, bool32 ignoreTera, enum Type types[
             types[0] = TYPE_MYSTERY;
         else if (types[1] == TYPE_FLYING)
             types[1] = TYPE_MYSTERY;
+    }
+
+    enum Ability battlerTraits[MAX_MON_TRAITS];
+    STORE_BATTLER_TRAITS(battler);
+    for (u32 i = 0; i < MAX_MON_TRAITS; i++)
+    {
+        enum Type addedType = GetAdditionalTypeAbilityType(battlerTraits[i]);
+        if (addedType == TYPE_MYSTERY || types[0] == addedType || types[1] == addedType || types[2] == addedType)
+            continue;
+        types[2] = addedType;
+        break;
     }
 }
 

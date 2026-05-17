@@ -7364,6 +7364,19 @@ BattleScript_AbilityStatusEffectDef::
 	setnonvolatilestatus TRIGGER_ON_ABILITY
 	return
 
+BattleScript_PlantationActivates::
+	waitstate
+	call BattleScript_AbilityPopUp
+	setseeded
+	printfromtable gLeechSeedStringIds
+	waitmessage B_WAIT_TIME_LONG
+	return
+
+BattleScript_AuraShieldBlocks::
+	waitstate
+	call BattleScript_AbilityPopUpScripting
+	return
+
 BattleScript_BattleBondActivatesOnMoveEndAttacker::
 	pause 5
 	copybyte gBattlerAbility, gBattlerAttacker

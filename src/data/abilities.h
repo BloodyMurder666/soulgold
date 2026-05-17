@@ -2692,4 +2692,158 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Powers up Fairy moves."),
         .aiRating = 6,
     },
+
+    [ABILITY_PLANTATION] =
+    {
+        .name = _("Plantation"),
+        .description = COMPOUND_STRING("Attacks may seed foes."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_ECHOING] =
+    {
+        .name = _("Echoing"),
+        .description = COMPOUND_STRING("Sound moves may flinch."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_TIRELESS] =
+    {
+        .name = _("Tireless"),
+        .description = COMPOUND_STRING("Skips recharge turns."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_AURA_SHIELD] =
+    {
+        .name = _("Aura Shield"),
+        .description = COMPOUND_STRING("Blocks one attack."),
+        .aiRating = 7,
+    },
+
+    [ABILITY_PLAIN_SOUL] =
+    {
+        .name = _("Plain Soul"),
+        .description = COMPOUND_STRING("Adds Normal typing."),
+        .aiRating = 4,
+    },
+
+    [ABILITY_FIGHTER_SOUL] =
+    {
+        .name = _("Fighter Soul"),
+        .description = COMPOUND_STRING("Adds Fighting typing."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_WIND_SOUL] =
+    {
+        .name = _("Wind Soul"),
+        .description = COMPOUND_STRING("Adds Flying typing."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_VENOM_SOUL] =
+    {
+        .name = _("Venom Soul"),
+        .description = COMPOUND_STRING("Adds Poison typing."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_EARTH_SOUL] =
+    {
+        .name = _("Earth Soul"),
+        .description = COMPOUND_STRING("Adds Ground typing."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_STONE_SOUL] =
+    {
+        .name = _("Stone Soul"),
+        .description = COMPOUND_STRING("Adds Rock typing."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_HIVE_SOUL] =
+    {
+        .name = _("Hive Soul"),
+        .description = COMPOUND_STRING("Adds Bug typing."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_PHANTOM_SOUL] =
+    {
+        .name = _("Phantom Soul"),
+        .description = COMPOUND_STRING("Adds Ghost typing."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_STEEL_SOUL] =
+    {
+        .name = _("Steel Soul"),
+        .description = COMPOUND_STRING("Adds Steel typing."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_FLAME_SOUL] =
+    {
+        .name = _("Flame Soul"),
+        .description = COMPOUND_STRING("Adds Fire typing."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_SEA_SOUL] =
+    {
+        .name = _("Sea Soul"),
+        .description = COMPOUND_STRING("Adds Water typing."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_VERDANT_SOUL_TYPE] =
+    {
+        .name = _("Lifetree Soul"),
+        .description = COMPOUND_STRING("Adds Grass typing."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_THUNDER_SOUL] =
+    {
+        .name = _("Thunder Soul"),
+        .description = COMPOUND_STRING("Adds Electric typing."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_MIND_SOUL] =
+    {
+        .name = _("Mind Soul"),
+        .description = COMPOUND_STRING("Adds Psychic typing."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_FROST_SOUL] =
+    {
+        .name = _("Frost Soul"),
+        .description = COMPOUND_STRING("Adds Ice typing."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_DRAGON_SOUL] =
+    {
+        .name = _("Dragon Soul"),
+        .description = COMPOUND_STRING("Adds Dragon typing."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_NIGHT_SOUL] =
+    {
+        .name = _("Night Soul"),
+        .description = COMPOUND_STRING("Adds Dark typing."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_FAE_SOUL] =
+    {
+        .name = _("Fae Soul"),
+        .description = COMPOUND_STRING("Adds Fairy typing."),
+        .aiRating = 5,
+    },
 };
