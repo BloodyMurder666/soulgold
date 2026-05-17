@@ -3669,6 +3669,43 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
             if(TryChangeBattleTerrain(battler, STATUS_FIELD_PSYCHIC_TERRAIN))
                 effect += CommonSwitchInAbilities(battler, ABILITY_PSYCHIC_SURGE, traitCheck, BattleScript_PsychicSurgeActivates);
         }
+        if ((traitCheck = SearchTraits(battlerTraits, ABILITY_SHOWTIME)) && !gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1]
+         && shouldAbilityTrigger)
+        {
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1] = TRUE;
+            if (!(gFieldStatuses & STATUS_FIELD_TRICK_ROOM))
+            {
+                SaveBattlerAttacker(gBattlerAttacker);
+                gBattlerAttacker = battler;
+                gFieldStatuses |= STATUS_FIELD_TRICK_ROOM;
+                gFieldTimers.trickRoomTimer = 5;
+                effect += CommonSwitchInAbilities(battler, ABILITY_SHOWTIME, traitCheck, BattleScript_ShowtimeActivates);
+            }
+        }
+        if ((traitCheck = SearchTraits(battlerTraits, ABILITY_ROOTED)) && !gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1]
+         && shouldAbilityTrigger)
+        {
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1] = TRUE;
+            if (!gBattleMons[battler].volatiles.root)
+            {
+                SaveBattlerAttacker(gBattlerAttacker);
+                gBattlerAttacker = battler;
+                gBattleMons[battler].volatiles.root = TRUE;
+                effect += CommonSwitchInAbilities(battler, ABILITY_ROOTED, traitCheck, BattleScript_RootedActivates);
+            }
+        }
+        if ((traitCheck = SearchTraits(battlerTraits, ABILITY_RESTORING)) && !gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1]
+         && shouldAbilityTrigger)
+        {
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1] = TRUE;
+            if (!gBattleMons[battler].volatiles.aquaRing)
+            {
+                SaveBattlerAttacker(gBattlerAttacker);
+                gBattlerAttacker = battler;
+                gBattleMons[battler].volatiles.aquaRing = TRUE;
+                effect += CommonSwitchInAbilities(battler, ABILITY_RESTORING, traitCheck, BattleScript_RestoringActivates);
+            }
+        }
         if ((traitCheck = SearchTraits(battlerTraits, ABILITY_CLOUD_NINE)) && !gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1]
          && shouldAbilityTrigger)
             effect += CommonSwitchInAbilities(battler, ABILITY_CLOUD_NINE, traitCheck, BattleScript_AnnounceAirLockCloudNine);

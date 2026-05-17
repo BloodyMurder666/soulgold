@@ -5030,6 +5030,49 @@ static bool32 ShouldReactiveIncreasePriority(enum BattlerId battler)
     return FALSE;
 }
 
+static enum Type GetFullHpPriorityAbilityType(enum Ability ability)
+{
+    switch (ability)
+    {
+    case ABILITY_READY_STANCE:
+        return TYPE_NORMAL;
+    case ABILITY_FIRST_STRIKE:
+        return TYPE_FIGHTING;
+    case ABILITY_TOXIC_REFLEX:
+        return TYPE_POISON;
+    case ABILITY_EARTHEN_RUSH:
+        return TYPE_GROUND;
+    case ABILITY_STONE_SENTINEL:
+        return TYPE_ROCK;
+    case ABILITY_SWARM_INSTINCT:
+        return TYPE_BUG;
+    case ABILITY_PHANTOM_STEP:
+        return TYPE_GHOST;
+    case ABILITY_QUICK_FORGE:
+        return TYPE_STEEL;
+    case ABILITY_FLAME_RUSH:
+        return TYPE_FIRE;
+    case ABILITY_TIDAL_REFLEX:
+        return TYPE_WATER;
+    case ABILITY_VERDANT_GALE:
+        return TYPE_GRASS;
+    case ABILITY_STATIC_BURST:
+        return TYPE_ELECTRIC;
+    case ABILITY_THINK_AHEAD:
+        return TYPE_PSYCHIC;
+    case ABILITY_FROST_SNAP:
+        return TYPE_ICE;
+    case ABILITY_DRACONIC_REFLEX:
+        return TYPE_DRAGON;
+    case ABILITY_NIGHT_STALKER:
+        return TYPE_DARK;
+    case ABILITY_FAIRY_BLINK:
+        return TYPE_FAIRY;
+    default:
+        return TYPE_MYSTERY;
+    }
+}
+
 s32 GetBattleMovePriority(enum BattlerId battler, enum Move move)
 {
     s32 priority = 0;
@@ -5054,6 +5097,18 @@ s32 GetBattleMovePriority(enum BattlerId battler, enum Move move)
           && GetMoveType(move) == TYPE_FLYING)
     {
         priority++;
+    }
+    if (IsBattlerAtMaxHp(battler))
+    {
+        for (u32 i = 0; i < MAX_MON_TRAITS; i++)
+        {
+            enum Type priorityType = GetFullHpPriorityAbilityType(battlerTraits[i]);
+            if (priorityType != TYPE_MYSTERY && GetMoveType(move) == priorityType)
+            {
+                priority++;
+                break;
+            }
+        }
     }
     if (IsBattleMoveStatus(move) && IsAbilityAndRecord(battler, ABILITY_PRANKSTER))
     {

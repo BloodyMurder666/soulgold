@@ -7377,6 +7377,31 @@ BattleScript_AuraShieldBlocks::
 	call BattleScript_AbilityPopUpScripting
 	return
 
+BattleScript_ShowtimeActivates::
+	waitstate
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_PKMNTWISTEDDIMENSIONS
+	waitmessage B_WAIT_TIME_LONG
+	call BattleScript_TryRoomServiceLoop
+	restoreattacker
+	return
+
+BattleScript_RootedActivates::
+	waitstate
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_PKMNPLANTEDROOTS
+	waitmessage B_WAIT_TIME_LONG
+	restoreattacker
+	return
+
+BattleScript_RestoringActivates::
+	waitstate
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_PKMNSURROUNDEDWITHVEILOFWATER
+	waitmessage B_WAIT_TIME_LONG
+	restoreattacker
+	return
+
 BattleScript_BattleBondActivatesOnMoveEndAttacker::
 	pause 5
 	copybyte gBattlerAbility, gBattlerAttacker

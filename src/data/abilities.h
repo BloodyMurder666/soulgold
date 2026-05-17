@@ -2846,4 +2846,144 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Adds Fairy typing."),
         .aiRating = 5,
     },
+
+    [ABILITY_SHOWTIME] =
+    {
+        .name = _("Showtime"),
+        .description = COMPOUND_STRING("Sets Trick Room on entry."),
+        .aiRating = 7,
+    },
+
+    [ABILITY_ROOTED] =
+    {
+        .name = _("Rooted"),
+        .description = COMPOUND_STRING("Gain Ingrain on entry."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_RESTORING] =
+    {
+        .name = _("Restoring"),
+        .description = COMPOUND_STRING("Gain Aqua Ring on entry."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_READY_STANCE] =
+    {
+        .name = _("Ready Stance"),
+        .description = COMPOUND_STRING("Normal moves go first."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_FIRST_STRIKE] =
+    {
+        .name = _("First Strike"),
+        .description = COMPOUND_STRING("Fighting moves go first."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_TOXIC_REFLEX] =
+    {
+        .name = _("Toxic Reflex"),
+        .description = COMPOUND_STRING("Poison moves go first."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_EARTHEN_RUSH] =
+    {
+        .name = _("Earthen Rush"),
+        .description = COMPOUND_STRING("Ground moves go first."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_STONE_SENTINEL] =
+    {
+        .name = _("Rolling Stones"),
+        .description = COMPOUND_STRING("Rock moves go first."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_SWARM_INSTINCT] =
+    {
+        .name = _("Swarm Instinct"),
+        .description = COMPOUND_STRING("Bug moves go first."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_PHANTOM_STEP] =
+    {
+        .name = _("Phantom Step"),
+        .description = COMPOUND_STRING("Ghost moves go first."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_QUICK_FORGE] =
+    {
+        .name = _("Quick Forge"),
+        .description = COMPOUND_STRING("Steel moves go first."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_FLAME_RUSH] =
+    {
+        .name = _("Heat Rush"),
+        .description = COMPOUND_STRING("Fire moves go first."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_TIDAL_REFLEX] =
+    {
+        .name = _("Tidal Reflex"),
+        .description = COMPOUND_STRING("Water moves go first."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_VERDANT_GALE] =
+    {
+        .name = _("Verdant Gale"),
+        .description = COMPOUND_STRING("Grass moves go first."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_STATIC_BURST] =
+    {
+        .name = _("Static Burst"),
+        .description = COMPOUND_STRING("Electric moves go first."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_THINK_AHEAD] =
+    {
+        .name = _("Think Ahead"),
+        .description = COMPOUND_STRING("Psychic moves go first."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_FROST_SNAP] =
+    {
+        .name = _("Frost Snap"),
+        .description = COMPOUND_STRING("Ice moves go first."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_DRACONIC_REFLEX] =
+    {
+        .name = _("Draconic Sense"),
+        .description = COMPOUND_STRING("Dragon moves go first."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_NIGHT_STALKER] =
+    {
+        .name = _("Nightstalker"),
+        .description = COMPOUND_STRING("Dark moves go first."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_FAIRY_BLINK] =
+    {
+        .name = _("Sprite shift"),
+        .description = COMPOUND_STRING("Fairy moves go first."),
+        .aiRating = 5,
+    },
 };
