@@ -4117,6 +4117,12 @@ static void SetSameMoveTurnValues(enum BattleMoveEffects moveEffect)
             gBattleMons[gBattlerAttacker].volatiles.furyCutterCounter = 0;
         break;
     case EFFECT_ROLLOUT:
+    {
+        if (increment
+         && BattlerHasTrait(gBattlerAttacker, ABILITY_ROLLING_STONE)
+         && CompareStat(gBattlerAttacker, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN))
+            gBattleMons[gBattlerAttacker].statStages[STAT_SPEED]++;
+
         if (increment && ++gBattleMons[gBattlerAttacker].volatiles.rolloutTimer < 5)
         {
             gBattleMons[gBattlerAttacker].volatiles.multipleTurns = TRUE;
@@ -4128,6 +4134,7 @@ static void SetSameMoveTurnValues(enum BattleMoveEffects moveEffect)
             gBattleMons[gBattlerAttacker].volatiles.rolloutTimer = 0;
         }
         break;
+    }
     case EFFECT_ECHOED_VOICE:
         if (!gBattleStruct->unableToUseMove) // Increment even if targets unaffected
             gBattleStruct->incrementEchoedVoice = TRUE;

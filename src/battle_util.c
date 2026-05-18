@@ -4815,7 +4815,23 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
             SetMoveEffect(gBattlerAttacker, gBattlerTarget, MOVE_EFFECT_FLINCH, gBattlescriptCurrInstr, EFFECT_PRIMARY);
             effect++;
         }
-    break;
+        else if (SearchTraits(battlerTraits, ABILITY_SOOTHING)
+         && IsBattlerAlive(gBattlerTarget)
+         && !gBattleStruct->unableToUseMove
+         && RandomPercentage(RNG_SOOTHING, 10)
+         && IsBattlerTurnDamaged(gBattlerTarget, EXCLUDING_SUBSTITUTES)
+         && CanBeSlept(gBattlerAttacker, gBattlerTarget, BLOCKED_BY_SLEEP_CLAUSE)
+         && !MoveHasAdditionalEffect(gCurrentMove, MOVE_EFFECT_SLEEP))
+        {
+            gEffectBattler = gBattlerTarget;
+            gBattleScripting.battler = gBattlerAttacker;
+            gBattleScripting.moveEffect = MOVE_EFFECT_SLEEP;
+            gLastUsedAbility = ABILITY_SOOTHING;
+            PushTraitStack(gBattlerAttacker, ABILITY_SOOTHING);
+            BattleScriptCall(BattleScript_AbilityStatusEffectAtk);
+            effect++;
+        }
+        break;
     case ABILITYEFFECT_FORM_CHANGE_ON_HIT:
         speciesForm = gBattleMons[gBattlerTarget].species;
         ability = ABILITY_NONE;
@@ -7514,6 +7530,13 @@ static inline uq4_12_t ApplyDefensiveBadgeBoost(uq4_12_t modifier, enum BattlerI
     return modifier;
 }
 
+static inline bool32 ShouldUseSpAtkForPhysicalMove(enum Move move, enum Ability *battlerTraits)
+{
+    return IsBattleMovePhysical(move)
+        && (SearchTraits(battlerTraits, ABILITY_ELEMENTALIST)
+         || (SearchTraits(battlerTraits, ABILITY_ELEMENTAL_FIST) && IsPunchingMove(move)));
+}
+
 static inline u32 CalcAttackStat(struct BattleContext *ctx)
 {
     u8 atkStage;
@@ -7562,7 +7585,12 @@ static inline u32 CalcAttackStat(struct BattleContext *ctx)
     }
     else
     {
-        if (IsBattleMovePhysical(move))
+        if (ShouldUseSpAtkForPhysicalMove(move, battlerTraits))
+        {
+            atkStat = gBattleMons[battlerAtk].spAttack;
+            atkStage = gBattleMons[battlerAtk].statStages[STAT_SPATK];
+        }
+        else if (IsBattleMovePhysical(move))
         {
             atkStat = gBattleMons[battlerAtk].attack;
             atkStage = gBattleMons[battlerAtk].statStages[STAT_ATK];
@@ -11854,6 +11882,11 @@ u32 BattlerHasInnate(enum BattlerId battlerId, enum Ability ability)
          && IsInnateUnlockedByLevel(i + 1, gBattleMons[battlerId].level))
             return i + 2;
     }
+
+#if TESTING
+    if (gTestRunnerEnabled && !T_SHOULD_TEST_DEFAULT_INNATES)
+        return 0;
+#endif
 
     return SpeciesHasInnateAtLevel(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].level); 
 }

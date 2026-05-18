@@ -2986,4 +2986,38 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Fairy moves go first."),
         .aiRating = 5,
     },
+
+    [ABILITY_ELEMENTAL_FIST] =
+    {
+        .name = _("Elemental Fist"),
+        .description = COMPOUND_STRING("Punches use Sp. Atk."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_ELEMENTALIST] =
+    {
+        .name = _("Elementalist"),
+        .description = COMPOUND_STRING("Physical uses Sp. Atk."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_SOOTHING] =
+    {
+        .name = _("Soothing"),
+        .description = COMPOUND_STRING("May lull foes to sleep."),
+        .aiRating = 4,
+    },
+
+    [ABILITY_ROLLING_STONE] =
+    {
+        .name = _("Rolling Stone"),
+        .description = COMPOUND_STRING("Rollout hits raise Speed."),
+        .aiRating = 5,
+    },
+    [ABILITY_GENERALIST] =
+    {
+        .name = _("Generalist"),
+        .description = COMPOUND_STRING("Boosts different type attacks."),
+        .aiRating = 8,
+    },
 };
