@@ -1,0 +1,15 @@
+mapscripts GoldenrodCity_House4_MapScripts {}
+
+script Golderod_House4_Fatman {
+    msgbox(format("Some say once Pokémon reaches a certain level, it starts to gain more abilities. Could that be true?"), MSGBOX_NPC)
+}
+
+script Goldenrod_House4_Venipede {
+    lock
+    faceplayer
+    playmoncry(SPECIES_VENIPEDE, CRY_MODE_NORMAL)
+    msgbox("Hiss!")
+    waitmoncry
+    release
+    end
+}

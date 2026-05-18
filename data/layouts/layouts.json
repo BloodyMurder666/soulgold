@@ -9354,6 +9354,16 @@
       "secondary_tileset": "gTileset_PokemonDayCare",
       "border_filepath": "data/layouts/GoldenrodApartmentBasement/border.bin",
       "blockdata_filepath": "data/layouts/GoldenrodApartmentBasement/map.bin"
+    },
+    {
+      "id": "LAYOUT_GOLDENROD_CITY_HOUSE4",
+      "name": "GoldenrodCity_House4_Layout",
+      "width": 13,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Building",
+      "secondary_tileset": "gTileset_House_Lab",
+      "border_filepath": "data/layouts/GoldenrodCity_House4/border.bin",
+      "blockdata_filepath": "data/layouts/GoldenrodCity_House4/map.bin"
     }
   ]
 }

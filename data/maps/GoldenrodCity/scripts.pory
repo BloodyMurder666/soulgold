@@ -466,3 +466,92 @@ GoldenrodCity_Text_MoveTutorNotEnoughCoins:
 	.string "…You don't have enough coins…$"
 `
 
+script Goldenrod_Daytime_ExpertM {
+	lock
+	msgbox("This time I will defeat you, Tiffany!
+			We've been training for the whole week!")
+	closemessage
+	playmoncry(SPECIES_STARAVIA, CRY_MODE_NORMAL)
+	applymovement(LOCALID_GOLDENROD_STARAVIA, moves(jump_in_place_right*2))
+	waitmovement(0)
+	release
+	end
+}
+script Goldenrod_Daytime_ExpertF {
+	lock
+	msgbox("Hah! If you still have not learned the
+			type-matchups, you will never beat me!")
+	closemessage
+	playmoncry(SPECIES_ELECTABUZZ, CRY_MODE_NORMAL)
+	applymovement(LOCALID_GOLDENROD_ELECTABUZZ, moves(jump_in_place_left*2))
+	waitmovement(0)
+	release
+	end
+}
+script Goldenrod_Daytime_Staravia {
+	lock
+	playmoncry(SPECIES_STARAVIA, CRY_MODE_NORMAL)
+	msgbox("Staa!")
+	waitmoncry
+	release
+	end
+}
+script Goldenrod_Daytime_Electabuzz {
+	lock
+	playmoncry(SPECIES_ELECTABUZZ, CRY_MODE_NORMAL)
+	msgbox("Bzz!")
+	waitmoncry
+	release
+	end
+}
+script Goldenrod_Daytime_Bystander {
+	lock
+	faceplayer
+	msgbox("There two have been going on with their
+			rivarly for weeks. The city should build
+			a battle arena just for them.")
+	release
+	end
+
+}
+script Goldenrod_Nighttime_Burglar {
+	lock
+	faceplayer
+	msgbox("The city's rapid developement has 
+			raised some questions regarding
+			where all the money is coming from.
+			
+			If they knew just how much money
+			trades hands in the underground every
+			every day, their eyeballs would pop out.
+			
+			Perhaps one day you too will learn, if
+			you grow strong enough.")
+	release
+	end
+}
+script Goldenrod_Nighttime_Oldlady {
+	lock
+	faceplayer
+	if (flag(FLAG_GOLDENROD_SMACKDOWN)) {
+		msgbox("Smack Down lets you ground any target.
+				It's also very useful against Flying
+				Pokémon.")
+		release
+		end
+	}
+	msgbox("Some petty thief tried to jump me on a
+			dark alleway, he was not expecting me
+			to Smack Down him with a good old
+			Ippon seoinage.
+			
+			Here, you should try
+			it too.")
+	giveitem(ITEM_TM_SMACK_DOWN)
+	setflag(FLAG_GOLDENROD_SMACKDOWN)
+	msgbox("Smack Down lets you ground any target.
+			It's also very useful against Flying
+			Pokémon.")
+	release
+	end
+}

@@ -1250,7 +1250,7 @@
 #define FLAG_ITEM_SPROUT_TOWER_POTION                               0x4A9 
 #define FLAG_ITEM_SPROUT_TOWER_ESCAPE_ROPE                          0x4AA 
 #define FLAG_GOLDENROD_APARTMENTS_SMARTSTRIKE                       0x4AB
-#define FLAG_UNUSED_0x4AC                                           0x4AC // Unused
+#define FLAG_GOLDENROD_SMACKDOWN                                    0x4AC
 #define FLAG_UNUSED_0x4AD                                           0x4AD // Unused
 #define FLAG_ITEM_GS_BALL                                           0x4AE // Technically unused
 #define FLAG_UNUSED_0x4AF                                           0x4AF //  unused

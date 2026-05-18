@@ -37,52 +37,6 @@ GoldenrodDeptStore5_EventScript_Sign::
 	release
 	end
 
-GoldenrodDeptStore5_EventScript_Receptionist::
-	lock
-	faceplayer
-	goto GoldenrodDeptStore5_EventScript_Receptionist_HighFriendship
-	release
-	end
-
-GoldenrodDeptStore5_EventScript_Receptionist_HighFriendship::
-	call_if_unset FLAG_GOT_RETURN, GoldenrodDeptStore5_EventScript_Receptionist_GiveReturn
-	msgbox GoldenrodDeptStore_Text_5FReceptionistThisMoveShouldBePerfect2, MSGBOX_DEFAULT
-	closemessage
-	release
-	end
-
-GoldenrodDeptStore5_EventScript_Receptionist_LowFriendship::
-	call_if_unset FLAG_GOT_FRUSTRATION, GoldenrodDeptStore5_EventScript_Receptionist_GiveFrustration
-	msgbox GoldenrodDeptStore_Text_5FReceptionistItLooksEvilHowAboutThisTM, MSGBOX_DEFAULT
-	closemessage
-	release
-	end
-
-GoldenrodDeptStore5_EventScript_Receptionist_GiveReturn::
-	giveitem ITEM_TM_RETURN
-	setflag FLAG_GOT_RETURN
-    msgbox GoldenrodDeptStore_Text_5FReceptionistThisMoveShouldBePerfect
-	return
-
-GoldenrodDeptStore5_EventScript_Receptionist_GiveFrustration::
-	giveitem ITEM_TM_FRUSTRATION
-	setflag FLAG_GOT_FRUSTRATION
-	return
-
-GoldenrodDeptStore5_EventScript_Receptionist_PutInEffort::
-	msgbox GoldenrodDeptStore_Text_5FReceptionistPutInSomeMoreEffort, MSGBOX_DEFAULT
-	closemessage
-	release
-	end
-
-GoldenrodDeptStore5_EventScript_Receptionist_Already::
-	msgbox GoldenrodDeptStore_Text_5FReceptionistWait, MSGBOX_DEFAULT
-	closemessage
-	release
-	end
-
-
-
 GoldenrodDeptStore_Text_5FReceptionistOhYourMon:
     .string "Hello. Oh, your Pokémon…$"
 
@@ -97,7 +51,7 @@ GoldenrodDeptStore_Text_5FReceptionistPutInSomeMoreEffort:
 
 
 GoldenrodDeptStore_Text_5FReceptionistThisMoveShouldBePerfect:
-    .string "On Sundays we hand out free samples of TMs. Please, take this.$"
+    .string "Every evening we hand out free samples of TM. Please, take this.$"
 
 GoldenrodDeptStore_Text_5FReceptionistThisMoveShouldBePerfect2:
     .string "We hope that you found use for the TM.$"
@@ -111,7 +65,7 @@ GoldenrodDeptStore_Text_5FReceptionistThereAreTMsPerfectForMon:
     .string "just perfect for your Pokémon.$"
 
 GoldenrodDeptStore_Text_5FLass:
-    .string "On Sunday, a lady comes to hand\n"
+    .string "During evenings, a lady comes to hand\n"
     .string "out free TMs!$"
 
 GoldenrodDeptStore_Text_5FPokefanM:
@@ -134,4 +88,45 @@ script GoldenrodDeptSundayNpc {
     if (var(VAR_DAY_OF_WEEK) != 0) {
         setflag(FLAG_TEMP_A)
     }
+}
+
+script Goldenrod_F5_ReturnClerk {
+	lock
+	if (flag(FLAG_GOT_RETURN)) {
+		msgbox("Return grows in power the more your
+				Pokémon loves you!")
+		release
+		end
+	}
+	msgbox("We're currently handing out free
+			samples of our most popular TM. 
+			
+			Here, have one!")
+	giveitem(ITEM_TM_RETURN)
+	setflag(FLAG_GOT_RETURN)
+	msgbox("Return grows in power the more your
+			Pokémon loves you!")
+	release
+	end
+	
+}
+
+script GoldenrodDept5FMart {
+	lock
+	msgbox("Welcome to the TMs department!")
+	waitmessage
+	pokemart(Goldenrod_F5_TMMart)
+	msgbox("Come back soon!")
+	release
+	end
+}
+
+mart Goldenrod_F5_TMMart {
+	ITEM_TM_REFLECT
+	ITEM_TM_LIGHT_SCREEN
+	ITEM_TM_SAFEGUARD
+	ITEM_TM_FIRE_PUNCH
+	ITEM_TM_ICE_PUNCH
+	ITEM_TM_THUNDER_PUNCH
+	ITEM_TM_HYPER_BEAM
 }

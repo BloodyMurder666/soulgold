@@ -930,3 +930,184 @@ GoldenrodCity_Text_MoveTutorBut:
 GoldenrodCity_Text_MoveTutorNotEnoughCoins:
 # 466 "data/maps/GoldenrodCity/scripts.pory"
 	.string "…You don't have enough coins…$"
+
+Goldenrod_Daytime_ExpertM::
+# 470 "data/maps/GoldenrodCity/scripts.pory"
+	lock
+# 471 "data/maps/GoldenrodCity/scripts.pory"
+	msgbox Goldenrod_Daytime_ExpertM_Text_0
+# 473 "data/maps/GoldenrodCity/scripts.pory"
+	closemessage
+# 474 "data/maps/GoldenrodCity/scripts.pory"
+	playmoncry SPECIES_STARAVIA, CRY_MODE_NORMAL
+# 475 "data/maps/GoldenrodCity/scripts.pory"
+	applymovement LOCALID_GOLDENROD_STARAVIA, Goldenrod_Daytime_ExpertM_Movement_0
+# 476 "data/maps/GoldenrodCity/scripts.pory"
+	waitmovement 0
+# 477 "data/maps/GoldenrodCity/scripts.pory"
+	release
+	end
+
+
+Goldenrod_Daytime_ExpertF::
+# 481 "data/maps/GoldenrodCity/scripts.pory"
+	lock
+# 482 "data/maps/GoldenrodCity/scripts.pory"
+	msgbox Goldenrod_Daytime_ExpertF_Text_0
+# 484 "data/maps/GoldenrodCity/scripts.pory"
+	closemessage
+# 485 "data/maps/GoldenrodCity/scripts.pory"
+	playmoncry SPECIES_ELECTABUZZ, CRY_MODE_NORMAL
+# 486 "data/maps/GoldenrodCity/scripts.pory"
+	applymovement LOCALID_GOLDENROD_ELECTABUZZ, Goldenrod_Daytime_ExpertF_Movement_0
+# 487 "data/maps/GoldenrodCity/scripts.pory"
+	waitmovement 0
+# 488 "data/maps/GoldenrodCity/scripts.pory"
+	release
+	end
+
+
+Goldenrod_Daytime_Staravia::
+# 492 "data/maps/GoldenrodCity/scripts.pory"
+	lock
+# 493 "data/maps/GoldenrodCity/scripts.pory"
+	playmoncry SPECIES_STARAVIA, CRY_MODE_NORMAL
+# 494 "data/maps/GoldenrodCity/scripts.pory"
+	msgbox Goldenrod_Daytime_Staravia_Text_0
+# 495 "data/maps/GoldenrodCity/scripts.pory"
+	waitmoncry
+# 496 "data/maps/GoldenrodCity/scripts.pory"
+	release
+	end
+
+
+Goldenrod_Daytime_Electabuzz::
+# 500 "data/maps/GoldenrodCity/scripts.pory"
+	lock
+# 501 "data/maps/GoldenrodCity/scripts.pory"
+	playmoncry SPECIES_ELECTABUZZ, CRY_MODE_NORMAL
+# 502 "data/maps/GoldenrodCity/scripts.pory"
+	msgbox Goldenrod_Daytime_Electabuzz_Text_0
+# 503 "data/maps/GoldenrodCity/scripts.pory"
+	waitmoncry
+# 504 "data/maps/GoldenrodCity/scripts.pory"
+	release
+	end
+
+
+Goldenrod_Daytime_Bystander::
+# 508 "data/maps/GoldenrodCity/scripts.pory"
+	lock
+# 509 "data/maps/GoldenrodCity/scripts.pory"
+	faceplayer
+# 510 "data/maps/GoldenrodCity/scripts.pory"
+	msgbox Goldenrod_Daytime_Bystander_Text_0
+# 513 "data/maps/GoldenrodCity/scripts.pory"
+	release
+	end
+
+
+Goldenrod_Nighttime_Burglar::
+# 518 "data/maps/GoldenrodCity/scripts.pory"
+	lock
+# 519 "data/maps/GoldenrodCity/scripts.pory"
+	faceplayer
+# 520 "data/maps/GoldenrodCity/scripts.pory"
+	msgbox Goldenrod_Nighttime_Burglar_Text_0
+# 530 "data/maps/GoldenrodCity/scripts.pory"
+	release
+	end
+
+
+Goldenrod_Nighttime_Oldlady::
+# 534 "data/maps/GoldenrodCity/scripts.pory"
+	lock
+# 535 "data/maps/GoldenrodCity/scripts.pory"
+	faceplayer
+# 536 "data/maps/GoldenrodCity/scripts.pory"
+	goto_if_set FLAG_GOLDENROD_SMACKDOWN, Goldenrod_Nighttime_Oldlady_2
+# 543 "data/maps/GoldenrodCity/scripts.pory"
+	msgbox Goldenrod_Nighttime_Oldlady_Text_1
+# 550 "data/maps/GoldenrodCity/scripts.pory"
+	giveitem ITEM_TM_SMACK_DOWN
+# 551 "data/maps/GoldenrodCity/scripts.pory"
+	setflag FLAG_GOLDENROD_SMACKDOWN
+# 552 "data/maps/GoldenrodCity/scripts.pory"
+	msgbox Goldenrod_Nighttime_Oldlady_Text_0
+# 555 "data/maps/GoldenrodCity/scripts.pory"
+	release
+	end
+
+Goldenrod_Nighttime_Oldlady_2:
+# 537 "data/maps/GoldenrodCity/scripts.pory"
+	msgbox Goldenrod_Nighttime_Oldlady_Text_0
+# 540 "data/maps/GoldenrodCity/scripts.pory"
+	release
+	end
+
+
+# 475 "data/maps/GoldenrodCity/scripts.pory"
+Goldenrod_Daytime_ExpertM_Movement_0:
+# 475 "data/maps/GoldenrodCity/scripts.pory"
+	jump_in_place_right
+# 475 "data/maps/GoldenrodCity/scripts.pory"
+	jump_in_place_right
+	step_end
+
+# 486 "data/maps/GoldenrodCity/scripts.pory"
+Goldenrod_Daytime_ExpertF_Movement_0:
+# 486 "data/maps/GoldenrodCity/scripts.pory"
+	jump_in_place_left
+# 486 "data/maps/GoldenrodCity/scripts.pory"
+	jump_in_place_left
+	step_end
+
+Goldenrod_Daytime_ExpertM_Text_0:
+# 471 "data/maps/GoldenrodCity/scripts.pory"
+	.string "This time I will defeat you, Tiffany!\n"
+	.string "We've been training for the whole week!$"
+
+Goldenrod_Daytime_ExpertF_Text_0:
+# 482 "data/maps/GoldenrodCity/scripts.pory"
+	.string "Hah! If you still have not learned the\n"
+	.string "type-matchups, you will never beat me!$"
+
+Goldenrod_Daytime_Staravia_Text_0:
+# 494 "data/maps/GoldenrodCity/scripts.pory"
+	.string "Staa!$"
+
+Goldenrod_Daytime_Electabuzz_Text_0:
+# 502 "data/maps/GoldenrodCity/scripts.pory"
+	.string "Bzz!$"
+
+Goldenrod_Daytime_Bystander_Text_0:
+# 510 "data/maps/GoldenrodCity/scripts.pory"
+	.string "There two have been going on with their\n"
+	.string "rivarly for weeks. The city should build\l"
+	.string "a battle arena just for them.$"
+
+Goldenrod_Nighttime_Burglar_Text_0:
+# 520 "data/maps/GoldenrodCity/scripts.pory"
+	.string "The city's rapid developement has \n"
+	.string "raised some questions regarding\l"
+	.string "where all the money is coming from.\p"
+	.string "If they knew just how much money\n"
+	.string "trades hands in the underground every\l"
+	.string "every day, their eyeballs would pop out.\p"
+	.string "Perhaps one day you too will learn, if\n"
+	.string "you grow strong enough.$"
+
+Goldenrod_Nighttime_Oldlady_Text_0:
+# 537 "data/maps/GoldenrodCity/scripts.pory"
+	.string "Smack Down lets you ground any target.\n"
+	.string "It's also very useful against Flying\l"
+	.string "Pokémon.$"
+
+Goldenrod_Nighttime_Oldlady_Text_1:
+# 543 "data/maps/GoldenrodCity/scripts.pory"
+	.string "Some petty thief tried to jump me on a\n"
+	.string "dark alleway, he was not expecting me\l"
+	.string "to Smack Down him with a good old\l"
+	.string "Ippon seoinage.\p"
+	.string "Here, you should try\n"
+	.string "it too.$"

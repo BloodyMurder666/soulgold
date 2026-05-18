@@ -6,7 +6,7 @@
     F(DRAGON_CLAW) \
     F(PSYSHOCK) \
     F(CALM_MIND) \
-    F(ROAR) \
+    F(HEX) \
     F(TOXIC) \
     F(HAIL) \
     F(BULK_UP) \
@@ -64,13 +64,13 @@
     F(TRAILBLAZE) \
     F(WILL_O_WISP) \
     F(ACROBATICS) \
-    F(EMBARGO) \
+    F(THUNDER_PUNCH) \
     F(EXPLOSION) \
     F(SHADOW_CLAW) \
     F(PAYBACK) \
     F(SMART_STRIKE) \
     F(GIGA_IMPACT) \
-    F(ROCK_POLISH) \
+    F(FIRE_PUNCH) \
     F(AURORA_VEIL) \
     F(STONE_EDGE) \
     F(VOLT_SWITCH) \
@@ -101,7 +101,7 @@
     F(DARK_PULSE) \
     F(PLAY_ROUGH) \
     F(DAZZLING_GLEAM) \
-    F(CONFIDE)
+    F(ICE_PUNCH)
 
 #define FOREACH_HM(F) \
     F(CUT) \

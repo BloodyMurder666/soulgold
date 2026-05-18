@@ -2195,3 +2195,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/GoldenrodApartment/scripts.inc"
 
 	.include "data/maps/GoldenrodApartmentBasement/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_House4/scripts.inc"

@@ -491,7 +491,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "Goldenrod_Daytime_ExpertF",
       "flag": "FLAG_DAY_POKEMON"
     },
     {
@@ -504,10 +504,11 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "Goldenrod_Daytime_ExpertM",
       "flag": "FLAG_DAY_POKEMON"
     },
     {
+      "local_id": "LOCALID_GOLDENROD_STARAVIA",
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(STARAVIA)",
       "x": 59,
       "y": 36,
@@ -517,10 +518,11 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "Goldenrod_Daytime_Staravia",
       "flag": "FLAG_DAY_POKEMON"
     },
     {
+      "local_id": "LOCALID_GOLDENROD_ELECTABUZZ",
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(ELECTABUZZ)",
       "x": 60,
       "y": 36,
@@ -530,7 +532,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "Goldenrod_Daytime_Electabuzz",
       "flag": "FLAG_DAY_POKEMON"
     },
     {
@@ -543,7 +545,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "Goldenrod_Nighttime_Burglar",
       "flag": "FLAG_NIGHT_POKEMON"
     },
     {
@@ -556,7 +558,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "Goldenrod_Nighttime_Oldlady",
       "flag": "FLAG_NIGHT_POKEMON"
     },
     {
@@ -569,7 +571,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "Goldenrod_Daytime_Bystander",
       "flag": "FLAG_DAY_POKEMON"
     },
     {
@@ -710,7 +712,7 @@
       "x": 61,
       "y": 33,
       "elevation": 0,
-      "dest_map": "MAP_GOLDENROD_CITY",
+      "dest_map": "MAP_GOLDENROD_CITY_HOUSE4",
       "dest_warp_id": "0"
     },
     {
