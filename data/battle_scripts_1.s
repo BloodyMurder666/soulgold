@@ -6186,6 +6186,14 @@ BattleScript_RainDishActivates::
 	call BattleScript_AbilityHpHeal
 	end2
 
+BattleScript_LifestealActivates::
+	call BattleScript_AbilityHpHeal
+	return
+
+BattleScript_ConsumeActivates::
+	call BattleScript_AbilityHpHeal
+	return
+
 BattleScript_CheekPouchActivates::
 	copybyte sSAVED_BATTLER, gBattlerAttacker
 	copybyte gBattlerAttacker, gBattlerAbility
@@ -6368,6 +6376,114 @@ BattleScript_UncannyContrary:
 	pushtraitstack BS_TARGET ABILITY_CONTRARY
 	printstring STRINGID_DEFENDERSSTATROSE
 	goto BattleScript_UncannyEffect_WaitString
+
+BattleScript_BreakingPresenceActivates::
+	savetarget
+	call BattleScript_AbilityPopUp
+	setbyte gBattlerTarget, 0
+BattleScript_BreakingPresenceLoop:
+	jumpiftargetally BattleScript_BreakingPresenceLoopIncrement
+	jumpifabsent BS_TARGET, BattleScript_BreakingPresenceLoopIncrement
+	jumpifvolatile BS_TARGET, VOLATILE_SUBSTITUTE, BattleScript_BreakingPresenceLoopIncrement
+BattleScript_BreakingPresenceEffect:
+	copybyte sBATTLER, gBattlerAttacker
+	setstatchanger STAT_DEF, 1, TRUE
+	statbuffchange BS_TARGET, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_BreakingPresenceLoopIncrement
+	jumpifability BS_TARGET, ABILITY_CONTRARY, BattleScript_BreakingPresenceContrary
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_CHANGE, BattleScript_BreakingPresenceWontDecrease
+	printstring STRINGID_DEFENDERSSTATFELL
+BattleScript_BreakingPresenceEffect_WaitString:
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_BreakingPresenceLoopIncrement:
+	addbyte gBattlerTarget, 1
+	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_BreakingPresenceLoop
+	copybyte sBATTLER, gBattlerAttacker
+	destroyabilitypopup
+	restoretarget
+	restoreattacker
+	pause B_WAIT_TIME_MED
+	return
+
+BattleScript_BreakingPresenceWontDecrease:
+	printstring STRINGID_STATSWONTDECREASE
+	goto BattleScript_BreakingPresenceEffect_WaitString
+
+BattleScript_BreakingPresenceContrary:
+	pushtraitstack BS_TARGET ABILITY_CONTRARY
+	printstring STRINGID_DEFENDERSSTATROSE
+	goto BattleScript_BreakingPresenceEffect_WaitString
+
+BattleScript_DisquietActivates::
+	savetarget
+	call BattleScript_AbilityPopUp
+	setbyte gBattlerTarget, 0
+BattleScript_DisquietLoop:
+	jumpiftargetally BattleScript_DisquietLoopIncrement
+	jumpifabsent BS_TARGET, BattleScript_DisquietLoopIncrement
+	jumpifvolatile BS_TARGET, VOLATILE_SUBSTITUTE, BattleScript_DisquietLoopIncrement
+BattleScript_DisquietEffect:
+	copybyte sBATTLER, gBattlerAttacker
+	setstatchanger STAT_SPDEF, 1, TRUE
+	statbuffchange BS_TARGET, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_DisquietLoopIncrement
+	jumpifability BS_TARGET, ABILITY_CONTRARY, BattleScript_DisquietContrary
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_CHANGE, BattleScript_DisquietWontDecrease
+	printstring STRINGID_DEFENDERSSTATFELL
+BattleScript_DisquietEffect_WaitString:
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_DisquietLoopIncrement:
+	addbyte gBattlerTarget, 1
+	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_DisquietLoop
+	copybyte sBATTLER, gBattlerAttacker
+	destroyabilitypopup
+	restoretarget
+	restoreattacker
+	pause B_WAIT_TIME_MED
+	return
+
+BattleScript_DisquietWontDecrease:
+	printstring STRINGID_STATSWONTDECREASE
+	goto BattleScript_DisquietEffect_WaitString
+
+BattleScript_DisquietContrary:
+	pushtraitstack BS_TARGET ABILITY_CONTRARY
+	printstring STRINGID_DEFENDERSSTATROSE
+	goto BattleScript_DisquietEffect_WaitString
+
+BattleScript_HobbleActivates::
+	savetarget
+	call BattleScript_AbilityPopUp
+	setbyte gBattlerTarget, 0
+BattleScript_HobbleLoop:
+	jumpiftargetally BattleScript_HobbleLoopIncrement
+	jumpifabsent BS_TARGET, BattleScript_HobbleLoopIncrement
+	jumpifvolatile BS_TARGET, VOLATILE_SUBSTITUTE, BattleScript_HobbleLoopIncrement
+BattleScript_HobbleEffect:
+	copybyte sBATTLER, gBattlerAttacker
+	setstatchanger STAT_SPEED, 1, TRUE
+	statbuffchange BS_TARGET, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_HobbleLoopIncrement
+	jumpifability BS_TARGET, ABILITY_CONTRARY, BattleScript_HobbleContrary
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_CHANGE, BattleScript_HobbleWontDecrease
+	printstring STRINGID_DEFENDERSSTATFELL
+BattleScript_HobbleEffect_WaitString:
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_HobbleLoopIncrement:
+	addbyte gBattlerTarget, 1
+	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_HobbleLoop
+	copybyte sBATTLER, gBattlerAttacker
+	destroyabilitypopup
+	restoretarget
+	restoreattacker
+	pause B_WAIT_TIME_MED
+	return
+
+BattleScript_HobbleWontDecrease:
+	printstring STRINGID_STATSWONTDECREASE
+	goto BattleScript_HobbleEffect_WaitString
+
+BattleScript_HobbleContrary:
+	pushtraitstack BS_TARGET ABILITY_CONTRARY
+	printstring STRINGID_DEFENDERSSTATROSE
+	goto BattleScript_HobbleEffect_WaitString
 
 BattleScript_SupersweetSyrupActivates::
  	savetarget
@@ -6934,6 +7050,14 @@ BattleScript_BattlerAbilityStatRaiseOnSwitchInDauntless::
 BattleScript_BattlerAbilityStatRaiseOnSwitchInDauntlessRet:
 	return
 
+BattleScript_BattlerAbilityStatRaiseOnSwitchInGeneric::
+	call BattleScript_AbilityPopUpScripting
+	statbuffchange BS_SCRIPTING, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN, BattleScript_BattlerAbilityStatRaiseOnSwitchInGenericRet
+	printstring STRINGID_SCRIPTINGABILITYSTATRAISE
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_BattlerAbilityStatRaiseOnSwitchInGenericRet:
+	return
+
 BattleScript_BattlerAbilityStatRaiseOnSwitchInWindRider::
 	call BattleScript_AbilityPopUpScripting
 	setstatchanger STAT_ATK, 1, FALSE
@@ -7383,6 +7507,15 @@ BattleScript_ShowtimeActivates::
 	printstring STRINGID_PKMNTWISTEDDIMENSIONS
 	waitmessage B_WAIT_TIME_LONG
 	call BattleScript_TryRoomServiceLoop
+	restoreattacker
+	return
+
+BattleScript_WindburstActivates::
+	waitstate
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_TAILWINDBLEW
+	waitmessage B_WAIT_TIME_LONG
+	call BattleScript_TryTailwindAbilitiesLoop
 	restoreattacker
 	return
 

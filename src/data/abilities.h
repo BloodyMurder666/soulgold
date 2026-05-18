@@ -3020,4 +3020,125 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Boosts different type attacks."),
         .aiRating = 8,
     },
+
+    [ABILITY_WINDBURST] =
+    {
+        .name = _("Windburst"),
+        .description = COMPOUND_STRING("Sets Tailwind on entry."),
+        .aiRating = 8,
+    },
+
+    [ABILITY_BATTLE_FERVOR] =
+    {
+        .name = _("Battle Fervor"),
+        .description = COMPOUND_STRING("Ups Attack on entry."),
+        .aiRating = 3,
+    },
+
+    [ABILITY_GUARD_STANCE] =
+    {
+        .name = _("Guard Stance"),
+        .description = COMPOUND_STRING("Ups Defense on entry."),
+        .aiRating = 3,
+    },
+
+    [ABILITY_MENTAL_SURGE] =
+    {
+        .name = _("Mental Surge"),
+        .description = COMPOUND_STRING("Ups Sp. Atk on entry."),
+        .aiRating = 3,
+    },
+
+    [ABILITY_RESOLUTE_GUARD] =
+    {
+        .name = _("Resolute Guard"),
+        .description = COMPOUND_STRING("Ups Sp. Def on entry."),
+        .aiRating = 3,
+    },
+
+    [ABILITY_SKIP_STEP] =
+    {
+        .name = _("Skip Step"),
+        .description = COMPOUND_STRING("Ups Speed on entry."),
+        .aiRating = 3,
+    },
+
+    [ABILITY_BREAKING_PRESENCE] =
+    {
+        .name = _("Breaking"),
+        .description = COMPOUND_STRING("Lowers foes' Defense."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_DISQUIET] =
+    {
+        .name = _("Disquiet"),
+        .description = COMPOUND_STRING("Lowers foes' Sp. Def."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_HOBBLE] =
+    {
+        .name = _("Tangling"),
+        .description = COMPOUND_STRING("Lowers foes' Speed."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_SEER] =
+    {
+        .name = _("Seer"),
+        .description = COMPOUND_STRING("Psychic attacks boost Speed."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_SMOULDERING] =
+    {
+        .name = _("Smouldering"),
+        .description = COMPOUND_STRING("Water raises Sp. Def."),
+        .aiRating = 6,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_CONSUME] =
+    {
+        .name = _("Consume"),
+        .description = COMPOUND_STRING("Heals after a KO."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_LIFESTEAL] =
+    {
+        .name = _("Lifesteal"),
+        .description = COMPOUND_STRING("Drains HP from damage."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_HAUNTING] =
+    {
+        .name = _("Haunting"),
+        .description = COMPOUND_STRING("Ghost moves may flinch."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_WINDCALLER] =
+    {
+        .name = _("Windcaller"),
+        .description = COMPOUND_STRING("Bolsters Flying and Tailwind."),
+        .aiRating = 7,
+    },
+
+    [ABILITY_SIEGEBREAKER] =
+    {
+        .name = _("Siegebreaker"),
+        .description = COMPOUND_STRING("Attacks use Defense."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_SANDSHIELD] =
+    {
+        .name = _("Sandshield"),
+        .description = COMPOUND_STRING("Doubles Def in sandstorm."),
+        .aiRating = 6,
+        .breakable = TRUE,
+    },
 };

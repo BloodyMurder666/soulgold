@@ -15388,6 +15388,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
             .speciesPowerOverride.numOfHits = 3
         },
         .multiHit = TRUE,
+        .slicingMove = TRUE,
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_EARLIER,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,

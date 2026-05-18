@@ -5794,6 +5794,7 @@ bool32 HasMoxieTypeAbility(u32 battler)
 
     if ((SearchTraits(battlerTraits, ABILITY_MOXIE))
      || (SearchTraits(battlerTraits, ABILITY_BEAST_BOOST))
+     || (SearchTraits(battlerTraits, ABILITY_CONSUME))
      || (SearchTraits(battlerTraits, ABILITY_CHILLING_NEIGH))
      || (SearchTraits(battlerTraits, ABILITY_AS_ONE_ICE_RIDER))
      || (SearchTraits(battlerTraits, ABILITY_GRIM_NEIGH))
@@ -5864,6 +5865,10 @@ bool32 ShouldTriggerAbility(enum BattlerId battlerAtk, enum BattlerId battlerDef
         if (SearchTraits(battlerTraits, ABILITY_COMPETITIVE))
         {
             return (BattlerStatCanRise(battlerDef, STAT_SPATK) && HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_SPECIAL));
+        }
+        if (SearchTraits(battlerTraits, ABILITY_SMOULDERING))
+        {
+            return BattlerStatCanRise(battlerDef, STAT_SPDEF);
         }
         
         // TODO: logic for when to trigger Contrary

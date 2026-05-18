@@ -3623,7 +3623,8 @@ static s32 AI_DoubleBattle(enum BattlerId battlerAtk, enum BattlerId battlerDef,
             }
             if (SearchTraits(AIBattlerTraits, ABILITY_DRY_SKIN)
              || SearchTraits(AIBattlerTraits, ABILITY_WATER_ABSORB)
-             || SearchTraits(AIBattlerTraits, ABILITY_STORM_DRAIN))
+             || SearchTraits(AIBattlerTraits, ABILITY_STORM_DRAIN)
+             || SearchTraits(AIBattlerTraits, ABILITY_SMOULDERING))
             {
                     if (moveType == TYPE_WATER)
                 {
@@ -6683,7 +6684,7 @@ static s32 AI_HPAware(enum BattlerId battlerAtk, enum BattlerId battlerDef, enum
         if ((effect == EFFECT_HEAL_PULSE || effect == EFFECT_HIT_ENEMY_HEAL_ALLY)
          || (moveType == TYPE_ELECTRIC && SearchTraits(AIBattlerTraits, ABILITY_VOLT_ABSORB))
          || (moveType == TYPE_GROUND && SearchTraits(AIBattlerTraits, ABILITY_EARTH_EATER))
-         || (moveType == TYPE_WATER && (SearchTraits(AIBattlerTraits, ABILITY_DRY_SKIN) || SearchTraits(AIBattlerTraits, ABILITY_WATER_ABSORB))))
+         || (moveType == TYPE_WATER && (SearchTraits(AIBattlerTraits, ABILITY_DRY_SKIN) || SearchTraits(AIBattlerTraits, ABILITY_WATER_ABSORB) || SearchTraits(AIBattlerTraits, ABILITY_SMOULDERING))))
         {
             if (gBattleMons[battlerDef].volatiles.healBlock)
                 return 0;

@@ -3489,6 +3489,34 @@ static enum MoveEndResult MoveEndLifeOrbShellBell(void)
     return result;
 }
 
+static enum MoveEndResult MoveEndLifesteal(void)
+{
+    enum MoveEndResult result = MOVEEND_RESULT_CONTINUE;
+
+    if (BattlerHasTrait(gBattlerAttacker, ABILITY_LIFESTEAL)
+     && gBattleScripting.savedDmg > 0
+     && !gBattleStruct->unableToUseMove
+     && (IsAnyTargetTurnDamaged(gBattlerAttacker) || gBattleScripting.savedDmg > 0)
+     && !IsBattlerAtMaxHp(gBattlerAttacker)
+     && IsBattlerAlive(gBattlerAttacker)
+     && GetMoveEffect(gCurrentMove) != EFFECT_PAIN_SPLIT
+     && !IsFutureSightAttackerInParty(gBattlerAttacker, gBattlerTarget, gCurrentMove)
+     && !(B_HEAL_BLOCKING >= GEN_5 && gBattleMons[gBattlerAttacker].volatiles.healBlock))
+    {
+        s32 healAmount = gBattleScripting.savedDmg / 8;
+
+        if (healAmount == 0)
+            healAmount = 1;
+        SetHealAmount(gBattlerAttacker, healAmount);
+        PushTraitStack(gBattlerAttacker, ABILITY_LIFESTEAL);
+        BattleScriptCall(BattleScript_LifestealActivates);
+        result = MOVEEND_RESULT_RUN_SCRIPT;
+    }
+
+    gBattleScripting.moveendState++;
+    return result;
+}
+
 static enum MoveEndResult MoveEndFormChange(void)
 {
     enum MoveEndResult result = MOVEEND_RESULT_CONTINUE;
@@ -4050,6 +4078,7 @@ static enum MoveEndResult (*const sMoveEndHandlers[])(void) =
     [MOVEEND_KEE_MARANGA_HP_THRESHOLD_ITEM_TARGET] = MoveEndKeeMarangaHpThresholdItemTarget,
     [MOVEEND_CARD_BUTTON] = MoveEndCardButton,
     [MOVEEND_LIFE_ORB_SHELL_BELL] = MoveEndLifeOrbShellBell,
+    [MOVEEND_LIFESTEAL] = MoveEndLifesteal,
     [MOVEEND_FORM_CHANGE] = MoveEndFormChange,
     [MOVEEND_EMERGENCY_EXIT] = MoveEndEmergencyExit,
     [MOVEEND_EJECT_PACK] = MoveEndEjectPack,
