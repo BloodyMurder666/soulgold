@@ -35,6 +35,7 @@ u32 TestRunner_Battle_GetForcedAbility(enum BattleTrainer trainer, u32 partyInde
 u32 TestRunner_Battle_GetForcedInnates(u32 array, u32 partyIndex, s32 i);
 u32 TestRunner_Battle_GetChosenGimmick(enum BattleTrainer trainer, u32 partyIndex);
 u32 TestRunner_Battle_GetForcedEnvironment(void);
+void TestRunner_Battle_SetInitialWeather(void);
 
 #else
 
@@ -62,6 +63,8 @@ u32 TestRunner_Battle_GetForcedEnvironment(void);
 #define TestRunner_Battle_GetChosenGimmick(...) (u32)0
 
 #define TestRunner_Battle_GetForcedEnvironment(...) (u8)0
+
+#define TestRunner_Battle_SetInitialWeather(...) (void)0
 
 #endif
 

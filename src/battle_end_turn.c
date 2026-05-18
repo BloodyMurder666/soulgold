@@ -153,9 +153,21 @@ static bool32 HandleEndTurnWeatherDamage(enum BattlerId battler)
             effect = TRUE;
         }
         break;
+    case BATTLE_WEATHER_SCORCHED_FIELD:
+        if (!IS_BATTLER_OF_TYPE(battler, TYPE_FIRE)
+         && gBattleMons[battler].volatiles.semiInvulnerable != STATE_UNDERGROUND
+         && gBattleMons[battler].volatiles.semiInvulnerable != STATE_UNDERWATER
+         && !IsAbilityAndRecord(battler, ABILITY_MAGIC_GUARD))
+        {
+            SetPassiveDamageAmount(battler, GetNonDynamaxMaxHP(battler) / 16);
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SCORCHED_FIELD;
+            BattleScriptExecute(BattleScript_DamagingWeather);
+            effect = TRUE;
+        }
+        break;
     case BATTLE_WEATHER_HAIL:
     case BATTLE_WEATHER_SNOW:
-        if (SearchTraits(battlerTraits, ABILITY_ICE_BODY))
+        if (SearchTraits(battlerTraits, ABILITY_ICE_BODY) || SearchTraits(battlerTraits, ABILITY_GLACIAL))
         {
             if (AbilityBattleEffects(ABILITYEFFECT_ENDTURN, battler, MOVE_NONE, TRUE))
                 effect = TRUE;
@@ -328,6 +340,12 @@ static bool32 HandleEndTurnFirstEventBlock(enum BattlerId battler)
         gBattleStruct->eventState.endTurnBlock++;
         break;
     case FIRST_EVENT_BLOCK_THRASH:
+        if (gBattleMons[battler].volatiles.frostNovaTimer)
+        {
+            gBattleMons[battler].volatiles.frostNovaTimer--;
+            if (gBattleMons[battler].volatiles.frostNovaTimer == 0)
+                gBattleMons[battler].status1 &= ~STATUS1_ICY_ANY;
+        }
         if (gBattleMons[battler].volatiles.rampageTurns && gBattleMons[battler].volatiles.semiInvulnerable != STATE_SKY_DROP)
         {
             gBattleMons[battler].volatiles.rampageTurns--;
@@ -366,7 +384,8 @@ static bool32 HandleEndTurnFirstEventBlock(enum BattlerId battler)
     {
         if (BattlerHasTrait(battler, ABILITY_HEALER)
          || BattlerHasTrait(battler, ABILITY_HYDRATION)
-         || BattlerHasTrait(battler, ABILITY_SHED_SKIN))
+         || BattlerHasTrait(battler, ABILITY_SHED_SKIN)
+         || BattlerHasTrait(battler, ABILITY_JADE_BLOOM))
             if (AbilityBattleEffects(ABILITYEFFECT_ENDTURN, battler, MOVE_NONE, TRUE))
                 effect = TRUE;
 

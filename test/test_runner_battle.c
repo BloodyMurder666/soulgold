@@ -1921,6 +1921,16 @@ static bool32 BattleTest_CheckProgress(void *data)
     return madeProgress;
 }
 
+void TestRunner_Battle_SetInitialWeather(void)
+{
+    if (DATA.initialWeather != B_WEATHER_NONE && !DATA.trial.initialWeatherApplied)
+    {
+        gBattleWeather = DATA.initialWeather;
+        gBattleStruct->weatherDuration = DATA.initialWeatherDuration;
+        DATA.trial.initialWeatherApplied = TRUE;
+    }
+}
+
 static bool32 BattleTest_HandleExitWithResult(void *data, enum TestResult result)
 {
     if (result != TEST_RESULT_ASSUMPTION_FAIL
@@ -2025,6 +2035,13 @@ void TestSetConfig(u32 sourceLine, enum ConfigTag configTag, u32 value)
 {
     INVALID_IF(!STATE->runGiven, "WITH_CONFIG outside of GIVEN");
     SetConfig(configTag, value);
+}
+
+void SetInitialWeather(u32 sourceLine, u16 weather, u8 duration)
+{
+    INVALID_IF(!STATE->runGiven, "STARTING_WEATHER outside of GIVEN");
+    DATA.initialWeather = weather;
+    DATA.initialWeatherDuration = duration;
 }
 
 void TieBreakScore(u32 sourceLine, enum RandomTag rngTag, enum ScoreTieResolution scoreTieRes, u32 value)

@@ -3141,4 +3141,161 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .aiRating = 6,
         .breakable = TRUE,
     },
+
+    [ABILITY_JADE_BLOOM] =
+    {
+        .name = _("Jade Bloom"),
+        .description = COMPOUND_STRING("Heals and blooms each turn."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_BRIMSTONE] =
+    {
+        .name = _("Brimstone"),
+        .description = COMPOUND_STRING("Fire bypasses immunities."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_STYGIAN] =
+    {
+        .name = _("Stygian"),
+        .description = COMPOUND_STRING("Act first vs. sleep."),
+        .aiRating = 4,
+    },
+
+    [ABILITY_OMEGA] =
+    {
+        .name = _("Omega"),
+        .description = COMPOUND_STRING("Deals SE; takes NVE hits."),
+        .aiRating = 8,
+    },
+
+    [ABILITY_PERMAFROST] =
+    {
+        .name = _("Permafrost"),
+        .description = COMPOUND_STRING("Resists burns and Atk loss."),
+        .aiRating = 6,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_STONE_FACE] =
+    {
+        .name = _("Stone Face"),
+        .description = COMPOUND_STRING("Sturdy and blocks stat loss."),
+        .aiRating = 7,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_VOIDTOUCH] =
+    {
+        .name = _("Voidtouch"),
+        .description = COMPOUND_STRING("Ignores defensive screens."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_GLACIAL] =
+    {
+        .name = _("Glacial"),
+        .description = COMPOUND_STRING("Sp. Def rises; heals in hail."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_LUNAR_CYCLE] =
+    {
+        .name = _("Lunar Cycle"),
+        .description = COMPOUND_STRING("Attacks raise Speed."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_FROST_NOVA] =
+    {
+        .name = _("Frost Nova"),
+        .description = COMPOUND_STRING("Freezes on being KO'd."),
+        .aiRating = 4,
+    },
+
+    [ABILITY_SHOCKWIRING] =
+    {
+        .name = _("Shockwiring"),
+        .description = COMPOUND_STRING("Charges on entry."),
+        .aiRating = 4,
+    },
+
+    [ABILITY_RITUAL] =
+    {
+        .name = _("Ritualist"),
+        .description = COMPOUND_STRING("Absorbs Ghost; powers Hex."),
+        .aiRating = 6,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_OVERLOCK] =
+    {
+        .name = _("Overclock"),
+        .description = COMPOUND_STRING("Shift Gear boosts Steel."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_SPECTRAL_DRAIN] =
+    {
+        .name = _("Spectral Drain"),
+        .description = COMPOUND_STRING("Ground/Ghost moves drain HP."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_BLAZING_SUN] =
+    {
+        .name = _("Blazing Sun"),
+        .description = COMPOUND_STRING("Fire attacks always burn."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_OVERLOAD] =
+    {
+        .name = _("Overload"),
+        .description = COMPOUND_STRING("Attacks ignore defense items."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_FILL_VOID] =
+    {
+        .name = _("Fill Void"),
+        .description = COMPOUND_STRING("KOs raise Def and Sp. Atk."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_DUST_DEVIL] =
+    {
+        .name = _("Dust Devil"),
+        .description = COMPOUND_STRING("Attacks may confuse."),
+        .aiRating = 4,
+    },
+
+    [ABILITY_SOLIDIFY] =
+    {
+        .name = _("Solidify"),
+        .description = COMPOUND_STRING("Special hits raise Sp. Def."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_UNLEASHED] =
+    {
+        .name = _("Unleashed"),
+        .description = COMPOUND_STRING("Shell Smash raises all stats."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_TETHER] =
+    {
+        .name = _("Tether"),
+        .description = COMPOUND_STRING("Copies opposing stat boosts."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_SOLAR_PANEL] =
+    {
+        .name = _("Solar Panel"),
+        .description = COMPOUND_STRING("Sun guides Electric moves."),
+        .aiRating = 4,
+    },
 };

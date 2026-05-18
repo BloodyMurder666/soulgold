@@ -3293,7 +3293,9 @@ void SetMoveEffect(enum BattlerId battlerAtk, enum BattlerId effectBattler, enum
         gBattlescriptCurrInstr = BattleScript_MoveEffectHaze;
         break;
     case MOVE_EFFECT_LEECH_SEED:
-        if (!IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS) && !gBattleMons[gBattlerTarget].volatiles.leechSeed)
+        if (!IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS)
+         && !BattlerHasTrait(gBattlerTarget, ABILITY_SPECTRAL_DRAIN)
+         && !gBattleMons[gBattlerTarget].volatiles.leechSeed)
         {
             gBattleMons[gBattlerTarget].volatiles.leechSeed = LEECHSEEDED_BY(gBattlerAttacker);
             BattleScriptPush(battleScript);
@@ -7249,6 +7251,8 @@ static void RemoveAllWeather(void)
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEATHER_END_SNOW;
     else if (gBattleWeather & B_WEATHER_FOG)
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEATHER_END_FOG;
+    else if (gBattleWeather & B_WEATHER_SCORCHED_FIELD)
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEATHER_END_SCORCHED_FIELD;
     else
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEATHER_END_COUNT;  // failsafe
 
@@ -7653,7 +7657,7 @@ static void Cmd_setseeded(void)
         gBattleStruct->moveResultFlags[gBattlerTarget] |= MOVE_RESULT_MISSED;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_LEECH_SEED_MISS;
     }
-    else if (IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS))
+    else if (IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS) || BattlerHasTrait(gBattlerTarget, ABILITY_SPECTRAL_DRAIN))
     {
         gBattleStruct->moveResultFlags[gBattlerTarget] |= MOVE_RESULT_MISSED;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_LEECH_SEED_FAIL;
@@ -8021,7 +8025,8 @@ static u32 ChangeStatBuffs(enum BattlerId battler, s8 statValue, enum Stat statI
             }
             return STAT_CHANGE_DIDNT_WORK;
         }
-        else if ((BattlerHasHeldItemEffect(battler, HOLD_EFFECT_CLEAR_AMULET, TRUE) || CanBattlerPreventStatLoss(battler))
+        else if ((BattlerHasHeldItemEffect(battler, HOLD_EFFECT_CLEAR_AMULET, TRUE) || CanBattlerPreventStatLoss(battler)
+               || (statId == STAT_ATK && SearchTraits(battlerTraits, ABILITY_PERMAFROST)))
               && (flags.statDropPrevention || gBattlerAttacker != gBattlerTarget || flags.mirrorArmored) && !flags.certain && effect != EFFECT_CURSE)
         {
             if (flags.allowPtr)
@@ -8048,6 +8053,10 @@ static u32 ChangeStatBuffs(enum BattlerId battler, s8 statValue, enum Stat statI
                             battlerAbility = ABILITY_FULL_METAL_BODY;
                         else if (SearchTraits(battlerTraits, ABILITY_WHITE_SMOKE))
                             battlerAbility = ABILITY_WHITE_SMOKE;
+                        else if (SearchTraits(battlerTraits, ABILITY_STONE_FACE))
+                            battlerAbility = ABILITY_STONE_FACE;
+                        else if (statId == STAT_ATK && SearchTraits(battlerTraits, ABILITY_PERMAFROST))
+                            battlerAbility = ABILITY_PERMAFROST;
 
                         gBattlerAbility = battler;
                         BattleScriptPush(BS_ptr);
@@ -8207,11 +8216,11 @@ static u32 ChangeStatBuffs(enum BattlerId battler, s8 statValue, enum Stat statI
                     if (IsBattlerAlly(index, battler))
                         continue; // Only triggers on opposing side
 
-                    if (BattlerHasTrait(index, ABILITY_OPPORTUNIST)
+                    if ((BattlerHasTrait(index, ABILITY_OPPORTUNIST) || BattlerHasTrait(index, ABILITY_TETHER))
                      && gProtectStructs[battler].activateOpportunist == 0) // don't activate opportunist on other mon's opportunist raises
                     {
-                        PushTraitStack(index, ABILITY_OPPORTUNIST);
-                    gProtectStructs[index].activateOpportunist = 2;      // set stats to copy
+                        PushTraitStack(index, BattlerHasTrait(index, ABILITY_TETHER) ? ABILITY_TETHER : ABILITY_OPPORTUNIST);
+                        gProtectStructs[index].activateOpportunist = 2;      // set stats to copy
                     }
                     if (BattlerHasHeldItemEffect(index, HOLD_EFFECT_MIRROR_HERB, TRUE))
                     {
@@ -12074,7 +12083,8 @@ static bool8 CanBattlerPreventStatLoss(u16 battler)
 
     if (SearchTraits(battlerTraits, ABILITY_CLEAR_BODY)
      || SearchTraits(battlerTraits, ABILITY_FULL_METAL_BODY)
-     || SearchTraits(battlerTraits, ABILITY_WHITE_SMOKE))
+     || SearchTraits(battlerTraits, ABILITY_WHITE_SMOKE)
+     || SearchTraits(battlerTraits, ABILITY_STONE_FACE))
         return TRUE;
     
     return FALSE;

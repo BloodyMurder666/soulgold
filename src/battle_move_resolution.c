@@ -1013,7 +1013,10 @@ static enum CancelerResult CancelerWeatherPrimal(struct BattleContext *ctx)
     if (GetMovePower(ctx->move) > 0 && HasWeatherEffect())
     {
         enum Type moveType = GetBattleMoveType(ctx->move);
-        if (moveType == TYPE_FIRE && gBattleWeather & B_WEATHER_RAIN_PRIMAL && (GetConfig(B_POWDER_STATUS_HEAVY_RAIN) >= GEN_7 || !TryActivatePowderStatus(ctx->move)))
+        if (moveType == TYPE_FIRE
+         && gBattleWeather & B_WEATHER_RAIN_PRIMAL
+         && !BattlerHasTrait(ctx->battlerAtk, ABILITY_BRIMSTONE)
+         && (GetConfig(B_POWDER_STATUS_HEAVY_RAIN) >= GEN_7 || !TryActivatePowderStatus(ctx->move)))
         {
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PRIMAL_WEATHER_FIZZLED_BY_RAIN;
             result = CANCELER_RESULT_FAILURE;
@@ -3492,8 +3495,11 @@ static enum MoveEndResult MoveEndLifeOrbShellBell(void)
 static enum MoveEndResult MoveEndLifesteal(void)
 {
     enum MoveEndResult result = MOVEEND_RESULT_CONTINUE;
+    bool32 hasLifesteal = BattlerHasTrait(gBattlerAttacker, ABILITY_LIFESTEAL);
+    bool32 hasSpectralDrain = BattlerHasTrait(gBattlerAttacker, ABILITY_SPECTRAL_DRAIN)
+                           && (GetBattleMoveType(gCurrentMove) == TYPE_GHOST || GetBattleMoveType(gCurrentMove) == TYPE_GROUND);
 
-    if (BattlerHasTrait(gBattlerAttacker, ABILITY_LIFESTEAL)
+    if ((hasLifesteal || hasSpectralDrain)
      && gBattleScripting.savedDmg > 0
      && !gBattleStruct->unableToUseMove
      && (IsAnyTargetTurnDamaged(gBattlerAttacker) || gBattleScripting.savedDmg > 0)
@@ -3503,13 +3509,13 @@ static enum MoveEndResult MoveEndLifesteal(void)
      && !IsFutureSightAttackerInParty(gBattlerAttacker, gBattlerTarget, gCurrentMove)
      && !(B_HEAL_BLOCKING >= GEN_5 && gBattleMons[gBattlerAttacker].volatiles.healBlock))
     {
-        s32 healAmount = gBattleScripting.savedDmg / 8;
+        s32 healAmount = hasSpectralDrain ? gBattleScripting.savedDmg / 4 : gBattleScripting.savedDmg / 8;
 
         if (healAmount == 0)
             healAmount = 1;
         SetHealAmount(gBattlerAttacker, healAmount);
-        PushTraitStack(gBattlerAttacker, ABILITY_LIFESTEAL);
-        BattleScriptCall(BattleScript_LifestealActivates);
+        PushTraitStack(gBattlerAttacker, hasSpectralDrain ? ABILITY_SPECTRAL_DRAIN : ABILITY_LIFESTEAL);
+        BattleScriptCall(hasSpectralDrain ? BattleScript_SpectralDrainActivates : BattleScript_LifestealActivates);
         result = MOVEEND_RESULT_RUN_SCRIPT;
     }
 

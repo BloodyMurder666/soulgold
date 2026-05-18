@@ -1491,6 +1491,7 @@ BattleScript_NobleRoarEnd::
 
 BattleScript_EffectShellSmash::
 	attackcanceler
+	jumpifability BS_ATTACKER, ABILITY_UNLEASHED, BattleScript_UnleashedShellSmash
 	jumpifstat BS_ATTACKER, CMP_LESS_THAN, STAT_ATK, MAX_STAT_STAGE, BattleScript_ShellSmashTryDef
 	jumpifstat BS_ATTACKER, CMP_LESS_THAN, STAT_SPATK, MAX_STAT_STAGE, BattleScript_ShellSmashTryDef
 	jumpifstat BS_ATTACKER, CMP_LESS_THAN, STAT_SPEED, MAX_STAT_STAGE, BattleScript_ShellSmashTryDef
@@ -1529,6 +1530,46 @@ BattleScript_ShellSmashTrySpeed:
 	printfromtable gStatUpStringIds
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_ShellSmashEnd:
+	goto BattleScript_MoveEnd
+
+BattleScript_UnleashedShellSmash::
+	jumpifstat BS_ATTACKER, CMP_LESS_THAN, STAT_ATK, MAX_STAT_STAGE, BattleScript_UnleashedShellSmashDoMoveAnim
+	jumpifstat BS_ATTACKER, CMP_LESS_THAN, STAT_DEF, MAX_STAT_STAGE, BattleScript_UnleashedShellSmashDoMoveAnim
+	jumpifstat BS_ATTACKER, CMP_LESS_THAN, STAT_SPATK, MAX_STAT_STAGE, BattleScript_UnleashedShellSmashDoMoveAnim
+	jumpifstat BS_ATTACKER, CMP_LESS_THAN, STAT_SPDEF, MAX_STAT_STAGE, BattleScript_UnleashedShellSmashDoMoveAnim
+	jumpifstat BS_ATTACKER, CMP_EQUAL, STAT_SPEED, MAX_STAT_STAGE, BattleScript_ButItFailed
+BattleScript_UnleashedShellSmashDoMoveAnim:
+	attackanimation
+	waitanimation
+	setstatchanger STAT_ATK, 2, FALSE
+	statbuffchange BS_ATTACKER, STAT_CHANGE_ALLOW_PTR, BattleScript_UnleashedShellSmashTryDef, BIT_DEF | BIT_SPATK | BIT_SPDEF | BIT_SPEED
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_CHANGE, BattleScript_UnleashedShellSmashTryDef
+	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_UnleashedShellSmashTryDef:
+	setstatchanger STAT_DEF, 1, FALSE
+	statbuffchange BS_ATTACKER, STAT_CHANGE_ALLOW_PTR, BattleScript_UnleashedShellSmashTrySpAtk, BIT_SPATK | BIT_SPDEF | BIT_SPEED
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_CHANGE, BattleScript_UnleashedShellSmashTrySpAtk
+	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_UnleashedShellSmashTrySpAtk:
+	setstatchanger STAT_SPATK, 2, FALSE
+	statbuffchange BS_ATTACKER, STAT_CHANGE_ALLOW_PTR, BattleScript_UnleashedShellSmashTrySpDef, BIT_SPDEF | BIT_SPEED
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_CHANGE, BattleScript_UnleashedShellSmashTrySpDef
+	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_UnleashedShellSmashTrySpDef:
+	setstatchanger STAT_SPDEF, 1, FALSE
+	statbuffchange BS_ATTACKER, STAT_CHANGE_ALLOW_PTR, BattleScript_UnleashedShellSmashTrySpeed, BIT_SPEED
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_CHANGE, BattleScript_UnleashedShellSmashTrySpeed
+	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_UnleashedShellSmashTrySpeed:
+	setstatchanger STAT_SPEED, 2, FALSE
+	statbuffchange BS_ATTACKER, STAT_CHANGE_ALLOW_PTR, BattleScript_ShellSmashEnd
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_CHANGE, BattleScript_ShellSmashEnd
+	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectGrowth::
@@ -4464,6 +4505,18 @@ BattleScript_IceBodyHeal::
 	waitmessage B_WAIT_TIME_LONG
 	end2
 
+BattleScript_JadeBloomActivates::
+	call BattleScript_AbilityPopUp
+	playanimation BS_ATTACKER, B_ANIM_SIMPLE_HEAL
+	healthbarupdate BS_ATTACKER, PASSIVE_HP_UPDATE
+	datahpupdate BS_ATTACKER, PASSIVE_HP_UPDATE
+	statbuffchange BS_SCRIPTING, STAT_CHANGE_ALLOW_PTR, BattleScript_JadeBloomActivates_End
+	printstring STRINGID_ATTACKERABILITYSTATRAISE
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_JadeBloomActivates_End:
+	restoreattacker
+	end2
+
 BattleScript_OverworldStatusStarts::
 	printfromtable gStartingStatusStringIds
 	waitmessage B_WAIT_TIME_LONG
@@ -4985,6 +5038,32 @@ BattleScript_ElectromorphosisActivates::
 	setvolatile BS_TARGET, VOLATILE_CHARGE_TIMER, 1
 	printstring STRINGID_BEINGHITCHARGEDPKMNWITHPOWER
 	waitmessage B_WAIT_TIME_LONG
+	return
+
+BattleScript_ShockwiringActivates::
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_BEINGHITCHARGEDPKMNWITHPOWER
+	waitmessage B_WAIT_TIME_LONG
+	return
+
+BattleScript_OverlockActivates::
+	call BattleScript_AbilityPopUp
+	return
+
+BattleScript_FillVoidActivates::
+	call BattleScript_AbilityPopUp
+	setstatchanger STAT_SPATK, 1, FALSE
+	statbuffchange BS_ATTACKER, STAT_CHANGE_ALLOW_PTR, BattleScript_FillVoidTryDef, BIT_DEF
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_CHANGE, BattleScript_FillVoidTryDef
+	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_FillVoidTryDef:
+	setstatchanger STAT_DEF, 1, FALSE
+	statbuffchange BS_ATTACKER, STAT_CHANGE_ALLOW_PTR, BattleScript_FillVoidEnd
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_CHANGE, BattleScript_FillVoidEnd
+	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_FillVoidEnd:
 	return
 
 BattleScript_ToxicDebrisActivates::
@@ -6187,6 +6266,10 @@ BattleScript_RainDishActivates::
 	end2
 
 BattleScript_LifestealActivates::
+	call BattleScript_AbilityHpHeal
+	return
+
+BattleScript_SpectralDrainActivates::
 	call BattleScript_AbilityHpHeal
 	return
 
@@ -8487,6 +8570,14 @@ BattleScript_TargetAbilityStatRaiseRetStamina::
 	statbuffchange BS_TARGET, STAT_CHANGE_CERTAIN, BattleScript_TargetAbilityStatRaiseRetStamina_End
 	call BattleScript_StatUp
 BattleScript_TargetAbilityStatRaiseRetStamina_End:
+	return
+
+BattleScript_TargetAbilityStatRaiseRetSolidify::
+	setstatchanger STAT_SPDEF, 1, FALSE
+	call BattleScript_AbilityPopUp
+	statbuffchange BS_TARGET, STAT_CHANGE_CERTAIN, BattleScript_TargetAbilityStatRaiseRetSolidify_End
+	call BattleScript_StatUp
+BattleScript_TargetAbilityStatRaiseRetSolidify_End:
 	return
 
 BattleScript_TargetAbilityStatRaiseRetBerserk::

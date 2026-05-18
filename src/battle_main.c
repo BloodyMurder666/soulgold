@@ -3189,6 +3189,7 @@ static void BattleStartClearSetData(void)
     gEffectBattler = 0;
     gBattlerAbility = 0;
     gBattleWeather = 0;
+    TestRunner_Battle_SetInitialWeather();
     gHitMarker = 0;
 
     if (!(gBattleTypeFlags & BATTLE_TYPE_RECORDED))
@@ -4994,6 +4995,19 @@ static bool32 IsMoveExpectedToHitReactiveBattler(enum BattlerId battlerAtk, enum
     }
 }
 
+static bool32 IsMoveExpectedToTargetSleepingBattler(enum BattlerId battlerAtk, enum Move move)
+{
+    for (enum BattlerId battlerDef = 0; battlerDef < gBattlersCount; battlerDef++)
+    {
+        if (!IsBattlerAlive(battlerDef) || !(gBattleMons[battlerDef].status1 & STATUS1_SLEEP))
+            continue;
+        if (IsMoveExpectedToHitReactiveBattler(battlerAtk, battlerDef, move))
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
 static bool32 IsReactiveMoveSuperEffective(enum BattlerId battlerAtk, enum BattlerId battlerDef, enum Move move)
 {
     struct BattleContext ctx = {0};
@@ -5129,6 +5143,8 @@ s32 GetBattleMovePriority(enum BattlerId battler, enum Move move)
      && GetMovePower(move) < 60)
         priority++;
     if (SearchTraits(battlerTraits, ABILITY_REACTIVE) && ShouldReactiveIncreasePriority(battler))
+        priority++;
+    if (SearchTraits(battlerTraits, ABILITY_STYGIAN) && IsMoveExpectedToTargetSleepingBattler(battler, move))
         priority++;
 
     return priority;

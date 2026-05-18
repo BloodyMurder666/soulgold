@@ -764,6 +764,7 @@ struct BattleTrialData
 {
     u8 lastActionTurn;
     u8 queuedEvent;
+    bool8 initialWeatherApplied;
     u8 aiActionsPlayed[MAX_BATTLERS_COUNT];
     bool8 statAnimInProgress[MAX_BATTLERS_COUNT];
     bool8 concurrentStatAnimMessage[MAX_BATTLERS_COUNT];
@@ -794,6 +795,8 @@ struct BattleTestData
     u8 chosenGimmick[MAX_BATTLE_TRAINERS][PARTY_SIZE];
     enum BattleTrainer partyTrainers[NUM_BATTLE_SIDES][PARTY_SIZE];
     u8 forcedEnvironment;
+    u16 initialWeather;
+    u8 initialWeatherDuration;
 
     u8 currentMonIndexes[MAX_BATTLERS_COUNT];
     u8 turnState;
@@ -1019,6 +1022,8 @@ struct moveWithPP {
 #define FLAG_SET(flagId) SetFlagForTest(__LINE__, flagId)
 #define VAR_SET(varId, value) SetVarForTest(__LINE__, varId, value)
 #define WITH_CONFIG(configTag, value) TestSetConfig(__LINE__, CONFIG_##configTag, value)
+#define STARTING_WEATHER(weather) SetInitialWeather(__LINE__, weather, 0)
+#define STARTING_WEATHER_WITH_DURATION(weather, duration) SetInitialWeather(__LINE__, weather, duration)
 
 #define PLAYER(species) for (OpenPokemon(__LINE__, B_TRAINER_0, species); gBattleTestRunnerState->data.currentMon; ClosePokemon(__LINE__))
 #define OPPONENT(species) for (OpenPokemon(__LINE__, B_TRAINER_1, species); gBattleTestRunnerState->data.currentMon; ClosePokemon(__LINE__))
@@ -1062,6 +1067,7 @@ struct moveWithPP {
 void SetFlagForTest(u32 sourceLine, u16 flagId);
 void SetVarForTest(u32 sourceLine, u16 varId, u16 value);
 void TestSetConfig(u32 sourceLine, enum ConfigTag configTag, u32 value);
+void SetInitialWeather(u32 sourceLine, u16 weather, u8 duration);
 void TieBreakScore(u32 sourceLine, enum RandomTag rngTag, enum ScoreTieResolution scoreTieRes, u32 value);
 void TieBreakTarget(u32 sourceLine, enum TargetTieResolution targetTieRes, u32 value);
 void ClearFlagAfterTest(void);

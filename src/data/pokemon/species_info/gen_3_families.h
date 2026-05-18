@@ -6188,7 +6188,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_NATURAL_CURE, ABILITY_POISON_POINT, ABILITY_LEAF_GUARD },
-        .innates = { ABILITY_AROMA_VEIL },
+        .innates = { ABILITY_JADE_BLOOM },
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = TRUE,
         .speciesName = _("Budew"),
@@ -6261,7 +6261,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FAIRY, EGG_GROUP_GRASS),
-        .abilities = { ABILITY_NATURAL_CURE, ABILITY_POISON_POINT, ABILITY_LEAF_GUARD },
+        .abilities = { ABILITY_JADE_BLOOM, ABILITY_POISON_POINT, ABILITY_LEAF_GUARD },
         .innates = { ABILITY_AROMA_VEIL, ABILITY_FLOWER_VEIL },
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = TRUE,
@@ -6359,7 +6359,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FAIRY, EGG_GROUP_GRASS),
         .abilities = { ABILITY_NATURAL_CURE, ABILITY_POISON_POINT, ABILITY_TECHNICIAN },
-        .innates = { ABILITY_AROMA_VEIL, ABILITY_FLOWER_VEIL, ABILITY_MERCILESS },
+        .innates = { ABILITY_JADE_BLOOM, ABILITY_POISON_TOUCH, ABILITY_MERCILESS },
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = TRUE,
         .speciesName = _("Roserade"),
@@ -7270,7 +7270,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
     #if P_UPDATED_ABILITIES >= GEN_7
         .abilities = { ABILITY_WHITE_SMOKE, ABILITY_DROUGHT, ABILITY_SHELL_ARMOR },
-        .innates = { ABILITY_SMOULDERING, ABILITY_FLAME_BODY, ABILITY_STAMINA },
+        .innates = { ABILITY_SMOULDERING, ABILITY_BRIMSTONE, ABILITY_STAMINA },
     #else
         .abilities = { ABILITY_WHITE_SMOKE, ABILITY_NONE, ABILITY_SHELL_ARMOR },
     #endif
@@ -9946,7 +9946,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
     #if P_UPDATED_ABILITIES >= GEN_4
-        .abilities = { ABILITY_INSOMNIA, ABILITY_FRISK, ABILITY_CURSED_BODY },
+        .abilities = { ABILITY_INSOMNIA, ABILITY_VOIDTOUCH, ABILITY_CURSED_BODY },
         .innates = { ABILITY_PICKPOCKET },
     #else
         .abilities = { ABILITY_INSOMNIA, ABILITY_NONE, ABILITY_CURSED_BODY },
@@ -10029,7 +10029,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
     #if P_UPDATED_ABILITIES >= GEN_4
         .abilities = { ABILITY_INSOMNIA, ABILITY_FRISK, ABILITY_CURSED_BODY },
-        .innates = { ABILITY_PICKPOCKET, ABILITY_WANDERING_SPIRIT, ABILITY_PERISH_BODY },
+        .innates = { ABILITY_PLAIN_SOUL, ABILITY_VOIDTOUCH, ABILITY_PERISH_BODY },
     #else
         .abilities = { ABILITY_INSOMNIA, ABILITY_NONE, ABILITY_CURSED_BODY },
     #endif
@@ -10112,7 +10112,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
         .abilities = { ABILITY_PRANKSTER, ABILITY_PRANKSTER, ABILITY_PRANKSTER },
-        .innates = { ABILITY_TOUGH_CLAWS, ABILITY_CURSED_BODY, ABILITY_PERISH_BODY },
+        .innates = { ABILITY_PLAIN_SOUL, ABILITY_VOIDTOUCH, ABILITY_TOUGH_CLAWS },
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = TRUE,
         .speciesName = _("Banette"),
@@ -10193,7 +10193,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
     #if P_UPDATED_ABILITIES >= GEN_6
         .abilities = { ABILITY_LEVITATE, ABILITY_NONE, ABILITY_FRISK },
-        .innates = { ABILITY_CURSED_BODY },
+        .innates = { ABILITY_VOIDTOUCH },
     #else
         .abilities = { ABILITY_LEVITATE, ABILITY_NONE, ABILITY_NONE },
     #endif
@@ -10274,7 +10274,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
     #if P_UPDATED_ABILITIES >= GEN_6
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_FRISK },
-        .innates = { ABILITY_CURSED_BODY, ABILITY_SHADOW_SHIELD },
+        .innates = { ABILITY_VOIDTOUCH, ABILITY_CURSED_BODY },
     #else
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_NONE },
     #endif
@@ -10364,7 +10364,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
     #if P_UPDATED_ABILITIES >= GEN_6
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_FRISK },
-        .innates = { ABILITY_CURSED_BODY, ABILITY_SHADOW_SHIELD, ABILITY_IRON_FIST },
+        .innates = { ABILITY_VOIDTOUCH, ABILITY_CURSED_BODY, ABILITY_IRON_FIST },
     #else
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_NONE },
     #endif
@@ -11073,7 +11073,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FAIRY, EGG_GROUP_MINERAL),
     #if P_UPDATED_ABILITIES >= GEN_4
         .abilities = { ABILITY_INNER_FOCUS, ABILITY_ICE_BODY, ABILITY_MOODY },
-        .innates = { ABILITY_REFRIGERATE, ABILITY_STRONG_JAW, ABILITY_ICE_SCALES },
+        .innates = { ABILITY_REFRIGERATE, ABILITY_STRONG_JAW, ABILITY_PERMAFROST },
     #else
         .abilities = { ABILITY_INNER_FOCUS, ABILITY_NONE, ABILITY_MOODY },
     #endif
@@ -11228,7 +11228,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FAIRY, EGG_GROUP_MINERAL),
         .abilities = { ABILITY_SNOW_CLOAK, ABILITY_NONE, ABILITY_CURSED_BODY },
-        .innates = { ABILITY_REFRIGERATE, ABILITY_PERISH_BODY, ABILITY_DAZZLING },
+        .innates = { ABILITY_FROST_NOVA, ABILITY_GLACIAL, ABILITY_DAZZLING },
         .bodyColor = BODY_COLOR_WHITE,
         .speciesName = _("Froslass"),
         .cryId = CRY_FROSLASS,
@@ -11301,7 +11301,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FAIRY, EGG_GROUP_MINERAL),
         .abilities = { ABILITY_SNOW_CLOAK, ABILITY_NONE, ABILITY_CURSED_BODY },
-        .innates = { ABILITY_REFRIGERATE, ABILITY_PERISH_BODY, ABILITY_DAZZLING },
+        .innates = { ABILITY_FROST_NOVA, ABILITY_GLACIAL, ABILITY_DAZZLING },
         .bodyColor = BODY_COLOR_WHITE,
         .speciesName = _("Froslass"),
     #if P_MODIFIED_MEGA_CRIES

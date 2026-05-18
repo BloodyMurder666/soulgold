@@ -13248,7 +13248,7 @@ const struct ItemInfo gItemsInfo[] =
 
     [ITEM_TM_HIDDEN_POWER] =
     {
-        .name = ITEM_NAME("TM10 Hidden Power"),
+        .name = ITEM_NAME("TM Hidden Power"),
         .price = 3000,
         .description = COMPOUND_STRING(
             "The attack power\n"

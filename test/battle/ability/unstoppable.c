@@ -13,8 +13,8 @@ SINGLE_BATTLE_TEST("Unstoppable prevents fatigue confusion from rampage moves")
         TURN { SKIP_TURN(player); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_THRASH, player);
-        NONE_OF { ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_CONFUSION, player); }
-        NONE_OF { MESSAGE("Wobbuffet became confused due to fatigue!"); }
+        NONE_OF { ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_CONFUSION, player);
+                  MESSAGE("Wobbuffet became confused due to fatigue!"); }
     } THEN {
         EXPECT(player->volatiles.confusionTurns == 0);
     }
