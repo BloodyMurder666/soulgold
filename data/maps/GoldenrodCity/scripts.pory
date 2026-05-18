@@ -357,7 +357,7 @@ GoldenrodCity_Text_Lass:
 	.string "He can even rename them.$"
 
 GoldenrodCity_Text_Gramps:
-	.string "Whew! This town is so big,\n"
+	.string "Whew! This city is so big,\n"
 	.string "I can't find anything at all.$"
 
 GoldenrodCity_Text_RocketScout1:

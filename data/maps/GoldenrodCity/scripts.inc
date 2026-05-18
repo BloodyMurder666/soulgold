@@ -717,7 +717,7 @@ GoldenrodCity_Text_Lass:
 # 359 "data/maps/GoldenrodCity/scripts.pory"
 GoldenrodCity_Text_Gramps:
 # 360 "data/maps/GoldenrodCity/scripts.pory"
-	.string "Whew! This town is so big,\n"
+	.string "Whew! This city is so big,\n"
 # 361 "data/maps/GoldenrodCity/scripts.pory"
 	.string "I can't find anything at all.$"
 # 362 "data/maps/GoldenrodCity/scripts.pory"

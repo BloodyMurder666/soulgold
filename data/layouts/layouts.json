@@ -9364,6 +9364,16 @@
       "secondary_tileset": "gTileset_House_Lab",
       "border_filepath": "data/layouts/GoldenrodCity_House4/border.bin",
       "blockdata_filepath": "data/layouts/GoldenrodCity_House4/map.bin"
+    },
+    {
+      "id": "LAYOUT_RAILWAY_CAVE",
+      "name": "RailwayCave_Layout",
+      "width": 50,
+      "height": 36,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_g4cave",
+      "border_filepath": "data/layouts/RailwayCave/border.bin",
+      "blockdata_filepath": "data/layouts/RailwayCave/map.bin"
     }
   ]
 }
