@@ -5707,7 +5707,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_STATIC, ABILITY_LIGHTNING_ROD, ABILITY_MINUS },
-        .innates = { ABILITY_QUICK_FEET, ABILITY_TRANSISTOR, ABILITY_GUARD_DOG },
+        .innates = { ABILITY_PACK_LEADER, ABILITY_TRANSISTOR, ABILITY_GUARD_DOG },
         .bodyColor = BODY_COLOR_YELLOW,
         .speciesName = _("Manectric"),
         .cryId = CRY_MANECTRIC,
@@ -5782,7 +5782,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_INTIMIDATE, ABILITY_INTIMIDATE, ABILITY_INTIMIDATE },
-        .innates = { ABILITY_QUICK_FEET, ABILITY_TRANSISTOR, ABILITY_GUARD_DOG },
+        .innates = { ABILITY_PACK_LEADER, ABILITY_TRANSISTOR, ABILITY_GUARD_DOG },
         .bodyColor = BODY_COLOR_YELLOW,
         .speciesName = _("Manectric"),
     #if P_MODIFIED_MEGA_CRIES
