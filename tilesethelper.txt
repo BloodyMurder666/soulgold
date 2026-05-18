@@ -7,11 +7,7 @@
 
 ../porytiles/porytiles decompile-primary -o porytiles/decompiled-cave-default data/tilesets/secondary/cave_default   include/constants/metatile_behaviors.h
 
-../porytiles/porytiles decompile-secondary -o \  
-   porytiles/decompiled-desert \
-    data/tilesets/secondary/desert \
-  ../porytiles/primary_blank \
-  include/constants/metatile_behaviors.h
+../porytiles/porytiles decompile-secondary -o porytiles/decompiled-g4alt data/tilesets/secondary/g_4_alt ../porytiles/primary_blank include/constants/metatile_behaviors.h
 
 
   
@@ -38,14 +34,7 @@
 
 // This works
 
-../porytiles/porytiles compile-secondary \
-  -tiles-primary-override=640 \
-  -metatiles-primary-override=640 \
-  -pals-primary-override=7 \
-  -o data/tilesets/secondary/g_4cave \
-  porytiles/g4cave \
-  ../porytiles/primary_blank \
-  include/constants/metatile_behaviors.h
+../porytiles/porytiles compile-secondary -tiles-primary-override=640 -metatiles-primary-override=1024 -metatiles-total-override=2048 -pals-primary-override=7 -o data/tilesets/secondary/g_4_alt porytiles/decompiled-g4alt ../porytiles/primary_blank include/constants/metatile_behaviors.h
 
 
 

@@ -530,3 +530,6 @@ const u16 gMetatileAttributes_Desert[] = INCBIN_U16("data/tilesets/secondary/des
 
 const u16 gMetatiles_Casino[] = INCBIN_U16("data/tilesets/primary/casino/metatiles.bin");
 const u16 gMetatileAttributes_Casino[] = INCBIN_U16("data/tilesets/primary/casino/metatile_attributes.bin");
+
+const u16 gMetatiles_g4_alt[] = INCBIN_U16("data/tilesets/secondary/g_4_alt/metatiles.bin");
+const u16 gMetatileAttributes_g4_alt[] = INCBIN_U16("data/tilesets/secondary/g_4_alt/metatile_attributes.bin");

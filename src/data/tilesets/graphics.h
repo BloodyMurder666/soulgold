@@ -3965,3 +3965,22 @@ const u16 gTilesetPalettes_Casino[][16] =
 };
 
 const u32 gTilesetTiles_Casino[] = INCBIN_U32("data/tilesets/primary/casino/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_g4_alt[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/g_4_alt/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/g_4_alt/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/g_4_alt/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/g_4_alt/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/g_4_alt/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/g_4_alt/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/g_4_alt/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/g_4_alt/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/g_4_alt/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/g_4_alt/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/g_4_alt/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/g_4_alt/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/g_4_alt/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_g4_alt[] = INCBIN_U32("data/tilesets/secondary/g_4_alt/tiles.4bpp.lz");
