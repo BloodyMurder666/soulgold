@@ -190,6 +190,11 @@ def slugify(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "_", value.lower()).strip("_")
 
 
+def asset_stem(value: str) -> str:
+    value = re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", value)
+    return slugify(value)
+
+
 def decode_c_string(value: str) -> str:
     value = value.replace("\\p", "\\n\\n")
     try:
@@ -725,6 +730,8 @@ def parse_item_records() -> dict[str, dict[str, Any]]:
         pocket_match = re.search(r"\bPOCKET_[A-Z0-9_]+\b", pocket_expr)
         sort_type_expr = extract_field(entry, "sortType") or ""
         sort_type_match = re.search(r"\bITEM_TYPE_[A-Z0-9_]+\b", sort_type_expr)
+        icon_pic_expr = extract_field(entry, "iconPic") or ""
+        icon_pic_match = re.search(r"\bgItemIcon_([A-Za-z0-9_]+)\b", icon_pic_expr)
         records[key] = {
             "id": item_to_id.get(key, 0),
             "constant": key,
@@ -732,6 +739,7 @@ def parse_item_records() -> dict[str, dict[str, Any]]:
             "description": description,
             "pocket": pocket_match.group(0) if pocket_match else "",
             "sortType": sort_type_match.group(0) if sort_type_match else "",
+            "iconName": icon_pic_match.group(1) if icon_pic_match else "",
         }
     return records
 
@@ -1167,9 +1175,19 @@ def resolve_trainer_item(item_name: str, item_lookup: dict[str, dict[str, Any]])
 def copy_item_icon(item: dict[str, Any] | None, item_icon_dir: Path) -> str | None:
     if not item:
         return None
-    icon_name = f"{item['constant'].removeprefix('ITEM_').lower()}.png"
-    source = REPO_ROOT / "graphics" / "items" / "icons" / icon_name
-    if not source.exists():
+    icon_stems = [
+        item["constant"].removeprefix("ITEM_").lower(),
+        asset_stem(item.get("iconName", "")),
+    ]
+    source = next(
+        (
+            REPO_ROOT / "graphics" / "items" / "icons" / f"{stem}.png"
+            for stem in icon_stems
+            if stem and (REPO_ROOT / "graphics" / "items" / "icons" / f"{stem}.png").exists()
+        ),
+        None,
+    )
+    if source is None:
         return None
     target = item_icon_dir / source.name
     target.parent.mkdir(parents=True, exist_ok=True)

@@ -80,7 +80,7 @@ TEST("Setting a nickname terminates unused nickname storage")
     EXPECT_EQ(storedNickname[11], EOS);
 }
 
-TEST("Pokemon save bit repack preserves extended met location and flags")
+TEST("Pokemon save bit repack preserves extended met location and modern fateful encounter")
 {
     struct Pokemon mon;
     u16 metLocation = 0x7FFF;
@@ -90,12 +90,10 @@ TEST("Pokemon save bit repack preserves extended met location and flags")
     CreateMon(&mon, SPECIES_WOBBUFFET, 50, 0, OTID_STRUCT_PLAYER_ID);
     SetMonData(&mon, MON_DATA_MET_LOCATION, &metLocation);
     SetMonData(&mon, MON_DATA_ABILITY_NUM, &abilityNum);
-    SetMonData(&mon, MON_DATA_IS_SHADOW, &enabled);
     SetMonData(&mon, MON_DATA_MODERN_FATEFUL_ENCOUNTER, &enabled);
 
     EXPECT_EQ(GetMonData(&mon, MON_DATA_MET_LOCATION), metLocation);
     EXPECT_EQ(GetMonData(&mon, MON_DATA_ABILITY_NUM), abilityNum);
-    EXPECT_EQ(GetMonData(&mon, MON_DATA_IS_SHADOW), enabled);
     EXPECT_EQ(GetMonData(&mon, MON_DATA_MODERN_FATEFUL_ENCOUNTER), enabled);
 }
 
@@ -459,7 +457,7 @@ TEST("givemon [all]")
     ZeroPlayerPartyMons();
 
     RUN_OVERWORLD_SCRIPT(
-        givemon SPECIES_WOBBUFFET, 100, item=ITEM_LEFTOVERS, ball=BALL_MASTER, nature=NATURE_BOLD, abilityNum=2, gender=MON_MALE, hpEv=1, atkEv=2, defEv=3, speedEv=4, spAtkEv=5, spDefEv=6, hpIv=7, atkIv=8, defIv=9, speedIv=10, spAtkIv=11, spDefIv=12, move1=MOVE_SCRATCH, move2=MOVE_SPLASH, move3=MOVE_CELEBRATE, move4=MOVE_EXPLOSION, shinyMode=SHINY_MODE_ALWAYS, gmaxFactor=TRUE, teraType=TYPE_FIRE, dmaxLevel=7;
+        givemon SPECIES_WOBBUFFET, 100, item=ITEM_LEFTOVERS, ball=BALL_MASTER, nature=NATURE_BOLD, abilityNum=2, gender=MON_MALE, hpEv=1, atkEv=2, defEv=3, speedEv=4, spAtkEv=5, spDefEv=6, hpIv=7, atkIv=8, defIv=9, speedIv=10, spAtkIv=11, spDefIv=12, move1=MOVE_SCRATCH, move2=MOVE_SPLASH, move3=MOVE_CELEBRATE, move4=MOVE_EXPLOSION, shinyMode=SHINY_MODE_ALWAYS, gmaxFactor=TRUE, teraType=TYPE_FIRE;
     );
 
     EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), SPECIES_WOBBUFFET);
@@ -488,7 +486,6 @@ TEST("givemon [all]")
     EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_IS_SHINY), TRUE);
     EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_GIGANTAMAX_FACTOR), TRUE);
     EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_TERA_TYPE), TYPE_FIRE);
-    EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_DYNAMAX_LEVEL), 7);
 }
 
 TEST("givemon [vars]")
@@ -521,10 +518,9 @@ TEST("givemon [vars]")
     VarSet(VAR_TEMP_9, SHINY_MODE_ALWAYS);
     VarSet(VAR_TEMP_A, TRUE);
     VarSet(VAR_TEMP_B, TYPE_FIRE);
-    VarSet(VAR_TEMP_E, 7);
 
     RUN_OVERWORLD_SCRIPT(
-        givemon VAR_TEMP_C, VAR_TEMP_D, item=VAR_0x8000, ball=VAR_0x8001, nature=VAR_0x8002, abilityNum=VAR_0x8003, gender=VAR_0x8004, hpEv=VAR_0x8005, atkEv=VAR_0x8006, defEv=VAR_0x8007, speedEv=VAR_0x8008, spAtkEv=VAR_0x8009, spDefEv=VAR_0x800A, hpIv=VAR_0x800B, atkIv=VAR_TEMP_0, defIv=VAR_TEMP_1, speedIv=VAR_TEMP_2, spAtkIv=VAR_TEMP_3, spDefIv=VAR_TEMP_4, move1=VAR_TEMP_5, move2=VAR_TEMP_6, move3=VAR_TEMP_7, move4=VAR_TEMP_8, shinyMode=VAR_TEMP_9, gmaxFactor=VAR_TEMP_A, teraType=VAR_TEMP_B, dmaxLevel=VAR_TEMP_E;
+        givemon VAR_TEMP_C, VAR_TEMP_D, item=VAR_0x8000, ball=VAR_0x8001, nature=VAR_0x8002, abilityNum=VAR_0x8003, gender=VAR_0x8004, hpEv=VAR_0x8005, atkEv=VAR_0x8006, defEv=VAR_0x8007, speedEv=VAR_0x8008, spAtkEv=VAR_0x8009, spDefEv=VAR_0x800A, hpIv=VAR_0x800B, atkIv=VAR_TEMP_0, defIv=VAR_TEMP_1, speedIv=VAR_TEMP_2, spAtkIv=VAR_TEMP_3, spDefIv=VAR_TEMP_4, move1=VAR_TEMP_5, move2=VAR_TEMP_6, move3=VAR_TEMP_7, move4=VAR_TEMP_8, shinyMode=VAR_TEMP_9, gmaxFactor=VAR_TEMP_A, teraType=VAR_TEMP_B;
     );
 
     EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), SPECIES_WOBBUFFET);
@@ -553,7 +549,6 @@ TEST("givemon [vars]")
     EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_IS_SHINY), TRUE);
     EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_GIGANTAMAX_FACTOR), TRUE);
     EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_TERA_TYPE), TYPE_FIRE);
-    EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_DYNAMAX_LEVEL), 7);
 }
 
 TEST("checkteratype/setteratype work")
@@ -638,7 +633,7 @@ TEST("CalculateMonStats")
     ZeroPlayerPartyMons();
 
     RUN_OVERWORLD_SCRIPT(
-        givemon SPECIES_WOBBUFFET, 100, item=ITEM_LEFTOVERS, ball=BALL_MASTER, nature=NATURE_BOLD, abilityNum=2, gender=MON_MALE, hpEv=1, atkEv=2, defEv=3, speedEv=4, spAtkEv=5, spDefEv=6, hpIv=7, atkIv=8, defIv=9, speedIv=10, spAtkIv=11, spDefIv=12, move1=MOVE_SCRATCH, move2=MOVE_SPLASH, move3=MOVE_CELEBRATE, move4=MOVE_EXPLOSION, shinyMode=SHINY_MODE_ALWAYS, gmaxFactor=TRUE, teraType=TYPE_FIRE, dmaxLevel=7;
+        givemon SPECIES_WOBBUFFET, 100, item=ITEM_LEFTOVERS, ball=BALL_MASTER, nature=NATURE_BOLD, abilityNum=2, gender=MON_MALE, hpEv=1, atkEv=2, defEv=3, speedEv=4, spAtkEv=5, spDefEv=6, hpIv=7, atkIv=8, defIv=9, speedIv=10, spAtkIv=11, spDefIv=12, move1=MOVE_SCRATCH, move2=MOVE_SPLASH, move3=MOVE_CELEBRATE, move4=MOVE_EXPLOSION, shinyMode=SHINY_MODE_ALWAYS, gmaxFactor=TRUE, teraType=TYPE_FIRE;
     );
 
     EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_MAX_HP), 497);

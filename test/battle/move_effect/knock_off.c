@@ -280,7 +280,7 @@ SINGLE_BATTLE_TEST("Knock Off does knock off Mega Stones from Pokemon that don't
     } WHEN {
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_KNOCK_OFF); }
     } SCENE {
-        MESSAGE("Wobbuffet knocked off the opposing Wobbuffet's Absolite!");
+        MESSAGE("Wobbuffet knocked off the opposing Wobbuffet's Darktite!");
     }
 }
 
@@ -292,7 +292,7 @@ SINGLE_BATTLE_TEST("Knock Off doesn't knock off Mega Stones from Pokemon that ac
     } WHEN {
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_KNOCK_OFF); }
     } SCENE {
-        NOT MESSAGE("Wobbuffet knocked off the opposing Absol's Absolite!");
+        NOT MESSAGE("Wobbuffet knocked off the opposing Absol's Darktite!");
     }
 }
 
@@ -820,7 +820,7 @@ SINGLE_BATTLE_TEST("Knock Off does knock off Mega Stones from Pokemon that don't
     } WHEN {
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_KNOCK_OFF); }
     } SCENE {
-        MESSAGE("Wobbuffet knocked off the opposing Wobbuffet's Absolite!");
+        MESSAGE("Wobbuffet knocked off the opposing Wobbuffet's Darktite!");
     }
 }
 
@@ -832,7 +832,7 @@ SINGLE_BATTLE_TEST("Knock Off doesn't knock off Mega Stones from Pokemon that ac
     } WHEN {
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_KNOCK_OFF); }
     } SCENE {
-        NOT MESSAGE("Wobbuffet knocked off the opposing Absol's Absolite!");
+        NOT MESSAGE("Wobbuffet knocked off the opposing Absol's Darktite!");
     }
 }
 
