@@ -6,6 +6,7 @@ Johto + Sevii hack with expanded dex and various changes based on expansion port
 - RHH and pokeemerald expansion dev team, of course!
 - TeamAquaHideout for help, resources and feature branches (new birch case)
 - Estellar for pathfinding
+- [PokemonSanFran/PSF](https://github.com/PokemonSanFran/pokeemerald/wiki/Battle-Arcade) for battle arcade branch
 - LinathanZel for help window
 - Kasenn for tinting battle bgs
 - [bassforte123](https://github.com/bassforte123/pokeemerald-complete/tree/Trait-and-Items) for multi ability system
