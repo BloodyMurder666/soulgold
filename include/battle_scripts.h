@@ -173,6 +173,8 @@ extern const u8 BattleScript_ShedSkinActivates[];
 extern const u8 BattleScript_IntimidateActivates[];
 extern const u8 BattleScript_IntimidatePrevented[];
 extern const u8 BattleScript_IntimidateInReverse[];
+extern const u8 BattleScript_InfernalActivates[];
+extern const u8 BattleScript_ReefWardenActivates[];
 extern const u8 BattleScript_UncannyActivates[];
 extern const u8 BattleScript_BreakingPresenceActivates[];
 extern const u8 BattleScript_DisquietActivates[];

@@ -10514,6 +10514,18 @@ static void Cmd_switchoutabilities(void)
             MarkBattlerForControllerExec(battler);
         }
     }
+    if (BattlerHasTrait(battler, ABILITY_REEF_WARDEN))
+    {
+        u32 heal = GetNonDynamaxMaxHP(battler) / 2;
+        heal += gBattleMons[battler].hp;
+        if (heal > gBattleMons[battler].maxHP)
+            heal = gBattleMons[battler].maxHP;
+        BtlController_EmitSetMonData(battler, B_COMM_TO_CONTROLLER, REQUEST_HP_BATTLE,
+                                     1u << gBattleStruct->battlerPartyIndexes[battler],
+                                     sizeof(heal),
+                                     &heal);
+        MarkBattlerForControllerExec(battler);
+    }
 
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
