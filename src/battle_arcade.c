@@ -1971,10 +1971,8 @@ static bool32 IsEventValidDuringBattleOrStreak(u32 event, u32 impact)
 
 static bool32 IsEventBanned(u32 event)
 {
-#ifndef RHH_EXPANSION
-    if ((event == ARCADE_EVENT_TRICK_ROOM) || (event == ARCADE_EVENT_FOG))
+    if (event == ARCADE_EVENT_FOG)
         return TRUE;
-#endif
     return FALSE;
 }
 
@@ -2293,12 +2291,8 @@ static bool32 BattleArcade_DoWeather(u32 weather)
 
 static bool32 BattleArcade_DoTrickRoom(void)
 {
-#ifndef RHH_EXPANSION
+  SetStartingStatus(STARTING_STATUS_TRICK_ROOM);
     return TRUE;
-#else
-    SetStartingStatus(STARTING_STATUS_TRICK_ROOM);
-    return TRUE;
-#endif
 }
 
 static bool32 BattleArcade_DoSwap(void)

@@ -896,7 +896,7 @@ static void ShowTrainerHillPostBattleText(void)
     ShowFieldMessageFromBuffer();
 }
 
-static void CreateNPCTrainerHillParty(u16 trainerId, u8 firstMonId)
+static void CreateNPCTrainerHillParty(u16 trainerId, u16 firstMonId)
 {
     u8 trId, level;
     s32 i, floorId, partySlot;

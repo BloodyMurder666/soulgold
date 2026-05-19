@@ -240,7 +240,7 @@ const struct BattleEnvironment gBattleEnvironmentInfo[BATTLE_ENVIRONMENT_COUNT] 
         .camouflageBlend = BUILDING_CAMOUFLAGE_BLEND,
         .entry = ENVIRONMENT_ENTRY(Building),
         .background = ENVIRONMENT_BACKGROUND(Building),
-        .palette = gBattleEnvironmentPalette_Frontier,
+        .palette = gBattleEnvironmentPalette_BuildingGym,
         .battleIntroSlide = BUILDING_BATTLE_INTRO_SLIDE,
     },
 

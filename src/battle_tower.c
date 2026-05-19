@@ -68,7 +68,7 @@ static void SaveCurrentWinStreak(void);
 static void ValidateApprenticesChecksums(void);
 static void SetNextBattleTentOpponent(void);
 static void ClearBattleTowerRecord(struct EmeraldBattleTowerRecord *record);
-static void FillTentTrainerParty_(u16 trainerId, u8 firstMonId, u8 monCount);
+static void FillTentTrainerParty_(u16 trainerId, u16 firstMonId, u16 monCount);
 
 
 #include "data/battle_frontier/battle_frontier_trainer_mons.h"
@@ -1738,7 +1738,7 @@ static void AwardBattleTowerRibbons(void)
     u8 ribbonType = 0;
     enum FrontierLevelMode lvlMode = gSaveBlock2Ptr->frontier.lvlMode;
     u8 battleMode = VarGet(VAR_FRONTIER_BATTLE_MODE);
-    u8 monCount = GetMonCountForBattleMode(battleMode);
+    u16 monCount = GetMonCountForBattleMode(battleMode);
 
     if (lvlMode != FRONTIER_LVL_50)
         ribbonType = MON_DATA_VICTORY_RIBBON;
@@ -2025,7 +2025,7 @@ static void SetNextBattleTentOpponent(void)
        gSaveBlock2Ptr->frontier.trainerIds[gSaveBlock2Ptr->frontier.curChallengeBattleNum] = TRAINER_BATTLE_PARAM.opponentA;
 }
 
-static void FillTentTrainerParty_(u16 trainerId, u8 firstMonId, u8 monCount)
+static void FillTentTrainerParty_(u16 trainerId, u16 firstMonId, u16 monCount)
 {
     s32 i, j, k, l;
     u16 chosenMonIndices[MAX_FRONTIER_PARTY_SIZE];

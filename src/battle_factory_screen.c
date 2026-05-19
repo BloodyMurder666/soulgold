@@ -187,8 +187,8 @@ static void Select_Task_FadeSpeciesName(u8);
 static void Select_Task_OpenChosenMonPics(u8);
 static void Select_Task_HandleChooseMons(u8);
 static void Select_Task_HandleMenu(u8);
-static void CreateFrontierFactorySelectableMons(u8);
-static void CreateSlateportTentSelectableMons(u8);
+static void CreateFrontierFactorySelectableMons(u16);
+static void CreateSlateportTentSelectableMons(u16);
 static void Select_SetBallSpritePaletteNum(u8);
 static void Select_ErasePopupMenu(u8);
 static u8 Select_RunMenuOptionFunc(void);
@@ -1707,7 +1707,7 @@ static void Select_Task_HandleChooseMons(u8 taskId)
 #undef STATE_MENU_REINIT
 #undef STATE_MENU_RESHOW
 
-static void CreateFrontierFactorySelectableMons(u8 firstMonId)
+static void CreateFrontierFactorySelectableMons(u16 firstMonId)
 {
     u8 i = 0;
     u8 ivs = 0;
@@ -1742,7 +1742,7 @@ static void CreateFrontierFactorySelectableMons(u8 firstMonId)
     }
 }
 
-static void CreateSlateportTentSelectableMons(u8 firstMonId)
+static void CreateSlateportTentSelectableMons(u16 firstMonId)
 {
     u8 i;
     u8 ivs = 0;

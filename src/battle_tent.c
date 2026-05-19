@@ -292,7 +292,7 @@ bool8 InSlateportBattleTent(void)
 static void GenerateInitialRentalMons(void)
 {
     s32 i, j, k, l;
-    u8 firstMonId;
+    u16 firstMonId;
     u16 monSetId;
     u16 currSpecies;
     u16 species[PARTY_SIZE];

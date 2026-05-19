@@ -20,7 +20,7 @@
 #include "constants/battle_frontier.h"
 #include "constants/battle_frontier_mons.h"
 
-static void FillTrainerParty(u16 trainerId, u8 firstMonId, u8 monCount);
+static void FillTrainerParty(u16 trainerId, u16 firstMonId, u16 monCount);
 
 // EWRAM vars.
 EWRAM_DATA const struct BattleFrontierTrainer *gFacilityTrainers = NULL;
@@ -199,13 +199,13 @@ void FillFrontierTrainersParties(u8 monsCount)
     FillTrainerParty(TRAINER_BATTLE_PARAM.opponentB, 3, monsCount);
 }
 
-static void FillTrainerParty(u16 trainerId, u8 firstMonId, u8 monCount)
+static void FillTrainerParty(u16 trainerId, u16 firstMonId, u16 monCount)
 {
     s32 i, j;
     u16 chosenMonIndices[MAX_FRONTIER_PARTY_SIZE];
     u8 level = SetFacilityPtrsGetLevel();
     u8 fixedIV = 0;
-    u8 bfMonCount;
+    u16 bfMonCount;
     const u16 *monSet = NULL;
     u32 otID = 0;
 
@@ -261,9 +261,13 @@ static void FillTrainerParty(u16 trainerId, u8 firstMonId, u8 monCount)
     {
         u16 monId = monSet[Random() % bfMonCount];
 
-        // "High tier" Pokémon are only allowed on open level mode
-        // 20 is not a possible value for level here
-        if ((level == FRONTIER_MAX_LEVEL_50 || level == 20) && monId > FRONTIER_MONS_HIGH_TIER)
+        // "High tier" Pokémon are never allowed in level 50 mode, and in open
+        // level mode they only appear after HIGH_TIER_MIN_STREAK wins.
+        // 20 is not a possible value for level here.
+        if (monId > FRONTIER_MONS_HIGH_TIER
+            && (level == FRONTIER_MAX_LEVEL_50
+                || level == 20
+                || GetCurrentFacilityWinStreak() < 21))
             continue;
 
         // Ensure this Pokémon species isn't a duplicate.

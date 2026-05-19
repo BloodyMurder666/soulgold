@@ -100,24 +100,24 @@ static const u8 sFixedIVTable[][2] =
 static const u16 sInitialRentalMonRanges[][2] =
 {
     // Level 50
-    {FRONTIER_MON_GRIMER,     FRONTIER_MON_FURRET_1},   // 110 - 199
-    {FRONTIER_MON_DELCATTY_1, FRONTIER_MON_CLOYSTER_1}, // 162 - 266
-    {FRONTIER_MON_DELCATTY_2, FRONTIER_MON_CLOYSTER_2}, // 267 - 371
-    {FRONTIER_MON_DUGTRIO_1,  FRONTIER_MON_SLAKING_1},  // 372 - 467
-    {FRONTIER_MON_DUGTRIO_2,  FRONTIER_MON_SLAKING_2},  // 468 - 563
-    {FRONTIER_MON_DUGTRIO_3,  FRONTIER_MON_SLAKING_3},  // 564 - 659
-    {FRONTIER_MON_DUGTRIO_4,  FRONTIER_MON_SLAKING_4},  // 660 - 755
-    {FRONTIER_MON_DUGTRIO_1,  FRONTIER_MONS_HIGH_TIER}, // 372 - 849
+    {FRONTIER_MON_BUTTERFREE_1,     FRONTIER_MONS_HIGH_TIER},   // 110 - 199
+    {FRONTIER_MON_BUTTERFREE_1, FRONTIER_MONS_HIGH_TIER}, // 162 - 266
+    {FRONTIER_MON_BUTTERFREE_1, FRONTIER_MONS_HIGH_TIER}, // 267 - 371
+    {FRONTIER_MON_BUTTERFREE_1,  FRONTIER_MONS_HIGH_TIER},  // 372 - 467
+    {FRONTIER_MON_BUTTERFREE_1,  FRONTIER_MONS_HIGH_TIER},  // 468 - 563
+    {FRONTIER_MON_BUTTERFREE_1,  FRONTIER_MONS_HIGH_TIER},  // 564 - 659
+    {FRONTIER_MON_BUTTERFREE_1,  FRONTIER_MONS_HIGH_TIER},  // 660 - 755
+    {FRONTIER_MON_BUTTERFREE_1,  FRONTIER_MONS_HIGH_TIER}, // 372 - 849
 
     // Open level
-    {FRONTIER_MON_DUGTRIO_1, FRONTIER_MON_SLAKING_1}, // 372 - 467
-    {FRONTIER_MON_DUGTRIO_2, FRONTIER_MON_SLAKING_2}, // 468 - 563
-    {FRONTIER_MON_DUGTRIO_3, FRONTIER_MON_SLAKING_3}, // 564 - 659
-    {FRONTIER_MON_DUGTRIO_4, FRONTIER_MON_SLAKING_4}, // 660 - 755
-    {FRONTIER_MON_DUGTRIO_1, NUM_FRONTIER_MONS - 1},  // 372 - 881
-    {FRONTIER_MON_DUGTRIO_1, NUM_FRONTIER_MONS - 1},  // 372 - 881
-    {FRONTIER_MON_DUGTRIO_1, NUM_FRONTIER_MONS - 1},  // 372 - 881
-    {FRONTIER_MON_DUGTRIO_1, NUM_FRONTIER_MONS - 1},  // 372 - 881
+    {FRONTIER_MON_VENUSAUR_1, FRONTIER_MONS_HIGH_TIER}, // 372 - 467
+    {FRONTIER_MON_VENUSAUR_1, FRONTIER_MONS_HIGH_TIER}, // 468 - 563
+    {FRONTIER_MON_VENUSAUR_1, FRONTIER_MONS_HIGH_TIER}, // 564 - 659
+    {FRONTIER_MON_VENUSAUR_1, FRONTIER_MONS_HIGH_TIER}, // 660 - 755
+    {FRONTIER_MON_VENUSAUR_1, NUM_FRONTIER_MONS - 1},  // 372 - 881
+    {FRONTIER_MON_VENUSAUR_1, NUM_FRONTIER_MONS - 1},  // 372 - 881
+    {FRONTIER_MON_VENUSAUR_1, NUM_FRONTIER_MONS - 1},  // 372 - 881
+    {FRONTIER_MON_VENUSAUR_1, NUM_FRONTIER_MONS - 1},  // 372 - 881
 };
 
 // code
@@ -390,7 +390,7 @@ static void SetPlayerAndOpponentParties(void)
 static void GenerateInitialRentalMons(void)
 {
     int i, j, k, l;
-    u8 firstMonId;
+    u16 firstMonId;
     u8 battleMode;
     enum FrontierLevelMode lvlMode;
     u8 challengeNum;
@@ -827,7 +827,7 @@ void SetMonMoveAvoidReturn(struct Pokemon *mon, enum Move moveArg, u8 moveSlot)
     SetMonMoveSlot(mon, move, moveSlot);
 }
 
-static void FillFactoryFrontierTrainerParty(u16 trainerId, u8 firstMonId)
+static void FillFactoryFrontierTrainerParty(u16 trainerId, u16 firstMonId)
 {
     u8 i;
     u8 level;
@@ -880,7 +880,7 @@ static void FillFactoryFrontierTrainerParty(u16 trainerId, u8 firstMonId)
     }
 }
 
-static void FillFactoryTentTrainerParty(u16 trainerId, u8 firstMonId)
+static void FillFactoryTentTrainerParty(u16 trainerId, u16 firstMonId)
 {
     u8 i;
     u8 level = TENT_MIN_LEVEL;
