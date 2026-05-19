@@ -6424,6 +6424,57 @@ BattleScript_IntimidateInReverse::
 	call BattleScript_TryIntimidateHoldEffects
 	goto BattleScript_IntimidateLoopIncrement
 
+BattleScript_InfernalActivates::
+	savetarget
+	call BattleScript_AbilityPopUp
+	setbyte gBattlerTarget, 0
+BattleScript_InfernalLoop:
+	jumpiftargetally BattleScript_InfernalLoopIncrement
+	jumpifabsent BS_TARGET, BattleScript_InfernalLoopIncrement
+	jumpifvolatile BS_TARGET, VOLATILE_SUBSTITUTE, BattleScript_InfernalLoopIncrement
+BattleScript_InfernalAtkEffect:
+	copybyte sBATTLER, gBattlerAttacker
+	setstatchanger STAT_ATK, 1, TRUE
+	statbuffchange BS_TARGET, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_InfernalDefEffect
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_CHANGE, BattleScript_InfernalAtkWontDecrease
+	printfromtable gStatDownStringIds
+BattleScript_InfernalAtkEffect_WaitString:
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_InfernalDefEffect:
+	copybyte sBATTLER, gBattlerAttacker
+	setstatchanger STAT_DEF, 1, TRUE
+	statbuffchange BS_TARGET, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_InfernalLoopIncrement
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_CHANGE, BattleScript_InfernalDefWontDecrease
+	printfromtable gStatDownStringIds
+BattleScript_InfernalDefEffect_WaitString:
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_InfernalLoopIncrement:
+	addbyte gBattlerTarget, 1
+	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_InfernalLoop
+	copybyte sBATTLER, gBattlerAttacker
+	destroyabilitypopup
+	restoretarget
+	restoreattacker
+	pause B_WAIT_TIME_MED
+	return
+
+BattleScript_InfernalAtkWontDecrease:
+	printstring STRINGID_STATSWONTDECREASE
+	goto BattleScript_InfernalAtkEffect_WaitString
+
+BattleScript_InfernalDefWontDecrease:
+	printstring STRINGID_STATSWONTDECREASE
+	goto BattleScript_InfernalDefEffect_WaitString
+
+BattleScript_ReefWardenActivates::
+	savetarget
+	call BattleScript_AbilityPopUp
+	copybyte gBattlerTarget, gBattlerAttacker
+	printstring STRINGID_PKMNPREVENTEDFROMHEALING
+	waitmessage B_WAIT_TIME_LONG
+	restoretarget
+	return
+
 BattleScript_UncannyActivates::
 	savetarget
 	call BattleScript_AbilityPopUp

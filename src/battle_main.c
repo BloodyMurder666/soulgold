@@ -4864,6 +4864,8 @@ u32 GetBattlerTotalSpeedStat(enum BattlerId battler)
             speed += baseSpeed;
         if (SearchTraits(battlerTraits, ABILITY_SLUSH_RUSH)  && (gBattleWeather & B_WEATHER_ICY_ANY))
             speed += baseSpeed;
+        if (SearchTraits(battlerTraits, ABILITY_LAVA_SURFER) && gBattleWeather & B_WEATHER_SCORCHED_FIELD)
+            speed += baseSpeed;
     }
 
     // other abilities

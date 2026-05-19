@@ -271,7 +271,7 @@ static const struct BattleWeatherInfo sBattleWeatherInfo[BATTLE_WEATHER_COUNT] =
     {
         .flag = B_WEATHER_SCORCHED_FIELD,
         .rock = HOLD_EFFECT_HEAT_ROCK,
-        .abilityStartMessage = B_MSG_STARTED_DROUGHT,
+        .abilityStartMessage = B_MSG_STARTED_SCORCHED_FIELD,
         .moveStartMessage = B_MSG_STARTED_SCORCHED_FIELD,
         .endMessage = B_MSG_WEATHER_END_SCORCHED_FIELD,
         .continuesMessage = B_MSG_WEATHER_TURN_SCORCHED_FIELD,
@@ -2812,6 +2812,29 @@ bool32 CanAbilityAbsorbMove(struct BattleContext *ctx)
             battleScript = BattleScript_GoodAsGoldActivates;
         }
     }
+    else if ((gAiLogicData->aiCalcInProgress ? SearchTraits(AIBattlerTraits, ABILITY_SOLAR_ARMOR) : SearchTraits(battlerTraits, ABILITY_SOLAR_ARMOR))
+     && IsBattleMoveStatus(ctx->move))
+    {
+        enum MoveTarget target = GetBattlerMoveTargetType(ctx->battlerAtk, ctx->move);
+        if (target != TARGET_OPPONENTS_FIELD && target != TARGET_ALL_BATTLERS)
+        {
+            abilityDef = ABILITY_SOLAR_ARMOR;
+            PushTraitStack(ctx->battlerDef, ABILITY_SOLAR_ARMOR);
+            battleScript = BattleScript_GoodAsGoldActivates;
+        }
+    }
+    else if ((gAiLogicData->aiCalcInProgress ? SearchTraits(AIBattlerTraits, ABILITY_ABYSSAL_VEIL) : SearchTraits(battlerTraits, ABILITY_ABYSSAL_VEIL))
+     && IsBattleMoveStatus(ctx->move)
+     && gBattleMons[ctx->battlerDef].hp > (gBattleMons[ctx->battlerDef].maxHP * 3) / 4)
+    {
+        enum MoveTarget target = GetBattlerMoveTargetType(ctx->battlerAtk, ctx->move);
+        if (target != TARGET_OPPONENTS_FIELD && target != TARGET_ALL_BATTLERS)
+        {
+            abilityDef = ABILITY_ABYSSAL_VEIL;
+            PushTraitStack(ctx->battlerDef, ABILITY_ABYSSAL_VEIL);
+            battleScript = BattleScript_GoodAsGoldActivates;
+        }
+    }
 
     if (battleScript == NULL)
         return FALSE;
@@ -3487,6 +3510,15 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
             gBattlerAttacker = battler;
             effect += CommonSwitchInAbilities(battler, ABILITY_INTIMIDATE, traitCheck, BattleScript_IntimidateActivates);
         }
+        if ((traitCheck = SearchTraits(battlerTraits, ABILITY_INFERNAL)) && !gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1]
+         && shouldAbilityTrigger
+         && !IsOpposingSideEmpty(battler))
+        {
+            PushTraitStack(battler, ABILITY_INFERNAL);
+            SaveBattlerAttacker(gBattlerAttacker);
+            gBattlerAttacker = battler;
+            effect += CommonSwitchInAbilities(battler, ABILITY_INFERNAL, traitCheck, BattleScript_InfernalActivates);
+        }
         if ((traitCheck = SearchTraits(battlerTraits, ABILITY_UNCANNY)) && !gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1]
          && shouldAbilityTrigger
          && !IsOpposingSideEmpty(battler))
@@ -3700,6 +3732,14 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
                 effect += CommonSwitchInAbilities(battler, ABILITY_DROUGHT, traitCheck, BattleScript_DroughtActivates);
             else if (gBattleWeather & B_WEATHER_PRIMAL_ANY && HasWeatherEffect())
                 effect += CommonSwitchInAbilities(battler, ABILITY_DROUGHT, traitCheck, BattleScript_BlockedByPrimalWeather);
+        }
+        if ((traitCheck = SearchTraits(battlerTraits, ABILITY_HEATSTORM)) && !gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1]
+         && shouldAbilityTrigger)
+        {
+            if (TryChangeBattleWeather(battler, BATTLE_WEATHER_SCORCHED_FIELD, TRUE))
+                effect += CommonSwitchInAbilities(battler, ABILITY_HEATSTORM, traitCheck, BattleScript_WeatherAbilityActivates);
+            else if (gBattleWeather & B_WEATHER_PRIMAL_ANY && HasWeatherEffect())
+                effect += CommonSwitchInAbilities(battler, ABILITY_HEATSTORM, traitCheck, BattleScript_BlockedByPrimalWeather);
         }
         if ((traitCheck = SearchTraits(battlerTraits, ABILITY_ORICHALCUM_PULSE)) && !gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1]
          && shouldAbilityTrigger)
@@ -4549,6 +4589,26 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
             BattleScriptCall(BattleScript_TanglingHairActivates);
             effect++;
         }
+        if (SearchTraits(battlerTraits, ABILITY_REEF_WARDEN)
+         && IsBattlerAlive(gBattlerAttacker)
+         && !gBattleStruct->unableToUseMove
+         && IsBattlerTurnDamaged(gBattlerTarget, EXCLUDING_SUBSTITUTES)
+         && !CanBattlerAvoidContactEffects(gBattlerAttacker, gBattlerTarget, move))
+        {
+            if (!gBattleMons[gBattlerAttacker].volatiles.healBlock)
+            {
+                gBattleMons[gBattlerAttacker].volatiles.healBlock = TRUE;
+                gBattleMons[gBattlerAttacker].volatiles.healBlockTimer = 2;
+                PushTraitStack(battler, ABILITY_REEF_WARDEN);
+                BattleScriptCall(BattleScript_ReefWardenActivates);
+                effect++;
+            }
+            else if (gBattleMons[gBattlerAttacker].volatiles.healBlockTimer < 2)
+            {
+                gBattleMons[gBattlerAttacker].volatiles.healBlockTimer = 2;
+            }
+        }
+
         s32 returnDamage = 0;
         if (SearchTraits(battlerTraits, ABILITY_INNARDS_OUT)
          && !IsBattlerUnaffectedByMove(gBattlerTarget)
@@ -4622,6 +4682,30 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
             else
             {
                 PushTraitStack(battler, ABILITY_ROUGH_SKIN);
+                BattleScriptCall(BattleScript_AbilityPopUp);
+            }
+            effect++;
+        }
+        if (SearchTraits(battlerTraits, ABILITY_FORCE_RETURN)
+         && IsBattlerAlive(gBattlerAttacker)
+         && gBattlerAttacker != gBattlerTarget
+         && !gBattleStruct->unableToUseMove
+         && IsBattlerTurnDamaged(gBattlerTarget, EXCLUDING_SUBSTITUTES))
+        {
+            if (!IsAbilityAndRecord(gBattlerAttacker, ABILITY_MAGIC_GUARD))
+            {
+                s32 forceReturnDamage = (gBattleStruct->moveDamage[gBattlerTarget] * 30) / 100;
+
+                if (forceReturnDamage == 0)
+                    forceReturnDamage = 1;
+                returnDamage += forceReturnDamage;
+                gBattlerAbility = gBattlerTarget;
+                PushTraitStack(battler, ABILITY_FORCE_RETURN);
+                BattleScriptCall(BattleScript_RoughSkinActivates);
+            }
+            else
+            {
+                PushTraitStack(battler, ABILITY_FORCE_RETURN);
                 BattleScriptCall(BattleScript_AbilityPopUp);
             }
             effect++;
@@ -5059,6 +5143,22 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
             BattleScriptCall(BattleScript_AbilityStatusEffectAtk);
             effect++;
         }
+        else if (SearchTraits(battlerTraits, ABILITY_PLASMA_SURGE)
+         && IsBattlerAlive(gBattlerTarget)
+         && !gBattleStruct->unableToUseMove
+         && (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
+         && !IsBattleMoveStatus(gCurrentMove)
+         && IsBattlerTurnDamaged(gBattlerTarget, EXCLUDING_SUBSTITUTES)
+         && CanBeParalyzed(gBattlerAttacker, gBattlerTarget))
+        {
+            gEffectBattler = gBattlerTarget;
+            gBattleScripting.battler = gBattlerAttacker;
+            gBattleScripting.moveEffect = MOVE_EFFECT_PARALYSIS;
+            gLastUsedAbility = ABILITY_PLASMA_SURGE;
+            PushTraitStack(gBattlerAttacker, ABILITY_PLASMA_SURGE);
+            BattleScriptCall(BattleScript_AbilityStatusEffectAtk);
+            effect++;
+        }
         else if (SearchTraits(battlerTraits, ABILITY_DUST_DEVIL)
          && IsBattlerAlive(gBattlerTarget)
          && !gBattleStruct->unableToUseMove
@@ -5358,6 +5458,22 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
                 PushTraitStack(battler, ABILITY_FILL_VOID);
                 BattleScriptCall(BattleScript_FillVoidActivates);
                 effect = TRUE;
+            }
+        }
+        if (SearchTraits(battlerTraits, ABILITY_ASH_ASSETS))
+        {
+            if (IsBattlerAlive(battler)
+             && !NoAliveMonsForEitherParty()
+             && NumFaintedFoesByAttacker(battler)
+             && !(gBattleWeather & B_WEATHER_SCORCHED_FIELD && HasWeatherEffect()))
+            {
+                if (TryChangeBattleWeather(battler, BATTLE_WEATHER_SCORCHED_FIELD, TRUE))
+                {
+                    gBattleScripting.battler = gBattlerAbility = battler;
+                    PushTraitStack(battler, ABILITY_ASH_ASSETS);
+                    BattleScriptCall(BattleScript_WeatherAbilityActivates);
+                    effect = TRUE;
+                }
             }
         }
         if (SearchTraits(battlerTraits, ABILITY_CHILLING_NEIGH)
@@ -7496,6 +7612,29 @@ static inline u32 CalcMoveBasePower(struct BattleContext *ctx)
     return basePower;
 }
 
+static bool32 IsEnigmaPowerMove(enum Move move)
+{
+    switch (move)
+    {
+    case MOVE_HIDDEN_POWER:
+    case MOVE_ANCIENT_POWER:
+    case MOVE_NATURE_POWER:
+    case MOVE_SUPERPOWER:
+    case MOVE_SECRET_POWER:
+    case MOVE_POWER_GEM:
+    case MOVE_EARTH_POWER:
+    case MOVE_POWER_WHIP:
+    case MOVE_STORED_POWER:
+    case MOVE_POWER_UP_PUNCH:
+    case MOVE_HIGH_HORSEPOWER:
+    case MOVE_POWER_TRIP:
+    case MOVE_MYSTICAL_POWER:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
 static inline u32 CalcMoveBasePowerAfterModifiers(struct BattleContext *ctx)
 {
     u32 holdEffectParamAtk;
@@ -7637,6 +7776,16 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct BattleContext *ctx)
     if (SearchTraits(battlerTraits, ABILITY_STEELWORKER) && moveType == TYPE_STEEL)
         modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
     if (SearchTraits(battlerTraits, ABILITY_WINDCALLER) && moveType == TYPE_FLYING)
+        modifier = uq4_12_multiply(modifier, UQ_4_12(1.3));
+    if (SearchTraits(battlerTraits, ABILITY_ASH_ASSETS) && IsBattlerWeatherAffected(battlerAtk, B_WEATHER_SCORCHED_FIELD))
+        modifier = uq4_12_multiply(modifier, UQ_4_12(1.15));
+    if (SearchTraits(battlerTraits, ABILITY_ENIGMA) && IsEnigmaPowerMove(move))
+        modifier = uq4_12_multiply(modifier, UQ_4_12(2.0));
+    if (SearchTraits(battlerTraits, ABILITY_BURROWER) && move == MOVE_DIG)
+        modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
+    if (SearchTraits(battlerTraits, ABILITY_DIVER) && move == MOVE_DIVE)
+        modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
+    if (SearchTraits(battlerTraits, ABILITY_LAST_STAND))
         modifier = uq4_12_multiply(modifier, UQ_4_12(1.3));
     for (u32 i = 0; i < MAX_MON_TRAITS; i++)
     {
@@ -8087,6 +8236,20 @@ static inline u32 CalcAttackStat(struct BattleContext *ctx)
         if (ctx->updateFlags)
             RecordAbilityBattle(battlerDef, ABILITY_PURIFYING_SALT);
     }
+    if (BattlerHasTrait(battlerDef, ABILITY_PHALANX)
+     && IsBattleMovePhysical(move))
+    {
+        modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(0.5));
+        if (ctx->updateFlags)
+            RecordAbilityBattle(battlerDef, ABILITY_PHALANX);
+    }
+    if (BattlerHasTrait(battlerDef, ABILITY_SPECTRAL)
+     && IsBattleMoveSpecial(move))
+    {
+        modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(0.5));
+        if (ctx->updateFlags)
+            RecordAbilityBattle(battlerDef, ABILITY_SPECTRAL);
+    }
 
     // ally's abilities
     if (IsBattlerAlive(BATTLE_PARTNER(battlerAtk)))
@@ -8244,6 +8407,20 @@ static inline u32 CalcDefenseStat(struct BattleContext *ctx)
         modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(2.0));
         if (ctx->updateFlags)
             RecordAbilityBattle(battlerDef, ABILITY_SANDSHIELD);
+    }
+    if (SearchTraits(battlerTraits, ABILITY_COALWALKER)
+     && IsBattlerWeatherAffected(battlerDef, B_WEATHER_SCORCHED_FIELD) && usesDefStat)
+    {
+        modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(2.0));
+        if (ctx->updateFlags)
+            RecordAbilityBattle(battlerDef, ABILITY_COALWALKER);
+    }
+    if (SearchTraits(battlerTraits, ABILITY_SUNHARDENED)
+     && IsBattlerWeatherAffected(battlerDef, B_WEATHER_SUN) && !usesDefStat)
+    {
+        modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(2.0));
+        if (ctx->updateFlags)
+            RecordAbilityBattle(battlerDef, ABILITY_SUNHARDENED);
     }
     if (SearchTraits(battlerTraits, ABILITY_GRASS_PELT)
      && ctx->fieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && usesDefStat)

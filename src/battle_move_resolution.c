@@ -1565,7 +1565,17 @@ static enum CancelerResult CancelerCharging(struct BattleContext *ctx)
 
     enum CancelerResult result = CANCELER_RESULT_SUCCESS;
 
-    if (GetMoveEffect(ctx->move) == EFFECT_SKY_DROP)
+    if ((ctx->move == MOVE_DIG && BattlerHasTrait(ctx->battlerAtk, ABILITY_BURROWER))
+     || (ctx->move == MOVE_DIVE && BattlerHasTrait(ctx->battlerAtk, ABILITY_DIVER)))
+    {
+        gBattleScripting.animTurn = 1;
+        gBattleScripting.animTargetsHit = 0;
+        gProtectStructs[ctx->battlerAtk].chargingTurn = FALSE;
+        gBattleMons[ctx->battlerAtk].volatiles.multipleTurns = FALSE;
+        gBattleMons[ctx->battlerAtk].volatiles.semiInvulnerable = STATE_NONE;
+        result = CANCELER_RESULT_SUCCESS;
+    }
+    else if (GetMoveEffect(ctx->move) == EFFECT_SKY_DROP)
     {
         result = HandleSkyDropResult(ctx);
     }
@@ -3523,6 +3533,31 @@ static enum MoveEndResult MoveEndLifesteal(void)
     return result;
 }
 
+static enum MoveEndResult MoveEndLastStand(void)
+{
+    enum MoveEndResult result = MOVEEND_RESULT_CONTINUE;
+
+    if (BattlerHasTrait(gBattlerAttacker, ABILITY_LAST_STAND)
+     && gBattleScripting.savedDmg > 0
+     && !gBattleStruct->unableToUseMove
+     && !IsBattleMoveStatus(gCurrentMove)
+     && IsAnyTargetTurnDamaged(gBattlerAttacker)
+     && IsBattlerAlive(gBattlerAttacker)
+     && GetMoveEffect(gCurrentMove) != EFFECT_PAIN_SPLIT
+     && !IsFutureSightAttackerInParty(gBattlerAttacker, gBattlerTarget, gCurrentMove)
+     && !IsAbilityAndRecord(gBattlerAttacker, ABILITY_MAGIC_GUARD))
+    {
+        SetPassiveDamageAmount(gBattlerAttacker, max(1, GetNonDynamaxMaxHP(gBattlerAttacker) / 10));
+        gBattlerAbility = gBattlerAttacker;
+        PushTraitStack(gBattlerAttacker, ABILITY_LAST_STAND);
+        BattleScriptCall(BattleScript_RoughSkinActivates);
+        result = MOVEEND_RESULT_RUN_SCRIPT;
+    }
+
+    gBattleScripting.moveendState++;
+    return result;
+}
+
 static enum MoveEndResult MoveEndFormChange(void)
 {
     enum MoveEndResult result = MOVEEND_RESULT_CONTINUE;
@@ -4085,6 +4120,7 @@ static enum MoveEndResult (*const sMoveEndHandlers[])(void) =
     [MOVEEND_CARD_BUTTON] = MoveEndCardButton,
     [MOVEEND_LIFE_ORB_SHELL_BELL] = MoveEndLifeOrbShellBell,
     [MOVEEND_LIFESTEAL] = MoveEndLifesteal,
+    [MOVEEND_LAST_STAND] = MoveEndLastStand,
     [MOVEEND_FORM_CHANGE] = MoveEndFormChange,
     [MOVEEND_EMERGENCY_EXIT] = MoveEndEmergencyExit,
     [MOVEEND_EJECT_PACK] = MoveEndEjectPack,

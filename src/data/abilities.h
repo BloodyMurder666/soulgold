@@ -3298,4 +3298,129 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Sun guides Electric moves."),
         .aiRating = 4,
     },
+
+    [ABILITY_INFERNAL] =
+    {
+        .name = _("Infernal"),
+        .description = COMPOUND_STRING("Lowers foes' Atk and Def."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_REEF_WARDEN] =
+    {
+        .name = _("Reef Warden"),
+        .description = COMPOUND_STRING("Heals out; blocks healing."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_SOLAR_ARMOR] =
+    {
+        .name = _("Solar Armor"),
+        .description = COMPOUND_STRING("Blocks status moves."),
+        .aiRating = 6,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_ABYSSAL_VEIL] =
+    {
+        .name = _("Abyssal Veil"),
+        .description = COMPOUND_STRING("Blocks status at high HP."),
+        .aiRating = 5,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_PLASMA_SURGE] =
+    {
+        .name = _("Plasma Surge"),
+        .description = COMPOUND_STRING("Terrain attacks paralyze."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_PHALANX] =
+    {
+        .name = _("Phalanx"),
+        .description = COMPOUND_STRING("Halves physical damage."),
+        .aiRating = 7,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_SPECTRAL] =
+    {
+        .name = _("Spectral"),
+        .description = COMPOUND_STRING("Halves special damage."),
+        .aiRating = 7,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_SUNHARDENED] =
+    {
+        .name = _("Sunhardened"),
+        .description = COMPOUND_STRING("Doubles Sp. Def in sun."),
+        .aiRating = 6,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_HEATSTORM] =
+    {
+        .name = _("Heatstorm"),
+        .description = COMPOUND_STRING("Scorches the field on entry."),
+        .aiRating = 8,
+    },
+
+    [ABILITY_COALWALKER] =
+    {
+        .name = _("Coalwalker"),
+        .description = COMPOUND_STRING("Doubles Def when scorched."),
+        .aiRating = 6,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_LAVA_SURFER] =
+    {
+        .name = _("Lava Surfer"),
+        .description = COMPOUND_STRING("Doubles Speed when scorched."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_ASH_ASSETS] =
+    {
+        .name = _("Ash Assets"),
+        .description = COMPOUND_STRING("Thrives in scorched fields."),
+        .aiRating = 7,
+    },
+
+    [ABILITY_FORCE_RETURN] =
+    {
+        .name = _("Force Return"),
+        .description = COMPOUND_STRING("Reflects damage to attackers."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_ENIGMA] =
+    {
+        .name = _("Enigma"),
+        .description = COMPOUND_STRING("Doubles Power moves."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_BURROWER] =
+    {
+        .name = _("Burrower"),
+        .description = COMPOUND_STRING("Dig strikes instantly harder."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_DIVER] =
+    {
+        .name = _("Diver"),
+        .description = COMPOUND_STRING("Dive strikes instantly harder."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_LAST_STAND] =
+    {
+        .name = _("Last Stand"),
+        .description = COMPOUND_STRING("Boosts attacks, costs HP."),
+        .aiRating = 6,
+    },
 };
