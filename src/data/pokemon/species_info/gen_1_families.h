@@ -628,7 +628,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_DRAGON),
         .abilities = { ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS },
-        .innates = { ABILITY_FLAME_BODY, ABILITY_BERSERK, ABILITY_RECKLESS },
+        .innates = { ABILITY_FLAME_BODY, ABILITY_ROCK_HEAD, ABILITY_RECKLESS },
 		.bodyColor = BODY_COLOR_BLACK,
         .speciesName = _("Charizard"),
     #if P_MODIFIED_MEGA_CRIES
@@ -701,7 +701,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_DRAGON),
         .abilities = { ABILITY_DROUGHT, ABILITY_DROUGHT, ABILITY_DROUGHT },
-        .innates = { ABILITY_SOLAR_POWER, ABILITY_BERSERK, ABILITY_SPEED_BOOST },
+        .innates = { ABILITY_SOLAR_POWER, ABILITY_BERSERK, ABILITY_ASH_ASSETS },
 		.bodyColor = BODY_COLOR_RED,
         .speciesName = _("Charizard"),
     #if P_MODIFIED_MEGA_CRIES
@@ -1936,7 +1936,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     #else
         .abilities = { ABILITY_KEEN_EYE, ABILITY_NONE, ABILITY_BIG_PECKS },
     #endif
-        .innates = { ABILITY_VITAL_SPIRIT, ABILITY_TOUGH_CLAWS },
+        .innates = { ABILITY_VITAL_SPIRIT, ABILITY_WINDBURST },
 		.bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Pidgeotto"),
         .cryId = CRY_PIDGEOTTO,
@@ -2022,7 +2022,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     #else
         .abilities = { ABILITY_KEEN_EYE, ABILITY_NONE, ABILITY_BIG_PECKS },
     #endif
-        .innates = { ABILITY_VITAL_SPIRIT, ABILITY_TOUGH_CLAWS, ABILITY_QUICK_DRAW },
+        .innates = { ABILITY_VITAL_SPIRIT, ABILITY_WINDBURST, ABILITY_NO_GUARD },
 		.bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Pidgeot"),
         .cryId = CRY_PIDGEOT,
@@ -2095,7 +2095,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
         .abilities = { ABILITY_NO_GUARD, ABILITY_NO_GUARD, ABILITY_NO_GUARD },
-        .innates = { ABILITY_VITAL_SPIRIT, ABILITY_TOUGH_CLAWS, ABILITY_GALE_WINGS },
+        .innates = { ABILITY_VITAL_SPIRIT, ABILITY_WINDBURST, ABILITY_DELTA_STREAM },
 		.bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Pidgeot"),
     #if P_MODIFIED_MEGA_CRIES
