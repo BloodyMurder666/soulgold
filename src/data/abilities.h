@@ -3288,7 +3288,7 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_TETHER] =
     {
         .name = _("Tether"),
-        .description = COMPOUND_STRING("Copies opposing stat boosts.\nat end of each turn."),
+        .description = COMPOUND_STRING("Copies opposing stat boosts."),
         .aiRating = 5,
     },
 
