@@ -2107,3 +2107,14 @@ const struct Tileset gTileset_g4_alt =
     .metatileAttributes = gMetatileAttributes_g4_alt,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_ArcadeBattle =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .tiles = gTilesetTiles_ArcadeBattle,
+    .palettes = gTilesetPalettes_ArcadeBattle,
+    .metatiles = gMetatiles_ArcadeBattle,
+    .metatileAttributes = gMetatileAttributes_ArcadeBattle,
+    .callback = NULL,
+};

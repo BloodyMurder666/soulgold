@@ -40,8 +40,8 @@ script BattleArcade_BattleRoom_EventScript_EnterRoom
 	setvar(VAR_ENTRANCE_STATUS, ENTRANCE_STATUS_IN_POSITION)
 	special(SpawnCameraObject)
 	applymovement(ATTENDANT, moves(delay_8, delay_8, face_up))
-	applymovement(PLAYER, moves(walk_up * 8, walk_left * 4, walk_up * 3))
-	applymovement(CAMERA, moves(walk_up * 12))
+	applymovement(PLAYER, moves(walk_up * 6, walk_left * 2))
+	applymovement(CAMERA, moves(walk_up * 8))
 	waitmovement(CAMERA)
 	waitmovement(PLAYER)
 	call(BattleArcade_BattleRoom_EventScript_MovePlayerBattlefield)
@@ -76,7 +76,7 @@ script BattleArcade_BattleRoom_EventScript_AddSetOpponent
 
 script BattleArcade_BattleRoom_EventScript_OpponentIntro
 {
-	applymovement(OPPONENT,moves(walk_up * 2, walk_right * 4, walk_up * 3, walk_in_place_faster_left))
+	applymovement(OPPONENT,moves(walk_up, walk_right * 3, walk_in_place_faster_left))
 	waitmovement(OPPONENT)
 }
 

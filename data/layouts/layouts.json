@@ -9378,9 +9378,9 @@
     {
       "id": "LAYOUT_GOLDENROD_BATTLE_ARCADE_BATTLE_ROOM",
       "name": "GoldenrodBattleArcadeBattleRoom_Layout",
-      "width": 15,
+      "width": 16,
       "height": 18,
-      "primary_tileset": "gTileset_Building_Pike",
+      "primary_tileset": "gTileset_ArcadeBattle",
       "secondary_tileset": "gTileset_BattlePike",
       "border_filepath": "data/layouts/GoldenrodBattleArcadeBattleRoom/border.bin",
       "blockdata_filepath": "data/layouts/GoldenrodBattleArcadeBattleRoom/map.bin"
