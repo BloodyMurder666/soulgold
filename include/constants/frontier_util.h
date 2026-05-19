@@ -72,5 +72,13 @@
 #define STREAK_PALACE_DOUBLES_OPEN    (1 << 23)
 #define STREAK_FACTORY_DOUBLES_50     (1 << 24)
 #define STREAK_FACTORY_DOUBLES_OPEN   (1 << 25)
+// Start battle_arcade
+#define STREAK_ARCADE_SINGLES_50      (1u << 26)
+#define STREAK_ARCADE_SINGLES_OPEN    (1u << 27)
+#define STREAK_ARCADE_DOUBLES_50      (1u << 28)
+#define STREAK_ARCADE_DOUBLES_OPEN    (1u << 29)
+#define STREAK_ARCADE_LINK_MULTIS_50   (1u << 30)
+#define STREAK_ARCADE_LINK_MULTIS_OPEN (1u << 31)
+// End battle_arcade
 
 #endif // GUARD_CONSTANTS_FRONTIER_UTIL_H

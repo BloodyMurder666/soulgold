@@ -44,6 +44,7 @@
 #include "constants/moves.h"
 #include "test/battle.h"
 #include "test/test_runner_battle.h"
+#include "battle_arcade.h" // battle_arcade
 
 // This file's functions.
 static void InitTowerChallenge(void);

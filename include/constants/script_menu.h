@@ -136,10 +136,12 @@
 #define MULTI_OLIVINE_HARBOR               125
 #define MULTI_VERMILION_HARBOR             126
 #define MULTI_HOENN_STARTERS               127
-#define MULTI_5FLOORS                     128
-#define MULTI_GAME_CORNER_DOLLS2           129
-#define MULTI_OLIVINE_HARBOR_RED           130
-#define MULTI_VERMILION_HARBOR_RED           131
+#define MULTI_5FLOORS                       128
+#define MULTI_GAME_CORNER_DOLLS2            129
+#define MULTI_OLIVINE_HARBOR_RED            130
+#define MULTI_VERMILION_HARBOR_RED          131
+#define MULTI_CHALLENGE_TYPES_INFO          132
+#define MULTI_BATTLE_ARCADE_RECORDS         133
 
 // Lilycove SS Tidal Multichoice Selections
 #define SSTIDAL_SELECTION_SLATEPORT        0

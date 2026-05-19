@@ -16,6 +16,7 @@
 #include "constants/battle_special.h"
 #include "constants/battle_tent.h"
 #include "constants/battle_tower.h"
+#include "constants/battle_arcade.h" // battle_arcade
 #include "constants/berry.h"
 #include "constants/cable_club.h"
 #include "constants/coins.h"
@@ -1239,6 +1240,14 @@ Common_Text_ReceivedMon:
 	.include "data/scripts/dexnav.inc"
 	.include "data/maps/ShoalCave_LowTideIceRoom_Suicune/scripts.inc"
 	.include "data/scripts/battle_frontier.inc"
+	
+	// Start battle_arcade
+	.include "data/scripts/battle_arcade_registration.inc"
+	.include "data/scripts/battle_arcade_battle.inc"
+	.include "data/maps/BattleArcade_Lobby/scripts.inc"
+	.include "data/maps/BattleArcade_BattleRoom/scripts.inc"
+	.include "data/maps/BattleArcade_Hallway/scripts.inc"
+// End battle_arcade
 
 	.include "data/maps/NewMauville_Inside_Raikou/scripts.inc"
 

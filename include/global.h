@@ -25,6 +25,7 @@
 #include "constants/moves.h"
 #include "config/save.h"
 #include "hidden_grotto.h"
+#include "constants/battle_frontier.h" // battle_arcade
 
 // Prevent cross-jump optimization.
 #define BLOCK_CROSS_JUMP asm("");
@@ -453,6 +454,15 @@ struct BattleDomeTrainer
 #define DOME_TOURNAMENT_TRAINERS_COUNT 16
 #define BATTLE_TOWER_RECORD_COUNT 5
 
+// Start battle_arcade
+struct CursorData
+{
+    u8 speed:3;
+    u8 position:5;
+    bool8 isRandom;
+}__attribute__((packed));
+// End battle_arcade
+
 struct BattleFrontier
 {
     /*0x64C*/ struct EmeraldBattleTowerRecord towerPlayer;
@@ -538,6 +548,11 @@ struct BattleFrontier
     /*0xEFA*/ u8 unused_EFA;
     /*0xEFB*/ u8 unused_EFB;
     /*0xEFC*/ struct DomeMonData domePlayerPartyData[FRONTIER_PARTY_SIZE];
+// Start battle_arcade
+    u16 arcadeWinStreaks[FRONTIER_MODE_COUNT][FRONTIER_LVL_MODE_COUNT];
+    u16 arcadeRecordWinStreaks[FRONTIER_MODE_COUNT][FRONTIER_LVL_MODE_COUNT];
+    struct CursorData gameCursor;
+// End battle_arcade
 };
 
 struct ApprenticeQuestion

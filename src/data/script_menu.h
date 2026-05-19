@@ -921,6 +921,23 @@ static const struct MenuAction MultichoiceList_HoennStarters[] =
     {gText_RedStone},
     {gText_BlueStone},
 };
+// Start battle_arcade
+static const struct MenuAction MultichoiceList_ChallengeTypesInfo[] =
+{
+    {COMPOUND_STRING("Single Battle")},
+    {COMPOUND_STRING("Double Battle")},
+    {gText_Info2},
+    {gText_Cancel2},
+};
+
+static const struct MenuAction MultichoiceList_BattleArcadeRecords[] =
+{
+    {gText_Single2},
+    {gText_Double2},
+    {gText_Multi},
+    {gText_Cancel2},
+};
+// End battle_arcade
 
 static const struct MenuAction MultichoiceList_Exit[] =
 {
@@ -1067,6 +1084,8 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_5FLOORS]                    = MULTICHOICE(MultichoiceList_5Floors),
     [MULTI_OLIVINE_HARBOR_RED]              = MULTICHOICE(MultichoiceList_OlivineHarborRed),
     [MULTI_VERMILION_HARBOR_RED]              = MULTICHOICE(MultichoiceList_VermilionHarborRed),
+    [MULTI_CHALLENGE_TYPES_INFO]       = MULTICHOICE(MultichoiceList_ChallengeTypesInfo),
+    [MULTI_BATTLE_ARCADE_RECORDS]       = MULTICHOICE(MultichoiceList_BattleArcadeRecords),
 };
 
 const u8 *const gStdStrings[] =

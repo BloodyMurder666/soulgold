@@ -613,3 +613,5 @@ gSpecials::
 	def_special HiddenGrotto_CreateCurrentMon
 	def_special HiddenGrotto_TestCurrentMonBounds
 	def_special ChangeRotomForm
+	def_special CallBattleArcadeFunc
+	def_special DoArcadeTrainerBattle

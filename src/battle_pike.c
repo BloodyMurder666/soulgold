@@ -810,7 +810,10 @@ static void HealMon(struct Pokemon *mon)
     SetMonData(mon, MON_DATA_STATUS, data);
 }
 
-static bool8 DoesAbilityPreventStatus(struct Pokemon *mon, u32 status)
+// Start battle_arcade
+//static bool8 DoesAbilityPreventStatus(struct Pokemon *mon, u32 status)
+bool8 DoesAbilityPreventStatus(struct Pokemon *mon, u32 status)
+// End battle_arcade
 {
     bool8 ret = FALSE;
     enum Ability battlerTraits[MAX_MON_TRAITS];
@@ -846,7 +849,10 @@ static bool8 DoesAbilityPreventStatus(struct Pokemon *mon, u32 status)
     return ret;
 }
 
-static bool8 DoesTypePreventStatus(u16 species, u32 status)
+// Start battle_arcade
+//static bool8 DoesTypePreventStatus(u16 species, u32 status)
+bool8 DoesTypePreventStatus(u16 species, u32 status)
+// End battle_arcade
 {
     bool8 ret = FALSE;
 
