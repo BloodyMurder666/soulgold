@@ -1,0 +1,20 @@
+mapscripts GoldenrodBattleAracdeLobby_MapScripts {
+    	MAP_SCRIPT_ON_FRAME_TABLE
+	[
+		VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_UNKNOWN: BattleArcade_Registration_EventScript_GetChallengeStatus
+		VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_SAVING: BattleArcade_Registration_EventScript_QuitWithoutSaving
+		VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_PAUSED: BattleArcade_Registration_EventScript_ResumeChallenge
+		VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_WON: BattleArcade_Registration_EventScript_WonChallenge
+		VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_LOST: BattleArcade_Registration_EventScript_LostChallenge
+	]
+
+	MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE
+	[
+		VAR_NEED_TO_FACE_NORTH, 0 :BattleArcade_Lobby_EventScript_PlayerFaceNorth
+	]
+}
+
+const CHALLENGE_STATUS_UNKNOWN = 0
+const CHALLENGE_STATUS_END = 255
+
+const VAR_NEED_TO_FACE_NORTH = VAR_TEMP_1

@@ -19,7 +19,7 @@ BattleArcade_Hallway_EventScript_EnterCorridor::
 	applymovement OBJ_EVENT_ID_PLAYER, BattleArcade_Hallway_EventScript_EnterCorridor_Movement_1
 	waitmovement OBJ_EVENT_ID_PLAYER
 	setvar VAR_TEMP_0, FALSE
-	warp MAP_BATTLE_ARCADE_BATTLE_ROOM, 7, 17
+	warp MAP_GOLDENROD_BATTLE_ARCADE_BATTLE_ROOM, 7, 17
 	waitstate
 	end
 

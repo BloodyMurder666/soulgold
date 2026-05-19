@@ -1298,9 +1298,9 @@ static void GameBoard_InitWindows(void)
 
 static void LoadEventPalettes(void)
 {
-    u32 i = 0;
+    u32 i;
 
-    for (i = 0; i < sizeof(sArcadePalettes); i++)
+    for (i = 0; i < ARRAY_COUNT(sArcadePalettes); i++)
         sGameBoardState->cursorPaletteNum[i] = LoadSpritePalette(&sArcadePalettes[i]);
 }
 
@@ -1605,7 +1605,7 @@ static void CreateGameBoardCursor(void)
     u16 TileTag = ARCADE_GFXTAG_CURSOR;
     u32 spriteId;
 
-    struct CompressedSpriteSheet sSpriteSheet_Cursor = {sGameCursor, 0x0800, TileTag};
+    struct CompressedSpriteSheet sSpriteSheet_Cursor = {sGameCursor, 0x0200, TileTag};
     struct SpriteTemplate TempSpriteTemplate = gDummySpriteTemplate;
 
     LoadCompressedSpriteSheet(&sSpriteSheet_Cursor);

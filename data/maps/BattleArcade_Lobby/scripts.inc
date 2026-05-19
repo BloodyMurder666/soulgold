@@ -23,7 +23,7 @@ BattleArcade_Lobby_EventScript_PlayerFaceNorth::
 
 
 BattleArcade_Lobby_EventScript_WarpToHallway::
-	warpsilent MAP_BATTLE_ARCADE_HALLWAY, 1, 3
+	warpsilent MAP_GOLDENROD_BATTLE_ARCADE_HALLWAY, 1, 3
 	return
 
 

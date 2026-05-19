@@ -178,7 +178,10 @@
     "GoldenrodCity_DepartmentStoreElevator",
     "GoldenrodApartment",
     "GoldenrodApartmentBasement",
-    "GoldenrodCity_House4"
+    "GoldenrodCity_House4",
+    "GoldenrodBattleAracdeLobby",
+    "GoldenrodBattleArcadeHallway",
+    "GoldenrodBattleArcadeBattleRoom"
   ],
   "gMapGroup_IndoorEcruteak": [
     "EcruteakCity_PokemonCenter",

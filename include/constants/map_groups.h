@@ -156,6 +156,9 @@ enum
     MAP_GOLDENROD_APARTMENT                      = (29 | (5 << 8)),
     MAP_GOLDENROD_APARTMENT_BASEMENT             = (30 | (5 << 8)),
     MAP_GOLDENROD_CITY_HOUSE4                    = (31 | (5 << 8)),
+    MAP_GOLDENROD_BATTLE_ARACDE_LOBBY            = (32 | (5 << 8)),
+    MAP_GOLDENROD_BATTLE_ARCADE_HALLWAY          = (33 | (5 << 8)),
+    MAP_GOLDENROD_BATTLE_ARCADE_BATTLE_ROOM      = (34 | (5 << 8)),
 
     // gMapGroup_IndoorEcruteak
     MAP_ECRUTEAK_CITY_POKEMON_CENTER = (0 | (6 << 8)),

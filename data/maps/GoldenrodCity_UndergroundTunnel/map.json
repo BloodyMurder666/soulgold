@@ -193,6 +193,13 @@
       "elevation": 0,
       "dest_map": "MAP_GOLDENROD_CITY_UNDERGROUND_SWITCHES",
       "dest_warp_id": "1"
+    },
+    {
+      "x": 12,
+      "y": 29,
+      "elevation": 0,
+      "dest_map": "MAP_GOLDENROD_BATTLE_ARACDE_LOBBY",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [
