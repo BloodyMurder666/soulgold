@@ -682,6 +682,7 @@ struct BattleStruct
     enum DamageCategory categoryOverride:8; // for Z-Moves and Max Moves
     u32 stellarBoostFlags[NUM_BATTLE_SIDES]; // stored as a bitfield of flags for all types for each side
     u8 monCausingSleepClause[NUM_BATTLE_SIDES]; // Stores which pokemon on a given side is causing Sleep Clause to be active as the mon's index in the party
+    u8 rebornUsed[NUM_BATTLE_SIDES]; // Party-index bitfield per side.
     u16 opponentMonCanTera:6;
     u16 opponentMonCanDynamax:6;
     u16 additionalEffectsCounter:4; // A counter for the additionalEffects applied by the current move in Cmd_setadditionaleffects

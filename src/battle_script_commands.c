@@ -2950,15 +2950,37 @@ void SetMoveEffect(enum BattlerId battlerAtk, enum BattlerId effectBattler, enum
     case MOVE_EFFECT_ATK_DEF_DOWN: // SuperPower
         if (!NoAliveMonsForEitherParty())
         {
-            BattleScriptPush(battleScript);
-            gBattlescriptCurrInstr = BattleScript_AtkDefDown;
+            if (BattlerHasTrait(gBattlerAttacker, ABILITY_TITAN_GRIP))
+            {
+                if (gBattleMons[gBattlerTarget].statStages[STAT_ATK] > MIN_STAT_STAGE)
+                    gBattleMons[gBattlerTarget].statStages[STAT_ATK]--;
+                if (gBattleMons[gBattlerTarget].statStages[STAT_DEF] > MIN_STAT_STAGE)
+                    gBattleMons[gBattlerTarget].statStages[STAT_DEF]--;
+                gBattlescriptCurrInstr = battleScript;
+            }
+            else
+            {
+                BattleScriptPush(battleScript);
+                gBattlescriptCurrInstr = BattleScript_AtkDefDown;
+            }
         }
         break;
     case MOVE_EFFECT_DEF_SPDEF_DOWN: // Close Combat
         if (!NoAliveMonsForEitherParty())
         {
-            BattleScriptPush(battleScript);
-            gBattlescriptCurrInstr = BattleScript_DefSpDefDown;
+            if (BattlerHasTrait(gBattlerAttacker, ABILITY_TITAN_GRIP))
+            {
+                if (gBattleMons[gBattlerTarget].statStages[STAT_DEF] > MIN_STAT_STAGE)
+                    gBattleMons[gBattlerTarget].statStages[STAT_DEF]--;
+                if (gBattleMons[gBattlerTarget].statStages[STAT_SPDEF] > MIN_STAT_STAGE)
+                    gBattleMons[gBattlerTarget].statStages[STAT_SPDEF]--;
+                gBattlescriptCurrInstr = battleScript;
+            }
+            else
+            {
+                BattleScriptPush(battleScript);
+                gBattlescriptCurrInstr = BattleScript_DefSpDefDown;
+            }
         }
         break;
     case MOVE_EFFECT_RECOIL_HP_25: // Struggle
@@ -3201,6 +3223,9 @@ void SetMoveEffect(enum BattlerId battlerAtk, enum BattlerId effectBattler, enum
                     break;
                 case STATUS_FIELD_PSYCHIC_TERRAIN:
                     moveEffect = MOVE_EFFECT_SPD_MINUS_1;
+                    break;
+                case STATUS_FIELD_SCORCHED_FIELD:
+                    moveEffect = MOVE_EFFECT_BURN;
                     break;
                 default:
                     moveEffect = MOVE_EFFECT_PARALYSIS;
@@ -7251,8 +7276,8 @@ static void RemoveAllWeather(void)
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEATHER_END_SNOW;
     else if (gBattleWeather & B_WEATHER_FOG)
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEATHER_END_FOG;
-    else if (gBattleWeather & B_WEATHER_SCORCHED_FIELD)
-        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEATHER_END_SCORCHED_FIELD;
+    else if (gBattleWeather & B_WEATHER_TWILIGHT)
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEATHER_END_TWILIGHT;
     else
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEATHER_END_COUNT;  // failsafe
 
@@ -7274,6 +7299,9 @@ static void RemoveAllTerrains(void)
         break;
     case STATUS_FIELD_PSYCHIC_TERRAIN:
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_END_PSYCHIC;
+        break;
+    case STATUS_FIELD_SCORCHED_FIELD:
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_END_SCORCHED;
         break;
     default:
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_COUNT;  // failsafe
@@ -10867,6 +10895,9 @@ static void Cmd_settypetoenvironment(void)
     case STATUS_FIELD_PSYCHIC_TERRAIN:
         environmentType = TYPE_PSYCHIC;
         break;
+    case STATUS_FIELD_SCORCHED_FIELD:
+        environmentType = TYPE_FIRE;
+        break;
     default:
         environmentType = gBattleEnvironmentInfo[gBattleEnvironment].camouflageType;
         break;
@@ -12590,6 +12621,12 @@ void BS_SetTerrain(void)
         {
             statusFlag = STATUS_FIELD_PSYCHIC_TERRAIN;
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_PSYCHIC;
+        }
+    case EFFECT_SCORCHED_FIELD:
+        if (!(gFieldStatuses & STATUS_FIELD_SCORCHED_FIELD))
+        {
+            statusFlag = STATUS_FIELD_SCORCHED_FIELD;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_SCORCHED;
         }
         break;
     default:

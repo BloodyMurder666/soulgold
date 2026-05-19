@@ -932,15 +932,24 @@ static enum CancelerResult CancelerPPDeduction(struct BattleContext *ctx)
     {
         for (u32 i = 0; i < gBattlersCount; i++)
         {
-            if (!IsBattlerAlly(i, ctx->battlerAtk) && IsBattlerAlive(i)
-             && BattlerHasTrait(i, ABILITY_PRESSURE))
-                ppToDeduct += 1;
+            if (!IsBattlerAlly(i, ctx->battlerAtk) && IsBattlerAlive(i))
+            {
+                if (BattlerHasTrait(i, ABILITY_DEBILITATE))
+                    ppToDeduct += 3;
+                else if (BattlerHasTrait(i, ABILITY_PRESSURE))
+                    ppToDeduct += 1;
+            }
         }
     }
     else if (moveTarget != TARGET_OPPONENTS_FIELD)
     {
-        if (ctx->battlerAtk != ctx->battlerDef && BattlerHasTrait(ctx->battlerDef, ABILITY_PRESSURE))
-             ppToDeduct++;
+        if (ctx->battlerAtk != ctx->battlerDef)
+        {
+            if (BattlerHasTrait(ctx->battlerDef, ABILITY_DEBILITATE))
+                ppToDeduct += 3;
+            else if (BattlerHasTrait(ctx->battlerDef, ABILITY_PRESSURE))
+                ppToDeduct++;
+        }
     }
 
     // For item Metronome, echoed voice
@@ -1565,7 +1574,8 @@ static enum CancelerResult CancelerCharging(struct BattleContext *ctx)
 
     enum CancelerResult result = CANCELER_RESULT_SUCCESS;
 
-    if ((ctx->move == MOVE_DIG && BattlerHasTrait(ctx->battlerAtk, ABILITY_BURROWER))
+    if (BattlerHasTrait(ctx->battlerAtk, ABILITY_FLEXIBLE)
+     || (ctx->move == MOVE_DIG && BattlerHasTrait(ctx->battlerAtk, ABILITY_BURROWER))
      || (ctx->move == MOVE_DIVE && BattlerHasTrait(ctx->battlerAtk, ABILITY_DIVER)))
     {
         gBattleScripting.animTurn = 1;
@@ -4392,6 +4402,8 @@ enum Move GetNaturePowerMove(void)
         move = MOVE_ENERGY_BALL;
     else if (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN)
         move = MOVE_PSYCHIC;
+    else if (gFieldStatuses & STATUS_FIELD_SCORCHED_FIELD)
+        move = MOVE_FLAMETHROWER;
     else if (gBattleEnvironmentInfo[gBattleEnvironment].naturePower == MOVE_NONE)
         move = B_NATURE_POWER_MOVES >= GEN_4 ? MOVE_TRI_ATTACK : MOVE_SWIFT;
 

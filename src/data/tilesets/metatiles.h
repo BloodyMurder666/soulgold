@@ -536,3 +536,6 @@ const u16 gMetatileAttributes_g4_alt[] = INCBIN_U16("data/tilesets/secondary/g_4
 
 const u16 gMetatiles_ArcadeBattle[] = INCBIN_U16("data/tilesets/primary/arcade_battle/metatiles.bin");
 const u16 gMetatileAttributes_ArcadeBattle[] = INCBIN_U16("data/tilesets/primary/arcade_battle/metatile_attributes.bin");
+
+const u16 gMetatiles_ArcadeLobby[] = INCBIN_U16("data/tilesets/secondary/arcade_lobby/metatiles.bin");
+const u16 gMetatileAttributes_ArcadeLobby[] = INCBIN_U16("data/tilesets/secondary/arcade_lobby/metatile_attributes.bin");

@@ -168,16 +168,17 @@ script BattleArcade_BattleRoom_EventScript_HandleHealAttendantMovement
 {
 	addobject(ATTENDANT)
 	setobjectxy(ATTENDANT,2,12)
-	applymovement(ATTENDANT,moves(walk_faster_up * 6, walk_in_place_faster_right))
+	//applymovement(ATTENDANT,moves(walk_faster_up * 6, walk_in_place_faster_right))
+	approachobject(ATTENDANT, PLAYER, DIR_WEST, DIR_SOUTH, 2)
 	waitmovement(ATTENDANT)
-	applymovement(PLAYER,moves(walk_in_place_left))
+	applymovement(PLAYER,moves(walk_in_place_down))
 	waitmovement(PLAYER)
 }
 
 script BattleArcade_BattleRoom_EventScript_AttendantLeave
 {
 	call(BattleArcade_BattleRoom_EventScript_MovePlayerBattlefield)
-	applymovement(ATTENDANT,moves(walk_faster_down * 5))
+	applymovement(ATTENDANT,moves(walk_faster_right, walk_faster_down * 5))
 	waitmovement(ATTENDANT)
 	removeobject(ATTENDANT)
 }

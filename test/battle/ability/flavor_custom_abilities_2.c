@@ -166,7 +166,7 @@ SINGLE_BATTLE_TEST("Heatstorm sets Scorched Field on entry")
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE); MOVE(opponent, MOVE_CELEBRATE); }
     } THEN {
-        EXPECT(gBattleWeather & B_WEATHER_SCORCHED_FIELD);
+        EXPECT(gFieldStatuses & STATUS_FIELD_SCORCHED_FIELD);
     }
 }
 
@@ -177,7 +177,7 @@ SINGLE_BATTLE_TEST("Coalwalker doubles Defense during Scorched Field", s16 damag
     PARAMETRIZE { ability = ABILITY_NONE; }
     PARAMETRIZE { ability = ABILITY_COALWALKER; }
     GIVEN {
-        STARTING_WEATHER(B_WEATHER_SCORCHED_FIELD);
+        gFieldStatuses |= STATUS_FIELD_SCORCHED_FIELD;
         PLAYER(SPECIES_WOBBUFFET) { Attack(200); }
         OPPONENT(SPECIES_CHARMANDER) { Ability(ability); }
     } WHEN {
@@ -192,7 +192,7 @@ SINGLE_BATTLE_TEST("Coalwalker doubles Defense during Scorched Field", s16 damag
 SINGLE_BATTLE_TEST("Lava Surfer doubles Speed during Scorched Field")
 {
     GIVEN {
-        STARTING_WEATHER(B_WEATHER_SCORCHED_FIELD);
+        gFieldStatuses |= STATUS_FIELD_SCORCHED_FIELD;
         PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LAVA_SURFER); Speed(2); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(3); }
     } WHEN {
@@ -210,7 +210,7 @@ SINGLE_BATTLE_TEST("Ash Assets boosts damage during Scorched Field", s16 damage)
     PARAMETRIZE { ability = ABILITY_NONE; }
     PARAMETRIZE { ability = ABILITY_ASH_ASSETS; }
     GIVEN {
-        STARTING_WEATHER(B_WEATHER_SCORCHED_FIELD);
+        gFieldStatuses |= STATUS_FIELD_SCORCHED_FIELD;
         PLAYER(SPECIES_WOBBUFFET) { Ability(ability); Attack(200); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -231,14 +231,14 @@ SINGLE_BATTLE_TEST("Ash Assets starts Scorched Field after a KO")
     } WHEN {
         TURN { MOVE(player, MOVE_SCRATCH); SEND_OUT(opponent, 1); }
     } THEN {
-        EXPECT(gBattleWeather & B_WEATHER_SCORCHED_FIELD);
+        EXPECT(gFieldStatuses & STATUS_FIELD_SCORCHED_FIELD);
     }
 }
 
 SINGLE_BATTLE_TEST("Ash Assets does not restart Scorched Field after a KO if it is already active")
 {
     GIVEN {
-        STARTING_WEATHER(B_WEATHER_SCORCHED_FIELD);
+        gFieldStatuses |= STATUS_FIELD_SCORCHED_FIELD;
         PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_ASH_ASSETS); Attack(200); }
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
         OPPONENT(SPECIES_WYNAUT);
@@ -247,7 +247,7 @@ SINGLE_BATTLE_TEST("Ash Assets does not restart Scorched Field after a KO if it 
     } SCENE {
         NONE_OF { ABILITY_POPUP(player, ABILITY_ASH_ASSETS); }
     } THEN {
-        EXPECT(gBattleWeather & B_WEATHER_SCORCHED_FIELD);
+        EXPECT(gFieldStatuses & STATUS_FIELD_SCORCHED_FIELD);
     }
 }
 

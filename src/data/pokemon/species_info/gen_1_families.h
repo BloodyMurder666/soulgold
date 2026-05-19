@@ -2713,7 +2713,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_DRAGON),
         .abilities = { ABILITY_INTIMIDATE, ABILITY_SHED_SKIN, ABILITY_UNNERVE },
-        .innates = { ABILITY_LIMBER },
+        .innates = { ABILITY_HUNTER },
 		.bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Ekans"),
         .cryId = CRY_EKANS,
@@ -2795,7 +2795,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_DRAGON),
         .abilities = { ABILITY_INTIMIDATE, ABILITY_SHED_SKIN, ABILITY_UNNERVE },
-        .innates = { ABILITY_LIMBER, ABILITY_MERCILESS },
+        .innates = { ABILITY_HUNTER, ABILITY_LIMBER, ABILITY_MERCILESS },
 		.bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Arbok"),
         .cryId = CRY_ARBOK,
@@ -7382,7 +7382,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     #else
         .abilities = { ABILITY_LIMBER, ABILITY_NONE, ABILITY_UNNERVE },
     #endif
-        .innates = { ABILITY_SUPER_LUCK, ABILITY_MOODY },
+        .innates = { ABILITY_SUPER_LUCK, ABILITY_MOODY, ABILITY_NINE_LIVES },
 		.bodyColor = BODY_COLOR_YELLOW,
         .speciesName = _("Persian"),
         .cryId = CRY_PERSIAN,
@@ -7526,7 +7526,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_FUR_COAT, ABILITY_TECHNICIAN, ABILITY_RATTLED },
-        .innates = { ABILITY_MOODY, ABILITY_WONDER_SKIN },
+        .innates = { ABILITY_MOODY, ABILITY_WONDER_SKIN, ABILITY_NINE_LIVES },
 		.bodyColor = BODY_COLOR_GRAY,
         .speciesName = _("Persian"),
         .cryId = CRY_PERSIAN,
@@ -7665,7 +7665,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_BATTLE_ARMOR, ABILITY_TOUGH_CLAWS, ABILITY_STEELY_SPIRIT },
-        .innates = { ABILITY_HUSTLE, ABILITY_SHEER_FORCE },
+        .innates = { ABILITY_HUSTLE, ABILITY_SHEER_FORCE, ABILITY_NINE_LIVES },
 		.bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Perrserker"),
         .cryId = CRY_PERRSERKER,
@@ -9326,7 +9326,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     #else
         .abilities = { ABILITY_GUTS, ABILITY_NONE, ABILITY_STEADFAST },
     #endif
-        .innates = { ABILITY_SHEER_FORCE, ABILITY_DEFIANT, ABILITY_STAMINA },
+        .innates = { ABILITY_SHEER_FORCE, ABILITY_DEFIANT, ABILITY_TITAN_GRIP },
 		.bodyColor = BODY_COLOR_GRAY,
         .speciesName = _("Machamp"),
         .cryId = CRY_MACHAMP,
@@ -9408,7 +9408,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     #else
         .abilities = { ABILITY_GUTS, ABILITY_NONE, ABILITY_STEADFAST },
     #endif
-        .innates = { ABILITY_SHEER_FORCE, ABILITY_DEFIANT, ABILITY_MOLD_BREAKER },
+        .innates = { ABILITY_SHEER_FORCE, ABILITY_DEFIANT, ABILITY_TITAN_GRIP },
 		.bodyColor = BODY_COLOR_GRAY,
         .speciesName = _("Machamp"),
         .cryId = CRY_MACHAMP,

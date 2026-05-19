@@ -153,17 +153,7 @@ static bool32 HandleEndTurnWeatherDamage(enum BattlerId battler)
             effect = TRUE;
         }
         break;
-    case BATTLE_WEATHER_SCORCHED_FIELD:
-        if (!IS_BATTLER_OF_TYPE(battler, TYPE_FIRE)
-         && gBattleMons[battler].volatiles.semiInvulnerable != STATE_UNDERGROUND
-         && gBattleMons[battler].volatiles.semiInvulnerable != STATE_UNDERWATER
-         && !IsAbilityAndRecord(battler, ABILITY_MAGIC_GUARD))
-        {
-            SetPassiveDamageAmount(battler, GetNonDynamaxMaxHP(battler) / 16);
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SCORCHED_FIELD;
-            BattleScriptExecute(BattleScript_DamagingWeather);
-            effect = TRUE;
-        }
+    case BATTLE_WEATHER_TWILIGHT:
         break;
     case BATTLE_WEATHER_HAIL:
     case BATTLE_WEATHER_SNOW:
@@ -1225,6 +1215,8 @@ static bool32 HandleEndTurnTerrain(enum BattlerId battler)
         effect = EndTurnTerrain(STATUS_FIELD_GRASSY_TERRAIN, B_MSG_TERRAIN_END_GRASSY);
     else if (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN)
         effect = EndTurnTerrain(STATUS_FIELD_PSYCHIC_TERRAIN, B_MSG_TERRAIN_END_PSYCHIC);
+    else if (gFieldStatuses & STATUS_FIELD_SCORCHED_FIELD)
+        effect = EndTurnTerrain(STATUS_FIELD_SCORCHED_FIELD, B_MSG_TERRAIN_END_SCORCHED);
 
     return effect;
 }

@@ -8346,7 +8346,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
     #if P_UPDATED_ABILITIES >= GEN_7
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_INNER_FOCUS },
-        .innates = { ABILITY_TRANSISTOR, ABILITY_QUICK_FEET, ABILITY_DRIZZLE },
+        .innates = { ABILITY_TRANSISTOR, ABILITY_QUICK_FEET, ABILITY_STORMRIDER },
     #else
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_VOLT_ABSORB },
     #endif
@@ -8431,7 +8431,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
     #if P_UPDATED_ABILITIES >= GEN_7
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_INNER_FOCUS },
-        .innates = { ABILITY_ROCK_HEAD, ABILITY_JUSTIFIED, ABILITY_DROUGHT },
+        .innates = { ABILITY_ROCK_HEAD, ABILITY_JUSTIFIED, ABILITY_VOLCANO_HOWL },
     #else
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_FLASH_FIRE },
     #endif
@@ -8515,7 +8515,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
     #if P_UPDATED_ABILITIES >= GEN_7
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_INNER_FOCUS },
-        .innates = { ABILITY_HEATPROOF, ABILITY_PASTEL_VEIL, ABILITY_CLEAR_BODY },
+        .innates = { ABILITY_HEATPROOF, ABILITY_PASTEL_VEIL, ABILITY_STORMRIDER },
     #else
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_WATER_ABSORB },
     #endif
@@ -8740,7 +8740,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER),
         .abilities = { ABILITY_SAND_STREAM, ABILITY_NONE, ABILITY_UNNERVE },
-        .innates = { ABILITY_BATTLE_ARMOR, ABILITY_SAND_FORCE, ABILITY_SOLID_ROCK },
+        .innates = { ABILITY_BATTLE_ARMOR, ABILITY_SAND_FORCE, ABILITY_ROCKSTORM },
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Tyranitar"),
         .cryId = CRY_TYRANITAR,
@@ -8897,7 +8897,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_MULTISCALE },
-        .innates = { ABILITY_FILTER, ABILITY_HEATPROOF, ABILITY_PRIMORDIAL_SEA },
+        .innates = { ABILITY_TIDAL_DEITY, ABILITY_HEATPROOF, ABILITY_REJUVENATION },
         .bodyColor = BODY_COLOR_WHITE,
         .speciesName = _("Lugia"),
         .cryId = CRY_LUGIA,
@@ -8991,7 +8991,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_REGENERATOR },
-        .innates = { ABILITY_FLAME_BODY, ABILITY_MULTISCALE, ABILITY_DESOLATE_LAND },
+        .innates = { ABILITY_FLAME_BODY, ABILITY_MULTISCALE, ABILITY_REBORN },
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Ho-Oh"),
         .cryId = CRY_HO_OH,
@@ -9074,7 +9074,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_NATURAL_CURE, ABILITY_NONE, ABILITY_NONE },
-        .innates = { ABILITY_GRASSY_SURGE, ABILITY_REGENERATOR, ABILITY_ADAPTABILITY },
+        .innates = { ABILITY_GRASSY_SURGE, ABILITY_REGENERATOR, ABILITY_REBORN },
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Celebi"),
         .cryId = CRY_CELEBI,

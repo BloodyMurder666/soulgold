@@ -42,6 +42,7 @@ static enum FieldEffectOutcome BenefitsFromElectricTerrain(enum BattlerId battle
 static enum FieldEffectOutcome BenefitsFromGrassyTerrain(enum BattlerId battler);
 static enum FieldEffectOutcome BenefitsFromMistyTerrain(enum BattlerId battler);
 static enum FieldEffectOutcome BenefitsFromPsychicTerrain(enum BattlerId battler);
+static enum FieldEffectOutcome BenefitsFromScorchedField(enum BattlerId battler);
 static enum FieldEffectOutcome BenefitsFromGravity(enum BattlerId battler);
 static enum FieldEffectOutcome BenefitsFromTrickRoom(enum BattlerId battler);
 
@@ -120,6 +121,8 @@ bool32 FieldStatusChecker(enum BattlerId battler, u32 fieldStatus, enum FieldEff
             result = BenefitsFromMistyTerrain(battler);
         if (fieldStatus & STATUS_FIELD_PSYCHIC_TERRAIN)
             result = BenefitsFromPsychicTerrain(battler);
+        if (fieldStatus & STATUS_FIELD_SCORCHED_FIELD)
+            result = BenefitsFromScorchedField(battler);
 
         // other field statuses
         if (fieldStatus & STATUS_FIELD_GRAVITY)
@@ -191,6 +194,10 @@ static bool32 DoesBattlerBenefitFromFieldStatus(u32 battler, u32 fieldStatus)
         return (fieldStatus & STATUS_FIELD_ELECTRIC_TERRAIN);
     if (SearchTraits(AIBattlerTraits, ABILITY_GRASS_PELT))
         return (fieldStatus & STATUS_FIELD_GRASSY_TERRAIN);
+    if (SearchTraits(AIBattlerTraits, ABILITY_ASH_ASSETS)
+     || SearchTraits(AIBattlerTraits, ABILITY_LAVA_SURFER)
+     || SearchTraits(AIBattlerTraits, ABILITY_COALWALKER))
+        return (fieldStatus & STATUS_FIELD_SCORCHED_FIELD);
     // no abilities inherently benefit from Misty or Psychic Terrains
     // return (fieldStatus & STATUS_FIELD_MISTY_TERRAIN);
     // return (fieldStatus & STATUS_FIELD_PSYCHIC_TERRAIN);
@@ -436,6 +443,44 @@ static enum FieldEffectOutcome BenefitsFromPsychicTerrain(enum BattlerId battler
     }
 
     if (grounded && HasDamagingMoveOfType(battler, TYPE_PSYCHIC))
+        return FIELD_EFFECT_POSITIVE;
+
+    if (HasBattlerTerrainBoostMove(LEFT_FOE(battler), STATUS_FIELD_PSYCHIC_TERRAIN)
+     || HasBattlerTerrainBoostMove(RIGHT_FOE(battler), STATUS_FIELD_PSYCHIC_TERRAIN))
+        return FIELD_EFFECT_NEGATIVE;
+
+    if (AI_IsAbilityOnSide(battler, ABILITY_GALE_WINGS)
+     || AI_IsAbilityOnSide(battler, ABILITY_TRIAGE)
+     || AI_IsAbilityOnSide(battler, ABILITY_PRANKSTER))
+        return FIELD_EFFECT_NEGATIVE;
+
+    return FIELD_EFFECT_NEUTRAL;
+}
+static enum FieldEffectOutcome BenefitsFromScorchedField(enum BattlerId battler)
+{
+    if (DoesBattlerBenefitFromFieldStatus(battler, STATUS_FIELD_SCORCHED_FIELD))
+        return FIELD_EFFECT_POSITIVE;
+
+    if (HasBattlerTerrainBoostMove(battler, STATUS_FIELD_SCORCHED_FIELD)
+     || HasBattlerTerrainBoostMove(BATTLE_PARTNER(battler), STATUS_FIELD_SCORCHED_FIELD))
+        return FIELD_EFFECT_POSITIVE;
+
+    bool32 grounded = AI_IsBattlerGrounded(battler);
+    bool32 allyGrounded = FALSE;
+    if (HasPartner(battler))
+        allyGrounded = AI_IsBattlerGrounded(BATTLE_PARTNER(battler));
+
+    // don't bother if we're not grounded
+    if (grounded || allyGrounded)
+    {
+        // harass priority
+        if (AI_IsAbilityOnSide(LEFT_FOE(battler), ABILITY_GALE_WINGS)
+         || AI_IsAbilityOnSide(LEFT_FOE(battler), ABILITY_TRIAGE)
+         || AI_IsAbilityOnSide(LEFT_FOE(battler), ABILITY_PRANKSTER))
+            return FIELD_EFFECT_POSITIVE;
+    }
+
+    if (grounded && HasDamagingMoveOfType(battler, TYPE_FIRE))
         return FIELD_EFFECT_POSITIVE;
 
     if (HasBattlerTerrainBoostMove(LEFT_FOE(battler), STATUS_FIELD_PSYCHIC_TERRAIN)

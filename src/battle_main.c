@@ -4864,8 +4864,6 @@ u32 GetBattlerTotalSpeedStat(enum BattlerId battler)
             speed += baseSpeed;
         if (SearchTraits(battlerTraits, ABILITY_SLUSH_RUSH)  && (gBattleWeather & B_WEATHER_ICY_ANY))
             speed += baseSpeed;
-        if (SearchTraits(battlerTraits, ABILITY_LAVA_SURFER) && gBattleWeather & B_WEATHER_SCORCHED_FIELD)
-            speed += baseSpeed;
     }
 
     // other abilities
@@ -4873,8 +4871,21 @@ u32 GetBattlerTotalSpeedStat(enum BattlerId battler)
         speed += baseSpeed / 2;
     if (SearchTraits(battlerTraits, ABILITY_SURGE_SURFER) && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
         speed += baseSpeed;
+    if (SearchTraits(battlerTraits, ABILITY_LAVA_SURFER) && gFieldStatuses & STATUS_FIELD_SCORCHED_FIELD)
+        speed += baseSpeed;
     if (SearchTraits(battlerTraits, ABILITY_MYSTIC_FORCE) && gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN)
         speed += baseSpeed;
+    if (SearchTraits(battlerTraits, ABILITY_HUNTER))
+    {
+        for (enum BattlerId i = 0; i < gBattlersCount; i++)
+        {
+            if (!IsBattlerAlly(battler, i) && IsBattlerAlive(i) && gBattleMons[i].status1 & STATUS1_PARALYSIS)
+            {
+                speed += baseSpeed / 2;
+                break;
+            }
+        }
+    }
     if (SearchTraits(battlerTraits, ABILITY_ADRENALINE) && gBattleMons[battler].hp <= (gBattleMons[battler].maxHP / 3))
         speed += (baseSpeed * 30) / 100;
     if (SearchTraits(battlerTraits, ABILITY_PROTOSYNTHESIS) && !(gBattleMons[battler].volatiles.transformed) && ((gBattleWeather & B_WEATHER_SUN && HasWeatherEffect()) || gBattleMons[battler].volatiles.boosterEnergyActivated))
@@ -5148,6 +5159,10 @@ s32 GetBattleMovePriority(enum BattlerId battler, enum Move move)
         priority++;
     if (SearchTraits(battlerTraits, ABILITY_STYGIAN) && IsMoveExpectedToTargetSleepingBattler(battler, move))
         priority++;
+    if (SearchTraits(battlerTraits, ABILITY_NINE_LIVES)
+     && gBattleMons[battler].hp > 0
+     && gBattleMons[battler].hp <= gBattleMons[battler].maxHP / 3)
+        priority += 2;
 
     return priority;
 }
@@ -6138,6 +6153,8 @@ enum Type GetDynamicMoveType(struct Pokemon *mon, enum Move move, enum BattlerId
     {
         if (moveEffect == EFFECT_STRUGGLE)
             return TYPE_MYSTERY;
+        if (move == MOVE_MOONBLAST && HasWeatherEffect() && (gBattleWeather & B_WEATHER_TWILIGHT))
+            return TYPE_DARK;
 
         species = gBattleMons[battler].species;
         type1 = gBattleMons[battler].types[0];
@@ -6299,6 +6316,8 @@ enum Type GetDynamicMoveType(struct Pokemon *mon, enum Move move, enum BattlerId
                     return TYPE_FAIRY;
                 else if (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN)
                     return TYPE_PSYCHIC;
+                else if (gFieldStatuses & STATUS_FIELD_SCORCHED_FIELD)
+                    return TYPE_FIRE;
                 else //failsafe
                     return moveType;
             }

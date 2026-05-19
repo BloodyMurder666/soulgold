@@ -9381,7 +9381,7 @@
       "width": 16,
       "height": 18,
       "primary_tileset": "gTileset_ArcadeBattle",
-      "secondary_tileset": "gTileset_BattlePike",
+      "secondary_tileset": "gTileset_ArcadeLobby",
       "border_filepath": "data/layouts/GoldenrodBattleArcadeBattleRoom/border.bin",
       "blockdata_filepath": "data/layouts/GoldenrodBattleArcadeBattleRoom/map.bin"
     },
@@ -9390,18 +9390,18 @@
       "name": "GoldenrodBattleArcadeHallway_Layout",
       "width": 15,
       "height": 7,
-      "primary_tileset": "gTileset_Building_Pike",
-      "secondary_tileset": "gTileset_BattlePike",
+      "primary_tileset": "gTileset_ArcadeBattle",
+      "secondary_tileset": "gTileset_ArcadeLobby",
       "border_filepath": "data/layouts/GoldenrodBattleArcadeHallway/border.bin",
       "blockdata_filepath": "data/layouts/GoldenrodBattleArcadeHallway/map.bin"
     },
     {
       "id": "LAYOUT_GOLDENROD_BATTLE_ARACDE_LOBBY",
       "name": "GoldenrodBattleAracdeLobby_Layout",
-      "width": 12,
-      "height": 13,
-      "primary_tileset": "gTileset_Building_Pike",
-      "secondary_tileset": "gTileset_BattlePike",
+      "width": 23,
+      "height": 20,
+      "primary_tileset": "gTileset_ArcadeBattle",
+      "secondary_tileset": "gTileset_ArcadeLobby",
       "border_filepath": "data/layouts/GoldenrodBattleAracdeLobby/border.bin",
       "blockdata_filepath": "data/layouts/GoldenrodBattleAracdeLobby/map.bin"
     }

@@ -6894,6 +6894,15 @@ BattleScript_PsychicSurgeActivates::
 	call BattleScript_ActivateTerrainEffects
 	return
 
+BattleScript_HeatstormActivates::
+	pause B_WAIT_TIME_SHORT
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_SCORCHEDFIELDSTARTED
+	waitmessage B_WAIT_TIME_LONG
+	playanimation BS_SCRIPTING, B_ANIM_RESTORE_BG
+	call BattleScript_ActivateTerrainEffects
+	return
+
 BattleScript_BadDreamsActivates::
 	setbyte gBattlerTarget, 0
 BattleScript_BadDreamsLoop:

@@ -2118,3 +2118,14 @@ const struct Tileset gTileset_ArcadeBattle =
     .metatileAttributes = gMetatileAttributes_ArcadeBattle,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_ArcadeLobby =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_ArcadeLobby,
+    .palettes = gTilesetPalettes_ArcadeLobby,
+    .metatiles = gMetatiles_ArcadeLobby,
+    .metatileAttributes = gMetatileAttributes_ArcadeLobby,
+    .callback = NULL,
+};

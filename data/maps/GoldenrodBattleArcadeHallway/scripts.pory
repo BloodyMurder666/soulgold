@@ -1,14 +1,21 @@
+const LOCAL_VAR_WALKED_HALLWAY = VAR_TEMP_0
+
 mapscripts GoldenrodBattleArcadeHallway_MapScripts {
-    	MAP_SCRIPT_ON_LOAD
-	{
-		setmetatile(8, 0, METATILE_BattleFrontier_CorridorOpenDoor_Top, FALSE)
-		setmetatile(8, 1, METATILE_BattleFrontier_CorridorOpenDoor_Bottom, FALSE)
-	}
+
 	MAP_SCRIPT_ON_FRAME_TABLE
 	[
 		LOCAL_VAR_WALKED_HALLWAY, FALSE: BattleArcade_Hallway_EventScript_EnterCorridor
 	]
 }
 
-const ATTENDANT = 1
-const LOCAL_VAR_WALKED_HALLWAY = VAR_TEMP_0
+script BattleArcade_Hallway_EventScript_EnterCorridor
+{
+	setvar(LOCAL_VAR_WALKED_HALLWAY, TRUE)
+	applymovement(LOCALID_HALLWAY_ATTENDANT,moves(walk_right * 5, walk_up, set_invisible))
+	applymovement(OBJ_EVENT_ID_PLAYER,moves(walk_right * 6, walk_up, set_invisible))
+	waitmovement(OBJ_EVENT_ID_PLAYER)
+	setvar(LOCAL_VAR_WALKED_HALLWAY, FALSE)
+	warp(MAP_GOLDENROD_BATTLE_ARCADE_BATTLE_ROOM, 7, 16)
+	waitstate
+	end
+}

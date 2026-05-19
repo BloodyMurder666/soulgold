@@ -3423,4 +3423,88 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Boosts attacks, costs HP."),
         .aiRating = 6,
     },
+
+    [ABILITY_HUNTER] =
+    {
+        .name = _("Hunter"),
+        .description = COMPOUND_STRING("Preys on paralysis."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_NINE_LIVES] =
+    {
+        .name = _("Nine Lives"),
+        .description = COMPOUND_STRING("Sturdy; fast when low."),
+        .aiRating = 7,
+    },
+
+    [ABILITY_DEBILITATE] =
+    {
+        .name = _("Debilitate"),
+        .description = COMPOUND_STRING("Drains foe PP faster."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_TITAN_GRIP] =
+    {
+        .name = _("Titan Grip"),
+        .description = COMPOUND_STRING("Turns recoil drops on foes."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_FLEXIBLE] =
+    {
+        .name = _("Prepared"),
+        .description = COMPOUND_STRING("Two-turn moves are instant."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_REBORN] =
+    {
+        .name = _("Reborn"),
+        .description = COMPOUND_STRING("Revives itself once."),
+        .aiRating = 8,
+    },
+
+    [ABILITY_REJUVENATION] =
+    {
+        .name = _("Rejuvenation"),
+        .description = COMPOUND_STRING("Heals if unhurt."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_TIDAL_DEITY] =
+    {
+        .name = _("Tidal Deity"),
+        .description = COMPOUND_STRING("Full HP pierces defenses."),
+        .aiRating = 8,
+    },
+
+    [ABILITY_ROCKSTORM] =
+    {
+        .name = _("Rockstorm"),
+        .description = COMPOUND_STRING("Rock moves hit in sand."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_STORMRIDER] =
+    {
+        .name = _("Stormrider"),
+        .description = COMPOUND_STRING("Lowers foes' Sp. Def."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_VOLCANO_HOWL] =
+    {
+        .name = _("Volcano Howl"),
+        .description = COMPOUND_STRING("Lowers foes' Defense."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_ARCTIC_AURA] =
+    {
+        .name = _("Arctic Aura"),
+        .description = COMPOUND_STRING("Lowers foes' Attack."),
+        .aiRating = 6,
+    },
 };
