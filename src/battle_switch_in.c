@@ -335,6 +335,10 @@ static bool32 TryHazardsOnSwitchIn(enum BattlerId battler, enum Hazards hazardTy
             clearedToxicSpikes = TRUE;
             effect = TRUE;
         }
+        else if (IS_BATTLER_OF_TYPE(battler, TYPE_STEEL))
+        {
+            effect = FALSE;
+        }
         else if (IsBattlerAffectedByHazards(battler, TRUE)
               && CanBePoisoned(battler, battler))
         {

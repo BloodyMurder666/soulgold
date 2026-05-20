@@ -36,13 +36,15 @@ static bool32 CanUseSuperEffectiveMoveAgainstOpponents(enum BattlerId battler);
 static bool32 FindMonWithFlagsAndSuperEffective(enum BattlerId battler, u16 flags, u32 moduloPercent);
 static u32 GetSwitchinHazardsDamage(enum BattlerId battler);
 static bool32 AI_CanSwitchinAbilityTrapOpponent(enum Ability ability, enum BattlerId opposingBattler, u32 species);
-static enum Ability UNUSED GetPartyMonAbilityForSwitchCalc(enum BattlerId battler, u32 monIndex, struct Pokemon *mon);
+static bool32 AI_CanPartyMonSwitchinTrapOpponent(enum BattlerId battler, u32 monIndex, struct Pokemon *mon, enum BattlerId opposingBattler);
+static bool32 AI_CanSwitchinBattlerTraceTrapOpponent(enum BattlerId battler, enum BattlerId opposingBattler);
+static enum Ability GetPartyMonAbilityForSwitchCalc(enum BattlerId battler, u32 monIndex, struct Pokemon *mon);
 static u32 GetBattlerTypeMatchup(enum BattlerId opposingBattler, enum BattlerId battler);
 static u32 GetSwitchinHitsToKO(s32 damageTaken, enum BattlerId battler, const struct IncomingHealInfo *healInfo, u32 originalHp);
 static void GetIncomingHealInfo(enum BattlerId battler, struct IncomingHealInfo *healInfo);
 static u32 GetWishHealAmountForBattler(enum BattlerId battler);
 
-static enum Ability UNUSED GetPartyMonAbilityForSwitchCalc(enum BattlerId battler, u32 monIndex, struct Pokemon *mon)
+static enum Ability GetPartyMonAbilityForSwitchCalc(enum BattlerId battler, u32 monIndex, struct Pokemon *mon)
 {
     enum Ability ability = GetMonAbility(mon);
 
@@ -57,6 +59,30 @@ static enum Ability UNUSED GetPartyMonAbilityForSwitchCalc(enum BattlerId battle
 #endif
 
     return ability;
+}
+
+static bool32 AI_CanPartyMonSwitchinTrapOpponent(enum BattlerId battler, u32 monIndex, struct Pokemon *mon, enum BattlerId opposingBattler)
+{
+    u32 species = GetMonData(mon, MON_DATA_SPECIES);
+    enum Ability ability = GetPartyMonAbilityForSwitchCalc(battler, monIndex, mon);
+
+    if (AI_CanSwitchinAbilityTrapOpponent(ability, opposingBattler, species))
+        return TRUE;
+
+#if TESTING
+    if (gTestRunnerEnabled)
+    {
+        enum BattleTrainer trainer = !IsPartnerMonFromSameTrainer(battler) ? battler : GetBattlerSide(battler);
+        for (u32 i = 0; i < MAX_MON_INNATES_INTERNAL; i++)
+        {
+            ability = TestRunner_Battle_GetForcedInnates(trainer, monIndex, i);
+            if (ability != ABILITY_NONE && AI_CanSwitchinAbilityTrapOpponent(ability, opposingBattler, species))
+                return TRUE;
+        }
+    }
+#endif
+
+    return FALSE;
 }
 
 static void InitializeSwitchinCandidate(enum BattlerId switchinBattler, u32 monIndex, struct Pokemon *mon)
@@ -424,8 +450,7 @@ static bool32 ShouldSwitchIfTruant(enum BattlerId battler)
     if (AI_BATTLER_HAS_TRAIT(battler, ABILITY_TRUANT)
         && IsTruantMonVulnerable(battler, gBattlerTarget)
         && gBattleMons[battler].volatiles.truantCounter
-        && gBattleMons[battler].hp >= gBattleMons[battler].maxHP / 2
-        && gAiLogicData->mostSuitableMonId[battler] != PARTY_SIZE)
+        && gBattleMons[battler].hp >= gBattleMons[battler].maxHP / 2)
     {
         if (RandomPercentage(RNG_AI_SWITCH_TRUANT, GetSwitchChance(SHOULD_SWITCH_TRUANT)))
             return SetSwitchinAndSwitch(battler, PARTY_SIZE);
@@ -724,7 +749,6 @@ static bool32 ShouldSwitchIfTrapperInParty(enum BattlerId battler)
     s32 lastId;
     struct Pokemon *party;
     enum Ability monAbility;
-    u32 species;
     s32 opposingBattler =  GetOppositeBattler(battler);
 
     // Only use this if AI_FLAG_SMART_SWITCHING is set for the trainer
@@ -744,9 +768,9 @@ static bool32 ShouldSwitchIfTrapperInParty(enum BattlerId battler)
         if (IsAceMon(battler, monIndex))
             continue;
 
-        monAbility = GetMonAbility(&party[monIndex]);
-        species = GetMonData(&party[monIndex], MON_DATA_SPECIES);
-        if (AI_CanSwitchinAbilityTrapOpponent(monAbility, opposingBattler, species) || (AI_CanSwitchinAbilityTrapOpponent(gAiLogicData->abilities[opposingBattler], opposingBattler, gBattleMons[opposingBattler].species) && monAbility == ABILITY_TRACE))
+        monAbility = GetPartyMonAbilityForSwitchCalc(battler, monIndex, &party[monIndex]);
+        if (AI_CanPartyMonSwitchinTrapOpponent(battler, monIndex, &party[monIndex], opposingBattler)
+         || (AI_CanSwitchinAbilityTrapOpponent(gAiLogicData->abilities[opposingBattler], opposingBattler, gBattleMons[opposingBattler].species) && monAbility == ABILITY_TRACE))
         {
             // If mon in slot i is the most suitable switchin candidate, then it's a trapper than wins 1v1
             if (monIndex == gAiLogicData->mostSuitableMonId[battler] && RandomPercentage(RNG_AI_SWITCH_TRAPPER, GetSwitchChance(SHOULD_SWITCH_TRAPPER)))
@@ -2039,6 +2063,12 @@ static bool32 AI_CanSwitchinAbilityTrapOpponent(enum Ability ability, enum Battl
         return FALSE;
 }
 
+static bool32 AI_CanSwitchinBattlerTraceTrapOpponent(enum BattlerId battler, enum BattlerId opposingBattler)
+{
+    return AI_CanSwitchinAbilityTrapOpponent(gAiLogicData->abilities[opposingBattler], opposingBattler, gBattleMons[opposingBattler].species)
+        && AI_BATTLER_HAS_TRAIT(battler, ABILITY_TRACE);
+}
+
 static inline bool32 IsFreeSwitch(enum SwitchType switchType, enum BattlerId battlerSwitchingOut, enum BattlerId opposingBattler)
 {
     bool32 movedSecond = GetBattlerTurnOrderNum(battlerSwitchingOut) > GetBattlerTurnOrderNum(opposingBattler) ? TRUE : FALSE;
@@ -2052,11 +2082,9 @@ static inline bool32 IsFreeSwitch(enum SwitchType switchType, enum BattlerId bat
             return TRUE;
         if (gAiLogicData->ejectPackSwitch)
         {
-            enum Ability opposingAbility = GetBattlerAbilityIgnoreMoldBreaker(opposingBattler);
-            u32 species = gBattleMons[opposingBattler].species;
             // If faster, not a free switch; likely lowered own stats
-            if (!movedSecond && (opposingAbility != ABILITY_INTIMIDATE && !SpeciesHasInnate(species, ABILITY_INTIMIDATE))
-             && opposingAbility != ABILITY_SUPERSWEET_SYRUP && !SpeciesHasInnate(species, ABILITY_SUPERSWEET_SYRUP)) // Intimidate triggers switches before turn starts
+            if (!movedSecond && !AI_BATTLER_HAS_TRAIT(opposingBattler, ABILITY_INTIMIDATE)
+             && !AI_BATTLER_HAS_TRAIT(opposingBattler, ABILITY_SUPERSWEET_SYRUP)) // Intimidate triggers switches before turn starts
                 return FALSE;
             // Otherwise, free switch
             return TRUE;
@@ -2279,8 +2307,8 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
                 }
 
                 // If mon can trap
-                if ((AI_CanSwitchinAbilityTrapOpponent(gAiLogicData->abilities[battler], opposingBattler, gBattleMons[battler].species)
-                    || (AI_CanSwitchinAbilityTrapOpponent(gAiLogicData->abilities[opposingBattler], opposingBattler, gBattleMons[opposingBattler].species) && gAiLogicData->abilities[battler] == ABILITY_TRACE))
+                if ((AI_CanPartyMonSwitchinTrapOpponent(battler, monIndex, &party[monIndex], opposingBattler)
+                    || AI_CanSwitchinBattlerTraceTrapOpponent(battler, opposingBattler))
                     && canSwitchinWin1v1)
                     trapperIds |= (1u << monIndex);
             }

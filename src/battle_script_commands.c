@@ -2276,7 +2276,7 @@ static enum BattlerId GetBattlerForConcurrentStatAnimMessage(enum BattlerId batt
 
     for (i = 0; i < gBattlersCount; i++)
     {
-        if (!IsBattlerMarkedForControllerExec(i))
+        if (!IsBattlerMarkedForControllerExec(i) && IsBattlerAlive(i))
         {
             RecordConcurrentStatAnimMessageForTest();
             return i;
@@ -2354,6 +2354,10 @@ void StealTargetItem(enum BattlerId battlerStealer, enum BattlerId itemBattler, 
 {
     gLastUsedItem = gBattleMons[itemBattler].items[slot];
     gBattleMons[itemBattler].items[slot] = ITEM_NONE;
+#if TESTING
+    if (slot == 0)
+        gBattleMons[itemBattler].item = ITEM_NONE;
+#endif
 
     if (GetConfig(B_STEAL_WILD_ITEMS) >= GEN_9
      && !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_PALACE))
@@ -2366,6 +2370,10 @@ void StealTargetItem(enum BattlerId battlerStealer, enum BattlerId itemBattler, 
     {
         RecordItemEffectBattle(battlerStealer, GetItemHoldEffect(gLastUsedItem));
         gBattleMons[battlerStealer].items[slot] = gLastUsedItem;
+#if TESTING
+        if (slot == 0)
+            gBattleMons[battlerStealer].item = gLastUsedItem;
+#endif
 
         gBattleMons[battlerStealer].volatiles.unburdenActive = FALSE;
         BtlController_EmitSetMonData(battlerStealer, B_COMM_TO_CONTROLLER, REQUEST_HELDITEM_BATTLE + slot, 0, sizeof(gLastUsedItem), &gLastUsedItem); // set attacker item
@@ -8033,6 +8041,13 @@ static u32 ChangeStatBuffs(enum BattlerId battler, s8 statValue, enum Stat statI
     if (statValue <= -1) // Stat decrease.
     {
         enum BattleMoveEffects effect = GetMoveEffect(gCurrentMove);
+        bool32 hasAbilityShield = BattlerHasHeldItemEffect(battler, HOLD_EFFECT_ABILITY_SHIELD, TRUE);
+        bool32 moldBreakerIgnoresStatLossAbility = battler != gBattlerAttacker
+                                                && !hasAbilityShield
+                                                && !SearchTraits(battlerTraits, ABILITY_FULL_METAL_BODY)
+                                                && (gBattleStruct->moldBreakerActive
+                                                 || HasMoldBreakerTypeAbility(gBattlerAttacker)
+                                                 || MoveIgnoresTargetAbility(gCurrentMove));
         if (gSideTimers[GetBattlerSide(battler)].mistTimer
             && !flags.certain && effect != EFFECT_CURSE
             && !(battler == gBattlerTarget && BattlerHasTrait(gBattlerAttacker, ABILITY_INFILTRATOR) && !IsBattlerAlly(gBattlerAttacker, battler)))
@@ -8053,8 +8068,9 @@ static u32 ChangeStatBuffs(enum BattlerId battler, s8 statValue, enum Stat statI
             }
             return STAT_CHANGE_DIDNT_WORK;
         }
-        else if ((BattlerHasHeldItemEffect(battler, HOLD_EFFECT_CLEAR_AMULET, TRUE) || CanBattlerPreventStatLoss(battler)
-               || (statId == STAT_ATK && SearchTraits(battlerTraits, ABILITY_PERMAFROST)))
+        else if ((BattlerHasHeldItemEffect(battler, HOLD_EFFECT_CLEAR_AMULET, TRUE)
+               || (!moldBreakerIgnoresStatLossAbility && (CanBattlerPreventStatLoss(battler)
+               || (statId == STAT_ATK && SearchTraits(battlerTraits, ABILITY_PERMAFROST)))))
               && (flags.statDropPrevention || gBattlerAttacker != gBattlerTarget || flags.mirrorArmored) && !flags.certain && effect != EFFECT_CURSE)
         {
             if (flags.allowPtr)
@@ -8119,6 +8135,7 @@ static u32 ChangeStatBuffs(enum BattlerId battler, s8 statValue, enum Stat statI
             return STAT_CHANGE_DIDNT_WORK;
         }
         else if (!flags.certain
+                && !moldBreakerIgnoresStatLossAbility
                 && (((SearchTraits(battlerTraits, ABILITY_KEEN_EYE) || SearchTraits(battlerTraits, ABILITY_MINDS_EYE)) && statId == STAT_ACC)
                 || (GetConfig(B_ILLUMINATE_EFFECT) >= GEN_9 && SearchTraits(battlerTraits, ABILITY_ILLUMINATE) && statId == STAT_ACC)
                 || (SearchTraits(battlerTraits, ABILITY_HYPER_CUTTER) && statId == STAT_ATK)
@@ -13876,6 +13893,12 @@ void BS_JumpIfAbilityCantBeReactivated(void)
     enum BattlerId battler = GetBattlerForBattleScript(cmd->battler);
     u32 ability = gBattleMons[battler].ability; //Specific to Main Ability negation (Multi)
 
+    if (!IsBattlerAlive(battler) || gBattleStruct->battlerState[battler].fainted)
+    {
+        gBattlescriptCurrInstr = cmd->jumpInstr;
+        return;
+    }
+
     if (BattlerHasHeldItemEffectIgnoreAbility(battler, HOLD_EFFECT_ABILITY_SHIELD, TRUE))
     {
         gBattlescriptCurrInstr = cmd->jumpInstr;
@@ -15618,6 +15641,8 @@ void BS_SaveBattlerItem(void)
 {
     NATIVE_ARGS();
     u8 itemslot = GetHeldItemSlot(gBattlerTarget, gLastUsedItem, TRUE);
+    if (itemslot == MAX_MON_ITEMS && gLastItemSlot < MAX_MON_ITEMS)
+        itemslot = gLastItemSlot;
     if (itemslot != MAX_MON_ITEMS)
         gBattleHistory->heldItem[gBattlerTarget][itemslot] = gBattleMons[gBattlerTarget].items[itemslot];
     gBattlescriptCurrInstr = cmd->nextInstr;
@@ -15627,6 +15652,8 @@ void BS_RestoreBattlerItem(void)
 {
     NATIVE_ARGS();
     u8 itemslot = GetHeldItemSlot(gBattlerTarget, gLastUsedItem, TRUE);
+    if (itemslot == MAX_MON_ITEMS && gLastItemSlot < MAX_MON_ITEMS)
+        itemslot = gLastItemSlot;
     if (itemslot != MAX_MON_ITEMS)
         gBattleMons[gBattlerTarget].items[itemslot] = gBattleHistory->heldItem[gBattlerTarget][itemslot];
     gBattlescriptCurrInstr = cmd->nextInstr;

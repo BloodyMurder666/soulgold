@@ -4369,7 +4369,7 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
             else if ((traitCheck = SearchTraits(battlerTraits, ABILITY_TRUANT)) && !gSpecialStatuses[battler].endTurnTraitDone[traitCheck - 1])
             {
                 gSpecialStatuses[battler].endTurnTraitDone[traitCheck - 1] = TRUE;
-                gBattleMons[gBattlerAttacker].volatiles.truantCounter ^= 1;
+                gBattleMons[battler].volatiles.truantCounter ^= 1;
                 break;
             }
             else if ((traitCheck = SearchTraits(battlerTraits, ABILITY_SLOW_START)) && !gSpecialStatuses[battler].endTurnTraitDone[traitCheck - 1]
@@ -4792,7 +4792,11 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
 
         if (SearchTraits(battlerTraits, ABILITY_EFFECT_SPORE))
         {
-            if (IsAffectedByPowderMove(gBattlerAttacker))
+            if (IsBattlerAlive(gBattlerAttacker)
+             && !gBattleStruct->unableToUseMove
+             && IsBattlerTurnDamaged(gBattlerTarget, EXCLUDING_SUBSTITUTES)
+             && !CanBattlerAvoidContactEffects(gBattlerAttacker, gBattlerTarget, move)
+             && IsAffectedByPowderMove(gBattlerAttacker))
             {
                 u32 poison, paralysis, sleep;
 
@@ -5438,8 +5442,7 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
                      && !BattlerHasHeldItem(battlerDef, ITEM_NONE, FALSE) // Skip battler early if no items to check (Multi)
                      && IsBattlerTurnDamaged(battlerDef, EXCLUDING_SUBSTITUTES)
                      && !GetBattlerPartyState(battlerDef)->isKnockedOff
-                     && !DoesSubstituteBlockMove(battler, battlerDef, move)
-                     && (!BattlerHasTrait(battlerDef, ABILITY_STICKY_HOLD) || !IsBattlerAlive(battlerDef)))
+                     && !DoesSubstituteBlockMove(battler, battlerDef, move))
                     {
                         if (IsBattlerAlly(battler, battlerDef))
                         {
@@ -5473,6 +5476,12 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
                     if (!(magicianTargets & 1u << targetBattler))
                         continue;
 
+                    if (BattlerHasTrait(targetBattler, ABILITY_STICKY_HOLD) && IsBattlerAlive(targetBattler))
+                    {
+                        effect = FALSE;
+                        break;
+                    }
+
                     index = 0;
                     for (j = 0; j < MAX_MON_ITEMS; j++)
                         targetableSlots[j] = MAX_MON_ITEMS; //clear targetableSlots for each battler
@@ -5498,6 +5507,7 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
                         PushTraitStack(battler, ABILITY_MAGICIAN);
                         BattleScriptCall(BattleScript_MagicianActivates);
                         effect = TRUE;
+                        break;
                     }
                 }
             }
@@ -9467,9 +9477,6 @@ s32 GetAdjustedDamage(struct BattleContext *ctx, s32 damage)
     if (gBattleMons[ctx->battlerDef].hp > damage)
         return damage;
 
-    if (GetMoveEffect(ctx->move) == EFFECT_FALSE_SWIPE)
-        return gBattleMons[ctx->battlerDef].hp - 1;
-
     bool32 enduredHit = FALSE;
     u32 rand = Random() % 100;
     u32 affectionScore = GetBattlerAffectionHearts(ctx->battlerDef);
@@ -9495,7 +9502,7 @@ s32 GetAdjustedDamage(struct BattleContext *ctx, s32 damage)
 
     STORE_BATTLER_ITEMS(ctx->battlerDef);
 
-    if (rand < bandParam)
+    if (!enduredHit && rand < bandParam)
     {
         gLastUsedItem = SearchItemSlots(battlerItems, HOLD_EFFECT_FOCUS_BAND);
         enduredHit = TRUE;
@@ -9503,7 +9510,8 @@ s32 GetAdjustedDamage(struct BattleContext *ctx, s32 damage)
         gLastUsedItem = GetBattlerHeldItemWithEffect(ctx->battlerDef, HOLD_EFFECT_FOCUS_BAND, TRUE);
         gBattleStruct->moveResultFlags[ctx->battlerDef] |= MOVE_RESULT_FOE_HUNG_ON;
     }
-    else if (BattlerHasTrait(ctx->battlerDef, ABILITY_REBORN)
+    else if (!enduredHit
+          && BattlerHasTrait(ctx->battlerDef, ABILITY_REBORN)
           && !(gBattleStruct->rebornUsed[GetBattlerSide(ctx->battlerDef)] & (1u << gBattlerPartyIndexes[ctx->battlerDef])))
     {
         enduredHit = TRUE;
@@ -9516,7 +9524,8 @@ s32 GetAdjustedDamage(struct BattleContext *ctx, s32 damage)
         damage = 0;
         return damage;
     }
-    else if (GetConfig(B_STURDY) >= GEN_5 && (BattlerHasTrait(ctx->battlerDef, ABILITY_STURDY) || BattlerHasTrait(ctx->battlerDef, ABILITY_STONE_FACE) || BattlerHasTrait(ctx->battlerDef, ABILITY_NINE_LIVES)) && IsBattlerAtMaxHp(ctx->battlerDef))
+    else if (!enduredHit
+          && GetConfig(B_STURDY) >= GEN_5 && (BattlerHasTrait(ctx->battlerDef, ABILITY_STURDY) || BattlerHasTrait(ctx->battlerDef, ABILITY_STONE_FACE) || BattlerHasTrait(ctx->battlerDef, ABILITY_NINE_LIVES)) && IsBattlerAtMaxHp(ctx->battlerDef))
     {
         enduredHit = TRUE;
         if (BattlerHasTrait(ctx->battlerDef, ABILITY_STONE_FACE))
@@ -9529,14 +9538,16 @@ s32 GetAdjustedDamage(struct BattleContext *ctx, s32 damage)
         RecordAbilityBattle(ctx->battlerDef, gLastUsedAbility);
         gBattleStruct->moveResultFlags[ctx->battlerDef] |= MOVE_RESULT_STURDIED;
     }
-    else if (!BattlerHasTrait(ctx->battlerAtk, ABILITY_OVERLOAD) && SearchItemSlots(battlerItems, HOLD_EFFECT_FOCUS_SASH) && IsBattlerAtMaxHp(ctx->battlerDef))
+    else if (!enduredHit
+          && !BattlerHasTrait(ctx->battlerAtk, ABILITY_OVERLOAD) && SearchItemSlots(battlerItems, HOLD_EFFECT_FOCUS_SASH) && IsBattlerAtMaxHp(ctx->battlerDef))
     {
         enduredHit = TRUE;
         RecordItemEffectBattle(ctx->battlerDef, HOLD_EFFECT_FOCUS_SASH);
         gLastUsedItem = GetBattlerHeldItemWithEffect(ctx->battlerDef, HOLD_EFFECT_FOCUS_SASH, TRUE);
         gBattleStruct->moveResultFlags[ctx->battlerDef] |= MOVE_RESULT_FOE_HUNG_ON;
     }
-    else if (B_AFFECTION_MECHANICS == TRUE && IsOnPlayerSide(ctx->battlerDef) && affectionScore >= AFFECTION_THREE_HEARTS)
+    else if (!enduredHit
+          && B_AFFECTION_MECHANICS == TRUE && IsOnPlayerSide(ctx->battlerDef) && affectionScore >= AFFECTION_THREE_HEARTS)
     {
         if ((affectionScore == AFFECTION_FIVE_HEARTS && rand < 20)
             || (affectionScore == AFFECTION_FOUR_HEARTS && rand < 15)
@@ -9553,6 +9564,10 @@ s32 GetAdjustedDamage(struct BattleContext *ctx, s32 damage)
         if (gLastUsedAbility == ABILITY_STONE_FACE)
             damage = gBattleMons[ctx->battlerDef].hp - max(1, GetNonDynamaxMaxHP(ctx->battlerDef) / 4);
         gProtectStructs[ctx->battlerDef].assuranceDoubled = TRUE;
+    }
+    else if (GetMoveEffect(ctx->move) == EFFECT_FALSE_SWIPE)
+    {
+        damage = gBattleMons[ctx->battlerDef].hp - 1;
     }
 
     return damage;
@@ -9712,6 +9727,7 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(struct BattleCont
     }
     else if (ctx->moveType == TYPE_GROUND && !IsBattlerGroundedInverseCheck(ctx->battlerDef, INVERSE_BATTLE, ctx->isAnticipation, SearchTraits(battlerTraits, ABILITY_LEVITATE), FALSE)
      && !MoveIgnoresTypeIfFlyingAndUngrounded(ctx->move)
+     && !BattlerHasHeldItemEffect(ctx->battlerDef, HOLD_EFFECT_RING_TARGET, TRUE)
      && !MoveIgnoresTargetAbility(ctx->move) && (BattlerHasHeldItemEffect(ctx->battlerDef, HOLD_EFFECT_ABILITY_SHIELD, TRUE) || !HasMoldBreakerTypeAbility(ctx->battlerAtk)))
     {
         if (BattlerHasTrait(ctx->battlerAtk, ABILITY_OVERLOAD) && BattlerHasHeldItemEffect(ctx->battlerDef, HOLD_EFFECT_AIR_BALLOON, TRUE))
@@ -11978,7 +11994,7 @@ u32 GetTotalAccuracy(enum BattlerId battlerAtk, enum BattlerId battlerDef, enum 
     // Attacker's ability
     if (SearchTraits(battlerTraits, ABILITY_COMPOUND_EYES))
         calc = (calc * 130) / 100; // 1.3 compound eyes boost
-    if (SearchTraits(battlerTraits, ABILITY_KEEN_EYE))
+    if (SearchTraits(battlerTraits, ABILITY_KEEN_EYE) && accStage >= DEFAULT_STAT_STAGE)
         calc = (calc * 130) / 100; // 1.3 keen eye boost
     if (SearchTraits(battlerTraits, ABILITY_VICTORY_STAR))
         calc = (calc * 110) / 100; // 1.1 victory star boost
@@ -12009,13 +12025,13 @@ u32 GetTotalAccuracy(enum BattlerId battlerAtk, enum BattlerId battlerDef, enum 
         calc = (calc * 110) / 100;
 
     // Attacker's hold effect
-    if(BattlerHasHeldItemEffect(battlerAtk, HOLD_EFFECT_WIDE_LENS, TRUE)
+    if (BattlerHasHeldItemEffect(battlerAtk, HOLD_EFFECT_WIDE_LENS, TRUE))
+        calc = (calc * (100 + GetBattlerItemHoldEffectParam(battlerAtk, GetBattlerHeldItemWithEffect(battlerAtk, HOLD_EFFECT_WIDE_LENS, TRUE)))) / 100;
+
+    if (BattlerHasHeldItemEffect(battlerAtk, HOLD_EFFECT_ZOOM_LENS, TRUE)
+     && gChosenActionByBattler[battlerDef] == B_ACTION_USE_MOVE
      && HasBattlerActedThisTurn(battlerDef))
         calc = (calc * (100 + GetBattlerItemHoldEffectParam(battlerAtk, GetBattlerHeldItemWithEffect(battlerAtk, HOLD_EFFECT_ZOOM_LENS, TRUE)))) / 100;
-
-    if(BattlerHasHeldItemEffect(battlerAtk, HOLD_EFFECT_ZOOM_LENS, TRUE)){
-        calc = (calc * (100 + GetBattlerItemHoldEffectParam(battlerAtk, GetBattlerHeldItemWithEffect(battlerAtk, HOLD_EFFECT_WIDE_LENS, TRUE)))) / 100;
-    }
 
     // Target's hold effect
     if(!SearchTraits(battlerTraits, ABILITY_OVERLOAD) && BattlerHasHeldItemEffect(battlerDef, HOLD_EFFECT_EVASION_UP, TRUE))
@@ -12531,6 +12547,7 @@ enum Ability GetBattlerTrait(enum BattlerId battlerId, u32 traitNum, bool32 igno
     bool32 hasAbilityShield = BattlerHasHeldItemEffectIgnoreAbility(battlerId, HOLD_EFFECT_ABILITY_SHIELD, TRUE);
 
     enum Ability ability = ABILITIES_COUNT;
+    bool32 forcedTestInnate = FALSE;
 
     #if TESTING
     if (gTestRunnerEnabled)
@@ -12540,14 +12557,16 @@ enum Ability GetBattlerTrait(enum BattlerId battlerId, u32 traitNum, bool32 igno
  
         if (T_SHOULD_TEST_DEFAULT_INNATES) // If TRUE, tests will use a pokemon's default Innates whenever one is not specified in the test.
         {
-           if (traitNum > 0 && TestRunner_Battle_GetForcedInnates(array, partyIndex, traitNum - 1) != ABILITY_NONE)
-                {
-            ability = TestRunner_Battle_GetForcedInnates(array, partyIndex, traitNum - 1);
-            } 
+            if (traitNum > 0 && TestRunner_Battle_GetForcedInnates(array, partyIndex, traitNum - 1) != ABILITY_NONE)
+            {
+                ability = TestRunner_Battle_GetForcedInnates(array, partyIndex, traitNum - 1);
+                forcedTestInnate = TRUE;
+            }
         }
         else if (traitNum > 0)
         {
             ability = TestRunner_Battle_GetForcedInnates(array, partyIndex, traitNum - 1);
+            forcedTestInnate = ability != ABILITY_NONE;
         }
     }
     #endif
@@ -12567,7 +12586,7 @@ enum Ability GetBattlerTrait(enum BattlerId battlerId, u32 traitNum, bool32 igno
         if (ability == ABILITIES_COUNT)
             ability = GetSpeciesInnate(gBattleMons[battlerId].species, traitNum);
 
-        if (!IsInnateUnlockedByLevel(traitNum, gBattleMons[battlerId].level))
+        if (!forcedTestInnate && !IsInnateUnlockedByLevel(traitNum, gBattleMons[battlerId].level))
             return ABILITY_NONE;
         
         //DebugPrintf("Trait %d: %S", traitNum, gAbilitiesInfo[ability].name);
@@ -12595,6 +12614,20 @@ u32 BattlerHasInnate(enum BattlerId battlerId, enum Ability ability)
     if (battlerId != gBattlerAttacker
      && CanBreakThroughAbility(gBattlerAttacker, battlerId, ability, FALSE, FALSE))
         return 0;
+
+#if TESTING
+    if (gTestRunnerEnabled)
+    {
+        u32 array = (!IsPartnerMonFromSameTrainer(battlerId)) ? battlerId : GetBattlerSide(battlerId);
+        u32 partyIndex = gBattlerPartyIndexes[battlerId];
+
+        for (u32 i = 0; i < MAX_MON_INNATES; i++)
+        {
+            if (TestRunner_Battle_GetForcedInnates(array, partyIndex, i) == ability)
+                return i + 2;
+        }
+    }
+#endif
 
     for (u32 i = 0; i < MAX_MON_INNATES; i++)
     {

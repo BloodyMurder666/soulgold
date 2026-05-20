@@ -1241,7 +1241,6 @@ AI_DOUBLE_BATTLE_TEST("AI sees corresponding absorbing abilities on partners (Tr
 
 AI_DOUBLE_BATTLE_TEST("AI treats an ally's redirection ability appropriately(gen 4) (Traits)")
 {
-    KNOWN_FAILING;
     ASSUME(GetMoveTarget(MOVE_DISCHARGE) == TARGET_FOES_AND_ALLY);
     ASSUME(GetMoveType(MOVE_DISCHARGE) == TYPE_ELECTRIC);
     ASSUME(GetMoveTarget(MOVE_SURF) == TARGET_FOES_AND_ALLY);

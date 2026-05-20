@@ -2399,7 +2399,6 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_MON_CHOICES: AI will not switch in a Pokemo
 
 AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_MON_CHOICES: Mid-battle switches prioritize defensive options (Traits)")
 {
-    KNOWN_FAILING; // AI checks don't account for forced test innates
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_MON_CHOICES | AI_FLAG_OMNISCIENT);
         PLAYER(SPECIES_SWELLOW) { Level(30); Moves(MOVE_WING_ATTACK, MOVE_BOOMBURST); Speed(5); SpAttack(50); }
@@ -2457,7 +2456,6 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_MON_CHOICES: Mid-battle switches prioritize
 
 AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_MON_CHOICES: Mid-battle switches prioritize defensive options after Eject Pack if mon outspeeds (Traits)")
 {
-    KNOWN_FAILING; // AI checks don't account for forced test innates
     GIVEN {
         ASSUME(gItemsInfo[ITEM_EJECT_PACK].holdEffect == HOLD_EFFECT_EJECT_PACK);
         ASSUME(MoveHasAdditionalEffectSelf(MOVE_OVERHEAT, MOVE_EFFECT_SP_ATK_MINUS_2) == TRUE);
@@ -2546,7 +2544,6 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will not switch out if Pokemo
 // Trapping behaviour
 AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch in trapping mon mid battle (Traits)")
 {
-    KNOWN_FAILING; // AI checks don't account for forced test innates
     u32 flags = 0;
     PARAMETRIZE { flags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT; }
     PARAMETRIZE { flags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING; }
@@ -2697,7 +2694,6 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if it has an 
 
 AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if player's mon is charging and it has an absorber (Traits)")
 {
-    KNOWN_FAILING; // AI checks don't account for forced test innates
     PASSES_RANDOMLY(SHOULD_SWITCH_ABSORBS_MOVE_PERCENTAGE, 100, RNG_AI_SWITCH_ABSORBING);
     GIVEN {
         ASSUME(GetMoveType(MOVE_SOLAR_BEAM) == TYPE_GRASS);
@@ -3107,7 +3103,6 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_MON_CHOICES: AI sees Echoed Voice damage co
 
 AI_SINGLE_BATTLE_TEST("AI_SMART_MON_CHOICES: AI sees its own weather setting ability when considering switchin candidates (Traits)")
 {
-    KNOWN_FAILING; // AI checks don't account for forced test innates
     enum Ability ability = ABILITY_NONE;
     PARAMETRIZE { ability = ABILITY_WATER_ABSORB; }
     PARAMETRIZE { ability = ABILITY_DRIZZLE; }

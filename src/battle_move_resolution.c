@@ -1623,6 +1623,8 @@ static enum CancelerResult CancelerCharging(struct BattleContext *ctx)
             gBattleScripting.animTurn = 1;
             gBattleScripting.animTargetsHit = 0;
             gProtectStructs[ctx->battlerAtk].chargingTurn = FALSE;
+            if (gBattleMoveEffects[GetMoveEffect(ctx->move)].semiInvulnerableEffect)
+                gBattleMons[ctx->battlerAtk].volatiles.semiInvulnerable = STATE_NONE;
             gLastUsedItem = GetBattlerHeldItemWithEffect(ctx->battlerAtk, HOLD_EFFECT_POWER_HERB, TRUE);
             BattleScriptCall(BattleScript_PowerHerbActivation);
             result = CANCELER_RESULT_BREAK;
@@ -2871,7 +2873,12 @@ static enum MoveEndResult MoveEndMultihitMove(void)
         if (gMultiHitCounter == 0)
         {
             if (MoveHasAdditionalEffect(gCurrentMove, MOVE_EFFECT_SCALE_SHOT) && !NoAliveMonsForEitherParty())
+            {
+                if (gCurrentTurnActionNumber < gBattlersCount)
+                    gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
+                gBattleScripting.statAnimPlayed = FALSE;
                 BattleScriptCall(BattleScript_ScaleShot);
+            }
             else
                 BattleScriptCall(BattleScript_MultiHitPrintStrings);
             result = MOVEEND_RESULT_RUN_SCRIPT;
@@ -3213,33 +3220,6 @@ static enum MoveEndResult MoveEndMoveBlock(void)
             result = MOVEEND_RESULT_RUN_SCRIPT;
         }
         break;
-    case EFFECT_RECOIL:
-        if (IsBattlerTurnDamaged(gBattlerTarget, INCLUDING_SUBSTITUTES) && IsBattlerAlive(gBattlerAttacker) && gBattleStruct->moveDamage[gBattlerTarget] > 0)
-        {
-            if (IsAbilityAndRecord(gBattlerAttacker, ABILITY_ROCK_HEAD)
-             || IsAbilityAndRecord(gBattlerAttacker, ABILITY_MAGIC_GUARD))
-                break;
-
-            SetPassiveDamageAmount(gBattlerAttacker, gBattleScripting.savedDmg * max(1, GetMoveRecoil(gCurrentMove)) / 100);
-            TryUpdateEvolutionTracker(IF_RECOIL_DAMAGE_GE, gBattleStruct->passiveHpUpdate[gBattlerAttacker], MOVE_NONE);
-            BattleScriptCall(BattleScript_MoveEffectRecoil);
-            result = MOVEEND_RESULT_RUN_SCRIPT;
-        }
-        break;
-    case EFFECT_CHLOROBLAST:
-        if (IsBattlerTurnDamaged(gBattlerTarget, INCLUDING_SUBSTITUTES) && IsBattlerAlive(gBattlerAttacker))
-        {
-            if (IsAbilityAndRecord(gBattlerAttacker, ABILITY_ROCK_HEAD)
-             || IsAbilityAndRecord(gBattlerAttacker, ABILITY_MAGIC_GUARD))
-                break;
-
-            s32 recoil = (GetNonDynamaxMaxHP(gBattlerAttacker) + 1) / 2; // Half of Max HP Rounded UP
-            SetPassiveDamageAmount(gBattlerAttacker, recoil);
-            TryUpdateEvolutionTracker(IF_RECOIL_DAMAGE_GE, gBattleStruct->passiveHpUpdate[gBattlerAttacker], MOVE_NONE);
-            BattleScriptCall(BattleScript_MoveEffectRecoil);
-            result = MOVEEND_RESULT_RUN_SCRIPT;
-        }
-        break;
     case EFFECT_RAPID_SPIN:
         if (IsBattlerTurnDamaged(gBattlerTarget, INCLUDING_SUBSTITUTES) && IsBattlerAlive(gBattlerAttacker))
         {
@@ -3559,6 +3539,7 @@ static enum MoveEndResult MoveEndEmergencyExit(void)
     for (enum BattlerId i = 0; i < gBattlersCount; i++)
     {
         if (!IsBattleMoveStatus(gCurrentMove)
+         && (!gBattleStruct->unableToUseMove || GetMoveEffect(gCurrentMove) == EFFECT_RECOIL_IF_MISS)
          && EmergencyExitCanBeTriggered(i))
         {
             emergencyExitBattlers |= 1u << i;

@@ -25,6 +25,8 @@ SINGLE_BATTLE_TEST("Dynamax: Dynamax increases HP and max HP by 1.5x", u16 hp)
     }
 }
 
+// Dynamax level is intentionally not stored to preserve BoxPokemon space.
+#if 0
 SINGLE_BATTLE_TEST("Dynamax: Dynamax Level increases HP and max HP multipliers by 0.05 for each level", u16 hp)
 {
     u32 dynamax, level;
@@ -67,6 +69,7 @@ SINGLE_BATTLE_TEST("Dynamax: Dynamax Level increases HP and max HP multipliers b
         EXPECT_MUL_EQ(results[0].hp, Q_4_12(2.0), results[11].hp);
     }
 }
+#endif
 
 SINGLE_BATTLE_TEST("Dynamax: Dynamax expires when fainted")
 {
@@ -121,6 +124,8 @@ SINGLE_BATTLE_TEST("Dynamax: Dynamax expires after three turns", u16 hp)
     }
 }
 
+// Dynamax level is intentionally not stored to preserve BoxPokemon space.
+#if 0
 SINGLE_BATTLE_TEST("Dynamax: Dynamax expires after three turns and correctly converts HP according to Dynamax Level")
 {
     u32 dynamaxLevel, dynamax;
@@ -163,6 +168,7 @@ SINGLE_BATTLE_TEST("Dynamax: Dynamax expires after three turns and correctly con
         EXPECT_GE(finalHP, 200 - capturedDamage);
     }
 }
+#endif
 
 // Visual test to make sure Zoroark appears as Wobbuffet/Zigzagoon until illusion breaks
 SINGLE_BATTLE_TEST("Dynamax: Illusion doesn't break upon Dynamaxing when illusioned")

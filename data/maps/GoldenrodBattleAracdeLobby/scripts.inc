@@ -95,6 +95,12 @@ GoldenrodArcade_Queue4::
 	return
 
 
+ArcadeLobby_GameMachine::
+# 78 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	msgbox ArcadeLobby_GameMachine_Text_0, MSGBOX_NPC
+	return
+
+
 GoldenrodArcadeLobby_Rocker_Text_0:
 # 26 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
 	.string "These machines have to be rigged!\n"
@@ -131,3 +137,9 @@ GoldenrodArcade_Queue4_Text_0:
 # 73 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
 	.string "Is this the Goldenrod Casino? I think\n"
 	.string "I'm a little lost...$"
+
+ArcadeLobby_GameMachine_Text_0:
+# 78 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	.string "Bright flashes and vivid pictures are\n"
+	.string "flashing across the screen. Better not\l"
+	.string "try...$"

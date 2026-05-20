@@ -49,27 +49,28 @@ SINGLE_BATTLE_TEST("Struggle can hit ghost types")
 
 SINGLE_BATTLE_TEST("Struggle does not receive normal-type STAB")
 {
-    // Compare with Cut, which does receive normal-type STAB
+    // Compare with Scratch, which receives Normal-type STAB.
     ASSUME(GetSpeciesType(SPECIES_ZANGOOSE, 0) == GetMoveType(MOVE_STRUGGLE));
-    ASSUME(GetMovePower(MOVE_CUT) == GetMovePower(MOVE_STRUGGLE));
-    ASSUME(GetMoveCategory(MOVE_CUT) == GetMoveCategory(MOVE_STRUGGLE));
-    ASSUME(GetMoveType(MOVE_CUT) == GetMoveType(MOVE_STRUGGLE));
+    ASSUME(GetMovePower(MOVE_SCRATCH) == 40);
+    ASSUME(GetMovePower(MOVE_STRUGGLE) == 50);
+    ASSUME(GetMoveCategory(MOVE_SCRATCH) == GetMoveCategory(MOVE_STRUGGLE));
+    ASSUME(GetMoveType(MOVE_SCRATCH) == GetMoveType(MOVE_STRUGGLE));
 
-    s16 cutDamage;
+    s16 scratchDamage;
     s16 struggleDamage;
 
     GIVEN {
         PLAYER(SPECIES_ZANGOOSE);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(player, MOVE_CUT); }
+        TURN { MOVE(player, MOVE_SCRATCH); }
         TURN { MOVE(player, MOVE_STRUGGLE); }
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_CUT, player);
-        HP_BAR(opponent, captureDamage: &cutDamage);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
+        HP_BAR(opponent, captureDamage: &scratchDamage);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STRUGGLE, player);
         HP_BAR(opponent, captureDamage: &struggleDamage);
     } THEN {
-        EXPECT_MUL_EQ(struggleDamage, Q_4_12(1.5), cutDamage);
+        EXPECT_MUL_EQ(struggleDamage, Q_4_12(1.2), scratchDamage);
     }
 }

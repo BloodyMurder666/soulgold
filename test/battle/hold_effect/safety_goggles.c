@@ -77,7 +77,6 @@ SINGLE_BATTLE_TEST("Safety Goggles blocks Effect Spore's effect")
 #if MAX_MON_TRAITS > 1
 SINGLE_BATTLE_TEST("Safety Goggles blocks Effect Spore's effect (Traits)")
 {
-    KNOWN_FAILING;
     PASSES_RANDOMLY(100, 100, RNG_EFFECT_SPORE);
     GIVEN {
         WITH_CONFIG(B_POWDER_GRASS, GEN_5); // Setting it to Gen 6 causes it to pass
@@ -149,7 +148,6 @@ SINGLE_BATTLE_TEST("Safety Goggles blocks damage from Sandstorm (Items)")
 
 SINGLE_BATTLE_TEST("Safety Goggles blocks Effect Spore's effect (Items)")
 {
-    KNOWN_FAILING;
     PASSES_RANDOMLY(100, 100, RNG_EFFECT_SPORE);
     GIVEN {
         WITH_CONFIG(B_POWDER_GRASS, GEN_5); // Setting it to Gen 6 causes it to pass
