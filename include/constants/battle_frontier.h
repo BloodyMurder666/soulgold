@@ -19,6 +19,7 @@
 #define FACILITY_UNION_ROOM        8
 #define FACILITY_MULTI_OR_EREADER  9  // Direct Corner multi battles, multi battle with Steven, and e-Reader battles
 #define FRONTIER_FACILITY_ARCADE 10 // battle_arcade
+#define NUM_FRONTIER_BRAIN_FACILITIES (FRONTIER_FACILITY_ARCADE + 1)
 
 
 // Battle Frontier battle modes.
@@ -50,6 +51,7 @@
 #define FACILITY_BATTLE_PIKE_DOUBLE     6
 #define FACILITY_BATTLE_PYRAMID         7
 #define FACILITY_BATTLE_TRAINER_HILL    8
+#define FACILITY_BATTLE_ARCADE          9
 
 #define MAX_BATTLE_FRONTIER_POINTS 9999
 #define MAX_STREAK 29999

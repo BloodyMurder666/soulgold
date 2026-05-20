@@ -61,7 +61,7 @@ struct FrontierBrainMon
 struct FrontierBrain
 {
     u16 trainerId;
-    u8 objEventGfx;
+    u16 objEventGfx;
     u8 isFemale;
     const u8 *lostTexts[2];
     const u8 *wonTexts[2];
@@ -109,7 +109,7 @@ static void Task_BannedSpeciesWindowInput(u8 taskId);
 
 // battledBit: Flags to change the conversation when the Frontier Brain is encountered for a battle
 // First bit is has battled them before and not won yet, second bit is has battled them and won (obtained a Symbol)
-const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
+const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_BRAIN_FACILITIES] =
 {
     [FRONTIER_FACILITY_TOWER] =
     {
@@ -259,9 +259,25 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
         .battledBit = {1 << 12, 1 << 13},
         .streakAppearances = {21, 70, 35, 0},
     },
+    [FRONTIER_FACILITY_ARCADE] =
+    {
+        .trainerId = TRAINER_ARCHER,
+        .objEventGfx = OBJ_EVENT_GFX_ARCHER,
+        .isFemale = FALSE,
+        .lostTexts = {
+            COMPOUND_STRING("So your gamble paid off."), // Silver
+            COMPOUND_STRING("If only Giovanni was here.") // Gold
+        },
+        .wonTexts = {
+            COMPOUND_STRING("You should have walked away."), // Silver
+            COMPOUND_STRING("Cover before the might of Team Rocket.")     // Gold
+        },
+        .battledBit = {1 << 14, 1 << 15},
+        .streakAppearances = {8, 16, 8, 0},
+    },
 };
 
-static const struct FrontierBrainMon sFrontierBrainsMons[][2][FRONTIER_PARTY_SIZE] =
+static const struct FrontierBrainMon sFrontierBrainsMons[NUM_FRONTIER_BRAIN_FACILITIES][2][FRONTIER_PARTY_SIZE] =
 {
     [FRONTIER_FACILITY_TOWER] =
     {
@@ -659,6 +675,64 @@ static const struct FrontierBrainMon sFrontierBrainsMons[][2][FRONTIER_PARTY_SIZ
                 .nature = NATURE_MILD,
                 .evs = {6, 0, 252, 252, 0, 0},
                 .moves = {MOVE_FIRE_BLAST, MOVE_HYPER_BEAM, MOVE_AERIAL_ACE, MOVE_SAFEGUARD},
+            },
+        },
+    },
+    [FRONTIER_FACILITY_ARCADE] =
+    {
+        // Silver Print
+        {
+            {
+                .species = SPECIES_HOUNDOOM,
+                .heldItem = { ITEM_HOUNDOOMINITE },
+                .fixedIV = 24,
+                .nature = NATURE_MODEST,
+                .evs = {6, 0, 252, 252, 0, 0},
+                .moves = {MOVE_FLAMETHROWER, MOVE_DARK_PULSE, MOVE_SHADOW_BALL, MOVE_PROTECT},
+            },
+            {
+                .species = SPECIES_CROBAT,
+                .heldItem = { ITEM_CHOICE_SPECS },
+                .fixedIV = 24,
+                .nature = NATURE_JOLLY,
+                .evs = {6, 252, 0, 252, 0, 0},
+                .moves = {MOVE_SLUDGE_BOMB, MOVE_AIR_SLASH, MOVE_CONFUSE_RAY, MOVE_TOXIC},
+            },
+            {
+                .species = SPECIES_TAUROS_PALDEA_BLAZE,
+                .heldItem = { ITEM_LEFTOVERS },
+                .fixedIV = 24,
+                .nature = NATURE_BOLD,
+                .evs = {252, 0, 0, 0, 6, 252},
+                .moves = {MOVE_RAGING_BULL, MOVE_EARTHQUAKE, MOVE_WILD_CHARGE, MOVE_ZEN_HEADBUTT},
+            },
+        },
+        // Gold Print
+        {
+            {
+                .species = SPECIES_NINETALES,
+                .heldItem = { ITEM_LIFE_ORB },
+                .fixedIV = 31,
+                .nature = NATURE_JOLLY,
+                .evs = {6, 252, 0, 252, 0, 0},
+                .moves = {MOVE_MOONBLAST, MOVE_FLAMETHROWER, MOVE_SUNNY_DAY, MOVE_EXTRASENSORY},
+            },
+            {
+                .species = SPECIES_HOUNDOOM,
+                .heldItem = { ITEM_HOUNDOOMINITE },
+                .fixedIV = 31,
+                .nature = NATURE_MODEST,
+                .evs = {6, 0, 252, 252, 0, 0},
+                .moves = {MOVE_FLAMETHROWER, MOVE_DARK_PULSE, MOVE_SHADOW_BALL, MOVE_PROTECT},
+            },
+
+            {
+                .species = SPECIES_MOLTRES,
+                .heldItem = { ITEM_CHOICE_SCARF },
+                .fixedIV = 31,
+                .nature = NATURE_MODEST,
+                .evs = {4, 0, 0, 252, 0, 252},
+                .moves = {MOVE_FIRE_BLAST, MOVE_HURRICANE, MOVE_SOLAR_BEAM, MOVE_SCORCHING_SANDS},
             },
         },
     },
@@ -2108,14 +2182,12 @@ static void GiveBattlePoints(void)
 static void GetFacilitySymbolCount(void)
 {
     s32 facility = VarGet(VAR_FRONTIER_FACILITY);
-    ConvertFacilityFromArcadeToPike(&facility); // battle_arcade
     gSpecialVar_Result = GetPlayerSymbolCountForFacility(facility);
 }
 
 static void GiveFacilitySymbol(void)
 {
     s32 facility = VarGet(VAR_FRONTIER_FACILITY);
-    ConvertFacilityFromArcadeToPike(&facility); // battle_arcade
     if (GetPlayerSymbolCountForFacility(facility) == 0)
         FlagSet(FLAG_SYS_TOWER_SILVER + facility * 2);
     else
@@ -2426,12 +2498,8 @@ static void ResetSketchedMoves(void)
 
 static void SetFacilityBrainObjectEvent(void)
 {
-// Start battle_arcade
     s32 facility = VarGet(VAR_FRONTIER_FACILITY);
-    ConvertFacilityFromArcadeToPike(&facility);
     SetFrontierBrainObjEventGfx(facility);
-    //SetFrontierBrainObjEventGfx(VarGet(VAR_FRONTIER_FACILITY));
-// End battle_arcade
 }
 
 // Battle Frontier Ranking Hall records.
@@ -2670,9 +2738,6 @@ enum TrainerPicID GetFrontierBrainTrainerPicIndex(void)
     else
         facility = VarGet(VAR_FRONTIER_FACILITY);
 
-    ConvertFacilityFromArcadeToPike(&facility);
-        
-
     return GetTrainerPicFromId(gFrontierBrainInfo[facility].trainerId);
 }
 
@@ -2684,8 +2749,6 @@ enum TrainerClassID GetFrontierBrainTrainerClass(void)
         facility = GetRecordedBattleFrontierFacility();
     else
         facility = VarGet(VAR_FRONTIER_FACILITY);
-
-    ConvertFacilityFromArcadeToPike(&facility);
 
     return GetTrainerClassFromId(gFrontierBrainInfo[facility].trainerId);
 }
@@ -2701,8 +2764,6 @@ void CopyFrontierBrainTrainerName(u8 *dst)
     else
         facility = VarGet(VAR_FRONTIER_FACILITY);
 
-    ConvertFacilityFromArcadeToPike(&facility);
-
     trainerName = GetTrainerNameFromId(gFrontierBrainInfo[facility].trainerId);
     for (i = 0; i < PLAYER_NAME_LENGTH; i++)
         dst[i] = trainerName[i];
@@ -2714,15 +2775,12 @@ bool8 IsFrontierBrainFemale(void)
 {
     s32 facility = VarGet(VAR_FRONTIER_FACILITY);
 
-    ConvertFacilityFromArcadeToPike(&facility);
-        
     return gFrontierBrainInfo[facility].isFemale;
 }
 
 void SetFrontierBrainObjEventGfx_2(void)
 {
     s32 facility = VarGet(VAR_FRONTIER_FACILITY);
-    ConvertFacilityFromArcadeToPike(&facility);
     VarSet(VAR_OBJ_GFX_ID_0, gFrontierBrainInfo[facility].objEventGfx);
 }
 
@@ -2737,8 +2795,6 @@ void CreateFrontierBrainPokemon(void)
     u8 friendship;
     s32 facility = VarGet(VAR_FRONTIER_FACILITY);
     s32 symbol = GetFronterBrainSymbol();
-
-    ConvertFacilityFromArcadeToPike(&facility); // battle_arcade
 
     if (facility == FRONTIER_FACILITY_DOME)
         selectedMonBits = GetDomeTrainerSelectedMons(TrainerIdToDomeTournamentId(TRAINER_FRONTIER_BRAIN));
@@ -2785,8 +2841,6 @@ u16 GetFrontierBrainMonSpecies(u8 monId)
     s32 facility = VarGet(VAR_FRONTIER_FACILITY);
     s32 symbol = GetFronterBrainSymbol();
 
-    ConvertFacilityFromArcadeToPike(&facility); // battle_arcade
-
     return sFrontierBrainsMons[facility][symbol][monId].species;
 }
 
@@ -2801,8 +2855,6 @@ u16 GetFrontierBrainMonMove(u8 monId, u8 moveSlotId)
     s32 facility = VarGet(VAR_FRONTIER_FACILITY);
     s32 symbol = GetFronterBrainSymbol();
 
-    ConvertFacilityFromArcadeToPike(&facility); // battle_arcade
-
     return sFrontierBrainsMons[facility][symbol][monId].moves[moveSlotId];
 }
 
@@ -2810,8 +2862,6 @@ u8 GetFrontierBrainMonNature(u8 monId)
 {
     s32 facility = VarGet(VAR_FRONTIER_FACILITY);
     s32 symbol = GetFronterBrainSymbol();
-
-    ConvertFacilityFromArcadeToPike(&facility); // battle_arcade
 
     return sFrontierBrainsMons[facility][symbol][monId].nature;
 }
@@ -2821,8 +2871,6 @@ u8 GetFrontierBrainMonEvs(u8 monId, u8 evStatId)
     s32 facility = VarGet(VAR_FRONTIER_FACILITY);
     s32 symbol = GetFronterBrainSymbol();
 
-    ConvertFacilityFromArcadeToPike(&facility); // battle_arcade
-
     return sFrontierBrainsMons[facility][symbol][monId].evs[evStatId];
 }
 
@@ -2831,12 +2879,8 @@ s32 GetFronterBrainSymbol(void)
     s32 facility = VarGet(VAR_FRONTIER_FACILITY);
     s32 symbol = GetPlayerSymbolCountForFacility(facility);
 
-    // Start battle_arcade
     if (facility == FRONTIER_FACILITY_ARCADE)
         return GetArcadePrintCount();
-
-    ConvertFacilityFromArcadeToPike(&facility);
-    // End battle_arcade
 
     if (symbol == 2)
     {
@@ -2868,8 +2912,6 @@ static void CopyFrontierBrainText(bool8 playerWonText)
         facility = VarGet(VAR_FRONTIER_FACILITY);
         symbol = GetFronterBrainSymbol();
     }
-
-    ConvertFacilityFromArcadeToPike(&facility); // battle_arcade
 
     switch (playerWonText)
     {

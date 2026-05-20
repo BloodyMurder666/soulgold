@@ -19,6 +19,11 @@ enum ArcadeFunctions
     ARCADE_FUNC_SET_BRAIN_OBJECT,
     ARCADE_FUNC_RECORDS,
     ARCADE_FUNC_TAKE_PLAYER_HELD_ITEM,
+    ARCADE_FUNC_BUFFER_PRIZE,
+    ARCADE_FUNC_AWARD_PRIZE,
+    ARCADE_FUNC_DOUBLE_DOWN,
+    ARCADE_FUNC_CLEAR_PRIZE,
+    ARCADE_FUNC_CHECK_DOUBLE_DOWN,
 };
 
 enum ArcadeData
@@ -86,8 +91,9 @@ enum ArcadeSymbol
     ARCADE_SYMBOL_GOLD
 };
 
-#define FLAG_ARCADE_SILVER_PRINT                FLAG_UNUSED_0x90E
-#define FLAG_ARCADE_GOLD_PRINT                  FLAG_UNUSED_0x90F
+#define FLAG_ARCADE_SILVER_PRINT                FLAG_ROCKET_ARCADE_SILVERPRINT
+#define FLAG_ARCADE_GOLD_PRINT                  FLAG_ROCKET_ARCADE_GOLDPRINT
+#define FLAG_ROCKET_ARCADE_DOUBLED_DOWN         FLAG_ROCKET_DOUBLEDOWN
 
 #define ARCADE_TILEMAP_BUFFER_SIZE              1024 * 2
 
@@ -177,9 +183,6 @@ enum ArcadeStreakBrackets
 };
 
 #define ARCADE_EVENT_LEVEL_INCREASE             3
-
-#define ARCADE_BP_SMALL                         1
-#define ARCADE_BP_BIG                           3
 
 #define ARCADE_SILVER_BATTLE_NUMBER             21
 #define ARCADE_GOLD_BATTLE_NUMBER               49

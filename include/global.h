@@ -552,6 +552,7 @@ struct BattleFrontier
     u16 arcadeWinStreaks[FRONTIER_MODE_COUNT][FRONTIER_LVL_MODE_COUNT];
     u16 arcadeRecordWinStreaks[FRONTIER_MODE_COUNT][FRONTIER_LVL_MODE_COUNT];
     struct CursorData gameCursor;
+    u32 rocketArcadePendingPrize;
 // End battle_arcade
 };
 

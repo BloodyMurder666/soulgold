@@ -937,6 +937,12 @@ static const struct MenuAction MultichoiceList_BattleArcadeRecords[] =
     {gText_Multi},
     {gText_Cancel2},
 };
+
+static const struct MenuAction MultichoiceList_RocketArcadeCashOut[] =
+{
+    {COMPOUND_STRING("Double Down")},
+    {COMPOUND_STRING("Cash Out")},
+};
 // End battle_arcade
 
 static const struct MenuAction MultichoiceList_Exit[] =
@@ -1086,6 +1092,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_VERMILION_HARBOR_RED]              = MULTICHOICE(MultichoiceList_VermilionHarborRed),
     [MULTI_CHALLENGE_TYPES_INFO]       = MULTICHOICE(MultichoiceList_ChallengeTypesInfo),
     [MULTI_BATTLE_ARCADE_RECORDS]       = MULTICHOICE(MultichoiceList_BattleArcadeRecords),
+    [MULTI_ROCKET_ARCADE_CASH_OUT]      = MULTICHOICE(MultichoiceList_RocketArcadeCashOut),
 };
 
 const u8 *const gStdStrings[] =

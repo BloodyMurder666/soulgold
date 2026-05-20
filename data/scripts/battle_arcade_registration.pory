@@ -26,12 +26,12 @@ script BattleArcade_Registration_EventScript_Attendant
 	special(SavePlayerParty)
 	if (var(VAR_ATTENDANT_TALKED) == FRONTIER_MODE_SINGLES)
 	{
-		msgbox(format("Welcome to the Battle Arcade! I am your guide to the Single and Double Battle challenges. Please be aware that these challenges are designed for a single Trainer."))
+		msgbox(format("Welcome to the Rocket Arcade! I am your guide to the Single and Double Battle challenges. Please be aware that these challenges are designed for a single Trainer."))
 		goto(BattleArcade_Registration_EventScript_AskEnterChallenge)
 	}
 	else
 	{
-		msgbox(format("Welcome to the Battle Arcade! I am your guide to the Multi Battle challenge. Please be aware that this challenge requires two Trainers."), MSGBOX_DEFAULT)
+		msgbox(format("Welcome to the Rocket Arcade! I am your guide to the Multi Battle challenge. Please be aware that this challenge requires two Trainers."), MSGBOX_DEFAULT)
 		goto(BattleArcade_Registration_EventScript_AskEnterMultiChallenge)
 	}
 }
@@ -57,7 +57,7 @@ script BattleArcade_Registration_EventScript_AskEnterChallenge
 
 script BattleArcade_Registration_EventScript_AskEnterMultiChallenge
 {
-	message(format("Would you like to take the Battle Arcade Multi Battle challenge?"))
+	message(format("Would you like to take the Rocket Arcade Multi Battle challenge?"))
 	waitmessage
 	multichoice(17,5,MULTI_CHALLENGEINFO, FALSE)
 	switch(var(VAR_RESULT))
@@ -77,19 +77,19 @@ script BattleArcade_Registration_EventScript_ExplainChallenge
 {
 	if (var(VAR_ATTENDANT_TALKED) == FRONTIER_MODE_SINGLES)
 	{
-		msgbox(format("At the Battle Arcade, you may take a Single or Double Battle challenge. Here, a game board is activated before every match. Depending on what comes up on the game board, an event takes place. Some events will be good for the challenger, while others won't be. The objective is to keep a winning streak alive as long as possible. During your challenge, any items held by your Pokémon will be kept in storage. If you manage to win seven matches in a row, you will earn Battle Points (BP). If you want to interrupt your challenge, please save the game. If you don't save, you will be disqualified from your challenge. Please be aware of that!"), MSGBOX_DEFAULT)
+		msgbox(format("At the Rocket Arcade, you may take a Single or Double Battle challenge. Here, a game board is activated before every match. Depending on what comes up on the game board, an event takes place. Some events will be good for the challenger, while others won't be. The objective is to keep a winning streak alive as long as possible. After each win, you may cash out your prize money or risk it all on the next round. If you want to interrupt your challenge, please save the game. If you don't save, you will be disqualified from your challenge. Please be aware of that!"), MSGBOX_DEFAULT)
 		goto(BattleArcade_Registration_EventScript_AskEnterChallenge)
 	}
 	else
 	{
-		msgbox(format("You may team up with a friend for a Multi Battle challenge. Here, a game board is activated before every match. Depending on what comes up on the game board, an event takes place. The events may have great impact on the match's outcome, good or bad. The objective is to keep a winning streak alive as long as possible. During your challenge, any items held by your Pokémon will be kept in storage. If you manage to win seven matches in a row, you will earn Battle Points (BP). Please note: a Battle Arcade Multi Battle challenge can't be interrupted."), MSGBOX_DEFAULT)
+		msgbox(format("You may team up with a friend for a Multi Battle challenge. Here, a game board is activated before every match. Depending on what comes up on the game board, an event takes place. The events may have great impact on the match's outcome, good or bad. The objective is to keep a winning streak alive as long as possible. During your challenge, any items held by your Pokémon will be kept in storage. Please note: a Rocket Arcade Multi Battle challenge can't be interrupted."), MSGBOX_DEFAULT)
 		goto(BattleArcade_Registration_EventScript_AskEnterMultiChallenge)
 	}
 }
 
 script BattleArcade_Registration_EventScript_TryEnterChallenge
 {
-	message(format("The BATTLE ARCADE offers two levels of challenge, Level 50 and Open Level. Which is your choice?"))
+	message(format("The ROCKET ARCADE offers two levels of challenge, Level 50 and Open Level. Which is your choice?"))
 	waitmessage
 	multichoice(17, 4, MULTI_LEVEL_MODE, FALSE)
 	switch(var(VAR_RESULT))

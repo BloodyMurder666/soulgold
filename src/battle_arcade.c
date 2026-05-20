@@ -4,7 +4,6 @@
 #include "battle_dome.h"
 #include "battle_main.h"
 #include "battle_partner.h"
-#include "battle_pike.h"
 #include "battle_records.h"
 #include "battle_setup.h"
 #include "battle_tower.h"
@@ -29,6 +28,7 @@
 #include "malloc.h"
 #include "menu.h"
 #include "menu_helpers.h"
+#include "money.h"
 #include "overworld.h"
 #include "palette.h"
 #include "party_menu.h"
@@ -97,9 +97,14 @@ static void SetArcadeBattleWon(void);
 static void IncrementCurrentStreak(void);
 static void SaveCurrentStreak(void);
 static void SaveArcadeChallenge(void);
-static void GiveArcadeChallengeBattlePoints(void);
-static u32 CalculateBattlePoints(u32);
-static void GiveBattlePoints(u32);
+static void BufferRocketArcadePrize(void);
+static void AwardRocketArcadePrize(void);
+static void DoubleDownRocketArcadePrize(void);
+static void ClearRocketArcadePrize(void);
+static void CheckRocketArcadeDoubleDown(void);
+static u32 GetRocketArcadePrize(void);
+static u32 GetRocketArcadePayoutIndex(void);
+static bool32 IsArcadeBrainBattle(void);
 static void BufferEarnedArcadePrint(void);
 static u32 GetEarnedArcadePrint(void);
 static bool32 ShouldGetGoldPrint(u32);
@@ -115,7 +120,6 @@ static void ResetLevelsToOriginal(void);
 static void ResetSketchedMoves(void);
 static void StartArcadeGameBoardFromOverworld(void);
 static void GenerateArcadeOpponent(void);
-void ConvertFacilityFromArcadeToPike(s32 *);
 u32 GetArcadePrintCount(void);
 static void SetArcadeBrainObjectEvent(void);
 static void BufferPrintFromCurrentStreak(void);
@@ -223,6 +227,8 @@ static bool32 BattleArcade_DoParalyze(u32);
 static bool32 BattleArcade_DoBurn(u32);
 static bool32 BattleArcade_DoSleep(u32);
 static bool32 BattleArcade_DoFreeze(u32);
+bool8 DoesTypePreventStatus(u16 species, u32 status);
+bool8 DoesAbilityPreventStatus(struct Pokemon *mon, u32 status);
 static bool32 BattleArcade_DoStatusAilment(u32, u32);
 static void InitalizePartyIndex(u32*);
 static bool32 IsStatusSleepOrFreeze(u32);
@@ -299,13 +305,18 @@ static void (* const sBattleArcadeFuncs[])(void) =
         [ARCADE_FUNC_PLAY_GAME_BOARD]        = StartArcadeGameBoardFromOverworld,
         [ARCADE_FUNC_BATTLE_CLEAN_UP]        = ArcadeBattleCleanup,
         [ARCADE_FUNC_SET_BATTLE_WON]         = SetArcadeBattleWon,
-        [ARCADE_FUNC_GIVE_BATTLE_POINTS]     = GiveArcadeChallengeBattlePoints,
+        [ARCADE_FUNC_GIVE_BATTLE_POINTS]     = AwardRocketArcadePrize,
         [ARCADE_FUNC_CHECK_SYMBOL]           = BufferEarnedArcadePrint,
         [ARCADE_FUNC_GET_PRINT_FROM_STREAK]  = BufferPrintFromCurrentStreak,
         [ARCADE_FUNC_CHECK_BRAIN_STATUS]     = GetArcadeBrainStatus,
         [ARCADE_FUNC_SET_BRAIN_OBJECT]       = SetArcadeBrainObjectEvent,
         [ARCADE_FUNC_RECORDS]                = ShowArcadeRecordsFromOverworld,
         [ARCADE_FUNC_TAKE_PLAYER_HELD_ITEM]  = TakePlayerHeldItems,
+        [ARCADE_FUNC_BUFFER_PRIZE]           = BufferRocketArcadePrize,
+        [ARCADE_FUNC_AWARD_PRIZE]            = AwardRocketArcadePrize,
+        [ARCADE_FUNC_DOUBLE_DOWN]            = DoubleDownRocketArcadePrize,
+        [ARCADE_FUNC_CLEAR_PRIZE]            = ClearRocketArcadePrize,
+        [ARCADE_FUNC_CHECK_DOUBLE_DOWN]      = CheckRocketArcadeDoubleDown,
     };
 
 static const u32 sStreakFlags[FRONTIER_MODE_COUNT][FRONTIER_LVL_MODE_COUNT] =
@@ -340,6 +351,11 @@ static const u8 sArcadeTurnPointTable[IMPACT_PERFORMANCE_TABLE_SIZE][2] =
         { 10, 0 },
     };
 
+static const u32 sRocketArcadePayouts[] =
+{
+    1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000
+};
+
 void CallBattleArcadeFunc(void)
 {
     sBattleArcadeFuncs[gSpecialVar_0x8004]();
@@ -360,6 +376,7 @@ static void InitArcadeChallenge(void)
     ResetCursorSpeed();
     ResetFrontierTrainerIds();
     GenerateItemsToBeGiven();
+    ClearRocketArcadePrize();
     FlagSet(FLAG_HIDE_BATTLE_TOWER_OPPONENT);
 
     if (!(FRONTIER_SAVEDATA.winStreakActiveFlags & sStreakFlags[battleMode][lvlMode]))
@@ -672,43 +689,63 @@ static void SaveArcadeChallenge(void)
     SaveGameFrontier();
 }
 
-static const u8 sArcadeBattlePointAwards[][FRONTIER_MODE_COUNT] =
-    {
-        {2,2,2,2},
-        {2,2,2,2},
-        {2,2,2,2},
-        {2,2,2,2},
-        {4,4,4,4},
-        {4,4,4,4},
-        {4,5,5,5},
-        {6,6,6,6},
-    };
-
-static void GiveArcadeChallengeBattlePoints(void)
+static void BufferRocketArcadePrize(void)
 {
-    u32 points = CalculateBattlePoints(((ARCADE_SAVEDATA_CURRENT_STREAK[VarGet(VAR_FRONTIER_BATTLE_MODE)][FRONTIER_SAVEDATA.lvlMode]) / FRONTIER_STAGES_PER_CHALLENGE));
-    GiveBattlePoints(points);
+    u32 prize = GetRocketArcadePrize();
+
+    ConvertIntToDecimalStringN(gStringVar1, prize, STR_CONV_MODE_LEFT_ALIGN, CountDigits(prize));
 }
 
-static u32 CalculateBattlePoints(u32 challengeNum)
+static void AwardRocketArcadePrize(void)
 {
-    u32 maxChallengeNum = ARRAY_COUNT(sArcadeBattlePointAwards);
-    if (challengeNum != 0)
-        challengeNum--;
+    u32 prize = GetRocketArcadePrize();
 
-    if (challengeNum >= maxChallengeNum)
-        challengeNum = (maxChallengeNum - 1);
-
-    return (TRAINER_BATTLE_PARAM.opponentA == TRAINER_FRONTIER_BRAIN) ? ARCADE_BRAIN_DEFEAT_POINTS : sArcadeBattlePointAwards[challengeNum][VarGet(VAR_FRONTIER_BATTLE_MODE)];
+    AddMoney(&gSaveBlock1Ptr->money, prize);
+    FRONTIER_SAVEDATA.rocketArcadePendingPrize = 0;
+    FlagClear(FLAG_ROCKET_ARCADE_DOUBLED_DOWN);
+    BufferRocketArcadePrize();
 }
 
-static void GiveBattlePoints(u32 points)
+static void DoubleDownRocketArcadePrize(void)
 {
-    IncrementDailyBattlePoints(points);
-    ConvertIntToDecimalStringN(gStringVar3, points, STR_CONV_MODE_LEFT_ALIGN,CountDigits(points));
+    FRONTIER_SAVEDATA.rocketArcadePendingPrize = GetRocketArcadePrize();
+    FlagSet(FLAG_ROCKET_ARCADE_DOUBLED_DOWN);
+    BufferRocketArcadePrize();
+}
 
-    FRONTIER_SAVEDATA.cardBattlePoints += ((points > USHRT_MAX) ? USHRT_MAX: points);
-    FRONTIER_SAVEDATA.battlePoints += ((points > MAX_BATTLE_FRONTIER_POINTS) ? MAX_BATTLE_FRONTIER_POINTS : points);
+static void ClearRocketArcadePrize(void)
+{
+    FRONTIER_SAVEDATA.rocketArcadePendingPrize = 0;
+    FlagClear(FLAG_ROCKET_ARCADE_DOUBLED_DOWN);
+}
+
+static void CheckRocketArcadeDoubleDown(void)
+{
+    gSpecialVar_Result = FlagGet(FLAG_ROCKET_ARCADE_DOUBLED_DOWN);
+}
+
+static u32 GetRocketArcadePrize(void)
+{
+    return sRocketArcadePayouts[GetRocketArcadePayoutIndex()];
+}
+
+static u32 GetRocketArcadePayoutIndex(void)
+{
+    u32 winStreak = FRONTIER_SAVEDATA.curChallengeBattleNum;
+
+    if (IsArcadeBrainBattle())
+        return ARRAY_COUNT(sRocketArcadePayouts) - 1;
+    if (winStreak == 0)
+        return 0;
+    if (winStreak > FRONTIER_STAGES_PER_CHALLENGE)
+        winStreak = FRONTIER_STAGES_PER_CHALLENGE;
+
+    return winStreak - 1;
+}
+
+static bool32 IsArcadeBrainBattle(void)
+{
+    return TRAINER_BATTLE_PARAM.opponentA == TRAINER_FRONTIER_BRAIN;
 }
 
 static void BufferEarnedArcadePrint(void)
@@ -761,7 +798,10 @@ static void GetArcadeBrainStatus(void)
         return;
     }
 
-    BufferPrintFromCurrentStreak();
+    if (FRONTIER_SAVEDATA.curChallengeBattleNum == FRONTIER_STAGES_PER_CHALLENGE)
+        BufferPrintFromCurrentStreak();
+    else
+        gSpecialVar_Result = FRONTIER_BRAIN_NOT_READY;
 }
 
 void ArcadeBattleCleanup(void)
@@ -776,7 +816,8 @@ void ArcadeBattleCleanup(void)
 
 static void ResetWeatherPostBattle(void)
 {
-    BattleArcade_DoWeather((gMapHeader.weather));
+    SetSavedWeather(gMapHeader.weather);
+    SetCurrentAndNextWeatherNoDelay(GetSavedWeather());
 }
 
 static void ReturnPartyToOwner(void)
@@ -861,12 +902,6 @@ static void GenerateArcadeOpponent(void)
     }
 }
 
-void ConvertFacilityFromArcadeToPike(s32 *facility)
-{
-    if (*facility == FRONTIER_FACILITY_ARCADE)
-        *facility = FRONTIER_FACILITY_PIKE;
-}
-
 u32 GetArcadePrintCount(void)
 {
     return (GetPrintFromCurrentStreak() - 1);
@@ -874,7 +909,7 @@ u32 GetArcadePrintCount(void)
 
 static void SetArcadeBrainObjectEvent(void)
 {
-    SetFrontierBrainObjEventGfx(FRONTIER_FACILITY_PIKE);
+    SetFrontierBrainObjEventGfx(FRONTIER_FACILITY_ARCADE);
 }
 
 static void BufferPrintFromCurrentStreak(void)
@@ -902,11 +937,11 @@ void ShowArcadeRecordsFromOverworld(void)
 
 void DoArcadeTrainerBattle(void)
 {
-    gBattleScripting.specialTrainerBattleType = FACILITY_BATTLE_PIKE_SINGLE;
+    gBattleScripting.specialTrainerBattleType = FACILITY_BATTLE_ARCADE;
     SetArcadeBattleFlags();
     CreateTask(Task_StartArcadeBattleAfterTransition, 1);
     PlayMapChosenOrBattleBGM(0);
-    BattleTransition_StartOnField(GetSpecialBattleTransition(B_TRANSITION_GROUP_B_PIKE));
+    BattleTransition_StartOnField(GetSpecialBattleTransition(B_TRANSITION_GROUP_B_TOWER));
 }
 
 static void HandleArcadeTrainerBattleEnd(void)
@@ -1978,6 +2013,7 @@ static bool32 IsEventBanned(u32 event)
 
 static bool32 IsEventValidDuringCurrentBattle(u32 event)
 {
+    u32 battleNum = FRONTIER_SAVEDATA.curChallengeBattleNum;
     static const u32 SpecialPanelTable[][FRONTIER_STAGES_PER_CHALLENGE] =
         {
             //Battle 1  2  3  4  5  6  7
@@ -1985,16 +2021,19 @@ static bool32 IsEventValidDuringCurrentBattle(u32 event)
             [ARCADE_EVENT_SPEED_UP]      = {1, 1, 1, 1, 1, 1, 0},
             [ARCADE_EVENT_SPEED_DOWN]    = {1, 1, 1, 1, 1, 1, 0},
             [ARCADE_EVENT_RANDOM]        = {1, 1, 1, 1, 1, 1, 0},
-            [ARCADE_EVENT_GIVE_BP_SMALL] = {1, 0, 1, 0, 1, 0, 0},
+            [ARCADE_EVENT_GIVE_BP_SMALL] = {0, 0, 0, 0, 0, 0, 0},
             [ARCADE_EVENT_NO_BATTLE]     = {0, 1, 0, 1, 0, 1, 0},
-            [ARCADE_EVENT_GIVE_BP_BIG]   = {0, 1, 0, 1, 0, 1, 0},
+            [ARCADE_EVENT_GIVE_BP_BIG]   = {0, 0, 0, 0, 0, 0, 0},
             [ARCADE_EVENT_NO_EVENT]      = {1, 1, 1, 1, 1, 1, 1},
         };
 
     if (event < ARCADE_EVENT_SPECIAL_START)
         return TRUE;
 
-    if (!SpecialPanelTable[event][FRONTIER_SAVEDATA.curChallengeBattleNum])
+    if (battleNum >= FRONTIER_STAGES_PER_CHALLENGE)
+        battleNum = FRONTIER_STAGES_PER_CHALLENGE - 1;
+
+    if (!SpecialPanelTable[event][battleNum])
         return FALSE;
 
     return TRUE;
@@ -2023,9 +2062,9 @@ static bool32 IsEventValidDuringCurrentStreak(u32 event)
             [ARCADE_EVENT_SPEED_UP]      = {1, 1, 1, 0, 0, 0, 1},
             [ARCADE_EVENT_SPEED_DOWN]    = {1, 1, 1, 1, 1, 1, 1},
             [ARCADE_EVENT_RANDOM]        = {0, 0, 0, 0, 1, 1, 1},
-            [ARCADE_EVENT_GIVE_BP_SMALL] = {0, 0, 0, 1, 1, 1, 1},
+            [ARCADE_EVENT_GIVE_BP_SMALL] = {0, 0, 0, 0, 0, 0, 0},
             [ARCADE_EVENT_NO_BATTLE]     = {0, 0, 0, 0, 1, 1, 1},
-            [ARCADE_EVENT_GIVE_BP_BIG]   = {0, 0, 0, 0, 0, 0, 1},
+            [ARCADE_EVENT_GIVE_BP_BIG]   = {0, 0, 0, 0, 0, 0, 0},
             [ARCADE_EVENT_NO_EVENT]      = {1, 1, 1, 1, 1, 1, 1},
         };
 
@@ -2374,13 +2413,11 @@ static void SetCursorRandomMode(void)
 
 static bool32 BattleArcade_DoGiveBPSmall(void)
 {
-    GiveBattlePoints(ARCADE_BP_SMALL);
     return TRUE;
 }
 
 static bool32 BattleArcade_DoGiveBPBig(void)
 {
-    GiveBattlePoints(ARCADE_BP_BIG);
     return TRUE;
 }
 
@@ -2681,7 +2718,7 @@ static const u8 *BattleArcade_GenerateRecordName(void)
 
 static void HandleHeader(u32 windowId, u32 fontID, u32 letterSpacing, u32 lineSpacing, u8 *color, u32 speed, u32 lvlMode)
 {
-    static const u8 sText_BattleArcade[] = _("BATTLE ARCADE");
+    static const u8 sText_BattleArcade[] = _("Rocket Arcade");
 
     AddTextPrinterParameterized4(windowId, fontID, 0,ARCADE_RECORD_HEADER_Y_POSITION, letterSpacing, lineSpacing, color, speed, sText_BattleArcade);
     AddTextPrinterParameterized4(windowId, fontID, 122, ARCADE_RECORD_HEADER_Y_POSITION, letterSpacing, lineSpacing, color, speed, BattleArcade_GenerateRecordName());

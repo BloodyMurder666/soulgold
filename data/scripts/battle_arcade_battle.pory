@@ -12,7 +12,7 @@ script BattleArcade_Challenge_EventScript_BeginChallenge
 {
 	setvar(VAR_ENTRANCE_STATUS, ENTRANCE_STATUS_BEGUN)
 	call(BattleArcade_BattleRoom_EventScript_MCFaceCrowd)
-	msgbox(format("Welcome to the Battle Arcade!"),MSGBOX_DEFAULT)
+	msgbox(format("Welcome to the Rocket Arcade!"),MSGBOX_DEFAULT)
 	msgbox(format("First, I’ll need to hold on to any items held by your Pokémon."),MSGBOX_DEFAULT)
 	arcade_takeplayerhelditems
 	goto(BattleArcade_Challenge_EventScript_BattleOpponent)
@@ -135,7 +135,7 @@ script BattleArcade_Challenge_AnnounceImpactGiveItem_Success
 			msgbox(format("For the next game, the game board’s motion will become random."),MSGBOX_DEFAULT)
 		case ARCADE_EVENT_GIVE_BP_SMALL:
 		case ARCADE_EVENT_GIVE_BP_BIG:
-			msgbox(format("{PLAYER} received {STR_VAR_3} BP!"),MSGBOX_GETPOINTS)
+			msgbox(format("The prize panel flashes, but the Rocket Arcade only pays out after a win!"),MSGBOX_DEFAULT)
 		case ARCADE_EVENT_NO_BATTLE:
 			msgbox(format("Oh! Lucky! You can skip the battle!"),MSGBOX_DEFAULT)
 		default:
@@ -236,6 +236,13 @@ script BattleArcade_Challenge_EventScript_HandleBattleResult
 	{
 		goto(BattleArcade_Challenge_EventScript_DefeatedOpponent)
 	}
+	arcade_checkdoubledown
+	if (var(VAR_RESULT) == TRUE)
+	{
+		msgbox(format("You lost it all! Better luck next time."), MSGBOX_DEFAULT)
+		arcade_clearprize
+	}
+	setvar(VAR_RESULT, B_OUTCOME_LOST)
 	goto(BattleArcade_Challenge_EventScript_SaveWarpToLobby)
 }
 
@@ -269,11 +276,11 @@ script BattleArcade_Challenge_EventScript_SaveWarpToLobby
 	copyvar(VAR_RESULT,VAR_FRONTIER_BATTLE_MODE)
 	if (var(VAR_RESULT) == FRONTIER_MODE_MULTIS)
 	{
-		warpsilent(MAP_GOLDENROD_BATTLE_ARACDE_LOBBY,6,6)
+		warpsilent(MAP_GOLDENROD_BATTLE_ARACDE_LOBBY,8,6)
 	}
 	else
 	{
-		warpsilent(MAP_GOLDENROD_BATTLE_ARACDE_LOBBY,5,6)
+		warpsilent(MAP_GOLDENROD_BATTLE_ARACDE_LOBBY,7,6)
 	}
 	waitstate
 	end
@@ -285,17 +292,50 @@ script BattleArcade_Challenge_EventScript_DefeatedOpponent
 	if(var(VAR_RESULT))
 	{
 		call(BattleArcade_Challenge_EventScript_BrainCongratsText)
+		arcade_setbattlewon
+		call(BattleArcade_BattleRoom_EventScript_MoveBattlersBack)
+		goto(BattleArcade_RoulettRoom_EventScript_ResolveBrainChallenge)
 	}
 
 	arcade_setbattlewon
 
 	call(BattleArcade_BattleRoom_EventScript_MoveBattlersBack)
-	if (var(VAR_RESULT) == FRONTIER_STAGES_PER_CHALLENGE)
+	if (var(VAR_RESULT) > FRONTIER_STAGES_PER_CHALLENGE)
 	{
 		goto(BattleArcade_RoulettRoom_EventScript_ResolveEndChallenge)
 	}
+	call(BattleArcade_Challenge_EventScript_CashOutOrDoubleDown)
 	call(BattleArcade_BattleRoom_EventScript_HandleHealAttendantMovement)
 	goto(BattleArcade_Challenge_EventScript_HealPlayer)
+}
+
+script BattleArcade_Challenge_EventScript_CashOutOrDoubleDown
+{
+	arcade_bufferprize
+	message(format("You won ¥{STR_VAR_1}!\nCash out or risk it all?"))
+	waitmessage
+	multichoice(20, 8, MULTI_ROCKET_ARCADE_CASH_OUT, TRUE)
+	switch(var(VAR_RESULT))
+	{
+		case 0: goto(BattleArcade_Challenge_EventScript_DoubleDown)
+		case 1: goto(BattleArcade_Challenge_EventScript_CashOut)
+		case MULTI_B_PRESSED: goto(BattleArcade_Challenge_EventScript_CashOutOrDoubleDown)
+	}
+}
+
+script BattleArcade_Challenge_EventScript_CashOut
+{
+	arcade_awardprize
+	msgbox(format("You cashed out ¥{STR_VAR_1}!"), MSGBOX_DEFAULT)
+	setvar(VAR_RESULT, B_OUTCOME_WON)
+	goto(BattleArcade_Challenge_EventScript_SaveWarpToLobby)
+}
+
+script BattleArcade_Challenge_EventScript_DoubleDown
+{
+	arcade_doubledown
+	msgbox(format("Double down accepted! The next round puts it all on the line."), MSGBOX_DEFAULT)
+	return
 }
 
 
@@ -306,16 +346,27 @@ script BattleArcade_RoulettRoom_EventScript_ResolveEndChallenge
 	{
 		call(BattleArcade_Challenge_EventScript_AskRecordBattle)
 	}
-call(BattleArcade_Challenge_EventScript_GiveBP)
+	call(BattleArcade_Challenge_EventScript_GivePrize)
 	msgbox(format("We will return any items we were holding for you."))
 	goto(BattleArcade_Challenge_EventScript_SaveWarpToLobby)
 }
 
-script BattleArcade_Challenge_EventScript_GiveBP
+script BattleArcade_RoulettRoom_EventScript_ResolveBrainChallenge
 {
-	arcade_givepoints
-	msgbox(format("You have cleared your seventh battle! Congratulations! You have earned BP as your prize!"))
-	msgbox(BattleFrontier_Text_ObtainedXBattlePoints, MSGBOX_GETPOINTS)
+	call(BattleFrontier_EventScript_GetCantRecordBattle)
+	if(var(VAR_RESULT) == FALSE)
+	{
+		call(BattleArcade_Challenge_EventScript_AskRecordBattle)
+	}
+	call(BattleArcade_Challenge_EventScript_GivePrize)
+	msgbox(format("We will return any items we were holding for you."))
+	goto(BattleArcade_Challenge_EventScript_SaveWarpToLobby)
+}
+
+script BattleArcade_Challenge_EventScript_GivePrize
+{
+	arcade_awardprize
+	msgbox(format("Congratulations! You earned ¥{STR_VAR_1} as your prize!"), MSGBOX_DEFAULT)
 }
 
 script BattleArcade_Challenge_EventScript_HealPlayer
@@ -452,7 +503,7 @@ script BattleArcade_Challenge_EventScript_BrainUpNext
 		goto(BattleArcade_Challenge_EventScript_AskReadyForBrain)
 	}
 
-	msgbox(format("Congratulations, Trainer! In recognition of your outstanding skill, our Frontier Brain is demanding a match with you. So, your next match is against the Arcade Star; no ifs or buts! Are you ready?"), MSGBOX_DEFAULT)
+	msgbox(format("Congratulations, Trainer! In recognition of your outstanding nerve, our Frontier Brain is demanding a match with you. So, your next match is against Archer, the Rocket Arcade Boss; no ifs or buts! Are you ready?"), MSGBOX_DEFAULT)
 	setvar(VAR_HEARD_BRAIN_INTRO,TRUE)
 
 	goto(BattleArcade_Challenge_EventScript_AskReadyForBrain)
@@ -504,15 +555,15 @@ script BattleArcade_Challenge_EventScript_BrainIntro
 		return
 	}
 
-	msgbox(format("Dahlia: No need to worry. {EMOJI_NOTE}\NLet chance do what it does. Like surprises from the game board, life goes through twists and turns. No need to worry. {EMOJI_NOTE}\NThings will go as they will. But, enough of that."),MSGBOX_DEFAULT)
+	msgbox(format("Archer: The Rocket Arcade rewards skill, not luck.\pYou have pressed your advantage well enough to stand before me once more. But this time I will show you the true might of Team Rocket."),MSGBOX_DEFAULT)
 	arcade_getprintfromstreak
 	if (var(VAR_RESULT) == ARCADE_SYMBOL_SILVER)
 	{
-		msgbox(format("I know one thing for certain. You have arrived here not merely because you were lucky. Let us not waste any time. I wish to test your skills myself!"), MSGBOX_DEFAULT)
+		msgbox(format("Show me whether your skill is true, or mere luck."), MSGBOX_DEFAULT)
 	}
 	else
 	{
-		msgbox(format("You are proving yourself incredible. Are you incredible because you are so lucky you shrug off bad luck entirely? Or, are you so incredibly talented to not be swayed by luck, good or bad? I wish to see for myself what brought you to me today!"),MSGBOX_DEFAULT)
+		msgbox(format("You have returned with the same arrogance as before. I will correct that."),MSGBOX_DEFAULT)
 	}
 }
 
@@ -521,11 +572,11 @@ script BattleArcade_Challenge_EventScript_BufferBrainPreBattleText
 	arcade_getprintfromstreak
 	if (var(VAR_RESULT) == ARCADE_SYMBOL_SILVER)
 	{
-		bufferstring(STR_VAR_3,format("Dahlia: Always be smiling! Luck comes to those who are happy! That's why I always keep a big smile and believe in my Pokémon when I battle."))
+		bufferstring(STR_VAR_3,format("Archer: A proper Rocket Operative never leaves victory to chance. Let us see if you can stand against it."))
 	}
 	else
 	{
-		bufferstring(STR_VAR_3,format("Dahlia: Whenever I battle someone tough, I smile. I cannot help it! How about you? What do you do? Do you laugh? Cry? Get angry?"))
+		bufferstring(STR_VAR_3,format("Archer: You have pushed deeper into my house than most. Now pay attention to how a Rocket closes a game."))
 	}
 }
 
@@ -534,11 +585,11 @@ script BattleArcade_Challenge_EventScript_BrainCongratsText
 	arcade_getprintfromstreak
 	if (var(VAR_RESULT) == ARCADE_SYMBOL_SILVER)
 	{
-		msgbox(format("Dahlia: How fabulous of you! Your love of Pokémon shone through, and, in turn, your Pokémon believed in you. That is why you handled everything thrown your way splendidly. A most wonderful victory it was!"),MSGBOX_DEFAULT)
+		msgbox(format("Archer: Hmph. You read the table correctly and struck when it mattered. Take your winnings."),MSGBOX_DEFAULT)
 	}
 	else
 	{
-		msgbox(format("Dahlia: Truly, it was so very fabulous of all of you! Bad luck, you cast aside, and good luck, you netted. That you did so is evidence of your abilities. By defeating me, Dahlia, you have proven your mastery brilliantly! I am sincerely happy for having this battle against you!"),MSGBOX_DEFAULT)
+		msgbox(format("Archer: You have taken even the house's best hand. Remember this feeling. It is expensive to chase."),MSGBOX_DEFAULT)
 	}
 	closemessage
 }

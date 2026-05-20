@@ -2,7 +2,6 @@
 #define GUARD_BATTLE_ARCADE_H
 
 void CallBattleArcadeFunc(void);
-void ConvertFacilityFromArcadeToPike(s32 *);
 u32 GetArcadePrintCount();
 
 struct GameResult
@@ -21,6 +20,4 @@ struct GameResult
 #define VAR_ARCADE_PERFORMANCE_POINTS           VAR_0x4111
 
 #define IMPACT_PERFORMANCE_TABLE_SIZE           5
-#define ARCADE_BRAIN_DEFEAT_POINTS              20
-
 #endif //GUARD_BATTLE_ARCADE_H

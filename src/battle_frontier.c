@@ -42,6 +42,7 @@ static void HandleFacilityTrainerBattleEnd(void)
     case FACILITY_BATTLE_PIKE_SINGLE:
     case FACILITY_BATTLE_PIKE_DOUBLE:
     case FACILITY_BATTLE_PYRAMID:
+    case FACILITY_BATTLE_ARCADE:
         if (gSaveBlock2Ptr->frontier.battlesCount < 0xFFFFFF)
         {
             gSaveBlock2Ptr->frontier.battlesCount++;

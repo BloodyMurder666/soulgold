@@ -1,4 +1,4 @@
-@ Initialize the Battle Arcade challenge
+@ Initialize the Rocket Arcade challenge
 .macro arcade_init
 	setvar VAR_0x8004, ARCADE_FUNC_INIT
 	special CallBattleArcadeFunc
@@ -60,9 +60,39 @@
 	special CallBattleArcadeFunc
 .endm
 
-@ Awards battle points depending on the number of wins and if that type has already been completed
+@ Awards the pending Rocket Arcade money prize
 .macro arcade_givepoints
 	setvar VAR_0x8004, ARCADE_FUNC_GIVE_BATTLE_POINTS
+	special CallBattleArcadeFunc
+.endm
+
+@ Buffers the current Rocket Arcade prize into STR_VAR_1
+.macro arcade_bufferprize
+	setvar VAR_0x8004, ARCADE_FUNC_BUFFER_PRIZE
+	special CallBattleArcadeFunc
+.endm
+
+@ Awards the current Rocket Arcade prize and clears double-down state
+.macro arcade_awardprize
+	setvar VAR_0x8004, ARCADE_FUNC_AWARD_PRIZE
+	special CallBattleArcadeFunc
+.endm
+
+@ Stores the current Rocket Arcade prize and marks the run as doubled down
+.macro arcade_doubledown
+	setvar VAR_0x8004, ARCADE_FUNC_DOUBLE_DOWN
+	special CallBattleArcadeFunc
+.endm
+
+@ Clears the pending Rocket Arcade prize and double-down state
+.macro arcade_clearprize
+	setvar VAR_0x8004, ARCADE_FUNC_CLEAR_PRIZE
+	special CallBattleArcadeFunc
+.endm
+
+@ Returns TRUE if Rocket Arcade is currently doubled down
+.macro arcade_checkdoubledown
+	setvar VAR_0x8004, ARCADE_FUNC_CHECK_DOUBLE_DOWN
 	special CallBattleArcadeFunc
 .endm
 
@@ -84,7 +114,7 @@
 	special CallBattleArcadeFunc
 .endm
 
-@ Passes Battle Pike to SetFacilityBrainObjectEvent
+@ Sets the Rocket Arcade brain object event
 .macro arcade_setbrainobj
 	setvar VAR_0x8004, ARCADE_FUNC_SET_BRAIN_OBJECT
 	special CallBattleArcadeFunc

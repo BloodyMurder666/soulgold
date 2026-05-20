@@ -631,7 +631,7 @@ BattleArcade_Registration_EventScript_ShowResults::
 
 BattleArcade_Registration_EventScript_Attendant_Text_0:
 # 29 "data/scripts/battle_arcade_registration.pory"
-	.string "Welcome to the Battle Arcade! I am your\n"
+	.string "Welcome to the Rocket Arcade! I am your\n"
 	.string "guide to the Single and Double Battle\l"
 	.string "challenges. Please be aware that these\l"
 	.string "challenges are designed for a single\l"
@@ -639,7 +639,7 @@ BattleArcade_Registration_EventScript_Attendant_Text_0:
 
 BattleArcade_Registration_EventScript_Attendant_Text_1:
 # 34 "data/scripts/battle_arcade_registration.pory"
-	.string "Welcome to the Battle Arcade! I am your\n"
+	.string "Welcome to the Rocket Arcade! I am your\n"
 	.string "guide to the Multi Battle challenge.\l"
 	.string "Please be aware that this challenge\l"
 	.string "requires two Trainers.$"
@@ -650,12 +650,12 @@ BattleArcade_Registration_EventScript_AskEnterChallenge_Text_0:
 
 BattleArcade_Registration_EventScript_AskEnterMultiChallenge_Text_0:
 # 60 "data/scripts/battle_arcade_registration.pory"
-	.string "Would you like to take the Battle\n"
+	.string "Would you like to take the Rocket\n"
 	.string "Arcade Multi Battle challenge?$"
 
 BattleArcade_Registration_EventScript_ExplainChallenge_Text_0:
 # 80 "data/scripts/battle_arcade_registration.pory"
-	.string "At the Battle Arcade, you may take a\n"
+	.string "At the Rocket Arcade, you may take a\n"
 	.string "Single or Double Battle challenge. Here,\l"
 	.string "a game board is activated before every\l"
 	.string "match. Depending on what comes up on\l"
@@ -663,11 +663,9 @@ BattleArcade_Registration_EventScript_ExplainChallenge_Text_0:
 	.string "Some events will be good for the\l"
 	.string "challenger, while others won't be. The\l"
 	.string "objective is to keep a winning streak\l"
-	.string "alive as long as possible. During your\l"
-	.string "challenge, any items held by your\l"
-	.string "Pokémon will be kept in storage. If you\l"
-	.string "manage to win seven matches in a row,\l"
-	.string "you will earn Battle Points (BP). If you\l"
+	.string "alive as long as possible. After each\l"
+	.string "win, you may cash out your prize money\l"
+	.string "or risk it all on the next round. If you\l"
 	.string "want to interrupt your challenge,\l"
 	.string "please save the game. If you don't save,\l"
 	.string "you will be disqualified from your\l"
@@ -685,15 +683,13 @@ BattleArcade_Registration_EventScript_ExplainChallenge_Text_1:
 	.string "to keep a winning streak alive as long\l"
 	.string "as possible. During your challenge, any\l"
 	.string "items held by your Pokémon will be kept\l"
-	.string "in storage. If you manage to win seven\l"
-	.string "matches in a row, you will earn Battle\l"
-	.string "Points (BP). Please note: a Battle\l"
+	.string "in storage. Please note: a Rocket\l"
 	.string "Arcade Multi Battle challenge can't be\l"
 	.string "interrupted.$"
 
 BattleArcade_Registration_EventScript_TryEnterChallenge_Text_0:
 # 92 "data/scripts/battle_arcade_registration.pory"
-	.string "The BATTLE ARCADE offers two levels of\n"
+	.string "The ROCKET ARCADE offers two levels of\n"
 	.string "challenge, Level 50 and Open Level.\l"
 	.string "Which is your choice?$"
 

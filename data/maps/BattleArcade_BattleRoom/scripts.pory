@@ -102,6 +102,8 @@ script BattleArcade_BattleRoom_EventScript_ApplyOverworldImpact
 				applymovement(MC,Common_Movement_FaceAwayPlayer)
 		case ARCADE_IMPACT_ALL:
 					return
+		case ARCADE_IMPACT_SPECIAL:
+					return
 	}
 	waitmovement(MC)
 	delay(16)
@@ -121,11 +123,11 @@ script BattleArcade_BattleRoom_EventScript_MoveMCToTrainer
 {
 	if (var(LOCAL_VAR_GAME_BOARD_IMPACT) == ARCADE_IMPACT_PLAYER)
 	{
-		applymovement(MC,moves(walk_down, walk_left * 3))
+		applymovement(MC,moves(walk_down*2, walk_left))
 	}
 	else
 	{
-		applymovement(MC,moves(walk_down, walk_right * 3))
+		applymovement(MC,moves(walk_down, walk_right * 2))
 	}
 	waitmovement(MC)
 }
@@ -134,11 +136,11 @@ script BattleArcade_BattleRoom_EventScript_MoveMCFromTrainer
 {
 	if (var(LOCAL_VAR_GAME_BOARD_IMPACT) == ARCADE_IMPACT_PLAYER)
 	{
-		applymovement(MC,moves(walk_right * 3,walk_up * 2,walk_in_place_fast_down))
+		applymovement(MC,moves(walk_right, walk_up * 2, walk_in_place_fast_down))
 	}
 	else
 	{
-		applymovement(MC,moves(walk_left * 3, walk_up * 2, walk_in_place_fast_down))
+		applymovement(MC,moves(walk_left, walk_up * 2, walk_in_place_fast_down))
 	}
 }
 
@@ -158,7 +160,7 @@ script BattleArcade_BattleRoom_EventScript_MoveBattlersBack
 	applymovement(PLAYER,moves(walk_left, walk_in_place_right))
 	applymovement(OPPONENT,moves(walk_right))
 	waitmovement(OPPONENT)
-	applymovement(OPPONENT,moves(walk_down * 2, walk_left * 4, walk_down * 3))
+	applymovement(OPPONENT,moves(walk_left * 2, walk_down * 5))
 	waitmovement(OPPONENT)
 	removeobject(OPPONENT)
 	special(RemoveCameraObject)
@@ -178,7 +180,7 @@ script BattleArcade_BattleRoom_EventScript_HandleHealAttendantMovement
 script BattleArcade_BattleRoom_EventScript_AttendantLeave
 {
 	call(BattleArcade_BattleRoom_EventScript_MovePlayerBattlefield)
-	applymovement(ATTENDANT,moves(walk_faster_right, walk_faster_down * 5))
+	applymovement(ATTENDANT,moves(walk_faster_right*2, walk_faster_down * 5))
 	waitmovement(ATTENDANT)
 	removeobject(ATTENDANT)
 }
@@ -207,24 +209,13 @@ script BattleArcade_BattleRoom_EventScript_BrainEntrance
 	applymovement(CAMERA,moves(walk_up * 4))
 
 	applymovement(OPPONENT,moves(walk_up * 2))
-	waitmovement(OPPONENT)
-
-	applymovement(OPPONENT,moves(walk_in_place_left,walk_in_place_down,walk_in_place_right,walk_in_place_up,walk_in_place_left,walk_in_place_down,walk_in_place_right,walk_in_place_up,walk_in_place_left,walk_in_place_down,walk_in_place_right))
-	waitmovement(OPPONENT)
-
-	applymovement(OPPONENT,moves(walk_right * 4))
+	moveobjecttocoords(OPPONENT, 10, 10, DIR_WEST)
 	waitmovement(OPPONENT)
 
 	applymovement(OPPONENT,moves(walk_in_place_up, walk_in_place_left, walk_in_place_down, walk_in_place_right, walk_in_place_up ))
 	waitmovement(OPPONENT)
 
 	applymovement(PLAYER,Common_Movement_FaceRight)
-
-	applymovement(OPPONENT,moves(walk_up * 3))
-	waitmovement(OPPONENT)
-
-	applymovement(OPPONENT,moves(walk_in_place_left, walk_in_place_down, walk_in_place_right, walk_in_place_up, walk_in_place_left))
-	waitmovement(OPPONENT)
 
 	waitmovement(OPPONENT)
 	waitmovement(PLAYER)
