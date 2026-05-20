@@ -2606,6 +2606,13 @@ void CreateAbilityPopUp(enum BattlerId battler, enum Ability ability, bool32 isD
             return;
     }
 
+    spriteIds = gBattleStruct->abilityPopUpSpriteIds[battler];
+    if (gBattleStruct->battlerState[battler].activeAbilityPopUps)
+    {
+        DestroySprite(&gSprites[spriteIds[0]]);
+        DestroySprite(&gSprites[spriteIds[1]]);
+    }
+
     if (!IsAnyAbilityPopUpActive())
         LoadSpritePalette(&sSpritePalette_AbilityPopUp);
 
@@ -2622,7 +2629,6 @@ void CreateAbilityPopUp(enum BattlerId battler, enum Ability ability, bool32 isD
 
     template = sSpriteTemplate_AbilityPopUp;
     template.tileTag = tileTag;
-    spriteIds = gBattleStruct->abilityPopUpSpriteIds[battler];
     spriteIds[0] = CreateSprite(&template, coords[battlerPosition][0] + xSlide,
                                            coords[battlerPosition][1], 0);
     spriteIds[1] = CreateSprite(&template, coords[battlerPosition][0] + xSlide + ABILITY_POP_UP_POS_X_DIFF,

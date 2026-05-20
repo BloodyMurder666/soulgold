@@ -86,8 +86,45 @@ SINGLE_BATTLE_TEST("Reborn prevents a KO once and restores full HP")
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SEISMIC_TOSS); }
+    } SCENE {
+        HP_BAR(player, damage: -50);
     } THEN {
         EXPECT_EQ(player->hp, 100);
+    }
+}
+
+SINGLE_BATTLE_TEST("Reborn prevents a KO from poison damage and restores full HP")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_REBORN); HP(10); MaxHP(80); Status1(STATUS1_POISON); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN {}
+    } SCENE {
+        HP_BAR(player, damage: -70);
+        ABILITY_POPUP(player, ABILITY_REBORN);
+    } THEN {
+        EXPECT_EQ(player->hp, 80);
+    }
+}
+
+SINGLE_BATTLE_TEST("Reborn can be followed by another innate popup for the same battler")
+{
+    PASSES_RANDOMLY(3, 10, RNG_FLAME_BODY);
+    GIVEN {
+        ASSUME(MoveMakesContact(MOVE_SCRATCH));
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_REBORN); Innates(ABILITY_FLAME_BODY); HP(1); MaxHP(100); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SCRATCH); }
+    } SCENE {
+        HP_BAR(opponent, damage: -99);
+        ABILITY_POPUP(opponent, ABILITY_REBORN);
+        ABILITY_POPUP(opponent, ABILITY_FLAME_BODY);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_BRN, player);
+    } THEN {
+        EXPECT_EQ(opponent->hp, 100);
+        EXPECT(player->status1 & STATUS1_BURN);
     }
 }
 

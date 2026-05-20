@@ -1676,6 +1676,41 @@ static void Cmd_waitanimation(void)
     }
 }
 
+static s32 GetMoveDamageHpBarUpdate(enum BattlerId battler)
+{
+    s32 storedHp;
+
+    if (gBattleStruct->moveDamage[battler] != 0
+     || !(gBattleStruct->moveResultFlags[battler] & MOVE_RESULT_STURDIED))
+        return gBattleStruct->moveDamage[battler];
+
+    // Reborn restores gBattleMons during damage calculation, before the party HP is synced.
+    storedHp = GetMonData(GetBattlerMon(battler), MON_DATA_HP);
+    if (gBattleMons[battler].hp > storedHp)
+        return -(gBattleMons[battler].hp - storedHp);
+
+    return 0;
+}
+
+static bool32 TryActivateRebornForPassiveDamage(enum BattlerId battler)
+{
+    u32 oldHp = gBattleMons[battler].hp;
+
+    if (gBattleStruct->passiveHpUpdate[battler] <= 0
+     || oldHp > gBattleStruct->passiveHpUpdate[battler]
+     || !BattlerHasTrait(battler, ABILITY_REBORN)
+     || (gBattleStruct->rebornUsed[GetBattlerSide(battler)] & (1u << gBattlerPartyIndexes[battler])))
+        return FALSE;
+
+    gBattleStruct->rebornUsed[GetBattlerSide(battler)] |= (1u << gBattlerPartyIndexes[battler]);
+    gLastUsedAbility = ABILITY_REBORN;
+    PushTraitStack(battler, gLastUsedAbility);
+    RecordAbilityBattle(battler, gLastUsedAbility);
+    gBattleMons[battler].hp = GetNonDynamaxMaxHP(battler);
+    gBattleStruct->passiveHpUpdate[battler] = -(gBattleMons[battler].hp - oldHp);
+    return TRUE;
+}
+
 static void DoublesHPBarReduction(void)
 {
     if (gBattleStruct->doneDoublesSpreadHit)
@@ -1683,15 +1718,18 @@ static void DoublesHPBarReduction(void)
 
     for (enum BattlerId battlerDef = 0; battlerDef < gBattlersCount; battlerDef++)
     {
+        s32 dmgUpdate = GetMoveDamageHpBarUpdate(battlerDef);
+
         if (IsBattlerUnaffectedByMove(battlerDef)
-         || gBattleStruct->moveDamage[battlerDef] == 0
+         || dmgUpdate == 0
          || DoesSubstituteBlockMove(gBattlerAttacker, battlerDef, gCurrentMove)
          || DoesDisguiseBlockMove(battlerDef, gCurrentMove)
          || DoesIceFaceBlockMove(battlerDef, gCurrentMove)
          || DoesAuraShieldBlockMove(battlerDef, gCurrentMove))
             continue;
 
-        s32 dmgUpdate = min(gBattleStruct->moveDamage[battlerDef], 10000);
+        if (dmgUpdate > 0)
+            dmgUpdate = min(dmgUpdate, 10000);
         BtlController_EmitHealthBarUpdate(battlerDef, B_COMM_TO_CONTROLLER, dmgUpdate);
         MarkBattlerForControllerExec(battlerDef);
         if (IsOnPlayerSide(battlerDef) && dmgUpdate > 0)
@@ -1712,9 +1750,20 @@ static void Cmd_healthbarupdate(void)
     switch (cmd->updateState)
     {
     case PASSIVE_HP_UPDATE:
+    {
+        bool32 rebornActivated = TryActivateRebornForPassiveDamage(battler);
+
         BtlController_EmitHealthBarUpdate(battler, B_COMM_TO_CONTROLLER, min(gBattleStruct->passiveHpUpdate[battler], 10000));
         MarkBattlerForControllerExec(battler);
+        if (rebornActivated)
+        {
+            gBattlerAbility = battler;
+            gBattlescriptCurrInstr = cmd->nextInstr;
+            BattleScriptCall(BattleScript_AbilityPopUp);
+            return;
+        }
         break;
+    }
     case MOVE_DAMAGE_HP_UPDATE:
         if (IsDoubleSpreadMove())
         {
@@ -1731,7 +1780,9 @@ static void Cmd_healthbarupdate(void)
               && !DoesIceFaceBlockMove(battler, gCurrentMove)
               && !DoesAuraShieldBlockMove(battler, gCurrentMove))
         {
-            s32 damage = min(gBattleStruct->moveDamage[battler], 10000);
+            s32 damage = GetMoveDamageHpBarUpdate(battler);
+            if (damage > 0)
+                damage = min(damage, 10000);
             BtlController_EmitHealthBarUpdate(battler, B_COMM_TO_CONTROLLER, damage);
             MarkBattlerForControllerExec(battler);
             if (IsOnPlayerSide(battler) && damage > 0)
