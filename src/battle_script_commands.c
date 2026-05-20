@@ -9773,6 +9773,15 @@ static void Cmd_recoverbasedonsunlight(void)
             else
                 recoverAmount = GetNonDynamaxMaxHP(gBattlerAttacker) / 2;
         }
+        else if (HasWeatherEffect()
+              && (gBattleWeather & B_WEATHER_TWILIGHT)
+              && !BattlerHasHeldItemEffect(gBattlerAttacker, HOLD_EFFECT_UTILITY_UMBRELLA, TRUE))
+        {
+            if (GetMoveEffect(gCurrentMove) == EFFECT_MOONLIGHT)
+                recoverAmount = 3 * GetNonDynamaxMaxHP(gBattlerAttacker) / 4;
+            else
+                recoverAmount = GetNonDynamaxMaxHP(gBattlerAttacker) / 4;
+        }
         else if (GetConfig(B_TIME_OF_DAY_HEALING_MOVES) != GEN_2)
         {
             if (!(gBattleWeather & B_WEATHER_ANY) || !HasWeatherEffect() || BattlerHasHeldItemEffect(gBattlerAttacker, HOLD_EFFECT_UTILITY_UMBRELLA, TRUE))

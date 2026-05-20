@@ -1289,7 +1289,11 @@ static bool32 HandleEndTurnThirdEventBlock(enum BattlerId battler)
          || SearchTraits(battlerTraits, ABILITY_HARVEST)
          || SearchTraits(battlerTraits, ABILITY_MOODY)
          || SearchTraits(battlerTraits, ABILITY_PICKUP)
-         || SearchTraits(battlerTraits, ABILITY_SPEED_BOOST))
+         || SearchTraits(battlerTraits, ABILITY_SPEED_BOOST)
+         || SearchTraits(battlerTraits, ABILITY_REJUVENATION)
+         || SearchTraits(battlerTraits, ABILITY_STORMRIDER)
+         || SearchTraits(battlerTraits, ABILITY_VOLCANO_HOWL)
+         || SearchTraits(battlerTraits, ABILITY_ARCTIC_AURA))
             if (AbilityBattleEffects(ABILITYEFFECT_ENDTURN, battler, MOVE_NONE, TRUE))
                 effect = TRUE;
 
@@ -1304,7 +1308,11 @@ static bool32 HandleEndTurnThirdEventBlock(enum BattlerId battler)
          || SearchTraits(battlerTraits, ABILITY_HARVEST)
          || SearchTraits(battlerTraits, ABILITY_MOODY)
          || SearchTraits(battlerTraits, ABILITY_PICKUP)
-         || SearchTraits(battlerTraits, ABILITY_SPEED_BOOST))
+         || SearchTraits(battlerTraits, ABILITY_SPEED_BOOST)
+         || SearchTraits(battlerTraits, ABILITY_REJUVENATION)
+         || SearchTraits(battlerTraits, ABILITY_STORMRIDER)
+         || SearchTraits(battlerTraits, ABILITY_VOLCANO_HOWL)
+         || SearchTraits(battlerTraits, ABILITY_ARCTIC_AURA))
             effect = TRUE; // Set effect again outside above loop
         break;
     }

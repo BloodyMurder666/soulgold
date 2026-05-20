@@ -8709,6 +8709,15 @@ BattleScript_LowerSideStatsEnd:
 	restoretarget
 	return
 
+BattleScript_EndTurnAbilityLowerStatFoe::
+	call BattleScript_AbilityPopUp
+	statbuffchange BS_TARGET, STAT_CHANGE_ALLOW_PTR, BattleScript_EndTurnAbilityLowerStatFoeEnd
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_CHANGE, BattleScript_EndTurnAbilityLowerStatFoeEnd
+	printfromtable gStatDownStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_EndTurnAbilityLowerStatFoeEnd:
+	end2
+
 BattleScript_EffectSetWeather::
 	playanimation 0, B_ANIM_MAX_SET_WEATHER
 	printfromtable gMoveWeatherChangeStringIds

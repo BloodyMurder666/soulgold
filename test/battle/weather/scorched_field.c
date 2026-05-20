@@ -8,19 +8,22 @@ SINGLE_BATTLE_TEST("Scorched Field boosts Fire and weakens Water except Scald", 
 
     PARAMETRIZE { move = MOVE_EMBER;     hasScorchedField = FALSE; }
     PARAMETRIZE { move = MOVE_EMBER;     hasScorchedField = TRUE; }
-    PARAMETRIZE { move = MOVE_WATER_GUN; hasScorchedField = FALSE; }
-    PARAMETRIZE { move = MOVE_WATER_GUN; hasScorchedField = TRUE; }
+    PARAMETRIZE { move = MOVE_SURF;      hasScorchedField = FALSE; }
+    PARAMETRIZE { move = MOVE_SURF;      hasScorchedField = TRUE; }
     PARAMETRIZE { move = MOVE_SCALD;     hasScorchedField = FALSE; }
     PARAMETRIZE { move = MOVE_SCALD;     hasScorchedField = TRUE; }
+    if (hasScorchedField)
+        SetStartingStatus(STARTING_STATUS_SCORCHED_FIELD);
     GIVEN {
-        if (hasScorchedField)
-            gFieldStatuses |= STATUS_FIELD_SCORCHED_FIELD;
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
         HP_BAR(opponent, captureDamage: &results[i].damage);
+    } THEN {
+        gFieldStatuses = 0;
+        ResetStartingStatuses();
     } FINALLY {
         EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.2), results[1].damage);
         EXPECT_MUL_EQ(results[2].damage, Q_4_12(0.8), results[3].damage);
@@ -30,8 +33,8 @@ SINGLE_BATTLE_TEST("Scorched Field boosts Fire and weakens Water except Scald", 
 
 SINGLE_BATTLE_TEST("Scorched Field is terrain and is replaced by other terrain")
 {
+    SetStartingStatus(STARTING_STATUS_SCORCHED_FIELD);
     GIVEN {
-        gFieldStatuses |= STATUS_FIELD_SCORCHED_FIELD;
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -44,8 +47,8 @@ SINGLE_BATTLE_TEST("Scorched Field is terrain and is replaced by other terrain")
 
 SINGLE_BATTLE_TEST("Scorched Field is cleared by terrain-clearing effects")
 {
+    SetStartingStatus(STARTING_STATUS_SCORCHED_FIELD);
     GIVEN {
-        gFieldStatuses |= STATUS_FIELD_SCORCHED_FIELD;
         PLAYER(SPECIES_TERAPAGOS_TERASTAL);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

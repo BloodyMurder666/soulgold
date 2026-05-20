@@ -3068,6 +3068,16 @@ bool32 TryFieldEffects(enum FieldEffectCases caseId)
             gStartingStatuses.psychicTerrainTemporary = gStartingStatuses.psychicTerrain = FALSE;
             isTerrain = TRUE;
         }
+        else if (gStartingStatuses.scorchedField || gStartingStatuses.scorchedFieldTemporary)
+        {
+            effect = SetStartingFieldStatus(
+                        STATUS_FIELD_SCORCHED_FIELD,
+                        B_MSG_TERRAIN_SET_SCORCHED,
+                        0,
+                        &gFieldTimers.terrainTimer, gStartingStatuses.scorchedField ? 0 : 5);
+            gStartingStatuses.scorchedFieldTemporary = gStartingStatuses.scorchedField = FALSE;
+            isTerrain = TRUE;
+        }
         else if (gStartingStatuses.trickRoom || gStartingStatuses.trickRoomTemporary)
         {
             effect = SetStartingFieldStatus(
@@ -4290,7 +4300,7 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
                 gBattlerTarget = BATTLE_OPPOSITE(battler);
                 SET_STATCHANGER(STAT_SPDEF, 1, TRUE);
                 PushTraitStack(battler, ABILITY_STORMRIDER);
-                BattleScriptExecute(BattleScript_EffectLowerStatFoes);
+                BattleScriptExecute(BattleScript_EndTurnAbilityLowerStatFoe);
                 effect++;
                 break;
             }
@@ -4303,7 +4313,7 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
                 gBattlerTarget = BATTLE_OPPOSITE(battler);
                 SET_STATCHANGER(STAT_DEF, 1, TRUE);
                 PushTraitStack(battler, ABILITY_VOLCANO_HOWL);
-                BattleScriptExecute(BattleScript_EffectLowerStatFoes);
+                BattleScriptExecute(BattleScript_EndTurnAbilityLowerStatFoe);
                 effect++;
                 break;
             }
@@ -4316,7 +4326,7 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
                 gBattlerTarget = BATTLE_OPPOSITE(battler);
                 SET_STATCHANGER(STAT_ATK, 1, TRUE);
                 PushTraitStack(battler, ABILITY_ARCTIC_AURA);
-                BattleScriptExecute(BattleScript_EffectLowerStatFoes);
+                BattleScriptExecute(BattleScript_EndTurnAbilityLowerStatFoe);
                 effect++;
                 break;
             }
@@ -7814,14 +7824,6 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct BattleContext *ctx)
         modifier = uq4_12_multiply(modifier, UQ_4_12(GetConfig(B_SPORT_DMG_REDUCTION) >= GEN_5 ? 0.33 : 0.5));
     if (IsFieldWaterSportAffected(ctx->moveType))
         modifier = uq4_12_multiply(modifier, UQ_4_12(GetConfig(B_SPORT_DMG_REDUCTION) >= GEN_5 ? 0.33 : 0.5));
-    if (IsBattlerTerrainAffected(battlerAtk, ctx->fieldStatuses, STATUS_FIELD_SCORCHED_FIELD)
-     || IsBattlerTerrainAffected(battlerDef, ctx->fieldStatuses, STATUS_FIELD_SCORCHED_FIELD))
-    {
-        if (moveType == TYPE_FIRE)
-            modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
-        else if (moveType == TYPE_WATER && move != MOVE_SCALD)
-            modifier = uq4_12_multiply(modifier, UQ_4_12(0.8));
-    }
     if (ctx->weather & B_WEATHER_TWILIGHT && HasWeatherEffect())
     {
         if (moveType == TYPE_DARK || moveType == TYPE_GHOST)
@@ -8673,6 +8675,22 @@ static uq4_12_t GetWeatherDamageModifier(struct BattleContext *ctx)
     return UQ_4_12(1.0);
 }
 
+static uq4_12_t GetFieldDamageModifier(struct BattleContext *ctx)
+{
+    enum Type moveType;
+
+    if (!(ctx->fieldStatuses & STATUS_FIELD_SCORCHED_FIELD))
+        return UQ_4_12(1.0);
+
+    moveType = ctx->moveType;
+    if (moveType == TYPE_FIRE || GetMoveType(ctx->move) == TYPE_FIRE)
+        return UQ_4_12(1.2);
+    if ((moveType == TYPE_WATER || GetMoveType(ctx->move) == TYPE_WATER) && ctx->move != MOVE_SCALD)
+        return UQ_4_12(0.8);
+
+    return UQ_4_12(1.0);
+}
+
 static inline uq4_12_t GetBurnOrFrostBiteModifier(struct BattleContext *ctx)
 {
     enum BattleMoveEffects moveEffect = GetMoveEffect(ctx->move);
@@ -9021,6 +9039,7 @@ static inline s32 DoMoveDamageCalcVars(struct BattleContext *ctx)
     DAMAGE_APPLY_MODIFIER(GetTargetDamageModifier(ctx));
     DAMAGE_APPLY_MODIFIER(GetParentalBondModifier(ctx->battlerAtk));
     DAMAGE_APPLY_MODIFIER(GetWeatherDamageModifier(ctx));
+    DAMAGE_APPLY_MODIFIER(GetFieldDamageModifier(ctx));
     DAMAGE_APPLY_MODIFIER(GetCriticalModifier(ctx->isCrit));
     DAMAGE_APPLY_MODIFIER(GetGlaiveRushModifier(ctx->battlerDef));
 
@@ -9067,6 +9086,8 @@ s32 DoFixedDamageMoveCalc(struct BattleContext *ctx)
     {
     case EFFECT_LEVEL_DAMAGE:
         dmg = gBattleMons[ctx->battlerAtk].level;
+        if (ctx->move == MOVE_NIGHT_SHADE && (ctx->weather & B_WEATHER_TWILIGHT) && HasWeatherEffect())
+            dmg *= 2;
         break;
     case EFFECT_PSYWAVE:
         if (B_PSYWAVE_DMG >= GEN_5)

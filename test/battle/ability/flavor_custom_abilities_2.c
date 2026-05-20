@@ -176,8 +176,8 @@ SINGLE_BATTLE_TEST("Coalwalker doubles Defense during Scorched Field", s16 damag
 
     PARAMETRIZE { ability = ABILITY_NONE; }
     PARAMETRIZE { ability = ABILITY_COALWALKER; }
+    SetStartingStatus(STARTING_STATUS_SCORCHED_FIELD);
     GIVEN {
-        gFieldStatuses |= STATUS_FIELD_SCORCHED_FIELD;
         PLAYER(SPECIES_WOBBUFFET) { Attack(200); }
         OPPONENT(SPECIES_CHARMANDER) { Ability(ability); }
     } WHEN {
@@ -191,8 +191,8 @@ SINGLE_BATTLE_TEST("Coalwalker doubles Defense during Scorched Field", s16 damag
 
 SINGLE_BATTLE_TEST("Lava Surfer doubles Speed during Scorched Field")
 {
+    SetStartingStatus(STARTING_STATUS_SCORCHED_FIELD);
     GIVEN {
-        gFieldStatuses |= STATUS_FIELD_SCORCHED_FIELD;
         PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LAVA_SURFER); Speed(2); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(3); }
     } WHEN {
@@ -209,8 +209,8 @@ SINGLE_BATTLE_TEST("Ash Assets boosts damage during Scorched Field", s16 damage)
 
     PARAMETRIZE { ability = ABILITY_NONE; }
     PARAMETRIZE { ability = ABILITY_ASH_ASSETS; }
+    SetStartingStatus(STARTING_STATUS_SCORCHED_FIELD);
     GIVEN {
-        gFieldStatuses |= STATUS_FIELD_SCORCHED_FIELD;
         PLAYER(SPECIES_WOBBUFFET) { Ability(ability); Attack(200); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -237,8 +237,8 @@ SINGLE_BATTLE_TEST("Ash Assets starts Scorched Field after a KO")
 
 SINGLE_BATTLE_TEST("Ash Assets does not restart Scorched Field after a KO if it is already active")
 {
+    SetStartingStatus(STARTING_STATUS_SCORCHED_FIELD);
     GIVEN {
-        gFieldStatuses |= STATUS_FIELD_SCORCHED_FIELD;
         PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_ASH_ASSETS); Attack(200); }
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
         OPPONENT(SPECIES_WYNAUT);

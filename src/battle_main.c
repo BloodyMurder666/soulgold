@@ -6153,8 +6153,6 @@ enum Type GetDynamicMoveType(struct Pokemon *mon, enum Move move, enum BattlerId
     {
         if (moveEffect == EFFECT_STRUGGLE)
             return TYPE_MYSTERY;
-        if (move == MOVE_MOONBLAST && HasWeatherEffect() && (gBattleWeather & B_WEATHER_TWILIGHT))
-            return TYPE_DARK;
 
         species = gBattleMons[battler].species;
         type1 = gBattleMons[battler].types[0];
