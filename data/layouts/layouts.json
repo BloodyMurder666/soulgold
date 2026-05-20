@@ -9398,7 +9398,7 @@
     {
       "id": "LAYOUT_GOLDENROD_BATTLE_ARACDE_LOBBY",
       "name": "GoldenrodBattleAracdeLobby_Layout",
-      "width": 23,
+      "width": 45,
       "height": 20,
       "primary_tileset": "gTileset_ArcadeBattle",
       "secondary_tileset": "gTileset_ArcadeLobby",

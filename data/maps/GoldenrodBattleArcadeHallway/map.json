@@ -3,7 +3,7 @@
   "name": "GoldenrodBattleArcadeHallway",
   "layout": "LAYOUT_GOLDENROD_BATTLE_ARCADE_HALLWAY",
   "music": "MUS_HG_B_ARCADE",
-  "region_map_section": "MAPSEC_GOLDENROD_CITY",
+  "region_map_section": "MAPSEC_ROCKET_ARCADE",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_INDOOR",

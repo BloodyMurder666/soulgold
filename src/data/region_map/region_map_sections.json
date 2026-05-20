@@ -1387,12 +1387,20 @@
       "height": 1
     },
     {
-      "id": "MAPSEC_SUS_REGION",
-      "name": "Sus Road"
+      "id": "MAPSEC_ROCKET_ARCADE",
+      "name": "Rocket Arcade",
+      "x": 8,
+      "y": 9,
+      "width": 1,
+      "height": 1
     },
     {
-      "id": "MAPSEC_SUS_REGION_TOWN",
-      "name": "Sus Town"
+      "id": "MAPSEC_ROUTE_49",
+      "name": "Route 49",
+      "x": 6,
+      "y": 1,
+      "width": 1,
+      "height": 2
     },
     {
       "id": "MAPSEC_RAILWAY_CAVE",

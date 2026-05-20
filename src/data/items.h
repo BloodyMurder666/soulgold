@@ -333,11 +333,10 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_MASTER_BALL] =
     {
         .name = ITEM_NAME("Master Ball"),
-        .price = 0,
+        .price = 999999,
         .description = COMPOUND_STRING(
             "The best Ball that\n"
-            "catches a Pokémon\n"
-            "without fail."),
+            "catches them all."),
         .pocket = POCKET_POKE_BALLS,
         .heldSlot = 0,
         .type = ITEM_USE_BAG_MENU,
