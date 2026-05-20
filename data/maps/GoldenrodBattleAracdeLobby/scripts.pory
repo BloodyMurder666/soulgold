@@ -73,3 +73,9 @@ script GoldenrodArcade_Queue4 {
 	msgbox("Is this the Goldenrod Casino? I think
 			I'm a little lost...", MSGBOX_NPC)
 }
+
+script ArcadeLobby_GameMachine {
+	msgbox("Bright flashes and vivid pictures are
+			flashing across the screen. Better not
+			try...", MSGBOX_NPC)
+}
