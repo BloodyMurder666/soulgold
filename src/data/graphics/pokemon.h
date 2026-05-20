@@ -1155,13 +1155,6 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u16 gMonIconPalette_PikachuAlola[] = INCBIN_U16("graphics/pokemon/pikachu/alola/icon_normal.gbapal");
     const u16 gMonShinyIconPalette_PikachuAlola[] = INCBIN_U16("graphics/pokemon/pikachu/alola/icon_shiny.gbapal");
 
-    const u32 gMonFrontPic_PikachuPartner[] = INCBIN_U32("graphics/pokemon/pikachu/partner/front.4bpp.smol");
-    const u16 gMonPalette_PikachuPartner[] = INCBIN_U16("graphics/pokemon/pikachu/partner/normal.gbapal");
-    const u32 gMonBackPic_PikachuPartner[] = INCBIN_U32("graphics/pokemon/pikachu/partner/back.4bpp.smol");
-    const u16 gMonShinyPalette_PikachuPartner[] = INCBIN_U16("graphics/pokemon/pikachu/partner/shiny.gbapal");
-    const u8 gMonIcon_PikachuPartner[] = INCBIN_U8("graphics/pokemon/pikachu/partner/icon.4bpp");
-    const u16 gMonIconPalette_PikachuPartner[] = INCBIN_U16("graphics/pokemon/pikachu/partner/icon_normal.gbapal");
-    const u16 gMonShinyIconPalette_PikachuPartner[] = INCBIN_U16("graphics/pokemon/pikachu/partner/icon_shiny.gbapal");
 
     const u32 gMonFrontPic_PikachuWorld[] = INCBIN_U32("graphics/pokemon/pikachu/world/front.4bpp.smol");
     const u16 gMonPalette_PikachuWorld[] = INCBIN_U16("graphics/pokemon/pikachu/world/normal.gbapal");
@@ -1182,6 +1175,14 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     // const u32 gObjectEventPic_PikachuWorld[] = INCBIN_COMP("graphics/pokemon/pikachu/world/overworld.4bpp");
 #endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_CAP_PIKACHU_FORMS
+
+    const u32 gMonFrontPic_PikachuPartner[] = INCBIN_U32("graphics/pokemon/pikachu/partner/front.4bpp.smol");
+    const u16 gMonPalette_PikachuPartner[] = INCBIN_U16("graphics/pokemon/pikachu/partner/normal.gbapal");
+    const u32 gMonBackPic_PikachuPartner[] = INCBIN_U32("graphics/pokemon/pikachu/partner/back.4bpp.smol");
+    const u16 gMonShinyPalette_PikachuPartner[] = INCBIN_U16("graphics/pokemon/pikachu/partner/shiny.gbapal");
+    const u8 gMonIcon_PikachuPartner[] = INCBIN_U8("graphics/pokemon/pikachu/partner/icon.4bpp");
+    const u16 gMonIconPalette_PikachuPartner[] = INCBIN_U16("graphics/pokemon/pikachu/partner/icon_normal.gbapal");
+    const u16 gMonShinyIconPalette_PikachuPartner[] = INCBIN_U16("graphics/pokemon/pikachu/partner/icon_shiny.gbapal");
 
 #if P_GIGANTAMAX_FORMS
     const u32 gMonFrontPic_PikachuGmax[] = INCBIN_U32("graphics/pokemon/pikachu/gmax/front.4bpp.smol");
@@ -6118,6 +6119,11 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_FAMILY_DITTO
+
+    const u32 gMonFrontPic_EeveeStarter[] = INCBIN_U32("graphics/pokemon/eevee/partner/front.4bpp.smol");
+    const u16 gMonPalette_EeveeStarter[] = INCBIN_U16("graphics/pokemon/eevee/partner/normal.gbapal");
+    const u32 gMonBackPic_EeveeStarter[] = INCBIN_U32("graphics/pokemon/eevee/partner/back.4bpp.smol");
+    const u16 gMonShinyPalette_EeveeStarter[] = INCBIN_U16("graphics/pokemon/eevee/partner/shiny.gbapal");
 
 #if P_FAMILY_EEVEE
 #if !P_GBA_STYLE_SPECIES_GFX

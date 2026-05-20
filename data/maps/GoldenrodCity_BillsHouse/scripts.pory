@@ -1,0 +1,136 @@
+raw `
+GoldenrodCity_BillsHouse_MapScripts::
+	.byte 0
+
+GoldenrodCity_BillsHouse_EventScript_Sister::
+	lock
+	faceplayer
+	msgbox BillHouse_Text_SisterStorageSystem, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+GoldenrodCity_BillsHouse_EventScript_Mom::
+	lock
+	faceplayer
+	goto_if_set FLAG_SYS_PC_BILL, GoldenrodCity_BillsHouse_EventScript_Mom2
+	msgbox BillHouse_Text_MomBeforeEcruteak, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+GoldenrodCity_BillsHouse_EventScript_Mom2::
+	msgbox BillHouse_Text_MomAfterEcruteak, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+BillHouse_Text_EeveeMayEvolve:
+    .string "Bill: Prof.Elm claims Eevee may\n"
+    .string "evolve in new and unknown ways.$"
+
+BillHouse_Text_PartyFull:
+    .string "Whoa, wait. You can't carry any\n"
+    .string "more Pokémon.$"
+
+BillHouse_Text_NoEevee:
+    .string "Oh… Now what to do?$"
+
+BillHouse_Text_PopWontWork:
+    .string "Bill: My pop, he won't work. All he\n"
+    .string "does is goof off all day long.\p"
+    .string "He's getting to be a real headache…$"
+
+BillHouse_Text_MomBeforeEcruteak:
+    .string "Oh, you collect Pokémon? My son\n"
+    .string "Bill is an expert.\p"
+    .string "He just got called to the Pokémon\n"
+    .string "Center in Ecruteak City.\p"
+    .string "My husband went off to the Game\n"
+    .string "Corner without being called…$"
+
+BillHouse_Text_MomAfterEcruteak:
+    .string "My husband was once known as a\n"
+    .string "POKéMANIAC.\p"
+    .string "Bill must have taken after his\n"
+    .string "father.$"
+
+BillHouse_Text_SisterUsefulNumber:
+    .string "Are you a trainer?\p"
+    .string "I've got a useful phone number\n"
+    .string "for you.$"
+
+BillHouse_Text_RecordedBillsNumber:
+    .string "{PLAYER} recorded Bill's number.$"
+
+BillHouse_Text_SisterRefusedNumber:
+    .string "My brother made the PC Pokémon\n"
+    .string "storage system.\p"
+    .string "I was going to give you Bill's\n"
+    .string "number…$"
+
+BillHouse_Text_SisterPhoneFull:
+    .string "You can't record any more numbers.$"
+
+BillHouse_Text_SisterStorageSystem:
+    .string "My big brother Bill made the PC\n"
+    .string "Pokémon storage system.$"
+`
+
+script GoldenrodCity_Bill_GiveEeveeOrPikachu {
+    lock
+    faceplayer
+    if (flag(FLAG_GOT_BILL_GIFTMON) == FALSE) {
+        msgbox("Bill: Hi, {PLAYER}! Do us a favor and
+                take one of these two Pokémon. 
+                
+                Both of them came over when I 
+                was adjusting the Time Capsule.
+                
+                I don't have time to take care 
+                of both of them even with help of
+                my family. 
+                
+                I think both of them have some special
+                characteristics, so can I count on you
+                to take either one, {PLAYER}?")
+       dynmultichoice(0,0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Eevee", "Pikachu", "No thanks") 
+       switch(var(VAR_RESULT)) {
+            case 0:
+                setvar(VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_EEVEE_STARTER)
+	            bufferspeciesname(STR_VAR_1, SPECIES_EEVEE_STARTER)
+            	givemon(SPECIES_EEVEE_STARTER, 25)
+                //removeobject(LOCALID_BILL_EEVEE)
+                setflag(FLAG_GOT_BILL_GIFTMON)
+	            call(Common_EventScript_GiftMon)
+                bufferspeciesname(STR_VAR_1, SPECIES_EEVEE_STARTER)
+                msgbox("Bill: I knew you'd come through!
+                        Way to go! I'm counting on you
+                        to take good care of it!")
+                release
+                end
+            case 1:
+                setvar(VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_PIKACHU_STARTER)
+	            bufferspeciesname(STR_VAR_1, SPECIES_PIKACHU_STARTER)
+            	givemon(SPECIES_PIKACHU_STARTER, 25)
+                //removeobject(LOCALID_BILL_PIKACHU)
+                setflag(FLAG_GOT_BILL_GIFTMON)
+	            call(Common_EventScript_GiftMon)
+                bufferspeciesname(STR_VAR_1, SPECIES_PIKACHU_STARTER)
+                msgbox("Bill: I knew you'd come through!
+                        Way to go! I'm counting on you
+                        to take good care of it!")
+                release
+                end
+            default:
+                msgbox("Oh… Now what to do?")
+                release
+                end
+    }
+    }
+    msgbox("Come to think of it. I've heard rumours
+            of rare Pokémon being distributed in
+            the Game Corner.")
+    release
+    end
+}

@@ -18,6 +18,7 @@ EcruteakCity_PokemonCenter_EventScript_Bill::
 	msgbox EcruteakCity_PokemonCenter1F_Text_Bill1, MSGBOX_DEFAULT
 	msgbox EcruteakCity_PokemonCenter1F_Text_Bill2, MSGBOX_DEFAULT
 	closemessage
+	hidefollower
 	call_if_eq VAR_FACING, DIR_NORTH, EcruteakCity_PokemonCenter_EventScript_BillLeaveBot
 	call_if_eq VAR_FACING, DIR_WEST, EcruteakCity_PokemonCenter_EventScript_BillLeaveTop
 	playse SE_EXIT
@@ -112,7 +113,7 @@ EcruteakCity_PokemonCenter1F_Text_Bill2:
 	.string "I developed that myself!\p"
 	.string "Now that I've installed this one,\n"
 	.string "my PC is running at all\l"
-	.string "Pokémon Centers in Johto and Kanto.\p"
+	.string "Pokémon Centers in Johto.\p"
 	.string "I have to hurry on back to\n"
 	.string "Goldenrod and see my folks. Feel\l"
 	.string "free to visit anytime!\p"

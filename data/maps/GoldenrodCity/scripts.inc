@@ -57,7 +57,7 @@ GoldenrodCity_EventScript_Trigger:: @flagheap
 # 29 "data/maps/GoldenrodCity/scripts.pory"
 	clearflag FLAG_RECEIVED_SQUIRTBOTTLE
 # 30 "data/maps/GoldenrodCity/scripts.pory"
-	clearflag FLAG_GOT_EEVEE
+	clearflag FLAG_GOT_BILL_GIFTMON
 # 31 "data/maps/GoldenrodCity/scripts.pory"
 	clearflag FLAG_SYS_PC_BILL
 # 32 "data/maps/GoldenrodCity/scripts.pory"

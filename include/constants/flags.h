@@ -804,7 +804,7 @@
 #define FLAG_GOT_RETURN                                             0x2F1
 #define FLAG_GOT_FRUSTRATION                                        0x2F2
 #define FLAG_HIDE_GOLDENROD_BILL                                    0x2F3
-#define FLAG_GOT_EEVEE                                              0x2F4
+#define FLAG_GOT_BILL_GIFTMON                                       0x2F4
 #define FLAG_FIXED_TRAIN                                            0x2F5//unused
 #define FLAG_GOLDENROD_MACHOKE_1                                    0x2F6
 #define FLAG_GOLDENROD_MACHOKE_2                                    0x2F7
