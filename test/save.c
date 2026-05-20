@@ -6,7 +6,7 @@
 // Please note that this simple check is not 100% foolproof, but should be able to catch most unintended shifts.
 #define T_SAVEBLOCK1_SIZE 15568
 #define T_SAVEBLOCK2_SIZE 3884
-#define T_SAVEBLOCK3_SIZE 88
+#define T_SAVEBLOCK3_SIZE 100
 #define T_POKEMON_SECURE_DATA_SIZE 44
 #define T_BOX_POKEMON_SIZE 76
 #define T_POKEMON_SIZE 96

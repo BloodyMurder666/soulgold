@@ -265,10 +265,11 @@ DOUBLE_BATTLE_TEST("Magician steal the item from the fastest possible target (Tr
     u32 playerRightSpeed = 0;
     u32 opponentLeftSpeed = 0;
     u32 opponentRightSpeed = 0;
+    u32 expectedItem = ITEM_NONE;
 
-    PARAMETRIZE { playerRightSpeed = 4; opponentLeftSpeed = 2; opponentRightSpeed = 3; }
-    PARAMETRIZE { playerRightSpeed = 3; opponentLeftSpeed = 4; opponentRightSpeed = 2; }
-    PARAMETRIZE { playerRightSpeed = 2; opponentLeftSpeed = 3; opponentRightSpeed = 4; }
+    PARAMETRIZE { playerRightSpeed = 4; opponentLeftSpeed = 2; opponentRightSpeed = 3; expectedItem = ITEM_ULTRA_BALL; }
+    PARAMETRIZE { playerRightSpeed = 3; opponentLeftSpeed = 4; opponentRightSpeed = 2; expectedItem = ITEM_GREAT_BALL; }
+    PARAMETRIZE { playerRightSpeed = 2; opponentLeftSpeed = 3; opponentRightSpeed = 4; expectedItem = ITEM_ULTRA_BALL; }
 
     GIVEN {
         PLAYER(SPECIES_DELPHOX) { Speed(1); Ability(ABILITY_BLAZE); Innates(ABILITY_MAGICIAN); Item(ITEM_NONE); }
@@ -280,12 +281,7 @@ DOUBLE_BATTLE_TEST("Magician steal the item from the fastest possible target (Tr
     } SCENE {
         ABILITY_POPUP(playerLeft, ABILITY_MAGICIAN);
     } THEN {
-        if (playerRightSpeed == 4)
-            EXPECT(playerLeft->item == ITEM_POKE_BALL);
-        else if (opponentLeftSpeed == 4)
-            EXPECT(playerLeft->item == ITEM_GREAT_BALL);
-        else if (playerRightSpeed == 4)
-            EXPECT(playerLeft->item == ITEM_ULTRA_BALL);
+        EXPECT(playerLeft->item == expectedItem);
     }
 }
 #endif

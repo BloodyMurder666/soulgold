@@ -3689,6 +3689,7 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
             if (CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
             {
                 SET_STATCHANGER(statId, 1, FALSE);
+                SaveBattlerAttacker(gBattlerAttacker);
                 gBattlerAttacker = battler;
                 PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
                 PushTraitStack(battler, ABILITY_DOWNLOAD);
@@ -3811,6 +3812,7 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
             gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1] = TRUE;
             if (!(gFieldStatuses & STATUS_FIELD_TRICK_ROOM))
             {
+                SaveBattlerAttacker(gBattlerAttacker);
                 gBattlerAttacker = battler;
                 gFieldStatuses |= STATUS_FIELD_TRICK_ROOM;
                 gFieldTimers.trickRoomTimer = 5;
@@ -3823,6 +3825,7 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
             gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1] = TRUE;
             if (!(gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_TAILWIND))
             {
+                SaveBattlerAttacker(gBattlerAttacker);
                 gBattlerAttacker = battler;
                 gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_TAILWIND;
                 gSideTimers[GetBattlerSide(battler)].tailwindTimer = (GetConfig(B_TAILWIND_TURNS) >= GEN_5 ? 4 : 3);
@@ -5014,7 +5017,6 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
         if (SearchTraits(battlerTraits, ABILITY_SEED_SOWER)
          && !gBattleStruct->unableToUseMove
          && IsBattlerTurnDamaged(gBattlerTarget, EXCLUDING_SUBSTITUTES)
-         && IsBattlerAlive(gBattlerTarget)
          && TryChangeBattleTerrain(gBattlerTarget, STATUS_FIELD_GRASSY_TERRAIN))
         {
             PushTraitStack(gBattlerTarget, ABILITY_SEED_SOWER);
@@ -5151,7 +5153,7 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
          && IsBattlerTurnDamaged(gBattlerTarget, EXCLUDING_SUBSTITUTES)
          && !MoveHasAdditionalEffect(gCurrentMove, MOVE_EFFECT_FLINCH))
         {
-            SetMoveEffect(gBattlerAttacker, gBattlerTarget, MOVE_EFFECT_FLINCH, gBattlescriptCurrInstr, EFFECT_PRIMARY);
+            SetMoveEffect(gBattlerAttacker, gBattlerTarget, MOVE_EFFECT_FLINCH, gBattlescriptCurrInstr, NO_FLAGS);
             effect++;
         }
         else if (SearchTraits(battlerTraits, ABILITY_HAUNTING)
@@ -5162,7 +5164,7 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
          && IsBattlerTurnDamaged(gBattlerTarget, EXCLUDING_SUBSTITUTES)
          && !MoveHasAdditionalEffect(gCurrentMove, MOVE_EFFECT_FLINCH))
         {
-            SetMoveEffect(gBattlerAttacker, gBattlerTarget, MOVE_EFFECT_FLINCH, gBattlescriptCurrInstr, EFFECT_PRIMARY);
+            SetMoveEffect(gBattlerAttacker, gBattlerTarget, MOVE_EFFECT_FLINCH, gBattlescriptCurrInstr, NO_FLAGS);
             effect++;
         }
         else if (SearchTraits(battlerTraits, ABILITY_SEER)
@@ -5290,7 +5292,7 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
          && IsBattlerTurnDamaged(gBattlerTarget, EXCLUDING_SUBSTITUTES)
          && !MoveHasAdditionalEffect(gCurrentMove, MOVE_EFFECT_FLINCH))
         {
-            SetMoveEffect(gBattlerAttacker, gBattlerTarget, MOVE_EFFECT_FLINCH, gBattlescriptCurrInstr, EFFECT_PRIMARY);
+            SetMoveEffect(gBattlerAttacker, gBattlerTarget, MOVE_EFFECT_FLINCH, gBattlescriptCurrInstr, NO_FLAGS);
             effect++;
         }
         else if (SearchTraits(battlerTraits, ABILITY_SOOTHING)
@@ -5458,7 +5460,6 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
                     break;
                 }
 
-                // For spread moves, Magician prioritizes opponents over allies.
                 u32 magicianTargets = (numFoeMagicianTargets != 0) ? foeMagicianTargets : allyMagicianTargets;
                 u32 numMagicianTargets = (numFoeMagicianTargets != 0) ? numFoeMagicianTargets : numAllyMagicianTargets;
                 enum BattlerId battlers[MAX_BATTLERS_COUNT] = {0, 1, 2, 3};
@@ -5472,6 +5473,7 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
                     if (!(magicianTargets & 1u << targetBattler))
                         continue;
 
+                    index = 0;
                     for (j = 0; j < MAX_MON_ITEMS; j++)
                         targetableSlots[j] = MAX_MON_ITEMS; //clear targetableSlots for each battler
 
@@ -8213,7 +8215,8 @@ static inline u32 CalcAttackStat(struct BattleContext *ctx)
      && IsBattleMovePhysical(move))
         modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(2.0));
     if (SearchTraits(battlerTraits, ABILITY_SLOW_START)
-     && gBattleMons[battlerAtk].volatiles.slowStartTimer > 0)
+     && gBattleMons[battlerAtk].volatiles.slowStartTimer > 0
+     && IsBattleMovePhysical(move))
         modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(0.5));
     if (SearchTraits(battlerTraits, ABILITY_SOLAR_POWER)
      && IsBattleMoveSpecial(move) && IsBattlerWeatherAffected(battlerAtk, B_WEATHER_SUN))
@@ -9463,6 +9466,9 @@ s32 GetAdjustedDamage(struct BattleContext *ctx, s32 damage)
 
     if (gBattleMons[ctx->battlerDef].hp > damage)
         return damage;
+
+    if (GetMoveEffect(ctx->move) == EFFECT_FALSE_SWIPE)
+        return gBattleMons[ctx->battlerDef].hp - 1;
 
     bool32 enduredHit = FALSE;
     u32 rand = Random() % 100;
@@ -12052,6 +12058,9 @@ bool32 DoesOHKOMoveMissTarget(struct BattleCalcValues *cv)
         return TRUE;
     }
 
+    if (gBattleMons[cv->battlerDef].level > gBattleMons[cv->battlerAtk].level)
+        return TRUE;
+
     if (BattlerHasTrait(cv->battlerDef, ABILITY_STURDY))
     {
         PushTraitStack(cv->battlerDef, ABILITY_STURDY);
@@ -12061,11 +12070,7 @@ bool32 DoesOHKOMoveMissTarget(struct BattleCalcValues *cv)
 
     enum OHKOResult lands = NO_HIT;
 
-    if (gBattleMons[cv->battlerDef].level > gBattleMons[cv->battlerAtk].level)
-    {
-        lands = NO_HIT;
-    }
-    else if (gBattleMons[cv->battlerAtk].volatiles.battlerWithSureHit == cv->battlerDef + 1
+    if (gBattleMons[cv->battlerAtk].volatiles.battlerWithSureHit == cv->battlerDef + 1
           || IsAbilityAndRecord(cv->battlerAtk, ABILITY_NO_GUARD)
           || IsAbilityAndRecord(cv->battlerDef, ABILITY_NO_GUARD))
     {

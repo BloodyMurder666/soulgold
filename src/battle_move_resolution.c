@@ -3213,40 +3213,6 @@ static enum MoveEndResult MoveEndMoveBlock(void)
             result = MOVEEND_RESULT_RUN_SCRIPT;
         }
         break;
-    case EFFECT_RECOIL_IF_MISS:
-        if (IsBattlerAlive(gBattlerAttacker)
-         && IsBattlerUnaffectedByMove(gBattlerTarget)
-         && !gBattleStruct->unableToUseMove)
-        {
-            s32 recoil = 0;
-            if (B_CRASH_IF_TARGET_IMMUNE == GEN_4 && gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_DOESNT_AFFECT_FOE)
-            {
-                recoil = GetNonDynamaxMaxHP(gBattlerTarget) / 2;
-            }
-            if (B_RECOIL_IF_MISS_DMG >= GEN_5)
-            {
-                recoil = GetNonDynamaxMaxHP(gBattlerAttacker) / 2;
-            }
-            else if (B_RECOIL_IF_MISS_DMG >= GEN_3)
-            {
-                if ((GetNonDynamaxMaxHP(gBattlerTarget) / 2) < gBattleStruct->moveDamage[gBattlerTarget])
-                    recoil = gBattleStruct->moveDamage[gBattlerTarget];
-                else
-                    recoil = GetNonDynamaxMaxHP(gBattlerTarget) / 2;
-            }
-            else if (B_RECOIL_IF_MISS_DMG == GEN_2)
-            {
-                recoil = gBattleStruct->moveDamage[gBattlerTarget] / 8;
-            }
-            else
-            {
-                recoil = 1;
-            }
-            SetPassiveDamageAmount(gBattlerAttacker, recoil);
-            BattleScriptCall(BattleScript_RecoilIfMiss);
-            result = MOVEEND_RESULT_RUN_SCRIPT;
-        }
-        break;
     case EFFECT_RECOIL:
         if (IsBattlerTurnDamaged(gBattlerTarget, INCLUDING_SUBSTITUTES) && IsBattlerAlive(gBattlerAttacker) && gBattleStruct->moveDamage[gBattlerTarget] > 0)
         {
@@ -3593,7 +3559,6 @@ static enum MoveEndResult MoveEndEmergencyExit(void)
     for (enum BattlerId i = 0; i < gBattlersCount; i++)
     {
         if (!IsBattleMoveStatus(gCurrentMove)
-         && !gBattleStruct->unableToUseMove
          && EmergencyExitCanBeTriggered(i))
         {
             emergencyExitBattlers |= 1u << i;

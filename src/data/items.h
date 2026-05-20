@@ -32,8 +32,8 @@ static const u8 sMaxReviveDesc[]      = _("Revives a fainted\n"
                                           "its HP.");
 
 static const u8 sHealthFeatherDesc[]  = _("An item that raises\n"
-                                          "the Innate HP value\n"
-                                          "of a Pokémon.");
+                                          "the Innate HP\n"
+                                          "value of a Pokémon.");
 static const u8 sHealthMochiDesc[]    = _("An item that raises\n"
                                           "the base HP of\n"
                                           "a Pokémon.");

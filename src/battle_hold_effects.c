@@ -565,7 +565,7 @@ static enum ItemEffect TryLifeOrbShellBell(enum BattlerId battlerAtk)
         if (GetBattlerItemHoldEffect(battlerAtk, item) == HOLD_EFFECT_SHELL_BELL && (firstShell || GetConfig(B_ALLOW_HELD_DUPES))
         && gBattleScripting.savedDmg > 0
         && !gBattleStruct->unableToUseMove
-        && (IsAnyTargetTurnDamaged(battlerAtk) || gBattleScripting.savedDmg > 0)
+        && IsAnyTargetTurnDamaged(battlerAtk)
         && !IsBattlerAtMaxHp(battlerAtk)
         && IsBattlerAlive(battlerAtk)
         && GetMoveEffect(gCurrentMove) != EFFECT_PAIN_SPLIT

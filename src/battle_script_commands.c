@@ -12631,6 +12631,7 @@ void BS_SetTerrain(void)
             statusFlag = STATUS_FIELD_PSYCHIC_TERRAIN;
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_PSYCHIC;
         }
+        break;
     case EFFECT_SCORCHED_FIELD:
         if (!(gFieldStatuses & STATUS_FIELD_SCORCHED_FIELD))
         {
