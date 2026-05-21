@@ -16,6 +16,7 @@ SINGLE_BATTLE_TEST("Tireless prevents recharge turns after two-turn recharge mov
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_METEOR_ASSAULT, player);
+        ABILITY_POPUP(player, ABILITY_TIRELESS);
         NOT MESSAGE("Wobbuffet must recharge!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
     }
@@ -46,6 +47,7 @@ SINGLE_BATTLE_TEST("Tireless prevents recharge turns after two-turn recharge mov
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_METEOR_ASSAULT, player);
+        ABILITY_POPUP(player, ABILITY_TIRELESS);
         NOT MESSAGE("Wobbuffet must recharge!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
     }

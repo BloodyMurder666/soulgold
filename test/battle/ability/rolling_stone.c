@@ -13,7 +13,9 @@ SINGLE_BATTLE_TEST("Rolling Stone raises Speed each time Rollout deals damage")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROLLOUT, player);
+        ABILITY_POPUP(player, ABILITY_ROLLING_STONE);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROLLOUT, player);
+        ABILITY_POPUP(player, ABILITY_ROLLING_STONE);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
     } THEN {
         EXPECT_EQ(player->statStages[STAT_SPEED], DEFAULT_STAT_STAGE + 2);
@@ -51,7 +53,9 @@ SINGLE_BATTLE_TEST("Rolling Stone raises Speed each time Rollout deals damage (T
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROLLOUT, player);
+        ABILITY_POPUP(player, ABILITY_ROLLING_STONE);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROLLOUT, player);
+        ABILITY_POPUP(player, ABILITY_ROLLING_STONE);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
     } THEN {
         EXPECT_EQ(player->statStages[STAT_SPEED], DEFAULT_STAT_STAGE + 2);

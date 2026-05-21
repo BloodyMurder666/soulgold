@@ -201,6 +201,7 @@ extern const u8 BattleScript_IronBarbsActivates[];
 extern const u8 BattleScript_CuteCharmActivates[];
 extern const u8 BattleScript_AbilityStatusEffectAtk[];
 extern const u8 BattleScript_AbilityStatusEffectDef[];
+extern const u8 BattleScript_TirelessPreventsRecharge[];
 extern const u8 BattleScript_PlantationActivates[];
 extern const u8 BattleScript_AuraShieldBlocks[];
 extern const u8 BattleScript_ShowtimeActivates[];

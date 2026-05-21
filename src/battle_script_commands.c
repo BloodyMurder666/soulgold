@@ -2973,7 +2973,13 @@ void SetMoveEffect(enum BattlerId battlerAtk, enum BattlerId effectBattler, enum
         if (B_SKIP_RECHARGE == GEN_1 && !IsBattlerAlive(gBattlerTarget))  // Skip recharge if gen 1 and foe is KO'd
             break;
         if (BattlerHasTrait(gEffectBattler, ABILITY_TIRELESS))
+        {
+            gBattleScripting.battler = gEffectBattler;
+            PushTraitStack(gEffectBattler, ABILITY_TIRELESS);
+            BattleScriptPush(battleScript);
+            gBattlescriptCurrInstr = BattleScript_TirelessPreventsRecharge;
             break;
+        }
 
         gBattleMons[gEffectBattler].volatiles.rechargeTimer = 2;
         gLockedMoves[gEffectBattler] = gCurrentMove;

@@ -3871,6 +3871,27 @@ static enum MoveEndResult MoveEndEjectPack(void)
     return result;
 }
 
+static enum MoveEndResult MoveEndRollingStone(void)
+{
+    enum MoveEndResult result = MOVEEND_RESULT_CONTINUE;
+
+    if (GetMoveEffect(gCurrentMove) == EFFECT_ROLLOUT
+     && IsBattlerAlive(gBattlerAttacker)
+     && IsBattlerTurnDamaged(gBattlerTarget, EXCLUDING_SUBSTITUTES)
+     && BattlerHasTrait(gBattlerAttacker, ABILITY_ROLLING_STONE)
+     && CompareStat(gBattlerAttacker, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN))
+    {
+        gBattleScripting.battler = gBattlerAbility = gBattlerAttacker;
+        SET_STATCHANGER(STAT_SPEED, 1, FALSE);
+        PushTraitStack(gBattlerAttacker, ABILITY_ROLLING_STONE);
+        BattleScriptCall(BattleScript_AttackerAbilityStatRaise);
+        result = MOVEEND_RESULT_RUN_SCRIPT;
+    }
+
+    gBattleScripting.moveendState++;
+    return result;
+}
+
 static bool32 ShouldSetStompingTantrumTimer(void)
 {
     u32 numNotAffectedTargets = 0;
@@ -4087,6 +4108,7 @@ static enum MoveEndResult (*const sMoveEndHandlers[])(void) =
     [MOVEEND_MIRROR_HERB] = MoveEndMirrorHerb,
     [MOVEEND_THIRD_MOVE_BLOCK] = MoveEndThirdMoveBlock,
     [MOVEEND_PICKPOCKET] = MoveEndPickpocket,
+    [MOVEEND_ROLLING_STONE] = MoveEndRollingStone,
     [MOVEEND_CLEAR_BITS] = MoveEndClearBits,
     [MOVEEND_DANCER] = MoveEndDancer,
     [MOVEEND_PURSUIT_NEXT_ACTION] = MoveEndPursuitNextAction,
@@ -4145,11 +4167,6 @@ static void SetSameMoveTurnValues(enum BattleMoveEffects moveEffect)
         break;
     case EFFECT_ROLLOUT:
     {
-        if (increment
-         && BattlerHasTrait(gBattlerAttacker, ABILITY_ROLLING_STONE)
-         && CompareStat(gBattlerAttacker, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN))
-            gBattleMons[gBattlerAttacker].statStages[STAT_SPEED]++;
-
         if (increment && ++gBattleMons[gBattlerAttacker].volatiles.rolloutTimer < 5)
         {
             gBattleMons[gBattlerAttacker].volatiles.multipleTurns = TRUE;

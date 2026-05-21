@@ -94,6 +94,10 @@ SINGLE_BATTLE_TEST("Stone Face leaves a full-HP user at one quarter HP")
         OPPONENT(SPECIES_WOBBUFFET) { Attack(250); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SCRATCH); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, opponent);
+        HP_BAR(player, hp: 40);
+        ABILITY_POPUP(player, ABILITY_STONE_FACE);
     } THEN {
         EXPECT_EQ(player->hp, 40);
     }
@@ -138,6 +142,9 @@ SINGLE_BATTLE_TEST("Lunar Cycle raises Speed after a damaging hit")
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_SCRATCH); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
+        ABILITY_POPUP(player, ABILITY_LUNAR_CYCLE);
     } THEN {
         EXPECT_EQ(player->statStages[STAT_SPEED], DEFAULT_STAT_STAGE + 1);
     }

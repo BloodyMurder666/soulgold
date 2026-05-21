@@ -6951,6 +6951,10 @@ BattleScript_SturdyPreventsOHKO::
 	pause B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 
+BattleScript_TirelessPreventsRecharge::
+	call BattleScript_AbilityPopUpScripting
+	return
+
 BattleScript_DampStopsExplosion::
 	pause B_WAIT_TIME_SHORT
 	call BattleScript_AbilityPopUpScripting
