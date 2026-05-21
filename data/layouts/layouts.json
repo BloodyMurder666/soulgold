@@ -3816,8 +3816,8 @@
       "name": "BattleTentLobby_Layout",
       "width": 13,
       "height": 10,
-      "primary_tileset": "gTileset_Building_Dome",
-      "secondary_tileset": "gTileset_BattleDome",
+      "primary_tileset": "gTileset_Building_Factory",
+      "secondary_tileset": "gTileset_BattleFactory",
       "border_filepath": "data/layouts/BattleTentLobby/border.bin",
       "blockdata_filepath": "data/layouts/BattleTentLobby/map.bin"
     },

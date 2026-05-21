@@ -101,14 +101,14 @@
       "y": 11,
       "elevation": 0,
       "dest_map": "MAP_TRAINER_HILL_COURTYARD",
-      "dest_warp_id": "1"
+      "dest_warp_id": "3"
     },
     {
       "x": 10,
       "y": 11,
       "elevation": 0,
       "dest_map": "MAP_TRAINER_HILL_COURTYARD",
-      "dest_warp_id": "1"
+      "dest_warp_id": "3"
     }
   ],
   "coord_events": [],

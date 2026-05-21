@@ -185,8 +185,19 @@ BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskRetireChallenge::
 	multichoicedefault 20, 8, MULTI_YESNO, 1, FALSE
 	switch VAR_RESULT
 	case 1, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents
-	case 0, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_WarpToLobbyLost
+	case 0, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_TakeBreak
 	case MULTI_B_PRESSED, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_AskReadyForOpponents
+
+BattleFrontier_BattleTowerMultiBattleRoom_EventScript_TakeBreak::
+	message BattleFrontier_BattleTowerBattleRoom_Text_SavingPleaseWait
+	waitmessage
+	special LoadPlayerParty
+	special HealPlayerParty
+	tower_save 0
+	playse SE_SAVE
+	waitse
+	callnative UpdateFollowingPokemon
+	goto BattleFrontier_BattleTowerBattleRoom_EventScript_WarpToLobby
 
 BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ContinueChallenge::
 	closemessage
@@ -219,7 +230,9 @@ BattleFrontier_BattleTowerMultiBattleRoom_EventScript_PauseChallenge::
 
 BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyForNextOpponentSet::
 	goto_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_LINK_MULTIS, BattleFrontier_BattleTowerMultiBattleRoom_EventScript_ReadyForNextOpponentSetLink
+	tower_get TOWER_DATA_WIN_STREAK
 	copyvar VAR_BATTLE_TOWER_STREAK, VAR_RESULT
+	addvar VAR_RESULT, 1
 	buffernumberstring STR_VAR_1, VAR_RESULT
 	msgbox BattleFrontier_BattleTowerBattleRoom_EventScript_ReadyForOpponent_Text_0
 	return

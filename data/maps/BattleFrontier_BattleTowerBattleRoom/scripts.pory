@@ -67,7 +67,7 @@ BattleFrontier_BattleTowerBattleRoom_EventScript_DefeatedOpponent::
     msgbox BattleFrontier_Text_ObtainedXBattlePoints, MSGBOX_GETPOINTS 
 	waitmessage
 	msgbox BattleFrontier_BattleTowerBattleRoom_Text_RestoreMonsToFullHealth, MSGBOX_DEFAULT
-	playfanfare MUS_HEAL
+	playse SE_USE_ITEM
 	waitfanfare
 	special HealPlayerParty
 BattleFrontier_BattleTowerBattleRoom_EventScript_AskReadyForOpponent::
@@ -419,8 +419,15 @@ BattleFrontier_BattleTowerBattleRoom_EventScript_WarpToLobbyLinkMultis::
 	end
 
 BattleFrontier_BattleTowerBattleRoom_EventScript_RetireChallenge::
-	setflag FLAG_CANCEL_BATTLE_ROOM_CHALLENGE
-	goto BattleFrontier_BattleTower_EventScript_WarpToLobbyLost
+	message BattleFrontier_BattleTowerBattleRoom_Text_SavingPleaseWait
+	waitmessage
+	special LoadPlayerParty
+	special HealPlayerParty
+	tower_save 0
+	playse SE_SAVE
+	waitse
+	callnative UpdateFollowingPokemon
+	goto BattleFrontier_BattleTowerBattleRoom_EventScript_WarpToLobby
 	end
 
 BattleFrontier_BattleTowerBattleRoom_Text_RestoreMonsToFullHealth:
@@ -473,8 +480,8 @@ BattleFrontier_BattleTowerBattleRoom_Text_SavingPleaseWait:
 	.string "Please wait.$"
 
 BattleFrontier_BattleTowerBattleRoom_Text_CancelYourChallenge:
-	.string "Would you like to cancel your Battle\n"
-	.string "Room challenge?$"
+	.string "Would you like to take a break from\n"
+	.string "your Battle Room challenge?$"
 
 BattleFrontier_BattleTowerBattleRoom_Text_RecordCouldntBeSaved::
 	.string "There was an error of some sort.\n"
@@ -554,7 +561,9 @@ BattleFrontier_BattleTowerBattleRoom_Text_WishICouldBattleYouAgain:
 `
 
 script BattleFrontier_BattleTowerBattleRoom_EventScript_ReadyForOpponent {
+    tower_get(TOWER_DATA_WIN_STREAK)
     copyvar(VAR_BATTLE_TOWER_STREAK, VAR_RESULT)
+	addvar(VAR_RESULT, 1)
     buffernumberstring(STR_VAR_1, VAR_RESULT)
     msgbox("You will be facing opponent\nno. {STR_VAR_1}. Are you ready?")
 }

@@ -137,7 +137,7 @@ BattleFrontier_BattleTowerBattleRoom_EventScript_DefeatedOpponent::
 # 69 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
 	msgbox BattleFrontier_BattleTowerBattleRoom_Text_RestoreMonsToFullHealth, MSGBOX_DEFAULT
 # 70 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	playfanfare MUS_HEAL
+	playse SE_USE_ITEM
 # 71 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
 	waitfanfare
 # 72 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
@@ -841,278 +841,296 @@ BattleFrontier_BattleTowerBattleRoom_EventScript_WarpToLobbyLinkMultis::
 # 421 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
 BattleFrontier_BattleTowerBattleRoom_EventScript_RetireChallenge::
 # 422 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	setflag FLAG_CANCEL_BATTLE_ROOM_CHALLENGE
+	message BattleFrontier_BattleTowerBattleRoom_Text_SavingPleaseWait
 # 423 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	goto BattleFrontier_BattleTower_EventScript_WarpToLobbyLost
+	waitmessage
 # 424 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	end
+	special LoadPlayerParty
 # 425 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-
+	special HealPlayerParty
 # 426 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-BattleFrontier_BattleTowerBattleRoom_Text_RestoreMonsToFullHealth:
+	tower_save 0
 # 427 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "We will restore your Pokémon to\n"
+	playse SE_SAVE
 # 428 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "full health.$"
+	waitse
 # 429 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-
+	callnative UpdateFollowingPokemon
 # 430 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-@ Unused
+	goto BattleFrontier_BattleTowerBattleRoom_EventScript_WarpToLobby
 # 431 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-BattleFrontier_BattleTowerBattleRoom_Text_ReadyForOpponent:
+	end
 # 432 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "You will be facing opponent no. {STR_VAR_1}.\n"
+
 # 433 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Are you ready?$"
+BattleFrontier_BattleTowerBattleRoom_Text_RestoreMonsToFullHealth:
 # 434 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-
+	.string "We will restore your Pokémon to\n"
 # 435 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-BattleFrontier_BattleTowerBattleRoom_Text_ReadyFor2ndOpponent:
+	.string "full health.$"
 # 436 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "You will be facing opponent no. 2.\n"
+
 # 437 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Are you ready?$"
+@ Unused
 # 438 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-
+BattleFrontier_BattleTowerBattleRoom_Text_ReadyForOpponent:
 # 439 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-BattleFrontier_BattleTowerBattleRoom_Text_ReadyFor3rdOpponent:
+	.string "You will be facing opponent no. {STR_VAR_1}.\n"
 # 440 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "You will be facing opponent no. 3.\n"
+	.string "Are you ready?$"
 # 441 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Are you ready?$"
+
 # 442 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-
+BattleFrontier_BattleTowerBattleRoom_Text_ReadyFor2ndOpponent:
 # 443 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-BattleFrontier_BattleTowerBattleRoom_Text_ReadyFor4thOpponent:
+	.string "You will be facing opponent no. 2.\n"
 # 444 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "You will be facing opponent no. 4.\n"
+	.string "Are you ready?$"
 # 445 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Are you ready?$"
+
 # 446 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-
+BattleFrontier_BattleTowerBattleRoom_Text_ReadyFor3rdOpponent:
 # 447 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-BattleFrontier_BattleTowerBattleRoom_Text_ReadyFor5thOpponent:
+	.string "You will be facing opponent no. 3.\n"
 # 448 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "You will be facing opponent no. 5.\n"
+	.string "Are you ready?$"
 # 449 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Are you ready?$"
+
 # 450 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-
+BattleFrontier_BattleTowerBattleRoom_Text_ReadyFor4thOpponent:
 # 451 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-BattleFrontier_BattleTowerBattleRoom_Text_ReadyFor6thOpponent:
+	.string "You will be facing opponent no. 4.\n"
 # 452 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "You will be facing opponent no. 6.\n"
+	.string "Are you ready?$"
 # 453 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Are you ready?$"
+
 # 454 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-
+BattleFrontier_BattleTowerBattleRoom_Text_ReadyFor5thOpponent:
 # 455 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-BattleFrontier_BattleTowerBattleRoom_Text_ReadyFor7thOpponent:
+	.string "You will be facing opponent no. 5.\n"
 # 456 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "You will be facing opponent no. 7.\n"
-# 457 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
 	.string "Are you ready?$"
+# 457 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+
 # 458 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-
+BattleFrontier_BattleTowerBattleRoom_Text_ReadyFor6thOpponent:
 # 459 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-BattleFrontier_BattleTowerBattleRoom_Text_RecordYourBattle:
+	.string "You will be facing opponent no. 6.\n"
 # 460 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Record your battle on your\n"
+	.string "Are you ready?$"
 # 461 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Frontier Pass?$"
+
 # 462 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-
+BattleFrontier_BattleTowerBattleRoom_Text_ReadyFor7thOpponent:
 # 463 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_BattleRecordedOnPass:
+	.string "You will be facing opponent no. 7.\n"
 # 464 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "{PLAYER}'s battle was recorded\n"
+	.string "Are you ready?$"
 # 465 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "on the Frontier Pass.$"
+
 # 466 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-
+BattleFrontier_BattleTowerBattleRoom_Text_RecordYourBattle:
 # 467 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-BattleFrontier_BattleTowerBattleRoom_Text_SaveAndQuitGame:
+	.string "Record your battle on your\n"
 # 468 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Would you like to save and\n"
+	.string "Frontier Pass?$"
 # 469 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "quit the game?$"
+
 # 470 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-
+BattleFrontier_BattleTowerLobby_Text_BattleRecordedOnPass:
 # 471 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-BattleFrontier_BattleTowerBattleRoom_Text_SavingPleaseWait:
+	.string "{PLAYER}'s battle was recorded\n"
 # 472 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Saving your battle data.\n"
+	.string "on the Frontier Pass.$"
 # 473 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Please wait.$"
+
 # 474 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-
+BattleFrontier_BattleTowerBattleRoom_Text_SaveAndQuitGame:
 # 475 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-BattleFrontier_BattleTowerBattleRoom_Text_CancelYourChallenge:
+	.string "Would you like to save and\n"
 # 476 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Would you like to cancel your Battle\n"
+	.string "quit the game?$"
 # 477 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Room challenge?$"
+
 # 478 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-
+BattleFrontier_BattleTowerBattleRoom_Text_SavingPleaseWait:
 # 479 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-BattleFrontier_BattleTowerBattleRoom_Text_RecordCouldntBeSaved::
+	.string "Saving your battle data.\n"
 # 480 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "There was an error of some sort.\n"
+	.string "Please wait.$"
 # 481 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Your record could not be saved.$"
+
 # 482 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-
+BattleFrontier_BattleTowerBattleRoom_Text_CancelYourChallenge:
 # 483 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-BattleFrontier_BattleTowerBattleRoom_Text_SalonMaidenOnHerWay:
+	.string "Would you like to take a break from\n"
 # 484 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Excuse me, but…\p"
+	.string "your Battle Room challenge?$"
 # 485 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Our leader, the Salon Maiden, is on\n"
+
 # 486 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "her way here in hopes of battling you.\p"
+BattleFrontier_BattleTowerBattleRoom_Text_RecordCouldntBeSaved::
 # 487 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "She should be arriving very shortly.$"
+	.string "There was an error of some sort.\n"
 # 488 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-
+	.string "Your record could not be saved.$"
 # 489 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-BattleFrontier_BattleTowerBattleRoom_Text_ReadyForSalonMaiden:
+
 # 490 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "You will be facing the Salon Maiden.\n"
+BattleFrontier_BattleTowerBattleRoom_Text_SalonMaidenOnHerWay:
 # 491 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Are you prepared?$"
+	.string "Excuse me, but…\p"
 # 492 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-
+	.string "Our leader, the Salon Maiden, is on\n"
 # 493 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-BattleFrontier_BattleTowerBattleRoom_Text_GreetingsImAnabel:
+	.string "her way here in hopes of battling you.\p"
 # 494 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Greetings…\n"
+	.string "She should be arriving very shortly.$"
 # 495 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "My name is Anabel.\p"
+
 # 496 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "I am the Salon Maiden, and I am in\n"
+BattleFrontier_BattleTowerBattleRoom_Text_ReadyForSalonMaiden:
 # 497 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "charge of running the Battle Tower…\p"
+	.string "You will be facing the Salon Maiden.\n"
 # 498 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "I have heard several rumors\n"
+	.string "Are you prepared?$"
 # 499 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "about you…\p"
+
 # 500 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "In all honesty, what I have heard does\n"
+BattleFrontier_BattleTowerBattleRoom_Text_GreetingsImAnabel:
 # 501 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "not seem attractive in any way…\p"
+	.string "Greetings…\n"
 # 502 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "The reason I've come to see you…\n"
+	.string "My name is Anabel.\p"
 # 503 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Well, there is but one reason…$"
+	.string "I am the Salon Maiden, and I am in\n"
 # 504 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-
+	.string "charge of running the Battle Tower…\p"
 # 505 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-BattleFrontier_BattleTowerBattleRoom_Text_LetMeSeeYourTalent:
+	.string "I have heard several rumors\n"
 # 506 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Let me see your talent in\n"
+	.string "about you…\p"
 # 507 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "its entirety…$"
+	.string "In all honesty, what I have heard does\n"
 # 508 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-
+	.string "not seem attractive in any way…\p"
 # 509 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-BattleFrontier_BattleTowerBattleRoom_Text_AnabelTalentShallBeRecognized:
+	.string "The reason I've come to see you…\n"
 # 510 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Anabel: Fufufu, nicely done…\p"
+	.string "Well, there is but one reason…$"
 # 511 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Your Frontier Pass, please…\n"
+
 # 512 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Your talent shall be recognized.$"
+BattleFrontier_BattleTowerBattleRoom_Text_LetMeSeeYourTalent:
 # 513 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-
+	.string "Let me see your talent in\n"
 # 514 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-BattleFrontier_BattleTowerBattleRoom_Text_ReceivedAbilitySymbol:
+	.string "its entirety…$"
 # 515 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "The Ability Symbol was embossed on\n"
+
 # 516 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "the Frontier Pass!$"
+BattleFrontier_BattleTowerBattleRoom_Text_AnabelTalentShallBeRecognized:
 # 517 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-
+	.string "Anabel: Fufufu, nicely done…\p"
 # 518 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-BattleFrontier_BattleTowerBattleRoom_Text_UntilNextTime:
+	.string "Your Frontier Pass, please…\n"
 # 519 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "… … … … … …\p"
+	.string "Your talent shall be recognized.$"
 # 520 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "You have confidence in your Pokémon\n"
+
 # 521 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "battling talent, don't you?\p"
+BattleFrontier_BattleTowerBattleRoom_Text_ReceivedAbilitySymbol:
 # 522 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "I urge you to keep battling and\n"
+	.string "The Ability Symbol was embossed on\n"
 # 523 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "keep on winning.\p"
+	.string "the Frontier Pass!$"
 # 524 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "I will be waiting for you.\n"
+
 # 525 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Until the next time we meet…$"
+BattleFrontier_BattleTowerBattleRoom_Text_UntilNextTime:
 # 526 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-
-# 527 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-BattleFrontier_BattleTowerBattleRoom_Text_AnabelYouCameBack:
-# 528 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Anabel: You really did come back to\n"
-# 529 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "see me…\p"
-# 530 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
 	.string "… … … … … …\p"
+# 527 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+	.string "You have confidence in your Pokémon\n"
+# 528 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+	.string "battling talent, don't you?\p"
+# 529 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+	.string "I urge you to keep battling and\n"
+# 530 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+	.string "keep on winning.\p"
 # 531 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "You've won straight matches to see me…\n"
+	.string "I will be waiting for you.\n"
 # 532 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "I won't have to hold back against you…\p"
+	.string "Until the next time we meet…$"
 # 533 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "It's been too long now…\p"
+
 # 534 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Too long since I've been able to battle\n"
+BattleFrontier_BattleTowerBattleRoom_Text_AnabelYouCameBack:
 # 535 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "without thinking about anything…$"
+	.string "Anabel: You really did come back to\n"
 # 536 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-
+	.string "see me…\p"
 # 537 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-BattleFrontier_BattleTowerBattleRoom_Text_LetsBeginShallWe:
+	.string "… … … … … …\p"
 # 538 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Let's begin, shall we?$"
+	.string "You've won straight matches to see me…\n"
 # 539 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-
+	.string "I won't have to hold back against you…\p"
 # 540 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-BattleFrontier_BattleTowerBattleRoom_Text_AnabelCongratsYourPassPlease:
+	.string "It's been too long now…\p"
 # 541 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Anabel: Fufu, congratulations…\n"
+	.string "Too long since I've been able to battle\n"
 # 542 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "Your Frontier Pass, please…$"
+	.string "without thinking about anything…$"
 # 543 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
 
 # 544 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-BattleFrontier_BattleTowerBattleRoom_Text_AbilitySymbolTookGoldenShine:
+BattleFrontier_BattleTowerBattleRoom_Text_LetsBeginShallWe:
 # 545 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "The Ability Symbol took on\n"
+	.string "Let's begin, shall we?$"
 # 546 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "a golden shine!$"
-# 547 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
 
+# 547 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+BattleFrontier_BattleTowerBattleRoom_Text_AnabelCongratsYourPassPlease:
 # 548 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-BattleFrontier_BattleTowerBattleRoom_Text_WishICouldBattleYouAgain:
+	.string "Anabel: Fufu, congratulations…\n"
 # 549 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "That was fun…\p"
+	.string "Your Frontier Pass, please…$"
 # 550 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "I have never had a Pokémon battle\n"
+
 # 551 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	.string "so enjoyable before…\p"
+BattleFrontier_BattleTowerBattleRoom_Text_AbilitySymbolTookGoldenShine:
 # 552 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+	.string "The Ability Symbol took on\n"
+# 553 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+	.string "a golden shine!$"
+# 554 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+
+# 555 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+BattleFrontier_BattleTowerBattleRoom_Text_WishICouldBattleYouAgain:
+# 556 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+	.string "That was fun…\p"
+# 557 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+	.string "I have never had a Pokémon battle\n"
+# 558 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+	.string "so enjoyable before…\p"
+# 559 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
 	.string "I wish I could battle with you again…$"
 
 BattleFrontier_BattleTowerBattleRoom_EventScript_ReadyForOpponent::
-# 557 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+# 564 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+	tower_get TOWER_DATA_WIN_STREAK
+# 565 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
 	copyvar VAR_BATTLE_TOWER_STREAK, VAR_RESULT
-# 558 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+# 566 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+	addvar VAR_RESULT, 1
+# 567 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
 	buffernumberstring STR_VAR_1, VAR_RESULT
-# 559 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+# 568 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
 	msgbox BattleFrontier_BattleTowerBattleRoom_EventScript_ReadyForOpponent_Text_0
 	return
 
 
 BattleFrontier_BattleTowerBattleRoom_EventScript_ReadyForOpponent_Text_0:
-# 559 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+# 568 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
 	.string "You will be facing opponent\nno. {STR_VAR_1}. Are you ready?$"

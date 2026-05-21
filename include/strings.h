@@ -770,6 +770,7 @@ extern const u8 gText_ReadyToStart[];
 extern const u8 gText_Record2[];
 extern const u8 gText_Rest[];
 extern const u8 gText_Retire[];
+extern const u8 gText_Break[];
 extern const u8 gText_TradeCenter[];
 extern const u8 gText_Colosseum[];
 extern const u8 gText_RecordCorner[];
