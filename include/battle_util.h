@@ -147,7 +147,8 @@ struct BattleContext
     u32 airBalloonBlocked:1;
     u32 abilityBlocked:1;
     u32 runScript:1;  // Used during actual combat where scripts have to be run / flags need to be set
-    u32 padding:22;
+    u32 invertDefenderTypeMatchups:1;
+    u32 padding:21;
 };
 
 // Helper struct to keep the arg list small and prevent constant recalculations of abilities/hold effects.

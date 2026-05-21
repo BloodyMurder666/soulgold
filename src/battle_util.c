@@ -78,8 +78,6 @@ enum Type GetAteAbilityType(enum Ability ability)
 {
     switch (ability)
     {
-    case ABILITY_NORMAL_ATE:
-        return TYPE_NORMAL;
     case ABILITY_FIGHTING_ATE:
         return TYPE_FIGHTING;
     case ABILITY_AERILATE:
@@ -9639,6 +9637,23 @@ static inline void MulByTypeEffectiveness(struct BattleContext *ctx, uq4_12_t *m
             mod = UQ_4_12(1.0);
     }
 
+    if (ctx->invertDefenderTypeMatchups)
+    {
+        switch (mod)
+        {
+        case UQ_4_12(0.5):
+            mod = UQ_4_12(2.0);
+            if (ctx->updateFlags)
+                RecordAbilityBattle(ctx->battlerDef, ABILITY_INVERSION);
+            break;
+        case UQ_4_12(2.0):
+            mod = UQ_4_12(0.5);
+            if (ctx->updateFlags)
+                RecordAbilityBattle(ctx->battlerDef, ABILITY_INVERSION);
+            break;
+        }
+    }
+
     if (gSpecialStatuses[ctx->battlerDef].distortedTypeMatchups || (mod > UQ_4_12(0.0) && ShouldTeraShellDistortTypeMatchups(ctx->move, ctx->battlerDef)))
     {
         PushTraitStack(gBattlerTarget, ABILITY_TERA_SHELL);
@@ -9705,6 +9720,8 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(struct BattleCont
     GetBattlerTypes(ctx->battlerDef, FALSE, types);
     enum Ability battlerTraits[MAX_MON_TRAITS];
     STORE_BATTLER_TRAITS(ctx->battlerDef);
+
+    ctx->invertDefenderTypeMatchups = SearchTraits(battlerTraits, ABILITY_INVERSION) && !ctx->isAnticipation;
 
     MulByTypeEffectiveness(ctx, &modifier, types[0]);
     if (types[1] != types[0])

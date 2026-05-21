@@ -3541,13 +3541,14 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .cantBeTraced = TRUE,
     },
 
-    [ABILITY_NORMAL_ATE] =
+    [ABILITY_INVERSION] =
     {
-        .name = _("Normalate"),
-        .description = COMPOUND_STRING("Normal moves stay Normal."),
-        .longDescription = COMPOUND_STRING("Normal-type moves stay\n"
-                                           "Normal-type and deal 20%\n"
-                                           "more damage."),
+        .name = _("Inversion"),
+        .description = COMPOUND_STRING("Weaknesses and resists swap."),
+        .longDescription = COMPOUND_STRING("When attacked, this\n"
+                                           "Pokemon's weaknesses\n"
+                                           "and resistances are\n"
+                                           "reversed."),
         .aiRating = 7,
     },
 
