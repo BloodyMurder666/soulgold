@@ -723,7 +723,8 @@ const u8 gHealthboxElementsGfxTable[][32] = INCBIN_U8("graphics/battle_interface
                                                   "graphics/battle_interface/status3.4bpp",
                                                   "graphics/battle_interface/status4.4bpp",
                                                   "graphics/battle_interface/healthbox_doubles_frameend.4bpp",
-                                                  "graphics/battle_interface/healthbox_doubles_frameend_bar.4bpp");
+                                                  "graphics/battle_interface/healthbox_doubles_frameend_bar.4bpp",
+                                                  "graphics/battle_interface/expbar_shiny.4bpp");
 const u32 gBattleInterfaceGfx_UnusedWindow3[] = INCBIN_U32("graphics/battle_interface/unused_window3.4bpp.smol");
 const u32 gBattleInterfaceGfx_UnusedWindow4[] = INCBIN_U32("graphics/battle_interface/unused_window4.4bpp.smol");
 
@@ -999,10 +1000,13 @@ const u32 gBattleAnimSpriteGfx_Tendrils[] = INCBIN_U32("graphics/battle_anims/sp
 const u16 gBattleAnimSpritePal_Tendrils[] = INCBIN_U16("graphics/battle_anims/sprites/tendrils.gbapal");
 
 const u32 gHealthboxSinglesPlayerGfx[] = INCBIN_U32("graphics/battle_interface/healthbox_singles_player.4bpp.smol");
+const u32 gHealthboxSinglesPlayerShinyGfx[] = INCBIN_U32("graphics/battle_interface/healthbox_singles_player_shiny.4bpp.smol");
 const u32 gHealthboxSinglesOpponentGfx[] = INCBIN_U32("graphics/battle_interface/healthbox_singles_opponent.4bpp.smol");
 const u32 gHealthboxSinglesOpponentShinyGfx[] = INCBIN_U32("graphics/battle_interface/healthbox_singles_opponent_shiny.4bpp.smol");
 const u32 gHealthboxDoublesPlayerGfx[] = INCBIN_U32( "graphics/battle_interface/healthbox_doubles_player.4bpp.smol");
+const u32 gHealthboxDoublesPlayerShinyGfx[] = INCBIN_U32( "graphics/battle_interface/healthbox_doubles_player_shiny.4bpp.smol");
 const u32 gHealthboxDoublesOpponentGfx[] = INCBIN_U32("graphics/battle_interface/healthbox_doubles_opponent.4bpp.smol");
+const u32 gHealthboxDoublesOpponentShinyGfx[] = INCBIN_U32("graphics/battle_interface/healthbox_doubles_opponent_shiny.4bpp.smol");
 const u32 gHealthboxSafariGfx[] = INCBIN_U32("graphics/battle_interface/healthbox_safari.4bpp.smol");
 
 const u32 gUnusedGfx_Shadow[] = INCBIN_U32("graphics/unused/shadow.4bpp.smol");

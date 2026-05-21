@@ -1299,6 +1299,16 @@ void ShowPokemonSummaryScreen(u8 mode, void *mons, u8 monIndex, u8 maxMonIndex, 
         sMonSummaryScreen->minPageIndex = 0;
         sMonSummaryScreen->maxPageIndex = PSS_PAGE_COUNT - 1;
         break;
+    case SUMMARY_MODE_BATTLE_OPPONENT_TRAITS:
+        #if MAX_MON_TRAITS > 1
+            sMonSummaryScreen->minPageIndex = PSS_PAGE_TRAITS;
+            sMonSummaryScreen->maxPageIndex = PSS_PAGE_TRAITS;
+        #else
+            sMonSummaryScreen->minPageIndex = PSS_PAGE_INFO;
+            sMonSummaryScreen->maxPageIndex = PSS_PAGE_INFO;
+        #endif
+        sMonSummaryScreen->lockMovesFlag = TRUE;
+        break;
     case SUMMARY_MODE_LOCK_MOVES:
         sMonSummaryScreen->minPageIndex = 0;
         sMonSummaryScreen->maxPageIndex = PSS_PAGE_COUNT - 1;
@@ -1708,6 +1718,13 @@ static void SetDefaultTilemaps(void)
         ShowBg(1);
         ShowBg(2);
     }
+    #if MAX_MON_TRAITS > 1
+    else if (sMonSummaryScreen->mode == SUMMARY_MODE_BATTLE_OPPONENT_TRAITS)
+    {
+        SetBgTilemapBuffer(2, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_TRAITS][1]);
+        ScheduleBgCopyTilemapToVram(2);
+    }
+    #endif
 
     if (sMonSummaryScreen->summary.ailment == AILMENT_NONE)
         PositionStatusSlidingWindow(0, 0xFF);

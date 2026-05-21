@@ -126,7 +126,7 @@ static const struct HiddenGrottoData sHiddenGrottoData[NUM_HIDDEN_GROTTOES] =
             { SPECIES_ROOKIDEE, 0 },
             { SPECIES_PIKACHU, 0 },
             { SPECIES_POLTCHAGEIST, 0 },
-            { SPECIES_CHIMCHAR, 0 },
+            { SPECIES_EEVEE, 0 },
         },
     },
     [HIDDEN_GROTTO_ILEX] =
@@ -201,7 +201,7 @@ static const struct HiddenGrottoData sHiddenGrottoData[NUM_HIDDEN_GROTTOES] =
             { SPECIES_SKARMORY, 0 },
             { SPECIES_MAUSHOLD, 0 },
             { SPECIES_INDEEDEE, 0 },
-            { SPECIES_EEVEE, 0 },
+            { SPECIES_DRAMPA, 0 },
         },
     },
     [HIDDEN_GROTTO_ROUTE47] =

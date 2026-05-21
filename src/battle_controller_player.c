@@ -12,6 +12,7 @@
 #include "battle_gimmick.h"
 #include "bg.h"
 #include "data.h"
+#include "event_data.h"
 #include "item.h"
 #include "item_menu.h"
 #include "link.h"
@@ -41,6 +42,7 @@
 #include "constants/songs.h"
 #include "constants/trainers.h"
 #include "constants/rgb.h"
+#include "constants/flags.h"
 #include "caps.h"
 #include "menu.h"
 #include "pokemon_summary_screen.h"
@@ -90,11 +92,17 @@ static void Task_SetControllerToWaitForString(u8);
 static void Task_GiveExpWithExpBar(u8);
 static void Task_UpdateLvlInHealthbox(u8);
 static void PrintLinkStandbyMsg(void);
+static bool32 TryOpenEnemyBattleSummary(enum BattlerId battler);
+static void OpenEnemyBattleSummary(enum BattlerId battler);
+static void WaitForEnemyBattleSummary(enum BattlerId battler);
 
 static void ReloadMoveNames(enum BattlerId battler);
 static u32 CheckTypeEffectiveness(enum BattlerId battlerAtk, enum BattlerId battlerDef);
 static u32 CheckTargetTypeEffectiveness(enum BattlerId battler);
 static void MoveSelectionDisplayMoveEffectiveness(u32 foeEffectiveness, enum BattlerId battler);
+
+EWRAM_DATA static struct Pokemon sEnemyBattleSummaryMons[MAX_BATTLERS_COUNT / 2] = {0};
+EWRAM_DATA static u8 sEnemyBattleSummaryCount = 0;
 
 static void (*const sPlayerBufferCommands[CONTROLLER_CMDS_COUNT])(enum BattlerId battler) =
 {
@@ -227,6 +235,54 @@ static u32 GetNextBall(u32 ballId)
             return newBall;
     }
     return ballId;
+}
+
+static bool32 IsEnemyBattlerValidForSummary(enum BattlerId battler)
+{
+    return battler < gBattlersCount
+        && !IsOnPlayerSide(battler)
+        && IsBattlerAlive(battler)
+        && !(gAbsentBattlerFlags & (1u << battler))
+        && GetMonData(GetBattlerMon(battler), MON_DATA_SPECIES) != SPECIES_NONE;
+}
+
+static u8 BuildEnemyBattleSummaryMons(void)
+{
+    u8 i;
+    static const enum BattlerPosition sOpponentPositions[] =
+    {
+        B_POSITION_OPPONENT_LEFT,
+        B_POSITION_OPPONENT_RIGHT,
+    };
+
+    sEnemyBattleSummaryCount = 0;
+
+    for (i = 0; i < ARRAY_COUNT(sOpponentPositions); i++)
+    {
+        enum BattlerId opponent = GetBattlerAtPosition(sOpponentPositions[i]);
+
+        if (IsEnemyBattlerValidForSummary(opponent))
+            sEnemyBattleSummaryMons[sEnemyBattleSummaryCount++] = *GetBattlerMon(opponent);
+    }
+
+    return sEnemyBattleSummaryCount;
+}
+
+static bool32 TryOpenEnemyBattleSummary(enum BattlerId battler)
+{
+    if (!FlagGet(FLAG_POSTGAME_FEATURES))
+        return FALSE;
+    if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED | BATTLE_TYPE_RECORDED_LINK))
+        return FALSE;
+    if (BuildEnemyBattleSummaryMons() == 0)
+        return FALSE;
+
+    PlaySE(SE_SELECT);
+    TryHideLastUsedBall();
+    BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
+    gBattlerControllerFuncs[battler] = OpenEnemyBattleSummary;
+    gBattlerInMenuId = battler;
+    return TRUE;
 }
 
 static void HandleInputChooseAction(enum BattlerId battler)
@@ -392,6 +448,10 @@ static void HandleInputChooseAction(enum BattlerId battler)
     else if (JOY_NEW(START_BUTTON))
     {
         SwapHpBarsWithHpText();
+    }
+    else if (JOY_NEW(L_BUTTON) && TryOpenEnemyBattleSummary(battler))
+    {
+        return;
     }
     else if (DEBUG_BATTLE_MENU == TRUE && JOY_NEW(SELECT_BUTTON))
     {
@@ -1582,6 +1642,28 @@ static void OpenPartyMenuToChooseMon(enum BattlerId battler)
         FreeAllWindowBuffers();
         OpenPartyMenuInBattle(caseId);
     }
+}
+
+static void OpenEnemyBattleSummary(enum BattlerId battler)
+{
+    if (!gPaletteFade.active)
+    {
+        gBattlerControllerFuncs[battler] = WaitForEnemyBattleSummary;
+        ReshowBattleScreenDummy();
+        FreeAllWindowBuffers();
+        ShowPokemonSummaryScreen(
+            SUMMARY_MODE_BATTLE_OPPONENT_TRAITS,
+            sEnemyBattleSummaryMons,
+            0,
+            sEnemyBattleSummaryCount - 1,
+            CB2_SetUpReshowBattleScreenAfterMenu);
+    }
+}
+
+static void WaitForEnemyBattleSummary(enum BattlerId battler)
+{
+    if (gMain.callback2 == BattleMainCB2 && !gPaletteFade.active)
+        gBattlerControllerFuncs[battler] = PlayerHandleChooseAction;
 }
 
 static void WaitForMonSelection(enum BattlerId battler)

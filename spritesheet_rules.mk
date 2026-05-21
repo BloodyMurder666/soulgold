@@ -4954,7 +4954,16 @@ graphics/door_anims/battle_tower_multi_corridor.4bpp: %.4bpp: %.png
 $(BATINTGFXDIR)/healthbox_doubles_opponent.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 8 -mheight 4
 
+$(BATINTGFXDIR)/expbar_shiny.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -num_tiles 9 -Wnum_tiles
+
+$(BATINTGFXDIR)/healthbox_doubles_opponent_shiny.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 8 -mheight 4
+
 $(BATINTGFXDIR)/healthbox_doubles_player.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 8 -mheight 4
+
+$(BATINTGFXDIR)/healthbox_doubles_player_shiny.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 8 -mheight 4
 
 $(BATINTGFXDIR)/healthbox_safari.4bpp: %.4bpp: %.png
@@ -4967,6 +4976,9 @@ $(BATINTGFXDIR)/healthbox_singles_opponent_shiny.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 8 -mheight 4
 
 $(BATINTGFXDIR)/healthbox_singles_player.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 8 -mheight 8
+
+$(BATINTGFXDIR)/healthbox_singles_player_shiny.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 8 -mheight 8
 
 $(OBJEVENTGFXDIR)/people/rockets/rocket_f.4bpp: %.4bpp: %.png

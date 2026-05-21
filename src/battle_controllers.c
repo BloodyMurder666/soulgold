@@ -3230,6 +3230,7 @@ void BtlController_HandleSwitchInShowHealthbox(enum BattlerId battler)
         }
 
         StartSpriteAnim(&gSprites[gBattlerSpriteIds[battler]], 0);
+        LoadBattlerHealthboxGfx(battler);
         UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], GetBattlerMon(battler), HEALTHBOX_ALL);
         StartHealthboxSlideIn(battler);
         SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
@@ -3277,6 +3278,7 @@ void BtlController_HandleSwitchInTryShinyAnim(enum BattlerId battler)
 
         if (IsControllerPlayer(battler))
         {
+            LoadBattlerHealthboxGfx(battler);
             UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], GetBattlerMon(battler), HEALTHBOX_ALL);
             StartHealthboxSlideIn(battler);
             SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
