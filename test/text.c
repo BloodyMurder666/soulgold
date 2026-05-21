@@ -557,6 +557,26 @@ TEST("Type names fit on Pokedex Search Screen")
     EXPECT_LE(GetStringWidth(fontId, gTypesInfo[type].name, 0), widthPx);
 }
 
+TEST("Ability long descriptions fit on Long Ability Description Window")
+{
+    u32 i;
+    const u32 fontId = FONT_NARROW;
+    const u32 widthPx = 145; // 18 tiles * 8 - x offset 8
+    enum Ability ability = ABILITY_NONE;
+    const u8 *desc;
+
+    for (i = 1; i < ABILITIES_COUNT; i++)
+    {
+        PARAMETRIZE_LABEL("ID:%d %S", i, gAbilitiesInfo[i].name) { ability = i; }
+    }
+
+    desc = gAbilitiesInfo[ability].longDescription != NULL
+        ? gAbilitiesInfo[ability].longDescription
+        : gAbilitiesInfo[ability].description;
+
+    EXPECT_LE(GetStringWidth(fontId, desc, 0), widthPx);
+}
+
 extern u16 sBattlerAbilities[MAX_BATTLERS_COUNT];
 //*
 #define BATTLE_STRING_BUFFER_SIZE 1000

@@ -160,9 +160,9 @@ GoldenrodCity_Bill_GiveEeveeOrPikachu::
 	faceplayer
 # 83 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
 	goto_if_unset FLAG_GOT_BILL_GIFTMON, GoldenrodCity_Bill_GiveEeveeOrPikachu_2
-# 131 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
+# 135 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
 	msgbox GoldenrodCity_Bill_GiveEeveeOrPikachu_Text_6
-# 134 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
+# 138 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
 	release
 	end
 
@@ -175,11 +175,11 @@ GoldenrodCity_Bill_GiveEeveeOrPikachu_2:
 	switch VAR_RESULT
 # 99 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
 	case 0, GoldenrodCity_Bill_GiveEeveeOrPikachu_5
-# 112 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
+# 114 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
 	case 1, GoldenrodCity_Bill_GiveEeveeOrPikachu_6
-# 126 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
+# 130 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
 	msgbox GoldenrodCity_Bill_GiveEeveeOrPikachu_Text_5
-# 127 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
+# 131 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
 	release
 	end
 
@@ -193,31 +193,39 @@ GoldenrodCity_Bill_GiveEeveeOrPikachu_5:
 # 104 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
 	setflag FLAG_GOT_BILL_GIFTMON
 # 105 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
-	call Common_EventScript_GiftMon
+	showmonpic SPECIES_EEVEE_STARTER, 10, 3
 # 106 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
-	bufferspeciesname STR_VAR_1, SPECIES_EEVEE_STARTER
+	call Common_EventScript_GiftMon
 # 107 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
+	hidemonpic
+# 108 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
+	bufferspeciesname STR_VAR_1, SPECIES_EEVEE_STARTER
+# 109 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
 	msgbox GoldenrodCity_Bill_GiveEeveeOrPikachu_Text_4
-# 110 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
+# 112 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
 	release
 	end
 
 GoldenrodCity_Bill_GiveEeveeOrPikachu_6:
-# 113 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
-	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_PIKACHU_STARTER
-# 114 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
-	bufferspeciesname STR_VAR_1, SPECIES_PIKACHU_STARTER
 # 115 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
-	givemon SPECIES_PIKACHU_STARTER, 25
-# 117 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
-	setflag FLAG_GOT_BILL_GIFTMON
-# 118 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
-	call Common_EventScript_GiftMon
-# 119 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
+	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_PIKACHU_STARTER
+# 116 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
 	bufferspeciesname STR_VAR_1, SPECIES_PIKACHU_STARTER
+# 117 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
+	givemon SPECIES_PIKACHU_STARTER, 25
+# 119 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
+	setflag FLAG_GOT_BILL_GIFTMON
 # 120 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
-	msgbox GoldenrodCity_Bill_GiveEeveeOrPikachu_Text_4
+	showmonpic SPECIES_PIKACHU_STARTER, 10, 3
+# 121 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
+	call Common_EventScript_GiftMon
+# 122 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
+	hidemonpic
 # 123 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
+	bufferspeciesname STR_VAR_1, SPECIES_PIKACHU_STARTER
+# 124 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
+	msgbox GoldenrodCity_Bill_GiveEeveeOrPikachu_Text_4
+# 127 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
 	release
 	end
 
@@ -248,17 +256,17 @@ GoldenrodCity_Bill_GiveEeveeOrPikachu_Text_3:
 	.string "No thanks$"
 
 GoldenrodCity_Bill_GiveEeveeOrPikachu_Text_4:
-# 107 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
+# 109 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
 	.string "Bill: I knew you'd come through!\n"
 	.string "Way to go! I'm counting on you\l"
 	.string "to take good care of it!$"
 
 GoldenrodCity_Bill_GiveEeveeOrPikachu_Text_5:
-# 126 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
+# 130 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
 	.string "Oh… Now what to do?$"
 
 GoldenrodCity_Bill_GiveEeveeOrPikachu_Text_6:
-# 131 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
+# 135 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
 	.string "Come to think of it. I've heard rumours\n"
 	.string "of rare Pokémon being distributed in\l"
 	.string "the Game Corner.$"
