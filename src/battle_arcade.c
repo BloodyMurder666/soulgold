@@ -830,9 +830,8 @@ static void ReturnPartyToOwner(void)
 
 static void ResetLevelsToOriginal(void)
 {
-    struct Pokemon *frontierMon;
     struct Pokemon *playerMon;
-    u32 playerMonLevel, frontierMonLevel, i, monId;
+    u32 i, monId;
 
     for (i = 0; i < MAX_FRONTIER_PARTY_SIZE; i++)
     {
@@ -841,16 +840,9 @@ static void ResetLevelsToOriginal(void)
         if (monId >= PARTY_SIZE)
             continue;
 
-        frontierMon = &gSaveBlock1Ptr->playerParty[monId];
         playerMon = &gPlayerParty[i];
-
-        playerMonLevel = GetMonData(playerMon, MON_DATA_LEVEL,NULL);
-        frontierMonLevel = GetMonData(frontierMon, MON_DATA_LEVEL,NULL);
-
-        if (playerMonLevel == frontierMonLevel)
-            continue;
-
-        SetMonData(playerMon, MON_DATA_LEVEL, &frontierMonLevel);
+        RestoreFrontierPlayerPartyMonLevel(i, monId);
+        ScaleFrontierMonToCurrentLevelMode(playerMon);
     }
 }
 

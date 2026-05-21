@@ -435,10 +435,10 @@ BattleFrontier_ReceptionGate_Text_LearnAboutWhat:
 BattleFrontier_ReceptionGate_Text_LevelModeInfo:
 	.string "All the challenges at the Battle\n"
 	.string "Frontier's facilities come in\l"
-	.string "two courses--Normal and Hard.$"
+	.string "two courses--Classic and Chaos.$"
 
 BattleFrontier_ReceptionGate_Text_Level50Info:
-	.string "The Normal course is now open!\n"
+	.string "The Classic course is now open!\n"
 	.string "All Pokémon will be set to Lv. 50.\p"
 	.string "This course serves as the entry level\n"
 	.string "for battles at the Battle Frontier.\p"
@@ -446,8 +446,8 @@ BattleFrontier_ReceptionGate_Text_Level50Info:
 	.string "this course.$"
 
 BattleFrontier_ReceptionGate_Text_OpenLevelInfo:
-	.string "The Hard course is now open!\n"
-	.string "All Pokémon will be set to Lv. 50.\p"
+	.string "The Chaos course is now open!\n"
+	.string "All Pokémon will be set to Lv. 100.\p"
 	.string "This course offers a greater challenge\n"
 	.string "for experienced trainers.\p"
 	.string "We encourage you to enter this course\n"
@@ -509,4 +509,3 @@ BattleFrontier_ReceptionGate_Text_BattlePointsInfo:
 	.string "You may trade in your Battle Points\n"
 	.string "for prizes at the Exchange Service\l"
 	.string "Corner.$"
-

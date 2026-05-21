@@ -63,12 +63,13 @@ BattleFrontier_BattleTowerBattleRoom_EventScript_DefeatedOpponent::
 	waitmovement 0
 	applymovement LOCALID_PLAYER, BattleFrontier_BattleTowerBattleRoom_Movement_PlayerFaceAttendant
 	waitmovement 0
+	tower_givepoints
+    msgbox BattleFrontier_Text_ObtainedXBattlePoints, MSGBOX_GETPOINTS 
+	waitmessage
 	msgbox BattleFrontier_BattleTowerBattleRoom_Text_RestoreMonsToFullHealth, MSGBOX_DEFAULT
 	playfanfare MUS_HEAL
 	waitfanfare
 	special HealPlayerParty
-    tower_givepoints
-    msgbox BattleFrontier_Text_ObtainedXBattlePoints, MSGBOX_GETPOINTS 
 BattleFrontier_BattleTowerBattleRoom_EventScript_AskReadyForOpponent::
 	frontier_getbrainstatus
 	copyvar VAR_BATTLE_TOWER_STREAK, VAR_RESULT
@@ -313,7 +314,7 @@ BattleFrontier_BattleTowerBattleRoom_Movement_PlayerEnter:
 	step_end
 
 BattleFrontier_BattleTowerBattleRoom_Movement_PlayerFaceAttendant:
-	face_down
+	face_left
 	step_end
 
 BattleFrontier_BattleTowerBattleRoom_Movement_PlayerFaceBattle:
@@ -339,11 +340,9 @@ BattleFrontier_BattleTowerBattleRoom_Movement_AttendantApproachPlayer:
 	walk_right
 	walk_right
 	walk_right
-	walk_up
 	step_end
 
 BattleFrontier_BattleTowerBattleRoom_Movement_AttendantReturnToPos:
-	walk_down
 	walk_left
 	walk_left
 	walk_left

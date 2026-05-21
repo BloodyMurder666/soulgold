@@ -89,7 +89,7 @@ script BattleArcade_Registration_EventScript_ExplainChallenge
 
 script BattleArcade_Registration_EventScript_TryEnterChallenge
 {
-	message(format("The ROCKET ARCADE offers two levels of challenge, Level 50 and Open Level. Which is your choice?"))
+	message(format("The ROCKET ARCADE offers two levels of challenge, Classic and Chaos. Which is your choice?"))
 	waitmessage
 	multichoice(17, 4, MULTI_LEVEL_MODE, FALSE)
 	switch(var(VAR_RESULT))
@@ -139,7 +139,7 @@ script BattleArcade_Registration_EventScript_NotEnoughValidMons
 	call(BattleFrontier_EventScript_GetLvlMode)
 	if(var(VAR_RESULT) == FRONTIER_LVL_50)
 	{
-		msgbox(format("The {STR_VAR_2} different Pokémon must all be Level 50 or lower."), MSGBOX_DEFAULT)
+		msgbox(format("The {STR_VAR_2} different Pokémon must all be eligible."), MSGBOX_DEFAULT)
 	}
 	msgbox(format("Eggs{STR_VAR_1} are not allowed to enter."), MSGBOX_DEFAULT)
 	closemessage

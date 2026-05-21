@@ -48,6 +48,9 @@
 #include "constants/battle_arcade.h"
 // End battle_arcade
 
+static u8 GetFrontierPlayerMonLevel(void);
+static void SetFrontierMonLevel(struct Pokemon *mon, u8 level);
+
 struct FrontierBrainMon
 {
     u16 species;
@@ -125,7 +128,7 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_BRAIN_FACILITIES] =
             COMPOUND_STRING("I'm terribly sorry…")       //Gold
         },
         .battledBit = {1 << 0, 1 << 1},
-        .streakAppearances = {35, 70, 35, 1},
+        .streakAppearances = {21, 42, 21, 1},
     },
     [FRONTIER_FACILITY_DOME] =
     {
@@ -1058,6 +1061,7 @@ static void SetSelectedPartyOrder(void)
     for (i = 0; i < gSpecialVar_0x8005; i++)
         gSelectedOrderFromParty[i] = gSaveBlock2Ptr->frontier.selectedPartyMons[i];
     ReducePlayerPartyToSelectedMons();
+    ScaleFrontierPlayerParty();
 }
 
 static void DoSoftReset_(void)
@@ -1078,8 +1082,71 @@ static void SaveSelectedParty(void)
     {
         u16 monId = gSaveBlock2Ptr->frontier.selectedPartyMons[i] - 1;
         if (monId < PARTY_SIZE)
+        {
+            RestoreFrontierPlayerPartyMonLevel(i, monId);
             SavePlayerPartyMon(gSaveBlock2Ptr->frontier.selectedPartyMons[i] - 1, &gPlayerParty[i]);
+        }
     }
+}
+
+static u8 GetFrontierPlayerMonLevel(void)
+{
+    switch (gSaveBlock2Ptr->frontier.lvlMode)
+    {
+    case FRONTIER_LVL_50:
+        return FRONTIER_MAX_LEVEL_50;
+    case FRONTIER_LVL_OPEN:
+        return FRONTIER_MAX_LEVEL_OPEN;
+    default:
+        return 0;
+    }
+}
+
+static void SetFrontierMonLevel(struct Pokemon *mon, u8 level)
+{
+    u16 species;
+    u32 exp;
+
+    if (level == 0)
+        return;
+
+    species = GetMonData(mon, MON_DATA_SPECIES);
+    if (species == SPECIES_NONE || species == SPECIES_EGG)
+        return;
+
+    exp = gExperienceTables[gSpeciesInfo[species].growthRate][level];
+    SetMonData(mon, MON_DATA_EXP, &exp);
+    CalculateMonStats(mon);
+}
+
+void ScaleFrontierMonToCurrentLevelMode(struct Pokemon *mon)
+{
+    SetFrontierMonLevel(mon, GetFrontierPlayerMonLevel());
+}
+
+void ScaleFrontierPlayerParty(void)
+{
+    u8 i;
+
+    for (i = 0; i < PARTY_SIZE; i++)
+        ScaleFrontierMonToCurrentLevelMode(&gPlayerParty[i]);
+}
+
+void RestoreFrontierPlayerPartyMonLevel(u8 partySlot, u8 savedPartySlot)
+{
+    u16 species;
+    u32 exp;
+
+    if (partySlot >= PARTY_SIZE || savedPartySlot >= PARTY_SIZE)
+        return;
+
+    species = GetMonData(&gPlayerParty[partySlot], MON_DATA_SPECIES);
+    if (species == SPECIES_NONE || species == SPECIES_EGG)
+        return;
+
+    exp = GetMonData(GetSavedPlayerPartyMon(savedPartySlot), MON_DATA_EXP);
+    SetMonData(&gPlayerParty[partySlot], MON_DATA_EXP, &exp);
+    CalculateMonStats(&gPlayerParty[partySlot]);
 }
 
 static void ShowFacilityResultsWindow(void)
@@ -2221,11 +2288,13 @@ static void AppendIfValid(u16 species, u16 heldItem, u16 hp, enum FrontierLevelM
 {
     s32 i = 0;
 
+    (void)hp;
+    (void)lvlMode;
+    (void)monLevel;
+
     if (species == SPECIES_EGG || species == SPECIES_NONE)
         return;
     if (gSpeciesInfo[species].isFrontierBanned)
-        return;
-    if (lvlMode == FRONTIER_LVL_50 && monLevel > FRONTIER_MAX_LEVEL_50)
         return;
 
     for (i = 0; i < *count && speciesArray[i] != species; i++)
@@ -2491,7 +2560,9 @@ static void ResetSketchedMoves(void)
                 if (k == MAX_MON_MOVES)
                     SetMonMoveSlot(&gPlayerParty[i], MOVE_SKETCH, j);
             }
+            RestoreFrontierPlayerPartyMonLevel(i, monId);
             SavePlayerPartyMon(gSaveBlock2Ptr->frontier.selectedPartyMons[i] - 1, &gPlayerParty[i]);
+            ScaleFrontierMonToCurrentLevelMode(&gPlayerParty[i]);
         }
     }
 }
@@ -3469,9 +3540,7 @@ u8 GetFrontierEnemyMonLevel(enum FrontierLevelMode lvlMode)
         level = FRONTIER_MAX_LEVEL_50;
         break;
     case FRONTIER_LVL_OPEN:
-        level = GetHighestLevelInPlayerParty();
-        if (level < FRONTIER_MIN_LEVEL_OPEN)
-            level = FRONTIER_MIN_LEVEL_OPEN;
+        level = FRONTIER_MAX_LEVEL_OPEN;
         break;
     }
 

@@ -10,7 +10,7 @@
 #define METATILE_BattleDome_Door_PreBattleRoom  0x43A
 
 // gTileset_BattleFrontier
-#define METATILE_BattleFrontier_CorridorOpenDoor_Bottom  0x20F
+#define METATILE_BattleFrontier_CorridorOpenDoor_Bottom  0x1C7
 #define METATILE_BattleFrontier_CorridorOpenDoor_Top     0x207
 #define METATILE_BattleFrontier_Door_Elevator            0x20E
 #define METATILE_BattleFrontier_Door_MultiCorridor       0x42D

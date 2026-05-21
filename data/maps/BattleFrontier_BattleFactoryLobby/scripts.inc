@@ -356,7 +356,7 @@ BattleFrontier_BattleFactoryLobby_Text_LookForwardToNextVisit:
 
 BattleFrontier_BattleFactoryLobby_Text_WhichLevelMode:
 	.string "Which level do you wish to challenge?\n"
-	.string "Level 50 or Open Level?$"
+	.string "Classic or Chaos?$"
 
 BattleFrontier_BattleFactoryLobby_Text_OkayToSaveBeforeChallenge:
 	.string "Before you begin your challenge,\n"
@@ -546,6 +546,6 @@ BattleFrontier_BattleFactoryLobby_Text_ExplainSwapNotesRules:
 	.string "even when swaps are made.$"
 
 BattleFrontier_BattleFactoryLobby_Text_ExplainOpenLvRules:
-	.string "In the Open Level, the rental Pokémon\n"
+	.string "In Chaos, the rental Pokémon\n"
 	.string "and the opposing Trainers' Pokémon\l"
 	.string "are all Level 100.$"

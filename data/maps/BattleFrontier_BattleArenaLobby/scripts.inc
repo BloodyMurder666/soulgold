@@ -113,7 +113,7 @@ BattleFrontier_BattleArenaLobby_EventScript_Attendant::
 BattleFrontier_BattleArenaLobby_EventScript_AskTakeChallenge::
 	message BattleFrontier_BattleArenaLobby_Text_WishToTakeChallenge
 	waitmessage
-	multichoice 17, 6, MULTI_CHALLENGEINFO, FALSE
+	multichoice 18, 8, MULTI_CHALLENGEINFO, FALSE
 	switch VAR_RESULT
 	case 0, BattleFrontier_BattleArenaLobby_EventScript_TryEnterChallenge
 	case 1, BattleFrontier_BattleArenaLobby_EventScript_ExplainChallenge
@@ -123,7 +123,7 @@ BattleFrontier_BattleArenaLobby_EventScript_AskTakeChallenge::
 BattleFrontier_BattleArenaLobby_EventScript_TryEnterChallenge::
 	message BattleFrontier_BattleArenaLobby_Text_WhichLevelMode
 	waitmessage
-	multichoice 17, 6, MULTI_LEVEL_MODE, FALSE
+	multichoice 18, 8, MULTI_LEVEL_MODE, FALSE
 	switch VAR_RESULT
 	case FRONTIER_LVL_TENT, BattleFrontier_BattleArenaLobby_EventScript_CancelChallenge
 	case MULTI_B_PRESSED, BattleFrontier_BattleArenaLobby_EventScript_CancelChallenge
@@ -398,7 +398,7 @@ BattleFrontier_BattleArenaLobby_Text_OkayToSave:
 
 BattleFrontier_BattleArenaLobby_Text_WhichLevelMode:
 	.string "The Battle Arena offers two levels\n"
-	.string "of challenge, Level 50 and Open Level.\l"
+	.string "of challenge, Classic and Chaos.\l"
 	.string "Which is your choice?$"
 
 BattleFrontier_BattleArenaLobby_Text_SelectThreeMons:
@@ -426,7 +426,7 @@ BattleFrontier_BattleArenaLobby_Text_NotEnoughValidMonsLv50:
 	.string "To qualify, you must bring three\n"
 	.string "different kinds of Pokémon.\p"
 	.string "The three different Pokémon\n"
-	.string "must all be Level 50 or lower.\p"
+	.string "must all be eligible to enter.\p"
 	.string "They also must not hold the same\n"
 	.string "kinds of items.\p"
 	.string "Eggs{STR_VAR_1}.$"

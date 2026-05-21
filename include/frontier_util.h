@@ -1,6 +1,8 @@
 #ifndef GUARD_FRONTIER_UTIL_H
 #define GUARD_FRONTIER_UTIL_H
 
+struct Pokemon;
+
 void CallFrontierUtilFunc(void);
 u8 GetFrontierBrainStatus(void);
 void CopyFrontierTrainerText(u8 whichText, u16 trainerId);
@@ -12,6 +14,9 @@ void ShowRankingHallRecordsWindow(void);
 void ScrollRankingHallRecordsWindow(void);
 void ClearRankingHallRecords(void);
 void SaveGameFrontier(void);
+void ScaleFrontierMonToCurrentLevelMode(struct Pokemon *mon);
+void ScaleFrontierPlayerParty(void);
+void RestoreFrontierPlayerPartyMonLevel(u8 partySlot, u8 savedPartySlot);
 enum TrainerPicID GetFrontierBrainTrainerPicIndex(void);
 enum TrainerClassID GetFrontierBrainTrainerClass(void);
 void CopyFrontierBrainTrainerName(u8 *dst);

@@ -2010,16 +2010,20 @@ static void InitDomeTrainers(void)
     rankingScores[0] = 0;
     for (i = 0; i < FRONTIER_PARTY_SIZE; i++)
     {
+        struct Pokemon playerMon;
+
         // trainerId var re-used here as index of selected mons
         trainerId = gSaveBlock2Ptr->frontier.selectedPartyMons[i] - 1;
-        rankingScores[0] += GetMonData(&gPlayerParty[trainerId], MON_DATA_ATK);
-        rankingScores[0] += GetMonData(&gPlayerParty[trainerId], MON_DATA_DEF);
-        rankingScores[0] += GetMonData(&gPlayerParty[trainerId], MON_DATA_SPATK);
-        rankingScores[0] += GetMonData(&gPlayerParty[trainerId], MON_DATA_SPDEF);
-        rankingScores[0] += GetMonData(&gPlayerParty[trainerId], MON_DATA_SPEED);
-        rankingScores[0] += GetMonData(&gPlayerParty[trainerId], MON_DATA_MAX_HP);
-        monTypesBits |= 1u << GetSpeciesType(GetMonData(&gPlayerParty[trainerId], MON_DATA_SPECIES), 0);
-        monTypesBits |= 1u << GetSpeciesType(GetMonData(&gPlayerParty[trainerId], MON_DATA_SPECIES), 1);
+        playerMon = gPlayerParty[trainerId];
+        ScaleFrontierMonToCurrentLevelMode(&playerMon);
+        rankingScores[0] += GetMonData(&playerMon, MON_DATA_ATK);
+        rankingScores[0] += GetMonData(&playerMon, MON_DATA_DEF);
+        rankingScores[0] += GetMonData(&playerMon, MON_DATA_SPATK);
+        rankingScores[0] += GetMonData(&playerMon, MON_DATA_SPDEF);
+        rankingScores[0] += GetMonData(&playerMon, MON_DATA_SPEED);
+        rankingScores[0] += GetMonData(&playerMon, MON_DATA_MAX_HP);
+        monTypesBits |= 1u << GetSpeciesType(GetMonData(&playerMon, MON_DATA_SPECIES), 0);
+        monTypesBits |= 1u << GetSpeciesType(GetMonData(&playerMon, MON_DATA_SPECIES), 1);
     }
 
     // Count the number of types in the players party, to factor into the ranking
@@ -5670,7 +5674,9 @@ static void ResetSketchedMoves(void)
                 SetMonMoveSlot(&gPlayerParty[i], MOVE_SKETCH, moveSlot);
         }
 
+        RestoreFrontierPlayerPartyMonLevel(i, playerMonId);
         SavePlayerPartyMon(playerMonId, &gPlayerParty[i]);
+        ScaleFrontierMonToCurrentLevelMode(&gPlayerParty[i]);
     }
 }
 
@@ -5692,6 +5698,7 @@ static void RestoreDomePlayerPartyHeldItems(void)
 static void ReduceDomePlayerPartyToSelectedMons(void)
 {
     ReducePlayerPartyToSelectedMons();
+    ScaleFrontierPlayerParty();
 }
 
 static void GetPlayerSeededBeforeOpponent(void)

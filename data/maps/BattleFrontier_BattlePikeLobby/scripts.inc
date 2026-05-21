@@ -308,7 +308,7 @@ BattleFrontier_BattlePikeLobby_Text_LookForwardToSeeingYou:
 
 BattleFrontier_BattlePikeLobby_Text_WhichChallengeMode:
 	.string "You have the choice of two courses,\n"
-	.string "Level 50 and Open Level.\l"
+	.string "Classic and Chaos.\l"
 	.string "Which will you challenge?$"
 
 BattleFrontier_BattlePikeLobby_Text_NotEnoughValidMonsLv50:
@@ -316,7 +316,7 @@ BattleFrontier_BattlePikeLobby_Text_NotEnoughValidMonsLv50:
 	.string "You do not have three eligible\n"
 	.string "Pokémon for the Battle Choice event.\p"
 	.string "You must have three different Pokémon\n"
-	.string "of Level 50 or less to enter.\p"
+	.string "eligible to enter.\p"
 	.string "They also must be holding different\n"
 	.string "kinds of items.\p"
 	.string "Eggs{STR_VAR_1}.$"
@@ -436,4 +436,3 @@ BattleFrontier_BattlePikeLobby_Text_ExplainMonOrderRules:
 	.string "changed.\p"
 	.string "The sequence must be set before\n"
 	.string "starting your challenge.$"
-

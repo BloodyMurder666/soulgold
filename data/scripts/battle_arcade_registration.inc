@@ -690,8 +690,8 @@ BattleArcade_Registration_EventScript_ExplainChallenge_Text_1:
 BattleArcade_Registration_EventScript_TryEnterChallenge_Text_0:
 # 92 "data/scripts/battle_arcade_registration.pory"
 	.string "The ROCKET ARCADE offers two levels of\n"
-	.string "challenge, Level 50 and Open Level.\l"
-	.string "Which is your choice?$"
+	.string "challenge, Classic and Chaos. Which is\l"
+	.string "your choice?$"
 
 BattleArcade_Registration_EventScript_NotEnoughValidMons_Text_0:
 # 137 "data/scripts/battle_arcade_registration.pory"
@@ -703,7 +703,7 @@ BattleArcade_Registration_EventScript_NotEnoughValidMons_Text_0:
 BattleArcade_Registration_EventScript_NotEnoughValidMons_Text_1:
 # 142 "data/scripts/battle_arcade_registration.pory"
 	.string "The {STR_VAR_2} different Pokémon\n"
-	.string "must all be Level 50 or lower.$"
+	.string "must all be eligible.$"
 
 BattleArcade_Registration_EventScript_NotEnoughValidMons_Text_2:
 # 144 "data/scripts/battle_arcade_registration.pory"

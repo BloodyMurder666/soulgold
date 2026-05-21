@@ -1068,7 +1068,7 @@ BattleFrontier_BattleTowerLobby_Text_LookForwardToAnotherChallenge:
 
 BattleFrontier_BattleTowerLobby_Text_WhichLevelMode:
 	.string "The Battle Room offers two levels\n"
-	.string "of challenge, Level 50 and Open Level.\l"
+	.string "of challenge, Classic and Chaos.\l"
 	.string "Which is your choice?$"
 
 @ Unused
@@ -1093,7 +1093,7 @@ BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLv50:
 	.string "Excuse me!\p"
 	.string "You don't have {STR_VAR_2} eligible Pokémon.\p"
 	.string "You must have {STR_VAR_2} different Pokémon\n"
-	.string "of Level 50 or less to enter.\p"
+	.string "to enter.\p"
 	.string "They also must be holding different\n"
 	.string "kinds of items.\p"
 	.string "Eggs{STR_VAR_1}.$"
@@ -1115,7 +1115,7 @@ BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLv50Singles:
 	.string "Excuse me!\p"
 	.string "You don't have three eligible Pokémon.\p"
 	.string "You must have three different Pokémon\n"
-	.string "of Level 50 or less to enter.\p"
+	.string "to enter.\p"
 	.string "They also must be holding different\n"
 	.string "kinds of items.\p"
 	.string "Eggs{STR_VAR_1}.$"
@@ -1133,7 +1133,7 @@ BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLv50Doubles:
 	.string "Excuse me!\p"
 	.string "You don't have four eligible Pokémon.\p"
 	.string "You must have four different Pokémon\n"
-	.string "of Level 50 or less to enter.\p"
+	.string "to enter.\p"
 	.string "They also must be holding different\n"
 	.string "kinds of items.\p"
 	.string "Eggs{STR_VAR_1}.$"
@@ -1151,7 +1151,7 @@ BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLv50Multis:
 	.string "Excuse me!\p"
 	.string "You don't have two eligible Pokémon.\p"
 	.string "You must have two different Pokémon\n"
-	.string "of Level 50 or less to enter.\p"
+	.string "to enter.\p"
 	.string "They also must be holding different\n"
 	.string "kinds of items.\p"
 	.string "Eggs{STR_VAR_1}.$"

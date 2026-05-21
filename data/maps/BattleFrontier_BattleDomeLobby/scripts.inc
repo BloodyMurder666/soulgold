@@ -478,7 +478,7 @@ BattleFrontier_BattleDomeLobby_Text_OkayToSaveBeforeChallenge:
 
 BattleFrontier_BattleDomeLobby_Text_WhichLevelMode:
 	.string "The tournament offers two levels\n"
-	.string "of challenge, Level 50 and Open Level.\l"
+	.string "of challenge, Classic and Chaos.\l"
 	.string "Which is your choice?$"
 
 BattleFrontier_BattleDomeLobby_Text_SelectThreeMons:
@@ -499,7 +499,7 @@ BattleFrontier_BattleDomeLobby_Text_NotEnoughValidMonsLv50:
 	.string "Excuse me!\p"
 	.string "You don't have three eligible Pokémon.\p"
 	.string "You must have three different Pokémon\n"
-	.string "of Level 50 or less to enter.\p"
+	.string "eligible to enter.\p"
 	.string "They also must be holding different\n"
 	.string "kinds of items.\p"
 	.string "Eggs{STR_VAR_1}.$"
@@ -583,19 +583,19 @@ BattleFrontier_BattleDomeLobby_Text_ExplainDoublesChallenge:
 
 BattleFrontier_BattleDomeLobby_Text_PrevTourneyResultsSinglesLv50:
 	.string "They're the results of the last\n"
-	.string "Level 50 Single Battle Tournament.$"
+	.string "Classic Single Battle Tournament.$"
 
 BattleFrontier_BattleDomeLobby_Text_PrevTourneyResultsDoublesLv50:
 	.string "They're the results of the last\n"
-	.string "Level 50 Double Battle Tournament.$"
+	.string "Classic Double Battle Tournament.$"
 
 BattleFrontier_BattleDomeLobby_Text_PrevTourneyResultsSinglesLvOpen:
 	.string "They're the results of the last\n"
-	.string "Open Level Single Battle Tournament.$"
+	.string "Chaos Single Battle Tournament.$"
 
 BattleFrontier_BattleDomeLobby_Text_PrevTourneyResultsDoublesLvOpen:
 	.string "They're the results of the last\n"
-	.string "Open Level Double Battle Tournament.$"
+	.string "Chaos Double Battle Tournament.$"
 
 BattleFrontier_BattleDomeLobby_Text_LastWinnerWasTough:
 	.string "Did you see it?\n"
