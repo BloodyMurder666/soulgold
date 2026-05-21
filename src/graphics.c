@@ -2133,4 +2133,5 @@ const u32 gTilesetTiles_General_Frontier_West[] = INCBIN_U32("data/tilesets/prim
 //New Summary Pages
 #if MAX_MON_TRAITS > 1
     const u32 gSummaryPage_Traits_Tilemap[]      = INCBIN_U32("graphics/summary_screen/page_traits.bin.smolTM");
+    const u32 gSummaryLongDescriptionBox_Tilemap[] = INCBIN_U32("graphics/summary_screen/longdescriptionbox.bin.smolTM");
 #endif
