@@ -4019,7 +4019,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         )
         .cannotBeTraded = TRUE,
         .perfectIVCount = NUM_STATS,
-        .levelUpLearnset = sPikachuLevelUpLearnset,
+        .levelUpLearnset = sPikachuPartnerLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
         .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
     },
@@ -18833,7 +18833,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         )
         .cannotBeTraded = TRUE,
         .perfectIVCount = NUM_STATS,
-        .levelUpLearnset = sEeveeLevelUpLearnset,
+        .levelUpLearnset = sEeveeStarterLevelUpLearnset,
         .teachableLearnset = sEeveeTeachableLearnset,
         .eggMoveLearnset = sEeveeEggMoveLearnset,
         .formSpeciesIdTable = sEeveeFormSpeciesIdTable,
