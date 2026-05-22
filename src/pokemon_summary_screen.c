@@ -4128,6 +4128,7 @@ static void PrintEggMemo(void)
         for (i = 0; i < ARRAY_COUNT(sMonSummaryScreen->windowIds); i++)
             RemoveWindowByIndex(i);
 
+        DecompressDataWithHeaderWram(gSummaryLongDescriptionBox_Tilemap, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_CONTEST_MOVES][1]);
         sMonSummaryScreen->savedBgTilemapBuffer = GetBgTilemapBuffer(bg);
         sMonSummaryScreen->savedBgX = GetBgX(bg);
         sMonSummaryScreen->currPageIndex = PSS_PAGE_CONTEST_MOVES;
