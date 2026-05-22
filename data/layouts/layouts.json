@@ -8534,7 +8534,7 @@
     {
       "id": "LAYOUT_TRAINER_HILL_COURTYARD",
       "name": "TrainerHill_Courtyard_Layout",
-      "width": 46,
+      "width": 25,
       "height": 46,
       "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_TrainerHill_Courtyard",
