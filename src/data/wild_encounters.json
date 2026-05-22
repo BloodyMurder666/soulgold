@@ -184,7 +184,7 @@
               {
                 "min_level": 2,
                 "max_level": 3,
-                "species": "SPECIES_HOPPIP"
+                "species": "SPECIES_RATTATA"
               },
               {
                 "min_level": 2,
@@ -194,7 +194,7 @@
               {
                 "min_level": 2,
                 "max_level": 2,
-                "species": "SPECIES_RATTATA"
+                "species": "SPECIES_HOPPIP"
               },
               {
                 "min_level": 2,
@@ -209,7 +209,7 @@
               {
                 "min_level": 2,
                 "max_level": 2,
-                "species": "SPECIES_HOPPIP"
+                "species": "SPECIES_HOOTHOOT"
               }
             ]
           }
@@ -238,12 +238,12 @@
               {
                 "min_level": 2,
                 "max_level": 2,
-                "species": "SPECIES_PIDGEY"
+                "species": "SPECIES_HOOTHOOT"
               },
               {
                 "min_level": 2,
                 "max_level": 2,
-                "species": "SPECIES_PIDGEY"
+                "species": "SPECIES_HOOTHOOT"
               },
               {
                 "min_level": 2,
@@ -13176,12 +13176,12 @@
               {
                 "min_level": 12,
                 "max_level": 17,
-                "species": "SPECIES_PARAS"
+                "species": "SPECIES_VENIPEDE"
               },
               {
                 "min_level": 14,
                 "max_level": 14,
-                "species": "SPECIES_VENONAT"
+                "species": "SPECIES_SEWADDLE"
               },
               {
                 "min_level": 16,

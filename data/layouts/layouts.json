@@ -6226,7 +6226,7 @@
       "name": "NationalPark_Layout",
       "width": 48,
       "height": 56,
-      "primary_tileset": "gTileset_Kanto_General",
+      "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_NationalPark",
       "border_filepath": "data/layouts/NationalPark_Normal/border.bin",
       "blockdata_filepath": "data/layouts/NationalPark_Normal/map.bin"

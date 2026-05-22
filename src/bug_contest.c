@@ -265,11 +265,11 @@ bool8 ShowBugContestChosenMon(void)
     case SPECIES_KAKUNA:
         gSpecialVar_Result = LOCALID_BUGCONTEST_KAKUNA;
         break;
-    case SPECIES_PARAS:
-        gSpecialVar_Result = LOCALID_BUGCONTEST_PARAS;
+    case SPECIES_SEWADDLE:
+        gSpecialVar_Result = LOCALID_BUGCONTEST_SEWADDLE;
         break;
-    case SPECIES_VENONAT:
-        gSpecialVar_Result = LOCALID_BUGCONTEST_VENONAT;
+    case SPECIES_VENIPEDE:
+        gSpecialVar_Result = LOCALID_BUGCONTEST_VENIPEDE;
         break;
     case SPECIES_BUTTERFREE:
         gSpecialVar_Result = LOCALID_BUGCONTEST_BUTTERFREE;
