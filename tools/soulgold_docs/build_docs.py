@@ -499,6 +499,38 @@ def parse_named_table(
             rows[key][field_name] = const.group(0) if const else ""
     return rows
 
+def parse_named_table_abilities(
+    include_path: str,
+    key_prefix: str,
+    name_prefix: str,
+) -> dict[str, dict[str, Any]]:
+    text = preprocess(include_path)
+    source_path = REPO_ROOT / include_path
+    if not source_path.exists():
+        source_path = REPO_ROOT / "src" / include_path
+    source_text = read(source_path)
+    shared_strings = parse_shared_strings(source_text)
+    entries = split_designated_entries(text)
+    rows: dict[str, dict[str, Any]] = {}
+
+    for key, entry in entries.items():
+        if not key.startswith(key_prefix):
+            continue
+        name_expr = extract_field(entry, "name") or ""
+        desc_expr = extract_field(entry, "longDescription") or ""
+        name = collect_strings(name_expr) or clean_constant_name(key, name_prefix)
+        description = collect_strings(desc_expr)
+        if not description and desc_expr in shared_strings:
+            description = shared_strings[desc_expr]
+        rows[key] = {"constant": key, "name": name, "description": description}
+        for field_name in ("power", "accuracy", "pp", "priority"):
+            rows[key][field_name] = extract_number(entry, field_name)
+        for field_name in ("type", "category"):
+            expr = extract_field(entry, field_name) or ""
+            const = re.search(r"\b[A-Z][A-Z0-9_]+\b", expr)
+            rows[key][field_name] = const.group(0) if const else ""
+    return rows
+
 
 def parse_species() -> tuple[list[SpeciesRow], dict[str, SpeciesRow]]:
     species_to_id, id_to_species = parse_define_constants(SPECIES_H, "SPECIES_")
@@ -1346,7 +1378,7 @@ def parse_trainers(
 
 def build() -> None:
     moves = parse_named_table("data/moves_info.h", "MOVE_", "MOVE_")
-    abilities = parse_named_table("data/abilities.h", "ABILITY_", "ABILITY_")
+    abilities = parse_named_table_abilities("data/abilities.h", "ABILITY_", "ABILITY_")
     species, by_species = parse_species()
     tmhm_rows = parse_tmhm_list()
     tmhm_moves = {row["move"] for row in tmhm_rows}
