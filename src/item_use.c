@@ -968,6 +968,12 @@ void ItemUseOutOfBattle_AbilityPatch(u8 taskId)
     SetUpItemUseCallback(taskId);
 }
 
+void ItemUseOutOfBattle_ShinGenome(u8 taskId)
+{
+    gItemUseCB = ItemUseCB_ShinGenome;
+    SetUpItemUseCallback(taskId);
+}
+
 void ItemUseOutOfBattle_Mint(u8 taskId)
 {
     gItemUseCB = ItemUseCB_Mint;

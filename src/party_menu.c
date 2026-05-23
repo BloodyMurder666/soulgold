@@ -504,6 +504,8 @@ static void FieldCallback_RockClimb(void);
 
 static const u8 sText_askText[] = _("Would you like to change {STR_VAR_1}'s\nability to {STR_VAR_2}?");
 static const u8 sText_doneText[] = _("{STR_VAR_1}'s ability became\n{STR_VAR_2}!{PAUSE_UNTIL_PRESS}");
+static const u8 sText_askShinyText[] = _("Would you like to turn {STR_VAR_1}\nshiny?");
+static const u8 sText_doneShinyText[] = _("{STR_VAR_1} became shiny!{PAUSE_UNTIL_PRESS}");
 static const u8 sText_BasePointsResetToZero[] = _("{STR_VAR_1}'s base points\nwere all reset to zero!{PAUSE_UNTIL_PRESS}");
 static const u8 sText_CannotSendMonToBoxHM[] = _("Cannot send that mon to the box,\nbecause it knows a HM move.{PAUSE_UNTIL_PRESS}");
 static const u8 sText_CannotSendMonToBoxPartner[] = _("Cannot send a mon that doesn't\nbelong to you to the box.{PAUSE_UNTIL_PRESS}");
@@ -5258,6 +5260,103 @@ void ItemUseCB_AbilityPatch(u8 taskId, TaskFunc task)
 #undef tSpecies
 #undef tAbilityNum
 #undef tMonId
+#undef tOldFunc
+
+#define tState      data[0]
+#define tSpecies    data[1]
+#define tMonId      data[2]
+#define tMonshinyness data[3]
+#define tOldFunc 4
+
+void Task_ShinGenome(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+    bool8 makeshiny = TRUE;
+
+    switch (tState)
+    {
+    case 0:
+        // Can't use.
+        if (GetMonData(&gPlayerParty[tMonId], MON_DATA_IS_SHINY) == TRUE)
+        {
+            gPartyMenuUseExitCallback = FALSE;
+            PlaySE(SE_SELECT);
+            DisplayPartyMenuMessage(gText_WontHaveEffect, 1);
+            ScheduleBgCopyTilemapToVram(2);
+            gTasks[taskId].func = Task_ClosePartyMenuAfterText;
+            return;
+        }
+        gPartyMenuUseExitCallback = TRUE;
+        GetMonNickname(&gPlayerParty[tMonId], gStringVar1);
+        StringExpandPlaceholders(gStringVar4, sText_askShinyText);
+        PlaySE(SE_SELECT);
+        DisplayPartyMenuMessage(gStringVar4, 1);
+        ScheduleBgCopyTilemapToVram(2);
+        tState++;
+        break;
+    case 1:
+        if (!IsPartyMenuTextPrinterActive())
+        {
+            PartyMenuDisplayYesNoMenu();
+            tState++;
+        }
+        break;
+    case 2:
+        switch (Menu_ProcessInputNoWrapClearOnChoose())
+        {
+        case 0:
+            tState++;
+            break;
+        case 1:
+        case MENU_B_PRESSED:
+            gPartyMenuUseExitCallback = FALSE;
+            PlaySE(SE_SELECT);
+            ScheduleBgCopyTilemapToVram(2);
+            // Don't exit party selections screen, return to choosing a mon.
+            ClearStdWindowAndFrameToTransparent(6, 0);
+            ClearWindowTilemap(6);
+            DisplayPartyMenuStdMessage(5);
+            gTasks[taskId].func = (void *)GetWordTaskArg(taskId, tOldFunc);
+            return;
+        }
+        break;
+    case 3:
+        PlaySE(SE_USE_ITEM);
+        StringExpandPlaceholders(gStringVar4, sText_doneShinyText);
+        DisplayPartyMenuMessage(gStringVar4, 1);
+        ScheduleBgCopyTilemapToVram(2);
+        tState++;
+        break;
+    case 4:
+        if (!IsPartyMenuTextPrinterActive())
+            tState++;
+        break;
+    case 5:
+        SetMonData(&gPlayerParty[tMonId], MON_DATA_IS_SHINY, &makeshiny);
+        RemoveBagItem(gSpecialVar_ItemId, 1);
+        gTasks[taskId].func = Task_ClosePartyMenu;
+        break;
+    }
+}
+
+void ItemUseCB_ShinGenome(u8 taskId, TaskFunc task)
+{
+    s16 *data = gTasks[taskId].data;
+
+    tState = 0;
+    tMonId = gPartyMenu.slotId;
+    if (GetMonData(&gPlayerParty[tMonId], MON_DATA_SPECIES) == TRUE) {
+        tMonshinyness = TRUE;
+    }
+    tSpecies = GetMonData(&gPlayerParty[tMonId], MON_DATA_SPECIES);
+    SetWordTaskArg(taskId, tOldFunc, (uintptr_t)(gTasks[taskId].func));
+    gTasks[taskId].func = Task_ShinGenome;
+}
+
+#undef tState
+#undef tSpecies
+#undef tMonId
+#undef tMonshinyness
 #undef tOldFunc
 
 #define tState      data[0]

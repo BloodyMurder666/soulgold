@@ -17357,6 +17357,24 @@ const struct ItemInfo gItemsInfo[] =
         .iconPic = gItemIcon_BeckoningBell,
         .iconPalette = gItemIconPalette_BeckoningBell,
     },
+    [ITEM_SHIN_GENOME] =
+    {
+        .name = ITEM_NAME("Shin Genome"),
+        .price = 1500000,
+        .holdEffectParam = 100,
+        .description = COMPOUND_STRING(
+            "A genome capable\n"
+            "of turning Pokémon\n"
+            "shiny."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_FIELD_USE,
+        .heldSlot = 0,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_ShinGenome,
+        .flingPower = 30,
+        .iconPic = gItemIcon_AbilityPatch,
+        .iconPalette = gItemIconPalette_AbilityPatch,
+    },
 };
 
 #undef ITEM_NAME

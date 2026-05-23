@@ -1099,6 +1099,8 @@ enum __attribute__((packed)) Item
     ITEM_STEELTITE = 917,
     ITEM_FAIRYTITE = 918,
     ITEM_BONDSTONE = 919,
+    
+    ITEM_SHIN_GENOME = 920,
 
     ITEMS_COUNT,
     ITEM_FIELD_ARROW = ITEMS_COUNT,
