@@ -75,28 +75,44 @@ GoldenrodArcadeLobby_Shop::
 GoldenrodArcade_Shop:
 # 60 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
 	.2byte ITEM_MASTER_BALL
+# 61 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	.2byte ITEM_SHIN_GENOME
+# 62 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	.2byte ITEM_HP_UP_EX
+# 63 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	.2byte ITEM_PROTEIN_EX
+# 64 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	.2byte ITEM_IRON_EX
+# 65 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	.2byte ITEM_CALCIUM_EX
+# 66 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	.2byte ITEM_ZINC_EX
+# 67 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	.2byte ITEM_CARBOS_EX
+# 68 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	.2byte ITEM_PP_MAX
 	.2byte ITEM_NONE
 
 GoldenrodArcade_Queue2::
-# 64 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+# 72 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
 	msgbox GoldenrodArcade_Queue2_Text_0, MSGBOX_NPC
 	return
 
 
 GoldenrodArcade_Queue3::
-# 69 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+# 77 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
 	msgbox GoldenrodArcade_Queue3_Text_0, MSGBOX_NPC
 	return
 
 
 GoldenrodArcade_Queue4::
-# 73 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+# 81 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
 	msgbox GoldenrodArcade_Queue4_Text_0, MSGBOX_NPC
 	return
 
 
 ArcadeLobby_GameMachine::
-# 78 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+# 86 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
 	msgbox ArcadeLobby_GameMachine_Text_0, MSGBOX_NPC
 	return
 
@@ -125,21 +141,21 @@ GoldenrodArcadeLobby_Shop_Text_1:
 	.string "Pleasure doing business.$"
 
 GoldenrodArcade_Queue2_Text_0:
-# 64 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+# 72 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
 	.string "I can't wait to see the next battle\n"
 	.string "from the frontrow seats!$"
 
 GoldenrodArcade_Queue3_Text_0:
-# 69 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+# 77 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
 	.string "Hey! No shoving! I was here first!$"
 
 GoldenrodArcade_Queue4_Text_0:
-# 73 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+# 81 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
 	.string "Is this the Goldenrod Casino? I think\n"
 	.string "I'm a little lost...$"
 
 ArcadeLobby_GameMachine_Text_0:
-# 78 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+# 86 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
 	.string "Bright flashes and vivid pictures are\n"
 	.string "flashing across the screen. Better not\l"
 	.string "try...$"

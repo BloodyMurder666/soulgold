@@ -58,6 +58,14 @@ script GoldenrodArcadeLobby_Shop {
 
 mart GoldenrodArcade_Shop {
 	ITEM_MASTER_BALL
+	ITEM_SHIN_GENOME
+	ITEM_HP_UP_EX
+	ITEM_PROTEIN_EX
+	ITEM_IRON_EX
+	ITEM_CALCIUM_EX
+	ITEM_ZINC_EX
+	ITEM_CARBOS_EX
+	ITEM_PP_MAX
 }
 
 script GoldenrodArcade_Queue2 {

@@ -1535,7 +1535,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_HP_UP_EX] =
     {
         .name = ITEM_NAME("HP Up EX"),
-        .price = (I_PRICE >= GEN_7) ? 20000 : 19600,
+        .price = (I_PRICE >= GEN_7) ? 40000 : 19600,
         .description = COMPOUND_STRING(
             "Maximizes the\n"
             "effort value of a\n"
@@ -1572,7 +1572,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_PROTEIN_EX] =
     {
         .name = ITEM_NAME("Protein EX"),
-        .price = (I_PRICE >= GEN_7) ? 20000 : 19600,
+        .price = (I_PRICE >= GEN_7) ? 40000 : 19600,
         .description = COMPOUND_STRING(
             "Maximizes the\n"
             "effort value of a\n"
@@ -1609,7 +1609,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_IRON_EX] =
     {
         .name = ITEM_NAME("Iron EX"),
-        .price = (I_PRICE >= GEN_7) ? 20000 : 19600,
+        .price = (I_PRICE >= GEN_7) ? 40000 : 19600,
         .description = COMPOUND_STRING(
             "Maximizes the\n"
             "effort value of a\n"
@@ -1646,7 +1646,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_CALCIUM_EX] =
     {
         .name = ITEM_NAME("Calcium EX"),
-        .price = (I_PRICE >= GEN_7) ? 20000 : 19600,
+        .price = (I_PRICE >= GEN_7) ? 40000 : 19600,
         .description = COMPOUND_STRING(
             "Maximizes the\n"
             "effort value of a\n"
@@ -1683,7 +1683,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_ZINC_EX] =
     {
         .name = ITEM_NAME("Zinc EX"),
-        .price = (I_PRICE >= GEN_7) ? 20000 : 19600,
+        .price = (I_PRICE >= GEN_7) ? 40000 : 19600,
         .description = COMPOUND_STRING(
             "Maximizes the\n"
             "effort value of a\n"
@@ -1722,7 +1722,7 @@ const struct ItemInfo gItemsInfo[] =
     {
         .name = ITEM_NAME("Carbos EX"),
         .pluralName = ITEM_PLURAL_NAME("Carbos EX"),
-        .price = (I_PRICE >= GEN_7) ? 20000 : 19600,
+        .price = (I_PRICE >= GEN_7) ? 40000 : 19600,
         .description = COMPOUND_STRING(
             "Maximizes the\n"
             "effort value of a\n"
