@@ -34,7 +34,7 @@
 
 // This works
 
-../porytiles/porytiles compile-secondary -tiles-primary-override=640 -metatiles-primary-override=1024 -metatiles-total-override=2048 -pals-primary-override=7 -o data/tilesets/secondary/arcade_lobby porytiles/rocket-arcade-lobby porytiles/rocket-arcade include/constants/metatile_behaviors.h
+../porytiles/porytiles compile-secondary -tiles-primary-override=640 -metatiles-primary-override=1024 -metatiles-total-override=2048 -pals-primary-override=7 -o data/tilesets/secondary/g_4_alt porytiles/g4alt porytiles/rocket-arcade include/constants/metatile_behaviors.h
 
 
 

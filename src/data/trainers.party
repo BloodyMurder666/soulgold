@@ -12586,3 +12586,40 @@ Azumarill
 Level: 22
 Ability: Thick Fat
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+=== TRAINER_KEIRA ===
+Name: Keira
+Pic: Engineer
+Gender: Male
+Music: Hg Boy 2
+Double Battle: No
+AI: Basic Trainer
+
+Drilbur
+Level: 38
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+Excadrill
+Level: 40
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+
+=== TRAINER_TAMMY ===
+Name: Tammy
+Pic: Hiker
+Gender: Male
+Music: Hg Boy 2
+Double Battle: No
+AI: Basic Trainer
+
+Sandshrew
+Level: 38
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+Silicobra
+Level: 38
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+Sandaconda
+Level: 40
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe

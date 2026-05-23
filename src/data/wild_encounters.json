@@ -1362,7 +1362,7 @@
               {
                 "min_level": 10,
                 "max_level": 10,
-                "species": "SPECIES_MAGIKARP"
+                "species": "SPECIES_CARVANHA"
               },
               {
                 "min_level": 10,
@@ -14089,6 +14089,75 @@
                 "min_level": 50,
                 "max_level": 55,
                 "species": "SPECIES_SINISTEA"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_RAILWAY_CAVE",
+          "base_label": "gRailwayCave",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 25,
+                "max_level": 28,
+                "species": "SPECIES_TYNAMO"
+              },
+              {
+                "min_level": 25,
+                "max_level": 28,
+                "species": "SPECIES_SILICOBRA"
+              },
+              {
+                "min_level": 25,
+                "max_level": 28,
+                "species": "SPECIES_TYNAMO"
+              },
+              {
+                "min_level": 25,
+                "max_level": 28,
+                "species": "SPECIES_SILICOBRA"
+              },
+              {
+                "min_level": 25,
+                "max_level": 28,
+                "species": "SPECIES_CHARJABUG"
+              },
+              {
+                "min_level": 25,
+                "max_level": 28,
+                "species": "SPECIES_MAGNEMITE"
+              },
+              {
+                "min_level": 25,
+                "max_level": 28,
+                "species": "SPECIES_CHARJABUG"
+              },
+              {
+                "min_level": 25,
+                "max_level": 28,
+                "species": "SPECIES_MAGNEMITE"
+              },
+              {
+                "min_level": 25,
+                "max_level": 29,
+                "species": "SPECIES_DIGLETT_ALOLA"
+              },
+              {
+                "min_level": 26,
+                "max_level": 29,
+                "species": "SPECIES_PIKACHU"
+              },
+              {
+                "min_level": 26,
+                "max_level": 29,
+                "species": "SPECIES_DIGLETT_ALOLA"
+              },
+              {
+                "min_level": 26,
+                "max_level": 29,
+                "species": "SPECIES_PIKACHU"
               }
             ]
           }

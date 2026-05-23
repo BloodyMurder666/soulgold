@@ -1,1 +1,15 @@
 mapscripts RailwayCave_MapScripts {}
+
+
+script RailwayCave1_Keira {
+    trainerbattle_single(TRAINER_KEIRA, "Hey! It's dangerous here!", "Just be careful, we're still working 
+                                                                      here...")
+    msgbox("We've been expanding the railway lines
+            with the help of Pokémon found here.", MSGBOX_AUTOCLOSE)
+}
+
+script RailwayCave1_Tammy {
+	trainerbattle_single(TRAINER_TAMMY, "This place is filled with electricity!", "It's sending shivers down my spine!")
+    msgbox("This place seems ideal for training
+            Ground-type Pokémon.", MSGBOX_AUTOCLOSE)
+}
