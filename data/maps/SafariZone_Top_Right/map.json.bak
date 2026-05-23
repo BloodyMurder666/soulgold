@@ -117,7 +117,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(PSYDUCK"),
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(PSYDUCK),
       "x": 8,
       "y": 24,
       "elevation": 0,
@@ -126,7 +126,7 @@
       "movement_range_y": 2,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "EcruteakCity_Theater_EventScript_Psyduck",
+      "script": "EcruteakCity_Theater_EventScript_Lotad",
       "flag": "0"
     }
   ],

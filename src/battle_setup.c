@@ -504,7 +504,6 @@ void BattleSetup_StartLegendaryBattle(void)
 
     switch (GetMonData(&gEnemyParty[0], MON_DATA_SPECIES))
     {
-    default:
     case SPECIES_GROUDON:
     case SPECIES_GROUDON_PRIMAL:
         CreateBattleStartTask(B_TRANSITION_GROUDON, MUS_VS_KYOGRE_GROUDON);
@@ -547,6 +546,13 @@ void BattleSetup_StartLegendaryBattle(void)
     case SPECIES_ZAPDOS_GALAR:
     case SPECIES_ARTICUNO_GALAR:
         CreateBattleStartTask(B_TRANSITION_GRID_SQUARES, MUS_RG_VS_LEGEND);
+        break;
+    case SPECIES_LARVESTA:
+    case SPECIES_VOLCARONA:
+        CreateBattleStartTask(B_TRANSITION_BLUR, MUS_HG_VS_WILD);
+        break;
+    default:
+        CreateBattleStartTask(B_TRANSITION_BLUR, MUS_DP_VS_LEGEND);
         break;
     }
 

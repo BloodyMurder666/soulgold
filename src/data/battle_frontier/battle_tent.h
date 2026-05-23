@@ -1082,7 +1082,7 @@ const struct TrainerMon gSlateportBattleTentMons[NUM_SLATEPORT_TENT_MONS] =
         .ball = BALL_POKE
     },
     [SLATEPORT_TENT_MON_SEVIPER_1] = {
-        .species = SPECIES_SEVIPER,
+        .species = SPECIES_ARBOK,
         .moves = {MOVE_LICK, MOVE_POISON_FANG, MOVE_GLARE, MOVE_WRAP},
         .heldItem = { ITEM_NONE },
         .ev = TRAINER_PARTY_EVS(170, 170, 0, 0, 170, 0),
@@ -1186,7 +1186,7 @@ const struct TrainerMon gSlateportBattleTentMons[NUM_SLATEPORT_TENT_MONS] =
         .ball = BALL_POKE
     },
     [SLATEPORT_TENT_MON_SEVIPER_2] = {
-        .species = SPECIES_SEVIPER,
+        .species = SPECIES_ARBOK,
         .moves = {MOVE_SWAGGER, MOVE_WRAP, MOVE_POISON_TAIL, MOVE_HAZE},
         .heldItem = { ITEM_NONE },
         .ev = TRAINER_PARTY_EVS(0, 0, 170, 0, 170, 170),
@@ -2045,7 +2045,7 @@ const struct TrainerMon gVerdanturfBattleTentMons[NUM_VERDANTURF_TENT_MONS] =
         .ball = BALL_POKE
     },
     [VERDANTURF_TENT_MON_SEVIPER] = {
-        .species = SPECIES_SEVIPER,
+        .species = SPECIES_ARBOK,
         .moves = {MOVE_WRAP, MOVE_GLARE, MOVE_POISON_FANG, MOVE_SWAGGER},
         .heldItem = { ITEM_ASPEAR_BERRY },
         .ev = TRAINER_PARTY_EVS(170, 0, 0, 0, 170, 170),

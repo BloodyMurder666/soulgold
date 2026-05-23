@@ -4006,7 +4006,7 @@
       "name": "FarawayIsland_Interior_Layout",
       "width": 29,
       "height": 26,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_NationalPark",
       "border_filepath": "data/layouts/FarawayIsland_Interior/border.bin",
       "blockdata_filepath": "data/layouts/FarawayIsland_Interior/map.bin"

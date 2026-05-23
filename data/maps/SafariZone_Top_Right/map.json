@@ -52,7 +52,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KRABBY)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(STARYU)",
       "x": 26,
       "y": 4,
       "elevation": 0,
@@ -61,11 +61,11 @@
       "movement_range_y": 2,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "CherryGroveCity_EventScript_Krabby",
+      "script": "CherryGroveCity_EventScript_Staryu",
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KRABBY)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(STARYU)",
       "x": 24,
       "y": 3,
       "elevation": 0,
@@ -74,7 +74,7 @@
       "movement_range_y": 2,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "CherryGroveCity_EventScript_Krabby",
+      "script": "CherryGroveCity_EventScript_Staryu",
       "flag": "0"
     },
     {
@@ -104,7 +104,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KINGLER)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(STARMIE)",
       "x": 25,
       "y": 4,
       "elevation": 0,
@@ -113,11 +113,11 @@
       "movement_range_y": 2,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "CherryGroveCity_EventScript_Krabby",
+      "script": "CherryGroveCity_EventScript_Staryu",
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(PSYDUCK)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(LOTAD)",
       "x": 8,
       "y": 24,
       "elevation": 0,
@@ -126,7 +126,7 @@
       "movement_range_y": 2,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "EcruteakCity_Theater_EventScript_Psyduck",
+      "script": "EcruteakCity_Theater_EventScript_Lotad",
       "flag": "0"
     }
   ],

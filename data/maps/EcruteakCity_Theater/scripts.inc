@@ -307,12 +307,12 @@ EcruteakCity_Theater_EventScript_TriggerSurfGuy::
 	release
 	end
 
-EcruteakCity_Theater_EventScript_Psyduck::
+EcruteakCity_Theater_EventScript_Lotad::
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_PSYDUCK, CRY_MODE_NORMAL
-	msgbox EcruteakCity_Theater_Text_Psyduck, MSGBOX_DEFAULT
+	playmoncry SPECIES_LOTAD, CRY_MODE_NORMAL
+	msgbox EcruteakCity_Theater_Text_Lotad, MSGBOX_DEFAULT
 	waitmoncry
 	release
 	end
@@ -437,8 +437,8 @@ EcruteakCity_Theater_Text_SurfGuyAfter:
 	.string "I don't know if you could beat\n"
 	.string "them if they showed their skill...$"
 
-EcruteakCity_Theater_Text_Psyduck:
-	.string "Psyduck: Dau dau!$"
+EcruteakCity_Theater_Text_Lotad:
+	.string "Lotad: Tap tap!$"
 
 EcruteakCity_Theater_Text_BoyBefore:
 	.string "Eeeeek!$"

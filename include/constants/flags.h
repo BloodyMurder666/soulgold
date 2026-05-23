@@ -1552,7 +1552,7 @@
 #define FLAG_ROCKET_ARCADE_SILVERPRINT              (SYSTEM_FLAGS + 0xAE)
 #define FLAG_ROCKET_ARCADE_GOLDPRINT                (SYSTEM_FLAGS + 0xAF)
 #define FLAG_ROCKET_DOUBLEDOWN                      (SYSTEM_FLAGS + 0xB0)
-#define FLAG_UNUSED_0x911                           (SYSTEM_FLAGS + 0xB1) // Unused Flag
+#define FLAG_HIDE_LARVESTA                           (SYSTEM_FLAGS + 0xB1)
 #define FLAG_UNUSED_0x912                           (SYSTEM_FLAGS + 0xB2) // Unused Flag
 #define FLAG_UNUSED_0x913                           (SYSTEM_FLAGS + 0xB3) // Unused Flag
 #define FLAG_UNUSED_0x914                           (SYSTEM_FLAGS + 0xB4) // Unused Flag

@@ -1631,6 +1631,18 @@ Ilex_HiddenGrotto_2:
 	goto Ilex_HiddenGrotto_1
 
 
+Ilex_Larvesta::
+# 823 "data/maps/IlexForest/scripts.pory"
+	lock
+# 824 "data/maps/IlexForest/scripts.pory"
+	faceplayer
+# 825 "data/maps/IlexForest/scripts.pory"
+	legendaryencounter SPECIES_LARVESTA, 30, LOCALID_ILEX_LARVESTA, FLAG_HIDE_LARVESTA
+# 826 "data/maps/IlexForest/scripts.pory"
+	release
+	end
+
+
 Ilex_HiddenGrotto_Text_0:
 # 812 "data/maps/IlexForest/scripts.pory"
 	.string "There seems to be a path behind the\n"

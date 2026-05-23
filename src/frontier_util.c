@@ -572,7 +572,7 @@ static const struct FrontierBrainMon sFrontierBrainsMons[NUM_FRONTIER_BRAIN_FACI
         // Silver Symbol.
         {
             {
-                .species = SPECIES_SEVIPER,
+                .species = SPECIES_ARBOK,
                 .heldItem = { ITEM_QUICK_CLAW },
                 .fixedIV = 16,
                 .nature = NATURE_BRAVE,
@@ -599,7 +599,7 @@ static const struct FrontierBrainMon sFrontierBrainsMons[NUM_FRONTIER_BRAIN_FACI
         // Gold Symbol.
         {
             {
-                .species = SPECIES_SEVIPER,
+                .species = SPECIES_ARBOK,
                 .heldItem = { ITEM_FOCUS_BAND },
                 .fixedIV = MAX_PER_STAT_IVS,
                 .nature = NATURE_BOLD,

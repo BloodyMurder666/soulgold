@@ -101,9 +101,6 @@ Golbat
 Level: 40
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Golduck
-Level: 42
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_MARVIN ===
 Name: Marvin
@@ -195,17 +192,11 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Seaking
-Level: 58
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Azumarill
 Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Seaking
-Level: 58
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ANGELICA ===
 Name: Angelica
@@ -309,21 +300,15 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Cut
 - Swords Dance
 
-Omastar @ Focus Band
+Archeops @ Focus Band
 Level: 66
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Ancient Power
-- Ice Beam
-- Surf
-- Toxic
 
-Relicanth @ Hard Stone
+
+Garganacl @ Hard Stone
 Level: 66
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Surf
-- Rock Slide
-- Curse
-- Thunderbolt
+
 
 Kleavor @ Quick Claw
 Level: 66
@@ -405,7 +390,7 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Golduck
+Huntail
 Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -488,10 +473,6 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Golbat
 Level: 40
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Golduck
-Level: 42
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_RAY ===
@@ -1025,7 +1006,7 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Seaking
+Finizen
 Level: 20
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -1148,7 +1129,7 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move
 
-Jynx
+Florges
 Level: 55
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -1227,7 +1208,7 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Seaking
+Mareanie
 Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -1261,7 +1242,7 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Jynx
+Amaura
 Level: 28
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -1338,7 +1319,7 @@ Skarmory
 Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Fearow
+Corviknight
 Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -1500,7 +1481,7 @@ Machoke
 Level: 53
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Golduck
+Lumineon
 Level: 54
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -1517,7 +1498,7 @@ Vileplume
 Level: 60
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Jynx
+Bellossom
 Level: 62
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -2475,7 +2456,7 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Swirlix
+Mawile
 Level: 25
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -2636,7 +2617,7 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Spearow
+Hoothoot
 Level: 11
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -2730,7 +2711,7 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Seaking
+Lumineon
 Level: 60
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -3159,7 +3140,7 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Granbull
+Miltank
 Level: 55
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
@@ -3827,7 +3808,7 @@ Items: Full Restore / Full Restore
 Double Battle: No
 AI: Basic Trainer
 
-Ledian @ Focus Band
+Leavanny @ Focus Band
 Level: 64
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Giga Drain
@@ -3835,7 +3816,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Baton Pass
 - Light Screen
 
-Forretress
+Scolipede
 Level: 63
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Curse
@@ -4229,14 +4210,6 @@ Items: Full Restore / Full Restore
 Double Battle: No
 AI: Basic Trainer
 
-Golduck
-Level: 62
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Surf
-- Psychic
-- Hypnosis
-- Cross Chop
-
 Quagsire @ Quick Claw
 Level: 62
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
@@ -4429,7 +4402,7 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move
 
-Ledian
+Volcarona
 Level: 62
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -4458,9 +4431,6 @@ Golbat
 Level: 40
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Golduck
-Level: 42
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GREG ===
 Name: Greg
@@ -4720,13 +4690,13 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Thunder Punch
 - Encore
 
-Delcatty @ Chesto Berry
+Lopunny @ Chesto Berry
 Level: 64
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Yawn
 - Attract
 - Fake Out
-- Hyper Voice
+- Drain Punch
 
 Blissey
 Level: 63
@@ -4905,7 +4875,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Toxic
 - Acid Armor
 
-Swalot
+Toxapex
 Level: 61
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Swallow
@@ -4929,7 +4899,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Toxic
 - Confuse Ray
 
-Venomoth @ Bright Powder
+Muk Alola @ Bright Powder
 Level: 64
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Giga Drain
@@ -5182,13 +5152,9 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Moonblast
 - Reflect
 
-Jynx
+Claydol
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Blizzard
-- Psychic
-- Perish Song
-- Sing
 
 Exeggutor @ Sitrus Berry
 Level: 67
@@ -5198,13 +5164,10 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Dream Eater
 - Soft Boiled
 
-Grumpig
+Medicham
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Teeter Dance
-- Power Gem
-- Snore
-- Rest
+
 
 Slowbro @ Quick Claw
 Level: 66
@@ -5231,7 +5194,7 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Seaking
+Pyukumuku
 Level: 20
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -5442,14 +5405,6 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Solar Beam
 - Crunch
 
-Magcargo @ Leftovers
-Level: 65
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Fire Blast
-- Shadow Ball
-- Sunny Day
-- Hypnosis
-
 Torkoal @ White Herb
 Level: 67
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
@@ -5493,13 +5448,9 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Sludge Bomb
 - Toxic
 
-Swalot
+Galvantula
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Swallow
-- Stockpile
-- Amnesia
-- Spit Up
 
 Nidoking @ Quick Claw
 Level: 67
@@ -5509,13 +5460,13 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Surf
 - Earthquake
 
-Venomoth @ Bright Powder
+Volcarona @ Bright Powder
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Silver Wind
 - Signal Beam
 - Psychic
-- Supersonic
+- Fire Blast
 
 Crobat @ Leftovers
 Level: 68
@@ -5844,7 +5795,7 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Kingler
+Lumineon
 Level: 64
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -5890,10 +5841,6 @@ Gender: Male
 Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move
-
-Parasect
-Level: 57
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Poliwrath
 Level: 57
@@ -6487,11 +6434,11 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Fearow
+Corviknight
 Level: 59
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Fearow
+Talonflame
 Level: 59
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -6849,10 +6796,6 @@ Tentacruel
 Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Seaking
-Level: 58
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
 === TRAINER_MARK ===
 Name: Mark
 Class: Psychic M
@@ -6922,10 +6865,6 @@ Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Marowak
-Level: 58
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Hypno
 Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -7412,9 +7351,6 @@ Exeggutor
 Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Sunflora
-Level: 57
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JODY ===
 Name: Jody
@@ -7425,7 +7361,7 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Seaking
+Finizen
 Level: 20
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -7603,16 +7539,8 @@ Music: Hg Girl 1
 Double Battle: No
 AI: Check Bad Move
 
-Parasect
-Level: 56
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
 Tangela
 Level: 55
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Parasect
-Level: 56
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_MORTY_2 ===
@@ -7745,7 +7673,7 @@ Music: Hg Girl 1
 Double Battle: No
 AI: Check Bad Move
 
-Seaking
+Lumineon
 Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -7843,10 +7771,6 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Golduck
-Level: 57
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
 Cloyster
 Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
@@ -7872,9 +7796,6 @@ Murkrow
 Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Dodrio
-Level: 60
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRACE ===
 Name: Grace
@@ -8344,7 +8265,7 @@ Music: Hg Girl 1
 Double Battle: Yes
 AI: Check Bad Move
 
-Ledyba
+Cutiefly
 Level: 17
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
@@ -8532,17 +8453,11 @@ Music: Female
 Double Battle: No
 AI: Check Bad Move
 
-Hypno
+
+Espathra
 Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Jynx
-Level: 58
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Hypno
-Level: 58
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ANDY ===
 Name: Andy
@@ -8625,11 +8540,11 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move
 
-Yanma
+Joltik
 Level: 23
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Venonat
+Sizzlipede
 Level: 23
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -8753,17 +8668,10 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Seaking
-Level: 58
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
 Poliwhirl
 Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Seaking
-Level: 59
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_RALPH ===
 Name: Ralph
@@ -9138,9 +9046,6 @@ Golbat
 Level: 40
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Golduck
-Level: 42
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_DENISE ===
 Name: Denise
@@ -9429,11 +9334,11 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Seaking
+Finizen
 Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Jellicent
+Seadra
 Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -9698,13 +9603,13 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Encore
 - Ice Punch
 
-Jynx
+Indeedee
 Level: 64
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Psychic
-- Ice Beam
-- Lovely Kiss
-- Bubble Beam
+- Calm Mind
+- Energy Ball
+- Dazzling Gleam
 
 Slowbro @ Chesto Berry
 Level: 64
@@ -10151,13 +10056,13 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Screech
 - Rollout
 
-Ledian
+Cutiefly
 Level: 19
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Bullet Seed
-- Comet Punch
-- Supersonic
-- Reflect
+- Stun Spore
+- Draining Kiss
+- Round
+- Swift
 
 === TRAINER_BUGSY_1 ===
 Name: Bugsy
@@ -10446,10 +10351,6 @@ Wigglytuff
 Level: 55
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Granbull
-Level: 55
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
 === TRAINER_RODNEY ===
 Name: Rodney
 Class: Psychic M
@@ -10459,11 +10360,11 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move
 
-Drowzee
+Kadabra
 Level: 59
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Hypno
+Alakazam
 Level: 63
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -11456,9 +11357,6 @@ Weezing
 Level: 60
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Magcargo
-Level: 60
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_QUENTIN ===
 Name: Quentin
@@ -11550,9 +11448,6 @@ Slowking
 Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Seaking
-Level: 58
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_MATHEW ===
 Name: Mathew
@@ -11563,7 +11458,7 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Kingler
+Gorebyss
 Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -11865,7 +11760,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Mud Slap
 - Steel Wing
 
-Swellow @ Focus Band
+Corviknight @ Focus Band
 Level: 63
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Endure
@@ -11974,7 +11869,7 @@ Bellsprout
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Sunkern
+Grubbin
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -12073,13 +11968,13 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Rest
 - Encore
 
-Jynx
+Aurorus
 Level: 63
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Ice Beam
-- Psychic
-- Shadow Ball
-- Lovely Kiss
+- Freeze Dry
+- Power Gem
+- Draining Kiss
 
 Froslass
 Level: 64
@@ -12418,7 +12313,7 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move
 
-Fearow
+Skarmory
 Level: 60
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -12452,16 +12347,8 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Parasect
-Level: 58
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
 Exeggutor
 Level: 56
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Sunflora
-Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JULIE ===

@@ -127,7 +127,7 @@
       "flag": "FLAG_HIDE_CERULEANCAVE_GUARD"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(PSYDUCK)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(LOTAD)",
       "x": 37,
       "y": 18,
       "elevation": 0,

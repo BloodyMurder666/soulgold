@@ -197,7 +197,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KRABBY)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(STARYU)",
       "x": 75,
       "y": 57,
       "elevation": 0,
@@ -210,7 +210,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KRABBY)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(STARYU)",
       "x": 78,
       "y": 49,
       "elevation": 0,
@@ -223,7 +223,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KRABBY)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(STARYU)",
       "x": 81,
       "y": 44,
       "elevation": 0,
@@ -236,7 +236,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KINGLER)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(STARMIE)",
       "x": 80,
       "y": 30,
       "elevation": 0,
@@ -249,7 +249,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KINGLER)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(STARMIE)",
       "x": 61,
       "y": 49,
       "elevation": 0,
@@ -262,7 +262,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KRABBY)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(STARYU)",
       "x": 66,
       "y": 64,
       "elevation": 0,
@@ -275,7 +275,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KINGLER)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(STARMIE)",
       "x": 48,
       "y": 48,
       "elevation": 0,
@@ -522,7 +522,7 @@
       "flag": "FLAG_NIGHT_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KRABBY)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(STARYU)",
       "x": 12,
       "y": 37,
       "elevation": 0,
@@ -535,7 +535,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KRABBY)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(STARYU)",
       "x": 20,
       "y": 10,
       "elevation": 0,
@@ -639,7 +639,7 @@
       "flag": "FLAG_DAY_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KRABBY)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(STARYU)",
       "x": 10,
       "y": 37,
       "elevation": 0,
