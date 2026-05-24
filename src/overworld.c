@@ -1771,11 +1771,14 @@ void CB2_Overworld(void)
 {
     bool32 fading = (gPaletteFade.active != 0);
     u8 loops;
+    u8 extraLoops;
+
     if (fading)
         SetVBlankCallback(NULL);
     OverworldBasic();
 
-    for (loops = 0; loops < OverworldSpeedup_AdditionalIterations(VarGet(VAR_OVERWORLD_SPEEDUP), TRUE); loops++)
+    extraLoops = ArePlayerFieldControlsLocked() ? 0 : OverworldSpeedup_AdditionalIterations(VarGet(VAR_OVERWORLD_SPEEDUP), TRUE);
+    for (loops = 0; loops < extraLoops; loops++)
     {
         AnimateSprites();
         CameraUpdate();
