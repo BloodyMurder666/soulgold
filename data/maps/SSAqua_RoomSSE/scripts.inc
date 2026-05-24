@@ -36,7 +36,6 @@ SSAqua_RoomSSE_EventScript_ReuinionScene::
     turnobject LOCALID_SSAQUA_ROOM_SSE_GRANDFATHER, DIR_SOUTH
     msgbox SSAqua_RoomSSE_Text_EntertainedGranddaughter, MSGBOX_DEFAULT
     msgbox SSAqua_RoomSSE_Text_GrandpaHaveThis, MSGBOX_DEFAULT
-    giveitem ITEM_METAL_COAT
     closemessage
 	setvar VAR_SSAQUA_STATE, 5
 	release
