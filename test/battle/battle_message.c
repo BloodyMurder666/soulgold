@@ -27,6 +27,21 @@ SINGLE_BATTLE_TEST("Battle Message: Send-in message depends on foe HP")
     }
 }
 
+SINGLE_BATTLE_TEST("Battle Message: single-stat boost text remains unchanged")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SWORDS_DANCE); }
+    } SCENE {
+        MESSAGE("Wobbuffet's Attack sharply rose!");
+        NOT MESSAGE("Wobbuffet's Attack and Speed sharply rose!");
+    } THEN {
+        EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 2);
+    }
+}
+
 TO_DO_BATTLE_TEST("Battle Message: Switch-out message changes based on conditions")
 /*{
     GIVEN {

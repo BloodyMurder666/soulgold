@@ -17,6 +17,8 @@ static void TrySetBattleSeminarShow(void);
 static void AddPointsOnFainting(void);
 static void AddPointsBasedOnWeather(u16 weatherFlags, enum Move move, u8 moveSlot);
 static bool8 ShouldCalculateDamage(enum Move move, s32 *dmg, u16 *powerOverride);
+static u8 GetStatBuffTextMask(void);
+static void AddMovePointsForStatMask(u8 caseId, u16 moveSlot, u8 statMask);
 
 #define TABLE_END ((u16)-1)
 
@@ -52,6 +54,31 @@ enum {
     PTS_STAT_DECREASE_3,
     PTS_STAT_INCREASE_NOT_SELF,
 };
+
+static u8 GetStatBuffTextMask(void)
+{
+    if (gBattleTextBuff1[0] != B_BUFF_PLACEHOLDER_BEGIN)
+        return 0;
+
+    if (gBattleTextBuff1[1] == B_BUFF_STAT_LIST)
+        return gBattleTextBuff1[2];
+
+    if (gBattleTextBuff1[1] == B_BUFF_STAT && gBattleTextBuff1[2] != STAT_HP)
+        return 1 << gBattleTextBuff1[2];
+
+    return 0;
+}
+
+static void AddMovePointsForStatMask(u8 caseId, u16 moveSlot, u8 statMask)
+{
+    enum Stat statId;
+
+    for (statId = STAT_ATK; statId < NUM_BATTLE_STATS; statId++)
+    {
+        if (statMask & (1 << statId))
+            AddMovePoints(caseId, moveSlot, statId - 1, 0);
+    }
+}
 
 enum {
     FNT_NONE,
@@ -267,48 +294,36 @@ void BattleTv_SetDataBasedOnString(enum StringID stringId)
         AddMovePoints(PTS_CRITICAL_HIT, moveSlot, 0, 0);
         break;
     case STRINGID_ATTACKERSSTATROSE:
-        if (gBattleTextBuff1[2] != 0)
-        {
-            if (*statStringId == STRINGID_DRASTICALLY)
-                AddMovePoints(PTS_STAT_INCREASE_3, moveSlot, gBattleTextBuff1[2] - 1, 0);
-            else if (*statStringId == STRINGID_STATSHARPLY)
-                AddMovePoints(PTS_STAT_INCREASE_2, moveSlot, gBattleTextBuff1[2] - 1, 0);
-            else
-                AddMovePoints(PTS_STAT_INCREASE_1, moveSlot, gBattleTextBuff1[2] - 1, 0);
-        }
+        if (*statStringId == STRINGID_DRASTICALLY)
+            AddMovePointsForStatMask(PTS_STAT_INCREASE_3, moveSlot, GetStatBuffTextMask());
+        else if (*statStringId == STRINGID_STATSHARPLY)
+            AddMovePointsForStatMask(PTS_STAT_INCREASE_2, moveSlot, GetStatBuffTextMask());
+        else
+            AddMovePointsForStatMask(PTS_STAT_INCREASE_1, moveSlot, GetStatBuffTextMask());
         break;
     case STRINGID_DEFENDERSSTATROSE:
-        if (gBattleTextBuff1[2] != 0)
+        if (gBattlerAttacker == gBattlerTarget)
         {
-            if (gBattlerAttacker == gBattlerTarget)
-            {
-                if (*statStringId == STRINGID_DRASTICALLY)
-                    AddMovePoints(PTS_STAT_INCREASE_3, moveSlot, gBattleTextBuff1[2] - 1, 0);
-                else if (*statStringId == STRINGID_STATSHARPLY)
-                    AddMovePoints(PTS_STAT_INCREASE_2, moveSlot, gBattleTextBuff1[2] - 1, 0);
-                else
-                    AddMovePoints(PTS_STAT_INCREASE_1, moveSlot, gBattleTextBuff1[2] - 1, 0);
-            }
+            if (*statStringId == STRINGID_DRASTICALLY)
+                AddMovePointsForStatMask(PTS_STAT_INCREASE_3, moveSlot, GetStatBuffTextMask());
+            else if (*statStringId == STRINGID_STATSHARPLY)
+                AddMovePointsForStatMask(PTS_STAT_INCREASE_2, moveSlot, GetStatBuffTextMask());
             else
-            {
-                AddMovePoints(PTS_STAT_INCREASE_NOT_SELF, moveSlot, gBattleTextBuff1[2] - 1, 0);
-            }
+                AddMovePointsForStatMask(PTS_STAT_INCREASE_1, moveSlot, GetStatBuffTextMask());
         }
+        else
+            AddMovePointsForStatMask(PTS_STAT_INCREASE_NOT_SELF, moveSlot, GetStatBuffTextMask());
         break;
     case STRINGID_ATTACKERSSTATFELL:
-        if (gBattleTextBuff1[2] != 0)
-            AddMovePoints(PTS_STAT_DECREASE_SELF, moveSlot, gBattleTextBuff1[2] - 1, 0);
+        AddMovePointsForStatMask(PTS_STAT_DECREASE_SELF, moveSlot, GetStatBuffTextMask());
         break;
     case STRINGID_DEFENDERSSTATFELL:
-        if (gBattleTextBuff1[2] != 0)
-        {
-            if (*statStringId == STRINGID_SEVERELY)
-                AddMovePoints(PTS_STAT_DECREASE_3, moveSlot, gBattleTextBuff1[2] - 1, 0);
-            else if (*statStringId == STRINGID_STATHARSHLY)
-                AddMovePoints(PTS_STAT_DECREASE_2, moveSlot, gBattleTextBuff1[2] - 1, 0);
-            else
-                AddMovePoints(PTS_STAT_DECREASE_1, moveSlot, gBattleTextBuff1[2] - 1, 0);
-        }
+        if (*statStringId == STRINGID_SEVERELY)
+            AddMovePointsForStatMask(PTS_STAT_DECREASE_3, moveSlot, GetStatBuffTextMask());
+        else if (*statStringId == STRINGID_STATHARSHLY)
+            AddMovePointsForStatMask(PTS_STAT_DECREASE_2, moveSlot, GetStatBuffTextMask());
+        else
+            AddMovePointsForStatMask(PTS_STAT_DECREASE_1, moveSlot, GetStatBuffTextMask());
         break;
     case STRINGID_PKMNLAIDCURSE:
         tvPtr->pos[defSide][defFlank].curseMonId = gBattlerPartyIndexes[gBattlerAttacker] + 1;

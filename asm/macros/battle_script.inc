@@ -1221,6 +1221,14 @@
 	.4byte \func
 	.endm
 
+	.macro beginstatbuffbatch
+	callnative BS_BeginStatBuffBatch
+	.endm
+
+	.macro flushstatbuffbatch
+	call BattleScript_FlushStatBuffBatch
+	.endm
+
 	.macro savetarget
 	callnative BS_SaveTarget
 	.endm

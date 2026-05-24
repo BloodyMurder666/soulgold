@@ -151,6 +151,9 @@ static const u8 sText_SpAttack[] = _("Sp. Atk");
 static const u8 sText_SpDefense[] = _("Sp. Def");
 static const u8 sText_Accuracy[] = _("accuracy");
 static const u8 sText_Evasiveness[] = _("evasiveness");
+static const u8 sText_AllStats[] = _("all stats");
+static const u8 sText_StatListComma[] = _(", ");
+static const u8 sText_StatListAnd[] = _(" and ");
 
 const u8 *const gStatNamesTable[NUM_BATTLE_STATS] =
 {
@@ -162,6 +165,17 @@ const u8 *const gStatNamesTable[NUM_BATTLE_STATS] =
     [STAT_SPDEF]   = sText_SpDefense,
     [STAT_ACC]     = sText_Accuracy,
     [STAT_EVASION] = sText_Evasiveness,
+};
+
+static const u8 sStatListDisplayOrder[] =
+{
+    STAT_ATK,
+    STAT_DEF,
+    STAT_SPATK,
+    STAT_SPDEF,
+    STAT_SPEED,
+    STAT_ACC,
+    STAT_EVASION,
 };
 const u8 *const gPokeblockWasTooXStringTable[FLAVOR_COUNT] =
 {
@@ -3436,6 +3450,45 @@ static void IllusionNickHack(enum BattlerId battler, u32 partyId, u8 *dst)
         GetMonData(mon, MON_DATA_NICKNAME, dst);
 }
 
+static void AppendBattleStatList(u8 *dst, u8 statMask)
+{
+    u32 i;
+    u32 printed = 0;
+    u32 statCount = 0;
+    const u8 *name;
+    const u8 allStatsMask = (1 << STAT_ATK) | (1 << STAT_DEF) | (1 << STAT_SPATK) | (1 << STAT_SPDEF) | (1 << STAT_SPEED);
+
+    if (statMask == allStatsMask)
+    {
+        StringAppend(dst, sText_AllStats);
+        return;
+    }
+
+    for (i = 0; i < ARRAY_COUNT(sStatListDisplayOrder); i++)
+    {
+        if (statMask & (1 << sStatListDisplayOrder[i]))
+            statCount++;
+    }
+
+    for (i = 0; i < ARRAY_COUNT(sStatListDisplayOrder); i++)
+    {
+        if (!(statMask & (1 << sStatListDisplayOrder[i])))
+            continue;
+
+        if (printed != 0)
+        {
+            if (printed == statCount - 1)
+                StringAppend(dst, sText_StatListAnd);
+            else
+                StringAppend(dst, sText_StatListComma);
+        }
+
+        name = gStatNamesTable[sStatListDisplayOrder[i]];
+        StringAppend(dst, name);
+        printed++;
+    }
+}
+
 void ExpandBattleTextBuffPlaceholders(const u8 *src, u8 *dst)
 {
     u32 srcID = 1;
@@ -3503,6 +3556,10 @@ void ExpandBattleTextBuffPlaceholders(const u8 *src, u8 *dst)
             break;
         case B_BUFF_STAT: // stats
             StringAppend(dst, gStatNamesTable[src[srcID + 1]]);
+            srcID += 2;
+            break;
+        case B_BUFF_STAT_LIST:
+            AppendBattleStatList(dst, src[srcID + 1]);
             srcID += 2;
             break;
         case B_BUFF_SPECIES: // species name
