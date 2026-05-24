@@ -9298,8 +9298,8 @@
     {
       "id": "LAYOUT_VAJRA_DESERT",
       "name": "VajraDesert_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 52,
+      "height": 27,
       "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_Desert",
       "border_filepath": "data/layouts/VajraDesert/border.bin",
