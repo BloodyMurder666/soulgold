@@ -2585,53 +2585,44 @@ static u32 NumFaintedFoesByAttacker(enum BattlerId battlerAtk)
     return numMonsFainted;
 }
 
-#define ANIM_STAT_HP      0
-#define ANIM_STAT_ATK     1
-#define ANIM_STAT_DEF     2
-#define ANIM_STAT_SPATK   3
-#define ANIM_STAT_SPDEF   4
-#define ANIM_STAT_SPEED   5
-#define ANIM_STAT_ACC     6
-#define ANIM_STAT_EVASION 7
+u32 GetStatChangeAnimationId(enum Stat statId, bool32 sharply, bool32 goesDown)
+{
+    if (goesDown)
+        return statId + (sharply ? STAT_ANIM_MINUS2 : STAT_ANIM_MINUS1);
+
+    return statId + (sharply ? STAT_ANIM_PLUS2 : STAT_ANIM_PLUS1);
+}
+
 void ChooseStatBoostAnimation(enum BattlerId battler)
 {
-    u32 stat;
+    u32 i;
+    enum Stat firstStat = STAT_HP;
     bool32 statBuffMoreThan1 = FALSE;
-    u32 static const statsOrder[NUM_BATTLE_STATS] =
+    static const enum Stat sQueuedStatBoostAnimOrder[] =
     {
-        [ANIM_STAT_HP]      = STAT_HP,
-        [ANIM_STAT_ATK]     = STAT_ATK,
-        [ANIM_STAT_DEF]     = STAT_DEF,
-        [ANIM_STAT_SPATK]   = STAT_SPATK,
-        [ANIM_STAT_SPDEF]   = STAT_SPDEF,
-        [ANIM_STAT_SPEED]   = STAT_SPEED,
-        [ANIM_STAT_ACC]     = STAT_ACC,
-        [ANIM_STAT_EVASION] = STAT_EVASION,
+        STAT_ATK, STAT_DEF, STAT_SPATK, STAT_SPDEF, STAT_SPEED, STAT_ACC, STAT_EVASION,
     };
+
     gBattleScripting.animArg1 = 0;
 
-    for (stat = 1; stat < NUM_BATTLE_STATS; stat++) // Start loop at 1 to avoid STAT_HP
+    for (i = 0; i < ARRAY_COUNT(sQueuedStatBoostAnimOrder); i++)
     {
-        if ((gQueuedStatBoosts[battler].stats & (1 << statsOrder[stat])) == 0)
+        enum Stat statId = sQueuedStatBoostAnimOrder[i];
+        s8 statChange = gQueuedStatBoosts[battler].statChanges[statId - 1];
+
+        if ((gQueuedStatBoosts[battler].stats & (1 << (statId - 1))) == 0)
             continue;
 
-        if (!statBuffMoreThan1)
-            statBuffMoreThan1 = ((gQueuedStatBoosts[battler].stats & (1 << statsOrder[stat])) > 1);
+        if (firstStat == STAT_HP)
+            firstStat = statId;
 
-        if (gBattleScripting.animArg1 != 0) // Already set in a different stat so now boosting multiple stats
-            gBattleScripting.animArg1 = (statBuffMoreThan1 ? STAT_ANIM_MULTIPLE_PLUS2 : STAT_ANIM_MULTIPLE_PLUS1);
-        else
-            gBattleScripting.animArg1 = GET_STAT_BUFF_ID((statsOrder[stat] + 1)) + (statBuffMoreThan1 ? STAT_ANIM_PLUS2 : STAT_ANIM_PLUS1);
+        if (statChange > 1 || statChange < -1)
+            statBuffMoreThan1 = TRUE;
     }
+
+    if (firstStat != STAT_HP)
+        gBattleScripting.animArg1 = GetStatChangeAnimationId(firstStat, statBuffMoreThan1, FALSE);
 }
-#undef ANIM_STAT_HP
-#undef ANIM_STAT_ATK
-#undef ANIM_STAT_DEF
-#undef ANIM_STAT_SPATK
-#undef ANIM_STAT_SPDEF
-#undef ANIM_STAT_SPEED
-#undef ANIM_STAT_ACC
-#undef ANIM_STAT_EVASION
 
 bool32 CanMoveBeBlockedByTarget(struct BattleContext *ctx, s32 movePriority)
 {
@@ -5671,27 +5662,29 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
                     else
                     {
                         u32 numStatBuffs = 0;
+                        enum Stat firstStat = STAT_HP;
+
                         if (CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
                         {
-                            gBattleScripting.animArg1 = GET_STAT_BUFF_ID(STAT_ATK) + STAT_ANIM_PLUS1;
+                            firstStat = STAT_ATK;
                             numStatBuffs++;
                         }
                         if (CompareStat(battler, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
                         {
-                            gBattleScripting.animArg1 = GET_STAT_BUFF_ID(STAT_SPATK) + STAT_ANIM_PLUS1;
+                            if (firstStat == STAT_HP)
+                                firstStat = STAT_SPATK;
                             numStatBuffs++;
                         }
                         if (CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN))
                         {
-                            gBattleScripting.animArg1 = GET_STAT_BUFF_ID(STAT_SPEED) + STAT_ANIM_PLUS1;
+                            if (firstStat == STAT_HP)
+                                firstStat = STAT_SPEED;
                             numStatBuffs++;
                         }
 
                         if (numStatBuffs > 0)
                         {
-                            if (numStatBuffs > 1)
-                                gBattleScripting.animArg1 = STAT_ANIM_MULTIPLE_PLUS1;
-
+                            gBattleScripting.animArg1 = GetStatChangeAnimationId(firstStat, FALSE, FALSE);
                             gLastUsedAbility = ABILITY_BATTLE_BOND;
                             gBattlerAbility = battler;
                             PushTraitStack(battler, ABILITY_BATTLE_BOND);

@@ -4032,14 +4032,14 @@ void SetMoveEffect(enum BattlerId battlerAtk, enum BattlerId effectBattler, enum
             break;
 
         bool32 contrary = BattlerHasTrait(gBattlerAttacker, ABILITY_CONTRARY);
+        enum Stat firstStolenStat = STAT_HP;
+        bool32 stolenStatByTwo = FALSE;
         gBattleStruct->stolenStats[0] = 0; // Stats to steal.
         gBattleScripting.animArg1 = 0;
         for (enum Stat stat = STAT_ATK; stat < NUM_BATTLE_STATS; stat++)
         {
             if (gBattleMons[gBattlerTarget].statStages[stat] > DEFAULT_STAT_STAGE && gBattleMons[gBattlerAttacker].statStages[stat] != MAX_STAT_STAGE)
             {
-                bool32 byTwo = FALSE;
-
                 gBattleStruct->stolenStats[0] |= (1 << (stat));
                 // Store by how many stages to raise the stat.
                 gBattleStruct->stolenStats[stat] = gBattleMons[gBattlerTarget].statStages[stat] - DEFAULT_STAT_STAGE;
@@ -4049,23 +4049,12 @@ void SetMoveEffect(enum BattlerId battlerAtk, enum BattlerId effectBattler, enum
 
                 gBattleMons[gBattlerTarget].statStages[stat] = DEFAULT_STAT_STAGE;
 
+                if (firstStolenStat == STAT_HP)
+                    firstStolenStat = stat;
                 if (gBattleStruct->stolenStats[stat] >= 2)
-                    byTwo++;
+                    stolenStatByTwo = TRUE;
 
-                if (gBattleScripting.animArg1 == 0)
-                {
-                    if (byTwo)
-                        gBattleScripting.animArg1 = (contrary ? STAT_ANIM_MINUS2 : STAT_ANIM_PLUS2) + stat;
-                    else
-                        gBattleScripting.animArg1 = (contrary ? STAT_ANIM_MINUS1 : STAT_ANIM_PLUS1) + stat;
-                }
-                else
-                {
-                    if (byTwo)
-                        gBattleScripting.animArg1 = (contrary ? STAT_ANIM_MULTIPLE_MINUS2 : STAT_ANIM_MULTIPLE_PLUS2);
-                    else
-                        gBattleScripting.animArg1 = (contrary ? STAT_ANIM_MULTIPLE_MINUS1 : STAT_ANIM_MULTIPLE_PLUS1);
-                }
+                gBattleScripting.animArg1 = GetStatChangeAnimationId(firstStolenStat, stolenStatByTwo, contrary);
             }
 
             if (gBattleStruct->stolenStats[0] != 0)
@@ -8169,18 +8158,14 @@ static void TryPlayStatChangeAnimation(enum BattlerId battler, enum Ability abil
 {
     enum Stat currStat = 0;
     u32 changeableStatsCount = 1; // current stat is counted automatically
-    u32 statAnimId = statId;
     bool32 statChangeByTwo = statValue > 1 || statValue < -1;
+    bool32 goesDown = statValue <= -1;
+    u32 statAnimId = GetStatChangeAnimationId(statId, statChangeByTwo, goesDown);
     enum Ability battlerTraits[MAX_MON_TRAITS];
     STORE_BATTLER_TRAITS(battler);
 
-    if (statValue <= -1) // goes down
+    if (goesDown)
     {
-        if (statChangeByTwo)
-            statAnimId += STAT_ANIM_MINUS2;
-        else
-            statAnimId += STAT_ANIM_MINUS1;
-
         while (stats != 0)
         {
             if (stats & 1)
@@ -8207,22 +8192,9 @@ static void TryPlayStatChangeAnimation(enum BattlerId battler, enum Ability abil
             }
             stats >>= 1, currStat++;
         }
-
-        if (changeableStatsCount > 1) // more than one stat, so the color is gray
-        {
-            if (statChangeByTwo)
-                statAnimId = STAT_ANIM_MULTIPLE_MINUS2;
-            else
-                statAnimId = STAT_ANIM_MULTIPLE_MINUS1;
-        }
     }
-    else // goes up
+    else
     {
-        if (statChangeByTwo)
-            statAnimId += STAT_ANIM_PLUS2;
-        else
-            statAnimId += STAT_ANIM_PLUS1;
-
         while (stats != 0)
         {
             if (stats & 1 && gBattleMons[battler].statStages[currStat] < MAX_STAT_STAGE)
@@ -8231,14 +8203,6 @@ static void TryPlayStatChangeAnimation(enum BattlerId battler, enum Ability abil
                 break;
             }
             stats >>= 1, currStat++;
-        }
-
-        if (changeableStatsCount > 1) // more than one stat, so the color is gray
-        {
-            if (statChangeByTwo)
-                statAnimId = STAT_ANIM_MULTIPLE_PLUS2;
-            else
-                statAnimId = STAT_ANIM_MULTIPLE_PLUS1;
         }
     }
 
