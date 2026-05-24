@@ -88,8 +88,7 @@ SINGLE_BATTLE_TEST("Hyper Cutter doesn't prevent Attack stage reduction from mov
         TURN {}
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SUPERPOWER, opponent);
-        MESSAGE("The opposing Krabby's Attack fell!");
-        MESSAGE("The opposing Krabby's Defense fell!");
+        MESSAGE("The opposing Krabby's Attack and Defense fell!");
     } THEN {
         EXPECT_EQ(opponent->statStages[STAT_ATK], DEFAULT_STAT_STAGE - 1);
     }
@@ -243,8 +242,7 @@ SINGLE_BATTLE_TEST("Hyper Cutter doesn't prevent Attack stage reduction from mov
         TURN {}
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SUPERPOWER, opponent);
-        MESSAGE("The opposing Krabby's Attack fell!");
-        MESSAGE("The opposing Krabby's Defense fell!");
+        MESSAGE("The opposing Krabby's Attack and Defense fell!");
     } THEN {
         EXPECT_EQ(opponent->statStages[STAT_ATK], DEFAULT_STAT_STAGE - 1);
     }

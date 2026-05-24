@@ -104,6 +104,7 @@
 #define B_BUFF_ABILITY                      9
 #define B_BUFF_ITEM                         10
 #define B_BUFF_MON_NICK_WITH_PREFIX_LOWER   11 // lowercase prefix
+#define B_BUFF_STAT_LIST                    12
 
 #define B_BUFF_PLACEHOLDER_BEGIN        0xFD
 #define B_BUFF_EOS                      0xFF
@@ -121,6 +122,14 @@
     textVar[0] = B_BUFF_PLACEHOLDER_BEGIN;                                  \
     textVar[1] = B_BUFF_STAT;                                               \
     textVar[2] = statId;                                                    \
+    textVar[3] = B_BUFF_EOS;                                                \
+}
+
+#define PREPARE_STAT_LIST_BUFFER(textVar, statMask)                         \
+{                                                                           \
+    textVar[0] = B_BUFF_PLACEHOLDER_BEGIN;                                  \
+    textVar[1] = B_BUFF_STAT_LIST;                                          \
+    textVar[2] = statMask;                                                  \
     textVar[3] = B_BUFF_EOS;                                                \
 }
 

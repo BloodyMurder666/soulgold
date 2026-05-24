@@ -17,8 +17,7 @@ DOUBLE_BATTLE_TEST("Coaching raises Attack and Defense of ally by 1 stage each")
         TURN { MOVE(playerLeft, MOVE_COACHING, target: playerRight); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COACHING, playerLeft);
-        MESSAGE("Wynaut's Attack rose!");
-        MESSAGE("Wynaut's Defense rose!");
+        MESSAGE("Wynaut's Attack and Defense rose!");
     }
 }
 
@@ -34,8 +33,7 @@ DOUBLE_BATTLE_TEST("Coaching bypasses Protect")
         TURN { MOVE(playerRight, MOVE_PROTECT); MOVE(playerLeft, MOVE_COACHING, target: playerRight); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COACHING, playerLeft);
-        MESSAGE("Wynaut's Attack rose!");
-        MESSAGE("Wynaut's Defense rose!");
+        MESSAGE("Wynaut's Attack and Defense rose!");
     }
 }
 
@@ -51,8 +49,7 @@ DOUBLE_BATTLE_TEST("Coaching bypasses Crafty Shield")
         TURN { MOVE(playerRight, MOVE_CRAFTY_SHIELD); MOVE(playerLeft, MOVE_COACHING, target: playerRight); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COACHING, playerLeft);
-        MESSAGE("Wynaut's Attack rose!");
-        MESSAGE("Wynaut's Defense rose!");
+        MESSAGE("Wynaut's Attack and Defense rose!");
     }
 }
 

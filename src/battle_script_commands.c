@@ -58,6 +58,7 @@
 #include "constants/battle_move_effects.h"
 #include "constants/battle_string_ids.h"
 #include "constants/battle_partner.h"
+
 #include "constants/items.h"
 #include "constants/item_effects.h"
 #include "constants/moves.h"
@@ -2335,6 +2336,193 @@ static enum BattlerId GetBattlerForConcurrentStatAnimMessage(enum BattlerId batt
     }
 
     return MAX_BATTLERS_COUNT;
+}
+
+#define STAT_BUFF_TEXT_BUCKET_COUNT 16
+
+struct StatBuffTextBucket
+{
+    bool8 used;
+    bool8 goesDown;
+    u8 order;
+    u8 statMask;
+    u8 chooser;
+    enum BattlerId battlerAttacker;
+    enum BattlerId battlerTarget;
+    enum BattlerId changedBattler;
+    u16 modifierStringId;
+};
+
+static struct
+{
+    bool8 active;
+    bool8 keepActiveAfterFlush;
+    bool8 flushing;
+    bool8 forceFlush;
+    bool8 suppressReactiveStatRaises;
+    u8 nextOrder;
+    struct StatBuffTextBucket buckets[STAT_BUFF_TEXT_BUCKET_COUNT];
+} sStatBuffTextBatch;
+
+static u16 GetPreparedStringBufferId(const u8 *textBuff)
+{
+    if (textBuff[0] == B_BUFF_PLACEHOLDER_BEGIN && textBuff[1] == B_BUFF_STRING)
+        return T1_READ_16(&textBuff[2]);
+    return STRINGID_EMPTYSTRING3;
+}
+
+static u8 GetStatBuffBatchChangeAmount(u16 modifierStringId)
+{
+    switch (modifierStringId)
+    {
+    case STRINGID_STATSHARPLY:
+    case STRINGID_STATHARSHLY:
+        return 2;
+    case STRINGID_DRASTICALLY:
+    case STRINGID_SEVERELY:
+        return 3;
+    default:
+        return 1;
+    }
+}
+
+static enum Stat GetFirstStatInStatBuffMask(u8 statMask)
+{
+    static const enum Stat sStatBuffBatchDisplayOrder[] =
+    {
+        STAT_ATK, STAT_DEF, STAT_SPATK, STAT_SPDEF, STAT_SPEED, STAT_ACC, STAT_EVASION,
+    };
+    u32 i;
+
+    for (i = 0; i < ARRAY_COUNT(sStatBuffBatchDisplayOrder); i++)
+    {
+        enum Stat statId = sStatBuffBatchDisplayOrder[i];
+
+        if (statMask & (1 << statId))
+            return statId;
+    }
+
+    return STAT_ATK;
+}
+
+static bool32 ShouldSplitStatBuffBatchForDefiantCompetitive(const struct StatBuffTextBucket *bucket)
+{
+    return bucket->goesDown
+        && bucket->chooser == B_MSG_DEFENDER_STAT_CHANGED
+        && ShouldDefiantCompetitiveActivate(bucket->changedBattler);
+}
+
+static bool32 ShouldForceStatBuffBatchFlushAfterChange(enum BattlerId battler, s8 statValue)
+{
+    return sStatBuffTextBatch.active
+        && statValue < 0
+        && ShouldDefiantCompetitiveActivate(battler);
+}
+
+static bool32 HasPendingStatBuffBatch(void)
+{
+    u32 i;
+
+    for (i = 0; i < ARRAY_COUNT(sStatBuffTextBatch.buckets); i++)
+    {
+        if (sStatBuffTextBatch.buckets[i].used)
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
+static struct StatBuffTextBucket *GetNextStatBuffBatchBucket(void)
+{
+    u32 i;
+    struct StatBuffTextBucket *nextBucket = NULL;
+
+    for (i = 0; i < ARRAY_COUNT(sStatBuffTextBatch.buckets); i++)
+    {
+        if (!sStatBuffTextBatch.buckets[i].used)
+            continue;
+        if (nextBucket == NULL || sStatBuffTextBatch.buckets[i].order < nextBucket->order)
+            nextBucket = &sStatBuffTextBatch.buckets[i];
+    }
+
+    return nextBucket;
+}
+
+static void BeginStatBuffBatch(void)
+{
+    memset(&sStatBuffTextBatch, 0, sizeof(sStatBuffTextBatch));
+    sStatBuffTextBatch.active = TRUE;
+}
+
+static void RecordStatBuffBatchChange(enum BattlerId battler, enum Stat statId, bool32 goesDown, union StatChangeFlags flags)
+{
+    u32 i;
+    struct StatBuffTextBucket *freeBucket = NULL;
+    u16 modifierStringId;
+    u8 statMask;
+
+    if (sStatBuffTextBatch.active && sStatBuffTextBatch.suppressReactiveStatRaises && !goesDown)
+    {
+        return;
+    }
+
+    if (!sStatBuffTextBatch.active || flags.onlyChecking || flags.mirrorArmored || statId == STAT_HP)
+        return;
+
+    statMask = 1 << statId;
+    modifierStringId = GetPreparedStringBufferId(gBattleTextBuff2);
+
+    for (i = 0; i < ARRAY_COUNT(sStatBuffTextBatch.buckets); i++)
+    {
+        struct StatBuffTextBucket *bucket = &sStatBuffTextBatch.buckets[i];
+
+        if (!bucket->used)
+        {
+            if (freeBucket == NULL)
+                freeBucket = bucket;
+            continue;
+        }
+
+        if (bucket->goesDown == goesDown
+         && bucket->chooser == gBattleCommunication[MULTISTRING_CHOOSER]
+         && bucket->modifierStringId == modifierStringId
+         && bucket->battlerAttacker == gBattlerAttacker
+         && bucket->battlerTarget == gBattlerTarget
+         && bucket->changedBattler == battler)
+        {
+            bucket->statMask |= statMask;
+            return;
+        }
+    }
+
+    assertf(freeBucket != NULL, "stat buff text batch overflow")
+    {
+        return;
+    }
+
+    freeBucket->used = TRUE;
+    freeBucket->goesDown = goesDown;
+    freeBucket->order = sStatBuffTextBatch.nextOrder++;
+    freeBucket->statMask = statMask;
+    freeBucket->chooser = gBattleCommunication[MULTISTRING_CHOOSER];
+    freeBucket->battlerAttacker = gBattlerAttacker;
+    freeBucket->battlerTarget = gBattlerTarget;
+    freeBucket->changedBattler = battler;
+    freeBucket->modifierStringId = modifierStringId;
+}
+
+static void SetBattlescriptCurrInstrWithStatBuffBatchFlush(const u8 *script)
+{
+    if (HasPendingStatBuffBatch())
+    {
+        sStatBuffTextBatch.keepActiveAfterFlush = TRUE;
+        BattleScriptPush(script);
+        gBattlescriptCurrInstr = BattleScript_FlushStatBuffBatch;
+    }
+    else
+    {
+        gBattlescriptCurrInstr = script;
+    }
 }
 
 static void Cmd_waitmessage(void)
@@ -8119,7 +8307,7 @@ static u32 ChangeStatBuffs(enum BattlerId battler, s8 statValue, enum Stat statI
                 {
                     BattleScriptPush(BS_ptr);
                     gBattleScripting.battler = battler;
-                    gBattlescriptCurrInstr = BattleScript_MistProtected;
+                    SetBattlescriptCurrInstrWithStatBuffBatchFlush(BattleScript_MistProtected);
                     gSpecialStatuses[battler].statLowered = TRUE;
                 }
             }
@@ -8143,7 +8331,7 @@ static u32 ChangeStatBuffs(enum BattlerId battler, s8 statValue, enum Stat statI
                     {
                         gLastUsedItem = GetBattlerHeldItemWithEffect(battler, HOLD_EFFECT_CLEAR_AMULET, TRUE);
                         BattleScriptPush(BS_ptr);
-                        gBattlescriptCurrInstr = BattleScript_ItemNoStatLoss;
+                        SetBattlescriptCurrInstrWithStatBuffBatchFlush(BattleScript_ItemNoStatLoss);
                         RecordItemEffectBattle(battler, HOLD_EFFECT_CLEAR_AMULET);
                     }
                     else
@@ -8161,7 +8349,7 @@ static u32 ChangeStatBuffs(enum BattlerId battler, s8 statValue, enum Stat statI
 
                         gBattlerAbility = battler;
                         BattleScriptPush(BS_ptr);
-                        gBattlescriptCurrInstr = BattleScript_AbilityNoStatLoss;
+                        SetBattlescriptCurrInstrWithStatBuffBatchFlush(BattleScript_AbilityNoStatLoss);
                         gLastUsedAbility = battlerAbility;
                         PushTraitStack(battler, battlerAbility);
                         RecordAbilityBattle(battler, battlerAbility);
@@ -8184,7 +8372,7 @@ static u32 ChangeStatBuffs(enum BattlerId battler, s8 statValue, enum Stat statI
                     BattleScriptPush(BS_ptr);
                     gBattleScripting.battler = battler;
                     gBattlerAbility = index - 1;
-                    gBattlescriptCurrInstr = BattleScript_FlowerVeilProtectsRet;
+                    SetBattlescriptCurrInstrWithStatBuffBatchFlush(BattleScript_FlowerVeilProtectsRet);
                     gLastUsedAbility = ABILITY_FLOWER_VEIL;
                     gSpecialStatuses[battler].statLowered = TRUE;
                 }
@@ -8213,7 +8401,7 @@ static u32 ChangeStatBuffs(enum BattlerId battler, s8 statValue, enum Stat statI
                 BattleScriptPush(BS_ptr);
                 gBattleScripting.battler = battler;
                 gBattlerAbility = battler;
-                gBattlescriptCurrInstr = BattleScript_AbilityNoSpecificStatLoss;
+                SetBattlescriptCurrInstrWithStatBuffBatchFlush(BattleScript_AbilityNoSpecificStatLoss);
                 gLastUsedAbility = battlerAbility;
                 PushTraitStack(battler, battlerAbility);
                 RecordAbilityBattle(battler, battlerAbility);
@@ -8231,7 +8419,7 @@ static u32 ChangeStatBuffs(enum BattlerId battler, s8 statValue, enum Stat statI
                 BattleScriptPush(BS_ptr);
                 gBattleScripting.battler = battler;
                 gBattlerAbility = battler;
-                gBattlescriptCurrInstr = BattleScript_MirrorArmorReflect;
+                SetBattlescriptCurrInstrWithStatBuffBatchFlush(BattleScript_MirrorArmorReflect);
                 RecordAbilityBattle(battler, ABILITY_MIRROR_ARMOR);
             }
             return STAT_CHANGE_DIDNT_WORK;
@@ -8360,7 +8548,10 @@ static u32 ChangeStatBuffs(enum BattlerId battler, s8 statValue, enum Stat statI
     else
         stats &= ~(1u << statId);
 
+    RecordStatBuffBatchChange(battler, statId, statValue < 0, flags);
     TryPlayStatChangeAnimation(battler, battlerAbility, stats, statValue, statId, flags.certain);
+    if (ShouldForceStatBuffBatchFlushAfterChange(battler, statValue))
+        sStatBuffTextBatch.forceFlush = TRUE;
 
     return STAT_CHANGE_WORKED;
 }
@@ -8381,7 +8572,18 @@ static void Cmd_statbuffchange(void)
             flags,
             stats,
             failInstr) == STAT_CHANGE_WORKED)
-        gBattlescriptCurrInstr = cmd->nextInstr;
+    {
+        if (sStatBuffTextBatch.forceFlush)
+        {
+            sStatBuffTextBatch.forceFlush = FALSE;
+            BattleScriptPush(cmd->nextInstr);
+            gBattlescriptCurrInstr = BattleScript_FlushStatBuffBatchKeepActive;
+        }
+        else
+        {
+            gBattlescriptCurrInstr = cmd->nextInstr;
+        }
+    }
     else if (gBattlescriptCurrInstr == ptrBefore) // Prevent infinite looping.
         gBattlescriptCurrInstr = failInstr;
 }
@@ -12089,6 +12291,83 @@ static void Cmd_callnative(void)
 }
 
 // Callnative Funcs
+
+void BS_BeginStatBuffBatch(void)
+{
+    NATIVE_ARGS();
+
+    BeginStatBuffBatch();
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+static void PrintStatBuffBatch(bool32 keepActiveAfterCall)
+{
+    NATIVE_ARGS();
+    struct StatBuffTextBucket *bucket = GetNextStatBuffBatchBucket();
+    enum BattlerId printBattler;
+    enum Stat firstStat;
+    u8 statMask;
+
+    if (bucket == NULL)
+    {
+        if (!sStatBuffTextBatch.keepActiveAfterFlush && !keepActiveAfterCall)
+            sStatBuffTextBatch.active = FALSE;
+        sStatBuffTextBatch.keepActiveAfterFlush = FALSE;
+        sStatBuffTextBatch.flushing = FALSE;
+        sStatBuffTextBatch.suppressReactiveStatRaises = FALSE;
+        gBattleCommunication[MSG_DISPLAY] = 0;
+        gBattlescriptCurrInstr = cmd->nextInstr;
+        return;
+    }
+
+    printBattler = GetBattlerForConcurrentStatAnimMessage(bucket->battlerAttacker, TRUE);
+    if (printBattler == MAX_BATTLERS_COUNT)
+        return;
+
+    firstStat = GetFirstStatInStatBuffMask(bucket->statMask);
+    if (ShouldSplitStatBuffBatchForDefiantCompetitive(bucket))
+    {
+        statMask = 1 << firstStat;
+        bucket->statMask &= ~statMask;
+        if (bucket->statMask == 0)
+            bucket->used = FALSE;
+        sStatBuffTextBatch.suppressReactiveStatRaises = TRUE;
+    }
+    else
+    {
+        statMask = bucket->statMask;
+        bucket->used = FALSE;
+    }
+
+    gBattlerAttacker = bucket->battlerAttacker;
+    gBattlerTarget = bucket->battlerTarget;
+    SET_STATCHANGER(firstStat, GetStatBuffBatchChangeAmount(bucket->modifierStringId), bucket->goesDown);
+    PREPARE_STAT_LIST_BUFFER(gBattleTextBuff1, statMask);
+    PREPARE_STRING_BUFFER(gBattleTextBuff2, bucket->modifierStringId);
+    gBattleCommunication[MULTISTRING_CHOOSER] = bucket->chooser;
+    gBattlescriptCurrInstr = cmd->nextInstr;
+    sStatBuffTextBatch.flushing = TRUE;
+    if (bucket->goesDown)
+    {
+        PrepareStringBattle(gStatDownStringIds[bucket->chooser], printBattler);
+    }
+    else
+    {
+        PrepareStringBattle(gStatUpStringIds[bucket->chooser], printBattler);
+    }
+
+    gBattleCommunication[MSG_DISPLAY] = 1;
+}
+
+void BS_PrintStatBuffBatch(void)
+{
+    PrintStatBuffBatch(FALSE);
+}
+
+void BS_PrintStatBuffBatchKeepActive(void)
+{
+    PrintStatBuffBatch(TRUE);
+}
 
 void SaveBattlerTarget(enum BattlerId battler)
 {

@@ -114,14 +114,11 @@ SINGLE_BATTLE_TEST("Keen Eye, Gen9+ Illuminate & Minds Eye don't prevent Topsy-T
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_HONE_CLAWS, opponent);
         if (species == SPECIES_HITMONCHAN) {
-            MESSAGE("The opposing Hitmonchan's Attack rose!");
-            MESSAGE("The opposing Hitmonchan's accuracy rose!");
+            MESSAGE("The opposing Hitmonchan's Attack and accuracy rose!");
         } else if (species == SPECIES_STARYU) {
-            MESSAGE("The opposing Staryu's Attack rose!");
-            MESSAGE("The opposing Staryu's accuracy rose!");
+            MESSAGE("The opposing Staryu's Attack and accuracy rose!");
         } else {
-            MESSAGE("The opposing Ursaluna's Attack rose!");
-            MESSAGE("The opposing Ursaluna's accuracy rose!");
+            MESSAGE("The opposing Ursaluna's Attack and accuracy rose!");
         }
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TOPSY_TURVY, player);
         if (species == SPECIES_HITMONCHAN)
@@ -188,13 +185,11 @@ SINGLE_BATTLE_TEST("Keen Eye & Gen9+ Illuminate don't prevent Spectral Thief fro
         ANIMATION(ANIM_TYPE_MOVE, MOVE_HONE_CLAWS, opponent);
         if (species == SPECIES_HITMONCHAN)
         {
-            MESSAGE("The opposing Hitmonchan's Attack rose!");
-            MESSAGE("The opposing Hitmonchan's accuracy rose!");
+            MESSAGE("The opposing Hitmonchan's Attack and accuracy rose!");
         }
         else
         {
-            MESSAGE("The opposing Staryu's Attack rose!");
-            MESSAGE("The opposing Staryu's accuracy rose!");
+            MESSAGE("The opposing Staryu's Attack and accuracy rose!");
         }
         MESSAGE("Wobbuffet stole the target's boosted stats!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPECTRAL_THIEF, player);
@@ -311,14 +306,11 @@ SINGLE_BATTLE_TEST("Keen Eye, Gen9+ Illuminate & Minds Eye don't prevent Topsy-T
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_HONE_CLAWS, opponent);
         if (species == SPECIES_HITMONCHAN) {
-            MESSAGE("The opposing Hitmonchan's Attack rose!");
-            MESSAGE("The opposing Hitmonchan's accuracy rose!");
+            MESSAGE("The opposing Hitmonchan's Attack and accuracy rose!");
         } else if (species == SPECIES_STARYU) {
-            MESSAGE("The opposing Staryu's Attack rose!");
-            MESSAGE("The opposing Staryu's accuracy rose!");
+            MESSAGE("The opposing Staryu's Attack and accuracy rose!");
         } else {
-            MESSAGE("The opposing Ursaluna's Attack rose!");
-            MESSAGE("The opposing Ursaluna's accuracy rose!");
+            MESSAGE("The opposing Ursaluna's Attack and accuracy rose!");
         }
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TOPSY_TURVY, player);
         if (species == SPECIES_HITMONCHAN)
@@ -385,13 +377,11 @@ SINGLE_BATTLE_TEST("Keen Eye & Gen9+ Illuminate don't prevent Spectral Thief fro
         ANIMATION(ANIM_TYPE_MOVE, MOVE_HONE_CLAWS, opponent);
         if (species == SPECIES_HITMONCHAN)
         {
-            MESSAGE("The opposing Hitmonchan's Attack rose!");
-            MESSAGE("The opposing Hitmonchan's accuracy rose!");
+            MESSAGE("The opposing Hitmonchan's Attack and accuracy rose!");
         }
         else
         {
-            MESSAGE("The opposing Staryu's Attack rose!");
-            MESSAGE("The opposing Staryu's accuracy rose!");
+            MESSAGE("The opposing Staryu's Attack and accuracy rose!");
         }
         MESSAGE("Wobbuffet stole the target's boosted stats!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPECTRAL_THIEF, player);

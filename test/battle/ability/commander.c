@@ -30,11 +30,7 @@ DOUBLE_BATTLE_TEST("Commander increases all stats by 2 stages once it is trigger
         ABILITY_POPUP(playerLeft, ABILITY_COMMANDER);
         MESSAGE("Tatsugiri was swallowed by Dondozo and became Dondozo's commander!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
-        MESSAGE("Dondozo's Attack sharply rose!");
-        MESSAGE("Dondozo's Defense sharply rose!");
-        MESSAGE("Dondozo's Sp. Atk sharply rose!");
-        MESSAGE("Dondozo's Sp. Def sharply rose!");
-        MESSAGE("Dondozo's Speed sharply rose!");
+        MESSAGE("Dondozo's all stats sharply rose!");
     }
 }
 
@@ -628,11 +624,7 @@ DOUBLE_BATTLE_TEST("Commander increases all stats by 2 stages once it is trigger
         ABILITY_POPUP(playerLeft, ABILITY_COMMANDER);
         MESSAGE("Tatsugiri was swallowed by Dondozo and became Dondozo's commander!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
-        MESSAGE("Dondozo's Attack sharply rose!");
-        MESSAGE("Dondozo's Defense sharply rose!");
-        MESSAGE("Dondozo's Sp. Atk sharply rose!");
-        MESSAGE("Dondozo's Sp. Def sharply rose!");
-        MESSAGE("Dondozo's Speed sharply rose!");
+        MESSAGE("Dondozo's all stats sharply rose!");
     }
 }
 

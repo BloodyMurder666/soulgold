@@ -319,6 +319,7 @@ enum BattleScriptOpcode
 #define BATTLE_COMMUNICATION_ENTRIES_COUNT  8
 
 #define cMULTISTRING_CHOOSER (gBattleCommunication + MULTISTRING_CHOOSER)
+#define cMSG_DISPLAY (gBattleCommunication + MSG_DISPLAY)
 #define cMISS_TYPE           (gBattleCommunication + MISS_TYPE)
 
 // Battle Script defines for getting the wanted battler
