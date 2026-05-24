@@ -1,11 +1,11 @@
 {
-  "id": "MAP_VAJRA_DESERT",
-  "name": "VajraDesert",
-  "layout": "LAYOUT_VAJRA_DESERT",
-  "music": "MUS_DESERT",
-  "region_map_section": "MAPSEC_VAJRA_DESERT_WEST",
+  "id": "MAP_SNOWTOP_MOUNTAIN_OUTSIDE",
+  "name": "SnowtopMountainOutside",
+  "layout": "LAYOUT_SNOWTOP_MOUNTAIN_OUTSIDE",
+  "music": "MUS_DP_SNOWPOINT_NIGHT",
+  "region_map_section": "MAPSEC_SNOWTOP_MOUNTAIN",
   "requires_flash": false,
-  "weather": "WEATHER_SANDSTORM",
+  "weather": "WEATHER_SNOW",
   "map_type": "MAP_TYPE_ROUTE",
   "allow_cycling": true,
   "allow_escaping": false,
@@ -14,9 +14,9 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_VAJRA_DESERT_WEST_2",
-      "offset": 60,
-      "direction": "up"
+      "map": "MAP_ROUTE49",
+      "offset": 8,
+      "direction": "down"
     }
   ],
   "object_events": [],

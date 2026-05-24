@@ -1,9 +1,9 @@
 {
-  "id": "MAP_VAJRA_DESERT",
-  "name": "VajraDesert",
-  "layout": "LAYOUT_VAJRA_DESERT",
+  "id": "MAP_VAJRA_DESERT_EAST",
+  "name": "VajraDesertEast",
+  "layout": "LAYOUT_VAJRA_DESERT_EAST",
   "music": "MUS_DESERT",
-  "region_map_section": "MAPSEC_VAJRA_DESERT_WEST",
+  "region_map_section": "MAPSEC_VAJRA_DESERT_EAST",
   "requires_flash": false,
   "weather": "WEATHER_SANDSTORM",
   "map_type": "MAP_TYPE_ROUTE",
@@ -14,9 +14,9 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_VAJRA_DESERT_WEST_2",
-      "offset": 60,
-      "direction": "up"
+      "map": "MAP_RINTO_VILLAGE",
+      "offset": -14,
+      "direction": "left"
     }
   ],
   "object_events": [],

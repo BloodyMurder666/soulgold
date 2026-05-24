@@ -91,6 +91,12 @@ enum
     MAP_ONE_ISLAND_KINDLE_ROAD    = (76 | (0 << 8)),
     MAP_ONE_ISLAND_TREASURE_BEACH = (77 | (0 << 8)),
     MAP_VAJRA_DESERT              = (78 | (0 << 8)),
+    MAP_ROUTE49                   = (79 | (0 << 8)),
+    MAP_VAJRA_DESERT_WEST_2       = (80 | (0 << 8)),
+    MAP_VAJRA_PYRAMID_OUTSIDE     = (81 | (0 << 8)),
+    MAP_RINTO_VILLAGE             = (82 | (0 << 8)),
+    MAP_VAJRA_DESERT_EAST         = (83 | (0 << 8)),
+    MAP_SNOWTOP_MOUNTAIN_OUTSIDE  = (84 | (0 << 8)),
 
     // gMapGroup_IndoorNewBark
     MAP_NEW_BARK_TOWN_LAB              = (0 | (1 << 8)),

@@ -9298,8 +9298,8 @@
     {
       "id": "LAYOUT_VAJRA_DESERT",
       "name": "VajraDesert_Layout",
-      "width": 52,
-      "height": 27,
+      "width": 92,
+      "height": 36,
       "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_Desert",
       "border_filepath": "data/layouts/VajraDesert/border.bin",
@@ -9414,6 +9414,66 @@
       "secondary_tileset": "gTileset_House_Lab",
       "border_filepath": "data/layouts/EcruteakCity_House3/border.bin",
       "blockdata_filepath": "data/layouts/EcruteakCity_House3/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE49",
+      "name": "Route49_Layout",
+      "width": 24,
+      "height": 90,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_MtSilverSnow",
+      "border_filepath": "data/layouts/Route49/border.bin",
+      "blockdata_filepath": "data/layouts/Route49/map.bin"
+    },
+    {
+      "id": "LAYOUT_VAJRA_DESERT_WEST_2",
+      "name": "VajraDesertWest_2_Layout",
+      "width": 43,
+      "height": 36,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_Desert",
+      "border_filepath": "data/layouts/VajraDesertWest_2/border.bin",
+      "blockdata_filepath": "data/layouts/VajraDesertWest_2/map.bin"
+    },
+    {
+      "id": "LAYOUT_VAJRA_PYRAMID_OUTSIDE",
+      "name": "VajraPyramidOutside_Layout",
+      "width": 43,
+      "height": 36,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_Desert",
+      "border_filepath": "data/layouts/VajraPyramidOutside/border.bin",
+      "blockdata_filepath": "data/layouts/VajraPyramidOutside/map.bin"
+    },
+    {
+      "id": "LAYOUT_RINTO_VILLAGE",
+      "name": "RintoVillage_Layout",
+      "width": 43,
+      "height": 50,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_Desert",
+      "border_filepath": "data/layouts/RintoVillage/border.bin",
+      "blockdata_filepath": "data/layouts/RintoVillage/map.bin"
+    },
+    {
+      "id": "LAYOUT_VAJRA_DESERT_EAST",
+      "name": "VajraDesertEast_Layout",
+      "width": 111,
+      "height": 36,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_Desert",
+      "border_filepath": "data/layouts/VajraDesertEast/border.bin",
+      "blockdata_filepath": "data/layouts/VajraDesertEast/map.bin"
+    },
+    {
+      "id": "LAYOUT_SNOWTOP_MOUNTAIN_OUTSIDE",
+      "name": "SnowtopMountainOutside_Layout",
+      "width": 36,
+      "height": 50,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_MtSilverSnow",
+      "border_filepath": "data/layouts/SnowtopMountainOutside/border.bin",
+      "blockdata_filepath": "data/layouts/SnowtopMountainOutside/map.bin"
     }
   ]
 }

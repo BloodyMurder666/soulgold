@@ -113,7 +113,13 @@
     "OneIsland",
     "OneIsland_KindleRoad_Frlg",
     "OneIsland_TreasureBeach_Frlg",
-    "VajraDesert"
+    "VajraDesert",
+    "Route49",
+    "VajraDesertWest_2",
+    "VajraPyramidOutside",
+    "RintoVillage",
+    "VajraDesertEast",
+    "SnowtopMountainOutside"
   ],
   "gMapGroup_IndoorNewBark": [
     "NewBarkTown_Lab",

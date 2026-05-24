@@ -2216,3 +2216,15 @@ Common_Text_ReceivedMon:
 	.include "data/maps/GoldenrodBattleAracdeLobby/scripts.inc"
 
 	.include "data/maps/EcruteakCity_House3/scripts.inc"
+
+	.include "data/maps/Route49/scripts.inc"
+
+	.include "data/maps/VajraDesertWest_2/scripts.inc"
+
+	.include "data/maps/VajraPyramidOutside/scripts.inc"
+
+	.include "data/maps/RintoVillage/scripts.inc"
+
+	.include "data/maps/VajraDesertEast/scripts.inc"
+
+	.include "data/maps/SnowtopMountainOutside/scripts.inc"
