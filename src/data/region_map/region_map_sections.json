@@ -1404,7 +1404,99 @@
     },
     {
       "id": "MAPSEC_RAILWAY_CAVE",
-      "name": "Railway Cave"
+      "name": "Railway Cave",
+      "x": 9,
+      "y": 9,
+      "width": 3,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_VAJRA_DESERT_WEST",
+      "name": "Vajra Desert West",
+      "x": 7,
+      "y": 1,
+      "width": 3,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_VAJRA_DESERT_EAST",
+      "name": "Vajra Desert East",
+      "x": 11,
+      "y": 0,
+      "width": 5,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_RINTO_VILLAGE",
+      "name": "Rinto Village",
+      "x": 10,
+      "y": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_SNOWTOP_MOUNTAIN",
+      "name": "Snowtop Mountain",
+      "x": 6,
+      "y": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_CHAMPIONS_ROAD",
+      "name": "Road of Champions",
+      "x": 2,
+      "y": 0,
+      "width": 4,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_VAJRA_PYRAMID",
+      "name": "Vajra Pyramid",
+      "x": 8,
+      "y": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_MT_GOLD",
+      "name": "Mt Gold",
+      "x": 1,
+      "y": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_SOUTH_SEA",
+      "name": "Southern Sea",
+      "x": 13,
+      "y": 14,
+      "width": 1,
+      "height": 5
+    },
+    {
+      "id": "MAPSEC_TOHJO_PASS",
+      "name": "Tohjo Pass",
+      "x": 22,
+      "y": 9,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_FULLMOON_ISLAND",
+      "name": "Full Moon Island"
+    },
+    {
+      "id": "MAPSEC_NEWMOON_ISLAND",
+      "name": "New Moon Island"
+    },
+    {
+      "id": "MAPSEC_DREAM_GARDEN",
+      "name": "Dream Garden",
+      "x": 21,
+      "y": 9,
+      "width": 1,
+      "height": 1
     }
   ]
 }
