@@ -1,7 +1,31 @@
 #include "global.h"
 #include "line_break.h"
+#include "string_util.h"
 #include "text.h"
 #include "malloc.h"
+
+static u32 GetWordWidthIgnoringExtCtrlCodes(const u8 *src, u32 length, u8 fontId)
+{
+    u32 i;
+    u32 width = 0;
+
+    for (i = 0; i < length; i++)
+    {
+        if (src[i] == EXT_CTRL_CODE_BEGIN && i + 1 < length)
+        {
+            u32 ctrlCodeLength = GetExtCtrlCodeLength(src[i + 1]);
+            if (ctrlCodeLength != 0 && i + 1 + ctrlCodeLength <= length)
+            {
+                i += ctrlCodeLength;
+                continue;
+            }
+        }
+
+        width += GetGlyphWidth(src[i], FALSE, fontId);
+    }
+
+    return width;
+}
 
 void StripLineBreaks(u8 *src)
 {
@@ -122,10 +146,7 @@ void BreakSubStringNaive(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId, enum
 
     //  Fill in individual word widths
     for (u32 i = 0; i < numWords; i++)
-    {
-        for (u32 j = 0; j < allWords[i].length; j++)
-            allWords[i].width += GetGlyphWidth(src[allWords[i].startIndex + j], FALSE, fontId);
-    }
+        allWords[i].width = GetWordWidthIgnoringExtCtrlCodes(&src[allWords[i].startIndex], allWords[i].length, fontId);
 
     //  Step 1: Does it all fit one one line? Then no break
     //  Step 2: Try to split across minimum number of lines
@@ -232,10 +253,7 @@ void BreakSubStringAutomatic(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId, 
 
     //  Fill in individual word widths
     for (u32 i = 0; i < numWords; i++)
-    {
-        for (u32 j = 0; j < allWords[i].length; j++)
-            allWords[i].width += GetGlyphWidth(src[allWords[i].startIndex + j], FALSE, fontId);
-    }
+        allWords[i].width = GetWordWidthIgnoringExtCtrlCodes(&src[allWords[i].startIndex], allWords[i].length, fontId);
 
     //  Step 1: Does it all fit one one line? Then no break
     //  Step 2: Try to split across minimum number of lines

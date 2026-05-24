@@ -155,6 +155,21 @@ static const u8 sText_AllStats[] = _("all stats");
 static const u8 sText_StatListComma[] = _(", ");
 static const u8 sText_StatListAnd[] = _(" and ");
 
+#define BATTLE_MSG_DEFAULT_TEXT_FOREGROUND 1
+#define BATTLE_MSG_DEFAULT_TEXT_SHADOW     6
+#define BATTLE_MSG_STAT_ATK_FOREGROUND     3
+#define BATTLE_MSG_STAT_ATK_SHADOW         2
+#define BATTLE_MSG_STAT_DEF_FOREGROUND     5
+#define BATTLE_MSG_STAT_DEF_SHADOW         4
+#define BATTLE_MSG_STAT_SPATK_FOREGROUND   8
+#define BATTLE_MSG_STAT_SPATK_SHADOW       7
+#define BATTLE_MSG_STAT_SPDEF_FOREGROUND   10
+#define BATTLE_MSG_STAT_SPDEF_SHADOW       9
+#define BATTLE_MSG_STAT_SPEED_FOREGROUND   12
+#define BATTLE_MSG_STAT_SPEED_SHADOW       11
+#define BATTLE_MSG_STAT_ACC_FOREGROUND     13
+#define BATTLE_MSG_STAT_EVASION_FOREGROUND 14
+
 const u8 *const gStatNamesTable[NUM_BATTLE_STATS] =
 {
     [STAT_HP]      = sText_HP,
@@ -177,6 +192,77 @@ static const u8 sStatListDisplayOrder[] =
     STAT_ACC,
     STAT_EVASION,
 };
+
+static bool8 GetBattleStatTextColors(u8 statId, u8 *foreground, u8 *shadow)
+{
+    switch (statId)
+    {
+    case STAT_ATK:
+        *foreground = BATTLE_MSG_STAT_ATK_FOREGROUND;
+        *shadow = BATTLE_MSG_STAT_ATK_SHADOW;
+        return TRUE;
+    case STAT_DEF:
+        *foreground = BATTLE_MSG_STAT_DEF_FOREGROUND;
+        *shadow = BATTLE_MSG_STAT_DEF_SHADOW;
+        return TRUE;
+    case STAT_SPATK:
+        *foreground = BATTLE_MSG_STAT_SPATK_FOREGROUND;
+        *shadow = BATTLE_MSG_STAT_SPATK_SHADOW;
+        return TRUE;
+    case STAT_SPDEF:
+        *foreground = BATTLE_MSG_STAT_SPDEF_FOREGROUND;
+        *shadow = BATTLE_MSG_STAT_SPDEF_SHADOW;
+        return TRUE;
+    case STAT_SPEED:
+        *foreground = BATTLE_MSG_STAT_SPEED_FOREGROUND;
+        *shadow = BATTLE_MSG_STAT_SPEED_SHADOW;
+        return TRUE;
+    case STAT_ACC:
+        *foreground = BATTLE_MSG_STAT_ACC_FOREGROUND;
+        *shadow = BATTLE_MSG_DEFAULT_TEXT_FOREGROUND;
+        return TRUE;
+    case STAT_EVASION:
+        *foreground = BATTLE_MSG_STAT_EVASION_FOREGROUND;
+        *shadow = BATTLE_MSG_DEFAULT_TEXT_FOREGROUND;
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+static void AppendBattleTextColor(u8 *dst, u8 foreground, u8 shadow)
+{
+    u8 *end = &dst[StringLength(dst)];
+
+    end = WriteColorChangeControlCode(end, TEXT_COLOR_TYPE_FOREGROUND, foreground);
+    WriteColorChangeControlCode(end, TEXT_COLOR_TYPE_SHADOW, shadow);
+}
+
+static void AppendBattleDefaultTextColor(u8 *dst)
+{
+    AppendBattleTextColor(dst, BATTLE_MSG_DEFAULT_TEXT_FOREGROUND, BATTLE_MSG_DEFAULT_TEXT_SHADOW);
+}
+
+static void AppendBattleStatName(u8 *dst, u8 statId)
+{
+    u8 foreground;
+    u8 shadow;
+    bool8 useColor;
+
+    if (statId >= NUM_BATTLE_STATS)
+        return;
+
+    useColor = GetBattleStatTextColors(statId, &foreground, &shadow);
+
+    if (useColor)
+        AppendBattleTextColor(dst, foreground, shadow);
+
+    StringAppend(dst, gStatNamesTable[statId]);
+
+    if (useColor)
+        AppendBattleDefaultTextColor(dst);
+}
+
 const u8 *const gPokeblockWasTooXStringTable[FLAVOR_COUNT] =
 {
     [FLAVOR_SPICY]  = COMPOUND_STRING("was too spicy!"),
@@ -3455,12 +3541,13 @@ static void AppendBattleStatList(u8 *dst, u8 statMask)
     u32 i;
     u32 printed = 0;
     u32 statCount = 0;
-    const u8 *name;
     const u8 allStatsMask = (1 << STAT_ATK) | (1 << STAT_DEF) | (1 << STAT_SPATK) | (1 << STAT_SPDEF) | (1 << STAT_SPEED);
 
     if (statMask == allStatsMask)
     {
+        AppendBattleTextColor(dst, BATTLE_MSG_STAT_ACC_FOREGROUND, BATTLE_MSG_DEFAULT_TEXT_FOREGROUND);
         StringAppend(dst, sText_AllStats);
+        AppendBattleDefaultTextColor(dst);
         return;
     }
 
@@ -3483,8 +3570,7 @@ static void AppendBattleStatList(u8 *dst, u8 statMask)
                 StringAppend(dst, sText_StatListComma);
         }
 
-        name = gStatNamesTable[sStatListDisplayOrder[i]];
-        StringAppend(dst, name);
+        AppendBattleStatName(dst, sStatListDisplayOrder[i]);
         printed++;
     }
 }
@@ -3555,7 +3641,7 @@ void ExpandBattleTextBuffPlaceholders(const u8 *src, u8 *dst)
             srcID += 3;
             break;
         case B_BUFF_STAT: // stats
-            StringAppend(dst, gStatNamesTable[src[srcID + 1]]);
+            AppendBattleStatName(dst, src[srcID + 1]);
             srcID += 2;
             break;
         case B_BUFF_STAT_LIST:

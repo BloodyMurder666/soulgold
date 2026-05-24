@@ -312,12 +312,14 @@ bool32 MoveSelectionDisplayZMove(enum Move zmove, enum BattlerId battler)
             case Z_EFFECT_SPDEF_UP_1:
             case Z_EFFECT_ACC_UP_1:
             case Z_EFFECT_EVSN_UP_1:
+            {
+                u8 statId = zEffect - Z_EFFECT_ATK_UP_1 + 1;
                 gDisplayedStringBattle[0] = CHAR_PLUS;
                 gDisplayedStringBattle[1] = 0;
                 gDisplayedStringBattle[2] = EOS;
-                PREPARE_STAT_BUFFER(gBattleTextBuff1, zEffect - Z_EFFECT_ATK_UP_1 + 1);
-                ExpandBattleTextBuffPlaceholders(gBattleTextBuff1, gDisplayedStringBattle + 2);
+                StringAppend(gDisplayedStringBattle, gStatNamesTable[statId]);
                 break;
+            }
             case Z_EFFECT_ATK_UP_2:
             case Z_EFFECT_DEF_UP_2:
             case Z_EFFECT_SPD_UP_2:
@@ -325,13 +327,15 @@ bool32 MoveSelectionDisplayZMove(enum Move zmove, enum BattlerId battler)
             case Z_EFFECT_SPDEF_UP_2:
             case Z_EFFECT_ACC_UP_2:
             case Z_EFFECT_EVSN_UP_2:
+            {
+                u8 statId = zEffect - Z_EFFECT_ATK_UP_2 + 1;
                 gDisplayedStringBattle[0] = CHAR_PLUS;
                 gDisplayedStringBattle[1] = CHAR_PLUS;
                 gDisplayedStringBattle[2] = 0;
                 gDisplayedStringBattle[3] = EOS;
-                PREPARE_STAT_BUFFER(gBattleTextBuff1, zEffect - Z_EFFECT_ATK_UP_2 + 1);
-                ExpandBattleTextBuffPlaceholders(gBattleTextBuff1, gDisplayedStringBattle + 3);
+                StringAppend(gDisplayedStringBattle, gStatNamesTable[statId]);
                 break;
+            }
             case Z_EFFECT_ATK_UP_3:
             case Z_EFFECT_DEF_UP_3:
             case Z_EFFECT_SPD_UP_3:
@@ -339,14 +343,16 @@ bool32 MoveSelectionDisplayZMove(enum Move zmove, enum BattlerId battler)
             case Z_EFFECT_SPDEF_UP_3:
             case Z_EFFECT_ACC_UP_3:
             case Z_EFFECT_EVSN_UP_3:
+            {
+                u8 statId = zEffect - Z_EFFECT_ATK_UP_3 + 1;
                 gDisplayedStringBattle[0] = CHAR_PLUS;
                 gDisplayedStringBattle[1] = CHAR_PLUS;
                 gDisplayedStringBattle[2] = CHAR_PLUS;
                 gDisplayedStringBattle[3] = 0;
                 gDisplayedStringBattle[4] = EOS;
-                PREPARE_STAT_BUFFER(gBattleTextBuff1, zEffect - Z_EFFECT_ATK_UP_3 + 1);
-                ExpandBattleTextBuffPlaceholders(gBattleTextBuff1, gDisplayedStringBattle + 4);
+                StringAppend(gDisplayedStringBattle, gStatNamesTable[statId]);
                 break;
+            }
             default:
                 if (B_SHOW_USELESS_Z_MOVE_INFO == TRUE)
                     StringCopy(gDisplayedStringBattle, sText_NoAdditionalEffect);

@@ -32,6 +32,28 @@
 
 // .rodata
 
+#define BATTLE_MESSAGE_TEXT_PAL_NUM 12
+
+static const u16 sBattleMessageTextPalette[] =
+{
+    [0]  = RGB(0, 0, 0),
+    [1]  = RGB(9, 9, 9),     // Default text foreground
+    [2]  = RGB(14, 0, 0),    // Attack shadow
+    [3]  = RGB(31, 12, 12),  // Attack
+    [4]  = RGB(2, 6, 16),    // Defense shadow
+    [5]  = RGB(11, 18, 31),  // Defense
+    [6]  = RGB(26, 26, 25),  // Default text shadow
+    [7]  = RGB(15, 0, 10),   // Sp. Atk shadow
+    [8]  = RGB(31, 12, 23),  // Sp. Atk
+    [9]  = RGB(0, 10, 16),   // Sp. Def shadow
+    [10] = RGB(10, 25, 31),  // Sp. Def
+    [11] = RGB(0, 12, 0),    // Speed shadow
+    [12] = RGB(13, 28, 11),  // Speed
+    [13] = RGB(31, 24, 8),   // Accuracy / all stats
+    [14] = RGB(20, 14, 31),  // Evasiveness
+    [15] = RGB(31, 31, 31),  // Textbox background
+};
+
 static const struct OamData sVsLetter_V_OamData =
 {
     .y = 0,
@@ -159,7 +181,7 @@ static const struct WindowTemplate sStandardBattleWindowTemplates[] =
         .tilemapTop = 15,
         .width = 26,
         .height = 4,
-        .paletteNum = 0,
+        .paletteNum = BATTLE_MESSAGE_TEXT_PAL_NUM,
         .baseBlock = 0x0090,
     },
     [B_WIN_ACTION_PROMPT] = {
@@ -389,7 +411,7 @@ static const struct WindowTemplate sBattleArenaWindowTemplates[] =
         .tilemapTop = 15,
         .width = 26,
         .height = 4,
-        .paletteNum = 0,
+        .paletteNum = BATTLE_MESSAGE_TEXT_PAL_NUM,
         .baseBlock = 0x0090,
     },
     [B_WIN_ACTION_PROMPT] = {
@@ -721,6 +743,7 @@ void LoadBattleMenuWindowGfx(void)
     LoadUserWindowBorderGfx(2, 0x12, BG_PLTT_ID(1));
     LoadUserWindowBorderGfx(2, 0x22, BG_PLTT_ID(1));
     LoadPalette(gBattleWindowTextPalette, BG_PLTT_ID(5), PLTT_SIZE_4BPP);
+    LoadPalette(sBattleMessageTextPalette, BG_PLTT_ID(BATTLE_MESSAGE_TEXT_PAL_NUM), PLTT_SIZE_4BPP);
 
     if (gBattleTypeFlags & BATTLE_TYPE_ARENA)
     {
@@ -1129,4 +1152,3 @@ void DrawTerrainTypeBattleBackground(void)
         break;
     }
 }
-

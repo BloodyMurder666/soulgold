@@ -14,6 +14,7 @@
 #include "malloc.h"
 #include "party_menu.h"
 #include "random.h"
+#include "string_util.h"
 #include "test/battle.h"
 #include "trainer_pools.h"
 #include "window.h"
@@ -1590,14 +1591,56 @@ static s32 TryMessage(s32 i, s32 n, const u8 *string)
     return -1;
 }
 
+static bool32 IsVisualTextControlCode(u8 code)
+{
+    switch (code)
+    {
+    case EXT_CTRL_CODE_BACKGROUND:
+    case EXT_CTRL_CODE_COLOR:
+    case EXT_CTRL_CODE_SHADOW:
+    case EXT_CTRL_CODE_ACCENT:
+    case EXT_CTRL_CODE_HIGHLIGHT:
+    case EXT_CTRL_CODE_COLOR_HIGHLIGHT_SHADOW:
+    case EXT_CTRL_CODE_PALETTE:
+    case EXT_CTRL_CODE_TEXT_COLORS:
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+static void CopyMessageWithoutVisualTextControlCodes(u8 *dst, const u8 *src)
+{
+    while (*src != EOS)
+    {
+        if (*src == EXT_CTRL_CODE_BEGIN && IsVisualTextControlCode(src[1]))
+        {
+            u32 ctrlCodeLength = GetExtCtrlCodeLength(src[1]);
+            if (ctrlCodeLength != 0)
+            {
+                src += ctrlCodeLength + 1;
+                continue;
+            }
+        }
+
+        *dst++ = *src++;
+    }
+
+    *dst = EOS;
+}
+
 void TestRunner_Battle_RecordMessage(const u8 *string)
 {
     s32 queuedEvent;
     s32 match;
     struct QueuedEvent *event;
+    u8 message[sizeof(gDisplayedStringBattle)];
 
     if (DATA.trial.queuedEvent == DATA.queuedEventsCount)
         return;
+
+    CopyMessageWithoutVisualTextControlCodes(message, string);
+    string = message;
 
     event = &DATA.queuedEvents[DATA.trial.queuedEvent];
     switch (event->groupType)
