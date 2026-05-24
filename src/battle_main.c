@@ -1767,11 +1767,16 @@ static void CB2_HandleStartMultiBattle(void)
 
 void BattleMainCB2(void)
 {
- u32 speedScale = Rogue_GetBattleSpeedScale(FALSE);
+    u32 speedScale = Rogue_GetBattleSpeedScale(FALSE);
 
     // If we are processing a palette fade we need to temporarily fall back to 1x speed otherwise there is graphical corruption
     if(PrevPaletteFadeResult() == PALETTE_FADE_STATUS_LOADING)
         speedScale = 1;
+
+    // Battle animation tasks can update VRAM, OAM, and scanline buffers. Advancing
+    // them multiple times before a real VBlank can corrupt effects like Dragon Dance.
+    //if (gDoingBattleAnim || gAnimScriptActive)
+    //    speedScale = 1;
 
     if (gBattleResults.caughtMonSpecies)
         speedScale = 1;

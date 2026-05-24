@@ -170,6 +170,7 @@ enum
     MAP_ECRUTEAK_CITY_SAGE_OFFICE2   = (6 | (6 << 8)),
     MAP_BELLCHIME_TRAIL              = (7 | (6 << 8)),
     MAP_ECRUTEAK_CITY_GYM            = (8 | (6 << 8)),
+    MAP_ECRUTEAK_CITY_HOUSE3         = (9 | (6 << 8)),
 
     // gMapGroup_IndoorOlivine
     MAP_OLIVINE_CITY_POKEMON_CENTER = (0 | (7 << 8)),

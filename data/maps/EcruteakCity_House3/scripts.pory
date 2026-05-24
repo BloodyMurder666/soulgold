@@ -1,0 +1,34 @@
+mapscripts EcruteakCity_House3_MapScripts {}
+
+script EcruteakCity_House3_HexLady {
+    lock
+    faceplayer
+    if (flag(FLAG_TM_HEX)) {
+            msgbox("Hex... Doubles in power...
+            Against those affected by status
+            conditions...")
+            release
+            end
+    }
+    msgbox("Attacking when the enemy is afflicted...
+            The key strategy to winninga a battle...
+            
+            Here... Take it...")
+    waitmessage
+    giveitem(ITEM_TM_HEX)
+    setflag(FLAG_TM_HEX)
+    msgbox("Hex... Doubles in power...
+            Against those affected by status
+            conditions...")
+    release
+    end
+}
+
+script EcruteakCity_House3_Lampent {
+    lock
+    faceplayer
+    playmoncry(SPECIES_LAMPENT, CRY_MODE_NORMAL)
+    msgbox("Lampent: Lamppp!")
+    release
+    end
+}

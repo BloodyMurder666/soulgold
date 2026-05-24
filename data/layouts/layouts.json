@@ -9404,6 +9404,16 @@
       "secondary_tileset": "gTileset_ArcadeLobby",
       "border_filepath": "data/layouts/GoldenrodBattleAracdeLobby/border.bin",
       "blockdata_filepath": "data/layouts/GoldenrodBattleAracdeLobby/map.bin"
+    },
+    {
+      "id": "LAYOUT_ECRUTEAK_CITY_HOUSE3",
+      "name": "EcruteakCity_House3_Layout",
+      "width": 13,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Building",
+      "secondary_tileset": "gTileset_House_Lab",
+      "border_filepath": "data/layouts/EcruteakCity_House3/border.bin",
+      "blockdata_filepath": "data/layouts/EcruteakCity_House3/map.bin"
     }
   ]
 }

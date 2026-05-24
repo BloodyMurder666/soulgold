@@ -2214,3 +2214,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/GoldenrodBattleArcadeHallway/scripts.inc"
 
 	.include "data/maps/GoldenrodBattleAracdeLobby/scripts.inc"
+
+	.include "data/maps/EcruteakCity_House3/scripts.inc"
