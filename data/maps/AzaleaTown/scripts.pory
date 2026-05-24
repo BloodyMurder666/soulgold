@@ -460,3 +460,13 @@ script AzaleaTownKid {
     msgbox("That vulpix keeps taunting me from up
             there... If only I could use Rock Climb.", MSGBOX_NPC)
 }
+
+script AzaleaTownVulpix {
+	lock
+	faceplayer
+	playmoncry(SPECIES_VULPIX, CRY_MODE_NORMAL)
+	msgbox("Vulpix: Vul!")
+	waitmessage
+	release
+	end
+}

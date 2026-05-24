@@ -917,7 +917,27 @@ AzaleaTownKid::
 	return
 
 
+AzaleaTownVulpix::
+# 465 "data/maps/AzaleaTown/scripts.pory"
+	lock
+# 466 "data/maps/AzaleaTown/scripts.pory"
+	faceplayer
+# 467 "data/maps/AzaleaTown/scripts.pory"
+	playmoncry SPECIES_VULPIX, CRY_MODE_NORMAL
+# 468 "data/maps/AzaleaTown/scripts.pory"
+	msgbox AzaleaTownVulpix_Text_0
+# 469 "data/maps/AzaleaTown/scripts.pory"
+	waitmessage
+# 470 "data/maps/AzaleaTown/scripts.pory"
+	release
+	end
+
+
 AzaleaTownKid_Text_0:
 # 460 "data/maps/AzaleaTown/scripts.pory"
 	.string "That vulpix keeps taunting me from up\n"
 	.string "there... If only I could use Rock Climb.$"
+
+AzaleaTownVulpix_Text_0:
+# 468 "data/maps/AzaleaTown/scripts.pory"
+	.string "Vulpix: Vul!$"

@@ -44,6 +44,8 @@ script Olivine_Mart2 {
 }
 
 mart Olivine2 {
+	ITEM_TM_SKY_DROP
+	ITEM_TM_BRUTAL_SWING
     ITEM_DIVE_BALL
     ITEM_LEVEL_BALL
     ITEM_NET_BALL

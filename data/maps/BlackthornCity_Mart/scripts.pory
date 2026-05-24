@@ -35,6 +35,9 @@ script Blackthorn_Mart2 {
 }
 
 mart Blackthorn2 {
+    ITEM_TM_FROST_BREATH
+    ITEM_TM_DRAGON_TAIL
+    ITEM_TM_EXPLOSION
     ITEM_QUICK_BALL
     ITEM_DUSK_BALL
     ITEM_PREMIER_BALL

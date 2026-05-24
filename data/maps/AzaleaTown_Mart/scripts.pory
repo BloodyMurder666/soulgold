@@ -22,10 +22,14 @@ script AzaleaTownMart2 {
     lock
     faceplayer
     if (flag(FLAG_BADGE04_GET)) {
-        msgbox("Sorry, but we're out of Galarica wreaths
+        msgbox("We're out of Galarica wreaths
                 and cuffs after the rocket incident.
-                Come back later after we have
-                restocked.")
+                We hope to have them restocked soon.
+
+                Regardless, welcome!")
+        waitmessage
+        pokemart(GalaricaNoneVendor)
+        msgbox("Come back again soon!")
         release
         end
     }
@@ -39,8 +43,17 @@ script AzaleaTownMart2 {
 }
 
 mart GalaricaVendor {
+    ITEM_TM_INFESTATION
+    ITEM_TM_SWAGGER
     ITEM_GALARICA_WREATH
     ITEM_GALARICA_CUFF
+    ITEM_NEST_BALL
+    ITEM_MECH_MAIL
+}
+
+mart GalaricaNoneVendor {
+    ITEM_TM_INFESTATION
+    ITEM_TM_SWAGGER
     ITEM_NEST_BALL
     ITEM_MECH_MAIL
 }

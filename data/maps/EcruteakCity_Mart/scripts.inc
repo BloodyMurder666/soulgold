@@ -81,12 +81,16 @@ Ecruteak_Mart2::
 # 44 "data/maps/EcruteakCity_Mart/scripts.pory"
 Ecruteak2:
 # 45 "data/maps/EcruteakCity_Mart/scripts.pory"
-	.2byte ITEM_QUICK_BALL
+	.2byte ITEM_TM_SNARL
 # 46 "data/maps/EcruteakCity_Mart/scripts.pory"
-	.2byte ITEM_NET_BALL
+	.2byte ITEM_TM_TRAILBLAZE
 # 47 "data/maps/EcruteakCity_Mart/scripts.pory"
-	.2byte ITEM_DUSK_BALL
+	.2byte ITEM_QUICK_BALL
 # 48 "data/maps/EcruteakCity_Mart/scripts.pory"
+	.2byte ITEM_NET_BALL
+# 49 "data/maps/EcruteakCity_Mart/scripts.pory"
+	.2byte ITEM_DUSK_BALL
+# 50 "data/maps/EcruteakCity_Mart/scripts.pory"
 	.2byte ITEM_SHADOW_MAIL
 	.2byte ITEM_NONE
 

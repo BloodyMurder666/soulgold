@@ -107,12 +107,14 @@ Violetcity_Mart2::
 # 57 "data/maps/VioletCity_Mart/scripts.pory"
 Violetcity2:
 # 58 "data/maps/VioletCity_Mart/scripts.pory"
-	.2byte ITEM_HEAL_BALL
+	.2byte ITEM_TM_HONE_CLAWS
 # 59 "data/maps/VioletCity_Mart/scripts.pory"
-	.2byte ITEM_NET_BALL
+	.2byte ITEM_HEAL_BALL
 # 60 "data/maps/VioletCity_Mart/scripts.pory"
-	.2byte ITEM_NEST_BALL
+	.2byte ITEM_NET_BALL
 # 61 "data/maps/VioletCity_Mart/scripts.pory"
+	.2byte ITEM_NEST_BALL
+# 62 "data/maps/VioletCity_Mart/scripts.pory"
 	.2byte ITEM_WOOD_MAIL
 	.2byte ITEM_NONE
 

@@ -42,6 +42,8 @@ script Ecruteak_Mart2 {
 }
 
 mart Ecruteak2 {
+	ITEM_TM_SNARL
+	ITEM_TM_TRAILBLAZE
     ITEM_QUICK_BALL
     ITEM_NET_BALL
     ITEM_DUSK_BALL
