@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "item.h"
 #include "berry.h"
 #include "pokeball.h"
@@ -364,14 +365,23 @@ static bool32 NONNULL BagPocket_AddItem(struct BagPocket *pocket, enum Item item
 
 bool32 AddBagItem(enum Item itemId, u16 count)
 {
+    bool32 added;
+    enum TMHMIndex tmhmIndex;
+
     if (GetItemPocket(itemId) >= POCKETS_COUNT)
         return FALSE;
 
     // check Battle Pyramid Bag
     if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE || FlagGet(FLAG_STORING_ITEMS_IN_PYRAMID_BAG) == TRUE)
-        return AddPyramidBagItem(itemId, count);
+        added = AddPyramidBagItem(itemId, count);
+    else
+        added = BagPocket_AddItem(&gBagPockets[GetItemPocket(itemId)], itemId, count);
 
-    return BagPocket_AddItem(&gBagPockets[GetItemPocket(itemId)], itemId, count);
+    tmhmIndex = GetItemTMHMIndex(itemId);
+    if (added && tmhmIndex > 0 && tmhmIndex <= NUM_TECHNICAL_MACHINES)
+        Achievement_CheckAll();
+
+    return added;
 }
 
 static bool32 NONNULL BagPocket_RemoveItem(struct BagPocket *pocket, enum Item itemId, u16 count)

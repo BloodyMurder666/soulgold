@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "battle.h"
 #include "battle_hold_effects.h"
 #include "battle_message.h"
@@ -11810,6 +11811,9 @@ static void Cmd_givecaughtmon(void)
         gBattleResults.caughtMonSpecies = GetMonData(caughtMon, MON_DATA_SPECIES);
         GetMonData(caughtMon, MON_DATA_NICKNAME, gBattleResults.caughtMonNick);
         gBattleResults.caughtMonBall = GetMonData(caughtMon, MON_DATA_POKEBALL);
+        Achievement_IncrementCounter(ACH_COUNTER_CAPTURED_MONS, 1);
+        if (gBattleResults.shinyWildMon)
+            Achievement_IncrementCounter(ACH_COUNTER_SHINY_CAPTURES, 1);
 
         gSelectedMonPartyId = PARTY_SIZE;
         gBattleCommunication[MULTIUSE_STATE] = 0;

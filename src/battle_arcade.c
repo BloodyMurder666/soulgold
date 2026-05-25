@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "battle.h"
 #include "battle_arcade.h"
 #include "battle_dome.h"
@@ -679,6 +680,7 @@ static void SaveCurrentStreak(void)
         return;
 
     ARCADE_SAVEDATA_RECORD_STREAK[battleMode][lvlMode] = currentStreak;
+    Achievement_CheckAll();
 }
 
 static void SaveArcadeChallenge(void)

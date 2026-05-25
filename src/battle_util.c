@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_arena.h"
@@ -9448,7 +9449,10 @@ static bool32 IsCriticalHit(struct BattleContext *ctx)
     // Counter for IF_CRITICAL_HITS_GE evolution condition.
     if (isCrit && IsOnPlayerSide(ctx->battlerAtk)
      && !(gBattleTypeFlags & BATTLE_TYPE_MULTI && GetBattlerPosition(ctx->battlerAtk) == B_POSITION_PLAYER_LEFT))
+    {
         gPartyCriticalHits[gBattlerPartyIndexes[ctx->battlerAtk]]++;
+        Achievement_IncrementCounter(ACH_COUNTER_CRITICAL_HITS, 1);
+    }
 
     gSpecialStatuses[ctx->battlerDef].criticalHit = isCrit;
     return isCrit;

@@ -23,6 +23,7 @@
 #include "constants/trainer_hill.h"
 #include "constants/items.h"
 #include "constants/moves.h"
+#include "constants/achievements.h"
 #include "config/save.h"
 #include "hidden_grotto.h"
 #include "constants/battle_frontier.h" // battle_arcade
@@ -1110,6 +1111,16 @@ struct Bag
     struct ItemSlot berries[BAG_BERRIES_COUNT];
 };
 
+struct AchievementSaveData
+{
+    u32 counters[ACH_COUNTER_COUNT];
+    u8 unlocked[ACHIEVEMENT_UNLOCKED_BYTES];
+    u8 popupQueue[ACHIEVEMENT_POPUP_QUEUE_SIZE];
+    u16 magic;
+};
+
+STATIC_ASSERT(sizeof(struct AchievementSaveData) == ACHIEVEMENT_SAVE_DATA_SIZE, AchievementSaveDataSize);
+
 struct SaveBlock1
 {
     /*0x00*/ struct Coords16 pos;
@@ -1231,6 +1242,7 @@ struct SaveBlock1
     //     #define SAVEBLOCK1_FUTURE_RESERVED_BYTES 8192
     // to:
     //     #define SAVEBLOCK1_FUTURE_RESERVED_BYTES (8192 - 16)
+    /*0x3???*/ struct AchievementSaveData achievements;
     /*0x3???*/ u8 futureReserved[SAVEBLOCK1_FUTURE_RESERVED_BYTES];
     // sizeof: 0x3???
 };

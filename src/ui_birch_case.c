@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "ui_birch_case.h"
 #include "strings.h"
 #include "bg.h"
@@ -891,6 +892,7 @@ static void Task_BirchCaseConfirmSelection(u8 taskId)
         sLastStarterPicIsShiny = isShiny;
         sLastStarterPicPersonality = personality;
         GiveScriptedMonToPlayer(starter, PARTY_SIZE);
+        Achievement_Unlock(ACH_RECEIVE_STARTER);
         gSaveBlock2Ptr->optionsFollowers = FALSE;
         gTasks[taskId].func = Task_BirchCaseRecievedMon;
         return;

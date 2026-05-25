@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "battle_tower.h"
 #include "apprentice.h"
 #include "event_data.h"
@@ -1099,6 +1100,7 @@ static void SaveCurrentWinStreak(void)
 
     if (gSaveBlock2Ptr->frontier.towerWinStreaks[battleMode][lvlMode] < winStreak)
         gSaveBlock2Ptr->frontier.towerWinStreaks[battleMode][lvlMode] = winStreak;
+    Achievement_SetCounterMax(ACH_COUNTER_BATTLE_TOWER_STREAK, gSaveBlock2Ptr->frontier.towerWinStreaks[battleMode][lvlMode]);
 }
 
 static void SaveBattleTowerRecord(void)

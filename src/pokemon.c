@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "malloc.h"
 #include "apprentice.h"
 #include "battle.h"
@@ -5845,6 +5846,8 @@ void HandleSetPokedexFlag(enum NationalDexOrder nationalNum, u8 caseId, u32 pers
             gSaveBlock2Ptr->pokedex.unownPersonality = personality;
         if (NationalPokedexNumToSpecies(nationalNum) == SPECIES_SPINDA)
             gSaveBlock2Ptr->pokedex.spindaPersonality = personality;
+        if (caseId == FLAG_SET_CAUGHT)
+            Achievement_CheckAll();
     }
 }
 

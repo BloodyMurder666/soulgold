@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "battle.h"
 #include "load_save.h"
 #include "battle_setup.h"
@@ -951,6 +952,7 @@ static void CB2_GiveStarter(void)
     *GetVarPointer(VAR_STARTER_MON) = gSpecialVar_Result;
     starterMon = GetStarterPokemon(gSpecialVar_Result);
     ScriptGiveMon(starterMon, 5, ITEM_NONE, ITEM_NONE);
+    Achievement_Unlock(ACH_RECEIVE_STARTER);
     ResetTasks();
     PlayBattleBGM();
     SetMainCallback2(CB2_StartFirstBattle);
@@ -1442,6 +1444,9 @@ static void CB2_EndTrainerBattle(void)
     {
         SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
         DowngradeBadPoison();
+        Achievement_OnTrainerDefeated(TRAINER_BATTLE_PARAM.opponentA);
+        if (TRAINER_BATTLE_PARAM.opponentB != TRAINER_NONE && TRAINER_BATTLE_PARAM.opponentB != 0xFFFF)
+            Achievement_OnTrainerDefeated(TRAINER_BATTLE_PARAM.opponentB);
         if (CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE && !InTrainerHillChallenge())
         {
             RegisterTrainerInMatchCall();
@@ -1464,6 +1469,9 @@ static void CB2_EndRematchBattle(void)
     else
     {
         SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+        Achievement_OnTrainerDefeated(TRAINER_BATTLE_PARAM.opponentA);
+        if (TRAINER_BATTLE_PARAM.opponentB != TRAINER_NONE && TRAINER_BATTLE_PARAM.opponentB != 0xFFFF)
+            Achievement_OnTrainerDefeated(TRAINER_BATTLE_PARAM.opponentB);
         RegisterTrainerInMatchCall();
         SetBattledTrainersFlags();
         HandleRematchVarsOnBattleEnd();

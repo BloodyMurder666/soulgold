@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "overworld.h"
 #include "battle_pyramid.h"
 #include "battle_setup.h"
@@ -1500,6 +1501,7 @@ static void InitOverworldBgs(void)
 void CleanupOverworldWindowsAndTilemaps(void)
 {
     ClearMirageTowerPulseBlendEffect();
+    Achievement_HidePopup();
     FreeAllOverworldWindowBuffers();
     TRY_FREE_AND_SET_NULL(gOverworldTilemapBuffer_Bg3);
     TRY_FREE_AND_SET_NULL(gOverworldTilemapBuffer_Bg2);
@@ -1532,6 +1534,7 @@ static void DoCB1_Overworld(u16 newKeys, u16 heldKeys)
         if (ProcessPlayerFieldInput(&inputStruct) == 1)
         {
             LockPlayerFieldControls();
+            Achievement_HidePopup();
             HideMapNamePopUpWindow();
         }
         else
@@ -1713,6 +1716,7 @@ static void OverworldBasic(void)
 {
     ScriptContext_RunScript();
     RunTasks();
+    Achievement_TryShowQueuedPopup();
     AnimateSprites();
     CameraUpdate();
     UpdateCameraPanning();

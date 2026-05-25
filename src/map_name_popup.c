@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "battle_pyramid.h"
 #include "bg.h"
 #include "event_data.h"
@@ -393,10 +394,16 @@ enum {
 #define tIncomingPopUp data[3]
 #define tPrintTimer    data[4]
 
+bool8 IsMapNamePopUpWindowActive(void)
+{
+    return FuncIsActiveTask(Task_MapNamePopUpWindow);
+}
+
 void ShowMapNamePopup(void)
 {
     if (FlagGet(FLAG_HIDE_MAP_NAME_POPUP) != TRUE)
     {
+        Achievement_HidePopup();
         if (!FuncIsActiveTask(Task_MapNamePopUpWindow))
         {
             // New pop up window
