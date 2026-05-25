@@ -540,6 +540,12 @@
       "map": "MAP_ONE_ISLAND",
       "x": 14,
       "y": 6
+    },
+    {
+      "id": "HEAL_LOCATION_MT_EMBER_EXTERIOR_FRLG",
+      "map": "MAP_MT_EMBER_EXTERIOR",
+      "x": 28,
+      "y": 31
     }
   ]
 }
