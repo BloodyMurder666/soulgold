@@ -353,7 +353,7 @@
       "id": "HEAL_LOCATION_LAKE_OF_RAGE",
       "map": "MAP_LAKE_OF_RAGE",
       "x": 31,
-      "y": 43,
+      "y": 48,
       "respawn_map": "MAP_MAHOGANY_TOWN_POKEMON_CENTER",
       "respawn_npc": "LOCALID_MAHOGANY_NURSE"
     },

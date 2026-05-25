@@ -119,7 +119,10 @@
     "VajraPyramidOutside",
     "RintoVillage",
     "VajraDesertEast",
-    "SnowtopMountainOutside"
+    "SnowtopMountainOutside",
+    "Route50",
+    "ChamponsRoad",
+    "MtGoldOutside"
   ],
   "gMapGroup_IndoorNewBark": [
     "NewBarkTown_Lab",

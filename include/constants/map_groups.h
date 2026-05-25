@@ -97,6 +97,9 @@ enum
     MAP_RINTO_VILLAGE             = (82 | (0 << 8)),
     MAP_VAJRA_DESERT_EAST         = (83 | (0 << 8)),
     MAP_SNOWTOP_MOUNTAIN_OUTSIDE  = (84 | (0 << 8)),
+    MAP_ROUTE50                   = (85 | (0 << 8)),
+    MAP_CHAMPONS_ROAD             = (86 | (0 << 8)),
+    MAP_MT_GOLD_OUTSIDE           = (87 | (0 << 8)),
 
     // gMapGroup_IndoorNewBark
     MAP_NEW_BARK_TOWN_LAB              = (0 | (1 << 8)),

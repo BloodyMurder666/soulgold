@@ -19,7 +19,7 @@ LakeOfRage_OnTransition::
 
 LakeOfRage_EventScript_SetLowTide::
 	setweather WEATHER_NONE
-	setmaplayoutindex LAYOUT_LAKE_OF_RAGE_LOW_TIDE
+	setmaplayoutindex LAYOUT_LAKE_OF_RAGE
 	end
 
 LakeOfRage_EventScript_SetHighTide::

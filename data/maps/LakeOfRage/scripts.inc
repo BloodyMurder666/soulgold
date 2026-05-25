@@ -41,7 +41,7 @@ LakeOfRage_EventScript_SetLowTide::
 # 21 "data/maps/LakeOfRage/scripts.pory"
 	setweather WEATHER_NONE
 # 22 "data/maps/LakeOfRage/scripts.pory"
-	setmaplayoutindex LAYOUT_LAKE_OF_RAGE_LOW_TIDE
+	setmaplayoutindex LAYOUT_LAKE_OF_RAGE
 # 23 "data/maps/LakeOfRage/scripts.pory"
 	end
 # 24 "data/maps/LakeOfRage/scripts.pory"

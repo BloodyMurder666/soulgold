@@ -17,6 +17,11 @@
       "map": "MAP_RINTO_VILLAGE",
       "offset": -14,
       "direction": "left"
+    },
+    {
+      "map": "MAP_ROUTE50",
+      "offset": 15,
+      "direction": "right"
     }
   ],
   "object_events": [],

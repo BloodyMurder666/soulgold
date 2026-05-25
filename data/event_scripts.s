@@ -2228,3 +2228,9 @@ Common_Text_ReceivedMon:
 	.include "data/maps/VajraDesertEast/scripts.inc"
 
 	.include "data/maps/SnowtopMountainOutside/scripts.inc"
+
+	.include "data/maps/Route50/scripts.inc"
+
+	.include "data/maps/ChamponsRoad/scripts.inc"
+
+	.include "data/maps/MtGoldOutside/scripts.inc"

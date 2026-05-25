@@ -17,6 +17,16 @@
       "map": "MAP_SNOWTOP_MOUNTAIN_OUTSIDE",
       "offset": -8,
       "direction": "up"
+    },
+    {
+      "map": "MAP_ROUTE39",
+      "offset": -13,
+      "direction": "down"
+    },
+    {
+      "map": "MAP_VAJRA_DESERT",
+      "offset": 1,
+      "direction": "right"
     }
   ],
   "object_events": [],

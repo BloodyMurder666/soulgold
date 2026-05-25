@@ -5705,7 +5705,7 @@
       "id": "LAYOUT_LAKE_OF_RAGE",
       "name": "LakeOfRage_Layout",
       "width": 64,
-      "height": 47,
+      "height": 52,
       "primary_tileset": "gTileset_Johto_NorthEast",
       "secondary_tileset": "gTileset_MahoganyTown",
       "border_filepath": "data/layouts/LakeOfRage/border.bin",
@@ -9474,6 +9474,38 @@
       "secondary_tileset": "gTileset_MtSilverSnow",
       "border_filepath": "data/layouts/SnowtopMountainOutside/border.bin",
       "blockdata_filepath": "data/layouts/SnowtopMountainOutside/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE50",
+      "name": "Route50_Layout",
+      "width": 70,
+      "height": 40,
+      "primary_tileset": "gTileset_Johto_NorthEast",
+      "secondary_tileset": "gTileset_Desert",
+      "border_filepath": "data/layouts/Route50/border.bin",
+      "blockdata_filepath": "data/layouts/Route50/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHAMPONS_ROAD",
+      "name": "ChamponsRoad_Layout",
+      "width": 84,
+      "height": 24,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_MtSilverSnow",
+      "border_filepath": "data/layouts/ChamponsRoad/border.bin",
+      "blockdata_filepath": "data/layouts/ChamponsRoad/map.bin"
+    },
+    {
+      "id": "LAYOUT_MT_GOLD_OUTSIDE",
+      "name": "MtGoldOutside_Layout",
+      "width": 57,
+      "height": 54,
+      "primary_tileset": "gTileset_Kanto_General",
+      "secondary_tileset": "gTileset_SeviiIslands123",
+      "border_filepath": "data/layouts/MtGoldOutside/border.bin",
+      "blockdata_filepath": "data/layouts/MtGoldOutside/map.bin",
+      "border_height": 2,
+      "border_width": 2
     }
   ]
 }
