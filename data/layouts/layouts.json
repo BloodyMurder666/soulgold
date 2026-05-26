@@ -9301,7 +9301,7 @@
       "width": 92,
       "height": 36,
       "primary_tileset": "gTileset_Johto_General",
-      "secondary_tileset": "gTileset_Desert",
+      "secondary_tileset": "gTileset_DesertVillage",
       "border_filepath": "data/layouts/VajraDesert/border.bin",
       "blockdata_filepath": "data/layouts/VajraDesert/map.bin"
     },
@@ -9461,7 +9461,7 @@
       "width": 111,
       "height": 36,
       "primary_tileset": "gTileset_Johto_General",
-      "secondary_tileset": "gTileset_Desert",
+      "secondary_tileset": "gTileset_DesertVillage",
       "border_filepath": "data/layouts/VajraDesertEast/border.bin",
       "blockdata_filepath": "data/layouts/VajraDesertEast/map.bin"
     },
