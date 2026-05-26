@@ -1,15 +1,3 @@
-mapscripts GoldenrodBattleArcadeBattleRoom_MapScripts {
-    	MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE
-	[
-		VAR_NEED_TO_FACE_NORTH, 0: BattleArcade_BattleRoom_EventScript_PlayerFaceNorth
-	]
-	MAP_SCRIPT_ON_FRAME_TABLE
-	[
-		VAR_ENTRANCE_STATUS, ENTRANCE_STATUS_AT_ENTRANCE: BattleArcade_BattleRoom_EventScript_EnterRoom
-		VAR_ENTRANCE_STATUS, ENTRANCE_STATUS_IN_POSITION: BattleArcade_Challenge_EventScript_BeginChallenge
-	]
-}
-
 const ATTENDANT = 1
 const OPPONENT = 2
 const MC = 3
@@ -26,3 +14,17 @@ const ENTRANCE_STATUS_BEGUN = 2
 
 const PLAYER = OBJ_EVENT_ID_PLAYER
 const CAMERA = OBJ_EVENT_ID_CAMERA
+
+
+mapscripts GoldenrodBattleArcadeBattleRoom_MapScripts {
+    	MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE
+	[
+		VAR_NEED_TO_FACE_NORTH, 0: BattleArcade_BattleRoom_EventScript_PlayerFaceNorth
+	]
+	MAP_SCRIPT_ON_FRAME_TABLE
+	[
+		VAR_ENTRANCE_STATUS, ENTRANCE_STATUS_AT_ENTRANCE: BattleArcade_BattleRoom_EventScript_EnterRoom
+		VAR_ENTRANCE_STATUS, ENTRANCE_STATUS_IN_POSITION: BattleArcade_Challenge_EventScript_BeginChallenge
+	]
+}
+
