@@ -539,3 +539,6 @@ const u16 gMetatileAttributes_ArcadeBattle[] = INCBIN_U16("data/tilesets/primary
 
 const u16 gMetatiles_ArcadeLobby[] = INCBIN_U16("data/tilesets/secondary/arcade_lobby/metatiles.bin");
 const u16 gMetatileAttributes_ArcadeLobby[] = INCBIN_U16("data/tilesets/secondary/arcade_lobby/metatile_attributes.bin");
+
+const u16 gMetatiles_DesertVillage[] = INCBIN_U16("data/tilesets/secondary/desert_village/metatiles.bin");
+const u16 gMetatileAttributes_DesertVillage[] = INCBIN_U16("data/tilesets/secondary/desert_village/metatile_attributes.bin");
