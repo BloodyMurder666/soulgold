@@ -193,12 +193,12 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(RATTATA)",
-      "x": 21,
-      "y": 10,
+      "x": 22,
+      "y": 9,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-      "movement_range_x": 4,
-      "movement_range_y": 4,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
@@ -206,7 +206,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(RATTATA)",
-      "x": 24,
+      "x": 25,
       "y": 9,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
@@ -554,6 +554,19 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
       "flag": "FLAG_NIGHT_POKEMON"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_LIGHT_SPRITE",
+      "x": 42,
+      "y": 47,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_NIGHT_POKEMON"
     }
   ],
   "warp_events": [
@@ -573,7 +586,7 @@
     },
     {
       "x": 22,
-      "y": 14,
+      "y": 13,
       "elevation": 0,
       "dest_map": "MAP_BURNED_TOWER_1F",
       "dest_warp_id": "0"
