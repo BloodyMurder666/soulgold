@@ -109,10 +109,11 @@ ELF_NAME := $(ROM_NAME:.gba=.elf)
 MAP_NAME := $(ROM_NAME:.gba=.map)
 TESTELF = $(ROM_NAME:.gba=-test.elf)
 HEADLESSELF = $(ROM_NAME:.gba=-test-headless.elf)
+TEST_SHARDS ?= 4
 
 # Pick our active variables
 ROM := $(ROM_NAME)
-ifeq ($(TESTELF),$(MAKECMDGOALS))
+ifneq (,$(filter $(TESTELF) $(TESTELF:.elf=-%.elf),$(MAKECMDGOALS)))
   TEST := 1
 endif
 ifeq ($(TEST), 0)
@@ -314,6 +315,16 @@ TEST_SRCS_IN := $(wildcard $(TEST_SUBDIR)/*.c $(TEST_SUBDIR)/*/*.c $(TEST_SUBDIR
 TEST_SRCS := $(foreach src,$(TEST_SRCS_IN),$(if $(findstring .inc.c,$(src)),,$(src)))
 TEST_OBJS := $(patsubst $(TEST_SUBDIR)/%.c,$(TEST_BUILDDIR)/%.o,$(TEST_SRCS))
 TEST_OBJS_REL := $(patsubst $(OBJ_DIR)/%,%,$(TEST_OBJS))
+TEST_SHARD_IDS := $(shell i=0; while [ $$i -lt $(TEST_SHARDS) ]; do printf "%s " $$i; i=$$((i + 1)); done)
+TEST_SHARD_ELFS := $(foreach i,$(TEST_SHARD_IDS),$(TESTELF:.elf=-$(i).elf))
+TEST_SHARD_SUPPORT_OBJS := $(filter \
+    $(TEST_BUILDDIR)/test_runner.o \
+    $(TEST_BUILDDIR)/test_runner_args.o \
+    $(TEST_BUILDDIR)/test_runner_battle.o, \
+    $(TEST_OBJS))
+TEST_SHARDABLE_OBJS := $(filter-out $(TEST_SHARD_SUPPORT_OBJS),$(TEST_OBJS))
+TEST_SHARD_SUPPORT_OBJS_REL := $(patsubst $(OBJ_DIR)/%,%,$(TEST_SHARD_SUPPORT_OBJS))
+TEST_SHARDABLE_OBJS_REL := $(patsubst $(OBJ_DIR)/%,%,$(TEST_SHARDABLE_OBJS))
 
 C_ASM_SRCS := $(wildcard $(C_SUBDIR)/*.s $(C_SUBDIR)/*/*.s $(C_SUBDIR)/*/*/*.s)
 C_ASM_OBJS := $(patsubst $(C_SUBDIR)/%.s,$(C_BUILDDIR)/%.o,$(C_ASM_SRCS))
@@ -354,7 +365,25 @@ $(TESTELF): $(OBJ_DIR)/ld_script_test.ld $(OBJS) $(TEST_OBJS) libagbsyscall tool
 	@echo "cd $(OBJ_DIR) && $(LD) -T ld_script_test.ld -o ../../$@ <objects> <test-objects> <lib>"
 	@cd $(OBJ_DIR) && $(LD) $(TESTLDFLAGS) -T ld_script_test.ld -o ../../$@ $(OBJS_REL) $(TEST_OBJS_REL) $(LIB)
 	$(FIX) $@ -t"$(TITLE)" -c$(GAME_CODE) -m$(MAKER_CODE) -r$(REVISION) -d0 --silent
-	$(PATCHELF) $(TESTELF) gTestRunnerArgv "$(TESTS:%*=%)\0"
+	$(PATCHELF) $@ gTestRunnerArgv "$(TESTS:%*=%)\0"
+
+$(TESTELF:.elf=-%.elf): $(OBJ_DIR)/ld_script_test.ld $(OBJS) $(TEST_OBJS) libagbsyscall tools check-tools
+	@echo "cd $(OBJ_DIR) && $(LD) -T ld_script_test.ld -o ../../$@ <objects> <test-shard-$*> <lib>"
+	@cd $(OBJ_DIR) && { \
+		shard=$*; \
+		n=$(TEST_SHARDS); \
+		i=0; \
+		test_objs="$(TEST_SHARD_SUPPORT_OBJS_REL)"; \
+		for obj in $(TEST_SHARDABLE_OBJS_REL); do \
+			if [ $$((i % n)) -eq $$shard ]; then \
+				test_objs="$$test_objs $$obj"; \
+			fi; \
+			i=$$((i + 1)); \
+		done; \
+		$(LD) $(TESTLDFLAGS) -T ld_script_test.ld -o ../../$@ $(OBJS_REL) $$test_objs $(LIB); \
+	}
+	$(FIX) $@ -t"$(TITLE)" -c$(GAME_CODE) -m$(MAKER_CODE) -r$(REVISION) -d0 --silent
+	$(PATCHELF) $@ gTestRunnerArgv "$(TESTS:%*=%)\0"
 
 ifeq ($(GITHUB_REPOSITORY_OWNER),rh-hideout)
 TEST_SKIP_IS_FAIL := \x01
@@ -362,10 +391,16 @@ else
 TEST_SKIP_IS_FAIL := \x00
 endif
 
-check: $(TESTELF)
-	@cp $< $(HEADLESSELF)
-	$(PATCHELF) $(HEADLESSELF) gTestRunnerHeadless '\x01' gTestRunnerSkipIsFail "$(TEST_SKIP_IS_FAIL)"
-	$(ROMTESTHYDRA) $(ROMTEST) $(OBJCOPY) $(HEADLESSELF)
+check: $(TEST_SHARD_ELFS)
+	@set -e; \
+	printf 'Running %s test shard(s). Each test summary below is for one shard, not the full suite.\n' "$(words $^)"; \
+	for elf in $^; do \
+		headless="$${elf%.elf}-headless.elf"; \
+		printf '\n== Running %s ==\n' "$$elf"; \
+		cp "$$elf" "$$headless"; \
+		$(PATCHELF) "$$headless" gTestRunnerHeadless '\x01' gTestRunnerSkipIsFail "$(TEST_SKIP_IS_FAIL)"; \
+		$(ROMTESTHYDRA) $(ROMTEST) $(OBJCOPY) "$$headless"; \
+	done
 
 # Other rules
 rom: $(ROM)
@@ -404,7 +439,7 @@ tidymodern:
 	rm -rf $(OBJ_DIR_NAME)
 
 tidycheck:
-	rm -f $(TESTELF) $(HEADLESSELF)
+	rm -f $(TESTELF) $(HEADLESSELF) $(TEST_SHARD_ELFS) $(TESTELF:.elf=-*-headless.elf)
 	rm -rf $(OBJ_DIR_NAME_TEST)
 
 tidydebug:

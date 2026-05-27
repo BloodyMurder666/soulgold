@@ -144,6 +144,7 @@ SECTIONS {
     } > ROM =0
 
     __rom_end = .;
+    ASSERT(__rom_end <= 0x9FFC000, "test ROM data overlaps the DACS slot; increase TEST_SHARDS")
 
     dacs 0x9FFC000 :
     ALIGN(4)
