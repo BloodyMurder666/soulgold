@@ -310,8 +310,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(POLIWHIRL)",
-      "x": 52,
-      "y": 28,
+      "x": 54,
+      "y": 23,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -605,20 +605,6 @@
       "elevation": 0,
       "dest_map": "MAP_ECRUTEAK_CITY_THEATER",
       "dest_warp_id": "0"
-    },
-    {
-      "x": 33,
-      "y": 55,
-      "elevation": 0,
-      "dest_map": "MAP_ROUTE37",
-      "dest_warp_id": "0"
-    },
-    {
-      "x": 34,
-      "y": 55,
-      "elevation": 0,
-      "dest_map": "MAP_ROUTE37",
-      "dest_warp_id": "1"
     },
     {
       "x": 19,
