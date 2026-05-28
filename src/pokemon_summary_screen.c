@@ -1932,7 +1932,7 @@ static void Task_HandleInput(u8 taskId)
                 && sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
         {
             sMonSummaryScreen->callback = CB2_InitLearnMove;
-            gRelearnMode = sMonSummaryScreen->currPageIndex;
+            gRelearnMode = sMonSummaryScreen->currPageIndex - 1; // Since we no longer have contest moves page to avoid defaulting to it
             gSpecialVar_MonBoxPos = sMonSummaryScreen->curMonIndex;
             if (sMonSummaryScreen->isBoxMon)
             {
