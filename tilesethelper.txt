@@ -7,7 +7,10 @@
 
 ../porytiles/porytiles compile-primary -tiles-primary-override=640 -metatiles-total-override=2048 -pals-primary-override=7 -o data/tilesets/primary/arcade_battle porytiles/rocket-arcade include/constants/metatile_behaviors.h
 
-../porytiles/porytiles decompile-secondary -o porytiles/decompiled-desert-old data/tilesets/secondary/desert ../porytiles/primary_blank include/constants/metatile_behaviors.h
+
+
+../porytiles/porytiles decompile-primary -tiles-primary-override=640 -pals-primary-override=7 -o porytiles/decompiled-primary-tileset data/tilesets/primary/johto_general include/constants/metatile_behaviors.h
+../porytiles/porytiles decompile-secondary -tiles-primary-override=640 -pals-primary-override=7 -o porytiles/decompiled-ecruteak-pory data/tilesets/secondary/ecruteak_city data/tilesets/primary/johto_general include/constants/metatile_behaviors.h
 
 
   
@@ -33,6 +36,11 @@
 
 
 // This works
+
+../porytiles/porytiles decompile-primary -tiles-primary-override=640 -pals-primary-override=7 -o porytiles/decompiled-primary-tileset data/tilesets/primary/johto_general include/constants/metatile_behaviors.h
+../porytiles/porytiles decompile-secondary -tiles-primary-override=640 -pals-primary-override=7 -o porytiles/decompiled-ecruteak-pory data/tilesets/secondary/ecruteak_city data/tilesets/primary/johto_general include/constants/metatile_behaviors.h
+../porytiles/porytiles compile-secondary -target-base-game=pokefirered -tiles-primary-override=640 -metatiles-primary-override=1024 -metatiles-total-override=2048 -pals-primary-override=7 -o data/tilesets/secondary/ecruteak_city porytiles/decompiled-ecruteak-pory ../porytiles/primary_blank include/constants/metatile_behaviors.h
+
 
 ../porytiles/porytiles compile-secondary -target-base-game=pokefirered -tiles-primary-override=640 -metatiles-primary-override=1024 -metatiles-total-override=2048 -pals-primary-override=7 -o data/tilesets/secondary/desert_village porytiles/decompiled-desert-village ../porytiles/primary_blank include/constants/metatile_behaviors.h
 
