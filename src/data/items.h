@@ -14379,14 +14379,14 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM_DREAM_EATER] =
+    [ITEM_TM_DRAIN_PUNCH] =
     {
-        .name = ITEM_NAME("TM85 Dream Eater"),
+        .name = ITEM_NAME("TM85 Drain Punch"),
         .price = 3000,
         .description = COMPOUND_STRING(
-    "The user eats a\n"
-    "foe's dreams.\n"
-    "Restores some HP."),
+    "The user heals\n"
+    "half of the damage.\n"
+    "dealt with a punch."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .heldSlot = 0,

@@ -1317,7 +1317,7 @@
 #define FLAG_ITEM_BURNED_TOWER_B1F_TM_TAUNT                         0x4EC 
 #define FLAG_ITEM_BURNED_TOWER_B1F_ULTRA_BALL                       0x4ED 
 #define FLAG_ITEM_ROUTE38_LAX_INCENSE                               0x4EE 
-#define FLAG_ITEM_ROUTE39_TM_BRICK_BREAK                            0x4EF 
+#define FLAG_ITEM_ROUTE39_TM_DRAIN_PUNCH                            0x4EF 
 
 #define FLAG_DEFEATED_VIOLET_GYM                                    0x4F0
 #define FLAG_DEFEATED_AZALEA_TOWN_GYM                               0x4F1

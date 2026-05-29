@@ -97,7 +97,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(MILTANK)",
-      "x": 16,
+      "x": 18,
       "y": 24,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
@@ -150,45 +150,19 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
       "x": 11,
-      "y": 13,
+      "y": 28,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "ITEM_TM_BRICK_BREAK",
+      "trainer_sight_or_berry_tree_id": "ITEM_TM_DRAIN_PUNCH",
       "script": "Common_EventScript_FindItem",
-      "flag": "FLAG_ITEM_ROUTE39_TM_BRICK_BREAK"
+      "flag": "FLAG_ITEM_ROUTE39_TM_DRAIN_PUNCH"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(PONYTA)",
-      "x": 8,
-      "y": 14,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WALK_SEQUENCE_DOWN_LEFT_UP_RIGHT",
-      "movement_range_x": 4,
-      "movement_range_y": 4,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(PONYTA)",
-      "x": 8,
-      "y": 17,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WALK_SEQUENCE_LEFT_UP_RIGHT_DOWN",
-      "movement_range_x": 4,
-      "movement_range_y": 4,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(NOCTOWL)",
-      "x": 31,
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SWABLU)",
+      "x": 32,
       "y": 41,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
@@ -197,12 +171,12 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "FLAG_NIGHT_POKEMON"
+      "flag": "FLAG_DAY_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MAGNEMITE)",
-      "x": 9,
-      "y": 36,
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(AIPOM)",
+      "x": 12,
+      "y": 33,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 3,
@@ -213,7 +187,7 @@
       "flag": "FLAG_NIGHT_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MAGNEMITE)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(AIPOM)",
       "x": 10,
       "y": 38,
       "elevation": 0,
@@ -227,8 +201,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
-      "x": 12,
-      "y": 27,
+      "x": 24,
+      "y": 15,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
       "movement_range_x": 0,
@@ -293,21 +267,21 @@
   ],
   "warp_events": [
     {
-      "x": 21,
+      "x": 19,
       "y": 15,
       "elevation": 0,
       "dest_map": "MAP_ROUTE39_FARM_HOUSE",
       "dest_warp_id": "0"
     },
     {
-      "x": 15,
+      "x": 14,
       "y": 15,
       "elevation": 0,
       "dest_map": "MAP_ROUTE39_BARN",
       "dest_warp_id": "0"
     },
     {
-      "x": 16,
+      "x": 15,
       "y": 15,
       "elevation": 0,
       "dest_map": "MAP_ROUTE39_BARN",

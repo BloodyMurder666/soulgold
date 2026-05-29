@@ -4984,7 +4984,7 @@
     {
       "id": "LAYOUT_ROUTE38",
       "name": "Route38_Layout",
-      "width": 52,
+      "width": 48,
       "height": 50,
       "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_Route38_Farmland",
@@ -9418,8 +9418,8 @@
     {
       "id": "LAYOUT_ROUTE49",
       "name": "Route49_Layout",
-      "width": 24,
-      "height": 90,
+      "width": 28,
+      "height": 91,
       "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_Route38_Farmland",
       "border_filepath": "data/layouts/Route49/border.bin",

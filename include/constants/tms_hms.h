@@ -86,7 +86,7 @@
     F(DRAGON_TAIL) \
     F(INFESTATION) \
     F(POISON_JAB) \
-    F(DREAM_EATER) \
+    F(DRAIN_PUNCH) \
     F(GRASS_KNOT) \
     F(SWAGGER) \
     F(SLEEP_TALK) \
