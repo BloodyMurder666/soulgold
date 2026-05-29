@@ -1,4 +1,6 @@
-Johto + Sevii hack with expanded dex and various changes based on expansion port of Pokemon Heart and Soul. Feature list to be made later.
+Johto focused hack with curated dex, new areas and various additions.
+
+Based on expansion port of Pokemon Heart and Soul. Feature list to be made later.
 
 ## CREDITS
 - HnS Dev Team for their amazing work!

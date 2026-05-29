@@ -27707,12 +27707,21 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_POKEMON_OBJECT_EVENTS
 
     const u32 gMonFrontPic_Meowscarada[] = INCBIN_U32("graphics/pokemon/meowscarada/front.4bpp.smol");
+    const u32 gMonFrontPic_MeowscaradaMega[] = INCBIN_U32("graphics/pokemon/meowscarada/mega/front.4bpp.smol");
+    const u32 gMonFrontPic_MeowscaradaMegaF[] = INCBIN_U32("graphics/pokemon/meowscarada/mega/front_f.4bpp.smol");
     const u16 gMonPalette_Meowscarada[] = INCBIN_U16("graphics/pokemon/meowscarada/normal.gbapal");
+    const u16 gMonPalette_MeowscaradaMega[] = INCBIN_U16("graphics/pokemon/meowscarada/mega/normal.gbapal");
     const u32 gMonBackPic_Meowscarada[] = INCBIN_U32("graphics/pokemon/meowscarada/back.4bpp.smol");
+    const u32 gMonBackPic_MeowscaradaMega[] = INCBIN_U32("graphics/pokemon/meowscarada/mega/back.4bpp.smol");
+    const u32 gMonBackPic_MeowscaradaMegaF[] = INCBIN_U32("graphics/pokemon/meowscarada/mega/back_f.4bpp.smol");
     const u16 gMonShinyPalette_Meowscarada[] = INCBIN_U16("graphics/pokemon/meowscarada/shiny.gbapal");
+    const u16 gMonShinyPalette_MeowscaradaMega[] = INCBIN_U16("graphics/pokemon/meowscarada/mega/shiny.gbapal");
     const u8 gMonIcon_Meowscarada[] = INCBIN_U8("graphics/pokemon/meowscarada/icon.4bpp");
+    const u8 gMonIcon_MeowscaradaMega[] = INCBIN_U8("graphics/pokemon/meowscarada/mega/icon.4bpp");
     const u16 gMonIconPalette_Meowscarada[] = INCBIN_U16("graphics/pokemon/meowscarada/icon_normal.gbapal");
+    const u16 gMonIconPalette_MeowscaradaMega[] = INCBIN_U16("graphics/pokemon/meowscarada/mega/icon_normal.gbapal");
     const u16 gMonShinyIconPalette_Meowscarada[] = INCBIN_U16("graphics/pokemon/meowscarada/icon_shiny.gbapal");
+    const u16 gMonShinyIconPalette_MeowscaradaMega[] = INCBIN_U16("graphics/pokemon/meowscarada/mega/icon_shiny.gbapal");
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Meowscarada[] = INCBIN_U8("graphics/pokemon/meowscarada/footprint.1bpp");
 #endif //P_FOOTPRINTS
