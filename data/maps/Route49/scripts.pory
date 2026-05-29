@@ -1,1 +1,61 @@
 mapscripts Route49_MapScripts {}
+
+script Route49_Desert_Sign {
+    msgbox("{RIGHT_ARROW} Vajra Desert
+            {UP_ARROW} Snowtop Mountain", MSGBOX_SIGN)
+}
+
+script Route49_RoadSign {
+    msgbox("Route 49
+            The road to harsher climates.", MSGBOX_SIGN)
+}
+
+script Route49_FisherJo {
+    trainerbattle_single(TRAINER_JO, "This is my secret fishing spot, check 
+                                         out what I just caught!", 
+                                         "Wait, how many badges do you have?")
+    msgbox("I bring my daughter along when I go
+            fishing so we can get some family time.
+            I'm glad she has her Stantler to play
+            with her.", MSGBOX_AUTOCLOSE)
+}
+
+script Route49_Girl {
+    msgbox("Stantler and I like to climb around
+            while Papa is fishing.", MSGBOX_NPC)
+}
+
+script Route49_Stantler {
+    lock
+    faceplayer
+    playmoncry(SPECIES_STANTLER, CRY_MODE_NORMAL)
+    msgbox("Stantler: Staaaaa!")
+    waitmoncry
+    release
+    end
+}
+
+script Route49_CooltrainerEma {
+    trainerbattle_single(TRAINER_EMA, "I will check if you are prepared for
+                                       the harsher environments ahead!",
+                                       "You shall pass!")
+    msgbox("Whetever it's the desert or the Snowtop
+            Mountain, both will test your skills as
+            a trainer.", MSGBOX_AUTOCLOSE)
+}
+
+script Route49_Fatman {
+    msgbox("The cold snow from the mountains melts
+            and flows down here. It's really
+            clear!", MSGBOX_NPC)
+}
+
+script Route49_Hiker {
+    msgbox("They call this The Thousand Steps. At
+            the top you will arrive at the base
+            of Snowtop Mountain.
+            
+            Rumours have been circulating that
+            a majestic blue bird has been sighted
+            flying around the mountain.", MSGBOX_NPC)
+}

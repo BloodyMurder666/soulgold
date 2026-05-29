@@ -1556,7 +1556,7 @@
 #define FLAG_TM_GYRO_BALL                           (SYSTEM_FLAGS + 0xB2)
 #define FLAG_TM_HEX                                 (SYSTEM_FLAGS + 0xB3)
 #define FLAG_FLAME_ORB                              (SYSTEM_FLAGS + 0xB4)
-#define FLAG_UNUSED_0x915                           (SYSTEM_FLAGS + 0xB5) // Unused Flag
+#define FLAG_TM_ROCKSLIDE_FOUND                     (SYSTEM_FLAGS + 0xB5)
 #define FLAG_UNUSED_0x916                           (SYSTEM_FLAGS + 0xB6) // Unused Flag
 #define FLAG_UNUSED_0x917                           (SYSTEM_FLAGS + 0xB7) // Unused Flag
 #define FLAG_UNUSED_0x918                           (SYSTEM_FLAGS + 0xB8) // Unused Flag

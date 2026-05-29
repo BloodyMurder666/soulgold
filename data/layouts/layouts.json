@@ -9418,10 +9418,10 @@
     {
       "id": "LAYOUT_ROUTE49",
       "name": "Route49_Layout",
-      "width": 28,
+      "width": 30,
       "height": 91,
       "primary_tileset": "gTileset_Johto_General",
-      "secondary_tileset": "gTileset_Route38_Farmland",
+      "secondary_tileset": "gTileset_DesertVillage",
       "border_filepath": "data/layouts/Route49/border.bin",
       "blockdata_filepath": "data/layouts/Route49/map.bin"
     },

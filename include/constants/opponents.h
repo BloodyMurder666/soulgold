@@ -113,8 +113,8 @@
 #define TRAINER_TAMMY                       107
 #define TRAINER_VALERIE_1                   108
 #define TRAINER_TASHA                       109
-#define TRAINER_VALERIE_2                   110
-#define TRAINER_VALERIE_3                   111
+#define TRAINER_EMA                   110
+#define TRAINER_JO                   111
 #define TRAINER_VALERIE_4                   112
 #define TRAINER_VALERIE_5                   113
 #define TRAINER_GRUNT_18                     114

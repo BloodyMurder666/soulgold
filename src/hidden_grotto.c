@@ -141,7 +141,7 @@ static const struct HiddenGrottoData sHiddenGrottoData[NUM_HIDDEN_GROTTOES] =
             { SPECIES_ODDISH, 0 },
             { SPECIES_CHERUBI, 0 },
             { SPECIES_ROSELIA, 0 },
-            { SPECIES_LARVESTA, 0 },
+            { SPECIES_SWADLOON, 0 },
         },
     },
     [HIDDEN_GROTTO_ROUTE33] =

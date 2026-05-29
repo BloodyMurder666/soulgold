@@ -12623,3 +12623,39 @@ IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 Sandaconda
 Level: 40
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+=== TRAINER_JO ===
+Name: Jo
+Pic: Fisherman
+Gender: Male
+Music: Hg Boy 2
+Double Battle: No
+AI: Basic Trainer
+
+Clauncher
+Level: 34
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+Cramorant
+Level: 34
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+=== TRAINER_EMA ===
+Name: Ema
+Pic: Cooltrainer F
+Gender: Female
+Music: Hg Girl 2
+Double Battle: No
+AI: Smart Trainer
+
+Pupitar
+Level: 34
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+Chatot
+Level: 34
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+Dhelmise
+Level: 35
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
