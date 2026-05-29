@@ -5,6 +5,7 @@ Based on expansion port of Pokemon Heart and Soul. Feature list to be made later
 ## CREDITS
 - HnS Dev Team for their amazing work!
 - [smithk200](https://github.com/smithk200/Gold-And-Silver-Gen-3-Decomp) for porting most of HnS to expansion!
+- Rafael Sanna for amazing custom mega sprites for typhlosion, primarina and meowscarada!
 - RHH and pokeemerald expansion dev team, of course!
 - TeamAquaHideout for help, resources and feature branches (new birch case)
 - Estellar for pathfinding

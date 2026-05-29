@@ -7223,10 +7223,14 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_POKEMON_OBJECT_EVENTS
 
 #if !P_GBA_STYLE_SPECIES_GFX
-    const u32 gMonFrontPic_Typhlosion[] = INCBIN_U32("graphics/pokemon/typhlosion/anim_front.4bpp.smol");
-    const u16 gMonPalette_Typhlosion[] = INCBIN_U16("graphics/pokemon/typhlosion/normal.gbapal");
+const u32 gMonFrontPic_Typhlosion[] = INCBIN_U32("graphics/pokemon/typhlosion/anim_front.4bpp.smol");
+const u32 gMonFrontPic_TyphlosionMega[] = INCBIN_U32("graphics/pokemon/typhlosion/mega/front.4bpp.smol");
+const u16 gMonPalette_Typhlosion[] = INCBIN_U16("graphics/pokemon/typhlosion/normal.gbapal");
+const u16 gMonPalette_TyphlosionMega[] = INCBIN_U16("graphics/pokemon/typhlosion/mega/normal.gbapal");
     const u32 gMonBackPic_Typhlosion[] = INCBIN_U32("graphics/pokemon/typhlosion/back.4bpp.smol");
+    const u32 gMonBackPic_TyphlosionMega[] = INCBIN_U32("graphics/pokemon/typhlosion/mega/back.4bpp.smol");
     const u16 gMonShinyPalette_Typhlosion[] = INCBIN_U16("graphics/pokemon/typhlosion/shiny.gbapal");
+    const u16 gMonShinyPalette_TyphlosionMega[] = INCBIN_U16("graphics/pokemon/typhlosion/mega/shiny.gbapal");
 #else
     const u32 gMonFrontPic_Typhlosion[] = INCBIN_U32("graphics/pokemon/typhlosion/anim_front_gba.4bpp.smol");
     const u16 gMonPalette_Typhlosion[] = INCBIN_U16("graphics/pokemon/typhlosion/normal_gba.gbapal");
@@ -7235,11 +7239,14 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //P_GBA_STYLE_SPECIES_GFX
 #if !P_GBA_STYLE_SPECIES_ICONS
     const u8 gMonIcon_Typhlosion[] = INCBIN_U8("graphics/pokemon/typhlosion/icon.4bpp");
+    const u8 gMonIcon_TyphlosionMega[] = INCBIN_U8("graphics/pokemon/typhlosion/mega/icon.4bpp");
 #else
     const u8 gMonIcon_Typhlosion[] = INCBIN_U8("graphics/pokemon/typhlosion/icon_gba.4bpp");
 #endif //P_GBA_STYLE_SPECIES_ICONS
     const u16 gMonIconPalette_Typhlosion[] = INCBIN_U16("graphics/pokemon/typhlosion/icon_normal.gbapal");
+    const u16 gMonIconPalette_TyphlosionMega[] = INCBIN_U16("graphics/pokemon/typhlosion/mega/icon_normal.gbapal");
     const u16 gMonShinyIconPalette_Typhlosion[] = INCBIN_U16("graphics/pokemon/typhlosion/icon_shiny.gbapal");
+    const u16 gMonShinyIconPalette_TyphlosionMega[] = INCBIN_U16("graphics/pokemon/typhlosion/mega/icon_shiny.gbapal");
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Typhlosion[] = INCBIN_U8("graphics/pokemon/typhlosion/footprint.1bpp");
 #endif //P_FOOTPRINTS
