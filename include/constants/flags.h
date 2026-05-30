@@ -1557,10 +1557,10 @@
 #define FLAG_TM_HEX                                 (SYSTEM_FLAGS + 0xB3)
 #define FLAG_FLAME_ORB                              (SYSTEM_FLAGS + 0xB4)
 #define FLAG_TM_ROCKSLIDE_FOUND                     (SYSTEM_FLAGS + 0xB5)
-#define FLAG_UNUSED_0x916                           (SYSTEM_FLAGS + 0xB6) // Unused Flag
-#define FLAG_UNUSED_0x917                           (SYSTEM_FLAGS + 0xB7) // Unused Flag
-#define FLAG_UNUSED_0x918                           (SYSTEM_FLAGS + 0xB8) // Unused Flag
-#define FLAG_UNUSED_0x919                           (SYSTEM_FLAGS + 0xB9) // Unused Flag
+#define FLAG_TM_BULLDOZE                            (SYSTEM_FLAGS + 0xB6)
+#define FLAG_TM_SAFETY_GOGGLES                      (SYSTEM_FLAGS + 0xB7)
+#define FLAG_HYPERPOTION_DESERT                     (SYSTEM_FLAGS + 0xB8)
+#define FLAG_SUS_DESERT_DOOR                        (SYSTEM_FLAGS + 0xB9)
 #define FLAG_UNUSED_0x91A                           (SYSTEM_FLAGS + 0xBA) // Unused Flag
 #define FLAG_UNUSED_0x91B                           (SYSTEM_FLAGS + 0xBB) // Unused Flag
 #define FLAG_UNUSED_0x91C                           (SYSTEM_FLAGS + 0xBC) // Unused Flag

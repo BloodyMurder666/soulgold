@@ -1,0 +1,12 @@
+mapscripts Route49DesertGate_MapScripts {}
+
+script Route49GateJoy {
+    lock
+    faceplayer
+    msgbox("Hi! Let me heal your Pokémon!")
+    playse(SE_USE_ITEM)
+    special(HealPlayerParty)
+    msgbox("Done! All good to go!")
+    release
+    end
+}

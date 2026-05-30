@@ -9298,8 +9298,8 @@
     {
       "id": "LAYOUT_VAJRA_DESERT",
       "name": "VajraDesert_Layout",
-      "width": 92,
-      "height": 36,
+      "width": 101,
+      "height": 38,
       "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_DesertVillage",
       "border_filepath": "data/layouts/VajraDesert/border.bin",
@@ -9421,7 +9421,7 @@
       "width": 30,
       "height": 91,
       "primary_tileset": "gTileset_Johto_General",
-      "secondary_tileset": "gTileset_DesertVillage",
+      "secondary_tileset": "gTileset_MtSilverSnow",
       "border_filepath": "data/layouts/Route49/border.bin",
       "blockdata_filepath": "data/layouts/Route49/map.bin"
     },
@@ -9506,6 +9506,16 @@
       "blockdata_filepath": "data/layouts/MtGoldOutside/map.bin",
       "border_height": 2,
       "border_width": 2
+    },
+    {
+      "id": "LAYOUT_ROUTE49DESERT_GATE",
+      "name": "Route49DesertGate_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_Cave_Default",
+      "border_filepath": "data/layouts/Route49DesertGate/border.bin",
+      "blockdata_filepath": "data/layouts/Route49DesertGate/map.bin"
     }
   ]
 }

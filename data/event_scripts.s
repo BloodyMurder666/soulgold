@@ -2234,3 +2234,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/ChamponsRoad/scripts.inc"
 
 	.include "data/maps/MtGoldOutside/scripts.inc"
+
+	.include "data/maps/Route49DesertGate/scripts.inc"

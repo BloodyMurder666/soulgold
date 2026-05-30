@@ -3717,19 +3717,6 @@ Haunter
 Level: 25
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-=== TRAINER_JILL ===
-Name: Jill
-Class: Swimmer F
-Pic: Swimmer F
-Gender: Male
-Music: Hg Girl 2
-Double Battle: No
-AI: Check Bad Move
-
-Dewgong
-Level: 28
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
 === TRAINER_NICO ===
 Name: Nico
 Class: Sage
@@ -12658,4 +12645,72 @@ IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 Dhelmise
 Level: 35
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+
+=== TRAINER_JILL ===
+Name: Jill
+Pic: Battle Girl
+Gender: Female
+Music: Hg Girl 2
+Double Battle: No
+AI: Basic Trainer
+
+Scraggy
+Level: 37
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+Scrafty
+Level: 38
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+
+=== TRAINER_RODAROS ===
+Name: Rodaros
+Pic: Hiker
+Gender: Male
+Music: Hg Boy 2
+Double Battle: No
+AI: Basic Trainer
+
+Onix
+Level: 37
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+Dugtrio
+Level: 38
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+Vibrava
+Level: 37
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+
+=== TRAINER_BELMARE ===
+Name: Belmare
+Pic: Pokefan F
+Gender: Female
+Music: Hg Girl 2
+Double Battle: No
+AI: Basic Trainer
+
+Maractus
+Level: 38
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+
+=== TRAINER_KENNEDY ===
+Name: Kennedy
+Pic: Expert M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Smart Trainer
+
+Cacturne
+Level: 39
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+Hippowdon
+Level: 39
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe

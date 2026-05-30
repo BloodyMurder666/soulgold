@@ -1,1 +1,64 @@
-mapscripts VajraDesert_MapScripts {}
+mapscripts VajraDesert_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        if (flag(FLAG_SUS_DESERT_DOOR)) {
+            setmetatile(65, 6, 0x4AE, FALSE)
+        }
+    }
+}
+
+script VajraDesert_ManSighing {
+    msgbox("Man... The sandpits seem terrible at
+            this moment. The path to the village
+            is blocked. I hope it clears up soon.", MSGBOX_NPC)
+}
+
+script VajraDesert_TrainerJill {
+        trainerbattle_single(TRAINER_JILL, "I read on a magazine that training in
+                                            harsh environments is great for you!",
+                                            "I wanna go home...")
+        msgbox("I should've listened to mom, that
+                magazine was really sketchy...", MSGBOX_AUTOCLOSE)
+}
+script VajraDesert_TrainerRodaros {
+        trainerbattle_single(TRAINER_RODAROS, "Behold the might of the sandstorm!",
+                                            "Gah! Sand in my mouth!")
+        msgbox("The area can be unstable with the
+                sandpits shifting around by phases
+                of the moon.", MSGBOX_AUTOCLOSE)
+}
+script VajraDesert_TrainerBelmare {
+        trainerbattle_single(TRAINER_BELMARE, "Let me show you my cutest Pokémon!",
+                                            "Oh dear...")
+        msgbox("My Maractus is absolutely most
+                adorable Pokémon. We come here to
+                sunbath!", MSGBOX_AUTOCLOSE)
+}
+script VajraDesert_TrainerKennedy {
+        trainerbattle_single(TRAINER_KENNEDY, "Overcoming harhest ordeals with your
+                                               Pokémon is the spirit of the journey!",
+                                            "Marvelous battling skills!")
+        msgbox("I've lived in the nearby village for the
+                past 40 years, we've never missed a
+                training day.", MSGBOX_AUTOCLOSE)
+}
+raw `
+VajraDesert_BrailleRegirock:
+	.braille "TYRANT OF\n"
+	.braille "THE DESERT\n"
+	.braille "FULLY EVOLVED.$"
+`
+script VajraDesert_SusDoor {
+    lock
+    msgbox("Something is carven on the door...")
+    closemessage
+    braillemsgbox(VajraDesert_BrailleRegirock)
+    checkspecies(SPECIES_TYRANITAR)
+    if (var(VAR_RESULT) == TRUE) {
+        setflag(FLAG_SUS_DESERT_DOOR)
+        setmetatile(65, 6, 0x4AE, FALSE)
+        playse(SE_EXIT)
+        special(DrawWholeMapView)
+    }
+    release
+    end
+}

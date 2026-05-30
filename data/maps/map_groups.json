@@ -379,7 +379,8 @@
     "MtSilver_PokemonCenter",
     "Gate_Route39North",
     "Gate_KitakamiBorder",
-    "Kitakami_Houses"
+    "Kitakami_Houses",
+    "Route49DesertGate"
   ],
   "gMapGroup_IndoorKantoRoutes": [
     "Route26_House1",
