@@ -1611,7 +1611,7 @@
 #define FLAG_ROUTE47_GROTTO                         (DAILY_FLAGS_START + 0x15)
 #define FLAG_ROUTE38_GROTTO                         (DAILY_FLAGS_START + 0x16)
 #define FLAG_CANDY_KITAKAMI                         (DAILY_FLAGS_START + 0x17)
-#define FLAG_UNUSED_0x938                           (DAILY_FLAGS_START + 0x18) // Unused Flag
+#define FLAG_VAJRA_DESERT_WEST_GROTTO               (DAILY_FLAGS_START + 0x18)
 #define FLAG_UNUSED_0x939                           (DAILY_FLAGS_START + 0x19) // Unused Flag
 #define FLAG_UNUSED_0x93A                           (DAILY_FLAGS_START + 0x1A) // Unused Flag
 #define FLAG_UNUSED_0x93B                           (DAILY_FLAGS_START + 0x1B) // Unused Flag

@@ -94,6 +94,37 @@ VajraDesert_SusDoor_2:
 	goto VajraDesert_SusDoor_1
 
 
+VajraDesertWest_GrottoDoor::
+# 67 "data/maps/VajraDesert/scripts.pory"
+	msgbox VajraDesertWest_GrottoDoor_Text_0, MSGBOX_YESNO
+# 69 "data/maps/VajraDesert/scripts.pory"
+	compare VAR_RESULT, YES
+	goto_if_eq VajraDesertWest_GrottoDoor_2
+VajraDesertWest_GrottoDoor_1:
+# 73 "data/maps/VajraDesert/scripts.pory"
+	release
+	end
+
+VajraDesertWest_GrottoDoor_2:
+# 70 "data/maps/VajraDesert/scripts.pory"
+	warp MAP_HIDDEN_GROTTO_UNUSED, 0
+# 71 "data/maps/VajraDesert/scripts.pory"
+	waitstate
+	goto VajraDesertWest_GrottoDoor_1
+
+
+VajraDesertWest_WestSign::
+# 78 "data/maps/VajraDesert/scripts.pory"
+	msgbox VajraDesertWest_WestSign_Text_0, MSGBOX_SIGN
+	return
+
+
+VajraDesertWest_EastSign::
+# 83 "data/maps/VajraDesert/scripts.pory"
+	msgbox VajraDesertWest_EastSign_Text_0, MSGBOX_SIGN
+	return
+
+
 VajraDesert_ManSighing_Text_0:
 # 10 "data/maps/VajraDesert/scripts.pory"
 	.string "Man... The sandpits seem terrible at\n"
@@ -160,3 +191,17 @@ VajraDesert_TrainerKennedy_Text_2:
 VajraDesert_SusDoor_Text_0:
 # 52 "data/maps/VajraDesert/scripts.pory"
 	.string "Something is carven on the door...$"
+
+VajraDesertWest_GrottoDoor_Text_0:
+# 67 "data/maps/VajraDesert/scripts.pory"
+	.string "There seems to be a small path in\n"
+	.string "the sand. Enter?$"
+
+VajraDesertWest_WestSign_Text_0:
+# 78 "data/maps/VajraDesert/scripts.pory"
+	.string "Vajra Desert\n"
+	.string "{RIGHT_ARROW} Rinto Village$"
+
+VajraDesertWest_EastSign_Text_0:
+# 83 "data/maps/VajraDesert/scripts.pory"
+	.string "{UP_ARROW}{RIGHT_ARROW} Rinto Village$"

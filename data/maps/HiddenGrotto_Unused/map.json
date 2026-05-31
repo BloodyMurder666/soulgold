@@ -15,7 +15,7 @@
   "connections": null,
   "object_events": [
     {
-      "local_id": "LOCALID_GROTTO_ITEM_GOLDENROD",
+      "local_id": "LOCALID_GROTTO_ITEM_VAJRA_DESERT_WEST",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "x": 28,
       "y": 28,
@@ -25,11 +25,11 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "FindItem_GoldenrodShore_Grotto",
-      "flag": "FLAG_GOLDENROD_SHORE_GROTTO"
+      "script": "FindItem_VajraDesertWest_Grotto",
+      "flag": "FLAG_VAJRA_DESERT_WEST_GROTTO"
     },
     {
-      "local_id": "LOCALID_GROTTO_POKEMON_GOLDENROD",
+      "local_id": "LOCALID_GROTTO_POKEMON_VAJRA_DESERT_WEST",
       "graphics_id": "OBJ_EVENT_GFX_VAR_0",
       "x": 27,
       "y": 28,
@@ -39,11 +39,11 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "GoldenrodShore_GrottoPokemon",
-      "flag": "FLAG_GOLDENROD_SHORE_GROTTO"
+      "script": "VajraDesertWest_GrottoPokemon",
+      "flag": "FLAG_VAJRA_DESERT_WEST_GROTTO"
     },
     {
-      "local_id": "LOCALID_GROTTO_HIDDEN_ITEM_GOLDENROD",
+      "local_id": "LOCALID_GROTTO_HIDDEN_ITEM_VAJRA_DESERT_WEST",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "x": 29,
       "y": 28,
@@ -53,8 +53,8 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "FindHiddenItem_GoldenrodShore_Grotto",
-      "flag": "FLAG_GOLDENROD_SHORE_GROTTO"
+      "script": "FindHiddenItem_VajraDesertWest_Grotto",
+      "flag": "FLAG_VAJRA_DESERT_WEST_GROTTO"
     }
   ],
   "warp_events": [
@@ -62,8 +62,8 @@
       "x": 14,
       "y": 25,
       "elevation": 0,
-      "dest_map": "MAP_GOLDENROD_SHORE",
-      "dest_warp_id": "1"
+      "dest_map": "MAP_VAJRA_DESERT",
+      "dest_warp_id": "3"
     }
   ],
   "coord_events": [],

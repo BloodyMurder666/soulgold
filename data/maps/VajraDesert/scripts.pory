@@ -62,3 +62,23 @@ script VajraDesert_SusDoor {
     release
     end
 }
+
+script VajraDesertWest_GrottoDoor {
+    msgbox("There seems to be a small path in
+            the sand. Enter?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        warp(MAP_HIDDEN_GROTTO_UNUSED, 0)
+        waitstate
+    }
+    release
+    end
+}
+
+script VajraDesertWest_WestSign {
+    msgbox("Vajra Desert
+            {RIGHT_ARROW} Rinto Village", MSGBOX_SIGN)
+}
+
+script VajraDesertWest_EastSign {
+    msgbox("{UP_ARROW}{RIGHT_ARROW} Rinto Village", MSGBOX_SIGN)
+}

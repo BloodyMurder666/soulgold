@@ -29,7 +29,7 @@ enum HiddenGrottoId
     HIDDEN_GROTTO_ROUTE44,
     HIDDEN_GROTTO_LAKEOFRAGE,
     HIDDEN_GROTTO_ROUTE47,
-    HIDDEN_GROTTO_JOHTO_UNUSED1,
+    HIDDEN_GROTTO_VAJRA_DESERT_WEST,
     HIDDEN_GROTTO_JOHTO_UNUSED2,
     
     // Kanto Grottos
@@ -219,19 +219,19 @@ static const struct HiddenGrottoData sHiddenGrottoData[NUM_HIDDEN_GROTTOES] =
             { SPECIES_ZORUA, 0 },
         },
     },
-    [HIDDEN_GROTTO_JOHTO_UNUSED1] =
+    [HIDDEN_GROTTO_VAJRA_DESERT_WEST] =
     {
         .mapGroup = MAP_GROUP(MAP_HIDDEN_GROTTO_UNUSED),
         .mapNum = MAP_NUM(MAP_HIDDEN_GROTTO_UNUSED),
-        .monLevel = 100,
+        .monLevel = 30,
         .monObjectLocalId = HIDDEN_GROTTO_OBJ_MON,
-        .rareItem = ITEM_MOON_STONE,
+        .rareItem = ITEM_SMOOTH_ROCK,
         .mons =
         {
-            { SPECIES_CYNDAQUIL, 0 },
-            { SPECIES_TOTODILE, 0 },
-            { SPECIES_CHIKORITA, 0 },
-            { SPECIES_CELEBI, 0 },
+            { SPECIES_BALTOY, 0 },
+            { SPECIES_SANDYGAST, 0 },
+            { SPECIES_LARVITAR, 0 },
+            { SPECIES_GIBLE, 0 },
         },
     },
 

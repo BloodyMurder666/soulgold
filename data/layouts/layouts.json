@@ -8905,9 +8905,9 @@
       "id": "LAYOUT_HIDDEN_GROTTO_UNUSED",
       "name": "HiddenGrotto_Unused_Layout",
       "width": 30,
-      "height": 30,
+      "height": 31,
       "primary_tileset": "gTileset_Grotto1",
-      "secondary_tileset": "gTileset_Route32",
+      "secondary_tileset": "gTileset_Desert",
       "border_filepath": "data/layouts/HiddenGrotto_Unused/border.bin",
       "blockdata_filepath": "data/layouts/HiddenGrotto_Unused/map.bin"
     },
