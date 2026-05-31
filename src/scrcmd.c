@@ -21,6 +21,7 @@
 #include "event_scripts.h"
 #include "fake_rtc.h"
 #include "field_message_box.h"
+#include "field_mugshot.h"
 #include "field_player_avatar.h"
 #include "field_screen_effect.h"
 #include "field_specials.h"
@@ -1668,6 +1669,7 @@ bool8 ScrCmd_releaseall(struct ScriptContext *ctx)
         ClearObjectEventMovement(followerObject, &gSprites[followerObject->spriteId]);
 
     HideFieldMessageBox();
+    ClearFieldMugshotObjectEventSource();
     playerObjectId = GetObjectEventIdByLocalIdAndMap(LOCALID_PLAYER, 0, 0);
     ObjectEventClearHeldMovementIfFinished(&gObjectEvents[playerObjectId]);
     ScriptMovement_UnfreezeObjectEvents();
@@ -1687,6 +1689,7 @@ bool8 ScrCmd_release(struct ScriptContext *ctx)
         ClearObjectEventMovement(followerObject, &gSprites[followerObject->spriteId]);
 
     HideFieldMessageBox();
+    ClearFieldMugshotObjectEventSource();
     if (gObjectEvents[gSelectedObjectEvent].active)
         ObjectEventClearHeldMovementIfFinished(&gObjectEvents[gSelectedObjectEvent]);
     playerObjectId = GetObjectEventIdByLocalIdAndMap(LOCALID_PLAYER, 0, 0);
@@ -1744,6 +1747,7 @@ bool8 ScrCmd_messageinstant(struct ScriptContext *ctx)
 
     if (msg == NULL)
         msg = (const u8 *)ctx->data[0];
+    RemoveFieldMugshot();
     LoadMessageBoxAndBorderGfx();
     DrawDialogueFrame(0, TRUE);
     AddTextPrinterParameterized(0, FONT_NORMAL, msg, 0, 1, 0, NULL);
@@ -2994,6 +2998,7 @@ bool8 ScrCmd_selectapproachingtrainer(struct ScriptContext *ctx)
     Script_RequestEffects(SCREFF_V1);
 
     gSelectedObjectEvent = GetCurrentApproachingTrainerObjectEventId();
+    SetFieldMugshotObjectEventSource(gSelectedObjectEvent);
     return FALSE;
 }
 

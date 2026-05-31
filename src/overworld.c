@@ -19,6 +19,7 @@
 #include "field_effect.h"
 #include "field_effect_helpers.h"
 #include "field_message_box.h"
+#include "field_mugshot.h"
 #include "field_player_avatar.h"
 #include "field_screen_effect.h"
 #include "field_special_scene.h"
@@ -1502,6 +1503,7 @@ void CleanupOverworldWindowsAndTilemaps(void)
 {
     ClearMirageTowerPulseBlendEffect();
     Achievement_HidePopup();
+    RemoveFieldMugshot();
     FreeAllOverworldWindowBuffers();
     TRY_FREE_AND_SET_NULL(gOverworldTilemapBuffer_Bg3);
     TRY_FREE_AND_SET_NULL(gOverworldTilemapBuffer_Bg2);
@@ -3652,10 +3654,12 @@ void ScriptShowItemDescription(struct ScriptContext *ctx)
 
     if (GetSetItemObtained(item, FLAG_GET_ITEM_OBTAINED))
     {
+        RemoveFieldMugshot();
         ShowItemIconSprite(item, FALSE, handleFlash);
         return; //no box if item obtained previously
     }
 
+    RemoveFieldMugshot();
     SetWindowTemplateFields(&template, 0, 1, 1, 28, 3, 15, 8);
     sHeaderBoxWindowId = AddWindow(&template);
     FillWindowPixelBuffer(sHeaderBoxWindowId, PIXEL_FILL(0));

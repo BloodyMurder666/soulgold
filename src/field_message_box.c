@@ -8,6 +8,8 @@
 #include "text_window.h"
 #include "script.h"
 #include "field_name_box.h"
+#include "field_mugshot.h"
+#include "sprite.h"
 
 static EWRAM_DATA u8 sFieldMessageBoxMode = 0;
 EWRAM_DATA u8 gWalkAwayFromSignpostTimer = 0;
@@ -75,6 +77,7 @@ bool8 ShowFieldMessage(const u8 *str)
 {
     if (sFieldMessageBoxMode != FIELD_MESSAGE_BOX_HIDDEN)
         return FALSE;
+    TryCreateFieldMugshotFromObjectEventSource();
     ExpandStringAndStartDrawFieldMessage(str, TRUE);
     sFieldMessageBoxMode = FIELD_MESSAGE_BOX_NORMAL;
     return TRUE;
@@ -93,6 +96,7 @@ bool8 ShowPokenavFieldMessage(const u8 *str)
 {
     if (sFieldMessageBoxMode != FIELD_MESSAGE_BOX_HIDDEN)
         return FALSE;
+    RemoveFieldMugshot();
     StringExpandPlaceholders(gStringVar4, str);
     CreateTask(Task_HidePokenavMessageWhenDone, 0);
     StartMatchCallFromScript(str);
@@ -105,6 +109,7 @@ bool8 ShowFieldAutoScrollMessage(const u8 *str)
     if (sFieldMessageBoxMode != FIELD_MESSAGE_BOX_HIDDEN)
         return FALSE;
     sFieldMessageBoxMode = FIELD_MESSAGE_BOX_AUTO_SCROLL;
+    TryCreateFieldMugshotFromObjectEventSource();
     ExpandStringAndStartDrawFieldMessage(str, FALSE);
     return TRUE;
 }
@@ -122,6 +127,7 @@ bool8 ShowFieldMessageFromBuffer(void)
 {
     if (sFieldMessageBoxMode != FIELD_MESSAGE_BOX_HIDDEN)
         return FALSE;
+    TryCreateFieldMugshotFromObjectEventSource();
     sFieldMessageBoxMode = FIELD_MESSAGE_BOX_NORMAL;
     StartDrawFieldMessage();
     return TRUE;
@@ -133,6 +139,10 @@ static void ExpandStringAndStartDrawFieldMessage(const u8 *str, bool32 allowSkip
     StringExpandPlaceholders(gStringVar4, str);
     AddTextPrinterForMessage(allowSkippingDelayWithButtonPress);
     CreateTask_DrawFieldMessage();
+    if (IsFieldMugshotActive())
+    {
+        gSprites[GetFieldMugshotSpriteId()].data[0] = TRUE;
+    }
 }
 
 static void StartDrawFieldMessage(void)
@@ -147,6 +157,11 @@ void HideFieldMessageBox(void)
     ClearDialogWindowAndFrame(0, TRUE);
     DestroyNamebox();
     sFieldMessageBoxMode = FIELD_MESSAGE_BOX_HIDDEN;
+    if (IsFieldMugshotActive())
+    {
+        gSprites[GetFieldMugshotSpriteId()].data[0] = FALSE;
+        RemoveFieldMugshot();
+    }
 }
 
 u8 GetFieldMessageBoxMode(void)

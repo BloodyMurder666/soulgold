@@ -24,6 +24,7 @@
 #include "task.h"
 #include "text_window.h"
 #include "window.h"
+#include "field_mugshot.h"
 #include "constants/songs.h"
 
 struct MenuInfoIcon
@@ -144,6 +145,7 @@ void InitStandardTextBoxWindows(void)
     sMapNamePopupWindowId = WINDOW_NONE;
     if (OW_POPUP_GENERATION == GEN_5)
         sSecondaryPopupWindowId = WINDOW_NONE;
+    SetFieldMugshotSpriteId(WINDOW_NONE); // its the same as SPRITE_NONE
 }
 
 void FreeAllOverworldWindowBuffers(void)
@@ -373,6 +375,7 @@ static u16 UNUSED Menu_GetStdPalColor(u8 colorNum)
 
 void DisplayItemMessageOnField(u8 taskId, const u8 *string, TaskFunc callback)
 {
+    RemoveFieldMugshot();
     LoadMessageBoxAndBorderGfx();
     DisplayMessageAndContinueTask(taskId, 0, DLG_WINDOW_BASE_TILE_NUM, DLG_WINDOW_PALETTE_NUM, FONT_NORMAL, GetPlayerTextSpeedDelay(), string, callback);
     CopyWindowToVram(0, COPYWIN_FULL);

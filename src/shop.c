@@ -7,6 +7,7 @@
 #include "event_data.h"
 #include "event_object_movement.h"
 #include "field_player_avatar.h"
+#include "field_mugshot.h"
 #include "field_screen_effect.h"
 #include "field_weather.h"
 #include "fieldmap.h"
@@ -37,6 +38,7 @@
 #include "tv.h"
 #include "constants/decorations.h"
 #include "constants/event_objects.h"
+#include "constants/field_mugshots.h"
 #include "constants/items.h"
 #include "constants/metatile_behaviors.h"
 #include "constants/rgb.h"
@@ -90,6 +92,7 @@ struct MartInfo
     const struct MenuAction *menuActions;
     const u16 *itemList;
     u16 itemCount;
+    u16 mugshotId;
     u8 windowId;
     u8 martType;
 };
@@ -816,6 +819,9 @@ static void Task_ShopMenu(u8 taskId)
 static void Task_HandleShopMenuBuy(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
+    sMartInfo.mugshotId = GetFieldMugshotId();
+    if (sMartInfo.mugshotId == MUGSHOT_NONE)
+        sMartInfo.mugshotId = GetFieldMugshotIdFromObjectEventSource();
     tCallbackHi = (u32)CB2_InitBuyMenu >> 16;
     tCallbackLo = (u32)CB2_InitBuyMenu;
     gTasks[taskId].func = Task_GoToBuyOrSellMenu;
@@ -825,6 +831,9 @@ static void Task_HandleShopMenuBuy(u8 taskId)
 static void Task_HandleShopMenuSell(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
+    sMartInfo.mugshotId = GetFieldMugshotId();
+    if (sMartInfo.mugshotId == MUGSHOT_NONE)
+        sMartInfo.mugshotId = GetFieldMugshotIdFromObjectEventSource();
     tCallbackHi = (u32)CB2_GoToSellMenu >> 16;
     tCallbackLo = (u32)CB2_GoToSellMenu;
     gTasks[taskId].func = Task_GoToBuyOrSellMenu;
@@ -855,6 +864,7 @@ static void Task_GoToBuyOrSellMenu(u8 taskId)
     if (!gPaletteFade.active)
     {
         DestroyTask(taskId);
+        RemoveFieldMugshot();
         SetMainCallback2((MainCallback)((u16)tCallbackHi << 16 | (u16)tCallbackLo));
     }
 }
@@ -873,6 +883,11 @@ static void Task_ReturnToShopMenu(u8 taskId)
             DisplayItemMessageOnField(taskId, gText_CanIHelpWithAnythingElse, ShowShopMenuAfterExitingBuyOrSellMenu);
         else
             DisplayItemMessageOnField(taskId, gText_AnythingElseICanHelp, ShowShopMenuAfterExitingBuyOrSellMenu);
+        if (sMartInfo.mugshotId != MUGSHOT_NONE)
+            CreateAutoFieldMugshot(sMartInfo.mugshotId, EMOTE_NORMAL);
+        else
+            TryCreateFieldMugshotFromObjectEventSource();
+        ShowFieldMugshot();
     }
 }
 

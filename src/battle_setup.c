@@ -24,6 +24,7 @@
 #include "tv.h"
 #include "trainer_see.h"
 #include "field_message_box.h"
+#include "field_mugshot.h"
 #include "sound.h"
 #include "strings.h"
 #include "trainer_hill.h"
@@ -1284,6 +1285,8 @@ void ClearTrainerFlag(u16 trainerId)
 
 void BattleSetup_StartTrainerBattle(void)
 {
+    RemoveFieldMugshot();
+
     if (gNoOfApproachingTrainers == 2)
     {
         if (FollowerNPCIsBattlePartner())
@@ -1373,6 +1376,8 @@ static void CB2_EndDebugBattle(void)
 
 void BattleSetup_StartTrainerBattle_Debug(void)
 {
+    RemoveFieldMugshot();
+
     sNoOfPossibleTrainerRetScripts = gNoOfApproachingTrainers;
     gNoOfApproachingTrainers = 0;
     sShouldCheckTrainerBScript = FALSE;
@@ -1481,6 +1486,8 @@ static void CB2_EndRematchBattle(void)
 
 void BattleSetup_StartRematchBattle(void)
 {
+    RemoveFieldMugshot();
+
     gBattleTypeFlags = BATTLE_TYPE_TRAINER;
     gMain.savedCallback = CB2_EndRematchBattle;
     DoTrainerBattle();
@@ -1489,6 +1496,11 @@ void BattleSetup_StartRematchBattle(void)
 
 void ShowTrainerIntroSpeech(void)
 {
+    if (gNoOfApproachingTrainers != 0)
+        SetFieldMugshotObjectEventSource(GetCurrentApproachingTrainerObjectEventId());
+    else
+        SetFieldMugshotObjectEventSource(gSelectedObjectEvent);
+
     if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE)
     {
         if (gNoOfApproachingTrainers == 0 || gNoOfApproachingTrainers == 1)
@@ -1546,6 +1558,11 @@ const u8 *BattleSetup_GetTrainerPostBattleScript(void)
 
 void ShowTrainerCantBattleSpeech(void)
 {
+    if (gNoOfApproachingTrainers != 0)
+        SetFieldMugshotObjectEventSource(GetCurrentApproachingTrainerObjectEventId());
+    else
+        SetFieldMugshotObjectEventSource(gSelectedObjectEvent);
+
     ShowFieldMessage(GetTrainerCantBattleSpeech());
 }
 

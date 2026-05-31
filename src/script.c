@@ -1,6 +1,7 @@
 #include "global.h"
 #include "script.h"
 #include "event_data.h"
+#include "field_mugshot.h"
 #include "field_screen_effect.h"
 #include "mystery_gift.h"
 #include "random.h"
@@ -270,6 +271,7 @@ bool8 ScriptContext_RunScript(void)
     if (!RunScriptCommand(&sGlobalScriptContext))
     {
         sGlobalScriptContextStatus = CONTEXT_SHUTDOWN;
+        ClearFieldMugshotObjectEventSource();
         UnlockPlayerFieldControls();
         return FALSE;
     }

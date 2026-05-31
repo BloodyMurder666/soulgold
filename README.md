@@ -23,6 +23,7 @@ Based on expansion port of Pokemon Heart and Soul. Feature list to be made later
 - Mont for swsh party menu
 - Leob0505 for backgrounds
 - Emulator accuracy check by Wiz1989 (also thanks to mudskip, grunt-lucas, archie, drazden)
+- Mudship (field mugshot system)
 - Ghoulslash (sideway stairs)
 - Kyledove (various graphics and tiles)
 - Hyo for various sprites including frlg style emerald overworlds and gold sprites

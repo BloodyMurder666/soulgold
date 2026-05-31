@@ -13,6 +13,7 @@
 #include "fieldmap.h"
 #include "field_control_avatar.h"
 #include "field_message_box.h"
+#include "field_mugshot.h"
 #include "field_move.h"
 #include "field_effect.h"
 #include "field_player_avatar.h"
@@ -375,7 +376,11 @@ static bool8 TryStartInteractionScript(struct MapPosition *position, u16 metatil
 
 static const u8 *GetInteractionScript(struct MapPosition *position, u8 metatileBehavior, enum Direction direction)
 {
-    const u8 *script = GetInteractedObjectEventScript(position, metatileBehavior, direction);
+    const u8 *script;
+
+    ClearFieldMugshotObjectEventSource();
+
+    script = GetInteractedObjectEventScript(position, metatileBehavior, direction);
     if (script != NULL)
         return script;
 
@@ -415,6 +420,7 @@ const u8 *GetInteractedLinkPlayerScript(struct MapPosition *position, u8 metatil
 
     gSelectedObjectEvent = objectEventId;
     gSpecialVar_LastTalked = gObjectEvents[objectEventId].localId;
+    SetFieldMugshotObjectEventSource(objectEventId);
     gSpecialVar_Facing = direction;
     return GetObjectEventScriptPointerByObjectEventId(objectEventId);
 }
@@ -470,6 +476,7 @@ static const u8 *GetInteractedObjectEventScript(struct MapPosition *position, u8
 
     gSelectedObjectEvent = objectEventId;
     gSpecialVar_LastTalked = gObjectEvents[objectEventId].localId;
+    SetFieldMugshotObjectEventSource(objectEventId);
 
     if (InTrainerHill() == TRUE)
         script = GetTrainerHillTrainerScript();
@@ -1303,6 +1310,7 @@ static u32 GetFacingSignpostType(u16 metatileBehavior, enum Direction playerDire
 
 static void SetMsgSignPostAndVarFacing(enum Direction playerDirection)
 {
+    ClearFieldMugshotObjectEventSource();
     gWalkAwayFromSignpostTimer = WALK_AWAY_SIGNPOST_FRAMES;
     gMsgBoxIsCancelable = TRUE;
     gMsgIsSignPost = TRUE;

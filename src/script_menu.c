@@ -2,6 +2,7 @@
 #include "main.h"
 #include "event_data.h"
 #include "field_effect.h"
+#include "field_mugshot.h"
 #include "field_specials.h"
 #include "item.h"
 #include "menu.h"
@@ -105,6 +106,7 @@ bool8 ScriptMenu_MultichoiceDynamic(u8 left, u8 top, u8 argc, struct ListMenuIte
     }
     else
     {
+        RemoveFieldMugshot();
         gSpecialVar_Result = 0xFF;
         DrawMultichoiceMenuDynamic(left, top, argc, items, ignoreBPress, initialRow, maxBeforeScroll, callbackSet);
         return TRUE;
@@ -119,6 +121,7 @@ bool8 ScriptMenu_Multichoice(u8 left, u8 top, u8 multichoiceId, bool8 ignoreBPre
     }
     else
     {
+        RemoveFieldMugshot();
         gSpecialVar_Result = 0xFF;
         DrawMultichoiceMenu(left, top, multichoiceId, ignoreBPress, 0);
         return TRUE;
@@ -133,6 +136,7 @@ bool8 ScriptMenu_MultichoiceWithDefault(u8 left, u8 top, u8 multichoiceId, bool8
     }
     else
     {
+        RemoveFieldMugshot();
         gSpecialVar_Result = 0xFF;
         DrawMultichoiceMenu(left, top, multichoiceId, ignoreBPress, defaultChoice);
         return TRUE;
@@ -588,6 +592,7 @@ bool8 ScriptMenu_YesNo(u8 left, u8 top)
     }
     else
     {
+        RemoveFieldMugshot();
         gSpecialVar_Result = 0xFF;
         DisplayYesNoMenuDefaultYes();
         CreateTask(Task_HandleYesNoInput, 0x50);
@@ -642,6 +647,7 @@ bool8 ScriptMenu_MultichoiceGrid(u8 left, u8 top, u8 multichoiceId, bool8 ignore
         u8 rowCount, newWidth;
         int i, width;
 
+        RemoveFieldMugshot();
         gSpecialVar_Result = 0xFF;
         width = 0;
 
@@ -702,6 +708,7 @@ bool16 ScriptMenu_CreatePCMultichoice(void)
     }
     else
     {
+        RemoveFieldMugshot();
         gSpecialVar_Result = 0xFF;
         CreatePCMultichoice();
         return TRUE;
@@ -773,6 +780,7 @@ bool8 ScriptMenu_CreateLilycoveSSTidalMultichoice(void)
     }
     else
     {
+        RemoveFieldMugshot();
         gSpecialVar_Result = 0xFF;
         CreateLilycoveSSTidalMultichoice();
         return TRUE;
@@ -974,6 +982,7 @@ bool8 ScriptMenu_ShowPokemonPicShiny(u16 species, bool8 isShiny, u32 personality
     }
     else
     {
+        RemoveFieldMugshot();
         spriteId = CreateMonSprite_PicBoxShiny(species, isShiny, personality, x * 8 + 40, y * 8 + 40, 0);
         taskId = CreateTask(Task_PokemonPicWindow, 0x50);
         gTasks[taskId].tWindowId = CreateWindowFromRect(x, y, 8, 8);

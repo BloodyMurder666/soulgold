@@ -2,6 +2,7 @@
 #include "money.h"
 #include "graphics.h"
 #include "event_data.h"
+#include "field_mugshot.h"
 #include "string_util.h"
 #include "text.h"
 #include "menu.h"
@@ -178,6 +179,7 @@ void DrawMoneyBox(int amount, u8 x, u8 y)
 {
     struct WindowTemplate template;
 
+    RemoveFieldMugshot();
     SetWindowTemplateFields(&template, 0, x + 1, y + 1, 10, 2, 15, 8);
     sMoneyBoxWindowId = AddWindow(&template);
     FillWindowPixelBuffer(sMoneyBoxWindowId, PIXEL_FILL(0));
