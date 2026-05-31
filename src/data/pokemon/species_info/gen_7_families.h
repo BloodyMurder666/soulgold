@@ -682,12 +682,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
 #if P_GEN_9_MEGA_EVOLUTIONS
     [SPECIES_PRIMARINA_MEGA] =
     {
-        .baseHP        = 80,
-        .baseAttack    = 84,
-        .baseDefense   = 94,
+        .baseHP        = 100,
+        .baseAttack    = 126,
+        .baseDefense   = 100,
         .baseSpeed     = 80,
-        .baseSpAttack  = 156,
-        .baseSpDefense = 146,
+        .baseSpAttack  = 126,
+        .baseSpDefense = 126,
         .types = MON_TYPES(TYPE_WATER, TYPE_FAIRY),
         .catchRate = 45,
         .expYield = 265,
@@ -697,31 +697,34 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_FIELD),
-        .abilities = { ABILITY_LIQUID_VOICE, ABILITY_NONE, ABILITY_NONE },
+        .abilities = { ABILITY_STEEL_SOUL, ABILITY_NONE, ABILITY_NONE },
+        .innates = {ABILITY_STEEL_SOUL, ABILITY_SHARPNESS, ABILITY_ARMOR_TAIL},
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Primarina"),
         .cryId = CRY_PRIMARINA,
         .natDexNum = NATIONAL_DEX_PRIMARINA,
-        .categoryName = _("Soloist"),
+        .categoryName = _("Valkyrie"),
         .height = 20,
         .weight = 520,
         .description = COMPOUND_STRING(
-            "Mega Evolution magnifies its voice until\n"
-            "each note ripples like a tide. It shapes\n"
-            "those waves into glittering spheres that\n"
-            "burst on command."),
-        .frontPic = gMonFrontPic_Primarina,
+            "Mega Evolution magnifies its battle\n"
+            "power with armor and a spear. It shapes\n"
+            "the waves with its jeweled trident that\n"
+            "controls the tide of battle."),
+        .frontPic = gMonFrontPic_PrimarinaMega,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_SingleFramePlaceHolder,
         .frontAnimId = ANIM_SHAKE_GLOW_BLUE_SLOW,
-        .backPic = gMonBackPic_Primarina,
+        .backPic = gMonBackPic_PrimarinaMega,
         .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicYOffset = 0,
         //.backAnimId = BACK_ANIM_NONE,
-        .palette = gMonPalette_Primarina,
-        .shinyPalette = gMonShinyPalette_Primarina,
-        .iconSprite = gMonIcon_Primarina,
+        .palette = gMonPalette_PrimarinaMega,
+        .shinyPalette = gMonShinyPalette_PrimarinaMega,
+        .iconSprite = gMonIcon_PrimarinaMega,
+        .iconPalette = gMonIconPalette_PrimarinaMega,
+        .shinyIconPalette = gMonShinyIconPalette_PrimarinaMega,
         .iconPalIndex = 0,
         .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
         FOOTPRINT(Primarina)

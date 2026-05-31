@@ -23504,12 +23504,19 @@ const u16 gMonPalette_TyphlosionMega[] = INCBIN_U16("graphics/pokemon/typhlosion
 #endif //OW_POKEMON_OBJECT_EVENTS
 
     const u32 gMonFrontPic_Primarina[] = INCBIN_U32("graphics/pokemon/primarina/front.4bpp.smol");
+    const u32 gMonFrontPic_PrimarinaMega[] = INCBIN_U32("graphics/pokemon/primarina/mega/front.4bpp.smol");
     const u16 gMonPalette_Primarina[] = INCBIN_U16("graphics/pokemon/primarina/normal.gbapal");
+    const u16 gMonPalette_PrimarinaMega[] = INCBIN_U16("graphics/pokemon/primarina/mega/normal.gbapal");
     const u32 gMonBackPic_Primarina[] = INCBIN_U32("graphics/pokemon/primarina/back.4bpp.smol");
+    const u32 gMonBackPic_PrimarinaMega[] = INCBIN_U32("graphics/pokemon/primarina/mega/back.4bpp.smol");
     const u16 gMonShinyPalette_Primarina[] = INCBIN_U16("graphics/pokemon/primarina/shiny.gbapal");
+    const u16 gMonShinyPalette_PrimarinaMega[] = INCBIN_U16("graphics/pokemon/primarina/mega/shiny.gbapal");
     const u8 gMonIcon_Primarina[] = INCBIN_U8("graphics/pokemon/primarina/icon.4bpp");
+    const u8 gMonIcon_PrimarinaMega[] = INCBIN_U8("graphics/pokemon/primarina/mega/icon.4bpp");
     const u16 gMonIconPalette_Primarina[] = INCBIN_U16("graphics/pokemon/primarina/icon_normal.gbapal");
+    const u16 gMonIconPalette_PrimarinaMega[] = INCBIN_U16("graphics/pokemon/primarina/mega/icon_normal.gbapal");
     const u16 gMonShinyIconPalette_Primarina[] = INCBIN_U16("graphics/pokemon/primarina/icon_shiny.gbapal");
+    const u16 gMonShinyIconPalette_PrimarinaMega[] = INCBIN_U16("graphics/pokemon/primarina/mega/icon_shiny.gbapal");
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Primarina[] = INCBIN_U8("graphics/pokemon/primarina/footprint.1bpp");
 #endif //P_FOOTPRINTS
