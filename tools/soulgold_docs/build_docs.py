@@ -31,6 +31,7 @@ TRAINERS_H = REPO_ROOT / "src/data/trainers.party"
 GRAPHICS_POKEMON_H = REPO_ROOT / "src/data/graphics/pokemon.h"
 TRAINER_FRONT_PIC_DIR = REPO_ROOT / "graphics/trainers/front_pics"
 WILD_ENCOUNTERS_JSON = REPO_ROOT / "src/data/wild_encounters.json"
+FORM_CHANGE_TABLES_H = REPO_ROOT / "src/data/pokemon/form_change_tables.h"
 
 STAT_FIELDS = {
     "baseHP": "hp",
@@ -75,6 +76,11 @@ TYPE_ICON_FILES = {
     "TYPE_DARK": "dark.png",
     "TYPE_FAIRY": "fairy.png",
     "TYPE_STELLAR": "stellar.png",
+}
+
+MOVE_CATEGORY_ICON_FILES = {
+    "DAMAGE_CATEGORY_PHYSICAL": "physical.png",
+    "DAMAGE_CATEGORY_SPECIAL": "special.png",
 }
 
 DEX_HIDDEN_SPECIES = {
@@ -157,6 +163,7 @@ class SpeciesRow:
     teachable_symbol: str | None
     front_pic_symbol: str | None
     sprite: str | None = None
+    shiny_sprite: str | None = None
     level_up: list[dict[str, Any]] = field(default_factory=list)
     tmhm: list[str] = field(default_factory=list)
     tutors: list[str] = field(default_factory=list)
@@ -728,6 +735,40 @@ def parse_evolutions(item_names: dict[str, dict[str, str]]) -> dict[str, list[di
     return dict(evolutions)
 
 
+def parse_mega_evolutions(item_names: dict[str, dict[str, str]]) -> list[dict[str, str]]:
+    text = strip_c_comments(read(FORM_CHANGE_TABLES_H))
+    table_re = re.compile(
+        r"static\s+const\s+struct\s+FormChange\s+s[A-Za-z0-9_]+FormChangeTable\[\]\s*=\s*\{(.*?)\};",
+        re.DOTALL,
+    )
+    rows: list[dict[str, str]] = []
+    seen: set[tuple[str, str, str]] = set()
+    for body in table_re.findall(text):
+        source_match = re.search(r"\{\s*FORM_CHANGE_(?:FAINT|END_BATTLE)\s*,\s*(SPECIES_[A-Z0-9_]+)", body)
+        if not source_match:
+            continue
+        source = source_match.group(1)
+        for target, item in re.findall(
+            r"\{\s*FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM\s*,\s*(SPECIES_[A-Z0-9_]+)\s*,\s*(ITEM_[A-Z0-9_]+)",
+            body,
+        ):
+            if "_MEGA" not in target:
+                continue
+            key = (source, target, item)
+            if key in seen:
+                continue
+            seen.add(key)
+            item_name = item_names.get(item, {}).get("name") or clean_constant_name(item, "ITEM_")
+            rows.append({
+                "source": source,
+                "target": target,
+                "item": item,
+                "itemName": item_name,
+                "label": f"Mega Evolution ({item_name})",
+            })
+    return rows
+
+
 def parse_tmhm_list() -> list[dict[str, Any]]:
     text = read(TMS_HMS_H)
     tm_names = re.findall(r"FOREACH_TM\(F\)\s*\\(.*?)#define\s+FOREACH_HM", text, re.DOTALL)[0]
@@ -913,11 +954,44 @@ def parse_front_pic_sources() -> dict[str, Path]:
     return pic_map
 
 
-def process_sprite(source: Path, target: Path) -> None:
+def parse_shiny_palette_sources() -> dict[str, Path]:
+    palette_map: dict[str, Path] = {}
+    pattern = re.compile(r'const\s+u16\s+(gMonShinyPalette_[A-Za-z0-9_]+)\[\]\s*=\s*INCBIN_U16\("([^"]+)"\);')
+    for symbol, incbin in pattern.findall(read(GRAPHICS_POKEMON_H)):
+        if symbol in palette_map and "_gba" in incbin:
+            continue
+        palette = REPO_ROOT / incbin
+        if palette.exists():
+            palette_map[symbol] = palette
+    return palette_map
+
+
+def shiny_palette_symbol(front_pic_symbol: str) -> str:
+    symbol = front_pic_symbol.replace("gMonFrontPic_", "gMonShinyPalette_", 1)
+    return symbol[:-1] if symbol.endswith("F") else symbol
+
+
+def read_gbapal(path: Path) -> list[int]:
+    raw = path.read_bytes()
+    palette: list[int] = []
+    for index in range(0, len(raw) - 1, 2):
+        value = raw[index] | (raw[index + 1] << 8)
+        palette.extend([
+            (value & 0x1F) * 255 // 31,
+            ((value >> 5) & 0x1F) * 255 // 31,
+            ((value >> 10) & 0x1F) * 255 // 31,
+        ])
+    palette.extend([0] * (768 - len(palette)))
+    return palette[:768]
+
+
+def process_sprite(source: Path, target: Path, palette: Path | None = None) -> None:
     target.parent.mkdir(parents=True, exist_ok=True)
     image = Image.open(source)
     if image.mode != "P":
         image = image.convert("P")
+    if palette:
+        image.putpalette(read_gbapal(palette))
     frame = image.crop((0, 0, min(64, image.width), min(64, image.height)))
     rgba = frame.convert("RGBA")
     pixels = []
@@ -940,6 +1014,23 @@ def copy_type_icons() -> dict[str, str]:
         target = output_dir / filename
         shutil.copy2(source, target)
         icons[type_constant] = str(target.relative_to(OUT_DIR))
+    return icons
+
+
+def copy_move_category_icons() -> dict[str, str]:
+    output_dir = OUT_DIR / "sprites" / "categories"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    icons: dict[str, str] = {}
+    resample = getattr(Image, "Resampling", Image).LANCZOS
+    for category, filename in MOVE_CATEGORY_ICON_FILES.items():
+        source = REPO_ROOT / filename
+        if not source.exists():
+            continue
+        target = output_dir / filename
+        image = Image.open(source).convert("RGBA")
+        image = image.resize((28, 28), resample)
+        image.save(target)
+        icons[category] = str(target.relative_to(OUT_DIR))
     return icons
 
 
@@ -1385,9 +1476,11 @@ def build() -> None:
     item_records = parse_item_records()
     tmhm_locations = parse_tmhm_locations()
     evolution_map = parse_evolutions(item_records)
+    mega_evolutions = parse_mega_evolutions(item_records)
     level_up = parse_level_up_learnsets()
     teachables = parse_teachable_learnsets(tmhm_moves)
     front_sources = parse_front_pic_sources()
+    shiny_palette_sources = parse_shiny_palette_sources()
     trainer_front_sources = parse_trainer_front_pic_sources()
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -1403,6 +1496,7 @@ def build() -> None:
     trainer_sprite_dir = OUT_DIR / "sprites" / "trainers"
     item_icon_dir = OUT_DIR / "sprites" / "items"
     type_icons = copy_type_icons()
+    category_icons = copy_move_category_icons()
 
     for row in species:
         if row.level_up_symbol:
@@ -1415,6 +1509,11 @@ def build() -> None:
             sprite_path = sprite_dir / f"{row.constant.removeprefix('SPECIES_').lower()}.png"
             process_sprite(front_sources[row.front_pic_symbol], sprite_path)
             row.sprite = str(sprite_path.relative_to(OUT_DIR))
+            shiny_palette = shiny_palette_sources.get(shiny_palette_symbol(row.front_pic_symbol))
+            if shiny_palette:
+                shiny_sprite_path = sprite_dir / f"{row.constant.removeprefix('SPECIES_').lower()}_shiny.png"
+                process_sprite(front_sources[row.front_pic_symbol], shiny_sprite_path, shiny_palette)
+                row.shiny_sprite = str(shiny_sprite_path.relative_to(OUT_DIR))
 
     encounters = parse_wild_encounters(by_species)
     species_locations = build_species_locations(encounters)
@@ -1467,6 +1566,7 @@ def build() -> None:
                 "abilities": row.abilities,
                 "innates": row.innates,
                 "sprite": row.sprite,
+                "shinySprite": row.shiny_sprite,
                 "levelUp": row.level_up,
                 "tmhm": row.tmhm,
                 "tutors": row.tutors,
@@ -1485,6 +1585,8 @@ def build() -> None:
         "encounters": encounters,
         "trainers": trainers,
         "typeIcons": type_icons,
+        "categoryIcons": category_icons,
+        "megaEvolutions": mega_evolutions,
     }
     (OUT_DIR / "data" / "romhack-docs.json").write_text(json.dumps(payload, indent=2), encoding="utf-8")
 

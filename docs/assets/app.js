@@ -38,8 +38,27 @@ function sprite(src, className = "sprite") {
   return src ? `<img class="${className}" src="${src}" alt="">` : `<span class="muted">No sprite</span>`;
 }
 
+function moveCategory(category) {
+  const label = fmtCategory(category || "");
+  const icon = state.data.categoryIcons?.[category];
+  if (icon) {
+    return `<span class="category-display" title="${label}"><img class="category-icon" src="${icon}" alt="${label}"></span>`;
+  }
+  return category ? `<span class="category-display category-badge">${label}</span>` : `<span class="muted">-</span>`;
+}
+
+function speciesSpritePanel(mon) {
+  if (!mon.shinySprite) return sprite(mon.sprite);
+  return `
+    <div class="species-sprite-panel">
+      <img class="sprite" src="${mon.sprite}" alt="${speciesFormLabel(mon)}">
+      <button class="sprite-toggle" type="button" data-state="regular" data-regular="${mon.sprite}" data-shiny="${mon.shinySprite}" aria-pressed="false">✨</button>
+    </div>
+  `;
+}
+
 async function init() {
-  const response = await fetch("data/romhack-docs.json?v=20260513-31");
+  const response = await fetch("data/romhack-docs.json?v=20260601-1");
   state.data = await response.json();
   state.filteredSpecies = state.data.species;
   bindEvents();
@@ -67,6 +86,7 @@ function bindEvents() {
   document.body.addEventListener("pointerout", hideAbilityTooltip);
   document.body.addEventListener("click", handleMoveClick, true);
   document.body.addEventListener("click", handleSpeciesLinkClick, true);
+  document.body.addEventListener("click", handleSpriteToggle, true);
   document.body.addEventListener("pointerover", handleMoveHover);
   document.body.addEventListener("pointerout", hideMoveTooltip);
   window.addEventListener("resize", updateStickyOffset);
@@ -233,6 +253,20 @@ function handleSpeciesLinkClick(event) {
   openSpeciesByConstant(button.dataset.species);
 }
 
+function handleSpriteToggle(event) {
+  const button = event.target.closest(".sprite-toggle");
+  if (!button) return;
+  event.preventDefault();
+  event.stopPropagation();
+  const image = button.closest(".species-sprite-panel")?.querySelector("img");
+  if (!image) return;
+  const showShiny = button.dataset.state !== "shiny";
+  image.src = showShiny ? button.dataset.shiny : button.dataset.regular;
+  button.dataset.state = showShiny ? "shiny" : "regular";
+  button.textContent = showShiny ? "✨" : "✨";
+  button.setAttribute("aria-pressed", showShiny ? "true" : "false");
+}
+
 function statBars(mon) {
   const labels = [["hp", "HP"], ["atk", "Atk"], ["def", "Def"], ["spa", "SpA"], ["spd", "SpD"], ["spe", "Spe"]];
   return labels.map(([key, label]) => `
@@ -254,8 +288,8 @@ function moveRows(moves, options = {}) {
   if (!moves.length) return `<p class="muted">No moves listed.</p>`;
   const showLevel = options.showLevel !== false;
   const head = showLevel
-    ? `<div class="move-row move-head"><span>Lvl</span><span>Move</span><span>Type</span><span>Pow</span><span>Acc</span></div>`
-    : `<div class="move-row move-head move-head-compat"><span>Move</span><span>Type</span><span>Pow</span><span>Acc</span></div>`;
+    ? `<div class="move-row move-head"><span>Lvl</span><span>Move</span><span>Type</span><span>Cat</span><span>Pow</span><span>Acc</span></div>`
+    : `<div class="move-row move-head move-head-compat"><span>Move</span><span>Type</span><span>Cat</span><span>Pow</span><span>Acc</span></div>`;
   return `<div class="move-list">
     ${head}
     ${moves.map((entry) => {
@@ -263,7 +297,7 @@ function moveRows(moves, options = {}) {
     const level = typeof entry === "string" ? "" : entry.level;
     const move = state.data.moves[constant] || {};
     const cells = showLevel ? `<span>${level}</span>` : "";
-    return `<div class="move-row ${showLevel ? "" : "move-row-compat"}">${cells}<button class="move-name" type="button" data-move="${constant}">${move.name || moveName(constant)}</button><span>${typePills([move.type || ""])}</span><span>${move.power || "-"}</span><span>${move.accuracy || "-"}</span></div>`;
+    return `<div class="move-row ${showLevel ? "" : "move-row-compat"}">${cells}<button class="move-name" type="button" data-move="${constant}">${move.name || moveName(constant)}</button><span>${typePills([move.type || ""])}</span><span>${moveCategory(move.category || "")}</span><span>${move.power || "-"}</span><span>${move.accuracy || "-"}</span></div>`;
   }).join("")}</div>`;
 }
 
@@ -351,16 +385,25 @@ function megaFormLinks(mon) {
       });
     });
   }
-  const forms = state.data.species.filter((entry) => entry.constant.includes("_MEGA") && family.has(baseConstantForMega(entry.constant)));
+  const seen = new Set();
+  const forms = (state.data.megaEvolutions || [])
+    .filter((edge) => family.has(edge.source) && bySpecies.has(edge.target))
+    .filter((edge) => {
+      const key = `${edge.source}-${edge.target}-${edge.item}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
   if (!forms.length) return "";
-  return forms.map((form) => {
-    const base = bySpecies.get(baseConstantForMega(form.constant));
+  return forms.map((edge) => {
+    const base = bySpecies.get(edge.source) || chainMon;
+    const form = bySpecies.get(edge.target);
     return `
       <div class="evolution-line">
         <button class="evolution-name species-link" type="button" data-species="${base?.constant || chainMon.constant}">${sprite(base?.sprite || chainMon.sprite, "tiny-sprite")}<strong>${base?.name || chainMon.name}</strong></button>
         <span class="evolution-arrow">-&gt;</span>
         <button class="evolution-name species-link" type="button" data-species="${form.constant}">${sprite(form.sprite, "tiny-sprite")}<strong>${speciesFormLabel(form)}</strong></button>
-        <span class="evolution-method">Mega Evolution</span>
+        <span class="evolution-method">${edge.label || `Mega Evolution (${edge.itemName || "Mega Stone"})`}</span>
       </div>
     `;
   }).join("");
@@ -385,7 +428,7 @@ function openSpecies(mon) {
   document.getElementById("modalTitle").textContent = `#${mon.dex || mon.id} ${speciesFormLabel(mon)}`;
   document.getElementById("modalBody").innerHTML = `
     <div class="species-summary">
-      ${sprite(mon.sprite)}
+      ${speciesSpritePanel(mon)}
       <div>
         ${typePills(mon.types)}
         <h3 class="section-title">Abilities</h3>
@@ -479,7 +522,7 @@ function fishingMons(mons) {
 
 function renderTms() {
   const tbody = document.getElementById("tmRows");
-  const rows = state.data.tms.filter((tm) => matches(`${tm.label} ${tm.moveName} ${tm.type} ${tm.description}`));
+  const rows = state.data.tms.filter((tm) => matches(`${tm.label} ${tm.moveName} ${tm.type} ${fmtCategory(tm.category || "")} ${tm.description}`));
   tbody.innerHTML = "";
   rows.forEach((tm) => {
     const row = el("tr", "tm-row");
@@ -487,7 +530,7 @@ function renderTms() {
       <td data-label="ID"><strong>${tm.label}</strong></td>
       <td data-label="Move">${tm.moveName}</td>
       <td data-label="Type">${typePills([tm.type])}</td>
-      <td data-label="Cat">${fmtCategory(tm.category || "")}</td>
+      <td data-label="Cat">${moveCategory(tm.category || "")}</td>
       <td data-label="Pow">${tm.power || "-"}</td>
       <td data-label="Acc">${tm.accuracy || "-"}</td>
       <td data-label="PP">${tm.pp || "-"}</td>
@@ -553,7 +596,7 @@ function openTm(tm) {
   document.getElementById("modalBody").innerHTML = `
     <div class="tm-detail">
       <div>${typePills([tm.type])}</div>
-      <p><strong>${fmtCategory(tm.category || "")}</strong> / Power ${tm.power || "-"} / Accuracy ${tm.accuracy || "-"} / PP ${tm.pp || "-"}</p>
+      <p>${moveCategory(tm.category || "")} Power ${tm.power || "-"} / Accuracy ${tm.accuracy || "-"} / PP ${tm.pp || "-"}</p>
       <p>${tm.description || "No description."}</p>
       <p class="muted">${tm.location || "Location TBD"}</p>
     </div>
@@ -675,6 +718,11 @@ function trainerMoveLabel(value) {
   return state.data.moves[value]?.name || trainerTokenName(value, "MOVE_");
 }
 
+function trainerMoveHtml(value) {
+  const move = state.data.moves[value];
+  return `<span class="trainer-move-entry">${moveCategory(move?.category || "")}<span>${trainerMoveLabel(value)}</span></span>`;
+}
+
 function trainerHeldItemIcon(mon) {
   if (!mon.itemIcon) return "";
   const itemName = trainerTokenName(mon.item, "ITEM_");
@@ -696,7 +744,7 @@ function trainerMonDetailsHtml(mon) {
   if (evs) rows.push(evs);
   if (ivs) rows.push(ivs);
   if (mon.moves?.length) {
-    rows.push(`<div class="trainer-mon-detail trainer-moves"><span>Moves:</span><strong>${mon.moves.map((move) => `- ${trainerMoveLabel(move)}`).join("<br>")}</strong></div>`);
+    rows.push(`<div class="trainer-mon-detail trainer-moves"><span>Moves:</span><strong>${mon.moves.map(trainerMoveHtml).join("")}</strong></div>`);
   }
   return rows.length ? `<div class="trainer-mon-details">${rows.join("")}</div>` : "";
 }
