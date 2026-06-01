@@ -72,6 +72,7 @@ enum
 enum
 {
     MENUITEM_INTRO_SLIDE,
+    MENUITEM_FAST_MEGAS,
     MENUITEM_COUNT_PG3,
 };
 
@@ -99,6 +100,7 @@ enum
 #define YPOS_DIFFICULTY (MENUITEM_DIFFICULTY * 16)
 
 #define YPOS_INTRO_SLIDE (MENUITEM_INTRO_SLIDE * 16)
+#define YPOS_FAST_MEGAS (MENUITEM_FAST_MEGAS * 16)
 
 #define PAGE_COUNT  3
 
@@ -142,6 +144,8 @@ static u8 BattleSpeed_ProcessInput(u8 selection);
 static void BattleSpeed_DrawChoices(u8 selection);
 static u8 IntroSlide_ProcessInput(u8 selection);
 static void IntroSlide_DrawChoices(u8 selection);
+static u8 FastMegas_ProcessInput(u8 selection);
+static void FastMegas_DrawChoices(u8 selection);
 
 static void DrawTextOption(void);
 
@@ -150,6 +154,7 @@ static void DrawOptionMenuTexts(void);
 static void DrawBgWindowFrames(void);
 
 EWRAM_DATA static bool8 sArrowPressed = FALSE;
+EWRAM_DATA static bool8 sFastMegas = FALSE;
 
 static const u8 gText_Option[]             = _("OPTION");
 static const u8 gText_TextSpeedSlow[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Slow");
@@ -186,6 +191,8 @@ static const u8 gText_BattleSpeed3x[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN
 static const u8 gText_BattleSpeed4x[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}4x");
 static const u8 gText_IntroSlideOn[]       = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}On");
 static const u8 gText_IntroSlideOff[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Off");
+static const u8 gText_FastMegasOn[]        = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}On");
+static const u8 gText_FastMegasOff[]       = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Off");
 
 static const u16 sOptionMenuText_Pal[] = INCBIN_U16("graphics/interface/option_menu_text.gbapal");
 // note: this is only used in the Japanese release
@@ -217,6 +224,7 @@ static const u8 *const sOptionMenuItemsNames_Pg2[MENUITEM_COUNT_PG2] =
 static const u8 *const sOptionMenuItemsNames_Pg3[MENUITEM_COUNT_PG3] =
 {
     [MENUITEM_INTRO_SLIDE] = COMPOUND_STRING("Battle intro"),
+    [MENUITEM_FAST_MEGAS] = COMPOUND_STRING("Fast megas"),
 };
 
 static const struct WindowTemplate sOptionMenuWinTemplates[] =
@@ -299,6 +307,7 @@ static void ReadAllCurrentSettings(u8 taskId)
         gTasks[taskId].tOverworldSpeedup = VarGet(VAR_OVERWORLD_SPEEDUP);
         gTasks[taskId].tBattleSpeed = VarGet(VAR_BATTLE_SPEED);
         gTasks[taskId].tFastIntroNoSlide = gSaveBlock2Ptr->optionsFastIntroNoSlide;
+        sFastMegas = gSaveBlock2Ptr->optionsFastMegas;
 }
 
 static void DrawOptionsPg1(u8 taskId)
@@ -333,6 +342,7 @@ static void DrawOptionsPg3(u8 taskId)
 {
     ReadAllCurrentSettings(taskId);
     IntroSlide_DrawChoices(gTasks[taskId].tFastIntroNoSlide);
+    FastMegas_DrawChoices(sFastMegas);
     HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
     CopyWindowToVram(WIN_OPTIONS, COPYWIN_FULL);
 }
@@ -720,12 +730,12 @@ static void Task_OptionMenuProcessInput_Pg3(u8 taskId)
         if (gTasks[taskId].tMenuSelection > 0)
             gTasks[taskId].tMenuSelection--;
         else
-            gTasks[taskId].tMenuSelection = MENUITEM_INTRO_SLIDE;
+            gTasks[taskId].tMenuSelection = MENUITEM_FAST_MEGAS;
         HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
     }
     else if (JOY_NEW(DPAD_DOWN))
     {
-        if (gTasks[taskId].tMenuSelection < MENUITEM_INTRO_SLIDE)
+        if (gTasks[taskId].tMenuSelection < MENUITEM_FAST_MEGAS)
             gTasks[taskId].tMenuSelection++;
         else
             gTasks[taskId].tMenuSelection = 0;
@@ -743,6 +753,13 @@ static void Task_OptionMenuProcessInput_Pg3(u8 taskId)
 
             if (previousOption != gTasks[taskId].tFastIntroNoSlide)
                 IntroSlide_DrawChoices(gTasks[taskId].tFastIntroNoSlide);
+            break;
+        case MENUITEM_FAST_MEGAS:
+            previousOption = sFastMegas;
+            sFastMegas = FastMegas_ProcessInput(sFastMegas);
+
+            if (previousOption != sFastMegas)
+                FastMegas_DrawChoices(sFastMegas);
             break;
         default:
             return;
@@ -797,6 +814,7 @@ static void SaveCurrentSettings(u8 taskId)
     gSaveBlock2Ptr->optionsBattleSpeed = gTasks[taskId].tBattleSpeed;
     VarSet(VAR_BATTLE_SPEED, gTasks[taskId].tBattleSpeed);
     gSaveBlock2Ptr->optionsFastIntroNoSlide = gTasks[taskId].tFastIntroNoSlide;
+    gSaveBlock2Ptr->optionsFastMegas = sFastMegas;
 }
 
 static void Task_OptionMenuSave(u8 taskId)
@@ -1223,6 +1241,35 @@ static void IntroSlide_DrawChoices(u8 selection)
 
     DrawOptionMenuChoice(gText_IntroSlideOn, 104, YPOS_INTRO_SLIDE, styles[FALSE]);
     DrawOptionMenuChoice(gText_IntroSlideOff, GetStringRightAlignXOffset(FONT_NORMAL, gText_IntroSlideOff, 198), YPOS_INTRO_SLIDE, styles[TRUE]);
+}
+
+static u8 FastMegas_ProcessInput(u8 selection)
+{
+    if (selection > TRUE)
+        selection = FALSE;
+
+    if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
+    {
+        selection ^= 1;
+        sArrowPressed = TRUE;
+    }
+
+    return selection;
+}
+
+static void FastMegas_DrawChoices(u8 selection)
+{
+    u8 styles[2];
+
+    if (selection > TRUE)
+        selection = FALSE;
+
+    styles[0] = 0;
+    styles[1] = 0;
+    styles[selection] = 1;
+
+    DrawOptionMenuChoice(gText_FastMegasOn, 104, YPOS_FAST_MEGAS, styles[TRUE]);
+    DrawOptionMenuChoice(gText_FastMegasOff, GetStringRightAlignXOffset(FONT_NORMAL, gText_FastMegasOff, 198), YPOS_FAST_MEGAS, styles[FALSE]);
 }
 
 static u8 LevelCaps_ProcessInput(u8 selection)

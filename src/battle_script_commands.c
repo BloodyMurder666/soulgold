@@ -5480,6 +5480,9 @@ static void PlayAnimation(enum BattlerId battler, u8 animId, const u16 *argPtr, 
         return;
     }
 
+    if (animId == B_ANIM_MEGA_EVOLUTION && gSaveBlock2Ptr->optionsFastMegas)
+        animId = B_ANIM_FORM_CHANGE_INSTANT_MEGA;
+
     if (animId == B_ANIM_STATS_CHANGE
      || animId == B_ANIM_SNATCH_MOVE
      || animId == B_ANIM_MEGA_EVOLUTION
