@@ -42,6 +42,8 @@ EWRAM_DATA static u8 sCurrPage = 0;
 #define tBattleSpeed data[14]
 #define tFastIntroNoSlide data[15]
 
+#define TEXT_SPEED_STYLES_COUNT (OPTIONS_TEXT_SPEED_FASTER + 1)
+
 enum
 {
     MENUITEM_TEXTSPEED,
@@ -74,6 +76,7 @@ enum
     MENUITEM_INTRO_SLIDE,
     MENUITEM_FAST_MEGAS,
     MENUITEM_FAST_WEATHER,
+    MENUITEM_SURF_MUSIC,
     MENUITEM_COUNT_PG3,
 };
 
@@ -103,6 +106,7 @@ enum
 #define YPOS_INTRO_SLIDE (MENUITEM_INTRO_SLIDE * 16)
 #define YPOS_FAST_MEGAS (MENUITEM_FAST_MEGAS * 16)
 #define YPOS_FAST_WEATHER (MENUITEM_FAST_WEATHER * 16)
+#define YPOS_SURF_MUSIC (MENUITEM_SURF_MUSIC * 16)
 
 #define PAGE_COUNT  3
 
@@ -118,6 +122,9 @@ static void SaveCurrentSettings(u8 taskId);
 static void HighlightOptionMenuItem(u8 selection);
 static u8 TextSpeed_ProcessInput(u8 selection);
 static void TextSpeed_DrawChoices(u8 selection);
+static u8 TextSpeed_NormalizeSelection(u8 selection);
+static u8 TextSpeed_GetNextSelection(u8 selection);
+static u8 TextSpeed_GetPreviousSelection(u8 selection);
 static u8 BattleScene_ProcessInput(u8 selection);
 static void BattleScene_DrawChoices(u8 selection);
 static u8 BattleStyle_ProcessInput(u8 selection);
@@ -150,6 +157,8 @@ static u8 FastMegas_ProcessInput(u8 selection);
 static void FastMegas_DrawChoices(u8 selection);
 static u8 FastWeather_ProcessInput(u8 selection);
 static void FastWeather_DrawChoices(u8 selection);
+static u8 SurfMusic_ProcessInput(u8 selection);
+static void SurfMusic_DrawChoices(u8 selection);
 
 static void DrawTextOption(void);
 
@@ -160,11 +169,12 @@ static void DrawBgWindowFrames(void);
 EWRAM_DATA static bool8 sArrowPressed = FALSE;
 EWRAM_DATA static bool8 sFastMegas = FALSE;
 EWRAM_DATA static bool8 sFastWeather = FALSE;
+EWRAM_DATA static bool8 sSurfMusic = FALSE;
 
 static const u8 gText_Option[]             = _("OPTION");
-static const u8 gText_TextSpeedSlow[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Slow");
-static const u8 gText_TextSpeedMid[]       = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Mid");
-static const u8 gText_TextSpeedFast[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Fast");
+static const u8 gText_TextSpeedFast[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Normal");
+static const u8 gText_TextSpeedFaster[]    = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Fast");
+static const u8 gText_TextSpeedInstant[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Inst");
 static const u8 gText_BattleSceneOn[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}On");
 static const u8 gText_BattleSceneOff[]     = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Off");
 static const u8 gText_BattleStyleShift[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Shift");
@@ -200,6 +210,8 @@ static const u8 gText_FastMegasOn[]        = _("{COLOR GREEN}{SHADOW LIGHT_GREEN
 static const u8 gText_FastMegasOff[]       = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Off");
 static const u8 gText_FastWeatherOn[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}On");
 static const u8 gText_FastWeatherOff[]     = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Off");
+static const u8 gText_SurfMusicOn[]        = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}On");
+static const u8 gText_SurfMusicOff[]       = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Off");
 
 static const u16 sOptionMenuText_Pal[] = INCBIN_U16("graphics/interface/option_menu_text.gbapal");
 // note: this is only used in the Japanese release
@@ -233,6 +245,7 @@ static const u8 *const sOptionMenuItemsNames_Pg3[MENUITEM_COUNT_PG3] =
     [MENUITEM_INTRO_SLIDE] = COMPOUND_STRING("Battle intro"),
     [MENUITEM_FAST_MEGAS] = COMPOUND_STRING("Fast megas"),
     [MENUITEM_FAST_WEATHER] = COMPOUND_STRING("Fast weather"),
+    [MENUITEM_SURF_MUSIC] = COMPOUND_STRING("Surf music"),
 };
 
 static const struct WindowTemplate sOptionMenuWinTemplates[] =
@@ -317,6 +330,7 @@ static void ReadAllCurrentSettings(u8 taskId)
         gTasks[taskId].tFastIntroNoSlide = gSaveBlock2Ptr->optionsFastIntroNoSlide;
         sFastMegas = gSaveBlock2Ptr->optionsFastMegas;
         sFastWeather = gSaveBlock2Ptr->optionsFastWeather;
+        sSurfMusic = gSaveBlock2Ptr->optionsSurfMusic;
 }
 
 static void DrawOptionsPg1(u8 taskId)
@@ -353,6 +367,7 @@ static void DrawOptionsPg3(u8 taskId)
     IntroSlide_DrawChoices(gTasks[taskId].tFastIntroNoSlide);
     FastMegas_DrawChoices(sFastMegas);
     FastWeather_DrawChoices(sFastWeather);
+    SurfMusic_DrawChoices(sSurfMusic);
     HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
     CopyWindowToVram(WIN_OPTIONS, COPYWIN_FULL);
 }
@@ -740,12 +755,12 @@ static void Task_OptionMenuProcessInput_Pg3(u8 taskId)
         if (gTasks[taskId].tMenuSelection > 0)
             gTasks[taskId].tMenuSelection--;
         else
-            gTasks[taskId].tMenuSelection = MENUITEM_FAST_WEATHER;
+            gTasks[taskId].tMenuSelection = MENUITEM_COUNT_PG3 - 1;
         HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
     }
     else if (JOY_NEW(DPAD_DOWN))
     {
-        if (gTasks[taskId].tMenuSelection < MENUITEM_FAST_WEATHER)
+        if (gTasks[taskId].tMenuSelection < MENUITEM_COUNT_PG3 - 1)
             gTasks[taskId].tMenuSelection++;
         else
             gTasks[taskId].tMenuSelection = 0;
@@ -777,6 +792,13 @@ static void Task_OptionMenuProcessInput_Pg3(u8 taskId)
 
             if (previousOption != sFastWeather)
                 FastWeather_DrawChoices(sFastWeather);
+            break;
+        case MENUITEM_SURF_MUSIC:
+            previousOption = sSurfMusic;
+            sSurfMusic = SurfMusic_ProcessInput(sSurfMusic);
+
+            if (previousOption != sSurfMusic)
+                SurfMusic_DrawChoices(sSurfMusic);
             break;
         default:
             return;
@@ -815,7 +837,7 @@ CopyWindowToVram(WIN_HEADER, COPYWIN_FULL);
 
 static void SaveCurrentSettings(u8 taskId)
 {
-    gSaveBlock2Ptr->optionsTextSpeed = gTasks[taskId].tTextSpeed;
+    gSaveBlock2Ptr->optionsTextSpeed = TextSpeed_NormalizeSelection(gTasks[taskId].tTextSpeed);
     gSaveBlock2Ptr->optionsBattleSceneOff = gTasks[taskId].tBattleSceneOff;
     gSaveBlock2Ptr->optionsBattleStyle = gTasks[taskId].tBattleStyle;
     gSaveBlock2Ptr->optionsSound = gTasks[taskId].tSound;
@@ -833,6 +855,7 @@ static void SaveCurrentSettings(u8 taskId)
     gSaveBlock2Ptr->optionsFastIntroNoSlide = gTasks[taskId].tFastIntroNoSlide;
     gSaveBlock2Ptr->optionsFastMegas = sFastMegas;
     gSaveBlock2Ptr->optionsFastWeather = sFastWeather;
+    gSaveBlock2Ptr->optionsSurfMusic = sSurfMusic;
 }
 
 static void Task_OptionMenuSave(u8 taskId)
@@ -878,48 +901,82 @@ static void DrawOptionMenuChoice(const u8 *text, u8 x, u8 y, u8 style)
 
 static u8 TextSpeed_ProcessInput(u8 selection)
 {
+    selection = TextSpeed_NormalizeSelection(selection);
+
     if (JOY_NEW(DPAD_RIGHT))
     {
-        if (selection <= 1)
-            selection++;
-        else
-            selection = 0;
-
+        selection = TextSpeed_GetNextSelection(selection);
         sArrowPressed = TRUE;
     }
     if (JOY_NEW(DPAD_LEFT))
     {
-        if (selection != 0)
-            selection--;
-        else
-            selection = 2;
-
+        selection = TextSpeed_GetPreviousSelection(selection);
         sArrowPressed = TRUE;
     }
     return selection;
 }
 
+static u8 TextSpeed_NormalizeSelection(u8 selection)
+{
+    if (selection != OPTIONS_TEXT_SPEED_FAST
+     && selection != OPTIONS_TEXT_SPEED_FASTER
+     && selection != OPTIONS_TEXT_SPEED_INSTANT)
+        return OPTIONS_TEXT_SPEED_FAST;
+
+    return selection;
+}
+
+static u8 TextSpeed_GetNextSelection(u8 selection)
+{
+    switch (TextSpeed_NormalizeSelection(selection))
+    {
+    case OPTIONS_TEXT_SPEED_FAST:
+        return OPTIONS_TEXT_SPEED_FASTER;
+    case OPTIONS_TEXT_SPEED_FASTER:
+        return OPTIONS_TEXT_SPEED_INSTANT;
+    default:
+        return OPTIONS_TEXT_SPEED_FAST;
+    }
+}
+
+static u8 TextSpeed_GetPreviousSelection(u8 selection)
+{
+    switch (TextSpeed_NormalizeSelection(selection))
+    {
+    case OPTIONS_TEXT_SPEED_FAST:
+        return OPTIONS_TEXT_SPEED_INSTANT;
+    case OPTIONS_TEXT_SPEED_FASTER:
+        return OPTIONS_TEXT_SPEED_FAST;
+    default:
+        return OPTIONS_TEXT_SPEED_FASTER;
+    }
+}
+
 static void TextSpeed_DrawChoices(u8 selection)
 {
-    u8 styles[3];
-    s32 widthSlow, widthMid, widthFast, xMid;
+    u8 styles[TEXT_SPEED_STYLES_COUNT];
+    s32 widthFast, widthFaster, widthInstant, xMid;
+
+    selection = TextSpeed_NormalizeSelection(selection);
 
     styles[0] = 0;
     styles[1] = 0;
     styles[2] = 0;
+    styles[3] = 0;
+    styles[4] = 0;
     styles[selection] = 1;
 
-    DrawOptionMenuChoice(gText_TextSpeedSlow, 104, YPOS_TEXTSPEED, styles[0]);
+    DrawOptionMenuChoice(gText_TextSpeedFast, 104, YPOS_TEXTSPEED, styles[OPTIONS_TEXT_SPEED_FAST]);
 
-    widthSlow = GetStringWidth(FONT_NORMAL, gText_TextSpeedSlow, 0);
-    widthMid = GetStringWidth(FONT_NORMAL, gText_TextSpeedMid, 0);
     widthFast = GetStringWidth(FONT_NORMAL, gText_TextSpeedFast, 0);
+    widthFaster = GetStringWidth(FONT_NORMAL, gText_TextSpeedFaster, 0);
+    widthInstant = GetStringWidth(FONT_NORMAL, gText_TextSpeedInstant, 0);
 
-    widthMid -= 94;
-    xMid = (widthSlow - widthMid - widthFast) / 2 + 104;
-    DrawOptionMenuChoice(gText_TextSpeedMid, xMid, YPOS_TEXTSPEED, styles[1]);
+    widthFaster -= 94;
+    xMid = (widthFast - widthFaster - widthInstant) / 2 + 104;
+    DrawOptionMenuChoice(gText_TextSpeedFaster, xMid, YPOS_TEXTSPEED, styles[OPTIONS_TEXT_SPEED_FASTER]);
 
-    DrawOptionMenuChoice(gText_TextSpeedFast, GetStringRightAlignXOffset(FONT_NORMAL, gText_TextSpeedFast, 198), YPOS_TEXTSPEED, styles[2]);
+    DrawOptionMenuChoice(gText_TextSpeedInstant, GetStringRightAlignXOffset(FONT_NORMAL, gText_TextSpeedInstant, 198), YPOS_TEXTSPEED, styles[OPTIONS_TEXT_SPEED_INSTANT]);
 }
 
 static u8 BattleScene_ProcessInput(u8 selection)
@@ -1317,6 +1374,35 @@ static void FastWeather_DrawChoices(u8 selection)
 
     DrawOptionMenuChoice(gText_FastWeatherOn, 104, YPOS_FAST_WEATHER, styles[TRUE]);
     DrawOptionMenuChoice(gText_FastWeatherOff, GetStringRightAlignXOffset(FONT_NORMAL, gText_FastWeatherOff, 198), YPOS_FAST_WEATHER, styles[FALSE]);
+}
+
+static u8 SurfMusic_ProcessInput(u8 selection)
+{
+    if (selection > TRUE)
+        selection = FALSE;
+
+    if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
+    {
+        selection ^= 1;
+        sArrowPressed = TRUE;
+    }
+
+    return selection;
+}
+
+static void SurfMusic_DrawChoices(u8 selection)
+{
+    u8 styles[2];
+
+    if (selection > TRUE)
+        selection = FALSE;
+
+    styles[0] = 0;
+    styles[1] = 0;
+    styles[selection] = 1;
+
+    DrawOptionMenuChoice(gText_SurfMusicOn, 104, YPOS_SURF_MUSIC, styles[TRUE]);
+    DrawOptionMenuChoice(gText_SurfMusicOff, GetStringRightAlignXOffset(FONT_NORMAL, gText_SurfMusicOff, 198), YPOS_SURF_MUSIC, styles[FALSE]);
 }
 
 static u8 LevelCaps_ProcessInput(u8 selection)

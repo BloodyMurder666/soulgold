@@ -613,7 +613,7 @@ struct SaveBlock2
     /*0x11*/ u8 playTimeSeconds;
     /*0x12*/ u8 playTimeVBlanks;
     /*0x13*/ u8 optionsButtonMode;  // OPTIONS_BUTTON_MODE_[NORMAL/LR/L_EQUALS_A]
-    /*0x14*/ u16 optionsTextSpeed:3; // OPTIONS_TEXT_SPEED_[SLOW/MID/FAST]
+    /*0x14*/ u16 optionsTextSpeed:3; // OPTIONS_TEXT_SPEED_*
              u16 optionsWindowFrameType:5; // Specifies one of the 20 decorative borders for text boxes
              u16 optionsSound:1; // OPTIONS_SOUND_[MONO/STEREO]
              u16 optionsBattleStyle:1; // OPTIONS_BATTLE_STYLE_[SHIFT/SET]
@@ -633,8 +633,9 @@ struct SaveBlock2
              u16 optionsLevelCaps:3; //0 = no caps, 1 = soft caps, 2 = hard caps
              u16 optionsFastMegas:1; //0 = full Mega Evolution animation, 1 = near-instant animation
              u16 optionsFastWeather:1; //0 = show recurring weather messages, 1 = skip recurring weather messages
+             u16 optionsSurfMusic:1; //0 = use map music while surfing, 1 = use Surf music
              u8 rivalName[PLAYER_NAME_LENGTH + 1];
-             //u16 padding1:2;
+             //u16 padding1:1;
              //u16 padding2;
     /*0x18*/ struct Pokedex pokedex;
     /*0x90*/ u8 filler_90[0x8];
