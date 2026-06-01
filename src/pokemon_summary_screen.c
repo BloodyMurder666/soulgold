@@ -3481,7 +3481,7 @@ static void PrintNotEggInfo(void)
         StringAppend(gStringVar1, gStringVar2);
         if (!IsMonShiny(mon))
         {
-            PrintTextOnWindow(PSS_LABEL_WINDOW_PORTRAIT_DEX_NUMBER, gStringVar1, 0, 1, 0, 1);
+            PrintTextOnWindow(PSS_LABEL_WINDOW_PORTRAIT_DEX_NUMBER, gStringVar1, 0, 1, 0, 2);
             SetMonPicBackgroundPalette(FALSE);
         }
         else
@@ -4200,7 +4200,7 @@ static void PrintEggMemo(void)
         const u8 *bodyText;
 
         FillWindowPixelBuffer(windowId, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
-        PrintTextOnWindow(windowId, gAbilitiesInfo[trait].name, 2, 0, 0, 0);
+        PrintTextOnWindow(windowId, gAbilitiesInfo[trait].name, 2, 0, 0, 1);
 
         if (!IsSummaryTraitUnlocked(sMonSummaryScreen->selectedTraitIndex))
         {
@@ -5275,9 +5275,9 @@ static inline void ShowUtilityPrompt(s16 mode)
     const u8* promptText = NULL;
     const u8* gText_SkillPageIvs = COMPOUND_STRING("IVs");
     const u8* gText_SkillPageEvs = COMPOUND_STRING("EVs");
-    const u8* gText_SkillPageStats = COMPOUND_STRING("STATS");
-    const u8* gText_Rename = COMPOUND_STRING("RENAME");
-    const u8* gText_Close = COMPOUND_STRING("CLOSE");
+    const u8* gText_SkillPageStats = COMPOUND_STRING("Stats");
+    const u8* gText_Rename = COMPOUND_STRING("Rename");
+    const u8* gText_Close = COMPOUND_STRING("Close");
 
     if (sMonSummaryScreen->currPageIndex == PSS_PAGE_INFO)
     {
@@ -5347,7 +5347,7 @@ static inline void ShowUtilityPrompt(s16 mode)
         iconXPos = 0;
 
     PrintAOrBButtonIcon(PSS_LABEL_WINDOW_PROMPT_UTILITY, FALSE, iconXPos);
-    PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_UTILITY, promptText, stringXPos, 1, 0, 0);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_UTILITY, promptText, stringXPos, 1, 0, 2);
     CopyWindowToVram(PSS_LABEL_WINDOW_PROMPT_UTILITY, COPYWIN_FULL);
 }
 
