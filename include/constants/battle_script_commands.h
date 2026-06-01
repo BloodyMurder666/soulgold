@@ -388,6 +388,7 @@ enum FaintBlockStates
 {
     FAINT_BLOCK_FINAL_GAMBIT,
     FAINT_BLOCK_CHECK_TARGET_FAINTED, // Exits if target is not fainted
+    FAINT_BLOCK_VICTORY_CATCH,
     FAINT_BLOCK_END_NEUTRALIZING_GAS,
     // Destiny Bond and Grudge are tested first, but Faint Target's script plays first
     FAINT_BLOCK_TRY_DESTINY_BOND,

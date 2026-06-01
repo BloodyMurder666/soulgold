@@ -1628,6 +1628,8 @@
 #define FLAG_HIDE_MARSHADOW                         0x958
 #define FLAG_HIDE_GHOSTITE                          0x959
 #define FLAG_HIDE_SPROUT_BASEMENT_ITEM              0x95A
+#define FLAG_POSTBATTLE_CATCH                       0x95B
+#define FLAG_POSTBATTLE_CATCH_GUARANTEED            0x95C
 
 #define FLAG_0x1500                                 0x1500
 // Daily Flags

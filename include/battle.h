@@ -728,7 +728,7 @@ struct BattleStruct
     u8 moveBouncer;
     u8 dancerSavedAttacker:3;
     u8 dancerSavedTarget:3;
-    u8 padding:2;
+    enum VictoryCatch victoryCatchState:2;
 };
 
 struct AiBattleData

@@ -333,6 +333,24 @@ static void AddStartMenuAction(u8 action)
     AppendToList(sCurrentStartMenuActions, &sNumStartMenuActions, action);
 }
 
+static bool8 IsInPokemonLeagueChallenge(void)
+{
+    u16 map = (gSaveBlock1Ptr->location.mapGroup << 8) | gSaveBlock1Ptr->location.mapNum;
+
+    switch (map)
+    {
+    case MAP_POKEMON_LEAGUE_WILLS_ROOM:
+    case MAP_POKEMON_LEAGUE_KOGAS_ROOM:
+    case MAP_POKEMON_LEAGUE_BRUNOS_ROOM:
+    case MAP_POKEMON_LEAGUE_KARENS_ROOM:
+    case MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM:
+    case MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM_TITLE_DEFENSE:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
 static void BuildNormalStartMenu(void)
 {
     if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
@@ -349,7 +367,8 @@ static void BuildNormalStartMenu(void)
 
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_SAVE);
-    AddStartMenuAction(MENU_ACTION_OPTION);
+    if (!IsInPokemonLeagueChallenge())
+        AddStartMenuAction(MENU_ACTION_OPTION);
 }
 
 static void BuildDebugStartMenu(void)
@@ -364,7 +383,8 @@ static void BuildDebugStartMenu(void)
         AddStartMenuAction(MENU_ACTION_POKENAV);
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_SAVE);
-    AddStartMenuAction(MENU_ACTION_OPTION);
+    if (!IsInPokemonLeagueChallenge())
+        AddStartMenuAction(MENU_ACTION_OPTION);
 }
 
 static void BuildSafariZoneStartMenu(void)

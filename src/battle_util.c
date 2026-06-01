@@ -14096,3 +14096,22 @@ u32 GetSlot(u32 *availableSlots, u32 size)
     else if(B_MULTI_ITEM_ORDER == 2)
         return gLastItemSlot = availableSlots[Random() % size];
 }
+
+bool32 IsVictoryCatch(void)
+{
+    if (gBattleTypeFlags & BATTLE_TYPE_RAID)
+        return TRUE;
+    if (gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_DOUBLE))
+        return FALSE;
+
+    return (B_FLAG_VICTORY_CATCH_RANDOM != 0 && FlagGet(B_FLAG_VICTORY_CATCH_RANDOM))
+        || (B_FLAG_VICTORY_CATCH_GUARANTEED != 0 && FlagGet(B_FLAG_VICTORY_CATCH_GUARANTEED));
+}
+
+bool32 IsVictoryCatchGuaranteed(void)
+{
+    return (gBattleTypeFlags & BATTLE_TYPE_RAID)
+        || (IsVictoryCatch()
+         && B_FLAG_VICTORY_CATCH_GUARANTEED != 0
+         && FlagGet(B_FLAG_VICTORY_CATCH_GUARANTEED));
+}

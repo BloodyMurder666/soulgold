@@ -440,6 +440,12 @@ void Overworld_ResetBattleFlagsAndVars(void)
     FlagClear(B_FLAG_DYNAMAX_BATTLE);
     FlagClear(B_FLAG_SKY_BATTLE);
     FlagClear(B_FLAG_NO_WHITEOUT);
+#if B_FLAG_VICTORY_CATCH_RANDOM != 0
+    FlagClear(B_FLAG_VICTORY_CATCH_RANDOM);
+#endif
+#if B_FLAG_VICTORY_CATCH_GUARANTEED != 0
+    FlagClear(B_FLAG_VICTORY_CATCH_GUARANTEED);
+#endif
 }
 #endif
 

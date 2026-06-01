@@ -109,7 +109,6 @@ struct DexNavSearch
     s16 tileY;
     u8 fldEffSpriteId;
     u8 fldEffId;
-    u8 movementCount;
     u8 windowId;
     u8 iconSpriteId;
     u8 eyeSpriteId;
@@ -999,23 +998,6 @@ void EndDexNavSearch(void)
     FlagClear(DN_FLAG_SEARCHING);
 }
 
-static void EndDexNavSearchSetupScript(const u8 *script)
-{
-    gSaveBlock3Ptr->dexNavChain = 0;   //reset chain
-    EndDexNavSearch();
-    ScriptContext_SetupScript(script);
-}
-
-static u8 GetMovementProximityBySearchLevel(void)
-{
-    if (sDexNavSearchDataPtr->searchLevel < 20)
-        return 2;
-    else if (sDexNavSearchDataPtr->searchLevel < 50)
-        return 3;
-    else
-        return 4;
-}
-
 static void RevealHiddenMon(void)
 {
     u16 species = sDexNavSearchDataPtr->species;
@@ -1068,32 +1050,17 @@ bool32 OnStep_DexNavSearch(void)
     if (!sDexNavSearchDataPtr->hiddenSearch)    //update search window info only if revealed mon
         DexNavUpdateSearchWindow(sDexNavSearchDataPtr->proximity, sDexNavSearchDataPtr->searchLevel);
 
-    if (sDexNavSearchDataPtr->proximity > MAX_PROXIMITY)
-    { // out of range
-        if (sDexNavSearchDataPtr->hiddenSearch)
-        {
-            EndDexNavSearch();
-            return FALSE;
-        }
-        else
-        {
-            EndDexNavSearchSetupScript(EventScript_LostSignal);
-            return TRUE;
-        }
+    if (sDexNavSearchDataPtr->hiddenSearch && sDexNavSearchDataPtr->proximity > MAX_PROXIMITY)
+    {
+        EndDexNavSearch();
+        return FALSE;
     }
 
-    if (frameCount > DEXNAV_TIMEOUT * 60)
-    { // player took too long
-        if (sDexNavSearchDataPtr->hiddenSearch)
-        {
-            EndDexNavSearch();
-            return FALSE;
-        }
-        else
-        {
-            EndDexNavSearchSetupScript(EventScript_PokemonGotAway);
-            return TRUE;
-        }
+    // Automatically generated hidden searches should remain unobtrusive if ignored.
+    // Player-initiated searches stay active until completed, canceled, or left behind.
+    if (sDexNavSearchDataPtr->hiddenSearch && frameCount > DEXNAV_TIMEOUT * 60)
+    {
+        EndDexNavSearch();
         return FALSE;
     }
 
@@ -1115,21 +1082,6 @@ bool32 OnStep_DexNavSearch(void)
         return FALSE;
     }
 
-    //Caves and water the pokemon moves around
-    if ((sDexNavSearchDataPtr->environment == ENCOUNTER_TYPE_WATER || GetCurrentMapType() == MAP_TYPE_UNDERGROUND)
-        && sDexNavSearchDataPtr->proximity < GetMovementProximityBySearchLevel() && sDexNavSearchDataPtr->movementCount < 2
-        && !sDexNavSearchDataPtr->hiddenSearch)
-    {
-        FieldEffectStop(&gSprites[sDexNavSearchDataPtr->fldEffSpriteId], sDexNavSearchDataPtr->fldEffId);
-
-        if (!TryStartHiddenMonFieldEffect(sDexNavSearchDataPtr->environment, 10, 10, TRUE))
-        {
-            EndDexNavSearchSetupScript(EventScript_PokemonGotAway);
-            return TRUE;
-        }
-
-        sDexNavSearchDataPtr->movementCount++;
-    }
     return FALSE;
 }
 

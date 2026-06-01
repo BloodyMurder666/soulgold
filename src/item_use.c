@@ -4,6 +4,7 @@
 #include "battle_anim.h"
 #include "battle_pyramid.h"
 #include "battle_pyramid_bag.h"
+#include "battle_util.h"
 #include "berry.h"
 #include "berry_powder.h"
 #include "buenas_password.h"
@@ -1305,7 +1306,9 @@ static u32 GetBallThrowableState(void)
         return BALL_THROW_UNABLE_NO_ROOM;
     else if (GetConfig(B_SEMI_INVULNERABLE_CATCH) >= GEN_4 &&  IsSemiInvulnerable(GetCatchingBattler(), CHECK_ALL))
         return BALL_THROW_UNABLE_SEMI_INVULNERABLE;
-    else if (FlagGet(B_FLAG_NO_CATCHING) || !IsAllowedToUseBag())
+    else if ((IsVictoryCatch() && gBattleStruct->victoryCatchState != VICTORY_CATCH_OPEN_BAG)
+          || FlagGet(B_FLAG_NO_CATCHING)
+          || !IsAllowedToUseBag())
         return BALL_THROW_UNABLE_DISABLED_FLAG;
 
     return BALL_THROW_ABLE;
