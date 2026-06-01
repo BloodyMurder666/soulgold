@@ -318,7 +318,7 @@ bool32 EndOrContinueWeather(void)
     {
         gBattleCommunication[MULTISTRING_CHOOSER] = sBattleWeatherInfo[currBattleWeather].continuesMessage;
         gBattleScripting.animArg1 = sBattleWeatherInfo[currBattleWeather].animation;
-        BattleScriptExecute(BattleScript_WeatherContinues);
+        BattleScriptExecute(gSaveBlock2Ptr->optionsFastWeather ? BattleScript_FastWeatherContinues : BattleScript_WeatherContinues);
         return TRUE;
     }
 

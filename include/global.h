@@ -632,8 +632,9 @@ struct SaveBlock2
              u16 optionsFont:2; //0 = emerald, 1 = fire red
              u16 optionsLevelCaps:3; //0 = no caps, 1 = soft caps, 2 = hard caps
              u16 optionsFastMegas:1; //0 = full Mega Evolution animation, 1 = near-instant animation
+             u16 optionsFastWeather:1; //0 = show recurring weather messages, 1 = skip recurring weather messages
              u8 rivalName[PLAYER_NAME_LENGTH + 1];
-             //u16 padding1:3;
+             //u16 padding1:2;
              //u16 padding2;
     /*0x18*/ struct Pokedex pokedex;
     /*0x90*/ u8 filler_90[0x8];

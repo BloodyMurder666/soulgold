@@ -52,6 +52,7 @@ extern const u8 BattleScript_Pausex20[];
 extern const u8 BattleScript_LevelUp[];
 extern const u8 BattleScript_InnateUnlocked[];
 extern const u8 BattleScript_WeatherContinues[];
+extern const u8 BattleScript_FastWeatherContinues[];
 extern const u8 BattleScript_WeatherFaded[];
 extern const u8 BattleScript_DamagingWeather[];
 extern const u8 BattleScript_FogEnded_Ret[];

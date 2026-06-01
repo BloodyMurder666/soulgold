@@ -118,6 +118,7 @@ static void SetDefaultOptions(void)
     gSaveBlock2Ptr->optionsWildLevelScaling = LEVEL_SCALING_OPTION_OFF;
     gSaveBlock2Ptr->optionsFastIntroNoSlide = B_FAST_INTRO_NO_SLIDE;
     gSaveBlock2Ptr->optionsFastMegas = B_FAST_MEGAS;
+    gSaveBlock2Ptr->optionsFastWeather = B_FAST_WEATHER;
                
 }
 

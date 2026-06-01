@@ -4426,6 +4426,11 @@ BattleScript_WeatherContinues::
 	call BattleScript_ActivateWeatherAbilities
 	end2
 
+BattleScript_FastWeatherContinues::
+	setbyte gBattleCommunication, 0
+	call BattleScript_ActivateWeatherAbilities
+	end2
+
 BattleScript_WeatherFaded::
 	printfromtable gWeatherEndsStringIds
 	waitmessage B_WAIT_TIME_LONG

@@ -73,6 +73,7 @@ enum
 {
     MENUITEM_INTRO_SLIDE,
     MENUITEM_FAST_MEGAS,
+    MENUITEM_FAST_WEATHER,
     MENUITEM_COUNT_PG3,
 };
 
@@ -101,6 +102,7 @@ enum
 
 #define YPOS_INTRO_SLIDE (MENUITEM_INTRO_SLIDE * 16)
 #define YPOS_FAST_MEGAS (MENUITEM_FAST_MEGAS * 16)
+#define YPOS_FAST_WEATHER (MENUITEM_FAST_WEATHER * 16)
 
 #define PAGE_COUNT  3
 
@@ -146,6 +148,8 @@ static u8 IntroSlide_ProcessInput(u8 selection);
 static void IntroSlide_DrawChoices(u8 selection);
 static u8 FastMegas_ProcessInput(u8 selection);
 static void FastMegas_DrawChoices(u8 selection);
+static u8 FastWeather_ProcessInput(u8 selection);
+static void FastWeather_DrawChoices(u8 selection);
 
 static void DrawTextOption(void);
 
@@ -155,6 +159,7 @@ static void DrawBgWindowFrames(void);
 
 EWRAM_DATA static bool8 sArrowPressed = FALSE;
 EWRAM_DATA static bool8 sFastMegas = FALSE;
+EWRAM_DATA static bool8 sFastWeather = FALSE;
 
 static const u8 gText_Option[]             = _("OPTION");
 static const u8 gText_TextSpeedSlow[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Slow");
@@ -193,6 +198,8 @@ static const u8 gText_IntroSlideOn[]       = _("{COLOR GREEN}{SHADOW LIGHT_GREEN
 static const u8 gText_IntroSlideOff[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Off");
 static const u8 gText_FastMegasOn[]        = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}On");
 static const u8 gText_FastMegasOff[]       = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Off");
+static const u8 gText_FastWeatherOn[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}On");
+static const u8 gText_FastWeatherOff[]     = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Off");
 
 static const u16 sOptionMenuText_Pal[] = INCBIN_U16("graphics/interface/option_menu_text.gbapal");
 // note: this is only used in the Japanese release
@@ -225,6 +232,7 @@ static const u8 *const sOptionMenuItemsNames_Pg3[MENUITEM_COUNT_PG3] =
 {
     [MENUITEM_INTRO_SLIDE] = COMPOUND_STRING("Battle intro"),
     [MENUITEM_FAST_MEGAS] = COMPOUND_STRING("Fast megas"),
+    [MENUITEM_FAST_WEATHER] = COMPOUND_STRING("Fast weather"),
 };
 
 static const struct WindowTemplate sOptionMenuWinTemplates[] =
@@ -308,6 +316,7 @@ static void ReadAllCurrentSettings(u8 taskId)
         gTasks[taskId].tBattleSpeed = VarGet(VAR_BATTLE_SPEED);
         gTasks[taskId].tFastIntroNoSlide = gSaveBlock2Ptr->optionsFastIntroNoSlide;
         sFastMegas = gSaveBlock2Ptr->optionsFastMegas;
+        sFastWeather = gSaveBlock2Ptr->optionsFastWeather;
 }
 
 static void DrawOptionsPg1(u8 taskId)
@@ -343,6 +352,7 @@ static void DrawOptionsPg3(u8 taskId)
     ReadAllCurrentSettings(taskId);
     IntroSlide_DrawChoices(gTasks[taskId].tFastIntroNoSlide);
     FastMegas_DrawChoices(sFastMegas);
+    FastWeather_DrawChoices(sFastWeather);
     HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
     CopyWindowToVram(WIN_OPTIONS, COPYWIN_FULL);
 }
@@ -730,12 +740,12 @@ static void Task_OptionMenuProcessInput_Pg3(u8 taskId)
         if (gTasks[taskId].tMenuSelection > 0)
             gTasks[taskId].tMenuSelection--;
         else
-            gTasks[taskId].tMenuSelection = MENUITEM_FAST_MEGAS;
+            gTasks[taskId].tMenuSelection = MENUITEM_FAST_WEATHER;
         HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
     }
     else if (JOY_NEW(DPAD_DOWN))
     {
-        if (gTasks[taskId].tMenuSelection < MENUITEM_FAST_MEGAS)
+        if (gTasks[taskId].tMenuSelection < MENUITEM_FAST_WEATHER)
             gTasks[taskId].tMenuSelection++;
         else
             gTasks[taskId].tMenuSelection = 0;
@@ -760,6 +770,13 @@ static void Task_OptionMenuProcessInput_Pg3(u8 taskId)
 
             if (previousOption != sFastMegas)
                 FastMegas_DrawChoices(sFastMegas);
+            break;
+        case MENUITEM_FAST_WEATHER:
+            previousOption = sFastWeather;
+            sFastWeather = FastWeather_ProcessInput(sFastWeather);
+
+            if (previousOption != sFastWeather)
+                FastWeather_DrawChoices(sFastWeather);
             break;
         default:
             return;
@@ -815,6 +832,7 @@ static void SaveCurrentSettings(u8 taskId)
     VarSet(VAR_BATTLE_SPEED, gTasks[taskId].tBattleSpeed);
     gSaveBlock2Ptr->optionsFastIntroNoSlide = gTasks[taskId].tFastIntroNoSlide;
     gSaveBlock2Ptr->optionsFastMegas = sFastMegas;
+    gSaveBlock2Ptr->optionsFastWeather = sFastWeather;
 }
 
 static void Task_OptionMenuSave(u8 taskId)
@@ -1270,6 +1288,35 @@ static void FastMegas_DrawChoices(u8 selection)
 
     DrawOptionMenuChoice(gText_FastMegasOn, 104, YPOS_FAST_MEGAS, styles[TRUE]);
     DrawOptionMenuChoice(gText_FastMegasOff, GetStringRightAlignXOffset(FONT_NORMAL, gText_FastMegasOff, 198), YPOS_FAST_MEGAS, styles[FALSE]);
+}
+
+static u8 FastWeather_ProcessInput(u8 selection)
+{
+    if (selection > TRUE)
+        selection = FALSE;
+
+    if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
+    {
+        selection ^= 1;
+        sArrowPressed = TRUE;
+    }
+
+    return selection;
+}
+
+static void FastWeather_DrawChoices(u8 selection)
+{
+    u8 styles[2];
+
+    if (selection > TRUE)
+        selection = FALSE;
+
+    styles[0] = 0;
+    styles[1] = 0;
+    styles[selection] = 1;
+
+    DrawOptionMenuChoice(gText_FastWeatherOn, 104, YPOS_FAST_WEATHER, styles[TRUE]);
+    DrawOptionMenuChoice(gText_FastWeatherOff, GetStringRightAlignXOffset(FONT_NORMAL, gText_FastWeatherOff, 198), YPOS_FAST_WEATHER, styles[FALSE]);
 }
 
 static u8 LevelCaps_ProcessInput(u8 selection)
