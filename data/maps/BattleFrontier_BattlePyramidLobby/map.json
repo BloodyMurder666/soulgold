@@ -74,8 +74,8 @@
       "x": 7,
       "y": 17,
       "elevation": 4,
-      "dest_map": "MAP_BATTLE_FRONTIER_OUTSIDE_EAST",
-      "dest_warp_id": "3"
+      "dest_map": "MAP_VAJRA_DESERT_WEST_2",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],

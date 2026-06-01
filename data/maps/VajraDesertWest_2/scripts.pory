@@ -1,1 +1,19 @@
 mapscripts VajraDesertWest_2_MapScripts {}
+
+script VajraCrossroad_Girl {
+    msgbox("Many strong trainers around the world 
+            come to visit our village to partake
+            in the Battle Pyramid challenge. 
+            
+            It was relocated here from Hoenn region
+            some time ago.", MSGBOX_NPC)
+}
+
+script VajraCrossroad_Sign {
+    msgbox("{LEFT_ARROW} Old Pyramid
+            {RIGHT_ARROW} Rinto Village", MSGBOX_SIGN)
+}
+
+script VajraCrossroad_SignBP {
+    msgbox("Battle Pyramid, brave trainers welcome!", MSGBOX_SIGN)
+}

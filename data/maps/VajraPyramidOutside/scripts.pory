@@ -1,1 +1,5 @@
 mapscripts VajraPyramidOutside_MapScripts {}
+
+script VajraPyramidOutside_Door {
+    msgbox("The door is sealed shut tightly.", MSGBOX_SIGN)
+}
