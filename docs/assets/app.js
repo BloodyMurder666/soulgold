@@ -49,16 +49,17 @@ function moveCategory(category) {
 
 function speciesSpritePanel(mon) {
   if (!mon.shinySprite) return sprite(mon.sprite);
+  const shinyIcon = state.data.uiIcons?.shiny || "";
   return `
     <div class="species-sprite-panel">
       <img class="sprite" src="${mon.sprite}" alt="${speciesFormLabel(mon)}">
-      <button class="sprite-toggle" type="button" data-state="regular" data-regular="${mon.sprite}" data-shiny="${mon.shinySprite}" aria-pressed="false">✨</button>
+      <button class="sprite-toggle" type="button" data-state="regular" data-regular="${mon.sprite}" data-shiny="${mon.shinySprite}" aria-label="Toggle shiny colors" aria-pressed="false">${shinyIcon ? `<img class="shiny-toggle-icon" src="${shinyIcon}" alt="">` : ""}</button>
     </div>
   `;
 }
 
 async function init() {
-  const response = await fetch("data/romhack-docs.json?v=20260601-1");
+  const response = await fetch("data/romhack-docs.json?v=20260601-3");
   state.data = await response.json();
   state.filteredSpecies = state.data.species;
   bindEvents();
@@ -263,7 +264,6 @@ function handleSpriteToggle(event) {
   const showShiny = button.dataset.state !== "shiny";
   image.src = showShiny ? button.dataset.shiny : button.dataset.regular;
   button.dataset.state = showShiny ? "shiny" : "regular";
-  button.textContent = showShiny ? "✨" : "✨";
   button.setAttribute("aria-pressed", showShiny ? "true" : "false");
 }
 
@@ -302,12 +302,12 @@ function moveRows(moves, options = {}) {
 }
 
 function baseSpeciesForForms(mon) {
-  if (!mon.constant.includes("_MEGA")) return mon;
+  if (!/_(?:MEGA(?:_[XYZ])?|GMAX|DMAX)$/.test(mon.constant)) return mon;
   return state.data.species.find((entry) => entry.constant === baseConstantForMega(mon.constant)) || mon;
 }
 
 function baseConstantForMega(constant) {
-  return constant.replace(/_MEGA(?:_[XYZ])?$/, "");
+  return constant.replace(/_(?:MEGA(?:_[XYZ])?|GMAX|DMAX)$/, "");
 }
 
 function evolutionChain(mon) {
@@ -365,6 +365,11 @@ function speciesFormLabel(mon) {
   return mon.name;
 }
 
+function megaTargetLabel(mon) {
+  if (mon.constant.includes("_GMAX") || mon.constant.includes("_DMAX")) return `${mon.name} Mega`;
+  return speciesFormLabel(mon);
+}
+
 function megaFormLinks(mon) {
   const bySpecies = new Map(state.data.species.map((entry) => [entry.constant, entry]));
   const chainMon = baseSpeciesForForms(mon);
@@ -402,7 +407,7 @@ function megaFormLinks(mon) {
       <div class="evolution-line">
         <button class="evolution-name species-link" type="button" data-species="${base?.constant || chainMon.constant}">${sprite(base?.sprite || chainMon.sprite, "tiny-sprite")}<strong>${base?.name || chainMon.name}</strong></button>
         <span class="evolution-arrow">-&gt;</span>
-        <button class="evolution-name species-link" type="button" data-species="${form.constant}">${sprite(form.sprite, "tiny-sprite")}<strong>${speciesFormLabel(form)}</strong></button>
+        <button class="evolution-name species-link" type="button" data-species="${form.constant}">${sprite(form.sprite, "tiny-sprite")}<strong>${megaTargetLabel(form)}</strong></button>
         <span class="evolution-method">${edge.label || `Mega Evolution (${edge.itemName || "Mega Stone"})`}</span>
       </div>
     `;
@@ -718,11 +723,6 @@ function trainerMoveLabel(value) {
   return state.data.moves[value]?.name || trainerTokenName(value, "MOVE_");
 }
 
-function trainerMoveHtml(value) {
-  const move = state.data.moves[value];
-  return `<span class="trainer-move-entry">${moveCategory(move?.category || "")}<span>${trainerMoveLabel(value)}</span></span>`;
-}
-
 function trainerHeldItemIcon(mon) {
   if (!mon.itemIcon) return "";
   const itemName = trainerTokenName(mon.item, "ITEM_");
@@ -744,7 +744,7 @@ function trainerMonDetailsHtml(mon) {
   if (evs) rows.push(evs);
   if (ivs) rows.push(ivs);
   if (mon.moves?.length) {
-    rows.push(`<div class="trainer-mon-detail trainer-moves"><span>Moves:</span><strong>${mon.moves.map(trainerMoveHtml).join("")}</strong></div>`);
+    rows.push(`<div class="trainer-mon-detail trainer-moves"><span>Moves:</span><strong>${mon.moves.map((move) => `- ${trainerMoveLabel(move)}`).join("<br>")}</strong></div>`);
   }
   return rows.length ? `<div class="trainer-mon-details">${rows.join("")}</div>` : "";
 }

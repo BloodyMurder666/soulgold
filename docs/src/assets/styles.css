@@ -8,8 +8,8 @@
   --muted: #b9bdca;
   --blue: #3265b8;
   --gold: #d7b26d;
-  --bar: #ca850f;
-  --good: #48a12c;
+  --bar: #2f8f5b;
+  --good: #78cf8b;
   --top-chrome-height: 187px;
   font-family: "Arial Narrow", "Trebuchet MS", Arial, sans-serif;
 }
@@ -230,20 +230,21 @@ th {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 34px;
-  min-height: 28px;
+  min-width: 64px;
+  min-height: 32px;
   vertical-align: middle;
 }
 
 .category-icon {
-  width: 28px;
-  height: 28px;
+  width: 64px;
+  height: 32px;
   object-fit: contain;
+  image-rendering: pixelated;
 }
 
 .category-badge {
-  min-width: 54px;
-  min-height: 24px;
+  min-width: 64px;
+  min-height: 28px;
   padding: 0 8px;
   border: 1px solid #4a4c57;
   border-radius: 6px;
@@ -251,7 +252,7 @@ th {
   color: var(--muted);
   font-size: 12px;
   font-weight: 800;
-  line-height: 24px;
+  line-height: 28px;
   text-align: center;
 }
 
@@ -471,21 +472,42 @@ dialog::backdrop { background: rgb(0 0 0 / 70%); }
 }
 
 .sprite-toggle {
-  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
   border: 1px solid #4a4c57;
   border-radius: 6px;
   background: #101116;
   color: var(--text);
-  padding: 0 10px;
-  font: inherit;
-  font-size: 14px;
-  font-weight: 800;
+  padding: 4px;
   cursor: pointer;
+  transition: border-color 120ms ease, box-shadow 120ms ease, background 120ms ease, transform 120ms ease;
 }
 
 .sprite-toggle:hover {
   border-color: var(--gold);
   color: var(--gold);
+}
+
+.shiny-toggle-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  transition: filter 120ms ease, opacity 120ms ease, transform 120ms ease;
+}
+
+.sprite-toggle[aria-pressed="true"] {
+  border-color: var(--gold);
+  background: #242014;
+  box-shadow: 0 0 0 2px rgb(215 178 109 / 18%), 0 0 12px rgb(215 178 109 / 22%);
+  transform: translateY(-1px);
+}
+
+.sprite-toggle[aria-pressed="true"] .shiny-toggle-icon {
+  filter: brightness(1.18) saturate(1.25) drop-shadow(0 0 5px rgb(215 178 109 / 70%));
+  transform: scale(1.06);
 }
 
 .detail-grid {
@@ -530,14 +552,14 @@ dialog::backdrop { background: rgb(0 0 0 / 70%); }
 
 .bar {
   height: 22px;
-  background: #3a2a12;
+  background: #17231d;
 }
 
 .bar > span {
   display: block;
   height: 100%;
   max-width: 100%;
-  background: linear-gradient(90deg, var(--bar), #3dd313);
+  background: linear-gradient(90deg, var(--bar), var(--good));
 }
 
 .move-list {
@@ -546,18 +568,18 @@ dialog::backdrop { background: rgb(0 0 0 / 70%); }
 
 .move-row {
   display: grid;
-  grid-template-columns: 64px minmax(220px, 1fr) 96px 54px 64px 64px;
+  grid-template-columns: 64px minmax(220px, 1fr) 96px 72px 64px 64px;
   gap: 10px;
   padding: 8px 10px;
   border-bottom: 1px solid #343640;
 }
 
 .move-row-compat {
-  grid-template-columns: minmax(220px, 1fr) 96px 54px 64px 64px;
+  grid-template-columns: minmax(220px, 1fr) 96px 72px 64px 64px;
 }
 
 .move-head-compat {
-  grid-template-columns: minmax(220px, 1fr) 96px 54px 64px 64px;
+  grid-template-columns: minmax(220px, 1fr) 96px 72px 64px 64px;
 }
 
 .move-name {
@@ -815,25 +837,8 @@ dialog::backdrop { background: rgb(0 0 0 / 70%); }
 }
 
 .trainer-moves strong {
-  display: grid;
-  gap: 3px;
+  display: block;
   line-height: 1.35;
-}
-
-.trainer-move-entry {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--text);
-}
-
-.trainer-move-entry > span:last-child {
-  color: var(--text);
-  font-weight: 700;
-}
-
-.trainer-move-entry .category-badge {
-  color: var(--muted);
 }
 
 #trainers td {
@@ -1062,14 +1067,14 @@ dialog::backdrop { background: rgb(0 0 0 / 70%); }
     gap: 12px;
   }
   .move-row {
-    grid-template-columns: 42px minmax(0, 1fr) 76px 54px 42px 42px;
+    grid-template-columns: 42px minmax(0, 1fr) 76px 68px 42px 42px;
     gap: 6px;
     padding: 7px 6px;
     font-size: 14px;
   }
   .move-row-compat,
   .move-head-compat {
-    grid-template-columns: minmax(0, 1fr) 76px 54px 42px 42px;
+    grid-template-columns: minmax(0, 1fr) 76px 68px 42px 42px;
   }
   .type {
     min-width: 58px;

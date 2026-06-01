@@ -81,7 +81,13 @@ TYPE_ICON_FILES = {
 MOVE_CATEGORY_ICON_FILES = {
     "DAMAGE_CATEGORY_PHYSICAL": "physical.png",
     "DAMAGE_CATEGORY_SPECIAL": "special.png",
+    "DAMAGE_CATEGORY_STATUS": "status.png",
 }
+
+SHINY_TOGGLE_ICON_FILE = "shiny.png"
+
+MEGA_FORM_TARGET_MARKERS = ("_MEGA", "_GMAX", "_DMAX")
+GMAX_DMAX_FORM_RE = re.compile(r"_(?:GMAX|DMAX)(?:_|$)")
 
 DEX_HIDDEN_SPECIES = {
     "SPECIES_MIMIKYU_BUSTED",
@@ -232,6 +238,34 @@ def is_dex_visible_species(constant: str) -> bool:
     if any(constant.startswith(prefix) for prefix in DEX_HIDDEN_PREFIXES):
         return constant == "SPECIES_ARCEUS_NORMAL"
     return True
+
+
+def is_gmax_dmax_form(constant: str) -> bool:
+    return bool(GMAX_DMAX_FORM_RE.search(constant))
+
+
+def refresh_display_dex(rows: list[SpeciesRow]) -> None:
+    for row in rows:
+        row.display_dex = 0
+    display_by_nat_dex: dict[int, int] = {}
+    for row in rows:
+        if not row.nat_dex or not row.dex_visible:
+            continue
+        if row.nat_dex not in display_by_nat_dex:
+            display_by_nat_dex[row.nat_dex] = len(display_by_nat_dex) + 1
+        row.display_dex = display_by_nat_dex[row.nat_dex]
+    for row in rows:
+        if row.display_dex or not row.nat_dex:
+            continue
+        row.display_dex = display_by_nat_dex.get(row.nat_dex, 0)
+
+
+def apply_dex_form_visibility(rows: list[SpeciesRow], mega_evolutions: list[dict[str, str]]) -> None:
+    mega_targets = {evolution["target"] for evolution in mega_evolutions}
+    for row in rows:
+        if is_gmax_dmax_form(row.constant) and row.constant not in mega_targets:
+            row.dex_visible = False
+    refresh_display_dex(rows)
 
 
 def strip_c_comments(text: str) -> str:
@@ -596,17 +630,7 @@ def parse_species() -> tuple[list[SpeciesRow], dict[str, SpeciesRow]]:
         by_constant[constant] = row
 
     rows.sort(key=lambda row: (row.nat_dex if row.nat_dex else 99999, row.id))
-    display_by_nat_dex: dict[int, int] = {}
-    for row in rows:
-        if not row.nat_dex or not row.dex_visible:
-            continue
-        if row.nat_dex not in display_by_nat_dex:
-            display_by_nat_dex[row.nat_dex] = len(display_by_nat_dex) + 1
-        row.display_dex = display_by_nat_dex[row.nat_dex]
-    for row in rows:
-        if row.display_dex or not row.nat_dex:
-            continue
-        row.display_dex = display_by_nat_dex.get(row.nat_dex, 0)
+    refresh_display_dex(rows)
     return rows, by_constant
 
 
@@ -752,7 +776,7 @@ def parse_mega_evolutions(item_names: dict[str, dict[str, str]]) -> list[dict[st
             r"\{\s*FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM\s*,\s*(SPECIES_[A-Z0-9_]+)\s*,\s*(ITEM_[A-Z0-9_]+)",
             body,
         ):
-            if "_MEGA" not in target:
+            if not any(marker in target for marker in MEGA_FORM_TARGET_MARKERS):
                 continue
             key = (source, target, item)
             if key in seen:
@@ -1021,17 +1045,45 @@ def copy_move_category_icons() -> dict[str, str]:
     output_dir = OUT_DIR / "sprites" / "categories"
     output_dir.mkdir(parents=True, exist_ok=True)
     icons: dict[str, str] = {}
-    resample = getattr(Image, "Resampling", Image).LANCZOS
     for category, filename in MOVE_CATEGORY_ICON_FILES.items():
-        source = REPO_ROOT / filename
-        if not source.exists():
+        source = next(
+            (
+                path
+                for path in (REPO_ROOT / filename, output_dir / filename)
+                if path.exists()
+            ),
+            None,
+        )
+        if source is None:
             continue
         target = output_dir / filename
-        image = Image.open(source).convert("RGBA")
-        image = image.resize((28, 28), resample)
-        image.save(target)
+        if source.resolve() != target.resolve():
+            shutil.copy2(source, target)
         icons[category] = str(target.relative_to(OUT_DIR))
     return icons
+
+
+def copy_shiny_toggle_icon() -> str | None:
+    output_dir = OUT_DIR / "sprites" / "ui"
+    source = next(
+        (
+            path
+            for path in (REPO_ROOT / SHINY_TOGGLE_ICON_FILE, output_dir / SHINY_TOGGLE_ICON_FILE)
+            if path.exists()
+        ),
+        None,
+    )
+    if source is None:
+        return None
+    output_dir.mkdir(parents=True, exist_ok=True)
+    target = output_dir / SHINY_TOGGLE_ICON_FILE
+    if source.resolve() == target.resolve():
+        return str(target.relative_to(OUT_DIR))
+    resample = getattr(Image, "Resampling", Image).LANCZOS
+    image = Image.open(source).convert("RGBA")
+    image = image.resize((24, 24), resample)
+    image.save(target)
+    return str(target.relative_to(OUT_DIR))
 
 
 def parse_wild_encounters(by_species: dict[str, SpeciesRow]) -> list[dict[str, Any]]:
@@ -1477,6 +1529,7 @@ def build() -> None:
     tmhm_locations = parse_tmhm_locations()
     evolution_map = parse_evolutions(item_records)
     mega_evolutions = parse_mega_evolutions(item_records)
+    apply_dex_form_visibility(species, mega_evolutions)
     level_up = parse_level_up_learnsets()
     teachables = parse_teachable_learnsets(tmhm_moves)
     front_sources = parse_front_pic_sources()
@@ -1497,6 +1550,7 @@ def build() -> None:
     item_icon_dir = OUT_DIR / "sprites" / "items"
     type_icons = copy_type_icons()
     category_icons = copy_move_category_icons()
+    shiny_toggle_icon = copy_shiny_toggle_icon()
 
     for row in species:
         if row.level_up_symbol:
@@ -1586,6 +1640,7 @@ def build() -> None:
         "trainers": trainers,
         "typeIcons": type_icons,
         "categoryIcons": category_icons,
+        "uiIcons": {"shiny": shiny_toggle_icon} if shiny_toggle_icon else {},
         "megaEvolutions": mega_evolutions,
     }
     (OUT_DIR / "data" / "romhack-docs.json").write_text(json.dumps(payload, indent=2), encoding="utf-8")
