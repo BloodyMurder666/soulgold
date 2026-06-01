@@ -1028,7 +1028,9 @@ static void BagMenu_ItemPrintCallback(u8 windowId, u32 itemIndex, u8 y)
         if (gBagPosition.pocket == POCKET_TM_HM && GetItemTMHMIndex(itemSlot.itemId) > NUM_TECHNICAL_MACHINES)
             BlitBitmapToWindow(windowId, gBagMenuHMIcon_Gfx, 8, y - 1, 16, 16);
 
-        if (gBagPosition.pocket != POCKET_KEY_ITEMS && GetItemImportance(itemSlot.itemId) == FALSE)
+        if (gBagPosition.pocket != POCKET_KEY_ITEMS
+         && GetItemImportance(itemSlot.itemId) == FALSE
+         && !IsItemInfiniteHold(itemSlot.itemId))
         {
             // Print item quantity
             ConvertIntToDecimalStringN(gStringVar1, itemSlot.quantity, STR_CONV_MODE_RIGHT_ALIGN, MAX_ITEM_DIGITS);

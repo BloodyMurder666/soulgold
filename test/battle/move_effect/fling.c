@@ -99,7 +99,7 @@ SINGLE_BATTLE_TEST("Fling fails if the item changes the Pokémon's form")
 SINGLE_BATTLE_TEST("Fling works if the item changes a Pokémon's form but not the one holding it")
 {
     GIVEN {
-        PLAYER(SPECIES_VENUSAUR) { Item(ITEM_WATERTITE); }
+        PLAYER(SPECIES_VENUSAUR) { Item(ITEM_GRISEOUS_CORE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_FLING); }
@@ -810,7 +810,7 @@ SINGLE_BATTLE_TEST("Fling fails if the item changes the Pokémon's form (Items)"
 SINGLE_BATTLE_TEST("Fling works if the item changes a Pokémon's form but not the one holding it (Items)")
 {
     GIVEN {
-        PLAYER(SPECIES_VENUSAUR) { Items(ITEM_NONE, ITEM_WATERTITE); }
+        PLAYER(SPECIES_VENUSAUR) { Items(ITEM_NONE, ITEM_GRISEOUS_CORE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_FLING); }

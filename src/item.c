@@ -875,6 +875,15 @@ u8 GetItemConsumability(enum Item itemId)
     return !gItemsInfo[SanitizeItemId(itemId)].notConsumed;
 }
 
+bool32 IsItemInfiniteHold(enum Item itemId)
+{
+    enum Item item = SanitizeItemId(itemId);
+
+    return gItemsInfo[item].notConsumed
+        && gItemsInfo[item].sortType == ITEM_TYPE_MEGA_STONE
+        && gItemsInfo[item].pocket == POCKET_MEGASTONES;
+}
+
 enum Pocket GetItemPocket(enum Item itemId)
 {
     return gItemsInfo[SanitizeItemId(itemId)].pocket;
@@ -929,6 +938,9 @@ u32 GetItemSecondaryId(enum Item itemId)
 
 u32 GetItemFlingPower(enum Item itemId)
 {
+    if (IsItemInfiniteHold(itemId))
+        return 0;
+
     return gItemsInfo[SanitizeItemId(itemId)].flingPower;
 }
 

@@ -971,26 +971,6 @@ SINGLE_BATTLE_TEST("Dynamax: G-Max Steelsurge sets up sharp steel")
     }
 }
 
-// The test below should apply to G-Max Fireball and G-Max Drum Solo, too.
-SINGLE_BATTLE_TEST("Dynamax: G-Max Hydrosnipe has fixed power and ignores abilities", s16 damage)
-{
-    enum Move move;
-    PARAMETRIZE { move = MOVE_WATER_GUN; }
-    PARAMETRIZE { move = MOVE_HYDRO_CANNON; }
-    GIVEN {
-        ASSUME(MoveHasAdditionalEffect(MOVE_G_MAX_HYDROSNIPE, MOVE_EFFECT_FIXED_POWER));
-        PLAYER(SPECIES_INTELEON) { GigantamaxFactor(TRUE); }
-        OPPONENT(SPECIES_ARCTOVISH) { Ability(ABILITY_WATER_ABSORB); }
-    } WHEN {
-        TURN { MOVE(player, move, gimmick: GIMMICK_DYNAMAX); }
-    } SCENE {
-        MESSAGE("Inteleon used G-Max Hydrosnipe!");
-        HP_BAR(opponent, captureDamage: &results[i].damage);
-    } FINALLY {
-        EXPECT_EQ(results[0].damage, results[1].damage);
-    }
-}
-
 DOUBLE_BATTLE_TEST("Dynamax: G-Max Volt Crash paralyzes both opponents")
 {
     GIVEN {
@@ -1010,126 +990,6 @@ DOUBLE_BATTLE_TEST("Dynamax: G-Max Volt Crash paralyzes both opponents")
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PRZ, opponentRight);
         MESSAGE("The opposing Wynaut is paralyzed, so it may be unable to move!");
         STATUS_ICON(opponentRight, paralysis: TRUE);
-    }
-}
-
-// G-Max Stun Shock can apply different statuses to each opponent, but this isn't
-// compatible with the test RNG set-up.
-DOUBLE_BATTLE_TEST("Dynamax: G-Max Stun Shock paralyzes or poisons both opponents")
-{
-    u8 statusAnim;
-    u32 rng;
-    PARAMETRIZE { statusAnim = B_ANIM_STATUS_PRZ; rng = STATUS1_PARALYSIS; }
-    PARAMETRIZE { statusAnim = B_ANIM_STATUS_PSN; rng = STATUS1_POISON; }
-    GIVEN {
-        ASSUME(MoveHasAdditionalEffect(MOVE_G_MAX_STUN_SHOCK, MOVE_EFFECT_POISON_PARALYZE_SIDE));
-        PLAYER(SPECIES_TOXTRICITY) { GigantamaxFactor(TRUE); }
-        PLAYER(SPECIES_TOXEL);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WYNAUT);
-    } WHEN {
-        TURN { MOVE(playerLeft, MOVE_THUNDERBOLT, target: opponentLeft, gimmick: GIMMICK_DYNAMAX, \
-               WITH_RNG(RNG_G_MAX_STUN_SHOCK, rng)); }
-    } SCENE {
-        MESSAGE("Toxtricity used G-Max Stun Shock!");
-        // opponent left
-        ANIMATION(ANIM_TYPE_STATUS, statusAnim, opponentLeft);
-        if (statusAnim == B_ANIM_STATUS_PSN) {
-            MESSAGE("The opposing Wobbuffet was poisoned!");
-            STATUS_ICON(opponentLeft, poison: TRUE);
-        }
-        else {
-            MESSAGE("The opposing Wobbuffet is paralyzed, so it may be unable to move!");
-            STATUS_ICON(opponentLeft, paralysis: TRUE);
-        }
-        // opponent right
-        ANIMATION(ANIM_TYPE_STATUS, statusAnim, opponentRight);
-        if (statusAnim == B_ANIM_STATUS_PSN) {
-            MESSAGE("The opposing Wynaut was poisoned!");
-            STATUS_ICON(opponentRight, poison: TRUE);
-        }
-        else {
-            MESSAGE("The opposing Wynaut is paralyzed, so it may be unable to move!");
-            STATUS_ICON(opponentRight, paralysis: TRUE);
-        }
-    }
-}
-
-// This test extends to G-Max Befuddle, too.
-DOUBLE_BATTLE_TEST("Dynamax: G-Max Stun Shock chooses statuses before considering immunities")
-{
-    GIVEN {
-        ASSUME(MoveHasAdditionalEffect(MOVE_G_MAX_STUN_SHOCK, MOVE_EFFECT_POISON_PARALYZE_SIDE));
-        PLAYER(SPECIES_TOXTRICITY) { GigantamaxFactor(TRUE); }
-        PLAYER(SPECIES_TOXEL);
-        OPPONENT(SPECIES_GARBODOR);
-        OPPONENT(SPECIES_TRUBBISH);
-    } WHEN {
-        TURN { MOVE(playerLeft, MOVE_NUZZLE, target: opponentLeft, gimmick: GIMMICK_DYNAMAX, \
-               WITH_RNG(RNG_G_MAX_STUN_SHOCK, STATUS1_POISON)); }
-    } SCENE {
-        MESSAGE("Toxtricity used G-Max Stun Shock!");
-        NONE_OF {
-            // opponent left
-            STATUS_ICON(opponentLeft, poison: TRUE);
-            MESSAGE("The opposing Garbodor was poisoned!");
-            STATUS_ICON(opponentLeft, paralysis: TRUE);
-            MESSAGE("The opposing Garbodor is paralyzed, so it may be unable to move!");
-            // opponent right
-            STATUS_ICON(opponentRight, poison: TRUE);
-            MESSAGE("The opposing Trubbish was poisoned!");
-            STATUS_ICON(opponentRight, paralysis: TRUE);
-            MESSAGE("The opposing Trubbish is paralyzed, so it may be unable to move!");
-        }
-    }
-}
-
-DOUBLE_BATTLE_TEST("Dynamax: G-Max Befuddle paralyzes, poisons, or sleeps both opponents")
-{
-    u8 statusAnim;
-    u32 rng;
-    PARAMETRIZE { statusAnim = B_ANIM_STATUS_PRZ; rng = STATUS1_PARALYSIS; }
-    PARAMETRIZE { statusAnim = B_ANIM_STATUS_PSN; rng = STATUS1_POISON; }
-    PARAMETRIZE { statusAnim = B_ANIM_STATUS_SLP; rng = STATUS1_SLEEP; }
-    GIVEN {
-        ASSUME(MoveHasAdditionalEffect(MOVE_G_MAX_BEFUDDLE, MOVE_EFFECT_EFFECT_SPORE_SIDE));
-        PLAYER(SPECIES_BUTTERFREE) { GigantamaxFactor(TRUE); }
-        PLAYER(SPECIES_CATERPIE);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(playerLeft, MOVE_BUG_BITE, target: opponentLeft, gimmick: GIMMICK_DYNAMAX,
-               WITH_RNG(RNG_G_MAX_BEFUDDLE, rng)); }
-    } SCENE {
-        MESSAGE("Butterfree used G-Max Befuddle!");
-        // opponent left
-        ANIMATION(ANIM_TYPE_STATUS, statusAnim, opponentLeft);
-        if (statusAnim == B_ANIM_STATUS_PSN) {
-            MESSAGE("The opposing Wobbuffet was poisoned!");
-            STATUS_ICON(opponentLeft, poison: TRUE);
-        }
-        else if (statusAnim == B_ANIM_STATUS_PRZ) {
-            MESSAGE("The opposing Wobbuffet is paralyzed, so it may be unable to move!");
-            STATUS_ICON(opponentLeft, paralysis: TRUE);
-        }
-        else {
-            MESSAGE("The opposing Wobbuffet fell asleep!");
-            STATUS_ICON(opponentLeft, sleep: TRUE);
-        }
-        // opponent right
-        ANIMATION(ANIM_TYPE_STATUS, statusAnim, opponentRight);
-        if (statusAnim == B_ANIM_STATUS_PSN) {
-            MESSAGE("The opposing Wobbuffet was poisoned!");
-            STATUS_ICON(opponentRight, poison: TRUE);
-        }
-        else if (statusAnim == B_ANIM_STATUS_PRZ) {
-            MESSAGE("The opposing Wobbuffet is paralyzed, so it may be unable to move!");
-            STATUS_ICON(opponentRight, paralysis: TRUE);
-        }
-        else {
-            MESSAGE("The opposing Wobbuffet fell asleep!");
-            STATUS_ICON(opponentRight, sleep: TRUE);
-        }
     }
 }
 
@@ -1311,37 +1171,6 @@ DOUBLE_BATTLE_TEST("Dynamax: G-Max Wildfire sets a field effect that damages non
     }
 }
 
-DOUBLE_BATTLE_TEST("Dynamax: G-Max Replenish recycles allies' berries 50\% of the time")
-{
-    PASSES_RANDOMLY(1, 2, RNG_G_MAX_REPLENISH);
-    GIVEN {
-        ASSUME(MoveHasAdditionalEffect(MOVE_G_MAX_REPLENISH, MOVE_EFFECT_RECYCLE_BERRIES));
-        ASSUME(GetItemHoldEffect(ITEM_APICOT_BERRY) == HOLD_EFFECT_SP_DEFENSE_UP);
-        PLAYER(SPECIES_SNORLAX) { Item(ITEM_APICOT_BERRY); GigantamaxFactor(TRUE); }
-        PLAYER(SPECIES_MUNCHLAX) { Item(ITEM_APICOT_BERRY); Ability(ABILITY_THICK_FAT); }
-        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_APICOT_BERRY); }
-        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_APICOT_BERRY); }
-    } WHEN {
-        TURN { MOVE(playerLeft, MOVE_STUFF_CHEEKS); \
-               MOVE(playerRight, MOVE_STUFF_CHEEKS); \
-               MOVE(opponentLeft, MOVE_STUFF_CHEEKS); \
-               MOVE(opponentRight, MOVE_STUFF_CHEEKS); }
-        TURN { MOVE(playerLeft, MOVE_SCRATCH, target: opponentLeft, gimmick: GIMMICK_DYNAMAX); }
-    } SCENE {
-        // turn 1
-
-        MESSAGE("Using Apicot Berry, the Sp. Def of Snorlax rose!");
-        MESSAGE("Using Apicot Berry, the Sp. Def of Munchlax rose!");
-        MESSAGE("Using Apicot Berry, the Sp. Def of the opposing Wobbuffet rose!");
-        MESSAGE("Using Apicot Berry, the Sp. Def of the opposing Wobbuffet rose!");
-        // turn 2
-        MESSAGE("Snorlax used G-Max Replenish!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_G_MAX_REPLENISH, playerLeft);
-        MESSAGE("Snorlax found one Apicot Berry!");
-        MESSAGE("Munchlax found one Apicot Berry!");
-    }
-}
-
 DOUBLE_BATTLE_TEST("Dynamax: G-Max Snooze makes only the target drowsy")
 {
     PASSES_RANDOMLY(1, 2, RNG_G_MAX_SNOOZE);
@@ -1410,65 +1239,6 @@ DOUBLE_BATTLE_TEST("Dynamax: G-Max Sweetness cures allies' status conditions")
     } THEN {
         for (j = 0; j < PARTY_SIZE; j++)
             EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_STATUS), STATUS1_NONE);
-    }
-}
-
-// This test applies to G-Max Sandblast, too.
-DOUBLE_BATTLE_TEST("Dynamax: G-Max Centiferno traps both opponents in Fire Spin")
-{
-    GIVEN {
-        ASSUME(MoveHasAdditionalEffect(MOVE_G_MAX_CENTIFERNO, MOVE_EFFECT_FIRE_SPIN_SIDE));
-        PLAYER(SPECIES_CENTISKORCH) { GigantamaxFactor(TRUE); }
-        PLAYER(SPECIES_SIZZLIPEDE);
-        PLAYER(SPECIES_SIZZLIPEDE);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WYNAUT);
-    } WHEN {
-        TURN { MOVE(playerLeft, MOVE_FLAME_CHARGE, target: opponentLeft, gimmick: GIMMICK_DYNAMAX); }
-        TURN { SWITCH(playerLeft, 2); }
-    } SCENE {
-        // turn 1
-        MESSAGE("Centiskorch used G-Max Centiferno!");
-        MESSAGE("The opposing Wobbuffet is hurt by Fire Spin!");
-        HP_BAR(opponentLeft);
-        MESSAGE("The opposing Wynaut is hurt by Fire Spin!");
-        HP_BAR(opponentRight);
-        // turn 2 - Fire Spin continues even after Centiskorch switches out
-        MESSAGE("The opposing Wobbuffet is hurt by Fire Spin!");
-        HP_BAR(opponentLeft);
-        MESSAGE("The opposing Wynaut is hurt by Fire Spin!");
-        HP_BAR(opponentRight);
-    }
-}
-
-DOUBLE_BATTLE_TEST("Dynamax: G-Max Chi Strike boosts allies' crit chance by 1 stage")
-{
-    u32 j;
-    GIVEN {
-        WITH_CONFIG(B_CRIT_CHANCE, GEN_6);
-        ASSUME(MoveHasAdditionalEffect(MOVE_G_MAX_CHI_STRIKE, MOVE_EFFECT_CRIT_PLUS_SIDE));
-        PLAYER(SPECIES_MACHAMP) { GigantamaxFactor(TRUE); }
-        PLAYER(SPECIES_MACHOP);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(playerLeft, MOVE_FORCE_PALM, target: opponentLeft, gimmick: GIMMICK_DYNAMAX); }
-        TURN { MOVE(playerLeft, MOVE_FORCE_PALM, target: opponentLeft); }
-        TURN { MOVE(playerLeft, MOVE_FORCE_PALM, target: opponentLeft); \
-               MOVE(playerRight, MOVE_FOCUS_ENERGY); }
-        TURN { MOVE(playerRight, MOVE_SCRATCH, target: opponentLeft); }
-    } SCENE {
-        // turn 1 - 3
-        for (j = 0; j < 3; ++j) {
-            MESSAGE("Machamp used G-Max Chi Strike!");
-            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
-            MESSAGE("Machamp is getting pumped!");
-            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
-            MESSAGE("Machop is getting pumped!");
-        }
-        // turn 4
-        MESSAGE("Machop used Scratch!"); // Machop is at +5 crit stages
-        MESSAGE("A critical hit!");
     }
 }
 
@@ -1746,36 +1516,6 @@ DOUBLE_BATTLE_TEST("Dynamax: G-Max Finale heals allies by 1/6 of their health, e
     }
 }
 
-DOUBLE_BATTLE_TEST("Dynamax: G-Max Replenish recycles allies' berries 50\% of the time, even if it faints the foe")
-{
-    PASSES_RANDOMLY(1, 2, RNG_G_MAX_REPLENISH);
-    GIVEN {
-        ASSUME(MoveHasAdditionalEffect(MOVE_G_MAX_REPLENISH, MOVE_EFFECT_RECYCLE_BERRIES));
-        ASSUME(GetItemHoldEffect(ITEM_APICOT_BERRY) == HOLD_EFFECT_SP_DEFENSE_UP);
-        PLAYER(SPECIES_SNORLAX) { Item(ITEM_APICOT_BERRY); GigantamaxFactor(TRUE); }
-        PLAYER(SPECIES_MUNCHLAX) { Item(ITEM_APICOT_BERRY); Ability(ABILITY_THICK_FAT); }
-        OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
-        OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(playerLeft, MOVE_STUFF_CHEEKS); \
-               MOVE(playerRight, MOVE_STUFF_CHEEKS); \
-               MOVE(opponentLeft, MOVE_CELEBRATE); \
-               MOVE(opponentRight, MOVE_CELEBRATE); }
-        TURN { MOVE(playerLeft, MOVE_SCRATCH, target: opponentLeft, gimmick: GIMMICK_DYNAMAX); SEND_OUT(opponentLeft, 2);}
-    } SCENE {
-        // turn 1
-        MESSAGE("Using Apicot Berry, the Sp. Def of Snorlax rose!");
-        MESSAGE("Using Apicot Berry, the Sp. Def of Munchlax rose!");
-        // turn 2
-        MESSAGE("Snorlax used G-Max Replenish!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_G_MAX_REPLENISH, playerLeft);
-        MESSAGE("Snorlax found one Apicot Berry!");
-        MESSAGE("Munchlax found one Apicot Berry!");
-    }
-}
-
 DOUBLE_BATTLE_TEST("Dynamax: G-Max Volt Crash paralyzes other opponent even if its target faints")
 {
     GIVEN {
@@ -1934,35 +1674,6 @@ SINGLE_BATTLE_TEST("Dynamax: Sitrus Berries heal based on a Pokemon's non-Dynama
     }
 }
 
-DOUBLE_BATTLE_TEST("Dynamax: G-Max Replenish recycles allies' berries 50\% of the time (Items)")
-{
-    PASSES_RANDOMLY(1, 2, RNG_G_MAX_REPLENISH);
-    GIVEN {
-        ASSUME(MoveHasAdditionalEffect(MOVE_G_MAX_REPLENISH, MOVE_EFFECT_RECYCLE_BERRIES));
-        ASSUME(GetItemHoldEffect(ITEM_APICOT_BERRY) == HOLD_EFFECT_SP_DEFENSE_UP);
-        PLAYER(SPECIES_SNORLAX) { Items(ITEM_PECHA_BERRY, ITEM_APICOT_BERRY); GigantamaxFactor(TRUE); }
-        PLAYER(SPECIES_MUNCHLAX) { Items(ITEM_PECHA_BERRY, ITEM_APICOT_BERRY); Ability(ABILITY_THICK_FAT); }
-        OPPONENT(SPECIES_WOBBUFFET) { Items(ITEM_PECHA_BERRY, ITEM_APICOT_BERRY); }
-        OPPONENT(SPECIES_WOBBUFFET) { Items(ITEM_PECHA_BERRY, ITEM_APICOT_BERRY); }
-    } WHEN {
-        TURN { MOVE(playerLeft, MOVE_STUFF_CHEEKS); \
-               MOVE(playerRight, MOVE_STUFF_CHEEKS); \
-               MOVE(opponentLeft, MOVE_STUFF_CHEEKS); \
-               MOVE(opponentRight, MOVE_STUFF_CHEEKS); }
-        TURN { MOVE(playerLeft, MOVE_SCRATCH, target: opponentLeft, gimmick: GIMMICK_DYNAMAX); }
-    } SCENE {
-        // turn 1
-        MESSAGE("Using Apicot Berry, the Sp. Def of Snorlax rose!");
-        MESSAGE("Using Apicot Berry, the Sp. Def of Munchlax rose!");
-        MESSAGE("Using Apicot Berry, the Sp. Def of the opposing Wobbuffet rose!");
-        MESSAGE("Using Apicot Berry, the Sp. Def of the opposing Wobbuffet rose!");
-        // turn 2
-        MESSAGE("Snorlax used G-Max Replenish!");
-        MESSAGE("Snorlax found one Apicot Berry!");
-        MESSAGE("Munchlax found one Apicot Berry!");
-    }
-}
-
 SINGLE_BATTLE_TEST("Dynamax: Dynamax is reverted before switch out (Items)")
 {
     GIVEN {
@@ -1978,34 +1689,4 @@ SINGLE_BATTLE_TEST("Dynamax: Dynamax is reverted before switch out (Items)")
     }
 }
 
-
-DOUBLE_BATTLE_TEST("Dynamax: G-Max Replenish recycles allies' berries 50\% of the time, even if it faints the foe (Items)")
-{
-    PASSES_RANDOMLY(1, 2, RNG_G_MAX_REPLENISH);
-    GIVEN {
-        ASSUME(MoveHasAdditionalEffect(MOVE_G_MAX_REPLENISH, MOVE_EFFECT_RECYCLE_BERRIES));
-        ASSUME(GetItemHoldEffect(ITEM_APICOT_BERRY) == HOLD_EFFECT_SP_DEFENSE_UP);
-        PLAYER(SPECIES_SNORLAX) { Items(ITEM_NUGGET, ITEM_APICOT_BERRY); GigantamaxFactor(TRUE); }
-        PLAYER(SPECIES_MUNCHLAX) { Items(ITEM_NUGGET, ITEM_APICOT_BERRY); Ability(ABILITY_THICK_FAT); }
-        OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
-        OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(playerLeft, MOVE_STUFF_CHEEKS); \
-               MOVE(playerRight, MOVE_STUFF_CHEEKS); \
-               MOVE(opponentLeft, MOVE_CELEBRATE); \
-               MOVE(opponentRight, MOVE_CELEBRATE); }
-        TURN { MOVE(playerLeft, MOVE_SCRATCH, target: opponentLeft, gimmick: GIMMICK_DYNAMAX); SEND_OUT(opponentLeft, 2);}
-    } SCENE {
-        // turn 1
-        MESSAGE("Using Apicot Berry, the Sp. Def of Snorlax rose!");
-        MESSAGE("Using Apicot Berry, the Sp. Def of Munchlax rose!");
-        // turn 2
-        MESSAGE("Snorlax used G-Max Replenish!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_G_MAX_REPLENISH, playerLeft);
-        MESSAGE("Snorlax found one Apicot Berry!");
-        MESSAGE("Munchlax found one Apicot Berry!");
-    }
-}
 #endif

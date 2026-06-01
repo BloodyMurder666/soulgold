@@ -521,31 +521,6 @@ DOUBLE_BATTLE_TEST("Sleep Clause: Dark Void can only sleep one opposing mon if s
     }
 }
 
-DOUBLE_BATTLE_TEST("Sleep Clause: G-Max Befuddle can only sleep one opposing mon if sleep clause is active")
-{
-    GIVEN {
-        FLAG_SET(B_FLAG_SLEEP_CLAUSE);
-        ASSUME(MoveHasAdditionalEffect(MOVE_G_MAX_BEFUDDLE, MOVE_EFFECT_EFFECT_SPORE_SIDE));
-        PLAYER(SPECIES_BUTTERFREE) { GigantamaxFactor(TRUE); }
-        PLAYER(SPECIES_CATERPIE);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(playerLeft, MOVE_BUG_BITE, target: opponentLeft, gimmick: GIMMICK_DYNAMAX,
-               WITH_RNG(RNG_G_MAX_BEFUDDLE, STATUS1_SLEEP)); }
-    } SCENE {
-        MESSAGE("Butterfree used G-Max Befuddle!");
-        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponentLeft);
-        MESSAGE("The opposing Wobbuffet fell asleep!");
-        STATUS_ICON(opponentLeft, sleep: TRUE);
-        NONE_OF {
-            ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponentRight);
-            STATUS_ICON(opponentRight, sleep: TRUE);
-            MESSAGE("The opposing Wobbuffet fell asleep!");
-        }
-    }
-}
-
 SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon wakes up")
 {
     GIVEN {

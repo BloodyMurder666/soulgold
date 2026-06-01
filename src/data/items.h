@@ -7879,6 +7879,7 @@ const struct ItemInfo gItemsInfo[] =
     {                                                         \
         .name = ITEM_NAME(itemName),                          \
         .price = 0,                                           \
+        .notConsumed = TRUE,                                  \
         .holdEffect = HOLD_EFFECT_MEGA_STONE,                 \
         .description = COMPOUND_STRING(                       \
             "A stone that lets\n"                             \
@@ -7887,9 +7888,9 @@ const struct ItemInfo gItemsInfo[] =
         .pocket = POCKET_MEGASTONES,                          \
         .sortType = ITEM_TYPE_MEGA_STONE,                     \
         .heldSlot = 0,                                        \
-        .type = ITEM_USE_BAG_MENU,                            \
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,         \
-        .flingPower = 80,                                     \
+        .type = ITEM_USE_PARTY_MENU,                          \
+        .fieldUseFunc = ItemUseOutOfBattle_GiveHeldItem,      \
+        .flingPower = 0,                                      \
         .iconPic = CAT(gItemIcon_, iconName),                 \
         .iconPalette = CAT(gItemIconPalette_, iconName),      \
     }
@@ -7925,11 +7926,12 @@ const struct ItemInfo gItemsInfo[] =
             "your starter Mega\n"
             "Evolve."),
         .pocket = POCKET_MEGASTONES,
+        .notConsumed = TRUE,
         .sortType = ITEM_TYPE_MEGA_STONE,
         .heldSlot = 0,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .flingPower = 80,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_GiveHeldItem,
+        .flingPower = 0,
         .iconPic = gItemIcon_Audinite,
         .iconPalette = gItemIconPalette_Audinite,
     },

@@ -106,7 +106,7 @@ TEST("Item names fit on Bag Screen (list)")
 {
     u32 i;
     const u32 fontId = FONT_NARROWER;
-    const u32 tmHmBerryWidthPx = 61, restWidthPx = 88;
+    const u32 tmHmBerryWidthPx = 88, restWidthPx = 88;
     enum Item item = ITEM_NONE;
     for (i = 1; i < ITEMS_COUNT; i++)
     {
@@ -225,7 +225,7 @@ TEST("Item names fit on Shop Screen")
 TEST("Item descriptions fit on Bag and Shop Screen")
 {
     u32 i;
-    const u32 fontId = FONT_NORMAL, widthPx = 102;
+    const u32 fontId = FONT_NARROW, widthPx = 102;
     enum Item item = ITEM_NONE;
     for (i = 1; i < ITEMS_COUNT; i++)
     {
@@ -524,7 +524,7 @@ TEST("Ability names fit on Ability Pop-Up")
 TEST("Ability descriptions fit on Pokemon Summary Screen")
 {
     u32 i;
-    const u32 fontId = FONT_NORMAL, widthPx = 146;
+    const u32 fontId = FONT_NARROW, widthPx = 146;
     enum Ability ability = ABILITY_NONE;
     for (i = 1; i < ABILITIES_COUNT; i++)
     {

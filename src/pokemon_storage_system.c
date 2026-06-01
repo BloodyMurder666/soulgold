@@ -3331,7 +3331,7 @@ static void Task_ItemToBag(u8 taskId)
     switch (sStorage->state)
     {
     case 0:
-        if (!AddBagItem(itemId, 1))
+        if (!IsItemInfiniteHold(itemId) && !AddBagItem(itemId, 1))
         {
             PlaySE(SE_FAILURE);
             PrintMessage(MSG_BAG_FULL);
@@ -3480,7 +3480,7 @@ static void Task_CloseBoxWhileHoldingItem(u8 taskId)
             SetPokeStorageTask(Task_PokeStorageMain);
             break;
         case 0:// Yes
-            if (AddBagItem(sStorage->movingItemId, 1) == TRUE)
+            if (IsItemInfiniteHold(sStorage->movingItemId) || AddBagItem(sStorage->movingItemId, 1) == TRUE)
             {
                 ClearBottomWindow();
                 sStorage->state = 3;
@@ -4025,7 +4025,8 @@ static void GiveChosenBagItem(void)
             }
         }
 
-        RemoveBagItem(itemId, 1);
+        if (!IsItemInfiniteHold(itemId))
+            RemoveBagItem(itemId, 1);
     }
 }
 

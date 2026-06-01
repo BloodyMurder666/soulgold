@@ -1243,6 +1243,12 @@ void ItemUseOutOfBattle_EvolutionStone(u8 taskId)
     SetUpItemUseCallback(taskId);
 }
 
+void ItemUseOutOfBattle_GiveHeldItem(u8 taskId)
+{
+    gBagMenu->newScreenCallback = CB2_ChooseMonToGiveItem;
+    Task_FadeAndCloseBagMenu(taskId);
+}
+
 static u32 GetBallThrowableState(void)
 {
     if (IsBattlerAlive(GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT))
