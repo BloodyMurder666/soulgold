@@ -852,6 +852,9 @@ static const u16 sGardevoirFormSpeciesIdTable[] = {
 #if P_MEGA_EVOLUTIONS
     SPECIES_GARDEVOIR_MEGA,
 #endif
+#if P_MEGA_EVOLUTIONS
+    SPECIES_GARDEVOIR_MEGA_Z,
+#endif //P_MEGA_EVOLUTIONS
     FORM_SPECIES_END,
 };
 

@@ -30173,3 +30173,21 @@ const u16 gMonPalette_TyphlosionMega[] = INCBIN_U16("graphics/pokemon/typhlosion
     const u32 gMonFrontPic_Egg[] = INCBIN_U32("graphics/pokemon/egg/anim_front.4bpp.smol");
     const u16 gMonPalette_Egg[] = INCBIN_U16("graphics/pokemon/egg/normal.gbapal");
     const u8 gMonIcon_Egg[] = INCBIN_U8("graphics/pokemon/egg/icon.4bpp");
+
+    const u32 gMonFrontPic_GardevoirMegaZ[] = INCBIN_U32("graphics/pokemon/gardevoir/mega_z/front.4bpp.smol");
+    const u16 gMonPalette_GardevoirMegaZ[] = INCBIN_U16("graphics/pokemon/gardevoir/mega_z/normal.gbapal");
+    const u32 gMonBackPic_GardevoirMegaZ[] = INCBIN_U32("graphics/pokemon/gardevoir/mega_z/back.4bpp.smol");
+    const u16 gMonShinyPalette_GardevoirMegaZ[] = INCBIN_U16("graphics/pokemon/gardevoir/mega_z/shiny.gbapal");
+    const u8 gMonIcon_GardevoirMegaZ[] = INCBIN_U8("graphics/pokemon/gardevoir/mega_z/icon.4bpp");
+    const u16 gMonIconPalette_GardevoirMegaZ[] = INCBIN_U16("graphics/pokemon/gardevoir/mega_z/icon_normal.gbapal");
+    const u16 gMonShinyIconPalette_GardevoirMegaZ[] = INCBIN_U16("graphics/pokemon/gardevoir/mega_z/icon_shiny.gbapal");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_GardevoirMegaZ[] = INCBIN_U8("graphics/pokemon/gardevoir/mega_z/footprint.1bpp");
+#endif //P_FOOTPRINTS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_GardevoirMegaZ[] = INCBIN_COMP("graphics/pokemon/gardevoir/mega_z/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_GardevoirMegaZ[] = INCBIN_U16("graphics/pokemon/gardevoir/mega_z/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_GardevoirMegaZ[] = INCBIN_U16("graphics/pokemon/gardevoir/mega_z/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS

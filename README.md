@@ -21,6 +21,7 @@ Based on expansion port of Pokemon Heart and Soul. Feature list to be made later
 - TheXaman for gen 4 party menu 
 - Lhea for modern type icons
 - Mont for swsh party menu
+- destvol for custom mega sprites
 - Leob0505 for backgrounds
 - Emulator accuracy check by Wiz1989 (also thanks to mudskip, grunt-lucas, archie, drazden)
 - Mudship (field mugshot system)

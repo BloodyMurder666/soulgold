@@ -1,0 +1,147 @@
+{
+  "kind": "form",
+  "name": "Gardevoir Mega Z",
+  "constant": "GARDEVOIR_MEGA_Z",
+  "folder": "gardevoir/mega_z",
+  "copyGraphicsFrom": "gardevoir/mega",
+  "form": {
+    "parentConstant": "GARDEVOIR",
+    "parentFolder": "gardevoir",
+    "formFolder": "mega_z",
+    "copyGraphicsFrom": "gardevoir/mega",
+    "tableSymbol": "Gardevoir",
+    "speciesName": "Gardevoir",
+    "natDexConstant": "NATIONAL_DEX_GARDEVOIR",
+    "cryId": "CRY_GARDEVOIR",
+    "footprintSymbol": "Gardevoir",
+    "learnsetSymbol": "Gardevoir",
+    "formSpeciesTable": "sGardevoirFormSpeciesIdTable",
+    "formChangeTable": "sGardevoirFormChangeTable",
+    "guard": "P_MEGA_EVOLUTIONS",
+    "updateFormSpeciesTable": true,
+    "updateFormChangeTable": true,
+    "formChangeMethod": "FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM",
+    "formChangeItem": "ITEM_BONDSTONE",
+    "isMegaEvolution": true
+  },
+  "include": {
+    "nationalDex": true,
+    "cry": false,
+    "graphics": true,
+    "overworld": true,
+    "wildEncounter": false
+  },
+  "baseStats": {
+    "hp": 68,
+    "attack": 85,
+    "defense": 85,
+    "speed": 120,
+    "spAttack": 145,
+    "spDefense": 130
+  },
+  "types": [
+    "TYPE_PSYCHIC",
+    "TYPE_DARK"
+  ],
+  "catchRate": 3,
+  "expYield": 255,
+  "evYields": {
+    "hp": 0,
+    "attack": 0,
+    "defense": 0,
+    "speed": 0,
+    "spAttack": 3,
+    "spDefense": 0
+  },
+  "heldItems": {
+    "common": "ITEM_NONE",
+    "rare": "ITEM_NONE"
+  },
+  "genderRatio": "PERCENT_FEMALE(50)",
+  "eggCycles": 120,
+  "friendship": 0,
+  "growthRate": "GROWTH_SLOW",
+  "eggGroups": [
+    "EGG_GROUP_NO_EGGS_DISCOVERED",
+    "EGG_GROUP_NO_EGGS_DISCOVERED"
+  ],
+  "abilities": [
+    "ABILITY_IMMUNITY",
+    "ABILITY_LAST_STAND",
+    "ABILITY_FILTER"
+  ],
+  "bodyColor": "BODY_COLOR_PURPLE",
+  "noFlip": false,
+  "flags": {
+    "isRestrictedLegendary": false,
+    "isSubLegendary": false,
+    "isMythical": false,
+    "isUltraBeast": false,
+    "isParadox": false,
+    "isFrontierBanned": false,
+    "tmIlliterate": false,
+    "perfectIVCount": ""
+  },
+  "dex": {
+    "categoryName": "Celestial",
+    "height": 15,
+    "weight": 330,
+    "description": [
+      "Powered by the stars",
+      "this pokemon unleashes",
+      "powerful astral attacks"
+    ],
+    "pokemonScale": 256,
+    "pokemonOffset": 0,
+    "trainerScale": 290,
+    "trainerOffset": 2
+  },
+  "graphics": {
+    "frontSource": "front",
+    "frontWidth": 64,
+    "frontHeight": 64,
+    "frontYOffset": 0,
+    "frontAnimFrames": [
+      [
+        0,
+        1
+      ]
+    ],
+    "frontAnimId": "ANIM_GROW_VIBRATE",
+    "frontAnimDelay": 15,
+    "enemyMonElevation": 6,
+    "backWidth": 64,
+    "backHeight": 64,
+    "backYOffset": 0,
+    "backAnimId": "BACK_ANIM_CONCAVE_ARC_SMALL",
+    "iconPalIndex": 2,
+    "shadow": {
+      "enabled": true,
+      "x": 0,
+      "y": 13,
+      "size": "SHADOW_SIZE_S"
+    },
+    "overworld": {
+      "size": "SIZE_32x32",
+      "frameWidthTiles": 4,
+      "frameHeightTiles": 4,
+      "shadowSize": "SHADOW_SIZE_M",
+      "tracks": "TRACKS_FOOT",
+      "animTable": "sAnimTable_Following"
+    }
+  },
+  "moves": {
+    "levelUp": "1 CONFUSION\n1 DISABLE\n11 BARRIER\n22 SWIFT\n33 PSYCH_UP\n44 FUTURE_SIGHT\n55 MIST\n66 PSYCHIC\n77 AMNESIA\n88 RECOVER\n99 SAFEGUARD",
+    "teachables": "FOCUS_PUNCH\nWATER_PULSE\nCALM_MIND\nTOXIC"
+  },
+  "cry": {
+    "sourcePath": ""
+  },
+  "wildEncounter": {
+    "map": "MAP_PETALBURG_WOODS",
+    "method": "land_mons",
+    "slot": 3,
+    "minLevel": 5,
+    "maxLevel": 5
+  }
+}

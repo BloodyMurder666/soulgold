@@ -1691,7 +1691,8 @@
 #define SPECIES_PRIMARINA_MEGA                          1574
 #define SPECIES_MEOWSCARADA_MEGA                        1575
 
-#define SPECIES_EGG                                     (SPECIES_MEOWSCARADA_MEGA + 1)
+#define SPECIES_GARDEVOIR_MEGA_Z                              1576
+#define SPECIES_EGG                                     (SPECIES_GARDEVOIR_MEGA_Z + 1)
 
 #define NUM_SPECIES SPECIES_EGG
 

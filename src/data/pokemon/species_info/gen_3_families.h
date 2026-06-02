@@ -3227,6 +3227,79 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
     },
 #endif //P_MEGA_EVOLUTIONS
 #endif //P_GEN_4_CROSS_EVOS
+
+#if P_MEGA_EVOLUTIONS
+    [SPECIES_GARDEVOIR_MEGA_Z] =
+    {
+        .baseHP        = 68,
+        .baseAttack    = 85,
+        .baseDefense   = 85,
+        .baseSpeed     = 120,
+        .baseSpAttack  = 145,
+        .baseSpDefense = 130,
+        .types = MON_TYPES(TYPE_PSYCHIC, TYPE_DARK),
+        .catchRate = 3,
+        .expYield = 255,
+        .evYield_SpAttack = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
+        .abilities = { ABILITY_LAST_STAND, ABILITY_LAST_STAND, ABILITY_LAST_STAND },
+        .innates = { ABILITY_INSOMNIA, ABILITY_FILTER, ABILITY_SPECTRAL },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Gardevoir"),
+        .cryId = CRY_GARDEVOIR,
+        .natDexNum = NATIONAL_DEX_GARDEVOIR,
+        .categoryName = _("Celestial"),
+        .height = 15,
+        .weight = 330,
+        .description = COMPOUND_STRING(
+            "Powered by the stars\n"
+            "this pokemon unleashes\n"
+            "powerful astral attacks"
+        ),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 290,
+        .trainerOffset = 2,
+        .frontPic = gMonFrontPic_GardevoirMegaZ,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 1),
+        ),
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .frontAnimDelay = 15,
+        .enemyMonElevation = 6,
+        .backPic = gMonBackPic_GardevoirMegaZ,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 0,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
+        .palette = gMonPalette_GardevoirMegaZ,
+        .shinyPalette = gMonShinyPalette_GardevoirMegaZ,
+        .iconSprite = gMonIcon_GardevoirMegaZ,
+        .iconPalette = gMonIconPalette_GardevoirMegaZ,
+        .shinyIconPalette = gMonShinyIconPalette_GardevoirMegaZ,
+        FOOTPRINT(Gardevoir)
+        SHADOW(0, 13, SHADOW_SIZE_S)
+        OVERWORLD(
+            sPicTable_GardevoirMegaZ,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_GardevoirMegaZ,
+            gShinyOverworldPalette_GardevoirMegaZ
+        )
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sGardevoirLevelUpLearnset,
+        .teachableLearnset = sGardevoirTeachableLearnset,
+        .formSpeciesIdTable = sGardevoirFormSpeciesIdTable,
+        .formChangeTable = sGardevoirFormChangeTable,
+    },
+#endif //P_MEGA_EVOLUTIONS
 #endif //P_FAMILY_RALTS
 
 #if P_FAMILY_SURSKIT
