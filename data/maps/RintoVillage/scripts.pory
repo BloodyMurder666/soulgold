@@ -1,1 +1,77 @@
 mapscripts RintoVillage_MapScripts {}
+
+script Rinto_OldLady {
+    msgbox("More visitors lately...", MSGBOX_NPC)
+}
+
+script Rinto_TempleSage {
+    msgbox("Access to the temple is only permitted
+            to those with permission from our Sage.", MSGBOX_NPC)
+}
+
+script Rinto_Gentleman {
+    msgbox("I travelled...", MSGBOX_NPC)
+}
+
+script Rinto_EastGuard {
+    msgbox("The treacherous desert to the east is
+            too dangerous right now. I cannot allow
+            you to pass as you are right now.", MSGBOX_NPC)
+}
+
+script Rinto_TriggerEastGuard {
+    lock
+    applymovement(LOCALID_RINTO_EAST_GUARD, moves(walk_in_place_down))
+    waitmovement
+    applymovement(LOCALID_PLAYER, moves(face_up))
+    waitmovement
+    msgbox("The treacherous desert to the east is
+            too dangerous right now. I cannot allow
+            you to pass as you are right now.")
+    waitmessage
+    applymovement(LOCALID_PLAYER, moves(walk_left))
+    waitmovement
+    release
+    end
+    
+}
+
+script Rinto_LittleGirl {
+    msgbox("Our town...", MSGBOX_NPC)
+}
+
+script Rinto_Fatman {
+    msgbox("The local...", MSGBOX_NPC)
+}
+
+script Rinto_Dancer {
+    lock
+    msgbox("Let's go Oricorio, show them our moves!")
+    release
+    end
+}
+
+script Rinto_DancerOricorio {
+    lock
+    playmoncry(SPECIES_ORICORIO_SENSU, CRY_MODE_NORMAL)
+    msgbox("Oriiii!")
+    waitmoncry
+    release
+    end
+}
+
+script Rinto_Merchant {
+    lock
+    faceplayer
+    msgbox("Hey check our wares!")
+    release
+    end
+}
+
+mart Rinto_Stall {
+    ITEM_NONE
+}
+
+script Rinto_GameboyKid {
+    msgbox("Yo", MSGBOX_NPC)
+}
