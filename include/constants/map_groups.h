@@ -518,6 +518,7 @@ enum
     MAP_VALOR_CAVERN                             = (120 | (24 << 8)),
     MAP_VERITY_CAVERN                            = (121 | (24 << 8)),
     MAP_RAILWAY_CAVE                             = (122 | (24 << 8)),
+    MAP_REGIROCK_CHAMBER                         = (123 | (24 << 8)),
 
     // gMapGroup_IndoorDynamic
 

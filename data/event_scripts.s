@@ -2237,3 +2237,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/MtGoldOutside/scripts.inc"
 
 	.include "data/maps/Route49DesertGate/scripts.inc"
+
+	.include "data/maps/RegirockChamber/scripts.inc"

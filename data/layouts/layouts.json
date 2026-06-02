@@ -5056,7 +5056,7 @@
       "name": "Route45_Layout",
       "width": 46,
       "height": 100,
-      "primary_tileset": "gTileset_Johto_NorthEast",
+      "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_Blackthorn",
       "border_filepath": "data/layouts/Route45/border.bin",
       "blockdata_filepath": "data/layouts/Route45/map.bin"
@@ -5066,7 +5066,7 @@
       "name": "Route46_Layout",
       "width": 27,
       "height": 46,
-      "primary_tileset": "gTileset_Johto_NorthEast",
+      "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_CherrygroveCity",
       "border_filepath": "data/layouts/Route46/border.bin",
       "blockdata_filepath": "data/layouts/Route46/map.bin"
@@ -5146,7 +5146,7 @@
       "name": "BlackthornCity_Layout",
       "width": 59,
       "height": 60,
-      "primary_tileset": "gTileset_Johto_NorthEast",
+      "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_Blackthorn",
       "border_filepath": "data/layouts/BlackthornCity/border.bin",
       "blockdata_filepath": "data/layouts/BlackthornCity/map.bin"
@@ -8936,7 +8936,7 @@
       "name": "KitakamiBorder_Layout",
       "width": 65,
       "height": 43,
-      "primary_tileset": "gTileset_Johto_NorthEast",
+      "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_Blackthorn",
       "border_filepath": "data/layouts/KitakamiBorder/border.bin",
       "blockdata_filepath": "data/layouts/KitakamiBorder/map.bin"
@@ -9516,6 +9516,16 @@
       "secondary_tileset": "gTileset_Cave_Default",
       "border_filepath": "data/layouts/Route49DesertGate/border.bin",
       "blockdata_filepath": "data/layouts/Route49DesertGate/map.bin"
+    },
+    {
+      "id": "LAYOUT_REGIROCK_CHAMBER",
+      "name": "RegirockChamber_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_Desert",
+      "border_filepath": "data/layouts/RegirockChamber/border.bin",
+      "blockdata_filepath": "data/layouts/RegirockChamber/map.bin"
     }
   ]
 }

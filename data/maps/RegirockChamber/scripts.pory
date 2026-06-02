@@ -1,0 +1,11 @@
+mapscripts RegirockChamber_MapScripts {
+
+}
+
+script RegirockChamber_Regirock {
+    lock
+    faceplayer
+    legendaryencounter(SPECIES_REGIROCK, 50, 1, FLAG_HIDE_REGIROCK)
+    release
+    end
+}

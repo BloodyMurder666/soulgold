@@ -4,7 +4,7 @@ RintoVillage_MapScripts::
 
 Rinto_OldLady::
 # 4 "data/maps/RintoVillage/scripts.pory"
-	msgbox Rinto_OldLady_Text_0
+	msgbox Rinto_OldLady_Text_0, MSGBOX_NPC
 	return
 
 
@@ -16,7 +16,7 @@ Rinto_TempleSage::
 
 Rinto_Gentleman::
 # 13 "data/maps/RintoVillage/scripts.pory"
-	msgbox Rinto_Gentleman_Text_0
+	msgbox Rinto_Gentleman_Text_0, MSGBOX_NPC
 	return
 
 
@@ -52,13 +52,13 @@ Rinto_TriggerEastGuard::
 
 Rinto_LittleGirl::
 # 40 "data/maps/RintoVillage/scripts.pory"
-	msgbox Rinto_LittleGirl_Text_0
+	msgbox Rinto_LittleGirl_Text_0, MSGBOX_NPC
 	return
 
 
 Rinto_Fatman::
 # 44 "data/maps/RintoVillage/scripts.pory"
-	msgbox Rinto_Fatman_Text_0
+	msgbox Rinto_Fatman_Text_0, MSGBOX_NPC
 	return
 
 

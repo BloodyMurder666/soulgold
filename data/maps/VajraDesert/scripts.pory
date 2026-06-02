@@ -1,7 +1,7 @@
 mapscripts VajraDesert_MapScripts {
     MAP_SCRIPT_ON_LOAD {
         if (flag(FLAG_SUS_DESERT_DOOR)) {
-            setmetatile(65, 6, 0x4AE, FALSE)
+            setmetatile(37, 6, 0x4AE, FALSE)
         }
     }
 }
@@ -55,7 +55,7 @@ script VajraDesert_SusDoor {
     checkspecies(SPECIES_TYRANITAR)
     if (var(VAR_RESULT) == TRUE) {
         setflag(FLAG_SUS_DESERT_DOOR)
-        setmetatile(65, 6, 0x4AE, FALSE)
+        setmetatile(37, 6, 0x4AE, FALSE)
         playse(SE_EXIT)
         special(DrawWholeMapView)
     }

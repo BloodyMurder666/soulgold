@@ -540,7 +540,8 @@
     "AcuityCavern",
     "ValorCavern",
     "VerityCavern",
-    "RailwayCave"
+    "RailwayCave",
+    "RegirockChamber"
   ],
   "gMapGroup_IndoorDynamic": [],
   "gMapGroup_SpecialArea": [

@@ -10,7 +10,7 @@ VajraDesert_MapScripts_MAP_SCRIPT_ON_LOAD:
 
 VajraDesert_MapScripts_MAP_SCRIPT_ON_LOAD_1:
 # 4 "data/maps/VajraDesert/scripts.pory"
-	setmetatile 65, 6, 0x4AE, FALSE
+	setmetatile 37, 6, 0x4AE, FALSE
 	return
 
 
@@ -86,7 +86,7 @@ VajraDesert_SusDoor_2:
 # 57 "data/maps/VajraDesert/scripts.pory"
 	setflag FLAG_SUS_DESERT_DOOR
 # 58 "data/maps/VajraDesert/scripts.pory"
-	setmetatile 65, 6, 0x4AE, FALSE
+	setmetatile 37, 6, 0x4AE, FALSE
 # 59 "data/maps/VajraDesert/scripts.pory"
 	playse SE_EXIT
 # 60 "data/maps/VajraDesert/scripts.pory"
