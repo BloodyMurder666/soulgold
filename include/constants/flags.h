@@ -787,7 +787,7 @@
 #define FLAG_HOOH_BROUGHT                                           0x2E0
 #define FLAG_AERODACTYL_BROUGHT                                     0x2E1
 #define FLAG_KABUTO_BROUGHT                                         0x2E2
-#define FLAG_OMANYTE_BROUGHT                                        0x2E3
+#define FLAG_ARCHEN_BROUGHT                                        0x2E3
 #define FLAG_GOT_HARD_STONE                                         0x2E4
 #define FLAG_GOT_POISON_BARB                                        0x2E5
 #define FLAG_HIDE_SUDOWOODO                                         0x2E6
@@ -928,7 +928,7 @@
 #define FLAG_HIDE_MOMS_FRIEND2                                      0x36D
 #define FLAG_COMPLETED_KABUTO_PUZZLE                                0x36E
 #define FLAG_COMPLETED_HOOH_PUZZLE                                  0x36F
-#define FLAG_COMPLETED_OMANYTE_PUZZLE                               0x370
+#define FLAG_COMPLETED_ARCHEN_PUZZLE                                0x370
 #define FLAG_COMPLETED_AERODACTYL_PUZZLE                            0x371 
 #define FLAG_GET_HEADBUTT                                           0x372
 #define FLAG_HIDE_SILVER_CHERRYGROVE                                0x373

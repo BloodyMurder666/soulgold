@@ -143,7 +143,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SMEARGLE)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ZORUA)",
       "x": 4,
       "y": 37,
       "elevation": 0,
@@ -234,7 +234,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SMEARGLE)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ZORUA)",
       "x": 4,
       "y": 47,
       "elevation": 0,
@@ -247,7 +247,7 @@
       "flag": "FLAG_DAY_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SMEARGLE)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ZORUA)",
       "x": 39,
       "y": 45,
       "elevation": 0,

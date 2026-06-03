@@ -30,7 +30,7 @@ VioletCity_EventScript_Trigger::
 	clearflag FLAG_HIDE_SPROUT_TOWER_SILVER
 	clearflag FLAG_HIDE_JOHTO_GYM_LEADERS
 	clearflag FLAG_HOOH_BROUGHT
-	clearflag FLAG_OMANYTE_BROUGHT
+	clearflag FLAG_ARCHEN_BROUGHT
 	clearflag FLAG_AERODACTYL_BROUGHT
 	clearflag FLAG_KABUTO_BROUGHT
 	clearflag FLAG_HIDE_SUDOWOODO
