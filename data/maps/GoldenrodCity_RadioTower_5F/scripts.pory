@@ -65,27 +65,13 @@ GoldenrodCity_RadioTower_5F_EventScript_Petrel2::
 GoldenrodCity_RadioTower_5F_EventScript_Director::
 	lock
 	faceplayer
-	
+	playse SE_SELECT
 	@ If player has either wing, skip to default director
 	checkitem ITEM_SILVER_WING
 	goto_if_eq VAR_RESULT, TRUE, GoldenrodCity_RadioTower_5F_EventScript_DirectorDone
 	checkitem ITEM_RAINBOW_WING
 	goto_if_eq VAR_RESULT, TRUE, GoldenrodCity_RadioTower_5F_EventScript_DirectorDone
-	
-	@ If player has neither wing, and hasn't spoken to Baoba, direct them toward him
-	goto_if_eq VAR_LUGIA_OR_HOOH, 0, GoldenrodCity_RadioTower_5F_EventScript_DirectorWest
-	
-	@ If player has neither wing and has spoken to Baoba, give one
-	msgbox GoldenrodCity_RadioTower_5F_Text_DirectorThanksAgain, MSGBOX_DEFAULT
-	closemessage
-	call_if_eq VAR_LUGIA_OR_HOOH, 1, GoldenrodCity_RadioTower_5F_EventScript_GiveTidalWing2
-	call_if_eq VAR_LUGIA_OR_HOOH, 2, GoldenrodCity_RadioTower_5F_EventScript_GiveClearWing2
-	
-	playse SE_PIN
-	applymovement LOCALID_DIRECTOR_STUDIO, Common_Movement_ExclamationMark
-	delay 60
-	msgbox GoldenrodCity_RadioTower_5F_Text_DirectorLegendary, MSGBOX_DEFAULT
-	closemessage
+
 
 	release
 	end
@@ -190,126 +176,6 @@ GoldenrodRaidoTower4_EventScript_ARIANA::
 	msgbox GoldenrodCity_RadioTower_5F_Text_ExecutiveF1After, MSGBOX_AUTOCLOSE
 	end
 
-GoldenrodCity_RadioTower_5F_EventScript_Archer::
-	lock
-	faceplayer
-	msgbox GoldenrodCity_RadioTower_5F_Text_RocketBossSeen, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_ARCHER, GoldenrodCity_RadioTower_5F_Text_RocketBossBeaten
-	msgbox GoldenrodCity_RadioTower_5F_Text_RocketBossAfter, MSGBOX_DEFAULT
-	delay 55
-	closemessage
-	fadescreen FADE_TO_BLACK
-	setflag FLAG_HIDE_GOLDENROD_ROCKETS
-	playse SE_EXIT
-	setvar VAR_GOLDENROD_CITY_STATE, 10
-	removeobject LOCALID_GOLDENROD_ARCHER
-	removeobject LOCALID_GOLDENROD_ARIANA
-	setflag FLAG_HIDE_GOLDENROD_RADIOTOWER_PETREL
-	clearflag FLAG_HIDE_GOLDENROD_RADIOTOWER_DIRECTOR
-	removeobject LOCALID_PETREL_OFFICE
-	addobject LOCALID_DIRECTOR_STUDIO
-    addobject LOCALID_RADIOTOWER_OAK
-	playbgm MUS_HG_GOLDENROD, TRUE
-	delay 120
-	fadescreen FADE_FROM_BLACK
-	goto_if_eq VAR_FACING, DIR_SOUTH, GoldenrodCity_RadioTower_5F_EventScript_WingTop
-	goto_if_eq VAR_FACING, DIR_WEST, GoldenrodCity_RadioTower_5F_EventScript_WingMid
-	goto_if_eq VAR_FACING, DIR_NORTH, GoldenrodCity_RadioTower_5F_EventScript_WingBot
-	release
-	end
-
-GoldenrodCity_RadioTower_5F_EventScript_WingTop::
-	applymovement LOCALID_DIRECTOR_STUDIO, GoldenrodCity_RadioTower_5F_Movement_WalkToPlayerTop
-	waitmovement 0
-	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
-	msgbox GoldenrodCity_RadioTower_5F_Text_DirectorThanks, MSGBOX_DEFAULT
-	closemessage
-	call_if_eq VAR_LUGIA_OR_HOOH, 1,  GoldenrodCity_RadioTower_5F_EventScript_GiveTidalWing
-	call_if_eq VAR_LUGIA_OR_HOOH, 2, GoldenrodCity_RadioTower_5F_EventScript_GiveClearWing
-	applymovement LOCALID_DIRECTOR_STUDIO, GoldenrodCity_RadioTower_5F_Movement_LeaveTop
-	waitmovement 0
-	goto GoldenrodCity_RadioTower_5F_Fakeout
-	end
-
-GoldenrodCity_RadioTower_5F_EventScript_WingMid::
-	applymovement LOCALID_DIRECTOR_STUDIO, GoldenrodCity_RadioTower_5F_Movement_WalkToPlayerMid
-	waitmovement 0
-	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
-	msgbox GoldenrodCity_RadioTower_5F_Text_DirectorThanks, MSGBOX_DEFAULT
-	closemessage
-	call_if_eq VAR_LUGIA_OR_HOOH, 1,  GoldenrodCity_RadioTower_5F_EventScript_GiveTidalWing
-	call_if_eq VAR_LUGIA_OR_HOOH, 2, GoldenrodCity_RadioTower_5F_EventScript_GiveClearWing
-	applymovement LOCALID_DIRECTOR_STUDIO, GoldenrodCity_RadioTower_5F_Movement_LeaveMid
-	waitmovement 0
-	goto GoldenrodCity_RadioTower_5F_Fakeout
-	end
-
-GoldenrodCity_RadioTower_5F_EventScript_WingBot::
-	applymovement LOCALID_DIRECTOR_STUDIO, GoldenrodCity_RadioTower_5F_Movement_WalkToPlayerBot
-	waitmovement 0
-	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
-	msgbox GoldenrodCity_RadioTower_5F_Text_DirectorThanks, MSGBOX_DEFAULT
-	closemessage
-	call_if_eq VAR_LUGIA_OR_HOOH, 1, GoldenrodCity_RadioTower_5F_EventScript_GiveTidalWing
-	call_if_eq VAR_LUGIA_OR_HOOH, 2, GoldenrodCity_RadioTower_5F_EventScript_GiveClearWing
-	applymovement LOCALID_DIRECTOR_STUDIO, GoldenrodCity_RadioTower_5F_Movement_LeaveBot
-	waitmovement 0
-	goto GoldenrodCity_RadioTower_5F_Fakeout
-	end
-
-GoldenrodCity_RadioTower_5F_EventScript_GiveTidalWing::
-	giveitem ITEM_SILVER_WING
-	msgbox GoldenrodCity_RadioTower_5F_Text_DirectorTidalWingExplanation, MSGBOX_DEFAULT
-	closemessage
-	release
-	return
-
-@ 1.2.1 Sequence Break version - slightly different text
-GoldenrodCity_RadioTower_5F_EventScript_GiveTidalWing2::
-	giveitem ITEM_SILVER_WING
-	msgbox GoldenrodCity_RadioTower_5F_Text_DirectorTidalWingExplanation2, MSGBOX_DEFAULT
-	closemessage
-	release
-	return
-
-GoldenrodCity_RadioTower_5F_EventScript_GiveClearWing::
-	giveitem ITEM_RAINBOW_WING
-	msgbox GoldenrodCity_RadioTower_5F_Text_DirectorClearWingExplanation, MSGBOX_DEFAULT
-	closemessage
-	release
-	return
-
-@ 1.2.1 Sequence Break version - slightly different text
-GoldenrodCity_RadioTower_5F_EventScript_GiveClearWing2::
-	giveitem ITEM_RAINBOW_WING
-	msgbox GoldenrodCity_RadioTower_5F_Text_DirectorClearWingExplanation2, MSGBOX_DEFAULT
-	closemessage
-	release
-	return
-
-GoldenrodCity_RadioTower_5F_Fakeout::
-	playse SE_PIN
-	applymovement LOCALID_DIRECTOR_STUDIO, Common_Movement_ExclamationMark
-	delay 60
-	turnobject LOCALID_DIRECTOR_STUDIO, DIR_WEST
-	msgbox GoldenrodCity_RadioTower_5F_Text_DirectorLegendary, MSGBOX_DEFAULT
-	closemessage
-	applymovement LOCALID_DIRECTOR_STUDIO, GoldenrodCity_RadioTower_5F_Movement_Leave1
-	waitmovement 0
-	playse SE_PIN
-	applymovement LOCALID_DIRECTOR_STUDIO, Common_Movement_ExclamationMark
-	delay 60
-	turnobject LOCALID_DIRECTOR_STUDIO, DIR_SOUTH
-	msgbox GoldenrodCity_RadioTower_5F_Text_DirectorFakeout, MSGBOX_DEFAULT
-	closemessage
-	applymovement LOCALID_DIRECTOR_STUDIO, GoldenrodCity_RadioTower_5F_Movement_Leave2
-	waitmovement 0
-	setflag FLAG_HIDE_GOLDENROD_RADIOTOWER_DIRECTOR_2
-	removeobject LOCALID_DIRECTOR_STUDIO
-	setvar VAR_MAHOGANY_TOWN_STATE, 17
-    goto OakRadioTowerF5
-	release
-	end
 
 GoldenrodCity_RadioTower_5F_EventScript_Trigger_NPCS::
 	clearflag FLAG_HIDE_GOLDENROD_NPCS
@@ -565,4 +431,136 @@ script OakRadioTowerF5 {
     fadescreenswapbuffers(FADE_FROM_BLACK)
     release
     end
+}
+
+script RadioTower_5F_Archer {
+	lock
+	faceplayer
+	msgbox("Archer: Oh? You managed to get
+			this far...?
+			
+			You must be quite the Trainer.
+			We intend to take over this
+			Radio Tower and offically announce our
+			comeback.
+			
+			That should bring out boss Giovanni
+			back from his solitary training.
+			
+			We are going to regain our former
+			glory... 
+			
+			I will not allow you to interfere with
+			our meticulous plans!")
+	trainerbattle_no_intro(TRAINER_ARCHER, "No! Forgive me, Giovanni!")
+	msgbox("Archer: How could this be...?
+	
+			It seems I was not up to the task... yet.
+			We shall retreat for now, but know that
+			Team Rocket has its roots deeper in
+			this city than you might think.
+			
+			We shall meet again, farewell...")
+	closemessage
+	fadescreen(FADE_TO_BLACK)
+	setflag(FLAG_HIDE_GOLDENROD_ROCKETS)
+	playse(SE_EXIT)
+	setvar(VAR_GOLDENROD_CITY_STATE, 10)
+	removeobject(LOCALID_GOLDENROD_ARCHER)
+	removeobject(LOCALID_GOLDENROD_ARIANA)
+	setflag(FLAG_HIDE_GOLDENROD_RADIOTOWER_PETREL)
+	clearflag(FLAG_HIDE_GOLDENROD_RADIOTOWER_DIRECTOR)
+	removeobject(LOCALID_PETREL_OFFICE)
+	addobject(LOCALID_DIRECTOR_STUDIO)
+    addobject(LOCALID_RADIOTOWER_OAK)
+	playbgm(MUS_HG_GOLDENROD, TRUE)
+	delay(120)
+	fadescreen(FADE_FROM_BLACK)
+	approachobject(LOCALID_DIRECTOR_STUDIO, LOCALID_PLAYER, DIR_WEST, DIR_EAST)
+	waitmovement(0)
+	turnobject(LOCALID_PLAYER, DIR_EAST)
+	msgbox("Director: Oh...
+			
+			You have already defeated them?
+			Thank you!
+			
+			Your courageous actions have saved
+			Pokémon nationwide.
+			
+			You deserve to be rewarded for your
+			actions! I'll let you pick one of
+			our prized treasures! Go ahead and
+			pick one!")
+	dynmultichoice(0,0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Rainbow Wing", "Silver Wing")
+	switch(var(VAR_RESULT)) {
+		case 0:
+			setvar(VAR_LUGIA_OR_HOOH, 2)
+			giveitem(ITEM_RAINBOW_WING)
+			msgbox("There used to be a tower right here.
+			
+					When the tower was replaced with the
+					Radio Tower, that Rainbow Wing was 
+					found at the top of the tower.
+					
+					I heard from a friend from Cianwood
+					City that you can climb the Bell
+					Tower in Ecruteak City when you have a
+					Rainbow Wing.")
+		case 1:
+			setvar(VAR_LUGIA_OR_HOOH, 1)
+			giveitem(ITEM_SILVER_WING)
+			msgbox("There used to be a tower right here.
+			
+					When the tower was replaced with the
+					Radio Tower, that Silver Wing was 
+					found at the top of the tower.
+					
+					I heard from a friend from Cianwood
+					City that you can go down the cave
+					at Whirl Islands when you have a Silver
+					Wing.")
+			}
+		msgbox("I have to get back to my office.
+				See you!")
+		closemessage
+		applymovement(LOCALID_DIRECTOR_STUDIO, moves(walk_right*2))
+		waitmovement(0)
+		playse(SE_PIN)
+		applymovement(LOCALID_DIRECTOR_STUDIO, Common_Movement_ExclamationMark)
+		delay(60)
+		turnobject(LOCALID_DIRECTOR_STUDIO, DIR_WEST)
+		msgbox("Oh, I almost forgot!
+		
+				According to my friend from Ciandwood,
+				the legendary Pokémon will not appear
+				if you just go to the place I mentioned.
+				Apparently there is something else you
+				need... Or something like that.
+				
+				I wonder what it was...
+				I can't remember.")
+		closemessage
+		moveobjecttocoords(LOCALID_DIRECTOR_STUDIO, 29, 5, DIR_NORTH)
+		waitmovement(0)
+		setflag(FLAG_HIDE_GOLDENROD_RADIOTOWER_DIRECTOR_2)
+		removeobject(LOCALID_DIRECTOR_STUDIO)
+		setvar(VAR_MAHOGANY_TOWN_STATE, 17)
+		moveobjecttocoords(OBJ_EVENT_ID_PLAYER, 28, 11, DIR_NORTH)
+		waitmovement(0)
+		playbgm(MUS_HG_OAK, TRUE)
+		moveobjecttocoords(LOCALID_RADIOTOWER_OAK, 28, 10, DIR_SOUTH)
+		waitmovement(0)
+		msgbox(format("{PLAYER}! You've pulled off a miracle by taking down Team Rocket!"))
+		msgbox(format("I knew it was the right choice to entrust Pokédex to you. I want you to have this, I think you've more than earned it."))
+		giveitem(ITEM_MEGA_RING)
+		msgbox(format("That is a Mega Ring. When combined with a Mega stone, it allows the bond between trainer and Pokémon to fully manifest. I'm sure you'll be able to pull it off."))
+		msgbox(format("Now I must get back to my work, I hope you'll tune in to my next radio show!"))
+		closemessage
+		moveobjecttocoords(LOCALID_RADIOTOWER_OAK, 24, 5, DIR_WEST)
+		waitmovement(0)
+		playse(SE_EXIT)
+		removeobject(LOCALID_RADIOTOWER_OAK)
+		fadedefaultbgm
+		release
+		end
 }

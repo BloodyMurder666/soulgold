@@ -16,13 +16,9 @@ MahoganyTown_EventScript_FixTree::
 	end
 
 Mahoganytown_OnFrame::
-	map_script_2 VAR_MAHOGANY_TOWN_STATE, 15, Mahoganytown_EventScript_DefeatedGym
+	map_script_2 VAR_MAHOGANY_TOWN_STATE, 15, Mahoganytown_EventScript_RocketTrigger
 	.2byte 0
 
-Mahoganytown_EventScript_DefeatedGym::
-	call_if_eq VAR_LUGIA_OR_HOOH, 0, Mahoganytown_EventScript_LegendaryTrigger
-	call_if_ge VAR_LUGIA_OR_HOOH, 1, Mahoganytown_EventScript_RocketTrigger
-	end
 
 Mahoganytown_EventScript_RocketTrigger::
 	lock
@@ -34,15 +30,6 @@ Mahoganytown_EventScript_RocketTrigger::
 	setflag FLAG_HIDE_GOLDENROD_NPCS
 	clearflag FLAG_HIDE_ROCKET_GOLDENROD_RADIOTOWER_1
 	setvar VAR_MAHOGANY_TOWN_STATE, 16
-	delay 10
-	release
-	end
-
-Mahoganytown_EventScript_LegendaryTrigger::
-	lock
-	pokenavcall ElmPhoneRoute39LegendaryText
-	waitmessage
-	setvar VAR_MAHOGANY_TOWN_STATE, 18
 	delay 10
 	release
 	end

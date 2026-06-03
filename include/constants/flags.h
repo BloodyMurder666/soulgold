@@ -1053,8 +1053,8 @@
 #define FLAG_ITEM_GARBAGEFLAG                                       0x3E8    //HnS ItemFlags Block 2
 #define FLAG_ITEM_ROUTE39_NUGGET                                    0x3E9
 #define FLAG_ITEM_ROUTE42_ULTRA_BALL                                0x3EA
-#define FLAG_ITEM_ROUTE42_SUPER_POTION                              0x3EB
-#define FLAG_ITEM_ROUTE42_MODEST_MINT                               0x3EC
+#define FLAG_ITEM_ROUTE42_SHADOW_CLAW                              0x3EB
+#define FLAG_ITEM_UNUSED0EC                                        0x3EC // Unused
 #define FLAG_ITEM_MTMORTAR1_REVIVE                                  0x3ED
 #define FLAG_ITEM_MTMORTAR1_ELIXIR                                  0x3EE
 #define FLAG_ITEM_MTMORTAR2_MAX_REPEL                               0x3EF

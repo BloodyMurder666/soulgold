@@ -291,10 +291,10 @@
 #define VAR_FLIP_LEVEL                                  0x410C
 #define VAR_FLAPPY_HISCORE                              0x410D
 #define VAR_GAMECORNER_WINNINGS                         0x410E
-#define VAR_0x410F                                      0x410F
-#define VAR_0x4110                                      0x4110
-#define VAR_0x4111                                      0x4111
-#define VAR_0x4112                                      0x4112
+#define VAR_ROCKET_ARCADE_BERRY                         0x410F
+#define VAR_ROCKET_ARCADE_ITEM                          0x4110
+#define VAR_ROCKET_ARCADE_POINTS                        0x4111
+#define VAR_ROUTE39_BAOBA_STATE                         0x4112
 #define VAR_0x4113                                      0x4113
 #define VAR_0x4114                                      0x4114
 #define VAR_0x4115                                      0x4115
