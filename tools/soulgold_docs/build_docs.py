@@ -121,7 +121,13 @@ SPECIES_NAME_OVERRIDES = {
 }
 
 ITEMS_HIDDEN_SORT_TYPES = {
+    "ITEM_TYPE_MEMORY",
     "ITEM_TYPE_Z_CRYSTAL",
+}
+
+IMPORTANT_ITEM_SORT_TYPES = {
+    "ITEM_TYPE_EVOLUTION_ITEM",
+    "ITEM_TYPE_EVOLUTION_STONE",
 }
 
 SPRITE_CACHE_VERSION = "alpha2"
@@ -238,6 +244,10 @@ def is_dex_visible_species(constant: str) -> bool:
     if any(constant.startswith(prefix) for prefix in DEX_HIDDEN_PREFIXES):
         return constant == "SPECIES_ARCEUS_NORMAL"
     return True
+
+
+def is_totem_species(constant: str) -> bool:
+    return "_TOTEM" in constant
 
 
 def is_gmax_dmax_form(constant: str) -> bool:
@@ -750,6 +760,8 @@ def parse_evolutions(item_names: dict[str, dict[str, str]]) -> dict[str, list[di
                 method, param, target = parts[0], parts[1], parts[2]
                 if method == "EVOLUTIONS_END" or not target.startswith("SPECIES_"):
                     continue
+                if is_totem_species(source) or is_totem_species(target):
+                    continue
                 evolutions[source].append({
                     "method": method,
                     "param": param,
@@ -942,7 +954,11 @@ def build_important_items(item_records: dict[str, dict[str, Any]]) -> list[dict[
     selected = {
         constant
         for constant, item in item_records.items()
-        if (item.get("pocket") in IMPORTANT_ITEM_POCKETS or constant in GENERIC_MEGA_STONE_ITEMS)
+        if (
+            item.get("pocket") in IMPORTANT_ITEM_POCKETS
+            or item.get("sortType") in IMPORTANT_ITEM_SORT_TYPES
+            or constant in GENERIC_MEGA_STONE_ITEMS
+        )
         and item.get("sortType") not in ITEMS_HIDDEN_SORT_TYPES
     }
     locations = parse_item_locations(selected)

@@ -3,6 +3,7 @@ const state = {
   activeTab: "pokedex",
   query: "",
   filteredSpecies: [],
+  selectedTypes: new Set(),
 };
 
 const typeName = (value) => value.replace("TYPE_", "").replaceAll("_", " ");
@@ -62,7 +63,9 @@ async function init() {
   const response = await fetch("data/romhack-docs.json?v=20260601-3");
   state.data = await response.json();
   state.filteredSpecies = state.data.species;
+  document.body.dataset.activeTab = state.activeTab;
   bindEvents();
+  renderTypeFilter();
   updateStickyOffset();
   renderAll();
 }
@@ -77,6 +80,9 @@ function bindEvents() {
     window.scrollTo(0, 0);
     renderActive();
   });
+  document.getElementById("typeFilterToggle").addEventListener("click", toggleTypeFilter);
+  document.getElementById("typeFilterPanel").addEventListener("click", handleTypeFilterClick);
+  document.addEventListener("click", closeTypeFilterOnOutsideClick);
   const dialog = document.getElementById("detailDialog");
   document.getElementById("closeDialog").addEventListener("click", () => closeDetailDialog());
   dialog.addEventListener("click", (event) => {
@@ -104,8 +110,10 @@ function setTab(tab) {
   hideMoveTooltip();
   updateStickyOffset();
   state.activeTab = tab;
+  document.body.dataset.activeTab = tab;
   state.query = "";
   document.getElementById("globalSearch").value = "";
+  closeTypeFilter();
   window.scrollTo(0, 0);
   document.querySelectorAll(".tab").forEach((button) => button.classList.toggle("active", button.dataset.tab === tab));
   document.querySelectorAll(".panel").forEach((panel) => panel.classList.toggle("active", panel.id === tab));
@@ -135,8 +143,87 @@ function renderActive() {
 }
 
 function renderDex() {
-  state.filteredSpecies = state.data.species.filter((mon) => matches(`${mon.dex} ${mon.name} ${speciesFormLabel(mon)} ${mon.types.map(typeName).join(" ")}`));
+  state.filteredSpecies = state.data.species.filter((mon) =>
+    matches(`${mon.dex} ${mon.name} ${speciesFormLabel(mon)} ${mon.types.map(typeName).join(" ")}`)
+    && matchesSelectedTypes(mon)
+  );
   renderDexRows();
+}
+
+function dexFilterTypes() {
+  const present = new Set(state.data.species.flatMap((mon) => mon.types || []));
+  return Object.keys(state.data.typeIcons || {})
+    .filter((type) => present.has(type))
+    .filter((type) => !["TYPE_NONE", "TYPE_MYSTERY", "TYPE_STELLAR"].includes(type));
+}
+
+function renderTypeFilter() {
+  const panel = document.getElementById("typeFilterPanel");
+  if (!panel) return;
+  panel.innerHTML = `
+    <div class="type-filter-title">Types</div>
+    <button class="type-filter-clear" type="button" data-clear-types>All</button>
+    <div class="type-filter-grid">
+      ${dexFilterTypes().map((type) => `
+        <button class="type-filter-chip type ${type}" type="button" data-type="${type}" aria-pressed="false">${typeName(type)}</button>
+      `).join("")}
+    </div>
+  `;
+  syncTypeFilter();
+}
+
+function syncTypeFilter() {
+  const toggle = document.getElementById("typeFilterToggle");
+  const count = state.selectedTypes.size;
+  toggle.textContent = count ? `Type ${count}` : "Type";
+  toggle.classList.toggle("has-filter", count > 0);
+  document.querySelectorAll(".type-filter-chip").forEach((button) => {
+    const active = state.selectedTypes.has(button.dataset.type);
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", active ? "true" : "false");
+  });
+}
+
+function matchesSelectedTypes(mon) {
+  if (!state.selectedTypes.size) return true;
+  return mon.types.some((type) => state.selectedTypes.has(type));
+}
+
+function toggleTypeFilter(event) {
+  event.stopPropagation();
+  const panel = document.getElementById("typeFilterPanel");
+  const open = panel.hidden;
+  panel.hidden = !open;
+  document.getElementById("typeFilterToggle").setAttribute("aria-expanded", open ? "true" : "false");
+}
+
+function closeTypeFilter() {
+  const panel = document.getElementById("typeFilterPanel");
+  if (!panel || panel.hidden) return;
+  panel.hidden = true;
+  document.getElementById("typeFilterToggle").setAttribute("aria-expanded", "false");
+}
+
+function closeTypeFilterOnOutsideClick(event) {
+  if (event.target.closest("#typeFilter")) return;
+  closeTypeFilter();
+}
+
+function handleTypeFilterClick(event) {
+  event.stopPropagation();
+  const clear = event.target.closest("[data-clear-types]");
+  const button = event.target.closest("[data-type]");
+  if (!clear && !button) return;
+  if (clear) {
+    state.selectedTypes.clear();
+  } else if (state.selectedTypes.has(button.dataset.type)) {
+    state.selectedTypes.delete(button.dataset.type);
+  } else {
+    state.selectedTypes.add(button.dataset.type);
+  }
+  syncTypeFilter();
+  window.scrollTo(0, 0);
+  renderDex();
 }
 
 function renderDexRows() {

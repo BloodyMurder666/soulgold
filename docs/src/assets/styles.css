@@ -372,9 +372,7 @@ th {
 .ability-list {
   display: grid;
   gap: 0;
-  max-height: calc(100vh - 230px);
-  min-height: 520px;
-  overflow: auto;
+  overflow: visible;
   border: 1px solid #30313a;
   background: var(--panel);
 }
@@ -396,8 +394,8 @@ th {
 
 .ability-head {
   position: sticky;
-  top: 0;
-  z-index: 2;
+  top: var(--top-chrome-height);
+  z-index: 20;
   background: #111217;
   font-weight: 800;
   cursor: default;
@@ -849,6 +847,92 @@ dialog::backdrop { background: rgb(0 0 0 / 70%); }
   display: none;
 }
 
+.type-filter {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 35;
+  display: none;
+}
+
+body[data-active-tab="pokedex"] .type-filter {
+  display: block;
+}
+
+.type-filter-toggle,
+.type-filter-clear {
+  height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: rgb(15 16 21 / 90%);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgb(0 0 0 / 30%);
+}
+
+.type-filter-toggle {
+  min-width: 56px;
+  padding: 0 12px;
+  opacity: .82;
+}
+
+.type-filter-toggle.has-filter {
+  border-color: var(--gold);
+  color: var(--gold);
+  opacity: 1;
+}
+
+.type-filter-panel {
+  position: absolute;
+  left: 0;
+  bottom: 44px;
+  width: min(330px, calc(100vw - 24px));
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgb(24 25 31 / 96%);
+  box-shadow: 0 10px 28px rgb(0 0 0 / 45%);
+}
+
+.type-filter-panel[hidden] {
+  display: none;
+}
+
+.type-filter-title {
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.type-filter-clear {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.type-filter-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.type-filter-chip {
+  width: 100%;
+  border: 2px solid transparent;
+  opacity: .58;
+  cursor: pointer;
+}
+
+.type-filter-chip.active {
+  border-color: var(--gold);
+  opacity: 1;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 45%), 0 0 0 1px rgb(215 178 109 / 35%);
+}
+
 @media (max-width: 1180px) {
   :root {
     --top-chrome-height: 0px;
@@ -1080,6 +1164,13 @@ dialog::backdrop { background: rgb(0 0 0 / 70%); }
     min-width: 58px;
     padding: 0 7px;
     font-size: 12px;
+  }
+  .type-filter {
+    left: 14px;
+    bottom: 18px;
+  }
+  .type-filter-panel {
+    width: min(314px, calc(100vw - 28px));
   }
   .evolution-line { flex-wrap: wrap; }
   .trainer-mon {
