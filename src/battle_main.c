@@ -3181,6 +3181,12 @@ static void BattleStartClearSetData(void)
         gBattleStruct->lastTakenMoveFrom[i][3] = MOVE_NONE;
         gBattleStruct->AI_monToSwitchIntoId[i] = PARTY_SIZE;
         gBattleStruct->skyDropTargets[i] = SKY_DROP_NO_TARGET;
+        gBattleStruct->customTurnStartHp[i] = 0;
+        gBattleStruct->pendulumLastMove[i] = MOVE_NONE;
+        gBattleStruct->pendulumStreak[i] = 0;
+        gBattleStruct->aegisUsed[i] = FALSE;
+        gBattleStruct->blitzReady[i] = TRUE;
+        gBattleStruct->nullSpaceProtectedHit[i] = FALSE;
     }
 
     gLastUsedMove = 0;
@@ -3252,6 +3258,12 @@ static void BattleStartClearSetData(void)
             gBattleStruct->itemLost[B_SIDE_PLAYER][i][j].originalItem = GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM + j);
             gBattleStruct->itemLost[B_SIDE_OPPONENT][i][j].originalItem = GetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM + j);
         }
+        gBattleStruct->partyState[B_SIDE_PLAYER][i].shardplateHits = 0;
+        gBattleStruct->partyState[B_SIDE_PLAYER][i].transmuteUsed = FALSE;
+        gBattleStruct->partyState[B_SIDE_PLAYER][i].twinStarsBoosted = FALSE;
+        gBattleStruct->partyState[B_SIDE_OPPONENT][i].shardplateHits = 0;
+        gBattleStruct->partyState[B_SIDE_OPPONENT][i].transmuteUsed = FALSE;
+        gBattleStruct->partyState[B_SIDE_OPPONENT][i].twinStarsBoosted = FALSE;
         gPartyCriticalHits[i] = 0;
     }
 
@@ -3373,6 +3385,12 @@ void SwitchInClearSetData(enum BattlerId battler, struct Volatiles *volatilesCop
     gBattleStruct->palaceFlags &= ~(1u << battler);
     gBattleStruct->battlerState[battler].canPickupItem = FALSE;
     gBattleStruct->battlerState[battler].wasAboveHalfHp = gBattleMons[battler].hp > gBattleMons[battler].maxHP / 2;
+    gBattleStruct->customTurnStartHp[battler] = gBattleMons[battler].hp;
+    gBattleStruct->pendulumLastMove[battler] = MOVE_NONE;
+    gBattleStruct->pendulumStreak[battler] = 0;
+    gBattleStruct->aegisUsed[battler] = FALSE;
+    gBattleStruct->blitzReady[battler] = TRUE;
+    gBattleStruct->nullSpaceProtectedHit[battler] = FALSE;
     gBattleStruct->hazardsCounter = 0;
 
     ClearPursuitValuesIfSet(battler);
@@ -3434,6 +3452,17 @@ const u8* FaintClearSetData(enum BattlerId battler)
 {
     const u8 *result = NULL;
 
+    if (BattlerHasTrait(battler, ABILITY_MARTYR))
+    {
+        for (enum BattlerId ally = 0; ally < gBattlersCount; ally++)
+        {
+            if (ally == battler || !IsBattlerAlive(ally) || !IsBattlerAlly(battler, ally))
+                continue;
+
+            gBattleMons[ally].hp = min(gBattleMons[ally].hp + GetNonDynamaxMaxHP(ally) / 4, gBattleMons[ally].maxHP);
+        }
+    }
+
     for (enum Stat i = 0; i < NUM_BATTLE_STATS; i++)
         gBattleMons[battler].statStages[i] = DEFAULT_STAT_STAGE;
 
@@ -3492,6 +3521,12 @@ const u8* FaintClearSetData(enum BattlerId battler)
     gBattleStruct->lastTakenMoveFrom[battler][2] = 0;
     gBattleStruct->lastTakenMoveFrom[battler][3] = 0;
     gBattleStruct->palaceFlags &= ~(1u << battler);
+    gBattleStruct->customTurnStartHp[battler] = 0;
+    gBattleStruct->pendulumLastMove[battler] = MOVE_NONE;
+    gBattleStruct->pendulumStreak[battler] = 0;
+    gBattleStruct->aegisUsed[battler] = FALSE;
+    gBattleStruct->blitzReady[battler] = FALSE;
+    gBattleStruct->nullSpaceProtectedHit[battler] = FALSE;
     if (battler == gBattlerAttacker)
         gBattleStruct->moldBreakerActive = FALSE;
 
@@ -4872,7 +4907,7 @@ u32 GetBattlerTotalSpeedStat(enum BattlerId battler)
     }
 
     // other abilities
-    if (SearchTraits(battlerTraits, ABILITY_QUICK_FEET) && gBattleMons[battler].status1 & STATUS1_ANY)
+    if (SearchTraits(battlerTraits, ABILITY_QUICK_FEET) && BattlerHasEffectiveMajorStatus(battler))
         speed += baseSpeed / 2;
     if (SearchTraits(battlerTraits, ABILITY_SURGE_SURFER) && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
         speed += baseSpeed;
@@ -5161,7 +5196,11 @@ s32 GetBattleMovePriority(enum BattlerId battler, enum Move move)
      && GetMovePower(move) < 60)
         priority++;
     if (SearchTraits(battlerTraits, ABILITY_REACTIVE) && ShouldReactiveIncreasePriority(battler))
+    {
         priority++;
+        if (gChosenActionByBattler[battler] == B_ACTION_USE_MOVE && move == GetBattlerChosenMove(battler))
+            gProtectStructs[battler].reactive = TRUE;
+    }
     if (SearchTraits(battlerTraits, ABILITY_STYGIAN) && IsMoveExpectedToTargetSleepingBattler(battler, move))
         priority++;
     if (SearchTraits(battlerTraits, ABILITY_NINE_LIVES)
@@ -5183,8 +5222,8 @@ s32 GetWhichBattlerFasterArgs(struct BattleCalcValues *calcValues, bool32 ignore
         // If both battlers are affected by one of these effects, order is determined by Speed.
         bool32 battler1HasQuickEffect = gProtectStructs[calcValues->battlerAtk].quickDraw || gProtectStructs[calcValues->battlerAtk].usedCustapBerry;
         bool32 battler2HasQuickEffect = gProtectStructs[calcValues->battlerDef].quickDraw || gProtectStructs[calcValues->battlerDef].usedCustapBerry;
-        bool32 battler1HasStallingAbility = BattlerHasTrait(calcValues->battlerAtk, ABILITY_STALL) || gProtectStructs[calcValues->battlerAtk].myceliumMight;
-        bool32 battler2HasStallingAbility = BattlerHasTrait(calcValues->battlerDef, ABILITY_STALL) || gProtectStructs[calcValues->battlerDef].myceliumMight;
+        bool32 battler1HasStallingAbility = BattlerHasTrait(calcValues->battlerAtk, ABILITY_STALL) || BattlerHasTrait(calcValues->battlerAtk, ABILITY_IMMOVABLE) || gProtectStructs[calcValues->battlerAtk].myceliumMight;
+        bool32 battler2HasStallingAbility = BattlerHasTrait(calcValues->battlerDef, ABILITY_STALL) || BattlerHasTrait(calcValues->battlerDef, ABILITY_IMMOVABLE) || gProtectStructs[calcValues->battlerDef].myceliumMight;
         bool32 battler1HasSlowEffect = battler1HasStallingAbility || gProtectStructs[calcValues->battlerAtk].laggingTail;
         bool32 battler2HasSlowEffect = battler2HasStallingAbility || gProtectStructs[calcValues->battlerDef].laggingTail;
 
@@ -5365,6 +5404,7 @@ static void SetActionsAndBattlersTurnOrder(void)
 
             for (battler = 0; battler < gBattlersCount; battler++)
             {
+                gProtectStructs[battler].reactive = FALSE;
                 if (gChosenActionByBattler[battler] == B_ACTION_USE_ITEM
                   || gChosenActionByBattler[battler] == B_ACTION_SWITCH
                   || gChosenActionByBattler[battler] == B_ACTION_THROW_BALL)
@@ -5432,6 +5472,7 @@ static void TurnValuesCleanUp(bool8 var0)
             gProtectStructs[i].quash = FALSE;
             gProtectStructs[i].usedCustapBerry = FALSE;
             gProtectStructs[i].quickDraw = FALSE;
+            gProtectStructs[i].reactive = FALSE;
             memset(&gQueuedStatBoosts[i], 0, sizeof(struct QueuedStatBoost));
         }
         else
@@ -5613,7 +5654,7 @@ static void CheckChangingTurnOrderEffects(void)
             gBattleStruct->quickClawBattlerId++;
             if (gChosenActionByBattler[battler] == B_ACTION_USE_MOVE
              && GetMoveEffect(gChosenMoveByBattler[battler]) != EFFECT_FOCUS_PUNCH   // quick claw message doesn't need to activate here
-             && (gProtectStructs[battler].usedCustapBerry || gProtectStructs[battler].quickDraw)
+             && (gProtectStructs[battler].usedCustapBerry || gProtectStructs[battler].quickDraw || gProtectStructs[battler].reactive)
              && !(gBattleMons[battler].status1 & STATUS1_SLEEP)
              && !(gBattleMons[gBattlerAttacker].volatiles.truantCounter)
              && !(gProtectStructs[battler].noValidMoves))
@@ -5644,6 +5685,15 @@ static void CheckChangingTurnOrderEffects(void)
                     RecordAbilityBattle(battler, ABILITY_QUICK_DRAW);
                     BattleScriptExecute(BattleScript_QuickDrawActivation);
                 }
+                else if (gProtectStructs[battler].reactive)
+                {
+                    gBattlerAbility = battler;
+                    gLastUsedAbility = ABILITY_REACTIVE;
+                    PushTraitStack(battler, ABILITY_REACTIVE);
+                    PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                    RecordAbilityBattle(battler, ABILITY_REACTIVE);
+                    BattleScriptExecute(BattleScript_QuickDrawActivation);
+                }
                 return;
             }
         }
@@ -5651,6 +5701,13 @@ static void CheckChangingTurnOrderEffects(void)
 
     // setup stuff before turns/actions
     TryClearRageAndFuryCutter();
+
+    for (i = 0; i < gBattlersCount; i++)
+    {
+        gBattleStruct->customTurnStartHp[i] = gBattleMons[i].hp;
+        gBattleStruct->aegisUsed[i] = FALSE;
+        gBattleStruct->nullSpaceProtectedHit[i] = FALSE;
+    }
 
     // Prevents trainer slides triggering a turn late if another slide took priority on the previous turn
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)

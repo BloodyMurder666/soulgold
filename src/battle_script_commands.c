@@ -2932,16 +2932,18 @@ void SetMoveEffect(enum BattlerId battlerAtk, enum BattlerId effectBattler, enum
         }
         break;
     case MOVE_EFFECT_FLINCH:
-        if (SearchTraits(battlerTraits, ABILITY_INNER_FOCUS))
+        if (SearchTraits(battlerTraits, ABILITY_INNER_FOCUS) || SearchTraits(battlerTraits, ABILITY_INDOMITABLE))
         {
+            enum Ability flinchBlockAbility = SearchTraits(battlerTraits, ABILITY_INNER_FOCUS) ? ABILITY_INNER_FOCUS : ABILITY_INDOMITABLE;
+
             // Inner Focus ALWAYS prevents flinching but only activates
             // on a move that's supposed to flinch, like Fake Out
             if (primary || certain)
             {
-                gLastUsedAbility = ABILITY_INNER_FOCUS;
-                PushTraitStack(gEffectBattler, ABILITY_INNER_FOCUS);
+                gLastUsedAbility = flinchBlockAbility;
+                PushTraitStack(gEffectBattler, flinchBlockAbility);
                 gBattlerAbility = gEffectBattler;
-                RecordAbilityBattle(gEffectBattler, ABILITY_INNER_FOCUS);
+                RecordAbilityBattle(gEffectBattler, flinchBlockAbility);
                 BattleScriptPush(battleScript);
                 gBattlescriptCurrInstr = BattleScript_FlinchPrevention;
             }
@@ -10195,9 +10197,9 @@ static void Cmd_curestatuswithmove(void)
     u32 shouldHeal;
 
     if (GetMoveEffect(gCurrentMove) == EFFECT_REFRESH)
-        shouldHeal = gBattleMons[gBattlerAttacker].status1 & STATUS1_CAN_MOVE;
+        shouldHeal = (gBattleMons[gBattlerAttacker].status1 & STATUS1_CAN_MOVE) || BattlerHasTrait(gBattlerAttacker, ABILITY_HAUNTED);
     else // Take Heart
-        shouldHeal = gBattleMons[gBattlerAttacker].status1 & STATUS1_ANY;
+        shouldHeal = BattlerHasEffectiveMajorStatus(gBattlerAttacker);
 
     if (shouldHeal)
     {
@@ -10806,6 +10808,16 @@ static void Cmd_switchoutabilities(void)
                                      sizeof(heal),
                                      &heal);
         MarkBattlerForControllerExec(battler);
+    }
+    if (BattlerHasTrait(battler, ABILITY_BACKDRAFT) && gChosenActionByBattler[battler] == B_ACTION_SWITCH)
+    {
+        for (enum BattlerId target = 0; target < gBattlersCount; target++)
+        {
+            if (!IsBattlerAlive(target) || IsBattlerAlly(battler, target))
+                continue;
+            if (gBattleMons[target].statStages[STAT_SPEED] > MIN_STAT_STAGE)
+                gBattleMons[target].statStages[STAT_SPEED]--;
+        }
     }
 
     gBattlescriptCurrInstr = cmd->nextInstr;
@@ -15866,6 +15878,8 @@ void BS_JumpIfAbilityPreventsRest(void)
     else if (IsShieldsDownProtected(battler))
         gBattlescriptCurrInstr = cmd->jumpInstr;
     else if (IsAbilityOnSide(battler, ABILITY_SWEET_VEIL))
+        gBattlescriptCurrInstr = cmd->jumpInstr;
+    else if (BattlerHasTrait(battler, ABILITY_HAUNTED))
         gBattlescriptCurrInstr = cmd->jumpInstr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;

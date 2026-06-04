@@ -255,6 +255,13 @@ u32 IsAbilityOnField(enum Ability ability);
 u32 IsAbilityOnFieldExcept(enum BattlerId battler, enum Ability ability);
 u32 IsAbilityPreventingEscape(enum BattlerId battler);
 bool32 IsBattlerProtected(struct BattleContext *ctx);
+bool32 IsCustomAbilityDirectDamagingMove(enum Move move);
+bool32 BattlerHasEffectiveMajorStatus(enum BattlerId battler);
+enum Stat GetBattlerHighestNonHpStat(enum BattlerId battler);
+bool32 IsFiniteWeatherActive(void);
+bool32 IsFiniteTerrainActive(void);
+bool32 IsTimeSpiralActiveOnField(void);
+bool32 SameSidePalkiaDialgaRiftActive(enum BattlerId battler);
 enum ProtectType GetProtectType(enum ProtectMethod method);
 bool32 CanBattlerEscape(enum BattlerId battler); // no ability check
 void BattleScriptExecute(const u8 *BS_ptr);

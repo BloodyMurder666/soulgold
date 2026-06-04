@@ -21,9 +21,12 @@ SINGLE_BATTLE_TEST("Reactive gives priority if the opponent is about to use a su
         TURN { MOVE(player, MOVE_SCRATCH); MOVE(opponent, opponentMove); }
     } SCENE {
         if (opponentMove == MOVE_BITE) {
+            ABILITY_POPUP(player, ABILITY_REACTIVE);
+            MESSAGE("Wobbuffet can act faster than normal, thanks to its Reactive!");
             ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
             ANIMATION(ANIM_TYPE_MOVE, MOVE_BITE, opponent);
         } else {
+            NOT ABILITY_POPUP(player, ABILITY_REACTIVE);
             ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
             ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
         }
@@ -49,9 +52,12 @@ DOUBLE_BATTLE_TEST("Reactive only responds to targeted super-effective moves aim
         }
     } SCENE {
         if (targetReactiveBattler) {
+            ABILITY_POPUP(playerLeft, ABILITY_REACTIVE);
+            MESSAGE("Wobbuffet can act faster than normal, thanks to its Reactive!");
             ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, playerLeft);
             ANIMATION(ANIM_TYPE_MOVE, MOVE_BITE, opponentLeft);
         } else {
+            NOT ABILITY_POPUP(playerLeft, ABILITY_REACTIVE);
             ANIMATION(ANIM_TYPE_MOVE, MOVE_BITE, opponentLeft);
             ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, playerLeft);
         }
@@ -70,6 +76,8 @@ DOUBLE_BATTLE_TEST("Reactive responds to spread super-effective moves")
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_SCRATCH, target: opponentLeft); MOVE(opponentLeft, MOVE_SNARL); }
     } SCENE {
+        ABILITY_POPUP(playerLeft, ABILITY_REACTIVE);
+        MESSAGE("Wobbuffet can act faster than normal, thanks to its Reactive!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, playerLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SNARL, opponentLeft);
     }
@@ -84,6 +92,8 @@ SINGLE_BATTLE_TEST("Reactive gives priority if the opponent is about to use a su
     } WHEN {
         TURN { MOVE(player, MOVE_SCRATCH); MOVE(opponent, MOVE_BITE); }
     } SCENE {
+        ABILITY_POPUP(player, ABILITY_REACTIVE);
+        MESSAGE("Wobbuffet can act faster than normal, thanks to its Reactive!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BITE, opponent);
     }

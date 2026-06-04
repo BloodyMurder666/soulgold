@@ -8,6 +8,13 @@ SINGLE_BATTLE_TEST("Infernal lowers the foe's Attack and Defense on entry")
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE); MOVE(opponent, MOVE_CELEBRATE); }
+    } SCENE {
+        ABILITY_POPUP(player, ABILITY_INFERNAL);
+        MESSAGE("The opposing Wobbuffet's Attack and Defense fell!");
+        NONE_OF {
+            MESSAGE("The opposing Wobbuffet's Attack fell!");
+            MESSAGE("The opposing Wobbuffet's Defense fell!");
+        }
     } THEN {
         EXPECT_EQ(opponent->statStages[STAT_ATK], DEFAULT_STAT_STAGE - 1);
         EXPECT_EQ(opponent->statStages[STAT_DEF], DEFAULT_STAT_STAGE - 1);

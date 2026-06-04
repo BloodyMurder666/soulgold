@@ -269,7 +269,8 @@ static enum CancelerResult CancelerFocus(struct BattleContext *ctx)
     if ((gProtectStructs[ctx->battlerAtk].physicalDmg || gProtectStructs[ctx->battlerAtk].specialDmg)
      && (focusPunchFailureConfig < GEN_5 || GetMoveEffect(gChosenMoveByBattler[ctx->battlerAtk]) == EFFECT_FOCUS_PUNCH)
      && (focusPunchFailureConfig == GEN_5 || focusPunchFailureConfig == GEN_6 || GetMoveEffect(ctx->move) == EFFECT_FOCUS_PUNCH)
-     && !gProtectStructs[ctx->battlerAtk].survivedOHKO)
+     && !gProtectStructs[ctx->battlerAtk].survivedOHKO
+     && !BattlerHasTrait(ctx->battlerAtk, ABILITY_PARRYING))
     {
         CancelMultiTurnMoves(ctx->battlerAtk, SKY_DROP_ATTACKCANCELER_CHECK);
         gBattlescriptCurrInstr = BattleScript_FocusPunchLostFocus;
@@ -296,6 +297,12 @@ static enum CancelerResult CancelerFlinch(struct BattleContext *ctx)
 {
     if (gBattleMons[ctx->battlerAtk].volatiles.flinched)
     {
+        if (BattlerHasTrait(ctx->battlerAtk, ABILITY_INDOMITABLE))
+        {
+            gBattleMons[ctx->battlerAtk].volatiles.flinched = FALSE;
+            RecordAbilityBattle(ctx->battlerAtk, ABILITY_INDOMITABLE);
+            return CANCELER_RESULT_SUCCESS;
+        }
         CancelMultiTurnMoves(ctx->battlerAtk, SKY_DROP_ATTACKCANCELER_CHECK);
         gBattlescriptCurrInstr = BattleScript_MoveUsedFlinched;
         return CANCELER_RESULT_FAILURE;
@@ -787,8 +794,30 @@ static bool32 HandleMoveTargetRedirection(enum MoveTarget moveTarget)
     }
 
     enum Type moveType = GetBattleMoveType(gCurrentMove);
+    bool32 monsoonBypassesWater = BattlerHasTrait(gBattlerAttacker, ABILITY_MONSOON)
+                                && moveType == TYPE_WATER
+                                && IsBattlerWeatherAffected(gBattlerAttacker, B_WEATHER_RAIN);
     bool32 currTargetCantAbsorb = ((!BattlerHasTrait(gBattlerTarget, ABILITY_LIGHTNING_ROD) && moveType == TYPE_ELECTRIC)
-                                || (!BattlerHasTrait(gBattlerTarget, ABILITY_STORM_DRAIN) && moveType == TYPE_WATER));
+                                || (!monsoonBypassesWater && !BattlerHasTrait(gBattlerTarget, ABILITY_STORM_DRAIN) && moveType == TYPE_WATER));
+
+    if (IsDoubleBattle()
+     && IsCustomAbilityDirectDamagingMove(gCurrentMove)
+     && (moveTarget == TARGET_SELECTED || moveTarget == TARGET_SMART || moveTarget == TARGET_OPPONENT || moveEffect == EFFECT_REFLECT_DAMAGE)
+     && !IsBattlerAlly(gBattlerAttacker, gBattlerTarget)
+     && !IsAbilityAndRecord(gBattlerAttacker, ABILITY_PROPELLER_TAIL)
+     && !IsAbilityAndRecord(gBattlerAttacker, ABILITY_STALWART))
+    {
+        enum BattlerId guardian = BATTLE_PARTNER(gBattlerTarget);
+
+        if (IsBattlerAlive(guardian)
+         && BattlerHasTrait(guardian, ABILITY_GUARDIAN))
+        {
+            RecordAbilityBattle(guardian, ABILITY_GUARDIAN);
+            gSpecialStatuses[guardian].abilityRedirected = TRUE;
+            gBattleStruct->moveTarget[gBattlerAttacker] = gBattlerTarget = guardian;
+            return TRUE;
+        }
+    }
 
     if (currTargetCantAbsorb
      && IsDoubleBattle()
@@ -811,7 +840,7 @@ static bool32 HandleMoveTargetRedirection(enum MoveTarget moveTarget)
                 && battler != gBattlerAttacker
                 && gBattlerTarget != battler
                 && ((BattlerHasTrait(battler, ABILITY_LIGHTNING_ROD) && moveType == TYPE_ELECTRIC)
-                 || (BattlerHasTrait(battler, ABILITY_STORM_DRAIN) && moveType == TYPE_WATER))
+                 || (!monsoonBypassesWater && BattlerHasTrait(battler, ABILITY_STORM_DRAIN) && moveType == TYPE_WATER))
                 && GetBattlerTurnOrderNum(battler) < redirectorOrderNum
                 && !IsAbilityAndRecord(gBattlerAttacker, ABILITY_PROPELLER_TAIL)
                 && !IsAbilityAndRecord(gBattlerAttacker, ABILITY_STALWART))
@@ -1435,6 +1464,12 @@ static enum CancelerResult CancelerPriorityBlock(struct BattleContext *ctx)
             effect = TRUE;
             break;
         }
+        if (BattlerHasTrait(battler, ABILITY_TIME_SPIRAL))
+        {
+            gLastUsedAbility = ABILITY_TIME_SPIRAL;
+            effect = TRUE;
+            break;
+        }
     }
 
     if (effect)
@@ -1891,8 +1926,9 @@ static enum CancelerResult CancelerNotFullyProtected(struct BattleContext *ctx)
 static bool32 IsMoveParentalBondAffected(struct BattleContext *ctx)
 {
     enum BattleMoveEffects effect = GetMoveEffect(ctx->move);
+    bool32 echoChamber = BattlerHasTrait(ctx->battlerAtk, ABILITY_ECHO_CHAMBER) && IsSoundMove(ctx->move);
 
-    if (!(BattlerHasTrait(ctx->battlerAtk, ABILITY_PARENTAL_BOND) || BattlerHasTrait(ctx->battlerAtk, ABILITY_DUAL_STRIKE))
+    if (!(BattlerHasTrait(ctx->battlerAtk, ABILITY_PARENTAL_BOND) || BattlerHasTrait(ctx->battlerAtk, ABILITY_DUAL_STRIKE) || echoChamber)
      || gBattleStruct->numSpreadTargets > 1
      || IsMoveParentalBondBanned(ctx->move)
      || GetMoveCategory(ctx->move) == DAMAGE_CATEGORY_STATUS
@@ -3185,9 +3221,9 @@ static enum MoveEndResult MoveEndMoveBlock(void)
             if (BattlerHasTrait(gBattlerTarget, ABILITY_GUARD_DOG))
                 break;
 
-            if (BattlerHasTrait(gBattlerTarget, ABILITY_SUCTION_CUPS))
+            if (BattlerHasTrait(gBattlerTarget, ABILITY_SUCTION_CUPS) || BattlerHasTrait(gBattlerTarget, ABILITY_IMMOVABLE))
             {
-                PushTraitStack(gBattlerTarget, ABILITY_SUCTION_CUPS);
+                PushTraitStack(gBattlerTarget, BattlerHasTrait(gBattlerTarget, ABILITY_SUCTION_CUPS) ? ABILITY_SUCTION_CUPS : ABILITY_IMMOVABLE);
                 BattleScriptCall(BattleScript_AbilityPreventsPhasingOutRet);
             }
             else if (gBattleMons[gBattlerTarget].volatiles.root)
@@ -3373,6 +3409,7 @@ static bool32 TryRedCard(enum BattlerId battlerAtk, enum BattlerId redCardBattle
     gEffectBattler = battlerAtk;
     if (gBattleStruct->battlerState[battlerAtk].commanderSpecies != SPECIES_NONE
      || BattlerHasTrait(battlerAtk, ABILITY_GUARD_DOG)
+     || BattlerHasTrait(battlerAtk, ABILITY_IMMOVABLE)
      || GetActiveGimmick(battlerAtk) == GIMMICK_DYNAMAX)
         BattleScriptCall(BattleScript_RedCardActivationNoSwitch);
     else

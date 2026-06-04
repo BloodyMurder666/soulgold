@@ -1189,7 +1189,16 @@ static bool32 HandleEndTurnMagicRoom(enum BattlerId battler)
 
 static bool32 EndTurnTerrain(u32 terrainFlag, u32 stringTableId)
 {
-    if (gFieldTimers.terrainTimer > 0 && --gFieldTimers.terrainTimer == 0)
+    bool32 finiteTerrain = gFieldTimers.terrainTimer > 0;
+
+    if (finiteTerrain)
+    {
+        gFieldTimers.terrainTimer--;
+        if (gFieldTimers.terrainTimer > 0 && IsTimeSpiralActiveOnField())
+            gFieldTimers.terrainTimer--;
+    }
+
+    if (finiteTerrain && gFieldTimers.terrainTimer == 0)
     {
         gFieldStatuses &= ~terrainFlag;
         TryToRevertMimicryAndFlags();
@@ -1293,7 +1302,9 @@ static bool32 HandleEndTurnThirdEventBlock(enum BattlerId battler)
          || SearchTraits(battlerTraits, ABILITY_REJUVENATION)
          || SearchTraits(battlerTraits, ABILITY_STORMRIDER)
          || SearchTraits(battlerTraits, ABILITY_VOLCANO_HOWL)
-         || SearchTraits(battlerTraits, ABILITY_ARCTIC_AURA))
+         || SearchTraits(battlerTraits, ABILITY_ARCTIC_AURA)
+         || SearchTraits(battlerTraits, ABILITY_MENDING)
+         || SearchTraits(battlerTraits, ABILITY_CHANNEL_EARTH))
             if (AbilityBattleEffects(ABILITYEFFECT_ENDTURN, battler, MOVE_NONE, TRUE))
                 effect = TRUE;
 
@@ -1312,7 +1323,9 @@ static bool32 HandleEndTurnThirdEventBlock(enum BattlerId battler)
          || SearchTraits(battlerTraits, ABILITY_REJUVENATION)
          || SearchTraits(battlerTraits, ABILITY_STORMRIDER)
          || SearchTraits(battlerTraits, ABILITY_VOLCANO_HOWL)
-         || SearchTraits(battlerTraits, ABILITY_ARCTIC_AURA))
+         || SearchTraits(battlerTraits, ABILITY_ARCTIC_AURA)
+         || SearchTraits(battlerTraits, ABILITY_MENDING)
+         || SearchTraits(battlerTraits, ABILITY_CHANNEL_EARTH))
             effect = TRUE; // Set effect again outside above loop
         break;
     }

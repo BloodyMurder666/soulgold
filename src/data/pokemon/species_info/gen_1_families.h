@@ -7369,7 +7369,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     #else
         .abilities = { ABILITY_LIMBER, ABILITY_NONE, ABILITY_UNNERVE },
     #endif
-        .innates = { ABILITY_SUPER_LUCK, ABILITY_MOODY, ABILITY_NINE_LIVES },
+        .innates = { ABILITY_SUPER_LUCK, ABILITY_MAIM_AND_MEND, ABILITY_NINE_LIVES },
 		.bodyColor = BODY_COLOR_YELLOW,
         .speciesName = _("Persian"),
         .cryId = CRY_PERSIAN,
@@ -7652,7 +7652,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_BATTLE_ARMOR, ABILITY_TOUGH_CLAWS, ABILITY_STEELY_SPIRIT },
-        .innates = { ABILITY_HUSTLE, ABILITY_SHEER_FORCE, ABILITY_NINE_LIVES },
+        .innates = { ABILITY_HUSTLE, ABILITY_BLOODLUST, ABILITY_NINE_LIVES },
 		.bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Perrserker"),
         .cryId = CRY_PERRSERKER,
@@ -13383,7 +13383,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_3),
         .abilities = { ABILITY_HYPER_CUTTER, ABILITY_SHELL_ARMOR, ABILITY_SHEER_FORCE },
-        .innates = { ABILITY_SHEER_FORCE, ABILITY_HUSTLE, ABILITY_MOLD_BREAKER },
+        .innates = { ABILITY_WATER_VEIL, ABILITY_HUSTLE, ABILITY_MOLD_BREAKER },
 		.bodyColor = BODY_COLOR_RED,
         .noFlip = TRUE,
         .speciesName = _("Kingler"),
@@ -14430,7 +14430,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     #else
         .abilities = { ABILITY_KEEN_EYE, ABILITY_NONE, ABILITY_INNER_FOCUS },
     #endif
-        .innates = { ABILITY_ELEMENTAL_FIST, ABILITY_TECHNICIAN, ABILITY_GUTS },
+        .innates = { ABILITY_PARRYING, ABILITY_TECHNICIAN, ABILITY_GUTS },
 		.bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Hitmonchan"),
         .cryId = CRY_HITMONCHAN,
@@ -18996,7 +18996,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_FLASH_FIRE, ABILITY_FLASH_FIRE, ABILITY_GUTS },
-        .innates = { ABILITY_ADAPTABILITY, ABILITY_POISON_HEAL, ABILITY_GUTS },
+        .innates = { ABILITY_ADAPTABILITY, ABILITY_POISON_HEAL, ABILITY_FLAME_BODY },
 		.bodyColor = BODY_COLOR_RED,
         .speciesName = _("Flareon"),
         .cryId = CRY_FLAREON,
@@ -20515,7 +20515,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     #else
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_LIGHTNING_ROD },
     #endif
-        .innates = { ABILITY_DRIZZLE, ABILITY_LIGHTNING_ROD, ABILITY_PLUS },
+        .innates = { ABILITY_DRIZZLE, ABILITY_VOLT_ABSORB, ABILITY_PLUS },
 		.bodyColor = BODY_COLOR_YELLOW,
         .speciesName = _("Zapdos"),
         .cryId = CRY_ZAPDOS,

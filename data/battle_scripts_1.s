@@ -2553,6 +2553,7 @@ BattleScript_EffectRoar::
 	jumpifcommanderactive BattleScript_ButItFailed
 	jumpifability BS_TARGET, ABILITY_GUARD_DOG, BattleScript_ButItFailed
 	jumpifability BS_TARGET, ABILITY_SUCTION_CUPS, BattleScript_AbilityPreventsPhasingOut
+	jumpifability BS_TARGET, ABILITY_IMMOVABLE, BattleScript_AbilityPreventsPhasingOut
 	jumpifvolatile BS_TARGET, VOLATILE_ROOT, BattleScript_PrintMonIsRooted
 	jumpiftargetdynamaxed BattleScript_RoarBlockedByDynamax
 	accuracycheck BattleScript_MoveMissedPause
@@ -6385,20 +6386,17 @@ BattleScript_InfernalLoop:
 	jumpifvolatile BS_TARGET, VOLATILE_SUBSTITUTE, BattleScript_InfernalLoopIncrement
 BattleScript_InfernalAtkEffect:
 	copybyte sBATTLER, gBattlerAttacker
+	beginstatbuffbatch
 	setstatchanger STAT_ATK, 1, TRUE
-	statbuffchange BS_TARGET, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_InfernalDefEffect
-	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_CHANGE, BattleScript_InfernalAtkWontDecrease
-	printfromtable gStatDownStringIds
-BattleScript_InfernalAtkEffect_WaitString:
-	waitmessage B_WAIT_TIME_LONG
+	statbuffchange BS_TARGET, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_InfernalDefEffect, BIT_DEF
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_CHANGE, BattleScript_InfernalDefEffect
 BattleScript_InfernalDefEffect:
 	copybyte sBATTLER, gBattlerAttacker
 	setstatchanger STAT_DEF, 1, TRUE
-	statbuffchange BS_TARGET, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_InfernalLoopIncrement
-	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_CHANGE, BattleScript_InfernalDefWontDecrease
-	printfromtable gStatDownStringIds
-BattleScript_InfernalDefEffect_WaitString:
-	waitmessage B_WAIT_TIME_LONG
+	statbuffchange BS_TARGET, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_InfernalFlush
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_CHANGE, BattleScript_InfernalFlush
+BattleScript_InfernalFlush:
+	flushstatbuffbatch
 BattleScript_InfernalLoopIncrement:
 	addbyte gBattlerTarget, 1
 	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_InfernalLoop
@@ -6408,14 +6406,6 @@ BattleScript_InfernalLoopIncrement:
 	restoreattacker
 	pause B_WAIT_TIME_MED
 	return
-
-BattleScript_InfernalAtkWontDecrease:
-	printstring STRINGID_STATSWONTDECREASE
-	goto BattleScript_InfernalAtkEffect_WaitString
-
-BattleScript_InfernalDefWontDecrease:
-	printstring STRINGID_STATSWONTDECREASE
-	goto BattleScript_InfernalDefEffect_WaitString
 
 BattleScript_ReefWardenActivates::
 	savetarget
@@ -8365,6 +8355,7 @@ BattleScript_RedCardActivates::
 	swapattackerwithtarget
 	jumpifvolatile BS_EFFECT_BATTLER, VOLATILE_ROOT, BattleScript_RedCardIngrain
 	jumpifability BS_EFFECT_BATTLER, ABILITY_SUCTION_CUPS, BattleScript_RedCardSuctionCups
+	jumpifability BS_EFFECT_BATTLER, ABILITY_IMMOVABLE, BattleScript_RedCardImmovable
 	jumpiftargetdynamaxed BattleScript_RedCardDynamaxed
 	removeitemwitheffect BS_SCRIPTING, HOLD_EFFECT_RED_CARD
 	setbyte sSWITCH_CASE, B_SWITCH_RED_CARD
@@ -8378,6 +8369,10 @@ BattleScript_RedCardIngrainContinue:
 	goto BattleScript_RedCardEnd
 BattleScript_RedCardSuctionCups:
 	sethword gDisplayAbility, ABILITY_SUCTION_CUPS
+	printstring STRINGID_PKMNANCHORSITSELFWITH
+	goto BattleScript_RedCardIngrainContinue
+BattleScript_RedCardImmovable:
+	sethword gDisplayAbility, ABILITY_IMMOVABLE
 	printstring STRINGID_PKMNANCHORSITSELFWITH
 	goto BattleScript_RedCardIngrainContinue
 BattleScript_RedCardDynamaxed:

@@ -73,6 +73,7 @@ struct ProtectStruct
     u32 disableEjectPack:1;
     u32 pranksterElevated:1;
     u32 quickDraw:1;
+    u32 reactive:1;
     u32 quash:1;
     u32 shellTrap:1;
     u32 eatMirrorHerb:1;
@@ -83,7 +84,6 @@ struct ProtectStruct
     u32 forcedSwitch:1;
     u32 myceliumMight:1;
     u32 survivedOHKO:1; // Used to keep track of effects that allow focus punch when surviving moves like Fissure
-    u32 padding1:1;
     // End of 32-bit bitfield
     u16 helpingHand:3;
     u16 revengeDoubled:4;
@@ -528,7 +528,10 @@ struct PartyState
     u32 changedSpecies:11; // For forms when multiple mons can change into the same pokemon.
     u32 sentOut:1;
     u32 isKnockedOff:1;
-    u32 padding:8;
+    u32 shardplateHits:3;
+    u32 transmuteUsed:1;
+    u32 twinStarsBoosted:1;
+    u32 padding:3;
     u16 usedHeldItems[MAX_MON_ITEMS_INTERNAL];
 };
 
@@ -691,6 +694,12 @@ struct BattleStruct
     u16 prevTurnSpecies[MAX_BATTLERS_COUNT]; // Stores species the AI has in play at start of turn
     s16 passiveHpUpdate[MAX_BATTLERS_COUNT]; // non-move damage and healing
     s16 moveDamage[MAX_BATTLERS_COUNT];
+    u16 customTurnStartHp[MAX_BATTLERS_COUNT];
+    enum Move pendulumLastMove[MAX_BATTLERS_COUNT];
+    u8 pendulumStreak[MAX_BATTLERS_COUNT];
+    u8 aegisUsed[MAX_BATTLERS_COUNT];
+    u8 blitzReady[MAX_BATTLERS_COUNT];
+    u8 nullSpaceProtectedHit[MAX_BATTLERS_COUNT];
     u16 moveResultFlags[MAX_BATTLERS_COUNT];
     enum CalcDamageState noResultString[MAX_BATTLERS_COUNT];
     u8 doneDoublesSpreadHit:1;

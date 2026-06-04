@@ -5058,4 +5058,417 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
                                            "1 stage."),
         .aiRating = 6,
     },
+
+    [ABILITY_BLOODLUST] =
+    {
+        .name = _("Bloodlust"),
+        .description = COMPOUND_STRING("Crits raise Atk and Speed."),
+        .longDescription = COMPOUND_STRING("Landing a critical hit\n"
+                                           "raises Attack and Speed\n"
+                                           "by 1 stage each."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_GANG_UP] =
+    {
+        .name = _("Gang Up"),
+        .description = COMPOUND_STRING("Preys on hurt foes."),
+        .longDescription = COMPOUND_STRING("Moves deal 20% more\n"
+                                           "damage to foes already\n"
+                                           "hurt this turn."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_PENDULUM] =
+    {
+        .name = _("Pendulum"),
+        .description = COMPOUND_STRING("Repeated moves power up."),
+        .longDescription = COMPOUND_STRING("Consecutive uses of the\n"
+                                           "same move gain 20% more\n"
+                                           "power, up to 60%."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_MOMENTUM] =
+    {
+        .name = _("Momentum"),
+        .description = COMPOUND_STRING("Priority raises Speed."),
+        .longDescription = COMPOUND_STRING("After using a priority\n"
+                                           "move, Speed rises by\n"
+                                           "1 stage."),
+        .aiRating = 4,
+    },
+
+    [ABILITY_DESPERADO] =
+    {
+        .name = _("Desperado"),
+        .description = COMPOUND_STRING("SE hits raise offenses."),
+        .longDescription = COMPOUND_STRING("Taking super-effective\n"
+                                           "damage raises Attack and\n"
+                                           "Sp. Atk by 1 stage."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_GLASS_CANNON] =
+    {
+        .name = _("Glass Cannon"),
+        .description = COMPOUND_STRING("Stronger but frailer."),
+        .longDescription = COMPOUND_STRING("On entry, raises its\n"
+                                           "higher offense by 2 and\n"
+                                           "lowers both defenses by 2."),
+        .aiRating = 4,
+    },
+
+    [ABILITY_AEGIS] =
+    {
+        .name = _("Aegis"),
+        .description = COMPOUND_STRING("Caps one hit per turn."),
+        .longDescription = COMPOUND_STRING("Once per turn, direct\n"
+                                           "attack damage cannot\n"
+                                           "exceed 1/4 max HP."),
+        .aiRating = 7,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_MARTYR] =
+    {
+        .name = _("Martyr"),
+        .description = COMPOUND_STRING("Fainting heals allies."),
+        .longDescription = COMPOUND_STRING("When this Pokemon faints,\n"
+                                           "its allies recover\n"
+                                           "1/4 max HP."),
+        .aiRating = 4,
+    },
+
+    [ABILITY_INDOMITABLE] =
+    {
+        .name = _("Indomitable"),
+        .description = COMPOUND_STRING("No flinch; dodges status."),
+        .longDescription = COMPOUND_STRING("Prevents flinching.\n"
+                                           "Incoming status moves\n"
+                                           "have halved accuracy."),
+        .aiRating = 5,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_COLOSSAL] =
+    {
+        .name = _("Colossal"),
+        .description = COMPOUND_STRING("Blocks weak attacks."),
+        .longDescription = COMPOUND_STRING("Damaging moves with\n"
+                                           "44 power or less do not\n"
+                                           "affect this Pokemon."),
+        .aiRating = 7,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_PARRYING] =
+    {
+        .name = _("Parrying"),
+        .description = COMPOUND_STRING("Focuses through hits."),
+        .longDescription = COMPOUND_STRING("Focus Punch is not\n"
+                                           "interrupted, and charging\n"
+                                           "hits raise Defense."),
+        .aiRating = 4,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_FAINTRATTLE] =
+    {
+        .name = _("Faintrattle"),
+        .description = COMPOUND_STRING("Poisons contact KOs."),
+        .longDescription = COMPOUND_STRING("If a contact attack\n"
+                                           "knocks it out, the\n"
+                                           "attacker is badly poisoned."),
+        .aiRating = 4,
+    },
+
+    [ABILITY_SHARDPLATE] =
+    {
+        .name = _("Shardplate"),
+        .description = COMPOUND_STRING("Plate weakens over battle."),
+        .longDescription = COMPOUND_STRING("Direct damage is reduced\n"
+                                           "at first, weakening with\n"
+                                           "each hit this battle."),
+        .aiRating = 7,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_HAUNTED] =
+    {
+        .name = _("Haunted"),
+        .description = COMPOUND_STRING("Counts as statused."),
+        .longDescription = COMPOUND_STRING("Acts as if statused for\n"
+                                           "status-based effects, but\n"
+                                           "blocks major status."),
+        .aiRating = 5,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_MENDING] =
+    {
+        .name = _("Mending"),
+        .description = COMPOUND_STRING("May heal at turn end."),
+        .longDescription = COMPOUND_STRING("At turn's end, has a 30%\n"
+                                           "chance to cure status and\n"
+                                           "heal 1/8 max HP."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_PLAGUETOUCH] =
+    {
+        .name = _("Plaguetouch"),
+        .description = COMPOUND_STRING("Contact may inflict status."),
+        .longDescription = COMPOUND_STRING("Contact attacks have a\n"
+                                           "20% chance to inflict a\n"
+                                           "random major status."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_MONSOON] =
+    {
+        .name = _("Monsoon"),
+        .description = COMPOUND_STRING("Rain empowers Water."),
+        .longDescription = COMPOUND_STRING("In rain, Water moves do\n"
+                                           "not miss and bypass Water\n"
+                                           "immunities."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_MIRAGE] =
+    {
+        .name = _("Mirage"),
+        .description = COMPOUND_STRING("Sun may confuse foes."),
+        .longDescription = COMPOUND_STRING("In sun, damaging moves\n"
+                                           "have a 25% chance to\n"
+                                           "confuse the target."),
+        .aiRating = 4,
+    },
+
+    [ABILITY_BLIZZARD_HEART] =
+    {
+        .name = _("Blizzard Heart"),
+        .description = COMPOUND_STRING("Snow may freeze foes."),
+        .longDescription = COMPOUND_STRING("In snow or hail, Ice\n"
+                                           "attacks have a 20% chance\n"
+                                           "to freeze or frostbite."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_MUDSLIDE] =
+    {
+        .name = _("Mudslide"),
+        .description = COMPOUND_STRING("Sand absorbs Water."),
+        .longDescription = COMPOUND_STRING("In sand, absorbs Water\n"
+                                           "moves and raises Defense\n"
+                                           "by 2 stages."),
+        .aiRating = 6,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_CHANNEL_EARTH] =
+    {
+        .name = _("Channel Earth"),
+        .description = COMPOUND_STRING("Terrain heals HP."),
+        .longDescription = COMPOUND_STRING("At turn's end, heals\n"
+                                           "1/16 max HP while any\n"
+                                           "terrain is active."),
+        .aiRating = 4,
+    },
+
+    [ABILITY_MAGNIFY_FIELD] =
+    {
+        .name = _("Magnify Field"),
+        .description = COMPOUND_STRING("Extends weather/terrain."),
+        .longDescription = COMPOUND_STRING("On entry, extends finite\n"
+                                           "active weather and terrain\n"
+                                           "by 2 turns."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_BLITZ] =
+    {
+        .name = _("Blitz"),
+        .description = COMPOUND_STRING("Next hit is stronger."),
+        .longDescription = COMPOUND_STRING("After using Protect, its\n"
+                                           "next damaging move deals\n"
+                                           "50% more damage."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_GUARDIAN] =
+    {
+        .name = _("Guardian"),
+        .description = COMPOUND_STRING("Draws and softens attacks."),
+        .longDescription = COMPOUND_STRING("Draws single-target foe\n"
+                                           "attacks from allies and\n"
+                                           "takes 15% less damage."),
+        .aiRating = 7,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_BACKDRAFT] =
+    {
+        .name = _("Backdraft"),
+        .description = COMPOUND_STRING("Switching lowers foes."),
+        .longDescription = COMPOUND_STRING("When switching out by\n"
+                                           "choice, lowers opposing\n"
+                                           "Attack and Sp. Atk."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_RALLY] =
+    {
+        .name = _("Rally"),
+        .description = COMPOUND_STRING("Boosts ally's best stat."),
+        .longDescription = COMPOUND_STRING("On entry in doubles,\n"
+                                           "raises its ally's highest\n"
+                                           "non-HP stat by 1."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_ECHO_CHAMBER] =
+    {
+        .name = _("Echo Chamber"),
+        .description = COMPOUND_STRING("Sound moves echo."),
+        .longDescription = COMPOUND_STRING("Single-target sound moves\n"
+                                           "strike twice, with the\n"
+                                           "second hit weaker."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_FLARE] =
+    {
+        .name = _("Flare"),
+        .description = COMPOUND_STRING("Burned foes fuel Fire."),
+        .longDescription = COMPOUND_STRING("Fire-type moves deal\n"
+                                           "50% more damage to burned\n"
+                                           "targets."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_SPLINTER] =
+    {
+        .name = _("Splinter"),
+        .description = COMPOUND_STRING("Damaged foes take chips."),
+        .longDescription = COMPOUND_STRING("At turn's end, damaged\n"
+                                           "foes lose 1/16 max HP."),
+        .aiRating = 4,
+    },
+
+    [ABILITY_MAIM_AND_MEND] =
+    {
+        .name = _("Maim and Mend"),
+        .description = COMPOUND_STRING("Crits heal the user."),
+        .longDescription = COMPOUND_STRING("Landing a critical hit\n"
+                                           "heals the user by 1/4 of\n"
+                                           "damage dealt."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_VALKYRIE] =
+    {
+        .name = _("Valkyrie"),
+        .description = COMPOUND_STRING("Physical Steel-like form."),
+        .longDescription = COMPOUND_STRING("Attacks use Attack and\n"
+                                           "gain Steel-type\n"
+                                           "resistances."),
+        .aiRating = 7,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_IMMOVABLE] =
+    {
+        .name = _("Immovable"),
+        .description = COMPOUND_STRING("Moves last; cannot be forced."),
+        .longDescription = COMPOUND_STRING("Moves last within its\n"
+                                           "priority bracket and\n"
+                                           "blocks being forced out."),
+        .aiRating = 3,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_TRANSMUTE] =
+    {
+        .name = _("Transmute"),
+        .description = COMPOUND_STRING("Weakens first attack."),
+        .longDescription = COMPOUND_STRING("Once per battle, changes\n"
+                                           "a foe's direct attack to\n"
+                                           "a resisted type."),
+        .aiRating = 6,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_TWIN_STARS] =
+    {
+        .name = _("Twin Stars"),
+        .description = COMPOUND_STRING("Twins boost together."),
+        .longDescription = COMPOUND_STRING("In doubles, paired Twin\n"
+                                           "Stars users each gain\n"
+                                           "+1 to five stats once."),
+        .aiRating = 7,
+    },
+
+    [ABILITY_COSMIC_FORM] =
+    {
+        .name = _("Cosmic Form"),
+        .description = COMPOUND_STRING("Bends type matchups."),
+        .longDescription = COMPOUND_STRING("Its moves bypass type\n"
+                                           "immunities, and super-\n"
+                                           "effective damage is cut."),
+        .aiRating = 7,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_TIME_SPIRAL] =
+    {
+        .name = _("Time Spiral"),
+        .description = COMPOUND_STRING("Warps priority and fields."),
+        .longDescription = COMPOUND_STRING("Blocks priority moves\n"
+                                           "and hastens finite weather\n"
+                                           "and terrain each turn."),
+        .aiRating = 6,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_NULL_SPACE] =
+    {
+        .name = _("Null Space"),
+        .description = COMPOUND_STRING("Pierces protection."),
+        .longDescription = COMPOUND_STRING("Damaging moves bypass\n"
+                                           "single-turn protection,\n"
+                                           "but deal half damage."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_SPACETIME_RIFT] =
+    {
+        .name = _("Spacetime Rift"),
+        .description = COMPOUND_STRING("Protects cosmic twins."),
+        .longDescription = COMPOUND_STRING("On a side with Palkia and\n"
+                                           "Dialga, protects them from\n"
+                                           "spread attacks."),
+        .aiRating = 6,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_UNDERDOG] =
+    {
+        .name = _("Underdog"),
+        .description = COMPOUND_STRING("Hits stronger foes harder."),
+        .longDescription = COMPOUND_STRING("Deals 30% more damage to\n"
+                                           "targets with a higher base\n"
+                                           "stat total."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_ROCK_AND_STONE] =
+    {
+        .name = _("Rock and Stone"),
+        .description = COMPOUND_STRING("KOs set Stealth Rock."),
+        .longDescription = COMPOUND_STRING("When it knocks out a foe,\n"
+                                           "sets Stealth Rock on the\n"
+                                           "opposing side."),
+        .aiRating = 6,
+    },
 };
