@@ -873,69 +873,6 @@
       "elevation": 0,
       "dest_map": "MAP_WHIRL_ISLANDS_B1F",
       "dest_warp_id": "2"
-    },
-    {
-      "x": 37,
-      "y": 12,
-      "elevation": 0,
-      "dest_map": "MAP_ROUTE40",
-      "dest_warp_id": "0"
-    },
-    {
-      "x": 38,
-      "y": 12,
-      "elevation": 0,
-      "dest_map": "MAP_ROUTE40",
-      "dest_warp_id": "1"
-    },
-    {
-      "x": 39,
-      "y": 12,
-      "elevation": 0,
-      "dest_map": "MAP_ROUTE40",
-      "dest_warp_id": "2"
-    },
-    {
-      "x": 40,
-      "y": 12,
-      "elevation": 0,
-      "dest_map": "MAP_ROUTE40",
-      "dest_warp_id": "3"
-    },
-    {
-      "x": 41,
-      "y": 12,
-      "elevation": 0,
-      "dest_map": "MAP_ROUTE40",
-      "dest_warp_id": "4"
-    },
-    {
-      "x": 42,
-      "y": 12,
-      "elevation": 0,
-      "dest_map": "MAP_ROUTE40",
-      "dest_warp_id": "5"
-    },
-    {
-      "x": 43,
-      "y": 12,
-      "elevation": 0,
-      "dest_map": "MAP_ROUTE40",
-      "dest_warp_id": "6"
-    },
-    {
-      "x": 44,
-      "y": 12,
-      "elevation": 0,
-      "dest_map": "MAP_ROUTE40",
-      "dest_warp_id": "7"
-    },
-    {
-      "x": 45,
-      "y": 12,
-      "elevation": 0,
-      "dest_map": "MAP_ROUTE40",
-      "dest_warp_id": "8"
     }
   ],
   "coord_events": [],

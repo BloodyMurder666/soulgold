@@ -5005,7 +5005,7 @@
       "id": "LAYOUT_ROUTE40",
       "name": "Route40_Layout",
       "width": 34,
-      "height": 71,
+      "height": 56,
       "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_OlivineCity",
       "border_filepath": "data/layouts/Route40/border.bin",
@@ -5016,7 +5016,7 @@
       "name": "Route41_Layout",
       "width": 74,
       "height": 89,
-      "primary_tileset": "gTileset_Johto_NorthEast",
+      "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_CianwoodCity",
       "border_filepath": "data/layouts/Route41/border.bin",
       "blockdata_filepath": "data/layouts/Route41/map.bin"
@@ -5036,7 +5036,7 @@
       "name": "Route43_Layout",
       "width": 34,
       "height": 53,
-      "primary_tileset": "gTileset_Johto_NorthEast",
+      "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_MahoganyTown",
       "border_filepath": "data/layouts/Route43/border.bin",
       "blockdata_filepath": "data/layouts/Route43/map.bin"
@@ -5046,7 +5046,7 @@
       "name": "Route44_Layout",
       "width": 78,
       "height": 36,
-      "primary_tileset": "gTileset_Johto_NorthEast",
+      "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_CianwoodCity",
       "border_filepath": "data/layouts/Route44/border.bin",
       "blockdata_filepath": "data/layouts/Route44/map.bin"
@@ -5126,7 +5126,7 @@
       "name": "CianwoodCity_Layout",
       "width": 37,
       "height": 61,
-      "primary_tileset": "gTileset_Johto_NorthEast",
+      "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_CianwoodCity",
       "border_filepath": "data/layouts/CianwoodCity/border.bin",
       "blockdata_filepath": "data/layouts/CianwoodCity/map.bin"
@@ -5136,7 +5136,7 @@
       "name": "Mahoganytown_Layout",
       "width": 44,
       "height": 28,
-      "primary_tileset": "gTileset_Johto_NorthEast",
+      "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_MahoganyTown",
       "border_filepath": "data/layouts/Mahoganytown/border.bin",
       "blockdata_filepath": "data/layouts/Mahoganytown/map.bin"
@@ -5706,7 +5706,7 @@
       "name": "LakeOfRage_Layout",
       "width": 64,
       "height": 52,
-      "primary_tileset": "gTileset_Johto_NorthEast",
+      "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_MahoganyTown",
       "border_filepath": "data/layouts/LakeOfRage/border.bin",
       "blockdata_filepath": "data/layouts/LakeOfRage/map.bin"
