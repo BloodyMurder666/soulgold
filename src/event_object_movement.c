@@ -2874,7 +2874,10 @@ void RemoveObjectEventsOutsideView(void)
             // Followers should not go OOB, or their sprites may be freed early during a cross-map scripting event,
             // such as Wally's Ralts catch sequence
             if (objectEvent->active && !objectEvent->isPlayer && objectEvent->localId != OBJ_EVENT_ID_FOLLOWER
-             && objectEvent->localId != OBJ_EVENT_ID_NPC_FOLLOWER)
+            && objectEvent->localId != OBJ_EVENT_ID_NPC_FOLLOWER
+            && !(objectEvent->graphicsId == OBJ_EVENT_GFX_PUSHABLE_BOULDER
+                && objectEvent->mapNum == MAP_NUM(MAP_ICE_PATH_B1F)
+                && objectEvent->mapGroup == MAP_GROUP(MAP_ICE_PATH_B1F)))
                 RemoveObjectEventIfOutsideView(objectEvent);
         }
     }

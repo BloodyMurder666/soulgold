@@ -33,6 +33,7 @@ u8 TrySetDiveWarp(void);
 const u8 *GetInteractedLinkPlayerScript(struct MapPosition *position, u8 metatileBehavior, enum Direction direction);
 const u8 *GetCoordEventScriptAtMapPosition(struct MapPosition *position);
 void ClearPoisonStepCounter(void);
+void HandleBoulderFallThroughHole(struct ObjectEvent *object);
 void CancelSignPostMessageBox(struct FieldInput *input);
 
 #define NOT_SIGNPOST 0

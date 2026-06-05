@@ -1,0 +1,23 @@
+raw `
+IcePath_B2F_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, SetBoulders
+	map_script MAP_SCRIPT_ON_RESUME, SetTimeEncounters
+	.byte 0
+
+`
+
+
+script SetBoulders {
+    if (flag(FLAG_ICEPATH_BOULDER3) == FALSE) {
+        setflag(FLAG_TEMP_3)
+    }
+    if (flag(FLAG_ICEPATH_BOULDER4) == FALSE) {
+        setflag(FLAG_TEMP_4)
+    }
+    if (flag(FLAG_ICEPATH_BOULDER2) == FALSE) {
+        setflag(FLAG_TEMP_2)
+    }
+    if (flag(FLAG_ICEPATH_BOULDER1) == FALSE) {
+        setflag(FLAG_TEMP_1)
+    }
+}

@@ -1561,10 +1561,10 @@
 #define FLAG_TM_SAFETY_GOGGLES                      (SYSTEM_FLAGS + 0xB7)
 #define FLAG_HYPERPOTION_DESERT                     (SYSTEM_FLAGS + 0xB8)
 #define FLAG_SUS_DESERT_DOOR                        (SYSTEM_FLAGS + 0xB9)
-#define FLAG_UNUSED_0x91A                           (SYSTEM_FLAGS + 0xBA) // Unused Flag
-#define FLAG_UNUSED_0x91B                           (SYSTEM_FLAGS + 0xBB) // Unused Flag
-#define FLAG_UNUSED_0x91C                           (SYSTEM_FLAGS + 0xBC) // Unused Flag
-#define FLAG_UNUSED_0x91D                           (SYSTEM_FLAGS + 0xBD) // Unused Flag
+#define FLAG_ICEPATH_BOULDER1                       (SYSTEM_FLAGS + 0xBA)
+#define FLAG_ICEPATH_BOULDER2                       (SYSTEM_FLAGS + 0xBB)
+#define FLAG_ICEPATH_BOULDER3                       (SYSTEM_FLAGS + 0xBC)
+#define FLAG_ICEPATH_BOULDER4                       (SYSTEM_FLAGS + 0xBD)
 #define FLAG_SYS_HIDDEN_GROTTO_FIRST_VISIT         (SYSTEM_FLAGS + 0xBE)
 #define FLAG_UNUSED_0x91F                           (SYSTEM_FLAGS + 0xBF) // Unused Flag
 

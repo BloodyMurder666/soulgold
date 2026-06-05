@@ -1,7 +1,33 @@
 static const u32 sPartyMenuBg_Gfx_SwSh[]            = INCBIN_U32("graphics/party_menu/swsh/tiles.4bpp.smol");
 static const u16 sPartyMenuBg_Pal_SwSh[]            = INCBIN_U16("graphics/party_menu/swsh/tiles.gbapal");
-static const u32 sPartyMenuBg_Main_Tilemap_SwSh[]   = INCBIN_U32("graphics/party_menu/swsh/bg_main.bin.smolTM");
+static const u32 sPartyMenuBg_Main_Tilemap_SwSh[]   = INCBIN_U32("graphics/party_menu/swsh/tiles.bin.smolTM");
 static const u32 sPartyMenuBg_Scroll_Tilemap_SwSh[] = INCBIN_U32("graphics/party_menu/swsh/bg_scroll.bin.smolTM");
+
+#define SWSH_PARTY_MENU_BLANK_TILE             0x00
+#define SWSH_PARTY_MENU_LEGACY_FRAME_TILE      0x0A
+#define SWSH_PARTY_MENU_FRAME_TILE             0x40
+#define SWSH_PARTY_MENU_FRAME_TILE_COUNT       13
+#define SWSH_PARTY_SLOT_WINDOW_Y_OFFSET_TILES  1
+#define SWSH_PARTY_SLOT_SPRITE_Y_OFFSET        8
+#define SWSH_PARTY_FRONT_SPRITE_X              192
+#define SWSH_PARTY_FRONT_SPRITE_Y              82
+#define SWSH_PARTY_HELD_ITEM_X_OFFSET          0
+#define SWSH_PARTY_HELD_ITEM_Y_OFFSET          0
+#define SWSH_PARTY_SELECTED_ITEM_X_OFFSET      40
+#define SWSH_PARTY_SELECTED_ITEM_Y_OFFSET      58
+#define SWSH_PARTY_FONT_COLOR_BLACK            12
+#define SWSH_PARTY_TOP_INFO_WIDTH              (11 * 8)
+#define SWSH_PARTY_HELD_ITEM_INFO_WIDTH        (10 * 8)
+#define SWSH_PARTY_SPECIES_TEXT_X              8
+#define SWSH_PARTY_SPECIES_TEXT_Y              6
+#define SWSH_PARTY_LEVEL_TEXT_X                8
+#define SWSH_PARTY_LEVEL_TEXT_Y                14
+#define SWSH_PARTY_HELD_ITEM_LABEL_TEXT_X      24
+#define SWSH_PARTY_HELD_ITEM_LABEL_TEXT_Y      10
+#define SWSH_PARTY_HELD_ITEM_NAME_TEXT_X       10
+#define SWSH_PARTY_HELD_ITEM_NAME_TEXT_Y       24
+
+static const u8 sText_HeldItem[] = _("Held Item");
 
 enum {
     BUTTON_START,
@@ -115,39 +141,39 @@ static const u8 sPartyMenuSpriteCoords[PARTY_LAYOUT_COUNT][PARTY_SIZE][4 * 2] =
 {
     [PARTY_LAYOUT_SINGLE] =
     {
-        { 34,  18,  40,  28, 108,  27,  16,  34},
-        { 34,  42,  40,  52, 108,  51, 102,  25},
-        { 34,  66,  40,  76, 108,  75, 102,  49},
-        { 34,  90,  40, 100, 108,  99, 102,  73},
-        { 34, 114,  40, 124, 108, 123, 102,  97},
-        { 34, 138,  40, 148, 108, 147, 102, 121},
+        { 34,  18 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  40,  28 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 108,  27 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  16,  34 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET},
+        { 34,  42 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  40,  52 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 108,  51 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 102,  25 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET},
+        { 34,  66 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  40,  76 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 108,  75 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 102,  49 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET},
+        { 34,  90 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  40, 100 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 108,  99 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 102,  73 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET},
+        { 34, 114 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  40, 124 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 108, 123 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 102,  97 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET},
+        { 34, 138 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  40, 148 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 108, 147 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 102, 121 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET},
     },
     [PARTY_LAYOUT_DOUBLE] =
     {
-        { 26,  18,  32,  28, 100,  27,  16,  18},
-        { 26,  42,  32,  52, 100,  51,  16,  74},
-        { 34,  66,  40,  76, 108,  75, 102,  25},
-        { 34,  90,  40, 100, 108,  99, 102,  57},
-        { 34, 114,  40, 124, 108, 123, 102,  89},
-        { 34, 138,  40, 148, 108, 147, 102, 121},
+        { 26,  18 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  32,  28 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 100,  27 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  16,  18 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET},
+        { 26,  42 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  32,  52 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 100,  51 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  16,  74 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET},
+        { 34,  66 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  40,  76 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 108,  75 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 102,  25 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET},
+        { 34,  90 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  40, 100 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 108,  99 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 102,  57 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET},
+        { 34, 114 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  40, 124 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 108, 123 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 102,  89 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET},
+        { 34, 138 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  40, 148 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 108, 147 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 102, 121 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET},
     },
     [PARTY_LAYOUT_MULTI] =
     {
-        { 26,  18,  32,  28, 100,  27,  16,  18},
-        { 26,  42,  32,  52, 100,  51,  16,  74},
-        { 34,  66,  40,  76, 108,  75, 102,  33},
-        { 34,  90,  40, 100, 108,  99, 102,  57},
-        { 34, 114,  40, 124, 108, 123, 102,  89},
-        { 34, 138,  40, 148, 108, 147, 102, 113},
+        { 26,  18 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  32,  28 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 100,  27 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  16,  18 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET},
+        { 26,  42 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  32,  52 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 100,  51 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  16,  74 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET},
+        { 34,  66 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  40,  76 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 108,  75 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 102,  33 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET},
+        { 34,  90 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  40, 100 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 108,  99 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 102,  57 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET},
+        { 34, 114 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  40, 124 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 108, 123 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 102,  89 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET},
+        { 34, 138 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  40, 148 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 108, 147 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 102, 113 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET},
     },
     [PARTY_LAYOUT_MULTI_SHOWCASE] =
     {
-        { 26,  18,  32,  28, 100,  27,  16,  26},
-        { 34,  66,  40,  76, 108,  75, 102,  65},
-        { 34,  90,  40, 100, 108,  99, 102,  98},
-        { 26,  42,  32,  52, 100,  51,  16,  41},
-        { 34, 114,  40, 124, 108, 123, 102, 113},
-        { 34, 138,  40, 148, 108, 147, 102, 137},
+        { 26,  18 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  32,  28 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 100,  27 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  16,  26 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET},
+        { 34,  66 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  40,  76 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 108,  75 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 102,  65 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET},
+        { 34,  90 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  40, 100 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 108,  99 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 102,  98 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET},
+        { 26,  42 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  32,  52 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 100,  51 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  16,  41 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET},
+        { 34, 114 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  40, 124 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 108, 123 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 102, 113 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET},
+        { 34, 138 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET,  40, 148 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 108, 147 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET, 102, 137 + SWSH_PARTY_SLOT_SPRITE_Y_OFFSET},
     },
 };
 
@@ -168,9 +194,9 @@ static const u32 sCancelButton_Tilemap[] = INCBIN_U32("graphics/party_menu/cance
 // Text colors for BG, FG, and Shadow in that order
 static const u8 sFontColorTable[][3] =
 {
-    {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_LIGHT_GRAY, TEXT_COLOR_DARK_GRAY},  // Default
+    {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY,  TEXT_COLOR_TRANSPARENT},// Default
     {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE,      TEXT_COLOR_GREEN},      // Unused
-    {TEXT_COLOR_TRANSPARENT, TEXT_DYNAMIC_COLOR_2,  TEXT_DYNAMIC_COLOR_3},  // Gender symbol
+    {TEXT_COLOR_TRANSPARENT, TEXT_DYNAMIC_COLOR_5,  TEXT_DYNAMIC_COLOR_6},  // Gender symbol
     {TEXT_COLOR_WHITE,       TEXT_COLOR_DARK_GRAY,  TEXT_COLOR_LIGHT_GRAY}, // Selection actions
     {TEXT_COLOR_WHITE,       TEXT_COLOR_BLUE,       TEXT_COLOR_LIGHT_BLUE}, // Field moves
     {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE,      TEXT_COLOR_DARK_GRAY},  // Unused
@@ -180,6 +206,7 @@ static const u8 sFontColorTable[][3] =
     {TEXT_COLOR_TRANSPARENT, TEXT_DYNAMIC_COLOR_1,  TEXT_DYNAMIC_COLOR_2},  // PP state 2 (FG 10 / SH 11)
     {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_RED,        TEXT_COLOR_LIGHT_RED},  // PP state 3 (FG 4  / SH  5)
     {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_RED,        TEXT_COLOR_LIGHT_GREEN},  // Item multiuse (FG 4 / SH 7)
+    {TEXT_COLOR_TRANSPARENT, TEXT_DYNAMIC_COLOR_3,  TEXT_COLOR_TRANSPARENT}, // Header/prompts
 };
 
 static const struct WindowTemplate sSinglePartyMenuWindowTemplate[] =
@@ -452,7 +479,7 @@ static const struct WindowTemplate sSinglePartyMenuWindowTemplate_SwSh[] =
     { // Party mon 1
         .bg = 0,
         .tilemapLeft = 2,
-        .tilemapTop = 1,
+        .tilemapTop = 1 + SWSH_PARTY_SLOT_WINDOW_Y_OFFSET_TILES,
         .width = 14,
         .height = 3,
         .paletteNum = 3,
@@ -461,7 +488,7 @@ static const struct WindowTemplate sSinglePartyMenuWindowTemplate_SwSh[] =
     { // Party mon 2
         .bg = 0,
         .tilemapLeft = 2,
-        .tilemapTop = 4,
+        .tilemapTop = 4 + SWSH_PARTY_SLOT_WINDOW_Y_OFFSET_TILES,
         .width = 14,
         .height = 3,
         .paletteNum = 4,
@@ -470,7 +497,7 @@ static const struct WindowTemplate sSinglePartyMenuWindowTemplate_SwSh[] =
     { // Party mon 3
         .bg = 0,
         .tilemapLeft = 2,
-        .tilemapTop = 7,
+        .tilemapTop = 7 + SWSH_PARTY_SLOT_WINDOW_Y_OFFSET_TILES,
         .width = 14,
         .height = 3,
         .paletteNum = 5,
@@ -479,7 +506,7 @@ static const struct WindowTemplate sSinglePartyMenuWindowTemplate_SwSh[] =
     { // Party mon 4
         .bg = 0,
         .tilemapLeft = 2,
-        .tilemapTop = 10,
+        .tilemapTop = 10 + SWSH_PARTY_SLOT_WINDOW_Y_OFFSET_TILES,
         .width = 14,
         .height = 3,
         .paletteNum = 6,
@@ -488,7 +515,7 @@ static const struct WindowTemplate sSinglePartyMenuWindowTemplate_SwSh[] =
     { // Party mon 5
         .bg = 0,
         .tilemapLeft = 2,
-        .tilemapTop = 13,
+        .tilemapTop = 13 + SWSH_PARTY_SLOT_WINDOW_Y_OFFSET_TILES,
         .width = 14,
         .height = 3,
         .paletteNum = 7,
@@ -497,7 +524,7 @@ static const struct WindowTemplate sSinglePartyMenuWindowTemplate_SwSh[] =
     { // Party mon 6
         .bg = 0,
         .tilemapLeft = 2,
-        .tilemapTop = 16,
+        .tilemapTop = 16 + SWSH_PARTY_SLOT_WINDOW_Y_OFFSET_TILES,
         .width = 14,
         .height = 3,
         .paletteNum = 8,
@@ -529,7 +556,7 @@ static const struct WindowTemplate sDoublePartyMenuWindowTemplate_SwSh[] =
     { // Party mon 1
         .bg = 0,
         .tilemapLeft = 1,
-        .tilemapTop = 1,
+        .tilemapTop = 1 + SWSH_PARTY_SLOT_WINDOW_Y_OFFSET_TILES,
         .width = 14,
         .height = 3,
         .paletteNum = 3,
@@ -538,7 +565,7 @@ static const struct WindowTemplate sDoublePartyMenuWindowTemplate_SwSh[] =
     { // Party mon 2
         .bg = 0,
         .tilemapLeft = 1,
-        .tilemapTop = 4,
+        .tilemapTop = 4 + SWSH_PARTY_SLOT_WINDOW_Y_OFFSET_TILES,
         .width = 14,
         .height = 3,
         .paletteNum = 4,
@@ -547,7 +574,7 @@ static const struct WindowTemplate sDoublePartyMenuWindowTemplate_SwSh[] =
     { // Party mon 3
         .bg = 0,
         .tilemapLeft = 2,
-        .tilemapTop = 7,
+        .tilemapTop = 7 + SWSH_PARTY_SLOT_WINDOW_Y_OFFSET_TILES,
         .width = 14,
         .height = 3,
         .paletteNum = 5,
@@ -556,7 +583,7 @@ static const struct WindowTemplate sDoublePartyMenuWindowTemplate_SwSh[] =
     { // Party mon 4
         .bg = 0,
         .tilemapLeft = 2,
-        .tilemapTop = 10,
+        .tilemapTop = 10 + SWSH_PARTY_SLOT_WINDOW_Y_OFFSET_TILES,
         .width = 14,
         .height = 3,
         .paletteNum = 6,
@@ -565,7 +592,7 @@ static const struct WindowTemplate sDoublePartyMenuWindowTemplate_SwSh[] =
     { // Party mon 5
         .bg = 0,
         .tilemapLeft = 2,
-        .tilemapTop = 13,
+        .tilemapTop = 13 + SWSH_PARTY_SLOT_WINDOW_Y_OFFSET_TILES,
         .width = 14,
         .height = 3,
         .paletteNum = 7,
@@ -574,7 +601,7 @@ static const struct WindowTemplate sDoublePartyMenuWindowTemplate_SwSh[] =
     { // Party mon 6
         .bg = 0,
         .tilemapLeft = 2,
-        .tilemapTop = 16,
+        .tilemapTop = 16 + SWSH_PARTY_SLOT_WINDOW_Y_OFFSET_TILES,
         .width = 14,
         .height = 3,
         .paletteNum = 8,
@@ -597,7 +624,7 @@ static const struct WindowTemplate sMultiPartyMenuWindowTemplate_SwSh[] =
     { // Party mon 1
         .bg = 0,
         .tilemapLeft = 1,
-        .tilemapTop = 1,
+        .tilemapTop = 1 + SWSH_PARTY_SLOT_WINDOW_Y_OFFSET_TILES,
         .width = 14,
         .height = 3,
         .paletteNum = 3,
@@ -606,7 +633,7 @@ static const struct WindowTemplate sMultiPartyMenuWindowTemplate_SwSh[] =
     { // Party mon 2
         .bg = 0,
         .tilemapLeft = 1,
-        .tilemapTop = 4,
+        .tilemapTop = 4 + SWSH_PARTY_SLOT_WINDOW_Y_OFFSET_TILES,
         .width = 14,
         .height = 3,
         .paletteNum = 4,
@@ -615,7 +642,7 @@ static const struct WindowTemplate sMultiPartyMenuWindowTemplate_SwSh[] =
     { // Party mon 3
         .bg = 0,
         .tilemapLeft = 2,
-        .tilemapTop = 7,
+        .tilemapTop = 7 + SWSH_PARTY_SLOT_WINDOW_Y_OFFSET_TILES,
         .width = 14,
         .height = 3,
         .paletteNum = 5,
@@ -624,7 +651,7 @@ static const struct WindowTemplate sMultiPartyMenuWindowTemplate_SwSh[] =
     { // Party mon 4
         .bg = 0,
         .tilemapLeft = 2,
-        .tilemapTop = 10,
+        .tilemapTop = 10 + SWSH_PARTY_SLOT_WINDOW_Y_OFFSET_TILES,
         .width = 14,
         .height = 3,
         .paletteNum = 6,
@@ -633,7 +660,7 @@ static const struct WindowTemplate sMultiPartyMenuWindowTemplate_SwSh[] =
     { // Party mon 5
         .bg = 0,
         .tilemapLeft = 2,
-        .tilemapTop = 13,
+        .tilemapTop = 13 + SWSH_PARTY_SLOT_WINDOW_Y_OFFSET_TILES,
         .width = 14,
         .height = 3,
         .paletteNum = 7,
@@ -642,7 +669,7 @@ static const struct WindowTemplate sMultiPartyMenuWindowTemplate_SwSh[] =
     { // Party mon 6
         .bg = 0,
         .tilemapLeft = 2,
-        .tilemapTop = 16,
+        .tilemapTop = 16 + SWSH_PARTY_SLOT_WINDOW_Y_OFFSET_TILES,
         .width = 14,
         .height = 3,
         .paletteNum = 8,
@@ -665,7 +692,7 @@ static const struct WindowTemplate sShowcaseMultiPartyMenuWindowTemplate_SwSh[] 
     { // Party mon 1
         .bg = 0,
         .tilemapLeft = 1,
-        .tilemapTop = 1,
+        .tilemapTop = 1 + SWSH_PARTY_SLOT_WINDOW_Y_OFFSET_TILES,
         .width = 14,
         .height = 3,
         .paletteNum = 3,
@@ -674,7 +701,7 @@ static const struct WindowTemplate sShowcaseMultiPartyMenuWindowTemplate_SwSh[] 
     { // Party mon 2
         .bg = 0,
         .tilemapLeft = 2,
-        .tilemapTop = 7,
+        .tilemapTop = 7 + SWSH_PARTY_SLOT_WINDOW_Y_OFFSET_TILES,
         .width = 14,
         .height = 3,
         .paletteNum = 5,
@@ -683,7 +710,7 @@ static const struct WindowTemplate sShowcaseMultiPartyMenuWindowTemplate_SwSh[] 
     { // Party mon 3
         .bg = 0,
         .tilemapLeft = 2,
-        .tilemapTop = 10,
+        .tilemapTop = 10 + SWSH_PARTY_SLOT_WINDOW_Y_OFFSET_TILES,
         .width = 14,
         .height = 3,
         .paletteNum = 6,
@@ -692,7 +719,7 @@ static const struct WindowTemplate sShowcaseMultiPartyMenuWindowTemplate_SwSh[] 
     { // Party mon 4
         .bg = 2,
         .tilemapLeft = 1,
-        .tilemapTop = 4,
+        .tilemapTop = 4 + SWSH_PARTY_SLOT_WINDOW_Y_OFFSET_TILES,
         .width = 14,
         .height = 3,
         .paletteNum = 4,
@@ -701,7 +728,7 @@ static const struct WindowTemplate sShowcaseMultiPartyMenuWindowTemplate_SwSh[] 
     { // Party mon 5
         .bg = 2,
         .tilemapLeft = 2,
-        .tilemapTop = 13,
+        .tilemapTop = 13 + SWSH_PARTY_SLOT_WINDOW_Y_OFFSET_TILES,
         .width = 14,
         .height = 3,
         .paletteNum = 7,
@@ -710,13 +737,35 @@ static const struct WindowTemplate sShowcaseMultiPartyMenuWindowTemplate_SwSh[] 
     { // Party mon 6
         .bg = 2,
         .tilemapLeft = 2,
-        .tilemapTop = 16,
+        .tilemapTop = 16 + SWSH_PARTY_SLOT_WINDOW_Y_OFFSET_TILES,
         .width = 14,
         .height = 3,
         .paletteNum = 8,
         .baseBlock = 0x141,
     },
     DUMMY_WIN_TEMPLATE
+};
+
+static const struct WindowTemplate sPartyTitleWindowTemplate_SwSh =
+{
+    .bg = 0,
+    .tilemapLeft = 19,
+    .tilemapTop = 0,
+    .width = 11,
+    .height = 3,
+    .paletteNum = 1,
+    .baseBlock = 0x20C,
+};
+
+static const struct WindowTemplate sSelectedHeldItemInfoWindowTemplate_SwSh =
+{
+    .bg = 0,
+    .tilemapLeft = 17,
+    .tilemapTop = 15,
+    .width = 10,
+    .height = 3,
+    .paletteNum = 1,
+    .baseBlock = 0x243,
 };
 
 static const struct WindowTemplate sDefaultPartyMsgWindowTemplate =
@@ -985,7 +1034,7 @@ static const u8 sMoveTilemap_Empty_SwSh[] = INCBIN_U8("graphics/party_menu/swsh/
 static const u8 sAbilityTilemap_SwSh[]    = INCBIN_U8("graphics/party_menu/swsh/ability_box.bin");
 
 // Palette offsets
-static const u8 sGenderPalOffsets[] = {11, 12};
+static const u8 sGenderPalOffsets[] = {14, 15};
 static const u8 sHPBarPalOffsets[] = {9, 10};
 static const u8 sPartyBoxPalOffsets1[] = {4, 5, 6};
 static const u8 sPartyBoxPalOffsets2[] = {1, 7, 8};
