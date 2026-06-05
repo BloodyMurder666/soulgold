@@ -20,7 +20,7 @@ Based on expansion port of Pokemon Heart and Soul. Feature list to be made later
 - fisham33 for level scaling
 - TheXaman for gen 4 party menu 
 - Lhea for modern type icons
-- Mont for swsh party menu
+- [Montmoguri](https://github.com/montmoguri/pokeemerald-expansion) for swsh party menu and text box
 - destvol for custom mega sprites
 - Leob0505 for backgrounds
 - Emulator accuracy check by Wiz1989 (also thanks to mudskip, grunt-lucas, archie, drazden)
@@ -41,7 +41,6 @@ Based on expansion port of Pokemon Heart and Soul. Feature list to be made later
 
 Based off RHH's pokeemerald-expansion 1.15.0 https://github.com/rh-hideout/pokeemerald-expansion/
 
-Please visit [the wiki](https://github.com/fisham-org/pokeemerald-expansion-features/wiki) for detailed descriptions, videos & implementation details for the feature branches within this repo.
 
 ## Expansion credits
 
