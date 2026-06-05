@@ -4936,7 +4936,7 @@
       "name": "Route33_Layout",
       "width": 44,
       "height": 40,
-      "primary_tileset": "gTileset_Johto_South",
+      "primary_tileset": "gTileset_Johto_NorthWest",
       "secondary_tileset": "gTileset_AzaleaTown",
       "border_filepath": "data/layouts/Route33/border.bin",
       "blockdata_filepath": "data/layouts/Route33/map.bin"
@@ -5026,7 +5026,7 @@
       "name": "Route42_Layout",
       "width": 76,
       "height": 27,
-      "primary_tileset": "gTileset_Johto_General",
+      "primary_tileset": "gTileset_Johto_NorthEast",
       "secondary_tileset": "gTileset_MahoganyTown",
       "border_filepath": "data/layouts/Route42/border.bin",
       "blockdata_filepath": "data/layouts/Route42/map.bin"
@@ -5036,7 +5036,7 @@
       "name": "Route43_Layout",
       "width": 34,
       "height": 53,
-      "primary_tileset": "gTileset_Johto_General",
+      "primary_tileset": "gTileset_Johto_NorthEast",
       "secondary_tileset": "gTileset_MahoganyTown",
       "border_filepath": "data/layouts/Route43/border.bin",
       "blockdata_filepath": "data/layouts/Route43/map.bin"
@@ -5046,7 +5046,7 @@
       "name": "Route44_Layout",
       "width": 78,
       "height": 36,
-      "primary_tileset": "gTileset_Johto_General",
+      "primary_tileset": "gTileset_Johto_NorthEast",
       "secondary_tileset": "gTileset_CianwoodCity",
       "border_filepath": "data/layouts/Route44/border.bin",
       "blockdata_filepath": "data/layouts/Route44/map.bin"
@@ -5056,7 +5056,7 @@
       "name": "Route45_Layout",
       "width": 46,
       "height": 100,
-      "primary_tileset": "gTileset_Johto_General",
+      "primary_tileset": "gTileset_Johto_NorthWest",
       "secondary_tileset": "gTileset_Blackthorn",
       "border_filepath": "data/layouts/Route45/border.bin",
       "blockdata_filepath": "data/layouts/Route45/map.bin"
@@ -5066,7 +5066,7 @@
       "name": "Route46_Layout",
       "width": 27,
       "height": 46,
-      "primary_tileset": "gTileset_Johto_General",
+      "primary_tileset": "gTileset_Johto_NorthWest",
       "secondary_tileset": "gTileset_CherrygroveCity",
       "border_filepath": "data/layouts/Route46/border.bin",
       "blockdata_filepath": "data/layouts/Route46/map.bin"
@@ -5085,8 +5085,8 @@
       "id": "LAYOUT_AZALEA_TOWN",
       "name": "AzaleaTown_Layout",
       "width": 62,
-      "height": 36,
-      "primary_tileset": "gTileset_Johto_South",
+      "height": 38,
+      "primary_tileset": "gTileset_Johto_NorthWest",
       "secondary_tileset": "gTileset_AzaleaTown",
       "border_filepath": "data/layouts/AzaleaTown/border.bin",
       "blockdata_filepath": "data/layouts/AzaleaTown/map.bin"
@@ -5136,7 +5136,7 @@
       "name": "Mahoganytown_Layout",
       "width": 44,
       "height": 28,
-      "primary_tileset": "gTileset_Johto_General",
+      "primary_tileset": "gTileset_Johto_NorthEast",
       "secondary_tileset": "gTileset_MahoganyTown",
       "border_filepath": "data/layouts/Mahoganytown/border.bin",
       "blockdata_filepath": "data/layouts/Mahoganytown/map.bin"
@@ -5146,7 +5146,7 @@
       "name": "BlackthornCity_Layout",
       "width": 59,
       "height": 60,
-      "primary_tileset": "gTileset_Johto_General",
+      "primary_tileset": "gTileset_Johto_NorthWest",
       "secondary_tileset": "gTileset_Blackthorn",
       "border_filepath": "data/layouts/BlackthornCity/border.bin",
       "blockdata_filepath": "data/layouts/BlackthornCity/map.bin"
@@ -5706,7 +5706,7 @@
       "name": "LakeOfRage_Layout",
       "width": 64,
       "height": 52,
-      "primary_tileset": "gTileset_Johto_General",
+      "primary_tileset": "gTileset_Johto_NorthEast",
       "secondary_tileset": "gTileset_MahoganyTown",
       "border_filepath": "data/layouts/LakeOfRage/border.bin",
       "blockdata_filepath": "data/layouts/LakeOfRage/map.bin"
@@ -7106,7 +7106,7 @@
       "name": "BellchimeTrail_Layout",
       "width": 70,
       "height": 69,
-      "primary_tileset": "gTileset_Johto_NorthWest",
+      "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_BellchimeTrail",
       "border_filepath": "data/layouts/BellchimeTrail/border.bin",
       "blockdata_filepath": "data/layouts/BellchimeTrail/map.bin"
