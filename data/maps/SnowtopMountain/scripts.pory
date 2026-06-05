@@ -1,0 +1,22 @@
+mapscripts SnowtopMountain_MapScripts {}
+
+script SnowtopMountain_Sage {
+    lock
+    faceplayer
+    msgbox("Only those who have proven themself to
+            be more than just the region's champion
+            may proceed past here.")
+    msgbox("...You are not worthy yet.") // Postgame south johto champion needed
+    release
+    end
+}
+
+script SnowtopMountain_Slowking {
+    lock
+    faceplayer
+    playmoncry(SPECIES_SLOWKING, CRY_MODE_NORMAL)
+    msgbox("Slooooow...!")
+    waitmoncry
+    release
+    end
+}

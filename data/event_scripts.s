@@ -2239,3 +2239,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/Route49DesertGate/scripts.inc"
 
 	.include "data/maps/RegirockChamber/scripts.inc"
+
+	.include "data/maps/SnowtopMountain/scripts.inc"

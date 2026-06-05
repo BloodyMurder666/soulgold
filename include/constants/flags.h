@@ -1565,12 +1565,12 @@
 #define FLAG_ICEPATH_BOULDER2                       (SYSTEM_FLAGS + 0xBB)
 #define FLAG_ICEPATH_BOULDER3                       (SYSTEM_FLAGS + 0xBC)
 #define FLAG_ICEPATH_BOULDER4                       (SYSTEM_FLAGS + 0xBD)
-#define FLAG_SYS_HIDDEN_GROTTO_FIRST_VISIT         (SYSTEM_FLAGS + 0xBE)
-#define FLAG_UNUSED_0x91F                           (SYSTEM_FLAGS + 0xBF) // Unused Flag
+#define FLAG_SYS_HIDDEN_GROTTO_FIRST_VISIT          (SYSTEM_FLAGS + 0xBE)
+#define FLAG_SNOWTOP_FROST_BREATH_TM                (SYSTEM_FLAGS + 0xBF)
 
 // Infinite free flags
-#define FLAG_0x920                                  0x920
-#define FLAG_0x921                                  0x921
+#define FLAG_SNOWTOP_ITEM_SNOWBALL                  0x920
+#define FLAG_SNOWTOP_ICE_STONE                      0x921
 #define FLAG_0x922                                  0x922
 #define FLAG_0x923                                  0x923
 #define FLAG_0x924                                  0x924

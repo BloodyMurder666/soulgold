@@ -273,6 +273,27 @@
       "elevation": 0,
       "dest_map": "MAP_ROUTE49DESERT_GATE",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 14,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_SNOWTOP_MOUNTAIN_OUTSIDE",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 13,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_SNOWTOP_MOUNTAIN_OUTSIDE",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 15,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_SNOWTOP_MOUNTAIN_OUTSIDE",
+      "dest_warp_id": "4"
     }
   ],
   "coord_events": [],

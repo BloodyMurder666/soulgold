@@ -953,6 +953,7 @@
 #define LAYOUT_MT_GOLD_OUTSIDE 946
 #define LAYOUT_ROUTE49DESERT_GATE 947
 #define LAYOUT_REGIROCK_CHAMBER 948
+#define LAYOUT_SNOWTOP_MOUNTAIN 949
 
 //Constants for unused layouts
 #define LAYOUT_TRAINER_TOWER_1F                   0xFFFF

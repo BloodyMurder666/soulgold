@@ -50,6 +50,7 @@ static void QueueAnimTiles_General_Water(u16);
 static void QueueAnimTiles_General_SandWaterEdge(u16);
 static void QueueAnimTiles_General_Waterfall(u16);
 static void QueueAnimTiles_General_LandWaterEdge(u16);
+static void QueueAnimTiles_General_WaterCurrents(u16);
 
 
 static void QueueAnimTiles_HoennGeneral_Flower(u16);
@@ -914,6 +915,8 @@ static void TilesetAnim_General(u16 timer)
         QueueAnimTiles_General_Flower(timer >> 4);
     if (timer % 16 == 3)
         QueueAnimTiles_General_Waterfall(timer / 16);
+    if (timer % 16 == 4)
+        QueueAnimTiles_General_WaterCurrents(timer / 16);
 
 }
 
@@ -947,8 +950,13 @@ static void QueueAnimTiles_General_Waterfall(u16 timer)
     AppendTilesetAnimToBuffer(gTilesetAnims_General_Waterfall[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(450)), 6 * TILE_SIZE_4BPP);
 }
 
+static void QueueAnimTiles_General_WaterCurrents(u16 timer)
+{
+    u8 i = timer % ARRAY_COUNT(gTilesetAnims_General_Water);
+    const u16 *src = gTilesetAnims_General_Water[i] + (18 * TILE_SIZE_4BPP / sizeof(u16));
 
-
+    AppendTilesetAnimToBuffer(src, (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(434)), 16 * TILE_SIZE_4BPP);
+}
 
 static void QueueAnimTiles_HoennGeneral_Flower(u16 timer)
 {

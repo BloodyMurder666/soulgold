@@ -67,7 +67,7 @@ Blackthorn_Mart2::
 # 37 "data/maps/BlackthornCity_Mart/scripts.pory"
 Blackthorn2:
 # 38 "data/maps/BlackthornCity_Mart/scripts.pory"
-	.2byte ITEM_TM_FROST_BREATH
+	.2byte ITEM_TM_ACROBATICS
 # 39 "data/maps/BlackthornCity_Mart/scripts.pory"
 	.2byte ITEM_TM_DRAGON_TAIL
 # 40 "data/maps/BlackthornCity_Mart/scripts.pory"

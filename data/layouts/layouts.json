@@ -9468,8 +9468,8 @@
     {
       "id": "LAYOUT_SNOWTOP_MOUNTAIN_OUTSIDE",
       "name": "SnowtopMountainOutside_Layout",
-      "width": 36,
-      "height": 50,
+      "width": 45,
+      "height": 53,
       "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_MtSilverSnow",
       "border_filepath": "data/layouts/SnowtopMountainOutside/border.bin",
@@ -9526,6 +9526,16 @@
       "secondary_tileset": "gTileset_Desert",
       "border_filepath": "data/layouts/RegirockChamber/border.bin",
       "blockdata_filepath": "data/layouts/RegirockChamber/map.bin"
+    },
+    {
+      "id": "LAYOUT_SNOWTOP_MOUNTAIN",
+      "name": "SnowtopMountain_Layout",
+      "width": 30,
+      "height": 28,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_Cave_Ice",
+      "border_filepath": "data/layouts/SnowtopMountain/border.bin",
+      "blockdata_filepath": "data/layouts/SnowtopMountain/map.bin"
     }
   ]
 }

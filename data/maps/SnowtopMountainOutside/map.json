@@ -24,8 +24,132 @@
       "direction": "left"
     }
   ],
-  "object_events": [],
-  "warp_events": [],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_TMBALL",
+      "x": 16,
+      "y": 15,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_TM_FROST_BREATH",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_SNOWTOP_FROST_BREATH_TM"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 33,
+      "y": 42,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_SNOWBALL",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_SNOWTOP_ITEM_SNOWBALL"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SNOVER)",
+      "x": 16,
+      "y": 32,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_ROTATE_CLOCKWISE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(BERGMITE)",
+      "x": 35,
+      "y": 39,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SPHEAL)",
+      "x": 18,
+      "y": 47,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SNOVER)",
+      "x": 16,
+      "y": 9,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 22,
+      "y": 27,
+      "elevation": 0,
+      "dest_map": "MAP_SNOWTOP_MOUNTAIN",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 25,
+      "y": 21,
+      "elevation": 0,
+      "dest_map": "MAP_SNOWTOP_MOUNTAIN_OUTSIDE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 22,
+      "y": 47,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE49",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 21,
+      "y": 47,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE49",
+      "dest_warp_id": "4"
+    },
+    {
+      "x": 23,
+      "y": 47,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE49",
+      "dest_warp_id": "5"
+    }
+  ],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 21,
+      "y": 28,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NULL"
+    }
+  ]
 }
