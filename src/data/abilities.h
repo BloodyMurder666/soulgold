@@ -4195,7 +4195,7 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_STONE_SENTINEL] =
     {
-        .name = _("Rolling Stones"),
+        .name = _("Stone Sentinel"),
         .description = COMPOUND_STRING("Rock moves go first."),
         .longDescription = COMPOUND_STRING("At full HP, Rock-type\n"
                                            "moves gain +1 priority."),
@@ -4340,7 +4340,7 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_ROLLING_STONE] =
     {
-        .name = _("Rolling Stone"),
+        .name = _("Rolling Stones"),
         .description = COMPOUND_STRING("Rollout hits raise Speed."),
         .longDescription = COMPOUND_STRING("Each successful Rollout\n"
                                            "hit raises Speed by\n"
