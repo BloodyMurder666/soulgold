@@ -271,7 +271,7 @@ VermilionCity_Gym_EventScript_Surge::
 
 VermilionCity_Gym_EventScript_GiveThunderstone::
 	msgbox VermilionGym_Text_LtSurgeThunderstone, MSGBOX_DEFAULT
-	giveitem ITEM_THUNDER_STONE
+	giveitem ITEM_POTION
 	return
 
 VermilionCity_Gym_EventScript_GiveTM::
