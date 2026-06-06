@@ -274,6 +274,7 @@ class SpeciesRow:
     tutors: list[str] = field(default_factory=list)
     evolutions: list[dict[str, Any]] = field(default_factory=list)
     locations: list[dict[str, Any]] = field(default_factory=list)
+    held_items: list[dict[str, str]] = field(default_factory=list)
 
 
 def read(path: Path) -> str:
@@ -600,6 +601,12 @@ def extract_braced_constants(entry: str, field_name: str, prefix: str) -> list[s
     return re.findall(rf"\b{prefix}[A-Z0-9_]+\b", expr)
 
 
+def extract_constant(entry: str, field_name: str, prefix: str) -> str | None:
+    expr = extract_field(entry, field_name) or ""
+    match = re.search(rf"\b{prefix}[A-Z0-9_]+\b", expr)
+    return match.group(0) if match else None
+
+
 def parse_shared_strings(text: str) -> dict[str, str]:
     shared: dict[str, str] = {}
     pattern = re.compile(
@@ -714,6 +721,13 @@ def parse_species() -> tuple[list[SpeciesRow], dict[str, SpeciesRow]]:
         level_symbol = re.search(r"\bs[A-Za-z0-9_]+LevelUpLearnset\b", level_expr)
         teach_symbol = re.search(r"\bs[A-Za-z0-9_]+TeachableLearnset\b", teach_expr)
         front_symbol = re.search(r"\bgMonFrontPic_[A-Za-z0-9_]+\b", front_expr)
+        held_items = []
+        seen_held_items = set()
+        for field_name, rarity in (("itemCommon", "common"), ("itemRare", "rare")):
+            item = extract_constant(entry, field_name, "ITEM_")
+            if item and item != "ITEM_NONE" and item not in seen_held_items:
+                held_items.append({"constant": item, "rarity": rarity})
+                seen_held_items.add(item)
         row = SpeciesRow(
             id=species_id,
             constant=constant,
@@ -728,6 +742,7 @@ def parse_species() -> tuple[list[SpeciesRow], dict[str, SpeciesRow]]:
             level_up_symbol=level_symbol.group(0) if level_symbol else None,
             teachable_symbol=teach_symbol.group(0) if teach_symbol else None,
             front_pic_symbol=front_symbol.group(0) if front_symbol else None,
+            held_items=held_items,
         )
         rows.append(row)
         by_constant[constant] = row
@@ -1076,6 +1091,7 @@ def add_location(
     source: str,
 ) -> None:
     entry = {"map": map_name, "source": source}
+    locations.setdefault(item, [])
     if entry not in locations[item]:
         locations[item].append(entry)
 
@@ -1166,7 +1182,27 @@ def parse_item_locations(item_constants: set[str]) -> dict[str, list[dict[str, s
     return dict(locations)
 
 
-def build_important_items(item_records: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
+def add_wild_held_item_locations(
+    locations: dict[str, list[dict[str, str]]],
+    item_constants: set[str],
+    species: list[SpeciesRow],
+) -> None:
+    for row in species:
+        if not row.dex_visible:
+            continue
+        for held_item in row.held_items:
+            item = held_item["constant"]
+            if item in item_constants:
+                add_location(locations, item, row.name, f"Wild held item ({held_item['rarity']})")
+
+
+def build_important_items(item_records: dict[str, dict[str, Any]], species: list[SpeciesRow]) -> list[dict[str, Any]]:
+    wild_held_items = {
+        held_item["constant"]
+        for row in species
+        if row.dex_visible
+        for held_item in row.held_items
+    }
     selected = {
         constant
         for constant, item in item_records.items()
@@ -1174,10 +1210,12 @@ def build_important_items(item_records: dict[str, dict[str, Any]]) -> list[dict[
             item.get("pocket") in IMPORTANT_ITEM_POCKETS
             or item.get("sortType") in IMPORTANT_ITEM_SORT_TYPES
             or constant in GENERIC_MEGA_STONE_ITEMS
+            or constant in wild_held_items
         )
         and item.get("sortType") not in ITEMS_HIDDEN_SORT_TYPES
     }
     locations = parse_item_locations(selected)
+    add_wild_held_item_locations(locations, selected, species)
     rows = []
     for constant in sorted(selected, key=lambda item: item_records.get(item, {}).get("id", 0)):
         item = item_records[constant]
@@ -1823,6 +1861,8 @@ def build() -> None:
     shiny_toggle_icon = copy_shiny_toggle_icon()
 
     for row in species:
+        for held_item in row.held_items:
+            held_item["name"] = item_display_name(held_item["constant"], item_records)
         if row.level_up_symbol:
             row.level_up = level_up.get(row.level_up_symbol, [])
         if row.teachable_symbol:
@@ -1884,7 +1924,7 @@ def build() -> None:
                 for entry in tmhm_locations.get(row["item"], [])
             ),
         })
-    important_items = build_important_items(item_records)
+    important_items = build_important_items(item_records, species)
 
     payload = {
         "meta": {"generatedFrom": "tools/soulgold_docs/build_docs.py"},
@@ -1906,6 +1946,7 @@ def build() -> None:
                 "tutors": row.tutors,
                 "evolutions": row.evolutions,
                 "locations": row.locations,
+                "heldItems": row.held_items,
             }
             for row in visible_species
         ],

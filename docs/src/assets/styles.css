@@ -560,6 +560,22 @@ dialog::backdrop { background: rgb(0 0 0 / 70%); }
   background: linear-gradient(90deg, var(--bar), var(--good));
 }
 
+.held-item-list {
+  display: grid;
+  gap: 6px;
+}
+
+.held-item-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.held-item-row span {
+  color: var(--muted);
+  text-transform: capitalize;
+}
+
 .move-list {
   border: 1px solid #3a3b44;
 }

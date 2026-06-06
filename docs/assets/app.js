@@ -516,6 +516,21 @@ function locationRows(locations) {
   </div>`;
 }
 
+function heldItemRows(heldItems) {
+  if (!heldItems?.length) return "";
+  return `
+    <h3 class="section-title">Held Items</h3>
+    <div class="held-item-list">
+      ${heldItems.map((item) => `
+        <div class="held-item-row">
+          <strong>${item.name || item.constant.replace("ITEM_", "").replaceAll("_", " ")}</strong>
+          <span>${item.rarity}</span>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
 function openSpecies(mon) {
   document.getElementById("modalTitle").textContent = `#${mon.dex || mon.id} ${speciesFormLabel(mon)}`;
   document.getElementById("modalBody").innerHTML = `
@@ -527,6 +542,7 @@ function openSpecies(mon) {
         ${abilityPills(mon.abilities, "base")}
         <h3 class="section-title">Innates</h3>
         ${abilityPills(mon.innates, "innate")}
+        ${heldItemRows(mon.heldItems)}
       </div>
     </div>
     <h3 class="section-title">Evolution</h3>
