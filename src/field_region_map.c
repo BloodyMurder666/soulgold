@@ -43,6 +43,7 @@ static EWRAM_DATA struct {
     u32 unused;
     struct RegionMap regionMap;
     u16 state;
+    bool8 allowFly;
 } *sFieldRegionMapHandler = NULL;
 
 static void MCB2_InitRegionMapRegisters(void);
@@ -51,6 +52,7 @@ static void MCB2_FieldUpdateRegionMap(void);
 static void FieldUpdateRegionMap(void);
 static void PrintRegionMapSecName();
 static void PrintTitleWindowText();
+void FieldInitRegionMapWithOptions(MainCallback callback, bool8 allowFly);
 
 static const struct BgTemplate sFieldRegionMapBgTemplates[] = {
     {
@@ -97,10 +99,16 @@ static const struct WindowTemplate sFieldRegionMapWindowTemplates[] =
 
 void FieldInitRegionMap(MainCallback callback)
 {
+    FieldInitRegionMapWithOptions(callback, TRUE);
+}
+
+void FieldInitRegionMapWithOptions(MainCallback callback, bool8 allowFly)
+{
     SetVBlankCallback(NULL);
     sFieldRegionMapHandler = Alloc(sizeof(*sFieldRegionMapHandler));
     sFieldRegionMapHandler->state = 0;
     sFieldRegionMapHandler->callback = callback;
+    sFieldRegionMapHandler->allowFly = allowFly;
     SetMainCallback2(MCB2_InitRegionMapRegisters);
 }
 
@@ -187,7 +195,8 @@ static void FieldUpdateRegionMap(void)
                 sFieldRegionMapHandler->state++;
                 break;
         case MAP_INPUT_R_BUTTON:
-                if (sFieldRegionMapHandler->regionMap.mapSecType == MAPSECTYPE_CITY_CANFLY
+                if (sFieldRegionMapHandler->allowFly
+                    && sFieldRegionMapHandler->regionMap.mapSecType == MAPSECTYPE_CITY_CANFLY
                     && FlagGet(OW_FLAG_POKE_RIDER) && Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType) == TRUE)
                 {
                     PlaySE(SE_SELECT);
@@ -236,7 +245,8 @@ static void PrintTitleWindowText(void)
 
     FillWindowPixelBuffer(WIN_TITLE, PIXEL_FILL(1));
 
-    if (sFieldRegionMapHandler->regionMap.mapSecType == MAPSECTYPE_CITY_CANFLY
+    if (sFieldRegionMapHandler->allowFly
+        && sFieldRegionMapHandler->regionMap.mapSecType == MAPSECTYPE_CITY_CANFLY
         && FlagGet(OW_FLAG_POKE_RIDER) && Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType) == TRUE)
     {
         AddTextPrinterParameterized(WIN_TITLE, FONT_NORMAL, FlyPromptText, flyOffset, 1, 0, NULL);

@@ -2,6 +2,7 @@
 #define GUARD_DEXNAV_H
 
 #include "config/dexnav.h"
+#include "main.h"
 
 // GUI Info
 enum RowGUIInfo
@@ -70,6 +71,7 @@ enum EncounterType
 #define DEXNAV_MASK_ENVIRONMENT     0xC000  // Last two bit
 
 void EndDexNavSearch(void);
+void DexNavGuiInit(MainCallback callback);
 void Task_OpenDexNavFromStartMenu(u8 taskId);
 bool32 TryStartDexNavSearch(void);
 void TryIncrementSpeciesSearchLevel(void);
