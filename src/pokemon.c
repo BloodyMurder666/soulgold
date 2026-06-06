@@ -7477,7 +7477,7 @@ bool32 IsInnateUnlockedByLevel(u32 innateNum, u32 level)
 {
     u32 unlockLevel = GetInnateUnlockLevel(innateNum);
 
-    return unlockLevel == 0 || level >= unlockLevel;
+    return FlagGet(FLAG_ALL_INNATES_UNLOCKED) || unlockLevel == 0 || level >= unlockLevel;
 }
 
 //Returns the slot the Innate is found in, assuming the Ability is already slot 1. Returns 0 if not found.

@@ -236,8 +236,7 @@ LittlerootTown_BrendansHouse_2F_Movement_PlayerWatchBrendanEast:
 LittlerootTown_BrendansHouse_2F_EventScript_PC::
 	lockall
 	checkplayergender
-	goto_if_eq VAR_RESULT, MALE, LittlerootTown_BrendansHouse_2F_EventScript_CheckPlayersPC
-	goto_if_eq VAR_RESULT, FEMALE, LittlerootTown_BrendansHouse_2F_EventScript_CheckRivalsPC
+	goto LittlerootTown_BrendansHouse_2F_EventScript_CheckPlayersPC
 	end
 
 LittlerootTown_BrendansHouse_2F_EventScript_CheckPlayersPC::

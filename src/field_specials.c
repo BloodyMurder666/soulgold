@@ -4491,8 +4491,14 @@ void EnterCode(void)
 void GetCodeFeedback(void)
 {
     static const u8 sText_SampleCode[] = _("SampleCode");
+    static const u8 sText_InnatePower[] = _("innatesnow");
     if (!StringCompare(gStringVar2, sText_SampleCode))
         gSpecialVar_Result = 1;
+    else if (!StringCompare(gStringVar2, sText_InnatePower))
+    {
+        FlagToggle(FLAG_ALL_INNATES_UNLOCKED);
+        gSpecialVar_Result = FlagGet(FLAG_ALL_INNATES_UNLOCKED) ? 2 : 3;
+    }
     else
         gSpecialVar_Result = 0;
 }
