@@ -1,0 +1,10 @@
+mapscripts SnowtopMountain_B1F_2_MapScripts {}
+
+
+script RegiceChamber_Regice {
+    lock
+    faceplayer
+    legendaryencounter(SPECIES_REGICE, 50, 1, FLAG_HIDE_REGICE)
+    release
+    end
+}

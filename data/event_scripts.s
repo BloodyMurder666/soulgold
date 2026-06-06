@@ -2241,3 +2241,7 @@ Common_Text_ReceivedMon:
 	.include "data/maps/RegirockChamber/scripts.inc"
 
 	.include "data/maps/SnowtopMountain/scripts.inc"
+
+	.include "data/maps/SnowtopMountain_B1F/scripts.inc"
+
+	.include "data/maps/SnowtopMountain_B1F_2/scripts.inc"

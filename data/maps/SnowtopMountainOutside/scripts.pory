@@ -1,1 +1,24 @@
 mapscripts SnowtopMountainOutside_MapScripts {}
+
+script SnowtopMountainOutside_Snover {
+    lock
+    faceplayer
+    playmoncry(SPECIES_SNOVER, CRY_MODE_NORMAL)
+    msgbox("Snover: Snoo!")
+    waitmoncry
+    release
+    end
+}
+
+script SnowtopMountainOutside_Articuno {
+    lock
+    faceplayer
+    legendaryencounter(SPECIES_ARTICUNO, 50, 1, FLAG_HIDE_ARTICUNO)
+    release
+    end
+}
+
+script SnowtopMountainOutside_Sign {
+    msgbox("Snowtop Mountain
+            Chilling temperatures ahead!", MSGBOX_SIGN)
+}

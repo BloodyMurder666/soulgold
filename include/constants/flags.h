@@ -1571,10 +1571,10 @@
 // Infinite free flags
 #define FLAG_SNOWTOP_ITEM_SNOWBALL                  0x920
 #define FLAG_SNOWTOP_ICE_STONE                      0x921
-#define FLAG_0x922                                  0x922
-#define FLAG_0x923                                  0x923
-#define FLAG_0x924                                  0x924
-#define FLAG_0x925                                  0x925
+#define FLAG_SNOWTOP_ICY_ROCK                       0x922
+#define FLAG_SNOWTOP_FLING                          0x923
+#define FLAG_SNOWTOP_CALCIUM_EX                     0x924
+#define FLAG_SNOWTOP_REGICE_DOOR                    0x925
 #define FLAG_0x926                                  0x926
 #define FLAG_0x927                                  0x927
 #define FLAG_0x928                                  0x928

@@ -31,6 +31,7 @@ TRAINERS_H = REPO_ROOT / "src/data/trainers.party"
 GRAPHICS_POKEMON_H = REPO_ROOT / "src/data/graphics/pokemon.h"
 TRAINER_FRONT_PIC_DIR = REPO_ROOT / "graphics/trainers/front_pics"
 WILD_ENCOUNTERS_JSON = REPO_ROOT / "src/data/wild_encounters.json"
+MAP_GROUPS_JSON = REPO_ROOT / "data/maps/map_groups.json"
 FORM_CHANGE_TABLES_H = REPO_ROOT / "src/data/pokemon/form_change_tables.h"
 
 STAT_FIELDS = {
@@ -156,6 +157,98 @@ GENERIC_MEGA_STONE_ITEMS = {
 
 IMPORTANT_ITEM_POCKETS = {
     "POCKET_BATTLE_ITEMS",
+}
+
+EXCLUDED_TRAINER_MAP_GROUPS = {
+    "gMapGroup_IndoorPallet",
+    "gMapGroup_IndoorViridian",
+    "gMapGroup_IndoorPewter",
+    "gMapGroup_IndoorCerulean",
+    "gMapGroup_IndoorVermilion",
+    "gMapGroup_IndoorLavender",
+    "gMapGroup_IndoorCeladon",
+    "gMapGroup_IndoorSaffron",
+    "gMapGroup_IndoorFuchsia",
+    "gMapGroup_IndoorCinnabar",
+    "gMapGroup_IndoorIndigo",
+    "gMapGroup_IndoorKantoRoutes",
+    "gMapGroup_Emerald1",
+    "gMapGroup_Emerald2",
+    "gMapGroup_Emerald3",
+    "gMapGroup_Emerald4",
+    "gMapGroup_Emerald5",
+}
+
+EXCLUDED_TRAINER_MAP_NAMES = {
+    "PalletTown",
+    "ViridianCity",
+    "PewterCity",
+    "CeruleanCity",
+    "VermilionCity",
+    "LavenderTown",
+    "CeladonCity",
+    "SaffronCity",
+    "FuchsiaCity",
+    "CinnabarIsland",
+    "IndigoPlateau",
+    "Route1",
+    "Route2",
+    "Route3",
+    "Route4",
+    "Route5",
+    "Route6",
+    "Route7",
+    "Route8",
+    "Route9",
+    "Route10",
+    "Route11",
+    "Route12",
+    "Route13",
+    "Route14",
+    "Route15",
+    "Route16",
+    "Route17",
+    "Route18",
+    "Route19",
+    "Route20",
+    "Route21",
+    "Route22",
+    "Route23",
+    "Route24",
+    "Route25",
+    "Route28",
+    "OneIsland",
+    "OneIsland_KindleRoad_Frlg",
+    "OneIsland_TreasureBeach_Frlg",
+    "OneIsland_KindleRoad_EmberSpa_Frlg",
+    "Saffron_Temp",
+}
+
+EXCLUDED_TRAINER_MAP_PREFIXES = (
+    "CeruleanCave",
+    "DiglettsCave",
+    "MtEmber",
+    "MtMoon",
+    "MtSilver",
+    "PewterCity",
+    "RockTunnel",
+    "Route19_Cave",
+    "SeafoamIslands",
+    "VictoryRoadKanto",
+    "ViridianForest",
+)
+
+ALWAYS_INCLUDED_TRAINER_CONSTANTS = {
+    "TRAINER_WILL_1",
+    "TRAINER_WILL_2",
+    "TRAINER_KOGA_1",
+    "TRAINER_KOGA_2",
+    "TRAINER_BRUNO_1",
+    "TRAINER_BRUNO_2",
+    "TRAINER_KAREN_1",
+    "TRAINER_KAREN_2",
+    "TRAINER_LANCE_1",
+    "TRAINER_LANCE_2",
 }
 
 
@@ -1481,6 +1574,41 @@ def enrich_trainer_party(
     return enriched
 
 
+def is_docs_excluded_trainer_map(map_name: str, group_name: str) -> bool:
+    if group_name in EXCLUDED_TRAINER_MAP_GROUPS:
+        return True
+    if map_name in EXCLUDED_TRAINER_MAP_NAMES:
+        return True
+    return map_name.endswith("_Frlg") or map_name.startswith(EXCLUDED_TRAINER_MAP_PREFIXES)
+
+
+def trainer_constants_for_docs_maps() -> set[str]:
+    """Return trainer constants referenced by non-Kanto, non-Hoenn map scripts."""
+    try:
+        map_groups = json.loads(read(MAP_GROUPS_JSON))
+    except (FileNotFoundError, json.JSONDecodeError):
+        return set()
+
+    constants: set[str] = set()
+    trainer_re = re.compile(r"\btrainerbattle(?:_[a-z0-9_]+)?(?:\s+|\()\s*(TRAINER_[A-Z0-9_]+)\b", re.IGNORECASE)
+
+    for group_name in map_groups.get("group_order") or []:
+        for map_name in map_groups.get(group_name) or []:
+            if is_docs_excluded_trainer_map(map_name, group_name):
+                continue
+            map_dir = REPO_ROOT / "data/maps" / map_name
+            if not map_dir.is_dir():
+                continue
+            for script in sorted(map_dir.glob("scripts.*")):
+                constants.update(
+                    constant
+                    for constant in trainer_re.findall(read(script))
+                    if constant != "TRAINER_NONE"
+                )
+
+    return constants | ALWAYS_INCLUDED_TRAINER_CONSTANTS
+
+
 def parse_trainers(
     species_lookup: dict[str, SpeciesRow],
     front_sources: dict[str, Path],
@@ -1489,6 +1617,7 @@ def parse_trainers(
     trainer_sprite_dir: Path,
     item_records: dict[str, dict[str, Any]],
     item_icon_dir: Path,
+    allowed_trainer_constants: set[str] | None = None,
 ) -> list[dict[str, Any]]:
     """Read trainers.party and parse each === TRAINER_* === block."""
     if not TRAINERS_H.exists():
@@ -1502,6 +1631,8 @@ def parse_trainers(
 
     for index, match in enumerate(matches):
         constant = match.group(1)
+        if allowed_trainer_constants is not None and constant not in allowed_trainer_constants:
+            continue
         start = match.end()
         end = matches[index + 1].start() if index + 1 < len(matches) else len(text)
         block = text[start:end].strip()
@@ -1590,7 +1721,17 @@ def build() -> None:
     for row in species:
         row.locations = species_locations.get(row.constant, [])
     visible_species = [row for row in species if row.dex_visible]
-    trainers = parse_trainers(build_species_lookup(species), front_sources, trainer_front_sources, sprite_dir, trainer_sprite_dir, item_records, item_icon_dir)
+    allowed_trainer_constants = trainer_constants_for_docs_maps()
+    trainers = parse_trainers(
+        build_species_lookup(species),
+        front_sources,
+        trainer_front_sources,
+        sprite_dir,
+        trainer_sprite_dir,
+        item_records,
+        item_icon_dir,
+        allowed_trainer_constants,
+    )
 
     ability_usage: dict[str, dict[str, list[dict[str, Any]]]] = defaultdict(lambda: {"base": [], "innate": []})
     for row in visible_species:

@@ -35,7 +35,7 @@ SnowtopMountain_Slowking::
 SnowtopMountain_Sage_Text_0:
 # 6 "data/maps/SnowtopMountain/scripts.pory"
 	.string "Only those who have proven themself to\n"
-	.string "be more than just a region's champion\l"
+	.string "be more than just the region's champion\l"
 	.string "may proceed past here.$"
 
 SnowtopMountain_Sage_Text_1:

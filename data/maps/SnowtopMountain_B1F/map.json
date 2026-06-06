@@ -1,0 +1,97 @@
+{
+  "id": "MAP_SNOWTOP_MOUNTAIN_B1F",
+  "name": "SnowtopMountain_B1F",
+  "layout": "LAYOUT_SNOWTOP_MOUNTAIN_B1F",
+  "music": "MUS_DP_SNOWPOINT_NIGHT",
+  "region_map_section": "MAPSEC_SNOWTOP_MOUNTAIN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": true,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_TMBALL",
+      "x": 5,
+      "y": 30,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_TM_FLING",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_SNOWTOP_FLING"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 32,
+      "y": 25,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_ICY_ROCK",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_SNOWTOP_ICY_ROCK"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 42,
+      "y": 41,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_SWIFT_FEATHER",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_SNOWTOP_CALCIUM_EX"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_HIKER",
+      "x": 27,
+      "y": 12,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "2",
+      "script": "B1F_Snowtopmountain_Bearnese",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 17,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_SNOWTOP_MOUNTAIN",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 5,
+      "y": 36,
+      "elevation": 0,
+      "dest_map": "MAP_SNOWTOP_MOUNTAIN_B1F_2",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 5,
+      "y": 36,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "B1F_Snowtopmountain_Susdoor"
+    }
+  ]
+}

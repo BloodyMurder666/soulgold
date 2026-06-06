@@ -2805,7 +2805,7 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 === TRAINER_LI ===
 Name: Li
 Class: Sage
-Pic: Mr Fuji
+Pic: Elder
 Gender: Male
 Music: Hg Sage
 Double Battle: No
@@ -3063,7 +3063,7 @@ Adamant Nature
 
 Exeggutor-Alola @ Sitrus Berry  
 Ability: Harvest  
-Level: 69  
+Level: 71  
 EVs: 252 HP / 252 Atk / 4 SpD  
 Adamant Nature  
 - Dragon Hammer  
@@ -3073,7 +3073,7 @@ Adamant Nature
 
 Hydrapple @ Yache Berry  
 Ability: Sticky Hold  
-Level: 70  
+Level: 71  
 EVs: 252 Atk / 252 SpA  
 - Draco Meteor  
 - Leaf Storm  
@@ -3082,7 +3082,7 @@ EVs: 252 Atk / 252 SpA
 
 Dragapult @ Choice Scarf  
 Ability: Infiltrator  
-Level: 70  
+Level: 71  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
 - Dragon Darts  
@@ -3092,7 +3092,7 @@ Jolly Nature
 
 Goodra-Hisui @ Assault Vest  
 Ability: Sap Sipper  
-Level: 70  
+Level: 71  
 EVs: 252 HP / 252 SpA / 4 SpD  
 Modest Nature  
 IVs: 0 Atk  
@@ -12714,3 +12714,22 @@ IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 Hippowdon
 Level: 39
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+
+=== TRAINER_BEARNESE ===
+Name: Bearnese
+Pic: Hiker
+Gender: Male
+Music: Hg Boy 2
+Double Battle: No
+AI: Smart Trainer
+
+Skarmory
+Level: 38
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+Arctibax
+Level: 38
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+

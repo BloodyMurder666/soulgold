@@ -342,6 +342,8 @@ const u32 gTrainerFrontPic_LeaderPryce[] = INCBIN_U32("graphics/trainers/front_p
 const u16 gTrainerPalette_LeaderPryce[] = INCBIN_U16("graphics/trainers/front_pics/pryce_2.gbapal");
 const u32 gTrainerFrontPic_Biker[] = INCBIN_U32("graphics/trainers/front_pics/running_triathlete_f.4bpp.smol");
 const u16 gTrainerPalette_Biker[] = INCBIN_U16("graphics/trainers/front_pics/running_triathlete_f.gbapal");
+const u32 gTrainerFrontPic_Elder[] = INCBIN_U32("graphics/trainers/front_pics/elder.4bpp.smol");
+const u16 gTrainerPalette_Elder[] = INCBIN_U16("graphics/trainers/front_pics/elder.gbapal");
 const u32 gTrainerFrontPic_Sage[] = INCBIN_U32("graphics/trainers/front_pics/sage.4bpp.smol");
 const u16 gTrainerPalette_Sage[] = INCBIN_U16("graphics/trainers/front_pics/sage.gbapal");
 const u32 gTrainerFrontPic_Juggler[] = INCBIN_U32("graphics/trainers/front_pics/juggler.4bpp.smol");
@@ -518,6 +520,7 @@ const struct TrainerSprite gTrainerSprites[] =
     TRAINER_SPRITE(TRAINER_PIC_FRONT_LEADER_PRYCE, gTrainerFrontPic_LeaderPryce, gTrainerPalette_LeaderPryce),
     TRAINER_SPRITE(TRAINER_PIC_FRONT_BIKER, gTrainerFrontPic_Biker, gTrainerPalette_Biker),
     TRAINER_SPRITE(TRAINER_PIC_FRONT_SAGE, gTrainerFrontPic_Sage, gTrainerPalette_Sage),
+    TRAINER_SPRITE(TRAINER_PIC_FRONT_ELDER, gTrainerFrontPic_Elder, gTrainerPalette_Elder),
     TRAINER_SPRITE(TRAINER_PIC_FRONT_JUGGLER, gTrainerFrontPic_Juggler, gTrainerPalette_Juggler),
     TRAINER_SPRITE(TRAINER_PIC_FRONT_ARCHER, gTrainerFrontPic_Archer, gTrainerPalette_Archer),
     TRAINER_SPRITE(TRAINER_PIC_FRONT_LEADER_BROCK, gTrainerFrontPic_LeaderBrock, gTrainerPalette_LeaderBrock),

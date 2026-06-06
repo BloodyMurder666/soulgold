@@ -311,7 +311,7 @@
 #define TRAINER_JANINE                    305
 #define TRAINER_BLAINE                    306
 #define TRAINER_TIMOTHY_1                   307
-#define TRAINER_TIMOTHY_2                   308
+#define TRAINER_BEARNESE                    308
 #define TRAINER_TIMOTHY_3                   309
 #define TRAINER_TIMOTHY_4                   310
 #define TRAINER_TIMOTHY_5                   311

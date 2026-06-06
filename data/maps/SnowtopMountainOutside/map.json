@@ -61,7 +61,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "SnowtopMountainOutside_Snover",
       "flag": "0"
     },
     {
@@ -92,7 +92,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(SNOVER)",
-      "x": 16,
+      "x": 18,
       "y": 9,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
@@ -102,6 +102,19 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ARTICUNO)",
+      "x": 25,
+      "y": 2,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SnowtopMountainOutside_Articuno",
+      "flag": "FLAG_HIDE_ARTICUNO"
     }
   ],
   "warp_events": [
@@ -110,13 +123,6 @@
       "y": 27,
       "elevation": 0,
       "dest_map": "MAP_SNOWTOP_MOUNTAIN",
-      "dest_warp_id": "0"
-    },
-    {
-      "x": 25,
-      "y": 21,
-      "elevation": 0,
-      "dest_map": "MAP_SNOWTOP_MOUNTAIN_OUTSIDE",
       "dest_warp_id": "0"
     },
     {
@@ -149,7 +155,7 @@
       "y": 28,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "NULL"
+      "script": "SnowtopMountainOutside_Sign"
     }
   ]
 }

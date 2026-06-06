@@ -14211,20 +14211,20 @@
               {
                 "min_level": 24,
                 "max_level": 28,
-                "species": "SPECIES_MAROWAK"
+                "species": "SPECIES_MACHOP"
               },
               {
                 "min_level": 24,
                 "max_level": 28,
-                "species": "SPECIES_MAROWAK"
+                "species": "SPECIES_MACHOP"
               },
               {
-                "min_level": 24,
+                "min_level": 28,
                 "max_level": 28,
                 "species": "SPECIES_MAROWAK"
               },
               {
-                "min_level": 24,
+                "min_level": 28,
                 "max_level": 28,
                 "species": "SPECIES_MAROWAK"
               }
@@ -14429,17 +14429,17 @@
               {
                 "min_level": 26,
                 "max_level": 29,
-                "species": "SPECIES_SNORUNT"
+                "species": "SPECIES_BERGMITE"
               },
               {
                 "min_level": 26,
                 "max_level": 29,
-                "species": "SPECIES_SNORUNT"
+                "species": "SPECIES_SNOVER"
               },
               {
                 "min_level": 27,
                 "max_level": 29,
-                "species": "SPECIES_SNORUNT"
+                "species": "SPECIES_SPHEAL"
               },
               {
                 "min_level": 28,
@@ -14458,7 +14458,7 @@
           "map": "MAP_SNOWTOP_MOUNTAIN",
           "base_label": "gSnowtopMountain",
           "land_mons": {
-            "encounter_rate": 20,
+            "encounter_rate": 15,
             "mons": [
               {
                 "min_level": 26,
@@ -14468,7 +14468,7 @@
               {
                 "min_level": 26,
                 "max_level": 30,
-                "species": "SPECIES_VULPIX_ALOLA"
+                "species": "SPECIES_SPHEAL"
               },
               {
                 "min_level": 26,
@@ -14478,7 +14478,7 @@
               {
                 "min_level": 26,
                 "max_level": 30,
-                "species": "SPECIES_VULPIX_ALOLA"
+                "species": "SPECIES_SPHEAL"
               },
               {
                 "min_level": 27,
@@ -14488,12 +14488,81 @@
               {
                 "min_level": 27,
                 "max_level": 30,
-                "species": "SPECIES_VULPIX_ALOLA"
+                "species": "SPECIES_SPHEAL"
               },
               {
                 "min_level": 27,
                 "max_level": 30,
                 "species": "SPECIES_SNORUNT"
+              },
+              {
+                "min_level": 27,
+                "max_level": 30,
+                "species": "SPECIES_BERGMITE"
+              },
+              {
+                "min_level": 27,
+                "max_level": 31,
+                "species": "SPECIES_SNOVER"
+              },
+              {
+                "min_level": 28,
+                "max_level": 31,
+                "species": "SPECIES_BERGMITE"
+              },
+              {
+                "min_level": 28,
+                "max_level": 31,
+                "species": "SPECIES_SNOVER"
+              },
+              {
+                "min_level": 28,
+                "max_level": 31,
+                "species": "SPECIES_BERGMITE"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_SNOWTOP_MOUNTAIN_B1F",
+          "base_label": "gSnowtopMountain_B1F",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 26,
+                "max_level": 30,
+                "species": "SPECIES_SNORUNT"
+              },
+              {
+                "min_level": 26,
+                "max_level": 30,
+                "species": "SPECIES_SPHEAL"
+              },
+              {
+                "min_level": 26,
+                "max_level": 30,
+                "species": "SPECIES_SNORUNT"
+              },
+              {
+                "min_level": 26,
+                "max_level": 30,
+                "species": "SPECIES_SPHEAL"
+              },
+              {
+                "min_level": 27,
+                "max_level": 30,
+                "species": "SPECIES_VULPIX_ALOLA"
+              },
+              {
+                "min_level": 27,
+                "max_level": 30,
+                "species": "SPECIES_SPHEAL"
+              },
+              {
+                "min_level": 27,
+                "max_level": 30,
+                "species": "SPECIES_VULPIX_ALOLA"
               },
               {
                 "min_level": 27,
@@ -14518,7 +14587,7 @@
               {
                 "min_level": 28,
                 "max_level": 31,
-                "species": "SPECIES_BERGMITE"
+                "species": "SPECIES_FRIGIBAX"
               }
             ]
           }

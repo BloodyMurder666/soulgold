@@ -542,7 +542,9 @@
     "VerityCavern",
     "RailwayCave",
     "RegirockChamber",
-    "SnowtopMountain"
+    "SnowtopMountain",
+    "SnowtopMountain_B1F",
+    "SnowtopMountain_B1F_2"
   ],
   "gMapGroup_IndoorDynamic": [],
   "gMapGroup_SpecialArea": [

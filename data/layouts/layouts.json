@@ -9536,6 +9536,26 @@
       "secondary_tileset": "gTileset_Cave_Ice",
       "border_filepath": "data/layouts/SnowtopMountain/border.bin",
       "blockdata_filepath": "data/layouts/SnowtopMountain/map.bin"
+    },
+    {
+      "id": "LAYOUT_SNOWTOP_MOUNTAIN_B1F",
+      "name": "SnowtopMountain_B1F_Layout",
+      "width": 45,
+      "height": 45,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_Cave_Ice",
+      "border_filepath": "data/layouts/SnowtopMountain_B1F/border.bin",
+      "blockdata_filepath": "data/layouts/SnowtopMountain_B1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_SNOWTOP_MOUNTAIN_B1F_2",
+      "name": "SnowtopMountain_B1F_2_Layout",
+      "width": 17,
+      "height": 15,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_Cave_Ice",
+      "border_filepath": "data/layouts/SnowtopMountain_B1F_2/border.bin",
+      "blockdata_filepath": "data/layouts/SnowtopMountain_B1F_2/map.bin"
     }
   ]
 }

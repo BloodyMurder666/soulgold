@@ -1,0 +1,41 @@
+mapscripts SnowtopMountain_B1F_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        if (flag(FLAG_SNOWTOP_REGICE_DOOR)) {
+            setmetatile(5, 36, 0x414, FALSE)
+            setmetatile(5, 35, 0x40C, FALSE)
+        }
+    }
+}
+
+raw `
+Snowtopmountain_BrailleRegice:
+	.braille "TYRANT OF\n"
+	.braille "THE SNOW\n"
+	.braille "FULLY EVOLVED.$"
+`
+
+script B1F_Snowtopmountain_Bearnese {
+    trainerbattle_single(TRAINER_BEARNESE, "Check it out, my breath is forming
+                                            icicles!", 
+                                         "Feeling kind of chilly here.")
+    msgbox("They say an ancient ice Pokémon sleeps
+            somewhere inside the mountain. I
+            wonder where it could be?", MSGBOX_AUTOCLOSE)
+}
+
+script B1F_Snowtopmountain_Susdoor {
+    lock
+    msgbox("Something is carven on the wall...")
+    closemessage
+    braillemsgbox(Snowtopmountain_BrailleRegice)
+    checkspecies(SPECIES_BAXCALIBUR)
+    if (var(VAR_RESULT) == TRUE) {
+        setflag(FLAG_SNOWTOP_REGICE_DOOR)
+        setmetatile(5, 36, 0x414, FALSE)
+        setmetatile(5, 35, 0x40C, FALSE)
+        playse(SE_EXIT)
+        special(DrawWholeMapView)
+    }
+    release
+    end
+}

@@ -279,21 +279,21 @@
       "y": 5,
       "elevation": 0,
       "dest_map": "MAP_SNOWTOP_MOUNTAIN_OUTSIDE",
-      "dest_warp_id": "2"
+      "dest_warp_id": "1"
     },
     {
       "x": 13,
       "y": 5,
       "elevation": 0,
       "dest_map": "MAP_SNOWTOP_MOUNTAIN_OUTSIDE",
-      "dest_warp_id": "3"
+      "dest_warp_id": "2"
     },
     {
       "x": 15,
       "y": 5,
       "elevation": 0,
       "dest_map": "MAP_SNOWTOP_MOUNTAIN_OUTSIDE",
-      "dest_warp_id": "4"
+      "dest_warp_id": "3"
     }
   ],
   "coord_events": [],
