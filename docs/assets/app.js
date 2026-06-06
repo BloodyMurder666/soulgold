@@ -60,7 +60,7 @@ function speciesSpritePanel(mon) {
 }
 
 async function init() {
-  const response = await fetch("data/romhack-docs.json?v=20260606-2");
+  const response = await fetch("data/romhack-docs.json?v=20260606-3");
   state.data = await response.json();
   state.filteredSpecies = state.data.species;
   document.body.dataset.activeTab = state.activeTab;
