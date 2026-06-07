@@ -16,8 +16,8 @@
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_TMBALL",
-      "x": 5,
-      "y": 30,
+      "x": 32,
+      "y": 25,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -29,8 +29,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 32,
-      "y": 25,
+      "x": 17,
+      "y": 19,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -69,8 +69,8 @@
   ],
   "warp_events": [
     {
-      "x": 17,
-      "y": 18,
+      "x": 42,
+      "y": 2,
       "elevation": 0,
       "dest_map": "MAP_SNOWTOP_MOUNTAIN",
       "dest_warp_id": "2"

@@ -75,10 +75,6 @@ const u16 gBattleEnvironmentPalette_Sand_2[] = INCBIN_U16("graphics/battle_envir
 const u16 gBattleEnvironmentPalette_Sand_2_Night[] = INCBIN_U16("graphics/battle_environment/sand_2/palette_night.gbapal");
 const u32 gBattleEnvironmentTilemap_Sand_2[] = INCBIN_U32("graphics/battle_environment/sand_2/map.bin.smolTM");
 
-const u32 gBattleEnvironmentTiles_Underwater_2[] = INCBIN_U32("graphics/battle_environment/underwater_2/tiles.4bpp.smol");
-const u16 gBattleEnvironmentPalette_Underwater_2[] = INCBIN_U16("graphics/battle_environment/underwater_2/palette.gbapal");
-const u32 gBattleEnvironmentTilemap_Underwater_2[] = INCBIN_U32("graphics/battle_environment/underwater_2/map.bin.smolTM");
-
 const u32 gBattleEnvironmentTiles_Water_2[] = INCBIN_U32("graphics/battle_environment/water_2/tiles.4bpp.smol");
 const u16 gBattleEnvironmentPalette_Water_2[] = INCBIN_U16("graphics/battle_environment/water_2/palette.gbapal");
 const u16 gBattleEnvironmentPalette_Water_2_Night[] = INCBIN_U16("graphics/battle_environment/water_2/palette_night.gbapal");
@@ -187,3 +183,10 @@ const u32 gBattleEnvironmentAnimTilemap_Rayquaza[] = INCBIN_U32("graphics/battle
 
 const u32 gBattleEnvironmentAnimTiles_Rayquaza_2[] = INCBIN_U32("graphics/battle_environment/sky_2/anim_tiles.4bpp.smol");
 const u32 gBattleEnvironmentAnimTilemap_Rayquaza_2[] = INCBIN_U32("graphics/battle_environment/sky_2/anim_map.bin.smolTM");
+
+const u32 gBattleEnvironmentAnimTiles_Snow[] = INCBIN_U32("graphics/battle_environment/snow/anim_tiles.4bpp.smol");
+const u32 gBattleEnvironmentAnimTilemap_Snow[] = INCBIN_U32("graphics/battle_environment/snow/anim_map.bin.smolTM");
+
+const u32 gBattleEnvironmentTiles_Snow[] = INCBIN_U32("graphics/battle_environment/snow/tiles.4bpp.smol");
+const u16 gBattleEnvironmentPalette_Snow[] = INCBIN_U16("graphics/battle_environment/snow/palette.gbapal");
+const u32 gBattleEnvironmentTilemap_Snow[] = INCBIN_U32("graphics/battle_environment/snow/map.bin.smolTM");

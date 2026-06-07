@@ -255,6 +255,13 @@ extern const u32 gBattleEnvironmentTilemap_Cave[];
 extern const u32 gBattleEnvironmentAnimTiles_Cave[];
 extern const u32 gBattleEnvironmentAnimTilemap_Cave[];
 extern const u16 gBattleEnvironmentPalette_Cave[];
+
+extern const u32 gBattleEnvironmentTiles_Snow[];
+extern const u32 gBattleEnvironmentTilemap_Snow[];
+extern const u32 gBattleEnvironmentAnimTilemap_Snow[];
+extern const u32 gBattleEnvironmentAnimTiles_Snow[];
+extern const u16 gBattleEnvironmentPalette_Snow[];
+
 extern const u32 gBattleEnvironmentTiles_Building[];
 extern const u32 gBattleEnvironmentTilemap_Building[];
 extern const u32 gBattleEnvironmentAnimTiles_Building[];
@@ -308,12 +315,6 @@ extern const u32 gBattleEnvironmentAnimTiles_Sand_2[];
 extern const u32 gBattleEnvironmentAnimTilemap_Sand_2[];
 extern const u16 gBattleEnvironmentPalette_Sand_2[];
 extern const u16 gBattleEnvironmentPalette_Sand_2_Night[];
-//underwater modern
-extern const u32 gBattleEnvironmentTiles_Underwater_2[];
-extern const u32 gBattleEnvironmentTilemap_Underwater_2[];
-extern const u32 gBattleEnvironmentAnimTiles_Underwater_2[];
-extern const u32 gBattleEnvironmentAnimTilemap_Underwater_2[];
-extern const u16 gBattleEnvironmentPalette_Underwater_2[];
 //water modern
 extern const u32 gBattleEnvironmentTiles_Water_2[];
 extern const u32 gBattleEnvironmentTilemap_Water_2[];

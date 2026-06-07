@@ -325,6 +325,7 @@ void BattleIntroSlide2(u8 taskId)
     {
     case BATTLE_ENVIRONMENT_SAND:
     case BATTLE_ENVIRONMENT_WATER:
+    case BATTLE_ENVIRONMENT_SNOW:
         gBattle_BG1_X += 8 * Rogue_GetBattleSpeedScale(FALSE);
         break;
     case BATTLE_ENVIRONMENT_UNDERWATER:

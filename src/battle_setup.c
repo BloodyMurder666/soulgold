@@ -706,6 +706,11 @@ enum BattleEnvironments BattleSetup_GetEnvironmentId(void)
 
     tileBehavior = MapGridGetMetatileBehaviorAt(x, y);
 
+    if (GetSavedWeather() == WEATHER_SNOW)
+        return BATTLE_ENVIRONMENT_SNOW;
+    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_SNOWTOP_MOUNTAIN))
+        return BATTLE_ENVIRONMENT_SNOW;
+
     if (MetatileBehavior_IsTallGrass(tileBehavior))
         return BATTLE_ENVIRONMENT_GRASS;
     if (MetatileBehavior_IsLongGrass(tileBehavior))

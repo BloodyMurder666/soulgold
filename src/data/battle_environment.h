@@ -531,6 +531,10 @@ const struct BattleEnvironment gBattleEnvironmentInfo[BATTLE_ENVIRONMENT_COUNT] 
         .secretPowerEffect = MOVE_EFFECT_FREEZE_OR_FROSTBITE,
         .camouflageType = TYPE_ICE,
         .camouflageBlend = DEFAULT_CAMOUFLAGE_BLEND,
+        .entry = ENVIRONMENT_ENTRY(Snow),
+        .background = ENVIRONMENT_BACKGROUND(Snow),
+        .palette = gBattleEnvironmentPalette_Snow,
+        .battleIntroSlide = BattleIntroSlide2,
     },
 
     [BATTLE_ENVIRONMENT_ICE] =
