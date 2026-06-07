@@ -1,7 +1,6 @@
 
 - More overworld npc types
 - Add missing item ball items
-- Duplicate level up learnsets for stone evos like arcannine/growlithe
 - Rest of route experts for held items
 - Battle tower BP vendor
 - Shaymin event
