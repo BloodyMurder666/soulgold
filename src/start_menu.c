@@ -70,7 +70,6 @@ enum
     MENU_ACTION_PYRAMID_BAG,
     MENU_ACTION_DEBUG,
     MENU_ACTION_DEXNAV,
-    MENU_ACTION_ACHIEVEMENTS,
 };
 
 // Save status
@@ -113,7 +112,6 @@ static bool8 StartMenuBattlePyramidRetireCallback(void);
 static bool8 StartMenuBattlePyramidBagCallback(void);
 static bool8 StartMenuDebugCallback(void);
 static bool8 StartMenuDexNavCallback(void);
-static bool8 StartMenuAchievementsCallback(void);
 //static bool8 StartMenuUiMenuCallback(void);
 
 // Menu callbacks
@@ -192,7 +190,6 @@ static const struct WindowTemplate sWindowTemplate_PyramidPeak = {
 };
 
 static const u8 sText_MenuDebug[] = _("Debug");
-static const u8 sText_MenuAchievements[] = _("Trophies");
 static const u8 sText_MenuPokegear[] = _("Pokégear");
 
 static const u8 sText_NewMenu[] = _("My Menu");
@@ -213,7 +210,6 @@ static const struct MenuAction sStartMenuItems[] =
     [MENU_ACTION_PYRAMID_BAG]     = {gText_MenuBag,     {.u8_void = StartMenuBattlePyramidBagCallback}},
     [MENU_ACTION_DEBUG]           = {sText_MenuDebug,   {.u8_void = StartMenuDebugCallback}},
     [MENU_ACTION_DEXNAV]          = {gText_MenuDexNav,  {.u8_void = StartMenuDexNavCallback}},
-    [MENU_ACTION_ACHIEVEMENTS]    = {sText_MenuAchievements, {.u8_void = StartMenuAchievementsCallback}},
 };
 
 static const struct BgTemplate sBgTemplates_LinkBattleSave[] =
@@ -352,7 +348,6 @@ static void BuildNormalStartMenu(void)
         AddStartMenuAction(MENU_ACTION_POKENAV);
 
     AddStartMenuAction(MENU_ACTION_PLAYER);
-    AddStartMenuAction(MENU_ACTION_ACHIEVEMENTS);
     AddStartMenuAction(MENU_ACTION_SAVE);
     AddStartMenuAction(MENU_ACTION_OPTION);
 }
@@ -725,21 +720,6 @@ static bool8 StartMenuPokegearCallback(void)
         RemoveExtraStartMenuWindows();
         CleanupOverworldWindowsAndTilemaps();
         SetMainCallback2(CB2_InitPokegear);
-
-        return TRUE;
-    }
-
-    return FALSE;
-}
-
-static bool8 StartMenuAchievementsCallback(void)
-{
-    if (!gPaletteFade.active)
-    {
-        PlayRainStoppingSoundEffect();
-        RemoveExtraStartMenuWindows();
-        CleanupOverworldWindowsAndTilemaps();
-        SetMainCallback2(CB2_InitAchievementsMenu);
 
         return TRUE;
     }

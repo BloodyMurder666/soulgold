@@ -35,5 +35,6 @@ const struct Achievement *Achievement_GetById(enum AchievementId id);
 const u8 *Achievement_GetTierLabel(enum AchievementTier tier);
 u16 Achievement_GetTierBallItem(enum AchievementTier tier);
 void CB2_InitAchievementsMenu(void);
+void CB2_InitAchievementsMenuWithCallback(MainCallback callback);
 
 #endif // GUARD_ACHIEVEMENTS_H

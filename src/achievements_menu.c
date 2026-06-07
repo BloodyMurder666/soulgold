@@ -84,6 +84,7 @@ EWRAM_DATA static u8 sListCursorAnimId = 0;
 EWRAM_DATA static s16 sListCursorY = 0;
 EWRAM_DATA static u16 sDetailTilemapBuffer[BG_SCREEN_SIZE / 2] = {};
 EWRAM_DATA static u16 sTextTilemapBuffer[BG_SCREEN_SIZE / 2] = {};
+EWRAM_DATA static MainCallback sExitCallback = NULL;
 
 static const u32 sBlankBgTile[8] = {};
 static const u32 sAchievementsBgTiles[] = INCBIN_U32("graphics/achievements/scroll_tiles.4bpp");
@@ -231,8 +232,16 @@ static const struct WindowTemplate sWindowTemplates[] =
 
 void CB2_InitAchievementsMenu(void)
 {
+    CB2_InitAchievementsMenuWithCallback(CB2_ReturnToFieldWithOpenMenu);
+}
+
+void CB2_InitAchievementsMenuWithCallback(MainCallback callback)
+{
     u8 i;
 
+    if (callback == NULL)
+        callback = CB2_ReturnToFieldWithOpenMenu;
+    sExitCallback = callback;
     SetVBlankHBlankCallbacksToNull();
     ClearScheduledBgCopiesToVram();
     ResetVramOamAndBgCntRegs();
@@ -693,7 +702,7 @@ static void ExitAchievementsMenu(u8 taskId)
         ResetListCursorAnimation();
         DestroyListBallIcons();
         FreeAllWindowBuffers();
-        SetMainCallback2(CB2_ReturnToFieldWithOpenMenu);
+        SetMainCallback2(sExitCallback);
     }
 }
 
