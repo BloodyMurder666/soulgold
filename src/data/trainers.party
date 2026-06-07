@@ -7709,57 +7709,138 @@ Class: Leader
 Pic: Leader Morty
 Gender: Male
 Music: Male
-Items: Full Restore / Full Restore
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
-Sableye
-Level: 64
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Aegislash @ Sitrus Berry
+Level: 75
+Ability: Stance Change
+EVs: 252 Atk / 252 HP
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Shadow Claw
-- Power Gem
-- Mean Look
-- Detect
+- King's Shield
+- Sacred Sword
+- Swords Dance
 
-Wyrdeer @ Silk Scarf
-Level: 63
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Jump Kick
-- Headbutt
-- Hypnosis
-- Psycho Cut
-
-Gengar @ Spell Tag
-Level: 64
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Dragapult @ Choice Scarf
+Level: 76
+Ability: Infiltrator
+EVs: 252 SpA / 252 HP
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Flamethrower
 - Shadow Ball
-- Giga Drain
+- Scald
+- Dragon Pulse
+
+Gengar @ Ghostite
+Level: 77
+Ability: Cursed Body
+EVs: 252 SpA / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Shadow Ball
+- Destiny Bond
 - Sludge Bomb
-- Psychic
+- Nasty Plot
 
-Mismagius
-Level: 63
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Mismagius @ Assault Vest
+Level: 76
+Ability: Cursed Body
+EVs: 252 SpA / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Moongeist Beam
+- Mystical Fire
+- Power Gem
+- Thunder Wave
+
+Basculegion @ Choice Band
+Level: 76
+Ability: Adaptability
+EVs: 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Wave Crash
+- Double-Edge
+- Head Smash
+- Phantom Force
+
+Ceruledge @ Focus Sash
+Level: 76
+Ability: Weak Armor
+EVs: 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bitter Blade
+- Swords Dance
+- Psycho Cut
+- Shadow Sneak
+
+=== TRAINER_MORTY_2 ===
+Name: Morty
+Class: Leader
+Pic: Leader Morty
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Smart Trainer
+Difficulty: Hard
+
+Aegislash @ Sitrus Berry
+Level: 78
+Ability: Stance Change
+EVs: 252 Atk / 252 HP
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Shadow Claw
+- King's Shield
+- Sacred Sword
+- Swords Dance
+
+Dragapult @ Choice Scarf
+Level: 78
+Ability: Infiltrator
+EVs: 252 SpA / 252 HP
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Flamethrower
 - Shadow Ball
-- Mean Look
-- Pain Split
-- Perish Song
+- Scald
+- Dragon Pulse
 
-Gengar @ Sitrus Berry
-Level: 65
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Gengar @ Ghostite
+Level: 78
+Ability: Cursed Body
+EVs: 252 SpA / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Shadow Ball
-- Hypnosis
-- Thunderbolt
-- Dream Eater
+- Destiny Bond
+- Sludge Bomb
+- Nasty Plot
 
-Dusknoir
-Level: 65
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Shadow Punch
-- Fire Punch
-- Will O Wisp
-- Dark Pulse
+Mismagius @ Assault Vest
+Level: 77
+Ability: Cursed Body
+EVs: 252 SpA / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Moongeist Beam
+- Mystical Fire
+- Power Gem
+- Thunder Wave
+
+Basculegion @ Choice Band
+Level: 77
+Ability: Adaptability
+EVs: 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Wave Crash
+- Double-Edge
+- Head Smash
+- Phantom Force
+
+Cofagrigus @ Leftovers
+Level: 78
+Ability: Mummy
+EVs: 252 HP / 252 SpA
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Shadow Ball
+- Calm Mind
+- Energy Ball
+- Toxic
 
 === TRAINER_GWEN ===
 Name: Gwen
