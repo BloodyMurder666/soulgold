@@ -34,6 +34,7 @@ struct DoorAnimFrame
 };
 
 static bool8 ShouldUseMultiCorridorDoor(void);
+static bool8 sDoorAnimTilesInUse;
 
 static const u8 sDoorAnimTiles_Littleroot[] = INCBIN_U8("graphics/door_anims/littleroot.4bpp");
 static const u16 sDoorNullPalette1[16] = {};
@@ -428,10 +429,10 @@ static const struct DoorGraphics sDoorAnimGraphicsTable[] =
 //       not already part of any given tileset. This means that if there are any
 //       pre-existing tiles in this copied region that are visible when the door
 //       animation is played, they will be overwritten.
-#define DOOR_TILE_START (434)//(NUM_TILES_TOTAL - 8)
+#define DOOR_TILE_START 434
 
-//Door anims have a conflict with Hoenn water animations, as they use the same VRAM space (around 432 - 434)
-//When in the BF, the door anims use a different allocation. Anywhere else, default.
+// Door anims conflict with water animations around tiles 432-449. Tileset
+// animation code skips that range while door metatiles point at these tiles.
 #define DOOR_TILE_START_FRONTIER 1000
 
 static void CopyDoorTilesToVram(const u8 *tiles)
@@ -465,6 +466,10 @@ static void BuildDoorTiles(u16 *tiles, u16 tileNum, const u8 *paletteNums)
 static void DrawCurrentDoorAnimFrame(const struct DoorGraphics *gfx, int x, int y, const u8 *paletteNums)
 {
     u16 tiles[8];
+
+    if (gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER)
+        sDoorAnimTilesInUse = TRUE;
+
     if (gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER) 
     {
         if (gfx->size == DOOR_SIZE_1x1)
@@ -504,6 +509,9 @@ static void DrawClosedDoorTiles(const struct DoorGraphics *gfx, u32 x, u32 y)
         CurrentMapDrawMetatileAt(x + 1, y - 1);
         CurrentMapDrawMetatileAt(x + 1, y);
     }
+
+    if (gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER)
+        sDoorAnimTilesInUse = FALSE;
 }
 
 static void DrawDoor(const struct DoorGraphics *gfx, const struct DoorAnimFrame *frames, int x, int y)
@@ -713,6 +721,16 @@ s8 FieldAnimateDoorOpen(u32 x, u32 y)
 bool8 FieldIsDoorAnimationRunning(void)
 {
     return FuncIsActiveTask(Task_AnimateDoor);
+}
+
+bool8 FieldDoorAnimTilesInUse(void)
+{
+    return sDoorAnimTilesInUse;
+}
+
+void FieldResetDoorAnimTilesInUse(void)
+{
+    sDoorAnimTilesInUse = FALSE;
 }
 
 u32 GetDoorSoundEffect(u32 x, u32 y)

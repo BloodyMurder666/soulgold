@@ -6,6 +6,8 @@ void FieldSetDoorClosed(u32 x, u32 y);
 s8 FieldAnimateDoorClose(u32 x, u32 y);
 s8 FieldAnimateDoorOpen(u32 x, u32 y);
 bool8 FieldIsDoorAnimationRunning(void);
+bool8 FieldDoorAnimTilesInUse(void);
+void FieldResetDoorAnimTilesInUse(void);
 u32 GetDoorSoundEffect(u32 x, u32 y);
 
 #endif //GUARD_FIELD_DOOR_H

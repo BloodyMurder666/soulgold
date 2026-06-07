@@ -5,6 +5,7 @@
 #include "battle_transition.h"
 #include "task.h"
 #include "battle_transition.h"
+#include "field_door.h"
 #include "fieldmap.h"
 
 static EWRAM_DATA struct {
@@ -814,6 +815,7 @@ void TransferTilesetAnimsBuffer(void)
 
 void InitTilesetAnimations(void)
 {
+    FieldResetDoorAnimTilesInUse();
     ResetTilesetAnimBuffer();
     _InitPrimaryTilesetAnimation();
     _InitSecondaryTilesetAnimation();
@@ -935,6 +937,10 @@ static void QueueAnimTiles_General_Flower(u16 timer)
 static void UNUSED QueueAnimTiles_General_Water(u16 timer)
 {
     u8 i = timer % ARRAY_COUNT(gTilesetAnims_General_Water);
+
+    if (FieldDoorAnimTilesInUse())
+        return;
+
     AppendTilesetAnimToBuffer(gTilesetAnims_General_Water[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(416)), 30 * TILE_SIZE_4BPP);
 }
 
@@ -955,6 +961,9 @@ static void QueueAnimTiles_General_WaterCurrents(u16 timer)
     u8 i = timer % ARRAY_COUNT(gTilesetAnims_General_Water);
     const u16 *src = gTilesetAnims_General_Water[i] + (18 * TILE_SIZE_4BPP / sizeof(u16));
 
+    if (FieldDoorAnimTilesInUse())
+        return;
+
     AppendTilesetAnimToBuffer(src, (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(434)), 16 * TILE_SIZE_4BPP);
 }
 
@@ -967,6 +976,10 @@ static void QueueAnimTiles_HoennGeneral_Flower(u16 timer)
 static void QueueAnimTiles_HoennGeneral_Water(u16 timer)
 {
     u8 i = timer % ARRAY_COUNT(gTilesetAnims_HoennGeneral_Water);
+
+    if (FieldDoorAnimTilesInUse())
+        return;
+
     AppendTilesetAnimToBuffer(gTilesetAnims_HoennGeneral_Water[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(432)), 30 * TILE_SIZE_4BPP);
 }
 
