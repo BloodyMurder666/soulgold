@@ -4829,22 +4829,23 @@ Level: 78
 Ability: Guts
 EVs: 252 HP / 252 Atk
 Happiness: 255
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
 - Protect
 - Earthquake
-- Play Rough
-- Return
+- Headlong Rush
+- Facade
 
-Indeedee-F @ Psychic Seed
+Indeedee-F @ Safety Goggles
 Level: 77
 Ability: Psychic Surge
 EVs: 252 HP / 252 Spe
 Happiness: 255
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Nature: Sassy
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
 - Trick Room
+- Follow Me
+- Protect
 - Psychic
-- Light Screen
-- Dazzling Gleam
 
 Zoroark Hisui @ Life Orb
 Level: 77
