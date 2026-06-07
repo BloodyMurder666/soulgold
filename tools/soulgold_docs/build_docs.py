@@ -122,9 +122,23 @@ SPECIES_NAME_OVERRIDES = {
 }
 
 ITEMS_HIDDEN_SORT_TYPES = {
+    "ITEM_TYPE_GEM",
     "ITEM_TYPE_MEMORY",
+    "ITEM_TYPE_PLATE",
     "ITEM_TYPE_Z_CRYSTAL",
 }
+
+ITEMS_HIDDEN_CONSTANTS = {
+    "ITEM_ARMORITE_ORE",
+    "ITEM_DYNITE_ORE",
+    "ITEM_GALARICA_TWIG",
+    "ITEM_SACHET",
+    "ITEM_WHIPPED_DREAM",
+}
+
+ITEMS_HIDDEN_SUFFIXES = (
+    "_SWEET",
+)
 
 IMPORTANT_ITEM_SORT_TYPES = {
     "ITEM_TYPE_EVOLUTION_ITEM",
@@ -1196,13 +1210,15 @@ def add_wild_held_item_locations(
                 add_location(locations, item, row.name, f"Wild held item ({held_item['rarity']})")
 
 
+def is_hidden_important_item(constant: str, item: dict[str, Any]) -> bool:
+    return (
+        item.get("sortType") in ITEMS_HIDDEN_SORT_TYPES
+        or constant in ITEMS_HIDDEN_CONSTANTS
+        or any(constant.endswith(suffix) for suffix in ITEMS_HIDDEN_SUFFIXES)
+    )
+
+
 def build_important_items(item_records: dict[str, dict[str, Any]], species: list[SpeciesRow]) -> list[dict[str, Any]]:
-    wild_held_items = {
-        held_item["constant"]
-        for row in species
-        if row.dex_visible
-        for held_item in row.held_items
-    }
     selected = {
         constant
         for constant, item in item_records.items()
@@ -1210,9 +1226,8 @@ def build_important_items(item_records: dict[str, dict[str, Any]], species: list
             item.get("pocket") in IMPORTANT_ITEM_POCKETS
             or item.get("sortType") in IMPORTANT_ITEM_SORT_TYPES
             or constant in GENERIC_MEGA_STONE_ITEMS
-            or constant in wild_held_items
         )
-        and item.get("sortType") not in ITEMS_HIDDEN_SORT_TYPES
+        and not is_hidden_important_item(constant, item)
     }
     locations = parse_item_locations(selected)
     add_wild_held_item_locations(locations, selected, species)
