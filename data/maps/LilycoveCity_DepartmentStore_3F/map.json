@@ -24,7 +24,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LilycoveCity_DepartmentStore_3F_EventScript_TriathleteM",
+      "script": "Goldenrod_DepartmentStore_3F_EventScript_TriathleteM",
       "flag": "0"
     },
     {
@@ -37,7 +37,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LilycoveCity_DepartmentStore_3F_EventScript_PokefanM",
+      "script": "Goldenrod_DepartmentStore_3F_EventScript_PokefanM",
       "flag": "0"
     },
     {
@@ -50,7 +50,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LilycoveCity_DepartmentStore_3F_EventScript_Woman",
+      "script": "Goldenrod_DepartmentStore_3F_EventScript_Woman",
       "flag": "0"
     },
     {
@@ -63,7 +63,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LilycoveCity_DepartmentStore_3F_EventScript_ClerkLeft",
+      "script": "Goldenrod_DepartmentStore_3F_EventScript_ClerkLeft",
       "flag": "0"
     },
     {
@@ -76,7 +76,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LilycoveCity_DepartmentStore_3F_EventScript_ClerkRight",
+      "script": "Goldenrod_DepartmentStore_3F_EventScript_ClerkRight",
       "flag": "0"
     }
   ],
