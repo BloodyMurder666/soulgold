@@ -23,7 +23,7 @@ CeladonDeptStore5_EventScript_Falkner::
 	msgbox CeladonDeptStore5_Text_Falkner, MSGBOX_DEFAULT
 	closemessage
 	fadescreenswapbuffers FADE_TO_BLACK
-	setflag FLAG_HIDE_CELADON_FALKNER
+	setflag FLAG_HIDE_VIOLET_SCHOOL_FALKNER
 	removeobject LOCALID_CELADON_FALKNER
 	fadescreenswapbuffers FADE_FROM_BLACK
 	clearflag FLAG_HIDE_DOJO_FALKNER

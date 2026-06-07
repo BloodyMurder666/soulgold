@@ -451,3 +451,12 @@ script Lakeofrage_HiddenGrotto {
     release
     end
 }
+
+script Lakeofrage_PryceRematch {
+	lock
+	faceplayer
+	trainerbattle_no_intro(TRAINER_PRYCE_2, "Good")
+	setflag(FLAG_HIDE_LAKE_PRYCE)
+	release
+	end
+}

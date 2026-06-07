@@ -28,6 +28,14 @@ int GameClear(void)
     {
         gHasHallOfFameRecords = FALSE;
         FlagSet(FLAG_SYS_GAME_CLEAR);
+        FlagClear(FLAG_HIDE_VIOLET_SCHOOL_FALKNER);
+	    FlagClear(FLAG_HIDE_NATIONAL_BUGSY);
+	    FlagClear(FLAG_HIDE_DEPTSTORE_WHITNEY);
+	    FlagClear(FLAG_HIDE_BELLCHIME_MORTY);
+        FlagClear(FLAG_HIDE_R47_CHUCK);
+	    FlagClear(FLAG_HIDE_CAFE_JASMINE);
+	    FlagClear(FLAG_HIDE_LAKE_PRYCE);
+	    FlagClear(FLAG_HIDE_DEN_CLAIR);
     }
 
     if (GetGameStat(GAME_STAT_FIRST_HOF_PLAY_TIME) == 0)

@@ -302,7 +302,25 @@ Route47_HiddenGrotto_2:
 	goto Route47_HiddenGrotto_1
 
 
+Route47_ChuckRematch::
+# 157 "data/maps/Route47/scripts.pory"
+	lock
+# 158 "data/maps/Route47/scripts.pory"
+	faceplayer
+# 159 "data/maps/Route47/scripts.pory"
+	trainerbattle_no_intro TRAINER_CHUCK_2, Route47_ChuckRematch_Text_0
+# 160 "data/maps/Route47/scripts.pory"
+	setflag FLAG_HIDE_R47_CHUCK
+# 161 "data/maps/Route47/scripts.pory"
+	release
+	end
+
+
 Route47_HiddenGrotto_Text_0:
 # 146 "data/maps/Route47/scripts.pory"
 	.string "There seems to be a path behind the\n"
 	.string "trees. Enter?$"
+
+Route47_ChuckRematch_Text_0:
+# 159 "data/maps/Route47/scripts.pory"
+	.string "Good$"

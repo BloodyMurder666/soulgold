@@ -152,3 +152,12 @@ script Route47_HiddenGrotto {
     release
     end
 }
+
+script Route47_ChuckRematch {
+	lock
+	faceplayer
+	trainerbattle_no_intro(TRAINER_CHUCK_2, "Good")
+	setflag(FLAG_HIDE_R47_CHUCK)
+	release
+	end
+}

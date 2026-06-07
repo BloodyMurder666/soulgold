@@ -54,6 +54,7 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_CAFE_JASMINE",
       "graphics_id": "OBJ_EVENT_GFX_JASMINE",
       "x": 5,
       "y": 4,
@@ -63,7 +64,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "OlivineCity_Cafe_EventScript_Jasmine",
+      "script": "OlivineCafe_JasmineRematch",
       "flag": "FLAG_HIDE_CAFE_JASMINE"
     }
   ],

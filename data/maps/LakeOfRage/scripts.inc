@@ -900,7 +900,25 @@ Lakeofrage_HiddenGrotto_2:
 	goto Lakeofrage_HiddenGrotto_1
 
 
+Lakeofrage_PryceRematch::
+# 456 "data/maps/LakeOfRage/scripts.pory"
+	lock
+# 457 "data/maps/LakeOfRage/scripts.pory"
+	faceplayer
+# 458 "data/maps/LakeOfRage/scripts.pory"
+	trainerbattle_no_intro TRAINER_PRYCE_2, Lakeofrage_PryceRematch_Text_0
+# 459 "data/maps/LakeOfRage/scripts.pory"
+	setflag FLAG_HIDE_LAKE_PRYCE
+# 460 "data/maps/LakeOfRage/scripts.pory"
+	release
+	end
+
+
 Lakeofrage_HiddenGrotto_Text_0:
 # 445 "data/maps/LakeOfRage/scripts.pory"
 	.string "There seems to be a path behind the\n"
 	.string "trees. Enter?$"
+
+Lakeofrage_PryceRematch_Text_0:
+# 458 "data/maps/LakeOfRage/scripts.pory"
+	.string "Good$"

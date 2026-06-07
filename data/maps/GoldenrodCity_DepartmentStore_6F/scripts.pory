@@ -1,6 +1,4 @@
 raw `
-.set LOCALID_STORE_WHITNEY, 4
-
 GoldenrodCity_DepartmentStore_6F_MapScripts::
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, GoldenrodDeptElevator_OnFrame
 	.byte 0
@@ -132,4 +130,13 @@ script HonedgeTrade_NotRequested {
     msgbox(format("I don't think that's a Clefairy..."))
     release
     end
+}
+
+script GoldenrodDEpt6F_WhitneyRematch {
+	lock
+	faceplayer
+	trainerbattle_no_intro(TRAINER_WHITNEY_2, "Good")
+	setflag(FLAG_HIDE_DEPTSTORE_WHITNEY)
+	release
+	end
 }

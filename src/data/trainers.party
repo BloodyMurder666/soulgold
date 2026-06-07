@@ -3791,57 +3791,138 @@ Class: Leader
 Pic: Leader Bugsy
 Gender: Male
 Music: Male
-Items: Full Restore / Full Restore
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
-Leavanny @ Focus Band
-Level: 64
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Giga Drain
-- Agility
-- Baton Pass
-- Light Screen
-
-Scolipede
-Level: 63
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Curse
-- Explosion
-- Pin Missile
-- Spike Cannon
-
-Yanmega @ Berry Juice
-Level: 63
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Kleavor @ Focus Sash
+Level: 75
+Ability: Sharpness
+EVs: 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Stone Axe
+- Stone Edge
+- X-Scissor
 - Aerial Ace
-- Hypnosis
-- Ancient Power
+
+Centiskorch @ Choice Band
+Level: 75
+Ability: White Smoke
+EVs: 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Fire Lash
+- Lunge
+- Thunder Fang
+- Power Whip
+
+Ribombee @ Sitrus Berry
+Level: 75
+Ability: Shield Dust
+EVs: 252 SpA / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Sticky Web
+- Pollen Puff
 - Bug Buzz
+- Quiver Dance
 
-Scizor
-Level: 64
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Metal Claw
-- Twineedle
-- Agility
-- Substitute
-
-Shedinja
-Level: 65
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Shadow Claw
-- Bug Buzz
-- Grudge
-- Sand Attack
-
-Scyther @ Scope Lens
-Level: 65
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Slash
-- Cut
-- Wing Attack
+Scizor @ Bugtite
+Level: 76
+Ability: Technician
+EVs: 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bullet Punch
 - Swords Dance
+- U-Turn
+- Roost
+
+Volcarona @ Assault Vest
+Level: 75
+Ability: Flame Body
+EVs: 252 SpA / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Solar Beam
+- Bug Buzz
+- Hurricane
+- Fiery Dance
+
+Scolipede @ Life Orb
+Level: 75
+Ability: Speed Boost
+EVs: 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Protect
+- Toxic
+- Megahorn
+- Earthquake
+
+=== TRAINER_BUGSY_2 ===
+Name: Bugsy
+Class: Leader
+Pic: Leader Bugsy
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Smart Trainer
+Difficulty: Hard
+
+Kleavor @ Focus Sash
+Level: 77
+Ability: Sharpness
+EVs: 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Stone Axe
+- Stone Edge
+- X-Scissor
+- Aerial Ace
+
+Ribombee @ Sitrus Berry
+Level: 77
+Ability: Shield Dust
+EVs: 252 SpA / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Sticky Web
+- Pollen Puff
+- Bug Buzz
+- Quiver Dance
+
+Centiskorch @ Choice Band
+Level: 77
+Ability: White Smoke
+EVs: 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Fire Lash
+- Lunge
+- Thunder Fang
+- Power Whip
+
+Scizor @ Bugtite
+Level: 78
+Ability: Technician
+EVs: 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bullet Punch
+- Swords Dance
+- U-Turn
+- Roost
+
+Volcarona @ Charti Berry
+Level: 77
+Ability: Flame Body
+EVs: 252 SpA / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Quiver Dance
+- Bug Buzz
+- Hurricane
+- Fiery Dance
+
+Golisopod @ Life Orb
+Level: 77
+Ability: Emergency Exit
+EVs: 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- First Impression
+- Razor Shell
+- Sucker Punch
+- Protect
 
 === TRAINER_SPENCER ===
 Name: Spencer
@@ -4665,57 +4746,148 @@ Class: Leader
 Pic: Leader Whitney
 Gender: Male
 Music: Male
-Items: Full Restore / Full Restore
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
-Clefable
-Level: 63
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Ice Punch
-- Fire Punch
-- Thunder Punch
-- Encore
-
-Lopunny @ Chesto Berry
-Level: 64
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Yawn
-- Attract
-- Fake Out
-- Drain Punch
-
-Blissey
-Level: 63
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Egg Bomb
-- Attract
-- Soft Boiled
-- Light Screen
-
-Tauros
-Level: 64
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Thrash
-- Earthquake
-- Rage
-- Pursuit
-
-Miltank @ Silk Scarf
-Level: 65
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Iron Tail
-- Attract
-- Body Slam
-- Milk Drink
-
-Lickilicky @ Silk Scarf
-Level: 65
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Defense Curl
-- Rollout
+Zoroark Hisui @ Life Orb
+Level: 75
+Ability: Illusion
+EVs: 252 SpA / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bitter Malice
+- Nasty Plot
+- Flamethrower
 - Focus Blast
-- Supersonic
+
+Lopunny @ Normalite
+Level: 76
+Ability: Cute Charm
+EVs: 252 Atk / 252 Spe
+Happiness: 255
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Hi Jump Kick
+- Trop Kick
+- Triple Axel
+- Return
+
+Blissey @ Sitrus Berry
+Level: 76
+Ability: Natural Cure
+EVs: 252 HP / 252 Def
+Happiness: 255
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Seismic Toss
+- Toxic
+- Soft Boiled
+- Heal Bell
+
+Ursaluna @ Flame Orb
+Level: 76
+Ability: Guts
+EVs: 252 HP / 252 Atk
+Happiness: 255
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Protect
+- Earthquake
+- Play Rough
+- Return
+
+Maushold @ Wide Lens
+Level: 75
+Ability: Technician
+EVs: 252 Spe / 252 Atk
+Happiness: 255
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Population Bomb
+- Bullet Seed
+- Tidy Up
+- Low Kick
+
+Porygon-Z @ Life Orb
+Level: 75
+Ability: Download
+EVs: 252 SpA / 252 Spe
+Happiness: 255
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Ice Beam
+- Thunderbolt
+- Tri-Attack
+- Shadow Ball
+
+=== TRAINER_WHITNEY_2 ===
+Name: Whitney
+Class: Leader
+Pic: Leader Whitney
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Smart Trainer
+Difficulty: Hard
+
+Ursaluna @ Flame Orb
+Level: 78
+Ability: Guts
+EVs: 252 HP / 252 Atk
+Happiness: 255
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Protect
+- Earthquake
+- Play Rough
+- Return
+
+Indeedee-F @ Psychic Seed
+Level: 77
+Ability: Psychic Surge
+EVs: 252 HP / 252 Spe
+Happiness: 255
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Trick Room
+- Psychic
+- Light Screen
+- Dazzling Gleam
+
+Zoroark Hisui @ Life Orb
+Level: 77
+Ability: Illusion
+EVs: 252 SpA / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bitter Malice
+- Nasty Plot
+- Flamethrower
+- Focus Blast
+
+Drampa @ Normalite
+Level: 78
+Ability: Berserk
+EVs: 252 HP / 252 SpA
+Happiness: 255
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Hyper Voice
+- Icy Wind
+- Draco Meteor
+- Dragon Pulse
+
+Maushold @ Wide Lens
+Level: 77
+Ability: Technician
+EVs: 252 Spe / 252 Atk
+Happiness: 255
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Population Bomb
+- Bullet Seed
+- Tidy Up
+- Low Kick
+
+Porygon-Z @ Life Orb
+Level: 78
+Ability: Download
+EVs: 252 SpA / 252 Spe
+Happiness: 255
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Trick Room
+- Thunderbolt
+- Tri-Attack
+- Shadow Ball
 
 === TRAINER_RANDALL ===
 Name: Randall
@@ -11727,57 +11899,138 @@ Class: Leader
 Pic: Leader Falkner
 Gender: Male
 Music: Male
-Items: Full Restore / Full Restore
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
-Noctowl @ Sitrus Berry
-Level: 64
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Psychic
-- Wing Attack
-- Hypnosis
-- Dream Eater
+Salamence @ Sitrus Berry
+Level: 75
+Ability: Intimidate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 252 Spe
+- Zen Headbutt
+- Double-Edge
+- Dragon Claw
+- Dual Wingbeat
 
-Skarmory
-Level: 63
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Spikes
+Braviary @ Life Orb
+Level: 75
+Ability: Sheer Force
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 252 Spe
+- Superpower
+- Beak Blast
+- Crush Claw
+- Acrobatics
+
+Corviknight @ Leftovers
+Level: 75
+Ability: Mirror Armor
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Def / 252 HP
+- Body Press
+- Iron Defense
 - Drill Peck
-- Mud Slap
+- Roost
+
+Honchkrow @ Life Orb
+Level: 75
+Ability: Moxie
+EVs: 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Sucker Punch
+- Night Slash
+- Brave Bird
+- U-Turn
+
+Pidgeot @ Normalite
+Level: 76
+Ability: Keen Eye
+EVs: 252 SpA / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Hurricane
+- Heat Wave
+- Roost
 - Steel Wing
 
-Corviknight @ Focus Band
-Level: 63
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Endure
-- Flail
+Gliscor @ Toxic Orb
+Level: 75
+Ability: Poison Heal
+EVs: 252 Atk / 252 HP
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Earthquake
+- Knock Off
+- Toxic
+- Protect
+
+=== TRAINER_FALKNER_2 ===
+Name: Falkner
+Class: Leader
+Pic: Leader Falkner
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Smart Trainer
+Difficulty: Hard
+
+Salamence @ Dragotite
+Level: 78
+Ability: Intimidate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 252 Spe
+- Zen Headbutt
+- Double-Edge
+- Dragon Claw
+- Dual Wingbeat
+
+Pidgeot @ Normalite
+Level: 78
+Ability: Keen Eye
+EVs: 252 SpA / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Hurricane
+- Heat Wave
+- Tailwind
+- Protect
+
+Braviary @ Life Orb
+Level: 78
+Ability: Sheer Force
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 252 Spe
+- Superpower
+- Beak Blast
+- Crush Claw
+- Acrobatics
+
+Corviknight @ Leftovers
+Level: 78
+Ability: Mirror Armor
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Def / 252 HP
+- Body Press
+- Iron Defense
 - Drill Peck
-- Steel Wing
+- Roost
 
-Honchkrow
-Level: 64
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Drill Peck
-- Faint Attack
-- Haze
-- Icy Wind
+Honchkrow @ Life Orb
+Level: 78
+Ability: Moxie
+EVs: 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Sucker Punch
+- Night Slash
+- Brave Bird
+- U-Turn
 
-Pidgeot
-Level: 65
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Sky Attack
-- Extreme Speed
-- Double Team
-- Steel Wing
-
-Pelipper
-Level: 68
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Aerial Ace
-- Surf
-- Double Team
-- Steel Wing
+Gliscor @ Toxic Orb
+Level: 78
+Ability: Poison Heal
+EVs: 252 Atk / 252 HP
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Earthquake
+- Knock Off
+- Toxic
+- Protect
 
 === TRAINER_GRUNT_14 ===
 Name: Grunt

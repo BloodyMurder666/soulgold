@@ -673,9 +673,9 @@
 #define FLAG_DEFEATED_FUCHSIA_GYM  0x272 
 #define FLAG_DEFEATED_CINNABAR_ISLAND_GYM  0x273 
 #define FLAG_DEFEATED_VIRIDIAN_GYM  0x274 
-#define FLAG_HIDE_CELADON_FALKNER  0x275  //gym leader rematches
+#define FLAG_HIDE_VIOLET_SCHOOL_FALKNER  0x275  //gym leader rematches
 #define FLAG_HIDE_DOJO_FALKNER  0x276 
-#define FLAG_HIDE_VIRIDIAN_BUGSY  0x277 
+#define FLAG_HIDE_NATIONAL_BUGSY  0x277 
 #define FLAG_HIDE_DOJO_BUGSY  0x278 
 #define FLAG_HIDE_DEPTSTORE_WHITNEY  0x279 
 #define FLAG_HIDE_DOJO_WHITNEY  0x27A 
@@ -1238,7 +1238,7 @@
 #define FLAG_SUICUNE_BATTLE_2                                       0x49E
 #define FLAG_NO_SLOW_STAIR_MOVEMENT                                 0x49F // Used to temporaly remove slow stair movement, as it glitches things 
                                                                           // like Steven in Sootopolis leading to Origin Cave.
-#define FLAG_ITEM_ROUTE_29_POTION                                   0x4A0 //HnS ItemFlags Block 1
+#define FLAG_ITEM_ROUTE_29_POTION                                   0x4A0
 #define FLAG_ITEM_ROUTE_31_ANTIDOE                                  0x4A1 
 #define FLAG_ITEM_ROUTE_31_POKEBALL                                 0x4A2 
 #define FLAG_ITEM_VIOLET_CITY_PECHA_BERRY                           0x4A3 
@@ -1251,7 +1251,7 @@
 #define FLAG_ITEM_SPROUT_TOWER_ESCAPE_ROPE                          0x4AA 
 #define FLAG_GOLDENROD_APARTMENTS_SMARTSTRIKE                       0x4AB
 #define FLAG_GOLDENROD_SMACKDOWN                                    0x4AC
-#define FLAG_UNUSED_0x4AD                                           0x4AD // Unused
+#define FLAG_HIDE_R47_CHUCK                                         0x4AD
 #define FLAG_ITEM_GS_BALL                                           0x4AE // Technically unused
 #define FLAG_UNUSED_0x4AF                                           0x4AF //  unused
 #define FLAG_ITEM_ROUTE_32_GREATBALL                                0x4B0 

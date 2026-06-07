@@ -4,7 +4,7 @@
 - Rest of route experts for held items
 - Battle tower BP vendor
 - Shaymin event
-- Gym leader rematches
+- Gym leader rematches 3/8 done
 - Victini reward for beating all gym leader rematches
 - Railway cave
 - Registeel in Mt Mortar or railway cave
@@ -14,3 +14,6 @@
 - 2-3 more rival crystal/gold events
 - remaining mugshots
 - mugshot and trainer ow/frontsprite should match
+- remaining megastones (dragon den trial for dragotite?)
+- Finish mapping remaining trades
+- fix bellchime trail map

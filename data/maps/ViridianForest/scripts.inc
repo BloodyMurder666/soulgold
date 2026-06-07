@@ -9,7 +9,7 @@ ViridianForest_EventScript_Bugsy::
 	msgbox ViridianForest_Text_Bugsy, MSGBOX_DEFAULT
 	closemessage
 	fadescreenswapbuffers FADE_TO_BLACK
-	setflag FLAG_HIDE_VIRIDIAN_BUGSY
+	setflag FLAG_HIDE_NATIONAL_BUGSY
 	removeobject LOCALID_VIRIDIAN_BUGSY
 	fadescreenswapbuffers FADE_FROM_BLACK
 	clearflag FLAG_HIDE_DOJO_BUGSY
