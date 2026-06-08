@@ -155,7 +155,7 @@ script Route47_HiddenGrotto {
 
 script Route47_ChuckRematch {
 	lock
-	msgbox("Hmm, the current here isn't strong
+	msgbox("Hmm, the current isn't strong
 			enough here...")
 	waitmessage
 	faceplayer

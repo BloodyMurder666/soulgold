@@ -350,7 +350,7 @@ Route47_HiddenGrotto_Text_0:
 
 Route47_ChuckRematch_Text_0:
 # 158 "data/maps/Route47/scripts.pory"
-	.string "Hmm, the current here isn't strong\n"
+	.string "Hmm, the current isn't strong\n"
 	.string "enough here...$"
 
 Route47_ChuckRematch_Text_1:
