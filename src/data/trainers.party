@@ -8061,57 +8061,140 @@ Class: Leader
 Pic: Leader Clair
 Gender: Male
 Music: Male
-Items: Full Restore / Full Restore
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
-Dragonair @ Metal Coat
-Level: 64
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Thunder Wave
-- Thunderbolt
-- Flamethrower
-- Iron Tail
-
-Gyarados @ Focus Band
-Level: 63
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Bite
-- Surf
-- Fly
-- Twister
-
-Dudunsparce
-Level: 63
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Rest
-- Glare
-- Poison Jab
-- Skull Bash
-
-Shelgon @ Sitrus Berry
-Level: 64
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Thunder Wave
-- Thunderbolt
-- Ice Beam
-- Dragon Breath
-
-Dragonite
-Level: 65
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Agility
-- Thunder
-- Dragon Pulse
-- Hyper Beam
-
-Kingdra @ Leftovers
-Level: 65
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Agility
+Goodra @ Choice Specs
+Ability: Sap Sipper
+EVs: 252 SpA / 4 SpD / 252 Spe
+Level: 79
+Timid Nature
+- Draco Meteor
+- Fire Blast
+- Sludge Wave
 - Hydro Pump
-- Ice Beam
-- Dragon Breath
+
+Kingdra @ Choice Specs
+Ability: Swift Swim
+EVs: 252 SpA / 4 SpD / 252 Spe
+IVs: 0 Atk
+Level: 80
+Modest Nature
+- Hydro Pump
+- Draco Meteor
+- Hurricane
+- Rain Dance
+
+Haxorus @ Choice Band
+Ability: Mold Breaker
+EVs: 252 Atk / 4 SpD / 252 Spe
+Level: 80
+Jolly Nature
+- First Impression
+- Outrage
+- Earthquake
+- Poison Jab
+
+Noivern @ Heavy-Duty Boots
+Ability: Frisk
+EVs: 4 Def / 252 SpA / 252 Spe
+Level: 80
+Timid Nature
+- Draco Meteor
+- Flamethrower
+- U-turn
+- Roost
+
+Kommo-o @ Leftovers
+Ability: Soundproof
+EVs: 248 HP / 8 Atk / 252 Spe
+Level: 81
+Jolly Nature
+- Clangorous Soul
+- Drain Punch
+- Shadow Claw
+- Substitute
+
+Charizard @ Dragotite
+Ability: Blaze
+EVs: 252 Atk / 4 SpD / 252 Spe
+Level: 81
+Timid Nature
+- Dragon Claw
+- Flare Blitz
+- Brick Break
+- Shadow Claw
+
+=== TRAINER_CLAIR_2 ===
+Name: Clair
+Class: Leader
+Pic: Leader Clair
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Smart Trainer
+Difficulty: Hard
+
+Goodra @ Choice Specs
+Ability: Sap Sipper
+EVs: 252 SpA / 4 SpD / 252 Spe
+Level: 81
+Timid Nature
+- Draco Meteor
+- Fire Blast
+- Sludge Wave
+- Hydro Pump
+
+Kingdra @ Choice Specs
+Ability: Swift Swim
+EVs: 252 SpA / 4 SpD / 252 Spe
+IVs: 0 Atk
+Level: 82
+Modest Nature
+- Hydro Pump
+- Draco Meteor
+- Hurricane
+- Rain Dance
+
+Haxorus @ Choice Band
+Ability: Mold Breaker
+EVs: 252 Atk / 4 SpD / 252 Spe
+Level: 82
+Jolly Nature
+- First Impression
+- Outrage
+- Earthquake
+- Poison Jab
+
+Noivern @ Heavy-Duty Boots
+Ability: Frisk
+EVs: 4 Def / 252 SpA / 252 Spe
+Level: 83
+Timid Nature
+- Draco Meteor
+- Flamethrower
+- U-turn
+- Roost
+
+Kommo-o @ Leftovers
+Ability: Soundproof
+EVs: 248 HP / 8 Atk / 252 Spe
+Level: 83
+Jolly Nature
+- Clangorous Soul
+- Drain Punch
+- Shadow Claw
+- Substitute
+
+Charizard @ Dragotite
+Ability: Blaze
+EVs: 252 Atk / 4 SpD / 252 Spe
+Level: 84
+Timid Nature
+- Dragon Claw
+- Flare Blitz
+- Brick Break
+- Shadow Claw
 
 === TRAINER_NOLAND ===
 Name: Noland
@@ -9104,57 +9187,144 @@ Class: Leader
 Pic: Leader Jasmine
 Gender: Male
 Music: Male
-Items: Full Restore / Full Restore
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
-Skarmory
-Level: 63
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+Skarmory @ Rocky Helmet
+Ability: Sturdy
+EVs: 248 HP / 16 Def / 180 SpD / 64 Spe
+IVs: 0 Atk
+Level: 75
+Impish Nature
 - Spikes
-- Drill Peck
-- Swagger
-- Steel Wing
+- Body Press
+- Whirlwind
+- Roost
 
-Mawile
-Level: 65
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+Magnezone @ Assault Vest
+Ability: Analytic
+EVs: 116 HP / 252 SpA / 56 SpD / 84 Spe
+IVs: 0 Atk
+Level: 76
+Modest Nature
+- Discharge
 - Flash Cannon
-- Iron Defense
-- Baton Pass
-- Play Rough
+- Volt Switch
+- Body Press
 
-Corsola
-Level: 63
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Rain Dance
-- Surf
-- Recover
-- Ancient Power
-
-Magnezone
-Level: 64
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Double Edge
-- Substitute
-- Rain Dance
-- Thunder
-
-Aggron @ Hard Stone
-Level: 65
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Rock Slide
-- Iron Tail
-- Swords Dance
+Metagross @ Choice Band
+Ability: Clear Body
+EVs: 252 Atk / 4 SpD / 252 Spe
+Level: 77
+Adamant Nature
+- Heavy Slam
 - Earthquake
+- Knock Off
+- Bullet Punch
 
-Steelix @ Quick Claw
-Level: 65
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Crunch
+Steelix @ Leftovers
+Ability: Sturdy
+EVs: 252 HP / 4 Atk / 252 SpD
+Level: 76
+Impish Nature
+- Sandstorm
+- Heavy Slam
+- Rest
+- Sleep Talk
+
+Archaludon @ Choice Scarf
+Ability: Stamina
+EVs: 252 SpA / 4 SpD / 252 Spe
+Level: 77
+IVs: 0 Atk
+Timid Nature
+- Draco Meteor
+- Thunder Wave
+- Flash Cannon
+- Thunderbolt
+
+Lucario @ Steeltite
+Ability: Inner Focus
+EVs: 252 SpA / 4 SpD / 252 Spe
+Level: 78
+Jolly Nature
+- Aura Sphere
+- Dragon Pulse
+- Flash Cannon
+- Nasty Plot
+
+=== TRAINER_JASMINE_2 ===
+Name: Jasmine
+Class: Leader
+Pic: Leader Jasmine
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Smart Trainer
+Difficulty: Hard
+
+Skarmory @ Rocky Helmet
+Ability: Sturdy
+EVs: 248 HP / 16 Def / 180 SpD / 64 Spe
+IVs: 0 Atk
+Level: 78
+Impish Nature
+- Spikes
+- Body Press
+- Whirlwind
+- Roost
+
+Magnezone @ Assault Vest
+Ability: Analytic
+EVs: 116 HP / 252 SpA / 56 SpD / 84 Spe
+IVs: 0 Atk
+Level: 78
+Modest Nature
+- Discharge
+- Flash Cannon
+- Volt Switch
+- Body Press
+
+Metagross @ Choice Band
+Ability: Clear Body
+EVs: 252 Atk / 4 SpD / 252 Spe
+Level: 78
+Adamant Nature
+- Heavy Slam
 - Earthquake
-- Rock Slide
-- Iron Tail
+- Knock Off
+- Bullet Punch
+
+Steelix @ Leftovers
+Ability: Sturdy
+EVs: 252 HP / 4 Atk / 252 SpD
+Level: 78
+Impish Nature
+- Sandstorm
+- Heavy Slam
+- Rest
+- Sleep Talk
+
+Archaludon @ Choice Scarf
+Ability: Stamina
+EVs: 252 SpA / 4 SpD / 252 Spe
+Level: 79
+IVs: 0 Atk
+Timid Nature
+- Draco Meteor
+- Thunder Wave
+- Flash Cannon
+- Thunderbolt
+
+Lucario @ Steeltite
+Ability: Inner Focus
+EVs: 252 SpA / 4 SpD / 252 Spe
+Level: 80
+Jolly Nature
+- Aura Sphere
+- Dragon Pulse
+- Flash Cannon
+- Nasty Plot
 
 === TRAINER_CARRIE ===
 Name: Carrie
@@ -11923,57 +12093,138 @@ Class: Leader
 Pic: Leader Chuck
 Gender: Male
 Music: Male
-Items: Full Restore / Full Restore
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
-Hitmonchan @ Scope Lens
-Level: 64
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Fire Punch
+Mienshao @ Choice Band
+Level: 75
+Ability: Inner Focus
+EVs: 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Hi Jump Kick
+- U-Turn
+- Meteor Mash
+- Triple Axel
+
+Lilligant Hisui @ Wide Lens
+Level: 76
+Ability: Hustle
+EVs: 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Victory Dance
+- Close Combat
+- Leaf Blade
+- Ice Spinner
+
+Annihilape @ Leftovers
+Level: 77
+Ability: Defiant
+EVs: 240 HP / 252 SpD / 16 Spe
+Nature: Careful
+- Bulk Up
+- Taunt
+- Drain Punch
+- Rage Fist
+
+Pawmot @ Choice Scarf
+Level: 76
+Ability: Iron Fist
+EVs: 252 Atk / 4 Def / 252 Spe
+Nature: Jolly
+- Double Shock
+- Close Combat
+- Knock Off
 - Ice Punch
-- Thunder Punch
-- Mach Punch
 
-Medicham
-Level: 63
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Detect
+Hawlucha @ Fightite
+Level: 77
+Ability: Mold Breaker
+EVs: 72 HP / 252 Atk / 60 SpD / 124 Spe
+Nature: Adamant
+- Swords Dance
+- Flying Press
+- Close Combat
+- Fire Punch
+
+Poliwrath @ Leftovers
+Ability: Water Absorb
+EVs: 248 HP / 164 SpD / 96 Spe
+Level: 76
+Careful Nature
+- Bulk Up
+- Drain Punch
+- Knock Off
+- Substitute
+
+=== TRAINER_CHUCK_2 ===
+Name: Chuck
+Class: Leader
+Pic: Leader Chuck
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Smart Trainer
+Difficulty: Hard
+
+Mienshao @ Choice Band
+Level: 78
+Ability: Inner Focus
+EVs: 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Hi Jump Kick
-- Psych Up
-- Reversal
+- U-Turn
+- Meteor Mash
+- Triple Axel
 
-Annihilape
-Level: 64
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Cross Chop
-- Shadow Punch
-- Rock Slide
-- Meditate
+Annihilape @ Leftovers
+Level: 78
+Ability: Defiant
+EVs: 240 HP / 252 SpD / 16 Spe
+Nature: Careful
+- Bulk Up
+- Protect
+- Drain Punch
+- Rage Fist
 
-Hitmonlee
-Level: 63
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Mega Kick
-- Blaze Kick
-- Hi Jump Kick
-- Rolling Kick
+Lilligant Hisui @ Wide Lens
+Level: 77
+Ability: Hustle
+EVs: 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Victory Dance
+- Close Combat
+- Leaf Blade
+- Ice Spinner
 
-Breloom
-Level: 65
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Mach Punch
-- Bullet Seed
-- Sky Uppercut
-- Dynamic Punch
+Pawmot @ Choice Scarf
+Level: 78
+Ability: Iron Fist
+EVs: 252 Atk / 4 Def / 252 Spe
+Nature: Jolly
+- Double Shock
+- Close Combat
+- Knock Off
+- Ice Punch
 
-Poliwrath @ Sitrus Berry
-Level: 65
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Surf
-- Dynamic Punch
-- Belly Drum
-- Body Slam
+Hawlucha @ Fightite
+Level: 79
+Ability: Mold Breaker
+EVs: 72 HP / 252 Atk / 60 SpD / 124 Spe
+Nature: Adamant
+- Swords Dance
+- Flying Press
+- Close Combat
+- Fire Punch
+
+Poliwrath @ Leftovers
+Ability: Water Absorb
+EVs: 248 HP / 164 SpD / 96 Spe
+Level: 78
+Careful Nature
+- Bulk Up
+- Drain Punch
+- Knock Off
+- Substitute
 
 === TRAINER_FALKNER_2 ===
 Name: Falkner
@@ -12270,57 +12521,140 @@ Class: Leader
 Pic: Leader Pryce
 Gender: Male
 Music: Male
-Items: Full Restore / Full Restore
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
-Weavile
-Level: 64
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Faint Attack
-- Metal Claw
-- Beat Up
-- Blizzard
-
-Dewgong @ Sitrus Berry
-Level: 63
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Surf
-- Ice Beam
-- Rest
+Ninetales-Alola @ Icy Rock
+Ability: Snow Warning
+EVs: 252 HP / 4 SpD / 252 Spe
+Level: 77
+Timid Nature
+- Aurora Veil
+- Freeze-Dry
+- Moonblast
 - Encore
 
-Aurorus
-Level: 63
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Ice Beam
-- Freeze Dry
-- Power Gem
-- Draining Kiss
+Cloyster @ White Herb
+Ability: Skill Link
+EVs: 252 Atk / 4 SpA / 252 Spe
+Level: 78
+Adamant Nature
+- Shell Smash
+- Icicle Spear
+- Drill Run
+- Waterfall
 
-Froslass
-Level: 64
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Shadow Ball
-- Ice Beam
-- Will O Wisp
-- Destiny Bond
+Weavile @ Heavy-Duty Boots
+Ability: Pickpocket
+EVs: 252 Atk / 4 SpD / 252 Spe
+Level: 78
+Jolly Nature
+- Swords Dance
+- Triple Axel
+- Knock Off
+- Low Kick
 
-Mamoswine @ Soft Sand
-Level: 65
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Strength
+Darmanitan-Galar @ Choice Scarf
+Ability: Gorilla Tactics
+EVs: 252 Atk / 4 SpD / 252 Spe
+Jolly Nature
+Level: 78
+- U-turn
+- Icicle Crash
+- Flare Blitz
+- Rock Slide
+
+Baxcalibur @ Loaded Dice
+Ability: Thermal Exchange
+EVs: 252 Atk / 4 SpD / 252 Spe
+Level: 79
+Adamant Nature
+- Icicle Spear
+- Glaive Rush
 - Earthquake
-- Rock Smash
-- Blizzard
+- Dragon Dance
 
-Glalie
-Level: 65
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Sheer Cold
-- Crunch
-- Dark Pulse
-- Blizzard
+Lapras @ Icetite
+Ability: Water Absorb
+EVs: 196 Def / 252 SpA / 60 Spe
+IVs: 0 Atk
+Level: 80
+Modest Nature
+- Freeze-Dry
+- Hydro Pump
+- Alluring Voice
+- Ice Beam
+
+=== TRAINER_PRYCE_2 ===
+Name: Pryce
+Class: Leader
+Pic: Leader Pryce
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Smart Trainer
+Difficulty: Hard
+
+Ninetales-Alola @ Icy Rock
+Ability: Snow Warning
+EVs: 252 HP / 4 SpD / 252 Spe
+Level: 79
+Timid Nature
+- Aurora Veil
+- Freeze-Dry
+- Moonblast
+- Encore
+
+Lapras @ Icetite
+Ability: Water Absorb
+EVs: 196 Def / 252 SpA / 60 Spe
+IVs: 0 Atk
+Level: 81
+Modest Nature
+- Freeze-Dry
+- Hyper Voice
+- Alluring Voice
+- Ice Beam
+
+Cloyster @ White Herb
+Ability: Skill Link
+EVs: 252 Atk / 4 SpA / 252 Spe
+Level: 80
+Adamant Nature
+- Shell Smash
+- Icicle Spear
+- Drill Run
+- Waterfall
+
+Weavile @ Heavy-Duty Boots
+Ability: Pickpocket
+EVs: 252 Atk / 4 SpD / 252 Spe
+Level: 80
+Jolly Nature
+- Swords Dance
+- Triple Axel
+- Knock Off
+- Low Kick
+
+Darmanitan-Galar @ Choice Scarf
+Ability: Gorilla Tactics
+EVs: 252 Atk / 4 SpD / 252 Spe
+Jolly Nature
+Level: 80
+- U-turn
+- Icicle Crash
+- Flare Blitz
+- Rock Slide
+
+Baxcalibur @ Loaded Dice
+Ability: Thermal Exchange
+EVs: 252 Atk / 4 SpD / 252 Spe
+Level: 81
+Adamant Nature
+- Icicle Spear
+- Glaive Rush
+- Earthquake
+- Dragon Dance
 
 === TRAINER_PRYCE_1 ===
 Name: Pryce
