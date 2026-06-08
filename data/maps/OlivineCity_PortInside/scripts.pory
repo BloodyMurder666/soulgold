@@ -3,43 +3,6 @@ OlivineCity_PortInside_MapScripts::
 	.byte 0
 
 
-OlivineCity_PortInside_EventScript_Oak::
-	lock
-	playbgm MUS_HG_OAK, TRUE
-	playse SE_PIN
-	applymovement LOCALID_OLIVINEPORT_OAK, Common_Movement_ExclamationMark
-	delay 60
-	turnobject LOCALID_OLIVINEPORT_OAK, DIR_NORTH
-	msgbox OlivineCity_PortInside_Text_Nationaldex1, MSGBOX_DEFAULT
-	closemessage
-	applymovement LOCALID_OLIVINEPORT_OAK, OlivineCity_PortInside_Movement_OakFixDex
-	waitmovement 0
-	delay 30
-	setflag FLAG_SYS_NATIONAL_DEX
-	special EnableNationalPokedex
-	playfanfare MUS_OBTAIN_ITEM
-	message OlivineCity_PortInside_Text_Nationaldex2
-	waitfanfare
-	delay 50
-	msgbox OlivineCity_PortInside_Text_Nationaldex3, MSGBOX_DEFAULT
-	closemessage
-	playse SE_PIN
-	applymovement LOCALID_OLIVINEPORT_OAK, Common_Movement_ExclamationMark
-	delay 60
-	msgbox OlivineCity_PortInside_Text_Nationaldex4, MSGBOX_DEFAULT
-	closemessage
-	applymovement OBJ_EVENT_ID_PLAYER, OlivineCity_PortInside_Movement_PlayerMoveOver
-	waitmovement 0
-	applymovement LOCALID_OLIVINEPORT_OAK, OlivineCity_PortInside_Movement_OakLeave
-	waitmovement 0
-	setflag FLAG_HIDE_OLIVINE_PORT_OAK
-	playse SE_EXIT
-	removeobject LOCALID_OLIVINEPORT_OAK
-	fadedefaultbgm
-	waitse
-	release
-	end
-
 OlivineCity_PortInside_Movement_OakFixDex:
 	walk_in_place_up
 	walk_in_place_up
@@ -321,54 +284,9 @@ OlivinePort_Text_SailorBeforeHOF:
     .string "We don't want you to fall into the\n"
     .string "sea, so you're not allowed in.$"
 `
-
-script PortInsideOak {
-    lock
-    playbgm(MUS_HG_OAK, TRUE)
-    playse(SE_PIN)
-    applymovement(LOCALID_OLIVINEPORT_OAK, Common_Movement_ExclamationMark)
-	delay(60)
-	turnobject(LOCALID_OLIVINEPORT_OAK, DIR_NORTH)
-	msgbox("Prof.Oak: Hello!
-            You are starting to have the
-            attitude of a Champion, {PLAYER}!
-            I hope you have been keeping up
-            with your Pokédex!
-            
-            I have something to give you as
-            a congratulationary gift for 
-            becoming a champion! No need to be shy!")
-    giveegg(SPECIES_KUBFU)
-    playfanfare(MUS_OBTAIN_ITEM)
-    msgbox("{PLAYER} obtain a Mysterious Egg!")
-    waitfanfare
-	msgbox("That's an egg for a Pokémon from the
-            Galar region. I believe you can draw
-            the full potential from it.")
-	delay(30)
-    playse(SE_PIN)
-    applymovement(LOCALID_OLIVINEPORT_OAK, Common_Movement_ExclamationMark)
-	delay(60)
-	msgbox("Oh, time flies!
-            I have a radio show to record at
-            Goldenrod Radio Tower.
-            
-            You must be heading for Sevii.
-            I hear strong trainers are
-            gathering there. How exciting!
-            I will be cheering for you from
-            the sidelines. Take care!")
-	closemessage
-	applymovement (OBJ_EVENT_ID_PLAYER, OlivineCity_PortInside_Movement_PlayerMoveOver)
-	applymovement (OBJ_EVENT_ID_FOLLOWER, OlivineCity_PortInside_Movement_PlayerMoveOver)
-	waitmovement (0)
-	applymovement (LOCALID_OLIVINEPORT_OAK, OlivineCity_PortInside_Movement_OakLeave)
-	waitmovement (0)
-	setflag (FLAG_HIDE_OLIVINE_PORT_OAK)
-	playse (SE_EXIT)
-	removeobject (LOCALID_OLIVINEPORT_OAK)
-	fadedefaultbgm
-	waitse
-	release
-	end
-} 
+script OlivinePort_Sailor {
+	msgbox("Sorry, but the ship is not going to
+			leave anywhere anytime soon. Our
+			engines exploded mysteriously.
+			Strange, right?", MSGBOX_NPC)
+}
