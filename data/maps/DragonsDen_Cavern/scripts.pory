@@ -274,7 +274,7 @@ script DragonsDen_ClairRematch {
 				again with all I've learned. Thank you
 				for this lesson in battle. I won't
 				forget it.")
-		waitmessage
+		closemessage
 		fadescreenswapbuffers(FADE_TO_BLACK)
 		setflag(FLAG_HIDE_DEN_CLAIR)
 		setflag(FLAG_CLAIR_ON_TRIP)

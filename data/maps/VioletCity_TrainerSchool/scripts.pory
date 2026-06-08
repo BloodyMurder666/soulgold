@@ -223,7 +223,7 @@ script VioletTrainerSchool_FalknerRematch {
 		msgbox("Time for me to head back to the gym.
 				I hope we'll get a chance to have
 				another battle soon.")
-		waitmessage
+		closemessage
 		fadescreenswapbuffers(FADE_TO_BLACK)
 		setflag(FLAG_HIDE_VIOLET_SCHOOL_FALKNER)
 		removeobject(LOCALID_FALKNER_REMATCH)

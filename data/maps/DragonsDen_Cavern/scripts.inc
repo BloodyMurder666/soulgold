@@ -524,7 +524,7 @@ DragonsDen_ClairRematch_2:
 # 269 "data/maps/DragonsDen_Cavern/scripts.pory"
 	msgbox DragonsDen_ClairRematch_Text_3
 # 277 "data/maps/DragonsDen_Cavern/scripts.pory"
-	waitmessage
+	closemessage
 # 278 "data/maps/DragonsDen_Cavern/scripts.pory"
 	fadescreenswapbuffers FADE_TO_BLACK
 # 279 "data/maps/DragonsDen_Cavern/scripts.pory"

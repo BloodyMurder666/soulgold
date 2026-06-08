@@ -176,7 +176,7 @@ OlivineCafe_JasmineRematch::
 	compare VAR_RESULT, TRUE
 	goto_if_eq OlivineCafe_JasmineRematch_2
 OlivineCafe_JasmineRematch_1:
-# 110 "data/maps/OlivineCity_Cafe/scripts.pory"
+# 111 "data/maps/OlivineCity_Cafe/scripts.pory"
 	release
 	end
 
@@ -186,14 +186,16 @@ OlivineCafe_JasmineRematch_2:
 # 100 "data/maps/OlivineCity_Cafe/scripts.pory"
 	msgbox OlivineCafe_JasmineRematch_Text_3
 # 104 "data/maps/OlivineCity_Cafe/scripts.pory"
-	fadescreenswapbuffers FADE_TO_BLACK
+	closemessage
 # 105 "data/maps/OlivineCity_Cafe/scripts.pory"
-	setflag FLAG_HIDE_CAFE_JASMINE
+	fadescreenswapbuffers FADE_TO_BLACK
 # 106 "data/maps/OlivineCity_Cafe/scripts.pory"
-	removeobject LOCALID_CAFE_JASMINE
+	setflag FLAG_HIDE_CAFE_JASMINE
 # 107 "data/maps/OlivineCity_Cafe/scripts.pory"
-	delay 30
+	removeobject LOCALID_CAFE_JASMINE
 # 108 "data/maps/OlivineCity_Cafe/scripts.pory"
+	delay 30
+# 109 "data/maps/OlivineCity_Cafe/scripts.pory"
 	fadescreenswapbuffers FADE_FROM_BLACK
 	goto OlivineCafe_JasmineRematch_1
 

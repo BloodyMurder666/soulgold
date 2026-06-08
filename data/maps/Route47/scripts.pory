@@ -176,6 +176,7 @@ script Route47_ChuckRematch {
 				strongest trainers! Great idea,
 				{PLAYER}! I'll invite you once
 				it's finished! See you there!")
+		closemessage
 		fadescreenswapbuffers(FADE_TO_BLACK)
 		setflag(FLAG_HIDE_R47_CHUCK)
 		removeobject(LOCALID_R47_CHUCK)

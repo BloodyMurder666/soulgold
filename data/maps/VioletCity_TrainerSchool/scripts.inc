@@ -422,7 +422,7 @@ VioletTrainerSchool_FalknerRematch_2:
 # 223 "data/maps/VioletCity_TrainerSchool/scripts.pory"
 	msgbox VioletTrainerSchool_FalknerRematch_Text_3
 # 226 "data/maps/VioletCity_TrainerSchool/scripts.pory"
-	waitmessage
+	closemessage
 # 227 "data/maps/VioletCity_TrainerSchool/scripts.pory"
 	fadescreenswapbuffers FADE_TO_BLACK
 # 228 "data/maps/VioletCity_TrainerSchool/scripts.pory"

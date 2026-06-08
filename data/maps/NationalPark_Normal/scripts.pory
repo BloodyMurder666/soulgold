@@ -214,7 +214,7 @@ script NationalPark_BugsyRematch {
 				together. 
 				
 				Until then, laters!")
-		waitmessage
+		closemessage
 		fadescreenswapbuffers(FADE_TO_BLACK)
 		setflag(FLAG_HIDE_NATIONAL_BUGSY)
 		removeobject(LOCALID_NATIONAL_BUGSY)

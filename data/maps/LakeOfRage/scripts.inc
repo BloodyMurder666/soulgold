@@ -913,7 +913,7 @@ Lakeofrage_PryceRematch::
 	compare VAR_RESULT, TRUE
 	goto_if_eq Lakeofrage_PryceRematch_2
 Lakeofrage_PryceRematch_1:
-# 487 "data/maps/LakeOfRage/scripts.pory"
+# 488 "data/maps/LakeOfRage/scripts.pory"
 	release
 	end
 
@@ -923,14 +923,16 @@ Lakeofrage_PryceRematch_2:
 # 470 "data/maps/LakeOfRage/scripts.pory"
 	msgbox Lakeofrage_PryceRematch_Text_3
 # 481 "data/maps/LakeOfRage/scripts.pory"
-	fadescreenswapbuffers FADE_TO_BLACK
+	closemessage
 # 482 "data/maps/LakeOfRage/scripts.pory"
-	setflag FLAG_HIDE_LAKE_PRYCE
+	fadescreenswapbuffers FADE_TO_BLACK
 # 483 "data/maps/LakeOfRage/scripts.pory"
-	removeobject LOCALID_PRYCE_REMATCH
+	setflag FLAG_HIDE_LAKE_PRYCE
 # 484 "data/maps/LakeOfRage/scripts.pory"
-	delay 30
+	removeobject LOCALID_PRYCE_REMATCH
 # 485 "data/maps/LakeOfRage/scripts.pory"
+	delay 30
+# 486 "data/maps/LakeOfRage/scripts.pory"
 	fadescreenswapbuffers FADE_FROM_BLACK
 	goto Lakeofrage_PryceRematch_1
 

@@ -124,7 +124,7 @@ BellchimeTrail_MortyRematch_2:
 # 70 "data/maps/BellchimeTrail/scripts.pory"
 	msgbox BellchimeTrail_MortyRematch_Text_3
 # 76 "data/maps/BellchimeTrail/scripts.pory"
-	waitmessage
+	closemessage
 # 77 "data/maps/BellchimeTrail/scripts.pory"
 	fadescreenswapbuffers FADE_TO_BLACK
 # 78 "data/maps/BellchimeTrail/scripts.pory"

@@ -478,6 +478,7 @@ script Lakeofrage_PryceRematch {
 				show you another time, but I must
 				return to my training in order
 				to achieve it.")
+		closemessage
 		fadescreenswapbuffers(FADE_TO_BLACK)
 		setflag(FLAG_HIDE_LAKE_PRYCE)
 		removeobject(LOCALID_PRYCE_REMATCH)

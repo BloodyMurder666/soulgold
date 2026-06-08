@@ -319,7 +319,7 @@ Route47_ChuckRematch::
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route47_ChuckRematch_2
 Route47_ChuckRematch_1:
-# 185 "data/maps/Route47/scripts.pory"
+# 186 "data/maps/Route47/scripts.pory"
 	release
 	end
 
@@ -329,14 +329,16 @@ Route47_ChuckRematch_2:
 # 172 "data/maps/Route47/scripts.pory"
 	msgbox Route47_ChuckRematch_Text_4
 # 179 "data/maps/Route47/scripts.pory"
-	fadescreenswapbuffers FADE_TO_BLACK
+	closemessage
 # 180 "data/maps/Route47/scripts.pory"
-	setflag FLAG_HIDE_R47_CHUCK
+	fadescreenswapbuffers FADE_TO_BLACK
 # 181 "data/maps/Route47/scripts.pory"
-	removeobject LOCALID_R47_CHUCK
+	setflag FLAG_HIDE_R47_CHUCK
 # 182 "data/maps/Route47/scripts.pory"
-	delay 30
+	removeobject LOCALID_R47_CHUCK
 # 183 "data/maps/Route47/scripts.pory"
+	delay 30
+# 184 "data/maps/Route47/scripts.pory"
 	fadescreenswapbuffers FADE_FROM_BLACK
 	goto Route47_ChuckRematch_1
 

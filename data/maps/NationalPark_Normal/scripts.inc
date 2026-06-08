@@ -404,7 +404,7 @@ NationalPark_BugsyRematch_2:
 # 209 "data/maps/NationalPark_Normal/scripts.pory"
 	msgbox NationalPark_BugsyRematch_Text_2
 # 217 "data/maps/NationalPark_Normal/scripts.pory"
-	waitmessage
+	closemessage
 # 218 "data/maps/NationalPark_Normal/scripts.pory"
 	fadescreenswapbuffers FADE_TO_BLACK
 # 219 "data/maps/NationalPark_Normal/scripts.pory"
