@@ -16,4 +16,3 @@
 - mugshot and trainer ow/frontsprite should match
 - 3-4 remaining megastones (dragon den trial for dragotite?)
 - Finish redoing the remaining trades
-- fix bellchime trail map tileset to match closer to hgss
