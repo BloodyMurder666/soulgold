@@ -15,6 +15,7 @@ MtSilver_SummitDay_Blizzard::
 	end
 
 MtSilver_SummitDay_OnTransition:
+    call Common_EventScript_SetupRivalGfxId
 	call_if_set FLAG_DAY_POKEMON, MtSilver_SummitDay_EventScript_SetNight
 	call_if_unset FLAG_DAY_POKEMON, MtSilver_SummitDay_EventScript_SetDay
 	end

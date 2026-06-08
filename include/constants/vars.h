@@ -146,7 +146,7 @@
 #define VAR_LAKE_OF_RAGE_FISHERMAN                       0x407E // 0 = unmet, 1 = met, 2 = received a magikarp, 3 = received a satisfactory magikarp
 #define VAR_BLACKTHORN_GYM_STATE                         0x407F // Unused Var
 #define VAR_DRAGONS_DEN_QUIZ                             0x4080 // Unused Var
-#define VAR_ROUTE27_STATE                                0x4081 // 0 = enter route 27 via surf, 1 = goto junction, 2 = fight silver, 3 = done
+#define VAR_ROUTE27_STATE                                0x4081 // 0 = goto junction, 1 = fight silver, 2 = done
 #define VAR_LEAGUE_STATE                                 0x4082
 #define VAR_TIME_BASED_ENCOUNTER                         0x4083 // Different encounter tables
 #define VAR_ICE_PATH_STATE                               0x4084 //0 = meet kimono, 1 = done

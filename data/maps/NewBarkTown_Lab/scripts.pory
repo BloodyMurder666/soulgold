@@ -71,7 +71,7 @@ NewBarkTown_Lab_EventScript_Elm::
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 7, NewBarkTown_Lab_EventScript_ElmMasterBall
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 8, NewBarkTown_Lab_EventScript_ElmKimono
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 9, NewBarkTown_Lab_EventScript_ElmLeague
-	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 10, NewBarkTown_Lab_EventScript_ElmSSTicket
+	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 10, NewBarkTown_Lab_EventScript_ElmPostgameHint
 
 	goto_if_set FLAG_SHOWN_ELM_TOGEPI, NewBarkTown_Lab_EventScript_Elm_CallMe
 	call_if_unset FLAG_SHOWN_ELM_TOGEPI, NewBarkTown_Lab_EventScript_Elm_Check_Togepi
@@ -976,4 +976,39 @@ script NewBarkTown_Lab_GiveStarterMega {
 			for your starter Pokémon. I expect 
 			great things from you, {PLAYER}!")
 	return
+}
+
+script NewBarkTown_Lab_EventScript_ElmPostgameHint {
+	msgbox("Elm: {PLAYER}! There you are!
+			I called because I heard
+			that the way to the Johto Archipelago
+			is finally open! 
+			
+			I hear strong trainers
+			are gathering in there, and many rare
+			Pokémon have been spotted!
+			
+			You can get there if you surf south
+			from Route 33. But you of course knew
+			that already.
+			
+			After all, you've travelled all over
+			with your Pokémon.")
+	checkplayergender
+	if (var(VAR_RESULT) == MALE) {
+	msgbox("I also heard that Crystal went to train
+			in Mt. Silver. Maybe you should check on
+			her at some point.")
+	} else {
+	msgbox("I also heard that Gold went to train
+			in Mt. Silver. Maybe you should check on
+			her at some point.")
+	}
+	msgbox("I asked from the League to let you
+			pass since you've the new Champion.")
+	setflag(FLAG_HIDE_MTSILVER_GUARD)
+	setflag(FLAG_ALLOW_SOUTH_JOHTO_PASS)
+	setvar(VAR_NEWBARKTOWN_LABSTATE, 11)
+	release
+	end
 }

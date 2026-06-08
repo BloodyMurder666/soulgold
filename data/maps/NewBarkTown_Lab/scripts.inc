@@ -145,7 +145,7 @@ NewBarkTown_Lab_EventScript_Elm::
 # 73 "data/maps/NewBarkTown_Lab/scripts.pory"
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 9, NewBarkTown_Lab_EventScript_ElmLeague
 # 74 "data/maps/NewBarkTown_Lab/scripts.pory"
-	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 10, NewBarkTown_Lab_EventScript_ElmSSTicket
+	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 10, NewBarkTown_Lab_EventScript_ElmPostgameHint
 # 75 "data/maps/NewBarkTown_Lab/scripts.pory"
 
 # 76 "data/maps/NewBarkTown_Lab/scripts.pory"
@@ -1941,6 +1941,35 @@ NewBarkTown_Lab_GiveStarterMega::
 	return
 
 
+NewBarkTown_Lab_EventScript_ElmPostgameHint::
+# 982 "data/maps/NewBarkTown_Lab/scripts.pory"
+	msgbox NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_0
+# 997 "data/maps/NewBarkTown_Lab/scripts.pory"
+	checkplayergender
+# 998 "data/maps/NewBarkTown_Lab/scripts.pory"
+	compare VAR_RESULT, MALE
+	goto_if_eq NewBarkTown_Lab_EventScript_ElmPostgameHint_2
+# 1003 "data/maps/NewBarkTown_Lab/scripts.pory"
+	msgbox NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_2
+NewBarkTown_Lab_EventScript_ElmPostgameHint_1:
+# 1007 "data/maps/NewBarkTown_Lab/scripts.pory"
+	msgbox NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_3
+# 1009 "data/maps/NewBarkTown_Lab/scripts.pory"
+	setflag FLAG_HIDE_MTSILVER_GUARD
+# 1010 "data/maps/NewBarkTown_Lab/scripts.pory"
+	setflag FLAG_ALLOW_SOUTH_JOHTO_PASS
+# 1011 "data/maps/NewBarkTown_Lab/scripts.pory"
+	setvar VAR_NEWBARKTOWN_LABSTATE, 11
+# 1012 "data/maps/NewBarkTown_Lab/scripts.pory"
+	release
+	end
+
+NewBarkTown_Lab_EventScript_ElmPostgameHint_2:
+# 999 "data/maps/NewBarkTown_Lab/scripts.pory"
+	msgbox NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_1
+	goto NewBarkTown_Lab_EventScript_ElmPostgameHint_1
+
+
 NewBarkTown_Lab_GiveStarterMega_Text_0:
 # 970 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "Oh, and you got a Mega Ring from \n"
@@ -1953,3 +1982,35 @@ NewBarkTown_Lab_GiveStarterMega_Text_1:
 	.string "It's a special Mega Stone, specifically\n"
 	.string "for your starter Pokémon. I expect \l"
 	.string "great things from you, {PLAYER}!$"
+
+NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_0:
+# 982 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "Elm: {PLAYER}! There you are!\n"
+	.string "I called because I heard\l"
+	.string "that the way to the Johto Archipelago\l"
+	.string "is finally open! \p"
+	.string "I hear strong trainers\n"
+	.string "are gathering in there, and many rare\l"
+	.string "Pokémon have been spotted!\p"
+	.string "You can get there if you surf south\n"
+	.string "from Route 33. But you of course knew\l"
+	.string "that already.\p"
+	.string "After all, you've travelled all over\n"
+	.string "with your Pokémon.$"
+
+NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_1:
+# 999 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "I also heard that Crystal went to train\n"
+	.string "in Mt. Silver. Maybe you should check on\l"
+	.string "her at some point.$"
+
+NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_2:
+# 1003 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "I also heard that Gold went to train\n"
+	.string "in Mt. Silver. Maybe you should check on\l"
+	.string "her at some point.$"
+
+NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_3:
+# 1007 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "I asked from the League to let you\n"
+	.string "pass since you've the new Champion.$"

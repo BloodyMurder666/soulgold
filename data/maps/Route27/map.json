@@ -26,19 +26,6 @@
   ],
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
-      "x": 27,
-      "y": 24,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route27_EventScript_Fatman",
-      "flag": "0"
-    },
-    {
       "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_F",
       "x": 44,
       "y": 22,
@@ -284,6 +271,32 @@
       "trainer_sight_or_berry_tree_id": "ITEM_ABILITY_PATCH",
       "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ABILITY_PATCH_R27"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_M",
+      "x": 52,
+      "y": 26,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route27_RouteExpert",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_LIGHT_SPRITE",
+      "x": 29,
+      "y": 22,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_NIGHT_POKEMON"
     }
   ],
   "warp_events": [
@@ -310,24 +323,6 @@
     }
   ],
   "coord_events": [
-    {
-      "type": "trigger",
-      "x": 25,
-      "y": 25,
-      "elevation": 0,
-      "var": "VAR_ROUTE27_STATE",
-      "var_value": "0",
-      "script": "Route27_EventScript_FirstSteps"
-    },
-    {
-      "type": "trigger",
-      "x": 25,
-      "y": 24,
-      "elevation": 0,
-      "var": "VAR_ROUTE27_STATE",
-      "var_value": "0",
-      "script": "Route27_EventScript_FirstSteps"
-    },
     {
       "type": "trigger",
       "x": 45,

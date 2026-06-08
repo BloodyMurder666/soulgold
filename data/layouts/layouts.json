@@ -4896,7 +4896,7 @@
       "name": "Route28_Layout",
       "width": 67,
       "height": 36,
-      "primary_tileset": "gTileset_Johto_NorthEast",
+      "primary_tileset": "gTileset_Johto_NorthWest",
       "secondary_tileset": "gTileset_ViridianCity",
       "border_filepath": "data/layouts/Route28/border.bin",
       "blockdata_filepath": "data/layouts/Route28/map.bin"
@@ -5616,7 +5616,7 @@
       "name": "MtSilver_Outside_Layout",
       "width": 44,
       "height": 36,
-      "primary_tileset": "gTileset_Johto_NorthEast",
+      "primary_tileset": "gTileset_Johto_NorthWest",
       "secondary_tileset": "gTileset_MahoganyTown",
       "border_filepath": "data/layouts/MtSilver_Outside/border.bin",
       "blockdata_filepath": "data/layouts/MtSilver_Outside/map.bin"

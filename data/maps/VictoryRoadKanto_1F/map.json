@@ -189,8 +189,8 @@
       "x": 28,
       "y": 2,
       "elevation": 0,
-      "dest_map": "MAP_ROUTE23",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_ROUTE28",
+      "dest_warp_id": "2"
     },
     {
       "x": 4,
@@ -263,7 +263,7 @@
       "y": 7,
       "elevation": 0,
       "var": "VAR_ROUTE27_STATE",
-      "var_value": "2",
+      "var_value": "1",
       "script": "VictoryRoadKanto_1F_Trigger"
     },
     {
@@ -272,7 +272,7 @@
       "y": 7,
       "elevation": 0,
       "var": "VAR_ROUTE27_STATE",
-      "var_value": "2",
+      "var_value": "1",
       "script": "VictoryRoadKanto_1F_Trigger"
     },
     {
@@ -281,7 +281,7 @@
       "y": 7,
       "elevation": 0,
       "var": "VAR_ROUTE27_STATE",
-      "var_value": "2",
+      "var_value": "1",
       "script": "VictoryRoadKanto_1F_Trigger"
     }
   ],

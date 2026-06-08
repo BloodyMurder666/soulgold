@@ -712,7 +712,7 @@
 #define FLAG_WONDERTRADE3  0x299 // Unused Flag
 #define FLAG_VISITED_BATTLE_FRONTIER  0x29A // Unused Flag
 #define FLAG_FRONTIER_SECOND_CLERK  0x29B // Unused Flag
-#define FLAG_HIDE_BATTLE_FRONTIER_RECEPTION_GATE_SCOTT  0x29C // Unused Flag
+#define FLAG_ALLOW_SOUTH_JOHTO_PASS  0x29C
 #define FLAG_SYS_BUG_CONTEST_MODE  0x29D // Unused Flag
 #define FLAG_AERODACTYLITE      0x29E
 #define FLAG_LEVEL_SCALING_ON  0x29F
@@ -1193,7 +1193,7 @@
 #define FLAG_ITEM_VIRIDIANFOREST_REVIVE                             0x472 
 #define FLAG_ITEM_VIRIDIANFOREST_FULL_RESTORE                       0x473
 #define FLAG_ITEM_VIRIDIANFOREST_MAX_ETHER                          0x474
-#define FLAG_ITEM_VIRIDIANFOREST_FULL_HEAL                          0x475 //pewter
+#define FLAG_HIDE_MTSILVER_GUARD                                    0x475
 #define FLAG_ITEM_ROUTE4_ULTRABALL                                  0x476
 #define FLAG_ITEM_ROUTE4_HPUP                                       0x477
 #define FLAG_ITEM_MTMOON_MOONSTONE                                  0x478

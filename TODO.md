@@ -2,7 +2,7 @@
 # Demo 1 MVP
 - HGSS/DPPT overworld npc sprite demakes
 - item ball scripts for new rock climb spots
-- Rest of route experts for held items
+- Rest of route experts for held items (Power Herb, Toxic Orb, Choice Band)
 - Battle tower BP vendor (calcium EX etc)
 - Shaymin event north of tohjo falls
 - Victini reward for beating all gym leader rematches
@@ -16,3 +16,4 @@
 - mugshot and trainer ow/frontsprite should match
 - 3-4 remaining megastones (dragon den trial for dragotite?)
 - Finish redoing the remaining trades
+- Remove kanto boat story part

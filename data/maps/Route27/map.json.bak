@@ -312,24 +312,6 @@
   "coord_events": [
     {
       "type": "trigger",
-      "x": 25,
-      "y": 25,
-      "elevation": 0,
-      "var": "VAR_ROUTE27_STATE",
-      "var_value": "0",
-      "script": "Route27_EventScript_FirstSteps"
-    },
-    {
-      "type": "trigger",
-      "x": 25,
-      "y": 24,
-      "elevation": 0,
-      "var": "VAR_ROUTE27_STATE",
-      "var_value": "0",
-      "script": "Route27_EventScript_FirstSteps"
-    },
-    {
-      "type": "trigger",
       "x": 45,
       "y": 19,
       "elevation": 0,
