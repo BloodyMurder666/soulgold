@@ -5,7 +5,6 @@
 - Rest of route experts for held items
 - Battle tower BP vendor (calcium EX etc)
 - Shaymin event north of tohjo falls
-- Gym leader rematches 8/8 done, needs dialogue
 - Victini reward for beating all gym leader rematches
 - Railway cave
 - Registeel in Mt Mortar or railway cave

@@ -457,6 +457,7 @@
       "flag": "FLAG_HIDE_DRAGONS_DEN_CAVERN_LANCE"
     },
     {
+      "local_id": "LOCALID_CLAIR_REMATCH",
       "graphics_id": "OBJ_EVENT_GFX_CLAIR",
       "x": 31,
       "y": 19,

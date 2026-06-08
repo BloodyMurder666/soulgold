@@ -1253,7 +1253,7 @@
 #define FLAG_GOLDENROD_SMACKDOWN                                    0x4AC
 #define FLAG_HIDE_R47_CHUCK                                         0x4AD
 #define FLAG_ITEM_GS_BALL                                           0x4AE // Technically unused
-#define FLAG_UNUSED_0x4AF                                           0x4AF //  unused
+#define FLAG_CLAIR_ON_TRIP                                          0x4AF
 #define FLAG_ITEM_ROUTE_32_GREATBALL                                0x4B0 
 #define FLAG_ITEM_ROUTE_32_GREATBALL2                               0x4B1 
 #define FLAG_ITEM_ROUTE_32_POTION                                   0x4B2 

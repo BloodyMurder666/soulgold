@@ -234,6 +234,7 @@
       "flag": "FLAG_HIDE_LAKE_OF_RAGE_LANCE"
     },
     {
+      "local_id": "LOCALID_PRYCE_REMATCH",
       "graphics_id": "OBJ_EVENT_GFX_PRYCE",
       "x": 9,
       "y": 43,

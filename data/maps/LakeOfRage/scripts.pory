@@ -453,10 +453,37 @@ script Lakeofrage_HiddenGrotto {
 }
 
 script Lakeofrage_PryceRematch {
-	lock
-	faceplayer
-	trainerbattle_no_intro(TRAINER_PRYCE_2, "Good")
-	setflag(FLAG_HIDE_LAKE_PRYCE)
-	release
-	end
+    lock
+    faceplayer
+	msgbox("{PLAYER}, the cold of Indigo Plateau
+			has not worn you down I see.
+			
+			Personally I prefer the cold, it keeps
+			my senses sharp. Warmth can make one
+			drop their guard.")
+
+	msgbox("How about I show you what I mean
+			in a battle. I won't be holding
+			back this time.", MSGBOX_YESNO)
+	if (var(VAR_RESULT) == TRUE) {
+		trainerbattle_no_intro(TRAINER_PRYCE_2, "Reminds me of the old days.")
+		msgbox("I worry less for the future generations
+				when I see trainers like you rise up.
+				
+				I hope you will foster the growth
+				of future generations in your own
+				time, too.
+				
+				I believe I still have more I can
+				show you another time, but I must
+				return to my training in order
+				to achieve it.")
+		fadescreenswapbuffers(FADE_TO_BLACK)
+		setflag(FLAG_HIDE_LAKE_PRYCE)
+		removeobject(LOCALID_PRYCE_REMATCH)
+		delay(30)
+		fadescreenswapbuffers(FADE_FROM_BLACK)
+	}
+    release
+    end
 }

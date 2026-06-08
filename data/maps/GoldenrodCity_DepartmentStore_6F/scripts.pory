@@ -134,9 +134,41 @@ script HonedgeTrade_NotRequested {
 
 script GoldenrodDEpt6F_WhitneyRematch {
 	lock
-	faceplayer
-	trainerbattle_no_intro(TRAINER_WHITNEY_2, "Good")
-	setflag(FLAG_HIDE_DEPTSTORE_WHITNEY)
-	release
-	end
+	msgbox("Hmm... Maybe this one...?
+			No... That one is cheaper...
+			Wait, but if I buy two then...")
+	applymovement(LOCALID_STORE_WHITNEY, Common_Movement_ExclamationMark)
+	applymovement(LOCALID_STORE_WHITNEY, moves(face_player))
+	waitmovement(0)
+	msgbox("Oh, hi there!
+			Do you also shop here? I was here
+			today to check on some new Pokéfan
+			magazines. They have the cutest
+			Clefairies!")
+	msgbox("Hey I know, how about a battle?
+			I promise I'll make you cry this
+			time instead!", MSGBOX_YESNO)
+	if (var(VAR_RESULT) == TRUE) {
+		trainerbattle_no_intro(TRAINER_WHITNEY_2, "Mustn't cry... Musn't cry...!")
+		msgbox("Aaaaargh! I thought I had you there!
+				So frustrating...
+				
+				That was a really good battle, but I
+				always get so frustrated when I lose
+				that I want to cry. I've been trying
+				really hard to get out of that habit.
+				
+				I've decided that next time we battle,
+				I'll try even harder and we'll roll
+				you over! Until then, you better train 
+				hard!")
+		closemessage
+		moveobjecttocoords(LOCALID_STORE_WHITNEY, 24, 5, DIR_WEST)
+		setflag(FLAG_HIDE_DEPTSTORE_WHITNEY)
+		playse(SE_EXIT)
+		removeobject(LOCALID_STORE_WHITNEY)
+		delay(30)
+	}
+    release
+    end
 }

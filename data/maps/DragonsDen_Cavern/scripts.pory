@@ -254,8 +254,34 @@ DragonsDen_Cavern_Text_TwinsLeaandPia2After:
 script DragonsDen_ClairRematch {
     lock
     faceplayer
-    trainerbattle_no_intro(TRAINER_CLAIR_2, "Good")
-    setflag(FLAG_HIDE_DEN_CLAIR)
+	msgbox("Hey {PLAYER}.
+			I heard from Lance that you became the
+			new Champion. I guess the elders were
+			right, I was just blinded by my own ego.
+			Sorry.")
+	msgbox("Could we have another match right
+			here? I'd like to fight the new
+			Champion without anything holding
+			us back.", MSGBOX_YESNO)
+	if (var(VAR_RESULT) == TRUE) {
+		trainerbattle_no_intro(TRAINER_CLAIR_2, "Crazy how much stronger you can grow
+												in such a short amount of time.")
+		msgbox("I've got a long way to go still if I want
+				to surpass you or even Lance. I think
+				I will leave for a trip soon. Go see
+				places and hopefully learn from all
+				kinds of people. Then I will face you
+				again with all I've learned. Thank you
+				for this lesson in battle. I won't
+				forget it.")
+		waitmessage
+		fadescreenswapbuffers(FADE_TO_BLACK)
+		setflag(FLAG_HIDE_DEN_CLAIR)
+		setflag(FLAG_CLAIR_ON_TRIP)
+		removeobject(LOCALID_CLAIR_REMATCH)
+		delay(30)
+		fadescreenswapbuffers(FADE_FROM_BLACK)
+	}
     release
     end
 }

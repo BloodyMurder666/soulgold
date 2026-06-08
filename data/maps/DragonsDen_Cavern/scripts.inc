@@ -507,14 +507,66 @@ DragonsDen_ClairRematch::
 # 256 "data/maps/DragonsDen_Cavern/scripts.pory"
 	faceplayer
 # 257 "data/maps/DragonsDen_Cavern/scripts.pory"
-	trainerbattle_no_intro TRAINER_CLAIR_2, DragonsDen_ClairRematch_Text_0
-# 258 "data/maps/DragonsDen_Cavern/scripts.pory"
-	setflag FLAG_HIDE_DEN_CLAIR
-# 259 "data/maps/DragonsDen_Cavern/scripts.pory"
+	msgbox DragonsDen_ClairRematch_Text_0
+# 262 "data/maps/DragonsDen_Cavern/scripts.pory"
+	msgbox DragonsDen_ClairRematch_Text_1, MSGBOX_YESNO
+# 266 "data/maps/DragonsDen_Cavern/scripts.pory"
+	compare VAR_RESULT, TRUE
+	goto_if_eq DragonsDen_ClairRematch_2
+DragonsDen_ClairRematch_1:
+# 285 "data/maps/DragonsDen_Cavern/scripts.pory"
 	release
 	end
+
+DragonsDen_ClairRematch_2:
+# 267 "data/maps/DragonsDen_Cavern/scripts.pory"
+	trainerbattle_no_intro TRAINER_CLAIR_2, DragonsDen_ClairRematch_Text_2
+# 269 "data/maps/DragonsDen_Cavern/scripts.pory"
+	msgbox DragonsDen_ClairRematch_Text_3
+# 277 "data/maps/DragonsDen_Cavern/scripts.pory"
+	waitmessage
+# 278 "data/maps/DragonsDen_Cavern/scripts.pory"
+	fadescreenswapbuffers FADE_TO_BLACK
+# 279 "data/maps/DragonsDen_Cavern/scripts.pory"
+	setflag FLAG_HIDE_DEN_CLAIR
+# 280 "data/maps/DragonsDen_Cavern/scripts.pory"
+	setflag FLAG_CLAIR_ON_TRIP
+# 281 "data/maps/DragonsDen_Cavern/scripts.pory"
+	removeobject LOCALID_CLAIR_REMATCH
+# 282 "data/maps/DragonsDen_Cavern/scripts.pory"
+	delay 30
+# 283 "data/maps/DragonsDen_Cavern/scripts.pory"
+	fadescreenswapbuffers FADE_FROM_BLACK
+	goto DragonsDen_ClairRematch_1
 
 
 DragonsDen_ClairRematch_Text_0:
 # 257 "data/maps/DragonsDen_Cavern/scripts.pory"
-	.string "Good$"
+	.string "Hey {PLAYER}.\n"
+	.string "I heard from Lance that you became the\l"
+	.string "new Champion. I guess the elders were\l"
+	.string "right, I was just blinded by my own ego.\l"
+	.string "Sorry.$"
+
+DragonsDen_ClairRematch_Text_1:
+# 262 "data/maps/DragonsDen_Cavern/scripts.pory"
+	.string "Could we have another match right\n"
+	.string "here? I'd like to fight the new\l"
+	.string "Champion without anything holding\l"
+	.string "us back.$"
+
+DragonsDen_ClairRematch_Text_2:
+# 267 "data/maps/DragonsDen_Cavern/scripts.pory"
+	.string "Crazy how much stronger you can grow\n"
+	.string "in such a short amount of time.$"
+
+DragonsDen_ClairRematch_Text_3:
+# 269 "data/maps/DragonsDen_Cavern/scripts.pory"
+	.string "I've got a long way to go still if I want\n"
+	.string "to surpass you or even Lance. I think\l"
+	.string "I will leave for a trip soon. Go see\l"
+	.string "places and hopefully learn from all\l"
+	.string "kinds of people. Then I will face you\l"
+	.string "again with all I've learned. Thank you\l"
+	.string "for this lesson in battle. I won't\l"
+	.string "forget it.$"

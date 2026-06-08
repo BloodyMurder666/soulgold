@@ -405,14 +405,62 @@ VioletTrainerSchool_FalknerRematch::
 # 205 "data/maps/VioletCity_TrainerSchool/scripts.pory"
 	faceplayer
 # 206 "data/maps/VioletCity_TrainerSchool/scripts.pory"
-	trainerbattle_no_intro TRAINER_FALKNER_2, VioletTrainerSchool_FalknerRematch_Text_0
-# 207 "data/maps/VioletCity_TrainerSchool/scripts.pory"
-	setflag FLAG_HIDE_VIOLET_SCHOOL_FALKNER
-# 208 "data/maps/VioletCity_TrainerSchool/scripts.pory"
+	msgbox VioletTrainerSchool_FalknerRematch_Text_0, MSGBOX_YESNO
+# 217 "data/maps/VioletCity_TrainerSchool/scripts.pory"
+	compare VAR_RESULT, TRUE
+	goto_if_eq VioletTrainerSchool_FalknerRematch_2
+VioletTrainerSchool_FalknerRematch_1:
+# 233 "data/maps/VioletCity_TrainerSchool/scripts.pory"
 	release
 	end
+
+VioletTrainerSchool_FalknerRematch_2:
+# 218 "data/maps/VioletCity_TrainerSchool/scripts.pory"
+	trainerbattle_no_intro TRAINER_FALKNER_2, VioletTrainerSchool_FalknerRematch_Text_1
+# 219 "data/maps/VioletCity_TrainerSchool/scripts.pory"
+	msgbox VioletTrainerSchool_FalknerRematch_Text_2
+# 223 "data/maps/VioletCity_TrainerSchool/scripts.pory"
+	msgbox VioletTrainerSchool_FalknerRematch_Text_3
+# 226 "data/maps/VioletCity_TrainerSchool/scripts.pory"
+	waitmessage
+# 227 "data/maps/VioletCity_TrainerSchool/scripts.pory"
+	fadescreenswapbuffers FADE_TO_BLACK
+# 228 "data/maps/VioletCity_TrainerSchool/scripts.pory"
+	setflag FLAG_HIDE_VIOLET_SCHOOL_FALKNER
+# 229 "data/maps/VioletCity_TrainerSchool/scripts.pory"
+	removeobject LOCALID_FALKNER_REMATCH
+# 230 "data/maps/VioletCity_TrainerSchool/scripts.pory"
+	delay 30
+# 231 "data/maps/VioletCity_TrainerSchool/scripts.pory"
+	fadescreenswapbuffers FADE_FROM_BLACK
+	goto VioletTrainerSchool_FalknerRematch_1
 
 
 VioletTrainerSchool_FalknerRematch_Text_0:
 # 206 "data/maps/VioletCity_TrainerSchool/scripts.pory"
-	.string "Good$"
+	.string "Nice to see you here too, {PLAYER}.\p"
+	.string "I'm occasionally tutoring our future\n"
+	.string "generation of trainers, so that they\l"
+	.string "too may soar some day.\p"
+	.string "They have been asking me to showcase\n"
+	.string "my battling skills for a while now,\l"
+	.string "would you like to be my opponent?\l"
+	.string "I've been waiting for a chance to get\l"
+	.string "back at our first battle.$"
+
+VioletTrainerSchool_FalknerRematch_Text_1:
+# 218 "data/maps/VioletCity_TrainerSchool/scripts.pory"
+	.string "You soared above us!$"
+
+VioletTrainerSchool_FalknerRematch_Text_2:
+# 219 "data/maps/VioletCity_TrainerSchool/scripts.pory"
+	.string "Based on everyone's reactions, I'd say\n"
+	.string "you managed to capture the entire\l"
+	.string "class with your skills. That should\l"
+	.string "inspire them to work hard.$"
+
+VioletTrainerSchool_FalknerRematch_Text_3:
+# 223 "data/maps/VioletCity_TrainerSchool/scripts.pory"
+	.string "Time for me to head back to the gym.\n"
+	.string "I hope we'll get a chance to have\l"
+	.string "another battle soon.$"

@@ -54,8 +54,32 @@ EcruteakBellchimeTrail_Movement_CameraPanUp::
 script BellchimeTrail_MortyRematch {
     lock
     faceplayer
-    trainerbattle_no_intro(TRAINER_MORTY_2, "Good")
-    setflag(FLAG_HIDE_BELLCHIME_MORTY)
+	msgbox("Morty: In the end, the Legendary
+			Pokémon did not choose me.
+			
+			I wonder the reason often when I walk
+			this trail.
+			
+			I would like to confirm their reason by
+			battling you again if that is
+			acceptable to you, {PLAYER}.", MSGBOX_YESNO)
+	if (var(VAR_RESULT) == TRUE) {
+		msgbox("Thank you, I will you those watching
+				to be as worthy as you!")
+		trainerbattle_no_intro(TRAINER_MORTY_2, "I see now why they chose you.")
+		msgbox("Merely being strong or wise is not
+				enough always. It takes also something
+				more intangible that you posses. I hope
+				the spirits continue to bless you.
+				
+				Until our next meeting.")
+		waitmessage
+		fadescreenswapbuffers(FADE_TO_BLACK)
+		setflag(FLAG_HIDE_BELLCHIME_MORTY)
+		removeobject(LOCALID_BELLCHIME_MORTY)
+		delay(30)
+		fadescreenswapbuffers(FADE_FROM_BLACK)
+	}
     release
     end
 }

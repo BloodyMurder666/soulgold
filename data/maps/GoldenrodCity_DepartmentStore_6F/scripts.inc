@@ -241,15 +241,50 @@ GoldenrodDEpt6F_WhitneyRematch::
 # 136 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
 	lock
 # 137 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
-	faceplayer
-# 138 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
-	trainerbattle_no_intro TRAINER_WHITNEY_2, GoldenrodDEpt6F_WhitneyRematch_Text_0
-# 139 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
-	setflag FLAG_HIDE_DEPTSTORE_WHITNEY
+	msgbox GoldenrodDEpt6F_WhitneyRematch_Text_0
 # 140 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
+	applymovement LOCALID_STORE_WHITNEY, Common_Movement_ExclamationMark
+# 141 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
+	applymovement LOCALID_STORE_WHITNEY, GoldenrodDEpt6F_WhitneyRematch_Movement_0
+# 142 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
+	waitmovement 0
+# 143 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
+	msgbox GoldenrodDEpt6F_WhitneyRematch_Text_1
+# 148 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
+	msgbox GoldenrodDEpt6F_WhitneyRematch_Text_2, MSGBOX_YESNO
+# 151 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
+	compare VAR_RESULT, TRUE
+	goto_if_eq GoldenrodDEpt6F_WhitneyRematch_2
+GoldenrodDEpt6F_WhitneyRematch_1:
+# 172 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
 	release
 	end
 
+GoldenrodDEpt6F_WhitneyRematch_2:
+# 152 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
+	trainerbattle_no_intro TRAINER_WHITNEY_2, GoldenrodDEpt6F_WhitneyRematch_Text_3
+# 153 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
+	msgbox GoldenrodDEpt6F_WhitneyRematch_Text_4
+# 165 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
+	closemessage
+# 166 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
+	moveobjecttocoords LOCALID_STORE_WHITNEY, 24, 5, DIR_WEST
+# 167 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
+	setflag FLAG_HIDE_DEPTSTORE_WHITNEY
+# 168 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
+	playse SE_EXIT
+# 169 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
+	removeobject LOCALID_STORE_WHITNEY
+# 170 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
+	delay 30
+	goto GoldenrodDEpt6F_WhitneyRematch_1
+
+
+# 141 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
+GoldenrodDEpt6F_WhitneyRematch_Movement_0:
+# 141 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
+	face_player
+	step_end
 
 GoldenrodCity_DepartmentStore_6F_EventScript_Jose_Text_0:
 # 107 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
@@ -276,5 +311,38 @@ HonedgeTrade_NotRequested_Text_0:
 	.string "I don't think that's a Clefairy...$"
 
 GoldenrodDEpt6F_WhitneyRematch_Text_0:
-# 138 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
-	.string "Good$"
+# 137 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
+	.string "Hmm... Maybe this one...?\n"
+	.string "No... That one is cheaper...\l"
+	.string "Wait, but if I buy two then...$"
+
+GoldenrodDEpt6F_WhitneyRematch_Text_1:
+# 143 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
+	.string "Oh, hi there!\n"
+	.string "Do you also shop here? I was here\l"
+	.string "today to check on some new Pokéfan\l"
+	.string "magazines. They have the cutest\l"
+	.string "Clefairies!$"
+
+GoldenrodDEpt6F_WhitneyRematch_Text_2:
+# 148 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
+	.string "Hey I know, how about a battle?\n"
+	.string "I promise I'll make you cry this\l"
+	.string "time instead!$"
+
+GoldenrodDEpt6F_WhitneyRematch_Text_3:
+# 152 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
+	.string "Mustn't cry... Musn't cry...!$"
+
+GoldenrodDEpt6F_WhitneyRematch_Text_4:
+# 153 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
+	.string "Aaaaargh! I thought I had you there!\n"
+	.string "So frustrating...\p"
+	.string "That was a really good battle, but I\n"
+	.string "always get so frustrated when I lose\l"
+	.string "that I want to cry. I've been trying\l"
+	.string "really hard to get out of that habit.\p"
+	.string "I've decided that next time we battle,\n"
+	.string "I'll try even harder and we'll roll\l"
+	.string "you over! Until then, you better train \l"
+	.string "hard!$"

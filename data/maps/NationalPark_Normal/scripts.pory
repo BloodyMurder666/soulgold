@@ -195,8 +195,32 @@ NationalPark_Normal_Text_TrainerTips:
 script NationalPark_BugsyRematch {
     lock
     faceplayer
-    trainerbattle_no_intro(TRAINER_BUGSY_2, "Good")
-	setflag(FLAG_HIDE_NATIONAL_BUGSY)
+	msgbox("Heyo, {PLAYER}!
+			
+			I'm checking on the Bug Pokémon here in
+			Ilex, making sure any ruffians are not
+			causing trouble to them.
+			
+			I've gotten quite a bit stronger since
+			we last fought, how about I show it to
+			you?", MSGBOX_YESNO)
+	if (var(VAR_RESULT) == TRUE) {
+		trainerbattle_no_intro(TRAINER_BUGSY_2, "Way to go! You're crazy strong!")
+		msgbox("Looks like my team still got ways to go
+				if I want to beat you.
+				
+				Maybe we should have another tussle
+				like this once everyone has gotten
+				together. 
+				
+				Until then, laters!")
+		waitmessage
+		fadescreenswapbuffers(FADE_TO_BLACK)
+		setflag(FLAG_HIDE_NATIONAL_BUGSY)
+		removeobject(LOCALID_NATIONAL_BUGSY)
+		delay(30)
+		fadescreenswapbuffers(FADE_FROM_BLACK)
+	}
     release
     end
 }

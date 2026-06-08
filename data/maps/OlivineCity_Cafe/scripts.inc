@@ -169,14 +169,56 @@ OlivineCafe_JasmineRematch::
 # 88 "data/maps/OlivineCity_Cafe/scripts.pory"
 	faceplayer
 # 89 "data/maps/OlivineCity_Cafe/scripts.pory"
-	trainerbattle_no_intro TRAINER_JASMINE_2, OlivineCafe_JasmineRematch_Text_0
-# 90 "data/maps/OlivineCity_Cafe/scripts.pory"
-	setflag FLAG_HIDE_CAFE_JASMINE
-# 91 "data/maps/OlivineCity_Cafe/scripts.pory"
+	msgbox OlivineCafe_JasmineRematch_Text_0
+# 95 "data/maps/OlivineCity_Cafe/scripts.pory"
+	msgbox OlivineCafe_JasmineRematch_Text_1
+# 97 "data/maps/OlivineCity_Cafe/scripts.pory"
+	compare VAR_RESULT, TRUE
+	goto_if_eq OlivineCafe_JasmineRematch_2
+OlivineCafe_JasmineRematch_1:
+# 110 "data/maps/OlivineCity_Cafe/scripts.pory"
 	release
 	end
+
+OlivineCafe_JasmineRematch_2:
+# 98 "data/maps/OlivineCity_Cafe/scripts.pory"
+	trainerbattle_no_intro TRAINER_JASMINE_2, OlivineCafe_JasmineRematch_Text_2
+# 100 "data/maps/OlivineCity_Cafe/scripts.pory"
+	msgbox OlivineCafe_JasmineRematch_Text_3
+# 104 "data/maps/OlivineCity_Cafe/scripts.pory"
+	fadescreenswapbuffers FADE_TO_BLACK
+# 105 "data/maps/OlivineCity_Cafe/scripts.pory"
+	setflag FLAG_HIDE_CAFE_JASMINE
+# 106 "data/maps/OlivineCity_Cafe/scripts.pory"
+	removeobject LOCALID_CAFE_JASMINE
+# 107 "data/maps/OlivineCity_Cafe/scripts.pory"
+	delay 30
+# 108 "data/maps/OlivineCity_Cafe/scripts.pory"
+	fadescreenswapbuffers FADE_FROM_BLACK
+	goto OlivineCafe_JasmineRematch_1
 
 
 OlivineCafe_JasmineRematch_Text_0:
 # 89 "data/maps/OlivineCity_Cafe/scripts.pory"
-	.string "Good$"
+	.string "Oh, Hello {PLAYER}...\p"
+	.string "Did you come here to eat too..?\n"
+	.string "I really enjoy the seafood served here.\l"
+	.string "It always makes me feel nostalgic for\l"
+	.string "some reason.$"
+
+OlivineCafe_JasmineRematch_Text_1:
+# 95 "data/maps/OlivineCity_Cafe/scripts.pory"
+	.string "I was hoping we could have another \n"
+	.string "battle again, if that is okay.$"
+
+OlivineCafe_JasmineRematch_Text_2:
+# 98 "data/maps/OlivineCity_Cafe/scripts.pory"
+	.string "You really are amazing, \n"
+	.string "{PLAYER}.$"
+
+OlivineCafe_JasmineRematch_Text_3:
+# 100 "data/maps/OlivineCity_Cafe/scripts.pory"
+	.string "You fight with both kindness and grace.\n"
+	.string "Something I strive for every day...\l"
+	.string "Thank you for this battle, I won't\l"
+	.string "forget it.$"

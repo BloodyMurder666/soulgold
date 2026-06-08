@@ -107,14 +107,60 @@ BellchimeTrail_MortyRematch::
 # 56 "data/maps/BellchimeTrail/scripts.pory"
 	faceplayer
 # 57 "data/maps/BellchimeTrail/scripts.pory"
-	trainerbattle_no_intro TRAINER_MORTY_2, BellchimeTrail_MortyRematch_Text_0
-# 58 "data/maps/BellchimeTrail/scripts.pory"
-	setflag FLAG_HIDE_BELLCHIME_MORTY
-# 59 "data/maps/BellchimeTrail/scripts.pory"
+	msgbox BellchimeTrail_MortyRematch_Text_0, MSGBOX_YESNO
+# 66 "data/maps/BellchimeTrail/scripts.pory"
+	compare VAR_RESULT, TRUE
+	goto_if_eq BellchimeTrail_MortyRematch_2
+BellchimeTrail_MortyRematch_1:
+# 83 "data/maps/BellchimeTrail/scripts.pory"
 	release
 	end
+
+BellchimeTrail_MortyRematch_2:
+# 67 "data/maps/BellchimeTrail/scripts.pory"
+	msgbox BellchimeTrail_MortyRematch_Text_1
+# 69 "data/maps/BellchimeTrail/scripts.pory"
+	trainerbattle_no_intro TRAINER_MORTY_2, BellchimeTrail_MortyRematch_Text_2
+# 70 "data/maps/BellchimeTrail/scripts.pory"
+	msgbox BellchimeTrail_MortyRematch_Text_3
+# 76 "data/maps/BellchimeTrail/scripts.pory"
+	waitmessage
+# 77 "data/maps/BellchimeTrail/scripts.pory"
+	fadescreenswapbuffers FADE_TO_BLACK
+# 78 "data/maps/BellchimeTrail/scripts.pory"
+	setflag FLAG_HIDE_BELLCHIME_MORTY
+# 79 "data/maps/BellchimeTrail/scripts.pory"
+	removeobject LOCALID_BELLCHIME_MORTY
+# 80 "data/maps/BellchimeTrail/scripts.pory"
+	delay 30
+# 81 "data/maps/BellchimeTrail/scripts.pory"
+	fadescreenswapbuffers FADE_FROM_BLACK
+	goto BellchimeTrail_MortyRematch_1
 
 
 BellchimeTrail_MortyRematch_Text_0:
 # 57 "data/maps/BellchimeTrail/scripts.pory"
-	.string "Good$"
+	.string "Morty: In the end, the Legendary\n"
+	.string "Pokémon did not choose me.\p"
+	.string "I wonder the reason often when I walk\n"
+	.string "this trail.\p"
+	.string "I would like to confirm their reason by\n"
+	.string "battling you again if that is\l"
+	.string "acceptable to you, {PLAYER}.$"
+
+BellchimeTrail_MortyRematch_Text_1:
+# 67 "data/maps/BellchimeTrail/scripts.pory"
+	.string "Thank you, I will you those watching\n"
+	.string "to be as worthy as you!$"
+
+BellchimeTrail_MortyRematch_Text_2:
+# 69 "data/maps/BellchimeTrail/scripts.pory"
+	.string "I see now why they chose you.$"
+
+BellchimeTrail_MortyRematch_Text_3:
+# 70 "data/maps/BellchimeTrail/scripts.pory"
+	.string "Merely being strong or wise is not\n"
+	.string "enough always. It takes also something\l"
+	.string "more intangible that you posses. I hope\l"
+	.string "the spirits continue to bless you.\p"
+	.string "Until our next meeting.$"

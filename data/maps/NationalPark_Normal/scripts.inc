@@ -389,14 +389,54 @@ NationalPark_BugsyRematch::
 # 197 "data/maps/NationalPark_Normal/scripts.pory"
 	faceplayer
 # 198 "data/maps/NationalPark_Normal/scripts.pory"
-	trainerbattle_no_intro TRAINER_BUGSY_2, NationalPark_BugsyRematch_Text_0
-# 199 "data/maps/NationalPark_Normal/scripts.pory"
-	setflag FLAG_HIDE_NATIONAL_BUGSY
-# 200 "data/maps/NationalPark_Normal/scripts.pory"
+	msgbox NationalPark_BugsyRematch_Text_0, MSGBOX_YESNO
+# 207 "data/maps/NationalPark_Normal/scripts.pory"
+	compare VAR_RESULT, TRUE
+	goto_if_eq NationalPark_BugsyRematch_2
+NationalPark_BugsyRematch_1:
+# 224 "data/maps/NationalPark_Normal/scripts.pory"
 	release
 	end
+
+NationalPark_BugsyRematch_2:
+# 208 "data/maps/NationalPark_Normal/scripts.pory"
+	trainerbattle_no_intro TRAINER_BUGSY_2, NationalPark_BugsyRematch_Text_1
+# 209 "data/maps/NationalPark_Normal/scripts.pory"
+	msgbox NationalPark_BugsyRematch_Text_2
+# 217 "data/maps/NationalPark_Normal/scripts.pory"
+	waitmessage
+# 218 "data/maps/NationalPark_Normal/scripts.pory"
+	fadescreenswapbuffers FADE_TO_BLACK
+# 219 "data/maps/NationalPark_Normal/scripts.pory"
+	setflag FLAG_HIDE_NATIONAL_BUGSY
+# 220 "data/maps/NationalPark_Normal/scripts.pory"
+	removeobject LOCALID_NATIONAL_BUGSY
+# 221 "data/maps/NationalPark_Normal/scripts.pory"
+	delay 30
+# 222 "data/maps/NationalPark_Normal/scripts.pory"
+	fadescreenswapbuffers FADE_FROM_BLACK
+	goto NationalPark_BugsyRematch_1
 
 
 NationalPark_BugsyRematch_Text_0:
 # 198 "data/maps/NationalPark_Normal/scripts.pory"
-	.string "Good$"
+	.string "Heyo, {PLAYER}!\p"
+	.string "I'm checking on the Bug Pokémon here in\n"
+	.string "Ilex, making sure any ruffians are not\l"
+	.string "causing trouble to them.\p"
+	.string "I've gotten quite a bit stronger since\n"
+	.string "we last fought, how about I show it to\l"
+	.string "you?$"
+
+NationalPark_BugsyRematch_Text_1:
+# 208 "data/maps/NationalPark_Normal/scripts.pory"
+	.string "Way to go! You're crazy strong!$"
+
+NationalPark_BugsyRematch_Text_2:
+# 209 "data/maps/NationalPark_Normal/scripts.pory"
+	.string "Looks like my team still got ways to go\n"
+	.string "if I want to beat you.\p"
+	.string "Maybe we should have another tussle\n"
+	.string "like this once everyone has gotten\l"
+	.string "together. \p"
+	.string "Until then, laters!$"

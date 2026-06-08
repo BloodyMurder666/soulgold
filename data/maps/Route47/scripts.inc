@@ -306,14 +306,39 @@ Route47_ChuckRematch::
 # 157 "data/maps/Route47/scripts.pory"
 	lock
 # 158 "data/maps/Route47/scripts.pory"
-	faceplayer
-# 159 "data/maps/Route47/scripts.pory"
-	trainerbattle_no_intro TRAINER_CHUCK_2, Route47_ChuckRematch_Text_0
+	msgbox Route47_ChuckRematch_Text_0
 # 160 "data/maps/Route47/scripts.pory"
-	setflag FLAG_HIDE_R47_CHUCK
+	waitmessage
 # 161 "data/maps/Route47/scripts.pory"
+	faceplayer
+# 162 "data/maps/Route47/scripts.pory"
+	msgbox Route47_ChuckRematch_Text_1
+# 166 "data/maps/Route47/scripts.pory"
+	msgbox Route47_ChuckRematch_Text_2, MSGBOX_YESNO
+# 170 "data/maps/Route47/scripts.pory"
+	compare VAR_RESULT, TRUE
+	goto_if_eq Route47_ChuckRematch_2
+Route47_ChuckRematch_1:
+# 185 "data/maps/Route47/scripts.pory"
 	release
 	end
+
+Route47_ChuckRematch_2:
+# 171 "data/maps/Route47/scripts.pory"
+	trainerbattle_no_intro TRAINER_CHUCK_2, Route47_ChuckRematch_Text_3
+# 172 "data/maps/Route47/scripts.pory"
+	msgbox Route47_ChuckRematch_Text_4
+# 179 "data/maps/Route47/scripts.pory"
+	fadescreenswapbuffers FADE_TO_BLACK
+# 180 "data/maps/Route47/scripts.pory"
+	setflag FLAG_HIDE_R47_CHUCK
+# 181 "data/maps/Route47/scripts.pory"
+	removeobject LOCALID_R47_CHUCK
+# 182 "data/maps/Route47/scripts.pory"
+	delay 30
+# 183 "data/maps/Route47/scripts.pory"
+	fadescreenswapbuffers FADE_FROM_BLACK
+	goto Route47_ChuckRematch_1
 
 
 Route47_HiddenGrotto_Text_0:
@@ -322,5 +347,33 @@ Route47_HiddenGrotto_Text_0:
 	.string "trees. Enter?$"
 
 Route47_ChuckRematch_Text_0:
-# 159 "data/maps/Route47/scripts.pory"
-	.string "Good$"
+# 158 "data/maps/Route47/scripts.pory"
+	.string "Hmm, the current here isn't strong\n"
+	.string "enough here...$"
+
+Route47_ChuckRematch_Text_1:
+# 162 "data/maps/Route47/scripts.pory"
+	.string "{PLAYER}! I was searching for a\n"
+	.string "stream of water with strong enough\l"
+	.string "currents to train my battling skills!\l"
+	.string "Wahahaha!$"
+
+Route47_ChuckRematch_Text_2:
+# 166 "data/maps/Route47/scripts.pory"
+	.string "What? That has nothing to do with\n"
+	.string "battles? Bah! Well I know a way\l"
+	.string "we both can agree on! A fight, here\l"
+	.string "and now!$"
+
+Route47_ChuckRematch_Text_3:
+# 171 "data/maps/Route47/scripts.pory"
+	.string "That's the way!$"
+
+Route47_ChuckRematch_Text_4:
+# 172 "data/maps/Route47/scripts.pory"
+	.string "Perfect form, peak physical condition,\n"
+	.string "the ideal Pokémon battle!\p"
+	.string "I should start a dojo just for the\n"
+	.string "strongest trainers! Great idea,\l"
+	.string "{PLAYER}! I'll invite you once\l"
+	.string "it's finished! See you there!$"

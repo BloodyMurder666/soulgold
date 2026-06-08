@@ -203,8 +203,33 @@ VioletCity_TrainerSchool_Text_StickerMachine:
 script VioletTrainerSchool_FalknerRematch {
     lock
     faceplayer
-    trainerbattle_no_intro(TRAINER_FALKNER_2, "Good")
-    setflag(FLAG_HIDE_VIOLET_SCHOOL_FALKNER)
+	msgbox("Nice to see you here too, {PLAYER}.
+	
+			I'm occasionally tutoring our future
+			generation of trainers, so that they
+			too may soar some day.
+			
+			They have been asking me to showcase
+			my battling skills for a while now,
+			would you like to be my opponent?
+			I've been waiting for a chance to get
+			back at our first battle.", MSGBOX_YESNO)
+	if (var(VAR_RESULT) == TRUE) {
+		trainerbattle_no_intro(TRAINER_FALKNER_2, "You soared above us!")
+		msgbox("Based on everyone's reactions, I'd say
+				you managed to capture the entire
+				class with your skills. That should
+				inspire them to work hard.")
+		msgbox("Time for me to head back to the gym.
+				I hope we'll get a chance to have
+				another battle soon.")
+		waitmessage
+		fadescreenswapbuffers(FADE_TO_BLACK)
+		setflag(FLAG_HIDE_VIOLET_SCHOOL_FALKNER)
+		removeobject(LOCALID_FALKNER_REMATCH)
+		delay(30)
+		fadescreenswapbuffers(FADE_FROM_BLACK)
+	}
     release
     end
 }

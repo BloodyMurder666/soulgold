@@ -906,12 +906,33 @@ Lakeofrage_PryceRematch::
 # 457 "data/maps/LakeOfRage/scripts.pory"
 	faceplayer
 # 458 "data/maps/LakeOfRage/scripts.pory"
-	trainerbattle_no_intro TRAINER_PRYCE_2, Lakeofrage_PryceRematch_Text_0
-# 459 "data/maps/LakeOfRage/scripts.pory"
-	setflag FLAG_HIDE_LAKE_PRYCE
-# 460 "data/maps/LakeOfRage/scripts.pory"
+	msgbox Lakeofrage_PryceRematch_Text_0
+# 465 "data/maps/LakeOfRage/scripts.pory"
+	msgbox Lakeofrage_PryceRematch_Text_1, MSGBOX_YESNO
+# 468 "data/maps/LakeOfRage/scripts.pory"
+	compare VAR_RESULT, TRUE
+	goto_if_eq Lakeofrage_PryceRematch_2
+Lakeofrage_PryceRematch_1:
+# 487 "data/maps/LakeOfRage/scripts.pory"
 	release
 	end
+
+Lakeofrage_PryceRematch_2:
+# 469 "data/maps/LakeOfRage/scripts.pory"
+	trainerbattle_no_intro TRAINER_PRYCE_2, Lakeofrage_PryceRematch_Text_2
+# 470 "data/maps/LakeOfRage/scripts.pory"
+	msgbox Lakeofrage_PryceRematch_Text_3
+# 481 "data/maps/LakeOfRage/scripts.pory"
+	fadescreenswapbuffers FADE_TO_BLACK
+# 482 "data/maps/LakeOfRage/scripts.pory"
+	setflag FLAG_HIDE_LAKE_PRYCE
+# 483 "data/maps/LakeOfRage/scripts.pory"
+	removeobject LOCALID_PRYCE_REMATCH
+# 484 "data/maps/LakeOfRage/scripts.pory"
+	delay 30
+# 485 "data/maps/LakeOfRage/scripts.pory"
+	fadescreenswapbuffers FADE_FROM_BLACK
+	goto Lakeofrage_PryceRematch_1
 
 
 Lakeofrage_HiddenGrotto_Text_0:
@@ -921,4 +942,30 @@ Lakeofrage_HiddenGrotto_Text_0:
 
 Lakeofrage_PryceRematch_Text_0:
 # 458 "data/maps/LakeOfRage/scripts.pory"
-	.string "Good$"
+	.string "{PLAYER}, the cold of Indigo Plateau\n"
+	.string "has not worn you down I see.\p"
+	.string "Personally I prefer the cold, it keeps\n"
+	.string "my senses sharp. Warmth can make one\l"
+	.string "drop their guard.$"
+
+Lakeofrage_PryceRematch_Text_1:
+# 465 "data/maps/LakeOfRage/scripts.pory"
+	.string "How about I show you what I mean\n"
+	.string "in a battle. I won't be holding\l"
+	.string "back this time.$"
+
+Lakeofrage_PryceRematch_Text_2:
+# 469 "data/maps/LakeOfRage/scripts.pory"
+	.string "Reminds me of the old days.$"
+
+Lakeofrage_PryceRematch_Text_3:
+# 470 "data/maps/LakeOfRage/scripts.pory"
+	.string "I worry less for the future generations\n"
+	.string "when I see trainers like you rise up.\p"
+	.string "I hope you will foster the growth\n"
+	.string "of future generations in your own\l"
+	.string "time, too.\p"
+	.string "I believe I still have more I can\n"
+	.string "show you another time, but I must\l"
+	.string "return to my training in order\l"
+	.string "to achieve it.$"
