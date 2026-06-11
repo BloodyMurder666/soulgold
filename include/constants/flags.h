@@ -914,14 +914,14 @@
 #define FLAG_UNUSED_UNSET7                                          0x35F
 #define FLAG_HIDE_BATTLE_TOWER_MULTI_BATTLE_PARTNER_ALT_1           0x360
 #define FLAG_HIDE_BATTLE_TOWER_MULTI_BATTLE_PARTNER_ALT_2           0x361
-#define FLAG_UNUSED_UNSET8                                          0x362
-#define FLAG_UNUSED_UNSET9                                          0x363 
+#define FLAG_ROUTE42_PSYCHITE                                       0x362
+#define FLAG_HIDE_LAKEOFRAGE_POLICE                                 0x363 
 #define FLAG_HIDE_MOMS_FRIEND                                       0x364 //HnS NormalFlags Block 1
 #define FLAG_MOM_VISITED                                            0x365 //mom gives good luck speech
 #define FLAG_HIDE_SILVER_NEWBARKTOWN                                0x366 //for beginning
-#define FLAG_UNUSED_0x367                                           0x367 
+#define FLAG_BLACKTHORN_ADRENALINE_ORB                              0x367 
 #define FLAG_HIDE_STARTER_CASE                                      0x368
-#define FLAG_UNUSED_0x369                                           0x369
+#define FLAG_CIANWOOD_FLYINGITE                                     0x369
 #define FLAG_RECEIVED_FIRST_POTION                                  0x36A
 #define FLAG_RECEIVED_FIRST_BALLS                                   0x36B
 #define FLAG_HIDE_LAB_POLICEMAN                                     0x36C
@@ -1383,8 +1383,8 @@
 #define FLAG_VISITED_LAKE_OF_RAGE                           (SYSTEM_FLAGS + 0x19) //25
 #define FLAG_VISITED_BLACKTHORN_CITY                  (SYSTEM_FLAGS + 0x1A)
 #define FLAG_VISITED_INDIGO_PLATEAU               (SYSTEM_FLAGS + 0x1B)
-#define FLAG_VISITED_PALLET_TOWN                           (SYSTEM_FLAGS + 0x1C) 
-#define FLAG_VISITED_VIRIDIAN_CITY                   (SYSTEM_FLAGS + 0x1D)
+#define FLAG_VISITED_SNOWTOP_MOUNTAIN                           (SYSTEM_FLAGS + 0x1C) 
+#define FLAG_VISITED_RINTO_VILLAGE                   (SYSTEM_FLAGS + 0x1D)
 #define FLAG_VISITED_PEWTER_CITY                         (SYSTEM_FLAGS + 0x1E) 
 #define FLAG_VISITED_CERULEAN_CITY               (SYSTEM_FLAGS + 0x1F) //49
 #define FLAG_VISITED_VERMILION_CITY                          (SYSTEM_FLAGS + 0x20) 

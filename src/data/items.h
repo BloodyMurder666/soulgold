@@ -1540,6 +1540,7 @@ const struct ItemInfo gItemsInfo[] =
             "Maximizes the\n"
             "effort value of a\n"
             "Pokémon's HP."),
+        .bpCost = 10,
         .pocket = POCKET_ITEMS,
         .sortType = ITEM_TYPE_STAT_BOOST_DRINK,
         .type = ITEM_USE_PARTY_MENU,
@@ -1577,6 +1578,7 @@ const struct ItemInfo gItemsInfo[] =
             "Maximizes the\n"
             "effort value of a\n"
             "Pokémon's Attack."),
+        .bpCost = 10,
         .pocket = POCKET_ITEMS,
         .sortType = ITEM_TYPE_STAT_BOOST_DRINK,
         .type = ITEM_USE_PARTY_MENU,
@@ -1614,6 +1616,7 @@ const struct ItemInfo gItemsInfo[] =
             "Maximizes the\n"
             "effort value of a\n"
             "Pokémon's Defense."),
+        .bpCost = 10,
         .pocket = POCKET_ITEMS,
         .sortType = ITEM_TYPE_STAT_BOOST_DRINK,
         .type = ITEM_USE_PARTY_MENU,
@@ -1651,6 +1654,7 @@ const struct ItemInfo gItemsInfo[] =
             "Maximizes the\n"
             "effort value of a\n"
             "Pokémon's Sp. Atk."),
+        .bpCost = 10,
         .pocket = POCKET_ITEMS,
         .sortType = ITEM_TYPE_STAT_BOOST_DRINK,
         .type = ITEM_USE_PARTY_MENU,
@@ -1688,6 +1692,7 @@ const struct ItemInfo gItemsInfo[] =
             "Maximizes the\n"
             "effort value of a\n"
             "Pokémon's Sp. Def."),
+        .bpCost = 10,
         .pocket = POCKET_ITEMS,
         .sortType = ITEM_TYPE_STAT_BOOST_DRINK,
         .type = ITEM_USE_PARTY_MENU,
@@ -1727,6 +1732,7 @@ const struct ItemInfo gItemsInfo[] =
             "Maximizes the\n"
             "effort value of a\n"
             "Pokémon's Speed."),
+        .bpCost = 10,
         .pocket = POCKET_ITEMS,
         .sortType = ITEM_TYPE_STAT_BOOST_DRINK,
         .type = ITEM_USE_PARTY_MENU,
@@ -10102,6 +10108,7 @@ const struct ItemInfo gItemsInfo[] =
             "A bizarre orb that\n"
             "inflicts a burn on\n"
             "holder in battle."),
+        .bpCost = 35,
         .pocket = POCKET_BATTLE_ITEMS,
         .sortType = ITEM_TYPE_HELD_ITEM,
         .heldSlot = 0,
@@ -10122,6 +10129,7 @@ const struct ItemInfo gItemsInfo[] =
     #else
         .price = 200,
     #endif
+        .bpCost = 35,
         .holdEffect = HOLD_EFFECT_TOXIC_ORB,
         .description = COMPOUND_STRING(
             "A bizarre orb that\n"
@@ -10263,6 +10271,7 @@ const struct ItemInfo gItemsInfo[] =
             "Boosts Defense on\n"
             "Electric Terrain,\n"
             "but only one time."),
+        .bpCost = 20,
         .pocket = POCKET_BATTLE_ITEMS,
         .sortType = ITEM_TYPE_HELD_ITEM,
         .heldSlot = 0,
@@ -10283,6 +10292,7 @@ const struct ItemInfo gItemsInfo[] =
             "Boosts Sp. Def. on\n"
             "Psychic Terrain,\n"
             "but only one time."),
+        .bpCost = 20,
         .pocket = POCKET_BATTLE_ITEMS,
         .sortType = ITEM_TYPE_HELD_ITEM,
         .heldSlot = 0,
@@ -10303,6 +10313,7 @@ const struct ItemInfo gItemsInfo[] =
             "Boosts Sp. Def. on\n"
             "Misty Terrain,\n"
             "but only one time."),
+        .bpCost = 20,
         .pocket = POCKET_BATTLE_ITEMS,
         .sortType = ITEM_TYPE_HELD_ITEM,
         .heldSlot = 0,
@@ -10323,6 +10334,7 @@ const struct ItemInfo gItemsInfo[] =
             "Boosts Defense on\n"
             "Grassy Terrain,\n"
             "but only one time."),
+        .bpCost = 20,
         .pocket = POCKET_BATTLE_ITEMS,
         .sortType = ITEM_TYPE_HELD_ITEM,
         .heldSlot = 0,
@@ -10480,6 +10492,7 @@ const struct ItemInfo gItemsInfo[] =
         .price = 100,
     #endif
         .holdEffect = HOLD_EFFECT_WHITE_HERB,
+        .bpCost = 25,
         .description = COMPOUND_STRING(
             "A hold item that\n"
             "restores any\n"
@@ -10727,6 +10740,7 @@ const struct ItemInfo gItemsInfo[] =
             "A hold item that\n"
             "boosts Exp. points\n"
             "earned in battle."),
+        .bpCost = 20,
         .pocket = POCKET_BATTLE_ITEMS,
         .sortType = ITEM_TYPE_HELD_ITEM,
         .heldSlot = 0,
@@ -10958,6 +10972,7 @@ const struct ItemInfo gItemsInfo[] =
         .price = 200,
     #endif
         .holdEffect = HOLD_EFFECT_LIFE_ORB,
+        .bpCost = 40,
         .description = COMPOUND_STRING(
             "Boosts move power\n"
             "but holder loses HP\n"
@@ -10983,6 +10998,7 @@ const struct ItemInfo gItemsInfo[] =
         .price = 100,
     #endif
         .holdEffect = HOLD_EFFECT_POWER_HERB,
+        .bpCost = 25,
         .description = COMPOUND_STRING(
             "Allows immediate\n"
             "use of a move that\n"
@@ -11009,6 +11025,7 @@ const struct ItemInfo gItemsInfo[] =
         .price = 200,
     #endif
         .holdEffect = HOLD_EFFECT_FOCUS_SASH,
+        .bpCost = 25,
         .description = COMPOUND_STRING(
             "If the holder has\n"
             "full HP, it endures\n"
@@ -11159,6 +11176,7 @@ const struct ItemInfo gItemsInfo[] =
         .price = 200,
     #endif
         .holdEffect = HOLD_EFFECT_BLACK_SLUDGE,
+        .bpCost = 25,
         .description = COMPOUND_STRING(
             "Restores HP for\n"
             "Poison-types.\n"
@@ -11536,6 +11554,7 @@ const struct ItemInfo gItemsInfo[] =
         .pluralName = ITEM_PLURAL_NAME("Weakness Policies"),
         .price = (I_PRICE >= GEN_9) ? 50000 : 1000,
         .holdEffect = HOLD_EFFECT_WEAKNESS_POLICY,
+        .bpCost = 25,
         .holdEffectParam = 0,
         .description = COMPOUND_STRING(
             "If hit by a super-\n"
@@ -11562,6 +11581,7 @@ const struct ItemInfo gItemsInfo[] =
             "prevents the use\n"
             "of status moves."),
         .pocket = POCKET_BATTLE_ITEMS,
+        .bpCost = 30,
         .sortType = ITEM_TYPE_HELD_ITEM,
         .heldSlot = 0,
         .type = ITEM_USE_BAG_MENU,
@@ -11709,6 +11729,7 @@ const struct ItemInfo gItemsInfo[] =
             "Boots that prevent\n"
             "effects of traps\n"
             "set in the field."),
+        .bpCost = 25,
         .pocket = POCKET_BATTLE_ITEMS,
         .sortType = ITEM_TYPE_HELD_ITEM,
         .heldSlot = 0,
@@ -11729,6 +11750,7 @@ const struct ItemInfo gItemsInfo[] =
             "Raises Speed if\n"
             "the user misses\n"
             "due to Accuracy."),
+        .bpCost = 25,
         .pocket = POCKET_BATTLE_ITEMS,
         .sortType = ITEM_TYPE_HELD_ITEM,
         .heldSlot = 0,
@@ -11748,6 +11770,7 @@ const struct ItemInfo gItemsInfo[] =
             "Lowers Speed if\n"
             "Trick Room is\n"
             "active."),
+        .bpCost = 25,
         .pocket = POCKET_BATTLE_ITEMS,
         .sortType = ITEM_TYPE_HELD_ITEM,
         .heldSlot = 0,

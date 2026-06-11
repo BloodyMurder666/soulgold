@@ -1419,10 +1419,35 @@ script BattleTowerBPVendor1 {
 }
 
 script BattleTowerBPVendor2 {
-msgbox("TODO", MSGBOX_NPC)
+	lock
+	faceplayer
+	msgbox("Welcome!")
+	bpmart(BattleTowerBpMart2)
+	msgbox("Thanks!")
+	release
+	end
 }
 
 mart BattleTowerBpMart1 {
 	ITEM_CHOICE_BAND
 	ITEM_CHOICE_SPECS
+	ITEM_CHOICE_SCARF
+	ITEM_HP_UP_EX
+	ITEM_PROTEIN_EX
+	ITEM_IRON_EX
+	ITEM_CARBOS_EX
+	ITEM_ZINC_EX
+	ITEM_CALCIUM_EX
+}
+
+mart BattleTowerBpMart2 {
+	ITEM_ELECTRIC_SEED
+	ITEM_PSYCHIC_SEED
+	ITEM_MISTY_SEED
+	ITEM_GRASSY_SEED
+	ITEM_LUCKY_EGG
+	ITEM_ROOM_SERVICE
+	ITEM_BLUNDER_POLICY
+	ITEM_WEAKNESS_POLICY
+	ITEM_HEAVY_DUTY_BOOTS
 }

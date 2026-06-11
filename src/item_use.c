@@ -1755,8 +1755,6 @@ static bool8 IsKantoOutdoorMapsec(u16 mapsec)
     case MAPSEC_ROUTE_17: case MAPSEC_ROUTE_18: case MAPSEC_ROUTE_19: case MAPSEC_ROUTE_20:
     case MAPSEC_ROUTE_21: case MAPSEC_ROUTE_22: case MAPSEC_ROUTE_23: case MAPSEC_ROUTE_24:
     case MAPSEC_ROUTE_25:
-    // Johto–Kanto connectors that are still Kanto side / outdoor
-    case MAPSEC_ROUTE_26: case MAPSEC_ROUTE_27:
     // Forest / Plateau
     case MAPSEC_VIRIDIAN_FOREST:
     case MAPSEC_INDIGO_PLATEAU:

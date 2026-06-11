@@ -380,6 +380,8 @@ Route39_BaobaTrigger::
 	waitse
 # 219 "data/maps/Route39/scripts.pory"
 	msgbox Route39_BaobaTrigger_Text_3
+# 221 "data/maps/Route39/scripts.pory"
+	closemessage
 # 222 "data/maps/Route39/scripts.pory"
 	applymovement LOCALID_R39_BAOBA, Route39_BaobaTrigger_Movement_1
 # 223 "data/maps/Route39/scripts.pory"

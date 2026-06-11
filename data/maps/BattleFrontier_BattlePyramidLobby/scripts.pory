@@ -909,5 +909,22 @@ BattleFrontier_BattlePyramidLobby_Text_ExplainBagRules:
 `
 
 script PoyramidLobbyBPVendor {
-    msgbox("TODO", MSGBOX_NPC)
+	lock
+	faceplayer
+	msgbox("Welcome!")
+	bpmart(PyramidBPVendor)
+	msgbox("Thanks!")
+	release
+	end
+}
+
+mart PyramidBPVendor {
+	ITEM_FLAME_ORB
+	ITEM_TOXIC_ORB
+	ITEM_LIFE_ORB
+	ITEM_FOCUS_SASH
+	ITEM_POWER_HERB
+	ITEM_WHITE_HERB
+	ITEM_BLACK_SLUDGE
+	ITEM_ASSAULT_VEST
 }

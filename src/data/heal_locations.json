@@ -546,6 +546,18 @@
       "map": "MAP_MT_EMBER_EXTERIOR",
       "x": 28,
       "y": 31
+    },
+    {
+      "id": "HEAL_LOCATION_RINTO_VILLAGE",
+      "map": "MAP_RINTO_VILLAGE",
+      "x": 8,
+      "y": 24
+    },
+    {
+      "id": "HEAL_LOCATION_SNOWTOP_MOUNTAIN_OUTSIDE",
+      "map": "MAP_SNOWTOP_MOUNTAIN_OUTSIDE",
+      "x": 22,
+      "y": 28
     }
   ]
 }

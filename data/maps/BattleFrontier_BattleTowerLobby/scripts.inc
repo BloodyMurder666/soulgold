@@ -2833,17 +2833,64 @@ BattleTowerBPVendor1::
 
 BattleTowerBPVendor2::
 # 1422 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleTowerBPVendor2_Text_0, MSGBOX_NPC
-	return
+	lock
+# 1423 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	faceplayer
+# 1424 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox BattleTowerBPVendor1_Text_0
+# 1425 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	bpmart BattleTowerBpMart2
+# 1426 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox BattleTowerBPVendor1_Text_1
+# 1427 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	release
+	end
 
 
 	.align 2
-# 1425 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1431 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 BattleTowerBpMart1:
-# 1426 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1432 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.2byte ITEM_CHOICE_BAND
-# 1427 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1433 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.2byte ITEM_CHOICE_SPECS
+# 1434 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.2byte ITEM_CHOICE_SCARF
+# 1435 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.2byte ITEM_HP_UP_EX
+# 1436 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.2byte ITEM_PROTEIN_EX
+# 1437 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.2byte ITEM_IRON_EX
+# 1438 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.2byte ITEM_CARBOS_EX
+# 1439 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.2byte ITEM_ZINC_EX
+# 1440 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.2byte ITEM_CALCIUM_EX
+	.2byte ITEM_NONE
+
+	.align 2
+# 1443 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleTowerBpMart2:
+# 1444 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.2byte ITEM_ELECTRIC_SEED
+# 1445 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.2byte ITEM_PSYCHIC_SEED
+# 1446 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.2byte ITEM_MISTY_SEED
+# 1447 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.2byte ITEM_GRASSY_SEED
+# 1448 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.2byte ITEM_LUCKY_EGG
+# 1449 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.2byte ITEM_ROOM_SERVICE
+# 1450 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.2byte ITEM_BLUNDER_POLICY
+# 1451 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.2byte ITEM_WEAKNESS_POLICY
+# 1452 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.2byte ITEM_HEAVY_DUTY_BOOTS
 	.2byte ITEM_NONE
 
 BattleTowerBPVendor1_Text_0:
@@ -2853,7 +2900,3 @@ BattleTowerBPVendor1_Text_0:
 BattleTowerBPVendor1_Text_1:
 # 1416 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.string "Thanks!$"
-
-BattleTowerBPVendor2_Text_0:
-# 1422 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "TODO$"
