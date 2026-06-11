@@ -8,6 +8,7 @@
 #include "battle_anim.h"
 #include "battle_arena.h"
 #include "battle_controllers.h"
+#include "battle_dome.h"
 #include "battle_message.h"
 #include "battle_interface.h"
 #include "battle_setup.h"
@@ -340,13 +341,19 @@ static u32 OpponentGetTrainerPicId(enum BattlerId battlerId)
         if (gBattleTypeFlags & (BATTLE_TYPE_TWO_OPPONENTS | BATTLE_TYPE_TOWER_LINK_MULTI))
         {
             if (battlerId == 1)
-                trainerPicId = GetFrontierTrainerFrontSpriteId(TRAINER_BATTLE_PARAM.opponentA);
+                trainerPicId = IsPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA)
+                    ? GetPwtDomeTrainerPicId(TRAINER_BATTLE_PARAM.opponentA)
+                    : GetFrontierTrainerFrontSpriteId(TRAINER_BATTLE_PARAM.opponentA);
             else
-                trainerPicId = GetFrontierTrainerFrontSpriteId(TRAINER_BATTLE_PARAM.opponentB);
+                trainerPicId = IsPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentB)
+                    ? GetPwtDomeTrainerPicId(TRAINER_BATTLE_PARAM.opponentB)
+                    : GetFrontierTrainerFrontSpriteId(TRAINER_BATTLE_PARAM.opponentB);
         }
         else
         {
-            trainerPicId = GetFrontierTrainerFrontSpriteId(TRAINER_BATTLE_PARAM.opponentA);
+            trainerPicId = IsPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA)
+                ? GetPwtDomeTrainerPicId(TRAINER_BATTLE_PARAM.opponentA)
+                : GetFrontierTrainerFrontSpriteId(TRAINER_BATTLE_PARAM.opponentA);
         }
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_EREADER_TRAINER)

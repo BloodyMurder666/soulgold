@@ -5,6 +5,7 @@
 #include "battle_ai_util.h"
 #include "battle_arena.h"
 #include "battle_controllers.h"
+#include "battle_dome.h"
 #include "battle_end_turn.h"
 #include "battle_hold_effects.h"
 #include "battle_interface.h"
@@ -3930,9 +3931,17 @@ static void DoBattleIntro(void)
             // Try to set a status to start the battle with
             if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
             {
-                statusesOpponentA = GetTrainerStartingStatusFromId(TRAINER_BATTLE_PARAM.opponentA);
+                if (IsPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA))
+                    statusesOpponentA = GetTrainerStartingStatusFromId(GetPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA));
+                else
+                    statusesOpponentA = GetTrainerStartingStatusFromId(TRAINER_BATTLE_PARAM.opponentA);
                 if (TRAINER_BATTLE_PARAM.opponentB != 0xFFFF)
-                    statusesOpponentB = GetTrainerStartingStatusFromId(TRAINER_BATTLE_PARAM.opponentB);
+                {
+                    if (IsPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentB))
+                        statusesOpponentB = GetTrainerStartingStatusFromId(GetPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentB));
+                    else
+                        statusesOpponentB = GetTrainerStartingStatusFromId(TRAINER_BATTLE_PARAM.opponentB);
+                }
             }
             STARTING_STATUS_DEFINITIONS(UNPACK_STARTING_STATUS_TO_BATTLE);
             gBattleMainFunc = TryDoEventsBeforeFirstTurn;

@@ -1,6 +1,7 @@
 #include "global.h"
 #include "achievements.h"
 #include "battle.h"
+#include "battle_dome.h"
 #include "load_save.h"
 #include "battle_setup.h"
 #include "battle_tower.h"
@@ -854,8 +855,10 @@ enum BattleTransition GetTrainerBattleTransition(void)
     u8 transitionType;
     u8 enemyLevel;
     u8 playerLevel;
-    u32 trainerId = SanitizeTrainerId(TRAINER_BATTLE_PARAM.opponentA);
-    enum TrainerClassID trainerClass = GetTrainerClassFromId(TRAINER_BATTLE_PARAM.opponentA);
+    u32 trainerId = IsPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA)
+        ? GetPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA)
+        : SanitizeTrainerId(TRAINER_BATTLE_PARAM.opponentA);
+    enum TrainerClassID trainerClass = GetTrainerClassFromId(trainerId);
 
     if (DoesTrainerHaveMugshot(trainerId))
         return B_TRANSITION_MUGSHOT;
@@ -1345,7 +1348,9 @@ void BattleSetup_StartTrainerBattle(void)
 
         SetHillTrainerFlag();
     }
-    else if (GetTrainerBattleType(TRAINER_BATTLE_PARAM.opponentA) == TRAINER_BATTLE_TYPE_DOUBLES)
+    else if (GetTrainerBattleType(IsPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA)
+                ? GetPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA)
+                : TRAINER_BATTLE_PARAM.opponentA) == TRAINER_BATTLE_TYPE_DOUBLES)
     {
         gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
     }
@@ -1669,14 +1674,34 @@ static const u8 *GetIntroSpeechOfApproachingTrainer(void)
     if (gApproachingTrainerId == 0)
     {
         if (OW_NAME_BOX_NPC_TRAINER)
-            gSpeakerName = GetTrainerNameFromId(TRAINER_BATTLE_PARAM.opponentA);
+        {
+            if (IsPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA))
+            {
+                CopyPwtDomeTrainerName(gStringVar1, TRAINER_BATTLE_PARAM.opponentA);
+                gSpeakerName = gStringVar1;
+            }
+            else
+            {
+                gSpeakerName = GetTrainerNameFromId(TRAINER_BATTLE_PARAM.opponentA);
+            }
+        }
 
         return ReturnEmptyStringIfNull(TRAINER_BATTLE_PARAM.introTextA);
     }
     else
     {
         if (OW_NAME_BOX_NPC_TRAINER)
-            gSpeakerName = GetTrainerNameFromId(TRAINER_BATTLE_PARAM.opponentB);
+        {
+            if (IsPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentB))
+            {
+                CopyPwtDomeTrainerName(gStringVar1, TRAINER_BATTLE_PARAM.opponentB);
+                gSpeakerName = gStringVar1;
+            }
+            else
+            {
+                gSpeakerName = GetTrainerNameFromId(TRAINER_BATTLE_PARAM.opponentB);
+            }
+        }
 
         return ReturnEmptyStringIfNull(TRAINER_BATTLE_PARAM.introTextB);
     }

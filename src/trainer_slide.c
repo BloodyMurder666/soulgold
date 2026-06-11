@@ -2,6 +2,7 @@
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_controllers.h"
+#include "battle_dome.h"
 #include "battle_message.h"
 #include "battle_setup.h"
 #include "battle_tower.h"
@@ -266,21 +267,27 @@ static void SetTrainerSlideParameters(enum BattlerId battler, u32* firstId, u32*
             {
                 *firstId = MULTI_PARTY_SIZE;
                 *lastId = PARTY_SIZE;
-                *trainerId = SanitizeTrainerId(TRAINER_BATTLE_PARAM.opponentB);
+                *trainerId = IsPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentB)
+                    ? GetPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentB)
+                    : SanitizeTrainerId(TRAINER_BATTLE_PARAM.opponentB);
                 *retValue = TRAINER_SLIDE_TARGET_TRAINER_B;
             }
             else
             {
                 *firstId = 0;
                 *lastId = MULTI_PARTY_SIZE;
-                *trainerId = SanitizeTrainerId(TRAINER_BATTLE_PARAM.opponentA);
+                *trainerId = IsPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA)
+                    ? GetPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA)
+                    : SanitizeTrainerId(TRAINER_BATTLE_PARAM.opponentA);
             }
         }
         else
         {
             *firstId = 0;
             *lastId = PARTY_SIZE;
-            *trainerId = SanitizeTrainerId(TRAINER_BATTLE_PARAM.opponentA);
+            *trainerId = IsPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA)
+                ? GetPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA)
+                : SanitizeTrainerId(TRAINER_BATTLE_PARAM.opponentA);
         }
     }
     else if (GetBattlerPosition(battler) == B_POSITION_PLAYER_RIGHT && gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)

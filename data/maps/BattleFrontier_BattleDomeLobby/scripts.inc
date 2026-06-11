@@ -5,7 +5,6 @@ BattleFrontier_BattleDomeLobby_MapScripts::
 	.byte 0
 
 BattleFrontier_BattleDomeLobby_OnResume:
-	dome_initresultstree
 	end
 
 BattleFrontier_BattleDomeLobby_OnWarp:
@@ -440,7 +439,7 @@ BattleFrontier_BattleDomeLobby_EventScript_ExitRules::
 BattleFrontier_BattleDomeLobby_Text_WelcomeSingleBattle:
 	.string "Where the strategies of Trainers\n"
 	.string "are put to the test!\p"
-	.string "Welcome to the Battle Dome!\p"
+	.string "Welcome to the World Tournament!\p"
 	.string "I am your guide to the Single Battle\n"
 	.string "Tournament.$"
 
@@ -473,7 +472,7 @@ BattleFrontier_BattleDomeLobby_Text_ExplainSinglesChallenge:
 	.string "you will be disqualified.$"
 
 BattleFrontier_BattleDomeLobby_Text_OkayToSaveBeforeChallenge:
-	.string "Before I show you to the Battle Dome,\n"
+	.string "Before I show you to the tournament,\n"
 	.string "I must save the data. Is that okay?$"
 
 BattleFrontier_BattleDomeLobby_Text_WhichLevelMode:
@@ -506,7 +505,7 @@ BattleFrontier_BattleDomeLobby_Text_NotEnoughValidMonsLv50:
 
 BattleFrontier_BattleDomeLobby_Text_ShowYouToBattleDome:
 	.string "I will now show you to\n"
-	.string "the Battle Dome.$"
+	.string "the World Tournament.$"
 
 BattleFrontier_BattleDomeLobby_Text_DidntSaveBeforeQuitting:
 	.string "Excuse me!\p"
@@ -546,13 +545,13 @@ BattleFrontier_BattleDomeLobby_Text_WeveBeenWaitingForYou:
 	.string "We've been waiting for you!$"
 
 BattleFrontier_BattleDomeLobby_Text_OkayToSaveBeforeChallenge2:
-	.string "Before I show you to the Battle Dome,\n"
+	.string "Before I show you to the tournament,\n"
 	.string "I must save the data. Is that okay?$"
 
 BattleFrontier_BattleDomeLobby_Text_WelcomeDoubleBattle:
 	.string "Where the strategies of Trainers\n"
 	.string "are put to the test!\p"
-	.string "Welcome to the Battle Dome!\p"
+	.string "Welcome to the World Tournament!\p"
 	.string "I am your guide to the Double Battle\n"
 	.string "Tournament.$"
 

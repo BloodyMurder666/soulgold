@@ -6,6 +6,7 @@
 #include "battle_ai_util.h"
 #include "battle_anim.h"
 #include "battle_controllers.h"
+#include "battle_dome.h"
 #include "battle_message.h"
 #include "battle_pike.h"
 #include "battle_pyramid.h"
@@ -4983,7 +4984,9 @@ void AdjustFriendship(struct Pokemon *mon, u8 event)
     {
         u8 friendshipLevel = 0;
         s32 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, 0);
-        enum TrainerClassID opponentTrainerClass = GetTrainerClassFromId(TRAINER_BATTLE_PARAM.opponentA);
+        enum TrainerClassID opponentTrainerClass = IsPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA)
+            ? GetTrainerClassFromId(GetPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA))
+            : GetTrainerClassFromId(TRAINER_BATTLE_PARAM.opponentA);
 
         if (friendship > 99)
             friendshipLevel++;
@@ -5276,7 +5279,9 @@ u16 GetBattleBGM(void)
     {
         enum TrainerClassID trainerClass;
 
-        if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
+        if (IsPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA))
+            trainerClass = GetTrainerClassFromId(GetPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA));
+        else if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
             trainerClass = GetFrontierOpponentClass(TRAINER_BATTLE_PARAM.opponentA);
         else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
             trainerClass = TRAINER_CLASS_EXPERT;

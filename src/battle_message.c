@@ -3,6 +3,7 @@
 #include "battle_anim.h"
 #include "battle_ai_util.h"
 #include "battle_controllers.h"
+#include "battle_dome.h"
 #include "battle_message.h"
 #include "battle_setup.h"
 #include "battle_special.h"
@@ -85,6 +86,10 @@ static const u8 sText_PlayerBattledToDrawVsTwo[] = _("You battled to a draw agai
 static const u8 sText_WildFled[] = _("{PLAY_SE SE_FLEE}{B_LINK_OPPONENT1_NAME} fled!"); //not in gen 5+, replaced with match was forfeited text
 static const u8 sText_TwoWildFled[] = _("{PLAY_SE SE_FLEE}{B_LINK_OPPONENT1_NAME} and {B_LINK_OPPONENT2_NAME} fled!"); //not in gen 5+, replaced with match was forfeited text
 static const u8 sText_PlayerDefeatedLinkTrainerTrainer1[] = _("You defeated {B_TRAINER1_NAME_WITH_CLASS}!\p");
+static const u8 sText_PlayerDefeatedDomeTrainer1[] = _("You defeated {B_TRAINER1_NAME_WITH_CLASS}!");
+static const u8 sText_PlayerDefeatedDomeTrainer2[] = _("You defeated {B_TRAINER2_NAME_WITH_CLASS}!");
+static const u8 sText_PlayerLostAgainstDomeTrainer1[] = _("You lost against {B_TRAINER1_NAME_WITH_CLASS}!");
+static const u8 sText_PlayerLostAgainstDomeTrainer2[] = _("You lost against {B_TRAINER2_NAME_WITH_CLASS}!");
 static const u8 sText_OpponentMon1Appeared[] = _("{B_OPPONENT_MON1_NAME} appeared!\p");
 static const u8 sText_WildPkmnAppeared[] = _("You encountered a wild {B_OPPONENT_MON1_NAME}!\p");
 static const u8 sText_WildPkmnAppeared_B[] = _("You encountered a wild {B_OPPONENT_MON1_NAME}!\nRun? Hold {B_BUTTON}.\p");
@@ -2796,6 +2801,11 @@ static const u8 *BattleStringGetOpponentNameByTrainerId(u16 trainerId, u8 *text,
         CopyFrontierBrainTrainerName(text);
         toCpy = text;
     }
+    else if (IsPwtDomeTrainerId(trainerId))
+    {
+        CopyPwtDomeTrainerName(text, trainerId);
+        toCpy = text;
+    }
     else if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
     {
         GetFrontierTrainerName(text, trainerId);
@@ -2903,6 +2913,8 @@ static const u8 *BattleStringGetOpponentClassByTrainerId(u16 trainerId)
         toCpy = gTrainerClasses[GetUnionRoomTrainerClass()].name;
     else if (trainerId == TRAINER_FRONTIER_BRAIN)
         toCpy = gTrainerClasses[GetFrontierBrainTrainerClass()].name;
+    else if (IsPwtDomeTrainerId(trainerId))
+        toCpy = gTrainerClasses[GetTrainerClassFromId(GetPwtDomeTrainerId(trainerId))].name;
     else if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
         toCpy = gTrainerClasses[GetFrontierOpponentClass(trainerId)].name;
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
@@ -3181,7 +3193,11 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
                 toCpy = BattleStringGetPlayerName(text, GetBattlerAtPosition(B_POSITION_PLAYER_LEFT));
                 break;
             case B_TXT_TRAINER1_LOSE_TEXT: // trainerA lose text
-                if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
+                if (IsPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA))
+                {
+                    toCpy = sText_PlayerDefeatedDomeTrainer1;
+                }
+                else if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
                 {
                     CopyFrontierTrainerText(FRONTIER_PLAYER_WON_TEXT, TRAINER_BATTLE_PARAM.opponentA);
                     toCpy = gStringVar4;
@@ -3197,7 +3213,11 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
                 }
                 break;
             case B_TXT_TRAINER1_WIN_TEXT: // trainerA win text
-                if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
+                if (IsPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA))
+                {
+                    toCpy = sText_PlayerLostAgainstDomeTrainer1;
+                }
+                else if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
                 {
                     CopyFrontierTrainerText(FRONTIER_PLAYER_LOST_TEXT, TRAINER_BATTLE_PARAM.opponentA);
                     toCpy = gStringVar4;
@@ -3296,7 +3316,11 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
                 }
                 break;
             case B_TXT_TRAINER2_LOSE_TEXT:
-                if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
+                if (IsPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentB))
+                {
+                    toCpy = sText_PlayerDefeatedDomeTrainer2;
+                }
+                else if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
                 {
                     CopyFrontierTrainerText(FRONTIER_PLAYER_WON_TEXT, TRAINER_BATTLE_PARAM.opponentB);
                     toCpy = gStringVar4;
@@ -3312,7 +3336,11 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
                 }
                 break;
             case B_TXT_TRAINER2_WIN_TEXT:
-                if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
+                if (IsPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentB))
+                {
+                    toCpy = sText_PlayerLostAgainstDomeTrainer2;
+                }
+                else if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
                 {
                     CopyFrontierTrainerText(FRONTIER_PLAYER_LOST_TEXT, TRAINER_BATTLE_PARAM.opponentB);
                     toCpy = gStringVar4;
