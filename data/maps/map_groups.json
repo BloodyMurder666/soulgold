@@ -544,7 +544,10 @@
     "RegirockChamber",
     "SnowtopMountain",
     "SnowtopMountain_B1F",
-    "SnowtopMountain_B1F_2"
+    "SnowtopMountain_B1F_2",
+    "RailwayCave_2F",
+    "RailwayCave_3F",
+    "RailwayCave_Registeel_Room"
   ],
   "gMapGroup_IndoorDynamic": [],
   "gMapGroup_SpecialArea": [

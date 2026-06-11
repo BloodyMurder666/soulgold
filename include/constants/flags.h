@@ -228,7 +228,7 @@
 #define FLAG_ENCOUNTERED_LATIAS_OR_LATIOS    0xCE
 #define FLAG_MET_ARCHIE_METEOR_FALLS         0xCF
 #define FLAG_GOT_BASEMENT_KEY_FROM_WATTSON   0xD0
-#define FLAG_GOT_TM_THUNDERBOLT_FROM_WATTSON 0xD1
+#define FLAG_RAILWAY_THUNDERBOLT             0xD1
 #define FLAG_FAN_CLUB_STRENGTH_SHARED        0xD2 // Set when you rate the strength of another trainer in Lilycove's Trainer Fan Club.
 #define FLAG_DEFEATED_RIVAL_RUSTBORO         0xD3
 #define FLAG_RECEIVED_RED_OR_BLUE_ORB        0xD4
@@ -461,7 +461,7 @@
 #define FLAG_REGISTERED_WALLACE              (TRAINER_REGISTERED_FLAGS_START + REMATCH_WALLACE)
 
 #define FLAG_DAILY_BEAT_SILVER                    0x1AA // Unused Flag
-#define FLAG_UNUSED_0x1AB                    0x1AB // Unused Flag
+#define FLAG_SUS_RAILWAY_DOOR                0x1AB // Unused Flag
 
 #define FLAG_DEFEATED_DEOXYS                 0x1AC //HnS
 #define FLAG_BATTLED_DEOXYS                  0x1AD //HnS
@@ -910,7 +910,7 @@
 #define FLAG_HIDE_CERULEAN_GYM_POKEMON                                          0x35B
 #define FLAG_HIDE_NEWBARKTOWN_LAB_AIDE                                          0x35C
 #define FLAG_HIDE_AZALEA_TOWN_CUT_MASTER                                          0x35D
-#define FLAG_UNUSED_UNSET6                                          0x35E
+#define FLAG_RAILWAY_ELECTRITE                                      0x35E
 #define FLAG_UNUSED_UNSET7                                          0x35F
 #define FLAG_HIDE_BATTLE_TOWER_MULTI_BATTLE_PARTNER_ALT_1           0x360
 #define FLAG_HIDE_BATTLE_TOWER_MULTI_BATTLE_PARTNER_ALT_2           0x361

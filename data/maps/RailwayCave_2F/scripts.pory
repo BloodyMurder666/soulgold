@@ -1,0 +1,32 @@
+mapscripts RailwayCave_2F_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        if (flag(FLAG_SUS_RAILWAY_DOOR)) {
+            setmetatile(73, 10, 0x45A, FALSE)
+            setmetatile(73, 9, 0x452, FALSE)
+        }
+    }
+}
+
+raw `
+RailwayCave_BrailleRegisteel:
+	.braille "THE ONE WHO\n"
+	.braille "CLANGS THE\n"
+	.braille "SCALES.$"
+`
+
+script RailwayCave_SusDoor {
+    lock
+    msgbox("Something is carven on the door...")
+    closemessage
+    braillemsgbox(RailwayCave_BrailleRegisteel)
+    checkspecies(SPECIES_KOMMO_O)
+    if (var(VAR_RESULT) == TRUE) {
+        setflag(FLAG_SUS_RAILWAY_DOOR)
+        setmetatile(73, 10, 0x45A, FALSE)
+        setmetatile(73, 9, 0x452, FALSE)
+        playse(SE_EXIT)
+        special(DrawWholeMapView)
+    }
+    release
+    end
+}

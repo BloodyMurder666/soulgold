@@ -1,0 +1,62 @@
+{
+  "id": "MAP_RAILWAY_CAVE_3F",
+  "name": "RailwayCave_3F",
+  "layout": "LAYOUT_RAILWAY_CAVE_3F",
+  "music": "MUS_DP_GREAT_MARSH",
+  "region_map_section": "MAPSEC_RAILWAY_CAVE",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": true,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ENGINEER",
+      "x": 40,
+      "y": 11,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_TMBALL",
+      "x": 60,
+      "y": 11,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_TM_THUNDERBOLT",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_RAILWAY_THUNDERBOLT"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 15,
+      "y": 13,
+      "elevation": 0,
+      "dest_map": "MAP_RAILWAY_CAVE_2F",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 76,
+      "y": 12,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE32",
+      "dest_warp_id": "4"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": []
+}

@@ -1,0 +1,9 @@
+mapscripts RailwayCave_Registeel_Room_MapScripts {}
+
+script RegisteelChamber_Registeel {
+    lock
+    faceplayer
+    legendaryencounter(SPECIES_REGISTEEL, 50, 1, FLAG_HIDE_REGISTEEL)
+    release
+    end
+}

@@ -2245,3 +2245,9 @@ Common_Text_ReceivedMon:
 	.include "data/maps/SnowtopMountain_B1F/scripts.inc"
 
 	.include "data/maps/SnowtopMountain_B1F_2/scripts.inc"
+
+	.include "data/maps/RailwayCave_2F/scripts.inc"
+
+	.include "data/maps/RailwayCave_3F/scripts.inc"
+
+	.include "data/maps/RailwayCave_Registeel_Room/scripts.inc"

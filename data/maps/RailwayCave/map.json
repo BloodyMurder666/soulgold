@@ -274,7 +274,7 @@
       "x": 37,
       "y": 4,
       "elevation": 0,
-      "dest_map": "MAP_RAILWAY_CAVE",
+      "dest_map": "MAP_RAILWAY_CAVE_2F",
       "dest_warp_id": "0"
     }
   ],

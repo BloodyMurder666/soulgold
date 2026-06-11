@@ -9556,6 +9556,36 @@
       "secondary_tileset": "gTileset_Cave_Ice",
       "border_filepath": "data/layouts/SnowtopMountain_B1F_2/border.bin",
       "blockdata_filepath": "data/layouts/SnowtopMountain_B1F_2/map.bin"
+    },
+    {
+      "id": "LAYOUT_RAILWAY_CAVE_2F",
+      "name": "RailwayCave_2F_Layout",
+      "width": 89,
+      "height": 36,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_g4cave",
+      "border_filepath": "data/layouts/RailwayCave_2F/border.bin",
+      "blockdata_filepath": "data/layouts/RailwayCave_2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_RAILWAY_CAVE_3F",
+      "name": "RailwayCave_3F_Layout",
+      "width": 89,
+      "height": 16,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_g4cave",
+      "border_filepath": "data/layouts/RailwayCave_3F/border.bin",
+      "blockdata_filepath": "data/layouts/RailwayCave_3F/map.bin"
+    },
+    {
+      "id": "LAYOUT_RAILWAY_CAVE_REGISTEEL_ROOM",
+      "name": "RailwayCave_Registeel_Room_Layout",
+      "width": 15,
+      "height": 20,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_g4cave",
+      "border_filepath": "data/layouts/RailwayCave_Registeel_Room/border.bin",
+      "blockdata_filepath": "data/layouts/RailwayCave_Registeel_Room/map.bin"
     }
   ]
 }
