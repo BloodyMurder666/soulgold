@@ -9,7 +9,6 @@
 - Railway cave
 - Registeel in Mt Mortar or railway cave
 - Celebi GS ball event
-- clean up battle pyramid encounters
 - south johto surf route to tease postgame
 - 2-3 more rival crystal/gold events (cianwood city? ice path?)
 - remaining mugshots
