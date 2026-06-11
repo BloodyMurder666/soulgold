@@ -2880,6 +2880,14 @@
 	.2byte \number
 	.endm
 
+	@ Opens the Pokemart system, offering the specified products for BP.
+	@ Products should be a list of .2byte item values preceded by an .align 2.
+	@ Uses BP as currency, with prices based on the .bpCost value in src/data/items.h.
+	.macro bpmart products:req
+	.byte SCR_OP_BPMART
+	.4byte \products
+	.endm
+
 	@ Opens the bag in the specified pocket and lets the Player choose an item.
 	@ This item can be used for scripting purposes and it's stored in VAR_ITEM_ID.
 	.macro chooseitem pocket:req

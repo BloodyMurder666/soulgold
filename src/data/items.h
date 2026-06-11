@@ -10026,6 +10026,7 @@ const struct ItemInfo gItemsInfo[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .bpCost = 40,
         .iconPic = gItemIcon_ChoiceBand,
         .iconPalette = gItemIconPalette_ChoiceBand,
     },
@@ -10041,6 +10042,7 @@ const struct ItemInfo gItemsInfo[] =
     #else
         .price = 100,
     #endif
+        .bpCost = 40,
         .holdEffect = HOLD_EFFECT_CHOICE_SPECS,
         .description = COMPOUND_STRING(
             "Boosts Sp. Atk, but\n"
@@ -10067,6 +10069,7 @@ const struct ItemInfo gItemsInfo[] =
     #else
         .price = 100,
     #endif
+        .bpCost = 40,
         .holdEffect = HOLD_EFFECT_CHOICE_SCARF,
         .description = COMPOUND_STRING(
             "Boosts Speed, but\n"

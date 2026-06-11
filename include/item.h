@@ -67,6 +67,7 @@ typedef void (*ItemUseFunc)(u8);
 struct ItemInfo
 {
     u32 price;
+    u16 bpCost;
     u16 secondaryId;
     ItemUseFunc fieldUseFunc;
     const u8 *description;
@@ -231,6 +232,7 @@ bool32 AddPyramidBagItem(enum Item itemId, u16 count);
 bool32 RemovePyramidBagItem(enum Item itemId, u16 count);
 const u8 *GetItemName(enum Item itemId);
 u32 GetItemPrice(enum Item itemId);
+u16 GetItemBpCost(enum Item itemId);
 const u8 *GetItemEffect(enum Item itemId);
 enum HoldEffect GetItemHoldEffect(enum Item itemId);
 u32 GetItemHoldEffectParam(enum Item itemId);

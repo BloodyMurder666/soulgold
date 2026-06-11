@@ -263,6 +263,7 @@ gScriptCmdTable::
 	script_cmd_table_entry SCR_OP_GIVEBP                 		ScrCmd_givebp						requests_effects=1  @ 0xee
 	script_cmd_table_entry SCR_OP_CHECKPARTYMONLEVEL            ScrCmd_checkpartymonlevel			requests_effects=1  @ 0xef
 	script_cmd_table_entry SCR_OP_SETWILDBATTLE2 				ScrCmd_setwildbattle2               requests_effects=1  @ 0xf0
+	script_cmd_table_entry SCR_OP_BPMART                        ScrCmd_bpmart,                      requests_effects=1  @ 0xf1
 
 	.if ALLOCATE_SCRIPT_CMD_TABLE
 gScriptCmdTableEnd::

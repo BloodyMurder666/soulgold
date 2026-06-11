@@ -828,6 +828,11 @@ u32 GetItemPrice(enum Item itemId)
     return gItemsInfo[SanitizeItemId(itemId)].price;
 }
 
+u16 GetItemBpCost(enum Item itemId)
+{
+    return gItemsInfo[SanitizeItemId(itemId)].bpCost;
+}
+
 static bool32 DoesItemHavePluralName(enum Item itemId)
 {
     return gItemsInfo[SanitizeItemId(itemId)].pluralName != NULL;

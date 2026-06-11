@@ -1409,9 +1409,20 @@ BattleFrontier_BattleTowerLobby_Text_ExplainMultiLinkRules:
 `
 
 script BattleTowerBPVendor1 {
-msgbox("TODO", MSGBOX_NPC)
+	lock
+	faceplayer
+	msgbox("Welcome!")
+	bpmart(BattleTowerBpMart1)
+	msgbox("Thanks!")
+	release
+	end
 }
 
 script BattleTowerBPVendor2 {
 msgbox("TODO", MSGBOX_NPC)
+}
+
+mart BattleTowerBpMart1 {
+	ITEM_CHOICE_BAND
+	ITEM_CHOICE_SPECS
 }

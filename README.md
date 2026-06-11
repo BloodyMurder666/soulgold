@@ -11,7 +11,7 @@ Based on expansion port of Pokemon Heart and Soul. Feature list to be made later
 - Estellar for pathfinding
 - [PokemonSanFran/PSF](https://github.com/PokemonSanFran/pokeemerald/wiki/Battle-Arcade) for battle arcade branch
 - LinathanZel for help window
-- Kasenn for tinting battle bgs
+- Kasenn for tinting battle bgs and bp mart
 - [bassforte123](https://github.com/bassforte123/pokeemerald-complete/tree/Trait-and-Items) for multi ability system
 - PurrfectDoodle, RavePossum and Ruki for battle backgrounds
 - Ravepossum for HGSS ui

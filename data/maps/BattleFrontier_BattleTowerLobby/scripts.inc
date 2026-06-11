@@ -2817,16 +2817,43 @@ BattleFrontier_BattleTowerLobby_Text_ExplainMultiLinkRules:
 
 BattleTowerBPVendor1::
 # 1412 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleTowerBPVendor1_Text_0, MSGBOX_NPC
-	return
+	lock
+# 1413 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	faceplayer
+# 1414 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox BattleTowerBPVendor1_Text_0
+# 1415 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	bpmart BattleTowerBpMart1
+# 1416 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox BattleTowerBPVendor1_Text_1
+# 1417 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	release
+	end
 
 
 BattleTowerBPVendor2::
-# 1416 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleTowerBPVendor1_Text_0, MSGBOX_NPC
+# 1422 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox BattleTowerBPVendor2_Text_0, MSGBOX_NPC
 	return
 
 
+	.align 2
+# 1425 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleTowerBpMart1:
+# 1426 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.2byte ITEM_CHOICE_BAND
+# 1427 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.2byte ITEM_CHOICE_SPECS
+	.2byte ITEM_NONE
+
 BattleTowerBPVendor1_Text_0:
-# 1412 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1414 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Welcome!$"
+
+BattleTowerBPVendor1_Text_1:
+# 1416 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Thanks!$"
+
+BattleTowerBPVendor2_Text_0:
+# 1422 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.string "TODO$"
