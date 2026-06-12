@@ -536,6 +536,15 @@ void BattleSetup_StartLegendaryBattle(void)
     case SPECIES_CHIEN_PAO:
         CreateBattleStartTask(B_TRANSITION_BLUR, MUS_DP_VS_LEGEND);
         break;
+    case SPECIES_REGICE:
+        CreateBattleStartTask(B_TRANSITION_REGICE, MUS_VS_REGI);
+        break;
+    case SPECIES_REGISTEEL:
+        CreateBattleStartTask(B_TRANSITION_REGISTEEL, MUS_VS_REGI);
+        break;
+    case SPECIES_REGIROCK:
+        CreateBattleStartTask(B_TRANSITION_REGIROCK, MUS_VS_REGI);
+        break;
     case SPECIES_MESPRIT:
     case SPECIES_UXIE:
     case SPECIES_AZELF:
@@ -708,7 +717,9 @@ enum BattleEnvironments BattleSetup_GetEnvironmentId(void)
 
     if (GetSavedWeather() == WEATHER_SNOW)
         return BATTLE_ENVIRONMENT_SNOW;
-    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_SNOWTOP_MOUNTAIN))
+    if (gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_SNOWTOP_MOUNTAIN)
+      || gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_SNOWTOP_MOUNTAIN_B1F)
+      || gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_SNOWTOP_MOUNTAIN_B1F_2))
         return BATTLE_ENVIRONMENT_SNOW;
 
     if (MetatileBehavior_IsTallGrass(tileBehavior))

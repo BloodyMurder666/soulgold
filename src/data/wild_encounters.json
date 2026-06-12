@@ -14596,7 +14596,7 @@
           "map": "MAP_RAILWAY_CAVE_2F",
           "base_label": "gRailwayCave_2F",
           "land_mons": {
-            "encounter_rate": 10,
+            "encounter_rate": 6,
             "mons": [
               {
                 "min_level": 25,
@@ -14657,6 +14657,36 @@
                 "min_level": 26,
                 "max_level": 29,
                 "species": "SPECIES_PIKACHU"
+              }
+            ]
+          },
+          "water_mons": {
+            "encounter_rate": 7,
+            "mons": [
+              {
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_TYNAMO"
+              },
+              {
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_TYNAMO"
+              },
+              {
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_EELEKTRIK"
+              },
+              {
+                "min_level": 23,
+                "max_level": 27,
+                "species": "SPECIES_OCTILLERY"
+              },
+              {
+                "min_level": 25,
+                "max_level": 30,
+                "species": "SPECIES_OCTILLERY"
               }
             ]
           },
@@ -14665,83 +14695,53 @@
             "mons": [
               {
                 "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
+                "max_level": 20,
+                "species": "SPECIES_CLAMPERL"
               },
               {
                 "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
+                "max_level": 20,
+                "species": "SPECIES_CLAMPERL"
               },
               {
                 "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
+                "max_level": 20,
+                "species": "SPECIES_CLAMPERL"
               },
               {
                 "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
+                "max_level": 30,
+                "species": "SPECIES_CLAMPERL"
               },
               {
                 "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
+                "max_level": 30,
+                "species": "SPECIES_CLAMPERL"
               },
               {
                 "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
+                "max_level": 40,
+                "species": "SPECIES_CLAMPERL"
               },
               {
                 "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
+                "max_level": 40,
+                "species": "SPECIES_CLAMPERL"
               },
               {
                 "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
+                "max_level": 40,
+                "species": "SPECIES_CLAMPERL"
               },
               {
                 "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
+                "max_level": 40,
+                "species": "SPECIES_CLAMPERL"
               },
               {
                 "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
-              }
-            ]
-          },
-          "water_mons": {
-            "encounter_rate": 7,
-            "mons": [
-              {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
-              },
-              {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
-              },
-              {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
-              },
-              {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
-              },
-              {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
+                "max_level": 40,
+                "species": "SPECIES_CLAMPERL"
               }
             ]
           }
@@ -14750,7 +14750,7 @@
           "map": "MAP_RAILWAY_CAVE_3F",
           "base_label": "gRailwayCave_3F",
           "land_mons": {
-            "encounter_rate": 10,
+            "encounter_rate": 6,
             "mons": [
               {
                 "min_level": 25,

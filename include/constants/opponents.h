@@ -874,10 +874,10 @@
 #define TRAINER_RIVALCRYSTAL1             867
 #define TRAINER_RIVALGOLD2                868
 #define TRAINER_RIVALCRYSTAL2             869
-#define TRAINER_UNUSED_6                  870
-#define TRAINER_UNUSED_7                  871
-#define TRAINER_UNUSED_8                  872
-#define TRAINER_UNUSED_9                  873
+#define TRAINER_RAILWAYBOB                870
+#define TRAINER_RAILWAYMASON              871
+#define TRAINER_RAILWAYYODA               872
+#define TRAINER_RAILWAYSANADA             873
 #define TRAINER_UNUSED_10                 874
 #define TRAINER_UNUSED_11                 875
 #define TRAINER_UNUSED_12                 876

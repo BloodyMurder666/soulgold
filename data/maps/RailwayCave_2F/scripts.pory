@@ -30,3 +30,40 @@ script RailwayCave_SusDoor {
     release
     end
 }
+
+script RailwayCave_TrainerBob {
+        trainerbattle_single(TRAINER_RAILWAYBOB, "Did you know? Digletts and Dugtrios
+                                                  helped us dig these tunnels.",
+                                            "Did you know? It still took many years
+                                            to complete!")
+        msgbox("Did you know? This crag is much harder
+                than the average mountain rock. 
+                It has a lot of metal mixed into it, 
+                making digging take more time.", MSGBOX_AUTOCLOSE)
+}
+
+script RailwayCave_TrainerMason {
+        trainerbattle_single(TRAINER_RAILWAYMASON, "Ow! Something latched onto my foot!",
+                                            "Oh, it was only my Stunfisk!")
+        msgbox("Stunfisk like to burrow into the ground
+                here. They seem to enjoy the
+                atmosphere.", MSGBOX_AUTOCLOSE)
+}
+
+script RailwayCave_TrainerYoda {
+    trainerbattle_single(TRAINER_RAILWAYYODA, "Hya! The electricity running though the
+                                               air is great for my muscles",
+                                            "We must keep training!")
+        msgbox("The jolts of electricity that run here
+                are great for relaxing the muscles
+                after a long workout!", MSGBOX_AUTOCLOSE)
+}
+
+script RailwayCave_TrainerSanada {
+    trainerbattle_single(TRAINER_RAILWAYSANADA, "This is the maintenance tunnel for
+                                                the train tracks, how did you get in?",
+                                            "I'm reporting this to my superiors!")
+        msgbox("Just because you can run into
+                any place you want with your Pokémon
+                doesn't mean you should!", MSGBOX_AUTOCLOSE)
+}

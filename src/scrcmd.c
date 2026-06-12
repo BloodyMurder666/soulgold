@@ -3740,11 +3740,11 @@ bool8 ScrCmd_istmrelearneractive(struct ScriptContext *ctx)
 // ====================== HnS: giveoddegg ======================
 static const u16 sOddEggSpecies[8] = {
     SPECIES_NONE,        // [0] unused
-    SPECIES_ELEKID,      // 1
-    SPECIES_MAGBY,       // 2
+    SPECIES_BAGON,      // 1
+    SPECIES_GIBLE,       // 2
     SPECIES_FEEBAS,      // 3
     SPECIES_RIOLU,       // 4
-    SPECIES_ZORUA,       // 5
+    SPECIES_JANGMO_O,       // 5
     SPECIES_ZORUA_HISUI, // 6
     SPECIES_GOOMY,       // 7
 };
@@ -3793,7 +3793,17 @@ static const u8 sOddEggShinyNameList[][PLAYER_NAME_LENGTH + 1] = {
     _("Eemeli"),
     _("Doves"),
     _("Drac"),
-    _("Nem")
+    _("Nem"),
+    _("Jan"),
+    _("Dvs"),
+    _("Doves"),
+    _("Simpli"),
+    _("Ansu"),
+    _("Niko"),
+    _("Pate"),
+    _("Hilda"),
+    _("Athena"),
+    _("Bai")
 };
 
 static bool8 IsPlayerNameInShinyList(void)

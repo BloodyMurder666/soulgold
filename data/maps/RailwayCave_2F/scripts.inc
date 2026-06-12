@@ -60,6 +60,99 @@ RailwayCave_SusDoor_2:
 	goto RailwayCave_SusDoor_1
 
 
+RailwayCave_TrainerBob::
+# 35 "data/maps/RailwayCave_2F/scripts.pory"
+	trainerbattle_single TRAINER_RAILWAYBOB, RailwayCave_TrainerBob_Text_0, RailwayCave_TrainerBob_Text_1
+# 39 "data/maps/RailwayCave_2F/scripts.pory"
+	msgbox RailwayCave_TrainerBob_Text_2, MSGBOX_AUTOCLOSE
+	return
+
+
+RailwayCave_TrainerMason::
+# 46 "data/maps/RailwayCave_2F/scripts.pory"
+	trainerbattle_single TRAINER_RAILWAYMASON, RailwayCave_TrainerMason_Text_0, RailwayCave_TrainerMason_Text_1
+# 48 "data/maps/RailwayCave_2F/scripts.pory"
+	msgbox RailwayCave_TrainerMason_Text_2, MSGBOX_AUTOCLOSE
+	return
+
+
+RailwayCave_TrainerYoda::
+# 54 "data/maps/RailwayCave_2F/scripts.pory"
+	trainerbattle_single TRAINER_RAILWAYYODA, RailwayCave_TrainerYoda_Text_0, RailwayCave_TrainerYoda_Text_1
+# 57 "data/maps/RailwayCave_2F/scripts.pory"
+	msgbox RailwayCave_TrainerYoda_Text_2, MSGBOX_AUTOCLOSE
+	return
+
+
+RailwayCave_TrainerSanada::
+# 63 "data/maps/RailwayCave_2F/scripts.pory"
+	trainerbattle_single TRAINER_RAILWAYSANADA, RailwayCave_TrainerSanada_Text_0, RailwayCave_TrainerSanada_Text_1
+# 66 "data/maps/RailwayCave_2F/scripts.pory"
+	msgbox RailwayCave_TrainerSanada_Text_2, MSGBOX_AUTOCLOSE
+	return
+
+
 RailwayCave_SusDoor_Text_0:
 # 19 "data/maps/RailwayCave_2F/scripts.pory"
 	.string "Something is carven on the door...$"
+
+RailwayCave_TrainerBob_Text_0:
+# 35 "data/maps/RailwayCave_2F/scripts.pory"
+	.string "Did you know? Digletts and Dugtrios\n"
+	.string "helped us dig these tunnels.$"
+
+RailwayCave_TrainerBob_Text_1:
+# 37 "data/maps/RailwayCave_2F/scripts.pory"
+	.string "Did you know? It still took many years\n"
+	.string "to complete!$"
+
+RailwayCave_TrainerBob_Text_2:
+# 39 "data/maps/RailwayCave_2F/scripts.pory"
+	.string "Did you know? This crag is much harder\n"
+	.string "than the average mountain rock. \l"
+	.string "It has a lot of metal mixed into it, \l"
+	.string "making digging take more time.$"
+
+RailwayCave_TrainerMason_Text_0:
+# 46 "data/maps/RailwayCave_2F/scripts.pory"
+	.string "Ow! Something latched onto my foot!$"
+
+RailwayCave_TrainerMason_Text_1:
+# 47 "data/maps/RailwayCave_2F/scripts.pory"
+	.string "Oh, it was only my Stunfisk!$"
+
+RailwayCave_TrainerMason_Text_2:
+# 48 "data/maps/RailwayCave_2F/scripts.pory"
+	.string "Stunfisk like to burrow into the ground\n"
+	.string "here. They seem to enjoy the\l"
+	.string "atmosphere.$"
+
+RailwayCave_TrainerYoda_Text_0:
+# 54 "data/maps/RailwayCave_2F/scripts.pory"
+	.string "Hya! The electricity running though the\n"
+	.string "air is great for my muscles$"
+
+RailwayCave_TrainerYoda_Text_1:
+# 56 "data/maps/RailwayCave_2F/scripts.pory"
+	.string "We must keep training!$"
+
+RailwayCave_TrainerYoda_Text_2:
+# 57 "data/maps/RailwayCave_2F/scripts.pory"
+	.string "The jolts of electricity that run here\n"
+	.string "are great for relaxing the muscles\l"
+	.string "after a long workout!$"
+
+RailwayCave_TrainerSanada_Text_0:
+# 63 "data/maps/RailwayCave_2F/scripts.pory"
+	.string "This is the maintenance tunnel for\n"
+	.string "the train tracks, how did you get in?$"
+
+RailwayCave_TrainerSanada_Text_1:
+# 65 "data/maps/RailwayCave_2F/scripts.pory"
+	.string "I'm reporting this to my superiors!$"
+
+RailwayCave_TrainerSanada_Text_2:
+# 66 "data/maps/RailwayCave_2F/scripts.pory"
+	.string "Just because you can run into\n"
+	.string "any place you want with your Pokémon\l"
+	.string "doesn't mean you should!$"
