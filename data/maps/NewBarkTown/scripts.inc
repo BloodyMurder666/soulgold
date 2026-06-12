@@ -707,88 +707,94 @@ NewBarkTown_EventScript_RivalBattle::
 # 359 "data/maps/NewBarkTown/scripts.pory"
 	waitmovement 0
 # 360 "data/maps/NewBarkTown/scripts.pory"
-	msgbox NewBarkTown_EventScript_RivalBattle_Text_0
+	createfieldmugshotrival
 # 361 "data/maps/NewBarkTown/scripts.pory"
-	applymovement OBJ_EVENT_ID_FOLLOWER, NewBarkTown_EventScript_RivalBattle_Movement_4
+	msgbox NewBarkTown_EventScript_RivalBattle_Text_0
 # 362 "data/maps/NewBarkTown/scripts.pory"
-	playse SE_BALL_OPEN
+	applymovement OBJ_EVENT_ID_FOLLOWER, NewBarkTown_EventScript_RivalBattle_Movement_4
 # 363 "data/maps/NewBarkTown/scripts.pory"
-	waitmovement 0
+	playse SE_BALL_OPEN
 # 364 "data/maps/NewBarkTown/scripts.pory"
-	bufferleadmonspeciesname STR_VAR_1
+	waitmovement 0
 # 365 "data/maps/NewBarkTown/scripts.pory"
+	bufferleadmonspeciesname STR_VAR_1
+# 366 "data/maps/NewBarkTown/scripts.pory"
 	msgbox NewBarkTown_EventScript_RivalBattle_Text_1
-# 367 "data/maps/NewBarkTown/scripts.pory"
-	msgbox NewBarkTown_EventScript_RivalBattle_Text_2
 # 368 "data/maps/NewBarkTown/scripts.pory"
+	msgbox NewBarkTown_EventScript_RivalBattle_Text_2
+# 369 "data/maps/NewBarkTown/scripts.pory"
 	msgbox NewBarkTown_EventScript_RivalBattle_Text_3
-# 370 "data/maps/NewBarkTown/scripts.pory"
+# 371 "data/maps/NewBarkTown/scripts.pory"
 	msgbox NewBarkTown_EventScript_RivalBattle_Text_4
-# 372 "data/maps/NewBarkTown/scripts.pory"
+# 373 "data/maps/NewBarkTown/scripts.pory"
 	msgbox NewBarkTown_EventScript_RivalBattle_Text_5
-# 375 "data/maps/NewBarkTown/scripts.pory"
-	setflag FLAG_NO_WHITEOUT
 # 376 "data/maps/NewBarkTown/scripts.pory"
-	checkplayergender
+	setflag FLAG_NO_WHITEOUT
 # 377 "data/maps/NewBarkTown/scripts.pory"
+	checkplayergender
+# 378 "data/maps/NewBarkTown/scripts.pory"
 	compare VAR_RESULT, MALE
 	goto_if_eq NewBarkTown_EventScript_RivalBattle_2
-# 380 "data/maps/NewBarkTown/scripts.pory"
+# 381 "data/maps/NewBarkTown/scripts.pory"
 	trainerbattle_no_intro TRAINER_RIVALGOLD1, NewBarkTown_EventScript_RivalBattle_Text_6
 NewBarkTown_EventScript_RivalBattle_1:
-# 382 "data/maps/NewBarkTown/scripts.pory"
-	clearflag FLAG_NO_WHITEOUT
 # 383 "data/maps/NewBarkTown/scripts.pory"
-	special HealPlayerParty
+	clearflag FLAG_NO_WHITEOUT
 # 384 "data/maps/NewBarkTown/scripts.pory"
-	msgbox NewBarkTown_EventScript_RivalBattle_Text_7
+	special HealPlayerParty
+# 385 "data/maps/NewBarkTown/scripts.pory"
+	createfieldmugshotrival
 # 386 "data/maps/NewBarkTown/scripts.pory"
+	msgbox NewBarkTown_EventScript_RivalBattle_Text_7
+# 388 "data/maps/NewBarkTown/scripts.pory"
 	msgbox NewBarkTown_EventScript_RivalBattle_Text_8
-# 389 "data/maps/NewBarkTown/scripts.pory"
-	closemessage
-# 390 "data/maps/NewBarkTown/scripts.pory"
-	applymovement LOCALID_NEWBARK_RIVAL, NewBarkTown_EventScript_RivalBattle_Movement_5
 # 391 "data/maps/NewBarkTown/scripts.pory"
-	applymovement LOCALID_NEWBARK_MARILL2, NewBarkTown_EventScript_RivalBattle_Movement_6
+	removefieldmugshot
 # 392 "data/maps/NewBarkTown/scripts.pory"
-	waitmovement 0
+	closemessage
 # 393 "data/maps/NewBarkTown/scripts.pory"
-	removeobject LOCALID_NEWBARK_RIVAL
+	applymovement LOCALID_NEWBARK_RIVAL, NewBarkTown_EventScript_RivalBattle_Movement_5
 # 394 "data/maps/NewBarkTown/scripts.pory"
-	removeobject LOCALID_NEWBARK_MARILL
+	applymovement LOCALID_NEWBARK_MARILL2, NewBarkTown_EventScript_RivalBattle_Movement_6
 # 395 "data/maps/NewBarkTown/scripts.pory"
-	removeobject LOCALID_NEWBARK_MARILL2
+	waitmovement 0
 # 396 "data/maps/NewBarkTown/scripts.pory"
-	fadedefaultbgm
+	removeobject LOCALID_NEWBARK_RIVAL
 # 397 "data/maps/NewBarkTown/scripts.pory"
-	setvar VAR_RIVAL_STATE, 3
+	removeobject LOCALID_NEWBARK_MARILL
 # 398 "data/maps/NewBarkTown/scripts.pory"
+	removeobject LOCALID_NEWBARK_MARILL2
+# 399 "data/maps/NewBarkTown/scripts.pory"
+	fadedefaultbgm
+# 400 "data/maps/NewBarkTown/scripts.pory"
+	setvar VAR_RIVAL_STATE, 3
+# 401 "data/maps/NewBarkTown/scripts.pory"
 	release
 	end
 
 NewBarkTown_EventScript_RivalBattle_2:
-# 378 "data/maps/NewBarkTown/scripts.pory"
+# 379 "data/maps/NewBarkTown/scripts.pory"
 	trainerbattle_no_intro TRAINER_RIVALCRYSTAL1, NewBarkTown_EventScript_RivalBattle_Text_6
 	goto NewBarkTown_EventScript_RivalBattle_1
 
 
 RivalsMailbox::
-# 403 "data/maps/NewBarkTown/scripts.pory"
+# 406 "data/maps/NewBarkTown/scripts.pory"
 	lock
-# 404 "data/maps/NewBarkTown/scripts.pory"
+# 407 "data/maps/NewBarkTown/scripts.pory"
 	checkplayergender
-# 405 "data/maps/NewBarkTown/scripts.pory"
+# 408 "data/maps/NewBarkTown/scripts.pory"
 	compare VAR_RESULT, MALE
 	goto_if_eq RivalsMailbox_2
-# 408 "data/maps/NewBarkTown/scripts.pory"
+# 411 "data/maps/NewBarkTown/scripts.pory"
 	msgbox RivalsMailbox_Text_1
 RivalsMailbox_1:
-# 410 "data/maps/NewBarkTown/scripts.pory"
+# 413 "data/maps/NewBarkTown/scripts.pory"
 	release
 	end
 
 RivalsMailbox_2:
-# 406 "data/maps/NewBarkTown/scripts.pory"
+# 409 "data/maps/NewBarkTown/scripts.pory"
 	msgbox RivalsMailbox_Text_0
 	goto RivalsMailbox_1
 
@@ -939,100 +945,100 @@ NewBarkTown_EventScript_RivalBattle_Movement_3:
 	walk_right
 	step_end
 
-# 361 "data/maps/NewBarkTown/scripts.pory"
+# 362 "data/maps/NewBarkTown/scripts.pory"
 NewBarkTown_EventScript_RivalBattle_Movement_4:
-# 361 "data/maps/NewBarkTown/scripts.pory"
+# 362 "data/maps/NewBarkTown/scripts.pory"
 	walk_fast_left
-# 361 "data/maps/NewBarkTown/scripts.pory"
+# 362 "data/maps/NewBarkTown/scripts.pory"
 	face_right
-# 361 "data/maps/NewBarkTown/scripts.pory"
+# 362 "data/maps/NewBarkTown/scripts.pory"
 	exit_pokeball
-# 361 "data/maps/NewBarkTown/scripts.pory"
+# 362 "data/maps/NewBarkTown/scripts.pory"
 	set_visible
 	step_end
 
-# 390 "data/maps/NewBarkTown/scripts.pory"
+# 393 "data/maps/NewBarkTown/scripts.pory"
 NewBarkTown_EventScript_RivalBattle_Movement_5:
-# 390 "data/maps/NewBarkTown/scripts.pory"
+# 393 "data/maps/NewBarkTown/scripts.pory"
 	walk_down
-# 390 "data/maps/NewBarkTown/scripts.pory"
+# 393 "data/maps/NewBarkTown/scripts.pory"
 	walk_down
-# 390 "data/maps/NewBarkTown/scripts.pory"
+# 393 "data/maps/NewBarkTown/scripts.pory"
 	walk_down
-# 390 "data/maps/NewBarkTown/scripts.pory"
+# 393 "data/maps/NewBarkTown/scripts.pory"
 	walk_down
-# 390 "data/maps/NewBarkTown/scripts.pory"
+# 393 "data/maps/NewBarkTown/scripts.pory"
 	walk_down
-# 390 "data/maps/NewBarkTown/scripts.pory"
+# 393 "data/maps/NewBarkTown/scripts.pory"
 	walk_down
 	step_end
 
-# 391 "data/maps/NewBarkTown/scripts.pory"
+# 394 "data/maps/NewBarkTown/scripts.pory"
 NewBarkTown_EventScript_RivalBattle_Movement_6:
-# 391 "data/maps/NewBarkTown/scripts.pory"
+# 394 "data/maps/NewBarkTown/scripts.pory"
 	walk_left
-# 391 "data/maps/NewBarkTown/scripts.pory"
+# 394 "data/maps/NewBarkTown/scripts.pory"
 	walk_down
-# 391 "data/maps/NewBarkTown/scripts.pory"
+# 394 "data/maps/NewBarkTown/scripts.pory"
 	walk_down
-# 391 "data/maps/NewBarkTown/scripts.pory"
+# 394 "data/maps/NewBarkTown/scripts.pory"
 	walk_down
-# 391 "data/maps/NewBarkTown/scripts.pory"
+# 394 "data/maps/NewBarkTown/scripts.pory"
 	walk_down
-# 391 "data/maps/NewBarkTown/scripts.pory"
+# 394 "data/maps/NewBarkTown/scripts.pory"
 	walk_down
-# 391 "data/maps/NewBarkTown/scripts.pory"
+# 394 "data/maps/NewBarkTown/scripts.pory"
 	walk_down
 	step_end
 
 NewBarkTown_EventScript_RivalBattle_Text_0:
-# 360 "data/maps/NewBarkTown/scripts.pory"
+# 361 "data/maps/NewBarkTown/scripts.pory"
 	.string "{PLAYER}!$"
 
 NewBarkTown_EventScript_RivalBattle_Text_1:
-# 365 "data/maps/NewBarkTown/scripts.pory"
+# 366 "data/maps/NewBarkTown/scripts.pory"
 	.string "So you picked...\n"
 	.string "a {STR_VAR_1}!$"
 
 NewBarkTown_EventScript_RivalBattle_Text_2:
-# 367 "data/maps/NewBarkTown/scripts.pory"
+# 368 "data/maps/NewBarkTown/scripts.pory"
 	.string "That's a cute Pokémon you have!$"
 
 NewBarkTown_EventScript_RivalBattle_Text_3:
-# 368 "data/maps/NewBarkTown/scripts.pory"
+# 369 "data/maps/NewBarkTown/scripts.pory"
 	.string "When you walk with it, it'll become\n"
 	.string "more friendly!$"
 
 NewBarkTown_EventScript_RivalBattle_Text_4:
-# 370 "data/maps/NewBarkTown/scripts.pory"
+# 371 "data/maps/NewBarkTown/scripts.pory"
 	.string "You should turn around and talk to it\n"
 	.string "sometimes, too.$"
 
 NewBarkTown_EventScript_RivalBattle_Text_5:
-# 372 "data/maps/NewBarkTown/scripts.pory"
+# 373 "data/maps/NewBarkTown/scripts.pory"
 	.string "Hey, why don't we have a battle?\n"
 	.string "That's what trainers usually do when\l"
 	.string "they meet!$"
 
 NewBarkTown_EventScript_RivalBattle_Text_6:
-# 378 "data/maps/NewBarkTown/scripts.pory"
+# 379 "data/maps/NewBarkTown/scripts.pory"
 	.string "You did really well, {PLAYER}!$"
 
 NewBarkTown_EventScript_RivalBattle_Text_7:
-# 384 "data/maps/NewBarkTown/scripts.pory"
+# 386 "data/maps/NewBarkTown/scripts.pory"
 	.string "That was really fun, and both of our\n"
 	.string "Pokémon did their best!$"
 
 NewBarkTown_EventScript_RivalBattle_Text_8:
-# 386 "data/maps/NewBarkTown/scripts.pory"
+# 388 "data/maps/NewBarkTown/scripts.pory"
 	.string "You got a task from Elm right?\n"
 	.string "I'll leave you to it then.\l"
 	.string "See ya!$"
 
 RivalsMailbox_Text_0:
-# 406 "data/maps/NewBarkTown/scripts.pory"
+# 409 "data/maps/NewBarkTown/scripts.pory"
 	.string "Crystal's house$"
 
 RivalsMailbox_Text_1:
-# 408 "data/maps/NewBarkTown/scripts.pory"
+# 411 "data/maps/NewBarkTown/scripts.pory"
 	.string "Gold's house$"

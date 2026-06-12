@@ -3026,6 +3026,12 @@
 	.2byte \emote
 	.endm
 
+	@ spawn the opposite-gender rival mugshot in the overworld
+	.macro createfieldmugshotrival emote=0
+	callnative CreateFieldMugshotRival
+	.2byte \emote
+	.endm
+
 	@ destroys a mugshot in the overworld, if there is one
 	.macro removefieldmugshot
 	callnative RemoveFieldMugshot

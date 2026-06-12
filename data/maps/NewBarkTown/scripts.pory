@@ -357,6 +357,7 @@ script NewBarkTown_EventScript_RivalBattle {
     waitmovement(0)
     applymovement(LOCALID_NEWBARK_RIVAL, moves(face_left))
     waitmovement(0)
+	createfieldmugshotrival
     msgbox("{PLAYER}!")
 	applymovement(OBJ_EVENT_ID_FOLLOWER, moves(walk_fast_left, face_right, exit_pokeball, set_visible))
 	playse(SE_BALL_OPEN)
@@ -381,11 +382,13 @@ script NewBarkTown_EventScript_RivalBattle {
     }
     clearflag(FLAG_NO_WHITEOUT)
     special(HealPlayerParty)
+	createfieldmugshotrival
     msgbox("That was really fun, and both of our
             Pokémon did their best!")
     msgbox("You got a task from Elm right?
             I'll leave you to it then.
             See ya!")
+	removefieldmugshot
     closemessage
     applymovement(LOCALID_NEWBARK_RIVAL, moves(walk_down*6))
     applymovement(LOCALID_NEWBARK_MARILL2, moves(walk_left, walk_down*6))

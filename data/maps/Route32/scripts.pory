@@ -505,10 +505,12 @@ script Route32HiddenGrottoWarp {
 
 script Route32RivalGrottoTutorial {
 	lock
+	createfieldmugshotrival
 	msgbox("{PLAYER}! I see you managed to get
 			your first badge!")
 	playbgm(MUS_HG_LYRA, TRUE)
 	closemessage
+	removefieldmugshot
 	moveobjecttocoords(LOCALID_PLAYER, 25, 25, DIR_SOUTH)
 	applymovement(LOCALID_ROUTE32_RIVAL, moves(walk_up*5))
 	applymovement(LOCALID_ROUTE32_MARILL, moves(walk_up*5, walk_right, walk_up))
@@ -519,15 +521,18 @@ script Route32RivalGrottoTutorial {
 	applymovement(LOCALID_ROUTE32_MARILL, moves(jump_in_place_up))
 	playse(SE_LEDGE)
 	waitmovement(0)
+	createfieldmugshotrival
 	msgbox("Even Marill wanted to congratulate you!")
 	msgbox("Listen, there's something you should
 			see. I came across it when exploring
 			the route. Follow me!")
 	closemessage
+	removefieldmugshot
 	applymovement(LOCALID_ROUTE32_RIVAL, moves(walk_left*12, walk_up, face_right))
 	applymovement(LOCALID_ROUTE32_MARILL, moves(walk_left*14, walk_up, face_right))
 	applymovement(LOCALID_PLAYER, moves(walk_left*11))
 	waitmovement(LOCALID_ROUTE32_MARILL)
+	createfieldmugshotrival
 	msgbox("See this small spot between the trees?
 			It leads to a Hidden Grotto.
 
@@ -546,6 +551,7 @@ script Route32RivalGrottoTutorial {
 			you there! Good luck with the
 			next Gym, {PLAYER}!")
 	closemessage
+	removefieldmugshot
 	applymovement(LOCALID_ROUTE32_RIVAL, moves(walk_down))
 	applymovement(LOCALID_ROUTE32_MARILL, moves(walk_right, face_down))
 	waitmovement

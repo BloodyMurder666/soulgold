@@ -235,6 +235,7 @@ script Route34_RivalEncounter {
 	waitmovement
 	applymovement(LOCALID_ROUTE34_DAYCAREMAN, moves(face_down))
 	waitmovement
+	createfieldmugshotrival
     msgbox("Good pace, {PLAYER}!
             You've almost reached Goldenrod City!
             
@@ -251,6 +252,7 @@ script Route34_RivalEncounter {
     } else {
         trainerbattle_no_intro(TRAINER_RIVALGOLD2, "Still not good enough...")
     }
+	createfieldmugshotrival
     msgbox("Well that sucks... When grandma hears
             of this, I'll never hear the end of it...
             
@@ -268,6 +270,7 @@ script Route34_RivalEncounter {
     random(7)
 	addvar(VAR_RESULT, 1)
 	giveoddegg(VAR_RESULT)
+	removefieldmugshot
 	if (var(VAR_RESULT) == MON_CANT_GIVE) {
 		msgbox("Oh you have no space, how strange...")
 		closemessage
@@ -281,6 +284,7 @@ script Route34_RivalEncounter {
 	if (var(VAR_RESULT) == MON_GIVEN_TO_PC) {
 		msgbox("The Odd Egg was sent to your PC.")
 	}
+	createfieldmugshotrival
 	msgbox("Now then, I can't keep losing you to
 			every time, so I'm going to start
 			training seriously! 

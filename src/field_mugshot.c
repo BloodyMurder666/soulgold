@@ -97,6 +97,14 @@ void CreateFieldMugshot(struct ScriptContext *ctx)
     CreateFieldMugshotInternal(id, emote, FIELD_MUGSHOT_MANUAL);
 }
 
+void CreateFieldMugshotRival(struct ScriptContext *ctx)
+{
+    u16 emote = VarGet(ScriptReadHalfword(ctx));
+    u16 id = gSaveBlock2Ptr->playerGender == MALE ? MUGSHOT_KRIS : MUGSHOT_GOLD;
+
+    CreateFieldMugshotInternal(id, emote, FIELD_MUGSHOT_MANUAL);
+}
+
 void _RemoveFieldMugshot(u8 slot)
 {
     ResetPreservedPalettesInWeather();
@@ -190,6 +198,36 @@ static u16 GetFieldMugshotIdByObjectGraphicsId(u16 graphicsId)
         return MUGSHOT_NURSE;
     case OBJ_EVENT_GFX_CLERK:
         return MUGSHOT_CLERK;
+    case OBJ_EVENT_GFX_BRENDAN_NORMAL:
+        return MUGSHOT_GOLD;
+    case OBJ_EVENT_GFX_MAY_NORMAL:
+        return MUGSHOT_KRIS;
+    case OBJ_EVENT_GFX_MOM:
+        return MUGSHOT_MOM;
+    case OBJ_EVENT_GFX_ENGINEER:
+        return MUGSHOT_ENGINEER;
+    case OBJ_EVENT_GFX_GENTLEMAN:
+        return MUGSHOT_GENTLEMAN;
+    case OBJ_EVENT_GFX_KIMONO_GIRL:
+        return MUGSHOT_KIMONO_GIRL;
+    case OBJ_EVENT_GFX_LITTLE_BOY_3:
+        return MUGSHOT_LITTLE_BOY_3;
+    case OBJ_EVENT_GFX_PROF_OAK:
+        return MUGSHOT_OAK;
+    case OBJ_EVENT_GFX_SAILOR:
+        return MUGSHOT_SAILOR;
+    case OBJ_EVENT_GFX_SUPER_NERD:
+        return MUGSHOT_SUPER_NERD;
+    case OBJ_EVENT_GFX_SWIMMER_F:
+    case OBJ_EVENT_GFX_SWIMMER_F_WATER:
+        return MUGSHOT_SWIMMER_F;
+    case OBJ_EVENT_GFX_SWIMMER_M:
+    case OBJ_EVENT_GFX_SWIMMER_M_WATER:
+        return MUGSHOT_SWIMMER_M;
+    case OBJ_EVENT_GFX_WOMAN_1:
+        return MUGSHOT_WOMAN_1;
+    case OBJ_EVENT_GFX_WOMAN_2:
+        return MUGSHOT_WOMAN_2;
     default:
         return MUGSHOT_NONE;
     }

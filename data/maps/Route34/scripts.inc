@@ -469,86 +469,94 @@ Route34_RivalEncounter::
 # 237 "data/maps/Route34/scripts.pory"
 	waitmovement
 # 238 "data/maps/Route34/scripts.pory"
+	createfieldmugshotrival
+# 239 "data/maps/Route34/scripts.pory"
 	msgbox Route34_RivalEncounter_Text_0
-# 248 "data/maps/Route34/scripts.pory"
-	checkplayergender
 # 249 "data/maps/Route34/scripts.pory"
+	checkplayergender
+# 250 "data/maps/Route34/scripts.pory"
 	compare VAR_RESULT, MALE
 	goto_if_eq Route34_RivalEncounter_2
-# 252 "data/maps/Route34/scripts.pory"
+# 253 "data/maps/Route34/scripts.pory"
 	trainerbattle_no_intro TRAINER_RIVALGOLD2, Route34_RivalEncounter_Text_1
 Route34_RivalEncounter_1:
-# 254 "data/maps/Route34/scripts.pory"
+# 255 "data/maps/Route34/scripts.pory"
+	createfieldmugshotrival
+# 256 "data/maps/Route34/scripts.pory"
 	msgbox Route34_RivalEncounter_Text_2
-# 259 "data/maps/Route34/scripts.pory"
-	waitmessage
-# 260 "data/maps/Route34/scripts.pory"
-	playse SE_USE_ITEM
 # 261 "data/maps/Route34/scripts.pory"
-	waitse
+	waitmessage
 # 262 "data/maps/Route34/scripts.pory"
-	special HealPlayerParty
+	playse SE_USE_ITEM
 # 263 "data/maps/Route34/scripts.pory"
+	waitse
+# 264 "data/maps/Route34/scripts.pory"
+	special HealPlayerParty
+# 265 "data/maps/Route34/scripts.pory"
 	msgbox Route34_RivalEncounter_Text_3
-# 268 "data/maps/Route34/scripts.pory"
-	random 7
-# 269 "data/maps/Route34/scripts.pory"
-	addvar VAR_RESULT, 1
 # 270 "data/maps/Route34/scripts.pory"
-	giveoddegg VAR_RESULT
+	random 7
 # 271 "data/maps/Route34/scripts.pory"
+	addvar VAR_RESULT, 1
+# 272 "data/maps/Route34/scripts.pory"
+	giveoddegg VAR_RESULT
+# 273 "data/maps/Route34/scripts.pory"
+	removefieldmugshot
+# 274 "data/maps/Route34/scripts.pory"
 	compare VAR_RESULT, MON_CANT_GIVE
 	goto_if_eq Route34_RivalEncounter_6
-# 277 "data/maps/Route34/scripts.pory"
-	setflag FLAG_RECEIVED_ODD_EGG
-# 278 "data/maps/Route34/scripts.pory"
-	playfanfare MUS_HG_OBTAIN_ITEM
-# 279 "data/maps/Route34/scripts.pory"
-	message Route34_RivalEncounter_Text_5
 # 280 "data/maps/Route34/scripts.pory"
-	waitfanfare
+	setflag FLAG_RECEIVED_ODD_EGG
 # 281 "data/maps/Route34/scripts.pory"
+	playfanfare MUS_HG_OBTAIN_ITEM
+# 282 "data/maps/Route34/scripts.pory"
+	message Route34_RivalEncounter_Text_5
+# 283 "data/maps/Route34/scripts.pory"
+	waitfanfare
+# 284 "data/maps/Route34/scripts.pory"
 	compare VAR_RESULT, MON_GIVEN_TO_PC
 	goto_if_eq Route34_RivalEncounter_9
 Route34_RivalEncounter_8:
-# 284 "data/maps/Route34/scripts.pory"
+# 287 "data/maps/Route34/scripts.pory"
+	createfieldmugshotrival
+# 288 "data/maps/Route34/scripts.pory"
 	msgbox Route34_RivalEncounter_Text_7
-# 291 "data/maps/Route34/scripts.pory"
-	closemessage
-# 292 "data/maps/Route34/scripts.pory"
-	applymovement LOCALID_ROUTE34_RIVAL, Route34_RivalEncounter_Movement_1
-# 293 "data/maps/Route34/scripts.pory"
-	waitmovement 0
-# 294 "data/maps/Route34/scripts.pory"
-	applymovement LOCALID_ROUTE34_DAYCAREMAN, Route34_RivalEncounter_Movement_2
 # 295 "data/maps/Route34/scripts.pory"
-	waitmovement 0
+	closemessage
 # 296 "data/maps/Route34/scripts.pory"
-	removeobject LOCALID_ROUTE34_RIVAL
+	applymovement LOCALID_ROUTE34_RIVAL, Route34_RivalEncounter_Movement_1
 # 297 "data/maps/Route34/scripts.pory"
-	fadedefaultbgm
+	waitmovement 0
 # 298 "data/maps/Route34/scripts.pory"
-	setvar VAR_RIVAL_STATE, 6
+	applymovement LOCALID_ROUTE34_DAYCAREMAN, Route34_RivalEncounter_Movement_2
 # 299 "data/maps/Route34/scripts.pory"
+	waitmovement 0
+# 300 "data/maps/Route34/scripts.pory"
+	removeobject LOCALID_ROUTE34_RIVAL
+# 301 "data/maps/Route34/scripts.pory"
+	fadedefaultbgm
+# 302 "data/maps/Route34/scripts.pory"
+	setvar VAR_RIVAL_STATE, 6
+# 303 "data/maps/Route34/scripts.pory"
 	release
 	end
 
 Route34_RivalEncounter_2:
-# 250 "data/maps/Route34/scripts.pory"
+# 251 "data/maps/Route34/scripts.pory"
 	trainerbattle_no_intro TRAINER_RIVALCRYSTAL2, Route34_RivalEncounter_Text_1
 	goto Route34_RivalEncounter_1
 
 Route34_RivalEncounter_6:
-# 272 "data/maps/Route34/scripts.pory"
+# 275 "data/maps/Route34/scripts.pory"
 	msgbox Route34_RivalEncounter_Text_4
-# 273 "data/maps/Route34/scripts.pory"
+# 276 "data/maps/Route34/scripts.pory"
 	closemessage
-# 274 "data/maps/Route34/scripts.pory"
+# 277 "data/maps/Route34/scripts.pory"
 	release
 	end
 
 Route34_RivalEncounter_9:
-# 282 "data/maps/Route34/scripts.pory"
+# 285 "data/maps/Route34/scripts.pory"
 	msgbox Route34_RivalEncounter_Text_6
 	goto Route34_RivalEncounter_8
 
@@ -559,28 +567,28 @@ Route34_RivalEncounter_Movement_0:
 	face_down
 	step_end
 
-# 292 "data/maps/Route34/scripts.pory"
+# 296 "data/maps/Route34/scripts.pory"
 Route34_RivalEncounter_Movement_1:
-# 292 "data/maps/Route34/scripts.pory"
+# 296 "data/maps/Route34/scripts.pory"
 	walk_up
-# 292 "data/maps/Route34/scripts.pory"
+# 296 "data/maps/Route34/scripts.pory"
 	walk_up
-# 292 "data/maps/Route34/scripts.pory"
+# 296 "data/maps/Route34/scripts.pory"
 	walk_up
-# 292 "data/maps/Route34/scripts.pory"
+# 296 "data/maps/Route34/scripts.pory"
 	walk_up
-# 292 "data/maps/Route34/scripts.pory"
+# 296 "data/maps/Route34/scripts.pory"
 	walk_up
 	step_end
 
-# 294 "data/maps/Route34/scripts.pory"
+# 298 "data/maps/Route34/scripts.pory"
 Route34_RivalEncounter_Movement_2:
-# 294 "data/maps/Route34/scripts.pory"
+# 298 "data/maps/Route34/scripts.pory"
 	face_left
 	step_end
 
 Route34_RivalEncounter_Text_0:
-# 238 "data/maps/Route34/scripts.pory"
+# 239 "data/maps/Route34/scripts.pory"
 	.string "Good pace, {PLAYER}!\n"
 	.string "You've almost reached Goldenrod City!\p"
 	.string "I was visiting my grandparents, they\n"
@@ -591,37 +599,37 @@ Route34_RivalEncounter_Text_0:
 	.string "better I've gotten!$"
 
 Route34_RivalEncounter_Text_1:
-# 250 "data/maps/Route34/scripts.pory"
+# 251 "data/maps/Route34/scripts.pory"
 	.string "Still not good enough...$"
 
 Route34_RivalEncounter_Text_2:
-# 254 "data/maps/Route34/scripts.pory"
+# 256 "data/maps/Route34/scripts.pory"
 	.string "Well that sucks... When grandma hears\n"
 	.string "of this, I'll never hear the end of it...\p"
 	.string "Let me just heal your party quick since\n"
 	.string "I was the one who started this.$"
 
 Route34_RivalEncounter_Text_3:
-# 263 "data/maps/Route34/scripts.pory"
+# 265 "data/maps/Route34/scripts.pory"
 	.string "My grandparents found this strange egg\n"
 	.string "recently. They said I could have it, but\l"
 	.string "I think you'd be a better fit for it.\p"
 	.string "Take it as a prize for beating me!$"
 
 Route34_RivalEncounter_Text_4:
-# 272 "data/maps/Route34/scripts.pory"
+# 275 "data/maps/Route34/scripts.pory"
 	.string "Oh you have no space, how strange...$"
 
 Route34_RivalEncounter_Text_5:
-# 279 "data/maps/Route34/scripts.pory"
+# 282 "data/maps/Route34/scripts.pory"
 	.string "{PLAYER} Received the Odd Egg.$"
 
 Route34_RivalEncounter_Text_6:
-# 282 "data/maps/Route34/scripts.pory"
+# 285 "data/maps/Route34/scripts.pory"
 	.string "The Odd Egg was sent to your PC.$"
 
 Route34_RivalEncounter_Text_7:
-# 284 "data/maps/Route34/scripts.pory"
+# 288 "data/maps/Route34/scripts.pory"
 	.string "Now then, I can't keep losing you to\n"
 	.string "every time, so I'm going to start\l"
 	.string "training seriously! \p"

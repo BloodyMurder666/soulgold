@@ -98,18 +98,21 @@ NewBarkTown_Lab_Text_ElmAideIsWaiting:
 	.string "In Violet City!$"
 
 NewBarkTown_Lab_EventScript_ElmIntro::
+	createfieldmugshot MUGSHOT_ELM
 	msgbox NewBarkTown_Lab_Text_ElmIntro, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, NewBarkTown_Lab_EventScript_ElmAccepted
 	goto_if_eq VAR_RESULT, NO, NewBarkTown_Lab_EventScript_ElmRefused
 	end
 
 NewBarkTown_Lab_EventScript_ElmRefused::
+	createfieldmugshot MUGSHOT_ELM
 	msgbox NewBarkTown_Lab_Text_ElmRefused, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, NewBarkTown_Lab_EventScript_ElmAccepted
 	goto_if_eq VAR_RESULT, NO, NewBarkTown_Lab_EventScript_ElmRefused
 	end
 
 NewBarkTown_Lab_EventScript_ElmAccepted::
+	createfieldmugshot MUGSHOT_ELM
 	msgbox NewBarkTown_Lab_Text_ElmAccepted, MSGBOX_DEFAULT
 	msgbox NewBarkTown_Lab_Text_ElmResearchAmbitions, MSGBOX_DEFAULT
 	delay 30
@@ -123,21 +126,26 @@ NewBarkTown_Lab_EventScript_ElmAccepted::
 	waitmovement 0
 	waitmovement 0
 	msgbox NewBarkTown_Lab_Text_ElmGotAnEmail, MSGBOX_DEFAULT
+	removefieldmugshot
 	closemessage
 	applymovement LOCALID_ELM, NewBarkTown_Lab_Movement_ReturnFromEmail
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_Lab_Movement_Look_Up
 	waitmovement 0
 	delay 30
+	createfieldmugshot MUGSHOT_ELM
 	msgbox NewBarkTown_Lab_Text_ElmMissionFromMrPokemon, MSGBOX_DEFAULT
 	goto NewBarkTown_Lab_EventScript_ElmChoosePokemon
 	end
 
 NewBarkTown_Lab_EventScript_ElmChoosePokemon::
+	removefieldmugshot
     applymovement LOCALID_ELM, NewBarkTownLab_Movement_Elm_Right
     waitmovement 0
+	createfieldmugshot MUGSHOT_ELM
 	msgbox NewBarkTown_Lab_Text_ElmChooseAPokemon, MSGBOX_DEFAULT
 	closemessage
+	removefieldmugshot
     applymovement LOCALID_ELM, NewBarkTownLab_Movement_Elm_Down
     waitmovement 0
 	setvar VAR_NEWBARKTOWN_LABSTATE, 1
@@ -146,8 +154,10 @@ NewBarkTown_Lab_EventScript_ElmChoosePokemon::
 
 NewBarkTown_Lab_EventScript_TriggerReturnPlayer::
 	lock
+	createfieldmugshot MUGSHOT_ELM
 	msgbox NewBarkTown_Lab_Text_ElmWhereGoing, MSGBOX_DEFAULT
 	closemessage
+	removefieldmugshot
 	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_Lab_Movement_ReturnPlayer
 	waitmovement 0
 	release
@@ -184,9 +194,11 @@ NewBarkTown_Lab_EventScript_ChoseStarter::
 	message NewBarkTown_Lab_Text_ReceivedStarter
 	waitfanfare
     hidemonpic
+	createfieldmugshot MUGSHOT_ELM
 	msgbox NewBarkTown_Lab_Text_ChoseStarter, MSGBOX_DEFAULT
 	waitmessage
     closemessage
+	removefieldmugshot
     moveobjecttocoords OBJ_EVENT_ID_PLAYER, 6, 4, DIR_NONE
     waitmovement 0
     applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_Lab_Movement_Look_Up
@@ -212,10 +224,12 @@ NewBarkTown_Lab_EventScript_NicknameStarter::
 NewBarkTown_Lab_EventScript_MrPokemon::
 	setvar VAR_NEWBARKTOWN_LABSTATE, 2
 	setvar VAR_NEWBARK_TOWN_STATE, 3
+	createfieldmugshot MUGSHOT_ELM
 	msgbox NewBarkTown_Lab_Text_ElmDirections1, MSGBOX_DEFAULT
 	setflag FLAG_ENABLE_PROF_BIRCH_MATCH_CALL
 	msgbox NewBarkTown_Lab_Text_ElmDirections2, MSGBOX_DEFAULT
 	closemessage
+	removefieldmugshot
 	goto_if_eq VAR_FACING, DIR_EAST, NewBarkTown_Lab_EventScript_MrPokemonMovementSafe
 	applymovement LOCALID_ELM, NewBarkTown_Lab_Movement_CheckEmailSlow
 	waitmovement 0

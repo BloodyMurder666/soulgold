@@ -47,6 +47,7 @@ script NewBarkTown_RivalsSister {
 script NewBarkTownRivalHouseRival {
     // Postgame and progression based comments?
     // Cresselia quest?
+    createfieldmugshotrival
     msgbox("Hey {PLAYER}! Have you visited
             any new places?", MSGBOX_NPC)
 }

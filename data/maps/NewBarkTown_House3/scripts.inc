@@ -65,22 +65,24 @@ NewBarkTown_RivalsSister_2:
 
 NewBarkTownRivalHouseRival::
 # 50 "data/maps/NewBarkTown_House3/scripts.pory"
+	createfieldmugshotrival
+# 51 "data/maps/NewBarkTown_House3/scripts.pory"
 	msgbox NewBarkTownRivalHouseRival_Text_0, MSGBOX_NPC
 	return
 
 
 NewBarkTownRivalHouseMarill::
-# 55 "data/maps/NewBarkTown_House3/scripts.pory"
-	lock
 # 56 "data/maps/NewBarkTown_House3/scripts.pory"
-	faceplayer
+	lock
 # 57 "data/maps/NewBarkTown_House3/scripts.pory"
-	playmoncry SPECIES_MARILL, CRY_MODE_NORMAL
+	faceplayer
 # 58 "data/maps/NewBarkTown_House3/scripts.pory"
-	msgbox NewBarkTownRivalHouseMarill_Text_0
+	playmoncry SPECIES_MARILL, CRY_MODE_NORMAL
 # 59 "data/maps/NewBarkTown_House3/scripts.pory"
-	waitmoncry
+	msgbox NewBarkTownRivalHouseMarill_Text_0
 # 60 "data/maps/NewBarkTown_House3/scripts.pory"
+	waitmoncry
+# 61 "data/maps/NewBarkTown_House3/scripts.pory"
 	release
 	end
 
@@ -114,10 +116,10 @@ NewBarkTown_RivalsSister_Text_1:
 	.string "soon, too!$"
 
 NewBarkTownRivalHouseRival_Text_0:
-# 50 "data/maps/NewBarkTown_House3/scripts.pory"
+# 51 "data/maps/NewBarkTown_House3/scripts.pory"
 	.string "Hey {PLAYER}! Have you visited\n"
 	.string "any new places?$"
 
 NewBarkTownRivalHouseMarill_Text_0:
-# 58 "data/maps/NewBarkTown_House3/scripts.pory"
+# 59 "data/maps/NewBarkTown_House3/scripts.pory"
 	.string "Marii!$"
