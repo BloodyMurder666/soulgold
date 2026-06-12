@@ -295,7 +295,7 @@
 #define VAR_ROCKET_ARCADE_ITEM                          0x4110
 #define VAR_ROCKET_ARCADE_POINTS                        0x4111
 #define VAR_ROUTE39_BAOBA_STATE                         0x4112
-#define VAR_0x4113                                      0x4113
+#define VAR_ROUTE_EXPERTS_DEFEATED                      0x4113
 #define VAR_0x4114                                      0x4114
 #define VAR_0x4115                                      0x4115
 

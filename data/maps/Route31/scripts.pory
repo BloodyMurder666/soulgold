@@ -193,6 +193,8 @@ script Route31_Expert {
         msgbox(format("You are better than I had assumed. Take this for your victory."))
         giveitem(ITEM_AIR_BALLOON)
         setflag(FLAG_ROUTE31_EXPERT)
+        addvar(VAR_ROUTE_EXPERTS_DEFEATED, 1)
+        special(Achievement_CheckAll)
         msgbox(format("This Air Balloon lets a Pokémon avoid Ground-type moves until it takes a hit. It might prove useful in the coming battles."))
     }
     release

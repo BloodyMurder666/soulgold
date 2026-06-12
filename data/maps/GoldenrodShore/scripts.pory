@@ -27,6 +27,8 @@ script GoldenrodShore_Expert {
                 of keeping up the winning streak.")
         giveitem(ITEM_LOADED_DICE)
         setflag(FLAG_GOLDENRODSHORE_EXPERT)
+        addvar(VAR_ROUTE_EXPERTS_DEFEATED, 1)
+        special(Achievement_CheckAll)
         msgbox("Loaded Dice boosts the minimum hit 
                 count of multi-hit moves, you should 
                 try it with moves like Bullet Seed!")        
@@ -60,4 +62,3 @@ script MareaniesGoldenrodShore {
     msgbox("Mareanies seem to be blocking the way. 
             Perhaps there is another way to Olivine?", MSGBOX_NPC)
 }
-

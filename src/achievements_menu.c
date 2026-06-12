@@ -37,6 +37,13 @@
 #define ACHIEVEMENTS_CURSOR_CLEAR_HEIGHT 112
 #define ACHIEVEMENTS_CURSOR_ANIM_DURATION 8
 #define ACHIEVEMENTS_BACKGROUND_SCROLL_SPEED 128
+#define ACHIEVEMENTS_HELP_WINDOW_TILE_START 0
+#define ACHIEVEMENTS_HELP_WINDOW_PAL_SLOT STD_WINDOW_PALETTE_NUM
+#define ACHIEVEMENTS_HELP_WINDOW_X 2
+#define ACHIEVEMENTS_HELP_WINDOW_Y 7
+#define ACHIEVEMENTS_HELP_WINDOW_WIDTH 26
+#define ACHIEVEMENTS_HELP_WINDOW_HEIGHT 10
+#define ACHIEVEMENTS_HELP_WINDOW_TILEMAP_WIDTH 32
 
 enum
 {
@@ -50,7 +57,6 @@ enum
 {
     WIN_HEADER,
     WIN_LIST,
-    WIN_HINT_BACKDROP,
     WIN_HINT,
 };
 
@@ -62,6 +68,8 @@ static void DrawAchievementHint(void);
 static void DrawHeader(void);
 static void DrawList(void);
 static void LoadMenuTilemap(void);
+static void DrawHelpWindowFrame(void);
+static void ClearHelpWindowFrame(void);
 static void PrintListStatusText(const u8 *text, u8 y, const u8 *color);
 static void DrawListCursor(u8 row);
 static void DrawListCursorAtY(s16 y);
@@ -84,15 +92,20 @@ EWRAM_DATA static u8 sListCursorAnimId = 0;
 EWRAM_DATA static s16 sListCursorY = 0;
 EWRAM_DATA static u16 sDetailTilemapBuffer[BG_SCREEN_SIZE / 2] = {};
 EWRAM_DATA static u16 sTextTilemapBuffer[BG_SCREEN_SIZE / 2] = {};
+EWRAM_DATA static u16 sMenuTilemapBuffer[BG_SCREEN_SIZE / 2] = {};
+EWRAM_DATA static u16 sBackgroundTilemapBuffer[BG_SCREEN_SIZE / 2] = {};
 EWRAM_DATA static MainCallback sExitCallback = NULL;
 
 static const u32 sBlankBgTile[8] = {};
-static const u32 sAchievementsBgTiles[] = INCBIN_U32("graphics/achievements/scroll_tiles.4bpp");
-static const u16 sAchievementsBgTilemap[] = INCBIN_U16("graphics/achievements/background.bin");
-static const u16 sAchievementsBgPal[] = INCBIN_U16("graphics/achievements/background.gbapal");
+static const u32 sAchievementsBgTiles[] = INCBIN_U32("graphics/pokegear/tiles.4bpp");
+static const u16 sAchievementsBgTilemap[] = INCBIN_U16("graphics/pokegear/tiles.bin");
+static const u16 sAchievementsBgPal[] = INCBIN_U16("graphics/pokegear/tiles.gbapal");
 static const u32 sAchievementsMenuTiles[] = INCBIN_U32("graphics/achievements/menu.4bpp");
 static const u16 sAchievementsMenuTilemap[] = INCBIN_U16("graphics/achievements/menu.bin");
 static const u16 sAchievementsMenuPal[] = INCBIN_U16("graphics/achievements/menu.gbapal");
+static const u32 sAchievementsHelpWindowTiles[] = INCBIN_U32("graphics/achievements/helpwindow.4bpp");
+static const u16 sAchievementsHelpWindowTilemap[] = INCBIN_U16("graphics/achievements/helpwindow.bin");
+static const u16 sAchievementsHelpWindowPal[] = INCBIN_U16("graphics/achievements/helpwindow.gbapal");
 
 static const struct OamData sOamData_BallIcon =
 {
@@ -207,16 +220,6 @@ static const struct WindowTemplate sWindowTemplates[] =
         .paletteNum = 15,
         .baseBlock = 0x078,
     },
-    [WIN_HINT_BACKDROP] =
-    {
-        .bg = BG_DETAIL,
-        .tilemapLeft = 2,
-        .tilemapTop = 7,
-        .width = 26,
-        .height = 10,
-        .paletteNum = 15,
-        .baseBlock = 0x220,
-    },
     [WIN_HINT] =
     {
         .bg = BG_DETAIL,
@@ -249,8 +252,12 @@ void CB2_InitAchievementsMenuWithCallback(MainCallback callback)
     InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
     CpuFill16(0, sDetailTilemapBuffer, sizeof(sDetailTilemapBuffer));
     CpuFill16(0, sTextTilemapBuffer, sizeof(sTextTilemapBuffer));
+    CpuFill16(0, sMenuTilemapBuffer, sizeof(sMenuTilemapBuffer));
+    CpuFill16(0, sBackgroundTilemapBuffer, sizeof(sBackgroundTilemapBuffer));
     SetBgTilemapBuffer(BG_DETAIL, sDetailTilemapBuffer);
     SetBgTilemapBuffer(BG_TEXT, sTextTilemapBuffer);
+    SetBgTilemapBuffer(BG_MENU, sMenuTilemapBuffer);
+    SetBgTilemapBuffer(BG_BACKGROUND, sBackgroundTilemapBuffer);
     ResetAllBgsCoordinates();
     ResetPaletteFade();
     ResetSpriteData();
@@ -266,14 +273,17 @@ void CB2_InitAchievementsMenuWithCallback(MainCallback callback)
     DmaClear16(3, BG_SCREEN_ADDR(29), BG_SCREEN_SIZE);
     DmaClear16(3, BG_SCREEN_ADDR(28), BG_SCREEN_SIZE);
     LoadBgTiles(BG_DETAIL, sBlankBgTile, sizeof(sBlankBgTile), ACHIEVEMENTS_BLANK_TILE);
+    LoadBgTiles(BG_DETAIL, sAchievementsHelpWindowTiles, sizeof(sAchievementsHelpWindowTiles), ACHIEVEMENTS_HELP_WINDOW_TILE_START);
     LoadBgTiles(BG_MENU, sAchievementsMenuTiles, sizeof(sAchievementsMenuTiles), 0);
     LoadBgTiles(BG_BACKGROUND, sAchievementsBgTiles, sizeof(sAchievementsBgTiles), 0);
     LoadPalette(sAchievementsBgPal, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
     LoadPalette(sAchievementsMenuPal, BG_PLTT_ID(ACHIEVEMENTS_MENU_PAL_SLOT), PLTT_SIZE_4BPP);
+    LoadPalette(sAchievementsHelpWindowPal, BG_PLTT_ID(ACHIEVEMENTS_HELP_WINDOW_PAL_SLOT), PLTT_SIZE_4BPP);
     FillBgTilemapBufferRect_Palette0(BG_DETAIL, ACHIEVEMENTS_BLANK_TILE, 0, 0, DISPLAY_TILE_WIDTH, DISPLAY_TILE_HEIGHT);
     FillBgTilemapBufferRect_Palette0(BG_TEXT, ACHIEVEMENTS_BLANK_TILE, 0, 0, DISPLAY_TILE_WIDTH, DISPLAY_TILE_HEIGHT);
     LoadMenuTilemap();
-    LoadBgTilemap(BG_BACKGROUND, sAchievementsBgTilemap, sizeof(sAchievementsBgTilemap), 0);
+    CopyToBgTilemapBufferRect(BG_BACKGROUND, sAchievementsBgTilemap, 0, 0, DISPLAY_TILE_WIDTH, DISPLAY_TILE_HEIGHT);
+    CopyBgTilemapBufferToVram(BG_BACKGROUND);
     CopyBgTilemapBufferToVram(BG_DETAIL);
     CopyBgTilemapBufferToVram(BG_TEXT);
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 | DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP | DISPCNT_BG0_ON | DISPCNT_BG1_ON | DISPCNT_BG2_ON | DISPCNT_BG3_ON);
@@ -308,7 +318,7 @@ static void VBlankCB_AchievementsMenu(void)
 static void CB2_AchievementsMenu(void)
 {
     RunTasks();
-    AnimateAchievementsBackground();
+    //AnimateAchievementsBackground();
     UpdateListCursorAnimation();
     AnimateSprites();
     BuildOamBuffer();
@@ -339,9 +349,39 @@ static void LoadMenuTilemap(void)
     u16 i;
 
     for (i = 0; i < BG_SCREEN_SIZE / 2; i++)
-        sTextTilemapBuffer[i] = (sAchievementsMenuTilemap[i] & 0x0FFF) | (ACHIEVEMENTS_MENU_PAL_SLOT << 12);
-    DmaCopy16(3, sTextTilemapBuffer, BG_SCREEN_ADDR(ACHIEVEMENTS_MENU_MAP_BASE), BG_SCREEN_SIZE);
-    CpuFill16(0, sTextTilemapBuffer, sizeof(sTextTilemapBuffer));
+        sMenuTilemapBuffer[i] = (sAchievementsMenuTilemap[i] & 0x0FFF) | (ACHIEVEMENTS_MENU_PAL_SLOT << 12);
+    CopyBgTilemapBufferToVram(BG_MENU);
+}
+
+static void DrawHelpWindowFrame(void)
+{
+    CopyRectToBgTilemapBufferRect(
+        BG_TEXT,
+        sAchievementsHelpWindowTilemap,
+        ACHIEVEMENTS_HELP_WINDOW_X,
+        ACHIEVEMENTS_HELP_WINDOW_Y,
+        ACHIEVEMENTS_HELP_WINDOW_TILEMAP_WIDTH,
+        DISPLAY_TILE_HEIGHT,
+        ACHIEVEMENTS_HELP_WINDOW_X,
+        ACHIEVEMENTS_HELP_WINDOW_Y,
+        ACHIEVEMENTS_HELP_WINDOW_WIDTH,
+        ACHIEVEMENTS_HELP_WINDOW_HEIGHT,
+        ACHIEVEMENTS_HELP_WINDOW_PAL_SLOT,
+        ACHIEVEMENTS_HELP_WINDOW_TILE_START,
+        0);
+    CopyBgTilemapBufferToVram(BG_TEXT);
+}
+
+static void ClearHelpWindowFrame(void)
+{
+    FillBgTilemapBufferRect_Palette0(
+        BG_TEXT,
+        ACHIEVEMENTS_BLANK_TILE,
+        ACHIEVEMENTS_HELP_WINDOW_X,
+        ACHIEVEMENTS_HELP_WINDOW_Y,
+        ACHIEVEMENTS_HELP_WINDOW_WIDTH,
+        ACHIEVEMENTS_HELP_WINDOW_HEIGHT);
+    CopyBgTilemapBufferToVram(BG_TEXT);
 }
 
 static void PrintListStatusText(const u8 *text, u8 y, const u8 *color)
@@ -582,6 +622,7 @@ static void DrawList(void)
 
 static void DrawAchievementHint(void)
 {
+    static const u8 sHintTextColor[3] = { TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY };
     const struct Achievement *achievement = Achievement_GetByIndex(sAchievementCursor);
     u32 progress = Achievement_GetProgress(achievement);
     u32 target = Achievement_GetTarget(achievement);
@@ -591,28 +632,26 @@ static void DrawAchievementHint(void)
     ResetListCursorAnimation();
     DrawAndCopyListCursorAtY(ACHIEVEMENTS_TEXT_Y(sAchievementCursor - sAchievementTop));
     SetListBallIconsInvisible(TRUE);
-    PutWindowTilemap(WIN_HINT_BACKDROP);
-    FillWindowPixelBuffer(WIN_HINT_BACKDROP, PIXEL_FILL(1));
-    CopyWindowToVram(WIN_HINT_BACKDROP, COPYWIN_FULL);
+    DrawHelpWindowFrame();
     PutWindowTilemap(WIN_HINT);
-    FillWindowPixelBuffer(WIN_HINT, PIXEL_FILL(1));
-    DrawStdWindowFrame(WIN_HINT, FALSE);
-    AddTextPrinterParameterized(WIN_HINT, FONT_NORMAL, achievement->name, 8, 1, TEXT_SKIP_DRAW, NULL);
-    AddTextPrinterParameterized(WIN_HINT, FONT_SMALL, achievement->description, 8, 19, TEXT_SKIP_DRAW, NULL);
+    FillWindowPixelBuffer(WIN_HINT, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
+    AddTextPrinterParameterized3(WIN_HINT, FONT_NORMAL, 8, 1, sHintTextColor, TEXT_SKIP_DRAW, achievement->name);
+    AddTextPrinterParameterized3(WIN_HINT, FONT_SMALL, 8, 19, sHintTextColor, TEXT_SKIP_DRAW, achievement->description);
     ConvertIntToDecimalStringN(gStringVar1, progress, STR_CONV_MODE_LEFT_ALIGN, 4);
     ConvertIntToDecimalStringN(gStringVar2, target, STR_CONV_MODE_LEFT_ALIGN, 4);
     StringExpandPlaceholders(gStringVar4, COMPOUND_STRING("{STR_VAR_1}/{STR_VAR_2}"));
-    AddTextPrinterParameterized(WIN_HINT, FONT_SMALL, gStringVar4, 8, 45, TEXT_SKIP_DRAW, NULL);
+    AddTextPrinterParameterized3(WIN_HINT, FONT_SMALL, 8, 45, sHintTextColor, TEXT_SKIP_DRAW, gStringVar4);
     CopyWindowToVram(WIN_HINT, COPYWIN_FULL);
 }
 
 static void CloseAchievementHint(void)
 {
     sShowingDetail = FALSE;
-    ClearStdWindowAndFrame(WIN_HINT, TRUE);
-    ClearWindowTilemap(WIN_HINT_BACKDROP);
-    FillWindowPixelBuffer(WIN_HINT_BACKDROP, PIXEL_FILL(0));
-    CopyWindowToVram(WIN_HINT_BACKDROP, COPYWIN_FULL);
+    ClearWindowTilemap(WIN_HINT);
+    FillWindowPixelBuffer(WIN_HINT, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
+    CopyWindowToVram(WIN_HINT, COPYWIN_FULL);
+    ClearHelpWindowFrame();
+    DrawList();
     SetListBallIconsInvisible(FALSE);
 }
 
@@ -627,30 +666,63 @@ static void AnimateAchievementsBackground(void)
     ChangeBgY(BG_BACKGROUND, ACHIEVEMENTS_BACKGROUND_SCROLL_SPEED, BG_COORD_ADD);
 }
 
-static void MoveCursor(s8 delta)
+static void MoveCursor(s16 delta)
 {
     u8 oldTop = sAchievementTop;
     u16 oldCursor = sAchievementCursor;
+    u8 oldRow = sAchievementCursor - sAchievementTop;
     u16 count = Achievement_GetCount();
+    s32 newCursor;
+    bool8 isPageJump = delta <= -ACHIEVEMENTS_VISIBLE_ROWS || delta >= ACHIEVEMENTS_VISIBLE_ROWS;
 
-    if (delta < 0)
+    if (count == 0)
+        return;
+
+    if (isPageJump)
     {
-        if (sAchievementCursor == 0)
-            sAchievementCursor = count - 1;
+        if (delta > 0)
+        {
+            newCursor = sAchievementCursor + delta;
+            if (newCursor >= count)
+                newCursor = count - 1;
+        }
+        else if (sAchievementCursor < -delta)
+        {
+            newCursor = 0;
+        }
         else
-            sAchievementCursor--;
+        {
+            newCursor = sAchievementCursor + delta;
+        }
+        sAchievementCursor = newCursor;
+
+        if (count <= ACHIEVEMENTS_VISIBLE_ROWS)
+            sAchievementTop = 0;
+        else if (sAchievementCursor >= oldRow)
+            sAchievementTop = sAchievementCursor - oldRow;
+        else
+            sAchievementTop = 0;
+
+        if (sAchievementTop + ACHIEVEMENTS_VISIBLE_ROWS > count)
+            sAchievementTop = count - ACHIEVEMENTS_VISIBLE_ROWS;
     }
     else
     {
-        sAchievementCursor++;
-        if (sAchievementCursor >= count)
-            sAchievementCursor = 0;
+        newCursor = sAchievementCursor + delta;
+        while (newCursor < 0)
+            newCursor += count;
+        while (newCursor >= count)
+            newCursor -= count;
+        sAchievementCursor = newCursor;
+
+        if (sAchievementCursor < sAchievementTop)
+            sAchievementTop = sAchievementCursor;
+        else if (sAchievementCursor >= sAchievementTop + ACHIEVEMENTS_VISIBLE_ROWS)
+            sAchievementTop = sAchievementCursor - ACHIEVEMENTS_VISIBLE_ROWS + 1;
     }
 
-    if (sAchievementCursor < sAchievementTop)
-        sAchievementTop = sAchievementCursor;
-    else if (sAchievementCursor >= sAchievementTop + ACHIEVEMENTS_VISIBLE_ROWS)
-        sAchievementTop = sAchievementCursor - ACHIEVEMENTS_VISIBLE_ROWS + 1;
+    if (sAchievementCursor == oldCursor && sAchievementTop == oldTop)
+        return;
 
     PlaySE(SE_SELECT);
     if (sAchievementTop != oldTop)
@@ -678,6 +750,10 @@ static void Task_AchievementsMenu(u8 taskId)
         MoveCursor(-1);
     else if (JOY_NEW(DPAD_DOWN))
         MoveCursor(1);
+    else if (JOY_NEW(DPAD_LEFT))
+        MoveCursor(-ACHIEVEMENTS_VISIBLE_ROWS);
+    else if (JOY_NEW(DPAD_RIGHT))
+        MoveCursor(ACHIEVEMENTS_VISIBLE_ROWS);
     else if (JOY_NEW(A_BUTTON))
     {
         sShowingDetail = TRUE;
@@ -698,7 +774,7 @@ static void ExitAchievementsMenu(u8 taskId)
     {
         DestroyTask(taskId);
         if (sShowingDetail)
-            ClearStdWindowAndFrame(WIN_HINT, TRUE);
+            CloseAchievementHint();
         ResetListCursorAnimation();
         DestroyListBallIcons();
         FreeAllWindowBuffers();
@@ -722,3 +798,10 @@ static void ExitAchievementsMenu(u8 taskId)
 #undef ACHIEVEMENTS_CURSOR_CLEAR_HEIGHT
 #undef ACHIEVEMENTS_CURSOR_ANIM_DURATION
 #undef ACHIEVEMENTS_BACKGROUND_SCROLL_SPEED
+#undef ACHIEVEMENTS_HELP_WINDOW_TILE_START
+#undef ACHIEVEMENTS_HELP_WINDOW_PAL_SLOT
+#undef ACHIEVEMENTS_HELP_WINDOW_X
+#undef ACHIEVEMENTS_HELP_WINDOW_Y
+#undef ACHIEVEMENTS_HELP_WINDOW_WIDTH
+#undef ACHIEVEMENTS_HELP_WINDOW_HEIGHT
+#undef ACHIEVEMENTS_HELP_WINDOW_TILEMAP_WIDTH

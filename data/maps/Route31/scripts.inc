@@ -391,6 +391,10 @@ Route31_Expert_5:
 # 195 "data/maps/Route31/scripts.pory"
 	setflag FLAG_ROUTE31_EXPERT
 # 196 "data/maps/Route31/scripts.pory"
+	addvar VAR_ROUTE_EXPERTS_DEFEATED, 1
+# 197 "data/maps/Route31/scripts.pory"
+	special Achievement_CheckAll
+# 198 "data/maps/Route31/scripts.pory"
 	msgbox Route31_Expert_Text_5
 	goto Route31_Expert_4
 

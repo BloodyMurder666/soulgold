@@ -38,6 +38,10 @@ GoldenrodShore_Expert_5:
 # 29 "data/maps/GoldenrodShore/scripts.pory"
 	setflag FLAG_GOLDENRODSHORE_EXPERT
 # 30 "data/maps/GoldenrodShore/scripts.pory"
+	addvar VAR_ROUTE_EXPERTS_DEFEATED, 1
+# 31 "data/maps/GoldenrodShore/scripts.pory"
+	special Achievement_CheckAll
+# 32 "data/maps/GoldenrodShore/scripts.pory"
 	msgbox GoldenrodShore_Expert_Text_5
 	goto GoldenrodShore_Expert_4
 

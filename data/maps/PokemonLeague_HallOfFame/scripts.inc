@@ -25,6 +25,7 @@ PokemonLeague_HallOfFame_EventScript_Cutscene::
 	delay 40
 	setvar VAR_TEMP_1, 1
 	call PokemonLeague_HallOfFame_EventScript_SetFirstGameClearFlags
+	special Achievement_UnlockHallOfFameDebut
 	setrespawn HEAL_LOCATION_NEW_BARK_TOWN
 	fadescreenspeed FADE_TO_BLACK, 24
 	special GameClear
@@ -198,4 +199,3 @@ PokemonLeague_HallOfFame_Rematch_LanceText:
     .string "{PLAYER}, it is my honor to register\n"
     .string "you, and your trusted partners,\l"
     .string "as champions once again.$"
-

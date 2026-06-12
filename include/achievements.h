@@ -20,6 +20,7 @@ bool32 Achievement_Unlock(enum AchievementId id);
 void Achievement_IncrementCounter(enum AchievementCounter counter, u32 amount);
 void Achievement_SetCounterMax(enum AchievementCounter counter, u32 value);
 void Achievement_CheckAll(void);
+void Achievement_UnlockHallOfFameDebut(void);
 void Achievement_OnTrainerDefeated(u16 trainerId);
 void Achievement_TryShowQueuedPopup(void);
 void Achievement_HidePopup(void);
