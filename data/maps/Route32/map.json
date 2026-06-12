@@ -564,11 +564,11 @@
       "dest_warp_id": "0"
     },
     {
-      "x": 9,
+      "x": 10,
       "y": 16,
       "elevation": 0,
-      "dest_map": "MAP_RAILWAY_CAVE",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_RAILWAY_CAVE_3F",
+      "dest_warp_id": "1"
     }
   ],
   "coord_events": [

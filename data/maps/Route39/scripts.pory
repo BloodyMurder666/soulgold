@@ -218,7 +218,7 @@ script Route39_BaobaTrigger {
 			waitse
 			msgbox("That's the way! I'll let you know
 					over the Pokégear once it's ready!")
-
+			closemessage
 			applymovement(LOCALID_R39_BAOBA, moves(walk_left*5, walk_down*6))
 			waitmovement(0)
 			setflag(FLAG_ENABLE_BAOBA_MATCH_CALL)

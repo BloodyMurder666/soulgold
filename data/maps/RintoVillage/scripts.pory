@@ -1,4 +1,9 @@
-mapscripts RintoVillage_MapScripts {}
+mapscripts RintoVillage_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_VISITED_RINTO_VILLAGE)
+        end
+        }
+}
 
 script Rinto_OldLady {
     msgbox("More visitors lately...", MSGBOX_NPC)

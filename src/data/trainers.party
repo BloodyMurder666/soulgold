@@ -13402,3 +13402,71 @@ Level: 38
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 
+=== TRAINER_RAILWAYBOB ===
+Name: Bob
+Pic: Engineer
+Gender: Male
+Music: Hg Boy 2
+Double Battle: No
+AI: Basic Trainer
+
+Diglett Alola
+Level: 37
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+Graveler Alola
+Level: 37
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+Dugtrio Alola
+Level: 38
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+
+=== TRAINER_RAILWAYMASON ===
+Name: Mason
+Pic: Hiker
+Gender: Male
+Music: Hg Boy 2
+Double Battle: No
+AI: Basic Trainer
+
+Stunfisk
+Level: 38
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+Stunfisk Galar
+Level: 38
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+
+=== TRAINER_RAILWAYYODA ===
+Name: Yoda
+Pic: Black Belt
+Gender: Male
+Music: Hg Boy 2
+Double Battle: No
+AI: Smart Trainer
+
+Hitmonlee
+Level: 40
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+
+=== TRAINER_RAILWAYSANADA ===
+Name: Sanada
+Pic: Engineer
+Gender: Male
+Music: Hg Boy 2
+Double Battle: No
+AI: Smart Trainer
+
+Magneton
+Level: 39
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+Toxtricity
+Level: 39
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+

@@ -25,14 +25,15 @@
     "gMapGroup_IndoorJohtoRoutes",
     "gMapGroup_IndoorKantoRoutes",
     "gMapGroup_Dungeons",
+    "gMapGroup_Dungeons2",
+    "gMapGroup_JohtoDiveMaps",
     "gMapGroup_IndoorDynamic",
     "gMapGroup_SpecialArea",
     "gMapGroup_Emerald1",
     "gMapGroup_Emerald2",
     "gMapGroup_Emerald3",
     "gMapGroup_Emerald4",
-    "gMapGroup_Emerald5",
-    "gMapGroup_JohtoDiveMaps"
+    "gMapGroup_Emerald5"
   ],
   "gMapGroup_TownsAndRoutes": [
     "NewBarkTown",
@@ -536,7 +537,9 @@
     "MtEmber_RubyPath_B2F_Frlg",
     "MtEmber_RubyPath_B3F_Frlg",
     "MtEmber_RubyPath_B1F_Stairs_Frlg",
-    "MtEmber_RubyPath_B2F_Stairs_Frlg",
+    "MtEmber_RubyPath_B2F_Stairs_Frlg"
+  ],
+  "gMapGroup_Dungeons2": [
     "AcuityCavern",
     "ValorCavern",
     "VerityCavern",
@@ -544,7 +547,13 @@
     "RegirockChamber",
     "SnowtopMountain",
     "SnowtopMountain_B1F",
-    "SnowtopMountain_B1F_2"
+    "SnowtopMountain_B1F_2",
+    "RailwayCave_2F",
+    "RailwayCave_3F",
+    "RailwayCave_Registeel_Room"
+  ],
+  "gMapGroup_JohtoDiveMaps": [
+    "CherrygroveUnderwater"
   ],
   "gMapGroup_IndoorDynamic": [],
   "gMapGroup_SpecialArea": [
@@ -1120,8 +1129,5 @@
     "Route119_WeatherInstitute_2F",
     "Route119_House",
     "Route124_DivingTreasureHuntersHouse"
-  ],
-  "gMapGroup_JohtoDiveMaps": [
-    "CherrygroveUnderwater"
   ]
 }

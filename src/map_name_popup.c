@@ -609,7 +609,7 @@ static void ShowMapNamePopUpWindow(void)
 
     if (OW_POPUP_GENERATION == GEN_5)
     {
-        AddTextPrinterParameterized(mapNamePopUpWindowId, FONT_SHORT, mapDisplayHeader, 8, 2, TEXT_SKIP_DRAW, NULL);
+        AddTextPrinterParameterized(mapNamePopUpWindowId, FONT_SHORT, mapDisplayHeader, 9, 5, TEXT_SKIP_DRAW, NULL);
         CopyWindowToVram(mapNamePopUpWindowId, COPYWIN_FULL);
         UpdateSecondaryPopUpWindow(secondaryPopUpWindowId);
     }
@@ -658,10 +658,10 @@ static void LoadMapNamePopUpWindowBg(void)
     u8 popUpThemeId;
     u8 popupWindowId = GetMapNamePopUpWindowId();
     mapsec_u16_t regionMapSectionId = gMapHeader.regionMapSectionId;
-    u8 secondaryPopUpWindowId;
-
+    //u8 secondaryPopUpWindowId;
+/* 
     if (OW_POPUP_GENERATION == GEN_5)
-        secondaryPopUpWindowId = GetSecondaryPopUpWindowId();
+        secondaryPopUpWindowId = GetSecondaryPopUpWindowId(); */
 
     if (regionMapSectionId >= KANTO_MAPSEC_START)
     {
@@ -684,12 +684,12 @@ static void LoadMapNamePopUpWindowBg(void)
                 LoadPalette(sMapPopUpTilesPalette_BW_Black, BG_PLTT_ID(14), sizeof(sMapPopUpTilesPalette_BW_Black));
 
             CopyToWindowPixelBuffer(popupWindowId, sMapPopUpTilesPrimary_BW, sizeof(sMapPopUpTilesPrimary_BW), 0);
-            CopyToWindowPixelBuffer(secondaryPopUpWindowId, sMapPopUpTilesSecondary_BW, sizeof(sMapPopUpTilesSecondary_BW), 0);
+            //CopyToWindowPixelBuffer(secondaryPopUpWindowId, sMapPopUpTilesSecondary_BW, sizeof(sMapPopUpTilesSecondary_BW), 0);
             break;
         }
 
         PutWindowTilemap(popupWindowId);
-        PutWindowTilemap(secondaryPopUpWindowId);
+        //PutWindowTilemap(secondaryPopUpWindowId);
     }
     else
     {

@@ -213,11 +213,11 @@
 #define FLAG_DEFEATED_GRUNT_SPACE_CENTER_1F  0xBF
 #define FLAG_RECEIVED_SUN_STONE_MOSSDEEP     0xC0
 #define FLAG_WALLY_SPEECH                    0xC1
-#define FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_1   0xC2 // Leftover from the RS version of Puzzle Room 7, functionally unused
-#define FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_2   0xC3 //
-#define FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_3   0xC4 //
-#define FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_4   0xC5 //
-#define FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_5   0xC6 //
+#define FLAG_RAILWAY_CELLBATTERY             0xC2
+#define FLAG_UNUSED_0xC3                     0xC3 // Unused
+#define FLAG_UNUSED_0xC4                     0xC4 // Unused
+#define FLAG_UNUSED_0xC5                     0xC5 // Unused
+#define FLAG_UNUSED_0xC6                     0xC6 // Unused
 #define FLAG_RUSTURF_TUNNEL_OPENED           0xC7
 #define FLAG_RECEIVED_RED_SCARF              0xC8
 #define FLAG_RECEIVED_BLUE_SCARF             0xC9
@@ -228,7 +228,7 @@
 #define FLAG_ENCOUNTERED_LATIAS_OR_LATIOS    0xCE
 #define FLAG_MET_ARCHIE_METEOR_FALLS         0xCF
 #define FLAG_GOT_BASEMENT_KEY_FROM_WATTSON   0xD0
-#define FLAG_GOT_TM_THUNDERBOLT_FROM_WATTSON 0xD1
+#define FLAG_RAILWAY_THUNDERBOLT             0xD1
 #define FLAG_FAN_CLUB_STRENGTH_SHARED        0xD2 // Set when you rate the strength of another trainer in Lilycove's Trainer Fan Club.
 #define FLAG_DEFEATED_RIVAL_RUSTBORO         0xD3
 #define FLAG_RECEIVED_RED_OR_BLUE_ORB        0xD4
@@ -461,7 +461,7 @@
 #define FLAG_REGISTERED_WALLACE              (TRAINER_REGISTERED_FLAGS_START + REMATCH_WALLACE)
 
 #define FLAG_DAILY_BEAT_SILVER                    0x1AA // Unused Flag
-#define FLAG_UNUSED_0x1AB                    0x1AB // Unused Flag
+#define FLAG_SUS_RAILWAY_DOOR                0x1AB // Unused Flag
 
 #define FLAG_DEFEATED_DEOXYS                 0x1AC //HnS
 #define FLAG_BATTLED_DEOXYS                  0x1AD //HnS
@@ -910,18 +910,18 @@
 #define FLAG_HIDE_CERULEAN_GYM_POKEMON                                          0x35B
 #define FLAG_HIDE_NEWBARKTOWN_LAB_AIDE                                          0x35C
 #define FLAG_HIDE_AZALEA_TOWN_CUT_MASTER                                          0x35D
-#define FLAG_UNUSED_UNSET6                                          0x35E
+#define FLAG_RAILWAY_ELECTRITE                                      0x35E
 #define FLAG_UNUSED_UNSET7                                          0x35F
 #define FLAG_HIDE_BATTLE_TOWER_MULTI_BATTLE_PARTNER_ALT_1           0x360
 #define FLAG_HIDE_BATTLE_TOWER_MULTI_BATTLE_PARTNER_ALT_2           0x361
-#define FLAG_UNUSED_UNSET8                                          0x362
-#define FLAG_UNUSED_UNSET9                                          0x363 
+#define FLAG_ROUTE42_PSYCHITE                                       0x362
+#define FLAG_HIDE_LAKEOFRAGE_POLICE                                 0x363 
 #define FLAG_HIDE_MOMS_FRIEND                                       0x364 //HnS NormalFlags Block 1
 #define FLAG_MOM_VISITED                                            0x365 //mom gives good luck speech
 #define FLAG_HIDE_SILVER_NEWBARKTOWN                                0x366 //for beginning
-#define FLAG_UNUSED_0x367                                           0x367 
+#define FLAG_BLACKTHORN_ADRENALINE_ORB                              0x367 
 #define FLAG_HIDE_STARTER_CASE                                      0x368
-#define FLAG_UNUSED_0x369                                           0x369
+#define FLAG_CIANWOOD_FLYINGITE                                     0x369
 #define FLAG_RECEIVED_FIRST_POTION                                  0x36A
 #define FLAG_RECEIVED_FIRST_BALLS                                   0x36B
 #define FLAG_HIDE_LAB_POLICEMAN                                     0x36C
@@ -1383,8 +1383,8 @@
 #define FLAG_VISITED_LAKE_OF_RAGE                           (SYSTEM_FLAGS + 0x19) //25
 #define FLAG_VISITED_BLACKTHORN_CITY                  (SYSTEM_FLAGS + 0x1A)
 #define FLAG_VISITED_INDIGO_PLATEAU               (SYSTEM_FLAGS + 0x1B)
-#define FLAG_VISITED_PALLET_TOWN                           (SYSTEM_FLAGS + 0x1C) 
-#define FLAG_VISITED_VIRIDIAN_CITY                   (SYSTEM_FLAGS + 0x1D)
+#define FLAG_VISITED_SNOWTOP_MOUNTAIN                           (SYSTEM_FLAGS + 0x1C) 
+#define FLAG_VISITED_RINTO_VILLAGE                   (SYSTEM_FLAGS + 0x1D)
 #define FLAG_VISITED_PEWTER_CITY                         (SYSTEM_FLAGS + 0x1E) 
 #define FLAG_VISITED_CERULEAN_CITY               (SYSTEM_FLAGS + 0x1F) //49
 #define FLAG_VISITED_VERMILION_CITY                          (SYSTEM_FLAGS + 0x20) 

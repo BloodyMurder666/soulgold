@@ -1817,10 +1817,45 @@ BattleFrontier_BattlePyramidLobby_Text_ExplainBagRules:
 
 PoyramidLobbyBPVendor::
 # 912 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
-	msgbox PoyramidLobbyBPVendor_Text_0, MSGBOX_NPC
-	return
+	lock
+# 913 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
+	faceplayer
+# 914 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
+	msgbox PoyramidLobbyBPVendor_Text_0
+# 915 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
+	bpmart PyramidBPVendor
+# 916 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
+	msgbox PoyramidLobbyBPVendor_Text_1
+# 917 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
+	release
+	end
 
+
+	.align 2
+# 921 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
+PyramidBPVendor:
+# 922 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
+	.2byte ITEM_FLAME_ORB
+# 923 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
+	.2byte ITEM_TOXIC_ORB
+# 924 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
+	.2byte ITEM_LIFE_ORB
+# 925 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
+	.2byte ITEM_FOCUS_SASH
+# 926 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
+	.2byte ITEM_POWER_HERB
+# 927 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
+	.2byte ITEM_WHITE_HERB
+# 928 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
+	.2byte ITEM_BLACK_SLUDGE
+# 929 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
+	.2byte ITEM_ASSAULT_VEST
+	.2byte ITEM_NONE
 
 PoyramidLobbyBPVendor_Text_0:
-# 912 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
-	.string "TODO$"
+# 914 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
+	.string "Welcome!$"
+
+PoyramidLobbyBPVendor_Text_1:
+# 916 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
+	.string "Thanks!$"

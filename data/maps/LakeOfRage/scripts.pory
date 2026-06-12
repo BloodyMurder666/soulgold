@@ -1,9 +1,4 @@
 raw `
-.set LOCALID_LAKEOFRAGE_GYARADOS, 8
-.set LOCALID_LAKEOFRAGE_LANCE, 3
-.set LOCALID_LAKEOFRAGE_DRAGONITE, 16
-.set LOCALID_LAKEOFRAGE_OLDMAN, 4
-.set LOCALID_LAKE_PRYCE, 17
 
 LakeOfRage_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, LakeOfRage_OnTransition
@@ -44,7 +39,7 @@ LakeOfRage_EventScript_Pryce::
     closemessage
     fadescreenswapbuffers FADE_TO_BLACK
     setflag FLAG_HIDE_LAKE_PRYCE
-    removeobject LOCALID_LAKE_PRYCE
+    removeobject LOCALID_PRYCE_REMATCH
     fadescreenswapbuffers FADE_FROM_BLACK
     clearflag FLAG_HIDE_DOJO_PRYCE
     release
@@ -487,4 +482,10 @@ script Lakeofrage_PryceRematch {
 	}
     release
     end
+}
+
+script LakeOfRagePostgamePoliceman {
+	msgbox("The road has been blocked by a
+			landslide, we're working on clearing
+			it up, so please have patience.", MSGBOX_NPC)
 }

@@ -10,7 +10,7 @@
   "allow_cycling": true,
   "allow_escaping": true,
   "allow_running": true,
-  "show_map_name": false,
+  "show_map_name": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": null,
   "object_events": [
@@ -274,7 +274,7 @@
       "x": 37,
       "y": 4,
       "elevation": 0,
-      "dest_map": "MAP_RAILWAY_CAVE",
+      "dest_map": "MAP_RAILWAY_CAVE_2F",
       "dest_warp_id": "0"
     }
   ],
