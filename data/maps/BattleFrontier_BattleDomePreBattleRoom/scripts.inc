@@ -186,12 +186,6 @@ BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForSemifinals::
 	return
 
 BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForFinals::
-	frontier_getbrainstatus
-	switch VAR_RESULT
-	case FRONTIER_BRAIN_SILVER, BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerSilver
-	case FRONTIER_BRAIN_GOLD, BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerGold
-	case FRONTIER_BRAIN_STREAK, BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerSilver
-	case FRONTIER_BRAIN_STREAK_LONG, BattleFrontier_BattleDomePreBattleRoom_EventScript_ReadyForTuckerGold
 	message BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForFinals
 	return
 
@@ -389,4 +383,3 @@ BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerSilverShort:
 BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerGoldShort:
 	.string "Your final battle against Tucker is\n"
 	.string "next. Are you ready?$"
-

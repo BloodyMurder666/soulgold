@@ -11,5 +11,6 @@ u16 GetPwtDomeTrainerId(u16 trainerId);
 u8 GetPwtDomeTrainerPicId(u16 trainerId);
 void CopyPwtDomeTrainerName(u8 *dst, u16 trainerId);
 u8 GetPwtDomeFacilityClass(u16 trainerId);
+void CopyPwtDomeTrainerText(u8 *dst, u16 trainerId, u8 textId);
 
 #endif // GUARD_BATTLE_DOME_H

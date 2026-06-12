@@ -33,6 +33,12 @@
 	special CallBattleDomeFunction
 	.endm
 
+	@ Buffer the current opponent's PWT intro speech to gStringVar4
+	.macro dome_getopponentintro
+	setvar VAR_0x8004, BATTLE_DOME_FUNC_GET_OPPONENT_INTRO
+	special CallBattleDomeFunction
+	.endm
+
 	@ Choose which of the opponents mons to use in battle and load them into the enemy party
 	.macro dome_initopponentparty
 	setvar VAR_0x8004, BATTLE_DOME_FUNC_INIT_OPPONENT_PARTY

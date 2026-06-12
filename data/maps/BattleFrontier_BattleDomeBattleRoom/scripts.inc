@@ -52,7 +52,6 @@ BattleFrontier_BattleDomeBattleRoom_EventScript_EnterRoom::
 	closemessage
 	showobjectat LOCALID_DOME_PLAYER, MAP_BATTLE_FRONTIER_BATTLE_DOME_BATTLE_ROOM
 	goto_if_ne VAR_TEMP_F, DOME_FINAL, BattleFrontier_BattleDomeBattleRoom_EventScript_PlayerEnter
-	goto_if_ne VAR_TEMP_E, FRONTIER_BRAIN_NOT_READY, BattleFrontier_BattleDomeBattleRoom_EventScript_PlayerEnterForTucker
 BattleFrontier_BattleDomeBattleRoom_EventScript_PlayerEnter::
 	applymovement LOCALID_DOME_PLAYER, BattleFrontier_BattleDomeBattleRoom_Movement_PlayerEnter
 	goto BattleFrontier_BattleDomeBattleRoom_EventScript_AudienceReactToPlayer
@@ -63,8 +62,6 @@ BattleFrontier_BattleDomeBattleRoom_EventScript_AudienceReactToPlayer::
 	playse SE_M_ENCORE2
 	call BattleFrontier_BattleDomeBattleRoom_EventScript_AudienceLookAround
 	waitmovement 0
-	goto_if_ne VAR_TEMP_F, DOME_FINAL, BattleFrontier_BattleDomeBattleRoom_EventScript_BattleOpponent
-	goto_if_ne VAR_TEMP_E, FRONTIER_BRAIN_NOT_READY, BattleFrontier_BattleDomeBattleRoom_EventScript_AnnounceTucker
 BattleFrontier_BattleDomeBattleRoom_EventScript_BattleOpponent::
 	dome_getopponentname
 	msgbox BattleFrontier_BattleDomeBattleRoom_Text_PlayerVersusTrainer, MSGBOX_DEFAULT
@@ -72,7 +69,7 @@ BattleFrontier_BattleDomeBattleRoom_EventScript_BattleOpponent::
 	applymovement LOCALID_DOME_PLAYER, BattleFrontier_BattleDomeBattleRoom_Movement_PlayerStepForward
 	applymovement LOCALID_DOME_OPPONENT, BattleFrontier_BattleDomeBattleRoom_Movement_OpponentStepForward
 	waitmovement 0
-	tower_getopponentintro 0
+	dome_getopponentintro
 	msgbox gStringVar4, MSGBOX_DEFAULT
 	closemessage
 	dome_initopponentparty
@@ -117,13 +114,13 @@ BattleFrontier_BattleDomeBattleRoom_EventScript_WarpToLobbyLost::
 	goto BattleFrontier_BattleDomeBattleRoom_EventScript_WarpToLobby
 
 BattleFrontier_BattleDomeBattleRoom_EventScript_OpponentWon::
-	frontier_gettrainername STR_VAR_2
+	dome_getopponentname
 	message BattleFrontier_BattleDomeBattleRoom_Text_TrainerIsWinner
 	waitmessage
 	return
 
 BattleFrontier_BattleDomeBattleRoom_EventScript_OpponentWonDraw::
-	frontier_gettrainername STR_VAR_1
+	dome_getopponentname
 	message BattleFrontier_BattleDomeBattleRoom_Text_RefereesDecidedWinnerTrainer
 	waitmessage
 	return
@@ -466,15 +463,7 @@ BattleFrontier_BattleDomeBattleRoom_EventScript_SetUpObjects::
 	applymovement LOCALID_PLAYER, BattleFrontier_BattleDomeBattleRoom_Movement_SetInvisible
 	frontier_get FRONTIER_DATA_BATTLE_NUM
 	goto_if_ne VAR_RESULT, DOME_FINAL, BattleFrontier_BattleDomeBattleRoom_EventScript_EndSetUpObjects
-	frontier_getbrainstatus
-	copyvar VAR_TEMP_E, VAR_RESULT
-	goto_if_eq VAR_RESULT, FRONTIER_BRAIN_NOT_READY, BattleFrontier_BattleDomeBattleRoom_EventScript_EndSetUpObjects
-	call BattleFrontier_EventScript_SetBrainObjectGfx
-	setobjectxyperm LOCALID_DOME_OPPONENT, 13, 9
-	removeobject LOCALID_DOME_OPPONENT
-	delay 1
-	addobject LOCALID_DOME_OPPONENT
-	applymovement LOCALID_DOME_OPPONENT, BattleFrontier_BattleDomeBattleRoom_Movement_SetInvisibleFacingUp
+	setvar VAR_TEMP_E, FRONTIER_BRAIN_NOT_READY
 BattleFrontier_BattleDomeBattleRoom_EventScript_EndSetUpObjects::
 	end
 
@@ -536,38 +525,7 @@ BattleFrontier_BattleDomeBattleRoom_EventScript_AddSemifinalAudience::
 	return
 
 BattleFrontier_BattleDomeBattleRoom_EventScript_AddFinalAudience::
-	createvobject OBJ_EVENT_GFX_NINJA_BOY, 0, 2, 0
-	createvobject OBJ_EVENT_GFX_SCIENTIST_1, 1, 3, 0
-	createvobject OBJ_EVENT_GFX_BEAUTY, 2, 15, 0
-	createvobject OBJ_EVENT_GFX_MAN_5, 3, 5, 0
-	createvobject OBJ_EVENT_GFX_EXPERT_F, 4, 6, 0
-	createvobject OBJ_EVENT_GFX_SCIENTIST_1, 5, 7, 0
-	createvobject OBJ_EVENT_GFX_NINJA_BOY, 6, 8, 0
-	createvobject OBJ_EVENT_GFX_WOMAN_2, 7, 9, 0
-	createvobject OBJ_EVENT_GFX_WOMAN_3, 8, 10, 0
-	createvobject OBJ_EVENT_GFX_LITTLE_GIRL, 9, 11, 0
-	createvobject OBJ_EVENT_GFX_LASS, 10, 12, 0
-	createvobject OBJ_EVENT_GFX_SCIENTIST_1, 11, 13, 0
-	createvobject OBJ_EVENT_GFX_BEAUTY, 12, 14, 0
-	createvobject OBJ_EVENT_GFX_MAN_5, 13, 15, 2
-	createvobject OBJ_EVENT_GFX_HIKER, 14, 12, 2
-	createvobject OBJ_EVENT_GFX_GENTLEMAN, 15, 2, 1
-	createvobject OBJ_EVENT_GFX_NINJA_BOY, 16, 3, 1
-	createvobject OBJ_EVENT_GFX_WOMAN_2, 17, 4, 1
-	createvobject OBJ_EVENT_GFX_WOMAN_3, 18, 6, 1
-	createvobject OBJ_EVENT_GFX_BEAUTY, 19, 7, 1
-	createvobject OBJ_EVENT_GFX_EXPERT_F, 20, 9, 1
-	createvobject OBJ_EVENT_GFX_MAN_2, 21, 10, 1
-	createvobject OBJ_EVENT_GFX_WOMAN_5, 22, 11, 1
-	createvobject OBJ_EVENT_GFX_SCIENTIST_1, 23, 13, 1
-	createvobject OBJ_EVENT_GFX_GENTLEMAN, 24, 14, 1
-	createvobject OBJ_EVENT_GFX_LITTLE_BOY, 25, 15, 1
-	createvobject OBJ_EVENT_GFX_YOUNGSTER, 26, 2, 2
-	createvobject OBJ_EVENT_GFX_FAT_MAN, 27, 3, 2
-	createvobject OBJ_EVENT_GFX_HEX_MANIAC, 28, 5, 2
-	createvobject OBJ_EVENT_GFX_SCHOOL_KID_M, 29, 5, 1
-	createvobject OBJ_EVENT_GFX_MART_EMPLOYEE, 30, 6, 2
-	createvobject OBJ_EVENT_GFX_WOMAN_5, 31, 8, 2
+	call BattleFrontier_BattleDomeBattleRoom_EventScript_AddSemifinalAudience
 	return
 
 BattleFrontier_BattleDomeBattleRoom_Movement_SetInvisible:
@@ -963,7 +921,7 @@ BattleFrontier_BattleDomeBattleRoom_Text_RefereesDecidedWinnerTrainer:
 	.string "a decision!\p"
 	.string "The winner is…\n"
 	.string "Oh, my goodness!\l"
-	.string "The winner is {STR_VAR_1}!\l"
+	.string "The winner is {STR_VAR_2}!\l"
 	.string "Congratulations!$"
 
 BattleFrontier_BattleDomeBattleRoom_Text_RefereesDecidedWinnerPlayer:

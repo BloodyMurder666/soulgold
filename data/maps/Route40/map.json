@@ -166,29 +166,29 @@
       "x": 11,
       "y": 13,
       "elevation": 0,
-      "dest_map": "MAP_TRAINER_HILL_COURTYARD",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_ROUTE40",
+      "dest_warp_id": "1"
     },
     {
       "x": 11,
       "y": 5,
       "elevation": 0,
-      "dest_map": "MAP_TRAINER_HILL_COURTYARD",
-      "dest_warp_id": "1"
+      "dest_map": "MAP_ROUTE40",
+      "dest_warp_id": "0"
     },
     {
       "x": 12,
       "y": 5,
       "elevation": 0,
-      "dest_map": "MAP_TRAINER_HILL_COURTYARD",
-      "dest_warp_id": "1"
+      "dest_map": "MAP_ROUTE40",
+      "dest_warp_id": "0"
     },
     {
       "x": 10,
       "y": 5,
       "elevation": 0,
-      "dest_map": "MAP_TRAINER_HILL_COURTYARD",
-      "dest_warp_id": "1"
+      "dest_map": "MAP_ROUTE40",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],

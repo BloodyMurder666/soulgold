@@ -41,6 +41,7 @@
 #include "constants/abilities.h"
 #include "constants/pokemon.h"
 #include "constants/songs.h"
+#include "constants/species.h"
 #include "constants/battle_frontier.h"
 #include "constants/event_objects.h"
 #include "constants/rgb.h"
@@ -69,6 +70,25 @@ struct TourneyTreeLineSection
     u8 y;
     u16 tile;
 };
+
+struct PwtDomeTrainerText
+{
+    const u8 *intro;
+    const u8 *playerWon;
+    const u8 *playerLost;
+};
+
+struct PwtDomeParticipant
+{
+    u16 trainerId;
+    u16 objEventGfx;
+    const struct TrainerMon *party;
+    u8 partySize;
+    u8 potentialTextId;
+    const struct PwtDomeTrainerText *text;
+};
+
+#define PWT_DOME_PARTY(partyArray) partyArray, ARRAY_COUNT(partyArray)
 
 #define DOME_TRAINERS gSaveBlock2Ptr->frontier.domeTrainers
 #define DOME_MONS     gSaveBlock2Ptr->frontier.domeMonIds
@@ -114,6 +134,10 @@ enum {
 
 static u8 GetDomeTrainerMonIvs(u16);
 static void CreatePwtDomeOpponentMon(u8, u16, u8, u32);
+static const struct PwtDomeParticipant *GetPwtDomeParticipant(u16);
+static const struct TrainerMon *GetPwtDomeParty(u16);
+static u8 GetPwtDomePartySize(u16);
+static u8 GetPwtDomePotentialTextId(u16);
 static bool8 IsPwtDomeTrainerEligible(u8);
 static const struct Trainer *GetPwtDomeTrainer(u16);
 static u16 GetPwtDomeObjectEventGfx(u16);
@@ -160,6 +184,7 @@ static void GetDomeData(void);
 static void SetDomeData(void);
 static void BufferDomeRoundText(void);
 static void BufferDomeOpponentName(void);
+static void BufferDomeOpponentIntro(void);
 static void InitDomeOpponentParty(void);
 static void ShowDomeOpponentInfo(void);
 static void ShowDomeTourneyTree(void);
@@ -181,35 +206,99 @@ static void InitDomeTrainers(void);
 static EWRAM_DATA struct TourneyTreeInfoCard *sInfoCard = {0};
 static EWRAM_DATA u8 *sTilemapBuffer = NULL;
 
-static const u16 sPwtDomeWorldTournamentTrainers[] =
+static const u8 sPwtDomeText_DefaultIntro[] = _("Show me what brought you this far.");
+static const u8 sPwtDomeText_DefaultPlayerWon[] = _("That was a championship-caliber battle.");
+static const u8 sPwtDomeText_DefaultPlayerLost[] = _("Train harder and come challenge me again.");
+static const u8 sPwtDomeText_BlueIntro[] = _("Blue: You made it here?\nAll right, show me what you've got!");
+static const u8 sPwtDomeText_BluePlayerWon[] = _("Blue: Not bad. I can see why\nyou made the finals.");
+static const u8 sPwtDomeText_BluePlayerLost[] = _("Blue: That's the difference\nbetween us. Smell ya later!");
+
+static const struct PwtDomeTrainerText sPwtDomeText_Default =
 {
-    TRAINER_BROCK,
-    TRAINER_MISTY,
-    TRAINER_LTSURGE,
-    TRAINER_ERIKA,
-    TRAINER_JANINE,
-    TRAINER_SABRINA,
-    TRAINER_BLAINE,
-    TRAINER_GIOVANNI,
-    TRAINER_BLUE,
-    TRAINER_FALKNER_2,
-    TRAINER_BUGSY_2,
-    TRAINER_WHITNEY_2,
-    TRAINER_MORTY_2,
-    TRAINER_CHUCK_2,
-    TRAINER_JASMINE_2,
-    TRAINER_PRYCE_2,
-    TRAINER_CLAIR_2,
-    TRAINER_ROXANNE_5,
-    TRAINER_WATTSON_5,
-    TRAINER_NORMAN_5,
-    TRAINER_WINONA_5,
-    TRAINER_TATE_AND_LIZA_5,
-    TRAINER_JUAN_5,
-    TRAINER_WALLACE2,
-    TRAINER_LANCE_1,
-    TRAINER_STEVEN,
-    TRAINER_RED,
+    .intro = sPwtDomeText_DefaultIntro,
+    .playerWon = sPwtDomeText_DefaultPlayerWon,
+    .playerLost = sPwtDomeText_DefaultPlayerLost,
+};
+
+static const struct PwtDomeTrainerText sPwtDomeText_Blue =
+{
+    .intro = sPwtDomeText_BlueIntro,
+    .playerWon = sPwtDomeText_BluePlayerWon,
+    .playerLost = sPwtDomeText_BluePlayerLost,
+};
+
+static const struct TrainerMon sPwtDomeParty_Blue[] =
+{
+    {
+        .species = SPECIES_PIDGEOT,
+        .heldItem = { ITEM_SHARP_BEAK, ITEM_NONE },
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ev = TRAINER_PARTY_EVS(4, 252, 0, 252, 0, 0),
+        .lvl = 68,
+        .ball = POKEBALL_COUNT,
+        .nature = NATURE_JOLLY,
+        .gender = TRAINER_MON_RANDOM_GENDER,
+        .moves = { MOVE_AIR_SLASH, MOVE_AERIAL_ACE, MOVE_ROOST, MOVE_RETURN },
+    },
+    {
+        .species = SPECIES_ALAKAZAM,
+        .heldItem = { ITEM_TWISTED_SPOON, ITEM_NONE },
+        .iv = TRAINER_PARTY_IVS(31, 0, 31, 31, 31, 31),
+        .ev = TRAINER_PARTY_EVS(4, 0, 0, 252, 252, 0),
+        .lvl = 68,
+        .ball = POKEBALL_COUNT,
+        .nature = NATURE_TIMID,
+        .gender = TRAINER_MON_RANDOM_GENDER,
+        .moves = { MOVE_PSYCHIC, MOVE_SHADOW_BALL, MOVE_FOCUS_BLAST, MOVE_RECOVER },
+    },
+    {
+        .species = SPECIES_ARCANINE,
+        .heldItem = { ITEM_SITRUS_BERRY, ITEM_NONE },
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 0, 31),
+        .ev = TRAINER_PARTY_EVS(4, 252, 0, 252, 0, 0),
+        .lvl = 69,
+        .ball = POKEBALL_COUNT,
+        .nature = NATURE_ADAMANT,
+        .gender = TRAINER_MON_RANDOM_GENDER,
+        .moves = { MOVE_FLARE_BLITZ, MOVE_EXTREME_SPEED, MOVE_CRUNCH, MOVE_ROAR },
+    },
+};
+
+#define PWT_DOME_STORY_PARTY(trainer, gfx, potential, textTable) \
+    {.trainerId = trainer, .objEventGfx = gfx, .party = NULL, .partySize = 0, .potentialTextId = potential, .text = textTable}
+
+#define PWT_DOME_PRESET_PARTY(trainer, gfx, partyArray, potential, textTable) \
+    {.trainerId = trainer, .objEventGfx = gfx, .party = partyArray, .partySize = ARRAY_COUNT(partyArray), .potentialTextId = potential, .text = textTable}
+
+static const struct PwtDomeParticipant sPwtDomeWorldTournamentTrainers[] =
+{
+    PWT_DOME_STORY_PARTY(TRAINER_BROCK, OBJ_EVENT_GFX_BROCK, 6, &sPwtDomeText_Default),
+    PWT_DOME_STORY_PARTY(TRAINER_MISTY, OBJ_EVENT_GFX_MISTY, 6, &sPwtDomeText_Default),
+    PWT_DOME_STORY_PARTY(TRAINER_LTSURGE, OBJ_EVENT_GFX_SURGE, 6, &sPwtDomeText_Default),
+    PWT_DOME_STORY_PARTY(TRAINER_ERIKA, OBJ_EVENT_GFX_ERIKA, 6, &sPwtDomeText_Default),
+    PWT_DOME_STORY_PARTY(TRAINER_JANINE, OBJ_EVENT_GFX_JANINE, 7, &sPwtDomeText_Default),
+    PWT_DOME_STORY_PARTY(TRAINER_SABRINA, OBJ_EVENT_GFX_SABRINA, 5, &sPwtDomeText_Default),
+    PWT_DOME_STORY_PARTY(TRAINER_BLAINE, OBJ_EVENT_GFX_BLAINE, 6, &sPwtDomeText_Default),
+    PWT_DOME_STORY_PARTY(TRAINER_GIOVANNI, OBJ_EVENT_GFX_GIOVANNI, 3, &sPwtDomeText_Default),
+    PWT_DOME_PRESET_PARTY(TRAINER_BLUE, OBJ_EVENT_GFX_BLUE, sPwtDomeParty_Blue, 1, &sPwtDomeText_Blue),
+    PWT_DOME_STORY_PARTY(TRAINER_FALKNER_2, OBJ_EVENT_GFX_FALKNER, 8, &sPwtDomeText_Default),
+    PWT_DOME_STORY_PARTY(TRAINER_BUGSY_2, OBJ_EVENT_GFX_BUGSY, 8, &sPwtDomeText_Default),
+    PWT_DOME_STORY_PARTY(TRAINER_WHITNEY_2, OBJ_EVENT_GFX_WHITNEY, 7, &sPwtDomeText_Default),
+    PWT_DOME_STORY_PARTY(TRAINER_MORTY_2, OBJ_EVENT_GFX_MORTY, 6, &sPwtDomeText_Default),
+    PWT_DOME_STORY_PARTY(TRAINER_CHUCK_2, OBJ_EVENT_GFX_CHUCK, 7, &sPwtDomeText_Default),
+    PWT_DOME_STORY_PARTY(TRAINER_JASMINE_2, OBJ_EVENT_GFX_JASMINE, 6, &sPwtDomeText_Default),
+    PWT_DOME_STORY_PARTY(TRAINER_PRYCE_2, OBJ_EVENT_GFX_PRYCE, 7, &sPwtDomeText_Default),
+    PWT_DOME_STORY_PARTY(TRAINER_CLAIR_2, OBJ_EVENT_GFX_CLAIR, 5, &sPwtDomeText_Default),
+    PWT_DOME_STORY_PARTY(TRAINER_ROXANNE_5, OBJ_EVENT_GFX_ROXANNE, 8, &sPwtDomeText_Default),
+    PWT_DOME_STORY_PARTY(TRAINER_WATTSON_5, OBJ_EVENT_GFX_WATTSON, 7, &sPwtDomeText_Default),
+    PWT_DOME_STORY_PARTY(TRAINER_NORMAN_5, OBJ_EVENT_GFX_NORMAN, 5, &sPwtDomeText_Default),
+    PWT_DOME_STORY_PARTY(TRAINER_WINONA_5, OBJ_EVENT_GFX_WINONA, 6, &sPwtDomeText_Default),
+    PWT_DOME_STORY_PARTY(TRAINER_TATE_AND_LIZA_5, OBJ_EVENT_GFX_TATE, 6, &sPwtDomeText_Default),
+    PWT_DOME_STORY_PARTY(TRAINER_JUAN_5, OBJ_EVENT_GFX_JUAN, 5, &sPwtDomeText_Default),
+    PWT_DOME_STORY_PARTY(TRAINER_WALLACE2, OBJ_EVENT_GFX_WALLACE, 1, &sPwtDomeText_Default),
+    PWT_DOME_STORY_PARTY(TRAINER_LANCE_1, OBJ_EVENT_GFX_LANCE, 0, &sPwtDomeText_Default),
+    PWT_DOME_STORY_PARTY(TRAINER_STEVEN, OBJ_EVENT_GFX_STEVEN, 0, &sPwtDomeText_Default),
+    PWT_DOME_STORY_PARTY(TRAINER_RED, OBJ_EVENT_GFX_RED, 0, &sPwtDomeText_Default),
 };
 
 bool8 IsPwtDomeTrainerId(u16 trainerId)
@@ -232,17 +321,47 @@ static u16 GetPwtDomeHandle(u8 participantId)
     return PWT_DOME_TRAINER_BASE + participantId;
 }
 
+static const struct PwtDomeParticipant *GetPwtDomeParticipant(u16 trainerId)
+{
+    return &sPwtDomeWorldTournamentTrainers[PwtDomeHandleToParticipantId(trainerId)];
+}
+
 u16 GetPwtDomeTrainerId(u16 trainerId)
 {
     if (!IsPwtDomeTrainerId(trainerId))
         return TRAINER_NONE;
 
-    return sPwtDomeWorldTournamentTrainers[PwtDomeHandleToParticipantId(trainerId)];
+    return GetPwtDomeParticipant(trainerId)->trainerId;
 }
 
 static const struct Trainer *GetPwtDomeTrainer(u16 trainerId)
 {
     return GetTrainerStructFromId(GetPwtDomeTrainerId(trainerId));
+}
+
+static const struct TrainerMon *GetPwtDomeParty(u16 trainerId)
+{
+    const struct PwtDomeParticipant *participant = GetPwtDomeParticipant(trainerId);
+
+    if (participant->party != NULL)
+        return participant->party;
+
+    return GetPwtDomeTrainer(trainerId)->party;
+}
+
+static u8 GetPwtDomePartySize(u16 trainerId)
+{
+    const struct PwtDomeParticipant *participant = GetPwtDomeParticipant(trainerId);
+
+    if (participant->party != NULL)
+        return participant->partySize;
+
+    return GetPwtDomeTrainer(trainerId)->partySize;
+}
+
+static u8 GetPwtDomePotentialTextId(u16 trainerId)
+{
+    return GetPwtDomeParticipant(trainerId)->potentialTextId;
 }
 
 u8 GetPwtDomeTrainerPicId(u16 trainerId)
@@ -253,6 +372,44 @@ u8 GetPwtDomeTrainerPicId(u16 trainerId)
 void CopyPwtDomeTrainerName(u8 *dst, u16 trainerId)
 {
     StringCopy_Nickname(dst, GetTrainerNameFromId(GetPwtDomeTrainerId(trainerId)));
+}
+
+void CopyPwtDomeTrainerText(u8 *dst, u16 trainerId, u8 textId)
+{
+    const struct PwtDomeTrainerText *text;
+    const u8 *src;
+
+    if (!IsPwtDomeTrainerId(trainerId))
+    {
+        StringCopy(dst, sPwtDomeText_Default.intro);
+        return;
+    }
+
+    text = GetPwtDomeParticipant(trainerId)->text;
+    if (text == NULL)
+        text = &sPwtDomeText_Default;
+
+    switch (textId)
+    {
+    case PWT_DOME_TEXT_PLAYER_WON:
+        src = text->playerWon;
+        if (src == NULL)
+            src = sPwtDomeText_Default.playerWon;
+        break;
+    case PWT_DOME_TEXT_PLAYER_LOST:
+        src = text->playerLost;
+        if (src == NULL)
+            src = sPwtDomeText_Default.playerLost;
+        break;
+    case PWT_DOME_TEXT_INTRO:
+    default:
+        src = text->intro;
+        if (src == NULL)
+            src = sPwtDomeText_Default.intro;
+        break;
+    }
+
+    StringCopy(dst, src);
 }
 
 u8 GetPwtDomeFacilityClass(u16 trainerId)
@@ -267,75 +424,16 @@ u8 GetPwtDomeFacilityClass(u16 trainerId)
 
 static u16 GetPwtDomeObjectEventGfx(u16 trainerId)
 {
-    switch (GetPwtDomeTrainerId(trainerId))
-    {
-    case TRAINER_BROCK:
-        return OBJ_EVENT_GFX_BROCK;
-    case TRAINER_MISTY:
-        return OBJ_EVENT_GFX_MISTY;
-    case TRAINER_LTSURGE:
-        return OBJ_EVENT_GFX_SURGE;
-    case TRAINER_ERIKA:
-        return OBJ_EVENT_GFX_ERIKA;
-    case TRAINER_JANINE:
-        return OBJ_EVENT_GFX_JANINE;
-    case TRAINER_SABRINA:
-        return OBJ_EVENT_GFX_SABRINA;
-    case TRAINER_BLAINE:
-        return OBJ_EVENT_GFX_BLAINE;
-    case TRAINER_GIOVANNI:
-        return OBJ_EVENT_GFX_GIOVANNI;
-    case TRAINER_BLUE:
-        return OBJ_EVENT_GFX_BLUE;
-    case TRAINER_FALKNER_2:
-        return OBJ_EVENT_GFX_FALKNER;
-    case TRAINER_BUGSY_2:
-        return OBJ_EVENT_GFX_BUGSY;
-    case TRAINER_WHITNEY_2:
-        return OBJ_EVENT_GFX_WHITNEY;
-    case TRAINER_MORTY_2:
-        return OBJ_EVENT_GFX_MORTY;
-    case TRAINER_CHUCK_2:
-        return OBJ_EVENT_GFX_CHUCK;
-    case TRAINER_JASMINE_2:
-        return OBJ_EVENT_GFX_JASMINE;
-    case TRAINER_PRYCE_2:
-        return OBJ_EVENT_GFX_PRYCE;
-    case TRAINER_CLAIR_2:
-        return OBJ_EVENT_GFX_CLAIR;
-    case TRAINER_ROXANNE_5:
-        return OBJ_EVENT_GFX_ROXANNE;
-    case TRAINER_WATTSON_5:
-        return OBJ_EVENT_GFX_WATTSON;
-    case TRAINER_NORMAN_5:
-        return OBJ_EVENT_GFX_NORMAN;
-    case TRAINER_WINONA_5:
-        return OBJ_EVENT_GFX_WINONA;
-    case TRAINER_TATE_AND_LIZA_5:
-        return OBJ_EVENT_GFX_TATE;
-    case TRAINER_JUAN_5:
-        return OBJ_EVENT_GFX_JUAN;
-    case TRAINER_WALLACE2:
-        return OBJ_EVENT_GFX_WALLACE;
-    case TRAINER_LANCE_1:
-        return OBJ_EVENT_GFX_LANCE;
-    case TRAINER_STEVEN:
-        return OBJ_EVENT_GFX_STEVEN;
-    case TRAINER_RED:
-        return OBJ_EVENT_GFX_RED;
-    default:
-        break;
-    }
-
-    return 0;
+    return GetPwtDomeParticipant(trainerId)->objEventGfx;
 }
 
 static bool8 IsPwtDomeTrainerEligible(u8 participantId)
 {
-    const struct Trainer *trainer = GetTrainerStructFromId(sPwtDomeWorldTournamentTrainers[participantId]);
+    u16 trainerId = GetPwtDomeHandle(participantId);
+    const struct Trainer *trainer = GetPwtDomeTrainer(trainerId);
 
-    return trainer->party != NULL
-        && trainer->partySize >= FRONTIER_PARTY_SIZE
+    return GetPwtDomeParty(trainerId) != NULL
+        && GetPwtDomePartySize(trainerId) >= FRONTIER_PARTY_SIZE
         && trainer->trainerPic < TRAINER_PIC_COUNT;
 }
 
@@ -347,7 +445,8 @@ static void ValidatePwtDomePool(void)
     for (i = 0; i < ARRAY_COUNT(sPwtDomeWorldTournamentTrainers); i++)
     {
         assertf(GetPwtDomeHandle(i) < TRAINER_FRONTIER_BRAIN, "PWT Dome handle overflows: %d", GetPwtDomeHandle(i));
-        assertf(sPwtDomeWorldTournamentTrainers[i] < TRAINERS_COUNT, "invalid PWT Dome trainer: %d", sPwtDomeWorldTournamentTrainers[i]);
+        assertf(sPwtDomeWorldTournamentTrainers[i].trainerId < TRAINERS_COUNT, "invalid PWT Dome trainer: %d", sPwtDomeWorldTournamentTrainers[i].trainerId);
+        assertf(sPwtDomeWorldTournamentTrainers[i].potentialTextId < DOME_TOURNAMENT_TRAINERS_COUNT, "invalid PWT Dome potential: %d", sPwtDomeWorldTournamentTrainers[i].potentialTextId);
         if (IsPwtDomeTrainerEligible(i))
             eligibleCount++;
     }
@@ -365,7 +464,7 @@ static const struct TrainerMon *GetDomeTournamentMon(u16 tournamentTrainerId, u8
     u16 trainerId = DOME_TRAINERS[tournamentTrainerId].trainerId;
 
     if (IsPwtDomeTrainerId(trainerId))
-        return &GetPwtDomeTrainer(trainerId)->party[GetPwtDomeMonIndex(tournamentTrainerId, tournamentMonId)];
+        return &GetPwtDomeParty(trainerId)[GetPwtDomeMonIndex(tournamentTrainerId, tournamentMonId)];
 
     return &gFacilityTrainerMons[DOME_MONS[tournamentTrainerId][tournamentMonId]];
 }
@@ -424,14 +523,15 @@ static void SetPwtDomeTrainerMons(u16 tournamentTrainerId)
 {
     u8 i, j, selectedCount;
     u16 trainerId = DOME_TRAINERS[tournamentTrainerId].trainerId;
-    const struct Trainer *trainer = GetPwtDomeTrainer(trainerId);
+    const struct TrainerMon *party = GetPwtDomeParty(trainerId);
+    u8 partySize = GetPwtDomePartySize(trainerId);
     u16 selectedSpecies[FRONTIER_PARTY_SIZE] = {SPECIES_NONE, SPECIES_NONE, SPECIES_NONE};
 
     for (selectedCount = 0; selectedCount < FRONTIER_PARTY_SIZE; selectedCount++)
     {
         u16 bestIndex = PWT_DOME_INVALID_MON_INDEX;
 
-        for (i = 0; i < trainer->partySize; i++)
+        for (i = 0; i < partySize; i++)
         {
             bool8 alreadySelected = FALSE;
             bool8 duplicateSpecies = FALSE;
@@ -440,19 +540,19 @@ static void SetPwtDomeTrainerMons(u16 tournamentTrainerId)
             {
                 if (DOME_MONS[tournamentTrainerId][j] == i)
                     alreadySelected = TRUE;
-                if (selectedSpecies[j] == trainer->party[i].species)
+                if (selectedSpecies[j] == party[i].species)
                     duplicateSpecies = TRUE;
             }
 
             if (alreadySelected || duplicateSpecies)
                 continue;
-            if (bestIndex == PWT_DOME_INVALID_MON_INDEX || trainer->party[i].lvl > trainer->party[bestIndex].lvl)
+            if (bestIndex == PWT_DOME_INVALID_MON_INDEX || party[i].lvl > party[bestIndex].lvl)
                 bestIndex = i;
         }
 
         if (bestIndex == PWT_DOME_INVALID_MON_INDEX)
         {
-            for (i = 0; i < trainer->partySize; i++)
+            for (i = 0; i < partySize; i++)
             {
                 bool8 alreadySelected = FALSE;
 
@@ -464,13 +564,13 @@ static void SetPwtDomeTrainerMons(u16 tournamentTrainerId)
 
                 if (alreadySelected)
                     continue;
-                if (bestIndex == PWT_DOME_INVALID_MON_INDEX || trainer->party[i].lvl > trainer->party[bestIndex].lvl)
+                if (bestIndex == PWT_DOME_INVALID_MON_INDEX || party[i].lvl > party[bestIndex].lvl)
                     bestIndex = i;
             }
         }
 
         DOME_MONS[tournamentTrainerId][selectedCount] = bestIndex;
-        selectedSpecies[selectedCount] = trainer->party[bestIndex].species;
+        selectedSpecies[selectedCount] = party[bestIndex].species;
     }
 }
 
@@ -1084,6 +1184,7 @@ static void (*const sBattleDomeFunctions[])(void) =
     [BATTLE_DOME_FUNC_GET_WINNER_NAME]          = BufferLastDomeWinnerName,
     [BATTLE_DOME_FUNC_INIT_RESULTS_TREE]        = InitRandomTourneyTreeResults,
     [BATTLE_DOME_FUNC_INIT_TRAINERS]            = InitDomeTrainers,
+    [BATTLE_DOME_FUNC_GET_OPPONENT_INTRO]       = BufferDomeOpponentIntro,
 };
 
 static const u32 sWinStreakFlags[][2] =
@@ -2345,6 +2446,8 @@ static void InitDomeTrainers(void)
             monTypesBits >>= 1;
         }
         rankingScores[i] += (monTypesCount * monLevel) / 20;
+        if (IsPwtDomeTrainerId(DOME_TRAINERS[i].trainerId))
+            rankingScores[i] += (DOME_TOURNAMENT_TRAINERS_COUNT - GetPwtDomePotentialTextId(DOME_TRAINERS[i].trainerId)) * 200;
     }
 
     // Seed tourney trainers according to their ranking
@@ -2430,6 +2533,14 @@ static void BufferDomeOpponentName(void)
 {
     StringCopy(gStringVar1, gRoundsStringTable[gSaveBlock2Ptr->frontier.curChallengeBattleNum]);
     CopyDomeTrainerName(gStringVar2, TRAINER_BATTLE_PARAM.opponentA);
+}
+
+static void BufferDomeOpponentIntro(void)
+{
+    if (IsPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA))
+        CopyPwtDomeTrainerText(gStringVar4, TRAINER_BATTLE_PARAM.opponentA, PWT_DOME_TEXT_INTRO);
+    else
+        CopyFrontierTrainerText(FRONTIER_BEFORE_TEXT, TRAINER_BATTLE_PARAM.opponentA);
 }
 
 static void InitDomeOpponentParty(void)
@@ -4632,6 +4743,8 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
     // Print text about trainers potential in the tourney
     if (trainerId == TRAINER_FRONTIER_BRAIN)
         textPrinter.currentChar = sBattleDomePotentialTexts[DOME_TOURNAMENT_TRAINERS_COUNT];
+    else if (IsPwtDomeTrainerId(trainerId))
+        textPrinter.currentChar = sBattleDomePotentialTexts[GetPwtDomePotentialTextId(trainerId)];
     else
         textPrinter.currentChar = sBattleDomePotentialTexts[trainerTourneyId];
 
@@ -4651,58 +4764,60 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
             {
                 enum Move move;
                 move = GetDomeTournamentMove(trainerTourneyId, i, j);
+                if (move == MOVE_NONE)
+                    continue;
                 enum BattleMoveEffects effect = GetMoveEffect(move);
                 u32 accuracy = GetMoveAccuracy(move);
 
                 switch (k)
                 {
                 case MOVE_POINTS_COMBO:
-                    allocatedArray[k] = IsDomeComboMove(move) ? 1 : 0;
+                    allocatedArray[k] += IsDomeComboMove(move) ? 1 : 0;
                     break;
                 case MOVE_POINTS_STAT_RAISE:
-                    allocatedArray[k] = IsStatRaisingEffect(effect) ? 1 : 0;
+                    allocatedArray[k] += IsStatRaisingEffect(effect) ? 1 : 0;
                     break;
                 case MOVE_POINTS_STAT_LOWER:
-                    allocatedArray[k] = IsStatLoweringEffect(effect) ? 1 : 0;
+                    allocatedArray[k] += IsStatLoweringEffect(effect) ? 1 : 0;
                     break;
                 case MOVE_POINTS_RARE:
-                    allocatedArray[k] = IsDomeRareMove(move) ? 1 : 0;
+                    allocatedArray[k] += IsDomeRareMove(move) ? 1 : 0;
                     break;
                 case MOVE_POINTS_HEAL:
-                    allocatedArray[k] = IsDomeHealingMove(move) ? 1 : 0;
+                    allocatedArray[k] += IsDomeHealingMove(move) ? 1 : 0;
                     break;
                 case MOVE_POINTS_RISKY:
-                    allocatedArray[k] = IsDomeRiskyMoveEffect(effect) ? 1 : 0;
+                    allocatedArray[k] += IsDomeRiskyMoveEffect(effect) ? 1 : 0;
                     break;
                 case MOVE_POINTS_STATUS:
-                    allocatedArray[k] = IsDomeStatusMoveEffect(move);
+                    allocatedArray[k] += IsDomeStatusMoveEffect(move);
                     break;
                 case MOVE_POINTS_DMG:
-                    allocatedArray[k] = (!IsBattleMoveStatus(move)) ? 1 : 0;
+                    allocatedArray[k] += (!IsBattleMoveStatus(move)) ? 1 : 0;
                     break;
                 case MOVE_POINTS_DEF:
-                    allocatedArray[k] = IsDomeDefensiveMoveEffect(effect) ? 1 : 0;
+                    allocatedArray[k] += IsDomeDefensiveMoveEffect(effect) ? 1 : 0;
                     break;
                 case MOVE_POINTS_ACCURATE:
-                    allocatedArray[k] = (accuracy == 0 || accuracy == 100) ? 1 : 0;
+                    allocatedArray[k] += (accuracy == 0 || accuracy == 100) ? 1 : 0;
                     break;
                 case MOVE_POINTS_POWERFUL:
-                    allocatedArray[k] = (GetMovePower(move) >= 100) ? 1 : 0;
+                    allocatedArray[k] += (GetMovePower(move) >= 100) ? 1 : 0;
                     break;
                 case MOVE_POINTS_POPULAR:
-                    allocatedArray[k] = IsDomePopularMove(move) ? 1 : 0;
+                    allocatedArray[k] += IsDomePopularMove(move) ? 1 : 0;
                     break;
                 case MOVE_POINTS_LUCK:
-                    allocatedArray[k] = IsDomeLuckyMove(move) ? 1 : 0;
+                    allocatedArray[k] += IsDomeLuckyMove(move) ? 1 : 0;
                     break;
                 case MOVE_POINTS_STRONG:
-                    allocatedArray[k] = (GetMovePower(move) >= 90) ? 1 : 0;
+                    allocatedArray[k] += (GetMovePower(move) >= 90) ? 1 : 0;
                     break;
                 case MOVE_POINTS_LOW_PP:
-                    allocatedArray[k] = (GetMovePP(move) <= 5) ? 1 : 0;
+                    allocatedArray[k] += (GetMovePP(move) <= 5) ? 1 : 0;
                     break;
                 case MOVE_POINTS_EFFECT:
-                    allocatedArray[k] = MoveIsAffectedBySheerForce(move);
+                    allocatedArray[k] += MoveIsAffectedBySheerForce(move);
                     break;
                 }
             }
