@@ -85,4 +85,4 @@ B1F_Snowtopmountain_Bearnese_Text_2:
 
 B1F_Snowtopmountain_Susdoor_Text_0:
 # 28 "data/maps/SnowtopMountain_B1F/scripts.pory"
-	.string "Something is carven on the wall...$"
+	.string "Something is carved on the wall...$"

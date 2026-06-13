@@ -190,7 +190,7 @@ VajraDesert_TrainerKennedy_Text_2:
 
 VajraDesert_SusDoor_Text_0:
 # 52 "data/maps/VajraDesert/scripts.pory"
-	.string "Something is carven on the door...$"
+	.string "Something is carved on the door...$"
 
 VajraDesertWest_GrottoDoor_Text_0:
 # 67 "data/maps/VajraDesert/scripts.pory"

@@ -16,7 +16,7 @@ RailwayCave_BrailleRegisteel:
 
 script RailwayCave_SusDoor {
     lock
-    msgbox("Something is carven on the door...")
+    msgbox("Something is carved on the door...")
     closemessage
     braillemsgbox(RailwayCave_BrailleRegisteel)
     checkspecies(SPECIES_KOMMO_O)

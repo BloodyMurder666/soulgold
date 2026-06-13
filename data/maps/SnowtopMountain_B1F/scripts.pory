@@ -25,7 +25,7 @@ script B1F_Snowtopmountain_Bearnese {
 
 script B1F_Snowtopmountain_Susdoor {
     lock
-    msgbox("Something is carven on the wall...")
+    msgbox("Something is carved on the wall...")
     closemessage
     braillemsgbox(Snowtopmountain_BrailleRegice)
     checkspecies(SPECIES_BAXCALIBUR)

@@ -49,7 +49,7 @@ VajraDesert_BrailleRegirock:
 `
 script VajraDesert_SusDoor {
     lock
-    msgbox("Something is carven on the door...")
+    msgbox("Something is carved on the door...")
     closemessage
     braillemsgbox(VajraDesert_BrailleRegirock)
     checkspecies(SPECIES_TYRANITAR)

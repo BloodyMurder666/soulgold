@@ -94,7 +94,7 @@ RailwayCave_TrainerSanada::
 
 RailwayCave_SusDoor_Text_0:
 # 19 "data/maps/RailwayCave_2F/scripts.pory"
-	.string "Something is carven on the door...$"
+	.string "Something is carved on the door...$"
 
 RailwayCave_TrainerBob_Text_0:
 # 35 "data/maps/RailwayCave_2F/scripts.pory"
