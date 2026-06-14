@@ -878,9 +878,9 @@
 #define TRAINER_RAILWAYMASON              871
 #define TRAINER_RAILWAYYODA               872
 #define TRAINER_RAILWAYSANADA             873
-#define TRAINER_UNUSED_10                 874
-#define TRAINER_UNUSED_11                 875
-#define TRAINER_UNUSED_12                 876
+#define TRAINER_ORB_EXPERT                874
+#define TRAINER_HERB_EXPERT               875
+#define TRAINER_CHOICE_BAND_EXPERT        876
 #define TRAINER_UNUSED_13                 877
 #define TRAINER_UNUSED_14                 878
 #define TRAINER_UNUSED_15                 879

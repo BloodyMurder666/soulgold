@@ -661,7 +661,7 @@ static void DrawAchievementsMenu(void)
     DrawList();
 }
 
-static void AnimateAchievementsBackground(void)
+static void UNUSED AnimateAchievementsBackground(void)
 {
     ChangeBgY(BG_BACKGROUND, ACHIEVEMENTS_BACKGROUND_SCROLL_SPEED, BG_COORD_ADD);
 }

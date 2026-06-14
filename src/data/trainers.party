@@ -6662,6 +6662,123 @@ IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Bullet Seed
 - Encore
 
+=== TRAINER_ORB_EXPERT ===
+Name: Vera
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Hg Girl 2
+Double Battle: No
+AI: Smart Trainer
+
+Persian Alola @ Flame Orb
+Level: 34
+Ability: Technician
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Fling
+- Fake Out
+- Bite
+- Taunt
+
+Muk Alola @ Toxic Orb
+Level: 34
+Ability: Technician
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Fling
+- Pursuit
+- Fire Punch
+- Disable
+
+Gliscor @ Toxic Orb
+Level: 34
+Ability: Poison Heal
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Protect
+- Facade
+- Bulldoze
+- Aerial Ace
+
+Heracross @ Flame Orb
+Level: 34
+Ability: Guts
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Facade
+- Brick Break
+- Rock Tomb
+- Endure
+
+=== TRAINER_HERB_EXPERT ===
+Name: Laurel
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Hg Girl 2
+Double Battle: No
+AI: Smart Trainer
+
+Sceptile @ Power Herb
+Level: 49
+Ability: Overgrow
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Solar Beam
+- Leaf Blade
+- Quick Attack
+- Detect
+
+Cradily @ Power Herb
+Level: 49
+Ability: Suction Cups
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Meteor Beam
+- Giga Drain
+- Ancient Power
+- Confuse Ray
+
+Cloyster @ White Herb
+Level: 49
+Ability: Shell Armor
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Shell Smash
+- Icy Wind
+- Clamp
+- Ice Shard
+
+=== TRAINER_CHOICE_BAND_EXPERT ===
+Name: Anton
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Hg Boy 2
+Double Battle: No
+AI: Smart Trainer
+
+Scizor @ Choice Band
+Level: 61
+Ability: Technician
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Bullet Punch
+- U-Turn
+- X-Scissor
+- Brick Break
+
+Tauros @ Choice Band
+Level: 61
+Ability: Intimidate
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Return
+- Bulldoze
+- Rock Tomb
+- Zen Headbutt
+
+Arcanine @ Choice Band
+Level: 61
+Ability: Flash Fire
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Flare Blitz
+- Extreme Speed
+- Crunch
+- Wild Charge
+
 === TRAINER_ETHAN ===
 Name: Ethan
 Class: Pokemaniac
