@@ -1,0 +1,58 @@
+raw `
+MtSilver_SummitDay_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, MtSilver_SummitDay_OnTransition
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, MtSilver_SummitDay_OnFrame
+	.byte 0
+
+MtSilver_SummitDay_OnFrame::
+	map_script_2 VAR_TEMP_0, 0 MtSilver_SummitDay_Blizzard
+	.2byte 0
+
+MtSilver_SummitDay_Blizzard::
+	playse SE_M_BLIZZARD
+	setvar VAR_TEMP_0, 1
+	end
+
+MtSilver_SummitDay_OnTransition:
+    call Common_EventScript_SetupRivalGfxId
+	setflag FLAG_HIDE_MTSILVER_RIVAL
+	goto_if_lt VAR_RIVAL_STATE, 11, MtSilver_SummitDay_OnTransition_SetLayout
+	goto_if_set FLAG_DEFEATED_RED, MtSilver_SummitDay_OnTransition_SetLayout
+	clearflag FLAG_HIDE_MTSILVER_RIVAL
+
+MtSilver_SummitDay_OnTransition_SetLayout:
+	call_if_set FLAG_DAY_POKEMON, MtSilver_SummitDay_EventScript_SetNight
+	call_if_unset FLAG_DAY_POKEMON, MtSilver_SummitDay_EventScript_SetDay
+	end
+
+MtSilver_SummitDay_EventScript_SetNight::
+	setmaplayoutindex LAYOUT_MT_SILVER_SUMMIT_NIGHT
+	return
+
+MtSilver_SummitDay_EventScript_SetDay::
+	setmaplayoutindex LAYOUT_MT_SILVER_SUMMIT_DAY
+	return
+`
+
+script MtSilver_SummitDay_EventScript_Rival {
+	lock
+	faceplayer
+	checkplayergender
+	if (var(VAR_RESULT) == MALE) {
+		trainerbattle_no_intro(TRAINER_RIVAL_CRYSTAL_FINAL, "Ha.")
+	} else {
+		trainerbattle_no_intro(TRAINER_RIVAL_GOLD_FINAL, "Ha.")
+	}
+	fadescreenswapbuffers(FADE_TO_BLACK)
+	setflag(FLAG_HIDE_MTSILVER_RIVAL)
+	removeobject(LOCALID_MTSILVER_RIVAL)
+	fadescreenswapbuffers(FADE_FROM_BLACK)
+	delay(180)
+	fadescreenspeed(FADE_TO_BLACK, 24)
+	setflag(FLAG_DEFEATED_RED)
+	setvar(VAR_RIVAL_STATE, 12)
+	special(GameClear)
+	waitstate
+	releaseall
+	end
+}

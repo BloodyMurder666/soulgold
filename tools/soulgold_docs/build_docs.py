@@ -243,7 +243,6 @@ EXCLUDED_TRAINER_MAP_PREFIXES = (
     "DiglettsCave",
     "MtEmber",
     "MtMoon",
-    "MtSilver",
     "PewterCity",
     "RockTunnel",
     "Route19_Cave",
