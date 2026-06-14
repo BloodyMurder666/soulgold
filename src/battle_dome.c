@@ -529,7 +529,9 @@ static void SetPwtDomeTrainerMons(u16 tournamentTrainerId)
 
     for (selectedCount = 0; selectedCount < FRONTIER_PARTY_SIZE; selectedCount++)
     {
-        u16 bestIndex = PWT_DOME_INVALID_MON_INDEX;
+        u8 attempts;
+        u16 selectedIndex = PWT_DOME_INVALID_MON_INDEX;
+        bool8 hasUniqueSpeciesCandidate = FALSE;
 
         for (i = 0; i < partySize; i++)
         {
@@ -544,33 +546,56 @@ static void SetPwtDomeTrainerMons(u16 tournamentTrainerId)
                     duplicateSpecies = TRUE;
             }
 
-            if (alreadySelected || duplicateSpecies)
-                continue;
-            if (bestIndex == PWT_DOME_INVALID_MON_INDEX || party[i].lvl > party[bestIndex].lvl)
-                bestIndex = i;
+            if (!alreadySelected && !duplicateSpecies)
+                hasUniqueSpeciesCandidate = TRUE;
         }
 
-        if (bestIndex == PWT_DOME_INVALID_MON_INDEX)
+        for (attempts = 0; attempts < 64; attempts++)
+        {
+            bool8 alreadySelected = FALSE;
+            bool8 duplicateSpecies = FALSE;
+            u16 candidate = Random() % partySize;
+
+            for (j = 0; j < selectedCount; j++)
+            {
+                if (DOME_MONS[tournamentTrainerId][j] == candidate)
+                    alreadySelected = TRUE;
+                if (selectedSpecies[j] == party[candidate].species)
+                    duplicateSpecies = TRUE;
+            }
+
+            if (!alreadySelected && (!duplicateSpecies || !hasUniqueSpeciesCandidate))
+            {
+                selectedIndex = candidate;
+                break;
+            }
+        }
+
+        if (selectedIndex == PWT_DOME_INVALID_MON_INDEX)
         {
             for (i = 0; i < partySize; i++)
             {
                 bool8 alreadySelected = FALSE;
+                bool8 duplicateSpecies = FALSE;
 
                 for (j = 0; j < selectedCount; j++)
                 {
                     if (DOME_MONS[tournamentTrainerId][j] == i)
                         alreadySelected = TRUE;
+                    if (selectedSpecies[j] == party[i].species)
+                        duplicateSpecies = TRUE;
                 }
 
-                if (alreadySelected)
-                    continue;
-                if (bestIndex == PWT_DOME_INVALID_MON_INDEX || party[i].lvl > party[bestIndex].lvl)
-                    bestIndex = i;
+                if (!alreadySelected && (!duplicateSpecies || !hasUniqueSpeciesCandidate))
+                {
+                    selectedIndex = i;
+                    break;
+                }
             }
         }
 
-        DOME_MONS[tournamentTrainerId][selectedCount] = bestIndex;
-        selectedSpecies[selectedCount] = party[bestIndex].species;
+        DOME_MONS[tournamentTrainerId][selectedCount] = selectedIndex;
+        selectedSpecies[selectedCount] = party[selectedIndex].species;
     }
 }
 
@@ -2190,6 +2215,7 @@ static void GetDomeData(void)
 {
     enum FrontierLevelMode lvlMode = gSaveBlock2Ptr->frontier.lvlMode;
     u32 battleMode = VarGet(VAR_FRONTIER_BATTLE_MODE);
+    u32 i;
 
     switch (gSpecialVar_0x8005)
     {
@@ -2245,8 +2271,8 @@ static void GetDomeData(void)
         break;
     case DOME_DATA_SELECTED_MONS:
         ClearSelectedPartyOrder();
-        gSelectedOrderFromParty[0] = gSaveBlock2Ptr->frontier.selectedPartyMons[3];
-        gSelectedOrderFromParty[1] = gSaveBlock2Ptr->frontier.selectedPartyMons[3] >> 8;
+        for (i = 0; i < DOME_BATTLE_PARTY_SIZE; i++)
+            gSelectedOrderFromParty[i] = (gSaveBlock2Ptr->frontier.selectedPartyMons[3] >> (i * 4)) & 0xF;
         break;
     case DOME_DATA_PREV_TOURNEY_TYPE:
         gSpecialVar_Result = (gSaveBlock2Ptr->frontier.domeLvlMode * 2) - 3 + gSaveBlock2Ptr->frontier.domeBattleMode;
@@ -2258,6 +2284,7 @@ static void SetDomeData(void)
 {
     enum FrontierLevelMode lvlMode = gSaveBlock2Ptr->frontier.lvlMode;
     u32 battleMode = VarGet(VAR_FRONTIER_BATTLE_MODE);
+    u32 i;
 
     switch (gSpecialVar_0x8005)
     {
@@ -2315,7 +2342,9 @@ static void SetDomeData(void)
         }
         break;
     case DOME_DATA_SELECTED_MONS:
-        gSaveBlock2Ptr->frontier.selectedPartyMons[3] = T1_READ_16(gSelectedOrderFromParty);
+        gSaveBlock2Ptr->frontier.selectedPartyMons[3] = 0;
+        for (i = 0; i < DOME_BATTLE_PARTY_SIZE; i++)
+            gSaveBlock2Ptr->frontier.selectedPartyMons[3] |= gSelectedOrderFromParty[i] << (i * 4);
         break;
     }
 }
@@ -2702,6 +2731,10 @@ static void CreateDomeOpponentMons(u16 tournamentTrainerId)
 int GetDomeTrainerSelectedMons(u16 tournamentTrainerId)
 {
     int selectedMonBits;
+
+    if (DOME_BATTLE_PARTY_SIZE >= FRONTIER_PARTY_SIZE)
+        return (1 << FRONTIER_PARTY_SIZE) - 1;
+
     if (Random() & 1)
     {
         selectedMonBits = SelectOpponentMons_Good(tournamentTrainerId, FALSE);
