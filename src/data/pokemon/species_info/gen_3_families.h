@@ -7343,7 +7343,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
     #if P_UPDATED_ABILITIES >= GEN_7
         .abilities = { ABILITY_WHITE_SMOKE, ABILITY_DROUGHT, ABILITY_SHELL_ARMOR },
-        .innates = { ABILITY_SMOULDERING, ABILITY_BRIMSTONE, ABILITY_STAMINA },
+        .innates = { ABILITY_SMOULDERING, ABILITY_BRIMSTONE, ABILITY_FLAMEBURST },
     #else
         .abilities = { ABILITY_WHITE_SMOKE, ABILITY_NONE, ABILITY_SHELL_ARMOR },
     #endif
@@ -13769,7 +13769,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_SERENE_GRACE, ABILITY_NONE, ABILITY_NONE },
-        .innates = { ABILITY_MAGIC_GUARD, ABILITY_FRIEND_GUARD, ABILITY_STEADFAST },
+        .innates = { ABILITY_WISHMAKER, ABILITY_FRIEND_GUARD, ABILITY_STEADFAST },
         .bodyColor = BODY_COLOR_YELLOW,
         .speciesName = _("Jirachi"),
         .cryId = CRY_JIRACHI,

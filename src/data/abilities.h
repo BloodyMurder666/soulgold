@@ -4649,7 +4649,7 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Absorbs Ghost; powers Hex."),
         .longDescription = COMPOUND_STRING("Absorbs Ghost-type moves\n"
                                            "to restore HP, and raises\n"
-                                           "Hex's power to 100."),
+                                           "Hex's power to 75."),
         .aiRating = 6,
         .breakable = TRUE,
     },
@@ -5470,5 +5470,85 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
                                            "sets Stealth Rock on the\n"
                                            "opposing side."),
         .aiRating = 6,
+    },
+
+    [ABILITY_POLARITY_SHIFT] =
+    {
+        .name = _("Polarity Shift"),
+        .description = COMPOUND_STRING("Entry swaps foe's Speed."),
+        .longDescription = COMPOUND_STRING("On entry, swaps Speed\n"
+                                           "with the opposing Pokemon."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_HORSE_COUNCIL] =
+    {
+        .name = _("Horse Council"),
+        .description = COMPOUND_STRING("Horses boost attacks."),
+        .longDescription = COMPOUND_STRING("Physical and special\n"
+                                           "attacks deal 10% more\n"
+                                           "damage per living horse\n"
+                                           "ally in the party."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_POWER_SHIFT] =
+    {
+        .name = _("Power Shift"),
+        .description = COMPOUND_STRING("Entry swaps foe offenses."),
+        .longDescription = COMPOUND_STRING("On entry, swaps Attack\n"
+                                           "and Sp. Atk with the\n"
+                                           "opposing Pokemon."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_WISHMAKER] =
+    {
+        .name = _("Wishmaker"),
+        .description = COMPOUND_STRING("Casts Wish on entry."),
+        .longDescription = COMPOUND_STRING("On entry, casts Wish\n"
+                                           "for itself."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_FLIER] =
+    {
+        .name = _("Flier"),
+        .description = COMPOUND_STRING("Fly is instant, stronger."),
+        .longDescription = COMPOUND_STRING("Fly executes in 1 turn\n"
+                                           "and deals 50% more\n"
+                                           "damage."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_FLAMEBURST] =
+    {
+        .name = _("Flameburst"),
+        .description = COMPOUND_STRING("Burns foes on fainting."),
+        .longDescription = COMPOUND_STRING("When this Pokemon faints\n"
+                                           "from a damaging attack,\n"
+                                           "it burns the opposing\n"
+                                           "side."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_INKY] =
+    {
+        .name = _("Inky"),
+        .description = COMPOUND_STRING("Hits lower Accuracy."),
+        .longDescription = COMPOUND_STRING("When hit by a damaging\n"
+                                           "move, lowers the\n"
+                                           "attacker's Accuracy."),
+        .aiRating = 4,
+    },
+
+    [ABILITY_BRAND_OF_TORMENT] =
+    {
+        .name = _("Brand of Torment"),
+        .description = COMPOUND_STRING("Contact may torment."),
+        .longDescription = COMPOUND_STRING("Contact attacks have a\n"
+                                           "30% chance to torment\n"
+                                           "the attacker."),
+        .aiRating = 4,
     },
 };

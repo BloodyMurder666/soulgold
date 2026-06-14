@@ -677,3 +677,242 @@ SINGLE_BATTLE_TEST("Rock and Stone does not set Stealth Rock without a KO")
         EXPECT(!IsHazardOnSide(B_SIDE_OPPONENT, HAZARDS_STEALTH_ROCK));
     }
 }
+
+
+SINGLE_BATTLE_TEST("Polarity Shift swaps Speed with the opposing Pokemon on entry")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_POLARITY_SHIFT); Speed(10); }
+        OPPONENT(SPECIES_WYNAUT) { Speed(80); }
+    } WHEN {
+        TURN { }
+    } SCENE {
+        ABILITY_POPUP(player, ABILITY_POLARITY_SHIFT);
+    } THEN {
+        EXPECT_EQ(player->speed, 80);
+        EXPECT_EQ(opponent->speed, 10);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Polarity Shift targets the opposite foe in doubles")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_POLARITY_SHIFT); Speed(10); }
+        PLAYER(SPECIES_WYNAUT) { Speed(20); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(80); }
+        OPPONENT(SPECIES_WYNAUT) { Speed(30); }
+    } WHEN {
+        TURN { }
+    } SCENE {
+        ABILITY_POPUP(playerLeft, ABILITY_POLARITY_SHIFT);
+    } THEN {
+        EXPECT_EQ(playerLeft->speed, 80);
+        EXPECT_EQ(opponentLeft->speed, 10);
+        EXPECT_EQ(opponentRight->speed, 30);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Polarity Shift targets the remaining foe if the opposite foe has fainted")
+{
+    GIVEN {
+        PLAYER(SPECIES_WYNAUT) { Speed(5); }
+        PLAYER(SPECIES_WYNAUT) { Speed(100); }
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_POLARITY_SHIFT); Speed(10); }
+        OPPONENT(SPECIES_WOBBUFFET) { HP(1); Speed(80); }
+        OPPONENT(SPECIES_WYNAUT) { Speed(30); }
+    } WHEN {
+        TURN { MOVE(playerRight, MOVE_QUICK_ATTACK, target: opponentLeft); }
+        TURN { SWITCH(playerLeft, 2); }
+    } SCENE {
+        MESSAGE("The opposing Wobbuffet fainted!");
+        ABILITY_POPUP(playerLeft, ABILITY_POLARITY_SHIFT);
+    } THEN {
+        EXPECT_EQ(playerLeft->speed, 30);
+        EXPECT_EQ(opponentRight->speed, 10);
+    }
+}
+
+SINGLE_BATTLE_TEST("Power Shift swaps Attack and Sp. Atk with the opposing Pokemon on entry")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_POWER_SHIFT); Attack(10); SpAttack(20); }
+        OPPONENT(SPECIES_WYNAUT) { Attack(90); SpAttack(120); }
+    } WHEN {
+        TURN { }
+    } SCENE {
+        ABILITY_POPUP(player, ABILITY_POWER_SHIFT);
+    } THEN {
+        EXPECT_EQ(player->attack, 90);
+        EXPECT_EQ(player->spAttack, 120);
+        EXPECT_EQ(opponent->attack, 10);
+        EXPECT_EQ(opponent->spAttack, 20);
+    }
+}
+
+SINGLE_BATTLE_TEST("Horse Council boosts physical and special damage by 10 percent per living horse ally", s16 damage)
+{
+    enum Ability ability;
+    enum Move move;
+
+    PARAMETRIZE { ability = ABILITY_NONE; move = MOVE_SCRATCH; }
+    PARAMETRIZE { ability = ABILITY_HORSE_COUNCIL; move = MOVE_SCRATCH; }
+    PARAMETRIZE { ability = ABILITY_NONE; move = MOVE_CONFUSION; }
+    PARAMETRIZE { ability = ABILITY_HORSE_COUNCIL; move = MOVE_CONFUSION; }
+    GIVEN {
+        ASSUME(GetMoveCategory(MOVE_SCRATCH) == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(GetMoveCategory(MOVE_CONFUSION) == DAMAGE_CATEGORY_SPECIAL);
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ability); Attack(200); SpAttack(200); }
+        PLAYER(SPECIES_PONYTA);
+        PLAYER(SPECIES_RAPIDASH_GALAR);
+        PLAYER(SPECIES_PALKIA_ORIGIN);
+        PLAYER(SPECIES_ARCEUS_FIRE);
+        PLAYER(SPECIES_TAUROS_PALDEA_AQUA);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, move); }
+    } SCENE {
+        HP_BAR(opponent, captureDamage: &results[i].damage);
+    } FINALLY {
+        EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.5), results[1].damage);
+        EXPECT_MUL_EQ(results[2].damage, Q_4_12(1.5), results[3].damage);
+    }
+}
+
+SINGLE_BATTLE_TEST("Horse Council counts only living listed horse allies", s16 damage)
+{
+    u32 alive;
+
+    PARAMETRIZE { alive = 1; }
+    PARAMETRIZE { alive = 5; }
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_HORSE_COUNCIL); Attack(200); }
+        PLAYER(SPECIES_TAUROS_PALDEA_BLAZE) { HP(alive >= 1 ? 1 : 0); }
+        PLAYER(SPECIES_KELDEO_RESOLUTE) { HP(alive >= 2 ? 1 : 0); }
+        PLAYER(SPECIES_FARIGIRAF) { HP(alive >= 3 ? 1 : 0); }
+        PLAYER(SPECIES_DEERLING_WINTER) { HP(alive >= 4 ? 1 : 0); }
+        PLAYER(SPECIES_DIALGA_ORIGIN) { HP(alive >= 5 ? 1 : 0); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SCRATCH); }
+    } SCENE {
+        HP_BAR(opponent, captureDamage: &results[i].damage);
+    } FINALLY {
+        EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.3636), results[1].damage);
+    }
+}
+
+SINGLE_BATTLE_TEST("Wishmaker casts Wish on entry")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_WISHMAKER); HP(50); MaxHP(100); }
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { }
+        TURN { }
+    } SCENE {
+        ABILITY_POPUP(player, ABILITY_WISHMAKER);
+        MESSAGE("Wobbuffet's wish came true!");
+        HP_BAR(player, damage: -50);
+    } THEN {
+        EXPECT_EQ(player->hp, 100);
+    }
+}
+
+SINGLE_BATTLE_TEST("Flier makes Fly instant and stronger than Wing Attack")
+{
+    s16 flyDamage;
+    s16 wingAttackDamage;
+
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_FLY) == EFFECT_SEMI_INVULNERABLE);
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_FLIER); Attack(200); Speed(2); }
+        OPPONENT(SPECIES_WOBBUFFET) { HP(999); MaxHP(999); Speed(1); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_FLY); MOVE(opponent, MOVE_CELEBRATE); }
+        TURN { MOVE(player, MOVE_WING_ATTACK); MOVE(opponent, MOVE_CELEBRATE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FLY, player);
+        HP_BAR(opponent, captureDamage: &flyDamage);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_WING_ATTACK, player);
+        HP_BAR(opponent, captureDamage: &wingAttackDamage);
+    } THEN {
+        EXPECT_GT(flyDamage, wingAttackDamage);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Flameburst burns the opposing side when the user faints")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_FLAMEBURST); HP(1); Speed(1); }
+        PLAYER(SPECIES_WYNAUT) { Speed(1); }
+        OPPONENT(SPECIES_WOBBUFFET) { Attack(200); Speed(100); }
+        OPPONENT(SPECIES_WYNAUT) { Speed(90); }
+    } WHEN {
+        TURN { MOVE(opponentLeft, MOVE_SCRATCH, target: playerLeft); MOVE(opponentRight, MOVE_CELEBRATE); }
+    } SCENE {
+        ABILITY_POPUP(playerLeft, ABILITY_FLAMEBURST);
+    } THEN {
+        EXPECT(opponentLeft->status1 & STATUS1_BURN);
+        EXPECT(opponentRight->status1 & STATUS1_BURN);
+    }
+}
+
+SINGLE_BATTLE_TEST("Inky lowers the attacker's Accuracy when hit by a damaging move")
+{
+    GIVEN {
+        ASSUME(!MoveMakesContact(MOVE_SWIFT));
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_INKY); }
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_SWIFT); }
+    } SCENE {
+        ABILITY_POPUP(player, ABILITY_INKY);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+    } THEN {
+        EXPECT_EQ(opponent->statStages[STAT_ACC], DEFAULT_STAT_STAGE - 1);
+    }
+}
+
+SINGLE_BATTLE_TEST("Brand of Torment has a 30 percent chance to torment contact attackers")
+{
+    PASSES_RANDOMLY(3, 10, RNG_BRAND_OF_TORMENT);
+    GIVEN {
+        ASSUME(MoveMakesContact(MOVE_SCRATCH));
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_BRAND_OF_TORMENT); }
+        OPPONENT(SPECIES_WYNAUT) { Moves(MOVE_SCRATCH, MOVE_CELEBRATE); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_SCRATCH); }
+        TURN { MOVE(opponent, MOVE_SCRATCH, allowed: FALSE); MOVE(opponent, MOVE_CELEBRATE); }
+    } SCENE {
+        ABILITY_POPUP(player, ABILITY_BRAND_OF_TORMENT);
+        MESSAGE("The opposing Wynaut was subjected to torment!");
+        MESSAGE("The opposing Wynaut used Celebrate!");
+    } THEN {
+        EXPECT(opponent->volatiles.torment);
+    }
+}
+
+SINGLE_BATTLE_TEST("Brand of Torment only triggers on contact")
+{
+    enum Move move;
+
+    PARAMETRIZE { move = MOVE_SCRATCH; }
+    PARAMETRIZE { move = MOVE_SWIFT; }
+    GIVEN {
+        ASSUME(MoveMakesContact(MOVE_SCRATCH));
+        ASSUME(!MoveMakesContact(MOVE_SWIFT));
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_BRAND_OF_TORMENT); }
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { MOVE(opponent, move, WITH_RNG(RNG_BRAND_OF_TORMENT, TRUE)); }
+    } SCENE {
+        if (MoveMakesContact(move)) {
+            ABILITY_POPUP(player, ABILITY_BRAND_OF_TORMENT);
+        } else {
+            NONE_OF { ABILITY_POPUP(player, ABILITY_BRAND_OF_TORMENT); }
+        }
+    } THEN {
+        bool32 isTormented = opponent->volatiles.torment;
+        EXPECT_EQ(isTormented, MoveMakesContact(move));
+    }
+}

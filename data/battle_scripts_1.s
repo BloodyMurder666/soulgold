@@ -6407,6 +6407,24 @@ BattleScript_InfernalLoopIncrement:
 	pause B_WAIT_TIME_MED
 	return
 
+BattleScript_PolarityShiftActivates::
+	call BattleScript_AbilityPopUp
+	restoretarget
+	restoreattacker
+	return
+
+BattleScript_PowerShiftActivates::
+	call BattleScript_AbilityPopUp
+	restoretarget
+	restoreattacker
+	return
+
+BattleScript_WishmakerActivates::
+	call BattleScript_AbilityPopUp
+	restoretarget
+	restoreattacker
+	return
+
 BattleScript_ReefWardenActivates::
 	savetarget
 	call BattleScript_AbilityPopUp
@@ -7552,6 +7570,39 @@ BattleScript_TanglingHairActivates::
 	seteffectsecondary BS_ATTACKER, BS_TARGET, MOVE_EFFECT_SPD_MINUS_1
 	swapattackerwithtarget
 BattleScript_TanglingHairActivatesRet:
+	return
+
+BattleScript_InkyActivates::
+	statbuffchange BS_ATTACKER, STAT_CHANGE_ONLY_CHECKING, BattleScript_InkyActivatesRet
+	waitstate
+	call BattleScript_AbilityPopUp
+	swapattackerwithtarget  @ for defiant, mirror armor
+	seteffectsecondary BS_ATTACKER, BS_TARGET, MOVE_EFFECT_ACC_MINUS_1
+	swapattackerwithtarget
+BattleScript_InkyActivatesRet:
+	return
+
+BattleScript_FlameburstActivates::
+	waitstate
+	call BattleScript_AbilityPopUp
+	copybyte sBATTLER, gBattlerTarget
+BattleScript_FlameburstLoop:
+	jumpifabsent BS_TARGET, BattleScript_FlameburstIncrement
+	trysetburn BattleScript_FlameburstIncrement
+BattleScript_FlameburstIncrement:
+	jumpifbytenotequal gBattlerTarget, sBATTLER, BattleScript_FlameburstEnd
+	setallytonexttarget BattleScript_FlameburstLoop
+BattleScript_FlameburstEnd:
+	restoretarget
+	restoreattacker
+	return
+
+BattleScript_BrandOfTormentActivates::
+	waitstate
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_PKMNSUBJECTEDTOTORMENT
+	waitmessage B_WAIT_TIME_LONG
+	restoretarget
 	return
 
 BattleScript_AbilityStatusEffectAtk::

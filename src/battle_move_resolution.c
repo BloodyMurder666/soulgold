@@ -1611,7 +1611,8 @@ static enum CancelerResult CancelerCharging(struct BattleContext *ctx)
 
     if (BattlerHasTrait(ctx->battlerAtk, ABILITY_FLEXIBLE)
      || (ctx->move == MOVE_DIG && BattlerHasTrait(ctx->battlerAtk, ABILITY_BURROWER))
-     || (ctx->move == MOVE_DIVE && BattlerHasTrait(ctx->battlerAtk, ABILITY_DIVER)))
+     || (ctx->move == MOVE_DIVE && BattlerHasTrait(ctx->battlerAtk, ABILITY_DIVER))
+     || (ctx->move == MOVE_FLY && BattlerHasTrait(ctx->battlerAtk, ABILITY_FLIER)))
     {
         gBattleScripting.animTurn = 1;
         gBattleScripting.animTargetsHit = 0;

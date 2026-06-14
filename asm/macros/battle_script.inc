@@ -1380,6 +1380,11 @@
 	.4byte \ptr
 	.endm
 
+	.macro trysetburn, ptr:req
+	callnative BS_TrySetBurn
+	.4byte \ptr
+	.endm
+
 	.macro trysetpoisonparalysis, ptr:req
 	callnative BS_TrySetPoisonParalyzis
 	.4byte \ptr

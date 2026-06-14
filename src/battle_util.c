@@ -60,6 +60,7 @@ static u32 GetFlingPowerFromItemId(enum Item itemId);
 static bool32 IsNonVolatileStatusBlocked(enum BattlerId battlerDef, enum Ability abilityDef, bool32 abilityAffected, const u8 *battleScript, enum ResultOption option);
 static bool32 CanSleepDueToSleepClause(enum BattlerId battlerAtk, enum BattlerId battlerDef, enum ResultOption option);
 static bool32 IsOpposingSideEmpty(enum BattlerId battler);
+static enum BattlerId GetOppositeSideShiftTarget(enum BattlerId battler);
 static void ResetParadoxWeatherStat(enum BattlerId battler);
 static void ResetParadoxTerrainStat(enum BattlerId battler);
 static bool32 CanBattlerFormChange(enum BattlerId battler, enum FormChanges method);
@@ -2614,6 +2615,92 @@ static inline uq4_12_t GetPackLeaderModifier(enum BattlerId battler)
     return UQ_4_12(1.0) + PercentToUQ4_12(GetPackLeaderAllyCount(battler) * 5);
 }
 
+static bool32 IsHorseCouncilSpecies(u16 species)
+{
+    switch (species)
+    {
+    case SPECIES_PONYTA:
+    case SPECIES_RAPIDASH:
+    case SPECIES_PONYTA_GALAR:
+    case SPECIES_RAPIDASH_GALAR:
+    case SPECIES_PALKIA_ORIGIN:
+    case SPECIES_DIALGA:
+    case SPECIES_DIALGA_ORIGIN:
+    case SPECIES_KELDEO_ORDINARY:
+    case SPECIES_KELDEO_RESOLUTE:
+    case SPECIES_GLASTRIER:
+    case SPECIES_SPECTRIER:
+    case SPECIES_PHANPY:
+    case SPECIES_DONPHAN:
+    case SPECIES_GIRAFARIG:
+    case SPECIES_FARIGIRAF:
+    case SPECIES_DEERLING_SPRING:
+    case SPECIES_DEERLING_SUMMER:
+    case SPECIES_DEERLING_AUTUMN:
+    case SPECIES_DEERLING_WINTER:
+    case SPECIES_SAWSBUCK_SPRING:
+    case SPECIES_SAWSBUCK_SUMMER:
+    case SPECIES_SAWSBUCK_AUTUMN:
+    case SPECIES_SAWSBUCK_WINTER:
+    case SPECIES_NUMEL:
+    case SPECIES_CAMERUPT:
+    case SPECIES_TAUROS:
+    case SPECIES_TAUROS_PALDEA_COMBAT:
+    case SPECIES_TAUROS_PALDEA_BLAZE:
+    case SPECIES_TAUROS_PALDEA_AQUA:
+    case SPECIES_ARCEUS_NORMAL:
+    case SPECIES_ARCEUS_FIGHTING:
+    case SPECIES_ARCEUS_FLYING:
+    case SPECIES_ARCEUS_POISON:
+    case SPECIES_ARCEUS_GROUND:
+    case SPECIES_ARCEUS_ROCK:
+    case SPECIES_ARCEUS_BUG:
+    case SPECIES_ARCEUS_GHOST:
+    case SPECIES_ARCEUS_STEEL:
+    case SPECIES_ARCEUS_FIRE:
+    case SPECIES_ARCEUS_WATER:
+    case SPECIES_ARCEUS_GRASS:
+    case SPECIES_ARCEUS_ELECTRIC:
+    case SPECIES_ARCEUS_PSYCHIC:
+    case SPECIES_ARCEUS_ICE:
+    case SPECIES_ARCEUS_DRAGON:
+    case SPECIES_ARCEUS_DARK:
+    case SPECIES_ARCEUS_FAIRY:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
+static inline u32 GetHorseCouncilAllyCount(enum BattlerId battler)
+{
+    u32 count = 0;
+    struct Pokemon *party = GetBattlerParty(battler);
+
+    for (u32 i = 0; i < PARTY_SIZE; i++)
+    {
+        u16 species;
+
+        if (i == gBattlerPartyIndexes[battler])
+            continue;
+        if (GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) == SPECIES_NONE
+         || GetMonData(&party[i], MON_DATA_IS_EGG)
+         || GetMonData(&party[i], MON_DATA_HP) == 0)
+            continue;
+
+        species = GetMonData(&party[i], MON_DATA_SPECIES);
+        if (IsHorseCouncilSpecies(species))
+            count++;
+    }
+
+    return min(5, count);
+}
+
+static inline uq4_12_t GetHorseCouncilModifier(enum BattlerId battler)
+{
+    return UQ_4_12(1.0) + PercentToUQ4_12(GetHorseCouncilAllyCount(battler) * 10);
+}
+
 static enum Type GetTypeBoostAbilityType(enum Ability ability)
 {
     switch (ability)
@@ -3681,6 +3768,55 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
             SaveBattlerAttacker(gBattlerAttacker);
             gBattlerAttacker = battler;
             effect += CommonSwitchInAbilities(battler, ABILITY_INFERNAL, traitCheck, BattleScript_InfernalActivates);
+        }
+        if ((traitCheck = SearchTraits(battlerTraits, ABILITY_POLARITY_SHIFT)) && !gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1]
+         && shouldAbilityTrigger
+         && !IsOpposingSideEmpty(battler))
+        {
+            enum BattlerId target = GetOppositeSideShiftTarget(battler);
+
+            if (target < gBattlersCount)
+            {
+                u32 temp;
+
+                SWAP(gBattleMons[battler].speed, gBattleMons[target].speed, temp);
+                SaveBattlerAttacker(gBattlerAttacker);
+                SaveBattlerTarget(gBattlerTarget);
+                gBattlerAttacker = battler;
+                gBattlerTarget = target;
+                effect += CommonSwitchInAbilities(battler, ABILITY_POLARITY_SHIFT, traitCheck, BattleScript_PolarityShiftActivates);
+            }
+        }
+        if ((traitCheck = SearchTraits(battlerTraits, ABILITY_POWER_SHIFT)) && !gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1]
+         && shouldAbilityTrigger
+         && !IsOpposingSideEmpty(battler))
+        {
+            enum BattlerId target = GetOppositeSideShiftTarget(battler);
+
+            if (target < gBattlersCount)
+            {
+                u32 temp;
+
+                SWAP(gBattleMons[battler].attack, gBattleMons[target].attack, temp);
+                SWAP(gBattleMons[battler].spAttack, gBattleMons[target].spAttack, temp);
+                SaveBattlerAttacker(gBattlerAttacker);
+                SaveBattlerTarget(gBattlerTarget);
+                gBattlerAttacker = battler;
+                gBattlerTarget = target;
+                effect += CommonSwitchInAbilities(battler, ABILITY_POWER_SHIFT, traitCheck, BattleScript_PowerShiftActivates);
+            }
+        }
+        if ((traitCheck = SearchTraits(battlerTraits, ABILITY_WISHMAKER)) && !gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1]
+         && shouldAbilityTrigger
+         && gBattleStruct->wish[battler].counter == 0)
+        {
+            gBattleStruct->wish[battler].counter = 2;
+            gBattleStruct->wish[battler].partyId = gBattlerPartyIndexes[battler];
+            SaveBattlerAttacker(gBattlerAttacker);
+            SaveBattlerTarget(gBattlerTarget);
+            gBattlerAttacker = battler;
+            gBattlerTarget = battler;
+            effect += CommonSwitchInAbilities(battler, ABILITY_WISHMAKER, traitCheck, BattleScript_WishmakerActivates);
         }
         if ((traitCheck = SearchTraits(battlerTraits, ABILITY_UNCANNY)) && !gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1]
          && shouldAbilityTrigger
@@ -4903,6 +5039,34 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
             BattleScriptCall(BattleScript_AbilityStatusEffectDef);
             effect++;
         }
+        if (SearchTraits(battlerTraits, ABILITY_FLAMEBURST)
+         && !IsBattlerAlive(battler)
+         && IsBattlerTurnDamaged(battler, EXCLUDING_SUBSTITUTES)
+         && !IsOpposingSideEmpty(battler)
+         && !IsBattlerAlly(battler, gBattlerAttacker))
+        {
+            bool32 canBurn = FALSE;
+
+            for (enum BattlerId foe = 0; foe < gBattlersCount; foe++)
+            {
+                if (IsBattlerAlive(foe) && !IsBattlerAlly(battler, foe) && CanBeBurned(battler, foe))
+                    canBurn = TRUE;
+            }
+
+            if (canBurn)
+            {
+                SaveBattlerAttacker(gBattlerAttacker);
+                SaveBattlerTarget(gBattlerTarget);
+                gBattlerAttacker = battler;
+                gBattlerTarget = BATTLE_OPPOSITE(battler);
+                gBattleScripting.battler = battler;
+                gBattleScripting.moveEffect = MOVE_EFFECT_BURN;
+                gLastUsedAbility = ABILITY_FLAMEBURST;
+                PushTraitStack(battler, ABILITY_FLAMEBURST);
+                BattleScriptCall(BattleScript_FlameburstActivates);
+                effect++;
+            }
+        }
         if (SearchTraits(battlerTraits, ABILITY_GOOEY)
          && IsBattlerAlive(gBattlerAttacker)
          && (CompareStat(gBattlerAttacker, STAT_SPEED, MIN_STAT_STAGE, CMP_GREATER_THAN) || BattlerHasTrait(gBattlerAttacker, ABILITY_MIRROR_ARMOR))
@@ -4927,6 +5091,18 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
             SET_STATCHANGER(STAT_SPEED, 1, TRUE);
             PushTraitStack(battler, ABILITY_TANGLING_HAIR);
             BattleScriptCall(BattleScript_TanglingHairActivates);
+            effect++;
+        }
+        if (SearchTraits(battlerTraits, ABILITY_INKY)
+         && IsBattlerAlive(gBattlerAttacker)
+         && (CompareStat(gBattlerAttacker, STAT_ACC, MIN_STAT_STAGE, CMP_GREATER_THAN) || BattlerHasTrait(gBattlerAttacker, ABILITY_MIRROR_ARMOR))
+         && !gBattleStruct->unableToUseMove
+         && IsBattlerTurnDamaged(gBattlerTarget, EXCLUDING_SUBSTITUTES))
+        {
+            gLastUsedAbility = ABILITY_INKY;
+            SET_STATCHANGER(STAT_ACC, 1, TRUE);
+            PushTraitStack(battler, ABILITY_INKY);
+            BattleScriptCall(BattleScript_InkyActivates);
             effect++;
         }
         if (SearchTraits(battlerTraits, ABILITY_REEF_WARDEN)
@@ -5208,6 +5384,25 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
             gBattleMons[gBattlerAttacker].volatiles.infatuation = INFATUATED_WITH(gBattlerTarget);
             PushTraitStack(battler, ABILITY_CUTE_CHARM);
             BattleScriptCall(BattleScript_CuteCharmActivates);
+            effect++;
+        }
+        if (SearchTraits(battlerTraits, ABILITY_BRAND_OF_TORMENT)
+         && IsBattlerAlive(gBattlerAttacker)
+         && !gBattleStruct->unableToUseMove
+         && IsBattlerTurnDamaged(gBattlerTarget, EXCLUDING_SUBSTITUTES)
+         && !CanBattlerAvoidContactEffects(gBattlerAttacker, gBattlerTarget, move)
+         && !gBattleMons[gBattlerAttacker].volatiles.torment
+         && GetActiveGimmick(gBattlerAttacker) != GIMMICK_DYNAMAX
+         && !IsAbilityOnSide(gBattlerAttacker, ABILITY_AROMA_VEIL)
+         && RandomPercentage(RNG_BRAND_OF_TORMENT, 30))
+        {
+            gBattleMons[gBattlerAttacker].volatiles.torment = TRUE;
+            gBattleMons[gBattlerAttacker].volatiles.tormentTimer = B_TORMENT_TIMER;
+            SaveBattlerTarget(gBattlerTarget);
+            gBattlerTarget = gBattlerAttacker;
+            gLastUsedAbility = ABILITY_BRAND_OF_TORMENT;
+            PushTraitStack(battler, ABILITY_BRAND_OF_TORMENT);
+            BattleScriptCall(BattleScript_BrandOfTormentActivates);
             effect++;
         }
         if (SearchTraits(battlerTraits, ABILITY_ILLUSION)
@@ -7961,7 +8156,7 @@ static inline u32 CalcMoveBasePower(struct BattleContext *ctx)
         break;
     case EFFECT_DOUBLE_POWER_ON_ARG_STATUS:
         if (move == MOVE_HEX && BattlerHasTrait(battlerAtk, ABILITY_RITUAL))
-            basePower = 100;
+            basePower = 75;
         // Comatose targets treated as if asleep
         if ((gBattleMons[battlerDef].status1 | (STATUS1_SLEEP * (BattlerHasTrait(battlerDef, ABILITY_COMATOSE)))) & GetMoveEffectArg_Status(move)
          && !((GetMoveAdditionalEffectById(move, 0)->moveEffect == MOVE_EFFECT_REMOVE_STATUS) && DoesSubstituteBlockMove(battlerAtk, battlerDef, move)))
@@ -8334,6 +8529,8 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct BattleContext *ctx)
         modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
     if (SearchTraits(battlerTraits, ABILITY_DIVER) && move == MOVE_DIVE)
         modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
+    if (SearchTraits(battlerTraits, ABILITY_FLIER) && move == MOVE_FLY)
+        modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
     if (SearchTraits(battlerTraits, ABILITY_LAST_STAND))
         modifier = uq4_12_multiply(modifier, UQ_4_12(1.3));
     if (SearchTraits(battlerTraits, ABILITY_GANG_UP)
@@ -8377,6 +8574,8 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct BattleContext *ctx)
         modifier = uq4_12_multiply(modifier, GetSupremeOverlordModifier(battlerAtk));
     if (SearchTraits(battlerTraits, ABILITY_PACK_LEADER))
         modifier = uq4_12_multiply(modifier, GetPackLeaderModifier(battlerAtk));
+    if (SearchTraits(battlerTraits, ABILITY_HORSE_COUNCIL))
+        modifier = uq4_12_multiply(modifier, GetHorseCouncilModifier(battlerAtk));
 
     // field abilities
     if ((IsAbilityOnField(ABILITY_DARK_AURA) && moveType == TYPE_DARK)
@@ -12857,6 +13056,19 @@ static bool32 IsOpposingSideEmpty(enum BattlerId battler)
     if (IsBattlerAlive(BATTLE_PARTNER(oppositeBattler)))
         return FALSE;
     return TRUE;
+}
+
+static enum BattlerId GetOppositeSideShiftTarget(enum BattlerId battler)
+{
+    enum BattlerId oppositeBattler = BATTLE_OPPOSITE(battler);
+
+    if (IsBattlerAlive(oppositeBattler))
+        return oppositeBattler;
+
+    if (IsDoubleBattle() && IsBattlerAlive(BATTLE_PARTNER(oppositeBattler)))
+        return BATTLE_PARTNER(oppositeBattler);
+
+    return MAX_BATTLERS_COUNT;
 }
 
 bool32 IsAffectedByPowderMove(enum BattlerId battler)

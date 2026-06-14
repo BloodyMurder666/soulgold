@@ -13880,6 +13880,14 @@ static void TrySetPoison(const u8 *nextInstr, const u8 *failInstr)
         gBattlescriptCurrInstr = failInstr;
 }
 
+static void TrySetBurn(const u8 *nextInstr, const u8 *failInstr)
+{
+    if (CanBeBurned(gBattlerAttacker, gBattlerTarget))
+        SetNonVolatileStatus(gBattlerTarget, MOVE_EFFECT_BURN, nextInstr, TRIGGER_ON_MOVE);
+    else
+        gBattlescriptCurrInstr = failInstr;
+}
+
 static void TrySetSleep(const u8 *nextInstr, const u8 *failInstr)
 {
     if (CanBeSlept(gBattlerAttacker, gBattlerTarget, BLOCKED_BY_SLEEP_CLAUSE))
@@ -13898,6 +13906,12 @@ void BS_TrySetPoison(void)
 {
     NATIVE_ARGS(const u8 *failInstr);
     TrySetPoison(cmd->nextInstr, cmd->failInstr);
+}
+
+void BS_TrySetBurn(void)
+{
+    NATIVE_ARGS(const u8 *failInstr);
+    TrySetBurn(cmd->nextInstr, cmd->failInstr);
 }
 
 void BS_TrySetPoisonParalyzis(void)
