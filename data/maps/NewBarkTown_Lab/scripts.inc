@@ -1973,27 +1973,29 @@ NewBarkTown_Lab_EventScript_ElmPostgameHint::
 # 996 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_0
 # 1011 "data/maps/NewBarkTown_Lab/scripts.pory"
-	checkplayergender
+	setflag FLAG_HIDE_VICTORYROAD_RIVAL
 # 1012 "data/maps/NewBarkTown_Lab/scripts.pory"
+	checkplayergender
+# 1013 "data/maps/NewBarkTown_Lab/scripts.pory"
 	compare VAR_RESULT, MALE
 	goto_if_eq NewBarkTown_Lab_EventScript_ElmPostgameHint_2
-# 1017 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1020 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_2
 NewBarkTown_Lab_EventScript_ElmPostgameHint_1:
-# 1021 "data/maps/NewBarkTown_Lab/scripts.pory"
-	msgbox NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_3
-# 1023 "data/maps/NewBarkTown_Lab/scripts.pory"
-	setflag FLAG_HIDE_MTSILVER_GUARD
-# 1024 "data/maps/NewBarkTown_Lab/scripts.pory"
-	setflag FLAG_ALLOW_SOUTH_JOHTO_PASS
-# 1025 "data/maps/NewBarkTown_Lab/scripts.pory"
-	setvar VAR_NEWBARKTOWN_LABSTATE, 11
 # 1026 "data/maps/NewBarkTown_Lab/scripts.pory"
+	msgbox NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_3
+# 1028 "data/maps/NewBarkTown_Lab/scripts.pory"
+	setflag FLAG_HIDE_MTSILVER_GUARD
+# 1029 "data/maps/NewBarkTown_Lab/scripts.pory"
+	setflag FLAG_ALLOW_SOUTH_JOHTO_PASS
+# 1030 "data/maps/NewBarkTown_Lab/scripts.pory"
+	setvar VAR_NEWBARKTOWN_LABSTATE, 11
+# 1031 "data/maps/NewBarkTown_Lab/scripts.pory"
 	release
 	end
 
 NewBarkTown_Lab_EventScript_ElmPostgameHint_2:
-# 1013 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1014 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_1
 	goto NewBarkTown_Lab_EventScript_ElmPostgameHint_1
 
@@ -2027,18 +2029,20 @@ NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_0:
 	.string "with your Pokémon.$"
 
 NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_1:
-# 1013 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1014 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "I also heard that Crystal went to train\n"
-	.string "in Mt. Silver. Maybe you should check on\l"
-	.string "her at some point.$"
+	.string "in Mt. Silver. She looked really tired\l"
+	.string "the last time I saw her though... \p"
+	.string "Could you check on her at some point?$"
 
 NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_2:
-# 1017 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1020 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "I also heard that Gold went to train\n"
-	.string "in Mt. Silver. Maybe you should check on\l"
-	.string "her at some point.$"
+	.string "in Mt. Silver. He looked really tired\l"
+	.string "the last time I saw him thoughö...\p"
+	.string "Could you check on him at some point?$"
 
 NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_3:
-# 1021 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1026 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "I asked from the League to let you\n"
 	.string "pass since you've the new Champion.$"

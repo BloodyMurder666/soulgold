@@ -15,6 +15,7 @@
   "connections": null,
   "object_events": [
     {
+      "local_id": "LOCALID_MTSILVER_RIVAL",
       "graphics_id": "OBJ_EVENT_GFX_VAR_0",
       "x": 10,
       "y": 6,
@@ -25,7 +26,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MtSilver_SummitDay_EventScript_Red",
-      "flag": "FLAG_HIDE_MTSILVER_RED"
+      "flag": "FLAG_HIDE_MTSILVER_RIVAL"
     }
   ],
   "warp_events": [

@@ -13360,6 +13360,246 @@ Level: 22
 Ability: Thick Fat
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
+=== TRAINER_RIVAL_CRYSTAL_ICEPATH ===
+Name: Crystal
+Pic: May
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Purple
+
+Azumarill @ Quick Claw
+Level: 51
+Ability: Huge Power
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Play Rough
+- Aqua Tail
+- Aqua Jet
+- Ice Punch
+
+Zoroark @ Focus Sash
+Level: 50
+Ability: Illusion
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Dark Pulse
+- Flamethrower
+- Nasty Plot
+- Foul Play
+
+Oricorio Sensu @ Sharp Beak
+Level: 50
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Revelation Dance
+- Air Slash
+- Shadow Ball
+- Roost
+
+Flygon @ Sitrus Berry
+Level: 51
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Bug Buzz
+- Dragon Pulse
+- Earthquake
+- Fire Blast
+
+Ampharos @ Electrite
+Level: 51
+Ability: Static
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Thunderbolt
+- Power Gem
+- Light Screen
+- Dragon Pulse
+
+=== TRAINER_RIVAL_GOLD_ICEPATH ===
+Name: Gold
+Pic: Brendan
+Gender: Male
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Purple
+
+Azumarill @ Quick Claw
+Level: 51
+Ability: Huge Power
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Play Rough
+- Aqua Tail
+- Aqua Jet
+- Ice Punch
+
+Zoroark @ Focus Sash
+Level: 50
+Ability: Illusion
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Dark Pulse
+- Flamethrower
+- Nasty Plot
+- Foul Play
+
+Oricorio Sensu @ Sharp Beak
+Level: 50
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Revelation Dance
+- Air Slash
+- Shadow Ball
+- Roost
+
+Flygon @ Sitrus Berry
+Level: 51
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Bug Buzz
+- Dragon Pulse
+- Earthquake
+- Fire Blast
+
+Ampharos @ Electrite
+Level: 51
+Ability: Static
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Thunderbolt
+- Power Gem
+- Light Screen
+- Dragon Pulse
+
+=== TRAINER_RIVAL_CRYSTAL_FINAL ===
+Name: Crystal
+Pic: May
+Gender: Female
+Music: Hg Champion
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Purple
+
+Zoroark @ Blackglasses
+Level: 81
+Ability: Illusion
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 Spe
+- Dark Pulse
+- Flamethrower
+- Nasty Plot
+- Foul Play
+
+Oricorio Sensu @ Wise Glasses
+Level: 82
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 Spe
+- Revelation Dance
+- Air Slash
+- Shadow Ball
+- Roost
+
+Azumarill @ Mystic Water
+Level: 82
+Ability: Thick Fat
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 252 HP
+- Play Rough
+- Liquidation
+- Aqua Jet
+- Ice Punch
+
+Ampharos @ Electrite
+Level: 83
+Ability: Static
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 HP
+- Thunderbolt
+- Power Gem
+- Light Screen
+- Volt Switch
+
+Espeon @ Light Clay
+Level: 84
+Ability: Synchronize
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 Spe
+- Psychic
+- Dazzling Gleam
+- Shadow Ball
+- Calm Mind
+
+Dragonite @ Leftovers
+Level: 84
+Ability: Multiscale
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 252 Spe
+- Dragon Dance
+- Dragon Claw
+- Earthquake
+- Extreme Speed
+
+=== TRAINER_RIVAL_GOLD_FINAL ===
+Name: Gold
+Pic: Brendan
+Gender: Male
+Music: Hg Champion
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Purple
+
+Zoroark @ Blackglasses
+Level: 81
+Ability: Illusion
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 Spe
+- Dark Pulse
+- Flamethrower
+- Nasty Plot
+- Foul Play
+
+Oricorio Sensu @ Wise Glasses
+Level: 82
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 Spe
+- Revelation Dance
+- Air Slash
+- Shadow Ball
+- Roost
+
+Azumarill @ Mystic Water
+Level: 82
+Ability: Thick Fat
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 252 HP
+- Play Rough
+- Liquidation
+- Aqua Jet
+- Ice Punch
+
+Ampharos @ Electrite
+Level: 83
+Ability: Static
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 HP
+- Thunderbolt
+- Power Gem
+- Light Screen
+- Volt Switch
+
+Espeon @ Light Clay
+Level: 84
+Ability: Synchronize
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 Spe
+- Psychic
+- Dazzling Gleam
+- Shadow Ball
+- Calm Mind
+
+Dragonite @ Leftovers
+Level: 84
+Ability: Multiscale
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 252 Spe
+- Dragon Dance
+- Dragon Claw
+- Earthquake
+- Extreme Speed
+
 === TRAINER_KEIRA ===
 Name: Keira
 Pic: Engineer
@@ -13585,5 +13825,4 @@ IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 Toxtricity
 Level: 39
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
-
 

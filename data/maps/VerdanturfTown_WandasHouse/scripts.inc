@@ -4,9 +4,9 @@ VerdanturfTown_WandasHouse_MapScripts::
 VerdanturfTown_WandasHouse_EventScript_Wally::
 	lock
 	faceplayer
-	goto_if_set FLAG_WALLY_SPEECH, VerdanturfTown_WandasHouse_EventScript_WallyShortSpeech
+	goto_if_set FLAG_GARBAGEFLAG, VerdanturfTown_WandasHouse_EventScript_WallyShortSpeech
 	msgbox VerdanturfTown_WandasHouse_Text_StrongerSpeech, MSGBOX_DEFAULT
-	setflag FLAG_WALLY_SPEECH
+	setflag FLAG_GARBAGEFLAG
 	release
 	end
 

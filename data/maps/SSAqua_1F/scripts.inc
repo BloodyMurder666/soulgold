@@ -90,7 +90,7 @@ SSAqua_1F_EventScript_LeaveBoat::
 	clearflag FLAG_HIDE_MTMOON_SILVER
 	clearflag FLAG_GOT_TM_STEEL_WING
 	clearflag FLAG_HIDE_CERULEANCAVE_GUARD
-	clearflag FLAG_HIDE_MTSILVER_RED
+	clearflag FLAG_HIDE_MTSILVER_RIVAL
 	clearflag FLAG_HIDE_MEWTWO
 	clearflag FLAG_HIDE_LATIAS
 	clearflag FLAG_HIDE_LATIOS

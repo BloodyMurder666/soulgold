@@ -6,6 +6,7 @@ Must have:
 - Rest of route experts for held items (Power Herb, Toxic Orb, Choice Band)
 - 3-4 remaining megastones (dragon den trial for dragotite?)
 - Finish redoing the remaining trades
+- Final rival battle on mt silver + jirachi
 
 Nice to have:
 - HGSS/DPPT overworld npc sprite demakes
@@ -13,8 +14,6 @@ Nice to have:
 - Victini reward for beating all gym leader rematches
 - Celebi GS ball event
 - south johto surf route to tease postgame
-- 2-3 more rival crystal/gold events (cianwood city? ice path?)
-- Rival final battle at mt silver, jirachi reward?
 
 Maybe:
 - remaining mugshots

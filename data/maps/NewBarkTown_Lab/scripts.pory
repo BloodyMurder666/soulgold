@@ -1008,15 +1008,20 @@ script NewBarkTown_Lab_EventScript_ElmPostgameHint {
 			
 			After all, you've travelled all over
 			with your Pokémon.")
+	setflag(FLAG_HIDE_VICTORYROAD_RIVAL)
 	checkplayergender
 	if (var(VAR_RESULT) == MALE) {
 	msgbox("I also heard that Crystal went to train
-			in Mt. Silver. Maybe you should check on
-			her at some point.")
+			in Mt. Silver. She looked really tired
+			the last time I saw her though... 
+			
+			Could you check on her at some point?")
 	} else {
 	msgbox("I also heard that Gold went to train
-			in Mt. Silver. Maybe you should check on
-			her at some point.")
+			in Mt. Silver. He looked really tired
+			the last time I saw him thoughö...
+			
+			Could you check on him at some point?")
 	}
 	msgbox("I asked from the League to let you
 			pass since you've the new Champion.")

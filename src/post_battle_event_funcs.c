@@ -36,6 +36,7 @@ int GameClear(void)
 	    FlagClear(FLAG_HIDE_CAFE_JASMINE);
 	    FlagClear(FLAG_HIDE_LAKE_PRYCE);
 	    FlagClear(FLAG_HIDE_DEN_CLAIR);
+        FlagSet(FLAG_HIDE_VICTORYROAD_RIVAL);
     }
 
     if (GetGameStat(GAME_STAT_FIRST_HOF_PLAY_TIME) == 0)

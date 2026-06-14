@@ -39,13 +39,13 @@ MtSilver_SummitDay_EventScript_Red::
 	msgbox MtSilver_SummitDay_Text_Red, MSGBOX_DEFAULT
 	closemessage
 	fadescreenswapbuffers FADE_TO_BLACK
-	setflag FLAG_HIDE_MTSILVER_RED
+	setflag FLAG_HIDE_MTSILVER_RIVAL
 	removeobject LOCALID_MTSILVER_RED
 	fadescreenswapbuffers FADE_FROM_BLACK
 	delay 180
 	fadescreenspeed FADE_TO_BLACK, 24
 	setflag FLAG_DEFEATED_RED
-	clearflag FLAG_HIDE_MTSILVER_RED
+	clearflag FLAG_HIDE_MTSILVER_RIVAL
 	special GameClear
 	waitstate
 	releaseall

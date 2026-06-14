@@ -212,12 +212,12 @@
 #define FLAG_DEFEATED_WALLY_MAUVILLE         0xBE
 #define FLAG_DEFEATED_GRUNT_SPACE_CENTER_1F  0xBF
 #define FLAG_RECEIVED_SUN_STONE_MOSSDEEP     0xC0
-#define FLAG_WALLY_SPEECH                    0xC1
+#define FLAG_HIDE_VICTORYROAD_RIVAL          0xC1
 #define FLAG_RAILWAY_CELLBATTERY             0xC2
-#define FLAG_UNUSED_0xC3                     0xC3 // Unused
-#define FLAG_UNUSED_0xC4                     0xC4 // Unused
-#define FLAG_UNUSED_0xC5                     0xC5 // Unused
-#define FLAG_UNUSED_0xC6                     0xC6 // Unused
+#define FLAG_HIDE_ECRUTEAK_RIVAL             0xC3
+#define FLAG_HIDE_GOLDENROD_RIVAL            0xC4
+#define FLAG_HIDE_ICEPATH_RIVAL              0xC5
+#define FLAG_HIDE_OLIVINE_RIVAL              0xC6
 #define FLAG_RUSTURF_TUNNEL_OPENED           0xC7
 #define FLAG_RECEIVED_RED_SCARF              0xC8
 #define FLAG_RECEIVED_BLUE_SCARF             0xC9
@@ -888,7 +888,7 @@
 #define FLAG_HIDE_CERULEANCAVE_GUARD                                0x345
 #define FLAG_GOT_TM_STEEL_WING                                      0x346
 #define FLAG_HIDE_LATIOS                                            0x347
-#define FLAG_HIDE_MTSILVER_RED                                      0x348
+#define FLAG_HIDE_MTSILVER_RIVAL                                    0x348
 #define FLAG_HIDE_LATIAS                                            0x349
 #define FLAG_HIDE_BATTLE_FRONTIER_SUDOWOODO                         0x34A
 #define FLAG_HIDE_GROUDON                                           0x34B
@@ -905,7 +905,7 @@
 #define FLAG_UNUSED_SET7                                            0x356
 #define FLAG_UNUSED_SET8                                            0x357
 #define FLAG_UNUSED_SET9                                            0x358
-#define FLAG_VISITED_KANTO                                          0x359
+#define FLAG_SPOKEN_VICTORYROAD_RIVAL                               0x359
 #define FLAG_RECEIVED_ODD_EGG                                       0x35A
 #define FLAG_HIDE_CERULEAN_GYM_POKEMON                                          0x35B
 #define FLAG_HIDE_NEWBARKTOWN_LAB_AIDE                                          0x35C

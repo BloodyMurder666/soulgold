@@ -720,6 +720,16 @@ enum BattleEnvironments BattleSetup_GetEnvironmentId(void)
         return BATTLE_ENVIRONMENT_SNOW;
     if (gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_SNOWTOP_MOUNTAIN)
       || gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_SNOWTOP_MOUNTAIN_B1F)
+      || gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ICE_PATH_1F)
+      || gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ICE_PATH_B1F)
+      || gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ICE_PATH_B2F)
+      || gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ICE_PATH_B3F)
+      || gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ICE_PATH_B4F)
+      || gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ICE_PATH_DEPTHS)
+      || gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ICE_PATH_DEPTHS2)
+      || gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_MT_SILVER_SNOW)
+      || gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_MT_SILVER_SUMMIT_DAY)
+      || gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_MT_SILVER_SUMMIT_NIGHT)
       || gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_SNOWTOP_MOUNTAIN_B1F_2))
         return BATTLE_ENVIRONMENT_SNOW;
 

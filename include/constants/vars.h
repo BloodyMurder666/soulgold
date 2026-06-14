@@ -149,7 +149,7 @@
 #define VAR_ROUTE27_STATE                                0x4081 // 0 = goto junction, 1 = fight silver, 2 = done
 #define VAR_LEAGUE_STATE                                 0x4082
 #define VAR_TIME_BASED_ENCOUNTER                         0x4083 // Different encounter tables
-#define VAR_ICE_PATH_STATE                               0x4084 //0 = meet kimono, 1 = done
+#define VAR_ICE_PATH_STATE                               0x4084 //0 = meet rival, 1 = meet kimono, 2 = done
 #define VAR_SSAQUA_STATE                                 0x4085 // 0 = talk to olivine sailor, 1 = encounter grandfather, 2 = find sleeping sailor, 3 = find sailor, 4 = find girl, 5 = receive arrival message, 6 = talk to exit sailor, 7 = done
 #define VAR_CLEFAIRY_DOLL_STATE                          0x4086
 #define VAR_CABLE_CLUB_STATE                             0x4087

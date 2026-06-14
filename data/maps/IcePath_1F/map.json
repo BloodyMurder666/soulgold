@@ -156,6 +156,20 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
       "flag": "FLAG_NIGHT_POKEMON"
+    },
+    {
+      "local_id": "LOCALID_ICEPATH_RIVAL",
+      "graphics_id": "OBJ_EVENT_GFX_VAR_0",
+      "x": 34,
+      "y": 8,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "IcePath_1F_Rival",
+      "flag": "FLAG_HIDE_ICEPATH_RIVAL"
     }
   ],
   "warp_events": [
@@ -195,8 +209,35 @@
       "y": 29,
       "elevation": 0,
       "var": "VAR_ICE_PATH_STATE",
-      "var_value": "0",
+      "var_value": "1",
       "script": "IcePath_1F_Trigger_KimonoGirl"
+    },
+    {
+      "type": "trigger",
+      "x": 32,
+      "y": 8,
+      "elevation": 0,
+      "var": "VAR_ICE_PATH_STATE",
+      "var_value": "0",
+      "script": "IcePath_1F_Rival"
+    },
+    {
+      "type": "trigger",
+      "x": 32,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_ICE_PATH_STATE",
+      "var_value": "0",
+      "script": "IcePath_1F_Rival"
+    },
+    {
+      "type": "trigger",
+      "x": 32,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_ICE_PATH_STATE",
+      "var_value": "0",
+      "script": "IcePath_1F_Rival"
     }
   ],
   "bg_events": []

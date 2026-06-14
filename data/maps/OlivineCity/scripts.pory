@@ -13,6 +13,10 @@ OlivineCity_OnLoad::
 	end
 
 OlivineCity_MapScript_OnTransition::
+	call Common_EventScript_SetupRivalGfxId
+	goto OlivineCity_MapScript_CheckWeather
+
+OlivineCity_MapScript_CheckWeather::
 	callnative SetTimeBasedEncounters
 	goto_if_ge VAR_OLIVINE_CITY_STATE, 5, OlivineCity_MapScript_ClearWeather
 	end
@@ -370,4 +374,31 @@ mart SouvenirMart {
     ITEM_STRANGE_SOUVENIR
     ITEM_UNREMARKABLE_TEACUP
     ITEM_UTILITY_UMBRELLA
+}
+
+script OlivineCity_RivalPier {
+    lock
+    faceplayer
+    createfieldmugshotrival
+    msgbox("Oh. 
+			Hey...")
+    msgbox("Do you ever think that some people are
+			just not... built for this?")
+    msgbox("Like it comes naturally
+            and for others it's just...")
+    msgbox("Never mind.
+            It's a dumb question.")
+    msgbox("Jasmine's Gym is closed.
+            You're already on it, I assume.")
+    msgbox("See you around.")
+    removefieldmugshot
+    closemessage
+    moveobjecttocoords(LOCALID_OLIVINE_RIVAL, 19, 49, DIR_NORTH)
+    waitmovement(0)
+    setvar(VAR_RIVAL_STATE, 9)
+    setflag(FLAG_HIDE_OLIVINE_RIVAL)
+    removeobject(LOCALID_OLIVINE_RIVAL)
+	clearflag(FLAG_HIDE_ICEPATH_RIVAL)
+    release
+    end
 }

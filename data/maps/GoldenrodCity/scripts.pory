@@ -1,6 +1,8 @@
 raw `
 
 GoldenrodCity_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, GoldenrodCity_OnTransition
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, Goldenrod_OnFrame
 	map_script MAP_SCRIPT_ON_LOAD, GoldenrodCity_OnLoad
 	.byte 0
 
@@ -464,6 +466,10 @@ GoldenrodCity_Text_MoveTutorBut:
 
 GoldenrodCity_Text_MoveTutorNotEnoughCoins:
 	.string "…You don't have enough coins…$"
+
+Goldenrod_OnFrame:: 
+	map_script_2 VAR_RIVAL_STATE, 6, GoldenrodCity_RivalAfterWhitney
+	.2byte 0
 `
 
 script Goldenrod_Daytime_ExpertM {
@@ -553,5 +559,56 @@ script Goldenrod_Nighttime_Oldlady {
 			It's also very useful against Flying
 			Pokémon.")
 	release
+	end
+}
+
+
+script GoldenrodCity_OnTransition {
+	call(Common_EventScript_SetupRivalGfxId)
+	setflag(FLAG_HIDE_GOLDENROD_RIVAL)
+	if (var(VAR_RIVAL_STATE) == 6 && flag(FLAG_DEFEATED_GOLDENROD_CITY_GYM)) {
+		clearflag(FLAG_HIDE_GOLDENROD_RIVAL)
+	}
+	end
+}
+
+script GoldenrodCity_RivalAfterWhitney {
+	if (var(VAR_RIVAL_STATE) == 6 && flag(FLAG_DEFEATED_GOLDENROD_CITY_GYM)) { 
+		lock
+		playse(SE_PIN)
+		applymovement(LOCALID_GOLDENROD_RIVAL, Common_Movement_ExclamationMark)
+		waitmovement(0)
+		delay(30)
+		playbgm(MUS_HG_LYRA, TRUE)
+		createfieldmugshotrival
+		msgbox("Hey {PLAYER}! 
+				How did the battle with Whitney go? 
+				
+				Her Miltank made short work of 
+				my team a while ago!")
+		msgbox("Oh, you have got the badge... 
+				
+				Congratulations. 
+				
+				Another easy victory eh?
+				Just like always.")
+		msgbox("Hey, want to head to
+				Ecruteak together?
+				
+				Actually nevermind, you'll probably
+				want to catch more Pokémon, I'll
+				go visit my grandparents instead.
+				
+				Well, see ya!")
+		removefieldmugshot
+		closemessage
+		applymovement(LOCALID_GOLDENROD_RIVAL, moves(walk_left*4, walk_down*6))
+		waitmovement(0)
+		setvar(VAR_RIVAL_STATE, 7)
+		setflag(FLAG_HIDE_GOLDENROD_RIVAL)
+		removeobject(LOCALID_GOLDENROD_RIVAL)
+		fadedefaultbgm
+		release
+	}
 	end
 }
