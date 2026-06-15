@@ -2251,3 +2251,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/RailwayCave_3F/scripts.inc"
 
 	.include "data/maps/RailwayCave_Registeel_Room/scripts.inc"
+
+	.include "data/maps/MtSilver_1F_RegigigasRoom/scripts.inc"

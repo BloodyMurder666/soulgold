@@ -141,7 +141,7 @@ OlivinePort_EventScript_Sailor::
 # 71 "data/maps/OlivineCity_PortInside/scripts.pory"
 	faceplayer
 # 72 "data/maps/OlivineCity_PortInside/scripts.pory"
-	goto_if_set FLAG_DEFEATED_RED, OlivinePort_EventScript_Sailor_AfterRed
+	goto_if_set FLAG_DEFEATED_MTSILVER_RIVAL, OlivinePort_EventScript_Sailor_AfterRed
 # 73 "data/maps/OlivineCity_PortInside/scripts.pory"
 	goto_if_ge VAR_SSAQUA_STATE, 7, OlivinePort_EventScript_Sailor_AfterKanto
 # 74 "data/maps/OlivineCity_PortInside/scripts.pory"

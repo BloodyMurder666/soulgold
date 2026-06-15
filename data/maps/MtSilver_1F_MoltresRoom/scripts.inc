@@ -1,11 +1,6 @@
-.set LOCALID_MTSILVER_MOLTRES, 1
+# 1 "data/maps/MtSilver_1F_MoltresRoom/scripts.pory"
 
+# 2 "data/maps/MtSilver_1F_MoltresRoom/scripts.pory"
 MtSilver_1F_MoltresRoom_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, MtSilver_1F_MoltresRoom_OnTransition
-	map_script MAP_SCRIPT_ON_RESUME, SetTimeEncounters
+# 3 "data/maps/MtSilver_1F_MoltresRoom/scripts.pory"
 	.byte 0
-
-MtSilver_1F_MoltresRoom_OnTransition: 
-	callnative SetTimeBasedEncounters
-	end
-

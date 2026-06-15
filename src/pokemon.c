@@ -5251,6 +5251,7 @@ bool32 IsSpeciesInHoennDex(u16 species)
 
 u16 GetBattleBGM(void)
 {
+
     if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY)
     {
         switch (GetMonData(&gEnemyParty[0], MON_DATA_SPECIES))
@@ -5275,6 +5276,11 @@ u16 GetBattleBGM(void)
     {
         return MUS_HG_VS_TRAINER;
     }
+    if ((gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_MT_SILVER_SUMMIT_DAY)
+      && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_MT_SILVER_SUMMIT_DAY))
+     || (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_MT_SILVER_SUMMIT_NIGHT)
+      && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_MT_SILVER_SUMMIT_NIGHT)))
+        return MUS_HG_VS_CHAMPION;
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
         enum TrainerClassID trainerClass;

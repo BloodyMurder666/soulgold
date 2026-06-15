@@ -13473,37 +13473,48 @@ Double Battle: No
 AI: Smart Trainer
 Mugshot: Purple
 
-Zoroark @ Blackglasses
-Level: 81
+Iron Treads @ Leftovers
+Ability: Quark Drive
+EVs: 252 Atk / 4 SpD / 252 Spe
+Level: 83
+Jolly Nature
+- Stealth Rock
+- Earthquake
+- Knock Off
+- Rapid Spin
+
+Zoroark-Hisui @ Heavy-Duty Boots
 Ability: Illusion
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 252 Spe
-- Dark Pulse
-- Flamethrower
-- Nasty Plot
-- Foul Play
-
-Oricorio Sensu @ Wise Glasses
-Level: 82
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 252 Spe
-- Revelation Dance
-- Air Slash
+EVs: 252 SpA / 4 SpD / 252 Spe
+Level: 83
+Timid Nature
 - Shadow Ball
-- Roost
+- Focus Blast
+- Hyper Voice
+- Nasty Plot
 
-Azumarill @ Mystic Water
-Level: 82
-Ability: Thick Fat
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 252 HP
+Baxcalibur @ Loaded Dice
+Ability: Thermal Exchange
+EVs: 252 Atk / 4 SpD / 252 Spe
+Level: 83
+Adamant Nature
+- Icicle Spear
+- Glaive Rush
+- Earthquake
+- Dragon Dance
+
+Azumarill @ Sitrus Berry
+Ability: Huge Power
+EVs: 4 HP / 252 Atk / 252 Spe
+Level: 84
+Adamant Nature
+- Belly Drum
 - Play Rough
 - Liquidation
 - Aqua Jet
-- Ice Punch
 
 Ampharos @ Electrite
-Level: 83
+Level: 85
 Ability: Static
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 252 HP
@@ -13512,25 +13523,85 @@ EVs: 252 SpA / 252 HP
 - Light Screen
 - Volt Switch
 
-Espeon @ Light Clay
+Tangrowth @ Rocky Helmet
+Ability: Regenerator
+EVs: 244 HP / 252 Def / 12 SpD
 Level: 84
-Ability: Synchronize
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 252 Spe
-- Psychic
-- Dazzling Gleam
-- Shadow Ball
-- Calm Mind
+Relaxed Nature
+- Giga Drain
+- Knock Off
+- Focus Blast
+- Sleep Powder
 
-Dragonite @ Leftovers
-Level: 84
-Ability: Multiscale
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 252 Spe
-- Dragon Dance
-- Dragon Claw
+=== TRAINER_RIVAL_CRYSTAL_FINAL ===
+Name: Crystal
+Pic: May
+Gender: Female
+Music: Hg Champion
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Purple
+Difficulty: Hard
+
+Iron Treads @ Leftovers
+Ability: Quark Drive
+EVs: 252 Atk / 4 SpD / 252 Spe
+Level: 85
+Jolly Nature
+- Stealth Rock
 - Earthquake
-- Extreme Speed
+- Knock Off
+- Rapid Spin
+
+Zoroark-Hisui @ Heavy-Duty Boots
+Ability: Illusion
+EVs: 252 SpA / 4 SpD / 252 Spe
+Level: 85
+Timid Nature
+- Shadow Ball
+- Focus Blast
+- Hyper Voice
+- Nasty Plot
+
+Baxcalibur @ Loaded Dice
+Ability: Thermal Exchange
+EVs: 252 Atk / 4 SpD / 252 Spe
+Level: 85
+Adamant Nature
+- Icicle Spear
+- Glaive Rush
+- Earthquake
+- Dragon Dance
+
+Azumarill @ Sitrus Berry
+Ability: Huge Power
+EVs: 4 HP / 252 Atk / 252 Spe
+Level: 86
+Adamant Nature
+- Belly Drum
+- Play Rough
+- Liquidation
+- Aqua Jet
+
+Ampharos @ Electrite
+Level: 87
+Ability: Static
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 HP
+- Thunderbolt
+- Power Gem
+- Light Screen
+- Volt Switch
+
+Iron Leaves @ Life Orb
+Ability: Quark Drive
+EVs: 96 HP / 160 Atk / 252 Spe
+Level: 86
+Jolly Nature
+- Swords Dance
+- Leaf Blade
+- Psyblade
+- Close Combat
 
 === TRAINER_RIVAL_GOLD_FINAL ===
 Name: Gold
@@ -13541,37 +13612,48 @@ Double Battle: No
 AI: Smart Trainer
 Mugshot: Purple
 
-Zoroark @ Blackglasses
-Level: 81
+Iron Treads @ Leftovers
+Ability: Quark Drive
+EVs: 252 Atk / 4 SpD / 252 Spe
+Level: 83
+Jolly Nature
+- Stealth Rock
+- Earthquake
+- Knock Off
+- Rapid Spin
+
+Zoroark-Hisui @ Heavy-Duty Boots
 Ability: Illusion
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 252 Spe
-- Dark Pulse
-- Flamethrower
-- Nasty Plot
-- Foul Play
-
-Oricorio Sensu @ Wise Glasses
-Level: 82
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 252 Spe
-- Revelation Dance
-- Air Slash
+EVs: 252 SpA / 4 SpD / 252 Spe
+Level: 83
+Timid Nature
 - Shadow Ball
-- Roost
+- Focus Blast
+- Hyper Voice
+- Nasty Plot
 
-Azumarill @ Mystic Water
-Level: 82
-Ability: Thick Fat
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 252 HP
+Baxcalibur @ Loaded Dice
+Ability: Thermal Exchange
+EVs: 252 Atk / 4 SpD / 252 Spe
+Level: 83
+Adamant Nature
+- Icicle Spear
+- Glaive Rush
+- Earthquake
+- Dragon Dance
+
+Azumarill @ Sitrus Berry
+Ability: Huge Power
+EVs: 4 HP / 252 Atk / 252 Spe
+Level: 84
+Adamant Nature
+- Belly Drum
 - Play Rough
 - Liquidation
 - Aqua Jet
-- Ice Punch
 
 Ampharos @ Electrite
-Level: 83
+Level: 85
 Ability: Static
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 252 HP
@@ -13580,25 +13662,85 @@ EVs: 252 SpA / 252 HP
 - Light Screen
 - Volt Switch
 
-Espeon @ Light Clay
+Tangrowth @ Rocky Helmet
+Ability: Regenerator
+EVs: 244 HP / 252 Def / 12 SpD
 Level: 84
-Ability: Synchronize
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 252 Spe
-- Psychic
-- Dazzling Gleam
-- Shadow Ball
-- Calm Mind
+Relaxed Nature
+- Giga Drain
+- Knock Off
+- Focus Blast
+- Sleep Powder
 
-Dragonite @ Leftovers
-Level: 84
-Ability: Multiscale
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 252 Spe
-- Dragon Dance
-- Dragon Claw
+=== TRAINER_RIVAL_GOLD_FINAL ===
+Name: Gold
+Pic: Brendan
+Gender: Male
+Music: Hg Champion
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Purple
+Difficulty: Hard
+
+Iron Treads @ Leftovers
+Ability: Quark Drive
+EVs: 252 Atk / 4 SpD / 252 Spe
+Level: 85
+Jolly Nature
+- Stealth Rock
 - Earthquake
-- Extreme Speed
+- Knock Off
+- Rapid Spin
+
+Zoroark-Hisui @ Heavy-Duty Boots
+Ability: Illusion
+EVs: 252 SpA / 4 SpD / 252 Spe
+Level: 85
+Timid Nature
+- Shadow Ball
+- Focus Blast
+- Hyper Voice
+- Nasty Plot
+
+Baxcalibur @ Loaded Dice
+Ability: Thermal Exchange
+EVs: 252 Atk / 4 SpD / 252 Spe
+Level: 85
+Adamant Nature
+- Icicle Spear
+- Glaive Rush
+- Earthquake
+- Dragon Dance
+
+Azumarill @ Sitrus Berry
+Ability: Huge Power
+EVs: 4 HP / 252 Atk / 252 Spe
+Level: 86
+Adamant Nature
+- Belly Drum
+- Play Rough
+- Liquidation
+- Aqua Jet
+
+Ampharos @ Electrite
+Level: 87
+Ability: Static
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 HP
+- Thunderbolt
+- Power Gem
+- Light Screen
+- Volt Switch
+
+Iron Leaves @ Life Orb
+Ability: Quark Drive
+EVs: 96 HP / 160 Atk / 252 Spe
+Level: 86
+Jolly Nature
+- Swords Dance
+- Leaf Blade
+- Psyblade
+- Close Combat
 
 === TRAINER_KEIRA ===
 Name: Keira

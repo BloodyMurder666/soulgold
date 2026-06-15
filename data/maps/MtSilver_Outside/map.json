@@ -21,7 +21,7 @@
   ],
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(QUAGSIRE)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(POLITOED)",
       "x": 5,
       "y": 26,
       "elevation": 0,
@@ -34,7 +34,7 @@
       "flag": "FLAG_NIGHT_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(VENUSAUR)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(LUXRAY)",
       "x": 34,
       "y": 8,
       "elevation": 0,
@@ -47,7 +47,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CHARIZARD)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SKARMORY)",
       "x": 8,
       "y": 20,
       "elevation": 0,
@@ -60,7 +60,7 @@
       "flag": "FLAG_DAY_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GOLEM)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ZOROARK)",
       "x": 4,
       "y": 8,
       "elevation": 0,
@@ -73,7 +73,7 @@
       "flag": "FLAG_DAY_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(URSARING)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(FARIGIRAF)",
       "x": 16,
       "y": 4,
       "elevation": 0,
@@ -86,20 +86,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(DONPHAN)",
-      "x": 7,
-      "y": 11,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WALK_SEQUENCE_UP_LEFT_DOWN_RIGHT",
-      "movement_range_x": 3,
-      "movement_range_y": 3,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "FLAG_DAY_POKEMON"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(BLASTOISE)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(LICKILICKY)",
       "x": 32,
       "y": 26,
       "elevation": 0,
@@ -112,7 +99,7 @@
       "flag": "FLAG_NIGHT_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(QUAGSIRE)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(POLITOED)",
       "x": 4,
       "y": 27,
       "elevation": 0,
@@ -125,7 +112,7 @@
       "flag": "FLAG_NIGHT_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(HOUNDOOM)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SKARMORY)",
       "x": 8,
       "y": 18,
       "elevation": 0,
@@ -138,7 +125,7 @@
       "flag": "FLAG_NIGHT_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(HOUNDOOM)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SKARMORY)",
       "x": 7,
       "y": 19,
       "elevation": 0,
@@ -151,33 +138,7 @@
       "flag": "FLAG_NIGHT_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CROBAT)",
-      "x": 4,
-      "y": 11,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WALK_SEQUENCE_RIGHT_UP_LEFT_DOWN",
-      "movement_range_x": 3,
-      "movement_range_y": 3,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "FLAG_NIGHT_POKEMON"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CROBAT)",
-      "x": 7,
-      "y": 8,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WALK_SEQUENCE_LEFT_DOWN_RIGHT_UP",
-      "movement_range_x": 3,
-      "movement_range_y": 3,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "FLAG_NIGHT_POKEMON"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SKARMORY)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ARCANINE)",
       "x": 24,
       "y": 11,
       "elevation": 0,

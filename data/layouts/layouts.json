@@ -8386,7 +8386,7 @@
       "name": "MtSilver_MountainSide_Layout",
       "width": 55,
       "height": 61,
-      "primary_tileset": "gTileset_Johto_NorthEast",
+      "primary_tileset": "gTileset_Johto_NorthWest",
       "secondary_tileset": "gTileset_Blackthorn",
       "border_filepath": "data/layouts/MtSilver_MountainSide/border.bin",
       "blockdata_filepath": "data/layouts/MtSilver_MountainSide/map.bin"
@@ -9586,6 +9586,16 @@
       "secondary_tileset": "gTileset_g4cave",
       "border_filepath": "data/layouts/RailwayCave_Registeel_Room/border.bin",
       "blockdata_filepath": "data/layouts/RailwayCave_Registeel_Room/map.bin"
+    },
+    {
+      "id": "LAYOUT_MT_SILVER_1F_REGIGIGAS_ROOM",
+      "name": "MtSilver_1F_RegigigasRoom_Layout",
+      "width": 35,
+      "height": 35,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_Cave_Gray",
+      "border_filepath": "data/layouts/MtSilver_1F_RegigigasRoom/border.bin",
+      "blockdata_filepath": "data/layouts/MtSilver_1F_RegigigasRoom/map.bin"
     }
   ]
 }

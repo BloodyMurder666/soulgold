@@ -41,7 +41,7 @@
       "flag": "FLAG_ITEM_MTSILVER_NERVERMELTICE"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ANNIHILAPE)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MAMOSWINE)",
       "x": 6,
       "y": 40,
       "elevation": 0,
@@ -54,7 +54,7 @@
       "flag": "FLAG_NIGHT_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MISMAGIUS)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(FROSLASS)",
       "x": 42,
       "y": 17,
       "elevation": 0,
@@ -67,7 +67,7 @@
       "flag": "FLAG_NIGHT_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MISMAGIUS)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(FROSLASS)",
       "x": 42,
       "y": 38,
       "elevation": 0,
@@ -80,7 +80,7 @@
       "flag": "FLAG_NIGHT_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MACHOKE)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(LUCARIO)",
       "x": 3,
       "y": 45,
       "elevation": 0,
@@ -91,32 +91,6 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
       "flag": "FLAG_DAY_POKEMON"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(PILOSWINE)",
-      "x": 35,
-      "y": 35,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(PILOSWINE)",
-      "x": 35,
-      "y": 31,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(MAMOSWINE)",
@@ -145,7 +119,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(RAPIDASH)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ABOMASNOW)",
       "x": 37,
       "y": 12,
       "elevation": 0,
@@ -184,7 +158,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(URSARING)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ABOMASNOW)",
       "x": 36,
       "y": 25,
       "elevation": 0,

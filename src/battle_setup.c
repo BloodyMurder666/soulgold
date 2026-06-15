@@ -538,12 +538,15 @@ void BattleSetup_StartLegendaryBattle(void)
         CreateBattleStartTask(B_TRANSITION_BLUR, MUS_DP_VS_LEGEND);
         break;
     case SPECIES_REGICE:
+    case SPECIES_REGIELEKI:
         CreateBattleStartTask(B_TRANSITION_REGICE, MUS_VS_REGI);
         break;
     case SPECIES_REGISTEEL:
+    case SPECIES_REGIDRAGO:
         CreateBattleStartTask(B_TRANSITION_REGISTEEL, MUS_VS_REGI);
         break;
     case SPECIES_REGIROCK:
+    case SPECIES_REGIGIGAS:
         CreateBattleStartTask(B_TRANSITION_REGIROCK, MUS_VS_REGI);
         break;
     case SPECIES_MESPRIT:

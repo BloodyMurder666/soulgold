@@ -322,7 +322,7 @@ static void HandleInputChooseAction(enum BattlerId battler)
                     sameBall = TRUE;
                 else
                     gBallToDisplay = nextBall;
-                SwapBallToDisplay(sameBall);
+                SwapBallToDisplay(sameBall, 1);
                 PlaySE(SE_SELECT);
             }
             else if (JOY_HELD(B_LAST_USED_BALL_BUTTON) && (JOY_NEW(DPAD_UP) || JOY_NEW(DPAD_LEFT)))
@@ -334,7 +334,7 @@ static void HandleInputChooseAction(enum BattlerId battler)
                     sameBall = TRUE;
                 else
                     gBallToDisplay = prevBall;
-                SwapBallToDisplay(sameBall);
+                SwapBallToDisplay(sameBall, -1);
                 PlaySE(SE_SELECT);
             }
             else if (JOY_NEW(B_BUTTON) || (!JOY_HELD(B_LAST_USED_BALL_BUTTON) && gBattleStruct->ballSwapped))

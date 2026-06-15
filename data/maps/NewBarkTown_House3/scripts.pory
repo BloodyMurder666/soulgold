@@ -14,13 +14,25 @@ script NewBarkTown_RivalsMom {
     checkplayergender
     msgbox("Oh, hello {PLAYER}!")
     if (var(VAR_RESULT) == MALE) {
+        if (var(VAR_RIVAL_STATE) >= 4 && var(VAR_RIVAL_STATE) < 12) {
+            msgbox("Crystal is currently out, if you were
+                    looking for her.")
+                    release
+                    end
+        }
         msgbox("Crystal is currently upstairs if
                 you are looking for her. She is playing
-                with her Marill.")
+                with her Pokémon.")
     } else {
+        if (var(VAR_RIVAL_STATE) >= 4 && var(VAR_RIVAL_STATE) < 12) {
+            msgbox("Gold is currently out, if you were
+                    looking for her.")
+                    release
+                    end
+        }
         msgbox("Gold is currently upstairs if
                 you are looking for her. She is playing
-                with his Marill.")
+                with his Pokémon.")
     }
     release
     end
@@ -45,11 +57,59 @@ script NewBarkTown_RivalsSister {
 }
 
 script NewBarkTownRivalHouseRival {
-    // Postgame and progression based comments?
-    // Cresselia quest?
+    lock
+    faceplayer
     createfieldmugshotrival
-    msgbox("Hey {PLAYER}! Have you visited
+    if (var(VAR_RIVAL_STATE) < 12) {
+        msgbox("Hey {PLAYER}! Have you visited
             any new places?", MSGBOX_NPC)
+        release
+        end
+    }
+    if (var(VAR_RIVAL_STATE) >= 12) {
+        if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 0) {
+            msgbox("Hey {PLAYER}! What's up?
+            
+                    So I've been doing some thinking, and
+                    decided that I want to help Prof. Elm.
+                    with his research into legendary
+                    Pokémon!
+                    
+                    I've started looking into old rumours
+                    and stories that are circulating in
+                    Johto, and I've found my first lead.
+                    
+                    If you got time and happen to be in the
+                    area, would you mind helping me by
+                    checking them out?
+                    
+                    The first legendary I'm researching
+                    right now concerns not one but two
+                    Pokémon actually!
+                    
+                    Have you heard about Darkrai and
+                    Cresselia?
+                    
+                    One causes nightmares while the other
+                    cures them, fascinating!
+                    
+                    I think we should track down Cresselia
+                    first, in order to locate Darkrai.
+                    
+                    I hear that someone living near or in
+                    the Lake of Rage might know more.")
+                    setvar(VAR_POSTGAME_RIVAL_LEGENDARYQ, 1)
+                    release
+                    end
+        }
+        if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 1) {
+            msgbox("I hear that someone living near or in
+                    the Lake of Rage might know more.")
+        }
+    }
+    release
+    end
+    
 }
 
 script NewBarkTownRivalHouseMarill {

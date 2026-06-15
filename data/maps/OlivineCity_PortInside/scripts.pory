@@ -69,7 +69,7 @@ OlivinePort_EventScript_Youngster::
 OlivinePort_EventScript_Sailor::
 	lock
 	faceplayer
-	goto_if_set FLAG_DEFEATED_RED, OlivinePort_EventScript_Sailor_AfterRed
+	goto_if_set FLAG_DEFEATED_MTSILVER_RIVAL, OlivinePort_EventScript_Sailor_AfterRed
 	goto_if_ge VAR_SSAQUA_STATE, 7, OlivinePort_EventScript_Sailor_AfterKanto
 	msgbox OlivinePort_Text_AskBoard, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, FALSE, OlivinePort_EventScript_Sailor_Refused

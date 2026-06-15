@@ -83,11 +83,11 @@
 #define FLAG_DEFEATED_ARTICUNO                  0x45 
 #define FLAG_DEFEATED_ZAPDOS                    0x46
 #define FLAG_DEFEATED_MOLTRES                   0x47 
-#define FLAG_HIDE_ARTICUNO                      0x48  //HnS
-#define FLAG_HIDE_ZAPDOS                        0x49  //HnS
-#define FLAG_HIDE_MOLTRES                       0x4A  //HnS
+#define FLAG_HIDE_ARTICUNO                      0x48
+#define FLAG_HIDE_ZAPDOS                        0x49
+#define FLAG_HIDE_MOLTRES                       0x4A
 #define FLAG_DEFEATED_MEWTWO                    0x4B
-#define FLAG_HIDE_MEWTWO                        0x4C  //HnS
+#define FLAG_HIDE_MEWTWO                        0x4C
 #define FLAG_UNLOCK_BIRDS                       0x4D
 #define FLAG_UNLOCK_MEWTWO                      0x4E
 #define FLAG_RASH_MINT_METEOR_FALLS             0x4F
@@ -115,7 +115,7 @@
 #define FLAG_MET_TEAM_AQUA_HARBOR            0x61
 #define FLAG_TV_EXPLAINED                    0x62
 #define FLAG_MAUVILLE_GYM_BARRIERS_STATE     0x63
-#define FLAG_MOSSDEEP_GYM_SWITCH_1           0x64 // Leftover from the RS version of Mossdeep Gym, functionally unused
+#define FLAG_HIDE_NEWBARK_RIVAL              0x64 // Until postgame
 #define FLAG_MOSSDEEP_GYM_SWITCH_2           0x65 //
 #define FLAG_MOSSDEEP_GYM_SWITCH_3           0x66 //
 #define FLAG_MOSSDEEP_GYM_SWITCH_4           0x67 //
@@ -1327,7 +1327,7 @@
 #define FLAG_DEFEATED_OLIVINE_CITY_GYM                              0x4F5
 #define FLAG_DEFEATED_MAHOGANY_TOWN_GYM                             0x4F6
 #define FLAG_DEFEATED_BLACKTHORN_GYM                                0x4F7
-#define FLAG_DEFEATED_RED                                           0x4F8
+#define FLAG_DEFEATED_MTSILVER_RIVAL                                0x4F8
 
 #define FLAG_NO_SHINY                                           0x4F9
 #define FLAG_DIFFICULTY_HARD                                           0x4FA

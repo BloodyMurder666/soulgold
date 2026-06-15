@@ -9,13 +9,13 @@ BattleFrontier_Mart_MapScripts::
 BattleFrontier_Mart_OnTransition::
 	call_if_set FLAG_FINITE_TMS, BattleFrontier_Mart_TMClerkCheck
 	call_if_unset FLAG_FINITE_TMS, BattleFrontier_Mart_HideTMClerk
-	call_if_unset FLAG_DEFEATED_RED, BattleFrontier_Mart_HideSecondClerk
-	call_if_set FLAG_DEFEATED_RED, BattleFrontier_Mart_ShowSecondClerk
+	call_if_unset FLAG_DEFEATED_MTSILVER_RIVAL, BattleFrontier_Mart_HideSecondClerk
+	call_if_set FLAG_DEFEATED_MTSILVER_RIVAL, BattleFrontier_Mart_ShowSecondClerk
 	end
 
 BattleFrontier_Mart_TMClerkCheck::
-	call_if_unset FLAG_DEFEATED_RED, BattleFrontier_Mart_HideTMClerk
-	call_if_set FLAG_DEFEATED_RED, BattleFrontier_Mart_ShowTMClerk
+	call_if_unset FLAG_DEFEATED_MTSILVER_RIVAL, BattleFrontier_Mart_HideTMClerk
+	call_if_set FLAG_DEFEATED_MTSILVER_RIVAL, BattleFrontier_Mart_ShowTMClerk
 	end
 
 BattleFrontier_Mart_HideTMClerk::

@@ -994,9 +994,8 @@ script NewBarkTown_Lab_GiveStarterMega {
 
 script NewBarkTown_Lab_EventScript_ElmPostgameHint {
 	msgbox("Elm: {PLAYER}! There you are!
-			I called because I heard
-			that the way to the Johto Archipelago
-			is finally open! 
+			I called because I heard that the way 
+			to the Johto Archipelago is open! 
 			
 			I hear strong trainers
 			are gathering in there, and many rare

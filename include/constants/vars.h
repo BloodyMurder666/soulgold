@@ -115,7 +115,7 @@
 #define VAR_BLACKTHORN_CITY_STATE                        0x405F  //1 = fight clair, 2 =goto elder, 3 = talk to clair again, 4 = get phonecall, 5 = done
 #define VAR_PALLET_TOWN_STATE                            0x4060
 #define VAR_VIRIDIAN_CITY_STATE                          0x4061 
-#define VAR_PEWTER_CITY_STATE                            0x4062 
+#define VAR_POSTGAME_RIVAL_LEGENDARYQ                    0x4062 
 #define VAR_CERULEAN_CITY_STATE                          0x4063 //0 = enter town, 1 = fix power, 2 = find misty, 3 = battle misty, 4 = done
 #define VAR_VERMILION_CITY_STATE                         0x4064 
 #define VAR_LAVENDER_TOWN_STATE                          0x4065 

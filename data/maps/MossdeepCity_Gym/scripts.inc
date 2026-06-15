@@ -11,7 +11,7 @@ MossdeepCity_Gym_OnTransition:
 
 @ All the below checks are leftover from RS. FLAG_GARBAGEFLAG is never set
 MossdeepCity_Gym_OnLoad:
-	goto_if_set FLAG_MOSSDEEP_GYM_SWITCH_1, MossdeepCity_Gym_EventScript_SetSwitch1Metatiles
+	goto_if_set FLAG_GARBAGEFLAG, MossdeepCity_Gym_EventScript_SetSwitch1Metatiles
 	goto MossdeepCity_Gym_EventScript_CheckSwitch2
 	end
 
@@ -109,8 +109,8 @@ MossdeepCity_Gym_EventScript_TateAndLizaRematch::
 @ All the below switch scripts are leftover from RS and are functionally unused
 MossdeepCity_Gym_EventScript_Switch1::
 	lockall
-	goto_if_set FLAG_MOSSDEEP_GYM_SWITCH_1, MossdeepCity_Gym_EventScript_ClearSwitch1
-	setflag FLAG_MOSSDEEP_GYM_SWITCH_1
+	goto_if_set FLAG_GARBAGEFLAG, MossdeepCity_Gym_EventScript_ClearSwitch1
+	setflag FLAG_GARBAGEFLAG
 	applymovement LOCALID_PLAYER, MossdeepCity_Gym_Movement_WaitAfterSwitchUse
 	waitmovement 0
 	setmetatile 5, 5, METATILE_RSMossdeepGym_RedArrow_Right, FALSE
@@ -125,7 +125,7 @@ MossdeepCity_Gym_EventScript_DrawMapAfterSwitchUsed::
 	end
 
 MossdeepCity_Gym_EventScript_ClearSwitch1::
-	clearflag FLAG_MOSSDEEP_GYM_SWITCH_1
+	clearflag FLAG_GARBAGEFLAG
 	applymovement LOCALID_PLAYER, MossdeepCity_Gym_Movement_WaitAfterSwitchUse
 	waitmovement 0
 	setmetatile 5, 5, METATILE_RSMossdeepGym_RedArrow_Left, FALSE

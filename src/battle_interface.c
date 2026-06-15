@@ -30,6 +30,7 @@
 #include "item.h"
 #include "item_icon.h"
 #include "item_use.h"
+#include "pokeball.h"
 #include "test_runner.h"
 #include "constants/battle_anim.h"
 #include "constants/rgb.h"
@@ -2897,12 +2898,53 @@ static const struct SpriteSheet sSpriteSheet_MoveInfoWindow =
 #define sMoving data[2]
 #define sBounce data[3] // 0 = Bounce down; 1 = Bounce up
 
-#define sState     data[0]
-#define sSameBall  data[1]
+#define sState         data[0]
+#define sSameBall      data[1]
+#define sDisplayedBall data[2]
+#define sTargetBall    data[3]
+#define sQueuedCycles  data[4]
 
 static bool32 IsValidLastUsedBall(enum Item item)
 {
     return item != ITEM_NONE && GetItemPocket(item) == POCKET_POKE_BALLS;
+}
+
+static u16 GetPrevLastUsedBall(u16 ballId)
+{
+    s32 i;
+    s32 index = ItemIdToBallId(ballId);
+    u32 newBall = ITEM_NONE;
+
+    for (i = 0; i < POKEBALL_COUNT; i++)
+    {
+        index--;
+        if (index == -1)
+            index = POKEBALL_COUNT - 1;
+        newBall = gPokeBalls[index].itemId;
+        if (CheckBagHasItem(newBall, 1))
+            return newBall;
+    }
+
+    return ballId;
+}
+
+static u16 GetNextLastUsedBall(u16 ballId)
+{
+    s32 i;
+    s32 index = ItemIdToBallId(ballId);
+    u32 newBall = ITEM_NONE;
+
+    for (i = 0; i < POKEBALL_COUNT; i++)
+    {
+        index++;
+        if (index == POKEBALL_COUNT)
+            index = 0;
+        newBall = gPokeBalls[index].itemId;
+        if (CheckBagHasItem(newBall, 1))
+            return newBall;
+    }
+
+    return ballId;
 }
 
 bool32 CanThrowLastUsedBall(void)
@@ -3171,8 +3213,18 @@ static void SpriteCB_LastUsedBallBounce(struct Sprite *sprite)
 
 static void Task_BounceBall(u8 taskId)
 {
-    struct Sprite *sprite = &gSprites[gBattleStruct->ballSpriteIds[0]];
     struct Task *task = &gTasks[taskId];
+    struct Sprite *sprite;
+
+    if (task->sState != 2 && gBattleStruct->ballSpriteIds[0] == MAX_SPRITES)
+    {
+        DestroyTask(taskId);
+        return;
+    }
+
+    if (task->sState != 2)
+        sprite = &gSprites[gBattleStruct->ballSpriteIds[0]];
+
     switch (task->sState)
     {
     case 0:  // Bounce up
@@ -3189,16 +3241,25 @@ static void Task_BounceBall(u8 taskId)
         {
             DestroyLastUsedBallGfx(sprite);
             task->sState++;
-        }  // Passthrough
+        }
+        break;
     case 2: //Create New Icon
-        if (!sprite->inUse)
+        if (gBattleStruct->ballSpriteIds[0] == MAX_SPRITES)
         {
-            gBattleStruct->ballSpriteIds[0] = AddItemIconSprite(102, 102, gBallToDisplay);
+            gBattleStruct->ballSpriteIds[0] = AddItemIconSprite(102, 102, task->sTargetBall);
+            if (gBattleStruct->ballSpriteIds[0] == MAX_SPRITES)
+            {
+                DestroyTask(taskId);
+                return;
+            }
             gSprites[gBattleStruct->ballSpriteIds[0]].x = LAST_USED_BALL_X_F;
             gSprites[gBattleStruct->ballSpriteIds[0]].y = LAST_USED_BALL_Y_BNC;
+            task->sDisplayedBall = task->sTargetBall;
             task->sState++;
-        }  // Fallthrough
+        }
+        break;
     case 3: // Bounce Down
+        sprite = &gSprites[gBattleStruct->ballSpriteIds[0]];
         if (!sprite->sMoving)
         {
             sprite->sBounce = FALSE;
@@ -3208,63 +3269,120 @@ static void Task_BounceBall(u8 taskId)
         }
         break;
     case 4:  // Destroy Task
+        sprite = &gSprites[gBattleStruct->ballSpriteIds[0]];
         if (!sprite->sMoving)
         {
-            sprite->callback = SpriteCB_LastUsedBall;
-            DestroyTask(taskId);
+            if (task->sQueuedCycles != 0)
+            {
+                if (task->sQueuedCycles > 0)
+                {
+                    task->sTargetBall = GetNextLastUsedBall(task->sDisplayedBall);
+                    task->sQueuedCycles--;
+                }
+                else
+                {
+                    task->sTargetBall = GetPrevLastUsedBall(task->sDisplayedBall);
+                    task->sQueuedCycles++;
+                }
+
+                if (task->sTargetBall == task->sDisplayedBall)
+                {
+                    task->sQueuedCycles = 0;
+                    sprite->callback = SpriteCB_LastUsedBall;
+                    DestroyTask(taskId);
+                }
+                else
+                {
+                    task->sSameBall = FALSE;
+                    task->sState = 0;
+                }
+            }
+            else if (task->sDisplayedBall != gBallToDisplay)
+            {
+                task->sSameBall = FALSE;
+                task->sTargetBall = gBallToDisplay;
+                task->sState = 0;
+            }
+            else
+            {
+                sprite->callback = SpriteCB_LastUsedBall;
+                DestroyTask(taskId);
+            }
         }
     }
     if (!gLastUsedBallMenuPresent)
     {
         // Used to check if the R button was released before the animation was complete
-        sprite->callback = SpriteCB_LastUsedBall;
+        if (gBattleStruct->ballSpriteIds[0] != MAX_SPRITES)
+            gSprites[gBattleStruct->ballSpriteIds[0]].callback = SpriteCB_LastUsedBall;
         DestroyTask(taskId);
     }
 }
 
-void SwapBallToDisplay(bool32 sameBall)
+void SwapBallToDisplay(bool32 sameBall, s8 direction)
 {
     u8 taskId;
+    if (FuncIsActiveTask(Task_BounceBall))
+    {
+        taskId = FindTaskIdByFunc(Task_BounceBall);
+        if (!sameBall && direction != 0)
+        {
+            gTasks[taskId].sSameBall = FALSE;
+            gTasks[taskId].sQueuedCycles += direction;
+        }
+        return;
+    }
+
     taskId = CreateTask(Task_BounceBall, 10);
     gTasks[taskId].sSameBall = sameBall;
+    gTasks[taskId].sDisplayedBall = gBallToDisplay;
+    gTasks[taskId].sTargetBall = gBallToDisplay;
+    gTasks[taskId].sQueuedCycles = 0;
 }
 
 void ArrowsChangeColorLastBallCycle(bool32 showArrows)
 {
 #if B_LAST_USED_BALL == TRUE && B_LAST_USED_BALL_CYCLE == TRUE
-    u16 paletteNum = 16 + gSprites[gBattleStruct->ballSpriteIds[1]].oam.paletteNum;
-    struct PlttData *defaultPlttArrow;
-    struct PlttData *defaultPlttOutline;
-    struct PlttData *pltArrow;
-    struct PlttData *pltOutline;
-    if (gBattleStruct->ballSpriteIds[1] == MAX_SPRITES)
+    u16 paletteOffset;
+    u8 spriteId = gBattleStruct->ballSpriteIds[1];
+    u8 paletteNum;
+    u8 arrowColor;
+    u8 outlineColor;
+    if (spriteId == MAX_SPRITES)
         return;
-    paletteNum *= 16;
-    pltArrow = (struct PlttData *)&gPlttBufferFaded[paletteNum + 4];  // Arrow color is in idx 4
-    pltOutline = (struct PlttData *)&gPlttBufferFaded[paletteNum + 5];  // Arrow outline is in idx 5
+
+    paletteNum = IndexOfSpritePaletteTag(TAG_ABILITY_POP_UP);
+    if (paletteNum == 0xFF)
+        return;
+
+    paletteOffset = OBJ_PLTT_ID(paletteNum);
     if (!showArrows) //Make invisible
     {
-        defaultPlttArrow = (struct PlttData *)&gPlttBufferFaded[paletteNum + 8];  // Background color is idx 8
-        pltArrow->r = defaultPlttArrow->r;
-        pltArrow->g = defaultPlttArrow->g;
-        pltArrow->b = defaultPlttArrow->b;
-        pltOutline->r = defaultPlttArrow->r;
-        pltOutline->g = defaultPlttArrow->g;
-        pltOutline->b = defaultPlttArrow->b;
+        arrowColor = 8;  // Background color is idx 8
+        outlineColor = 8;
     }
     else // Make gray
     {
-        defaultPlttArrow = (struct PlttData *)&gPlttBufferFaded[paletteNum + 11];  // Grey color is idx 11
-        defaultPlttOutline = (struct PlttData *)&gPlttBufferFaded[paletteNum + 10];  //Light grey color for outline is idx 10
-        pltArrow->r = defaultPlttArrow->r;
-        pltArrow->g = defaultPlttArrow->g;
-        pltArrow->b = defaultPlttArrow->b;
-        pltOutline->r = defaultPlttOutline->r;
-        pltOutline->g = defaultPlttOutline->g;
-        pltOutline->b = defaultPlttOutline->b;
+        arrowColor = 11;  // Grey color is idx 11
+        outlineColor = 10;  // Light grey color for outline is idx 10
     }
+
+    gPlttBufferFaded[paletteOffset + 4] = gPlttBufferFaded[paletteOffset + arrowColor];  // Arrow color is in idx 4
+    gPlttBufferFaded[paletteOffset + 5] = gPlttBufferFaded[paletteOffset + outlineColor];  // Arrow outline is in idx 5
+    gPlttBufferUnfaded[paletteOffset + 4] = gPlttBufferUnfaded[paletteOffset + arrowColor];
+    gPlttBufferUnfaded[paletteOffset + 5] = gPlttBufferUnfaded[paletteOffset + outlineColor];
 #endif
 }
+
+#undef sHide
+#undef sTimer
+#undef sMoving
+#undef sBounce
+#undef sState
+#undef sSameBall
+#undef sDisplayedBall
+#undef sTargetBall
+#undef sQueuedCycles
 
 void CategoryIcons_LoadSpritesGfx(void)
 {

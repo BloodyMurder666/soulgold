@@ -1,0 +1,43 @@
+mapscripts MtSilver_1F_RegigigasRoom_MapScripts {}
+
+script MtSilver_Regigigas {
+    lock
+    checkspecies(SPECIES_REGISTEEL)
+    if (var(VAR_RESULT) == TRUE) {
+        checkspecies(SPECIES_REGIROCK)
+        if (var(VAR_RESULT) == TRUE) {
+            checkspecies(SPECIES_REGICE)
+            if (var(VAR_RESULT) == TRUE) {
+                msgbox("...!
+                
+                        The statue suddenly started moving in
+                        in reaction to your Pokémon!
+                        
+                        The statue attacked!")
+                legendaryencounter(SPECIES_REGIGIGAS, 70, LOCALID_MTSILVER_REGIGIGAS, FLAG_HIDE_REGIGIGAS)
+                release
+                end
+            } else {
+                goto(RegigigasSlumbers)
+            }
+        } else {
+            goto(RegigigasSlumbers)
+        }
+    } else {
+        goto(RegigigasSlumbers)
+    }
+    release
+    end
+
+}
+
+script RegigigasSlumbers {
+    msgbox("A large, almost statuelike Pokémon
+            seems to be resting here.
+             
+            ...
+            
+            It does not react to your presence.")
+    release
+    end
+}
