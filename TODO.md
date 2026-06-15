@@ -3,19 +3,17 @@
 
 Must have:
 - scripts for new rock climb spots (blackthorne, route 42)
-- Rest of route experts for held items (Power Herb, Toxic Orb, Choice Band)
+- Rest of route experts for held items (Power Herb, Toxic Orb, Choice Band) teams done, just need npcs
 - 3-4 remaining megastones (dragon den trial for dragotite?)
-- Finish redoing the remaining trades
-- Buff mega butterfree and such
-- clean flag heaps
-- fix some door anims and e4 door
-- cresselia and darkrai quest
+- Finish redoing the remaining trades (done mostly, could use maybe one more)
+- cresselia and darkrai quest (started)
 
 Nice to have:
 - HGSS/DPPT overworld npc sprite demakes
 - Shaymin event north of tohjo falls
 - Victini reward for beating all gym leader rematches
 - Celebi GS ball event
+- clean flag heaps 
 - south johto surf route to tease postgame
 
 Maybe:
