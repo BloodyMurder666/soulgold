@@ -33,12 +33,12 @@ EliteFourRoom_CloseDoor::
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkUp1
 	waitmovement 0
-	setmetatile 5, 11, 0x29D, TRUE
-	setmetatile 6, 11, 0x29E, TRUE
-	setmetatile 7, 11, 0x29F, TRUE
-	setmetatile 5, 12, 0x2A5, TRUE
-	setmetatile 6, 12, 0x2A6, TRUE
-	setmetatile 7, 12, 0x2A7, TRUE
+	setmetatile 5, 11, 0x41D, TRUE
+	setmetatile 6, 11, 0x41E, TRUE
+	setmetatile 7, 11, 0x41F, TRUE
+	setmetatile 5, 12, 0x425, TRUE
+	setmetatile 6, 12, 0x426, TRUE
+	setmetatile 7, 12, 0x427, TRUE
 	playse SE_BANG
 	setvar VAR_0x8004, 1  @ vertical pan
 	setvar VAR_0x8005, 1  @ horizontal pan
@@ -73,8 +73,8 @@ PokemonLeague_WillsRoom_EventScript_WillOnDefeat::
 	clearflag FLAG_TEMP_5
 	msgbox PokemonLeague_WillsRoom_Text_Defeat, MSGBOX_DEFAULT
 	closemessage
-	setmetatile 6, 1, 0x28E, FALSE
-	setmetatile 6, 2, 0x296, FALSE	
+	setmetatile 6, 1, 0x40E, FALSE
+	setmetatile 6, 2, 0x416, FALSE	
 	playse SE_BANG
 	setvar VAR_0x8004, 1  @ vertical pan
 	setvar VAR_0x8005, 1  @ horizontal pan

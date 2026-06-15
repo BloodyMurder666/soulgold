@@ -195,6 +195,7 @@ static u8 GetHealthboxTextBgColor(u8 healthboxSpriteId);
 static void UpdateHpTextInHealthboxInDoubles(u32 healthboxSpriteId, u32 maxOrCurrent, s16 currHp, s16 maxHp);
 static void UpdateStatusIconInHealthbox(u8);
 static void FillHealthboxObject(void *, u32, u32);
+static void CopyShinyHealthboxBgObject(const u8 *, void *, u32);
 
 static void Task_HidePartyStatusSummary_BattleStart_1(u8);
 static void Task_HidePartyStatusSummary_BattleStart_2(u8);
@@ -1867,23 +1868,18 @@ static void UpdateStatusIconInHealthbox(u8 healthboxSpriteId)
     }
     else
     {
-        bool8 useShinySinglesOpponentBg = (!IsOnPlayerSide(battler)
-                                        && GetBattlerCoordsIndex(battler) == BATTLE_COORDS_SINGLES
-                                        && GetMonData(GetBattlerMon(battler), MON_DATA_IS_SHINY)
-                                        && GetHealthboxTextBgColor(healthboxSpriteId) != HEALTHBOX_BG_INDEX);
+        bool8 isShiny = GetMonData(GetBattlerMon(battler), MON_DATA_IS_SHINY);
 
         if (GetBattlerSide(battler) == B_SIDE_PLAYER)
             statusGfxPtr = GetHealthboxElementGfxPtr(HEALTHBOX_GFX_39);
         else
             statusGfxPtr = GetHealthboxElementGfxPtr(HEALTHBOX_GFX_40);
 
-        if (GetBattlerSide(battler) == B_SIDE_PLAYER && GetMonData(GetBattlerMon(battler), MON_DATA_IS_SHINY))
-        {
-            FillHealthboxObject((void *)(OBJ_VRAM0 + (gSprites[healthboxSpriteId].oam.tileNum + tileNumAdder) * TILE_SIZE_4BPP),
-                                HEALTHBOX_SHINY_HP_TEXT_BG_INDEX,
-                                3);
-        }
-        else if (!useShinySinglesOpponentBg)
+        if (isShiny)
+            CopyShinyHealthboxBgObject(statusGfxPtr,
+                                       (void *)(OBJ_VRAM0 + (gSprites[healthboxSpriteId].oam.tileNum + tileNumAdder) * TILE_SIZE_4BPP),
+                                       3);
+        else
         {
             for (i = 0; i < 3; i++)
                 CpuCopy32(statusGfxPtr, (void *)(OBJ_VRAM0 + (gSprites[healthboxSpriteId].oam.tileNum + tileNumAdder + i) * TILE_SIZE_4BPP), 32);
@@ -2410,6 +2406,30 @@ u8 GetHPBarLevel(s16 hp, s16 maxhp)
 static void FillHealthboxObject(void *dest, u32 valMult, u32 numTiles)
 {
     CpuFill32(0x11111111 * valMult, dest, numTiles * TILE_SIZE_4BPP);
+}
+
+static void CopyShinyHealthboxBgObject(const u8 *src, void *dest, u32 numTiles)
+{
+    u32 i;
+    u8 *dest8 = dest;
+
+    for (i = 0; i < numTiles * TILE_SIZE_4BPP; i++)
+    {
+        u8 lower = src[i] & 0xF;
+        u8 upper = src[i] >> 4;
+
+        if (lower == HEALTHBOX_BG_INDEX)
+            lower = HEALTHBOX_SHINY_BG_INDEX;
+        else if (lower == HEALTHBOX_HP_TEXT_BG_INDEX)
+            lower = HEALTHBOX_SHINY_HP_TEXT_BG_INDEX;
+
+        if (upper == HEALTHBOX_BG_INDEX)
+            upper = HEALTHBOX_SHINY_BG_INDEX;
+        else if (upper == HEALTHBOX_HP_TEXT_BG_INDEX)
+            upper = HEALTHBOX_SHINY_HP_TEXT_BG_INDEX;
+
+        dest8[i] = lower | (upper << 4);
+    }
 }
 
 #define ABILITY_POP_UP_POS_X_DIFF  64

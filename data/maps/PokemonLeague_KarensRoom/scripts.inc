@@ -31,8 +31,8 @@ PokemonLeague_KarensRoom_EventScript_KarenOnDefeat::
     clearflag FLAG_TEMP_5
 	msgbox PokemonLeague_KarensRoom_Text_Defeat, MSGBOX_DEFAULT
 	closemessage
-	setmetatile 6, 1, 0x28E, FALSE
-	setmetatile 6, 2, 0x296, FALSE	
+	setmetatile 6, 1, 0x40E, FALSE
+	setmetatile 6, 2, 0x416, FALSE	
 	playse SE_BANG
 	setvar VAR_0x8004, 1  @ vertical pan
 	setvar VAR_0x8005, 1  @ horizontal pan
