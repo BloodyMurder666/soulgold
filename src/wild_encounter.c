@@ -70,6 +70,8 @@ static struct Pokemon *GetRockSmashUser(void);
 static u8 GetRockSmashItemChance(const struct RockSmashItemTable *table);
 static bool8 RockSmashItemTableHasLuckyShiftSlot(const struct RockSmashItem *items, u8 count);
 static enum Item ChooseRockSmashItem(const struct RockSmashItemTable *table);
+static u8 GetFishingItemChance(u8 rod);
+static enum Item ChooseFishingItem(u8 rod);
 
 EWRAM_DATA static u8 sWildEncountersDisabled = 0;
 EWRAM_DATA static u32 sFeebasRngValue = 0;
@@ -83,8 +85,17 @@ static const struct WildPokemon sWildFeebas = {20, 25, SPECIES_FEEBAS};
 
 #define ROCK_SMASH_DEFAULT_ITEM_CHANCE 50
 #define ROCK_SMASH_LUCKY_ITEM_WEIGHT 5
+#define FISHING_OLD_ROD_ITEM_CHANCE 10
+#define FISHING_GOOD_ROD_ITEM_CHANCE 12
+#define FISHING_SUPER_ROD_ITEM_CHANCE 15
 
 struct RockSmashItem
+{
+    enum Item itemId;
+    u8 weight;
+};
+
+struct FishingItem
 {
     enum Item itemId;
     u8 weight;
@@ -128,6 +139,28 @@ static const struct RockSmashItemTable sRockSmashItemTables[] =
         .items = sRockSmashItems_RuinsOfAlph,
         .count = ARRAY_COUNT(sRockSmashItems_RuinsOfAlph),
     },
+};
+
+static const struct FishingItem sFishingItems_Feathers[] =
+{
+    {ITEM_HEALTH_FEATHER, 1},
+    {ITEM_MUSCLE_FEATHER, 1},
+    {ITEM_RESIST_FEATHER, 1},
+    {ITEM_GENIUS_FEATHER, 1},
+    {ITEM_CLEVER_FEATHER, 1},
+    {ITEM_SWIFT_FEATHER,  1},
+};
+
+static const struct FishingItem sFishingItems_SuperRod[] =
+{
+    {ITEM_HEALTH_FEATHER,   15},
+    {ITEM_MUSCLE_FEATHER,   15},
+    {ITEM_RESIST_FEATHER,   15},
+    {ITEM_GENIUS_FEATHER,   15},
+    {ITEM_CLEVER_FEATHER,   15},
+    {ITEM_SWIFT_FEATHER,    15},
+    {ITEM_BOTTLE_CAP,        9},
+    {ITEM_GOLD_BOTTLE_CAP,   1},
 };
 
 static const u16 sRoute119WaterTileData[] =
@@ -1011,6 +1044,62 @@ void TryGetRockSmashItem(void)
     }
 
     gSpecialVar_0x8000 = ChooseRockSmashItem(table);
+    gSpecialVar_0x8001 = 1;
+    gSpecialVar_Result = TRUE;
+}
+
+static u8 GetFishingItemChance(u8 rod)
+{
+    switch (rod)
+    {
+    case OLD_ROD:
+        return FISHING_OLD_ROD_ITEM_CHANCE;
+    case GOOD_ROD:
+        return FISHING_GOOD_ROD_ITEM_CHANCE;
+    case SUPER_ROD:
+        return FISHING_SUPER_ROD_ITEM_CHANCE;
+    default:
+        return 0;
+    }
+}
+
+static enum Item ChooseFishingItem(u8 rod)
+{
+    u32 i;
+    u32 totalWeight = 0;
+    u32 roll;
+    const struct FishingItem *items = sFishingItems_Feathers;
+    u8 count = ARRAY_COUNT(sFishingItems_Feathers);
+
+    if (rod == SUPER_ROD)
+    {
+        items = sFishingItems_SuperRod;
+        count = ARRAY_COUNT(sFishingItems_SuperRod);
+    }
+
+    for (i = 0; i < count; i++)
+        totalWeight += items[i].weight;
+
+    roll = Random() % totalWeight;
+    for (i = 0; i < count - 1; i++)
+    {
+        if (roll < items[i].weight)
+            break;
+        roll -= items[i].weight;
+    }
+
+    return items[i].itemId;
+}
+
+void TryGetFishingItem(u8 rod)
+{
+    if (Random() % 100 >= GetFishingItemChance(rod))
+    {
+        gSpecialVar_Result = FALSE;
+        return;
+    }
+
+    gSpecialVar_0x8000 = ChooseFishingItem(rod);
     gSpecialVar_0x8001 = 1;
     gSpecialVar_Result = TRUE;
 }

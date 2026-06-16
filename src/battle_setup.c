@@ -87,6 +87,8 @@ static void SaveChangesToPlayerParty(void);
 static void HandleBattleVariantEndParty(void);
 static void CB2_EndTrainerBattle(void);
 static bool32 IsPlayerDefeated(u32 battleOutcome);
+static bool32 IsCurrentMap(u32 map);
+static bool32 IsCurrentMapSnowBattleEnvironment(void);
 #if FREE_MATCH_CALL == FALSE
 static u16 GetRematchTrainerId(u16 trainerId);
 #endif //FREE_MATCH_CALL
@@ -707,6 +709,33 @@ static void CB2_EndScriptedWildBattle(void)
     }
 }
 
+static bool32 IsCurrentMap(u32 map)
+{
+    return (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(map)
+         && gSaveBlock1Ptr->location.mapNum == MAP_NUM(map));
+}
+
+static bool32 IsCurrentMapSnowBattleEnvironment(void)
+{
+    return (IsCurrentMap(MAP_SNOWTOP_MOUNTAIN_OUTSIDE)
+         || IsCurrentMap(MAP_SNOWTOP_MOUNTAIN)
+         || IsCurrentMap(MAP_SNOWTOP_MOUNTAIN_B1F)
+         || IsCurrentMap(MAP_SNOWTOP_MOUNTAIN_B1F_2)
+         || IsCurrentMap(MAP_ICE_PATH_1F)
+         || IsCurrentMap(MAP_ICE_PATH_B1F)
+         || IsCurrentMap(MAP_ICE_PATH_B2F)
+         || IsCurrentMap(MAP_ICE_PATH_B3F)
+         || IsCurrentMap(MAP_ICE_PATH_B4F)
+         || IsCurrentMap(MAP_ICE_PATH_DEPTHS)
+         || IsCurrentMap(MAP_ICE_PATH_DEPTHS2)
+         || IsCurrentMap(MAP_MT_SILVER_SNOW)
+         || IsCurrentMap(MAP_MT_SILVER_SUMMIT_DAY)
+         || IsCurrentMap(MAP_MT_SILVER_SUMMIT_NIGHT)
+         || IsCurrentMap(MAP_SHOAL_CAVE_LOW_TIDE_ICE_ROOM)
+         || IsCurrentMap(MAP_SHOAL_CAVE_LOW_TIDE_ICE_ROOM_MODERN)
+         || IsCurrentMap(MAP_SHOAL_CAVE_LOW_TIDE_ICE_ROOM_SUICUNE));
+}
+
 enum BattleEnvironments BattleSetup_GetEnvironmentId(void)
 {
     u16 tileBehavior;
@@ -719,21 +748,13 @@ enum BattleEnvironments BattleSetup_GetEnvironmentId(void)
 
     tileBehavior = MapGridGetMetatileBehaviorAt(x, y);
 
-    if (GetSavedWeather() == WEATHER_SNOW)
-        return BATTLE_ENVIRONMENT_SNOW;
-    if (gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_SNOWTOP_MOUNTAIN)
-      || gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_SNOWTOP_MOUNTAIN_B1F)
-      || gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ICE_PATH_1F)
-      || gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ICE_PATH_B1F)
-      || gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ICE_PATH_B2F)
-      || gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ICE_PATH_B3F)
-      || gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ICE_PATH_B4F)
-      || gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ICE_PATH_DEPTHS)
-      || gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ICE_PATH_DEPTHS2)
-      || gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_MT_SILVER_SNOW)
-      || gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_MT_SILVER_SUMMIT_DAY)
-      || gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_MT_SILVER_SUMMIT_NIGHT)
-      || gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_SNOWTOP_MOUNTAIN_B1F_2))
+    if (ShouldUseFishingEnvironmentInBattle())
+    {
+        if (MetatileBehavior_IsSurfableFishableWater(tileBehavior))
+            return BATTLE_ENVIRONMENT_WATER;
+    }
+
+    if (IsCurrentMapSnowBattleEnvironment())
         return BATTLE_ENVIRONMENT_SNOW;
 
     if (MetatileBehavior_IsTallGrass(tileBehavior))

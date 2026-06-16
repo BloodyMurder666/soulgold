@@ -1,6 +1,8 @@
 #include "global.h"
 #include "main.h"
+#include "event_data.h"
 #include "event_object_movement.h"
+#include "event_scripts.h"
 #include "fieldmap.h"
 #include "field_effect_helpers.h"
 #include "field_player_avatar.h"
@@ -29,6 +31,8 @@ static bool32 Fishing_APressNoMinigame(struct Task *);
 static bool32 Fishing_CheckMoreDots(struct Task *);
 static bool32 Fishing_MonOnHook(struct Task *);
 static bool32 Fishing_StartEncounter(struct Task *);
+static bool32 Fishing_ItemOnHook(struct Task *);
+static bool32 Fishing_StartItem(struct Task *);
 static bool32 Fishing_NotEvenNibble(struct Task *);
 static bool32 Fishing_GotAway(struct Task *);
 static bool32 Fishing_NoMon(struct Task *);
@@ -63,6 +67,7 @@ static u32 CalculateFishingTimeOfDayBoost(void);
 
 static const u8 sText_OhABite[] = _("Oh! A bite!");
 static const u8 sText_PokemonOnHook[] = _("A POKéMON's on the hook!{PAUSE_UNTIL_PRESS}");
+static const u8 sText_SomethingOnHook[] = _("Something's on the hook!{PAUSE_UNTIL_PRESS}");
 static const u8 sText_NotEvenANibble[] = _("Not even a nibble…{PAUSE_UNTIL_PRESS}");
 static const u8 sText_ItGotAway[] = _("It got away…{PAUSE_UNTIL_PRESS}");
 
@@ -100,6 +105,8 @@ enum
     FISHING_CHECK_MORE_DOTS,
     FISHING_MON_ON_HOOK,
     FISHING_START_ENCOUNTER,
+    FISHING_ITEM_ON_HOOK,
+    FISHING_START_ITEM,
     FISHING_NOT_EVEN_NIBBLE,
     FISHING_GOT_AWAY,
     FISHING_NO_MON,
@@ -122,6 +129,8 @@ static bool32 (*const sFishingStateFuncs[])(struct Task *) =
     [FISHING_CHECK_MORE_DOTS]       = Fishing_CheckMoreDots,
     [FISHING_MON_ON_HOOK]           = Fishing_MonOnHook,
     [FISHING_START_ENCOUNTER]       = Fishing_StartEncounter,
+    [FISHING_ITEM_ON_HOOK]          = Fishing_ItemOnHook,
+    [FISHING_START_ITEM]            = Fishing_StartItem,
     [FISHING_NOT_EVEN_NIBBLE]       = Fishing_NotEvenNibble,
     [FISHING_GOT_AWAY]              = Fishing_GotAway,
     [FISHING_NO_MON]                = Fishing_NoMon,
@@ -133,6 +142,7 @@ static bool32 (*const sFishingStateFuncs[])(struct Task *) =
 #define tFrameCounter      data[1]
 #define tNumDots           data[2]
 #define tDotsRequired      data[3]
+#define tHookedItem        data[4]
 #define tRoundsPlayed      data[12]
 #define tMinRoundsRequired data[13]
 #define tPlayerGfxId       data[14]
@@ -174,6 +184,7 @@ static bool32 Fishing_GetRodOut(struct Task *task)
         [SUPER_ROD] = 6
     };
 
+    task->tHookedItem = FALSE;
     task->tRoundsPlayed = 0;
     task->tMinRoundsRequired = minRounds1[task->tFishingRod] + (Random() % minRounds2[task->tFishingRod]);
     task->tPlayerGfxId = gObjectEvents[gPlayerAvatar.objectEventId].graphicsId;
@@ -364,6 +375,14 @@ static bool32 Fishing_CheckMoreDots(struct Task *task)
 static bool32 Fishing_MonOnHook(struct Task *task)
 {
     AlignFishingAnimationFrames();
+    TryGetFishingItem(task->tFishingRod);
+    if (gSpecialVar_Result == TRUE)
+    {
+        task->tHookedItem = TRUE;
+        task->tStep = FISHING_ITEM_ON_HOOK;
+        return TRUE;
+    }
+
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
     AddTextPrinterParameterized2(0, FONT_NORMAL, sText_PokemonOnHook, 1, 0, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
     task->tStep = FISHING_START_ENCOUNTER;
@@ -407,6 +426,52 @@ static bool32 Fishing_StartEncounter(struct Task *task)
     return FALSE;
 }
 
+static bool32 Fishing_ItemOnHook(struct Task *task)
+{
+    AlignFishingAnimationFrames();
+    FillWindowPixelBuffer(0, PIXEL_FILL(1));
+    AddTextPrinterParameterized2(0, FONT_NORMAL, sText_SomethingOnHook, 1, 0, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
+    task->tStep = FISHING_START_ITEM;
+    task->tFrameCounter = 0;
+    return FALSE;
+}
+
+static bool32 Fishing_StartItem(struct Task *task)
+{
+    if (task->tFrameCounter == 0)
+        AlignFishingAnimationFrames();
+
+    RunTextPrinters();
+
+    if (task->tFrameCounter == 0)
+    {
+        if (!IsTextPrinterActiveOnWindow(0))
+        {
+            struct ObjectEvent *playerObjEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+
+            ObjectEventSetGraphicsId(playerObjEvent, task->tPlayerGfxId);
+            ObjectEventTurn(playerObjEvent, playerObjEvent->movementDirection);
+            if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_SURFING)
+                SetSurfBlob_PlayerOffset(gObjectEvents[gPlayerAvatar.objectEventId].fieldEffectSpriteId, FALSE, 0);
+            gSprites[gPlayerAvatar.spriteId].x2 = 0;
+            gSprites[gPlayerAvatar.spriteId].y2 = 0;
+            ClearDialogWindowAndFrame(0, TRUE);
+            task->tFrameCounter++;
+            return FALSE;
+        }
+    }
+
+    if (task->tFrameCounter != 0)
+    {
+        gPlayerAvatar.preventStep = FALSE;
+        UnlockPlayerFieldControls();
+        RecordFishingAttemptForTV(FALSE);
+        ScriptContext_SetupScript(EventScript_FishingFindItem);
+        DestroyTask(FindTaskIdByFunc(Task_Fishing));
+    }
+    return FALSE;
+}
+
 static bool32 Fishing_NotEvenNibble(struct Task *task)
 {
     gChainFishingDexNavStreak = 0;
@@ -420,7 +485,8 @@ static bool32 Fishing_NotEvenNibble(struct Task *task)
 
 static bool32 Fishing_GotAway(struct Task *task)
 {
-    gChainFishingDexNavStreak = 0;
+    if (!task->tHookedItem)
+        gChainFishingDexNavStreak = 0;
     AlignFishingAnimationFrames();
     StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], GetFishingNoCatchDirectionAnimNum(GetPlayerFacingDirection()));
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
@@ -586,6 +652,7 @@ static u32 CalculateFishingTimeOfDayBoost()
 #undef tFrameCounter
 #undef tNumDots
 #undef tDotsRequired
+#undef tHookedItem
 #undef tRoundsPlayed
 #undef tMinRoundsRequired
 #undef tPlayerGfxId
