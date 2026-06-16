@@ -690,6 +690,10 @@ static void ReshowReleaseMon(void);
 static bool8 ResetReleaseMonSpritePtr(void);
 static void SetMovingMonPriority(u8);
 static void SpriteCB_HeldMon(struct Sprite *);
+static const u16 *GetStorageMonIconPalette(u16 species, bool32 isShiny, u32 personality, bool32 isEgg);
+static const u16 *GetBoxMonIconPalette(u8 boxId, u8 position);
+static u8 LoadMovingMonIconPalette(void);
+static void LoadPartyMonIconPalette(u8 partyId, u8 paletteNum);
 static struct Sprite *CreateMonIconSprite(u16 species, u32 personality, s16 x, s16 y, u8 oamPriority, u8 subpriority, bool32 isEgg);
 static void DestroyBoxMonIcon(struct Sprite *);
 
@@ -2083,6 +2087,9 @@ static s8 SwapInPalNextVBlank(void *palette, void *dst) {
 static void CB2_PokeStorage(void)
 {
     RunTasks();
+    if (sStorage == NULL)
+        return;
+
     DoScheduledBgTilemapCopiesToVram();
     ScrollBackground();
     UpdateCloseBoxButtonFlash();
@@ -4032,12 +4039,14 @@ static void GiveChosenBagItem(void)
 
 static void FreePokeStorageData(void)
 {
+    SetVBlankCallback(NULL);
+    SetHBlankCallback(NULL);
+    ClearScheduledBgCopiesToVram();
     TilemapUtil_Free();
     MultiMove_Free();
     FREE_AND_SET_NULL(sStorage);
     FREE_AND_SET_NULL(sPaletteSwapBuffer);
     allocCount--;
-    SetHBlankCallback(NULL);
     FreeAllWindowBuffers();
 }
 
@@ -4360,12 +4369,10 @@ static void SetUpHidePartyMenu(void)
 
     if (sStorage->movingMonSprite)
     {
-        u16 species = GetMonData(&sStorage->movingMon, MON_DATA_SPECIES);
-        bool8 isShiny = GetMonData(&sStorage->movingMon, MON_DATA_IS_SHINY);
-        u32 personality = GetMonData(&sStorage->movingMon, MON_DATA_PERSONALITY);
-        LoadSpritePaletteWithTag(GetIconPalette(species, isShiny, IsPersonalityFemale(species, personality)), PALTAG_MOVING_MON);
-        sStorage->movingMonPalOffset = OBJ_PLTT_ID(IndexOfSpritePaletteTag(PALTAG_MOVING_MON));
-        sStorage->movingMonSprite->oam.paletteNum = IndexOfSpritePaletteTag(PALTAG_MOVING_MON);
+        u8 paletteNum = LoadMovingMonIconPalette();
+
+        if (paletteNum < 16)
+            sStorage->movingMonSprite->oam.paletteNum = paletteNum;
     }
 
     if (sStorage->boxOption == OPTION_MOVE_ITEMS)
@@ -4760,18 +4767,65 @@ static void CreateMovingMonIcon(void)
     sStorage->movingMonSprite->callback = SpriteCB_HeldMon;
 }
 
-// helper that also returns the species
-static const u16 *_GetMonFrontSpritePal(struct Pokemon *mon, u16 *species)
+static const u16 *GetStorageMonIconPalette(u16 species, bool32 isShiny, u32 personality, bool32 isEgg)
 {
-    bool32 isShiny = GetMonData(mon, MON_DATA_IS_SHINY, 0);
-    u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, 0);
-    *species = GetMonData(mon, MON_DATA_SPECIES_OR_EGG, 0);
-    return GetIconPalette(*species, isShiny, IsPersonalityFemale(*species, personality));
+    species = SanitizeSpeciesId(species);
+
+    if (isEgg)
+    {
+        enum EggIds eggId = gSpeciesInfo[species].eggId;
+
+        if (eggId != EGG_ID_NONE && gEggDatas[eggId].eggPalette != NULL)
+            return gEggDatas[eggId].eggPalette;
+        return GetIconPalette(SPECIES_EGG, FALSE, FALSE);
+    }
+
+    return GetIconPalette(species, isShiny, IsPersonalityFemale(species, personality));
+}
+
+static const u16 *GetBoxMonIconPalette(u8 boxId, u8 position)
+{
+    u16 species = GetBoxMonDataAt(boxId, position, MON_DATA_SPECIES);
+    bool32 isShiny = GetBoxMonDataAt(boxId, position, MON_DATA_IS_SHINY);
+    bool32 isEgg = GetBoxMonDataAt(boxId, position, MON_DATA_IS_EGG);
+    u32 personality = GetBoxMonDataAt(boxId, position, MON_DATA_PERSONALITY);
+
+    return GetStorageMonIconPalette(species, isShiny, personality, isEgg);
+}
+
+static u8 LoadMovingMonIconPalette(void)
+{
+    u16 species = GetMonData(&sStorage->movingMon, MON_DATA_SPECIES);
+    bool32 isShiny = GetMonData(&sStorage->movingMon, MON_DATA_IS_SHINY);
+    bool32 isEgg = GetMonData(&sStorage->movingMon, MON_DATA_IS_EGG);
+    u32 personality = GetMonData(&sStorage->movingMon, MON_DATA_PERSONALITY);
+    const u16 *palette = GetStorageMonIconPalette(species, isShiny, personality, isEgg);
+    u8 paletteNum = IndexOfSpritePaletteTag(PALTAG_MOVING_MON);
+
+    if (paletteNum == 0xFF)
+        paletteNum = LoadSpritePaletteWithTag(palette, PALTAG_MOVING_MON);
+
+    if (paletteNum < 16)
+    {
+        sStorage->movingMonPalOffset = OBJ_PLTT_ID(paletteNum);
+        LoadPalette(palette, sStorage->movingMonPalOffset, PLTT_SIZE_4BPP);
+    }
+
+    return paletteNum;
+}
+
+static void LoadPartyMonIconPalette(u8 partyId, u8 paletteNum)
+{
+    u16 species = GetMonData(&gPlayerParty[partyId], MON_DATA_SPECIES);
+    bool32 isShiny = GetMonData(&gPlayerParty[partyId], MON_DATA_IS_SHINY);
+    bool32 isEgg = GetMonData(&gPlayerParty[partyId], MON_DATA_IS_EGG);
+    u32 personality = GetMonData(&gPlayerParty[partyId], MON_DATA_PERSONALITY);
+
+    LoadPalette(GetStorageMonIconPalette(species, isShiny, personality, isEgg), paletteNum * 16 + 0x100, 32);
 }
 
 static void SetBoxMonDynamicPalette(u8 boxId, u8 position) {
-  u16 species;
-  const u16 *palette = _GetMonFrontSpritePal((struct Pokemon *)&gPokemonStoragePtr->boxes[boxId][position], &species);
+  const u16 *palette = GetBoxMonIconPalette(boxId, position);
   // Decompress species palette into swap buffer
   CpuFastCopy(palette, &sPaletteSwapBuffer[(position)*16], PLTT_SIZE_4BPP);
   sStorage->boxMonsSprites[position]->oam.paletteNum = ((position / 6) & 1 ? 6 : 0) + (position % 6) + 1;
@@ -5125,19 +5179,20 @@ static void CreatePartyMonsSprites(bool8 visible)
 
     sStorage->transferWholePlttFrames = -1; // keep transferring entire palette buffer until done with party menu
     sStorage->partySprites[0] = CreateMonIconSprite(species, personality, 104, 64, 1, 12, isEgg);
-    LoadPalette(GetIconPalette(species, isShiny, IsPersonalityFemale(species, personality)), (0+1)* 16 + 0x100, 32);
+    LoadPalette(GetStorageMonIconPalette(species, isShiny, personality, isEgg), (0+1)* 16 + 0x100, 32);
     sStorage->partySprites[0]->oam.paletteNum = 0+1;
     count = 1;
     for (i = 1; i < PARTY_SIZE; i++)
     {
-        species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG);
+        species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES);
+        isEgg = GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG);
         paletteNum = (i >= 3 ? i + 3 : i) + 1;
         if (species != SPECIES_NONE)
         {
             personality = GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY);
             isShiny = GetMonData(&gPlayerParty[i], MON_DATA_IS_SHINY);
             sStorage->partySprites[i] = CreateMonIconSprite(species, personality, 152,  8 * (3 * (i - 1)) + 16, 1, 12, isEgg);
-            LoadPalette(GetIconPalette(species, isShiny, IsPersonalityFemale(species, personality)), paletteNum*16 + 0x100, 32);
+            LoadPalette(GetStorageMonIconPalette(species, isShiny, personality, isEgg), paletteNum*16 + 0x100, 32);
             sStorage->partySprites[i]->oam.paletteNum = paletteNum;
             count++;
         }
@@ -5359,7 +5414,7 @@ u8 FindFreePartyPaletteSlot(void) {
         inUse = FALSE;
         paletteNum = (i >= 3 ? i + 3 : i) + 1;
         for (j = 0; j < PARTY_SIZE; j++)
-            if (sStorage->partySprites[j]->oam.paletteNum == paletteNum)
+            if (sStorage->partySprites[j] != NULL && sStorage->partySprites[j]->oam.paletteNum == paletteNum)
                 inUse = TRUE;
         if (!inUse)
             return paletteNum;
@@ -5376,11 +5431,15 @@ static void SetPlacedMonSprite(u8 boxId, u8 position)
         sStorage->partySprites[position]->oam.priority = 1;
         sStorage->partySprites[position]->subpriority = 12;
 
-        // If currently using displayed mon palette, load party sprite palette into free party palette slot
-        if (sStorage->partySprites[position]->oam.paletteNum == IndexOfSpritePaletteTag(PALTAG_DISPLAY_MON)) {
+        // If currently using a temporary palette, load the icon palette into a party slot.
+        if (sStorage->partySprites[position]->oam.paletteNum == IndexOfSpritePaletteTag(PALTAG_DISPLAY_MON)
+         || sStorage->partySprites[position]->oam.paletteNum == IndexOfSpritePaletteTag(PALTAG_MOVING_MON)) {
             paletteNum = FindFreePartyPaletteSlot();
-            LoadPalette(GetMonFrontSpritePal(&gPlayerParty[position]), paletteNum*16 + 0x100, 32);
-            sStorage->partySprites[position]->oam.paletteNum = paletteNum;
+            if (paletteNum != 0xFF)
+            {
+                LoadPartyMonIconPalette(position, paletteNum);
+                sStorage->partySprites[position]->oam.paletteNum = paletteNum;
+            }
         }
     }
     else
@@ -5519,10 +5578,8 @@ static void SpriteCB_HeldMon(struct Sprite *sprite)
     sprite->y = sStorage->cursorSprite->y + sStorage->cursorSprite->y2 + 4;
 }
 
-static u16 TryLoadMonIconTiles(u16 species, u32 personality, bool32 isEgg)
+static u16 GetMonIconTileKey(u16 species, u32 personality, bool32 isEgg)
 {
-    u16 i, offset;
-
 #if P_GENDER_DIFFERENCES
     // Treat female mons as a seperate species as they may have a different icon than males
     if (gSpeciesInfo[species].iconSpriteFemale != NULL && IsPersonalityFemale(species, personality))
@@ -5533,10 +5590,18 @@ static u16 TryLoadMonIconTiles(u16 species, u32 personality, bool32 isEgg)
     if (isEgg)
         species |= (1 << 14);
 
+    return species;
+}
+
+static u16 TryLoadMonIconTiles(u16 species, u32 personality, bool32 isEgg)
+{
+    u16 i, offset;
+    u16 iconKey = GetMonIconTileKey(species, personality, isEgg);
+
     // Search icon list for this species
     for (i = 0; i < MAX_MON_ICONS; i++)
     {
-        if (sStorage->iconSpeciesList[i] == species)
+        if (sStorage->iconSpeciesList[i] == iconKey)
             break;
     }
 
@@ -5556,32 +5621,22 @@ static u16 TryLoadMonIconTiles(u16 species, u32 personality, bool32 isEgg)
     }
 
     // Add species to icon list and load tiles
-    sStorage->iconSpeciesList[i] = species;
+    sStorage->iconSpeciesList[i] = iconKey;
     sStorage->numIconsPerSpecies[i]++;
     offset = 16 * i;
-    species &= SPECIES_MASK;
+    species = iconKey & SPECIES_MASK;
     CpuFastCopy(GetMonIconTilesIsEgg(species, personality, isEgg), (void *)(OBJ_VRAM0) + offset * TILE_SIZE_4BPP, 0x200);
 
     return offset;
 }
 
-static void RemoveSpeciesFromIconList(u16 species)
+static void RemoveSpeciesFromIconList(u16 iconKey)
 {
     u16 i;
-    bool8 hasFemale = FALSE;
 
     for (i = 0; i < MAX_MON_ICONS; i++)
     {
-        if (sStorage->iconSpeciesList[i] == (species | 0x8000))
-        {
-            hasFemale = TRUE;
-            break;
-        }
-    }
-
-    for (i = 0; i < MAX_MON_ICONS; i++)
-    {
-        if (sStorage->iconSpeciesList[i] == species && !hasFemale)
+        if (sStorage->iconSpeciesList[i] == iconKey)
         {
             if (--sStorage->numIconsPerSpecies[i] == 0)
                 sStorage->iconSpeciesList[i] = SPECIES_NONE;
@@ -5593,10 +5648,12 @@ static void RemoveSpeciesFromIconList(u16 species)
 static struct Sprite *CreateMonIconSprite(u16 species, u32 personality, s16 x, s16 y, u8 oamPriority, u8 subpriority, bool32 isEgg)
 {
     u16 tileNum;
+    u16 iconKey;
     u8 spriteId;
     struct SpriteTemplate template = sSpriteTemplate_MonIcon;
 
     species = GetIconSpecies(species, personality);
+    iconKey = GetMonIconTileKey(species, personality, isEgg);
     template.paletteTag = PALTAG_MON_ICON_0;
     tileNum = TryLoadMonIconTiles(species, personality, isEgg);
     if (tileNum == 0xFFFF)
@@ -5605,13 +5662,13 @@ static struct Sprite *CreateMonIconSprite(u16 species, u32 personality, s16 x, s
     spriteId = CreateSprite(&template, x, y, subpriority);
     if (spriteId == MAX_SPRITES)
     {
-        RemoveSpeciesFromIconList(species);
+        RemoveSpeciesFromIconList(iconKey);
         return NULL;
     }
 
     gSprites[spriteId].oam.tileNum = tileNum;
     gSprites[spriteId].oam.priority = oamPriority;
-    gSprites[spriteId].data[0] = species;
+    gSprites[spriteId].data[0] = iconKey;
     return &gSprites[spriteId];
 }
 
@@ -6745,20 +6802,13 @@ static void MoveMon(void)
         if (sStorage->inBoxMovingMode == MOVE_MODE_NORMAL)
         {
             u16 palette[16] = {0};
-            u16 species;
-            bool8 isShiny;
-            u32 personality;
+            u8 paletteNum;
             SetMovingMonData(StorageGetCurrentBox(), sCursorPosition);
             SetMovingMonSprite(MODE_BOX, sCursorPosition);
 
-            species = GetMonData(&sStorage->movingMon, MON_DATA_SPECIES);
-            isShiny = GetMonData(&sStorage->movingMon, MON_DATA_IS_SHINY);
-            personality = GetMonData(&sStorage->movingMon, MON_DATA_PERSONALITY);
-
-            LoadSpritePaletteWithTag(GetIconPalette(species, isShiny, IsPersonalityFemale(species, personality)), PALTAG_MOVING_MON);
-            sStorage->movingMonPalOffset = OBJ_PLTT_ID(IndexOfSpritePaletteTag(PALTAG_MOVING_MON));
-
-            sStorage->movingMonSprite->oam.paletteNum = IndexOfSpritePaletteTag(PALTAG_MOVING_MON);
+            paletteNum = LoadMovingMonIconPalette();
+            if (paletteNum < 16)
+                sStorage->movingMonSprite->oam.paletteNum = paletteNum;
             palette[0] = 0x8000;
             SwapInPalNextVBlank(&palette[0], &sPaletteSwapBuffer[(sCursorPosition)*16]);
         }
@@ -6857,27 +6907,54 @@ static void SetShiftedMonData(u8 boxId, u8 position)
 }
 
 static void SetShiftedMonSprites(u8 boxId, u8 position) {
-    u8 displayIndex = IndexOfSpritePaletteTag(PALTAG_MOVING_MON);
-    if (boxId == TOTAL_BOXES_COUNT) { // party
-        u32 paletteNum = FindFreePartyPaletteSlot();
-        // Copy display palette into party palette slot
-        CpuFastCopy(&gPlttBufferUnfaded[displayIndex*16+0x100], &gPlttBufferUnfaded[paletteNum*16+0x100], 32);
-        CpuFastCopy(&gPlttBufferFaded[displayIndex*16+0x100], &gPlttBufferFaded[paletteNum*16+0x100], 32);
-        sStorage->partySprites[position]->oam.paletteNum = paletteNum;
-    } else {
+    bool32 movingFromParty = (sMovingMonOrigBoxId == TOTAL_BOXES_COUNT);
+
+    if (boxId == TOTAL_BOXES_COUNT) // party
+    {
+        if (!movingFromParty)
+        {
+            u8 sourcePaletteNum = sStorage->partySprites[position]->oam.paletteNum;
+            u8 partyPaletteNum = FindFreePartyPaletteSlot();
+
+            // Copy temporary moving palette into a party palette slot.
+            if (sourcePaletteNum < 16 && partyPaletteNum != 0xFF)
+            {
+                CpuFastCopy(&gPlttBufferUnfaded[sourcePaletteNum*16+0x100], &gPlttBufferUnfaded[partyPaletteNum*16+0x100], 32);
+                CpuFastCopy(&gPlttBufferFaded[sourcePaletteNum*16+0x100], &gPlttBufferFaded[partyPaletteNum*16+0x100], 32);
+                sStorage->partySprites[position]->oam.paletteNum = partyPaletteNum;
+            }
+        }
+    }
+    else
+    {
         u8 i = position / 6;
         u8 j = position % 6;
-        // Copy display palette into swap buffer (at next vblank)
-        // This is necessary because copying it while the screen is being drawn will cause flickering
-        SwapInPalNextVBlank(&gPlttBufferFaded[displayIndex*16+0x100], &sPaletteSwapBuffer[(position)*16]);
+
+        if (movingFromParty)
+        {
+            SwapInPalNextVBlank((void *)GetBoxMonIconPalette(boxId, position), &sPaletteSwapBuffer[(position)*16]);
+        }
+        else
+        {
+            u8 sourcePaletteNum = sStorage->boxMonsSprites[position]->oam.paletteNum;
+
+            // Copy temporary moving palette into swap buffer at next vblank.
+            if (sourcePaletteNum < 16)
+                SwapInPalNextVBlank(&gPlttBufferFaded[sourcePaletteNum*16+0x100], &sPaletteSwapBuffer[(position)*16]);
+        }
         sStorage->boxMonsSprites[position]->oam.paletteNum = (i & 1 ? 6 : 0) + j + 1;
     }
 
     SetDisplayMonData(&sStorage->movingMon, MODE_PARTY);
-    // Set moving sprite palette to currently displayed pokemon's palette
     sStorage->displayMonSprite->invisible = TRUE;
-    LoadPalette(GetIconPalette(GetMonData(&sStorage->movingMon, MON_DATA_SPECIES), GetMonData(&sStorage->movingMon, MON_DATA_IS_SHINY), IsPersonalityFemale(GetMonData(&sStorage->movingMon, MON_DATA_SPECIES), GetMonData(&sStorage->movingMon, MON_DATA_PERSONALITY))), sStorage->movingMonPalOffset, 0x20);
-    sStorage->movingMonSprite->oam.paletteNum = displayIndex;
+    // Party-to-party shifts can keep using the shifted mon's existing party palette.
+    if (!(movingFromParty && boxId == TOTAL_BOXES_COUNT))
+    {
+        u8 movingPaletteNum = LoadMovingMonIconPalette();
+
+        if (movingPaletteNum < 16)
+            sStorage->movingMonSprite->oam.paletteNum = movingPaletteNum;
+    }
     sMovingMonOrigBoxId = boxId;
     sMovingMonOrigBoxPos = position;
 }
