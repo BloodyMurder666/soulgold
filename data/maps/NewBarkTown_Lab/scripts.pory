@@ -1007,6 +1007,23 @@ script NewBarkTown_Lab_EventScript_ElmPostgameHint {
 			
 			After all, you've travelled all over
 			with your Pokémon.")
+	msgbox("But first, let me upgrade your Pokédex
+			with a new feature!")
+	playse(SE_CLICK)
+	delay(10)
+	playse(SE_CLICK)
+	delay(10)
+	playse(SE_CLICK)
+	delay(10)
+	playse(SE_PIN)
+	waitse
+	msgbox("Now you can view abilities of the
+			opposing Pokémon with the L-button
+			in battle! 
+			
+			That will surely be handy as the
+			battles get tougher!")
+	setflag(FLAG_POSTGAME_FEATURES)
 	setflag(FLAG_HIDE_VICTORYROAD_RIVAL)
 	checkplayergender
 	if (var(VAR_RESULT) == MALE) {
