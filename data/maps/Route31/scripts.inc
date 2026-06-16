@@ -368,7 +368,7 @@ Route31_Expert::
 	checktrainerflag TRAINER_WADE
 	goto_if 1, Route31_Expert_7
 Route31_Expert_4:
-# 198 "data/maps/Route31/scripts.pory"
+# 200 "data/maps/Route31/scripts.pory"
 	release
 	end
 
@@ -448,7 +448,7 @@ Route31_Expert_Text_4:
 	.string "this for your victory.$"
 
 Route31_Expert_Text_5:
-# 196 "data/maps/Route31/scripts.pory"
+# 198 "data/maps/Route31/scripts.pory"
 	.string "This Air Balloon lets a Pokémon avoid\n"
 	.string "Ground-type moves until it takes a hit.\l"
 	.string "It might prove useful in the coming\l"

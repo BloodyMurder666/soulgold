@@ -1,0 +1,29 @@
+mapscripts OlivineCity_LighthouseTop_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        if (flag(FLAG_HIDE_ZAPDOS) == FALSE) {
+            setweather(WEATHER_RAIN_THUNDERSTORM)
+        } else {
+            setweather(WEATHER_NONE)
+        }
+    }
+}
+
+script Lighthousetop_Zapdos {
+    lock
+    faceplayer
+    legendaryencounter(SPECIES_ZAPDOS, 50, LOCALID_LIGHTHOUSE_ZAPDOS, FLAG_HIDE_ZAPDOS)
+    release
+    end
+}
+
+script Lighthouse_Engineer {
+    lock
+    faceplayer
+    msgbox("Some Pokémon broke the ladder to the
+            top floor recently.
+            
+            I'm trying to fix it, but it
+            will take some time.")
+    release
+    end
+}

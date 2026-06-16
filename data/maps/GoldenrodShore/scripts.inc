@@ -15,7 +15,7 @@ GoldenrodShore_Expert::
 	checktrainerflag TRAINER_SAMUEL
 	goto_if 1, GoldenrodShore_Expert_7
 GoldenrodShore_Expert_4:
-# 34 "data/maps/GoldenrodShore/scripts.pory"
+# 36 "data/maps/GoldenrodShore/scripts.pory"
 	release
 	end
 
@@ -131,38 +131,38 @@ GoldenrodShore_Expert_31:
 
 
 GoldenrodShore_Sign::
-# 39 "data/maps/GoldenrodShore/scripts.pory"
+# 41 "data/maps/GoldenrodShore/scripts.pory"
 	msgbox GoldenrodShore_Sign_Text_0, MSGBOX_SIGN
 	return
 
 
 GoldenrodShore_Engineer::
-# 43 "data/maps/GoldenrodShore/scripts.pory"
+# 45 "data/maps/GoldenrodShore/scripts.pory"
 	msgbox GoldenrodShore_Engineer_Text_0, MSGBOX_NPC
 	return
 
 
 GoldenrodShore_HiddenGrotto::
-# 49 "data/maps/GoldenrodShore/scripts.pory"
-	msgbox GoldenrodShore_HiddenGrotto_Text_0, MSGBOX_YESNO
 # 51 "data/maps/GoldenrodShore/scripts.pory"
+	msgbox GoldenrodShore_HiddenGrotto_Text_0, MSGBOX_YESNO
+# 53 "data/maps/GoldenrodShore/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq GoldenrodShore_HiddenGrotto_2
 GoldenrodShore_HiddenGrotto_1:
-# 55 "data/maps/GoldenrodShore/scripts.pory"
+# 57 "data/maps/GoldenrodShore/scripts.pory"
 	release
 	end
 
 GoldenrodShore_HiddenGrotto_2:
-# 52 "data/maps/GoldenrodShore/scripts.pory"
+# 54 "data/maps/GoldenrodShore/scripts.pory"
 	warp MAP_HIDDEN_GROTTO_GOLDENROD_SHORE, 0
-# 53 "data/maps/GoldenrodShore/scripts.pory"
+# 55 "data/maps/GoldenrodShore/scripts.pory"
 	waitstate
 	goto GoldenrodShore_HiddenGrotto_1
 
 
 MareaniesGoldenrodShore::
-# 60 "data/maps/GoldenrodShore/scripts.pory"
+# 62 "data/maps/GoldenrodShore/scripts.pory"
 	msgbox MareaniesGoldenrodShore_Text_0, MSGBOX_NPC
 	return
 
@@ -198,27 +198,27 @@ GoldenrodShore_Expert_Text_4:
 	.string "of keeping up the winning streak.$"
 
 GoldenrodShore_Expert_Text_5:
-# 30 "data/maps/GoldenrodShore/scripts.pory"
+# 32 "data/maps/GoldenrodShore/scripts.pory"
 	.string "Loaded Dice boosts the minimum hit \n"
 	.string "count of multi-hit moves, you should \l"
 	.string "try it with moves like Bullet Seed!$"
 
 GoldenrodShore_Sign_Text_0:
-# 39 "data/maps/GoldenrodShore/scripts.pory"
+# 41 "data/maps/GoldenrodShore/scripts.pory"
 	.string "Goldenrod Shore, no littering!$"
 
 GoldenrodShore_Engineer_Text_0:
-# 43 "data/maps/GoldenrodShore/scripts.pory"
+# 45 "data/maps/GoldenrodShore/scripts.pory"
 	.string "Alright, time to start digging a path \n"
 	.string "here. The Pokéathlon construction\l"
 	.string "starts here!$"
 
 GoldenrodShore_HiddenGrotto_Text_0:
-# 49 "data/maps/GoldenrodShore/scripts.pory"
+# 51 "data/maps/GoldenrodShore/scripts.pory"
 	.string "There seems to be a path behind the\n"
 	.string "trees. Enter?$"
 
 MareaniesGoldenrodShore_Text_0:
-# 60 "data/maps/GoldenrodShore/scripts.pory"
+# 62 "data/maps/GoldenrodShore/scripts.pory"
 	.string "Mareanies seem to be blocking the way. \n"
 	.string "Perhaps there is another way to Olivine?$"

@@ -185,8 +185,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
-      "x": 149,
-      "y": 3,
+      "x": 148,
+      "y": 4,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -247,6 +247,19 @@
       "trainer_sight_or_berry_tree_id": "ITEM_ETHER",
       "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_LIGHTHOUSE_ETHER"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ENGINEER",
+      "x": 147,
+      "y": 15,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Lighthouse_Engineer",
+      "flag": "FLAG_BADGE08_GET"
     }
   ],
   "warp_events": [
@@ -522,6 +535,13 @@
       "elevation": 0,
       "dest_map": "MAP_OLIVINE_CITY_LIGHTHOUSE",
       "dest_warp_id": "16"
+    },
+    {
+      "x": 146,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_OLIVINE_CITY_LIGHTHOUSE_TOP",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],

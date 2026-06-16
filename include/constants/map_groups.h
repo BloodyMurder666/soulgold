@@ -192,6 +192,7 @@ enum
     MAP_OLIVINE_CITY_PORT_OUTSIDE   = (7 | (7 << 8)),
     MAP_OLIVINE_CITY_PORT_INSIDE    = (8 | (7 << 8)),
     MAP_OLIVINE_CITY_LIGHTHOUSE     = (9 | (7 << 8)),
+    MAP_OLIVINE_CITY_LIGHTHOUSE_TOP = (10 | (7 << 8)),
 
     // gMapGroup_IndoorCianwood
     MAP_CIANWOOD_POKECENTER = (0 | (8 << 8)),

@@ -1636,6 +1636,8 @@ Common_Text_ReceivedMon:
 
 	.include "data/maps/OlivineCity_Lighthouse/scripts.inc"
 
+	.include "data/maps/OlivineCity_LighthouseTop/scripts.inc"
+
 	.include "data/maps/OlivineCity_Gym/scripts.inc"
 
 	.include "data/maps/OlivineCity_Cafe/scripts.inc"

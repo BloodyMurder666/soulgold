@@ -322,6 +322,13 @@ static const enum NationalDexOrder sHoennToNationalOrder[HOENN_DEX_COUNT - 1] =
     HOENN_TO_NATIONAL(DEOXYS),
 };
 
+#define JOHTO_DEX(name) [JOHTO_DEX_##name - 1] = NATIONAL_DEX_##name,
+static const enum NationalDexOrder sJohtoToNationalOrder[JOHTO_DEX_COUNT - 1] =
+{
+#include "constants/johto_dex_order.h"
+};
+#undef JOHTO_DEX
+
 const struct SpindaSpot gSpindaSpotGraphics[] =
 {
     {.x = 16, .y =  7, .image = INCBIN_U16("graphics/pokemon/spinda/spots/spot_0.1bpp")},
@@ -4766,6 +4773,24 @@ enum HoennDexOrder NationalToHoennOrder(enum NationalDexOrder nationalNum)
     return hoennNum + 1;
 }
 
+enum JohtoDexOrder NationalToJohtoOrder(enum NationalDexOrder nationalNum)
+{
+    u16 johtoNum;
+
+    if (!nationalNum)
+        return JOHTO_DEX_NONE;
+
+    johtoNum = 0;
+
+    while (johtoNum < (JOHTO_DEX_COUNT - 1) && sJohtoToNationalOrder[johtoNum] != nationalNum)
+        johtoNum++;
+
+    if (johtoNum >= JOHTO_DEX_COUNT - 1)
+        return JOHTO_DEX_NONE;
+
+    return johtoNum + 1;
+}
+
 enum NationalDexOrder SpeciesToNationalPokedexNum(u16 species)
 {
     species = SanitizeSpeciesId(species);
@@ -4773,6 +4798,13 @@ enum NationalDexOrder SpeciesToNationalPokedexNum(u16 species)
         return NATIONAL_DEX_NONE;
 
     return gSpeciesInfo[species].natDexNum;
+}
+
+enum JohtoDexOrder SpeciesToJohtoPokedexNum(u16 species)
+{
+    if (!species)
+        return JOHTO_DEX_NONE;
+    return NationalToJohtoOrder(gSpeciesInfo[species].natDexNum);
 }
 
 enum HoennDexOrder SpeciesToHoennPokedexNum(u16 species)
@@ -4788,6 +4820,14 @@ enum NationalDexOrder HoennToNationalOrder(enum HoennDexOrder hoennNum)
         return 0;
 
     return sHoennToNationalOrder[hoennNum - 1];
+}
+
+enum NationalDexOrder JohtoToNationalOrder(enum JohtoDexOrder johtoNum)
+{
+    if (!johtoNum || johtoNum >= JOHTO_DEX_COUNT)
+        return NATIONAL_DEX_NONE;
+
+    return sJohtoToNationalOrder[johtoNum - 1];
 }
 
 // Spots can be drawn on Spinda's color indexes 1, 2, or 3
@@ -5234,8 +5274,8 @@ u16 SpeciesToPokedexNum(u16 species)
     }
     else
     {
-        species = SpeciesToHoennPokedexNum(species);
-        if (species <= HOENN_DEX_COUNT)
+        species = SpeciesToJohtoPokedexNum(species);
+        if (species < JOHTO_DEX_COUNT)
             return species;
         return 0xFFFF;
     }

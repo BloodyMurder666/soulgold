@@ -215,7 +215,8 @@
     "OlivineCity_House3",
     "OlivineCity_PortOutside",
     "OlivineCity_PortInside",
-    "OlivineCity_Lighthouse"
+    "OlivineCity_Lighthouse",
+    "OlivineCity_LighthouseTop"
   ],
   "gMapGroup_IndoorCianwood": [
     "CianwoodPokecenter",
