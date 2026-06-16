@@ -153,6 +153,7 @@ void InitRoamer(void)
 {
     TryAddRoamer(SPECIES_ENTEI, 40);
     TryAddRoamer(SPECIES_RAIKOU, 40);
+    TryAddRoamer(SPECIES_SUICUNE, 40);
 }
 
 void UpdateLocationHistoryForRoamer(void)
