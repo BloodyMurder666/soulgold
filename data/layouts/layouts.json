@@ -9596,6 +9596,16 @@
       "secondary_tileset": "gTileset_Cave_Gray",
       "border_filepath": "data/layouts/MtSilver_1F_RegigigasRoom/border.bin",
       "blockdata_filepath": "data/layouts/MtSilver_1F_RegigigasRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_BLACKTHORN_CAVE",
+      "name": "BlackthornCave_Layout",
+      "width": 61,
+      "height": 60,
+      "primary_tileset": "gTileset_Johto_NorthWest",
+      "secondary_tileset": "gTileset_Cave_Ice",
+      "border_filepath": "data/layouts/BlackthornCave/border.bin",
+      "blockdata_filepath": "data/layouts/BlackthornCave/map.bin"
     }
   ]
 }

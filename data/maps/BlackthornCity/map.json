@@ -433,6 +433,13 @@
       "elevation": 0,
       "dest_map": "MAP_BLACKTHORN_CITY_HOUSE3",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 39,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_BLACKTHORN_CAVE",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

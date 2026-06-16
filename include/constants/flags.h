@@ -899,7 +899,7 @@
 #define FLAG_HIDE_OLIVINE_PORT_OAK                                  0x350
 #define FLAG_HIDE_ROUTE22_GIOVANNI_SILVER                           0x351
 #define FLAG_POSTGAME_FEATURES                                      0x352
-#define FLAG_UNUSED_SET4                                            0x353
+#define FLAG_GOT_KUBFU                                              0x353
 #define FLAG_UNUSED_SET5                                            0x354
 #define FLAG_UNUSED_SET6                                            0x355
 #define FLAG_UNUSED_SET7                                            0x356

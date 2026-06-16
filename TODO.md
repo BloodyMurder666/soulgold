@@ -2,7 +2,7 @@
 # Demo 1 MVP
 
 Must have:
-- scripts for new rock climb spots (blackthorne, route 42)
+- scripts for new rock climb spots (route 42)
 - Rest of route experts for held items (Power Herb, Toxic Orb, Choice Band) teams done, just need npcs
 - 3-4 remaining megastones (dragon den trial for dragotite?)
 - Finish redoing the remaining trades (done mostly, could use maybe one more)
@@ -28,3 +28,4 @@ Maybe:
 
 
 
+correct order: down, up, left, up, left, down, right, right

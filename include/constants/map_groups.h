@@ -528,6 +528,7 @@ enum
     MAP_RAILWAY_CAVE_2F             = (8 | (25 << 8)),
     MAP_RAILWAY_CAVE_3F             = (9 | (25 << 8)),
     MAP_RAILWAY_CAVE_REGISTEEL_ROOM = (10 | (25 << 8)),
+    MAP_BLACKTHORN_CAVE             = (11 | (25 << 8)),
 
     // gMapGroup_JohtoDiveMaps
     MAP_CHERRYGROVE_UNDERWATER = (0 | (26 << 8)),

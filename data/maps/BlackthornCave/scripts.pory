@@ -1,0 +1,38 @@
+mapscripts BlackthornCave_MapScripts {}
+
+script BlackthornCave_Hint {
+    msgbox("Noon o'clock, one to add,
+            another to subtract.", MSGBOX_SIGN)
+}
+
+script BlackThornCave_Expert {
+    lock
+    faceplayer
+    if (flag(FLAG_GOT_KUBFU)) {
+        msgbox("Now leave me be! I wish to meditate!")
+        release
+        end
+    }
+    msgbox("Hmph, 
+            of course someone had figure it out.
+            
+            I've been living as a hermit in this
+            cave to hone my martial and spiritual
+            talents.
+            
+            I suppose you are expecting something
+            from me. Fine! Take this and leave.")
+    closemessage
+    setvar(VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_KUBFU)
+    bufferspeciesname(STR_VAR_1, SPECIES_KUBFU)
+    givemon(SPECIES_KUBFU, 5)
+    call(Common_EventScript_GiftMon)
+    setflag(FLAG_GOT_KUBFU)
+    msgbox("I hear someone in Johto Archipelago
+            might know how to evolve that Pokémon.
+            
+            But I'm too old to travel anywhere, so
+            leave me to my meditations now!")
+    release
+    end
+}
