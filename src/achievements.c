@@ -6,6 +6,7 @@
 #include "pokedex.h"
 #include "string_util.h"
 #include "constants/difficulty.h"
+#include "constants/battle_frontier.h"
 #include "constants/flags.h"
 #include "constants/items.h"
 #include "constants/opponents.h"
@@ -47,6 +48,9 @@ static bool32 Achievement_PredicateCaughtAzelf(void);
 static bool32 Achievement_PredicateCaughtLapras(void);
 static bool32 Achievement_PredicateCaughtVictini(void);
 static u32 Achievement_CountCollectedTMs(void);
+static u32 Achievement_GetBestBattleTowerStreak(void);
+static u32 Achievement_GetBestBattleFactoryStreak(void);
+static u32 Achievement_GetBestBattlePyramidRounds(void);
 static u32 Achievement_GetBestRocketArcadeStreak(void);
 static bool32 Achievement_IsHardRematchAchievement(enum AchievementId id);
 static void Achievement_QueuePopup(enum AchievementId id);
@@ -69,9 +73,11 @@ static const u8 sText_AchDaycareEggs100Name[] = _("Day Care Regular");
 static const u8 sText_AchDaycareEggs100Desc[] = _("Receive 100 Day Care Eggs.");
 static const u8 sText_AchHatchEggs100Name[] = _("Shell Breaker");
 static const u8 sText_AchHatchEggs100Desc[] = _("Hatch 100 Eggs.");
-static const u8 sText_AchTower50Name[] = _("Tower Climber");
+static const u8 sText_AchTower25Name[] = _("Tower Challenger");
+static const u8 sText_AchTower25Desc[] = _("Reach a 25-win Battle Tower streak.");
+static const u8 sText_AchTower50Name[] = _("Tower Expert");
 static const u8 sText_AchTower50Desc[] = _("Reach a 50-win Battle Tower streak.");
-static const u8 sText_AchTower100Name[] = _("Tower Legend");
+static const u8 sText_AchTower100Name[] = _("Tower Master");
 static const u8 sText_AchTower100Desc[] = _("Reach a 100-win Battle Tower streak.");
 static const u8 sText_AchHoennDexName[] = _("Johto Professor");
 static const u8 sText_AchHoennDexDesc[] = _("Complete the Johto Pokedex.");
@@ -97,10 +103,24 @@ static const u8 sText_AchPokedex350Name[] = _("Dex Specialist");
 static const u8 sText_AchPokedex350Desc[] = _("Register 350 caught Pokemon.");
 static const u8 sText_AchPokedex500Name[] = _("Living Archive");
 static const u8 sText_AchPokedex500Desc[] = _("Register 500 caught Pokemon.");
+static const u8 sText_AchRocketArcade25Name[] = _("Arcade Player");
+static const u8 sText_AchRocketArcade25Desc[] = _("Reach a 25-win Rocket Arcade streak.");
 static const u8 sText_AchRocketArcade50Name[] = _("Arcade Ace");
 static const u8 sText_AchRocketArcade50Desc[] = _("Reach a 50-win Rocket Arcade streak.");
 static const u8 sText_AchRocketArcade100Name[] = _("Arcade Legend");
 static const u8 sText_AchRocketArcade100Desc[] = _("Reach a 100-win Rocket Arcade streak.");
+static const u8 sText_AchFactory25Name[] = _("Factory Challenger");
+static const u8 sText_AchFactory25Desc[] = _("Reach a 25-win Battle Factory streak.");
+static const u8 sText_AchFactory50Name[] = _("Factory Expert");
+static const u8 sText_AchFactory50Desc[] = _("Reach a 50-win Battle Factory streak.");
+static const u8 sText_AchFactory100Name[] = _("Factory Master");
+static const u8 sText_AchFactory100Desc[] = _("Reach a 100-win Battle Factory streak.");
+static const u8 sText_AchPyramid3Name[] = _("Pyramid Explorer");
+static const u8 sText_AchPyramid3Desc[] = _("Clear 3 Battle Pyramid rounds.");
+static const u8 sText_AchPyramid10Name[] = _("Pyramid Expert");
+static const u8 sText_AchPyramid10Desc[] = _("Clear 10 Battle Pyramid rounds.");
+static const u8 sText_AchPyramid20Name[] = _("Pyramid Master");
+static const u8 sText_AchPyramid20Desc[] = _("Clear 20 Battle Pyramid rounds.");
 static const u8 sText_AchCatchLugiaName[] = _("Sea Guardian");
 static const u8 sText_AchCatchLugiaDesc[] = _("Catch Lugia.");
 static const u8 sText_AchCatchHoOhName[] = _("Rainbow Guardian");
@@ -192,6 +212,7 @@ static const struct Achievement sAchievements[] =
     {ACH_DAYCARE_EGG_1, sText_AchDaycareEgg1Name, sText_AchDaycareEgg1Desc, ACH_TIER_BRONZE, ACH_COUNTER_DAYCARE_EGGS, 1, TRAINER_NONE_ACH, NULL},
     {ACH_DAYCARE_EGGS_100, sText_AchDaycareEggs100Name, sText_AchDaycareEggs100Desc, ACH_TIER_GOLD, ACH_COUNTER_DAYCARE_EGGS, 100, TRAINER_NONE_ACH, NULL},
     {ACH_HATCH_EGGS_100, sText_AchHatchEggs100Name, sText_AchHatchEggs100Desc, ACH_TIER_GOLD, ACH_COUNTER_HATCHED_EGGS, 100, TRAINER_NONE_ACH, NULL},
+    {ACH_BATTLE_TOWER_25, sText_AchTower25Name, sText_AchTower25Desc, ACH_TIER_SILVER, ACH_COUNTER_BATTLE_TOWER_STREAK, 25, TRAINER_NONE_ACH, NULL},
     {ACH_BATTLE_TOWER_50, sText_AchTower50Name, sText_AchTower50Desc, ACH_TIER_GOLD, ACH_COUNTER_BATTLE_TOWER_STREAK, 50, TRAINER_NONE_ACH, NULL},
     {ACH_BATTLE_TOWER_100, sText_AchTower100Name, sText_AchTower100Desc, ACH_TIER_PLATINUM, ACH_COUNTER_BATTLE_TOWER_STREAK, 100, TRAINER_NONE_ACH, NULL},
     {ACH_COMPLETE_HOENN_DEX, sText_AchHoennDexName, sText_AchHoennDexDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateHoennDexComplete},
@@ -206,8 +227,15 @@ static const struct Achievement sAchievements[] =
     {ACH_POKEDEX_200, sText_AchPokedex200Name, sText_AchPokedex200Desc, ACH_TIER_SILVER, ACH_COUNTER_POKEDEX_CAUGHT, 200, TRAINER_NONE_ACH, NULL},
     {ACH_POKEDEX_350, sText_AchPokedex350Name, sText_AchPokedex350Desc, ACH_TIER_GOLD, ACH_COUNTER_POKEDEX_CAUGHT, 350, TRAINER_NONE_ACH, NULL},
     {ACH_POKEDEX_500, sText_AchPokedex500Name, sText_AchPokedex500Desc, ACH_TIER_PLATINUM, ACH_COUNTER_POKEDEX_CAUGHT, 500, TRAINER_NONE_ACH, NULL},
+    {ACH_ROCKET_ARCADE_25, sText_AchRocketArcade25Name, sText_AchRocketArcade25Desc, ACH_TIER_SILVER, ACH_COUNTER_ROCKET_ARCADE_STREAK, 25, TRAINER_NONE_ACH, NULL},
     {ACH_ROCKET_ARCADE_50, sText_AchRocketArcade50Name, sText_AchRocketArcade50Desc, ACH_TIER_GOLD, ACH_COUNTER_ROCKET_ARCADE_STREAK, 50, TRAINER_NONE_ACH, NULL},
     {ACH_ROCKET_ARCADE_100, sText_AchRocketArcade100Name, sText_AchRocketArcade100Desc, ACH_TIER_PLATINUM, ACH_COUNTER_ROCKET_ARCADE_STREAK, 100, TRAINER_NONE_ACH, NULL},
+    {ACH_BATTLE_FACTORY_25, sText_AchFactory25Name, sText_AchFactory25Desc, ACH_TIER_SILVER, ACH_COUNTER_BATTLE_FACTORY_STREAK, 25, TRAINER_NONE_ACH, NULL},
+    {ACH_BATTLE_FACTORY_50, sText_AchFactory50Name, sText_AchFactory50Desc, ACH_TIER_GOLD, ACH_COUNTER_BATTLE_FACTORY_STREAK, 50, TRAINER_NONE_ACH, NULL},
+    {ACH_BATTLE_FACTORY_100, sText_AchFactory100Name, sText_AchFactory100Desc, ACH_TIER_PLATINUM, ACH_COUNTER_BATTLE_FACTORY_STREAK, 100, TRAINER_NONE_ACH, NULL},
+    {ACH_BATTLE_PYRAMID_3, sText_AchPyramid3Name, sText_AchPyramid3Desc, ACH_TIER_SILVER, ACH_COUNTER_BATTLE_PYRAMID_ROUNDS, 3, TRAINER_NONE_ACH, NULL},
+    {ACH_BATTLE_PYRAMID_10, sText_AchPyramid10Name, sText_AchPyramid10Desc, ACH_TIER_GOLD, ACH_COUNTER_BATTLE_PYRAMID_ROUNDS, 10, TRAINER_NONE_ACH, NULL},
+    {ACH_BATTLE_PYRAMID_20, sText_AchPyramid20Name, sText_AchPyramid20Desc, ACH_TIER_PLATINUM, ACH_COUNTER_BATTLE_PYRAMID_ROUNDS, 20, TRAINER_NONE_ACH, NULL},
     {ACH_CATCH_LUGIA, sText_AchCatchLugiaName, sText_AchCatchLugiaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtLugia},
     {ACH_CATCH_HO_OH, sText_AchCatchHoOhName, sText_AchCatchHoOhDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtHoOh},
     {ACH_JOHTO_BADGE_ZEPHYR, sText_AchZephyrBadgeName, sText_AchZephyrBadgeDesc, ACH_TIER_BRONZE, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateZephyrBadge},
@@ -477,6 +505,61 @@ static u32 Achievement_CountCollectedTMs(void)
     return count;
 }
 
+static u32 Achievement_GetBestBattleTowerStreak(void)
+{
+    u8 battleMode, lvlMode;
+    u32 best = 0;
+
+    Achievement_EnsureSaveInitialized();
+    if (best < gSaveBlock1Ptr->achievements.counters[ACH_COUNTER_BATTLE_TOWER_STREAK])
+        best = gSaveBlock1Ptr->achievements.counters[ACH_COUNTER_BATTLE_TOWER_STREAK];
+
+    for (battleMode = 0; battleMode < ARRAY_COUNT(gSaveBlock2Ptr->frontier.towerRecordWinStreaks); battleMode++)
+    {
+        for (lvlMode = 0; lvlMode < ARRAY_COUNT(gSaveBlock2Ptr->frontier.towerRecordWinStreaks[0]); lvlMode++)
+        {
+            if (best < gSaveBlock2Ptr->frontier.towerRecordWinStreaks[battleMode][lvlMode])
+                best = gSaveBlock2Ptr->frontier.towerRecordWinStreaks[battleMode][lvlMode];
+            if (best < gSaveBlock2Ptr->frontier.towerWinStreaks[battleMode][lvlMode])
+                best = gSaveBlock2Ptr->frontier.towerWinStreaks[battleMode][lvlMode];
+        }
+    }
+    return best;
+}
+
+static u32 Achievement_GetBestBattleFactoryStreak(void)
+{
+    u8 battleMode, lvlMode;
+    u32 best = 0;
+
+    for (battleMode = 0; battleMode < ARRAY_COUNT(gSaveBlock2Ptr->frontier.factoryRecordWinStreaks); battleMode++)
+    {
+        for (lvlMode = 0; lvlMode < ARRAY_COUNT(gSaveBlock2Ptr->frontier.factoryRecordWinStreaks[0]); lvlMode++)
+        {
+            if (best < gSaveBlock2Ptr->frontier.factoryRecordWinStreaks[battleMode][lvlMode])
+                best = gSaveBlock2Ptr->frontier.factoryRecordWinStreaks[battleMode][lvlMode];
+            if (best < gSaveBlock2Ptr->frontier.factoryWinStreaks[battleMode][lvlMode])
+                best = gSaveBlock2Ptr->frontier.factoryWinStreaks[battleMode][lvlMode];
+        }
+    }
+    return best;
+}
+
+static u32 Achievement_GetBestBattlePyramidRounds(void)
+{
+    u8 lvlMode;
+    u32 best = 0;
+
+    for (lvlMode = 0; lvlMode < ARRAY_COUNT(gSaveBlock2Ptr->frontier.pyramidRecordStreaks); lvlMode++)
+    {
+        if (best < gSaveBlock2Ptr->frontier.pyramidRecordStreaks[lvlMode])
+            best = gSaveBlock2Ptr->frontier.pyramidRecordStreaks[lvlMode];
+        if (best < gSaveBlock2Ptr->frontier.pyramidWinStreaks[lvlMode])
+            best = gSaveBlock2Ptr->frontier.pyramidWinStreaks[lvlMode];
+    }
+    return best / FRONTIER_STAGES_PER_CHALLENGE;
+}
+
 static u32 Achievement_GetBestRocketArcadeStreak(void)
 {
     u8 battleMode, lvlMode;
@@ -575,10 +658,16 @@ u32 Achievement_GetCounter(enum AchievementCounter counter)
 {
     switch (counter)
     {
+    case ACH_COUNTER_BATTLE_TOWER_STREAK:
+        return Achievement_GetBestBattleTowerStreak();
     case ACH_COUNTER_TMS_COLLECTED:
         return Achievement_CountCollectedTMs();
     case ACH_COUNTER_POKEDEX_CAUGHT:
         return GetNationalPokedexCount(FLAG_GET_CAUGHT);
+    case ACH_COUNTER_BATTLE_FACTORY_STREAK:
+        return Achievement_GetBestBattleFactoryStreak();
+    case ACH_COUNTER_BATTLE_PYRAMID_ROUNDS:
+        return Achievement_GetBestBattlePyramidRounds();
     case ACH_COUNTER_ROCKET_ARCADE_STREAK:
         return Achievement_GetBestRocketArcadeStreak();
     default:

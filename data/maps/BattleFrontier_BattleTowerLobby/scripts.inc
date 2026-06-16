@@ -2893,6 +2893,12 @@ BattleTowerBpMart2:
 	.2byte ITEM_HEAVY_DUTY_BOOTS
 	.2byte ITEM_NONE
 
+TowerLobbyDude::
+# 1456 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox TowerLobbyDude_Text_0, MSGBOX_NPC
+	return
+
+
 BattleTowerBPVendor1_Text_0:
 # 1414 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.string "Welcome!$"
@@ -2900,3 +2906,9 @@ BattleTowerBPVendor1_Text_0:
 BattleTowerBPVendor1_Text_1:
 # 1416 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.string "Thanks!$"
+
+TowerLobbyDude_Text_0:
+# 1456 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "The battles seem to get tougher\n"
+	.string "over time. They even allow\l"
+	.string "legendaries in the Chaos mode.$"

@@ -1451,3 +1451,9 @@ mart BattleTowerBpMart2 {
 	ITEM_WEAKNESS_POLICY
 	ITEM_HEAVY_DUTY_BOOTS
 }
+
+script TowerLobbyDude {
+	msgbox("The battles seem to get tougher
+			over time. They even allow
+			legendaries in the Chaos mode.", MSGBOX_NPC)
+}

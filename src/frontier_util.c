@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "frontier_util.h"
 #include "easy_chat.h"
 #include "event_data.h"
@@ -91,6 +92,7 @@ static void GiveFacilitySymbol(void);
 static void CheckBattleTypeFlag(void);
 static void CheckPartyIneligibility(void);
 static void ValidateVisitingTrainer(void);
+static bool32 IsFrontierSpeciesBanEnforced(enum FrontierLevelMode lvlMode);
 static void IncrementWinStreak(void);
 static void RestoreHeldItems(void);
 static void SaveRecordBattle(void);
@@ -767,8 +769,8 @@ static const u8 sBattlePointAwards[NUM_FRONTIER_FACILITIES][FRONTIER_MODE_COUNT]
     },
     [FRONTIER_FACILITY_FACTORY] =
     {
-        [FRONTIER_MODE_SINGLES]     = {  3,  3,  4,  4,  5,  5,  6,  6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 15, 15, 15, 15 },
-        [FRONTIER_MODE_DOUBLES]     = {  4,  4,  5,  5,  6,  6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 15, 15, 15, 15, 15, 15 },
+        [FRONTIER_MODE_SINGLES]     = {  5,  5,  6,  6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15 },
+        [FRONTIER_MODE_DOUBLES]     = {  5,  5,  6,  6,  7,  7,  8,  8,  9,  9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15 },
     },
     [FRONTIER_FACILITY_PIKE] =
     {
@@ -1853,6 +1855,7 @@ static void CheckPutFrontierTVShowOnAir(void)
                 else
                     TryPutFrontierTVShowOnAir(gSaveBlock2Ptr->frontier.factoryWinStreaks[battleMode][lvlMode], FRONTIER_SHOW_FACTORY_DOUBLES);
             }
+            Achievement_CheckAll();
         }
         break;
     case FRONTIER_FACILITY_PIKE:
@@ -2265,6 +2268,11 @@ static void CheckBattleTypeFlag(void)
         gSpecialVar_Result = FALSE;
 }
 
+static bool32 IsFrontierSpeciesBanEnforced(enum FrontierLevelMode lvlMode)
+{
+    return lvlMode != FRONTIER_LVL_OPEN;
+}
+
 static void AppendCaughtBannedMonSpeciesName(u16 species, u8 count, s32 numBannedMonsCaught)
 {
     if (count == 1)
@@ -2285,12 +2293,11 @@ static void AppendIfValid(u16 species, u16 heldItem, u16 hp, enum FrontierLevelM
     s32 i = 0;
 
     (void)hp;
-    (void)lvlMode;
     (void)monLevel;
 
     if (species == SPECIES_EGG || species == SPECIES_NONE)
         return;
-    if (gSpeciesInfo[species].isFrontierBanned)
+    if (IsFrontierSpeciesBanEnforced(lvlMode) && gSpeciesInfo[GET_BASE_SPECIES_ID(species)].isFrontierBanned)
         return;
 
     for (i = 0; i < *count && speciesArray[i] != species; i++)
@@ -2392,7 +2399,7 @@ static void CheckPartyIneligibility(void)
             if (!IsSpeciesEnabled(i))
                 continue;
             baseSpecies = GET_BASE_SPECIES_ID(i);
-            if (baseSpecies == i && gSpeciesInfo[baseSpecies].isFrontierBanned)
+            if (IsFrontierSpeciesBanEnforced(gSpecialVar_Result) && baseSpecies == i && gSpeciesInfo[baseSpecies].isFrontierBanned)
             {
                 if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(baseSpecies), FLAG_GET_CAUGHT))
                     totalCaughtBanned++;
@@ -2404,7 +2411,7 @@ static void CheckPartyIneligibility(void)
             u16 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG);
             if (species == SPECIES_EGG || species == SPECIES_NONE)
                 continue;
-            if (gSpeciesInfo[GET_BASE_SPECIES_ID(species)].isFrontierBanned)
+            if (IsFrontierSpeciesBanEnforced(gSpecialVar_Result) && gSpeciesInfo[GET_BASE_SPECIES_ID(species)].isFrontierBanned)
             {
                 bool32 addToList = TRUE;
                 for (j = 0; j < totalPartyBanned; j++)
@@ -2463,6 +2470,7 @@ static void IncrementWinStreak(void)
         if (gSaveBlock2Ptr->frontier.towerWinStreaks[battleMode][lvlMode] < MAX_STREAK)
         {
             gSaveBlock2Ptr->frontier.towerWinStreaks[battleMode][lvlMode]++;
+            Achievement_CheckAll();
             if (battleMode == FRONTIER_MODE_SINGLES)
             {
                 SetGameStat(GAME_STAT_BATTLE_TOWER_SINGLES_STREAK, gSaveBlock2Ptr->frontier.towerWinStreaks[battleMode][lvlMode]);
@@ -2486,7 +2494,10 @@ static void IncrementWinStreak(void)
         break;
     case FRONTIER_FACILITY_FACTORY:
         if (gSaveBlock2Ptr->frontier.factoryWinStreaks[battleMode][lvlMode] < MAX_STREAK)
+        {
             gSaveBlock2Ptr->frontier.factoryWinStreaks[battleMode][lvlMode]++;
+            Achievement_CheckAll();
+        }
         break;
     case FRONTIER_FACILITY_PIKE:
         if (gSaveBlock2Ptr->frontier.pikeWinStreaks[lvlMode] < MAX_STREAK)
@@ -2494,7 +2505,10 @@ static void IncrementWinStreak(void)
         break;
     case FRONTIER_FACILITY_PYRAMID:
         if (gSaveBlock2Ptr->frontier.pyramidWinStreaks[lvlMode] < MAX_STREAK)
+        {
             gSaveBlock2Ptr->frontier.pyramidWinStreaks[lvlMode]++;
+            Achievement_CheckAll();
+        }
         break;
     }
 }
@@ -3606,6 +3620,10 @@ static u16 *MakeCaughtBannesSpeciesList(u32 totalBannedSpecies)
 {
     u32 count = 0;
     u16 *list = AllocZeroed(sizeof(u16) * totalBannedSpecies);
+
+    if (!IsFrontierSpeciesBanEnforced(gSaveBlock2Ptr->frontier.lvlMode))
+        return list;
+
     for (u32 i = 0; i < NUM_SPECIES; i++)
     {
         if (!IsSpeciesEnabled(i))

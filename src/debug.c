@@ -3758,6 +3758,19 @@ static bool8 Debug_TryAdvanceToEnabledSpecies(u16 *species)
     return FALSE;
 }
 
+static bool8 Debug_TryAdvanceToNextEnabledSpecies(u16 *species)
+{
+    (*species)++;
+    if (*species >= NUM_SPECIES)
+        *species = 1;
+
+    if (Debug_TryAdvanceToEnabledSpecies(species))
+        return TRUE;
+
+    *species = 1;
+    return Debug_TryAdvanceToEnabledSpecies(species);
+}
+
 static void DebugAction_PCBag_Fill_PCBoxes_Fast(u8 taskId) //Credit: Sierraffinity
 {
     int boxId, boxPosition;
@@ -3774,7 +3787,7 @@ static void DebugAction_PCBag_Fill_PCBoxes_Fast(u8 taskId) //Credit: Sierraffini
 
     for (boxId = 0; boxId < TOTAL_BOXES_COUNT && species < NUM_SPECIES; boxId++)
     {
-        for (boxPosition = 0; boxPosition < IN_BOX_COUNT && Debug_TryAdvanceToEnabledSpecies(&species); boxPosition++, species++)
+        for (boxPosition = 0; boxPosition < IN_BOX_COUNT && Debug_TryAdvanceToEnabledSpecies(&species); boxPosition++)
         {
             if (!GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SANITY_HAS_SPECIES))
             {
@@ -3797,6 +3810,8 @@ static void DebugAction_PCBag_Fill_PCBoxes_Fast(u8 taskId) //Credit: Sierraffini
                 species = SPECIES_VENUSAUR_GMAX - 1;
             if (species == SPECIES_URSHIFU_RAPID_STRIKE_GMAX)
                 return;
+
+            species++;
         }
     }
 
@@ -3811,8 +3826,11 @@ static void DebugAction_PCBag_Fill_PCBoxes_Slow(u8 taskId)
 {
     int boxId, boxPosition;
     struct BoxPokemon boxMon;
-    u32 species = SPECIES_BULBASAUR;
+    u16 species = SPECIES_BULBASAUR;
     bool8 spaceAvailable = FALSE;
+
+    if (!Debug_TryAdvanceToEnabledSpecies(&species))
+        goto done;
 
     for (boxId = 0; boxId < TOTAL_BOXES_COUNT; boxId++)
     {
@@ -3826,12 +3844,14 @@ static void DebugAction_PCBag_Fill_PCBoxes_Slow(u8 taskId)
                 SetBoxMonIVs(&boxMon, USE_RANDOM_IVS);
                 GiveBoxMonInitialMoveset(&boxMon);
                 gPokemonStoragePtr->boxes[boxId][boxPosition] = boxMon;
-                species = (species < NUM_SPECIES - 1) ? species + 1 : 1;
+                if (!Debug_TryAdvanceToNextEnabledSpecies(&species))
+                    goto done;
                 spaceAvailable = TRUE;
             }
         }
     }
 
+done:
     // Set flag for user convenience
     FlagSet(FLAG_SYS_POKEMON_GET);
     if (spaceAvailable)

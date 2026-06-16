@@ -528,6 +528,7 @@ static void Task_DisplayGaveMailFromBagMessage(u8);
 static void Task_HandleSwitchItemsFromBagYesNoInput(u8);
 static void Task_ValidateChosenHalfParty(u8);
 static bool8 GetBattleEntryEligibility(struct Pokemon *);
+static bool8 IsFrontierSpeciesBanEnforcedForBattleEntry(void);
 static bool8 HasPartySlotAlreadyBeenSelected(u8);
 static u8 GetBattleEntryLevelCap(void);
 static u8 GetMaxBattleEntries(void);
@@ -9426,10 +9427,15 @@ static bool8 GetBattleEntryEligibility(struct Pokemon *mon)
         return TRUE;
     default: // Battle Frontier
         species = GetMonData(mon, MON_DATA_SPECIES);
-        if (gSpeciesInfo[species].isFrontierBanned)
+        if (IsFrontierSpeciesBanEnforcedForBattleEntry() && gSpeciesInfo[GET_BASE_SPECIES_ID(species)].isFrontierBanned)
             return FALSE;
         return TRUE;
     }
+}
+
+static bool8 IsFrontierSpeciesBanEnforcedForBattleEntry(void)
+{
+    return gSaveBlock2Ptr->frontier.lvlMode != FRONTIER_LVL_OPEN;
 }
 
 static const u8 *CheckBattleEntriesAndGetMessage(void)
