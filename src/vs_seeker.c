@@ -692,8 +692,8 @@ static bool32 IsRegularWaterTrainer(u8 graphicsId)
     u32 i;
     u16 regularTrainersInWater[] =
     {
-        OBJ_EVENT_GFX_SWIMMER_F,
-        OBJ_EVENT_GFX_SWIMMER_M,
+        OBJ_EVENT_GFX_SWIMMER_F_WATER,
+        OBJ_EVENT_GFX_SWIMMER_M_WATER,
         OBJ_EVENT_GFX_TUBER_M_SWIMMING
     };
 

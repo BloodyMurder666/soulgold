@@ -222,18 +222,20 @@ GoldenrodDept5FMart::
 # 124 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
 Goldenrod_F5_TMMart:
 # 125 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
-	.2byte ITEM_TM_REFLECT
+	.2byte ITEM_TM_PROTECT
 # 126 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
-	.2byte ITEM_TM_LIGHT_SCREEN
+	.2byte ITEM_TM_REFLECT
 # 127 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
-	.2byte ITEM_TM_SAFEGUARD
+	.2byte ITEM_TM_LIGHT_SCREEN
 # 128 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
-	.2byte ITEM_TM_FIRE_PUNCH
+	.2byte ITEM_TM_SAFEGUARD
 # 129 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
-	.2byte ITEM_TM_ICE_PUNCH
+	.2byte ITEM_TM_FIRE_PUNCH
 # 130 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
-	.2byte ITEM_TM_THUNDER_PUNCH
+	.2byte ITEM_TM_ICE_PUNCH
 # 131 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
+	.2byte ITEM_TM_THUNDER_PUNCH
+# 132 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
 	.2byte ITEM_TM_HYPER_BEAM
 	.2byte ITEM_NONE
 

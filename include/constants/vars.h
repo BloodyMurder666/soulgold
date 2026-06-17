@@ -184,8 +184,8 @@
 #define VAR_SAFARI_ZONE_STATE                            0x40A4  // 0: In or out of SZ, 1: Player exiting SZ, 2: Player entering SZ
 #define VAR_TRICK_HOUSE_BEING_WATCHED_STATE              0x40A5
 #define VAR_TRICK_HOUSE_FOUND_TRICK_MASTER               0x40A6
-#define VAR_TRICK_HOUSE_ENTRANCE_STATE                   0x40A7
-#define VAR_MT_PYRE_STATE                                0x40A8 
+#define VAR_MTMORTAR_DEPTHS_HEATRAN_BUTTONS              0x40A7
+#define VAR_MTMORTAR_DEPTHS_FIRETITE_BUTTONS             0x40A8 
 #define VAR_CYCLING_CHALLENGE_STATE                      0x40A9
 #define VAR_SLATEPORT_MUSEUM_1F_STATE                    0x40AA
 #define VAR_TRICK_HOUSE_PUZZLE_1_STATE                   0x40AB

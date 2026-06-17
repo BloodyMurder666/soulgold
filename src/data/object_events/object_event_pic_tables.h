@@ -209,8 +209,16 @@ static const struct SpriteFrameImage sPicTable_SwimmerM[] = {
     overworld_ascending_frames(gObjectEventPic_SwimmerM, 2, 4),
 };
 
+static const struct SpriteFrameImage sPicTable_SwimmerMLand[] = {
+    overworld_ascending_frames(gObjectEventPic_SwimmerMLand, 2, 4),
+};
+
 static const struct SpriteFrameImage sPicTable_SwimmerF[] = {
     overworld_ascending_frames(gObjectEventPic_SwimmerF, 2, 4),
+};
+
+static const struct SpriteFrameImage sPicTable_SwimmerFLand[] = {
+    overworld_ascending_frames(gObjectEventPic_SwimmerFLand, 2, 4),
 };
 
 static const struct SpriteFrameImage sPicTable_BlackBelt[] = {

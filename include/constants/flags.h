@@ -1575,11 +1575,16 @@
 #define FLAG_SNOWTOP_FLING                          0x923
 #define FLAG_SNOWTOP_CALCIUM_EX                     0x924
 #define FLAG_SNOWTOP_REGICE_DOOR                    0x925
-#define FLAG_0x926                                  0x926
-#define FLAG_0x927                                  0x927
-#define FLAG_0x928                                  0x928
-#define FLAG_0x929                                  0x929
-#define FLAG_0x92A                                  0x92A
+#define FLAG_MTMORTAR_DEPTHS_FIRETITE               0x926
+#define FLAG_MTMORTAR_DEPTHS_FIRE_BLAST_TM          0x927
+#define FLAG_MTMORTAR_DEPTHS_ITEM1                  0x928
+#define FLAG_MTMORTAR_DEPTHS_ITEM2                  0x929
+#define FLAG_MTMORTAR_DEPTHS_PUZZLE1SOLVED          0x92A
+#define FLAG_MTMORTAR_DEPTHS_HEATRANPUZZLED         0X92B
+#define FLAG_WRONG_BUTTON_HEATRAN                   0X92C
+#define FLAG_HIDE_HEATRAN                           0X92D
+#define FLAG_TM_SCALD                               0X92E
+#define FLAG_TM_WORK_UP                             0X92F
 
 #define FLAG_0x1500                                 0x1500
 // Daily Flags

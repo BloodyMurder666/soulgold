@@ -5004,7 +5004,7 @@
     {
       "id": "LAYOUT_ROUTE40",
       "name": "Route40_Layout",
-      "width": 34,
+      "width": 55,
       "height": 56,
       "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_OlivineCity",
@@ -9253,7 +9253,7 @@
       "width": 16,
       "height": 15,
       "primary_tileset": "gTileset_Kanto_General",
-      "secondary_tileset": "gTileset_MtEmber",
+      "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/MtEmber_RubyPath_B5F_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/MtEmber_RubyPath_B5F_Frlg/map.bin",
       "border_height": 2,
@@ -9616,6 +9616,46 @@
       "secondary_tileset": "gTileset_Lighthouse",
       "border_filepath": "data/layouts/OlivineCity_LighthouseTop/border.bin",
       "blockdata_filepath": "data/layouts/OlivineCity_LighthouseTop/map.bin"
+    },
+    {
+      "id": "LAYOUT_MT_MORTAR_DEPTHS_1",
+      "name": "MtMortar_Depths_1_Layout",
+      "width": 56,
+      "height": 42,
+      "primary_tileset": "gTileset_Johto_NorthEast",
+      "secondary_tileset": "gTileset_MtEmber",
+      "border_filepath": "data/layouts/MtMortar_Depths_1/border.bin",
+      "blockdata_filepath": "data/layouts/MtMortar_Depths_1/map.bin"
+    },
+    {
+      "id": "LAYOUT_MT_MORTAR_DEPTHS_HEATRAN_ROOM",
+      "name": "MtMortar_Depths_HeatranRoom_Layout",
+      "width": 12,
+      "height": 12,
+      "primary_tileset": "gTileset_Johto_NorthEast",
+      "secondary_tileset": "gTileset_MtEmber",
+      "border_filepath": "data/layouts/MtMortar_Depths_HeatranRoom/border.bin",
+      "blockdata_filepath": "data/layouts/MtMortar_Depths_HeatranRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE40_HOUSE4",
+      "name": "Route40_House4_Layout",
+      "width": 13,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Building",
+      "secondary_tileset": "gTileset_House_Lab",
+      "border_filepath": "data/layouts/Route40_House4/border.bin",
+      "blockdata_filepath": "data/layouts/Route40_House4/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE40_HOUSE5",
+      "name": "Route40_House5_Layout",
+      "width": 13,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Building",
+      "secondary_tileset": "gTileset_House_Lab",
+      "border_filepath": "data/layouts/Route40_House5/border.bin",
+      "blockdata_filepath": "data/layouts/Route40_House5/map.bin"
     }
   ]
 }

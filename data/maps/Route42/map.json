@@ -104,7 +104,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(REMORAID)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(IMPIDIMP)",
       "x": 25,
       "y": 22,
       "elevation": 0,
@@ -117,7 +117,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(REMORAID)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(IMPIDIMP)",
       "x": 27,
       "y": 23,
       "elevation": 0,
@@ -130,20 +130,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(HERACROSS)",
-      "x": 49,
-      "y": 21,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(FEAROW)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(EMOLGA)",
       "x": 31,
       "y": 4,
       "elevation": 0,
@@ -156,7 +143,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(RATICATE)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SKORUPI)",
       "x": 51,
       "y": 6,
       "elevation": 0,
@@ -169,7 +156,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ARBOK)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(IMPIDIMP)",
       "x": 46,
       "y": 19,
       "elevation": 0,
@@ -195,7 +182,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GLIGAR)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(DRIFLOON)",
       "x": 60,
       "y": 22,
       "elevation": 0,
@@ -208,7 +195,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GLIGAR)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(DRIFLOON)",
       "x": 71,
       "y": 17,
       "elevation": 0,

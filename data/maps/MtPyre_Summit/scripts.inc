@@ -3,7 +3,7 @@ MtPyre_Summit_MapScripts::
 	.byte 0
 
 MtPyre_Summit_OnTransition:
-	call_if_eq VAR_MT_PYRE_STATE, 2, MtPyre_Summit_EventScript_SetArchieMaxiePositions
+	call_if_eq VAR_GARBAGEVAR, 2, MtPyre_Summit_EventScript_SetArchieMaxiePositions
 	end
 
 MtPyre_Summit_EventScript_SetArchieMaxiePositions::
@@ -52,7 +52,7 @@ MtPyre_Summit_EventScript_TeamAquaExits::
 	fadedefaultbgm
 	fadescreenswapbuffers FADE_FROM_BLACK
 	delay 20
-	setvar VAR_MT_PYRE_STATE, 1
+	setvar VAR_GARBAGEVAR, 1
 	call_if_eq VAR_0x8008, 0, MtPyre_Summit_EventScript_OldLadyApproachPlayer0
 	call_if_eq VAR_0x8008, 1, MtPyre_Summit_EventScript_OldLadyApproachPlayer1
 	call_if_eq VAR_0x8008, 2, MtPyre_Summit_EventScript_OldLadyApproachPlayer2
@@ -155,7 +155,7 @@ MtPyre_Summit_EventScript_OldLady::
 	lock
 	faceplayer
 	goto_if_set FLAG_RETURNED_RED_OR_BLUE_ORB, MtPyre_Summit_EventScript_OldLadyAfterOrbsReturned
-	call_if_ge VAR_MT_PYRE_STATE, 3, MtPyre_Summit_EventScript_OldLadyOrbsReturned
+	call_if_ge VAR_GARBAGEVAR, 3, MtPyre_Summit_EventScript_OldLadyOrbsReturned
 	goto_if_set FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, MtPyre_Summit_EventScript_OldLadyLegendariesAwake
 	msgbox MtPyre_Summit_Text_OrbsHaveBeenTaken, MSGBOX_DEFAULT
 	release
@@ -222,7 +222,7 @@ MtPyre_Summit_EventScript_ArchieMaxieReturnOrbs::
 	waitmovement 0
 	removeobject LOCALID_MT_PYRE_SUMMIT_ARCHIE
 	removeobject LOCALID_MT_PYRE_SUMMIT_MAXIE
-	setvar VAR_MT_PYRE_STATE, 3
+	setvar VAR_GARBAGEVAR, 3
 	releaseall
 	end
 

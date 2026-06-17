@@ -195,6 +195,27 @@
       "elevation": 0,
       "dest_map": "MAP_MT_MORTAR_B1F",
       "dest_warp_id": "1"
+    },
+    {
+      "x": 39,
+      "y": 12,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MORTAR_1F_SOUTH",
+      "dest_warp_id": "10"
+    },
+    {
+      "x": 66,
+      "y": 50,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MORTAR_1F_SOUTH",
+      "dest_warp_id": "9"
+    },
+    {
+      "x": 66,
+      "y": 47,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MORTAR_DEPTHS_1",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],

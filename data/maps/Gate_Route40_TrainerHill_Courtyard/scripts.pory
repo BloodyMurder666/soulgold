@@ -1,0 +1,26 @@
+raw `
+Gate_Route40_TrainerHill_Courtyard_MapScripts::
+	.byte 0
+`
+
+script BattleTowerGuard {
+    msgbox("Ahead is the Battle Tower, where strong
+            trainers gather.", MSGBOX_NPC)
+}
+
+script BattleTowerTunnelFrustrationNPC {
+    lock
+    faceplayer
+    if (flag(FLAG_GOT_FRUSTRATION) == FALSE) {
+        msgbox("I lost on first round of the Battle
+            Tower, I need to release my frustration
+            by giving you this.")
+        giveitem(ITEM_TM_FRUSTRATION)
+        setflag(FLAG_GOT_FRUSTRATION)
+    }
+    msgbox("Frustration deals more damage the less
+            your Pokémon likes you. It can happen
+            if you keep losing battles like me!")
+    release
+    end
+}

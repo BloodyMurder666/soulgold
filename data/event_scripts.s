@@ -2257,3 +2257,11 @@ Common_Text_ReceivedMon:
 	.include "data/maps/MtSilver_1F_RegigigasRoom/scripts.inc"
 
 	.include "data/maps/BlackthornCave/scripts.inc"
+
+	.include "data/maps/MtMortar_Depths_1/scripts.inc"
+
+	.include "data/maps/MtMortar_Depths_HeatranRoom/scripts.inc"
+
+	.include "data/maps/Route40_House4/scripts.inc"
+
+	.include "data/maps/Route40_House5/scripts.inc"

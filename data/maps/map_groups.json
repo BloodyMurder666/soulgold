@@ -216,7 +216,9 @@
     "OlivineCity_PortOutside",
     "OlivineCity_PortInside",
     "OlivineCity_Lighthouse",
-    "OlivineCity_LighthouseTop"
+    "OlivineCity_LighthouseTop",
+    "Route40_House4",
+    "Route40_House5"
   ],
   "gMapGroup_IndoorCianwood": [
     "CianwoodPokecenter",
@@ -553,7 +555,9 @@
     "RailwayCave_2F",
     "RailwayCave_3F",
     "RailwayCave_Registeel_Room",
-    "BlackthornCave"
+    "BlackthornCave",
+    "MtMortar_Depths_1",
+    "MtMortar_Depths_HeatranRoom"
   ],
   "gMapGroup_JohtoDiveMaps": [
     "CherrygroveUnderwater"

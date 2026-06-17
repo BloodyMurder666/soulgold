@@ -136,7 +136,7 @@
 #define P_FAMILY_CHIKORITA               P_GEN_2_POKEMON
 #define P_FAMILY_CYNDAQUIL               P_GEN_2_POKEMON
 #define P_FAMILY_TOTODILE                P_GEN_2_POKEMON
-#define P_FAMILY_SENTRET                 P_GEN_2_POKEMON
+#define P_FAMILY_SENTRET                 FALSE
 #define P_FAMILY_HOOTHOOT                P_GEN_2_POKEMON
 #define P_FAMILY_LEDYBA                  FALSE
 #define P_FAMILY_SPINARAK                P_GEN_2_POKEMON
@@ -175,7 +175,7 @@
 #define P_FAMILY_HOUNDOUR                P_GEN_2_POKEMON
 #define P_FAMILY_PHANPY                  P_GEN_2_POKEMON
 #define P_FAMILY_STANTLER                P_GEN_2_POKEMON
-#define P_FAMILY_SMEARGLE                FALSE
+#define P_FAMILY_SMEARGLE                P_GEN_2_POKEMON
 #define P_FAMILY_MILTANK                 P_GEN_2_POKEMON
 #define P_FAMILY_RAIKOU                  P_GEN_2_POKEMON
 #define P_FAMILY_ENTEI                   P_GEN_2_POKEMON
@@ -368,7 +368,7 @@
 #define P_FAMILY_PAWNIARD                P_GEN_5_POKEMON
 #define P_FAMILY_BOUFFALANT              FALSE
 #define P_FAMILY_RUFFLET                 P_GEN_5_POKEMON
-#define P_FAMILY_VULLABY                 FALSE
+#define P_FAMILY_VULLABY                 P_GEN_5_POKEMON
 #define P_FAMILY_HEATMOR                 FALSE
 #define P_FAMILY_DURANT                  FALSE
 #define P_FAMILY_DEINO                   P_GEN_5_POKEMON

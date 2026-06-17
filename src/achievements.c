@@ -41,6 +41,7 @@ static bool32 Achievement_PredicateCaughtRegisteel(void);
 static bool32 Achievement_PredicateCaughtRegirock(void);
 static bool32 Achievement_PredicateCaughtRegigigas(void);
 static bool32 Achievement_PredicateCaughtChienPao(void);
+static bool32 Achievement_PredicateCaughtHeatran(void);
 static bool32 Achievement_PredicateCaughtOgerpon(void);
 static bool32 Achievement_PredicateCaughtMesprit(void);
 static bool32 Achievement_PredicateCaughtUxie(void);
@@ -181,6 +182,8 @@ static const u8 sText_AchCatchRegigigasName[] = _("Ancient awakened");
 static const u8 sText_AchCatchRegigigasDesc[] = _("Catch Regigigas.");
 static const u8 sText_AchCatchChienPaoName[] = _("Ruinous blade");
 static const u8 sText_AchCatchChienPaoDesc[] = _("Catch Chien-Pao.");
+static const u8 sText_AchCatchHeatranName[] = _("Face of Heat");
+static const u8 sText_AchCatchHeatranDesc[] = _("Catch Heatran.");
 static const u8 sText_AchCatchOgerponName[] = _("Masked friend");
 static const u8 sText_AchCatchOgerponDesc[] = _("Catch Ogerpon.");
 static const u8 sText_AchCatchMespritName[] = _("Being of emotion");
@@ -190,9 +193,9 @@ static const u8 sText_AchCatchUxieDesc[] = _("Catch Uxie.");
 static const u8 sText_AchCatchAzelfName[] = _("Being of willpower");
 static const u8 sText_AchCatchAzelfDesc[] = _("Catch Azelf.");
 static const u8 sText_AchCatchLaprasName[] = _("Gentle voyager");
-static const u8 sText_AchCatchLaprasDesc[] = _("Catch Lapras.");
+static const u8 sText_AchCatchLaprasDesc[] = _("Catch Lapras in Union Cave.");
 static const u8 sText_AchObtainVictiniName[] = _("Star of victory");
-static const u8 sText_AchObtainVictiniDesc[] = _("Obtain Victini.");
+static const u8 sText_AchObtainVictiniDesc[] = _("Obtain Victini for overcoming\nall gym leaders in rematches.");
 static const u8 sText_AchDefeatStevenName[] = _("Mineralogy");
 static const u8 sText_AchDefeatStevenDesc[] = _("Defeat Champion from another\nregion.");
 
@@ -266,6 +269,7 @@ static const struct Achievement sAchievements[] =
     {ACH_CATCH_REGIROCK, sText_AchCatchRegirockName, sText_AchCatchRegirockDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRegirock},
     {ACH_CATCH_REGIGIGAS, sText_AchCatchRegigigasName, sText_AchCatchRegigigasDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRegigigas},
     {ACH_CATCH_CHIEN_PAO, sText_AchCatchChienPaoName, sText_AchCatchChienPaoDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtChienPao},
+    {ACH_CATCH_HEATRAN, sText_AchCatchHeatranName, sText_AchCatchHeatranDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtHeatran},
     {ACH_CATCH_OGERPON, sText_AchCatchOgerponName, sText_AchCatchOgerponDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtOgerpon},
     {ACH_CATCH_MESPRIT, sText_AchCatchMespritName, sText_AchCatchMespritDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMesprit},
     {ACH_CATCH_UXIE, sText_AchCatchUxieName, sText_AchCatchUxieDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtUxie},
@@ -458,6 +462,11 @@ static bool32 Achievement_PredicateCaughtRegigigas(void)
 static bool32 Achievement_PredicateCaughtChienPao(void)
 {
     return Achievement_PredicateCaughtSpecies(SPECIES_CHIEN_PAO);
+}
+
+static bool32 Achievement_PredicateCaughtHeatran(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_HEATRAN);
 }
 
 static bool32 Achievement_PredicateCaughtOgerpon(void)

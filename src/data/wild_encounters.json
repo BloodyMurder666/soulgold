@@ -174,7 +174,7 @@
               {
                 "min_level": 2,
                 "max_level": 3,
-                "species": "SPECIES_SENTRET"
+                "species": "SPECIES_RATTATA"
               },
               {
                 "min_level": 2,
@@ -189,7 +189,7 @@
               {
                 "min_level": 2,
                 "max_level": 3,
-                "species": "SPECIES_SENTRET"
+                "species": "SPECIES_HOOTHOOT"
               },
               {
                 "min_level": 2,
@@ -1883,7 +1883,7 @@
               {
                 "min_level": 22,
                 "max_level": 22,
-                "species": "SPECIES_ONIX"
+                "species": "SPECIES_DIGLETT"
               },
               {
                 "min_level": 25,
@@ -1898,17 +1898,17 @@
               {
                 "min_level": 22,
                 "max_level": 22,
-                "species": "SPECIES_ONIX"
+                "species": "SPECIES_DIGLETT"
               },
               {
                 "min_level": 25,
                 "max_level": 25,
-                "species": "SPECIES_TORKOAL"
+                "species": "SPECIES_BALTOY"
               },
               {
                 "min_level": 22,
                 "max_level": 22,
-                "species": "SPECIES_TORKOAL"
+                "species": "SPECIES_BALTOY"
               },
               {
                 "min_level": 21,
@@ -3896,7 +3896,7 @@
               {
                 "min_level": 25,
                 "max_level": 25,
-                "species": "SPECIES_SANDILE"
+                "species": "SPECIES_BINACLE"
               }
             ]
           },
@@ -6228,7 +6228,7 @@
               {
                 "min_level": 25,
                 "max_level": 27,
-                "species": "SPECIES_FURRET"
+                "species": "SPECIES_SOLOSIS"
               },
               {
                 "min_level": 25,
@@ -6248,7 +6248,7 @@
               {
                 "min_level": 25,
                 "max_level": 27,
-                "species": "SPECIES_FURRET"
+                "species": "SPECIES_SOLOSIS"
               },
               {
                 "min_level": 25,
@@ -13535,6 +13535,75 @@
                 "min_level": 26,
                 "max_level": 29,
                 "species": "SPECIES_PIKACHU"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_MT_MORTAR_DEPTHS_1",
+          "base_label": "gMtMortar_Depths_1",
+          "land_mons": {
+            "encounter_rate": 6,
+            "mons": [
+              {
+                "min_level": 43,
+                "max_level": 50,
+                "species": "SPECIES_LAMPENT"
+              },
+              {
+                "min_level": 43,
+                "max_level": 50,
+                "species": "SPECIES_NUMEL"
+              },
+              {
+                "min_level": 43,
+                "max_level": 50,
+                "species": "SPECIES_LAMPENT"
+              },
+              {
+                "min_level": 44,
+                "max_level": 50,
+                "species": "SPECIES_NUMEL"
+              },
+              {
+                "min_level": 44,
+                "max_level": 50,
+                "species": "SPECIES_MAGMAR"
+              },
+              {
+                "min_level": 44,
+                "max_level": 50,
+                "species": "SPECIES_DARMANITAN"
+              },
+              {
+                "min_level": 45,
+                "max_level": 50,
+                "species": "SPECIES_MAGMAR"
+              },
+              {
+                "min_level": 45,
+                "max_level": 50,
+                "species": "SPECIES_DARMANITAN"
+              },
+              {
+                "min_level": 45,
+                "max_level": 50,
+                "species": "SPECIES_CAMERUPT"
+              },
+              {
+                "min_level": 45,
+                "max_level": 50,
+                "species": "SPECIES_TORKOAL"
+              },
+              {
+                "min_level": 45,
+                "max_level": 50,
+                "species": "SPECIES_CAMERUPT"
+              },
+              {
+                "min_level": 45,
+                "max_level": 50,
+                "species": "SPECIES_TORKOAL"
               }
             ]
           }

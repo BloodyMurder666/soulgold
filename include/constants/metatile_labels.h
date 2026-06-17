@@ -455,7 +455,10 @@
 #define METATILE_MossdeepGym_YellowArrow_Right  0x250
 
 // gTileset_MtEmber
-#define METATILE_MtEmber_CaveEntrance  0x4C6
+#define METATILE_MtEmber_ButtonActive    0x4F3
+#define METATILE_MtEmber_ButtonInactive  0x4E3
+#define METATILE_MtEmber_CaveEntrance    0x4C6
+#define METATILE_MtEmber_MtEmberButton   0x440
 
 // gTileset_NewBarkTown
 #define METATILE_NewBarkTown_Door_Blue    0x44B

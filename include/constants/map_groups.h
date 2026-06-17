@@ -193,6 +193,8 @@ enum
     MAP_OLIVINE_CITY_PORT_INSIDE    = (8 | (7 << 8)),
     MAP_OLIVINE_CITY_LIGHTHOUSE     = (9 | (7 << 8)),
     MAP_OLIVINE_CITY_LIGHTHOUSE_TOP = (10 | (7 << 8)),
+    MAP_ROUTE40_HOUSE4              = (11 | (7 << 8)),
+    MAP_ROUTE40_HOUSE5              = (12 | (7 << 8)),
 
     // gMapGroup_IndoorCianwood
     MAP_CIANWOOD_POKECENTER = (0 | (8 << 8)),
@@ -518,18 +520,20 @@ enum
     MAP_MT_SILVER_1F_REGIGIGAS_ROOM              = (119 | (24 << 8)),
 
     // gMapGroup_Dungeons2
-    MAP_ACUITY_CAVERN               = (0 | (25 << 8)),
-    MAP_VALOR_CAVERN                = (1 | (25 << 8)),
-    MAP_VERITY_CAVERN               = (2 | (25 << 8)),
-    MAP_RAILWAY_CAVE                = (3 | (25 << 8)),
-    MAP_REGIROCK_CHAMBER            = (4 | (25 << 8)),
-    MAP_SNOWTOP_MOUNTAIN            = (5 | (25 << 8)),
-    MAP_SNOWTOP_MOUNTAIN_B1F        = (6 | (25 << 8)),
-    MAP_SNOWTOP_MOUNTAIN_B1F_2      = (7 | (25 << 8)),
-    MAP_RAILWAY_CAVE_2F             = (8 | (25 << 8)),
-    MAP_RAILWAY_CAVE_3F             = (9 | (25 << 8)),
-    MAP_RAILWAY_CAVE_REGISTEEL_ROOM = (10 | (25 << 8)),
-    MAP_BLACKTHORN_CAVE             = (11 | (25 << 8)),
+    MAP_ACUITY_CAVERN                 = (0 | (25 << 8)),
+    MAP_VALOR_CAVERN                  = (1 | (25 << 8)),
+    MAP_VERITY_CAVERN                 = (2 | (25 << 8)),
+    MAP_RAILWAY_CAVE                  = (3 | (25 << 8)),
+    MAP_REGIROCK_CHAMBER              = (4 | (25 << 8)),
+    MAP_SNOWTOP_MOUNTAIN              = (5 | (25 << 8)),
+    MAP_SNOWTOP_MOUNTAIN_B1F          = (6 | (25 << 8)),
+    MAP_SNOWTOP_MOUNTAIN_B1F_2        = (7 | (25 << 8)),
+    MAP_RAILWAY_CAVE_2F               = (8 | (25 << 8)),
+    MAP_RAILWAY_CAVE_3F               = (9 | (25 << 8)),
+    MAP_RAILWAY_CAVE_REGISTEEL_ROOM   = (10 | (25 << 8)),
+    MAP_BLACKTHORN_CAVE               = (11 | (25 << 8)),
+    MAP_MT_MORTAR_DEPTHS_1            = (12 | (25 << 8)),
+    MAP_MT_MORTAR_DEPTHS_HEATRAN_ROOM = (13 | (25 << 8)),
 
     // gMapGroup_JohtoDiveMaps
     MAP_CHERRYGROVE_UNDERWATER = (0 | (26 << 8)),

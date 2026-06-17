@@ -4,7 +4,7 @@ Route110_TrickHouseEntrance_MapScripts::
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, Route110_TrickHouseEntrance_OnWarp
 	.byte 0
 
-	@ State descriptions for VAR_TRICK_HOUSE_ENTRANCE_STATE
+	@ State descriptions for VAR_GARBAGEVAR
 	@ 0: Trick Master is hiding
 	@ 1: Trick Master has left at start of challenge
 	@ 2: Trick Master ready to give normal reward from previous challenge (if bag was full)
@@ -18,10 +18,10 @@ Route110_TrickHouseEntrance_OnTransition:
 	goto_if_eq VAR_TRICK_HOUSE_ENTER_FROM_CORRIDOR, 1, Route110_TrickHouseEntrance_EventScript_EnterFromCorridor
 	goto_if_eq VAR_TRICK_HOUSE_PRIZE_PICKUP, 1, Route110_TrickHouseEntrance_EventScript_SetReadyToGiveReward
 	goto_if_eq VAR_TRICK_HOUSE_FOUND_TRICK_MASTER, 1, Route110_TrickHouseEntrance_EventScript_MoveTrickMasterToDoor
-	call_if_eq VAR_TRICK_HOUSE_ENTRANCE_STATE, 5, Route110_TrickHouseEntrance_EventScript_CheckReadyForNextPuzzle
-	call_if_eq VAR_TRICK_HOUSE_ENTRANCE_STATE, 3, Route110_TrickHouseEntrance_EventScript_CheckReadyForNextPuzzle
-	call_if_eq VAR_TRICK_HOUSE_ENTRANCE_STATE, 0, Route110_TrickHouseEntrance_EventScript_CheckReadyForNextPuzzle
-	switch VAR_TRICK_HOUSE_ENTRANCE_STATE
+	call_if_eq VAR_GARBAGEVAR, 5, Route110_TrickHouseEntrance_EventScript_CheckReadyForNextPuzzle
+	call_if_eq VAR_GARBAGEVAR, 3, Route110_TrickHouseEntrance_EventScript_CheckReadyForNextPuzzle
+	call_if_eq VAR_GARBAGEVAR, 0, Route110_TrickHouseEntrance_EventScript_CheckReadyForNextPuzzle
+	switch VAR_GARBAGEVAR
 	case 0, Route110_TrickHouseEntrance_EventScript_ReadyBeingWatchedTrigger
 	case 1, Route110_TrickHouseEntrance_EventScript_SetNotBeingWatched1
 	case 3, Route110_TrickHouseEntrance_EventScript_SetNotBeingWatched2
@@ -31,21 +31,21 @@ Route110_TrickHouseEntrance_OnTransition:
 Route110_TrickHouseEntrance_EventScript_SetReadyToGiveReward::
 	setvar VAR_TRICK_HOUSE_BEING_WATCHED_STATE, 1
 	goto_if_eq VAR_TRICK_HOUSE_LEVEL, 8, Route110_TrickHouseEntrance_EventScript_ReadyToGiveTentReward
-	setvar VAR_TRICK_HOUSE_ENTRANCE_STATE, 2
+	setvar VAR_GARBAGEVAR, 2
 	end
 
 Route110_TrickHouseEntrance_EventScript_ReadyToGiveTentReward::
-	setvar VAR_TRICK_HOUSE_ENTRANCE_STATE, 6
+	setvar VAR_GARBAGEVAR, 6
 	end
 
 Route110_TrickHouseEntrance_EventScript_EnterFromCorridor::
 	setvar VAR_TRICK_HOUSE_ENTER_FROM_CORRIDOR, 0
-	setvar VAR_TRICK_HOUSE_ENTRANCE_STATE, 5
+	setvar VAR_GARBAGEVAR, 5
 	setvar VAR_TRICK_HOUSE_BEING_WATCHED_STATE, 1
 	end
 
 Route110_TrickHouseEntrance_EventScript_CheckReadyForNextPuzzle::
-	setvar VAR_TRICK_HOUSE_ENTRANCE_STATE, 0
+	setvar VAR_GARBAGEVAR, 0
 	call_if_eq VAR_TRICK_HOUSE_LEVEL, 1, Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle2
 	call_if_eq VAR_TRICK_HOUSE_LEVEL, 2, Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle3
 	call_if_eq VAR_TRICK_HOUSE_LEVEL, 3, Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle4
@@ -85,11 +85,11 @@ Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle8::
 	return
 
 Route110_TrickHouseEntrance_EventScript_FinishedPuzzles::
-	setvar VAR_TRICK_HOUSE_ENTRANCE_STATE, 4
+	setvar VAR_GARBAGEVAR, 4
 	return
 
 Route110_TrickHouseEntrance_EventScript_NotReadyForPuzzle::
-	setvar VAR_TRICK_HOUSE_ENTRANCE_STATE, 3
+	setvar VAR_GARBAGEVAR, 3
 	return
 
 Route110_TrickHouseEntrance_EventScript_MoveTrickMasterToDoor::
@@ -114,13 +114,13 @@ Route110_TrickHouseEntrance_EventScript_SetNotBeingWatched3::
 
 Route110_TrickHouseEntrance_OnWarp:
 	map_script_2 VAR_TRICK_HOUSE_FOUND_TRICK_MASTER, 1, Route110_TrickHouseEntrance_EventScript_TrickMasterFound
-	map_script_2 VAR_TRICK_HOUSE_ENTRANCE_STATE, 0, Route110_TrickHouseEntrance_EventScript_SetTrickMasterHidingSpot
-	map_script_2 VAR_TRICK_HOUSE_ENTRANCE_STATE, 1, Route110_TrickHouseEntrance_EventScript_RemoveTrickMaster
-	map_script_2 VAR_TRICK_HOUSE_ENTRANCE_STATE, 2, Route110_TrickHouseEntrance_EventScript_SetTrickMasterFacingDoor
-	map_script_2 VAR_TRICK_HOUSE_ENTRANCE_STATE, 3, Route110_TrickHouseEntrance_EventScript_SetTrickMasterFacingDoor
-	map_script_2 VAR_TRICK_HOUSE_ENTRANCE_STATE, 4, Route110_TrickHouseEntrance_EventScript_RemoveTrickMaster
-	map_script_2 VAR_TRICK_HOUSE_ENTRANCE_STATE, 5, Route110_TrickHouseEntrance_EventScript_RemoveTrickMaster
-	map_script_2 VAR_TRICK_HOUSE_ENTRANCE_STATE, 6, Route110_TrickHouseEntrance_EventScript_SetTrickMasterInFrontOfDoor
+	map_script_2 VAR_GARBAGEVAR, 0, Route110_TrickHouseEntrance_EventScript_SetTrickMasterHidingSpot
+	map_script_2 VAR_GARBAGEVAR, 1, Route110_TrickHouseEntrance_EventScript_RemoveTrickMaster
+	map_script_2 VAR_GARBAGEVAR, 2, Route110_TrickHouseEntrance_EventScript_SetTrickMasterFacingDoor
+	map_script_2 VAR_GARBAGEVAR, 3, Route110_TrickHouseEntrance_EventScript_SetTrickMasterFacingDoor
+	map_script_2 VAR_GARBAGEVAR, 4, Route110_TrickHouseEntrance_EventScript_RemoveTrickMaster
+	map_script_2 VAR_GARBAGEVAR, 5, Route110_TrickHouseEntrance_EventScript_RemoveTrickMaster
+	map_script_2 VAR_GARBAGEVAR, 6, Route110_TrickHouseEntrance_EventScript_SetTrickMasterInFrontOfDoor
 	.2byte 0
 
 Route110_TrickHouseEntrance_EventScript_TrickMasterFound::
@@ -209,7 +209,7 @@ Route110_TrickHouseEntrance_EventScript_BeginChallenge::
 	applymovement LOCALID_TRICK_MASTER, Route110_TrickHouse_Movement_TrickMasterJumpAway
 	waitmovement 0
 	removeobject LOCALID_TRICK_MASTER
-	setvar VAR_TRICK_HOUSE_ENTRANCE_STATE, 1
+	setvar VAR_GARBAGEVAR, 1
 	setvar VAR_TRICK_HOUSE_FOUND_TRICK_MASTER, 0
 	releaseall
 	end
@@ -220,7 +220,7 @@ Route110_TrickHouseEntrance_EventScript_UnusedRelease::
 
 Route110_TrickHouseEntrance_EventScript_TrickMaster::
 	lockall
-	switch VAR_TRICK_HOUSE_ENTRANCE_STATE
+	switch VAR_GARBAGEVAR
 	case 0, Route110_TrickHouseEntrance_EventScript_FoundTrickMaster
 	case 2, Route110_TrickHouseEntrance_EventScript_GiveReward
 	case 3, Route110_TrickHouseEntrance_EventScript_StillMakingPuzzle
@@ -390,7 +390,7 @@ Route110_TrickHouseEntrance_EventScript_GivePuzzle7Reward::
 
 Route110_TrickHouseEntrance_EventScript_GotReward::
 	setvar VAR_TRICK_HOUSE_PRIZE_PICKUP, 0
-	setvar VAR_TRICK_HOUSE_ENTRANCE_STATE, 3
+	setvar VAR_GARBAGEVAR, 3
 	applymovement LOCALID_TRICK_MASTER, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
 	releaseall
@@ -433,13 +433,13 @@ Route110_TrickHouseEntrance_EventScript_ReceivedTent::
 	waitmovement 0
 	removeobject LOCALID_TRICK_MASTER
 	setvar VAR_TRICK_HOUSE_PRIZE_PICKUP, 0
-	setvar VAR_TRICK_HOUSE_ENTRANCE_STATE, 5
+	setvar VAR_GARBAGEVAR, 5
 	releaseall
 	end
 
 Route110_TrickHouseEntrance_EventScript_Door::
 	lockall
-	switch VAR_TRICK_HOUSE_ENTRANCE_STATE
+	switch VAR_GARBAGEVAR
 	case 0, Route110_TrickHouseEntrance_EventScript_ItsAScroll
 	case 1, Route110_TrickHouseEntrance_EventScript_GoInHolePrompt
 	case 4, Route110_TrickHouseEntrance_EventScript_LeftOnJourneyNote
