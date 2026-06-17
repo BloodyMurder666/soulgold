@@ -977,8 +977,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
-        .abilities = { ABILITY_INTIMIDATE, ABILITY_NONE, ABILITY_RECKLESS },
-        .innates = { ABILITY_GALE_WINGS, ABILITY_BIG_PECKS, ABILITY_OPPORTUNIST },
+        .abilities = { ABILITY_CONTRARY, ABILITY_CONTRARY, ABILITY_CONTRARY },
+        .innates = { ABILITY_RECKLESS, ABILITY_BIG_PECKS, ABILITY_INTIMIDATE },
         .bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Staraptor"),
     #if P_MODIFIED_MEGA_CRIES

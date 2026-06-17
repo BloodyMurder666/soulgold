@@ -4090,7 +4090,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
     #if P_UPDATED_ABILITIES >= GEN_6
-        .abilities = { ABILITY_POISON_POINT, ABILITY_SWARM, ABILITY_SPEED_BOOST },
+        .abilities = { ABILITY_SHELL_ARMOR, ABILITY_SHELL_ARMOR, ABILITY_SHELL_ARMOR },
         .innates = { ABILITY_TOXIC_DEBRIS, ABILITY_SWARM_INSTINCT, ABILITY_MERCILESS },
     #else
         .abilities = { ABILITY_POISON_POINT, ABILITY_SWARM, ABILITY_QUICK_FEET },
@@ -5951,8 +5951,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_DRAGON),
-        .abilities = { ABILITY_SHED_SKIN, ABILITY_MOXIE, ABILITY_INTIMIDATE },
-        .innates = { ABILITY_ADRENALINE, ABILITY_DAMP, ABILITY_INFILTRATOR },
+        .abilities = { ABILITY_INTIMIDATE, ABILITY_INTIMIDATE, ABILITY_INTIMIDATE },
+        .innates = { ABILITY_ADRENALINE, ABILITY_MOXIE, ABILITY_DAMP },
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Scrafty"),
     #if P_MODIFIED_MEGA_CRIES
@@ -10030,8 +10030,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
-        .abilities = { ABILITY_LEVITATE, ABILITY_NONE, ABILITY_NONE },
-        .innates = { ABILITY_SHOCKWIRING, ABILITY_STRONG_JAW, ABILITY_OVERLOAD },
+        .abilities = { ABILITY_LEVITATE, ABILITY_LEVITATE, ABILITY_LEVITATE },
+        .innates = { ABILITY_BEAST_BOOST, ABILITY_SHOCKWIRING, ABILITY_OVERLOAD },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Eelektross"),
     #if P_MODIFIED_MEGA_CRIES

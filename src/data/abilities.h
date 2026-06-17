@@ -3841,7 +3841,7 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_FIERY_HEART] =
     {
-        .name = _("Fiery Heart"),
+        .name = _("Fire Mane"),
         .description = COMPOUND_STRING("Powers up Fire moves."),
         .longDescription = COMPOUND_STRING("Fire-type moves used by\n"
                                            "this Pokemon deal 50%\n"
