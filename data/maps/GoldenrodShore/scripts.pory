@@ -11,6 +11,7 @@ script GoldenrodShore_Expert {
         end
     }
     msgbox("Hi! I'm the route expert of local area!
+
             If you can beat every trainer on routes
             34, 35 and 36. Come have a battle with
             me.")

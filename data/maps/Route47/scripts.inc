@@ -343,6 +343,76 @@ Route47_ChuckRematch_2:
 	goto Route47_ChuckRematch_1
 
 
+Route47OrbExpert::
+# 191 "data/maps/Route47/scripts.pory"
+	lock
+# 192 "data/maps/Route47/scripts.pory"
+	faceplayer
+# 193 "data/maps/Route47/scripts.pory"
+	goto_if_set FLAG_ROUTE47_EXPERT, Route47OrbExpert_2
+# 201 "data/maps/Route47/scripts.pory"
+	msgbox Route47OrbExpert_Text_1
+# 209 "data/maps/Route47/scripts.pory"
+	checktrainerflag TRAINER_DEVIN
+	goto_if 1, Route47OrbExpert_7
+Route47OrbExpert_4:
+# 231 "data/maps/Route47/scripts.pory"
+	release
+	end
+
+Route47OrbExpert_2:
+# 194 "data/maps/Route47/scripts.pory"
+	msgbox Route47OrbExpert_Text_0
+# 197 "data/maps/Route47/scripts.pory"
+	release
+	end
+
+Route47OrbExpert_5:
+# 213 "data/maps/Route47/scripts.pory"
+	playse SE_PIN
+# 214 "data/maps/Route47/scripts.pory"
+	applymovement LOCALID_R47_EXPERT, Common_Movement_ExclamationMark
+# 215 "data/maps/Route47/scripts.pory"
+	waitse
+# 216 "data/maps/Route47/scripts.pory"
+	msgbox Route47OrbExpert_Text_2
+# 219 "data/maps/Route47/scripts.pory"
+	trainerbattle_no_intro TRAINER_ORB_EXPERT, Route47OrbExpert_Text_3
+# 220 "data/maps/Route47/scripts.pory"
+	msgbox Route47OrbExpert_Text_4
+# 222 "data/maps/Route47/scripts.pory"
+	giveitem ITEM_FLAME_ORB
+# 223 "data/maps/Route47/scripts.pory"
+	giveitem ITEM_TOXIC_ORB
+# 224 "data/maps/Route47/scripts.pory"
+	setflag FLAG_ROUTE47_EXPERT
+# 225 "data/maps/Route47/scripts.pory"
+	addvar VAR_ROUTE_EXPERTS_DEFEATED, 1
+# 226 "data/maps/Route47/scripts.pory"
+	special Achievement_CheckAll
+# 227 "data/maps/Route47/scripts.pory"
+	msgbox Route47OrbExpert_Text_0
+	goto Route47OrbExpert_4
+
+Route47OrbExpert_6:
+# 211 "data/maps/Route47/scripts.pory"
+	checktrainerflag TRAINER_THOM_AND_KAE
+	goto_if 1, Route47OrbExpert_10
+	goto Route47OrbExpert_4
+
+Route47OrbExpert_7:
+# 210 "data/maps/Route47/scripts.pory"
+	checktrainerflag TRAINER_GRANT
+	goto_if 1, Route47OrbExpert_6
+	goto Route47OrbExpert_4
+
+Route47OrbExpert_10:
+# 212 "data/maps/Route47/scripts.pory"
+	checktrainerflag TRAINER_DUFF_AND_EDA
+	goto_if 1, Route47OrbExpert_5
+	goto Route47OrbExpert_4
+
+
 Route47_HiddenGrotto_Text_0:
 # 146 "data/maps/Route47/scripts.pory"
 	.string "There seems to be a path behind the\n"
@@ -379,3 +449,33 @@ Route47_ChuckRematch_Text_4:
 	.string "strongest trainers! Great idea,\l"
 	.string "{PLAYER}! I'll invite you once\l"
 	.string "it's finished! See you there!$"
+
+Route47OrbExpert_Text_0:
+# 194 "data/maps/Route47/scripts.pory"
+	.string "There are many ways to pull potential\n"
+	.string "out of these orbs, I hope you can\l"
+	.string "find them all.$"
+
+Route47OrbExpert_Text_1:
+# 201 "data/maps/Route47/scripts.pory"
+	.string "Orbs! They hold power beyond measure!\p"
+	.string "But do you know how to utilize them\n"
+	.string "correctly?\p"
+	.string "Prove you are worthy of this\n"
+	.string "wisdom by defeating all trainers\l"
+	.string "on this route and then we'll talk.$"
+
+Route47OrbExpert_Text_2:
+# 216 "data/maps/Route47/scripts.pory"
+	.string "You are indeed worthy of this orbal\n"
+	.string "knowledge! Allow me to demonstrate it\l"
+	.string "to you!$"
+
+Route47OrbExpert_Text_3:
+# 219 "data/maps/Route47/scripts.pory"
+	.string "Splendid moves.$"
+
+Route47OrbExpert_Text_4:
+# 220 "data/maps/Route47/scripts.pory"
+	.string "You are more worthy of these orbs\n"
+	.string "now. I will pass them to you.$"

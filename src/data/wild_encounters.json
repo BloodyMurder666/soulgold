@@ -4583,28 +4583,28 @@
             "encounter_rate": 4,
             "mons": [
               {
-                "min_level": 15,
-                "max_level": 25,
+                "min_level": 28,
+                "max_level": 33,
                 "species": "SPECIES_SEEL"
               },
               {
-                "min_level": 10,
-                "max_level": 20,
+                "min_level": 28,
+                "max_level": 33,
                 "species": "SPECIES_SEEL"
               },
               {
-                "min_level": 15,
-                "max_level": 20,
+                "min_level": 28,
+                "max_level": 33,
                 "species": "SPECIES_CARVANHA"
               },
               {
-                "min_level": 15,
-                "max_level": 50,
+                "min_level": 28,
+                "max_level": 33,
                 "species": "SPECIES_SHARPEDO"
               },
               {
-                "min_level": 15,
-                "max_level": 20,
+                "min_level": 28,
+                "max_level": 33,
                 "species": "SPECIES_BASCULIN_WHITE_STRIPED"
               }
             ]

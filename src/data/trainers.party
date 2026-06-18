@@ -2235,11 +2235,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Dunsparce
-Level: 36
+Level: 40
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Dudunsparce
-Level: 37
+Level: 40
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_BENJAMIN ===
@@ -6493,11 +6493,11 @@ Double Battle: Yes
 AI: Check Bad Move
 
 Steelix
-Level: 45
+Level: 41
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Gliscor
-Level: 45
+Level: 42
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_RILEY ===
@@ -6671,41 +6671,42 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Smart Trainer
 
-Persian Alola @ Flame Orb
-Level: 34
-Ability: Technician
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
-- Fling
-- Fake Out
-- Bite
-- Taunt
+Obstagoon @ Flame Orb
+Level: 43
+Ability: Guts
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
+Adamant Nature
+- Knock Off
+- Facade
+- Parting Shot
+- Switcheroo
 
 Muk Alola @ Toxic Orb
-Level: 34
-Ability: Technician
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 43
+Ability: Poison Touch
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 - Fling
 - Pursuit
 - Fire Punch
 - Disable
 
 Gliscor @ Toxic Orb
-Level: 34
+Level: 43
 Ability: Poison Heal
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 - Protect
 - Facade
 - Bulldoze
 - Aerial Ace
 
 Heracross @ Flame Orb
-Level: 34
+Level: 44
 Ability: Guts
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 - Facade
 - Brick Break
 - Rock Tomb
-- Endure
+- Megahorn
 
 === TRAINER_HERB_EXPERT ===
 Name: Laurel
@@ -6719,7 +6720,7 @@ AI: Smart Trainer
 Sceptile @ Power Herb
 Level: 49
 Ability: Overgrow
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Solar Beam
 - Leaf Blade
 - Quick Attack
@@ -6728,7 +6729,7 @@ IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 Cradily @ Power Herb
 Level: 49
 Ability: Suction Cups
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Meteor Beam
 - Giga Drain
 - Ancient Power
@@ -6737,7 +6738,7 @@ IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 Cloyster @ White Herb
 Level: 49
 Ability: Shell Armor
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Shell Smash
 - Icy Wind
 - Clamp
@@ -6755,7 +6756,6 @@ AI: Smart Trainer
 Scizor @ Choice Band
 Level: 61
 Ability: Technician
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Bullet Punch
 - U-Turn
 - X-Scissor
@@ -6764,7 +6764,6 @@ IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 Tauros @ Choice Band
 Level: 61
 Ability: Intimidate
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Return
 - Bulldoze
 - Rock Tomb
@@ -6773,7 +6772,6 @@ IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 Arcanine @ Choice Band
 Level: 61
 Ability: Flash Fire
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Flare Blitz
 - Extreme Speed
 - Crunch
@@ -9782,11 +9780,11 @@ Double Battle: Yes
 AI: Check Bad Move
 
 Electivire
-Level: 26
+Level: 41
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Magmortar
-Level: 26
+Level: 40
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_THEO ===
@@ -10744,11 +10742,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Kilowattrel
-Level: 36
+Level: 40
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Drampa
-Level: 36
+Level: 40
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_AL ===

@@ -186,3 +186,48 @@ script Route47_ChuckRematch {
     release
     end
 }
+
+script Route47OrbExpert {
+	lock
+	faceplayer
+	if (flag(FLAG_ROUTE47_EXPERT)) {
+		msgbox("There are many ways to pull potential
+					out of these orbs, I hope you can
+					find them all.")
+		release
+		end
+	}
+
+	msgbox("Orbs! They hold power beyond measure!
+	
+			But do you know how to utilize them
+			correctly?
+			
+			Prove you are worthy of this
+			wisdom by defeating all trainers
+			on this route and then we'll talk.")
+	if (defeated(TRAINER_DEVIN) 
+		&& defeated(TRAINER_GRANT) 
+		&& defeated(TRAINER_THOM_AND_KAE) 
+		&& defeated(TRAINER_DUFF_AND_EDA)) {
+			playse(SE_PIN)
+			applymovement(LOCALID_R47_EXPERT, Common_Movement_ExclamationMark)
+			waitse
+			msgbox("You are indeed worthy of this orbal
+					knowledge! Allow me to demonstrate it
+					to you!")
+			trainerbattle_no_intro(TRAINER_ORB_EXPERT, "Splendid moves.")
+			msgbox("You are more worthy of these orbs
+					now. I will pass them to you.")
+			giveitem(ITEM_FLAME_ORB)
+			giveitem(ITEM_TOXIC_ORB)
+			setflag(FLAG_ROUTE47_EXPERT)
+			addvar(VAR_ROUTE_EXPERTS_DEFEATED, 1)
+       		special(Achievement_CheckAll)
+			msgbox("There are many ways to pull potential
+					out of these orbs, I hope you can
+					find them all.")
+		}
+	release
+	end
+}
