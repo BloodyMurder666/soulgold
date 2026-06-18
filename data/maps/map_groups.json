@@ -123,7 +123,9 @@
     "SnowtopMountainOutside",
     "Route50",
     "ChamponsRoad",
-    "MtGoldOutside"
+    "MtGoldOutside",
+    "FoggyShore",
+    "FoggyShore2"
   ],
   "gMapGroup_IndoorNewBark": [
     "NewBarkTown_Lab",
@@ -557,7 +559,8 @@
     "RailwayCave_Registeel_Room",
     "BlackthornCave",
     "MtMortar_Depths_1",
-    "MtMortar_Depths_HeatranRoom"
+    "MtMortar_Depths_HeatranRoom",
+    "FoggyForest"
   ],
   "gMapGroup_JohtoDiveMaps": [
     "CherrygroveUnderwater"

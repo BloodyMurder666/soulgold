@@ -22,6 +22,11 @@
       "map": "MAP_ILEX_FOREST",
       "offset": 39,
       "direction": "down"
+    },
+    {
+      "map": "MAP_FOGGY_SHORE",
+      "offset": 1,
+      "direction": "down"
     }
   ],
   "object_events": [

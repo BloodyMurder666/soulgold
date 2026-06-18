@@ -2265,3 +2265,9 @@ Common_Text_ReceivedMon:
 	.include "data/maps/Route40_House4/scripts.inc"
 
 	.include "data/maps/Route40_House5/scripts.inc"
+
+	.include "data/maps/FoggyShore/scripts.inc"
+
+	.include "data/maps/FoggyShore2/scripts.inc"
+
+	.include "data/maps/FoggyForest/scripts.inc"

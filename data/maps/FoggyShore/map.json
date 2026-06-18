@@ -1,0 +1,31 @@
+{
+  "id": "MAP_FOGGY_SHORE",
+  "name": "FoggyShore",
+  "layout": "LAYOUT_FOGGY_SHORE",
+  "music": "MUS_DP_ETERNA_FOREST",
+  "region_map_section": "MAPSEC_ABANDONED_SHIP",
+  "requires_flash": false,
+  "weather": "WEATHER_FOG",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": false,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_ROUTE34",
+      "offset": -1,
+      "direction": "up"
+    },
+    {
+      "map": "MAP_FOGGY_SHORE2",
+      "offset": 24,
+      "direction": "right"
+    }
+  ],
+  "object_events": [],
+  "warp_events": [],
+  "coord_events": [],
+  "bg_events": []
+}

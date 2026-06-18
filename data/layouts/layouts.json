@@ -9656,6 +9656,36 @@
       "secondary_tileset": "gTileset_House_Lab",
       "border_filepath": "data/layouts/Route40_House5/border.bin",
       "blockdata_filepath": "data/layouts/Route40_House5/map.bin"
+    },
+    {
+      "id": "LAYOUT_FOGGY_SHORE",
+      "name": "FoggyShore_Layout",
+      "width": 29,
+      "height": 55,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_CeruleanCity",
+      "border_filepath": "data/layouts/FoggyShore/border.bin",
+      "blockdata_filepath": "data/layouts/FoggyShore/map.bin"
+    },
+    {
+      "id": "LAYOUT_FOGGY_SHORE2",
+      "name": "FoggyShore2_Layout",
+      "width": 55,
+      "height": 29,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_CeruleanCity",
+      "border_filepath": "data/layouts/FoggyShore2/border.bin",
+      "blockdata_filepath": "data/layouts/FoggyShore2/map.bin"
+    },
+    {
+      "id": "LAYOUT_FOGGY_FOREST",
+      "name": "FoggyForest_Layout",
+      "width": 62,
+      "height": 60,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_IlexForest",
+      "border_filepath": "data/layouts/FoggyForest/border.bin",
+      "blockdata_filepath": "data/layouts/FoggyForest/map.bin"
     }
   ]
 }
