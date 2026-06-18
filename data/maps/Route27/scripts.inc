@@ -1,358 +1,490 @@
 # 1 "data/maps/Route27/scripts.pory"
 
 # 2 "data/maps/Route27/scripts.pory"
-.set LOCALID_ROUTE27_FATMAN, 1
+
 # 3 "data/maps/Route27/scripts.pory"
-
-# 4 "data/maps/Route27/scripts.pory"
 Route27_MapScripts::
-# 5 "data/maps/Route27/scripts.pory"
+# 4 "data/maps/Route27/scripts.pory"
 	map_script MAP_SCRIPT_ON_TRANSITION, Route27_OnTransition
-# 6 "data/maps/Route27/scripts.pory"
+# 5 "data/maps/Route27/scripts.pory"
 	map_script MAP_SCRIPT_ON_RESUME, SetTimeEncounters
-# 7 "data/maps/Route27/scripts.pory"
+# 6 "data/maps/Route27/scripts.pory"
 	.byte 0
+# 7 "data/maps/Route27/scripts.pory"
+
 # 8 "data/maps/Route27/scripts.pory"
-
-# 9 "data/maps/Route27/scripts.pory"
 Route27_OnTransition: 
-# 10 "data/maps/Route27/scripts.pory"
+# 9 "data/maps/Route27/scripts.pory"
 	callnative SetTimeBasedEncounters
+# 10 "data/maps/Route27/scripts.pory"
+	end
 # 11 "data/maps/Route27/scripts.pory"
-	end
+
 # 12 "data/maps/Route27/scripts.pory"
-
-# 13 "data/maps/Route27/scripts.pory"
 Route27_EventScript_BaobaCall::
-# 14 "data/maps/Route27/scripts.pory"
+# 13 "data/maps/Route27/scripts.pory"
 	pokenavcall BlackthornCity_Text_BaobaCall
-# 15 "data/maps/Route27/scripts.pory"
+# 14 "data/maps/Route27/scripts.pory"
 	waitmessage
-# 16 "data/maps/Route27/scripts.pory"
+# 15 "data/maps/Route27/scripts.pory"
 	delay 30
-# 17 "data/maps/Route27/scripts.pory"
+# 16 "data/maps/Route27/scripts.pory"
 	setflag FLAG_SAFARI_ZONE_WEST_EXPANSION
-# 18 "data/maps/Route27/scripts.pory"
+# 17 "data/maps/Route27/scripts.pory"
     setvar VAR_ROUTE27_BAOBA_CALL, 1
+# 18 "data/maps/Route27/scripts.pory"
+	end
 # 19 "data/maps/Route27/scripts.pory"
-	end
+
 # 20 "data/maps/Route27/scripts.pory"
-
-# 21 "data/maps/Route27/scripts.pory"
 Route27_Movement_WalkTop:
-# 22 "data/maps/Route27/scripts.pory"
+# 21 "data/maps/Route27/scripts.pory"
     face_left
+# 22 "data/maps/Route27/scripts.pory"
+    walk_left
 # 23 "data/maps/Route27/scripts.pory"
-    walk_left
+    step_end
 # 24 "data/maps/Route27/scripts.pory"
-    step_end
+
 # 25 "data/maps/Route27/scripts.pory"
-
-# 26 "data/maps/Route27/scripts.pory"
 Route27_Movement_WalkBot:
-# 27 "data/maps/Route27/scripts.pory"
+# 26 "data/maps/Route27/scripts.pory"
     walk_down
-# 28 "data/maps/Route27/scripts.pory"
+# 27 "data/maps/Route27/scripts.pory"
     walk_left
-# 29 "data/maps/Route27/scripts.pory"
+# 28 "data/maps/Route27/scripts.pory"
     step_end
+# 29 "data/maps/Route27/scripts.pory"
+
 # 30 "data/maps/Route27/scripts.pory"
-
-# 31 "data/maps/Route27/scripts.pory"
 Route27_EventScript_Fatman::
-# 32 "data/maps/Route27/scripts.pory"
+# 31 "data/maps/Route27/scripts.pory"
     msgbox Route27_Text_FisherMessage, MSGBOX_NPC
+# 32 "data/maps/Route27/scripts.pory"
+    end
 # 33 "data/maps/Route27/scripts.pory"
-    end
+
 # 34 "data/maps/Route27/scripts.pory"
-
-# 35 "data/maps/Route27/scripts.pory"
 Route27_EventScript_Blake::
-# 36 "data/maps/Route27/scripts.pory"
+# 35 "data/maps/Route27/scripts.pory"
 	trainerbattle_single TRAINER_BLAKE Route27_Text_CooltrainermBlakeSeen, Route27_Text_CooltrainermBlakeBeaten
-# 37 "data/maps/Route27/scripts.pory"
+# 36 "data/maps/Route27/scripts.pory"
 	msgbox Route27_Text_CooltrainermBlakeAfter, MSGBOX_AUTOCLOSE
+# 37 "data/maps/Route27/scripts.pory"
+	end
 # 38 "data/maps/Route27/scripts.pory"
-	end
+
 # 39 "data/maps/Route27/scripts.pory"
-
-# 40 "data/maps/Route27/scripts.pory"
 Route27_EventScript_Brian::
-# 41 "data/maps/Route27/scripts.pory"
+# 40 "data/maps/Route27/scripts.pory"
 	trainerbattle_single TRAINER_BRIAN Route27_Text_CooltrainermBrianSeen, Route27_Text_CooltrainermBrianBeaten
-# 42 "data/maps/Route27/scripts.pory"
+# 41 "data/maps/Route27/scripts.pory"
 	msgbox Route27_Text_CooltrainermBrianAfter, MSGBOX_AUTOCLOSE
+# 42 "data/maps/Route27/scripts.pory"
+	end
 # 43 "data/maps/Route27/scripts.pory"
-	end
+
 # 44 "data/maps/Route27/scripts.pory"
-
-# 45 "data/maps/Route27/scripts.pory"
 Route27_EventScript_Reena::
-# 46 "data/maps/Route27/scripts.pory"
+# 45 "data/maps/Route27/scripts.pory"
 	trainerbattle_single TRAINER_REENA Route27_Text_CooltrainerfReenaSeen, Route27_Text_CooltrainerfReenaBeaten
-# 47 "data/maps/Route27/scripts.pory"
+# 46 "data/maps/Route27/scripts.pory"
 	msgbox Route27_Text_CooltrainerfReenaAfter, MSGBOX_AUTOCLOSE
+# 47 "data/maps/Route27/scripts.pory"
+	end
 # 48 "data/maps/Route27/scripts.pory"
-	end
+
 # 49 "data/maps/Route27/scripts.pory"
-
-# 50 "data/maps/Route27/scripts.pory"
 Route27_EventScript_Megan::
-# 51 "data/maps/Route27/scripts.pory"
+# 50 "data/maps/Route27/scripts.pory"
 	trainerbattle_single TRAINER_MEGAN Route27_Text_CooltrainerfMeganSeen, Route27_Text_CooltrainerfMeganBeaten
-# 52 "data/maps/Route27/scripts.pory"
+# 51 "data/maps/Route27/scripts.pory"
 	msgbox Route27_Text_CooltrainerfMeganAfter, MSGBOX_AUTOCLOSE
+# 52 "data/maps/Route27/scripts.pory"
+	end
 # 53 "data/maps/Route27/scripts.pory"
-	end
+
 # 54 "data/maps/Route27/scripts.pory"
-
-# 55 "data/maps/Route27/scripts.pory"
 Route27_EventScript_Gilbert::
-# 56 "data/maps/Route27/scripts.pory"
+# 55 "data/maps/Route27/scripts.pory"
 	trainerbattle_single TRAINER_GILBERT Route27_Text_PsychicGilbertSeen, Route27_Text_PsychicGilbertBeaten
-# 57 "data/maps/Route27/scripts.pory"
+# 56 "data/maps/Route27/scripts.pory"
 	msgbox Route27_Text_PsychicGilbertAfter, MSGBOX_AUTOCLOSE
+# 57 "data/maps/Route27/scripts.pory"
+	end
 # 58 "data/maps/Route27/scripts.pory"
-	end
+
 # 59 "data/maps/Route27/scripts.pory"
-
-# 60 "data/maps/Route27/scripts.pory"
 Route27_EventScript_Jose::
-# 61 "data/maps/Route27/scripts.pory"
+# 60 "data/maps/Route27/scripts.pory"
 	trainerbattle_single TRAINER_JOSE Route27_Text_BirdKeeperJoseSeen, Route27_Text_BirdKeeperJoseBeaten
-# 62 "data/maps/Route27/scripts.pory"
+# 61 "data/maps/Route27/scripts.pory"
 	msgbox Route27_Text_BirdKeeperJoseAfter, MSGBOX_AUTOCLOSE
+# 62 "data/maps/Route27/scripts.pory"
+	end
 # 63 "data/maps/Route27/scripts.pory"
-	end
+
 # 64 "data/maps/Route27/scripts.pory"
-
-# 65 "data/maps/Route27/scripts.pory"
 Route27_EventScript_Scott::
-# 66 "data/maps/Route27/scripts.pory"
+# 65 "data/maps/Route27/scripts.pory"
 	trainerbattle_single TRAINER_SCOTT Route27_Text_FisherScottSeen, Route27_Text_FisherScottBeaten
-# 67 "data/maps/Route27/scripts.pory"
+# 66 "data/maps/Route27/scripts.pory"
 	msgbox Route27_Text_FisherScottAfter, MSGBOX_AUTOCLOSE
-# 68 "data/maps/Route27/scripts.pory"
+# 67 "data/maps/Route27/scripts.pory"
 	end
+# 68 "data/maps/Route27/scripts.pory"
+
 # 69 "data/maps/Route27/scripts.pory"
-
-# 70 "data/maps/Route27/scripts.pory"
 Route27_EventScript_TohjoFallsSign::
-# 71 "data/maps/Route27/scripts.pory"
+# 70 "data/maps/Route27/scripts.pory"
     msgbox TohjoFalls_Text_Sign, MSGBOX_SIGN
-# 72 "data/maps/Route27/scripts.pory"
+# 71 "data/maps/Route27/scripts.pory"
     end
+# 72 "data/maps/Route27/scripts.pory"
+
 # 73 "data/maps/Route27/scripts.pory"
-
-# 74 "data/maps/Route27/scripts.pory"
 Route27_Text_FisherHey:
-# 75 "data/maps/Route27/scripts.pory"
+# 74 "data/maps/Route27/scripts.pory"
     .string "Hey!$"
+# 75 "data/maps/Route27/scripts.pory"
+
 # 76 "data/maps/Route27/scripts.pory"
-
-# 77 "data/maps/Route27/scripts.pory"
 Route27_Text_FisherMessage:
-# 78 "data/maps/Route27/scripts.pory"
+# 77 "data/maps/Route27/scripts.pory"
     .string "Do you know what you just did?\p"
-# 79 "data/maps/Route27/scripts.pory"
+# 78 "data/maps/Route27/scripts.pory"
     .string "You've taken your first step into\n"
-# 80 "data/maps/Route27/scripts.pory"
+# 79 "data/maps/Route27/scripts.pory"
     .string "Kanto.\p"
-# 81 "data/maps/Route27/scripts.pory"
+# 80 "data/maps/Route27/scripts.pory"
     .string "Check your POKéGEAR Map and see.$"
+# 81 "data/maps/Route27/scripts.pory"
+
 # 82 "data/maps/Route27/scripts.pory"
-
-# 83 "data/maps/Route27/scripts.pory"
 Route27_Text_CooltrainermBlakeSeen:
-# 84 "data/maps/Route27/scripts.pory"
+# 83 "data/maps/Route27/scripts.pory"
     .string "You look pretty strong.\n"
-# 85 "data/maps/Route27/scripts.pory"
+# 84 "data/maps/Route27/scripts.pory"
     .string "Let me battle you!$"
+# 85 "data/maps/Route27/scripts.pory"
+
 # 86 "data/maps/Route27/scripts.pory"
-
-# 87 "data/maps/Route27/scripts.pory"
 Route27_Text_CooltrainermBlakeBeaten:
-# 88 "data/maps/Route27/scripts.pory"
+# 87 "data/maps/Route27/scripts.pory"
     .string "Yow!$"
+# 88 "data/maps/Route27/scripts.pory"
+
 # 89 "data/maps/Route27/scripts.pory"
-
-# 90 "data/maps/Route27/scripts.pory"
 Route27_Text_CooltrainermBlakeAfter:
-# 91 "data/maps/Route27/scripts.pory"
+# 90 "data/maps/Route27/scripts.pory"
     .string "If you prevail on this harsh trek,\p"
-# 92 "data/maps/Route27/scripts.pory"
+# 91 "data/maps/Route27/scripts.pory"
     .string "the truth will be revealed!\p"
-# 93 "data/maps/Route27/scripts.pory"
+# 92 "data/maps/Route27/scripts.pory"
     .string "Heh, sorry, I just wanted to say\n"
-# 94 "data/maps/Route27/scripts.pory"
+# 93 "data/maps/Route27/scripts.pory"
     .string "something cool.$"
+# 94 "data/maps/Route27/scripts.pory"
+
 # 95 "data/maps/Route27/scripts.pory"
-
-# 96 "data/maps/Route27/scripts.pory"
 Route27_Text_CooltrainermBrianSeen:
-# 97 "data/maps/Route27/scripts.pory"
+# 96 "data/maps/Route27/scripts.pory"
     .string "Hm? You're good, aren't you?$"
+# 97 "data/maps/Route27/scripts.pory"
+
 # 98 "data/maps/Route27/scripts.pory"
-
-# 99 "data/maps/Route27/scripts.pory"
 Route27_Text_CooltrainermBrianBeaten:
-# 100 "data/maps/Route27/scripts.pory"
+# 99 "data/maps/Route27/scripts.pory"
     .string "Just as I thought!$"
+# 100 "data/maps/Route27/scripts.pory"
+
 # 101 "data/maps/Route27/scripts.pory"
-
-# 102 "data/maps/Route27/scripts.pory"
 Route27_Text_CooltrainermBrianAfter:
-# 103 "data/maps/Route27/scripts.pory"
+# 102 "data/maps/Route27/scripts.pory"
     .string "A good trainer can recognize other\n"
-# 104 "data/maps/Route27/scripts.pory"
+# 103 "data/maps/Route27/scripts.pory"
     .string "good trainers.$"
+# 104 "data/maps/Route27/scripts.pory"
+
 # 105 "data/maps/Route27/scripts.pory"
-
-# 106 "data/maps/Route27/scripts.pory"
 Route27_Text_CooltrainerfReenaSeen:
-# 107 "data/maps/Route27/scripts.pory"
+# 106 "data/maps/Route27/scripts.pory"
     .string "You shouldn't underestimate the\n"
-# 108 "data/maps/Route27/scripts.pory"
+# 107 "data/maps/Route27/scripts.pory"
     .string "wild Pokémon in these parts.$"
+# 108 "data/maps/Route27/scripts.pory"
+
 # 109 "data/maps/Route27/scripts.pory"
-
-# 110 "data/maps/Route27/scripts.pory"
 Route27_Text_CooltrainerfReenaBeaten:
-# 111 "data/maps/Route27/scripts.pory"
+# 110 "data/maps/Route27/scripts.pory"
     .string "Oh! You're much too strong!$"
+# 111 "data/maps/Route27/scripts.pory"
+
 # 112 "data/maps/Route27/scripts.pory"
-
-# 113 "data/maps/Route27/scripts.pory"
 Route27_Text_CooltrainerfReenaAfter:
-# 114 "data/maps/Route27/scripts.pory"
+# 113 "data/maps/Route27/scripts.pory"
     .string "You're just a kid, but you're not\n"
-# 115 "data/maps/Route27/scripts.pory"
+# 114 "data/maps/Route27/scripts.pory"
     .string "to be underestimated either.$"
+# 115 "data/maps/Route27/scripts.pory"
+
 # 116 "data/maps/Route27/scripts.pory"
-
-# 117 "data/maps/Route27/scripts.pory"
 Route27_Text_CooltrainerfMeganSeen:
-# 118 "data/maps/Route27/scripts.pory"
+# 117 "data/maps/Route27/scripts.pory"
     .string "It's rare to see anyone come here.\p"
-# 119 "data/maps/Route27/scripts.pory"
+# 118 "data/maps/Route27/scripts.pory"
     .string "Are you training on your own?$"
+# 119 "data/maps/Route27/scripts.pory"
+
 # 120 "data/maps/Route27/scripts.pory"
-
-# 121 "data/maps/Route27/scripts.pory"
 Route27_Text_CooltrainerfMeganBeaten:
-# 122 "data/maps/Route27/scripts.pory"
+# 121 "data/maps/Route27/scripts.pory"
     .string "Oh! You're really strong!$"
+# 122 "data/maps/Route27/scripts.pory"
+
 # 123 "data/maps/Route27/scripts.pory"
-
-# 124 "data/maps/Route27/scripts.pory"
 Route27_Text_CooltrainerfMeganAfter:
-# 125 "data/maps/Route27/scripts.pory"
+# 124 "data/maps/Route27/scripts.pory"
     .string "I'm checking out pre- and post-\n"
-# 126 "data/maps/Route27/scripts.pory"
+# 125 "data/maps/Route27/scripts.pory"
     .string "evolution Pokémon.\p"
-# 127 "data/maps/Route27/scripts.pory"
+# 126 "data/maps/Route27/scripts.pory"
     .string "Evolution really does make\n"
-# 128 "data/maps/Route27/scripts.pory"
+# 127 "data/maps/Route27/scripts.pory"
     .string "Pokémon stronger.\p"
-# 129 "data/maps/Route27/scripts.pory"
+# 128 "data/maps/Route27/scripts.pory"
     .string "But evolved forms also learn\n"
-# 130 "data/maps/Route27/scripts.pory"
+# 129 "data/maps/Route27/scripts.pory"
     .string "moves later on.$"
+# 130 "data/maps/Route27/scripts.pory"
+
 # 131 "data/maps/Route27/scripts.pory"
-
-# 132 "data/maps/Route27/scripts.pory"
 Route27_Text_PsychicGilbertSeen:
-# 133 "data/maps/Route27/scripts.pory"
+# 132 "data/maps/Route27/scripts.pory"
     .string "Don't say a thing!\p"
-# 134 "data/maps/Route27/scripts.pory"
+# 133 "data/maps/Route27/scripts.pory"
     .string "Let me guess what you're thinking.\p"
-# 135 "data/maps/Route27/scripts.pory"
+# 134 "data/maps/Route27/scripts.pory"
     .string "Mmmmmmm…\p"
-# 136 "data/maps/Route27/scripts.pory"
+# 135 "data/maps/Route27/scripts.pory"
     .string "I got it! You're on the Pokémon\n"
-# 137 "data/maps/Route27/scripts.pory"
+# 136 "data/maps/Route27/scripts.pory"
     .string "League challenge!$"
+# 137 "data/maps/Route27/scripts.pory"
+
 # 138 "data/maps/Route27/scripts.pory"
-
-# 139 "data/maps/Route27/scripts.pory"
 Route27_Text_PsychicGilbertBeaten:
-# 140 "data/maps/Route27/scripts.pory"
+# 139 "data/maps/Route27/scripts.pory"
     .string "You're too much!$"
+# 140 "data/maps/Route27/scripts.pory"
+
 # 141 "data/maps/Route27/scripts.pory"
-
-# 142 "data/maps/Route27/scripts.pory"
 Route27_Text_PsychicGilbertAfter:
-# 143 "data/maps/Route27/scripts.pory"
+# 142 "data/maps/Route27/scripts.pory"
     .string "With your skills, you'll do well at\n"
-# 144 "data/maps/Route27/scripts.pory"
+# 143 "data/maps/Route27/scripts.pory"
     .string "the League.\p"
-# 145 "data/maps/Route27/scripts.pory"
+# 144 "data/maps/Route27/scripts.pory"
     .string "That's what my premonition says.$"
+# 145 "data/maps/Route27/scripts.pory"
+
 # 146 "data/maps/Route27/scripts.pory"
-
-# 147 "data/maps/Route27/scripts.pory"
 Route27_Text_BirdKeeperJoseSeen:
-# 148 "data/maps/Route27/scripts.pory"
+# 147 "data/maps/Route27/scripts.pory"
     .string "Tweet! Tweet! Tetweet!$"
+# 148 "data/maps/Route27/scripts.pory"
+
 # 149 "data/maps/Route27/scripts.pory"
-
-# 150 "data/maps/Route27/scripts.pory"
 Route27_Text_BirdKeeperJoseBeaten:
-# 151 "data/maps/Route27/scripts.pory"
+# 150 "data/maps/Route27/scripts.pory"
     .string "Tweet!$"
+# 151 "data/maps/Route27/scripts.pory"
+
 # 152 "data/maps/Route27/scripts.pory"
-
-# 153 "data/maps/Route27/scripts.pory"
 Route27_Text_BirdKeeperJoseAfter:
-# 154 "data/maps/Route27/scripts.pory"
+# 153 "data/maps/Route27/scripts.pory"
     .string "Bird Keepers like me mimic bird\n"
-# 155 "data/maps/Route27/scripts.pory"
+# 154 "data/maps/Route27/scripts.pory"
     .string "whistles to command Pokémon.$"
+# 155 "data/maps/Route27/scripts.pory"
+
 # 156 "data/maps/Route27/scripts.pory"
-
-# 157 "data/maps/Route27/scripts.pory"
 TohjoFalls_Text_Sign:
-# 158 "data/maps/Route27/scripts.pory"
+# 157 "data/maps/Route27/scripts.pory"
     .string "Tohjo Falls\p"
-# 159 "data/maps/Route27/scripts.pory"
+# 158 "data/maps/Route27/scripts.pory"
     .string "The Link Between Kanto And Johto$"
+# 159 "data/maps/Route27/scripts.pory"
+
 # 160 "data/maps/Route27/scripts.pory"
-
-# 161 "data/maps/Route27/scripts.pory"
 Route27_Text_FisherScottSeen:
-# 162 "data/maps/Route27/scripts.pory"
+# 161 "data/maps/Route27/scripts.pory"
     .string "I'm feeling great today!\p"
-# 163 "data/maps/Route27/scripts.pory"
+# 162 "data/maps/Route27/scripts.pory"
     .string "I feel like I could boot even the\n"
-# 164 "data/maps/Route27/scripts.pory"
+# 163 "data/maps/Route27/scripts.pory"
     .string "League Champ!$"
+# 164 "data/maps/Route27/scripts.pory"
+
 # 165 "data/maps/Route27/scripts.pory"
-
-# 166 "data/maps/Route27/scripts.pory"
 Route27_Text_FisherScottBeaten:
-# 167 "data/maps/Route27/scripts.pory"
+# 166 "data/maps/Route27/scripts.pory"
     .string "No! Not in this battle!$"
-# 168 "data/maps/Route27/scripts.pory"
+# 167 "data/maps/Route27/scripts.pory"
 
-# 169 "data/maps/Route27/scripts.pory"
+# 168 "data/maps/Route27/scripts.pory"
 Route27_Text_FisherScottAfter:
-# 170 "data/maps/Route27/scripts.pory"
+# 169 "data/maps/Route27/scripts.pory"
     .string "Just like in fish-ing, it's all over\n"
-# 171 "data/maps/Route27/scripts.pory"
+# 170 "data/maps/Route27/scripts.pory"
     .string "in Pokémon if you give up.$"
 
 Route27_RouteExpert::
-# 175 "data/maps/Route27/scripts.pory"
+# 174 "data/maps/Route27/scripts.pory"
 	lock
-# 176 "data/maps/Route27/scripts.pory"
+# 175 "data/maps/Route27/scripts.pory"
 	faceplayer
-# 177 "data/maps/Route27/scripts.pory"
-	msgbox Route27_RouteExpert_Text_0
-# 178 "data/maps/Route27/scripts.pory"
+# 176 "data/maps/Route27/scripts.pory"
+	goto_if_set FLAG_ROUTE27_EXPERT, Route27_RouteExpert_2
+# 184 "data/maps/Route27/scripts.pory"
+	msgbox Route27_RouteExpert_Text_1
+# 194 "data/maps/Route27/scripts.pory"
+	checktrainerflag TRAINER_BLAKE
+	goto_if 1, Route27_RouteExpert_7
+Route27_RouteExpert_4:
+# 226 "data/maps/Route27/scripts.pory"
 	release
 	end
+
+Route27_RouteExpert_2:
+# 177 "data/maps/Route27/scripts.pory"
+	msgbox Route27_RouteExpert_Text_0
+# 180 "data/maps/Route27/scripts.pory"
+	release
+	end
+
+Route27_RouteExpert_5:
+# 207 "data/maps/Route27/scripts.pory"
+	playse SE_PIN
+# 208 "data/maps/Route27/scripts.pory"
+	applymovement LOCALID_ROUTE27_EXPERT, Common_Movement_ExclamationMark
+# 209 "data/maps/Route27/scripts.pory"
+	waitse
+# 210 "data/maps/Route27/scripts.pory"
+	msgbox Route27_RouteExpert_Text_2
+# 214 "data/maps/Route27/scripts.pory"
+	trainerbattle_no_intro TRAINER_CHOICE_BAND_EXPERT, Route27_RouteExpert_Text_3
+# 215 "data/maps/Route27/scripts.pory"
+	msgbox Route27_RouteExpert_Text_4
+# 218 "data/maps/Route27/scripts.pory"
+	giveitem ITEM_CHOICE_BAND
+# 219 "data/maps/Route27/scripts.pory"
+	setflag FLAG_ROUTE27_EXPERT
+# 220 "data/maps/Route27/scripts.pory"
+	addvar VAR_ROUTE_EXPERTS_DEFEATED, 1
+# 221 "data/maps/Route27/scripts.pory"
+	special Achievement_CheckAll
+# 222 "data/maps/Route27/scripts.pory"
+	msgbox Route27_RouteExpert_Text_0
+	goto Route27_RouteExpert_4
+
+Route27_RouteExpert_6:
+# 196 "data/maps/Route27/scripts.pory"
+	checktrainerflag TRAINER_REENA
+	goto_if 1, Route27_RouteExpert_11
+	goto Route27_RouteExpert_4
+
+Route27_RouteExpert_7:
+# 195 "data/maps/Route27/scripts.pory"
+	checktrainerflag TRAINER_BRIAN
+	goto_if 1, Route27_RouteExpert_6
+	goto Route27_RouteExpert_4
+
+Route27_RouteExpert_10:
+# 198 "data/maps/Route27/scripts.pory"
+	checktrainerflag TRAINER_GILBERT
+	goto_if 1, Route27_RouteExpert_15
+	goto Route27_RouteExpert_4
+
+Route27_RouteExpert_11:
+# 197 "data/maps/Route27/scripts.pory"
+	checktrainerflag TRAINER_MEGAN
+	goto_if 1, Route27_RouteExpert_10
+	goto Route27_RouteExpert_4
+
+Route27_RouteExpert_14:
+# 200 "data/maps/Route27/scripts.pory"
+	checktrainerflag TRAINER_SCOTT
+	goto_if 1, Route27_RouteExpert_19
+	goto Route27_RouteExpert_4
+
+Route27_RouteExpert_15:
+# 199 "data/maps/Route27/scripts.pory"
+	checktrainerflag TRAINER_JOSE
+	goto_if 1, Route27_RouteExpert_14
+	goto Route27_RouteExpert_4
+
+Route27_RouteExpert_18:
+# 203 "data/maps/Route27/scripts.pory"
+	checktrainerflag TRAINER_GAVEN
+	goto_if 1, Route27_RouteExpert_23
+	goto Route27_RouteExpert_4
+
+Route27_RouteExpert_19:
+# 202 "data/maps/Route27/scripts.pory"
+	checktrainerflag TRAINER_JAKE
+	goto_if 1, Route27_RouteExpert_18
+	goto Route27_RouteExpert_4
+
+Route27_RouteExpert_22:
+# 205 "data/maps/Route27/scripts.pory"
+	checktrainerflag TRAINER_BETH
+	goto_if 1, Route27_RouteExpert_26
+	goto Route27_RouteExpert_4
+
+Route27_RouteExpert_23:
+# 204 "data/maps/Route27/scripts.pory"
+	checktrainerflag TRAINER_JOYCE
+	goto_if 1, Route27_RouteExpert_22
+	goto Route27_RouteExpert_4
+
+Route27_RouteExpert_26:
+# 206 "data/maps/Route27/scripts.pory"
+	checktrainerflag TRAINER_RICHARD
+	goto_if 1, Route27_RouteExpert_5
+	goto Route27_RouteExpert_4
 
 
 Route27_RouteExpert_Text_0:
 # 177 "data/maps/Route27/scripts.pory"
-	.string "Yo! I'm a cool trainer!$"
+	.string "Choice items lock you into one move,\n"
+	.string "but they offset that cost with massive\l"
+	.string "boost to your battling power.$"
+
+Route27_RouteExpert_Text_1:
+# 184 "data/maps/Route27/scripts.pory"
+	.string "The final stretch before the mighty\n"
+	.string "Elite Four extends before you now.\p"
+	.string "Here you will only find the most\n"
+	.string "skilled trainers in Johto who\l"
+	.string "aspire to take on the challenge.\p"
+	.string "If you can overcome them all, find\n"
+	.string "me again and I shall test you one\l"
+	.string "last time.$"
+
+Route27_RouteExpert_Text_2:
+# 210 "data/maps/Route27/scripts.pory"
+	.string "You cut through every challenge\n"
+	.string "on this long road. Now show me\l"
+	.string "if you really are worthy for the\l"
+	.string "Elite Four!$"
+
+Route27_RouteExpert_Text_3:
+# 214 "data/maps/Route27/scripts.pory"
+	.string "Nothing can stand against you now.$"
+
+Route27_RouteExpert_Text_4:
+# 215 "data/maps/Route27/scripts.pory"
+	.string "A perfect choice, backed by real\n"
+	.string "conviction. Take this and let it\l"
+	.string "amplify your strongest attacks.$"

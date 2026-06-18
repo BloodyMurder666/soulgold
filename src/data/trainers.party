@@ -6762,29 +6762,45 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Smart Trainer
 
-Scizor @ Choice Band
-Level: 61
-Ability: Technician
-- Bullet Punch
-- U-Turn
-- X-Scissor
-- Brick Break
+Darmanitan-Galar @ Choice Band
+Ability: Gorilla Tactics
+EVs: 252 Atk / 4 Def / 252 Spe
+Jolly Nature
+Level: 63
+- Icicle Crash
+- Flare Blitz
+- Earthquake
+- U-turn
 
 Tauros @ Choice Band
-Level: 61
-Ability: Intimidate
-- Return
-- Bulldoze
-- Rock Tomb
-- Zen Headbutt
+Ability: Sheer Force
+EVs: 252 Atk / 4 Def / 252 Spe
+Level: 63
+Jolly Nature
+- Body Slam
+- Close Combat
+- Earthquake
+- Iron Head
+
+Haxorus @ Choice Band
+Ability: Mold Breaker
+EVs: 252 Atk / 4 Def / 252 Spe
+Level: 63
+Jolly Nature
+- First Impression
+- Earthquake
+- Close Combat
+- Rock Slide
 
 Arcanine @ Choice Band
-Level: 61
-Ability: Flash Fire
+Ability: Intimidate
+EVs: 80 HP / 216 Atk / 44 Def / 168 Spe
+Jolly Nature
+Level: 63
 - Flare Blitz
-- Extreme Speed
-- Crunch
-- Wild Charge
+- Close Combat
+- Outrage
+- Bulldoze
 
 === TRAINER_ETHAN ===
 Name: Ethan

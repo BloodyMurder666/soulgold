@@ -1,5 +1,4 @@
 raw `
-.set LOCALID_ROUTE27_FATMAN, 1
 
 Route27_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route27_OnTransition
@@ -172,9 +171,58 @@ Route27_Text_FisherScottAfter:
 `
 
 script Route27_RouteExpert {
-    lock
-    faceplayer
-    msgbox("Yo! I'm a cool trainer!") // TODO
-    release
-    end
+	lock
+	faceplayer
+	if (flag(FLAG_ROUTE27_EXPERT)) {
+		msgbox("Choice items lock you into one move,
+                but they offset that cost with massive
+                boost to your battling power.")
+		release
+		end
+	}
+
+		msgbox("The final stretch before the mighty
+                Elite Four extends before you now.
+                
+                Here you will only find the most
+                skilled trainers in Johto who
+                aspire to take on the challenge.
+                
+                If you can overcome them all, find
+                me again and I shall test you one
+                last time.")
+	if (defeated(TRAINER_BLAKE)
+		&& defeated(TRAINER_BRIAN)
+		&& defeated(TRAINER_REENA)
+		&& defeated(TRAINER_MEGAN)
+		&& defeated(TRAINER_GILBERT)
+		&& defeated(TRAINER_JOSE)
+		&& defeated(TRAINER_SCOTT)
+
+		&& defeated(TRAINER_JAKE)
+		&& defeated(TRAINER_GAVEN)
+		&& defeated(TRAINER_JOYCE)
+		&& defeated(TRAINER_BETH)
+		&& defeated(TRAINER_RICHARD)) {
+			playse(SE_PIN)
+			applymovement(LOCALID_ROUTE27_EXPERT, Common_Movement_ExclamationMark)
+			waitse
+			msgbox("You cut through every challenge
+					on this long road. Now show me
+					if you really are worthy for the
+                    Elite Four!")
+			trainerbattle_no_intro(TRAINER_CHOICE_BAND_EXPERT, "Nothing can stand against you now.")
+			msgbox("A perfect choice, backed by real
+					conviction. Take this and let it
+					amplify your strongest attacks.")
+			giveitem(ITEM_CHOICE_BAND)
+			setflag(FLAG_ROUTE27_EXPERT)
+			addvar(VAR_ROUTE_EXPERTS_DEFEATED, 1)
+			special(Achievement_CheckAll)
+		    msgbox("Choice items lock you into one move,
+                    but they offset that cost with massive
+                    boost to your battling power.")
+		}
+	release
+	end
 }

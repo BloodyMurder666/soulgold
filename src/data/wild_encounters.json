@@ -8988,27 +8988,27 @@
             "mons": [
               {
                 "min_level": 15,
-                "max_level": 45,
+                "max_level": 35,
                 "species": "SPECIES_FINNEON"
               },
               {
                 "min_level": 15,
-                "max_level": 45,
+                "max_level": 35,
                 "species": "SPECIES_MAREANIE"
               },
               {
                 "min_level": 15,
-                "max_level": 45,
+                "max_level": 35,
                 "species": "SPECIES_FINNEON"
               },
               {
                 "min_level": 30,
-                "max_level": 45,
+                "max_level": 35,
                 "species": "SPECIES_MAREANIE"
               },
               {
-                "min_level": 40,
-                "max_level": 45,
+                "min_level": 35,
+                "max_level": 35,
                 "species": "SPECIES_LUMINEON"
               }
             ]
