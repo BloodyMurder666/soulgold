@@ -143,45 +143,6 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CHIKORITA)",
-      "x": 58,
-      "y": 14,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WALK_SEQUENCE_DOWN_LEFT_UP_RIGHT",
-      "movement_range_x": 3,
-      "movement_range_y": 2,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CYNDAQUIL)",
-      "x": 55,
-      "y": 14,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WALK_SEQUENCE_RIGHT_DOWN_LEFT_UP",
-      "movement_range_x": 3,
-      "movement_range_y": 2,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "FLAG_DAY_POKEMON"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(TOTODILE)",
-      "x": 58,
-      "y": 16,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WALK_SEQUENCE_LEFT_UP_RIGHT_DOWN",
-      "movement_range_x": 3,
-      "movement_range_y": 2,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "FLAG_NIGHT_POKEMON"
-    },
-    {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(ARBOK)",
       "x": 4,
       "y": 13,
@@ -208,7 +169,7 @@
       "flag": "FLAG_NIGHT_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(PONYTA)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(LINOONE)",
       "x": 72,
       "y": 15,
       "elevation": 0,
@@ -273,6 +234,7 @@
       "flag": "FLAG_ABILITY_PATCH_R27"
     },
     {
+      "local_id": "LOCALID_ROUTE27_EXPERT",
       "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_M",
       "x": 52,
       "y": 26,

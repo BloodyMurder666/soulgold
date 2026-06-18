@@ -83,6 +83,10 @@ static const u32 sFieldMugshotGfx_Woman1Normal[] = INCBIN_U32("graphics/field_mu
 static const u16 sFieldMugshotPal_Woman1Normal[] = INCBIN_U16("graphics/field_mugshots/woman_1.gbapal");
 static const u32 sFieldMugshotGfx_Woman2Normal[] = INCBIN_U32("graphics/field_mugshots/woman_2.4bpp.lz");
 static const u16 sFieldMugshotPal_Woman2Normal[] = INCBIN_U16("graphics/field_mugshots/woman_2.gbapal");
+static const u32 sFieldMugshotGfx_CooltrainerMNormal[] = INCBIN_U32("graphics/field_mugshots/cooltrainer_m.4bpp.lz");
+static const u16 sFieldMugshotPal_CooltrainerMNormal[] = INCBIN_U16("graphics/field_mugshots/cooltrainer_m.gbapal");
+static const u32 sFieldMugshotGfx_CooltrainerFNormal[] = INCBIN_U32("graphics/field_mugshots/cooltrainer_f.4bpp.lz");
+static const u16 sFieldMugshotPal_CooltrainerFNormal[] = INCBIN_U16("graphics/field_mugshots/cooltrainer_f.gbapal");
 
 struct MugshotGfx
 {
@@ -426,6 +430,22 @@ static const struct MugshotGfx sFieldMugshots[MUGSHOT_COUNT][EMOTE_COUNT] =
         {
             .gfx = sFieldMugshotGfx_Woman2Normal,
             .pal = sFieldMugshotPal_Woman2Normal,
+        },
+    },
+    [MUGSHOT_COOLTRAINER_M] =
+    {
+        [EMOTE_NORMAL] =
+        {
+            .gfx = sFieldMugshotGfx_CooltrainerMNormal,
+            .pal = sFieldMugshotPal_CooltrainerMNormal,
+        },
+    },
+    [MUGSHOT_COOLTRAINER_F] =
+    {
+        [EMOTE_NORMAL] =
+        {
+            .gfx = sFieldMugshotGfx_CooltrainerFNormal,
+            .pal = sFieldMugshotPal_CooltrainerFNormal,
         },
     },
 };

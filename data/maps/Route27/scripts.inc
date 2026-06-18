@@ -458,8 +458,8 @@ Route27_RouteExpert_26:
 Route27_RouteExpert_Text_0:
 # 177 "data/maps/Route27/scripts.pory"
 	.string "Choice items lock you into one move,\n"
-	.string "but they offset that cost with massive\l"
-	.string "boost to your battling power.$"
+	.string "but they offset that cost with a\l"
+	.string "big boost to your battling power.$"
 
 Route27_RouteExpert_Text_1:
 # 184 "data/maps/Route27/scripts.pory"

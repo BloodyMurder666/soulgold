@@ -218,6 +218,10 @@ static u16 GetFieldMugshotIdByObjectGraphicsId(u16 graphicsId)
         return MUGSHOT_SAILOR;
     case OBJ_EVENT_GFX_SUPER_NERD:
         return MUGSHOT_SUPER_NERD;
+    case OBJ_EVENT_GFX_COOLTRAINER_M:
+        return MUGSHOT_COOLTRAINER_M;
+    case OBJ_EVENT_GFX_COOLTRAINER_F:
+        return MUGSHOT_COOLTRAINER_F;
     case OBJ_EVENT_GFX_SWIMMER_F:
     case OBJ_EVENT_GFX_SWIMMER_F_WATER:
         return MUGSHOT_SWIMMER_F;

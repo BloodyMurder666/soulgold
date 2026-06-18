@@ -57,7 +57,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SQUIRTLE)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(EELEKTROSS)",
       "x": 11,
       "y": 22,
       "elevation": 0,
@@ -70,7 +70,7 @@
       "flag": "FLAG_NIGHT_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(BULBASAUR)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(DOUBLADE)",
       "x": 23,
       "y": 17,
       "elevation": 0,
@@ -83,7 +83,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CHARMANDER)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SCOVILLAIN)",
       "x": 20,
       "y": 11,
       "elevation": 0,

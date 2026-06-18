@@ -8967,9 +8967,9 @@
                 "species": "SPECIES_CENTISKORCH"
               },
               {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_CYNDAQUIL"
+                "min_level": 45,
+                "max_level": 55,
+                "species": "SPECIES_SCOVILLAIN"
               },
               {
                 "min_level": 45,
@@ -8977,9 +8977,9 @@
                 "species": "SPECIES_CENTISKORCH"
               },
               {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_CYNDAQUIL"
+                "min_level": 45,
+                "max_level": 55,
+                "species": "SPECIES_SCOVILLAIN"
               }
             ]
           },

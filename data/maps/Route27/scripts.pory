@@ -174,9 +174,9 @@ script Route27_RouteExpert {
 	lock
 	faceplayer
 	if (flag(FLAG_ROUTE27_EXPERT)) {
-		msgbox("Choice items lock you into one move,
-                but they offset that cost with massive
-                boost to your battling power.")
+        msgbox("Choice items lock you into one move,
+                but they offset that cost with a
+                big boost to your battling power.")
 		release
 		end
 	}
@@ -220,8 +220,8 @@ script Route27_RouteExpert {
 			addvar(VAR_ROUTE_EXPERTS_DEFEATED, 1)
 			special(Achievement_CheckAll)
 		    msgbox("Choice items lock you into one move,
-                    but they offset that cost with massive
-                    boost to your battling power.")
+                    but they offset that cost with a
+                    big boost to your battling power.")
 		}
 	release
 	end
