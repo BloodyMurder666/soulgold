@@ -1385,7 +1385,7 @@
 #define FLAG_VISITED_INDIGO_PLATEAU               (SYSTEM_FLAGS + 0x1B)
 #define FLAG_VISITED_SNOWTOP_MOUNTAIN                           (SYSTEM_FLAGS + 0x1C) 
 #define FLAG_VISITED_RINTO_VILLAGE                   (SYSTEM_FLAGS + 0x1D)
-#define FLAG_VISITED_PEWTER_CITY                         (SYSTEM_FLAGS + 0x1E) 
+#define FLAG_VISITED_BATTLE_TOWER                         (SYSTEM_FLAGS + 0x1E) 
 #define FLAG_VISITED_CERULEAN_CITY               (SYSTEM_FLAGS + 0x1F) //49
 #define FLAG_VISITED_VERMILION_CITY                          (SYSTEM_FLAGS + 0x20) 
 #define FLAG_VISITED_LAVENDER_TOWN                (SYSTEM_FLAGS + 0x21)

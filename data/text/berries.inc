@@ -195,7 +195,7 @@ Route104_PrettyPetalFlowerShop_Text_MachineMixesBerries:
 	.string "You can plant a BERRY and grow it big,\n"
 	.string "or you can make a Pokémon hold it.\p"
 	.string "But now they have a machine that mixes\n"
-	.string "up different BERRIES and makes candies\l"
+	.string "up different BERRIES and makes candy\l"
 	.string "for Pokémon.\p"
 	.string "I want some candy, too.$"
 

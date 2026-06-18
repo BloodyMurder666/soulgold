@@ -198,3 +198,22 @@ GoldenrodCity_FlowerShop_Text_FloriaYouBeatWhitney:
 GoldenrodCity_FlowerShop_Text_FloriaItWasAMon:
     .string "So it really was a Pokémon!$"
 `
+
+script FlowerShopMulchVendor {
+	lock
+	faceplayer
+	msgbox("Welcome! Have a look at our inventory!")
+	pokemart(FlowerShopMulches)
+	msgbox("Thank you! Come again!")
+	release
+	end
+}
+
+mart FlowerShopMulches {
+	ITEM_GRASSY_SEED
+	ITEM_LUMINOUS_MOSS
+	ITEM_GROWTH_MULCH
+	ITEM_DAMP_MULCH
+	ITEM_STABLE_MULCH
+	ITEM_GOOEY_MULCH
+}

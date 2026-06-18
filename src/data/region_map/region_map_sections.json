@@ -888,9 +888,9 @@
       "name": "Navel Rock"
     },
     {
-      "id": "MAPSEC_TRAINER_HILL",
+      "id": "MAPSEC_BATTLE_TOWER",
       "name": "Battle Tower",
-      "x": 8,
+      "x": 5,
       "y": 4,
       "width": 1,
       "height": 1

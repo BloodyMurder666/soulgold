@@ -4,7 +4,7 @@ PewterCity_MapScripts::
 	.byte 0
 
 PewterCity_EventScript_CityEnter::
-	setflag FLAG_VISITED_PEWTER_CITY
+	setflag FLAG_VISITED_BATTLE_TOWER
 	end
 
 PewterCity_OnLoad::

@@ -157,9 +157,9 @@ Route40_Text_SwimmerfPaulaBeaten:
 # 79 "data/maps/Route40/scripts.pory"
 Route40_Text_SwimmerfPaulaAfter:
 # 80 "data/maps/Route40/scripts.pory"
-	.string "While I float like this,\n"
+	.string "The sun is so nice and warm\n"
 # 81 "data/maps/Route40/scripts.pory"
-	.string "the waves carry me along.$"
+	.string "here compared to other places.$"
 # 82 "data/maps/Route40/scripts.pory"
 
 # 83 "data/maps/Route40/scripts.pory"

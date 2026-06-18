@@ -558,6 +558,12 @@
       "map": "MAP_SNOWTOP_MOUNTAIN_OUTSIDE",
       "x": 22,
       "y": 28
+    },
+    {
+      "id": "HEAL_LOCATION_TRAINER_HILL_COURTYARD",
+      "map": "MAP_TRAINER_HILL_COURTYARD",
+      "x": 13,
+      "y": 29
     }
   ]
 }

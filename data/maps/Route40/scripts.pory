@@ -77,8 +77,8 @@ Route40_Text_SwimmerfPaulaBeaten:
 	.string "Ooh, I'm feeling dizzy!$"
 
 Route40_Text_SwimmerfPaulaAfter:
-	.string "While I float like this,\n"
-	.string "the waves carry me along.$"
+	.string "The sun is so nice and warm\n"
+	.string "here compared to other places.$"
 
 Route40_EventScript_Woman1::
 	lock

@@ -396,3 +396,44 @@ GoldenrodCity_FlowerShop_Text_FloriaYouBeatWhitney:
 GoldenrodCity_FlowerShop_Text_FloriaItWasAMon:
 # 199 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
     .string "So it really was a Pokémon!$"
+
+FlowerShopMulchVendor::
+# 203 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	lock
+# 204 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	faceplayer
+# 205 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	msgbox FlowerShopMulchVendor_Text_0
+# 206 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	pokemart FlowerShopMulches
+# 207 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	msgbox FlowerShopMulchVendor_Text_1
+# 208 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	release
+	end
+
+
+	.align 2
+# 212 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+FlowerShopMulches:
+# 213 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	.2byte ITEM_GRASSY_SEED
+# 214 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	.2byte ITEM_LUMINOUS_MOSS
+# 215 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	.2byte ITEM_GROWTH_MULCH
+# 216 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	.2byte ITEM_DAMP_MULCH
+# 217 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	.2byte ITEM_STABLE_MULCH
+# 218 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	.2byte ITEM_GOOEY_MULCH
+	.2byte ITEM_NONE
+
+FlowerShopMulchVendor_Text_0:
+# 205 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	.string "Welcome! Have a look at our inventory!$"
+
+FlowerShopMulchVendor_Text_1:
+# 207 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	.string "Thank you! Come again!$"
