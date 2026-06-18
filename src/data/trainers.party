@@ -6711,37 +6711,46 @@ IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 === TRAINER_HERB_EXPERT ===
 Name: Laurel
 Class: Cooltrainer
-Pic: Cooltrainer F
-Gender: Female
-Music: Hg Girl 2
+Pic: Cooltrainer M
+Gender: Male
+Music: Hg Boy 2
 Double Battle: No
 AI: Smart Trainer
 
 Sceptile @ Power Herb
-Level: 49
-Ability: Overgrow
+Level: 45
+Ability: Unburden
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Solar Beam
-- Leaf Blade
-- Quick Attack
-- Detect
+- Focus Blast
+- Night Slash
+- Giga Drain
 
 Cradily @ Power Herb
-Level: 49
-Ability: Suction Cups
+Level: 46
+Ability: Storm Drain
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Meteor Beam
 - Giga Drain
 - Ancient Power
-- Confuse Ray
+- Sappy Seed
+
+Hawlucha @ White Herb
+Level: 46
+Ability: Unburden
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+- Swords Dance
+- Close Combat
+- Acrobatics
+- Taunt
 
 Cloyster @ White Herb
-Level: 49
-Ability: Shell Armor
+Level: 46
+Ability: Overcoat
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Shell Smash
-- Icy Wind
-- Clamp
+- Ice Beam
+- Razor Shell
 - Ice Shard
 
 === TRAINER_CHOICE_BAND_EXPERT ===

@@ -900,9 +900,9 @@
 #define FLAG_HIDE_ROUTE22_GIOVANNI_SILVER                           0x351
 #define FLAG_POSTGAME_FEATURES                                      0x352
 #define FLAG_GOT_KUBFU                                              0x353
-#define FLAG_ROUTE47_EXPERT                                         0x354
-#define FLAG_UNUSED_SET6                                            0x355
-#define FLAG_UNUSED_SET7                                            0x356
+#define FLAG_ROUTE47_EXPERT                                         0x354 // Orbs
+#define FLAG_ROUTE43_EXPERT                                         0x355 // Herbs
+#define FLAG_ROUTE27_EXPERT                                         0x356 // Choice Band
 #define FLAG_UNUSED_SET8                                            0x357
 #define FLAG_UNUSED_SET9                                            0x358
 #define FLAG_SPOKEN_VICTORYROAD_RIVAL                               0x359

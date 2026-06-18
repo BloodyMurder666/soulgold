@@ -94,8 +94,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
-      "x": 55,
-      "y": 20,
+      "x": 61,
+      "y": 18,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 0,
@@ -198,7 +198,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(FURRET)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(FARFETCHD)",
       "x": 16,
       "y": 5,
       "elevation": 0,
