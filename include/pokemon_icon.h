@@ -21,6 +21,7 @@ u8 CreateMonIconNoPersonality(u16 species, void (*callback)(struct Sprite *), s1
 u8 CreateMonIconNoPersonalityIsEgg(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, bool32 isEgg);
 void FreeAndDestroyMonIconSprite(struct Sprite *sprite);
 const u16 * GetIconPalette(u32 species, bool32 isShiny, bool32 female);
+const u16 *GetIconPaletteIsEgg(u32 species, bool32 isShiny, u32 personality, bool32 isEgg);
 const u32 GetIconPalTag(u32 species, bool32 isShiny);
 u32 FindFreeIconPaletteSlot(u16 tag);
 u8 CreateMonIcon(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u32 personality);

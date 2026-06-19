@@ -4769,18 +4769,7 @@ static void CreateMovingMonIcon(void)
 
 static const u16 *GetStorageMonIconPalette(u16 species, bool32 isShiny, u32 personality, bool32 isEgg)
 {
-    species = SanitizeSpeciesId(species);
-
-    if (isEgg)
-    {
-        enum EggIds eggId = gSpeciesInfo[species].eggId;
-
-        if (eggId != EGG_ID_NONE && gEggDatas[eggId].eggPalette != NULL)
-            return gEggDatas[eggId].eggPalette;
-        return GetIconPalette(SPECIES_EGG, FALSE, FALSE);
-    }
-
-    return GetIconPalette(species, isShiny, IsPersonalityFemale(species, personality));
+    return GetIconPaletteIsEgg(species, isShiny, personality, isEgg);
 }
 
 static const u16 *GetBoxMonIconPalette(u8 boxId, u8 position)

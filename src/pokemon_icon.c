@@ -11,7 +11,8 @@
 
 #define POKE_ICON_SPECIES_BASE_PAL_TAG (POKE_ICON_BASE_PAL_TAG + 16)
 #define POKE_ICON_BLACKENED_PAL_TAG (POKE_ICON_SPECIES_BASE_PAL_TAG + NUM_SPECIES + SPECIES_SHINY_TAG)
-#define POKE_ICON_SPECIES_MAX_PAL_TAG (POKE_ICON_BLACKENED_PAL_TAG + 1)
+#define POKE_ICON_EGG_SPECIES_BASE_PAL_TAG (POKE_ICON_BLACKENED_PAL_TAG + 1)
+#define POKE_ICON_SPECIES_MAX_PAL_TAG (POKE_ICON_EGG_SPECIES_BASE_PAL_TAG + NUM_SPECIES)
 
 #define IS_MON_ICON_TAG(x) (((x) >= POKE_ICON_BASE_PAL_TAG && (x) < POKE_ICON_BASE_PAL_TAG + ARRAY_COUNT(gMonIconPaletteTable)) || \
                             ((x) >= POKE_ICON_SPECIES_BASE_PAL_TAG && (x) < POKE_ICON_SPECIES_MAX_PAL_TAG))
@@ -169,6 +170,22 @@ const u16 * GetIconPalette(u32 species, bool32 isShiny, bool32 female)
         return gMonIconPalettesCompressed[GetMonIconPaletteIndexFromSpecies(species)];
 }
 
+const u16 *GetIconPaletteIsEgg(u32 species, bool32 isShiny, u32 personality, bool32 isEgg)
+{
+    species = SanitizeSpeciesId(species);
+
+    if (isEgg)
+    {
+        enum EggIds eggId = gSpeciesInfo[species].eggId;
+
+        if (eggId != EGG_ID_NONE && gEggDatas[eggId].eggPalette != NULL)
+            return gEggDatas[eggId].eggPalette;
+        return GetIconPalette(SPECIES_EGG, FALSE, FALSE);
+    }
+
+    return GetIconPalette(species, isShiny, IsPersonalityFemale(species, personality));
+}
+
 const u32 GetIconPalTag(u32 species, bool32 isShiny)
 {
     u32 tag = POKE_ICON_SPECIES_BASE_PAL_TAG;
@@ -176,6 +193,14 @@ const u32 GetIconPalTag(u32 species, bool32 isShiny)
         tag += NUM_SPECIES;
     tag += species;
     return tag;
+}
+
+static u32 GetIconPalTagIsEgg(u32 species, bool32 isShiny, bool32 isEgg)
+{
+    if (isEgg)
+        return POKE_ICON_EGG_SPECIES_BASE_PAL_TAG + SanitizeSpeciesId(species);
+
+    return GetIconPalTag(species, isShiny);
 }
 
 // Find or allocate a palette slot for a pokemon icon
@@ -239,8 +264,8 @@ u8 CreateMonIconNoPalette(u16 species, void (*callback)(struct Sprite *), s16 x,
 u8 CreateMonIcon2(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, bool32 isShiny, u32 personality, bool32 isEgg)
 {
     u32 paletteNum;
-    const u16 *palette = GetIconPalette(species, isShiny, IsPersonalityFemale(species, personality));
-    u16 tag = GetIconPalTag(species, isShiny);
+    const u16 *palette = GetIconPaletteIsEgg(species, isShiny, personality, isEgg);
+    u16 tag = GetIconPalTagIsEgg(species, isShiny, isEgg);
 
     if ((paletteNum = IndexOfSpritePaletteTag(tag)) >= 16) 
     {

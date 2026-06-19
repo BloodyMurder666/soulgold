@@ -30173,6 +30173,7 @@ const u16 gMonPalette_TyphlosionMega[] = INCBIN_U16("graphics/pokemon/typhlosion
     const u32 gMonFrontPic_Egg[] = INCBIN_U32("graphics/pokemon/egg/anim_front.4bpp.smol");
     const u16 gMonPalette_Egg[] = INCBIN_U16("graphics/pokemon/egg/normal.gbapal");
     const u8 gMonIcon_Egg[] = INCBIN_U8("graphics/pokemon/egg/icon.4bpp");
+    const u16 gMonIconPalette_Egg[] = INCBIN_U16("graphics/pokemon/egg/icon_normal.gbapal");
 
     const u32 gMonFrontPic_GardevoirMegaZ[] = INCBIN_U32("graphics/pokemon/gardevoir/mega_z/front.4bpp.smol");
     const u16 gMonPalette_GardevoirMegaZ[] = INCBIN_U16("graphics/pokemon/gardevoir/mega_z/normal.gbapal");
