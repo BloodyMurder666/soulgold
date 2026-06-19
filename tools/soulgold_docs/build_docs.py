@@ -93,7 +93,7 @@ def build() -> None:
     )
     ability_usage = build_ability_usage(visible_species)
     tms = build_tms(tmhm_rows, moves, item_records, tmhm_locations)
-    important_items = build_important_items(item_records, located_species)
+    important_items = build_important_items(item_records, located_species, output_paths.item_icon_dir)
     payload = build_docs_payload(
         visible_species,
         moves,

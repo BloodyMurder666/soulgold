@@ -12,6 +12,13 @@ const abilityName = (constant) => state.data.abilities[constant]?.name || consta
 const fmtTitle = (value, prefix = "") => value.replace(prefix, "").replaceAll("_", " ").toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
 const fmtCategory = (value) => fmtTitle(value, "DAMAGE_CATEGORY_");
 const statLabels = { hp: "HP", atk: "Atk", def: "Def", spa: "SpA", spd: "SpD", spe: "Spe" };
+const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  "\"": "&quot;",
+  "'": "&#39;",
+}[char]));
 
 function el(tag, className, html) {
   const node = document.createElement(tag);
@@ -28,11 +35,45 @@ function typePills(types) {
 }
 
 function abilityPills(constants, kind = "base") {
-  const kindClass = kind === "innate" ? "innate-ability-pill" : "base-ability-pill";
-  return `<div class="pill-list">${constants.map((constant) => {
+  const unique = uniqueConstants(constants);
+  if (!unique.length) return "";
+  const kindClass = kind === "hidden" ? "hidden-ability-pill" : kind === "innate" ? "innate-ability-pill" : "base-ability-pill";
+  return `<div class="pill-list">${unique.map((constant) => {
     const ability = state.data.abilities[constant];
     return `<button class="pill ability-pill ${kindClass}" type="button" data-ability="${constant}">${abilityName(constant)}</button>`;
   }).join("")}</div>`;
+}
+
+function uniqueConstants(constants) {
+  return [...new Set((constants || []).filter(Boolean))];
+}
+
+function pokemonAbilityGroups(mon) {
+  const regular = uniqueConstants(mon.regularAbilities || (mon.abilities || []).slice(0, 2));
+  const hidden = uniqueConstants(mon.hiddenAbilities || (mon.abilities || []).slice(2)).filter((constant) => !regular.includes(constant));
+  const innates = uniqueConstants(mon.innates || []);
+  return { regular, hidden, innates };
+}
+
+function pokemonAbilityPills(mon) {
+  const groups = pokemonAbilityGroups(mon);
+  return `
+    <div class="dex-ability-groups">
+      ${abilityPills(groups.regular, "base")}
+      ${abilityPills(groups.hidden, "hidden")}
+      ${abilityPills(groups.innates, "innate")}
+    </div>
+  `;
+}
+
+function pokemonAbilitySections(mon) {
+  const groups = pokemonAbilityGroups(mon);
+  return `
+    <h3 class="section-title">Regular Abilities</h3>
+    ${abilityPills(groups.regular, "base") || `<p class="muted">None.</p>`}
+    ${groups.hidden.length ? `<h3 class="section-title">Hidden Ability</h3>${abilityPills(groups.hidden, "hidden")}` : ""}
+    ${groups.innates.length ? `<h3 class="section-title">Innates</h3>${abilityPills(groups.innates, "innate")}` : ""}
+  `;
 }
 
 function sprite(src, className = "sprite") {
@@ -60,7 +101,7 @@ function speciesSpritePanel(mon) {
 }
 
 async function init() {
-  const response = await fetch("data/romhack-docs.json?v=20260606-3");
+  const response = await fetch("data/romhack-docs.json?v=20260619-1");
   state.data = await response.json();
   state.filteredSpecies = state.data.species;
   document.body.dataset.activeTab = state.activeTab;
@@ -96,6 +137,9 @@ function bindEvents() {
   document.body.addEventListener("click", handleSpriteToggle, true);
   document.body.addEventListener("pointerover", handleMoveHover);
   document.body.addEventListener("pointerout", hideMoveTooltip);
+  document.body.addEventListener("pointerover", handleItemHover);
+  document.body.addEventListener("pointerout", hideItemTooltip);
+  document.body.addEventListener("click", handleItemTooltipClick, true);
   window.addEventListener("resize", updateStickyOffset);
 }
 
@@ -108,6 +152,7 @@ function updateStickyOffset() {
 function setTab(tab) {
   hideAbilityTooltip();
   hideMoveTooltip();
+  hideItemTooltip();
   updateStickyOffset();
   state.activeTab = tab;
   document.body.dataset.activeTab = tab;
@@ -243,7 +288,7 @@ function renderDexRows() {
       <span class="dex-stat" data-label="SpD" style="--stat-pct:${Math.min(100, mon.stats.spd / 2)}%">${mon.stats.spd}</span>
       <span class="dex-stat" data-label="Spe" style="--stat-pct:${Math.min(100, mon.stats.spe / 2)}%">${mon.stats.spe}</span>
       <strong class="dex-stat dex-stat-bst" data-label="BST" style="--stat-pct:${Math.min(100, mon.bst / 7.2)}%">${mon.bst}</strong>
-      <span>${abilityPills(mon.abilities, "base")}${abilityPills(mon.innates, "innate")}</span>
+      <span>${pokemonAbilityPills(mon)}</span>
     `;
     row.addEventListener("click", () => openSpecies(mon));
     container.appendChild(row);
@@ -253,6 +298,7 @@ function renderDexRows() {
 function closeDetailDialog() {
   hideAbilityTooltip();
   hideMoveTooltip();
+  hideItemTooltip();
   document.getElementById("detailDialog").close();
 }
 
@@ -317,6 +363,39 @@ function hideMoveTooltip() {
   document.querySelectorAll("#moveTooltip").forEach((tooltip) => {
     tooltip.hidden = true;
   });
+}
+
+function showItemTooltip(button) {
+  const itemName = button.dataset.itemName || "Item";
+  const itemDescription = button.dataset.itemDescription || "No description.";
+  const root = button.closest("dialog[open]") || document.body;
+  const tooltip = getScopedTooltip(root, "itemTooltip", "ability-tooltip item-tooltip");
+  tooltip.innerHTML = `<strong>${escapeHtml(itemName)}</strong><span>${escapeHtml(itemDescription)}</span>`;
+  const rect = button.getBoundingClientRect();
+  const left = Math.min(window.innerWidth - 340, Math.max(12, rect.left));
+  const top = Math.min(window.innerHeight - 120, rect.bottom + 8);
+  tooltip.style.left = `${left}px`;
+  tooltip.style.top = `${top}px`;
+  tooltip.hidden = false;
+}
+
+function hideItemTooltip() {
+  document.querySelectorAll("#itemTooltip").forEach((tooltip) => {
+    tooltip.hidden = true;
+  });
+}
+
+function handleItemHover(event) {
+  const button = event.target.closest(".item-tooltip-target");
+  if (button) showItemTooltip(button);
+}
+
+function handleItemTooltipClick(event) {
+  const button = event.target.closest(".item-tooltip-target");
+  if (!button) return;
+  event.preventDefault();
+  event.stopPropagation();
+  showItemTooltip(button);
 }
 
 function handleMoveHover(event) {
@@ -538,10 +617,7 @@ function openSpecies(mon) {
       ${speciesSpritePanel(mon)}
       <div>
         ${typePills(mon.types)}
-        <h3 class="section-title">Abilities</h3>
-        ${abilityPills(mon.abilities, "base")}
-        <h3 class="section-title">Innates</h3>
-        ${abilityPills(mon.innates, "innate")}
+        ${pokemonAbilitySections(mon)}
         ${heldItemRows(mon.heldItems)}
       </div>
     </div>
@@ -653,6 +729,10 @@ function renderTms() {
   });
 }
 
+function itemIconHtml(item, className = "item-icon") {
+  return item?.itemIcon ? `<img class="${className}" src="${item.itemIcon}" alt="">` : "";
+}
+
 function renderItems() {
   const tbody = document.getElementById("itemRows");
   const rows = state.data.items.filter((item) => matches(`${item.name} ${item.description} ${item.location}`));
@@ -660,7 +740,7 @@ function renderItems() {
   rows.forEach((item) => {
     const row = el("tr", "item-row");
     row.innerHTML = `
-      <td data-label="Name"><strong>${item.name}</strong></td>
+      <td data-label="Name"><span class="item-name-cell">${itemIconHtml(item)}<strong>${item.name}</strong></span></td>
       <td data-label="Description">${item.description || "No description."}</td>
       <td data-label="Location" class="muted">${item.location || "TBD"}</td>
     `;
@@ -809,6 +889,7 @@ function trainerMonSearchText(mon) {
     mon.name,
     mon.displayName,
     mon.item,
+    mon.itemName,
     mon.ability,
     ...(mon.moves || []),
     ...Object.entries(mon.evs || {}).map(([stat, value]) => `${value} ${statLabels[stat] || stat} EV`),
@@ -828,8 +909,19 @@ function trainerMoveLabel(value) {
 
 function trainerHeldItemIcon(mon) {
   if (!mon.itemIcon) return "";
-  const itemName = trainerTokenName(mon.item, "ITEM_");
-  return `<img class="trainer-held-item" src="${mon.itemIcon}" alt="${itemName}" title="${itemName}">`;
+  const itemName = mon.itemName || trainerTokenName(mon.itemConstant || mon.item, "ITEM_");
+  const itemDescription = mon.itemDescription || "No description.";
+  return `
+    <button
+      class="trainer-held-item-button item-tooltip-target"
+      type="button"
+      data-item-name="${escapeHtml(itemName)}"
+      data-item-description="${escapeHtml(itemDescription)}"
+      aria-label="${escapeHtml(itemName)}"
+    >
+      <img class="trainer-held-item" src="${mon.itemIcon}" alt="">
+    </button>
+  `;
 }
 
 function trainerStatSpreadHtml(label, values) {

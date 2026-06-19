@@ -196,6 +196,8 @@ def enrich_trainer_party(
             "constant": species.constant if species else "",
             "displayName": display_name,
             "itemConstant": held_item["constant"] if held_item else "",
+            "itemName": held_item["name"] if held_item else mon["item"],
+            "itemDescription": held_item["description"] if held_item else "",
             "itemIcon": copy_item_icon(held_item, item_icon_dir),
             "sprite": sprite,
         })

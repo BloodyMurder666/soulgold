@@ -63,6 +63,8 @@ def build_docs_payload(
                 "stats": row.stats,
                 "bst": sum(row.stats.values()),
                 "abilities": row.abilities,
+                "regularAbilities": row.regular_abilities,
+                "hiddenAbilities": row.hidden_abilities,
                 "innates": row.innates,
                 "sprite": row.sprite,
                 "shinySprite": row.shiny_sprite,

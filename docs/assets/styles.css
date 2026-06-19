@@ -272,8 +272,18 @@ th {
   background: #344a7a;
 }
 
+.hidden-ability-pill {
+  background: #7a5034;
+  color: #fff4df;
+}
+
 .innate-ability-pill {
   background: #5b3d72;
+}
+
+.dex-ability-groups {
+  display: grid;
+  gap: 4px;
 }
 
 .dex-entry .pill-list {
@@ -650,6 +660,20 @@ dialog::backdrop { background: rgb(0 0 0 / 70%); }
   color: var(--muted);
 }
 
+.item-name-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.item-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
 .move-head {
   position: sticky;
   top: 0;
@@ -809,10 +833,26 @@ dialog::backdrop { background: rgb(0 0 0 / 70%); }
   overflow-wrap: anywhere;
 }
 
-.trainer-held-item {
+.trainer-held-item-button {
   justify-self: end;
   width: 28px;
   height: 28px;
+  border: 1px solid #4a4c57;
+  border-radius: 5px;
+  background: #101116;
+  padding: 2px;
+  cursor: help;
+}
+
+.trainer-held-item-button:hover,
+.trainer-held-item-button:focus-visible {
+  border-color: var(--gold);
+  outline: none;
+}
+
+.trainer-held-item {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   image-rendering: pixelated;
 }

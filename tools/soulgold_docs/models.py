@@ -99,6 +99,7 @@ class ImportantItemRow(TypedDict):
     description: str
     pocket: str
     sortType: str
+    itemIcon: str | None
     locations: list[ItemLocation]
     location: str
 
@@ -194,6 +195,8 @@ class TrainerMon(ShowdownMon, total=False):
     constant: str
     displayName: str
     itemConstant: str
+    itemName: str
+    itemDescription: str
     itemIcon: str | None
     sprite: str | None
 
@@ -218,6 +221,8 @@ class SpeciesPayloadRow(TypedDict):
     stats: dict[str, int]
     bst: int
     abilities: list[str]
+    regularAbilities: list[str]
+    hiddenAbilities: list[str]
     innates: list[str]
     sprite: str | None
     shinySprite: str | None
@@ -240,6 +245,8 @@ class SpeciesRow:
     types: list[str]
     stats: dict[str, int]
     abilities: list[str]
+    regular_abilities: list[str]
+    hidden_abilities: list[str]
     innates: list[str]
     level_up_symbol: str | None
     teachable_symbol: str | None

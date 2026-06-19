@@ -81,7 +81,10 @@ def parse_species() -> SpeciesParseResult:
         types = extract_braced_constants(entry, "types", "TYPE_") or ["TYPE_NORMAL"]
         if len(types) == 1:
             types.append(types[0])
-        abilities = [a for a in extract_braced_constants(entry, "abilities", "ABILITY_") if a != "ABILITY_NONE"]
+        ability_slots = extract_braced_constants(entry, "abilities", "ABILITY_")
+        regular_abilities = [a for a in ability_slots[:2] if a != "ABILITY_NONE"]
+        hidden_abilities = [a for a in ability_slots[2:3] if a != "ABILITY_NONE"]
+        abilities = [a for a in ability_slots if a != "ABILITY_NONE"]
         innates = [a for a in extract_braced_constants(entry, "innates", "ABILITY_") if a != "ABILITY_NONE"]
         level_expr = extract_field(entry, "levelUpLearnset") or ""
         teach_expr = extract_field(entry, "teachableLearnset") or ""
@@ -106,6 +109,8 @@ def parse_species() -> SpeciesParseResult:
             types=types[:2],
             stats=stats,
             abilities=abilities,
+            regular_abilities=regular_abilities,
+            hidden_abilities=hidden_abilities,
             innates=innates,
             level_up_symbol=level_symbol.group(0) if level_symbol else None,
             teachable_symbol=teach_symbol.group(0) if teach_symbol else None,

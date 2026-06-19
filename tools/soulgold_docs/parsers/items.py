@@ -5,10 +5,12 @@ from __future__ import annotations
 import json
 import re
 from collections import defaultdict
+from pathlib import Path
 from typing import Mapping
 
 from ..constants import GENERIC_MEGA_STONE_ITEMS, IMPORTANT_ITEM_POCKETS, IMPORTANT_ITEM_SORT_TYPES, ITEMS_HIDDEN_CONSTANTS, ITEMS_HIDDEN_SORT_TYPES, ITEMS_HIDDEN_SUFFIXES
 from ..c_parser import clean_constant_name, collect_strings, extract_field, format_identifier_name, parse_enum_constants, parse_shared_strings, preprocess, read, split_designated_entries
+from ..image_utils import copy_item_icon
 from ..models import ImportantItemRow, ItemLocation, ItemRecord, NamedRecord, SpeciesRow, TMHMRow, TMRow
 from ..paths import ITEMS_H, REPO_ROOT, TMS_HMS_H
 
@@ -175,7 +177,11 @@ def is_hidden_important_item(constant: str, item: ItemRecord) -> bool:
         or any(constant.endswith(suffix) for suffix in ITEMS_HIDDEN_SUFFIXES)
     )
 
-def build_important_items(item_records: dict[str, ItemRecord], species: list[SpeciesRow]) -> list[ImportantItemRow]:
+def build_important_items(
+    item_records: dict[str, ItemRecord],
+    species: list[SpeciesRow],
+    item_icon_dir: Path,
+) -> list[ImportantItemRow]:
     selected = {
         constant
         for constant, item in item_records.items()
@@ -199,6 +205,7 @@ def build_important_items(item_records: dict[str, ItemRecord], species: list[Spe
             "description": item.get("description", ""),
             "pocket": item.get("pocket", ""),
             "sortType": item.get("sortType", ""),
+            "itemIcon": copy_item_icon(item, item_icon_dir),
             "locations": item_locations,
             "location": "; ".join(
                 f"{entry['map']} ({entry['source']})"
