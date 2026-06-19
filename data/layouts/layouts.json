@@ -9686,6 +9686,16 @@
       "secondary_tileset": "gTileset_IlexForest",
       "border_filepath": "data/layouts/FoggyForest/border.bin",
       "blockdata_filepath": "data/layouts/FoggyForest/map.bin"
+    },
+    {
+      "id": "LAYOUT_KITAKAMI_ROAD_HOUSE",
+      "name": "KitakamiRoad_House_Layout",
+      "width": 11,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Building",
+      "secondary_tileset": "gTileset_House_Lab",
+      "border_filepath": "data/layouts/KitakamiRoad_House/border.bin",
+      "blockdata_filepath": "data/layouts/KitakamiRoad_House/map.bin"
     }
   ]
 }

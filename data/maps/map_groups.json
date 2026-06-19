@@ -386,7 +386,8 @@
     "Gate_Route39North",
     "Gate_KitakamiBorder",
     "Kitakami_Houses",
-    "Route49DesertGate"
+    "Route49DesertGate",
+    "KitakamiRoad_House"
   ],
   "gMapGroup_IndoorKantoRoutes": [
     "Route26_House1",

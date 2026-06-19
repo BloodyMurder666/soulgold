@@ -282,8 +282,10 @@ th {
 }
 
 .dex-ability-groups {
-  display: grid;
-  gap: 4px;
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .dex-entry .pill-list {
@@ -837,16 +839,14 @@ dialog::backdrop { background: rgb(0 0 0 / 70%); }
   justify-self: end;
   width: 28px;
   height: 28px;
-  border: 1px solid #4a4c57;
-  border-radius: 5px;
-  background: #101116;
-  padding: 2px;
+  border: 0;
+  background: transparent;
+  padding: 0;
   cursor: help;
 }
 
 .trainer-held-item-button:hover,
 .trainer-held-item-button:focus-visible {
-  border-color: var(--gold);
   outline: none;
 }
 

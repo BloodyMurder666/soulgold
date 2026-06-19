@@ -100,6 +100,8 @@ enum
     MAP_ROUTE50                   = (85 | (0 << 8)),
     MAP_CHAMPONS_ROAD             = (86 | (0 << 8)),
     MAP_MT_GOLD_OUTSIDE           = (87 | (0 << 8)),
+    MAP_FOGGY_SHORE               = (88 | (0 << 8)),
+    MAP_FOGGY_SHORE2              = (89 | (0 << 8)),
 
     // gMapGroup_IndoorNewBark
     MAP_NEW_BARK_TOWN_LAB              = (0 | (1 << 8)),
@@ -361,6 +363,7 @@ enum
     MAP_GATE_KITAKAMI_BORDER                  = (28 | (22 << 8)),
     MAP_KITAKAMI_HOUSES                       = (29 | (22 << 8)),
     MAP_ROUTE49DESERT_GATE                    = (30 | (22 << 8)),
+    MAP_KITAKAMI_ROAD_HOUSE                   = (31 | (22 << 8)),
 
     // gMapGroup_IndoorKantoRoutes
     MAP_ROUTE26_HOUSE1                = (0 | (23 << 8)),
@@ -534,6 +537,7 @@ enum
     MAP_BLACKTHORN_CAVE               = (11 | (25 << 8)),
     MAP_MT_MORTAR_DEPTHS_1            = (12 | (25 << 8)),
     MAP_MT_MORTAR_DEPTHS_HEATRAN_ROOM = (13 | (25 << 8)),
+    MAP_FOGGY_FOREST                  = (14 | (25 << 8)),
 
     // gMapGroup_JohtoDiveMaps
     MAP_CHERRYGROVE_UNDERWATER = (0 | (26 << 8)),

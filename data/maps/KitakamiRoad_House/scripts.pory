@@ -1,0 +1,5 @@
+mapscripts KitakamiRoad_House_MapScripts {}
+
+script KitakamiBorder_MirrorLady {
+    
+}

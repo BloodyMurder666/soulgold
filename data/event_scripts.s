@@ -2271,3 +2271,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/FoggyShore2/scripts.inc"
 
 	.include "data/maps/FoggyForest/scripts.inc"
+
+	.include "data/maps/KitakamiRoad_House/scripts.inc"

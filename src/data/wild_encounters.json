@@ -13607,6 +13607,75 @@
               }
             ]
           }
+        },
+        {
+          "map": "MAP_FOGGY_FOREST",
+          "base_label": "gFoggyForest",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 28,
+                "max_level": 35,
+                "species": "SPECIES_PHANTUMP"
+              },
+              {
+                "min_level": 28,
+                "max_level": 35,
+                "species": "SPECIES_GRIMER_ALOLA"
+              },
+              {
+                "min_level": 28,
+                "max_level": 35,
+                "species": "SPECIES_CROAGUNK"
+              },
+              {
+                "min_level": 28,
+                "max_level": 35,
+                "species": "SPECIES_GRIMER_ALOLA"
+              },
+              {
+                "min_level": 28,
+                "max_level": 35,
+                "species": "SPECIES_MURKROW"
+              },
+              {
+                "min_level": 28,
+                "max_level": 35,
+                "species": "SPECIES_CROAGUNK"
+              },
+              {
+                "min_level": 28,
+                "max_level": 35,
+                "species": "SPECIES_MURKROW"
+              },
+              {
+                "min_level": 28,
+                "max_level": 35,
+                "species": "SPECIES_PHANTUMP"
+              },
+              {
+                "min_level": 28,
+                "max_level": 35,
+                "species": "SPECIES_SINISTEA"
+              },
+              {
+                "min_level": 29,
+                "max_level": 35,
+                "species": "SPECIES_MIMIKYU"
+              },
+              {
+                "min_level": 29,
+                "max_level": 35,
+                "species": "SPECIES_SINISTEA"
+              },
+              {
+                "min_level": 29,
+                "max_level": 35,
+                "species": "SPECIES_MIMIKYU"
+              }
+            ]
+          }
         }
       ]
     },

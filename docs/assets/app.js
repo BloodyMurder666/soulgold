@@ -35,12 +35,15 @@ function typePills(types) {
 }
 
 function abilityPills(constants, kind = "base") {
-  const unique = uniqueConstants(constants);
-  if (!unique.length) return "";
   const kindClass = kind === "hidden" ? "hidden-ability-pill" : kind === "innate" ? "innate-ability-pill" : "base-ability-pill";
-  return `<div class="pill-list">${unique.map((constant) => {
+  return abilityPillList(uniqueConstants(constants).map((constant) => ({ constant, className: kindClass })));
+}
+
+function abilityPillList(entries) {
+  if (!entries.length) return "";
+  return `<div class="pill-list">${entries.map(({ constant, className }) => {
     const ability = state.data.abilities[constant];
-    return `<button class="pill ability-pill ${kindClass}" type="button" data-ability="${constant}">${abilityName(constant)}</button>`;
+    return `<button class="pill ability-pill ${className}" type="button" data-ability="${constant}">${abilityName(constant)}</button>`;
   }).join("")}</div>`;
 }
 
@@ -59,8 +62,7 @@ function pokemonAbilityPills(mon) {
   const groups = pokemonAbilityGroups(mon);
   return `
     <div class="dex-ability-groups">
-      ${abilityPills(groups.regular, "base")}
-      ${abilityPills(groups.hidden, "hidden")}
+      ${regularAndHiddenAbilityPills(groups)}
       ${abilityPills(groups.innates, "innate")}
     </div>
   `;
@@ -69,11 +71,17 @@ function pokemonAbilityPills(mon) {
 function pokemonAbilitySections(mon) {
   const groups = pokemonAbilityGroups(mon);
   return `
-    <h3 class="section-title">Regular Abilities</h3>
-    ${abilityPills(groups.regular, "base") || `<p class="muted">None.</p>`}
-    ${groups.hidden.length ? `<h3 class="section-title">Hidden Ability</h3>${abilityPills(groups.hidden, "hidden")}` : ""}
+    <h3 class="section-title">Abilities</h3>
+    ${regularAndHiddenAbilityPills(groups) || `<p class="muted">None.</p>`}
     ${groups.innates.length ? `<h3 class="section-title">Innates</h3>${abilityPills(groups.innates, "innate")}` : ""}
   `;
+}
+
+function regularAndHiddenAbilityPills(groups) {
+  return abilityPillList([
+    ...groups.regular.map((constant) => ({ constant, className: "base-ability-pill" })),
+    ...groups.hidden.map((constant) => ({ constant, className: "hidden-ability-pill" })),
+  ]);
 }
 
 function sprite(src, className = "sprite") {

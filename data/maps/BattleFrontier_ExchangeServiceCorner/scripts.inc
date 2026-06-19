@@ -615,10 +615,10 @@ BattleFrontier_ExchangeServiceCorner_Text_ScopeLensDesc::
 	.string "critical-hit rate.$"
 
 EventScript_DoWonderTrade::
-	goto_if_set FLAG_UNLIMITIED_WONDERTRADE, EventScript_DoWonderTradeStartNoLimit
-	goto_if_unset FLAG_WONDERTRADE_FIRSTIME, EventScript_FirstTimeWonderRandomizer
+	goto_if_set FLAG_GARBAGEFLAG, EventScript_DoWonderTradeStartNoLimit
+	goto_if_unset FLAG_GARBAGEFLAG, EventScript_FirstTimeWonderRandomizer
 	@special CheckIfRandomizerIsActive
-	@goto_if_unset FLAG_WT_ENABLED_RANDOMIZER, EventScript_DoWonderTradeStart
+	@goto_if_unset FLAG_GARBAGEFLAG, EventScript_DoWonderTradeStart
 	@@special CheckIfChallengesAreActive
 	goto_if_set FLAG_WONDERTRADE3, EventScript_NoMoreForToday
 	goto_if_set FLAG_NO_WT_BECAUSE_CHALLENGE, EventScript_WTChallenges
@@ -699,7 +699,7 @@ EventScript_DoWonderTradeCancelSaveThirdTrade::
 	end
 
 EventScript_DoWonderTradeStartNoLimit::
-	goto_if_unset FLAG_WONDERTRADE_FIRSTIME, EventScript_FirstTimeWonderUnlimited
+	goto_if_unset FLAG_GARBAGEFLAG, EventScript_FirstTimeWonderUnlimited
 	goto_if_unset FLAG_BADGE05_GET, EventScript_WTNotActiveYet
 	@special CheckIfChallengesAreActive
 	goto_if_set FLAG_NO_WT_BECAUSE_CHALLENGE, EventScript_WTChallengesUnlimited
@@ -733,13 +733,13 @@ EventScript_NoMoreForToday::
 
 EventScript_FirstTimeWonderRandomizer::
 	msgbox EventScript_FirstTimeWonder_Text, MSGBOX_DEFAULT
-	setflag FLAG_WONDERTRADE_FIRSTIME
+	setflag FLAG_GARBAGEFLAG
 	closemessage
 	end
 
 EventScript_FirstTimeWonderUnlimited::
 	msgbox EventScript_FirstTimeWonder_Text_Unlimited, MSGBOX_DEFAULT
-	setflag FLAG_WONDERTRADE_FIRSTIME
+	setflag FLAG_GARBAGEFLAG
 	closemessage
 	end
 

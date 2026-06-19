@@ -518,10 +518,10 @@
 
 #define FLAG_INFINITE_STUFF                  0x1DE
 #define FLAG_INFINITE_STUFF_GIRL             0x1DF
-#define FLAG_WT_ENABLED_RANDOMIZER           0x1E0
-#define FLAG_FERTILIZER_ROUTE_102            0x1E1
-#define FLAG_UNLIMITIED_WONDERTRADE          0x1E2
-#define FLAG_MINTS_ENABLED                   0x1E3
+#define FLAG_KITAKAMIBORDER_MAX_ETHER        0x1E0
+#define FLAG_KITAKAMIBORDER_PROTBANDS        0x1E1
+#define FLAG_TM_WILD_CHARGE                  0x1E2
+#define FLAG_TM_TOXIC                        0x1E3
 
 // Mystery Gift Flags (Unknown)
 #define FLAG_MYSTERY_GIFT_DONE               0x1E4
@@ -907,11 +907,11 @@
 #define FLAG_UNUSED_SET9                                            0x358
 #define FLAG_SPOKEN_VICTORYROAD_RIVAL                               0x359
 #define FLAG_RECEIVED_ODD_EGG                                       0x35A
-#define FLAG_HIDE_CERULEAN_GYM_POKEMON                                          0x35B
-#define FLAG_HIDE_NEWBARKTOWN_LAB_AIDE                                          0x35C
-#define FLAG_HIDE_AZALEA_TOWN_CUT_MASTER                                          0x35D
+#define FLAG_HIDE_CERULEAN_GYM_POKEMON                              0x35B
+#define FLAG_HIDE_NEWBARKTOWN_LAB_AIDE                              0x35C
+#define FLAG_HIDE_AZALEA_TOWN_CUT_MASTER                            0x35D
 #define FLAG_RAILWAY_ELECTRITE                                      0x35E
-#define FLAG_UNUSED_UNSET7                                          0x35F
+#define FLAG_HIDE_POISOTITE                                         0x35F
 #define FLAG_HIDE_BATTLE_TOWER_MULTI_BATTLE_PARTNER_ALT_1           0x360
 #define FLAG_HIDE_BATTLE_TOWER_MULTI_BATTLE_PARTNER_ALT_2           0x361
 #define FLAG_ROUTE42_PSYCHITE                                       0x362

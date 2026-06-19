@@ -148,9 +148,14 @@ def copy_item_icon(item: ItemRecord | None, item_icon_dir: Path) -> str | None:
     image = Image.open(source)
     rgba = image.convert("RGBA")
     if image.mode == "P":
-        transparent_index = image.info.get("transparency", 0)
+        transparent_indices = {image.getpixel((0, 0))}
+        transparency = image.info.get("transparency")
+        if isinstance(transparency, int):
+            transparent_indices.add(transparency)
+        elif isinstance(transparency, bytes):
+            transparent_indices.update(index for index, alpha in enumerate(transparency) if alpha == 0)
         pixels = [
-            (*pixel[:3], 0) if image.getpixel((x, y)) == transparent_index else pixel
+            (*pixel[:3], 0) if image.getpixel((x, y)) in transparent_indices else pixel
             for y in range(image.height)
             for x, pixel in ((x, rgba.getpixel((x, y))) for x in range(image.width))
         ]
