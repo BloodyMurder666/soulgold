@@ -233,7 +233,7 @@ GoldenrodCity_UndergroundTunnel_Text_Kimono1:
 # 117 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	.string "You may be able to face the\n"
 # 118 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	.string "legendary Poké...$"
+	.string "legendary Pokémon...$"
 # 119 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
 # 120 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
