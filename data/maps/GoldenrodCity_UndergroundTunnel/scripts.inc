@@ -233,7 +233,7 @@ GoldenrodCity_UndergroundTunnel_Text_Kimono1:
 # 117 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	.string "You may be able to face the\n"
 # 118 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	.string "legendary POKé...$"
+	.string "legendary Poké...$"
 # 119 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
 # 120 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
@@ -819,7 +819,7 @@ GoldenrodUnderground_Text_PokemaniacDonaldAfterBattle:
 # 410 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 GoldenrodUnderground_Text_PokemaniacDonaldAfterBattleOld:
 # 411 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "Are you making a POKéDEX? Here's a\n"
+    .string "Are you making a Pokédex? Here's a\n"
 # 412 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
     .string "hot tip.\p"
 # 413 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"

@@ -145,7 +145,7 @@ VajraDesert_ManSighing_Text_0:
 
 VajraDesert_TrainerJill_Text_0:
 # 21 "data/maps/VajraDesert/scripts.pory"
-	.string "I read on a magazine that training in\n"
+	.string "I read in a magazine that training in\n"
 	.string "harsh environments is great for you!$"
 
 VajraDesert_TrainerJill_Text_1:
@@ -181,13 +181,13 @@ VajraDesert_TrainerBelmare_Text_1:
 
 VajraDesert_TrainerBelmare_Text_2:
 # 37 "data/maps/VajraDesert/scripts.pory"
-	.string "My Maractus is absolutely most\n"
+	.string "My Maractus is absolutely the most\n"
 	.string "adorable Pokémon. We come here to\l"
-	.string "sunbath!$"
+	.string "sunbathe!$"
 
 VajraDesert_TrainerKennedy_Text_0:
 # 42 "data/maps/VajraDesert/scripts.pory"
-	.string "Overcoming harhest ordeals with your\n"
+	.string "Overcoming harsh ordeals with your\n"
 	.string "Pokémon is the spirit of the journey!$"
 
 VajraDesert_TrainerKennedy_Text_1:

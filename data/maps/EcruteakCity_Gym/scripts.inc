@@ -169,7 +169,7 @@ EcruteakCity_Gym_Text_GymStatueCertified:
 # 85 "data/maps/EcruteakCity_Gym/scripts.pory"
 	.string "Ecruteak City Pokémon Gym\p"
 # 86 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Morty'S Certified Trainers:\n"
+	.string "Morty's Certified Trainers:\n"
 # 87 "data/maps/EcruteakCity_Gym/scripts.pory"
 	.string "{PLAYER}$"
 # 88 "data/maps/EcruteakCity_Gym/scripts.pory"

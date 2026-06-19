@@ -54,7 +54,7 @@ EcruteakCity_House3_HexLady_Text_0:
 EcruteakCity_House3_HexLady_Text_1:
 # 13 "data/maps/EcruteakCity_House3/scripts.pory"
 	.string "Attacking when the enemy is afflicted...\n"
-	.string "The key strategy to winninga a battle...\p"
+	.string "The key strategy to winning a battle...\p"
 	.string "Here... Take it...$"
 
 EcruteakCity_House3_Lampent_Text_0:

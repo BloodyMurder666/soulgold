@@ -173,7 +173,7 @@ GoldenrodCity_RadioTower_4F4_Text_Proton_Seen:
 # 87 "data/maps/GoldenrodCity_RadioTower_4F/scripts.pory"
 	.string "show you the full extent of a Team\l"
 # 88 "data/maps/GoldenrodCity_RadioTower_4F/scripts.pory"
-	.string "Rocket Executive'S wrath!$"
+	.string "Rocket Executive's wrath!$"
 # 89 "data/maps/GoldenrodCity_RadioTower_4F/scripts.pory"
 
 # 90 "data/maps/GoldenrodCity_RadioTower_4F/scripts.pory"
@@ -233,7 +233,7 @@ GoldenrodCity_RadioTower_4F4_Text_DJMaryAfter:
 # 117 "data/maps/GoldenrodCity_RadioTower_4F/scripts.pory"
 	.string "Mary: Please tune into me on Prof.\n"
 # 118 "data/maps/GoldenrodCity_RadioTower_4F/scripts.pory"
-	.string "Oak'S Pokémon Talk show!$"
+	.string "Oak's Pokémon Talk show!$"
 # 119 "data/maps/GoldenrodCity_RadioTower_4F/scripts.pory"
 
 # 120 "data/maps/GoldenrodCity_RadioTower_4F/scripts.pory"

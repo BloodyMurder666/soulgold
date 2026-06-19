@@ -43,7 +43,7 @@ OlivineCity_Text_GaveGoodRod:
 	.string "Fish aren't only found in the\n"
 	.string "sea--they're wherever there's\l"
 	.string "water.\p"
-	.string "By the way, your POKéDEX shows\n"
+	.string "By the way, your Pokédex shows\n"
 	.string "fishing groups for Pokémon.\p"
 	.string "Different spots may contain\n"
 	.string "similar fish types.$"

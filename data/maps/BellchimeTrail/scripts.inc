@@ -150,8 +150,8 @@ BellchimeTrail_MortyRematch_Text_0:
 
 BellchimeTrail_MortyRematch_Text_1:
 # 67 "data/maps/BellchimeTrail/scripts.pory"
-	.string "Thank you, I will you those watching\n"
-	.string "to be as worthy as you!$"
+	.string "Thank you, I will show those watching\n"
+	.string "that I can be as worthy as you!$"
 
 BellchimeTrail_MortyRematch_Text_2:
 # 69 "data/maps/BellchimeTrail/scripts.pory"
@@ -161,6 +161,6 @@ BellchimeTrail_MortyRematch_Text_3:
 # 70 "data/maps/BellchimeTrail/scripts.pory"
 	.string "Merely being strong or wise is not\n"
 	.string "enough always. It takes also something\l"
-	.string "more intangible that you posses. I hope\l"
+	.string "more intangible that you possess. I hope\l"
 	.string "the spirits continue to bless you.\p"
 	.string "Until our next meeting.$"

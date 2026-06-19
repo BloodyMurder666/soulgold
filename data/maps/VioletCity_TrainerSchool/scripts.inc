@@ -333,7 +333,7 @@ VioletCity_TrainerSchool_Text_Notebook:
 # 167 "data/maps/VioletCity_TrainerSchool/scripts.pory"
 	.string "It's this kid's notebook…\p"
 # 168 "data/maps/VioletCity_TrainerSchool/scripts.pory"
-	.string "Catch Pokémon using POKé Balls.\p"
+	.string "Catch Pokémon using Poké Balls.\p"
 # 169 "data/maps/VioletCity_TrainerSchool/scripts.pory"
 	.string "Up to six can be in your party.\p"
 # 170 "data/maps/VioletCity_TrainerSchool/scripts.pory"
@@ -343,7 +343,7 @@ VioletCity_TrainerSchool_Text_Notebook:
 # 172 "data/maps/VioletCity_TrainerSchool/scripts.pory"
 VioletCity_TrainerSchool_Text_Notebook1:
 # 173 "data/maps/VioletCity_TrainerSchool/scripts.pory"
-	.string "Before throwing a POKé Ball,\n"
+	.string "Before throwing a Poké Ball,\n"
 # 174 "data/maps/VioletCity_TrainerSchool/scripts.pory"
 	.string "weaken the target first.\p"
 # 175 "data/maps/VioletCity_TrainerSchool/scripts.pory"

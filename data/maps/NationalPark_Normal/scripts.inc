@@ -143,7 +143,7 @@ NationalPark_Normal_Text_Lass:
 # 72 "data/maps/NationalPark_Normal/scripts.pory"
 	.string "I printed out my favorites from my\n"
 # 73 "data/maps/NationalPark_Normal/scripts.pory"
-	.string "POKéDEX and stuck them on my bag.$"
+	.string "Pokédex and stuck them on my bag.$"
 # 74 "data/maps/NationalPark_Normal/scripts.pory"
 
 # 75 "data/maps/NationalPark_Normal/scripts.pory"
@@ -185,13 +185,13 @@ NationalPark_Normal_Text_Youngster1:
 # 93 "data/maps/NationalPark_Normal/scripts.pory"
 	.string "I'm playing with stickers I printed\n"
 # 94 "data/maps/NationalPark_Normal/scripts.pory"
-	.string "from my POKéDEX.$"
+	.string "from my Pokédex.$"
 # 95 "data/maps/NationalPark_Normal/scripts.pory"
 
 # 96 "data/maps/NationalPark_Normal/scripts.pory"
 NationalPark_Normal_Text_Youngster2:
 # 97 "data/maps/NationalPark_Normal/scripts.pory"
-	.string "I get the other guy's POKéDEX sticker\n"
+	.string "I get the other guy's Pokédex sticker\n"
 # 98 "data/maps/NationalPark_Normal/scripts.pory"
 	.string "if I win.$"
 # 99 "data/maps/NationalPark_Normal/scripts.pory"
@@ -371,7 +371,7 @@ NationalPark_Normal_Text_Sign_BattleNotice:
 # 186 "data/maps/NationalPark_Normal/scripts.pory"
 	.string "Please battle only in the grass.\p"
 # 187 "data/maps/NationalPark_Normal/scripts.pory"
-	.string "National Park Warden'S Office$"
+	.string "National Park Warden's Office$"
 # 188 "data/maps/NationalPark_Normal/scripts.pory"
 
 # 189 "data/maps/NationalPark_Normal/scripts.pory"

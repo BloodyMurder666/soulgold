@@ -353,7 +353,7 @@ VioletCity_Gym_Text_GymStatueCertified:
 # 177 "data/maps/VioletCity_Gym/scripts.pory"
 	.string "Violet City Pokémon Gym\p"
 # 178 "data/maps/VioletCity_Gym/scripts.pory"
-	.string "Falkner'S Certified Trainers:\n"
+	.string "Falkner's Certified Trainers:\n"
 # 179 "data/maps/VioletCity_Gym/scripts.pory"
 	.string "{PLAYER}$"
 

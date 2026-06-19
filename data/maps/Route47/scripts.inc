@@ -467,7 +467,7 @@ Route47OrbExpert_Text_1:
 
 Route47OrbExpert_Text_2:
 # 216 "data/maps/Route47/scripts.pory"
-	.string "You are indeed worthy of this orbal\n"
+	.string "You are indeed worthy of this orb\n"
 	.string "knowledge! Allow me to demonstrate it\l"
 	.string "to you!$"
 

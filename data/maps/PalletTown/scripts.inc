@@ -41,11 +41,11 @@ PalletTown_Text_Sign:
 	.string "& Purity$"
 
 PalletTown_Text_RedsHouseSign:
-	.string "Red'S House$"
+	.string "Red's House$"
 
 PalletTown_Text_OaksLabSign:
 	.string "Oak Pokémon\n"
 	.string "Research Lab$"
 
 PalletTown_Text_BluesHouseSign:
-	.string "Blue'S House$"
+	.string "Blue's House$"

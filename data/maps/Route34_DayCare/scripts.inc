@@ -73,7 +73,7 @@ Route34_DayCare_Text_Bookshelf2:
 # 37 "data/maps/Route34_DayCare/scripts.pory"
 Route34_DayCare_Text_Bookshelf3:
 # 38 "data/maps/Route34_DayCare/scripts.pory"
-	.string "A book of word assocations!\p"
+	.string "A book of word associations!\p"
 # 39 "data/maps/Route34_DayCare/scripts.pory"
 	.string "{PLAYER} flipped through\n"
 # 40 "data/maps/Route34_DayCare/scripts.pory"

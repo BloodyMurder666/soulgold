@@ -52,5 +52,5 @@ AzaleaPokecenter_Text_PokefanF:
 	.string "Crack one open, hollow it out and\n"
 	.string "fit it with a special device.\p"
 	.string "Then you can catch Pokémon with it.\p"
-	.string "Before POKé Balls were invented,\n"
+	.string "Before Poké Balls were invented,\n"
 	.string "everyone used Berries.$"

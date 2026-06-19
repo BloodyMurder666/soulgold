@@ -97,5 +97,5 @@ Route124_EventScript_Isabella::
 	end
 
 Route124_Text_HuntersHouse:
-	.string "Hunter'S House$"
+	.string "Hunter's House$"
 

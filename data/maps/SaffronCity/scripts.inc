@@ -120,7 +120,7 @@ SaffronCity_Text_Lass1:
 SaffronCity_Text_Lass1_ReturnedPart:
 	.string "The Copycat girl looked unhappy.\p"
 	.string "She said she lost her favorite\n"
-	.string "POKé Doll--Clefairy.$"
+	.string "Poké Doll--Clefairy.$"
 
 SaffronCity_Text_PokefanM:
 	.string "You came out from Johto?\p"
@@ -192,7 +192,7 @@ SaffronCity_Text_SilphCoSign:
 	.string "Office Building$"
 
 SaffronCity_Text_MrPsychicHouseSign:
-	.string "Mr.Psychic'S\n"
+	.string "Mr.Psychic's\n"
 	.string "House$"
 
 SaffronCity_Text_MagnetTrainStationSign:

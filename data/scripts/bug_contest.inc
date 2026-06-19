@@ -225,7 +225,7 @@ BugContest_Text_WhiteOut:
 	.string "{PLAYER} forfeited the contest.$"
 
 BugContest_Text_First1:
-	.string "Placing third is the COOLTRAINER\n"
+	.string "Placing third is the Cooltrainer\n"
 	.string "BELINDA, who caught a wriggling\l"
 	.string "BUTTERFREE!$"
 BugContest_Text_First2:
@@ -239,7 +239,7 @@ BugContest_Text_First3:
 	.string "{STR_VAR_1}!$"
 
 BugContest_Text_Second1:
-	.string "Placing second is the COOLTRAINER\n"
+	.string "Placing second is the Cooltrainer\n"
 	.string "BELINDA, who caught a wriggling\l"
 	.string "BUTTERFREE!$"
 BugContest_Text_Second2:
@@ -256,7 +256,7 @@ BugContest_Text_Third1:
 	.string "Placing third is {PLAYER}, who\n"
 	.string "caught a wriggling {STR_VAR_1}!$"
 BugContest_Text_Third2:
-	.string "Placing second is the COOLTRAINER\n"
+	.string "Placing second is the Cooltrainer\n"
 	.string "BELINDA, who caught a writhing\l"
 	.string "BUTTERFREE!$"
 BugContest_Text_Third3:

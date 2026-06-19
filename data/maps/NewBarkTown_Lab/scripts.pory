@@ -724,7 +724,7 @@ NewBarkTown_Lab_Text_ElmDirections2:
 	.string "your Pokémon battle it!\p"
 	.string "If your Pokémon is hurt, you\n"
 	.string "should heal it with the machine\l"
-	.string "to my right, or at the POKéCENTER.\p"
+	.string "to my right, or at the Pokémon Center.\p"
 	.string "I'm counting on you!$"
 
 NewBarkTown_Lab_Text_GotElmsNumber:
@@ -760,7 +760,7 @@ NewBarkTown_Lab_Text_ElmAfterTheft4:
 	.string "If it is, it is a great\n"
 	.string "discovery!\p"
 	.string "Elm: What?!?\p"
-	.string "Prof.Oak gave you a POKéDEX?\p"
+	.string "Prof.Oak gave you a Pokédex?\p"
 	.string "{PLAYER}, is that true?\n"
 	.string "Th-that's incredible!\p"
 	.string "He is superb at seeing the\n"
@@ -938,13 +938,13 @@ NewBarkTown_Lab_Text_AideTheftTestimony:
 
 NewBarkTown_Lab_Text_AideGiveBalls:
 	.string "{PLAYER}!\p"
-	.string "Use these on your POKéDEX\n"
+	.string "Use these on your Pokédex\n"
 	.string "quest!$"
 
 NewBarkTown_Lab_Text_AideExplainBalls:
-	.string "To add to your POKéDEX, you\n"
+	.string "To add to your Pokédex, you\n"
 	.string "have to catch Pokémon.\p"
-	.string "Throw POKé Balls at wild\n"
+	.string "Throw Poké Balls at wild\n"
 	.string "Pokémon to get them.$"
 
 NewBarkTown_Lab_Text_Officer1:
@@ -975,7 +975,7 @@ NewBarkTown_Lab_Text_OfficerNo:
 
 NewBarkTown_Lab_Text_Elm_CallMe:
 	.string "Ah, {PLAYER}!\p"
-	.string "How's your POKéDEX coming along?\n"
+	.string "How's your Pokédex coming along?\n"
 	.string "I'm busy now, but call me sometime\l"
 	.string "and I can check your progress!$"
 `

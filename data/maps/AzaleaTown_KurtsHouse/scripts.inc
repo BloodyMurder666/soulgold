@@ -456,7 +456,7 @@ KurtsHouse_Text_KurtTurnedOutGreat:
 KurtsHouse_Text_KurtWhatIsThat:
 	.string "Wh-what is that?\p"
 	.string "I've never seen one before.\p"
-	.string "It looks a like a POKé Ball, but\n"
+	.string "It looks a like a Poké Ball, but\n"
 	.string "it appears to be something else.\p"
 	.string "Let me check it for you.$"
 
@@ -489,7 +489,7 @@ KurtsHouse_Text_GranddaughterSlowpokeBack:
 
 KurtsHouse_Text_GranddaughterDad:
 	.string "Dad works at Silph where\n"
-	.string "he studies POKé Balls.\p"
+	.string "he studies Poké Balls.\p"
 	.string "I have to stay home\n"
 	.string "with Grandpa and Slowpoke.$"
 

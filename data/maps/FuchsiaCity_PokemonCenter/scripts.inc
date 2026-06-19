@@ -46,7 +46,7 @@ FuchsiaCity_PokemonCenter_EventScript_JanineClone::
 
 FuchsiaCity_PokemonCenter1F_Text_CooltrainerM:
 	.string "Hey! You have a brand new kind of\n"
-	.string "POKéDEX.\p"
+	.string "Pokédex.\p"
 	.string "Did Prof.Oak give that to you?$"
 
 FuchsiaCity_PokemonCenter1F_Text_CooltrainerF:

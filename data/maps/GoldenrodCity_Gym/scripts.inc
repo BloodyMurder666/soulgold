@@ -245,9 +245,9 @@ GoldenrodCity_Gym_Text_GymStatue:
 # 123 "data/maps/GoldenrodCity_Gym/scripts.pory"
 GoldenrodCity_Gym_Text_GymStatueCertified:
 # 124 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	.string "Goldenrod Town Pokémon Gym\p"
+	.string "Goldenrod City Pokémon Gym\p"
 # 125 "data/maps/GoldenrodCity_Gym/scripts.pory"
-	.string "Whitney'S Certified Trainers:\n"
+	.string "Whitney's Certified Trainers:\n"
 # 126 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	.string "{PLAYER}$"
 # 127 "data/maps/GoldenrodCity_Gym/scripts.pory"

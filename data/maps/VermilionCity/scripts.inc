@@ -362,7 +362,7 @@ VermilionCity_Text_FanClubSign:
 	.string "All Pokémon Fans Welcome!$"
 
 VermilionCity_Text_DiglettsCaveSign:
-	.string "Diglett'S Cave$"
+	.string "Diglett's Cave$"
 
 VermilionCity_Text_PortSign:
 	.string "Vermilion Port\n"

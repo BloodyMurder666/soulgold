@@ -49,7 +49,7 @@ CianwoodPokecenter_EventScript_Lass::
 	end
 
 CianwoodCity_Text_PokecenterLass:
-	.string "Did you meet the POKéMANIAC?\p"
+	.string "Did you meet the Pokémaniac?\p"
 	.string "He's always bragging about his\n"
 	.string "rare Pokémon.$"
 

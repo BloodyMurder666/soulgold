@@ -89,7 +89,7 @@ script BattleArcade_Registration_EventScript_ExplainChallenge
 
 script BattleArcade_Registration_EventScript_TryEnterChallenge
 {
-	message(format("The ROCKET ARCADE offers two levels of challenge, Classic and Chaos. Which is your choice?"))
+	message(format("The Rocket Arcade offers two levels of challenge, Classic and Chaos. Which is your choice?"))
 	waitmessage
 	multichoice(17, 4, MULTI_LEVEL_MODE, FALSE)
 	switch(var(VAR_RESULT))
@@ -410,7 +410,7 @@ text BattleArcade_Entrance_Text_CongratulationsInHonorOf
 
 text BattleArcade_Entrance_Text_OneTrainerShouldSelectBecome
 {
-	format("One Trainer should select “BECOME LEADER.” The other Trainer must select “JOIN GROUP.”")
+	format("One Trainer should select “Become Leader.” The other Trainer must select “Join Group.”")
 }
 text BattleArcade_Entrance_Text_WeNeedToLaunchDs
 {

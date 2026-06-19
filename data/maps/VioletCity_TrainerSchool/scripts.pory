@@ -165,12 +165,12 @@ VioletCity_TrainerSchool_Text_Blackboard:
 
 VioletCity_TrainerSchool_Text_Notebook:
 	.string "It's this kid's notebook…\p"
-	.string "Catch Pokémon using POKé Balls.\p"
+	.string "Catch Pokémon using Poké Balls.\p"
 	.string "Up to six can be in your party.\p"
 	.string "Keep reading?$"
 
 VioletCity_TrainerSchool_Text_Notebook1:
-	.string "Before throwing a POKé Ball,\n"
+	.string "Before throwing a Poké Ball,\n"
 	.string "weaken the target first.\p"
 	.string "A poisoned or burned Pokémon\n"
 	.string "is easier to catch.\p"

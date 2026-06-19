@@ -192,7 +192,7 @@ RadioTower1F_Text_QuizQuestion2:
 RadioTower1F_Text_QuizQuestion3:
     .string "Bull's-eye!\n"
     .string "Question 3:\p"
-    .string "Kurt, the POKéBALL creator, uses\n"
+    .string "Kurt, the Poké Ball creator, uses\n"
 	.string "apricorns as ingredients?$"
 
 RadioTower1F_Text_QuizQuestion4:
@@ -257,7 +257,7 @@ RadioTower1F_Text_Directory:
     .string "2F Sales\p"
     .string "3F Personnel\n"
     .string "4F Production\p"
-    .string "5F Director'S Office$"
+    .string "5F Director's Office$"
 
 
 GoldenrodCity_RadioTower_1F_EventScript_LotteryClerk::

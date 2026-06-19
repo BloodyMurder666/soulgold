@@ -1194,18 +1194,18 @@ Goldenrod_Daytime_Electabuzz_Text_0:
 
 Goldenrod_Daytime_Bystander_Text_0:
 # 516 "data/maps/GoldenrodCity/scripts.pory"
-	.string "There two have been going on with their\n"
-	.string "rivarly for weeks. The city should build\l"
+	.string "Those two have been going on with their\n"
+	.string "rivalry for weeks. The city should build\l"
 	.string "a battle arena just for them.$"
 
 Goldenrod_Nighttime_Burglar_Text_0:
 # 526 "data/maps/GoldenrodCity/scripts.pory"
-	.string "The city's rapid developement has \n"
+	.string "The city's rapid development has\n"
 	.string "raised some questions regarding\l"
 	.string "where all the money is coming from.\p"
 	.string "If they knew just how much money\n"
-	.string "trades hands in the underground every\l"
-	.string "every day, their eyeballs would pop out.\p"
+	.string "changes hands in the underground every\l"
+	.string "day, their eyeballs would pop out.\p"
 	.string "Perhaps one day you too will learn, if\n"
 	.string "you grow strong enough.$"
 
@@ -1218,7 +1218,7 @@ Goldenrod_Nighttime_Oldlady_Text_0:
 Goldenrod_Nighttime_Oldlady_Text_1:
 # 549 "data/maps/GoldenrodCity/scripts.pory"
 	.string "Some petty thief tried to jump me on a\n"
-	.string "dark alleway, he was not expecting me\l"
+	.string "dark alleyway, he was not expecting me\l"
 	.string "to Smack Down him with a good old\l"
 	.string "Ippon seoinage.\p"
 	.string "Here, you should try\n"
@@ -1242,7 +1242,7 @@ GoldenrodCity_RivalAfterWhitney_Text_2:
 # 595 "data/maps/GoldenrodCity/scripts.pory"
 	.string "Hey, want to head to\n"
 	.string "Ecruteak together?\p"
-	.string "Actually nevermind, you'll probably\n"
+	.string "Actually never mind, you'll probably\n"
 	.string "want to catch more Pokémon, I'll\l"
 	.string "go visit my grandparents instead.\p"
 	.string "Well, see ya!$"

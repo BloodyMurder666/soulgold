@@ -105,7 +105,7 @@ BillHouse_Text_MomAfterEcruteak:
 # 53 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
     .string "My husband was once known as a\n"
 # 54 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
-    .string "POKéMANIAC.\p"
+    .string "Pokémaniac.\p"
 # 55 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
     .string "Bill must have taken after his\n"
 # 56 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"

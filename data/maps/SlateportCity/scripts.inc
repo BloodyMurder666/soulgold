@@ -1196,18 +1196,18 @@ SlateportCity_Text_BattleTentSign:
 	.string "“Find it! The ultimate Pokémon!”$"
 
 SlateportCity_Text_SternsShipyardWantedSign:
-	.string "Stern'S Shipyard\p"
+	.string "Stern's Shipyard\p"
 	.string "“Wanted: A sailor capable of sailing\n"
 	.string "in all currents.”$"
 
 SlateportCity_Text_SternsShipyardNearsCompletion:
-	.string "Stern'S Shipyard\p"
+	.string "Stern's Shipyard\p"
 	.string "“The ferry S.S. Tidal nears\n"
 	.string "completion for serving the ports of\l"
 	.string "Slateport and Lilycove.”$"
 
 SlateportCity_Text_SternsShipyardFerryComplete:
-	.string "Stern'S Shipyard\p"
+	.string "Stern's Shipyard\p"
 	.string "“Boarding of the Slateport-Lilycove\n"
 	.string "ferry S.S. Tidal is handled at the\l"
 	.string "Harbor.”$"
@@ -1243,7 +1243,7 @@ SlateportCity_Text_HarborSign:
 	.string "the ferry S.S. Tidal.”$"
 
 SlateportCity_Text_NameRatersHouseSign:
-	.string "Name Rater'S House\n"
+	.string "Name Rater's House\n"
 	.string "“Pokémon nicknames rated.”$"
 
 SlateportCity_Text_ExplainBerries:
@@ -1321,12 +1321,12 @@ SlateportCity_Text_LetsRegisterEachOther:
 	.string "Scott: All right! I think you're going\n"
 	.string "to become a good friend.\p"
 	.string "So, let's register each other in our\n"
-	.string "POKéNAVS.\p"
+	.string "PokéNavs.\p"
 	.string "… … … … … …$"
 
 SlateportCity_Text_RegisteredScott:
 	.string "Registered this Scott person\n"
-	.string "in the POKéNAV.$"
+	.string "in the PokéNav.$"
 
 SlateportCity_Text_KeepEyeOnTrainersBeSeeingYou:
 	.string "Scott: What I'd like to do is tag along\n"

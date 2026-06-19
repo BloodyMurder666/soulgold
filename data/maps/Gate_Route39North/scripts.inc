@@ -102,7 +102,7 @@ Route39North_Elder_Text_0:
 # 11 "data/maps/Gate_Route39North/scripts.pory"
 	.string "When I was younger, I would hike the\n"
 	.string "trail to the mountain every day, uphill\l"
-	.string "both ways! I didn't have any pokémon\l"
+	.string "both ways! I didn't have any Pokémon\l"
 	.string "carrying me or any of those fancy bikes\l"
 	.string "you kids have these days!$"
 
@@ -132,12 +132,12 @@ Route39North_Binoculars_Text_0:
 	.string "You peer into the binoculars...\n"
 	.string "...\l"
 	.string "..!\l"
-	.string "A majestic snowmountain towers in the\l"
+	.string "A majestic snowy mountain towers in the\l"
 	.string "distance!$"
 
 Route39North_Gameboykid_Text_0:
 # 56 "data/maps/Gate_Route39North/scripts.pory"
-	.string "I hear Rotom can posses common\n"
+	.string "I hear Rotom can possess common\n"
 	.string "household appliances to change\l"
 	.string "form.$"
 

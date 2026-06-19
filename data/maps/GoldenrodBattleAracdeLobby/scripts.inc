@@ -143,7 +143,7 @@ GoldenrodArcadeLobby_Shop_Text_1:
 GoldenrodArcade_Queue2_Text_0:
 # 72 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
 	.string "I can't wait to see the next battle\n"
-	.string "from the frontrow seats!$"
+	.string "from the front-row seats!$"
 
 GoldenrodArcade_Queue3_Text_0:
 # 77 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"

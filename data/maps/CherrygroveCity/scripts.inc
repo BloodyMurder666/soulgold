@@ -771,7 +771,7 @@ CherrygroveCity_Text_CitySign:
 # 386 "data/maps/CherrygroveCity/scripts.pory"
 CherrygroveCity_Text_GuideGentsHouseSign:
 # 387 "data/maps/CherrygroveCity/scripts.pory"
-	.string "Guide Gent'S House$"
+	.string "Guide Gent's House$"
 # 388 "data/maps/CherrygroveCity/scripts.pory"
 
 # 389 "data/maps/CherrygroveCity/scripts.pory"
@@ -1341,7 +1341,7 @@ Cherrygrove_FriendlyTrader_Text_6:
 Cherrygrove_FriendlyTrader_Text_7:
 # 665 "data/maps/CherrygroveCity/scripts.pory"
 	.string "Hey! Can I ask you a favour? \p"
-	.string "Wait... You\n"
-	.string "you don't have any Pokeballs... \p"
+	.string "Wait... You don't have any\n"
+	.string "Poké Balls...\p"
 	.string "Sorry,\n"
 	.string "I thought you were a trainer.$"

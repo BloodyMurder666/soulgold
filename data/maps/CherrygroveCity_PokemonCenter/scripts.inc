@@ -53,7 +53,7 @@ CherryGrove_Pokecenter_Text_Gentleman:
 CherryGrove_Pokecenter_Text_Lass:
 	.string "They say a watched pot never\n"
 	.string "boils. But watching the clock\l"
-	.string "in the POKéCENTER makes time fly!$"
+	.string "in the PokéCenter makes time fly!$"
 
 CherryGrove_Pokecenter_Text_Chansey:
 	.string "Chansey: Chaan! Sii!$"

@@ -689,7 +689,7 @@ BattleArcade_Registration_EventScript_ExplainChallenge_Text_1:
 
 BattleArcade_Registration_EventScript_TryEnterChallenge_Text_0:
 # 92 "data/scripts/battle_arcade_registration.pory"
-	.string "The ROCKET ARCADE offers two levels of\n"
+	.string "The Rocket Arcade offers two levels of\n"
 	.string "challenge, Classic and Chaos. Which is\l"
 	.string "your choice?$"
 
@@ -753,7 +753,7 @@ BattleArcade_Entrance_Text_OneTrainerShouldSelectBecome::
 # 411 "data/scripts/battle_arcade_registration.pory"
 	.string "One Trainer should select “BECOME\n"
 	.string "LEADER.” The other Trainer must select\l"
-	.string "“JOIN GROUP.”$"
+	.string "“Join Group.”$"
 
 BattleArcade_Entrance_Text_WeNeedToLaunchDs::
 # 415 "data/scripts/battle_arcade_registration.pory"

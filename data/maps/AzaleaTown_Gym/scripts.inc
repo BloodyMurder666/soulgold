@@ -1347,7 +1347,7 @@ AzaleaTown_Gym_Text_GymStatueCertified:
 # 674 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "Azalea Town Pokémon Gym\p"
 # 675 "data/maps/AzaleaTown_Gym/scripts.pory"
-	.string "Bugsy'S Certified Trainers:\n"
+	.string "Bugsy's Certified Trainers:\n"
 # 676 "data/maps/AzaleaTown_Gym/scripts.pory"
 	.string "{PLAYER}$"
 # 677 "data/maps/AzaleaTown_Gym/scripts.pory"

@@ -60,7 +60,7 @@ Route20_Text_Headlocker:
 	.string "And sometimes it carries a rare\n"
 	.string "evolution item.\p"
 	.string "That's double rare!\p"
-	.string "I need to finish my POKéDEX, so\n"
+	.string "I need to finish my Pokédex, so\n"
 	.string "I've been fishing here for hours!$"
 
 Route20_Text_Seel:

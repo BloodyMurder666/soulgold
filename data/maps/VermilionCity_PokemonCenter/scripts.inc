@@ -27,14 +27,14 @@ VermilionPokeCenter_EventScript_Bugcatcher::
 
 VermilionCity_PokemonCenter1F_Text_FishingGuru:
 	.string "A sleeping Pokémon is lying in\n"
-	.string "front of Diglett'S Cave.\p"
+	.string "front of Diglett's Cave.\p"
 	.string "It's a fantastic opportunity to\n"
 	.string "get it, but how do you wake it up?$"
 
 VermilionCity_PokemonCenter1F_Text_FishingGuru_FoughtSnorlax:
 	.string "There used to be a sleeping\n"
 	.string "Pokémon lying in front of\l"
-	.string "Diglett'S Cave.\p"
+	.string "Diglett's Cave.\p"
 	.string "But it seems to have disappeared.$"
 
 VermilionCity_PokemonCenter1F_Text_Sailor:

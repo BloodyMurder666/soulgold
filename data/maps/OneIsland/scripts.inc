@@ -55,7 +55,7 @@ OneIsland_Text_LuckyToHaveCelioHere::
 	.string "My granddaughter was in a tizzy\n"
 	.string "over CELIO's friend.\p"
 	.string "Something about a famous\n"
-	.string "POKéMANIAC?\p"
+	.string "Pokémaniac?\p"
 	.string "I'm not sure what that means, but\n"
 	.string "CELIO is quite the man!$"
 
@@ -82,8 +82,8 @@ OneIsland_Text_IslandSign::
 	.string "Friends Gather at Knot Island$"
 
 OneIsland_Text_PokemonNetCenterSign::
-	.string "Expanding the POKéMON World!\n"
-	.string "POKéMON NET CENTER$"
+	.string "Expanding the Pokémon World!\n"
+	.string "Pokémon Net Center$"
 
 @ Unused
 OneIsland_Text_ReturnToCinnabar::

@@ -227,6 +227,6 @@ MtSilver_SummitDay_EventScript_Rival_Text_7:
 
 MtSilver_SummitDay_EventScript_Rival_Text_8:
 # 109 "data/maps/MtSilver_SummitDay/scripts.pory"
-	.string "Now cmon, let's race back home!\p"
+	.string "Now c'mon, let's race back home!\p"
 	.string "My fingers are freezing from just \n"
 	.string "standing around here.$"

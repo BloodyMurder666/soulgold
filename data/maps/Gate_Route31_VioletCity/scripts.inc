@@ -154,12 +154,12 @@ Gate_Route31_VioletCity_RivalExpShare_Text_1:
 Gate_Route31_VioletCity_RivalExpShare_Text_2:
 # 50 "data/maps/Gate_Route31_VioletCity/scripts.pory"
 	.string "It lets you train multiple Pokémon at\n"
-	.string "at once, quite a handy piece of tech!$"
+	.string "once, quite a handy piece of tech!$"
 
 Gate_Route31_VioletCity_RivalExpShare_Text_3:
 # 52 "data/maps/Gate_Route31_VioletCity/scripts.pory"
 	.string "If you haven't already, you should make\n"
-	.string "use of those Pokéballs and catch lots\l"
+	.string "use of those Poké Balls and catch lots\l"
 	.string "of new Pokémon.$"
 
 Gate_Route31_VioletCity_RivalExpShare_Text_4:

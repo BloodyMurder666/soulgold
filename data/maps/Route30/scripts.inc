@@ -156,7 +156,7 @@ Route30_Text_BugCatcherDonBeaten:
 	.string "Argh! You're too strong!$"
 
 Route30_Text_BugCatcherDonAfter:
-	.string "I ran out of POKé Balls while\n"
+	.string "I ran out of Poké Balls while\n"
 	.string "I was catching Pokémon.\p"
 	.string "I should've bought some more…$"
 
@@ -179,17 +179,17 @@ Route30_Text_Sign:
 	.string "Violet City - Cherrygrove City$"
 
 Route30_Text_MrPokemonsHouseDirectionsSign:
-	.string "Mr. Pokémon'S House\n"
+	.string "Mr. Pokémon's House\n"
 	.string "Straight Ahead!$"
 
 Route30_Text_MrPokemonsHouseSign:
-	.string "Mr. Pokémon'S House$"
+	.string "Mr. Pokémon's House$"
 
 Route30_Text_TrainerTips:
 	.string "Trainer Tips\p"
 	.string "No stealing other people's\n"
 	.string "Pokémon!\p"
-	.string "POKé Balls are to be thrown\n"
+	.string "Poké Balls are to be thrown\n"
 	.string "only at wild Pokémon!$"
 
 Route30_Text_YoungsterJoeyGiveHPUp:

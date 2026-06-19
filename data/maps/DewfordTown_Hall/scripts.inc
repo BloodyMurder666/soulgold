@@ -327,11 +327,11 @@ DewfordTown_Hall_Text_BooksAboutTrend:
 	.string "“{STR_VAR_1}.”$"
 
 DewfordTown_Hall_Text_TrendsScream:
-	.string "“{STR_VAR_1}'S\n"
+	.string "“{STR_VAR_1}'s\n"
 	.string "Scream” is the title.$"
 
 DewfordTown_Hall_Text_TrendsSmile:
-	.string "“{STR_VAR_1}'S\n"
+	.string "“{STR_VAR_1}'s\n"
 	.string "Smile” is the title.$"
 
 DewfordTown_Hall_Text_LastTrend:

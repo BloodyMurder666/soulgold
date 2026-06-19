@@ -748,7 +748,7 @@ EventScript_End::
 
 EventScript_DoWonderTrade_Text_Welcome:
 	.string "Welcome to the Wondertrade\n"
-	.string "Station of the POKéCENTER!\p"
+	.string "Station of the Pokémon Center!\p"
 	.string "Please select the Pokémon that\n"
 	.string "is going to get Wondertraded.$"
 
@@ -761,8 +761,8 @@ EventScript_FirstTimeWonder_Text:
 	.string "Hello trainer!\p"
 	.string "Oh, is this your first time\n"
 	.string "using the Wondertrade System?\p"
-	.string "Wondertrade is a techonology developed\n"
-	.string "by Devon Corp. to Trade anonimously.\p"
+	.string "Wondertrade is a technology developed\n"
+	.string "by Devon Corp. to trade anonymously.\p"
 	.string "You basically send a selected\n"
 	.string "Pokémon to someone, and they send\p"
 	.string "you another one in exchange.\n"
@@ -779,8 +779,8 @@ EventScript_FirstTimeWonder_Text_Unlimited:
 	.string "Hello trainer!\p"
 	.string "Oh, is this your first time\n"
 	.string "using the Wondertrade System?\p"
-	.string "Wondertrade is a techonology developed\n"
-	.string "by Devon Corp. to Trade anonimously.\p"
+	.string "Wondertrade is a technology developed\n"
+	.string "by Devon Corp. to trade anonymously.\p"
 	.string "You basically send a selected\n"
 	.string "Pokémon to someone, and they send\p"
 	.string "you another one in exchange.\n"

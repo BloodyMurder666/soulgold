@@ -19,5 +19,5 @@ Route7_Text_SaffronGuard_PowerPlant:
 
 Route7_Text_SaffronGuard_Serious:
 	.string "I take my Guard job seriously.\p"
-	.string "Hey! You have a POKéDEX.\p"
+	.string "Hey! You have a Pokédex.\p"
 	.string "Ok. You can go through.$"

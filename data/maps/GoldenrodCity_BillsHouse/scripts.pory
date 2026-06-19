@@ -51,7 +51,7 @@ BillHouse_Text_MomBeforeEcruteak:
 
 BillHouse_Text_MomAfterEcruteak:
     .string "My husband was once known as a\n"
-    .string "POKéMANIAC.\p"
+    .string "Pokémaniac.\p"
     .string "Bill must have taken after his\n"
     .string "father.$"
 

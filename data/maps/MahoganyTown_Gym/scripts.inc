@@ -47,7 +47,7 @@ MahoganyTown_Gym_Text_GymStatueCertified:
 # 24 "data/maps/MahoganyTown_Gym/scripts.pory"
 	.string "Mahogany Town Pokémon Gym\p"
 # 25 "data/maps/MahoganyTown_Gym/scripts.pory"
-	.string "Pryce'S Certified Trainers:\n"
+	.string "Pryce's Certified Trainers:\n"
 # 26 "data/maps/MahoganyTown_Gym/scripts.pory"
 	.string "{PLAYER}$"
 # 27 "data/maps/MahoganyTown_Gym/scripts.pory"

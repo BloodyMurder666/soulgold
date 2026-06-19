@@ -443,7 +443,7 @@ MrPokemonHouse_Text_OakIntro:
 # 222 "data/maps/Route30_MrPokemonsHouse/scripts.pory"
 	.string "See? This is the latest version of\n"
 # 223 "data/maps/Route30_MrPokemonsHouse/scripts.pory"
-	.string "the POKéDEX.\p"
+	.string "the Pokédex.\p"
 # 224 "data/maps/Route30_MrPokemonsHouse/scripts.pory"
 	.string "It automatically records data on\n"
 # 225 "data/maps/Route30_MrPokemonsHouse/scripts.pory"
@@ -459,7 +459,7 @@ MrPokemonHouse_Text_OakIntro:
 # 230 "data/maps/Route30_MrPokemonsHouse/scripts.pory"
 MrPokemonHouse_Text_GetDex:
 # 231 "data/maps/Route30_MrPokemonsHouse/scripts.pory"
-	.string "{PLAYER} received POKéDEX!$"
+	.string "{PLAYER} received Pokédex!$"
 # 232 "data/maps/Route30_MrPokemonsHouse/scripts.pory"
 
 # 233 "data/maps/Route30_MrPokemonsHouse/scripts.pory"
@@ -467,7 +467,7 @@ MrPokemonHouse_Text_OakParting:
 # 234 "data/maps/Route30_MrPokemonsHouse/scripts.pory"
 	.string "Go meet many kinds of Pokémon and\n"
 # 235 "data/maps/Route30_MrPokemonsHouse/scripts.pory"
-	.string "complete that POKéDEX!\p"
+	.string "complete that Pokédex!\p"
 # 236 "data/maps/Route30_MrPokemonsHouse/scripts.pory"
 	.string "But I've stayed too long.\p"
 # 237 "data/maps/Route30_MrPokemonsHouse/scripts.pory"

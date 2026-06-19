@@ -407,7 +407,7 @@ SproutTower_Text_SageLi_FlashExplain:
 # 204 "data/maps/SproutTower_3F/scripts.pory"
 	.string "But to use it out of battle, you\n"
 # 205 "data/maps/SproutTower_3F/scripts.pory"
-	.string "need the Badge from Violet'S Gym.$"
+	.string "need the Badge from Violet's Gym.$"
 # 206 "data/maps/SproutTower_3F/scripts.pory"
 
 # 207 "data/maps/SproutTower_3F/scripts.pory"

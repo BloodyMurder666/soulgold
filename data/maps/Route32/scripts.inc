@@ -895,7 +895,7 @@ Route32_Text_RoarIntro:
 # 448 "data/maps/Route32/scripts.pory"
 Route32_Text_RoarOutro:
 # 449 "data/maps/Route32/scripts.pory"
-	.string "Wrooooar! It'S Roar!\p"
+	.string "Wrooooar! It's Roar!\p"
 # 450 "data/maps/Route32/scripts.pory"
 	.string "Even Pokémon Run From A Good\n"
 # 451 "data/maps/Route32/scripts.pory"

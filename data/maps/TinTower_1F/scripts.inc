@@ -101,7 +101,7 @@ TinTower_1F_EusineHoOh_Text:
 	.string "It happened just as I envisioned.\n"
 	.string "My research isn't bad, I might say.\p"
 	.string "I'm going to keep studying Pokémon\n"
-	.string "to become a famous POKéMANIAC!$"
+	.string "to become a famous Pokémaniac!$"
 
 TinTower_1F_EusineSuicune_Text:
 	.string "Eusine: Awesome! Too awesome, even!\n"

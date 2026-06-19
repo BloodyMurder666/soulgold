@@ -377,7 +377,7 @@ DragonsDen_Cavern_Text_DragonShrineSign:
 # 189 "data/maps/DragonsDen_Cavern/scripts.pory"
     .string "Pokémon\p"
 # 190 "data/maps/DragonsDen_Cavern/scripts.pory"
-    .string "said to have lived in Dragon'S\n"
+    .string "said to have lived in Dragon's\n"
 # 191 "data/maps/DragonsDen_Cavern/scripts.pory"
     .string "Den.$"
 # 192 "data/maps/DragonsDen_Cavern/scripts.pory"

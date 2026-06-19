@@ -105,7 +105,7 @@ Cherrygrove_Pokemart_Pokemart:
 # 53 "data/maps/CherrygroveCity_Mart/scripts.pory"
 Cherrygrove_Pokemart_Text_CooltrainerM:
 # 54 "data/maps/CherrygroveCity_Mart/scripts.pory"
-	.string "They're fresh out of POKé Balls!\p"
+	.string "They're fresh out of Poké Balls!\p"
 # 55 "data/maps/CherrygroveCity_Mart/scripts.pory"
 	.string "When will they get more of them?$"
 # 56 "data/maps/CherrygroveCity_Mart/scripts.pory"
@@ -113,7 +113,7 @@ Cherrygrove_Pokemart_Text_CooltrainerM:
 # 57 "data/maps/CherrygroveCity_Mart/scripts.pory"
 Cherrygrove_Pokemart_Text_CooltrainerM_PokeBallsInStock:
 # 58 "data/maps/CherrygroveCity_Mart/scripts.pory"
-	.string "POKé Balls are in stock!\n"
+	.string "Poké Balls are in stock!\n"
 # 59 "data/maps/CherrygroveCity_Mart/scripts.pory"
 	.string "Now I can catch Pokémon!$"
 # 60 "data/maps/CherrygroveCity_Mart/scripts.pory"

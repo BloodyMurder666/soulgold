@@ -869,7 +869,7 @@ LakeOfRage_Text_Sign:
 # 435 "data/maps/LakeOfRage/scripts.pory"
 LakeOfRage_Text_FishingGuruSign:
 # 436 "data/maps/LakeOfRage/scripts.pory"
-    .string "Fishing Guru'S House$"
+    .string "Fishing Guru's House$"
 
 Lakeofrage_HiddenGrotto::
 # 440 "data/maps/LakeOfRage/scripts.pory"

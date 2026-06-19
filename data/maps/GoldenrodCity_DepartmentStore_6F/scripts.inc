@@ -288,8 +288,8 @@ GoldenrodDEpt6F_WhitneyRematch_Movement_0:
 
 GoldenrodCity_DepartmentStore_6F_EventScript_Jose_Text_0:
 # 107 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
-	.string "Thanks for the clefairy again! \n"
-	.string "Hope my pokémon has been of use to you!$"
+	.string "Thanks for the Clefairy again!\n"
+	.string "Hope my Pokémon has been of use to you!$"
 
 GoldenrodCity_DepartmentStore_6F_EventScript_Jose_Text_1:
 # 111 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"

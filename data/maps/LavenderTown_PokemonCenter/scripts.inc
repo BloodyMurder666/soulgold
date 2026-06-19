@@ -32,7 +32,7 @@ LavenderTown_PokemonCenter1F_Text_Gentleman:
 
 LavenderTown_PokemonCenter1F_Text_Teacher:
 	.string "There's a radio program that plays\n"
-	.string "POKé Flute music.\p"
+	.string "Poké Flute music.\p"
 	.string "Oh? Ah, your radio needs an Expn\n"
 	.string "Card to tune into it.$"
 

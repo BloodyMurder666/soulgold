@@ -413,7 +413,7 @@ RuinsOfAlph_PuzzleAndRewardChambers_Text_UsedWaterStone:
 	.string "Water Stone.$"
 
 RuinsOfAlph_PuzzleAndRewardChambers_Text_UsedFlash:
-	.string "{STR_VAR_1} used FLASH!$"
+	.string "{STR_VAR_1} used Flash!$"
 
 RuinsOfAlph_PuzzleAndRewardChambers_Text_Solved:
 	.string "The way is open.$"

@@ -15,4 +15,4 @@ CeladonMansion_Text_Manager:
 	.string "Meowth even brings money home.$"
 
 CeladonMansion_Text_ManagersSuiteSign:
-	.string "Celadon Mansion Manager'S Suite$"
+	.string "Celadon Mansion Manager's Suite$"

@@ -25,7 +25,7 @@ CianwoodGym_Text_GymStatue:
 
 CianwoodGym_Text_GymStatueCertified:
 	.string "Cianwood City Pokémon Gym\p"
-	.string "Chuck'S Certified Trainers:\n"
+	.string "Chuck's Certified Trainers:\n"
 	.string "{PLAYER}$"
 
 CianwoodGym_EventScript_Chuck::

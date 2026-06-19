@@ -58,13 +58,13 @@ RegigigasSlumbers::
 MtSilver_Regigigas_Text_0:
 # 11 "data/maps/MtSilver_1F_RegigigasRoom/scripts.pory"
 	.string "...!\p"
-	.string "The statue suddenly started moving in\n"
+	.string "The statue suddenly started moving\n"
 	.string "in reaction to your Pokémon!\p"
 	.string "The statue attacked!$"
 
 RegigigasSlumbers_Text_0:
 # 35 "data/maps/MtSilver_1F_RegigigasRoom/scripts.pory"
-	.string "A large, almost statuelike Pokémon\n"
+	.string "A large, almost statue-like Pokémon\n"
 	.string "seems to be resting here.\p"
 	.string "...\p"
 	.string "It does not react to your presence.$"

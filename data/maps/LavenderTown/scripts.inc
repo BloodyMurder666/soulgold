@@ -56,7 +56,7 @@ LavenderTown_Text_Gramps:
 	.string "souls of Pokémon.$"
 
 LavenderTown_Text_Youngster:
-	.string "You need a POKé Flute to wake\n"
+	.string "You need a Poké Flute to wake\n"
 	.string "sleeping Pokémon.\p"
 	.string "Every trainer has to know that!$"
 

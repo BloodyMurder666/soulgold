@@ -687,7 +687,7 @@ OlivineCity_Gym_Text_GymStatueCertified:
 # 344 "data/maps/OlivineCity_Gym/scripts.pory"
 	.string "Olivine City Pokémon Gym\p"
 # 345 "data/maps/OlivineCity_Gym/scripts.pory"
-	.string "Jasmine'S Certified Trainers:\n"
+	.string "Jasmine's Certified Trainers:\n"
 # 346 "data/maps/OlivineCity_Gym/scripts.pory"
 	.string "{PLAYER}$"
 

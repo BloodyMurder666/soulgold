@@ -493,5 +493,5 @@ Route25_Text_CooltrainerKevinAfter:
 
 Route25_Text_BillsHouseSign:
 	.string "Sea Cottage\n"
-	.string "Bill'S House$"
+	.string "Bill's House$"
 

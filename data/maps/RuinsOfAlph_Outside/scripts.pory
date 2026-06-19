@@ -79,7 +79,7 @@ RuinsOfAlph_Outside_EventScript_Sign3::
 	end
 
 RuinsOfAlph_Outside_Text_Scientist:
-	.string "Hm? That's a POKéDEX, isn't it?\n"
+	.string "Hm? That's a Pokédex, isn't it?\n"
 	.string "May I see it?\p"
 	.string "There are so many kinds of\n"
 	.string "Pokémon.\p"
@@ -92,7 +92,7 @@ RuinsOfAlph_Outside_Text_Scientist:
 	.string "Pokémon, there should be many\n"
 	.string "more.\p"
 	.string "I know! Let me upgrade your\n"
-	.string "POKéDEX. Follow me.$"
+	.string "Pokédex. Follow me.$"
 
 RuinsOfAlph_Outside_Text_SuperNerdStan_Seen:
 	.string "What do you want? I'm studying--\n"

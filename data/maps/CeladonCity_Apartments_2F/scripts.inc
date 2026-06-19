@@ -79,7 +79,7 @@ CeladonMansion2F_Text_TixoRebel:
 	.string "Have you heard of The Eggening?\n"
 	.string "It was a bug from the playtest\l"
 	.string "that randomly changed Pokémon into\l"
-	.string "EGGs!\p"
+	.string "Eggs!\p"
 	.string "I developed the fix for it!$"
 
 CeladonMansion2F_Text_Phant:

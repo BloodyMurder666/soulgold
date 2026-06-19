@@ -220,7 +220,7 @@ MrPokemonHouse_Text_OakIntro:
 	.string "You seem to be dependable. How\n"
 	.string "would you like to help me out?\p"
 	.string "See? This is the latest version of\n"
-	.string "the POKéDEX.\p"
+	.string "the Pokédex.\p"
 	.string "It automatically records data on\n"
 	.string "Pokémon you've seen or caught.\p"
 	.string "It's a hi-tech encyclopedia!\p"
@@ -228,11 +228,11 @@ MrPokemonHouse_Text_OakIntro:
 	.string "they evolve, and their moves.$"
 
 MrPokemonHouse_Text_GetDex:
-	.string "{PLAYER} received POKéDEX!$"
+	.string "{PLAYER} received Pokédex!$"
 
 MrPokemonHouse_Text_OakParting:
 	.string "Go meet many kinds of Pokémon and\n"
-	.string "complete that POKéDEX!\p"
+	.string "complete that Pokédex!\p"
 	.string "But I've stayed too long.\p"
 	.string "I have to get to Goldenrod\n"
 	.string "for my usual radio show.\p"

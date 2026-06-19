@@ -83,7 +83,7 @@ VioletCity_Mart_Text_CooltrainerM:
 # 42 "data/maps/VioletCity_Mart/scripts.pory"
 	.string "But they don't appear to know\n"
 # 43 "data/maps/VioletCity_Mart/scripts.pory"
-	.string "how to use manmade items.$"
+	.string "how to use man-made items.$"
 
 Violetcity_Mart2::
 # 47 "data/maps/VioletCity_Mart/scripts.pory"

@@ -817,7 +817,7 @@ GoldenrodCity_RadioTower_5F_Text_Ben:
 # 409 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 GoldenrodCity_RadioTower_5F_Text_DirectorOfficeSign:
 # 410 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	.string "5F Director'S   Office$"
+	.string "5F Director's   Office$"
 # 411 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 
 # 412 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
@@ -1045,9 +1045,9 @@ RadioTower_5F_Archer_Text_0:
 	.string "this far...?\p"
 	.string "You must be quite the Trainer.\n"
 	.string "We intend to take over this\l"
-	.string "Radio Tower and offically announce our\l"
+	.string "Radio Tower and officially announce our\l"
 	.string "comeback.\p"
-	.string "That should bring out boss Giovanni\n"
+	.string "That should bring our boss Giovanni\n"
 	.string "back from his solitary training.\p"
 	.string "We are going to regain our former\n"
 	.string "glory... \p"
@@ -1117,7 +1117,7 @@ RadioTower_5F_Archer_Text_8:
 RadioTower_5F_Archer_Text_9:
 # 532 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	.string "Oh, I almost forgot!\p"
-	.string "According to my friend from Ciandwood,\n"
+	.string "According to my friend from Cianwood,\n"
 	.string "the legendary Pokémon will not appear\l"
 	.string "if you just go to the place I mentioned.\l"
 	.string "Apparently there is something else you\l"

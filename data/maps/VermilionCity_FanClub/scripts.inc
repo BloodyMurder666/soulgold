@@ -144,12 +144,12 @@ PokemonFanClub_Text_ClefairyGuy_MakingDo:
 	.string "I love Clefairy, but I could\n"
 	.string "never catch one.\p"
 	.string "So I'm making do with a\n"
-	.string "POKé Doll that I found.$"
+	.string "Poké Doll that I found.$"
 
 PokemonFanClub_Text_ClefairyGuy_ReturnDoll:
 	.string "Oh, I see now. The girl who lost\n"
-	.string "this POKé Doll is sad…\p"
-	.string "Ok. Could you take this POKé Doll\n"
+	.string "this Poké Doll is sad…\p"
+	.string "Ok. Could you take this Poké Doll\n"
 	.string "back to that poor little girl?\p"
 	.string "I'll befriend a real Clefairy on\n"
 	.string "my own one day. No worries!$"
@@ -166,7 +166,7 @@ PokemonFanClub_Text_Teacher:
 
 PokemonFanClub_Text_ClefairyDoll:
 	.string "It's a Clefairy! Huh?\p"
-	.string "Oh, right. It's a Clefairy POKé\n"
+	.string "Oh, right. It's a Clefairy Poké\n"
 	.string "Doll.$"
 
 PokemonFanClub_Text_Bayleef:

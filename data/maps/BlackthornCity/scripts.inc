@@ -257,4 +257,4 @@ BlackthornCity_Text_MoveDeletersHouseSign:
 	.string "Move Bros' House$"
 
 BlackthornCity_Text_DragonDenSign:
-	.string "Dragon'S Den Ahead$"
+	.string "Dragon's Den Ahead$"

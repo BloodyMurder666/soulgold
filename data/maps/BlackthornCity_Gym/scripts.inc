@@ -511,7 +511,7 @@ BlackthornGym_Text_ClairText_GoToDragonsDen:
 # 256 "data/maps/BlackthornCity_Gym/scripts.pory"
     .string "Behind this Gym is a place called\n"
 # 257 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Dragon'S Den.\p"
+    .string "Dragon's Den.\p"
 # 258 "data/maps/BlackthornCity_Gym/scripts.pory"
     .string "There is a small shrine at its\n"
 # 259 "data/maps/BlackthornCity_Gym/scripts.pory"
@@ -851,7 +851,7 @@ BlackthornGym_Text_GymStatueCertified:
 # 426 "data/maps/BlackthornCity_Gym/scripts.pory"
 	.string "Blackthorn City Pokémon Gym\p"
 # 427 "data/maps/BlackthornCity_Gym/scripts.pory"
-	.string "Clair'S Certified Trainers:\n"
+	.string "Clair's Certified Trainers:\n"
 # 428 "data/maps/BlackthornCity_Gym/scripts.pory"
 	.string "{PLAYER}$"
 

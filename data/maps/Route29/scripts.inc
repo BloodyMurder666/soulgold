@@ -359,7 +359,7 @@ Route29_Text_OldManDeclined:
 # 180 "data/maps/Route29/scripts.pory"
 	.string "different types of Pokémon.\p"
 # 181 "data/maps/Route29/scripts.pory"
-	.string "Your POKéDEX shows where you can\n"
+	.string "Your Pokédex shows where you can\n"
 # 182 "data/maps/Route29/scripts.pory"
 	.string "find them too!\p"
 # 183 "data/maps/Route29/scripts.pory"

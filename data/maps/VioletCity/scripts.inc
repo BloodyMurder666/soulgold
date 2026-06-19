@@ -913,7 +913,7 @@ VioletCity_Text_SproutTowerSign:
 # 457 "data/maps/VioletCity/scripts.pory"
 VioletCity_Text_EarlsAcademySign:
 # 458 "data/maps/VioletCity/scripts.pory"
-	.string "Earl'S Pokémon Academy$"
+	.string "Earl's Pokémon Academy$"
 # 459 "data/maps/VioletCity/scripts.pory"
 
 # 460 "data/maps/VioletCity/scripts.pory"

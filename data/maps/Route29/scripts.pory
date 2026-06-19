@@ -178,7 +178,7 @@ Route29_Text_OldManDeclined:
 	.string "Oh. Fine, then.\p"
 	.string "Check every route to find\n"
 	.string "different types of Pokémon.\p"
-	.string "Your POKéDEX shows where you can\n"
+	.string "Your Pokédex shows where you can\n"
 	.string "find them too!\p"
 	.string "If you want to learn more,\n"
 	.string "go to the Academy in Violet City!\p"

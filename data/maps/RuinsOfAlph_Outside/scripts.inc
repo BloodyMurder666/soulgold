@@ -161,7 +161,7 @@ RuinsOfAlph_Outside_EventScript_Sign3::
 # 81 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 RuinsOfAlph_Outside_Text_Scientist:
 # 82 "data/maps/RuinsOfAlph_Outside/scripts.pory"
-	.string "Hm? That's a POKéDEX, isn't it?\n"
+	.string "Hm? That's a Pokédex, isn't it?\n"
 # 83 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	.string "May I see it?\p"
 # 84 "data/maps/RuinsOfAlph_Outside/scripts.pory"
@@ -187,7 +187,7 @@ RuinsOfAlph_Outside_Text_Scientist:
 # 94 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	.string "I know! Let me upgrade your\n"
 # 95 "data/maps/RuinsOfAlph_Outside/scripts.pory"
-	.string "POKéDEX. Follow me.$"
+	.string "Pokédex. Follow me.$"
 # 96 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 
 # 97 "data/maps/RuinsOfAlph_Outside/scripts.pory"

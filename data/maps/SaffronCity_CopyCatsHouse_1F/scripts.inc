@@ -34,7 +34,7 @@ CopycatsHouse1F_Text_PokefanF:
 	.string "She only has a few friends.$"
 
 CopycatsHouse1F_Text_PokefanF_ReturnedPart:
-	.string "She recently lost the POKé Doll\n"
+	.string "She recently lost the Poké Doll\n"
 	.string "that a boy gave her three years\l"
 	.string "ago.\p"
 	.string "Ever since then, she's gotten even\n"

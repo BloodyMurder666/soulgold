@@ -601,7 +601,7 @@ OlivineCity_Text_YoungsterPokegear:
 # 301 "data/maps/OlivineCity/scripts.pory"
 OlivineCity_Text_YoungsterPokedex:
 # 302 "data/maps/OlivineCity/scripts.pory"
-	.string "Wow, you have a POKéDEX!\p"
+	.string "Wow, you have a Pokédex!\p"
 # 303 "data/maps/OlivineCity/scripts.pory"
 	.string "That is just so awesome.$"
 # 304 "data/maps/OlivineCity/scripts.pory"

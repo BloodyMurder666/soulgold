@@ -222,7 +222,7 @@ Copycat_Text_QuickMimicking:
 
 Copycat_Text_Male_2:
 	.string "{PLAYER}: Hi! I heard that you\n"
-	.string "lost your favorite POKé Doll.\p"
+	.string "lost your favorite Poké Doll.\p"
 	.string "{PLAYER}: If I find it, you'll give\n"
 	.string "me a rail Pass?\p"
 	.string "{PLAYER}: I'll go find it for you.\p"
@@ -238,7 +238,7 @@ Copycat_Text_Worried:
 
 Copycat_Text_GiveDoll:
 	.string "Copycat: Yay! That's my Clefairy\n"
-	.string "POKé Doll!\p"
+	.string "Poké Doll!\p"
 	.string "See the tear where the right leg\n"
 	.string "is sewn on? That's proof!$"
 
@@ -268,7 +268,7 @@ Copycat_Text_Dodrio1:
 
 Copycat_Text_Dodrio2:
 	.string "Mirror, Mirror On The Wall,\n"
-	.string "Who'S The Fairest One Of All?$"
+	.string "Who's The Fairest One Of All?$"
 
 Copycat_Text_2FDoll:
 	.string "This is a rare Pokémon! Huh?\p"

@@ -374,7 +374,7 @@ SafariZoneGate_SafariZoneEntrance_Text_BaobaWelcome:
 
 SafariZoneGate_SafariZoneEntrance_Text_BaobaPokeblocks:
 	.string "Oh! I almost forgot.\p"
-	.string "POKéBLOCKS are an essential\n"
+	.string "Pokéblocks are an essential\n"
 	.string "feature of my Safari Zone, so\l"
 	.string "you'd better have one of these!$"
 

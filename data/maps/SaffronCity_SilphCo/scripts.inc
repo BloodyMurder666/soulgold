@@ -103,7 +103,7 @@ SaffronCity_SilphCo_Text_Steven2:
 	.string "eyes.\p"
 	.string "When I see a trainer whose eyes\n"
 	.string "twinkle, I always remember.\p"
-	.string "You have a POKéDEX! So you are\n"
+	.string "You have a Pokédex! So you are\n"
 	.string "also in search of Pokémon!\l"
 	.string "Let me see...\p"
 	.string "I think I can help you with that.\p"

@@ -351,7 +351,7 @@ PlayersHouse_1F_Text_DontPushYourselfTooHard:
 	.string "Go for it, honey!$"
 
 PlayersHouse_1F_Text_IsThatAPokenav:
-	.string "Mom: What is that, honey? A POKéNAV?\n"
+	.string "Mom: What is that, honey? A PokéNav?\n"
 	.string "Someone from Devon gave it to you?\p"
 	.string "Well, honey, how about registering\n"
 	.string "your mom?\p"
@@ -359,7 +359,7 @@ PlayersHouse_1F_Text_IsThatAPokenav:
 
 PlayersHouse_1F_Text_RegisteredMom:
 	.string "Registered Mom\n"
-	.string "in the POKéNAV.$"
+	.string "in the PokéNav.$"
 
 PlayersHouse_1F_Text_Vigoroth1:
 	.string "Fugiiiiih!$"

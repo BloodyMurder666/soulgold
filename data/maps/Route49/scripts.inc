@@ -110,7 +110,7 @@ Route49_CooltrainerEma_Text_1:
 
 Route49_CooltrainerEma_Text_2:
 # 42 "data/maps/Route49/scripts.pory"
-	.string "Whetever it's the desert or the Snowtop\n"
+	.string "Whether it's the desert or the Snowtop\n"
 	.string "Mountain, both will test your skills as\l"
 	.string "a trainer.$"
 

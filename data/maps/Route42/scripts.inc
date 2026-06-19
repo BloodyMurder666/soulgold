@@ -240,7 +240,7 @@ Route42_Text_PokemaniacShaneBeaten:
 	.string "Moon Stone…$"
 
 Route42_Text_PokemaniacShaneAfter:
-	.string "You're working on a POKéDEX?\p"
+	.string "You're working on a Pokédex?\p"
 	.string "Wow, you must know some\n"
 	.string "pretty rare Pokémon!\p"
 	.string "May I please see it?\n"

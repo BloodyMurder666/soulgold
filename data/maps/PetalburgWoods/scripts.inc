@@ -387,7 +387,7 @@ PetalburgWoods_Text_ICouldntWin:
 
 PetalburgWoods_Text_ImOutOfPokeBalls:
 	.string "I caught a bunch of Pokémon.\n"
-	.string "Now I'm out of POKé Balls.$"
+	.string "Now I'm out of Poké Balls.$"
 
 PetalburgWoods_Text_InstantlyPopularWithBugPokemon:
 	.string "If you take Bug Pokémon to school,\n"
@@ -403,12 +403,12 @@ PetalburgWoods_Text_PeopleRespectYou:
 PetalburgWoods_Text_IWantRematch1:
 	.string "I want a rematch when my Bug\n"
 	.string "Pokémon grow up!\p"
-	.string "I'm registering you in my POKéNAV!$"
+	.string "I'm registering you in my PokéNav!$"
 
 PetalburgWoods_Text_IWantRematch2:
 	.string "I want a rematch when my Bug \n"
 	.string "Pokémon grow up!\p"
-	.string "I'm registering you in my POKéNAV!$"
+	.string "I'm registering you in my PokéNav!$"
 
 PetalburgWoods_Text_MyPokemonHaveGrown:
 	.string "My Bug Pokémon have grown.\n"

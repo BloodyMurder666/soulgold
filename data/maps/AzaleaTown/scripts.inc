@@ -865,7 +865,7 @@ AzaleaTown_Text_Sign:
 # 433 "data/maps/AzaleaTown/scripts.pory"
 AzaleaTown_Text_KurtsHouseSign:
 # 434 "data/maps/AzaleaTown/scripts.pory"
-	.string "Kurt'S House$"
+	.string "Kurt's House$"
 # 435 "data/maps/AzaleaTown/scripts.pory"
 
 # 436 "data/maps/AzaleaTown/scripts.pory"

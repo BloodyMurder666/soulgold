@@ -630,9 +630,9 @@ Route34_RivalEncounter_Text_6:
 
 Route34_RivalEncounter_Text_7:
 # 288 "data/maps/Route34/scripts.pory"
-	.string "Now then, I can't keep losing you to\n"
+	.string "Now then, I can't keep losing to you\n"
 	.string "every time, so I'm going to start\l"
 	.string "training seriously! \p"
 	.string "Next time we\n"
-	.string "meet, you will face all new me!\l"
+	.string "meet, you will face an all-new me!\l"
 	.string "Look forward to a complete beatdown!$"
