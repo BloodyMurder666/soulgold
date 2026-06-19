@@ -187,7 +187,7 @@ DragonsDen_Cavern_Text_DragonShrineSign:
     .string "Dragon Shrine\p"
     .string "A shrine honoring the dragon\n"
     .string "Pokémon\p"
-    .string "said to have lived in Dragon'S\n"
+    .string "said to have lived in Dragon's\n"
     .string "Den.$"
 
 DragonsDen_Cavern_Text_SilverTraining1:

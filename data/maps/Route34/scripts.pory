@@ -285,12 +285,12 @@ script Route34_RivalEncounter {
 		msgbox("The Odd Egg was sent to your PC.")
 	}
 	createfieldmugshotrival
-	msgbox("Now then, I can't keep losing you to
+	msgbox("Now then, I can't keep losing to you
 			every time, so I'm going to start
 			training seriously! 
 			
 			Next time we
-			meet, you will face all new me!
+			meet, you will face an all-new me!
 			Look forward to a complete beatdown!")
 	closemessage
 	applymovement(LOCALID_ROUTE34_RIVAL, moves(walk_up*5))

@@ -22,7 +22,7 @@ MahoganyTown_Gym_Text_GymStatue:
 
 MahoganyTown_Gym_Text_GymStatueCertified:
 	.string "Mahogany Town Pokémon Gym\p"
-	.string "Pryce'S Certified Trainers:\n"
+	.string "Pryce's Certified Trainers:\n"
 	.string "{PLAYER}$"
 
 

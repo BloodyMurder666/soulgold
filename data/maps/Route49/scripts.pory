@@ -39,7 +39,7 @@ script Route49_CooltrainerEma {
     trainerbattle_single(TRAINER_EMA, "I will check if you are prepared for
                                        the harsher environments ahead!",
                                        "You shall pass!")
-    msgbox("Whetever it's the desert or the Snowtop
+    msgbox("Whether it's the desert or the Snowtop
             Mountain, both will test your skills as
             a trainer.", MSGBOX_AUTOCLOSE)
 }

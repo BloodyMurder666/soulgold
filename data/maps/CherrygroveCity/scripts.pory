@@ -384,7 +384,7 @@ CherrygroveCity_Text_CitySign:
 	.string "Flowers$"
 
 CherrygroveCity_Text_GuideGentsHouseSign:
-	.string "Guide Gent'S House$"
+	.string "Guide Gent's House$"
 
 CherryGroveCity_Text_Staryu:
 	.string "Staryu: Yuuuuuuuu.$"
@@ -664,8 +664,8 @@ script Cherrygrove_FriendlyTrader {
     } else {
         msgbox("Hey! Can I ask you a favour? 
 		
-				Wait... You
-                you don't have any Pokeballs... 
+				Wait... You don't have any
+                Poké Balls...
 				
 				Sorry,
                 I thought you were a trainer.")

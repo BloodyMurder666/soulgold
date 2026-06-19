@@ -18,7 +18,7 @@ script VajraDesert_ManSighing {
 }
 
 script VajraDesert_TrainerJill {
-        trainerbattle_single(TRAINER_JILL, "I read on a magazine that training in
+        trainerbattle_single(TRAINER_JILL, "I read in a magazine that training in
                                             harsh environments is great for you!",
                                             "I wanna go home...")
         msgbox("I should've listened to mom, that
@@ -34,12 +34,12 @@ script VajraDesert_TrainerRodaros {
 script VajraDesert_TrainerBelmare {
         trainerbattle_single(TRAINER_BELMARE, "Let me show you my cutest Pokémon!",
                                             "Oh dear...")
-        msgbox("My Maractus is absolutely most
+        msgbox("My Maractus is absolutely the most
                 adorable Pokémon. We come here to
-                sunbath!", MSGBOX_AUTOCLOSE)
+                sunbathe!", MSGBOX_AUTOCLOSE)
 }
 script VajraDesert_TrainerKennedy {
-        trainerbattle_single(TRAINER_KENNEDY, "Overcoming harhest ordeals with your
+        trainerbattle_single(TRAINER_KENNEDY, "Overcoming harsh ordeals with your
                                                Pokémon is the spirit of the journey!",
                                             "Marvelous battling skills!")
         msgbox("I've lived in the nearby village for the

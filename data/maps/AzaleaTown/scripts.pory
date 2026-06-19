@@ -431,7 +431,7 @@ AzaleaTown_Text_Sign:
 	.string "Happy Harmony.$"
 
 AzaleaTown_Text_KurtsHouseSign:
-	.string "Kurt'S House$"
+	.string "Kurt's House$"
 
 AzaleaTown_Text_GymSign:
 	.string "Azalea Town\n"
@@ -457,7 +457,7 @@ AzaleaTown_Text_IlexForestSign:
 `
 
 script AzaleaTownKid {
-    msgbox("That vulpix keeps taunting me from up
+    msgbox("That Vulpix keeps taunting me from up
             there... If only I could use Rock Climb.", MSGBOX_NPC)
 }
 

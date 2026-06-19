@@ -106,7 +106,7 @@ script MtSilver_SummitDay_EventScript_Rival {
 	waitfanfare
 	giveegg(SPECIES_JIRACHI)
 	createfieldmugshotrival
-	msgbox("Now cmon, let's race back home!
+	msgbox("Now c'mon, let's race back home!
 			
 			My fingers are freezing from just 
 			standing around here.")

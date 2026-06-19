@@ -407,7 +407,7 @@ GoldenrodCity_RadioTower_5F_Text_Ben:
 	.string "Ben: Do you listen to our music?$"
 
 GoldenrodCity_RadioTower_5F_Text_DirectorOfficeSign:
-	.string "5F Director'S   Office$"
+	.string "5F Director's   Office$"
 
 GoldenrodCity_RadioTower_5F_Text_Studio1Sign:
 	.string "5F Studio 1$"
@@ -441,10 +441,10 @@ script RadioTower_5F_Archer {
 			
 			You must be quite the Trainer.
 			We intend to take over this
-			Radio Tower and offically announce our
+			Radio Tower and officially announce our
 			comeback.
 			
-			That should bring out boss Giovanni
+			That should bring our boss Giovanni
 			back from his solitary training.
 			
 			We are going to regain our former
@@ -531,7 +531,7 @@ script RadioTower_5F_Archer {
 		turnobject(LOCALID_DIRECTOR_STUDIO, DIR_WEST)
 		msgbox("Oh, I almost forgot!
 		
-				According to my friend from Ciandwood,
+				According to my friend from Cianwood,
 				the legendary Pokémon will not appear
 				if you just go to the place I mentioned.
 				Apparently there is something else you

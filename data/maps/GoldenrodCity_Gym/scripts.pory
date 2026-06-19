@@ -121,8 +121,8 @@ GoldenrodCity_Gym_Text_GymStatue:
 	.string "Goldenrod Pokémon Gym$"
 
 GoldenrodCity_Gym_Text_GymStatueCertified:
-	.string "Goldenrod Town Pokémon Gym\p"
-	.string "Whitney'S Certified Trainers:\n"
+	.string "Goldenrod City Pokémon Gym\p"
+	.string "Whitney's Certified Trainers:\n"
 	.string "{PLAYER}$"
 
 GoldenrodCity_Gym_Text_WhitneyBefore:

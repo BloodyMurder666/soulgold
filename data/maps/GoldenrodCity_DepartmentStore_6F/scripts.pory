@@ -104,8 +104,8 @@ script GoldenrodCity_DepartmentStore_6F_EventScript_Jose {
     lock
     faceplayer
     if (flag(FLAG_GOLDENROD_NPC_TRADE_COMPLETED)) {
-        msgbox("Thanks for the clefairy again! 
-                Hope my pokémon has been of use to you!")
+        msgbox("Thanks for the Clefairy again!
+                Hope my Pokémon has been of use to you!")
     } else {
         ingame_trade(INGAME_TRADE_HONEDGE, 
                     "I've been looking for a rare Pokémon

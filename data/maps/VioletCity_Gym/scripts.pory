@@ -175,7 +175,7 @@ VioletCity_Gym_Text_GymStatue:
 
 VioletCity_Gym_Text_GymStatueCertified:
 	.string "Violet City Pokémon Gym\p"
-	.string "Falkner'S Certified Trainers:\n"
+	.string "Falkner's Certified Trainers:\n"
 	.string "{PLAYER}$"
 
 `

@@ -70,7 +70,7 @@ mart GoldenrodArcade_Shop {
 
 script GoldenrodArcade_Queue2 {
 	msgbox("I can't wait to see the next battle
-			from the frontrow seats!", MSGBOX_NPC)
+			from the front-row seats!", MSGBOX_NPC)
 }
 
 script GoldenrodArcade_Queue3 {

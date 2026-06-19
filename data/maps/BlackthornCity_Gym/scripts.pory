@@ -254,7 +254,7 @@ BlackthornGym_Text_ClairText_GoToDragonsDen:
     .string "I know. You should take the dragon\n"
     .string "user challenge.\p"
     .string "Behind this Gym is a place called\n"
-    .string "Dragon'S Den.\p"
+    .string "Dragon's Den.\p"
     .string "There is a small shrine at its\n"
     .string "center. Go there.\p"
     .string "If you can prove that you've lost\n"
@@ -424,7 +424,7 @@ BlackthornGym_Text_GymStatue:
 
 BlackthornGym_Text_GymStatueCertified:
 	.string "Blackthorn City Pokémon Gym\p"
-	.string "Clair'S Certified Trainers:\n"
+	.string "Clair's Certified Trainers:\n"
 	.string "{PLAYER}$"
 `
 script BlackthornCity_Gym_EventScript_Kingdra {

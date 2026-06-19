@@ -202,7 +202,7 @@ SproutTower_Text_SageLi_FlashExplain:
 	.string "Flash illuminates even the\n"
 	.string "darkest of all places.\p"
 	.string "But to use it out of battle, you\n"
-	.string "need the Badge from Violet'S Gym.$"
+	.string "need the Badge from Violet's Gym.$"
 
 SproutTower_Text_SageLi_AfterBattle:
 	.string "I hope you learn and grow from\n"

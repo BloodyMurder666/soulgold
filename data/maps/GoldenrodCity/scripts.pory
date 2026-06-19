@@ -513,8 +513,8 @@ script Goldenrod_Daytime_Electabuzz {
 script Goldenrod_Daytime_Bystander {
 	lock
 	faceplayer
-	msgbox("There two have been going on with their
-			rivarly for weeks. The city should build
+	msgbox("Those two have been going on with their
+			rivalry for weeks. The city should build
 			a battle arena just for them.")
 	release
 	end
@@ -523,13 +523,13 @@ script Goldenrod_Daytime_Bystander {
 script Goldenrod_Nighttime_Burglar {
 	lock
 	faceplayer
-	msgbox("The city's rapid developement has 
+	msgbox("The city's rapid development has
 			raised some questions regarding
 			where all the money is coming from.
 			
 			If they knew just how much money
-			trades hands in the underground every
-			every day, their eyeballs would pop out.
+			changes hands in the underground every
+			day, their eyeballs would pop out.
 			
 			Perhaps one day you too will learn, if
 			you grow strong enough.")
@@ -547,7 +547,7 @@ script Goldenrod_Nighttime_Oldlady {
 		end
 	}
 	msgbox("Some petty thief tried to jump me on a
-			dark alleway, he was not expecting me
+			dark alleyway, he was not expecting me
 			to Smack Down him with a good old
 			Ippon seoinage.
 			
@@ -595,7 +595,7 @@ script GoldenrodCity_RivalAfterWhitney {
 		msgbox("Hey, want to head to
 				Ecruteak together?
 				
-				Actually nevermind, you'll probably
+				Actually never mind, you'll probably
 				want to catch more Pokémon, I'll
 				go visit my grandparents instead.
 				

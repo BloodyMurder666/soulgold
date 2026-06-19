@@ -10,7 +10,7 @@ script Route39North_Police {
 script Route39North_Elder {
     msgbox("When I was younger, I would hike the
             trail to the mountain every day, uphill
-            both ways! I didn't have any pokémon
+            both ways! I didn't have any Pokémon
             carrying me or any of those fancy bikes
             you kids have these days!", MSGBOX_NPC)
 }
@@ -44,7 +44,7 @@ script Route39North_Binoculars {
     msgbox("You peer into the binoculars...
             ...
             ..!
-            A majestic snowmountain towers in the
+            A majestic snowy mountain towers in the
             distance!", MSGBOX_SIGN)
 }
 
@@ -53,7 +53,7 @@ script Route39North_Gameboykid {
     lock
     faceplayer
     if (flag(FLAG_R39_NORTH_TRADE)) {
-        msgbox("I hear Rotom can posses common
+        msgbox("I hear Rotom can possess common
                 household appliances to change
                 form.")
     } else {

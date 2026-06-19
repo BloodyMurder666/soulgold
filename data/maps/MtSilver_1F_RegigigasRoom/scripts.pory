@@ -10,7 +10,7 @@ script MtSilver_Regigigas {
             if (var(VAR_RESULT) == TRUE) {
                 msgbox("...!
                 
-                        The statue suddenly started moving in
+                        The statue suddenly started moving
                         in reaction to your Pokémon!
                         
                         The statue attacked!")
@@ -32,7 +32,7 @@ script MtSilver_Regigigas {
 }
 
 script RegigigasSlumbers {
-    msgbox("A large, almost statuelike Pokémon
+    msgbox("A large, almost statue-like Pokémon
             seems to be resting here.
              
             ...

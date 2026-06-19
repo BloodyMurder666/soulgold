@@ -455,7 +455,7 @@ VioletCity_Text_SproutTowerSign:
 	.string "Experience the Way of Pokémon$"
 
 VioletCity_Text_EarlsAcademySign:
-	.string "Earl'S Pokémon Academy$"
+	.string "Earl's Pokémon Academy$"
 
 VioletCity_Text_Pichu:
 	.string "Pichu: Chuuuu!$"

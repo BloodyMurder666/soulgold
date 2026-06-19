@@ -672,7 +672,7 @@ AzaleaTown_Gym_Text_GymStatue:
 
 AzaleaTown_Gym_Text_GymStatueCertified:
 	.string "Azalea Town Pokémon Gym\p"
-	.string "Bugsy'S Certified Trainers:\n"
+	.string "Bugsy's Certified Trainers:\n"
 	.string "{PLAYER}$"
 
 AzaleaTown_Gym_Text_BugsyIntro:

@@ -213,7 +213,7 @@ script Route47OrbExpert {
 			playse(SE_PIN)
 			applymovement(LOCALID_R47_EXPERT, Common_Movement_ExclamationMark)
 			waitse
-			msgbox("You are indeed worthy of this orbal
+			msgbox("You are indeed worthy of this orb
 					knowledge! Allow me to demonstrate it
 					to you!")
 			trainerbattle_no_intro(TRAINER_ORB_EXPERT, "Splendid moves.")

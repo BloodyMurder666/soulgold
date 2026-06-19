@@ -64,12 +64,12 @@ script BellchimeTrail_MortyRematch {
 			battling you again if that is
 			acceptable to you, {PLAYER}.", MSGBOX_YESNO)
 	if (var(VAR_RESULT) == TRUE) {
-		msgbox("Thank you, I will you those watching
-				to be as worthy as you!")
+		msgbox("Thank you, I will show those watching
+				that I can be as worthy as you!")
 		trainerbattle_no_intro(TRAINER_MORTY_2, "I see now why they chose you.")
 		msgbox("Merely being strong or wise is not
-				enough always. It takes also something
-				more intangible that you posses. I hope
+				always enough. It also takes something
+				more intangible that you possess. I hope
 				the spirits continue to bless you.
 				
 				Until our next meeting.")

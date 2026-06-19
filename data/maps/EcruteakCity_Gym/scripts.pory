@@ -83,7 +83,7 @@ EcruteakCity_Gym_Text_GymStatue:
 
 EcruteakCity_Gym_Text_GymStatueCertified:
 	.string "Ecruteak City Pokémon Gym\p"
-	.string "Morty'S Certified Trainers:\n"
+	.string "Morty's Certified Trainers:\n"
 	.string "{PLAYER}$"
 
 MortyIntroText:

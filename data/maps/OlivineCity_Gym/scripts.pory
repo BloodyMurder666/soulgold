@@ -342,7 +342,7 @@ OlivineCity_Gym_Text_GymStatue:
 
 OlivineCity_Gym_Text_GymStatueCertified:
 	.string "Olivine City Pokémon Gym\p"
-	.string "Jasmine'S Certified Trainers:\n"
+	.string "Jasmine's Certified Trainers:\n"
 	.string "{PLAYER}$"
 
 `
