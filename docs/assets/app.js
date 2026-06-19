@@ -320,18 +320,59 @@ function getScopedTooltip(root, id, className) {
   return tooltip;
 }
 
-function showAbilityTooltip(button) {
+function tooltipAnchor(event, fallback) {
+  if (event && Number.isFinite(event.clientX) && Number.isFinite(event.clientY)) {
+    return { x: event.clientX, y: event.clientY };
+  }
+  const rect = fallback.getBoundingClientRect();
+  return { x: rect.left, y: rect.bottom };
+}
+
+function placeTooltip(tooltip, root, event, fallback) {
+  const anchor = tooltipAnchor(event, fallback);
+  tooltip.hidden = false;
+  tooltip.style.visibility = "hidden";
+  tooltip.style.left = "0px";
+  tooltip.style.top = "0px";
+
+  const width = tooltip.offsetWidth || 320;
+  const height = tooltip.offsetHeight || 120;
+  const offsetX = 14;
+  const offsetY = 18;
+
+  if (root === document.body) {
+    tooltip.style.position = "fixed";
+    let left = anchor.x + offsetX;
+    let top = anchor.y + offsetY;
+    if (left + width > window.innerWidth - 12) left = anchor.x - width - offsetX;
+    if (top + height > window.innerHeight - 12) top = anchor.y - height - offsetY;
+    tooltip.style.left = `${Math.max(12, Math.min(left, window.innerWidth - width - 12))}px`;
+    tooltip.style.top = `${Math.max(12, Math.min(top, window.innerHeight - height - 12))}px`;
+  } else {
+    tooltip.style.position = "absolute";
+    const rootRect = root.getBoundingClientRect();
+    const visibleLeft = root.scrollLeft + 12;
+    const visibleTop = root.scrollTop + 12;
+    const visibleRight = root.scrollLeft + root.clientWidth - width - 12;
+    const visibleBottom = root.scrollTop + root.clientHeight - height - 12;
+    let left = anchor.x - rootRect.left + root.scrollLeft + offsetX;
+    let top = anchor.y - rootRect.top + root.scrollTop + offsetY;
+    if (left > visibleRight) left = anchor.x - rootRect.left + root.scrollLeft - width - offsetX;
+    if (top > visibleBottom) top = anchor.y - rootRect.top + root.scrollTop - height - offsetY;
+    tooltip.style.left = `${Math.max(visibleLeft, Math.min(left, visibleRight))}px`;
+    tooltip.style.top = `${Math.max(visibleTop, Math.min(top, visibleBottom))}px`;
+  }
+
+  tooltip.style.visibility = "";
+}
+
+function showAbilityTooltip(button, event) {
   const ability = state.data.abilities[button.dataset.ability];
   if (!ability) return;
   const root = button.closest("dialog[open]") || document.body;
   const tooltip = getScopedTooltip(root, "abilityTooltip", "ability-tooltip");
   tooltip.innerHTML = `<strong>${ability.name}</strong><span>${ability.description}</span>`;
-  const rect = button.getBoundingClientRect();
-  const left = Math.min(window.innerWidth - 340, Math.max(12, rect.left));
-  const top = Math.min(window.innerHeight - 120, rect.bottom + 8);
-  tooltip.style.left = `${left}px`;
-  tooltip.style.top = `${top}px`;
-  tooltip.hidden = false;
+  placeTooltip(tooltip, root, event, button);
 }
 
 function hideAbilityTooltip() {
@@ -345,26 +386,21 @@ function handleAbilityClick(event) {
   if (!button) return;
   event.preventDefault();
   event.stopPropagation();
-  showAbilityTooltip(button);
+  showAbilityTooltip(button, event);
 }
 
 function handleAbilityHover(event) {
   const button = event.target.closest(".ability-pill");
-  if (button) showAbilityTooltip(button);
+  if (button) showAbilityTooltip(button, event);
 }
 
-function showMoveTooltip(button) {
+function showMoveTooltip(button, event) {
   const move = state.data.moves[button.dataset.move];
   if (!move) return;
   const root = button.closest("dialog[open]") || document.body;
   const tooltip = getScopedTooltip(root, "moveTooltip", "ability-tooltip move-tooltip");
   tooltip.innerHTML = `<strong>${move.name}</strong><span>${move.description || "No description."}</span>`;
-  const rect = button.getBoundingClientRect();
-  const left = Math.min(window.innerWidth - 340, Math.max(12, rect.left));
-  const top = Math.min(window.innerHeight - 120, rect.bottom + 8);
-  tooltip.style.left = `${left}px`;
-  tooltip.style.top = `${top}px`;
-  tooltip.hidden = false;
+  placeTooltip(tooltip, root, event, button);
 }
 
 function hideMoveTooltip() {
@@ -373,18 +409,13 @@ function hideMoveTooltip() {
   });
 }
 
-function showItemTooltip(button) {
+function showItemTooltip(button, event) {
   const itemName = button.dataset.itemName || "Item";
   const itemDescription = button.dataset.itemDescription || "No description.";
   const root = button.closest("dialog[open]") || document.body;
   const tooltip = getScopedTooltip(root, "itemTooltip", "ability-tooltip item-tooltip");
   tooltip.innerHTML = `<strong>${escapeHtml(itemName)}</strong><span>${escapeHtml(itemDescription)}</span>`;
-  const rect = button.getBoundingClientRect();
-  const left = Math.min(window.innerWidth - 340, Math.max(12, rect.left));
-  const top = Math.min(window.innerHeight - 120, rect.bottom + 8);
-  tooltip.style.left = `${left}px`;
-  tooltip.style.top = `${top}px`;
-  tooltip.hidden = false;
+  placeTooltip(tooltip, root, event, button);
 }
 
 function hideItemTooltip() {
@@ -395,7 +426,7 @@ function hideItemTooltip() {
 
 function handleItemHover(event) {
   const button = event.target.closest(".item-tooltip-target");
-  if (button) showItemTooltip(button);
+  if (button) showItemTooltip(button, event);
 }
 
 function handleItemTooltipClick(event) {
@@ -403,12 +434,12 @@ function handleItemTooltipClick(event) {
   if (!button) return;
   event.preventDefault();
   event.stopPropagation();
-  showItemTooltip(button);
+  showItemTooltip(button, event);
 }
 
 function handleMoveHover(event) {
   const button = event.target.closest(".move-name");
-  if (button) showMoveTooltip(button);
+  if (button) showMoveTooltip(button, event);
 }
 
 function handleMoveClick(event) {
@@ -416,7 +447,7 @@ function handleMoveClick(event) {
   if (!button) return;
   event.preventDefault();
   event.stopPropagation();
-  showMoveTooltip(button);
+  showMoveTooltip(button, event);
 }
 
 function handleSpeciesLinkClick(event) {

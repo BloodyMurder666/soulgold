@@ -3298,86 +3298,17 @@
               {
                 "min_level": 18,
                 "max_level": 22,
-                "species": "SPECIES_DARUMAKA"
+                "species": "SPECIES_ESPURR"
               },
               {
                 "min_level": 16,
                 "max_level": 22,
-                "species": "SPECIES_DARUMAKA"
+                "species": "SPECIES_ESPURR"
               },
               {
                 "min_level": 16,
                 "max_level": 23,
-                "species": "SPECIES_DARUMAKA"
-              }
-            ]
-          }
-        },
-        {
-          "map": "MAP_ROUTE37",
-          "base_label": "gRoute37_Night",
-          "land_mons": {
-            "encounter_rate": 20,
-            "mons": [
-              {
-                "min_level": 16,
-                "max_level": 20,
-                "species": "SPECIES_GIRAFARIG"
-              },
-              {
-                "min_level": 16,
-                "max_level": 20,
-                "species": "SPECIES_STANTLER"
-              },
-              {
-                "min_level": 18,
-                "max_level": 20,
-                "species": "SPECIES_GIRAFARIG"
-              },
-              {
-                "min_level": 16,
-                "max_level": 20,
-                "species": "SPECIES_STANTLER"
-              },
-              {
-                "min_level": 71,
-                "max_level": 71,
-                "species": "SPECIES_STARAVIA"
-              },
-              {
-                "min_level": 17,
-                "max_level": 21,
-                "species": "SPECIES_TANDEMAUS"
-              },
-              {
-                "min_level": 17,
-                "max_level": 21,
-                "species": "SPECIES_STARAVIA"
-              },
-              {
-                "min_level": 18,
-                "max_level": 21,
-                "species": "SPECIES_TANDEMAUS"
-              },
-              {
-                "min_level": 18,
-                "max_level": 21,
-                "species": "SPECIES_STANTLER"
-              },
-              {
-                "min_level": 18,
-                "max_level": 22,
-                "species": "SPECIES_DARUMAKA"
-              },
-              {
-                "min_level": 16,
-                "max_level": 22,
-                "species": "SPECIES_DARUMAKA"
-              },
-              {
-                "min_level": 16,
-                "max_level": 23,
-                "species": "SPECIES_DARUMAKA"
+                "species": "SPECIES_ESPURR"
               }
             ]
           }
