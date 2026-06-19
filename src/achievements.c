@@ -53,11 +53,11 @@ static u32 Achievement_GetBestBattlePyramidRounds(void);
 static u32 Achievement_GetBestRocketArcadeStreak(void);
 static void Achievement_QueuePopup(enum AchievementId id);
 
-static const u8 sText_AchReceiveStarterName[] = _("Fresh Start");
+static const u8 sText_AchReceiveStarterName[] = _("I choose you!");
 static const u8 sText_AchReceiveStarterDesc[] = _("Receive your first partner Pokemon.");
 static const u8 sText_AchFirstCaptureName[] = _("First Catch");
 static const u8 sText_AchFirstCaptureDesc[] = _("Catch your first Pokemon with a Ball.");
-static const u8 sText_AchFirstCriticalName[] = _("Sharp Start");
+static const u8 sText_AchFirstCriticalName[] = _("Lucky strike");
 static const u8 sText_AchFirstCriticalDesc[] = _("Land your first critical hit.");
 static const u8 sText_AchCritical100Name[] = _("Critical Thinker");
 static const u8 sText_AchCritical100Desc[] = _("Land 100 critical hits.");
