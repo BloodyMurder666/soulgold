@@ -244,6 +244,11 @@ static const u8 sRadioDesc[] = _(
     "A shiny new radio\n"
     "that plays music.");
 
+static const u8 sBlackMirrorDesc[] = _(
+    "An eerie mirror\n"
+    "that does not show\n"
+    "your own reflection.");
+
 const struct ItemInfo gItemsInfo[] =
 {
     [ITEM_NONE] =
@@ -17367,6 +17372,18 @@ const struct ItemInfo gItemsInfo[] =
         .iconPic = gItemIcon_Radio,
         .iconPalette = gItemIcon_Palette_Radio,
     }, 
+    [ITEM_BLACK_MIRROR] =
+    {
+        .name = ITEM_NAME("Black Mirror"),
+        .price = 0,
+        .description = sBlackMirrorDesc,
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_BlackMirror,
+        .iconPalette = gItemIconPalette_BlackMirror,
+    },
     [ITEM_BECKONING_BELL] =
     {
         .name = ITEM_NAME("Beckoning Bell"),

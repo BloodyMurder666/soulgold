@@ -2151,3 +2151,6 @@ const u16 gItemIcon_Palette_TidalBell[] = INCBIN_U16("graphics/items/icon_palett
 
 const u32 gItemIcon_Radio[] = INCBIN_U32("graphics/items/icons/radio.4bpp.smol");
 const u16 gItemIcon_Palette_Radio[] = INCBIN_U16("graphics/items/icons/radio.gbapal");
+
+const u32 gItemIcon_BlackMirror[] = INCBIN_U32("graphics/items/icons/black_mirror.4bpp.smol");
+const u16 gItemIconPalette_BlackMirror[] = INCBIN_U16("graphics/items/icon_palettes/black_mirror.gbapal");

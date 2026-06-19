@@ -3583,6 +3583,9 @@ extern const u16 gItemIcon_Palette_TidalBell[];
 extern const u32 gItemIcon_Radio[];
 extern const u16 gItemIcon_Palette_Radio[];
 
+extern const u32 gItemIcon_BlackMirror[];
+extern const u16 gItemIconPalette_BlackMirror[];
+
 //New Summary Pages
 extern const u32 gSummaryPage_Traits_Tilemap[];
 extern const u32 gSummaryLongDescriptionBox_Tilemap[];
