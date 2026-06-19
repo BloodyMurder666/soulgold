@@ -198,12 +198,11 @@ static const u8 gText_DifficultyNormal[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN
 static const u8 gText_DifficultyHard[]     = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Hard");
 static const u8 gText_OverworldSpeed1x[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}1x");
 static const u8 gText_OverworldSpeed2x[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}2x");
+static const u8 gText_OverworldSpeed3x[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}3x");
 static const u8 gText_OverworldSpeed4x[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}4x");
-static const u8 gText_OverworldSpeed8x[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}8x");
 static const u8 gText_BattleSpeed1x[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}1x");
 static const u8 gText_BattleSpeed2x[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}2x");
 static const u8 gText_BattleSpeed3x[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}3x");
-static const u8 gText_BattleSpeed4x[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}4x");
 static const u8 gText_IntroSlideOn[]       = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}On");
 static const u8 gText_IntroSlideOff[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Off");
 static const u8 gText_FastMegasOn[]        = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}On");
@@ -326,7 +325,11 @@ static void ReadAllCurrentSettings(u8 taskId)
         gTasks[taskId].tWildLevelScaling = gSaveBlock2Ptr->optionsWildLevelScaling;
         gTasks[taskId].tDifficulty = GetCurrentDifficultyLevel() == DIFFICULTY_HARD;
         gTasks[taskId].tOverworldSpeedup = VarGet(VAR_OVERWORLD_SPEEDUP);
+        if (gTasks[taskId].tOverworldSpeedup > OPTIONS_OVERWORLD_SPEED_4X)
+            gTasks[taskId].tOverworldSpeedup = OPTIONS_OVERWORLD_SPEED_1X;
         gTasks[taskId].tBattleSpeed = VarGet(VAR_BATTLE_SPEED);
+        if (gTasks[taskId].tBattleSpeed > OPTIONS_BATTLE_SCENE_3X)
+            gTasks[taskId].tBattleSpeed = OPTIONS_BATTLE_SCENE_1X;
         gTasks[taskId].tFastIntroNoSlide = gSaveBlock2Ptr->optionsFastIntroNoSlide;
         sFastMegas = gSaveBlock2Ptr->optionsFastMegas;
         sFastWeather = gSaveBlock2Ptr->optionsFastWeather;
@@ -1201,12 +1204,12 @@ static void Autorun_DrawChoices(u8 selection)
 
 static u8 OverworldSpeedup_ProcessInput(u8 selection)
 {
-    if (selection > OPTIONS_OVERWORLD_SPEED_8X)
+    if (selection > OPTIONS_OVERWORLD_SPEED_4X)
         selection = OPTIONS_OVERWORLD_SPEED_1X;
 
     if (JOY_NEW(DPAD_RIGHT))
     {
-        if (selection < OPTIONS_OVERWORLD_SPEED_8X)
+        if (selection < OPTIONS_OVERWORLD_SPEED_4X)
             selection++;
         else
             selection = OPTIONS_OVERWORLD_SPEED_1X;
@@ -1218,7 +1221,7 @@ static u8 OverworldSpeedup_ProcessInput(u8 selection)
         if (selection > OPTIONS_OVERWORLD_SPEED_1X)
             selection--;
         else
-            selection = OPTIONS_OVERWORLD_SPEED_8X;
+            selection = OPTIONS_OVERWORLD_SPEED_4X;
 
         sArrowPressed = TRUE;
     }
@@ -1229,7 +1232,7 @@ static void OverworldSpeedup_DrawChoices(u8 selection)
 {
     u8 styles[4];
 
-    if (selection > OPTIONS_OVERWORLD_SPEED_8X)
+    if (selection > OPTIONS_OVERWORLD_SPEED_4X)
         selection = OPTIONS_OVERWORLD_SPEED_1X;
 
     styles[0] = 0;
@@ -1240,18 +1243,18 @@ static void OverworldSpeedup_DrawChoices(u8 selection)
 
     DrawOptionMenuChoice(gText_OverworldSpeed1x, 88, YPOS_OVERWORLD_SPEEDUP, styles[OPTIONS_OVERWORLD_SPEED_1X]);
     DrawOptionMenuChoice(gText_OverworldSpeed2x, 122, YPOS_OVERWORLD_SPEEDUP, styles[OPTIONS_OVERWORLD_SPEED_2X]);
-    DrawOptionMenuChoice(gText_OverworldSpeed4x, 156, YPOS_OVERWORLD_SPEEDUP, styles[OPTIONS_OVERWORLD_SPEED_4X]);
-    DrawOptionMenuChoice(gText_OverworldSpeed8x, GetStringRightAlignXOffset(FONT_NORMAL, gText_OverworldSpeed8x, 198), YPOS_OVERWORLD_SPEEDUP, styles[OPTIONS_OVERWORLD_SPEED_8X]);
+    DrawOptionMenuChoice(gText_OverworldSpeed3x, 156, YPOS_OVERWORLD_SPEEDUP, styles[OPTIONS_OVERWORLD_SPEED_3X]);
+    DrawOptionMenuChoice(gText_OverworldSpeed4x, GetStringRightAlignXOffset(FONT_NORMAL, gText_OverworldSpeed4x, 198), YPOS_OVERWORLD_SPEEDUP, styles[OPTIONS_OVERWORLD_SPEED_4X]);
 }
 
 static u8 BattleSpeed_ProcessInput(u8 selection)
 {
-    if (selection > OPTIONS_BATTLE_SCENE_4X)
+    if (selection > OPTIONS_BATTLE_SCENE_3X)
         selection = OPTIONS_BATTLE_SCENE_1X;
 
     if (JOY_NEW(DPAD_RIGHT))
     {
-        if (selection < OPTIONS_BATTLE_SCENE_4X)
+        if (selection < OPTIONS_BATTLE_SCENE_3X)
             selection++;
         else
             selection = OPTIONS_BATTLE_SCENE_1X;
@@ -1263,7 +1266,7 @@ static u8 BattleSpeed_ProcessInput(u8 selection)
         if (selection > OPTIONS_BATTLE_SCENE_1X)
             selection--;
         else
-            selection = OPTIONS_BATTLE_SCENE_4X;
+            selection = OPTIONS_BATTLE_SCENE_3X;
 
         sArrowPressed = TRUE;
     }
@@ -1272,21 +1275,28 @@ static u8 BattleSpeed_ProcessInput(u8 selection)
 
 static void BattleSpeed_DrawChoices(u8 selection)
 {
-    u8 styles[4];
+    s32 width1x, width2x, width3x, x2x;
+    u8 styles[3];
 
-    if (selection > OPTIONS_BATTLE_SCENE_4X)
+    if (selection > OPTIONS_BATTLE_SCENE_3X)
         selection = OPTIONS_BATTLE_SCENE_1X;
 
     styles[0] = 0;
     styles[1] = 0;
     styles[2] = 0;
-    styles[3] = 0;
     styles[selection] = 1;
 
-    DrawOptionMenuChoice(gText_BattleSpeed1x, 88, YPOS_BATTLE_SPEED, styles[OPTIONS_BATTLE_SCENE_1X]);
-    DrawOptionMenuChoice(gText_BattleSpeed2x, 122, YPOS_BATTLE_SPEED, styles[OPTIONS_BATTLE_SCENE_2X]);
-    DrawOptionMenuChoice(gText_BattleSpeed3x, 156, YPOS_BATTLE_SPEED, styles[OPTIONS_BATTLE_SCENE_3X]);
-    DrawOptionMenuChoice(gText_BattleSpeed4x, GetStringRightAlignXOffset(FONT_NORMAL, gText_BattleSpeed4x, 198), YPOS_BATTLE_SPEED, styles[OPTIONS_BATTLE_SCENE_4X]);
+    DrawOptionMenuChoice(gText_BattleSpeed1x, 104, YPOS_BATTLE_SPEED, styles[OPTIONS_BATTLE_SCENE_1X]);
+
+    width1x = GetStringWidth(FONT_NORMAL, gText_BattleSpeed1x, 0);
+    width2x = GetStringWidth(FONT_NORMAL, gText_BattleSpeed2x, 0);
+    width3x = GetStringWidth(FONT_NORMAL, gText_BattleSpeed3x, 0);
+
+    width2x -= 94;
+    x2x = (width1x - width2x - width3x) / 2 + 104;
+    DrawOptionMenuChoice(gText_BattleSpeed2x, x2x, YPOS_BATTLE_SPEED, styles[OPTIONS_BATTLE_SCENE_2X]);
+
+    DrawOptionMenuChoice(gText_BattleSpeed3x, GetStringRightAlignXOffset(FONT_NORMAL, gText_BattleSpeed3x, 198), YPOS_BATTLE_SPEED, styles[OPTIONS_BATTLE_SCENE_3X]);
 }
 
 static u8 IntroSlide_ProcessInput(u8 selection)
