@@ -107,6 +107,7 @@ NewBarkTown_PlayersHouse_1F_EventScript_GivePokeGear::
 	return
 	
 NewBarkTown_PlayersHouse_1F_EventScript_GiveRunningShoes::
+	createfieldmugshot MUGSHOT_MOM
 	msgbox NewBarkTown_PlayersHouse_1F_Text_WearTheseRunningShoes, MSGBOX_DEFAULT
 	waitmessage
 	closemessage
@@ -116,6 +117,7 @@ NewBarkTown_PlayersHouse_1F_EventScript_GiveRunningShoes::
 	closemessage
 	setflag FLAG_RECEIVED_RUNNING_SHOES
 	setflag FLAG_SYS_B_DASH
+	createfieldmugshot MUGSHOT_MOM
 	msgbox NewBarkTown_PlayersHouse_1F_Text_ExplainRunningShoes, MSGBOX_DEFAULT
 	closemessage
 	delay 30

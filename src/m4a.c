@@ -1735,12 +1735,20 @@ void SetPokemonCryProgress(u32 val)
 
 bool32 IsPokemonCryPlaying(struct MusicPlayerInfo *mplayInfo)
 {
-    struct MusicPlayerTrack *track = mplayInfo->tracks;
+    s32 i;
+    struct MusicPlayerTrack *track;
 
-    if (track->chan && track->chan->track == track)
-        return TRUE;
-    else
+    if (mplayInfo == NULL || (mplayInfo->status & MUSICPLAYER_STATUS_PAUSE))
         return FALSE;
+
+    for (i = 0, track = mplayInfo->tracks; i < mplayInfo->trackCount; i++, track++)
+    {
+        // A newly started cry may not have a channel until the next real SoundMain tick.
+        if ((track->flags & MPT_FLG_START) || (track->chan && track->chan->track == track))
+            return TRUE;
+    }
+
+    return FALSE;
 }
 
 void SetPokemonCryChorus(s8 val)
