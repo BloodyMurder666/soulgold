@@ -1,11 +1,9 @@
 #include "global.h"
 #include "achievements.h"
-#include "difficulty.h"
 #include "event_data.h"
 #include "item.h"
 #include "pokedex.h"
 #include "string_util.h"
-#include "constants/difficulty.h"
 #include "constants/battle_frontier.h"
 #include "constants/flags.h"
 #include "constants/items.h"
@@ -17,9 +15,9 @@
 
 static bool32 Achievement_PredicateHoennDexComplete(void);
 static bool32 Achievement_PredicateNationalDexComplete(void);
-static bool32 Achievement_PredicateBadge1(void);
-static bool32 Achievement_PredicateBadge8(void);
 static bool32 Achievement_PredicateBadge16(void);
+static bool32 Achievement_PredicateCaughtBloodMoonUrsaluna(void);
+static bool32 Achievement_PredicateCaughtRayquaza(void);
 static bool32 Achievement_PredicateCaughtLugia(void);
 static bool32 Achievement_PredicateCaughtHoOh(void);
 static bool32 Achievement_PredicateZephyrBadge(void);
@@ -53,7 +51,6 @@ static u32 Achievement_GetBestBattleTowerStreak(void);
 static u32 Achievement_GetBestBattleFactoryStreak(void);
 static u32 Achievement_GetBestBattlePyramidRounds(void);
 static u32 Achievement_GetBestRocketArcadeStreak(void);
-static bool32 Achievement_IsHardRematchAchievement(enum AchievementId id);
 static void Achievement_QueuePopup(enum AchievementId id);
 
 static const u8 sText_AchReceiveStarterName[] = _("Fresh Start");
@@ -84,10 +81,10 @@ static const u8 sText_AchHoennDexName[] = _("Johto Professor");
 static const u8 sText_AchHoennDexDesc[] = _("Complete the Johto Pokedex.");
 static const u8 sText_AchNationalDexName[] = _("National Professor");
 static const u8 sText_AchNationalDexDesc[] = _("Complete the National Pokedex.");
-static const u8 sText_AchBadge1Name[] = _("First Badge");
-static const u8 sText_AchBadge1Desc[] = _("Earn your first Gym Badge.");
-static const u8 sText_AchBadge8Name[] = _("League Ready");
-static const u8 sText_AchBadge8Desc[] = _("Earn 8 Gym Badges.");
+static const u8 sText_AchBloodMoonName[] = _("Blood Moon");
+static const u8 sText_AchBloodMoonDesc[] = _("Catch Blood Moon Ursaluna.");
+static const u8 sText_AchRayquazaName[] = _("Ruler of Skies");
+static const u8 sText_AchRayquazaDesc[] = _("Catch Rayquaza.");
 static const u8 sText_AchBadge16Name[] = _("World Tour");
 static const u8 sText_AchBadge16Desc[] = _("Earn 16 Gym Badges.");
 static const u8 sText_AchTm1Name[] = _("TM Student");
@@ -143,21 +140,21 @@ static const u8 sText_AchGlacierBadgeDesc[] = _("Obtain Glacierbadge\nby defeati
 static const u8 sText_AchRisingBadgeName[] = _("Risen to the top");
 static const u8 sText_AchRisingBadgeDesc[] = _("Obtain Risingbadge\nafter defeating Clair.");
 static const u8 sText_AchFalknerRematchName[] = _("Wings grounded");
-static const u8 sText_AchFalknerRematchDesc[] = _("Defeat Falkner's rematch\non hard difficulty.");
+static const u8 sText_AchFalknerRematchDesc[] = _("Defeat Falkner's rematch.");
 static const u8 sText_AchBugsyRematchName[] = _("Bug squasher");
-static const u8 sText_AchBugsyRematchDesc[] = _("Defeat Bugsy's rematch\non hard difficulty.");
+static const u8 sText_AchBugsyRematchDesc[] = _("Defeat Bugsy's rematch.");
 static const u8 sText_AchWhitneyRematchName[] = _("Stomped twice");
-static const u8 sText_AchWhitneyRematchDesc[] = _("Defeat Whitney's rematch\non hard difficulty.");
+static const u8 sText_AchWhitneyRematchDesc[] = _("Defeat Whitney's rematch.");
 static const u8 sText_AchMortyRematchName[] = _("Ghost buster");
-static const u8 sText_AchMortyRematchDesc[] = _("Defeat Morty's rematch\non hard difficulty.");
+static const u8 sText_AchMortyRematchDesc[] = _("Defeat Morty's rematch.");
 static const u8 sText_AchChuckRematchName[] = _("Luchador");
-static const u8 sText_AchChuckRematchDesc[] = _("Defeat Chuck's rematch\non hard difficulty.");
+static const u8 sText_AchChuckRematchDesc[] = _("Defeat Chuck's rematch.");
 static const u8 sText_AchJasmineRematchName[] = _("Steelmind");
-static const u8 sText_AchJasmineRematchDesc[] = _("Defeat Jasmine's rematch\non hard difficulty.");
+static const u8 sText_AchJasmineRematchDesc[] = _("Defeat Jasmine's rematch.");
 static const u8 sText_AchPryceRematchName[] = _("Cold Heart");
-static const u8 sText_AchPryceRematchDesc[] = _("Defeat Pryce's rematch\non hard difficulty.");
+static const u8 sText_AchPryceRematchDesc[] = _("Defeat Pryce's rematch.");
 static const u8 sText_AchClairRematchName[] = _("Dragon master");
-static const u8 sText_AchClairRematchDesc[] = _("Defeat Clair's rematch\non hard difficulty.");
+static const u8 sText_AchClairRematchDesc[] = _("Defeat Clair's rematch.");
 static const u8 sText_AchLetsGoName[] = _("Let's go!");
 static const u8 sText_AchLetsGoDesc[] = _("Obtain Eevee Starter\nor Pikachu Starter.");
 static const u8 sText_AchRouteExpertsName[] = _("Now I'm the expert");
@@ -220,8 +217,6 @@ static const struct Achievement sAchievements[] =
     {ACH_BATTLE_TOWER_100, sText_AchTower100Name, sText_AchTower100Desc, ACH_TIER_PLATINUM, ACH_COUNTER_BATTLE_TOWER_STREAK, 100, TRAINER_NONE_ACH, NULL},
     {ACH_COMPLETE_HOENN_DEX, sText_AchHoennDexName, sText_AchHoennDexDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateHoennDexComplete},
     {ACH_COMPLETE_NATIONAL_DEX, sText_AchNationalDexName, sText_AchNationalDexDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateNationalDexComplete},
-    {ACH_BADGE_1, sText_AchBadge1Name, sText_AchBadge1Desc, ACH_TIER_BRONZE, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateBadge1},
-    {ACH_BADGE_8, sText_AchBadge8Name, sText_AchBadge8Desc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateBadge8},
     {ACH_BADGE_16, sText_AchBadge16Name, sText_AchBadge16Desc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateBadge16},
     {ACH_TM_1, sText_AchTm1Name, sText_AchTm1Desc, ACH_TIER_BRONZE, ACH_COUNTER_TMS_COLLECTED, 1, TRAINER_NONE_ACH, NULL},
     {ACH_TM_20, sText_AchTm20Name, sText_AchTm20Desc, ACH_TIER_SILVER, ACH_COUNTER_TMS_COLLECTED, 20, TRAINER_NONE_ACH, NULL},
@@ -249,14 +244,14 @@ static const struct Achievement sAchievements[] =
     {ACH_JOHTO_BADGE_MINERAL, sText_AchMineralBadgeName, sText_AchMineralBadgeDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateMineralBadge},
     {ACH_JOHTO_BADGE_GLACIER, sText_AchGlacierBadgeName, sText_AchGlacierBadgeDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateGlacierBadge},
     {ACH_JOHTO_BADGE_RISING, sText_AchRisingBadgeName, sText_AchRisingBadgeDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateRisingBadge},
-    {ACH_HARD_REMATCH_FALKNER, sText_AchFalknerRematchName, sText_AchFalknerRematchDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_FALKNER_2, NULL},
-    {ACH_HARD_REMATCH_BUGSY, sText_AchBugsyRematchName, sText_AchBugsyRematchDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_BUGSY_2, NULL},
-    {ACH_HARD_REMATCH_WHITNEY, sText_AchWhitneyRematchName, sText_AchWhitneyRematchDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_WHITNEY_2, NULL},
-    {ACH_HARD_REMATCH_MORTY, sText_AchMortyRematchName, sText_AchMortyRematchDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_MORTY_2, NULL},
-    {ACH_HARD_REMATCH_CHUCK, sText_AchChuckRematchName, sText_AchChuckRematchDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_CHUCK_2, NULL},
-    {ACH_HARD_REMATCH_JASMINE, sText_AchJasmineRematchName, sText_AchJasmineRematchDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_JASMINE_2, NULL},
-    {ACH_HARD_REMATCH_PRYCE, sText_AchPryceRematchName, sText_AchPryceRematchDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_PRYCE_2, NULL},
-    {ACH_HARD_REMATCH_CLAIR, sText_AchClairRematchName, sText_AchClairRematchDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_CLAIR_2, NULL},
+    {ACH_REMATCH_FALKNER, sText_AchFalknerRematchName, sText_AchFalknerRematchDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_FALKNER_2, NULL},
+    {ACH_REMATCH_BUGSY, sText_AchBugsyRematchName, sText_AchBugsyRematchDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_BUGSY_2, NULL},
+    {ACH_REMATCH_WHITNEY, sText_AchWhitneyRematchName, sText_AchWhitneyRematchDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_WHITNEY_2, NULL},
+    {ACH_REMATCH_MORTY, sText_AchMortyRematchName, sText_AchMortyRematchDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_MORTY_2, NULL},
+    {ACH_REMATCH_CHUCK, sText_AchChuckRematchName, sText_AchChuckRematchDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_CHUCK_2, NULL},
+    {ACH_REMATCH_JASMINE, sText_AchJasmineRematchName, sText_AchJasmineRematchDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_JASMINE_2, NULL},
+    {ACH_REMATCH_PRYCE, sText_AchPryceRematchName, sText_AchPryceRematchDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_PRYCE_2, NULL},
+    {ACH_REMATCH_CLAIR, sText_AchClairRematchName, sText_AchClairRematchDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_CLAIR_2, NULL},
     {ACH_LETS_GO, sText_AchLetsGoName, sText_AchLetsGoDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateLetsGo},
     {ACH_ROUTE_EXPERTS, sText_AchRouteExpertsName, sText_AchRouteExpertsDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateRouteExperts},
     {ACH_HALL_OF_FAME_DEBUT, sText_AchHallOfFameDebutName, sText_AchHallOfFameDebutDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, NULL},
@@ -264,6 +259,8 @@ static const struct Achievement sAchievements[] =
     {ACH_CATCH_ARTICUNO, sText_AchCatchArticunoName, sText_AchCatchArticunoDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtArticuno},
     {ACH_CATCH_MOLTRES, sText_AchCatchMoltresName, sText_AchCatchMoltresDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMoltres},
     {ACH_CATCH_ZAPDOS, sText_AchCatchZapdosName, sText_AchCatchZapdosDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtZapdos},
+    {ACH_CATCH_BLOOD_MOON_URSALUNA, sText_AchBloodMoonName, sText_AchBloodMoonDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtBloodMoonUrsaluna},
+    {ACH_CATCH_RAYQUAZA, sText_AchRayquazaName, sText_AchRayquazaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRayquaza},
     {ACH_CATCH_REGICE, sText_AchCatchRegiceName, sText_AchCatchRegiceDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRegice},
     {ACH_CATCH_REGISTEEL, sText_AchCatchRegisteelName, sText_AchCatchRegisteelDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRegisteel},
     {ACH_CATCH_REGIROCK, sText_AchCatchRegirockName, sText_AchCatchRegirockDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRegirock},
@@ -333,16 +330,6 @@ static u8 Achievement_CountBadges(void)
     return count;
 }
 
-static bool32 Achievement_PredicateBadge1(void)
-{
-    return Achievement_CountBadges() >= 1;
-}
-
-static bool32 Achievement_PredicateBadge8(void)
-{
-    return Achievement_CountBadges() >= 8;
-}
-
 static bool32 Achievement_PredicateBadge16(void)
 {
     return Achievement_CountBadges() >= 16;
@@ -356,6 +343,16 @@ static bool32 Achievement_PredicateBadgeFlag(u16 flag)
 static bool32 Achievement_PredicateCaughtSpecies(u16 species)
 {
     return GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT);
+}
+
+static bool32 Achievement_PredicateCaughtBloodMoonUrsaluna(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_URSALUNA_BLOODMOON);
+}
+
+static bool32 Achievement_PredicateCaughtRayquaza(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_RAYQUAZA);
 }
 
 static bool32 Achievement_PredicateCaughtLugia(void)
@@ -585,24 +582,6 @@ static u32 Achievement_GetBestRocketArcadeStreak(void)
     return best;
 }
 
-static bool32 Achievement_IsHardRematchAchievement(enum AchievementId id)
-{
-    switch (id)
-    {
-    case ACH_HARD_REMATCH_FALKNER:
-    case ACH_HARD_REMATCH_BUGSY:
-    case ACH_HARD_REMATCH_WHITNEY:
-    case ACH_HARD_REMATCH_MORTY:
-    case ACH_HARD_REMATCH_CHUCK:
-    case ACH_HARD_REMATCH_JASMINE:
-    case ACH_HARD_REMATCH_PRYCE:
-    case ACH_HARD_REMATCH_CLAIR:
-        return TRUE;
-    default:
-        return FALSE;
-    }
-}
-
 u16 Achievement_GetCount(void)
 {
     Achievement_EnsureSaveInitialized();
@@ -792,9 +771,7 @@ void Achievement_OnTrainerDefeated(u16 trainerId)
 
     for (i = 0; i < ARRAY_COUNT(sAchievements); i++)
     {
-        if (sAchievements[i].trainerId == trainerId
-         && (!Achievement_IsHardRematchAchievement(sAchievements[i].id)
-          || GetCurrentDifficultyLevel() == DIFFICULTY_HARD))
+        if (sAchievements[i].trainerId == trainerId)
             Achievement_Unlock(sAchievements[i].id);
     }
     Achievement_CheckAll();
