@@ -937,9 +937,9 @@ VioletCity_Text_Rattata:
 # 469 "data/maps/VioletCity/scripts.pory"
 VioletCity_Text_Elm_Call:
 # 470 "data/maps/VioletCity/scripts.pory"
-	.string "Elm: Hello, {PLAYER}? We\n"
+	.string "Elm: Hello, {PLAYER}? We discovered\n"
 # 471 "data/maps/VioletCity/scripts.pory"
-	.string "discovered something about the Egg!\p"
+	.string "something about the Egg!\p"
 # 472 "data/maps/VioletCity/scripts.pory"
 	.string "My assistant is at the Pokémon\n"
 # 473 "data/maps/VioletCity/scripts.pory"

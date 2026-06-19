@@ -42,7 +42,7 @@ VioletCity_Gym_EventScript_Falkner::
 	setvar VAR_0x8008, 1
 	call Common_EventScript_SetGymTrainers
 	giveitem ITEM_TM_ROOST
-	msgbox VioletGym_Text_Falkner_TMExplain, MSGBOX_DEFAULT
+	call violetExplainTm
 	setvar VAR_VIOLET_CITY_STATE, 3
 	clearflag FLAG_HIDE_TUESCANY
 	setrespawn HEAL_LOCATION_VIOLET_CITY
@@ -85,13 +85,7 @@ VioletGym_Text_Falkner_BadgeExplain:
 	.string "anytime.\p"
 	.string "Here--take this too.$"
 
-VioletGym_Text_Falkner_TMExplain:
-	.string "By using a TM, a Pokémon will\n"
-	.string "instantly learn a new move.\p"
-	.string "TM19 contains Roost.\p"
-	.string "It restores Pokémon's health.\p"
-	.string "and grounds them, protecting\n"
-	.string "from Electric-attacks.$"
+
 
 VioletGym_Text_Falkner_AfterFight:
 	.string "There are Pokémon Gyms in cities\n"
@@ -185,3 +179,16 @@ VioletCity_Gym_Text_GymStatueCertified:
 	.string "{PLAYER}$"
 
 `
+script violetExplainTm {
+	msgbox("Pokémon can learn new moves with TMs.
+			
+			This one contains Roost, which restores
+			HP to Flying-type Pokémon.
+			
+			You may use it as many times as you
+			want.
+			
+			Your next stop should be Azalea Town.
+			Good luck.")
+	return
+}

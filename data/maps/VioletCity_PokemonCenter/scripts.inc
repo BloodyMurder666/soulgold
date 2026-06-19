@@ -12,8 +12,6 @@ VioletCity_PokemonCenter_EventScript_Aide::
 	lock
 	faceplayer
 	goto_if_set FLAG_RECEIVED_TOGEPI_EGG, VioletCity_PokemonCenter_EventScript_Aide_Received
-	getpartysize
-	goto_if_eq VAR_RESULT, PARTY_SIZE, VioletCity_PokemonCenter_EventScript_AideNoRoom
 	msgbox VioletCity_PokeCenter_Text_ElmsAideFavor, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, VioletCity_PokemonCenter_EventScript_Aide_Refuse
 	goto_if_eq VAR_RESULT, YES, VioletCity_PokemonCenter_EventScript_Aide_Accepted
@@ -35,8 +33,6 @@ VioletCity_PokemonCenter_EventScript_Aide_Refuse::
 	end
 
 VioletCity_PokemonCenter_EventScript_Aide_Accepted::
-	getpartysize
-	goto_if_eq VAR_RESULT, PARTY_SIZE, VioletCity_PokeCenter_Text_ElmsAideFullParty
 	playfanfare MUS_OBTAIN_ITEM
 	message LavaridgeTown_Text_ReceivedTheEgg
 	waitfanfare

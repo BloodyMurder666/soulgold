@@ -467,8 +467,8 @@ VioletCity_Text_Rattata:
 	.string "Rattata: Rattataratta!$"
 
 VioletCity_Text_Elm_Call:
-	.string "Elm: Hello, {PLAYER}? We\n"
-	.string "discovered something about the Egg!\p"
+	.string "Elm: Hello, {PLAYER}? We discovered\n"
+	.string "something about the Egg!\p"
 	.string "My assistant is at the Pokémon\n"
 	.string "Center in Violet City.\p"
 	.string "Could you talk to him?$"
