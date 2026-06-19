@@ -169,7 +169,7 @@
 #define FLAG_MR_BRINEY_SAILING_INTRO         0x93
 #define FLAG_DOCK_REJECTED_DEVON_GOODS       0x94
 #define FLAG_DELIVERED_DEVON_GOODS           0x95
-#define FLAG_121_FAIRY_GEM                   0x96
+#define FLAG_HIDE_ALPH_PUZZLE_NPCS           0x96
 #define FLAG_RECEIVED_CASTFORM               0x97
 #define FLAG_RECEIVED_SUPER_ROD              0x98
 #define FLAG_RUSTBORO_NPC_TRADE_COMPLETED    0x99
@@ -460,8 +460,8 @@
 #define FLAG_REGISTERED_DRAKE                (TRAINER_REGISTERED_FLAGS_START + REMATCH_DRAKE)
 #define FLAG_REGISTERED_WALLACE              (TRAINER_REGISTERED_FLAGS_START + REMATCH_WALLACE)
 
-#define FLAG_DAILY_BEAT_SILVER                    0x1AA // Unused Flag
-#define FLAG_SUS_RAILWAY_DOOR                0x1AB // Unused Flag
+#define FLAG_DAILY_BEAT_SILVER                    0x1AA
+#define FLAG_SUS_RAILWAY_DOOR                0x1AB
 
 #define FLAG_DEFEATED_DEOXYS                 0x1AC //HnS
 #define FLAG_BATTLED_DEOXYS                  0x1AD //HnS

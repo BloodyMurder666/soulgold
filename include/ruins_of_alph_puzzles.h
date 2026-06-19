@@ -4,6 +4,7 @@
 bool8 ShouldDoRuinsOfAlphEscapeRopePuzzle(void);
 bool8 ShouldDoRuinsOfAlphWaterStonePuzzle(void);
 bool8 ShouldDoRuinsOfAlphFlashPuzzle(void);
+bool8 RuinsOfAlphB1FUnownEncountersUnlocked(void);
 void StartRuinsOfAlphEscapeRopePuzzle(u8 taskId);
 void StartRuinsOfAlphWaterStonePuzzle(u8 taskId);
 void SetUpRuinsOfAlphFlashPuzzle(void);

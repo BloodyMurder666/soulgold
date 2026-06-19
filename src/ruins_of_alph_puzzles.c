@@ -45,6 +45,14 @@ bool8 ShouldDoRuinsOfAlphFlashPuzzle(void)
         && IsFacingNorthAtRearWall(20, 21, 19);
 }
 
+bool8 RuinsOfAlphB1FUnownEncountersUnlocked(void)
+{
+    return FlagGet(FLAG_COMPLETED_KABUTO_PUZZLE)
+        || FlagGet(FLAG_COMPLETED_ARCHEN_PUZZLE)
+        || FlagGet(FLAG_COMPLETED_AERODACTYL_PUZZLE)
+        || FlagGet(FLAG_COMPLETED_HOOH_PUZZLE);
+}
+
 void StartRuinsOfAlphEscapeRopePuzzle(u8 taskId)
 {
     LockPlayerFieldControls();

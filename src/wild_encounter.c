@@ -18,6 +18,7 @@
 #include "pokemon.h"
 #include "random.h"
 #include "roamer.h"
+#include "ruins_of_alph_puzzles.h"
 #include "safari_zone.h"
 #include "script.h"
 #include "tv.h"
@@ -483,6 +484,11 @@ u16 GetCurrentMapWildMonHeaderId(void)
         if (gWildMonHeaders[i].mapGroup == gSaveBlock1Ptr->location.mapGroup &&
             gWildMonHeaders[i].mapNum == gSaveBlock1Ptr->location.mapNum)
         {
+            if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_RUINS_OF_ALPH_B1F) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_RUINS_OF_ALPH_B1F) &&
+                !RuinsOfAlphB1FUnownEncountersUnlocked())
+                return HEADER_NONE;
+
             if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_ALTERING_CAVE) &&
                 gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ALTERING_CAVE))
             {
