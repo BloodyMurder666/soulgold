@@ -259,12 +259,33 @@ RuinsOfAlph_PuzzleAndRewardChambers_MapScript_HoohSuccess::
 	release
 	end
 
+RuinsOfAlph_PuzzleAndRewardChambers_EventScript_UseEscapeRopeOpenKabuto::
+	lockall
+	msgbox RuinsOfAlph_PuzzleAndRewardChambers_Text_UsedEscapeRope, MSGBOX_DEFAULT
+	closemessage
+	goto RuinsOfAlph_PuzzleAndRewardChambers_EventScript_RewardKabuto
+
+RuinsOfAlph_PuzzleAndRewardChambers_EventScript_UseWaterStoneOpenArchen::
+	lockall
+	msgbox RuinsOfAlph_PuzzleAndRewardChambers_Text_UsedWaterStone, MSGBOX_DEFAULT
+	closemessage
+	goto RuinsOfAlph_PuzzleAndRewardChambers_EventScript_RewardArchen
+
+RuinsOfAlph_PuzzleAndRewardChambers_EventScript_UseFlashOpenAerodactyl::
+	lockall
+	bufferpartymonnick STR_VAR_1, VAR_RESULT
+	msgbox RuinsOfAlph_PuzzleAndRewardChambers_Text_UsedFlash, MSGBOX_DEFAULT
+	closemessage
+	animateflash 1
+	setflashlevel 1
+	goto RuinsOfAlph_PuzzleAndRewardChambers_EventScript_RewardAerodactyl
+
 RuinsOfAlph_PuzzleAndRewardChambers_EventScript_CheckHooh::
 	lock
 	goto_if_set FLAG_HOOH_BROUGHT, RuinsOfAlph_PuzzleAndRewardChambers_EventScript_RewardGotten
 	specialvar VAR_RESULT, CheckHooh
 	goto_if_eq VAR_RESULT, TRUE, RuinsOfAlph_PuzzleAndRewardChambers_EventScript_RewardHooh
-	msgbox RuinsOfAlph_PuzzleAndRewardChambers_Text_Mon, MSGBOX_SIGN
+	msgbox RuinsOfAlph_PuzzleAndRewardChambers_Text_HoohWall, MSGBOX_SIGN
 	closemessage
 	release
 	end
@@ -287,9 +308,7 @@ RuinsOfAlph_PuzzleAndRewardChambers_EventScript_RewardHooh::
 RuinsOfAlph_PuzzleAndRewardChambers_EventScript_CheckAerodactyl::
 	lock
 	goto_if_set FLAG_AERODACTYL_BROUGHT, RuinsOfAlph_PuzzleAndRewardChambers_EventScript_RewardGotten
-	specialvar VAR_RESULT, CheckAerodactyl
-	goto_if_eq VAR_RESULT, TRUE, RuinsOfAlph_PuzzleAndRewardChambers_EventScript_RewardAerodactyl
-	msgbox RuinsOfAlph_PuzzleAndRewardChambers_Text_Mon, MSGBOX_SIGN
+	msgbox RuinsOfAlph_PuzzleAndRewardChambers_Text_LightWall, MSGBOX_SIGN
 	closemessage
 	release
 	end
@@ -312,9 +331,7 @@ RuinsOfAlph_PuzzleAndRewardChambers_EventScript_RewardAerodactyl::
 RuinsOfAlph_PuzzleAndRewardChambers_EventScript_CheckKabuto::
 	lock
 	goto_if_set FLAG_KABUTO_BROUGHT, RuinsOfAlph_PuzzleAndRewardChambers_EventScript_RewardGotten
-	specialvar VAR_RESULT, CheckKabuto
-	goto_if_eq VAR_RESULT, TRUE, RuinsOfAlph_PuzzleAndRewardChambers_EventScript_RewardKabuto
-	msgbox RuinsOfAlph_PuzzleAndRewardChambers_Text_Mon, MSGBOX_SIGN
+	msgbox RuinsOfAlph_PuzzleAndRewardChambers_Text_EscapeWall, MSGBOX_SIGN
 	closemessage
 	release
 	end
@@ -337,9 +354,7 @@ RuinsOfAlph_PuzzleAndRewardChambers_EventScript_RewardKabuto::
 RuinsOfAlph_PuzzleAndRewardChambers_EventScript_CheckArchen::
 	lock
 	goto_if_set FLAG_ARCHEN_BROUGHT, RuinsOfAlph_PuzzleAndRewardChambers_EventScript_RewardGotten
-	specialvar VAR_RESULT, CheckArchen
-	goto_if_eq VAR_RESULT, TRUE, RuinsOfAlph_PuzzleAndRewardChambers_EventScript_RewardArchen
-	msgbox RuinsOfAlph_PuzzleAndRewardChambers_Text_Mon, MSGBOX_SIGN
+	msgbox RuinsOfAlph_PuzzleAndRewardChambers_Text_WaterWall, MSGBOX_SIGN
 	closemessage
 	release
 	end
@@ -369,9 +384,32 @@ RuinsOfAlph_PuzzleAndRewardChambers_Text_Reward:
 	.string "The chamber reacts!\n"
 	.string "The way is open.$"
 
-RuinsOfAlph_PuzzleAndRewardChambers_Text_Mon:
-	.string "Some kind of ancient sensor.\n"
-	.string "What is it looking for?$"
+RuinsOfAlph_PuzzleAndRewardChambers_Text_EscapeWall:
+	.string "The wall reads:\n"
+	.string "ESCAPE$"
+
+RuinsOfAlph_PuzzleAndRewardChambers_Text_LightWall:
+	.string "The wall reads:\n"
+	.string "LIGHT$"
+
+RuinsOfAlph_PuzzleAndRewardChambers_Text_HoohWall:
+	.string "The wall reads:\n"
+	.string "HO OH$"
+
+RuinsOfAlph_PuzzleAndRewardChambers_Text_WaterWall:
+	.string "The wall reads:\n"
+	.string "WATER$"
+
+RuinsOfAlph_PuzzleAndRewardChambers_Text_UsedEscapeRope:
+	.string "{PLAYER} used the\n"
+	.string "Escape Rope.$"
+
+RuinsOfAlph_PuzzleAndRewardChambers_Text_UsedWaterStone:
+	.string "{PLAYER} used the\n"
+	.string "Water Stone.$"
+
+RuinsOfAlph_PuzzleAndRewardChambers_Text_UsedFlash:
+	.string "{STR_VAR_1} used FLASH!$"
 
 RuinsOfAlph_PuzzleAndRewardChambers_Text_Solved:
 	.string "The way is open.$"

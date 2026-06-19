@@ -10,6 +10,7 @@
 #include "overworld.h"
 #include "palette.h"
 #include "party_menu.h"
+#include "ruins_of_alph_puzzles.h"
 #include "script.h"
 #include "sound.h"
 #include "sprite.h"
@@ -78,6 +79,13 @@ bool32 SetUpFieldMove_Flash(void)
         gSpecialVar_Result = GetCursorSelectionMonId();
         gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
         gPostMenuFieldCallback = SetUpPuzzleEffectRegisteel;
+        return TRUE;
+    }
+    else if (ShouldDoRuinsOfAlphFlashPuzzle())
+    {
+        gSpecialVar_Result = GetCursorSelectionMonId();
+        gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
+        gPostMenuFieldCallback = SetUpRuinsOfAlphFlashPuzzle;
         return TRUE;
     }
     else if (gMapHeader.cave == TRUE && !FlagGet(FLAG_SYS_USE_FLASH))

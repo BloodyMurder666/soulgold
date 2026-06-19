@@ -105,10 +105,13 @@ bool8 CheckRelicanthWailord(void)
 
 bool8 CheckHooh(void)
 {
- 
-    if (GetMonData(&gPlayerParty[0], MON_DATA_SPECIES_OR_EGG, 0) == SPECIES_HO_OH)
+    u32 i;
+
+    CalculatePlayerPartyCount();
+    for (i = 0; i < gPlayerPartyCount; i++)
     {
-        return TRUE;
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG, 0) == SPECIES_HO_OH)
+            return TRUE;
     }
     return FALSE;
 }

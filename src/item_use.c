@@ -36,6 +36,7 @@
 #include "party_menu.h"
 #include "pokeblock.h"
 #include "pokemon.h"
+#include "ruins_of_alph_puzzles.h"
 #include "script.h"
 #include "sound.h"
 #include "strings.h"
@@ -54,6 +55,7 @@ static void SetUpItemUseCallback(u8);
 static void FieldCB_UseItemOnField(void);
 static void Task_CallItemUseOnFieldCallback(u8);
 static void Task_PartyMenuItemUseFromField(u8);
+static void SetUpSpecialItemUseOnFieldCallback(u8);
 static void Task_UseItemfinder(u8);
 static void Task_CloseItemfinderMessage(u8);
 static void Task_HiddenItemNearby(u8);
@@ -167,6 +169,28 @@ static void SetUpItemUseOnFieldCallback(u8 taskId)
     {
         gFieldCallback = FieldCB_UseItemOnField;
         SetUpItemUseCallback(taskId);
+    }
+    else
+    {
+        sItemUseOnFieldCB(taskId);
+    }
+}
+
+static void SetUpSpecialItemUseOnFieldCallback(u8 taskId)
+{
+    if (gTasks[taskId].tUsingRegisteredKeyItem != TRUE)
+    {
+        gFieldCallback = FieldCB_UseItemOnField;
+        if (CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE)
+        {
+            gBagMenu->newScreenCallback = CB2_ReturnToField;
+            Task_FadeAndCloseBagMenu(taskId);
+        }
+        else
+        {
+            gPyramidBagMenu->newScreenCallback = CB2_ReturnToField;
+            CloseBattlePyramidBag(taskId);
+        }
     }
     else
     {
@@ -1226,7 +1250,12 @@ bool8 CanUseDigOrEscapeRopeOnCurMap(void)
 
 void ItemUseOutOfBattle_EscapeRope(u8 taskId)
 {
-    if (CanUseDigOrEscapeRopeOnCurMap() == TRUE)
+    if (ShouldDoRuinsOfAlphEscapeRopePuzzle() == TRUE)
+    {
+        sItemUseOnFieldCB = StartRuinsOfAlphEscapeRopePuzzle;
+        SetUpItemUseOnFieldCallback(taskId);
+    }
+    else if (CanUseDigOrEscapeRopeOnCurMap() == TRUE)
     {
         sItemUseOnFieldCB = ItemUseOnFieldCB_EscapeRope;
         SetUpItemUseOnFieldCallback(taskId);
@@ -1239,8 +1268,16 @@ void ItemUseOutOfBattle_EscapeRope(u8 taskId)
 
 void ItemUseOutOfBattle_EvolutionStone(u8 taskId)
 {
-    gItemUseCB = ItemUseCB_EvolutionStone;
-    SetUpItemUseCallback(taskId);
+    if (gSpecialVar_ItemId == ITEM_WATER_STONE && ShouldDoRuinsOfAlphWaterStonePuzzle() == TRUE)
+    {
+        sItemUseOnFieldCB = StartRuinsOfAlphWaterStonePuzzle;
+        SetUpSpecialItemUseOnFieldCallback(taskId);
+    }
+    else
+    {
+        gItemUseCB = ItemUseCB_EvolutionStone;
+        SetUpItemUseCallback(taskId);
+    }
 }
 
 void ItemUseOutOfBattle_GiveHeldItem(u8 taskId)
