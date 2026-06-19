@@ -1,0 +1,1 @@
+"""SoulGold docs generator package."""

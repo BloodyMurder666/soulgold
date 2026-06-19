@@ -1,0 +1,181 @@
+"""Species parsing and enrichment for the SoulGold docs generator."""
+
+from __future__ import annotations
+
+import re
+from pathlib import Path
+
+from ..constants import DEX_HIDDEN_COLOR_FORMS, DEX_HIDDEN_PREFIXES, DEX_HIDDEN_SPECIES, GMAX_DMAX_FORM_RE, SPECIES_NAME_OVERRIDES, STAT_FIELDS
+from ..c_parser import clean_constant_name, collect_strings, extract_braced_constants, extract_constant, extract_field, extract_number, normalize_token, parse_define_constants, parse_enum_constants, preprocess, read, split_designated_entries
+from ..image_utils import process_sprite, shiny_palette_symbol
+from ..models import EvolutionRow, ItemRecord, LevelUpMove, MegaEvolutionRow, SpeciesLocation, SpeciesParseResult, SpeciesRow, Teachables
+from ..paths import OUT_DIR, POKEDEX_H, SPECIES_H
+from .items import item_display_name
+
+
+def is_dex_visible_species(constant: str) -> bool:
+    if "_TOTEM" in constant:
+        return False
+    if constant in DEX_HIDDEN_SPECIES or constant in DEX_HIDDEN_COLOR_FORMS:
+        return False
+    if any(constant.startswith(prefix) for prefix in DEX_HIDDEN_PREFIXES):
+        return constant == "SPECIES_ARCEUS_NORMAL"
+    return True
+
+def is_totem_species(constant: str) -> bool:
+    return "_TOTEM" in constant
+
+def is_gmax_dmax_form(constant: str) -> bool:
+    return bool(GMAX_DMAX_FORM_RE.search(constant))
+
+def refresh_display_dex(rows: list[SpeciesRow]) -> None:
+    for row in rows:
+        row.display_dex = 0
+    display_by_nat_dex: dict[int, int] = {}
+    for row in rows:
+        if not row.nat_dex or not row.dex_visible:
+            continue
+        if row.nat_dex not in display_by_nat_dex:
+            display_by_nat_dex[row.nat_dex] = len(display_by_nat_dex) + 1
+        row.display_dex = display_by_nat_dex[row.nat_dex]
+    for row in rows:
+        if row.display_dex or not row.nat_dex:
+            continue
+        row.display_dex = display_by_nat_dex.get(row.nat_dex, 0)
+
+def apply_dex_form_visibility(rows: list[SpeciesRow], mega_evolutions: list[MegaEvolutionRow]) -> list[SpeciesRow]:
+    mega_targets = {evolution["target"] for evolution in mega_evolutions}
+    for row in rows:
+        if is_gmax_dmax_form(row.constant) and row.constant not in mega_targets:
+            row.dex_visible = False
+    refresh_display_dex(rows)
+    return rows
+
+def parse_species() -> SpeciesParseResult:
+    species_to_id, id_to_species = parse_define_constants(SPECIES_H, "SPECIES_")
+    nat_to_id, _ = parse_enum_constants(POKEDEX_H, "NATIONAL_DEX_")
+    text = preprocess("data/pokemon/species_info.h")
+    entries = split_designated_entries(text)
+    rows: list[SpeciesRow] = []
+    by_constant: dict[str, SpeciesRow] = {}
+
+    for key, entry in entries.items():
+        if not key.isdigit():
+            continue
+        species_id = int(key)
+        constant = id_to_species.get(species_id)
+        if not constant or constant in {"SPECIES_NONE", "SPECIES_EGG"}:
+            continue
+        name = SPECIES_NAME_OVERRIDES.get(
+            constant,
+            collect_strings(extract_field(entry, "speciesName") or "") or clean_constant_name(constant, "SPECIES_"),
+        )
+        nat_expr = extract_field(entry, "natDexNum") or "NATIONAL_DEX_NONE"
+        nat_const = re.search(r"\bNATIONAL_DEX_[A-Z0-9_]+\b", nat_expr)
+        if nat_const:
+            species_nat_const = nat_const.group(0).replace("NATIONAL_DEX_", "SPECIES_")
+            nat_dex = species_to_id.get(species_nat_const, nat_to_id.get(nat_const.group(0), 0))
+        else:
+            nat_dex = extract_number(entry, "natDexNum")
+        stats = {short: extract_number(entry, field_name) for field_name, short in STAT_FIELDS.items()}
+        types = extract_braced_constants(entry, "types", "TYPE_") or ["TYPE_NORMAL"]
+        if len(types) == 1:
+            types.append(types[0])
+        abilities = [a for a in extract_braced_constants(entry, "abilities", "ABILITY_") if a != "ABILITY_NONE"]
+        innates = [a for a in extract_braced_constants(entry, "innates", "ABILITY_") if a != "ABILITY_NONE"]
+        level_expr = extract_field(entry, "levelUpLearnset") or ""
+        teach_expr = extract_field(entry, "teachableLearnset") or ""
+        front_expr = extract_field(entry, "frontPic") or ""
+        level_symbol = re.search(r"\bs[A-Za-z0-9_]+LevelUpLearnset\b", level_expr)
+        teach_symbol = re.search(r"\bs[A-Za-z0-9_]+TeachableLearnset\b", teach_expr)
+        front_symbol = re.search(r"\bgMonFrontPic_[A-Za-z0-9_]+\b", front_expr)
+        held_items = []
+        seen_held_items = set()
+        for field_name, rarity in (("itemCommon", "common"), ("itemRare", "rare")):
+            item = extract_constant(entry, field_name, "ITEM_")
+            if item and item != "ITEM_NONE" and item not in seen_held_items:
+                held_items.append({"constant": item, "rarity": rarity})
+                seen_held_items.add(item)
+        row = SpeciesRow(
+            id=species_id,
+            constant=constant,
+            name=name,
+            nat_dex=nat_dex,
+            display_dex=0,
+            dex_visible=is_dex_visible_species(constant),
+            types=types[:2],
+            stats=stats,
+            abilities=abilities,
+            innates=innates,
+            level_up_symbol=level_symbol.group(0) if level_symbol else None,
+            teachable_symbol=teach_symbol.group(0) if teach_symbol else None,
+            front_pic_symbol=front_symbol.group(0) if front_symbol else None,
+            held_items=held_items,
+        )
+        rows.append(row)
+        by_constant[constant] = row
+
+    rows.sort(key=lambda row: (row.nat_dex if row.nat_dex else 99999, row.id))
+    refresh_display_dex(rows)
+    return SpeciesParseResult(rows, by_constant)
+
+def build_species_lookup(species: list[SpeciesRow]) -> dict[str, SpeciesRow]:
+    lookup: dict[str, SpeciesRow] = {}
+    for row in species:
+        names = {
+            row.name,
+            clean_constant_name(row.constant, "SPECIES_"),
+            row.constant.removeprefix("SPECIES_"),
+        }
+        for name in names:
+            lookup.setdefault(normalize_token(name), row)
+    return lookup
+
+def species_for_trainer_mon(name: str, species_lookup: dict[str, SpeciesRow]) -> SpeciesRow | None:
+    clean_name = re.sub(r"\s*\([^)]*\)\s*", " ", name)
+    clean_name = clean_name.split("@", 1)[0].strip()
+    return species_lookup.get(normalize_token(clean_name))
+
+
+def enrich_species_rows(
+    species: list[SpeciesRow],
+    level_up: dict[str, list[LevelUpMove]],
+    teachables: dict[str, Teachables],
+    evolution_map: dict[str, list[EvolutionRow]],
+    front_sources: dict[str, Path],
+    shiny_palette_sources: dict[str, Path],
+    sprite_dir: Path,
+    item_records: dict[str, ItemRecord],
+) -> list[SpeciesRow]:
+    for row in species:
+        for held_item in row.held_items:
+            held_item["name"] = item_display_name(held_item["constant"], item_records)
+        if row.level_up_symbol:
+            row.level_up = level_up.get(row.level_up_symbol, [])
+        if row.teachable_symbol:
+            row.tmhm = teachables.get(row.teachable_symbol, {}).get("tmhm", [])
+            row.tutors = teachables.get(row.teachable_symbol, {}).get("tutors", [])
+        row.evolutions = evolution_map.get(row.constant, [])
+        if row.front_pic_symbol and row.front_pic_symbol in front_sources:
+            sprite_path = sprite_dir / f"{row.constant.removeprefix('SPECIES_').lower()}.png"
+            process_sprite(front_sources[row.front_pic_symbol], sprite_path)
+            row.sprite = str(sprite_path.relative_to(OUT_DIR))
+            shiny_palette = shiny_palette_sources.get(shiny_palette_symbol(row.front_pic_symbol))
+            if shiny_palette:
+                shiny_sprite_path = sprite_dir / f"{row.constant.removeprefix('SPECIES_').lower()}_shiny.png"
+                process_sprite(front_sources[row.front_pic_symbol], shiny_sprite_path, shiny_palette)
+                row.shiny_sprite = str(shiny_sprite_path.relative_to(OUT_DIR))
+    return species
+
+
+def attach_species_locations(
+    species: list[SpeciesRow],
+    species_locations: dict[str, list[SpeciesLocation]],
+) -> list[SpeciesRow]:
+    for row in species:
+        row.locations = species_locations.get(row.constant, [])
+    return species
+
+
+def visible_species_rows(species: list[SpeciesRow]) -> list[SpeciesRow]:
+    return [row for row in species if row.dex_visible]
