@@ -12,9 +12,10 @@
   "allow_running": false,
   "show_map_name": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": 0,
+  "connections": null,
   "object_events": [
     {
+      "local_id": "LOCALID_MRPOKEMON2",
       "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
       "x": 5,
       "y": 4,
@@ -28,6 +29,7 @@
       "flag": "FLAG_HIDE_MRPOKEMON"
     },
     {
+      "local_id": "LOCALID_MRPOKEMON",
       "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
       "x": 7,
       "y": 5,
@@ -41,6 +43,7 @@
       "flag": "FLAG_DELIVERED_EGG"
     },
     {
+      "local_id": "LOCALID_ROUTE30_OAK",
       "graphics_id": "OBJ_EVENT_GFX_PROF_OAK",
       "x": 8,
       "y": 5,

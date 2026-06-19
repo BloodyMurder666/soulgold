@@ -1697,7 +1697,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
         .abilities = { ABILITY_SWARM, ABILITY_NONE, ABILITY_SNIPER },
-        .innates = { ABILITY_POISON_POINT, ABILITY_MERCILESS },
+        .innates = { ABILITY_BLOODLUST, ABILITY_MERCILESS, ABILITY_CORROSION },
 		.bodyColor = BODY_COLOR_YELLOW,
         .speciesName = _("Beedrill"),
         .cryId = CRY_BEEDRILL,
@@ -1777,7 +1777,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
         .abilities = { ABILITY_ADAPTABILITY, ABILITY_ADAPTABILITY, ABILITY_ADAPTABILITY },
-        .innates = { ABILITY_POISON_POINT, ABILITY_MERCILESS, ABILITY_SKILL_LINK },
+        .innates = { ABILITY_BLOODLUST, ABILITY_MERCILESS, ABILITY_CORROSION },
 		.bodyColor = BODY_COLOR_YELLOW,
         .speciesName = _("Beedrill"),
     #if P_MODIFIED_MEGA_CRIES

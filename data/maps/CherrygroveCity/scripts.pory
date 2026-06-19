@@ -319,7 +319,7 @@ CherrygroveCity_Text_GuideGentMap:
 	.string "It's my house! Thanks for\n"
 	.string "your company.\p"
 	.string "Oh, and if you're ever lost, check\n"
-	.string "the Map on your POKéGEAR!\p"
+	.string "the Map on your Pokégear!\p"
 	.string "I wish you luck on your journey!$"
 
 CherrygroveCity_Text_GuideGentDecline:
@@ -513,7 +513,6 @@ CherryGroveCity_Movement_House_Player:
 
 CherryGroveCity_Movement_Gent_Leave:
 	walk_up
-	walk_up
 	step_end
 
 CherryGroveCity_Movement_Trigger_Silver_Top:
@@ -619,11 +618,15 @@ script Cherrygrove_FriendlyTrader {
     }
     if (flag(FLAG_RECEIVED_FIRST_BALLS)) {
         msgbox("Hello! Are you a new trainer per chance?
+
                 Listen, I received two exotic Pokémon
                 as a gift from my uncle in the Safari
-                Zone, but I can't keep both. Would you
-                be willing to take one of them with you?
-                I'm sure either one would love to go on
+                Zone, but I can't keep both. 
+				
+				Would you be willing to take one of 
+				them with you?
+                
+				I'm sure either one would love to go on
                 an adventure with you!")
         dynmultichoice(0,0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Zigzagoon", "Rattata", "No thanks")
         switch(var(VAR_RESULT)) {
@@ -635,6 +638,7 @@ script Cherrygrove_FriendlyTrader {
 	            call(Common_EventScript_GiftMon)
                 bufferspeciesname(STR_VAR_1, SPECIES_ZIGZAGOON_GALAR)
                 msgbox("Take good care of my {STR_VAR_1}!
+
                         Say hi to my uncle, Baoba if you are
                         ever visiting the Safari Zone!")
                 release
@@ -647,6 +651,7 @@ script Cherrygrove_FriendlyTrader {
 	            call(Common_EventScript_GiftMon)
                 bufferspeciesname(STR_VAR_1, SPECIES_RATTATA_ALOLA)
                 msgbox("Take good care of my {STR_VAR_1}!
+
                         Say hi to my uncle, Baoba if you are
                         ever visiting the Safari Zone!")
                 release
@@ -657,8 +662,12 @@ script Cherrygrove_FriendlyTrader {
                 end
     }
     } else {
-        msgbox("Hey! Can I ask you a favour? Wait... You
-                you don't have any Pokeballs... Sorry,
+        msgbox("Hey! Can I ask you a favour? 
+		
+				Wait... You
+                you don't have any Pokeballs... 
+				
+				Sorry,
                 I thought you were a trainer.")
         release
         end

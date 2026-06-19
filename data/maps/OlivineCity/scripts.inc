@@ -593,7 +593,7 @@ OlivineCity_Text_YoungsterPokegear:
 # 297 "data/maps/OlivineCity/scripts.pory"
 	.string "That thing you have--\n"
 # 298 "data/maps/OlivineCity/scripts.pory"
-	.string "it's a POKéGEAR, right?\l"
+	.string "it's a Pokégear, right?\l"
 # 299 "data/maps/OlivineCity/scripts.pory"
 	.string "Wow, that's cool.$"
 # 300 "data/maps/OlivineCity/scripts.pory"

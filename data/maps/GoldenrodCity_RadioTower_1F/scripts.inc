@@ -213,7 +213,7 @@ RadioTower1F_Text_QuizWin:
     .string "Here's your prize, a Radio!$"
 
 RadioTower1F_Text_PokegearRadio:
-    .string "{PLAYER}'s POKéGEAR can now double as\n"
+    .string "{PLAYER}'s Pokégear can now double as\n"
     .string "a radio!$"
 
 RadioTower1F_Text_TuneIn:

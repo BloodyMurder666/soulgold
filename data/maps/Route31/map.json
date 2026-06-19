@@ -92,8 +92,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
-      "x": 13,
-      "y": 17,
+      "x": 14,
+      "y": 8,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -273,7 +273,7 @@
       "flag": "FLAG_DAY_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MAN_3",
+      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_M",
       "x": 37,
       "y": 10,
       "elevation": 0,

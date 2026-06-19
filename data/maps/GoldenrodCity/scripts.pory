@@ -345,7 +345,7 @@ GoldenrodCity_Text_CooltrainerF2:
 	.string "Radio if you can pass their quiz.$"
 
 GoldenrodCity_Text_CooltrainerF2_GotCard:
-	.string "Oh, your POKéGEAR already works\n"
+	.string "Oh, your Pokégear already works\n"
 	.string "as a radio!$"
 
 GoldenrodCity_Text_Youngster2:

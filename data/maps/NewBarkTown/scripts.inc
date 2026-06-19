@@ -477,7 +477,7 @@ NewBarkTown_Text_Wooper:
 # 239 "data/maps/NewBarkTown/scripts.pory"
 NewBarkTown_Text_FatManState2:
 # 240 "data/maps/NewBarkTown/scripts.pory"
-	.string "Wow, your POKéGEAR is impressive!\n"
+	.string "Wow, your Pokégear is impressive!\n"
 # 241 "data/maps/NewBarkTown/scripts.pory"
 	.string "Did your mom get it for you?$"
 # 242 "data/maps/NewBarkTown/scripts.pory"
@@ -527,7 +527,7 @@ NewBarkTown_Text_LassState4:
 # 264 "data/maps/NewBarkTown/scripts.pory"
 NewBarkTown_Text_LassState5:
 # 265 "data/maps/NewBarkTown/scripts.pory"
-	.string "Call your mom on your POKéGEAR\n"
+	.string "Call your mom on your Pokégear\n"
 # 266 "data/maps/NewBarkTown/scripts.pory"
 	.string "to let her know how you're doing.$\p"
 # 267 "data/maps/NewBarkTown/scripts.pory"

@@ -364,11 +364,11 @@ Route31_Expert::
 	goto_if_set FLAG_ROUTE31_EXPERT, Route31_Expert_2
 # 189 "data/maps/Route31/scripts.pory"
 	msgbox Route31_Expert_Text_1
-# 190 "data/maps/Route31/scripts.pory"
+# 197 "data/maps/Route31/scripts.pory"
 	checktrainerflag TRAINER_WADE
 	goto_if 1, Route31_Expert_7
 Route31_Expert_4:
-# 200 "data/maps/Route31/scripts.pory"
+# 216 "data/maps/Route31/scripts.pory"
 	release
 	end
 
@@ -380,38 +380,38 @@ Route31_Expert_2:
 	end
 
 Route31_Expert_5:
-# 191 "data/maps/Route31/scripts.pory"
-	msgbox Route31_Expert_Text_2
-# 192 "data/maps/Route31/scripts.pory"
-	trainerbattle_no_intro TRAINER_ROUTE_31_EXPERT, Route31_Expert_Text_3
-# 193 "data/maps/Route31/scripts.pory"
-	msgbox Route31_Expert_Text_4
-# 194 "data/maps/Route31/scripts.pory"
-	giveitem ITEM_AIR_BALLOON
-# 195 "data/maps/Route31/scripts.pory"
-	setflag FLAG_ROUTE31_EXPERT
-# 196 "data/maps/Route31/scripts.pory"
-	addvar VAR_ROUTE_EXPERTS_DEFEATED, 1
-# 197 "data/maps/Route31/scripts.pory"
-	special Achievement_CheckAll
 # 198 "data/maps/Route31/scripts.pory"
+	msgbox Route31_Expert_Text_2
+# 202 "data/maps/Route31/scripts.pory"
+	trainerbattle_no_intro TRAINER_ROUTE_31_EXPERT, Route31_Expert_Text_3
+# 203 "data/maps/Route31/scripts.pory"
+	msgbox Route31_Expert_Text_4
+# 206 "data/maps/Route31/scripts.pory"
+	giveitem ITEM_AIR_BALLOON
+# 207 "data/maps/Route31/scripts.pory"
+	setflag FLAG_ROUTE31_EXPERT
+# 208 "data/maps/Route31/scripts.pory"
+	addvar VAR_ROUTE_EXPERTS_DEFEATED, 1
+# 209 "data/maps/Route31/scripts.pory"
+	special Achievement_CheckAll
+# 210 "data/maps/Route31/scripts.pory"
 	msgbox Route31_Expert_Text_5
 	goto Route31_Expert_4
 
 Route31_Expert_6:
-# 190 "data/maps/Route31/scripts.pory"
+# 197 "data/maps/Route31/scripts.pory"
 	checktrainerflag TRAINER_MIKEY
 	goto_if 1, Route31_Expert_10
 	goto Route31_Expert_4
 
 Route31_Expert_7:
-# 190 "data/maps/Route31/scripts.pory"
+# 197 "data/maps/Route31/scripts.pory"
 	checktrainerflag TRAINER_JOEY
 	goto_if 1, Route31_Expert_6
 	goto Route31_Expert_4
 
 Route31_Expert_10:
-# 190 "data/maps/Route31/scripts.pory"
+# 197 "data/maps/Route31/scripts.pory"
 	checktrainerflag TRAINER_DON
 	goto_if 1, Route31_Expert_5
 	goto Route31_Expert_4
@@ -426,30 +426,31 @@ Route31_Expert_Text_0:
 
 Route31_Expert_Text_1:
 # 189 "data/maps/Route31/scripts.pory"
-	.string "I'm what they call a route master. If\n"
-	.string "you manage to beat every trainer on\l"
-	.string "Route 30 and 31, come find me again and\l"
-	.string "we will have a battle. I'll make it worth\l"
-	.string "your while if you manage to win.$"
+	.string "I'm what they call a route master. \p"
+	.string "If you manage to beat every trainer on \n"
+	.string "Route 30 and 31, come find me again \l"
+	.string "and we will have a battle.\p"
+	.string "I'll make it worth your while,\n"
+	.string "if you manage to win.$"
 
 Route31_Expert_Text_2:
-# 191 "data/maps/Route31/scripts.pory"
-	.string "Oh, you have indeed defeated all the\n"
-	.string "trainers on this route. I will battle you\l"
-	.string "as promised.$"
+# 198 "data/maps/Route31/scripts.pory"
+	.string "Oh, you have indeed defeated \n"
+	.string "all the trainers on this route.\p"
+	.string "I will battle you as promised.$"
 
 Route31_Expert_Text_3:
-# 192 "data/maps/Route31/scripts.pory"
+# 202 "data/maps/Route31/scripts.pory"
 	.string "Popped off...$"
 
 Route31_Expert_Text_4:
-# 193 "data/maps/Route31/scripts.pory"
-	.string "You are better than I had assumed. Take\n"
-	.string "this for your victory.$"
+# 203 "data/maps/Route31/scripts.pory"
+	.string "You are better than I had assumed. \p"
+	.string "Take this for your victory.$"
 
 Route31_Expert_Text_5:
-# 198 "data/maps/Route31/scripts.pory"
-	.string "This Air Balloon lets a Pokémon avoid\n"
-	.string "Ground-type moves until it takes a hit.\l"
-	.string "It might prove useful in the coming\l"
-	.string "battles.$"
+# 210 "data/maps/Route31/scripts.pory"
+	.string "This Air Balloon lets a Pokémon avoid \n"
+	.string "Ground-type moves until it takes a hit.\p"
+	.string "It might prove useful in the\n"
+	.string "coming battles.$"

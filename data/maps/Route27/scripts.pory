@@ -77,7 +77,7 @@ Route27_Text_FisherMessage:
     .string "Do you know what you just did?\p"
     .string "You've taken your first step into\n"
     .string "Kanto.\p"
-    .string "Check your POKéGEAR Map and see.$"
+    .string "Check your Pokégear Map and see.$"
 
 Route27_Text_CooltrainermBlakeSeen:
     .string "You look pretty strong.\n"

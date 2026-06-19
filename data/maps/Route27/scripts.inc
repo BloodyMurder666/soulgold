@@ -157,7 +157,7 @@ Route27_Text_FisherMessage:
 # 79 "data/maps/Route27/scripts.pory"
     .string "Kanto.\p"
 # 80 "data/maps/Route27/scripts.pory"
-    .string "Check your POKéGEAR Map and see.$"
+    .string "Check your Pokégear Map and see.$"
 # 81 "data/maps/Route27/scripts.pory"
 
 # 82 "data/maps/Route27/scripts.pory"

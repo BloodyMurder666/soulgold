@@ -693,7 +693,7 @@ GoldenrodCity_Text_CooltrainerF2:
 # 347 "data/maps/GoldenrodCity/scripts.pory"
 GoldenrodCity_Text_CooltrainerF2_GotCard:
 # 348 "data/maps/GoldenrodCity/scripts.pory"
-	.string "Oh, your POKéGEAR already works\n"
+	.string "Oh, your Pokégear already works\n"
 # 349 "data/maps/GoldenrodCity/scripts.pory"
 	.string "as a radio!$"
 # 350 "data/maps/GoldenrodCity/scripts.pory"

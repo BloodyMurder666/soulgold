@@ -2602,11 +2602,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Hoothoot
-Level: 11
+Level: 10
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Wattrel
-Level: 12
+Level: 11
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_NEAL ===
@@ -9976,11 +9976,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Pidgey
-Level: 11
+Level: 10
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Natu
-Level: 12
+Level: 101
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_BILL ===
@@ -12033,7 +12033,7 @@ AI: Smart Trainer
 Mugshot: Blue
 
 Pidgey
-Level: 12
+Level: 11
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Tackle
 - Mud Slap
@@ -12048,7 +12048,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Poison Sting
 - Harden
 
-Noctowl @ Sitrus Berry
+Noctowl @ Oran Berry
 Level: 13
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Tackle

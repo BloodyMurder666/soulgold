@@ -49,7 +49,6 @@ SproutTower_3F_EventScript_TriggerSceneLeft::
 	applymovement LOCALID_SPROUT_TOWER_SILVER SproutTower_3F_Movement_EscapeRope
 	waitmovement 0
 	closemessage
-    fadedefaultbgm
 	fadescreen FADE_TO_BLACK
 	playse SE_EXIT
 	setflag FLAG_HIDE_SPROUT_TOWER_SILVER
@@ -57,7 +56,9 @@ SproutTower_3F_EventScript_TriggerSceneLeft::
 	delay 55
 	fadescreen FADE_FROM_BLACK
 	special DrawWholeMapView
+	delay 15
 	setvar VAR_SPROUT_TOWER, 1
+	fadedefaultbgm
 	release
 	end
 
@@ -86,8 +87,9 @@ SproutTower_3F_EventScript_TriggerSceneRight::
 	delay 55
 	fadescreen FADE_FROM_BLACK
 	special DrawWholeMapView
-	fadedefaultbgm
+	delay 15
 	setvar VAR_SPROUT_TOWER, 1
+	fadedefaultbgm
 	release
 	end
 

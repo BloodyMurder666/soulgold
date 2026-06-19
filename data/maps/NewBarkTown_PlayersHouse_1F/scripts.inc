@@ -74,9 +74,11 @@ NewBarkTown_PlayersHouse_1F_EventScript_MomsIntro::
 	delay 60
 	applymovement LOCALID_MOM, NewBarkTown_PlayersHouse_1F_MomMovement_1
 	waitmovement 0
+	createfieldmugshot MUGSHOT_MOM
 	msgbox NewBarkTown_PlayersHouse_1F_Text_ElmsLookingForYou, MSGBOX_DEFAULT
 	call NewBarkTown_PlayersHouse_1F_EventScript_GivePokeGear
 	call NewBarkTown_PlayersHouse_1F_EventScript_GiveRunningShoes
+	removefieldmugshot
 	applymovement LOCALID_MOM, NewBarkTown_PlayersHouse_1F_MomMovement_2
 	waitmovement 0
 	setvar VAR_NEWBARK_TOWN_STATE, 2
@@ -159,12 +161,12 @@ NewBarkTown_PlayersHouse_1F_Text_ElmsLookingForYou:
 	.string "Prof.Elm, was looking for you.\p"
 	.string "He said he wanted you to do\n"
 	.string "something for him.\p"
-	.string "Oh! I almost forgot! Your POKéGEAR\n"
+	.string "Oh! I almost forgot! Your Pokégear\n"
 	.string "is back from the repair shop.\p"
 	.string "Here you go!$"
 
 NewBarkTown_PlayersHouse_1F_Text_ObtainedPokeGear:
-	.string "{PLAYER} obtained the POKéGEAR.$"
+	.string "{PLAYER} obtained the Pokégear.$"
 
 NewBarkTown_PlayersHouse_1F_Text_ExplainPokeGear:
 	.string "Mom: Phone numbers are stored\n"

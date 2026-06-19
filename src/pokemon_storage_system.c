@@ -8665,7 +8665,7 @@ static const u8 *const sMenuTexts[] =
     [MENU_SPIKYPIKA]  = gPCText_SpikyPika,
     [MENU_KIMONOGIRL] = gPCText_KimonoGirl,
     [MENU_REVIVAL]    = gPCText_Revival,
-    [MENU_SELECT]     = COMPOUND_STRING("SELECT"),
+    [MENU_SELECT]     = COMPOUND_STRING("Select"),
 };
 
 static void SetMenuText(u8 textId)

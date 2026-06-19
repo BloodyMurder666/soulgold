@@ -88,10 +88,10 @@ VioletGym_Text_Falkner_BadgeExplain:
 VioletGym_Text_Falkner_TMExplain:
 	.string "By using a TM, a Pokémon will\n"
 	.string "instantly learn a new move.\p"
-	.string "TM32 contains Double Team.\p"
-	.string "It increase a Pokémon's evasion.\p"
-	.string "In other words, your Pokémon\n"
-	.string "will be harder to hit.$"
+	.string "TM19 contains Roost.\p"
+	.string "It restores Pokémon's health.\p"
+	.string "and grounds them, protecting\n"
+	.string "from Electric-attacks.$"
 
 VioletGym_Text_Falkner_AfterFight:
 	.string "There are Pokémon Gyms in cities\n"
