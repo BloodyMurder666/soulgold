@@ -707,11 +707,9 @@ AzaleaTown_Gym_Text_HiveBadgeSpeech:
 	.string "have this.$"
 
 AzaleaTown_Gym_Text_FuryCutterSpeech:
-	.string "TM09 contains Bullet Seed.\p"
-	.string "It shoots a torrent of seeds\n"
-	.string "between 2 and 5 times every turn.\p"
-	.string "So even though the power is 25, it\n"
-	.string "is really between 50 and 125 power!\p"
+	.string "TM89 contains U-Turn.\p"
+	.string "It lets you attack and swap to\n"
+	.string "another Pokémon.\p"
 	.string "Isn't that great?\n"
 	.string "I discovered it!$"
 
