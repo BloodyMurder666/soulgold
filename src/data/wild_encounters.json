@@ -2190,28 +2190,38 @@
             "mons": [
               {
                 "min_level": 9,
-                "max_level": 14,
+                "max_level": 13,
                 "species": "SPECIES_NOIBAT"
               },
               {
                 "min_level": 9,
-                "max_level": 14,
+                "max_level": 13,
                 "species": "SPECIES_SANDSHREW"
               },
               {
                 "min_level": 10,
-                "max_level": 14,
+                "max_level": 13,
                 "species": "SPECIES_NOIBAT"
               },
               {
                 "min_level": 10,
-                "max_level": 14,
+                "max_level": 13,
                 "species": "SPECIES_SANDSHREW"
               },
               {
                 "min_level": 10,
-                "max_level": 14,
-                "species": "SPECIES_SILICOBRA"
+                "max_level": 13,
+                "species": "SPECIES_CHINGLING"
+              },
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_NOSEPASS"
+              },
+              {
+                "min_level": 10,
+                "max_level": 13,
+                "species": "SPECIES_CHINGLING"
               },
               {
                 "min_level": 10,
@@ -2220,17 +2230,12 @@
               },
               {
                 "min_level": 10,
-                "max_level": 14,
-                "species": "SPECIES_SILICOBRA"
+                "max_level": 13,
+                "species": "SPECIES_SLOWPOKE"
               },
               {
                 "min_level": 10,
-                "max_level": 15,
-                "species": "SPECIES_NOSEPASS"
-              },
-              {
-                "min_level": 10,
-                "max_level": 14,
+                "max_level": 13,
                 "species": "SPECIES_SLOWPOKE"
               },
               {
@@ -2240,12 +2245,7 @@
               },
               {
                 "min_level": 10,
-                "max_level": 15,
-                "species": "SPECIES_SLOWPOKE"
-              },
-              {
-                "min_level": 10,
-                "max_level": 15,
+                "max_level": 14,
                 "species": "SPECIES_SLOWPOKE"
               }
             ]

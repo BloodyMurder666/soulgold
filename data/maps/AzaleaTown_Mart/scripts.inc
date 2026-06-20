@@ -120,8 +120,8 @@ AzaleaTownMartNpc_2:
 AzaleaTownMart2_Text_0:
 # 25 "data/maps/AzaleaTown_Mart/scripts.pory"
 	.string "We're out of Galarica wreaths\n"
-	.string "and cuffs after the rocket incident.\l"
-	.string "We hope to have them restocked soon.\p"
+	.string "and cuffs currently.\p"
+	.string "We hope to have them restocked soon.\n"
 	.string "Regardless, welcome!$"
 
 AzaleaTownMart2_Text_1:

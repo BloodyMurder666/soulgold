@@ -39,7 +39,7 @@ SlowpokeWell_B1F_EventScript_Proton::
 	removeobject 11
 	removeobject 12
 	removeobject 13
-	delay 120
+	delay 60
 	fadescreen FADE_FROM_BLACK
 	special DrawWholeMapView
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_SOUTH
@@ -54,6 +54,7 @@ SlowpokeWell_B1F_EventScript_Proton::
 	clearflag FLAG_HIDE_AZALEA_TOWN_SLOWPOKE
 	setvar VAR_AZALEA_TOWN_STATE, 3
 	warp MAP_AZALEA_TOWN_KURTS_HOUSE, 15, 4
+	waitstate
 	release
 	end
 

@@ -17420,6 +17420,20 @@ const struct ItemInfo gItemsInfo[] =
         .iconPic = gItemIcon_AbilityPatch,
         .iconPalette = gItemIconPalette_AbilityPatch,
     },
+    [ITEM_GS_BALL] =
+    {
+        .name = ITEM_NAME("GS Ball"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A strange ball\n"
+            "with ornaments"),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_PokeBall,
+        .iconPalette = gItemIconPalette_PokeBall,
+    },
 };
 
 #undef ITEM_NAME

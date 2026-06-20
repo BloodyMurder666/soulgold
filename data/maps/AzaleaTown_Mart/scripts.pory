@@ -23,9 +23,9 @@ script AzaleaTownMart2 {
     faceplayer
     if (flag(FLAG_BADGE04_GET) == FALSE) {
         msgbox("We're out of Galarica wreaths
-                and cuffs after the rocket incident.
-                We hope to have them restocked soon.
+                and cuffs currently.
 
+                We hope to have them restocked soon.
                 Regardless, welcome!")
         waitmessage
         pokemart(GalaricaNoneVendor)
