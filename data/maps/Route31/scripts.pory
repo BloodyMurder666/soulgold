@@ -182,7 +182,12 @@ script Route31_Expert {
     lock
     faceplayer
     if (flag(FLAG_ROUTE31_EXPERT)) {
-        msgbox(format("Air Balloon lets a Pokémon avoid Ground-type moves until it takes a hit. It might prove useful in the coming battles."))
+        msgbox("Air Balloon lets a Pokémon avoid 
+				Ground-type moves until it 
+				takes a hit.
+				
+				It might prove useful in the 
+				coming battles.")
         release
         end
     }
@@ -200,6 +205,7 @@ script Route31_Expert {
 				
 				I will battle you as promised.")
         trainerbattle_no_intro(TRAINER_ROUTE_31_EXPERT, "Popped off...")
+		createfieldmugshot(MUGSHOT_COOLTRAINER_M)
         msgbox("You are better than I had assumed. 
 				
 				Take this for your victory.")
@@ -207,10 +213,11 @@ script Route31_Expert {
         setflag(FLAG_ROUTE31_EXPERT)
         addvar(VAR_ROUTE_EXPERTS_DEFEATED, 1)
         special(Achievement_CheckAll)
-        msgbox("This Air Balloon lets a Pokémon avoid 
-				Ground-type moves until it takes a hit.
-				 
-				It might prove useful in the
+        msgbox("Air Balloon lets a Pokémon avoid 
+				Ground-type moves until it 
+				takes a hit.
+				
+				It might prove useful in the 
 				coming battles.")
     }
     release

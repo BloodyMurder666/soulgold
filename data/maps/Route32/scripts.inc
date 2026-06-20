@@ -1041,69 +1041,71 @@ Route32RivalGrottoTutorial::
 	msgbox Route32RivalGrottoTutorial_Text_1
 # 526 "data/maps/Route32/scripts.pory"
 	msgbox Route32RivalGrottoTutorial_Text_2
-# 529 "data/maps/Route32/scripts.pory"
-	closemessage
-# 530 "data/maps/Route32/scripts.pory"
-	removefieldmugshot
-# 531 "data/maps/Route32/scripts.pory"
-	applymovement LOCALID_ROUTE32_RIVAL, Route32RivalGrottoTutorial_Movement_3
-# 532 "data/maps/Route32/scripts.pory"
-	applymovement LOCALID_ROUTE32_MARILL, Route32RivalGrottoTutorial_Movement_4
 # 533 "data/maps/Route32/scripts.pory"
-	applymovement LOCALID_PLAYER, Route32RivalGrottoTutorial_Movement_5
-# 534 "data/maps/Route32/scripts.pory"
-	waitmovement LOCALID_ROUTE32_MARILL
-# 535 "data/maps/Route32/scripts.pory"
-	createfieldmugshotrival
-# 536 "data/maps/Route32/scripts.pory"
-	msgbox Route32RivalGrottoTutorial_Text_3
-# 549 "data/maps/Route32/scripts.pory"
-	msgbox Route32RivalGrottoTutorial_Text_4
-# 553 "data/maps/Route32/scripts.pory"
 	closemessage
-# 554 "data/maps/Route32/scripts.pory"
+# 534 "data/maps/Route32/scripts.pory"
 	removefieldmugshot
-# 555 "data/maps/Route32/scripts.pory"
-	applymovement LOCALID_ROUTE32_RIVAL, Route32RivalGrottoTutorial_Movement_6
-# 556 "data/maps/Route32/scripts.pory"
-	applymovement LOCALID_ROUTE32_MARILL, Route32RivalGrottoTutorial_Movement_7
-# 557 "data/maps/Route32/scripts.pory"
-	waitmovement
-# 558 "data/maps/Route32/scripts.pory"
-	applymovement LOCALID_ROUTE32_RIVAL, Route32RivalGrottoTutorial_Movement_8
-# 559 "data/maps/Route32/scripts.pory"
-	applymovement LOCALID_ROUTE32_MARILL, Route32RivalGrottoTutorial_Movement_9
-# 560 "data/maps/Route32/scripts.pory"
-	waitmovement 0
-# 561 "data/maps/Route32/scripts.pory"
-	applymovement LOCALID_ROUTE32_MARILL, Route32RivalGrottoTutorial_Movement_2
-# 562 "data/maps/Route32/scripts.pory"
-	playse SE_LEDGE
+# 535 "data/maps/Route32/scripts.pory"
+	applymovement LOCALID_ROUTE32_RIVAL, Route32RivalGrottoTutorial_Movement_3
+# 536 "data/maps/Route32/scripts.pory"
+	applymovement LOCALID_ROUTE32_MARILL, Route32RivalGrottoTutorial_Movement_4
+# 537 "data/maps/Route32/scripts.pory"
+	applymovement LOCALID_PLAYER, Route32RivalGrottoTutorial_Movement_5
+# 538 "data/maps/Route32/scripts.pory"
+	waitmovement LOCALID_ROUTE32_MARILL
+# 539 "data/maps/Route32/scripts.pory"
+	createfieldmugshotrival
+# 540 "data/maps/Route32/scripts.pory"
+	msgbox Route32RivalGrottoTutorial_Text_3
+# 554 "data/maps/Route32/scripts.pory"
+	msgbox Route32RivalGrottoTutorial_Text_4
 # 563 "data/maps/Route32/scripts.pory"
-	waitmovement 0
+	closemessage
 # 564 "data/maps/Route32/scripts.pory"
-	applymovement LOCALID_ROUTE32_MARILL, Route32RivalGrottoTutorial_Movement_2
+	removefieldmugshot
 # 565 "data/maps/Route32/scripts.pory"
-	playse SE_LEDGE
+	applymovement LOCALID_ROUTE32_RIVAL, Route32RivalGrottoTutorial_Movement_6
 # 566 "data/maps/Route32/scripts.pory"
-	waitmovement 0
+	applymovement LOCALID_ROUTE32_MARILL, Route32RivalGrottoTutorial_Movement_7
 # 567 "data/maps/Route32/scripts.pory"
-	applymovement LOCALID_ROUTE32_MARILL, Route32RivalGrottoTutorial_Movement_10
+	waitmovement
 # 568 "data/maps/Route32/scripts.pory"
-	waitmovement 0
+	applymovement LOCALID_ROUTE32_RIVAL, Route32RivalGrottoTutorial_Movement_8
 # 569 "data/maps/Route32/scripts.pory"
-	removeobject LOCALID_ROUTE32_RIVAL
+	applymovement LOCALID_ROUTE32_MARILL, Route32RivalGrottoTutorial_Movement_9
 # 570 "data/maps/Route32/scripts.pory"
-	removeobject LOCALID_ROUTE32_MARILL
+	waitmovement 0
 # 571 "data/maps/Route32/scripts.pory"
-	setflag FLAG_HIDE_ROUTE32_RIVAL
+	applymovement LOCALID_ROUTE32_MARILL, Route32RivalGrottoTutorial_Movement_2
 # 572 "data/maps/Route32/scripts.pory"
-	setflag FLAG_HIDE_NEWBARK_RIVAL
+	playse SE_LEDGE
 # 573 "data/maps/Route32/scripts.pory"
-	setvar VAR_RIVAL_STATE, 5
+	waitmovement 0
 # 574 "data/maps/Route32/scripts.pory"
-	fadedefaultbgm
+	applymovement LOCALID_ROUTE32_MARILL, Route32RivalGrottoTutorial_Movement_2
 # 575 "data/maps/Route32/scripts.pory"
+	playse SE_LEDGE
+# 576 "data/maps/Route32/scripts.pory"
+	waitmovement 0
+# 577 "data/maps/Route32/scripts.pory"
+	applymovement LOCALID_ROUTE32_MARILL, Route32RivalGrottoTutorial_Movement_10
+# 578 "data/maps/Route32/scripts.pory"
+	waitmovement 0
+# 579 "data/maps/Route32/scripts.pory"
+	removeobject LOCALID_ROUTE32_RIVAL
+# 580 "data/maps/Route32/scripts.pory"
+	removeobject LOCALID_ROUTE32_MARILL
+# 581 "data/maps/Route32/scripts.pory"
+	setflag FLAG_HIDE_ROUTE32_RIVAL
+# 582 "data/maps/Route32/scripts.pory"
+	setflag FLAG_HIDE_NEWBARK_RIVAL
+# 583 "data/maps/Route32/scripts.pory"
+	setvar VAR_RIVAL_STATE, 5
+# 584 "data/maps/Route32/scripts.pory"
+	savebgm MUS_DUMMY
+# 585 "data/maps/Route32/scripts.pory"
+	fadedefaultbgm
+# 586 "data/maps/Route32/scripts.pory"
 	release
 	end
 
@@ -1146,153 +1148,153 @@ Route32RivalGrottoTutorial_Movement_2:
 	jump_in_place_up
 	step_end
 
-# 531 "data/maps/Route32/scripts.pory"
+# 535 "data/maps/Route32/scripts.pory"
 Route32RivalGrottoTutorial_Movement_3:
-# 531 "data/maps/Route32/scripts.pory"
+# 535 "data/maps/Route32/scripts.pory"
 	walk_left
-# 531 "data/maps/Route32/scripts.pory"
+# 535 "data/maps/Route32/scripts.pory"
 	walk_left
-# 531 "data/maps/Route32/scripts.pory"
+# 535 "data/maps/Route32/scripts.pory"
 	walk_left
-# 531 "data/maps/Route32/scripts.pory"
+# 535 "data/maps/Route32/scripts.pory"
 	walk_left
-# 531 "data/maps/Route32/scripts.pory"
+# 535 "data/maps/Route32/scripts.pory"
 	walk_left
-# 531 "data/maps/Route32/scripts.pory"
+# 535 "data/maps/Route32/scripts.pory"
 	walk_left
-# 531 "data/maps/Route32/scripts.pory"
+# 535 "data/maps/Route32/scripts.pory"
 	walk_left
-# 531 "data/maps/Route32/scripts.pory"
+# 535 "data/maps/Route32/scripts.pory"
 	walk_left
-# 531 "data/maps/Route32/scripts.pory"
+# 535 "data/maps/Route32/scripts.pory"
 	walk_left
-# 531 "data/maps/Route32/scripts.pory"
+# 535 "data/maps/Route32/scripts.pory"
 	walk_left
-# 531 "data/maps/Route32/scripts.pory"
+# 535 "data/maps/Route32/scripts.pory"
 	walk_left
-# 531 "data/maps/Route32/scripts.pory"
+# 535 "data/maps/Route32/scripts.pory"
 	walk_left
-# 531 "data/maps/Route32/scripts.pory"
+# 535 "data/maps/Route32/scripts.pory"
 	walk_up
-# 531 "data/maps/Route32/scripts.pory"
+# 535 "data/maps/Route32/scripts.pory"
 	face_right
 	step_end
 
-# 532 "data/maps/Route32/scripts.pory"
+# 536 "data/maps/Route32/scripts.pory"
 Route32RivalGrottoTutorial_Movement_4:
-# 532 "data/maps/Route32/scripts.pory"
+# 536 "data/maps/Route32/scripts.pory"
 	walk_left
-# 532 "data/maps/Route32/scripts.pory"
+# 536 "data/maps/Route32/scripts.pory"
 	walk_left
-# 532 "data/maps/Route32/scripts.pory"
+# 536 "data/maps/Route32/scripts.pory"
 	walk_left
-# 532 "data/maps/Route32/scripts.pory"
+# 536 "data/maps/Route32/scripts.pory"
 	walk_left
-# 532 "data/maps/Route32/scripts.pory"
+# 536 "data/maps/Route32/scripts.pory"
 	walk_left
-# 532 "data/maps/Route32/scripts.pory"
+# 536 "data/maps/Route32/scripts.pory"
 	walk_left
-# 532 "data/maps/Route32/scripts.pory"
+# 536 "data/maps/Route32/scripts.pory"
 	walk_left
-# 532 "data/maps/Route32/scripts.pory"
+# 536 "data/maps/Route32/scripts.pory"
 	walk_left
-# 532 "data/maps/Route32/scripts.pory"
+# 536 "data/maps/Route32/scripts.pory"
 	walk_left
-# 532 "data/maps/Route32/scripts.pory"
+# 536 "data/maps/Route32/scripts.pory"
 	walk_left
-# 532 "data/maps/Route32/scripts.pory"
+# 536 "data/maps/Route32/scripts.pory"
 	walk_left
-# 532 "data/maps/Route32/scripts.pory"
+# 536 "data/maps/Route32/scripts.pory"
 	walk_left
-# 532 "data/maps/Route32/scripts.pory"
+# 536 "data/maps/Route32/scripts.pory"
 	walk_left
-# 532 "data/maps/Route32/scripts.pory"
+# 536 "data/maps/Route32/scripts.pory"
 	walk_left
-# 532 "data/maps/Route32/scripts.pory"
+# 536 "data/maps/Route32/scripts.pory"
 	walk_up
-# 532 "data/maps/Route32/scripts.pory"
+# 536 "data/maps/Route32/scripts.pory"
 	face_right
 	step_end
 
-# 533 "data/maps/Route32/scripts.pory"
+# 537 "data/maps/Route32/scripts.pory"
 Route32RivalGrottoTutorial_Movement_5:
-# 533 "data/maps/Route32/scripts.pory"
+# 537 "data/maps/Route32/scripts.pory"
 	walk_left
-# 533 "data/maps/Route32/scripts.pory"
+# 537 "data/maps/Route32/scripts.pory"
 	walk_left
-# 533 "data/maps/Route32/scripts.pory"
+# 537 "data/maps/Route32/scripts.pory"
 	walk_left
-# 533 "data/maps/Route32/scripts.pory"
+# 537 "data/maps/Route32/scripts.pory"
 	walk_left
-# 533 "data/maps/Route32/scripts.pory"
+# 537 "data/maps/Route32/scripts.pory"
 	walk_left
-# 533 "data/maps/Route32/scripts.pory"
+# 537 "data/maps/Route32/scripts.pory"
 	walk_left
-# 533 "data/maps/Route32/scripts.pory"
+# 537 "data/maps/Route32/scripts.pory"
 	walk_left
-# 533 "data/maps/Route32/scripts.pory"
+# 537 "data/maps/Route32/scripts.pory"
 	walk_left
-# 533 "data/maps/Route32/scripts.pory"
+# 537 "data/maps/Route32/scripts.pory"
 	walk_left
-# 533 "data/maps/Route32/scripts.pory"
+# 537 "data/maps/Route32/scripts.pory"
 	walk_left
-# 533 "data/maps/Route32/scripts.pory"
+# 537 "data/maps/Route32/scripts.pory"
 	walk_left
 	step_end
 
-# 555 "data/maps/Route32/scripts.pory"
+# 565 "data/maps/Route32/scripts.pory"
 Route32RivalGrottoTutorial_Movement_6:
-# 555 "data/maps/Route32/scripts.pory"
+# 565 "data/maps/Route32/scripts.pory"
 	walk_down
 	step_end
 
-# 556 "data/maps/Route32/scripts.pory"
+# 566 "data/maps/Route32/scripts.pory"
 Route32RivalGrottoTutorial_Movement_7:
-# 556 "data/maps/Route32/scripts.pory"
+# 566 "data/maps/Route32/scripts.pory"
 	walk_right
-# 556 "data/maps/Route32/scripts.pory"
+# 566 "data/maps/Route32/scripts.pory"
 	face_down
 	step_end
 
-# 558 "data/maps/Route32/scripts.pory"
+# 568 "data/maps/Route32/scripts.pory"
 Route32RivalGrottoTutorial_Movement_8:
-# 558 "data/maps/Route32/scripts.pory"
+# 568 "data/maps/Route32/scripts.pory"
 	walk_down
-# 558 "data/maps/Route32/scripts.pory"
+# 568 "data/maps/Route32/scripts.pory"
 	walk_down
-# 558 "data/maps/Route32/scripts.pory"
+# 568 "data/maps/Route32/scripts.pory"
 	walk_down
-# 558 "data/maps/Route32/scripts.pory"
+# 568 "data/maps/Route32/scripts.pory"
 	walk_down
-# 558 "data/maps/Route32/scripts.pory"
+# 568 "data/maps/Route32/scripts.pory"
 	walk_down
-# 558 "data/maps/Route32/scripts.pory"
+# 568 "data/maps/Route32/scripts.pory"
 	walk_down
-# 558 "data/maps/Route32/scripts.pory"
+# 568 "data/maps/Route32/scripts.pory"
 	walk_down
 	step_end
 
-# 559 "data/maps/Route32/scripts.pory"
+# 569 "data/maps/Route32/scripts.pory"
 Route32RivalGrottoTutorial_Movement_9:
-# 559 "data/maps/Route32/scripts.pory"
+# 569 "data/maps/Route32/scripts.pory"
 	walk_down
-# 559 "data/maps/Route32/scripts.pory"
+# 569 "data/maps/Route32/scripts.pory"
 	walk_down
-# 559 "data/maps/Route32/scripts.pory"
+# 569 "data/maps/Route32/scripts.pory"
 	walk_down
-# 559 "data/maps/Route32/scripts.pory"
+# 569 "data/maps/Route32/scripts.pory"
 	walk_down
-# 559 "data/maps/Route32/scripts.pory"
+# 569 "data/maps/Route32/scripts.pory"
 	face_up
 	step_end
 
-# 567 "data/maps/Route32/scripts.pory"
+# 577 "data/maps/Route32/scripts.pory"
 Route32RivalGrottoTutorial_Movement_10:
-# 567 "data/maps/Route32/scripts.pory"
+# 577 "data/maps/Route32/scripts.pory"
 	walk_fast_down
-# 567 "data/maps/Route32/scripts.pory"
+# 577 "data/maps/Route32/scripts.pory"
 	walk_fast_down
-# 567 "data/maps/Route32/scripts.pory"
+# 577 "data/maps/Route32/scripts.pory"
 	walk_fast_down
 	step_end
 
@@ -1313,11 +1315,13 @@ Route32RivalGrottoTutorial_Text_1:
 Route32RivalGrottoTutorial_Text_2:
 # 526 "data/maps/Route32/scripts.pory"
 	.string "Listen, there's something you should\n"
-	.string "see. I came across it when exploring\l"
-	.string "the route. Follow me!$"
+	.string "see. \p"
+	.string "I came across it when exploring\n"
+	.string "the route. \p"
+	.string "Follow me!$"
 
 Route32RivalGrottoTutorial_Text_3:
-# 536 "data/maps/Route32/scripts.pory"
+# 540 "data/maps/Route32/scripts.pory"
 	.string "See this small spot between the trees?\n"
 	.string "It leads to a Hidden Grotto.\p"
 	.string "I hear they may contain Pokémon that\n"
@@ -1325,14 +1329,17 @@ Route32RivalGrottoTutorial_Text_3:
 	.string "dropped by them.\p"
 	.string "I'll let you explore\n"
 	.string "this one, since it's your first time\l"
-	.string "seeing one! \l"
-	.string "Even if you don't manage to find\l"
+	.string "seeing one! \p"
+	.string "Even if you don't manage to find\n"
 	.string "a Pokémon there today, \l"
 	.string "you should check it again another day.$"
 
 Route32RivalGrottoTutorial_Text_4:
-# 549 "data/maps/Route32/scripts.pory"
-	.string "Marill and I will take a trip to\n"
-	.string "the Goldenrod City, I hope to see\l"
-	.string "you there! Good luck with the\l"
+# 554 "data/maps/Route32/scripts.pory"
+	.string "Marill and I decided to take on the gym\n"
+	.string "challenge too!\p"
+	.string "You better start\n"
+	.string "training hard if you don't want to fall\l"
+	.string "behind! \p"
+	.string "Good luck with the\n"
 	.string "next Gym, {PLAYER}!$"

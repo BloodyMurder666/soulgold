@@ -194,6 +194,7 @@ static EWRAM_DATA struct PokemonSummaryScreenData
     bool8 lockMovesFlag; // This is used to prevent the player from changing position of moves in a battle or when trading.
     u8 bgDisplayOrder; // Determines the order page backgrounds are loaded while scrolling between them
     bool8 hasRelearnableMoves;
+    bool8 hasRelearnableMovesByState[MOVE_RELEARNER_COUNT];
     u8 windowIds[8];
     u8 longDescriptionWindowId;
     bool8 showingLongDescription;
@@ -352,6 +353,8 @@ static u8 AddWindowFromTemplateList(const struct WindowTemplate *template, u8 te
 static u8 IncrementSkillsStatsMode(u8 mode);
 static void ClearStatLabel(u32 length, u32 statsCoordX, u32 statsCoordY);
 u32 GetAdjustedIvData(struct Pokemon *mon, u32 stat);
+static void UpdateRelearnAvailability(void);
+static bool32 HasCachedRelearnableMoves(enum MoveRelearnerStates state);
 static void TryUpdateRelearnType(enum IncrDecrUpdateValues delta);
 static void ShowRelearnPrompt(void);
 static struct BoxPokemon *GetCurrentBoxmon(void);
@@ -1448,6 +1451,7 @@ static bool8 LoadGraphics(void)
             gMain.state++;
         break;
     case 11:
+        UpdateRelearnAvailability();
         PrintMonInfo();
         gMain.state++;
         break;
@@ -2085,16 +2089,37 @@ bool32 HasAnyRelearnableMoves(enum MoveRelearnerStates state)
     return CanBoxMonRelearnMoves(GetCurrentBoxmon(), state);
 }
 
-bool32 NoMovesAvailableToRelearn(void)
+static void UpdateRelearnAvailability(void)
 {
-    u32 zeroCounter = 0;
+    for (enum MoveRelearnerStates state = MOVE_RELEARNER_LEVEL_UP_MOVES; state < MOVE_RELEARNER_COUNT; state++)
+        sMonSummaryScreen->hasRelearnableMovesByState[state] = FALSE;
+
+    sMonSummaryScreen->hasRelearnableMoves = FALSE;
+
+    if (!P_SUMMARY_SCREEN_MOVE_RELEARNER
+        || sMonSummaryScreen->lockMovesFlag
+        || sMonSummaryScreen->mode == SUMMARY_MODE_BOX_CURSOR
+        || InBattleFactory()
+        || InSlateportBattleTent())
+        return;
+
     for (enum MoveRelearnerStates state = MOVE_RELEARNER_LEVEL_UP_MOVES; state < MOVE_RELEARNER_COUNT; state++)
     {
-        if (!HasAnyRelearnableMoves(state))
-            zeroCounter++;
-    }
+        if (!CheckRelearnerStateFlag(state))
+            continue;
 
-    return zeroCounter == MOVE_RELEARNER_COUNT;
+        sMonSummaryScreen->hasRelearnableMovesByState[state] = HasAnyRelearnableMoves(state);
+        if (sMonSummaryScreen->hasRelearnableMovesByState[state])
+            sMonSummaryScreen->hasRelearnableMoves = TRUE;
+    }
+}
+
+static bool32 HasCachedRelearnableMoves(enum MoveRelearnerStates state)
+{
+    if (state >= MOVE_RELEARNER_COUNT)
+        return FALSE;
+
+    return sMonSummaryScreen->hasRelearnableMovesByState[state];
 }
 
 static bool32 AreTutorMovesUnlocked(void)
@@ -2162,8 +2187,8 @@ bool32 CheckRelearnerStateFlag(enum MoveRelearnerStates state)
 static void TryUpdateRelearnType(enum IncrDecrUpdateValues delta)
 {
     bool32 hasRelearnableMoves = FALSE;
-    u32 zeroCounter = 0;
     enum MoveRelearnerStates state = gMoveRelearnerState;
+    u32 i;
 
     // just in case everything is off, default to level up moves
     if ((!P_ENABLE_MOVE_RELEARNERS
@@ -2171,50 +2196,36 @@ static void TryUpdateRelearnType(enum IncrDecrUpdateValues delta)
         && !AreEggMovesUnlocked()
         && !AreTutorMovesUnlocked()))
     {
-        sMonSummaryScreen->hasRelearnableMoves = HasAnyRelearnableMoves(MOVE_RELEARNER_LEVEL_UP_MOVES);
+        gMoveRelearnerState = MOVE_RELEARNER_LEVEL_UP_MOVES;
+        sMonSummaryScreen->hasRelearnableMoves = HasCachedRelearnableMoves(MOVE_RELEARNER_LEVEL_UP_MOVES);
         return;
     }
 
-    do
+    if (delta == TRY_SET_UPDATE && HasCachedRelearnableMoves(gMoveRelearnerState))
     {
-        switch (delta)
-        {
-        default:
-        case TRY_SET_UPDATE:
-            hasRelearnableMoves = HasAnyRelearnableMoves(gMoveRelearnerState);
-            if (!hasRelearnableMoves)
-            {
-                delta = TRY_INCREMENT;
-                continue;
-            }
-            else
-            {
-                sMonSummaryScreen->hasRelearnableMoves = hasRelearnableMoves;
-                return;
-            }
-            // should never reach this, but just in case
-            break;
-        case TRY_INCREMENT:
-            state = GetNextRelearnerState(state, TRY_INCREMENT);
-            break;
-        case TRY_DECREMENT:
-            state = GetNextRelearnerState(state, TRY_DECREMENT);
-            break;
-        }
+        sMonSummaryScreen->hasRelearnableMoves = TRUE;
+        return;
+    }
 
+    if (delta == TRY_SET_UPDATE)
+        delta = TRY_INCREMENT;
+
+    for (i = 0; i < ARRAY_COUNT(sRelearnerStateCycle); i++)
+    {
+        state = GetNextRelearnerState(state, delta);
         if (!CheckRelearnerStateFlag(state))
             continue;
 
-        hasRelearnableMoves = HasAnyRelearnableMoves(state);
+        hasRelearnableMoves = HasCachedRelearnableMoves(state);
         if (hasRelearnableMoves)
         {
             gMoveRelearnerState = state;
             sMonSummaryScreen->hasRelearnableMoves = hasRelearnableMoves;
             return;
         }
-        zeroCounter++;
+    }
 
-    } while (zeroCounter <= MOVE_RELEARNER_COUNT && !hasRelearnableMoves);
+    sMonSummaryScreen->hasRelearnableMoves = FALSE;
 }
 
 static void ChangeSummaryPokemon(u8 taskId, s8 delta)
@@ -2290,6 +2301,8 @@ static void Task_ChangeSummaryMon(u8 taskId)
     case 4:
         if (ExtractMonDataToSummaryStruct(&sMonSummaryScreen->currentMon) == FALSE)
             return;
+
+        UpdateRelearnAvailability();
 
         if (P_SUMMARY_SCREEN_RENAME && sMonSummaryScreen->currPageIndex == PSS_PAGE_INFO)
             ShowUtilityPrompt(SUMMARY_MODE_NORMAL);
@@ -2474,7 +2487,7 @@ static void ChangePage(u8 taskId, s8 delta)
     }
 
     // to prevent nothing showing
-    if (currPageIndex == PSS_PAGE_BATTLE_MOVES && !sMonSummaryScreen->hasRelearnableMoves)
+    if (currPageIndex == PSS_PAGE_BATTLE_MOVES)
         TryUpdateRelearnType(TRY_SET_UPDATE);
     else
         ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_RELEARN);
@@ -5284,8 +5297,7 @@ static inline bool32 ShouldShowMoveRelearner(void)
          && sMonSummaryScreen->mode != SUMMARY_MODE_BOX_CURSOR
          && sMonSummaryScreen->hasRelearnableMoves
          && !InBattleFactory()
-         && !InSlateportBattleTent()
-         && !NoMovesAvailableToRelearn());
+         && !InSlateportBattleTent());
 }
 
 static inline bool32 ShouldShowRename(void)
@@ -5428,8 +5440,11 @@ static void ShowRelearnPrompt(void)
         return;
     }
 
-    if (!HasAnyRelearnableMoves(gMoveRelearnerState))
+    if (!HasCachedRelearnableMoves(gMoveRelearnerState))
+    {
+        ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_RELEARN);
         return;
+    }
 
     const u8 *relearnText;
     int relearnTextXPos;

@@ -574,3 +574,8 @@ script berrytrader_juggler {
     release
     end
 }
+
+script DexnavDude {
+	msgbox("If you have a Pokegéar, you should
+			make use of the Dexnav feature in it.")
+}

@@ -80,6 +80,7 @@ static void PopulateCurrentHiddenGrotto(void);
 static u16 GetWeightedTableEntry(const struct HiddenGrottoWeightedEntry *table, u8 count, u16 totalWeight);
 static u16 GetHiddenGrottoSpecies(const struct HiddenGrottoMonEntry *entry);
 static u16 GetRandomHiddenGrottoSpecies(const struct HiddenGrottoData *grotto);
+static void GiveHiddenGrottoMonPerfectIvs(struct Pokemon *mon);
 static void UpdateCurrentHiddenGrottoMonGraphics(u16 species);
 
 static const struct HiddenGrottoData sHiddenGrottoData[NUM_HIDDEN_GROTTOES] =
@@ -492,6 +493,7 @@ void HiddenGrotto_CreateCurrentMon(void)
         return;
 
     CreateScriptedWildMon(content->id, GetHiddenGrottoMonLevel(grotto), ITEM_NONE, ITEM_NONE);
+    GiveHiddenGrottoMonPerfectIvs(&gEnemyParty[0]);
     SetMonData(&gEnemyParty[0], MON_DATA_ABILITY_NUM, &abilityNum);
     CalculateMonStats(&gEnemyParty[0]);
     gSpecialVar_Result = TRUE;
@@ -647,6 +649,9 @@ static u16 GetWeightedTableEntry(const struct HiddenGrottoWeightedEntry *table, 
 
 static u16 GetHiddenGrottoSpecies(const struct HiddenGrottoMonEntry *entry)
 {
+    if (entry->form == 0)
+        return entry->species;
+
     return GetFormSpeciesId(entry->species, entry->form);
 }
 
@@ -655,6 +660,21 @@ static u16 GetRandomHiddenGrottoSpecies(const struct HiddenGrottoData *grotto)
     u16 monIndex = GetWeightedTableEntry(sHiddenGrottoPokemonIndexes, ARRAY_COUNT(sHiddenGrottoPokemonIndexes), HIDDEN_GROTTO_MON_TOTAL_WEIGHT);
 
     return GetHiddenGrottoSpecies(&grotto->mons[monIndex]);
+}
+
+static void GiveHiddenGrottoMonPerfectIvs(struct Pokemon *mon)
+{
+    u8 perfectIv = MAX_PER_STAT_IVS;
+    u8 firstStat = Random() % NUM_STATS;
+    u8 secondStat;
+
+    do
+    {
+        secondStat = Random() % NUM_STATS;
+    } while (secondStat == firstStat);
+
+    SetMonData(mon, MON_DATA_HP_IV + firstStat, &perfectIv);
+    SetMonData(mon, MON_DATA_HP_IV + secondStat, &perfectIv);
 }
 
 static void UpdateCurrentHiddenGrottoMonGraphics(u16 species)

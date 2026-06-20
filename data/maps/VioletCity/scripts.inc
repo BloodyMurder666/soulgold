@@ -1133,6 +1133,12 @@ berrytrader_juggler_18:
 	end
 
 
+DexnavDude::
+# 579 "data/maps/VioletCity/scripts.pory"
+	msgbox DexnavDude_Text_0
+	return
+
+
 berrytrader_juggler_Text_0:
 # 501 "data/maps/VioletCity/scripts.pory"
 	.string "Yah yah! I'm a huge fan of colored\n"
@@ -1188,3 +1194,8 @@ berrytrader_juggler_Text_10:
 berrytrader_juggler_Text_11:
 # 569 "data/maps/VioletCity/scripts.pory"
 	.string "Not interested huh? Shame...$"
+
+DexnavDude_Text_0:
+# 579 "data/maps/VioletCity/scripts.pory"
+	.string "If you have a Pokegéar, you should\n"
+	.string "make use of the Dexnav feature in it.$"

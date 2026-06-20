@@ -21,7 +21,7 @@ AzaleaMart_Text_BugCatcher:
 script AzaleaTownMart2 {
     lock
     faceplayer
-    if (flag(FLAG_BADGE04_GET)) {
+    if (flag(FLAG_BADGE04_GET) == FALSE) {
         msgbox("We're out of Galarica wreaths
                 and cuffs after the rocket incident.
                 We hope to have them restocked soon.

@@ -328,11 +328,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Nidoran M
-Level: 13
+Level: 11
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Cottonee
-Level: 14
+Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_LYLE ===
@@ -1512,11 +1512,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Natu
-Level: 15
+Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Wattrel
-Level: 15
+Level: 13
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_SHANE ===
@@ -5415,11 +5415,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Nidoran F
-Level: 13
+Level: 11
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Petilil
-Level: 13
+Level: 11
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_MARTIN ===
@@ -5867,7 +5867,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Tentacool
-Level: 15
+Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ALLEN ===
@@ -8808,7 +8808,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Mareep
-Level: 15
+Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_EDMOND ===
@@ -9130,8 +9130,8 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Qwilfish
-Level: 14
+Horsea
+Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ROBERT ===
@@ -10666,11 +10666,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Marill
-Level: 15
+Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Binacle
-Level: 15
+Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_VANCE ===
@@ -11045,11 +11045,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Ekans
-Level: 12
+Level: 10
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Wooper Paldea
-Level: 13
+Level: 11
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_BERKE ===

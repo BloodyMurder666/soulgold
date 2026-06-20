@@ -524,8 +524,12 @@ script Route32RivalGrottoTutorial {
 	createfieldmugshotrival
 	msgbox("Even Marill wanted to congratulate you!")
 	msgbox("Listen, there's something you should
-			see. I came across it when exploring
-			the route. Follow me!")
+			see. 
+			
+			I came across it when exploring
+			the route. 
+			
+			Follow me!")
 	closemessage
 	removefieldmugshot
 	applymovement(LOCALID_ROUTE32_RIVAL, moves(walk_left*12, walk_up, face_right))
@@ -543,12 +547,18 @@ script Route32RivalGrottoTutorial {
 			I'll let you explore
 			this one, since it's your first time
 			seeing one! 
+			
 			Even if you don't manage to find
 			a Pokémon there today, 
 			you should check it again another day.")
-	msgbox("Marill and I will take a trip to
-			the Goldenrod City, I hope to see
-			you there! Good luck with the
+	msgbox("Marill and I decided to take on the gym
+			challenge too!
+			
+			You better start
+			training hard if you don't want to fall
+			behind! 
+			
+			Good luck with the
 			next Gym, {PLAYER}!")
 	closemessage
 	removefieldmugshot
@@ -571,6 +581,7 @@ script Route32RivalGrottoTutorial {
 	setflag(FLAG_HIDE_ROUTE32_RIVAL)
 	setflag(FLAG_HIDE_NEWBARK_RIVAL)
 	setvar(VAR_RIVAL_STATE, 5)
+	savebgm(MUS_DUMMY)
 	fadedefaultbgm
 	release
 	end

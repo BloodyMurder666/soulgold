@@ -89,6 +89,7 @@ SproutTower_3F_EventScript_TriggerSceneRight::
 	special DrawWholeMapView
 	delay 15
 	setvar VAR_SPROUT_TOWER, 1
+	savebgm MUS_DUMMY
 	fadedefaultbgm
 	release
 	end

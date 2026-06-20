@@ -39,7 +39,7 @@ AzaleaTownMart2::
 # 23 "data/maps/AzaleaTown_Mart/scripts.pory"
 	faceplayer
 # 24 "data/maps/AzaleaTown_Mart/scripts.pory"
-	goto_if_set FLAG_BADGE04_GET, AzaleaTownMart2_2
+	goto_if_unset FLAG_BADGE04_GET, AzaleaTownMart2_2
 # 36 "data/maps/AzaleaTown_Mart/scripts.pory"
 	message AzaleaTownMart2_Text_2
 # 38 "data/maps/AzaleaTown_Mart/scripts.pory"
