@@ -16,8 +16,22 @@ struct Fanfare
     u16 duration;
 };
 
+struct MapMusicBattleResume
+{
+    bool8 isActive;
+    bool8 preserveOnNextReset;
+    u16 songNum;
+    u16 currentMapMusic;
+    u16 nextMapMusic;
+    u8 mapMusicState;
+    u8 mapMusicFadeInSpeed;
+    struct MusicPlayerInfo mplayInfo;
+    struct MusicPlayerTrack tracks[MAX_MUSICPLAYER_TRACKS];
+};
+
 EWRAM_DATA struct MusicPlayerInfo *gMPlay_PokemonCry = NULL;
 EWRAM_DATA u8 gPokemonCryBGMDuckingCounter = 0;
+static EWRAM_DATA struct MapMusicBattleResume sMapMusicBattleResume = {0};
 
 static u16 sCurrentMapMusic;
 static u16 sNextMapMusic;
@@ -33,6 +47,7 @@ extern struct ToneData gCryTable_Reverse[];
 static void Task_Fanfare(u8 taskId);
 static void CreateFanfareTask(void);
 static void RestoreBGMVolumeAfterPokemonCry(void);
+static void ResetMapMusicState(void);
 
 // The 1st argument in the table is the length of the fanfare, measured in frames. This is calculated by taking the duration of the midi file, multiplying by 59.72750056960583, and rounding up to the next nearest integer.
 static const struct Fanfare sFanfares[] = {
@@ -59,7 +74,8 @@ static const struct Fanfare sFanfares[] = {
 void InitMapMusic(void)
 {
     gDisableMusic = FALSE;
-    ResetMapMusic();
+    ResetMapMusicState();
+    ClearMapMusicBattleResume();
 }
 
 void MapMusicMain(void)
@@ -106,6 +122,15 @@ void MapMusicMain(void)
 }
 
 void ResetMapMusic(void)
+{
+    ResetMapMusicState();
+    if (sMapMusicBattleResume.preserveOnNextReset)
+        sMapMusicBattleResume.preserveOnNextReset = FALSE;
+    else
+        ClearMapMusicBattleResume();
+}
+
+static void ResetMapMusicState(void)
 {
     sCurrentMapMusic = 0;
     sNextMapMusic = 0;
@@ -176,6 +201,106 @@ bool8 IsNotWaitingForBGMStop(void)
     if (sMapMusicState == 7)
         return FALSE;
     return TRUE;
+}
+
+void SaveMapMusicForBattleResume(void)
+{
+#if OW_RESUME_MUSIC_AFTER_BATTLE
+    u8 trackCount;
+
+    if (sMapMusicBattleResume.isActive)
+        return;
+    if (sCurrentMapMusic == MUS_DUMMY || sCurrentMapMusic == MUS_NONE)
+        return;
+    if (sMapMusicState == 0 || sMapMusicState == 1 || !IsNotWaitingForBGMStop())
+        return;
+    if (gMPlayInfo_BGM.tracks == NULL || gMPlayInfo_BGM.trackCount == 0)
+        return;
+    if (gMPlayInfo_BGM.status & MUSICPLAYER_STATUS_PAUSE)
+        return;
+    if (!(gMPlayInfo_BGM.status & MUSICPLAYER_STATUS_TRACK))
+        return;
+
+    trackCount = min(gMPlayInfo_BGM.trackCount, MAX_MUSICPLAYER_TRACKS);
+    sMapMusicBattleResume.isActive = TRUE;
+    sMapMusicBattleResume.preserveOnNextReset = TRUE;
+    sMapMusicBattleResume.songNum = sCurrentMapMusic;
+    sMapMusicBattleResume.currentMapMusic = sCurrentMapMusic;
+    sMapMusicBattleResume.nextMapMusic = sNextMapMusic;
+    sMapMusicBattleResume.mapMusicState = sMapMusicState;
+    sMapMusicBattleResume.mapMusicFadeInSpeed = sMapMusicFadeInSpeed;
+    sMapMusicBattleResume.mplayInfo = gMPlayInfo_BGM;
+    memcpy(sMapMusicBattleResume.tracks, gMPlayInfo_BGM.tracks, trackCount * sizeof(*gMPlayInfo_BGM.tracks));
+#endif
+}
+
+void ClearMapMusicBattleResume(void)
+{
+    sMapMusicBattleResume.isActive = FALSE;
+    sMapMusicBattleResume.preserveOnNextReset = FALSE;
+    sMapMusicBattleResume.songNum = MUS_DUMMY;
+}
+
+bool8 TryResumeMapMusicAfterBattle(u16 expectedMusic)
+{
+#if OW_RESUME_MUSIC_AFTER_BATTLE
+    u8 i;
+    u8 trackCount;
+    struct MusicPlayerTrack *tracks;
+    u8 liveTrackCount;
+    u8 *memAccArea;
+    MPlayMainFunc mplayMainNext;
+    struct MusicPlayerInfo *musicPlayerNext;
+
+    if (!sMapMusicBattleResume.isActive)
+        return FALSE;
+
+    if (expectedMusic != sMapMusicBattleResume.songNum
+     || expectedMusic == MUS_DUMMY
+     || expectedMusic == MUS_NONE
+     || gMPlayInfo_BGM.tracks == NULL)
+    {
+        ClearMapMusicBattleResume();
+        return FALSE;
+    }
+
+    tracks = gMPlayInfo_BGM.tracks;
+    liveTrackCount = gMPlayInfo_BGM.trackCount;
+    memAccArea = gMPlayInfo_BGM.memAccArea;
+    mplayMainNext = gMPlayInfo_BGM.MPlayMainNext;
+    musicPlayerNext = gMPlayInfo_BGM.musicPlayerNext;
+
+    m4aMPlayStop(&gMPlayInfo_BGM);
+
+    gMPlayInfo_BGM = sMapMusicBattleResume.mplayInfo;
+    gMPlayInfo_BGM.tracks = tracks;
+    gMPlayInfo_BGM.trackCount = liveTrackCount;
+    gMPlayInfo_BGM.memAccArea = memAccArea;
+    gMPlayInfo_BGM.MPlayMainNext = mplayMainNext;
+    gMPlayInfo_BGM.musicPlayerNext = musicPlayerNext;
+
+    trackCount = min(sMapMusicBattleResume.mplayInfo.trackCount, liveTrackCount);
+    trackCount = min(trackCount, MAX_MUSICPLAYER_TRACKS);
+    memcpy(tracks, sMapMusicBattleResume.tracks, trackCount * sizeof(*tracks));
+    for (i = 0; i < trackCount; i++)
+        tracks[i].chan = NULL;
+    for (; i < liveTrackCount; i++)
+    {
+        tracks[i].flags = 0;
+        tracks[i].chan = NULL;
+    }
+
+    sCurrentMapMusic = sMapMusicBattleResume.currentMapMusic;
+    sNextMapMusic = sMapMusicBattleResume.nextMapMusic;
+    sMapMusicState = sMapMusicBattleResume.mapMusicState;
+    sMapMusicFadeInSpeed = sMapMusicBattleResume.mapMusicFadeInSpeed;
+
+    ClearMapMusicBattleResume();
+    m4aMPlayContinue(&gMPlayInfo_BGM);
+    return TRUE;
+#else
+    return FALSE;
+#endif
 }
 
 void PlayFanfareByFanfareNum(u8 fanfareNum)

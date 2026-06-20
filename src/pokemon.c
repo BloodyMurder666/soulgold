@@ -5376,6 +5376,7 @@ u16 GetBattleBGM(void)
 
 void PlayBattleBGM(void)
 {
+    SaveMapMusicForBattleResume();
     ResetMapMusic();
     m4aMPlayAllStop();
     PlayBGM(GetBattleBGM());
@@ -5383,6 +5384,7 @@ void PlayBattleBGM(void)
 
 void PlayMapChosenOrBattleBGM(u16 songId)
 {
+    SaveMapMusicForBattleResume();
     ResetMapMusic();
     m4aMPlayAllStop();
     if (songId)
@@ -5398,6 +5400,7 @@ void CreateTask_PlayMapChosenOrBattleBGM(u16 songId)
 {
     u8 taskId;
 
+    SaveMapMusicForBattleResume();
     ResetMapMusic();
     m4aMPlayAllStop();
 

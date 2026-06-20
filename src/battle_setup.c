@@ -1705,6 +1705,7 @@ void PlayTrainerEncounterMusic(void)
         default:
             music = MUS_ENCOUNTER_SUSPICIOUS;
         }
+        SaveMapMusicForBattleResume();
         PlayNewMapMusic(music);
     }
 }

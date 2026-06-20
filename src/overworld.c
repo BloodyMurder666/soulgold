@@ -1239,6 +1239,9 @@ void Overworld_PlaySpecialMapMusic(void)
             music = MUS_SURF;
     }
 
+    if (TryResumeMapMusicAfterBattle(music))
+        return;
+
     if (music != GetCurrentMapMusic())
         PlayNewMapMusic(music);
 }

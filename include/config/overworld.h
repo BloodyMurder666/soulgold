@@ -14,6 +14,7 @@
 #define OW_ROCK_CLIMB_FIELD_MOVE        TRUE      // If enabled, Rock Climb can be used as a Field Move as seen in DPPt.
 #define OW_CHOOSE_FROM_PC_AND_PARTY     TRUE       // If enabled, NPCs like move tutors or trainers asking for trade will let you pick a pokemon from your PC or party instead of just your party
 #define OW_SURF_MUSIC                   TRUE       // If enabled, Surf uses its own music by default. This can be changed in Options.
+#define OW_RESUME_MUSIC_AFTER_BATTLE    TRUE       // If enabled, map music resumes from its previous position after ordinary wild/trainer battles.
 
 // Item Obtain Description Box
 #define OW_ITEM_DESCRIPTIONS_OFF        0   // never show descriptions
