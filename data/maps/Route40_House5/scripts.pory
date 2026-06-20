@@ -57,6 +57,7 @@ script Route40Cafe_SellerCook {
 mart CafeCook {
     ITEM_SWEET_APPLE
     ITEM_TART_APPLE
+    ITEM_SYRUPY_APPLE
     ITEM_FRESH_WATER
     ITEM_SODA_POP
     ITEM_LEMONADE
