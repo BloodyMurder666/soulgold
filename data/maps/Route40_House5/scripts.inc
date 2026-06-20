@@ -88,19 +88,19 @@ CafeCook:
 # 59 "data/maps/Route40_House5/scripts.pory"
 	.2byte ITEM_TART_APPLE
 # 60 "data/maps/Route40_House5/scripts.pory"
-	.2byte ITEM_FRESH_WATER
+	.2byte ITEM_SYRUPY_APPLE
 # 61 "data/maps/Route40_House5/scripts.pory"
-	.2byte ITEM_SODA_POP
+	.2byte ITEM_FRESH_WATER
 # 62 "data/maps/Route40_House5/scripts.pory"
-	.2byte ITEM_LEMONADE
+	.2byte ITEM_SODA_POP
 # 63 "data/maps/Route40_House5/scripts.pory"
-	.2byte ITEM_SWEET_HEART
+	.2byte ITEM_LEMONADE
 # 64 "data/maps/Route40_House5/scripts.pory"
-	.2byte ITEM_PEWTER_CRUNCHIES
+	.2byte ITEM_SWEET_HEART
 # 65 "data/maps/Route40_House5/scripts.pory"
-	.2byte ITEM_LAVA_COOKIE
+	.2byte ITEM_PEWTER_CRUNCHIES
 # 66 "data/maps/Route40_House5/scripts.pory"
-	.2byte ITEM_RAGE_CANDY_BAR
+	.2byte ITEM_LAVA_COOKIE
 # 67 "data/maps/Route40_House5/scripts.pory"
 	.2byte ITEM_OLD_GATEAU
 # 68 "data/maps/Route40_House5/scripts.pory"
