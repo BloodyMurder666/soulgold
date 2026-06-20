@@ -2275,3 +2275,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/KitakamiRoad_House/scripts.inc"
 
 	.include "data/maps/OlivineCity_House4/scripts.inc"
+
+	.include "data/maps/foggyforestDepths/scripts.inc"

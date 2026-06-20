@@ -971,6 +971,7 @@
 #define LAYOUT_FOGGY_FOREST 964
 #define LAYOUT_KITAKAMI_ROAD_HOUSE 965
 #define LAYOUT_OLIVINE_CITY_HOUSE4 966
+#define LAYOUT_FOGGYFOREST_DEPTHS 967
 
 //Constants for unused layouts
 #define LAYOUT_TRAINER_TOWER_1F                   0xFFFF

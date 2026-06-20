@@ -1,0 +1,9 @@
+mapscripts foggyforestDepths_MapScripts {}
+
+script UrsalunaBM {
+    lock
+    faceplayer
+    legendaryencounter(SPECIES_URSALUNA_BLOODMOON, 65, 1, FLAG_HIDE_BM_URSALUNA)
+    release
+    end
+}

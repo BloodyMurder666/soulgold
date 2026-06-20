@@ -1,1 +1,30 @@
 mapscripts FoggyForest_MapScripts {}
+
+script FoggyForest_HexManiac {
+    msgbox("TODO, Something spooky", MSGBOX_NPC)
+}
+
+script FoggyForest_Girl {
+    msgbox("Spooky TODO", MSGBOX_NPC)
+}
+
+script FoggyForest_Phantump {
+    lock
+    faceplayer
+    playmoncry(SPECIES_PHANTUMP, CRY_MODE_NORMAL)
+    msgbox("Phantump: Phoo!")
+    waitmoncry
+    release
+    end
+}
+
+script FoggyForestBMTeleport {
+    checkitem(ITEM_BLACK_MIRROR)
+    if (var(VAR_RESULT) == TRUE) {
+        warpwhitefade(MAP_FOGGYFOREST_DEPTHS, 8, 46)
+    }
+}
+
+script FoggyForestBMOutTeleport {
+    warpsilent(MAP_FOGGY_FOREST, 38, 5)
+}
