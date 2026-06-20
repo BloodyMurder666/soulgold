@@ -205,7 +205,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(FURRET)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MURKROW)",
       "x": 26,
       "y": 34,
       "elevation": 0,
@@ -560,6 +560,13 @@
       "y": 43,
       "elevation": 0,
       "dest_map": "MAP_OLIVINE_CITY_POKEMON_CENTER",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 36,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_OLIVINE_CITY_HOUSE4",
       "dest_warp_id": "0"
     }
   ],

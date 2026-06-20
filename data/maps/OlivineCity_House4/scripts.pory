@@ -1,0 +1,64 @@
+mapscripts OlivineCity_House4_MapScripts {}
+
+script OlivineTutorMoveMaster {
+    lock
+    faceplayer
+    if (flag(FLAG_TUTOR_MOVES_UNLOCKED)) {
+        msgbox("You can teach Tutor Moves by
+                pressing Start on the Battle Moves
+                page of the Summary Screen and
+                switching to the Tutor Moves page.")
+        release
+        end
+    }
+    msgbox("I'm the Tutor Move Master.
+    
+            I know all there is to know about Tutor
+            Moves.
+            
+            If you wish, I can teach you all that I 
+            know for a one-time fee of ¥33,333.")
+    showmoneybox(0, 0)
+    msgbox("What do you say? Do you wish to learn
+            everything about Tutor Moves?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        checkmoney(33333)
+        if (var(VAR_RESULT) == FALSE) {
+            msgbox("It seems you do not have the money
+                    to learn. Shame.")
+            hidemoneybox
+            release
+            end
+        }
+        removemoney(33333)
+        updatemoneybox(0)
+        playse(SE_SHOP)
+        waitse
+        setflag(FLAG_TUTOR_MOVES_UNLOCKED)
+        msgbox("Thank you for the business!
+
+                Now let me teach you the grand
+                secrets of the Tutor Moves.")
+        hidemoneybox
+        closemessage
+        fadescreen(FADE_TO_BLACK)
+        delay(60)
+        fadescreen(FADE_FROM_BLACK)
+        delay(20)
+        playfanfare(MUS_OBTAIN_ITEM)
+        msgbox("You can now teach Tutor Moves to
+                your Pokémon!")
+        waitse
+        msgbox("You can teach Tutor Moves by
+                pressing Start on the Battle Moves
+                page of the Summary Screen and
+                switching to the Tutor Moves page.")
+    } else {
+        hidemoneybox
+        msgbox("A pity.")
+        release
+        end
+    }
+    release
+    end
+}

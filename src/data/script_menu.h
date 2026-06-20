@@ -8,7 +8,7 @@ static const struct MenuAction MultichoiceList_BrineyOnDewford[] =
 
 static const struct MenuAction MultichoiceList_EnterInfo[] =
 {
-    {COMPOUND_STRING("ENTER")},
+    {COMPOUND_STRING("Enter")},
     {gText_Info2},
     {gText_Exit},
 };
@@ -56,17 +56,17 @@ static const struct MenuAction MultichoiceList_RegisterMenu[] =
 
 static const struct MenuAction MultichoiceList_Bike[] =
 {
-    {COMPOUND_STRING("MACH")},
-    {COMPOUND_STRING("ACRO")},
+    {COMPOUND_STRING("Mach")},
+    {COMPOUND_STRING("Acro")},
 };
 
 static const struct MenuAction MultichoiceList_StatusInfo[] =
 {
-    {COMPOUND_STRING("PSN")},
-    {COMPOUND_STRING("PAR")},
-    {COMPOUND_STRING("SLP")},
-    {COMPOUND_STRING("BRN")},
-    {COMPOUND_STRING("FRZ")},
+    {COMPOUND_STRING("Psn")},
+    {COMPOUND_STRING("Par")},
+    {COMPOUND_STRING("Slp")},
+    {COMPOUND_STRING("Brn")},
+    {COMPOUND_STRING("Frz")},
     {gText_Exit},
 };
 
@@ -91,8 +91,8 @@ static const struct MenuAction MultichoiceList_YesNoInfo2[] =
 
 static const struct MenuAction MultichoiceList_ChallengeInfo[] =
 {
-    {COMPOUND_STRING("CHALLENGE")},
-    {COMPOUND_STRING("INFO")},
+    {COMPOUND_STRING("Challenge")},
+    {COMPOUND_STRING("Info")},
     {gText_Exit},
 };
 
@@ -210,9 +210,9 @@ static const struct MenuAction MultichoiceList_Mechadoll5_Q3[] =
 
 static const struct MenuAction MultichoiceList_VendingMachine[] =
 {
-    {COMPOUND_STRING("FRESH WATER{CLEAR_TO 0x48}¥200")},
-    {COMPOUND_STRING("SODA POP{CLEAR_TO 0x48}¥300")},
-    {COMPOUND_STRING("LEMONADE{CLEAR_TO 0x48}¥350")},
+    {COMPOUND_STRING("Fresh water{CLEAR_TO 0x48}¥200")},
+    {COMPOUND_STRING("Soda pop{CLEAR_TO 0x48}¥300")},
+    {COMPOUND_STRING("Lemonade{CLEAR_TO 0x48}¥350")},
     {gText_Exit},
 };
 
@@ -474,9 +474,9 @@ static const struct MenuAction MultichoiceList_YesNoInfo[] =
 
 static const struct MenuAction MultichoiceList_BattleMode[] =
 {
-    {COMPOUND_STRING("SINGLE BATTLE")},
-    {COMPOUND_STRING("DOUBLE BATTLE")},
-    {COMPOUND_STRING("MULTI BATTLE")},
+    {COMPOUND_STRING("Single battle")},
+    {COMPOUND_STRING("Double battle")},
+    {COMPOUND_STRING("Multi battle")},
     {gText_Info2},
     {gText_Exit},
 };
@@ -530,8 +530,8 @@ static const struct MenuAction MultichoiceList_ContestRank[] =
 
 static const struct MenuAction MultichoiceList_FrontierItemChoose[] =
 {
-    {COMPOUND_STRING("BATTLE BAG")},
-    {COMPOUND_STRING("HELD ITEM")},
+    {COMPOUND_STRING("Battle bag")},
+    {COMPOUND_STRING("Held item")},
     {gText_Exit},
 };
 
@@ -601,32 +601,32 @@ static const struct MenuAction MultichoiceList_UnusedSSTidal4[] =
 
 static const struct MenuAction MultichoiceList_Fossil[] =
 {
-    {COMPOUND_STRING("CLAW FOSSIL")},
-    {COMPOUND_STRING("ROOT FOSSIL")},
+    {COMPOUND_STRING("Claw fossil")},
+    {COMPOUND_STRING("Root fossil")},
     {gText_Exit},
 };
 
 static const struct MenuAction MultichoiceList_YesNo[] =
 {
     {gText_Yes},
-    {COMPOUND_STRING("NO")},
+    {COMPOUND_STRING("No")},
 };
 
 static const struct MenuAction MultichoiceList_FrontierRules[] =
 {
-    {COMPOUND_STRING("TWO STYLES")},
-    {COMPOUND_STRING("LV. 50")},
-    {COMPOUND_STRING("OPEN LEVEL")},
-    {COMPOUND_STRING("{PKMN} TYPE & NO.")},
-    {COMPOUND_STRING("HOLD ITEMS")},
+    {COMPOUND_STRING("Two styles")},
+    {COMPOUND_STRING("Classic")},
+    {COMPOUND_STRING("Chaos")},
+    {COMPOUND_STRING("{PKMN} Type & No.")},
+    {COMPOUND_STRING("Hold items")},
     {gText_Exit},
 };
 
 static const struct MenuAction MultichoiceList_FrontierPassInfo[] =
 {
-    {COMPOUND_STRING("SYMBOLS")},
-    {COMPOUND_STRING("RECORD")},
-    {COMPOUND_STRING("BATTLE PTS")},
+    {COMPOUND_STRING("Symbols")},
+    {COMPOUND_STRING("Record")},
+    {COMPOUND_STRING("Battle pts")},
     {gText_Exit},
 };
 
@@ -641,18 +641,18 @@ static const struct MenuAction MultichoiceList_BattleArenaRules[] =
 
 static const struct MenuAction MultichoiceList_BattleTowerRules[] =
 {
-    {COMPOUND_STRING("TOWER INFO")},
-    {COMPOUND_STRING("BATTLE {PKMN}")},
-    {COMPOUND_STRING("BATTLE SALON")},
-    {COMPOUND_STRING("MULTI-LINK")},
+    {COMPOUND_STRING("Tower info")},
+    {COMPOUND_STRING("Battle {PKMN}")},
+    {COMPOUND_STRING("Battle SALON")},
+    {COMPOUND_STRING("Multi-link")},
     {gText_Exit},
 };
 
 static const struct MenuAction MultichoiceList_BattleDomeRules[] =
 {
-    {COMPOUND_STRING("MATCHUP")},
-    {COMPOUND_STRING("TOURNEY TREE")},
-    {COMPOUND_STRING("DOUBLE KO")},
+    {COMPOUND_STRING("Matchup")},
+    {COMPOUND_STRING("Tourney tree")},
+    {COMPOUND_STRING("Double KO")},
     {gText_Exit},
 };
 
@@ -662,7 +662,7 @@ static const struct MenuAction MultichoiceList_BattleFactoryRules[] =
     {gText_SwapPartners},
     {gText_SwapNumber},
     {gText_SwapNotes},
-    {COMPOUND_STRING("OPEN LEVEL")},
+    {COMPOUND_STRING("Open level")},
     {gText_Exit},
 };
 
@@ -687,9 +687,9 @@ static const struct MenuAction MultichoiceList_BattlePyramidRules[] =
 
 static const struct MenuAction MultichoiceList_BattlePikeRules[] =
 {
-    {COMPOUND_STRING("POKéNAV AND BAG")},
-    {COMPOUND_STRING("HELD ITEMS")},
-    {COMPOUND_STRING("POKéMON ORDER")},
+    {COMPOUND_STRING("Pokégear and bag")},
+    {COMPOUND_STRING("Held items")},
+    {COMPOUND_STRING("Pokémon order")},
     {gText_Exit},
 };
 
@@ -774,8 +774,8 @@ static const struct MenuAction MultichoiceList_TagMatchType[] =
 
 static const struct MenuAction MultichoiceList_BerryPlot[] =
 {
-    {COMPOUND_STRING("FERTILIZE")},
-    {COMPOUND_STRING("PLANT BERRY")},
+    {COMPOUND_STRING("Fertilize")},
+    {COMPOUND_STRING("Plant berry")},
     {gText_Exit},
 };
 
