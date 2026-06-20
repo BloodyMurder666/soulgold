@@ -38,6 +38,7 @@ static void MailboxMenu_MoveCursorFunc(s32, bool8, struct ListMenu *);
 static void ConditionGraph_CalcRightHalf(struct ConditionGraph *);
 static void ConditionGraph_CalcLeftHalf(struct ConditionGraph *);
 static void MoveRelearnerCursorCallback(s32, bool8, struct ListMenu *);
+static const u8 *GetMoveRelearnerBattleWindowTitle(void);
 static void MoveRelearnerDummy(void);
 static void SetNextConditionSparkle(struct Sprite *);
 static void SpriteCB_ConditionSparkle(struct Sprite *);
@@ -763,7 +764,7 @@ static void MoveRelearnerLoadBattleMoveDescription(u32 chosenMove)
         MoveRelearnerShowHideCategoryIcon(chosenMove);
 
     FillWindowPixelBuffer(RELEARNERWIN_DESC_BATTLE, PIXEL_FILL(1));
-    str = gText_MoveRelearnerBattleMoves;
+    str = GetMoveRelearnerBattleWindowTitle();
     x = GetStringCenterAlignXOffset(FONT_NORMAL, str, 128);
     AddTextPrinterParameterized(RELEARNERWIN_DESC_BATTLE, FONT_NORMAL, str, x, 1, TEXT_SKIP_DRAW, NULL);
 
@@ -812,6 +813,19 @@ static void MoveRelearnerLoadBattleMoveDescription(u32 chosenMove)
     }
     AddTextPrinterParameterized(RELEARNERWIN_DESC_BATTLE, FONT_NORMAL, str, 106, 41, TEXT_SKIP_DRAW, NULL);
     AddTextPrinterParameterized(RELEARNERWIN_DESC_BATTLE, FONT_NARROW, GetMoveDescription(chosenMove), 0, 65, 0, NULL);
+}
+
+static const u8 *GetMoveRelearnerBattleWindowTitle(void)
+{
+    switch (gMoveRelearnerState)
+    {
+    case MOVE_RELEARNER_LEVEL_UP_MOVES:
+        return gText_MoveRelearnerLevelUpMoves;
+    case MOVE_RELEARNER_TUTOR_MOVES:
+        return gText_MoveRelearnerTutorMoves;
+    default:
+        return gText_MoveRelearnerBattleMoves;
+    }
 }
 
 static void MoveRelearnerMenuLoadContestMoveDescription(u32 chosenMove)

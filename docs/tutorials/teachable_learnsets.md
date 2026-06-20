@@ -54,9 +54,8 @@ The script detects the TMs and HMs available in your game based on the list in `
 
 ### Tutors from scripts
 
-The script look for tutors moves in your script files, wether map scripts `/data/maps/*/scripts.inc` or other function scripts `/data/scripts/*.inc`. It looks for the pattern used for move tutors in vanilla emerald `setvar VAR_0x8005, MOVE_*`. So try to add move tutors this way if you want them to be properl detected.
+The script looks for tutor moves in your script files, whether map scripts `/data/maps/*/scripts.inc` or other function scripts `/data/scripts/*.inc`. It looks for the pattern used for move tutors in vanilla Emerald, `setvar VAR_0x8005, MOVE_*`, including scripts that open the shared `MoveTutor_EventScript_OpenPartyMenu` or `MoveTutor_EventScript_OpenBox` helpers. So try to add move tutors this way if you want them to be properly detected.
 
 ### Extra Tutors
 
 If you somehow add a move that can be learned in new custom ways that don't fit with the previous patterns, you can add the move to the extra tutors list in `src/data/pokemon/special_movesets.json` (there are multiple lists in the file, make sure to edit the one named "extraTutors"). This shouldn't be necessary for most users and if you use this list, remember you will need to add/remove moves from this list and the code that teaches moves.
-

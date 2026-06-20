@@ -302,8 +302,8 @@
 #define FLAG_RECEIVED_KINGS_ROCK             0x114
 #define FLAG_RECEIVED_MACHO_BRACE            0x115
 #define FLAG_RECEIVED_SOOTHE_BELL            0x116
-#define FLAG_RECEIVED_WHITE_HERB             0x117
-#define FLAG_RECEIVED_SOFT_SAND              0x118
+#define FLAG_EGG_MOVES_UNLOCKED              0x117
+#define FLAG_TUTOR_MOVES_UNLOCKED            0x118
 #define FLAG_ENABLE_PROF_BIRCH_MATCH_CALL    0x119
 #define FLAG_RECEIVED_CLEANSE_TAG            0x11A
 #define FLAG_RECEIVED_FOCUS_BAND             0x11B

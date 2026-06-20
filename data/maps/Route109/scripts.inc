@@ -330,13 +330,13 @@ Route109_EventScript_SoftSandGirl::
 	lock
 	faceplayer
 	special GetPlayerBigGuyGirlString
-	goto_if_set FLAG_RECEIVED_SOFT_SAND, Route109_EventScript_AlreadyReceivedSoftSand
+	goto_if_set FLAG_GARBAGEFLAG, Route109_EventScript_AlreadyReceivedSoftSand
 	msgbox Route109_Text_YouCanHaveThis, MSGBOX_DEFAULT
 	goto_if_eq VAR_RESULT, 0, Common_EventScript_ShowBagIsFull
 	closemessage
 	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
 	waitmovement 0
-	setflag FLAG_RECEIVED_SOFT_SAND
+	setflag FLAG_GARBAGEFLAG
 	release
 	end
 

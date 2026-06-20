@@ -27,6 +27,7 @@
 #include "string_util.h"
 #include "strings.h"
 #include "task.h"
+#include "constants/flags.h"
 #include "constants/party_menu.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
@@ -45,11 +46,9 @@
  *   - Creates moveDisplayArrowTask to listen to right/left buttons.
  *   - Creates moveListScrollArrowTask to listen to up/down buttons.
  *   - Whenever the selected move changes (and once on init), the MoveRelearnerCursorCallback
- *     is called (see sMoveRelearnerMovesListTemplate). That callback will reload the contest
- *     display and battle display windows for the new move. Both are always loaded in
- *     memory, but only the currently active one is copied to VRAM. The exception to this
- *     is the appeal and jam hearts, which are sprites. MoveRelearnerShowHideHearts is called
- *     while reloading the contest display to control them.
+ *     is called (see sMoveRelearnerMovesListTemplate). That callback reloads the battle
+ *     and contest display windows for the new move. The relearner menu uses the battle
+ *     display while left/right swaps between the primary list and the tutor moves list.
  * DoMoveRelearnerMain: MENU_STATE_FADE_TO_BLACK
  * DoMoveRelearnerMain: MENU_STATE_WAIT_FOR_FADE
  *   - Go to MENU_STATE_IDLE_BATTLE_MODE
@@ -58,15 +57,13 @@
  * DoMoveRelearnerMain: MENU_STATE_IDLE_BATTLE_MODE
  *   - If the player selected a move (pressed A), go to MENU_STATE_PRINT_TEACH_MOVE_PROMPT.
  *   - If the player cancelled (pressed B), go to MENU_STATE_PRINT_GIVE_UP_PROMPT.
- *   - If the player pressed left or right, swap the move display window to contest mode,
- *     and go to MENU_STATE_SETUP_CONTEST_MODE.
+ *   - If the player pressed left or right, swap between the primary relearner list and
+ *     the tutor moves list.
  *
  * DoMoveRelearnerMain: MENU_STATE_SETUP_CONTEST_MODE
  * DoMoveRelearnerMain: MENU_STATE_IDLE_CONTEST_MODE
- *   - If the player selected a move, go to MENU_STATE_PRINT_TEACH_MOVE_PROMPT.
- *   - If the player cancelled, go to MENU_STATE_PRINT_GIVE_UP_PROMPT
- *   - If the player pressed left or right, swap the move display window to battle mode,
- *     and go to MENU_STATE_SETUP_BATTLE_MODE.
+ *   - Legacy contest-display states. Input is handled like battle mode so left/right
+ *     still swaps between the primary list and the tutor moves list.
  *
  * DoMoveRelearnerMain: MENU_STATE_PRINT_TEACH_MOVE_PROMPT
  * DoMoveRelearnerMain: MENU_STATE_TEACH_MOVE_CONFIRM
@@ -192,6 +189,7 @@ static EWRAM_DATA struct {
     u16 listOffset;
     u16 listRow;
     bool8 showContestInfo;
+    enum MoveRelearnerStates primaryState;
 } sMoveRelearnerMenuState = {0};
 
 EWRAM_DATA enum MoveRelearnerStates gMoveRelearnerState = MOVE_RELEARNER_LEVEL_UP_MOVES;
@@ -367,7 +365,7 @@ static void Task_WaitForFadeOut(u8 taskId);
 static void CB2_InitLearnMoveReturnFromSelectMove(void);
 static void InitMoveRelearnerBackgroundLayers(void);
 static void AddScrollArrows(void);
-static void HandleInput(u8);
+static void HandleInput(void);
 static void ShowTeachMoveText(u8);
 static s32 GetCurrentSelectedMove(void);
 static void FreeMoveRelearnerResources(void);
@@ -377,6 +375,13 @@ static bool32 HasRelearnerLevelUpMoves(struct BoxPokemon *boxMon);
 static bool32 HasRelearnerEggMoves(struct BoxPokemon *boxMon);
 static bool32 HasRelearnerTMMoves(struct BoxPokemon *boxMon);
 static bool32 HasRelearnerTutorMoves(struct BoxPokemon *boxMon);
+static bool32 AreTutorMovesUnlocked(void);
+static void BufferCurrentRelearnerMoveType(void);
+static enum MoveRelearnerStates GetTutorToggleTargetState(void);
+static bool32 CanToggleTutorMovePage(void);
+static bool32 TryToggleTutorMovePage(void);
+static void RebuildMoveRelearnerMoveList(void);
+static void RestorePrimaryRelearnerPage(void);
 static u32 GetRelearnerLevelUpMoves(struct BoxPokemon *mon, u16 *moves);
 static u32 GetRelearnerEggMoves(struct BoxPokemon *mon, u16 *moves);
 static u32 GetRelearnerTMMoves(struct BoxPokemon *mon, u16 *moves);
@@ -427,38 +432,13 @@ void CB2_InitLearnMove(void)
     SetVBlankCallback(VBlankCB_MoveRelearner);
 
     InitMoveRelearnerBackgroundLayers();
-    InitMoveRelearnerWindows(gRelearnMode == RELEARN_MODE_PSS_PAGE_CONTEST_MOVES);
+    InitMoveRelearnerWindows(FALSE);
 
     sMoveRelearnerMenuState.listOffset = 0;
     sMoveRelearnerMenuState.listRow = 0;
-    sMoveRelearnerMenuState.showContestInfo = gRelearnMode == RELEARN_MODE_PSS_PAGE_CONTEST_MOVES;
-
-    if ((!P_ENABLE_MOVE_RELEARNERS
-    && !P_TM_MOVES_RELEARNER
-    && !FlagGet(P_FLAG_EGG_MOVES)
-    && !FlagGet(P_FLAG_TUTOR_MOVES)))
-    {
-        StringCopy(gStringVar3, MoveRelearner_Text_MoveLWR);
-    }
-    else
-    {
-        switch (gMoveRelearnerState)
-        {
-        case MOVE_RELEARNER_EGG_MOVES:
-            StringCopy(gStringVar3, MoveRelearner_Text_EggMoveLWR);
-            break;
-        case MOVE_RELEARNER_TM_MOVES:
-            StringCopy(gStringVar3, MoveRelearner_Text_TMMoveLWR);
-            break;
-        case MOVE_RELEARNER_TUTOR_MOVES:
-            StringCopy(gStringVar3, MoveRelearner_Text_TutorMoveLWR);
-            break;
-        case MOVE_RELEARNER_LEVEL_UP_MOVES:
-        default:
-            StringCopy(gStringVar3, MoveRelearner_Text_LevelUpMoveLWR);
-            break;
-        }
-    }
+    sMoveRelearnerMenuState.showContestInfo = FALSE;
+    sMoveRelearnerMenuState.primaryState = gMoveRelearnerState;
+    BufferCurrentRelearnerMoveType();
 
     CreateLearnableMovesList();
 
@@ -568,7 +548,7 @@ static void DoMoveRelearnerMain(void)
         AddScrollArrows();
         break;
     case MENU_STATE_IDLE_BATTLE_MODE:
-        HandleInput(FALSE);
+        HandleInput();
         break;
     case MENU_STATE_SETUP_CONTEST_MODE:
         ShowTeachMoveText(FALSE);
@@ -576,7 +556,7 @@ static void DoMoveRelearnerMain(void)
         AddScrollArrows();
         break;
     case MENU_STATE_IDLE_CONTEST_MODE:
-        HandleInput(TRUE);
+        HandleInput();
         break;
     case MENU_STATE_PRINT_TEACH_MOVE_PROMPT:
         if (!MoveRelearnerRunTextPrinters())
@@ -755,6 +735,7 @@ static void DoMoveRelearnerMain(void)
     case MENU_STATE_RETURN_TO_PARTY_MENU:
         if (!gPaletteFade.active)
         {
+            RestorePrimaryRelearnerPage();
             FreeMoveRelearnerResources();
             SetMainCallback2(CB2_ReturnToPartyMenuFromSummaryScreen);
         }
@@ -772,6 +753,7 @@ static void DoMoveRelearnerMain(void)
     case MENU_STATE_RETURN_TO_FIELD:
         if (!gPaletteFade.active)
         {
+            RestorePrimaryRelearnerPage();
             if (gInitialSummaryScreenCallback != NULL)
             {
                 switch (gRelearnMode)
@@ -908,7 +890,7 @@ static void HideHeartSpritesAndShowTeachMoveText(bool8 onlyHideSprites)
     }
 }
 
-static void HandleInput(bool8 showContest)
+static void HandleInput(void)
 {
     s32 itemId = ListMenu_ProcessInput(sMoveRelearnerStruct->moveListMenuTask);
     ListMenuGetScrollAndRow(sMoveRelearnerStruct->moveListMenuTask, &sMoveRelearnerMenuState.listOffset, &sMoveRelearnerMenuState.listRow);
@@ -919,26 +901,10 @@ static void HandleInput(bool8 showContest)
         if (!(JOY_NEW(DPAD_LEFT | DPAD_RIGHT)) && !GetLRKeysPressed())
             break;
 
+        if (!TryToggleTutorMovePage())
+            break;
+
         PlaySE(SE_SELECT);
-
-        if (showContest == FALSE)
-        {
-            PutWindowTilemap(RELEARNERWIN_DESC_CONTEST);
-            sMoveRelearnerStruct->state = MENU_STATE_SETUP_CONTEST_MODE;
-            sMoveRelearnerMenuState.showContestInfo = TRUE;
-        }
-        else
-        {
-            PutWindowTilemap(RELEARNERWIN_DESC_BATTLE);
-            sMoveRelearnerStruct->state = MENU_STATE_SETUP_BATTLE_MODE;
-            sMoveRelearnerMenuState.showContestInfo = FALSE;
-        }
-
-        ScheduleBgCopyTilemapToVram(1);
-        MoveRelearnerShowHideHearts(GetCurrentSelectedMove());
-        if (B_SHOW_CATEGORY_ICON == TRUE)
-            MoveRelearnerShowHideCategoryIcon(GetCurrentSelectedMove());
-
         break;
     case LIST_CANCEL:
         PlaySE(SE_SELECT);
@@ -979,6 +945,97 @@ static void ShowTeachMoveText(bool8 shouldDoNothingInstead)
     }
 }
 
+static void BufferCurrentRelearnerMoveType(void)
+{
+    if ((!P_ENABLE_MOVE_RELEARNERS
+    && !P_TM_MOVES_RELEARNER
+    && !FlagGet(P_FLAG_EGG_MOVES)
+    && !AreTutorMovesUnlocked()))
+    {
+        StringCopy(gStringVar3, MoveRelearner_Text_MoveLWR);
+        return;
+    }
+
+    switch (gMoveRelearnerState)
+    {
+    case MOVE_RELEARNER_EGG_MOVES:
+        StringCopy(gStringVar3, MoveRelearner_Text_EggMoveLWR);
+        break;
+    case MOVE_RELEARNER_TM_MOVES:
+        StringCopy(gStringVar3, MoveRelearner_Text_TMMoveLWR);
+        break;
+    case MOVE_RELEARNER_TUTOR_MOVES:
+        StringCopy(gStringVar3, MoveRelearner_Text_TutorMoveLWR);
+        break;
+    case MOVE_RELEARNER_LEVEL_UP_MOVES:
+    default:
+        StringCopy(gStringVar3, MoveRelearner_Text_LevelUpMoveLWR);
+        break;
+    }
+}
+
+static bool32 AreTutorMovesUnlocked(void)
+{
+    return FlagGet(FLAG_TUTOR_MOVES_UNLOCKED);
+}
+
+static bool32 TryToggleTutorMovePage(void)
+{
+    enum MoveRelearnerStates newState = GetTutorToggleTargetState();
+
+    if (!CanBoxMonRelearnMoves(GetSelectedBoxMonFromPcOrParty(), newState))
+        return FALSE;
+
+    gMoveRelearnerState = newState;
+    BufferCurrentRelearnerMoveType();
+    RebuildMoveRelearnerMoveList();
+    return TRUE;
+}
+
+static enum MoveRelearnerStates GetTutorToggleTargetState(void)
+{
+    if (gMoveRelearnerState == MOVE_RELEARNER_TUTOR_MOVES)
+    {
+        if (sMoveRelearnerMenuState.primaryState == MOVE_RELEARNER_TUTOR_MOVES)
+            return MOVE_RELEARNER_LEVEL_UP_MOVES;
+
+        return sMoveRelearnerMenuState.primaryState;
+    }
+
+    return MOVE_RELEARNER_TUTOR_MOVES;
+}
+
+static bool32 CanToggleTutorMovePage(void)
+{
+    return CanBoxMonRelearnMoves(GetSelectedBoxMonFromPcOrParty(), GetTutorToggleTargetState());
+}
+
+static void RebuildMoveRelearnerMoveList(void)
+{
+    RemoveScrollArrows();
+    DestroyListMenuTask(sMoveRelearnerStruct->moveListMenuTask, NULL, NULL);
+    FillWindowPixelBuffer(RELEARNERWIN_MOVE_LIST, PIXEL_FILL(1));
+    sMoveRelearnerMenuState.listOffset = 0;
+    sMoveRelearnerMenuState.listRow = 0;
+    sMoveRelearnerMenuState.showContestInfo = FALSE;
+
+    CreateLearnableMovesList();
+    sMoveRelearnerStruct->moveListMenuTask = ListMenuInit(&gMultiuseListMenuTemplate, 0, 0);
+
+    PutWindowTilemap(RELEARNERWIN_DESC_BATTLE);
+    HideHeartSpritesAndShowTeachMoveText(FALSE);
+    AddScrollArrows();
+    ScheduleBgCopyTilemapToVram(1);
+    CopyWindowToVram(RELEARNERWIN_MOVE_LIST, COPYWIN_FULL);
+    CopyWindowToVram(RELEARNERWIN_MSG, COPYWIN_GFX);
+}
+
+static void RestorePrimaryRelearnerPage(void)
+{
+    gMoveRelearnerState = sMoveRelearnerMenuState.primaryState;
+    BufferCurrentRelearnerMoveType();
+}
+
 static void CreateUISprites(void)
 {
     int i;
@@ -1009,7 +1066,7 @@ static void CreateUISprites(void)
 
 static void AddScrollArrows(void)
 {
-    if (sMoveRelearnerStruct->moveDisplayArrowTask == TASK_NONE)
+    if (sMoveRelearnerStruct->moveDisplayArrowTask == TASK_NONE && CanToggleTutorMovePage())
         sMoveRelearnerStruct->moveDisplayArrowTask = AddScrollIndicatorArrowPair(&sDisplayModeArrowsTemplate, &sMoveRelearnerStruct->scrollOffset);
 
     if (sMoveRelearnerStruct->moveListScrollArrowTask == TASK_NONE)
@@ -1276,7 +1333,7 @@ static u32 GetRelearnerTMMoves(struct BoxPokemon *mon, u16 *moves)
 
 static u32 GetRelearnerTutorMoves(struct BoxPokemon *mon, u16 *moves)
 {
-    if (!FlagGet(P_FLAG_TUTOR_MOVES) && !P_ENABLE_MOVE_RELEARNERS)
+    if (!AreTutorMovesUnlocked())
         return 0;
 
     u32 species = GetBoxMonData(mon, MON_DATA_SPECIES_OR_EGG);
@@ -1416,7 +1473,7 @@ static bool32 HasRelearnerTMMoves(struct BoxPokemon *boxMon)
 
 static bool32 HasRelearnerTutorMoves(struct BoxPokemon *boxMon)
 {
-    if (!FlagGet(P_FLAG_TUTOR_MOVES) && !P_ENABLE_MOVE_RELEARNERS)
+    if (!AreTutorMovesUnlocked())
         return FALSE;
 
     u32 species = GetBoxMonData(boxMon, MON_DATA_SPECIES_OR_EGG);

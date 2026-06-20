@@ -45,6 +45,7 @@
 #include "tv.h"
 #include "window.h"
 #include "constants/battle_move_effects.h"
+#include "constants/flags.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/party_menu.h"
@@ -2096,8 +2097,16 @@ bool32 NoMovesAvailableToRelearn(void)
     return zeroCounter == MOVE_RELEARNER_COUNT;
 }
 
+static bool32 AreTutorMovesUnlocked(void)
+{
+    return FlagGet(FLAG_TUTOR_MOVES_UNLOCKED);
+}
+
 bool32 CheckRelearnerStateFlag(enum MoveRelearnerStates state)
 {
+    if (state == MOVE_RELEARNER_TUTOR_MOVES)
+        return AreTutorMovesUnlocked();
+
     if (P_ENABLE_MOVE_RELEARNERS)
         return TRUE;
 
@@ -2110,7 +2119,7 @@ bool32 CheckRelearnerStateFlag(enum MoveRelearnerStates state)
     case MOVE_RELEARNER_TM_MOVES:
         return P_TM_MOVES_RELEARNER;
     case MOVE_RELEARNER_TUTOR_MOVES:
-        return FlagGet(P_FLAG_TUTOR_MOVES);
+        return AreTutorMovesUnlocked();
     default:
         return FALSE;
     }
@@ -2126,7 +2135,7 @@ static void TryUpdateRelearnType(enum IncrDecrUpdateValues delta)
     if ((!P_ENABLE_MOVE_RELEARNERS
         && !P_TM_MOVES_RELEARNER
         && !FlagGet(P_FLAG_EGG_MOVES)
-        && !FlagGet(P_FLAG_TUTOR_MOVES)))
+        && !AreTutorMovesUnlocked()))
     {
         sMonSummaryScreen->hasRelearnableMoves = HasAnyRelearnableMoves(MOVE_RELEARNER_LEVEL_UP_MOVES);
         return;
@@ -5394,7 +5403,7 @@ static void ShowRelearnPrompt(void)
     if ((!P_ENABLE_MOVE_RELEARNERS
     && !P_TM_MOVES_RELEARNER
     && !FlagGet(P_FLAG_EGG_MOVES)
-    && !FlagGet(P_FLAG_TUTOR_MOVES)))
+    && !AreTutorMovesUnlocked()))
     {
         relearnText = sText_Relearn;
         relearnTextXPos = 0;
