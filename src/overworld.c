@@ -3557,7 +3557,8 @@ static void SpriteCB_LinkPlayer(struct Sprite *sprite)
 
 #define ITEM_ICON_X     26
 #define ITEM_ICON_Y     24
-#define ITEM_TAG        0x2722 //same as money label
+#define ITEM_TAG             0x2722 //same as money label
+#define ITEM_PALETTE_TAG    (ITEM_TAG | BLEND_IMMUNE_FLAG)
 
 bool8 GetSetItemObtained(enum Item item, enum ItemObtainFlags caseId)
 {
@@ -3708,9 +3709,9 @@ static void ShowItemIconSprite(enum Item item, bool8 firstTime, bool8 flash)
         SetGpuRegBits(REG_OFFSET_WINOUT, WINOUT_WINOBJ_OBJ);
     }
 
-    iconSpriteId = AddItemIconSprite(ITEM_TAG, ITEM_TAG, item);
+    iconSpriteId = AddItemIconSprite(ITEM_TAG, ITEM_PALETTE_TAG, item);
     if (flash)
-        spriteId2 = AddItemIconSprite(ITEM_TAG, ITEM_TAG, item);
+        spriteId2 = AddItemIconSprite(ITEM_TAG, ITEM_PALETTE_TAG, item);
     if (iconSpriteId != MAX_SPRITES)
     {
         if (!firstTime)
@@ -3746,7 +3747,7 @@ static void ShowItemIconSprite(enum Item item, bool8 firstTime, bool8 flash)
 static void DestroyItemIconSprite(void)
 {
     FreeSpriteTilesByTag(ITEM_TAG);
-    FreeSpritePaletteByTag(ITEM_TAG);
+    FreeSpritePaletteByTag(ITEM_PALETTE_TAG);
     FreeSpriteOamMatrix(&gSprites[sItemIconSpriteId]);
     DestroySprite(&gSprites[sItemIconSpriteId]);
 

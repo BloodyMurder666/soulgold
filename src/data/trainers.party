@@ -485,11 +485,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Vulpix
-Level: 16
+Level: 14
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Numel
-Level: 16
+Level: 14
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ROXANNE ===
@@ -1931,11 +1931,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Geodude Alola
-Level: 15
+Level: 13
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Cubone
-Level: 15
+Level: 13
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_KENNETH ===
@@ -8026,7 +8026,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Onix
-Level: 16
+Level: 15
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_DEBRA ===
@@ -8748,11 +8748,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Slowpoke
-Level: 16
+Level: 14
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 Slowpoke Galar
-Level: 16
+Level: 14
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 === TRAINER_FIDEL ===
@@ -9992,8 +9992,8 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Charmeleon
-Level: 16
+Charcadet
+Level: 14
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 === TRAINER_RAYMOND ===
@@ -11924,11 +11924,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Mienfoo
-Level: 16
+Level: 14
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Machop
-Level: 16
+Level: 15
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Shiny: Yes
 

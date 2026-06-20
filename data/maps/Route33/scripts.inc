@@ -121,7 +121,7 @@ fisherMan_Route33::
 	faceplayer
 # 65 "data/maps/Route33/scripts.pory"
 	msgbox fisherMan_Route33_Text_0
-# 69 "data/maps/Route33/scripts.pory"
+# 67 "data/maps/Route33/scripts.pory"
 	release
 	end
 
@@ -133,7 +133,5 @@ Route33_HiddenGrotto_Text_0:
 
 fisherMan_Route33_Text_0:
 # 65 "data/maps/Route33/scripts.pory"
-	.string "Those mountain Pokémon are always\n"
-	.string "eyeing my catches, ready to steal\l"
-	.string "them. Their sorry eyes always\l"
-	.string "make me share some with them.$"
+	.string "Sometimes it feels like I'm being\n"
+	.string "watched when I go fishing.$"
