@@ -33,6 +33,15 @@ body {
   font-size: 18px;
 }
 
+body.modal-open {
+  position: fixed;
+  top: var(--modal-scroll-top, 0);
+  left: 0;
+  right: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
 .top-chrome {
   position: sticky;
   top: 0;

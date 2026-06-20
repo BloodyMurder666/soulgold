@@ -4,6 +4,7 @@ const state = {
   query: "",
   filteredSpecies: [],
   selectedTypes: new Set(),
+  modalScrollY: 0,
 };
 
 const typeName = (value) => value.replace("TYPE_", "").replaceAll("_", " ");
@@ -137,6 +138,7 @@ function bindEvents() {
   dialog.addEventListener("click", (event) => {
     if (event.target === dialog) closeDetailDialog();
   });
+  dialog.addEventListener("close", handleDetailDialogClose);
   document.body.addEventListener("click", handleAbilityClick, true);
   document.body.addEventListener("pointerover", handleAbilityHover);
   document.body.addEventListener("pointerout", hideAbilityTooltip);
@@ -304,10 +306,43 @@ function renderDexRows() {
 }
 
 function closeDetailDialog() {
+  const dialog = document.getElementById("detailDialog");
+  if (dialog.open) {
+    dialog.close();
+  } else {
+    handleDetailDialogClose();
+  }
+}
+
+function handleDetailDialogClose() {
   hideAbilityTooltip();
   hideMoveTooltip();
   hideItemTooltip();
-  document.getElementById("detailDialog").close();
+  unlockBodyScroll();
+}
+
+function showDetailDialog() {
+  const dialog = document.getElementById("detailDialog");
+  lockBodyScroll();
+  if (!dialog.open) {
+    dialog.showModal();
+  }
+}
+
+function lockBodyScroll() {
+  if (document.body.classList.contains("modal-open")) return;
+  state.modalScrollY = window.scrollY;
+  document.documentElement.style.setProperty("--modal-scroll-top", `${-state.modalScrollY}px`);
+  document.body.classList.add("modal-open");
+}
+
+function unlockBodyScroll() {
+  if (!document.body.classList.contains("modal-open")) return;
+  const scrollY = state.modalScrollY;
+  document.body.classList.remove("modal-open");
+  document.documentElement.style.removeProperty("--modal-scroll-top");
+  state.modalScrollY = 0;
+  window.scrollTo(0, scrollY);
 }
 
 function getScopedTooltip(root, id, className) {
@@ -675,10 +710,7 @@ function openSpecies(mon) {
     <h3 class="section-title">Egg Move Compatibility</h3>
     ${moveRows(mon.eggMoves || [], { showLevel: false })}
   `;
-  const dialog = document.getElementById("detailDialog");
-  if (!dialog.open) {
-    dialog.showModal();
-  }
+  showDetailDialog();
 }
 
 function openSpeciesByConstant(constant) {
@@ -806,7 +838,7 @@ function openItem(item) {
       </div>
     ` : `<p class="muted">Location TBD.</p>`}
   `;
-  document.getElementById("detailDialog").showModal();
+  showDetailDialog();
 }
 
 function speciesCards(list) {
@@ -832,7 +864,7 @@ function openTm(tm) {
     <h3 class="section-title">Compatible Pokemon</h3>
     ${speciesCards(compatible)}
   `;
-  document.getElementById("detailDialog").showModal();
+  showDetailDialog();
 }
 
 function renderAbilities() {
@@ -863,7 +895,7 @@ function openAbility(ability) {
     <h3 class="section-title">Innate Ability</h3>
     ${usageList(ability.usage.innate)}
   `;
-  document.getElementById("detailDialog").showModal();
+  showDetailDialog();
 }
 
 function renderTrainers() {
