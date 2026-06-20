@@ -9,13 +9,13 @@ Common_EventScript_MoveRelearner::
 Common_EventScript_MoveRelearnerDynMultiChoice::
 	dynmultipush MoveRelearner_Text_LevelUpMoves, 0
 .if P_ENABLE_MOVE_RELEARNERS == TRUE
-	dynmultipush MoveRelearner_Text_EggMoves, 1
+	call_if_set FLAG_TUTOR_MOVES_UNLOCKED, MoveRelearner_EventScript_PushTutorMoves
+	call_if_set FLAG_EGG_MOVES_UNLOCKED, MoveRelearner_EventScript_PushEggMoves
 	dynmultipush MoveRelearner_Text_TMMoves, 2
-	call_if_set FLAG_TUTOR_MOVES_UNLOCKED, MoveRelearner_EventScript_PushTutorMoves
 .else
-	call_if_set P_FLAG_EGG_MOVES, MoveRelearner_EventScript_PushEggMoves
-	istmrelearneractive MoveRelearner_EventScript_PushTMMoves
 	call_if_set FLAG_TUTOR_MOVES_UNLOCKED, MoveRelearner_EventScript_PushTutorMoves
+	call_if_set FLAG_EGG_MOVES_UNLOCKED, MoveRelearner_EventScript_PushEggMoves
+	istmrelearneractive MoveRelearner_EventScript_PushTMMoves
 .endif @ P_ENABLE_MOVE_RELEARNERS
 	dynmultipush MoveRelearner_Text_SeeYa, 4
 	dynmultistack 0, 0, FALSE, 5, 0, 0, DYN_MULTICHOICE_CB_NONE

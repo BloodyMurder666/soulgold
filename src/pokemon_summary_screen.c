@@ -1955,7 +1955,7 @@ static void Task_HandleInput(u8 taskId)
             PlaySE(SE_SELECT);
             CloseSummaryScreen(taskId);
         }
-        else if (JOY_NEW(R_BUTTON)) // R means increase. Level -> Egg -> TM -> Tutor
+        else if (JOY_NEW(R_BUTTON)) // R means increase. Level -> Tutor -> Egg -> TM
         {
             if (P_SUMMARY_SCREEN_MOVE_RELEARNER && sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES && !gMain.inBattle)
             {
@@ -2102,8 +2102,42 @@ static bool32 AreTutorMovesUnlocked(void)
     return FlagGet(FLAG_TUTOR_MOVES_UNLOCKED);
 }
 
+static bool32 AreEggMovesUnlocked(void)
+{
+    return FlagGet(FLAG_EGG_MOVES_UNLOCKED);
+}
+
+static const enum MoveRelearnerStates sRelearnerStateCycle[] =
+{
+    MOVE_RELEARNER_LEVEL_UP_MOVES,
+    MOVE_RELEARNER_TUTOR_MOVES,
+    MOVE_RELEARNER_EGG_MOVES,
+    MOVE_RELEARNER_TM_MOVES,
+};
+
+static enum MoveRelearnerStates GetNextRelearnerState(enum MoveRelearnerStates state, enum IncrDecrUpdateValues delta)
+{
+    u32 currentIndex = 0;
+
+    for (u32 i = 0; i < ARRAY_COUNT(sRelearnerStateCycle); i++)
+    {
+        if (sRelearnerStateCycle[i] == state)
+        {
+            currentIndex = i;
+            break;
+        }
+    }
+
+    if (delta == TRY_DECREMENT)
+        return sRelearnerStateCycle[(currentIndex + ARRAY_COUNT(sRelearnerStateCycle) - 1) % ARRAY_COUNT(sRelearnerStateCycle)];
+
+    return sRelearnerStateCycle[(currentIndex + 1) % ARRAY_COUNT(sRelearnerStateCycle)];
+}
+
 bool32 CheckRelearnerStateFlag(enum MoveRelearnerStates state)
 {
+    if (state == MOVE_RELEARNER_EGG_MOVES)
+        return AreEggMovesUnlocked();
     if (state == MOVE_RELEARNER_TUTOR_MOVES)
         return AreTutorMovesUnlocked();
 
@@ -2115,7 +2149,7 @@ bool32 CheckRelearnerStateFlag(enum MoveRelearnerStates state)
     case MOVE_RELEARNER_LEVEL_UP_MOVES:
         return TRUE;
     case MOVE_RELEARNER_EGG_MOVES:
-        return FlagGet(P_FLAG_EGG_MOVES);
+        return AreEggMovesUnlocked();
     case MOVE_RELEARNER_TM_MOVES:
         return P_TM_MOVES_RELEARNER;
     case MOVE_RELEARNER_TUTOR_MOVES:
@@ -2134,7 +2168,7 @@ static void TryUpdateRelearnType(enum IncrDecrUpdateValues delta)
     // just in case everything is off, default to level up moves
     if ((!P_ENABLE_MOVE_RELEARNERS
         && !P_TM_MOVES_RELEARNER
-        && !FlagGet(P_FLAG_EGG_MOVES)
+        && !AreEggMovesUnlocked()
         && !AreTutorMovesUnlocked()))
     {
         sMonSummaryScreen->hasRelearnableMoves = HasAnyRelearnableMoves(MOVE_RELEARNER_LEVEL_UP_MOVES);
@@ -2161,10 +2195,10 @@ static void TryUpdateRelearnType(enum IncrDecrUpdateValues delta)
             // should never reach this, but just in case
             break;
         case TRY_INCREMENT:
-            state = state >= MOVE_RELEARNER_TUTOR_MOVES ? MOVE_RELEARNER_LEVEL_UP_MOVES : state + 1;
+            state = GetNextRelearnerState(state, TRY_INCREMENT);
             break;
         case TRY_DECREMENT:
-            state = state == MOVE_RELEARNER_LEVEL_UP_MOVES ? MOVE_RELEARNER_TUTOR_MOVES : state - 1;
+            state = GetNextRelearnerState(state, TRY_DECREMENT);
             break;
         }
 
@@ -5402,7 +5436,7 @@ static void ShowRelearnPrompt(void)
 
     if ((!P_ENABLE_MOVE_RELEARNERS
     && !P_TM_MOVES_RELEARNER
-    && !FlagGet(P_FLAG_EGG_MOVES)
+    && !AreEggMovesUnlocked()
     && !AreTutorMovesUnlocked()))
     {
         relearnText = sText_Relearn;

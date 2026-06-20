@@ -596,6 +596,7 @@ extern const u8 gText_MoveRelearnerGiveUp[];
 extern const u8 gText_MoveRelearnerTeachMoveConfirm[];
 extern const u8 gText_MoveRelearnerBattleMoves[];
 extern const u8 gText_MoveRelearnerLevelUpMoves[];
+extern const u8 gText_MoveRelearnerEggMoves[];
 extern const u8 gText_MoveRelearnerTutorMoves[];
 extern const u8 gText_MoveRelearnerPP[];
 extern const u8 gText_MoveRelearnerPower[];
