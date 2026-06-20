@@ -96,7 +96,7 @@ static const struct HiddenGrottoData sHiddenGrottoData[NUM_HIDDEN_GROTTOES] =
         {
             { SPECIES_APPLIN, 0 },
             { SPECIES_WOOPER_PALDEA, 0 },
-            { SPECIES_EKANS, 0 },
+            { SPECIES_MAREEP, 0 },
             { SPECIES_MISDREAVUS, 0 },
         },
     },
@@ -112,7 +112,7 @@ static const struct HiddenGrottoData sHiddenGrottoData[NUM_HIDDEN_GROTTOES] =
             { SPECIES_MINCCINO, 0 },
             { SPECIES_SHROOMISH, 0 },
             { SPECIES_ROCKRUFF_OWN_TEMPO, 0 },
-            { SPECIES_FROAKIE, 0 },
+            { SPECIES_AIPOM, 0 },
         },
     },
     [HIDDEN_GROTTO_ROUTE35] =
@@ -142,7 +142,7 @@ static const struct HiddenGrottoData sHiddenGrottoData[NUM_HIDDEN_GROTTOES] =
             { SPECIES_ODDISH, 0 },
             { SPECIES_CHERUBI, 0 },
             { SPECIES_ROSELIA, 0 },
-            { SPECIES_SWADLOON, 0 },
+            { SPECIES_EXEGGCUTE, 0 },
         },
     },
     [HIDDEN_GROTTO_ROUTE33] =
@@ -199,7 +199,7 @@ static const struct HiddenGrottoData sHiddenGrottoData[NUM_HIDDEN_GROTTOES] =
         .rareItem = ITEM_EVIOLITE,
         .mons =
         {
-            { SPECIES_SKARMORY, 0 },
+            { SPECIES_CYCLIZAR, 0 },
             { SPECIES_MAUSHOLD, 0 },
             { SPECIES_INDEEDEE, 0 },
             { SPECIES_DRAMPA, 0 },
@@ -215,7 +215,7 @@ static const struct HiddenGrottoData sHiddenGrottoData[NUM_HIDDEN_GROTTOES] =
         .mons =
         {
             { SPECIES_CHANSEY, 0 },
-            { SPECIES_TYNAMO, 0 },
+            { SPECIES_KLEFKI, 0 },
             { SPECIES_DITTO, 0 },
             { SPECIES_ZORUA, 0 },
         },

@@ -238,12 +238,12 @@
               {
                 "min_level": 2,
                 "max_level": 2,
-                "species": "SPECIES_HOOTHOOT"
+                "species": "SPECIES_PHANPY"
               },
               {
                 "min_level": 2,
                 "max_level": 2,
-                "species": "SPECIES_HOOTHOOT"
+                "species": "SPECIES_NIDORAN_M"
               },
               {
                 "min_level": 2,
@@ -253,22 +253,22 @@
               {
                 "min_level": 2,
                 "max_level": 3,
-                "species": "SPECIES_MAREEP"
+                "species": "SPECIES_NIDORAN_F"
               },
               {
                 "min_level": 2,
                 "max_level": 3,
-                "species": "SPECIES_MAREEP"
+                "species": "SPECIES_NIDORAN_M"
               },
               {
                 "min_level": 2,
                 "max_level": 3,
-                "species": "SPECIES_MAREEP"
+                "species": "SPECIES_NIDORAN_F"
               },
               {
                 "min_level": 2,
                 "max_level": 3,
-                "species": "SPECIES_PHANPY"
+                "species": "SPECIES_GROWLITHE"
               },
               {
                 "min_level": 2,
@@ -4798,7 +4798,7 @@
               {
                 "min_level": 20,
                 "max_level": 25,
-                "species": "SPECIES_APPLIN"
+                "species": "SPECIES_NIDORINA"
               },
               {
                 "min_level": 21,
@@ -4808,7 +4808,7 @@
               {
                 "min_level": 22,
                 "max_level": 25,
-                "species": "SPECIES_APPLIN"
+                "species": "SPECIES_NIDORINA"
               },
               {
                 "min_level": 21,
@@ -4818,7 +4818,7 @@
               {
                 "min_level": 22,
                 "max_level": 26,
-                "species": "SPECIES_APPLIN"
+                "species": "SPECIES_NIDORINO"
               },
               {
                 "min_level": 22,
@@ -4828,7 +4828,7 @@
               {
                 "min_level": 22,
                 "max_level": 26,
-                "species": "SPECIES_DRIFLOON"
+                "species": "SPECIES_NIDORINO"
               }
             ]
           },
@@ -6402,7 +6402,7 @@
               {
                 "min_level": 33,
                 "max_level": 40,
-                "species": "SPECIES_TANGELA"
+                "species": "SPECIES_EXEGGCUTE"
               },
               {
                 "min_level": 32,
@@ -6412,7 +6412,7 @@
               {
                 "min_level": 32,
                 "max_level": 40,
-                "species": "SPECIES_TANGELA"
+                "species": "SPECIES_EXEGGCUTE"
               },
               {
                 "min_level": 34,
@@ -12866,17 +12866,17 @@
               {
                 "min_level": 24,
                 "max_level": 28,
-                "species": "SPECIES_MACHOP"
+                "species": "SPECIES_SCRAGGY"
               },
               {
                 "min_level": 24,
                 "max_level": 28,
-                "species": "SPECIES_MACHOP"
+                "species": "SPECIES_MAROWAK"
               },
               {
                 "min_level": 28,
                 "max_level": 28,
-                "species": "SPECIES_MAROWAK"
+                "species": "SPECIES_SCRAGGY"
               },
               {
                 "min_level": 28,
@@ -13020,7 +13020,7 @@
               {
                 "min_level": 26,
                 "max_level": 29,
-                "species": "SPECIES_SCRAGGY"
+                "species": "SPECIES_VULLABY"
               },
               {
                 "min_level": 26,
@@ -13030,7 +13030,7 @@
               {
                 "min_level": 26,
                 "max_level": 30,
-                "species": "SPECIES_SCRAGGY"
+                "species": "SPECIES_VULLABY"
               },
               {
                 "min_level": 26,
