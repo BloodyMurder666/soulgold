@@ -20517,7 +20517,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     #else
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_LIGHTNING_ROD },
     #endif
-        .innates = { ABILITY_DRIZZLE, ABILITY_VOLT_ABSORB, ABILITY_PLUS },
+        .innates = { ABILITY_DRIZZLE, ABILITY_VOLT_ABSORB, ABILITY_MINUS },
 		.bodyColor = BODY_COLOR_YELLOW,
         .speciesName = _("Zapdos"),
         .cryId = CRY_ZAPDOS,
@@ -20671,7 +20671,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_FLAME_BODY },
-        .innates = { ABILITY_DROUGHT, ABILITY_FLASH_FIRE, ABILITY_POWER_SPOT },
+        .innates = { ABILITY_DROUGHT, ABILITY_FLASH_FIRE, ABILITY_SHEER_FORCE },
 		.bodyColor = BODY_COLOR_YELLOW,
         .speciesName = _("Moltres"),
         .cryId = CRY_MOLTRES,

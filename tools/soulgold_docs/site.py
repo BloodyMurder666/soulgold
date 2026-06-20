@@ -71,6 +71,7 @@ def build_docs_payload(
                 "levelUp": row.level_up,
                 "tmhm": row.tmhm,
                 "tutors": row.tutors,
+                "eggMoves": row.egg_moves,
                 "evolutions": row.evolutions,
                 "locations": row.locations,
                 "heldItems": row.held_items,

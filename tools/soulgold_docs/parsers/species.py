@@ -88,9 +88,11 @@ def parse_species() -> SpeciesParseResult:
         innates = [a for a in extract_braced_constants(entry, "innates", "ABILITY_") if a != "ABILITY_NONE"]
         level_expr = extract_field(entry, "levelUpLearnset") or ""
         teach_expr = extract_field(entry, "teachableLearnset") or ""
+        egg_expr = extract_field(entry, "eggMoveLearnset") or ""
         front_expr = extract_field(entry, "frontPic") or ""
         level_symbol = re.search(r"\bs[A-Za-z0-9_]+LevelUpLearnset\b", level_expr)
         teach_symbol = re.search(r"\bs[A-Za-z0-9_]+TeachableLearnset\b", teach_expr)
+        egg_symbol = re.search(r"\bs[A-Za-z0-9_]+EggMoveLearnset\b", egg_expr)
         front_symbol = re.search(r"\bgMonFrontPic_[A-Za-z0-9_]+\b", front_expr)
         held_items = []
         seen_held_items = set()
@@ -114,6 +116,7 @@ def parse_species() -> SpeciesParseResult:
             innates=innates,
             level_up_symbol=level_symbol.group(0) if level_symbol else None,
             teachable_symbol=teach_symbol.group(0) if teach_symbol else None,
+            egg_move_symbol=egg_symbol.group(0) if egg_symbol else None,
             front_pic_symbol=front_symbol.group(0) if front_symbol else None,
             held_items=held_items,
         )
@@ -146,6 +149,7 @@ def enrich_species_rows(
     species: list[SpeciesRow],
     level_up: dict[str, list[LevelUpMove]],
     teachables: dict[str, Teachables],
+    egg_moves: dict[str, list[str]],
     evolution_map: dict[str, list[EvolutionRow]],
     front_sources: dict[str, Path],
     shiny_palette_sources: dict[str, Path],
@@ -160,6 +164,8 @@ def enrich_species_rows(
         if row.teachable_symbol:
             row.tmhm = teachables.get(row.teachable_symbol, {}).get("tmhm", [])
             row.tutors = teachables.get(row.teachable_symbol, {}).get("tutors", [])
+        if row.egg_move_symbol:
+            row.egg_moves = egg_moves.get(row.egg_move_symbol, [])
         row.evolutions = evolution_map.get(row.constant, [])
         if row.front_pic_symbol and row.front_pic_symbol in front_sources:
             sprite_path = sprite_dir / f"{row.constant.removeprefix('SPECIES_').lower()}.png"

@@ -109,7 +109,7 @@ function speciesSpritePanel(mon) {
 }
 
 async function init() {
-  const response = await fetch("data/romhack-docs.json?v=20260619-1");
+  const response = await fetch("data/romhack-docs.json?v=20260620-1");
   state.data = await response.json();
   state.filteredSpecies = state.data.species;
   document.body.dataset.activeTab = state.activeTab;
@@ -672,6 +672,8 @@ function openSpecies(mon) {
     ${moveRows(mon.tmhm, { showLevel: false })}
     <h3 class="section-title">Tutor Compatibility</h3>
     ${moveRows(mon.tutors, { showLevel: false })}
+    <h3 class="section-title">Egg Move Compatibility</h3>
+    ${moveRows(mon.eggMoves || [], { showLevel: false })}
   `;
   const dialog = document.getElementById("detailDialog");
   if (!dialog.open) {

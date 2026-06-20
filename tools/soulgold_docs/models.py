@@ -229,6 +229,7 @@ class SpeciesPayloadRow(TypedDict):
     levelUp: list[LevelUpMove]
     tmhm: list[str]
     tutors: list[str]
+    eggMoves: list[str]
     evolutions: list[EvolutionRow]
     locations: list[SpeciesLocation]
     heldItems: list[HeldItemRow]
@@ -250,12 +251,14 @@ class SpeciesRow:
     innates: list[str]
     level_up_symbol: str | None
     teachable_symbol: str | None
+    egg_move_symbol: str | None
     front_pic_symbol: str | None
     sprite: str | None = None
     shiny_sprite: str | None = None
     level_up: list[LevelUpMove] = field(default_factory=list)
     tmhm: list[str] = field(default_factory=list)
     tutors: list[str] = field(default_factory=list)
+    egg_moves: list[str] = field(default_factory=list)
     evolutions: list[EvolutionRow] = field(default_factory=list)
     locations: list[SpeciesLocation] = field(default_factory=list)
     held_items: list[HeldItemRow] = field(default_factory=list)

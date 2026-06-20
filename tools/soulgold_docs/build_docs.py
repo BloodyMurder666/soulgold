@@ -28,6 +28,7 @@ from tools.soulgold_docs.parsers.items import (
     parse_tmhm_locations,
 )
 from tools.soulgold_docs.parsers.learnsets import (
+    parse_egg_move_learnsets,
     parse_level_up_learnsets,
     parse_teachable_learnsets,
     tmhm_move_constants,
@@ -58,6 +59,7 @@ def build() -> None:
     species = apply_dex_form_visibility(species_data.rows, mega_evolutions)
     level_up = parse_level_up_learnsets()
     teachables = parse_teachable_learnsets(tmhm_moves)
+    egg_moves = parse_egg_move_learnsets()
     front_sources = parse_front_pic_sources()
     shiny_palette_sources = parse_shiny_palette_sources()
     trainer_front_sources = parse_trainer_front_pic_sources()
@@ -69,6 +71,7 @@ def build() -> None:
         species,
         level_up,
         teachables,
+        egg_moves,
         evolution_map,
         front_sources,
         shiny_palette_sources,

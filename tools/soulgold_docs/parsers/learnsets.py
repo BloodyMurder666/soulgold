@@ -1,4 +1,4 @@
-"""Learnset parsing for level-up, TM/HM, and tutor moves."""
+"""Learnset parsing for level-up, TM/HM, tutor, and egg moves."""
 
 from __future__ import annotations
 
@@ -30,6 +30,16 @@ def parse_teachable_learnsets(tmhm_moves: set[str]) -> dict[str, Teachables]:
             "tmhm": [move for move in moves if move in tmhm_moves],
             "tutors": [move for move in moves if move not in tmhm_moves],
         }
+    return learnsets
+
+
+def parse_egg_move_learnsets() -> dict[str, list[str]]:
+    text = read(REPO_ROOT / "src/data/pokemon/egg_moves.h")
+    learnsets: dict[str, list[str]] = {}
+    pattern = re.compile(r"static\s+const\s+u16\s+(s[A-Za-z0-9_]+EggMoveLearnset)\[\]\s*=\s*\{(.*?)\};", re.DOTALL)
+    for symbol, body in pattern.findall(text):
+        moves = [move for move in re.findall(r"\bMOVE_[A-Z0-9_]+\b", body) if move != "MOVE_UNAVAILABLE"]
+        learnsets[symbol] = moves
     return learnsets
 
 
