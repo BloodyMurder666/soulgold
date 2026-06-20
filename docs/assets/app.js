@@ -110,7 +110,7 @@ function speciesSpritePanel(mon) {
 }
 
 async function init() {
-  const response = await fetch("data/romhack-docs.json?v=20260620-1");
+  const response = await fetch("data/romhack-docs.json?v=20260620-2");
   state.data = await response.json();
   state.filteredSpecies = state.data.species;
   document.body.dataset.activeTab = state.activeTab;
@@ -541,6 +541,19 @@ function moveRows(moves, options = {}) {
   }).join("")}</div>`;
 }
 
+function learnsetSection(title, moves, options = {}) {
+  return `
+    <details class="learnset-section" open>
+      <summary>
+        <h3 class="section-title">${title}</h3>
+      </summary>
+      <div class="learnset-section-body">
+        ${moveRows(moves || [], options)}
+      </div>
+    </details>
+  `;
+}
+
 function baseSpeciesForForms(mon) {
   if (!/_(?:MEGA(?:_[XYZ])?|GMAX|DMAX)$/.test(mon.constant)) return mon;
   return state.data.species.find((entry) => entry.constant === baseConstantForMega(mon.constant)) || mon;
@@ -701,14 +714,10 @@ function openSpecies(mon) {
       <section><h3 class="section-title">Base Stats</h3>${statBars(mon)}</section>
       <section><h3 class="section-title">Locations in wild</h3>${locationRows(mon.locations)}</section>
     </div>
-    <h3 class="section-title">Level-Up Learnset</h3>
-    ${moveRows(mon.levelUp)}
-    <h3 class="section-title">TM/HM Compatibility</h3>
-    ${moveRows(mon.tmhm, { showLevel: false })}
-    <h3 class="section-title">Tutor Compatibility</h3>
-    ${moveRows(mon.tutors, { showLevel: false })}
-    <h3 class="section-title">Egg Move Compatibility</h3>
-    ${moveRows(mon.eggMoves || [], { showLevel: false })}
+    ${learnsetSection("Level-Up Learnset", mon.levelUp)}
+    ${learnsetSection("TM/HM Compatibility", mon.tmhm, { showLevel: false })}
+    ${learnsetSection("Tutor Compatibility", mon.tutors, { showLevel: false })}
+    ${learnsetSection("Egg Move Compatibility", mon.eggMoves || [], { showLevel: false })}
   `;
   showDetailDialog();
 }

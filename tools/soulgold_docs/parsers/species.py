@@ -145,6 +145,21 @@ def species_for_trainer_mon(name: str, species_lookup: dict[str, SpeciesRow]) ->
     return species_lookup.get(normalize_token(clean_name))
 
 
+def egg_move_symbol_for_family(row: SpeciesRow, by_constant: dict[str, SpeciesRow], parent_map: dict[str, str]) -> str | None:
+    lineage: list[SpeciesRow] = []
+    current: SpeciesRow | None = row
+    seen: set[str] = set()
+    while current and current.constant not in seen:
+        lineage.append(current)
+        seen.add(current.constant)
+        current = by_constant.get(parent_map.get(current.constant, ""))
+
+    for family_row in reversed(lineage):
+        if family_row.egg_move_symbol:
+            return family_row.egg_move_symbol
+    return None
+
+
 def enrich_species_rows(
     species: list[SpeciesRow],
     level_up: dict[str, list[LevelUpMove]],
@@ -156,6 +171,14 @@ def enrich_species_rows(
     sprite_dir: Path,
     item_records: dict[str, ItemRecord],
 ) -> list[SpeciesRow]:
+    by_constant = {row.constant: row for row in species}
+    parent_map = {
+        evolution["target"]: source
+        for source, evolutions in evolution_map.items()
+        for evolution in evolutions
+        if evolution["target"] in by_constant
+    }
+
     for row in species:
         for held_item in row.held_items:
             held_item["name"] = item_display_name(held_item["constant"], item_records)
@@ -164,8 +187,9 @@ def enrich_species_rows(
         if row.teachable_symbol:
             row.tmhm = teachables.get(row.teachable_symbol, {}).get("tmhm", [])
             row.tutors = teachables.get(row.teachable_symbol, {}).get("tutors", [])
-        if row.egg_move_symbol:
-            row.egg_moves = egg_moves.get(row.egg_move_symbol, [])
+        family_egg_move_symbol = egg_move_symbol_for_family(row, by_constant, parent_map)
+        if family_egg_move_symbol:
+            row.egg_moves = egg_moves.get(family_egg_move_symbol, [])
         row.evolutions = evolution_map.get(row.constant, [])
         if row.front_pic_symbol and row.front_pic_symbol in front_sources:
             sprite_path = sprite_dir / f"{row.constant.removeprefix('SPECIES_').lower()}.png"

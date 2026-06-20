@@ -785,6 +785,55 @@ dialog::backdrop { background: rgb(2 9 18 / 72%); }
   overflow: hidden;
 }
 
+.learnset-section {
+  margin-top: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 8%), rgb(255 255 255 / 2%)),
+    rgb(3 13 24 / 16%);
+  overflow: hidden;
+}
+
+.learnset-section > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 12px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.learnset-section > summary::-webkit-details-marker {
+  display: none;
+}
+
+.learnset-section > summary::after {
+  content: "-";
+  flex: 0 0 auto;
+  color: var(--gold);
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.learnset-section:not([open]) > summary::after {
+  content: "+";
+}
+
+.learnset-section .section-title {
+  margin: 10px 0;
+}
+
+.learnset-section-body {
+  padding: 0 10px 10px;
+}
+
+.learnset-section-body .move-list {
+  border-color: rgb(213 239 255 / 12%);
+}
+
 .move-row {
   display: grid;
   grid-template-columns: 64px minmax(220px, 1fr) 96px 72px 64px 64px;
