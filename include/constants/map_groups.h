@@ -102,6 +102,7 @@ enum
     MAP_MT_GOLD_OUTSIDE           = (87 | (0 << 8)),
     MAP_FOGGY_SHORE               = (88 | (0 << 8)),
     MAP_FOGGY_SHORE2              = (89 | (0 << 8)),
+    MAP_BATTLE_FACTORY_GROUNDS    = (90 | (0 << 8)),
 
     // gMapGroup_IndoorNewBark
     MAP_NEW_BARK_TOWN_LAB              = (0 | (1 << 8)),

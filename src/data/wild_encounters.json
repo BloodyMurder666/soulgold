@@ -13607,6 +13607,95 @@
               }
             ]
           }
+        },
+        {
+          "map": "MAP_BATTLE_FACTORY_GROUNDS",
+          "base_label": "gBattleFactoryGrounds",
+          "water_mons": {
+            "encounter_rate": 7,
+            "mons": [
+              {
+                "min_level": 25,
+                "max_level": 30,
+                "species": "SPECIES_TYNAMO"
+              },
+              {
+                "min_level": 25,
+                "max_level": 30,
+                "species": "SPECIES_TYNAMO"
+              },
+              {
+                "min_level": 25,
+                "max_level": 30,
+                "species": "SPECIES_TYNAMO"
+              },
+              {
+                "min_level": 25,
+                "max_level": 30,
+                "species": "SPECIES_CHINCHOU"
+              },
+              {
+                "min_level": 25,
+                "max_level": 30,
+                "species": "SPECIES_CHINCHOU"
+              }
+            ]
+          },
+          "fishing_mons": {
+            "encounter_rate": 30,
+            "mons": [
+              {
+                "min_level": 5,
+                "max_level": 10,
+                "species": "SPECIES_TYNAMO"
+              },
+              {
+                "min_level": 5,
+                "max_level": 10,
+                "species": "SPECIES_CHINCHOU"
+              },
+              {
+                "min_level": 15,
+                "max_level": 30,
+                "species": "SPECIES_TYNAMO"
+              },
+              {
+                "min_level": 15,
+                "max_level": 30,
+                "species": "SPECIES_TYNAMO"
+              },
+              {
+                "min_level": 15,
+                "max_level": 30,
+                "species": "SPECIES_CHINCHOU"
+              },
+              {
+                "min_level": 40,
+                "max_level": 50,
+                "species": "SPECIES_EELEKTRIK"
+              },
+              {
+                "min_level": 40,
+                "max_level": 50,
+                "species": "SPECIES_EELEKTRIK"
+              },
+              {
+                "min_level": 40,
+                "max_level": 50,
+                "species": "SPECIES_LANTURN"
+              },
+              {
+                "min_level": 40,
+                "max_level": 50,
+                "species": "SPECIES_LANTURN"
+              },
+              {
+                "min_level": 40,
+                "max_level": 55,
+                "species": "SPECIES_LANTURN"
+              }
+            ]
+          }
         }
       ]
     },

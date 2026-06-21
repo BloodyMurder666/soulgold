@@ -2277,3 +2277,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/OlivineCity_House4/scripts.inc"
 
 	.include "data/maps/foggyforestDepths/scripts.inc"
+
+	.include "data/maps/BattleFactoryGrounds/scripts.inc"

@@ -1,0 +1,50 @@
+mapscripts BattleFactoryGrounds_MapScripts {}
+
+script FactoryGrounds_CooltrainerF {
+    msgbox("The battles in the Factory are tough!
+            
+            You can't use your own Pokémon,
+            so you must think on your feet.", MSGBOX_NPC)
+}
+
+script FactoryGrounds_Fisher {
+    lock
+    msgbox("Hmm, there's no Magikarps in this pond,
+            only Tynamos and Chinchous...")
+    release
+    end
+}
+
+script FactoryGrounds_Boy {
+    lock
+    faceplayer
+    msgbox("Me and Espurr can converse without
+            speaking! Watch!")
+    applymovement(LOCALID_FACTORY_ESPURR, moves(face_right))
+    waitmovement
+    applymovement(LOCALID_FACTORY_KID, moves(face_left))
+    waitmovement
+    msgbox("...")
+    delay(30)
+    msgbox("...")
+    faceplayer
+    msgbox("Cool, right?")
+    release
+    end
+}
+
+script FactoryGrounds_Espurr {
+    lock
+    faceplayer
+    playmoncry(SPECIES_ESPURR, CRY_MODE_NORMAL)
+    msgbox("Espurr: Essss!")
+    waitmoncry
+    release
+    end
+}
+
+script FactoryGrounds_OldLady {
+    msgbox("I'm not fond of these modern
+            buildings being placed so near
+            our beloved Ecruteak City.", MSGBOX_NPC)
+}

@@ -1580,11 +1580,12 @@
 #define FLAG_MTMORTAR_DEPTHS_ITEM1                  0x928
 #define FLAG_MTMORTAR_DEPTHS_ITEM2                  0x929
 #define FLAG_MTMORTAR_DEPTHS_PUZZLE1SOLVED          0x92A
-#define FLAG_MTMORTAR_DEPTHS_HEATRANPUZZLED         0X92B
-#define FLAG_WRONG_BUTTON_HEATRAN                   0X92C
-#define FLAG_HIDE_HEATRAN                           0X92D
-#define FLAG_TM_SCALD                               0X92E
-#define FLAG_TM_WORK_UP                             0X92F
+#define FLAG_MTMORTAR_DEPTHS_HEATRANPUZZLED         0x92B
+#define FLAG_WRONG_BUTTON_HEATRAN                   0x92C
+#define FLAG_HIDE_HEATRAN                           0x92D
+#define FLAG_TM_SCALD                               0x92E
+#define FLAG_TM_WORK_UP                             0x92F
+#define FLAG_TM_PSYSHOCK                            0x930
 
 #define FLAG_0x1500                                 0x1500
 // Daily Flags

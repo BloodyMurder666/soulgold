@@ -4041,3 +4041,22 @@ const u16 gTilesetPalettes_DesertVillage[][16] =
 };
 
 const u32 gTilesetTiles_DesertVillage[] = INCBIN_U32("data/tilesets/secondary/desert_village/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_JohtoFactory[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/johto_factory/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_factory/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_factory/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_factory/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_factory/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_factory/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_factory/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_factory/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_factory/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_factory/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_factory/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_factory/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/johto_factory/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_JohtoFactory[] = INCBIN_U32("data/tilesets/secondary/johto_factory/tiles.4bpp.lz");
