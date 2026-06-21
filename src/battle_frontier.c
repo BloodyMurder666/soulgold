@@ -21,6 +21,7 @@
 #include "constants/battle_frontier_mons.h"
 
 static void FillTrainerParty(u16 trainerId, u16 firstMonId, u16 monCount);
+static u32 GetFacilityMonPersonality(const struct TrainerMon *fmon);
 
 // EWRAM vars.
 EWRAM_DATA const struct BattleFrontierTrainer *gFacilityTrainers = NULL;
@@ -311,22 +312,30 @@ static void FillTrainerParty(u16 trainerId, u16 firstMonId, u16 monCount)
     }
 }
 
+static u32 GetFacilityMonPersonality(const struct TrainerMon *fmon)
+{
+    u32 personality = Random32();
+
+    if (fmon->gender == TRAINER_MON_MALE)
+        personality = (personality & 0xFFFFFF00) | GeneratePersonalityForGender(MON_MALE, fmon->species);
+    else if (fmon->gender == TRAINER_MON_FEMALE)
+        personality = (personality & 0xFFFFFF00) | GeneratePersonalityForGender(MON_FEMALE, fmon->species);
+
+    ModifyPersonalityForNature(&personality, fmon->nature);
+    return personality;
+}
+
 void CreateFacilityMon(const struct TrainerMon *fmon, u16 level, u8 fixedIV, u32 otID, u32 flags, struct Pokemon *dst)
+{
+    CreateFacilityMonWithPersonality(fmon, level, fixedIV, otID, flags, GetFacilityMonPersonality(fmon), dst);
+}
+
+void CreateFacilityMonWithPersonality(const struct TrainerMon *fmon, u16 level, u8 fixedIV, u32 otID, u32 flags, u32 personality, struct Pokemon *dst)
 {
     u8 ball = (fmon->ball == 0xFF) ? Random() % POKEBALL_COUNT : fmon->ball;
     enum Move move;
-    u32 personality = 0, ability, friendship, j;
+    u32 ability, friendship, j;
 
-    if (fmon->gender == TRAINER_MON_MALE)
-    {
-        personality = GeneratePersonalityForGender(MON_MALE, fmon->species);
-    }
-    else if (fmon->gender == TRAINER_MON_FEMALE)
-    {
-        personality = GeneratePersonalityForGender(MON_FEMALE, fmon->species);
-    }
-
-    ModifyPersonalityForNature(&personality, fmon->nature);
     CreateMonWithIVs(dst, fmon->species, level, personality, OTID_STRUCT_PRESET(otID), fixedIV);
 
     friendship = MAX_FRIENDSHIP;

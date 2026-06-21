@@ -2708,6 +2708,7 @@ void BtlController_HandleStatusIconUpdate(enum BattlerId battler)
     if (!IsBattleSEPlaying(battler))
     {
         struct Pokemon *mon = GetBattlerMon(battler);
+        u32 status = T1_READ_32(&gBattleResources->bufferA[battler][1]);
 
         if (IsControllerSafari(battler))
         {
@@ -2716,11 +2717,11 @@ void BtlController_HandleStatusIconUpdate(enum BattlerId battler)
         }
         else
         {
-            UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], mon, HEALTHBOX_STATUS_ICON);
+            UpdateHealthboxStatusIcon(gHealthboxSpriteIds[battler], status);
             gBattleSpritesDataPtr->healthBoxesData[battler].statusAnimActive = 0;
             gBattlerControllerFuncs[battler] = Controller_WaitForStatusAnimation;
             if (gTestRunnerEnabled && BattlerIsRecorded(battler))
-                TestRunner_Battle_RecordStatus1(battler, GetMonData(GetBattlerMon(battler), MON_DATA_STATUS));
+                TestRunner_Battle_RecordStatus1(battler, status);
         }
     }
 }

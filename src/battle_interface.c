@@ -193,7 +193,7 @@ enum
 static const u8 *GetHealthboxElementGfxPtr(u8);
 static u8 GetHealthboxTextBgColor(u8 healthboxSpriteId);
 static void UpdateHpTextInHealthboxInDoubles(u32 healthboxSpriteId, u32 maxOrCurrent, s16 currHp, s16 maxHp);
-static void UpdateStatusIconInHealthbox(u8);
+static void UpdateStatusIconInHealthbox(u8, u32);
 static void FillHealthboxObject(void *, u32, u32);
 static void CopyShinyHealthboxBgObject(const u8 *, void *, u32);
 
@@ -1216,7 +1216,7 @@ void SwapHpBarsWithHpText(void)
                 {
                     FillSpriteRectColor(gHealthboxSpriteIds[i], 32, 16, 32, 8, GetHealthboxTextBgColor(gHealthboxSpriteIds[i]));
                     FillSpriteRectColor(gSprites[gHealthboxSpriteIds[i]].oam.affineParam, 0, 16, 32, 8, GetHealthboxTextBgColor(gHealthboxSpriteIds[i]));
-                    UpdateStatusIconInHealthbox(gHealthboxSpriteIds[i]);
+                    UpdateStatusIconInHealthbox(gHealthboxSpriteIds[i], GetMonData(mon, MON_DATA_STATUS));
                     UpdateHealthboxAttribute(gHealthboxSpriteIds[i], mon, HEALTHBOX_HEALTH_BAR);
                     CpuCopy32(GetHealthboxElementGfxPtr(HEALTHBOX_GFX_FRAME_END_BAR), (void *)(OBJ_VRAM0 + 0x680 + gSprites[gHealthboxSpriteIds[i]].oam.tileNum * TILE_SIZE_4BPP), 32);
                 }
@@ -1240,7 +1240,7 @@ void SwapHpBarsWithHpText(void)
                 }
                 else // text to bars
                 {
-                    UpdateStatusIconInHealthbox(gHealthboxSpriteIds[i]);
+                    UpdateStatusIconInHealthbox(gHealthboxSpriteIds[i], GetMonData(mon, MON_DATA_STATUS));
                     UpdateHealthboxAttribute(gHealthboxSpriteIds[i], mon, HEALTHBOX_HEALTH_BAR);
                     if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
                         UpdateHealthboxAttribute(gHealthboxSpriteIds[i], mon, HEALTHBOX_NICK);
@@ -1806,19 +1806,18 @@ static void TryAddPokeballIconToHealthbox(u8 healthboxSpriteId, bool8 noStatus)
         CpuFill32(0, (void *)(OBJ_VRAM0 + (gSprites[healthBarSpriteId].oam.tileNum + 8) * TILE_SIZE_4BPP), 32);
 }
 
-static void UpdateStatusIconInHealthbox(u8 healthboxSpriteId)
+static void UpdateStatusIconInHealthbox(u8 healthboxSpriteId, u32 status)
 {
     s32 i;
     enum BattlerId battler;
     u8 healthBarSpriteId;
-    u32 status, pltAdder;
+    u32 pltAdder;
     const u8 *statusGfxPtr;
     s16 tileNumAdder;
     u8 statusPalId;
 
     battler = gSprites[healthboxSpriteId].hMain_Battler;
     healthBarSpriteId = gSprites[healthboxSpriteId].hMain_HealthBarSpriteId;
-    status = GetMonData(GetBattlerMon(battler), MON_DATA_STATUS);
     if (IsOnPlayerSide(battler))
     {
         switch (GetBattlerCoordsIndex(battler))
@@ -1907,6 +1906,11 @@ static void UpdateStatusIconInHealthbox(u8 healthboxSpriteId)
         }
     }
     TryAddPokeballIconToHealthbox(healthboxSpriteId, FALSE);
+}
+
+void UpdateHealthboxStatusIcon(u8 healthboxSpriteId, u32 status)
+{
+    UpdateStatusIconInHealthbox(healthboxSpriteId, status);
 }
 
 static u8 GetStatusIconForBattlerId(u8 statusElementId, enum BattlerId battler)
@@ -2064,7 +2068,7 @@ void UpdateHealthboxAttribute(u8 healthboxSpriteId, struct Pokemon *mon, u8 elem
         if (elementId == HEALTHBOX_NICK || elementId == HEALTHBOX_ALL)
             UpdateNickInHealthbox(healthboxSpriteId, mon);
         if (elementId == HEALTHBOX_STATUS_ICON || elementId == HEALTHBOX_ALL)
-            UpdateStatusIconInHealthbox(healthboxSpriteId);
+            UpdateStatusIconInHealthbox(healthboxSpriteId, GetMonData(mon, MON_DATA_STATUS));
         if (elementId == HEALTHBOX_SAFARI_ALL_TEXT)
             UpdateSafariBallsTextOnHealthbox(healthboxSpriteId);
         if (elementId == HEALTHBOX_SAFARI_ALL_TEXT || elementId == HEALTHBOX_SAFARI_BALLS_TEXT)
@@ -2092,7 +2096,7 @@ void UpdateHealthboxAttribute(u8 healthboxSpriteId, struct Pokemon *mon, u8 elem
         if (elementId == HEALTHBOX_NICK || elementId == HEALTHBOX_ALL)
             UpdateNickInHealthbox(healthboxSpriteId, mon);
         if (elementId == HEALTHBOX_STATUS_ICON || elementId == HEALTHBOX_ALL)
-            UpdateStatusIconInHealthbox(healthboxSpriteId);
+            UpdateStatusIconInHealthbox(healthboxSpriteId, GetMonData(mon, MON_DATA_STATUS));
     }
 }
 

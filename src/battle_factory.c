@@ -2,6 +2,7 @@
 #include "battle.h"
 #include "battle_factory.h"
 #include "battle_factory_screen.h"
+#include "battle_frontier.h"
 #include "event_data.h"
 #include "battle_setup.h"
 #include "overworld.h"
@@ -38,6 +39,7 @@ static void GenerateInitialRentalMons(void);
 static void GetOpponentMostCommonMonType(void);
 static void GetOpponentBattleStyle(void);
 static void RestorePlayerPartyHeldItems(void);
+static void CreateSavedRentalMon(const struct RentalMon *rentalMon, u8 level, struct Pokemon *dst);
 static u16 GetFactoryMonId(enum FrontierLevelMode lvlMode, u8 challengeNum, bool8 useBetterRange);
 static enum FactoryStyle GetMoveBattleStyle(enum Move move);
 
@@ -344,8 +346,7 @@ static void SetPlayerAndOpponentParties(void)
 {
     int i;
     u8 monLevel;
-    u16 monId;
-    u8 ivs;
+    const struct RentalMon *rentalMon;
 
     if (gSaveBlock2Ptr->frontier.lvlMode == FRONTIER_LVL_TENT)
     {
@@ -366,10 +367,8 @@ static void SetPlayerAndOpponentParties(void)
         ZeroPlayerPartyMons();
         for (i = 0; i < FRONTIER_PARTY_SIZE; i++)
         {
-            monId = gSaveBlock2Ptr->frontier.rentalMons[i].monId;
-            ivs = gSaveBlock2Ptr->frontier.rentalMons[i].ivs;
-
-            CreateFacilityMon(&gFacilityTrainerMons[monId], monLevel, ivs, READ_OTID_FROM_SAVE, FLAG_FRONTIER_MON_FACTORY, &gPlayerParty[i]);
+            rentalMon = &gSaveBlock2Ptr->frontier.rentalMons[i];
+            CreateSavedRentalMon(rentalMon, monLevel, &gPlayerParty[i]);
         }
     }
 
@@ -379,12 +378,23 @@ static void SetPlayerAndOpponentParties(void)
     case 2:
         for (i = 0; i < FRONTIER_PARTY_SIZE; i++)
         {
-            monId = gSaveBlock2Ptr->frontier.rentalMons[i + FRONTIER_PARTY_SIZE].monId;
-            ivs = gSaveBlock2Ptr->frontier.rentalMons[i + FRONTIER_PARTY_SIZE].ivs;
-            CreateFacilityMon(&gFacilityTrainerMons[monId], monLevel, ivs, READ_OTID_FROM_SAVE, FLAG_FRONTIER_MON_FACTORY, &gEnemyParty[i]);
+            rentalMon = &gSaveBlock2Ptr->frontier.rentalMons[i + FRONTIER_PARTY_SIZE];
+            CreateSavedRentalMon(rentalMon, monLevel, &gEnemyParty[i]);
         }
         break;
     }
+}
+
+static void CreateSavedRentalMon(const struct RentalMon *rentalMon, u8 level, struct Pokemon *dst)
+{
+    CreateFacilityMonWithPersonality(&gFacilityTrainerMons[rentalMon->monId],
+                                     level,
+                                     rentalMon->ivs,
+                                     READ_OTID_FROM_SAVE,
+                                     FLAG_FRONTIER_MON_FACTORY,
+                                     rentalMon->personality,
+                                     dst);
+    SetMonData(dst, MON_DATA_ABILITY_NUM, &rentalMon->abilityNum);
 }
 
 static void GenerateInitialRentalMons(void)

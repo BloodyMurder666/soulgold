@@ -10873,6 +10873,7 @@ bool32 CanMegaEvolve(enum BattlerId battler)
     // Check if Player has a Mega Ring.
     if (!TESTING
         && (position == B_POSITION_PLAYER_LEFT || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && position == B_POSITION_PLAYER_RIGHT))
+        && !(gBattleTypeFlags & BATTLE_TYPE_FACTORY)
         && !CheckBagHasItem(ITEM_MEGA_RING, 1))
         return FALSE;
 

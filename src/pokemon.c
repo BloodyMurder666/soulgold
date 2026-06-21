@@ -3473,7 +3473,9 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, enum Item item, u8 partyIndex, 
 
                 if (modifyStats)
                 {
-                    dataUnsigned++;
+                    dataUnsigned += 5;
+                    if (dataUnsigned > MAX_PER_STAT_IVS)
+                        dataUnsigned = MAX_PER_STAT_IVS;
                     SetMonData(mon, sGetMonDataIVConstants[temp1], &dataUnsigned);
                     CalculateMonStats(mon);
                 }
