@@ -90,8 +90,9 @@ AzaleaTown_KurtsHouse_EventScript_ReturnFromWell::
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
 	msgbox KurtsHouse_Text_KurtHonoredToMakeBalls, MSGBOX_DEFAULT
 	giveitem ITEM_FAST_BALL
+	setflag FLAG_DAILY_KURT_FREE_BALLS
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
-	msgbox KurtsHouse_Text_KurtBallsFromApricorns, MSGBOX_DEFAULT
+	call KurtMakesBallsDaily
 	closemessage
 	turnobject LOCALID_AZALEA_TOWN_KURT, DIR_NORTH
 	setvar VAR_AZALEA_TOWN_STATE, 4
@@ -108,22 +109,22 @@ AzaleaTown_KurtsHouse_EventScript_Kurt::
 	faceplayer
 	goto_if_eq VAR_AZALEA_TOWN_STATE, 8, AzaleaTown_KurtsHouse_EventScript_KurtGsBall2
 	goto_if_eq VAR_AZALEA_TOWN_STATE, 9, AzaleaTown_KurtsHouse_EventScript_KurtGsBall3
-	msgbox KurtsHouse_Text_KurtAskYouHaveAnApricorn, MSGBOX_DEFAULT
-	closemessage
 	call_if_unset FLAG_CAUGHT_CELEBI, AzaleaTown_KurtsHouse_EventScript_KurtCheckGSBall
-AzaleaTown_KurtsHouse_EventScript_Kurt2::
-	multichoice 20, 0, MULTI_KURT_BALLS, FALSE
-	switch VAR_RESULT
-	case 0, AzaleaTown_KurtsHouse_EventScript_Kurt_Love
-	case 1, AzaleaTown_KurtsHouse_EventScript_Kurt_Lure
-	case 2, AzaleaTown_KurtsHouse_EventScript_Kurt_Friend
-	case 3, AzaleaTown_KurtsHouse_EventScript_Kurt_Heavy
-	case 4, AzaleaTown_KurtsHouse_EventScript_Kurt_Moon
-	case 5, AzaleaTown_KurtsHouse_EventScript_Kurt_Fast
-	case 6, AzaleaTown_KurtsHouse_EventScript_Kurt_Level
-	case 7, AzaleaTown_KurtsHouse_EventScript_KurtCancel
-	case MULTI_B_PRESSED, AzaleaTown_KurtsHouse_EventScript_KurtCancel
-	closemessage
+	goto KurtDaily
+
+	AzaleaTown_KurtsHouse_EventScript_Kurt2::
+		multichoice 20, 0, MULTI_KURT_BALLS, FALSE
+		switch VAR_RESULT
+		case 0, AzaleaTown_KurtsHouse_EventScript_Kurt_Love
+		case 1, AzaleaTown_KurtsHouse_EventScript_Kurt_Lure
+		case 2, AzaleaTown_KurtsHouse_EventScript_Kurt_Friend
+		case 3, AzaleaTown_KurtsHouse_EventScript_Kurt_Heavy
+		case 4, AzaleaTown_KurtsHouse_EventScript_Kurt_Moon
+		case 5, AzaleaTown_KurtsHouse_EventScript_Kurt_Fast
+		case 6, AzaleaTown_KurtsHouse_EventScript_Kurt_Level
+		case 7, AzaleaTown_KurtsHouse_EventScript_KurtCancel
+		case MULTI_B_PRESSED, AzaleaTown_KurtsHouse_EventScript_KurtCancel
+		closemessage
 
 AzaleaTown_KurtsHouse_EventScript_Kurt_Love::
 	closemessage
@@ -518,3 +519,70 @@ KurtsHouse_Text_CelebiStatue:
 	.string "It's a statue of the forest's\n"
 	.string "protector.$"
 `
+
+script KurtMakesBallsDaily {
+	msgbox("I will give you any surplus Poké Balls
+			I create every day, so stop by!")
+	closemessage
+	return
+}
+
+script KurtDaily {
+	if (flag(FLAG_DAILY_KURT_FREE_BALLS)) {
+		msgbox("Come back tomorrow when I have crafted
+				some more.")
+		release
+		end
+	}
+	msgbox("Here's what I got for you today.
+			Stop by tomorrow again for more.")
+	if (var(VAR_KURT_PROFICIENCY) >= 6) {
+		random(16)
+	} else {
+		random(15)
+	}
+	switch (var(VAR_RESULT)) {
+		case 0:
+			giveitem(ITEM_LUXURY_BALL, 5)
+		case 1:
+			giveitem(ITEM_LEVEL_BALL, 5)
+		case 2:
+			giveitem(ITEM_LURE_BALL, 5)
+		case 3:
+			giveitem(ITEM_MOON_BALL, 5)
+		case 4:
+			giveitem(ITEM_FRIEND_BALL, 5)
+		case 5:
+			giveitem(ITEM_LOVE_BALL, 5)
+		case 6:
+			giveitem(ITEM_FAST_BALL, 5)
+		case 7:
+			giveitem(ITEM_HEAVY_BALL, 5)
+		case 8:
+			giveitem(ITEM_DREAM_BALL, 5)
+		case 9:
+			giveitem(ITEM_SAFARI_BALL, 5)
+		case 10:
+			giveitem(ITEM_SPORT_BALL, 5)
+		case 11:
+			giveitem(ITEM_PARK_BALL, 5)
+		case 12:
+			giveitem(ITEM_BEAST_BALL, 5)
+		case 13:
+			giveitem(ITEM_CHERISH_BALL, 5)
+		case 14:
+			giveitem(ITEM_STRANGE_BALL, 5)
+		case 15:
+			msgbox("This once is a masterpiece!
+
+					I can hardly believe I managed
+					to craft it.")
+			giveitem(ITEM_MASTER_BALL, 1)
+	}
+	setflag(FLAG_DAILY_KURT_FREE_BALLS)
+	if (var(VAR_KURT_PROFICIENCY) < 255) {
+    	addvar(VAR_KURT_PROFICIENCY, 1)
+	}
+	release
+	end
+}

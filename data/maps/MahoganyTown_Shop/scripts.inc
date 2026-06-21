@@ -205,10 +205,12 @@ MahoganyTown_Shop_EventScript_GrannyShop::
 
 	.align 2
 MahoganyTown_Pokemart:
+	.2byte ITEM_TM_PAYBACK
+	.2byte ITEM_TM_SUBSTITUTE
 	.2byte ITEM_METAL_COAT
 	.2byte ITEM_DRAGON_SCALE
 	.2byte ITEM_KINGS_ROCK
-	.2byte ITEM_UP_GRADE
+	.2byte ITEM_DUBIOUS_DISC
 	.2byte ITEM_NONE
 	release
 	end

@@ -171,7 +171,7 @@ Route34_EventScript_Sign3::
 # 86 "data/maps/Route34/scripts.pory"
 Route34_Text_YoungsterSamuel_Seen:
 # 87 "data/maps/Route34/scripts.pory"
-	.string "Hey! I'm looking for Mankey!$"
+	.string "Hey! I'm looking for Makuhita!$"
 # 88 "data/maps/Route34/scripts.pory"
 
 # 89 "data/maps/Route34/scripts.pory"
@@ -521,23 +521,23 @@ Route34_RivalEncounter_8:
 	createfieldmugshotrival
 # 288 "data/maps/Route34/scripts.pory"
 	msgbox Route34_RivalEncounter_Text_7
-# 295 "data/maps/Route34/scripts.pory"
+# 293 "data/maps/Route34/scripts.pory"
 	closemessage
-# 296 "data/maps/Route34/scripts.pory"
+# 294 "data/maps/Route34/scripts.pory"
 	applymovement LOCALID_ROUTE34_RIVAL, Route34_RivalEncounter_Movement_1
+# 295 "data/maps/Route34/scripts.pory"
+	waitmovement 0
+# 296 "data/maps/Route34/scripts.pory"
+	applymovement LOCALID_ROUTE34_DAYCAREMAN, Route34_RivalEncounter_Movement_2
 # 297 "data/maps/Route34/scripts.pory"
 	waitmovement 0
 # 298 "data/maps/Route34/scripts.pory"
-	applymovement LOCALID_ROUTE34_DAYCAREMAN, Route34_RivalEncounter_Movement_2
-# 299 "data/maps/Route34/scripts.pory"
-	waitmovement 0
-# 300 "data/maps/Route34/scripts.pory"
 	removeobject LOCALID_ROUTE34_RIVAL
-# 301 "data/maps/Route34/scripts.pory"
+# 299 "data/maps/Route34/scripts.pory"
 	fadedefaultbgm
-# 302 "data/maps/Route34/scripts.pory"
+# 300 "data/maps/Route34/scripts.pory"
 	setvar VAR_RIVAL_STATE, 6
-# 303 "data/maps/Route34/scripts.pory"
+# 301 "data/maps/Route34/scripts.pory"
 	release
 	end
 
@@ -567,23 +567,23 @@ Route34_RivalEncounter_Movement_0:
 	face_down
 	step_end
 
-# 296 "data/maps/Route34/scripts.pory"
+# 294 "data/maps/Route34/scripts.pory"
 Route34_RivalEncounter_Movement_1:
-# 296 "data/maps/Route34/scripts.pory"
+# 294 "data/maps/Route34/scripts.pory"
 	walk_up
-# 296 "data/maps/Route34/scripts.pory"
+# 294 "data/maps/Route34/scripts.pory"
 	walk_up
-# 296 "data/maps/Route34/scripts.pory"
+# 294 "data/maps/Route34/scripts.pory"
 	walk_up
-# 296 "data/maps/Route34/scripts.pory"
+# 294 "data/maps/Route34/scripts.pory"
 	walk_up
-# 296 "data/maps/Route34/scripts.pory"
+# 294 "data/maps/Route34/scripts.pory"
 	walk_up
 	step_end
 
-# 298 "data/maps/Route34/scripts.pory"
+# 296 "data/maps/Route34/scripts.pory"
 Route34_RivalEncounter_Movement_2:
-# 298 "data/maps/Route34/scripts.pory"
+# 296 "data/maps/Route34/scripts.pory"
 	face_left
 	step_end
 
@@ -604,7 +604,7 @@ Route34_RivalEncounter_Text_1:
 
 Route34_RivalEncounter_Text_2:
 # 256 "data/maps/Route34/scripts.pory"
-	.string "Well that sucks... When grandma hears\n"
+	.string "How... When grandma hears\n"
 	.string "of this, I'll never hear the end of it...\p"
 	.string "Let me just heal your party quick since\n"
 	.string "I was the one who started this.$"
@@ -633,6 +633,4 @@ Route34_RivalEncounter_Text_7:
 	.string "Now then, I can't keep losing to you\n"
 	.string "every time, so I'm going to start\l"
 	.string "training seriously! \p"
-	.string "Next time we\n"
-	.string "meet, you will face an all-new me!\l"
 	.string "Look forward to a complete beatdown!$"

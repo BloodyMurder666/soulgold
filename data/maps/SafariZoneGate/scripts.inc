@@ -281,98 +281,100 @@ SafariZoneGate_Pokemart_Incenses2:
 # 141 "data/maps/SafariZoneGate/scripts.pory"
 	.2byte ITEM_TM_GIGA_IMPACT
 # 142 "data/maps/SafariZoneGate/scripts.pory"
-	.2byte ITEM_SEA_INCENSE
+	.2byte ITEM_CRACKED_POT
 # 143 "data/maps/SafariZoneGate/scripts.pory"
-	.2byte ITEM_LAX_INCENSE
+	.2byte ITEM_CHIPPED_POT
 # 144 "data/maps/SafariZoneGate/scripts.pory"
-	.2byte ITEM_NONE
+	.2byte ITEM_UPGRADE
 # 145 "data/maps/SafariZoneGate/scripts.pory"
-	release
-# 146 "data/maps/SafariZoneGate/scripts.pory"
-	end
-# 147 "data/maps/SafariZoneGate/scripts.pory"
-
-# 148 "data/maps/SafariZoneGate/scripts.pory"
-SafariZoneGate_EventScript_VitaminGuru::
-# 149 "data/maps/SafariZoneGate/scripts.pory"
-	lock
-# 150 "data/maps/SafariZoneGate/scripts.pory"
-	faceplayer
-# 151 "data/maps/SafariZoneGate/scripts.pory"
-	message SafariZoneGate_Text_VitaminGuruSellWhatYouNeed
-# 152 "data/maps/SafariZoneGate/scripts.pory"
-	waitmessage
-# 153 "data/maps/SafariZoneGate/scripts.pory"
-	pokemart SafariZoneGateMart2
-# 154 "data/maps/SafariZoneGate/scripts.pory"
-	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
-# 155 "data/maps/SafariZoneGate/scripts.pory"
-	release
-# 156 "data/maps/SafariZoneGate/scripts.pory"
-	end
-# 157 "data/maps/SafariZoneGate/scripts.pory"
-
-# 158 "data/maps/SafariZoneGate/scripts.pory"
-	.align 2
-# 159 "data/maps/SafariZoneGate/scripts.pory"
-SafariZoneGate_Pokemart_VitaminGuru:
-# 160 "data/maps/SafariZoneGate/scripts.pory"
-	.2byte ITEM_PROTEIN
-# 161 "data/maps/SafariZoneGate/scripts.pory"
-	.2byte ITEM_IRON
-# 162 "data/maps/SafariZoneGate/scripts.pory"
-	.2byte ITEM_CARBOS
-# 163 "data/maps/SafariZoneGate/scripts.pory"
-	.2byte ITEM_ZINC
-# 164 "data/maps/SafariZoneGate/scripts.pory"
-	.2byte ITEM_CALCIUM
-# 165 "data/maps/SafariZoneGate/scripts.pory"
-	.2byte ITEM_HP_UP
-# 166 "data/maps/SafariZoneGate/scripts.pory"
 	.2byte ITEM_NONE
-# 167 "data/maps/SafariZoneGate/scripts.pory"
+# 146 "data/maps/SafariZoneGate/scripts.pory"
 	release
-# 168 "data/maps/SafariZoneGate/scripts.pory"
+# 147 "data/maps/SafariZoneGate/scripts.pory"
 	end
-# 169 "data/maps/SafariZoneGate/scripts.pory"
+# 148 "data/maps/SafariZoneGate/scripts.pory"
 
+# 149 "data/maps/SafariZoneGate/scripts.pory"
+SafariZoneGate_EventScript_VitaminGuru::
+# 150 "data/maps/SafariZoneGate/scripts.pory"
+	lock
+# 151 "data/maps/SafariZoneGate/scripts.pory"
+	faceplayer
+# 152 "data/maps/SafariZoneGate/scripts.pory"
+	message SafariZoneGate_Text_VitaminGuruSellWhatYouNeed
+# 153 "data/maps/SafariZoneGate/scripts.pory"
+	waitmessage
+# 154 "data/maps/SafariZoneGate/scripts.pory"
+	pokemart SafariZoneGateMart2
+# 155 "data/maps/SafariZoneGate/scripts.pory"
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+# 156 "data/maps/SafariZoneGate/scripts.pory"
+	release
+# 157 "data/maps/SafariZoneGate/scripts.pory"
+	end
+# 158 "data/maps/SafariZoneGate/scripts.pory"
+
+# 159 "data/maps/SafariZoneGate/scripts.pory"
+	.align 2
+# 160 "data/maps/SafariZoneGate/scripts.pory"
+SafariZoneGate_Pokemart_VitaminGuru:
+# 161 "data/maps/SafariZoneGate/scripts.pory"
+	.2byte ITEM_PROTEIN
+# 162 "data/maps/SafariZoneGate/scripts.pory"
+	.2byte ITEM_IRON
+# 163 "data/maps/SafariZoneGate/scripts.pory"
+	.2byte ITEM_CARBOS
+# 164 "data/maps/SafariZoneGate/scripts.pory"
+	.2byte ITEM_ZINC
+# 165 "data/maps/SafariZoneGate/scripts.pory"
+	.2byte ITEM_CALCIUM
+# 166 "data/maps/SafariZoneGate/scripts.pory"
+	.2byte ITEM_HP_UP
+# 167 "data/maps/SafariZoneGate/scripts.pory"
+	.2byte ITEM_NONE
+# 168 "data/maps/SafariZoneGate/scripts.pory"
+	release
+# 169 "data/maps/SafariZoneGate/scripts.pory"
+	end
 # 170 "data/maps/SafariZoneGate/scripts.pory"
 
 # 171 "data/maps/SafariZoneGate/scripts.pory"
-SafariZoneGate_Text_VitaminGuruSellWhatYouNeed:
+
 # 172 "data/maps/SafariZoneGate/scripts.pory"
-	.string "I'm the rare item Guru! I'll go for it and\n"
+SafariZoneGate_Text_VitaminGuruSellWhatYouNeed:
 # 173 "data/maps/SafariZoneGate/scripts.pory"
+	.string "I'm the rare item Guru! I'll go for it and\n"
+# 174 "data/maps/SafariZoneGate/scripts.pory"
 	.string "sell you what you need!$"
 
 	.align 2
-# 178 "data/maps/SafariZoneGate/scripts.pory"
-SafariZoneGateMart1:
 # 179 "data/maps/SafariZoneGate/scripts.pory"
-	.2byte ITEM_TAMATO_BERRY
+SafariZoneGateMart1:
 # 180 "data/maps/SafariZoneGate/scripts.pory"
-	.2byte ITEM_GREPA_BERRY
+	.2byte ITEM_TAMATO_BERRY
 # 181 "data/maps/SafariZoneGate/scripts.pory"
-	.2byte ITEM_HONDEW_BERRY
+	.2byte ITEM_GREPA_BERRY
 # 182 "data/maps/SafariZoneGate/scripts.pory"
-	.2byte ITEM_QUALOT_BERRY
+	.2byte ITEM_HONDEW_BERRY
 # 183 "data/maps/SafariZoneGate/scripts.pory"
-	.2byte ITEM_KELPSY_BERRY
+	.2byte ITEM_QUALOT_BERRY
 # 184 "data/maps/SafariZoneGate/scripts.pory"
-	.2byte ITEM_POMEG_BERRY
+	.2byte ITEM_KELPSY_BERRY
 # 185 "data/maps/SafariZoneGate/scripts.pory"
+	.2byte ITEM_POMEG_BERRY
+# 186 "data/maps/SafariZoneGate/scripts.pory"
 	.2byte ITEM_LINKING_CORD
 	.2byte ITEM_NONE
 
 	.align 2
-# 188 "data/maps/SafariZoneGate/scripts.pory"
-SafariZoneGateMart2:
 # 189 "data/maps/SafariZoneGate/scripts.pory"
-	.2byte ITEM_ABILITY_CAPSULE
+SafariZoneGateMart2:
 # 190 "data/maps/SafariZoneGate/scripts.pory"
-	.2byte ITEM_FIRE_STONE
+	.2byte ITEM_ABILITY_CAPSULE
 # 191 "data/maps/SafariZoneGate/scripts.pory"
-	.2byte ITEM_WATER_STONE
+	.2byte ITEM_FIRE_STONE
 # 192 "data/maps/SafariZoneGate/scripts.pory"
+	.2byte ITEM_WATER_STONE
+# 193 "data/maps/SafariZoneGate/scripts.pory"
 	.2byte ITEM_LEAF_STONE
 	.2byte ITEM_NONE

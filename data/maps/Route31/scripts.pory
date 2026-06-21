@@ -187,7 +187,13 @@ script Route31_Expert {
 				takes a hit.
 				
 				It might prove useful in the 
-				coming battles.")
+				coming battles.
+				
+				Held items similar to this can
+				be activated once per battle.
+
+				They will be restored after the
+				battle is over.")
         release
         end
     }
@@ -218,7 +224,13 @@ script Route31_Expert {
 				takes a hit.
 				
 				It might prove useful in the 
-				coming battles.")
+				coming battles.
+				
+				Held items similar to this can
+				be activated once per battle.
+				
+				They will be restored after the
+				battle is over.")
     }
     release
     end

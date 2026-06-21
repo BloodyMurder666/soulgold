@@ -1587,6 +1587,8 @@
 #define FLAG_TM_WORK_UP                             0x92F
 #define FLAG_TM_PSYSHOCK                            0x930
 #define FLAG_ILEX_BECKONING_BELL                    0x931
+#define FLAG_TM_FALSE_SWIPE                         0x932
+#define FLAG_UNUSED_0x933                           0x933
 
 #define FLAG_0x1500                                 0x1500
 // Daily Flags
@@ -1619,7 +1621,7 @@
 #define FLAG_ROUTE38_GROTTO                         (DAILY_FLAGS_START + 0x16)
 #define FLAG_CANDY_KITAKAMI                         (DAILY_FLAGS_START + 0x17)
 #define FLAG_VAJRA_DESERT_WEST_GROTTO               (DAILY_FLAGS_START + 0x18)
-#define FLAG_UNUSED_0x939                           (DAILY_FLAGS_START + 0x19) // Unused Flag
+#define FLAG_DAILY_KURT_FREE_BALLS                  (DAILY_FLAGS_START + 0x19)
 #define FLAG_UNUSED_0x93A                           (DAILY_FLAGS_START + 0x1A) // Unused Flag
 #define FLAG_UNUSED_0x93B                           (DAILY_FLAGS_START + 0x1B) // Unused Flag
 #define FLAG_UNUSED_0x93C                           (DAILY_FLAGS_START + 0x1C) // Unused Flag
