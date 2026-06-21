@@ -1138,6 +1138,8 @@ FactoryBpMart:
 	.2byte ITEM_ABILITY_CAPSULE
 # 573 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
 	.2byte ITEM_ABILITY_PATCH
+# 574 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
+	.2byte ITEM_BECKONING_BELL
 	.2byte ITEM_NONE
 
 FactoryBpLady_Text_0:

@@ -1586,6 +1586,7 @@
 #define FLAG_TM_SCALD                               0x92E
 #define FLAG_TM_WORK_UP                             0x92F
 #define FLAG_TM_PSYSHOCK                            0x930
+#define FLAG_ILEX_BECKONING_BELL                    0x931
 
 #define FLAG_0x1500                                 0x1500
 // Daily Flags

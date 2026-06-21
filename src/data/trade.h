@@ -988,7 +988,7 @@ static const struct InGameTrade sIngameTrades[] =
     {
         .nickname = _("Fluff"),
         .species = SPECIES_PAWMI,
-        .ivs = {31, 31, 31, 31, 31, 31},
+        .ivs = {24, 24, 24, 24, 24, 24},
         .abilityNum = 2,
         .otId = 48926,
         .conditions = {30, 30, 30, 30, 30},

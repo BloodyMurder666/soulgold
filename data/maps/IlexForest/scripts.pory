@@ -1,13 +1,4 @@
 raw `
-.set LOCALID_ILEX_FOREST_FARFETCHD_1, 3
-.set LOCALID_ILEX_FOREST_FARFETCHD_2, 31
-.set LOCALID_ILEX_FOREST_FARFETCHD_3, 33
-.set LOCALID_ILEX_FOREST_FARFETCHD_4, 32
-.set LOCALID_ILEX_FOREST_CELEBI, 7
-.set LOCALID_ILEX_FOREST_KURT, 34
-.set LOCALID_ILEX_FOREST_KIMONO, 36
-.set LOCALID_ILEX_FOREST_BUTTERFREE, 37
-.set LOCALID_ILEX_FOREST_SECOND_CELEBI, 38
 
 IlexForest_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, IlexForest_OnTransition
@@ -382,6 +373,7 @@ IlexForest_EventScript_Kimono::
 	applymovement LOCALID_ILEX_FOREST_KIMONO, IlexForest_Movement_Kimono_Girl2
 	waitmovement 0
 	waitmovement 0
+	savebgm MUS_DUMMY
 	fadedefaultbgm
 	setvar VAR_ILEX_FOREST_FARFETCHD, 4
 	setflag FLAG_HIDE_ILEX_FOREST_KIMONO
@@ -725,8 +717,8 @@ MoveTutor_Text_HeadbuttDeclined:
 	.string "Let's butt heads!$"
 
 MoveTutor_Text_HeadbuttTaught:
-	.string "Rattle trees with Headbutt.\n"
-	.string "Sometimes, sleeping Pokémon fall out.$"
+	.string "Rattle enemies with Headbutt.\n"
+	.string "Sometimes, they will flinch.$"
 
 IlexForest_Text_Lass:
 	.string "Did something happen to the\n"
@@ -825,4 +817,23 @@ script Ilex_Larvesta {
 	legendaryencounter(SPECIES_LARVESTA, 30, LOCALID_ILEX_LARVESTA, FLAG_HIDE_LARVESTA)
 	release
     end
+}
+
+script Ilex_LittleBoy {
+	lock
+	faceplayer
+	if (flag(FLAG_ILEX_BECKONING_BELL)) {
+		msgbox("Beckoning Bell renews
+				Hidden Grottos once.")
+		release
+		end
+	}
+	msgbox("Hidden grotto didn't contain what you
+			wanted? Try using this.")
+	giveitem(ITEM_BECKONING_BELL)
+	setflag(FLAG_ILEX_BECKONING_BELL)
+	msgbox("Beckoning Bell renews
+			Hidden Grottos once.")
+	release
+	end
 }

@@ -314,7 +314,7 @@ GoldenrodMagnetTrainStation_Text_GentlemanPresident:
     .string "My dream was to build a train that\n"
     .string "is faster than any Pokémon.\p"
     .string "It really brings Johto much closer\n"
-    .string "to Kanto.$"
+    .string "to the other regions.$"
 
 GoldenrodCity_TrainStation_Text_Boy:
 	.string "You brought the Magnet Train Pass,\n"
