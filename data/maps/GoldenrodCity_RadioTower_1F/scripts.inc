@@ -217,7 +217,8 @@ RadioTower1F_Text_PokegearRadio:
     .string "a radio!$"
 
 RadioTower1F_Text_TuneIn:
-    .string "Please tune in to our radio shows.$"
+    .string "Please tune in to our radio shows\n"
+	.string "between 6PM and 12AM!.$"
 
 RadioTower1F_Text_WrongAnswer:
     .string "Oh, dear.\n"

@@ -241,8 +241,9 @@ static const u8 sTidalBellDesc[] = _(
     "soothing sound.");
 
 static const u8 sRadioDesc[] = _(
-    "A shiny new radio\n"
-    "that plays music.");
+    "A shiny new radio.\n"
+    "Can be used to hear\n"
+    "music or shows.");
 
 static const u8 sBlackMirrorDesc[] = _(
     "An eerie mirror\n"

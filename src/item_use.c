@@ -6,6 +6,7 @@
 #include "battle_pyramid_bag.h"
 #include "berry.h"
 #include "berry_powder.h"
+#include "buenas_password.h"
 #include "candy_jar.h"
 #include "bike.h"
 #include "coins.h"
@@ -1853,6 +1854,13 @@ static void DisplayRadioMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnField
     }
     else
     {
+        if (BuenasPassword_IsBroadcastTime())
+        {
+            DisplayCannotUseItemMessage(taskId, isUsingRegisteredKeyItemOnField, BuenasPassword_GetRadioText());
+            //PlayBGM(MUS_HG_RADIO_BUENA);
+            return;
+        }
+
         static const u8 *const sOakRadioMessages[] =
         {
             gText_OakTalk_Clefairy,
