@@ -155,7 +155,7 @@ GoldenrodDeptStore_Text_Girl:
 # 78 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
 	.string "A kind lady gave me Return\n"
 # 79 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
-    .string "last Sunday!$"
+    .string "last evening!$"
 # 80 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
 
 # 81 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"

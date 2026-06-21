@@ -935,7 +935,7 @@ AzaleaTownVulpix::
 
 AzaleaTownKid_Text_0:
 # 460 "data/maps/AzaleaTown/scripts.pory"
-	.string "That vulpix keeps taunting me from up\n"
+	.string "That Vulpix keeps taunting me from up\n"
 	.string "there... If only I could use Rock Climb.$"
 
 AzaleaTownVulpix_Text_0:

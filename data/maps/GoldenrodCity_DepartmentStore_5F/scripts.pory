@@ -76,7 +76,7 @@ GoldenrodDeptStore_Text_5FPokefanM:
 
 GoldenrodDeptStore_Text_Girl:
 	.string "A kind lady gave me Return\n"
-    .string "last Sunday!$"
+    .string "last evening!$"
 
 GoldenrodDeptStore_Text_5FDirectory:
     .string "Customize Your Pokémon\p"

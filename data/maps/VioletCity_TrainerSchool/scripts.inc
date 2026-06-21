@@ -436,6 +436,12 @@ VioletTrainerSchool_FalknerRematch_2:
 	goto VioletTrainerSchool_FalknerRematch_1
 
 
+VioletCity_TrainerSchool_Kid::
+# 238 "data/maps/VioletCity_TrainerSchool/scripts.pory"
+	msgbox VioletCity_TrainerSchool_Kid_Text_0
+	return
+
+
 VioletTrainerSchool_FalknerRematch_Text_0:
 # 206 "data/maps/VioletCity_TrainerSchool/scripts.pory"
 	.string "Nice to see you here too, {PLAYER}.\p"
@@ -464,3 +470,8 @@ VioletTrainerSchool_FalknerRematch_Text_3:
 	.string "Time for me to head back to the gym.\n"
 	.string "I hope we'll get a chance to have\l"
 	.string "another battle soon.$"
+
+VioletCity_TrainerSchool_Kid_Text_0:
+# 238 "data/maps/VioletCity_TrainerSchool/scripts.pory"
+	.string "You can simulate trading for evolving\n"
+	.string "Pokémon with Linking Cord!$"

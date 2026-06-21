@@ -54,8 +54,8 @@ GoldenrodDeptStore_Text_4FGameboyKid:
     .string "Pokémon:\l"
     .string "Machoke, Kadabra, Haunter and,\l"
     .string "um, Graveler,\l"
-    .string "but they all evolve through\l"
-    .string "level up.$"
+    .string "but they all evolve by using\l"
+    .string "Linking Cord.$"
 
 GoldenrodDeptStore_Text_4FDirectory:
     .string "Let Us Pump Up Your Pokémon!\p"

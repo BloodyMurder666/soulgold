@@ -233,3 +233,8 @@ script VioletTrainerSchool_FalknerRematch {
     release
     end
 }
+
+script VioletCity_TrainerSchool_Kid {
+	msgbox("You can simulate trading for evolving
+			Pokémon with Linking Cord!")
+}
