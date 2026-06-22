@@ -8,6 +8,7 @@
 #include "decompress.h"
 #include "caps.h"
 #include "dexnav.h"
+#include "bug_contest.h"
 #include "event_data.h"
 #include "event_object_movement.h"
 #include "event_scripts.h"
@@ -2435,7 +2436,7 @@ static void Task_DexNavMain(u8 taskId)
         // check selection is valid. Play sound if invalid
         species = DexNavGetSpecies();
 
-        if (species != SPECIES_NONE)
+        if ((species != SPECIES_NONE) && !FlagGet(FLAG_SYS_BUG_CONTEST_MODE))
         {
             PrintSearchableSpecies(species);
             //PlaySE(SE_DEX_SEARCH);
@@ -2452,7 +2453,7 @@ static void Task_DexNavMain(u8 taskId)
     else if (JOY_NEW(A_BUTTON))
     {
         species = DexNavGetSpecies();
-        if (species == SPECIES_NONE)
+        if ((species == SPECIES_NONE) || FlagGet(FLAG_SYS_BUG_CONTEST_MODE))
         {
             PlaySE(SE_FAILURE);
         }

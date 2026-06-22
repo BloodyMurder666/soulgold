@@ -700,10 +700,20 @@ static void CB2_EndScriptedWildBattle(void)
 
     if (IsPlayerDefeated(gBattleOutcome) == TRUE)
     {
-        if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE)
+        if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE) 
+        {
             SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
-        else
+        } 
+        else if (GetBugContestFlag()) 
+        {
+            SetMainCallback2(CB2_BugContestWhiteOut);
+        }
+            
+        else 
+        {
             SetMainCallback2(CB2_WhiteOut);
+        }
+            
     }
     else
     {
