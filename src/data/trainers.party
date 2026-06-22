@@ -4648,16 +4648,16 @@ AI: Smart Trainer
 Mugshot: Yellow
 
 Audino @ Salac Berry
-Level: 26
+Level: 25
 Ability: Regenerator
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
-- Reflect
+- Lucky Chant
 - Mega Punch
 - Misty Terrain
 - Draining Kiss
 
-Girafarig @ Twisted Spoon
-Level: 27
+Girafarig
+Level: 26
 Ability: Inner Focus
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 - Headbutt
@@ -4666,13 +4666,13 @@ IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 - Trailblaze
 
 Miltank @ Sitrus Berry
-Level: 28
+Level: 27
 Ability: Thick Fat
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 - Rollout
 - Attract
 - Stomp
-- Milk Drink
+- Heal Bell
 
 === TRAINER_WHITNEY_1 ===
 Name: Whitney
@@ -4681,7 +4681,7 @@ Pic: Leader Whitney
 Gender: Female
 Music: Female
 Double Battle: Yes
-AI: Smart Trainer
+AI: Basic Trainer
 Mugshot: Yellow
 Difficulty: Hard
 
