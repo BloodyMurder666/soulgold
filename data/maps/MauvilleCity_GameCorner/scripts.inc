@@ -2925,7 +2925,7 @@ MauvilleCity_GameCorner_Text_Derby_1:
 # 1463 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 MauvilleCity_GameCorner_Text_Derby_2:
 # 1464 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	.string "It's not all about Condition.\p"
+	.string "It's not all about condition.\p"
 # 1465 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	.string "At the end of the day, it's\n"
 # 1466 "data/maps/MauvilleCity_GameCorner/scripts.pory"
@@ -2949,7 +2949,7 @@ MauvilleCity_GameCorner_Text_Fisherman:
 # 1475 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 MauvilleCity_GameCorner_Text_Gachalady:
 # 1476 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	.string "The Lottery Machines have odds,\n"
+	.string "The lottery machines have odds,\n"
 # 1477 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	.string "but nothing is guaranteed.\p"
 # 1478 "data/maps/MauvilleCity_GameCorner/scripts.pory"
