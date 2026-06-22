@@ -6102,7 +6102,7 @@ static void TryEvolvePokemon(void)
 
             if (species != SPECIES_NONE)
             {
-                FreeAllWindowBuffers();
+                CloseMainBattleScreen();
                 gBattleMainFunc = WaitForEvoSceneToFinish;
                 GetEvolutionTargetSpecies(&gPlayerParty[i], mode, evolutionItemArg, NULL, &canStopEvo, DO_EVO);
                 EvolutionScene(&gPlayerParty[i], species, canStopEvo, i);

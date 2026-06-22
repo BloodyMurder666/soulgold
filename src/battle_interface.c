@@ -897,7 +897,10 @@ static u8 GetHealthboxTextBgColor(u8 healthboxSpriteId)
 {
     enum BattlerId battler = gSprites[healthboxSpriteId].hMain_Battler;
 
-    if (GetMonData(GetBattlerMon(battler), MON_DATA_IS_SHINY))
+    if (!IsOnPlayerSide(battler)
+        && GetBattlerCoordsIndex(battler) == BATTLE_COORDS_SINGLES
+        && !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_SAFARI | BATTLE_TYPE_WALLY_TUTORIAL | BATTLE_TYPE_FRONTIER))
+        && GetMonData(GetBattlerMon(battler), MON_DATA_IS_SHINY))
     {
         return HEALTHBOX_SHINY_BG_INDEX;
     }
@@ -949,9 +952,6 @@ static void PrintHpOnHealthbox(u32 spriteId, s16 currHp, s16 maxHp, u32 bgColor,
 {
     u32 width;
     u8 text[2 * HP_MAX_DIGITS + 2], *txtPtr;
-    const union TextColor textColor = bgColor == HEALTHBOX_SHINY_HP_TEXT_BG_INDEX
-                                    ? sHealthBoxTextColorHPShiny
-                                    : sHealthBoxTextColorHP;
 
     // To fit 4 digit HP values we need to modify a bit the way hp is printed on Healthbox.
     // HP_RIGHT_SPRITE_CHARS chars can fit on the right healthbox, the rest goes to the left one
@@ -973,9 +973,9 @@ static void PrintHpOnHealthbox(u32 spriteId, s16 currHp, s16 maxHp, u32 bgColor,
 
     width = GetStringWidth(HP_FONT, text, -1) + GetFontAttribute(HP_FONT, FONTATTR_LETTER_SPACING);
     if (width < 32)
-        AddSpriteTextPrinterParameterized6(spriteId2, HP_FONT, 32 - width, yOffset + 4, 0, 0, textColor, 0, text);
+        AddSpriteTextPrinterParameterized6(spriteId2, HP_FONT, 32 - width, yOffset + 4, 0, 0, sHealthBoxTextColorHP, 0, text);
     else
-        AddSpriteTextPrinterParameterized6(spriteId, HP_FONT, 64 - (width - 32), yOffset + 4, 0, 0, textColor, 0, text);
+        AddSpriteTextPrinterParameterized6(spriteId, HP_FONT, 64 - (width - 32), yOffset + 4, 0, 0, sHealthBoxTextColorHP, 0, text);
 
     gSprites[spriteId].data[1] = savedValue1;
     gSprites[spriteId2].data[1] = savedValue2;
@@ -1070,11 +1070,8 @@ void UpdateHpTextInHealthbox(u32 healthboxSpriteId, u32 maxOrCurrent, s16 currHp
     {
         if (IsOnPlayerSide(battler)) // Player
         {
-            PrintHpOnHealthbox(healthboxSpriteId, currHp, maxHp,
-                               GetMonData(GetBattlerMon(battler), MON_DATA_IS_SHINY)
-                               ? HEALTHBOX_SHINY_HP_TEXT_BG_INDEX
-                               : HEALTHBOX_HP_TEXT_BG_INDEX,
-                               16);
+            PrintHpOnHealthbox(healthboxSpriteId, currHp, maxHp, 3, 16);
+
         }
         else // Opponent
         {
@@ -1095,11 +1092,8 @@ static void UpdateHpTextInHealthboxInDoubles(u32 healthboxSpriteId, u32 maxOrCur
     {
         if (gBattleSpritesDataPtr->battlerData[gSprites[healthboxSpriteId].data[6]].hpNumbersNoBars) // don't print text if only bars are visible
         {
-            PrintHpOnHealthbox(healthboxSpriteId, currHp, maxHp,
-                               GetMonData(GetBattlerMon(battler), MON_DATA_IS_SHINY)
-                               ? HEALTHBOX_SHINY_HP_TEXT_BG_INDEX
-                               : HEALTHBOX_HP_TEXT_BG_INDEX,
-                               8);
+            PrintHpOnHealthbox(healthboxSpriteId, currHp, maxHp, 3, 8);
+
             // Clears the end of the healthbar gfx.
             CpuCopy32(GetHealthboxElementGfxPtr(HEALTHBOX_GFX_FRAME_END),
                           (void *)(OBJ_VRAM0 + 0x680) + (gSprites[healthboxSpriteId].oam.tileNum * TILE_SIZE_4BPP),
@@ -2207,9 +2201,6 @@ static void MoveBattleBarGraphically(enum BattlerId battler, u8 whichBar)
         break;
     case EXP_BAR:
     {
-        u8 expBarElementId = GetMonData(GetBattlerMon(battler), MON_DATA_IS_SHINY)
-                           ? HEALTHBOX_GFX_EXP_BAR_SHINY
-                           : HEALTHBOX_GFX_12;
 
         CalcBarFilledPixels(gBattleSpritesDataPtr->battleBars[battler].maxValue,
                     gBattleSpritesDataPtr->battleBars[battler].oldValue,
@@ -2225,10 +2216,10 @@ static void MoveBattleBarGraphically(enum BattlerId battler, u8 whichBar)
         for (i = 0; i < 8; i++)
         {
             if (i < 4)
-                CpuCopy32(GetHealthboxElementGfxPtr(expBarElementId) + array[i] * 32,
+                CpuCopy32(GetHealthboxElementGfxPtr(HEALTHBOX_GFX_12) + array[i] * 32,
                           (void *)(OBJ_VRAM0 + (gSprites[gBattleSpritesDataPtr->battleBars[battler].healthboxSpriteId].oam.tileNum + 0x24 + i) * TILE_SIZE_4BPP), 32);
             else
-                CpuCopy32(GetHealthboxElementGfxPtr(expBarElementId) + array[i] * 32,
+                CpuCopy32(GetHealthboxElementGfxPtr(HEALTHBOX_GFX_12) + array[i] * 32,
                           (void *)(OBJ_VRAM0 + 0xB80 + (i + gSprites[gBattleSpritesDataPtr->battleBars[battler].healthboxSpriteId].oam.tileNum) * TILE_SIZE_4BPP), 32);
         }
         break;
