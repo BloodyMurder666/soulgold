@@ -389,8 +389,7 @@ void CreateIndicatorSprite(enum BattlerId battler)
     x = sIndicatorPositions[position][0];
     y += sIndicatorPositions[position][1];
 
-    if (GetSpriteTileStartByTag(sBattler_GimmickSpritesheets[battler].tag) == TAG_NONE)
-        LoadSpriteSheet(&sBattler_GimmickSpritesheets[battler]);
+    LoadSpriteSheet(&sBattler_GimmickSpritesheets[battler]);
     spriteId = CreateSprite(&(sSpriteTemplate_BattlerIndicators[battler]), 0, y, 0);
     gBattleStruct->gimmick.indicatorSpriteId[battler] = spriteId;
     gSprites[spriteId].tBattler = battler;
