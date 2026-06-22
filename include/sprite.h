@@ -313,6 +313,7 @@ s16 AllocSpriteTiles(u16 tileCount);
 void FreeSpriteTilesByTag(u16 tag);
 void FreeSpriteTileRanges(void);
 u16 GetSpriteTileStartByTag(u16 tag);
+u16 GetSpriteTileCountByTag(u16 tag);
 u16 GetSpriteTileTagByTileStart(u16 start);
 void FreeAllSpritePalettes(void);
 u32 LoadSpritePalette(const struct SpritePalette *palette);

@@ -145,10 +145,17 @@ static bool8 ShouldUseShinyHealthbox(enum BattlerId battler)
 static void LoadOrOverwriteCompressedSpriteSheet(const struct CompressedSpriteSheet *spriteSheet)
 {
     u16 tileStart = GetSpriteTileStartByTag(spriteSheet->tag);
+    u16 tileCount = spriteSheet->size / TILE_SIZE_4BPP;
 
     if (tileStart == 0xFFFF)
     {
         LoadCompressedSpriteSheet(spriteSheet);
+    }
+    else if (GetSpriteTileCountByTag(spriteSheet->tag) < tileCount)
+    {
+        // Singles and doubles healthboxes reuse tags but not sizes. Copying a
+        // larger sheet into a smaller allocation corrupts neighboring OBJ tiles.
+        return;
     }
     else
     {

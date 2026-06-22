@@ -556,6 +556,18 @@ static const struct SpriteTemplate sStatusSummaryBallsSpriteTemplates[2] =
 static const u8 sEmptyWhiteText_GrayHighlight[] = __("{COLOR WHITE}{BACKGROUND DARK_GRAY}{ACCENT DARK_GRAY}              ");
 static const u8 sEmptyWhiteText_TransparentHighlight[] = __("{COLOR WHITE}{BACKGROUND TRANSPARENT}{ACCENT TRANSPARENT}              ");
 
+static void LoadCompressedSpriteSheetIfNotLoaded(const struct CompressedSpriteSheet *spriteSheet)
+{
+    if (GetSpriteTileStartByTag(spriteSheet->tag) == TAG_NONE)
+        LoadCompressedSpriteSheetUsingHeap(spriteSheet);
+}
+
+static void LoadSpriteSheetIfNotLoaded(const struct SpriteSheet *spriteSheet)
+{
+    if (GetSpriteTileStartByTag(spriteSheet->tag) == TAG_NONE)
+        LoadSpriteSheet(spriteSheet);
+}
+
 enum
 {
     PAL_STATUS_PSN,
@@ -1301,8 +1313,8 @@ u8 CreatePartyStatusSummarySprites(enum BattlerId battler, struct HpAndStatus *p
         bar_data0 = 5;
     }
 
-    LoadCompressedSpriteSheetUsingHeap(&sStatusSummaryBarSpriteSheet);
-    LoadSpriteSheet(&sStatusSummaryBallsSpriteSheet);
+    LoadCompressedSpriteSheetIfNotLoaded(&sStatusSummaryBarSpriteSheet);
+    LoadSpriteSheetIfNotLoaded(&sStatusSummaryBallsSpriteSheet);
     LoadSpritePalette(&sStatusSummaryBarSpritePal);
     LoadSpritePalette(&sStatusSummaryBallsSpritePal);
 
@@ -3410,6 +3422,6 @@ void ArrowsChangeColorLastBallCycle(bool32 showArrows)
 
 void CategoryIcons_LoadSpritesGfx(void)
 {
-    LoadCompressedSpriteSheet(&gSpriteSheet_CategoryIcons);
+    LoadCompressedSpriteSheetIfNotLoaded(&gSpriteSheet_CategoryIcons);
     LoadSpritePalette(&gSpritePal_CategoryIcons);
 }
