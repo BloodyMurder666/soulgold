@@ -1540,7 +1540,7 @@
 #define FLAG_HIDE_RIVAL_VIOLETGATEHOUSE             (SYSTEM_FLAGS + 0xA2)
 #define FLAG_PICKED_ZIGZAGOON                       (SYSTEM_FLAGS + 0xA3)
 #define FLAG_PICKED_RATTATA                         (SYSTEM_FLAGS + 0xA4)
-#define FLAG_CHIMECHITE                             (SYSTEM_FLAGS + 0xA5)
+#define FLAG_VIOLET_NUGGET                             (SYSTEM_FLAGS + 0xA5)
 #define FLAG_HIDE_ROUTE32_RIVAL                     (SYSTEM_FLAGS + 0xA6)
 #define FLAG_HIDE_TUESCANY                          (SYSTEM_FLAGS + 0xA7)
 #define FLAG_HIDE_ROUTE34_RIVAL                     (SYSTEM_FLAGS + 0xA8)
