@@ -1615,41 +1615,29 @@ Ilex_HiddenGrotto_2:
 	goto Ilex_HiddenGrotto_1
 
 
-Ilex_Larvesta::
+Ilex_LittleBoy::
 # 815 "data/maps/IlexForest/scripts.pory"
 	lock
 # 816 "data/maps/IlexForest/scripts.pory"
 	faceplayer
 # 817 "data/maps/IlexForest/scripts.pory"
-	legendaryencounter SPECIES_LARVESTA, 30, LOCALID_ILEX_LARVESTA, FLAG_HIDE_LARVESTA
-# 818 "data/maps/IlexForest/scripts.pory"
-	release
-	end
-
-
-Ilex_LittleBoy::
-# 823 "data/maps/IlexForest/scripts.pory"
-	lock
-# 824 "data/maps/IlexForest/scripts.pory"
-	faceplayer
-# 825 "data/maps/IlexForest/scripts.pory"
 	goto_if_set FLAG_ILEX_BECKONING_BELL, Ilex_LittleBoy_2
-# 831 "data/maps/IlexForest/scripts.pory"
+# 823 "data/maps/IlexForest/scripts.pory"
 	msgbox Ilex_LittleBoy_Text_1
-# 833 "data/maps/IlexForest/scripts.pory"
+# 825 "data/maps/IlexForest/scripts.pory"
 	giveitem ITEM_BECKONING_BELL
-# 834 "data/maps/IlexForest/scripts.pory"
+# 826 "data/maps/IlexForest/scripts.pory"
 	setflag FLAG_ILEX_BECKONING_BELL
-# 835 "data/maps/IlexForest/scripts.pory"
+# 827 "data/maps/IlexForest/scripts.pory"
 	msgbox Ilex_LittleBoy_Text_0
-# 837 "data/maps/IlexForest/scripts.pory"
+# 829 "data/maps/IlexForest/scripts.pory"
 	release
 	end
 
 Ilex_LittleBoy_2:
-# 826 "data/maps/IlexForest/scripts.pory"
+# 818 "data/maps/IlexForest/scripts.pory"
 	msgbox Ilex_LittleBoy_Text_0
-# 828 "data/maps/IlexForest/scripts.pory"
+# 820 "data/maps/IlexForest/scripts.pory"
 	release
 	end
 
@@ -1660,11 +1648,11 @@ Ilex_HiddenGrotto_Text_0:
 	.string "trees. Enter?$"
 
 Ilex_LittleBoy_Text_0:
-# 826 "data/maps/IlexForest/scripts.pory"
+# 818 "data/maps/IlexForest/scripts.pory"
 	.string "Beckoning Bell renews\n"
 	.string "Hidden Grottos once.$"
 
 Ilex_LittleBoy_Text_1:
-# 831 "data/maps/IlexForest/scripts.pory"
+# 823 "data/maps/IlexForest/scripts.pory"
 	.string "Hidden grotto didn't contain what you\n"
 	.string "wanted? Try using this.$"

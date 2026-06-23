@@ -2279,3 +2279,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/foggyforestDepths/scripts.inc"
 
 	.include "data/maps/BattleFactoryGrounds/scripts.inc"
+
+	.include "data/maps/DeepIlexForest/scripts.inc"

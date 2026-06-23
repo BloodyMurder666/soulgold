@@ -360,8 +360,8 @@
 #define NUM_WONDER_CARD_FLAGS                (1 + FLAG_WONDER_CARD_UNUSED_17 - FLAG_RECEIVED_AURORA_TICKET)
 
 #define FLAG_MIRAGE_TOWER_VISIBLE            0x14E
-#define FLAG_CHOSE_ROOT_FOSSIL               0x14F
-#define FLAG_CHOSE_CLAW_FOSSIL               0x150
+#define FLAG_TM_GRASS_KNOT                   0x14F
+#define FLAG_HIDE_GRASSTITE                  0x150
 #define FLAG_RECEIVED_POWDER_JAR             0x151
 
 #define FLAG_CHOSEN_MULTI_BATTLE_NPC_PARTNER 0x152

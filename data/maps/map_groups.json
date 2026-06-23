@@ -564,7 +564,8 @@
     "MtMortar_Depths_1",
     "MtMortar_Depths_HeatranRoom",
     "FoggyForest",
-    "foggyforestDepths"
+    "foggyforestDepths",
+    "DeepIlexForest"
   ],
   "gMapGroup_JohtoDiveMaps": [
     "CherrygroveUnderwater"

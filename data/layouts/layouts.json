@@ -5386,7 +5386,7 @@
       "name": "IlexForest_Layout",
       "width": 82,
       "height": 73,
-      "primary_tileset": "gTileset_Johto_South",
+      "primary_tileset": "gTileset_Johto_NorthWest",
       "secondary_tileset": "gTileset_IlexForest",
       "border_filepath": "data/layouts/IlexForest/border.bin",
       "blockdata_filepath": "data/layouts/IlexForest/map.bin"
@@ -9726,6 +9726,16 @@
       "secondary_tileset": "gTileset_JohtoFactory",
       "border_filepath": "data/layouts/BattleFactoryGrounds/border.bin",
       "blockdata_filepath": "data/layouts/BattleFactoryGrounds/map.bin"
+    },
+    {
+      "id": "LAYOUT_DEEP_ILEX_FOREST",
+      "name": "DeepIlexForest_Layout",
+      "width": 35,
+      "height": 39,
+      "primary_tileset": "gTileset_Johto_NorthWest",
+      "secondary_tileset": "gTileset_IlexForest",
+      "border_filepath": "data/layouts/DeepIlexForest/border.bin",
+      "blockdata_filepath": "data/layouts/DeepIlexForest/map.bin"
     }
   ]
 }

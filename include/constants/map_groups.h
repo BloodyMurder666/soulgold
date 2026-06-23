@@ -541,6 +541,7 @@ enum
     MAP_MT_MORTAR_DEPTHS_HEATRAN_ROOM = (13 | (25 << 8)),
     MAP_FOGGY_FOREST                  = (14 | (25 << 8)),
     MAP_FOGGYFOREST_DEPTHS            = (15 | (25 << 8)),
+    MAP_DEEP_ILEX_FOREST              = (16 | (25 << 8)),
 
     // gMapGroup_JohtoDiveMaps
     MAP_CHERRYGROVE_UNDERWATER = (0 | (26 << 8)),

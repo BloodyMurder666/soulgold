@@ -24642,7 +24642,7 @@ const u16 gMonPalette_TyphlosionMega[] = INCBIN_U16("graphics/pokemon/typhlosion
 #endif //P_FAMILY_TOGEDEMARU
 
 #if P_FAMILY_MIMIKYU
-    const u32 gMonFrontPic_MimikyuDisguised[] = INCBIN_U32("graphics/pokemon/mimikyu/front.4bpp.smol");
+    const u32 gMonFrontPic_MimikyuDisguised[] = INCBIN_U32("graphics/pokemon/mimikyu/anim_front.4bpp.smol");
     const u16 gMonPalette_MimikyuDisguised[] = INCBIN_U16("graphics/pokemon/mimikyu/normal.gbapal");
     const u32 gMonBackPic_MimikyuDisguised[] = INCBIN_U32("graphics/pokemon/mimikyu/back.4bpp.smol");
     const u16 gMonShinyPalette_MimikyuDisguised[] = INCBIN_U16("graphics/pokemon/mimikyu/shiny.gbapal");
