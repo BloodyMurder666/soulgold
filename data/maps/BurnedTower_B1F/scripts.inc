@@ -112,6 +112,7 @@ BurnedTower_B1F_EventScript_ReleaseBeasts::
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
 	applymovement LOCALID_BURNEDTOWER2_EUSINE, BurnedTower_B1F_Movement_EusineEnter
 	waitmovement 0
+	createfieldmugshot MUGSHOT_EUSINE
 	msgbox BurnedTowerB1FEusineText, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_BURNEDTOWER2_EUSINE, BurnedTower_B1F_Movement_EusineLeave

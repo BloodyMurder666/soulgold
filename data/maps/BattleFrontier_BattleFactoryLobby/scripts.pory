@@ -61,7 +61,10 @@ BattleFrontier_BattleFactoryLobby_EventScript_GiveBattlePoints::
 	factory_save 0
 	playse SE_SAVE
 	waitse
-	goto BattleFrontier_BattleFactoryLobby_EventScript_AskRecordBattle
+	msgbox BattleFrontier_BattleFactoryLobby_Text_LookForwardToNextVisit, MSGBOX_DEFAULT
+	closemessage
+	setvar VAR_TEMP_CHALLENGE_STATUS, 255
+	releaseall
 	end
 
 BattleFrontier_BattleFactoryLobby_EventScript_LostChallenge::

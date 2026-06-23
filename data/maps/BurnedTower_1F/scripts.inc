@@ -17,7 +17,7 @@ BurnedTower_1F_OnLoad::
 	end
 
 BurnedTower_1F_MapScript_CreateHole::
-	setmetatile 16, 12, 0x37E, FALSE
+	setmetatile 16, 12, 0x4FE, FALSE
 	end
 
 BurnedTower_1F_OnFrame::
@@ -31,6 +31,7 @@ BurnedTower_1F_EventScript_MeetEusine::
 	delay 60
 	applymovement LOCALID_BURNED_TOWER_EUSINE, BurnedTower_Movement_Eusine1
 	waitmovement 0
+	createfieldmugshot MUGSHOT_EUSINE
 	msgbox BurnedTower_1FEusineIntroText, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_BURNED_TOWER_EUSINE, BurnedTower_Movement_Eusine2
@@ -101,11 +102,13 @@ BurnedTower_1F_EventScript_Silver::
 	applymovement LOCALID_BURNED_TOWER_SILVER, Common_Movement_WalkLeft1
 	waitmovement 0
 	waitmovement 0
+	createfieldmugshot MUGSHOT_SILVER
 	msgbox BurnedTowerSilver_BeforeText, MSGBOX_DEFAULT
 	call_if_eq VAR_STARTER_MON, 0, BurnedTower_1F_Silver_Battle_Cyndaquil
 	call_if_eq VAR_STARTER_MON, 1, BurnedTower_1F_Silver_Battle_Totodile
 	call_if_eq VAR_STARTER_MON, 2, BurnedTower_1F_Silver_Battle_Chikorita
 	playbgm MUS_HG_RIVAL_EXIT, TRUE
+	createfieldmugshot MUGSHOT_SILVER
 	msgbox BurnedTowerSilver_AfterText1, MSGBOX_DEFAULT
 	closemessage
 	setvar VAR_0x8004, 1  @ vertical pan
@@ -115,7 +118,7 @@ BurnedTower_1F_EventScript_Silver::
 	special ShakeCamera
 	waitstate
 	playse SE_CLICK
-	setmetatile 16, 12, 0x37E, FALSE
+	setmetatile 16, 12, 0x4FE, FALSE
 	special DrawWholeMapView
 	waitse
 	delay 60
@@ -123,8 +126,10 @@ BurnedTower_1F_EventScript_Silver::
 	removeobject OBJ_EVENT_ID_PLAYER
 	playse SE_FALL
 	delay 60
+	createfieldmugshot MUGSHOT_SILVER
 	msgbox BurnedTowerSilver_AfterText2, MSGBOX_AUTOCLOSE
 	waitmessage
+	removefieldmugshot
 	warphole MAP_BURNED_TOWER_B1F
 	setvar VAR_ECRUTEAK_CITY_STATE, 3
 	waitstate

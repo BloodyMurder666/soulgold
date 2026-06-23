@@ -9325,7 +9325,7 @@ const struct TrainerMon gBattleFrontierMons[NUM_FRONTIER_MONS] = {
     },
     [FRONTIER_MON_MALAMAR_4] = {
         .species = SPECIES_MALAMAR,
-        .moves = {MOVE_KNOCK_OFF, MOVE_SUPERPOWER, MOVE_HAPPY_HOUR, MOVE_PROTECT},
+        .moves = {MOVE_KNOCK_OFF, MOVE_SUPERPOWER, MOVE_POISON_JAB, MOVE_PROTECT},
         .heldItem = ITEM_LIFE_ORB,
         .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 0, 31),
         .ev = TRAINER_PARTY_EVS(4, 252, 0, 0, 0, 252),
@@ -10045,7 +10045,7 @@ const struct TrainerMon gBattleFrontierMons[NUM_FRONTIER_MONS] = {
     },
     [FRONTIER_MON_LYCANROC_DUSK_1] = {
         .species = SPECIES_LYCANROC_DUSK,
-        .moves = {MOVE_ACCELEROCK, MOVE_CLOSE_COMBAT, MOVE_PSYCHIC_FANGS, MOVE_HAPPY_HOUR},
+        .moves = {MOVE_ACCELEROCK, MOVE_CLOSE_COMBAT, MOVE_PSYCHIC_FANGS, MOVE_FIRE_PUNCH},
         .heldItem = ITEM_LIFE_ORB,
         .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 0, 31),
         .ev = TRAINER_PARTY_EVS(4, 252, 0, 252, 0, 0),
@@ -14491,7 +14491,7 @@ const struct TrainerMon gBattleFrontierMons[NUM_FRONTIER_MONS] = {
     },
     [FRONTIER_MON_JIRACHI_2] = {
         .species = SPECIES_JIRACHI,
-        .moves = {MOVE_STORED_POWER, MOVE_FLASH_CANNON, MOVE_THUNDERBOLT, MOVE_HAPPY_HOUR},
+        .moves = {MOVE_STORED_POWER, MOVE_FLASH_CANNON, MOVE_THUNDERBOLT, MOVE_CALM_MIND},
         .heldItem = ITEM_LIFE_ORB,
         .iv = TRAINER_PARTY_IVS(31, 0, 31, 31, 31, 31),
         .ev = TRAINER_PARTY_EVS(4, 0, 0, 252, 252, 0),

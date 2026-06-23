@@ -4610,7 +4610,7 @@ static void Cmd_getexp(void)
                 calculatedExp = (calculatedExp * 150) / 100;
 
             if (CheckBagHasItem(ITEM_CANDY_JAR, 1))
-                GiveCandyJarExp(calculatedExp / 40);
+                GiveCandyJarExp(calculatedExp * 5 / 10);
 
             if (B_SPLIT_EXP < GEN_6)
             {

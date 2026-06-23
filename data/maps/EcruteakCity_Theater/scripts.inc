@@ -41,13 +41,18 @@ EcruteakCity_Theater_EventScript_RocketEventTrigger::
 	special SpawnCameraObject
 	applymovement OBJ_EVENT_ID_CAMERA, EcruteakCity_Theater_Movement_CameraPanUp
 	waitmovement 0
+	createfieldmugshot MUGSHOT_ROCKET_GRUNT_M
 	msgbox EcruteakCity_Theater_Text_Rocket1, MSGBOX_DEFAULT
 	closemessage
+	createfieldmugshot MUGSHOT_KIMONO_GIRL
 	msgbox EcruteakCity_Theater_Text_KimonoRocket1, MSGBOX_DEFAULT
 	closemessage
+	createfieldmugshot MUGSHOT_ROCKET_GRUNT_M
 	msgbox EcruteakCity_Theater_Text_Rocket2, MSGBOX_DEFAULT
+	removefieldmugshot
 	applymovement LOCALID_ECRUTEAK_ZUKI, EcruteakCity_Theater_Movement_KimonoGirlMoveBack
 	waitmovement 0
+	createfieldmugshot MUGSHOT_ROCKET_GRUNT_M
 	msgbox EcruteakCity_Theater_Text_Rocket3, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_ECRUTEAK_ROCKET, EcruteakCity_Theater_Movement_RocketDance

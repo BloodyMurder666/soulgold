@@ -3292,34 +3292,30 @@ Class: Rival
 Pic: Silver
 Gender: Male
 Music: Silver
-Items: Super Potion
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Blue
 
 Haunter
-Level: 29
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 31
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 Pawniard
-Level: 30
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 31
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 Staravia
-Level: 30
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 32
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 Weepinbell
-Level: 30
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 31
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 Croconaw
-Level: 31
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Bite
-- Ice Punch
-- Bubble Beam
-- Mud Slap
+Level: 33
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
+
 
 === TRAINER_RIVAL_TOTODILE_4 ===
 Name: {RIVAL}
@@ -4185,34 +4181,29 @@ Class: Rival
 Pic: Silver
 Gender: Male
 Music: Silver
-Items: Super Potion
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Blue
 
 Haunter
-Level: 29
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 31
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 Pawniard
-Level: 30
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 31
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 Staravia
-Level: 30
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 32
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 Lampent
-Level: 30
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 32
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 Bayleef
-Level: 31
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
-- Mega Drain
-- Razor Leaf
-- Fairy Wind
-- Leech Seed
+Level: 32
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 === TRAINER_RIVAL_CHIKORITA_2 ===
 Name: {RIVAL}
@@ -11380,34 +11371,29 @@ Class: Rival
 Pic: Silver
 Gender: Male
 Music: Silver
-Items: Super Potion
 Double Battle: No
 AI: Smart Trainer
 Mugshot: Blue
 
 Haunter
-Level: 29
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 30
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 Pawniard
 Level: 30
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 Staravia
-Level: 30
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 31
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 Clodsire
 Level: 30
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 Quilava
-Level: 31
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
-- Flame Wheel
-- Dig
-- Quick Attack
-- Sunny Day
+Level: 32
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 === TRAINER_RIVAL_CHIKORITA_6 ===
 Name: {RIVAL}
