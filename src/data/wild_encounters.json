@@ -2663,7 +2663,7 @@
               {
                 "min_level": 12,
                 "max_level": 14,
-                "species": "SPECIES_PONYTA"
+                "species": "SPECIES_SKIDDO"
               },
               {
                 "min_level": 13,
@@ -2678,7 +2678,7 @@
               {
                 "min_level": 13,
                 "max_level": 15,
-                "species": "SPECIES_PONYTA"
+                "species": "SPECIES_SKIDDO"
               },
               {
                 "min_level": 14,
@@ -2817,7 +2817,7 @@
               {
                 "min_level": 14,
                 "max_level": 14,
-                "species": "SPECIES_PONYTA_GALAR"
+                "species": "SPECIES_SKIDDO"
               },
               {
                 "min_level": 13,
@@ -2832,7 +2832,7 @@
               {
                 "min_level": 14,
                 "max_level": 14,
-                "species": "SPECIES_PONYTA_GALAR"
+                "species": "SPECIES_SKIDDO"
               },
               {
                 "min_level": 13,
@@ -8928,9 +8928,9 @@
                 "species": "SPECIES_CENTISKORCH"
               },
               {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_CHIKORITA"
+                "min_level": 45,
+                "max_level": 55,
+                "species": "SPECIES_GOGOAT"
               },
               {
                 "min_level": 45,
@@ -8938,9 +8938,9 @@
                 "species": "SPECIES_CENTISKORCH"
               },
               {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_CHIKORITA"
+                "min_level": 45,
+                "max_level": 55,
+                "species": "SPECIES_GOGOAT"
               }
             ]
           },
