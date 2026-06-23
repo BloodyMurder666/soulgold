@@ -3463,6 +3463,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .baseSpeed     = 40,
         .baseSpAttack  = 54,
         .baseSpDefense = 35,
+        .itemRare = ITEM_THROAT_SPRAY,
         .types = MON_TYPES(TYPE_ELECTRIC, TYPE_POISON),
         .catchRate = 75,
         .expYield = 48,
