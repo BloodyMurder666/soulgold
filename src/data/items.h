@@ -3260,6 +3260,7 @@ const struct ItemInfo gItemsInfo[] =
         .pocket = POCKET_ITEMS,
         .sortType = ITEM_TYPE_SELLABLE,
         .heldSlot = 0,
+        .bpCost = 8,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 30,
@@ -17401,6 +17402,7 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Beckoning Bell"),
         .price = 3500,
         .holdEffectParam = 100,
+        .bpCost = 5,
         .description = COMPOUND_STRING(
             "An ornate bell that\n"
             "renews hidden\n"
