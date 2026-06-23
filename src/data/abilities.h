@@ -3764,7 +3764,7 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .name = _("Reactive"),
         .description = COMPOUND_STRING("Reacts to super hits."),
         .longDescription = COMPOUND_STRING("Moves gain +1 priority if\n"
-                                           "a foe chose a super\n"
+                                           "the foe chooses a super\n"
                                            "effective attack."),
         .aiRating = 5,
     },
