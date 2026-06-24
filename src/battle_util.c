@@ -7556,16 +7556,36 @@ enum HoldEffect GetBattlerItemHoldEffect(enum BattlerId battler, enum Item item)
 {
     if (item == ITEM_ENIGMA_BERRY_E_READER)
         return gEnigmaBerries[battler].holdEffectParam;
+    else if (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress)
+    {
+        for (u32 i = 0; i < MAX_MON_ITEMS; i++)
+        {
+            if (gAiLogicData->items[battler][i] == item)
+                return gAiLogicData->holdEffects[battler][i];
+        }
+    }
     else
         return GetItemHoldEffect(item);
+
+    return GetItemHoldEffect(item);
 }
 
 u32 GetBattlerItemHoldEffectParam(enum BattlerId battler, enum Item item)
 {
     if (item == ITEM_ENIGMA_BERRY_E_READER)
         return gEnigmaBerries[battler].holdEffectParam;
+    else if (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress)
+    {
+        for (u32 i = 0; i < MAX_MON_ITEMS; i++)
+        {
+            if (gAiLogicData->items[battler][i] == item)
+                return gAiLogicData->holdEffectParams[battler][i];
+        }
+    }
     else
         return GetItemHoldEffectParam(item);
+
+    return GetItemHoldEffectParam(item);
 }
 
 bool32 BattlerHasBerry(enum BattlerId battler)
@@ -13518,10 +13538,48 @@ u32 BattlerHasInnate(enum BattlerId battlerId, enum Ability ability)
     return SpeciesHasInnateAtLevel(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].level); 
 }
 
+static inline bool32 AiBattlerHasCachedHoldEffect(enum BattlerId battlerId, enum HoldEffect holdEffect)
+{
+    for (u32 i = 0; i < MAX_MON_ITEMS; i++)
+    {
+        if (gAiLogicData->holdEffects[battlerId][i] == holdEffect)
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
+static inline u32 AiCachedBattlerTraitSlot(enum BattlerId battlerId, enum Ability ability)
+{
+    bool32 hasAbilityShield = AiBattlerHasCachedHoldEffect(battlerId, HOLD_EFFECT_ABILITY_SHIELD);
+
+    if (gAiLogicData->abilities[battlerId] == ability)
+    {
+        if (CanBreakThroughAbility(gBattlerAttacker, battlerId, ability, hasAbilityShield, FALSE))
+            return 0;
+        return 1;
+    }
+
+    for (u32 i = 0; i < MAX_MON_INNATES; i++)
+    {
+        if (gAiLogicData->innates[battlerId][i] == ability)
+        {
+            if (CanBreakThroughAbility(gBattlerAttacker, battlerId, ability, hasAbilityShield, FALSE))
+                return 0;
+            return i + 2;
+        }
+    }
+
+    return 0;
+}
+
 //Returns the trait slot number of the given ability. Starts at 1 for the primary Ability and returns 0 if the ability is not found. Use for individual checks.
 u32 BattlerHasTrait(enum BattlerId battlerId, enum Ability ability) 
 {
     u32 traitNum = 0;
+
+    if (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress)
+        return AiCachedBattlerTraitSlot(battlerId, ability);
 
     if (GetBattlerAbility(battlerId) == ability)
         traitNum = 1;
@@ -13643,7 +13701,12 @@ bool32 BattlerHasHeldItemEffectInternal(enum BattlerId battler, enum HoldEffect 
     
     for (u32 i = 0; i < MAX_MON_ITEMS; i++)
     {
-        if((GetItemHoldEffect(gBattleMons[battler].items[i]) == holdEffect))
+        if (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress)
+        {
+            if (gAiLogicData->holdEffects[battler][i] == holdEffect)
+                return TRUE;
+        }
+        else if((GetItemHoldEffect(gBattleMons[battler].items[i]) == holdEffect))
             return TRUE;
     }
        return FALSE;
@@ -13663,7 +13726,12 @@ bool32 BattlerHasHeldItem(enum BattlerId battler, enum Item item, bool32 checkNe
     {
         for (u32 i = 0; i < MAX_MON_ITEMS; i++)
         {
-            if((gBattleMons[battler].items[i] != ITEM_NONE))
+            if (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress)
+            {
+                if (gAiLogicData->items[battler][i] != ITEM_NONE)
+                    return FALSE;
+            }
+            else if((gBattleMons[battler].items[i] != ITEM_NONE))
                 return FALSE;
         }
         return TRUE;
@@ -13681,7 +13749,12 @@ bool32 BattlerHasHeldItem(enum BattlerId battler, enum Item item, bool32 checkNe
     
     for (u32 i = 0; i < MAX_MON_ITEMS; i++)
     {
-        if((gBattleMons[battler].items[i] == item))
+        if (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress)
+        {
+            if (gAiLogicData->items[battler][i] == item)
+                return TRUE;
+        }
+        else if((gBattleMons[battler].items[i] == item))
             return TRUE;
     }
        return FALSE;
@@ -13710,10 +13783,18 @@ u32 GetBattlerHeldItemWithEffect(enum BattlerId battler, enum HoldEffect holdEff
 
     for (u32 i = 0; i < MAX_MON_ITEMS; i++)
     {
-        item = gBattleMons[battler].items[i];
-        
-        if(GetItemHoldEffect(item) == holdEffect)
-            return item;
+        if (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress)
+        {
+            if (gAiLogicData->holdEffects[battler][i] == holdEffect)
+                return gAiLogicData->items[battler][i];
+        }
+        else
+        {
+            item = gBattleMons[battler].items[i];
+
+            if(GetItemHoldEffect(item) == holdEffect)
+                return item;
+        }
     }
     return ITEM_NONE;
 }
@@ -13739,9 +13820,20 @@ u32 GetBattlerHeldItemSlotWithEffect(enum BattlerId battler, enum HoldEffect hol
             return slot;
     }
 
+    if(battler >= MAX_BATTLERS_COUNT)
+    {
+        DebugPrintf("Invalid Battler: %d", battler);
+        return slot;
+    }
+
     for (u32 i = 0; i < MAX_MON_ITEMS; i++)
     {
-        if(GetItemHoldEffect(gBattleMons[battler].items[i]) == holdEffect)
+        if (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress)
+        {
+            if (gAiLogicData->holdEffects[battler][i] == holdEffect)
+                slot = i;
+        }
+        else if(GetItemHoldEffect(gBattleMons[battler].items[i]) == holdEffect)
             slot = i;
     }
     return slot;
@@ -13766,6 +13858,9 @@ u32 GetSlotHeldItem(enum BattlerId battler, u32 slot, bool32 checkNegating)
         return ITEM_NONE;
     }
 
+    if (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress)
+        return gAiLogicData->items[battler][slot];
+
     return gBattleMons[battler].items[slot];
 }
 
@@ -13788,6 +13883,9 @@ u32 GetSlotHeldItemEffect(enum BattlerId battler, u32 slot, bool32 checkNegating
         return ITEM_NONE;
     }
 
+    if (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress)
+        return gAiLogicData->holdEffects[battler][slot];
+
     return GetItemHoldEffect(gBattleMons[battler].items[slot]);
 }
 
@@ -13809,15 +13907,14 @@ u32 GetHeldItemSlot(enum BattlerId battler, enum Item itemId, bool32 checkNegati
             return slot;
     }
 
-    if(battler >= MAX_BATTLERS_COUNT)
-    {
-        DebugPrintf("Invalid Battler: %d", battler);
-        return slot;
-    }
-
     for (u32 i = 0; i < MAX_MON_ITEMS; i++)
     {
-        if(gBattleMons[battler].items[i] == itemId) 
+        if (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress)
+        {
+            if (gAiLogicData->items[battler][i] == itemId)
+                slot = i;
+        }
+        else if(gBattleMons[battler].items[i] == itemId)
             slot = i;
     }
     return slot;

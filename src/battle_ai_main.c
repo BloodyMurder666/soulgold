@@ -642,8 +642,13 @@ void RecordStatusMoves(enum BattlerId battler)
 void SetBattlerAiData(enum BattlerId battler, struct AiLogicData *aiData)
 {
     enum Item item;
+    bool32 aiCalcInProgress = gAiLogicData->aiCalcInProgress;
 
+    gAiLogicData->aiCalcInProgress = FALSE;
     aiData->abilities[battler] = AI_DecideKnownAbilityForTurn(battler);
+    for (u32 i = 0; i < MAX_MON_INNATES; i++)
+        aiData->innates[battler][i] = GetBattlerTrait(battler, i + 1, FALSE);
+
     for (u32 i = 0; i < MAX_MON_ITEMS; i++)
     {
         item = aiData->items[battler][i] = gBattleMons[battler].items[i];
@@ -654,6 +659,7 @@ void SetBattlerAiData(enum BattlerId battler, struct AiLogicData *aiData)
     aiData->hpPercents[battler] = GetHealthPercentage(battler);
     aiData->moveLimitations[battler] = CheckMoveLimitations(battler, 0, MOVE_LIMITATIONS_ALL);
     aiData->speedStats[battler] = GetBattlerTotalSpeedStat(battler);
+    gAiLogicData->aiCalcInProgress = aiCalcInProgress;
 
     if (IsAiBattlerAssumingStab(battler))
         RecordMovesBasedOnStab(battler);
@@ -781,7 +787,9 @@ void SetAiLogicDataForTurn(struct AiLogicData *aiData)
     
     AIDebugTimerStart();
 
+    gAiLogicData->aiCalcInProgress = FALSE;
     aiData->weatherHasEffect = HasWeatherEffect();
+    gAiLogicData->aiCalcInProgress = TRUE;
     weather = AI_GetWeather();
 
     // get/assume all battler data and simulate AI damage
@@ -3579,7 +3587,7 @@ static s32 AI_DoubleBattle(enum BattlerId battlerAtk, enum BattlerId battlerDef,
                     || SearchTraits(AIBattlerTraits, ABILITY_MOTOR_DRIVE)
                     || SearchTraits(AIBattlerTraits, ABILITY_VOLT_ABSORB)))
                     {
-                    if (GetConfig(B_REDIRECT_ABILITY_IMMUNITY) < GEN_5 && BattlerHasTrait(battlerAtkPartner, ABILITY_LIGHTNING_ROD))
+                    if (GetConfig(B_REDIRECT_ABILITY_IMMUNITY) < GEN_5 && AI_BATTLER_HAS_TRAIT(battlerAtkPartner, ABILITY_LIGHTNING_ROD))
                     {
                         RETURN_SCORE_MINUS(10);
                     }
@@ -3628,7 +3636,7 @@ static s32 AI_DoubleBattle(enum BattlerId battlerAtk, enum BattlerId battlerDef,
             {
                     if (moveType == TYPE_WATER)
                 {
-                    if (GetConfig(B_REDIRECT_ABILITY_IMMUNITY) < GEN_5 && BattlerHasTrait(battlerAtkPartner, ABILITY_STORM_DRAIN))
+                    if (GetConfig(B_REDIRECT_ABILITY_IMMUNITY) < GEN_5 && AI_BATTLER_HAS_TRAIT(battlerAtkPartner, ABILITY_STORM_DRAIN))
                     {
                         RETURN_SCORE_MINUS(10);
                     }
@@ -3887,7 +3895,7 @@ static s32 AI_DoubleBattle(enum BattlerId battlerAtk, enum BattlerId battlerDef,
                 }
                 break;
             case EFFECT_SOAK:
-                if (BattlerHasTrait(battlerAtk, ABILITY_WONDER_GUARD)
+                if (AI_BATTLER_HAS_TRAIT(battlerAtk, ABILITY_WONDER_GUARD)
                  && !IS_BATTLER_OF_TYPE(battlerAtkPartner, TYPE_WATER)
                  && GetActiveGimmick(battlerAtkPartner) != GIMMICK_TERA)
                 {

@@ -6202,7 +6202,10 @@ enum Type TrySetAteType(enum Move move, enum BattlerId battlerAtk, enum Ability 
 
     for (u32 i = 0; i < MAX_MON_TRAITS; i++)
     {
-        ateType = GetAteAbilityType(GetBattlerTrait(battlerAtk, i, FALSE));
+        if (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress)
+            ateType = GetAteAbilityType(i == 0 ? gAiLogicData->abilities[battlerAtk] : gAiLogicData->innates[battlerAtk][i - 1]);
+        else
+            ateType = GetAteAbilityType(GetBattlerTrait(battlerAtk, i, FALSE));
         if (ateType != TYPE_NONE)
             break;
     }
@@ -6229,7 +6232,10 @@ enum Type GetDynamicMoveType(struct Pokemon *mon, enum Move move, enum BattlerId
         type1 = gBattleMons[battler].types[0];
         type2 = gBattleMons[battler].types[1];
         type3 = gBattleMons[battler].types[2];
-        utilityUmbrellaAffected = BattlerHasHeldItemEffect(battler, HOLD_EFFECT_UTILITY_UMBRELLA, TRUE);
+        if (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress)
+            utilityUmbrellaAffected = Ai_BattlerHasHoldEffect(battler, HOLD_EFFECT_UTILITY_UMBRELLA, gAiLogicData);
+        else
+            utilityUmbrellaAffected = BattlerHasHeldItemEffect(battler, HOLD_EFFECT_UTILITY_UMBRELLA, TRUE);
     }
     else
     {
@@ -6315,8 +6321,18 @@ enum Type GetDynamicMoveType(struct Pokemon *mon, enum Move move, enum BattlerId
         }
         break;
     case EFFECT_CHANGE_TYPE_ON_ITEM:
-        if (BattlerHasHeldItemEffect(battler, GetMoveEffectArg_HoldEffect(move), TRUE))
+        if (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress)
+        {
+            for (u32 i = 0; i < MAX_MON_ITEMS; i++)
+            {
+                if (gAiLogicData->holdEffects[battler][i] == GetMoveEffectArg_HoldEffect(move))
+                    return GetItemSecondaryId(gAiLogicData->items[battler][i]);
+            }
+        }
+        else if (BattlerHasHeldItemEffect(battler, GetMoveEffectArg_HoldEffect(move), TRUE))
+        {
             return GetItemSecondaryId(GetBattlerHeldItemWithEffect(battler, GetMoveEffectArg_HoldEffect(move), TRUE));
+        }
         break;
     case EFFECT_REVELATION_DANCE:
         if (gimmick != GIMMICK_Z_MOVE)
@@ -6424,18 +6440,18 @@ enum Type GetDynamicMoveType(struct Pokemon *mon, enum Move move, enum BattlerId
         break;
     }
 
-    if (IsSoundMove(move) && BattlerHasTrait(battler, ABILITY_LIQUID_VOICE))
+    if (IsSoundMove(move) && (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress ? AI_BATTLER_HAS_TRAIT(battler, ABILITY_LIQUID_VOICE) : BattlerHasTrait(battler, ABILITY_LIQUID_VOICE)))
     {
         return TYPE_WATER;
     }
     else if (moveEffect == EFFECT_AURA_WHEEL
      && species == SPECIES_MORPEKO_HANGRY 
-     && !BattlerHasTrait(battler, ABILITY_NORMALIZE))
+     && !(gAiLogicData != NULL && gAiLogicData->aiCalcInProgress ? AI_BATTLER_HAS_TRAIT(battler, ABILITY_NORMALIZE) : BattlerHasTrait(battler, ABILITY_NORMALIZE)))
     {
         return TYPE_DARK;
     }
     else if (moveType == TYPE_NORMAL
-          && !BattlerHasTrait(battler, ABILITY_NORMALIZE)
+          && !(gAiLogicData != NULL && gAiLogicData->aiCalcInProgress ? AI_BATTLER_HAS_TRAIT(battler, ABILITY_NORMALIZE) : BattlerHasTrait(battler, ABILITY_NORMALIZE))
           && gimmick != GIMMICK_DYNAMAX
           && gimmick != GIMMICK_Z_MOVE)
     {
@@ -6449,7 +6465,7 @@ enum Type GetDynamicMoveType(struct Pokemon *mon, enum Move move, enum BattlerId
           && moveEffect != EFFECT_NATURAL_GIFT
           && moveEffect != EFFECT_HIDDEN_POWER
           && moveEffect != EFFECT_WEATHER_BALL
-          && BattlerHasTrait(battler, ABILITY_NORMALIZE)
+          && (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress ? AI_BATTLER_HAS_TRAIT(battler, ABILITY_NORMALIZE) : BattlerHasTrait(battler, ABILITY_NORMALIZE))
           && gimmick != GIMMICK_Z_MOVE)
     {
         if (state == MON_IN_BATTLE && gimmick != GIMMICK_DYNAMAX)
@@ -6484,10 +6500,19 @@ void SetTypeBeforeUsingMove(enum Move move, enum BattlerId battler)
 
     for(int i = 0; i < MAX_MON_ITEMS; i++)
     {
-        if (GetBattlerItemHoldEffect(battler, gBattleMons[battler].items[i]) == HOLD_EFFECT_GEMS
-         && GetBattleMoveType(move) == GetItemSecondaryId(gBattleMons[battler].items[i]))
+        enum Item item = gBattleMons[battler].items[i];
+        enum HoldEffect holdEffect = GetBattlerItemHoldEffect(battler, item);
+
+        if (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress)
+        {
+            item = gAiLogicData->items[battler][i];
+            holdEffect = gAiLogicData->holdEffects[battler][i];
+        }
+
+        if (holdEffect == HOLD_EFFECT_GEMS
+         && GetBattleMoveType(move) == GetItemSecondaryId(item))
             {
-                heldGem = gBattleMons[battler].items[i];
+                heldGem = item;
                 break;
             }
     }

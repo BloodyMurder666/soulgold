@@ -64,10 +64,23 @@ enum AbilityEffect
     ABILITYEFFECT_OPPORTUNIST,
 };
 
-#define STORE_BATTLER_TRAITS(battler) \
-({for (int traitLoop = 0; traitLoop < MAX_MON_TRAITS; traitLoop++)\
-{battlerTraits[traitLoop] = GetBattlerTrait(battler, traitLoop, FALSE);\
-}}) 
+#define STORE_BATTLER_TRAITS(battler)                                               \
+({                                                                                  \
+    for (int traitLoop = 0; traitLoop < MAX_MON_TRAITS; traitLoop++)                \
+    {                                                                               \
+        if (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress)                 \
+        {                                                                           \
+            if (traitLoop == 0)                                                     \
+                battlerTraits[traitLoop] = gAiLogicData->abilities[battler];        \
+            else                                                                    \
+                battlerTraits[traitLoop] = gAiLogicData->innates[battler][traitLoop - 1]; \
+        }                                                                           \
+        else                                                                        \
+        {                                                                           \
+            battlerTraits[traitLoop] = GetBattlerTrait(battler, traitLoop, FALSE);  \
+        }                                                                           \
+    }                                                                               \
+})
 //DebugPrintf("%S - Battler[%d] - Trait[%d]: %S", GetSpeciesName(gBattleMons[battler].species), battler, traitLoop,  gAbilitiesInfo[battlerTraits[traitLoop]].name);\
 
 #define STORE_BATTLER_TRAITS_IGNORE_MOLDBREAKER(battler) \
