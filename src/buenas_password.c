@@ -54,11 +54,14 @@ static const u8 sText_PokemonMusic[] = _("Pokemon Music");
 static const u8 sText_BuenasPassword[] = _("Buena's Password");
 
 static const u8 sText_BuenasPasswordRadio[] = _(
-    "Buena: Buena's Password!\n"
-    "Today's password is:\l"
+    "Hello, everyone! It's Buena!\n"
+    "Time for today's password!\p"
+    "Today's password is...\n"
     "{STR_VAR_1}!\p"
-    "Come to Radio Tower 2F and\n"
-    "tell me the password!{PAUSE_UNTIL_PRESS}");
+    "Don't forget it!\p"
+    "I'm looking forward to your\n"
+    "visiting me at the Goldenrod\l"
+    "Radio Tower!{PAUSE_UNTIL_PRESS}");
 
 static const u8 *const sBuenasPasswordOptions[][BUENAS_PASSWORD_OPTIONS] =
 {

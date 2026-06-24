@@ -82,7 +82,10 @@ GoldenrodCity_RadioTower_2F_EventScript_BuenaPassword::
 	goto_if_eq VAR_RESULT, FALSE, GoldenrodCity_RadioTower_2F_EventScript_BuenaOffAir
 	goto_if_set FLAG_DAILY_BUENA_PASSWORD, GoldenrodCity_RadioTower_2F_EventScript_BuenaAlreadyPlayed
 	special BuenasPassword_BufferCurrentPassword
-	msgbox GoldenrodCity_RadioTower_2F_Text_BuenaAskPassword, MSGBOX_DEFAULT
+	msgbox GoldenrodCity_RadioTower_2F_Text_BuenaAskPassword, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, GoldenrodCity_RadioTower_2F_EventScript_BuenaForgotPassword
+	msgbox GoldenrodCity_RadioTower_2F_Text_BuenaJoinShow, MSGBOX_DEFAULT
+	msgbox GoldenrodCity_RadioTower_2F_Text_BuenaEveryoneReady, MSGBOX_DEFAULT
 	specialvar VAR_0x8004, BuenasPassword_GetCurrentGroup
 	switch VAR_0x8004
 	case 0, GoldenrodCity_RadioTower_2F_EventScript_BuenaAskStarters
@@ -96,6 +99,10 @@ GoldenrodCity_RadioTower_2F_EventScript_BuenaPassword::
 	case 8, GoldenrodCity_RadioTower_2F_EventScript_BuenaAskXItems
 	case 9, GoldenrodCity_RadioTower_2F_EventScript_BuenaAskRadioShows
 	end
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaForgotPassword::
+	msgbox GoldenrodCity_RadioTower_2F_Text_BuenaForgotPassword, MSGBOX_DEFAULT
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaDone
 
 GoldenrodCity_RadioTower_2F_EventScript_BuenaAskStarters::
 	dynmultichoice 0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerCyndaquil, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerTotodile, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerChikorita
@@ -283,8 +290,9 @@ GoldenrodCity_RadioTower_2F_EventScript_Jigglypuff::
 	end
 
 RadioTower2FBuenaPasswordIsHelpText:
-	.string "Buena: Huh? Today's password?\n"
-	.string "Help, of course!$"
+	.string "Buena: Thank you for listening\n"
+	.string "in every day!\p"
+	.string "Tune in to my password show!$"
 
 GoldenrodCity_RadioTower_2F_Text_BuenaGreeting:
 	.string "Buena: Hi! This is the studio\n"
@@ -301,36 +309,56 @@ GoldenrodCity_RadioTower_2F_Text_BuenaMenuCancel:
 	.string "Cancel$"
 
 GoldenrodCity_RadioTower_2F_Text_BuenaAskPassword:
-	.string "Buena: I said today's password\n"
-	.string "over the air.\p"
-	.string "So, tell me, what was it?$"
+	.string "Buena: Thank you for listening\n"
+	.string "in every day!\p"
+	.string "Do you remember today's\n"
+	.string "password?$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaForgotPassword:
+	.string "Buena: Come back after you\n"
+	.string "listen to my show, OK?\p"
+	.string "Catch ya later!$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaJoinShow:
+	.string "Buena: Oh, wow! Thank you!\p"
+	.string "What was your name again?\n"
+	.string "...{PLAYER}!\p"
+	.string "Come on, {PLAYER}.\n"
+	.string "Join the show.$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaEveryoneReady:
+	.string "Buena: Everyone ready?\p"
+	.string "I want to hear you shout out\n"
+	.string "today's password for {PLAYER}!$"
 
 GoldenrodCity_RadioTower_2F_Text_BuenaCorrect:
-	.string "Buena: Right! Nice listening!\p"
-	.string "That's 1 point for your Blue\n"
-	.string "Card.\p"
-	.string "You now have {STR_VAR_1} points.$"
+	.string "Buena: Yippee! That's right!\n"
+	.string "You did tune in!\p"
+	.string "I'm so happy! You earned one\n"
+	.string "point! Congratulations!\p"
+	.string "Tune in to my show again\n"
+	.string "tomorrow!$"
 
 GoldenrodCity_RadioTower_2F_Text_BuenaWrong:
-	.string "Buena: Oh, so close!\p"
-	.string "Tune in again tomorrow and give\n"
-	.string "it another try.$"
+	.string "Buena: Aww... That's not it...\n"
+	.string "Did you forget the password?$"
 
 GoldenrodCity_RadioTower_2F_Text_BuenaOffAir:
-	.string "Buena: My password is on the\n"
-	.string "radio from 6PM till midnight.\p"
-	.string "Catch the broadcast, then come\n"
-	.string "tell me what you heard!$"
+	.string "Buena: Thank you for listening\n"
+	.string "in every day!\p"
+	.string "Tune in to my password show!$"
 
 GoldenrodCity_RadioTower_2F_Text_BuenaAlreadyPlayed:
-	.string "Buena: You already gave today's\n"
-	.string "password.\p"
-	.string "Come back tomorrow for the next\n"
-	.string "one!$"
+	.string "Buena: Thank you for listening\n"
+	.string "in every day!\p"
+	.string "Sorry... You get just one\n"
+	.string "chance each day.\p"
+	.string "Come back tomorrow for\n"
+	.string "another try!$"
 
 GoldenrodCity_RadioTower_2F_Text_BuenaPrizeIntro:
-	.string "Buena: You have {STR_VAR_1}P.\p"
-	.string "Trade points for which prize?$"
+	.string "Buena: You have {STR_VAR_1}P.\n"
+	.string "Which prize do you want?$"
 
 GoldenrodCity_RadioTower_2F_Text_BuenaConfirmPrize:
 	.string "Buena: Trade {STR_VAR_2}P for\n"
@@ -547,8 +575,9 @@ GoldenrodCity_RadioTower_2F_Text_GruntF2After:
 	.string "it!$"
 
 GoldenrodCity_RadioTower_2F_Text_BuenaShowPromo:
-	.string "Buena: Tune in to my Password\n"
-	.string "Show!$"
+	.string "Buena: Thank you for listening\n"
+	.string "in every day!\p"
+	.string "Tune in to my password show!$"
 
 GoldenrodCity_RadioTower_2F_Text_SalesSign:
 	.string "2F Sales$"
