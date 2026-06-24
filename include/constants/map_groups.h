@@ -103,6 +103,10 @@ enum
     MAP_FOGGY_SHORE               = (88 | (0 << 8)),
     MAP_FOGGY_SHORE2              = (89 | (0 << 8)),
     MAP_BATTLE_FACTORY_GROUNDS    = (90 | (0 << 8)),
+    MAP_ROUTE33SOUTH              = (91 | (0 << 8)),
+    MAP_ROUTE33SOUTH_2            = (92 | (0 << 8)),
+    MAP_SOUTHERN_PASSAGE          = (93 | (0 << 8)),
+    MAP_METEOR_ISLAND             = (94 | (0 << 8)),
 
     // gMapGroup_IndoorNewBark
     MAP_NEW_BARK_TOWN_LAB              = (0 | (1 << 8)),

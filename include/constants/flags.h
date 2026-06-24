@@ -1588,7 +1588,10 @@
 #define FLAG_TM_PSYSHOCK                            0x930
 #define FLAG_ILEX_BECKONING_BELL                    0x931
 #define FLAG_TM_FALSE_SWIPE                         0x932
-#define FLAG_UNUSED_0x933                           0x933
+#define FLAG_POSTGAME_CAP1                          0x933
+#define FLAG_POSTGAME_CAP2                          0x934
+#define FLAG_POSTGAME_CAP3                          0x935
+#define FLAG_POSTGAME_CAP4                          0x936
 
 #define FLAG_0x1500                                 0x1500
 // Daily Flags

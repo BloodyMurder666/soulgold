@@ -2281,3 +2281,11 @@ Common_Text_ReceivedMon:
 	.include "data/maps/BattleFactoryGrounds/scripts.inc"
 
 	.include "data/maps/DeepIlexForest/scripts.inc"
+
+	.include "data/maps/Route33South/scripts.inc"
+
+	.include "data/maps/Route33South_2/scripts.inc"
+
+	.include "data/maps/SouthernPassage/scripts.inc"
+
+	.include "data/maps/MeteorIsland/scripts.inc"

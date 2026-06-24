@@ -960,6 +960,10 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Smart Trainer
 
+Palafin
+Level: 63
+IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
+
 Politoed
 Level: 61
 Ability: Drizzle
@@ -969,15 +973,6 @@ Kingdra
 Level: 62
 Ability: Swift Swim
 IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
-
-Ludicolo
-Level: 63
-Ability: Swift Swim
-IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
-- Rain Dance
-- Surf
-- Ice Beam
-- Aqua Ring
 
 Floatzel
 Level: 63
@@ -6553,7 +6548,7 @@ Chimecho
 Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Ludicolo
+Ferrothorn
 Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 

@@ -316,7 +316,7 @@ EcruteakCity_Theater_EventScript_Lotad::
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_LOTAD, CRY_MODE_NORMAL
+	playmoncry SPECIES_PACHIRISU, CRY_MODE_NORMAL
 	msgbox EcruteakCity_Theater_Text_Lotad, MSGBOX_DEFAULT
 	waitmoncry
 	release
@@ -443,7 +443,7 @@ EcruteakCity_Theater_Text_SurfGuyAfter:
 	.string "them if they showed their skill...$"
 
 EcruteakCity_Theater_Text_Lotad:
-	.string "Lotad: Tap tap!$"
+	.string "Pachirisu: Pachi pach!$"
 
 EcruteakCity_Theater_Text_BoyBefore:
 	.string "Eeeeek!$"

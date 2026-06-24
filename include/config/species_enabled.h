@@ -191,7 +191,7 @@
 #define P_FAMILY_POOCHYENA               FALSE
 #define P_FAMILY_ZIGZAGOON               P_GEN_3_POKEMON
 #define P_FAMILY_WURMPLE                 FALSE
-#define P_FAMILY_LOTAD                   P_GEN_3_POKEMON
+#define P_FAMILY_LOTAD                   FALSE
 #define P_FAMILY_SEEDOT                  FALSE
 #define P_FAMILY_TAILLOW                 FALSE
 #define P_FAMILY_WINGULL                 P_GEN_3_POKEMON
@@ -269,9 +269,9 @@
 #define P_FAMILY_SHIELDON                FALSE
 #define P_FAMILY_BURMY                   FALSE
 #define P_FAMILY_COMBEE                  FALSE
-#define P_FAMILY_PACHIRISU               FALSE
+#define P_FAMILY_PACHIRISU               P_GEN_4_POKEMON
 #define P_FAMILY_BUIZEL                  P_GEN_4_POKEMON
-#define P_FAMILY_CHERUBI                 P_GEN_4_POKEMON
+#define P_FAMILY_CHERUBI                 FALSE
 #define P_FAMILY_SHELLOS                 P_GEN_4_POKEMON
 #define P_FAMILY_DRIFLOON                P_GEN_4_POKEMON
 #define P_FAMILY_BUNEARY                 P_GEN_4_POKEMON
@@ -352,7 +352,7 @@
 #define P_FAMILY_FRILLISH                FALSE
 #define P_FAMILY_ALOMOMOLA               FALSE
 #define P_FAMILY_JOLTIK                  P_GEN_5_POKEMON
-#define P_FAMILY_FERROSEED               FALSE
+#define P_FAMILY_FERROSEED               P_GEN_5_POKEMON
 #define P_FAMILY_KLINK                   FALSE
 #define P_FAMILY_TYNAMO                  P_GEN_5_POKEMON
 #define P_FAMILY_ELGYEM                  FALSE

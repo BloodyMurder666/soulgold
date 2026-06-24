@@ -1044,7 +1044,7 @@
       "name": "Route 33",
       "x": 10,
       "y": 14,
-      "width": 3,
+      "width": 4,
       "height": 1
     },
     {
@@ -1468,7 +1468,7 @@
     },
     {
       "id": "MAPSEC_SOUTH_SEA",
-      "name": "Southern Sea",
+      "name": "Southern Passage",
       "x": 13,
       "y": 14,
       "width": 1,
@@ -1505,6 +1505,34 @@
       "y": 4,
       "width": 1,
       "height": 1
+    },
+    {
+      "id": "MAPSEC_SOUTH_JOHTO_SEA",
+      "name": "South Johto Sea",
+      "x": 10,
+      "y": 15,
+      "width": 4,
+      "height": 2
+    },
+    {
+      "id": "MAPSEC_FOGGY_SHORE",
+      "name": "Foggy Shore",
+      "x": 7,
+      "y": 16,
+      "width": 3,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_FOGGY_FOREST",
+      "name": "Foggy Forest",
+      "x": 9,
+      "y": 15,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_METEOR_ISLAND",
+      "name": "Meteor Island"
     }
   ]
 }
