@@ -41,10 +41,8 @@
 #include "event_data.h"
 
 #define HEALTHBOX_BG_INDEX 2
-#define HEALTHBOX_SHINY_BG_INDEX 7
 #define HEALTHBOX_HP_TEXT_BG_INDEX 3
 #define HEALTHBOX_HP_TEXT_SHADOW_INDEX 4
-#define HEALTHBOX_SHINY_HP_TEXT_BG_INDEX 8
 
 enum
 {   // Corresponds to gHealthboxElementsGfxTable (and the tables after it) in graphics.c
@@ -194,8 +192,8 @@ static const u8 *GetHealthboxElementGfxPtr(u8);
 static u8 GetHealthboxTextBgColor(u8 healthboxSpriteId);
 static void UpdateHpTextInHealthboxInDoubles(u32 healthboxSpriteId, u32 maxOrCurrent, s16 currHp, s16 maxHp);
 static void UpdateStatusIconInHealthbox(u8, u32);
+static void UpdateHealthboxPalette(u8 healthboxSpriteId, struct Pokemon *mon, u8 elementId);
 static void FillHealthboxObject(void *, u32, u32);
-static void CopyShinyHealthboxBgObject(const u8 *, void *, u32);
 
 static void Task_HidePartyStatusSummary_BattleStart_1(u8);
 static void Task_HidePartyStatusSummary_BattleStart_2(u8);
@@ -600,14 +598,6 @@ static const union TextColor sHealthBoxTextColorHP =
     .accent = 0
 };
 
-static const union TextColor sHealthBoxTextColorHPShiny =
-{
-    .background = HEALTHBOX_SHINY_HP_TEXT_BG_INDEX,
-    .foreground = 1,
-    .shadow = HEALTHBOX_SHINY_HP_TEXT_BG_INDEX,
-    .accent = 0
-};
-
 // Because the healthbox is too large to fit into one sprite, it is divided into two sprites.
 // healthboxLeft  or healthboxMain  is the left part that is used as the 'main' sprite.
 // healthboxRight or healthboxOther is the right part of the healthbox.
@@ -895,17 +885,29 @@ void InitBattlerHealthboxCoords(enum BattlerId battler)
 
 static u8 GetHealthboxTextBgColor(u8 healthboxSpriteId)
 {
-    enum BattlerId battler = gSprites[healthboxSpriteId].hMain_Battler;
-
-    if (!IsOnPlayerSide(battler)
-        && GetBattlerCoordsIndex(battler) == BATTLE_COORDS_SINGLES
-        && !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_SAFARI | BATTLE_TYPE_WALLY_TUTORIAL | BATTLE_TYPE_FRONTIER))
-        && GetMonData(GetBattlerMon(battler), MON_DATA_IS_SHINY))
-    {
-        return HEALTHBOX_SHINY_BG_INDEX;
-    }
-
     return HEALTHBOX_BG_INDEX;
+}
+
+static void UpdateHealthboxPalette(u8 healthboxSpriteId, struct Pokemon *mon, u8 elementId)
+{
+    enum BattlerId battler = gSprites[healthboxSpriteId].hMain_Battler;
+    u16 paletteTag = TAG_HEALTHBOX_PAL;
+    u8 paletteNum;
+
+    if (!((gBattleTypeFlags & BATTLE_TYPE_SAFARI) && IsOnPlayerSide(battler))
+     && elementId != HEALTHBOX_SAFARI_ALL_TEXT
+     && elementId != HEALTHBOX_SAFARI_BALLS_TEXT
+     && GetMonData(mon, MON_DATA_IS_SHINY))
+        paletteTag = TAG_HEALTHBOX_SHINY_PAL;
+
+    paletteNum = IndexOfSpritePaletteTag(paletteTag);
+    if (paletteNum == 0xFF)
+        paletteNum = IndexOfSpritePaletteTag(TAG_HEALTHBOX_PAL);
+    if (paletteNum == 0xFF)
+        return;
+
+    gSprites[healthboxSpriteId].oam.paletteNum = paletteNum;
+    gSprites[gSprites[healthboxSpriteId].oam.affineParam].oam.paletteNum = paletteNum;
 }
 
 static void UpdateLvlInHealthbox(u8 healthboxSpriteId, u8 lvl)
@@ -1861,22 +1863,13 @@ static void UpdateStatusIconInHealthbox(u8 healthboxSpriteId, u32 status)
     }
     else
     {
-        bool8 isShiny = GetMonData(GetBattlerMon(battler), MON_DATA_IS_SHINY);
-
         if (GetBattlerSide(battler) == B_SIDE_PLAYER)
             statusGfxPtr = GetHealthboxElementGfxPtr(HEALTHBOX_GFX_39);
         else
             statusGfxPtr = GetHealthboxElementGfxPtr(HEALTHBOX_GFX_40);
 
-        if (isShiny)
-            CopyShinyHealthboxBgObject(statusGfxPtr,
-                                       (void *)(OBJ_VRAM0 + (gSprites[healthboxSpriteId].oam.tileNum + tileNumAdder) * TILE_SIZE_4BPP),
-                                       3);
-        else
-        {
-            for (i = 0; i < 3; i++)
-                CpuCopy32(statusGfxPtr, (void *)(OBJ_VRAM0 + (gSprites[healthboxSpriteId].oam.tileNum + tileNumAdder + i) * TILE_SIZE_4BPP), 32);
-        }
+        for (i = 0; i < 3; i++)
+            CpuCopy32(statusGfxPtr, (void *)(OBJ_VRAM0 + (gSprites[healthboxSpriteId].oam.tileNum + tileNumAdder + i) * TILE_SIZE_4BPP), 32);
 
         if (!gBattleSpritesDataPtr->battlerData[battler].hpNumbersNoBars)
             CpuCopy32(GetHealthboxElementGfxPtr(HEALTHBOX_GFX_1), (void *)(OBJ_VRAM0 + gSprites[healthBarSpriteId].oam.tileNum * TILE_SIZE_4BPP), 64);
@@ -2020,6 +2013,8 @@ void UpdateHealthboxAttribute(u8 healthboxSpriteId, struct Pokemon *mon, u8 elem
     enum BattlerId battler = gSprites[healthboxSpriteId].hMain_Battler;
     s32 maxHp = GetMonData(mon, MON_DATA_MAX_HP);
     s32 currHp = GetMonData(mon, MON_DATA_HP);
+
+    UpdateHealthboxPalette(healthboxSpriteId, mon, elementId);
 
     if (IsOnPlayerSide(battler))
     {
@@ -2401,30 +2396,6 @@ u8 GetHPBarLevel(s16 hp, s16 maxhp)
 static void FillHealthboxObject(void *dest, u32 valMult, u32 numTiles)
 {
     CpuFill32(0x11111111 * valMult, dest, numTiles * TILE_SIZE_4BPP);
-}
-
-static void CopyShinyHealthboxBgObject(const u8 *src, void *dest, u32 numTiles)
-{
-    u32 i;
-    u8 *dest8 = dest;
-
-    for (i = 0; i < numTiles * TILE_SIZE_4BPP; i++)
-    {
-        u8 lower = src[i] & 0xF;
-        u8 upper = src[i] >> 4;
-
-        if (lower == HEALTHBOX_BG_INDEX)
-            lower = HEALTHBOX_SHINY_BG_INDEX;
-        else if (lower == HEALTHBOX_HP_TEXT_BG_INDEX)
-            lower = HEALTHBOX_SHINY_HP_TEXT_BG_INDEX;
-
-        if (upper == HEALTHBOX_BG_INDEX)
-            upper = HEALTHBOX_SHINY_BG_INDEX;
-        else if (upper == HEALTHBOX_HP_TEXT_BG_INDEX)
-            upper = HEALTHBOX_SHINY_HP_TEXT_BG_INDEX;
-
-        dest8[i] = lower | (upper << 4);
-    }
 }
 
 #define ABILITY_POP_UP_POS_X_DIFF  64

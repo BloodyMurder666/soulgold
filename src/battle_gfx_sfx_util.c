@@ -38,7 +38,6 @@ static bool8 ShouldAnimBeDoneRegardlessOfSubstitute(u8 animId);
 static void Task_ClearBitWhenBattleTableAnimDone(u8 taskId);
 static void Task_ClearBitWhenSpecialAnimDone(u8 taskId);
 static void ClearSpritesBattlerHealthboxAnimData(void);
-static bool8 ShouldUseSinglesOpponentShinyHealthbox(void);
 
 // const rom data
 static const struct CompressedSpriteSheet sSpriteSheet_SinglesPlayerHealthbox =
@@ -49,11 +48,6 @@ static const struct CompressedSpriteSheet sSpriteSheet_SinglesPlayerHealthbox =
 static const struct CompressedSpriteSheet sSpriteSheet_SinglesOpponentHealthbox =
 {
     gHealthboxSinglesOpponentGfx, 0x1000, TAG_HEALTHBOX_OPPONENT1_TILE
-};
-
-static const struct CompressedSpriteSheet sSpriteSheet_SinglesOpponentShinyHealthbox =
-{
-    gHealthboxSinglesOpponentShinyGfx, 0x1000, TAG_HEALTHBOX_OPPONENT1_TILE
 };
 
 static const struct CompressedSpriteSheet sSpriteSheets_DoublesPlayerHealthbox[2] =
@@ -81,10 +75,11 @@ static const struct CompressedSpriteSheet sSpriteSheets_HealthBar[MAX_BATTLERS_C
     {gBlankGfxCompressed, 0x0120, TAG_HEALTHBAR_OPPONENT2_TILE}
 };
 
-const struct SpritePalette sSpritePalettes_HealthBoxHealthBar[2] =
+const struct SpritePalette sSpritePalettes_HealthBoxHealthBar[] =
 {
     {gBattleInterface_BallStatusBarPal, TAG_HEALTHBOX_PAL},
-    {gBattleInterface_BallDisplayPal, TAG_HEALTHBAR_PAL}
+    {gBattleInterface_BallDisplayPal, TAG_HEALTHBAR_PAL},
+    {gBattleInterface_ShinyHealthboxPal, TAG_HEALTHBOX_SHINY_PAL}
 };
 
 const struct CompressedSpriteSheet gSpriteSheet_EnemyShadow =
@@ -115,14 +110,6 @@ static const struct OamData sOamData_EnemyShadow =
     .paletteNum = 0,
     .affineParam = 0
 };
-
-static bool8 ShouldUseSinglesOpponentShinyHealthbox(void)
-{
-    if (gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_SAFARI | BATTLE_TYPE_WALLY_TUTORIAL | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_TRAINER_HILL))
-        return FALSE;
-
-    return GetMonData(&gEnemyParty[0], MON_DATA_IS_SHINY);
-}
 
 const struct SpriteTemplate gSpriteTemplate_EnemyShadow =
 {
@@ -753,8 +740,8 @@ void BattleLoadAllHealthBoxesGfxAtOnce(void)
     u8 numberOfBattlers = 0;
     u8 i;
 
-    LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[0]);
-    LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[1]);
+    for (i = 0; i < ARRAY_COUNT(sSpritePalettes_HealthBoxHealthBar); i++)
+        LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[i]);
     TimeMixBattleBgPalette(TRUE);
     if (!IsDoubleBattle())
     {
@@ -782,8 +769,10 @@ bool8 BattleLoadAllHealthBoxesGfx(u8 state)
     {
         if (state == 1)
         {
-            LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[0]);
-            LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[1]);
+            u32 i;
+
+            for (i = 0; i < ARRAY_COUNT(sSpritePalettes_HealthBoxHealthBar); i++)
+                LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[i]);
             TimeMixBattleBgPalette(TRUE);
             CategoryIcons_LoadSpritesGfx();
         }
@@ -798,10 +787,7 @@ bool8 BattleLoadAllHealthBoxesGfx(u8 state)
             }
             else if (state == 3)
             {
-                if (ShouldUseSinglesOpponentShinyHealthbox())
-                    LoadCompressedSpriteSheet(&sSpriteSheet_SinglesOpponentShinyHealthbox);
-                else
-                    LoadCompressedSpriteSheet(&sSpriteSheet_SinglesOpponentHealthbox);
+                LoadCompressedSpriteSheet(&sSpriteSheet_SinglesOpponentHealthbox);
             }
             else if (state == 4)
             {
