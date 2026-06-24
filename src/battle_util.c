@@ -13560,7 +13560,7 @@ static inline u32 AiCachedBattlerTraitSlot(enum BattlerId battlerId, enum Abilit
         return 1;
     }
 
-    for (u32 i = 0; i < MAX_MON_INNATES; i++)
+    for (u32 i = 0; i < gAiLogicData->activeInnateCount[battlerId]; i++)
     {
         if (gAiLogicData->innates[battlerId][i] == ability)
         {

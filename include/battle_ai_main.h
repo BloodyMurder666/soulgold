@@ -129,7 +129,7 @@ static inline bool32 AI_BattlerHasTraitCached(enum BattlerId battler, enum Abili
     if (gAiLogicData->abilities[battler] == abilityToCheck)
         return TRUE;
 
-    for (u32 i = 0; i < MAX_MON_INNATES; i++)
+    for (u32 i = 0; i < gAiLogicData->activeInnateCount[battler]; i++)
     {
         if (gAiLogicData->innates[battler][i] == abilityToCheck)
             return TRUE;

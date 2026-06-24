@@ -963,14 +963,15 @@ struct SimulatedDamage AI_CalcDamage(enum Move move, enum BattlerId battlerAtk, 
     ctx.updateFlags = FALSE;
     ctx.weather = weather;
     ctx.fixedBasePower = 0;
-    ctx.isCrit = ShouldCalcCritDamage(&ctx);
     ctx.typeEffectivenessModifier = CalcTypeEffectivenessMultiplier(&ctx);
+    *typeEffectiveness = ctx.typeEffectivenessModifier;
 
     u32 movePower = GetMovePower(move);
 
     if (movePower && !IsDamageMoveUnusable(&ctx))
     {
         enum Type types[3];
+        ctx.isCrit = ShouldCalcCritDamage(&ctx);
         AI_StoreBattlerTypes(battlerAtk, types);
         ProteanTryChangeType(battlerAtk, move, ctx.moveType);
 
@@ -1016,15 +1017,6 @@ struct SimulatedDamage AI_CalcDamage(enum Move move, enum BattlerId battlerAtk, 
 
         AI_RestoreBattlerTypes(battlerAtk, types);
     }
-    else
-    {
-        simDamage.minimum = 0;
-        simDamage.median = 0;
-        simDamage.maximum = 0;
-    }
-
-    // convert multiper to AI_EFFECTIVENESS_xX
-    *typeEffectiveness = ctx.typeEffectivenessModifier;
 
     // Undo temporary settings
     gBattleStruct->dynamicMoveType = 0;

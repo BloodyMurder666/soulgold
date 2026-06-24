@@ -214,6 +214,7 @@ struct AiLogicData
 {
     enum Ability abilities[MAX_BATTLERS_COUNT];
     enum Ability innates[MAX_BATTLERS_COUNT][MAX_MON_INNATES];
+    u8 activeInnateCount[MAX_BATTLERS_COUNT];
     enum Item items[MAX_BATTLERS_COUNT][MAX_MON_ITEMS_INTERNAL];
     enum HoldEffect holdEffects[MAX_BATTLERS_COUNT][MAX_MON_ITEMS_INTERNAL];
     u8 holdEffectParams[MAX_BATTLERS_COUNT][MAX_MON_ITEMS_INTERNAL];

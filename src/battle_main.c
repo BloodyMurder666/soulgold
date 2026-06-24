@@ -6178,6 +6178,7 @@ void RunBattleScriptCommands(void)
 enum Type TrySetAteType(enum Move move, enum BattlerId battlerAtk, enum Ability attackerAbility)
 {
     enum Type ateType = TYPE_NONE;
+    u32 traitCount = MAX_MON_TRAITS;
 
     switch (GetMoveEffect(move))
     {
@@ -6200,7 +6201,10 @@ enum Type TrySetAteType(enum Move move, enum BattlerId battlerAtk, enum Ability 
         break;
     }
 
-    for (u32 i = 0; i < MAX_MON_TRAITS; i++)
+    if (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress)
+        traitCount = gAiLogicData->activeInnateCount[battlerAtk] + 1;
+
+    for (u32 i = 0; i < traitCount; i++)
     {
         if (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress)
             ateType = GetAteAbilityType(i == 0 ? gAiLogicData->abilities[battlerAtk] : gAiLogicData->innates[battlerAtk][i - 1]);
