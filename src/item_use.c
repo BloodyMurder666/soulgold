@@ -85,6 +85,7 @@ static void SetDistanceOfClosestHiddenItem(u8, s16, s16);
 static void CB2_OpenPokeblockFromBag(void);
 static void ItemUseOnFieldCB_Honey(u8 taskId);
 static bool32 IsValidLocationForVsSeeker(void);
+static void CloseCandyJarMessage(u8 taskId);
 static u32 ConvertCandyJarExpToCandies(u8 *summaryDst);
 static bool8 AppendCandyJarRewardLine(u8 *summaryDst, enum Item itemId, u32 count);
 
@@ -846,9 +847,18 @@ void ItemUseOutOfBattle_CandyJar(u8 taskId)
     }
 
     if (!gTasks[taskId].tUsingRegisteredKeyItem)
-        DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, CloseItemMessage);
+        DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, CloseCandyJarMessage);
     else
         DisplayItemMessageOnField(taskId, gStringVar4, Task_CloseCantUseKeyItemMessage);
+}
+
+static void CloseCandyJarMessage(u8 taskId)
+{
+    enum Pocket candyPocket = GetItemPocket(ITEM_EXP_CANDY_XS);
+
+    UpdatePocketItemList(candyPocket);
+    UpdatePocketListPosition(candyPocket);
+    CloseItemMessage(taskId);
 }
 
 static u32 ConvertCandyJarExpToCandies(u8 *summaryDst)
