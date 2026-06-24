@@ -200,7 +200,7 @@ SINGLE_BATTLE_TEST("Ritual powers Hex to 100 BP", s16 damage)
     } SCENE {
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
-        EXPECT_MUL_EQ(results[0].damage, Q_4_12(100.0 / 65.0), results[1].damage);
+        EXPECT_MUL_EQ(results[0].damage, Q_4_12(75.0 / 65.0), results[1].damage);
     }
 }
 

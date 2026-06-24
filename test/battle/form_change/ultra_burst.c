@@ -103,7 +103,7 @@ SINGLE_BATTLE_TEST("Ultra Burst and Mega Evolution can happen on the same turn")
 {
     GIVEN {
         PLAYER(SPECIES_NECROZMA_DUSK_MANE) { Item(ITEM_ULTRANECROZIUM_Z); Speed(3); }
-        OPPONENT(SPECIES_GARDEVOIR) { Item(ITEM_PSYCHITE); Speed(2); }
+        OPPONENT(SPECIES_GARDEVOIR) { Item(ITEM_FAIRYTITE); Speed(2); }
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE, gimmick: GIMMICK_ULTRA_BURST); MOVE(opponent, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); }
     } SCENE {
@@ -111,7 +111,7 @@ SINGLE_BATTLE_TEST("Ultra Burst and Mega Evolution can happen on the same turn")
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ULTRA_BURST, player);
         MESSAGE("Necrozma regained its true power through Ultra Burst!");
 
-        MESSAGE("The opposing Gardevoir's Psychite is reacting to 2's Mega Ring!");
+        MESSAGE("The opposing Gardevoir's Fairytite is reacting to 2's Mega Ring!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, opponent);
         MESSAGE("The opposing Gardevoir has Mega Evolved into Mega Gardevoir!");
     } THEN {
