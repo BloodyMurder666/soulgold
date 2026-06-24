@@ -154,8 +154,12 @@ GoldenrodCity_RadioTower_2F_EventScript_BuenaCheckAnswer::
 
 GoldenrodCity_RadioTower_2F_EventScript_BuenaCorrect::
 	addvar VAR_BUENA_POINTS, 1
+	addvar VAR_BUENA_PASSWORDS_CORRECT, 1
+	special Achievement_CheckAll
 	buffernumberstring STR_VAR_1, VAR_BUENA_POINTS
+	playfanfare(MUS_OBTAIN_ITEM)
 	msgbox GoldenrodCity_RadioTower_2F_Text_BuenaCorrect, MSGBOX_DEFAULT
+	waitfanfare
 	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaDone
 
 GoldenrodCity_RadioTower_2F_EventScript_BuenaOffAir::

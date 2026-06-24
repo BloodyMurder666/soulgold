@@ -35,6 +35,7 @@ script OlivineTutorMoveMaster {
         playse(SE_SHOP)
         waitse
         setflag(FLAG_TUTOR_MOVES_UNLOCKED)
+        special(Achievement_CheckAll)
         msgbox("Thank you for the business!
 
                 Now let me teach you the grand

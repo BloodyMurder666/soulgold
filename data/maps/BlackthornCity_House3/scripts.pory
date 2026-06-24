@@ -236,6 +236,7 @@ script EggMoveMaster {
         playse(SE_SHOP)
         waitse
         setflag(FLAG_EGG_MOVES_UNLOCKED)
+        special(Achievement_CheckAll)
         msgbox("Thank you for the business!
         
                 Now let me teach you the grand

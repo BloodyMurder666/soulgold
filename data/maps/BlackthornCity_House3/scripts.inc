@@ -449,6 +449,7 @@ EggMoveMaster_5:
 	waitse
 # 238 "data/maps/BlackthornCity_House3/scripts.pory"
 	setflag FLAG_EGG_MOVES_UNLOCKED
+	special Achievement_CheckAll
 # 239 "data/maps/BlackthornCity_House3/scripts.pory"
 	msgbox EggMoveMaster_Text_4
 # 243 "data/maps/BlackthornCity_House3/scripts.pory"

@@ -54,6 +54,7 @@ OlivineTutorMoveMaster_5:
 	waitse
 # 37 "data/maps/OlivineCity_House4/scripts.pory"
 	setflag FLAG_TUTOR_MOVES_UNLOCKED
+	special Achievement_CheckAll
 # 38 "data/maps/OlivineCity_House4/scripts.pory"
 	msgbox OlivineTutorMoveMaster_Text_4
 # 42 "data/maps/OlivineCity_House4/scripts.pory"

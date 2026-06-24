@@ -1195,6 +1195,8 @@ KurtDaily_25:
 	msgbox KurtDaily_Text_2
 # 580 "data/maps/AzaleaTown_KurtsHouse/scripts.pory"
 	giveitem ITEM_MASTER_BALL, 1
+	setflag FLAG_KURT_CRAFTED_MASTER_BALL
+	special Achievement_CheckAll
 	goto KurtDaily_8
 
 KurtDaily_27:
