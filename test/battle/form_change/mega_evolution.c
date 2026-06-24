@@ -22,12 +22,12 @@ DOUBLE_BATTLE_TEST("Mega Evolution's order is determined by Speed - opponent fas
     GIVEN {
         PLAYER(SPECIES_VENUSAUR) { Item(ITEM_GRASSTITE); Speed(1); }
         PLAYER(SPECIES_WOBBUFFET) { Speed(3); }
-        OPPONENT(SPECIES_GARDEVOIR) { Item(ITEM_PSYCHITE); Speed(3); }
+        OPPONENT(SPECIES_GARDEVOIR) { Item(ITEM_FAIRYTITE); Speed(3); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(4); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); MOVE(playerLeft, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); }
     } SCENE {
-        MESSAGE("The opposing Gardevoir's Psychite is reacting to 2's Mega Ring!");
+        MESSAGE("The opposing Gardevoir's Fairytite is reacting to 2's Mega Ring!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, opponentLeft);
         MESSAGE("The opposing Gardevoir has Mega Evolved into Mega Gardevoir!");
         MESSAGE("Venusaur's Grasstite is reacting to 1's Mega Ring!");
@@ -41,7 +41,7 @@ DOUBLE_BATTLE_TEST("Mega Evolution's order is determined by Speed - player faste
     GIVEN {
         PLAYER(SPECIES_VENUSAUR) { Item(ITEM_GRASSTITE); Speed(5); }
         PLAYER(SPECIES_WOBBUFFET) { Speed(3); }
-        OPPONENT(SPECIES_GARDEVOIR) { Item(ITEM_PSYCHITE); Speed(2); }
+        OPPONENT(SPECIES_GARDEVOIR) { Item(ITEM_FAIRYTITE); Speed(2); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(4); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); MOVE(playerLeft, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); }
@@ -49,7 +49,7 @@ DOUBLE_BATTLE_TEST("Mega Evolution's order is determined by Speed - player faste
         MESSAGE("Venusaur's Grasstite is reacting to 1's Mega Ring!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, playerLeft);
         MESSAGE("Venusaur has Mega Evolved into Mega Venusaur!");
-        MESSAGE("The opposing Gardevoir's Psychite is reacting to 2's Mega Ring!");
+        MESSAGE("The opposing Gardevoir's Fairytite is reacting to 2's Mega Ring!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, opponentLeft);
         MESSAGE("The opposing Gardevoir has Mega Evolved into Mega Gardevoir!");
     }
@@ -75,7 +75,7 @@ SINGLE_BATTLE_TEST("Mega Evolution doesn't affect turn order (Gen6)")
 {
     GIVEN {
         WITH_CONFIG(B_MEGA_EVO_TURN_ORDER, GEN_6);
-        PLAYER(SPECIES_GARDEVOIR) { Item(ITEM_PSYCHITE); }
+        PLAYER(SPECIES_GARDEVOIR) { Item(ITEM_FAIRYTITE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); }
@@ -91,7 +91,7 @@ SINGLE_BATTLE_TEST("Mega Evolution affects turn order (Gen7+)")
 {
     GIVEN {
         WITH_CONFIG(B_MEGA_EVO_TURN_ORDER, GEN_7);
-        PLAYER(SPECIES_GARDEVOIR) { Item(ITEM_PSYCHITE); }
+        PLAYER(SPECIES_GARDEVOIR) { Item(ITEM_FAIRYTITE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); }
@@ -153,7 +153,7 @@ SINGLE_BATTLE_TEST("Regular Mega Evolution and Fervent Wish Mega Evolution can h
 {
     GIVEN {
         PLAYER(SPECIES_RAYQUAZA) { Moves(MOVE_DRAGON_ASCENT, MOVE_CELEBRATE); Speed(3); }
-        OPPONENT(SPECIES_GARDEVOIR) { Item(ITEM_PSYCHITE); Speed(2); }
+        OPPONENT(SPECIES_GARDEVOIR) { Item(ITEM_FAIRYTITE); Speed(2); }
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); MOVE(opponent, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); }
     } SCENE {
@@ -161,7 +161,7 @@ SINGLE_BATTLE_TEST("Regular Mega Evolution and Fervent Wish Mega Evolution can h
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, player);
         MESSAGE("Rayquaza has Mega Evolved into Mega Rayquaza!");
 
-        MESSAGE("The opposing Gardevoir's Psychite is reacting to 2's Mega Ring!");
+        MESSAGE("The opposing Gardevoir's Fairytite is reacting to 2's Mega Ring!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, opponent);
         MESSAGE("The opposing Gardevoir has Mega Evolved into Mega Gardevoir!");
     } THEN {
@@ -277,7 +277,7 @@ DOUBLE_BATTLE_TEST("Mega Evolution's order is determined by Speed - opponent fas
     GIVEN {
         PLAYER(SPECIES_VENUSAUR) { Items(ITEM_PECHA_BERRY, ITEM_GRASSTITE); Speed(1); }
         PLAYER(SPECIES_WOBBUFFET) { Speed(3); }
-        OPPONENT(SPECIES_GARDEVOIR) { Items(ITEM_PECHA_BERRY, ITEM_PSYCHITE); Speed(3); }
+        OPPONENT(SPECIES_GARDEVOIR) { Items(ITEM_PECHA_BERRY, ITEM_FAIRYTITE); Speed(3); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(4); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); MOVE(playerLeft, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); }
@@ -296,7 +296,7 @@ DOUBLE_BATTLE_TEST("Mega Evolution's order is determined by Speed - player faste
     GIVEN {
         PLAYER(SPECIES_VENUSAUR) { Items(ITEM_PECHA_BERRY, ITEM_GRASSTITE); Speed(5); }
         PLAYER(SPECIES_WOBBUFFET) { Speed(3); }
-        OPPONENT(SPECIES_GARDEVOIR) { Items(ITEM_PECHA_BERRY, ITEM_PSYCHITE); Speed(2); }
+        OPPONENT(SPECIES_GARDEVOIR) { Items(ITEM_PECHA_BERRY, ITEM_FAIRYTITE); Speed(2); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(4); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); MOVE(playerLeft, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); }
@@ -314,7 +314,7 @@ SINGLE_BATTLE_TEST("Mega Evolution doesn't affect turn order (Gen6) (Items)")
 {
     GIVEN {
         WITH_CONFIG(B_MEGA_EVO_TURN_ORDER, GEN_6);
-        PLAYER(SPECIES_GARDEVOIR) { Items(ITEM_PECHA_BERRY, ITEM_PSYCHITE); }
+        PLAYER(SPECIES_GARDEVOIR) { Items(ITEM_PECHA_BERRY, ITEM_FAIRYTITE); }
         OPPONENT(SPECIES_WOBBUFFET) {}
     } WHEN {
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); }
@@ -330,7 +330,7 @@ SINGLE_BATTLE_TEST("Mega Evolution affects turn order (Gen7+) (Items)")
 {
     GIVEN {
         WITH_CONFIG(B_MEGA_EVO_TURN_ORDER, GEN_7);
-        PLAYER(SPECIES_GARDEVOIR) { Items(ITEM_PECHA_BERRY, ITEM_PSYCHITE);}
+        PLAYER(SPECIES_GARDEVOIR) { Items(ITEM_PECHA_BERRY, ITEM_FAIRYTITE);}
         OPPONENT(SPECIES_WOBBUFFET) {}
     } WHEN {
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); }
@@ -392,7 +392,7 @@ SINGLE_BATTLE_TEST("Regular Mega Evolution and Fervent Wish Mega Evolution can h
 {
     GIVEN {
         PLAYER(SPECIES_RAYQUAZA) { Moves(MOVE_DRAGON_ASCENT, MOVE_CELEBRATE); Speed(3); }
-        OPPONENT(SPECIES_GARDEVOIR) { Items(ITEM_PECHA_BERRY, ITEM_PSYCHITE); Speed(2); }
+        OPPONENT(SPECIES_GARDEVOIR) { Items(ITEM_PECHA_BERRY, ITEM_FAIRYTITE); Speed(2); }
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); MOVE(opponent, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); }
     } SCENE {
