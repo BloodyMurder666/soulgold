@@ -164,19 +164,6 @@
       "flag": "FLAG_NIGHT_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ANNIHILAPE)",
-      "x": 17,
-      "y": 55,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "FLAG_NIGHT_POKEMON"
-    },
-    {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(VULPIX)",
       "x": 62,
       "y": 12,
@@ -396,19 +383,6 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
       "flag": "FLAG_NIGHT_POKEMON"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SENTRET)",
-      "x": 38,
-      "y": 54,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "FLAG_DAY_POKEMON"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(FURRET)",
