@@ -7,6 +7,7 @@
 #include "field_player_avatar.h"
 #include "follower_npc.h"
 #include "pokemon.h"
+#include "replay_options.h"
 #include "script.h"
 #include "script_movement.h"
 #include "sprite.h"
@@ -412,6 +413,9 @@ bool8 CheckForTrainersWantingBattle(void)
         if (numTrainers == 0)
             continue;
 
+        if (GetReplayBattleFormat() == REPLAY_BATTLE_FORMAT_SINGLES)
+            break;
+
         if (gNoOfApproachingTrainers > 1)
             break;
         if (GetMonsStateToDoubles_2() != PLAYER_HAS_TWO_USABLE_MONS) // one trainer found and cant have a double battle
@@ -541,10 +545,13 @@ static u8 CheckTrainer(u8 objectEventId)
             || temp->params.mode == TRAINER_BATTLE_REMATCH_DOUBLE
             || temp->params.mode == TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE)
         {
-            if (GetMonsStateToDoubles_2() != PLAYER_HAS_TWO_USABLE_MONS)
-                return 0;
+            if (GetReplayBattleFormat() != REPLAY_BATTLE_FORMAT_SINGLES)
+            {
+                if (GetMonsStateToDoubles_2() != PLAYER_HAS_TWO_USABLE_MONS)
+                    return 0;
 
-            numTrainers = 2;
+                numTrainers = 2;
+            }
         }
     }
 

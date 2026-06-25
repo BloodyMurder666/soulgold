@@ -48,6 +48,7 @@
 #include "pokerus.h"
 #include "random.h"
 #include "recorded_battle.h"
+#include "replay_options.h"
 #include "roamer.h"
 #include "safari_zone.h"
 #include "scanline_effect.h"
@@ -1942,6 +1943,27 @@ void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon 
     }
 }
 
+static void ApplyReplayTrainerStatOverrides(struct Pokemon *mon)
+{
+    if (AreReplayTrainerPerfectIVsForced())
+    {
+        u32 ivs = TRAINER_PARTY_IVS(MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS);
+        SetMonData(mon, MON_DATA_IVS, &ivs);
+    }
+
+    if (AreReplayTrainerMaxEVsForced())
+    {
+        u8 ev = MAX_PER_STAT_EVS;
+
+        SetMonData(mon, MON_DATA_HP_EV, &ev);
+        SetMonData(mon, MON_DATA_ATK_EV, &ev);
+        SetMonData(mon, MON_DATA_DEF_EV, &ev);
+        SetMonData(mon, MON_DATA_SPEED_EV, &ev);
+        SetMonData(mon, MON_DATA_SPATK_EV, &ev);
+        SetMonData(mon, MON_DATA_SPDEF_EV, &ev);
+    }
+}
+
 u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer *trainer, bool32 firstTrainer, u32 battleTypeFlags, u16 trainerId)
 {
     u32 personalityValue;
@@ -2063,6 +2085,8 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 SetMonData(&party[i], MON_DATA_SPDEF_EV, &(partyData[monIndex].ev[4]));
                 SetMonData(&party[i], MON_DATA_SPEED_EV, &(partyData[monIndex].ev[5]));
             }
+            if (party != gPlayerParty)
+                ApplyReplayTrainerStatOverrides(&party[i]);
             if (partyData[monIndex].ability != ABILITY_NONE)
             {
                 const struct SpeciesInfo *speciesInfo = &gSpeciesInfo[partyData[monIndex].species];

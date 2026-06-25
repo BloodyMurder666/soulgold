@@ -411,6 +411,12 @@ CafeSignRoute40::
 	return
 
 
+BattleTowerBaldingMan::
+# 214 "data/maps/Route40/scripts.pory"
+	msgbox BattleTowerBaldingMan_Text_0, MSGBOX_NPC
+	return
+
+
 TuberGirlRoute40_Text_0:
 # 204 "data/maps/Route40/scripts.pory"
 	.string "They sell yummy food in the cafe\n"
@@ -420,3 +426,8 @@ CafeSignRoute40_Text_0:
 # 209 "data/maps/Route40/scripts.pory"
 	.string "Olivine Beach Cafe!\n"
 	.string "Snacks and Meals all day!$"
+
+BattleTowerBaldingMan_Text_0:
+# 214 "data/maps/Route40/scripts.pory"
+	.string "I'll be the first one to enter\n"
+	.string "the Battle Tower!$"

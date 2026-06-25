@@ -1592,6 +1592,11 @@
 #define FLAG_POSTGAME_CAP2                          0x934
 #define FLAG_POSTGAME_CAP3                          0x935
 #define FLAG_POSTGAME_CAP4                          0x936
+#define FLAG_REPLAY_BATTLE_FORMAT_DOUBLES           0x937
+#define FLAG_REPLAY_BATTLE_FORMAT_SINGLES           0x938
+#define FLAG_REPLAY_TRAINER_PERFECT_IVS             0x939
+#define FLAG_REPLAY_TRAINER_MAX_EVS                 0x93A
+#define FLAG_REPLAY_EASY_IVS                        0x93B
 
 #define FLAG_0x1500                                 0x1500
 // Daily Flags

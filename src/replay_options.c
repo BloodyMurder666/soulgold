@@ -1,0 +1,106 @@
+#include "global.h"
+#include "data.h"
+#include "event_data.h"
+#include "pokemon.h"
+#include "replay_options.h"
+#include "constants/flags.h"
+
+static bool32 ToggleExclusiveFlag(u16 flag, u16 otherFlag)
+{
+    FlagToggle(flag);
+    if (FlagGet(flag))
+        FlagClear(otherFlag);
+    return FlagGet(flag);
+}
+
+static bool32 ToggleFlag(u16 flag)
+{
+    FlagToggle(flag);
+    return FlagGet(flag);
+}
+
+bool32 ToggleReplayOption(enum ReplayOption option)
+{
+    switch (option)
+    {
+    case REPLAY_OPTION_BATTLE_FORMAT_DOUBLES:
+        return ToggleExclusiveFlag(FLAG_REPLAY_BATTLE_FORMAT_DOUBLES, FLAG_REPLAY_BATTLE_FORMAT_SINGLES);
+    case REPLAY_OPTION_BATTLE_FORMAT_SINGLES:
+        return ToggleExclusiveFlag(FLAG_REPLAY_BATTLE_FORMAT_SINGLES, FLAG_REPLAY_BATTLE_FORMAT_DOUBLES);
+    case REPLAY_OPTION_TRAINER_PERFECT_IVS:
+        return ToggleFlag(FLAG_REPLAY_TRAINER_PERFECT_IVS);
+    case REPLAY_OPTION_TRAINER_MAX_EVS:
+        return ToggleFlag(FLAG_REPLAY_TRAINER_MAX_EVS);
+    case REPLAY_OPTION_EASY_IVS:
+        return ToggleFlag(FLAG_REPLAY_EASY_IVS);
+    default:
+        return FALSE;
+    }
+}
+
+bool32 ToggleReplayTrainerFullStats(void)
+{
+    if (FlagGet(FLAG_REPLAY_TRAINER_PERFECT_IVS) && FlagGet(FLAG_REPLAY_TRAINER_MAX_EVS))
+    {
+        FlagClear(FLAG_REPLAY_TRAINER_PERFECT_IVS);
+        FlagClear(FLAG_REPLAY_TRAINER_MAX_EVS);
+        return FALSE;
+    }
+
+    FlagSet(FLAG_REPLAY_TRAINER_PERFECT_IVS);
+    FlagSet(FLAG_REPLAY_TRAINER_MAX_EVS);
+    return TRUE;
+}
+
+bool32 ToggleMaxPainReplayOptions(void)
+{
+    if (FlagGet(FLAG_REPLAY_TRAINER_PERFECT_IVS)
+     && FlagGet(FLAG_REPLAY_TRAINER_MAX_EVS)
+     && FlagGet(FLAG_ALL_INNATES_UNLOCKED))
+    {
+        FlagClear(FLAG_REPLAY_TRAINER_PERFECT_IVS);
+        FlagClear(FLAG_REPLAY_TRAINER_MAX_EVS);
+        FlagClear(FLAG_ALL_INNATES_UNLOCKED);
+        return FALSE;
+    }
+
+    FlagSet(FLAG_REPLAY_TRAINER_PERFECT_IVS);
+    FlagSet(FLAG_REPLAY_TRAINER_MAX_EVS);
+    FlagSet(FLAG_ALL_INNATES_UNLOCKED);
+    return TRUE;
+}
+
+enum ReplayBattleFormat GetReplayBattleFormat(void)
+{
+    if (FlagGet(FLAG_REPLAY_BATTLE_FORMAT_DOUBLES))
+        return REPLAY_BATTLE_FORMAT_DOUBLES;
+    if (FlagGet(FLAG_REPLAY_BATTLE_FORMAT_SINGLES))
+        return REPLAY_BATTLE_FORMAT_SINGLES;
+    return REPLAY_BATTLE_FORMAT_DESIGNED;
+}
+
+bool32 AreReplayTrainerPerfectIVsForced(void)
+{
+    return FlagGet(FLAG_REPLAY_TRAINER_PERFECT_IVS);
+}
+
+bool32 AreReplayTrainerMaxEVsForced(void)
+{
+    return FlagGet(FLAG_REPLAY_TRAINER_MAX_EVS);
+}
+
+bool32 AreReplayEasyIVsEnabled(void)
+{
+    return FlagGet(FLAG_REPLAY_EASY_IVS);
+}
+
+void ApplyReplayEasyIVs(struct Pokemon *mon)
+{
+    if (AreReplayEasyIVsEnabled())
+    {
+        u32 ivs = TRAINER_PARTY_IVS(MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS);
+
+        SetMonData(mon, MON_DATA_IVS, &ivs);
+        CalculateMonStats(mon);
+    }
+}

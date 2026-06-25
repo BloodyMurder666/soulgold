@@ -45,6 +45,7 @@
 #include "pokerus.h"
 #include "random.h"
 #include "recorded_battle.h"
+#include "replay_options.h"
 #include "regions.h"
 #include "rtc.h"
 #include "sound.h"
@@ -2927,6 +2928,7 @@ u8 GiveCapturedMonToPlayer(struct Pokemon *mon)
     SetMonData(mon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
     SetMonData(mon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
     SetMonData(mon, MON_DATA_OT_ID, gSaveBlock2Ptr->playerTrainerId);
+    ApplyReplayEasyIVs(mon);
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
@@ -7474,6 +7476,9 @@ u32 GiveScriptedMonToPlayer(struct Pokemon *mon, u8 slot)
 {
     u32 sentToPc;
     u32 i = 0;
+
+    ApplyReplayEasyIVs(mon);
+
     if (slot < PARTY_SIZE)
     {
         CopyMon(&gPlayerParty[slot], mon, sizeof(struct Pokemon));

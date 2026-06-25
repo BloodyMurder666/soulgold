@@ -16,6 +16,7 @@
 #include "fieldmap.h"
 #include "follower_npc.h"
 #include "random.h"
+#include "replay_options.h"
 #include "starter_choose.h"
 #include "script_pokemon_util.h"
 #include "palette.h"
@@ -885,6 +886,36 @@ static u8 GetSumOfEnemyPartyLevel(u16 opponentId, u8 numMons)
     return sum;
 }
 
+static u8 GetReplayFormatTrainerPartySize(u16 trainerId)
+{
+    const struct Trainer *trainer = GetTrainerStructFromId(trainerId);
+
+    if (trainer->overrideTrainer && trainer->partySize == 0)
+        return GetTrainerPartySizeFromId(trainer->overrideTrainer);
+    return trainer->partySize;
+}
+
+static bool32 ShouldForceReplayTrainerDoubles(void)
+{
+    u16 trainerId = IsPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA)
+        ? GetPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA)
+        : TRAINER_BATTLE_PARAM.opponentA;
+
+    if (GetReplayBattleFormat() != REPLAY_BATTLE_FORMAT_DOUBLES)
+        return FALSE;
+    if (gNoOfApproachingTrainers > 1)
+        return FALSE;
+    if (FollowerNPCIsBattlePartner())
+        return FALSE;
+    if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE || InTrainerHillChallenge())
+        return FALSE;
+    if (GetMonsStateToDoubles_2() != PLAYER_HAS_TWO_USABLE_MONS)
+        return FALSE;
+    if (GetReplayFormatTrainerPartySize(trainerId) < 2)
+        return FALSE;
+    return TRUE;
+}
+
 enum BattleTransition GetWildBattleTransition(void)
 {
     u8 transitionType = GetBattleTransitionTypeByMap();
@@ -934,14 +965,10 @@ enum BattleTransition GetTrainerBattleTransition(void)
     if (trainerClass == TRAINER_CLASS_ROCKET_ADMIN)
         return B_TRANSITION_ROCKET;
 
-    switch (GetTrainerBattleType(trainerId))
+    if ((GetReplayBattleFormat() == REPLAY_BATTLE_FORMAT_DOUBLES && gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+     || (GetReplayBattleFormat() != REPLAY_BATTLE_FORMAT_SINGLES && GetTrainerBattleType(trainerId) == TRAINER_BATTLE_TYPE_DOUBLES))
     {
-    case TRAINER_BATTLE_TYPE_SINGLES:
-        minPartyCount = 1;
-        break;
-    case TRAINER_BATTLE_TYPE_DOUBLES:
         minPartyCount = 2; // double battles always at least have 2 Pokémon.
-        break;
     }
 
     transitionType = GetBattleTransitionTypeByMap();
@@ -1177,6 +1204,8 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data)
         return EventScript_DoNoIntroTrainerBattle;
     case TRAINER_BATTLE_DOUBLE:
         SetMapVarsToTrainerA();
+        if (GetReplayBattleFormat() == REPLAY_BATTLE_FORMAT_SINGLES)
+            return EventScript_TryDoNormalTrainerBattle;
         return EventScript_TryDoDoubleTrainerBattle;
     case TRAINER_BATTLE_CONTINUE_SCRIPT:
         if (gApproachingTrainerId == 0)
@@ -1190,11 +1219,15 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data)
     case TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE:
     case TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE_NO_MUSIC:
         SetMapVarsToTrainerA();
+        if (GetReplayBattleFormat() == REPLAY_BATTLE_FORMAT_SINGLES)
+            return EventScript_TryDoNormalTrainerBattle;
         return EventScript_TryDoDoubleTrainerBattle;
 #if FREE_MATCH_CALL == FALSE
     case TRAINER_BATTLE_REMATCH_DOUBLE:
         SetMapVarsToTrainerA();
         TRAINER_BATTLE_PARAM.opponentA = GetRematchTrainerId(TRAINER_BATTLE_PARAM.opponentA);
+        if (GetReplayBattleFormat() == REPLAY_BATTLE_FORMAT_SINGLES)
+            return EventScript_TryDoRematchBattle;
         return EventScript_TryDoDoubleRematchBattle;
     case TRAINER_BATTLE_REMATCH:
         SetMapVarsToTrainerA();
@@ -1406,7 +1439,12 @@ void BattleSetup_StartTrainerBattle(void)
 
         SetHillTrainerFlag();
     }
-    else if (GetTrainerBattleType(IsPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA)
+    else if (ShouldForceReplayTrainerDoubles())
+    {
+        gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
+    }
+    else if (GetReplayBattleFormat() != REPLAY_BATTLE_FORMAT_SINGLES
+          && GetTrainerBattleType(IsPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA)
                 ? GetPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA)
                 : TRAINER_BATTLE_PARAM.opponentA) == TRAINER_BATTLE_TYPE_DOUBLES)
     {
@@ -1557,6 +1595,8 @@ void BattleSetup_StartRematchBattle(void)
     RemoveFieldMugshot();
 
     gBattleTypeFlags = BATTLE_TYPE_TRAINER;
+    if (ShouldForceReplayTrainerDoubles())
+        gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
     gMain.savedCallback = CB2_EndRematchBattle;
     DoTrainerBattle();
     ScriptContext_Stop();
