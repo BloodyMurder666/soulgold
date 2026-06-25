@@ -2642,7 +2642,7 @@ Mugshot: Pink
 
 Hitmontop
 Ability: Intimidate
-Level: 43
+Level: 44
 EVs: 80 Atk / 80 Spe
 IVs: 20 HP / 20 Atk / 20 Def / 12 SpA / 12 SpD / 12 Spe
 - Triple Kick
@@ -2651,7 +2651,7 @@ IVs: 20 HP / 20 Atk / 20 Def / 12 SpA / 12 SpD / 12 Spe
 - Pursuit
 
 Mienshao
-Level: 43
+Level: 45
 Ability: Regenerator
 EVs: 80 Atk / 80 Spe
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
@@ -2661,7 +2661,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Knock Off
 
 Poliwrath @ Black Belt
-Level: 44
+Level: 45
 EVs: 80 HP / 80 Atk
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Hypnosis
@@ -2670,7 +2670,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Dynamic Punch
 
 Annihilape @ Chesto Berry
-Level: 44
+Level: 45
 EVs: 80 HP / 80 Atk
 IVs: 20 HP / 20 Atk / 20 Def / 12 SpA / 12 SpD / 12 Spe
 - Brick Break
@@ -2701,7 +2701,7 @@ Difficulty: Hard
 
 Hitmontop @ Adrenaline Orb
 Ability: Intimidate
-Level: 43
+Level: 45
 EVs: 160 Atk / 160 Spe
 IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
 - Triple Axel
@@ -2710,7 +2710,7 @@ IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
 - Pursuit
 
 Sirfetch'd @ Assault Vest
-Level: 43
+Level: 45
 Ability: Scrappy
 EVs: 160 HP / 160 Atk
 IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
@@ -2720,7 +2720,7 @@ IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
 - Brick Break
 
 Mienshao @ Sitrus Berry
-Level: 44
+Level: 45
 Ability: Regenerator
 EVs: 160 Atk / 160 Spe
 IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
@@ -2730,7 +2730,7 @@ IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
 - Knock Off
 
 Poliwrath @ Black Belt
-Level: 44
+Level: 45
 EVs: 160 HP / 160 Atk
 IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
 - Hypnosis
@@ -2740,7 +2740,7 @@ IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
 
 Falinks @ Fightite
 Ability: Defiant
-Level: 45
+Level: 46
 EVs: 160 Atk / 160 Spe
 IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
 - First Impression
@@ -4456,37 +4456,37 @@ Mugshot: Pink
 
 Hitmontop
 Ability: Intimidate
-Level: 46
+Level: 47
 EVs: 80 Atk / 80 Spe
-IVs: 24 HP / 24 Atk / 24 Def / 12 SpA / 12 SpD / 12 Spe
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Triple Kick
 - Rapid Spin
 - Dig
 - Pursuit
 
 Mienshao
-Level: 46
+Level: 48
 Ability: Regenerator
 EVs: 80 Atk / 80 Spe
-IVs: 24 HP / 24 Atk / 24 Def / 12 SpA / 12 SpD / 12 Spe
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Low Kick
 - U Turn
 - Bounce
 - Knock Off
 
 Poliwrath @ Black Belt
-Level: 47
+Level: 48
 EVs: 80 HP / 80 Atk
-IVs: 24 HP / 24 Atk / 24 Def / 12 SpA / 12 SpD / 12 Spe
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Hypnosis
 - Drain Punch
 - Surf
 - Dynamic Punch
 
 Annihilape @ Chesto Berry
-Level: 47
+Level: 48
 EVs: 80 HP / 80 Atk
-IVs: 24 HP / 24 Atk / 24 Def / 12 SpA / 12 SpD / 12 Spe
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Brick Break
 - Taunt
 - Assurance
@@ -4496,7 +4496,7 @@ Falinks @ Fightite
 Ability: Defiant
 Level: 48
 EVs: 80 Atk / 80 Spe
-IVs: 24 HP / 24 Atk / 24 Def / 12 SpA / 12 SpD / 12 Spe
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - First Impression
 - No Retreat
 - Megahorn
@@ -4515,38 +4515,38 @@ Difficulty: Hard
 
 Hitmontop @ Adrenaline Orb
 Ability: Intimidate
-Level: 46
+Level: 48
 EVs: 160 Atk / 160 Spe
-IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Triple Axel
 - Rapid Spin
 - Bullet Punch
 - Pursuit
 
 Sirfetch'd @ Assault Vest
-Level: 46
+Level: 48
 Ability: Scrappy
 EVs: 160 HP / 160 Atk
-IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Slash
 - Brutal Swing
 - Leaf Blade
 - Brick Break
 
 Mienshao @ Sitrus Berry
-Level: 47
+Level: 48
 Ability: Regenerator
 EVs: 160 Atk / 160 Spe
-IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - U turn
 - Drain Punch
 - Ice Spinner
 - Knock Off
 
 Poliwrath @ Black Belt
-Level: 47
+Level: 48
 EVs: 160 HP / 160 Atk
-IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Hypnosis
 - Mind Reader
 - Waterfall
@@ -4554,9 +4554,9 @@ IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
 
 Falinks @ Fightite
 Ability: Defiant
-Level: 48
+Level: 49
 EVs: 160 Atk / 160 Spe
-IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - First Impression
 - No Retreat
 - Megahorn
@@ -8547,7 +8547,7 @@ AI: Smart Trainer
 Mugshot: Green
 
 Ninetales-Alola @ Salac Berry
-Level: 46
+Level: 47
 Ability: Snow Warning  
 EVs: 80 SpA / 80 Spe  
 Hasty Nature  
@@ -8558,9 +8558,10 @@ IVs: 0 Atk
 - Freeze-Dry  
 
 Mamoswine @ Air Balloon
-Level: 46
+Level: 48
 Ability: Thick Fat  
 EVs: 80 Atk / 80 SpA  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 Mild Nature  
 - Blizzard  
 - Ancient Power  
@@ -8568,19 +8569,20 @@ Mild Nature
 - Earthquake  
 
 Glaceon @ Life Orb
-Level: 46
+Level: 47
 Ability: Ice Body  
 EVs: 80 SpA / 80 Spe  
-IVs: 0 Atk  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe 
 - Alluring Voice  
 - Blizzard  
 - Chilling Water  
 - Ice Beam  
 
 Weavile @ Chople Berry
-Level: 46
+Level: 48
 Ability: Pressure  
 EVs: 80 Atk / 80 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Brick Break  
 - Knock Off  
 - Ice Spinner  
@@ -8590,6 +8592,7 @@ Froslass (F) @ Icetite
 Level: 48
 Ability: Snow Cloak  
 EVs: 80 SpA / 80 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Blizzard  
 - Draining Kiss  
 - Poltergeist  
@@ -8608,28 +8611,30 @@ Difficulty: Hard
 
 Darmanitan-Galar @ Adrenaline Orb  
 Ability: Zen Mode  
-Level: 47  
+Level: 48  
 EVs: 160 Atk / 160 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Ice Punch  
 - Hammer Arm  
 - Rock Slide  
 - Avalanche
 
 Ninetales-Alola @ Salac Berry
-Level: 46
+Level: 48
 Ability: Snow Warning  
 EVs: 160 SpA / 160 Spe  
-Hasty Nature  
-IVs: 0 Atk  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+Hasty Nature
 - Aurora Veil  
 - Blizzard  
 - Dazzling Gleam  
 - Freeze-Dry  
 
 Mamoswine @ Air Balloon
-Level: 46
+Level: 48
 Ability: Thick Fat  
 EVs: 160 Atk / 160 SpA  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 Mild Nature  
 - Blizzard  
 - Ancient Power  
@@ -8637,28 +8642,30 @@ Mild Nature
 - Earthquake  
 
 Glaceon @ Life Orb
-Level: 46
+Level: 48
 Ability: Ice Body  
 EVs: 160 SpA / 160 Spe  
-IVs: 0 Atk  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Alluring Voice  
 - Blizzard  
 - Chilling Water  
 - Ice Beam  
 
 Weavile @ Chople Berry
-Level: 46
+Level: 48
 Ability: Pressure  
 EVs: 160 Atk / 160 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Brick Break  
 - Knock Off  
 - Ice Spinner  
 - Poison Jab  
 
 Froslass (F) @ Icetite
-Level: 48
+Level: 49
 Ability: Snow Cloak  
 EVs: 160 SpA / 160 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Blizzard  
 - Draining Kiss  
 - Poltergeist  
@@ -8675,7 +8682,7 @@ AI: Smart Trainer
 Mugshot: Green
 
 Ninetales-Alola @ Salac Berry
-Level: 43
+Level: 44
 Ability: Snow Warning  
 EVs: 80 SpA / 80 Spe  
 Hasty Nature  
@@ -8686,7 +8693,7 @@ IVs: 0 Atk
 - Freeze-Dry  
 
 Mamoswine @ Air Balloon
-Level: 43
+Level: 45
 Ability: Thick Fat  
 EVs: 80 Atk / 80 SpA  
 Mild Nature  
@@ -8696,7 +8703,7 @@ Mild Nature
 - Earthquake  
 
 Glaceon @ Life Orb
-Level: 43
+Level: 44
 Ability: Ice Body  
 EVs: 80 SpA / 80 Spe  
 IVs: 0 Atk  
@@ -8706,7 +8713,7 @@ IVs: 0 Atk
 - Ice Beam  
 
 Weavile @ Chople Berry
-Level: 44
+Level: 45
 Ability: Pressure  
 EVs: 80 Atk / 80 Spe  
 - Brick Break  
@@ -8736,28 +8743,30 @@ Difficulty: Hard
 
 Darmanitan-Galar @ Adrenaline Orb  
 Ability: Zen Mode  
-Level: 42  
+Level: 45  
 EVs: 160 Atk / 160 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Ice Punch  
 - Hammer Arm  
 - Rock Slide  
 - Avalanche
 
 Ninetales-Alola @ Salac Berry
-Level: 43
+Level: 45
 Ability: Snow Warning  
 EVs: 160 SpA / 160 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 Hasty Nature  
-IVs: 0 Atk  
 - Aurora Veil  
 - Blizzard  
 - Dazzling Gleam  
 - Freeze-Dry  
 
 Mamoswine @ Air Balloon
-Level: 43
+Level: 45
 Ability: Thick Fat  
-EVs: 160 Atk / 160 SpA  
+EVs: 160 Atk / 160 SpA
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe  
 Mild Nature  
 - Blizzard  
 - Ancient Power  
@@ -8765,28 +8774,30 @@ Mild Nature
 - Earthquake  
 
 Glaceon @ Life Orb
-Level: 43
+Level: 45
 Ability: Ice Body  
 EVs: 160 SpA / 160 Spe  
-IVs: 0 Atk  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Alluring Voice  
 - Blizzard  
 - Chilling Water  
 - Ice Beam  
 
 Weavile @ Chople Berry
-Level: 44
+Level: 45
 Ability: Pressure  
 EVs: 160 Atk / 160 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Brick Break  
 - Knock Off  
 - Ice Spinner  
 - Poison Jab  
 
 Froslass (F) @ Icetite
-Level: 45
+Level: 46
 Ability: Snow Cloak  
 EVs: 160 SpA / 160 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Blizzard  
 - Draining Kiss  
 - Poltergeist  
@@ -9323,7 +9334,7 @@ Difficulty: Normal
 Mugshot: Blue
 
 Skarmory
-Level: 40
+Level: 41
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Spikes
 - Brave Bird
@@ -9331,7 +9342,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Steel Wing
 
 Tinkaton
-Level: 40
+Level: 41
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Light Screen
 - Fake Out
@@ -9374,7 +9385,7 @@ Mugshot: Blue
 Difficulty: Hard
 
 Corviknight @ Rocky Helmet
-Level: 40
+Level: 42
 Ability: Mirror Armor
 IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - Body Press
@@ -9383,7 +9394,7 @@ IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - Steel Wing
 
 Tinkaton @ Shuca Berry
-Level: 40
+Level: 42
 Ability: Own Tempo
 IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - Light Screen
@@ -9392,7 +9403,7 @@ IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - Thunder Wave
 
 Magnezone @ Leftovers
-Level: 41
+Level: 42
 Ability: Analytic
 IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - Thunderbolt
@@ -9401,7 +9412,7 @@ IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - Discharge
 
 Scizor @ Sitrus Berry
-Level: 41
+Level: 42
 Ability: Technician
 IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - U Turn
@@ -11599,7 +11610,7 @@ AI: Smart Trainer
 Mugshot: Blue
 
 Skarmory
-Level: 46
+Level: 47
 EVs: 80 HP / 80 Def
 IVs: 24 HP / 24 Atk / 24 Def / 12 SpA / 12 SpD / 12 Spe
 - Spikes
@@ -11608,7 +11619,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 12 SpA / 12 SpD / 12 Spe
 - Steel Wing
 
 Tinkaton
-Level: 46
+Level: 48
 EVs: 80 HP / 80 Atk
 IVs: 24 HP / 24 Atk / 24 Def / 12 SpA / 12 SpD / 12 Spe
 - Light Screen
@@ -11626,7 +11637,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 12 SpA / 12 SpD / 12 Spe
 - Thunder
 
 Scizor @ Sitrus Berry
-Level: 47
+Level: 48
 EVs: 80 HP / 80 Atk
 IVs: 24 HP / 24 Atk / 24 Def / 12 SpA / 12 SpD / 12 Spe
 - U Turn
@@ -11655,7 +11666,7 @@ Mugshot: Blue
 Difficulty: Hard
 
 Corviknight @ Rocky Helmet
-Level: 46
+Level: 48
 Ability: Mirror Armor
 EVs: 160 HP / 160 Def
 IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
@@ -11665,7 +11676,7 @@ IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - Steel Wing
 
 Tinkaton @ Shuca Berry
-Level: 46
+Level: 49
 Ability: Own Tempo
 EVs: 160 HP / 160 Atk
 IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
@@ -11675,7 +11686,7 @@ IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - Thunder Wave
 
 Magnezone @ Leftovers
-Level: 47
+Level: 48
 Ability: Analytic
 EVs: 160 SpA / 160 Spe
 IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
@@ -11685,7 +11696,7 @@ IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - Discharge
 
 Scizor @ Sitrus Berry
-Level: 47
+Level: 49
 Ability: Technician
 EVs: 160 HP / 160 Atk
 IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
@@ -11695,7 +11706,7 @@ IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - Swords Dance
 
 Steelix @ Steeltite
-Level: 48
+Level: 49
 Ability: Sheer Force
 EVs: 160 Atk / 160 Def
 IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
@@ -11715,7 +11726,7 @@ AI: Smart Trainer
 Mugshot: Blue
 
 Skarmory
-Level: 43
+Level: 44
 EVs: 80 HP / 80 Def
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Spikes
@@ -11724,7 +11735,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Steel Wing
 
 Tinkaton
-Level: 43
+Level: 45
 EVs: 80 HP / 80 Atk
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Light Screen
@@ -11742,7 +11753,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Thunder
 
 Scizor @ Sitrus Berry
-Level: 44
+Level: 45
 EVs: 80 HP / 80 Atk
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - U Turn
@@ -11771,7 +11782,7 @@ Mugshot: Blue
 Difficulty: Hard
 
 Corviknight @ Rocky Helmet
-Level: 43
+Level: 45
 Ability: Mirror Armor
 EVs: 160 HP / 160 Def
 IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
@@ -11781,7 +11792,7 @@ IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - Steel Wing
 
 Tinkaton @ Shuca Berry
-Level: 43
+Level: 45
 Ability: Own Tempo
 EVs: 160 HP / 160 Atk
 IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
@@ -11791,7 +11802,7 @@ IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - Thunder Wave
 
 Magnezone @ Leftovers
-Level: 44
+Level: 45
 Ability: Analytic
 EVs: 160 SpA / 160 Spe
 IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
@@ -11801,7 +11812,7 @@ IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - Discharge
 
 Scizor @ Sitrus Berry
-Level: 44
+Level: 45
 Ability: Technician
 EVs: 160 HP / 160 Atk
 IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
@@ -12374,7 +12385,7 @@ Mugshot: Pink
 
 Hitmontop
 Ability: Intimidate
-Level: 40
+Level: 41
 IVs: 20 HP / 20 Atk / 20 Def / 12 SpA / 12 SpD / 12 Spe
 - Triple Kick
 - Rapid Spin
@@ -12382,7 +12393,7 @@ IVs: 20 HP / 20 Atk / 20 Def / 12 SpA / 12 SpD / 12 Spe
 - Pursuit
 
 Mienshao
-Level: 40
+Level: 42
 Ability: Regenerator
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Low Kick
@@ -12419,7 +12430,7 @@ Difficulty: Hard
 
 Hitmontop @ Adrenaline Orb
 Ability: Intimidate
-Level: 40
+Level: 42
 IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
 - Triple Axel
 - Rapid Spin
@@ -12427,7 +12438,7 @@ IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
 - Pursuit
 
 Sirfetch'd @ Assault Vest
-Level: 40
+Level: 42
 Ability: Scrappy
 IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
 - Slash
@@ -12436,7 +12447,7 @@ IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
 - Brick Break
 
 Mienshao @ Sitrus Berry
-Level: 41
+Level: 42
 Ability: Regenerator
 IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
 - U turn
@@ -12445,7 +12456,7 @@ IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
 - Knock Off
 
 Poliwrath @ Black Belt
-Level: 41
+Level: 42
 IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
 - Hypnosis
 - Mind Reader
@@ -13042,20 +13053,21 @@ AI: Smart Trainer
 Mugshot: Green
 
 Ninetales-Alola @ Salac Berry
-Level: 40
+Level: 41
 Ability: Snow Warning  
 EVs: 88 SpA / 88 Spe  
 Hasty Nature  
-IVs: 0 Atk  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Aurora Veil  
 - Blizzard  
 - Dazzling Gleam  
 - Freeze-Dry  
 
 Mamoswine @ Air Balloon
-Level: 40
+Level: 41
 Ability: Thick Fat  
 EVs: 108 Atk / 128 SpA  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 Mild Nature  
 - Blizzard  
 - Ancient Power  
@@ -13066,16 +13078,17 @@ Glaceon @ Life Orb
 Level: 41
 Ability: Ice Body  
 EVs: 84 SpA / 92 Spe  
-IVs: 0 Atk  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Alluring Voice  
 - Blizzard  
 - Chilling Water  
 - Ice Beam  
 
 Weavile @ Chople Berry
-Level: 41
+Level: 42
 Ability: Pressure  
 EVs: 116 Atk / 128 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Brick Break  
 - Knock Off  
 - Ice Spinner  
@@ -13085,6 +13098,7 @@ Froslass (F) @ Sitrus Berry
 Level: 42
 Ability: Snow Cloak  
 EVs: 100 HP / 148 Def / 156 SpA  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Blizzard  
 - Draining Kiss  
 - Poltergeist  
@@ -13102,11 +13116,11 @@ Mugshot: Green
 Difficulty: Hard
 
 Ninetales-Alola @ Salac Berry
-Level: 40
+Level: 42
 Ability: Snow Warning  
 EVs: 88 SpA / 88 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 Hasty Nature  
-IVs: 0 Atk  
 - Aurora Veil  
 - Blizzard  
 - Dazzling Gleam  
@@ -13114,17 +13128,19 @@ IVs: 0 Atk
 
 Darmanitan-Galar @ Adrenaline Orb
 Ability: Zen Mode
-Level: 40
+Level: 42
 EVs: 116 Atk / 112 Spe
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Ice Punch
 - Hammer Arm
 - Rock Slide
 - Avalanche
 
 Mamoswine @ Air Balloon
-Level: 40
+Level: 42
 Ability: Thick Fat  
 EVs: 108 Atk / 128 SpA  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 Mild Nature  
 - Blizzard  
 - Ancient Power  
@@ -13132,19 +13148,20 @@ Mild Nature
 - Earthquake  
 
 Glaceon @ Life Orb
-Level: 41
+Level: 42
 Ability: Ice Body  
 EVs: 84 SpA / 92 Spe  
-IVs: 0 Atk  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Alluring Voice  
 - Blizzard  
 - Chilling Water  
 - Ice Beam  
 
 Weavile @ Chople Berry
-Level: 41
+Level: 42
 Ability: Pressure  
 EVs: 116 Atk / 128 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Brick Break  
 - Knock Off  
 - Ice Spinner  
@@ -13154,6 +13171,7 @@ Froslass (F) @ Sitrus Berry
 Level: 42
 Ability: Snow Cloak  
 EVs: 100 HP / 148 Def / 156 SpA  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Blizzard  
 - Draining Kiss  
 - Poltergeist  

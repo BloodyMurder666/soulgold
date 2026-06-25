@@ -283,10 +283,10 @@ Cianwood_Kirk::
 # 161 "data/maps/CianwoodHouse3/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq Cianwood_Kirk_5
-# 170 "data/maps/CianwoodHouse3/scripts.pory"
+# 173 "data/maps/CianwoodHouse3/scripts.pory"
 	msgbox Cianwood_Kirk_Text_3
 Cianwood_Kirk_4:
-# 172 "data/maps/CianwoodHouse3/scripts.pory"
+# 175 "data/maps/CianwoodHouse3/scripts.pory"
 	release
 	end
 
@@ -301,10 +301,16 @@ Cianwood_Kirk_5:
 # 162 "data/maps/CianwoodHouse3/scripts.pory"
 	msgbox Cianwood_Kirk_Text_2
 # 165 "data/maps/CianwoodHouse3/scripts.pory"
-	givemon SPECIES_GIMMIGHOUL_CHEST, 30
+	closemessage
 # 166 "data/maps/CianwoodHouse3/scripts.pory"
-	call Common_EventScript_GiftMon
+	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_GIMMIGHOUL_CHEST
 # 167 "data/maps/CianwoodHouse3/scripts.pory"
+	bufferspeciesname STR_VAR_1, SPECIES_GIMMIGHOUL_CHEST
+# 168 "data/maps/CianwoodHouse3/scripts.pory"
+	givemon SPECIES_GIMMIGHOUL_CHEST, 30
+# 169 "data/maps/CianwoodHouse3/scripts.pory"
+	call Common_EventScript_GiftMon
+# 170 "data/maps/CianwoodHouse3/scripts.pory"
 	setflag FLAG_CIANWOOD_GIMMIGHOUL
 	goto Cianwood_Kirk_4
 
@@ -331,5 +337,5 @@ Cianwood_Kirk_Text_2:
 	.string "Take good care of it, please!$"
 
 Cianwood_Kirk_Text_3:
-# 170 "data/maps/CianwoodHouse3/scripts.pory"
+# 173 "data/maps/CianwoodHouse3/scripts.pory"
 	.string "Oh, what am I going to do...$"

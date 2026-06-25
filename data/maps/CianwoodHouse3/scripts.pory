@@ -162,6 +162,9 @@ script Cianwood_Kirk {
         msgbox("Oh, thank you!
         
                 Take good care of it, please!")
+        closemessage
+        setvar(VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_GIMMIGHOUL_CHEST)
+        bufferspeciesname(STR_VAR_1, SPECIES_GIMMIGHOUL_CHEST)
         givemon(SPECIES_GIMMIGHOUL_CHEST, 30)
         call(Common_EventScript_GiftMon)
         setflag(FLAG_CIANWOOD_GIMMIGHOUL)

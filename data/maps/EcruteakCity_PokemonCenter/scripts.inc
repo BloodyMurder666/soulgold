@@ -24,7 +24,7 @@ EcruteakCity_PokemonCenter_EventScript_Bill::
 	playse SE_EXIT
 	setflag FLAG_HIDE_ECRUTEAK_BILL
 	removeobject LOCALID_ECRUTEAK_BILL
-	setflag FLAG_GARBAGEFLAG
+	setflag FLAG_SYS_PC_LANETTE
 	clearflag FLAG_HIDE_GOLDENROD_BILL
 	release
 	end
