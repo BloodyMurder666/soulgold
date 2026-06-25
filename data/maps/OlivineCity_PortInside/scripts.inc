@@ -557,9 +557,9 @@ OlivinePort_Text_Youngster:
 # 279 "data/maps/OlivineCity_PortInside/scripts.pory"
 OlivinePort_Text_CooltrainerF:
 # 280 "data/maps/OlivineCity_PortInside/scripts.pory"
-    .string "There are lots of Pokémon in Kanto.\p"
+    .string "There are lots of Pokémon in\p"
 # 281 "data/maps/OlivineCity_PortInside/scripts.pory"
-    .string "I wish I could go…$"
+    .string "the world. I wish I could travel...$"
 # 282 "data/maps/OlivineCity_PortInside/scripts.pory"
 
 # 283 "data/maps/OlivineCity_PortInside/scripts.pory"
@@ -578,6 +578,6 @@ OlivinePort_Sailor::
 OlivinePort_Sailor_Text_0:
 # 288 "data/maps/OlivineCity_PortInside/scripts.pory"
 	.string "Sorry, but the ship is not going to\n"
-	.string "leave anywhere anytime soon. Our\l"
-	.string "engines exploded mysteriously.\l"
+	.string "leave anywhere anytime soon. \p"
+	.string "Our engines exploded mysteriously.\p"
 	.string "Strange, right?$"

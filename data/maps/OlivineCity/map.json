@@ -75,6 +75,7 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_OLIVINE_SILVER",
       "graphics_id": "OBJ_EVENT_GFX_SILVER",
       "x": 11,
       "y": 27,
@@ -86,19 +87,6 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
       "flag": "FLAG_HIDE_OLIVINE_SILVER"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(PIDGEOTTO)",
-      "x": 11,
-      "y": 11,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(STARYU)",
@@ -257,19 +245,6 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MACHOP)",
-      "x": 11,
-      "y": 16,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-      "movement_range_x": 5,
-      "movement_range_y": 5,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "FLAG_DAY_POKEMON"
-    },
-    {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(MISDREAVUS)",
       "x": 14,
       "y": 7,
@@ -281,19 +256,6 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
       "flag": "FLAG_NIGHT_POKEMON"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
-      "x": 7,
-      "y": 16,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
@@ -319,19 +281,6 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "OlivineSouvenirMart",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_TWIN",
-      "x": 28,
-      "y": 41,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "FallarborTown_Mart_EventScript_MetronomeTutor",
       "flag": "0"
     },
     {

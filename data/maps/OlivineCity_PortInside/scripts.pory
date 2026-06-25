@@ -277,8 +277,8 @@ OlivinePort_Text_Youngster:
     .string "over the waves!$"
 
 OlivinePort_Text_CooltrainerF:
-    .string "There are lots of Pokémon in Kanto.\p"
-    .string "I wish I could go…$"
+    .string "There are lots of Pokémon in\p"
+    .string "the world. I wish I could travel...$"
 
 OlivinePort_Text_SailorBeforeHOF:
     .string "We don't want you to fall into the\n"
@@ -286,7 +286,9 @@ OlivinePort_Text_SailorBeforeHOF:
 `
 script OlivinePort_Sailor {
 	msgbox("Sorry, but the ship is not going to
-			leave anywhere anytime soon. Our
-			engines exploded mysteriously.
+			leave anywhere anytime soon. 
+			
+			Our engines exploded mysteriously.
+			
 			Strange, right?", MSGBOX_NPC)
 }
