@@ -9,7 +9,7 @@ Based on expansion port of Pokemon Heart and Soul. Feature list to be made later
 - RHH and pokeemerald expansion dev team, of course!
 - TeamAquaHideout for help, resources and feature branches (new birch case)
 - Estellar for pathfinding
-- [PokemonSanFran/PSF](https://github.com/PokemonSanFran/pokeemerald/wiki/Battle-Arcade) for battle arcade branch
+- [PokemonSanFran/PSF](https://github.com/PokemonSanFran/pokeemerald/wiki/Battle-Arcade) for battle arcade branch and quest menu UI base
 - LinathanZel for help window
 - Kasenn for tinting battle bgs, use how many? in party menu and bp mart
 - [bassforte123](https://github.com/bassforte123/pokeemerald-complete/tree/Trait-and-Items) for multi ability system
