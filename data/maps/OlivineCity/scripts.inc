@@ -169,135 +169,135 @@ OlivineCity_EventScript_SilverTrigger::
 # 85 "data/maps/OlivineCity/scripts.pory"
 	call_if_eq VAR_TEMP_1, 30, OlivineCity_EventScript_SilverWalkToPlayer3
 # 86 "data/maps/OlivineCity/scripts.pory"
-	msgbox OlivineCity_Text_SilverEncounter, MSGBOX_DEFAULT
+	createfieldmugshot MUGSHOT_SILVER
 # 87 "data/maps/OlivineCity/scripts.pory"
-	closemessage
+	msgbox OlivineCity_Text_SilverEncounter, MSGBOX_DEFAULT
 # 88 "data/maps/OlivineCity/scripts.pory"
-	call_if_eq VAR_TEMP_1, 28, OlivineCity_EventScript_SilverLeaveAdjust1
+	closemessage
 # 89 "data/maps/OlivineCity/scripts.pory"
-	call_if_eq VAR_TEMP_1, 29, OlivineCity_EventScript_SilverLeaveAdjust2
+	call_if_eq VAR_TEMP_1, 28, OlivineCity_EventScript_SilverLeaveAdjust1
 # 90 "data/maps/OlivineCity/scripts.pory"
-	call_if_eq VAR_TEMP_1, 30, OlivineCity_EventScript_SilverLeaveAdjust2
+	call_if_eq VAR_TEMP_1, 29, OlivineCity_EventScript_SilverLeaveAdjust2
 # 91 "data/maps/OlivineCity/scripts.pory"
-	applymovement LOCALID_OLIVINE_SILVER, OlivineCity_Movement_SilverLeave
+	call_if_eq VAR_TEMP_1, 30, OlivineCity_EventScript_SilverLeaveAdjust2
 # 92 "data/maps/OlivineCity/scripts.pory"
-	waitmovement 0
+	applymovement LOCALID_OLIVINE_SILVER, OlivineCity_Movement_SilverLeave
 # 93 "data/maps/OlivineCity/scripts.pory"
-	setvar VAR_OLIVINE_CITY_STATE, 2
+	waitmovement 0
 # 94 "data/maps/OlivineCity/scripts.pory"
-	setflag FLAG_HIDE_OLIVINE_SILVER
+	setvar VAR_OLIVINE_CITY_STATE, 2
 # 95 "data/maps/OlivineCity/scripts.pory"
-	setflag FLAG_HIDE_MAREANIES
+	setflag FLAG_HIDE_OLIVINE_SILVER
 # 96 "data/maps/OlivineCity/scripts.pory"
-	removeobject LOCALID_OLIVINE_SILVER
+	setflag FLAG_HIDE_MAREANIES
 # 97 "data/maps/OlivineCity/scripts.pory"
-	fadedefaultbgm
+	removeobject LOCALID_OLIVINE_SILVER
 # 98 "data/maps/OlivineCity/scripts.pory"
-	release
+	fadedefaultbgm
 # 99 "data/maps/OlivineCity/scripts.pory"
-	end
+	release
 # 100 "data/maps/OlivineCity/scripts.pory"
-
+	end
 # 101 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_EventScript_SilverWalkToPlayer1::
+
 # 102 "data/maps/OlivineCity/scripts.pory"
-	applymovement LOCALID_OLIVINE_SILVER OlivineCity_Movement_SilverWalkToPlayer1
+OlivineCity_EventScript_SilverWalkToPlayer1::
 # 103 "data/maps/OlivineCity/scripts.pory"
-	waitmovement 0
+	applymovement LOCALID_OLIVINE_SILVER OlivineCity_Movement_SilverWalkToPlayer1
 # 104 "data/maps/OlivineCity/scripts.pory"
-	return
+	waitmovement 0
 # 105 "data/maps/OlivineCity/scripts.pory"
-
+	return
 # 106 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_EventScript_SilverWalkToPlayer2::
+
 # 107 "data/maps/OlivineCity/scripts.pory"
-	applymovement LOCALID_OLIVINE_SILVER OlivineCity_Movement_SilverWalkToPlayer2
+OlivineCity_EventScript_SilverWalkToPlayer2::
 # 108 "data/maps/OlivineCity/scripts.pory"
-	waitmovement 0
+	applymovement LOCALID_OLIVINE_SILVER OlivineCity_Movement_SilverWalkToPlayer2
 # 109 "data/maps/OlivineCity/scripts.pory"
-	return
+	waitmovement 0
 # 110 "data/maps/OlivineCity/scripts.pory"
-
+	return
 # 111 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_EventScript_SilverWalkToPlayer3::
+
 # 112 "data/maps/OlivineCity/scripts.pory"
-	applymovement LOCALID_OLIVINE_SILVER OlivineCity_Movement_SilverWalkToPlayer3
+OlivineCity_EventScript_SilverWalkToPlayer3::
 # 113 "data/maps/OlivineCity/scripts.pory"
-	waitmovement 0
+	applymovement LOCALID_OLIVINE_SILVER OlivineCity_Movement_SilverWalkToPlayer3
 # 114 "data/maps/OlivineCity/scripts.pory"
-	return
+	waitmovement 0
 # 115 "data/maps/OlivineCity/scripts.pory"
-
+	return
 # 116 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_EventScript_SilverLeaveAdjust1::
+
 # 117 "data/maps/OlivineCity/scripts.pory"
-	applymovement LOCALID_OLIVINE_SILVER Common_Movement_WalkDown1
+OlivineCity_EventScript_SilverLeaveAdjust1::
 # 118 "data/maps/OlivineCity/scripts.pory"
-	waitmovement 0
+	applymovement LOCALID_OLIVINE_SILVER Common_Movement_WalkDown1
 # 119 "data/maps/OlivineCity/scripts.pory"
-	return
-# 120 "data/maps/OlivineCity/scripts.pory"
-
-# 121 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_EventScript_SilverLeaveAdjust2::
-# 122 "data/maps/OlivineCity/scripts.pory"
-	applymovement LOCALID_OLIVINE_SILVER Common_Movement_WalkUp1
-# 123 "data/maps/OlivineCity/scripts.pory"
 	waitmovement 0
-# 124 "data/maps/OlivineCity/scripts.pory"
+# 120 "data/maps/OlivineCity/scripts.pory"
 	return
-# 125 "data/maps/OlivineCity/scripts.pory"
+# 121 "data/maps/OlivineCity/scripts.pory"
 
+# 122 "data/maps/OlivineCity/scripts.pory"
+OlivineCity_EventScript_SilverLeaveAdjust2::
+# 123 "data/maps/OlivineCity/scripts.pory"
+	applymovement LOCALID_OLIVINE_SILVER Common_Movement_WalkUp1
+# 124 "data/maps/OlivineCity/scripts.pory"
+	waitmovement 0
+# 125 "data/maps/OlivineCity/scripts.pory"
+	return
 # 126 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_Movement_SilverWalkToPlayer1:
+
 # 127 "data/maps/OlivineCity/scripts.pory"
-	walk_down
+OlivineCity_Movement_SilverWalkToPlayer1:
 # 128 "data/maps/OlivineCity/scripts.pory"
-	walk_right
+	walk_down
 # 129 "data/maps/OlivineCity/scripts.pory"
 	walk_right
 # 130 "data/maps/OlivineCity/scripts.pory"
 	walk_right
 # 131 "data/maps/OlivineCity/scripts.pory"
-	step_end
+	walk_right
 # 132 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_Movement_SilverWalkToPlayer2:
+	step_end
 # 133 "data/maps/OlivineCity/scripts.pory"
-	walk_down
+OlivineCity_Movement_SilverWalkToPlayer2:
 # 134 "data/maps/OlivineCity/scripts.pory"
 	walk_down
 # 135 "data/maps/OlivineCity/scripts.pory"
-	walk_right
+	walk_down
 # 136 "data/maps/OlivineCity/scripts.pory"
 	walk_right
 # 137 "data/maps/OlivineCity/scripts.pory"
 	walk_right
 # 138 "data/maps/OlivineCity/scripts.pory"
-	step_end
+	walk_right
 # 139 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_Movement_SilverWalkToPlayer3:
+	step_end
 # 140 "data/maps/OlivineCity/scripts.pory"
-	walk_down
+OlivineCity_Movement_SilverWalkToPlayer3:
 # 141 "data/maps/OlivineCity/scripts.pory"
 	walk_down
 # 142 "data/maps/OlivineCity/scripts.pory"
 	walk_down
 # 143 "data/maps/OlivineCity/scripts.pory"
-	walk_right
+	walk_down
 # 144 "data/maps/OlivineCity/scripts.pory"
 	walk_right
 # 145 "data/maps/OlivineCity/scripts.pory"
 	walk_right
 # 146 "data/maps/OlivineCity/scripts.pory"
-	step_end
+	walk_right
 # 147 "data/maps/OlivineCity/scripts.pory"
-
+	step_end
 # 148 "data/maps/OlivineCity/scripts.pory"
 
 # 149 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_Movement_SilverLeave:
+
 # 150 "data/maps/OlivineCity/scripts.pory"
-	walk_right
+OlivineCity_Movement_SilverLeave:
 # 151 "data/maps/OlivineCity/scripts.pory"
 	walk_right
 # 152 "data/maps/OlivineCity/scripts.pory"
@@ -307,7 +307,7 @@ OlivineCity_Movement_SilverLeave:
 # 154 "data/maps/OlivineCity/scripts.pory"
 	walk_right
 # 155 "data/maps/OlivineCity/scripts.pory"
-	walk_up
+	walk_right
 # 156 "data/maps/OlivineCity/scripts.pory"
 	walk_up
 # 157 "data/maps/OlivineCity/scripts.pory"
@@ -321,503 +321,505 @@ OlivineCity_Movement_SilverLeave:
 # 161 "data/maps/OlivineCity/scripts.pory"
 	walk_up
 # 162 "data/maps/OlivineCity/scripts.pory"
-	step_end
+	walk_up
 # 163 "data/maps/OlivineCity/scripts.pory"
-
+	step_end
 # 164 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_Text_SilverEncounter:
+
 # 165 "data/maps/OlivineCity/scripts.pory"
-	.string "You again?\n"
+OlivineCity_Text_SilverEncounter:
 # 166 "data/maps/OlivineCity/scripts.pory"
-	.string "There's no need to be alert.\p"
+	.string "You again?\n"
 # 167 "data/maps/OlivineCity/scripts.pory"
-	.string "I don't bother with wimps\n"
+	.string "There's no need to be alert.\p"
 # 168 "data/maps/OlivineCity/scripts.pory"
-	.string "like you.\p"
+	.string "I don't bother with wimps\n"
 # 169 "data/maps/OlivineCity/scripts.pory"
-	.string "Speaking of weaklings, the\n"
+	.string "like you.\p"
 # 170 "data/maps/OlivineCity/scripts.pory"
-	.string "city's Gym Leader isn't here,\l"
+	.string "Speaking of weaklings, the\n"
 # 171 "data/maps/OlivineCity/scripts.pory"
-	.string "and is supposedly taking care\l"
+	.string "city's Gym Leader isn't here,\l"
 # 172 "data/maps/OlivineCity/scripts.pory"
-	.string "of a sick Pokémon at the\l"
+	.string "and is supposedly taking care\l"
 # 173 "data/maps/OlivineCity/scripts.pory"
-	.string "Lighthouse.\p"
+	.string "of a sick Pokémon at the\l"
 # 174 "data/maps/OlivineCity/scripts.pory"
-	.string "Humph! Boo-hoo!\n"
+	.string "Lighthouse.\p"
 # 175 "data/maps/OlivineCity/scripts.pory"
-	.string "Just let sick Pokémon go!\p"
+	.string "Humph! Boo-hoo!\n"
 # 176 "data/maps/OlivineCity/scripts.pory"
-	.string "A Pokémon that can't battle\n"
+	.string "Just let sick Pokémon go!\p"
 # 177 "data/maps/OlivineCity/scripts.pory"
-	.string "is worthless!\p"
+	.string "A Pokémon that can't battle\n"
 # 178 "data/maps/OlivineCity/scripts.pory"
-	.string "Why don't you go train at the\n"
+	.string "is worthless!\p"
 # 179 "data/maps/OlivineCity/scripts.pory"
-	.string "Lighthouse?\p"
+	.string "Why don't you go train at the\n"
 # 180 "data/maps/OlivineCity/scripts.pory"
-	.string "Who knows? It may make you a\n"
+	.string "Lighthouse?\p"
 # 181 "data/maps/OlivineCity/scripts.pory"
-	.string "bit of a better Trainer!$"
+	.string "Who knows? It may make you a\n"
 # 182 "data/maps/OlivineCity/scripts.pory"
-
+	.string "bit of a better Trainer!$"
 # 183 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_EventScript_Sailor1::
+
 # 184 "data/maps/OlivineCity/scripts.pory"
-	lock
+OlivineCity_EventScript_Sailor1::
 # 185 "data/maps/OlivineCity/scripts.pory"
-	faceplayer
+	lock
 # 186 "data/maps/OlivineCity/scripts.pory"
-	msgbox OlivineCity_Text_Sailor1, MSGBOX_DEFAULT
+	faceplayer
 # 187 "data/maps/OlivineCity/scripts.pory"
-	closemessage
+	msgbox OlivineCity_Text_Sailor1, MSGBOX_DEFAULT
 # 188 "data/maps/OlivineCity/scripts.pory"
-	release
+	closemessage
 # 189 "data/maps/OlivineCity/scripts.pory"
-	end
+	release
 # 190 "data/maps/OlivineCity/scripts.pory"
-
+	end
 # 191 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_EventScript_Sailor2::
+
 # 192 "data/maps/OlivineCity/scripts.pory"
-	lock
+OlivineCity_EventScript_Sailor2::
 # 193 "data/maps/OlivineCity/scripts.pory"
-	faceplayer
+	lock
 # 194 "data/maps/OlivineCity/scripts.pory"
-	msgbox OlivineCity_Text_Sailor2, MSGBOX_DEFAULT
+	faceplayer
 # 195 "data/maps/OlivineCity/scripts.pory"
-	closemessage
+	msgbox OlivineCity_Text_Sailor2, MSGBOX_DEFAULT
 # 196 "data/maps/OlivineCity/scripts.pory"
-	release
+	closemessage
 # 197 "data/maps/OlivineCity/scripts.pory"
-	end
+	release
 # 198 "data/maps/OlivineCity/scripts.pory"
-
+	end
 # 199 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_EventScript_Youngster::
+
 # 200 "data/maps/OlivineCity/scripts.pory"
-	lock
+OlivineCity_EventScript_Youngster::
 # 201 "data/maps/OlivineCity/scripts.pory"
-	faceplayer
+	lock
 # 202 "data/maps/OlivineCity/scripts.pory"
-	msgbox OlivineCity_Text_YoungsterPokegear, MSGBOX_DEFAULT
+	faceplayer
 # 203 "data/maps/OlivineCity/scripts.pory"
-	closemessage
+	msgbox OlivineCity_Text_YoungsterPokegear, MSGBOX_DEFAULT
 # 204 "data/maps/OlivineCity/scripts.pory"
-	release
+	closemessage
 # 205 "data/maps/OlivineCity/scripts.pory"
-	end
+	release
 # 206 "data/maps/OlivineCity/scripts.pory"
-
+	end
 # 207 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_EventScript_Machoke::
+
 # 208 "data/maps/OlivineCity/scripts.pory"
-	lock
+OlivineCity_EventScript_Machoke::
 # 209 "data/maps/OlivineCity/scripts.pory"
-	faceplayer
+	lock
 # 210 "data/maps/OlivineCity/scripts.pory"
-	waitse
-# 211 "data/maps/OlivineCity/scripts.pory"
-	playmoncry SPECIES_MACHOKE, CRY_MODE_NORMAL
-# 212 "data/maps/OlivineCity/scripts.pory"
-	msgbox OlivineCity_Text_Machoke, MSGBOX_DEFAULT
-# 213 "data/maps/OlivineCity/scripts.pory"
-	waitmoncry
-# 214 "data/maps/OlivineCity/scripts.pory"
-	release
-# 215 "data/maps/OlivineCity/scripts.pory"
-	end
-# 216 "data/maps/OlivineCity/scripts.pory"
-
-# 217 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_EventScript_Sign::
-# 218 "data/maps/OlivineCity/scripts.pory"
-	lock
-# 219 "data/maps/OlivineCity/scripts.pory"
-	msgbox OlivineCity_Text_Sign, MSGBOX_SIGN
-# 220 "data/maps/OlivineCity/scripts.pory"
-	end
-# 221 "data/maps/OlivineCity/scripts.pory"
-
-# 222 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_EventScript_PortSign::
-# 223 "data/maps/OlivineCity/scripts.pory"
-	lock
-# 224 "data/maps/OlivineCity/scripts.pory"
-	msgbox OlivineCity_Text_PortSign, MSGBOX_SIGN
-# 225 "data/maps/OlivineCity/scripts.pory"
-	end
-# 226 "data/maps/OlivineCity/scripts.pory"
-
-# 227 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_EventScript_CafeSign::
-# 228 "data/maps/OlivineCity/scripts.pory"
-	msgbox OlivineCity_Text_CafeSign, MSGBOX_SIGN
-# 229 "data/maps/OlivineCity/scripts.pory"
-	end
-# 230 "data/maps/OlivineCity/scripts.pory"
-
-# 231 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_EventScript_GymSign::
-# 232 "data/maps/OlivineCity/scripts.pory"
-	lock
-# 233 "data/maps/OlivineCity/scripts.pory"
-	msgbox OlivineCity_Text_GymSign, MSGBOX_SIGN
-# 234 "data/maps/OlivineCity/scripts.pory"
-	end
-# 235 "data/maps/OlivineCity/scripts.pory"
-
-# 236 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_EventScript_LighthouseSign::
-# 237 "data/maps/OlivineCity/scripts.pory"
-	lock
-# 238 "data/maps/OlivineCity/scripts.pory"
-	msgbox OlivineCity_Text_LighthouseSign, MSGBOX_SIGN
-# 239 "data/maps/OlivineCity/scripts.pory"
-	end
-# 240 "data/maps/OlivineCity/scripts.pory"
-
-# 241 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_EventScript_EonTicketWoman::
-# 242 "data/maps/OlivineCity/scripts.pory"
-	lock
-# 243 "data/maps/OlivineCity/scripts.pory"
 	faceplayer
+# 211 "data/maps/OlivineCity/scripts.pory"
+	waitse
+# 212 "data/maps/OlivineCity/scripts.pory"
+	playmoncry SPECIES_MACHOKE, CRY_MODE_NORMAL
+# 213 "data/maps/OlivineCity/scripts.pory"
+	msgbox OlivineCity_Text_Machoke, MSGBOX_DEFAULT
+# 214 "data/maps/OlivineCity/scripts.pory"
+	waitmoncry
+# 215 "data/maps/OlivineCity/scripts.pory"
+	release
+# 216 "data/maps/OlivineCity/scripts.pory"
+	end
+# 217 "data/maps/OlivineCity/scripts.pory"
+
+# 218 "data/maps/OlivineCity/scripts.pory"
+OlivineCity_EventScript_Sign::
+# 219 "data/maps/OlivineCity/scripts.pory"
+	lock
+# 220 "data/maps/OlivineCity/scripts.pory"
+	msgbox OlivineCity_Text_Sign, MSGBOX_SIGN
+# 221 "data/maps/OlivineCity/scripts.pory"
+	end
+# 222 "data/maps/OlivineCity/scripts.pory"
+
+# 223 "data/maps/OlivineCity/scripts.pory"
+OlivineCity_EventScript_PortSign::
+# 224 "data/maps/OlivineCity/scripts.pory"
+	lock
+# 225 "data/maps/OlivineCity/scripts.pory"
+	msgbox OlivineCity_Text_PortSign, MSGBOX_SIGN
+# 226 "data/maps/OlivineCity/scripts.pory"
+	end
+# 227 "data/maps/OlivineCity/scripts.pory"
+
+# 228 "data/maps/OlivineCity/scripts.pory"
+OlivineCity_EventScript_CafeSign::
+# 229 "data/maps/OlivineCity/scripts.pory"
+	msgbox OlivineCity_Text_CafeSign, MSGBOX_SIGN
+# 230 "data/maps/OlivineCity/scripts.pory"
+	end
+# 231 "data/maps/OlivineCity/scripts.pory"
+
+# 232 "data/maps/OlivineCity/scripts.pory"
+OlivineCity_EventScript_GymSign::
+# 233 "data/maps/OlivineCity/scripts.pory"
+	lock
+# 234 "data/maps/OlivineCity/scripts.pory"
+	msgbox OlivineCity_Text_GymSign, MSGBOX_SIGN
+# 235 "data/maps/OlivineCity/scripts.pory"
+	end
+# 236 "data/maps/OlivineCity/scripts.pory"
+
+# 237 "data/maps/OlivineCity/scripts.pory"
+OlivineCity_EventScript_LighthouseSign::
+# 238 "data/maps/OlivineCity/scripts.pory"
+	lock
+# 239 "data/maps/OlivineCity/scripts.pory"
+	msgbox OlivineCity_Text_LighthouseSign, MSGBOX_SIGN
+# 240 "data/maps/OlivineCity/scripts.pory"
+	end
+# 241 "data/maps/OlivineCity/scripts.pory"
+
+# 242 "data/maps/OlivineCity/scripts.pory"
+OlivineCity_EventScript_EonTicketWoman::
+# 243 "data/maps/OlivineCity/scripts.pory"
+	lock
 # 244 "data/maps/OlivineCity/scripts.pory"
-	checkitem ITEM_AURORA_TICKET
+	faceplayer
 # 245 "data/maps/OlivineCity/scripts.pory"
-	goto_if_eq VAR_RESULT, TRUE, OlivineCity_EventScript_EonTicketWomanAfter
+	checkitem ITEM_AURORA_TICKET
 # 246 "data/maps/OlivineCity/scripts.pory"
-	goto_if_set FLAG_IS_KANTO_CHAMPION, OlivineCity_EventScript_EonTicketWomanChamp
+	goto_if_eq VAR_RESULT, TRUE, OlivineCity_EventScript_EonTicketWomanAfter
 # 247 "data/maps/OlivineCity/scripts.pory"
-	msgbox OlivineCity_Text_EonTicketWoman1, MSGBOX_DEFAULT
+	goto_if_set FLAG_IS_KANTO_CHAMPION, OlivineCity_EventScript_EonTicketWomanChamp
 # 248 "data/maps/OlivineCity/scripts.pory"
-	closemessage
+	msgbox OlivineCity_Text_EonTicketWoman1, MSGBOX_DEFAULT
 # 249 "data/maps/OlivineCity/scripts.pory"
-	release
+	closemessage
 # 250 "data/maps/OlivineCity/scripts.pory"
-	end
+	release
 # 251 "data/maps/OlivineCity/scripts.pory"
-
+	end
 # 252 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_EventScript_EonTicketWomanChamp::
+
 # 253 "data/maps/OlivineCity/scripts.pory"
-	msgbox OlivineCity_Text_EonTicketWoman2, MSGBOX_DEFAULT
+OlivineCity_EventScript_EonTicketWomanChamp::
 # 254 "data/maps/OlivineCity/scripts.pory"
-	giveitem ITEM_AURORA_TICKET
+	msgbox OlivineCity_Text_EonTicketWoman2, MSGBOX_DEFAULT
 # 255 "data/maps/OlivineCity/scripts.pory"
-	closemessage
+	giveitem ITEM_AURORA_TICKET
 # 256 "data/maps/OlivineCity/scripts.pory"
-	release
-# 257 "data/maps/OlivineCity/scripts.pory"
-	end
-# 258 "data/maps/OlivineCity/scripts.pory"
-
-# 259 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_EventScript_EonTicketWomanAfter::
-# 260 "data/maps/OlivineCity/scripts.pory"
-	msgbox OlivineCity_Text_EonTicketWoman3, MSGBOX_DEFAULT
-# 261 "data/maps/OlivineCity/scripts.pory"
 	closemessage
-# 262 "data/maps/OlivineCity/scripts.pory"
+# 257 "data/maps/OlivineCity/scripts.pory"
 	release
-# 263 "data/maps/OlivineCity/scripts.pory"
+# 258 "data/maps/OlivineCity/scripts.pory"
 	end
+# 259 "data/maps/OlivineCity/scripts.pory"
+
+# 260 "data/maps/OlivineCity/scripts.pory"
+OlivineCity_EventScript_EonTicketWomanAfter::
+# 261 "data/maps/OlivineCity/scripts.pory"
+	msgbox OlivineCity_Text_EonTicketWoman3, MSGBOX_DEFAULT
+# 262 "data/maps/OlivineCity/scripts.pory"
+	closemessage
+# 263 "data/maps/OlivineCity/scripts.pory"
+	release
 # 264 "data/maps/OlivineCity/scripts.pory"
-
+	end
 # 265 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_Text_CafeSign:
+
 # 266 "data/maps/OlivineCity/scripts.pory"
-	.string "Olivine Cafe\n"
+OlivineCity_Text_CafeSign:
 # 267 "data/maps/OlivineCity/scripts.pory"
-	.string "Where Strong Sailors Enjoy\l"
+	.string "Olivine Cafe\n"
 # 268 "data/maps/OlivineCity/scripts.pory"
-	.string "Hearty Meals Of Strength$"
+	.string "Where Strong Sailors Enjoy\l"
 # 269 "data/maps/OlivineCity/scripts.pory"
-
+	.string "Hearty Meals Of Strength$"
 # 270 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_Text_EonTicketWoman1:
+
 # 271 "data/maps/OlivineCity/scripts.pory"
-	.string "My name is Mary!\p"
+OlivineCity_Text_EonTicketWoman1:
 # 272 "data/maps/OlivineCity/scripts.pory"
-	.string "Just kidding, but I love Mary's\n"
+	.string "My name is Mary!\p"
 # 273 "data/maps/OlivineCity/scripts.pory"
-	.string "radio show!$"
+	.string "Just kidding, but I love Mary's\n"
 # 274 "data/maps/OlivineCity/scripts.pory"
-
+	.string "radio show!$"
 # 275 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_Text_EonTicketWoman2:
+
 # 276 "data/maps/OlivineCity/scripts.pory"
-	.string "You must be {PLAYER}!!!\p"
+OlivineCity_Text_EonTicketWoman2:
 # 277 "data/maps/OlivineCity/scripts.pory"
-	.string "Oh my goodness! The champion!\p"
+	.string "You must be {PLAYER}!!!\p"
 # 278 "data/maps/OlivineCity/scripts.pory"
-	.string "I heard about you on Mary's\n"
+	.string "Oh my goodness! The champion!\p"
 # 279 "data/maps/OlivineCity/scripts.pory"
-	.string "radio show!\p"
+	.string "I heard about you on Mary's\n"
 # 280 "data/maps/OlivineCity/scripts.pory"
-	.string "Here, take this!$"
+	.string "radio show!\p"
 # 281 "data/maps/OlivineCity/scripts.pory"
-
+	.string "Here, take this!$"
 # 282 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_Text_EonTicketWoman3:
+
 # 283 "data/maps/OlivineCity/scripts.pory"
-	.string "I can't believe I met the\n"
+OlivineCity_Text_EonTicketWoman3:
 # 284 "data/maps/OlivineCity/scripts.pory"
-	.string "champion!!!$"
+	.string "I can't believe I met the\n"
 # 285 "data/maps/OlivineCity/scripts.pory"
-
+	.string "champion!!!$"
 # 286 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_Text_Sailor1:
+
 # 287 "data/maps/OlivineCity/scripts.pory"
-	.string "Dark roads are dangerous\n"
+OlivineCity_Text_Sailor1:
 # 288 "data/maps/OlivineCity/scripts.pory"
-	.string "at night.\p"
+	.string "Dark roads are dangerous\n"
 # 289 "data/maps/OlivineCity/scripts.pory"
-	.string "But in the pitch-black of\n"
+	.string "at night.\p"
 # 290 "data/maps/OlivineCity/scripts.pory"
-	.string "night, the sea is even more\l"
+	.string "But in the pitch-black of\n"
 # 291 "data/maps/OlivineCity/scripts.pory"
-	.string "treacherous!\p"
+	.string "night, the sea is even more\l"
 # 292 "data/maps/OlivineCity/scripts.pory"
-	.string "Without the beacon of the\n"
+	.string "treacherous!\p"
 # 293 "data/maps/OlivineCity/scripts.pory"
-	.string "Lighthouse to guide it,\l"
+	.string "Without the beacon of the\n"
 # 294 "data/maps/OlivineCity/scripts.pory"
-	.string "no ship can sail.$"
+	.string "Lighthouse to guide it,\l"
 # 295 "data/maps/OlivineCity/scripts.pory"
-
+	.string "no ship can sail.$"
 # 296 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_Text_YoungsterPokegear:
+
 # 297 "data/maps/OlivineCity/scripts.pory"
-	.string "That thing you have--\n"
+OlivineCity_Text_YoungsterPokegear:
 # 298 "data/maps/OlivineCity/scripts.pory"
-	.string "it's a Pokégear, right?\l"
+	.string "That thing you have--\n"
 # 299 "data/maps/OlivineCity/scripts.pory"
-	.string "Wow, that's cool.$"
+	.string "it's a Pokégear, right?\l"
 # 300 "data/maps/OlivineCity/scripts.pory"
-
+	.string "Wow, that's cool.$"
 # 301 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_Text_YoungsterPokedex:
+
 # 302 "data/maps/OlivineCity/scripts.pory"
-	.string "Wow, you have a Pokédex!\p"
+OlivineCity_Text_YoungsterPokedex:
 # 303 "data/maps/OlivineCity/scripts.pory"
-	.string "That is just so awesome.$"
+	.string "Wow, you have a Pokédex!\p"
 # 304 "data/maps/OlivineCity/scripts.pory"
-
+	.string "That is just so awesome.$"
 # 305 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_Text_Sailor2:
+
 # 306 "data/maps/OlivineCity/scripts.pory"
-	.string "The league has Jasmine\n"
+OlivineCity_Text_Sailor2:
 # 307 "data/maps/OlivineCity/scripts.pory"
-	.string "pegged as the sixth\l"
+	.string "The league has Jasmine\n"
 # 308 "data/maps/OlivineCity/scripts.pory"
-	.string "strongest Gym Leader!\p"
+	.string "pegged as the sixth\l"
 # 309 "data/maps/OlivineCity/scripts.pory"
-	.string "Hah! That's a load of crud.\p"
+	.string "strongest Gym Leader!\p"
 # 310 "data/maps/OlivineCity/scripts.pory"
-	.string "There's no way Pryce could\n"
+	.string "Hah! That's a load of crud.\p"
 # 311 "data/maps/OlivineCity/scripts.pory"
-	.string "hurt Jasmine's Steel-type\l"
+	.string "There's no way Pryce could\n"
 # 312 "data/maps/OlivineCity/scripts.pory"
-	.string "Pokémon!\p"
+	.string "hurt Jasmine's Steel-type\l"
 # 313 "data/maps/OlivineCity/scripts.pory"
-	.string "Bureaucracy if you ask me.\p"
+	.string "Pokémon!\p"
 # 314 "data/maps/OlivineCity/scripts.pory"
-	.string "She's something to be feared,\n"
+	.string "Bureaucracy if you ask me.\p"
 # 315 "data/maps/OlivineCity/scripts.pory"
-	.string "that's for sure!$"
+	.string "She's something to be feared,\n"
 # 316 "data/maps/OlivineCity/scripts.pory"
-
+	.string "that's for sure!$"
 # 317 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_Text_Sign:
+
 # 318 "data/maps/OlivineCity/scripts.pory"
-	.string "Olivine City\p"
+OlivineCity_Text_Sign:
 # 319 "data/maps/OlivineCity/scripts.pory"
-	.string "The Port Closest to Foreign Lands$"
+	.string "Olivine City\p"
 # 320 "data/maps/OlivineCity/scripts.pory"
-
+	.string "The Port Closest to Foreign Lands$"
 # 321 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_Text_PortSign:
+
 # 322 "data/maps/OlivineCity/scripts.pory"
-	.string "Olivine Port\n"
+OlivineCity_Text_PortSign:
 # 323 "data/maps/OlivineCity/scripts.pory"
-	.string "Fast Ship Pier$"
+	.string "Olivine Port\n"
 # 324 "data/maps/OlivineCity/scripts.pory"
-
+	.string "Fast Ship Pier$"
 # 325 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_Text_GymSign:
+
 # 326 "data/maps/OlivineCity/scripts.pory"
-	.string "Olivine City Pokémon Gym\n"
+OlivineCity_Text_GymSign:
 # 327 "data/maps/OlivineCity/scripts.pory"
-	.string "Leader: Jasmine\p"
+	.string "Olivine City Pokémon Gym\n"
 # 328 "data/maps/OlivineCity/scripts.pory"
-	.string "The Steel-Clad Defense Girl$"
+	.string "Leader: Jasmine\p"
 # 329 "data/maps/OlivineCity/scripts.pory"
-
+	.string "The Steel-Clad Defense Girl$"
 # 330 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_Text_LighthouseSign:
+
 # 331 "data/maps/OlivineCity/scripts.pory"
-	.string "Olivine Lighthouse\n"
+OlivineCity_Text_LighthouseSign:
 # 332 "data/maps/OlivineCity/scripts.pory"
-	.string "Also known as the Glitter\l"
+	.string "Olivine Lighthouse\n"
 # 333 "data/maps/OlivineCity/scripts.pory"
-	.string "Lighthouse$"
+	.string "Also known as the Glitter\l"
 # 334 "data/maps/OlivineCity/scripts.pory"
-
+	.string "Lighthouse$"
 # 335 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_Text_BattleTowerSign:
-# 336 "data/maps/OlivineCity/scripts.pory"
-	.string "Battle Tower Ahead\n"
-# 337 "data/maps/OlivineCity/scripts.pory"
-	.string "Opening Now!$"
-# 338 "data/maps/OlivineCity/scripts.pory"
 
+# 336 "data/maps/OlivineCity/scripts.pory"
+OlivineCity_Text_BattleTowerSign:
+# 337 "data/maps/OlivineCity/scripts.pory"
+	.string "Battle Tower Ahead\n"
+# 338 "data/maps/OlivineCity/scripts.pory"
+	.string "Opening Now!$"
 # 339 "data/maps/OlivineCity/scripts.pory"
-OlivineCity_Text_Machoke:
+
 # 340 "data/maps/OlivineCity/scripts.pory"
+OlivineCity_Text_Machoke:
+# 341 "data/maps/OlivineCity/scripts.pory"
 	.string "Machoke: Cho!$"
 
 OlivineCity_Littlegirl_Warf::
-# 344 "data/maps/OlivineCity/scripts.pory"
-	lock
 # 345 "data/maps/OlivineCity/scripts.pory"
-	faceplayer
+	lock
 # 346 "data/maps/OlivineCity/scripts.pory"
+	faceplayer
+# 347 "data/maps/OlivineCity/scripts.pory"
 	msgbox OlivineCity_Littlegirl_Warf_Text_0
-# 348 "data/maps/OlivineCity/scripts.pory"
+# 349 "data/maps/OlivineCity/scripts.pory"
 	release
 	end
 
 
 MareanieOlivine::
-# 353 "data/maps/OlivineCity/scripts.pory"
-	lock
 # 354 "data/maps/OlivineCity/scripts.pory"
-	faceplayer
+	lock
 # 355 "data/maps/OlivineCity/scripts.pory"
-	playmoncry SPECIES_MAREANIE, CRY_MODE_NORMAL
+	faceplayer
 # 356 "data/maps/OlivineCity/scripts.pory"
-	msgbox MareanieOlivine_Text_0
+	playmoncry SPECIES_MAREANIE, CRY_MODE_NORMAL
 # 357 "data/maps/OlivineCity/scripts.pory"
-	waitmoncry
+	msgbox MareanieOlivine_Text_0
 # 358 "data/maps/OlivineCity/scripts.pory"
+	waitmoncry
+# 359 "data/maps/OlivineCity/scripts.pory"
 	release
 	end
 
 
 OlivineSouvenirMart::
-# 363 "data/maps/OlivineCity/scripts.pory"
-	lock
 # 364 "data/maps/OlivineCity/scripts.pory"
-	faceplayer
+	lock
 # 365 "data/maps/OlivineCity/scripts.pory"
-	message OlivineSouvenirMart_Text_0
+	faceplayer
 # 366 "data/maps/OlivineCity/scripts.pory"
-	waitmessage
+	message OlivineSouvenirMart_Text_0
 # 367 "data/maps/OlivineCity/scripts.pory"
-	pokemart SouvenirMart
+	waitmessage
 # 368 "data/maps/OlivineCity/scripts.pory"
-	msgbox OlivineSouvenirMart_Text_1
+	pokemart SouvenirMart
 # 369 "data/maps/OlivineCity/scripts.pory"
+	msgbox OlivineSouvenirMart_Text_1
+# 370 "data/maps/OlivineCity/scripts.pory"
 	release
 	end
 
 
 	.align 2
-# 373 "data/maps/OlivineCity/scripts.pory"
-SouvenirMart:
 # 374 "data/maps/OlivineCity/scripts.pory"
-	.2byte ITEM_STRANGE_SOUVENIR
+SouvenirMart:
 # 375 "data/maps/OlivineCity/scripts.pory"
-	.2byte ITEM_UNREMARKABLE_TEACUP
+	.2byte ITEM_STRANGE_SOUVENIR
 # 376 "data/maps/OlivineCity/scripts.pory"
+	.2byte ITEM_UNREMARKABLE_TEACUP
+# 377 "data/maps/OlivineCity/scripts.pory"
 	.2byte ITEM_UTILITY_UMBRELLA
 	.2byte ITEM_NONE
 
 OlivineCity_RivalPier::
-# 380 "data/maps/OlivineCity/scripts.pory"
-	lock
 # 381 "data/maps/OlivineCity/scripts.pory"
-	faceplayer
+	lock
 # 382 "data/maps/OlivineCity/scripts.pory"
-	createfieldmugshotrival
+	faceplayer
 # 383 "data/maps/OlivineCity/scripts.pory"
+	createfieldmugshotrival
+# 384 "data/maps/OlivineCity/scripts.pory"
 	msgbox OlivineCity_RivalPier_Text_0
-# 385 "data/maps/OlivineCity/scripts.pory"
+# 386 "data/maps/OlivineCity/scripts.pory"
 	msgbox OlivineCity_RivalPier_Text_1
-# 387 "data/maps/OlivineCity/scripts.pory"
+# 388 "data/maps/OlivineCity/scripts.pory"
 	msgbox OlivineCity_RivalPier_Text_2
-# 389 "data/maps/OlivineCity/scripts.pory"
+# 390 "data/maps/OlivineCity/scripts.pory"
 	msgbox OlivineCity_RivalPier_Text_3
-# 391 "data/maps/OlivineCity/scripts.pory"
+# 392 "data/maps/OlivineCity/scripts.pory"
 	msgbox OlivineCity_RivalPier_Text_4
-# 393 "data/maps/OlivineCity/scripts.pory"
-	msgbox OlivineCity_RivalPier_Text_5
 # 394 "data/maps/OlivineCity/scripts.pory"
-	removefieldmugshot
+	msgbox OlivineCity_RivalPier_Text_5
 # 395 "data/maps/OlivineCity/scripts.pory"
-	closemessage
+	removefieldmugshot
 # 396 "data/maps/OlivineCity/scripts.pory"
-	moveobjecttocoords LOCALID_OLIVINE_RIVAL, 19, 49, DIR_NORTH
+	closemessage
 # 397 "data/maps/OlivineCity/scripts.pory"
-	waitmovement 0
+	moveobjecttocoords LOCALID_OLIVINE_RIVAL, 19, 49, DIR_NORTH
 # 398 "data/maps/OlivineCity/scripts.pory"
-	setvar VAR_RIVAL_STATE, 9
+	waitmovement 0
 # 399 "data/maps/OlivineCity/scripts.pory"
-	setflag FLAG_HIDE_OLIVINE_RIVAL
+	setvar VAR_RIVAL_STATE, 9
 # 400 "data/maps/OlivineCity/scripts.pory"
-	removeobject LOCALID_OLIVINE_RIVAL
+	setflag FLAG_HIDE_OLIVINE_RIVAL
 # 401 "data/maps/OlivineCity/scripts.pory"
-	clearflag FLAG_HIDE_ICEPATH_RIVAL
+	removeobject LOCALID_OLIVINE_RIVAL
 # 402 "data/maps/OlivineCity/scripts.pory"
+	clearflag FLAG_HIDE_ICEPATH_RIVAL
+# 403 "data/maps/OlivineCity/scripts.pory"
 	release
 	end
 
 
 OlivineCity_Littlegirl_Warf_Text_0:
-# 346 "data/maps/OlivineCity/scripts.pory"
+# 347 "data/maps/OlivineCity/scripts.pory"
 	.string "I'm feeding the Mareanie every day!\n"
 	.string "They sometimes let me play with them!$"
 
 MareanieOlivine_Text_0:
-# 356 "data/maps/OlivineCity/scripts.pory"
+# 357 "data/maps/OlivineCity/scripts.pory"
 	.string "Maree!$"
 
 OlivineSouvenirMart_Text_0:
-# 365 "data/maps/OlivineCity/scripts.pory"
+# 366 "data/maps/OlivineCity/scripts.pory"
 	.string "Welcome! How may I help you?$"
 
 OlivineSouvenirMart_Text_1:
-# 368 "data/maps/OlivineCity/scripts.pory"
+# 369 "data/maps/OlivineCity/scripts.pory"
 	.string "Come back soon!$"
 
 OlivineCity_RivalPier_Text_0:
-# 383 "data/maps/OlivineCity/scripts.pory"
+# 384 "data/maps/OlivineCity/scripts.pory"
 	.string "Oh. \n"
 	.string "Hey...$"
 
 OlivineCity_RivalPier_Text_1:
-# 385 "data/maps/OlivineCity/scripts.pory"
+# 386 "data/maps/OlivineCity/scripts.pory"
 	.string "Do you ever think that some people are\n"
 	.string "just not... built for this?$"
 
 OlivineCity_RivalPier_Text_2:
-# 387 "data/maps/OlivineCity/scripts.pory"
+# 388 "data/maps/OlivineCity/scripts.pory"
 	.string "Like it comes naturally\n"
 	.string "and for others it's just...$"
 
 OlivineCity_RivalPier_Text_3:
-# 389 "data/maps/OlivineCity/scripts.pory"
+# 390 "data/maps/OlivineCity/scripts.pory"
 	.string "Never mind.\n"
 	.string "It's a dumb question.$"
 
 OlivineCity_RivalPier_Text_4:
-# 391 "data/maps/OlivineCity/scripts.pory"
+# 392 "data/maps/OlivineCity/scripts.pory"
 	.string "Jasmine's Gym is closed.\n"
 	.string "You're already on it, I assume.$"
 
 OlivineCity_RivalPier_Text_5:
-# 393 "data/maps/OlivineCity/scripts.pory"
+# 394 "data/maps/OlivineCity/scripts.pory"
 	.string "See you around.$"

@@ -19,6 +19,7 @@ static bool32 Achievement_PredicateHoennDexComplete(void);
 static bool32 Achievement_PredicateNationalDexComplete(void);
 static bool32 Achievement_PredicateBadge16(void);
 static bool32 Achievement_PredicateBuenaSuperfan(void);
+static bool32 Achievement_PredicateTravellingHealer(void);
 static bool32 Achievement_PredicateKurtMasterBall(void);
 static bool32 Achievement_PredicateMegaCollector(void);
 static bool32 Achievement_PredicateMasterOfMoves(void);
@@ -187,6 +188,8 @@ static const u8 sText_AchHallOfFameDebutName[] = _("Champion");
 static const u8 sText_AchHallOfFameDebutDesc[] = _("Enter the Hall of Fame\nfor the first time.");
 static const u8 sText_AchBuenaSuperfanName[] = _("Buena Superfan");
 static const u8 sText_AchBuenaSuperfanDesc[] = _("Answer Buena's Password\ncorrectly on 10 days.");
+static const u8 sText_AchTravellingHealerName[] = _("Travelling Healer");
+static const u8 sText_AchTravellingHealerDesc[] = _("Heal the Miltank\nin Route 39's barn.");
 static const u8 sText_AchMasterpieceName[] = _("Masterpiece");
 static const u8 sText_AchMasterpieceDesc[] = _("Have Kurt craft you\na Master Ball.");
 static const u8 sText_AchUnderTheSeaName[] = _("Under the Sea");
@@ -355,6 +358,7 @@ static const struct Achievement sAchievements[] =
     {ACH_CATCH_LAPRAS, sText_AchCatchLaprasName, sText_AchCatchLaprasDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtLapras},
     {ACH_OBTAIN_VICTINI, sText_AchObtainVictiniName, sText_AchObtainVictiniDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtVictini},
     {ACH_BUENA_SUPERFAN, sText_AchBuenaSuperfanName, sText_AchBuenaSuperfanDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateBuenaSuperfan},
+    {ACH_TRAVELLING_HEALER, sText_AchTravellingHealerName, sText_AchTravellingHealerDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateTravellingHealer},
     {ACH_MASTERPIECE, sText_AchMasterpieceName, sText_AchMasterpieceDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateKurtMasterBall},
     {ACH_MEGA_COLLECTOR, sText_AchMegaCollectorName, sText_AchMegaCollectorDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateMegaCollector},
     {ACH_MASTER_OF_MOVES, sText_AchMasterOfMovesName, sText_AchMasterOfMovesDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateMasterOfMoves},
@@ -425,6 +429,11 @@ static bool32 Achievement_PredicateBadge16(void)
 static bool32 Achievement_PredicateBuenaSuperfan(void)
 {
     return VarGet(VAR_BUENA_PASSWORDS_CORRECT) >= 10;
+}
+
+static bool32 Achievement_PredicateTravellingHealer(void)
+{
+    return VarGet(VAR_ROUTE39_BARN) >= 5;
 }
 
 static bool32 Achievement_PredicateKurtMasterBall(void)

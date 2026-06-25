@@ -108,8 +108,10 @@ Route39_Barn_EventScript_Miltank_NeedBerries1::
 	msgbox Route39_Text_BarnTotallyHealthy, MSGBOX_DEFAULT
 	playfanfare MUS_OBTAIN_BADGE 
 	waitfanfare
+	giveitem(ITEM_SCOPE_LENS)
 	closemessage
 	setvar VAR_ROUTE39_BARN, 5
+	special Achievement_CheckAll
 	release
 	end
 
