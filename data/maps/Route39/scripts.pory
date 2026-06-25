@@ -184,6 +184,7 @@ script Route39_BaobaTrigger {
 	waitmovement(0)
 	approachobject(LOCALID_R39_BAOBA, LOCALID_PLAYER, DIR_EAST, DIR_WEST)
 	waitmovement(0)
+	createfieldmugshot(MUGSHOT_GENTLEMAN)
 	msgbox("Baoba: ...Ohh! 
 			What you are holding is...
 			what they call... a Pokédex!
@@ -210,12 +211,14 @@ script Route39_BaobaTrigger {
 			I can give you a call once the Safari
 			Zone is open before I call anyone else!")
 			waitmessage
+			removefieldmugshot
 			msgbox("...")
 			waitmessage
 			playse(MUS_HG_POKEGEAR_REGISTERED)
 			msgbox("{PLAYER} registered Baoba
 					in the Pokégear!")
 			waitse
+			createfieldmugshot(MUGSHOT_GENTLEMAN)
 			msgbox("That's the way! I'll let you know
 					over the Pokégear once it's ready!")
 			closemessage

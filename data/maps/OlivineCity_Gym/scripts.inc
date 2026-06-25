@@ -527,7 +527,7 @@ OlivineCity_Gym_EventScript_Jasmine_Battle1::
 # 264 "data/maps/OlivineCity_Gym/scripts.pory"
 OlivineCity_Gym_EventScript_Jasmine_Battle2::
 # 265 "data/maps/OlivineCity_Gym/scripts.pory"
-	trainerbattle_no_intro TRAINER_JASMINE_1, OlivineCity_Gym_Text_JasmineBetterTrainer
+	trainerbattle_no_intro TRAINER_JASMINE_1_2, OlivineCity_Gym_Text_JasmineBetterTrainer
 # 266 "data/maps/OlivineCity_Gym/scripts.pory"
 	setflag FLAG_RECEIVED_BADGE_6
 # 267 "data/maps/OlivineCity_Gym/scripts.pory"
@@ -537,7 +537,7 @@ OlivineCity_Gym_EventScript_Jasmine_Battle2::
 # 269 "data/maps/OlivineCity_Gym/scripts.pory"
 OlivineCity_Gym_EventScript_Jasmine_Battle3::
 # 270 "data/maps/OlivineCity_Gym/scripts.pory"
-	trainerbattle_no_intro TRAINER_JASMINE_1, OlivineCity_Gym_Text_JasmineBetterTrainer
+	trainerbattle_no_intro TRAINER_JASMINE_1_3, OlivineCity_Gym_Text_JasmineBetterTrainer
 # 271 "data/maps/OlivineCity_Gym/scripts.pory"
 	setflag FLAG_RECEIVED_BADGE_7
 # 272 "data/maps/OlivineCity_Gym/scripts.pory"

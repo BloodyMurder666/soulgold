@@ -1688,29 +1688,83 @@ void PlayTrainerEncounterMusic(void)
         case TRAINER_ENCOUNTER_MUSIC_RICH:
             music = MUS_ENCOUNTER_RICH;
             break;
-         case TRAINER_ENCOUNTER_MUSIC_HG_CHAMPION:
+        case TRAINER_ENCOUNTER_MUSIC_HG_CHAMPION:
             music = MUS_HG_VS_CHAMPION;
             break;
-        case  TRAINER_ENCOUNTER_MUSIC_HG_BOY_1:
+        case TRAINER_ENCOUNTER_MUSIC_HG_BOY_1:
             music = MUS_HG_ENCOUNTER_BOY_1;
             break;
-        case  TRAINER_ENCOUNTER_MUSIC_HG_BOY_2:
+        case TRAINER_ENCOUNTER_MUSIC_HG_BOY_2:
             music = MUS_HG_ENCOUNTER_BOY_2;
             break;
-        case  TRAINER_ENCOUNTER_MUSIC_HG_GIRL_1:
+        case TRAINER_ENCOUNTER_MUSIC_HG_GIRL_1:
             music = MUS_HG_ENCOUNTER_GIRL_1;
             break;
-        case  TRAINER_ENCOUNTER_MUSIC_HG_GIRL_2:
+        case TRAINER_ENCOUNTER_MUSIC_HG_GIRL_2:
             music = MUS_HG_ENCOUNTER_GIRL_2;
             break;
-        case  TRAINER_ENCOUNTER_MUSIC_HG_SUSPICIOUS_1:
+        case TRAINER_ENCOUNTER_MUSIC_HG_SUSPICIOUS_1:
             music = MUS_HG_ENCOUNTER_SUSPICIOUS_1;
             break;
-        case  TRAINER_ENCOUNTER_MUSIC_HG_SUSPICIOUS_2:
+        case TRAINER_ENCOUNTER_MUSIC_HG_SUSPICIOUS_2:
             music = MUS_HG_ENCOUNTER_SUSPICIOUS_2;
             break;
-        case  TRAINER_ENCOUNTER_MUSIC_HG_SAGE:
+        case TRAINER_ENCOUNTER_MUSIC_HG_SAGE:
             music = MUS_HG_ENCOUNTER_SAGE;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_SILVER:
+            music = MUS_HG_ENCOUNTER_RIVAL;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_ROCKET:
+            music = MUS_HG_ENCOUNTER_ROCKET;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_HG_KIMONO_GIRL:
+            music = MUS_HG_ENCOUNTER_KIMONO_GIRL;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_BOY:
+            music = MUS_DP_ENCOUNTER_BOY;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_TWINS:
+            music = MUS_DP_ENCOUNTER_TWINS;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_INTENSE:
+            music = MUS_DP_ENCOUNTER_INTENSE;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_GALACTIC:
+            music = MUS_DP_ENCOUNTER_GALACTIC;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_LADY:
+            music = MUS_DP_ENCOUNTER_LADY;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_HIKER:
+            music = MUS_DP_ENCOUNTER_HIKER;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_RICH:
+            music = MUS_DP_ENCOUNTER_RICH;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_SAILOR:
+            music = MUS_DP_ENCOUNTER_SAILOR;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_SUSPICIOUS:
+            music = MUS_DP_ENCOUNTER_SUSPICIOUS;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_ACE_TRAINER:
+            music = MUS_DP_ENCOUNTER_ACE_TRAINER;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_GIRL:
+            music = MUS_DP_ENCOUNTER_GIRL;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_CYCLIST:
+            music = MUS_DP_ENCOUNTER_CYCLIST;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_ARTIST:
+            music = MUS_DP_ENCOUNTER_ARTIST;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_ELITE_FOUR:
+            music = MUS_DP_ENCOUNTER_ELITE_FOUR;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_CHAMPION:
+            music = MUS_DP_ENCOUNTER_CHAMPION;
             break;
         default:
             music = MUS_ENCOUNTER_SUSPICIOUS;
