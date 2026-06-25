@@ -2002,6 +2002,10 @@ PasswordMachine::
 	special GetCodeFeedback
 # 1010 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	msgbox PasswordMachine_Text_1
+# 1014 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	closemessage
+# 1015 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	release
 	end
 
 
@@ -2016,5 +2020,5 @@ PasswordMachine_Text_0:
 PasswordMachine_Text_1:
 # 1010 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	.string "You feel something shift...\n"
-	.string "or maybe not!\p"
+	.string "Or maybe not!\p"
 	.string "Who knows!$"
