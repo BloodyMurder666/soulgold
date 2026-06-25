@@ -404,20 +404,19 @@ Class: Mystery Man
 Pic: Eusine
 Gender: Male
 Music: Male
-Items: Full Restore / Full Restore
 Double Battle: No
 AI: Basic Trainer
 
-Golisopod
-Level: 36
+Golisopod @ Quick Claw
+Level: 38
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
-Wobbuffet
-Level: 36
+Wobbuffet @ Leftovers
+Level: 38
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
-Magnezone
-Level: 36
+Magnezone @ Magnet
+Level: 39
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Tri Attack
 - Thunder Wave
