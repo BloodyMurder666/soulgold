@@ -181,7 +181,9 @@ bool32 IsTimeSpiralActiveOnField(void)
 
 static bool32 IsDialgaSpecies(u16 species)
 {
-    return species == SPECIES_DIALGA || species == SPECIES_DIALGA_ORIGIN;
+    return species == SPECIES_DIALGA
+        || species == SPECIES_DIALGA_ORIGIN
+        || species == SPECIES_DIALGA_PRIMAL;
 }
 
 static bool32 IsPalkiaSpecies(u16 species)
@@ -2626,6 +2628,7 @@ static bool32 IsHorseCouncilSpecies(u16 species)
     case SPECIES_PALKIA_ORIGIN:
     case SPECIES_DIALGA:
     case SPECIES_DIALGA_ORIGIN:
+    case SPECIES_DIALGA_PRIMAL:
     case SPECIES_KELDEO_ORDINARY:
     case SPECIES_KELDEO_RESOLUTE:
     case SPECIES_GLASTRIER:

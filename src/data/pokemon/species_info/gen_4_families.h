@@ -6781,7 +6781,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_TELEPATHY },
-        .innates = { ABILITY_QUICK_FORGE, ABILITY_AURA_SHIELD, ABILITY_INTIMIDATE },
+        .innates = { ABILITY_BATTLE_ARMOR, ABILITY_SPACETIME_RIFT, ABILITY_TIME_SPIRAL },
         .bodyColor = BODY_COLOR_WHITE,
         .speciesName = _("Dialga"),
         .cryId = CRY_DIALGA,
@@ -6854,7 +6854,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_TELEPATHY },
-        .innates = { ABILITY_QUICK_FORGE, ABILITY_AURA_SHIELD, ABILITY_INTIMIDATE },
+        .innates = { ABILITY_BATTLE_ARMOR, ABILITY_SPACETIME_RIFT, ABILITY_TIME_SPIRAL },
         .bodyColor = BODY_COLOR_WHITE,
         .speciesName = _("Dialga"),
         .cryId = CRY_DIALGA,
@@ -6905,6 +6905,82 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .formSpeciesIdTable = sDialgaFormSpeciesIdTable,
         .formChangeTable = sDialgaFormChangeTable,
     },
+
+    [SPECIES_DIALGA_PRIMAL] =
+    {
+        .baseHP        = 100,
+        .baseAttack    = 120,
+        .baseDefense   = 120,
+        .baseSpeed     = 90,
+        .baseSpAttack  = 150,
+        .baseSpDefense = 100,
+        .types = MON_TYPES(TYPE_STEEL, TYPE_DRAGON),
+        .catchRate = 3,
+    #if P_UPDATED_EXP_YIELDS >= GEN_8
+        .expYield = 340,
+    #elif P_UPDATED_EXP_YIELDS >= GEN_5
+        .expYield = 306,
+    #else
+        .expYield = 220,
+    #endif
+        .evYield_SpAttack = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
+        .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_TELEPATHY },
+        .innates = { ABILITY_TIRELESS, ABILITY_BERSERK, ABILITY_TIME_SPIRAL },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Dialga"),
+        .cryId = CRY_DIALGA,
+        .natDexNum = NATIONAL_DEX_DIALGA,
+        .categoryName = _("Temporal"),
+        .height = 54,
+        .weight = 6830,
+        .description = COMPOUND_STRING(
+            "In this form, it is incapable\n"
+            "of logic or mercy. It seeks only\n"
+            "self-preservation, preventing\n"
+            "time from flowing properly."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 721,
+        .trainerOffset = 19,
+        .frontPic = gMonFrontPic_DialgaPrimal,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_DialgaPrimal,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 0,
+        //.backAnimId = BACK_ANIM_NONE,
+        .palette = gMonPalette_DialgaPrimal,
+        .shinyPalette = gMonShinyPalette_DialgaPrimal,
+        .iconSprite = gMonIcon_DialgaPrimal,
+        .iconPalette = gMonIconPalette_DialgaPrimal,
+        .shinyIconPalette = gMonShinyIconPalette_DialgaPrimal,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(4, 12, SHADOW_SIZE_L)
+        FOOTPRINT(Dialga)
+        OVERWORLD(
+            sPicTable_DialgaPrimal,
+            SIZE_64x64,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_DialgaPrimal,
+            gShinyOverworldPalette_DialgaPrimal
+        )
+        .isRestrictedLegendary = TRUE,
+        .isFrontierBanned = TRUE,
+        .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
+        .levelUpLearnset = sDialgaLevelUpLearnset,
+        .teachableLearnset = sDialgaTeachableLearnset,
+        .formSpeciesIdTable = sDialgaFormSpeciesIdTable,
+        .formChangeTable = sDialgaPrimalFormChangeTable,
+    },
 #endif //P_FAMILY_DIALGA
 
 #if P_FAMILY_PALKIA
@@ -6932,7 +7008,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_TELEPATHY },
-        .innates = { ABILITY_TIDAL_REFLEX, ABILITY_UNSTOPPABLE, ABILITY_REGENERATOR },
+        .innates = { ABILITY_NULL_SPACE, ABILITY_SPACETIME_RIFT, ABILITY_UNSTOPPABLE },
         .bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Palkia"),
         .cryId = CRY_PALKIA,
@@ -7005,7 +7081,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_TELEPATHY },
-        .innates = { ABILITY_TIDAL_REFLEX, ABILITY_UNSTOPPABLE, ABILITY_REGENERATOR },
+        .innates = { ABILITY_NULL_SPACE, ABILITY_SPACETIME_RIFT, ABILITY_UNSTOPPABLE },
         .bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Palkia"),
         .cryId = CRY_PALKIA,

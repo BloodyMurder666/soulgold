@@ -3567,6 +3567,9 @@ static const struct SpriteFrameImage sPicTable_Dialga[] = {
 static const struct SpriteFrameImage sPicTable_DialgaOrigin[] = {
     overworld_ascending_frames(gObjectEventPic_DialgaOrigin, 8, 8),
 };
+static const struct SpriteFrameImage sPicTable_DialgaPrimal[] = {
+    overworld_ascending_frames(gObjectEventPic_DialgaPrimal, 8, 8),
+};
 #endif //P_FAMILY_DIALGA
 
 #if P_FAMILY_PALKIA

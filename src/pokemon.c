@@ -6227,11 +6227,14 @@ u32 FormChangeHasTrait(struct FormChangeContext ctx, enum Ability ability)
 static const u8 *GetFormChangeNickname(u32 nicknameId)
 {
     static const u8 sNicknameXD001[] = _("XD001");
+    static const u8 sNicknamePrimal[] = _("Primal");
 
     switch (nicknameId)
     {
     case FORM_CHANGE_NICKNAME_XD001:
         return sNicknameXD001;
+    case FORM_CHANGE_NICKNAME_PRIMAL:
+        return sNicknamePrimal;
     default:
         return NULL;
     }

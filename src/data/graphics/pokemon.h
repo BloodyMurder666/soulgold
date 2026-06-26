@@ -17112,6 +17112,21 @@ const u16 gMonPalette_TyphlosionMega[] = INCBIN_U16("graphics/pokemon/typhlosion
     const u16 gShinyOverworldPalette_DialgaOrigin[] = INCBIN_U16("graphics/pokemon/dialga/origin/overworld_shiny.gbapal");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
+
+    const u32 gMonFrontPic_DialgaPrimal[] = INCBIN_U32("graphics/pokemon/dialga/primal/front.4bpp.smol");
+    const u16 gMonPalette_DialgaPrimal[] = INCBIN_U16("graphics/pokemon/dialga/primal/normal.gbapal");
+    const u32 gMonBackPic_DialgaPrimal[] = INCBIN_U32("graphics/pokemon/dialga/primal/back.4bpp.smol");
+    const u16 gMonShinyPalette_DialgaPrimal[] = INCBIN_U16("graphics/pokemon/dialga/primal/shiny.gbapal");
+    const u8 gMonIcon_DialgaPrimal[] = INCBIN_U8("graphics/pokemon/dialga/primal/icon.4bpp");
+    const u16 gMonIconPalette_DialgaPrimal[] = INCBIN_U16("graphics/pokemon/dialga/primal/icon_normal.gbapal");
+    const u16 gMonShinyIconPalette_DialgaPrimal[] = INCBIN_U16("graphics/pokemon/dialga/primal/icon_shiny.gbapal");
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_DialgaPrimal[] = INCBIN_COMP("graphics/pokemon/dialga/primal/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_DialgaPrimal[] = INCBIN_U16("graphics/pokemon/dialga/primal/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_DialgaPrimal[] = INCBIN_U16("graphics/pokemon/dialga/primal/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_FAMILY_DIALGA
 
 #if P_FAMILY_PALKIA

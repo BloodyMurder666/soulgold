@@ -101,6 +101,28 @@ TEST("FORM_CHANGE_NICKNAME changes Lugia based on XD001 nickname")
     EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES), SPECIES_LUGIA);
 }
 
+TEST("FORM_CHANGE_NICKNAME changes Dialga based on Primal nickname")
+{
+    struct Pokemon mon;
+    u8 nickname[POKEMON_NAME_LENGTH + 1];
+
+    ASSUME(gSpeciesInfo[SPECIES_DIALGA].formChangeTable != NULL);
+    ASSUME(gSpeciesInfo[SPECIES_DIALGA_PRIMAL].formChangeTable != NULL);
+
+    CreateMon(&mon, SPECIES_DIALGA, 50, 0, OTID_STRUCT_PLAYER_ID);
+    StringCopy(nickname, COMPOUND_STRING("Primal"));
+    SetMonData(&mon, MON_DATA_NICKNAME, nickname);
+
+    EXPECT(TryFormChange(&mon, FORM_CHANGE_NICKNAME));
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES), SPECIES_DIALGA_PRIMAL);
+
+    StringCopy(nickname, COMPOUND_STRING("Dialga"));
+    SetMonData(&mon, MON_DATA_NICKNAME, nickname);
+
+    EXPECT(TryFormChange(&mon, FORM_CHANGE_NICKNAME));
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES), SPECIES_DIALGA);
+}
+
 TEST("Pokemon save bit repack preserves extended met location and modern fateful encounter")
 {
     struct Pokemon mon;

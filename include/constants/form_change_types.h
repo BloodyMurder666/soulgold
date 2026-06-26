@@ -23,6 +23,7 @@ enum FormChangeItemUseArguments
 enum FormChangeNicknameIds
 {
     FORM_CHANGE_NICKNAME_XD001 = 1,
+    FORM_CHANGE_NICKNAME_PRIMAL,
 };
 // FORM_CHANGE_NICKNAME param2 arguments
 enum FormChangeNicknameArguments
