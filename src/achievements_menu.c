@@ -2,12 +2,12 @@
 #include "achievements.h"
 #include "bg.h"
 #include "comfy_anim.h"
+#include "decompress.h"
+#include "graphics.h"
 #include "gpu_regs.h"
 #include "international_string_util.h"
-#include "item_icon.h"
 #include "list_menu.h"
 #include "main.h"
-#include "malloc.h"
 #include "menu.h"
 #include "menu_helpers.h"
 #include "overworld.h"
@@ -47,6 +47,7 @@
 #define ACHIEVEMENTS_SCROLL_ARROW_X 170
 #define ACHIEVEMENTS_SCROLL_ARROW_TOP_Y 18
 #define ACHIEVEMENTS_SCROLL_ARROW_BOTTOM_Y 118
+#define ACHIEVEMENTS_BALL_ICON_SIZE (4 * TILE_SIZE_4BPP)
 
 enum
 {
@@ -88,6 +89,7 @@ static void AnimateAchievementsBackground(void);
 EWRAM_DATA static u16 sAchievementCursor = 0;
 EWRAM_DATA static u16 sAchievementTop = 0;
 EWRAM_DATA static u8 sListBallIconSpriteIds[ACHIEVEMENTS_VISIBLE_ROWS] = {};
+EWRAM_DATA static struct SpriteTemplate sListBallIconTemplates[ACHIEVEMENTS_VISIBLE_ROWS] = {};
 EWRAM_DATA static u8 sListCursorAnimId = 0;
 EWRAM_DATA static s16 sListCursorY = 0;
 EWRAM_DATA static u8 sScrollIndicatorArrowPairId = 0;
@@ -110,17 +112,47 @@ static const u8 sColor_Blue[3] = { TEXT_COLOR_TRANSPARENT, TEXT_COLOR_BLUE, TEXT
 static const u8 sColor_Green[3] = { TEXT_COLOR_TRANSPARENT, TEXT_COLOR_GREEN, TEXT_COLOR_LIGHT_GREEN };
 static const u8 sColor_White[3] = { TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY };
 
+struct AchievementBallIconGfx
+{
+    const u32 *tiles;
+    const u16 *palette;
+};
+
+static const struct AchievementBallIconGfx sBallIconGfxByTier[] =
+{
+    [ACH_TIER_BRONZE] =
+    {
+        .tiles = gBallGfx_Poke,
+        .palette = gBallPal_Poke,
+    },
+    [ACH_TIER_SILVER] =
+    {
+        .tiles = gBallGfx_Great,
+        .palette = gBallPal_Great,
+    },
+    [ACH_TIER_GOLD] =
+    {
+        .tiles = gBallGfx_Ultra,
+        .palette = gBallPal_Ultra,
+    },
+    [ACH_TIER_PLATINUM] =
+    {
+        .tiles = gBallGfx_Master,
+        .palette = gBallPal_Master,
+    },
+};
+
 static const struct OamData sOamData_BallIcon =
 {
     .y = 0,
-    .affineMode = ST_OAM_AFFINE_NORMAL,
+    .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
     .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
-    .shape = SPRITE_SHAPE(32x32),
+    .shape = SPRITE_SHAPE(16x16),
     .x = 0,
     .matrixNum = 0,
-    .size = SPRITE_SIZE(32x32),
+    .size = SPRITE_SIZE(16x16),
     .tileNum = 0,
     .priority = 0,
     .paletteNum = 0,
@@ -138,24 +170,12 @@ static const union AnimCmd *const sAnims_BallIcon[] =
     sAnim_BallIcon,
 };
 
-static const union AffineAnimCmd sAffineAnim_BallIconSmall[] =
-{
-    AFFINEANIMCMD_FRAME(128, 128, 0, 0),
-    AFFINEANIMCMD_END,
-};
-
-static const union AffineAnimCmd *const sAffineAnims_BallIcon[] =
-{
-    sAffineAnim_BallIconSmall,
-};
-
 static const struct SpriteTemplate sSpriteTemplate_BallIcon =
 {
     .tileTag = 0,
     .paletteTag = 0,
     .oam = &sOamData_BallIcon,
     .anims = sAnims_BallIcon,
-    .affineAnims = sAffineAnims_BallIcon,
     .callback = SpriteCallbackDummy,
 };
 
@@ -426,7 +446,28 @@ static void DestroyListBallIcons(void)
 static void CreateListBallIcon(u8 row, const struct Achievement *achievement)
 {
     u16 tag = ACHIEVEMENTS_MENU_ICON_TAG_BASE + row;
-    u8 spriteId = AddCustomItemIconSprite(&sSpriteTemplate_BallIcon, tag, tag, Achievement_GetTierBallItem(achievement->tier));
+    enum AchievementTier tier = achievement->tier;
+    struct CompressedSpriteSheet spriteSheet;
+    struct SpritePalette spritePalette;
+    struct SpriteTemplate *spriteTemplate = &sListBallIconTemplates[row];
+    u8 spriteId;
+
+    if (tier >= ARRAY_COUNT(sBallIconGfxByTier))
+        tier = ACH_TIER_BRONZE;
+
+    spriteSheet.data = sBallIconGfxByTier[tier].tiles;
+    spriteSheet.size = ACHIEVEMENTS_BALL_ICON_SIZE;
+    spriteSheet.tag = tag;
+    LoadCompressedSpriteSheet(&spriteSheet);
+
+    spritePalette.data = sBallIconGfxByTier[tier].palette;
+    spritePalette.tag = tag;
+    LoadSpritePalette(&spritePalette);
+
+    CpuCopy16(&sSpriteTemplate_BallIcon, spriteTemplate, sizeof(*spriteTemplate));
+    spriteTemplate->tileTag = tag;
+    spriteTemplate->paletteTag = tag;
+    spriteId = CreateSprite(spriteTemplate, 0, 0, 0);
 
     if (spriteId == MAX_SPRITES)
         return;
@@ -434,7 +475,6 @@ static void CreateListBallIcon(u8 row, const struct Achievement *achievement)
     gSprites[spriteId].x = ACHIEVEMENTS_ICON_X;
     gSprites[spriteId].y = ACHIEVEMENTS_ICON_Y(row);
     gSprites[spriteId].oam.priority = 0;
-    StartSpriteAffineAnim(&gSprites[spriteId], 0);
     TintBallIconIfLocked(spriteId, achievement);
 }
 
@@ -739,3 +779,4 @@ static void ExitAchievementsMenu(u8 taskId)
 #undef ACHIEVEMENTS_SCROLL_ARROW_X
 #undef ACHIEVEMENTS_SCROLL_ARROW_TOP_Y
 #undef ACHIEVEMENTS_SCROLL_ARROW_BOTTOM_Y
+#undef ACHIEVEMENTS_BALL_ICON_SIZE
