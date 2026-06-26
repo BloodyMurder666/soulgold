@@ -31,6 +31,8 @@ Based on expansion port of Pokemon Heart and Soul. Feature list to be made later
 - Poffin Case various overworld sprites
 - HashtagMarky for overworld speedup
 - Pokeabbie battle speed up
+- MrDollStreak for 64x64 trainer sprites
+- PKMNTrainerRick for ethan back sprite frames
 - [agsmgmaster64](https://github.com/agsmgmaster64/worldlinkdeluxe-ame) Game corner expansion port
 - [heypc](https://github.com/heyopc/pokeemerald-gamecorner-expansion) game corner expansion
 - [aarant/merrp:](https://github.com/aarant) [icons branch](https://github.com/aarant/pokeemerald/tree/icons) and key item wheel
