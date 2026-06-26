@@ -12060,7 +12060,9 @@ static void Cmd_trygivecaughtmonnick(void)
     case 3:
         if (gMain.callback2 == BattleMainCB2 && !gPaletteFade.active)
         {
-            SetMonData(GetBattlerMon(gBattlerTarget), MON_DATA_NICKNAME, gBattleStruct->caughtMonNick);
+            struct Pokemon *caughtMon = GetBattlerMon(gBattlerTarget);
+            SetMonData(caughtMon, MON_DATA_NICKNAME, gBattleStruct->caughtMonNick);
+            TryFormChange(caughtMon, FORM_CHANGE_NICKNAME);
             gBattleCommunication[MULTIUSE_STATE]++;
         }
         break;

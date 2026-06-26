@@ -8963,6 +8963,8 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
         .levelUpLearnset = sLugiaLevelUpLearnset,
         .teachableLearnset = sLugiaTeachableLearnset,
+        .formSpeciesIdTable = sLugiaFormSpeciesIdTable,
+        .formChangeTable = sLugiaFormChangeTable,
     },
 #endif //P_FAMILY_LUGIA
 
@@ -8984,7 +8986,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_INSOMNIA, ABILITY_NONE, ABILITY_NONE },
-        .innates = { ABILITY_TIDAL_DEITY, ABILITY_BERSERK, ABILITY_FILL_VOID}, 
+        .innates = { ABILITY_WIND_FORCE, ABILITY_BERSERK, ABILITY_FILL_VOID}, 
         .bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Lugia"),
         .cryId = CRY_NONE,
@@ -9035,6 +9037,10 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
         .levelUpLearnset = sLugiaLevelUpLearnset,
         .teachableLearnset = sLugiaTeachableLearnset,
+#if P_FAMILY_LUGIA
+        .formSpeciesIdTable = sLugiaFormSpeciesIdTable,
+        .formChangeTable = sLugiaFormChangeTable,
+#endif //P_FAMILY_LUGIA
     },
 
 #if P_FAMILY_HO_OH

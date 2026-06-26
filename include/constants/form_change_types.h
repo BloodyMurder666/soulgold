@@ -19,6 +19,17 @@ enum FormChangeItemUseArguments
     DAY = 1,
     NIGHT,
 };
+// FORM_CHANGE_NICKNAME param1 arguments
+enum FormChangeNicknameIds
+{
+    FORM_CHANGE_NICKNAME_XD001 = 1,
+};
+// FORM_CHANGE_NICKNAME param2 arguments
+enum FormChangeNicknameArguments
+{
+    FORM_CHANGE_NICKNAME_EQUALS,
+    FORM_CHANGE_NICKNAME_NOT_EQUALS,
+};
 
 #define FUSION_TERMINATOR                       0xFF
 
@@ -163,6 +174,10 @@ enum FormChanges
     FORM_CHANGE_DEPOSIT,
     // Form change for Minior, which appears unchanged when encountered in the wild
     FORM_CHANGE_BEGIN_WILD_ENCOUNTER,
+    // Form change that activates when the Pokemon's nickname matches or does not match a nickname id.
+    // param1: FormChangeNicknameIds value.
+    // param2: FormChangeNicknameArguments value.
+    FORM_CHANGE_NICKNAME,
 };
 
 #endif // GUARD_CONSTANTS_FORM_CHANGE_TYPES_H

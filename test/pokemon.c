@@ -80,6 +80,27 @@ TEST("Setting a nickname terminates unused nickname storage")
     EXPECT_EQ(storedNickname[11], EOS);
 }
 
+TEST("FORM_CHANGE_NICKNAME changes Lugia based on XD001 nickname")
+{
+    struct Pokemon mon;
+    u8 nickname[POKEMON_NAME_LENGTH + 1];
+
+    ASSUME(gSpeciesInfo[SPECIES_LUGIA].formChangeTable != NULL);
+
+    CreateMon(&mon, SPECIES_LUGIA, 50, 0, OTID_STRUCT_PLAYER_ID);
+    StringCopy(nickname, COMPOUND_STRING("XD001"));
+    SetMonData(&mon, MON_DATA_NICKNAME, nickname);
+
+    EXPECT(TryFormChange(&mon, FORM_CHANGE_NICKNAME));
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES), SPECIES_LUGIA_SHADOW);
+
+    StringCopy(nickname, COMPOUND_STRING("Lugia"));
+    SetMonData(&mon, MON_DATA_NICKNAME, nickname);
+
+    EXPECT(TryFormChange(&mon, FORM_CHANGE_NICKNAME));
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES), SPECIES_LUGIA);
+}
+
 TEST("Pokemon save bit repack preserves extended met location and modern fateful encounter")
 {
     struct Pokemon mon;

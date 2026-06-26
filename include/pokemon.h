@@ -579,6 +579,7 @@ struct FormChangeContext
     u16 heldItems[MAX_MON_ITEMS_INTERNAL];
     u16 traits[MAX_MON_TRAITS];
     u16 learnedMove;
+    u8 nickname[POKEMON_NAME_LENGTH + 1];
     u32 status;
     u16 moves[MAX_MON_MOVES];
     u16 hp;
@@ -854,6 +855,7 @@ void TrySpecialOverworldEvo(void);
 bool32 SpeciesHasGenderDifferences(u16 species);
 bool32 TryFormChange(struct Pokemon *mon, enum FormChanges method);
 bool32 TryBoxMonFormChange(struct BoxPokemon *boxMon, enum FormChanges method);
+bool32 TrySelectedMonNicknameFormChange(void);
 void TryToSetBattleFormChangeMoves(struct Pokemon *mon, enum FormChanges method);
 u32 GetMonFriendshipScore(struct Pokemon *pokemon);
 u32 GetMonAffectionHearts(struct Pokemon *pokemon);

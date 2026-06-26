@@ -446,6 +446,15 @@ static const struct FormChange sTyranitarFormChangeTable[] =
 };
 #endif //P_FAMILY_LARVITAR
 
+#if P_FAMILY_LUGIA
+static const struct FormChange sLugiaFormChangeTable[] =
+{
+    {FORM_CHANGE_NICKNAME, SPECIES_LUGIA_SHADOW, FORM_CHANGE_NICKNAME_XD001, FORM_CHANGE_NICKNAME_EQUALS},
+    {FORM_CHANGE_NICKNAME, SPECIES_LUGIA,        FORM_CHANGE_NICKNAME_XD001, FORM_CHANGE_NICKNAME_NOT_EQUALS},
+    {FORM_CHANGE_TERMINATOR},
+};
+#endif //P_FAMILY_LUGIA
+
 #if P_FAMILY_TREECKO
 static const struct FormChange sSceptileFormChangeTable[] =
 {

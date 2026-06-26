@@ -798,6 +798,14 @@ static const u16 sTyranitarFormSpeciesIdTable[] = {
 };
 #endif //P_FAMILY_LARVITAR
 
+#if P_FAMILY_LUGIA
+static const u16 sLugiaFormSpeciesIdTable[] = {
+    SPECIES_LUGIA,
+    SPECIES_LUGIA_SHADOW,
+    FORM_SPECIES_END,
+};
+#endif //P_FAMILY_LUGIA
+
 #if P_FAMILY_TREECKO
 static const u16 sSceptileFormSpeciesIdTable[] = {
     SPECIES_SCEPTILE,

@@ -6186,12 +6186,13 @@ u32 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *boxMon, enum FormChanges
         ctx.heldItems[i] = GetBoxMonData(boxMon, MON_DATA_HELD_ITEM + i);
     for (i = 0; i < MAX_MON_MOVES; i++)
         ctx.moves[i] = GetBoxMonData(boxMon, MON_DATA_MOVE1 + i);
+    GetBoxMonData(boxMon, MON_DATA_NICKNAME, ctx.nickname);
     for (i = 0; i < MAX_MON_TRAITS; i++)
     {
         if (i == 0)
             ctx.traits[0] = GetAbilityBySpecies(species, GetBoxMonData(boxMon, MON_DATA_ABILITY_NUM));
         else
-            ctx.traits[i] = gSpeciesInfo[ctx.currentSpecies].innates[i];
+            ctx.traits[i] = gSpeciesInfo[ctx.currentSpecies].innates[i - 1];
     }
 
     return GetFormChangeTargetSpecies_Internal(ctx);
@@ -6221,6 +6222,28 @@ u32 FormChangeHasTrait(struct FormChangeContext ctx, enum Ability ability)
             return TRUE;
     }
     return FALSE;
+}
+
+static const u8 *GetFormChangeNickname(u32 nicknameId)
+{
+    static const u8 sNicknameXD001[] = _("XD001");
+
+    switch (nicknameId)
+    {
+    case FORM_CHANGE_NICKNAME_XD001:
+        return sNicknameXD001;
+    default:
+        return NULL;
+    }
+}
+
+static bool32 FormChangeHasNickname(const struct FormChangeContext *ctx, u32 nicknameId)
+{
+    const u8 *nickname = GetFormChangeNickname(nicknameId);
+
+    if (nickname == NULL)
+        return FALSE;
+    return StringCompare(ctx->nickname, nickname) == 0;
 }
 
 u32 GetFormChangeTargetSpecies_Internal(struct FormChangeContext ctx)
@@ -6449,6 +6472,11 @@ u32 GetFormChangeTargetSpecies_Internal(struct FormChangeContext ctx)
                 && (formChanges[i].param2 == ABILITY_NONE || FormChangeHasTrait(ctx, formChanges[i].param2)))
                 targetSpecies = formChanges[i].targetSpecies;
             break;
+        case FORM_CHANGE_NICKNAME:
+            if ((formChanges[i].param2 == FORM_CHANGE_NICKNAME_NOT_EQUALS && !FormChangeHasNickname(&ctx, formChanges[i].param1))
+             || (formChanges[i].param2 != FORM_CHANGE_NICKNAME_NOT_EQUALS && FormChangeHasNickname(&ctx, formChanges[i].param1)))
+                targetSpecies = formChanges[i].targetSpecies;
+            break;
         case FORM_CHANGE_OVERWORLD_WEATHER:
         case FORM_CHANGE_TERMINATOR:
             break;
@@ -6669,6 +6697,15 @@ bool32 TryFormChange(struct Pokemon *mon, enum FormChanges method)
         return TRUE;
     }
 
+    return FALSE;
+}
+
+bool32 TrySelectedMonNicknameFormChange(void)
+{
+    if (gSpecialVar_0x8004 == PC_MON_CHOSEN)
+        return TryBoxMonFormChange(GetSelectedBoxMonFromPcOrParty(), FORM_CHANGE_NICKNAME);
+    if (gSpecialVar_0x8004 < PARTY_SIZE)
+        return TryFormChange(&gPlayerParty[gSpecialVar_0x8004], FORM_CHANGE_NICKNAME);
     return FALSE;
 }
 
