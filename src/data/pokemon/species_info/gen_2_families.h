@@ -8966,6 +8966,77 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
     },
 #endif //P_FAMILY_LUGIA
 
+    [SPECIES_LUGIA_SHADOW] =
+    {
+        .baseHP        = 106,
+        .baseAttack    = 90,
+        .baseDefense   = 130,
+        .baseSpeed     = 110,
+        .baseSpAttack  = 90,
+        .baseSpDefense = 154,
+        .types = MON_TYPES(TYPE_DARK, TYPE_PSYCHIC),
+        .catchRate = 3,
+        .expYield = 255,
+        .evYield_SpDefense = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
+        .abilities = { ABILITY_INSOMNIA, ABILITY_NONE, ABILITY_NONE },
+        .innates = { ABILITY_TIDAL_DEITY, ABILITY_BERSERK, ABILITY_FILL_VOID}, 
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Lugia"),
+        .cryId = CRY_NONE,
+        .natDexNum = NATIONAL_DEX_NONE,
+        .categoryName = _("Experiment"),
+        .height = 15,
+        .weight = 330,
+        .description = COMPOUND_STRING(
+            "An experiment from\n"
+            "another region. It\n"
+            "wields tremondous\n"
+            "power."
+        ),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 290,
+        .trainerOffset = 2,
+        .frontPic = gMonFrontPic_LugiaMegaZ,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .frontAnimDelay = 15,
+        .enemyMonElevation = 6,
+        .backPic = gMonBackPic_LugiaMegaZ,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 0,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
+        .palette = gMonPalette_LugiaMegaZ,
+        .shinyPalette = gMonShinyPalette_LugiaMegaZ,
+        .iconSprite = gMonIcon_LugiaMegaZ,
+        .iconPalIndex = 2,
+        .iconPalette = gMonIconPalette_LugiaShadow,
+        .shinyIconPalette = gMonShinyIconPalette_LugiaShadow,
+        FOOTPRINT(LugiaMegaZ)
+        SHADOW(0, 13, SHADOW_SIZE_S)
+        OVERWORLD(
+            sPicTable_LugiaMegaZ,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_LugiaMegaZ,
+            gShinyOverworldPalette_LugiaMegaZ
+        )
+        .isRestrictedLegendary = TRUE,
+        .isFrontierBanned = TRUE,
+        .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
+        .levelUpLearnset = sLugiaLevelUpLearnset,
+        .teachableLearnset = sLugiaTeachableLearnset,
+    },
+
 #if P_FAMILY_HO_OH
     [SPECIES_HO_OH] =
     {

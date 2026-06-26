@@ -1093,13 +1093,13 @@ KurtDaily_4:
 # 575 "data/maps/AzaleaTown_KurtsHouse/scripts.pory"
 	case 15, KurtDaily_25
 KurtDaily_8:
-# 582 "data/maps/AzaleaTown_KurtsHouse/scripts.pory"
+# 584 "data/maps/AzaleaTown_KurtsHouse/scripts.pory"
 	setflag FLAG_DAILY_KURT_FREE_BALLS
-# 583 "data/maps/AzaleaTown_KurtsHouse/scripts.pory"
+# 585 "data/maps/AzaleaTown_KurtsHouse/scripts.pory"
 	compare VAR_KURT_PROFICIENCY, 255
 	goto_if_lt KurtDaily_27
 KurtDaily_26:
-# 586 "data/maps/AzaleaTown_KurtsHouse/scripts.pory"
+# 588 "data/maps/AzaleaTown_KurtsHouse/scripts.pory"
 	release
 	end
 
@@ -1195,12 +1195,14 @@ KurtDaily_25:
 	msgbox KurtDaily_Text_2
 # 580 "data/maps/AzaleaTown_KurtsHouse/scripts.pory"
 	giveitem ITEM_MASTER_BALL, 1
+# 581 "data/maps/AzaleaTown_KurtsHouse/scripts.pory"
 	setflag FLAG_KURT_CRAFTED_MASTER_BALL
+# 582 "data/maps/AzaleaTown_KurtsHouse/scripts.pory"
 	special Achievement_CheckAll
 	goto KurtDaily_8
 
 KurtDaily_27:
-# 584 "data/maps/AzaleaTown_KurtsHouse/scripts.pory"
+# 586 "data/maps/AzaleaTown_KurtsHouse/scripts.pory"
 	addvar VAR_KURT_PROFICIENCY, 1
 	goto KurtDaily_26
 

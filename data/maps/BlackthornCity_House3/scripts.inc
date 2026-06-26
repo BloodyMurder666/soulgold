@@ -413,11 +413,11 @@ EggMoveMaster::
 # 225 "data/maps/BlackthornCity_House3/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq EggMoveMaster_5
-# 258 "data/maps/BlackthornCity_House3/scripts.pory"
-	hidemoneybox
 # 259 "data/maps/BlackthornCity_House3/scripts.pory"
-	msgbox EggMoveMaster_Text_6
+	hidemoneybox
 # 260 "data/maps/BlackthornCity_House3/scripts.pory"
+	msgbox EggMoveMaster_Text_6
+# 261 "data/maps/BlackthornCity_House3/scripts.pory"
 	release
 	end
 
@@ -429,7 +429,7 @@ EggMoveMaster_2:
 	end
 
 EggMoveMaster_4:
-# 263 "data/maps/BlackthornCity_House3/scripts.pory"
+# 264 "data/maps/BlackthornCity_House3/scripts.pory"
 	release
 	end
 
@@ -449,28 +449,29 @@ EggMoveMaster_5:
 	waitse
 # 238 "data/maps/BlackthornCity_House3/scripts.pory"
 	setflag FLAG_EGG_MOVES_UNLOCKED
-	special Achievement_CheckAll
 # 239 "data/maps/BlackthornCity_House3/scripts.pory"
+	special Achievement_CheckAll
+# 240 "data/maps/BlackthornCity_House3/scripts.pory"
 	msgbox EggMoveMaster_Text_4
-# 243 "data/maps/BlackthornCity_House3/scripts.pory"
-	hidemoneybox
 # 244 "data/maps/BlackthornCity_House3/scripts.pory"
-	closemessage
+	hidemoneybox
 # 245 "data/maps/BlackthornCity_House3/scripts.pory"
-	fadescreen FADE_TO_BLACK
+	closemessage
 # 246 "data/maps/BlackthornCity_House3/scripts.pory"
-	delay 60
+	fadescreen FADE_TO_BLACK
 # 247 "data/maps/BlackthornCity_House3/scripts.pory"
-	fadescreen FADE_FROM_BLACK
+	delay 60
 # 248 "data/maps/BlackthornCity_House3/scripts.pory"
-	delay 20
+	fadescreen FADE_FROM_BLACK
 # 249 "data/maps/BlackthornCity_House3/scripts.pory"
-	playfanfare MUS_OBTAIN_ITEM
+	delay 20
 # 250 "data/maps/BlackthornCity_House3/scripts.pory"
+	playfanfare MUS_OBTAIN_ITEM
+# 251 "data/maps/BlackthornCity_House3/scripts.pory"
 	msgbox EggMoveMaster_Text_5
-# 252 "data/maps/BlackthornCity_House3/scripts.pory"
-	waitse
 # 253 "data/maps/BlackthornCity_House3/scripts.pory"
+	waitse
+# 254 "data/maps/BlackthornCity_House3/scripts.pory"
 	msgbox EggMoveMaster_Text_0
 	goto EggMoveMaster_4
 
@@ -510,16 +511,16 @@ EggMoveMaster_Text_3:
 	.string "to learn. A pity.$"
 
 EggMoveMaster_Text_4:
-# 239 "data/maps/BlackthornCity_House3/scripts.pory"
+# 240 "data/maps/BlackthornCity_House3/scripts.pory"
 	.string "Thank you for the business!\p"
 	.string "Now let me teach you the grand\n"
 	.string "secrets of the Egg Moves.$"
 
 EggMoveMaster_Text_5:
-# 250 "data/maps/BlackthornCity_House3/scripts.pory"
+# 251 "data/maps/BlackthornCity_House3/scripts.pory"
 	.string "You can now teach Egg Moves to\n"
 	.string "your Pokémon!$"
 
 EggMoveMaster_Text_6:
-# 259 "data/maps/BlackthornCity_House3/scripts.pory"
+# 260 "data/maps/BlackthornCity_House3/scripts.pory"
 	.string "I see.$"

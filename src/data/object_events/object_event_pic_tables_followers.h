@@ -6733,4 +6733,8 @@ static const struct SpriteFrameImage sPicTable_GardevoirMegaZ[] = {
     overworld_ascending_frames(gObjectEventPic_GardevoirMegaZ, 4, 4),
 };
 
+static const struct SpriteFrameImage sPicTable_LugiaMegaZ[] = {
+    overworld_ascending_frames(gObjectEventPic_LugiaMegaZ, 8, 8),
+};
+
 #endif //OW_POKEMON_OBJECT_EVENTS

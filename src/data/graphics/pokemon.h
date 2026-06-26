@@ -30173,6 +30173,24 @@ const u16 gMonPalette_TyphlosionMega[] = INCBIN_U16("graphics/pokemon/typhlosion
     const u32 gMonFrontPic_Egg[] = INCBIN_U32("graphics/pokemon/egg/anim_front.4bpp.smol");
     const u16 gMonPalette_Egg[] = INCBIN_U16("graphics/pokemon/egg/normal.gbapal");
     const u8 gMonIcon_Egg[] = INCBIN_U8("graphics/pokemon/egg/icon.4bpp");
+
+    const u32 gMonFrontPic_LugiaMegaZ[] = INCBIN_U32("graphics/pokemon/lugia_shadow/front.4bpp.smol");
+    const u16 gMonPalette_LugiaMegaZ[] = INCBIN_U16("graphics/pokemon/lugia_shadow/normal.gbapal");
+    const u32 gMonBackPic_LugiaMegaZ[] = INCBIN_U32("graphics/pokemon/lugia_shadow/back.4bpp.smol");
+    const u16 gMonShinyPalette_LugiaMegaZ[] = INCBIN_U16("graphics/pokemon/lugia_shadow/shiny.gbapal");
+    const u8 gMonIcon_LugiaMegaZ[] = INCBIN_U8("graphics/pokemon/lugia_shadow/icon.4bpp");
+    const u16 gMonIconPalette_LugiaShadow[] = INCBIN_U16("graphics/pokemon/lugia_shadow/icon_normal.gbapal");
+    const u16 gMonShinyIconPalette_LugiaShadow[] = INCBIN_U16("graphics/pokemon/lugia_shadow/icon_shiny.gbapal");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_LugiaMegaZ[] = INCBIN_U8("graphics/pokemon/lugia_shadow/footprint.1bpp");
+#endif //P_FOOTPRINTS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_LugiaMegaZ[] = INCBIN_COMP("graphics/pokemon/lugia_shadow/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u16 gOverworldPalette_LugiaMegaZ[] = INCBIN_U16("graphics/pokemon/lugia_shadow/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_LugiaMegaZ[] = INCBIN_U16("graphics/pokemon/lugia_shadow/overworld_shiny.gbapal");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
     const u16 gMonIconPalette_Egg[] = INCBIN_U16("graphics/pokemon/egg/icon_normal.gbapal");
 
     const u32 gMonFrontPic_GardevoirMegaZ[] = INCBIN_U32("graphics/pokemon/gardevoir/mega_z/front.4bpp.smol");
