@@ -57,6 +57,7 @@
 #include "pokedex_plus_hgss.h"
 #include "pokerus.h"
 #include "region_map.h"
+#include "replay_options.h"
 #include "reshow_battle_screen.h"
 #include "scanline_effect.h"
 #include "script.h"
@@ -6467,7 +6468,7 @@ static bool8 TryDisplayMonUnlockedInnate(u8 taskId, TaskFunc task)
         u32 unlockLevel = GetInnateUnlockLevel(innateNum);
         enum Ability innate = GetMonData(mon, MON_DATA_INNATE1 + sLevelUpInnateIndex);
 
-        if (innate != ABILITY_NONE && unlockLevel == sInitialLevel)
+        if (!AreReplayInnatesDisabled() && innate != ABILITY_NONE && unlockLevel == sInitialLevel)
         {
             sLevelUpInnateIndex++;
             GetMonNickname(mon, gStringVar1);

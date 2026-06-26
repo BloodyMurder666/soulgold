@@ -7538,6 +7538,9 @@ bool32 IsInnateUnlockedByLevel(u32 innateNum, u32 level)
 {
     u32 unlockLevel = GetInnateUnlockLevel(innateNum);
 
+    if (AreReplayInnatesDisabled())
+        return FALSE;
+
     return FlagGet(FLAG_ALL_INNATES_UNLOCKED) || unlockLevel == 0 || level >= unlockLevel;
 }
 
@@ -7545,6 +7548,9 @@ bool32 IsInnateUnlockedByLevel(u32 innateNum, u32 level)
 u32 SpeciesHasInnate(u32 species, enum Ability ability)
 {
     u32 innateNum = 0;
+
+    if (AreReplayInnatesDisabled())
+        return 0;
 
     for (u32 i = 0; i < MAX_MON_INNATES; i++)
     {

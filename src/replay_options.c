@@ -19,6 +19,14 @@ static bool32 ToggleFlag(u16 flag)
     return FlagGet(flag);
 }
 
+static bool32 ToggleNoInnatesFlag(void)
+{
+    FlagToggle(FLAG_REPLAY_NO_INNATES);
+    if (FlagGet(FLAG_REPLAY_NO_INNATES))
+        FlagClear(FLAG_ALL_INNATES_UNLOCKED);
+    return FlagGet(FLAG_REPLAY_NO_INNATES);
+}
+
 bool32 ToggleReplayOption(enum ReplayOption option)
 {
     switch (option)
@@ -33,9 +41,19 @@ bool32 ToggleReplayOption(enum ReplayOption option)
         return ToggleFlag(FLAG_REPLAY_TRAINER_MAX_EVS);
     case REPLAY_OPTION_EASY_IVS:
         return ToggleFlag(FLAG_REPLAY_EASY_IVS);
+    case REPLAY_OPTION_NO_INNATES:
+        return ToggleNoInnatesFlag();
     default:
         return FALSE;
     }
+}
+
+bool32 ToggleReplayAllInnatesUnlocked(void)
+{
+    FlagToggle(FLAG_ALL_INNATES_UNLOCKED);
+    if (FlagGet(FLAG_ALL_INNATES_UNLOCKED))
+        FlagClear(FLAG_REPLAY_NO_INNATES);
+    return FlagGet(FLAG_ALL_INNATES_UNLOCKED);
 }
 
 bool32 ToggleReplayTrainerFullStats(void)
@@ -56,7 +74,8 @@ bool32 ToggleMaxPainReplayOptions(void)
 {
     if (FlagGet(FLAG_REPLAY_TRAINER_PERFECT_IVS)
      && FlagGet(FLAG_REPLAY_TRAINER_MAX_EVS)
-     && FlagGet(FLAG_ALL_INNATES_UNLOCKED))
+     && FlagGet(FLAG_ALL_INNATES_UNLOCKED)
+     && !FlagGet(FLAG_REPLAY_NO_INNATES))
     {
         FlagClear(FLAG_REPLAY_TRAINER_PERFECT_IVS);
         FlagClear(FLAG_REPLAY_TRAINER_MAX_EVS);
@@ -67,6 +86,7 @@ bool32 ToggleMaxPainReplayOptions(void)
     FlagSet(FLAG_REPLAY_TRAINER_PERFECT_IVS);
     FlagSet(FLAG_REPLAY_TRAINER_MAX_EVS);
     FlagSet(FLAG_ALL_INNATES_UNLOCKED);
+    FlagClear(FLAG_REPLAY_NO_INNATES);
     return TRUE;
 }
 
@@ -92,6 +112,11 @@ bool32 AreReplayTrainerMaxEVsForced(void)
 bool32 AreReplayEasyIVsEnabled(void)
 {
     return FlagGet(FLAG_REPLAY_EASY_IVS);
+}
+
+bool32 AreReplayInnatesDisabled(void)
+{
+    return FlagGet(FLAG_REPLAY_NO_INNATES);
 }
 
 void ApplyReplayEasyIVs(struct Pokemon *mon)

@@ -1598,6 +1598,7 @@
 #define FLAG_REPLAY_TRAINER_MAX_EVS                 0x93A
 #define FLAG_REPLAY_EASY_IVS                        0x93B
 #define FLAG_CIANWOOD_GIMMIGHOUL                    0x93C
+#define FLAG_REPLAY_NO_INNATES                      0x93D
 
 #define FLAG_0x1500                                 0x1500
 // Daily Flags

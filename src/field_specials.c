@@ -4500,13 +4500,11 @@ void GetCodeFeedback(void)
     static const u8 sText_FullStats[] = _("fullstats");
     static const u8 sText_MaxPain[] = _("maxpain");
     static const u8 sText_EasyIvs[] = _("easyivs");
+    static const u8 sText_NoInnates[] = _("noinnates");
     if (!StringCompare(gStringVar2, sText_SampleCode))
         gSpecialVar_Result = 1;
     else if (!StringCompare(gStringVar2, sText_InnatePower))
-    {
-        FlagToggle(FLAG_ALL_INNATES_UNLOCKED);
-        gSpecialVar_Result = FlagGet(FLAG_ALL_INNATES_UNLOCKED) ? 2 : 3;
-    }
+        gSpecialVar_Result = ToggleReplayAllInnatesUnlocked() ? 2 : 3;
     else if (!StringCompare(gStringVar2, sText_Doubles))
         gSpecialVar_Result = ToggleReplayOption(REPLAY_OPTION_BATTLE_FORMAT_DOUBLES) ? 2 : 3;
     else if (!StringCompare(gStringVar2, sText_Singles))
@@ -4521,6 +4519,8 @@ void GetCodeFeedback(void)
         gSpecialVar_Result = ToggleMaxPainReplayOptions() ? 2 : 3;
     else if (!StringCompare(gStringVar2, sText_EasyIvs))
         gSpecialVar_Result = ToggleReplayOption(REPLAY_OPTION_EASY_IVS) ? 2 : 3;
+    else if (!StringCompare(gStringVar2, sText_NoInnates))
+        gSpecialVar_Result = ToggleReplayOption(REPLAY_OPTION_NO_INNATES) ? 2 : 3;
     else
         gSpecialVar_Result = 0;
 }

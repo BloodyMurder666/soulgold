@@ -22,6 +22,7 @@
 #include "sound.h"
 #include "pokedex.h"
 #include "recorded_battle.h"
+#include "replay_options.h"
 #include "window.h"
 #include "reshow_battle_screen.h"
 #include "main.h"
@@ -6358,7 +6359,7 @@ static void Cmd_handlelearnnewmove(void)
         sInnateUnlockIndex = 0;
     }
 
-    if (sCheckingInnateUnlocks && !RECORDED_WILD_BATTLE)
+    if (sCheckingInnateUnlocks && !RECORDED_WILD_BATTLE && !AreReplayInnatesDisabled())
     {
         if (prevLvl >= currLvl)
             prevLvl = currLvl - 1;
