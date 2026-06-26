@@ -3546,22 +3546,39 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, enum Item item, u8 partyIndex, 
 
                 if (param == 0) // Rare Candy
                 {
-                    dataUnsigned = gExperienceTables[gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES, NULL)].growthRate][GetMonData(mon, MON_DATA_LEVEL, NULL) + itemCount];
+                    u16 species = GetMonData(mon, MON_DATA_SPECIES);
+                    u32 currentExp = GetMonData(mon, MON_DATA_EXP);
+                    u32 level = GetMonData(mon, MON_DATA_LEVEL, NULL);
+                    u32 targetLevel = level + itemCount;
+                    u32 maxLevel = MAX_LEVEL;
+
+                    if (B_RARE_CANDY_CAP && GetCurrentExpCapType() != EXP_CAP_NONE)
+                        maxLevel = min(GetCurrentLevelCap(), MAX_LEVEL);
+
+                    targetLevel = min(targetLevel, maxLevel);
+                    if (targetLevel > level)
+                    {
+                        dataUnsigned = gExperienceTables[gSpeciesInfo[species].growthRate][targetLevel];
+                        if (dataUnsigned <= currentExp)
+                            dataUnsigned = 0;
+                    }
                 }
                 else if (param - 1 < ARRAY_COUNT(sExpCandyExperienceTable)) // EXP Candies
                 {
                     u16 species = GetMonData(mon, MON_DATA_SPECIES);
-                    dataUnsigned = (sExpCandyExperienceTable[param - 1] * itemCount) + GetMonData(mon, MON_DATA_EXP);
+                    u32 currentExp = GetMonData(mon, MON_DATA_EXP);
+                    u32 maxExpLevel = MAX_LEVEL;
+                    u32 maxExp;
 
-                    if (B_RARE_CANDY_CAP && GetCurrentExpCapType() == EXP_CAP_HARD)
+                    if (B_RARE_CANDY_CAP && GetCurrentExpCapType() != EXP_CAP_NONE)
+                        maxExpLevel = min(GetCurrentLevelCap(), MAX_LEVEL);
+
+                    maxExp = gExperienceTables[gSpeciesInfo[species].growthRate][maxExpLevel];
+                    if (currentExp < maxExp)
                     {
-                        u32 currentLevelCap = GetCurrentLevelCap();
-                        if (dataUnsigned > gExperienceTables[gSpeciesInfo[species].growthRate][currentLevelCap])
-                            dataUnsigned = gExperienceTables[gSpeciesInfo[species].growthRate][currentLevelCap];
-                    }
-                    else if (dataUnsigned > gExperienceTables[gSpeciesInfo[species].growthRate][MAX_LEVEL])
-                    {
-                        dataUnsigned = gExperienceTables[gSpeciesInfo[species].growthRate][MAX_LEVEL];
+                        dataUnsigned = (sExpCandyExperienceTable[param - 1] * itemCount) + currentExp;
+                        if (dataUnsigned > maxExp)
+                            dataUnsigned = maxExp;
                     }
                 }
 

@@ -6531,7 +6531,7 @@ static bool8 ShouldLevelUpItemUseLevelCap(void)
 {
     u32 expCapType = GetCurrentExpCapType();
 
-    return expCapType == EXP_CAP_SOFT || expCapType == EXP_CAP_HARD;
+    return B_RARE_CANDY_CAP && (expCapType == EXP_CAP_SOFT || expCapType == EXP_CAP_HARD);
 }
 
 static u16 GetMaxLevelUpItemQuantity(struct Pokemon *mon, u8 holdEffectParam, u16 quantityInBag)
@@ -6581,7 +6581,7 @@ static u16 GetMaxLevelUpItemQuantity(struct Pokemon *mon, u8 holdEffectParam, u1
                 return 0;
 
             maxExpGain = maxExp - currentExp;
-            maxQuantity = maxExpGain / candyExp;
+            maxQuantity = (maxExpGain + candyExp - 1) / candyExp;
         }
         else
         {
