@@ -533,7 +533,8 @@ struct PartyState
     u32 transmuteUsed:1;
     u32 twinStarsBoosted:1;
     u32 padding:3;
-    u16 usedHeldItems[MAX_MON_ITEMS_INTERNAL];
+    u16 usedHeldItems[MAX_MON_ITEMS_INTERNAL]; // Items eligible for in-battle restoration.
+    u16 consumedHeldItems[MAX_MON_ITEMS_INTERNAL]; // Items eligible for post-battle restoration.
 };
 
 struct EventStates

@@ -52,6 +52,40 @@ SINGLE_BATTLE_TEST("Air Balloon pops when the holder is hit by a move that is no
     }
 }
 
+SINGLE_BATTLE_TEST("Air Balloon is restored after battle when held battle items are restored")
+{
+    GIVEN {
+        WITH_CONFIG(B_RESTORE_HELD_BATTLE_ITEMS, GEN_9);
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_AIR_BALLOON); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_SCRATCH); }
+    } SCENE {
+        MESSAGE("Wobbuffet floats in the air with its Air Balloon!");
+        MESSAGE("The opposing Wobbuffet used Scratch!");
+        MESSAGE("Wobbuffet's Air Balloon popped!");
+    } THEN {
+        EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_HELD_ITEM), ITEM_AIR_BALLOON);
+    }
+}
+
+SINGLE_BATTLE_TEST("Air Balloon is not restored after battle before held battle items are restored")
+{
+    GIVEN {
+        WITH_CONFIG(B_RESTORE_HELD_BATTLE_ITEMS, GEN_8);
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_AIR_BALLOON); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_SCRATCH); }
+    } SCENE {
+        MESSAGE("Wobbuffet floats in the air with its Air Balloon!");
+        MESSAGE("The opposing Wobbuffet used Scratch!");
+        MESSAGE("Wobbuffet's Air Balloon popped!");
+    } THEN {
+        EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_HELD_ITEM), ITEM_NONE);
+    }
+}
+
 SINGLE_BATTLE_TEST("Air Balloon no longer prevents the holder from taking damage from ground type moves once it has been popped")
 {
     GIVEN {

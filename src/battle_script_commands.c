@@ -7051,11 +7051,14 @@ static void Cmd_removeitemwitheffect(void)
         return;
     }
 
-    // Popped Air Balloon cannot be restored by any means.
+    // Popped Air Balloon cannot be restored during battle.
     // Corroded items cannot be restored either.
-    if (holdEffect != HOLD_EFFECT_AIR_BALLOON
-     && GetMoveEffect(gCurrentMove) != EFFECT_CORROSIVE_GAS)
-        GetBattlerPartyState(battler)->usedHeldItems[slot] = itemId; // Remember if switched out
+    if (GetMoveEffect(gCurrentMove) != EFFECT_CORROSIVE_GAS)
+    {
+        GetBattlerPartyState(battler)->consumedHeldItems[slot] = itemId;
+        if (holdEffect != HOLD_EFFECT_AIR_BALLOON)
+            GetBattlerPartyState(battler)->usedHeldItems[slot] = itemId; // Remember if switched out
+    }
 
     #if TESTING
         if (slot == 0)
@@ -11778,7 +11781,7 @@ static void Cmd_givecaughtmon(void)
     case GIVECAUGHTMON_GIVE_AND_SHOW_MSG:
     {
         struct Pokemon *caughtMon = GetBattlerMon(GetCatchingBattler());
-        if (B_RESTORE_HELD_BATTLE_ITEMS >= GEN_9)
+        if (GetConfig(B_RESTORE_HELD_BATTLE_ITEMS) >= GEN_9)
         {
             u16 lostItem;
 

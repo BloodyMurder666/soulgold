@@ -11626,15 +11626,27 @@ void TryRestoreHeldItems(void)
 {
     u32 i, j;
     u16 lostItem;
-    bool32 returnNPCItems = B_RETURN_STOLEN_NPC_ITEMS >= GEN_5 && gBattleTypeFlags & BATTLE_TYPE_TRAINER;
+    bool32 restoreHeldBattleItems = GetConfig(B_RESTORE_HELD_BATTLE_ITEMS) >= GEN_9;
+    bool32 returnNPCItems = GetConfig(B_RETURN_STOLEN_NPC_ITEMS) >= GEN_5 && gBattleTypeFlags & BATTLE_TYPE_TRAINER;
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
         // Check if held items should be restored after battle based on generation
-        if (B_RESTORE_HELD_BATTLE_ITEMS >= GEN_9 || returnNPCItems)
+        if (restoreHeldBattleItems || returnNPCItems)
         {
             for (j = 0; j < MAX_MON_ITEMS; j++)
             {
+                if (restoreHeldBattleItems)
+                {
+                    u16 consumedItem = gBattleStruct->partyState[B_SIDE_PLAYER][i].consumedHeldItems[j];
+                    u16 originalItem = gBattleStruct->itemLost[B_SIDE_PLAYER][i][j].originalItem;
+
+                    if (consumedItem != ITEM_NONE
+                     && consumedItem == originalItem
+                     && GetItemPocket(consumedItem) != POCKET_BERRIES)
+                        SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM + j, &originalItem);
+                }
+
                 if (gBattleStruct->itemLost[B_SIDE_PLAYER][i][j].stolen)
                 {
                     lostItem = gBattleStruct->itemLost[B_SIDE_PLAYER][i][j].originalItem;

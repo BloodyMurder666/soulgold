@@ -3280,6 +3280,8 @@ static void BattleStartClearSetData(void)
         {
             gBattleStruct->partyState[B_SIDE_PLAYER][i].usedHeldItems[j] = ITEM_NONE;
             gBattleStruct->partyState[B_SIDE_OPPONENT][i].usedHeldItems[j] = ITEM_NONE;
+            gBattleStruct->partyState[B_SIDE_PLAYER][i].consumedHeldItems[j] = ITEM_NONE;
+            gBattleStruct->partyState[B_SIDE_OPPONENT][i].consumedHeldItems[j] = ITEM_NONE;
             gBattleStruct->itemLost[B_SIDE_PLAYER][i][j].originalItem = GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM + j);
             gBattleStruct->itemLost[B_SIDE_OPPONENT][i][j].originalItem = GetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM + j);
         }
@@ -6011,7 +6013,7 @@ static void HandleEndTurn_FinishBattle(void)
 
         BeginFastPaletteFade(3);
         FadeOutMapMusic(5);
-        if (B_TRAINERS_KNOCK_OFF_ITEMS == TRUE || B_RESTORE_HELD_BATTLE_ITEMS >= GEN_9)
+        if (B_TRAINERS_KNOCK_OFF_ITEMS == TRUE || GetConfig(B_RESTORE_HELD_BATTLE_ITEMS) >= GEN_9)
             TryRestoreHeldItems();
 
         for (u32 i = 0; i < PARTY_SIZE; i++)

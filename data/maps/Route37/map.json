@@ -112,7 +112,7 @@
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(STARAVIA)",
       "x": 8,
       "y": 15,
-      "elevation": 3,
+      "elevation": 4,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 0,
       "movement_range_y": 0,

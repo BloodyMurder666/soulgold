@@ -3824,6 +3824,7 @@ static enum MoveEndResult MoveEndThirdMoveBlock(void)
                 gBattleMons[gBattlerAttacker].items[i] = ITEM_NONE;
                 gBattleStruct->battlerState[gBattlerAttacker].canPickupItem = TRUE;
                 GetBattlerPartyState(gBattlerAttacker)->usedHeldItems[i] = item;
+                GetBattlerPartyState(gBattlerAttacker)->consumedHeldItems[i] = item;
                 CheckSetUnburden(gBattlerAttacker);
                 BtlController_EmitSetMonData(
                     gBattlerAttacker,
