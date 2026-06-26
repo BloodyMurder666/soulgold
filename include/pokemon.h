@@ -856,7 +856,7 @@ bool32 SpeciesHasGenderDifferences(u16 species);
 bool32 TryFormChange(struct Pokemon *mon, enum FormChanges method);
 bool32 TryBoxMonFormChange(struct BoxPokemon *boxMon, enum FormChanges method);
 bool32 TrySelectedMonNicknameFormChange(void);
-void TryToSetBattleFormChangeMoves(struct Pokemon *mon, enum FormChanges method);
+void TryToSetBattleFormChangeMoves(struct Pokemon *mon, enum FormChanges method, u16 targetSpecies);
 u32 GetMonFriendshipScore(struct Pokemon *pokemon);
 u32 GetMonAffectionHearts(struct Pokemon *pokemon);
 void UpdateMonPersonality(struct BoxPokemon *boxMon, u32 personality);

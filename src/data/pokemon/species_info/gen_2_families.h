@@ -9021,13 +9021,13 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .iconPalIndex = 2,
         .iconPalette = gMonIconPalette_LugiaShadow,
         .shinyIconPalette = gMonShinyIconPalette_LugiaShadow,
-        FOOTPRINT(LugiaMegaZ)
-        SHADOW(0, 13, SHADOW_SIZE_S)
+        SHADOW(2, 17, SHADOW_SIZE_L)
+        FOOTPRINT(Lugia)
         OVERWORLD(
             sPicTable_LugiaMegaZ,
-            SIZE_32x32,
+            SIZE_64x64,
             SHADOW_SIZE_M,
-            TRACKS_FOOT,
+            TRACKS_NONE,
             sAnimTable_Following,
             gOverworldPalette_LugiaMegaZ,
             gShinyOverworldPalette_LugiaMegaZ
@@ -9035,7 +9035,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .isRestrictedLegendary = TRUE,
         .isFrontierBanned = TRUE,
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
-        .levelUpLearnset = sLugiaLevelUpLearnset,
+        .levelUpLearnset = sLugiaShadowLevelUpLearnset,
         .teachableLearnset = sLugiaTeachableLearnset,
 #if P_FAMILY_LUGIA
         .formSpeciesIdTable = sLugiaFormSpeciesIdTable,

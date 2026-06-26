@@ -2728,6 +2728,9 @@ $(POKEMONGFXDIR)/azelf/overworld.4bpp: %.4bpp: %.png
 $(POKEMONGFXDIR)/dialga/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 8 -mheight 8
 
+$(POKEMONGFXDIR)/dialga/primal/overworld.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 8 -mheight 8
+
 $(POKEMONGFXDIR)/palkia/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 8 -mheight 8
 
@@ -5150,4 +5153,4 @@ $(POKEMONGFXDIR)/gardevoir/mega_z/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 $(POKEMONGFXDIR)/lugia_shadow/overworld.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -mwidth 4 -mheight 4
+	$(GFX) $< $@ -mwidth 8 -mheight 8

@@ -11135,7 +11135,7 @@ bool32 TryBattleFormChange(enum BattlerId battler, enum FormChanges method)
         if (GetBattlerPartyState(battler)->changedSpecies == SPECIES_NONE)
             GetBattlerPartyState(battler)->changedSpecies = gBattleMons[battler].species;
 
-        TryToSetBattleFormChangeMoves(mon, method);
+        TryToSetBattleFormChangeMoves(mon, method, targetSpecies);
         SetMonData(mon, MON_DATA_SPECIES, &targetSpecies);
         gBattleMons[battler].species = targetSpecies;
         RecalcBattlerStats(battler, mon, method == FORM_CHANGE_BATTLE_GIGANTAMAX);

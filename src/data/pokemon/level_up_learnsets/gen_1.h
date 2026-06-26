@@ -4855,6 +4855,20 @@ static const struct LevelUpMove sLugiaLevelUpLearnset[] = {
     LEVEL_UP_MOVE(99, MOVE_FUTURE_SIGHT),
     LEVEL_UP_END
 };
+
+static const struct LevelUpMove sLugiaShadowLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_DARK_AERO),
+    LEVEL_UP_MOVE(11, MOVE_SAFEGUARD),
+    LEVEL_UP_MOVE(22, MOVE_GUST),
+    LEVEL_UP_MOVE(33, MOVE_RECOVER),
+    LEVEL_UP_MOVE(44, MOVE_HYDRO_PUMP),
+    LEVEL_UP_MOVE(55, MOVE_RAIN_DANCE),
+    LEVEL_UP_MOVE(66, MOVE_SWIFT),
+    LEVEL_UP_MOVE(77, MOVE_WHIRLWIND),
+    LEVEL_UP_MOVE(88, MOVE_ANCIENT_POWER),
+    LEVEL_UP_MOVE(99, MOVE_FUTURE_SIGHT),
+    LEVEL_UP_END
+};
 #endif //P_FAMILY_LUGIA
 
 #if P_FAMILY_HO_OH
@@ -19889,4 +19903,3 @@ static const struct LevelUpMove sPecharuntLevelUpLearnset[] = {
     LEVEL_UP_END
 };
 #endif //P_FAMILY_PECHARUNT
-

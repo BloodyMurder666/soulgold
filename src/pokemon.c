@@ -94,6 +94,7 @@ static metloc_u16_t GetBoxMonMetLocation(struct BoxPokemon *boxMon);
 static void SetBoxMonMetLocation(struct BoxPokemon *boxMon, metloc_u16_t metLocation);
 static u8 GetBoxMonMetLocationHi(struct BoxPokemon *boxMon);
 static void SetBoxMonMetLocationHi(struct BoxPokemon *boxMon, u8 metLocationHi);
+static void TryToSetBoxFormChangeMoves(struct BoxPokemon *boxMon, enum FormChanges method, u16 targetSpecies);
 static void Task_PlayMapChosenOrBattleBGM(u8 taskId);
 void TrySpecialOverworldEvo();
 
@@ -1666,15 +1667,15 @@ void SetBoxMonMoveSlot(struct BoxPokemon *mon, enum Move move, u8 slot)
     SetBoxMonData(mon, MON_DATA_PP1 + slot, &pp);
 }
 
-static void SetMonMoveSlot_KeepPP(struct Pokemon *mon, enum Move move, u8 slot)
+static void SetBoxMonMoveSlot_KeepPP(struct BoxPokemon *boxMon, enum Move move, u8 slot)
 {
-    u8 ppBonuses = GetMonData(mon, MON_DATA_PP_BONUSES);
-    u8 currPP = GetMonData(mon, MON_DATA_PP1 + slot);
+    u8 ppBonuses = GetBoxMonData(boxMon, MON_DATA_PP_BONUSES);
+    u8 currPP = GetBoxMonData(boxMon, MON_DATA_PP1 + slot);
     u8 newPP = CalculatePPWithBonus(move, ppBonuses, slot);
-    u16 finalPP = min(currPP, newPP);
+    u8 finalPP = min(currPP, newPP);
 
-    SetMonData(mon, MON_DATA_MOVE1 + slot, &move);
-    SetMonData(mon, MON_DATA_PP1 + slot, &finalPP);
+    SetBoxMonData(boxMon, MON_DATA_MOVE1 + slot, &move);
+    SetBoxMonData(boxMon, MON_DATA_PP1 + slot, &finalPP);
 }
 
 void SetBattleMonMoveSlot(struct BattlePokemon *mon, enum Move move, u8 slot)
@@ -6693,7 +6694,7 @@ bool32 TryFormChange(struct Pokemon *mon, enum FormChanges method)
 
     if (targetSpecies != currentSpecies)
     {
-        TryToSetBattleFormChangeMoves(mon, method);
+        TryToSetBattleFormChangeMoves(mon, method, targetSpecies);
         SetMonData(mon, MON_DATA_SPECIES, &targetSpecies);
         TrySetDayLimitToFormChange(mon);
         CalculateMonStats(mon);
@@ -6728,6 +6729,7 @@ bool32 TryBoxMonFormChange(struct BoxPokemon *boxMon, enum FormChanges method)
 
     if (targetSpecies != currentSpecies)
     {
+        TryToSetBoxFormChangeMoves(boxMon, method, targetSpecies);
         SetBoxMonData(boxMon, MON_DATA_SPECIES, &targetSpecies);
         return TRUE;
     }
@@ -6750,35 +6752,58 @@ bool32 IsSpeciesEnabled(u16 species)
     return gSpeciesInfo[species].baseHP > 0 || species == SPECIES_EGG;
 }
 
-void TryToSetBattleFormChangeMoves(struct Pokemon *mon, enum FormChanges method)
+static bool32 GetFormChangeMoveSwap(const struct FormChange *formChange, enum FormChanges method, u16 *originalMove, u16 *newMove)
+{
+    switch (method)
+    {
+    case FORM_CHANGE_BEGIN_BATTLE:
+    case FORM_CHANGE_END_BATTLE:
+        *originalMove = formChange->param2;
+        *newMove = formChange->param3;
+        break;
+    case FORM_CHANGE_NICKNAME:
+        *originalMove = formChange->param3;
+        *newMove = formChange->param4;
+        break;
+    default:
+        return FALSE;
+    }
+
+    return *originalMove != MOVE_NONE && *newMove != MOVE_NONE;
+}
+
+static void TryToSetBoxFormChangeMoves(struct BoxPokemon *boxMon, enum FormChanges method, u16 targetSpecies)
 {
     int i, j;
-    u16 species = GetMonData(mon, MON_DATA_SPECIES);
+    u16 species = GetBoxMonData(boxMon, MON_DATA_SPECIES);
     const struct FormChange *formChanges = GetSpeciesFormChanges(species);
 
-    if (formChanges == NULL
-        || (method != FORM_CHANGE_BEGIN_BATTLE && method != FORM_CHANGE_END_BATTLE))
+    if (formChanges == NULL)
         return;
 
     for (i = 0; formChanges[i].method != FORM_CHANGE_TERMINATOR; i++)
     {
-        if (formChanges[i].method == method
-            && formChanges[i].param2
-            && formChanges[i].param3
-            && formChanges[i].targetSpecies != species)
-        {
-            u16 originalMove = formChanges[i].param2;
-            u16 newMove = formChanges[i].param3;
+        u16 originalMove;
+        u16 newMove;
 
+        if (formChanges[i].method == method
+            && formChanges[i].targetSpecies == targetSpecies
+            && GetFormChangeMoveSwap(&formChanges[i], method, &originalMove, &newMove))
+        {
             for (j = 0; j < MAX_MON_MOVES; j++)
             {
-                u16 currMove = GetMonData(mon, MON_DATA_MOVE1 + j);
+                u16 currMove = GetBoxMonData(boxMon, MON_DATA_MOVE1 + j);
                 if (currMove == originalMove)
-                    SetMonMoveSlot_KeepPP(mon, newMove, j);
+                    SetBoxMonMoveSlot_KeepPP(boxMon, newMove, j);
             }
             break;
         }
     }
+}
+
+void TryToSetBattleFormChangeMoves(struct Pokemon *mon, enum FormChanges method, u16 targetSpecies)
+{
+    TryToSetBoxFormChangeMoves(&mon->box, method, targetSpecies);
 }
 
 u32 GetMonFriendshipScore(struct Pokemon *pokemon)

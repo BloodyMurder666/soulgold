@@ -4857,6 +4857,30 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .validApprenticeMove = TRUE,
     },
 
+    [MOVE_DARK_AERO] =
+    {
+        .name = COMPOUND_STRING("Dark Aero"),
+        .description = COMPOUND_STRING(
+            "Launches a darkened blast.\n"
+            "High critical-hit ratio."),
+        .effect = EFFECT_HIT,
+        .power = 100,
+        .type = TYPE_DARK,
+        .accuracy = 95,
+        .criticalHitStage = B_UPDATED_MOVE_DATA >= GEN_3 ? 1 : 2,
+        .pp = 5,
+        .target = TARGET_SELECTED,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_SPECIAL,
+        .windMove = TRUE,
+        .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL, //C_UPDATED_MOVE_EFFECTS >= GEN_6 ? CONTEST_EFFECT_EXCITES_AUDIENCE_MORE_IF_LAST :
+        .contestCategory = CONTEST_CATEGORY_COOL,
+        .contestComboStarterId = 0,
+        .contestComboMoves = {0},
+        .battleAnimScript = gBattleAnimMove_DarkAero,
+        .validApprenticeMove = TRUE,
+    },
+
     [MOVE_COTTON_SPORE] =
     {
         .name = COMPOUND_STRING("Cotton Spore"),
