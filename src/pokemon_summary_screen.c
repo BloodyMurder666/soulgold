@@ -19,6 +19,7 @@
 #include "international_string_util.h"
 #include "item.h"
 #include "link.h"
+#include "list_menu.h"
 #include "m4a.h"
 #include "malloc.h"
 #include "menu.h"
@@ -199,6 +200,8 @@ static EWRAM_DATA struct PokemonSummaryScreenData
     u8 longDescriptionWindowId;
     bool8 showingLongDescription;
     u8 selectedTraitIndex;
+    u8 longDescriptionScrollArrowTaskId;
+    u16 longDescriptionScrollOffset;
     u8 longDescriptionBgId;
     u32 savedBgX;
     u16 *savedBgTilemapBuffer;
@@ -366,6 +369,9 @@ static struct BoxPokemon *GetCurrentBoxmon(void);
     static void CloseTraitLongDescription(u8);
     static void ChangeSelectedTraitLongDescription(s8);
     static void PrintTraitLongDescription(void);
+    static void AddTraitLongDescriptionScrollArrows(void);
+    static void RemoveTraitLongDescriptionScrollArrows(void);
+    static u8 CountSelectableTraits(void);
     static void PrintMonTraits(u8);
     static void PrintTraits(void);
     static void Task_PrintTraits(u8);
@@ -886,6 +892,13 @@ static const u8 sMovesPPLayout[] = _("{PP}{DYNAMIC 0}/{DYNAMIC 1}");
 #define TAG_MOVE_TYPES 30002
 #define TAG_MON_MARKINGS 30003
 #define TAG_CATEGORY_ICONS 30004
+#define TAG_LONG_DESCRIPTION_SCROLL_ARROWS 30005
+
+#define LONG_DESCRIPTION_SCROLL_ARROW_X 226
+#define LONG_DESCRIPTION_SCROLL_ARROW_TOP_Y 42
+#define LONG_DESCRIPTION_SCROLL_ARROW_BOTTOM_Y 154
+#define LONG_DESCRIPTION_SCROLL_ARROW_OFFSET 1
+#define LONG_DESCRIPTION_SCROLL_ARROW_THRESHOLD 2
 
 static const struct OamData sOamData_CategoryIcons =
 {
@@ -3486,6 +3499,8 @@ static void ResetWindows(void)
     sMonSummaryScreen->longDescriptionWindowId = WINDOW_NONE;
     sMonSummaryScreen->showingLongDescription = FALSE;
     sMonSummaryScreen->selectedTraitIndex = 0;
+    sMonSummaryScreen->longDescriptionScrollArrowTaskId = TASK_NONE;
+    sMonSummaryScreen->longDescriptionScrollOffset = LONG_DESCRIPTION_SCROLL_ARROW_OFFSET;
     sMonSummaryScreen->longDescriptionBgId = 0;
     sMonSummaryScreen->savedBgX = 0;
     sMonSummaryScreen->savedBgTilemapBuffer = NULL;
@@ -4172,6 +4187,46 @@ static void PrintEggMemo(void)
         return GetSummaryTraitByIndex(traitIndex) != ABILITY_NONE;
     }
 
+    static u8 CountSelectableTraits(void)
+    {
+        u8 i;
+        u8 count = 0;
+
+        for (i = 0; i < MAX_MON_TRAITS; i++)
+        {
+            if (IsSummaryTraitSelectable(i))
+                count++;
+        }
+
+        return count;
+    }
+
+    static void AddTraitLongDescriptionScrollArrows(void)
+    {
+        if (sMonSummaryScreen->longDescriptionScrollArrowTaskId == TASK_NONE && CountSelectableTraits() > 1)
+        {
+            sMonSummaryScreen->longDescriptionScrollOffset = LONG_DESCRIPTION_SCROLL_ARROW_OFFSET;
+            sMonSummaryScreen->longDescriptionScrollArrowTaskId = AddScrollIndicatorArrowPairParameterized(
+                SCROLL_ARROW_UP,
+                LONG_DESCRIPTION_SCROLL_ARROW_X,
+                LONG_DESCRIPTION_SCROLL_ARROW_TOP_Y,
+                LONG_DESCRIPTION_SCROLL_ARROW_BOTTOM_Y,
+                LONG_DESCRIPTION_SCROLL_ARROW_THRESHOLD,
+                TAG_LONG_DESCRIPTION_SCROLL_ARROWS,
+                TAG_LONG_DESCRIPTION_SCROLL_ARROWS,
+                &sMonSummaryScreen->longDescriptionScrollOffset);
+        }
+    }
+
+    static void RemoveTraitLongDescriptionScrollArrows(void)
+    {
+        if (sMonSummaryScreen->longDescriptionScrollArrowTaskId != TASK_NONE)
+        {
+            RemoveScrollIndicatorArrowPair(sMonSummaryScreen->longDescriptionScrollArrowTaskId);
+            sMonSummaryScreen->longDescriptionScrollArrowTaskId = TASK_NONE;
+        }
+    }
+
     static void OpenTraitLongDescription(u8 taskId)
     {
         u8 i;
@@ -4197,6 +4252,7 @@ static void PrintEggMemo(void)
 
         sMonSummaryScreen->longDescriptionWindowId = AddWindow(&sLongDescriptionTemplate);
         PrintTraitLongDescription();
+        AddTraitLongDescriptionScrollArrows();
         PutPageWindowTilemaps(PSS_PAGE_CONTEST_MOVES);
         ScheduleBgCopyTilemapToVram(0);
         gTasks[taskId].func = Task_HandleInput_LongDescription;
@@ -4205,6 +4261,8 @@ static void PrintEggMemo(void)
     static void CloseTraitLongDescription(u8 taskId)
     {
         u8 bg = sMonSummaryScreen->longDescriptionBgId;
+
+        RemoveTraitLongDescriptionScrollArrows();
 
         if (sMonSummaryScreen->longDescriptionWindowId != WINDOW_NONE)
         {
