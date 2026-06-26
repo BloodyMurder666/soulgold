@@ -539,7 +539,11 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Magnezone
+Torkoal
+Level: 47
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Reuniclus
 Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -1262,7 +1266,7 @@ Music: Dp Hiker
 Double Battle: No
 AI: Check Bad Move
 
-Mamoswine
+Camerupt
 Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -1283,7 +1287,7 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Gyarados
+Octillery
 Level: 35
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -1326,7 +1330,7 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Hitmontop
+Sneasel Hisui
 Level: 38
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -4022,7 +4026,7 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Staraptor
+Golbat
 Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -5514,7 +5518,7 @@ Togetic
 Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Ampharos
+Absol
 Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -6188,7 +6192,11 @@ Music: Hg Suspicious 2
 Double Battle: No
 AI: Basic Trainer
 
-Sneasel
+Baltoy
+Level: 33
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Naclstack
 Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -6205,7 +6213,7 @@ Pidgeot @ Normalite
 Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Staraptor
+Abomasnow
 Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -6256,7 +6264,7 @@ Seadra
 Level: 53
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Gyarados
+Eelektross
 Level: 53
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -6597,7 +6605,7 @@ Music: Girl
 Double Battle: Yes
 AI: Check Bad Move
 
-Steelix
+Donphan
 Level: 41
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -6665,7 +6673,7 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Gyarados
+Basculin
 Level: 35
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -6958,7 +6966,7 @@ Wugtrio
 Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Bisharp
+Gastrodon
 Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -8292,11 +8300,11 @@ Music: Hg Suspicious 1
 Double Battle: No
 AI: Check Bad Move
 
-Haunter
+Phantump
 Level: 30
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Murkrow
+Vullaby
 Level: 30
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -8926,7 +8934,7 @@ Kingdra
 Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Gyarados
+Luxray
 Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -9814,7 +9822,7 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Mienshao
+Toxicroak
 Level: 37
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -9848,7 +9856,7 @@ Music: Hg Boy 2
 Double Battle: Yes
 AI: Check Bad Move
 
-Steelix
+Medicham
 Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -9856,7 +9864,7 @@ Machamp
 Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Mienshao
+Tauros Paldea Combat
 Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -10623,12 +10631,12 @@ Music: Hg Suspicious 2
 Double Battle: No
 AI: Check Bad Move
 
-Weavile
+Scovillain
 Level: 47
 Ability: Pickpocket
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Tinkaton
+Arbok
 Level: 47
 Ability: Pickpocket
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
@@ -10693,7 +10701,7 @@ Music: Dp Ace Trainer
 Double Battle: No
 AI: Check Bad Move
 
-Cloyster
+Snover
 Level: 36
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -10818,11 +10826,11 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Skarmory
+Delibird
 Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Corviknight
+Sirfetch'd
 Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -11329,7 +11337,7 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move
 
-Azumarill
+Emolga
 Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -12896,7 +12904,7 @@ Wartortle
 Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Azumarill
+Skrelp
 Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -13336,17 +13344,13 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Cloyster
+Slowbro
 Level: 46
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Shell Smash
-- Icicle Spear
-- Surf
-- Supersonic
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
 Glaceon
 Level: 46
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 - Blizzard
 - Shadow Ball
 - Snowscape
@@ -13374,7 +13378,7 @@ Music: Dp Hiker
 Double Battle: No
 AI: Check Bad Move
 
-Steelix
+Rhydon
 Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
