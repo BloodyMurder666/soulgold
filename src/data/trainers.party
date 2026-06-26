@@ -1331,7 +1331,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Sneasel Hisui
-Level: 38
+Level: 39
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_BRYAN ===
@@ -8519,11 +8519,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Machoke
-Level: 37
+Level: 38
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Primeape
-Level: 37
+Level: 39
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_NORMAN ===
@@ -9823,7 +9823,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Toxicroak
-Level: 37
+Level: 40
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GLENN ===
@@ -12400,7 +12400,7 @@ IVs: 20 HP / 20 Atk / 20 Def / 12 SpA / 12 SpD / 12 Spe
 - Pursuit
 
 Mienshao
-Level: 42
+Level: 41
 Ability: Regenerator
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Low Kick
@@ -12413,7 +12413,7 @@ Level: 41
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Hypnosis
 - Drain Punch
-- Surf
+- Waterfall
 - Dynamic Punch
 
 Annihilape @ Chesto Berry
@@ -12444,14 +12444,13 @@ IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
 - Bullet Punch
 - Pursuit
 
-Sirfetch'd @ Assault Vest
+Annihilape @ Chesto Berry
 Level: 42
-Ability: Scrappy
 IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
-- Slash
-- Brutal Swing
-- Leaf Blade
 - Brick Break
+- Taunt
+- Assurance
+- Phantom Force
 
 Mienshao @ Sitrus Berry
 Level: 42
@@ -12466,7 +12465,7 @@ Poliwrath @ Black Belt
 Level: 42
 IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
 - Hypnosis
-- Mind Reader
+- Drain Punch
 - Waterfall
 - Dynamic Punch
 
@@ -12802,7 +12801,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Hitmonlee
-Level: 38
+Level: 39
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_10 ===
