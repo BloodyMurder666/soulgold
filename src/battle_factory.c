@@ -40,7 +40,7 @@ static void GetOpponentMostCommonMonType(void);
 static void GetOpponentBattleStyle(void);
 static void RestorePlayerPartyHeldItems(void);
 static void CreateSavedRentalMon(const struct RentalMon *rentalMon, u8 level, struct Pokemon *dst);
-static u16 GetFactoryMonId(enum FrontierLevelMode lvlMode, u8 challengeNum, bool8 useBetterRange);
+static enum FrontierMon GetFactoryMonId(enum FrontierLevelMode lvlMode, u8 challengeNum, bool8 useBetterRange);
 static enum FactoryStyle GetMoveBattleStyle(enum Move move);
 
 // Number of moves needed on the team to be considered using a certain battle style
@@ -99,7 +99,7 @@ static const u8 sFixedIVTable[][2] =
     {31, 31},
 };
 
-static const u16 sInitialRentalMonRanges[][2] =
+static const enum FrontierMon sInitialRentalMonRanges[][2] =
 {
     // Classic
     {FRONTIER_MON_BUTTERFREE_1,     FRONTIER_MONS_HIGH_TIER},   // 110 - 199
@@ -265,7 +265,7 @@ static void GenerateOpponentMons(void)
     i = 0;
     while (i != FRONTIER_PARTY_SIZE)
     {
-        u16 monId = GetFactoryMonId(lvlMode, challengeNum, FALSE);
+        enum FrontierMon monId = GetFactoryMonId(lvlMode, challengeNum, FALSE);
 
         // Unown (FRONTIER_MON_UNOWN) is forbidden on opponent Factory teams.
         if (gFacilityTrainerMons[monId].species == SPECIES_UNOWN)
@@ -407,7 +407,7 @@ static void GenerateInitialRentalMons(void)
     enum FrontierLevelMode factoryLvlMode;
     u8 factoryBattleMode;
     u8 rentalRank;
-    u16 monId;
+    enum FrontierMon monId;
     u16 currSpecies;
     u16 species[PARTY_SIZE];
     u16 monIds[PARTY_SIZE];
@@ -566,7 +566,7 @@ static void GetOpponentBattleStyle(void)
 
     for (i = 0; i < FRONTIER_PARTY_SIZE; i++)
     {
-        u16 monId = gFrontierTempParty[i];
+        enum FrontierMon monId = gFrontierTempParty[i];
         for (j = 0; j < MAX_MON_MOVES; j++)
         {
             u8 battleStyle = GetMoveBattleStyle(gFacilityTrainerMons[monId].moves[j]);
@@ -698,7 +698,7 @@ void FillFactoryBrainParty(void)
 
     while (i != FRONTIER_PARTY_SIZE)
     {
-        u16 monId = GetFactoryMonId(lvlMode, challengeNum, FALSE);
+        enum FrontierMon monId = GetFactoryMonId(lvlMode, challengeNum, FALSE);
 
         if (gFacilityTrainerMons[monId].species == SPECIES_UNOWN)
             continue;
@@ -745,9 +745,10 @@ void FillFactoryBrainParty(void)
     }
 }
 
-static u16 GetFactoryMonId(enum FrontierLevelMode lvlMode, u8 challengeNum, bool8 useBetterRange)
+static enum FrontierMon GetFactoryMonId(enum FrontierLevelMode lvlMode, u8 challengeNum, bool8 useBetterRange)
 {
-    u16 numMons, monId;
+    u16 numMons;
+    enum FrontierMon monId;
     u16 adder; // Used to skip past early mons for open level
 
     if (lvlMode == FRONTIER_LVL_50)
@@ -755,31 +756,34 @@ static u16 GetFactoryMonId(enum FrontierLevelMode lvlMode, u8 challengeNum, bool
     else
         adder = 8;
 
-    if (challengeNum < 7)
+    do
     {
-        if (useBetterRange)
+        if (challengeNum < 7)
         {
-            numMons = (sInitialRentalMonRanges[adder + challengeNum + 1][1] - sInitialRentalMonRanges[adder + challengeNum + 1][0]) + 1;
-            monId = Random() % numMons;
-            monId += sInitialRentalMonRanges[adder + challengeNum + 1][0];
+            if (useBetterRange)
+            {
+                numMons = (sInitialRentalMonRanges[adder + challengeNum + 1][1] - sInitialRentalMonRanges[adder + challengeNum + 1][0]) + 1;
+                monId = Random() % numMons;
+                monId += sInitialRentalMonRanges[adder + challengeNum + 1][0];
+            }
+            else
+            {
+                numMons = (sInitialRentalMonRanges[adder + challengeNum][1] - sInitialRentalMonRanges[adder + challengeNum][0]) + 1;
+                monId = Random() % numMons;
+                monId += sInitialRentalMonRanges[adder + challengeNum][0];
+            }
         }
         else
         {
-            numMons = (sInitialRentalMonRanges[adder + challengeNum][1] - sInitialRentalMonRanges[adder + challengeNum][0]) + 1;
-            monId = Random() % numMons;
-            monId += sInitialRentalMonRanges[adder + challengeNum][0];
-        }
-    }
-    else
-    {
-        u16 challenge = challengeNum;
-        if (challenge != 7)
-            challenge = 7; // why bother assigning it above at all
+            u16 challenge = challengeNum;
+            if (challenge != 7)
+                challenge = 7; // why bother assigning it above at all
 
-        numMons = (sInitialRentalMonRanges[adder + challenge][1] - sInitialRentalMonRanges[adder + challenge][0]) + 1;
-        monId = Random() % numMons;
-        monId += sInitialRentalMonRanges[adder + challenge][0];
-    }
+            numMons = (sInitialRentalMonRanges[adder + challenge][1] - sInitialRentalMonRanges[adder + challenge][0]) + 1;
+            monId = Random() % numMons;
+            monId += sInitialRentalMonRanges[adder + challenge][0];
+        }
+    } while (!IsFrontierMonEnabled(monId));
 
     return monId;
 }
@@ -819,13 +823,13 @@ u64 GetAiScriptsInBattleFactory(void)
         int challengeNum = gSaveBlock2Ptr->frontier.factoryWinStreaks[battleMode][lvlMode] / FRONTIER_STAGES_PER_CHALLENGE;
 
         if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_FRONTIER_BRAIN)
-            return AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY;
+            return AI_FLAG_SMART_TRAINER;
         else if (challengeNum < 2)
-            return 0;
+            return AI_FLAG_BASIC_TRAINER;
         else if (challengeNum < 4)
-            return AI_FLAG_CHECK_BAD_MOVE;
+            return AI_FLAG_BASIC_TRAINER;
         else
-            return AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY;
+            return AI_FLAG_SMART_TRAINER;
     }
 }
 
@@ -883,7 +887,7 @@ static void FillFactoryFrontierTrainerParty(u16 trainerId, u16 firstMonId)
     otID = READ_OTID_FROM_SAVE;
     for (i = 0; i < FRONTIER_PARTY_SIZE; i++)
     {
-        u16 monId = gFrontierTempParty[i];
+        enum FrontierMon monId = gFrontierTempParty[i];
         CreateFacilityMon(&gFacilityTrainerMons[monId],
                 level, fixedIV, otID, FLAG_FRONTIER_MON_FACTORY,
                 &gEnemyParty[firstMonId + i]);

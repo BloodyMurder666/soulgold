@@ -12,6 +12,7 @@
 #include "event_data.h"
 #include "frontier_util.h"
 #include "overworld.h"
+#include "pokemon.h"
 #include "script.h"
 #include "string_util.h"
 #include "task.h"
@@ -29,6 +30,8 @@ EWRAM_DATA const struct TrainerMon *gFacilityTrainerMons = NULL;
 
 // IWRAM common
 COMMON_DATA u16 gFrontierTempParty[MAX_FRONTIER_PARTY_SIZE] = {0};
+
+STATIC_ASSERT(sizeof(enum FrontierMon) == sizeof(u16), FrontierMonSize_MustBeTwoBytes);
 
 static void HandleFacilityTrainerBattleEnd(void)
 {
@@ -201,6 +204,12 @@ void FillFrontierTrainersParties(u8 monsCount)
     FillTrainerParty(TRAINER_BATTLE_PARAM.opponentB, 3, monsCount);
 }
 
+bool32 IsFrontierMonEnabled(enum FrontierMon monId)
+{
+    return monId < NUM_FRONTIER_MONS
+        && IsSpeciesEnabled(gBattleFrontierMons[monId].species);
+}
+
 static void FillTrainerParty(u16 trainerId, u16 firstMonId, u16 monCount)
 {
     s32 i, j;
@@ -255,13 +264,16 @@ static void FillTrainerParty(u16 trainerId, u16 firstMonId, u16 monCount)
     // Attempt to fill the trainer's party with random Pokémon until 3 have been
     // successfully chosen. The trainer's party may not have duplicate Pokémon species
     // or duplicate held items.
-    for (bfMonCount = 0; monSet[bfMonCount] != 0xFFFF; bfMonCount++)
+    for (bfMonCount = 0; monSet[bfMonCount] != FRONTIER_MON_END; bfMonCount++)
         ;
     i = 0;
     otID = Random32();
     while (i != monCount)
     {
-        u16 monId = monSet[Random() % bfMonCount];
+        enum FrontierMon monId = monSet[Random() % bfMonCount];
+
+        if (!IsFrontierMonEnabled(monId))
+            continue;
 
         // "High tier" Pokémon are never allowed in level 50 mode, and in open
         // level mode they only appear after HIGH_TIER_MIN_STREAK wins.

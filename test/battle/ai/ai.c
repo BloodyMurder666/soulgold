@@ -546,6 +546,23 @@ AI_DOUBLE_BATTLE_TEST("AI without any flags chooses moves at random - doubles")
     }
 }
 
+AI_DOUBLE_BATTLE_TEST("AI without any flags does not use Low Kick on its partner")
+{
+    GIVEN {
+        AI_FLAGS(AI_FLAG_BASIC_TRAINER);
+        TIE_BREAK_TARGET(TARGET_TIE_HI, 0);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_CINDERACE) { Moves(MOVE_LOW_KICK); }
+        OPPONENT(SPECIES_TAUROS) { Moves(MOVE_CELEBRATE); }
+    } WHEN {
+        TURN {
+            EXPECT_MOVE(opponentLeft, MOVE_LOW_KICK, target: playerRight);
+            EXPECT_MOVE(opponentRight, MOVE_CELEBRATE);
+        }
+    }
+}
+
 AI_SINGLE_BATTLE_TEST("AI will choose either Rock Tomb or Bulldoze if Stat drop effect will activate and they kill with the same number of hits")
 {
     GIVEN {

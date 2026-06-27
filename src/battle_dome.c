@@ -6218,7 +6218,7 @@ static void InitRandomTourneyTreeResults(void)
     int species[FRONTIER_PARTY_SIZE];
     int monTypesBits;
     int trainerId;
-    int monId;
+    enum FrontierMon monId;
     int zero1;
     int zero2;
     enum FrontierLevelMode lvlMode;
@@ -6269,7 +6269,7 @@ static void InitRandomTourneyTreeResults(void)
                 for (k = 0; k < j; k++)
                 {
                     // Make sure the mon is valid.
-                    int alreadySelectedMonId = DOME_MONS[i][k];
+                    enum FrontierMon alreadySelectedMonId = DOME_MONS[i][k];
                     if (alreadySelectedMonId == monId
                         || species[0] == gFacilityTrainerMons[monId].species
                         || species[1] == gFacilityTrainerMons[monId].species

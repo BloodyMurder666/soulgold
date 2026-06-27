@@ -2860,7 +2860,7 @@ void SpriteCB_FaintOpponentMon(struct Sprite *sprite)
     if (gBattleSpritesDataPtr->battlerData[battler].transformSpecies != 0)
         species = gBattleSpritesDataPtr->battlerData[battler].transformSpecies;
     else
-        species = sprite->sSpeciesId;
+        species = GetBattlerVisualSpecies(battler);
 
     species = SanitizeSpeciesId(species);
     if (species == SPECIES_UNOWN)

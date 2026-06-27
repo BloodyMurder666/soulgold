@@ -1236,7 +1236,7 @@ static void LoadMultiPartnerCandidatesData(void)
     u32 spArray[5];
     s32 r10;
     u16 trainerId;
-    u16 monId;
+    enum FrontierMon monId;
     enum FrontierLevelMode lvlMode;
     u32 battleMode;
     s32 challengeNum;

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Reorder include/constants/battle_frontier_mons.h so that all high-tier species
-(legendaries, mythicals, and Pokémon with BST >= 600) are grouped after the
-existing `#define FRONTIER_MONS_HIGH_TIER` marker, and renumbered contiguously.
+Reorder the FrontierMon enum so that all high-tier species (legendaries,
+mythicals, and Pokémon with BST >= 600) are grouped after the existing
+FRONTIER_MONS_HIGH_TIER marker. Enum values are assigned automatically.
 
 High-tier classification uses two hardcoded sets sourced from Bulbapedia:
   - Legendary Pokémon  (bulbapedia.bulbagarden.net/wiki/Legendary_Pokémon)
@@ -220,13 +220,15 @@ def get_high_bst_stems(threshold: int = BST_THRESHOLD) -> frozenset[str]:
 # Species stem helpers (shared with the other scripts)
 # ---------------------------------------------------------------------------
 
-_FRONTIER_MON_RE = re.compile(r"^FRONTIER_MON_([A-Z0-9_]+)_(\d+)$")
+_FRONTIER_MON_RE = re.compile(r"^FRONTIER_MON_([A-Z0-9_]+)$")
 
 
 def _stem_from_constant(constant: str) -> str | None:
     """Return the species stem from a FRONTIER_MON_SPECIES_N constant."""
     m = _FRONTIER_MON_RE.match(constant)
-    return m.group(1) if m else None
+    if not m or constant == "FRONTIER_MON_END":
+        return None
+    return re.sub(r"_\d+$", "", m.group(1))
 
 
 def _base_stem(stem: str, known_stems: frozenset[str]) -> str:
@@ -270,44 +272,45 @@ def is_high_tier(stem: str, high_bst: frozenset[str] = _HIGH_BST_600) -> bool:
 # Constants-file rewriter
 # ---------------------------------------------------------------------------
 
-_DEFINE_RE = re.compile(
-    r"^(#define\s+)(FRONTIER_MON_([A-Z0-9_]+)_\d+)\s+\d+\s*$"
-)
-_MARKER = "#define FRONTIER_MONS_HIGH_TIER"
+_ENUM_MEMBER_RE = re.compile(r"^(\s+)(FRONTIER_MON_[A-Z0-9_]+),\s*$")
+_MARKER_RE = re.compile(r"^\s+FRONTIER_MONS_HIGH_TIER\s*=")
 
 
 def reorder_constants_h(high_bst: frozenset[str] = _HIGH_BST_600, dry_run: bool = False) -> None:
     text   = CONSTANTS_H.read_text(encoding="utf-8")
     lines  = text.splitlines()
 
-    # Locate the marker line
+    # Locate the tier marker.
     marker_idx: int | None = None
     for i, line in enumerate(lines):
-        if line.strip() == _MARKER:
+        if _MARKER_RE.match(line):
             marker_idx = i
             break
     if marker_idx is None:
         raise RuntimeError(
-            f"Could not find '{_MARKER}' in {CONSTANTS_H}. "
-            "Add it to the file before running this script."
+            f"Could not find FRONTIER_MONS_HIGH_TIER in {CONSTANTS_H}."
         )
 
-    # Collect all #define FRONTIER_MON_* lines with their constants,
+    # Collect all FRONTIER_MON_* enum members,
     # preserving original order within each tier.
-    low_tier:  list[tuple[str, str]] = []   # (keyword_prefix, constant)
+    low_tier:  list[tuple[str, str]] = []   # (indent, constant)
     high_tier: list[tuple[str, str]] = []
+    member_indices: list[int] = []
 
-    for line in lines:
-        m = _DEFINE_RE.match(line)
+    for i, line in enumerate(lines):
+        m = _ENUM_MEMBER_RE.match(line)
         if not m:
             continue
-        prefix   = m.group(1)   # "#define "
-        constant = m.group(2)   # "FRONTIER_MON_VENUSAUR_1"
-        stem     = m.group(3)   # "VENUSAUR"
+        indent = m.group(1)
+        constant = m.group(2)
+        stem = _stem_from_constant(constant)
+        if stem is None:
+            continue
+        member_indices.append(i)
         if is_high_tier(stem, high_bst):
-            high_tier.append((prefix, constant))
+            high_tier.append((indent, constant))
         else:
-            low_tier.append((prefix, constant))
+            low_tier.append((indent, constant))
 
     print(f"  Low-tier mons:  {len(low_tier)}")
     print(f"  High-tier mons: {len(high_tier)}")
@@ -316,45 +319,35 @@ def reorder_constants_h(high_bst: frozenset[str] = _HIGH_BST_600, dry_run: bool 
         print("\n--- High-tier species (would be moved after marker) ---")
         seen: set[str] = set()
         for _, constant in high_tier:
-            stem = _FRONTIER_MON_RE.match(constant).group(1)
+            stem = _stem_from_constant(constant)
             if stem not in seen:
                 print(f"  {stem}")
                 seen.add(stem)
         return
 
-    # Walk every line once.  High-tier defines are dropped wherever they
-    # appear in the original file and emitted together after the marker.
-    # Low-tier defines are emitted in place, renumbered sequentially.
-    # Result: low-tier 0…N, marker, high-tier N+1…M.
+    if not member_indices:
+        raise RuntimeError(f"No FrontierMon members found in {CONSTANTS_H}.")
 
-    counter       = 0
-    low_iter      = iter(low_tier)
-    output: list[str] = []
+    normal_count_line = next(
+        line for line in lines if line.strip() == "NUM_NORMAL_FRONTIER_MONS,"
+    )
+    marker_line = lines[marker_idx]
+    first_member = min(member_indices)
+    last_member = max(member_indices)
 
-    for line in lines:
-        m = _DEFINE_RE.match(line)
-        if m:
-            stem = m.group(3)
-            if is_high_tier(stem, high_bst):
-                # Skip unconditionally — emitted in bulk at the marker below.
-                continue
-            else:
-                # Low-tier: emit in place, renumbered.
-                prefix, const = next(low_iter)
-                output.append(f"{prefix}{const} {counter}")
-                counter += 1
-        elif line.strip() == _MARKER:
-            output.append(line)
-            # Emit every high-tier define exactly once, right after the marker.
-            for prefix, const in high_tier:
-                output.append(f"{prefix}{const} {counter}")
-                counter += 1
-        else:
-            output.append(line)
+    output = lines[:first_member]
+    output.extend(f"{indent}{constant}," for indent, constant in low_tier)
+    output.extend(("", normal_count_line, marker_line, ""))
+    output.extend(f"{indent}{constant}," for indent, constant in high_tier)
+    output.extend(
+        line
+        for line in lines[last_member + 1:]
+        if line != normal_count_line and line != marker_line
+    )
 
     CONSTANTS_H.write_text("\n".join(output) + "\n", encoding="utf-8")
     print(f"  Written {CONSTANTS_H.relative_to(REPO_ROOT)} "
-          f"({counter} defines total).")
+          f"({len(low_tier) + len(high_tier)} enum members total).")
 
 
 # ---------------------------------------------------------------------------
