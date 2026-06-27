@@ -130,7 +130,7 @@ RailwayCave_TrainerMason_Text_2:
 RailwayCave_TrainerYoda_Text_0:
 # 54 "data/maps/RailwayCave_2F/scripts.pory"
 	.string "Hya! The electricity running though the\n"
-	.string "air is great for my muscles$"
+	.string "air is great for my muscles!$"
 
 RailwayCave_TrainerYoda_Text_1:
 # 56 "data/maps/RailwayCave_2F/scripts.pory"

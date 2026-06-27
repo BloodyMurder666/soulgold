@@ -166,7 +166,7 @@ static const struct HiddenGrottoData sHiddenGrottoData[NUM_HIDDEN_GROTTOES] =
         .mapNum = MAP_NUM(MAP_HIDDEN_GROTTO_ROUTE38),
         .monLevel = 30,
         .monObjectLocalId = HIDDEN_GROTTO_OBJ_MON,
-        .rareItem = ITEM_SYRUPY_APPLE,
+        .rareItem = ITEM_STARDUST,
         .mons =
         {
             { SPECIES_MUNCHLAX, 0 },

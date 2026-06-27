@@ -218,7 +218,7 @@ static const u8 sRainbowWingDesc[] = _(
 
 static const u8 sRedScaleDesc[] = _(
     "A scale from the\n"
-    "red GYARADOS.\n"
+    "red Gyarados.\n"
     "It glows red.");
 
 static const u8 sSecretPotionDesc[] = _(

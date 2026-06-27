@@ -112,11 +112,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Feebas
-Level: 5
+Level: 20
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Milotic
-Level: 35
+Level: 37
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_WILLIAM ===
@@ -2234,11 +2234,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Graveler
-Level: 24
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Dugtrio
-Level: 24
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_BRIAN ===
@@ -14245,3 +14245,20 @@ IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 Toxtricity
 Level: 39
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+
+=== TRAINER_PHILIP ===
+Name: Philip
+Class: Burglar
+Pic: Burglar
+Gender: Male
+Music: Hg Suspicious 2
+Double Battle: No
+AI: Basic Trainer
+
+Baltoy
+Level: 33
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Naclstack
+Level: 33
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe

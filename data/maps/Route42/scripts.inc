@@ -188,21 +188,21 @@ Route42_EventScript_MortarSign::
 	end
 
 Route42_EventScript_Philip::
-	trainerbattle_single TRAINER_SAWYER_1 Route42_Text_SawyerIntro, Route42_Text_SawyerDefeat
+	trainerbattle_single TRAINER_PHILIP Route42_Text_SawyerIntro, Route42_Text_SawyerDefeat
 	msgbox Route42_Text_SawyerPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 Route42_Text_SawyerIntro:
-	.string "If this crashes the game,\n"
-	.string "I will be very disappointed.$"
+	.string "You there! fork over your\n"
+	.string "Pokémon!.$"
 
 Route42_Text_SawyerDefeat:
-	.string "Wow!\n"
-	.string "You're almost as good as Elite Four Joy!$"
+	.string "Aiyaaaa!\n"
+	.string "Take my money instead!$"
 
 Route42_Text_SawyerPostBattle:
-	.string "Wait a minute...\n"
-	.string "You're cheating! You can't be!!!$"
+	.string "I hear Team Rocket...\n"
+	.string "has been spotted nearby.$"
 
 Route42_Text_FisherTullySeen:
 	.string "Let me demonstrate the power\n"

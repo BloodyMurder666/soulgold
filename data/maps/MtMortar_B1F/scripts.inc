@@ -16,10 +16,12 @@ MountMortar4_EventScript_Kiyo::
 	trainerbattle_no_intro TRAINER_KIYO, MountMortar4_Text_KiyoWin
 	setflag FLAG_BEAT_KIYO
 MountMortar4_EventScript_KiyoTryGiveTyrogue::
+	createfieldmugshot MUGSHOT_BLACK_BELT
 	msgbox MountMortar4_Text_KiyoTyrogueReward, MSGBOX_DEFAULT
 	@HnS gift pokemon setup
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TYROGUE
 	bufferspeciesname STR_VAR_1, SPECIES_TYROGUE
+	removefieldmugshot
 	givemon SPECIES_TYROGUE, 25
 	call Common_EventScript_GiftMon
 	setflag FLAG_GOT_TYROGUE

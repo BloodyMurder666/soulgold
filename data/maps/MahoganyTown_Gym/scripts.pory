@@ -145,9 +145,7 @@ MahoganyTown_Gym_Text_ReceivedBadge:
     .string "{PLAYER} received Glacierbadge.$"
 
 MahoganyTown_Gym_Text_GlacierBadgeSpeech:
-    .string "That Badge will raise the Special\n"
-    .string "Attack of Pokémon.\p"
-    .string "It also lets your Pokémon use\n"
+    .string "That Badge lets your Pokémon use\n"
     .string "Whirlpool to get across\l"
     .string "real whirlpools.\p"
     .string "And this… This is a gift from me!$"
