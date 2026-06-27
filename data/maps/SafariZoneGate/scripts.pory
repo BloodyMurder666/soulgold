@@ -124,7 +124,6 @@ SafariZoneGate_Pokemart_Incenses:
 	.2byte ITEM_FULL_INCENSE
 	.2byte ITEM_WAVE_INCENSE
 	.2byte ITEM_ROSE_INCENSE
-	.2byte ITEM_LUCK_INCENSE
 	.2byte ITEM_PURE_INCENSE
 	.2byte ITEM_NONE
 	release
@@ -136,7 +135,7 @@ SafariZoneGate_EventScript_IncenseClerkFinite::
 	faceplayer
 	message gText_HowMayIServeYou
 	waitmessage
-	pokemart SafariZoneGateMart2
+	pokemart SafariZoneGate_Pokemart_Incenses
 	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
