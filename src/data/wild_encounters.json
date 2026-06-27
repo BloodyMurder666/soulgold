@@ -12001,63 +12001,63 @@
             "encounter_rate": 5,
             "mons": [
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 55,
+                "max_level": 56,
                 "species": "SPECIES_DARUMAKA_GALAR"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 55,
+                "max_level": 56,
                 "species": "SPECIES_CORSOLA_GALAR"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 55,
+                "max_level": 56,
                 "species": "SPECIES_DARUMAKA_GALAR"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 55,
+                "max_level": 56,
                 "species": "SPECIES_CURSOLA"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 55,
+                "max_level": 56,
                 "species": "SPECIES_GOODRA_HISUI"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 55,
+                "max_level": 56,
                 "species": "SPECIES_DARMANITAN_GALAR_STANDARD"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 55,
+                "max_level": 56,
                 "species": "SPECIES_GOODRA_HISUI"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 55,
+                "max_level": 56,
                 "species": "SPECIES_DARMANITAN_GALAR_STANDARD"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 55,
+                "max_level": 56,
                 "species": "SPECIES_CURSOLA"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 55,
+                "max_level": 56,
                 "species": "SPECIES_CURSOLA"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 55,
+                "max_level": 56,
                 "species": "SPECIES_AVALUGG_HISUI"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 55,
+                "max_level": 56,
                 "species": "SPECIES_AVALUGG_HISUI"
               }
             ]
@@ -12122,27 +12122,27 @@
               },
               {
                 "min_level": 19,
-                "max_level": 26,
+                "max_level": 56,
                 "species": "SPECIES_BASCULIN_WHITE_STRIPED"
               },
               {
                 "min_level": 19,
-                "max_level": 26,
+                "max_level": 56,
                 "species": "SPECIES_BASCULIN_WHITE_STRIPED"
               },
               {
                 "min_level": 19,
-                "max_level": 26,
+                "max_level": 56,
                 "species": "SPECIES_OVERQWIL"
               },
               {
                 "min_level": 19,
-                "max_level": 26,
+                "max_level": 56,
                 "species": "SPECIES_OVERQWIL"
               },
               {
                 "min_level": 19,
-                "max_level": 26,
+                "max_level": 56,
                 "species": "SPECIES_OVERQWIL"
               }
             ]
@@ -12155,63 +12155,63 @@
             "encounter_rate": 20,
             "mons": [
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 45,
+                "max_level": 56,
                 "species": "SPECIES_SLOWKING_GALAR"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 45,
+                "max_level": 56,
                 "species": "SPECIES_WEEZING_GALAR"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 45,
+                "max_level": 56,
                 "species": "SPECIES_SLOWKING_GALAR"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 45,
+                "max_level": 56,
                 "species": "SPECIES_WEEZING_GALAR"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 45,
+                "max_level": 56,
                 "species": "SPECIES_EXEGGUTOR_ALOLA"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 45,
+                "max_level": 56,
                 "species": "SPECIES_SAMUROTT_HISUI"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 45,
+                "max_level": 56,
                 "species": "SPECIES_EXEGGUTOR_ALOLA"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 45,
+                "max_level": 56,
                 "species": "SPECIES_SAMUROTT_HISUI"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 45,
+                "max_level": 56,
                 "species": "SPECIES_BRAVIARY_HISUI"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 45,
+                "max_level": 56,
                 "species": "SPECIES_DECIDUEYE_HISUI"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 45,
+                "max_level": 56,
                 "species": "SPECIES_BRAVIARY_HISUI"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 45,
+                "max_level": 55,
                 "species": "SPECIES_DECIDUEYE_HISUI"
               }
             ]
@@ -12220,28 +12220,28 @@
             "encounter_rate": 4,
             "mons": [
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 55,
+                "max_level": 56,
                 "species": "SPECIES_BASCULEGION_F"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 55,
+                "max_level": 56,
                 "species": "SPECIES_BASCULEGION_M"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 55,
+                "max_level": 56,
                 "species": "SPECIES_BASCULEGION_F"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 54,
+                "max_level": 56,
                 "species": "SPECIES_BASCULEGION_M"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 55,
+                "max_level": 56,
                 "species": "SPECIES_BASCULEGION_M"
               }
             ]
@@ -12275,28 +12275,28 @@
                 "species": "SPECIES_BASCULIN_WHITE_STRIPED"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 45,
+                "max_level": 56,
                 "species": "SPECIES_BASCULIN_WHITE_STRIPED"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 45,
+                "max_level": 56,
                 "species": "SPECIES_BASCULEGION_M"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 45,
+                "max_level": 56,
                 "species": "SPECIES_BASCULEGION_F"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 45,
+                "max_level": 56,
                 "species": "SPECIES_BASCULEGION_M"
               },
               {
-                "min_level": 19,
-                "max_level": 26,
+                "min_level": 44,
+                "max_level": 56,
                 "species": "SPECIES_BASCULEGION_F"
               }
             ]

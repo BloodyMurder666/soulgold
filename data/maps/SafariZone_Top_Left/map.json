@@ -26,7 +26,7 @@
   ],
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(PONYTA)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(TAUROS_PALDEA_AQUA)",
       "x": 5,
       "y": 26,
       "elevation": 0,
@@ -39,10 +39,10 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(YANMA)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MR_MIME_GALAR)",
       "x": 4,
       "y": 15,
-      "elevation": 0,
+      "elevation": 4,
       "movement_type": "MOVEMENT_TYPE_WALK_SEQUENCE_UP_LEFT_DOWN_RIGHT",
       "movement_range_x": 3,
       "movement_range_y": 2,
@@ -52,10 +52,10 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(YANMA)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SNEASEL_HISUI)",
       "x": 1,
       "y": 13,
-      "elevation": 0,
+      "elevation": 4,
       "movement_type": "MOVEMENT_TYPE_WALK_SEQUENCE_DOWN_RIGHT_UP_LEFT",
       "movement_range_x": 3,
       "movement_range_y": 2,
@@ -65,10 +65,10 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SCYTHER)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SNEASEL_HISUI)",
       "x": 1,
       "y": 7,
-      "elevation": 0,
+      "elevation": 4,
       "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
       "movement_range_x": 3,
       "movement_range_y": 2,
@@ -78,7 +78,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(EKANS)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(TAUROS_PALDEA_BLAZE)",
       "x": 26,
       "y": 26,
       "elevation": 0,
@@ -91,10 +91,10 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KANGASKHAN)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(TAUROS_PALDEA_COMBAT)",
       "x": 12,
       "y": 16,
-      "elevation": 0,
+      "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 3,
       "movement_range_y": 0,
@@ -104,10 +104,10 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(PINSIR)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MAROWAK_ALOLA)",
       "x": 22,
       "y": 2,
-      "elevation": 0,
+      "elevation": 4,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 5,
       "movement_range_y": 5,

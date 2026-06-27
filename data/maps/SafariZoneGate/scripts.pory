@@ -120,6 +120,12 @@ SafariZoneGate_EventScript_IncenseClerk::
 SafariZoneGate_Pokemart_Incenses:
 	.2byte ITEM_SEA_INCENSE
 	.2byte ITEM_LAX_INCENSE
+	.2byte ITEM_ROCK_INCENSE
+	.2byte ITEM_FULL_INCENSE
+	.2byte ITEM_WAVE_INCENSE
+	.2byte ITEM_ROSE_INCENSE
+	.2byte ITEM_LUCK_INCENSE
+	.2byte ITEM_PURE_INCENSE
 	.2byte ITEM_NONE
 	release
 	end
@@ -130,19 +136,8 @@ SafariZoneGate_EventScript_IncenseClerkFinite::
 	faceplayer
 	message gText_HowMayIServeYou
 	waitmessage
-	pokemart SafariZoneGate_Pokemart_Incenses2
+	pokemart SafariZoneGateMart2
 	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
-	release
-	end
-
-	.align 2
-SafariZoneGate_Pokemart_Incenses2:
-	.2byte ITEM_TM_VENOSHOCK
-	.2byte ITEM_TM_GIGA_IMPACT
-	.2byte ITEM_CRACKED_POT
-	.2byte ITEM_CHIPPED_POT
-	.2byte ITEM_UPGRADE
-	.2byte ITEM_NONE
 	release
 	end
 
@@ -156,18 +151,6 @@ SafariZoneGate_EventScript_VitaminGuru::
 	release
 	end
 
-	.align 2
-SafariZoneGate_Pokemart_VitaminGuru:
-	.2byte ITEM_PROTEIN
-	.2byte ITEM_IRON
-	.2byte ITEM_CARBOS
-	.2byte ITEM_ZINC
-	.2byte ITEM_CALCIUM
-	.2byte ITEM_HP_UP
-	.2byte ITEM_NONE
-	release
-	end
-
 
 SafariZoneGate_Text_VitaminGuruSellWhatYouNeed:
 	.string "I'm the rare item Guru! I'll go for it and\n"
@@ -177,18 +160,16 @@ SafariZoneGate_Text_VitaminGuruSellWhatYouNeed:
 
 
 mart SafariZoneGateMart1 {
-    ITEM_TAMATO_BERRY
-    ITEM_GREPA_BERRY
-    ITEM_HONDEW_BERRY
-    ITEM_QUALOT_BERRY
-    ITEM_KELPSY_BERRY
-    ITEM_POMEG_BERRY
+    ITEM_FIRE_STONE
+    ITEM_WATER_STONE
+    ITEM_LEAF_STONE
     ITEM_LINKING_CORD
 }
 
 mart SafariZoneGateMart2 {
-    ITEM_ABILITY_CAPSULE
-    ITEM_FIRE_STONE
-    ITEM_WATER_STONE
-    ITEM_LEAF_STONE
+	ITEM_TM_VENOSHOCK
+	ITEM_TM_GIGA_IMPACT
+	ITEM_CRACKED_POT
+	ITEM_CHIPPED_POT
+	ITEM_UPGRADE
 }
