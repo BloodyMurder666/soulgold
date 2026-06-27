@@ -5551,4 +5551,46 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
                                            "the attacker."),
         .aiRating = 4,
     },
+
+    [ABILITY_DRAGONIZE] =
+    {
+        .name = _("Dragonize"),
+        .description = COMPOUND_STRING("Normal moves turn Dragon."),
+        .longDescription = COMPOUND_STRING("Normal-type moves become\n"
+                                           "Dragon-type and deal 20%\n"
+                                           "more damage."),
+        .aiRating = 8,
+    },
+
+    [ABILITY_EELEVATE] =
+    {
+        .name = _("Eelevate"),
+        .description = COMPOUND_STRING("Levitate and boosts KOs."),
+        .longDescription = COMPOUND_STRING("The Pokemon is immune\n"
+                                           "to Ground-type moves.\n"
+                                           "When it knocks out a foe,\n"
+                                           "its highest stat rises."),
+        .aiRating = 8,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_MEGA_SOL] =
+    {
+        .name = _("Mega Sol"),
+        .description = COMPOUND_STRING("Acts as sun for itself."),
+        .longDescription = COMPOUND_STRING("The Pokemon's own moves\n"
+                                           "and effects behave as if\n"
+                                           "the sunlight is harsh."),
+        .aiRating = 8,
+    },
+
+    [ABILITY_SPICY_SPRAY] =
+    {
+        .name = _("Spicy Spray"),
+        .description = COMPOUND_STRING("Burns foes when damaged."),
+        .longDescription = COMPOUND_STRING("When damaged by a direct\n"
+                                           "attack, this Pokemon\n"
+                                           "burns the attacker."),
+        .aiRating = 5,
+    },
 };

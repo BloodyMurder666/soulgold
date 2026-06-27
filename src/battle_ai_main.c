@@ -3667,7 +3667,8 @@ static s32 AI_DoubleBattle(enum BattlerId battlerAtk, enum BattlerId battlerDef,
                 }
             }
             if (SearchTraits(AIBattlerTraits, ABILITY_EARTH_EATER)
-             || SearchTraits(AIBattlerTraits, ABILITY_LEVITATE))
+             || SearchTraits(AIBattlerTraits, ABILITY_LEVITATE)
+             || SearchTraits(AIBattlerTraits, ABILITY_EELEVATE))
              {
                 if (moveType == TYPE_GROUND)
                 {

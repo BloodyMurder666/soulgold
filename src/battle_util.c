@@ -110,6 +110,8 @@ enum Type GetAteAbilityType(enum Ability ability)
         return TYPE_ICE;
     case ABILITY_DRAGON_ATE:
         return TYPE_DRAGON;
+    case ABILITY_DRAGONIZE:
+        return TYPE_DRAGON;
     case ABILITY_DARK_ATE:
         return TYPE_DARK;
     case ABILITY_PIXILATE:
@@ -5301,6 +5303,14 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
             burnAbility = ABILITY_FLAME_BODY;
             tryBurn = TRUE;
         }
+        if (SearchTraits(battlerTraits, ABILITY_SPICY_SPRAY)
+         && !gBattleStruct->unableToUseMove
+         && IsCustomAbilityDirectDamagingMove(move)
+         && IsBattlerTurnDamaged(gBattlerTarget, EXCLUDING_SUBSTITUTES))
+        {
+            burnAbility = ABILITY_SPICY_SPRAY;
+            tryBurn = TRUE;
+        }
         if (SearchTraits(battlerTraits, ABILITY_POISON_POINT)
         && (GetConfig(B_ABILITY_TRIGGER_CHANCE) >= GEN_4 ? RandomPercentage(RNG_POISON_POINT, 30) : RandomChance(RNG_POISON_POINT, 1, 3)))
         {
@@ -5346,7 +5356,7 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
          && !gBattleStruct->unableToUseMove
          && IsBattlerTurnDamaged(gBattlerTarget, EXCLUDING_SUBSTITUTES)
          && CanBeBurned(gBattlerTarget, gBattlerAttacker)
-         && !CanBattlerAvoidContactEffects(gBattlerAttacker, gBattlerTarget, move))
+         && (burnAbility == ABILITY_SPICY_SPRAY || !CanBattlerAvoidContactEffects(gBattlerAttacker, gBattlerTarget, move)))
         {
             gEffectBattler = gBattlerAttacker;
             gBattleScripting.battler = gBattlerTarget;
@@ -6237,7 +6247,13 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
                 }
             }
         }
-        if (SearchTraits(battlerTraits, ABILITY_BEAST_BOOST))
+        ability = ABILITY_NONE;
+        if (SearchTraits(battlerTraits, ABILITY_EELEVATE))
+            ability = ABILITY_EELEVATE;
+        else if (SearchTraits(battlerTraits, ABILITY_BEAST_BOOST))
+            ability = ABILITY_BEAST_BOOST;
+
+        if (ability != ABILITY_NONE)
         {
             if (IsBattlerAlive(battler) && !NoAliveMonsForEitherParty())
             {
@@ -6246,11 +6262,11 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
 
                 if (numMonsFainted && CompareStat(battler, stat, MAX_STAT_STAGE, CMP_LESS_THAN))
                 {
-                    gLastUsedAbility = ABILITY_BEAST_BOOST;
+                    gLastUsedAbility = ability;
                     SET_STATCHANGER(stat, numMonsFainted, FALSE);
                     PREPARE_STAT_BUFFER(gBattleTextBuff1, stat);
                     gBattleScripting.animArg1 = GET_STAT_BUFF_ID(stat) + (numMonsFainted > 1 ? STAT_ANIM_PLUS2 : STAT_ANIM_PLUS1);
-                    PushTraitStack(battler, ABILITY_BEAST_BOOST);
+                    PushTraitStack(battler, ability);
                     BattleScriptCall(BattleScript_RaiseStatOnFaintingTargetBeastBoost);
                     effect = TRUE;
                 }
@@ -7811,7 +7827,9 @@ bool32 IsBattlerGrounded(enum BattlerId battler)
 {   bool32 hasLevitate;
 
     // Regular ability check split out here as the AI switching logic uses battle context to figure out the Ability instead. (Multi)
-    hasLevitate = gAiLogicData->aiCalcInProgress ? AI_BATTLER_HAS_TRAIT(battler, ABILITY_LEVITATE) : BattlerHasTrait(battler, ABILITY_LEVITATE);
+    hasLevitate = gAiLogicData->aiCalcInProgress
+                ? (AI_BATTLER_HAS_TRAIT(battler, ABILITY_LEVITATE) || AI_BATTLER_HAS_TRAIT(battler, ABILITY_EELEVATE))
+                : (BattlerHasTrait(battler, ABILITY_LEVITATE) || BattlerHasTrait(battler, ABILITY_EELEVATE));
 
     return IsBattlerGroundedInverseCheck(battler, NOT_INVERSE_BATTLE, FALSE, hasLevitate, FALSE);
 }
@@ -8160,7 +8178,7 @@ static inline u32 CalcMoveBasePower(struct BattleContext *ctx)
             basePower *= 2;
         break;
     case EFFECT_WEATHER_BALL:
-        if (ctx->weather & B_WEATHER_ANY)
+        if (GetBattlerWeather(battlerAtk, ctx->weather) & B_WEATHER_ANY)
             basePower *= 2;
         break;
     case EFFECT_PURSUIT:
@@ -8435,10 +8453,13 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct BattleContext *ctx)
         break;
     }
     case EFFECT_SOLAR_BEAM:
-        if ((GetConfig(B_SANDSTORM_SOLAR_BEAM) >= GEN_3 && IsBattlerWeatherAffected(battlerAtk, B_WEATHER_LOW_LIGHT))
-            || IsBattlerWeatherAffected(battlerAtk, (B_WEATHER_RAIN | B_WEATHER_ICY_ANY | B_WEATHER_FOG))) // Excludes Sandstorm
+    {
+        u32 weather = GetBattlerWeather(battlerAtk, ctx->weather);
+        if ((GetConfig(B_SANDSTORM_SOLAR_BEAM) >= GEN_3 && weather & B_WEATHER_LOW_LIGHT)
+            || weather & (B_WEATHER_RAIN | B_WEATHER_ICY_ANY | B_WEATHER_FOG)) // Excludes Sandstorm
             modifier = uq4_12_multiply(modifier, UQ_4_12(0.5));
         break;
+    }
     case EFFECT_STOMPING_TANTRUM:
         if (gBattleStruct->battlerState[battlerAtk].stompingTantrumTimer == 1)
             modifier = uq4_12_multiply(modifier, UQ_4_12(2.0));
@@ -9367,24 +9388,32 @@ static inline uq4_12_t GetSameTypeAttackBonusModifier(struct BattleContext *ctx)
 // Utility Umbrella holders take normal damage from what would be rain- and sun-weakened attacks.
 static uq4_12_t GetWeatherDamageModifier(struct BattleContext *ctx)
 {
-    if (ctx->weather == B_WEATHER_NONE)
+    bool32 aiCalcInProgress = (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress);
+    bool32 attackerHasMegaSol = aiCalcInProgress
+                              ? AI_BATTLER_HAS_TRAIT(ctx->battlerAtk, ABILITY_MEGA_SOL)
+                              : BattlerHasTrait(ctx->battlerAtk, ABILITY_MEGA_SOL);
+    u32 attackerWeather = attackerHasMegaSol ? B_WEATHER_SUN_NORMAL : ctx->weather;
+
+    if ((attackerWeather | ctx->weather) == B_WEATHER_NONE)
         return UQ_4_12(1.0);
-    if (GetMoveEffect(ctx->move) == EFFECT_HYDRO_STEAM && (ctx->weather & B_WEATHER_SUN) && !BattlerHasHeldItemEffect(ctx->battlerAtk, HOLD_EFFECT_UTILITY_UMBRELLA, TRUE))
+    if (GetMoveEffect(ctx->move) == EFFECT_HYDRO_STEAM
+     && (attackerWeather & B_WEATHER_SUN)
+     && (attackerHasMegaSol || !BattlerHasHeldItemEffect(ctx->battlerAtk, HOLD_EFFECT_UTILITY_UMBRELLA, TRUE)))
         return UQ_4_12(1.5);
     if (BattlerHasHeldItemEffect(ctx->battlerDef, HOLD_EFFECT_UTILITY_UMBRELLA, TRUE))
         return UQ_4_12(1.0);
 
-    if (ctx->weather & B_WEATHER_RAIN)
-    {
-        if (ctx->moveType != TYPE_FIRE && ctx->moveType != TYPE_WATER)
-            return UQ_4_12(1.0);
-        return (ctx->moveType == TYPE_FIRE) ? UQ_4_12(0.5) : UQ_4_12(1.5);
-    }
-    if (ctx->weather & B_WEATHER_SUN)
+    if (attackerWeather & B_WEATHER_SUN)
     {
         if (ctx->moveType != TYPE_FIRE && ctx->moveType != TYPE_WATER)
             return UQ_4_12(1.0);
         return (ctx->moveType == TYPE_WATER) ? UQ_4_12(0.5) : UQ_4_12(1.5);
+    }
+    if (attackerWeather & B_WEATHER_RAIN)
+    {
+        if (ctx->moveType != TYPE_FIRE && ctx->moveType != TYPE_WATER)
+            return UQ_4_12(1.0);
+        return (ctx->moveType == TYPE_FIRE) ? UQ_4_12(0.5) : UQ_4_12(1.5);
     }
     return UQ_4_12(1.0);
 }
@@ -10550,6 +10579,12 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(struct BattleCont
     GetBattlerTypes(ctx->battlerDef, FALSE, types);
     enum Ability battlerTraits[MAX_MON_TRAITS];
     STORE_BATTLER_TRAITS(ctx->battlerDef);
+    enum Ability levitatingAbility = ABILITY_NONE;
+
+    if (SearchTraits(battlerTraits, ABILITY_LEVITATE))
+        levitatingAbility = ABILITY_LEVITATE;
+    else if (SearchTraits(battlerTraits, ABILITY_EELEVATE))
+        levitatingAbility = ABILITY_EELEVATE;
 
     ctx->invertDefenderTypeMatchups = SearchTraits(battlerTraits, ABILITY_INVERSION) && !ctx->isAnticipation;
 
@@ -10589,7 +10624,7 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(struct BattleCont
         if (B_GLARE_GHOST < GEN_4 && ctx->move == MOVE_GLARE && IS_BATTLER_OF_TYPE(ctx->battlerDef, TYPE_GHOST))
             modifier = UQ_4_12(0.0);
     }
-    else if (ctx->moveType == TYPE_GROUND && !IsBattlerGroundedInverseCheck(ctx->battlerDef, INVERSE_BATTLE, ctx->isAnticipation, SearchTraits(battlerTraits, ABILITY_LEVITATE), FALSE)
+    else if (ctx->moveType == TYPE_GROUND && !IsBattlerGroundedInverseCheck(ctx->battlerDef, INVERSE_BATTLE, ctx->isAnticipation, levitatingAbility != ABILITY_NONE, FALSE)
      && !MoveIgnoresTypeIfFlyingAndUngrounded(ctx->move)
      && !BattlerHasHeldItemEffect(ctx->battlerDef, HOLD_EFFECT_RING_TARGET, TRUE)
      && !MoveIgnoresTargetAbility(ctx->move) && (BattlerHasHeldItemEffect(ctx->battlerDef, HOLD_EFFECT_ABILITY_SHIELD, TRUE) || !HasMoldBreakerTypeAbility(ctx->battlerAtk)))
@@ -10597,13 +10632,13 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(struct BattleCont
         if (BattlerHasTrait(ctx->battlerAtk, ABILITY_OVERLOAD) && BattlerHasHeldItemEffect(ctx->battlerDef, HOLD_EFFECT_AIR_BALLOON, TRUE))
             return modifier;
         modifier = UQ_4_12(0.0);
-        if (ctx->updateFlags && SearchTraits(battlerTraits, ABILITY_LEVITATE))
+        if (ctx->updateFlags && levitatingAbility != ABILITY_NONE)
         {
             gBattleStruct->moveResultFlags[ctx->battlerDef] |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
-            gLastUsedAbility = ABILITY_LEVITATE;
+            gLastUsedAbility = levitatingAbility;
             ctx->abilityBlocked = TRUE;
-            PushTraitStack(ctx->battlerDef, ABILITY_LEVITATE);
-            RecordAbilityBattle(ctx->battlerDef, ABILITY_LEVITATE);
+            PushTraitStack(ctx->battlerDef, levitatingAbility);
+            RecordAbilityBattle(ctx->battlerDef, levitatingAbility);
         }
         else if (!BattlerHasTrait(ctx->battlerAtk, ABILITY_OVERLOAD) && BattlerHasHeldItemEffect(ctx->battlerDef, HOLD_EFFECT_AIR_BALLOON, TRUE))
         {
@@ -10639,7 +10674,7 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(struct BattleCont
         && ctx->moveType == TYPE_GROUND
         && BattlerHasHeldItemEffect(ctx->battlerDef, HOLD_EFFECT_IRON_BALL, TRUE)
         && IS_BATTLER_OF_TYPE(ctx->battlerDef, TYPE_FLYING)
-        && !IsBattlerGroundedInverseCheck(ctx->battlerDef, NOT_INVERSE_BATTLE, FALSE, BattlerHasTrait(ctx->battlerDef, ABILITY_LEVITATE), TRUE) // We want to ignore Iron Ball so skip item check // We want to ignore Iron Ball so skip item check
+        && !IsBattlerGroundedInverseCheck(ctx->battlerDef, NOT_INVERSE_BATTLE, FALSE, BattlerHasTrait(ctx->battlerDef, ABILITY_LEVITATE) || BattlerHasTrait(ctx->battlerDef, ABILITY_EELEVATE), TRUE) // We want to ignore Iron Ball so skip item check // We want to ignore Iron Ball so skip item check
         && !FlagGet(B_FLAG_INVERSE_BATTLE))
     {
         modifier = UQ_4_12(1.0);
@@ -10733,14 +10768,14 @@ uq4_12_t CalcPartyMonTypeEffectivenessMultiplier(enum Move move, u16 speciesDef,
 
         if (mon == 0) //catch for non Pokemon struct entries, only checks Ability
         {
-            if (ctx.moveType == TYPE_GROUND && MonHasTrait(mon, ABILITY_LEVITATE) && !(gFieldStatuses & STATUS_FIELD_GRAVITY))
+            if (ctx.moveType == TYPE_GROUND && (MonHasTrait(mon, ABILITY_LEVITATE) || MonHasTrait(mon, ABILITY_EELEVATE)) && !(gFieldStatuses & STATUS_FIELD_GRAVITY))
                 modifier = UQ_4_12(0.0);
             if (MonHasTrait(mon, ABILITY_WONDER_GUARD) && modifier <= UQ_4_12(1.0) && GetMovePower(move) != 0)
                 modifier = UQ_4_12(0.0);
         }
         else
         {
-            if (ctx.moveType == TYPE_GROUND && MonHasTrait(mon, ABILITY_LEVITATE) && !(gFieldStatuses & STATUS_FIELD_GRAVITY))
+            if (ctx.moveType == TYPE_GROUND && (MonHasTrait(mon, ABILITY_LEVITATE) || MonHasTrait(mon, ABILITY_EELEVATE)) && !(gFieldStatuses & STATUS_FIELD_GRAVITY))
                 modifier = UQ_4_12(0.0);
             if (MonHasTrait(mon, ABILITY_WONDER_GUARD) && modifier <= UQ_4_12(1.0) && GetMovePower(move) != 0)
                 modifier = UQ_4_12(0.0);
@@ -11890,6 +11925,29 @@ bool32 PickupHasValidTarget(enum BattlerId battler)
     return FALSE;
 }
 
+u32 GetBattlerWeather(enum BattlerId battler, u32 weather)
+{
+    bool32 aiCalcInProgress = (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress);
+
+    if (aiCalcInProgress ? AI_BATTLER_HAS_TRAIT(battler, ABILITY_MEGA_SOL) : BattlerHasTrait(battler, ABILITY_MEGA_SOL))
+        return B_WEATHER_SUN_NORMAL;
+
+    if (weather == B_WEATHER_NONE || !HasWeatherEffect())
+        return B_WEATHER_NONE;
+
+    if (weather & (B_WEATHER_SUN | B_WEATHER_RAIN))
+    {
+        bool32 utilityUmbrellaAffected = aiCalcInProgress
+                                       ? Ai_BattlerHasHoldEffect(battler, HOLD_EFFECT_UTILITY_UMBRELLA, gAiLogicData)
+                                       : BattlerHasHeldItemEffect(battler, HOLD_EFFECT_UTILITY_UMBRELLA, TRUE);
+
+        if (utilityUmbrellaAffected)
+            weather &= ~(B_WEATHER_SUN | B_WEATHER_RAIN);
+    }
+
+    return weather;
+}
+
 bool32 IsBattlerWeatherAffected(enum BattlerId battler, u32 weatherFlags)
 {
     if (gBattleWeather & weatherFlags && HasWeatherEffect())
@@ -12139,7 +12197,7 @@ bool32 CanMonParticipateInSkyBattle(struct Pokemon *mon)
 {
     u32 species = GetMonData(mon, MON_DATA_SPECIES);
 
-    bool32 hasLevitateAbility = (MonHasTrait(mon, ABILITY_LEVITATE));
+    bool32 hasLevitateAbility = (MonHasTrait(mon, ABILITY_LEVITATE) || MonHasTrait(mon, ABILITY_EELEVATE));
     bool32 isFlyingType = GetSpeciesType(species, 0) == TYPE_FLYING || GetSpeciesType(species, 1) == TYPE_FLYING;
     bool32 monIsValidAndNotEgg = GetMonData(mon, MON_DATA_SANITY_HAS_SPECIES) && !GetMonData(mon, MON_DATA_IS_EGG);
 
@@ -12848,10 +12906,14 @@ u32 GetTotalAccuracy(enum BattlerId battlerAtk, enum BattlerId battlerDef, enum 
     s8 buff, accStage, evasionStage;
     enum Ability battlerTraits[MAX_MON_TRAITS];
     STORE_BATTLER_TRAITS(battlerAtk);
+    bool32 attackerHasMegaSol = SearchTraits(battlerTraits, ABILITY_MEGA_SOL);
 
     // Use AI Ability knowledge if this is an AI check
     if(gAiLogicData->aiCalcInProgress)
+    {
         battlerTraits[0] = gAiLogicData->abilities[battlerAtk];
+        attackerHasMegaSol = SearchTraits(battlerTraits, ABILITY_MEGA_SOL);
+    }
 
     gPotentialItemEffectBattler = battlerDef;
     accStage = gBattleMons[battlerAtk].statStages[STAT_ACC];
@@ -12876,7 +12938,9 @@ u32 GetTotalAccuracy(enum BattlerId battlerAtk, enum BattlerId battlerDef, enum 
 
     moveAcc = GetMoveAccuracy(move);
     // Check Thunder and Hurricane on sunny weather.
-    if (IsBattlerWeatherAffected(battlerDef, B_WEATHER_SUN) && MoveHas50AccuracyInSun(move))
+    if (((attackerHasMegaSol && (GetBattlerWeather(battlerAtk, gBattleWeather) & B_WEATHER_SUN))
+      || (!attackerHasMegaSol && IsBattlerWeatherAffected(battlerDef, B_WEATHER_SUN)))
+     && MoveHas50AccuracyInSun(move))
         moveAcc = 50;
     // Check Wonder Skin.
     if ((gAiLogicData->aiCalcInProgress ? AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_WONDER_SKIN) : BattlerHasTrait(battlerDef, ABILITY_WONDER_SKIN)) && IsBattleMoveStatus(move) && moveAcc > 50)

@@ -81,7 +81,7 @@ bool32 AI_IsBattlerGrounded(enum BattlerId battler)
         return FALSE;
     if (Ai_BattlerHasHoldEffect(battler, HOLD_EFFECT_AIR_BALLOON, gAiLogicData))
         return FALSE;
-    if (AI_BATTLER_HAS_TRAIT(battler, ABILITY_LEVITATE))
+    if (AI_BATTLER_HAS_TRAIT(battler, ABILITY_LEVITATE) || AI_BATTLER_HAS_TRAIT(battler, ABILITY_EELEVATE))
         return FALSE;
     if (IS_BATTLER_OF_TYPE(battler, TYPE_FLYING) && !FlagGet(B_FLAG_INVERSE_BATTLE))
         return FALSE;
@@ -3245,7 +3245,7 @@ bool32 IsTwoTurnNotSemiInvulnerableMove(enum BattlerId battlerAtk, enum Move mov
     case EFFECT_SOLAR_BEAM:
     case EFFECT_TWO_TURNS_ATTACK:
         return !(Ai_BattlerHasHoldEffect(battlerAtk, HOLD_EFFECT_POWER_HERB, gAiLogicData)
-              || (AI_GetWeather() & GetMoveTwoTurnAttackWeather(move)));
+              || (GetBattlerWeather(battlerAtk, AI_GetWeather()) & GetMoveTwoTurnAttackWeather(move)));
     default:
         return FALSE;
     }
@@ -5808,6 +5808,7 @@ bool32 HasMoxieTypeAbility(u32 battler)
 
     if ((SearchTraits(battlerTraits, ABILITY_MOXIE))
      || (SearchTraits(battlerTraits, ABILITY_BEAST_BOOST))
+     || (SearchTraits(battlerTraits, ABILITY_EELEVATE))
      || (SearchTraits(battlerTraits, ABILITY_CONSUME))
      || (SearchTraits(battlerTraits, ABILITY_CHILLING_NEIGH))
      || (SearchTraits(battlerTraits, ABILITY_AS_ONE_ICE_RIDER))

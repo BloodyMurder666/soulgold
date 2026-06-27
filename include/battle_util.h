@@ -349,6 +349,7 @@ bool32 CompareStatIgnoreContrary(enum BattlerId battler, enum Stat statId, u32 c
 bool32 BlocksPrankster(enum Move move, enum BattlerId battlerPrankster, enum BattlerId battlerDef, bool32 checkTarget);
 bool32 PickupHasValidTarget(enum BattlerId battler);
 bool32 CantPickupItem(u32 battler);
+u32 GetBattlerWeather(enum BattlerId battler, u32 weather);
 bool32 IsBattlerWeatherAffected(enum BattlerId battler, u32 weatherFlags);
 enum MoveTarget GetBattlerMoveTargetType(enum BattlerId battler, enum Move move);
 bool32 CanTargetBattler(enum BattlerId battlerAtk, enum BattlerId battlerDef, enum Move move);
