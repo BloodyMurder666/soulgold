@@ -9,6 +9,7 @@
 #include "menu.h"
 #include "overworld.h"
 #include "palette.h"
+#include "replay_options.h"
 #include "scanline_effect.h"
 #include "sprite.h"
 #include "strings.h"
@@ -77,6 +78,7 @@ enum
     MENUITEM_FAST_MEGAS,
     MENUITEM_FAST_WEATHER,
     MENUITEM_SURF_MUSIC,
+    MENUITEM_BATTLE_FORMAT,
     MENUITEM_COUNT_PG3,
 };
 
@@ -107,6 +109,7 @@ enum
 #define YPOS_FAST_MEGAS (MENUITEM_FAST_MEGAS * 16)
 #define YPOS_FAST_WEATHER (MENUITEM_FAST_WEATHER * 16)
 #define YPOS_SURF_MUSIC (MENUITEM_SURF_MUSIC * 16)
+#define YPOS_BATTLE_FORMAT (MENUITEM_BATTLE_FORMAT * 16)
 
 #define PAGE_COUNT  3
 
@@ -159,6 +162,8 @@ static u8 FastWeather_ProcessInput(u8 selection);
 static void FastWeather_DrawChoices(u8 selection);
 static u8 SurfMusic_ProcessInput(u8 selection);
 static void SurfMusic_DrawChoices(u8 selection);
+static u8 BattleFormat_ProcessInput(u8 selection);
+static void BattleFormat_DrawChoices(u8 selection);
 
 static void DrawTextOption(void);
 
@@ -170,6 +175,7 @@ EWRAM_DATA static bool8 sArrowPressed = FALSE;
 EWRAM_DATA static bool8 sFastMegas = FALSE;
 EWRAM_DATA static bool8 sFastWeather = FALSE;
 EWRAM_DATA static bool8 sSurfMusic = FALSE;
+EWRAM_DATA static u8 sBattleFormat = REPLAY_BATTLE_FORMAT_DESIGNED;
 
 static const u8 gText_Option[]             = _("OPTION");
 static const u8 gText_TextSpeedFast[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Normal");
@@ -211,6 +217,9 @@ static const u8 gText_FastWeatherOn[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN
 static const u8 gText_FastWeatherOff[]     = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Off");
 static const u8 gText_SurfMusicOn[]        = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}On");
 static const u8 gText_SurfMusicOff[]       = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Off");
+static const u8 gText_BattleFormatDefault[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Default");
+static const u8 gText_BattleFormatSingles[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Singles");
+static const u8 gText_BattleFormatDoubles[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Doubles");
 
 static const u16 sOptionMenuText_Pal[] = INCBIN_U16("graphics/interface/option_menu_text.gbapal");
 // note: this is only used in the Japanese release
@@ -245,6 +254,7 @@ static const u8 *const sOptionMenuItemsNames_Pg3[MENUITEM_COUNT_PG3] =
     [MENUITEM_FAST_MEGAS] = COMPOUND_STRING("Fast megas"),
     [MENUITEM_FAST_WEATHER] = COMPOUND_STRING("Fast weather"),
     [MENUITEM_SURF_MUSIC] = COMPOUND_STRING("Surf music"),
+    [MENUITEM_BATTLE_FORMAT] = COMPOUND_STRING("Trainer format"),
 };
 
 static const struct WindowTemplate sOptionMenuWinTemplates[] =
@@ -334,6 +344,7 @@ static void ReadAllCurrentSettings(u8 taskId)
         sFastMegas = gSaveBlock2Ptr->optionsFastMegas;
         sFastWeather = gSaveBlock2Ptr->optionsFastWeather;
         sSurfMusic = gSaveBlock2Ptr->optionsSurfMusic;
+        sBattleFormat = GetReplayBattleFormat();
 }
 
 static void DrawOptionsPg1(u8 taskId)
@@ -371,6 +382,7 @@ static void DrawOptionsPg3(u8 taskId)
     FastMegas_DrawChoices(sFastMegas);
     FastWeather_DrawChoices(sFastWeather);
     SurfMusic_DrawChoices(sSurfMusic);
+    BattleFormat_DrawChoices(sBattleFormat);
     HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
     CopyWindowToVram(WIN_OPTIONS, COPYWIN_FULL);
 }
@@ -803,6 +815,13 @@ static void Task_OptionMenuProcessInput_Pg3(u8 taskId)
             if (previousOption != sSurfMusic)
                 SurfMusic_DrawChoices(sSurfMusic);
             break;
+        case MENUITEM_BATTLE_FORMAT:
+            previousOption = sBattleFormat;
+            sBattleFormat = BattleFormat_ProcessInput(sBattleFormat);
+
+            if (previousOption != sBattleFormat)
+                BattleFormat_DrawChoices(sBattleFormat);
+            break;
         default:
             return;
         }
@@ -859,6 +878,7 @@ static void SaveCurrentSettings(u8 taskId)
     gSaveBlock2Ptr->optionsFastMegas = sFastMegas;
     gSaveBlock2Ptr->optionsFastWeather = sFastWeather;
     gSaveBlock2Ptr->optionsSurfMusic = sSurfMusic;
+    SetReplayBattleFormat(sBattleFormat);
 }
 
 static void Task_OptionMenuSave(u8 taskId)
@@ -884,7 +904,7 @@ static void HighlightOptionMenuItem(u8 index)
     SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(index * 16 + 40, index * 16 + 56));
 }
 
-static void DrawOptionMenuChoice(const u8 *text, u8 x, u8 y, u8 style)
+static void DrawOptionMenuChoiceWithFont(const u8 *text, u8 x, u8 y, u8 style, u8 fontId)
 {
     u8 dst[16];
     u16 i;
@@ -899,7 +919,12 @@ static void DrawOptionMenuChoice(const u8 *text, u8 x, u8 y, u8 style)
     }
 
     dst[i] = EOS;
-    AddTextPrinterParameterized(WIN_OPTIONS, FONT_NORMAL, dst, x, y + 1, TEXT_SKIP_DRAW, NULL);
+    AddTextPrinterParameterized(WIN_OPTIONS, fontId, dst, x, y + 1, TEXT_SKIP_DRAW, NULL);
+}
+
+static void DrawOptionMenuChoice(const u8 *text, u8 x, u8 y, u8 style)
+{
+    DrawOptionMenuChoiceWithFont(text, x, y, style, FONT_NORMAL);
 }
 
 static u8 TextSpeed_ProcessInput(u8 selection)
@@ -1413,6 +1438,70 @@ static void SurfMusic_DrawChoices(u8 selection)
 
     DrawOptionMenuChoice(gText_SurfMusicOn, 104, YPOS_SURF_MUSIC, styles[TRUE]);
     DrawOptionMenuChoice(gText_SurfMusicOff, GetStringRightAlignXOffset(FONT_NORMAL, gText_SurfMusicOff, 198), YPOS_SURF_MUSIC, styles[FALSE]);
+}
+
+static u8 BattleFormat_ProcessInput(u8 selection)
+{
+    if (selection != REPLAY_BATTLE_FORMAT_DESIGNED
+     && selection != REPLAY_BATTLE_FORMAT_SINGLES
+     && selection != REPLAY_BATTLE_FORMAT_DOUBLES)
+        selection = REPLAY_BATTLE_FORMAT_DESIGNED;
+
+    if (JOY_NEW(DPAD_RIGHT))
+    {
+        switch (selection)
+        {
+        case REPLAY_BATTLE_FORMAT_DESIGNED:
+            selection = REPLAY_BATTLE_FORMAT_SINGLES;
+            break;
+        case REPLAY_BATTLE_FORMAT_SINGLES:
+            selection = REPLAY_BATTLE_FORMAT_DOUBLES;
+            break;
+        default:
+            selection = REPLAY_BATTLE_FORMAT_DESIGNED;
+            break;
+        }
+        sArrowPressed = TRUE;
+    }
+    if (JOY_NEW(DPAD_LEFT))
+    {
+        switch (selection)
+        {
+        case REPLAY_BATTLE_FORMAT_DESIGNED:
+            selection = REPLAY_BATTLE_FORMAT_DOUBLES;
+            break;
+        case REPLAY_BATTLE_FORMAT_DOUBLES:
+            selection = REPLAY_BATTLE_FORMAT_SINGLES;
+            break;
+        default:
+            selection = REPLAY_BATTLE_FORMAT_DESIGNED;
+            break;
+        }
+        sArrowPressed = TRUE;
+    }
+    return selection;
+}
+
+static void BattleFormat_DrawChoices(u8 selection)
+{
+    s32 widthDefault, widthSingles, widthDoubles, xSingles;
+    u8 styles[3] = {0};
+
+    if (selection != REPLAY_BATTLE_FORMAT_DESIGNED
+     && selection != REPLAY_BATTLE_FORMAT_SINGLES
+     && selection != REPLAY_BATTLE_FORMAT_DOUBLES)
+        selection = REPLAY_BATTLE_FORMAT_DESIGNED;
+
+    styles[selection] = 1;
+
+    widthDefault = GetStringWidth(FONT_NARROWER, gText_BattleFormatDefault, 0);
+    widthSingles = GetStringWidth(FONT_NARROWER, gText_BattleFormatSingles, 0);
+    widthDoubles = GetStringWidth(FONT_NARROWER, gText_BattleFormatDoubles, 0);
+    xSingles = 104 + widthDefault + (94 - widthDefault - widthSingles - widthDoubles) / 2;
+
+    DrawOptionMenuChoiceWithFont(gText_BattleFormatDefault, 104, YPOS_BATTLE_FORMAT, styles[REPLAY_BATTLE_FORMAT_DESIGNED], FONT_NARROWER);
+    DrawOptionMenuChoiceWithFont(gText_BattleFormatSingles, xSingles, YPOS_BATTLE_FORMAT, styles[REPLAY_BATTLE_FORMAT_SINGLES], FONT_NARROWER);
+    DrawOptionMenuChoiceWithFont(gText_BattleFormatDoubles, GetStringRightAlignXOffset(FONT_NARROWER, gText_BattleFormatDoubles, 198), YPOS_BATTLE_FORMAT, styles[REPLAY_BATTLE_FORMAT_DOUBLES], FONT_NARROWER);
 }
 
 static u8 LevelCaps_ProcessInput(u8 selection)

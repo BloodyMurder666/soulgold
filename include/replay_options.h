@@ -5,8 +5,6 @@ struct Pokemon;
 
 enum ReplayOption
 {
-    REPLAY_OPTION_BATTLE_FORMAT_DOUBLES,
-    REPLAY_OPTION_BATTLE_FORMAT_SINGLES,
     REPLAY_OPTION_TRAINER_PERFECT_IVS,
     REPLAY_OPTION_TRAINER_MAX_EVS,
     REPLAY_OPTION_EASY_IVS,
@@ -25,6 +23,7 @@ bool32 ToggleReplayAllInnatesUnlocked(void);
 bool32 ToggleReplayTrainerFullStats(void);
 bool32 ToggleMaxPainReplayOptions(void);
 enum ReplayBattleFormat GetReplayBattleFormat(void);
+void SetReplayBattleFormat(enum ReplayBattleFormat format);
 bool32 AreReplayTrainerPerfectIVsForced(void);
 bool32 AreReplayTrainerMaxEVsForced(void);
 bool32 AreReplayEasyIVsEnabled(void);

@@ -4493,8 +4493,6 @@ void GetCodeFeedback(void)
 {
     static const u8 sText_SampleCode[] = _("SampleCode");
     static const u8 sText_InnatePower[] = _("innatesnow");
-    static const u8 sText_Doubles[] = _("doubles");
-    static const u8 sText_Singles[] = _("singles");
     static const u8 sText_AllIvs[] = _("allivs");
     static const u8 sText_AllEvs[] = _("allevs");
     static const u8 sText_FullStats[] = _("fullstats");
@@ -4505,10 +4503,6 @@ void GetCodeFeedback(void)
         gSpecialVar_Result = 1;
     else if (!StringCompare(gStringVar2, sText_InnatePower))
         gSpecialVar_Result = ToggleReplayAllInnatesUnlocked() ? 2 : 3;
-    else if (!StringCompare(gStringVar2, sText_Doubles))
-        gSpecialVar_Result = ToggleReplayOption(REPLAY_OPTION_BATTLE_FORMAT_DOUBLES) ? 2 : 3;
-    else if (!StringCompare(gStringVar2, sText_Singles))
-        gSpecialVar_Result = ToggleReplayOption(REPLAY_OPTION_BATTLE_FORMAT_SINGLES) ? 2 : 3;
     else if (!StringCompare(gStringVar2, sText_AllIvs))
         gSpecialVar_Result = ToggleReplayOption(REPLAY_OPTION_TRAINER_PERFECT_IVS) ? 2 : 3;
     else if (!StringCompare(gStringVar2, sText_AllEvs))

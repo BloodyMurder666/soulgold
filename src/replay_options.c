@@ -5,14 +5,6 @@
 #include "replay_options.h"
 #include "constants/flags.h"
 
-static bool32 ToggleExclusiveFlag(u16 flag, u16 otherFlag)
-{
-    FlagToggle(flag);
-    if (FlagGet(flag))
-        FlagClear(otherFlag);
-    return FlagGet(flag);
-}
-
 static bool32 ToggleFlag(u16 flag)
 {
     FlagToggle(flag);
@@ -31,10 +23,6 @@ bool32 ToggleReplayOption(enum ReplayOption option)
 {
     switch (option)
     {
-    case REPLAY_OPTION_BATTLE_FORMAT_DOUBLES:
-        return ToggleExclusiveFlag(FLAG_REPLAY_BATTLE_FORMAT_DOUBLES, FLAG_REPLAY_BATTLE_FORMAT_SINGLES);
-    case REPLAY_OPTION_BATTLE_FORMAT_SINGLES:
-        return ToggleExclusiveFlag(FLAG_REPLAY_BATTLE_FORMAT_SINGLES, FLAG_REPLAY_BATTLE_FORMAT_DOUBLES);
     case REPLAY_OPTION_TRAINER_PERFECT_IVS:
         return ToggleFlag(FLAG_REPLAY_TRAINER_PERFECT_IVS);
     case REPLAY_OPTION_TRAINER_MAX_EVS:
@@ -97,6 +85,17 @@ enum ReplayBattleFormat GetReplayBattleFormat(void)
     if (FlagGet(FLAG_REPLAY_BATTLE_FORMAT_SINGLES))
         return REPLAY_BATTLE_FORMAT_SINGLES;
     return REPLAY_BATTLE_FORMAT_DESIGNED;
+}
+
+void SetReplayBattleFormat(enum ReplayBattleFormat format)
+{
+    FlagClear(FLAG_REPLAY_BATTLE_FORMAT_DOUBLES);
+    FlagClear(FLAG_REPLAY_BATTLE_FORMAT_SINGLES);
+
+    if (format == REPLAY_BATTLE_FORMAT_DOUBLES)
+        FlagSet(FLAG_REPLAY_BATTLE_FORMAT_DOUBLES);
+    else if (format == REPLAY_BATTLE_FORMAT_SINGLES)
+        FlagSet(FLAG_REPLAY_BATTLE_FORMAT_SINGLES);
 }
 
 bool32 AreReplayTrainerPerfectIVsForced(void)
