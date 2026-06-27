@@ -23,10 +23,10 @@
 // When enabled, this mode chooses the player's level used as the scaling target.
 
 #define B_TRAINER_SCALING_DEFAULT_MODE      LEVEL_SCALING_PARTY_HIGHEST
-#define B_TRAINER_SCALING_LEVEL_AUGMENT     2       // Add/subtract levels from base (-127 to +127)
+#define B_TRAINER_SCALING_LEVEL_AUGMENT     1       // Add/subtract levels from base (-127 to +127)
                                                      // Example: -2 makes trainers 2 levels lower
                                                      //          +5 makes trainers 5 levels higher
-#define B_TRAINER_SCALING_LEVEL_VARIATION   4       // Random level reduction (0 to 255)
+#define B_TRAINER_SCALING_LEVEL_VARIATION   1       // Random level reduction (0 to 255)
                                                      // Example: 3 means random(0-3) levels lower
                                                      //          Creates variety in trainer teams
 #define B_TRAINER_SCALING_MIN_LEVEL         0       // Minimum level (0 = no minimum)
