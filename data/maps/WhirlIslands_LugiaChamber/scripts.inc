@@ -4,6 +4,7 @@
 .set LOCALID_KIMONO_2, 2
 .set LOCALID_KIMONO_3, 6
 .set LOCALID_KIMONO_4, 5
+.set LOCALID_SHADOW_LUGIA, 9
 
 WhirlIslands_LugiaChamber_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, WhirlIslands_LugiaChamber_OnTransition
@@ -16,23 +17,36 @@ WhirlIslands_LugiaChamber_OnTransition:
 	end
 
 WhirlIslands_LugiaChamber_MapScript_LugiaStory::
+	goto_if_unset FLAG_HIDE_SHADOW_LUGIA, WhirlIslands_LugiaChamber_MapScript_ShadowLugiaStory
 	clearflag FLAG_HIDE_LUGIA
+	end
+
+WhirlIslands_LugiaChamber_MapScript_ShadowLugiaStory::
+	setflag FLAG_HIDE_LUGIA
 	end
 
 WhirlIslands_LugiaChamber_MapScript_LugiaPostStoryGone::
 	setflag FLAG_HIDE_WHIRL_ISLANDS_KIMONO_GIRLS
 	setflag FLAG_HIDE_LUGIA
+	setflag FLAG_HIDE_SHADOW_LUGIA
 	end
 
 WhirlIslands_LugiaChamber_MapScript_LugiaPostStoryEncounter::
 	setflag FLAG_HIDE_WHIRL_ISLANDS_KIMONO_GIRLS
+	goto_if_set FLAG_HIDE_LUGIA, WhirlIslands_LugiaChamber_MapScript_ShadowLugiaPostStoryEncounter
+	setflag FLAG_HIDE_SHADOW_LUGIA
 	clearflag FLAG_HIDE_LUGIA
 	setobjectxyperm LOCALID_LUGIA, 29, 12
+	end
+
+WhirlIslands_LugiaChamber_MapScript_ShadowLugiaPostStoryEncounter::
+	setflag FLAG_HIDE_LUGIA
 	end
 
 WhirlIslands_LugiaChamber_EventScript_TalkToKimono::
 	lockall
 	playbgm MUS_HG_KIMONO_GIRL_DANCE, TRUE
+	createfieldmugshot MUGSHOT_KIMONO_GIRL
 	msgbox WhirlIslands_LugiaChamber_Text_Kimono_Opening, MSGBOX_DEFAULT
 	closemessage
 
@@ -167,6 +181,7 @@ WhirlIslands_LugiaChamber_EventScript_TalkToKimono::
 	applymovement LOCALID_KIMONO_3, WhirlIslands_LugiaChamber_Movement_Kimono_Dance_Look_Up
 	applymovement LOCALID_KIMONO_4, WhirlIslands_LugiaChamber_Movement_Kimono_Dance_Look_Up
 	waitmovement 0
+	createfieldmugshot MUGSHOT_KIMONO_GIRL
 	msgbox WhirlIslands_LugiaChamber_Text_Kimono_Closing1, MSGBOX_DEFAULT
 	waitmessage
 	setobjectxyperm LOCALID_LUGIA, 29, 12
@@ -179,18 +194,48 @@ WhirlIslands_LugiaChamber_EventScript_TalkToKimono::
 WhirlIslands_LugiaChamber_EventScript_Lugia::
 	lockall
 	goto_if_eq VAR_COMPLETED_LUGIA, 4, WhirlIslands_LugiaChamber_EventScript_LugiaPostgame
+	goto_if_unset FLAG_HIDE_SHADOW_LUGIA, WhirlIslands_LugiaChamber_EventScript_MorphedShadowLugia
 	waitse
 	playmoncry SPECIES_LUGIA, CRY_MODE_ENCOUNTER
 	delay 30
 	waitmoncry
+	delay 60
+	checkitem ITEM_DARK_CRYSTAL
+	goto_if_eq VAR_RESULT, FALSE, WhirlIslands_LugiaChamber_EventScript_RegularLugiaBattle
+	msgbox WhirlIslands_LugiaChamber_Text_DarkCrystalGlowing, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, WhirlIslands_LugiaChamber_EventScript_UseDarkCrystal
+
+WhirlIslands_LugiaChamber_EventScript_RegularLugiaBattle::
+	closemessage
 	playbgm MUS_HG_VS_LUGIA, 0
 	seteventmon SPECIES_LUGIA, 65
+	setvar VAR_LAST_TALKED, LOCALID_LUGIA
+	goto WhirlIslands_LugiaChamber_EventScript_StartStoryBattle
+
+WhirlIslands_LugiaChamber_EventScript_UseDarkCrystal::
+	closemessage
+	playmoncry SPECIES_LUGIA, CRY_MODE_HIGH_PITCH
+	delay 30
+	waitmoncry
+	delay 60
+	mosaicmorphobject LOCALID_LUGIA, OBJ_EVENT_GFX_SPECIES(LUGIA_SHADOW)
+	setflag FLAG_HIDE_LUGIA
+	clearflag FLAG_HIDE_SHADOW_LUGIA
+	delay 30
+	playmoncry SPECIES_LUGIA, CRY_MODE_ENCOUNTER
+	delay 30
+	waitmoncry
+	delay 60
+	playbgm MUS_HG_VS_LUGIA, 0
+	seteventmon SPECIES_LUGIA_SHADOW, 65
+	setvar VAR_LAST_TALKED, LOCALID_LUGIA
+
+WhirlIslands_LugiaChamber_EventScript_StartStoryBattle::
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	settotemboost B_POSITION_OPPONENT_LEFT, 1, 1, 1, 1, 1, 0, 0
 	special BattleSetup_StartLegendaryBattle
 	waitstate
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
-	setvar VAR_LAST_TALKED, LOCALID_LUGIA
 	specialvar VAR_RESULT, GetBattleOutcome
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, WhirlIslands_LugiaChamber_EventScript_RanFromLugia
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, WhirlIslands_LugiaChamber_EventScript_RanFromLugia
@@ -208,17 +253,73 @@ WhirlIslands_LugiaChamber_EventScript_Lugia::
 	releaseall
 	end
 
-WhirlIslands_LugiaChamber_EventScript_LugiaPostgame::
-	playmoncry SPECIES_LUGIA, CRY_MODE_ENCOUNTER
+WhirlIslands_LugiaChamber_EventScript_ShadowLugia::
+	lockall
+	setvar VAR_LAST_TALKED, LOCALID_SHADOW_LUGIA
+	goto_if_eq VAR_COMPLETED_LUGIA, 4, WhirlIslands_LugiaChamber_EventScript_ShadowLugiaPostgameEncounter
+	goto WhirlIslands_LugiaChamber_EventScript_ShadowLugiaEncounter
+
+WhirlIslands_LugiaChamber_EventScript_MorphedShadowLugia:
+	setvar VAR_LAST_TALKED, LOCALID_LUGIA
+
+WhirlIslands_LugiaChamber_EventScript_ShadowLugiaEncounter:
+	waitse
+	playmoncry SPECIES_LUGIA, CRY_MODE_HIGH_PITCH
 	delay 30
 	waitmoncry
 	playbgm MUS_HG_VS_LUGIA, 0
+	seteventmon SPECIES_LUGIA_SHADOW, 65
+	goto WhirlIslands_LugiaChamber_EventScript_StartStoryBattle
+
+WhirlIslands_LugiaChamber_EventScript_LugiaPostgame::
+	setvar VAR_LAST_TALKED, LOCALID_LUGIA
+	goto_if_unset FLAG_HIDE_SHADOW_LUGIA, WhirlIslands_LugiaChamber_EventScript_ShadowLugiaPostgameEncounter
+	playmoncry SPECIES_LUGIA, CRY_MODE_ENCOUNTER
+	delay 30
+	waitmoncry
+	delay 60
+	checkitem ITEM_DARK_CRYSTAL
+	goto_if_eq VAR_RESULT, FALSE, WhirlIslands_LugiaChamber_EventScript_RegularLugiaPostgameBattle
+	msgbox WhirlIslands_LugiaChamber_Text_DarkCrystalGlowing, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, WhirlIslands_LugiaChamber_EventScript_UseDarkCrystalPostgame
+
+WhirlIslands_LugiaChamber_EventScript_RegularLugiaPostgameBattle:
+	closemessage
+	playbgm MUS_HG_VS_LUGIA, 0
 	seteventmon SPECIES_LUGIA, 80
+	goto WhirlIslands_LugiaChamber_EventScript_StartPostgameBattle
+
+WhirlIslands_LugiaChamber_EventScript_UseDarkCrystalPostgame:
+	closemessage
+	playmoncry SPECIES_LUGIA, CRY_MODE_HIGH_PITCH
+	delay 30
+	waitmoncry
+	delay 60
+	mosaicmorphobject LOCALID_LUGIA, OBJ_EVENT_GFX_SPECIES(LUGIA_SHADOW)
+	setflag FLAG_HIDE_LUGIA
+	clearflag FLAG_HIDE_SHADOW_LUGIA
+	delay 30
+	playmoncry SPECIES_LUGIA, CRY_MODE_ENCOUNTER
+	delay 30
+	waitmoncry
+	delay 60
+	playbgm MUS_HG_VS_LUGIA, 0
+	seteventmon SPECIES_LUGIA_SHADOW, 80
+	goto WhirlIslands_LugiaChamber_EventScript_StartPostgameBattle
+
+WhirlIslands_LugiaChamber_EventScript_ShadowLugiaPostgameEncounter:
+	waitse
+	playmoncry SPECIES_LUGIA, CRY_MODE_HIGH_PITCH
+	delay 30
+	waitmoncry
+	playbgm MUS_HG_VS_LUGIA, 0
+	seteventmon SPECIES_LUGIA_SHADOW, 80
+
+WhirlIslands_LugiaChamber_EventScript_StartPostgameBattle:
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	special BattleSetup_StartLegendaryBattle
 	waitstate
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
-	setvar VAR_LAST_TALKED, LOCALID_LUGIA
 	specialvar VAR_RESULT, GetBattleOutcome
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, WhirlIslands_LugiaChamber_EventScript_RanFromLugia
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, WhirlIslands_LugiaChamber_EventScript_RanFromLugia
@@ -231,9 +332,11 @@ WhirlIslands_LugiaChamber_EventScript_LugiaPostgame::
 WhirlIslands_LugiaChamber_EventScript_LugiaFlewAway::
 	fadescreenswapbuffers FADE_TO_BLACK
 	removeobject LOCALID_LUGIA
+	removeobject LOCALID_SHADOW_LUGIA
 	setweather WEATHER_NONE
 	doweather
 	setflag FLAG_HIDE_LUGIA
+	setflag FLAG_HIDE_SHADOW_LUGIA
 	fadescreenswapbuffers FADE_FROM_BLACK
 	bufferspeciesname STR_VAR_1, SPECIES_LUGIA
 	msgbox gText_LegendaryFlewAway, MSGBOX_DEFAULT
@@ -243,15 +346,22 @@ WhirlIslands_LugiaChamber_EventScript_CaughtLugia::
 	setflag FLAG_CAUGHT_LUGIA
 	fadescreenswapbuffers FADE_TO_BLACK
 	removeobject LOCALID_LUGIA
+	removeobject LOCALID_SHADOW_LUGIA
 	setweather WEATHER_NONE
 	doweather
 	setflag FLAG_HIDE_LUGIA
+	setflag FLAG_HIDE_SHADOW_LUGIA
 	fadescreenswapbuffers FADE_FROM_BLACK
 	return
 
 WhirlIslands_LugiaChamber_EventScript_RanFromLugia::
 	releaseall
 	end
+
+WhirlIslands_LugiaChamber_Text_DarkCrystalGlowing:
+	.string "The Dark Crystal in your Bag is\n"
+	.string "starting to glow.\p"
+	.string "Take it out?$"
 
 WhirlIslands_LugiaChamber_EventScript_Zuki::
 	goto_if_eq VAR_COMPLETED_LUGIA, 3, WhirlIslands_LugiaChamber_EventScript_ZukiAfter

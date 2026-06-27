@@ -26,6 +26,7 @@ Based on expansion port of Pokemon Heart and Soul. Feature list to be made later
 - Emulator accuracy check by Wiz1989 (also thanks to mudskip, grunt-lucas, archie, drazden)
 - Mudship (field mugshot system)
 - Ghoulslash (sideway stairs)
+- [James/FosterProgramming](https://github.com/FosterProgramming/pokeemerald-expansion) for their transformation code
 - Kyledove (various graphics and tiles)
 - Hyo for various sprites including frlg style emerald overworlds and gold sprites
 - Poffin Case various overworld sprites

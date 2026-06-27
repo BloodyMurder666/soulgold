@@ -3087,6 +3087,100 @@ void ObjectEventTurn(struct ObjectEvent *objectEvent, enum Direction direction)
     }
 }
 
+#define tMorphState         data[0]
+#define tMorphObjectEventId data[1]
+#define tMorphGraphicsId    data[2]
+#define tMorphTimer         data[3]
+
+#define MOSAIC_MORPH_STEPS  8
+#define MOSAIC_MORPH_DELAY  2
+
+static void Task_MosaicMorphObjectEvent(u8 taskId)
+{
+    struct Task *task = &gTasks[taskId];
+    struct ObjectEvent *objectEvent = &gObjectEvents[task->tMorphObjectEventId];
+    struct Sprite *sprite = &gSprites[objectEvent->spriteId];
+    u32 stretch;
+
+    switch (task->tMorphState)
+    {
+    case 0:
+        SetGpuReg(REG_OFFSET_MOSAIC, 0);
+        sprite->oam.mosaic = TRUE;
+        task->tMorphTimer = MOSAIC_MORPH_STEPS * MOSAIC_MORPH_DELAY - 1;
+        break;
+    case 1:
+        stretch = MOSAIC_MORPH_STEPS
+                - (task->tMorphTimer / MOSAIC_MORPH_DELAY % MOSAIC_MORPH_STEPS);
+        SetGpuReg(REG_OFFSET_MOSAIC, (stretch << 12) | (stretch << 8));
+        if (--task->tMorphTimer > 0)
+            return;
+        break;
+    case 2:
+        if (task->tMorphGraphicsId & OBJ_EVENT_MON)
+        {
+            FollowerSetGraphics(objectEvent,
+                                task->tMorphGraphicsId & OBJ_EVENT_MON_SPECIES_MASK,
+                                task->tMorphGraphicsId & OBJ_EVENT_MON_SHINY,
+                                task->tMorphGraphicsId & OBJ_EVENT_MON_FEMALE);
+        }
+        else
+        {
+            ObjectEventSetGraphicsId(objectEvent, task->tMorphGraphicsId);
+        }
+        ObjectEventTurn(objectEvent, objectEvent->facingDirection);
+        sprite->oam.mosaic = TRUE;
+        task->tMorphTimer = MOSAIC_MORPH_STEPS * MOSAIC_MORPH_DELAY - 1;
+        break;
+    case 3:
+        stretch = task->tMorphTimer / MOSAIC_MORPH_DELAY % MOSAIC_MORPH_STEPS;
+        SetGpuReg(REG_OFFSET_MOSAIC, (stretch << 12) | (stretch << 8));
+        if (--task->tMorphTimer > 0)
+            return;
+        break;
+    case 4:
+        SetGpuReg(REG_OFFSET_MOSAIC, 0);
+        sprite->oam.mosaic = FALSE;
+        DestroyTask(taskId);
+        return;
+    }
+
+    task->tMorphState++;
+}
+
+static bool8 IsMosaicMorphObjectTaskFinished(void)
+{
+    return !FuncIsActiveTask(Task_MosaicMorphObjectEvent);
+}
+
+void Script_MosaicMorphObject(struct ScriptContext *ctx)
+{
+    u16 localId = VarGet(ScriptReadHalfword(ctx));
+    // Pokémon object graphics use the 0x4000 bit, which overlaps the event variable range.
+    u16 graphicsId = ScriptReadHalfword(ctx);
+    u8 objectEventId;
+    u8 taskId;
+
+    Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
+
+    if (TryGetObjectEventIdByLocalIdAndMap(localId,
+                                          gSaveBlock1Ptr->location.mapNum,
+                                          gSaveBlock1Ptr->location.mapGroup,
+                                          &objectEventId))
+        return;
+
+    taskId = CreateTask(Task_MosaicMorphObjectEvent, 0);
+    gTasks[taskId].tMorphObjectEventId = objectEventId;
+    gTasks[taskId].tMorphGraphicsId = graphicsId;
+    SetupNativeScript(ctx, IsMosaicMorphObjectTaskFinished);
+    ctx->waitAfterCallNative = TRUE;
+}
+
+#undef tMorphState
+#undef tMorphObjectEventId
+#undef tMorphGraphicsId
+#undef tMorphTimer
+
 void ObjectEventTurnByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroup, enum Direction direction)
 {
     u8 objectEventId;

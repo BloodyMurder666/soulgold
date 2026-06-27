@@ -17448,6 +17448,21 @@ const struct ItemInfo gItemsInfo[] =
         .iconPic = gItemIcon_PokeBall,
         .iconPalette = gItemIconPalette_PokeBall,
     },
+    [ITEM_DARK_CRYSTAL] =
+    {
+        .name = ITEM_NAME("Dark Crystal"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "An ominous crystal\n"
+            "radianting an aura\n"
+            "of wrath."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_DarkiniumZ,
+        .iconPalette = gItemIconPalette_DarkiniumZ,
+    },
 };
 
 #undef ITEM_NAME

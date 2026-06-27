@@ -3,6 +3,8 @@
 
 #include "constants/event_object_movement.h"
 
+struct ScriptContext;
+
 #if OW_BATTLE_ONLY_FORMS && !OW_POKEMON_OBJECT_EVENTS
 #error "OW_POKEMON_OBJECT_EVENTS needs to be TRUE in order for OW_BATTLE_ONLY_FORMS to work."
 #endif
@@ -165,6 +167,7 @@ u8 LoadObjectEventPalette(u16);
 u8 UpdateSpritePaletteByTemplate(const struct SpriteTemplate *spriteTemplate, struct Sprite *sprite);
 void ObjectEventSetGraphicsId(struct ObjectEvent *objectEvent, u16 graphicsId);
 void ObjectEventTurn(struct ObjectEvent *objectEvent, enum Direction direction);
+void Script_MosaicMorphObject(struct ScriptContext *ctx);
 void ObjectEventTurnByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroup, enum Direction direction);
 const struct ObjectEventGraphicsInfo *GetObjectEventGraphicsInfo(u16 graphicsId);
 void SetObjectInvisibility(u8 localId, u8 mapNum, u8 mapGroup, bool8 invisible);
