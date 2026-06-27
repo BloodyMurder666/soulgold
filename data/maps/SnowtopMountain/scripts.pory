@@ -4,8 +4,9 @@ script SnowtopMountain_Sage {
     lock
     faceplayer
     msgbox("Only those who have proven themself to
-            be more than just the region's champion
-            may proceed past here.")
+            be more than just the region's 
+            champion may proceed past 
+            here.")
     msgbox("...You are not worthy yet.") // Postgame south johto champion needed
     release
     end

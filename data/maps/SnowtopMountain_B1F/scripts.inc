@@ -80,8 +80,8 @@ B1F_Snowtopmountain_Bearnese_Text_1:
 B1F_Snowtopmountain_Bearnese_Text_2:
 # 21 "data/maps/SnowtopMountain_B1F/scripts.pory"
 	.string "They say an ancient ice Pokémon sleeps\n"
-	.string "somewhere inside the mountain. I\l"
-	.string "wonder where it could be?$"
+	.string "somewhere inside the mountain. \l"
+	.string "I wonder where it could be?$"
 
 B1F_Snowtopmountain_Susdoor_Text_0:
 # 28 "data/maps/SnowtopMountain_B1F/scripts.pory"

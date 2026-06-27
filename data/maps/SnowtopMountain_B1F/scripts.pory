@@ -19,8 +19,8 @@ script B1F_Snowtopmountain_Bearnese {
                                             icicles!", 
                                          "Feeling kind of chilly here.")
     msgbox("They say an ancient ice Pokémon sleeps
-            somewhere inside the mountain. I
-            wonder where it could be?", MSGBOX_AUTOCLOSE)
+            somewhere inside the mountain. 
+            I wonder where it could be?", MSGBOX_AUTOCLOSE)
 }
 
 script B1F_Snowtopmountain_Susdoor {

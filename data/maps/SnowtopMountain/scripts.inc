@@ -9,25 +9,25 @@ SnowtopMountain_Sage::
 	faceplayer
 # 6 "data/maps/SnowtopMountain/scripts.pory"
 	msgbox SnowtopMountain_Sage_Text_0
-# 9 "data/maps/SnowtopMountain/scripts.pory"
-	msgbox SnowtopMountain_Sage_Text_1
 # 10 "data/maps/SnowtopMountain/scripts.pory"
+	msgbox SnowtopMountain_Sage_Text_1
+# 11 "data/maps/SnowtopMountain/scripts.pory"
 	release
 	end
 
 
 SnowtopMountain_Slowking::
-# 15 "data/maps/SnowtopMountain/scripts.pory"
-	lock
 # 16 "data/maps/SnowtopMountain/scripts.pory"
-	faceplayer
+	lock
 # 17 "data/maps/SnowtopMountain/scripts.pory"
-	playmoncry SPECIES_SLOWKING, CRY_MODE_NORMAL
+	faceplayer
 # 18 "data/maps/SnowtopMountain/scripts.pory"
-	msgbox SnowtopMountain_Slowking_Text_0
+	playmoncry SPECIES_SLOWKING, CRY_MODE_NORMAL
 # 19 "data/maps/SnowtopMountain/scripts.pory"
-	waitmoncry
+	msgbox SnowtopMountain_Slowking_Text_0
 # 20 "data/maps/SnowtopMountain/scripts.pory"
+	waitmoncry
+# 21 "data/maps/SnowtopMountain/scripts.pory"
 	release
 	end
 
@@ -35,13 +35,14 @@ SnowtopMountain_Slowking::
 SnowtopMountain_Sage_Text_0:
 # 6 "data/maps/SnowtopMountain/scripts.pory"
 	.string "Only those who have proven themself to\n"
-	.string "be more than just the region's champion\l"
-	.string "may proceed past here.$"
+	.string "be more than just the region's \l"
+	.string "champion may proceed past \l"
+	.string "here.$"
 
 SnowtopMountain_Sage_Text_1:
-# 9 "data/maps/SnowtopMountain/scripts.pory"
+# 10 "data/maps/SnowtopMountain/scripts.pory"
 	.string "...You are not worthy yet.$"
 
 SnowtopMountain_Slowking_Text_0:
-# 18 "data/maps/SnowtopMountain/scripts.pory"
+# 19 "data/maps/SnowtopMountain/scripts.pory"
 	.string "Slooooow...!$"

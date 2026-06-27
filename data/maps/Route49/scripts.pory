@@ -56,6 +56,6 @@ script Route49_Hiker {
             of Snowtop Mountain.
             
             Rumours have been circulating that
-            a majestic blue bird has been sighted
-            flying around the mountain.", MSGBOX_NPC)
+            a majestic blue bird has been 
+            sighted flying around the mountain.", MSGBOX_NPC)
 }

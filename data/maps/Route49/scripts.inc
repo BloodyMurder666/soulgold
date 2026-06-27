@@ -126,5 +126,5 @@ Route49_Hiker_Text_0:
 	.string "the top you will arrive at the base\l"
 	.string "of Snowtop Mountain.\p"
 	.string "Rumours have been circulating that\n"
-	.string "a majestic blue bird has been sighted\l"
-	.string "flying around the mountain.$"
+	.string "a majestic blue bird has been \l"
+	.string "sighted flying around the mountain.$"
