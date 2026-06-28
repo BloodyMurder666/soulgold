@@ -162,6 +162,22 @@ NewBarkTownRivalHouseMarill::
 	end
 
 
+NewBarkTownRivalHouseAzumarill::
+# 126 "data/maps/NewBarkTown_House3/scripts.pory"
+	lock
+# 127 "data/maps/NewBarkTown_House3/scripts.pory"
+	faceplayer
+# 128 "data/maps/NewBarkTown_House3/scripts.pory"
+	playmoncry SPECIES_AZUMARILL, CRY_MODE_NORMAL
+# 129 "data/maps/NewBarkTown_House3/scripts.pory"
+	msgbox NewBarkTownRivalHouseAzumarill_Text_0
+# 130 "data/maps/NewBarkTown_House3/scripts.pory"
+	waitmoncry
+# 131 "data/maps/NewBarkTown_House3/scripts.pory"
+	release
+	end
+
+
 NewBarkTown_RivalsMom_Text_0:
 # 15 "data/maps/NewBarkTown_House3/scripts.pory"
 	.string "Oh, hello {PLAYER}!$"
@@ -238,3 +254,7 @@ NewBarkTownRivalHouseRival_Text_2:
 NewBarkTownRivalHouseMarill_Text_0:
 # 119 "data/maps/NewBarkTown_House3/scripts.pory"
 	.string "Marii!$"
+
+NewBarkTownRivalHouseAzumarill_Text_0:
+# 129 "data/maps/NewBarkTown_House3/scripts.pory"
+	.string "Azumarill: Azuu!$"

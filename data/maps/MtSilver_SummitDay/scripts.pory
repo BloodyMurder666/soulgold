@@ -118,6 +118,8 @@ script MtSilver_SummitDay_EventScript_Rival {
 	setflag(FLAG_DEFEATED_MTSILVER_RIVAL)
 	setvar(VAR_RIVAL_STATE, 12)
 	clearflag(FLAG_HIDE_NEWBARK_RIVAL)
+	clearflag(FLAG_HIDE_RIVAL_AZUMARILL)
+	setflag(FLAG_HIDE_RIVAL_MARILL)
 	special(GameClear)
 	waitstate
 	releaseall

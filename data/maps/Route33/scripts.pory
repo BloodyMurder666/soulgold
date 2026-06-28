@@ -62,8 +62,9 @@ script Route33_HiddenGrotto {
 script fisherMan_Route33 {
 	lock
 	faceplayer
-	msgbox("Sometimes it feels like I'm being
-			watched when I go fishing.")
+	msgbox("I've heard rumours of a very rare
+			Pokémon swimming amongst the 
+			Gastrodon to the south of here.")
 	release
 	end
 }

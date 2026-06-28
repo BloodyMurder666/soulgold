@@ -1100,12 +1100,14 @@ Route32RivalGrottoTutorial::
 # 582 "data/maps/Route32/scripts.pory"
 	setflag FLAG_HIDE_NEWBARK_RIVAL
 # 583 "data/maps/Route32/scripts.pory"
-	setvar VAR_RIVAL_STATE, 5
+	setflag FLAG_HIDE_RIVAL_MARILL
 # 584 "data/maps/Route32/scripts.pory"
-	savebgm MUS_DUMMY
+	setvar VAR_RIVAL_STATE, 5
 # 585 "data/maps/Route32/scripts.pory"
-	fadedefaultbgm
+	savebgm MUS_DUMMY
 # 586 "data/maps/Route32/scripts.pory"
+	fadedefaultbgm
+# 587 "data/maps/Route32/scripts.pory"
 	release
 	end
 

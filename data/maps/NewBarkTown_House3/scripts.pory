@@ -121,3 +121,13 @@ script NewBarkTownRivalHouseMarill {
     release
     end
 }
+
+script NewBarkTownRivalHouseAzumarill {
+	lock
+    faceplayer
+    playmoncry(SPECIES_AZUMARILL, CRY_MODE_NORMAL)
+    msgbox("Azumarill: Azuu!")
+    waitmoncry
+    release
+    end
+}

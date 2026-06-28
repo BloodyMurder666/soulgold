@@ -1601,6 +1601,8 @@
 #define FLAG_REPLAY_NO_INNATES                      0x93D
 #define FLAG_HIDE_SHADOW_LUGIA                      0x93E
 #define FLAG_HIDE_CAMERON                           0x93F
+#define FLAG_HIDE_RIVAL_MARILL                      0x940
+#define FLAG_HIDE_RIVAL_AZUMARILL                   0x941
 
 #define FLAG_0x1500                                 0x1500
 // Daily Flags

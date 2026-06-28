@@ -147,10 +147,14 @@ MtSilver_SummitDay_EventScript_Rival_1:
 # 120 "data/maps/MtSilver_SummitDay/scripts.pory"
 	clearflag FLAG_HIDE_NEWBARK_RIVAL
 # 121 "data/maps/MtSilver_SummitDay/scripts.pory"
-	special GameClear
+	clearflag FLAG_HIDE_RIVAL_AZUMARILL
 # 122 "data/maps/MtSilver_SummitDay/scripts.pory"
-	waitstate
+	setflag FLAG_HIDE_RIVAL_MARILL
 # 123 "data/maps/MtSilver_SummitDay/scripts.pory"
+	special GameClear
+# 124 "data/maps/MtSilver_SummitDay/scripts.pory"
+	waitstate
+# 125 "data/maps/MtSilver_SummitDay/scripts.pory"
 	releaseall
 	end
 

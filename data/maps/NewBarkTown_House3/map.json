@@ -64,7 +64,20 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NewBarkTownRivalHouseMarill",
-      "flag": "FLAG_HIDE_NEWBARK_RIVAL"
+      "flag": "FLAG_HIDE_RIVAL_MARILL"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(AZUMARILL)",
+      "x": 29,
+      "y": 5,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_SEQUENCE_LEFT_DOWN_RIGHT_UP",
+      "movement_range_x": 2,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NewBarkTownRivalHouseAzumarill",
+      "flag": "FLAG_HIDE_RIVAL_AZUMARILL"
     }
   ],
   "warp_events": [

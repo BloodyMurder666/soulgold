@@ -13118,29 +13118,29 @@
             "encounter_rate": 7,
             "mons": [
               {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_SHELLOS_EAST"
               },
               {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_SHELLOS_EAST"
               },
               {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
+                "min_level": 30,
+                "max_level": 35,
+                "species": "SPECIES_GASTRODON_EAST"
               },
               {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
+                "min_level": 30,
+                "max_level": 35,
+                "species": "SPECIES_GASTRODON_EAST"
               },
               {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
+                "min_level": 30,
+                "max_level": 35,
+                "species": "SPECIES_GASTRODON_EAST"
               }
             ]
           },
@@ -13149,27 +13149,27 @@
             "mons": [
               {
                 "min_level": 5,
-                "max_level": 5,
+                "max_level": 15,
                 "species": "SPECIES_SHELLOS_EAST"
               },
               {
                 "min_level": 5,
-                "max_level": 5,
+                "max_level": 15,
                 "species": "SPECIES_SHELLOS_EAST"
               },
               {
-                "min_level": 5,
-                "max_level": 5,
+                "min_level": 25,
+                "max_level": 30,
+                "species": "SPECIES_FINIZEN"
+              },
+              {
+                "min_level": 25,
+                "max_level": 30,
                 "species": "SPECIES_FINIZEN"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
-                "species": "SPECIES_FINIZEN"
-              },
-              {
-                "min_level": 5,
-                "max_level": 10,
                 "species": "SPECIES_PHIONE"
               },
               {
@@ -13188,9 +13188,9 @@
                 "species": "SPECIES_PALAFIN"
               },
               {
-                "min_level": 5,
+                "min_level": 40,
                 "max_level": 45,
-                "species": "SPECIES_PALAFIN"
+                "species": "SPECIES_PHIONE"
               },
               {
                 "min_level": 40,

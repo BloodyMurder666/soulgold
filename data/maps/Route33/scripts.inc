@@ -121,7 +121,7 @@ fisherMan_Route33::
 	faceplayer
 # 65 "data/maps/Route33/scripts.pory"
 	msgbox fisherMan_Route33_Text_0
-# 67 "data/maps/Route33/scripts.pory"
+# 68 "data/maps/Route33/scripts.pory"
 	release
 	end
 
@@ -133,5 +133,6 @@ Route33_HiddenGrotto_Text_0:
 
 fisherMan_Route33_Text_0:
 # 65 "data/maps/Route33/scripts.pory"
-	.string "Sometimes it feels like I'm being\n"
-	.string "watched when I go fishing.$"
+	.string "I've heard rumours of a very rare\n"
+	.string "Pokémon swimming amongst the \l"
+	.string "Gastrodon to the south of here.$"

@@ -11,8 +11,8 @@ Mahoganytown_OnLoad::
 	end
 
 MahoganyTown_EventScript_FixTree::
-	setmetatile 18, 8, 0x378, FALSE
-	setmetatile 19, 8, 0x379, FALSE
+	setmetatile 18, 8, 0x4F8, FALSE
+	setmetatile 19, 8, 0x4F9, FALSE
 	end
 
 Mahoganytown_OnFrame::

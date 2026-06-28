@@ -580,6 +580,7 @@ script Route32RivalGrottoTutorial {
 	removeobject(LOCALID_ROUTE32_MARILL)
 	setflag(FLAG_HIDE_ROUTE32_RIVAL)
 	setflag(FLAG_HIDE_NEWBARK_RIVAL)
+	setflag(FLAG_HIDE_RIVAL_MARILL)
 	setvar(VAR_RIVAL_STATE, 5)
 	savebgm(MUS_DUMMY)
 	fadedefaultbgm

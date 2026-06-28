@@ -504,6 +504,10 @@ Sealeo
 Level: 45
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
+Mr Mime Galar
+Level: 45
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
 === TRAINER_SAYO ===
 Name: Sayo
 Class: Kimono Girl
@@ -5962,6 +5966,10 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
+Sneasel
+Level: 46
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
 Glalie
 Level: 46
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
@@ -7715,7 +7723,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Seel
-Level: 43
+Level: 44
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Dewgong
@@ -8633,43 +8641,42 @@ Double Battle: No
 AI: Smart Trainer
 Mugshot: Green
 
-Ninetales-Alola @ Salac Berry
+Ninetales-Alola
 Level: 47
 Ability: Snow Warning  
-EVs: 80 SpA / 80 Spe  
-Hasty Nature  
-IVs: 0 Atk  
-- Aurora Veil  
+EVs: 40 SpA / 40 Spe   
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
+- Ice Beam
 - Blizzard  
 - Dazzling Gleam  
 - Freeze-Dry  
 
-Mamoswine @ Air Balloon
+Mamoswine
 Level: 48
 Ability: Thick Fat  
-EVs: 80 Atk / 80 SpA  
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+EVs: 40 SpA / 40 Spe  
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 Mild Nature  
 - Blizzard  
 - Ancient Power  
 - Body Slam  
-- Earthquake  
+- Bulldoze
 
-Glaceon @ Life Orb
+Glaceon
 Level: 47
 Ability: Ice Body  
-EVs: 80 SpA / 80 Spe  
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe 
+EVs: 40 SpA / 40 Spe  
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 - Alluring Voice  
 - Blizzard  
 - Chilling Water  
 - Ice Beam  
 
-Weavile @ Chople Berry
+Weavile
 Level: 48
 Ability: Pressure  
-EVs: 80 Atk / 80 Spe  
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+EVs: 40 SpA / 40 Spe  
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 - Brick Break  
 - Knock Off  
 - Ice Spinner  
@@ -8679,7 +8686,7 @@ Froslass (F) @ Icetite
 Level: 48
 Ability: Snow Cloak  
 EVs: 80 SpA / 80 Spe  
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 - Blizzard  
 - Draining Kiss  
 - Poltergeist  
@@ -12935,12 +12942,12 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Sneasel @ Eviolite
+Avalugg
 Level: 45
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Piloswine
-Level: 45
+Level: 46
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 
@@ -13427,7 +13434,7 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Slowbro
+Avalugg Hisui
 Level: 46
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
