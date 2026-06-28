@@ -38,8 +38,6 @@ static bool8 ShouldAnimBeDoneRegardlessOfSubstitute(u8 animId);
 static void Task_ClearBitWhenBattleTableAnimDone(u8 taskId);
 static void Task_ClearBitWhenSpecialAnimDone(u8 taskId);
 static void ClearSpritesBattlerHealthboxAnimData(void);
-static bool8 ShouldUseShinyHealthbox(enum BattlerId battler);
-static void LoadOrOverwriteCompressedSpriteSheet(const struct CompressedSpriteSheet *spriteSheet);
 
 // const rom data
 static const struct CompressedSpriteSheet sSpriteSheet_SinglesPlayerHealthbox =
@@ -47,19 +45,9 @@ static const struct CompressedSpriteSheet sSpriteSheet_SinglesPlayerHealthbox =
     gHealthboxSinglesPlayerGfx, 0x1000, TAG_HEALTHBOX_PLAYER1_TILE
 };
 
-static const struct CompressedSpriteSheet sSpriteSheet_SinglesPlayerShinyHealthbox =
-{
-    gHealthboxSinglesPlayerShinyGfx, 0x1000, TAG_HEALTHBOX_PLAYER1_TILE
-};
-
 static const struct CompressedSpriteSheet sSpriteSheet_SinglesOpponentHealthbox =
 {
     gHealthboxSinglesOpponentGfx, 0x1000, TAG_HEALTHBOX_OPPONENT1_TILE
-};
-
-static const struct CompressedSpriteSheet sSpriteSheet_SinglesOpponentShinyHealthbox =
-{
-    gHealthboxSinglesOpponentShinyGfx, 0x1000, TAG_HEALTHBOX_OPPONENT1_TILE
 };
 
 static const struct CompressedSpriteSheet sSpriteSheets_DoublesPlayerHealthbox[2] =
@@ -68,22 +56,10 @@ static const struct CompressedSpriteSheet sSpriteSheets_DoublesPlayerHealthbox[2
     {gHealthboxDoublesPlayerGfx, 0x800, TAG_HEALTHBOX_PLAYER2_TILE}
 };
 
-static const struct CompressedSpriteSheet sSpriteSheets_DoublesPlayerShinyHealthbox[2] =
-{
-    {gHealthboxDoublesPlayerShinyGfx, 0x800, TAG_HEALTHBOX_PLAYER1_TILE},
-    {gHealthboxDoublesPlayerShinyGfx, 0x800, TAG_HEALTHBOX_PLAYER2_TILE}
-};
-
 static const struct CompressedSpriteSheet sSpriteSheets_DoublesOpponentHealthbox[2] =
 {
     {gHealthboxDoublesOpponentGfx, 0x800, TAG_HEALTHBOX_OPPONENT1_TILE},
     {gHealthboxDoublesOpponentGfx, 0x800, TAG_HEALTHBOX_OPPONENT2_TILE}
-};
-
-static const struct CompressedSpriteSheet sSpriteSheets_DoublesOpponentShinyHealthbox[2] =
-{
-    {gHealthboxDoublesOpponentShinyGfx, 0x800, TAG_HEALTHBOX_OPPONENT1_TILE},
-    {gHealthboxDoublesOpponentShinyGfx, 0x800, TAG_HEALTHBOX_OPPONENT2_TILE}
 };
 
 static const struct CompressedSpriteSheet sSpriteSheet_SafariHealthbox =
@@ -99,10 +75,11 @@ static const struct CompressedSpriteSheet sSpriteSheets_HealthBar[MAX_BATTLERS_C
     {gBlankGfxCompressed, 0x0120, TAG_HEALTHBAR_OPPONENT2_TILE}
 };
 
-const struct SpritePalette sSpritePalettes_HealthBoxHealthBar[2] =
+const struct SpritePalette sSpritePalettes_HealthBoxHealthBar[] =
 {
     {gBattleInterface_BallStatusBarPal, TAG_HEALTHBOX_PAL},
-    {gBattleInterface_BallDisplayPal, TAG_HEALTHBAR_PAL}
+    {gBattleInterface_BallDisplayPal, TAG_HEALTHBAR_PAL},
+    {gBattleInterface_ShinyHealthboxPal, TAG_HEALTHBOX_SHINY_PAL}
 };
 
 const struct CompressedSpriteSheet gSpriteSheet_EnemyShadow =
@@ -133,76 +110,6 @@ static const struct OamData sOamData_EnemyShadow =
     .paletteNum = 0,
     .affineParam = 0
 };
-
-static bool8 ShouldUseShinyHealthbox(enum BattlerId battler)
-{
-    if (battler >= gBattlersCount || (gAbsentBattlerFlags & (1u << battler)))
-        return FALSE;
-
-    return GetMonData(GetBattlerMon(battler), MON_DATA_IS_SHINY);
-}
-
-static void LoadOrOverwriteCompressedSpriteSheet(const struct CompressedSpriteSheet *spriteSheet)
-{
-    u16 tileStart = GetSpriteTileStartByTag(spriteSheet->tag);
-
-    if (tileStart == 0xFFFF)
-    {
-        LoadCompressedSpriteSheet(spriteSheet);
-    }
-    else
-    {
-        void *buffer = malloc_and_decompress(spriteSheet->data, NULL);
-        CpuSmartCopy16(buffer, (u8 *)OBJ_VRAM0 + TILE_SIZE_4BPP * tileStart, spriteSheet->size);
-        Free(buffer);
-    }
-}
-
-void LoadBattlerHealthboxGfx(enum BattlerId battler)
-{
-    u8 flank;
-
-    if (battler >= gBattlersCount || (gAbsentBattlerFlags & (1u << battler)))
-        return;
-
-    if ((gBattleTypeFlags & BATTLE_TYPE_SAFARI) && GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT)
-    {
-        LoadOrOverwriteCompressedSpriteSheet(&sSpriteSheet_SafariHealthbox);
-        return;
-    }
-
-    if (GetBattlerCoordsIndex(battler) == BATTLE_COORDS_SINGLES)
-    {
-        if (IsOnPlayerSide(battler))
-        {
-            LoadOrOverwriteCompressedSpriteSheet(ShouldUseShinyHealthbox(battler)
-                                               ? &sSpriteSheet_SinglesPlayerShinyHealthbox
-                                               : &sSpriteSheet_SinglesPlayerHealthbox);
-        }
-        else
-        {
-            LoadOrOverwriteCompressedSpriteSheet(ShouldUseShinyHealthbox(battler)
-                                               ? &sSpriteSheet_SinglesOpponentShinyHealthbox
-                                               : &sSpriteSheet_SinglesOpponentHealthbox);
-        }
-    }
-    else
-    {
-        flank = GetBattlerPosition(battler) / 2;
-        if (IsOnPlayerSide(battler))
-        {
-            LoadOrOverwriteCompressedSpriteSheet(ShouldUseShinyHealthbox(battler)
-                                               ? &sSpriteSheets_DoublesPlayerShinyHealthbox[flank]
-                                               : &sSpriteSheets_DoublesPlayerHealthbox[flank]);
-        }
-        else
-        {
-            LoadOrOverwriteCompressedSpriteSheet(ShouldUseShinyHealthbox(battler)
-                                               ? &sSpriteSheets_DoublesOpponentShinyHealthbox[flank]
-                                               : &sSpriteSheets_DoublesOpponentHealthbox[flank]);
-        }
-    }
-}
 
 const struct SpriteTemplate gSpriteTemplate_EnemyShadow =
 {
@@ -833,21 +740,21 @@ void BattleLoadAllHealthBoxesGfxAtOnce(void)
     u8 numberOfBattlers = 0;
     u8 i;
 
-    LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[0]);
-    LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[1]);
+    for (i = 0; i < ARRAY_COUNT(sSpritePalettes_HealthBoxHealthBar); i++)
+        LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[i]);
     TimeMixBattleBgPalette(TRUE);
     if (!IsDoubleBattle())
     {
-        LoadBattlerHealthboxGfx(GetBattlerAtPosition(B_POSITION_PLAYER_LEFT));
-        LoadBattlerHealthboxGfx(GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT));
+        LoadCompressedSpriteSheet(&sSpriteSheet_SinglesPlayerHealthbox);
+        LoadCompressedSpriteSheet(&sSpriteSheet_SinglesOpponentHealthbox);
         numberOfBattlers = 2;
     }
     else
     {
-        LoadBattlerHealthboxGfx(GetBattlerAtPosition(B_POSITION_PLAYER_LEFT));
-        LoadBattlerHealthboxGfx(GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT));
-        LoadBattlerHealthboxGfx(GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT));
-        LoadBattlerHealthboxGfx(GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT));
+        LoadCompressedSpriteSheet(&sSpriteSheets_DoublesPlayerHealthbox[0]);
+        LoadCompressedSpriteSheet(&sSpriteSheets_DoublesPlayerHealthbox[1]);
+        LoadCompressedSpriteSheet(&sSpriteSheets_DoublesOpponentHealthbox[0]);
+        LoadCompressedSpriteSheet(&sSpriteSheets_DoublesOpponentHealthbox[1]);
         numberOfBattlers = MAX_BATTLERS_COUNT;
     }
     for (i = 0; i < numberOfBattlers; i++)
@@ -862,8 +769,10 @@ bool8 BattleLoadAllHealthBoxesGfx(u8 state)
     {
         if (state == 1)
         {
-            LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[0]);
-            LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[1]);
+            u32 i;
+
+            for (i = 0; i < ARRAY_COUNT(sSpritePalettes_HealthBoxHealthBar); i++)
+                LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[i]);
             TimeMixBattleBgPalette(TRUE);
             CategoryIcons_LoadSpritesGfx();
         }
@@ -871,11 +780,14 @@ bool8 BattleLoadAllHealthBoxesGfx(u8 state)
         {
             if (state == 2)
             {
-                LoadBattlerHealthboxGfx(GetBattlerAtPosition(B_POSITION_PLAYER_LEFT));
+                if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
+                    LoadCompressedSpriteSheet(&sSpriteSheet_SafariHealthbox);
+                else
+                    LoadCompressedSpriteSheet(&sSpriteSheet_SinglesPlayerHealthbox);
             }
             else if (state == 3)
             {
-                LoadBattlerHealthboxGfx(GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT));
+                LoadCompressedSpriteSheet(&sSpriteSheet_SinglesOpponentHealthbox);
             }
             else if (state == 4)
             {
@@ -894,20 +806,22 @@ bool8 BattleLoadAllHealthBoxesGfx(u8 state)
         {
             if (state == 2)
             {
-                LoadBattlerHealthboxGfx(GetBattlerAtPosition(B_POSITION_PLAYER_LEFT));
+                switch (GetBattlerCoordsIndex(GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)))
+                {
+                default:
+                    LoadCompressedSpriteSheet(&sSpriteSheets_DoublesPlayerHealthbox[0]);
+                    break;
+                case BATTLE_COORDS_SINGLES:
+                    LoadCompressedSpriteSheet(&sSpriteSheet_SinglesPlayerHealthbox);
+                    break;
+                }
             }
             else if (state == 3)
-            {
-                LoadBattlerHealthboxGfx(GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT));
-            }
+                LoadCompressedSpriteSheet(&sSpriteSheets_DoublesPlayerHealthbox[1]);
             else if (state == 4)
-            {
-                LoadBattlerHealthboxGfx(GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT));
-            }
+                LoadCompressedSpriteSheet(&sSpriteSheets_DoublesOpponentHealthbox[0]);
             else if (state == 5)
-            {
-                LoadBattlerHealthboxGfx(GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT));
-            }
+                LoadCompressedSpriteSheet(&sSpriteSheets_DoublesOpponentHealthbox[1]);
             else if (state == 6)
                 LoadCompressedSpriteSheet(&sSpriteSheets_HealthBar[GetBattlerPosition(B_BATTLER_0)]);
             else if (state == 7)

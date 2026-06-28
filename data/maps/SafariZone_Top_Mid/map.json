@@ -83,10 +83,10 @@
       "flag": "FLAG_SAFARI_ZONE_WEST_EXPANSION"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MISDREAVUS)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SANDSHREW_ALOLA)",
       "x": 28,
       "y": 4,
-      "elevation": 0,
+      "elevation": 4,
       "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
@@ -96,7 +96,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(HAUNTER)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GRIMER_ALOLA)",
       "x": 10,
       "y": 4,
       "elevation": 0,
@@ -109,10 +109,10 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(HAUNTER)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GROWLITHE_HISUI)",
       "x": 16,
       "y": 20,
-      "elevation": 0,
+      "elevation": 4,
       "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
@@ -122,10 +122,10 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(PIDGEOTTO)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GROWLITHE_HISUI)",
       "x": 23,
       "y": 22,
-      "elevation": 0,
+      "elevation": 4,
       "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
@@ -135,7 +135,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(WEEPINBELL)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GRIMER_ALOLA)",
       "x": 18,
       "y": 8,
       "elevation": 0,
@@ -148,10 +148,10 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ARBOK)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MEOWTH_GALAR)",
       "x": 33,
       "y": 6,
-      "elevation": 0,
+      "elevation": 4,
       "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
@@ -161,10 +161,10 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MURKROW)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MEOWTH_GALAR)",
       "x": 4,
       "y": 4,
-      "elevation": 0,
+      "elevation": 4,
       "movement_type": "MOVEMENT_TYPE_WALK_SEQUENCE_LEFT_DOWN_RIGHT_UP",
       "movement_range_x": 3,
       "movement_range_y": 3,
@@ -174,7 +174,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MR_MIME)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(PONYTA_GALAR)",
       "x": 17,
       "y": 2,
       "elevation": 0,

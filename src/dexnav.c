@@ -8,6 +8,7 @@
 #include "decompress.h"
 #include "caps.h"
 #include "dexnav.h"
+#include "bug_contest.h"
 #include "event_data.h"
 #include "event_object_movement.h"
 #include "event_scripts.h"
@@ -184,8 +185,8 @@ static const u32 sHiddenMonIconGfx[] = INCBIN_U32("graphics/dexnav/hidden.4bpp.s
 // strings
 static const u8 sText_DexNav_NoInfo[] = _("--------");
 static const u8 sText_DexNav_CaptureToSee[] = _("Capture first!");
-static const u8 sText_DexNav_PressRToRegister[] = _("R TO REGISTER!");
-static const u8 sText_DexNav_SearchForRegisteredSpecies[] = _("Search {STR_VAR_1}");
+static const u8 sText_DexNav_Register[] = _("Register");
+static const u8 sText_DexNav_UnbindRegisteredSpecies[] = _("{SELECT_BUTTON} Unbind {STR_VAR_1}");
 static const u8 sText_DexNav_NotFoundHere[] = _("This Pokémon cannot be found here!");
 static const u8 sText_ThreeQmarks[] = _("???");
 static const u8 sText_SearchLevel[] = _("SEARCH {LV}. {STR_VAR_1}");
@@ -2164,13 +2165,13 @@ static void PrintSearchableSpecies(u16 species)
     PutWindowTilemap(WINDOW_REGISTERED);
     if (species == SPECIES_NONE)
     {
-        AddTextPrinterParameterized3(WINDOW_REGISTERED, FONT_NORMAL, 0, 0, sFontColor_White, TEXT_SKIP_DRAW, sText_DexNav_PressRToRegister);
+        AddTextPrinterParameterized3(WINDOW_REGISTERED, FONT_NORMAL, 0, 0, sFontColor_White, TEXT_SKIP_DRAW, sText_DexNav_Register);
     }
     else
     {
         StringCopy(gStringVar1, GetSpeciesName(species));
-        StringExpandPlaceholders(gStringVar4, sText_DexNav_SearchForRegisteredSpecies);
-        AddTextPrinterParameterized3(WINDOW_REGISTERED, FONT_NORMAL, 0, 0, sFontColor_White, TEXT_SKIP_DRAW, gStringVar4);
+        StringExpandPlaceholders(gStringVar4, sText_DexNav_UnbindRegisteredSpecies);
+        AddTextPrinterParameterized3(WINDOW_REGISTERED, FONT_SMALL, 0, 0, sFontColor_White, TEXT_SKIP_DRAW, gStringVar4);
     }
 
     PrintMapName();
@@ -2338,6 +2339,19 @@ static void Task_DexNavMain(u8 taskId)
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
         task->func = Task_DexNavFadeAndExit;
     }
+    else if (JOY_NEW(SELECT_BUTTON))
+    {
+        if ((VarGet(DN_VAR_SPECIES) & DEXNAV_MASK_SPECIES) != SPECIES_NONE)
+        {
+            VarSet(DN_VAR_SPECIES, SPECIES_NONE);
+            PrintSearchableSpecies(SPECIES_NONE);
+            PlaySE(SE_PC_OFF);
+        }
+        else
+        {
+            PlaySE(SE_FAILURE);
+        }
+    }
     else if (JOY_NEW(DPAD_UP))
     {
         if (sDexNavUiDataPtr->cursorRow == ROW_WATER)
@@ -2435,7 +2449,7 @@ static void Task_DexNavMain(u8 taskId)
         // check selection is valid. Play sound if invalid
         species = DexNavGetSpecies();
 
-        if (species != SPECIES_NONE)
+        if ((species != SPECIES_NONE) && !FlagGet(FLAG_SYS_BUG_CONTEST_MODE))
         {
             PrintSearchableSpecies(species);
             //PlaySE(SE_DEX_SEARCH);
@@ -2452,7 +2466,7 @@ static void Task_DexNavMain(u8 taskId)
     else if (JOY_NEW(A_BUTTON))
     {
         species = DexNavGetSpecies();
-        if (species == SPECIES_NONE)
+        if ((species == SPECIES_NONE) || FlagGet(FLAG_SYS_BUG_CONTEST_MODE))
         {
             PlaySE(SE_FAILURE);
         }

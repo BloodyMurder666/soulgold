@@ -33,6 +33,9 @@ Debug_CheatStart::
 	setflag FLAG_BADGE05_GET
 	setflag FLAG_BADGE06_GET
 	setflag FLAG_BADGE07_GET
+	setflag FLAG_RECEIVED_BADGE_5
+	setflag FLAG_RECEIVED_BADGE_6
+	setflag FLAG_RECEIVED_BADGE_7
 	setflag FLAG_BADGE08_GET
 	setflag FLAG_BADGE09_GET
 	setflag FLAG_BADGE10_GET

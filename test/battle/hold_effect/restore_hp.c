@@ -96,6 +96,22 @@ SINGLE_BATTLE_TEST("Healing berry animates on the correct battler at battle star
     }
 }
 
+SINGLE_BATTLE_TEST("Healing berry is not restored after battle when held battle items are restored")
+{
+    GIVEN {
+        WITH_CONFIG(B_RESTORE_HELD_BATTLE_ITEMS, GEN_9);
+        ASSUME(gItemsInfo[ITEM_ORAN_BERRY].holdEffect == HOLD_EFFECT_RESTORE_HP);
+        PLAYER(SPECIES_WOBBUFFET) { HP(1); MaxHP(400); Item(ITEM_ORAN_BERRY); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN {}
+    } SCENE {
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
+    } THEN {
+        EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_HELD_ITEM), ITEM_NONE);
+    }
+}
+
 SINGLE_BATTLE_TEST("Sitrus Berry restores HP before Shields Down form change")
 {
     GIVEN {

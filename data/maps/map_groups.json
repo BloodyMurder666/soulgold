@@ -126,7 +126,11 @@
     "MtGoldOutside",
     "FoggyShore",
     "FoggyShore2",
-    "BattleFactoryGrounds"
+    "BattleFactoryGrounds",
+    "Route33South",
+    "Route33South_2",
+    "SouthernPassage",
+    "MeteorIsland"
   ],
   "gMapGroup_IndoorNewBark": [
     "NewBarkTown_Lab",
@@ -564,7 +568,8 @@
     "MtMortar_Depths_1",
     "MtMortar_Depths_HeatranRoom",
     "FoggyForest",
-    "foggyforestDepths"
+    "foggyforestDepths",
+    "DeepIlexForest"
   ],
   "gMapGroup_JohtoDiveMaps": [
     "CherrygroveUnderwater"

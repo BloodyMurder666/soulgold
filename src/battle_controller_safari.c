@@ -208,7 +208,7 @@ static void SafariOpenPokeblockCase(enum BattlerId battler)
     if (!gPaletteFade.active)
     {
         gBattlerControllerFuncs[battler] = CompleteWhenChosePokeblock;
-        FreeAllWindowBuffers();
+        CloseMainBattleScreen();
         OpenPokeblockCaseInBattle();
     }
 }
@@ -229,7 +229,7 @@ static void OpenPartyMenuToChooseMon(enum BattlerId battler)
         gBattlerControllerFuncs[battler] = WaitForMonSelection;
         u8 caseId = gTasks[gBattleControllerData[battler]].data[0];
         DestroyTask(gBattleControllerData[battler]);
-        FreeAllWindowBuffers();
+        CloseMainBattleScreen();
         OpenPartyMenuInBattle(caseId);
     }
 }

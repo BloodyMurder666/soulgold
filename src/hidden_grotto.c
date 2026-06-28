@@ -140,7 +140,7 @@ static const struct HiddenGrottoData sHiddenGrottoData[NUM_HIDDEN_GROTTOES] =
         .mons =
         {
             { SPECIES_ODDISH, 0 },
-            { SPECIES_CHERUBI, 0 },
+            { SPECIES_FERROSEED, 0 },
             { SPECIES_ROSELIA, 0 },
             { SPECIES_EXEGGCUTE, 0 },
         },
@@ -154,7 +154,7 @@ static const struct HiddenGrottoData sHiddenGrottoData[NUM_HIDDEN_GROTTOES] =
         .rareItem = ITEM_SUN_STONE,
         .mons =
         {
-            { SPECIES_BUIZEL, 0 },
+            { SPECIES_PACHIRISU, 0 },
             { SPECIES_MIENFOO, 0 },
             { SPECIES_DARUMAKA, 0 },
             { SPECIES_COTTONEE, 0 },
@@ -166,7 +166,7 @@ static const struct HiddenGrottoData sHiddenGrottoData[NUM_HIDDEN_GROTTOES] =
         .mapNum = MAP_NUM(MAP_HIDDEN_GROTTO_ROUTE38),
         .monLevel = 30,
         .monObjectLocalId = HIDDEN_GROTTO_OBJ_MON,
-        .rareItem = ITEM_SYRUPY_APPLE,
+        .rareItem = ITEM_STARDUST,
         .mons =
         {
             { SPECIES_MUNCHLAX, 0 },

@@ -1639,7 +1639,7 @@ static void OpenPartyMenuToChooseMon(enum BattlerId battler)
         gBattlerControllerFuncs[battler] = WaitForMonSelection;
         caseId = gTasks[gBattleControllerData[battler]].data[0];
         DestroyTask(gBattleControllerData[battler]);
-        FreeAllWindowBuffers();
+        CloseMainBattleScreen();
         OpenPartyMenuInBattle(caseId);
     }
 }
@@ -1650,7 +1650,7 @@ static void OpenEnemyBattleSummary(enum BattlerId battler)
     {
         gBattlerControllerFuncs[battler] = WaitForEnemyBattleSummary;
         ReshowBattleScreenDummy();
-        FreeAllWindowBuffers();
+        CloseMainBattleScreen();
         ShowPokemonSummaryScreen(
             SUMMARY_MODE_BATTLE_OPPONENT_TRAITS,
             sEnemyBattleSummaryMons,
@@ -1688,7 +1688,7 @@ static void OpenBagAndChooseItem(enum BattlerId battler)
     {
         gBattlerControllerFuncs[battler] = CompleteWhenChoseItem;
         ReshowBattleScreenDummy();
-        FreeAllWindowBuffers();
+        CloseMainBattleScreen();
         CB2_BagMenuFromBattle();
     }
 }

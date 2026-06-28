@@ -1521,4 +1521,5 @@ const struct BattleAnimBackground gBattleAnimBackgroundTable[] =
     [BG_RAINBOW_PLAYER]            = {gBattleAnimBgImage_RainbowPlayer,           gBattleAnimBGPalette_Rainbow,                 gBattleAnimBgTilemap_RainbowPlayer},
     [BG_RAINBOW_OPPONENT]          = {gBattleAnimBgImage_RainbowOpponent,         gBattleAnimBGPalette_Rainbow,                 gBattleAnimBgTilemap_RainbowOpponent},
     [BG_SWAMP]                     = {gBattleAnimBgImage_Swamp,                   gBattleAnimBGPalette_Swamp,                   gBattleAnimBgTilemap_Swamp},
+    [BG_SCORCHED_TERRAIN]            = {gBattleAnimBgImage_ScorchedTerrain,          gBattleAnimBgPalette_ScorchedTerrain,          gBattleAnimBgTilemap_ScorchedTerrain},
 };

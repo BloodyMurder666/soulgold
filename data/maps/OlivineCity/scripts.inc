@@ -1,173 +1,173 @@
 # 1 "data/maps/OlivineCity/scripts.pory"
 
 # 2 "data/maps/OlivineCity/scripts.pory"
-.set LOCALID_OLIVINE_SILVER, 4
+
 # 3 "data/maps/OlivineCity/scripts.pory"
-
-# 4 "data/maps/OlivineCity/scripts.pory"
 OlivineCity_MapScripts::
-# 5 "data/maps/OlivineCity/scripts.pory"
+# 4 "data/maps/OlivineCity/scripts.pory"
 	map_script MAP_SCRIPT_ON_TRANSITION, OlivineCity_MapScript_OnTransition
-# 6 "data/maps/OlivineCity/scripts.pory"
+# 5 "data/maps/OlivineCity/scripts.pory"
 	map_script MAP_SCRIPT_ON_RESUME, SetTimeEncounters
-# 7 "data/maps/OlivineCity/scripts.pory"
+# 6 "data/maps/OlivineCity/scripts.pory"
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, OlivineCity_OnFrame
-# 8 "data/maps/OlivineCity/scripts.pory"
+# 7 "data/maps/OlivineCity/scripts.pory"
 	map_script MAP_SCRIPT_ON_LOAD, OlivineCity_OnLoad
-# 9 "data/maps/OlivineCity/scripts.pory"
+# 8 "data/maps/OlivineCity/scripts.pory"
 	.byte 0
+# 9 "data/maps/OlivineCity/scripts.pory"
+
 # 10 "data/maps/OlivineCity/scripts.pory"
-
-# 11 "data/maps/OlivineCity/scripts.pory"
 OlivineCity_OnLoad::
-# 12 "data/maps/OlivineCity/scripts.pory"
+# 11 "data/maps/OlivineCity/scripts.pory"
 	setrespawn HEAL_LOCATION_OLIVINE_CITY
+# 12 "data/maps/OlivineCity/scripts.pory"
+	end
 # 13 "data/maps/OlivineCity/scripts.pory"
-	end
+
 # 14 "data/maps/OlivineCity/scripts.pory"
-
-# 15 "data/maps/OlivineCity/scripts.pory"
 OlivineCity_MapScript_OnTransition::
-# 16 "data/maps/OlivineCity/scripts.pory"
+# 15 "data/maps/OlivineCity/scripts.pory"
 	call Common_EventScript_SetupRivalGfxId
-# 17 "data/maps/OlivineCity/scripts.pory"
+# 16 "data/maps/OlivineCity/scripts.pory"
 	goto OlivineCity_MapScript_CheckWeather
+# 17 "data/maps/OlivineCity/scripts.pory"
+
 # 18 "data/maps/OlivineCity/scripts.pory"
-
-# 19 "data/maps/OlivineCity/scripts.pory"
 OlivineCity_MapScript_CheckWeather::
-# 20 "data/maps/OlivineCity/scripts.pory"
+# 19 "data/maps/OlivineCity/scripts.pory"
 	callnative SetTimeBasedEncounters
-# 21 "data/maps/OlivineCity/scripts.pory"
+# 20 "data/maps/OlivineCity/scripts.pory"
 	goto_if_ge VAR_OLIVINE_CITY_STATE, 5, OlivineCity_MapScript_ClearWeather
+# 21 "data/maps/OlivineCity/scripts.pory"
+	end
 # 22 "data/maps/OlivineCity/scripts.pory"
-	end
+
 # 23 "data/maps/OlivineCity/scripts.pory"
-
-# 24 "data/maps/OlivineCity/scripts.pory"
 OlivineCity_MapScript_ClearWeather::
-# 25 "data/maps/OlivineCity/scripts.pory"
+# 24 "data/maps/OlivineCity/scripts.pory"
 	setweather WEATHER_NONE
+# 25 "data/maps/OlivineCity/scripts.pory"
+	end
 # 26 "data/maps/OlivineCity/scripts.pory"
-	end
+
 # 27 "data/maps/OlivineCity/scripts.pory"
-
-# 28 "data/maps/OlivineCity/scripts.pory"
 OlivineCity_OnFrame::
-# 29 "data/maps/OlivineCity/scripts.pory"
+# 28 "data/maps/OlivineCity/scripts.pory"
 	map_script_2 VAR_SAFARI_ZONE_GATE_STATE, 1, OlivineCity_EventScript_BaobaCall
-# 30 "data/maps/OlivineCity/scripts.pory"
+# 29 "data/maps/OlivineCity/scripts.pory"
 	.2byte 0
+# 30 "data/maps/OlivineCity/scripts.pory"
+
 # 31 "data/maps/OlivineCity/scripts.pory"
-
-# 32 "data/maps/OlivineCity/scripts.pory"
 OlivineCity_EventScript_BaobaCall::
+# 32 "data/maps/OlivineCity/scripts.pory"
+	lock
 # 33 "data/maps/OlivineCity/scripts.pory"
-	lock
-# 34 "data/maps/OlivineCity/scripts.pory"
 	pokenavcall OlivineCity_Text_Baoba
-# 35 "data/maps/OlivineCity/scripts.pory"
+# 34 "data/maps/OlivineCity/scripts.pory"
 	waitmessage
-# 36 "data/maps/OlivineCity/scripts.pory"
+# 35 "data/maps/OlivineCity/scripts.pory"
 	delay 30
-# 37 "data/maps/OlivineCity/scripts.pory"
+# 36 "data/maps/OlivineCity/scripts.pory"
 	setvar VAR_SAFARI_ZONE_GATE_STATE, 2
-# 38 "data/maps/OlivineCity/scripts.pory"
+# 37 "data/maps/OlivineCity/scripts.pory"
 	release
+# 38 "data/maps/OlivineCity/scripts.pory"
+	end
 # 39 "data/maps/OlivineCity/scripts.pory"
-	end
+
 # 40 "data/maps/OlivineCity/scripts.pory"
-
-# 41 "data/maps/OlivineCity/scripts.pory"
 OlivineCity_Text_Baoba:
-# 42 "data/maps/OlivineCity/scripts.pory"
+# 41 "data/maps/OlivineCity/scripts.pory"
 	.string "{PLAYER}!\p"
-# 43 "data/maps/OlivineCity/scripts.pory"
+# 42 "data/maps/OlivineCity/scripts.pory"
 	.string "This is Warden Baoba.\p"
-# 44 "data/maps/OlivineCity/scripts.pory"
+# 43 "data/maps/OlivineCity/scripts.pory"
 	.string "Sorry to have kept you waiting.\n"
-# 45 "data/maps/OlivineCity/scripts.pory"
+# 44 "data/maps/OlivineCity/scripts.pory"
 	.string "We've finally opened the Safari\l"
-# 46 "data/maps/OlivineCity/scripts.pory"
+# 45 "data/maps/OlivineCity/scripts.pory"
 	.string "Zone!\p"
-# 47 "data/maps/OlivineCity/scripts.pory"
+# 46 "data/maps/OlivineCity/scripts.pory"
 	.string "Do you know where it is?\p"
-# 48 "data/maps/OlivineCity/scripts.pory"
+# 47 "data/maps/OlivineCity/scripts.pory"
 	.string "You know the Gate inside the cavern\n"
-# 49 "data/maps/OlivineCity/scripts.pory"
+# 48 "data/maps/OlivineCity/scripts.pory"
 	.string "in Cianwood City?\p"
-# 50 "data/maps/OlivineCity/scripts.pory"
+# 49 "data/maps/OlivineCity/scripts.pory"
 	.string "If you go through there and walk for\n"
-# 51 "data/maps/OlivineCity/scripts.pory"
+# 50 "data/maps/OlivineCity/scripts.pory"
 	.string "a short while, you should soon see\l"
-# 52 "data/maps/OlivineCity/scripts.pory"
+# 51 "data/maps/OlivineCity/scripts.pory"
 	.string "the Safari Zone!\p"
-# 53 "data/maps/OlivineCity/scripts.pory"
+# 52 "data/maps/OlivineCity/scripts.pory"
 	.string "We're a little out of the way, but\n"
-# 54 "data/maps/OlivineCity/scripts.pory"
+# 53 "data/maps/OlivineCity/scripts.pory"
 	.string "please come visit!$"
+# 54 "data/maps/OlivineCity/scripts.pory"
+
 # 55 "data/maps/OlivineCity/scripts.pory"
-
-# 56 "data/maps/OlivineCity/scripts.pory"
 OlivineCity_EventScript_CityTrigger:: @FLAGHEAP
-# 57 "data/maps/OlivineCity/scripts.pory"
+# 56 "data/maps/OlivineCity/scripts.pory"
 	setflag FLAG_HIDE_OLIVINE_CITY_GYM_JASMINE
-# 58 "data/maps/OlivineCity/scripts.pory"
+# 57 "data/maps/OlivineCity/scripts.pory"
 	setflag FLAG_HIDE_OLIVINE_SILVER
-# 59 "data/maps/OlivineCity/scripts.pory"
+# 58 "data/maps/OlivineCity/scripts.pory"
 	setflag FLAG_VISITED_OLIVINE_CITY
-# 60 "data/maps/OlivineCity/scripts.pory"
+# 59 "data/maps/OlivineCity/scripts.pory"
 	clearflag FLAG_HIDE_BATTLEFRONTIER_ENGINEER
-# 61 "data/maps/OlivineCity/scripts.pory"
+# 60 "data/maps/OlivineCity/scripts.pory"
 	clearflag FLAG_HIDE_LIGHTHOUSE_JASMINE
-# 62 "data/maps/OlivineCity/scripts.pory"
+# 61 "data/maps/OlivineCity/scripts.pory"
 	clearflag FLAG_HIDE_WHIRL_ISLANDS_TENTACRUEL
-# 63 "data/maps/OlivineCity/scripts.pory"
+# 62 "data/maps/OlivineCity/scripts.pory"
 	setvar VAR_GETFLY, 0
-# 64 "data/maps/OlivineCity/scripts.pory"
+# 63 "data/maps/OlivineCity/scripts.pory"
 	
-# 65 "data/maps/OlivineCity/scripts.pory"
+# 64 "data/maps/OlivineCity/scripts.pory"
 	setvar VAR_OLIVINE_CITY_STATE, 1
+# 65 "data/maps/OlivineCity/scripts.pory"
+
 # 66 "data/maps/OlivineCity/scripts.pory"
-
-# 67 "data/maps/OlivineCity/scripts.pory"
 	@cianwood flags
-# 68 "data/maps/OlivineCity/scripts.pory"
+# 67 "data/maps/OlivineCity/scripts.pory"
 	setvar VAR_SUICUNE_ENCOUNTERS, 1
-# 69 "data/maps/OlivineCity/scripts.pory"
+# 68 "data/maps/OlivineCity/scripts.pory"
 	clearflag FLAG_HIDE_CIANWOOD_SUICUNE
-# 70 "data/maps/OlivineCity/scripts.pory"
+# 69 "data/maps/OlivineCity/scripts.pory"
 	setflag FLAG_HIDE_CIANWOOD_EUSINE
-# 71 "data/maps/OlivineCity/scripts.pory"
+# 70 "data/maps/OlivineCity/scripts.pory"
 	setvar VAR_CIANWOOD_CITY_STATE, 1
-# 72 "data/maps/OlivineCity/scripts.pory"
+# 71 "data/maps/OlivineCity/scripts.pory"
 	end
-# 73 "data/maps/OlivineCity/scripts.pory"
+# 72 "data/maps/OlivineCity/scripts.pory"
 
-# 74 "data/maps/OlivineCity/scripts.pory"
+# 73 "data/maps/OlivineCity/scripts.pory"
 OlivineCity_EventScript_SilverTrigger::
-# 75 "data/maps/OlivineCity/scripts.pory"
+# 74 "data/maps/OlivineCity/scripts.pory"
 	lock
-# 76 "data/maps/OlivineCity/scripts.pory"
+# 75 "data/maps/OlivineCity/scripts.pory"
 	clearflag FLAG_HIDE_OLIVINE_SILVER
-# 77 "data/maps/OlivineCity/scripts.pory"
+# 76 "data/maps/OlivineCity/scripts.pory"
 	opendoor 11, 27
-# 78 "data/maps/OlivineCity/scripts.pory"
+# 77 "data/maps/OlivineCity/scripts.pory"
 	addobject LOCALID_OLIVINE_SILVER
-# 79 "data/maps/OlivineCity/scripts.pory"
+# 78 "data/maps/OlivineCity/scripts.pory"
 	playbgm MUS_HG_ENCOUNTER_RIVAL, TRUE
-# 80 "data/maps/OlivineCity/scripts.pory"
+# 79 "data/maps/OlivineCity/scripts.pory"
 	delay 20 
-# 81 "data/maps/OlivineCity/scripts.pory"
+# 80 "data/maps/OlivineCity/scripts.pory"
 	closedoor 11, 27
-# 82 "data/maps/OlivineCity/scripts.pory"
+# 81 "data/maps/OlivineCity/scripts.pory"
 	getplayerxy VAR_TEMP_0, VAR_TEMP_1
-# 83 "data/maps/OlivineCity/scripts.pory"
+# 82 "data/maps/OlivineCity/scripts.pory"
 	call_if_eq VAR_TEMP_1, 28, OlivineCity_EventScript_SilverWalkToPlayer1
-# 84 "data/maps/OlivineCity/scripts.pory"
+# 83 "data/maps/OlivineCity/scripts.pory"
 	call_if_eq VAR_TEMP_1, 29, OlivineCity_EventScript_SilverWalkToPlayer2
-# 85 "data/maps/OlivineCity/scripts.pory"
+# 84 "data/maps/OlivineCity/scripts.pory"
 	call_if_eq VAR_TEMP_1, 30, OlivineCity_EventScript_SilverWalkToPlayer3
+# 85 "data/maps/OlivineCity/scripts.pory"
+	createfieldmugshot MUGSHOT_SILVER
 # 86 "data/maps/OlivineCity/scripts.pory"
 	msgbox OlivineCity_Text_SilverEncounter, MSGBOX_DEFAULT
 # 87 "data/maps/OlivineCity/scripts.pory"

@@ -257,7 +257,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_GRASS),
-        .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_LEAF_GUARD }, // Mega Sol
+        .abilities = { ABILITY_MEGA_SOL, ABILITY_MEGA_SOL, ABILITY_MEGA_SOL },
         .innates = { ABILITY_GRASSY_SURGE, ABILITY_TRIAGE, ABILITY_PIXILATE },
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Meganium"),
@@ -442,9 +442,9 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         )
         .levelUpLearnset = sQuilavaLevelUpLearnset,
         .teachableLearnset = sQuilavaTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_TYPHLOSION, CONDITIONS({IF_NOT_TIME, TIME_NIGHT})}
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_TYPHLOSION}
                             #if P_HISUIAN_FORMS
-                                ,{EVO_LEVEL, 36, SPECIES_TYPHLOSION_HISUI, CONDITIONS({IF_TIME, TIME_NIGHT})}
+                                ,{EVO_ITEM, ITEM_DUSK_STONE, SPECIES_TYPHLOSION_HISUI}
                             #endif
                             ),
     },
@@ -904,7 +904,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_WATER_1),
-        .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_SHEER_FORCE },
+        .abilities = { ABILITY_DRAGONIZE, ABILITY_DRAGONIZE, ABILITY_DRAGONIZE },
         .innates = { ABILITY_STRONG_JAW, ABILITY_INTIMIDATE, ABILITY_TOUGH_CLAWS },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Feraligatr"),
@@ -1979,6 +1979,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .evYield_SpAttack = 1,
         .genderRatio = PERCENT_FEMALE(50),
         .eggCycles = 20,
+        .itemRare = ITEM_WISE_GLASSES,
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
@@ -2054,6 +2055,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 165 : 171,
         .evYield_Speed = 1,
         .evYield_SpAttack = 1,
+        .itemRare = ITEM_WISE_GLASSES,
         .genderRatio = PERCENT_FEMALE(50),
         .eggCycles = 20,
         .friendship = STANDARD_FRIENDSHIP,
@@ -8961,8 +8963,85 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
         .levelUpLearnset = sLugiaLevelUpLearnset,
         .teachableLearnset = sLugiaTeachableLearnset,
+        .formSpeciesIdTable = sLugiaFormSpeciesIdTable,
+        .formChangeTable = sLugiaFormChangeTable,
     },
 #endif //P_FAMILY_LUGIA
+
+    [SPECIES_LUGIA_SHADOW] =
+    {
+        .baseHP        = 106,
+        .baseAttack    = 90,
+        .baseDefense   = 130,
+        .baseSpeed     = 110,
+        .baseSpAttack  = 90,
+        .baseSpDefense = 154,
+        .types = MON_TYPES(TYPE_DARK, TYPE_PSYCHIC),
+        .catchRate = 3,
+        .expYield = 255,
+        .evYield_SpDefense = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
+        .abilities = { ABILITY_INSOMNIA, ABILITY_NONE, ABILITY_NONE },
+        .innates = { ABILITY_WIND_FORCE, ABILITY_BERSERK, ABILITY_FILL_VOID}, 
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Lugia"),
+        .cryId = CRY_NONE,
+        .natDexNum = NATIONAL_DEX_LUGIA,
+        .categoryName = _("Experiment"),
+        .height = 15,
+        .weight = 330,
+        .description = COMPOUND_STRING(
+            "An experiment from\n"
+            "another region. It\n"
+            "wields tremondous\n"
+            "power."
+        ),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 290,
+        .trainerOffset = 2,
+        .frontPic = gMonFrontPic_LugiaMegaZ,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .frontAnimDelay = 15,
+        .enemyMonElevation = 6,
+        .backPic = gMonBackPic_LugiaMegaZ,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 0,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
+        .palette = gMonPalette_LugiaMegaZ,
+        .shinyPalette = gMonShinyPalette_LugiaMegaZ,
+        .iconSprite = gMonIcon_LugiaMegaZ,
+        .iconPalIndex = 2,
+        .iconPalette = gMonIconPalette_LugiaShadow,
+        .shinyIconPalette = gMonShinyIconPalette_LugiaShadow,
+        SHADOW(2, 17, SHADOW_SIZE_L)
+        FOOTPRINT(Lugia)
+        OVERWORLD(
+            sPicTable_LugiaMegaZ,
+            SIZE_64x64,
+            SHADOW_SIZE_M,
+            TRACKS_NONE,
+            sAnimTable_Following,
+            gOverworldPalette_LugiaMegaZ,
+            gShinyOverworldPalette_LugiaMegaZ
+        )
+        .isRestrictedLegendary = TRUE,
+        .isFrontierBanned = TRUE,
+        .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
+        .levelUpLearnset = sLugiaShadowLevelUpLearnset,
+        .teachableLearnset = sLugiaTeachableLearnset,
+#if P_FAMILY_LUGIA
+        .formSpeciesIdTable = sLugiaFormSpeciesIdTable,
+        .formChangeTable = sLugiaFormChangeTable,
+#endif //P_FAMILY_LUGIA
+    },
 
 #if P_FAMILY_HO_OH
     [SPECIES_HO_OH] =

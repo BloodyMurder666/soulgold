@@ -17,12 +17,12 @@ script OlivineTutorMoveMaster {
             Moves.
             
             If you wish, I can teach you all that I 
-            know for a one-time fee of ¥33,333.")
+            know for a one-time fee of ¥44,444.")
     showmoneybox(0, 0)
     msgbox("What do you say? Do you wish to learn
             everything about Tutor Moves?", MSGBOX_YESNO)
     if (var(VAR_RESULT) == YES) {
-        checkmoney(33333)
+        checkmoney(44444)
         if (var(VAR_RESULT) == FALSE) {
             msgbox("It seems you do not have the money
                     to learn. Shame.")
@@ -30,11 +30,12 @@ script OlivineTutorMoveMaster {
             release
             end
         }
-        removemoney(33333)
+        removemoney(44444)
         updatemoneybox(0)
         playse(SE_SHOP)
         waitse
         setflag(FLAG_TUTOR_MOVES_UNLOCKED)
+        special(Achievement_CheckAll)
         msgbox("Thank you for the business!
 
                 Now let me teach you the grand

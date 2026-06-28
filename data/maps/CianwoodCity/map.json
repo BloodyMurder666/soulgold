@@ -138,7 +138,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SHUCKLE)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(BINACLE)",
       "x": 5,
       "y": 57,
       "elevation": 0,
@@ -151,7 +151,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SHUCKLE)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CRABRAWLER)",
       "x": 5,
       "y": 48,
       "elevation": 0,

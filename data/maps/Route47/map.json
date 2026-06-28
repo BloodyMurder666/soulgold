@@ -55,12 +55,12 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "ITEM_DUSK_STONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_SHELL_BELL",
       "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_ROUTE47_REVIVE"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_F",
+      "graphics_id": "OBJ_EVENT_GFX_WORKER_M",
       "x": 86,
       "y": 29,
       "elevation": 0,
@@ -73,7 +73,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_M",
+      "graphics_id": "OBJ_EVENT_GFX_WORKER_F",
       "x": 86,
       "y": 30,
       "elevation": 0,

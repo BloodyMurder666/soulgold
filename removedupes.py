@@ -6,8 +6,8 @@ Reads the enabled National Dex constants from include/constants/pokedex.h
 (which filter_disabled_pokedex.py already keeps up to date), then rewrites:
 
   include/constants/battle_frontier_mons.h
-      Removes #define lines for disabled species and renumbers the
-      remaining defines contiguously from 0.
+      Removes enum members for disabled species. The remaining members
+      are renumbered automatically by the compiler.
 
   src/data/battle_frontier/battle_frontier_mons.h
       Removes [FRONTIER_MON_*] = { ... } entry blocks for disabled species.
@@ -29,11 +29,8 @@ CONSTANTS_H    = REPO_ROOT / "include/constants/battle_frontier_mons.h"
 DATA_MONS_H    = REPO_ROOT / "src/data/battle_frontier/battle_frontier_mons.h"
 TRAINER_MONS_H = REPO_ROOT / "src/data/battle_frontier/battle_frontier_trainer_mons.h"
 
-# #define FRONTIER_MON_VENUSAUR_1 42
-DEFINE_RE = re.compile(r"^(#define\s+)(FRONTIER_MON_([A-Z0-9_]+)_\d+)\s+\d+\s*$")
-
-# Extract the species name from a FRONTIER_MON constant, e.g. VENUSAUR from FRONTIER_MON_VENUSAUR_3
-FRONTIER_MON_RE = re.compile(r"\bFRONTIER_MON_([A-Z0-9_]+)_\d+\b")
+#     FRONTIER_MON_VENUSAUR_1,
+ENUM_MEMBER_RE = re.compile(r"^(\s+)(FRONTIER_MON_([A-Z0-9_]+)),\s*$")
 
 
 # ---------------------------------------------------------------------------
@@ -56,7 +53,7 @@ def species_is_enabled(stem: str, enabled: set[str]) -> bool:
         "MR_MIME_GALAR" -> check "MR_MIME_GALAR", "MR_MIME", "MR"
                            (MR_MIME matches before we over-strip)
     """
-    candidate = stem
+    candidate = re.sub(r"_\d+$", "", stem)
     while candidate:
         if candidate in enabled:
             return True
@@ -106,23 +103,25 @@ def parse_enabled_species_names() -> set[str]:
 def rewrite_constants_h(enabled: set[str]) -> None:
     text = CONSTANTS_H.read_text(encoding="utf-8")
     output: list[str] = []
-    counter = 0
+    kept = 0
 
     for line in text.splitlines():
-        m = DEFINE_RE.match(line)
+        m = ENUM_MEMBER_RE.match(line)
         if m:
             constant = m.group(2)       # e.g. FRONTIER_MON_VENUSAUR_1
-            species  = m.group(3)       # e.g. VENUSAUR
+            species  = m.group(3)       # e.g. VENUSAUR_1
+            if constant == "FRONTIER_MON_END":
+                output.append(line)
+                continue
             if not species_is_enabled(species, enabled):
                 continue                # drop disabled species
-            # Renumber: keep original spacing style but replace the value
-            output.append(f"{m.group(1)}{constant} {counter}")
-            counter += 1
+            output.append(line)
+            kept += 1
         else:
             output.append(line)
 
     CONSTANTS_H.write_text("\n".join(output) + "\n", encoding="utf-8")
-    print(f"  {CONSTANTS_H.relative_to(REPO_ROOT)}: kept {counter} frontier mon defines.")
+    print(f"  {CONSTANTS_H.relative_to(REPO_ROOT)}: kept {kept} frontier mon enum members.")
 
 
 # ---------------------------------------------------------------------------
@@ -147,7 +146,7 @@ def rewrite_data_mons_h(enabled: set[str]) -> None:
     dropped = 0
 
     # Match the opening line of an entry: optional whitespace [FRONTIER_MON_…] = {
-    ENTRY_START_RE = re.compile(r"^\s*\[(FRONTIER_MON_([A-Z0-9]+)_\d+)\]\s*=\s*\{")
+    ENTRY_START_RE = re.compile(r"^\s*\[(FRONTIER_MON_([A-Z0-9_]+))\]\s*=\s*\{")
     # Match the closing line of an entry
     ENTRY_END_RE   = re.compile(r"^\s*\},\s*$")
 
@@ -201,14 +200,14 @@ def rewrite_trainer_mons_h(enabled: set[str]) -> None:
     # A line that consists of optional whitespace, a FRONTIER_MON constant,
     # optional comma, optional backslash continuation.
     LINE_RE = re.compile(
-        r"^(\s*)(FRONTIER_MON_([A-Z0-9_]+)_\d+)(,?)(\s*\\?)?\s*$"
+        r"^(\s*)(FRONTIER_MON_([A-Z0-9_]+))(,?)(\s*\\?)?\s*$"
     )
 
     for line in lines:
         m = LINE_RE.match(line)
         if m:
             species = m.group(3)
-            if not species_is_enabled(species, enabled):
+            if m.group(2) != "FRONTIER_MON_END" and not species_is_enabled(species, enabled):
                 removed += 1
                 continue
         output.append(line)

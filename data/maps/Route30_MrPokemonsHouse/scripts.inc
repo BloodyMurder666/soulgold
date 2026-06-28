@@ -213,7 +213,7 @@ MrPokemonHouse_EventScript_MrPokemon_RedScale_Accepted::
 # 107 "data/maps/Route30_MrPokemonsHouse/scripts.pory"
 	removeitem ITEM_RED_SCALE
 # 108 "data/maps/Route30_MrPokemonsHouse/scripts.pory"
-	giveitem ITEM_EVIOLITE
+	giveitem ITEM_FAIRYTITE
 # 109 "data/maps/Route30_MrPokemonsHouse/scripts.pory"
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 # 110 "data/maps/Route30_MrPokemonsHouse/scripts.pory"
@@ -491,7 +491,7 @@ MrPokemonHouse_Text_GimmeTheScale:
 # 246 "data/maps/Route30_MrPokemonsHouse/scripts.pory"
 	.string "trade it?\p"
 # 247 "data/maps/Route30_MrPokemonsHouse/scripts.pory"
-	.string "I can offer this Eviolite\n"
+	.string "I can offer this Mega Stone\n"
 # 248 "data/maps/Route30_MrPokemonsHouse/scripts.pory"
 	.string "that I got from Prof.Oak.$"
 # 249 "data/maps/Route30_MrPokemonsHouse/scripts.pory"

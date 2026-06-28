@@ -717,6 +717,17 @@ static const struct WindowTemplate sLevelUpStatsWindowTemplate =
     .baseBlock = 0x2E9,
 };
 
+static const struct WindowTemplate sGiveHowManyItemsWindowTemplate =
+{
+    .bg = 2,
+    .tilemapLeft = 20,
+    .tilemapTop = 11,
+    .width = 4,
+    .height = 2,
+    .paletteNum = 14,
+    .baseBlock = 0x2E9,
+};
+
 static const struct WindowTemplate sUnusedWindowTemplate1 =
 {
     .bg = 2,
@@ -923,6 +934,7 @@ struct
     [MENU_SWITCH]          = {COMPOUND_STRING("Switch"),          CursorCb_Switch},
     [MENU_CANCEL1]         = {gText_Cancel2,                      CursorCb_Cancel1},
     [MENU_ITEM]            = {COMPOUND_STRING("Item"),            CursorCb_Item},
+    [MENU_POKEDEX]         = {COMPOUND_STRING("Pokédex"),         CursorCb_Pokedex},
     [MENU_GIVE]            = {gMenuText_Give,                     CursorCb_Give},
     [MENU_TAKE_ITEM]       = {COMPOUND_STRING("Take"),            CursorCb_TakeItem},
     [MENU_MOVE_ITEM]       = {COMPOUND_STRING("Move"),            CursorCb_MoveItem},

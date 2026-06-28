@@ -1,5 +1,4 @@
 raw `
-.set LOCALID_OLIVINE_SILVER, 4
 
 OlivineCity_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, OlivineCity_MapScript_OnTransition
@@ -83,6 +82,7 @@ OlivineCity_EventScript_SilverTrigger::
 	call_if_eq VAR_TEMP_1, 28, OlivineCity_EventScript_SilverWalkToPlayer1
 	call_if_eq VAR_TEMP_1, 29, OlivineCity_EventScript_SilverWalkToPlayer2
 	call_if_eq VAR_TEMP_1, 30, OlivineCity_EventScript_SilverWalkToPlayer3
+	createfieldmugshot MUGSHOT_SILVER
 	msgbox OlivineCity_Text_SilverEncounter, MSGBOX_DEFAULT
 	closemessage
 	call_if_eq VAR_TEMP_1, 28, OlivineCity_EventScript_SilverLeaveAdjust1

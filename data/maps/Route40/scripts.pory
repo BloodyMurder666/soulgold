@@ -209,3 +209,8 @@ script CafeSignRoute40 {
     msgbox("Olivine Beach Cafe!
             Snacks and Meals all day!", MSGBOX_SIGN)
 }
+
+script BattleTowerBaldingMan {
+	msgbox("I'll be the first one to enter
+			the Battle Tower!", MSGBOX_NPC)
+}

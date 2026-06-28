@@ -78,11 +78,9 @@ VioletGym_Text_ReceivedZephyrBadge:
 	.string "{PLAYER} received Zephyrbadge.$"
 
 VioletGym_Text_Falkner_BadgeExplain:
-	.string "Zephyrbadge raises the Attack\n"
-	.string "power of Pokémon.\p"
-	.string "It also enables Pokémon to use\n"
-	.string "Flash, if they can learn it,\l"
-	.string "anytime.\p"
+	.string "Zephyrbadge allows Pokémon to\n"
+	.string "use Flash, if they can\l"
+	.string "learn it, anytime.\p"
 	.string "Here--take this too.$"
 
 

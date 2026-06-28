@@ -2,6 +2,8 @@
 #include "achievements.h"
 #include "event_data.h"
 #include "item.h"
+#include "pokemon.h"
+#include "pokemon_storage_system.h"
 #include "pokedex.h"
 #include "string_util.h"
 #include "constants/battle_frontier.h"
@@ -16,6 +18,11 @@
 static bool32 Achievement_PredicateHoennDexComplete(void);
 static bool32 Achievement_PredicateNationalDexComplete(void);
 static bool32 Achievement_PredicateBadge16(void);
+static bool32 Achievement_PredicateBuenaSuperfan(void);
+static bool32 Achievement_PredicateTravellingHealer(void);
+static bool32 Achievement_PredicateKurtMasterBall(void);
+static bool32 Achievement_PredicateMegaCollector(void);
+static bool32 Achievement_PredicateMasterOfMoves(void);
 static bool32 Achievement_PredicateCaughtBloodMoonUrsaluna(void);
 static bool32 Achievement_PredicateCaughtRayquaza(void);
 static bool32 Achievement_PredicateCaughtLugia(void);
@@ -46,6 +53,24 @@ static bool32 Achievement_PredicateCaughtUxie(void);
 static bool32 Achievement_PredicateCaughtAzelf(void);
 static bool32 Achievement_PredicateCaughtLapras(void);
 static bool32 Achievement_PredicateCaughtVictini(void);
+static bool32 Achievement_PredicateCaughtPhione(void);
+static bool32 Achievement_PredicateCaughtMewtwo(void);
+static bool32 Achievement_PredicateCaughtMew(void);
+static bool32 Achievement_PredicateCaughtSuicune(void);
+static bool32 Achievement_PredicateCaughtEntei(void);
+static bool32 Achievement_PredicateCaughtRaikou(void);
+static bool32 Achievement_PredicateCaughtKyogre(void);
+static bool32 Achievement_PredicateCaughtGroudon(void);
+static bool32 Achievement_PredicateCaughtJirachi(void);
+static bool32 Achievement_PredicateCaughtDeoxys(void);
+static bool32 Achievement_PredicateCaughtDialga(void);
+static bool32 Achievement_PredicateCaughtPalkia(void);
+static bool32 Achievement_PredicateCaughtCresselia(void);
+static bool32 Achievement_PredicateCaughtDarkrai(void);
+static bool32 Achievement_PredicateCaughtShaymin(void);
+static bool32 Achievement_PredicateCaughtArceus(void);
+static bool32 Achievement_PredicateCaughtAllParadoxPokemon(void);
+static bool32 Achievement_HasOwnedItem(enum Item item);
 static u32 Achievement_CountCollectedTMs(void);
 static u32 Achievement_GetBestBattleTowerStreak(void);
 static u32 Achievement_GetBestBattleFactoryStreak(void);
@@ -54,17 +79,17 @@ static u32 Achievement_GetBestRocketArcadeStreak(void);
 static void Achievement_QueuePopup(enum AchievementId id);
 
 static const u8 sText_AchReceiveStarterName[] = _("I Choose You!");
-static const u8 sText_AchReceiveStarterDesc[] = _("Receive your first partner Pokemon.");
+static const u8 sText_AchReceiveStarterDesc[] = _("Receive your first partner Pokémon.");
 static const u8 sText_AchFirstCaptureName[] = _("First Catch");
-static const u8 sText_AchFirstCaptureDesc[] = _("Catch your first Pokemon with a Ball.");
+static const u8 sText_AchFirstCaptureDesc[] = _("Catch your first Pokémon with a Ball.");
 static const u8 sText_AchFirstCriticalName[] = _("Lucky strike");
 static const u8 sText_AchFirstCriticalDesc[] = _("Land your first critical hit.");
 static const u8 sText_AchCritical100Name[] = _("Critical Thinker");
 static const u8 sText_AchCritical100Desc[] = _("Land 100 critical hits.");
 static const u8 sText_AchCapture100Name[] = _("Collector");
-static const u8 sText_AchCapture100Desc[] = _("Catch 100 Pokemon.");
+static const u8 sText_AchCapture100Desc[] = _("Catch 100 Pokémon.");
 static const u8 sText_AchCaptureShinyName[] = _("Rare Spark");
-static const u8 sText_AchCaptureShinyDesc[] = _("Catch a shiny Pokemon.");
+static const u8 sText_AchCaptureShinyDesc[] = _("Catch a shiny Pokémon.");
 static const u8 sText_AchDaycareEgg1Name[] = _("New Life");
 static const u8 sText_AchDaycareEgg1Desc[] = _("Receive an Egg from Day Care.");
 static const u8 sText_AchDaycareEggs100Name[] = _("Day Care Regular");
@@ -78,15 +103,15 @@ static const u8 sText_AchTower50Desc[] = _("Reach a 50-win Battle Tower streak."
 static const u8 sText_AchTower100Name[] = _("Tower Master");
 static const u8 sText_AchTower100Desc[] = _("Reach a 100-win Battle Tower streak.");
 static const u8 sText_AchHoennDexName[] = _("Johto Professor");
-static const u8 sText_AchHoennDexDesc[] = _("Complete the Johto Pokedex.");
+static const u8 sText_AchHoennDexDesc[] = _("Complete the Johto Pokédex.");
 static const u8 sText_AchNationalDexName[] = _("National Professor");
-static const u8 sText_AchNationalDexDesc[] = _("Complete the National Pokedex.");
+static const u8 sText_AchNationalDexDesc[] = _("Complete the National Pokédex.");
 static const u8 sText_AchBloodMoonName[] = _("Blood Moon");
 static const u8 sText_AchBloodMoonDesc[] = _("Catch Blood Moon Ursaluna.");
 static const u8 sText_AchRayquazaName[] = _("Ruler of Skies");
 static const u8 sText_AchRayquazaDesc[] = _("Catch Rayquaza.");
-static const u8 sText_AchBadge16Name[] = _("World Tour");
-static const u8 sText_AchBadge16Desc[] = _("Earn 16 Gym Badges.");
+static const u8 sText_AchBadge16Name[] = _("Southern Vacation (NYI)");
+static const u8 sText_AchBadge16Desc[] = _("Complete all challenges in\nSouthern Johto.");
 static const u8 sText_AchTm1Name[] = _("TM Student");
 static const u8 sText_AchTm1Desc[] = _("Collect your first TM.");
 static const u8 sText_AchTm20Name[] = _("TM Seeker");
@@ -96,11 +121,11 @@ static const u8 sText_AchTm50Desc[] = _("Collect 50 TMs.");
 static const u8 sText_AchTm100Name[] = _("TM Master");
 static const u8 sText_AchTm100Desc[] = _("Collect 100 TMs.");
 static const u8 sText_AchPokedex200Name[] = _("Field Researcher");
-static const u8 sText_AchPokedex200Desc[] = _("Register 200 caught Pokemon.");
+static const u8 sText_AchPokedex200Desc[] = _("Register 200 caught Pokémon.");
 static const u8 sText_AchPokedex350Name[] = _("Dex Specialist");
-static const u8 sText_AchPokedex350Desc[] = _("Register 350 caught Pokemon.");
+static const u8 sText_AchPokedex350Desc[] = _("Register 350 caught Pokémon.");
 static const u8 sText_AchPokedex500Name[] = _("Living Archive");
-static const u8 sText_AchPokedex500Desc[] = _("Register 500 caught Pokemon.");
+static const u8 sText_AchPokedex500Desc[] = _("Register 500 caught Pokémon.");
 static const u8 sText_AchRocketArcade25Name[] = _("Arcade Player");
 static const u8 sText_AchRocketArcade25Desc[] = _("Reach a 25-win Rocket Arcade streak.");
 static const u8 sText_AchRocketArcade50Name[] = _("Arcade Ace");
@@ -161,8 +186,20 @@ static const u8 sText_AchRouteExpertsName[] = _("Now I'm the expert");
 static const u8 sText_AchRouteExpertsDesc[] = _("Defeat all route experts.");
 static const u8 sText_AchHallOfFameDebutName[] = _("Champion");
 static const u8 sText_AchHallOfFameDebutDesc[] = _("Enter the Hall of Fame\nfor the first time.");
+static const u8 sText_AchBuenaSuperfanName[] = _("Buena Superfan");
+static const u8 sText_AchBuenaSuperfanDesc[] = _("Answer Buena's Password\ncorrectly on 10 days.");
+static const u8 sText_AchTravellingHealerName[] = _("Travelling Healer");
+static const u8 sText_AchTravellingHealerDesc[] = _("Heal the Miltank\nin Route 39's barn.");
+static const u8 sText_AchMasterpieceName[] = _("Masterpiece");
+static const u8 sText_AchMasterpieceDesc[] = _("Have Kurt craft you\na Master Ball.");
+static const u8 sText_AchUnderTheSeaName[] = _("Under the Sea");
+static const u8 sText_AchUnderTheSeaDesc[] = _("Fish up a Phione.");
+static const u8 sText_AchMegaCollectorName[] = _("Mega Collector");
+static const u8 sText_AchMegaCollectorDesc[] = _("Obtain every type Mega Stone\nand the Bondstone.");
+static const u8 sText_AchMasterOfMovesName[] = _("Master of Moves");
+static const u8 sText_AchMasterOfMovesDesc[] = _("Unlock Egg Moves and Tutor\nMoves permanently.");
 static const u8 sText_AchCatchCelebiName[] = _("Forest guardian");
-static const u8 sText_AchCatchCelebiDesc[] = _("Catch Celebi.");
+static const u8 sText_AchCatchCelebiDesc[] = _("Catch Celebi. (NYI)");
 static const u8 sText_AchCatchArticunoName[] = _("Frozen legend");
 static const u8 sText_AchCatchArticunoDesc[] = _("Catch Articuno.");
 static const u8 sText_AchCatchMoltresName[] = _("Flame legend");
@@ -189,6 +226,38 @@ static const u8 sText_AchCatchUxieName[] = _("Being of knowledge");
 static const u8 sText_AchCatchUxieDesc[] = _("Catch Uxie.");
 static const u8 sText_AchCatchAzelfName[] = _("Being of willpower");
 static const u8 sText_AchCatchAzelfDesc[] = _("Catch Azelf.");
+static const u8 sText_AchCatchMewtwoName[] = _("The Experiment");
+static const u8 sText_AchCatchMewtwoDesc[] = _("Catch Mewtwo. (NYI)");
+static const u8 sText_AchCatchMewName[] = _("The Original");
+static const u8 sText_AchCatchMewDesc[] = _("Catch Mew. (NYI)");
+static const u8 sText_AchCatchSuicuneName[] = _("Roaming Gale");
+static const u8 sText_AchCatchSuicuneDesc[] = _("Catch Suicune.");
+static const u8 sText_AchCatchEnteiName[] = _("Roaming Howl");
+static const u8 sText_AchCatchEnteiDesc[] = _("Catch Entei.");
+static const u8 sText_AchCatchRaikouName[] = _("Roaming Surge");
+static const u8 sText_AchCatchRaikouDesc[] = _("Catch Raikou.");
+static const u8 sText_AchCatchKyogreName[] = _("Primal Sea");
+static const u8 sText_AchCatchKyogreDesc[] = _("Catch Kyogre. (NYI)");
+static const u8 sText_AchCatchGroudonName[] = _("Primal Land");
+static const u8 sText_AchCatchGroudonDesc[] = _("Catch Groudon. (NYI)");
+static const u8 sText_AchObtainJirachiName[] = _("Wish on a Star");
+static const u8 sText_AchObtainJirachiDesc[] = _("Obtain Jirachi.");
+static const u8 sText_AchCatchDeoxysName[] = _("Interloper");
+static const u8 sText_AchCatchDeoxysDesc[] = _("Catch Deoxys. (NYI)");
+static const u8 sText_AchCatchDialgaName[] = _("Time Warden");
+static const u8 sText_AchCatchDialgaDesc[] = _("Catch Dialga. (NYI)");
+static const u8 sText_AchCatchPalkiaName[] = _("Space Warden");
+static const u8 sText_AchCatchPalkiaDesc[] = _("Catch Palkia. (NYI)");
+static const u8 sText_AchCatchCresseliaName[] = _("Pleasant Dreams");
+static const u8 sText_AchCatchCresseliaDesc[] = _("Catch Cresselia. (NYI)");
+static const u8 sText_AchCatchDarkraiName[] = _("Nightmare's End");
+static const u8 sText_AchCatchDarkraiDesc[] = _("Catch Darkrai. (NYI)");
+static const u8 sText_AchObtainShayminName[] = _("Blooming Gift");
+static const u8 sText_AchObtainShayminDesc[] = _("Obtain Shaymin.");
+static const u8 sText_AchParadoxicalName[] = _("Paradoxical");
+static const u8 sText_AchParadoxicalDesc[] = _("Catch all Paradox Pokémon. (NYI)");
+static const u8 sText_AchCatchArceusName[] = _("???");
+static const u8 sText_AchCatchArceusDesc[] = _("??? (NYI)");
 static const u8 sText_AchCatchLaprasName[] = _("Gentle voyager");
 static const u8 sText_AchCatchLaprasDesc[] = _("Catch Lapras in Union Cave.");
 static const u8 sText_AchObtainVictiniName[] = _("Star of victory");
@@ -271,9 +340,31 @@ static const struct Achievement sAchievements[] =
     {ACH_CATCH_MESPRIT, sText_AchCatchMespritName, sText_AchCatchMespritDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMesprit},
     {ACH_CATCH_UXIE, sText_AchCatchUxieName, sText_AchCatchUxieDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtUxie},
     {ACH_CATCH_AZELF, sText_AchCatchAzelfName, sText_AchCatchAzelfDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtAzelf},
+    {ACH_CATCH_MEWTWO, sText_AchCatchMewtwoName, sText_AchCatchMewtwoDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMewtwo},
+    {ACH_CATCH_MEW, sText_AchCatchMewName, sText_AchCatchMewDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMew},
+    {ACH_CATCH_SUICUNE, sText_AchCatchSuicuneName, sText_AchCatchSuicuneDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtSuicune},
+    {ACH_CATCH_ENTEI, sText_AchCatchEnteiName, sText_AchCatchEnteiDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtEntei},
+    {ACH_CATCH_RAIKOU, sText_AchCatchRaikouName, sText_AchCatchRaikouDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRaikou},
+    {ACH_CATCH_KYOGRE, sText_AchCatchKyogreName, sText_AchCatchKyogreDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtKyogre},
+    {ACH_CATCH_GROUDON, sText_AchCatchGroudonName, sText_AchCatchGroudonDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtGroudon},
+    {ACH_OBTAIN_JIRACHI, sText_AchObtainJirachiName, sText_AchObtainJirachiDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtJirachi},
+    {ACH_CATCH_DEOXYS, sText_AchCatchDeoxysName, sText_AchCatchDeoxysDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtDeoxys},
+    {ACH_CATCH_DIALGA, sText_AchCatchDialgaName, sText_AchCatchDialgaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtDialga},
+    {ACH_CATCH_PALKIA, sText_AchCatchPalkiaName, sText_AchCatchPalkiaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtPalkia},
+    {ACH_CATCH_CRESSELIA, sText_AchCatchCresseliaName, sText_AchCatchCresseliaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtCresselia},
+    {ACH_CATCH_DARKRAI, sText_AchCatchDarkraiName, sText_AchCatchDarkraiDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtDarkrai},
+    {ACH_OBTAIN_SHAYMIN, sText_AchObtainShayminName, sText_AchObtainShayminDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtShaymin},
+    {ACH_UNDER_THE_SEA, sText_AchUnderTheSeaName, sText_AchUnderTheSeaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtPhione},
     {ACH_CATCH_LAPRAS, sText_AchCatchLaprasName, sText_AchCatchLaprasDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtLapras},
     {ACH_OBTAIN_VICTINI, sText_AchObtainVictiniName, sText_AchObtainVictiniDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtVictini},
+    {ACH_BUENA_SUPERFAN, sText_AchBuenaSuperfanName, sText_AchBuenaSuperfanDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateBuenaSuperfan},
+    {ACH_TRAVELLING_HEALER, sText_AchTravellingHealerName, sText_AchTravellingHealerDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateTravellingHealer},
+    {ACH_MASTERPIECE, sText_AchMasterpieceName, sText_AchMasterpieceDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateKurtMasterBall},
+    {ACH_MEGA_COLLECTOR, sText_AchMegaCollectorName, sText_AchMegaCollectorDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateMegaCollector},
+    {ACH_MASTER_OF_MOVES, sText_AchMasterOfMovesName, sText_AchMasterOfMovesDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateMasterOfMoves},
     {ACH_DEFEAT_STEVEN, sText_AchDefeatStevenName, sText_AchDefeatStevenDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_STEVEN, NULL},
+    {ACH_PARADOXICAL, sText_AchParadoxicalName, sText_AchParadoxicalDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtAllParadoxPokemon},
+    {ACH_CATCH_ARCEUS, sText_AchCatchArceusName, sText_AchCatchArceusDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtArceus},
 };
 
 STATIC_ASSERT(ACH_COUNT <= ACHIEVEMENTS_MAX, AchievementCountWithinSaveBitmap);
@@ -333,6 +424,76 @@ static u8 Achievement_CountBadges(void)
 static bool32 Achievement_PredicateBadge16(void)
 {
     return Achievement_CountBadges() >= 16;
+}
+
+static bool32 Achievement_PredicateBuenaSuperfan(void)
+{
+    return VarGet(VAR_BUENA_PASSWORDS_CORRECT) >= 10;
+}
+
+static bool32 Achievement_PredicateTravellingHealer(void)
+{
+    return VarGet(VAR_ROUTE39_BARN) >= 5;
+}
+
+static bool32 Achievement_PredicateKurtMasterBall(void)
+{
+    return FlagGet(FLAG_KURT_CRAFTED_MASTER_BALL);
+}
+
+static bool32 Achievement_HasOwnedItem(enum Item item)
+{
+    u16 i;
+    u8 boxId;
+    u8 boxPosition;
+    enum Pocket pocket = GetItemPocket(item);
+
+    if (pocket < POCKETS_COUNT)
+    {
+        for (i = 0; i < gBagPockets[pocket].capacity; i++)
+        {
+            if (GetBagItemId(pocket, i) == item && GetBagItemQuantity(pocket, i) > 0)
+                return TRUE;
+        }
+    }
+
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (MonHasItem(&gPlayerParty[i], item))
+            return TRUE;
+    }
+
+    if (gPokemonStoragePtr == NULL)
+        return FALSE;
+
+    for (boxId = 0; boxId < TOTAL_BOXES_COUNT; boxId++)
+    {
+        for (boxPosition = 0; boxPosition < IN_BOX_COUNT; boxPosition++)
+        {
+            if (BoxMonHasItem(&gPokemonStoragePtr->boxes[boxId][boxPosition], item))
+                return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+static bool32 Achievement_PredicateMegaCollector(void)
+{
+    enum Item item;
+
+    for (item = ITEM_NORMALITE; item <= ITEM_BONDSTONE; item++)
+    {
+        if (!Achievement_HasOwnedItem(item))
+            return FALSE;
+    }
+
+    return TRUE;
+}
+
+static bool32 Achievement_PredicateMasterOfMoves(void)
+{
+    return FlagGet(FLAG_EGG_MOVES_UNLOCKED) && FlagGet(FLAG_TUTOR_MOVES_UNLOCKED);
 }
 
 static bool32 Achievement_PredicateBadgeFlag(u16 flag)
@@ -494,6 +655,124 @@ static bool32 Achievement_PredicateCaughtLapras(void)
 static bool32 Achievement_PredicateCaughtVictini(void)
 {
     return Achievement_PredicateCaughtSpecies(SPECIES_VICTINI);
+}
+
+static bool32 Achievement_PredicateCaughtPhione(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_PHIONE);
+}
+
+static bool32 Achievement_PredicateCaughtMewtwo(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_MEWTWO);
+}
+
+static bool32 Achievement_PredicateCaughtMew(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_MEW);
+}
+
+static bool32 Achievement_PredicateCaughtSuicune(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_SUICUNE);
+}
+
+static bool32 Achievement_PredicateCaughtEntei(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_ENTEI);
+}
+
+static bool32 Achievement_PredicateCaughtRaikou(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_RAIKOU);
+}
+
+static bool32 Achievement_PredicateCaughtKyogre(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_KYOGRE);
+}
+
+static bool32 Achievement_PredicateCaughtGroudon(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_GROUDON);
+}
+
+static bool32 Achievement_PredicateCaughtJirachi(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_JIRACHI);
+}
+
+static bool32 Achievement_PredicateCaughtDeoxys(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_DEOXYS);
+}
+
+static bool32 Achievement_PredicateCaughtDialga(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_DIALGA);
+}
+
+static bool32 Achievement_PredicateCaughtPalkia(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_PALKIA);
+}
+
+static bool32 Achievement_PredicateCaughtCresselia(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_CRESSELIA);
+}
+
+static bool32 Achievement_PredicateCaughtDarkrai(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_DARKRAI);
+}
+
+static bool32 Achievement_PredicateCaughtShaymin(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_SHAYMIN);
+}
+
+static bool32 Achievement_PredicateCaughtArceus(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_ARCEUS);
+}
+
+static const u16 sParadoxPokemon[] =
+{
+    SPECIES_GREAT_TUSK,
+    SPECIES_SCREAM_TAIL,
+    SPECIES_BRUTE_BONNET,
+    SPECIES_FLUTTER_MANE,
+    SPECIES_SLITHER_WING,
+    SPECIES_SANDY_SHOCKS,
+    SPECIES_ROARING_MOON,
+    SPECIES_WALKING_WAKE,
+    SPECIES_GOUGING_FIRE,
+    SPECIES_RAGING_BOLT,
+    SPECIES_IRON_TREADS,
+    SPECIES_IRON_BUNDLE,
+    SPECIES_IRON_HANDS,
+    SPECIES_IRON_JUGULIS,
+    SPECIES_IRON_MOTH,
+    SPECIES_IRON_THORNS,
+    SPECIES_IRON_VALIANT,
+    SPECIES_IRON_LEAVES,
+    SPECIES_IRON_BOULDER,
+    SPECIES_IRON_CROWN,
+};
+
+static bool32 Achievement_PredicateCaughtAllParadoxPokemon(void)
+{
+    u16 i;
+
+    for (i = 0; i < ARRAY_COUNT(sParadoxPokemon); i++)
+    {
+        if (IsSpeciesEnabled(sParadoxPokemon[i])
+         && !Achievement_PredicateCaughtSpecies(sParadoxPokemon[i]))
+            return FALSE;
+    }
+
+    return TRUE;
 }
 
 static u32 Achievement_CountCollectedTMs(void)

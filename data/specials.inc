@@ -304,6 +304,8 @@ gSpecials::
 	def_special ShowGlassWorkshopMenu
 	def_special SpawnCameraObject
 	def_special RemoveCameraObject
+	def_special ShowPartyPhotoLineup
+	def_special HidePartyPhotoLineup
 	def_special GetPokeblockNameByMonNature
 	def_special GetSecretBaseNearbyMapName
 	def_special CheckRelicanthWailord
@@ -617,3 +619,7 @@ gSpecials::
 	def_special ChangeRotomForm
 	def_special CallBattleArcadeFunc
 	def_special DoArcadeTrainerBattle
+	def_special BuenasPassword_IsBroadcastTime
+	def_special BuenasPassword_BufferCurrentPassword
+	def_special BuenasPassword_GetCurrentGroup
+	def_special BuenasPassword_GetCorrectAnswer

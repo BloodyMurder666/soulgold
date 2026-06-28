@@ -26808,6 +26808,29 @@ gBattleAnimMove_Peck::
 	waitforvisualfinish
 	end
 
+gBattleAnimMove_DarkAero::
+	loadspritegfx ANIM_TAG_AIR_WAVE_2
+	loadspritegfx ANIM_TAG_IMPACT
+	monbg ANIM_DEF_PARTNER
+	call SetDarkBg
+	splitbgprio ANIM_TARGET
+	setalpha 12, 8
+	call AeroblastBeam
+	createvisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 5, 0, 50, 1
+	call AeroblastBeam
+	call AeroblastBeam
+	call AeroblastBeam
+	call AeroblastBeam
+	waitforvisualfinish
+	create_basic_hitsplat_sprite ANIM_ATTACKER, 2, x=0, y=0, relative_to=ANIM_TARGET, animation=0
+	playsewithpan SE_M_RAZOR_WIND, SOUND_PAN_TARGET
+	waitforvisualfinish
+	clearmonbg ANIM_DEF_PARTNER
+	blendoff
+	delay 0
+	call UnsetDarkBg
+	end
+
 gBattleAnimMove_Aeroblast::
 	loadspritegfx ANIM_TAG_AIR_WAVE_2
 	loadspritegfx ANIM_TAG_IMPACT
@@ -30825,6 +30848,20 @@ SetSkyBgContest:
 	goto SetSkyBgContinue
 
 UnsetSkyBg:
+	restorebg
+	waitbgfadeout
+	setarg 7, 0xFFFF
+	waitbgfadein
+	return
+
+SetDarkBg:
+	fadetobg BG_DARK
+	waitbgfadeout
+SetDarkBgContinue:
+	waitbgfadein
+	return
+
+UnsetDarkBg:
 	restorebg
 	waitbgfadeout
 	setarg 7, 0xFFFF

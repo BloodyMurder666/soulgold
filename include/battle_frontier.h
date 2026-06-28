@@ -3,6 +3,7 @@
 
 #include "data.h"
 #include "script.h"
+#include "constants/battle_frontier_mons.h"
 
 struct BattleFrontierTrainer
 {
@@ -22,11 +23,12 @@ extern u16 gFrontierTempParty[MAX_FRONTIER_PARTY_SIZE];
 extern const struct BattleFrontierTrainer *gFacilityTrainers;
 extern const struct TrainerMon *gFacilityTrainerMons;
 extern const struct BattleFrontierTrainer gBattleFrontierTrainers[];
-extern const struct TrainerMon gBattleFrontierMons[];
+extern const struct TrainerMon gBattleFrontierMons[NUM_FRONTIER_MONS];
 
 void DoFacilityTrainerBattle(struct ScriptContext *ctx);
 void FillFrontierTrainerParty(u8 monsCount);
 void FillFrontierTrainersParties(u8 monsCount);
+bool32 IsFrontierMonEnabled(enum FrontierMon monId);
 void CreateFacilityMon(const struct TrainerMon *fmon, u16 level, u8 fixedIV, u32 otID, u32 flags, struct Pokemon *dst);
 void CreateFacilityMonWithPersonality(const struct TrainerMon *fmon, u16 level, u8 fixedIV, u32 otID, u32 flags, u32 personality, struct Pokemon *dst);
 

@@ -360,8 +360,8 @@
 #define NUM_WONDER_CARD_FLAGS                (1 + FLAG_WONDER_CARD_UNUSED_17 - FLAG_RECEIVED_AURORA_TICKET)
 
 #define FLAG_MIRAGE_TOWER_VISIBLE            0x14E
-#define FLAG_CHOSE_ROOT_FOSSIL               0x14F
-#define FLAG_CHOSE_CLAW_FOSSIL               0x150
+#define FLAG_TM_GRASS_KNOT                   0x14F
+#define FLAG_HIDE_GRASSTITE                  0x150
 #define FLAG_RECEIVED_POWDER_JAR             0x151
 
 #define FLAG_CHOSEN_MULTI_BATTLE_NPC_PARTNER 0x152
@@ -713,7 +713,7 @@
 #define FLAG_VISITED_BATTLE_FRONTIER  0x29A // Unused Flag
 #define FLAG_FRONTIER_SECOND_CLERK  0x29B // Unused Flag
 #define FLAG_ALLOW_SOUTH_JOHTO_PASS  0x29C
-#define FLAG_SYS_BUG_CONTEST_MODE  0x29D // Unused Flag
+#define FLAG_SYS_BUG_CONTEST_MODE  0x29D
 #define FLAG_AERODACTYLITE      0x29E
 #define FLAG_LEVEL_SCALING_ON  0x29F
 #define FLAG_NAMED_SILVER  0x2A0 // Unused Flag
@@ -846,7 +846,7 @@
 #define FLAG_INDIGOJUNCTION_HIDE_SILVER_GUARD                       0x31B
 #define FLAG_HIDE_VERMILION_EUSINE_SUICUNE                          0x31C //HnS NormalFlags Block 3
 #define FLAG_GOT_VERMILION_HP_UP                                    0x31D
-#define FLAG_UNUSED_FLAG_999                                        0x31E
+#define FLAG_KURT_CRAFTED_MASTER_BALL                               0x31E
 #define FLAG_HIDE_VERMILION_SNORLAX                                 0x31F
 #define FLAG_HIDE_LUGIA                                             0x320
 #define FLAG_HIDE_HO_OH                                             0x321
@@ -1540,7 +1540,7 @@
 #define FLAG_HIDE_RIVAL_VIOLETGATEHOUSE             (SYSTEM_FLAGS + 0xA2)
 #define FLAG_PICKED_ZIGZAGOON                       (SYSTEM_FLAGS + 0xA3)
 #define FLAG_PICKED_RATTATA                         (SYSTEM_FLAGS + 0xA4)
-#define FLAG_CHIMECHITE                             (SYSTEM_FLAGS + 0xA5)
+#define FLAG_VIOLET_NUGGET                             (SYSTEM_FLAGS + 0xA5)
 #define FLAG_HIDE_ROUTE32_RIVAL                     (SYSTEM_FLAGS + 0xA6)
 #define FLAG_HIDE_TUESCANY                          (SYSTEM_FLAGS + 0xA7)
 #define FLAG_HIDE_ROUTE34_RIVAL                     (SYSTEM_FLAGS + 0xA8)
@@ -1588,7 +1588,19 @@
 #define FLAG_TM_PSYSHOCK                            0x930
 #define FLAG_ILEX_BECKONING_BELL                    0x931
 #define FLAG_TM_FALSE_SWIPE                         0x932
-#define FLAG_UNUSED_0x933                           0x933
+#define FLAG_POSTGAME_CAP1                          0x933
+#define FLAG_POSTGAME_CAP2                          0x934
+#define FLAG_POSTGAME_CAP3                          0x935
+#define FLAG_POSTGAME_CAP4                          0x936
+#define FLAG_REPLAY_BATTLE_FORMAT_DOUBLES           0x937
+#define FLAG_REPLAY_BATTLE_FORMAT_SINGLES           0x938
+#define FLAG_REPLAY_TRAINER_PERFECT_IVS             0x939
+#define FLAG_REPLAY_TRAINER_MAX_EVS                 0x93A
+#define FLAG_REPLAY_EASY_IVS                        0x93B
+#define FLAG_CIANWOOD_GIMMIGHOUL                    0x93C
+#define FLAG_REPLAY_NO_INNATES                      0x93D
+#define FLAG_HIDE_SHADOW_LUGIA                      0x93E
+#define FLAG_HIDE_CAMERON                           0x93F
 
 #define FLAG_0x1500                                 0x1500
 // Daily Flags
@@ -1622,7 +1634,7 @@
 #define FLAG_CANDY_KITAKAMI                         (DAILY_FLAGS_START + 0x17)
 #define FLAG_VAJRA_DESERT_WEST_GROTTO               (DAILY_FLAGS_START + 0x18)
 #define FLAG_DAILY_KURT_FREE_BALLS                  (DAILY_FLAGS_START + 0x19)
-#define FLAG_UNUSED_0x93A                           (DAILY_FLAGS_START + 0x1A) // Unused Flag
+#define FLAG_DAILY_BUENA_PASSWORD                   (DAILY_FLAGS_START + 0x1A)
 #define FLAG_UNUSED_0x93B                           (DAILY_FLAGS_START + 0x1B) // Unused Flag
 #define FLAG_UNUSED_0x93C                           (DAILY_FLAGS_START + 0x1C) // Unused Flag
 #define FLAG_UNUSED_0x93D                           (DAILY_FLAGS_START + 0x1D) // Unused Flag

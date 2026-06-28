@@ -751,8 +751,8 @@ BattleArcade_Entrance_Text_CongratulationsInHonorOf::
 
 BattleArcade_Entrance_Text_OneTrainerShouldSelectBecome::
 # 411 "data/scripts/battle_arcade_registration.pory"
-	.string "One Trainer should select “BECOME\n"
-	.string "LEADER.” The other Trainer must select\l"
+	.string "One Trainer should select “Become\n"
+	.string "Leader.” The other Trainer must select\l"
 	.string "“Join Group.”$"
 
 BattleArcade_Entrance_Text_WeNeedToLaunchDs::

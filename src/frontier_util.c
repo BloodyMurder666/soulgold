@@ -3483,18 +3483,18 @@ void GetFrontierTrainerName(u8 *dst, u16 trainerId)
     dst[i] = EOS;
 }
 
-u16 GetRandomFrontierMonFromSet(u16 trainerId)
+enum FrontierMon GetRandomFrontierMonFromSet(u16 trainerId)
 {
     u8 level = SetFacilityPtrsGetLevel();
     const u16 *monSet = gFacilityTrainers[trainerId].monSet;
-    u8 numMons = 0;
-    u32 monId = monSet[numMons];
+    u16 numMons = 0;
+    enum FrontierMon monId = monSet[numMons];
 
-    while (monId != 0xFFFF)
+    while (monId != FRONTIER_MON_END)
     {
         numMons++;
         monId = monSet[numMons];
-        if (monId == 0xFFFF)
+        if (monId == FRONTIER_MON_END)
             break;
     }
 
@@ -3503,7 +3503,8 @@ u16 GetRandomFrontierMonFromSet(u16 trainerId)
         // "High tier" Pokémon are only allowed on open level mode
         // 20 is not a possible value for level here
         monId = monSet[Random() % numMons];
-    } while ((level == FRONTIER_MAX_LEVEL_50 || level == 20) && monId > FRONTIER_MONS_HIGH_TIER);
+    } while (!IsFrontierMonEnabled(monId)
+          || ((level == FRONTIER_MAX_LEVEL_50 || level == 20) && monId > FRONTIER_MONS_HIGH_TIER));
 
     return monId;
 }

@@ -1532,7 +1532,7 @@ static bool32 CanTwoTurnMoveFireThisTurn(struct BattleContext *ctx)
 {
     if (gBattleMoveEffects[GetMoveEffect(ctx->move)].semiInvulnerableEffect
      || GetMoveEffect(ctx->move) == EFFECT_GEOMANCY
-     || !IsBattlerWeatherAffected(ctx->battlerAtk, GetMoveTwoTurnAttackWeather(ctx->move)))
+     || !(GetBattlerWeather(ctx->battlerAtk, gBattleWeather) & GetMoveTwoTurnAttackWeather(ctx->move)))
         return FALSE;
     return TRUE;
 }
@@ -3824,6 +3824,7 @@ static enum MoveEndResult MoveEndThirdMoveBlock(void)
                 gBattleMons[gBattlerAttacker].items[i] = ITEM_NONE;
                 gBattleStruct->battlerState[gBattlerAttacker].canPickupItem = TRUE;
                 GetBattlerPartyState(gBattlerAttacker)->usedHeldItems[i] = item;
+                GetBattlerPartyState(gBattlerAttacker)->consumedHeldItems[i] = item;
                 CheckSetUnburden(gBattlerAttacker);
                 BtlController_EmitSetMonData(
                     gBattlerAttacker,

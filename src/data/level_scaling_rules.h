@@ -68,21 +68,28 @@ const struct LevelScalingConfig gTrainerLevelScalingRules[TRAINERS_COUNT] =
     [TRAINER_MORTY_1] = {
         .mode = LEVEL_SCALING_PARTY_HIGHEST,
         .levelAugmentAdd = 0,
-        .levelVariation = 1,
+        .levelVariation = 0,
         .manageEvolutions = FALSE,
     },
 
      [TRAINER_CHUCK_1] = {
         .mode = LEVEL_SCALING_PARTY_HIGHEST,
         .levelAugmentAdd = 0,
-        .levelVariation = 1,
+        .levelVariation = 0,
         .manageEvolutions = FALSE,
     },
 
     [TRAINER_PRYCE_1] = {
         .mode = LEVEL_SCALING_PARTY_HIGHEST,
         .levelAugmentAdd = 0,
-        .levelVariation = 1,
+        .levelVariation = 0,
+        .manageEvolutions = FALSE,
+    },
+
+    [TRAINER_CLAIR_1] = {
+        .mode = LEVEL_SCALING_PARTY_HIGHEST,
+        .levelAugmentAdd = 0,
+        .levelVariation = 0,
         .manageEvolutions = FALSE,
     },
 

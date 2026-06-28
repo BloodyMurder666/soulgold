@@ -7,6 +7,7 @@ Must have:
 - cresselia and darkrai quest (started)
 - end screen
 - route 40, kitakami road house
+- dark crystal...
 
 Nice to have:
 - HGSS/DPPT overworld npc sprite demakes

@@ -26,7 +26,7 @@
   ],
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(RATICATE)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(WEEZING_GALAR)",
       "x": 24,
       "y": 24,
       "elevation": 0,
@@ -39,7 +39,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(RATTATA)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SLOWKING_GALAR)",
       "x": 23,
       "y": 26,
       "elevation": 0,
@@ -52,20 +52,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(STARYU)",
-      "x": 26,
-      "y": 4,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-      "movement_range_x": 2,
-      "movement_range_y": 2,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "CherryGroveCity_EventScript_Staryu",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(STARYU)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SAMUROTT_HISUI)",
       "x": 24,
       "y": 3,
       "elevation": 0,
@@ -78,10 +65,10 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(EXEGGCUTE)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(BRAVIARY_HISUI)",
       "x": 29,
       "y": 12,
-      "elevation": 0,
+      "elevation": 4,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 2,
       "movement_range_y": 2,
@@ -104,20 +91,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(STARMIE)",
-      "x": 25,
-      "y": 4,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-      "movement_range_x": 2,
-      "movement_range_y": 2,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "CherryGroveCity_EventScript_Staryu",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(LOTAD)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(EXEGGUTOR_ALOLA)",
       "x": 8,
       "y": 24,
       "elevation": 0,

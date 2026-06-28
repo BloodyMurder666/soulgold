@@ -811,14 +811,6 @@ script Ilex_HiddenGrotto {
     end
 }
 
-script Ilex_Larvesta {
-	lock
-	faceplayer
-	legendaryencounter(SPECIES_LARVESTA, 30, LOCALID_ILEX_LARVESTA, FLAG_HIDE_LARVESTA)
-	release
-    end
-}
-
 script Ilex_LittleBoy {
 	lock
 	faceplayer

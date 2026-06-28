@@ -262,12 +262,12 @@ OlivineCity_Gym_EventScript_Jasmine_Battle1::
 	goto OlivineCity_Gym_EventScript_JasmineVictory
 
 OlivineCity_Gym_EventScript_Jasmine_Battle2::
-	trainerbattle_no_intro TRAINER_JASMINE_1, OlivineCity_Gym_Text_JasmineBetterTrainer
+	trainerbattle_no_intro TRAINER_JASMINE_1_2, OlivineCity_Gym_Text_JasmineBetterTrainer
 	setflag FLAG_RECEIVED_BADGE_6
 	goto OlivineCity_Gym_EventScript_JasmineVictory
 
 OlivineCity_Gym_EventScript_Jasmine_Battle3::
-	trainerbattle_no_intro TRAINER_JASMINE_1, OlivineCity_Gym_Text_JasmineBetterTrainer
+	trainerbattle_no_intro TRAINER_JASMINE_1_3, OlivineCity_Gym_Text_JasmineBetterTrainer
 	setflag FLAG_RECEIVED_BADGE_7
 	goto OlivineCity_Gym_EventScript_JasmineVictory
 
@@ -300,8 +300,6 @@ OlivineCity_Gym_Text_ReceivedMineralBadge:
 	.string "{PLAYER} received Mineralbadge.$"
 
 OlivineCity_Gym_Text_JasmineBadgeSpeech:
-	.string "Mineralbadge raises Pokémon's \n"
-	.string "Special Defense.\p"
 	.string "…Um… Please take this too…$"
 
 OlivineCity_Gym_Text_JasmineIronTailSpeech:

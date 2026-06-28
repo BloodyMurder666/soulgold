@@ -124,7 +124,7 @@ Route111_EventScript_MirageTowerDisappear::
 	waitstate
 	setvar VAR_MIRAGE_TOWER_STATE, 2
 	clearflag FLAG_GARBAGEFLAG
-	goto_if_set FLAG_CHOSE_CLAW_FOSSIL, Route111_EventScript_RootFossilDisappeared
+	goto_if_set FLAG_GARBAGEFLAG, Route111_EventScript_RootFossilDisappeared
 	msgbox Route111_Text_ClawFossilDisappeared, MSGBOX_DEFAULT
 	releaseall
 	end

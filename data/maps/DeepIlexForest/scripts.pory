@@ -1,0 +1,19 @@
+mapscripts DeepIlexForest_MapScripts {}
+
+
+script Ilex_Larvesta {
+	lock
+	faceplayer
+	legendaryencounter(SPECIES_LARVESTA, 30, LOCALID_ILEX_LARVESTA, FLAG_HIDE_LARVESTA)
+	release
+    end
+}
+
+script DeepIlex_Hex {
+    msgbox("Engineers from Hoenn tried to
+            build another Battle Factory here.
+            
+            They were chased away by the
+            guardian of the forest before
+            they made much progress.", MSGBOX_NPC)
+}

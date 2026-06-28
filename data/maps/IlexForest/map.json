@@ -284,8 +284,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(SHROOMISH)",
-      "x": 2,
-      "y": 31,
+      "x": 0,
+      "y": 6,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_UP",
       "movement_range_x": 0,
@@ -297,8 +297,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(SHROOMISH)",
-      "x": 1,
-      "y": 27,
+      "x": 0,
+      "y": 3,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_UP",
       "movement_range_x": 0,
@@ -310,8 +310,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(SHROOMISH)",
-      "x": 3,
-      "y": 23,
+      "x": 0,
+      "y": 0,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -322,10 +322,10 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(VENONAT)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(JOLTIK)",
       "x": 48,
       "y": 12,
-      "elevation": 0,
+      "elevation": 4,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
       "movement_range_y": 0,
@@ -335,10 +335,10 @@
       "flag": "FLAG_NIGHT_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(VENONAT)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(JOLTIK)",
       "x": 51,
       "y": 14,
-      "elevation": 0,
+      "elevation": 4,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
       "movement_range_y": 0,
@@ -375,12 +375,12 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(SHROOMISH)",
-      "x": 45,
-      "y": 24,
+      "x": 46,
+      "y": 22,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 0,
-      "movement_range_y": 0,
+      "movement_range_y": 2,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
@@ -625,20 +625,6 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EventScript_StrengthBoulder",
       "flag": "FLAG_TEMP_14"
-    },
-    {
-      "local_id": "LOCALID_ILEX_LARVESTA",
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(LARVESTA)",
-      "x": 50,
-      "y": 64,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Ilex_Larvesta",
-      "flag": "FLAG_HIDE_LARVESTA"
     }
   ],
   "warp_events": [
@@ -669,6 +655,20 @@
       "elevation": 0,
       "dest_map": "MAP_ILEX_FOREST",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 56,
+      "y": 66,
+      "elevation": 0,
+      "dest_map": "MAP_DEEP_ILEX_FOREST",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 56,
+      "y": 67,
+      "elevation": 0,
+      "dest_map": "MAP_DEEP_ILEX_FOREST",
+      "dest_warp_id": "1"
     }
   ],
   "coord_events": [

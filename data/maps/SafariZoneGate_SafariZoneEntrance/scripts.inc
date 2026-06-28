@@ -40,8 +40,10 @@ SafariZoneGate_SafariZoneEntrance_MeetBaoba::
 	applymovement LOCALID_SAFARIZONEGATE_BAOBA, SafariZoneGate_SafariZoneEntrance_Movement_WalkToPlayer
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkUp1
 	waitmovement LOCALID_SAFARIZONEGATE_BAOBA
+	createfieldmugshot MUGSHOT_GENTLEMAN
 	msgbox SafariZoneGate_SafariZoneEntrance_Text_BaobaWelcome, MSGBOX_DEFAULT
 	closemessage
+	createfieldmugshot MUGSHOT_GENTLEMAN
 	msgbox SafariZoneGate_SafariZoneEntrance_Text_BaobaPokeblocks, MSGBOX_DEFAULT
 	closemessage
 	giveitem ITEM_POKEBLOCK_CASE

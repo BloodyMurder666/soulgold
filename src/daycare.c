@@ -9,6 +9,7 @@
 #include "pokemon_storage_system.h"
 #include "event_data.h"
 #include "random.h"
+#include "replay_options.h"
 #include "main.h"
 #include "egg_hatch.h"
 #include "text.h"
@@ -1112,6 +1113,7 @@ static void _GiveEggFromDaycare(struct DayCare *daycare)
 
     isEgg = TRUE;
     SetMonData(&egg, MON_DATA_IS_EGG, &isEgg);
+    ApplyReplayEasyIVs(&egg);
     gPlayerParty[PARTY_SIZE - 1] = egg;
     CompactPartySlots();
     CalculatePlayerPartyCount();

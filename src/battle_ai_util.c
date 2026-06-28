@@ -67,7 +67,26 @@ static bool32 AI_IsDoubleSpreadMove(enum BattlerId battlerAtk, enum Move move)
 
 bool32 AI_IsBattlerGrounded(enum BattlerId battler)
 {
-    return IsBattlerGrounded(battler);
+    if (Ai_BattlerHasHoldEffect(battler, HOLD_EFFECT_IRON_BALL, gAiLogicData))
+        return TRUE;
+    if (gFieldStatuses & STATUS_FIELD_GRAVITY)
+        return TRUE;
+    if (B_ROOTED_GROUNDING >= GEN_4 && gBattleMons[battler].volatiles.root)
+        return TRUE;
+    if (gBattleMons[battler].volatiles.smackDown)
+        return TRUE;
+    if (gBattleMons[battler].volatiles.telekinesis)
+        return FALSE;
+    if (gBattleMons[battler].volatiles.magnetRise)
+        return FALSE;
+    if (Ai_BattlerHasHoldEffect(battler, HOLD_EFFECT_AIR_BALLOON, gAiLogicData))
+        return FALSE;
+    if (AI_BATTLER_HAS_TRAIT(battler, ABILITY_LEVITATE) || AI_BATTLER_HAS_TRAIT(battler, ABILITY_EELEVATE))
+        return FALSE;
+    if (IS_BATTLER_OF_TYPE(battler, TYPE_FLYING) && !FlagGet(B_FLAG_INVERSE_BATTLE))
+        return FALSE;
+
+    return TRUE;
 }
 
 static bool32 AI_CanBattlerHitBothFoesInTerrain(enum BattlerId battler, enum Move move, enum BattleMoveEffects effect)
@@ -655,7 +674,7 @@ bool32 IsDamageMoveUnusable(struct BattleContext *ctx)
         return TRUE;
 
     // Limited to Lighning Rod and Storm Drain because otherwise the AI would consider Water Absorb, etc...
-    if (!ignoreAbility && (BattlerHasTrait(BATTLE_PARTNER(ctx->battlerDef), ABILITY_LIGHTNING_ROD) || BattlerHasTrait(BATTLE_PARTNER(ctx->battlerDef), ABILITY_STORM_DRAIN)))
+    if (!ignoreAbility && (AI_BATTLER_HAS_TRAIT(BATTLE_PARTNER(ctx->battlerDef), ABILITY_LIGHTNING_ROD) || AI_BATTLER_HAS_TRAIT(BATTLE_PARTNER(ctx->battlerDef), ABILITY_STORM_DRAIN)))
     {
         u32 originalTarget = ctx->battlerDef; // Need to preserve origin target;
         ctx->battlerDef = BATTLE_PARTNER(ctx->battlerDef);
@@ -673,7 +692,7 @@ bool32 IsDamageMoveUnusable(struct BattleContext *ctx)
             return TRUE;
     }
 
-    if (!ignoreAbility && IsMoveDampBanned(ctx->move) && (BattlerHasTrait(ctx->battlerDef, ABILITY_DAMP) || BattlerHasTrait(BATTLE_PARTNER(ctx->battlerDef), ABILITY_DAMP)))
+    if (!ignoreAbility && IsMoveDampBanned(ctx->move) && (AI_BATTLER_HAS_TRAIT(ctx->battlerDef, ABILITY_DAMP) || AI_BATTLER_HAS_TRAIT(BATTLE_PARTNER(ctx->battlerDef), ABILITY_DAMP)))
         return TRUE;
 
     switch (GetMoveEffect(ctx->move))
@@ -726,7 +745,7 @@ bool32 IsAdditionalEffectBlocked(enum BattlerId battlerAtk, enum BattlerId battl
     if (Ai_BattlerHasHoldEffect(battlerDef, HOLD_EFFECT_COVERT_CLOAK, gAiLogicData))
         return TRUE;
 
-    if (BattlerHasTrait(battlerDef, ABILITY_SHIELD_DUST) && !HasMoldBreakerTypeAbility(battlerAtk))
+    if (AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_SHIELD_DUST) && !HasMoldBreakerTypeAbility(battlerAtk))
         return TRUE;
 
     return FALSE;
@@ -814,7 +833,7 @@ static inline void CalcDynamicMoveDamage(struct BattleContext *ctx, u16 *medianD
             maximum *= 5;
         }
     }
-    else if ((BattlerHasTrait(ctx->battlerAtk, ABILITY_PARENTAL_BOND) || BattlerHasTrait(ctx->battlerAtk, ABILITY_DUAL_STRIKE))
+    else if ((AI_BATTLER_HAS_TRAIT(ctx->battlerAtk, ABILITY_PARENTAL_BOND) || AI_BATTLER_HAS_TRAIT(ctx->battlerAtk, ABILITY_DUAL_STRIKE))
           && strikeCount == 0
           && !AI_IsDoubleSpreadMove(ctx->battlerAtk, ctx->move))
     {
@@ -902,7 +921,10 @@ struct SimulatedDamage AI_CalcDamage(enum Move move, enum BattlerId battlerAtk, 
 
     if (moveEffect == EFFECT_HIT_ENEMY_HEAL_ALLY
      && battlerDef == BATTLE_PARTNER(battlerAtk))
+    {
+        gAiLogicData->aiCalcInProgress = FALSE;
         return simDamage;
+    }
 
     if (moveEffect == EFFECT_NATURE_POWER)
         move = GetNaturePowerMove();
@@ -941,14 +963,15 @@ struct SimulatedDamage AI_CalcDamage(enum Move move, enum BattlerId battlerAtk, 
     ctx.updateFlags = FALSE;
     ctx.weather = weather;
     ctx.fixedBasePower = 0;
-    ctx.isCrit = ShouldCalcCritDamage(&ctx);
     ctx.typeEffectivenessModifier = CalcTypeEffectivenessMultiplier(&ctx);
+    *typeEffectiveness = ctx.typeEffectivenessModifier;
 
     u32 movePower = GetMovePower(move);
 
     if (movePower && !IsDamageMoveUnusable(&ctx))
     {
         enum Type types[3];
+        ctx.isCrit = ShouldCalcCritDamage(&ctx);
         AI_StoreBattlerTypes(battlerAtk, types);
         ProteanTryChangeType(battlerAtk, move, ctx.moveType);
 
@@ -994,15 +1017,6 @@ struct SimulatedDamage AI_CalcDamage(enum Move move, enum BattlerId battlerAtk, 
 
         AI_RestoreBattlerTypes(battlerAtk, types);
     }
-    else
-    {
-        simDamage.minimum = 0;
-        simDamage.median = 0;
-        simDamage.maximum = 0;
-    }
-
-    // convert multiper to AI_EFFECTIVENESS_xX
-    *typeEffectiveness = ctx.typeEffectivenessModifier;
 
     // Undo temporary settings
     gBattleStruct->dynamicMoveType = 0;
@@ -1867,7 +1881,7 @@ bool32 DoesBattlerIgnoreAbilityChecks(enum BattlerId battlerAtk, enum Move move)
     if (gAiThinkingStruct->aiFlags[battlerAtk] & AI_FLAG_NEGATE_UNAWARE)
         return FALSE;   // AI handicap flag: doesn't understand ability suppression concept
 
-    if (BattlerHasTrait(battlerAtk, ABILITY_MYCELIUM_MIGHT) && IsBattleMoveStatus(move))
+    if (AI_BATTLER_HAS_TRAIT(battlerAtk, ABILITY_MYCELIUM_MIGHT) && IsBattleMoveStatus(move))
         return TRUE;
 
     if (HasMoldBreakerTypeAbility(battlerAtk) || MoveIgnoresTargetAbility(move))
@@ -1899,20 +1913,20 @@ u32 AI_GetSwitchinWeather(enum BattlerId battler)
     // Forced weather behaviour
     if (!AI_WeatherHasEffect())
         return B_WEATHER_NONE;
-    if ((BattlerHasTrait(battler, ABILITY_CLOUD_NINE) || BattlerHasTrait(battler, ABILITY_CLOUD_NINE))
-     || (BattlerHasTrait(battler, ABILITY_AIR_LOCK)))
+    if ((AI_BATTLER_HAS_TRAIT(battler, ABILITY_CLOUD_NINE) || AI_BATTLER_HAS_TRAIT(battler, ABILITY_CLOUD_NINE))
+     || (AI_BATTLER_HAS_TRAIT(battler, ABILITY_AIR_LOCK)))
         return B_WEATHER_NONE;
     if (gBattleWeather & B_WEATHER_PRIMAL_ANY)
         return gBattleWeather;
 
     // Switchin will introduce new weather
-    if  (BattlerHasTrait(battler, ABILITY_DRIZZLE))
+    if  (AI_BATTLER_HAS_TRAIT(battler, ABILITY_DRIZZLE))
         return B_WEATHER_RAIN_NORMAL;
-    if (BattlerHasTrait(battler, ABILITY_DROUGHT))
+    if (AI_BATTLER_HAS_TRAIT(battler, ABILITY_DROUGHT))
         return B_WEATHER_SUN_NORMAL;
-    if (BattlerHasTrait(battler, ABILITY_SAND_STREAM))
+    if (AI_BATTLER_HAS_TRAIT(battler, ABILITY_SAND_STREAM))
         return B_WEATHER_SANDSTORM;
-    if (BattlerHasTrait(battler, ABILITY_SNOW_WARNING))
+    if (AI_BATTLER_HAS_TRAIT(battler, ABILITY_SNOW_WARNING))
         return GetConfig(B_SNOW_WARNING) >= GEN_9 ? B_WEATHER_SNOW : B_WEATHER_HAIL;
 
     return gBattleWeather;
@@ -3231,7 +3245,7 @@ bool32 IsTwoTurnNotSemiInvulnerableMove(enum BattlerId battlerAtk, enum Move mov
     case EFFECT_SOLAR_BEAM:
     case EFFECT_TWO_TURNS_ATTACK:
         return !(Ai_BattlerHasHoldEffect(battlerAtk, HOLD_EFFECT_POWER_HERB, gAiLogicData)
-              || (AI_GetWeather() & GetMoveTwoTurnAttackWeather(move)));
+              || (GetBattlerWeather(battlerAtk, AI_GetWeather()) & GetMoveTwoTurnAttackWeather(move)));
     default:
         return FALSE;
     }
@@ -5794,6 +5808,7 @@ bool32 HasMoxieTypeAbility(u32 battler)
 
     if ((SearchTraits(battlerTraits, ABILITY_MOXIE))
      || (SearchTraits(battlerTraits, ABILITY_BEAST_BOOST))
+     || (SearchTraits(battlerTraits, ABILITY_EELEVATE))
      || (SearchTraits(battlerTraits, ABILITY_CONSUME))
      || (SearchTraits(battlerTraits, ABILITY_CHILLING_NEIGH))
      || (SearchTraits(battlerTraits, ABILITY_AS_ONE_ICE_RIDER))

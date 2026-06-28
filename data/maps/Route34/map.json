@@ -227,7 +227,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MANKEY)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MAKUHITA)",
       "x": 54,
       "y": 52,
       "elevation": 0,
@@ -253,7 +253,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(DROWZEE)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(PONYTA)",
       "x": 53,
       "y": 54,
       "elevation": 0,
@@ -266,7 +266,7 @@
       "flag": "FLAG_NIGHT_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(DROWZEE)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(PONYTA)",
       "x": 50,
       "y": 51,
       "elevation": 0,
@@ -357,7 +357,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MANKEY)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MAKUHITA)",
       "x": 53,
       "y": 52,
       "elevation": 0,

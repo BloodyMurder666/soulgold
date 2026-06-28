@@ -327,8 +327,11 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_Litten,
         .frontPicSize = MON_COORDS_SIZE(48, 40),
         .frontPicYOffset = 12,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
-        .frontAnimId = ANIM_H_STRETCH,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 1),
+		),
+        .frontAnimId = ANIM_V_JUMPS_H_JUMPS,
         .backPic = gMonBackPic_Litten,
         .backPicSize = MON_COORDS_SIZE(64, 48),
         .backPicYOffset = 11,
@@ -394,7 +397,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_Torracat,
         .frontPicSize = MON_COORDS_SIZE(56, 64),
         .frontPicYOffset = 2,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 1),
+		),
         .frontAnimId = ANIM_V_STRETCH,
         .backPic = gMonBackPic_Torracat,
         .backPicSize = MON_COORDS_SIZE(64, 56),
@@ -460,8 +466,11 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_Incineroar,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
-        .frontAnimId = ANIM_V_SHAKE,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 1),
+		),
+        .frontAnimId = ANIM_V_STRETCH,
         .backPic = gMonBackPic_Incineroar,
         .backPicSize = MON_COORDS_SIZE(64, 56),
         .backPicYOffset = 4,
@@ -527,7 +536,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_Popplio,
         .frontPicSize = MON_COORDS_SIZE(40, 48),
         .frontPicYOffset = 11,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 1),
+		),
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         .backPic = gMonBackPic_Popplio,
         .backPicSize = MON_COORDS_SIZE(48, 48),
@@ -594,8 +606,13 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_Brionne,
         .frontPicSize = MON_COORDS_SIZE(48, 56),
         .frontPicYOffset = 6,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
-        .frontAnimId = ANIM_SHRINK_GROW,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 20),
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 1),
+		),
+        .frontAnimId = ANIM_SWING_CONCAVE_FAST,
         .backPic = gMonBackPic_Brionne,
         .backPicSize = MON_COORDS_SIZE(48, 56),
         .backPicYOffset = 9,
@@ -660,7 +677,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_Primarina,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 20),
+            ANIMCMD_FRAME(1, 20),
+            ANIMCMD_FRAME(1, 60),
+            ANIMCMD_FRAME(0, 1),
+		),
         .frontAnimId = ANIM_SHAKE_GLOW_BLUE_SLOW,
         .backPic = gMonBackPic_Primarina,
         .backPicSize = MON_COORDS_SIZE(64, 64),
@@ -1004,8 +1026,11 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_Yungoos,
         .frontPicSize = MON_COORDS_SIZE(64, 40),
         .frontPicYOffset = 12,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
-        .frontAnimId = ANIM_V_STRETCH,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 1),
+		),
+        .frontAnimId = ANIM_GROW_VIBRATE,
         .backPic = gMonBackPic_Yungoos,
         .backPicSize = MON_COORDS_SIZE(48, 40),
         .backPicYOffset = 14,
@@ -1068,8 +1093,8 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_Gumshoos,
         .frontPicSize = MON_COORDS_SIZE(56, 56),
         .frontPicYOffset = 5,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
-        .frontAnimId = ANIM_H_SHAKE,
+        .frontAnimFrames = sAnims_Gumshoos,
+        .frontAnimId = ANIM_H_SHAKE_SLOW,
         .backPic = gMonBackPic_Gumshoos,
         .backPicSize = MON_COORDS_SIZE(48, 56),
         .backPicYOffset = 7,
@@ -1131,8 +1156,8 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_Gumshoos,
         .frontPicSize = MON_COORDS_SIZE(56, 56),
         .frontPicYOffset = 5,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
-        .frontAnimId = ANIM_H_SHAKE,
+        .frontAnimFrames = sAnims_Gumshoos,
+        .frontAnimId = ANIM_H_SHAKE_SLOW,
         .backPic = gMonBackPic_Gumshoos,
         .backPicSize = MON_COORDS_SIZE(48, 56),
         .backPicYOffset = 7,
@@ -1480,8 +1505,11 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_Crabrawler,
         .frontPicSize = MON_COORDS_SIZE(64, 56),
         .frontPicYOffset = 7,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
-        .frontAnimId = ANIM_V_SHAKE,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 1),
+        ),
+        .frontAnimId = ANIM_TIP_MOVE_FORWARD,
         .backPic = gMonBackPic_Crabrawler,
         .backPicSize = MON_COORDS_SIZE(64, 48),
         .backPicYOffset = 9,
@@ -1549,8 +1577,13 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_Crabominable,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
-        .frontAnimId = ANIM_SHRINK_GROW_VIBRATE_FAST,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 15),
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 1),
+        ),
+        .frontAnimId = ANIM_V_SHAKE_TWICE,
         .backPic = gMonBackPic_Crabominable,
         .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicYOffset = 3,
@@ -1679,8 +1712,13 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_OricorioBaile,
         .frontPicSize = MON_COORDS_SIZE(56, 64),
         .frontPicYOffset = 2,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
-        .frontAnimId = ANIM_CONCAVE_ARC_SMALL,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 30),
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 1),
+        ),
+        .frontAnimId = ANIM_GROW_IN_STAGES,
         .backPic = gMonBackPic_OricorioBaile,
         .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicYOffset = 0,
@@ -1748,8 +1786,15 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_OricorioPomPom,
         .frontPicSize = MON_COORDS_SIZE(56, 56),
         .frontPicYOffset = 5,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 15),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 15),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 1),
+        ),
+        .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL,
         .backPic = gMonBackPic_OricorioPomPom,
         .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicYOffset = 0,
@@ -1817,8 +1862,15 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_OricorioPau,
         .frontPicSize = MON_COORDS_SIZE(56, 64),
         .frontPicYOffset = 3,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 30),
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 15),
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 1),
+        ),
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
         .backPic = gMonBackPic_OricorioPau,
         .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicYOffset = 0,
@@ -1886,8 +1938,11 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_OricorioSensu,
         .frontPicSize = MON_COORDS_SIZE(64, 56),
         .frontPicYOffset = 4,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 1),
+        ),
+        .frontAnimId = ANIM_H_STRETCH,
         .backPic = gMonBackPic_OricorioSensu,
         .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicYOffset = 0,
@@ -2529,7 +2584,14 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_WishiwashiSolo,
         .frontPicSize = MON_COORDS_SIZE(40, 24),
         .frontPicYOffset = 20,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 30),
+            ANIMCMD_FRAME(1, 20),
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 1),
+		),
         .frontAnimId = ANIM_V_SLIDE_WOBBLE_SMALL,
         .enemyMonElevation = 12,
         .backPic = gMonBackPic_WishiwashiSolo,
@@ -2660,8 +2722,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_Mareanie,
         .frontPicSize = MON_COORDS_SIZE(48, 40),
         .frontPicYOffset = 14,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
-        .frontAnimId = ANIM_GLOW_PURPLE,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 20),
+            ANIMCMD_FRAME(0, 1),
+		),
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backPic = gMonBackPic_Mareanie,
         .backPicSize = MON_COORDS_SIZE(64, 48),
         .backPicYOffset = 15,
@@ -2728,7 +2794,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_Toxapex,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 2,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 1),
+		),
         .frontAnimId = ANIM_SHAKE_GLOW_PURPLE_SLOW,
         .backPic = gMonBackPic_Toxapex,
         .backPicSize = MON_COORDS_SIZE(64, 56),
@@ -2796,8 +2865,11 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_Mudbray,
         .frontPicSize = MON_COORDS_SIZE(48, 56),
         .frontPicYOffset = 7,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
-        .frontAnimId = ANIM_V_SHAKE,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 47),
+            ANIMCMD_FRAME(0, 1),
+        ),
+        .frontAnimId = ANIM_V_STRETCH,
         .backPic = gMonBackPic_Mudbray,
         .backPicSize = MON_COORDS_SIZE(64, 56),
         .backPicYOffset = 8,
@@ -2864,7 +2936,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_Mudsdale,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 15),
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 1),
+        ),
         .frontAnimId = ANIM_V_SHAKE_TWICE,
         .backPic = gMonBackPic_Mudsdale,
         .backPicSize = MON_COORDS_SIZE(64, 56),
@@ -4772,7 +4849,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
 #endif //P_FAMILY_TYPE_NULL
 
 #if P_FAMILY_MINIOR
-#define MINIOR_MISC_INFO(color, innate1, innate2, innate3)                   \
+#define MINIOR_MISC_INFO(color)                                             \
         .types = MON_TYPES(TYPE_ROCK, TYPE_FLYING),                         \
         .catchRate = 30,                                                    \
         .expYield = 154,                                                    \
@@ -4784,7 +4861,6 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .growthRate = GROWTH_MEDIUM_SLOW,                                   \
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),                     \
         .abilities = { ABILITY_SHIELDS_DOWN, ABILITY_NONE, ABILITY_NONE },  \
-        .innates = { innate1, innate2, innate3 },                            \
         .bodyColor = color,                                                 \
         .noFlip = TRUE,                                                     \
         .speciesName = _("Minior"),                                         \
@@ -4801,77 +4877,83 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .teachableLearnset = sMiniorTeachableLearnset,                      \
         .formSpeciesIdTable = sMiniorFormSpeciesIdTable
 
-#define MINIOR_METEOR_SPECIES_INFO(Form, heldItem)              \
-    {                                                           \
-        .baseHP        = 60,                                    \
-        .baseAttack    = 60,                                    \
-        .baseDefense   = 100,                                   \
-        .baseSpeed     = 60,                                    \
-        .baseSpAttack  = 60,                                    \
-        .baseSpDefense = 100,                                   \
-        .itemCommon = heldItem,                                 \
-        .weight = 400,                                          \
-        .description = gMiniorMeteorPokedexText,                \
-        .frontPic = gMonFrontPic_MiniorMeteor,                  \
-        .frontPicSize = MON_COORDS_SIZE(48, 40),                \
-        .frontPicYOffset = 14,                                  \
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,       \
-        .frontAnimId = ANIM_TUMBLING_FRONT_FLIP_TWICE,          \
-        .enemyMonElevation = 17,                                \
-        .backPic = gMonBackPic_MiniorMeteor,                    \
-        .backPicSize = MON_COORDS_SIZE(56, 40),                 \
-        .backPicYOffset = 14,                                   \
-        /*.backAnimId = BACK_ANIM_NONE,*/                       \
-        .palette = gMonPalette_MiniorMeteor,                    \
-        .shinyPalette = gMonShinyPalette_MiniorMeteor,          \
-        .iconSprite = gMonIcon_MiniorMeteor,                    \
-        .iconPalette = gMonIconPalette_MiniorMeteor,            \
-        .shinyIconPalette = gMonShinyIconPalette_MiniorMeteor,  \
-        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,                 \
-        SHADOW(0, 14, SHADOW_SIZE_S)                            \
-        OVERWORLD(                                              \
-            sPicTable_MiniorMeteor,                             \
-            SIZE_32x32,                                         \
-            SHADOW_SIZE_M,                                      \
-            TRACKS_FOOT,                                        \
-            sAnimTable_Following,                               \
-            gOverworldPalette_MiniorMeteor,                     \
-            gShinyOverworldPalette_MiniorMeteor                 \
-        )                                                       \
-        .formChangeTable = sMinior ##Form##FormChangeTable,     \
-        MINIOR_MISC_INFO(BODY_COLOR_BROWN, ABILITY_BATTLE_ARMOR, ABILITY_SOLID_ROCK, ABILITY_STAMINA),                     \
+#define MINIOR_METEOR_SPECIES_INFO(Form, heldItem)          \
+    {                                                       \
+        .baseHP        = 60,                                \
+        .baseAttack    = 60,                                \
+        .baseDefense   = 100,                               \
+        .baseSpeed     = 60,                                \
+        .baseSpAttack  = 60,                                \
+        .baseSpDefense = 100,                               \
+        .itemCommon = heldItem,                             \
+        .weight = 400,                                      \
+        .description = gMiniorMeteorPokedexText,            \
+        .frontPic = gMonFrontPic_MiniorMeteor,              \
+        .frontPicSize = MON_COORDS_SIZE(48, 40),            \
+        .frontPicYOffset = 14,                              \
+        .frontAnimFrames = ANIM_FRAMES(                     \
+            ANIMCMD_FRAME(0, 10),                           \
+            ANIMCMD_FRAME(1, 30),                           \
+            ANIMCMD_FRAME(0, 1),                            \
+        ),                                                  \
+        .frontAnimId = ANIM_BACK_FLIP_BIG,                  \
+        .enemyMonElevation = 17,                            \
+        .backPic = gMonBackPic_MiniorMeteor,                \
+        .backPicSize = MON_COORDS_SIZE(56, 40),             \
+        .backPicYOffset = 11,                               \
+        /*.backAnimId = BACK_ANIM_NONE,*/                   \
+        .palette = gMonPalette_MiniorMeteor,                \
+        .shinyPalette = gMonShinyPalette_MiniorMeteor,      \
+        .iconSprite = gMonIcon_MiniorMeteor,                \
+        .iconPalIndex = 0,                                  \
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,             \
+        SHADOW(0, 14, SHADOW_SIZE_S)                        \
+        OVERWORLD(                                          \
+            sPicTable_MiniorMeteor,                         \
+            SIZE_32x32,                                     \
+            SHADOW_SIZE_M,                                  \
+            TRACKS_FOOT,                                    \
+            sAnimTable_Following,                           \
+            gOverworldPalette_MiniorMeteor,                 \
+            gShinyOverworldPalette_MiniorMeteor             \
+        )                                                   \
+        .formChangeTable = sMinior ##Form##FormChangeTable, \
+        MINIOR_MISC_INFO(BODY_COLOR_BROWN),                 \
     }
 
-#define MINIOR_CORE_SPECIES_INFO(Form, color, heldItem)             \
-    {                                                               \
-        .baseHP        = 60,                                        \
-        .baseAttack    = 100,                                       \
-        .baseDefense   = 60,                                        \
-        .baseSpeed     = 120,                                       \
-        .baseSpAttack  = 100,                                       \
-        .baseSpDefense = 60,                                        \
-        .itemCommon = heldItem,                                     \
-        .weight = 3,                                                \
-        .description = gMiniorCorePokedexText,                      \
-        .frontPic = gMonFrontPic_MiniorCore,                        \
-        .frontPicSize = MON_COORDS_SIZE(48, 40),                    \
-        .frontPicYOffset = 16,                                      \
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,           \
-        .frontAnimId = ANIM_TUMBLING_FRONT_FLIP_TWICE,              \
-        .enemyMonElevation = 17,                                    \
-        .backPic = gMonBackPic_MiniorCore,                          \
-        .backPicSize = MON_COORDS_SIZE(56, 40),                     \
-        .backPicYOffset = 15,                                       \
-        /*.backAnimId = BACK_ANIM_NONE,*/                           \
-        .palette = gMonPalette_MiniorCore##Form,                    \
-        .shinyPalette = gMonShinyPalette_MiniorCore,                \
-        .iconSprite = gMonIcon_MiniorCore##Form,                    \
-        .iconPalette = gMonIconPalette_MiniorCore##Form,            \
-        .shinyIconPalette = gMonShinyIconPalette_MiniorCore##Form,  \
-        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,                     \
-        SHADOW(-2, 12, SHADOW_SIZE_S)                               \
-        .formChangeTable = sMinior ##Form##FormChangeTable,         \
-        MINIOR_MISC_INFO(color, ABILITY_ADRENALINE, ABILITY_ROCK_HEAD, ABILITY_LEVITATE),                                    \
+#define MINIOR_CORE_SPECIES_INFO(Form, color, iconPal, heldItem)\
+    {                                                           \
+        .baseHP        = 60,                                    \
+        .baseAttack    = 100,                                   \
+        .baseDefense   = 60,                                    \
+        .baseSpeed     = 120,                                   \
+        .baseSpAttack  = 100,                                   \
+        .baseSpDefense = 60,                                    \
+        .itemCommon = heldItem,                                 \
+        .weight = 3,                                            \
+        .description = gMiniorCorePokedexText,                  \
+        .frontPic = gMonFrontPic_MiniorCore,                    \
+        .frontPicSize = MON_COORDS_SIZE(48, 40),                \
+        .frontPicYOffset = 16,                                  \
+        .frontAnimFrames = ANIM_FRAMES(                         \
+            ANIMCMD_FRAME(0, 30),                               \
+            ANIMCMD_FRAME(1, 50),                               \
+            ANIMCMD_FRAME(0, 1),                                \
+        ),                                                      \
+        .frontAnimId = ANIM_TUMBLING_FRONT_FLIP_TWICE,          \
+        .enemyMonElevation = 17,                                \
+        .backPic = gMonBackPic_MiniorCore,                      \
+        .backPicSize = MON_COORDS_SIZE(56, 40),                 \
+        .backPicYOffset = 13,                                   \
+        /*.backAnimId = BACK_ANIM_NONE,*/                       \
+        .palette = gMonPalette_MiniorCore##Form,                \
+        .shinyPalette = gMonShinyPalette_MiniorCore,            \
+        .iconSprite = gMonIcon_MiniorCore##Form,                \
+        .iconPalIndex = iconPal,                                \
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,                 \
+        SHADOW(-2, 12, SHADOW_SIZE_S)                           \
+        .formChangeTable = sMinior ##Form##FormChangeTable,     \
+        MINIOR_MISC_INFO(color),                                \
     }
 
     [SPECIES_MINIOR_METEOR_RED]    = MINIOR_METEOR_SPECIES_INFO(Red,    ITEM_HARD_STONE),
@@ -4881,13 +4963,13 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
     [SPECIES_MINIOR_METEOR_BLUE]   = MINIOR_METEOR_SPECIES_INFO(Blue,   ITEM_HARD_STONE),
     [SPECIES_MINIOR_METEOR_INDIGO] = MINIOR_METEOR_SPECIES_INFO(Indigo, ITEM_HARD_STONE),
     [SPECIES_MINIOR_METEOR_VIOLET] = MINIOR_METEOR_SPECIES_INFO(Violet, ITEM_FLOAT_STONE),
-    [SPECIES_MINIOR_CORE_RED]      = MINIOR_CORE_SPECIES_INFO(Red,    BODY_COLOR_RED,    ITEM_HARD_STONE),
-    [SPECIES_MINIOR_CORE_ORANGE]   = MINIOR_CORE_SPECIES_INFO(Orange, BODY_COLOR_RED,    ITEM_HARD_STONE),
-    [SPECIES_MINIOR_CORE_YELLOW]   = MINIOR_CORE_SPECIES_INFO(Yellow, BODY_COLOR_YELLOW, ITEM_FLOAT_STONE),
-    [SPECIES_MINIOR_CORE_GREEN]    = MINIOR_CORE_SPECIES_INFO(Green,  BODY_COLOR_GREEN,  ITEM_FLOAT_STONE),
-    [SPECIES_MINIOR_CORE_BLUE]     = MINIOR_CORE_SPECIES_INFO(Blue,   BODY_COLOR_BLUE,   ITEM_HARD_STONE),
-    [SPECIES_MINIOR_CORE_INDIGO]   = MINIOR_CORE_SPECIES_INFO(Indigo, BODY_COLOR_BLUE,   ITEM_HARD_STONE),
-    [SPECIES_MINIOR_CORE_VIOLET]   = MINIOR_CORE_SPECIES_INFO(Violet, BODY_COLOR_PURPLE, ITEM_FLOAT_STONE),
+    [SPECIES_MINIOR_CORE_RED]      = MINIOR_CORE_SPECIES_INFO(Red,    BODY_COLOR_RED,    0, ITEM_HARD_STONE),
+    [SPECIES_MINIOR_CORE_ORANGE]   = MINIOR_CORE_SPECIES_INFO(Orange, BODY_COLOR_RED,    0, ITEM_HARD_STONE),
+    [SPECIES_MINIOR_CORE_YELLOW]   = MINIOR_CORE_SPECIES_INFO(Yellow, BODY_COLOR_YELLOW, 0, ITEM_FLOAT_STONE),
+    [SPECIES_MINIOR_CORE_GREEN]    = MINIOR_CORE_SPECIES_INFO(Green,  BODY_COLOR_GREEN,  1, ITEM_FLOAT_STONE),
+    [SPECIES_MINIOR_CORE_BLUE]     = MINIOR_CORE_SPECIES_INFO(Blue,   BODY_COLOR_BLUE,   0, ITEM_HARD_STONE),
+    [SPECIES_MINIOR_CORE_INDIGO]   = MINIOR_CORE_SPECIES_INFO(Indigo, BODY_COLOR_BLUE,   0, ITEM_HARD_STONE),
+    [SPECIES_MINIOR_CORE_VIOLET]   = MINIOR_CORE_SPECIES_INFO(Violet, BODY_COLOR_PURPLE, 2, ITEM_FLOAT_STONE),
 #endif //P_FAMILY_MINIOR
 
 #if P_FAMILY_KOMALA
@@ -5199,8 +5281,8 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_MimikyuDisguised,
         .frontPicSize = MON_COORDS_SIZE(48, 40),
         .frontPicYOffset = 12,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
-        .frontAnimId = ANIM_DEEP_V_SQUISH_AND_BOUNCE,
+        .frontAnimFrames = sAnims_MimikyuDisguised,
+        .frontAnimId = ANIM_SWING_CONCAVE_FAST_SHORT,
         .backPic = gMonBackPic_MimikyuDisguised,
         .backPicSize = MON_COORDS_SIZE(56, 56),
         .backPicYOffset = 7,
@@ -5320,7 +5402,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_MimikyuDisguised,
         .frontPicSize = MON_COORDS_SIZE(48, 40),
         .frontPicYOffset = 12,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        .frontAnimFrames = sAnims_MimikyuDisguised,
         .frontAnimId = ANIM_DEEP_V_SQUISH_AND_BOUNCE,
         .backPic = gMonBackPic_MimikyuDisguised,
         .backPicSize = MON_COORDS_SIZE(56, 56),
@@ -6449,8 +6531,11 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_Solgaleo,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
-        .frontAnimId = ANIM_GROW_VIBRATE,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 57),
+            ANIMCMD_FRAME(0, 1),
+        ),
+        .frontAnimId = ANIM_SHRINK_GROW_VIBRATE_SLOW,
         .backPic = gMonBackPic_Solgaleo,
         .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicYOffset = 3,
@@ -6937,8 +7022,13 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_Kartana,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 2,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
-        .frontAnimId = ANIM_H_VIBRATE,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 30),
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 1),
+        ),
+        .frontAnimId = ANIM_SWING_CONVEX_FAST,
         .enemyMonElevation = 3,
         .backPic = gMonBackPic_Kartana,
         .backPicSize = MON_COORDS_SIZE(64, 48),
@@ -7718,8 +7808,11 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_Poipole,
         .frontPicSize = MON_COORDS_SIZE(40, 56),
         .frontPicYOffset = 8,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
-        .frontAnimId = ANIM_SHAKE_GLOW_PURPLE_SLOW,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 40),
+            ANIMCMD_FRAME(0, 1),
+        ),
+        .frontAnimId = ANIM_CIRCLE_C_CLOCKWISE_SLOW,
         .enemyMonElevation = 9,
         .backPic = gMonBackPic_Poipole,
         .backPicSize = MON_COORDS_SIZE(48, 56),
@@ -7786,8 +7879,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_Naganadel,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 1,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
-        .frontAnimId = ANIM_TRIANGLE_DOWN_TWICE,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 5),
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 1),
+        ),
+        .frontAnimId = ANIM_BACK_AND_LUNGE,
         .enemyMonElevation = 7,
         .backPic = gMonBackPic_Naganadel,
         .backPicSize = MON_COORDS_SIZE(64, 56),
@@ -8128,8 +8225,11 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_Meltan,
         .frontPicSize = MON_COORDS_SIZE(32, 48),
         .frontPicYOffset = 11,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
-        .frontAnimId = ANIM_GROW_STUTTER_SLOW,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 1),
+        ),
+        .frontAnimId = ANIM_GROW_VIBRATE,
         .backPic = gMonBackPic_Meltan,
         .backPicSize = MON_COORDS_SIZE(40, 40),
         .backPicYOffset = 12,
@@ -8195,7 +8295,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .frontPic = gMonFrontPic_Melmetal,
         .frontPicSize = MON_COORDS_SIZE(64, 56),
         .frontPicYOffset = 4,
-        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 1),
+        ),
         .frontAnimId = ANIM_GROW_VIBRATE,
         .backPic = gMonBackPic_Melmetal,
         .backPicSize = MON_COORDS_SIZE(64, 40),

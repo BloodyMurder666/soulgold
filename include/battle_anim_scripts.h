@@ -180,6 +180,7 @@ extern const u8 gBattleAnimMove_Curse[];
 extern const u8 gBattleAnimMove_Flail[];
 extern const u8 gBattleAnimMove_Conversion2[];
 extern const u8 gBattleAnimMove_Aeroblast[];
+extern const u8 gBattleAnimMove_DarkAero[];
 extern const u8 gBattleAnimMove_CottonSpore[];
 extern const u8 gBattleAnimMove_Reversal[];
 extern const u8 gBattleAnimMove_Spite[];

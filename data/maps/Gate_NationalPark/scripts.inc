@@ -237,7 +237,7 @@ Route35NationalParkGate_Text_OfficerAskToUseFirstMon:
 	.string "If you have more than one Pokémon,\n"
 	.string "you'll have to use the\l"
 	.string "first Pokémon in your party.\p"
-	.string "Is that Ok with you?$"
+	.string "Is that OK with you?$"
 
 Route35NationalParkGate_Text_OfficerHoldYourMon:
 	.string "Fine, we'll hold your other Pokémon\n"

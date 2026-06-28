@@ -162,11 +162,14 @@ AzaleaTown_EventScript_SilverTriggerTop::
 	applymovement LOCALID_AZALEA_TOWN_SILVER, AzaleaTown_Movement_Silver_EnterTop
 	waitmovement 0
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
+	createfieldmugshot MUGSHOT_SILVER
 	msgbox AzaleaTown_Text_RivalBefore, MSGBOX_DEFAULT
 	closemessage
 	call_if_eq VAR_STARTER_MON, 0, AzaleaTown_Silver_Battle_Cyndaquil
 	call_if_eq VAR_STARTER_MON, 1, AzaleaTown_Silver_Battle_Totodile
 	call_if_eq VAR_STARTER_MON, 2, AzaleaTown_Silver_Battle_Chikorita
+	playbgm MUS_HG_RIVAL_EXIT, TRUE
+	createfieldmugshot MUGSHOT_SILVER
 	msgbox AzaleaTown_Text_RivalAfter, MSGBOX_DEFAULT
 	closemessage
 	applymovement OBJ_EVENT_ID_PLAYER, AzaleaTown_Movement_Player_LeaveTop
@@ -177,6 +180,7 @@ AzaleaTown_EventScript_SilverTriggerTop::
 	setflag FLAG_HIDE_AZALEA_TOWN_SILVER
 	removeobject LOCALID_AZALEA_TOWN_SILVER
 	setvar VAR_AZALEA_TOWN_STATE, 6
+	savebgm MUS_DUMMY
 	fadedefaultbgm
 	release
 	end
@@ -189,12 +193,14 @@ AzaleaTown_EventScript_SilverTriggerBot::
 	applymovement LOCALID_AZALEA_TOWN_SILVER, AzaleaTown_Movement_Silver_EnterBot
 	waitmovement 0
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
+	createfieldmugshot MUGSHOT_SILVER
 	msgbox AzaleaTown_Text_RivalBefore, MSGBOX_DEFAULT
 	closemessage
 	call_if_eq VAR_STARTER_MON, 0, AzaleaTown_Silver_Battle_Cyndaquil
 	call_if_eq VAR_STARTER_MON, 1, AzaleaTown_Silver_Battle_Totodile
 	call_if_eq VAR_STARTER_MON, 2, AzaleaTown_Silver_Battle_Chikorita
 	playbgm MUS_HG_RIVAL_EXIT, TRUE
+	createfieldmugshot MUGSHOT_SILVER
 	msgbox AzaleaTown_Text_RivalAfter, MSGBOX_DEFAULT
 	closemessage
 	applymovement OBJ_EVENT_ID_PLAYER, AzaleaTown_Movement_Player_LeaveBot
@@ -205,6 +211,7 @@ AzaleaTown_EventScript_SilverTriggerBot::
 	setflag FLAG_HIDE_AZALEA_TOWN_SILVER
 	removeobject LOCALID_AZALEA_TOWN_SILVER
 	setvar VAR_AZALEA_TOWN_STATE, 6
+	savebgm MUS_DUMMY
 	fadedefaultbgm
 	release
 	end

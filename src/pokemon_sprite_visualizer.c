@@ -47,7 +47,7 @@ extern const struct BattleEnvironment gBattleEnvironmentInfo[BATTLE_ENVIRONMENT_
 extern const struct CompressedSpriteSheet gSpriteSheet_EnemyShadow;
 extern const struct CompressedSpriteSheet gSpriteSheet_EnemyShadowsSized;
 extern const struct SpriteTemplate gSpriteTemplate_EnemyShadow;
-extern const struct SpritePalette sSpritePalettes_HealthBoxHealthBar[2];
+extern const struct SpritePalette sSpritePalettes_HealthBoxHealthBar[];
 extern const struct UCoords8 sBattlerCoords[][MAX_BATTLERS_COUNT] ;
 static const u16 sBgColor[] = {RGB_WHITE};
 
@@ -964,12 +964,19 @@ static void LoadAndCreateEnemyShadowSpriteCustom(struct PokemonSpriteVisualizer 
     }
 }
 
+static void FillTextAreaWhite(void)
+{
+    CpuFill32(0x11111111, (void *)(BG_CHAR_ADDR(BACKGROUND_1_CHAR_BASE) + TILE_OFFSET_4BPP(1)), TILE_SIZE_4BPP);
+    CpuFill32(0xF001F001, (void *)(BG_SCREEN_ADDR(BACKGROUND_1_MAP_BASE) + sizeof(u16) * 32 * TEXT_AREA_Y), sizeof(u16) * 32 * TEXT_AREA_HEIGHT);
+}
+
 //Battle background functions
 static void LoadBattleBg(enum BattleEnvironments battleEnvironment)
 {
     DecompressDataWithHeaderVram(gBattleEnvironmentInfo[battleEnvironment].background.tileset, (void *)(BG_CHAR_ADDR(BACKGROUND_3_CHAR_BASE)));
     DecompressDataWithHeaderVram(gBattleEnvironmentInfo[battleEnvironment].background.tilemap, (void *)(BG_SCREEN_ADDR(BACKGROUND_3_MAP_BASE)));
     LoadPalette(gBattleEnvironmentInfo[battleEnvironment].palette, BG_PLTT_ID(2), 3 * PLTT_SIZE_4BPP);
+    FillTextAreaWhite();
 }
 
 static void PrintBattleBgName(u8 battleEnvironment)
@@ -1004,9 +1011,7 @@ static void LoadMoveBackground(u8 moveBackground)
     DecompressDataWithHeaderVram(gBattleAnimBackgroundTable[moveBackground].tilemap, (void *)BG_SCREEN_ADDR(BACKGROUND_3_MAP_BASE));
     DecompressDataWithHeaderVram(gBattleAnimBackgroundTable[moveBackground].image, (void *)BG_CHAR_ADDR(BACKGROUND_3_CHAR_BASE));
     LoadPalette(gBattleAnimBackgroundTable[moveBackground].palette, BG_PLTT_ID(2), PLTT_SIZE_4BPP);
-    //Fill text area with white to avoid overlap with backgrounds
-    CpuFill32(0x11111111, (void *)(BG_CHAR_ADDR(BACKGROUND_1_CHAR_BASE) + TILE_OFFSET_4BPP(1)), TILE_SIZE_4BPP);
-    CpuFill32(0xF001F001, (void *)(BG_SCREEN_ADDR(BACKGROUND_1_MAP_BASE) + sizeof(u16) * 32 * TEXT_AREA_Y), sizeof(u16) * 32 * TEXT_AREA_HEIGHT);
+    FillTextAreaWhite();
 }
 
 static void PrintMoveBackgroundName(u8 moveBackground)

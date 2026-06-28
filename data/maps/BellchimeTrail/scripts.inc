@@ -160,7 +160,7 @@ BellchimeTrail_MortyRematch_Text_2:
 BellchimeTrail_MortyRematch_Text_3:
 # 70 "data/maps/BellchimeTrail/scripts.pory"
 	.string "Merely being strong or wise is not\n"
-	.string "enough always. It takes also something\l"
+	.string "always enough. It also takes something\l"
 	.string "more intangible that you possess. I hope\l"
 	.string "the spirits continue to bless you.\p"
 	.string "Until our next meeting.$"

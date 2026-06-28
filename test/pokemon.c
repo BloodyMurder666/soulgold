@@ -2,6 +2,7 @@
 #include "battle.h"
 #include "egg_hatch.h"
 #include "event_data.h"
+#include "move.h"
 #include "new_game.h"
 #include "pokemon.h"
 #include "string_util.h"
@@ -78,6 +79,109 @@ TEST("Setting a nickname terminates unused nickname storage")
 
     EXPECT_EQ(StringCompare(storedNickname, COMPOUND_STRING("Annihilape")), 0);
     EXPECT_EQ(storedNickname[11], EOS);
+}
+
+TEST("FORM_CHANGE_NICKNAME changes Lugia based on XD001 nickname")
+{
+    struct Pokemon mon;
+    u8 nickname[POKEMON_NAME_LENGTH + 1];
+
+    ASSUME(gSpeciesInfo[SPECIES_LUGIA].formChangeTable != NULL);
+
+    CreateMon(&mon, SPECIES_LUGIA, 50, 0, OTID_STRUCT_PLAYER_ID);
+    StringCopy(nickname, COMPOUND_STRING("XD001"));
+    SetMonData(&mon, MON_DATA_NICKNAME, nickname);
+
+    EXPECT(TryFormChange(&mon, FORM_CHANGE_NICKNAME));
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES), SPECIES_LUGIA_SHADOW);
+
+    StringCopy(nickname, COMPOUND_STRING("Lugia"));
+    SetMonData(&mon, MON_DATA_NICKNAME, nickname);
+
+    EXPECT(TryFormChange(&mon, FORM_CHANGE_NICKNAME));
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES), SPECIES_LUGIA);
+}
+
+TEST("FORM_CHANGE_NICKNAME swaps Lugia signature moves")
+{
+    struct Pokemon mon;
+    u8 nickname[POKEMON_NAME_LENGTH + 1];
+    u8 pp = 3;
+
+    ASSUME(gSpeciesInfo[SPECIES_LUGIA].formChangeTable != NULL);
+    ASSUME(gSpeciesInfo[SPECIES_LUGIA_SHADOW].formChangeTable != NULL);
+    ASSUME(GetMoveType(MOVE_AEROBLAST) == TYPE_FLYING);
+    ASSUME(GetMoveType(MOVE_DARK_AERO) == TYPE_DARK);
+
+    CreateMon(&mon, SPECIES_LUGIA, 50, 0, OTID_STRUCT_PLAYER_ID);
+    SetMonMoveSlot(&mon, MOVE_AEROBLAST, 0);
+    SetMonMoveSlot(&mon, MOVE_RECOVER, 1);
+    SetMonData(&mon, MON_DATA_PP1, &pp);
+    StringCopy(nickname, COMPOUND_STRING("XD001"));
+    SetMonData(&mon, MON_DATA_NICKNAME, nickname);
+
+    EXPECT(TryFormChange(&mon, FORM_CHANGE_NICKNAME));
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES), SPECIES_LUGIA_SHADOW);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_MOVE1), MOVE_DARK_AERO);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_PP1), pp);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_MOVE2), MOVE_RECOVER);
+
+    StringCopy(nickname, COMPOUND_STRING("Lugia"));
+    SetMonData(&mon, MON_DATA_NICKNAME, nickname);
+
+    EXPECT(TryFormChange(&mon, FORM_CHANGE_NICKNAME));
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES), SPECIES_LUGIA);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_MOVE1), MOVE_AEROBLAST);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_PP1), pp);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_MOVE2), MOVE_RECOVER);
+}
+
+TEST("FORM_CHANGE_NICKNAME swaps boxed Lugia signature moves")
+{
+    struct Pokemon mon;
+    struct BoxPokemon boxMon;
+    u8 nickname[POKEMON_NAME_LENGTH + 1];
+    u8 pp = 2;
+
+    ASSUME(gSpeciesInfo[SPECIES_LUGIA].formChangeTable != NULL);
+    ASSUME(gSpeciesInfo[SPECIES_LUGIA_SHADOW].formChangeTable != NULL);
+
+    CreateMon(&mon, SPECIES_LUGIA, 50, 0, OTID_STRUCT_PLAYER_ID);
+    SetMonMoveSlot(&mon, MOVE_AEROBLAST, 0);
+    SetMonData(&mon, MON_DATA_PP1, &pp);
+    boxMon = mon.box;
+    StringCopy(nickname, COMPOUND_STRING("XD001"));
+    SetBoxMonData(&boxMon, MON_DATA_NICKNAME, nickname);
+
+    EXPECT(TryBoxMonFormChange(&boxMon, FORM_CHANGE_NICKNAME));
+    EXPECT_EQ(GetBoxMonData(&boxMon, MON_DATA_SPECIES), SPECIES_LUGIA_SHADOW);
+    EXPECT_EQ(GetBoxMonData(&boxMon, MON_DATA_MOVE1), MOVE_DARK_AERO);
+    EXPECT_EQ(GetBoxMonData(&boxMon, MON_DATA_PP1), pp);
+}
+
+TEST("FORM_CHANGE_NICKNAME changes Dialga based on Primal nickname")
+{
+    struct Pokemon mon;
+    u8 nickname[POKEMON_NAME_LENGTH + 1];
+
+    ASSUME(gSpeciesInfo[SPECIES_DIALGA].formChangeTable != NULL);
+    ASSUME(gSpeciesInfo[SPECIES_DIALGA_PRIMAL].formChangeTable != NULL);
+
+    CreateMon(&mon, SPECIES_DIALGA, 50, 0, OTID_STRUCT_PLAYER_ID);
+    SetMonMoveSlot(&mon, MOVE_AEROBLAST, 0);
+    StringCopy(nickname, COMPOUND_STRING("Primal"));
+    SetMonData(&mon, MON_DATA_NICKNAME, nickname);
+
+    EXPECT(TryFormChange(&mon, FORM_CHANGE_NICKNAME));
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES), SPECIES_DIALGA_PRIMAL);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_MOVE1), MOVE_AEROBLAST);
+
+    StringCopy(nickname, COMPOUND_STRING("Dialga"));
+    SetMonData(&mon, MON_DATA_NICKNAME, nickname);
+
+    EXPECT(TryFormChange(&mon, FORM_CHANGE_NICKNAME));
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES), SPECIES_DIALGA);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_MOVE1), MOVE_AEROBLAST);
 }
 
 TEST("Pokemon save bit repack preserves extended met location and modern fateful encounter")

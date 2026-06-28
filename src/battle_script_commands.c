@@ -22,6 +22,7 @@
 #include "sound.h"
 #include "pokedex.h"
 #include "recorded_battle.h"
+#include "replay_options.h"
 #include "window.h"
 #include "reshow_battle_screen.h"
 #include "main.h"
@@ -4610,7 +4611,7 @@ static void Cmd_getexp(void)
                 calculatedExp = (calculatedExp * 150) / 100;
 
             if (CheckBagHasItem(ITEM_CANDY_JAR, 1))
-                GiveCandyJarExp(calculatedExp / 10);
+                GiveCandyJarExp(calculatedExp * 8 / 10);
 
             if (B_SPLIT_EXP < GEN_6)
             {
@@ -6358,7 +6359,7 @@ static void Cmd_handlelearnnewmove(void)
         sInnateUnlockIndex = 0;
     }
 
-    if (sCheckingInnateUnlocks && !RECORDED_WILD_BATTLE)
+    if (sCheckingInnateUnlocks && !RECORDED_WILD_BATTLE && !AreReplayInnatesDisabled())
     {
         if (prevLvl >= currLvl)
             prevLvl = currLvl - 1;
@@ -6489,7 +6490,7 @@ static void Cmd_yesnoboxlearnmove(void)
     case 2:
         if (!gPaletteFade.active)
         {
-            FreeAllWindowBuffers();
+            CloseMainBattleScreen();
             ShowSelectMovePokemonSummaryScreen(gPlayerParty, gBattleStruct->expGetterMonId, ReshowBattleScreenAfterMenu, gMoveToLearn);
             gBattleScripting.learnMoveState++;
         }
@@ -7051,11 +7052,14 @@ static void Cmd_removeitemwitheffect(void)
         return;
     }
 
-    // Popped Air Balloon cannot be restored by any means.
+    // Popped Air Balloon cannot be restored during battle.
     // Corroded items cannot be restored either.
-    if (holdEffect != HOLD_EFFECT_AIR_BALLOON
-     && GetMoveEffect(gCurrentMove) != EFFECT_CORROSIVE_GAS)
-        GetBattlerPartyState(battler)->usedHeldItems[slot] = itemId; // Remember if switched out
+    if (GetMoveEffect(gCurrentMove) != EFFECT_CORROSIVE_GAS)
+    {
+        GetBattlerPartyState(battler)->consumedHeldItems[slot] = itemId;
+        if (holdEffect != HOLD_EFFECT_AIR_BALLOON)
+            GetBattlerPartyState(battler)->usedHeldItems[slot] = itemId; // Remember if switched out
+    }
 
     #if TESTING
         if (slot == 0)
@@ -10012,16 +10016,18 @@ static void Cmd_recoverbasedonsunlight(void)
     if (gBattleMons[gBattlerAttacker].hp != gBattleMons[gBattlerAttacker].maxHP)
     {
         s32 recoverAmount = 0;
+        u32 weather = GetBattlerWeather(gBattlerAttacker, gBattleWeather);
+        bool32 utilityUmbrellaAffected = !BattlerHasTrait(gBattlerAttacker, ABILITY_MEGA_SOL)
+                                      && BattlerHasHeldItemEffect(gBattlerAttacker, HOLD_EFFECT_UTILITY_UMBRELLA, TRUE);
+
         if (GetMoveEffect(gCurrentMove) == EFFECT_SHORE_UP)
         {
-            if (HasWeatherEffect() && gBattleWeather & B_WEATHER_SANDSTORM)
+            if (weather & B_WEATHER_SANDSTORM)
                 recoverAmount = 20 * GetNonDynamaxMaxHP(gBattlerAttacker) / 30;
             else
                 recoverAmount = GetNonDynamaxMaxHP(gBattlerAttacker) / 2;
         }
-        else if (HasWeatherEffect()
-              && (gBattleWeather & B_WEATHER_TWILIGHT)
-              && !BattlerHasHeldItemEffect(gBattlerAttacker, HOLD_EFFECT_UTILITY_UMBRELLA, TRUE))
+        else if (weather & B_WEATHER_TWILIGHT && !utilityUmbrellaAffected)
         {
             if (GetMoveEffect(gCurrentMove) == EFFECT_MOONLIGHT)
                 recoverAmount = 3 * GetNonDynamaxMaxHP(gBattlerAttacker) / 4;
@@ -10030,9 +10036,9 @@ static void Cmd_recoverbasedonsunlight(void)
         }
         else if (GetConfig(B_TIME_OF_DAY_HEALING_MOVES) != GEN_2)
         {
-            if (!(gBattleWeather & B_WEATHER_ANY) || !HasWeatherEffect() || BattlerHasHeldItemEffect(gBattlerAttacker, HOLD_EFFECT_UTILITY_UMBRELLA, TRUE))
+            if (utilityUmbrellaAffected || !(weather & B_WEATHER_ANY))
                 recoverAmount = GetNonDynamaxMaxHP(gBattlerAttacker) / 2;
-            else if (gBattleWeather & B_WEATHER_SUN)
+            else if (weather & B_WEATHER_SUN)
                 recoverAmount = 20 * GetNonDynamaxMaxHP(gBattlerAttacker) / 30;
             else // not sunny weather
                 recoverAmount = GetNonDynamaxMaxHP(gBattlerAttacker) / 4;
@@ -10062,9 +10068,9 @@ static void Cmd_recoverbasedonsunlight(void)
                 break;
             }
 
-            if (!(gBattleWeather & B_WEATHER_ANY) || !HasWeatherEffect() || BattlerHasHeldItemEffect(gBattlerAttacker, HOLD_EFFECT_UTILITY_UMBRELLA, TRUE))
+            if (utilityUmbrellaAffected || !(weather & B_WEATHER_ANY))
                 recoverAmount = healingModifier * GetNonDynamaxMaxHP(gBattlerAttacker) / 4;
-            else if (gBattleWeather & B_WEATHER_SUN)
+            else if (weather & B_WEATHER_SUN)
                 recoverAmount = healingModifier * GetNonDynamaxMaxHP(gBattlerAttacker) / 2;
             else // not sunny weather
                 recoverAmount = healingModifier * GetNonDynamaxMaxHP(gBattlerAttacker) / 8;
@@ -11778,7 +11784,7 @@ static void Cmd_givecaughtmon(void)
     case GIVECAUGHTMON_GIVE_AND_SHOW_MSG:
     {
         struct Pokemon *caughtMon = GetBattlerMon(GetCatchingBattler());
-        if (B_RESTORE_HELD_BATTLE_ITEMS >= GEN_9)
+        if (GetConfig(B_RESTORE_HELD_BATTLE_ITEMS) >= GEN_9)
         {
             u16 lostItem;
 
@@ -11883,7 +11889,7 @@ static void Cmd_displaydexinfo(void)
     case 1:
         if (!gPaletteFade.active)
         {
-            FreeAllWindowBuffers();
+            CloseMainBattleScreen();
             gBattleCommunication[TASK_ID] = DisplayCaughtMonDexPage(species,
                                                                     GetMonData(mon, MON_DATA_IS_SHINY),
                                                                     GetMonData(mon, MON_DATA_PERSONALITY));
@@ -12041,7 +12047,7 @@ static void Cmd_trygivecaughtmonnick(void)
         {
             struct Pokemon *caughtMon = GetBattlerMon(gBattlerTarget);
             GetMonData(caughtMon, MON_DATA_NICKNAME, gBattleStruct->caughtMonNick);
-            FreeAllWindowBuffers();
+            CloseMainBattleScreen();
             MainCallback callback = CalculatePlayerPartyCount() == PARTY_SIZE ? ReshowBlankBattleScreenAfterMenu : BattleMainCB2;
 
             DoNamingScreen(NAMING_SCREEN_CAUGHT_MON, gBattleStruct->caughtMonNick,
@@ -12056,7 +12062,9 @@ static void Cmd_trygivecaughtmonnick(void)
     case 3:
         if (gMain.callback2 == BattleMainCB2 && !gPaletteFade.active)
         {
-            SetMonData(GetBattlerMon(gBattlerTarget), MON_DATA_NICKNAME, gBattleStruct->caughtMonNick);
+            struct Pokemon *caughtMon = GetBattlerMon(gBattlerTarget);
+            SetMonData(caughtMon, MON_DATA_NICKNAME, gBattleStruct->caughtMonNick);
+            TryFormChange(caughtMon, FORM_CHANGE_NICKNAME);
             gBattleCommunication[MULTIUSE_STATE]++;
         }
         break;
@@ -15868,7 +15876,7 @@ void BS_JumpIfWeatherAffected(void)
 {
     NATIVE_ARGS(u16 flags, const u8 *jumpInstr);
     u32 weather = cmd->flags;
-    if (IsBattlerWeatherAffected(gBattlerAttacker, weather))
+    if (GetBattlerWeather(gBattlerAttacker, gBattleWeather) & weather)
         gBattlescriptCurrInstr = cmd->jumpInstr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;

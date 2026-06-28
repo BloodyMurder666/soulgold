@@ -20,6 +20,7 @@
 #include "pokemon.h"
 #include "random.h"
 #include "recorded_battle.h"
+#include "test_runner.h"
 #include "util.h"
 #include "script.h"
 #include "constants/abilities.h"
@@ -642,8 +643,53 @@ void RecordStatusMoves(enum BattlerId battler)
 void SetBattlerAiData(enum BattlerId battler, struct AiLogicData *aiData)
 {
     enum Item item;
+    bool32 aiCalcInProgress = gAiLogicData->aiCalcInProgress;
+    u32 activeInnateCount = 0;
+    bool32 checkInnates = IsInnateUnlockedByLevel(1, gBattleMons[battler].level);
 
+    gAiLogicData->aiCalcInProgress = FALSE;
     aiData->abilities[battler] = AI_DecideKnownAbilityForTurn(battler);
+
+    #if TESTING
+    if (gTestRunnerEnabled && !checkInnates)
+    {
+        for (u32 i = 0; i < MAX_MON_INNATES; i++)
+        {
+            if (gBattleMons[battler].innates[i] != ABILITY_NONE)
+            {
+                checkInnates = TRUE;
+                break;
+            }
+        }
+    }
+    #endif
+
+    for (u32 i = 0; i < MAX_MON_INNATES; i++)
+    {
+        enum Ability innate = ABILITY_NONE;
+        bool32 checkInnate = FALSE;
+
+        if (checkInnates)
+        {
+            checkInnate = IsInnateUnlockedByLevel(i + 1, gBattleMons[battler].level);
+
+            #if TESTING
+            if (gTestRunnerEnabled && !checkInnate)
+                checkInnate = gBattleMons[battler].innates[i] != ABILITY_NONE;
+            #endif
+        }
+
+        if (checkInnate)
+        {
+            innate = GetBattlerTrait(battler, i + 1, FALSE);
+            if (innate != ABILITY_NONE)
+                activeInnateCount = i + 1;
+        }
+
+        aiData->innates[battler][i] = innate;
+    }
+    aiData->activeInnateCount[battler] = activeInnateCount;
+
     for (u32 i = 0; i < MAX_MON_ITEMS; i++)
     {
         item = aiData->items[battler][i] = gBattleMons[battler].items[i];
@@ -654,6 +700,7 @@ void SetBattlerAiData(enum BattlerId battler, struct AiLogicData *aiData)
     aiData->hpPercents[battler] = GetHealthPercentage(battler);
     aiData->moveLimitations[battler] = CheckMoveLimitations(battler, 0, MOVE_LIMITATIONS_ALL);
     aiData->speedStats[battler] = GetBattlerTotalSpeedStat(battler);
+    gAiLogicData->aiCalcInProgress = aiCalcInProgress;
 
     if (IsAiBattlerAssumingStab(battler))
         RecordMovesBasedOnStab(battler);
@@ -749,6 +796,21 @@ void CalcBattlerAiMovesData(struct AiLogicData *aiData, enum BattlerId battlerAt
     }
 }
 
+static bool32 ShouldPrecomputeBattlerAiMovesData(enum BattlerId battlerAtk, enum BattlerId battlerDef)
+{
+    if (battlerAtk == battlerDef || !IsBattlerAlive(battlerDef))
+        return FALSE;
+
+    // AI scoring needs partner damage for friendly fire and ally-targeting logic,
+    // but player-controlled battlers attacking their own side is not consulted.
+    // Yes I know hitting ally for justified procs is a valid strategy, but
+    // I prefer to have less lag in doubles.
+    if (IsBattlerAlly(battlerAtk, battlerDef) && !BattlerHasAi(battlerAtk))
+        return FALSE;
+
+    return TRUE;
+}
+
 static void SetBattlerAiMovesData(struct AiLogicData *aiData, enum BattlerId battlerAtk, u32 battlersCount, u32 weather)
 {
     SaveBattlerData(battlerAtk);
@@ -757,7 +819,7 @@ static void SetBattlerAiMovesData(struct AiLogicData *aiData, enum BattlerId bat
     // Simulate dmg for both ai controlled mons and for player controlled mons.
     for (enum BattlerId battlerDef = 0; battlerDef < battlersCount; battlerDef++)
     {
-        if (battlerAtk == battlerDef || !IsBattlerAlive(battlerDef))
+        if (!ShouldPrecomputeBattlerAiMovesData(battlerAtk, battlerDef))
             continue;
 
         SaveBattlerData(battlerDef);
@@ -781,7 +843,9 @@ void SetAiLogicDataForTurn(struct AiLogicData *aiData)
     
     AIDebugTimerStart();
 
+    gAiLogicData->aiCalcInProgress = FALSE;
     aiData->weatherHasEffect = HasWeatherEffect();
+    gAiLogicData->aiCalcInProgress = TRUE;
     weather = AI_GetWeather();
 
     // get/assume all battler data and simulate AI damage
@@ -3579,7 +3643,7 @@ static s32 AI_DoubleBattle(enum BattlerId battlerAtk, enum BattlerId battlerDef,
                     || SearchTraits(AIBattlerTraits, ABILITY_MOTOR_DRIVE)
                     || SearchTraits(AIBattlerTraits, ABILITY_VOLT_ABSORB)))
                     {
-                    if (GetConfig(B_REDIRECT_ABILITY_IMMUNITY) < GEN_5 && BattlerHasTrait(battlerAtkPartner, ABILITY_LIGHTNING_ROD))
+                    if (GetConfig(B_REDIRECT_ABILITY_IMMUNITY) < GEN_5 && AI_BATTLER_HAS_TRAIT(battlerAtkPartner, ABILITY_LIGHTNING_ROD))
                     {
                         RETURN_SCORE_MINUS(10);
                     }
@@ -3603,7 +3667,8 @@ static s32 AI_DoubleBattle(enum BattlerId battlerAtk, enum BattlerId battlerDef,
                 }
             }
             if (SearchTraits(AIBattlerTraits, ABILITY_EARTH_EATER)
-             || SearchTraits(AIBattlerTraits, ABILITY_LEVITATE))
+             || SearchTraits(AIBattlerTraits, ABILITY_LEVITATE)
+             || SearchTraits(AIBattlerTraits, ABILITY_EELEVATE))
              {
                 if (moveType == TYPE_GROUND)
                 {
@@ -3628,7 +3693,7 @@ static s32 AI_DoubleBattle(enum BattlerId battlerAtk, enum BattlerId battlerDef,
             {
                     if (moveType == TYPE_WATER)
                 {
-                    if (GetConfig(B_REDIRECT_ABILITY_IMMUNITY) < GEN_5 && BattlerHasTrait(battlerAtkPartner, ABILITY_STORM_DRAIN))
+                    if (GetConfig(B_REDIRECT_ABILITY_IMMUNITY) < GEN_5 && AI_BATTLER_HAS_TRAIT(battlerAtkPartner, ABILITY_STORM_DRAIN))
                     {
                         RETURN_SCORE_MINUS(10);
                     }
@@ -3887,7 +3952,7 @@ static s32 AI_DoubleBattle(enum BattlerId battlerAtk, enum BattlerId battlerDef,
                 }
                 break;
             case EFFECT_SOAK:
-                if (BattlerHasTrait(battlerAtk, ABILITY_WONDER_GUARD)
+                if (AI_BATTLER_HAS_TRAIT(battlerAtk, ABILITY_WONDER_GUARD)
                  && !IS_BATTLER_OF_TYPE(battlerAtkPartner, TYPE_WATER)
                  && GetActiveGimmick(battlerAtkPartner) != GIMMICK_TERA)
                 {

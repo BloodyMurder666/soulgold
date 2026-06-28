@@ -1248,5 +1248,5 @@ daycareDestinyKnotGift_Text_1:
 	.string "Hey! Have you tried putting your\n"
 	.string "Pokémon into daycare yet? Sometimes\l"
 	.string "the daycare couple might find an egg.\p"
-	.string "If you plan to hoard a lot of eggs,\n"
+	.string "If you plan to breed a lot of eggs,\n"
 	.string "you might find this useful.$"

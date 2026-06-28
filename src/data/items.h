@@ -218,7 +218,7 @@ static const u8 sRainbowWingDesc[] = _(
 
 static const u8 sRedScaleDesc[] = _(
     "A scale from the\n"
-    "red GYARADOS.\n"
+    "red Gyarados.\n"
     "It glows red.");
 
 static const u8 sSecretPotionDesc[] = _(
@@ -241,8 +241,9 @@ static const u8 sTidalBellDesc[] = _(
     "soothing sound.");
 
 static const u8 sRadioDesc[] = _(
-    "A shiny new radio\n"
-    "that plays music.");
+    "A shiny new radio.\n"
+    "Can be used to hear\n"
+    "music or shows.");
 
 static const u8 sBlackMirrorDesc[] = _(
     "An eerie mirror\n"
@@ -3259,6 +3260,7 @@ const struct ItemInfo gItemsInfo[] =
         .pocket = POCKET_ITEMS,
         .sortType = ITEM_TYPE_SELLABLE,
         .heldSlot = 0,
+        .bpCost = 8,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 30,
@@ -17400,6 +17402,7 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Beckoning Bell"),
         .price = 3500,
         .holdEffectParam = 100,
+        .bpCost = 5,
         .description = COMPOUND_STRING(
             "An ornate bell that\n"
             "renews hidden\n"
@@ -17444,6 +17447,21 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_PokeBall,
         .iconPalette = gItemIconPalette_PokeBall,
+    },
+    [ITEM_DARK_CRYSTAL] =
+    {
+        .name = ITEM_NAME("Dark Crystal"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "An ominous crystal\n"
+            "radianting an aura\n"
+            "of wrath."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_DarkiniumZ,
+        .iconPalette = gItemIconPalette_DarkiniumZ,
     },
 };
 

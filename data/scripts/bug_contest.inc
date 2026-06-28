@@ -113,7 +113,7 @@ BugContest_EventScript_ChooseFirstPlaceReward::
 	return
 
 BugContest_EventScript_ChooseFirstPlaceRewardLoop::
-	dynmultichoice 0, 0, TRUE, 5, 0, DYN_MULTICHOICE_CB_NONE, BugContest_Text_FirstRewardMoonStone, BugContest_Text_FirstRewardSunStone, BugContest_Text_FirstRewardLeafStone, BugContest_Text_FirstRewardDawnStone, BugContest_Text_FirstRewardShinyStone, BugContest_Text_FirstRewardDuskStone, BugContest_Text_FirstRewardLuckyEgg
+	dynmultichoice 0, 0, TRUE, 5, 0, DYN_MULTICHOICE_CB_NONE, BugContest_Text_FirstRewardMoonStone, BugContest_Text_FirstRewardSunStone, BugContest_Text_FirstRewardLeafStone, BugContest_Text_FirstRewardDawnStone, BugContest_Text_FirstRewardShinyStone, BugContest_Text_FirstRewardDuskStone, BugContest_Text_FirstRewardIceStone
 	switch VAR_RESULT
 	case 0, BugContest_EventScript_SetFirstPlaceMoonStone
 	case 1, BugContest_EventScript_SetFirstPlaceSunStone
@@ -121,7 +121,7 @@ BugContest_EventScript_ChooseFirstPlaceRewardLoop::
 	case 3, BugContest_EventScript_SetFirstPlaceDawnStone
 	case 4, BugContest_EventScript_SetFirstPlaceShinyStone
 	case 5, BugContest_EventScript_SetFirstPlaceDuskStone
-	case 6, BugContest_EventScript_SetFirstPlaceLuckyEgg
+	case 6, BugContest_EventScript_SetFirstPlaceIceStone
 	return
 
 BugContest_EventScript_SetFirstPlaceMoonStone::
@@ -148,8 +148,8 @@ BugContest_EventScript_SetFirstPlaceDuskStone::
 	setvar VAR_0x8005, ITEM_DUSK_STONE
 	return
 
-BugContest_EventScript_SetFirstPlaceLuckyEgg::
-	setvar VAR_0x8005, ITEM_LUCKY_EGG
+BugContest_EventScript_SetFirstPlaceIceStone::
+	setvar VAR_0x8005, ITEM_ICE_STONE
 	return
 
 BugContest_EventScript_ChooseSecondPlaceReward::
@@ -226,12 +226,12 @@ BugContest_Text_WhiteOut:
 
 BugContest_Text_First1:
 	.string "Placing third is the Cooltrainer\n"
-	.string "BELINDA, who caught a wriggling\l"
-	.string "BUTTERFREE!$"
+	.string "Belinda, who caught a wriggling\l"
+	.string "Butterfree!$"
 BugContest_Text_First2:
-	.string "Placing second is the BUGCATCHER\n"
-	.string "SHAUN, who caught a writhing\l"
-	.string "PINSIR!$"
+	.string "Placing second is the Bugcatcher\n"
+	.string "Shaun, who caught a writhing\l"
+	.string "Pinsir!$"
 BugContest_Text_First3:
 	.string "This Bug-Catching Contest Winner\n"
 	.string "is...\p"
@@ -240,16 +240,16 @@ BugContest_Text_First3:
 
 BugContest_Text_Second1:
 	.string "Placing second is the Cooltrainer\n"
-	.string "BELINDA, who caught a wriggling\l"
-	.string "BUTTERFREE!$"
+	.string "Belinda, who caught a wriggling\l"
+	.string "Butterfree!$"
 BugContest_Text_Second2:
 	.string "Placing second is {PLAYER}, who\n"
 	.string "caught a writhing {STR_VAR_1}!$"
 BugContest_Text_Second3:
 	.string "This Bug-Catching Contest Winner\n"
 	.string "is...\p"
-	.string "BUGCATCHER SHAUN, who caught a\n"
-	.string "whopping PINSIR!$"
+	.string "Bugcatcher Shaun, who caught a\n"
+	.string "whopping Pinsir!$"
 
 
 BugContest_Text_Third1:
@@ -257,13 +257,13 @@ BugContest_Text_Third1:
 	.string "caught a wriggling {STR_VAR_1}!$"
 BugContest_Text_Third2:
 	.string "Placing second is the Cooltrainer\n"
-	.string "BELINDA, who caught a writhing\l"
-	.string "BUTTERFREE!$"
+	.string "Belinda, who caught a writhing\l"
+	.string "Butterfree!$"
 BugContest_Text_Third3:
 	.string "This Bug-Catching Contest Winner\n"
 	.string "is...\p"
-	.string "BUGCATCHER SHAUN, who caught a\n"
-	.string "whopping PINSIR!$"
+	.string "Bugcatcher Shaun, who caught a\n"
+	.string "whopping Pinsir!$"
 
 BugContest_Text_TakePartInFuture:
 	.string "Thank you for participating!\n"
@@ -271,7 +271,7 @@ BugContest_Text_TakePartInFuture:
 	.string "future.$"
 
 BugContest_Text_TransferAndReturn:
-	.string "Your chosen BUG Pokémon will now\n"
+	.string "Your chosen Bug Pokémon will now\n"
 	.string "be sent to the PC and your party\l"
 	.string "will be returned to you.$"
 
@@ -298,8 +298,8 @@ BugContest_Text_FirstRewardDawnStone:
 BugContest_Text_FirstRewardShinyStone:
 	.string "Shiny Stone$"
 
-BugContest_Text_FirstRewardLuckyEgg:
-	.string "Lucky Egg$"
+BugContest_Text_FirstRewardIceStone:
+	.string "Ice Stone$"
 
 BugContest_Text_FirstRewardDuskStone:
 	.string "Dusk Stone$"

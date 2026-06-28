@@ -214,6 +214,7 @@ struct AiLogicData
 {
     enum Ability abilities[MAX_BATTLERS_COUNT];
     enum Ability innates[MAX_BATTLERS_COUNT][MAX_MON_INNATES];
+    u8 activeInnateCount[MAX_BATTLERS_COUNT];
     enum Item items[MAX_BATTLERS_COUNT][MAX_MON_ITEMS_INTERNAL];
     enum HoldEffect holdEffects[MAX_BATTLERS_COUNT][MAX_MON_ITEMS_INTERNAL];
     u8 holdEffectParams[MAX_BATTLERS_COUNT][MAX_MON_ITEMS_INTERNAL];
@@ -532,7 +533,8 @@ struct PartyState
     u32 transmuteUsed:1;
     u32 twinStarsBoosted:1;
     u32 padding:3;
-    u16 usedHeldItems[MAX_MON_ITEMS_INTERNAL];
+    u16 usedHeldItems[MAX_MON_ITEMS_INTERNAL]; // Items eligible for in-battle restoration.
+    u16 consumedHeldItems[MAX_MON_ITEMS_INTERNAL]; // Items eligible for post-battle restoration.
 };
 
 struct EventStates

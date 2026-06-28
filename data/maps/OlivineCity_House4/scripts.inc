@@ -18,11 +18,11 @@ OlivineTutorMoveMaster::
 # 24 "data/maps/OlivineCity_House4/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq OlivineTutorMoveMaster_5
-# 57 "data/maps/OlivineCity_House4/scripts.pory"
-	hidemoneybox
 # 58 "data/maps/OlivineCity_House4/scripts.pory"
-	msgbox OlivineTutorMoveMaster_Text_6
+	hidemoneybox
 # 59 "data/maps/OlivineCity_House4/scripts.pory"
+	msgbox OlivineTutorMoveMaster_Text_6
+# 60 "data/maps/OlivineCity_House4/scripts.pory"
 	release
 	end
 
@@ -34,18 +34,18 @@ OlivineTutorMoveMaster_2:
 	end
 
 OlivineTutorMoveMaster_4:
-# 62 "data/maps/OlivineCity_House4/scripts.pory"
+# 63 "data/maps/OlivineCity_House4/scripts.pory"
 	release
 	end
 
 OlivineTutorMoveMaster_5:
 # 25 "data/maps/OlivineCity_House4/scripts.pory"
-	checkmoney 33333
+	checkmoney 44444
 # 26 "data/maps/OlivineCity_House4/scripts.pory"
 	compare VAR_RESULT, FALSE
 	goto_if_eq OlivineTutorMoveMaster_9
 # 33 "data/maps/OlivineCity_House4/scripts.pory"
-	removemoney 33333
+	removemoney 44444
 # 34 "data/maps/OlivineCity_House4/scripts.pory"
 	updatemoneybox 0
 # 35 "data/maps/OlivineCity_House4/scripts.pory"
@@ -55,26 +55,28 @@ OlivineTutorMoveMaster_5:
 # 37 "data/maps/OlivineCity_House4/scripts.pory"
 	setflag FLAG_TUTOR_MOVES_UNLOCKED
 # 38 "data/maps/OlivineCity_House4/scripts.pory"
+	special Achievement_CheckAll
+# 39 "data/maps/OlivineCity_House4/scripts.pory"
 	msgbox OlivineTutorMoveMaster_Text_4
-# 42 "data/maps/OlivineCity_House4/scripts.pory"
-	hidemoneybox
 # 43 "data/maps/OlivineCity_House4/scripts.pory"
-	closemessage
+	hidemoneybox
 # 44 "data/maps/OlivineCity_House4/scripts.pory"
-	fadescreen FADE_TO_BLACK
+	closemessage
 # 45 "data/maps/OlivineCity_House4/scripts.pory"
-	delay 60
+	fadescreen FADE_TO_BLACK
 # 46 "data/maps/OlivineCity_House4/scripts.pory"
-	fadescreen FADE_FROM_BLACK
+	delay 60
 # 47 "data/maps/OlivineCity_House4/scripts.pory"
-	delay 20
+	fadescreen FADE_FROM_BLACK
 # 48 "data/maps/OlivineCity_House4/scripts.pory"
-	playfanfare MUS_OBTAIN_ITEM
+	delay 20
 # 49 "data/maps/OlivineCity_House4/scripts.pory"
+	playfanfare MUS_OBTAIN_ITEM
+# 50 "data/maps/OlivineCity_House4/scripts.pory"
 	msgbox OlivineTutorMoveMaster_Text_5
-# 51 "data/maps/OlivineCity_House4/scripts.pory"
-	waitse
 # 52 "data/maps/OlivineCity_House4/scripts.pory"
+	waitse
+# 53 "data/maps/OlivineCity_House4/scripts.pory"
 	msgbox OlivineTutorMoveMaster_Text_0
 	goto OlivineTutorMoveMaster_4
 
@@ -101,7 +103,7 @@ OlivineTutorMoveMaster_Text_1:
 	.string "I know all there is to know about Tutor\n"
 	.string "Moves.\p"
 	.string "If you wish, I can teach you all that I \n"
-	.string "know for a one-time fee of ¥33,333.$"
+	.string "know for a one-time fee of ¥44,444.$"
 
 OlivineTutorMoveMaster_Text_2:
 # 22 "data/maps/OlivineCity_House4/scripts.pory"
@@ -114,16 +116,16 @@ OlivineTutorMoveMaster_Text_3:
 	.string "to learn. Shame.$"
 
 OlivineTutorMoveMaster_Text_4:
-# 38 "data/maps/OlivineCity_House4/scripts.pory"
+# 39 "data/maps/OlivineCity_House4/scripts.pory"
 	.string "Thank you for the business!\p"
 	.string "Now let me teach you the grand\n"
 	.string "secrets of the Tutor Moves.$"
 
 OlivineTutorMoveMaster_Text_5:
-# 49 "data/maps/OlivineCity_House4/scripts.pory"
+# 50 "data/maps/OlivineCity_House4/scripts.pory"
 	.string "You can now teach Tutor Moves to\n"
 	.string "your Pokémon!$"
 
 OlivineTutorMoveMaster_Text_6:
-# 58 "data/maps/OlivineCity_House4/scripts.pory"
+# 59 "data/maps/OlivineCity_House4/scripts.pory"
 	.string "A pity.$"

@@ -601,6 +601,9 @@ static bool32 FindMonThatAbsorbsOpponentsMove(enum BattlerId battler)
     enum Move incomingMove = GetIncomingMove(battler, opposingBattler, gAiLogicData);
     enum Type incomingType = CheckDynamicMoveType(GetBattlerMon(opposingBattler), incomingMove, opposingBattler, MON_IN_BATTLE);
 
+    if (incomingType == TYPE_NONE)
+        incomingType = GetMoveType(incomingMove);
+
     if (!(gAiThinkingStruct->aiFlags[battler] & AI_FLAG_SMART_SWITCHING))
         return FALSE;
     if (GetMoveEffect(incomingMove) == EFFECT_HIDDEN_POWER && RandomPercentage(RNG_AI_SWITCH_ABSORBING_HIDDEN_POWER, SHOULD_SWITCH_ABSORBS_HIDDEN_POWER_PERCENTAGE))
@@ -657,6 +660,7 @@ static bool32 FindMonThatAbsorbsOpponentsMove(enum BattlerId battler)
     {
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_EARTH_EATER;
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_LEVITATE;
+        absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_EELEVATE;
     }
     if (IsSoundMove(incomingMove))
     {

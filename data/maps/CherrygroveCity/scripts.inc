@@ -467,373 +467,373 @@ CherryGroveCity_EventScript_TriggerSilver::
 # 234 "data/maps/CherrygroveCity/scripts.pory"
 	waitmovement 0
 # 235 "data/maps/CherrygroveCity/scripts.pory"
-	msgbox CherrygroveCity_Text_RivalSeen, MSGBOX_DEFAULT
+	createfieldmugshot MUGSHOT_SILVER
 # 236 "data/maps/CherrygroveCity/scripts.pory"
-	closemessage
+	msgbox CherrygroveCity_Text_RivalSeen, MSGBOX_DEFAULT
 # 237 "data/maps/CherrygroveCity/scripts.pory"
-	goto_if_eq VAR_STARTER_MON, 0, CherryGroveCity_Silver_Battle_Cyndaquil
-# 238 "data/maps/CherrygroveCity/scripts.pory"
-	goto_if_eq VAR_STARTER_MON, 1, CherryGroveCity_Silver_Battle_Totodile
-# 239 "data/maps/CherrygroveCity/scripts.pory"
-	goto_if_eq VAR_STARTER_MON, 2, CherryGroveCity_Silver_Battle_Chikorita
-# 240 "data/maps/CherrygroveCity/scripts.pory"
-	release
-# 241 "data/maps/CherrygroveCity/scripts.pory"
-	end
-# 242 "data/maps/CherrygroveCity/scripts.pory"
-
-# 243 "data/maps/CherrygroveCity/scripts.pory"
-CherryGroveCity_Silver_Battle_Cyndaquil::
-# 244 "data/maps/CherrygroveCity/scripts.pory"
-	trainerbattle_no_intro TRAINER_RIVAL_CYNDAQUIL_1, CherrygroveCity_Text_SilverWin
-# 245 "data/maps/CherrygroveCity/scripts.pory"
-	goto CherryGroveCity_Silver_AfterBattle
-# 246 "data/maps/CherrygroveCity/scripts.pory"
-
-# 247 "data/maps/CherrygroveCity/scripts.pory"
-CherryGroveCity_Silver_Battle_Totodile::
-# 248 "data/maps/CherrygroveCity/scripts.pory"
-	trainerbattle_no_intro TRAINER_RIVAL_TOTODILE_1, CherrygroveCity_Text_SilverWin
-# 249 "data/maps/CherrygroveCity/scripts.pory"
-	goto CherryGroveCity_Silver_AfterBattle
-# 250 "data/maps/CherrygroveCity/scripts.pory"
-
-# 251 "data/maps/CherrygroveCity/scripts.pory"
-CherryGroveCity_Silver_Battle_Chikorita::
-# 252 "data/maps/CherrygroveCity/scripts.pory"
-	trainerbattle_no_intro TRAINER_RIVAL_CHIKORITA_1, CherrygroveCity_Text_SilverWin
-# 253 "data/maps/CherrygroveCity/scripts.pory"
-	goto CherryGroveCity_Silver_AfterBattle
-# 254 "data/maps/CherrygroveCity/scripts.pory"
-
-# 255 "data/maps/CherrygroveCity/scripts.pory"
-CherryGroveCity_Silver_AfterBattle::
-# 256 "data/maps/CherrygroveCity/scripts.pory"
-	playbgm MUS_HG_RIVAL_EXIT, TRUE
-# 257 "data/maps/CherrygroveCity/scripts.pory"
-	msgbox CherrygroveCity_Text_RivalAfter, MSGBOX_DEFAULT
-# 258 "data/maps/CherrygroveCity/scripts.pory"
 	closemessage
+# 238 "data/maps/CherrygroveCity/scripts.pory"
+	goto_if_eq VAR_STARTER_MON, 0, CherryGroveCity_Silver_Battle_Cyndaquil
+# 239 "data/maps/CherrygroveCity/scripts.pory"
+	goto_if_eq VAR_STARTER_MON, 1, CherryGroveCity_Silver_Battle_Totodile
+# 240 "data/maps/CherrygroveCity/scripts.pory"
+	goto_if_eq VAR_STARTER_MON, 2, CherryGroveCity_Silver_Battle_Chikorita
+# 241 "data/maps/CherrygroveCity/scripts.pory"
+	release
+# 242 "data/maps/CherrygroveCity/scripts.pory"
+	end
+# 243 "data/maps/CherrygroveCity/scripts.pory"
+
+# 244 "data/maps/CherrygroveCity/scripts.pory"
+CherryGroveCity_Silver_Battle_Cyndaquil::
+# 245 "data/maps/CherrygroveCity/scripts.pory"
+	trainerbattle_no_intro TRAINER_RIVAL_CYNDAQUIL_1, CherrygroveCity_Text_SilverWin
+# 246 "data/maps/CherrygroveCity/scripts.pory"
+	goto CherryGroveCity_Silver_AfterBattle
+# 247 "data/maps/CherrygroveCity/scripts.pory"
+
+# 248 "data/maps/CherrygroveCity/scripts.pory"
+CherryGroveCity_Silver_Battle_Totodile::
+# 249 "data/maps/CherrygroveCity/scripts.pory"
+	trainerbattle_no_intro TRAINER_RIVAL_TOTODILE_1, CherrygroveCity_Text_SilverWin
+# 250 "data/maps/CherrygroveCity/scripts.pory"
+	goto CherryGroveCity_Silver_AfterBattle
+# 251 "data/maps/CherrygroveCity/scripts.pory"
+
+# 252 "data/maps/CherrygroveCity/scripts.pory"
+CherryGroveCity_Silver_Battle_Chikorita::
+# 253 "data/maps/CherrygroveCity/scripts.pory"
+	trainerbattle_no_intro TRAINER_RIVAL_CHIKORITA_1, CherrygroveCity_Text_SilverWin
+# 254 "data/maps/CherrygroveCity/scripts.pory"
+	goto CherryGroveCity_Silver_AfterBattle
+# 255 "data/maps/CherrygroveCity/scripts.pory"
+
+# 256 "data/maps/CherrygroveCity/scripts.pory"
+CherryGroveCity_Silver_AfterBattle::
+# 257 "data/maps/CherrygroveCity/scripts.pory"
+	playbgm MUS_HG_RIVAL_EXIT, TRUE
+# 258 "data/maps/CherrygroveCity/scripts.pory"
+	createfieldmugshot MUGSHOT_SILVER
 # 259 "data/maps/CherrygroveCity/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, CherryGroveCity_Movement_Silver_Leave1Player
+	msgbox CherrygroveCity_Text_RivalAfter, MSGBOX_DEFAULT
 # 260 "data/maps/CherrygroveCity/scripts.pory"
-	applymovement LOCALID_CHERRYGROVE_SILVER, CherryGroveCity_Movement_Silver_Leave1
+	closemessage
 # 261 "data/maps/CherrygroveCity/scripts.pory"
-	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, CherryGroveCity_Movement_Silver_Leave1Player
 # 262 "data/maps/CherrygroveCity/scripts.pory"
-	waitmovement 0
+	applymovement LOCALID_CHERRYGROVE_SILVER, CherryGroveCity_Movement_Silver_Leave1
 # 263 "data/maps/CherrygroveCity/scripts.pory"
-	playse SE_PIN
+	waitmovement 0
 # 264 "data/maps/CherrygroveCity/scripts.pory"
-	applymovement LOCALID_CHERRYGROVE_SILVER, Common_Movement_ExclamationMark
+	waitmovement 0
 # 265 "data/maps/CherrygroveCity/scripts.pory"
-	delay 60
+	playse SE_PIN
 # 266 "data/maps/CherrygroveCity/scripts.pory"
-	turnobject LOCALID_CHERRYGROVE_SILVER, DIR_EAST
+	applymovement LOCALID_CHERRYGROVE_SILVER, Common_Movement_ExclamationMark
 # 267 "data/maps/CherrygroveCity/scripts.pory"
 	delay 60
 # 268 "data/maps/CherrygroveCity/scripts.pory"
-	turnobject LOCALID_CHERRYGROVE_SILVER, DIR_SOUTH
+	turnobject LOCALID_CHERRYGROVE_SILVER, DIR_EAST
 # 269 "data/maps/CherrygroveCity/scripts.pory"
-	delay 30
+	delay 60
 # 270 "data/maps/CherrygroveCity/scripts.pory"
-	applymovement LOCALID_CHERRYGROVE_SILVER, CherryGroveCity_Movement_Silver_Return
+	turnobject LOCALID_CHERRYGROVE_SILVER, DIR_SOUTH
 # 271 "data/maps/CherrygroveCity/scripts.pory"
-	waitmovement 0
+	delay 30
 # 272 "data/maps/CherrygroveCity/scripts.pory"
-	msgbox CherrygroveCity_Text_RivalID, MSGBOX_DEFAULT
+	applymovement LOCALID_CHERRYGROVE_SILVER, CherryGroveCity_Movement_Silver_Return
 # 273 "data/maps/CherrygroveCity/scripts.pory"
-	closemessage
-# 274 "data/maps/CherrygroveCity/scripts.pory"
-	applymovement LOCALID_CHERRYGROVE_SILVER, CherryGroveCity_Movement_Silver_Leave2
-# 275 "data/maps/CherrygroveCity/scripts.pory"
 	waitmovement 0
+# 274 "data/maps/CherrygroveCity/scripts.pory"
+	createfieldmugshot MUGSHOT_SILVER
+# 275 "data/maps/CherrygroveCity/scripts.pory"
+	msgbox CherrygroveCity_Text_RivalID, MSGBOX_DEFAULT
 # 276 "data/maps/CherrygroveCity/scripts.pory"
-	removeobject LOCALID_CHERRYGROVE_SILVER
+	closemessage
 # 277 "data/maps/CherrygroveCity/scripts.pory"
-	setflag FLAG_HIDE_SILVER_CHERRYGROVE
+	applymovement LOCALID_CHERRYGROVE_SILVER, CherryGroveCity_Movement_Silver_Leave2
 # 278 "data/maps/CherrygroveCity/scripts.pory"
-	setvar VAR_CHERRYGROVE_CITY_STATE, 4
+	waitmovement 0
 # 279 "data/maps/CherrygroveCity/scripts.pory"
-	fadedefaultbgm
+	removeobject LOCALID_CHERRYGROVE_SILVER
 # 280 "data/maps/CherrygroveCity/scripts.pory"
-	release
+	setflag FLAG_HIDE_SILVER_CHERRYGROVE
 # 281 "data/maps/CherrygroveCity/scripts.pory"
-	end
+	setvar VAR_CHERRYGROVE_CITY_STATE, 4
 # 282 "data/maps/CherrygroveCity/scripts.pory"
-
+	fadedefaultbgm
 # 283 "data/maps/CherrygroveCity/scripts.pory"
-CherrygroveCity_Text_GuideGentIntro:
+	release
 # 284 "data/maps/CherrygroveCity/scripts.pory"
-	.string "You're a rookie trainer,\n"
+	end
 # 285 "data/maps/CherrygroveCity/scripts.pory"
-	.string "aren't you? I can tell!\p"
+
 # 286 "data/maps/CherrygroveCity/scripts.pory"
-	.string "That's Ok! Everyone is a\n"
+CherrygroveCity_Text_GuideGentIntro:
 # 287 "data/maps/CherrygroveCity/scripts.pory"
-	.string "rookie at some point!\p"
+	.string "You're a rookie trainer,\n"
 # 288 "data/maps/CherrygroveCity/scripts.pory"
-	.string "If you'd like, I can teach\n"
+	.string "aren't you? I can tell!\p"
 # 289 "data/maps/CherrygroveCity/scripts.pory"
-	.string "you a few things.$"
+	.string "That's Ok! Everyone is a\n"
 # 290 "data/maps/CherrygroveCity/scripts.pory"
-
+	.string "rookie at some point!\p"
 # 291 "data/maps/CherrygroveCity/scripts.pory"
-CherrygroveCity_Text_GuideGentTourStart:
+	.string "If you'd like, I can teach\n"
 # 292 "data/maps/CherrygroveCity/scripts.pory"
-	.string "Ok, then!\n"
+	.string "you a few things.$"
 # 293 "data/maps/CherrygroveCity/scripts.pory"
-	.string "Follow me!$"
+
 # 294 "data/maps/CherrygroveCity/scripts.pory"
-
+CherrygroveCity_Text_GuideGentTourStart:
 # 295 "data/maps/CherrygroveCity/scripts.pory"
-CherrygroveCity_Text_GuideGentPokecenter:
+	.string "Ok, then!\n"
 # 296 "data/maps/CherrygroveCity/scripts.pory"
-	.string "This is a Pokémon Center.\p"
+	.string "Follow me!$"
 # 297 "data/maps/CherrygroveCity/scripts.pory"
-	.string "They heal your Pokémon in no\n"
+
 # 298 "data/maps/CherrygroveCity/scripts.pory"
-	.string "time at all.\p"
+CherrygroveCity_Text_GuideGentPokecenter:
 # 299 "data/maps/CherrygroveCity/scripts.pory"
-	.string "You'll be relying on them a lot,\n"
+	.string "This is a Pokémon Center.\p"
 # 300 "data/maps/CherrygroveCity/scripts.pory"
-	.string "so you better learn about them.$"
+	.string "They heal your Pokémon in no\n"
 # 301 "data/maps/CherrygroveCity/scripts.pory"
-
+	.string "time at all.\p"
 # 302 "data/maps/CherrygroveCity/scripts.pory"
-CherrygroveCity_Text_GuideGentMart:
+	.string "You'll be relying on them a lot,\n"
 # 303 "data/maps/CherrygroveCity/scripts.pory"
-	.string "This is a Pokémon Mart.\p"
+	.string "so you better learn about them.$"
 # 304 "data/maps/CherrygroveCity/scripts.pory"
-	.string "They sell Balls for catching wild\n"
+
 # 305 "data/maps/CherrygroveCity/scripts.pory"
-	.string "Pokémon and other useful items.$"
+CherrygroveCity_Text_GuideGentMart:
 # 306 "data/maps/CherrygroveCity/scripts.pory"
-
+	.string "This is a Pokémon Mart.\p"
 # 307 "data/maps/CherrygroveCity/scripts.pory"
-CherrygroveCity_Text_GuideGentRoute30:
+	.string "They sell Balls for catching wild\n"
 # 308 "data/maps/CherrygroveCity/scripts.pory"
-	.string "Route 30 is out this way.\p"
+	.string "Pokémon and other useful items.$"
 # 309 "data/maps/CherrygroveCity/scripts.pory"
-	.string "Trainers will be battling\n"
+
 # 310 "data/maps/CherrygroveCity/scripts.pory"
-	.string "their prized Pokémon there.$"
+CherrygroveCity_Text_GuideGentRoute30:
 # 311 "data/maps/CherrygroveCity/scripts.pory"
-
+	.string "Route 30 is out this way.\p"
 # 312 "data/maps/CherrygroveCity/scripts.pory"
-CherrygroveCity_Text_GuideGentSea:
+	.string "Trainers will be battling\n"
 # 313 "data/maps/CherrygroveCity/scripts.pory"
-	.string "This is the sea, as you can see.\p"
+	.string "their prized Pokémon there.$"
 # 314 "data/maps/CherrygroveCity/scripts.pory"
-	.string "Some Pokémon are found only in\n"
+
 # 315 "data/maps/CherrygroveCity/scripts.pory"
-	.string "in water.$"
+CherrygroveCity_Text_GuideGentSea:
 # 316 "data/maps/CherrygroveCity/scripts.pory"
-
+	.string "This is the sea, as you can see.\p"
 # 317 "data/maps/CherrygroveCity/scripts.pory"
-CherrygroveCity_Text_GuideGentMap:
+	.string "Some Pokémon are found only in\n"
 # 318 "data/maps/CherrygroveCity/scripts.pory"
-	.string "Here…\p"
+	.string "in water.$"
 # 319 "data/maps/CherrygroveCity/scripts.pory"
-	.string "It's my house! Thanks for\n"
+
 # 320 "data/maps/CherrygroveCity/scripts.pory"
-	.string "your company.\p"
+CherrygroveCity_Text_GuideGentMap:
 # 321 "data/maps/CherrygroveCity/scripts.pory"
-	.string "Oh, and if you're ever lost, check\n"
+	.string "Here…\p"
 # 322 "data/maps/CherrygroveCity/scripts.pory"
-	.string "the Map on your Pokégear!\p"
+	.string "It's my house! Thanks for\n"
 # 323 "data/maps/CherrygroveCity/scripts.pory"
-	.string "I wish you luck on your journey!$"
+	.string "your company.\p"
 # 324 "data/maps/CherrygroveCity/scripts.pory"
-
+	.string "Oh, and if you're ever lost, check\n"
 # 325 "data/maps/CherrygroveCity/scripts.pory"
-CherrygroveCity_Text_GuideGentDecline:
+	.string "the Map on your Pokégear!\p"
 # 326 "data/maps/CherrygroveCity/scripts.pory"
-	.string "Oh… It's something I enjoy\n"
+	.string "I wish you luck on your journey!$"
 # 327 "data/maps/CherrygroveCity/scripts.pory"
-	.string "doing…\p"
+
 # 328 "data/maps/CherrygroveCity/scripts.pory"
-	.string "Fine. Come see me whenever\n"
+CherrygroveCity_Text_GuideGentDecline:
 # 329 "data/maps/CherrygroveCity/scripts.pory"
-	.string "you like.$"
+	.string "Oh… It's something I enjoy\n"
 # 330 "data/maps/CherrygroveCity/scripts.pory"
-
+	.string "doing…\p"
 # 331 "data/maps/CherrygroveCity/scripts.pory"
-CherrygroveCity_Text_RivalSeen:
+	.string "Fine. Come see me whenever\n"
 # 332 "data/maps/CherrygroveCity/scripts.pory"
-	.string "… … … … … … … …\p"
+	.string "you like.$"
 # 333 "data/maps/CherrygroveCity/scripts.pory"
-	.string "You got a Pokémon at the Lab.\p"
-# 334 "data/maps/CherrygroveCity/scripts.pory"
-	.string "What a waste.\n"
-# 335 "data/maps/CherrygroveCity/scripts.pory"
-	.string "A wimp like you.\p"
-# 336 "data/maps/CherrygroveCity/scripts.pory"
-	.string "… … … … … … … …\p"
-# 337 "data/maps/CherrygroveCity/scripts.pory"
-	.string "Don't you get what I'm saying?\n"
-# 338 "data/maps/CherrygroveCity/scripts.pory"
-	.string "Well, I too, have a good Pokémon.\p"
-# 339 "data/maps/CherrygroveCity/scripts.pory"
-	.string "I'll show you what I mean!$"
-# 340 "data/maps/CherrygroveCity/scripts.pory"
 
+# 334 "data/maps/CherrygroveCity/scripts.pory"
+CherrygroveCity_Text_RivalSeen:
+# 335 "data/maps/CherrygroveCity/scripts.pory"
+	.string "… … … … … … … …\p"
+# 336 "data/maps/CherrygroveCity/scripts.pory"
+	.string "You got a Pokémon at the Lab.\p"
+# 337 "data/maps/CherrygroveCity/scripts.pory"
+	.string "What a waste.\n"
+# 338 "data/maps/CherrygroveCity/scripts.pory"
+	.string "A wimp like you.\p"
+# 339 "data/maps/CherrygroveCity/scripts.pory"
+	.string "… … … … … … … …\p"
+# 340 "data/maps/CherrygroveCity/scripts.pory"
+	.string "Don't you get what I'm saying?\n"
 # 341 "data/maps/CherrygroveCity/scripts.pory"
-CherrygroveCity_Text_SilverWin:
+	.string "Well, I too, have a good Pokémon.\p"
 # 342 "data/maps/CherrygroveCity/scripts.pory"
-	.string "Humph. Are you happy you won?$"
+	.string "I'll show you what I mean!$"
 # 343 "data/maps/CherrygroveCity/scripts.pory"
 
 # 344 "data/maps/CherrygroveCity/scripts.pory"
-CherrygroveCity_Text_RivalAfter:
+CherrygroveCity_Text_SilverWin:
 # 345 "data/maps/CherrygroveCity/scripts.pory"
-	.string "… … … … … … … …\p"
+	.string "Humph. Are you happy you won?$"
 # 346 "data/maps/CherrygroveCity/scripts.pory"
-	.string "Do you want to know who I am?\p"
+
 # 347 "data/maps/CherrygroveCity/scripts.pory"
-	.string "I'm going to be the world's\n"
+CherrygroveCity_Text_RivalAfter:
 # 348 "data/maps/CherrygroveCity/scripts.pory"
-	.string "greatest Pokémon trainer.$"
+	.string "… … … … … … … …\p"
 # 349 "data/maps/CherrygroveCity/scripts.pory"
-
+	.string "Do you want to know who I am?\p"
 # 350 "data/maps/CherrygroveCity/scripts.pory"
-CherrygroveCity_Text_RivalID:
+	.string "I'm going to be the world's\n"
 # 351 "data/maps/CherrygroveCity/scripts.pory"
-	.string "Give it back!\n"
+	.string "greatest Pokémon trainer.$"
 # 352 "data/maps/CherrygroveCity/scripts.pory"
-	.string "That's my Trainer Card!\p"
+
 # 353 "data/maps/CherrygroveCity/scripts.pory"
-	.string "Oh no!\n"
+CherrygroveCity_Text_RivalID:
 # 354 "data/maps/CherrygroveCity/scripts.pory"
-	.string "You saw my name...$"
+	.string "Give it back!\n"
 # 355 "data/maps/CherrygroveCity/scripts.pory"
-
+	.string "That's my Trainer Card!\p"
 # 356 "data/maps/CherrygroveCity/scripts.pory"
-CherrygroveCity_Text_TeacherHaveMapCard:
+	.string "Oh no!\n"
 # 357 "data/maps/CherrygroveCity/scripts.pory"
-	.string "When you're with Pokémon,\n"
+	.string "You saw my name...$"
 # 358 "data/maps/CherrygroveCity/scripts.pory"
-	.string "going anywhere is fun.$"
+
 # 359 "data/maps/CherrygroveCity/scripts.pory"
-
+CherrygroveCity_Text_TeacherHaveMapCard:
 # 360 "data/maps/CherrygroveCity/scripts.pory"
-CherrygroveCity_Text_YoungsterNoPokedex:
+	.string "When you're with Pokémon,\n"
 # 361 "data/maps/CherrygroveCity/scripts.pory"
-	.string "Mr. Pokémon's house is still\n"
+	.string "going anywhere is fun.$"
 # 362 "data/maps/CherrygroveCity/scripts.pory"
-	.string "farther up ahead.$"
+
 # 363 "data/maps/CherrygroveCity/scripts.pory"
-
+CherrygroveCity_Text_YoungsterNoPokedex:
 # 364 "data/maps/CherrygroveCity/scripts.pory"
-CherrygroveCity_Text_YoungsterHavePokedex:
+	.string "Mr. Pokémon's house is still\n"
 # 365 "data/maps/CherrygroveCity/scripts.pory"
-	.string "I battled the trainers on the\n"
+	.string "farther up ahead.$"
 # 366 "data/maps/CherrygroveCity/scripts.pory"
-	.string "road.\p"
+
 # 367 "data/maps/CherrygroveCity/scripts.pory"
-	.string "My Pokémon lost. They're a\n"
+CherrygroveCity_Text_YoungsterHavePokedex:
 # 368 "data/maps/CherrygroveCity/scripts.pory"
-	.string "mess! I must take them to a\l"
+	.string "I battled the trainers on the\n"
 # 369 "data/maps/CherrygroveCity/scripts.pory"
-	.string "Pokémon Center.$"
+	.string "road.\p"
 # 370 "data/maps/CherrygroveCity/scripts.pory"
-
+	.string "My Pokémon lost. They're a\n"
 # 371 "data/maps/CherrygroveCity/scripts.pory"
-CherrygroveCity_Text_MysticWaterGuyBefore:
+	.string "mess! I must take them to a\l"
 # 372 "data/maps/CherrygroveCity/scripts.pory"
-	.string "A Pokémon I caught had an\n"
+	.string "Pokémon Center.$"
 # 373 "data/maps/CherrygroveCity/scripts.pory"
-	.string "item.\p"
-# 374 "data/maps/CherrygroveCity/scripts.pory"
-	.string "I think it's Mystic Water.\p"
-# 375 "data/maps/CherrygroveCity/scripts.pory"
-	.string "I don't need it, so do you\n"
-# 376 "data/maps/CherrygroveCity/scripts.pory"
-	.string "want it?$"
-# 377 "data/maps/CherrygroveCity/scripts.pory"
 
+# 374 "data/maps/CherrygroveCity/scripts.pory"
+CherrygroveCity_Text_MysticWaterGuyBefore:
+# 375 "data/maps/CherrygroveCity/scripts.pory"
+	.string "A Pokémon I caught had an\n"
+# 376 "data/maps/CherrygroveCity/scripts.pory"
+	.string "item.\p"
+# 377 "data/maps/CherrygroveCity/scripts.pory"
+	.string "I think it's Mystic Water.\p"
 # 378 "data/maps/CherrygroveCity/scripts.pory"
-CherrygroveCity_Text_MysticWaterGuyAfter:
+	.string "I don't need it, so do you\n"
 # 379 "data/maps/CherrygroveCity/scripts.pory"
-	.string "Back to fishing for me, then.$"
+	.string "want it?$"
 # 380 "data/maps/CherrygroveCity/scripts.pory"
 
 # 381 "data/maps/CherrygroveCity/scripts.pory"
-CherrygroveCity_Text_CitySign:
+CherrygroveCity_Text_MysticWaterGuyAfter:
 # 382 "data/maps/CherrygroveCity/scripts.pory"
-	.string "Cherrygrove City\p"
+	.string "Back to fishing for me, then.$"
 # 383 "data/maps/CherrygroveCity/scripts.pory"
-	.string "The City of Cute, Fragrant\n"
-# 384 "data/maps/CherrygroveCity/scripts.pory"
-	.string "Flowers$"
-# 385 "data/maps/CherrygroveCity/scripts.pory"
 
+# 384 "data/maps/CherrygroveCity/scripts.pory"
+CherrygroveCity_Text_CitySign:
+# 385 "data/maps/CherrygroveCity/scripts.pory"
+	.string "Cherrygrove City\p"
 # 386 "data/maps/CherrygroveCity/scripts.pory"
-CherrygroveCity_Text_GuideGentsHouseSign:
+	.string "The City of Cute, Fragrant\n"
 # 387 "data/maps/CherrygroveCity/scripts.pory"
-	.string "Guide Gent's House$"
+	.string "Flowers$"
 # 388 "data/maps/CherrygroveCity/scripts.pory"
 
 # 389 "data/maps/CherrygroveCity/scripts.pory"
-CherryGroveCity_Text_Staryu:
+CherrygroveCity_Text_GuideGentsHouseSign:
 # 390 "data/maps/CherrygroveCity/scripts.pory"
-	.string "Staryu: Yuuuuuuuu.$"
+	.string "Guide Gent's House$"
 # 391 "data/maps/CherrygroveCity/scripts.pory"
 
 # 392 "data/maps/CherrygroveCity/scripts.pory"
-CherryGroveCity_Text_Corsola:
+CherryGroveCity_Text_Staryu:
 # 393 "data/maps/CherrygroveCity/scripts.pory"
-	.string "Corsola: Corsola! La!$"
+	.string "Staryu: Yuuuuuuuu.$"
 # 394 "data/maps/CherrygroveCity/scripts.pory"
 
 # 395 "data/maps/CherrygroveCity/scripts.pory"
-CherryGroveCity_Text_Krabby:
+CherryGroveCity_Text_Corsola:
 # 396 "data/maps/CherrygroveCity/scripts.pory"
-	.string "Krabby: Kooookeee!$"
+	.string "Corsola: Corsola! La!$"
 # 397 "data/maps/CherrygroveCity/scripts.pory"
 
 # 398 "data/maps/CherrygroveCity/scripts.pory"
-CherryGroveCity_Movement_Trigger_Gent:
+CherryGroveCity_Text_Krabby:
 # 399 "data/maps/CherrygroveCity/scripts.pory"
-	walk_down
+	.string "Krabby: Kooookeee!$"
 # 400 "data/maps/CherrygroveCity/scripts.pory"
-	walk_left
+
 # 401 "data/maps/CherrygroveCity/scripts.pory"
-	walk_down
+CherryGroveCity_Movement_Trigger_Gent:
 # 402 "data/maps/CherrygroveCity/scripts.pory"
-	face_left
-# 403 "data/maps/CherrygroveCity/scripts.pory"
-	step_end
-# 404 "data/maps/CherrygroveCity/scripts.pory"
-
-# 405 "data/maps/CherrygroveCity/scripts.pory"
-CherryGroveCity_Movement_Trigger_Top:
-# 406 "data/maps/CherrygroveCity/scripts.pory"
 	walk_down
+# 403 "data/maps/CherrygroveCity/scripts.pory"
+	walk_left
+# 404 "data/maps/CherrygroveCity/scripts.pory"
+	walk_down
+# 405 "data/maps/CherrygroveCity/scripts.pory"
+	face_left
+# 406 "data/maps/CherrygroveCity/scripts.pory"
+	step_end
 # 407 "data/maps/CherrygroveCity/scripts.pory"
-	face_up
+
 # 408 "data/maps/CherrygroveCity/scripts.pory"
-	step_end
+CherryGroveCity_Movement_Trigger_Top:
 # 409 "data/maps/CherrygroveCity/scripts.pory"
-
+	walk_down
 # 410 "data/maps/CherrygroveCity/scripts.pory"
-CherryGroveCity_Movement_Trigger_Bottom:
-# 411 "data/maps/CherrygroveCity/scripts.pory"
-	walk_up
-# 412 "data/maps/CherrygroveCity/scripts.pory"
 	face_up
-# 413 "data/maps/CherrygroveCity/scripts.pory"
+# 411 "data/maps/CherrygroveCity/scripts.pory"
 	step_end
-# 414 "data/maps/CherrygroveCity/scripts.pory"
+# 412 "data/maps/CherrygroveCity/scripts.pory"
 
+# 413 "data/maps/CherrygroveCity/scripts.pory"
+CherryGroveCity_Movement_Trigger_Bottom:
+# 414 "data/maps/CherrygroveCity/scripts.pory"
+	walk_up
 # 415 "data/maps/CherrygroveCity/scripts.pory"
-CherryGroveCity_Movement_Pokecenter:
+	face_up
 # 416 "data/maps/CherrygroveCity/scripts.pory"
-	walk_left
+	step_end
 # 417 "data/maps/CherrygroveCity/scripts.pory"
-	walk_left
+
 # 418 "data/maps/CherrygroveCity/scripts.pory"
-	walk_left
+CherryGroveCity_Movement_Pokecenter:
 # 419 "data/maps/CherrygroveCity/scripts.pory"
 	walk_left
 # 420 "data/maps/CherrygroveCity/scripts.pory"
@@ -847,19 +847,19 @@ CherryGroveCity_Movement_Pokecenter:
 # 424 "data/maps/CherrygroveCity/scripts.pory"
 	walk_left
 # 425 "data/maps/CherrygroveCity/scripts.pory"
-	walk_up
+	walk_left
 # 426 "data/maps/CherrygroveCity/scripts.pory"
-	step_end
+	walk_left
 # 427 "data/maps/CherrygroveCity/scripts.pory"
-
+	walk_left
 # 428 "data/maps/CherrygroveCity/scripts.pory"
-CherryGroveCity_Movement_Pokemart:
+	walk_up
 # 429 "data/maps/CherrygroveCity/scripts.pory"
-	walk_left
+	step_end
 # 430 "data/maps/CherrygroveCity/scripts.pory"
-	walk_left
+
 # 431 "data/maps/CherrygroveCity/scripts.pory"
-	walk_left
+CherryGroveCity_Movement_Pokemart:
 # 432 "data/maps/CherrygroveCity/scripts.pory"
 	walk_left
 # 433 "data/maps/CherrygroveCity/scripts.pory"
@@ -869,19 +869,19 @@ CherryGroveCity_Movement_Pokemart:
 # 435 "data/maps/CherrygroveCity/scripts.pory"
 	walk_left
 # 436 "data/maps/CherrygroveCity/scripts.pory"
-	face_up
+	walk_left
 # 437 "data/maps/CherrygroveCity/scripts.pory"
-	step_end
+	walk_left
 # 438 "data/maps/CherrygroveCity/scripts.pory"
-
+	walk_left
 # 439 "data/maps/CherrygroveCity/scripts.pory"
-CherryGroveCity_Movement_Route30:
+	face_up
 # 440 "data/maps/CherrygroveCity/scripts.pory"
-	walk_left
+	step_end
 # 441 "data/maps/CherrygroveCity/scripts.pory"
-	walk_left
+
 # 442 "data/maps/CherrygroveCity/scripts.pory"
-	walk_left
+CherryGroveCity_Movement_Route30:
 # 443 "data/maps/CherrygroveCity/scripts.pory"
 	walk_left
 # 444 "data/maps/CherrygroveCity/scripts.pory"
@@ -891,23 +891,23 @@ CherryGroveCity_Movement_Route30:
 # 446 "data/maps/CherrygroveCity/scripts.pory"
 	walk_left
 # 447 "data/maps/CherrygroveCity/scripts.pory"
-	walk_up
+	walk_left
 # 448 "data/maps/CherrygroveCity/scripts.pory"
-	walk_up
+	walk_left
 # 449 "data/maps/CherrygroveCity/scripts.pory"
-	step_end
+	walk_left
 # 450 "data/maps/CherrygroveCity/scripts.pory"
-
+	walk_up
 # 451 "data/maps/CherrygroveCity/scripts.pory"
-CherryGroveCity_Movement_Sea:
+	walk_up
 # 452 "data/maps/CherrygroveCity/scripts.pory"
-	walk_down
+	step_end
 # 453 "data/maps/CherrygroveCity/scripts.pory"
-	walk_left
+
 # 454 "data/maps/CherrygroveCity/scripts.pory"
-	walk_left
+CherryGroveCity_Movement_Sea:
 # 455 "data/maps/CherrygroveCity/scripts.pory"
-	walk_left
+	walk_down
 # 456 "data/maps/CherrygroveCity/scripts.pory"
 	walk_left
 # 457 "data/maps/CherrygroveCity/scripts.pory"
@@ -915,37 +915,37 @@ CherryGroveCity_Movement_Sea:
 # 458 "data/maps/CherrygroveCity/scripts.pory"
 	walk_left
 # 459 "data/maps/CherrygroveCity/scripts.pory"
-	walk_down
+	walk_left
 # 460 "data/maps/CherrygroveCity/scripts.pory"
-	walk_down
+	walk_left
 # 461 "data/maps/CherrygroveCity/scripts.pory"
-	walk_down
+	walk_left
 # 462 "data/maps/CherrygroveCity/scripts.pory"
 	walk_down
 # 463 "data/maps/CherrygroveCity/scripts.pory"
-	walk_left
+	walk_down
 # 464 "data/maps/CherrygroveCity/scripts.pory"
-	step_end
+	walk_down
 # 465 "data/maps/CherrygroveCity/scripts.pory"
-
+	walk_down
 # 466 "data/maps/CherrygroveCity/scripts.pory"
-CherryGroveCity_Movement_House_Gent:
+	walk_left
 # 467 "data/maps/CherrygroveCity/scripts.pory"
-	walk_down
+	step_end
 # 468 "data/maps/CherrygroveCity/scripts.pory"
-	walk_right
+
 # 469 "data/maps/CherrygroveCity/scripts.pory"
-	walk_down
+CherryGroveCity_Movement_House_Gent:
 # 470 "data/maps/CherrygroveCity/scripts.pory"
 	walk_down
 # 471 "data/maps/CherrygroveCity/scripts.pory"
-	walk_down
+	walk_right
 # 472 "data/maps/CherrygroveCity/scripts.pory"
-	walk_right
+	walk_down
 # 473 "data/maps/CherrygroveCity/scripts.pory"
-	walk_right
+	walk_down
 # 474 "data/maps/CherrygroveCity/scripts.pory"
-	walk_right
+	walk_down
 # 475 "data/maps/CherrygroveCity/scripts.pory"
 	walk_right
 # 476 "data/maps/CherrygroveCity/scripts.pory"
@@ -971,31 +971,31 @@ CherryGroveCity_Movement_House_Gent:
 # 486 "data/maps/CherrygroveCity/scripts.pory"
 	walk_right
 # 487 "data/maps/CherrygroveCity/scripts.pory"
-	face_up
+	walk_right
 # 488 "data/maps/CherrygroveCity/scripts.pory"
-	step_end
+	walk_right
 # 489 "data/maps/CherrygroveCity/scripts.pory"
-
+	walk_right
 # 490 "data/maps/CherrygroveCity/scripts.pory"
-CherryGroveCity_Movement_House_Player:
+	face_up
 # 491 "data/maps/CherrygroveCity/scripts.pory"
-	delay_16
+	step_end
 # 492 "data/maps/CherrygroveCity/scripts.pory"
-	delay_16
+
 # 493 "data/maps/CherrygroveCity/scripts.pory"
-	walk_down
+CherryGroveCity_Movement_House_Player:
 # 494 "data/maps/CherrygroveCity/scripts.pory"
-	walk_down
+	delay_16
 # 495 "data/maps/CherrygroveCity/scripts.pory"
-	walk_down
+	delay_16
 # 496 "data/maps/CherrygroveCity/scripts.pory"
 	walk_down
 # 497 "data/maps/CherrygroveCity/scripts.pory"
-	walk_right
+	walk_down
 # 498 "data/maps/CherrygroveCity/scripts.pory"
-	walk_right
+	walk_down
 # 499 "data/maps/CherrygroveCity/scripts.pory"
-	walk_right
+	walk_down
 # 500 "data/maps/CherrygroveCity/scripts.pory"
 	walk_right
 # 501 "data/maps/CherrygroveCity/scripts.pory"
@@ -1019,47 +1019,47 @@ CherryGroveCity_Movement_House_Player:
 # 510 "data/maps/CherrygroveCity/scripts.pory"
 	walk_right
 # 511 "data/maps/CherrygroveCity/scripts.pory"
-	face_up
+	walk_right
 # 512 "data/maps/CherrygroveCity/scripts.pory"
-	step_end
+	walk_right
 # 513 "data/maps/CherrygroveCity/scripts.pory"
-
+	walk_right
 # 514 "data/maps/CherrygroveCity/scripts.pory"
-CherryGroveCity_Movement_Gent_Leave:
+	face_up
 # 515 "data/maps/CherrygroveCity/scripts.pory"
-	walk_up
+	step_end
 # 516 "data/maps/CherrygroveCity/scripts.pory"
-	step_end
+
 # 517 "data/maps/CherrygroveCity/scripts.pory"
-
+CherryGroveCity_Movement_Gent_Leave:
 # 518 "data/maps/CherrygroveCity/scripts.pory"
-CherryGroveCity_Movement_Trigger_Silver_Top:
-# 519 "data/maps/CherrygroveCity/scripts.pory"
-	walk_down
-# 520 "data/maps/CherrygroveCity/scripts.pory"
-	face_right
-# 521 "data/maps/CherrygroveCity/scripts.pory"
-	step_end
-# 522 "data/maps/CherrygroveCity/scripts.pory"
-
-# 523 "data/maps/CherrygroveCity/scripts.pory"
-CherryGroveCity_Movement_Trigger_Silver_Bottom:
-# 524 "data/maps/CherrygroveCity/scripts.pory"
 	walk_up
-# 525 "data/maps/CherrygroveCity/scripts.pory"
-	face_right
-# 526 "data/maps/CherrygroveCity/scripts.pory"
+# 519 "data/maps/CherrygroveCity/scripts.pory"
 	step_end
-# 527 "data/maps/CherrygroveCity/scripts.pory"
+# 520 "data/maps/CherrygroveCity/scripts.pory"
 
+# 521 "data/maps/CherrygroveCity/scripts.pory"
+CherryGroveCity_Movement_Trigger_Silver_Top:
+# 522 "data/maps/CherrygroveCity/scripts.pory"
+	walk_down
+# 523 "data/maps/CherrygroveCity/scripts.pory"
+	face_right
+# 524 "data/maps/CherrygroveCity/scripts.pory"
+	step_end
+# 525 "data/maps/CherrygroveCity/scripts.pory"
+
+# 526 "data/maps/CherrygroveCity/scripts.pory"
+CherryGroveCity_Movement_Trigger_Silver_Bottom:
+# 527 "data/maps/CherrygroveCity/scripts.pory"
+	walk_up
 # 528 "data/maps/CherrygroveCity/scripts.pory"
-CherryGroveCity_Movement_Silver_Enter:
+	face_right
 # 529 "data/maps/CherrygroveCity/scripts.pory"
-	walk_fast_left
+	step_end
 # 530 "data/maps/CherrygroveCity/scripts.pory"
-	walk_fast_left
+
 # 531 "data/maps/CherrygroveCity/scripts.pory"
-	walk_fast_left
+CherryGroveCity_Movement_Silver_Enter:
 # 532 "data/maps/CherrygroveCity/scripts.pory"
 	walk_fast_left
 # 533 "data/maps/CherrygroveCity/scripts.pory"
@@ -1071,67 +1071,67 @@ CherryGroveCity_Movement_Silver_Enter:
 # 536 "data/maps/CherrygroveCity/scripts.pory"
 	walk_fast_left
 # 537 "data/maps/CherrygroveCity/scripts.pory"
-	step_end
+	walk_fast_left
 # 538 "data/maps/CherrygroveCity/scripts.pory"
-
+	walk_fast_left
 # 539 "data/maps/CherrygroveCity/scripts.pory"
-CherryGroveCity_Movement_Silver_Leave1:
+	walk_fast_left
 # 540 "data/maps/CherrygroveCity/scripts.pory"
-	delay_16
+	step_end
 # 541 "data/maps/CherrygroveCity/scripts.pory"
-	walk_fast_left
+
 # 542 "data/maps/CherrygroveCity/scripts.pory"
-	walk_fast_left
+CherryGroveCity_Movement_Silver_Leave1:
 # 543 "data/maps/CherrygroveCity/scripts.pory"
-	walk_fast_left
+	delay_16
 # 544 "data/maps/CherrygroveCity/scripts.pory"
 	walk_fast_left
 # 545 "data/maps/CherrygroveCity/scripts.pory"
 	walk_fast_left
 # 546 "data/maps/CherrygroveCity/scripts.pory"
-	step_end
+	walk_fast_left
 # 547 "data/maps/CherrygroveCity/scripts.pory"
-
+	walk_fast_left
 # 548 "data/maps/CherrygroveCity/scripts.pory"
-CherryGroveCity_Movement_Silver_Leave1Player:
+	walk_fast_left
 # 549 "data/maps/CherrygroveCity/scripts.pory"
-	lock_facing_direction
-# 550 "data/maps/CherrygroveCity/scripts.pory"
-	walk_fast_down
-# 551 "data/maps/CherrygroveCity/scripts.pory"
-	unlock_facing_direction
-# 552 "data/maps/CherrygroveCity/scripts.pory"
-	face_up
-# 553 "data/maps/CherrygroveCity/scripts.pory"
 	step_end
-# 554 "data/maps/CherrygroveCity/scripts.pory"
+# 550 "data/maps/CherrygroveCity/scripts.pory"
 
+# 551 "data/maps/CherrygroveCity/scripts.pory"
+CherryGroveCity_Movement_Silver_Leave1Player:
+# 552 "data/maps/CherrygroveCity/scripts.pory"
+	lock_facing_direction
+# 553 "data/maps/CherrygroveCity/scripts.pory"
+	walk_fast_down
+# 554 "data/maps/CherrygroveCity/scripts.pory"
+	unlock_facing_direction
 # 555 "data/maps/CherrygroveCity/scripts.pory"
-CherryGroveCity_Movement_Silver_Return:
+	face_up
 # 556 "data/maps/CherrygroveCity/scripts.pory"
-	walk_fast_right
+	step_end
 # 557 "data/maps/CherrygroveCity/scripts.pory"
-	walk_fast_right
+
 # 558 "data/maps/CherrygroveCity/scripts.pory"
-	walk_fast_right
+CherryGroveCity_Movement_Silver_Return:
 # 559 "data/maps/CherrygroveCity/scripts.pory"
 	walk_fast_right
 # 560 "data/maps/CherrygroveCity/scripts.pory"
-	face_down
+	walk_fast_right
 # 561 "data/maps/CherrygroveCity/scripts.pory"
-	step_end
+	walk_fast_right
 # 562 "data/maps/CherrygroveCity/scripts.pory"
-
+	walk_fast_right
 # 563 "data/maps/CherrygroveCity/scripts.pory"
-
+	face_down
 # 564 "data/maps/CherrygroveCity/scripts.pory"
-CherryGroveCity_Movement_Silver_Leave2:
+	step_end
 # 565 "data/maps/CherrygroveCity/scripts.pory"
-	walk_fast_left
+
 # 566 "data/maps/CherrygroveCity/scripts.pory"
-	walk_fast_left
+
 # 567 "data/maps/CherrygroveCity/scripts.pory"
-	walk_fast_left
+CherryGroveCity_Movement_Silver_Leave2:
 # 568 "data/maps/CherrygroveCity/scripts.pory"
 	walk_fast_left
 # 569 "data/maps/CherrygroveCity/scripts.pory"
@@ -1145,168 +1145,174 @@ CherryGroveCity_Movement_Silver_Leave2:
 # 573 "data/maps/CherrygroveCity/scripts.pory"
 	walk_fast_left
 # 574 "data/maps/CherrygroveCity/scripts.pory"
+	walk_fast_left
+# 575 "data/maps/CherrygroveCity/scripts.pory"
+	walk_fast_left
+# 576 "data/maps/CherrygroveCity/scripts.pory"
+	walk_fast_left
+# 577 "data/maps/CherrygroveCity/scripts.pory"
 	step_end
 
 Cherrygrove_FadedSign::
-# 578 "data/maps/CherrygroveCity/scripts.pory"
+# 581 "data/maps/CherrygroveCity/scripts.pory"
 	msgbox Cherrygrove_FadedSign_Text_0, MSGBOX_SIGN
 	return
 
 
 Cherrygrove_DarkraiEventDoor::
-# 583 "data/maps/CherrygroveCity/scripts.pory"
+# 586 "data/maps/CherrygroveCity/scripts.pory"
 	msgbox Cherrygrove_DarkraiEventDoor_Text_0, MSGBOX_SIGN
 	return
 
 
 Cherrygrove_Littlegirl::
-# 588 "data/maps/CherrygroveCity/scripts.pory"
+# 591 "data/maps/CherrygroveCity/scripts.pory"
 	msgbox Cherrygrove_Littlegirl_Text_0, MSGBOX_NPC
 	return
 
 
 Cherrygrove_Zigzagoon::
-# 594 "data/maps/CherrygroveCity/scripts.pory"
-	lock
-# 595 "data/maps/CherrygroveCity/scripts.pory"
-	faceplayer
-# 596 "data/maps/CherrygroveCity/scripts.pory"
-	playmoncry SPECIES_ZIGZAGOON_GALAR, CRY_MODE_NORMAL
 # 597 "data/maps/CherrygroveCity/scripts.pory"
-	msgbox Cherrygrove_Zigzagoon_Text_0
+	lock
 # 598 "data/maps/CherrygroveCity/scripts.pory"
+	faceplayer
+# 599 "data/maps/CherrygroveCity/scripts.pory"
+	playmoncry SPECIES_ZIGZAGOON_GALAR, CRY_MODE_NORMAL
+# 600 "data/maps/CherrygroveCity/scripts.pory"
+	msgbox Cherrygrove_Zigzagoon_Text_0
+# 601 "data/maps/CherrygroveCity/scripts.pory"
 	release
 	end
 
 
 Cherrygrove_Rattata::
-# 603 "data/maps/CherrygroveCity/scripts.pory"
-	lock
-# 604 "data/maps/CherrygroveCity/scripts.pory"
-	faceplayer
-# 605 "data/maps/CherrygroveCity/scripts.pory"
-	playmoncry SPECIES_RATTATA_ALOLA, CRY_MODE_NORMAL
 # 606 "data/maps/CherrygroveCity/scripts.pory"
-	msgbox Cherrygrove_Rattata_Text_0
+	lock
 # 607 "data/maps/CherrygroveCity/scripts.pory"
+	faceplayer
+# 608 "data/maps/CherrygroveCity/scripts.pory"
+	playmoncry SPECIES_RATTATA_ALOLA, CRY_MODE_NORMAL
+# 609 "data/maps/CherrygroveCity/scripts.pory"
+	msgbox Cherrygrove_Rattata_Text_0
+# 610 "data/maps/CherrygroveCity/scripts.pory"
 	release
 	end
 
 
 Cherrygrove_FriendlyTrader::
-# 612 "data/maps/CherrygroveCity/scripts.pory"
-	lock
-# 613 "data/maps/CherrygroveCity/scripts.pory"
-	faceplayer
-# 614 "data/maps/CherrygroveCity/scripts.pory"
-	goto_if_set FLAG_PICKED_ZIGZAGOON, Cherrygrove_FriendlyTrader_2
-# 614 "data/maps/CherrygroveCity/scripts.pory"
-	goto_if_set FLAG_PICKED_RATTATA, Cherrygrove_FriendlyTrader_2
-# 619 "data/maps/CherrygroveCity/scripts.pory"
-	goto_if_set FLAG_RECEIVED_FIRST_BALLS, Cherrygrove_FriendlyTrader_7
-# 665 "data/maps/CherrygroveCity/scripts.pory"
-	msgbox Cherrygrove_FriendlyTrader_Text_7
-# 672 "data/maps/CherrygroveCity/scripts.pory"
-	release
-	end
-
-Cherrygrove_FriendlyTrader_2:
 # 615 "data/maps/CherrygroveCity/scripts.pory"
-	msgbox Cherrygrove_FriendlyTrader_Text_0
+	lock
 # 616 "data/maps/CherrygroveCity/scripts.pory"
-	release
-	end
-
+	faceplayer
+# 617 "data/maps/CherrygroveCity/scripts.pory"
+	goto_if_set FLAG_PICKED_ZIGZAGOON, Cherrygrove_FriendlyTrader_2
+# 617 "data/maps/CherrygroveCity/scripts.pory"
+	goto_if_set FLAG_PICKED_RATTATA, Cherrygrove_FriendlyTrader_2
+# 622 "data/maps/CherrygroveCity/scripts.pory"
+	goto_if_set FLAG_RECEIVED_FIRST_BALLS, Cherrygrove_FriendlyTrader_7
+# 668 "data/maps/CherrygroveCity/scripts.pory"
+	msgbox Cherrygrove_FriendlyTrader_Text_7
 # 675 "data/maps/CherrygroveCity/scripts.pory"
 	release
 	end
 
+Cherrygrove_FriendlyTrader_2:
+# 618 "data/maps/CherrygroveCity/scripts.pory"
+	msgbox Cherrygrove_FriendlyTrader_Text_0
+# 619 "data/maps/CherrygroveCity/scripts.pory"
+	release
+	end
+
+# 678 "data/maps/CherrygroveCity/scripts.pory"
+	release
+	end
+
 Cherrygrove_FriendlyTrader_7:
-# 620 "data/maps/CherrygroveCity/scripts.pory"
+# 623 "data/maps/CherrygroveCity/scripts.pory"
 	msgbox Cherrygrove_FriendlyTrader_Text_1
-# 631 "data/maps/CherrygroveCity/scripts.pory"
+# 634 "data/maps/CherrygroveCity/scripts.pory"
 	dynmultichoice 0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, Cherrygrove_FriendlyTrader_Text_2, Cherrygrove_FriendlyTrader_Text_3, Cherrygrove_FriendlyTrader_Text_4
-# 632 "data/maps/CherrygroveCity/scripts.pory"
+# 635 "data/maps/CherrygroveCity/scripts.pory"
 	switch VAR_RESULT
-# 633 "data/maps/CherrygroveCity/scripts.pory"
+# 636 "data/maps/CherrygroveCity/scripts.pory"
 	case 0, Cherrygrove_FriendlyTrader_11
-# 646 "data/maps/CherrygroveCity/scripts.pory"
+# 649 "data/maps/CherrygroveCity/scripts.pory"
 	case 1, Cherrygrove_FriendlyTrader_12
-# 660 "data/maps/CherrygroveCity/scripts.pory"
+# 663 "data/maps/CherrygroveCity/scripts.pory"
 	msgbox Cherrygrove_FriendlyTrader_Text_6
-# 661 "data/maps/CherrygroveCity/scripts.pory"
+# 664 "data/maps/CherrygroveCity/scripts.pory"
 	release
 	end
 
 Cherrygrove_FriendlyTrader_11:
-# 634 "data/maps/CherrygroveCity/scripts.pory"
-	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_ZIGZAGOON_GALAR
-# 635 "data/maps/CherrygroveCity/scripts.pory"
-	bufferspeciesname STR_VAR_1, SPECIES_ZIGZAGOON_GALAR
-# 636 "data/maps/CherrygroveCity/scripts.pory"
-	givemon SPECIES_ZIGZAGOON_GALAR, 5
 # 637 "data/maps/CherrygroveCity/scripts.pory"
-	removeobject LOCALID_CHERRY_ZIGZAGOON
+	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_ZIGZAGOON_GALAR
 # 638 "data/maps/CherrygroveCity/scripts.pory"
-	call Common_EventScript_GiftMon
-# 639 "data/maps/CherrygroveCity/scripts.pory"
 	bufferspeciesname STR_VAR_1, SPECIES_ZIGZAGOON_GALAR
+# 639 "data/maps/CherrygroveCity/scripts.pory"
+	givemon SPECIES_ZIGZAGOON_GALAR, 5
 # 640 "data/maps/CherrygroveCity/scripts.pory"
+	removeobject LOCALID_CHERRY_ZIGZAGOON
+# 641 "data/maps/CherrygroveCity/scripts.pory"
+	call Common_EventScript_GiftMon
+# 642 "data/maps/CherrygroveCity/scripts.pory"
+	bufferspeciesname STR_VAR_1, SPECIES_ZIGZAGOON_GALAR
+# 643 "data/maps/CherrygroveCity/scripts.pory"
 	msgbox Cherrygrove_FriendlyTrader_Text_5
-# 644 "data/maps/CherrygroveCity/scripts.pory"
+# 647 "data/maps/CherrygroveCity/scripts.pory"
 	release
 	end
 
 Cherrygrove_FriendlyTrader_12:
-# 647 "data/maps/CherrygroveCity/scripts.pory"
-	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_RATTATA_ALOLA
-# 648 "data/maps/CherrygroveCity/scripts.pory"
-	bufferspeciesname STR_VAR_1, SPECIES_RATTATA_ALOLA
-# 649 "data/maps/CherrygroveCity/scripts.pory"
-	givemon SPECIES_RATTATA_ALOLA, 5
 # 650 "data/maps/CherrygroveCity/scripts.pory"
-	removeobject LOCALID_CHERRY_RATTATA
+	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_RATTATA_ALOLA
 # 651 "data/maps/CherrygroveCity/scripts.pory"
-	call Common_EventScript_GiftMon
-# 652 "data/maps/CherrygroveCity/scripts.pory"
 	bufferspeciesname STR_VAR_1, SPECIES_RATTATA_ALOLA
+# 652 "data/maps/CherrygroveCity/scripts.pory"
+	givemon SPECIES_RATTATA_ALOLA, 5
 # 653 "data/maps/CherrygroveCity/scripts.pory"
+	removeobject LOCALID_CHERRY_RATTATA
+# 654 "data/maps/CherrygroveCity/scripts.pory"
+	call Common_EventScript_GiftMon
+# 655 "data/maps/CherrygroveCity/scripts.pory"
+	bufferspeciesname STR_VAR_1, SPECIES_RATTATA_ALOLA
+# 656 "data/maps/CherrygroveCity/scripts.pory"
 	msgbox Cherrygrove_FriendlyTrader_Text_5
-# 657 "data/maps/CherrygroveCity/scripts.pory"
+# 660 "data/maps/CherrygroveCity/scripts.pory"
 	release
 	end
 
 
 Cherrygrove_FadedSign_Text_0:
-# 578 "data/maps/CherrygroveCity/scripts.pory"
+# 581 "data/maps/CherrygroveCity/scripts.pory"
 	.string "Cherrygrove inn...\n"
 	.string "The text is too faded to read.$"
 
 Cherrygrove_DarkraiEventDoor_Text_0:
-# 583 "data/maps/CherrygroveCity/scripts.pory"
+# 586 "data/maps/CherrygroveCity/scripts.pory"
 	.string "The door won't budge. It seems\n"
 	.string "to be stuck.$"
 
 Cherrygrove_Littlegirl_Text_0:
-# 588 "data/maps/CherrygroveCity/scripts.pory"
+# 591 "data/maps/CherrygroveCity/scripts.pory"
 	.string "That inn... I don't think it\n"
 	.string "has ever been open. My mom said it was\l"
 	.string "abandoned even in her youth.$"
 
 Cherrygrove_Zigzagoon_Text_0:
-# 597 "data/maps/CherrygroveCity/scripts.pory"
+# 600 "data/maps/CherrygroveCity/scripts.pory"
 	.string "Zig!$"
 
 Cherrygrove_Rattata_Text_0:
-# 606 "data/maps/CherrygroveCity/scripts.pory"
+# 609 "data/maps/CherrygroveCity/scripts.pory"
 	.string "Rat!$"
 
 Cherrygrove_FriendlyTrader_Text_0:
-# 615 "data/maps/CherrygroveCity/scripts.pory"
+# 618 "data/maps/CherrygroveCity/scripts.pory"
 	.string "Hi! Has my Pokémon been helpful?$"
 
 Cherrygrove_FriendlyTrader_Text_1:
-# 620 "data/maps/CherrygroveCity/scripts.pory"
+# 623 "data/maps/CherrygroveCity/scripts.pory"
 	.string "Hello! Are you a new trainer per chance?\p"
 	.string "Listen, I received two exotic Pokémon\n"
 	.string "as a gift from my uncle in the Safari\l"
@@ -1317,29 +1323,29 @@ Cherrygrove_FriendlyTrader_Text_1:
 	.string "an adventure with you!$"
 
 Cherrygrove_FriendlyTrader_Text_2:
-# 631 "data/maps/CherrygroveCity/scripts.pory"
+# 634 "data/maps/CherrygroveCity/scripts.pory"
 	.string "Zigzagoon$"
 
 Cherrygrove_FriendlyTrader_Text_3:
-# 631 "data/maps/CherrygroveCity/scripts.pory"
+# 634 "data/maps/CherrygroveCity/scripts.pory"
 	.string "Rattata$"
 
 Cherrygrove_FriendlyTrader_Text_4:
-# 631 "data/maps/CherrygroveCity/scripts.pory"
+# 634 "data/maps/CherrygroveCity/scripts.pory"
 	.string "No thanks$"
 
 Cherrygrove_FriendlyTrader_Text_5:
-# 640 "data/maps/CherrygroveCity/scripts.pory"
+# 643 "data/maps/CherrygroveCity/scripts.pory"
 	.string "Take good care of my {STR_VAR_1}!\p"
 	.string "Say hi to my uncle, Baoba if you are\n"
 	.string "ever visiting the Safari Zone!$"
 
 Cherrygrove_FriendlyTrader_Text_6:
-# 660 "data/maps/CherrygroveCity/scripts.pory"
+# 663 "data/maps/CherrygroveCity/scripts.pory"
 	.string "Oh... That's a shame...$"
 
 Cherrygrove_FriendlyTrader_Text_7:
-# 665 "data/maps/CherrygroveCity/scripts.pory"
+# 668 "data/maps/CherrygroveCity/scripts.pory"
 	.string "Hey! Can I ask you a favour? \p"
 	.string "Wait... You don't have any\n"
 	.string "Poké Balls...\p"

@@ -887,7 +887,7 @@
 #define TRAINER_RIVAL_CRYSTAL_ICEPATH     880
 #define TRAINER_RIVAL_GOLD_FINAL          881
 #define TRAINER_RIVAL_CRYSTAL_FINAL       882
-#define TRAINER_UNUSED_19                 883
+#define TRAINER_PHILIP                    883
 #define TRAINER_UNUSED_20                 884
 #define TRAINER_UNUSED_21                 885
 #define TRAINER_UNUSED_22                 886

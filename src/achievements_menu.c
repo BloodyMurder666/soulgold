@@ -2,11 +2,12 @@
 #include "achievements.h"
 #include "bg.h"
 #include "comfy_anim.h"
+#include "decompress.h"
+#include "graphics.h"
 #include "gpu_regs.h"
 #include "international_string_util.h"
-#include "item_icon.h"
+#include "list_menu.h"
 #include "main.h"
-#include "malloc.h"
 #include "menu.h"
 #include "menu_helpers.h"
 #include "overworld.h"
@@ -14,6 +15,7 @@
 #include "scanline_effect.h"
 #include "sound.h"
 #include "sprite.h"
+#include "strings.h"
 #include "string_util.h"
 #include "task.h"
 #include "text.h"
@@ -21,29 +23,31 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 
-#define ACHIEVEMENTS_VISIBLE_ROWS 7
+#define ACHIEVEMENTS_VISIBLE_ROWS 6
 #define ACHIEVEMENTS_MENU_ICON_TAG_BASE 0xAC00
+#define ACHIEVEMENTS_SCROLL_ARROW_TAG 0xAC80
 #define ACHIEVEMENTS_BLANK_TILE 0
 #define ACHIEVEMENTS_MENU_PAL_SLOT 1
 #define ACHIEVEMENTS_MENU_MAP_BASE 29
-#define ACHIEVEMENTS_STATUS_LEFT 160
-#define ACHIEVEMENTS_STATUS_WIDTH 52
-#define ACHIEVEMENTS_ROW_HEIGHT 14
-#define ACHIEVEMENTS_ROW_Y(row) (8 + (row) * ACHIEVEMENTS_ROW_HEIGHT)
-#define ACHIEVEMENTS_TEXT_Y(row) (ACHIEVEMENTS_ROW_Y(row) + 2)
-#define ACHIEVEMENTS_CURSOR_X 8
+#define ACHIEVEMENTS_STATUS_LEFT 192
+#define ACHIEVEMENTS_STATUS_WIDTH 48
+#define ACHIEVEMENTS_ROW_HEIGHT 15
+#define ACHIEVEMENTS_TEXT_Y(row) (4 + (row) * ACHIEVEMENTS_ROW_HEIGHT)
+#define ACHIEVEMENTS_CURSOR_X 14
 #define ACHIEVEMENTS_CURSOR_CLEAR_X 0
-#define ACHIEVEMENTS_CURSOR_CLEAR_WIDTH 40
-#define ACHIEVEMENTS_CURSOR_CLEAR_HEIGHT 112
+#define ACHIEVEMENTS_CURSOR_CLEAR_WIDTH 48
+#define ACHIEVEMENTS_CURSOR_CLEAR_HEIGHT 96
 #define ACHIEVEMENTS_CURSOR_ANIM_DURATION 8
 #define ACHIEVEMENTS_BACKGROUND_SCROLL_SPEED 128
-#define ACHIEVEMENTS_HELP_WINDOW_TILE_START 0
-#define ACHIEVEMENTS_HELP_WINDOW_PAL_SLOT STD_WINDOW_PALETTE_NUM
-#define ACHIEVEMENTS_HELP_WINDOW_X 2
-#define ACHIEVEMENTS_HELP_WINDOW_Y 7
-#define ACHIEVEMENTS_HELP_WINDOW_WIDTH 26
-#define ACHIEVEMENTS_HELP_WINDOW_HEIGHT 10
-#define ACHIEVEMENTS_HELP_WINDOW_TILEMAP_WIDTH 32
+#define ACHIEVEMENTS_NAME_X 54
+#define ACHIEVEMENTS_ICON_X 35
+#define ACHIEVEMENTS_ICON_Y(row) (29 + (row) * ACHIEVEMENTS_ROW_HEIGHT)
+#define ACHIEVEMENTS_FOOTER_TEXT_X 8
+#define ACHIEVEMENTS_FOOTER_TEXT_Y 26
+#define ACHIEVEMENTS_SCROLL_ARROW_X 170
+#define ACHIEVEMENTS_SCROLL_ARROW_TOP_Y 18
+#define ACHIEVEMENTS_SCROLL_ARROW_BOTTOM_Y 118
+#define ACHIEVEMENTS_BALL_ICON_SIZE (4 * TILE_SIZE_4BPP)
 
 enum
 {
@@ -57,19 +61,17 @@ enum
 {
     WIN_HEADER,
     WIN_LIST,
-    WIN_HINT,
+    WIN_FOOTER,
 };
 
 static void CB2_AchievementsMenu(void);
 static void VBlankCB_AchievementsMenu(void);
 static void Task_AchievementsMenu(u8 taskId);
 static void DrawAchievementsMenu(void);
-static void DrawAchievementHint(void);
 static void DrawHeader(void);
 static void DrawList(void);
+static void DrawAchievementFooter(void);
 static void LoadMenuTilemap(void);
-static void DrawHelpWindowFrame(void);
-static void ClearHelpWindowFrame(void);
 static void PrintListStatusText(const u8 *text, u8 y, const u8 *color);
 static void DrawListCursor(u8 row);
 static void DrawListCursorAtY(s16 y);
@@ -79,17 +81,18 @@ static void ResetListCursorAnimation(void);
 static void CreateListBallIcon(u8 row, const struct Achievement *achievement);
 static void TintBallIconIfLocked(u8 spriteId, const struct Achievement *achievement);
 static void DestroyListBallIcons(void);
-static void SetListBallIconsInvisible(bool8 invisible);
-static void CloseAchievementHint(void);
+static void AddScrollArrows(void);
+static void RemoveScrollArrows(void);
 static void ExitAchievementsMenu(u8 taskId);
 static void AnimateAchievementsBackground(void);
 
-EWRAM_DATA static u8 sAchievementCursor = 0;
-EWRAM_DATA static u8 sAchievementTop = 0;
-EWRAM_DATA static bool8 sShowingDetail = FALSE;
+EWRAM_DATA static u16 sAchievementCursor = 0;
+EWRAM_DATA static u16 sAchievementTop = 0;
 EWRAM_DATA static u8 sListBallIconSpriteIds[ACHIEVEMENTS_VISIBLE_ROWS] = {};
+EWRAM_DATA static struct SpriteTemplate sListBallIconTemplates[ACHIEVEMENTS_VISIBLE_ROWS] = {};
 EWRAM_DATA static u8 sListCursorAnimId = 0;
 EWRAM_DATA static s16 sListCursorY = 0;
+EWRAM_DATA static u8 sScrollIndicatorArrowPairId = 0;
 EWRAM_DATA static u16 sDetailTilemapBuffer[BG_SCREEN_SIZE / 2] = {};
 EWRAM_DATA static u16 sTextTilemapBuffer[BG_SCREEN_SIZE / 2] = {};
 EWRAM_DATA static u16 sMenuTilemapBuffer[BG_SCREEN_SIZE / 2] = {};
@@ -103,21 +106,53 @@ static const u16 sAchievementsBgPal[] = INCBIN_U16("graphics/pokegear/tiles.gbap
 static const u32 sAchievementsMenuTiles[] = INCBIN_U32("graphics/achievements/menu.4bpp");
 static const u16 sAchievementsMenuTilemap[] = INCBIN_U16("graphics/achievements/menu.bin");
 static const u16 sAchievementsMenuPal[] = INCBIN_U16("graphics/achievements/menu.gbapal");
-static const u32 sAchievementsHelpWindowTiles[] = INCBIN_U32("graphics/achievements/helpwindow.4bpp");
-static const u16 sAchievementsHelpWindowTilemap[] = INCBIN_U16("graphics/achievements/helpwindow.bin");
-static const u16 sAchievementsHelpWindowPal[] = INCBIN_U16("graphics/achievements/helpwindow.gbapal");
+
+static const u8 sColor_DarkGray[3] = { TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY };
+static const u8 sColor_Blue[3] = { TEXT_COLOR_TRANSPARENT, TEXT_COLOR_BLUE, TEXT_COLOR_LIGHT_BLUE };
+static const u8 sColor_Green[3] = { TEXT_COLOR_TRANSPARENT, TEXT_COLOR_GREEN, TEXT_COLOR_LIGHT_GREEN };
+static const u8 sColor_White[3] = { TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY };
+
+struct AchievementBallIconGfx
+{
+    const u32 *tiles;
+    const u16 *palette;
+};
+
+static const struct AchievementBallIconGfx sBallIconGfxByTier[] =
+{
+    [ACH_TIER_BRONZE] =
+    {
+        .tiles = gBallGfx_Poke,
+        .palette = gBallPal_Poke,
+    },
+    [ACH_TIER_SILVER] =
+    {
+        .tiles = gBallGfx_Great,
+        .palette = gBallPal_Great,
+    },
+    [ACH_TIER_GOLD] =
+    {
+        .tiles = gBallGfx_Ultra,
+        .palette = gBallPal_Ultra,
+    },
+    [ACH_TIER_PLATINUM] =
+    {
+        .tiles = gBallGfx_Master,
+        .palette = gBallPal_Master,
+    },
+};
 
 static const struct OamData sOamData_BallIcon =
 {
     .y = 0,
-    .affineMode = ST_OAM_AFFINE_NORMAL,
+    .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
     .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
-    .shape = SPRITE_SHAPE(32x32),
+    .shape = SPRITE_SHAPE(16x16),
     .x = 0,
     .matrixNum = 0,
-    .size = SPRITE_SIZE(32x32),
+    .size = SPRITE_SIZE(16x16),
     .tileNum = 0,
     .priority = 0,
     .paletteNum = 0,
@@ -135,24 +170,12 @@ static const union AnimCmd *const sAnims_BallIcon[] =
     sAnim_BallIcon,
 };
 
-static const union AffineAnimCmd sAffineAnim_BallIconSmall[] =
-{
-    AFFINEANIMCMD_FRAME(128, 128, 0, 0),
-    AFFINEANIMCMD_END,
-};
-
-static const union AffineAnimCmd *const sAffineAnims_BallIcon[] =
-{
-    sAffineAnim_BallIconSmall,
-};
-
 static const struct SpriteTemplate sSpriteTemplate_BallIcon =
 {
     .tileTag = 0,
     .paletteTag = 0,
     .oam = &sOamData_BallIcon,
     .anims = sAnims_BallIcon,
-    .affineAnims = sAffineAnims_BallIcon,
     .callback = SpriteCallbackDummy,
 };
 
@@ -203,32 +226,32 @@ static const struct WindowTemplate sWindowTemplates[] =
     [WIN_HEADER] =
     {
         .bg = BG_TEXT,
-        .tilemapLeft = 1,
-        .tilemapTop = 1,
-        .width = 28,
-        .height = 3,
+        .tilemapLeft = 0,
+        .tilemapTop = 0,
+        .width = 30,
+        .height = 2,
         .paletteNum = 15,
         .baseBlock = 0x024,
     },
     [WIN_LIST] =
     {
         .bg = BG_TEXT,
-        .tilemapLeft = 1,
-        .tilemapTop = 5,
-        .width = 28,
-        .height = 14,
+        .tilemapLeft = 0,
+        .tilemapTop = 2,
+        .width = 30,
+        .height = 12,
         .paletteNum = 15,
         .baseBlock = 0x078,
     },
-    [WIN_HINT] =
+    [WIN_FOOTER] =
     {
         .bg = BG_DETAIL,
-        .tilemapLeft = 3,
-        .tilemapTop = 8,
-        .width = 24,
-        .height = 8,
+        .tilemapLeft = 0,
+        .tilemapTop = 13,
+        .width = 30,
+        .height = 7,
         .paletteNum = 15,
-        .baseBlock = 0x330,
+        .baseBlock = 0x240,
     },
     DUMMY_WIN_TEMPLATE,
 };
@@ -273,12 +296,10 @@ void CB2_InitAchievementsMenuWithCallback(MainCallback callback)
     DmaClear16(3, BG_SCREEN_ADDR(29), BG_SCREEN_SIZE);
     DmaClear16(3, BG_SCREEN_ADDR(28), BG_SCREEN_SIZE);
     LoadBgTiles(BG_DETAIL, sBlankBgTile, sizeof(sBlankBgTile), ACHIEVEMENTS_BLANK_TILE);
-    LoadBgTiles(BG_DETAIL, sAchievementsHelpWindowTiles, sizeof(sAchievementsHelpWindowTiles), ACHIEVEMENTS_HELP_WINDOW_TILE_START);
     LoadBgTiles(BG_MENU, sAchievementsMenuTiles, sizeof(sAchievementsMenuTiles), 0);
     LoadBgTiles(BG_BACKGROUND, sAchievementsBgTiles, sizeof(sAchievementsBgTiles), 0);
     LoadPalette(sAchievementsBgPal, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
     LoadPalette(sAchievementsMenuPal, BG_PLTT_ID(ACHIEVEMENTS_MENU_PAL_SLOT), PLTT_SIZE_4BPP);
-    LoadPalette(sAchievementsHelpWindowPal, BG_PLTT_ID(ACHIEVEMENTS_HELP_WINDOW_PAL_SLOT), PLTT_SIZE_4BPP);
     FillBgTilemapBufferRect_Palette0(BG_DETAIL, ACHIEVEMENTS_BLANK_TILE, 0, 0, DISPLAY_TILE_WIDTH, DISPLAY_TILE_HEIGHT);
     FillBgTilemapBufferRect_Palette0(BG_TEXT, ACHIEVEMENTS_BLANK_TILE, 0, 0, DISPLAY_TILE_WIDTH, DISPLAY_TILE_HEIGHT);
     LoadMenuTilemap();
@@ -295,12 +316,13 @@ void CB2_InitAchievementsMenuWithCallback(MainCallback callback)
 
     sAchievementCursor = 0;
     sAchievementTop = 0;
-    sShowingDetail = FALSE;
     sListCursorAnimId = INVALID_COMFY_ANIM;
     sListCursorY = ACHIEVEMENTS_TEXT_Y(0);
+    sScrollIndicatorArrowPairId = TASK_NONE;
     for (i = 0; i < ACHIEVEMENTS_VISIBLE_ROWS; i++)
         sListBallIconSpriteIds[i] = MAX_SPRITES;
     DrawAchievementsMenu();
+    AddScrollArrows();
     CreateTask(Task_AchievementsMenu, 0);
     BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
     gPaletteFade.bufferTransferDisabled = FALSE;
@@ -329,17 +351,14 @@ static void CB2_AchievementsMenu(void)
 
 static void DrawHeader(void)
 {
-    const u8 color[3] = { 0, 1, 2 };
     PutWindowTilemap(WIN_HEADER);
     FillWindowPixelBuffer(WIN_HEADER, PIXEL_FILL(0));
-    //AddTextPrinterParameterized(WIN_HEADER, FONT_NORMAL, COMPOUND_STRING("ACHIEVEMENTS"), 8, 1, TEXT_SKIP_DRAW, NULL);
-    AddTextPrinterParameterized3(WIN_HEADER, FONT_NORMAL, 13, 11, color, TEXT_SKIP_DRAW, COMPOUND_STRING("Trophies"));
+    AddTextPrinterParameterized3(WIN_HEADER, FONT_SMALL, 10, 2, sColor_DarkGray, TEXT_SKIP_DRAW, COMPOUND_STRING("Trophies"));
 
     ConvertIntToDecimalStringN(gStringVar1, Achievement_CountUnlocked(), STR_CONV_MODE_LEFT_ALIGN, 3);
     ConvertIntToDecimalStringN(gStringVar2, Achievement_GetCount(), STR_CONV_MODE_LEFT_ALIGN, 3);
     StringExpandPlaceholders(gStringVar4, COMPOUND_STRING("{STR_VAR_1}/{STR_VAR_2}"));
-    //AddTextPrinterParameterized(WIN_HEADER, FONT_NORMAL, gStringVar4, 176, 1, TEXT_SKIP_DRAW, NULL);
-    AddTextPrinterParameterized3(WIN_HEADER, FONT_NORMAL, 102, 11, color, TEXT_SKIP_DRAW, gStringVar4);
+    AddTextPrinterParameterized3(WIN_HEADER, FONT_SMALL, 203, 2, sColor_DarkGray, TEXT_SKIP_DRAW, gStringVar4);
         
     CopyWindowToVram(WIN_HEADER, COPYWIN_FULL);
 }
@@ -353,55 +372,21 @@ static void LoadMenuTilemap(void)
     CopyBgTilemapBufferToVram(BG_MENU);
 }
 
-static void DrawHelpWindowFrame(void)
-{
-    CopyRectToBgTilemapBufferRect(
-        BG_TEXT,
-        sAchievementsHelpWindowTilemap,
-        ACHIEVEMENTS_HELP_WINDOW_X,
-        ACHIEVEMENTS_HELP_WINDOW_Y,
-        ACHIEVEMENTS_HELP_WINDOW_TILEMAP_WIDTH,
-        DISPLAY_TILE_HEIGHT,
-        ACHIEVEMENTS_HELP_WINDOW_X,
-        ACHIEVEMENTS_HELP_WINDOW_Y,
-        ACHIEVEMENTS_HELP_WINDOW_WIDTH,
-        ACHIEVEMENTS_HELP_WINDOW_HEIGHT,
-        ACHIEVEMENTS_HELP_WINDOW_PAL_SLOT,
-        ACHIEVEMENTS_HELP_WINDOW_TILE_START,
-        0);
-    CopyBgTilemapBufferToVram(BG_TEXT);
-}
-
-static void ClearHelpWindowFrame(void)
-{
-    FillBgTilemapBufferRect_Palette0(
-        BG_TEXT,
-        ACHIEVEMENTS_BLANK_TILE,
-        ACHIEVEMENTS_HELP_WINDOW_X,
-        ACHIEVEMENTS_HELP_WINDOW_Y,
-        ACHIEVEMENTS_HELP_WINDOW_WIDTH,
-        ACHIEVEMENTS_HELP_WINDOW_HEIGHT);
-    CopyBgTilemapBufferToVram(BG_TEXT);
-}
-
 static void PrintListStatusText(const u8 *text, u8 y, const u8 *color)
 {
     u8 x = ACHIEVEMENTS_STATUS_LEFT + GetStringCenterAlignXOffset(FONT_SMALL, text, ACHIEVEMENTS_STATUS_WIDTH);
 
-    //AddTextPrinterParameterized(WIN_LIST, FONT_SMALL, text, x, y, TEXT_SKIP_DRAW, NULL);
     AddTextPrinterParameterized3(WIN_LIST, FONT_SMALL, x, y, color, TEXT_SKIP_DRAW, text);
 }
 
 static void PrintAchievementProgress(const struct Achievement *achievement, u8 y)
 {
-    static const u8 sColor_Normal[3] = { TEXT_COLOR_TRANSPARENT, 1, 2 };
-    static const u8 sColor_Done[3] = { TEXT_COLOR_TRANSPARENT, 1, TEXT_COLOR_GREEN };
     u32 progress = Achievement_GetProgress(achievement);
     u32 target = Achievement_GetTarget(achievement);
 
     if (Achievement_IsUnlocked(achievement->id))
     {
-        PrintListStatusText(COMPOUND_STRING("DONE"), y, sColor_Done);
+        PrintListStatusText(COMPOUND_STRING("Done"), y, sColor_Green);
     }
     else if (target > 1)
     {
@@ -410,11 +395,11 @@ static void PrintAchievementProgress(const struct Achievement *achievement, u8 y
         ConvertIntToDecimalStringN(gStringVar1, progress, STR_CONV_MODE_LEFT_ALIGN, 4);
         ConvertIntToDecimalStringN(gStringVar2, target, STR_CONV_MODE_LEFT_ALIGN, 4);
         StringExpandPlaceholders(gStringVar4, COMPOUND_STRING("{STR_VAR_1}/{STR_VAR_2}"));
-        PrintListStatusText(gStringVar4, y, sColor_Normal);
+        PrintListStatusText(gStringVar4, y, sColor_Blue);
     }
     else
     {
-        PrintListStatusText(COMPOUND_STRING("LOCKED"), y, sColor_Normal);
+        PrintListStatusText(COMPOUND_STRING("Locked"), y, sColor_DarkGray);
     }
 }
 
@@ -458,29 +443,38 @@ static void DestroyListBallIcons(void)
     }
 }
 
-static void SetListBallIconsInvisible(bool8 invisible)
-{
-    u8 i;
-
-    for (i = 0; i < ACHIEVEMENTS_VISIBLE_ROWS; i++)
-    {
-        if (sListBallIconSpriteIds[i] != MAX_SPRITES)
-            gSprites[sListBallIconSpriteIds[i]].invisible = invisible;
-    }
-}
-
 static void CreateListBallIcon(u8 row, const struct Achievement *achievement)
 {
     u16 tag = ACHIEVEMENTS_MENU_ICON_TAG_BASE + row;
-    u8 spriteId = AddCustomItemIconSprite(&sSpriteTemplate_BallIcon, tag, tag, Achievement_GetTierBallItem(achievement->tier));
+    enum AchievementTier tier = achievement->tier;
+    struct CompressedSpriteSheet spriteSheet;
+    struct SpritePalette spritePalette;
+    struct SpriteTemplate *spriteTemplate = &sListBallIconTemplates[row];
+    u8 spriteId;
+
+    if (tier >= ARRAY_COUNT(sBallIconGfxByTier))
+        tier = ACH_TIER_BRONZE;
+
+    spriteSheet.data = sBallIconGfxByTier[tier].tiles;
+    spriteSheet.size = ACHIEVEMENTS_BALL_ICON_SIZE;
+    spriteSheet.tag = tag;
+    LoadCompressedSpriteSheet(&spriteSheet);
+
+    spritePalette.data = sBallIconGfxByTier[tier].palette;
+    spritePalette.tag = tag;
+    LoadSpritePalette(&spritePalette);
+
+    CpuCopy16(&sSpriteTemplate_BallIcon, spriteTemplate, sizeof(*spriteTemplate));
+    spriteTemplate->tileTag = tag;
+    spriteTemplate->paletteTag = tag;
+    spriteId = CreateSprite(spriteTemplate, 0, 0, 0);
 
     if (spriteId == MAX_SPRITES)
         return;
     sListBallIconSpriteIds[row] = spriteId;
-    gSprites[spriteId].x = 35;
-    gSprites[spriteId].y = 60 + row * 14;
+    gSprites[spriteId].x = ACHIEVEMENTS_ICON_X;
+    gSprites[spriteId].y = ACHIEVEMENTS_ICON_Y(row);
     gSprites[spriteId].oam.priority = 0;
-    StartSpriteAffineAnim(&gSprites[spriteId], 0);
     TintBallIconIfLocked(spriteId, achievement);
 }
 
@@ -492,9 +486,7 @@ static void DrawListCursor(u8 row)
 
 static void DrawListCursorAtY(s16 y)
 {
-    const u8 color[3] = { 0, 1, 2 };
-
-    AddTextPrinterParameterized3(WIN_LIST, FONT_SMALL, ACHIEVEMENTS_CURSOR_X, y, color, TEXT_SKIP_DRAW, COMPOUND_STRING("{RIGHT_ARROW}"));
+    AddTextPrinterParameterized3(WIN_LIST, FONT_SMALL, ACHIEVEMENTS_CURSOR_X, y, sColor_DarkGray, TEXT_SKIP_DRAW, gText_SelectorArrow2);
 }
 
 static void CopyListCursorColumnToVram(void)
@@ -599,7 +591,6 @@ static void DrawList(void)
 {
     u8 i;
     u16 count = Achievement_GetCount();
-    const u8 color[3] = { 0, 1, 2 };
 
     ResetListCursorAnimation();
     DestroyListBallIcons();
@@ -611,54 +602,67 @@ static void DrawList(void)
         u8 textY = ACHIEVEMENTS_TEXT_Y(i);
 
         if (sAchievementCursor == sAchievementTop + i)
-            //AddTextPrinterParameterized(WIN_LIST, FONT_NORMAL, COMPOUND_STRING("{RIGHT_ARROW}"), 8, textY, TEXT_SKIP_DRAW, NULL);
             DrawListCursor(i);
         CreateListBallIcon(i, achievement);
-        AddTextPrinterParameterized3(WIN_LIST, FONT_SMALL, 54, textY, color, TEXT_SKIP_DRAW, achievement->name);
+        AddTextPrinterParameterized3(WIN_LIST, FONT_SMALL, ACHIEVEMENTS_NAME_X, textY, sColor_DarkGray, TEXT_SKIP_DRAW, achievement->name);
         PrintAchievementProgress(achievement, textY);
     }
     CopyWindowToVram(WIN_LIST, COPYWIN_FULL);
 }
 
-static void DrawAchievementHint(void)
+static void DrawAchievementFooter(void)
 {
-    static const u8 sHintTextColor[3] = { TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY };
-    const struct Achievement *achievement = Achievement_GetByIndex(sAchievementCursor);
-    u32 progress = Achievement_GetProgress(achievement);
-    u32 target = Achievement_GetTarget(achievement);
+    const struct Achievement *achievement;
 
-    if (progress > target)
-        progress = target;
-    ResetListCursorAnimation();
-    DrawAndCopyListCursorAtY(ACHIEVEMENTS_TEXT_Y(sAchievementCursor - sAchievementTop));
-    SetListBallIconsInvisible(TRUE);
-    DrawHelpWindowFrame();
-    PutWindowTilemap(WIN_HINT);
-    FillWindowPixelBuffer(WIN_HINT, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
-    AddTextPrinterParameterized3(WIN_HINT, FONT_NORMAL, 8, 1, sHintTextColor, TEXT_SKIP_DRAW, achievement->name);
-    AddTextPrinterParameterized3(WIN_HINT, FONT_SMALL, 8, 19, sHintTextColor, TEXT_SKIP_DRAW, achievement->description);
-    ConvertIntToDecimalStringN(gStringVar1, progress, STR_CONV_MODE_LEFT_ALIGN, 4);
-    ConvertIntToDecimalStringN(gStringVar2, target, STR_CONV_MODE_LEFT_ALIGN, 4);
-    StringExpandPlaceholders(gStringVar4, COMPOUND_STRING("{STR_VAR_1}/{STR_VAR_2}"));
-    AddTextPrinterParameterized3(WIN_HINT, FONT_SMALL, 8, 45, sHintTextColor, TEXT_SKIP_DRAW, gStringVar4);
-    CopyWindowToVram(WIN_HINT, COPYWIN_FULL);
-}
-
-static void CloseAchievementHint(void)
-{
-    sShowingDetail = FALSE;
-    ClearWindowTilemap(WIN_HINT);
-    FillWindowPixelBuffer(WIN_HINT, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
-    CopyWindowToVram(WIN_HINT, COPYWIN_FULL);
-    ClearHelpWindowFrame();
-    DrawList();
-    SetListBallIconsInvisible(FALSE);
+    PutWindowTilemap(WIN_FOOTER);
+    FillWindowPixelBuffer(WIN_FOOTER, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
+    if (Achievement_GetCount() != 0)
+    {
+        achievement = Achievement_GetByIndex(sAchievementCursor);
+        AddTextPrinterParameterized3(
+            WIN_FOOTER,
+            FONT_SMALL,
+            ACHIEVEMENTS_FOOTER_TEXT_X,
+            ACHIEVEMENTS_FOOTER_TEXT_Y,
+            sColor_White,
+            TEXT_SKIP_DRAW,
+            achievement->description);
+    }
+    CopyWindowToVram(WIN_FOOTER, COPYWIN_FULL);
 }
 
 static void DrawAchievementsMenu(void)
 {
     DrawHeader();
     DrawList();
+    DrawAchievementFooter();
+}
+
+static void AddScrollArrows(void)
+{
+    u16 count = Achievement_GetCount();
+
+    if (sScrollIndicatorArrowPairId == TASK_NONE && count > ACHIEVEMENTS_VISIBLE_ROWS)
+    {
+        sScrollIndicatorArrowPairId = AddScrollIndicatorArrowPairParameterized(
+            SCROLL_ARROW_UP,
+            ACHIEVEMENTS_SCROLL_ARROW_X,
+            ACHIEVEMENTS_SCROLL_ARROW_TOP_Y,
+            ACHIEVEMENTS_SCROLL_ARROW_BOTTOM_Y,
+            count - ACHIEVEMENTS_VISIBLE_ROWS,
+            ACHIEVEMENTS_SCROLL_ARROW_TAG,
+            ACHIEVEMENTS_SCROLL_ARROW_TAG,
+            &sAchievementTop);
+    }
+}
+
+static void RemoveScrollArrows(void)
+{
+    if (sScrollIndicatorArrowPairId != TASK_NONE)
+    {
+        RemoveScrollIndicatorArrowPair(sScrollIndicatorArrowPairId);
+        sScrollIndicatorArrowPairId = TASK_NONE;
+    }
 }
 
 static void UNUSED AnimateAchievementsBackground(void)
@@ -668,7 +672,7 @@ static void UNUSED AnimateAchievementsBackground(void)
 
 static void MoveCursor(s16 delta)
 {
-    u8 oldTop = sAchievementTop;
+    u16 oldTop = sAchievementTop;
     u16 oldCursor = sAchievementCursor;
     u8 oldRow = sAchievementCursor - sAchievementTop;
     u16 count = Achievement_GetCount();
@@ -678,27 +682,20 @@ static void MoveCursor(s16 delta)
     if (count == 0)
         return;
 
-    if (isPageJump)
-    {
-        if (delta > 0)
-        {
-            newCursor = sAchievementCursor + delta;
-            if (newCursor >= count)
-                newCursor = count - 1;
-        }
-        else if (sAchievementCursor < -delta)
-        {
-            newCursor = 0;
-        }
-        else
-        {
-            newCursor = sAchievementCursor + delta;
-        }
-        sAchievementCursor = newCursor;
+    newCursor = sAchievementCursor + delta;
+    if (newCursor < 0)
+        newCursor = 0;
+    else if (newCursor >= count)
+        newCursor = count - 1;
+    sAchievementCursor = newCursor;
 
-        if (count <= ACHIEVEMENTS_VISIBLE_ROWS)
-            sAchievementTop = 0;
-        else if (sAchievementCursor >= oldRow)
+    if (count <= ACHIEVEMENTS_VISIBLE_ROWS)
+    {
+        sAchievementTop = 0;
+    }
+    else if (isPageJump)
+    {
+        if (sAchievementCursor >= oldRow)
             sAchievementTop = sAchievementCursor - oldRow;
         else
             sAchievementTop = 0;
@@ -708,13 +705,6 @@ static void MoveCursor(s16 delta)
     }
     else
     {
-        newCursor = sAchievementCursor + delta;
-        while (newCursor < 0)
-            newCursor += count;
-        while (newCursor >= count)
-            newCursor -= count;
-        sAchievementCursor = newCursor;
-
         if (sAchievementCursor < sAchievementTop)
             sAchievementTop = sAchievementCursor;
         else if (sAchievementCursor >= sAchievementTop + ACHIEVEMENTS_VISIBLE_ROWS)
@@ -729,6 +719,7 @@ static void MoveCursor(s16 delta)
         DrawList();
     else
         UpdateListCursor(oldCursor);
+    DrawAchievementFooter();
 }
 
 static void Task_AchievementsMenu(u8 taskId)
@@ -736,30 +727,14 @@ static void Task_AchievementsMenu(u8 taskId)
     if (gPaletteFade.active)
         return;
 
-    if (sShowingDetail)
-    {
-        if (JOY_NEW(A_BUTTON | B_BUTTON))
-        {
-            PlaySE(SE_SELECT);
-            CloseAchievementHint();
-        }
-        return;
-    }
-
-    if (JOY_NEW(DPAD_UP))
+    if (JOY_REPEAT(DPAD_UP))
         MoveCursor(-1);
-    else if (JOY_NEW(DPAD_DOWN))
+    else if (JOY_REPEAT(DPAD_DOWN))
         MoveCursor(1);
-    else if (JOY_NEW(DPAD_LEFT))
+    else if (JOY_REPEAT(DPAD_LEFT))
         MoveCursor(-ACHIEVEMENTS_VISIBLE_ROWS);
-    else if (JOY_NEW(DPAD_RIGHT))
+    else if (JOY_REPEAT(DPAD_RIGHT))
         MoveCursor(ACHIEVEMENTS_VISIBLE_ROWS);
-    else if (JOY_NEW(A_BUTTON))
-    {
-        sShowingDetail = TRUE;
-        PlaySE(SE_SELECT);
-        DrawAchievementHint();
-    }
     else if (JOY_NEW(B_BUTTON))
     {
         PlaySE(SE_SELECT);
@@ -773,8 +748,7 @@ static void ExitAchievementsMenu(u8 taskId)
     if (!gPaletteFade.active)
     {
         DestroyTask(taskId);
-        if (sShowingDetail)
-            CloseAchievementHint();
+        RemoveScrollArrows();
         ResetListCursorAnimation();
         DestroyListBallIcons();
         FreeAllWindowBuffers();
@@ -784,13 +758,12 @@ static void ExitAchievementsMenu(u8 taskId)
 
 #undef ACHIEVEMENTS_VISIBLE_ROWS
 #undef ACHIEVEMENTS_MENU_ICON_TAG_BASE
+#undef ACHIEVEMENTS_SCROLL_ARROW_TAG
 #undef ACHIEVEMENTS_BLANK_TILE
 #undef ACHIEVEMENTS_MENU_PAL_SLOT
 #undef ACHIEVEMENTS_MENU_MAP_BASE
-#undef ACHIEVEMENTS_STATUS_LEFT
-#undef ACHIEVEMENTS_STATUS_WIDTH
+#undef ACHIEVEMENTS_STATUS_RIGHT
 #undef ACHIEVEMENTS_ROW_HEIGHT
-#undef ACHIEVEMENTS_ROW_Y
 #undef ACHIEVEMENTS_TEXT_Y
 #undef ACHIEVEMENTS_CURSOR_X
 #undef ACHIEVEMENTS_CURSOR_CLEAR_X
@@ -798,10 +771,12 @@ static void ExitAchievementsMenu(u8 taskId)
 #undef ACHIEVEMENTS_CURSOR_CLEAR_HEIGHT
 #undef ACHIEVEMENTS_CURSOR_ANIM_DURATION
 #undef ACHIEVEMENTS_BACKGROUND_SCROLL_SPEED
-#undef ACHIEVEMENTS_HELP_WINDOW_TILE_START
-#undef ACHIEVEMENTS_HELP_WINDOW_PAL_SLOT
-#undef ACHIEVEMENTS_HELP_WINDOW_X
-#undef ACHIEVEMENTS_HELP_WINDOW_Y
-#undef ACHIEVEMENTS_HELP_WINDOW_WIDTH
-#undef ACHIEVEMENTS_HELP_WINDOW_HEIGHT
-#undef ACHIEVEMENTS_HELP_WINDOW_TILEMAP_WIDTH
+#undef ACHIEVEMENTS_NAME_X
+#undef ACHIEVEMENTS_ICON_X
+#undef ACHIEVEMENTS_ICON_Y
+#undef ACHIEVEMENTS_FOOTER_TEXT_X
+#undef ACHIEVEMENTS_FOOTER_TEXT_Y
+#undef ACHIEVEMENTS_SCROLL_ARROW_X
+#undef ACHIEVEMENTS_SCROLL_ARROW_TOP_Y
+#undef ACHIEVEMENTS_SCROLL_ARROW_BOTTOM_Y
+#undef ACHIEVEMENTS_BALL_ICON_SIZE

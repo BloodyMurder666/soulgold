@@ -45,6 +45,7 @@
 #include "pokerus.h"
 #include "random.h"
 #include "recorded_battle.h"
+#include "replay_options.h"
 #include "regions.h"
 #include "rtc.h"
 #include "sound.h"
@@ -93,6 +94,7 @@ static metloc_u16_t GetBoxMonMetLocation(struct BoxPokemon *boxMon);
 static void SetBoxMonMetLocation(struct BoxPokemon *boxMon, metloc_u16_t metLocation);
 static u8 GetBoxMonMetLocationHi(struct BoxPokemon *boxMon);
 static void SetBoxMonMetLocationHi(struct BoxPokemon *boxMon, u8 metLocationHi);
+static void TryToSetBoxFormChangeMoves(struct BoxPokemon *boxMon, enum FormChanges method, u16 targetSpecies);
 static void Task_PlayMapChosenOrBattleBGM(u8 taskId);
 void TrySpecialOverworldEvo();
 
@@ -1665,15 +1667,15 @@ void SetBoxMonMoveSlot(struct BoxPokemon *mon, enum Move move, u8 slot)
     SetBoxMonData(mon, MON_DATA_PP1 + slot, &pp);
 }
 
-static void SetMonMoveSlot_KeepPP(struct Pokemon *mon, enum Move move, u8 slot)
+static void SetBoxMonMoveSlot_KeepPP(struct BoxPokemon *boxMon, enum Move move, u8 slot)
 {
-    u8 ppBonuses = GetMonData(mon, MON_DATA_PP_BONUSES);
-    u8 currPP = GetMonData(mon, MON_DATA_PP1 + slot);
+    u8 ppBonuses = GetBoxMonData(boxMon, MON_DATA_PP_BONUSES);
+    u8 currPP = GetBoxMonData(boxMon, MON_DATA_PP1 + slot);
     u8 newPP = CalculatePPWithBonus(move, ppBonuses, slot);
-    u16 finalPP = min(currPP, newPP);
+    u8 finalPP = min(currPP, newPP);
 
-    SetMonData(mon, MON_DATA_MOVE1 + slot, &move);
-    SetMonData(mon, MON_DATA_PP1 + slot, &finalPP);
+    SetBoxMonData(boxMon, MON_DATA_MOVE1 + slot, &move);
+    SetBoxMonData(boxMon, MON_DATA_PP1 + slot, &finalPP);
 }
 
 void SetBattleMonMoveSlot(struct BattlePokemon *mon, enum Move move, u8 slot)
@@ -2927,6 +2929,7 @@ u8 GiveCapturedMonToPlayer(struct Pokemon *mon)
     SetMonData(mon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
     SetMonData(mon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
     SetMonData(mon, MON_DATA_OT_ID, gSaveBlock2Ptr->playerTrainerId);
+    ApplyReplayEasyIVs(mon);
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
@@ -3544,22 +3547,39 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, enum Item item, u8 partyIndex, 
 
                 if (param == 0) // Rare Candy
                 {
-                    dataUnsigned = gExperienceTables[gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES, NULL)].growthRate][GetMonData(mon, MON_DATA_LEVEL, NULL) + itemCount];
+                    u16 species = GetMonData(mon, MON_DATA_SPECIES);
+                    u32 currentExp = GetMonData(mon, MON_DATA_EXP);
+                    u32 level = GetMonData(mon, MON_DATA_LEVEL, NULL);
+                    u32 targetLevel = level + itemCount;
+                    u32 maxLevel = MAX_LEVEL;
+
+                    if (B_RARE_CANDY_CAP && GetCurrentExpCapType() != EXP_CAP_NONE)
+                        maxLevel = min(GetCurrentLevelCap(), MAX_LEVEL);
+
+                    targetLevel = min(targetLevel, maxLevel);
+                    if (targetLevel > level)
+                    {
+                        dataUnsigned = gExperienceTables[gSpeciesInfo[species].growthRate][targetLevel];
+                        if (dataUnsigned <= currentExp)
+                            dataUnsigned = 0;
+                    }
                 }
                 else if (param - 1 < ARRAY_COUNT(sExpCandyExperienceTable)) // EXP Candies
                 {
                     u16 species = GetMonData(mon, MON_DATA_SPECIES);
-                    dataUnsigned = (sExpCandyExperienceTable[param - 1] * itemCount) + GetMonData(mon, MON_DATA_EXP);
+                    u32 currentExp = GetMonData(mon, MON_DATA_EXP);
+                    u32 maxExpLevel = MAX_LEVEL;
+                    u32 maxExp;
 
-                    if (B_RARE_CANDY_CAP && GetCurrentExpCapType() == EXP_CAP_HARD)
+                    if (B_RARE_CANDY_CAP && GetCurrentExpCapType() != EXP_CAP_NONE)
+                        maxExpLevel = min(GetCurrentLevelCap(), MAX_LEVEL);
+
+                    maxExp = gExperienceTables[gSpeciesInfo[species].growthRate][maxExpLevel];
+                    if (currentExp < maxExp)
                     {
-                        u32 currentLevelCap = GetCurrentLevelCap();
-                        if (dataUnsigned > gExperienceTables[gSpeciesInfo[species].growthRate][currentLevelCap])
-                            dataUnsigned = gExperienceTables[gSpeciesInfo[species].growthRate][currentLevelCap];
-                    }
-                    else if (dataUnsigned > gExperienceTables[gSpeciesInfo[species].growthRate][MAX_LEVEL])
-                    {
-                        dataUnsigned = gExperienceTables[gSpeciesInfo[species].growthRate][MAX_LEVEL];
+                        dataUnsigned = (sExpCandyExperienceTable[param - 1] * itemCount) + currentExp;
+                        if (dataUnsigned > maxExp)
+                            dataUnsigned = maxExp;
                     }
                 }
 
@@ -6167,12 +6187,13 @@ u32 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *boxMon, enum FormChanges
         ctx.heldItems[i] = GetBoxMonData(boxMon, MON_DATA_HELD_ITEM + i);
     for (i = 0; i < MAX_MON_MOVES; i++)
         ctx.moves[i] = GetBoxMonData(boxMon, MON_DATA_MOVE1 + i);
+    GetBoxMonData(boxMon, MON_DATA_NICKNAME, ctx.nickname);
     for (i = 0; i < MAX_MON_TRAITS; i++)
     {
         if (i == 0)
             ctx.traits[0] = GetAbilityBySpecies(species, GetBoxMonData(boxMon, MON_DATA_ABILITY_NUM));
         else
-            ctx.traits[i] = gSpeciesInfo[ctx.currentSpecies].innates[i];
+            ctx.traits[i] = gSpeciesInfo[ctx.currentSpecies].innates[i - 1];
     }
 
     return GetFormChangeTargetSpecies_Internal(ctx);
@@ -6202,6 +6223,31 @@ u32 FormChangeHasTrait(struct FormChangeContext ctx, enum Ability ability)
             return TRUE;
     }
     return FALSE;
+}
+
+static const u8 *GetFormChangeNickname(u32 nicknameId)
+{
+    static const u8 sNicknameXD001[] = _("XD001");
+    static const u8 sNicknamePrimal[] = _("Primal");
+
+    switch (nicknameId)
+    {
+    case FORM_CHANGE_NICKNAME_XD001:
+        return sNicknameXD001;
+    case FORM_CHANGE_NICKNAME_PRIMAL:
+        return sNicknamePrimal;
+    default:
+        return NULL;
+    }
+}
+
+static bool32 FormChangeHasNickname(const struct FormChangeContext *ctx, u32 nicknameId)
+{
+    const u8 *nickname = GetFormChangeNickname(nicknameId);
+
+    if (nickname == NULL)
+        return FALSE;
+    return StringCompare(ctx->nickname, nickname) == 0;
 }
 
 u32 GetFormChangeTargetSpecies_Internal(struct FormChangeContext ctx)
@@ -6430,6 +6476,11 @@ u32 GetFormChangeTargetSpecies_Internal(struct FormChangeContext ctx)
                 && (formChanges[i].param2 == ABILITY_NONE || FormChangeHasTrait(ctx, formChanges[i].param2)))
                 targetSpecies = formChanges[i].targetSpecies;
             break;
+        case FORM_CHANGE_NICKNAME:
+            if ((formChanges[i].param2 == FORM_CHANGE_NICKNAME_NOT_EQUALS && !FormChangeHasNickname(&ctx, formChanges[i].param1))
+             || (formChanges[i].param2 != FORM_CHANGE_NICKNAME_NOT_EQUALS && FormChangeHasNickname(&ctx, formChanges[i].param1)))
+                targetSpecies = formChanges[i].targetSpecies;
+            break;
         case FORM_CHANGE_OVERWORLD_WEATHER:
         case FORM_CHANGE_TERMINATOR:
             break;
@@ -6643,13 +6694,22 @@ bool32 TryFormChange(struct Pokemon *mon, enum FormChanges method)
 
     if (targetSpecies != currentSpecies)
     {
-        TryToSetBattleFormChangeMoves(mon, method);
+        TryToSetBattleFormChangeMoves(mon, method, targetSpecies);
         SetMonData(mon, MON_DATA_SPECIES, &targetSpecies);
         TrySetDayLimitToFormChange(mon);
         CalculateMonStats(mon);
         return TRUE;
     }
 
+    return FALSE;
+}
+
+bool32 TrySelectedMonNicknameFormChange(void)
+{
+    if (gSpecialVar_0x8004 == PC_MON_CHOSEN)
+        return TryBoxMonFormChange(GetSelectedBoxMonFromPcOrParty(), FORM_CHANGE_NICKNAME);
+    if (gSpecialVar_0x8004 < PARTY_SIZE)
+        return TryFormChange(&gPlayerParty[gSpecialVar_0x8004], FORM_CHANGE_NICKNAME);
     return FALSE;
 }
 
@@ -6669,6 +6729,7 @@ bool32 TryBoxMonFormChange(struct BoxPokemon *boxMon, enum FormChanges method)
 
     if (targetSpecies != currentSpecies)
     {
+        TryToSetBoxFormChangeMoves(boxMon, method, targetSpecies);
         SetBoxMonData(boxMon, MON_DATA_SPECIES, &targetSpecies);
         return TRUE;
     }
@@ -6691,35 +6752,58 @@ bool32 IsSpeciesEnabled(u16 species)
     return gSpeciesInfo[species].baseHP > 0 || species == SPECIES_EGG;
 }
 
-void TryToSetBattleFormChangeMoves(struct Pokemon *mon, enum FormChanges method)
+static bool32 GetFormChangeMoveSwap(const struct FormChange *formChange, enum FormChanges method, u16 *originalMove, u16 *newMove)
+{
+    switch (method)
+    {
+    case FORM_CHANGE_BEGIN_BATTLE:
+    case FORM_CHANGE_END_BATTLE:
+        *originalMove = formChange->param2;
+        *newMove = formChange->param3;
+        break;
+    case FORM_CHANGE_NICKNAME:
+        *originalMove = formChange->param3;
+        *newMove = formChange->param4;
+        break;
+    default:
+        return FALSE;
+    }
+
+    return *originalMove != MOVE_NONE && *newMove != MOVE_NONE;
+}
+
+static void TryToSetBoxFormChangeMoves(struct BoxPokemon *boxMon, enum FormChanges method, u16 targetSpecies)
 {
     int i, j;
-    u16 species = GetMonData(mon, MON_DATA_SPECIES);
+    u16 species = GetBoxMonData(boxMon, MON_DATA_SPECIES);
     const struct FormChange *formChanges = GetSpeciesFormChanges(species);
 
-    if (formChanges == NULL
-        || (method != FORM_CHANGE_BEGIN_BATTLE && method != FORM_CHANGE_END_BATTLE))
+    if (formChanges == NULL)
         return;
 
     for (i = 0; formChanges[i].method != FORM_CHANGE_TERMINATOR; i++)
     {
-        if (formChanges[i].method == method
-            && formChanges[i].param2
-            && formChanges[i].param3
-            && formChanges[i].targetSpecies != species)
-        {
-            u16 originalMove = formChanges[i].param2;
-            u16 newMove = formChanges[i].param3;
+        u16 originalMove;
+        u16 newMove;
 
+        if (formChanges[i].method == method
+            && formChanges[i].targetSpecies == targetSpecies
+            && GetFormChangeMoveSwap(&formChanges[i], method, &originalMove, &newMove))
+        {
             for (j = 0; j < MAX_MON_MOVES; j++)
             {
-                u16 currMove = GetMonData(mon, MON_DATA_MOVE1 + j);
+                u16 currMove = GetBoxMonData(boxMon, MON_DATA_MOVE1 + j);
                 if (currMove == originalMove)
-                    SetMonMoveSlot_KeepPP(mon, newMove, j);
+                    SetBoxMonMoveSlot_KeepPP(boxMon, newMove, j);
             }
             break;
         }
     }
+}
+
+void TryToSetBattleFormChangeMoves(struct Pokemon *mon, enum FormChanges method, u16 targetSpecies)
+{
+    TryToSetBoxFormChangeMoves(&mon->box, method, targetSpecies);
 }
 
 u32 GetMonFriendshipScore(struct Pokemon *pokemon)
@@ -7474,6 +7558,9 @@ u32 GiveScriptedMonToPlayer(struct Pokemon *mon, u8 slot)
 {
     u32 sentToPc;
     u32 i = 0;
+
+    ApplyReplayEasyIVs(mon);
+
     if (slot < PARTY_SIZE)
     {
         CopyMon(&gPlayerParty[slot], mon, sizeof(struct Pokemon));
@@ -7533,6 +7620,9 @@ bool32 IsInnateUnlockedByLevel(u32 innateNum, u32 level)
 {
     u32 unlockLevel = GetInnateUnlockLevel(innateNum);
 
+    if (AreReplayInnatesDisabled())
+        return FALSE;
+
     return FlagGet(FLAG_ALL_INNATES_UNLOCKED) || unlockLevel == 0 || level >= unlockLevel;
 }
 
@@ -7540,6 +7630,9 @@ bool32 IsInnateUnlockedByLevel(u32 innateNum, u32 level)
 u32 SpeciesHasInnate(u32 species, enum Ability ability)
 {
     u32 innateNum = 0;
+
+    if (AreReplayInnatesDisabled())
+        return 0;
 
     for (u32 i = 0; i < MAX_MON_INNATES; i++)
     {

@@ -862,6 +862,14 @@
 	.byte \movementType
 	.endm
 
+	@ Morphs a live object's graphics using the OBJ mosaic effect and blocks until the effect finishes.
+	@ This changes the live object only; its map template is not modified.
+	.macro mosaicmorphobject localId:req, graphicsId:req
+	callnative Script_MosaicMorphObject, requests_effects=1
+	.2byte \localId
+	.2byte \graphicsId
+	.endm
+
 	@ If a standard message box (or its text) is being drawn on-screen, this command blocks script execution until the
 	@ box and its text have been fully drawn.
 	.macro waitmessage

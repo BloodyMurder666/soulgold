@@ -578,6 +578,8 @@ script KurtDaily {
 					I can hardly believe I managed
 					to craft it.")
 			giveitem(ITEM_MASTER_BALL, 1)
+			setflag(FLAG_KURT_CRAFTED_MASTER_BALL)
+			special(Achievement_CheckAll)
 	}
 	setflag(FLAG_DAILY_KURT_FREE_BALLS)
 	if (var(VAR_KURT_PROFICIENCY) < 255) {

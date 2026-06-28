@@ -6,6 +6,7 @@
 #include "battle_pyramid_bag.h"
 #include "berry.h"
 #include "berry_powder.h"
+#include "buenas_password.h"
 #include "candy_jar.h"
 #include "bike.h"
 #include "coins.h"
@@ -84,6 +85,7 @@ static void SetDistanceOfClosestHiddenItem(u8, s16, s16);
 static void CB2_OpenPokeblockFromBag(void);
 static void ItemUseOnFieldCB_Honey(u8 taskId);
 static bool32 IsValidLocationForVsSeeker(void);
+static void CloseCandyJarMessage(u8 taskId);
 static u32 ConvertCandyJarExpToCandies(u8 *summaryDst);
 static bool8 AppendCandyJarRewardLine(u8 *summaryDst, enum Item itemId, u32 count);
 
@@ -93,8 +95,8 @@ static const u8 sText_ItemFinderOnTop[] = _("Oh!\nThe ITEMFINDER's shaking wildl
 static const u8 sText_ItemFinderNothing[] = _("… … … …Nope!\nThere's no response.{PAUSE_UNTIL_PRESS}");
 static const u8 sText_CoinCase[] = _("Your coins:\n{STR_VAR_1}{PAUSE_UNTIL_PRESS}");
 static const u8 sText_PowderQty[] = _("Powder qty: {STR_VAR_1}{PAUSE_UNTIL_PRESS}");
-static const u8 sText_CandyJarQty[] = _("Candy EXP: {STR_VAR_1}\nNext candy: {STR_VAR_2}{PAUSE_UNTIL_PRESS}");
-static const u8 sText_CandyJarMadeCandy[] = _("The CANDY JAR made:\n{STR_VAR_1}\pStored EXP left:\n{STR_VAR_2}{PAUSE_UNTIL_PRESS}");
+static const u8 sText_CandyJarQty[] = _("Stored EXP: {STR_VAR_1}\nNext candy: {STR_VAR_2}{PAUSE_UNTIL_PRESS}");
+static const u8 sText_CandyJarMadeCandy[] = _("The Candy Jar created:\n{STR_VAR_1}{PAUSE_UNTIL_PRESS}");
 static const u8 sText_BootedUpTM[] = _("Booted up a TM.");
 static const u8 sText_BootedUpHM[] = _("Booted up an HM.");
 static const u8 sText_TMHMContainedVar1[] = _("It contained\n{STR_VAR_1}.\pTeach {STR_VAR_1}\nto a POKéMON?");
@@ -845,9 +847,18 @@ void ItemUseOutOfBattle_CandyJar(u8 taskId)
     }
 
     if (!gTasks[taskId].tUsingRegisteredKeyItem)
-        DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, CloseItemMessage);
+        DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, CloseCandyJarMessage);
     else
         DisplayItemMessageOnField(taskId, gStringVar4, Task_CloseCantUseKeyItemMessage);
+}
+
+static void CloseCandyJarMessage(u8 taskId)
+{
+    enum Pocket candyPocket = GetItemPocket(ITEM_EXP_CANDY_XS);
+
+    UpdatePocketItemList(candyPocket);
+    UpdatePocketListPosition(candyPocket);
+    CloseItemMessage(taskId);
 }
 
 static u32 ConvertCandyJarExpToCandies(u8 *summaryDst)
@@ -1853,6 +1864,13 @@ static void DisplayRadioMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnField
     }
     else
     {
+        if (BuenasPassword_IsBroadcastTime())
+        {
+            DisplayCannotUseItemMessage(taskId, isUsingRegisteredKeyItemOnField, BuenasPassword_GetRadioText());
+            //PlayBGM(MUS_HG_RADIO_BUENA);
+            return;
+        }
+
         static const u8 *const sOakRadioMessages[] =
         {
             gText_OakTalk_Clefairy,

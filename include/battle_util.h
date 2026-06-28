@@ -64,10 +64,23 @@ enum AbilityEffect
     ABILITYEFFECT_OPPORTUNIST,
 };
 
-#define STORE_BATTLER_TRAITS(battler) \
-({for (int traitLoop = 0; traitLoop < MAX_MON_TRAITS; traitLoop++)\
-{battlerTraits[traitLoop] = GetBattlerTrait(battler, traitLoop, FALSE);\
-}}) 
+#define STORE_BATTLER_TRAITS(battler)                                               \
+({                                                                                  \
+    for (int traitLoop = 0; traitLoop < MAX_MON_TRAITS; traitLoop++)                \
+    {                                                                               \
+        if (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress)                 \
+        {                                                                           \
+            if (traitLoop == 0)                                                     \
+                battlerTraits[traitLoop] = gAiLogicData->abilities[battler];        \
+            else                                                                    \
+                battlerTraits[traitLoop] = gAiLogicData->innates[battler][traitLoop - 1]; \
+        }                                                                           \
+        else                                                                        \
+        {                                                                           \
+            battlerTraits[traitLoop] = GetBattlerTrait(battler, traitLoop, FALSE);  \
+        }                                                                           \
+    }                                                                               \
+})
 //DebugPrintf("%S - Battler[%d] - Trait[%d]: %S", GetSpeciesName(gBattleMons[battler].species), battler, traitLoop,  gAbilitiesInfo[battlerTraits[traitLoop]].name);\
 
 #define STORE_BATTLER_TRAITS_IGNORE_MOLDBREAKER(battler) \
@@ -336,6 +349,7 @@ bool32 CompareStatIgnoreContrary(enum BattlerId battler, enum Stat statId, u32 c
 bool32 BlocksPrankster(enum Move move, enum BattlerId battlerPrankster, enum BattlerId battlerDef, bool32 checkTarget);
 bool32 PickupHasValidTarget(enum BattlerId battler);
 bool32 CantPickupItem(u32 battler);
+u32 GetBattlerWeather(enum BattlerId battler, u32 weather);
 bool32 IsBattlerWeatherAffected(enum BattlerId battler, u32 weatherFlags);
 enum MoveTarget GetBattlerMoveTargetType(enum BattlerId battler, enum Move move);
 bool32 CanTargetBattler(enum BattlerId battlerAtk, enum BattlerId battlerDef, enum Move move);

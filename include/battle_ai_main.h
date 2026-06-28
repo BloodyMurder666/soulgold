@@ -124,11 +124,32 @@ enum MoveComparisonResult
     return score;                   \
 }
 
-#define AI_BATTLER_HAS_TRAIT(battlerID, abilityToCheck) (gAiLogicData->abilities[battlerID] == abilityToCheck || BattlerHasInnate(battlerID, abilityToCheck)) //Useful to make calculations faster, used only for AI stuff
+static inline bool32 AI_BattlerHasTraitCached(enum BattlerId battler, enum Ability abilityToCheck)
+{
+    if (gAiLogicData->abilities[battler] == abilityToCheck)
+        return TRUE;
 
-#define AI_STORE_BATTLER_TRAITS(battlerID) \
-({for (int traitLoop = 0; traitLoop < MAX_MON_TRAITS; traitLoop++)\
-{if(traitLoop == 0){AIBattlerTraits[traitLoop] = gAiLogicData->abilities[battlerID];}else{AIBattlerTraits[traitLoop] = GetBattlerTrait(battlerID, traitLoop, FALSE);}}})
+    for (u32 i = 0; i < gAiLogicData->activeInnateCount[battler]; i++)
+    {
+        if (gAiLogicData->innates[battler][i] == abilityToCheck)
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
+#define AI_BATTLER_HAS_TRAIT(battlerID, abilityToCheck) AI_BattlerHasTraitCached(battlerID, abilityToCheck) //Useful to make calculations faster, used only for AI stuff
+
+#define AI_STORE_BATTLER_TRAITS(battlerID)                                       \
+({                                                                               \
+    for (int traitLoop = 0; traitLoop < MAX_MON_TRAITS; traitLoop++)             \
+    {                                                                            \
+        if (traitLoop == 0)                                                      \
+            AIBattlerTraits[traitLoop] = gAiLogicData->abilities[battlerID];     \
+        else                                                                     \
+            AIBattlerTraits[traitLoop] = gAiLogicData->innates[battlerID][traitLoop - 1]; \
+    }                                                                            \
+})
 
 void BattleAI_SetupItems(void);
 void BattleAI_SetupFlags(void);

@@ -52,7 +52,7 @@ script RailwayCave_TrainerMason {
 
 script RailwayCave_TrainerYoda {
     trainerbattle_single(TRAINER_RAILWAYYODA, "Hya! The electricity running though the
-                                               air is great for my muscles",
+                                               air is great for my muscles!",
                                             "We must keep training!")
         msgbox("The jolts of electricity that run here
                 are great for relaxing the muscles

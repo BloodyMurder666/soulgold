@@ -112,11 +112,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Feebas
-Level: 5
+Level: 20
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Milotic
-Level: 35
+Level: 37
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_WILLIAM ===
@@ -167,7 +167,7 @@ Name: Phillip
 Class: Hiker
 Pic: Hiker
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Hiker
 Double Battle: No
 AI: Check Bad Move
 
@@ -237,7 +237,7 @@ Name: Lola
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Male
-Music: Hg Girl 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Check Bad Move
 
@@ -390,8 +390,8 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move
 
-Huntail
-Level: 34
+Finneon
+Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Lumineon
@@ -404,20 +404,19 @@ Class: Mystery Man
 Pic: Eusine
 Gender: Male
 Music: Male
-Items: Full Restore / Full Restore
 Double Battle: No
 AI: Basic Trainer
 
-Golisopod
-Level: 36
+Golisopod @ Quick Claw
+Level: 38
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
-Wobbuffet
-Level: 36
+Wobbuffet @ Leftovers
+Level: 38
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
-Magnezone
-Level: 36
+Magnezone @ Magnet
+Level: 39
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Tri Attack
 - Thunder Wave
@@ -433,11 +432,11 @@ Music: Hg Girl 1
 Double Battle: No
 AI: Check Bad Move
 
-Swablu
+Luxio
 Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Altaria
+Pelipper
 Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -540,7 +539,11 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Magnezone
+Torkoal
+Level: 47
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Reuniclus
 Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -956,9 +959,13 @@ Name: Reena
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Male
-Music: Hg Girl 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Smart Trainer
+
+Palafin
+Level: 63
+IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
 
 Politoed
 Level: 61
@@ -969,15 +976,6 @@ Kingdra
 Level: 62
 Ability: Swift Swim
 IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
-
-Ludicolo
-Level: 63
-Ability: Swift Swim
-IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
-- Rain Dance
-- Surf
-- Ice Beam
-- Aqua Ring
 
 Floatzel
 Level: 63
@@ -1104,7 +1102,7 @@ Name: Michael
 Class: Hiker
 Pic: Hiker
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Hiker
 Double Battle: No
 AI: Check Bad Move
 
@@ -1112,7 +1110,7 @@ Rhyperior
 Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Donphan
+Gogoat
 Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -1264,11 +1262,11 @@ Name: Parry
 Class: Hiker
 Pic: Hiker
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Hiker
 Double Battle: No
 AI: Check Bad Move
 
-Mamoswine
+Camerupt
 Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -1289,7 +1287,7 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Gyarados
+Octillery
 Level: 35
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -1332,8 +1330,8 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Hitmontop
-Level: 38
+Sneasel Hisui
+Level: 39
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_BRYAN ===
@@ -1469,7 +1467,7 @@ Name: Stanly
 Class: Sailor
 Pic: Sailor
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Sailor
 Double Battle: No
 AI: Check Bad Move
 
@@ -1541,7 +1539,7 @@ Name: Leonard
 Class: Hiker
 Pic: Hiker
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Hiker
 Double Battle: No
 AI: Check Bad Move
 
@@ -1571,7 +1569,7 @@ Name: Tim
 Class: Hiker
 Pic: Hiker
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Hiker
 Double Battle: No
 AI: Check Bad Move
 
@@ -1926,7 +1924,7 @@ Name: Russell
 Class: Hiker
 Pic: Hiker
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Hiker
 Double Battle: No
 AI: Check Bad Move
 
@@ -1943,7 +1941,7 @@ Name: Kenneth
 Class: Sailor
 Pic: Sailor
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Sailor
 Double Battle: No
 AI: Check Bad Move
 
@@ -2184,7 +2182,7 @@ Name: Martha
 Class: Hex Maniac
 Pic: Hex Maniac
 Gender: Female
-Music: Female
+Music: Hg Suspicious 1
 Double Battle: No
 AI: Check Bad Move
 
@@ -2214,7 +2212,7 @@ Name: Devin
 Class: Hiker
 Pic: Hiker
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Hiker
 Double Battle: No
 AI: Check Bad Move
 
@@ -2231,16 +2229,16 @@ Name: Benjamin
 Class: Hiker
 Pic: Hiker
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Hiker
 Double Battle: No
 AI: Check Bad Move
 
 Graveler
-Level: 24
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Dugtrio
-Level: 24
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_BRIAN ===
@@ -2248,7 +2246,7 @@ Name: Brian
 Class: Cooltrainer
 Pic: Cooltrainer M
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Check Bad Move
 
@@ -2274,7 +2272,7 @@ Name: Aaron
 Class: Cooltrainer
 Pic: Cooltrainer M
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Check Bad Move
 
@@ -2380,7 +2378,7 @@ Name: Eugene
 Class: Sailor
 Pic: Sailor
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Sailor
 Double Battle: No
 AI: Check Bad Move
 
@@ -2449,7 +2447,7 @@ Name: Blake
 Class: Cooltrainer
 Pic: Cooltrainer M
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Smart Trainer
 
@@ -2641,50 +2639,117 @@ Class: Leader
 Pic: Leader Chuck
 Gender: Male
 Music: Male
-Items: Full Restore / Full Restore
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Pink
 
 Hitmontop
-Level: 35
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Ability: Intimidate
+Level: 44
+EVs: 80 Atk / 80 Spe
+IVs: 20 HP / 20 Atk / 20 Def / 12 SpA / 12 SpD / 12 Spe
 - Triple Kick
-- Rolling Kick
+- Rapid Spin
 - Dig
 - Pursuit
 
-Sudowoodo
-Level: 35
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Rock Slide
-- Thunder Punch
-- Low Kick
-- Faint Attack
-
-Primeape
-Level: 34
+Mienshao
+Level: 45
+Ability: Regenerator
+EVs: 80 Atk / 80 Spe
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Low Kick
-- Karate Chop
-- Ice Punch
-- Rage
-
-Pinsir
-Level: 35
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Rock Smash
-- Twineedle
-- Vice Grip
-- Harden
+- U Turn
+- Bounce
+- Knock Off
 
 Poliwrath @ Black Belt
-Level: 36
+Level: 45
+EVs: 80 HP / 80 Atk
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Hypnosis
-- Mind Reader
+- Drain Punch
 - Surf
 - Dynamic Punch
+
+Annihilape @ Chesto Berry
+Level: 45
+EVs: 80 HP / 80 Atk
+IVs: 20 HP / 20 Atk / 20 Def / 12 SpA / 12 SpD / 12 Spe
+- Brick Break
+- Taunt
+- Assurance
+- Phantom Force
+
+Falinks @ Fightite
+Ability: Defiant
+Level: 45
+EVs: 80 Atk / 80 Spe
+IVs: 20 HP / 20 Atk / 20 Def / 12 SpA / 12 SpD / 12 Spe
+- First Impression
+- No Retreat
+- Megahorn
+- Zen Headbutt
+
+=== TRAINER_CHUCK_1_2 ===
+Name: Chuck
+Class: Leader
+Pic: Leader Chuck
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Smart Trainer
+Mugshot: Pink
+Difficulty: Hard
+
+Hitmontop @ Adrenaline Orb
+Ability: Intimidate
+Level: 45
+EVs: 160 Atk / 160 Spe
+IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
+- Triple Axel
+- Rapid Spin
+- Bullet Punch
+- Pursuit
+
+Sirfetch'd @ Assault Vest
+Level: 45
+Ability: Scrappy
+EVs: 160 HP / 160 Atk
+IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
+- Slash
+- Brutal Swing
+- Leaf Blade
+- Brick Break
+
+Mienshao @ Sitrus Berry
+Level: 45
+Ability: Regenerator
+EVs: 160 Atk / 160 Spe
+IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
+- U turn
+- Drain Punch
+- Ice Spinner
+- Knock Off
+
+Poliwrath @ Black Belt
+Level: 45
+EVs: 160 HP / 160 Atk
+IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
+- Hypnosis
+- Mind Reader
+- Waterfall
+- Dynamic Punch
+
+Falinks @ Fightite
+Ability: Defiant
+Level: 46
+EVs: 160 Atk / 160 Spe
+IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
+- First Impression
+- No Retreat
+- Megahorn
+- Zen Headbutt
 
 === TRAINER_DAWN ===
 Name: Dawn
@@ -2850,7 +2915,7 @@ Name: Emma
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Male
-Music: Hg Girl 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Smart Trainer
 
@@ -3133,7 +3198,7 @@ Name: Tyler
 Class: Cooltrainer
 Pic: Cooltrainer M
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Check Bad Move
 
@@ -3292,34 +3357,30 @@ Class: Rival
 Pic: Silver
 Gender: Male
 Music: Silver
-Items: Super Potion
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Blue
 
 Haunter
-Level: 29
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 31
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 Pawniard
-Level: 30
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 31
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 Staravia
-Level: 30
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 32
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 Weepinbell
-Level: 30
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 31
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 Croconaw
-Level: 31
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Bite
-- Ice Punch
-- Bubble Beam
-- Mud Slap
+Level: 33
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
+
 
 === TRAINER_RIVAL_TOTODILE_4 ===
 Name: {RIVAL}
@@ -3690,7 +3751,7 @@ Name: Ethel
 Class: Hex Maniac
 Pic: Hex Maniac
 Gender: Female
-Music: Female
+Music: Hg Suspicious 1
 Double Battle: No
 AI: Check Bad Move
 
@@ -3927,7 +3988,7 @@ Name: Gregory
 Class: Gentleman
 Pic: Gentleman
 Gender: Male
-Music: Male
+Music: Dp Rich
 Double Battle: No
 AI: Check Bad Move
 
@@ -3965,7 +4026,7 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Staraptor
+Golbat
 Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -3974,7 +4035,7 @@ Name: Jim
 Class: Hiker
 Pic: Hiker
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Hiker
 Double Battle: No
 AI: Check Bad Move
 
@@ -4025,7 +4086,7 @@ Name: Kevin
 Class: Cooltrainer
 Pic: Cooltrainer M
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Check Bad Move
 
@@ -4185,34 +4246,29 @@ Class: Rival
 Pic: Silver
 Gender: Male
 Music: Silver
-Items: Super Potion
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Blue
 
 Haunter
-Level: 29
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 31
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 Pawniard
-Level: 30
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 31
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 Staravia
-Level: 30
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 32
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 Lampent
-Level: 30
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 32
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 Bayleef
-Level: 31
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
-- Mega Drain
-- Razor Leaf
-- Fairy Wind
-- Leech Seed
+Level: 32
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 === TRAINER_RIVAL_CHIKORITA_2 ===
 Name: {RIVAL}
@@ -4397,50 +4453,117 @@ Class: Leader
 Pic: Leader Chuck
 Gender: Male
 Music: Male
-Items: Full Restore / Full Restore
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Pink
 
 Hitmontop
-Level: 37
+Ability: Intimidate
+Level: 47
+EVs: 80 Atk / 80 Spe
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Triple Kick
-- Rolling Kick
+- Rapid Spin
 - Dig
 - Pursuit
 
-Sudowoodo
-Level: 37
+Mienshao
+Level: 48
+Ability: Regenerator
+EVs: 80 Atk / 80 Spe
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Rock Slide
-- Thunder Punch
 - Low Kick
-- Faint Attack
-
-Annihilape
-Level: 37
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Shadow Punch
-- Brick Break
-- Ice Punch
-- Rage
-
-Pinsir
-Level: 37
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Submission
-- Twineedle
-- Strength
-- Swords Dance
+- U Turn
+- Bounce
+- Knock Off
 
 Poliwrath @ Black Belt
-Level: 38
+Level: 48
+EVs: 80 HP / 80 Atk
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Ice Punch
-- Mind Reader
+- Hypnosis
+- Drain Punch
 - Surf
 - Dynamic Punch
+
+Annihilape @ Chesto Berry
+Level: 48
+EVs: 80 HP / 80 Atk
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Brick Break
+- Taunt
+- Assurance
+- Phantom Force
+
+Falinks @ Fightite
+Ability: Defiant
+Level: 48
+EVs: 80 Atk / 80 Spe
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- First Impression
+- No Retreat
+- Megahorn
+- Zen Headbutt
+
+=== TRAINER_CHUCK_1_3 ===
+Name: Chuck
+Class: Leader
+Pic: Leader Chuck
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Smart Trainer
+Mugshot: Pink
+Difficulty: Hard
+
+Hitmontop @ Adrenaline Orb
+Ability: Intimidate
+Level: 48
+EVs: 160 Atk / 160 Spe
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+- Triple Axel
+- Rapid Spin
+- Bullet Punch
+- Pursuit
+
+Sirfetch'd @ Assault Vest
+Level: 48
+Ability: Scrappy
+EVs: 160 HP / 160 Atk
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+- Slash
+- Brutal Swing
+- Leaf Blade
+- Brick Break
+
+Mienshao @ Sitrus Berry
+Level: 48
+Ability: Regenerator
+EVs: 160 Atk / 160 Spe
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+- U turn
+- Drain Punch
+- Ice Spinner
+- Knock Off
+
+Poliwrath @ Black Belt
+Level: 48
+EVs: 160 HP / 160 Atk
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+- Hypnosis
+- Mind Reader
+- Waterfall
+- Dynamic Punch
+
+Falinks @ Fightite
+Ability: Defiant
+Level: 49
+EVs: 160 Atk / 160 Spe
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+- First Impression
+- No Retreat
+- Megahorn
+- Zen Headbutt
 
 === TRAINER_NATE ===
 Name: Nate
@@ -4648,16 +4771,16 @@ AI: Smart Trainer
 Mugshot: Yellow
 
 Audino @ Salac Berry
-Level: 26
+Level: 25
 Ability: Regenerator
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
-- Reflect
+- Lucky Chant
 - Mega Punch
 - Misty Terrain
 - Draining Kiss
 
-Girafarig @ Twisted Spoon
-Level: 27
+Girafarig
+Level: 26
 Ability: Inner Focus
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 - Headbutt
@@ -4666,13 +4789,13 @@ IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 - Trailblaze
 
 Miltank @ Sitrus Berry
-Level: 28
+Level: 27
 Ability: Thick Fat
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 - Rollout
 - Attract
 - Stomp
-- Milk Drink
+- Heal Bell
 
 === TRAINER_WHITNEY_1 ===
 Name: Whitney
@@ -4681,7 +4804,7 @@ Pic: Leader Whitney
 Gender: Female
 Music: Female
 Double Battle: Yes
-AI: Smart Trainer
+AI: Basic Trainer
 Mugshot: Yellow
 Difficulty: Hard
 
@@ -5207,15 +5330,15 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Misdreavus @ Spell Tag
 Level: 33
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+IVs: 12 HP / 12 Atk / 12 Def / 14 SpA / 12 SpD / 12 Spe
 - Shadow Ball
 - Pain Split
 - Perish Song
-- Psywave
+- Ominous Wind
 
 Gengar @ Sitrus Berry
 Level: 34
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+IVs: 15 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Hypnosis
 - Shadow Ball
 - Shock Wave
@@ -5234,7 +5357,8 @@ Difficulty: Hard
 
 Mimikyu
 Level: 34
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
+EVs: 70 Atk / 70 HP
 - Slash
 - Shadow Sneak
 - Curse
@@ -5242,15 +5366,17 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Misdreavus @ Spell Tag
 Level: 34
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
+EVs: 70 SpA / 70 HP
 - Shadow Ball
 - Pain Split
-- Perish Song
-- Mean Look
+- Psychic Noise
+- Hex
 
 Shedinja @ Heavy-Duty Boots
 Level: 34
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
+EVs: 70 Atk / 70 Spe
 Ability: Wonder Guard
 - Shadow Sneak
 - Dream Eater
@@ -5259,7 +5385,8 @@ Ability: Wonder Guard
 
 Doublade @ Eviolite
 Level: 34
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
+EVs: 70 Atk / 70 HP
 - Night Slash
 - Iron Defense
 - Aerial Ace
@@ -5267,7 +5394,8 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Gengar @ Sitrus Berry
 Level: 35
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
+EVs: 70 SpA / 70 HP
 - Hypnosis
 - Shadow Ball
 - Thunderbolt
@@ -5344,7 +5472,7 @@ Name: Preston
 Class: Gentleman
 Pic: Gentleman
 Gender: Male
-Music: Male
+Music: Dp Rich
 Double Battle: No
 AI: Check Bad Move
 
@@ -5382,7 +5510,7 @@ Name: Kelly
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Male
-Music: Hg Girl 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Check Bad Move
 
@@ -5390,7 +5518,7 @@ Togetic
 Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Ampharos
+Absol
 Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -5491,7 +5619,7 @@ Name: Jake
 Class: Cooltrainer
 Pic: Cooltrainer M
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Ace Trainer
 Double Battle: Yes
 AI: Smart Trainer
 
@@ -5872,7 +6000,7 @@ Name: Allen
 Class: Cooltrainer
 Pic: Cooltrainer M
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Check Bad Move
 
@@ -5889,7 +6017,7 @@ Name: Virgil
 Class: Gentleman
 Pic: Gentleman
 Gender: Male
-Music: Male
+Music: Dp Rich
 Double Battle: No
 AI: Check Bad Move
 
@@ -5932,7 +6060,7 @@ Name: Garrett
 Class: Sailor
 Pic: Sailor
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Sailor
 Double Battle: No
 AI: Check Bad Move
 
@@ -6009,7 +6137,7 @@ Name: Terrell
 Class: Sailor
 Pic: Sailor
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Sailor
 Double Battle: No
 AI: Check Bad Move
 
@@ -6064,7 +6192,11 @@ Music: Hg Suspicious 2
 Double Battle: No
 AI: Basic Trainer
 
-Sneasel
+Baltoy
+Level: 33
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Naclstack
 Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -6073,7 +6205,7 @@ Name: Ryan
 Class: Cooltrainer
 Pic: Cooltrainer M
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Check Bad Move
 
@@ -6081,7 +6213,7 @@ Pidgeot @ Normalite
 Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Staraptor
+Abomasnow
 Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -6124,7 +6256,7 @@ Name: Fran
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Male
-Music: Hg Girl 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Check Bad Move
 
@@ -6132,7 +6264,7 @@ Seadra
 Level: 53
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Gyarados
+Eelektross
 Level: 53
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -6473,7 +6605,7 @@ Music: Girl
 Double Battle: Yes
 AI: Check Bad Move
 
-Steelix
+Donphan
 Level: 41
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -6541,7 +6673,7 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Gyarados
+Basculin
 Level: 35
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -6550,7 +6682,7 @@ Name: Cybil
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Male
-Music: Hg Girl 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Check Bad Move
 
@@ -6562,7 +6694,7 @@ Chimecho
 Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Ludicolo
+Ferrothorn
 Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -6588,7 +6720,7 @@ Name: Nate
 Class: Cooltrainer
 Pic: Cooltrainer M
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Smart Trainer
 
@@ -6615,7 +6747,7 @@ Name: Kiana
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Female
-Music: Hg Boy 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Smart Trainer
 
@@ -6648,7 +6780,7 @@ Name: Vera
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Female
-Music: Hg Girl 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Smart Trainer
 
@@ -6694,7 +6826,7 @@ Name: Laurel
 Class: Cooltrainer
 Pic: Cooltrainer M
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Smart Trainer
 
@@ -6739,7 +6871,7 @@ Name: Anton
 Class: Cooltrainer
 Pic: Cooltrainer M
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Smart Trainer
 
@@ -6822,7 +6954,7 @@ Name: Timothy
 Class: Hiker
 Pic: Hiker
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Hiker
 Double Battle: No
 AI: Check Bad Move
 
@@ -6834,7 +6966,7 @@ Wugtrio
 Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Bisharp
+Gastrodon
 Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -6972,7 +7104,7 @@ Name: Megan
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Male
-Music: Hg Girl 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Check Bad Move
 
@@ -7099,7 +7231,7 @@ Name: Jenn
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Male
-Music: Hg Girl 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Check Bad Move
 
@@ -7316,7 +7448,7 @@ Name: Joyce
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Male
-Music: Hg Girl 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Smart Trainer
 
@@ -7668,7 +7800,7 @@ Name: Ernest
 Class: Sailor
 Pic: Sailor
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Sailor
 Double Battle: No
 AI: Check Bad Move
 
@@ -7685,7 +7817,7 @@ Name: Sean
 Class: Cooltrainer
 Pic: Cooltrainer M
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Check Bad Move
 
@@ -7968,7 +8100,7 @@ Name: Gwen
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Male
-Music: Hg Girl 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Check Bad Move
 
@@ -8018,7 +8150,7 @@ Name: Daniel
 Class: Hiker
 Pic: Hiker
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Hiker
 Double Battle: No
 AI: Check Bad Move
 
@@ -8078,7 +8210,7 @@ Name: Quinn
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Male
-Music: Hg Girl 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Check Bad Move
 
@@ -8164,16 +8296,16 @@ Name: Grace
 Class: Hex Maniac
 Pic: Hex Maniac
 Gender: Female
-Music: Female
+Music: Hg Suspicious 1
 Double Battle: No
 AI: Check Bad Move
 
-Haunter
-Level: 20
+Phantump
+Level: 30
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Murkrow
-Level: 20
+Vullaby
+Level: 30
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_CLAIR_2 ===
@@ -8322,7 +8454,7 @@ Name: Noland
 Class: Hiker
 Pic: Hiker
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Hiker
 Double Battle: No
 AI: Check Bad Move
 
@@ -8387,11 +8519,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Machoke
-Level: 37
+Level: 38
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Primeape
-Level: 37
+Level: 39
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_NORMAN ===
@@ -8422,9 +8554,9 @@ AI: Smart Trainer
 Mugshot: Green
 
 Ninetales-Alola @ Salac Berry
-Level: 46
+Level: 47
 Ability: Snow Warning  
-EVs: 88 SpA / 88 Spe  
+EVs: 80 SpA / 80 Spe  
 Hasty Nature  
 IVs: 0 Atk  
 - Aurora Veil  
@@ -8433,9 +8565,10 @@ IVs: 0 Atk
 - Freeze-Dry  
 
 Mamoswine @ Air Balloon
-Level: 46
+Level: 48
 Ability: Thick Fat  
-EVs: 108 Atk / 128 SpA  
+EVs: 80 Atk / 80 SpA  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 Mild Nature  
 - Blizzard  
 - Ancient Power  
@@ -8443,19 +8576,20 @@ Mild Nature
 - Earthquake  
 
 Glaceon @ Life Orb
-Level: 46
+Level: 47
 Ability: Ice Body  
-EVs: 84 SpA / 92 Spe  
-IVs: 0 Atk  
+EVs: 80 SpA / 80 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe 
 - Alluring Voice  
 - Blizzard  
 - Chilling Water  
 - Ice Beam  
 
 Weavile @ Chople Berry
-Level: 46
+Level: 48
 Ability: Pressure  
-EVs: 116 Atk / 128 Spe  
+EVs: 80 Atk / 80 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Brick Break  
 - Knock Off  
 - Ice Spinner  
@@ -8464,7 +8598,8 @@ EVs: 116 Atk / 128 Spe
 Froslass (F) @ Icetite
 Level: 48
 Ability: Snow Cloak  
-EVs: 100 HP / 148 Def / 156 SpA  
+EVs: 80 SpA / 80 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Blizzard  
 - Draining Kiss  
 - Poltergeist  
@@ -8483,28 +8618,30 @@ Difficulty: Hard
 
 Darmanitan-Galar @ Adrenaline Orb  
 Ability: Zen Mode  
-Level: 47  
-EVs: 116 Atk / 112 Spe  
+Level: 48  
+EVs: 160 Atk / 160 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Ice Punch  
 - Hammer Arm  
 - Rock Slide  
 - Avalanche
 
 Ninetales-Alola @ Salac Berry
-Level: 46
+Level: 48
 Ability: Snow Warning  
-EVs: 88 SpA / 88 Spe  
-Hasty Nature  
-IVs: 0 Atk  
+EVs: 160 SpA / 160 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+Hasty Nature
 - Aurora Veil  
 - Blizzard  
 - Dazzling Gleam  
 - Freeze-Dry  
 
 Mamoswine @ Air Balloon
-Level: 46
+Level: 48
 Ability: Thick Fat  
-EVs: 108 Atk / 128 SpA  
+EVs: 160 Atk / 160 SpA  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 Mild Nature  
 - Blizzard  
 - Ancient Power  
@@ -8512,28 +8649,30 @@ Mild Nature
 - Earthquake  
 
 Glaceon @ Life Orb
-Level: 46
+Level: 48
 Ability: Ice Body  
-EVs: 84 SpA / 92 Spe  
-IVs: 0 Atk  
+EVs: 160 SpA / 160 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Alluring Voice  
 - Blizzard  
 - Chilling Water  
 - Ice Beam  
 
 Weavile @ Chople Berry
-Level: 46
+Level: 48
 Ability: Pressure  
-EVs: 116 Atk / 128 Spe  
+EVs: 160 Atk / 160 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Brick Break  
 - Knock Off  
 - Ice Spinner  
 - Poison Jab  
 
 Froslass (F) @ Icetite
-Level: 48
+Level: 49
 Ability: Snow Cloak  
-EVs: 100 HP / 148 Def / 156 SpA  
+EVs: 160 SpA / 160 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Blizzard  
 - Draining Kiss  
 - Poltergeist  
@@ -8550,9 +8689,9 @@ AI: Smart Trainer
 Mugshot: Green
 
 Ninetales-Alola @ Salac Berry
-Level: 43
+Level: 44
 Ability: Snow Warning  
-EVs: 88 SpA / 88 Spe  
+EVs: 80 SpA / 80 Spe  
 Hasty Nature  
 IVs: 0 Atk  
 - Aurora Veil  
@@ -8561,9 +8700,9 @@ IVs: 0 Atk
 - Freeze-Dry  
 
 Mamoswine @ Air Balloon
-Level: 43
+Level: 45
 Ability: Thick Fat  
-EVs: 108 Atk / 128 SpA  
+EVs: 80 Atk / 80 SpA  
 Mild Nature  
 - Blizzard  
 - Ancient Power  
@@ -8571,9 +8710,9 @@ Mild Nature
 - Earthquake  
 
 Glaceon @ Life Orb
-Level: 43
+Level: 44
 Ability: Ice Body  
-EVs: 84 SpA / 92 Spe  
+EVs: 80 SpA / 80 Spe  
 IVs: 0 Atk  
 - Alluring Voice  
 - Blizzard  
@@ -8581,9 +8720,9 @@ IVs: 0 Atk
 - Ice Beam  
 
 Weavile @ Chople Berry
-Level: 44
+Level: 45
 Ability: Pressure  
-EVs: 116 Atk / 128 Spe  
+EVs: 80 Atk / 80 Spe  
 - Brick Break  
 - Knock Off  
 - Ice Spinner  
@@ -8592,7 +8731,7 @@ EVs: 116 Atk / 128 Spe
 Froslass (F) @ Icetite
 Level: 45
 Ability: Snow Cloak  
-EVs: 100 HP / 148 Def / 156 SpA  
+EVs: 80 SpA / 80 Spe  
 - Blizzard  
 - Draining Kiss  
 - Poltergeist  
@@ -8611,28 +8750,30 @@ Difficulty: Hard
 
 Darmanitan-Galar @ Adrenaline Orb  
 Ability: Zen Mode  
-Level: 42  
-EVs: 116 Atk / 112 Spe  
+Level: 45  
+EVs: 160 Atk / 160 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Ice Punch  
 - Hammer Arm  
 - Rock Slide  
 - Avalanche
 
 Ninetales-Alola @ Salac Berry
-Level: 43
+Level: 45
 Ability: Snow Warning  
-EVs: 88 SpA / 88 Spe  
+EVs: 160 SpA / 160 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 Hasty Nature  
-IVs: 0 Atk  
 - Aurora Veil  
 - Blizzard  
 - Dazzling Gleam  
 - Freeze-Dry  
 
 Mamoswine @ Air Balloon
-Level: 43
+Level: 45
 Ability: Thick Fat  
-EVs: 108 Atk / 128 SpA  
+EVs: 160 Atk / 160 SpA
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe  
 Mild Nature  
 - Blizzard  
 - Ancient Power  
@@ -8640,28 +8781,30 @@ Mild Nature
 - Earthquake  
 
 Glaceon @ Life Orb
-Level: 43
+Level: 45
 Ability: Ice Body  
-EVs: 84 SpA / 92 Spe  
-IVs: 0 Atk  
+EVs: 160 SpA / 160 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Alluring Voice  
 - Blizzard  
 - Chilling Water  
 - Ice Beam  
 
 Weavile @ Chople Berry
-Level: 44
+Level: 45
 Ability: Pressure  
-EVs: 116 Atk / 128 Spe  
+EVs: 160 Atk / 160 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Brick Break  
 - Knock Off  
 - Ice Spinner  
 - Poison Jab  
 
 Froslass (F) @ Icetite
-Level: 45
+Level: 46
 Ability: Snow Cloak  
-EVs: 100 HP / 148 Def / 156 SpA  
+EVs: 160 SpA / 160 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Blizzard  
 - Draining Kiss  
 - Poltergeist  
@@ -8672,7 +8815,7 @@ Name: Steve
 Class: Cooltrainer
 Pic: Cooltrainer M
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Check Bad Move
 
@@ -8693,7 +8836,7 @@ Name: Margret
 Class: Hex Maniac
 Pic: Hex Maniac
 Gender: Female
-Music: Female
+Music: Hg Suspicious 1
 Double Battle: No
 AI: Check Bad Move
 
@@ -8783,7 +8926,7 @@ Name: Cara
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Male
-Music: Hg Girl 2
+Music: Dp Ace Trainer
 Double Battle: Yes
 AI: Check Bad Move
 
@@ -8791,7 +8934,7 @@ Kingdra
 Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Gyarados
+Luxray
 Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -8805,6 +8948,10 @@ Double Battle: No
 AI: Check Bad Move
 
 Mareep
+Level: 12
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Skiddo
 Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -8868,7 +9015,7 @@ Name: Gaven
 Class: Cooltrainer
 Pic: Cooltrainer M
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Smart Trainer
 
@@ -8894,7 +9041,7 @@ Name: Rebecca
 Class: Hex Maniac
 Pic: Hex Maniac
 Gender: Female
-Music: Female
+Music: Hg Suspicious 1
 Double Battle: No
 AI: Check Bad Move
 
@@ -8909,7 +9056,7 @@ Name: Andy
 Class: Cooltrainer
 Pic: Cooltrainer M
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Check Bad Move
 
@@ -9045,7 +9192,7 @@ Name: Sidney
 Class: Hiker
 Pic: Hiker
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Hiker
 Double Battle: No
 AI: Check Bad Move
 
@@ -9149,7 +9296,7 @@ Name: Lois
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Female
-Music: Hg Girl 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Check Bad Move
 
@@ -9166,7 +9313,7 @@ Name: Carol
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Male
-Music: Hg Girl 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Check Bad Move
 
@@ -9194,7 +9341,7 @@ Difficulty: Normal
 Mugshot: Blue
 
 Skarmory
-Level: 43
+Level: 41
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Spikes
 - Brave Bird
@@ -9202,7 +9349,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Steel Wing
 
 Tinkaton
-Level: 43
+Level: 41
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Light Screen
 - Fake Out
@@ -9210,7 +9357,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Brutal Swing
 
 Magneton @ Magnet
-Level: 44
+Level: 41
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Thunderbolt
 - Tri Attack
@@ -9218,15 +9365,15 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Thunder
 
 Scizor @ Sitrus Berry
-Level: 44
+Level: 41
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - U Turn
 - Bullet Punch
 - Bug Bite
 - Wing Attack
 
-Steelix @ Steeltite
-Level: 45
+Steelix @ Sitrus Berry
+Level: 42
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Crunch
 - Earthquake
@@ -9245,7 +9392,7 @@ Mugshot: Blue
 Difficulty: Hard
 
 Corviknight @ Rocky Helmet
-Level: 45
+Level: 42
 Ability: Mirror Armor
 IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - Body Press
@@ -9254,7 +9401,7 @@ IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - Steel Wing
 
 Tinkaton @ Shuca Berry
-Level: 45
+Level: 42
 Ability: Own Tempo
 IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - Light Screen
@@ -9263,7 +9410,7 @@ IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - Thunder Wave
 
 Magnezone @ Leftovers
-Level: 45
+Level: 42
 Ability: Analytic
 IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - Thunderbolt
@@ -9272,7 +9419,7 @@ IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - Discharge
 
 Scizor @ Sitrus Berry
-Level: 45
+Level: 42
 Ability: Technician
 IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - U Turn
@@ -9280,8 +9427,8 @@ IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - Bug Bite
 - Swords Dance
 
-Steelix @ Steeltite
-Level: 45
+Steelix @ Sitrus Berry
+Level: 42
 Ability: Sheer Force
 IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - Crunch
@@ -9537,7 +9684,7 @@ Name: Vincent
 Class: Hiker
 Pic: Hiker
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Hiker
 Double Battle: No
 AI: Check Bad Move
 
@@ -9614,7 +9761,7 @@ Name: Harry
 Class: Sailor
 Pic: Sailor
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Sailor
 Double Battle: No
 AI: Check Bad Move
 
@@ -9675,8 +9822,8 @@ Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Mienshao
-Level: 37
+Toxicroak
+Level: 40
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GLENN ===
@@ -9709,7 +9856,7 @@ Music: Hg Boy 2
 Double Battle: Yes
 AI: Check Bad Move
 
-Steelix
+Medicham
 Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -9717,7 +9864,7 @@ Machamp
 Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Mienshao
+Tauros Paldea Combat
 Level: 58
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -9849,7 +9996,7 @@ Name: Edward
 Class: Gentleman
 Pic: Gentleman
 Gender: Male
-Music: Male
+Music: Dp Rich
 Double Battle: No
 AI: Check Bad Move
 
@@ -9862,7 +10009,7 @@ Name: Irene
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Male
-Music: Hg Girl 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Check Bad Move
 
@@ -10345,7 +10492,7 @@ Name: Bailey
 Class: Hiker
 Pic: Hiker
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Hiker
 Double Battle: No
 AI: Check Bad Move
 
@@ -10362,7 +10509,7 @@ Name: Jeff
 Class: Sailor
 Pic: Sailor
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Sailor
 Double Battle: No
 AI: Check Bad Move
 
@@ -10379,7 +10526,7 @@ Name: Erick
 Class: Cooltrainer
 Pic: Cooltrainer M
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Check Bad Move
 
@@ -10442,7 +10589,7 @@ Name: Nick
 Class: Cooltrainer
 Pic: Cooltrainer M
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Check Bad Move
 
@@ -10484,12 +10631,12 @@ Music: Hg Suspicious 2
 Double Battle: No
 AI: Check Bad Move
 
-Weavile
+Scovillain
 Level: 47
 Ability: Pickpocket
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Tinkaton
+Arbok
 Level: 47
 Ability: Pickpocket
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
@@ -10550,11 +10697,11 @@ Name: Kate
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Male
-Music: Hg Girl 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Check Bad Move
 
-Cloyster
+Snover
 Level: 36
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -10679,11 +10826,11 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Skarmory
+Delibird
 Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Corviknight
+Sirfetch'd
 Level: 47
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -10777,7 +10924,7 @@ Name: Kenny
 Class: Hiker
 Pic: Hiker
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Hiker
 Double Battle: No
 AI: Check Bad Move
 
@@ -10836,7 +10983,7 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move
 
-Azumarill
+Clefairy
 Level: 22
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -10943,7 +11090,7 @@ Name: Bethany
 Class: Hex Maniac
 Pic: Hex Maniac
 Gender: Female
-Music: Female
+Music: Hg Suspicious 1
 Double Battle: No
 AI: Check Bad Move
 
@@ -10973,7 +11120,7 @@ Name: Huey
 Class: Sailor
 Pic: Sailor
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Sailor
 Double Battle: No
 AI: Check Bad Move
 
@@ -11041,7 +11188,7 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move
 
-Ekans
+Buizel
 Level: 10
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -11190,7 +11337,7 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move
 
-Azumarill
+Emolga
 Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -11376,34 +11523,29 @@ Class: Rival
 Pic: Silver
 Gender: Male
 Music: Silver
-Items: Super Potion
 Double Battle: No
 AI: Smart Trainer
 Mugshot: Blue
 
 Haunter
-Level: 29
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 30
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 Pawniard
 Level: 30
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 Staravia
-Level: 30
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 31
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 Clodsire
 Level: 30
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 Quilava
-Level: 31
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
-- Flame Wheel
-- Dig
-- Quick Attack
-- Sunny Day
+Level: 32
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 
 === TRAINER_RIVAL_CHIKORITA_6 ===
 Name: {RIVAL}
@@ -11468,48 +11610,113 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Name: Jasmine
 Class: Leader
 Pic: Leader Jasmine
-Gender: Male
-Music: Male
-Items: Full Restore / Full Restore
+Gender: Female
+Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Blue
 
 Skarmory
-Level: 37
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+Level: 47
+EVs: 80 HP / 80 Def
+IVs: 24 HP / 24 Atk / 24 Def / 12 SpA / 12 SpD / 12 Spe
 - Spikes
-- Drill Peck
+- Brave Bird
 - Swagger
 - Steel Wing
 
-Corsola
-Level: 37
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Rain Dance
-- Surf
-- Recover
-- Ancient Power
+Tinkaton
+Level: 48
+EVs: 80 HP / 80 Atk
+IVs: 24 HP / 24 Atk / 24 Def / 12 SpA / 12 SpD / 12 Spe
+- Light Screen
+- Fake Out
+- Gigaton Hammer
+- Brutal Swing
 
 Magnezone
-Level: 37
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+Level: 47
+EVs: 80 SpA / 80 Spe
+IVs: 24 HP / 24 Atk / 24 Def / 12 SpA / 12 SpD / 12 Spe
 - Thunderbolt
 - Tri Attack
-- Rain Dance
+- Flash Cannon
 - Thunder
 
-Scizor @ Focus Band
-Level: 38
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Twineedle
-- Metal Claw
-- Agility
+Scizor @ Sitrus Berry
+Level: 48
+EVs: 80 HP / 80 Atk
+IVs: 24 HP / 24 Atk / 24 Def / 12 SpA / 12 SpD / 12 Spe
+- U Turn
+- Bullet Punch
+- Bug Bite
 - Swords Dance
 
-Steelix @ Quick Claw
-Level: 38
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+Steelix @ Steeltite
+Level: 48
+EVs: 80 Atk / 80 Def
+IVs: 24 HP / 24 Atk / 24 Def / 12 SpA / 12 SpD / 12 Spe
+- Crunch
+- Earthquake
+- Rock Slide
+- Iron Tail
+
+=== TRAINER_JASMINE_1_3 ===
+Name: Jasmine
+Class: Leader
+Pic: Leader Jasmine
+Gender: Female
+Music: Male
+Double Battle: Yes
+AI: Smart Trainer
+Mugshot: Blue
+Difficulty: Hard
+
+Corviknight @ Rocky Helmet
+Level: 48
+Ability: Mirror Armor
+EVs: 160 HP / 160 Def
+IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
+- Body Press
+- Iron Defense
+- Roost
+- Steel Wing
+
+Tinkaton @ Shuca Berry
+Level: 49
+Ability: Own Tempo
+EVs: 160 HP / 160 Atk
+IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
+- Light Screen
+- Fake Out
+- Gigaton Hammer
+- Thunder Wave
+
+Magnezone @ Leftovers
+Level: 48
+Ability: Analytic
+EVs: 160 SpA / 160 Spe
+IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
+- Thunderbolt
+- Tri Attack
+- Flash Cannon
+- Discharge
+
+Scizor @ Sitrus Berry
+Level: 49
+Ability: Technician
+EVs: 160 HP / 160 Atk
+IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
+- U Turn
+- Bullet Punch
+- Bug Bite
+- Swords Dance
+
+Steelix @ Steeltite
+Level: 49
+Ability: Sheer Force
+EVs: 160 Atk / 160 Def
+IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - Crunch
 - Earthquake
 - Rock Slide
@@ -11519,48 +11726,113 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 Name: Jasmine
 Class: Leader
 Pic: Leader Jasmine
-Gender: Male
-Music: Male
-Items: Full Restore / Full Restore
+Gender: Female
+Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Blue
 
 Skarmory
-Level: 35
+Level: 44
+EVs: 80 HP / 80 Def
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Spikes
-- Drill Peck
+- Brave Bird
 - Swagger
 - Steel Wing
 
-Corsola
-Level: 35
+Tinkaton
+Level: 45
+EVs: 80 HP / 80 Atk
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Rain Dance
-- Surf
-- Recover
-- Ancient Power
+- Light Screen
+- Fake Out
+- Gigaton Hammer
+- Brutal Swing
 
 Magneton
-Level: 35
+Level: 44
+EVs: 80 SpA / 80 Spe
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Thunderbolt
 - Tri Attack
-- Rain Dance
+- Flash Cannon
 - Thunder
 
-Scizor @ Focus Band
-Level: 36
+Scizor @ Sitrus Berry
+Level: 45
+EVs: 80 HP / 80 Atk
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Twineedle
-- Metal Claw
-- Agility
+- U Turn
+- Bullet Punch
+- Bug Bite
 - Swords Dance
 
-Steelix @ Quick Claw
-Level: 36
+Steelix @ Steeltite
+Level: 45
+EVs: 80 Atk / 80 Def
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Crunch
+- Earthquake
+- Rock Slide
+- Iron Tail
+
+=== TRAINER_JASMINE_1_2 ===
+Name: Jasmine
+Class: Leader
+Pic: Leader Jasmine
+Gender: Female
+Music: Male
+Double Battle: Yes
+AI: Smart Trainer
+Mugshot: Blue
+Difficulty: Hard
+
+Corviknight @ Rocky Helmet
+Level: 45
+Ability: Mirror Armor
+EVs: 160 HP / 160 Def
+IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
+- Body Press
+- Iron Defense
+- Roost
+- Steel Wing
+
+Tinkaton @ Shuca Berry
+Level: 45
+Ability: Own Tempo
+EVs: 160 HP / 160 Atk
+IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
+- Light Screen
+- Fake Out
+- Gigaton Hammer
+- Thunder Wave
+
+Magnezone @ Leftovers
+Level: 45
+Ability: Analytic
+EVs: 160 SpA / 160 Spe
+IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
+- Thunderbolt
+- Tri Attack
+- Flash Cannon
+- Discharge
+
+Scizor @ Sitrus Berry
+Level: 45
+Ability: Technician
+EVs: 160 HP / 160 Atk
+IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
+- U Turn
+- Bullet Punch
+- Bug Bite
+- Swords Dance
+
+Steelix @ Steeltite
+Level: 45
+Ability: Sheer Force
+EVs: 160 Atk / 160 Def
+IVs: 22 HP / 22 Atk / 22 Def / 22 SpA / 22 SpD / 22 Spe
 - Crunch
 - Earthquake
 - Rock Slide
@@ -11749,7 +12021,7 @@ Name: Beth
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Male
-Music: Hg Girl 2
+Music: Dp Ace Trainer
 Double Battle: No
 AI: Smart Trainer
 
@@ -11851,7 +12123,7 @@ Music: Hg Girl 1
 Double Battle: No
 AI: Check Bad Move
 
-Thwackey
+Roselia
 Level: 21
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -11916,11 +12188,11 @@ Name: Anthony
 Class: Hiker
 Pic: Hiker
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Hiker
 Double Battle: No
 AI: Check Bad Move
 
-Mienfoo
+Nacli
 Level: 14
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -12003,7 +12275,7 @@ Name: Koji
 Class: Hex Maniac
 Pic: Hex Maniac
 Gender: Male
-Music: Male
+Music: Hg Suspicious 1
 Double Battle: No
 AI: Check Bad Move
 
@@ -12120,7 +12392,7 @@ Mugshot: Pink
 
 Hitmontop
 Ability: Intimidate
-Level: 40
+Level: 41
 IVs: 20 HP / 20 Atk / 20 Def / 12 SpA / 12 SpD / 12 Spe
 - Triple Kick
 - Rapid Spin
@@ -12128,7 +12400,7 @@ IVs: 20 HP / 20 Atk / 20 Def / 12 SpA / 12 SpD / 12 Spe
 - Pursuit
 
 Mienshao
-Level: 40
+Level: 41
 Ability: Regenerator
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Low Kick
@@ -12141,7 +12413,7 @@ Level: 41
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Hypnosis
 - Drain Punch
-- Surf
+- Waterfall
 - Dynamic Punch
 
 Annihilape @ Chesto Berry
@@ -12165,24 +12437,23 @@ Difficulty: Hard
 
 Hitmontop @ Adrenaline Orb
 Ability: Intimidate
-Level: 44
+Level: 42
 IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
 - Triple Axel
 - Rapid Spin
 - Bullet Punch
 - Pursuit
 
-Sirfetch'd @ Assault Vest
-Level: 44
-Ability: Scrappy
+Annihilape @ Chesto Berry
+Level: 42
 IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
-- Slash
-- Brutal Swing
-- Leaf Blade
 - Brick Break
+- Taunt
+- Assurance
+- Phantom Force
 
 Mienshao @ Sitrus Berry
-Level: 44
+Level: 42
 Ability: Regenerator
 IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
 - U turn
@@ -12191,16 +12462,16 @@ IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
 - Knock Off
 
 Poliwrath @ Black Belt
-Level: 44
+Level: 42
 IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
 - Hypnosis
-- Mind Reader
+- Drain Punch
 - Waterfall
 - Dynamic Punch
 
-Falinks @ Fightite
+Falinks @ Black Belt
 Ability: Defiant
-Level: 45
+Level: 42
 IVs: 30 HP / 30 Atk / 30 Def / 12 SpA / 15 SpD / 15 Spe
 - First Impression
 - No Retreat
@@ -12530,7 +12801,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Hitmonlee
-Level: 38
+Level: 39
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_10 ===
@@ -12624,7 +12895,7 @@ Name: Kent
 Class: Sailor
 Pic: Sailor
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Sailor
 Double Battle: No
 AI: Check Bad Move
 
@@ -12632,7 +12903,7 @@ Wartortle
 Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Azumarill
+Skrelp
 Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -12788,20 +13059,21 @@ AI: Smart Trainer
 Mugshot: Green
 
 Ninetales-Alola @ Salac Berry
-Level: 40
+Level: 41
 Ability: Snow Warning  
 EVs: 88 SpA / 88 Spe  
 Hasty Nature  
-IVs: 0 Atk  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Aurora Veil  
 - Blizzard  
 - Dazzling Gleam  
 - Freeze-Dry  
 
 Mamoswine @ Air Balloon
-Level: 40
+Level: 41
 Ability: Thick Fat  
 EVs: 108 Atk / 128 SpA  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 Mild Nature  
 - Blizzard  
 - Ancient Power  
@@ -12812,16 +13084,17 @@ Glaceon @ Life Orb
 Level: 41
 Ability: Ice Body  
 EVs: 84 SpA / 92 Spe  
-IVs: 0 Atk  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Alluring Voice  
 - Blizzard  
 - Chilling Water  
 - Ice Beam  
 
 Weavile @ Chople Berry
-Level: 41
+Level: 42
 Ability: Pressure  
 EVs: 116 Atk / 128 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Brick Break  
 - Knock Off  
 - Ice Spinner  
@@ -12831,6 +13104,7 @@ Froslass (F) @ Sitrus Berry
 Level: 42
 Ability: Snow Cloak  
 EVs: 100 HP / 148 Def / 156 SpA  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Blizzard  
 - Draining Kiss  
 - Poltergeist  
@@ -12848,11 +13122,11 @@ Mugshot: Green
 Difficulty: Hard
 
 Ninetales-Alola @ Salac Berry
-Level: 40
+Level: 42
 Ability: Snow Warning  
 EVs: 88 SpA / 88 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 Hasty Nature  
-IVs: 0 Atk  
 - Aurora Veil  
 - Blizzard  
 - Dazzling Gleam  
@@ -12860,17 +13134,19 @@ IVs: 0 Atk
 
 Darmanitan-Galar @ Adrenaline Orb
 Ability: Zen Mode
-Level: 40
+Level: 42
 EVs: 116 Atk / 112 Spe
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Ice Punch
 - Hammer Arm
 - Rock Slide
 - Avalanche
 
 Mamoswine @ Air Balloon
-Level: 40
+Level: 42
 Ability: Thick Fat  
 EVs: 108 Atk / 128 SpA  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 Mild Nature  
 - Blizzard  
 - Ancient Power  
@@ -12878,19 +13154,20 @@ Mild Nature
 - Earthquake  
 
 Glaceon @ Life Orb
-Level: 41
+Level: 42
 Ability: Ice Body  
 EVs: 84 SpA / 92 Spe  
-IVs: 0 Atk  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Alluring Voice  
 - Blizzard  
 - Chilling Water  
 - Ice Beam  
 
 Weavile @ Chople Berry
-Level: 41
+Level: 42
 Ability: Pressure  
 EVs: 116 Atk / 128 Spe  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Brick Break  
 - Knock Off  
 - Ice Spinner  
@@ -12900,6 +13177,7 @@ Froslass (F) @ Sitrus Berry
 Level: 42
 Ability: Snow Cloak  
 EVs: 100 HP / 148 Def / 156 SpA  
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Blizzard  
 - Draining Kiss  
 - Poltergeist  
@@ -13065,17 +13343,13 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Cloyster
+Slowbro
 Level: 46
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Shell Smash
-- Icicle Spear
-- Surf
-- Supersonic
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
 Glaceon
 Level: 46
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 - Blizzard
 - Shadow Ball
 - Snowscape
@@ -13099,11 +13373,11 @@ Name: Erik
 Class: Hiker
 Pic: Hiker
 Gender: Male
-Music: Hg Boy 2
+Music: Dp Hiker
 Double Battle: No
 AI: Check Bad Move
 
-Steelix
+Rhydon
 Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -13972,3 +14246,19 @@ Toxtricity
 Level: 39
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
+=== TRAINER_PHILIP ===
+Name: Philip
+Class: Burglar
+Pic: Burglar
+Gender: Male
+Music: Hg Suspicious 2
+Double Battle: No
+AI: Basic Trainer
+
+Baltoy
+Level: 33
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Naclstack
+Level: 33
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe

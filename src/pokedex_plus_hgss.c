@@ -292,6 +292,9 @@ static const u32 sPokedexPlusHGSS_ScreenSearchNational_Tilemap[] = INCBIN_U32("g
 static EWRAM_DATA struct PokedexView *sPokedexView = NULL;
 static EWRAM_DATA u16 sLastSelectedPokemon = 0;
 static EWRAM_DATA u8 sPokeBallRotation = 0;
+static EWRAM_DATA MainCallback sPokedexReturnCallback = NULL;
+static EWRAM_DATA enum NationalDexOrder sPokedexOpenDexNum = 0;
+static EWRAM_DATA bool8 sPokedexOpenAtInfoScreen = FALSE;
 static EWRAM_DATA struct PokedexListItem *sPokedexListItem = NULL;
 //Pokedex Plus HGSS_Ui
 
@@ -466,6 +469,7 @@ static bool8 LoadPokedexListPage(u8);
 static void LoadPokedexBgPalette(bool8);
 static void FreeWindowAndBgBuffers(void);
 static void CreatePokedexList(u8, u8);
+static bool8 TrySelectPokedexListDexNum(enum NationalDexOrder dexNum);
 static void CreateMonDexNum(u16, u8, u8, u16);
 static void CreateCaughtBall(u16, u8, u8, u16);
 static u8 CreateMonName(u16, u8, u8);
@@ -2048,6 +2052,21 @@ void CB2_OpenPokedexPlusHGSS(void)
     }
 }
 
+void OpenPokedexPlusHGSSAtSpecies(u16 species, MainCallback callback)
+{
+    if (!POKEDEX_PLUS_HGSS)
+    {
+        if (callback != NULL)
+            SetMainCallback2(callback);
+        return;
+    }
+
+    sPokedexReturnCallback = callback;
+    sPokedexOpenDexNum = SpeciesToNationalPokedexNum(species);
+    sPokedexOpenAtInfoScreen = TRUE;
+    SetMainCallback2(CB2_OpenPokedexPlusHGSS);
+}
+
 static void ResetPokedexView(struct PokedexView *pokedexView)
 {
     u16 i;
@@ -2121,7 +2140,24 @@ static void Task_OpenPokedexMainPage(u8 taskId)
     sPokedexView->sEvoScreenData.fromEvoPage = FALSE;
     sPokedexView->formSpecies = 0;
     if (LoadPokedexListPage(PAGE_MAIN))
-        gTasks[taskId].func = Task_HandlePokedexInput;
+    {
+        if (sPokedexOpenAtInfoScreen && sPokedexView->pokedexList[sPokedexView->selectedPokemon].seen)
+        {
+            sPokedexOpenAtInfoScreen = FALSE;
+            TryDestroyStatBars();
+            UpdateSelectedMonSpriteId();
+            BeginNormalPaletteFade(~(1 << (gSprites[sPokedexView->selectedMonSpriteId].oam.paletteNum + 16)), 0, 0, 0x10, RGB_BLACK);
+            gSprites[sPokedexView->selectedMonSpriteId].callback = SpriteCB_MoveMonForInfoScreen;
+            gTasks[taskId].func = Task_OpenInfoScreenAfterMonMovement;
+            PlaySE(SE_PIN);
+            FreeWindowAndBgBuffers();
+        }
+        else
+        {
+            sPokedexOpenAtInfoScreen = FALSE;
+            gTasks[taskId].func = Task_HandlePokedexInput;
+        }
+    }
 }
 
 #define tLoadScreenTaskId data[0]
@@ -2295,6 +2331,8 @@ static void Task_ClosePokedex(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
+        MainCallback callback = sPokedexReturnCallback != NULL ? sPokedexReturnCallback : CB2_ReturnToFieldWithOpenMenu;
+
         gSaveBlock2Ptr->pokedex.mode = sPokedexView->dexMode;
         if (!IsNationalPokedexEnabled())
             gSaveBlock2Ptr->pokedex.mode = DEX_MODE_HOENN;
@@ -2302,9 +2340,12 @@ static void Task_ClosePokedex(u8 taskId)
         ClearMonSprites();
         FreeWindowAndBgBuffers();
         DestroyTask(taskId);
-        SetMainCallback2(CB2_ReturnToFieldWithOpenMenu);
+        SetMainCallback2(callback);
         m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
         Free(sPokedexView);
+        sPokedexReturnCallback = NULL;
+        sPokedexOpenDexNum = 0;
+        sPokedexOpenAtInfoScreen = FALSE;
     }
 }
 
@@ -2395,7 +2436,15 @@ static bool8 LoadPokedexListPage(u8 page)
         break;
     case 3:
         if (page == PAGE_MAIN)
+        {
             CreatePokedexList(sPokedexView->dexMode, sPokedexView->dexOrder);
+            if (sPokedexOpenDexNum != 0)
+            {
+                if (!TrySelectPokedexListDexNum(sPokedexOpenDexNum))
+                    sPokedexOpenAtInfoScreen = FALSE;
+                sPokedexOpenDexNum = 0;
+            }
+        }
         if (sPokedexView->originalSearchSelectionNum != 0)
         {
             // when returning to search results after selecting an evo, we have to restore
@@ -2582,6 +2631,25 @@ static void CreatePokedexList(u8 dexMode, u8 order)
         sPokedexView->pokedexList[i].seen = FALSE;
         sPokedexView->pokedexList[i].owned = FALSE;
     }
+}
+
+static bool8 TrySelectPokedexListDexNum(enum NationalDexOrder dexNum)
+{
+    u16 i;
+
+    for (i = 0; i < sPokedexView->pokemonListCount; i++)
+    {
+        if (sPokedexView->pokedexList[i].dexNum == dexNum)
+        {
+            sPokedexView->selectedPokemon = i;
+            sPokedexView->pokeBallRotation = POKEBALL_ROTATION_TOP;
+            sLastSelectedPokemon = i;
+            sPokeBallRotation = POKEBALL_ROTATION_TOP;
+            return TRUE;
+        }
+    }
+
+    return FALSE;
 }
 
 static void PrintMonDexNumAndName(u8 windowId, u8 fontId, const u8 *str, u8 left, u8 top)

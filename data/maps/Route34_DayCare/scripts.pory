@@ -618,7 +618,7 @@ script daycareDestinyKnotGift {
 			Pokémon into daycare yet? Sometimes
 			the daycare couple might find an egg.
 			
-			If you plan to hoard a lot of eggs,
+			If you plan to breed a lot of eggs,
 			you might find this useful.")
 	giveitem(ITEM_DESTINY_KNOT)
 	setflag(FLAG_DESTINYKNOT_GIFT)

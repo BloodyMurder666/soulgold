@@ -41,6 +41,7 @@
 #include "random.h"
 #include "rayquaza_scene.h"
 #include "region_map.h"
+#include "replay_options.h"
 #include "rtc.h"
 #include "script.h"
 #include "script_menu.h"
@@ -4492,13 +4493,28 @@ void GetCodeFeedback(void)
 {
     static const u8 sText_SampleCode[] = _("SampleCode");
     static const u8 sText_InnatePower[] = _("innatesnow");
+    static const u8 sText_AllIvs[] = _("allivs");
+    static const u8 sText_AllEvs[] = _("allevs");
+    static const u8 sText_FullStats[] = _("fullstats");
+    static const u8 sText_MaxPain[] = _("maxpain");
+    static const u8 sText_EasyIvs[] = _("easyivs");
+    static const u8 sText_NoInnates[] = _("noinnates");
     if (!StringCompare(gStringVar2, sText_SampleCode))
         gSpecialVar_Result = 1;
     else if (!StringCompare(gStringVar2, sText_InnatePower))
-    {
-        FlagToggle(FLAG_ALL_INNATES_UNLOCKED);
-        gSpecialVar_Result = FlagGet(FLAG_ALL_INNATES_UNLOCKED) ? 2 : 3;
-    }
+        gSpecialVar_Result = ToggleReplayAllInnatesUnlocked() ? 2 : 3;
+    else if (!StringCompare(gStringVar2, sText_AllIvs))
+        gSpecialVar_Result = ToggleReplayOption(REPLAY_OPTION_TRAINER_PERFECT_IVS) ? 2 : 3;
+    else if (!StringCompare(gStringVar2, sText_AllEvs))
+        gSpecialVar_Result = ToggleReplayOption(REPLAY_OPTION_TRAINER_MAX_EVS) ? 2 : 3;
+    else if (!StringCompare(gStringVar2, sText_FullStats))
+        gSpecialVar_Result = ToggleReplayTrainerFullStats() ? 2 : 3;
+    else if (!StringCompare(gStringVar2, sText_MaxPain))
+        gSpecialVar_Result = ToggleMaxPainReplayOptions() ? 2 : 3;
+    else if (!StringCompare(gStringVar2, sText_EasyIvs))
+        gSpecialVar_Result = ToggleReplayOption(REPLAY_OPTION_EASY_IVS) ? 2 : 3;
+    else if (!StringCompare(gStringVar2, sText_NoInnates))
+        gSpecialVar_Result = ToggleReplayOption(REPLAY_OPTION_NO_INNATES) ? 2 : 3;
     else
         gSpecialVar_Result = 0;
 }

@@ -41,13 +41,18 @@ EcruteakCity_Theater_EventScript_RocketEventTrigger::
 	special SpawnCameraObject
 	applymovement OBJ_EVENT_ID_CAMERA, EcruteakCity_Theater_Movement_CameraPanUp
 	waitmovement 0
+	createfieldmugshot MUGSHOT_ROCKET_GRUNT_M
 	msgbox EcruteakCity_Theater_Text_Rocket1, MSGBOX_DEFAULT
 	closemessage
+	createfieldmugshot MUGSHOT_KIMONO_GIRL
 	msgbox EcruteakCity_Theater_Text_KimonoRocket1, MSGBOX_DEFAULT
 	closemessage
+	createfieldmugshot MUGSHOT_ROCKET_GRUNT_M
 	msgbox EcruteakCity_Theater_Text_Rocket2, MSGBOX_DEFAULT
+	removefieldmugshot
 	applymovement LOCALID_ECRUTEAK_ZUKI, EcruteakCity_Theater_Movement_KimonoGirlMoveBack
 	waitmovement 0
+	createfieldmugshot MUGSHOT_ROCKET_GRUNT_M
 	msgbox EcruteakCity_Theater_Text_Rocket3, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_ECRUTEAK_ROCKET, EcruteakCity_Theater_Movement_RocketDance
@@ -311,7 +316,7 @@ EcruteakCity_Theater_EventScript_Lotad::
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_LOTAD, CRY_MODE_NORMAL
+	playmoncry SPECIES_PACHIRISU, CRY_MODE_NORMAL
 	msgbox EcruteakCity_Theater_Text_Lotad, MSGBOX_DEFAULT
 	waitmoncry
 	release
@@ -438,7 +443,7 @@ EcruteakCity_Theater_Text_SurfGuyAfter:
 	.string "them if they showed their skill...$"
 
 EcruteakCity_Theater_Text_Lotad:
-	.string "Lotad: Tap tap!$"
+	.string "Pachirisu: Pachi pach!$"
 
 EcruteakCity_Theater_Text_BoyBefore:
 	.string "Eeeeek!$"

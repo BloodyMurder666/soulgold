@@ -23,6 +23,7 @@
 #include "shop.h"
 #include "lilycove_lady.h"
 #include "pokedex.h"
+#include "pokemon.h"
 #include "event_object_movement.h"
 #include "text.h"
 #include "script_menu.h"
@@ -3277,6 +3278,7 @@ bool8 TryPutNameRaterShowOnTheAir(void)
 static void ChangeBoxPokemonNickname_CB(void)
 {
     SetBoxMonData(GetSelectedBoxMonFromPcOrParty(), MON_DATA_NICKNAME, gStringVar2);
+    TrySelectedMonNicknameFormChange();
     CB2_ReturnToFieldContinueScriptPlayMapMusic();
 }
 

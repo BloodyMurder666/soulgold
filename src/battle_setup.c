@@ -16,6 +16,7 @@
 #include "fieldmap.h"
 #include "follower_npc.h"
 #include "random.h"
+#include "replay_options.h"
 #include "starter_choose.h"
 #include "script_pokemon_util.h"
 #include "palette.h"
@@ -528,6 +529,7 @@ void BattleSetup_StartLegendaryBattle(void)
         CreateBattleStartTask(B_TRANSITION_BLUR, MUS_RG_VS_DEOXYS);
         break;
     case SPECIES_LUGIA:
+    case SPECIES_LUGIA_SHADOW:
         CreateBattleStartTask(B_TRANSITION_BLUR, MUS_HG_VS_LUGIA);
         break;
     case SPECIES_HO_OH:
@@ -700,10 +702,20 @@ static void CB2_EndScriptedWildBattle(void)
 
     if (IsPlayerDefeated(gBattleOutcome) == TRUE)
     {
-        if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE)
+        if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE) 
+        {
             SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
-        else
+        } 
+        else if (GetBugContestFlag()) 
+        {
+            SetMainCallback2(CB2_BugContestWhiteOut);
+        }
+            
+        else 
+        {
             SetMainCallback2(CB2_WhiteOut);
+        }
+            
     }
     else
     {
@@ -875,6 +887,36 @@ static u8 GetSumOfEnemyPartyLevel(u16 opponentId, u8 numMons)
     return sum;
 }
 
+static u8 GetReplayFormatTrainerPartySize(u16 trainerId)
+{
+    const struct Trainer *trainer = GetTrainerStructFromId(trainerId);
+
+    if (trainer->overrideTrainer && trainer->partySize == 0)
+        return GetTrainerPartySizeFromId(trainer->overrideTrainer);
+    return trainer->partySize;
+}
+
+static bool32 ShouldForceReplayTrainerDoubles(void)
+{
+    u16 trainerId = IsPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA)
+        ? GetPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA)
+        : TRAINER_BATTLE_PARAM.opponentA;
+
+    if (GetReplayBattleFormat() != REPLAY_BATTLE_FORMAT_DOUBLES)
+        return FALSE;
+    if (gNoOfApproachingTrainers > 1)
+        return FALSE;
+    if (FollowerNPCIsBattlePartner())
+        return FALSE;
+    if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE || InTrainerHillChallenge())
+        return FALSE;
+    if (GetMonsStateToDoubles_2() != PLAYER_HAS_TWO_USABLE_MONS)
+        return FALSE;
+    if (GetReplayFormatTrainerPartySize(trainerId) < 2)
+        return FALSE;
+    return TRUE;
+}
+
 enum BattleTransition GetWildBattleTransition(void)
 {
     u8 transitionType = GetBattleTransitionTypeByMap();
@@ -924,14 +966,10 @@ enum BattleTransition GetTrainerBattleTransition(void)
     if (trainerClass == TRAINER_CLASS_ROCKET_ADMIN)
         return B_TRANSITION_ROCKET;
 
-    switch (GetTrainerBattleType(trainerId))
+    if ((GetReplayBattleFormat() == REPLAY_BATTLE_FORMAT_DOUBLES && gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+     || (GetReplayBattleFormat() != REPLAY_BATTLE_FORMAT_SINGLES && GetTrainerBattleType(trainerId) == TRAINER_BATTLE_TYPE_DOUBLES))
     {
-    case TRAINER_BATTLE_TYPE_SINGLES:
-        minPartyCount = 1;
-        break;
-    case TRAINER_BATTLE_TYPE_DOUBLES:
         minPartyCount = 2; // double battles always at least have 2 Pokémon.
-        break;
     }
 
     transitionType = GetBattleTransitionTypeByMap();
@@ -1167,6 +1205,8 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data)
         return EventScript_DoNoIntroTrainerBattle;
     case TRAINER_BATTLE_DOUBLE:
         SetMapVarsToTrainerA();
+        if (GetReplayBattleFormat() == REPLAY_BATTLE_FORMAT_SINGLES)
+            return EventScript_TryDoNormalTrainerBattle;
         return EventScript_TryDoDoubleTrainerBattle;
     case TRAINER_BATTLE_CONTINUE_SCRIPT:
         if (gApproachingTrainerId == 0)
@@ -1180,11 +1220,15 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data)
     case TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE:
     case TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE_NO_MUSIC:
         SetMapVarsToTrainerA();
+        if (GetReplayBattleFormat() == REPLAY_BATTLE_FORMAT_SINGLES)
+            return EventScript_TryDoNormalTrainerBattle;
         return EventScript_TryDoDoubleTrainerBattle;
 #if FREE_MATCH_CALL == FALSE
     case TRAINER_BATTLE_REMATCH_DOUBLE:
         SetMapVarsToTrainerA();
         TRAINER_BATTLE_PARAM.opponentA = GetRematchTrainerId(TRAINER_BATTLE_PARAM.opponentA);
+        if (GetReplayBattleFormat() == REPLAY_BATTLE_FORMAT_SINGLES)
+            return EventScript_TryDoRematchBattle;
         return EventScript_TryDoDoubleRematchBattle;
     case TRAINER_BATTLE_REMATCH:
         SetMapVarsToTrainerA();
@@ -1396,7 +1440,12 @@ void BattleSetup_StartTrainerBattle(void)
 
         SetHillTrainerFlag();
     }
-    else if (GetTrainerBattleType(IsPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA)
+    else if (ShouldForceReplayTrainerDoubles())
+    {
+        gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
+    }
+    else if (GetReplayBattleFormat() != REPLAY_BATTLE_FORMAT_SINGLES
+          && GetTrainerBattleType(IsPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA)
                 ? GetPwtDomeTrainerId(TRAINER_BATTLE_PARAM.opponentA)
                 : TRAINER_BATTLE_PARAM.opponentA) == TRAINER_BATTLE_TYPE_DOUBLES)
     {
@@ -1547,6 +1596,8 @@ void BattleSetup_StartRematchBattle(void)
     RemoveFieldMugshot();
 
     gBattleTypeFlags = BATTLE_TYPE_TRAINER;
+    if (ShouldForceReplayTrainerDoubles())
+        gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
     gMain.savedCallback = CB2_EndRematchBattle;
     DoTrainerBattle();
     ScriptContext_Stop();
@@ -1678,29 +1729,83 @@ void PlayTrainerEncounterMusic(void)
         case TRAINER_ENCOUNTER_MUSIC_RICH:
             music = MUS_ENCOUNTER_RICH;
             break;
-         case TRAINER_ENCOUNTER_MUSIC_HG_CHAMPION:
+        case TRAINER_ENCOUNTER_MUSIC_HG_CHAMPION:
             music = MUS_HG_VS_CHAMPION;
             break;
-        case  TRAINER_ENCOUNTER_MUSIC_HG_BOY_1:
+        case TRAINER_ENCOUNTER_MUSIC_HG_BOY_1:
             music = MUS_HG_ENCOUNTER_BOY_1;
             break;
-        case  TRAINER_ENCOUNTER_MUSIC_HG_BOY_2:
+        case TRAINER_ENCOUNTER_MUSIC_HG_BOY_2:
             music = MUS_HG_ENCOUNTER_BOY_2;
             break;
-        case  TRAINER_ENCOUNTER_MUSIC_HG_GIRL_1:
+        case TRAINER_ENCOUNTER_MUSIC_HG_GIRL_1:
             music = MUS_HG_ENCOUNTER_GIRL_1;
             break;
-        case  TRAINER_ENCOUNTER_MUSIC_HG_GIRL_2:
+        case TRAINER_ENCOUNTER_MUSIC_HG_GIRL_2:
             music = MUS_HG_ENCOUNTER_GIRL_2;
             break;
-        case  TRAINER_ENCOUNTER_MUSIC_HG_SUSPICIOUS_1:
+        case TRAINER_ENCOUNTER_MUSIC_HG_SUSPICIOUS_1:
             music = MUS_HG_ENCOUNTER_SUSPICIOUS_1;
             break;
-        case  TRAINER_ENCOUNTER_MUSIC_HG_SUSPICIOUS_2:
+        case TRAINER_ENCOUNTER_MUSIC_HG_SUSPICIOUS_2:
             music = MUS_HG_ENCOUNTER_SUSPICIOUS_2;
             break;
-        case  TRAINER_ENCOUNTER_MUSIC_HG_SAGE:
+        case TRAINER_ENCOUNTER_MUSIC_HG_SAGE:
             music = MUS_HG_ENCOUNTER_SAGE;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_SILVER:
+            music = MUS_HG_ENCOUNTER_RIVAL;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_ROCKET:
+            music = MUS_HG_ENCOUNTER_ROCKET;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_HG_KIMONO_GIRL:
+            music = MUS_HG_ENCOUNTER_KIMONO_GIRL;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_BOY:
+            music = MUS_DP_ENCOUNTER_BOY;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_TWINS:
+            music = MUS_DP_ENCOUNTER_TWINS;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_INTENSE:
+            music = MUS_DP_ENCOUNTER_INTENSE;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_GALACTIC:
+            music = MUS_DP_ENCOUNTER_GALACTIC;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_LADY:
+            music = MUS_DP_ENCOUNTER_LADY;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_HIKER:
+            music = MUS_DP_ENCOUNTER_HIKER;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_RICH:
+            music = MUS_DP_ENCOUNTER_RICH;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_SAILOR:
+            music = MUS_DP_ENCOUNTER_SAILOR;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_SUSPICIOUS:
+            music = MUS_DP_ENCOUNTER_SUSPICIOUS;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_ACE_TRAINER:
+            music = MUS_DP_ENCOUNTER_ACE_TRAINER;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_GIRL:
+            music = MUS_DP_ENCOUNTER_GIRL;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_CYCLIST:
+            music = MUS_DP_ENCOUNTER_CYCLIST;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_ARTIST:
+            music = MUS_DP_ENCOUNTER_ARTIST;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_ELITE_FOUR:
+            music = MUS_DP_ENCOUNTER_ELITE_FOUR;
+            break;
+        case TRAINER_ENCOUNTER_MUSIC_DP_CHAMPION:
+            music = MUS_DP_ENCOUNTER_CHAMPION;
             break;
         default:
             music = MUS_ENCOUNTER_SUSPICIOUS;

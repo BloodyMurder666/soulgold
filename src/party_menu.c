@@ -53,8 +53,11 @@
 #include "pokemon_jump.h"
 #include "pokemon_storage_system.h"
 #include "pokemon_summary_screen.h"
+#include "pokedex.h"
+#include "pokedex_plus_hgss.h"
 #include "pokerus.h"
 #include "region_map.h"
+#include "replay_options.h"
 #include "reshow_battle_screen.h"
 #include "scanline_effect.h"
 #include "script.h"
@@ -88,6 +91,7 @@ enum {
     MENU_SWITCH,
     MENU_CANCEL1,
     MENU_ITEM,
+    MENU_POKEDEX,
     MENU_GIVE,
     MENU_TAKE_ITEM,
     MENU_MOVE_ITEM,
@@ -188,7 +192,7 @@ struct PartyMenuInternal
     u32 spriteIdCancelPokeball:7;
     u32 messageId:14;
     u8 windowId[3];
-    u8 actions[8];
+    u8 actions[12];
     u8 numActions;
     // In vanilla Emerald, only the first 0xB0 hwords (0x160 bytes) are actually used.
     // However, a full 0x100 hwords (0x200 bytes) are allocated.
@@ -468,6 +472,9 @@ static void CursorCb_Summary(u8);
 static void CursorCb_Switch(u8);
 static void CursorCb_Cancel1(u8);
 static void CursorCb_Item(u8);
+static void CursorCb_Pokedex(u8);
+static void CB2_OpenPartyPokedex(void);
+static void CB2_ReturnToPartyMenuFromPokedex(void);
 static void CursorCb_Give(u8);
 static void CursorCb_TakeItem(u8);
 static void CursorCb_MoveItem(u8);
@@ -502,6 +509,18 @@ static void ShowMoveSelectWindow(u8 slot);
 static void Task_HandleWhichMoveInput(u8 taskId);
 static void Task_HideFollowerNPCForTeleport(u8);
 static void FieldCallback_RockClimb(void);
+static void DisplayGiveHowManyMessage(void);
+static bool8 DoesItemIncreaseEV(u8 itemType);
+static bool8 ShouldLevelUpItemUseLevelCap(void);
+static u16 GetMaxLevelUpItemQuantity(struct Pokemon *mon, u8 holdEffectParam, u16 quantityInBag);
+static void ClearHowManyItemsWindow(u8 taskId);
+static void PrintHowManyItemsWindow(u8 taskId);
+static void Task_GiveHowManyItems(u8 taskId);
+static void Task_GiveHowManyItemsHandleInput(u8 taskId);
+static void Task_ReturnToUseOnWhichMonAfterText(u8 taskId);
+static void ItemUse_ApplyEvReduceBerry(u8 taskId);
+static void ItemUse_ApplyEvIncreaseItem(u8 taskId);
+static void ItemUse_ApplyExpCandy(u8 taskId);
 
 static const u8 sText_askText[] = _("Would you like to change {STR_VAR_1}'s\nability to {STR_VAR_2}?");
 static const u8 sText_doneText[] = _("{STR_VAR_1}'s ability became\n{STR_VAR_2}!{PAUSE_UNTIL_PRESS}");
@@ -510,6 +529,13 @@ static const u8 sText_doneShinyText[] = _("{STR_VAR_1} became shiny!{PAUSE_UNTIL
 static const u8 sText_BasePointsResetToZero[] = _("{STR_VAR_1}'s base points\nwere all reset to zero!{PAUSE_UNTIL_PRESS}");
 static const u8 sText_CannotSendMonToBoxHM[] = _("Cannot send that mon to the box,\nbecause it knows a HM move.{PAUSE_UNTIL_PRESS}");
 static const u8 sText_CannotSendMonToBoxPartner[] = _("Cannot send a mon that doesn't\nbelong to you to the box.{PAUSE_UNTIL_PRESS}");
+
+#define tItemCount          data[5]
+#define tMaxItemQuantity    data[6]
+#define tQuantityInBag      data[7]
+#define tWindowId           data[8]
+#define tItemEffect         data[9]
+#define tHoldEffectParam    data[10]
 
 // static const data
 #include "data/party_menu.h"
@@ -2889,6 +2915,9 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
                 break;
             }
         }
+        if (!GetMonData(&mons[slotId], MON_DATA_IS_EGG)
+         && GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(&mons[slotId], MON_DATA_SPECIES)), FLAG_GET_SEEN))
+            AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_POKEDEX);
         for (i = 0; i < MAX_MON_ITEMS; i++)
         {
             if (ItemIsMail(GetMonData(&mons[slotId], MON_DATA_HELD_ITEM + i)))
@@ -3396,6 +3425,26 @@ static void CursorCb_Item(u8 taskId)
     DisplayPartyMenuStdMessage(PARTY_MSG_DO_WHAT_WITH_ITEM);
     gTasks[taskId].data[0] = 0xFF;
     gTasks[taskId].func = Task_HandleSelectionMenuInput;
+}
+
+static void CursorCb_Pokedex(u8 taskId)
+{
+    PlaySE(SE_SELECT);
+    sPartyMenuInternal->exitCallback = CB2_OpenPartyPokedex;
+    Task_ClosePartyMenu(taskId);
+}
+
+static void CB2_OpenPartyPokedex(void)
+{
+    u16 species = GetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_SPECIES);
+
+    OpenPokedexPlusHGSSAtSpecies(species, CB2_ReturnToPartyMenuFromPokedex);
+}
+
+static void CB2_ReturnToPartyMenuFromPokedex(void)
+{
+    gPaletteFade.bufferTransferDisabled = TRUE;
+    InitPartyMenu(gPartyMenu.menuType, KEEP_PARTY_LAYOUT, gPartyMenu.action, TRUE, PARTY_MSG_DO_WHAT_WITH_MON, Task_TryCreateSelectionWindow, gPartyMenu.exitCallback);
 }
 
 static void CursorCb_Give(u8 taskId)
@@ -4975,13 +5024,22 @@ void ItemUseCB_BattleChooseMove(u8 taskId, TaskFunc task)
 
 void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
 {
+    s16 *data = gTasks[taskId].data;
+
     u16 hp = 0;
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
     enum Item item = gSpecialVar_ItemId;
-    enum ItemEffectType itemEffectType = GetItemEffectType(item);
+    enum ItemEffectType itemEffectType;
     bool8 canHeal = FALSE;
     bool8 cannotUse;
     u32 oldStatus = GetMonData(mon, MON_DATA_STATUS);
+    u16 ev;
+
+    tItemEffect = GetItemEffectType(item);
+    itemEffectType = tItemEffect;
+    ev = ItemEffectToMonEv(mon, tItemEffect);
+    tQuantityInBag = CountTotalItemQuantityInBag(item);
+    tItemCount = 1;
 
     if (NotUsingHPEVItemOnShedinja(mon, item) == FALSE)
     {
@@ -5013,6 +5071,27 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
     }
     else
     {
+        if (DoesItemIncreaseEV(tItemEffect) && tQuantityInBag > 1 && (s8)GetItemEffect(item)[6] > 0 && GetItemEffect(item)[6] != ITEM6_MAX_EV)
+        {
+            u32 evIncrease = GetItemEffect(item)[6];
+            u32 evCap = (GetItemEffect(item)[10] & ITEM10_IS_VITAMIN) ? EV_ITEM_RAISE_LIMIT : MAX_PER_STAT_EVS;
+            u32 evCount = GetMonEVCount(mon);
+            u32 maxAllowedEVs = B_EV_ITEMS_CAP ? GetCurrentEVCap() : MAX_TOTAL_EVS;
+            u32 remainingStatEVs = evCap - ev;
+            u32 remainingTotalEVs = maxAllowedEVs > evCount ? maxAllowedEVs - evCount : 0;
+            u32 maxQuantityByStat = (remainingStatEVs + evIncrease - 1) / evIncrease;
+            u32 maxQuantityByTotal = (remainingTotalEVs + evIncrease - 1) / evIncrease;
+
+            tMaxItemQuantity = min(maxQuantityByStat, min(maxQuantityByTotal, tQuantityInBag));
+            if (tMaxItemQuantity > 1)
+            {
+                PlaySE(SE_SELECT);
+                DisplayGiveHowManyMessage();
+                gTasks[taskId].func = Task_GiveHowManyItems;
+                return;
+            }
+        }
+
         switch (itemEffectType)
         {
         case ITEM_EFFECT_HP_EV:
@@ -5525,15 +5604,16 @@ void ItemUseCB_ResetEVs(u8 taskId, TaskFunc task)
 void ItemUseCB_ReduceEV(u8 taskId, TaskFunc task)
 {
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
-    enum Item item = gSpecialVar_ItemId;
-    enum ItemEffectType effectType = GetItemEffectType(item);
+    s16 *data = gTasks[taskId].data;
     u16 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP);
-    u16 ev = ItemEffectToMonEv(mon, effectType);
-    bool8 cannotUseEffect = ExecuteTableBasedItemEffect(mon, item, gPartyMenu.slotId, 0, 1, 1);
-    u16 newFriendship = GetMonData(mon, MON_DATA_FRIENDSHIP);
-    u16 newEv = ItemEffectToMonEv(mon, effectType);
+    u16 ev;
 
-    if (cannotUseEffect || (friendship == newFriendship && ev == newEv))
+    tItemEffect = GetItemEffectType(gSpecialVar_ItemId);
+    ev = ItemEffectToMonEv(mon, tItemEffect);
+    tQuantityInBag = CountTotalItemQuantityInBag(gSpecialVar_ItemId);
+    tItemCount = 1;
+
+    if (friendship == MAX_FRIENDSHIP && ev == 0)
     {
         gPartyMenuUseExitCallback = FALSE;
         PlaySE(SE_SELECT);
@@ -5543,25 +5623,20 @@ void ItemUseCB_ReduceEV(u8 taskId, TaskFunc task)
     }
     else
     {
-        gPartyMenuUseExitCallback = TRUE;
-        PlaySE(SE_USE_ITEM);
-        RemoveBagItem(item, 1);
-        GetMonNickname(mon, gStringVar1);
-        ItemEffectToStatString(effectType, gStringVar2);
-        if (friendship != newFriendship)
+        if (tQuantityInBag > 1 && ev > 10)
         {
-            if (ev != newEv)
-                StringExpandPlaceholders(gStringVar4, gText_PkmnFriendlyBaseVar2Fell);
-            else
-                StringExpandPlaceholders(gStringVar4, gText_PkmnFriendlyBaseVar2CantFall);
+            PlaySE(SE_SELECT);
+            DisplayGiveHowManyMessage();
+
+            tMaxItemQuantity = (I_BERRY_EV_JUMP == GEN_4 && ev > 100) ? 11 : (ev + 9) / 10;
+            tMaxItemQuantity = min(tQuantityInBag, tMaxItemQuantity);
+
+            gTasks[taskId].func = Task_GiveHowManyItems;
         }
         else
         {
-            StringExpandPlaceholders(gStringVar4, gText_PkmnAdoresBaseVar2Fell);
+            ItemUse_ApplyEvReduceBerry(taskId);
         }
-        DisplayPartyMenuMessage(gStringVar4, TRUE);
-        ScheduleBgCopyTilemapToVram(2);
-        gTasks[taskId].func = task;
     }
 }
 
@@ -6090,23 +6165,23 @@ static void UNUSED DisplayExpPoints(u8 taskId, TaskFunc task, u8 holdEffectParam
 
 void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
 {
-    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
-    struct PartyMenuInternal *ptr = sPartyMenuInternal;
-    s16 *arrayPtr = ptr->data;
-    u16 *itemPtr = &gSpecialVar_ItemId;
-    bool8 cannotUseEffect;
-    u8 holdEffectParam = GetItemHoldEffectParam(*itemPtr);
+    s16 *data = gTasks[taskId].data;
 
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    bool8 cannotUseEffect;
+
+    tHoldEffectParam = GetItemHoldEffectParam(gSpecialVar_ItemId);
     sInitialLevel = GetMonData(mon, MON_DATA_LEVEL);
-    if (!(B_RARE_CANDY_CAP && sInitialLevel >= GetCurrentLevelCap()))
-    {
-        BufferMonStatsToTaskData(mon, arrayPtr);
-        cannotUseEffect = ExecuteTableBasedItemEffect(mon, *itemPtr, gPartyMenu.slotId, 0, 0, 1);
-    }
-    else
-    {
+    tItemEffect = GetItemEffectType(gSpecialVar_ItemId);
+    tQuantityInBag = CountTotalItemQuantityInBag(gSpecialVar_ItemId);
+    tItemCount = 1;
+    tMaxItemQuantity = GetMaxLevelUpItemQuantity(mon, tHoldEffectParam, tQuantityInBag);
+
+    if (tMaxItemQuantity == 0)
         cannotUseEffect = TRUE;
-    }
+    else
+        cannotUseEffect = ExecuteTableBasedItemEffect(mon, gSpecialVar_ItemId, gPartyMenu.slotId, 0, 0, 1);
+
     PlaySE(SE_SELECT);
     if (cannotUseEffect)
     {
@@ -6117,7 +6192,7 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
         sInitialLevel = 0;
         sFinalLevel = 0;
 
-        if (holdEffectParam == 0) // Rare Candy
+        if (tHoldEffectParam == 0) // Rare Candy
         {
             targetSpecies = GetEvolutionTargetSpecies(mon, EVO_MODE_NORMAL, ITEM_NONE, NULL, &canStopEvo, CHECK_EVO);
         }
@@ -6141,41 +6216,14 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
     }
     else
     {
-        ExecuteTableBasedItemEffect(mon, *itemPtr, gPartyMenu.slotId, 0, 1, 1);
-        BufferMonStatsToTaskData(mon, &ptr->data[NUM_STATS]);
-        sFinalLevel = GetMonData(mon, MON_DATA_LEVEL);
-        gPartyMenuUseExitCallback = TRUE;
-        UpdateMonDisplayInfoAfterRareCandy(gPartyMenu.slotId, mon);
-        RemoveBagItem(gSpecialVar_ItemId, 1);
-        GetMonNickname(mon, gStringVar1);
-        if (sFinalLevel > sInitialLevel)
+        if (tQuantityInBag > 1)
         {
-            PlayFanfareByFanfareNum(FANFARE_LEVEL_UP);
-            if (holdEffectParam == 0) // Rare Candy
-            {
-                ConvertIntToDecimalStringN(gStringVar2, sFinalLevel, STR_CONV_MODE_LEFT_ALIGN, 3);
-                StringExpandPlaceholders(gStringVar4, gText_PkmnElevatedToLvVar2);
-            }
-            else // Exp Candies
-            {
-                ConvertIntToDecimalStringN(gStringVar2, sExpCandyExperienceTable[holdEffectParam - 1], STR_CONV_MODE_LEFT_ALIGN, 6);
-                ConvertIntToDecimalStringN(gStringVar3, sFinalLevel, STR_CONV_MODE_LEFT_ALIGN, 3);
-                StringExpandPlaceholders(gStringVar4, gText_PkmnGainedExpAndElevatedToLvVar3);
-            }
-
-            DisplayPartyMenuMessage(gStringVar4, TRUE);
-            ScheduleBgCopyTilemapToVram(2);
-            gTasks[taskId].func = Task_DisplayLevelUpStatsPg1;
+            DisplayGiveHowManyMessage();
+            gTasks[taskId].func = Task_GiveHowManyItems;
         }
         else
         {
-            PlaySE(SE_USE_ITEM);
-            gPartyMenuUseExitCallback = FALSE;
-            ConvertIntToDecimalStringN(gStringVar2, sExpCandyExperienceTable[holdEffectParam - 1], STR_CONV_MODE_LEFT_ALIGN, 6);
-            StringExpandPlaceholders(gStringVar4, gText_PkmnGainedExp);
-            DisplayPartyMenuMessage(gStringVar4, FALSE);
-            ScheduleBgCopyTilemapToVram(2);
-            gTasks[taskId].func = task;
+            ItemUse_ApplyExpCandy(taskId);
         }
     }
 }
@@ -6420,7 +6468,7 @@ static bool8 TryDisplayMonUnlockedInnate(u8 taskId, TaskFunc task)
         u32 unlockLevel = GetInnateUnlockLevel(innateNum);
         enum Ability innate = GetMonData(mon, MON_DATA_INNATE1 + sLevelUpInnateIndex);
 
-        if (innate != ABILITY_NONE && unlockLevel == sInitialLevel)
+        if (!AreReplayInnatesDisabled() && innate != ABILITY_NONE && unlockLevel == sInitialLevel)
         {
             sLevelUpInnateIndex++;
             GetMonNickname(mon, gStringVar1);
@@ -6451,6 +6499,321 @@ static void Task_ContinueAfterInnateUnlockedFanfare(u8 taskId)
     if (IsFanfareTaskInactive() && ((JOY_NEW(A_BUTTON)) || (JOY_NEW(B_BUTTON))))
         gTasks[taskId].func = sLevelUpInnateNextTask;
 }
+
+static void DisplayGiveHowManyMessage(void)
+{
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+
+    CopyItemNameHandlePlural(gSpecialVar_ItemId, gStringVar1, 2);
+    GetMonNickname(mon, gStringVar2);
+    StringExpandPlaceholders(gStringVar4, COMPOUND_STRING("Use how many {STR_VAR_1}\non {STR_VAR_2}?"));
+    DisplayPartyMenuMessage(gStringVar4, TRUE);
+    ScheduleBgCopyTilemapToVram(2);
+}
+
+static bool8 DoesItemIncreaseEV(u8 itemType)
+{
+    switch (itemType)
+    {
+    case ITEM_EFFECT_ATK_EV:
+    case ITEM_EFFECT_HP_EV:
+    case ITEM_EFFECT_SPATK_EV:
+    case ITEM_EFFECT_SPDEF_EV:
+    case ITEM_EFFECT_SPEED_EV:
+    case ITEM_EFFECT_DEF_EV:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
+static bool8 ShouldLevelUpItemUseLevelCap(void)
+{
+    u32 expCapType = GetCurrentExpCapType();
+
+    return B_RARE_CANDY_CAP && (expCapType == EXP_CAP_SOFT || expCapType == EXP_CAP_HARD);
+}
+
+static u16 GetMaxLevelUpItemQuantity(struct Pokemon *mon, u8 holdEffectParam, u16 quantityInBag)
+{
+    u32 species = GetMonData(mon, MON_DATA_SPECIES);
+    u32 growthRate = gSpeciesInfo[species].growthRate;
+    u32 level = GetMonData(mon, MON_DATA_LEVEL);
+    u32 levelCap = GetCurrentLevelCap();
+    u32 currentExp = GetMonData(mon, MON_DATA_EXP);
+    u32 maxQuantity;
+
+    if (quantityInBag == 0 || level >= MAX_LEVEL)
+        return 0;
+
+    if (ShouldLevelUpItemUseLevelCap())
+    {
+        levelCap = min(levelCap, MAX_LEVEL);
+        if (level >= levelCap)
+            return 0;
+    }
+    else
+    {
+        levelCap = MAX_LEVEL;
+    }
+
+    if (holdEffectParam == 0)
+    {
+        maxQuantity = levelCap - level;
+    }
+    else
+    {
+        u32 candyExp;
+        u32 maxExp;
+        u32 maxExpGain;
+
+        if (holdEffectParam > EXP_30000)
+            return 0;
+
+        candyExp = sExpCandyExperienceTable[holdEffectParam - 1];
+        if (candyExp == 0)
+            return 0;
+
+        if (ShouldLevelUpItemUseLevelCap())
+        {
+            maxExp = gExperienceTables[growthRate][levelCap];
+            if (currentExp >= maxExp)
+                return 0;
+
+            maxExpGain = maxExp - currentExp;
+            maxQuantity = (maxExpGain + candyExp - 1) / candyExp;
+        }
+        else
+        {
+            maxExp = gExperienceTables[growthRate][MAX_LEVEL];
+            if (currentExp >= maxExp)
+                return 0;
+
+            maxExpGain = maxExp - currentExp;
+            maxQuantity = (maxExpGain + candyExp - 1) / candyExp;
+        }
+    }
+
+    return min(quantityInBag, min(maxQuantity, MAX_BAG_ITEM_CAPACITY));
+}
+
+static void ClearHowManyItemsWindow(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    PlaySE(SE_SELECT);
+    if (tWindowId != WINDOW_NONE)
+    {
+        ClearStdWindowAndFrameToTransparent(tWindowId, FALSE);
+        ClearWindowTilemap(tWindowId);
+        RemoveWindow(tWindowId);
+        tWindowId = WINDOW_NONE;
+    }
+    ClearStdWindowAndFrameToTransparent(WIN_MSG, FALSE);
+    ClearWindowTilemap(WIN_MSG);
+    ScheduleBgCopyTilemapToVram(2);
+}
+
+static void PrintHowManyItemsWindow(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    FillWindowPixelBuffer(tWindowId, PIXEL_FILL(1));
+    ConvertIntToDecimalStringN(gStringVar1, tItemCount, STR_CONV_MODE_LEADING_ZEROS, MAX_ITEM_DIGITS);
+    StringExpandPlaceholders(gStringVar3, gText_xVar1);
+    AddTextPrinterParameterized(tWindowId, FONT_NORMAL, gStringVar3, 4, 1, TEXT_SKIP_DRAW, NULL);
+}
+
+static void Task_GiveHowManyItems(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    if (IsPartyMenuTextPrinterActive() != TRUE)
+    {
+        tWindowId = AddWindow(&sGiveHowManyItemsWindowTemplate);
+        DrawStdFrameWithCustomTileAndPalette(tWindowId, FALSE, 0x4F, 13);
+        PutWindowTilemap(tWindowId);
+        PrintHowManyItemsWindow(taskId);
+        CopyWindowToVram(tWindowId, COPYWIN_FULL);
+        ScheduleBgCopyTilemapToVram(2);
+
+        gTasks[taskId].func = Task_GiveHowManyItemsHandleInput;
+    }
+}
+
+static void Task_GiveHowManyItemsHandleInput(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    if (AdjustQuantityAccordingToDPadInput(&tItemCount, tMaxItemQuantity) == TRUE)
+    {
+        PrintHowManyItemsWindow(taskId);
+        CopyWindowToVram(tWindowId, COPYWIN_GFX);
+    }
+    else
+    {
+        if (JOY_NEW(A_BUTTON))
+        {
+            ClearHowManyItemsWindow(taskId);
+
+            switch (tItemEffect)
+            {
+            case ITEM_EFFECT_HP_EV:
+            case ITEM_EFFECT_ATK_EV:
+            case ITEM_EFFECT_DEF_EV:
+            case ITEM_EFFECT_SPEED_EV:
+            case ITEM_EFFECT_SPATK_EV:
+            case ITEM_EFFECT_SPDEF_EV:
+                if ((s8)GetItemEffect(gSpecialVar_ItemId)[6] < 0)
+                    ItemUse_ApplyEvReduceBerry(taskId);
+                else
+                    ItemUse_ApplyEvIncreaseItem(taskId);
+                break;
+            case ITEM_EFFECT_RAISE_LEVEL:
+                ItemUse_ApplyExpCandy(taskId);
+                break;
+            default:
+                gTasks[taskId].func = Task_ClosePartyMenuAfterText;
+                break;
+            }
+        }
+        else if (JOY_NEW(B_BUTTON))
+        {
+            ClearHowManyItemsWindow(taskId);
+            ReturnToUseOnWhichMon(taskId);
+        }
+    }
+}
+
+static void Task_ReturnToUseOnWhichMonAfterText(u8 taskId)
+{
+    if (IsPartyMenuTextPrinterActive() != TRUE)
+        ReturnToUseOnWhichMon(taskId);
+}
+
+static void ItemUse_ApplyEvReduceBerry(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    enum Item item = gSpecialVar_ItemId;
+    u16 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP);
+    u16 ev = ItemEffectToMonEv(mon, tItemEffect);
+    u16 newFriendship;
+    u16 newEv;
+
+    ExecuteTableBasedItemEffect(mon, item, gPartyMenu.slotId, 0, 1, tItemCount);
+    newFriendship = GetMonData(mon, MON_DATA_FRIENDSHIP);
+    newEv = ItemEffectToMonEv(mon, tItemEffect);
+    gPartyMenuUseExitCallback = TRUE;
+    PlaySE(SE_USE_ITEM);
+    if (tItemEffect == ITEM_EFFECT_HP_EV)
+        UpdateMonDisplayInfoAfterRareCandy(gPartyMenu.slotId, mon);
+    RemoveBagItem(item, tItemCount);
+    GetMonNickname(mon, gStringVar1);
+    ItemEffectToStatString(tItemEffect, gStringVar2);
+    if (friendship != newFriendship)
+    {
+        if (ev != newEv)
+            StringExpandPlaceholders(gStringVar4, gText_PkmnFriendlyBaseVar2Fell);
+        else
+            StringExpandPlaceholders(gStringVar4, gText_PkmnFriendlyBaseVar2CantFall);
+    }
+    else
+    {
+        StringExpandPlaceholders(gStringVar4, gText_PkmnAdoresBaseVar2Fell);
+    }
+    DisplayPartyMenuMessage(gStringVar4, FALSE);
+    ScheduleBgCopyTilemapToVram(2);
+    if (CountTotalItemQuantityInBag(gSpecialVar_ItemId) == 0)
+        gTasks[taskId].func = Task_ClosePartyMenuAfterText;
+    else
+        gTasks[taskId].func = Task_ReturnToUseOnWhichMonAfterText;
+}
+
+static void ItemUse_ApplyEvIncreaseItem(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    enum Item item = gSpecialVar_ItemId;
+
+    ExecuteTableBasedItemEffect(mon, item, gPartyMenu.slotId, 0, 1, tItemCount);
+    gPartyMenuUseExitCallback = TRUE;
+    PlaySE(SE_USE_ITEM);
+    if (tItemEffect == ITEM_EFFECT_HP_EV)
+        UpdateMonDisplayInfoAfterRareCandy(gPartyMenu.slotId, mon);
+    RemoveBagItem(item, tItemCount);
+    GetMonNickname(mon, gStringVar1);
+    GetMedicineItemEffectMessage(item, 0);
+    DisplayPartyMenuMessage(gStringVar4, FALSE);
+    ScheduleBgCopyTilemapToVram(2);
+    if (CountTotalItemQuantityInBag(gSpecialVar_ItemId) == 0)
+        gTasks[taskId].func = Task_ClosePartyMenuAfterText;
+    else
+        gTasks[taskId].func = Task_ReturnToUseOnWhichMonAfterText;
+}
+
+static void ItemUse_ApplyExpCandy(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    struct PartyMenuInternal *ptr = sPartyMenuInternal;
+    s16 *arrayPtr = ptr->data;
+
+    BufferMonStatsToTaskData(mon, arrayPtr);
+    ExecuteTableBasedItemEffect(mon, gSpecialVar_ItemId, gPartyMenu.slotId, 0, 1, tItemCount);
+    BufferMonStatsToTaskData(mon, &ptr->data[NUM_STATS]);
+
+    sFinalLevel = GetMonData(mon, MON_DATA_LEVEL);
+    gPartyMenuUseExitCallback = TRUE;
+    UpdateMonDisplayInfoAfterRareCandy(gPartyMenu.slotId, mon);
+    RemoveBagItem(gSpecialVar_ItemId, tItemCount);
+    GetMonNickname(mon, gStringVar1);
+    if (sFinalLevel > sInitialLevel)
+    {
+        PlayFanfareByFanfareNum(FANFARE_LEVEL_UP);
+        if (tHoldEffectParam == 0) // Rare Candy
+        {
+            ConvertIntToDecimalStringN(gStringVar2, sFinalLevel, STR_CONV_MODE_LEFT_ALIGN, 3);
+            StringExpandPlaceholders(gStringVar4, gText_PkmnElevatedToLvVar2);
+        }
+        else // Exp Candies
+        {
+            ConvertIntToDecimalStringN(gStringVar2, sExpCandyExperienceTable[tHoldEffectParam - 1] * tItemCount, STR_CONV_MODE_LEFT_ALIGN, 8);
+            ConvertIntToDecimalStringN(gStringVar3, sFinalLevel, STR_CONV_MODE_LEFT_ALIGN, 3);
+            StringExpandPlaceholders(gStringVar4, gText_PkmnGainedExpAndElevatedToLvVar3);
+        }
+
+        DisplayPartyMenuMessage(gStringVar4, TRUE);
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = Task_DisplayLevelUpStatsPg1;
+    }
+    else
+    {
+        PlaySE(SE_USE_ITEM);
+        gPartyMenuUseExitCallback = FALSE;
+        if (tHoldEffectParam != 0)
+        {
+            ConvertIntToDecimalStringN(gStringVar2, sExpCandyExperienceTable[tHoldEffectParam - 1] * tItemCount, STR_CONV_MODE_LEFT_ALIGN, 8);
+            StringExpandPlaceholders(gStringVar4, gText_PkmnGainedExp);
+            DisplayPartyMenuMessage(gStringVar4, FALSE);
+            ScheduleBgCopyTilemapToVram(2);
+        }
+        if (CountTotalItemQuantityInBag(gSpecialVar_ItemId) == 0)
+            gTasks[taskId].func = Task_ClosePartyMenuAfterText;
+        else
+            gTasks[taskId].func = Task_ReturnToUseOnWhichMonAfterText;
+    }
+}
+
+#undef tItemCount
+#undef tMaxItemQuantity
+#undef tQuantityInBag
+#undef tWindowId
+#undef tItemEffect
+#undef tHoldEffectParam
 
 static void BufferMonStatsToTaskData(struct Pokemon *mon, s16 *data)
 {

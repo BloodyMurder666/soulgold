@@ -9,9 +9,9 @@ Based on expansion port of Pokemon Heart and Soul. Feature list to be made later
 - RHH and pokeemerald expansion dev team, of course!
 - TeamAquaHideout for help, resources and feature branches (new birch case)
 - Estellar for pathfinding
-- [PokemonSanFran/PSF](https://github.com/PokemonSanFran/pokeemerald/wiki/Battle-Arcade) for battle arcade branch
+- [PokemonSanFran/PSF](https://github.com/PokemonSanFran/pokeemerald/wiki/Battle-Arcade) for battle arcade branch and quest menu UI base
 - LinathanZel for help window
-- Kasenn for tinting battle bgs and bp mart
+- Kasenn for tinting battle bgs, use how many? in party menu and bp mart
 - [bassforte123](https://github.com/bassforte123/pokeemerald-complete/tree/Trait-and-Items) for multi ability system
 - PurrfectDoodle, RavePossum and Ruki for battle backgrounds
 - Ravepossum for HGSS ui
@@ -26,11 +26,14 @@ Based on expansion port of Pokemon Heart and Soul. Feature list to be made later
 - Emulator accuracy check by Wiz1989 (also thanks to mudskip, grunt-lucas, archie, drazden)
 - Mudship (field mugshot system)
 - Ghoulslash (sideway stairs)
+- [James/FosterProgramming](https://github.com/FosterProgramming/pokeemerald-expansion) for their transformation code
 - Kyledove (various graphics and tiles)
 - Hyo for various sprites including frlg style emerald overworlds and gold sprites
 - Poffin Case various overworld sprites
 - HashtagMarky for overworld speedup
 - Pokeabbie battle speed up
+- MrDollStreak for 64x64 trainer sprites
+- PKMNTrainerRick for ethan back sprite frames
 - [agsmgmaster64](https://github.com/agsmgmaster64/worldlinkdeluxe-ame) Game corner expansion port
 - [heypc](https://github.com/heyopc/pokeemerald-gamecorner-expansion) game corner expansion
 - [aarant/merrp:](https://github.com/aarant) [icons branch](https://github.com/aarant/pokeemerald/tree/icons) and key item wheel

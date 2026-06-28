@@ -1,6 +1,8 @@
 #ifndef GUARD_FRONTIER_UTIL_H
 #define GUARD_FRONTIER_UTIL_H
 
+#include "constants/battle_frontier_mons.h"
+
 struct Pokemon;
 
 void CallFrontierUtilFunc(void);
@@ -39,7 +41,7 @@ u8 GetFrontierTrainerFrontSpriteId(u16 trainerId);
 enum TrainerClassID GetFrontierOpponentClass(u16 trainerId);
 u8 GetFrontierTrainerFacilityClass(u16 trainerId);
 void GetFrontierTrainerName(u8 *dst, u16 trainerId);
-u16 GetRandomFrontierMonFromSet(u16 trainerId);
+enum FrontierMon GetRandomFrontierMonFromSet(u16 trainerId);
 void FrontierSpeechToString(const u16 *words);
 u8 SetFacilityPtrsGetLevel(void);
 u8 GetFrontierEnemyMonLevel(enum FrontierLevelMode lvlMode);

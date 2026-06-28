@@ -4934,7 +4934,7 @@
     {
       "id": "LAYOUT_ROUTE33",
       "name": "Route33_Layout",
-      "width": 44,
+      "width": 53,
       "height": 40,
       "primary_tileset": "gTileset_Johto_NorthWest",
       "secondary_tileset": "gTileset_AzaleaTown",
@@ -5386,7 +5386,7 @@
       "name": "IlexForest_Layout",
       "width": 82,
       "height": 73,
-      "primary_tileset": "gTileset_Johto_South",
+      "primary_tileset": "gTileset_Johto_NorthWest",
       "secondary_tileset": "gTileset_IlexForest",
       "border_filepath": "data/layouts/IlexForest/border.bin",
       "blockdata_filepath": "data/layouts/IlexForest/map.bin"
@@ -9671,7 +9671,7 @@
       "id": "LAYOUT_FOGGY_SHORE2",
       "name": "FoggyShore2_Layout",
       "width": 55,
-      "height": 29,
+      "height": 40,
       "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_CeruleanCity",
       "border_filepath": "data/layouts/FoggyShore2/border.bin",
@@ -9726,6 +9726,56 @@
       "secondary_tileset": "gTileset_JohtoFactory",
       "border_filepath": "data/layouts/BattleFactoryGrounds/border.bin",
       "blockdata_filepath": "data/layouts/BattleFactoryGrounds/map.bin"
+    },
+    {
+      "id": "LAYOUT_DEEP_ILEX_FOREST",
+      "name": "DeepIlexForest_Layout",
+      "width": 35,
+      "height": 39,
+      "primary_tileset": "gTileset_Johto_NorthWest",
+      "secondary_tileset": "gTileset_IlexForest",
+      "border_filepath": "data/layouts/DeepIlexForest/border.bin",
+      "blockdata_filepath": "data/layouts/DeepIlexForest/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE33SOUTH",
+      "name": "Route33South_Layout",
+      "width": 63,
+      "height": 23,
+      "primary_tileset": "gTileset_Johto_NorthWest",
+      "secondary_tileset": "gTileset_AzaleaTown",
+      "border_filepath": "data/layouts/Route33South/border.bin",
+      "blockdata_filepath": "data/layouts/Route33South/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE33SOUTH_2",
+      "name": "Route33South_2_Layout",
+      "width": 63,
+      "height": 23,
+      "primary_tileset": "gTileset_Johto_NorthWest",
+      "secondary_tileset": "gTileset_AzaleaTown",
+      "border_filepath": "data/layouts/Route33South_2/border.bin",
+      "blockdata_filepath": "data/layouts/Route33South_2/map.bin"
+    },
+    {
+      "id": "LAYOUT_SOUTHERN_PASSAGE",
+      "name": "SouthernPassage_Layout",
+      "width": 20,
+      "height": 60,
+      "primary_tileset": "gTileset_Johto_NorthWest",
+      "secondary_tileset": "gTileset_AzaleaTown",
+      "border_filepath": "data/layouts/SouthernPassage/border.bin",
+      "blockdata_filepath": "data/layouts/SouthernPassage/map.bin"
+    },
+    {
+      "id": "LAYOUT_METEOR_ISLAND",
+      "name": "MeteorIsland_Layout",
+      "width": 42,
+      "height": 29,
+      "primary_tileset": "gTileset_Johto_NorthWest",
+      "secondary_tileset": "gTileset_AzaleaTown",
+      "border_filepath": "data/layouts/MeteorIsland/border.bin",
+      "blockdata_filepath": "data/layouts/MeteorIsland/map.bin"
     }
   ]
 }

@@ -632,6 +632,7 @@ static void FreeHealthboxPalsForLevelUp(enum BattlerId battler)
     u8 healthBoxSpriteId;
     u8 spriteId1, spriteId2;
     u8 paletteId1, paletteId2;
+    u16 healthboxPalTag;
 
     healthBoxSpriteId = gHealthboxSpriteIds[battler];
     spriteId1 = gSprites[healthBoxSpriteId].oam.affineParam;
@@ -639,7 +640,12 @@ static void FreeHealthboxPalsForLevelUp(enum BattlerId battler)
 
     FreeSpritePaletteByTag(TAG_HEALTHBOX_PALS_1);
     FreeSpritePaletteByTag(TAG_HEALTHBOX_PALS_2);
-    paletteId1 = IndexOfSpritePaletteTag(TAG_HEALTHBOX_PAL);
+
+    healthboxPalTag = GetMonData(GetBattlerMon(battler), MON_DATA_IS_SHINY) ? TAG_HEALTHBOX_SHINY_PAL : TAG_HEALTHBOX_PAL;
+    paletteId1 = IndexOfSpritePaletteTag(healthboxPalTag);
+    if (paletteId1 == 0xFF)
+        paletteId1 = IndexOfSpritePaletteTag(TAG_HEALTHBOX_PAL);
+
     paletteId2 = IndexOfSpritePaletteTag(TAG_HEALTHBAR_PAL);
     gSprites[healthBoxSpriteId].oam.paletteNum = paletteId1;
     gSprites[spriteId1].oam.paletteNum = paletteId1;

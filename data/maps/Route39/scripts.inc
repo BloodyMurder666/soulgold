@@ -365,34 +365,40 @@ Route39_BaobaTrigger::
 # 186 "data/maps/Route39/scripts.pory"
 	waitmovement 0
 # 187 "data/maps/Route39/scripts.pory"
+	createfieldmugshot MUGSHOT_GENTLEMAN
+# 188 "data/maps/Route39/scripts.pory"
 	msgbox Route39_BaobaTrigger_Text_0
-# 212 "data/maps/Route39/scripts.pory"
-	waitmessage
 # 213 "data/maps/Route39/scripts.pory"
-	msgbox Route39_BaobaTrigger_Text_1
-# 214 "data/maps/Route39/scripts.pory"
 	waitmessage
+# 214 "data/maps/Route39/scripts.pory"
+	removefieldmugshot
 # 215 "data/maps/Route39/scripts.pory"
-	playse MUS_HG_POKEGEAR_REGISTERED
+	msgbox Route39_BaobaTrigger_Text_1
 # 216 "data/maps/Route39/scripts.pory"
-	msgbox Route39_BaobaTrigger_Text_2
+	waitmessage
+# 217 "data/maps/Route39/scripts.pory"
+	playse MUS_HG_POKEGEAR_REGISTERED
 # 218 "data/maps/Route39/scripts.pory"
+	msgbox Route39_BaobaTrigger_Text_2
+# 220 "data/maps/Route39/scripts.pory"
 	waitse
-# 219 "data/maps/Route39/scripts.pory"
-	msgbox Route39_BaobaTrigger_Text_3
 # 221 "data/maps/Route39/scripts.pory"
-	closemessage
+	createfieldmugshot MUGSHOT_GENTLEMAN
 # 222 "data/maps/Route39/scripts.pory"
-	applymovement LOCALID_R39_BAOBA, Route39_BaobaTrigger_Movement_1
-# 223 "data/maps/Route39/scripts.pory"
-	waitmovement 0
+	msgbox Route39_BaobaTrigger_Text_3
 # 224 "data/maps/Route39/scripts.pory"
-	setflag FLAG_ENABLE_BAOBA_MATCH_CALL
+	closemessage
 # 225 "data/maps/Route39/scripts.pory"
-	removeobject LOCALID_R39_BAOBA
+	applymovement LOCALID_R39_BAOBA, Route39_BaobaTrigger_Movement_1
 # 226 "data/maps/Route39/scripts.pory"
-	setvar VAR_ROUTE39_BAOBA_STATE, 1
+	waitmovement 0
 # 227 "data/maps/Route39/scripts.pory"
+	setflag FLAG_ENABLE_BAOBA_MATCH_CALL
+# 228 "data/maps/Route39/scripts.pory"
+	removeobject LOCALID_R39_BAOBA
+# 229 "data/maps/Route39/scripts.pory"
+	setvar VAR_ROUTE39_BAOBA_STATE, 1
+# 230 "data/maps/Route39/scripts.pory"
 	release
 	end
 
@@ -403,29 +409,29 @@ Route39_BaobaTrigger_Movement_0:
 	face_right
 	step_end
 
-# 222 "data/maps/Route39/scripts.pory"
+# 225 "data/maps/Route39/scripts.pory"
 Route39_BaobaTrigger_Movement_1:
-# 222 "data/maps/Route39/scripts.pory"
+# 225 "data/maps/Route39/scripts.pory"
 	walk_left
-# 222 "data/maps/Route39/scripts.pory"
+# 225 "data/maps/Route39/scripts.pory"
 	walk_left
-# 222 "data/maps/Route39/scripts.pory"
+# 225 "data/maps/Route39/scripts.pory"
 	walk_left
-# 222 "data/maps/Route39/scripts.pory"
+# 225 "data/maps/Route39/scripts.pory"
 	walk_left
-# 222 "data/maps/Route39/scripts.pory"
+# 225 "data/maps/Route39/scripts.pory"
 	walk_left
-# 222 "data/maps/Route39/scripts.pory"
+# 225 "data/maps/Route39/scripts.pory"
 	walk_down
-# 222 "data/maps/Route39/scripts.pory"
+# 225 "data/maps/Route39/scripts.pory"
 	walk_down
-# 222 "data/maps/Route39/scripts.pory"
+# 225 "data/maps/Route39/scripts.pory"
 	walk_down
-# 222 "data/maps/Route39/scripts.pory"
+# 225 "data/maps/Route39/scripts.pory"
 	walk_down
-# 222 "data/maps/Route39/scripts.pory"
+# 225 "data/maps/Route39/scripts.pory"
 	walk_down
-# 222 "data/maps/Route39/scripts.pory"
+# 225 "data/maps/Route39/scripts.pory"
 	walk_down
 	step_end
 
@@ -434,7 +440,7 @@ Route39_NorthSign_Text_0:
 	.string "{UP_ARROW} Snowtop Mountain trail$"
 
 Route39_BaobaTrigger_Text_0:
-# 187 "data/maps/Route39/scripts.pory"
+# 188 "data/maps/Route39/scripts.pory"
 	.string "Baoba: ...Ohh! \n"
 	.string "What you are holding is...\l"
 	.string "what they call... a Pokédex!\l"
@@ -456,15 +462,15 @@ Route39_BaobaTrigger_Text_0:
 	.string "Zone is open before I call anyone else!$"
 
 Route39_BaobaTrigger_Text_1:
-# 213 "data/maps/Route39/scripts.pory"
+# 215 "data/maps/Route39/scripts.pory"
 	.string "...$"
 
 Route39_BaobaTrigger_Text_2:
-# 216 "data/maps/Route39/scripts.pory"
+# 218 "data/maps/Route39/scripts.pory"
 	.string "{PLAYER} registered Baoba\n"
 	.string "in the Pokégear!$"
 
 Route39_BaobaTrigger_Text_3:
-# 219 "data/maps/Route39/scripts.pory"
+# 222 "data/maps/Route39/scripts.pory"
 	.string "That's the way! I'll let you know\n"
 	.string "over the Pokégear once it's ready!$"

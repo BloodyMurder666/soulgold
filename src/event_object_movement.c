@@ -124,6 +124,7 @@ static u8 setup##_callback(struct ObjectEvent *objectEvent, struct Sprite *sprit
 static EWRAM_DATA u8 sCurrentReflectionType = 0;
 static EWRAM_DATA u16 sCurrentSpecialObjectPaletteTag = 0;
 static EWRAM_DATA struct LockedAnimObjectEvents *sLockedAnimObjectEvents = {0};
+static EWRAM_DATA bool8 sPartyPhotoLineupActive = FALSE;
 
 static void MoveCoordsInDirection(u32, s16 *, s16 *, s16, s16);
 static bool8 ObjectEventExecSingleMovementAction(struct ObjectEvent *, struct Sprite *);
@@ -203,6 +204,7 @@ enum Direction GetDirectionToFace(s16 x1, s16 y1, s16 x2, s16 y2);
 static void FollowerSetGraphics(struct ObjectEvent *objEvent, u32 species, bool32 shiny, bool32 female);
 static void ObjectEventSetGraphics(struct ObjectEvent *, const struct ObjectEventGraphicsInfo *);
 static void SpriteCB_VirtualObject(struct Sprite *);
+static void SpriteCB_PartyPhotoShadow(struct Sprite *);
 static void DoShadowFieldEffect(struct ObjectEvent *);
 static void SetJumpSpriteData(struct Sprite *, enum Direction, u8, u8);
 static void SetWalkSlowSpriteData(struct Sprite *, enum Direction);
@@ -1948,6 +1950,45 @@ u8 CreateObjectGraphicsSprite(u16 graphicsId, void (*callback)(struct Sprite *),
 #define sVirtualObjId   data[0]
 #define sVirtualObjElev data[1]
 
+#define PARTY_PHOTO_VIRTUAL_OBJ_ID_START 0xF0
+#define PARTY_PHOTO_CAMERA_PAN_Y         -16
+
+#define sPartyPhotoShadowParentSpriteId data[0]
+#define sPartyPhotoShadowParentObjId    data[1]
+#define sPartyPhotoShadowYOffset        data[2]
+
+struct PartyPhotoMon
+{
+    u16 graphicsId;
+    bool8 isLarge;
+};
+
+// Ordered from the widest positions to the narrowest so 64x64 sprites can be
+// placed at the outer edges first. The player and all Pokémon face south.
+static const struct Coords8 sPartyPhotoOffsets[PARTY_SIZE][PARTY_SIZE] =
+{
+    [0] = {{ 0, -1}},
+    [1] = {{-1, -1}, { 1, -1}},
+    [2] = {{-2, -2}, { 2, -2}, { 0, -1}},
+    [3] = {{-2, -2}, { 2, -2}, {-1, -1}, { 1, -1}},
+    [4] = {{-3, -3}, { 3, -3}, {-2, -2}, { 2, -2}, { 0, -1}},
+    [5] = {{-3, -3}, { 3, -3}, {-2, -2}, { 2, -2}, {-1, -1}, { 1, -1}},
+};
+
+static const u8 sPartyPhotoShadowTemplateIds[] =
+{
+    [SHADOW_SIZE_S] = FLDEFFOBJ_SHADOW_S,
+    [SHADOW_SIZE_M] = FLDEFFOBJ_SHADOW_M,
+    [SHADOW_SIZE_L] = FLDEFFOBJ_SHADOW_L,
+};
+
+static const u8 sPartyPhotoShadowVerticalOffsets[] =
+{
+    [SHADOW_SIZE_S] = 4,
+    [SHADOW_SIZE_M] = 4,
+    [SHADOW_SIZE_L] = 4,
+};
+
 // "Virtual Objects" are a class of sprites used instead of a full object event.
 // Used when more objects are needed than the object event limit (for Contest / Battle Dome audiences and group members in Union Room).
 // A unique id is given as an argument and stored in the sprite data to allow referring back to the same virtual object.
@@ -1960,6 +2001,7 @@ u8 CreateVirtualObject(u16 graphicsId, u8 virtualObjId, s16 x, s16 y, u8 elevati
     struct SpriteTemplate spriteTemplate;
     const struct SubspriteTable *subspriteTables;
     const struct ObjectEventGraphicsInfo *graphicsInfo;
+    u32 dynamicPaletteNum = 0xFF;
 
     graphicsInfo = GetObjectEventGraphicsInfo(graphicsId);
     CopyObjectGraphicsInfoToSpriteTemplate(graphicsId, SpriteCB_VirtualObject, &spriteTemplate, &subspriteTables);
@@ -1968,15 +2010,17 @@ u8 CreateVirtualObject(u16 graphicsId, u8 virtualObjId, s16 x, s16 y, u8 elevati
     SetSpritePosToOffsetMapCoords(&x, &y, 8, 16);
     if (spriteTemplate.paletteTag == OBJ_EVENT_PAL_TAG_DYNAMIC)
     {
-        u32 paletteNum = LoadDynamicFollowerPaletteFromGraphicsId(graphicsId, &spriteTemplate);
-        spriteTemplate.paletteTag = GetSpritePaletteTagByPaletteNum(paletteNum);
+        dynamicPaletteNum = LoadDynamicFollowerPaletteFromGraphicsId(graphicsId, &spriteTemplate);
+        if (dynamicPaletteNum >= 16)
+            return MAX_SPRITES;
+        spriteTemplate.paletteTag = GetSpritePaletteTagByPaletteNum(dynamicPaletteNum);
     }
     else if (spriteTemplate.paletteTag != TAG_NONE)
     {
         LoadObjectEventPalette(spriteTemplate.paletteTag);
     }
 
-    spriteId = CreateSpriteAtEnd(&spriteTemplate, x, y, 0);
+    spriteId = CreateSpriteAtEndUnchecked(&spriteTemplate, x, y, 0);
     if (spriteId != MAX_SPRITES)
     {
         sprite = &gSprites[spriteId];
@@ -2000,6 +2044,75 @@ u8 CreateVirtualObject(u16 graphicsId, u8 virtualObjId, s16 x, s16 y, u8 elevati
         SetObjectSubpriorityByElevation(elevation, sprite, 1);
         StartSpriteAnim(sprite, GetFaceDirectionAnimNum(direction));
     }
+    else if (dynamicPaletteNum < 16)
+    {
+        FieldEffectFreePaletteIfUnused(dynamicPaletteNum);
+    }
+    return spriteId;
+}
+
+static void DestroyPartyPhotoShadowSprite(struct Sprite *sprite)
+{
+    u16 sheetTileStart = sprite->sheetTileStart;
+
+    DestroySprite(sprite);
+    FieldEffectFreeTilesIfUnused(sheetTileStart);
+}
+
+static void SpriteCB_PartyPhotoShadow(struct Sprite *sprite)
+{
+    u8 parentSpriteId = sprite->sPartyPhotoShadowParentSpriteId;
+    u8 parentObjId = sprite->sPartyPhotoShadowParentObjId;
+
+    if (parentSpriteId >= MAX_SPRITES
+     || !gSprites[parentSpriteId].inUse
+     || gSprites[parentSpriteId].callback != SpriteCB_VirtualObject
+     || (u8)gSprites[parentSpriteId].sVirtualObjId != parentObjId)
+    {
+        DestroyPartyPhotoShadowSprite(sprite);
+    }
+    else
+    {
+        struct Sprite *parent = &gSprites[parentSpriteId];
+
+        sprite->oam.priority = parent->oam.priority;
+        sprite->subpriority = parent->subpriority + 1;
+        sprite->x = parent->x;
+        sprite->y = parent->y - parent->centerToCornerVecY
+                  - sprite->sPartyPhotoShadowYOffset;
+        sprite->invisible = parent->invisible || gWeatherPtr->noShadows;
+    }
+}
+
+static u8 CreatePartyPhotoShadow(u8 parentSpriteId, const struct ObjectEventGraphicsInfo *graphicsInfo)
+{
+    const struct SpriteTemplate *template;
+    u16 sheetTileStart;
+    u8 shadowSize = graphicsInfo->shadowSize;
+    u8 spriteId;
+
+    if (shadowSize == SHADOW_SIZE_NONE || gWeatherPtr->noShadows)
+        return MAX_SPRITES;
+
+    template = gFieldEffectObjectTemplatePointers[sPartyPhotoShadowTemplateIds[shadowSize]];
+    sheetTileStart = LoadSpriteSheetByTemplate(template, 0, 0);
+    if (sheetTileStart == TAG_NONE)
+        return MAX_SPRITES;
+
+    spriteId = CreateSpriteAtEndUnchecked(template, 0, 0, OW_OBJECT_SUBPRIORITY + 1);
+    if (spriteId == MAX_SPRITES)
+    {
+        FieldEffectFreeTilesIfUnused(sheetTileStart);
+        return MAX_SPRITES;
+    }
+
+    gSprites[spriteId].callback = SpriteCB_PartyPhotoShadow;
+    gSprites[spriteId].oam.objMode = ST_OAM_OBJ_BLEND;
+    gSprites[spriteId].coordOffsetEnabled = TRUE;
+    gSprites[spriteId].sPartyPhotoShadowParentSpriteId = parentSpriteId;
+    gSprites[spriteId].sPartyPhotoShadowParentObjId = gSprites[parentSpriteId].sVirtualObjId;
+    gSprites[spriteId].sPartyPhotoShadowYOffset = sPartyPhotoShadowVerticalOffsets[shadowSize];
+    SpriteCB_PartyPhotoShadow(&gSprites[spriteId]);
     return spriteId;
 }
 
@@ -2125,6 +2238,9 @@ static u32 LoadDynamicFollowerPalette(u32 species, bool32 shiny, bool32 female)
         paletteNum = IndexOfSpritePaletteTag(species); // Tag is always present
     }
 
+    if (paletteNum >= 16)
+        return paletteNum;
+
     if (gWeatherPtr->currWeather != WEATHER_FOG_HORIZONTAL) // don't want to weather blend in fog
         UpdateSpritePaletteWithWeather(paletteNum, FALSE);
     return paletteNum;
@@ -2240,6 +2356,168 @@ static bool8 GetMonInfo(struct Pokemon *mon, u32 *species, bool32 *shiny, bool32
     }
     return TRUE;
 }
+
+static void DestroyPartyPhotoLineupSprites(void)
+{
+    u32 i;
+
+    for (i = 0; i < MAX_SPRITES; i++)
+    {
+        if (gSprites[i].inUse && gSprites[i].callback == SpriteCB_PartyPhotoShadow)
+            DestroyPartyPhotoShadowSprite(&gSprites[i]);
+    }
+
+    for (i = 0; i < MAX_SPRITES; i++)
+    {
+        struct Sprite *sprite = &gSprites[i];
+        u8 virtualObjId = sprite->sVirtualObjId;
+
+        if (sprite->inUse
+         && sprite->callback == SpriteCB_VirtualObject
+         && virtualObjId >= PARTY_PHOTO_VIRTUAL_OBJ_ID_START
+         && virtualObjId < PARTY_PHOTO_VIRTUAL_OBJ_ID_START + PARTY_SIZE)
+        {
+            u8 paletteNum = sprite->oam.paletteNum;
+            u16 sheetTileStart = sprite->sheetTileStart;
+
+            DestroySprite(sprite);
+            FieldEffectFreePaletteIfUnused(paletteNum);
+            if (OW_GFX_COMPRESS && sheetTileStart)
+                FieldEffectFreeTilesIfUnused(sheetTileStart);
+        }
+    }
+}
+
+void HidePartyPhotoLineup(void)
+{
+    bool8 restoreFollower = sPartyPhotoLineupActive;
+
+    DestroyPartyPhotoLineupSprites();
+    sPartyPhotoLineupActive = FALSE;
+
+    if (restoreFollower)
+    {
+        CameraObjectSetFollowedSpriteId(GetPlayerAvatarSpriteId());
+        InstallCameraPanAheadCallback();
+        UpdateFollowingPokemon();
+    }
+}
+
+void ShowPartyPhotoLineup(void)
+{
+    struct PartyPhotoMon photoMons[PARTY_SIZE];
+    struct ObjectEvent *player = &gObjectEvents[gPlayerAvatar.objectEventId];
+    s16 oldPlayerX = player->currentCoords.x;
+    s16 oldPlayerY = player->currentCoords.y;
+    s16 playerX;
+    s16 playerY;
+    u32 monCount = 0;
+    u32 position = 0;
+    u32 pass;
+    u32 i;
+
+    HidePartyPhotoLineup();
+
+    // Fainted Pokémon still take part in the photo. Eggs are omitted because
+    // SPECIES_EGG does not currently have overworld graphics.
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        struct Pokemon *mon = &gPlayerParty[i];
+        const struct ObjectEventGraphicsInfo *graphicsInfo;
+        u32 speciesOrEgg = GetMonData(mon, MON_DATA_SPECIES_OR_EGG);
+        u32 species;
+        bool32 shiny;
+        bool32 female;
+
+        if (speciesOrEgg == SPECIES_NONE || speciesOrEgg == SPECIES_EGG)
+            continue;
+        if (!GetMonInfo(mon, &species, &shiny, &female))
+            continue;
+
+        graphicsInfo = SpeciesToGraphicsInfo(species, shiny, female);
+        if (graphicsInfo == NULL)
+            continue;
+
+        photoMons[monCount].graphicsId = GetGraphicsIdForMon(species, shiny, female);
+        photoMons[monCount].isLarge = graphicsInfo->width > 32 || graphicsInfo->height > 32;
+        monCount++;
+    }
+
+    gSpecialVar_Result = monCount;
+    if (monCount == 0)
+        return;
+
+    // The ordinary follower would duplicate one of the party members.
+    RemoveFollowingPokemon();
+    sPartyPhotoLineupActive = TRUE;
+
+    // Place the player on the photo mark immediately north of the selected
+    // photographer. This makes the lineup independent of which side the
+    // photographer was approached from. If there is no selected object, keep
+    // the player's current position but still use the south-facing formation.
+    if (gSelectedObjectEvent < OBJECT_EVENTS_COUNT
+     && gSelectedObjectEvent != gPlayerAvatar.objectEventId
+     && gObjectEvents[gSelectedObjectEvent].active)
+    {
+        struct ObjectEvent *photographer = &gObjectEvents[gSelectedObjectEvent];
+
+        MoveObjectEventToMapCoords(player,
+                                   photographer->currentCoords.x,
+                                   photographer->currentCoords.y - 1);
+    }
+    ObjectEventTurn(player, DIR_SOUTH);
+    playerX = player->currentCoords.x - MAP_OFFSET;
+    playerY = player->currentCoords.y - MAP_OFFSET;
+
+    // Directly moving a tracked object resets its camera tracker without
+    // emitting the distance moved. Move the map camera by the same delta, then
+    // pan one tile north so the full V is centered in the photo.
+    if (player->currentCoords.x != oldPlayerX || player->currentCoords.y != oldPlayerY)
+    {
+        MoveCameraAndRedrawMap(player->currentCoords.x - oldPlayerX,
+                               player->currentCoords.y - oldPlayerY);
+    }
+    CameraObjectSetFollowedSpriteId(GetPlayerAvatarSpriteId());
+    SetCameraPanningCallback(NULL);
+    SetCameraPanning(0, PARTY_PHOTO_CAMERA_PAN_Y);
+
+    // Large sprites are assigned the outer positions before smaller sprites.
+    // With uncompressed overworld graphics, even six 64x64 sprites use only
+    // 384 of the 1024 available OBJ tiles, so no party member needs omission.
+    for (pass = 0; pass < 2; pass++)
+    {
+        bool32 placeLarge = pass == 0;
+
+        for (i = 0; i < monCount; i++)
+        {
+            struct Coords8 offset;
+            u8 spriteId;
+
+            if (photoMons[i].isLarge != placeLarge)
+                continue;
+
+            offset = sPartyPhotoOffsets[monCount - 1][position];
+            spriteId = CreateVirtualObject(photoMons[i].graphicsId,
+                                           PARTY_PHOTO_VIRTUAL_OBJ_ID_START + position,
+                                           playerX + offset.x,
+                                           playerY + offset.y,
+                                           player->currentElevation,
+                                           DIR_SOUTH);
+            if (spriteId == MAX_SPRITES)
+            {
+                HidePartyPhotoLineup();
+                gSpecialVar_Result = 0;
+                return;
+            }
+            CreatePartyPhotoShadow(spriteId, GetObjectEventGraphicsInfo(photoMons[i].graphicsId));
+            position++;
+        }
+    }
+}
+
+#undef sPartyPhotoShadowParentSpriteId
+#undef sPartyPhotoShadowParentObjId
+#undef sPartyPhotoShadowYOffset
 
 // Retrieve graphic information about the following pokemon, if any
 bool8 GetFollowerInfo(u32 *species, bool32 *shiny, bool32 *female)
@@ -3086,6 +3364,100 @@ void ObjectEventTurn(struct ObjectEvent *objectEvent, enum Direction direction)
         SeekSpriteAnim(&gSprites[objectEvent->spriteId], 0);
     }
 }
+
+#define tMorphState         data[0]
+#define tMorphObjectEventId data[1]
+#define tMorphGraphicsId    data[2]
+#define tMorphTimer         data[3]
+
+#define MOSAIC_MORPH_STEPS  8
+#define MOSAIC_MORPH_DELAY  2
+
+static void Task_MosaicMorphObjectEvent(u8 taskId)
+{
+    struct Task *task = &gTasks[taskId];
+    struct ObjectEvent *objectEvent = &gObjectEvents[task->tMorphObjectEventId];
+    struct Sprite *sprite = &gSprites[objectEvent->spriteId];
+    u32 stretch;
+
+    switch (task->tMorphState)
+    {
+    case 0:
+        SetGpuReg(REG_OFFSET_MOSAIC, 0);
+        sprite->oam.mosaic = TRUE;
+        task->tMorphTimer = MOSAIC_MORPH_STEPS * MOSAIC_MORPH_DELAY - 1;
+        break;
+    case 1:
+        stretch = MOSAIC_MORPH_STEPS
+                - (task->tMorphTimer / MOSAIC_MORPH_DELAY % MOSAIC_MORPH_STEPS);
+        SetGpuReg(REG_OFFSET_MOSAIC, (stretch << 12) | (stretch << 8));
+        if (--task->tMorphTimer > 0)
+            return;
+        break;
+    case 2:
+        if (task->tMorphGraphicsId & OBJ_EVENT_MON)
+        {
+            FollowerSetGraphics(objectEvent,
+                                task->tMorphGraphicsId & OBJ_EVENT_MON_SPECIES_MASK,
+                                task->tMorphGraphicsId & OBJ_EVENT_MON_SHINY,
+                                task->tMorphGraphicsId & OBJ_EVENT_MON_FEMALE);
+        }
+        else
+        {
+            ObjectEventSetGraphicsId(objectEvent, task->tMorphGraphicsId);
+        }
+        ObjectEventTurn(objectEvent, objectEvent->facingDirection);
+        sprite->oam.mosaic = TRUE;
+        task->tMorphTimer = MOSAIC_MORPH_STEPS * MOSAIC_MORPH_DELAY - 1;
+        break;
+    case 3:
+        stretch = task->tMorphTimer / MOSAIC_MORPH_DELAY % MOSAIC_MORPH_STEPS;
+        SetGpuReg(REG_OFFSET_MOSAIC, (stretch << 12) | (stretch << 8));
+        if (--task->tMorphTimer > 0)
+            return;
+        break;
+    case 4:
+        SetGpuReg(REG_OFFSET_MOSAIC, 0);
+        sprite->oam.mosaic = FALSE;
+        DestroyTask(taskId);
+        return;
+    }
+
+    task->tMorphState++;
+}
+
+static bool8 IsMosaicMorphObjectTaskFinished(void)
+{
+    return !FuncIsActiveTask(Task_MosaicMorphObjectEvent);
+}
+
+void Script_MosaicMorphObject(struct ScriptContext *ctx)
+{
+    u16 localId = VarGet(ScriptReadHalfword(ctx));
+    // Pokémon object graphics use the 0x4000 bit, which overlaps the event variable range.
+    u16 graphicsId = ScriptReadHalfword(ctx);
+    u8 objectEventId;
+    u8 taskId;
+
+    Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
+
+    if (TryGetObjectEventIdByLocalIdAndMap(localId,
+                                          gSaveBlock1Ptr->location.mapNum,
+                                          gSaveBlock1Ptr->location.mapGroup,
+                                          &objectEventId))
+        return;
+
+    taskId = CreateTask(Task_MosaicMorphObjectEvent, 0);
+    gTasks[taskId].tMorphObjectEventId = objectEventId;
+    gTasks[taskId].tMorphGraphicsId = graphicsId;
+    SetupNativeScript(ctx, IsMosaicMorphObjectTaskFinished);
+    ctx->waitAfterCallNative = TRUE;
+}
+
+#undef tMorphState
+#undef tMorphObjectEventId
+#undef tMorphGraphicsId
+#undef tMorphTimer
 
 void ObjectEventTurnByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroup, enum Direction direction)
 {

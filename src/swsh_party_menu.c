@@ -595,6 +595,8 @@ static void CB2_ReopenPartyMenuFromPC(void);
 // Multiuse item code from Kasen
 static void DisplayGiveHowManyMessage(void);
 static bool8 DoesItemIncreaseEV(u8 itemType);
+static bool8 ShouldLevelUpItemUseLevelCap(void);
+static u16 GetMaxLevelUpItemQuantity(struct Pokemon *mon, u8 holdEffectParam, u16 quantityInBag);
 static void ClearHowManyItemsWindow(u8 taskId);
 static void PrintHowManyItemsWindow(u8 taskId);
 static void Task_GiveHowManyItems(u8 taskId);
@@ -7657,16 +7659,15 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
     tHoldEffectParam = GetItemHoldEffectParam(gSpecialVar_ItemId);
     sInitialLevel = GetMonData(mon, MON_DATA_LEVEL);
     tItemEffect = GetItemEffectType(gSpecialVar_ItemId);
+    tQuantityInBag = CountTotalItemQuantityInBag(gSpecialVar_ItemId);
     tItemCount = 1;
+    tMaxItemQuantity = GetMaxLevelUpItemQuantity(mon, tHoldEffectParam, tQuantityInBag);
 
-    if (!(B_RARE_CANDY_CAP && sInitialLevel >= GetCurrentLevelCap()))
-    {
-        cannotUseEffect = ExecuteTableBasedItemEffect(mon, gSpecialVar_ItemId, gPartyMenu.slotId, 0, 0, 1);
-    }
-    else
-    {
+    if (tMaxItemQuantity == 0)
         cannotUseEffect = TRUE;
-    }
+    else
+        cannotUseEffect = ExecuteTableBasedItemEffect(mon, gSpecialVar_ItemId, gPartyMenu.slotId, 0, 0, 1);
+
     PlaySE(SE_SELECT);
     if (cannotUseEffect)
     {
@@ -7701,27 +7702,8 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
     }
     else
     {
-        tQuantityInBag = CountTotalItemQuantityInBag(gSpecialVar_ItemId);
-
         if (tQuantityInBag > 1)
         {
-            u32 currentLevelCap = GetCurrentLevelCap();
-
-            if (tHoldEffectParam == 0) // Rare Candy
-            {
-                tMaxItemQuantity = currentLevelCap - sInitialLevel;
-            }
-            else // Exp Candies
-            {
-                u32 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
-                u32 totalExp = gExperienceTables[gSpeciesInfo[species].growthRate][currentLevelCap] - gExperienceTables[gSpeciesInfo[species].growthRate][sInitialLevel];
-                u16 candyExp = sExpCandyExperienceTable[tHoldEffectParam - 1];
-                u16 candyCount = (totalExp + candyExp - 1) / candyExp;
-
-                tMaxItemQuantity = min(candyCount, MAX_BAG_ITEM_CAPACITY);
-            }
-
-            tMaxItemQuantity = min(tQuantityInBag, tMaxItemQuantity);
             DisplayGiveHowManyMessage();
 
             gTasks[taskId].func = Task_GiveHowManyItems;
@@ -10494,6 +10476,64 @@ static bool8 DoesItemIncreaseEV(u8 itemType)
     default:
         return FALSE;
     }
+}
+
+static bool8 ShouldLevelUpItemUseLevelCap(void)
+{
+    u32 expCapType = GetCurrentExpCapType();
+
+    return B_RARE_CANDY_CAP && (expCapType == EXP_CAP_SOFT || expCapType == EXP_CAP_HARD);
+}
+
+static u16 GetMaxLevelUpItemQuantity(struct Pokemon *mon, u8 holdEffectParam, u16 quantityInBag)
+{
+    u32 species = GetMonData(mon, MON_DATA_SPECIES);
+    u32 growthRate = gSpeciesInfo[species].growthRate;
+    u32 level = GetMonData(mon, MON_DATA_LEVEL);
+    u32 levelCap = GetCurrentLevelCap();
+    u32 currentExp = GetMonData(mon, MON_DATA_EXP);
+    u32 maxQuantity;
+
+    if (quantityInBag == 0 || level >= MAX_LEVEL)
+        return 0;
+
+    if (ShouldLevelUpItemUseLevelCap())
+    {
+        levelCap = min(levelCap, MAX_LEVEL);
+        if (level >= levelCap)
+            return 0;
+    }
+    else
+    {
+        levelCap = MAX_LEVEL;
+    }
+
+    if (holdEffectParam == 0)
+    {
+        maxQuantity = levelCap - level;
+    }
+    else
+    {
+        u32 candyExp;
+        u32 maxExp;
+        u32 maxExpGain;
+
+        if (holdEffectParam > EXP_30000)
+            return 0;
+
+        candyExp = sExpCandyExperienceTable[holdEffectParam - 1];
+        if (candyExp == 0)
+            return 0;
+
+        maxExp = gExperienceTables[growthRate][levelCap];
+        if (currentExp >= maxExp)
+            return 0;
+
+        maxExpGain = maxExp - currentExp;
+        maxQuantity = (maxExpGain + candyExp - 1) / candyExp;
+    }
+
+    return min(quantityInBag, min(maxQuantity, MAX_BAG_ITEM_CAPACITY));
 }
 
 static void ClearHowManyItemsWindow(u8 taskId)
