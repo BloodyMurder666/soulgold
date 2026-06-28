@@ -309,7 +309,77 @@ RuinsofAlph_Scientist::
 	return
 
 
+CameronCamera::
+# 161 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	lock
+# 162 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	faceplayer
+# 163 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	msgbox CameronCamera_Text_0, MSGBOX_YESNO
+# 170 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	compare VAR_RESULT, YES
+	goto_if_eq CameronCamera_1
+# 192 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	msgbox CameronCamera_Text_2
+# 193 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	release
+	end
+
+CameronCamera_1:
+# 171 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	msgbox CameronCamera_Text_1
+# 172 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	closemessage
+# 174 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	fadescreenswapbuffers FADE_TO_BLACK
+# 175 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	setflag FLAG_HIDE_CAMERON
+# 176 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	removeobject VAR_LAST_TALKED
+# 177 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	special ShowPartyPhotoLineup
+# 178 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	delay 60
+# 179 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	fadescreenswapbuffers FADE_FROM_BLACK
+# 180 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	waitbuttonpress
+# 181 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	fadescreenswapbuffers FADE_TO_BLACK
+# 182 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	delay 30
+# 183 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	special HidePartyPhotoLineup
+# 184 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	delay 30
+# 185 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	clearflag FLAG_HIDE_CAMERON
+# 186 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	addobject VAR_LAST_TALKED
+# 188 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	fadescreenswapbuffers FADE_FROM_BLACK
+# 189 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	releaseall
+	end
+
+
 RuinsofAlph_Scientist_Text_0:
 # 156 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	.string "Sometimes fossils can be found while\n"
 	.string "breaking rocks in here.$"
+
+CameronCamera_Text_0:
+# 163 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	.string "Hello, \n"
+	.string "just when you least expect it! \p"
+	.string "I am Cameron the Photographer. \p"
+	.string "You look so photogenic! \n"
+	.string "Why not have a picture taken?$"
+
+CameronCamera_Text_1:
+# 171 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	.string "All right, then! Get yourselves ready!$"
+
+CameronCamera_Text_2:
+# 192 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	.string "Aren't you a shy one?$"
