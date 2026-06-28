@@ -1362,6 +1362,9 @@ static bool32 HandleEndTurnFormChange(enum BattlerId battler)
 
     gBattleStruct->eventState.endTurnBattler++;
 
+    if (!IsBattlerAlive(battler))
+        return FALSE;
+
     if (TryBattleFormChange(battler, FORM_CHANGE_BATTLE_TURN_END)
         || TryBattleFormChange(battler, FORM_CHANGE_BATTLE_HP_PERCENT_TURN_END))
     {

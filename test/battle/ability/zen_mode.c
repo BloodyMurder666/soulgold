@@ -103,6 +103,35 @@ SINGLE_BATTLE_TEST("Zen Mode switches Darmanitan's form when HP is healed above 
     }
 }
 
+SINGLE_BATTLE_TEST("Zen Mode does not switch Darmanitan's form after it faints")
+{
+    u16 standardSpecies;
+    PARAMETRIZE { standardSpecies = SPECIES_DARMANITAN_STANDARD; }
+    PARAMETRIZE { standardSpecies = SPECIES_DARMANITAN_GALAR_STANDARD; }
+
+    GIVEN {
+        PLAYER(standardSpecies)
+        {
+            Ability(ABILITY_ZEN_MODE);
+            HP(1);
+            Status1(STATUS1_POISON);
+        }
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { SEND_OUT(player, 1); }
+    } SCENE {
+        HP_BAR(player);
+        NONE_OF {
+            ABILITY_POPUP(player, ABILITY_ZEN_MODE);
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FORM_CHANGE, player);
+            MESSAGE("Zen Mode triggered!");
+        }
+    } THEN {
+        EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), standardSpecies);
+    }
+}
+
 #if MAX_MON_TRAITS > 1
 SINGLE_BATTLE_TEST("Zen Mode switches Darmanitan's form when HP is half or less at the end of the turn (Traits)")
 {
