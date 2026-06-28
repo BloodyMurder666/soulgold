@@ -17,12 +17,12 @@ RocketHideout_B3F_OnLoad::
 	end
 	
 RocketHideout_B3F_HideGate::
-	setmetatile 11, 11, 0x378, FALSE
-	setmetatile 11, 12, 0x380, FALSE
-	setmetatile 12, 11, 0x379, FALSE
-	setmetatile 12, 12, 0x379, FALSE
-	setmetatile 13, 11, 0x379, FALSE
-	setmetatile 13, 12, 0x379, FALSE
+	setmetatile 11, 11, 0x402, FALSE
+	setmetatile 11, 12, 0x402, FALSE
+	setmetatile 12, 11, 0x401, FALSE
+	setmetatile 12, 12, 0x401, FALSE
+	setmetatile 13, 11, 0x401, FALSE
+	setmetatile 13, 12, 0x401, FALSE
 	return
 RocketHideout_B3F_HidePetrel::
 	setflag FLAG_HIDE_ROCKETHIDEOUT3_PETREL
@@ -209,12 +209,12 @@ RocketHideout_B3F_EventScript_OpenDoor::
 	msgbox RocketHideout_B3F_Text_B3FLockedDoorOpenSesame, MSGBOX_DEFAULT
 	closemessage
 	playse SE_CLICK
-	setmetatile 11, 11, 0x378, FALSE
-	setmetatile 11, 12, 0x380, FALSE
-	setmetatile 12, 11, 0x379, FALSE
-	setmetatile 12, 12, 0x379, FALSE
-	setmetatile 13, 11, 0x379, FALSE
-	setmetatile 13, 12, 0x379, FALSE
+	setmetatile 11, 11, 0x402, FALSE
+	setmetatile 11, 12, 0x402, FALSE
+	setmetatile 12, 11, 0x401, FALSE
+	setmetatile 12, 12, 0x401, FALSE
+	setmetatile 13, 11, 0x401, FALSE
+	setmetatile 13, 12, 0x401, FALSE
 	special DrawWholeMapView
 	setflag FLAG_HIDE_ROCKETHIDEOUT3_GATE
 	release

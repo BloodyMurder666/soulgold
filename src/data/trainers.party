@@ -142,12 +142,12 @@ Double Battle: No
 AI: Check Bad Move
 
 Marowak
-Level: 33
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 40
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
 Marowak Alola
-Level: 33
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 40
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
 === TRAINER_COLIN ===
 Name: Colin
@@ -171,17 +171,17 @@ Music: Dp Hiker
 Double Battle: No
 AI: Check Bad Move
 
-Geodude
-Level: 23
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Golem
+Level: 40
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
-Geodude
-Level: 23
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Garganacl
+Level: 40
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
-Graveler
-Level: 23
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Gligar @ Eviolite
+Level: 40
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
 === TRAINER_BRIANA ===
 Name: Briana
@@ -1410,7 +1410,7 @@ Double Battle: No
 AI: Smart Trainer
 
 Scrafty
-Level: 44
+Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Hi Jump Kick
 - Crunch
@@ -1418,7 +1418,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Iron Tail
 
 Persian Alola
-Level: 44
+Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Slash
 - Night Slash
@@ -1426,7 +1426,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Play Rough
 
 Pyroar @ Firetite
-Level: 47
+Level: 48
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Flamethrower
 - Hyper Voice
@@ -1434,12 +1434,67 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Snarl
 
 Weezing Galar
-Level: 45
+Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Heat Wave
 - Sludge Bomb
 - Gyro Ball
 - Thunderbolt
+
+=== TRAINER_PETREL_1 ===
+Name: Petrel
+Class: RocketA
+Pic: Petrel
+Gender: Male
+Music: Rocket
+Double Battle: No
+AI: Smart Trainer
+Difficulty: Hard
+
+Scrafty @ Choice Specs
+Level: 48
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 160 Atk / 160 Spe
+- Hi Jump Kick
+- Crunch
+- Parting Shot
+- Iron Tail
+
+Persian Alola @ Scope Lens
+Level: 48
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 160 Atk / 160 Spe
+- Slash
+- Night Slash
+- Parting Shot
+- Play Rough
+
+Pyroar @ Firetite
+Level: 49
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 160 SpA / 160 Spe
+- Flamethrower
+- Hyper Voice
+- Earth Power
+- Snarl
+
+Weezing Galar @ Assault Vest
+Level: 48
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 160 SpA / 160 HP
+- Heat Wave
+- Sludge Bomb
+- Gyro Ball
+- Thunderbolt
+
+Rotom-Wash @ Mystic Water
+Level: 48
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 160 SpA / 160 Spe
+- Hydro Pump
+- Shadow Ball
+- Dark Pulse
+- Thunder Wave
 
 === TRAINER_MICHELLE ===
 Name: Michelle
@@ -1544,12 +1599,12 @@ Double Battle: No
 AI: Check Bad Move
 
 Graveler
-Level: 33
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 40
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
 Graveler Alola
-Level: 33
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 40
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
 === TRAINER_RACHAEL ===
 Name: Rachael
@@ -1716,21 +1771,25 @@ Double Battle: No
 AI: Smart Trainer
 
 Arbok
-Level: 45
+Level: 48
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 160 Atk / 160 Spe
 
 Toxapex
-Level: 45
+Level: 48
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 160 HP / 160 SpD
 
 Dragalge @ Poisontite
-Level: 46
+Level: 49
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 160 SpA / 160 Spe
 
 Vileplume
-Level: 45
+Level: 48
 Ability: Chlorophyll
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 160 SpA / 160 Spe
 - Sunny Day
 - Solar Beam
 - Sludge Bomb
@@ -2919,17 +2978,30 @@ Music: Dp Ace Trainer
 Double Battle: No
 AI: Smart Trainer
 
-Electrode
-Level: 36
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Chansey @ Eviolite
+Level: 42
+EVs: 252 HP
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
-Lucario
-Level: 36
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Mandibuzz @ Sitrus Berry
+Level: 42
+EVs: 252 HP
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+
+Sinistcha @ Big Root
+Level: 42
+EVs: 252 SpA
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+
+Lucario @ Focus Band
+Level: 42
+EVs: 252 Atk
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
 Manectric @ Electrite
-Level: 36
-IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+Level: 43
+EVs: 252 Atk
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
 === TRAINER_MIKI ===
 Name: Miki
@@ -6052,8 +6124,12 @@ Double Battle: No
 AI: Check Bad Move
 
 Kangaskhan
-Level: 34
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 40
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+
+Lycanroc
+Level: 40
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
 === TRAINER_GARRETT ===
 Name: Garrett
@@ -7901,8 +7977,12 @@ Music: Hg Suspicious 1
 Double Battle: No
 AI: Check Bad Move
 
-Grimer
-Level: 20
+Muk
+Level: 41
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Muk Alola
+Level: 41
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ETO ===
@@ -8104,25 +8184,25 @@ Music: Dp Ace Trainer
 Double Battle: No
 AI: Check Bad Move
 
-Flareon
-Level: 33
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Flareon @ Charcoal
+Level: 42
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
-Vaporeon
-Level: 33
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Vaporeon @ Choice Specs
+Level: 42
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
-Jolteon
-Level: 33
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Jolteon @ Magnet
+Level: 42
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
-Umbreon
-Level: 33
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Umbreon @ Sitrus Berry
+Level: 42
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
-Espeon
-Level: 34
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Espeon @ Twisted Spoon
+Level: 42
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
 === TRAINER_OTIS ===
 Name: Otis
@@ -9441,12 +9521,16 @@ Name: Nathan
 Class: Psychic M
 Pic: Psychic M
 Gender: Male
-Music: Hg Boy 1
+Music: Hg Boy 2
 Double Battle: No
 AI: Check Bad Move
 
-Girafarig
-Level: 26
+Farigiraf
+Level: 41
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Dudunsparce
+Level: 40
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JASMINE_2 ===
@@ -10591,19 +10675,19 @@ Pic: Cooltrainer M
 Gender: Male
 Music: Dp Ace Trainer
 Double Battle: No
-AI: Check Bad Move
+AI: Smart Trainer
 
-Infernape
-Level: 36
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Infernape @ Expert Belt
+Level: 42
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
-Empoleon
-Level: 36
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Empoleon @ Mystic Water
+Level: 42
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
-Torterra
-Level: 36
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Torterra @ Leftovers
+Level: 42
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
 === TRAINER_EDNA ===
 Name: Edna

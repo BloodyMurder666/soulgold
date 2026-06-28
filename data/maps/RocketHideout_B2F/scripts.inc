@@ -20,68 +20,68 @@ RocketHideout_B2F_OnLoad::
 	end
 
 RockerHideout2_DeactivateGenerator::
-	setmetatile 13, 8, 0x303, TRUE
-	setmetatile 13, 9, 0x303, TRUE
-	setmetatile 13, 10, 0x303, TRUE
-	setmetatile 13, 11, 0x303, TRUE
-	setmetatile 13, 12, 0x303, TRUE
-	setmetatile 13, 13, 0x303, TRUE
-	setmetatile 13, 14, 0x303, TRUE
-	setmetatile 13, 15, 0x303, TRUE
+	setmetatile 13, 8, 0x483, TRUE
+	setmetatile 13, 9, 0x483, TRUE
+	setmetatile 13, 10, 0x483, TRUE
+	setmetatile 13, 11, 0x483, TRUE
+	setmetatile 13, 12, 0x483, TRUE
+	setmetatile 13, 13, 0x483, TRUE
+	setmetatile 13, 14, 0x483, TRUE
+	setmetatile 13, 15, 0x483, TRUE
 
-	setmetatile 14, 8, 0x303, TRUE
-	setmetatile 14, 9, 0x303, TRUE
-	setmetatile 14, 10, 0x303, TRUE
-	setmetatile 14, 11, 0x303, TRUE
-	setmetatile 14, 12, 0x303, TRUE
-	setmetatile 14, 13, 0x303, TRUE
-	setmetatile 14, 14, 0x303, TRUE
-	setmetatile 14, 15, 0x303, TRUE
+	setmetatile 14, 8, 0x483, TRUE
+	setmetatile 14, 9, 0x483, TRUE
+	setmetatile 14, 10, 0x483, TRUE
+	setmetatile 14, 11, 0x483, TRUE
+	setmetatile 14, 12, 0x483, TRUE
+	setmetatile 14, 13, 0x483, TRUE
+	setmetatile 14, 14, 0x483, TRUE
+	setmetatile 14, 15, 0x483, TRUE
 
-	setmetatile 15, 8, 0x303, TRUE
-	setmetatile 15, 9, 0x303, TRUE
-	setmetatile 15, 10, 0x303, TRUE
-	setmetatile 15, 11, 0x303, TRUE
-	setmetatile 15, 12, 0x303, TRUE
-	setmetatile 15, 13, 0x303, TRUE
-	setmetatile 15, 14, 0x303, TRUE
-	setmetatile 15, 15, 0x303, TRUE
+	setmetatile 15, 8, 0x483, TRUE
+	setmetatile 15, 9, 0x483, TRUE
+	setmetatile 15, 10, 0x483, TRUE
+	setmetatile 15, 11, 0x483, TRUE
+	setmetatile 15, 12, 0x483, TRUE
+	setmetatile 15, 13, 0x483, TRUE
+	setmetatile 15, 14, 0x483, TRUE
+	setmetatile 15, 15, 0x483, TRUE
 
-	setmetatile 16, 8, 0x303, TRUE
-	setmetatile 16, 9, 0x303, TRUE
-	setmetatile 16, 10, 0x303, TRUE
-	setmetatile 16, 11, 0x303, TRUE
-	setmetatile 16, 12, 0x303, TRUE
-	setmetatile 16, 13, 0x303, TRUE
-	setmetatile 16, 14, 0x303, TRUE
-	setmetatile 16, 15, 0x303, TRUE
+	setmetatile 16, 8, 0x483, TRUE
+	setmetatile 16, 9, 0x483, TRUE
+	setmetatile 16, 10, 0x483, TRUE
+	setmetatile 16, 11, 0x483, TRUE
+	setmetatile 16, 12, 0x483, TRUE
+	setmetatile 16, 13, 0x483, TRUE
+	setmetatile 16, 14, 0x483, TRUE
+	setmetatile 16, 15, 0x483, TRUE
 
-	setmetatile 17, 8, 0x303, TRUE
-	setmetatile 17, 9, 0x303, TRUE
-	setmetatile 17, 10, 0x303, TRUE
-	setmetatile 17, 11, 0x303, TRUE
-	setmetatile 17, 12, 0x303, TRUE
-	setmetatile 17, 13, 0x303, TRUE
-	setmetatile 17, 14, 0x303, TRUE
-	setmetatile 17, 15, 0x303, TRUE
+	setmetatile 17, 8, 0x483, TRUE
+	setmetatile 17, 9, 0x483, TRUE
+	setmetatile 17, 10, 0x483, TRUE
+	setmetatile 17, 11, 0x483, TRUE
+	setmetatile 17, 12, 0x483, TRUE
+	setmetatile 17, 13, 0x483, TRUE
+	setmetatile 17, 14, 0x483, TRUE
+	setmetatile 17, 15, 0x483, TRUE
 
-	setmetatile 18, 8, 0x303, TRUE
-	setmetatile 18, 9, 0x303, TRUE
-	setmetatile 18, 10, 0x303, TRUE
-	setmetatile 18, 11, 0x303, TRUE
-	setmetatile 18, 12, 0x303, TRUE
-	setmetatile 18, 13, 0x303, TRUE
-	setmetatile 18, 14, 0x303, TRUE
-	setmetatile 18, 15, 0x303, TRUE
+	setmetatile 18, 8, 0x483, TRUE
+	setmetatile 18, 9, 0x483, TRUE
+	setmetatile 18, 10, 0x483, TRUE
+	setmetatile 18, 11, 0x483, TRUE
+	setmetatile 18, 12, 0x483, TRUE
+	setmetatile 18, 13, 0x483, TRUE
+	setmetatile 18, 14, 0x483, TRUE
+	setmetatile 18, 15, 0x483, TRUE
 	return
 
 RocketHideout_B2F_HideGate::
-	setmetatile 14, 19, 0x378, FALSE
-	setmetatile 14, 20, 0x380, FALSE
-	setmetatile 15, 19, 0x379, FALSE
-	setmetatile 15, 20, 0x379, FALSE
-	setmetatile 16, 19, 0x379, FALSE
-	setmetatile 16, 20, 0x379, FALSE
+	setmetatile 14, 19, 0x402, FALSE
+	setmetatile 14, 20, 0x402, FALSE
+	setmetatile 15, 19, 0x401, FALSE
+	setmetatile 15, 20, 0x401, FALSE
+	setmetatile 16, 19, 0x401, FALSE
+	setmetatile 16, 20, 0x401, FALSE
 	return
 
 RocketHideout_B2F_MoveLanceDragonite::
@@ -135,12 +135,12 @@ RocketHideout_B2F_Trigger_MurkrowGate::
 	msgbox RocketHideout_B3F_Text_Murkrow, MSGBOX_DEFAULT
 	msgbox RocketHideout_B2F_Text_MurkrowUnlock, MSGBOX_DEFAULT
 	playse SE_CLICK
-	setmetatile 14, 19, 0x378, FALSE
-	setmetatile 14, 20, 0x380, FALSE
-	setmetatile 15, 19, 0x379, FALSE
-	setmetatile 15, 20, 0x379, FALSE
-	setmetatile 16, 19, 0x379, FALSE
-	setmetatile 16, 20, 0x379, FALSE
+	setmetatile 14, 19, 0x402, FALSE
+	setmetatile 14, 20, 0x402, FALSE
+	setmetatile 15, 19, 0x401, FALSE
+	setmetatile 15, 20, 0x401, FALSE
+	setmetatile 16, 19, 0x401, FALSE
+	setmetatile 16, 20, 0x401, FALSE
 	special DrawWholeMapView
 	setflag FLAG_HIDE_ROCKETHIDEOUT2_GATE
 	closemessage

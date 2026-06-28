@@ -17,19 +17,19 @@ RocketHideout_B1F_OnLoad::
 	end
 
 RocketHideout_B1F_EventScript_SetStatue1::
-	setmetatile 45, 1, 0x2A9, TRUE
+	setmetatile 45, 1, 0x429, TRUE
 	return
 RocketHideout_B1F_EventScript_SetStatue2::
-	setmetatile 24, 1, 0x2A9, TRUE
+	setmetatile 24, 1, 0x429, TRUE
 	return
 RocketHideout_B1F_EventScript_SetStatue3::
-	setmetatile 45, 6, 0x2A9, TRUE
+	setmetatile 45, 6, 0x429, TRUE
 	return
 RocketHideout_B1F_EventScript_SetStatue4::
-	setmetatile 45, 19, 0x2A9, TRUE
+	setmetatile 45, 19, 0x429, TRUE
 	return
 RocketHideout_B1F_EventScript_SetStatue5::
-	setmetatile 27, 19, 0x2A9, TRUE
+	setmetatile 27, 19, 0x429, TRUE
 	return
 
 RocketHideout_B1F_TriggerTest::
@@ -83,7 +83,7 @@ RocketHideout_B1F_Trigger_Statue1::
 	fadescreenswapbuffers FADE_TO_BLACK
 	removeobject VAR_TEMP_0
 	fadescreenswapbuffers FADE_FROM_BLACK
-	setmetatile 45, 1, 0x2A9, TRUE
+	setmetatile 45, 1, 0x429, TRUE
 	special DrawWholeMapView
 	release
 	end	
@@ -104,7 +104,7 @@ RocketHideout_B1F_Trigger_Statue2::
 	fadescreenswapbuffers FADE_TO_BLACK
 	removeobject VAR_TEMP_0
 	fadescreenswapbuffers FADE_FROM_BLACK
-	setmetatile 24, 1, 0x2A9, TRUE
+	setmetatile 24, 1, 0x429, TRUE
 	special DrawWholeMapView
 	release
 	end	
@@ -125,7 +125,7 @@ RocketHideout_B1F_Trigger_Statue3::
 	fadescreenswapbuffers FADE_TO_BLACK
 	removeobject VAR_TEMP_0
 	fadescreenswapbuffers FADE_FROM_BLACK
-	setmetatile 45, 6, 0x2A9, TRUE
+	setmetatile 45, 6, 0x429, TRUE
 	special DrawWholeMapView
 	release
 	end	
@@ -146,7 +146,7 @@ RocketHideout_B1F_Trigger_Statue4::
 	fadescreenswapbuffers FADE_TO_BLACK
 	removeobject VAR_TEMP_0
 	fadescreenswapbuffers FADE_FROM_BLACK
-	setmetatile 45, 19, 0x2A9, TRUE
+	setmetatile 45, 19, 0x429, TRUE
 	special DrawWholeMapView
 	release
 	end	
@@ -167,7 +167,7 @@ RocketHideout_B1F_Trigger_Statue5::
 	fadescreenswapbuffers FADE_TO_BLACK
 	removeobject VAR_TEMP_0
 	fadescreenswapbuffers FADE_FROM_BLACK
-	setmetatile 27, 19, 0x2A9, TRUE
+	setmetatile 27, 19, 0x429, TRUE
 	special DrawWholeMapView
 	release
 	end	
@@ -323,11 +323,11 @@ RocketHideout_B1F_EventScript_Switch::
 	setvar VAR_ROCKET_HIDEOUT_STATUE_3, 2
 	setvar VAR_ROCKET_HIDEOUT_STATUE_4, 2
 	setvar VAR_ROCKET_HIDEOUT_STATUE_5, 2
-	setmetatile 45, 1, 0x2A9, TRUE
-	setmetatile 24, 1, 0x2A9, TRUE
-	setmetatile 45, 6, 0x2A9, TRUE
-	setmetatile 45, 19, 0x2A9, TRUE
-	setmetatile 27, 19, 0x2A9, TRUE
+	setmetatile 45, 1, 0x429, TRUE
+	setmetatile 24, 1, 0x429, TRUE
+	setmetatile 45, 6, 0x429, TRUE
+	setmetatile 45, 19, 0x429, TRUE
+	setmetatile 27, 19, 0x429, TRUE
 	special DrawWholeMapView
 	setflag FLAG_ROCKETHIDEOUT_SWITCH
 	release

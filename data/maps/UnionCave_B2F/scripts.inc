@@ -23,7 +23,7 @@ UnionCave_B2F_EventScript_Lapras::
 	faceplayer
 	playmoncry SPECIES_LAPRAS, CRY_MODE_ENCOUNTER
 	waitmoncry
-	setwildbattle SPECIES_LAPRAS, 20
+	setwildbattle SPECIES_LAPRAS, 45
 	dowildbattle
 	specialvar VAR_RESULT, GetBattleOutcome
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, UnionCave_B2F_EventScript_LaprasRan

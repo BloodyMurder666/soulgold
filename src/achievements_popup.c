@@ -2,9 +2,10 @@
 #include "achievements.h"
 #include "bg.h"
 #include "comfy_anim.h"
+#include "decompress.h"
 #include "event_data.h"
+#include "graphics.h"
 #include "gpu_regs.h"
-#include "item_icon.h"
 #include "main.h"
 #include "map_name_popup.h"
 #include "menu.h"
@@ -28,10 +29,11 @@
 #define tYOffset data[6]
 #define ACHIEVEMENT_POPUP_ICON_TAG 0xACE0
 #define ACHIEVEMENT_POPUP_WINDOW_WIDTH 15
-#define ACHIEVEMENT_POPUP_ICON_X 131
+#define ACHIEVEMENT_POPUP_ICON_X 124
 #define ACHIEVEMENT_POPUP_ICON_Y 32
 #define ACHIEVEMENT_POPUP_OFFSCREEN_Y 48
 #define ACHIEVEMENT_POPUP_SLIDE_DURATION 18
+#define ACHIEVEMENT_POPUP_ICON_SIZE (4 * TILE_SIZE_4BPP)
 
 static void Task_AchievementPopup(u8 taskId);
 static u8 GetAchievementPopupTaskId(void);
@@ -42,6 +44,7 @@ static bool8 UpdateAchievementPopupSlide(u8 taskId);
 static void SetAchievementPopupOffset(u8 taskId, s16 yOffset);
 static void DestroyAchievementPopup(u8 taskId);
 static bool8 ShouldYieldAchievementPopup(void);
+static u8 CreateAchievementPopupIcon(enum AchievementTier tier);
 
 enum
 {
@@ -62,15 +65,71 @@ static const struct WindowTemplate sPopupWindowTemplate =
     .baseBlock = 0x240,
 };
 
-static const union AffineAnimCmd sAffineAnim_PopupIconSmall[] =
+struct AchievementBallIconGfx
 {
-    AFFINEANIMCMD_FRAME(206, 206, 0, 0),
-    AFFINEANIMCMD_END,
+    const u32 *tiles;
+    const u16 *palette;
 };
 
-static const union AffineAnimCmd *const sAffineAnims_PopupIcon[] =
+static const struct AchievementBallIconGfx sBallIconGfxByTier[] =
 {
-    sAffineAnim_PopupIconSmall,
+    [ACH_TIER_BRONZE] =
+    {
+        .tiles = gBallGfx_Poke,
+        .palette = gBallPal_Poke,
+    },
+    [ACH_TIER_SILVER] =
+    {
+        .tiles = gBallGfx_Great,
+        .palette = gBallPal_Great,
+    },
+    [ACH_TIER_GOLD] =
+    {
+        .tiles = gBallGfx_Ultra,
+        .palette = gBallPal_Ultra,
+    },
+    [ACH_TIER_PLATINUM] =
+    {
+        .tiles = gBallGfx_Master,
+        .palette = gBallPal_Master,
+    },
+};
+
+static const struct OamData sOamData_BallIcon =
+{
+    .y = 0,
+    .affineMode = ST_OAM_AFFINE_OFF,
+    .objMode = ST_OAM_OBJ_NORMAL,
+    .mosaic = FALSE,
+    .bpp = ST_OAM_4BPP,
+    .shape = SPRITE_SHAPE(16x16),
+    .x = 0,
+    .matrixNum = 0,
+    .size = SPRITE_SIZE(16x16),
+    .tileNum = 0,
+    .priority = 0,
+    .paletteNum = 0,
+    .affineParam = 0,
+};
+
+static const union AnimCmd sAnim_BallIcon[] =
+{
+    ANIMCMD_FRAME(0, 0),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd *const sAnims_BallIcon[] =
+{
+    sAnim_BallIcon,
+};
+
+static const struct SpriteTemplate sSpriteTemplate_BallIcon =
+{
+    .tileTag = ACHIEVEMENT_POPUP_ICON_TAG,
+    .paletteTag = ACHIEVEMENT_POPUP_ICON_TAG,
+    .oam = &sOamData_BallIcon,
+    .anims = sAnims_BallIcon,
+    .callback = SpriteCallbackDummy,
 };
 
 static u8 GetAchievementPopupTaskId(void)
@@ -136,8 +195,8 @@ static void DrawAchievementPopup(u8 windowId, enum AchievementId id)
 
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
     DrawStdWindowFrame(windowId, FALSE);
-    AddTextPrinterParameterized(windowId, FONT_NORMAL, COMPOUND_STRING("ACHIEVEMENT!"), 8, 1, TEXT_SKIP_DRAW, NULL);
-    AddTextPrinterParameterized(windowId, FONT_NORMAL, achievement->name, 38, 15, TEXT_SKIP_DRAW, NULL);
+    AddTextPrinterParameterized(windowId, FONT_NORMAL, COMPOUND_STRING("New trophy!"), 8, 1, TEXT_SKIP_DRAW, NULL);
+    AddTextPrinterParameterized(windowId, FONT_NORMAL, achievement->name, 22, 15, TEXT_SKIP_DRAW, NULL);
 
     ConvertIntToDecimalStringN(gStringVar1, Achievement_CountUnlocked(), STR_CONV_MODE_LEFT_ALIGN, 3);
     ConvertIntToDecimalStringN(gStringVar2, Achievement_GetCount(), STR_CONV_MODE_LEFT_ALIGN, 3);
@@ -170,16 +229,12 @@ static void Task_AchievementPopup(u8 taskId)
         PutWindowTilemap(task->tWindowId);
         DrawAchievementPopup(task->tWindowId, task->tAchievementId);
         PlaySE(SE_M_HARDEN);
-        task->tSpriteId = AddItemIconSprite(ACHIEVEMENT_POPUP_ICON_TAG, ACHIEVEMENT_POPUP_ICON_TAG, Achievement_GetTierBallItem(Achievement_GetById(task->tAchievementId)->tier));
+        task->tSpriteId = CreateAchievementPopupIcon(Achievement_GetById(task->tAchievementId)->tier);
         if (task->tSpriteId != MAX_SPRITES)
         {
             gSprites[task->tSpriteId].x = ACHIEVEMENT_POPUP_ICON_X;
             gSprites[task->tSpriteId].y = ACHIEVEMENT_POPUP_ICON_Y - ACHIEVEMENT_POPUP_OFFSCREEN_Y;
             gSprites[task->tSpriteId].oam.priority = 0;
-            gSprites[task->tSpriteId].oam.affineMode = ST_OAM_AFFINE_NORMAL;
-            gSprites[task->tSpriteId].affineAnims = sAffineAnims_PopupIcon;
-            InitSpriteAffineAnim(&gSprites[task->tSpriteId]);
-            StartSpriteAffineAnim(&gSprites[task->tSpriteId], 0);
         }
         StartAchievementPopupSlide(taskId, ACHIEVEMENT_POPUP_OFFSCREEN_Y, 0, ACHIEVEMENT_POPUP_SLIDE_DURATION, ComfyAnimEasing_EaseOutCubic);
         task->tState = POPUP_STATE_SLIDE_IN;
@@ -272,7 +327,6 @@ static void DestroyAchievementPopup(u8 taskId)
     {
         FreeSpriteTilesByTag(ACHIEVEMENT_POPUP_ICON_TAG);
         FreeSpritePaletteByTag(ACHIEVEMENT_POPUP_ICON_TAG);
-        FreeSpriteOamMatrix(&gSprites[task->tSpriteId]);
         DestroySprite(&gSprites[task->tSpriteId]);
         task->tSpriteId = MAX_SPRITES;
     }
@@ -295,6 +349,26 @@ static bool8 ShouldYieldAchievementPopup(void)
         || ArePlayerFieldControlsLocked();
 }
 
+static u8 CreateAchievementPopupIcon(enum AchievementTier tier)
+{
+    struct CompressedSpriteSheet spriteSheet;
+    struct SpritePalette spritePalette;
+
+    if (tier >= ARRAY_COUNT(sBallIconGfxByTier))
+        tier = ACH_TIER_BRONZE;
+
+    spriteSheet.data = sBallIconGfxByTier[tier].tiles;
+    spriteSheet.size = ACHIEVEMENT_POPUP_ICON_SIZE;
+    spriteSheet.tag = ACHIEVEMENT_POPUP_ICON_TAG;
+    LoadCompressedSpriteSheet(&spriteSheet);
+
+    spritePalette.data = sBallIconGfxByTier[tier].palette;
+    spritePalette.tag = ACHIEVEMENT_POPUP_ICON_TAG;
+    LoadSpritePalette(&spritePalette);
+
+    return CreateSprite(&sSpriteTemplate_BallIcon, 0, 0, 0);
+}
+
 #undef tState
 #undef tTimer
 #undef tWindowId
@@ -308,3 +382,4 @@ static bool8 ShouldYieldAchievementPopup(void)
 #undef ACHIEVEMENT_POPUP_ICON_Y
 #undef ACHIEVEMENT_POPUP_OFFSCREEN_Y
 #undef ACHIEVEMENT_POPUP_SLIDE_DURATION
+#undef ACHIEVEMENT_POPUP_ICON_SIZE
