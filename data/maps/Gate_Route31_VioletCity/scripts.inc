@@ -113,8 +113,10 @@ Gate_Route31_VioletCity_RivalExpShare::
 # 63 "data/maps/Gate_Route31_VioletCity/scripts.pory"
 	removeobject LOCALID_GATEHOUSE_RIVAL
 # 64 "data/maps/Gate_Route31_VioletCity/scripts.pory"
-	fadedefaultbgm
+	savebgm MUS_DUMMY
 # 65 "data/maps/Gate_Route31_VioletCity/scripts.pory"
+	fadedefaultbgm
+# 66 "data/maps/Gate_Route31_VioletCity/scripts.pory"
 	release
 	end
 

@@ -1123,8 +1123,10 @@ GoldenrodCity_RivalAfterWhitney_2:
 # 609 "data/maps/GoldenrodCity/scripts.pory"
 	removeobject LOCALID_GOLDENROD_RIVAL
 # 610 "data/maps/GoldenrodCity/scripts.pory"
-	fadedefaultbgm
+	savebgm MUS_DUMMY
 # 611 "data/maps/GoldenrodCity/scripts.pory"
+	fadedefaultbgm
+# 612 "data/maps/GoldenrodCity/scripts.pory"
 	release
 	goto GoldenrodCity_RivalAfterWhitney_1
 

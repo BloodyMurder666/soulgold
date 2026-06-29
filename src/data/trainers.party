@@ -1779,16 +1779,6 @@ Level: 48
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 160 Atk / 160 Spe
 
-Toxapex
-Level: 48
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 160 HP / 160 SpD
-
-Dragalge @ Poisontite
-Level: 49
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 160 SpA / 160 Spe
-
 Vileplume
 Level: 48
 Ability: Chlorophyll
@@ -1798,6 +1788,11 @@ EVs: 160 SpA / 160 Spe
 - Solar Beam
 - Sludge Bomb
 - Giga Drain
+
+Dragalge @ Poisontite
+Level: 49
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 160 SpA / 160 Spe
 
 === TRAINER_PATON ===
 Name: Paton
@@ -7451,16 +7446,16 @@ Music: Rocket
 Double Battle: No
 AI: Check Bad Move
 
-Golbat
-Level: 25
+Crobat
+Level: 45
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Golbat
-Level: 25
+Obstagoon
+Level: 45
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Arbok
-Level: 30
+Level: 45
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_22 ===

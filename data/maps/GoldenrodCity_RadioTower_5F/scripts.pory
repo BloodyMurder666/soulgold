@@ -560,6 +560,7 @@ script RadioTower_5F_Archer {
 		waitmovement(0)
 		playse(SE_EXIT)
 		removeobject(LOCALID_RADIOTOWER_OAK)
+		savebgm(MUS_DUMMY)
 		fadedefaultbgm
 		release
 		end

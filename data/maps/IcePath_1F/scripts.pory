@@ -20,6 +20,7 @@ IcePath_1F_EventScript_KimonoGirl::
 	goto_if_eq VAR_FACING, DIR_SOUTH, IcePath_1F_EventScript_KimonoGirlPushPrompt
 	msgbox IcePath_1F_Text_Stuck1, MSGBOX_DEFAULT
 	closemessage
+	savebgm MUS_DUMMY
 	fadedefaultbgm
 	release
 	end

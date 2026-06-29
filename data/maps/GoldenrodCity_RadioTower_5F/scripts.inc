@@ -980,8 +980,10 @@ RadioTower_5F_Archer_1:
 # 562 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	removeobject LOCALID_RADIOTOWER_OAK
 # 563 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	fadedefaultbgm
+	savebgm MUS_DUMMY
 # 564 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	fadedefaultbgm
+# 565 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	release
 	end
 

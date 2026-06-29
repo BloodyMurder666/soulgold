@@ -18,27 +18,23 @@ AI: Basic Trainer
 Dragonite
 Adamant Nature
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Level: 50
+Level: 55
 EVs: 252 Atk / 252 Def / 6 SpD
 - Hyper Beam
 - Thunder
 - Safeguard
 - Outrage
 
-Dragonair
+Baxcalibur
 Adamant Nature
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Level: 45
+Level: 55
 EVs: 252 HP / 6 SpD / 252 Spe
-- Blizzard
-- Thunder Wave
-- Flamethrower
-- Quick Attack
 
 Charizard
 Adamant Nature
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Level: 47
+Level: 55
 EVs: 252 Atk / 252 SpD / 6 Spe
 - Flamethrower
 - Wing Attack

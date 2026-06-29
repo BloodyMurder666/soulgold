@@ -61,7 +61,8 @@ script Gate_Route31_VioletCity_RivalExpShare {
     waitmovement(0)
     playse(SE_EXIT)
     removeobject(LOCALID_GATEHOUSE_RIVAL)
-    fadedefaultbgm
+    savebgm(MUS_DUMMY)
+	fadedefaultbgm
     release
     end
 }

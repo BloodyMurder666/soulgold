@@ -607,6 +607,7 @@ script GoldenrodCity_RivalAfterWhitney {
 		setvar(VAR_RIVAL_STATE, 7)
 		setflag(FLAG_HIDE_GOLDENROD_RIVAL)
 		removeobject(LOCALID_GOLDENROD_RIVAL)
+		savebgm(MUS_DUMMY)
 		fadedefaultbgm
 		release
 	}

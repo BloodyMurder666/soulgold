@@ -164,6 +164,7 @@ RocketHideout_B3F_Trigger_Silver::
 	setflag FLAG_HIDE_ROCKETHIDEOUT3_SILVER
 	removeobject LOCALID_ROCKETHIDEOUT3_SILVER
 	setvar VAR_MAHOGANY_TOWN_STATE, 8
+	savebgm MUS_DUMMY
 	fadedefaultbgm
 	release
 	end
@@ -646,7 +647,7 @@ RocketHideout_B3F_Text_GruntM28Beaten:
     .string "Hyuck-hyuck-hyuck! You're good!$"
 
 RocketHideout_B3F_Text_GruntM28After:
-    .string "Hyuck-hyuck-hyuck!\p"
+    .string "Hyuck-hyuck-hyuck!\n"
     .string "The password to the boss's room…\p"
     .string "Uh…, I think it is Raticate Tail.$"
 

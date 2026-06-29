@@ -58,6 +58,7 @@ GoldenrodCity_UndergroundTunnel_EventScript_KimonoTriggerTop::
 	waitmovement 0
 	setflag FLAG_HIDE_GOLDENROD_UNDERGROUND_KIMONO
 	removeobject LOCALID_GOLDENROD_UNDERGROUND_KIMONO
+	savebgm MUS_DUMMY
 	fadedefaultbgm
 	setvar VAR_GOLDENROD_CITY_STATE, 8
 	end
