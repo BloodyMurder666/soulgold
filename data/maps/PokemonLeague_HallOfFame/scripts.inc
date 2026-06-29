@@ -88,8 +88,6 @@ PokemonLeague_HallOfFame_EventScript_SetGameClearFlags::
 	clearflag FLAG_HIDE_MAGERNA 
 	clearflag FLAG_HIDE_FEZANDIPITI 
 	setflag FLAG_HIDE_BATTLEFRONTIER_ENGINEER
-	call_if_unset FLAG_IS_KANTO_CHAMPION, PokemonLeague_HallOfFame_EventScript_SpawnKantoLeaderRematches
-	setflag FLAG_IS_KANTO_CHAMPION
 	setvar VAR_COMPLETED_LUGIA, 4
 	clearflag FLAG_HIDE_LUGIA
 	setvar VAR_COMPLETED_HO_OH, 4
