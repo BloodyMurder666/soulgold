@@ -272,19 +272,13 @@ BattleFrontier_ReceptionGate_EventScript_ChooseFrontierPassInfoToLearnAbout::
 	multichoice 16, 4, MULTI_FRONTIER_PASS_INFO, FALSE
 	switch VAR_RESULT
 	case 0, BattleFrontier_ReceptionGate_EventScript_Symbols
-	case 1, BattleFrontier_ReceptionGate_EventScript_RecordBattle
-	case 2, BattleFrontier_ReceptionGate_EventScript_BattlePoints
-	case 3, BattleFrontier_ReceptionGate_EventScript_ExitFrontierPassGuide
+	case 1, BattleFrontier_ReceptionGate_EventScript_BattlePoints
+	case 2, BattleFrontier_ReceptionGate_EventScript_ExitFrontierPassGuide
 	case MULTI_B_PRESSED, BattleFrontier_ReceptionGate_EventScript_ExitFrontierPassGuide
 	end
 
 BattleFrontier_ReceptionGate_EventScript_Symbols::
 	msgbox BattleFrontier_ReceptionGate_Text_SymbolsInfo, MSGBOX_DEFAULT
-	goto BattleFrontier_ReceptionGate_EventScript_ChooseFrontierPassInfoToLearnAbout
-	end
-
-BattleFrontier_ReceptionGate_EventScript_RecordBattle::
-	msgbox BattleFrontier_ReceptionGate_Text_RecordedBattleInfo, MSGBOX_DEFAULT
 	goto BattleFrontier_ReceptionGate_EventScript_ChooseFrontierPassInfoToLearnAbout
 	end
 
@@ -489,18 +483,6 @@ BattleFrontier_ReceptionGate_Text_SymbolsInfo:
 	.string "and may need to win events repeatedly.\p"
 	.string "It's certainly not easy to win symbols.\n"
 	.string "I wish you the best of luck!$"
-
-BattleFrontier_ReceptionGate_Text_RecordedBattleInfo:
-	.string "It is possible to record one battle\n"
-	.string "on your Frontier Pass.\p"
-	.string "You may record a battle you had with\n"
-	.string "a friend or friends.\p"
-	.string "Or you may record a battle conducted\n"
-	.string "at the Battle Frontier excluding\l"
-	.string "matches at the Battle Pike or\l"
-	.string "the Battle Pyramid.\p"
-	.string "You may choose to record your match\n"
-	.string "at the end of a battle.$"
 
 BattleFrontier_ReceptionGate_Text_BattlePointsInfo:
 	.string "Battle Points are rewards given to\n"

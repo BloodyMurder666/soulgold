@@ -14,8 +14,6 @@
 // If the sector's signature field is not this value then the sector is either invalid or empty.
 #define SECTOR_SIGNATURE 0x8012025
 
-#define SPECIAL_SECTOR_SENTINEL 0xB39D
-
 #define SECTOR_ID_SAVEBLOCK2          0
 #define SECTOR_ID_SAVEBLOCK1_START    1
 #define SECTOR_ID_SAVEBLOCK1_END      4
@@ -25,8 +23,8 @@
 // Save Slot 1: 0-13;  Save Slot 2: 14-27
 #define SECTOR_ID_HOF_1              28
 #define SECTOR_ID_HOF_2              29
-#define SECTOR_ID_TRAINER_HILL       30
-#define SECTOR_ID_RECORDED_BATTLE    31
+#define SECTOR_ID_PKMN_STORAGE_OVERFLOW_1 30
+#define SECTOR_ID_PKMN_STORAGE_OVERFLOW_2 31
 #define SECTORS_COUNT                32
 
 #define NUM_HOF_SECTORS 2
@@ -106,8 +104,6 @@ bool8 WriteSaveBlock2(void);
 bool8 WriteSaveBlock1Sector(void);
 u8 LoadGameSave(u8 saveType);
 u16 GetSaveBlocksPointersBaseOffset(void);
-u32 TryReadSpecialSaveSector(u8 sector, u8 *dst);
-u32 TryWriteSpecialSaveSector(u8 sector, u8 *src);
 void Task_LinkFullSave(u8 taskId);
 
 // save_failed_screen.c

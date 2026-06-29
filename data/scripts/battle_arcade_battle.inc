@@ -910,12 +910,12 @@ BattleArcade_Challenge_EventScript_AskReadyForBrain::
 	compare VAR_RESULT, TRUE
 	goto_if_eq BattleArcade_Challenge_EventScript_AskReadyForBrain_1
 # 521 "data/scripts/battle_arcade_battle.pory"
-	goto BattleArcade_Challenge_EventScript_BrainReadyMenuNoRecord
+	goto BattleArcade_Challenge_EventScript_BrainReadyMenu
 	return
 
 BattleArcade_Challenge_EventScript_AskReadyForBrain_1:
 # 517 "data/scripts/battle_arcade_battle.pory"
-	goto BattleArcade_Challenge_EventScript_BrainReadyMenu
+	goto BattleArcade_Challenge_EventScript_BrainReadyMenuNoRecord
 	return
 
 

@@ -99,7 +99,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 static void BattleMainCB1(void);
 static void CB2_EndLinkBattle(void);
 static void EndLinkBattleInSteps(void);
-static void CB2_InitAskRecordBattle(void);
+static void UNUSED CB2_InitAskRecordBattle(void);
 static void CB2_AskRecordBattle(void);
 static void AskRecordBattle(void);
 static void SpriteCB_MoveWildMonToRight(struct Sprite *sprite);
@@ -2392,52 +2392,10 @@ static void EndLinkBattleInSteps(void)
     case 2:
         if (!gPaletteFade.active)
         {
-            u32 battlerCount;
-
-            gMain.anyLinkBattlerHasFrontierPass = RecordedBattle_GetFrontierPassFlag();
-
-            if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
-                battlerCount = 4;
-            else
-                battlerCount = 2;
-
-            for (i = 0; i < battlerCount && (gLinkPlayers[i].version & 0xFF) == VERSION_EMERALD; i++);
-
-            if (!gSaveBlock2Ptr->frontier.disableRecordBattle && i == battlerCount)
-            {
-                if (FlagGet(FLAG_SYS_FRONTIER_PASS))
-                {
-                    // Ask player if they want to record the battle
-                    FreeAllWindowBuffers();
-                    SetMainCallback2(CB2_InitAskRecordBattle);
-                }
-                else if (!gMain.anyLinkBattlerHasFrontierPass)
-                {
-                    // No players can record this battle, end
-                    SetMainCallback2(gMain.savedCallback);
-                    FreeBattleResources();
-                    FreeBattleSpritesData();
-                    FreeMonSpritesGfx();
-                }
-                else if (gReceivedRemoteLinkPlayers == 0)
-                {
-                    // Player can't record battle but
-                    // another player can, reconnect with them
-                    CreateTask(Task_ReconnectWithLinkPlayers, 5);
-                    gBattleCommunication[MULTIUSE_STATE]++;
-                }
-                else
-                {
-                    gBattleCommunication[MULTIUSE_STATE]++;
-                }
-            }
-            else
-            {
-                SetMainCallback2(gMain.savedCallback);
-                FreeBattleResources();
-                FreeBattleSpritesData();
-                FreeMonSpritesGfx();
-            }
+            SetMainCallback2(gMain.savedCallback);
+            FreeBattleResources();
+            FreeBattleSpritesData();
+            FreeMonSpritesGfx();
         }
         break;
     case 3:
@@ -2522,7 +2480,7 @@ u32 GetBattleBgTemplateData(u8 arrayId, u8 caseId)
     return ret;
 }
 
-static void CB2_InitAskRecordBattle(void)
+static void UNUSED CB2_InitAskRecordBattle(void)
 {
     s32 i;
 

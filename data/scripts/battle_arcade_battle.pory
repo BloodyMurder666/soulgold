@@ -514,11 +514,11 @@ script BattleArcade_Challenge_EventScript_AskReadyForBrain
 	call(BattleFrontier_EventScript_GetCantRecordBattle)
 	if(var(VAR_RESULT) == TRUE)
 	{
-		goto(BattleArcade_Challenge_EventScript_BrainReadyMenu)
+		goto(BattleArcade_Challenge_EventScript_BrainReadyMenuNoRecord)
 	}
 	else
 	{
-		goto(BattleArcade_Challenge_EventScript_BrainReadyMenuNoRecord)
+		goto(BattleArcade_Challenge_EventScript_BrainReadyMenu)
 	}
 }
 

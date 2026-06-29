@@ -30,7 +30,6 @@ struct PlayerInfo
     u16 language;
 };
 
-// Save data using TryWriteSpecialSaveSector is allowed to exceed SECTOR_DATA_SIZE (up to the counter field)
 STATIC_ASSERT(sizeof(struct RecordedBattleSave) <= SECTOR_COUNTER_OFFSET, RecordedBattleSaveFreeSpace);
 
 EWRAM_DATA rng_value_t gRecordedBattleRngSeed = RNG_VALUE_EMPTY;
@@ -277,11 +276,8 @@ static bool32 RecordedBattleToSave(struct RecordedBattleSave *battleSave, struct
     memcpy(saveSector, battleSave, sizeof(*battleSave));
 
     saveSector->checksum = CalcByteArraySum((void *)(saveSector), sizeof(*saveSector) - 4);
-
-    if (TryWriteSpecialSaveSector(SECTOR_ID_RECORDED_BATTLE, (void *)(saveSector)) != SAVE_STATUS_OK)
-        return FALSE;
-    else
-        return TRUE;
+    // The recorded-battle flash sector is now Pokémon Storage overflow.
+    return FALSE;
 }
 
 bool32 MoveRecordedBattleToSaveData(void)
@@ -444,15 +440,8 @@ bool32 MoveRecordedBattleToSaveData(void)
 
 static bool32 TryCopyRecordedBattleSaveData(struct RecordedBattleSave *dst, struct SaveSector *saveBuffer)
 {
-    if (TryReadSpecialSaveSector(SECTOR_ID_RECORDED_BATTLE, (void *)(saveBuffer)) != SAVE_STATUS_OK)
-        return FALSE;
-
     memcpy(dst, saveBuffer, sizeof(struct RecordedBattleSave));
-
-    if (!IsRecordedBattleSaveValid(dst))
-        return FALSE;
-
-    return TRUE;
+    return IsRecordedBattleSaveValid(dst);
 }
 
 static bool32 CopyRecordedBattleFromSave(struct RecordedBattleSave *dst)

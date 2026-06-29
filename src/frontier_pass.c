@@ -518,10 +518,10 @@ static const struct SpriteTemplate sSpriteTemplate_PlayerHead =
 
 static const u8 *const sPassAreaDescriptions[CURSOR_AREA_COUNT + 1] =
 {
-    [CURSOR_AREA_NOTHING]        = gText_ThereIsNoBattleRecord, // NOTHING is re-used for CURSOR_AREA_RECORD when no Record is present
+    [CURSOR_AREA_NOTHING]        = gText_EmptyString7,
     [CURSOR_AREA_MAP]            = gText_CheckFrontierMap,
     [CURSOR_AREA_CARD]           = gText_CheckTrainerCard,
-    [CURSOR_AREA_RECORD]         = gText_ViewRecordedBattle,
+    [CURSOR_AREA_RECORD]         = gText_EmptyString7,
     [CURSOR_AREA_CANCEL]         = gText_PutAwayFrontierPass,
     [CURSOR_AREA_POINTS]         = gText_CurrentBattlePoints,
     [CURSOR_AREA_EARNED_SYMBOLS] = gText_CollectedSymbols,
@@ -624,7 +624,7 @@ static u32 AllocateFrontierPassData(MainCallback callback)
     }
 
     sPassData->battlePoints = gSaveBlock2Ptr->frontier.battlePoints;
-    sPassData->hasBattleRecord = CanCopyRecordedBattleSaveData();
+    sPassData->hasBattleRecord = FALSE;
     sPassData->areaToShow = CURSOR_AREA_NOTHING;
     sPassData->trainerStars = CountPlayerTrainerStars();
     for (i = 0; i < NUM_FRONTIER_FACILITIES; i++)
@@ -1154,8 +1154,8 @@ static void ShowAndPrintWindows(void)
     x = GetStringCenterAlignXOffset(FONT_NORMAL, gText_SymbolsEarned, 96);
     AddTextPrinterParameterized3(WINDOW_EARNED_SYMBOLS, FONT_NORMAL, x, 5, sTextColors[0], 0, gText_SymbolsEarned);
 
-    x = GetStringCenterAlignXOffset(FONT_NORMAL, gText_BattleRecord, 96);
-    AddTextPrinterParameterized3(WINDOW_BATTLE_RECORD, FONT_NORMAL, x, 5, sTextColors[0], 0, gText_BattleRecord);
+    x = GetStringCenterAlignXOffset(FONT_NORMAL, gText_EmptyString7, 96);
+    AddTextPrinterParameterized3(WINDOW_BATTLE_RECORD, FONT_NORMAL, x, 5, sTextColors[0], 0, gText_EmptyString7);
 
     AddTextPrinterParameterized3(WINDOW_BATTLE_POINTS, FONT_SMALL_NARROW, 5, 4, sTextColors[0], 0, gText_BattlePoints);
     ConvertIntToDecimalStringN(gStringVar4, sPassData->battlePoints, STR_CONV_MODE_LEFT_ALIGN, 5);

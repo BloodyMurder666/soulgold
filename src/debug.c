@@ -2451,9 +2451,9 @@ static void DebugAction_FlagsVars_PokedexFlags_Reset(u8 taskId)
     {
         for (boxPosition = 0; boxPosition < IN_BOX_COUNT; boxPosition++)
         {
-            if (GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SANITY_HAS_SPECIES))
+            if (GetBoxMonData(GetBoxedMonPtr(boxId, boxPosition), MON_DATA_SANITY_HAS_SPECIES))
             {
-                species = GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SPECIES);
+                species = GetBoxMonData(GetBoxedMonPtr(boxId, boxPosition), MON_DATA_SPECIES);
                 GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_SET_CAUGHT);
                 GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_SET_SEEN);
             }
@@ -3789,7 +3789,7 @@ static void DebugAction_PCBag_Fill_PCBoxes_Fast(u8 taskId) //Credit: Sierraffini
     {
         for (boxPosition = 0; boxPosition < IN_BOX_COUNT && Debug_TryAdvanceToEnabledSpecies(&species); boxPosition++)
         {
-            if (!GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SANITY_HAS_SPECIES))
+            if (!GetBoxMonData(GetBoxedMonPtr(boxId, boxPosition), MON_DATA_SANITY_HAS_SPECIES))
             {
                 isShiny = Random32() % 2;
                 StringCopy(speciesName, GetSpeciesName(species));
@@ -3797,7 +3797,7 @@ static void DebugAction_PCBag_Fill_PCBoxes_Fast(u8 taskId) //Credit: Sierraffini
                 SetBoxMonData(&boxMon, MON_DATA_SPECIES, &species);
                 SetBoxMonData(&boxMon, MON_DATA_IS_SHINY, &isShiny);
                 GiveBoxMonInitialMoveset(&boxMon);
-                gPokemonStoragePtr->boxes[boxId][boxPosition] = boxMon;
+                SetBoxMonAt(boxId, boxPosition, &boxMon);
             }
 
             if (species == SPECIES_ENAMORUS_INCARNATE)
@@ -3836,14 +3836,14 @@ static void DebugAction_PCBag_Fill_PCBoxes_Slow(u8 taskId)
     {
         for (boxPosition = 0; boxPosition < IN_BOX_COUNT; boxPosition++)
         {
-            if (!GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SANITY_HAS_SPECIES))
+            if (!GetBoxMonData(GetBoxedMonPtr(boxId, boxPosition), MON_DATA_SANITY_HAS_SPECIES))
             {
                 if (!spaceAvailable)
                     PlayBGM(MUS_RG_MYSTERY_GIFT);
                 CreateBoxMon(&boxMon, species, 100, Random32(), OTID_STRUCT_PLAYER_ID);
                 SetBoxMonIVs(&boxMon, USE_RANDOM_IVS);
                 GiveBoxMonInitialMoveset(&boxMon);
-                gPokemonStoragePtr->boxes[boxId][boxPosition] = boxMon;
+                SetBoxMonAt(boxId, boxPosition, &boxMon);
                 if (!Debug_TryAdvanceToNextEnabledSpecies(&species))
                     goto done;
                 spaceAvailable = TRUE;

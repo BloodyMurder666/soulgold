@@ -538,7 +538,7 @@ static bool32 Achievement_HasOwnedItem(enum Item item)
     {
         for (boxPosition = 0; boxPosition < IN_BOX_COUNT; boxPosition++)
         {
-            if (BoxMonHasItem(&gPokemonStoragePtr->boxes[boxId][boxPosition], item))
+            if (BoxMonHasItem(GetBoxedMonPtr(boxId, boxPosition), item))
                 return TRUE;
         }
     }
@@ -869,7 +869,7 @@ static bool32 Achievement_PredicateHasLevel100Pokemon(void)
     {
         for (boxPosition = 0; boxPosition < IN_BOX_COUNT; boxPosition++)
         {
-            struct BoxPokemon *boxMon = &gPokemonStoragePtr->boxes[boxId][boxPosition];
+            struct BoxPokemon *boxMon = GetBoxedMonPtr(boxId, boxPosition);
 
             if (GetBoxMonData(boxMon, MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
              && GetBoxMonData(boxMon, MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG

@@ -625,7 +625,6 @@ static const struct MenuAction MultichoiceList_FrontierRules[] =
 static const struct MenuAction MultichoiceList_FrontierPassInfo[] =
 {
     {COMPOUND_STRING("Symbols")},
-    {COMPOUND_STRING("Record")},
     {COMPOUND_STRING("Battle pts")},
     {gText_Exit},
 };
