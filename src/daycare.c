@@ -343,6 +343,8 @@ static void ApplyDaycareExperience(struct Pokemon *mon)
 
     // Re-calculate the mons stats at its new level.
     CalculateMonStats(mon);
+    if (GetMonData(mon, MON_DATA_LEVEL) >= MAX_LEVEL)
+        Achievement_Unlock(ACH_PEAK_OF_POWER);
 }
 
 static u32 GetExpAtLevelCap(struct Pokemon *mon)

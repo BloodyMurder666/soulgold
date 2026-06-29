@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "money.h"
 #include "graphics.h"
 #include "event_data.h"
@@ -86,22 +87,22 @@ bool8 IsEnoughMoney(u32 *moneyPtr, u32 cost)
 
 void AddMoney(u32 *moneyPtr, u32 toAdd)
 {
-    u32 toSet = GetMoney(moneyPtr);
+    u32 oldValue = GetMoney(moneyPtr);
+    u32 toSet = oldValue;
 
-    // can't have more money than MAX
-    if (toSet + toAdd > MAX_MONEY)
+    // Can't have more money than MAX. Compare before adding to avoid overflow.
+    if (toSet >= MAX_MONEY || toAdd > MAX_MONEY - toSet)
     {
         toSet = MAX_MONEY;
     }
     else
     {
         toSet += toAdd;
-        // check overflow, can't have less money after you receive more
-        if (toSet < GetMoney(moneyPtr))
-            toSet = MAX_MONEY;
     }
 
     SetMoney(moneyPtr, toSet);
+    if (gSaveBlock1Ptr != NULL && moneyPtr == &gSaveBlock1Ptr->money && toSet > oldValue)
+        Achievement_IncrementCounter(ACH_COUNTER_MONEY_EARNED, toSet - oldValue);
 }
 
 void RemoveMoney(u32 *moneyPtr, u32 toSub)
@@ -117,6 +118,17 @@ void RemoveMoney(u32 *moneyPtr, u32 toSub)
     SetMoney(moneyPtr, toSet);
 }
 
+void RemoveMoneyForPurchase(u32 *moneyPtr, u32 toSub)
+{
+    u32 oldValue = GetMoney(moneyPtr);
+    u32 newValue;
+
+    RemoveMoney(moneyPtr, toSub);
+    newValue = GetMoney(moneyPtr);
+    if (gSaveBlock1Ptr != NULL && moneyPtr == &gSaveBlock1Ptr->money && oldValue > newValue)
+        Achievement_IncrementCounter(ACH_COUNTER_MONEY_SPENT, oldValue - newValue);
+}
+
 bool8 IsEnoughForCostInVar0x8005(void)
 {
     return IsEnoughMoney(&gSaveBlock1Ptr->money, gSpecialVar_0x8005);
@@ -124,7 +136,7 @@ bool8 IsEnoughForCostInVar0x8005(void)
 
 void SubtractMoneyFromVar0x8005(void)
 {
-    RemoveMoney(&gSaveBlock1Ptr->money, gSpecialVar_0x8005);
+    RemoveMoneyForPurchase(&gSaveBlock1Ptr->money, gSpecialVar_0x8005);
 }
 
 void PrintMoneyAmountInMoneyBox(u8 windowId, int amount, u8 speed)

@@ -19,12 +19,14 @@ struct Achievement
 bool32 Achievement_Unlock(enum AchievementId id);
 void Achievement_IncrementCounter(enum AchievementCounter counter, u32 amount);
 void Achievement_SetCounterMax(enum AchievementCounter counter, u32 value);
+void Achievement_AddBattlePointsEarned(u32 amount);
 void Achievement_CheckAll(void);
 void Achievement_UnlockHallOfFameDebut(void);
 void Achievement_OnTrainerDefeated(u16 trainerId);
 void Achievement_TryShowQueuedPopup(void);
 void Achievement_HidePopup(void);
 u16 Achievement_CountUnlocked(void);
+void GetCompletedAchievementsCount(void);
 bool32 Achievement_IsUnlocked(enum AchievementId id);
 void Achievement_EnsureSaveInitialized(void);
 u32 Achievement_GetCounter(enum AchievementCounter counter);

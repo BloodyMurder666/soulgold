@@ -1,1 +1,184 @@
 mapscripts Route40_House4_MapScripts {}
+
+const VAR_ACHIEVEMENT_COUNT = VAR_TEMP_0
+const VAR_NEXT_ACHIEVEMENT_MILESTONE = VAR_TEMP_1
+const VAR_ACHIEVEMENTS_REMAINING = VAR_TEMP_2
+
+script AchievementGuy {
+    lock
+    faceplayer
+
+    msgbox("I've achieved many things in my life.
+            Now, I want to see what the younger
+            generation can do.
+            
+            Let me have a closer look at you...")
+
+    special(GetCompletedAchievementsCount)
+    copyvar(VAR_ACHIEVEMENT_COUNT, VAR_RESULT)
+    buffernumberstring(STR_VAR_1, VAR_ACHIEVEMENT_COUNT)
+
+    if (var(VAR_ACHIEVEMENT_REWARD_MILESTONE) < 15
+        && var(VAR_ACHIEVEMENT_COUNT) >= 15) {
+        goto(AchievementGuy_Reward15)
+    }
+    if (var(VAR_ACHIEVEMENT_REWARD_MILESTONE) < 30
+        && var(VAR_ACHIEVEMENT_COUNT) >= 30) {
+        goto(AchievementGuy_Reward30)
+    }
+    if (var(VAR_ACHIEVEMENT_REWARD_MILESTONE) < 45
+        && var(VAR_ACHIEVEMENT_COUNT) >= 45) {
+        goto(AchievementGuy_Reward45)
+    }
+    if (var(VAR_ACHIEVEMENT_REWARD_MILESTONE) < 60
+        && var(VAR_ACHIEVEMENT_COUNT) >= 60) {
+        goto(AchievementGuy_Reward60)
+    }
+    if (var(VAR_ACHIEVEMENT_REWARD_MILESTONE) < 75
+        && var(VAR_ACHIEVEMENT_COUNT) >= 75) {
+        goto(AchievementGuy_Reward75)
+    }
+    if (var(VAR_ACHIEVEMENT_REWARD_MILESTONE) < 90
+        && var(VAR_ACHIEVEMENT_COUNT) >= 90) {
+        goto(AchievementGuy_Reward90)
+    }
+
+    if (var(VAR_ACHIEVEMENT_COUNT) >= 90) {
+        msgbox("You've achieved everything possible!
+                There is nothing further I could bestow
+                upon you, true master of Pokémon.")
+        release
+        end
+    }
+
+    setvar(VAR_NEXT_ACHIEVEMENT_MILESTONE, 15)
+    if (var(VAR_ACHIEVEMENT_COUNT) >= 15) {
+        setvar(VAR_NEXT_ACHIEVEMENT_MILESTONE, 30)
+    }
+    if (var(VAR_ACHIEVEMENT_COUNT) >= 30) {
+        setvar(VAR_NEXT_ACHIEVEMENT_MILESTONE, 45)
+    }
+    if (var(VAR_ACHIEVEMENT_COUNT) >= 45) {
+        setvar(VAR_NEXT_ACHIEVEMENT_MILESTONE, 60)
+    }
+    if (var(VAR_ACHIEVEMENT_COUNT) >= 60) {
+        setvar(VAR_NEXT_ACHIEVEMENT_MILESTONE, 75)
+    }
+    if (var(VAR_ACHIEVEMENT_COUNT) >= 75) {
+        setvar(VAR_NEXT_ACHIEVEMENT_MILESTONE, 90)
+    }
+
+    copyvar(VAR_ACHIEVEMENTS_REMAINING, VAR_NEXT_ACHIEVEMENT_MILESTONE)
+    subvar(VAR_ACHIEVEMENTS_REMAINING, VAR_ACHIEVEMENT_COUNT)
+    buffernumberstring(STR_VAR_2, VAR_ACHIEVEMENTS_REMAINING)
+    msgbox("Hmm... 
+            You've achieved {STR_VAR_1} things 
+            so far!
+            
+            If you were to achieve {STR_VAR_2} more
+            things, I might have something for you!")
+    release
+    end
+
+}
+
+script keepUpTheGoodWork {
+    msgbox("Never stop reaching for greater
+            heights. I look forward to
+            seeing what you will do next.")
+    release
+    end
+}
+
+script AchievementGuy_Reward15 {
+    msgbox("Hmm! 
+    
+            You have at least {STR_VAR_1} 
+            achievements under your belt! 
+            
+            A great start! I will bestow you this
+            as a reward!")
+    giveitem(ITEM_BLACK_AUGURITE)
+    setvar(VAR_ACHIEVEMENT_REWARD_MILESTONE, 15)
+    goto(keepUpTheGoodWork)
+    release
+    end
+}
+
+script AchievementGuy_Reward30 {
+    msgbox("Excellent! 
+    
+            You've achieved {STR_VAR_1}
+            things and reached the next step
+            on your journey! 
+            
+            I have something nice for you!")
+    givemon(SPECIES_GRENINJA_BOND, 36)
+    setvar(VAR_ACHIEVEMENT_REWARD_MILESTONE, 30)
+    goto(keepUpTheGoodWork)
+    release
+    end
+}
+
+script AchievementGuy_Reward45 {
+    msgbox("Superb! 
+    
+            You've achieved {STR_VAR_1}
+            things and reached the next
+            milestone!
+            
+            I have something nice for you!")
+    givemon(SPECIES_POIPOLE, 5)
+    setvar(VAR_ACHIEVEMENT_REWARD_MILESTONE, 45)
+    goto(keepUpTheGoodWork)
+    release
+    end
+}
+
+script AchievementGuy_Reward60 {
+    msgbox("Woah! You've achieved {STR_VAR_1}
+            things and are known around
+            the Johto!
+            
+            I have something for you
+            to commemorate this achievement!")
+    giveitem(ITEM_N_SOLARIZER)
+    giveitem(ITEM_N_LUNARIZER)
+    setvar(VAR_ACHIEVEMENT_REWARD_MILESTONE, 60)
+    goto(keepUpTheGoodWork)
+    release
+    end
+}
+
+script AchievementGuy_Reward75 {
+    msgbox("Incredible! 
+    
+            You've achieved {STR_VAR_1}
+            things and reached the next
+            milestone!
+            
+            Another reward just for you!")
+    giveitem(ITEM_REINS_OF_UNITY)
+    setvar(VAR_ACHIEVEMENT_REWARD_MILESTONE, 75)
+    goto(keepUpTheGoodWork)
+    release
+    end
+}
+
+script AchievementGuy_Reward90 {
+    msgbox("Amazing! 
+    
+            You've achieved {STR_VAR_1}
+            things and reached my final
+            milestone!
+            
+            These items are the only thing
+            left to give. I have nothing
+            further for you!")
+    giveitem(ITEM_RUSTED_SWORD)
+    giveitem(ITEM_RUSTED_SHIELD)
+    setvar(VAR_ACHIEVEMENT_REWARD_MILESTONE, 90)
+    goto(keepUpTheGoodWork)
+    release
+    end
+}

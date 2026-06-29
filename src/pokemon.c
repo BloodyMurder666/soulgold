@@ -3977,6 +3977,8 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, enum Item item, u8 partyIndex, 
             break;
         }
     }
+    if (didLevelUp && GetMonData(mon, MON_DATA_LEVEL) >= MAX_LEVEL)
+        Achievement_Unlock(ACH_PEAK_OF_POWER);
     return retVal;
 }
 

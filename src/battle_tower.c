@@ -837,12 +837,12 @@ static void SetTowerBattleWon(void)
         ClearEReaderTrainer(&gSaveBlock2Ptr->frontier.ereaderTrainer);
 #endif //FREE_BATTLE_TOWER_E_READER
 
-    // towerNumWins is never read outside this conditional
-    if (gSaveBlock2Ptr->frontier.towerNumWins < MAX_STREAK)
+    if (gSaveBlock2Ptr->frontier.towerNumWins < 0xFFFF)
         gSaveBlock2Ptr->frontier.towerNumWins++;
 
     gSaveBlock2Ptr->frontier.curChallengeBattleNum++;
     SaveCurrentWinStreak();
+    Achievement_CheckAll();
     gSpecialVar_Result = gSaveBlock2Ptr->frontier.curChallengeBattleNum;
 }
 
@@ -1100,7 +1100,6 @@ static void SaveCurrentWinStreak(void)
 
     if (gSaveBlock2Ptr->frontier.towerWinStreaks[battleMode][lvlMode] < winStreak)
         gSaveBlock2Ptr->frontier.towerWinStreaks[battleMode][lvlMode] = winStreak;
-    Achievement_SetCounterMax(ACH_COUNTER_BATTLE_TOWER_STREAK, gSaveBlock2Ptr->frontier.towerWinStreaks[battleMode][lvlMode]);
 }
 
 static void SaveBattleTowerRecord(void)

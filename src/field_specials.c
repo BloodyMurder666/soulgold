@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "debug.h"
 #include "malloc.h"
 #include "battle.h"
@@ -2994,6 +2995,7 @@ void GiveFrontierBattlePoints(void)
         gSaveBlock2Ptr->frontier.battlePoints = MAX_BATTLE_FRONTIER_POINTS;
     else
         gSaveBlock2Ptr->frontier.battlePoints = gSaveBlock2Ptr->frontier.battlePoints + gSpecialVar_0x8004;
+    Achievement_AddBattlePointsEarned(gSpecialVar_0x8004);
 }
 
 u16 GetFrontierBattlePoints(void)

@@ -319,9 +319,9 @@ CameronCamera::
 # 170 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq CameronCamera_1
-# 192 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+# 194 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	msgbox CameronCamera_Text_2
-# 193 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+# 195 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	release
 	end
 
@@ -353,12 +353,16 @@ CameronCamera_1:
 # 184 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	delay 30
 # 185 "data/maps/RuinsOfAlph_Outside/scripts.pory"
-	clearflag FLAG_HIDE_CAMERON
+	setflag FLAG_CAMERON_PHOTO1
 # 186 "data/maps/RuinsOfAlph_Outside/scripts.pory"
-	addobject VAR_LAST_TALKED
+	special Achievement_CheckAll
+# 187 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	clearflag FLAG_HIDE_CAMERON
 # 188 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	addobject VAR_LAST_TALKED
+# 190 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	fadescreenswapbuffers FADE_FROM_BLACK
-# 189 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+# 191 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	releaseall
 	end
 
@@ -381,5 +385,5 @@ CameronCamera_Text_1:
 	.string "All right, then! Get yourselves ready!$"
 
 CameronCamera_Text_2:
-# 192 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+# 194 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	.string "Aren't you a shy one?$"

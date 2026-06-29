@@ -526,6 +526,7 @@ gSpecials::
 	def_special SetUnlockedPokedexFlags
 	def_special Achievement_CheckAll
 	def_special Achievement_UnlockHallOfFameDebut
+	def_special GetCompletedAchievementsCount
 	def_special IsTrainerRegistered
 	def_special ShouldDoBrailleRegicePuzzle
 	def_special EnableNationalPokedex

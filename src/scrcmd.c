@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "frontier_util.h"
 #include "battle_setup.h"
 #include "battle_util.h"
@@ -2373,7 +2374,7 @@ bool8 ScrCmd_removemoney(struct ScriptContext *ctx)
     {
         Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE);
 
-        RemoveMoney(&gSaveBlock1Ptr->money, amount);
+        RemoveMoneyForPurchase(&gSaveBlock1Ptr->money, amount);
     }
     return FALSE;
 }
@@ -3930,13 +3931,8 @@ bool8 ScrCmd_givebp(struct ScriptContext *ctx)
     // Store the awarded amount into gStringVar1 (for use in msgboxes)
     ConvertIntToDecimalStringN(gStringVar1, add, STR_CONV_MODE_LEFT_ALIGN, 3);
 
-    // Update the card BP (16-bit) and daily counter
-    {
-        u32 card = gSaveBlock2Ptr->frontier.cardBattlePoints + add;
-        if (card > 0xFFFF)
-            card = 0xFFFF;
-        gSaveBlock2Ptr->frontier.cardBattlePoints = card;
-    }
+    // Update the lifetime BP total and daily counter.
+    Achievement_AddBattlePointsEarned(add);
     IncrementDailyBattlePoints(add);
 
     return FALSE;

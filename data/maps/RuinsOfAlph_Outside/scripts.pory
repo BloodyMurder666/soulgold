@@ -182,6 +182,8 @@ script CameronCamera {
 		delay(30)
 		special(HidePartyPhotoLineup)
 		delay(30)
+		setflag(FLAG_CAMERON_PHOTO1)
+		special(Achievement_CheckAll)
 		clearflag(FLAG_HIDE_CAMERON)
 		addobject(VAR_LAST_TALKED)
 		//turnobject(LOCALID_PLAYER, VAR_TEMP_7) switch case this when I'm not lazy

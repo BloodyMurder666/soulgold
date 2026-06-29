@@ -41,7 +41,7 @@
 #define ACHIEVEMENTS_BACKGROUND_SCROLL_SPEED 128
 #define ACHIEVEMENTS_NAME_X 54
 #define ACHIEVEMENTS_ICON_X 35
-#define ACHIEVEMENTS_ICON_Y(row) (29 + (row) * ACHIEVEMENTS_ROW_HEIGHT)
+#define ACHIEVEMENTS_ICON_Y(row) (27 + (row) * ACHIEVEMENTS_ROW_HEIGHT)
 #define ACHIEVEMENTS_FOOTER_TEXT_X 8
 #define ACHIEVEMENTS_FOOTER_TEXT_Y 26
 #define ACHIEVEMENTS_SCROLL_ARROW_X 170
@@ -73,6 +73,7 @@ static void DrawList(void);
 static void DrawAchievementFooter(void);
 static void LoadMenuTilemap(void);
 static void PrintListStatusText(const u8 *text, u8 y, const u8 *color);
+static const u8 *GetAchievementDescription(const struct Achievement *achievement);
 static void DrawListCursor(u8 row);
 static void DrawListCursorAtY(s16 y);
 static void UpdateListCursor(u16 oldCursor);
@@ -388,6 +389,10 @@ static void PrintAchievementProgress(const struct Achievement *achievement, u8 y
     {
         PrintListStatusText(COMPOUND_STRING("Done"), y, sColor_Green);
     }
+    else if (achievement->id == ACH_MILLIONAIRE || achievement->id == ACH_SPENDTHRIFT)
+    {
+        PrintListStatusText(COMPOUND_STRING("Locked"), y, sColor_DarkGray);
+    }
     else if (target > 1)
     {
         if (progress > target)
@@ -401,6 +406,33 @@ static void PrintAchievementProgress(const struct Achievement *achievement, u8 y
     {
         PrintListStatusText(COMPOUND_STRING("Locked"), y, sColor_DarkGray);
     }
+}
+
+static const u8 *GetAchievementDescription(const struct Achievement *achievement)
+{
+    if (achievement->id == ACH_MILLIONAIRE || achievement->id == ACH_SPENDTHRIFT)
+    {
+        ConvertIntToDecimalStringN(
+            gStringVar1,
+            Achievement_GetProgress(achievement),
+            STR_CONV_MODE_LEFT_ALIGN,
+            10);
+        if (achievement->id == ACH_MILLIONAIRE)
+        {
+            StringExpandPlaceholders(
+                gStringVar4,
+                COMPOUND_STRING("Earn ¥1,000,000 in total.\n(¥{STR_VAR_1} / ¥1,000,000)"));
+        }
+        else
+        {
+            StringExpandPlaceholders(
+                gStringVar4,
+                COMPOUND_STRING("Spend ¥1,000,000 in total.\n(¥{STR_VAR_1} / ¥1,000,000)"));
+        }
+        return gStringVar4;
+    }
+
+    return achievement->description;
 }
 
 static void TintBallIconIfLocked(u8 spriteId, const struct Achievement *achievement)
@@ -626,7 +658,7 @@ static void DrawAchievementFooter(void)
             ACHIEVEMENTS_FOOTER_TEXT_Y,
             sColor_White,
             TEXT_SKIP_DRAW,
-            achievement->description);
+            GetAchievementDescription(achievement));
     }
     CopyWindowToVram(WIN_FOOTER, COPYWIN_FULL);
 }

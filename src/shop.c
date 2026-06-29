@@ -1706,7 +1706,7 @@ static void BuyMenuSubtractMoney(u8 taskId)
     }
     else
     {
-        RemoveMoney(&gSaveBlock1Ptr->money, sShopData->totalCost);
+        RemoveMoneyForPurchase(&gSaveBlock1Ptr->money, sShopData->totalCost);
     }
     PlaySE(SE_SHOP);
     BuyMenuPrintCurrencyAmountInMoneyBox();

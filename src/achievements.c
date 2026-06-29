@@ -5,9 +5,11 @@
 #include "pokemon.h"
 #include "pokemon_storage_system.h"
 #include "pokedex.h"
+#include "overworld.h"
 #include "string_util.h"
 #include "constants/battle_frontier.h"
 #include "constants/flags.h"
+#include "constants/game_stat.h"
 #include "constants/items.h"
 #include "constants/opponents.h"
 #include "constants/species.h"
@@ -16,7 +18,8 @@
 #define TRAINER_NONE_ACH 0xFFFF
 
 static bool32 Achievement_PredicateHoennDexComplete(void);
-static bool32 Achievement_PredicateNationalDexComplete(void);
+static bool32 Achievement_PredicateCameronPhoto(void);
+static bool32 Achievement_PredicateAllCameronPhotos(void);
 static bool32 Achievement_PredicateBadge16(void);
 static bool32 Achievement_PredicateBuenaSuperfan(void);
 static bool32 Achievement_PredicateTravellingHealer(void);
@@ -69,20 +72,19 @@ static bool32 Achievement_PredicateCaughtCresselia(void);
 static bool32 Achievement_PredicateCaughtDarkrai(void);
 static bool32 Achievement_PredicateCaughtShaymin(void);
 static bool32 Achievement_PredicateCaughtArceus(void);
+static bool32 Achievement_PredicateCaughtMagearna(void);
 static bool32 Achievement_PredicateCaughtAllParadoxPokemon(void);
+static bool32 Achievement_PredicateHasLevel100Pokemon(void);
 static bool32 Achievement_HasOwnedItem(enum Item item);
 static u32 Achievement_CountCollectedTMs(void);
-static u32 Achievement_GetBestBattleTowerStreak(void);
-static u32 Achievement_GetBestBattleFactoryStreak(void);
 static u32 Achievement_GetBestBattlePyramidRounds(void);
-static u32 Achievement_GetBestRocketArcadeStreak(void);
 static void Achievement_QueuePopup(enum AchievementId id);
 
 static const u8 sText_AchReceiveStarterName[] = _("I Choose You!");
 static const u8 sText_AchReceiveStarterDesc[] = _("Receive your first partner Pokémon.");
 static const u8 sText_AchFirstCaptureName[] = _("First Catch");
 static const u8 sText_AchFirstCaptureDesc[] = _("Catch your first Pokémon with a Ball.");
-static const u8 sText_AchFirstCriticalName[] = _("Lucky strike");
+static const u8 sText_AchFirstCriticalName[] = _("Lucky Strike");
 static const u8 sText_AchFirstCriticalDesc[] = _("Land your first critical hit.");
 static const u8 sText_AchCritical100Name[] = _("Critical Thinker");
 static const u8 sText_AchCritical100Desc[] = _("Land 100 critical hits.");
@@ -97,15 +99,15 @@ static const u8 sText_AchDaycareEggs100Desc[] = _("Receive 100 Day Care Eggs.");
 static const u8 sText_AchHatchEggs100Name[] = _("Shell Breaker");
 static const u8 sText_AchHatchEggs100Desc[] = _("Hatch 100 Eggs.");
 static const u8 sText_AchTower25Name[] = _("Tower Challenger");
-static const u8 sText_AchTower25Desc[] = _("Reach a 25-win Battle Tower streak.");
+static const u8 sText_AchTower25Desc[] = _("Win 25 Battle Tower battles in total.");
 static const u8 sText_AchTower50Name[] = _("Tower Expert");
-static const u8 sText_AchTower50Desc[] = _("Reach a 50-win Battle Tower streak.");
+static const u8 sText_AchTower50Desc[] = _("Win 50 Battle Tower battles in total.");
 static const u8 sText_AchTower100Name[] = _("Tower Master");
-static const u8 sText_AchTower100Desc[] = _("Reach a 100-win Battle Tower streak.");
+static const u8 sText_AchTower100Desc[] = _("Win 100 Battle Tower battles in total.");
 static const u8 sText_AchHoennDexName[] = _("Johto Professor");
 static const u8 sText_AchHoennDexDesc[] = _("Complete the Johto Pokédex.");
-static const u8 sText_AchNationalDexName[] = _("National Professor");
-static const u8 sText_AchNationalDexDesc[] = _("Complete the National Pokédex.");
+static const u8 sText_AchSayCheeseName[] = _("Say Cheese!");
+static const u8 sText_AchSayCheeseDesc[] = _("Have Cameron photograph\nyour party.");
 static const u8 sText_AchBloodMoonName[] = _("Blood Moon");
 static const u8 sText_AchBloodMoonDesc[] = _("Catch Blood Moon Ursaluna.");
 static const u8 sText_AchRayquazaName[] = _("Ruler of Skies");
@@ -127,17 +129,17 @@ static const u8 sText_AchPokedex350Desc[] = _("Register 350 caught Pokémon.");
 static const u8 sText_AchPokedex500Name[] = _("Living Archive");
 static const u8 sText_AchPokedex500Desc[] = _("Register 500 caught Pokémon.");
 static const u8 sText_AchRocketArcade25Name[] = _("Arcade Player");
-static const u8 sText_AchRocketArcade25Desc[] = _("Reach a 25-win Rocket Arcade streak.");
+static const u8 sText_AchRocketArcade25Desc[] = _("Win 25 Rocket Arcade battles in total.");
 static const u8 sText_AchRocketArcade50Name[] = _("Arcade Ace");
-static const u8 sText_AchRocketArcade50Desc[] = _("Reach a 50-win Rocket Arcade streak.");
+static const u8 sText_AchRocketArcade50Desc[] = _("Win 50 Rocket Arcade battles in total.");
 static const u8 sText_AchRocketArcade100Name[] = _("Arcade Legend");
-static const u8 sText_AchRocketArcade100Desc[] = _("Reach a 100-win Rocket Arcade streak.");
+static const u8 sText_AchRocketArcade100Desc[] = _("Win 100 Rocket Arcade battles in total.");
 static const u8 sText_AchFactory25Name[] = _("Factory Challenger");
-static const u8 sText_AchFactory25Desc[] = _("Reach a 25-win Battle Factory streak.");
+static const u8 sText_AchFactory25Desc[] = _("Win 25 Battle Factory battles in total.");
 static const u8 sText_AchFactory50Name[] = _("Factory Expert");
-static const u8 sText_AchFactory50Desc[] = _("Reach a 50-win Battle Factory streak.");
+static const u8 sText_AchFactory50Desc[] = _("Win 50 Battle Factory battles in total.");
 static const u8 sText_AchFactory100Name[] = _("Factory Master");
-static const u8 sText_AchFactory100Desc[] = _("Reach a 100-win Battle Factory streak.");
+static const u8 sText_AchFactory100Desc[] = _("Win 100 Battle Factory battles in total.");
 static const u8 sText_AchPyramid3Name[] = _("Pyramid Explorer");
 static const u8 sText_AchPyramid3Desc[] = _("Clear 3 Battle Pyramid rounds.");
 static const u8 sText_AchPyramid10Name[] = _("Pyramid Expert");
@@ -148,29 +150,29 @@ static const u8 sText_AchCatchLugiaName[] = _("Sea Guardian");
 static const u8 sText_AchCatchLugiaDesc[] = _("Catch Lugia.");
 static const u8 sText_AchCatchHoOhName[] = _("Rainbow Guardian");
 static const u8 sText_AchCatchHoOhDesc[] = _("Catch Ho-Oh.");
-static const u8 sText_AchZephyrBadgeName[] = _("Clipped wings");
+static const u8 sText_AchZephyrBadgeName[] = _("Clipped Wings");
 static const u8 sText_AchZephyrBadgeDesc[] = _("Obtain Zephyrbadge\nby defeating Falkner.");
-static const u8 sText_AchHiveBadgeName[] = _("Bug catcher");
+static const u8 sText_AchHiveBadgeName[] = _("Hive Breaker");
 static const u8 sText_AchHiveBadgeDesc[] = _("Obtain Hivebadge by defeating Bugsy.");
-static const u8 sText_AchPlainBadgeName[] = _("Rolled over");
+static const u8 sText_AchPlainBadgeName[] = _("Rolled Over");
 static const u8 sText_AchPlainBadgeDesc[] = _("Obtain Plainbadge\nby defeating Whitney.");
-static const u8 sText_AchFogBadgeName[] = _("Lifting the fog");
+static const u8 sText_AchFogBadgeName[] = _("Lifting the Fog");
 static const u8 sText_AchFogBadgeDesc[] = _("Obtain Fogbadge by defeating Morty.");
-static const u8 sText_AchStormBadgeName[] = _("Proven might");
+static const u8 sText_AchStormBadgeName[] = _("Proven Might");
 static const u8 sText_AchStormBadgeDesc[] = _("Obtain Stormbadge by defeating Chuck.");
-static const u8 sText_AchMineralBadgeName[] = _("Grace of steel");
+static const u8 sText_AchMineralBadgeName[] = _("Grace of Steel");
 static const u8 sText_AchMineralBadgeDesc[] = _("Obtain Mineralbadge\nby defeating Jasmine.");
 static const u8 sText_AchGlacierBadgeName[] = _("Icebreaker");
 static const u8 sText_AchGlacierBadgeDesc[] = _("Obtain Glacierbadge\nby defeating Pryce.");
-static const u8 sText_AchRisingBadgeName[] = _("Risen to the top");
+static const u8 sText_AchRisingBadgeName[] = _("Risen to the Top");
 static const u8 sText_AchRisingBadgeDesc[] = _("Obtain Risingbadge\nafter defeating Clair.");
-static const u8 sText_AchFalknerRematchName[] = _("Wings grounded");
+static const u8 sText_AchFalknerRematchName[] = _("Wings Grounded");
 static const u8 sText_AchFalknerRematchDesc[] = _("Defeat Falkner's rematch.");
-static const u8 sText_AchBugsyRematchName[] = _("Bug squasher");
+static const u8 sText_AchBugsyRematchName[] = _("Bug Squasher");
 static const u8 sText_AchBugsyRematchDesc[] = _("Defeat Bugsy's rematch.");
-static const u8 sText_AchWhitneyRematchName[] = _("Stomped twice");
+static const u8 sText_AchWhitneyRematchName[] = _("Stomped Twice");
 static const u8 sText_AchWhitneyRematchDesc[] = _("Defeat Whitney's rematch.");
-static const u8 sText_AchMortyRematchName[] = _("Ghost buster");
+static const u8 sText_AchMortyRematchName[] = _("Ghost Buster");
 static const u8 sText_AchMortyRematchDesc[] = _("Defeat Morty's rematch.");
 static const u8 sText_AchChuckRematchName[] = _("Luchador");
 static const u8 sText_AchChuckRematchDesc[] = _("Defeat Chuck's rematch.");
@@ -178,11 +180,11 @@ static const u8 sText_AchJasmineRematchName[] = _("Steelmind");
 static const u8 sText_AchJasmineRematchDesc[] = _("Defeat Jasmine's rematch.");
 static const u8 sText_AchPryceRematchName[] = _("Cold Heart");
 static const u8 sText_AchPryceRematchDesc[] = _("Defeat Pryce's rematch.");
-static const u8 sText_AchClairRematchName[] = _("Dragon master");
+static const u8 sText_AchClairRematchName[] = _("Dragon Master");
 static const u8 sText_AchClairRematchDesc[] = _("Defeat Clair's rematch.");
-static const u8 sText_AchLetsGoName[] = _("Let's go!");
+static const u8 sText_AchLetsGoName[] = _("Let's Go!");
 static const u8 sText_AchLetsGoDesc[] = _("Obtain Eevee Starter\nor Pikachu Starter.");
-static const u8 sText_AchRouteExpertsName[] = _("Now I'm the expert");
+static const u8 sText_AchRouteExpertsName[] = _("Now I'm the Expert");
 static const u8 sText_AchRouteExpertsDesc[] = _("Defeat all route experts.");
 static const u8 sText_AchHallOfFameDebutName[] = _("Champion");
 static const u8 sText_AchHallOfFameDebutDesc[] = _("Enter the Hall of Fame\nfor the first time.");
@@ -195,36 +197,36 @@ static const u8 sText_AchMasterpieceDesc[] = _("Have Kurt craft you\na Master Ba
 static const u8 sText_AchUnderTheSeaName[] = _("Under the Sea");
 static const u8 sText_AchUnderTheSeaDesc[] = _("Fish up a Phione.");
 static const u8 sText_AchMegaCollectorName[] = _("Mega Collector");
-static const u8 sText_AchMegaCollectorDesc[] = _("Obtain every type Mega Stone\nand the Bondstone.");
+static const u8 sText_AchMegaCollectorDesc[] = _("Obtain every type of Mega Stone\nand the Bondstone.");
 static const u8 sText_AchMasterOfMovesName[] = _("Master of Moves");
 static const u8 sText_AchMasterOfMovesDesc[] = _("Unlock Egg Moves and Tutor\nMoves permanently.");
-static const u8 sText_AchCatchCelebiName[] = _("Forest guardian");
+static const u8 sText_AchCatchCelebiName[] = _("Forest Guardian");
 static const u8 sText_AchCatchCelebiDesc[] = _("Catch Celebi. (NYI)");
-static const u8 sText_AchCatchArticunoName[] = _("Frozen legend");
+static const u8 sText_AchCatchArticunoName[] = _("Frozen Legend");
 static const u8 sText_AchCatchArticunoDesc[] = _("Catch Articuno.");
-static const u8 sText_AchCatchMoltresName[] = _("Flame legend");
+static const u8 sText_AchCatchMoltresName[] = _("Flame Legend");
 static const u8 sText_AchCatchMoltresDesc[] = _("Catch Moltres.");
-static const u8 sText_AchCatchZapdosName[] = _("Storm legend");
+static const u8 sText_AchCatchZapdosName[] = _("Storm Legend");
 static const u8 sText_AchCatchZapdosDesc[] = _("Catch Zapdos.");
-static const u8 sText_AchCatchRegiceName[] = _("Ice unsealed");
+static const u8 sText_AchCatchRegiceName[] = _("Ice Unsealed");
 static const u8 sText_AchCatchRegiceDesc[] = _("Catch Regice.");
-static const u8 sText_AchCatchRegisteelName[] = _("Steel unsealed");
+static const u8 sText_AchCatchRegisteelName[] = _("Steel Unsealed");
 static const u8 sText_AchCatchRegisteelDesc[] = _("Catch Registeel.");
-static const u8 sText_AchCatchRegirockName[] = _("Rock unsealed");
+static const u8 sText_AchCatchRegirockName[] = _("Rock Unsealed");
 static const u8 sText_AchCatchRegirockDesc[] = _("Catch Regirock.");
-static const u8 sText_AchCatchRegigigasName[] = _("Ancient awakened");
+static const u8 sText_AchCatchRegigigasName[] = _("Ancient Awakened");
 static const u8 sText_AchCatchRegigigasDesc[] = _("Catch Regigigas.");
-static const u8 sText_AchCatchChienPaoName[] = _("Ruinous blade");
+static const u8 sText_AchCatchChienPaoName[] = _("Ruinous Blade");
 static const u8 sText_AchCatchChienPaoDesc[] = _("Catch Chien-Pao.");
 static const u8 sText_AchCatchHeatranName[] = _("Face of Heat");
 static const u8 sText_AchCatchHeatranDesc[] = _("Catch Heatran.");
-static const u8 sText_AchCatchOgerponName[] = _("Masked friend");
+static const u8 sText_AchCatchOgerponName[] = _("Masked Friend");
 static const u8 sText_AchCatchOgerponDesc[] = _("Catch Ogerpon.");
-static const u8 sText_AchCatchMespritName[] = _("Being of emotion");
+static const u8 sText_AchCatchMespritName[] = _("Being of Emotion");
 static const u8 sText_AchCatchMespritDesc[] = _("Catch Mesprit.");
-static const u8 sText_AchCatchUxieName[] = _("Being of knowledge");
+static const u8 sText_AchCatchUxieName[] = _("Being of Knowledge");
 static const u8 sText_AchCatchUxieDesc[] = _("Catch Uxie.");
-static const u8 sText_AchCatchAzelfName[] = _("Being of willpower");
+static const u8 sText_AchCatchAzelfName[] = _("Being of Willpower");
 static const u8 sText_AchCatchAzelfDesc[] = _("Catch Azelf.");
 static const u8 sText_AchCatchMewtwoName[] = _("The Experiment");
 static const u8 sText_AchCatchMewtwoDesc[] = _("Catch Mewtwo. (NYI)");
@@ -258,12 +260,28 @@ static const u8 sText_AchParadoxicalName[] = _("Paradoxical");
 static const u8 sText_AchParadoxicalDesc[] = _("Catch all Paradox Pokémon. (NYI)");
 static const u8 sText_AchCatchArceusName[] = _("???");
 static const u8 sText_AchCatchArceusDesc[] = _("??? (NYI)");
-static const u8 sText_AchCatchLaprasName[] = _("Gentle voyager");
+static const u8 sText_AchCatchLaprasName[] = _("Gentle Voyager");
 static const u8 sText_AchCatchLaprasDesc[] = _("Catch Lapras in Union Cave.");
-static const u8 sText_AchObtainVictiniName[] = _("Star of victory");
+static const u8 sText_AchObtainVictiniName[] = _("Star of Victory");
 static const u8 sText_AchObtainVictiniDesc[] = _("Obtain Victini for overcoming\nall gym leaders in rematches.");
 static const u8 sText_AchDefeatStevenName[] = _("Mineralogy");
 static const u8 sText_AchDefeatStevenDesc[] = _("Defeat Champion from another\nregion.");
+static const u8 sText_AchAutophotographerName[] = _("Autophotographer");
+static const u8 sText_AchAutophotographerDesc[] = _("Have Cameron photograph your party\nin all five locations.");
+static const u8 sText_AchMillionaireName[] = _("Millionaire");
+static const u8 sText_AchMillionaireDesc[] = _("Earn ¥1,000,000 in total.");
+static const u8 sText_AchSpendthriftName[] = _("Spendthrift");
+static const u8 sText_AchSpendthriftDesc[] = _("Spend ¥1,000,000 in total.");
+static const u8 sText_AchBattleConnoisseurName[] = _("Battle Connoisseur");
+static const u8 sText_AchBattleConnoisseurDesc[] = _("Earn 100 Battle Points in total.");
+static const u8 sText_AchPeakOfPowerName[] = _("Peak of Power");
+static const u8 sText_AchPeakOfPowerDesc[] = _("Raise a Pokémon to Lv. 100.");
+static const u8 sText_AchGainingPowerName[] = _("Gaining Power");
+static const u8 sText_AchGainingPowerDesc[] = _("Evolve 25 Pokémon.");
+static const u8 sText_AchCatchMagearnaName[] = _("Mechanical Soul");
+static const u8 sText_AchCatchMagearnaDesc[] = _("Catch Magearna.");
+static const u8 sText_AchBugCatcherName[] = _("Bug Catcher");
+static const u8 sText_AchBugCatcherDesc[] = _("Place first in the\nBug-Catching Contest.");
 
 static const u8 sText_TierBronze[] = _("POKE BALL");
 static const u8 sText_TierSilver[] = _("GREAT BALL");
@@ -272,39 +290,13 @@ static const u8 sText_TierPlatinum[] = _("MASTER BALL");
 
 static const struct Achievement sAchievements[] =
 {
+    // Common, easy achievements
     {ACH_RECEIVE_STARTER, sText_AchReceiveStarterName, sText_AchReceiveStarterDesc, ACH_TIER_BRONZE, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, NULL},
     {ACH_FIRST_CAPTURE, sText_AchFirstCaptureName, sText_AchFirstCaptureDesc, ACH_TIER_BRONZE, ACH_COUNTER_CAPTURED_MONS, 1, TRAINER_NONE_ACH, NULL},
     {ACH_FIRST_CRITICAL, sText_AchFirstCriticalName, sText_AchFirstCriticalDesc, ACH_TIER_BRONZE, ACH_COUNTER_CRITICAL_HITS, 1, TRAINER_NONE_ACH, NULL},
-    {ACH_CRITICAL_100, sText_AchCritical100Name, sText_AchCritical100Desc, ACH_TIER_SILVER, ACH_COUNTER_CRITICAL_HITS, 100, TRAINER_NONE_ACH, NULL},
-    {ACH_CAPTURE_100, sText_AchCapture100Name, sText_AchCapture100Desc, ACH_TIER_SILVER, ACH_COUNTER_CAPTURED_MONS, 100, TRAINER_NONE_ACH, NULL},
-    {ACH_CAPTURE_SHINY, sText_AchCaptureShinyName, sText_AchCaptureShinyDesc, ACH_TIER_GOLD, ACH_COUNTER_SHINY_CAPTURES, 1, TRAINER_NONE_ACH, NULL},
     {ACH_DAYCARE_EGG_1, sText_AchDaycareEgg1Name, sText_AchDaycareEgg1Desc, ACH_TIER_BRONZE, ACH_COUNTER_DAYCARE_EGGS, 1, TRAINER_NONE_ACH, NULL},
-    {ACH_DAYCARE_EGGS_100, sText_AchDaycareEggs100Name, sText_AchDaycareEggs100Desc, ACH_TIER_GOLD, ACH_COUNTER_DAYCARE_EGGS, 100, TRAINER_NONE_ACH, NULL},
-    {ACH_HATCH_EGGS_100, sText_AchHatchEggs100Name, sText_AchHatchEggs100Desc, ACH_TIER_GOLD, ACH_COUNTER_HATCHED_EGGS, 100, TRAINER_NONE_ACH, NULL},
-    {ACH_BATTLE_TOWER_25, sText_AchTower25Name, sText_AchTower25Desc, ACH_TIER_SILVER, ACH_COUNTER_BATTLE_TOWER_STREAK, 25, TRAINER_NONE_ACH, NULL},
-    {ACH_BATTLE_TOWER_50, sText_AchTower50Name, sText_AchTower50Desc, ACH_TIER_GOLD, ACH_COUNTER_BATTLE_TOWER_STREAK, 50, TRAINER_NONE_ACH, NULL},
-    {ACH_BATTLE_TOWER_100, sText_AchTower100Name, sText_AchTower100Desc, ACH_TIER_PLATINUM, ACH_COUNTER_BATTLE_TOWER_STREAK, 100, TRAINER_NONE_ACH, NULL},
-    {ACH_COMPLETE_HOENN_DEX, sText_AchHoennDexName, sText_AchHoennDexDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateHoennDexComplete},
-    {ACH_COMPLETE_NATIONAL_DEX, sText_AchNationalDexName, sText_AchNationalDexDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateNationalDexComplete},
-    {ACH_BADGE_16, sText_AchBadge16Name, sText_AchBadge16Desc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateBadge16},
-    {ACH_TM_1, sText_AchTm1Name, sText_AchTm1Desc, ACH_TIER_BRONZE, ACH_COUNTER_TMS_COLLECTED, 1, TRAINER_NONE_ACH, NULL},
-    {ACH_TM_20, sText_AchTm20Name, sText_AchTm20Desc, ACH_TIER_SILVER, ACH_COUNTER_TMS_COLLECTED, 20, TRAINER_NONE_ACH, NULL},
-    {ACH_TM_50, sText_AchTm50Name, sText_AchTm50Desc, ACH_TIER_GOLD, ACH_COUNTER_TMS_COLLECTED, 50, TRAINER_NONE_ACH, NULL},
-    {ACH_TM_100, sText_AchTm100Name, sText_AchTm100Desc, ACH_TIER_PLATINUM, ACH_COUNTER_TMS_COLLECTED, 100, TRAINER_NONE_ACH, NULL},
-    {ACH_POKEDEX_200, sText_AchPokedex200Name, sText_AchPokedex200Desc, ACH_TIER_SILVER, ACH_COUNTER_POKEDEX_CAUGHT, 200, TRAINER_NONE_ACH, NULL},
-    {ACH_POKEDEX_350, sText_AchPokedex350Name, sText_AchPokedex350Desc, ACH_TIER_GOLD, ACH_COUNTER_POKEDEX_CAUGHT, 350, TRAINER_NONE_ACH, NULL},
-    {ACH_POKEDEX_500, sText_AchPokedex500Name, sText_AchPokedex500Desc, ACH_TIER_PLATINUM, ACH_COUNTER_POKEDEX_CAUGHT, 500, TRAINER_NONE_ACH, NULL},
-    {ACH_ROCKET_ARCADE_25, sText_AchRocketArcade25Name, sText_AchRocketArcade25Desc, ACH_TIER_SILVER, ACH_COUNTER_ROCKET_ARCADE_STREAK, 25, TRAINER_NONE_ACH, NULL},
-    {ACH_ROCKET_ARCADE_50, sText_AchRocketArcade50Name, sText_AchRocketArcade50Desc, ACH_TIER_GOLD, ACH_COUNTER_ROCKET_ARCADE_STREAK, 50, TRAINER_NONE_ACH, NULL},
-    {ACH_ROCKET_ARCADE_100, sText_AchRocketArcade100Name, sText_AchRocketArcade100Desc, ACH_TIER_PLATINUM, ACH_COUNTER_ROCKET_ARCADE_STREAK, 100, TRAINER_NONE_ACH, NULL},
-    {ACH_BATTLE_FACTORY_25, sText_AchFactory25Name, sText_AchFactory25Desc, ACH_TIER_SILVER, ACH_COUNTER_BATTLE_FACTORY_STREAK, 25, TRAINER_NONE_ACH, NULL},
-    {ACH_BATTLE_FACTORY_50, sText_AchFactory50Name, sText_AchFactory50Desc, ACH_TIER_GOLD, ACH_COUNTER_BATTLE_FACTORY_STREAK, 50, TRAINER_NONE_ACH, NULL},
-    {ACH_BATTLE_FACTORY_100, sText_AchFactory100Name, sText_AchFactory100Desc, ACH_TIER_PLATINUM, ACH_COUNTER_BATTLE_FACTORY_STREAK, 100, TRAINER_NONE_ACH, NULL},
-    {ACH_BATTLE_PYRAMID_3, sText_AchPyramid3Name, sText_AchPyramid3Desc, ACH_TIER_SILVER, ACH_COUNTER_BATTLE_PYRAMID_ROUNDS, 3, TRAINER_NONE_ACH, NULL},
-    {ACH_BATTLE_PYRAMID_10, sText_AchPyramid10Name, sText_AchPyramid10Desc, ACH_TIER_GOLD, ACH_COUNTER_BATTLE_PYRAMID_ROUNDS, 10, TRAINER_NONE_ACH, NULL},
-    {ACH_BATTLE_PYRAMID_20, sText_AchPyramid20Name, sText_AchPyramid20Desc, ACH_TIER_PLATINUM, ACH_COUNTER_BATTLE_PYRAMID_ROUNDS, 20, TRAINER_NONE_ACH, NULL},
-    {ACH_CATCH_LUGIA, sText_AchCatchLugiaName, sText_AchCatchLugiaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtLugia},
-    {ACH_CATCH_HO_OH, sText_AchCatchHoOhName, sText_AchCatchHoOhDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtHoOh},
+    {ACH_LETS_GO, sText_AchLetsGoName, sText_AchLetsGoDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateLetsGo},
+    {ACH_SAY_CHEESE, sText_AchSayCheeseName, sText_AchSayCheeseDesc, ACH_TIER_BRONZE, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCameronPhoto},
     {ACH_JOHTO_BADGE_ZEPHYR, sText_AchZephyrBadgeName, sText_AchZephyrBadgeDesc, ACH_TIER_BRONZE, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateZephyrBadge},
     {ACH_JOHTO_BADGE_HIVE, sText_AchHiveBadgeName, sText_AchHiveBadgeDesc, ACH_TIER_BRONZE, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateHiveBadge},
     {ACH_JOHTO_BADGE_PLAIN, sText_AchPlainBadgeName, sText_AchPlainBadgeDesc, ACH_TIER_BRONZE, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicatePlainBadge},
@@ -313,6 +305,52 @@ static const struct Achievement sAchievements[] =
     {ACH_JOHTO_BADGE_MINERAL, sText_AchMineralBadgeName, sText_AchMineralBadgeDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateMineralBadge},
     {ACH_JOHTO_BADGE_GLACIER, sText_AchGlacierBadgeName, sText_AchGlacierBadgeDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateGlacierBadge},
     {ACH_JOHTO_BADGE_RISING, sText_AchRisingBadgeName, sText_AchRisingBadgeDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateRisingBadge},
+    {ACH_HALL_OF_FAME_DEBUT, sText_AchHallOfFameDebutName, sText_AchHallOfFameDebutDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, NULL},
+    {ACH_CATCH_LAPRAS, sText_AchCatchLaprasName, sText_AchCatchLaprasDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtLapras},
+
+    // Miscellaneous achievements
+    {ACH_CRITICAL_100, sText_AchCritical100Name, sText_AchCritical100Desc, ACH_TIER_SILVER, ACH_COUNTER_CRITICAL_HITS, 100, TRAINER_NONE_ACH, NULL},
+    {ACH_CAPTURE_100, sText_AchCapture100Name, sText_AchCapture100Desc, ACH_TIER_SILVER, ACH_COUNTER_CAPTURED_MONS, 100, TRAINER_NONE_ACH, NULL},
+    {ACH_CAPTURE_SHINY, sText_AchCaptureShinyName, sText_AchCaptureShinyDesc, ACH_TIER_GOLD, ACH_COUNTER_SHINY_CAPTURES, 1, TRAINER_NONE_ACH, NULL},
+    {ACH_DAYCARE_EGGS_100, sText_AchDaycareEggs100Name, sText_AchDaycareEggs100Desc, ACH_TIER_GOLD, ACH_COUNTER_DAYCARE_EGGS, 100, TRAINER_NONE_ACH, NULL},
+    {ACH_HATCH_EGGS_100, sText_AchHatchEggs100Name, sText_AchHatchEggs100Desc, ACH_TIER_GOLD, ACH_COUNTER_HATCHED_EGGS, 100, TRAINER_NONE_ACH, NULL},
+    {ACH_TM_1, sText_AchTm1Name, sText_AchTm1Desc, ACH_TIER_BRONZE, ACH_COUNTER_TMS_COLLECTED, 1, TRAINER_NONE_ACH, NULL},
+    {ACH_TM_20, sText_AchTm20Name, sText_AchTm20Desc, ACH_TIER_SILVER, ACH_COUNTER_TMS_COLLECTED, 20, TRAINER_NONE_ACH, NULL},
+    {ACH_TM_50, sText_AchTm50Name, sText_AchTm50Desc, ACH_TIER_GOLD, ACH_COUNTER_TMS_COLLECTED, 50, TRAINER_NONE_ACH, NULL},
+    {ACH_TM_100, sText_AchTm100Name, sText_AchTm100Desc, ACH_TIER_PLATINUM, ACH_COUNTER_TMS_COLLECTED, 100, TRAINER_NONE_ACH, NULL},
+    {ACH_POKEDEX_200, sText_AchPokedex200Name, sText_AchPokedex200Desc, ACH_TIER_SILVER, ACH_COUNTER_POKEDEX_CAUGHT, 200, TRAINER_NONE_ACH, NULL},
+    {ACH_POKEDEX_350, sText_AchPokedex350Name, sText_AchPokedex350Desc, ACH_TIER_GOLD, ACH_COUNTER_POKEDEX_CAUGHT, 350, TRAINER_NONE_ACH, NULL},
+    {ACH_POKEDEX_500, sText_AchPokedex500Name, sText_AchPokedex500Desc, ACH_TIER_PLATINUM, ACH_COUNTER_POKEDEX_CAUGHT, 500, TRAINER_NONE_ACH, NULL},
+    {ACH_COMPLETE_HOENN_DEX, sText_AchHoennDexName, sText_AchHoennDexDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateHoennDexComplete},
+    {ACH_BADGE_16, sText_AchBadge16Name, sText_AchBadge16Desc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateBadge16},
+    {ACH_GAINING_POWER, sText_AchGainingPowerName, sText_AchGainingPowerDesc, ACH_TIER_SILVER, ACH_COUNTER_EVOLVED_POKEMON, 25, TRAINER_NONE_ACH, NULL},
+    {ACH_PEAK_OF_POWER, sText_AchPeakOfPowerName, sText_AchPeakOfPowerDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateHasLevel100Pokemon},
+    {ACH_BUG_CATCHER, sText_AchBugCatcherName, sText_AchBugCatcherDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, NULL},
+    {ACH_BUENA_SUPERFAN, sText_AchBuenaSuperfanName, sText_AchBuenaSuperfanDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateBuenaSuperfan},
+    {ACH_TRAVELLING_HEALER, sText_AchTravellingHealerName, sText_AchTravellingHealerDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateTravellingHealer},
+    {ACH_MASTERPIECE, sText_AchMasterpieceName, sText_AchMasterpieceDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateKurtMasterBall},
+    {ACH_MEGA_COLLECTOR, sText_AchMegaCollectorName, sText_AchMegaCollectorDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateMegaCollector},
+    {ACH_MASTER_OF_MOVES, sText_AchMasterOfMovesName, sText_AchMasterOfMovesDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateMasterOfMoves},
+    {ACH_AUTOPHOTOGRAPHER, sText_AchAutophotographerName, sText_AchAutophotographerDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateAllCameronPhotos},
+    {ACH_MILLIONAIRE, sText_AchMillionaireName, sText_AchMillionaireDesc, ACH_TIER_GOLD, ACH_COUNTER_MONEY_EARNED, 1000000, TRAINER_NONE_ACH, NULL},
+    {ACH_SPENDTHRIFT, sText_AchSpendthriftName, sText_AchSpendthriftDesc, ACH_TIER_GOLD, ACH_COUNTER_MONEY_SPENT, 1000000, TRAINER_NONE_ACH, NULL},
+
+    // Battle facility achievements
+    {ACH_BATTLE_CONNOISSEUR, sText_AchBattleConnoisseurName, sText_AchBattleConnoisseurDesc, ACH_TIER_SILVER, ACH_COUNTER_BATTLE_POINTS_EARNED, 100, TRAINER_NONE_ACH, NULL},
+    {ACH_BATTLE_TOWER_25, sText_AchTower25Name, sText_AchTower25Desc, ACH_TIER_SILVER, ACH_COUNTER_BATTLE_TOWER_WINS, 25, TRAINER_NONE_ACH, NULL},
+    {ACH_BATTLE_TOWER_50, sText_AchTower50Name, sText_AchTower50Desc, ACH_TIER_GOLD, ACH_COUNTER_BATTLE_TOWER_WINS, 50, TRAINER_NONE_ACH, NULL},
+    {ACH_BATTLE_TOWER_100, sText_AchTower100Name, sText_AchTower100Desc, ACH_TIER_PLATINUM, ACH_COUNTER_BATTLE_TOWER_WINS, 100, TRAINER_NONE_ACH, NULL},
+    {ACH_ROCKET_ARCADE_25, sText_AchRocketArcade25Name, sText_AchRocketArcade25Desc, ACH_TIER_SILVER, ACH_COUNTER_ROCKET_ARCADE_WINS, 25, TRAINER_NONE_ACH, NULL},
+    {ACH_ROCKET_ARCADE_50, sText_AchRocketArcade50Name, sText_AchRocketArcade50Desc, ACH_TIER_GOLD, ACH_COUNTER_ROCKET_ARCADE_WINS, 50, TRAINER_NONE_ACH, NULL},
+    {ACH_ROCKET_ARCADE_100, sText_AchRocketArcade100Name, sText_AchRocketArcade100Desc, ACH_TIER_PLATINUM, ACH_COUNTER_ROCKET_ARCADE_WINS, 100, TRAINER_NONE_ACH, NULL},
+    {ACH_BATTLE_FACTORY_25, sText_AchFactory25Name, sText_AchFactory25Desc, ACH_TIER_SILVER, ACH_COUNTER_BATTLE_FACTORY_WINS, 25, TRAINER_NONE_ACH, NULL},
+    {ACH_BATTLE_FACTORY_50, sText_AchFactory50Name, sText_AchFactory50Desc, ACH_TIER_GOLD, ACH_COUNTER_BATTLE_FACTORY_WINS, 50, TRAINER_NONE_ACH, NULL},
+    {ACH_BATTLE_FACTORY_100, sText_AchFactory100Name, sText_AchFactory100Desc, ACH_TIER_PLATINUM, ACH_COUNTER_BATTLE_FACTORY_WINS, 100, TRAINER_NONE_ACH, NULL},
+    {ACH_BATTLE_PYRAMID_3, sText_AchPyramid3Name, sText_AchPyramid3Desc, ACH_TIER_SILVER, ACH_COUNTER_BATTLE_PYRAMID_ROUNDS, 3, TRAINER_NONE_ACH, NULL},
+    {ACH_BATTLE_PYRAMID_10, sText_AchPyramid10Name, sText_AchPyramid10Desc, ACH_TIER_GOLD, ACH_COUNTER_BATTLE_PYRAMID_ROUNDS, 10, TRAINER_NONE_ACH, NULL},
+    {ACH_BATTLE_PYRAMID_20, sText_AchPyramid20Name, sText_AchPyramid20Desc, ACH_TIER_PLATINUM, ACH_COUNTER_BATTLE_PYRAMID_ROUNDS, 20, TRAINER_NONE_ACH, NULL},
+
+    // Superboss achievements
     {ACH_REMATCH_FALKNER, sText_AchFalknerRematchName, sText_AchFalknerRematchDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_FALKNER_2, NULL},
     {ACH_REMATCH_BUGSY, sText_AchBugsyRematchName, sText_AchBugsyRematchDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_BUGSY_2, NULL},
     {ACH_REMATCH_WHITNEY, sText_AchWhitneyRematchName, sText_AchWhitneyRematchDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_WHITNEY_2, NULL},
@@ -321,52 +359,63 @@ static const struct Achievement sAchievements[] =
     {ACH_REMATCH_JASMINE, sText_AchJasmineRematchName, sText_AchJasmineRematchDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_JASMINE_2, NULL},
     {ACH_REMATCH_PRYCE, sText_AchPryceRematchName, sText_AchPryceRematchDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_PRYCE_2, NULL},
     {ACH_REMATCH_CLAIR, sText_AchClairRematchName, sText_AchClairRematchDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_CLAIR_2, NULL},
-    {ACH_LETS_GO, sText_AchLetsGoName, sText_AchLetsGoDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateLetsGo},
     {ACH_ROUTE_EXPERTS, sText_AchRouteExpertsName, sText_AchRouteExpertsDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateRouteExperts},
-    {ACH_HALL_OF_FAME_DEBUT, sText_AchHallOfFameDebutName, sText_AchHallOfFameDebutDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, NULL},
-    {ACH_CATCH_CELEBI, sText_AchCatchCelebiName, sText_AchCatchCelebiDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtCelebi},
-    {ACH_CATCH_ARTICUNO, sText_AchCatchArticunoName, sText_AchCatchArticunoDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtArticuno},
-    {ACH_CATCH_MOLTRES, sText_AchCatchMoltresName, sText_AchCatchMoltresDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMoltres},
-    {ACH_CATCH_ZAPDOS, sText_AchCatchZapdosName, sText_AchCatchZapdosDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtZapdos},
     {ACH_CATCH_BLOOD_MOON_URSALUNA, sText_AchBloodMoonName, sText_AchBloodMoonDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtBloodMoonUrsaluna},
-    {ACH_CATCH_RAYQUAZA, sText_AchRayquazaName, sText_AchRayquazaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRayquaza},
-    {ACH_CATCH_REGICE, sText_AchCatchRegiceName, sText_AchCatchRegiceDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRegice},
-    {ACH_CATCH_REGISTEEL, sText_AchCatchRegisteelName, sText_AchCatchRegisteelDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRegisteel},
-    {ACH_CATCH_REGIROCK, sText_AchCatchRegirockName, sText_AchCatchRegirockDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRegirock},
-    {ACH_CATCH_REGIGIGAS, sText_AchCatchRegigigasName, sText_AchCatchRegigigasDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRegigigas},
-    {ACH_CATCH_CHIEN_PAO, sText_AchCatchChienPaoName, sText_AchCatchChienPaoDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtChienPao},
-    {ACH_CATCH_HEATRAN, sText_AchCatchHeatranName, sText_AchCatchHeatranDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtHeatran},
-    {ACH_CATCH_OGERPON, sText_AchCatchOgerponName, sText_AchCatchOgerponDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtOgerpon},
-    {ACH_CATCH_MESPRIT, sText_AchCatchMespritName, sText_AchCatchMespritDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMesprit},
-    {ACH_CATCH_UXIE, sText_AchCatchUxieName, sText_AchCatchUxieDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtUxie},
-    {ACH_CATCH_AZELF, sText_AchCatchAzelfName, sText_AchCatchAzelfDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtAzelf},
+    {ACH_DEFEAT_STEVEN, sText_AchDefeatStevenName, sText_AchDefeatStevenDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_STEVEN, NULL},
+
+    // Legendary and Mythical Pokémon - Generation I
+    {ACH_CATCH_ARTICUNO, sText_AchCatchArticunoName, sText_AchCatchArticunoDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtArticuno},
+    {ACH_CATCH_ZAPDOS, sText_AchCatchZapdosName, sText_AchCatchZapdosDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtZapdos},
+    {ACH_CATCH_MOLTRES, sText_AchCatchMoltresName, sText_AchCatchMoltresDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMoltres},
     {ACH_CATCH_MEWTWO, sText_AchCatchMewtwoName, sText_AchCatchMewtwoDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMewtwo},
     {ACH_CATCH_MEW, sText_AchCatchMewName, sText_AchCatchMewDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMew},
-    {ACH_CATCH_SUICUNE, sText_AchCatchSuicuneName, sText_AchCatchSuicuneDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtSuicune},
-    {ACH_CATCH_ENTEI, sText_AchCatchEnteiName, sText_AchCatchEnteiDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtEntei},
+
+    // Legendary and Mythical Pokémon - Generation II
     {ACH_CATCH_RAIKOU, sText_AchCatchRaikouName, sText_AchCatchRaikouDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRaikou},
+    {ACH_CATCH_ENTEI, sText_AchCatchEnteiName, sText_AchCatchEnteiDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtEntei},
+    {ACH_CATCH_SUICUNE, sText_AchCatchSuicuneName, sText_AchCatchSuicuneDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtSuicune},
+    {ACH_CATCH_LUGIA, sText_AchCatchLugiaName, sText_AchCatchLugiaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtLugia},
+    {ACH_CATCH_HO_OH, sText_AchCatchHoOhName, sText_AchCatchHoOhDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtHoOh},
+    {ACH_CATCH_CELEBI, sText_AchCatchCelebiName, sText_AchCatchCelebiDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtCelebi},
+
+    // Legendary and Mythical Pokémon - Generation III
+    {ACH_CATCH_REGIROCK, sText_AchCatchRegirockName, sText_AchCatchRegirockDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRegirock},
+    {ACH_CATCH_REGICE, sText_AchCatchRegiceName, sText_AchCatchRegiceDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRegice},
+    {ACH_CATCH_REGISTEEL, sText_AchCatchRegisteelName, sText_AchCatchRegisteelDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRegisteel},
     {ACH_CATCH_KYOGRE, sText_AchCatchKyogreName, sText_AchCatchKyogreDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtKyogre},
     {ACH_CATCH_GROUDON, sText_AchCatchGroudonName, sText_AchCatchGroudonDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtGroudon},
+    {ACH_CATCH_RAYQUAZA, sText_AchRayquazaName, sText_AchRayquazaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRayquaza},
     {ACH_OBTAIN_JIRACHI, sText_AchObtainJirachiName, sText_AchObtainJirachiDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtJirachi},
     {ACH_CATCH_DEOXYS, sText_AchCatchDeoxysName, sText_AchCatchDeoxysDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtDeoxys},
+
+    // Legendary and Mythical Pokémon - Generation IV
+    {ACH_CATCH_UXIE, sText_AchCatchUxieName, sText_AchCatchUxieDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtUxie},
+    {ACH_CATCH_MESPRIT, sText_AchCatchMespritName, sText_AchCatchMespritDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMesprit},
+    {ACH_CATCH_AZELF, sText_AchCatchAzelfName, sText_AchCatchAzelfDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtAzelf},
     {ACH_CATCH_DIALGA, sText_AchCatchDialgaName, sText_AchCatchDialgaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtDialga},
     {ACH_CATCH_PALKIA, sText_AchCatchPalkiaName, sText_AchCatchPalkiaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtPalkia},
+    {ACH_CATCH_HEATRAN, sText_AchCatchHeatranName, sText_AchCatchHeatranDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtHeatran},
+    {ACH_CATCH_REGIGIGAS, sText_AchCatchRegigigasName, sText_AchCatchRegigigasDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRegigigas},
     {ACH_CATCH_CRESSELIA, sText_AchCatchCresseliaName, sText_AchCatchCresseliaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtCresselia},
+    {ACH_UNDER_THE_SEA, sText_AchUnderTheSeaName, sText_AchUnderTheSeaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtPhione},
     {ACH_CATCH_DARKRAI, sText_AchCatchDarkraiName, sText_AchCatchDarkraiDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtDarkrai},
     {ACH_OBTAIN_SHAYMIN, sText_AchObtainShayminName, sText_AchObtainShayminDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtShaymin},
-    {ACH_UNDER_THE_SEA, sText_AchUnderTheSeaName, sText_AchUnderTheSeaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtPhione},
-    {ACH_CATCH_LAPRAS, sText_AchCatchLaprasName, sText_AchCatchLaprasDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtLapras},
+
+    // Legendary and Mythical Pokémon - Generation V
     {ACH_OBTAIN_VICTINI, sText_AchObtainVictiniName, sText_AchObtainVictiniDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtVictini},
-    {ACH_BUENA_SUPERFAN, sText_AchBuenaSuperfanName, sText_AchBuenaSuperfanDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateBuenaSuperfan},
-    {ACH_TRAVELLING_HEALER, sText_AchTravellingHealerName, sText_AchTravellingHealerDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateTravellingHealer},
-    {ACH_MASTERPIECE, sText_AchMasterpieceName, sText_AchMasterpieceDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateKurtMasterBall},
-    {ACH_MEGA_COLLECTOR, sText_AchMegaCollectorName, sText_AchMegaCollectorDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateMegaCollector},
-    {ACH_MASTER_OF_MOVES, sText_AchMasterOfMovesName, sText_AchMasterOfMovesDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateMasterOfMoves},
-    {ACH_DEFEAT_STEVEN, sText_AchDefeatStevenName, sText_AchDefeatStevenDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_STEVEN, NULL},
+
+    // Legendary and Mythical Pokémon - Generation VII
+    {ACH_CATCH_MAGEARNA, sText_AchCatchMagearnaName, sText_AchCatchMagearnaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMagearna},
+
+    // Legendary and Mythical Pokémon - Generation IX
+    {ACH_CATCH_CHIEN_PAO, sText_AchCatchChienPaoName, sText_AchCatchChienPaoDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtChienPao},
+    {ACH_CATCH_OGERPON, sText_AchCatchOgerponName, sText_AchCatchOgerponDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtOgerpon},
+
     {ACH_PARADOXICAL, sText_AchParadoxicalName, sText_AchParadoxicalDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtAllParadoxPokemon},
     {ACH_CATCH_ARCEUS, sText_AchCatchArceusName, sText_AchCatchArceusDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtArceus},
 };
 
+STATIC_ASSERT(ARRAY_COUNT(sAchievements) == ACH_COUNT, AchievementTableMatchesIdCount);
 STATIC_ASSERT(ACH_COUNT <= ACHIEVEMENTS_MAX, AchievementCountWithinSaveBitmap);
 
 static const u8 *const sTierLabels[] =
@@ -399,9 +448,28 @@ static bool32 Achievement_PredicateHoennDexComplete(void)
     return HasAllHoennMons();
 }
 
-static bool32 Achievement_PredicateNationalDexComplete(void)
+static bool32 Achievement_PredicateCameronPhoto(void)
 {
-    return HasAllMons();
+    u16 flag;
+
+    for (flag = FLAG_CAMERON_PHOTO1; flag <= FLAG_CAMERON_PHOTO5; flag++)
+    {
+        if (FlagGet(flag))
+            return TRUE;
+    }
+    return FALSE;
+}
+
+static bool32 Achievement_PredicateAllCameronPhotos(void)
+{
+    u16 flag;
+
+    for (flag = FLAG_CAMERON_PHOTO1; flag <= FLAG_CAMERON_PHOTO5; flag++)
+    {
+        if (!FlagGet(flag))
+            return FALSE;
+    }
+    return TRUE;
 }
 
 static u8 Achievement_CountBadges(void)
@@ -737,6 +805,11 @@ static bool32 Achievement_PredicateCaughtArceus(void)
     return Achievement_PredicateCaughtSpecies(SPECIES_ARCEUS);
 }
 
+static bool32 Achievement_PredicateCaughtMagearna(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_MAGEARNA);
+}
+
 static const u16 sParadoxPokemon[] =
 {
     SPECIES_GREAT_TUSK,
@@ -775,6 +848,39 @@ static bool32 Achievement_PredicateCaughtAllParadoxPokemon(void)
     return TRUE;
 }
 
+static bool32 Achievement_PredicateHasLevel100Pokemon(void)
+{
+    u8 boxId;
+    u8 boxPosition;
+    u8 partyIndex;
+
+    for (partyIndex = 0; partyIndex < PARTY_SIZE; partyIndex++)
+    {
+        if (GetMonData(&gPlayerParty[partyIndex], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
+         && GetMonData(&gPlayerParty[partyIndex], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG
+         && GetMonData(&gPlayerParty[partyIndex], MON_DATA_LEVEL) >= MAX_LEVEL)
+            return TRUE;
+    }
+
+    if (gPokemonStoragePtr == NULL)
+        return FALSE;
+
+    for (boxId = 0; boxId < TOTAL_BOXES_COUNT; boxId++)
+    {
+        for (boxPosition = 0; boxPosition < IN_BOX_COUNT; boxPosition++)
+        {
+            struct BoxPokemon *boxMon = &gPokemonStoragePtr->boxes[boxId][boxPosition];
+
+            if (GetBoxMonData(boxMon, MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
+             && GetBoxMonData(boxMon, MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG
+             && GetLevelFromBoxMonExp(boxMon) >= MAX_LEVEL)
+                return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
 static u32 Achievement_CountCollectedTMs(void)
 {
     u16 i;
@@ -790,46 +896,6 @@ static u32 Achievement_CountCollectedTMs(void)
     return count;
 }
 
-static u32 Achievement_GetBestBattleTowerStreak(void)
-{
-    u8 battleMode, lvlMode;
-    u32 best = 0;
-
-    Achievement_EnsureSaveInitialized();
-    if (best < gSaveBlock1Ptr->achievements.counters[ACH_COUNTER_BATTLE_TOWER_STREAK])
-        best = gSaveBlock1Ptr->achievements.counters[ACH_COUNTER_BATTLE_TOWER_STREAK];
-
-    for (battleMode = 0; battleMode < ARRAY_COUNT(gSaveBlock2Ptr->frontier.towerRecordWinStreaks); battleMode++)
-    {
-        for (lvlMode = 0; lvlMode < ARRAY_COUNT(gSaveBlock2Ptr->frontier.towerRecordWinStreaks[0]); lvlMode++)
-        {
-            if (best < gSaveBlock2Ptr->frontier.towerRecordWinStreaks[battleMode][lvlMode])
-                best = gSaveBlock2Ptr->frontier.towerRecordWinStreaks[battleMode][lvlMode];
-            if (best < gSaveBlock2Ptr->frontier.towerWinStreaks[battleMode][lvlMode])
-                best = gSaveBlock2Ptr->frontier.towerWinStreaks[battleMode][lvlMode];
-        }
-    }
-    return best;
-}
-
-static u32 Achievement_GetBestBattleFactoryStreak(void)
-{
-    u8 battleMode, lvlMode;
-    u32 best = 0;
-
-    for (battleMode = 0; battleMode < ARRAY_COUNT(gSaveBlock2Ptr->frontier.factoryRecordWinStreaks); battleMode++)
-    {
-        for (lvlMode = 0; lvlMode < ARRAY_COUNT(gSaveBlock2Ptr->frontier.factoryRecordWinStreaks[0]); lvlMode++)
-        {
-            if (best < gSaveBlock2Ptr->frontier.factoryRecordWinStreaks[battleMode][lvlMode])
-                best = gSaveBlock2Ptr->frontier.factoryRecordWinStreaks[battleMode][lvlMode];
-            if (best < gSaveBlock2Ptr->frontier.factoryWinStreaks[battleMode][lvlMode])
-                best = gSaveBlock2Ptr->frontier.factoryWinStreaks[battleMode][lvlMode];
-        }
-    }
-    return best;
-}
-
 static u32 Achievement_GetBestBattlePyramidRounds(void)
 {
     u8 lvlMode;
@@ -843,22 +909,6 @@ static u32 Achievement_GetBestBattlePyramidRounds(void)
             best = gSaveBlock2Ptr->frontier.pyramidWinStreaks[lvlMode];
     }
     return best / FRONTIER_STAGES_PER_CHALLENGE;
-}
-
-static u32 Achievement_GetBestRocketArcadeStreak(void)
-{
-    u8 battleMode, lvlMode;
-    u32 best = 0;
-
-    for (battleMode = 0; battleMode < FRONTIER_MODE_COUNT; battleMode++)
-    {
-        for (lvlMode = 0; lvlMode < FRONTIER_LVL_MODE_COUNT; lvlMode++)
-        {
-            if (best < gSaveBlock2Ptr->frontier.arcadeRecordWinStreaks[battleMode][lvlMode])
-                best = gSaveBlock2Ptr->frontier.arcadeRecordWinStreaks[battleMode][lvlMode];
-        }
-    }
-    return best;
 }
 
 u16 Achievement_GetCount(void)
@@ -921,22 +971,36 @@ u16 Achievement_CountUnlocked(void)
     return count;
 }
 
+void GetCompletedAchievementsCount(void)
+{
+    Achievement_CheckAll();
+    gSpecialVar_Result = Achievement_CountUnlocked();
+}
+
 u32 Achievement_GetCounter(enum AchievementCounter counter)
 {
     switch (counter)
     {
-    case ACH_COUNTER_BATTLE_TOWER_STREAK:
-        return Achievement_GetBestBattleTowerStreak();
+    case ACH_COUNTER_EVOLVED_POKEMON:
+        return GetGameStat(GAME_STAT_EVOLVED_POKEMON);
+    case ACH_COUNTER_BATTLE_POINTS_EARNED:
+        return gSaveBlock2Ptr->frontier.cardBattlePoints;
+    case ACH_COUNTER_MONEY_SPENT:
+        return GetGameStat(GAME_STAT_MONEY_SPENT);
+    case ACH_COUNTER_MONEY_EARNED:
+        return GetGameStat(GAME_STAT_MONEY_EARNED);
+    case ACH_COUNTER_BATTLE_TOWER_WINS:
+        return gSaveBlock2Ptr->frontier.towerNumWins;
     case ACH_COUNTER_TMS_COLLECTED:
         return Achievement_CountCollectedTMs();
     case ACH_COUNTER_POKEDEX_CAUGHT:
         return GetNationalPokedexCount(FLAG_GET_CAUGHT);
-    case ACH_COUNTER_BATTLE_FACTORY_STREAK:
-        return Achievement_GetBestBattleFactoryStreak();
+    case ACH_COUNTER_BATTLE_FACTORY_WINS:
+        return gSaveBlock2Ptr->frontier.factoryTotalWins;
     case ACH_COUNTER_BATTLE_PYRAMID_ROUNDS:
         return Achievement_GetBestBattlePyramidRounds();
-    case ACH_COUNTER_ROCKET_ARCADE_STREAK:
-        return Achievement_GetBestRocketArcadeStreak();
+    case ACH_COUNTER_ROCKET_ARCADE_WINS:
+        return gSaveBlock2Ptr->frontier.arcadeTotalWins;
     default:
         break;
     }
@@ -1019,6 +1083,34 @@ void Achievement_UnlockHallOfFameDebut(void)
 
 void Achievement_IncrementCounter(enum AchievementCounter counter, u32 amount)
 {
+    u8 gameStat;
+    u32 value;
+
+    switch (counter)
+    {
+    case ACH_COUNTER_MONEY_SPENT:
+        gameStat = GAME_STAT_MONEY_SPENT;
+        break;
+    case ACH_COUNTER_MONEY_EARNED:
+        gameStat = GAME_STAT_MONEY_EARNED;
+        break;
+    default:
+        gameStat = NUM_GAME_STATS;
+        break;
+    }
+
+    if (gameStat != NUM_GAME_STATS)
+    {
+        value = GetGameStat(gameStat);
+        if (UINT_MAX - value < amount)
+            value = UINT_MAX;
+        else
+            value += amount;
+        SetGameStat(gameStat, value);
+        Achievement_CheckAll();
+        return;
+    }
+
     if (counter >= ACH_COUNTER_COUNT)
         return;
 
@@ -1028,6 +1120,16 @@ void Achievement_IncrementCounter(enum AchievementCounter counter, u32 amount)
     else
         gSaveBlock1Ptr->achievements.counters[counter] += amount;
 
+    Achievement_CheckAll();
+}
+
+void Achievement_AddBattlePointsEarned(u32 amount)
+{
+    u32 total = gSaveBlock2Ptr->frontier.cardBattlePoints + amount;
+
+    if (total > 0xFFFF)
+        total = 0xFFFF;
+    gSaveBlock2Ptr->frontier.cardBattlePoints = total;
     Achievement_CheckAll();
 }
 

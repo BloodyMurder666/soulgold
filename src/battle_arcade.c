@@ -656,6 +656,9 @@ static void SetArcadeBattleWon(void)
 {
     IncrementCurrentStreak();
     SaveCurrentStreak();
+    if (FRONTIER_SAVEDATA.arcadeTotalWins < 0xFFFF)
+        FRONTIER_SAVEDATA.arcadeTotalWins++;
+    Achievement_CheckAll();
     gSpecialVar_Result = ++FRONTIER_SAVEDATA.curChallengeBattleNum;
 }
 

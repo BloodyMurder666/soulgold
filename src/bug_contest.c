@@ -1,5 +1,6 @@
 // bug_contest.c
 #include "global.h"
+#include "achievements.h"
 #include "script.h"
 #include "event_data.h"
 #include "fieldmap.h"
@@ -150,6 +151,9 @@ bool8 JudgeBugContestMon(void)
     switch (placement)
     {
     case 1:
+        Achievement_Unlock(ACH_BUG_CATCHER);
+        VarSet(VAR_0x8005, ITEM_NONE);
+        break;
     case 2:
         VarSet(VAR_0x8005, ITEM_NONE);
         break;

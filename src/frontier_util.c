@@ -2188,6 +2188,7 @@ static void GiveTowerBattlePoints(void)
 
     ConvertIntToDecimalStringN(gStringVar1, toGive, STR_CONV_MODE_LEFT_ALIGN, 5);
     IncrementDailyBattlePoints(toGive);
+    Achievement_AddBattlePointsEarned(toGive);
 }
 
 static void GiveBattlePoints(void)
@@ -2239,10 +2240,7 @@ static void GiveBattlePoints(void)
         gSaveBlock2Ptr->frontier.battlePoints = MAX_BATTLE_FRONTIER_POINTS;
 
     IncrementDailyBattlePoints(points);
-    points += gSaveBlock2Ptr->frontier.cardBattlePoints;
-    if (points > 0xFFFF)
-        points = 0xFFFF;
-    gSaveBlock2Ptr->frontier.cardBattlePoints = points;
+    Achievement_AddBattlePointsEarned(points);
 }
 
 static void GetFacilitySymbolCount(void)
@@ -2470,7 +2468,6 @@ static void IncrementWinStreak(void)
         if (gSaveBlock2Ptr->frontier.towerWinStreaks[battleMode][lvlMode] < MAX_STREAK)
         {
             gSaveBlock2Ptr->frontier.towerWinStreaks[battleMode][lvlMode]++;
-            Achievement_CheckAll();
             if (battleMode == FRONTIER_MODE_SINGLES)
             {
                 SetGameStat(GAME_STAT_BATTLE_TOWER_SINGLES_STREAK, gSaveBlock2Ptr->frontier.towerWinStreaks[battleMode][lvlMode]);
@@ -2494,10 +2491,10 @@ static void IncrementWinStreak(void)
         break;
     case FRONTIER_FACILITY_FACTORY:
         if (gSaveBlock2Ptr->frontier.factoryWinStreaks[battleMode][lvlMode] < MAX_STREAK)
-        {
             gSaveBlock2Ptr->frontier.factoryWinStreaks[battleMode][lvlMode]++;
-            Achievement_CheckAll();
-        }
+        if (gSaveBlock2Ptr->frontier.factoryTotalWins < 0xFFFF)
+            gSaveBlock2Ptr->frontier.factoryTotalWins++;
+        Achievement_CheckAll();
         break;
     case FRONTIER_FACILITY_PIKE:
         if (gSaveBlock2Ptr->frontier.pikeWinStreaks[lvlMode] < MAX_STREAK)
