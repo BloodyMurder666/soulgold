@@ -29,147 +29,147 @@ GoldenrodCity_UndergroundTunnel_EventScript_KimonoTriggerBot::
 # 15 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	waitmovement 0
 # 16 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox GoldenrodCity_UndergroundTunnel_Text_Kimono1, MSGBOX_DEFAULT
+	createfieldmugshot MUGSHOT_KIMONO_GIRL
 # 17 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	closemessage
+	msgbox GoldenrodCity_UndergroundTunnel_Text_Kimono1, MSGBOX_DEFAULT
 # 18 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	playse SE_PIN
-# 19 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, Common_Movement_ExclamationMark
-# 20 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	delay 60
-# 21 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox GoldenrodCity_UndergroundTunnel_Text_Kimono2, MSGBOX_DEFAULT
-# 22 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	closemessage
+# 19 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	playse SE_PIN
+# 20 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, Common_Movement_ExclamationMark
+# 21 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	delay 60
+# 22 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	createfieldmugshot MUGSHOT_KIMONO_GIRL
 # 23 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, Common_Movement_WalkUp1
+	msgbox GoldenrodCity_UndergroundTunnel_Text_Kimono2, MSGBOX_DEFAULT
 # 24 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	waitmovement 0
+	closemessage
 # 25 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, GoldenrodCity_UndergroundTunnel_Movement_Kimono_Leave1
+	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, Common_Movement_WalkUp1
 # 26 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	waitmovement 0
 # 27 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	playse SE_M_PETAL_DANCE
+	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, GoldenrodCity_UndergroundTunnel_Movement_Kimono_Leave1
 # 28 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, GoldenrodCity_UndergroundTunnel_Movement_Kimono_Spin
-# 29 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	waitmovement 0
+# 29 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	playse SE_M_PETAL_DANCE
 # 30 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, GoldenrodCity_UndergroundTunnel_Movement_Kimono_Leave2
+	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, GoldenrodCity_UndergroundTunnel_Movement_Kimono_Spin
 # 31 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	waitmovement 0
 # 32 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	setflag FLAG_HIDE_GOLDENROD_UNDERGROUND_KIMONO
-# 33 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	removeobject LOCALID_GOLDENROD_UNDERGROUND_KIMONO
-# 34 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	fadedefaultbgm
-# 35 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	setvar VAR_GOLDENROD_CITY_STATE, 8
-# 36 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	end
-# 37 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
-# 38 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodCity_UndergroundTunnel_EventScript_KimonoTriggerTop::
-# 39 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	lock
-# 40 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	playbgm MUS_HG_KIMONO_GIRL, TRUE
-# 41 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, GoldenrodCity_UndergroundTunnel_Movement_Kimono_WalkToPlayerTop
-# 42 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	waitmovement 0
-# 43 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox GoldenrodCity_UndergroundTunnel_Text_Kimono1, MSGBOX_DEFAULT
-# 44 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	closemessage
-# 45 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	playse SE_PIN
-# 46 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, Common_Movement_ExclamationMark
-# 47 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	delay 60
-# 48 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox GoldenrodCity_UndergroundTunnel_Text_Kimono2, MSGBOX_DEFAULT
-# 49 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	closemessage
-# 50 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, Common_Movement_WalkDown1
-# 51 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	waitmovement 0
-# 52 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, GoldenrodCity_UndergroundTunnel_Movement_Kimono_Leave1
-# 53 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	waitmovement 0
-# 54 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	playse SE_M_PETAL_DANCE
-# 55 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, GoldenrodCity_UndergroundTunnel_Movement_Kimono_Spin
-# 56 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	waitmovement 0
-# 57 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, GoldenrodCity_UndergroundTunnel_Movement_Kimono_Leave2
-# 58 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 33 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	waitmovement 0
-# 59 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 34 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	setflag FLAG_HIDE_GOLDENROD_UNDERGROUND_KIMONO
-# 60 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 35 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	removeobject LOCALID_GOLDENROD_UNDERGROUND_KIMONO
-# 61 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	savebgm MUS_DUMMY
-# 62 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 36 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	fadedefaultbgm
-# 63 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 37 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	setvar VAR_GOLDENROD_CITY_STATE, 8
-# 64 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 38 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	end
+# 39 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+
+# 40 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+GoldenrodCity_UndergroundTunnel_EventScript_KimonoTriggerTop::
+# 41 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	lock
+# 42 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	playbgm MUS_HG_KIMONO_GIRL, TRUE
+# 43 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, GoldenrodCity_UndergroundTunnel_Movement_Kimono_WalkToPlayerTop
+# 44 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	waitmovement 0
+# 45 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	createfieldmugshot MUGSHOT_KIMONO_GIRL
+# 46 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	msgbox GoldenrodCity_UndergroundTunnel_Text_Kimono1, MSGBOX_DEFAULT
+# 47 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	closemessage
+# 48 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	playse SE_PIN
+# 49 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, Common_Movement_ExclamationMark
+# 50 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	delay 60
+# 51 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	createfieldmugshot MUGSHOT_KIMONO_GIRL
+# 52 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	msgbox GoldenrodCity_UndergroundTunnel_Text_Kimono2, MSGBOX_DEFAULT
+# 53 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	closemessage
+# 54 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, Common_Movement_WalkDown1
+# 55 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	waitmovement 0
+# 56 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, GoldenrodCity_UndergroundTunnel_Movement_Kimono_Leave1
+# 57 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	waitmovement 0
+# 58 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	playse SE_M_PETAL_DANCE
+# 59 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, GoldenrodCity_UndergroundTunnel_Movement_Kimono_Spin
+# 60 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	waitmovement 0
+# 61 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, GoldenrodCity_UndergroundTunnel_Movement_Kimono_Leave2
+# 62 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	waitmovement 0
+# 63 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	setflag FLAG_HIDE_GOLDENROD_UNDERGROUND_KIMONO
+# 64 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	removeobject LOCALID_GOLDENROD_UNDERGROUND_KIMONO
 # 65 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+	savebgm MUS_DUMMY
 # 66 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+	fadedefaultbgm
 # 67 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodCity_UndergroundTunnel_Movement_Kimono_WalkToPlayerBot:
+	setvar VAR_GOLDENROD_CITY_STATE, 8
 # 68 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	walk_left
+	end
 # 69 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	walk_left
+
 # 70 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	walk_left
+
 # 71 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	walk_left
+GoldenrodCity_UndergroundTunnel_Movement_Kimono_WalkToPlayerBot:
 # 72 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	step_end
+	walk_left
 # 73 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+	walk_left
 # 74 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodCity_UndergroundTunnel_Movement_Kimono_WalkToPlayerTop:
+	walk_left
 # 75 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	walk_up
+	walk_left
 # 76 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	walk_left
-# 77 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	walk_left
-# 78 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	walk_left
-# 79 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	walk_left
-# 80 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	step_end
-# 81 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 77 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
+# 78 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+GoldenrodCity_UndergroundTunnel_Movement_Kimono_WalkToPlayerTop:
+# 79 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	walk_up
+# 80 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	walk_left
+# 81 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	walk_left
 # 82 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodCity_UndergroundTunnel_Movement_Kimono_Leave1:
+	walk_left
 # 83 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	walk_left
 # 84 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	walk_left
+	step_end
 # 85 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	walk_left
+
 # 86 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	walk_left
+GoldenrodCity_UndergroundTunnel_Movement_Kimono_Leave1:
 # 87 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	walk_left
 # 88 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
@@ -177,19 +177,19 @@ GoldenrodCity_UndergroundTunnel_Movement_Kimono_Leave1:
 # 89 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	walk_left
 # 90 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	step_end
+	walk_left
 # 91 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+	walk_left
 # 92 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodCity_UndergroundTunnel_Movement_Kimono_Spin:
+	walk_left
 # 93 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	face_down
+	walk_left
 # 94 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	face_right
+	step_end
 # 95 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	face_up
+
 # 96 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	face_left
+GoldenrodCity_UndergroundTunnel_Movement_Kimono_Spin:
 # 97 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	face_down
 # 98 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
@@ -197,746 +197,754 @@ GoldenrodCity_UndergroundTunnel_Movement_Kimono_Spin:
 # 99 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	face_up
 # 100 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	step_end
+	face_left
 # 101 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+	face_down
 # 102 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodCity_UndergroundTunnel_Movement_Kimono_Leave2:
+	face_right
 # 103 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	walk_up
+	face_up
 # 104 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	walk_up
+	step_end
 # 105 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	walk_up
+
 # 106 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	walk_up
+GoldenrodCity_UndergroundTunnel_Movement_Kimono_Leave2:
 # 107 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	walk_up
 # 108 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	walk_up
 # 109 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	step_end
+	walk_up
 # 110 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+	walk_up
 # 111 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+	walk_up
 # 112 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodCity_UndergroundTunnel_Text_Kimono1:
+	walk_up
 # 113 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	.string "Team Rocket members in black suits\n"
+	step_end
 # 114 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	.string "have been running around...\p"
-# 115 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	.string "I was wondering what was going on.\n"
-# 116 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	.string "So, you took on Team Rocket?\l"
-# 117 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	.string "You are impressive!\p"
-# 118 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	.string "You may be able to face the\n"
-# 119 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	.string "legendary Pokémon...$"
-# 120 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
+# 115 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+
+# 116 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+GoldenrodCity_UndergroundTunnel_Text_Kimono1:
+# 117 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	.string "Team Rocket members in black suits\n"
+# 118 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	.string "have been running around...\p"
+# 119 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	.string "I was wondering what was going on.\n"
+# 120 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	.string "So, you took on Team Rocket?\l"
 # 121 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodCity_UndergroundTunnel_Text_Kimono2:
+	.string "You are impressive!\p"
 # 122 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	.string "Hahaha! Never mind.\n"
+	.string "You may be able to face the\n"
 # 123 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	.string "I must go now.$"
+	.string "legendary Pokémon...$"
 # 124 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
 # 125 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_EventScript_Eric::
+GoldenrodCity_UndergroundTunnel_Text_Kimono2:
 # 126 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	trainerbattle_single TRAINER_ERIC GoldenrodUnderground_Text_SupernerdEricSeen, GoldenrodUnderground_Text_SupernerdEricBeaten
+	.string "Hahaha! Never mind.\n"
 # 127 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox GoldenrodUnderground_Text_SupernerdEricAfterBattle, MSGBOX_AUTOCLOSE
+	.string "I must go now.$"
 # 128 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	end
+
 # 129 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+GoldenrodUnderground_EventScript_Eric::
 # 130 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_EventScript_Teru::
+	trainerbattle_single TRAINER_ERIC GoldenrodUnderground_Text_SupernerdEricSeen, GoldenrodUnderground_Text_SupernerdEricBeaten
 # 131 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	trainerbattle_single TRAINER_TERU GoldenrodUnderground_Text_SupernerdTeruSeen, GoldenrodUnderground_Text_SupernerdTeruBeaten
+	msgbox GoldenrodUnderground_Text_SupernerdEricAfterBattle, MSGBOX_AUTOCLOSE
 # 132 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox GoldenrodUnderground_Text_SupernerdTeruAfterBattle, MSGBOX_AUTOCLOSE
+	end
 # 133 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	end
+
 # 134 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+GoldenrodUnderground_EventScript_Teru::
 # 135 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_EventScript_Issac::
+	trainerbattle_single TRAINER_TERU GoldenrodUnderground_Text_SupernerdTeruSeen, GoldenrodUnderground_Text_SupernerdTeruBeaten
 # 136 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	trainerbattle_single TRAINER_ISSAC GoldenrodUnderground_Text_PokemaniacIssacSeen, GoldenrodUnderground_Text_PokemaniacIssacBeaten
+	msgbox GoldenrodUnderground_Text_SupernerdTeruAfterBattle, MSGBOX_AUTOCLOSE
 # 137 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox GoldenrodUnderground_Text_PokemaniacIssacAfterBattle, MSGBOX_AUTOCLOSE
+	end
 # 138 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	end
+
 # 139 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+GoldenrodUnderground_EventScript_Issac::
 # 140 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_EventScript_Donald::
+	trainerbattle_single TRAINER_ISSAC GoldenrodUnderground_Text_PokemaniacIssacSeen, GoldenrodUnderground_Text_PokemaniacIssacBeaten
 # 141 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	trainerbattle_single TRAINER_DONALD GoldenrodUnderground_Text_PokemaniacDonaldSeen, GoldenrodUnderground_Text_PokemaniacDonaldBeaten
+	msgbox GoldenrodUnderground_Text_PokemaniacIssacAfterBattle, MSGBOX_AUTOCLOSE
 # 142 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox GoldenrodUnderground_Text_PokemaniacDonaldAfterBattle, MSGBOX_AUTOCLOSE
+	end
 # 143 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	end
+
 # 144 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+GoldenrodUnderground_EventScript_Donald::
 # 145 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_EventScript_Brother_Haircut1::
+	trainerbattle_single TRAINER_DONALD GoldenrodUnderground_Text_PokemaniacDonaldSeen, GoldenrodUnderground_Text_PokemaniacDonaldBeaten
 # 146 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	lock
+	msgbox GoldenrodUnderground_Text_PokemaniacDonaldAfterBattle, MSGBOX_AUTOCLOSE
 # 147 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	faceplayer
+	end
 # 148 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	goto_if_set FLAG_GARBAGEFLAG, GoldenrodUnderground_EventScript_Already_Got_Haircut1
+
 # 149 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	showmoneybox 0, 0
+GoldenrodUnderground_EventScript_Brother_Haircut1::
 # 150 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox GoldenrodUnderground_Text_OlderBrotherOffer, MSGBOX_YESNO
+	lock
 # 151 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	goto_if_eq VAR_RESULT, TRUE, GoldenrodUnderground_EventScript_Haircut1
+	faceplayer
 # 152 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox GoldenrodUnderground_Text_OlderBrotherThatsAShame, MSGBOX_DEFAULT
+	goto_if_set FLAG_GARBAGEFLAG, GoldenrodUnderground_EventScript_Already_Got_Haircut1
 # 153 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	hidemoneybox
+	showmoneybox 0, 0
 # 154 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	closemessage
+	msgbox GoldenrodUnderground_Text_OlderBrotherOffer, MSGBOX_YESNO
 # 155 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	end
+	goto_if_eq VAR_RESULT, TRUE, GoldenrodUnderground_EventScript_Haircut1
 # 156 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
-# 157 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_EventScript_Haircut1::
-# 158 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox GoldenrodUnderground_Text_OlderBrotherAskWhich
-# 159 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	special ChoosePartyMon
-# 160 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	waitstate
-# 161 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	showmoneybox 0, 0
-# 162 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	lock
-# 163 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	faceplayer
-# 164 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	goto_if_ge VAR_0x8004, PARTY_SIZE, GoldenrodUnderground_EventScript_Declined_Haircut1
-# 165 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	specialvar VAR_RESULT, ScriptGetPartyMonSpecies
-# 166 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	goto_if_eq VAR_RESULT, SPECIES_EGG, GoldenrodUnderground_EventScript_Declined_Haircut1
-# 167 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	checkmoney 500, 0
-# 168 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	goto_if_eq VAR_RESULT, FALSE, GoldenrodUnderground_EventScript_NotEnough_Haircut1
-# 169 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	removemoney 500
-# 170 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	updatemoneybox 0
-# 171 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	playse SE_SHOP
-# 172 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox GoldenrodUnderground_Text_OlderBrotherWatchItBeautiful
-# 173 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	closemessage
-# 174 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	fadescreen FADE_TO_BLACK
-# 175 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	playfanfare MUS_HEAL
-# 176 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	waitfanfare
-# 177 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	special HaircutBrother1
-# 178 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	fadescreen FADE_FROM_BLACK
-# 179 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	special BufferMonNickname
-# 180 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox GoldenrodUnderground_Text_OlderBrotherAllDone
-# 181 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	hidemoneybox
-# 182 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	setflag FLAG_GARBAGEFLAG
-# 183 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	release
-# 184 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	end
-# 185 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
-# 186 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_EventScript_Declined_Haircut1::
-# 187 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	msgbox GoldenrodUnderground_Text_OlderBrotherThatsAShame, MSGBOX_DEFAULT
-# 188 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 157 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	hidemoneybox
-# 189 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 158 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	closemessage
-# 190 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	release
-# 191 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 159 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	end
-# 192 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 160 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
-# 193 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_EventScript_Already_Got_Haircut1::
-# 194 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox GoldenrodUnderground_Text_OlderBrotherOnePerDay, MSGBOX_DEFAULT
-# 195 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	closemessage
-# 196 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	release
-# 197 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	end
-# 198 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
-# 199 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_EventScript_NotEnough_Haircut1::
-# 200 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox GoldenrodUnderground_Text_OlderBrotherNeedMoreMoney, MSGBOX_DEFAULT
-# 201 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	closemessage
-# 202 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	hidemoneybox
-# 203 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	release
-# 204 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	end
-# 205 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
-# 206 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
-# 207 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_EventScript_Brother_Haircut2::
-# 208 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	lock
-# 209 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	faceplayer
-# 210 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	goto_if_set FLAG_GARBAGEFLAG, GoldenrodUnderground_EventScript_Already_Got_Haircut2
-# 211 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	showmoneybox 0, 0
-# 212 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox GoldenrodUnderground_Text_YoungerBrotherOffer, MSGBOX_YESNO
-# 213 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	goto_if_eq VAR_RESULT, TRUE, GoldenrodUnderground_EventScript_Haircut2
-# 214 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox GoldenrodUnderground_Text_YoungerBrotherDisappointed, MSGBOX_DEFAULT
-# 215 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	hidemoneybox
-# 216 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	closemessage
-# 217 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	end
-# 218 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
-# 219 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_EventScript_Haircut2::
-# 220 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox GoldenrodUnderground_Text_YoungerBrotherAskWhich
-# 221 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 161 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+GoldenrodUnderground_EventScript_Haircut1::
+# 162 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	msgbox GoldenrodUnderground_Text_OlderBrotherAskWhich
+# 163 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	special ChoosePartyMon
-# 222 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 164 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	waitstate
-# 223 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 165 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	showmoneybox 0, 0
-# 224 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 166 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	lock
-# 225 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 167 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	faceplayer
-# 226 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	goto_if_ge VAR_0x8004, PARTY_SIZE, GoldenrodUnderground_EventScript_Declined_Haircut2
-# 227 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 168 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	goto_if_ge VAR_0x8004, PARTY_SIZE, GoldenrodUnderground_EventScript_Declined_Haircut1
+# 169 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	specialvar VAR_RESULT, ScriptGetPartyMonSpecies
-# 228 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	goto_if_eq VAR_RESULT, SPECIES_EGG, GoldenrodUnderground_EventScript_Declined_Haircut2
-# 229 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	checkmoney 300, 0
-# 230 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	goto_if_eq VAR_RESULT, FALSE, GoldenrodUnderground_EventScript_NotEnough_Haircut2
-# 231 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	removemoney 300
-# 232 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 170 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	goto_if_eq VAR_RESULT, SPECIES_EGG, GoldenrodUnderground_EventScript_Declined_Haircut1
+# 171 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	checkmoney 500, 0
+# 172 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	goto_if_eq VAR_RESULT, FALSE, GoldenrodUnderground_EventScript_NotEnough_Haircut1
+# 173 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	removemoney 500
+# 174 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	updatemoneybox 0
-# 233 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 175 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	playse SE_SHOP
-# 234 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox GoldenrodUnderground_Text_YoungerBrotherLookCool
-# 235 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 176 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	msgbox GoldenrodUnderground_Text_OlderBrotherWatchItBeautiful
+# 177 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	closemessage
-# 236 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 178 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	fadescreen FADE_TO_BLACK
-# 237 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 179 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	playfanfare MUS_HEAL
-# 238 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 180 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	waitfanfare
-# 239 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 181 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	special HaircutBrother1
-# 240 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 182 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	fadescreen FADE_FROM_BLACK
-# 241 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 183 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	special BufferMonNickname
-# 242 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox GoldenrodUnderground_Text_YoungerBrotherAllDone
-# 243 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 184 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	msgbox GoldenrodUnderground_Text_OlderBrotherAllDone
+# 185 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	hidemoneybox
-# 244 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 186 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	setflag FLAG_GARBAGEFLAG
-# 245 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 187 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	release
-# 246 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 188 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	end
-# 247 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 189 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
-# 248 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_EventScript_Declined_Haircut2::
-# 249 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 190 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+GoldenrodUnderground_EventScript_Declined_Haircut1::
+# 191 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	msgbox GoldenrodUnderground_Text_OlderBrotherThatsAShame, MSGBOX_DEFAULT
+# 192 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	hidemoneybox
+# 193 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	closemessage
+# 194 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	release
+# 195 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	end
+# 196 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+
+# 197 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+GoldenrodUnderground_EventScript_Already_Got_Haircut1::
+# 198 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	msgbox GoldenrodUnderground_Text_OlderBrotherOnePerDay, MSGBOX_DEFAULT
+# 199 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	closemessage
+# 200 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	release
+# 201 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	end
+# 202 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+
+# 203 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+GoldenrodUnderground_EventScript_NotEnough_Haircut1::
+# 204 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	msgbox GoldenrodUnderground_Text_OlderBrotherNeedMoreMoney, MSGBOX_DEFAULT
+# 205 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	closemessage
+# 206 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	hidemoneybox
+# 207 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	release
+# 208 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	end
+# 209 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+
+# 210 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+
+# 211 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+GoldenrodUnderground_EventScript_Brother_Haircut2::
+# 212 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	lock
+# 213 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	faceplayer
+# 214 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	goto_if_set FLAG_GARBAGEFLAG, GoldenrodUnderground_EventScript_Already_Got_Haircut2
+# 215 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	showmoneybox 0, 0
+# 216 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	msgbox GoldenrodUnderground_Text_YoungerBrotherOffer, MSGBOX_YESNO
+# 217 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	goto_if_eq VAR_RESULT, TRUE, GoldenrodUnderground_EventScript_Haircut2
+# 218 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	msgbox GoldenrodUnderground_Text_YoungerBrotherDisappointed, MSGBOX_DEFAULT
+# 219 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	hidemoneybox
+# 220 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	closemessage
+# 221 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	end
+# 222 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+
+# 223 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+GoldenrodUnderground_EventScript_Haircut2::
+# 224 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	msgbox GoldenrodUnderground_Text_YoungerBrotherAskWhich
+# 225 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	special ChoosePartyMon
+# 226 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	waitstate
+# 227 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	showmoneybox 0, 0
+# 228 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	lock
+# 229 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	faceplayer
+# 230 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	goto_if_ge VAR_0x8004, PARTY_SIZE, GoldenrodUnderground_EventScript_Declined_Haircut2
+# 231 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	specialvar VAR_RESULT, ScriptGetPartyMonSpecies
+# 232 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	goto_if_eq VAR_RESULT, SPECIES_EGG, GoldenrodUnderground_EventScript_Declined_Haircut2
+# 233 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	checkmoney 300, 0
+# 234 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	goto_if_eq VAR_RESULT, FALSE, GoldenrodUnderground_EventScript_NotEnough_Haircut2
+# 235 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	removemoney 300
+# 236 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	updatemoneybox 0
+# 237 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	playse SE_SHOP
+# 238 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	msgbox GoldenrodUnderground_Text_YoungerBrotherLookCool
+# 239 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	closemessage
+# 240 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	fadescreen FADE_TO_BLACK
+# 241 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	playfanfare MUS_HEAL
+# 242 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	waitfanfare
+# 243 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	special HaircutBrother1
+# 244 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	fadescreen FADE_FROM_BLACK
+# 245 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	special BufferMonNickname
+# 246 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	msgbox GoldenrodUnderground_Text_YoungerBrotherAllDone
+# 247 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	hidemoneybox
+# 248 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	setflag FLAG_GARBAGEFLAG
+# 249 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	release
 # 250 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	hidemoneybox
+	end
 # 251 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	closemessage
+
 # 252 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	release
+GoldenrodUnderground_EventScript_Declined_Haircut2::
 # 253 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	end
+	msgbox GoldenrodUnderground_Text_YoungerBrotherDisappointed, MSGBOX_DEFAULT
 # 254 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
-# 255 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_EventScript_Already_Got_Haircut2::
-# 256 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox GoldenrodUnderground_Text_YoungerBrotherOnePerDay, MSGBOX_DEFAULT
-# 257 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	closemessage
-# 258 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	release
-# 259 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	end
-# 260 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
-# 261 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_EventScript_NotEnough_Haircut2::
-# 262 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox GoldenrodUnderground_Text_YoungerBrotherShortOnFunds, MSGBOX_DEFAULT
-# 263 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	closemessage
-# 264 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	hidemoneybox
-# 265 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 255 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	closemessage
+# 256 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	release
+# 257 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	end
+# 258 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+
+# 259 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+GoldenrodUnderground_EventScript_Already_Got_Haircut2::
+# 260 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	msgbox GoldenrodUnderground_Text_YoungerBrotherOnePerDay, MSGBOX_DEFAULT
+# 261 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	closemessage
+# 262 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	release
+# 263 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	end
+# 264 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+
+# 265 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+GoldenrodUnderground_EventScript_NotEnough_Haircut2::
 # 266 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	end
+	msgbox GoldenrodUnderground_Text_YoungerBrotherShortOnFunds, MSGBOX_DEFAULT
 # 267 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+	closemessage
 # 268 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+	hidemoneybox
 # 269 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodCity_UndergroundTunnel_MapScript_TryOpenDoor::
+	release
 # 270 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	goto_if_set FLAG_UNLOCKED_GOLDENROD_UNDERGROUND_DOOR, GoldenrodCity_UndergroundTunnel_MapScript_OpenDoor
-# 271 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	end
+# 271 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+
 # 272 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
 # 273 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodCity_UndergroundTunnel_MapScript_OpenDoor::
+GoldenrodCity_UndergroundTunnel_MapScript_TryOpenDoor::
 # 274 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	setmetatile 12, 10, 0x2DD, FALSE
+	goto_if_set FLAG_UNLOCKED_GOLDENROD_UNDERGROUND_DOOR, GoldenrodCity_UndergroundTunnel_MapScript_OpenDoor
 # 275 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	end
 # 276 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
 # 277 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodCity_UndergroundTunnel_EventScript_Door::
+GoldenrodCity_UndergroundTunnel_MapScript_OpenDoor::
 # 278 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	lock
+	setmetatile 12, 10, 0x45D, FALSE
 # 279 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	goto_if_set FLAG_UNLOCKED_GOLDENROD_UNDERGROUND_DOOR, GoldenrodCity_UndergroundTunnel_EventScript_DoorAlreadyOpened
+	end
 # 280 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	checkitem ITEM_BASEMENT_KEY
+
 # 281 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	goto_if_eq VAR_RESULT, TRUE, GoldenrodCity_UndergroundTunnel_EventScript_OpenDoor
+GoldenrodCity_UndergroundTunnel_EventScript_Door::
 # 282 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox GoldenrodUnderground_Text_DoorsLocked, MSGBOX_DEFAULT
+	lock
 # 283 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	closemessage
+	goto_if_set FLAG_UNLOCKED_GOLDENROD_UNDERGROUND_DOOR, GoldenrodCity_UndergroundTunnel_EventScript_DoorAlreadyOpened
 # 284 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	release
+	checkitem ITEM_BASEMENT_KEY
 # 285 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	end
+	goto_if_eq VAR_RESULT, TRUE, GoldenrodCity_UndergroundTunnel_EventScript_OpenDoor
 # 286 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+	msgbox GoldenrodUnderground_Text_DoorsLocked, MSGBOX_DEFAULT
 # 287 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodCity_UndergroundTunnel_EventScript_OpenDoor::
+	closemessage
 # 288 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox GoldenrodUnderground_Text_KeyOpenedDoor, MSGBOX_DEFAULT
+	release
 # 289 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	closemessage
+	end
 # 290 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	setflag FLAG_UNLOCKED_GOLDENROD_UNDERGROUND_DOOR
+
 # 291 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	setmetatile 12, 10, 0x2DD, FALSE
+GoldenrodCity_UndergroundTunnel_EventScript_OpenDoor::
 # 292 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	playse SE_BANG
+	msgbox GoldenrodUnderground_Text_KeyOpenedDoor, MSGBOX_DEFAULT
 # 293 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	special DrawWholeMapView
-# 294 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	waitse
-# 295 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	release
-# 296 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	end
-# 297 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
-# 298 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodCity_UndergroundTunnel_EventScript_DoorAlreadyOpened::
-# 299 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox GoldenrodUnderground_Text_DoorIsOpen, MSGBOX_DEFAULT
-# 300 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	closemessage
-# 301 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 294 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	setflag FLAG_UNLOCKED_GOLDENROD_UNDERGROUND_DOOR
+# 295 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	setmetatile 12, 10, 0x45D, FALSE
+# 296 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	playse SE_BANG
+# 297 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	special DrawWholeMapView
+# 298 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	waitse
+# 299 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	release
-# 302 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 300 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	end
+# 301 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+
+# 302 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+GoldenrodCity_UndergroundTunnel_EventScript_DoorAlreadyOpened::
 # 303 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+	msgbox GoldenrodUnderground_Text_DoorIsOpen, MSGBOX_DEFAULT
 # 304 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+	closemessage
 # 305 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_YoungerBrotherOffer:
+	release
 # 306 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "Welcome to the Pokémon Salon!\p"
+	end
 # 307 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "I'm the younger and less expensive\n"
+
 # 308 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "of the two Haircut Brothers.\p"
+
 # 309 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "I'll spiff up your Pokémon for just\n"
+GoldenrodUnderground_Text_YoungerBrotherOffer:
 # 310 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "¥300.\p"
+    .string "Welcome to the Pokémon Salon!\p"
 # 311 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "So? How about it?$"
+    .string "I'm the younger and less expensive\n"
 # 312 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+    .string "of the two Haircut Brothers.\p"
 # 313 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_YoungerBrotherAskWhich:
+    .string "I'll spiff up your Pokémon for just\n"
 # 314 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "Ok, which Pokémon should I do?$"
+    .string "¥300.\p"
 # 315 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+    .string "So? How about it?$"
 # 316 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_YoungerBrotherLookCool:
+
 # 317 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "Ok! I'll make it look cool!$"
+GoldenrodUnderground_Text_YoungerBrotherAskWhich:
 # 318 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+    .string "Ok, which Pokémon should I do?$"
 # 319 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_YoungerBrotherAllDone:
+
 # 320 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "There we go! All done!$"
+GoldenrodUnderground_Text_YoungerBrotherLookCool:
 # 321 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+    .string "Ok! I'll make it look cool!$"
 # 322 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_YoungerBrotherDisappointed:
+
 # 323 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "No? How disappointing!$"
+GoldenrodUnderground_Text_YoungerBrotherAllDone:
 # 324 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+    .string "There we go! All done!$"
 # 325 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_YoungerBrotherShortOnFunds:
-# 326 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "You're a little short on funds.$"
-# 327 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
+# 326 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+GoldenrodUnderground_Text_YoungerBrotherDisappointed:
+# 327 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+    .string "No? How disappointing!$"
 # 328 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_YoungerBrotherOnePerDay:
+
 # 329 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "I can do only one haircut a day.\p"
+GoldenrodUnderground_Text_YoungerBrotherShortOnFunds:
 # 330 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "Sorry, but I'm all done for today.$"
+    .string "You're a little short on funds.$"
 # 331 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
 # 332 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+GoldenrodUnderground_Text_YoungerBrotherOnePerDay:
 # 333 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+    .string "I can do only one haircut a day.\p"
 # 334 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_OlderBrotherOffer:
+    .string "Sorry, but I'm all done for today.$"
 # 335 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "Welcome!\p"
+
 # 336 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "I run the Pokémon Salon!\p"
+
 # 337 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "I'm the older and better of the two\n"
+
 # 338 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "Haircut Brothers.\p"
+GoldenrodUnderground_Text_OlderBrotherOffer:
 # 339 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "I can make your Pokémon beautiful\n"
+    .string "Welcome!\p"
 # 340 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "for just ¥500.\p"
+    .string "I run the Pokémon Salon!\p"
 # 341 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "Would you like me to do that?$"
+    .string "I'm the older and better of the two\n"
 # 342 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+    .string "Haircut Brothers.\p"
 # 343 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_OlderBrotherAskWhich:
+    .string "I can make your Pokémon beautiful\n"
 # 344 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "Which Pokémon should I work on?$"
+    .string "for just ¥500.\p"
 # 345 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+    .string "Would you like me to do that?$"
 # 346 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_OlderBrotherWatchItBeautiful:
+
 # 347 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "Ok! Watch it become beautiful!$"
+GoldenrodUnderground_Text_OlderBrotherAskWhich:
 # 348 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+    .string "Which Pokémon should I work on?$"
 # 349 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_OlderBrotherAllDone:
+
 # 350 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "There! All done!$"
+GoldenrodUnderground_Text_OlderBrotherWatchItBeautiful:
 # 351 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+    .string "Ok! Watch it become beautiful!$"
 # 352 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_OlderBrotherThatsAShame:
+
 # 353 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "Is that right? That's a shame!$"
+GoldenrodUnderground_Text_OlderBrotherAllDone:
 # 354 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+    .string "There! All done!$"
 # 355 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_OlderBrotherNeedMoreMoney:
-# 356 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "You'll need more money than that.$"
-# 357 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
+# 356 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+GoldenrodUnderground_Text_OlderBrotherThatsAShame:
+# 357 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+    .string "Is that right? That's a shame!$"
 # 358 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_OlderBrotherOnePerDay:
+
 # 359 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "I do only one haircut a day.\n"
+GoldenrodUnderground_Text_OlderBrotherNeedMoreMoney:
 # 360 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "I'm done for today.$"
+    .string "You'll need more money than that.$"
 # 361 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
 # 362 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_SupernerdEricSeen:
+GoldenrodUnderground_Text_OlderBrotherOnePerDay:
 # 363 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "I got booted out of the Game Corner.\p"
+    .string "I do only one haircut a day.\n"
 # 364 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "I was trying to cheat using my\n"
+    .string "I'm done for today.$"
 # 365 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "Pokémon…$"
+
 # 366 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+GoldenrodUnderground_Text_SupernerdEricSeen:
 # 367 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_SupernerdEricBeaten:
+    .string "I got booted out of the Game Corner.\p"
 # 368 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "…Grumble…$"
+    .string "I was trying to cheat using my\n"
 # 369 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+    .string "Pokémon…$"
 # 370 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_SupernerdEricAfterBattle:
+
 # 371 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "I guess I have to do things fair and\n"
+GoldenrodUnderground_Text_SupernerdEricBeaten:
 # 372 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "square…$"
+    .string "…Grumble…$"
 # 373 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
 # 374 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_SupernerdTeruSeen:
+GoldenrodUnderground_Text_SupernerdEricAfterBattle:
 # 375 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "Do you consider type alignments in\n"
+    .string "I guess I have to do things fair and\n"
 # 376 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "battle?\p"
+    .string "square…$"
 # 377 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "If you know your type advantages,\n"
+
 # 378 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "you'll do better in battle.$"
+GoldenrodUnderground_Text_SupernerdTeruSeen:
 # 379 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+    .string "Do you consider type alignments in\n"
 # 380 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_SupernerdTeruBeaten:
+    .string "battle?\p"
 # 381 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "Ow, ow, ow!$"
+    .string "If you know your type advantages,\n"
 # 382 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+    .string "you'll do better in battle.$"
 # 383 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_SupernerdTeruAfterBattle:
+
 # 384 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "I know my Pokémon type alignments.\p"
+GoldenrodUnderground_Text_SupernerdTeruBeaten:
 # 385 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "But I only use one type of Pokémon.$"
+    .string "Ow, ow, ow!$"
 # 386 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
 # 387 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_PokemaniacIssacSeen:
+GoldenrodUnderground_Text_SupernerdTeruAfterBattle:
 # 388 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "My Pokémon just got a haircut!\p"
+    .string "I know my Pokémon type alignments.\p"
 # 389 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "I'll show you how strong it is!$"
+    .string "But I only use one type of Pokémon.$"
 # 390 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
 # 391 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_PokemaniacIssacBeaten:
+GoldenrodUnderground_Text_PokemaniacIssacSeen:
 # 392 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "Aiyeeee!$"
+    .string "My Pokémon just got a haircut!\p"
 # 393 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+    .string "I'll show you how strong it is!$"
 # 394 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_PokemaniacIssacAfterBattle:
+
 # 395 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "Your Pokémon will like you more if\n"
+GoldenrodUnderground_Text_PokemaniacIssacBeaten:
 # 396 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "you give them haircuts.$"
+    .string "Aiyeeee!$"
 # 397 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
 # 398 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_PokemaniacDonaldSeen:
+GoldenrodUnderground_Text_PokemaniacIssacAfterBattle:
 # 399 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "I think you have some rare Pokémon\n"
+    .string "Your Pokémon will like you more if\n"
 # 400 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "with you.\p"
+    .string "you give them haircuts.$"
 # 401 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "Let me see them!$"
+
 # 402 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+GoldenrodUnderground_Text_PokemaniacDonaldSeen:
 # 403 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_PokemaniacDonaldBeaten:
+    .string "I think you have some rare Pokémon\n"
 # 404 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "Gaah! I lost! That makes me mad!$"
+    .string "with you.\p"
 # 405 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+    .string "Let me see them!$"
 # 406 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_PokemaniacDonaldAfterBattle:
+
 # 407 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	.string "When I was walking near the Bike\n"
+GoldenrodUnderground_Text_PokemaniacDonaldBeaten:
 # 408 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	.string "Shop last night, I felt like I was\l"
+    .string "Gaah! I lost! That makes me mad!$"
 # 409 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	.string "being watched from the rooftops...$"
+
 # 410 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+GoldenrodUnderground_Text_PokemaniacDonaldAfterBattle:
 # 411 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_PokemaniacDonaldAfterBattleOld:
+	.string "When I was walking near the Bike\n"
 # 412 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "Are you making a Pokédex? Here's a\n"
+	.string "Shop last night, I felt like I was\l"
 # 413 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "hot tip.\p"
+	.string "being watched from the rooftops...$"
 # 414 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "The Hiker on Route 33, Anthony, is a\n"
+
 # 415 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "good guy.\p"
+GoldenrodUnderground_Text_PokemaniacDonaldAfterBattleOld:
 # 416 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "He'll phone you if he sees any rare\n"
+    .string "Are you making a Pokédex? Here's a\n"
 # 417 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "Pokémon.$"
+    .string "hot tip.\p"
 # 418 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+    .string "The Hiker on Route 33, Anthony, is a\n"
 # 419 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_DoorsLocked:
+    .string "good guy.\p"
 # 420 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "The door's locked…$"
+    .string "He'll phone you if he sees any rare\n"
 # 421 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+    .string "Pokémon.$"
 # 422 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_DoorIsOpen:
+
 # 423 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "The door is open.$"
+GoldenrodUnderground_Text_DoorsLocked:
 # 424 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-
+    .string "The door's locked…$"
 # 425 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_KeyOpenedDoor:
-# 426 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-    .string "The Basement Key opened the door.$"
-# 427 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 
+# 426 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+GoldenrodUnderground_Text_DoorIsOpen:
+# 427 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+    .string "The door is open.$"
 # 428 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-GoldenrodUnderground_Text_NoEntry:
+
 # 429 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+GoldenrodUnderground_Text_KeyOpenedDoor:
+# 430 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+    .string "The Basement Key opened the door.$"
+# 431 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+
+# 432 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+GoldenrodUnderground_Text_NoEntry:
+# 433 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
     .string "No Entry Beyond This Point$"
 
 goldenrod_utility_shop_girl::
-# 434 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	lock
-# 435 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox goldenrod_utility_shop_girl_Text_0
-# 436 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	waitmessage
-# 437 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	pokemart goldenrod_utility_shop
 # 438 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	msgbox goldenrod_utility_shop_girl_Text_1
+	lock
 # 439 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	msgbox goldenrod_utility_shop_girl_Text_0
+# 440 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	waitmessage
+# 441 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	pokemart goldenrod_utility_shop
+# 442 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	msgbox goldenrod_utility_shop_girl_Text_1
+# 443 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	release
 	return
 
 
 	.align 2
-# 442 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-goldenrod_utility_shop:
-# 443 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	.2byte ITEM_UTILITY_UMBRELLA
-# 444 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	.2byte ITEM_COVERT_CLOAK
-# 445 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	.2byte ITEM_ABILITY_SHIELD
 # 446 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+goldenrod_utility_shop:
+# 447 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	.2byte ITEM_UTILITY_UMBRELLA
+# 448 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	.2byte ITEM_COVERT_CLOAK
+# 449 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	.2byte ITEM_ABILITY_SHIELD
+# 450 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	.2byte ITEM_CLEAR_AMULET
 	.2byte ITEM_NONE
 
 suspiciousdoor_goldenrod_underground::
-# 450 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 454 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	lock
-# 451 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 455 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	msgbox suspiciousdoor_goldenrod_underground_Text_0
-# 452 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 456 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	waitmessage
-# 453 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 457 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	release
 	end
 
 
 rocket_bouncer::
-# 458 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 462 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	lock
-# 459 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	faceplayer
-# 460 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	goto_if_set FLAG_GOLDEN_COLOSSEUM, rocket_bouncer_2
 # 463 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	faceplayer
+# 464 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	goto_if_set FLAG_GOLDEN_COLOSSEUM, rocket_bouncer_2
+# 467 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	msgbox rocket_bouncer_Text_1
 rocket_bouncer_1:
-# 465 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 469 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	release
 	end
 
 rocket_bouncer_2:
-# 461 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 465 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	msgbox rocket_bouncer_Text_0
 	goto rocket_bouncer_1
 
 
 goldenrod_utility_shop_girl_Text_0:
-# 435 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 439 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	.string "Hi, take a look at my exclusive wares!$"
 
 goldenrod_utility_shop_girl_Text_1:
-# 438 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 442 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	.string "Come on, buy some more!$"
 
 suspiciousdoor_goldenrod_underground_Text_0:
-# 451 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 455 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	.string "Door seems to be locked, but you can\n"
 	.string "faintly discern noise coming from\l"
 	.string "somewhere far behind the door.$"
 
 rocket_bouncer_Text_0:
-# 461 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 465 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	.string "TODO$"
 
 rocket_bouncer_Text_1:
-# 463 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 467 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	.string "Sorry kid, only those with special\n"
 	.string "permission are allowed past here.$"

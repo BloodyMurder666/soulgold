@@ -1165,9 +1165,38 @@ static bool16 IsInfiltratedSpaceCenter(struct WarpData *warp)
     return FALSE;
 }
 
+static bool16 IsGoldenrodRocketTakeover(struct WarpData *warp)
+{
+    u16 state = VarGet(VAR_GOLDENROD_CITY_STATE);
+
+    if (state < 6 || state >= 11)
+        return FALSE;
+
+    if (warp->mapGroup == MAP_GROUP(MAP_GOLDENROD_CITY)
+     && warp->mapNum == MAP_NUM(MAP_GOLDENROD_CITY))
+        return TRUE;
+
+    if (warp->mapGroup != MAP_GROUP(MAP_GOLDENROD_CITY_RADIO_TOWER_1F))
+        return FALSE;
+
+    switch (warp->mapNum)
+    {
+    case MAP_NUM(MAP_GOLDENROD_CITY_RADIO_TOWER_1F):
+    case MAP_NUM(MAP_GOLDENROD_CITY_RADIO_TOWER_2F):
+    case MAP_NUM(MAP_GOLDENROD_CITY_RADIO_TOWER_3F):
+    case MAP_NUM(MAP_GOLDENROD_CITY_RADIO_TOWER_4F):
+    case MAP_NUM(MAP_GOLDENROD_CITY_RADIO_TOWER_5F):
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
 u16 GetLocationMusic(struct WarpData *warp)
 {
-    if (NoMusicInSootopolisWithLegendaries(warp) == TRUE)
+    if (IsGoldenrodRocketTakeover(warp) == TRUE)
+        return MUS_HG_ROCKET_TAKEOVER;
+    else if (NoMusicInSootopolisWithLegendaries(warp) == TRUE)
         return MUS_NONE;
     else if (ShouldLegendaryMusicPlayAtLocation(warp) == TRUE)
         return MUS_ABNORMAL_WEATHER;

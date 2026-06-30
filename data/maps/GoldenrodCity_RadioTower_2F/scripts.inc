@@ -294,9 +294,8 @@ GoldenrodCity_RadioTower_2F_EventScript_Jigglypuff::
 	end
 
 RadioTower2FBuenaPasswordIsHelpText:
-	.string "Buena: Thank you for listening\n"
-	.string "in every day!\p"
-	.string "Tune in to my password show!$"
+	.string "Buena: Today's password?\n"
+	.string "Help, of course!$"
 
 GoldenrodCity_RadioTower_2F_Text_BuenaGreeting:
 	.string "Buena: Hi! This is the studio\n"

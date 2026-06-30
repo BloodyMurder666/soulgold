@@ -13,11 +13,13 @@ GoldenrodCity_UndergroundTunnel_EventScript_KimonoTriggerBot::
 	playbgm MUS_HG_KIMONO_GIRL, TRUE
 	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, GoldenrodCity_UndergroundTunnel_Movement_Kimono_WalkToPlayerBot
 	waitmovement 0
+	createfieldmugshot MUGSHOT_KIMONO_GIRL
 	msgbox GoldenrodCity_UndergroundTunnel_Text_Kimono1, MSGBOX_DEFAULT
 	closemessage
 	playse SE_PIN
 	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, Common_Movement_ExclamationMark
 	delay 60
+	createfieldmugshot MUGSHOT_KIMONO_GIRL
 	msgbox GoldenrodCity_UndergroundTunnel_Text_Kimono2, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, Common_Movement_WalkUp1
@@ -40,11 +42,13 @@ GoldenrodCity_UndergroundTunnel_EventScript_KimonoTriggerTop::
 	playbgm MUS_HG_KIMONO_GIRL, TRUE
 	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, GoldenrodCity_UndergroundTunnel_Movement_Kimono_WalkToPlayerTop
 	waitmovement 0
+	createfieldmugshot MUGSHOT_KIMONO_GIRL
 	msgbox GoldenrodCity_UndergroundTunnel_Text_Kimono1, MSGBOX_DEFAULT
 	closemessage
 	playse SE_PIN
 	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, Common_Movement_ExclamationMark
 	delay 60
+	createfieldmugshot MUGSHOT_KIMONO_GIRL
 	msgbox GoldenrodCity_UndergroundTunnel_Text_Kimono2, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_GOLDENROD_UNDERGROUND_KIMONO, Common_Movement_WalkDown1
@@ -271,7 +275,7 @@ GoldenrodCity_UndergroundTunnel_MapScript_TryOpenDoor::
 	end
 
 GoldenrodCity_UndergroundTunnel_MapScript_OpenDoor::
-	setmetatile 12, 10, 0x2DD, FALSE
+	setmetatile 12, 10, 0x45D, FALSE
 	end
 
 GoldenrodCity_UndergroundTunnel_EventScript_Door::
@@ -288,7 +292,7 @@ GoldenrodCity_UndergroundTunnel_EventScript_OpenDoor::
 	msgbox GoldenrodUnderground_Text_KeyOpenedDoor, MSGBOX_DEFAULT
 	closemessage
 	setflag FLAG_UNLOCKED_GOLDENROD_UNDERGROUND_DOOR
-	setmetatile 12, 10, 0x2DD, FALSE
+	setmetatile 12, 10, 0x45D, FALSE
 	playse SE_BANG
 	special DrawWholeMapView
 	waitse

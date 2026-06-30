@@ -869,7 +869,6 @@ static u32 ConvertCandyJarExpToCandies(u8 *summaryDst)
         u32 expYield;
     } sCandyInfo[] =
     {
-        {ITEM_EXP_CANDY_XL, 30000},
         {ITEM_EXP_CANDY_L, 10000},
         {ITEM_EXP_CANDY_M, 3000},
         {ITEM_EXP_CANDY_S, 800},

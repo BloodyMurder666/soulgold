@@ -539,7 +539,7 @@ Name: Rich
 Class: Collector
 Pic: Collector
 Gender: Male
-Music: Male
+Music: Hg Suspicious 2
 Double Battle: No
 AI: Check Bad Move
 
@@ -1365,24 +1365,21 @@ Double Battle: No
 AI: Smart Trainer
 
 Scrafty
-Level: 46
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Hi Jump Kick
+Level: 48
+IVs: 21 HP / 21 Atk / 21 Def / 21 SpA / 21 SpD / 21 Spe
+- Brick Break
 - Crunch
 - Parting Shot
 - Iron Tail
 
-Sharpedo
-Level: 46
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Surf
-- Aqua Jet
-- Ice Beam
-- Crunch 
+Rotom-Wash
+Level: 49
+IVs: 21 HP / 21 Atk / 21 Def / 21 SpA / 21 SpD / 21 Spe
+
 
 Persian Alola
-Level: 46
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Level: 48
+IVs: 21 HP / 21 Atk / 21 Def / 21 SpA / 21 SpD / 21 Spe
 - Slash
 - Night Slash
 - Parting Shot
@@ -1390,19 +1387,83 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
 Pyroar @ Firetite
 Level: 49
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 21 HP / 21 Atk / 21 Def / 21 SpA / 21 SpD / 21 Spe
 - Flamethrower
 - Hyper Voice
 - Earth Power
 - Snarl
 
 Weezing Galar
-Level: 46
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Level: 48
+IVs: 21 HP / 21 Atk / 21 Def / 21 SpA / 21 SpD / 21 Spe
 - Heat Wave
 - Sludge Bomb
 - Gyro Ball
 - Thunderbolt
+
+=== TRAINER_PETREL_2 ===
+Name: Petrel
+Class: RocketA
+Pic: Petrel
+Gender: Male
+Music: Rocket
+Double Battle: No
+AI: Smart Trainer
+Difficulty: Hard
+
+Scrafty @ Choice Specs
+Level: 49
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 160 Atk / 160 Spe
+- Hi Jump Kick
+- Crunch
+- Parting Shot
+- Iron Tail
+
+Honchkrow @ Sharp Beak
+Level: 49
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 160 Atk / 160 Spe
+- Night Slash
+- Aerial Ace
+- Swagger
+- Foul Play
+
+Persian Alola @ Scope Lens
+Level: 49
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 160 Atk / 160 Spe
+- Slash
+- Night Slash
+- Parting Shot
+- Play Rough
+
+Pyroar @ Firetite
+Level: 51
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 160 SpA / 160 Spe
+- Flamethrower
+- Hyper Voice
+- Earth Power
+- Snarl
+
+Weezing Galar @ Assault Vest
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 160 SpA / 160 HP
+- Heat Wave
+- Sludge Bomb
+- Gyro Ball
+- Thunderbolt
+
+Rotom-Wash @ Mystic Water
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 160 SpA / 160 Spe
+- Hydro Pump
+- Shadow Ball
+- Dark Pulse
+- Thunder Wave
 
 === TRAINER_PETREL_1 ===
 Name: Petrel
@@ -3464,7 +3525,7 @@ AI: Smart Trainer
 Mugshot: Blue
 
 Gengar
-Level: 47
+Level: 48
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Hypnosis
 - Thunderbolt
@@ -3472,7 +3533,7 @@ IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Dream Eater
 
 Bisharp
-Level: 47
+Level: 48
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Night Slash
 - Low Sweep
@@ -3480,7 +3541,7 @@ IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Aerial Ace
 
 Staraptor
-Level: 47
+Level: 48
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Brave Bird
 - Close Combat
@@ -3488,7 +3549,7 @@ IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Facade
 
 Victreebel
-Level: 47
+Level: 49
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Solar Beam
 - Giga Drain
@@ -3496,7 +3557,7 @@ IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Sleep Powder
 
 Feraligatr @ Life Orb
-Level: 48
+Level: 49
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Crunch
 - Ice Punch
@@ -3515,40 +3576,45 @@ Mugshot: Blue
 Difficulty: Hard
 
 Gengar @ Focus Sash
-Level: 47
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 49
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 Spe
 - Hypnosis
 - Thunderbolt
 - Shadow Ball
 - Dream Eater
 
 Bisharp @ Chople Berry
-Level: 47
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 252 Spe
 - Night Slash
 - Low Sweep
 - Iron Head
 - Aerial Ace
 
 Staraptor @ Sharp Beak
-Level: 47
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 49
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 252 Spe
 - Brave Bird
 - Close Combat
 - U-Turn
 - Facade
 
 Victreebel @ Black Sludge
-Level: 47
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 HP
 - Solar Beam
 - Giga Drain
 - Sludge Bomb
 - Sleep Powder
 
 Feraligatr @ Life Orb
-Level: 48
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 51
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 252 HP
 - Crunch
 - Ice Punch
 - Liquidation
@@ -6585,7 +6651,7 @@ AI: Smart Trainer
 Mugshot: Blue
 
 Gengar
-Level: 47
+Level: 48
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Hypnosis
 - Thunderbolt
@@ -6593,7 +6659,7 @@ IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Dream Eater
 
 Bisharp
-Level: 47
+Level: 48
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Night Slash
 - Low Sweep
@@ -6601,7 +6667,7 @@ IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Aerial Ace
 
 Staraptor
-Level: 47
+Level: 48
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Brave Bird
 - Close Combat
@@ -6609,7 +6675,7 @@ IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Facade
 
 Clodsire
-Level: 47
+Level: 48
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Earthquake
 - Sludge Bomb
@@ -6636,40 +6702,45 @@ Mugshot: Blue
 Difficulty: Hard
 
 Gengar @ Focus Sash
-Level: 47
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 49
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 Spe
 - Hypnosis
 - Thunderbolt
 - Shadow Ball
 - Dream Eater
 
 Bisharp @ Chople Berry
-Level: 47
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 252 Spe
 - Night Slash
 - Low Sweep
 - Iron Head
 - Aerial Ace
 
 Staraptor @ Sharp Beak
-Level: 47
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 49
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 252 Spe
 - Brave Bird
 - Close Combat
 - U-Turn
 - Facade
 
 Clodsire @ Shuca Berry
-Level: 47
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 HP
 - Earthquake
 - Sludge Bomb
 - Yawn
 - Muddy Water
 
 Typhlosion @ Choice Specs
-Level: 48
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 51
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 Spe
 - Flamethrower
 - Scorching Sands
 - Swift
@@ -7225,7 +7296,7 @@ Name: Marc
 Class: Collector
 Pic: Collector
 Gender: Male
-Music: Male
+Music: Hg Suspicious 2
 Double Battle: No
 AI: Check Bad Move
 
@@ -11480,7 +11551,7 @@ AI: Smart Trainer
 Mugshot: Pink
 
 Floatzel
-Level: 47
+Level: 48
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Ice Spinner
 - Liquidation
@@ -11488,7 +11559,7 @@ IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Taunt
 
 Bisharp
-Level: 47
+Level: 48
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Night Slash
 - Low Sweep
@@ -11496,7 +11567,7 @@ IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Aerial Ace
 
 Staraptor
-Level: 47
+Level: 48
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Brave Bird
 - Close Combat
@@ -11504,7 +11575,7 @@ IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Facade
 
 Chandelure
-Level: 47
+Level: 49
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Flamethrower
 - Shadow Ball
@@ -11512,7 +11583,7 @@ IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Acid Armor
 
 Meganium @ Big Root
-Level: 48
+Level: 49
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Giga Drain
 - Draining Kiss
@@ -11531,40 +11602,45 @@ Mugshot: Pink
 Difficulty: Hard
 
 Floatzel @ Focus Sash
-Level: 47
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 49
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 252 Spe
 - Ice Spinner
 - Liquidation
 - Brick Break
 - Taunt
 
 Bisharp @ Chople Berry
-Level: 47
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 252 Spe
 - Night Slash
 - Low Sweep
 - Iron Head
 - Aerial Ace
 
 Staraptor @ Sharp Beak
-Level: 47
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 49
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 252 Spe
 - Brave Bird
 - Close Combat
 - U-Turn
 - Facade
 
 Chandelure @ Charcoal
-Level: 47
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 Spe
 - Flamethrower
 - Shadow Ball
 - Energy Ball
 - Acid Armor
 
 Meganium @ Big Root
-Level: 48
-IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Level: 51
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 HP
 - Giga Drain
 - Draining Kiss
 - Light Screen

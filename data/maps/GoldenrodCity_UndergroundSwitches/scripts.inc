@@ -207,124 +207,124 @@ GoldenrodCity_UndergroundSwitches_EventScript_Panel3Activate:: @unlock item 1
 @==============================================================================================================================================
 
 GoldenrodCity_UndergroundSwitches_EventScript_CreateWall1::
-	setmetatile 5, 7, 0x399, FALSE
-	setmetatile 6, 7, 0x39A, FALSE
-	setmetatile 7, 7, 0x39B, FALSE
+	setmetatile 5, 7, 0x519, FALSE
+	setmetatile 6, 7, 0x51A, FALSE
+	setmetatile 7, 7, 0x51B, FALSE
 
-	setmetatile 5, 8, 0x3A1, FALSE
-	setmetatile 6, 8, 0x3A2, FALSE
-	setmetatile 7, 8, 0x3A3, FALSE
+	setmetatile 5, 8, 0x521, FALSE
+	setmetatile 6, 8, 0x522, FALSE
+	setmetatile 7, 8, 0x523, FALSE
 	return
 
 GoldenrodCity_UndergroundSwitches_EventScript_CreateWall2::
-	setmetatile 14, 7, 0x399, FALSE
-	setmetatile 15, 7, 0x39A, FALSE
-	setmetatile 16, 7, 0x39B, FALSE
+	setmetatile 14, 7, 0x519, FALSE
+	setmetatile 15, 7, 0x51A, FALSE
+	setmetatile 16, 7, 0x51B, FALSE
 
-	setmetatile 14, 8, 0x3A1, FALSE
-	setmetatile 15, 8, 0x3A2, FALSE
-	setmetatile 16, 8, 0x3A3, FALSE
+	setmetatile 14, 8, 0x521, FALSE
+	setmetatile 15, 8, 0x522, FALSE
+	setmetatile 16, 8, 0x523, FALSE
 	return
 
 GoldenrodCity_UndergroundSwitches_EventScript_CreateWall3::
-	setmetatile 23, 7, 0x399, FALSE
-	setmetatile 24, 7, 0x39A, FALSE
-	setmetatile 25, 7, 0x39B, FALSE
+	setmetatile 23, 7, 0x519, FALSE
+	setmetatile 24, 7, 0x51A, FALSE
+	setmetatile 25, 7, 0x51B, FALSE
 
-	setmetatile 23, 8, 0x3A1, FALSE
-	setmetatile 24, 8, 0x3A2, FALSE
-	setmetatile 25, 8, 0x3A3, FALSE
+	setmetatile 23, 8, 0x521, FALSE
+	setmetatile 24, 8, 0x522, FALSE
+	setmetatile 25, 8, 0x523, FALSE
 	return
 
 GoldenrodCity_UndergroundSwitches_EventScript_CreateWall4::
-	setmetatile 5, 11, 0x399, FALSE
-	setmetatile 6, 11, 0x39A, FALSE
-	setmetatile 7, 11, 0x39B, FALSE
+	setmetatile 5, 11, 0x519, FALSE
+	setmetatile 6, 11, 0x51A, FALSE
+	setmetatile 7, 11, 0x51B, FALSE
 
-	setmetatile 5, 12, 0x3A1, FALSE
-	setmetatile 6, 12, 0x3A2, FALSE
-	setmetatile 7, 12, 0x3A3, FALSE
+	setmetatile 5, 12, 0x521, FALSE
+	setmetatile 6, 12, 0x522, FALSE
+	setmetatile 7, 12, 0x523, FALSE
 	return
 
 GoldenrodCity_UndergroundSwitches_EventScript_CreateWall5::
-	setmetatile 14, 11, 0x399, FALSE
-	setmetatile 15, 11, 0x39A, FALSE
-	setmetatile 16, 11, 0x39B, FALSE
+	setmetatile 14, 11, 0x519, FALSE
+	setmetatile 15, 11, 0x51A, FALSE
+	setmetatile 16, 11, 0x51B, FALSE
 
-	setmetatile 14, 12, 0x3A1, FALSE
-	setmetatile 15, 12, 0x3A2, FALSE
-	setmetatile 16, 12, 0x3A3, FALSE
+	setmetatile 14, 12, 0x521, FALSE
+	setmetatile 15, 12, 0x522, FALSE
+	setmetatile 16, 12, 0x523, FALSE
 	return
 
 GoldenrodCity_UndergroundSwitches_EventScript_CreateWall6::
-	setmetatile 23, 11, 0x399, FALSE
-	setmetatile 24, 11, 0x39A, FALSE
-	setmetatile 25, 11, 0x39B, FALSE
+	setmetatile 23, 11, 0x519, FALSE
+	setmetatile 24, 11, 0x51A, FALSE
+	setmetatile 25, 11, 0x51B, FALSE
 
-	setmetatile 23, 12, 0x3A1, FALSE
-	setmetatile 24, 12, 0x3A2, FALSE
-	setmetatile 25, 12, 0x3A3, FALSE
+	setmetatile 23, 12, 0x521, FALSE
+	setmetatile 24, 12, 0x522, FALSE
+	setmetatile 25, 12, 0x523, FALSE
 	return
 @======================================================================================================================
 
 GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall1::
-	setmetatile 5, 7, 0x378, FALSE
-	setmetatile 6, 7, 0x379, FALSE
-	setmetatile 7, 7, 0x37A, FALSE
+	setmetatile 5, 7, 0x4F8, FALSE
+	setmetatile 6, 7, 0x4F9, FALSE
+	setmetatile 7, 7, 0x4FA, FALSE
 	
-	setmetatile 5, 8, 0x380, FALSE
-	setmetatile 6, 8, 0x381, FALSE
-	setmetatile 7, 8, 0x382, FALSE
+	setmetatile 5, 8, 0x500, FALSE
+	setmetatile 6, 8, 0x501, FALSE
+	setmetatile 7, 8, 0x502, FALSE
 	return
 
 GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall2::
-	setmetatile 14, 7, 0x378, FALSE
-	setmetatile 15, 7, 0x379, FALSE
-	setmetatile 16, 7, 0x37A, FALSE
+	setmetatile 14, 7, 0x4F8, FALSE
+	setmetatile 15, 7, 0x4F9, FALSE
+	setmetatile 16, 7, 0x4FA, FALSE
 	
-	setmetatile 14, 8, 0x380, FALSE
-	setmetatile 15, 8, 0x381, FALSE
-	setmetatile 16, 8, 0x382, FALSE
+	setmetatile 14, 8, 0x500, FALSE
+	setmetatile 15, 8, 0x501, FALSE
+	setmetatile 16, 8, 0x502, FALSE
 	return
 
 GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall3::
-	setmetatile 23, 7, 0x378, FALSE
-	setmetatile 24, 7, 0x379, FALSE
-	setmetatile 25, 7, 0x37A, FALSE
+	setmetatile 23, 7, 0x4F8, FALSE
+	setmetatile 24, 7, 0x4F9, FALSE
+	setmetatile 25, 7, 0x4FA, FALSE
 	
-	setmetatile 23, 8, 0x380, FALSE
-	setmetatile 24, 8, 0x381, FALSE
-	setmetatile 25, 8, 0x382, FALSE
+	setmetatile 23, 8, 0x500, FALSE
+	setmetatile 24, 8, 0x501, FALSE
+	setmetatile 25, 8, 0x502, FALSE
 	return
 
 GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall4::
-	setmetatile 5, 11, 0x378, FALSE
-	setmetatile 6, 11, 0x379, FALSE
-	setmetatile 7, 11, 0x37A, FALSE
+	setmetatile 5, 11, 0x4F8, FALSE
+	setmetatile 6, 11, 0x4F9, FALSE
+	setmetatile 7, 11, 0x4FA, FALSE
 	
-	setmetatile 5, 12, 0x380, FALSE
-	setmetatile 6, 12, 0x381, FALSE
-	setmetatile 7, 12, 0x382, FALSE
+	setmetatile 5, 12, 0x500, FALSE
+	setmetatile 6, 12, 0x501, FALSE
+	setmetatile 7, 12, 0x502, FALSE
 	return
 
 GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall5::
-	setmetatile 14, 11, 0x378, FALSE
-	setmetatile 15, 11, 0x379, FALSE
-	setmetatile 16, 11, 0x37A, FALSE
+	setmetatile 14, 11, 0x4F8, FALSE
+	setmetatile 15, 11, 0x4F9, FALSE
+	setmetatile 16, 11, 0x4FA, FALSE
 	
-	setmetatile 14, 12, 0x380, FALSE
-	setmetatile 15, 12, 0x381, FALSE
-	setmetatile 16, 12, 0x382, FALSE
+	setmetatile 14, 12, 0x500, FALSE
+	setmetatile 15, 12, 0x501, FALSE
+	setmetatile 16, 12, 0x502, FALSE
 	return
 
 GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall6::
-	setmetatile 23, 11, 0x378, FALSE
-	setmetatile 24, 11, 0x379, FALSE
-	setmetatile 25, 11, 0x37A, FALSE
+	setmetatile 23, 11, 0x4F8, FALSE
+	setmetatile 24, 11, 0x4F9, FALSE
+	setmetatile 25, 11, 0x4FA, FALSE
 	
-	setmetatile 23, 12, 0x380, FALSE
-	setmetatile 24, 12, 0x381, FALSE
-	setmetatile 25, 12, 0x382, FALSE
+	setmetatile 23, 12, 0x500, FALSE
+	setmetatile 24, 12, 0x501, FALSE
+	setmetatile 25, 12, 0x502, FALSE
 	return
 
 GoldenrodCity_UndergroundSwitches_EventScript_SilverTriggerTop::
@@ -341,12 +341,14 @@ GoldenrodCity_UndergroundSwitches_EventScript_SilverTriggerTop::
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkRight1
 	waitmovement 0
 	waitmovement 0
+	createfieldmugshot MUGSHOT_SILVER
 	msgbox GoldenrodUnderground_Text_SilverBefore, MSGBOX_DEFAULT
 	closemessage
 	call_if_eq VAR_STARTER_MON, 0, GoldenrodCity_UndergroundSwitches_EventScript_Cyndaquil
 	call_if_eq VAR_STARTER_MON, 1, GoldenrodCity_UndergroundSwitches_EventScript_Totodile
 	call_if_eq VAR_STARTER_MON, 2, GoldenrodCity_UndergroundSwitches_EventScript_Chikorita
 	playbgm MUS_HG_RIVAL_EXIT, TRUE
+	createfieldmugshot MUGSHOT_SILVER
 	msgbox GoldenrodUnderground_Text_SilverAfter, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_GOLDENROD_UNDERGROUND_SILVER, GoldenrodCity_UndergroundSwitches_Movement_SilverLeaveTop
@@ -375,12 +377,14 @@ GoldenrodCity_UndergroundSwitches_EventScript_SilverTriggerBot::
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkRight1
 	waitmovement 0
 	waitmovement 0
+	createfieldmugshot MUGSHOT_SILVER
 	msgbox GoldenrodUnderground_Text_SilverBefore, MSGBOX_DEFAULT
 	closemessage
 	call_if_eq VAR_STARTER_MON, 0, GoldenrodCity_UndergroundSwitches_EventScript_Cyndaquil
 	call_if_eq VAR_STARTER_MON, 1, GoldenrodCity_UndergroundSwitches_EventScript_Totodile
 	call_if_eq VAR_STARTER_MON, 2, GoldenrodCity_UndergroundSwitches_EventScript_Chikorita
 	playbgm MUS_HG_RIVAL_EXIT, TRUE
+	createfieldmugshot MUGSHOT_SILVER
 	msgbox GoldenrodUnderground_Text_SilverAfter, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_GOLDENROD_UNDERGROUND_SILVER, GoldenrodCity_UndergroundSwitches_Movement_SilverLeaveBot
