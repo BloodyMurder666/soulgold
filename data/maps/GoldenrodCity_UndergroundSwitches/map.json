@@ -236,7 +236,7 @@
       "y": 9,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "GoldenrodCity_UndergroundSwitches_EventScript_AntiSoftLock"
+      "script": "GoldenrodCity_UndergroundSwitches_EventScript_EmergencyRelease"
     },
     {
       "type": "sign",

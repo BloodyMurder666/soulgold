@@ -3,7 +3,6 @@ raw `
 .set LOCALID_GOLDENROD_ARCHER, 2
 .set LOCALID_GOLDENROD_ARIANA, 3
 .set LOCALID_PETREL_OFFICE, 4
-.set LOCALID_DIRECTOR_STUDIO, 5
 
 GoldenrodCity_RadioTower_5F_MapScripts::
 	map_script MAP_SCRIPT_ON_LOAD, GoldenrodCity_RadioTower_5F_OnLoad
@@ -45,6 +44,7 @@ GoldenrodCity_RadioTower_5F_EventScript_Petrel::
 	msgbox GoldenrodCity_RadioTower_5F_Text_FakeDirectorAfter, MSGBOX_DEFAULT
 	giveitem ITEM_BASEMENT_KEY
 	setvar VAR_GOLDENROD_CITY_STATE, 7
+	setflag FLAG_HIDE_GOLDENROD_RADIOTOWER_DIRECTOR_2
 	clearflag FLAG_HIDE_GOLDENROD_UNDERGROUND_KIMONO
 	closemessage
 	release
@@ -440,9 +440,10 @@ script RadioTower_5F_Archer {
 			this far...?
 			
 			You must be quite the Trainer.
+
 			We intend to take over this
-			Radio Tower and officially announce our
-			comeback.
+			Radio Tower and officially announce 
+			our comeback.
 			
 			That should bring our boss Giovanni
 			back from his solitary training.
@@ -455,14 +456,19 @@ script RadioTower_5F_Archer {
 	trainerbattle_no_intro(TRAINER_ARCHER, "No! Forgive me, Giovanni!")
 	msgbox("Archer: How could this be...?
 	
-			It seems I was not up to the task... yet.
-			We shall retreat for now, but know that
-			Team Rocket has its roots deeper in
-			this city than you might think.
+			It seems I was not up to the task... 
+			Yet.
 			
-			We shall meet again, farewell...")
+			We shall retreat for now, but know 
+			that Team Rocket has its roots 
+			deeper in this region than you
+			might think.
+			
+			We shall meet again, {PLAYER}.
+			Farewell...")
 	closemessage
 	fadescreen(FADE_TO_BLACK)
+	clearflag(FLAG_HIDE_GOLDENROD_RADIOTOWER_DIRECTOR_2)
 	setflag(FLAG_HIDE_GOLDENROD_ROCKETS)
 	playse(SE_EXIT)
 	setvar(VAR_GOLDENROD_CITY_STATE, 10)
@@ -471,14 +477,15 @@ script RadioTower_5F_Archer {
 	setflag(FLAG_HIDE_GOLDENROD_RADIOTOWER_PETREL)
 	clearflag(FLAG_HIDE_GOLDENROD_RADIOTOWER_DIRECTOR)
 	removeobject(LOCALID_PETREL_OFFICE)
-	addobject(LOCALID_DIRECTOR_STUDIO)
+	addobject(LOCALID_F5_DIRECTOR_2)
     addobject(LOCALID_RADIOTOWER_OAK)
 	playbgm(MUS_HG_GOLDENROD, TRUE)
-	delay(120)
+	delay(60)
 	fadescreen(FADE_FROM_BLACK)
-	approachobject(LOCALID_DIRECTOR_STUDIO, LOCALID_PLAYER, DIR_WEST, DIR_EAST)
+	approachobject(LOCALID_F5_DIRECTOR_2, LOCALID_PLAYER, DIR_WEST, DIR_EAST)
 	waitmovement(0)
 	turnobject(LOCALID_PLAYER, DIR_EAST)
+	createfieldmugshot(MUGSHOT_GENTLEMAN)
 	msgbox("Director: Oh...
 			
 			You have already defeated them?
@@ -488,9 +495,12 @@ script RadioTower_5F_Archer {
 			Pokémon nationwide.
 			
 			You deserve to be rewarded for your
-			actions! I'll let you pick one of
-			our prized treasures! Go ahead and
-			pick one!")
+			actions! 
+			
+			I'll let you pick one of our 
+			prized treasures! 
+			
+			Go ahead and pick one!")
 	dynmultichoice(0,0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Rainbow Wing", "Silver Wing")
 	switch(var(VAR_RESULT)) {
 		case 0:
@@ -523,12 +533,13 @@ script RadioTower_5F_Archer {
 		msgbox("I have to get back to my office.
 				See you!")
 		closemessage
-		applymovement(LOCALID_DIRECTOR_STUDIO, moves(walk_right*2))
+		applymovement(LOCALID_F5_DIRECTOR_2, moves(walk_right*2))
 		waitmovement(0)
 		playse(SE_PIN)
-		applymovement(LOCALID_DIRECTOR_STUDIO, Common_Movement_ExclamationMark)
+		applymovement(LOCALID_F5_DIRECTOR_2, Common_Movement_ExclamationMark)
 		delay(60)
-		turnobject(LOCALID_DIRECTOR_STUDIO, DIR_WEST)
+		turnobject(LOCALID_F5_DIRECTOR_2, DIR_WEST)
+		createfieldmugshot(MUGSHOT_GENTLEMAN)
 		msgbox("Oh, I almost forgot!
 		
 				According to my friend from Cianwood,
@@ -540,16 +551,17 @@ script RadioTower_5F_Archer {
 				I wonder what it was...
 				I can't remember.")
 		closemessage
-		moveobjecttocoords(LOCALID_DIRECTOR_STUDIO, 29, 5, DIR_NORTH)
+		moveobjecttocoords(LOCALID_F5_DIRECTOR_2, 29, 5, DIR_NORTH)
 		waitmovement(0)
 		setflag(FLAG_HIDE_GOLDENROD_RADIOTOWER_DIRECTOR_2)
-		removeobject(LOCALID_DIRECTOR_STUDIO)
+		removeobject(LOCALID_F5_DIRECTOR_2)
 		setvar(VAR_MAHOGANY_TOWN_STATE, 17)
 		moveobjecttocoords(OBJ_EVENT_ID_PLAYER, 28, 11, DIR_NORTH)
 		waitmovement(0)
 		playbgm(MUS_HG_OAK, TRUE)
 		moveobjecttocoords(LOCALID_RADIOTOWER_OAK, 28, 10, DIR_SOUTH)
 		waitmovement(0)
+		createfieldmugshot(MUGSHOT_OAK)
 		msgbox(format("{PLAYER}! You've pulled off a miracle by taking down Team Rocket!"))
 		msgbox(format("I knew it was the right choice to entrust Pokédex to you. I want you to have this, I think you've more than earned it."))
 		giveitem(ITEM_MEGA_RING)

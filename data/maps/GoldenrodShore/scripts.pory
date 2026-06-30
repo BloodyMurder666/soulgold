@@ -18,14 +18,21 @@ script GoldenrodShore_Expert {
     if (defeated(TRAINER_SAMUEL) && defeated(TRAINER_BRANDON) && defeated(TRAINER_TODD) && defeated(TRAINER_IAN) && defeated(TRAINER_GINA) 
         && defeated(TRAINER_KIM) && defeated(TRAINER_ELLIOT) && defeated(TRAINER_BROOKE) && defeated(TRAINER_IVAN) && defeated(TRAINER_IRWIN) && defeated(TRAINER_WALT) && defeated(TRAINER_ARNIE) && defeated(TRAINER_BRYAN)
         && defeated(TRAINER_MARK) && defeated(TRAINER_ALAN)) {
-        msgbox("I've heard the words of your victories.
+        applymovement(LOCALID_GOLDENRODSHORE_EXPERT, Common_Movement_ExclamationMark)
+        playse(SE_PIN)
+        waitse
+        msgbox("I've heard the words of your victories!
+
+
                 Let's have a battle then, I'll show
                 you a new type of strategy!")
         trainerbattle_no_intro(TRAINER_GOLDENROD_SHORE_EXPERT, "Outsmarted!")
         msgbox("Even against my unrelenting tide
-                of attacks, you prevailed. Please,
-                have this item to boost your odds
-                of keeping up the winning streak.")
+                of attacks, you prevailed. 
+                
+                Please, have this item to boost 
+                your odds of keeping up the 
+                winning streak.")
         giveitem(ITEM_LOADED_DICE)
         setflag(FLAG_GOLDENRODSHORE_EXPERT)
         addvar(VAR_ROUTE_EXPERTS_DEFEATED, 1)
@@ -60,6 +67,8 @@ script GoldenrodShore_HiddenGrotto {
 }
 
 script MareaniesGoldenrodShore {
-    msgbox("Mareanies seem to be blocking the way. 
-            Perhaps there is another way to Olivine?", MSGBOX_NPC)
+    msgbox("Mareanies seem to be blocking the way.
+
+            Perhaps there is another way to
+            the Olivine City?", MSGBOX_NPC)
 }

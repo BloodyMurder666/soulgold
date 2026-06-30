@@ -5,12 +5,26 @@ GoldenrodCity_UndergroundSwitches_MapScripts::
 	.byte 0
 
 GoldenrodUnderground1_OnLoad::
-	call_if_set FLAG_COMPLETED_SWITCHES, GoldenrodUnderground1_ClearTheWay
+	call GoldenrodCity_UndergroundSwitches_EventScript_ClearSwitchState
+	goto_if_set FLAG_COMPLETED_SWITCHES, GoldenrodUnderground1_LoadSolved
+	clearflag FLAG_GOLDENROD_ALL_SHUTTERS_OPEN
+	call GoldenrodCity_UndergroundSwitches_EventScript_CloseAllShutters
+	end
+
+GoldenrodUnderground1_LoadSolved::
+	goto_if_set FLAG_GOLDENROD_ALL_SHUTTERS_OPEN, GoldenrodUnderground1_LoadAllShuttersOpen
+	call GoldenrodUnderground1_ClearTheWay
+	end
+
+GoldenrodUnderground1_LoadAllShuttersOpen::
+	call GoldenrodCity_UndergroundSwitches_EventScript_OpenAllShutters
+	end
+
+GoldenrodCity_UndergroundSwitches_EventScript_ClearSwitchState::
 	clearflag FLAG_GOLDENROD_SWITCH_1
 	clearflag FLAG_GOLDENROD_SWITCH_2
 	clearflag FLAG_GOLDENROD_SWITCH_3
-	clearflag FLAG_GOLDENROD_SWITCH_ORDER
-	end
+	return
 
 GoldenrodUnderground1_ClearTheWay::
 	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall1
@@ -41,145 +55,38 @@ GoldenrodCity_UndergroundSwitches_EventScript_AntiSoftLock_Text::
 	.string "Go back to the entrance\n"
 	.string "and reset switches?$"
 
-@ 3->2->1
-
-@==============================================================================================================================================
+@ The sequence is deliberately strict: 3 -> 2 -> 1.
+@ Pressing any other switch resets both the visible shutters and the switch flags.
 GoldenrodCity_UndergroundSwitches_EventScript_Panel1::
 	lock
-	goto_if_unset FLAG_GOLDENROD_SWITCH_1, GoldenrodCity_UndergroundSwitches_EventScript_Panel1Activate @lock all
-	clearflag FLAG_GOLDENROD_SWITCH_1
-	playse SE_BANG
-	msgbox GoldenrodUnderground_Text_Switch1Off, MSGBOX_DEFAULT
-	closemessage
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall1
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall2
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall3
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall4
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall5
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall6
-	special DrawWholeMapView
-	waitse
-	release
-	end
-
-GoldenrodCity_UndergroundSwitches_EventScript_Panel1Activate:: @unlock basic
+	goto_if_set FLAG_COMPLETED_SWITCHES, GoldenrodCity_UndergroundSwitches_EventScript_AlreadySolved
+	goto_if_set FLAG_GOLDENROD_SWITCH_1, GoldenrodCity_UndergroundSwitches_EventScript_ResetSequence
+	goto_if_unset FLAG_GOLDENROD_SWITCH_2, GoldenrodCity_UndergroundSwitches_EventScript_ResetSequence
+	goto_if_unset FLAG_GOLDENROD_SWITCH_3, GoldenrodCity_UndergroundSwitches_EventScript_ResetSequence
 	setflag FLAG_GOLDENROD_SWITCH_1
-	goto_if_set FLAG_GOLDENROD_SWITCH_ORDER, GoldenrodCity_UndergroundSwitches_EventScript_Panel1ActivateCorrect
-	clearflag FLAG_GOLDENROD_SWITCH_ORDER
-	playse SE_BANG
-	msgbox GoldenrodUnderground_Text_Switch1, MSGBOX_DEFAULT
-	closemessage
-	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall1
-	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall2
-	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall3
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall4	
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall5
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall6	
-	special DrawWholeMapView
-	waitse
-	release
-	end
-
-
-GoldenrodCity_UndergroundSwitches_EventScript_Panel1ActivateCorrect:: @unlock the right path
 	playse SE_CLICK
 	setflag FLAG_COMPLETED_SWITCHES
-	msgbox GoldenrodUnderground_Text_Switch1, MSGBOX_DEFAULT
+	msgbox GoldenrodUnderground_Text_SequenceComplete, MSGBOX_DEFAULT
 	closemessage
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall1
-	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall2
-	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall3
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall4
-	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall5
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall6
-	special DrawWholeMapView
-	waitse
-	release
-	end
-@==============================================================================================================================================
-GoldenrodCity_UndergroundSwitches_EventScript_Panel2:: @lock all
-	lock
-	goto_if_unset FLAG_GOLDENROD_SWITCH_2, GoldenrodCity_UndergroundSwitches_EventScript_Panel2Activate
-	clearflag FLAG_GOLDENROD_SWITCH_2
-	clearflag FLAG_GOLDENROD_SWITCH_ORDER
-	playse SE_BANG
-	msgbox GoldenrodUnderground_Text_Switch2Off, MSGBOX_DEFAULT
-	closemessage
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall1
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall2
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall3
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall4
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall5
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall6
+	call GoldenrodUnderground1_ClearTheWay
 	special DrawWholeMapView
 	waitse
 	release
 	end
 
-GoldenrodCity_UndergroundSwitches_EventScript_Panel2Activate:: @unlock basic
+GoldenrodCity_UndergroundSwitches_EventScript_Panel2::
+	lock
+	goto_if_set FLAG_COMPLETED_SWITCHES, GoldenrodCity_UndergroundSwitches_EventScript_AlreadySolved
+	goto_if_set FLAG_GOLDENROD_SWITCH_1, GoldenrodCity_UndergroundSwitches_EventScript_ResetSequence
+	goto_if_set FLAG_GOLDENROD_SWITCH_2, GoldenrodCity_UndergroundSwitches_EventScript_ResetSequence
+	goto_if_unset FLAG_GOLDENROD_SWITCH_3, GoldenrodCity_UndergroundSwitches_EventScript_ResetSequence
 	setflag FLAG_GOLDENROD_SWITCH_2
-	goto_if_set FLAG_GOLDENROD_SWITCH_1, GoldenrodCity_UndergroundSwitches_EventScript_Panel2ActivateWrong
-	goto_if_set FLAG_GOLDENROD_SWITCH_3, GoldenrodCity_UndergroundSwitches_EventScript_Panel2ActivateCorrect
-	playse SE_BANG
-	msgbox GoldenrodUnderground_Text_Switch2, MSGBOX_DEFAULT
-	closemessage
-	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall1
-	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall2
-	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall3
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall4	
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall5
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall6	
-	special DrawWholeMapView
-	waitse
-	release
-	end
-
-GoldenrodCity_UndergroundSwitches_EventScript_Panel2ActivateWrong:: @unlock basic
-	clearflag FLAG_GOLDENROD_SWITCH_ORDER
-	playse SE_BANG
-	msgbox GoldenrodUnderground_Text_Switch2, MSGBOX_DEFAULT
-	closemessage
-	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall1
-	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall2
-	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall3
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall4	
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall5
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall6	
-	special DrawWholeMapView
-	waitse
-	release
-	end
-
-
-GoldenrodCity_UndergroundSwitches_EventScript_Panel2ActivateCorrect:: @unlock item2
-	setflag FLAG_GOLDENROD_SWITCH_ORDER
 	playse SE_CLICK
-	msgbox GoldenrodUnderground_Text_Switch2, MSGBOX_DEFAULT
+	msgbox GoldenrodUnderground_Text_SequenceStep2, MSGBOX_DEFAULT
 	closemessage
 	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall1
 	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall2
 	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall3
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall4	
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall5
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall6	
-	special DrawWholeMapView
-	waitse
-	release
-	end
-
-
-@==============================================================================================================================================
-GoldenrodCity_UndergroundSwitches_EventScript_Panel3:: @lock all
-	lock
-	goto_if_unset FLAG_GOLDENROD_SWITCH_3, GoldenrodCity_UndergroundSwitches_EventScript_Panel3Activate
-	clearflag FLAG_GOLDENROD_SWITCH_3
-	clearflag FLAG_GOLDENROD_SWITCH_ORDER
-	playse SE_BANG
-	msgbox GoldenrodUnderground_Text_Switch3Off, MSGBOX_DEFAULT
-	closemessage
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall1
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall2
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall3
 	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall4
 	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall5
 	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall6
@@ -188,11 +95,15 @@ GoldenrodCity_UndergroundSwitches_EventScript_Panel3:: @lock all
 	release
 	end
 
-GoldenrodCity_UndergroundSwitches_EventScript_Panel3Activate:: @unlock item 1
+GoldenrodCity_UndergroundSwitches_EventScript_Panel3::
+	lock
+	goto_if_set FLAG_COMPLETED_SWITCHES, GoldenrodCity_UndergroundSwitches_EventScript_AlreadySolved
+	goto_if_set FLAG_GOLDENROD_SWITCH_1, GoldenrodCity_UndergroundSwitches_EventScript_ResetSequence
+	goto_if_set FLAG_GOLDENROD_SWITCH_2, GoldenrodCity_UndergroundSwitches_EventScript_ResetSequence
+	goto_if_set FLAG_GOLDENROD_SWITCH_3, GoldenrodCity_UndergroundSwitches_EventScript_ResetSequence
 	setflag FLAG_GOLDENROD_SWITCH_3
-	clearflag FLAG_GOLDENROD_SWITCH_ORDER
 	playse SE_CLICK
-	msgbox GoldenrodUnderground_Text_Switch3, MSGBOX_DEFAULT
+	msgbox GoldenrodUnderground_Text_SequenceStep1, MSGBOX_DEFAULT
 	closemessage
 	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall1
 	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall4
@@ -205,7 +116,67 @@ GoldenrodCity_UndergroundSwitches_EventScript_Panel3Activate:: @unlock item 1
 	release
 	end
 
-@==============================================================================================================================================
+GoldenrodCity_UndergroundSwitches_EventScript_ResetSequence::
+	call GoldenrodCity_UndergroundSwitches_EventScript_ClearSwitchState
+	clearflag FLAG_GOLDENROD_ALL_SHUTTERS_OPEN
+	playse SE_FAILURE
+	msgbox GoldenrodUnderground_Text_SequenceReset, MSGBOX_DEFAULT
+	closemessage
+	call GoldenrodCity_UndergroundSwitches_EventScript_CloseAllShutters
+	special DrawWholeMapView
+	waitse
+	release
+	end
+
+GoldenrodCity_UndergroundSwitches_EventScript_EmergencyRelease::
+	lock
+	goto_if_unset FLAG_COMPLETED_SWITCHES, GoldenrodCity_UndergroundSwitches_EventScript_EmergencyReleaseLocked
+	goto_if_set FLAG_GOLDENROD_ALL_SHUTTERS_OPEN, GoldenrodCity_UndergroundSwitches_EventScript_AllShuttersAlreadyOpen
+	setflag FLAG_GOLDENROD_ALL_SHUTTERS_OPEN
+	playse SE_CLICK
+	msgbox GoldenrodUnderground_Text_EmergencyRelease, MSGBOX_DEFAULT
+	closemessage
+	call GoldenrodCity_UndergroundSwitches_EventScript_OpenAllShutters
+	special DrawWholeMapView
+	waitse
+	release
+	end
+
+GoldenrodCity_UndergroundSwitches_EventScript_EmergencyReleaseLocked::
+	msgbox GoldenrodUnderground_Text_EmergencyReleaseLocked, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+GoldenrodCity_UndergroundSwitches_EventScript_AllShuttersAlreadyOpen::
+	msgbox GoldenrodUnderground_Text_AllShuttersAlreadyOpen, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+GoldenrodCity_UndergroundSwitches_EventScript_AlreadySolved::
+	msgbox GoldenrodUnderground_Text_AlreadySolved, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+GoldenrodCity_UndergroundSwitches_EventScript_CloseAllShutters::
+	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall1
+	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall2
+	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall3
+	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall4
+	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall5
+	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall6
+	return
+
+GoldenrodCity_UndergroundSwitches_EventScript_OpenAllShutters::
+	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall1
+	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall2
+	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall3
+	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall4
+	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall5
+	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall6
+	return
 
 GoldenrodCity_UndergroundSwitches_EventScript_CreateWall1::
 	setmetatile 5, 7, 0x519, FALSE
@@ -543,8 +514,9 @@ GoldenrodUnderground_Text_GruntM11Beaten:
     .string "Drat! I was sunk by indecision!$"
 
 GoldenrodUnderground_Text_GruntM11After:
-    .string "I'm confused too… The switch on the\n"
-    .string "end is the one to press first, but…$"
+    .string "I'm confused too…\p"
+    .string "The switch at the far end comes\n"
+    .string "first. Then work back this way.$"
 
 GoldenrodUnderground_Text_GruntM25Seen:
     .string "Kwahaha!\p"
@@ -557,9 +529,10 @@ GoldenrodUnderground_Text_GruntM25Beaten:
 
 GoldenrodUnderground_Text_GruntM25After:
     .string "All right. A hint!\p"
-    .string "Change the order of switching.\p"
-    .string "That'll change the ways the shutters\n"
-    .string "open and close.$"
+    .string "Pressing the wrong switch resets\n"
+    .string "the whole system.\p"
+    .string "Make sure all three are OFF before\n"
+    .string "you begin.$"
 
 GoldenrodUnderground_Text_BurglarDuncanSeen:
     .string "Fork over your goodies!$"
@@ -609,20 +582,34 @@ GoldenrodUnderground_Text_GruntF3After:
     .string "Go wherever you'd like! Get lost!\n"
     .string "See if I care!$"
 
-GoldenrodUnderground_Text_Switch1:
-    .string "Switch 1 activated.$"
+GoldenrodUnderground_Text_SequenceStep1:
+    .string "Switch 3 activated.\p"
+    .string "The first shutter lock\n"
+    .string "disengaged.$"
 
-GoldenrodUnderground_Text_Switch2:
-    .string "Switch 2 activated.$"
+GoldenrodUnderground_Text_SequenceStep2:
+    .string "Switch 2 activated.\p"
+    .string "The second shutter lock\n"
+    .string "disengaged.$"
 
-GoldenrodUnderground_Text_Switch3:
-    .string "Switch 3 activated.$"
+GoldenrodUnderground_Text_SequenceComplete:
+    .string "Switch 1 activated.\p"
+    .string "All shutter locks disengaged!$"
 
-GoldenrodUnderground_Text_Switch1Off:
-    .string "Switch 1 deactivated.$"
+GoldenrodUnderground_Text_SequenceReset:
+    .string "That was the wrong switch!\p"
+    .string "The sequence and shutters reset.$"
 
-GoldenrodUnderground_Text_Switch2Off:
-    .string "Switch 2 deactivated.$"
+GoldenrodUnderground_Text_AlreadySolved:
+    .string "The shutters are already unlocked.$"
 
-GoldenrodUnderground_Text_Switch3Off:
-    .string "Switch 3 deactivated.$"
+GoldenrodUnderground_Text_EmergencyRelease:
+    .string "The emergency release was\n"
+    .string "activated!\p"
+    .string "All shutters opened.$"
+
+GoldenrodUnderground_Text_EmergencyReleaseLocked:
+    .string "The emergency release is locked.$"
+
+GoldenrodUnderground_Text_AllShuttersAlreadyOpen:
+    .string "All shutters are already open.$"

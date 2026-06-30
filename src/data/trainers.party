@@ -729,7 +729,7 @@ Double Battle: No
 AI: Smart Trainer
 
 Crobat
-Level: 48
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Sludge Bomb
 - Air Slash
@@ -737,37 +737,33 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Confuse Ray
 
 Farigiraf
-Level: 48
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Level: 50
+IVs: 21 HP / 21 Atk / 21 Def / 21 SpA / 21 SpD / 21 Spe
 - Twin Beam
 - Double Kick
 - Dazzling Gleam
 - Thunder Wave
 
 Porygon Z
-Level: 48
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Tri Attack
-- Ice Beam
-- Thunderbolt
-- Flamethrower
+Level: 49
+IVs: 21 HP / 21 Atk / 21 Def / 21 SpA / 21 SpD / 21 Spe
 
 Nidoking
 Level: 49
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 21 HP / 21 Atk / 21 Def / 21 SpA / 21 SpD / 21 Spe
 - Sludge Bomb
 - Double Kick
 - Ice Punch
 - Thrash
 
-Absol @ Darktite
-Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk
-- Shadow Claw
-- Night Slash
-- Play Rough
-- Stone Edge
+Scrafty @ Darktite
+Level: 51
+IVs: 21 HP / 21 Atk / 21 Def / 21 SpA / 21 SpD / 21 Spe
+EVs: 100 Atk
+- Hi Jump Kick
+- Crunch
+- Focus Punch
+- Dragon Claw
 
 === TRAINER_PROTON_2 ===
 Name: Proton
@@ -779,46 +775,59 @@ Double Battle: No
 AI: Smart Trainer
 Difficulty: Hard
 
-Crobat @ Poison Gem
-Level: 48
+Crobat @ Black Sludge
+Level: 52
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 160 SpA / 160 Spe
 - Sludge Bomb
 - Air Slash
 - Leech Life
 - Confuse Ray
 
 Farigiraf @ Leftovers
-Level: 48
+Level: 52
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 160 SpA / 160 Spe
 - Twin Beam
 - Double Kick
 - Dazzling Gleam
 - Thunder Wave
 
-Porygon Z @ Chople Berry
-Level: 48
+Cacturne @ Punching Glove
+Level: 52
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 160 Atk / 160 Spe
+- Needle Arm
+- Sucker Punch
+- Spiky Shield
+- Leech Seed
+
+Porygon Z @ Chople Berry
+Level: 53
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 160 SpA / 160 Spe
 - Tri Attack
 - Ice Beam
 - Thunderbolt
 - Flamethrower
 
 Nidoking @ Black Sludge
-Level: 49
+Level: 52
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 160 Atk / 160 Spe
 - Sludge Bomb
 - Double Kick
 - Ice Punch
 - Thrash
 
-Absol @ Darktite
-Level: 50
+Scrafty @ Darktite
+Level: 53
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk
-- Shadow Claw
-- Night Slash
-- Play Rough
-- Stone Edge
+EVs: 160 Atk / 160 Spe
+- Hi Jump Kick
+- Crunch
+- Focus Punch
+- Dragon Claw
 
 === TRAINER_PROTON_1 ===
 Name: Proton
@@ -1795,7 +1804,7 @@ EVs: 160 Atk / 160 Spe
 - Sludge Bomb
 
 Toxapex @ Leftovers
-Level: 52
+Level: 53
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 160 SpA / 160 HP
 - Scald
@@ -1804,7 +1813,7 @@ EVs: 160 SpA / 160 HP
 - Sludge Bomb
 
 Vileplume @ Black Sludge
-Level: 53
+Level: 54
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 160 SpA / 160 Spe
 - Sleep Powder
@@ -1813,7 +1822,7 @@ EVs: 160 SpA / 160 Spe
 - Giga Drain
 
 Roserade @ Focus Sash
-Level: 53
+Level: 54
 Ability: Technician
 EVs: 160 Atk / 160 Spe
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -1823,7 +1832,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Giga Drain
 
 Trevenant @ Miracle Seed
-Level: 52
+Level: 53
 EVs: 160 Atk / 160 Spe
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Phantom Force
@@ -1832,7 +1841,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Poison Jab
 
 Dragalge @ Poisontite
-Level: 53
+Level: 54
 EVs: 252 SpA / 252 Spe
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Hydro Pump
@@ -2008,7 +2017,7 @@ Difficulty: Hard
 
 Ninetales @ Heat Rock
 Ability: Drought
-Level: 53
+Level: 54
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 200 SpA / 200 Spe
 - Psychic
@@ -2017,7 +2026,7 @@ EVs: 200 SpA / 200 Spe
 - Energy Ball
 
 Tauros Paldea Blaze @ Life Orb
-Level: 54
+Level: 55
 Ability: Intimidate
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 200 Atk / 200 Spe
@@ -2037,7 +2046,7 @@ EVs: 200 Atk / 200 Spe
 - Rock Slide
 
 Rotom Heat @ Charcoal
-Level: 54
+Level: 55
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 200 SpA / 200 Spe
 - Heat Wave
@@ -2046,7 +2055,7 @@ EVs: 200 SpA / 200 Spe
 - Discharge
 
 Slowking Galar
-Level: 54
+Level: 55
 Ability: Regenerator
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 200 SpA / 200 Spe
@@ -2056,7 +2065,7 @@ EVs: 200 SpA / 200 Spe
 - Flamethrower
 
 Houndoom @ Darktite
-Level: 55
+Level: 57
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 200 SpA / 200 Spe
 - Solar Beam

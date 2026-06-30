@@ -972,7 +972,7 @@
 #define FLAG_GOLDENROD_SWITCH_1                                     0x399
 #define FLAG_GOLDENROD_SWITCH_2                                     0x39A
 #define FLAG_GOLDENROD_SWITCH_3                                     0x39B
-#define FLAG_GOLDENROD_SWITCH_ORDER                                 0x39C
+#define FLAG_GOLDENROD_ALL_SHUTTERS_OPEN                            0x39C
 #define FLAG_COMPLETED_SWITCHES                                     0x39D
 #define FLAG_HIDE_GOLDENROD_BEAUTY                                  0x39E
 #define FLAG_ENABLE_RADIO                                           0x39F
