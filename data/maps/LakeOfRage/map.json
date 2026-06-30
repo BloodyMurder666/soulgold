@@ -154,7 +154,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "ITEM_CHOICE_SPECS",
+      "trainer_sight_or_berry_tree_id": "ITEM_BLACK_AUGURITE",
       "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_LAKEOFRAGE_FULL_RESTORE"
     },
