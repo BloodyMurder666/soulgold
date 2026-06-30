@@ -1736,40 +1736,40 @@ Double Battle: No
 AI: Smart Trainer
 
 Arbok
-Level: 49
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Level: 50
+IVs: 21 HP / 21 Atk / 21 Def / 21 SpA / 21 SpD / 21 Spe
 - Flamethrower
 - Dark Pulse
 - Glare
 - Sludge Bomb
 
 Toxapex 
-Level: 49
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Level: 51
+IVs: 21 HP / 21 Atk / 21 Def / 21 SpA / 21 SpD / 21 Spe
 - Scald
 - Toxic
 - Baneful Bunker
 - Sludge Bomb
 
 Vileplume
-Level: 49
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Level: 50
+IVs: 21 HP / 21 Atk / 21 Def / 21 SpA / 21 SpD / 21 Spe
 - Sleep Powder
 - Sludge Bomb
 - Stun Spore
 - Giga Drain
 
 Gyarados
-Level: 49
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Level: 51
+IVs: 21 HP / 21 Atk / 21 Def / 21 SpA / 21 SpD / 21 Spe
 - Strength
 - Ice Fang
 - Crunch
 - Waterfall
 
 Dragalge @ Poisontite
-Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Level: 51
+IVs: 21 HP / 21 Atk / 21 Def / 21 SpA / 21 SpD / 21 Spe
 - Hydro Pump
 - Sludge Bomb
 - Icy Wind
@@ -1786,39 +1786,54 @@ AI: Smart Trainer
 Difficulty: Hard
 
 Arbok @ Life Orb
-Level: 49
+Level: 52
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 160 Atk / 160 Spe
 - Flamethrower
 - Dark Pulse
 - Glare
 - Sludge Bomb
 
 Toxapex @ Leftovers
-Level: 49
+Level: 52
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 160 SpA / 160 HP
 - Scald
 - Toxic
 - Baneful Bunker
 - Sludge Bomb
 
 Vileplume @ Black Sludge
-Level: 49
+Level: 53
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 160 SpA / 160 Spe
 - Sleep Powder
 - Sludge Bomb
 - Stun Spore
 - Giga Drain
 
-Gyarados @ Water Gem
-Level: 49
+Roserade @ Focus Sash
+Level: 53
+Ability: Technician
+EVs: 160 Atk / 160 Spe
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Strength
-- Ice Fang
-- Crunch
-- Waterfall
+- Round
+- Hidden Power
+- Poison Jab
+- Giga Drain
+
+Trevenant @ Miracle Seed
+Level: 52
+EVs: 160 Atk / 160 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Phantom Force
+- Horn Leech
+- Leech Seed
+- Poison Jab
 
 Dragalge @ Poisontite
-Level: 50
+Level: 53
+EVs: 252 SpA / 252 Spe
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Hydro Pump
 - Sludge Bomb
@@ -1941,44 +1956,41 @@ Double Battle: No
 AI: Smart Trainer
 
 Ninetales
-Ability: Drought
-Level: 49
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Level: 52
+IVs: 21 HP / 21 Atk / 21 Def / 21 SpA / 21 SpD / 21 Spe
 - Psychic
 - Sunny Day
 - Flamethrower
 - Energy Ball
 
 Tauros Paldea Blaze
-Level: 49
-Ability: Intimidate
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Level: 53
+IVs: 21 HP / 21 Atk / 21 Def / 21 SpA / 21 SpD / 21 Spe
 - Raging Bull
 - Zen Headbutt
 - Sunny Day
 - Wild Charge
 
 Marowak Alola
-Level: 50
+Level: 53
 Ability: Lightning Rod
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 21 HP / 21 Atk / 21 Def / 21 SpA / 21 SpD / 21 Spe
 - Flare Blitz
 - Bonemerang
 - Brutal Swing
 - Rock Slide
 
 Slowking Galar
-Level: 50
-Ability: Regenerator
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Level: 53
+IVs: 21 HP / 21 Atk / 21 Def / 21 SpA / 21 SpD / 21 Spe
 - Power Gem
 - Surf
 - Psychic
 - Flamethrower
 
 Houndoom @ Darktite
-Level: 51
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Level: 54
+IVs: 21 HP / 21 Atk / 21 Def / 21 SpA / 21 SpD / 21 Spe
 - Solar Beam
 - Sludge Bomb
 - Dark Pulse
@@ -1996,43 +2008,57 @@ Difficulty: Hard
 
 Ninetales @ Heat Rock
 Ability: Drought
-Level: 49
+Level: 53
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 200 SpA / 200 Spe
 - Psychic
 - Sunny Day
 - Flamethrower
 - Energy Ball
 
 Tauros Paldea Blaze @ Life Orb
-Level: 49
+Level: 54
 Ability: Intimidate
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 200 Atk / 200 Spe
 - Raging Bull
 - Zen Headbutt
 - Sunny Day
 - Wild Charge
 
 Marowak Alola @ Choice Scarf
-Level: 50
+Level: 54
 Ability: Lightning Rod
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 200 Atk / 200 Spe
 - Flare Blitz
 - Bonemerang
 - Brutal Swing
 - Rock Slide
 
+Rotom Heat @ Charcoal
+Level: 54
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 200 SpA / 200 Spe
+- Heat Wave
+- Hex
+- Thunder Wave
+- Discharge
+
 Slowking Galar
-Level: 51
+Level: 54
 Ability: Regenerator
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 200 SpA / 200 Spe
 - Power Gem
 - Surf
 - Psychic
 - Flamethrower
 
 Houndoom @ Darktite
-Level: 52
+Level: 55
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 200 SpA / 200 Spe
 - Solar Beam
 - Sludge Bomb
 - Dark Pulse
@@ -10790,12 +10816,10 @@ AI: Check Bad Move
 
 Scovillain
 Level: 47
-Ability: Pickpocket
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Arbok
 Level: 47
-Ability: Pickpocket
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_COLETTE ===

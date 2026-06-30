@@ -7,26 +7,26 @@ GoldenrodCity_RadioTower_3F_OnLoad::
 	end
 	
 GoldenrodCity_RadioTower_3F_HideGate::
-	setmetatile 25, 8, 0x335, FALSE
-	setmetatile 25, 9, 0x335, FALSE
+	setmetatile 25, 8, 0x4B5, FALSE
+	setmetatile 25, 9, 0x4B5, FALSE
 
-	setmetatile 26, 8, 0X334, FALSE
-	setmetatile 26, 9, 0X334, FALSE
+	setmetatile 26, 8, 0x4B4, FALSE
+	setmetatile 26, 9, 0x4B4, FALSE
 
-	setmetatile 27, 8, 0X334, FALSE
-	setmetatile 27, 9, 0X334, FALSE
+	setmetatile 27, 8, 0x4B4, FALSE
+	setmetatile 27, 9, 0x4B4, FALSE
 
-	setmetatile 28, 8, 0X334, FALSE
-	setmetatile 28, 9, 0X334, FALSE
+	setmetatile 28, 8, 0x4B4, FALSE
+	setmetatile 28, 9, 0x4B4, FALSE
 
-	setmetatile 29, 8, 0X334, FALSE
-	setmetatile 29, 9, 0X334, FALSE
+	setmetatile 29, 8, 0x4B4, FALSE
+	setmetatile 29, 9, 0x4B4, FALSE
 
-	setmetatile 30, 8, 0X334, FALSE
-	setmetatile 30, 9, 0X334, FALSE
+	setmetatile 30, 8, 0x4B4, FALSE
+	setmetatile 30, 9, 0x4B4, FALSE
 
-	setmetatile 31, 8, 0X334, FALSE
-	setmetatile 31, 9, 0X334, FALSE
+	setmetatile 31, 8, 0x4B4, FALSE
+	setmetatile 31, 9, 0x4B4, FALSE
 	return
 
 
