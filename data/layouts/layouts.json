@@ -4936,7 +4936,7 @@
       "name": "Route33_Layout",
       "width": 53,
       "height": 40,
-      "primary_tileset": "gTileset_Johto_NorthWest",
+      "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_AzaleaTown",
       "border_filepath": "data/layouts/Route33/border.bin",
       "blockdata_filepath": "data/layouts/Route33/map.bin"
@@ -5086,7 +5086,7 @@
       "name": "AzaleaTown_Layout",
       "width": 62,
       "height": 38,
-      "primary_tileset": "gTileset_Johto_NorthWest",
+      "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_AzaleaTown",
       "border_filepath": "data/layouts/AzaleaTown/border.bin",
       "blockdata_filepath": "data/layouts/AzaleaTown/map.bin"
@@ -9742,7 +9742,7 @@
       "name": "Route33South_Layout",
       "width": 63,
       "height": 23,
-      "primary_tileset": "gTileset_Johto_NorthWest",
+      "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_AzaleaTown",
       "border_filepath": "data/layouts/Route33South/border.bin",
       "blockdata_filepath": "data/layouts/Route33South/map.bin"
@@ -9752,7 +9752,7 @@
       "name": "Route33South_2_Layout",
       "width": 63,
       "height": 23,
-      "primary_tileset": "gTileset_Johto_NorthWest",
+      "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_AzaleaTown",
       "border_filepath": "data/layouts/Route33South_2/border.bin",
       "blockdata_filepath": "data/layouts/Route33South_2/map.bin"
@@ -9762,7 +9762,7 @@
       "name": "SouthernPassage_Layout",
       "width": 20,
       "height": 60,
-      "primary_tileset": "gTileset_Johto_NorthWest",
+      "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_AzaleaTown",
       "border_filepath": "data/layouts/SouthernPassage/border.bin",
       "blockdata_filepath": "data/layouts/SouthernPassage/map.bin"
@@ -9772,7 +9772,7 @@
       "name": "MeteorIsland_Layout",
       "width": 42,
       "height": 29,
-      "primary_tileset": "gTileset_Johto_NorthWest",
+      "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_AzaleaTown",
       "border_filepath": "data/layouts/MeteorIsland/border.bin",
       "blockdata_filepath": "data/layouts/MeteorIsland/map.bin"
