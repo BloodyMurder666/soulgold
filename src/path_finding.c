@@ -470,11 +470,27 @@ static u8 CheckForPathFinderCollision(struct PathFinderContext *ctx, s16 x, s16 
 {
     struct ObjectEvent *objectEvent = ctx->objectEvent;
     u8 elevation = ctx->currentNode->elevation;
+    u8 collision;
 
     if (GetLedgeJumpDirectionWithBehavior(direction, nextBehavior) != DIR_NONE)
         return COLLISION_LEDGE_JUMP;
 
-    return GetCollisionWithBehaviorsAtCoords(objectEvent, x, y, elevation, direction, currentBehavior, nextBehavior);
+    collision = GetCollisionWithBehaviorsAtCoords(objectEvent, x, y, elevation, direction, currentBehavior, nextBehavior);
+
+    // Scripted path movements recall the following Pokémon before moving.
+    // Ignore it while constructing the path; normal overworld collision is unchanged.
+    if (collision == COLLISION_OBJECT_EVENT
+     && OW_FOLLOWERS_SCRIPT_MOVEMENT
+     && !FlagGet(FLAG_SAFE_FOLLOWER_MOVEMENT))
+    {
+        u32 objectEventId = GetObjectObjectCollidesWith(objectEvent, x, y, elevation, FALSE);
+
+        if (objectEventId < OBJECT_EVENTS_COUNT
+         && gObjectEvents[objectEventId].localId == OBJ_EVENT_ID_FOLLOWER)
+            return COLLISION_NONE;
+    }
+
+    return collision;
 }
 
 static inline s16 PathFinder_Abs(s16 value)

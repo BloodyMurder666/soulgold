@@ -85,6 +85,10 @@ GoldenrodCity_RadioTower_2F_EventScript_BuenaPassword::
 	msgbox GoldenrodCity_RadioTower_2F_Text_BuenaAskPassword, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, GoldenrodCity_RadioTower_2F_EventScript_BuenaForgotPassword
 	msgbox GoldenrodCity_RadioTower_2F_Text_BuenaJoinShow, MSGBOX_DEFAULT
+	closemessage
+	turnobject LOCALID_BUENA, DIR_EAST
+	moveobjecttocoords LOCALID_PLAYER, 28, 15, DIR_EAST
+	waitmovement 0
 	msgbox GoldenrodCity_RadioTower_2F_Text_BuenaEveryoneReady, MSGBOX_DEFAULT
 	specialvar VAR_0x8004, BuenasPassword_GetCurrentGroup
 	switch VAR_0x8004
@@ -105,43 +109,43 @@ GoldenrodCity_RadioTower_2F_EventScript_BuenaForgotPassword::
 	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaDone
 
 GoldenrodCity_RadioTower_2F_EventScript_BuenaAskStarters::
-	dynmultichoice 0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerCyndaquil, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerTotodile, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerChikorita
+	dynmultichoice 0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerCyndaquil, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerTotodile, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerChikorita
 	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaCheckAnswer
 
 GoldenrodCity_RadioTower_2F_EventScript_BuenaAskMedicine::
-	dynmultichoice 0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerPotion, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerAntidote, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerParlyzHeal
+	dynmultichoice 0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerPotion, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerAntidote, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerParlyzHeal
 	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaCheckAnswer
 
 GoldenrodCity_RadioTower_2F_EventScript_BuenaAskBalls::
-	dynmultichoice 0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerPokeBall, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerGreatBall, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerUltraBall
+	dynmultichoice 0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerPokeBall, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerGreatBall, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerUltraBall
 	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaCheckAnswer
 
 GoldenrodCity_RadioTower_2F_EventScript_BuenaAskRouteMons::
-	dynmultichoice 0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerPikachu, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerRattata, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerGeodude
+	dynmultichoice 0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerPikachu, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerRattata, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerGeodude
 	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaCheckAnswer
 
 GoldenrodCity_RadioTower_2F_EventScript_BuenaAskNightMons::
-	dynmultichoice 0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerHoothoot, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerSpinarak, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerDrowzee
+	dynmultichoice 0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerHoothoot, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerSpinarak, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerDrowzee
 	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaCheckAnswer
 
 GoldenrodCity_RadioTower_2F_EventScript_BuenaAskTowns::
-	dynmultichoice 0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerNewBarkTown, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerCherrygroveCity, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerAzaleaTown
+	dynmultichoice 0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerNewBarkTown, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerCherrygroveCity, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerAzaleaTown
 	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaCheckAnswer
 
 GoldenrodCity_RadioTower_2F_EventScript_BuenaAskCategories::
-	dynmultichoice 0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerBugPokemon, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerBirdPokemon, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerGrassPokemon
+	dynmultichoice 0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerBugPokemon, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerBirdPokemon, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerGrassPokemon
 	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaCheckAnswer
 
 GoldenrodCity_RadioTower_2F_EventScript_BuenaAskMoves::
-	dynmultichoice 0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerTackle, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerGrowl, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerMudSlap
+	dynmultichoice 0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerTackle, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerGrowl, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerMudSlap
 	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaCheckAnswer
 
 GoldenrodCity_RadioTower_2F_EventScript_BuenaAskXItems::
-	dynmultichoice 0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerXAttack, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerXDefend, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerXSpeed
+	dynmultichoice 0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerXAttack, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerXDefend, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerXSpeed
 	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaCheckAnswer
 
 GoldenrodCity_RadioTower_2F_EventScript_BuenaAskRadioShows::
-	dynmultichoice 0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerPokemonTalk, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerPokemonMusic, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerBuenasPassword
+	dynmultichoice 0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerPokemonTalk, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerPokemonMusic, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerBuenasPassword
 	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaCheckAnswer
 
 GoldenrodCity_RadioTower_2F_EventScript_BuenaCheckAnswer::
@@ -157,6 +161,7 @@ GoldenrodCity_RadioTower_2F_EventScript_BuenaCorrect::
 	addvar VAR_BUENA_PASSWORDS_CORRECT, 1
 	special Achievement_CheckAll
 	buffernumberstring STR_VAR_1, VAR_BUENA_POINTS
+	turnobject LOCALID_BUENA, DIR_SOUTH
 	playfanfare(MUS_OBTAIN_ITEM)
 	msgbox GoldenrodCity_RadioTower_2F_Text_BuenaCorrect, MSGBOX_DEFAULT
 	waitfanfare
@@ -352,8 +357,6 @@ GoldenrodCity_RadioTower_2F_Text_BuenaOffAir:
 	.string "Tune in to my password show!$"
 
 GoldenrodCity_RadioTower_2F_Text_BuenaAlreadyPlayed:
-	.string "Buena: Thank you for listening\n"
-	.string "in every day!\p"
 	.string "Sorry... You get just one\n"
 	.string "chance each day.\p"
 	.string "Come back tomorrow for\n"

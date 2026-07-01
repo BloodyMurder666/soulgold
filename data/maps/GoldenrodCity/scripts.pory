@@ -25,6 +25,7 @@ GoldenrodCity_EventScript_Trigger:: @flagheap
 	clearflag FLAG_HIDE_GOLDENROD_BEAUTY
 	clearflag FLAG_HIDE_GOLDENROD_ROCKET_SCOUT
 	clearflag FLAG_HIDE_GOLDENROD_NPCS
+	clearflag FLAG_HIDE_RADIOF5DUDE
 	clearflag FLAG_GOT_RETURN
 	clearflag FLAG_GOT_FRUSTRATION
 	clearflag FLAG_RECEIVED_BIKE

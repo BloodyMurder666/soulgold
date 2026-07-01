@@ -1608,7 +1608,7 @@
 #define FLAG_CAMERON_PHOTO3                         0x944
 #define FLAG_CAMERON_PHOTO4                         0x945
 #define FLAG_CAMERON_PHOTO5                         0x946
-#define FLAG_UNUSED_PHOTO_0x947                     0x947
+#define FLAG_HIDE_RADIOF5DUDE                       0x947
 
 #define FLAG_0x1500                                 0x1500
 // Daily Flags
