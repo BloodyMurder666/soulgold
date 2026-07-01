@@ -37,7 +37,7 @@
 static const u16 sBattleMessageTextPalette[] =
 {
     [0]  = RGB(0, 0, 0),
-    [1]  = RGB(9, 9, 9),     // Default text foreground
+    [1]  = RGB(3, 3, 3),     // Default text foreground
     [2]  = RGB(14, 0, 0),    // Attack shadow
     [3]  = RGB(31, 12, 12),  // Attack
     [4]  = RGB(2, 6, 16),    // Defense shadow
