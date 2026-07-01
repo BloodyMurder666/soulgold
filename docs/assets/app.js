@@ -13,6 +13,14 @@ const abilityName = (constant) => state.data.abilities[constant]?.name || consta
 const fmtTitle = (value, prefix = "") => value.replace(prefix, "").replaceAll("_", " ").toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
 const fmtCategory = (value) => fmtTitle(value, "DAMAGE_CATEGORY_");
 const statLabels = { hp: "HP", atk: "Atk", def: "Def", spa: "SpA", spd: "SpD", spe: "Spe" };
+const searchPlaceholders = {
+  pokedex: "Search Pokédex…",
+  encounters: "Search areas or Pokémon…",
+  machines: "Search TMs, moves, or types…",
+  items: "Search items or locations…",
+  trainers: "Search trainers or parties…",
+  abilities: "Search abilities…",
+};
 const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({
   "&": "&amp;",
   "<": "&lt;",
@@ -26,6 +34,22 @@ function el(tag, className, html) {
   if (className) node.className = className;
   if (html !== undefined) node.innerHTML = html;
   return node;
+}
+
+function bindRowActivation(node, activate, label) {
+  node.tabIndex = 0;
+  node.setAttribute("role", "button");
+  if (label) node.setAttribute("aria-label", label);
+  node.addEventListener("click", (event) => {
+    if (event.target.closest("button, a")) return;
+    activate();
+  });
+  node.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    if (event.target.closest("button, a")) return;
+    event.preventDefault();
+    activate();
+  });
 }
 
 function typePills(types) {
@@ -110,7 +134,7 @@ function speciesSpritePanel(mon) {
 }
 
 async function init() {
-  const response = await fetch("data/romhack-docs.json?v=20260620-2");
+  const response = await fetch("data/romhack-docs.json?v=20260701");
   state.data = await response.json();
   state.filteredSpecies = state.data.species;
   document.body.dataset.activeTab = state.activeTab;
@@ -156,7 +180,8 @@ function bindEvents() {
 function updateStickyOffset() {
   const chrome = document.querySelector(".top-chrome");
   if (!chrome) return;
-  document.documentElement.style.setProperty("--top-chrome-height", `${Math.ceil(chrome.getBoundingClientRect().height)}px`);
+  const scale = Number.parseFloat(getComputedStyle(document.body).zoom) || 1;
+  document.documentElement.style.setProperty("--top-chrome-height", `${Math.ceil(chrome.getBoundingClientRect().height / scale)}px`);
 }
 
 function setTab(tab) {
@@ -167,7 +192,9 @@ function setTab(tab) {
   state.activeTab = tab;
   document.body.dataset.activeTab = tab;
   state.query = "";
-  document.getElementById("globalSearch").value = "";
+  const search = document.getElementById("globalSearch");
+  search.value = "";
+  search.placeholder = searchPlaceholders[tab] || "Search…";
   closeTypeFilter();
   window.scrollTo(0, 0);
   document.querySelectorAll(".tab").forEach((button) => button.classList.toggle("active", button.dataset.tab === tab));
@@ -287,20 +314,22 @@ function renderDexRows() {
   state.filteredSpecies.forEach((mon) => {
     const row = el("div", "dex-row dex-entry");
     row.innerHTML = `
-      <span>${mon.dex || mon.id}</span>
-      <span>${sprite(mon.sprite)}</span>
-      <strong>${speciesFormLabel(mon)}</strong>
-      <span>${typePills(mon.types)}</span>
-      <span class="dex-stat" data-label="HP" style="--stat-pct:${Math.min(100, mon.stats.hp / 2)}%">${mon.stats.hp}</span>
-      <span class="dex-stat" data-label="Atk" style="--stat-pct:${Math.min(100, mon.stats.atk / 2)}%">${mon.stats.atk}</span>
-      <span class="dex-stat" data-label="Def" style="--stat-pct:${Math.min(100, mon.stats.def / 2)}%">${mon.stats.def}</span>
-      <span class="dex-stat" data-label="SpA" style="--stat-pct:${Math.min(100, mon.stats.spa / 2)}%">${mon.stats.spa}</span>
-      <span class="dex-stat" data-label="SpD" style="--stat-pct:${Math.min(100, mon.stats.spd / 2)}%">${mon.stats.spd}</span>
-      <span class="dex-stat" data-label="Spe" style="--stat-pct:${Math.min(100, mon.stats.spe / 2)}%">${mon.stats.spe}</span>
-      <strong class="dex-stat dex-stat-bst" data-label="BST" style="--stat-pct:${Math.min(100, mon.bst / 7.2)}%">${mon.bst}</strong>
-      <span>${pokemonAbilityPills(mon)}</span>
+      <span class="dex-id">${mon.dex || mon.id}</span>
+      <span class="dex-sprite">${sprite(mon.sprite)}</span>
+      <strong class="dex-name">${speciesFormLabel(mon)}</strong>
+      <span class="dex-types">${typePills(mon.types)}</span>
+      <span class="dex-stats">
+        <span class="dex-stat" data-label="HP">${mon.stats.hp}</span>
+        <span class="dex-stat" data-label="Atk">${mon.stats.atk}</span>
+        <span class="dex-stat" data-label="Def">${mon.stats.def}</span>
+        <span class="dex-stat" data-label="SpA">${mon.stats.spa}</span>
+        <span class="dex-stat" data-label="SpD">${mon.stats.spd}</span>
+        <span class="dex-stat" data-label="Spe">${mon.stats.spe}</span>
+        <strong class="dex-stat dex-stat-bst" data-label="BST">${mon.bst}</strong>
+      </span>
+      <span class="dex-abilities">${pokemonAbilityPills(mon)}</span>
     `;
-    row.addEventListener("click", () => openSpecies(mon));
+    bindRowActivation(row, () => openSpecies(mon), `Open details for ${speciesFormLabel(mon)}`);
     container.appendChild(row);
   });
 }
@@ -321,18 +350,27 @@ function handleDetailDialogClose() {
   unlockBodyScroll();
 }
 
-function showDetailDialog() {
+function showDetailDialog(kind = "generic") {
   const dialog = document.getElementById("detailDialog");
+  dialog.dataset.kind = kind;
   lockBodyScroll();
   if (!dialog.open) {
     dialog.showModal();
   }
+  const mobile = window.matchMedia("(max-width: 1100px)").matches;
+  dialog.querySelectorAll(".detail-accordion").forEach((section) => {
+    section.open = !mobile || section.hasAttribute("data-mobile-open");
+  });
+  requestAnimationFrame(() => {
+    document.getElementById("modalBody").scrollTop = 0;
+  });
 }
 
 function lockBodyScroll() {
   if (document.body.classList.contains("modal-open")) return;
   state.modalScrollY = window.scrollY;
-  document.documentElement.style.setProperty("--modal-scroll-top", `${-state.modalScrollY}px`);
+  const scale = Number.parseFloat(getComputedStyle(document.body).zoom) || 1;
+  document.documentElement.style.setProperty("--modal-scroll-top", `${-state.modalScrollY / scale}px`);
   document.body.classList.add("modal-open");
 }
 
@@ -376,13 +414,20 @@ function placeTooltip(tooltip, root, event, fallback) {
   const offsetY = 18;
 
   if (root === document.body) {
+    const scale = Number.parseFloat(getComputedStyle(document.body).zoom) || 1;
+    const scaledWidth = width * scale;
+    const scaledHeight = height * scale;
+    const scaledOffsetX = offsetX * scale;
+    const scaledOffsetY = offsetY * scale;
     tooltip.style.position = "fixed";
-    let left = anchor.x + offsetX;
-    let top = anchor.y + offsetY;
-    if (left + width > window.innerWidth - 12) left = anchor.x - width - offsetX;
-    if (top + height > window.innerHeight - 12) top = anchor.y - height - offsetY;
-    tooltip.style.left = `${Math.max(12, Math.min(left, window.innerWidth - width - 12))}px`;
-    tooltip.style.top = `${Math.max(12, Math.min(top, window.innerHeight - height - 12))}px`;
+    let left = anchor.x + scaledOffsetX;
+    let top = anchor.y + scaledOffsetY;
+    if (left + scaledWidth > window.innerWidth - 12) left = anchor.x - scaledWidth - scaledOffsetX;
+    if (top + scaledHeight > window.innerHeight - 12) top = anchor.y - scaledHeight - scaledOffsetY;
+    left = Math.max(12, Math.min(left, window.innerWidth - scaledWidth - 12));
+    top = Math.max(12, Math.min(top, window.innerHeight - scaledHeight - 12));
+    tooltip.style.left = `${left / scale}px`;
+    tooltip.style.top = `${top / scale}px`;
   } else {
     tooltip.style.position = "absolute";
     const rootRect = root.getBoundingClientRect();
@@ -402,7 +447,9 @@ function placeTooltip(tooltip, root, event, fallback) {
 }
 
 function showAbilityTooltip(button, event) {
-  const ability = state.data.abilities[button.dataset.ability];
+  const reference = button.dataset.ability;
+  const ability = state.data.abilities[reference]
+    || Object.values(state.data.abilities).find((entry) => entry.name === reference);
   if (!ability) return;
   const root = button.closest("dialog[open]") || document.body;
   const tooltip = getScopedTooltip(root, "abilityTooltip", "ability-tooltip");
@@ -430,7 +477,9 @@ function handleAbilityHover(event) {
 }
 
 function showMoveTooltip(button, event) {
-  const move = state.data.moves[button.dataset.move];
+  const reference = button.dataset.move;
+  const move = state.data.moves[reference]
+    || Object.values(state.data.moves).find((entry) => entry.name === reference);
   if (!move) return;
   const root = button.closest("dialog[open]") || document.body;
   const tooltip = getScopedTooltip(root, "moveTooltip", "ability-tooltip move-tooltip");
@@ -542,14 +591,14 @@ function moveRows(moves, options = {}) {
 }
 
 function learnsetSection(title, moves, options = {}) {
+  return accordionSection(title, moveRows(moves || [], options), { className: "learnset-section" });
+}
+
+function accordionSection(title, content, options = {}) {
   return `
-    <details class="learnset-section" open>
-      <summary>
-        <h3 class="section-title">${title}</h3>
-      </summary>
-      <div class="learnset-section-body">
-        ${moveRows(moves || [], options)}
-      </div>
+    <details class="detail-accordion ${options.className || ""}" open ${options.mobileOpen ? "data-mobile-open" : ""}>
+      <summary><h3>${title}</h3><span class="accordion-icon" aria-hidden="true"></span></summary>
+      <div class="accordion-body">${content}</div>
     </details>
   `;
 }
@@ -700,26 +749,25 @@ function heldItemRows(heldItems) {
 function openSpecies(mon) {
   document.getElementById("modalTitle").textContent = `#${mon.dex || mon.id} ${speciesFormLabel(mon)}`;
   document.getElementById("modalBody").innerHTML = `
-    <div class="species-summary">
-      ${speciesSpritePanel(mon)}
-      <div>
-        ${typePills(mon.types)}
-        ${pokemonAbilitySections(mon)}
-        ${heldItemRows(mon.heldItems)}
+    <div class="species-hero-grid">
+      <div class="species-summary">
+        ${speciesSpritePanel(mon)}
+        <div>
+          ${typePills(mon.types)}
+          ${pokemonAbilitySections(mon)}
+          ${heldItemRows(mon.heldItems)}
+        </div>
       </div>
+      ${accordionSection("Base Stats", statBars(mon), { mobileOpen: true })}
     </div>
-    <h3 class="section-title">Evolution</h3>
-    <div class="evolution-chain">${evolutionChain(mon)}${megaFormLinks(mon)}</div>
-    <div class="detail-grid">
-      <section><h3 class="section-title">Base Stats</h3>${statBars(mon)}</section>
-      <section><h3 class="section-title">Locations in wild</h3>${locationRows(mon.locations)}</section>
-    </div>
+    ${accordionSection("Evolution", `<div class="evolution-chain">${evolutionChain(mon)}${megaFormLinks(mon)}</div>`)}
+    ${accordionSection("Locations", locationRows(mon.locations), { className: "species-locations" })}
     ${learnsetSection("Level-Up Learnset", mon.levelUp)}
-    ${learnsetSection("TM/HM Compatibility", mon.tmhm, { showLevel: false })}
-    ${learnsetSection("Tutor Compatibility", mon.tutors, { showLevel: false })}
-    ${learnsetSection("Egg Move Compatibility", mon.eggMoves || [], { showLevel: false })}
+    ${learnsetSection("TM / TR Moves", mon.tmhm, { showLevel: false })}
+    ${learnsetSection("Tutor Moves", mon.tutors, { showLevel: false })}
+    ${learnsetSection("Egg Moves", mon.eggMoves || [], { showLevel: false })}
   `;
-  showDetailDialog();
+  showDetailDialog("pokemon");
 }
 
 function openSpeciesByConstant(constant) {
@@ -731,10 +779,12 @@ function renderEncounters() {
   const container = document.getElementById("encounterList");
   const rows = state.data.encounters.filter((encounter) => matches(`${encounter.name} ${encounter.variants.map((variant) => variant.methods.map((m) => m.mons.map((mon) => mon.name).join(" ")).join(" ")).join(" ")}`));
   container.innerHTML = rows.map((encounter) => `
-    <article class="card">
-      <h2>${encounter.name}</h2>
+    <details class="card encounter-card" open>
+      <summary><h2>${encounter.name}</h2></summary>
+      <div class="encounter-card-body">
       ${encounter.variants.map((variant) => encounterVariant(variant, encounter.hasTimeVariants)).join("")}
-    </article>
+      </div>
+    </details>
   `).join("");
 }
 
@@ -803,10 +853,7 @@ function renderTms() {
       <td data-label="Description">${tm.description}</td>
       <td data-label="Location" class="muted">${tm.location || "TBD"}</td>
     `;
-    row.addEventListener("click", (event) => {
-      if (event.target.closest("button, a, .species-link, .ability-pill, .move-name")) return;
-      openTm(tm);
-    });
+    bindRowActivation(row, () => openTm(tm), `Open details for ${tm.label} ${tm.moveName}`);
     tbody.appendChild(row);
   });
 }
@@ -826,7 +873,7 @@ function renderItems() {
       <td data-label="Description">${item.description || "No description."}</td>
       <td data-label="Location" class="muted">${item.location || "TBD"}</td>
     `;
-    row.addEventListener("click", () => openItem(item));
+    bindRowActivation(row, () => openItem(item), `Open details for ${item.name}`);
     tbody.appendChild(row);
   });
 }
@@ -847,7 +894,7 @@ function openItem(item) {
       </div>
     ` : `<p class="muted">Location TBD.</p>`}
   `;
-  showDetailDialog();
+  showDetailDialog("item");
 }
 
 function speciesCards(list) {
@@ -870,10 +917,10 @@ function openTm(tm) {
       <p>${tm.description || "No description."}</p>
       <p class="muted">${tm.location || "Location TBD"}</p>
     </div>
-    <h3 class="section-title">Compatible Pokemon</h3>
+    <h3 class="section-title">Compatible Pokémon</h3>
     ${speciesCards(compatible)}
   `;
-  showDetailDialog();
+  showDetailDialog("move");
 }
 
 function renderAbilities() {
@@ -886,7 +933,7 @@ function renderAbilities() {
   abilities.forEach((ability) => {
     const row = el("article", "ability-row");
     row.innerHTML = `<h2>${ability.name}</h2><p>${ability.description}</p><p class="muted">${ability.usage.base.length} base / ${ability.usage.innate.length} innate</p>`;
-    row.addEventListener("click", () => openAbility(ability));
+    bindRowActivation(row, () => openAbility(ability), `Open details for ${ability.name}`);
     container.appendChild(row);
   });
 }
@@ -899,12 +946,12 @@ function openAbility(ability) {
   document.getElementById("modalTitle").textContent = ability.name;
   document.getElementById("modalBody").innerHTML = `
     <p>${ability.description}</p>
-    <h3 class="section-title">Base Ability</h3>
+    <h3 class="section-title">Base Ability Pokémon</h3>
     ${usageList(ability.usage.base)}
-    <h3 class="section-title">Innate Ability</h3>
+    <h3 class="section-title">Innate Ability Pokémon</h3>
     ${usageList(ability.usage.innate)}
   `;
-  showDetailDialog();
+  showDetailDialog("ability");
 }
 
 function renderTrainers() {
@@ -925,7 +972,7 @@ function renderTrainers() {
           <strong>${trainer.displayName || trainer.name}</strong>
         </div>
       </td>
-      <td data-label="Party">${trainerPartyHtml(trainer.party)}</td>
+      <td data-label="Party"><div class="trainer-party-details">${trainerPartyHtml(trainer.party)}</div></td>
     `;
     tbody.appendChild(row);
   });
@@ -1015,13 +1062,15 @@ function trainerStatSpreadHtml(label, values) {
 
 function trainerMonDetailsHtml(mon) {
   const rows = [];
-  if (mon.ability) rows.push(`<div class="trainer-mon-detail"><span>Ability:</span><strong>${trainerTokenName(mon.ability, "ABILITY_")}</strong></div>`);
+  if (mon.ability) {
+    rows.push(`<div class="trainer-mon-detail"><span>Ability:</span><strong><button class="trainer-ability ability-pill" type="button" data-ability="${escapeHtml(mon.ability)}">${trainerTokenName(mon.ability, "ABILITY_")}</button></strong></div>`);
+  }
   const evs = trainerStatSpreadHtml("EVs", mon.evs);
   const ivs = trainerStatSpreadHtml("IVs", mon.ivs);
   if (evs) rows.push(evs);
   if (ivs) rows.push(ivs);
   if (mon.moves?.length) {
-    rows.push(`<div class="trainer-mon-detail trainer-moves"><span>Moves:</span><strong>${mon.moves.map((move) => `- ${trainerMoveLabel(move)}`).join("<br>")}</strong></div>`);
+    rows.push(`<div class="trainer-mon-detail trainer-moves"><span>Moves:</span><strong>${mon.moves.map((move) => `- <button class="move-name trainer-move-name" type="button" data-move="${escapeHtml(move)}">${trainerMoveLabel(move)}</button>`).join("<br>")}</strong></div>`);
   }
   return rows.length ? `<div class="trainer-mon-details">${rows.join("")}</div>` : "";
 }

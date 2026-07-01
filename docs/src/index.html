@@ -4,19 +4,29 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Soulgold Documentation</title>
-    <link rel="stylesheet" href="assets/styles.css?v=20260620-2">
+    <meta name="theme-color" content="#020b16">
+    <link rel="stylesheet" href="assets/styles.css?v=20260701">
+    <link rel="stylesheet" href="assets/refined.css?v=20260701-4">
   </head>
   <body>
     <div class="top-chrome">
       <header class="site-header">
-        <div>
-          <h1>Soulgold Documentation</h1>
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div>
+            <h1>Soulgold Documentation</h1>
+            <p>Pokémon, encounters, machines, items, trainers, and abilities</p>
+          </div>
         </div>
-        <input id="globalSearch" class="search" type="search" placeholder="Search">
+        <label class="search-wrap">
+          <span class="sr-only">Search the current section</span>
+          <input id="globalSearch" class="search" type="search" placeholder="Search Pokédex…" autocomplete="off">
+          <span class="search-icon" aria-hidden="true"></span>
+        </label>
       </header>
 
       <nav class="tabs" aria-label="Documentation sections">
-        <button class="tab active" data-tab="pokedex">Pokedex</button>
+        <button class="tab active" data-tab="pokedex">Pokédex</button>
         <button class="tab" data-tab="encounters">Wild Encounters</button>
         <button class="tab" data-tab="machines">TMs/HMs</button>
         <button class="tab" data-tab="items">Items</button>
@@ -27,9 +37,14 @@
 
     <main>
       <section id="pokedex" class="panel active">
-        <div class="table-shell pokedex-shell">
+        <div class="panel-heading">
+          <div><h2>Pokédex</h2></div>
+        </div>
+        <div class="table-shell data-panel pokedex-shell">
           <div class="dex-head dex-row">
-            <span>ID</span><span></span><span>Name</span><span>Types</span><span>HP</span><span>Atk</span><span>Def</span><span>SpA</span><span>SpD</span><span>Spe</span><span>BST</span><span>Abilities</span>
+            <span>#</span><span></span><span>Name</span><span>Type</span>
+            <span class="dex-stats dex-stats-head"><span>HP</span><span>Atk</span><span>Def</span><span>SpA</span><span>SpD</span><span>Spe</span><span>BST</span></span>
+            <span>Abilities</span>
           </div>
           <div id="dexScroller" class="dex-scroller">
             <div id="dexSpacer"></div>
@@ -39,11 +54,17 @@
       </section>
 
       <section id="encounters" class="panel">
+        <div class="panel-heading">
+          <div><h2>Wild Encounters</h2></div>
+        </div>
         <div id="encounterList" class="stack"></div>
       </section>
 
       <section id="machines" class="panel">
-        <div class="table-shell">
+        <div class="panel-heading">
+          <div><h2>TMs / HMs</h2></div>
+        </div>
+        <div class="table-shell data-panel">
           <table>
             <thead>
               <tr><th>ID</th><th>Move</th><th>Type</th><th>Cat</th><th>Pow</th><th>Acc</th><th>PP</th><th>Description</th><th>Location</th></tr>
@@ -54,11 +75,17 @@
       </section>
 
       <section id="abilities" class="panel">
-        <div id="abilityList" class="ability-list"></div>
+        <div class="panel-heading">
+          <div><h2>Abilities</h2></div>
+        </div>
+        <div id="abilityList" class="ability-list data-panel"></div>
       </section>
 
       <section id="items" class="panel">
-        <div class="table-shell">
+        <div class="panel-heading">
+          <div><h2>Items</h2></div>
+        </div>
+        <div class="table-shell data-panel">
           <table>
             <thead>
               <tr><th>Name</th><th>Description</th><th>Location</th></tr>
@@ -69,7 +96,10 @@
       </section>
 
       <section id="trainers" class="panel">
-        <div class="table-shell">
+        <div class="panel-heading">
+          <div><h2>Trainers</h2></div>
+        </div>
+        <div class="table-shell data-panel">
           <table>
             <thead>
               <tr><th>Name</th><th>Party</th></tr>
@@ -80,10 +110,11 @@
       </section>
     </main>
 
-    <dialog id="detailDialog">
+    <dialog id="detailDialog" aria-labelledby="modalTitle">
+      <span class="sheet-handle" aria-hidden="true"></span>
       <div class="modal-head">
         <h2 id="modalTitle"></h2>
-        <button id="closeDialog" class="icon-button" aria-label="Close">x</button>
+        <button id="closeDialog" class="icon-button" aria-label="Close detail view">×</button>
       </div>
       <div id="modalBody"></div>
     </dialog>
@@ -92,8 +123,8 @@
       <button id="typeFilterToggle" class="type-filter-toggle" type="button" aria-expanded="false" aria-controls="typeFilterPanel">Type</button>
       <div id="typeFilterPanel" class="type-filter-panel" hidden></div>
     </div>
-    <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top">Top</button>
+    <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top">↑</button>
 
-    <script src="assets/app.js?v=20260620-2"></script>
+    <script src="assets/app.js?v=20260701-4"></script>
   </body>
 </html>
