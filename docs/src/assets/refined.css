@@ -51,7 +51,7 @@ body {
     radial-gradient(circle at 18% -8%, rgb(23 83 122 / 25%), transparent 34rem),
     radial-gradient(circle at 88% 12%, rgb(16 62 101 / 17%), transparent 30rem),
     linear-gradient(180deg, #020b16 0%, #04111f 46%, #020a14 100%);
-  background-attachment: fixed;
+  background-attachment: scroll;
   color: var(--text);
   font-size: 16px;
   line-height: 1.5;
@@ -114,7 +114,7 @@ p {
   border-bottom: 1px solid var(--line);
   background: rgb(2 11 22 / 94%);
   box-shadow: 0 12px 30px rgb(0 5 14 / 34%);
-  backdrop-filter: blur(18px);
+  backdrop-filter: none;
 }
 
 .site-header {
@@ -548,7 +548,7 @@ tbody tr:nth-child(even) {
   background: transparent;
   box-shadow: none;
   cursor: pointer;
-  transition: background 110ms ease, box-shadow 110ms ease;
+  transition: none;
 }
 
 .dex-entry:nth-child(even) {
@@ -556,8 +556,8 @@ tbody tr:nth-child(even) {
 }
 
 .dex-entry:hover {
-  background: var(--surface-hover);
-  box-shadow: inset 3px 0 var(--gold);
+  background: linear-gradient(90deg, var(--gold) 0 3px, var(--surface-hover) 3px);
+  box-shadow: none;
 }
 
 .dex-id {
@@ -1939,7 +1939,7 @@ body[data-active-tab="pokedex"] .type-filter {
     border: 1px solid var(--line);
     border-radius: var(--radius);
     background: linear-gradient(145deg, #0a2338, #061827);
-    box-shadow: 0 8px 24px rgb(0 4 12 / 27%);
+    box-shadow: none;
   }
 
   .dex-entry:nth-child(even) {
@@ -1948,7 +1948,7 @@ body[data-active-tab="pokedex"] .type-filter {
 
   .dex-entry:hover {
     background: linear-gradient(145deg, #102f49, #082036);
-    box-shadow: inset 3px 0 var(--gold), 0 8px 24px rgb(0 4 12 / 27%);
+    box-shadow: inset 3px 0 var(--gold);
   }
 
   .dex-id {

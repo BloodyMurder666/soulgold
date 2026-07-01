@@ -110,7 +110,7 @@ function regularAndHiddenAbilityPills(groups) {
 }
 
 function sprite(src, className = "sprite") {
-  return src ? `<img class="${className}" src="${src}" alt="">` : `<span class="muted">No sprite</span>`;
+  return src ? `<img class="${className}" src="${src}" alt="" loading="lazy" decoding="async">` : `<span class="muted">No sprite</span>`;
 }
 
 function moveCategory(category) {
@@ -141,7 +141,7 @@ async function init() {
   bindEvents();
   renderTypeFilter();
   updateStickyOffset();
-  renderAll();
+  renderActive();
 }
 
 function bindEvents() {
@@ -165,14 +165,14 @@ function bindEvents() {
   dialog.addEventListener("close", handleDetailDialogClose);
   document.body.addEventListener("click", handleAbilityClick, true);
   document.body.addEventListener("pointerover", handleAbilityHover);
-  document.body.addEventListener("pointerout", hideAbilityTooltip);
+  document.body.addEventListener("pointerout", handleAbilityOut);
   document.body.addEventListener("click", handleMoveClick, true);
   document.body.addEventListener("click", handleSpeciesLinkClick, true);
   document.body.addEventListener("click", handleSpriteToggle, true);
   document.body.addEventListener("pointerover", handleMoveHover);
-  document.body.addEventListener("pointerout", hideMoveTooltip);
+  document.body.addEventListener("pointerout", handleMoveOut);
   document.body.addEventListener("pointerover", handleItemHover);
-  document.body.addEventListener("pointerout", hideItemTooltip);
+  document.body.addEventListener("pointerout", handleItemOut);
   document.body.addEventListener("click", handleItemTooltipClick, true);
   window.addEventListener("resize", updateStickyOffset);
 }
@@ -204,15 +204,6 @@ function setTab(tab) {
 
 function matches(text) {
   return !state.query || text.toLowerCase().includes(state.query);
-}
-
-function renderAll() {
-  renderDex();
-  renderEncounters();
-  renderTms();
-  renderItems();
-  renderAbilities();
-  renderTrainers();
 }
 
 function renderActive() {
@@ -477,7 +468,12 @@ function handleAbilityClick(event) {
 
 function handleAbilityHover(event) {
   const button = event.target.closest(".ability-pill");
-  if (button) showAbilityTooltip(button, event);
+  if (button && !button.contains(event.relatedTarget)) showAbilityTooltip(button, event);
+}
+
+function handleAbilityOut(event) {
+  const button = event.target.closest(".ability-pill");
+  if (button && !button.contains(event.relatedTarget)) hideAbilityTooltip();
 }
 
 function showMoveTooltip(button, event) {
@@ -514,7 +510,12 @@ function hideItemTooltip() {
 
 function handleItemHover(event) {
   const button = event.target.closest(".item-tooltip-target");
-  if (button) showItemTooltip(button, event);
+  if (button && !button.contains(event.relatedTarget)) showItemTooltip(button, event);
+}
+
+function handleItemOut(event) {
+  const button = event.target.closest(".item-tooltip-target");
+  if (button && !button.contains(event.relatedTarget)) hideItemTooltip();
 }
 
 function handleItemTooltipClick(event) {
@@ -527,7 +528,12 @@ function handleItemTooltipClick(event) {
 
 function handleMoveHover(event) {
   const button = event.target.closest(".move-name");
-  if (button) showMoveTooltip(button, event);
+  if (button && !button.contains(event.relatedTarget)) showMoveTooltip(button, event);
+}
+
+function handleMoveOut(event) {
+  const button = event.target.closest(".move-name");
+  if (button && !button.contains(event.relatedTarget)) hideMoveTooltip();
 }
 
 function handleMoveClick(event) {
