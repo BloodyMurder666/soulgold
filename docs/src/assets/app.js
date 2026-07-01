@@ -862,6 +862,11 @@ function itemIconHtml(item, className = "item-icon") {
   return item?.itemIcon ? `<img class="${className}" src="${item.itemIcon}" alt="">` : "";
 }
 
+function itemLocationLines(location) {
+  const entries = String(location || "TBD").split(/;\s*/).filter(Boolean);
+  return `<span class="location-lines">${entries.map((entry) => `<span>${escapeHtml(entry)}</span>`).join("")}</span>`;
+}
+
 function renderItems() {
   const tbody = document.getElementById("itemRows");
   const rows = state.data.items.filter((item) => matches(`${item.name} ${item.description} ${item.location}`));
@@ -871,7 +876,7 @@ function renderItems() {
     row.innerHTML = `
       <td data-label="Name"><span class="item-name-cell">${itemIconHtml(item)}<strong>${item.name}</strong></span></td>
       <td data-label="Description">${item.description || "No description."}</td>
-      <td data-label="Location" class="muted">${item.location || "TBD"}</td>
+      <td data-label="Location" class="muted">${itemLocationLines(item.location)}</td>
     `;
     bindRowActivation(row, () => openItem(item), `Open details for ${item.name}`);
     tbody.appendChild(row);
