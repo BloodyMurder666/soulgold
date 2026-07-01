@@ -548,17 +548,6 @@ static void Task_InstantWarpAndLoadMap(u8 taskId)
     DestroyTask(taskId);
 }
 
-void DoInstantWarp(void)
-{
-    Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE | SCREFF_HARDWARE);
-
-    LockPlayerFieldControls();
-    StoreInitialPlayerAvatarState();
-    SetFollowerNPCData(FNPC_DATA_COME_OUT_DOOR, FNPC_DOOR_NONE);
-    gFieldCallback = FieldCB_InstantWarpExit;
-    CreateTask(Task_InstantWarpAndLoadMap, 10);
-}
-
 void DoDiveWarp(void)
 {
     LockPlayerFieldControls();

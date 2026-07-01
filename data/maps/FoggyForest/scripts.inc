@@ -35,19 +35,57 @@ FoggyForestBMTeleport::
 	checkitem ITEM_BLACK_MIRROR
 # 23 "data/maps/FoggyForest/scripts.pory"
 	compare VAR_RESULT, TRUE
-	goto_if_eq FoggyForestBMTeleport_1
-	return
-
+	goto_if_eq FoggyForestBMTeleport_2
 FoggyForestBMTeleport_1:
+# 27 "data/maps/FoggyForest/scripts.pory"
+	release
+	end
+
+FoggyForestBMTeleport_2:
 # 24 "data/maps/FoggyForest/scripts.pory"
-	warpinstant MAP_FOGGYFOREST_DEPTHS, WARP_ID_NONE, 8, 46
-	return
+	warpwhitefade MAP_FOGGYFOREST_DEPTHS, 8, 24
+# 25 "data/maps/FoggyForest/scripts.pory"
+	waitstate
+	goto FoggyForestBMTeleport_1
+
+
+FoggyForestBMTeleportR::
+# 32 "data/maps/FoggyForest/scripts.pory"
+	checkitem ITEM_BLACK_MIRROR
+# 33 "data/maps/FoggyForest/scripts.pory"
+	compare VAR_RESULT, TRUE
+	goto_if_eq FoggyForestBMTeleportR_2
+FoggyForestBMTeleportR_1:
+# 37 "data/maps/FoggyForest/scripts.pory"
+	release
+	end
+
+FoggyForestBMTeleportR_2:
+# 34 "data/maps/FoggyForest/scripts.pory"
+	warpwhitefade MAP_FOGGYFOREST_DEPTHS, 9, 24
+# 35 "data/maps/FoggyForest/scripts.pory"
+	waitstate
+	goto FoggyForestBMTeleportR_1
 
 
 FoggyForestBMOutTeleport::
-# 29 "data/maps/FoggyForest/scripts.pory"
-	warpinstant MAP_FOGGY_FOREST, WARP_ID_NONE, 38, 5
-	return
+# 42 "data/maps/FoggyForest/scripts.pory"
+	warpwhitefade MAP_FOGGY_FOREST, 38, 5
+# 43 "data/maps/FoggyForest/scripts.pory"
+	waitstate
+# 44 "data/maps/FoggyForest/scripts.pory"
+	release
+	end
+
+
+FoggyForestBMOutTeleportR::
+# 49 "data/maps/FoggyForest/scripts.pory"
+	warpwhitefade MAP_FOGGY_FOREST, 39, 5
+# 50 "data/maps/FoggyForest/scripts.pory"
+	waitstate
+# 51 "data/maps/FoggyForest/scripts.pory"
+	release
+	end
 
 
 FoggyForest_HexManiac_Text_0:

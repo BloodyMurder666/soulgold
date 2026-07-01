@@ -462,14 +462,6 @@
 	formatwarp \map, \a, \b, \c
 	.endm
 
-	@ Immediately warps the player to the specified map without a fade or sound effect.
-	@ Warp commands can be given either the id of which warp location to go to on the destination map
-	@ or a pair of x/y coordinates to go to directly on the destination map.
-	.macro warpinstant map:req, a, b, c
-	setwarp \map, \a, \b, \c
-	special DoInstantWarp
-	.endm
-
 	@ Warps the player to the specified map and plays a door opening animation before stepping upwards into it.
 	@ Warp commands can be given either the id of which warp location to go to on the destination map
 	@ or a pair of x/y coordinates to go to directly on the destination map.

@@ -21,10 +21,33 @@ script FoggyForest_Phantump {
 script FoggyForestBMTeleport {
     checkitem(ITEM_BLACK_MIRROR)
     if (var(VAR_RESULT) == TRUE) {
-        warpinstant(MAP_FOGGYFOREST_DEPTHS, WARP_ID_NONE, 8, 46)
+        warpwhitefade(MAP_FOGGYFOREST_DEPTHS, 8, 24)
+        waitstate
     }
+    release
+    end
+}
+
+script FoggyForestBMTeleportR {
+    checkitem(ITEM_BLACK_MIRROR)
+    if (var(VAR_RESULT) == TRUE) {
+        warpwhitefade(MAP_FOGGYFOREST_DEPTHS, 9, 24)
+        waitstate
+    }
+    release
+    end
 }
 
 script FoggyForestBMOutTeleport {
-    warpinstant(MAP_FOGGY_FOREST, WARP_ID_NONE, 38, 5)
+    warpwhitefade(MAP_FOGGY_FOREST, 38, 5)
+    waitstate
+    release
+    end
+}
+
+script FoggyForestBMOutTeleportR {
+    warpwhitefade(MAP_FOGGY_FOREST, 39, 5)
+    waitstate
+    release
+    end
 }
