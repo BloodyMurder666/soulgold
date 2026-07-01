@@ -40,13 +40,13 @@ FoggyForestBMTeleport::
 
 FoggyForestBMTeleport_1:
 # 24 "data/maps/FoggyForest/scripts.pory"
-	warpwhitefade MAP_FOGGYFOREST_DEPTHS, 8, 46
+	warpinstant MAP_FOGGYFOREST_DEPTHS, WARP_ID_NONE, 8, 46
 	return
 
 
 FoggyForestBMOutTeleport::
 # 29 "data/maps/FoggyForest/scripts.pory"
-	warpsilent MAP_FOGGY_FOREST, 38, 5
+	warpinstant MAP_FOGGY_FOREST, WARP_ID_NONE, 38, 5
 	return
 
 

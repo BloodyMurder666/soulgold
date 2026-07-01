@@ -6448,7 +6448,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyIconPalette = gMonShinyIconPalette_UrsalunaBloodmoon,
         .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
         SHADOW(6, 11, SHADOW_SIZE_L)
-        FOOTPRINT(Ursaluna)
+        FOOTPRINT(UrsalunaBloodmoon)
+        OVERWORLD(
+            sPicTable_UrsalunaBloodmoon,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_UrsalunaBloodmoon,
+            gShinyOverworldPalette_UrsalunaBloodmoon
+        )
         .levelUpLearnset = sUrsalunaBloodmoonLevelUpLearnset,
         .teachableLearnset = sUrsalunaBloodmoonTeachableLearnset,
         .formSpeciesIdTable = sUrsalunaFormSpeciesIdTable,

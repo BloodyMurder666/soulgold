@@ -51,6 +51,8 @@ static void Task_ExitDoor(u8);
 static bool32 WaitForWeatherFadeIn(void);
 static void Task_SpinEnterWarp(u8 taskId);
 static void Task_EnableScriptAfterMusicFade(u8 taskId);
+static void Task_InstantWarpAndLoadMap(u8 taskId);
+static void FieldCB_InstantWarpExit(void);
 
 static void ExitStairsMovement(s16*, s16*, s16*, s16*, s16*);
 static void GetStairsMovementDirection(u32, s16*, s16*);
@@ -526,6 +528,35 @@ void DoWarp(void)
     PlaySE(SE_EXIT);
     gFieldCallback = FieldCB_DefaultWarpExit;
     CreateTask(Task_WarpAndLoadMap, 10);
+}
+
+static void FieldCB_InstantWarpExit(void)
+{
+    Overworld_PlaySpecialMapMusic();
+    FollowerNPC_WarpSetEnd();
+    UnlockPlayerFieldControls();
+}
+
+static void Task_InstantWarpAndLoadMap(u8 taskId)
+{
+    FreezeObjectEvents();
+    LockPlayerFieldControls();
+    EndORASDowsing();
+    ClearMirageTowerPulseBlendEffect();
+    WarpIntoMap();
+    SetMainCallback2(CB2_LoadMap);
+    DestroyTask(taskId);
+}
+
+void DoInstantWarp(void)
+{
+    Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE | SCREFF_HARDWARE);
+
+    LockPlayerFieldControls();
+    StoreInitialPlayerAvatarState();
+    SetFollowerNPCData(FNPC_DATA_COME_OUT_DOOR, FNPC_DOOR_NONE);
+    gFieldCallback = FieldCB_InstantWarpExit;
+    CreateTask(Task_InstantWarpAndLoadMap, 10);
 }
 
 void DoDiveWarp(void)
