@@ -187,7 +187,7 @@ AchievementGuy_Reward15::
 # 94 "data/maps/Route40_House4/scripts.pory"
 	msgbox AchievementGuy_Reward15_Text_0
 # 101 "data/maps/Route40_House4/scripts.pory"
-	giveitem ITEM_BLACK_AUGURITE
+	giveitem ITEM_SHIN_GENOME
 # 102 "data/maps/Route40_House4/scripts.pory"
 	setvar VAR_ACHIEVEMENT_REWARD_MILESTONE, 15
 # 103 "data/maps/Route40_House4/scripts.pory"

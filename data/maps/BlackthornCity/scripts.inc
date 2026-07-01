@@ -1,4 +1,3 @@
-.set LOCALID_BLACKTHORN_SAGE, 7
 .set LOCALID_BLACKTHORN_BOY, 2
 
 BlackthornCity_MapScripts::

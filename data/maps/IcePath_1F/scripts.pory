@@ -47,6 +47,7 @@ IcePath_1F_EventScript_KimonoGirlPush::
 	playse SE_M_ICY_WIND
 	applymovement LOCALID_ICEPATH1_KIMONO, IcePath_Movement_KimonoSlide
 	waitmovement 0
+	createfieldmugshot MUGSHOT_KIMONO_GIRL
 	msgbox IcePath_1F_Text_Thanks, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_ICEPATH1_KIMONO, IcePath_Movement_KimonoLeave

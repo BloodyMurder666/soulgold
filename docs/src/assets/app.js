@@ -431,14 +431,18 @@ function placeTooltip(tooltip, root, event, fallback) {
   } else {
     tooltip.style.position = "absolute";
     const rootRect = root.getBoundingClientRect();
+    const scaleX = root.offsetWidth ? rootRect.width / root.offsetWidth : 1;
+    const scaleY = root.offsetHeight ? rootRect.height / root.offsetHeight : 1;
+    const anchorX = (anchor.x - rootRect.left) / scaleX + root.scrollLeft;
+    const anchorY = (anchor.y - rootRect.top) / scaleY + root.scrollTop;
     const visibleLeft = root.scrollLeft + 12;
     const visibleTop = root.scrollTop + 12;
     const visibleRight = root.scrollLeft + root.clientWidth - width - 12;
     const visibleBottom = root.scrollTop + root.clientHeight - height - 12;
-    let left = anchor.x - rootRect.left + root.scrollLeft + offsetX;
-    let top = anchor.y - rootRect.top + root.scrollTop + offsetY;
-    if (left > visibleRight) left = anchor.x - rootRect.left + root.scrollLeft - width - offsetX;
-    if (top > visibleBottom) top = anchor.y - rootRect.top + root.scrollTop - height - offsetY;
+    let left = anchorX + offsetX;
+    let top = anchorY + offsetY;
+    if (left > visibleRight) left = anchorX - width - offsetX;
+    if (top > visibleBottom) top = anchorY - height - offsetY;
     tooltip.style.left = `${Math.max(visibleLeft, Math.min(left, visibleRight))}px`;
     tooltip.style.top = `${Math.max(visibleTop, Math.min(top, visibleBottom))}px`;
   }

@@ -5315,6 +5315,18 @@ bool32 IsSpeciesInHoennDex(u16 species)
 
 u16 GetBattleBGM(void)
 {
+    if (gBattleTypeFlags & BATTLE_TYPE_ROAMER)
+    {
+        switch (GetMonData(&gEnemyParty[0], MON_DATA_SPECIES))
+        {
+        case SPECIES_ENTEI:
+            return MUS_HG_VS_ENTEI;
+        case SPECIES_RAIKOU:
+            return MUS_HG_VS_RAIKOU;
+        case SPECIES_SUICUNE:
+            return MUS_HG_VS_SUICUNE;
+        }
+    }
 
     if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY)
     {

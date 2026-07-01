@@ -978,28 +978,30 @@ RadioTower_5F_Archer_1:
 # 570 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	createfieldmugshot MUGSHOT_OAK
 # 571 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	msgbox OakRadioTowerF5_Text_2
-# 572 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	msgbox RadioTower_5F_Archer_Text_10
-# 573 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	closemessage
-# 574 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	moveobjecttocoords LOCALID_RADIOTOWER_OAK, 24, 5, DIR_WEST
-# 575 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	waitmovement 0
-# 576 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	clearflag FLAG_HIDE_GOLDENROD_NPCS
-# 577 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	setvar VAR_GOLDENROD_CITY_STATE, 11
 # 578 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	playse SE_EXIT
+	msgbox RadioTower_5F_Archer_Text_11
 # 579 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	removeobject LOCALID_RADIOTOWER_OAK
+	closemessage
 # 580 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	savebgm MUS_DUMMY
+	moveobjecttocoords LOCALID_RADIOTOWER_OAK, 24, 5, DIR_WEST
+# 581 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	waitmovement 0
 # 582 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	fadedefaultbgm
+	clearflag FLAG_HIDE_GOLDENROD_NPCS
 # 583 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	setvar VAR_GOLDENROD_CITY_STATE, 11
+# 584 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	setflag FLAG_ROCKET_TAKEOVER_CAP
+# 585 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	playse SE_EXIT
+# 586 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	removeobject LOCALID_RADIOTOWER_OAK
+# 587 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	savebgm MUS_DUMMY
+# 589 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	fadedefaultbgm
+# 590 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	release
 	end
 
@@ -1151,6 +1153,14 @@ RadioTower_5F_Archer_Text_9:
 	.string "I can't remember.$"
 
 RadioTower_5F_Archer_Text_10:
-# 572 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 571 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	.string "That is a Mega Ring. \p"
+	.string "When combined with a Mega stone, \n"
+	.string "it allows the bond between trainer \l"
+	.string "and Pokémon to fully manifest. \p"
+	.string "I'm sure you'll be able to pull it off.$"
+
+RadioTower_5F_Archer_Text_11:
+# 578 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	.string "Now I must get back to my work, I hope\n"
 	.string "you'll tune in to my next radio show!$"

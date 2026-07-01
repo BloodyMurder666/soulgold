@@ -8,9 +8,9 @@
   --surface-hover: #102f4a;
   --line: #17354d;
   --line-strong: #24516e;
-  --text: #f7fafc;
-  --muted: #9db1c1;
-  --muted-strong: #c6d3dd;
+  --text: #fbfdff;
+  --muted: #afc0cc;
+  --muted-strong: #d5dfe6;
   --gold: #f3c650;
   --gold-soft: #8d6925;
   --cyan: #42c9ff;
@@ -53,8 +53,8 @@ body {
     linear-gradient(180deg, #020b16 0%, #04111f 46%, #020a14 100%);
   background-attachment: fixed;
   color: var(--text);
-  font-size: 13px;
-  line-height: 1.45;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 body::before {
@@ -189,7 +189,7 @@ h1 {
 .site-header p {
   margin-top: 4px;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.2;
 }
 
@@ -207,10 +207,10 @@ h1 {
   border-radius: 999px;
   outline: 0;
   background: #061625;
-  box-shadow: inset 0 1px 6px rgb(0 3 10 / 55%);
+  box-shadow: inset 0 1px 4px rgb(0 3 10 / 45%);
   color: var(--text);
   padding: 0 41px 0 15px;
-  font-size: 12px;
+  font-size: 14px;
   transition: border-color 140ms ease, box-shadow 140ms ease;
 }
 
@@ -220,7 +220,7 @@ h1 {
 
 .search:focus {
   border-color: var(--cyan);
-  box-shadow: 0 0 0 3px rgb(66 201 255 / 12%), inset 0 1px 6px rgb(0 3 10 / 55%);
+  box-shadow: 0 0 0 3px rgb(66 201 255 / 18%), 0 0 18px rgb(66 201 255 / 10%), inset 0 1px 4px rgb(0 3 10 / 45%);
 }
 
 .search-icon {
@@ -271,7 +271,7 @@ h1 {
   box-shadow: none;
   color: var(--muted-strong);
   cursor: pointer;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   text-shadow: none;
   transition: border-color 120ms ease, background 120ms ease, color 120ms ease, transform 120ms ease;
@@ -318,6 +318,11 @@ main {
   margin-inline: auto;
 }
 
+#encounters {
+  width: min(100%, 1440px);
+  margin-inline: auto;
+}
+
 #trainers {
   width: min(100%, 1360px);
   margin-inline: auto;
@@ -349,13 +354,13 @@ main {
 }
 
 .panel-heading h2 {
-  font-size: 18px;
+  font-size: 22px;
   line-height: 1.1;
 }
 
 .eyebrow {
   color: var(--gold);
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -391,7 +396,7 @@ table {
 
 th,
 td {
-  padding: 9px 11px;
+  padding: 12px 14px;
   border-bottom: 1px solid var(--line);
   color: var(--muted-strong);
   text-align: left;
@@ -402,10 +407,14 @@ td strong {
   color: var(--text);
 }
 
+td {
+  font-size: 15px;
+}
+
 th {
   background: #0c2439;
   color: #bed0dc;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: .07em;
   text-transform: uppercase;
@@ -510,10 +519,10 @@ tbody tr:nth-child(even) {
   position: sticky;
   z-index: 20;
   top: var(--top-chrome-height);
-  height: 37px;
+  height: 44px;
   background: #0c2439;
   color: #bed0dc;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: .07em;
   text-transform: uppercase;
@@ -528,10 +537,10 @@ tbody tr:nth-child(even) {
 
 .dex-entry {
   height: auto;
-  min-height: 64px;
+  min-height: 76px;
   margin: 0;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 8px;
+  padding-bottom: 8px;
   overflow: visible;
   border: 0;
   border-bottom: 1px solid var(--line);
@@ -553,12 +562,13 @@ tbody tr:nth-child(even) {
 
 .dex-id {
   color: var(--muted);
+  font-size: 13px;
   font-variant-numeric: tabular-nums;
 }
 
 .dex-name {
   overflow: hidden;
-  font-size: 12px;
+  font-size: 15px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -581,7 +591,7 @@ tbody tr:nth-child(even) {
 .dex-stat {
   min-width: 0;
   color: var(--muted-strong);
-  font-size: 10px;
+  font-size: 14px;
   font-variant-numeric: tabular-nums;
   text-align: center;
 }
@@ -623,15 +633,15 @@ tbody tr:nth-child(even) {
 .pill {
   display: inline-flex;
   min-width: 47px;
-  height: 19px;
-  padding: 0 6px;
+  height: 24px;
+  padding: 0 8px;
   align-items: center;
   justify-content: center;
   border: 1px solid rgb(255 255 255 / 15%);
   border-radius: 5px;
   box-shadow: inset 0 1px rgb(255 255 255 / 12%);
   color: #fff;
-  font-size: 8px;
+  font-size: 11px;
   font-weight: 900;
   letter-spacing: .025em;
   line-height: 1;
@@ -643,13 +653,13 @@ tbody tr:nth-child(even) {
   width: auto;
   min-width: 0;
   max-width: 100%;
-  height: 20px;
+  height: 24px;
   overflow: hidden;
   border-color: var(--line-strong);
-  border-radius: 999px;
-  background: #0d2b44;
+  border-radius: 5px;
+  background: rgb(13 43 68 / 42%);
   color: var(--muted-strong);
-  font-size: 8px;
+  font-size: 12px;
   text-overflow: ellipsis;
   text-shadow: none;
   text-transform: none;
@@ -658,24 +668,27 @@ tbody tr:nth-child(even) {
 
 .ability-pill {
   cursor: help;
+  box-shadow: none;
+  font-weight: 700;
+  letter-spacing: .01em;
 }
 
 .base-ability-pill {
-  border-color: #246245;
-  background: #0e3328;
-  color: #9de0b9;
+  border-color: rgb(87 172 121 / 34%);
+  background: rgb(23 77 52 / 30%);
+  color: #bce8cc;
 }
 
 .hidden-ability-pill {
-  border-color: #6d4b8d;
-  background: #2c1d43;
-  color: #d9b7f5;
+  border-color: rgb(158 113 190 / 36%);
+  background: rgb(71 43 91 / 30%);
+  color: #dec9ef;
 }
 
 .innate-ability-pill {
-  border-color: #765f26;
-  background: #362c16;
-  color: var(--gold);
+  border-color: rgb(196 157 61 / 38%);
+  background: rgb(91 70 24 / 28%);
+  color: #ead18b;
 }
 
 .dex-ability-groups {
@@ -717,7 +730,7 @@ tbody tr:nth-child(even) {
   border-radius: 5px;
   background: var(--surface-soft);
   color: var(--muted-strong);
-  font-size: 8px;
+  font-size: 11px;
   font-weight: 800;
   text-transform: uppercase;
 }
@@ -734,7 +747,7 @@ tbody tr:nth-child(even) {
 
 .encounter-card > summary {
   display: flex;
-  min-height: 42px;
+  min-height: 50px;
   padding: 0 14px;
   align-items: center;
   justify-content: space-between;
@@ -748,12 +761,12 @@ tbody tr:nth-child(even) {
 }
 
 .encounter-card > summary h2 {
-  font-size: 13px;
+  font-size: 18px;
 }
 
 .encounter-card > summary span {
   color: var(--muted);
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .encounter-card > summary::after {
@@ -789,37 +802,37 @@ tbody tr:nth-child(even) {
 .encounter-time {
   margin-bottom: 8px;
   color: var(--gold);
-  font-size: 11px;
+  font-size: 15px;
 }
 
 .encounter-methods {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 520px));
+  grid-template-columns: repeat(auto-fit, minmax(360px, 580px));
   justify-content: start;
   gap: 12px;
 }
 
 .encounter-methods > section {
   min-width: 0;
-  padding: 9px;
+  padding: 12px;
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   background: rgb(2 14 25 / 48%);
 }
 
 .encounter-methods .section-title {
-  margin: 0 0 6px;
+  margin: 0 0 9px;
 }
 
 .encounter-mon {
   display: grid;
-  grid-template-columns: 32px minmax(90px, 1fr) 72px 42px;
-  min-height: 35px;
-  padding: 1px 5px;
+  grid-template-columns: 38px minmax(130px, 1fr) 86px 54px;
+  min-height: 46px;
+  padding: 4px 7px;
   align-items: center;
   gap: 6px;
   border-bottom: 1px solid rgb(23 53 77 / 64%);
-  font-size: 10px;
+  font-size: 16px;
 }
 
 .encounter-mon:nth-child(odd) {
@@ -831,11 +844,11 @@ tbody tr:nth-child(even) {
 }
 
 .encounter-head {
-  min-height: 25px;
-  padding-bottom: 3px;
+  min-height: 34px;
+  padding-bottom: 5px;
   border-bottom: 1px solid var(--line-strong);
   color: #b8cad7;
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 800;
   text-transform: uppercase;
 }
@@ -857,7 +870,7 @@ tbody tr:nth-child(even) {
   margin: 8px 0 3px;
   padding-top: 5px;
   color: var(--gold);
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 800;
   text-transform: uppercase;
 }
@@ -879,8 +892,8 @@ tbody tr:nth-child(even) {
   display: grid;
   grid-template-columns: minmax(180px, 240px) minmax(340px, 1fr) 130px;
   min-width: 700px;
-  min-height: 48px;
-  padding: 8px 12px;
+  min-height: 62px;
+  padding: 11px 16px;
   align-items: center;
   gap: 14px;
   border-bottom: 1px solid var(--line);
@@ -896,28 +909,28 @@ tbody tr:nth-child(even) {
 }
 
 .ability-row h2 {
-  font-size: 12px;
+  font-size: 15px;
 }
 
 .ability-row p {
   color: var(--muted-strong);
-  font-size: 10px;
+  font-size: 15px;
 }
 
 .ability-row .muted {
   color: var(--muted);
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .ability-head {
   position: sticky;
   z-index: 20;
   top: var(--top-chrome-height);
-  min-height: 37px;
+  min-height: 44px;
   background: #0c2439;
   color: #bed0dc;
   cursor: default;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: .07em;
   text-transform: uppercase;
@@ -940,13 +953,13 @@ tbody tr:nth-child(even) {
   background: #0b2135;
   box-shadow: 0 12px 35px rgb(0 4 12 / 60%);
   color: var(--muted-strong);
-  font-size: 10px;
+  font-size: 12px;
   pointer-events: none;
 }
 
 .ability-tooltip strong {
   color: var(--gold);
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .ability-tooltip[hidden] {
@@ -955,9 +968,9 @@ tbody tr:nth-child(even) {
 
 dialog {
   position: fixed;
-  width: min(960px, calc(100vw - 40px));
+  width: min(92vw, 1320px);
   max-width: none;
-  max-height: calc(100dvh - 48px);
+  max-height: 88dvh;
   margin: auto;
   padding: 0;
   overflow: hidden;
@@ -990,8 +1003,8 @@ dialog::backdrop {
   z-index: 5;
   top: 0;
   display: flex;
-  min-height: 54px;
-  padding: 10px 14px 10px 18px;
+  min-height: 62px;
+  padding: 12px 18px 12px 24px;
   flex: 0 0 auto;
   align-items: center;
   justify-content: space-between;
@@ -1002,7 +1015,7 @@ dialog::backdrop {
 }
 
 .modal-head h2 {
-  font-size: 17px;
+  font-size: 20px;
   letter-spacing: -.02em;
 }
 
@@ -1036,10 +1049,11 @@ dialog::backdrop {
 
 #modalBody {
   min-height: 0;
-  padding: 18px;
+  padding: 24px;
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
+  font-size: 16px;
 }
 
 .species-summary {
@@ -1060,7 +1074,7 @@ dialog::backdrop {
 .species-hero-grid {
   display: grid;
   grid-template-columns: minmax(330px, .9fr) minmax(380px, 1.1fr);
-  align-items: start;
+  align-items: stretch;
   gap: 8px;
 }
 
@@ -1118,11 +1132,11 @@ dialog::backdrop {
 
 .species-summary .section-title {
   margin: 10px 0 6px;
-  font-size: 10px;
+  font-size: 13px;
 }
 
 .detail-accordion {
-  margin-top: 8px;
+  margin-top: 12px;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
@@ -1131,8 +1145,8 @@ dialog::backdrop {
 
 .detail-accordion > summary {
   display: flex;
-  min-height: 40px;
-  padding: 0 12px;
+  min-height: 48px;
+  padding: 0 16px;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
@@ -1152,7 +1166,7 @@ dialog::backdrop {
 
 .detail-accordion > summary h3 {
   color: var(--gold);
-  font-size: 11px;
+  font-size: 15px;
   letter-spacing: .02em;
 }
 
@@ -1189,16 +1203,16 @@ dialog::backdrop {
 
 .accordion-body {
   min-width: 0;
-  padding: 10px 12px 12px;
+  padding: 14px 16px 16px;
 }
 
 .stat-row {
   display: grid;
   grid-template-columns: 40px 38px minmax(0, 1fr);
-  margin: 5px 0;
+  margin: 7px 0;
   align-items: center;
   gap: 8px;
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .stat-row > span {
@@ -1246,10 +1260,12 @@ dialog::backdrop {
 .location-row {
   display: grid;
   grid-template-columns: minmax(140px, 1fr) minmax(110px, 150px) 80px 50px;
-  padding: 7px 9px;
+  min-height: 42px;
+  padding: 9px 11px;
+  align-items: center;
   gap: 8px;
   border-bottom: 1px solid var(--line);
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .location-row span {
@@ -1263,7 +1279,7 @@ dialog::backdrop {
   top: 0;
   background: #0a2034;
   color: var(--muted);
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 800;
   text-transform: uppercase;
   backdrop-filter: none;
@@ -1272,12 +1288,17 @@ dialog::backdrop {
 .move-row {
   display: grid;
   grid-template-columns: 44px minmax(150px, 1fr) 62px 52px 42px 42px;
-  min-height: 34px;
-  padding: 5px 8px;
+  min-height: 44px;
+  padding: 9px 12px;
   align-items: center;
   gap: 7px;
   border-bottom: 1px solid var(--line);
-  font-size: 9px;
+  font-size: 14px;
+  transition: background 110ms ease;
+}
+
+.move-row:not(.move-head):hover {
+  background: rgb(66 201 255 / 5%);
 }
 
 .move-row-compat,
@@ -1293,7 +1314,7 @@ dialog::backdrop {
   background: transparent;
   color: var(--text);
   cursor: help;
-  font-size: 9px;
+  font-size: 14px;
   font-weight: 700;
   text-align: left;
 }
@@ -1349,7 +1370,7 @@ dialog::backdrop {
 
 .evolution-method {
   color: var(--muted);
-  font-size: 9px;
+  font-size: 13px;
   font-weight: 700;
 }
 
@@ -1362,7 +1383,7 @@ dialog::backdrop {
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 10px;
+  font-size: 13px;
 }
 
 .held-item-row span {
@@ -1377,13 +1398,13 @@ dialog::backdrop {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: #041524;
-  font-size: 11px;
+  font-size: 15px;
 }
 
 .section-title {
   margin: 16px 0 8px;
   color: var(--gold);
-  font-size: 11px;
+  font-size: 15px;
 }
 
 .muted {
@@ -1409,7 +1430,7 @@ dialog::backdrop {
   background: #0a2237;
   color: var(--text);
   cursor: pointer;
-  font-size: 9px;
+  font-size: 12px;
   text-align: left;
 }
 
@@ -1424,7 +1445,7 @@ dialog::backdrop {
   padding: 8px 10px;
   gap: 10px;
   border-bottom: 1px solid var(--line);
-  font-size: 10px;
+  font-size: 13px;
 }
 
 .item-location-row span {
@@ -1506,7 +1527,7 @@ dialog::backdrop {
   display: grid;
   min-width: 0;
   gap: 2px;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .trainer-mon-sprite,
@@ -1528,7 +1549,7 @@ dialog::backdrop {
 .trainer-mon-title strong {
   display: block;
   overflow: hidden;
-  font-size: 10px;
+  font-size: 13px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -1571,11 +1592,11 @@ dialog::backdrop {
 
 .trainer-mon-detail {
   display: grid;
-  grid-template-columns: 48px minmax(0, 1fr);
+  grid-template-columns: 58px minmax(0, 1fr);
   align-items: start;
   gap: 4px;
   color: var(--muted);
-  font-size: 8px;
+  font-size: 12px;
   line-height: 1.3;
 }
 
@@ -1586,12 +1607,12 @@ dialog::backdrop {
 
 .trainer-mon-detail strong {
   color: var(--muted-strong);
-  font-size: 8px;
+  font-size: 12px;
 }
 
 .trainer-stat-spread,
 .trainer-moves {
-  grid-template-columns: 48px minmax(0, 1fr);
+  grid-template-columns: 58px minmax(0, 1fr);
 }
 
 .trainer-move-name {
@@ -1642,7 +1663,7 @@ dialog::backdrop {
 .trainer-detail-hero p {
   margin-top: 6px;
   color: var(--muted-strong);
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .type-filter {
@@ -1669,7 +1690,7 @@ body[data-active-tab="pokedex"] .type-filter {
   box-shadow: 0 8px 22px rgb(0 4 12 / 44%);
   color: var(--muted-strong);
   cursor: pointer;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 800;
 }
 
@@ -1708,7 +1729,7 @@ body[data-active-tab="pokedex"] .type-filter {
 .type-filter-title {
   margin-bottom: 6px;
   color: var(--gold);
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: .09em;
   text-transform: uppercase;
@@ -1749,38 +1770,14 @@ body[data-active-tab="pokedex"] .type-filter {
   font-size: 15px;
 }
 
-@media (min-width: 2000px) {
-  body {
-    zoom: 1.2;
-  }
-
-  dialog {
-    max-height: calc(83.3333dvh - 40px);
-  }
-
-  .move-row,
-  .move-name {
-    font-size: 10px;
-  }
-
-  .evolution-method {
-    font-size: 10px;
-  }
-}
-
-@media (min-width: 3200px) {
+@media (min-width: 1680px) {
   body {
     zoom: 1.5;
   }
 
   dialog {
-    max-height: calc(66.6667dvh - 32px);
-  }
-
-  .move-row,
-  .move-name,
-  .evolution-method {
-    font-size: 11px;
+    width: min(61.3333vw, 1320px);
+    max-height: 58.6667dvh;
   }
 }
 
@@ -1806,7 +1803,7 @@ body[data-active-tab="pokedex"] .type-filter {
 
   body {
     overflow-x: hidden;
-    font-size: 13px;
+    font-size: 15px;
   }
 
   .top-chrome {
@@ -1860,7 +1857,7 @@ body[data-active-tab="pokedex"] .type-filter {
   .search {
     height: 34px;
     padding-left: 12px;
-    font-size: 11px;
+    font-size: 14px;
   }
 
   .tabs {
@@ -1885,7 +1882,7 @@ body[data-active-tab="pokedex"] .type-filter {
     flex: 0 0 auto;
     padding: 0 10px;
     border-radius: 6px;
-    font-size: 9px;
+    font-size: 12px;
   }
 
   .tab[data-tab="encounters"] {
@@ -1907,7 +1904,7 @@ body[data-active-tab="pokedex"] .type-filter {
   }
 
   .panel-heading h2 {
-    font-size: 15px;
+    font-size: 18px;
   }
 
   .panel-heading .eyebrow {
@@ -1959,7 +1956,7 @@ body[data-active-tab="pokedex"] .type-filter {
     grid-row: 1;
     align-self: start;
     padding-top: 3px;
-    font-size: 9px;
+    font-size: 12px;
     font-weight: 800;
   }
 
@@ -1977,7 +1974,7 @@ body[data-active-tab="pokedex"] .type-filter {
     grid-column: 3;
     grid-row: 1;
     align-self: end;
-    font-size: 15px;
+    font-size: 18px;
   }
 
   .dex-types {
@@ -2009,7 +2006,7 @@ body[data-active-tab="pokedex"] .type-filter {
     gap: 1px;
     border: 0;
     background: transparent;
-    font-size: 9px;
+    font-size: 11px;
     text-align: center;
     white-space: nowrap;
   }
@@ -2017,7 +2014,7 @@ body[data-active-tab="pokedex"] .type-filter {
   .dex-stat::before {
     color: var(--muted);
     content: attr(data-label);
-    font-size: 7px;
+    font-size: 9px;
     font-weight: 800;
     text-transform: uppercase;
   }
@@ -2040,8 +2037,8 @@ body[data-active-tab="pokedex"] .type-filter {
   }
 
   .dex-entry .pill {
-    height: 18px;
-    font-size: 7px;
+    height: 22px;
+    font-size: 10px;
   }
 
   #machines .table-shell,
@@ -2103,7 +2100,7 @@ body[data-active-tab="pokedex"] .type-filter {
     margin-bottom: 2px;
     color: var(--muted);
     content: attr(data-label);
-    font-size: 7px;
+    font-size: 10px;
     font-weight: 800;
     text-transform: uppercase;
   }
@@ -2118,7 +2115,7 @@ body[data-active-tab="pokedex"] .type-filter {
     padding-top: 7px;
     border-top: 1px solid var(--line);
     color: var(--muted-strong);
-    font-size: 10px;
+    font-size: 14px;
   }
 
   #items .item-row,
@@ -2141,7 +2138,7 @@ body[data-active-tab="pokedex"] .type-filter {
     margin-bottom: 3px;
     color: var(--muted);
     content: attr(data-label);
-    font-size: 7px;
+    font-size: 10px;
     font-weight: 800;
     text-transform: uppercase;
   }
@@ -2158,7 +2155,7 @@ body[data-active-tab="pokedex"] .type-filter {
   #items td:nth-child(2),
   #items td:nth-child(3) {
     color: var(--muted-strong);
-    font-size: 10px;
+    font-size: 14px;
   }
 
   #trainers .trainer-row {
@@ -2253,8 +2250,8 @@ body[data-active-tab="pokedex"] .type-filter {
     grid-row: 2;
     display: -webkit-box;
     overflow: hidden;
-    color: var(--muted);
-    font-size: 9px;
+    color: var(--muted-strong);
+    font-size: 13px;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
   }
@@ -2269,6 +2266,10 @@ body[data-active-tab="pokedex"] .type-filter {
   .encounter-card > summary {
     min-height: 39px;
     padding: 0 10px;
+  }
+
+  .encounter-card > summary h2 {
+    font-size: 18px;
   }
 
   .encounter-card-body {
@@ -2288,7 +2289,9 @@ body[data-active-tab="pokedex"] .type-filter {
     grid-template-columns: 28px minmax(76px, 1fr) 66px 36px;
     padding: 1px 3px;
     gap: 4px;
-    font-size: 9px;
+    min-height: 42px;
+    padding: 4px 5px;
+    font-size: 14px;
   }
 
   .encounter-mon .mini-sprite {
@@ -2334,11 +2337,12 @@ body[data-active-tab="pokedex"] .type-filter {
   }
 
   .modal-head h2 {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   #modalBody {
-    padding: 10px 10px max(18px, env(safe-area-inset-bottom));
+    padding: 14px 12px max(20px, env(safe-area-inset-bottom));
+    font-size: 15px;
   }
 
   .species-summary {
@@ -2362,20 +2366,20 @@ body[data-active-tab="pokedex"] .type-filter {
   }
 
   .detail-accordion > summary {
-    min-height: 39px;
-    padding: 0 10px;
+    min-height: 44px;
+    padding: 0 12px;
   }
 
   .accordion-body {
-    padding: 8px;
+    padding: 10px;
   }
 
   .move-row {
     grid-template-columns: 27px minmax(72px, 1fr) 50px 46px 28px 28px;
-    min-height: 31px;
-    padding: 4px;
+    min-height: 40px;
+    padding: 7px 4px;
     gap: 3px;
-    font-size: 8px;
+    font-size: 11px;
   }
 
   .move-row-compat,
@@ -2384,14 +2388,14 @@ body[data-active-tab="pokedex"] .type-filter {
   }
 
   .move-name {
-    font-size: 8px;
+    font-size: 11px;
   }
 
   .move-row .type {
     min-width: 48px;
     height: 18px;
     padding: 0 3px;
-    font-size: 7px;
+    font-size: 9px;
   }
 
   .move-row .category-display,
@@ -2403,14 +2407,15 @@ body[data-active-tab="pokedex"] .type-filter {
 
   .location-row {
     grid-template-columns: minmax(90px, 1fr) 80px 62px 34px;
-    padding: 6px;
+    min-height: 40px;
+    padding: 7px 5px;
     gap: 4px;
-    font-size: 8px;
+    font-size: 11px;
   }
 
   .evolution-line {
     flex-wrap: wrap;
-    font-size: 9px;
+    font-size: 12px;
   }
 
   .ability-grid {
@@ -2422,7 +2427,7 @@ body[data-active-tab="pokedex"] .type-filter {
     grid-template-columns: 30px minmax(0, 1fr);
     min-height: 43px;
     padding: 4px 6px;
-    font-size: 8px;
+    font-size: 11px;
   }
 
   dialog[data-kind="trainer"] .trainer-party {
@@ -2465,7 +2470,7 @@ body[data-active-tab="pokedex"] .type-filter {
 
   .location-row {
     grid-template-columns: minmax(82px, 1fr) 72px 55px 30px;
-    font-size: 7px;
+    font-size: 10px;
   }
 }
 

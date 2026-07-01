@@ -83,53 +83,53 @@ BlackthornGym_TriggerBridge1::
 # 42 "data/maps/BlackthornCity_Gym/scripts.pory"
 BlackthornGym_MapScript_BuildBridge1::
 # 43 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 19, 47, 0x35A, FALSE
+	setmetatile 19, 47, 0x4DA, FALSE
 # 44 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 19, 48, 0x35A, FALSE
+	setmetatile 19, 48, 0x4DA, FALSE
 # 45 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 19, 49, 0x35A, FALSE
+	setmetatile 19, 49, 0x4DA, FALSE
 # 46 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 19, 50, 0x35A, FALSE
+	setmetatile 19, 50, 0x4DA, FALSE
 # 47 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 19, 51, 0x35A, FALSE
+	setmetatile 19, 51, 0x4DA, FALSE
 # 48 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 19, 52, 0x35A, FALSE
+	setmetatile 19, 52, 0x4DA, FALSE
 # 49 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 19, 53, 0x35A, FALSE
+	setmetatile 19, 53, 0x4DA, FALSE
 # 50 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 19, 54, 0x35A, FALSE
+	setmetatile 19, 54, 0x4DA, FALSE
 # 51 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 20, 47, 0x35A, FALSE
+	setmetatile 20, 47, 0x4DA, FALSE
 # 52 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 20, 48, 0x35A, FALSE
+	setmetatile 20, 48, 0x4DA, FALSE
 # 53 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 20, 49, 0x35A, FALSE
+	setmetatile 20, 49, 0x4DA, FALSE
 # 54 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 20, 50, 0x35A, FALSE
+	setmetatile 20, 50, 0x4DA, FALSE
 # 55 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 20, 51, 0x35A, FALSE
+	setmetatile 20, 51, 0x4DA, FALSE
 # 56 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 20, 52, 0x35A, FALSE
+	setmetatile 20, 52, 0x4DA, FALSE
 # 57 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 20, 53, 0x35A, FALSE
+	setmetatile 20, 53, 0x4DA, FALSE
 # 58 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 20, 54, 0x35A, FALSE
+	setmetatile 20, 54, 0x4DA, FALSE
 # 59 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 21, 47, 0x35A, FALSE
+	setmetatile 21, 47, 0x4DA, FALSE
 # 60 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 21, 48, 0x35A, FALSE
+	setmetatile 21, 48, 0x4DA, FALSE
 # 61 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 21, 49, 0x35A, FALSE
+	setmetatile 21, 49, 0x4DA, FALSE
 # 62 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 21, 50, 0x35A, FALSE
+	setmetatile 21, 50, 0x4DA, FALSE
 # 63 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 21, 51, 0x35A, FALSE
+	setmetatile 21, 51, 0x4DA, FALSE
 # 64 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 21, 52, 0x35A, FALSE
+	setmetatile 21, 52, 0x4DA, FALSE
 # 65 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 21, 53, 0x35A, FALSE
+	setmetatile 21, 53, 0x4DA, FALSE
 # 66 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 21, 54, 0x35A, FALSE
+	setmetatile 21, 54, 0x4DA, FALSE
 # 67 "data/maps/BlackthornCity_Gym/scripts.pory"
 	return
 # 68 "data/maps/BlackthornCity_Gym/scripts.pory"
@@ -151,65 +151,65 @@ BlackthornGym_TriggerBridge2::
 # 76 "data/maps/BlackthornCity_Gym/scripts.pory"
 BlackthornGym_MapScript_BuildBridge2::
 # 77 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 17, 35, 0x35A, FALSE
+	setmetatile 17, 35, 0x4DA, FALSE
 # 78 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 17, 36, 0x35A, FALSE
+	setmetatile 17, 36, 0x4DA, FALSE
 # 79 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 17, 37, 0x35A, FALSE
+	setmetatile 17, 37, 0x4DA, FALSE
 # 80 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 17, 38, 0x35A, FALSE
+	setmetatile 17, 38, 0x4DA, FALSE
 # 81 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 17, 39, 0x35A, FALSE
+	setmetatile 17, 39, 0x4DA, FALSE
 # 82 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 17, 40, 0x35A, FALSE
+	setmetatile 17, 40, 0x4DA, FALSE
 # 83 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 18, 35, 0x35A, FALSE
+	setmetatile 18, 35, 0x4DA, FALSE
 # 84 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 18, 36, 0x35A, FALSE
+	setmetatile 18, 36, 0x4DA, FALSE
 # 85 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 18, 37, 0x35A, FALSE
+	setmetatile 18, 37, 0x4DA, FALSE
 # 86 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 18, 38, 0x35A, FALSE
+	setmetatile 18, 38, 0x4DA, FALSE
 # 87 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 18, 39, 0x35A, FALSE
+	setmetatile 18, 39, 0x4DA, FALSE
 # 88 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 18, 40, 0x35A, FALSE
+	setmetatile 18, 40, 0x4DA, FALSE
 # 89 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 19, 35, 0x35A, FALSE
+	setmetatile 19, 35, 0x4DA, FALSE
 # 90 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 19, 36, 0x35A, FALSE
+	setmetatile 19, 36, 0x4DA, FALSE
 # 91 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 19, 37, 0x35A, FALSE
+	setmetatile 19, 37, 0x4DA, FALSE
 # 92 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 19, 38, 0x35A, FALSE
+	setmetatile 19, 38, 0x4DA, FALSE
 # 93 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 19, 39, 0x35A, FALSE
+	setmetatile 19, 39, 0x4DA, FALSE
 # 94 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 19, 40, 0x35A, FALSE
+	setmetatile 19, 40, 0x4DA, FALSE
 # 95 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 20, 32, 0x359, FALSE
+	setmetatile 20, 32, 0x4D9, FALSE
 # 96 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 21, 32, 0x359, FALSE
+	setmetatile 21, 32, 0x4D9, FALSE
 # 97 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 22, 32, 0x359, FALSE
+	setmetatile 22, 32, 0x4D9, FALSE
 # 98 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 20, 35, 0x361, TRUE
+	setmetatile 20, 35, 0x4E1, TRUE
 # 99 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 21, 35, 0x361, TRUE
+	setmetatile 21, 35, 0x4E1, TRUE
 # 100 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 22, 35, 0x361, TRUE
+	setmetatile 22, 35, 0x4E1, TRUE
 # 101 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 20, 33, 0x35A, FALSE
+	setmetatile 20, 33, 0x4DA, FALSE
 # 102 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 20, 34, 0x35A, FALSE
+	setmetatile 20, 34, 0x4DA, FALSE
 # 103 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 21, 33, 0x35A, FALSE
+	setmetatile 21, 33, 0x4DA, FALSE
 # 104 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 21, 34, 0x35A, FALSE
+	setmetatile 21, 34, 0x4DA, FALSE
 # 105 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 22, 33, 0x35A, FALSE
+	setmetatile 22, 33, 0x4DA, FALSE
 # 106 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 22, 34, 0x35A, FALSE
+	setmetatile 22, 34, 0x4DA, FALSE
 # 107 "data/maps/BlackthornCity_Gym/scripts.pory"
 	return
 # 108 "data/maps/BlackthornCity_Gym/scripts.pory"
@@ -231,65 +231,65 @@ BlackthornGym_TriggerBridge3::
 # 116 "data/maps/BlackthornCity_Gym/scripts.pory"
 BlackthornGym_MapScript_BuildBridge3::
 # 117 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 17, 26, 0x359, FALSE
+	setmetatile 17, 26, 0x4D9, FALSE
 # 118 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 18, 26, 0x359, FALSE
+	setmetatile 18, 26, 0x4D9, FALSE
 # 119 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 19, 26, 0x359, FALSE
+	setmetatile 19, 26, 0x4D9, FALSE
 # 120 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 20, 26, 0x359, FALSE
+	setmetatile 20, 26, 0x4D9, FALSE
 # 121 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 21, 26, 0x359, FALSE
+	setmetatile 21, 26, 0x4D9, FALSE
 # 122 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 22, 26, 0x359, FALSE
+	setmetatile 22, 26, 0x4D9, FALSE
 # 123 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 23, 26, 0x359, FALSE
+	setmetatile 23, 26, 0x4D9, FALSE
 # 124 "data/maps/BlackthornCity_Gym/scripts.pory"
 
 # 125 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 17, 29, 0x361, TRUE
+	setmetatile 17, 29, 0x4E1, TRUE
 # 126 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 18, 29, 0x361, TRUE
+	setmetatile 18, 29, 0x4E1, TRUE
 # 127 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 19, 29, 0x361, TRUE
+	setmetatile 19, 29, 0x4E1, TRUE
 # 128 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 20, 29, 0x361, TRUE
+	setmetatile 20, 29, 0x4E1, TRUE
 # 129 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 21, 29, 0x361, TRUE
+	setmetatile 21, 29, 0x4E1, TRUE
 # 130 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 22, 29, 0x361, TRUE
+	setmetatile 22, 29, 0x4E1, TRUE
 # 131 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 23, 29, 0x361, TRUE
+	setmetatile 23, 29, 0x4E1, TRUE
 # 132 "data/maps/BlackthornCity_Gym/scripts.pory"
 
 # 133 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 17, 27, 0x35A, FALSE
+	setmetatile 17, 27, 0x4DA, FALSE
 # 134 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 17, 28, 0x35A, FALSE
+	setmetatile 17, 28, 0x4DA, FALSE
 # 135 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 18, 27, 0x35A, FALSE
+	setmetatile 18, 27, 0x4DA, FALSE
 # 136 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 18, 28, 0x35A, FALSE
+	setmetatile 18, 28, 0x4DA, FALSE
 # 137 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 19, 27, 0x35A, FALSE
+	setmetatile 19, 27, 0x4DA, FALSE
 # 138 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 19, 28, 0x35A, FALSE
+	setmetatile 19, 28, 0x4DA, FALSE
 # 139 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 20, 27, 0x35A, FALSE
+	setmetatile 20, 27, 0x4DA, FALSE
 # 140 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 20, 28, 0x35A, FALSE
+	setmetatile 20, 28, 0x4DA, FALSE
 # 141 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 21, 27, 0x35A, FALSE
+	setmetatile 21, 27, 0x4DA, FALSE
 # 142 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 21, 28, 0x35A, FALSE
+	setmetatile 21, 28, 0x4DA, FALSE
 # 143 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 22, 27, 0x35A, FALSE
+	setmetatile 22, 27, 0x4DA, FALSE
 # 144 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 22, 28, 0x35A, FALSE
+	setmetatile 22, 28, 0x4DA, FALSE
 # 145 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 23, 27, 0x35A, FALSE
+	setmetatile 23, 27, 0x4DA, FALSE
 # 146 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 23, 28, 0x35A, FALSE
+	setmetatile 23, 28, 0x4DA, FALSE
 # 147 "data/maps/BlackthornCity_Gym/scripts.pory"
 	return	
 # 148 "data/maps/BlackthornCity_Gym/scripts.pory"
@@ -311,35 +311,35 @@ BlackthornGym_TriggerBridge4::
 # 156 "data/maps/BlackthornCity_Gym/scripts.pory"
 BlackthornGym_MapScript_BuildBridge4::
 # 157 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 19, 11, 0x35A, FALSE
+	setmetatile 19, 11, 0x4DA, FALSE
 # 158 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 19, 12, 0x35A, FALSE
+	setmetatile 19, 12, 0x4DA, FALSE
 # 159 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 19, 13, 0x35A, FALSE
+	setmetatile 19, 13, 0x4DA, FALSE
 # 160 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 19, 14, 0x35A, FALSE
+	setmetatile 19, 14, 0x4DA, FALSE
 # 161 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 19, 15, 0x35A, FALSE
+	setmetatile 19, 15, 0x4DA, FALSE
 # 162 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 20, 11, 0x35A, FALSE
+	setmetatile 20, 11, 0x4DA, FALSE
 # 163 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 20, 12, 0x35A, FALSE
+	setmetatile 20, 12, 0x4DA, FALSE
 # 164 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 20, 13, 0x35A, FALSE
+	setmetatile 20, 13, 0x4DA, FALSE
 # 165 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 20, 14, 0x35A, FALSE
+	setmetatile 20, 14, 0x4DA, FALSE
 # 166 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 20, 15, 0x35A, FALSE
+	setmetatile 20, 15, 0x4DA, FALSE
 # 167 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 21, 11, 0x35A, FALSE
+	setmetatile 21, 11, 0x4DA, FALSE
 # 168 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 21, 12, 0x35A, FALSE
+	setmetatile 21, 12, 0x4DA, FALSE
 # 169 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 21, 13, 0x35A, FALSE
+	setmetatile 21, 13, 0x4DA, FALSE
 # 170 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 21, 14, 0x35A, FALSE
+	setmetatile 21, 14, 0x4DA, FALSE
 # 171 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setmetatile 21, 15, 0x35A, FALSE
+	setmetatile 21, 15, 0x4DA, FALSE
 # 172 "data/maps/BlackthornCity_Gym/scripts.pory"
 	return
 # 173 "data/maps/BlackthornCity_Gym/scripts.pory"
@@ -857,12 +857,20 @@ BlackthornGym_Text_GymStatueCertified:
 
 BlackthornCity_Gym_EventScript_Kingdra::
 # 431 "data/maps/BlackthornCity_Gym/scripts.pory"
-	playmoncry SPECIES_KINGDRA, CRY_MODE_NORMAL
+	lock
 # 432 "data/maps/BlackthornCity_Gym/scripts.pory"
+	faceplayer
+# 433 "data/maps/BlackthornCity_Gym/scripts.pory"
+	playmoncry SPECIES_KINGDRA, CRY_MODE_NORMAL
+# 434 "data/maps/BlackthornCity_Gym/scripts.pory"
 	msgbox BlackthornCity_Gym_EventScript_Kingdra_Text_0, MSGBOX_NPC
-	return
+# 435 "data/maps/BlackthornCity_Gym/scripts.pory"
+	waitmoncry
+# 436 "data/maps/BlackthornCity_Gym/scripts.pory"
+	release
+	end
 
 
 BlackthornCity_Gym_EventScript_Kingdra_Text_0:
-# 432 "data/maps/BlackthornCity_Gym/scripts.pory"
+# 434 "data/maps/BlackthornCity_Gym/scripts.pory"
 	.string "King!!$"

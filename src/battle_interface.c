@@ -2448,6 +2448,7 @@ enum
     TAG_ABILITY_POP_UP_PLAYER2,
     TAG_ABILITY_POP_UP_OPPONENT2,
     TAG_LAST_BALL_WINDOW,
+    TAG_LAST_USED_BALL_ICON,
 };
 
 static const u32 sAbilityPopUpGfx[] = INCBIN_U32("graphics/battle_interface/ability_pop_up.4bpp");
@@ -2895,6 +2896,29 @@ static bool32 IsValidLastUsedBall(enum Item item)
     return item != ITEM_NONE && GetItemPocket(item) == POCKET_POKE_BALLS;
 }
 
+static u8 CreateLastUsedBallIcon(enum Item item)
+{
+    u8 paletteNum;
+    u8 spriteId = AddItemIconSprite(TAG_LAST_USED_BALL_ICON, TAG_LAST_USED_BALL_ICON, item);
+
+    paletteNum = IndexOfSpritePaletteTag(TAG_LAST_USED_BALL_ICON);
+    if (spriteId == MAX_SPRITES
+     || paletteNum == 0xFF
+     || GetSpriteTileStartByTag(TAG_LAST_USED_BALL_ICON) == 0xFFFF)
+    {
+        if (spriteId != MAX_SPRITES)
+            DestroySprite(&gSprites[spriteId]);
+        FreeSpriteTilesByTag(TAG_LAST_USED_BALL_ICON);
+        FreeSpritePaletteByTag(TAG_LAST_USED_BALL_ICON);
+        return MAX_SPRITES;
+    }
+
+    // LoadSpritePalette does not replace the colors when a tag already exists.
+    // Ensure a recreated icon always receives the palette for its current ball.
+    LoadPalette(GetItemIconPalette(item), OBJ_PLTT_ID(paletteNum), PLTT_SIZE_4BPP);
+    return spriteId;
+}
+
 static u16 GetPrevLastUsedBall(u16 ballId)
 {
     s32 i;
@@ -2986,10 +3010,20 @@ void TryAddLastUsedBallItemSprites(void)
     if (!CanThrowLastUsedBall())
         return;
 
+    // Send-out animations should have released these resources before action
+    // selection. Clean up any that remain so the item icon has a palette slot.
+    if (!gDoingBattleAnim)
+    {
+        for (u32 i = 0; i < POKEBALL_COUNT; i++)
+            FreeBallGfx(i);
+    }
+
     // ball
     if (gBattleStruct->ballSpriteIds[0] == MAX_SPRITES)
     {
-        gBattleStruct->ballSpriteIds[0] = AddItemIconSprite(102, 102, gBallToDisplay);
+        gBattleStruct->ballSpriteIds[0] = CreateLastUsedBallIcon(gBallToDisplay);
+        if (gBattleStruct->ballSpriteIds[0] == MAX_SPRITES)
+            return;
         gSprites[gBattleStruct->ballSpriteIds[0]].x = LAST_USED_BALL_X_0;
         gSprites[gBattleStruct->ballSpriteIds[0]].y = LAST_USED_BALL_Y;
         gSprites[gBattleStruct->ballSpriteIds[0]].sHide = FALSE;
@@ -3026,8 +3060,8 @@ static void DestroyLastUsedBallWinGfx(struct Sprite *sprite)
 
 static void DestroyLastUsedBallGfx(struct Sprite *sprite)
 {
-    FreeSpriteTilesByTag(102);
-    FreeSpritePaletteByTag(102);
+    FreeSpriteTilesByTag(TAG_LAST_USED_BALL_ICON);
+    FreeSpritePaletteByTag(TAG_LAST_USED_BALL_ICON);
     DestroySprite(sprite);
     gBattleStruct->ballSpriteIds[0] = MAX_SPRITES;
 }
@@ -3223,16 +3257,15 @@ static void Task_BounceBall(u8 taskId)
             task->sState = 1;
         break;
     case 1:  // Destroy Icon
-        if (!sprite->sMoving)
-        {
-            DestroyLastUsedBallGfx(sprite);
-            task->sState++;
-        }
-        break;
+        if (sprite->sMoving)
+            break;
+        DestroyLastUsedBallGfx(sprite);
+        task->sState++;
+        // fall through
     case 2: //Create New Icon
         if (gBattleStruct->ballSpriteIds[0] == MAX_SPRITES)
         {
-            gBattleStruct->ballSpriteIds[0] = AddItemIconSprite(102, 102, task->sTargetBall);
+            gBattleStruct->ballSpriteIds[0] = CreateLastUsedBallIcon(task->sTargetBall);
             if (gBattleStruct->ballSpriteIds[0] == MAX_SPRITES)
             {
                 DestroyTask(taskId);

@@ -97,51 +97,51 @@ IcePath_1F_EventScript_KimonoGirlPush::
 # 49 "data/maps/IcePath_1F/scripts.pory"
 	waitmovement 0
 # 50 "data/maps/IcePath_1F/scripts.pory"
-	msgbox IcePath_1F_Text_Thanks, MSGBOX_DEFAULT
+	createfieldmugshot MUGSHOT_KIMONO_GIRL
 # 51 "data/maps/IcePath_1F/scripts.pory"
-	closemessage
+	msgbox IcePath_1F_Text_Thanks, MSGBOX_DEFAULT
 # 52 "data/maps/IcePath_1F/scripts.pory"
-	applymovement LOCALID_ICEPATH1_KIMONO, IcePath_Movement_KimonoLeave
+	closemessage
 # 53 "data/maps/IcePath_1F/scripts.pory"
-	waitmovement LOCALID_ICEPATH1_KIMONO
+	applymovement LOCALID_ICEPATH1_KIMONO, IcePath_Movement_KimonoLeave
 # 54 "data/maps/IcePath_1F/scripts.pory"
-	setflag FLAG_HIDE_ICE_PATH_KIMONO
+	waitmovement LOCALID_ICEPATH1_KIMONO
 # 55 "data/maps/IcePath_1F/scripts.pory"
-	removeobject LOCALID_ICEPATH1_KIMONO
+	setflag FLAG_HIDE_ICE_PATH_KIMONO
 # 56 "data/maps/IcePath_1F/scripts.pory"
-	playse SE_EXIT
+	removeobject LOCALID_ICEPATH1_KIMONO
 # 57 "data/maps/IcePath_1F/scripts.pory"
-	fadedefaultbgm
+	playse SE_EXIT
 # 58 "data/maps/IcePath_1F/scripts.pory"
-	setvar VAR_ICE_PATH_STATE, 2
+	fadedefaultbgm
 # 59 "data/maps/IcePath_1F/scripts.pory"
-	release
+	setvar VAR_ICE_PATH_STATE, 2
 # 60 "data/maps/IcePath_1F/scripts.pory"
-	end
+	release
 # 61 "data/maps/IcePath_1F/scripts.pory"
-
+	end
 # 62 "data/maps/IcePath_1F/scripts.pory"
-IcePath_1F_EventScript_KimonoGirlRefused::
+
 # 63 "data/maps/IcePath_1F/scripts.pory"
-	msgbox IcePath_1F_Text_Cruel, MSGBOX_YESNO
+IcePath_1F_EventScript_KimonoGirlRefused::
 # 64 "data/maps/IcePath_1F/scripts.pory"
-	goto_if_eq VAR_RESULT, TRUE, IcePath_1F_EventScript_KimonoGirlPush
+	msgbox IcePath_1F_Text_Cruel, MSGBOX_YESNO
 # 65 "data/maps/IcePath_1F/scripts.pory"
-	goto_if_eq VAR_RESULT, FALSE, IcePath_1F_EventScript_KimonoGirlRefused
+	goto_if_eq VAR_RESULT, TRUE, IcePath_1F_EventScript_KimonoGirlPush
 # 66 "data/maps/IcePath_1F/scripts.pory"
-
+	goto_if_eq VAR_RESULT, FALSE, IcePath_1F_EventScript_KimonoGirlRefused
 # 67 "data/maps/IcePath_1F/scripts.pory"
-IcePath_Movement_PlayerJump:
-# 68 "data/maps/IcePath_1F/scripts.pory"
-	jump_in_place_down
-# 69 "data/maps/IcePath_1F/scripts.pory"
-	step_end
-# 70 "data/maps/IcePath_1F/scripts.pory"
 
+# 68 "data/maps/IcePath_1F/scripts.pory"
+IcePath_Movement_PlayerJump:
+# 69 "data/maps/IcePath_1F/scripts.pory"
+	jump_in_place_down
+# 70 "data/maps/IcePath_1F/scripts.pory"
+	step_end
 # 71 "data/maps/IcePath_1F/scripts.pory"
-IcePath_Movement_KimonoSlide:
+
 # 72 "data/maps/IcePath_1F/scripts.pory"
-	slide_down
+IcePath_Movement_KimonoSlide:
 # 73 "data/maps/IcePath_1F/scripts.pory"
 	slide_down
 # 74 "data/maps/IcePath_1F/scripts.pory"
@@ -149,220 +149,222 @@ IcePath_Movement_KimonoSlide:
 # 75 "data/maps/IcePath_1F/scripts.pory"
 	slide_down
 # 76 "data/maps/IcePath_1F/scripts.pory"
-	walk_in_place_fast_down
+	slide_down
 # 77 "data/maps/IcePath_1F/scripts.pory"
-	face_up
+	walk_in_place_fast_down
 # 78 "data/maps/IcePath_1F/scripts.pory"
-	walk_in_place_fast_up
+	face_up
 # 79 "data/maps/IcePath_1F/scripts.pory"
 	walk_in_place_fast_up
 # 80 "data/maps/IcePath_1F/scripts.pory"
-	step_end
+	walk_in_place_fast_up
 # 81 "data/maps/IcePath_1F/scripts.pory"
-
+	step_end
 # 82 "data/maps/IcePath_1F/scripts.pory"
-IcePath_Movement_KimonoLeave:
+
 # 83 "data/maps/IcePath_1F/scripts.pory"
-	walk_down
+IcePath_Movement_KimonoLeave:
 # 84 "data/maps/IcePath_1F/scripts.pory"
 	walk_down
 # 85 "data/maps/IcePath_1F/scripts.pory"
 	walk_down
 # 86 "data/maps/IcePath_1F/scripts.pory"
-	step_end
+	walk_down
 # 87 "data/maps/IcePath_1F/scripts.pory"
-
+	step_end
 # 88 "data/maps/IcePath_1F/scripts.pory"
-IcePath_1F_Text_Leave:
+
 # 89 "data/maps/IcePath_1F/scripts.pory"
-	.string "Kimono Girl: .....................$"
+IcePath_1F_Text_Leave:
 # 90 "data/maps/IcePath_1F/scripts.pory"
-
+	.string "Kimono Girl: .....................$"
 # 91 "data/maps/IcePath_1F/scripts.pory"
-IcePath_1F_Text_Stuck1:
+
 # 92 "data/maps/IcePath_1F/scripts.pory"
-    .string "Me oh my... Is that you, {PLAYER}?\n"
+IcePath_1F_Text_Stuck1:
 # 93 "data/maps/IcePath_1F/scripts.pory"
-    .string "Fancy meeting you here!\p"
-# 94 "data/maps/IcePath_1F/scripts.pory"
-    .string "To tell the truth... my sandals are\n"
-# 95 "data/maps/IcePath_1F/scripts.pory"
-    .string "frozen on the ice, and I am stuck.\p"
-# 96 "data/maps/IcePath_1F/scripts.pory"
-    .string "In other words, my flip-flops are\n"
-# 97 "data/maps/IcePath_1F/scripts.pory"
-    .string "quick-frozen to the ground.\p"
-# 98 "data/maps/IcePath_1F/scripts.pory"
-    .string "Tee hee.\p"
-# 99 "data/maps/IcePath_1F/scripts.pory"
-    .string "Well, it's no laughing matter.\p"
-# 100 "data/maps/IcePath_1F/scripts.pory"
-    .string "Would you come around and push\n"
-# 101 "data/maps/IcePath_1F/scripts.pory"
-    .string "my back?$"
-# 102 "data/maps/IcePath_1F/scripts.pory"
-
-# 103 "data/maps/IcePath_1F/scripts.pory"
-IcePath_1F_Text_Stuck2:
-# 104 "data/maps/IcePath_1F/scripts.pory"
     .string "Me oh my... Is that you, {PLAYER}?\n"
-# 105 "data/maps/IcePath_1F/scripts.pory"
+# 94 "data/maps/IcePath_1F/scripts.pory"
     .string "Fancy meeting you here!\p"
-# 106 "data/maps/IcePath_1F/scripts.pory"
+# 95 "data/maps/IcePath_1F/scripts.pory"
     .string "To tell the truth... my sandals are\n"
-# 107 "data/maps/IcePath_1F/scripts.pory"
+# 96 "data/maps/IcePath_1F/scripts.pory"
     .string "frozen on the ice, and I am stuck.\p"
-# 108 "data/maps/IcePath_1F/scripts.pory"
+# 97 "data/maps/IcePath_1F/scripts.pory"
     .string "In other words, my flip-flops are\n"
-# 109 "data/maps/IcePath_1F/scripts.pory"
-    .string "quick-frozen with the ground.\p"
-# 110 "data/maps/IcePath_1F/scripts.pory"
+# 98 "data/maps/IcePath_1F/scripts.pory"
+    .string "quick-frozen to the ground.\p"
+# 99 "data/maps/IcePath_1F/scripts.pory"
     .string "Tee hee.\p"
+# 100 "data/maps/IcePath_1F/scripts.pory"
+    .string "Well, it's no laughing matter.\p"
+# 101 "data/maps/IcePath_1F/scripts.pory"
+    .string "Would you come around and push\n"
+# 102 "data/maps/IcePath_1F/scripts.pory"
+    .string "my back?$"
+# 103 "data/maps/IcePath_1F/scripts.pory"
+
+# 104 "data/maps/IcePath_1F/scripts.pory"
+IcePath_1F_Text_Stuck2:
+# 105 "data/maps/IcePath_1F/scripts.pory"
+    .string "Me oh my... Is that you, {PLAYER}?\n"
+# 106 "data/maps/IcePath_1F/scripts.pory"
+    .string "Fancy meeting you here!\p"
+# 107 "data/maps/IcePath_1F/scripts.pory"
+    .string "To tell the truth... my sandals are\n"
+# 108 "data/maps/IcePath_1F/scripts.pory"
+    .string "frozen on the ice, and I am stuck.\p"
+# 109 "data/maps/IcePath_1F/scripts.pory"
+    .string "In other words, my flip-flops are\n"
+# 110 "data/maps/IcePath_1F/scripts.pory"
+    .string "quick-frozen with the ground.\p"
 # 111 "data/maps/IcePath_1F/scripts.pory"
-    .string "Well, it's no laughing matter.\n"
+    .string "Tee hee.\p"
 # 112 "data/maps/IcePath_1F/scripts.pory"
-    .string "Would you push my back?$"
+    .string "Well, it's no laughing matter.\n"
 # 113 "data/maps/IcePath_1F/scripts.pory"
-
+    .string "Would you push my back?$"
 # 114 "data/maps/IcePath_1F/scripts.pory"
-IcePath_1F_Text_Shove:
+
 # 115 "data/maps/IcePath_1F/scripts.pory"
-    .string "....Shove!....$"
+IcePath_1F_Text_Shove:
 # 116 "data/maps/IcePath_1F/scripts.pory"
-
+    .string "....Shove!....$"
 # 117 "data/maps/IcePath_1F/scripts.pory"
-IcePath_1F_Text_Cruel:
-# 118 "data/maps/IcePath_1F/scripts.pory"
-    .string "Don't be so cruel.\n"
-# 119 "data/maps/IcePath_1F/scripts.pory"
-    .string "You will push my back, won't you?$"
-# 120 "data/maps/IcePath_1F/scripts.pory"
 
+# 118 "data/maps/IcePath_1F/scripts.pory"
+IcePath_1F_Text_Cruel:
+# 119 "data/maps/IcePath_1F/scripts.pory"
+    .string "Don't be so cruel.\n"
+# 120 "data/maps/IcePath_1F/scripts.pory"
+    .string "You will push my back, won't you?$"
 # 121 "data/maps/IcePath_1F/scripts.pory"
-IcePath_1F_Text_Thanks:
+
 # 122 "data/maps/IcePath_1F/scripts.pory"
-    .string "You really are kind.\n"
+IcePath_1F_Text_Thanks:
 # 123 "data/maps/IcePath_1F/scripts.pory"
+    .string "You really are kind.\n"
+# 124 "data/maps/IcePath_1F/scripts.pory"
     .string "Thank you so much!$"
 
 IcePath_1F_Rival::
-# 127 "data/maps/IcePath_1F/scripts.pory"
+# 128 "data/maps/IcePath_1F/scripts.pory"
 	compare VAR_RIVAL_STATE, 9
 	goto_if_eq IcePath_1F_Rival_2
 IcePath_1F_Rival_1:
 	end
 
 IcePath_1F_Rival_2:
-# 128 "data/maps/IcePath_1F/scripts.pory"
-	lock
 # 129 "data/maps/IcePath_1F/scripts.pory"
-	playse SE_PIN
+	lock
 # 130 "data/maps/IcePath_1F/scripts.pory"
-	applymovement LOCALID_ICEPATH_RIVAL, Common_Movement_ExclamationMark
+	playse SE_PIN
 # 131 "data/maps/IcePath_1F/scripts.pory"
-	waitmovement 0
+	applymovement LOCALID_ICEPATH_RIVAL, Common_Movement_ExclamationMark
 # 132 "data/maps/IcePath_1F/scripts.pory"
-	applymovement LOCALID_ICEPATH_RIVAL, IcePath_1F_Rival_Movement_0
+	waitmovement 0
 # 133 "data/maps/IcePath_1F/scripts.pory"
-	waitmovement 0
+	applymovement LOCALID_ICEPATH_RIVAL, IcePath_1F_Rival_Movement_0
 # 134 "data/maps/IcePath_1F/scripts.pory"
-	waitse
-# 135 "data/maps/IcePath_1F/scripts.pory"
-	approachobject LOCALID_PLAYER, LOCALID_ICEPATH_RIVAL, DIR_EAST, DIR_WEST
-# 136 "data/maps/IcePath_1F/scripts.pory"
 	waitmovement 0
+# 135 "data/maps/IcePath_1F/scripts.pory"
+	waitse
+# 136 "data/maps/IcePath_1F/scripts.pory"
+	approachobject LOCALID_PLAYER, LOCALID_ICEPATH_RIVAL, DIR_EAST, DIR_WEST
 # 137 "data/maps/IcePath_1F/scripts.pory"
-	delay 30
+	waitmovement 0
 # 138 "data/maps/IcePath_1F/scripts.pory"
-	createfieldmugshotrival
+	delay 30
 # 139 "data/maps/IcePath_1F/scripts.pory"
+	createfieldmugshotrival
+# 140 "data/maps/IcePath_1F/scripts.pory"
 	msgbox IcePath_1F_Rival_Text_0
-# 151 "data/maps/IcePath_1F/scripts.pory"
-	checkplayergender
 # 152 "data/maps/IcePath_1F/scripts.pory"
+	checkplayergender
+# 153 "data/maps/IcePath_1F/scripts.pory"
 	compare VAR_RESULT, MALE
 	goto_if_eq IcePath_1F_Rival_5
-# 155 "data/maps/IcePath_1F/scripts.pory"
+# 156 "data/maps/IcePath_1F/scripts.pory"
 	trainerbattle_no_intro TRAINER_RIVAL_GOLD_ICEPATH, IcePath_1F_Rival_Text_1
 IcePath_1F_Rival_4:
-# 157 "data/maps/IcePath_1F/scripts.pory"
-	createfieldmugshotrival
 # 158 "data/maps/IcePath_1F/scripts.pory"
-	msgbox IcePath_1F_Rival_Text_2
-# 164 "data/maps/IcePath_1F/scripts.pory"
-	closemessage
-# 165 "data/maps/IcePath_1F/scripts.pory"
-	applymovement LOCALID_ICEPATH_RIVAL, IcePath_1F_Rival_Movement_1
-# 166 "data/maps/IcePath_1F/scripts.pory"
-	waitmovement 0
-# 167 "data/maps/IcePath_1F/scripts.pory"
-	delay 30
-# 168 "data/maps/IcePath_1F/scripts.pory"
 	createfieldmugshotrival
-# 169 "data/maps/IcePath_1F/scripts.pory"
-	msgbox IcePath_1F_Rival_Text_3
-# 175 "data/maps/IcePath_1F/scripts.pory"
-	removefieldmugshot
-# 176 "data/maps/IcePath_1F/scripts.pory"
+# 159 "data/maps/IcePath_1F/scripts.pory"
+	msgbox IcePath_1F_Rival_Text_2
+# 165 "data/maps/IcePath_1F/scripts.pory"
 	closemessage
-# 177 "data/maps/IcePath_1F/scripts.pory"
-	applymovement LOCALID_ICEPATH_RIVAL, IcePath_1F_Rival_Movement_2
-# 178 "data/maps/IcePath_1F/scripts.pory"
+# 166 "data/maps/IcePath_1F/scripts.pory"
+	applymovement LOCALID_ICEPATH_RIVAL, IcePath_1F_Rival_Movement_1
+# 167 "data/maps/IcePath_1F/scripts.pory"
 	waitmovement 0
+# 168 "data/maps/IcePath_1F/scripts.pory"
+	delay 30
+# 169 "data/maps/IcePath_1F/scripts.pory"
+	createfieldmugshotrival
+# 170 "data/maps/IcePath_1F/scripts.pory"
+	msgbox IcePath_1F_Rival_Text_3
+# 176 "data/maps/IcePath_1F/scripts.pory"
+	removefieldmugshot
+# 177 "data/maps/IcePath_1F/scripts.pory"
+	closemessage
+# 178 "data/maps/IcePath_1F/scripts.pory"
+	applymovement LOCALID_ICEPATH_RIVAL, IcePath_1F_Rival_Movement_2
 # 179 "data/maps/IcePath_1F/scripts.pory"
-	setvar VAR_RIVAL_STATE, 10
+	waitmovement 0
 # 180 "data/maps/IcePath_1F/scripts.pory"
-	setflag FLAG_HIDE_ICEPATH_RIVAL
+	setvar VAR_RIVAL_STATE, 10
 # 181 "data/maps/IcePath_1F/scripts.pory"
-	clearflag FLAG_HIDE_VICTORYROAD_RIVAL
+	setflag FLAG_HIDE_ICEPATH_RIVAL
 # 182 "data/maps/IcePath_1F/scripts.pory"
-	removeobject LOCALID_ICEPATH_RIVAL
+	clearflag FLAG_HIDE_VICTORYROAD_RIVAL
 # 183 "data/maps/IcePath_1F/scripts.pory"
+	removeobject LOCALID_ICEPATH_RIVAL
+# 184 "data/maps/IcePath_1F/scripts.pory"
 	release
 	goto IcePath_1F_Rival_1
 
 IcePath_1F_Rival_5:
-# 153 "data/maps/IcePath_1F/scripts.pory"
+# 154 "data/maps/IcePath_1F/scripts.pory"
 	trainerbattle_no_intro TRAINER_RIVAL_CRYSTAL_ICEPATH, IcePath_1F_Rival_Text_1
 	goto IcePath_1F_Rival_4
 
 
-# 132 "data/maps/IcePath_1F/scripts.pory"
+# 133 "data/maps/IcePath_1F/scripts.pory"
 IcePath_1F_Rival_Movement_0:
-# 132 "data/maps/IcePath_1F/scripts.pory"
+# 133 "data/maps/IcePath_1F/scripts.pory"
 	face_left
 	step_end
 
-# 165 "data/maps/IcePath_1F/scripts.pory"
+# 166 "data/maps/IcePath_1F/scripts.pory"
 IcePath_1F_Rival_Movement_1:
-# 165 "data/maps/IcePath_1F/scripts.pory"
+# 166 "data/maps/IcePath_1F/scripts.pory"
 	walk_in_place_left
 	step_end
 
-# 177 "data/maps/IcePath_1F/scripts.pory"
+# 178 "data/maps/IcePath_1F/scripts.pory"
 IcePath_1F_Rival_Movement_2:
-# 177 "data/maps/IcePath_1F/scripts.pory"
+# 178 "data/maps/IcePath_1F/scripts.pory"
 	walk_fast_right
-# 177 "data/maps/IcePath_1F/scripts.pory"
+# 178 "data/maps/IcePath_1F/scripts.pory"
 	walk_fast_right
-# 177 "data/maps/IcePath_1F/scripts.pory"
+# 178 "data/maps/IcePath_1F/scripts.pory"
 	walk_fast_right
-# 177 "data/maps/IcePath_1F/scripts.pory"
+# 178 "data/maps/IcePath_1F/scripts.pory"
 	walk_fast_right
-# 177 "data/maps/IcePath_1F/scripts.pory"
+# 178 "data/maps/IcePath_1F/scripts.pory"
 	walk_fast_right
-# 177 "data/maps/IcePath_1F/scripts.pory"
+# 178 "data/maps/IcePath_1F/scripts.pory"
 	walk_fast_right
-# 177 "data/maps/IcePath_1F/scripts.pory"
+# 178 "data/maps/IcePath_1F/scripts.pory"
 	walk_fast_right
-# 177 "data/maps/IcePath_1F/scripts.pory"
+# 178 "data/maps/IcePath_1F/scripts.pory"
 	walk_fast_right
-# 177 "data/maps/IcePath_1F/scripts.pory"
+# 178 "data/maps/IcePath_1F/scripts.pory"
 	walk_fast_right
 	step_end
 
 IcePath_1F_Rival_Text_0:
-# 139 "data/maps/IcePath_1F/scripts.pory"
+# 140 "data/maps/IcePath_1F/scripts.pory"
 	.string "So you've made it here too... With all\n"
 	.string "those badges in tow...\p"
 	.string "I'm not surprised, you just have the\n"
@@ -374,11 +376,11 @@ IcePath_1F_Rival_Text_0:
 	.string "right here, right now, {PLAYER}!$"
 
 IcePath_1F_Rival_Text_1:
-# 153 "data/maps/IcePath_1F/scripts.pory"
+# 154 "data/maps/IcePath_1F/scripts.pory"
 	.string "How...?$"
 
 IcePath_1F_Rival_Text_2:
-# 158 "data/maps/IcePath_1F/scripts.pory"
+# 159 "data/maps/IcePath_1F/scripts.pory"
 	.string "I trained every route from\n"
 	.string "here to Cianwood. Without any breaks.\p"
 	.string "And you just do it without breaking a\n"
@@ -386,7 +388,7 @@ IcePath_1F_Rival_Text_2:
 	.string "to you.$"
 
 IcePath_1F_Rival_Text_3:
-# 169 "data/maps/IcePath_1F/scripts.pory"
+# 170 "data/maps/IcePath_1F/scripts.pory"
 	.string "I'm just... So frustrated with my\n"
 	.string "progress.\p"
 	.string "No matter how much I train...\p"

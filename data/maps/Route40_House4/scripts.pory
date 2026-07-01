@@ -98,7 +98,7 @@ script AchievementGuy_Reward15 {
             
             A great start! I will bestow you this
             as a reward!")
-    giveitem(ITEM_BLACK_AUGURITE)
+    giveitem(ITEM_SHIN_GENOME)
     setvar(VAR_ACHIEVEMENT_REWARD_MILESTONE, 15)
     goto(keepUpTheGoodWork)
     release

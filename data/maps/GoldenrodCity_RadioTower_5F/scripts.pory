@@ -568,13 +568,20 @@ script RadioTower_5F_Archer {
 		msgbox(format("I knew it was the right choice to entrust Pokédex to you. I want you to have this, I think you've more than earned it."))
 		giveitem(ITEM_MEGA_RING)
 		createfieldmugshot(MUGSHOT_OAK)
-		msgbox(format("That is a Mega Ring. When combined with a Mega stone, it allows the bond between trainer and Pokémon to fully manifest. I'm sure you'll be able to pull it off."))
+		msgbox("That is a Mega Ring. 
+		
+				When combined with a Mega stone, 
+				it allows the bond between trainer 
+				and Pokémon to fully manifest. 
+				
+				I'm sure you'll be able to pull it off.")
 		msgbox(format("Now I must get back to my work, I hope you'll tune in to my next radio show!"))
 		closemessage
 		moveobjecttocoords(LOCALID_RADIOTOWER_OAK, 24, 5, DIR_WEST)
 		waitmovement(0)
 		clearflag(FLAG_HIDE_GOLDENROD_NPCS)
 		setvar(VAR_GOLDENROD_CITY_STATE, 11)
+		setflag(FLAG_ROCKET_TAKEOVER_CAP)
 		playse(SE_EXIT)
 		removeobject(LOCALID_RADIOTOWER_OAK)
 		savebgm(MUS_DUMMY)

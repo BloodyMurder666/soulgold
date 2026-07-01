@@ -2555,16 +2555,16 @@ AI: Check Bad Move
 
 
 Dragonair
-Level: 53
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 55
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 Drakloak
-Level: 53
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 55
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 Arctibax
-Level: 53
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 55
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 === TRAINER_CHARLIE ===
 Name: Charlie
@@ -2630,7 +2630,7 @@ AI: Smart Trainer
 Mugshot: Green
 
 Altaria @ Assault Vest
-Level: 54
+Level: 57
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Moonblast
 - Thunderbolt
@@ -2638,7 +2638,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Dragon Breath
 
 Gyarados @ Watertite
-Level: 54
+Level: 57
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Crunch
 - Waterfall
@@ -2646,7 +2646,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Twister
 
 Dragonite @ Chesto Berry
-Level: 55
+Level: 58
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Outrage
 - Ice Beam
@@ -2654,7 +2654,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Thunderbolt
 
 Hydrapple @ Yache Berry
-Level: 56
+Level: 57
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Earth Power
 - Syrup Bomb
@@ -2662,7 +2662,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Fickle Beam
 
 Kingdra @ Leftovers
-Level: 57
+Level: 58
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Dragon Pulse
 - Surf
@@ -2682,7 +2682,9 @@ Difficulty: Hard
 
 Archaludon @ Choice Specs
 Level: 58
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 Spe
+Modest Nature
 - Electro Shot
 - Dragon Pulse
 - Flash Cannon
@@ -2690,40 +2692,46 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
 Gyarados @ Damp Rock
 Level: 58
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 31 Spe
-EVs: 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 252 Spe
+Jolly Nature
 - Crunch
 - Waterfall
 - Ice Fang
 - Rain Dance
 
 Dragonite @ Chesto Berry
-Level: 59
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+Level: 58
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 Spe
 - Outrage
 - Ice Beam
 - Thunder
 - Hurricane
 
 Altaria @ Dragotite
-Level: 59
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+Level: 58
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 Spe
+Modest Nature
 - Moonblast
 - Thunder
 - Flamethrower
 - Dragon Pulse
 
 Hydrapple @ Yache Berry
-Level: 60
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+Level: 58
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 Spe
+Modest Nature
 - Earth Power
 - Syrup Bomb
 - Dragon Pulse
 - Fickle Beam
 
 Kingdra @ Leftovers
-Level: 60
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+Level: 59
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Swift Swim
 EVs: 252 SpA / 252 Spe
 - Draco Meteor
@@ -6441,16 +6449,16 @@ Double Battle: No
 AI: Check Bad Move
 
 Seadra
-Level: 53
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 55
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 Eelektross
-Level: 53
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 55
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 Dragonair
-Level: 53
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 55
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 === TRAINER_NICOLE ===
 Name: Nicole
@@ -6872,15 +6880,15 @@ Double Battle: No
 AI: Check Bad Move
 
 Butterfree
-Level: 47
+Level: 48
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Chimecho
-Level: 47
+Level: 48
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Ferrothorn
-Level: 47
+Level: 48
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ROY ===
@@ -9191,11 +9199,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Xatu
-Level: 47
+Level: 48
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Farigiraf
-Level: 47
+Level: 49
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GAVEN ===
@@ -9984,11 +9992,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Qwilfish
-Level: 47
+Level: 48
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Basculegion
-Level: 47
+Level: 48
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 
@@ -10448,7 +10456,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Mantine
-Level: 47
+Level: 48
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Wugtrio
@@ -11017,11 +11025,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Delibird
-Level: 47
+Level: 48
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Sirfetch'd
-Level: 47
+Level: 48
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_IAN ===
@@ -11410,12 +11418,12 @@ AI: Check Bad Move
 
 
 Gabite
-Level: 53
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 56
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 Appletun
-Level: 54
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 56
+IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 === TRAINER_IRWIN ===
 Name: Irwin
@@ -13843,7 +13851,7 @@ AI: Smart Trainer
 Mugshot: Purple
 
 Azumarill @ Quick Claw
-Level: 51
+Level: 54
 Ability: Huge Power
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Play Rough
@@ -13852,7 +13860,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Ice Punch
 
 Zoroark @ Focus Sash
-Level: 50
+Level: 54
 Ability: Illusion
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Dark Pulse
@@ -13861,7 +13869,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Foul Play
 
 Oricorio Sensu @ Sharp Beak
-Level: 50
+Level: 54
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Revelation Dance
 - Air Slash
@@ -13869,7 +13877,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Roost
 
 Flygon @ Sitrus Berry
-Level: 51
+Level: 55
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Bug Buzz
 - Dragon Pulse
@@ -13877,9 +13885,77 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Fire Blast
 
 Ampharos @ Electrite
-Level: 51
+Level: 55
 Ability: Static
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Thunderbolt
+- Power Gem
+- Light Screen
+- Dragon Pulse
+
+=== TRAINER_RIVAL_CRYSTAL_ICEPATH ===
+Name: Crystal
+Pic: May
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Purple
+Difficulty: Hard
+
+Azumarill @ Sitrus Berry
+Level: 56
+Ability: Huge Power
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 200 Atk / 200 Spe / 4 HP
+Adamant Nature
+- Play Rough
+- Aqua Tail
+- Aqua Jet
+- Belly Drum
+
+Zoroark @ Focus Sash
+Level: 56
+Ability: Illusion
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 200 SpA / 200 Spe
+- Dark Pulse
+- Flamethrower
+- Nasty Plot
+- Foul Play
+
+Oricorio Sensu @ Sharp Beak
+Level: 56
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 200 SpA / 200 Spe
+- Revelation Dance
+- Air Slash
+- Shadow Ball
+- Roost
+
+Flygon @ Sitrus Berry
+Level: 57
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 200 SpA / 200 Spe
+- Bug Buzz
+- Dragon Pulse
+- Earthquake
+- Fire Blast
+
+Gogoat @ Assault Vest
+Level: 57
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 200 Atk / 200 Spe
+- Horn Leech
+- Milk Drink
+- Earthquake
+- Aerial Ace
+
+Ampharos @ Electrite
+Level: 58
+Ability: Static
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 200 SpA / 200 HP
 - Thunderbolt
 - Power Gem
 - Light Screen
@@ -13895,7 +13971,7 @@ AI: Smart Trainer
 Mugshot: Purple
 
 Azumarill @ Quick Claw
-Level: 51
+Level: 54
 Ability: Huge Power
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Play Rough
@@ -13904,7 +13980,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Ice Punch
 
 Zoroark @ Focus Sash
-Level: 50
+Level: 54
 Ability: Illusion
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Dark Pulse
@@ -13913,7 +13989,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Foul Play
 
 Oricorio Sensu @ Sharp Beak
-Level: 50
+Level: 54
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Revelation Dance
 - Air Slash
@@ -13921,7 +13997,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Roost
 
 Flygon @ Sitrus Berry
-Level: 51
+Level: 55
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Bug Buzz
 - Dragon Pulse
@@ -13929,9 +14005,78 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Fire Blast
 
 Ampharos @ Electrite
-Level: 51
+Level: 55
 Ability: Static
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Thunderbolt
+- Power Gem
+- Light Screen
+- Dragon Pulse
+
+
+=== TRAINER_RIVAL_GOLD_ICEPATH ===
+Name: Gold
+Pic: Brendan
+Gender: Male
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Purple
+Difficulty: Hard
+
+Azumarill @ Sitrus Berry
+Level: 56
+Ability: Huge Power
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 200 Atk / 200 Spe / 4 HP
+Adamant Nature
+- Play Rough
+- Aqua Tail
+- Aqua Jet
+- Belly Drum
+
+Zoroark @ Focus Sash
+Level: 56
+Ability: Illusion
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 200 SpA / 200 Spe
+- Dark Pulse
+- Flamethrower
+- Nasty Plot
+- Foul Play
+
+Oricorio Sensu @ Sharp Beak
+Level: 56
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 200 SpA / 200 Spe
+- Revelation Dance
+- Air Slash
+- Shadow Ball
+- Roost
+
+Flygon @ Sitrus Berry
+Level: 57
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 200 SpA / 200 Spe
+- Bug Buzz
+- Dragon Pulse
+- Earthquake
+- Fire Blast
+
+Gogoat @ Assault Vest
+Level: 57
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 200 Atk / 200 Spe
+- Horn Leech
+- Milk Drink
+- Earthquake
+- Aerial Ace
+
+Ampharos @ Electrite
+Level: 58
+Ability: Static
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 200 SpA / 200 HP
 - Thunderbolt
 - Power Gem
 - Light Screen
