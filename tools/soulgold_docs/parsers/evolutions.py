@@ -6,7 +6,6 @@ import re
 from collections import defaultdict
 from typing import Mapping
 
-from ..constants import MEGA_FORM_TARGET_MARKERS
 from ..c_parser import clean_constant_name, eval_int_expr, extract_balanced_call, format_identifier_name, read, split_top_level_braces, split_top_level_commas, strip_c_comments
 from ..models import EvolutionRow, ItemRecord, MegaEvolutionRow
 from ..paths import FORM_CHANGE_TABLES_H, REPO_ROOT
@@ -198,8 +197,6 @@ def parse_mega_evolutions(item_names: Mapping[str, ItemRecord]) -> list[MegaEvol
             r"\{\s*FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM\s*,\s*(SPECIES_[A-Z0-9_]+)\s*,\s*(ITEM_[A-Z0-9_]+)",
             body,
         ):
-            if not any(marker in target for marker in MEGA_FORM_TARGET_MARKERS):
-                continue
             key = (source, target, item)
             if key in seen:
                 continue
@@ -211,5 +208,21 @@ def parse_mega_evolutions(item_names: Mapping[str, ItemRecord]) -> list[MegaEvol
                 "item": item,
                 "itemName": item_name,
                 "label": f"Mega Evolution ({item_name})",
+            })
+        for target, item in re.findall(
+            r"\{\s*FORM_CHANGE_BEGIN_BATTLE\s*,\s*(SPECIES_[A-Z0-9_]+)\s*,\s*(ITEM_[A-Z0-9_]+)",
+            body,
+        ):
+            key = (source, target, item)
+            if key in seen:
+                continue
+            seen.add(key)
+            item_name = item_names.get(item, {}).get("name") or clean_constant_name(item, "ITEM_")
+            rows.append({
+                "source": source,
+                "target": target,
+                "item": item,
+                "itemName": item_name,
+                "label": f"Holding {item_name} in Battle",
             })
     return rows

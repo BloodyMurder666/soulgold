@@ -4994,7 +4994,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING, EGG_GROUP_HUMAN_LIKE),
         .abilities = { ABILITY_NO_GUARD, ABILITY_NO_GUARD, ABILITY_NO_GUARD },
-        .innates = { ABILITY_STEEL_FEET, ABILITY_SCRAPPY, ABILITY_STEEL_FEET },
+        .innates = { ABILITY_STEEL_FEET, ABILITY_SCRAPPY, ABILITY_BREAKING_PRESENCE },
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Hawlucha"),
     #if P_MODIFIED_MEGA_CRIES

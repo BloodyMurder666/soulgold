@@ -5533,7 +5533,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_2),
         .abilities = { ABILITY_POISON_POINT, ABILITY_SWIFT_SWIM, ABILITY_INTIMIDATE },
-        .innates = { ABILITY_MERCILESS, ABILITY_TOXIC_DEBRIS, ABILITY_SHARPNESS },
+        .innates = { ABILITY_MERCILESS, ABILITY_TOXIC_DEBRIS, ABILITY_ROUGH_SKIN },
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = TRUE,
         .speciesName = _("Overqwil"),
@@ -6259,7 +6259,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
     #if P_UPDATED_ABILITIES >= GEN_4
         .abilities = { ABILITY_GUTS, ABILITY_QUICK_FEET, ABILITY_UNNERVE },
-        .innates = { ABILITY_STRONG_JAW, ABILITY_BERSERK, ABILITY_TOUGH_CLAWS },
+        .innates = { ABILITY_STRONG_JAW, ABILITY_ANGER_POINT, ABILITY_TOUGH_CLAWS },
     #else
         .abilities = { ABILITY_GUTS, ABILITY_NONE, ABILITY_UNNERVE },
     #endif

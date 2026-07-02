@@ -614,6 +614,10 @@ function accordionSection(title, content, options = {}) {
 }
 
 function baseSpeciesForForms(mon) {
+  const formChange = (state.data.megaEvolutions || []).find((edge) => edge.target === mon.constant);
+  if (formChange) {
+    return state.data.species.find((entry) => entry.constant === formChange.source) || mon;
+  }
   if (!/_(?:MEGA(?:_[XYZ])?|GMAX|DMAX)$/.test(mon.constant)) return mon;
   return state.data.species.find((entry) => entry.constant === baseConstantForMega(mon.constant)) || mon;
 }
@@ -670,6 +674,13 @@ function evolutionChain(mon) {
 }
 
 function speciesFormLabel(mon) {
+  const ogerponForm = mon.constant.match(/^SPECIES_OGERPON_(TEAL|WELLSPRING|HEARTHFLAME|CORNERSTONE)(?:_TERA)?$/);
+  if (ogerponForm) {
+    const mask = ogerponForm[1][0] + ogerponForm[1].slice(1).toLowerCase();
+    return `${mon.name} (${mask} Mask)`;
+  }
+  if (mon.constant === "SPECIES_ZACIAN_CROWNED") return `${mon.name} (Crowned Sword)`;
+  if (mon.constant === "SPECIES_ZAMAZENTA_CROWNED") return `${mon.name} (Crowned Shield)`;
   if (mon.constant.includes("_MEGA_X")) return `${mon.name} X`;
   if (mon.constant.includes("_MEGA_Y")) return `${mon.name} Y`;
   if (mon.constant.includes("_MEGA_Z")) return `${mon.name} Z`;
@@ -678,6 +689,9 @@ function speciesFormLabel(mon) {
 }
 
 function megaTargetLabel(mon) {
+  if (/^SPECIES_OGERPON_(?:TEAL|WELLSPRING|HEARTHFLAME|CORNERSTONE)_TERA$/.test(mon.constant)) {
+    return `${speciesFormLabel(mon)} Mega`;
+  }
   if (mon.constant.includes("_GMAX") || mon.constant.includes("_DMAX")) return `${mon.name} Mega`;
   return speciesFormLabel(mon);
 }
@@ -717,7 +731,7 @@ function megaFormLinks(mon) {
     const form = bySpecies.get(edge.target);
     return `
       <div class="evolution-line">
-        <button class="evolution-name species-link" type="button" data-species="${base?.constant || chainMon.constant}">${sprite(base?.sprite || chainMon.sprite, "tiny-sprite")}<strong>${base?.name || chainMon.name}</strong></button>
+        <button class="evolution-name species-link" type="button" data-species="${base?.constant || chainMon.constant}">${sprite(base?.sprite || chainMon.sprite, "tiny-sprite")}<strong>${speciesFormLabel(base || chainMon)}</strong></button>
         <span class="evolution-arrow">-&gt;</span>
         <button class="evolution-name species-link" type="button" data-species="${form.constant}">${sprite(form.sprite, "tiny-sprite")}<strong>${megaTargetLabel(form)}</strong></button>
         <span class="evolution-method">${edge.label || `Mega Evolution (${edge.itemName || "Mega Stone"})`}</span>
