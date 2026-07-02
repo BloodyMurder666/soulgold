@@ -12013,7 +12013,7 @@
               {
                 "min_level": 50,
                 "max_level": 55,
-                "species": "SPECIES_ABOMASNOW"
+                "species": "SPECIES_CYCLIZAR"
               },
               {
                 "min_level": 50,
@@ -12023,7 +12023,7 @@
               {
                 "min_level": 50,
                 "max_level": 55,
-                "species": "SPECIES_ABOMASNOW"
+                "species": "SPECIES_CYCLIZAR"
               },
               {
                 "min_level": 50,
@@ -12033,42 +12033,42 @@
               {
                 "min_level": 50,
                 "max_level": 55,
-                "species": "SPECIES_ABOMASNOW"
+                "species": "SPECIES_ESPATHRA"
               },
               {
                 "min_level": 50,
                 "max_level": 55,
-                "species": "SPECIES_SINISTEA"
+                "species": "SPECIES_KLEFKI"
               },
               {
                 "min_level": 50,
                 "max_level": 55,
-                "species": "SPECIES_ABOMASNOW"
+                "species": "SPECIES_ESPATHRA"
               },
               {
                 "min_level": 50,
                 "max_level": 55,
-                "species": "SPECIES_SINISTEA"
+                "species": "SPECIES_KLEFKI"
               },
               {
-                "min_level": 50,
-                "max_level": 55,
-                "species": "SPECIES_ABOMASNOW"
+                "min_level": 45,
+                "max_level": 50,
+                "species": "SPECIES_SLIGGOO"
               },
               {
-                "min_level": 50,
+                "min_level": 45,
                 "max_level": 55,
-                "species": "SPECIES_SINISTEA"
+                "species": "SPECIES_SLIGGOO"
               },
               {
-                "min_level": 50,
-                "max_level": 55,
-                "species": "SPECIES_ABOMASNOW"
+                "min_level": 45,
+                "max_level": 50,
+                "species": "SPECIES_SLIGGOO"
               },
               {
-                "min_level": 50,
+                "min_level": 45,
                 "max_level": 55,
-                "species": "SPECIES_SINISTEA"
+                "species": "SPECIES_SLIGGOO"
               }
             ]
           }

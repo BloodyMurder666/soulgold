@@ -2151,3 +2151,14 @@ const struct Tileset gTileset_JohtoFactory =
     .metatileAttributes = gMetatileAttributes_JohtoFactory,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_MysteryDungeon =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_MysteryDungeon,
+    .palettes = gTilesetPalettes_MysteryDungeon,
+    .metatiles = gMetatiles_MysteryDungeon,
+    .metatileAttributes = gMetatileAttributes_MysteryDungeon,
+    .callback = NULL,
+};

@@ -352,7 +352,6 @@ Route110_TrickHouseEntrance_EventScript_GivePuzzle2Reward::
 	end
 
 Route110_TrickHouseEntrance_EventScript_GivePuzzle3Reward::
-	giveitem ITEM_HARD_STONE
 	goto_if_eq VAR_RESULT, TRUE, Route110_TrickHouseEntrance_EventScript_GotReward
 	call_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
 	msgbox Route110_TrickHouseEntrance_Text_DidYouNotComeToClaimReward, MSGBOX_DEFAULT

@@ -2289,3 +2289,7 @@ Common_Text_ReceivedMon:
 	.include "data/maps/SouthernPassage/scripts.inc"
 
 	.include "data/maps/MeteorIsland/scripts.inc"
+
+	.include "data/maps/KitakamiMountain2F/scripts.inc"
+
+	.include "data/maps/KitakamiMountain3F/scripts.inc"

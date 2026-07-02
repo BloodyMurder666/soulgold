@@ -20,41 +20,15 @@
     },
     {
       "map": "MAP_KITAKAMI_MOUNTAIN",
-      "offset": 0,
+      "offset": 1,
       "direction": "up"
     }
   ],
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_LIGHT_SPRITE",
-      "x": 24,
-      "y": 23,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "FLAG_NIGHT_POKEMON"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_LIGHT_SPRITE",
       "x": 20,
       "y": 23,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "FLAG_NIGHT_POKEMON"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_LIGHT_SPRITE",
-      "x": 24,
-      "y": 26,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -144,8 +118,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
-      "x": 30,
-      "y": 21,
+      "x": 29,
+      "y": 27,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 1,
@@ -184,9 +158,9 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_LITTLE_GIRL",
       "x": 31,
-      "y": 16,
+      "y": 21,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WANDER_UP_AND_DOWN",
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 0,
       "movement_range_y": 2,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -197,7 +171,7 @@
     {
       "local_id": "LOCALID_KITAKAMI_OGERPON",
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(OGERPON)",
-      "x": 21,
+      "x": 22,
       "y": 11,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
@@ -283,15 +257,6 @@
     },
     {
       "type": "trigger",
-      "x": 20,
-      "y": 14,
-      "elevation": 0,
-      "var": "VAR_KITAKAMI_STATE",
-      "var_value": "1",
-      "script": "Kitakami_OgerponTrigger"
-    },
-    {
-      "type": "trigger",
       "x": 21,
       "y": 14,
       "elevation": 0,
@@ -311,6 +276,15 @@
     {
       "type": "trigger",
       "x": 23,
+      "y": 14,
+      "elevation": 0,
+      "var": "VAR_KITAKAMI_STATE",
+      "var_value": "1",
+      "script": "Kitakami_OgerponTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 24,
       "y": 14,
       "elevation": 0,
       "var": "VAR_KITAKAMI_STATE",

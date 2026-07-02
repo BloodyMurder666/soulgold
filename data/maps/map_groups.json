@@ -569,7 +569,9 @@
     "MtMortar_Depths_HeatranRoom",
     "FoggyForest",
     "foggyforestDepths",
-    "DeepIlexForest"
+    "DeepIlexForest",
+    "KitakamiMountain2F",
+    "KitakamiMountain3F"
   ],
   "gMapGroup_JohtoDiveMaps": [
     "CherrygroveUnderwater"

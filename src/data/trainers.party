@@ -2680,15 +2680,16 @@ AI: Smart Trainer
 Mugshot: Green
 Difficulty: Hard
 
-Archaludon @ Choice Specs
-Level: 58
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 252 Spe
-Modest Nature
-- Electro Shot
-- Dragon Pulse
+Goodra-Hisui @ Assault Vest  
+Ability: Sap Sipper  
+Level: 58  
+EVs: 252 HP / 252 SpA / 4 SpD  
+Modest Nature  
+IVs: 0 Atk  
+- Blizzard  
+- Draco Meteor  
+- Fire Blast  
 - Flash Cannon
-- Dark Pulse
 
 Gyarados @ Damp Rock
 Level: 58
@@ -3242,16 +3243,15 @@ Jolly Nature
 - Body Slam  
 - Trick
 
-Goodra-Hisui @ Assault Vest  
-Ability: Sap Sipper  
-Level: 70  
-EVs: 252 HP / 252 SpA / 4 SpD  
-Modest Nature  
-IVs: 0 Atk  
-- Blizzard  
-- Draco Meteor  
-- Fire Blast  
+Archaludon @ Choice Specs
+Level: 58
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 Spe
+Modest Nature
+- Electro Shot
+- Dragon Pulse
 - Flash Cannon
+- Dark Pulse
 
 === TRAINER_LANCE_1 ===
 Name: Lance
@@ -14601,4 +14601,25 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Naclstack
 Level: 33
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+=== TRAINER_MOULDER ===
+Name: Moulder
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Dp Hiker
+Double Battle: No
+AI: Basic Trainer
+
+Golurk
+Level: 57
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Probopass
+Level: 57
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Aerodactyl
+Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe

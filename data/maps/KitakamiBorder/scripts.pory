@@ -2,11 +2,13 @@ mapscripts KitakamiBorder_MapScripts {}
 
 script KitakamiBorder_OldLady {
     msgbox("I often come here to watch the valley
-            between here and Mt. Silver. It soothes
-            my mind.", MSGBOX_NPC)
+            between here and Mt. Silver. 
+            
+            It soothes my mind.", MSGBOX_NPC)
 }
 
-script KitakamiBorder_HikerBenny {
-
+script KitakamiBorder_HikerMoulder {
+    trainerbattle_single(TRAINER_MOULDER, "Are you heading to visit Kitakami?", "Enjoy the sights!")
+    msgbox("I visit this place almost every month!", MSGBOX_AUTOCLOSE)
 }
 

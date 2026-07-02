@@ -42,7 +42,7 @@ script Kitakami_OgerponTrigger {
 
 script Kitakami_Fatman {
     msgbox("There's no technology here!
-            WHAT DO I DO?", MSGBOX_NPC)
+            WHAT AM I SUPPOSED TO DO??", MSGBOX_NPC)
 }
 
 script Kitakami_Battlegirl {
@@ -53,8 +53,10 @@ script Kitakami_Battlegirl {
 
 script Kitakami_Littlegirl {
     msgbox("Mom used to say bad children are taken
-            to the well. But actually it's a place
-            where Fezandipiti roosts sometimes.", MSGBOX_NPC)
+            to the cave down there. 
+            
+            It's a place where Fezandipiti 
+            roosts during the summer.", MSGBOX_NPC)
 }
 
 script Kitakami_WestSign {

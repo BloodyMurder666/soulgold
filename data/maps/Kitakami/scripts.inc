@@ -79,13 +79,13 @@ Kitakami_Littlegirl::
 
 
 Kitakami_WestSign::
-# 61 "data/maps/Kitakami/scripts.pory"
+# 63 "data/maps/Kitakami/scripts.pory"
 	msgbox Kitakami_WestSign_Text_0, MSGBOX_SIGN
 	return
 
 
 Kitakami_WellSign::
-# 65 "data/maps/Kitakami/scripts.pory"
+# 67 "data/maps/Kitakami/scripts.pory"
 	msgbox Kitakami_WellSign_Text_0, MSGBOX_SIGN
 	return
 
@@ -126,7 +126,7 @@ Kitakami_OldLady_Text_0:
 Kitakami_Fatman_Text_0:
 # 44 "data/maps/Kitakami/scripts.pory"
 	.string "There's no technology here!\n"
-	.string "WHAT DO I DO?$"
+	.string "WHAT AM I SUPPOSED TO DO??$"
 
 Kitakami_Battlegirl_Text_0:
 # 49 "data/maps/Kitakami/scripts.pory"
@@ -137,13 +137,14 @@ Kitakami_Battlegirl_Text_0:
 Kitakami_Littlegirl_Text_0:
 # 55 "data/maps/Kitakami/scripts.pory"
 	.string "Mom used to say bad children are taken\n"
-	.string "to the well. But actually it's a place\l"
-	.string "where Fezandipiti roosts sometimes.$"
+	.string "to the cave down there. \p"
+	.string "It's a place where Fezandipiti \n"
+	.string "roosts during the summer.$"
 
 Kitakami_WestSign_Text_0:
-# 61 "data/maps/Kitakami/scripts.pory"
+# 63 "data/maps/Kitakami/scripts.pory"
 	.string "Kitakami Town - Timeless traditions$"
 
 Kitakami_WellSign_Text_0:
-# 65 "data/maps/Kitakami/scripts.pory"
+# 67 "data/maps/Kitakami/scripts.pory"
 	.string "Kitakami Well - Careful with the ladder!$"

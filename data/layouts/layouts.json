@@ -8954,9 +8954,9 @@
     {
       "id": "LAYOUT_KITAKAMI",
       "name": "Kitakami_Layout",
-      "width": 45,
+      "width": 52,
       "height": 40,
-      "primary_tileset": "gTileset_Johto_NorthEast",
+      "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_Ecruteak_City",
       "border_filepath": "data/layouts/Kitakami/border.bin",
       "blockdata_filepath": "data/layouts/Kitakami/map.bin"
@@ -8966,7 +8966,7 @@
       "name": "KitakamiMountain_Layout",
       "width": 35,
       "height": 25,
-      "primary_tileset": "gTileset_Johto_NorthEast",
+      "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_Ecruteak_City",
       "border_filepath": "data/layouts/KitakamiMountain/border.bin",
       "blockdata_filepath": "data/layouts/KitakamiMountain/map.bin"
@@ -8997,7 +8997,7 @@
       "width": 35,
       "height": 25,
       "primary_tileset": "gTileset_Johto_General",
-      "secondary_tileset": "gTileset_Cave_Gray",
+      "secondary_tileset": "gTileset_g4_alt",
       "border_filepath": "data/layouts/KitakamiMountain1F/border.bin",
       "blockdata_filepath": "data/layouts/KitakamiMountain1F/map.bin"
     },
@@ -9776,6 +9776,26 @@
       "secondary_tileset": "gTileset_AzaleaTown",
       "border_filepath": "data/layouts/MeteorIsland/border.bin",
       "blockdata_filepath": "data/layouts/MeteorIsland/map.bin"
+    },
+    {
+      "id": "LAYOUT_KITAKAMI_MOUNTAIN2F",
+      "name": "KitakamiMountain2F_Layout",
+      "width": 49,
+      "height": 41,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_g4_alt",
+      "border_filepath": "data/layouts/KitakamiMountain2F/border.bin",
+      "blockdata_filepath": "data/layouts/KitakamiMountain2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_KITAKAMI_MOUNTAIN3F",
+      "name": "KitakamiMountain3F_Layout",
+      "width": 49,
+      "height": 41,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_g4_alt",
+      "border_filepath": "data/layouts/KitakamiMountain3F/border.bin",
+      "blockdata_filepath": "data/layouts/KitakamiMountain3F/map.bin"
     }
   ]
 }
