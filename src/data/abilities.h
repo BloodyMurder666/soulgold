@@ -4627,9 +4627,9 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .name = _("Frost Nova"),
         .description = COMPOUND_STRING("Freezes on being KO'd."),
         .longDescription = COMPOUND_STRING("When knocked out by an\n"
-                                           "attack, freezes or\n"
-                                           "frostbites the attacker\n"
-                                           "for 1 turn."),
+                                           "attack, freezes the\n"
+                                           "attacker for exactly\n"
+                                           "1 turn."),
         .aiRating = 4,
     },
 
@@ -4846,9 +4846,11 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
     {
         .name = _("Heatstorm"),
         .description = COMPOUND_STRING("Scorches field on entry."),
-        .longDescription = COMPOUND_STRING("Creates a scorched field\n"
-                                           "when this Pokemon enters\n"
-                                           "battle."),
+        .longDescription = COMPOUND_STRING("Creates a Scorched Field\n"
+                                           "on entry. It strengthens\n"
+                                           "Fire moves and Scald while\n"
+                                           "weakening Water and Ice\n"
+                                           "moves."),
         .aiRating = 8,
     },
 
@@ -4857,7 +4859,7 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .name = _("Coalwalker"),
         .description = COMPOUND_STRING("Doubles Def when scorched."),
         .longDescription = COMPOUND_STRING("Doubles Defense while a\n"
-                                           "scorched field is active."),
+                                           "Scorched Field is active."),
         .aiRating = 6,
         .breakable = TRUE,
     },
@@ -4867,7 +4869,7 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .name = _("Lava Surfer"),
         .description = COMPOUND_STRING("Scorched doubles Speed."),
         .longDescription = COMPOUND_STRING("Doubles Speed while a\n"
-                                           "scorched field is active."),
+                                           "Scorched Field is active."),
         .aiRating = 6,
     },
 
@@ -4937,7 +4939,7 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .name = _("Hunter"),
         .description = COMPOUND_STRING("Preys on paralysis."),
         .longDescription = COMPOUND_STRING("Glare also confuses.\n"
-                                           "Speed is raised 50% while\n"
+                                           "Attack is raised 50% while\n"
                                            "a foe is paralyzed."),
         .aiRating = 6,
     },
@@ -5310,10 +5312,11 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_BACKDRAFT] =
     {
         .name = _("Backdraft"),
-        .description = COMPOUND_STRING("Switching lowers foes."),
-        .longDescription = COMPOUND_STRING("When switching out by\n"
-                                           "choice, lowers opposing\n"
-                                           "Attack and Sp. Atk."),
+        .description = COMPOUND_STRING("Switching lowers foe Speed."),
+        .longDescription = COMPOUND_STRING("When this Pokemon switches\n"
+                                           "out voluntarily, opposing\n"
+                                           "Pokemon's Speed falls by\n"
+                                           "1 stage."),
         .aiRating = 5,
     },
 
@@ -5369,10 +5372,11 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_VALKYRIE] =
     {
         .name = _("Valkyrie"),
-        .description = COMPOUND_STRING("Physical Steel-like form."),
-        .longDescription = COMPOUND_STRING("Attacks use Attack and\n"
-                                           "gain Steel-type\n"
-                                           "resistances."),
+        .description = COMPOUND_STRING("Gains Steel resistances."),
+        .longDescription = COMPOUND_STRING("Gains Steel-type\n"
+                                           "resistances and Poison\n"
+                                           "immunity without gaining\n"
+                                           "Steel-type weaknesses."),
         .aiRating = 7,
         .breakable = TRUE,
     },
@@ -5424,9 +5428,10 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
     {
         .name = _("Time Spiral"),
         .description = COMPOUND_STRING("Warps priority and fields."),
-        .longDescription = COMPOUND_STRING("Blocks priority moves\n"
-                                           "and hastens finite weather\n"
-                                           "and terrain each turn."),
+        .longDescription = COMPOUND_STRING("Inverts move priority.\n"
+                                           "Finite weather and terrain\n"
+                                           "lose an extra turn at each\n"
+                                           "turn's end."),
         .aiRating = 6,
         .breakable = TRUE,
     },

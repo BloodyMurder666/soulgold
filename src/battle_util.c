@@ -5574,12 +5574,12 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
          && !gBattleStruct->unableToUseMove
          && !IsBattleMoveStatus(gCurrentMove)
          && IsBattlerTurnDamaged(gBattlerTarget, EXCLUDING_SUBSTITUTES)
-         && CanSetNonVolatileStatus(gBattlerTarget, gBattlerAttacker, MOVE_EFFECT_FREEZE_OR_FROSTBITE, CHECK_TRIGGER))
+         && CanSetNonVolatileStatus(gBattlerTarget, gBattlerAttacker, MOVE_EFFECT_FREEZE, CHECK_TRIGGER))
         {
             gBattleMons[gBattlerAttacker].volatiles.frostNovaTimer = 2;
             gEffectBattler = gBattlerAttacker;
             gBattleScripting.battler = gBattlerTarget;
-            gBattleScripting.moveEffect = MOVE_EFFECT_FREEZE_OR_FROSTBITE;
+            gBattleScripting.moveEffect = MOVE_EFFECT_FREEZE;
             gLastUsedAbility = ABILITY_FROST_NOVA;
             PushTraitStack(gBattlerTarget, ABILITY_FROST_NOVA);
             BattleScriptCall(BattleScript_AbilityStatusEffectDef);
@@ -8892,23 +8892,6 @@ static inline u32 CalcAttackStat(struct BattleContext *ctx)
             atkStat = gBattleMons[battlerAtk].spAttack;
             atkStage = gBattleMons[battlerAtk].statStages[STAT_SPATK];
         }
-        else if (SearchTraits(battlerTraits, ABILITY_VALKYRIE))
-        {
-            u32 physicalStat = gBattleMons[battlerAtk].attack * gStatStageRatios[gBattleMons[battlerAtk].statStages[STAT_ATK]][0]
-                              / gStatStageRatios[gBattleMons[battlerAtk].statStages[STAT_ATK]][1];
-            u32 specialStat = gBattleMons[battlerAtk].spAttack * gStatStageRatios[gBattleMons[battlerAtk].statStages[STAT_SPATK]][0]
-                             / gStatStageRatios[gBattleMons[battlerAtk].statStages[STAT_SPATK]][1];
-            if (specialStat > physicalStat)
-            {
-                atkStat = gBattleMons[battlerAtk].spAttack;
-                atkStage = gBattleMons[battlerAtk].statStages[STAT_SPATK];
-            }
-            else
-            {
-                atkStat = gBattleMons[battlerAtk].attack;
-                atkStage = gBattleMons[battlerAtk].statStages[STAT_ATK];
-            }
-        }
         else if (IsBattleMovePhysical(move))
         {
             atkStat = gBattleMons[battlerAtk].attack;
@@ -8991,6 +8974,19 @@ static inline u32 CalcAttackStat(struct BattleContext *ctx)
     if (SearchTraits(battlerTraits, ABILITY_GUTS)
      && BattlerHasEffectiveMajorStatus(battlerAtk) && IsBattleMovePhysical(move))
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
+    if (SearchTraits(battlerTraits, ABILITY_HUNTER) && IsBattleMovePhysical(move))
+    {
+        for (enum BattlerId battler = 0; battler < gBattlersCount; battler++)
+        {
+            if (!IsBattlerAlly(battlerAtk, battler)
+             && IsBattlerAlive(battler)
+             && gBattleMons[battler].status1 & STATUS1_PARALYSIS)
+            {
+                modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
+                break;
+            }
+        }
+    }
     if (SearchTraits(battlerTraits, ABILITY_TRANSISTOR)
      && moveType == TYPE_ELECTRIC)
         {
@@ -9163,7 +9159,7 @@ static inline u32 CalcDefenseStat(struct BattleContext *ctx)
     def = gBattleMons[battlerDef].defense;
     spDef = gBattleMons[battlerDef].spDefense;
 
-    if (moveEffect == EFFECT_PSYSHOCK || IsBattleMovePhysical(move) || BattlerHasTrait(ctx->battlerAtk, ABILITY_VALKYRIE)) // uses defense stat instead of sp.def
+    if (moveEffect == EFFECT_PSYSHOCK || IsBattleMovePhysical(move)) // uses defense stat instead of sp.def
     {
         if (ctx->fieldStatuses & STATUS_FIELD_WONDER_ROOM) // the defense stats are swapped
         {
@@ -9425,11 +9421,15 @@ static uq4_12_t GetFieldDamageModifier(struct BattleContext *ctx)
     if (!(ctx->fieldStatuses & STATUS_FIELD_SCORCHED_FIELD))
         return UQ_4_12(1.0);
 
+    if (ctx->move == MOVE_SCALD)
+        return UQ_4_12(1.2);
+
     moveType = ctx->moveType;
     if (moveType == TYPE_FIRE || GetMoveType(ctx->move) == TYPE_FIRE)
-        return UQ_4_12(1.2);
-    if ((moveType == TYPE_WATER || GetMoveType(ctx->move) == TYPE_WATER) && ctx->move != MOVE_SCALD)
-        return UQ_4_12(0.8);
+        return UQ_4_12(1.1);
+    if (moveType == TYPE_WATER || GetMoveType(ctx->move) == TYPE_WATER
+     || moveType == TYPE_ICE || GetMoveType(ctx->move) == TYPE_ICE)
+        return UQ_4_12(0.9);
 
     return UQ_4_12(1.0);
 }
@@ -10385,9 +10385,6 @@ static uq4_12_t GetValkyrieTypeModifier(enum Type moveType)
     case TYPE_FAIRY:
         return UQ_4_12(0.5);
     case TYPE_POISON:
-    case TYPE_FIRE:
-        return UQ_4_12(2.0);
-    case TYPE_GROUND:
         return UQ_4_12(0.0);
     default:
         return UQ_4_12(1.0);

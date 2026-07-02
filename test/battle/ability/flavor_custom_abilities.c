@@ -150,7 +150,7 @@ SINGLE_BATTLE_TEST("Lunar Cycle raises Speed after a damaging hit")
     }
 }
 
-SINGLE_BATTLE_TEST("Frost Nova freezes or frostbites the KOing attacker")
+SINGLE_BATTLE_TEST("Frost Nova always freezes the KOing attacker")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_FROST_NOVA); HP(1); }
@@ -158,7 +158,29 @@ SINGLE_BATTLE_TEST("Frost Nova freezes or frostbites the KOing attacker")
     } WHEN {
         TURN { MOVE(opponent, MOVE_SCRATCH); }
     } THEN {
-        EXPECT(opponent->status1 & STATUS1_ICY_ANY);
+        EXPECT(opponent->status1 & STATUS1_FREEZE);
+        EXPECT(!(opponent->status1 & STATUS1_FROSTBITE));
+    }
+}
+
+SINGLE_BATTLE_TEST("Frost Nova guarantees exactly one frozen turn")
+{
+    GIVEN {
+        ASSUME(MoveThawsUser(MOVE_FLAME_WHEEL));
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_FROST_NOVA); HP(1); Speed(1); }
+        PLAYER(SPECIES_WYNAUT) { Speed(100); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(1); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_SCRATCH); SEND_OUT(player, 1); }
+        TURN { MOVE(player, MOVE_SCRATCH); MOVE(opponent, MOVE_FLAME_WHEEL); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_FRZ, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
+        MESSAGE("The opposing Wobbuffet is frozen solid!");
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_FLAME_WHEEL, opponent);
+    } THEN {
+        EXPECT(!(opponent->status1 & STATUS1_ICY_ANY));
+        EXPECT(!opponent->volatiles.frostNovaTimer);
     }
 }
 
@@ -329,6 +351,20 @@ SINGLE_BATTLE_TEST("Tether copies opposing stat boosts")
         EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 2);
     }
 }
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Contrary inverts stat boosts copied by Tether")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_TETHER); Innates(ABILITY_CONTRARY); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_SWORDS_DANCE); }
+    } THEN {
+        EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE - 2);
+    }
+}
+#endif
 
 SINGLE_BATTLE_TEST("Solar Panel makes Electric moves always hit in sun")
 {

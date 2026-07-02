@@ -11028,7 +11028,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_WATER_1),
         .abilities = { ABILITY_QUICK_DRAW, ABILITY_OWN_TEMPO, ABILITY_REGENERATOR },
-        .innates = { ABILITY_POISON_POINT, ABILITY_TOXIC_BOOST, ABILITY_POISON_HEAL },
+        .innates = { ABILITY_POISON_POINT, ABILITY_TOXIC_BOOST, ABILITY_CORROSION },
 		.bodyColor = BODY_COLOR_PINK,
         .noFlip = TRUE,
         .speciesName = _("Slowbro"),
@@ -11097,7 +11097,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_WATER_1),
         .abilities = { ABILITY_CURIOUS_MEDICINE, ABILITY_OWN_TEMPO, ABILITY_REGENERATOR },
-        .innates = { ABILITY_SYNCHRONIZE, ABILITY_TOXIC_CORE, ABILITY_POISON_HEAL },
+        .innates = { ABILITY_SYNCHRONIZE, ABILITY_TOXIC_CORE, ABILITY_CORROSION },
 		.bodyColor = BODY_COLOR_PINK,
         .speciesName = _("Slowking"),
         .cryId = CRY_SLOWKING,
@@ -14514,7 +14514,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     #else
         .abilities = { ABILITY_INTIMIDATE, ABILITY_NONE, ABILITY_STEADFAST },
     #endif
-        .innates = { ABILITY_SKILL_LINK, ABILITY_STEEL_FEET, ABILITY_RECKLESS },
+        .innates = { ABILITY_MOMENTUM, ABILITY_STEEL_FEET, ABILITY_RECKLESS },
 		.bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Hitmontop"),
         .cryId = CRY_HITMONTOP,

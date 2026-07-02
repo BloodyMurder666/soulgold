@@ -2697,7 +2697,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_FLYING),
     #if P_UPDATED_ABILITIES >= GEN_7
         .abilities = { ABILITY_KEEN_EYE, ABILITY_DRIZZLE, ABILITY_RAIN_DISH },
-        .innates = { ABILITY_BIG_PECKS, ABILITY_STEELY_SPIRIT },
+        .innates = { ABILITY_BIG_PECKS, ABILITY_WINDCALLER, ABILITY_BACKDRAFT },
     #else
         .abilities = { ABILITY_KEEN_EYE, ABILITY_NONE, ABILITY_RAIN_DISH },
     #endif

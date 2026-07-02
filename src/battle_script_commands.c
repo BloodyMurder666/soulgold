@@ -3261,7 +3261,13 @@ void SetMoveEffect(enum BattlerId battlerAtk, enum BattlerId effectBattler, enum
         {
             gBattleMons[gEffectBattler].volatiles.multipleTurns = TRUE;
             gLockedMoves[gEffectBattler] = gCurrentMove;
-            gBattleMons[gEffectBattler].volatiles.rampageTurns = RandomUniform(RNG_RAMPAGE_TURNS, 2, B_RAMPAGE_TURNS);
+            if (gFieldStatuses & STATUS_FIELD_SCORCHED_FIELD
+             && (gCurrentMove == MOVE_OUTRAGE
+              || gCurrentMove == MOVE_PETAL_DANCE
+              || gCurrentMove == MOVE_THRASH))
+                gBattleMons[gEffectBattler].volatiles.rampageTurns = 1;
+            else
+                gBattleMons[gEffectBattler].volatiles.rampageTurns = RandomUniform(RNG_RAMPAGE_TURNS, 2, B_RAMPAGE_TURNS);
         }
         break;
     case MOVE_EFFECT_CLEAR_SMOG:
@@ -10763,6 +10769,27 @@ static void Cmd_trysetsnatch(void)
     }
 }
 
+static bool32 IsVoluntarySwitchOut(enum BattlerId battler)
+{
+    if (gChosenActionByBattler[battler] == B_ACTION_SWITCH)
+        return TRUE;
+    if (gChosenActionByBattler[battler] != B_ACTION_USE_MOVE || battler != gBattlerAttacker)
+        return FALSE;
+
+    switch (GetMoveEffect(gCurrentMove))
+    {
+    case EFFECT_BATON_PASS:
+    case EFFECT_TELEPORT:
+    case EFFECT_HIT_ESCAPE:
+    case EFFECT_PARTING_SHOT:
+    case EFFECT_WEATHER_AND_SWITCH:
+    case EFFECT_SHED_TAIL:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
 static void Cmd_switchoutabilities(void)
 {
     CMD_ARGS(u8 battler);
@@ -10777,6 +10804,17 @@ static void Cmd_switchoutabilities(void)
             gBattlescriptCurrInstr = BattleScript_NeutralizingGasExits;
             return;
         }
+    }
+
+    if (gBattleMons[battler].volatiles.frostNovaTimer)
+    {
+        gBattleMons[battler].volatiles.frostNovaTimer = 0;
+        gBattleMons[battler].status1 &= ~STATUS1_ICY_ANY;
+        BtlController_EmitSetMonData(battler, B_COMM_TO_CONTROLLER, REQUEST_STATUS_BATTLE,
+                                     1u << gBattleStruct->battlerPartyIndexes[battler],
+                                     sizeof(gBattleMons[battler].status1),
+                                     &gBattleMons[battler].status1);
+        MarkBattlerForControllerExec(battler);
     }
 
     if (BattlerHasTrait(battler, ABILITY_NATURAL_CURE))
@@ -10817,7 +10855,7 @@ static void Cmd_switchoutabilities(void)
                                      &heal);
         MarkBattlerForControllerExec(battler);
     }
-    if (BattlerHasTrait(battler, ABILITY_BACKDRAFT) && gChosenActionByBattler[battler] == B_ACTION_SWITCH)
+    if (BattlerHasTrait(battler, ABILITY_BACKDRAFT) && IsVoluntarySwitchOut(battler))
     {
         for (enum BattlerId target = 0; target < gBattlersCount; target++)
         {

@@ -4908,17 +4908,6 @@ u32 GetBattlerTotalSpeedStat(enum BattlerId battler)
         speed += baseSpeed;
     if (SearchTraits(battlerTraits, ABILITY_MYSTIC_FORCE) && gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN)
         speed += baseSpeed;
-    if (SearchTraits(battlerTraits, ABILITY_HUNTER))
-    {
-        for (enum BattlerId i = 0; i < gBattlersCount; i++)
-        {
-            if (!IsBattlerAlly(battler, i) && IsBattlerAlive(i) && gBattleMons[i].status1 & STATUS1_PARALYSIS)
-            {
-                speed += baseSpeed / 2;
-                break;
-            }
-        }
-    }
     if (SearchTraits(battlerTraits, ABILITY_ADRENALINE) && gBattleMons[battler].hp <= (gBattleMons[battler].maxHP / 3))
         speed += (baseSpeed * 30) / 100;
     if (SearchTraits(battlerTraits, ABILITY_PROTOSYNTHESIS) && !(gBattleMons[battler].volatiles.transformed) && ((gBattleWeather & B_WEATHER_SUN && HasWeatherEffect()) || gBattleMons[battler].volatiles.boosterEnergyActivated))
@@ -5200,6 +5189,9 @@ s32 GetBattleMovePriority(enum BattlerId battler, enum Move move)
      && gBattleMons[battler].hp > 0
      && gBattleMons[battler].hp <= gBattleMons[battler].maxHP / 3)
         priority += 2;
+
+    if (IsTimeSpiralActiveOnField())
+        priority = -priority;
 
     return priority;
 }

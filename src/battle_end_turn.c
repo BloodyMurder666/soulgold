@@ -334,7 +334,13 @@ static bool32 HandleEndTurnFirstEventBlock(enum BattlerId battler)
         {
             gBattleMons[battler].volatiles.frostNovaTimer--;
             if (gBattleMons[battler].volatiles.frostNovaTimer == 0)
+            {
                 gBattleMons[battler].status1 &= ~STATUS1_ICY_ANY;
+                BtlController_EmitSetMonData(battler, B_COMM_TO_CONTROLLER, REQUEST_STATUS_BATTLE,
+                                             0, sizeof(gBattleMons[battler].status1),
+                                             &gBattleMons[battler].status1);
+                MarkBattlerForControllerExec(battler);
+            }
         }
         if (gBattleMons[battler].volatiles.rampageTurns && gBattleMons[battler].volatiles.semiInvulnerable != STATE_SKY_DROP)
         {

@@ -160,9 +160,11 @@ static enum CancelerResult CancelerAsleepOrFrozen(struct BattleContext *ctx)
         }
         RequestNonVolatileChange(ctx->battlerAtk);
     }
-    else if (gBattleMons[ctx->battlerAtk].status1 & STATUS1_FREEZE && !MoveThawsUser(ctx->move))
+    else if (gBattleMons[ctx->battlerAtk].status1 & STATUS1_FREEZE
+          && (gBattleMons[ctx->battlerAtk].volatiles.frostNovaTimer || !MoveThawsUser(ctx->move)))
     {
-        if (!RandomPercentage(RNG_FROZEN, 20))
+        if (gBattleMons[ctx->battlerAtk].volatiles.frostNovaTimer
+         || !RandomPercentage(RNG_FROZEN, 20))
         {
             result = CANCELER_RESULT_FAILURE;
             gBattlescriptCurrInstr = BattleScript_MoveUsedIsFrozen;
@@ -1461,12 +1463,6 @@ static enum CancelerResult CancelerPriorityBlock(struct BattleContext *ctx)
 
         if (BattlerHasDazzlingAbility(battler))
         {
-            effect = TRUE;
-            break;
-        }
-        if (BattlerHasTrait(battler, ABILITY_TIME_SPIRAL))
-        {
-            gLastUsedAbility = ABILITY_TIME_SPIRAL;
             effect = TRUE;
             break;
         }

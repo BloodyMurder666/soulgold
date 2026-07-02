@@ -141,6 +141,20 @@ SINGLE_BATTLE_TEST("Backdraft lowers opposing Speed after a voluntary switch")
     }
 }
 
+SINGLE_BATTLE_TEST("Backdraft lowers opposing Speed after U-turn")
+{
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_U_TURN) == EFFECT_HIT_ESCAPE);
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_BACKDRAFT); }
+        PLAYER(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_U_TURN); SEND_OUT(player, 1); }
+    } THEN {
+        EXPECT_EQ(opponent->statStages[STAT_SPEED], DEFAULT_STAT_STAGE - 1);
+    }
+}
+
 SINGLE_BATTLE_TEST("Backdraft does not trigger when its user faints")
 {
     GIVEN {
@@ -306,27 +320,40 @@ SINGLE_BATTLE_TEST("Maim and Mend heals after critical hits only", u16 hp)
     }
 }
 
-SINGLE_BATTLE_TEST("Valkyrie grants Ground immunity", u16 hp)
+SINGLE_BATTLE_TEST("Valkyrie grants Steel resistances without Steel weaknesses", u16 hp)
 {
     enum Ability ability;
+    enum Move move;
 
-    PARAMETRIZE { ability = ABILITY_BIG_PECKS; }
-    PARAMETRIZE { ability = ABILITY_VALKYRIE; }
+    PARAMETRIZE { ability = ABILITY_BIG_PECKS; move = MOVE_SCRATCH; }
+    PARAMETRIZE { ability = ABILITY_VALKYRIE;  move = MOVE_SCRATCH; }
+    PARAMETRIZE { ability = ABILITY_BIG_PECKS; move = MOVE_CLEAR_SMOG; }
+    PARAMETRIZE { ability = ABILITY_VALKYRIE;  move = MOVE_CLEAR_SMOG; }
+    PARAMETRIZE { ability = ABILITY_BIG_PECKS; move = MOVE_EMBER; }
+    PARAMETRIZE { ability = ABILITY_VALKYRIE;  move = MOVE_EMBER; }
+    PARAMETRIZE { ability = ABILITY_BIG_PECKS; move = MOVE_EARTHQUAKE; }
+    PARAMETRIZE { ability = ABILITY_VALKYRIE;  move = MOVE_EARTHQUAKE; }
     GIVEN {
+        ASSUME(GetMoveType(MOVE_SCRATCH) == TYPE_NORMAL);
+        ASSUME(GetMoveType(MOVE_CLEAR_SMOG) == TYPE_POISON);
+        ASSUME(GetMoveType(MOVE_EMBER) == TYPE_FIRE);
         ASSUME(GetMoveType(MOVE_EARTHQUAKE) == TYPE_GROUND);
         PLAYER(SPECIES_WOBBUFFET) { Ability(ability); HP(100); MaxHP(100); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(opponent, MOVE_EARTHQUAKE); }
+        TURN { MOVE(opponent, move); }
     } THEN {
         results[i].hp = player->hp;
     } FINALLY {
-        EXPECT_LT(results[0].hp, 100);
-        EXPECT_EQ(results[1].hp, 100);
+        EXPECT_GT(results[1].hp, results[0].hp); // Normal resistance
+        EXPECT_LT(results[2].hp, 100);
+        EXPECT_EQ(results[3].hp, 100);           // Poison immunity
+        EXPECT_EQ(results[4].hp, results[5].hp); // No Fire weakness
+        EXPECT_EQ(results[6].hp, results[7].hp); // No Ground weakness
     }
 }
 
-SINGLE_BATTLE_TEST("Valkyrie attacks with the higher offensive stat", s16 damage)
+SINGLE_BATTLE_TEST("Valkyrie does not change offensive stat selection", s16 damage)
 {
     enum Ability ability;
 
@@ -340,7 +367,7 @@ SINGLE_BATTLE_TEST("Valkyrie attacks with the higher offensive stat", s16 damage
     } SCENE {
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
-        EXPECT_GT(results[1].damage, results[0].damage);
+        EXPECT_EQ(results[1].damage, results[0].damage);
     }
 }
 
@@ -499,22 +526,23 @@ SINGLE_BATTLE_TEST("Cosmic Form reduces super-effective direct damage taken", s1
     }
 }
 
-SINGLE_BATTLE_TEST("Time Spiral blocks opposing priority moves", u16 hp)
+SINGLE_BATTLE_TEST("Time Spiral inverts move priority", u16 hp)
 {
     enum Ability ability;
 
     PARAMETRIZE { ability = ABILITY_BIG_PECKS; }
     PARAMETRIZE { ability = ABILITY_TIME_SPIRAL; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ability); HP(100); MaxHP(100); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        ASSUME(GetMovePriority(MOVE_QUICK_ATTACK) > GetMovePriority(MOVE_SCRATCH));
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ability); HP(1); MaxHP(1); Speed(1); }
+        OPPONENT(SPECIES_WOBBUFFET) { HP(1); MaxHP(1); Speed(100); }
     } WHEN {
-        TURN { MOVE(opponent, MOVE_QUICK_ATTACK); }
+        TURN { MOVE(player, MOVE_SCRATCH); MOVE(opponent, MOVE_QUICK_ATTACK); }
     } THEN {
         results[i].hp = player->hp;
     } FINALLY {
-        EXPECT_LT(results[0].hp, 100);
-        EXPECT_EQ(results[1].hp, 100);
+        EXPECT_EQ(results[0].hp, 0);
+        EXPECT_EQ(results[1].hp, 1);
     }
 }
 

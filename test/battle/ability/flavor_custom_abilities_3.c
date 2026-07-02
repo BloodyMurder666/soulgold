@@ -14,15 +14,22 @@ SINGLE_BATTLE_TEST("Hunter makes Glare confuse and paralyze")
     }
 }
 
-SINGLE_BATTLE_TEST("Hunter boosts Speed by 50 percent while a foe is paralyzed")
+SINGLE_BATTLE_TEST("Hunter boosts Attack by 50 percent while a foe is paralyzed", s16 damage)
 {
+    u32 status;
+
+    PARAMETRIZE { status = STATUS1_NONE; }
+    PARAMETRIZE { status = STATUS1_PARALYSIS; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_HUNTER); Speed(10); }
-        OPPONENT(SPECIES_WOBBUFFET) { Status1(STATUS1_PARALYSIS); Speed(14); }
+        ASSUME(GetMoveCategory(MOVE_SCRATCH) == DAMAGE_CATEGORY_PHYSICAL);
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_HUNTER); Attack(100); }
+        OPPONENT(SPECIES_WOBBUFFET) { Status1(status); }
     } WHEN {
-        TURN { MOVE(player, MOVE_CELEBRATE); MOVE(opponent, MOVE_CELEBRATE); }
-    } THEN {
-        EXPECT_EQ(GetBattlerTotalSpeedStat(GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)), 15);
+        TURN { MOVE(player, MOVE_SCRATCH); }
+    } SCENE {
+        HP_BAR(opponent, captureDamage: &results[i].damage);
+    } FINALLY {
+        EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.5), results[1].damage);
     }
 }
 
