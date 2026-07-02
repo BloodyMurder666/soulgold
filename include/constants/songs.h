@@ -941,9 +941,10 @@
 #define MUS_CASINO_PLUS_9           (MUS_CUSTOM_START + 9)
 #define MUS_CASINO_PLUS_GACHA       (MUS_CUSTOM_START + 10)
 #define MUS_LAW                     (MUS_CUSTOM_START + 11)
+#define MUS_CORRIDORS_OF_TIME       (MUS_CUSTOM_START + 12)
 
 
-#define END_MUS                     MUS_LAW
+#define END_MUS                     MUS_CORRIDORS_OF_TIME
 
 #define MUS_ROUTE118                0x7FFF  // Map is split into 2 music sections. controlled by GetCurrLocationDefaultMusic().
 

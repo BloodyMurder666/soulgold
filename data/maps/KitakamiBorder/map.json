@@ -78,7 +78,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(AMBIPOM)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ESPATHRA)",
       "x": 40,
       "y": 26,
       "elevation": 0,
@@ -117,7 +117,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(POLITOED)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KLEFKI)",
       "x": 14,
       "y": 32,
       "elevation": 0,
@@ -134,7 +134,7 @@
       "x": 22,
       "y": 15,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WALK_LEFT_AND_RIGHT",
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 1,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -167,6 +167,32 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
       "flag": "FLAG_POSTGAME_FEATURES"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CYCLIZAR)",
+      "x": 53,
+      "y": 12,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CYCLIZAR)",
+      "x": 54,
+      "y": 14,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
     }
   ],
   "warp_events": [

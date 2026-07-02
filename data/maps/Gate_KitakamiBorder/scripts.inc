@@ -10,10 +10,10 @@ KitakamiBorderGuard::
 
 KitakamiBorderGuard_Text_0:
 # 4 "data/maps/Gate_KitakamiBorder/scripts.pory"
-	.string "Welcome to Kitakami, traveller!\n"
-	.string "You're quite far off from the\l"
+	.string "Welcome to Kitakami, traveller!\p"
+	.string "You're quite far off from the\n"
 	.string "civilization here, but I hope\l"
-	.string "you still enjoy the sights.\l"
-	.string "If you're planning on visiting the\l"
+	.string "you still enjoy the sights.\p"
+	.string "If you're planning on visiting the\n"
 	.string "Kitakami mountain, be careful of rock\l"
 	.string "slides!$"

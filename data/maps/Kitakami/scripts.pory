@@ -17,22 +17,46 @@ script Kitakami_OgerponTrigger {
     lock
     playse(SE_PIN)
     applymovement(LOCALID_PLAYER, Common_Movement_ExclamationMark)
+    turnobject(LOCALID_KITAKAMI_OGERPON, DIR_SOUTH)
     applymovement(LOCALID_KITAKAMI_OGERPON, Common_Movement_ExclamationMark)
-    applymovement(LOCALID_KITAKAMI_OGERPON, moves(face_down))
-    waitmovement(0)
-    delay(48)
+    delay(30)
     playmoncry(SPECIES_OGERPON, CRY_MODE_NORMAL)
     waitmoncry
+    playse(SE_LEDGE)
     applymovement(LOCALID_KITAKAMI_OGERPON, moves(jump_in_place_down,
-                                                  jump_in_place_up,
-                                                  jump_in_place_down,
+                                                  delay_16))
+    waitmovement(0)
+    playse(SE_LEDGE)
+    applymovement(LOCALID_KITAKAMI_OGERPON, moves(jump_in_place_up,
+                                                  delay_16))
+    waitmovement(0)
+    playse(SE_LEDGE)
+    applymovement(LOCALID_KITAKAMI_OGERPON, moves(jump_in_place_down,
                                                   delay_16))
     waitmovement(0)
     playmoncry(SPECIES_OGERPON, CRY_MODE_NORMAL)
     waitmoncry
     delay(20)
-    applymovement(LOCALID_KITAKAMI_OGERPON, moves(jump_2_up, jump_2_up))
+    playse(SE_LEDGE)
+    applymovement(LOCALID_KITAKAMI_OGERPON, moves(jump_up))
     waitmovement(0)
+    waitse
+
+    playse(SE_LEDGE)
+    applymovement(LOCALID_KITAKAMI_OGERPON, moves(jump_up))
+    waitmovement(0)
+    waitse
+
+    playse(SE_LEDGE)
+    applymovement(LOCALID_KITAKAMI_OGERPON, moves(jump_up))
+    waitmovement(0)
+    waitse
+
+    playse(SE_LEDGE)
+    applymovement(LOCALID_KITAKAMI_OGERPON, moves(jump_up))
+    waitmovement(0)
+    waitse
+    
     setflag(FLAG_HIDE_KITAKAMI_OGERPON)
     removeobject(LOCALID_KITAKAMI_OGERPON)
     setvar(VAR_KITAKAMI_STATE, 2)
@@ -64,5 +88,5 @@ script Kitakami_WestSign {
 }
 
 script Kitakami_WellSign {
-    msgbox("Kitakami Well - Careful with the ladder!", MSGBOX_SIGN)
+    msgbox("Old Well - Careful with the ladder!", MSGBOX_SIGN)
 }

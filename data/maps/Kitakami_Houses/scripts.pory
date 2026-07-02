@@ -9,9 +9,12 @@ script KitakamiHouses_1_Oldman {
         release
         end
     }
-    msgbox("Ho ho ho, I'm the best candy baker in
-            Johto! Here, have some from my daily
-            batch!")
+    msgbox("Ho ho ho! 
+    
+            I'm the best candy baker in the
+            entire Johto! 
+            
+            Here, have some from my daily batch!")
     random(3)
     switch (var(VAR_RESULT)) {
         case 0:
@@ -35,7 +38,7 @@ script KitakamiHouses_3_Sinistea {
     lock
     faceplayer
     playmoncry(SPECIES_SINISTEA, CRY_MODE_NORMAL)
-    msgbox("SIIII!")
+    msgbox("Sinistea: Siii!")
     waitmoncry
     release
     end
@@ -55,9 +58,12 @@ script KitakamiHouses_2_Steven {
                 waitse
                 msgbox("That face of determination... I assume
                         you have become the Champion of Johto?
+
                         ...
-                        Impressive, I was right about your
-                        potential as a trainer. 
+
+                        Impressive! I was right about your
+                        potential as a trainer.
+
                         I'd be more than happy to battle you
                         now, if you are alright with that.")
                 setflag(FLAG_TEMP_10)
@@ -70,18 +76,25 @@ script KitakamiHouses_2_Steven {
                 trainerbattle_no_intro(TRAINER_STEVEN, "Outstanding, you truly have earned
                                                         the title of a Champion.")
                 msgbox("It cannot be overstated how happy
-                        this battle made me. You are a
-                        trainer of exceptional skill.
+                        this battle made me. 
+                        
+                        You are a trainer of exceptional skill.
                         
                         I want you to have this as a gift
-                        of our meeting. I excavated it from
-                        nearby mountain. You might find some
-                        use for it near Route 46.")
+                        of our meeting. 
+                        
+                        I excavated it from the mountain. 
+                        up north. 
+                        
+                        You might find some use for it 
+                        near Route 46.")
                 giveitem(ITEM_JADE_ORB)
                 waitmessage
                 msgbox("I think I'll start heading out to 
-                        explore new places now. I hope our 
-                        paths cross again some day, {PLAYER}.")
+                        explore new places now. 
+                        
+                        I hope our paths cross again some day, 
+                        {PLAYER}.")
                 waitmessage
                 closemessage
                 setflag(FLAG_BEAT_STEVEN_KITAKAMI)
@@ -102,6 +115,7 @@ script KitakamiHouses_2_Steven {
             // Not yet champion but received Beldum
             msgbox("If you end up becoming a Champion of
                     the region, you should come see me.
+
                     I would love to battle you with my
                     full strength.")
         }
@@ -110,20 +124,32 @@ script KitakamiHouses_2_Steven {
     }
     // First time meeting
     msgbox("Oh, hello. Who might you be?
+
             ...
-            {PLAYER}? Nice to meet you.
+
+            {PLAYER}? 
+            Nice to meet you.
+
             My name is Steven, I hail from the Hoenn
             region in search of rare stones.")
     msgbox("You look like a trainer, are you on the
             quest to collect badges in Johto?
-            Hmm.. Perhaps... Yes, you may have the
+
+            Hmm.. Perhaps... 
+            
+            Yes, you may have the
             potential for what it takes.
+
             Would you be willing to hear my request?
+
             I would like you to have this Beldum.
-            It's a rare Pokémon from Hoenn. 
+            It's a rare Pokémon from Hoenn.
+
             Take care of it and come see me again
-            if you become the Champion. I would
-            like to battle you then.")
+            if you become the Champion. 
+            
+            I would like to battle you then 
+            in return.")
     setvar(VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_BELDUM)
 	bufferspeciesname(STR_VAR_1, SPECIES_BELDUM)
     givemon(SPECIES_BELDUM, 15, ITEM_IRON_PLATE, ITEM_LUXURY_BALL)
@@ -150,7 +176,8 @@ script KitakamiHouses_3_Lady {
 
 script KitakamiHouses_3_Man {
     msgbox("This town is protected by Ogerpon, who
-            sometimes visits this town. Personally
-            I have never seen it, but kids say
-            they have.", MSGBOX_NPC)
+            sometimes visits this town. 
+            
+            Personally I have never seen it, 
+            but kids say they have.", MSGBOX_NPC)
 }

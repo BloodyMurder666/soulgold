@@ -66,7 +66,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_LIGHT_SPRITE",
-      "x": 28,
+      "x": 30,
       "y": 16,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
@@ -79,7 +79,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_LIGHT_SPRITE",
-      "x": 24,
+      "x": 25,
       "y": 6,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
@@ -92,7 +92,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_LIGHT_SPRITE",
-      "x": 19,
+      "x": 20,
       "y": 6,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
@@ -145,7 +145,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(MURKROW)",
       "x": 27,
-      "y": 13,
+      "y": 12,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -185,14 +185,14 @@
   ],
   "warp_events": [
     {
-      "x": 27,
+      "x": 28,
       "y": 17,
       "elevation": 0,
-      "dest_map": "MAP_KITAKAMI",
+      "dest_map": "MAP_KITAKAMI_TEMPLE",
       "dest_warp_id": "0"
     },
     {
-      "x": 15,
+      "x": 16,
       "y": 17,
       "elevation": 0,
       "dest_map": "MAP_KITAKAMI_HOUSES",
@@ -258,7 +258,7 @@
     {
       "type": "trigger",
       "x": 21,
-      "y": 14,
+      "y": 13,
       "elevation": 0,
       "var": "VAR_KITAKAMI_STATE",
       "var_value": "1",
@@ -267,7 +267,7 @@
     {
       "type": "trigger",
       "x": 22,
-      "y": 14,
+      "y": 13,
       "elevation": 0,
       "var": "VAR_KITAKAMI_STATE",
       "var_value": "1",
@@ -276,7 +276,7 @@
     {
       "type": "trigger",
       "x": 23,
-      "y": 14,
+      "y": 13,
       "elevation": 0,
       "var": "VAR_KITAKAMI_STATE",
       "var_value": "1",
@@ -285,7 +285,7 @@
     {
       "type": "trigger",
       "x": 24,
-      "y": 14,
+      "y": 13,
       "elevation": 0,
       "var": "VAR_KITAKAMI_STATE",
       "var_value": "1",

@@ -8269,14 +8269,14 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 #endif //P_FAMILY_FEZANDIPITI
 
 #if P_FAMILY_OGERPON
-#define OGERPON_SPECIES_INFO(Form1, Form2, type, ability, color, frontYOffset, iconpalette, isTeraform, innate1, innate2, innate3) \
+#define OGERPON_SPECIES_INFO(Form1, Form2, type, ability, color, frontYOffset, iconpalette, isTeraform, megaEvolution, attackBoost, defenseBoost, speedBoost, spDefenseBoost, innate1, innate2, innate3) \
     {                                                                                                      \
         .baseHP        = 80,                                                                               \
-        .baseAttack    = 120,                                                                              \
-        .baseDefense   = 84,                                                                               \
-        .baseSpeed     = 110,                                                                              \
+        .baseAttack    = 120 + attackBoost,                                                                \
+        .baseDefense   = 84 + defenseBoost,                                                                \
+        .baseSpeed     = 110 + speedBoost,                                                                 \
         .baseSpAttack  = 60,                                                                               \
-        .baseSpDefense = 96,                                                                               \
+        .baseSpDefense = 96 + spDefenseBoost,                                                              \
         .types = MON_TYPES(TYPE_GRASS, type),                                                              \
         .forceTeraType = type,                                                                             \
         .catchRate = 5,                                                                                    \
@@ -8333,18 +8333,19 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .formChangeTable = sOgerpon##Form1##FormChangeTable,                                               \
         .isSubLegendary = TRUE,                                                                            \
         .isTeraForm = isTeraform,                                                                          \
+        .isMegaEvolution = megaEvolution,                                                                   \
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,                                                      \
     }
 
-    [SPECIES_OGERPON_TEAL]             = OGERPON_SPECIES_INFO(Teal,        Teal,            TYPE_GRASS, ABILITY_DEFIANT,                        BODY_COLOR_GREEN, 2, 1, FALSE, ABILITY_SHARPNESS, ABILITY_LEAF_GUARD, ABILITY_SHEER_FORCE),
-    [SPECIES_OGERPON_WELLSPRING]       = OGERPON_SPECIES_INFO(Wellspring,  Wellspring,      TYPE_WATER, ABILITY_WATER_ABSORB,                   BODY_COLOR_BLUE,  2, 0, FALSE, ABILITY_WATER_VEIL, ABILITY_MENDING, ABILITY_SHEER_FORCE),
-    [SPECIES_OGERPON_HEARTHFLAME]      = OGERPON_SPECIES_INFO(Hearthflame, Hearthflame,     TYPE_FIRE,  ABILITY_MOLD_BREAKER,                   BODY_COLOR_RED,   2, 0, FALSE, ABILITY_FLASH_FIRE, ABILITY_BRIMSTONE, ABILITY_SHEER_FORCE),
-    [SPECIES_OGERPON_CORNERSTONE]      = OGERPON_SPECIES_INFO(Cornerstone, Cornerstone,     TYPE_ROCK,  ABILITY_STURDY,                         BODY_COLOR_GRAY,  2, 0, FALSE, ABILITY_ROCK_HEAD, ABILITY_BATTLE_ARMOR, ABILITY_SHEER_FORCE),
+    [SPECIES_OGERPON_TEAL]             = OGERPON_SPECIES_INFO(Teal,        Teal,            TYPE_GRASS, ABILITY_DEFIANT,                        BODY_COLOR_GREEN, 2, 1, FALSE, FALSE, 0,  0,  0,  0,  ABILITY_SHARPNESS, ABILITY_LEAF_GUARD, ABILITY_SHEER_FORCE),
+    [SPECIES_OGERPON_WELLSPRING]       = OGERPON_SPECIES_INFO(Wellspring,  Wellspring,      TYPE_WATER, ABILITY_WATER_ABSORB,                   BODY_COLOR_BLUE,  2, 0, FALSE, FALSE, 0,  0,  0,  0,  ABILITY_WATER_VEIL, ABILITY_MENDING, ABILITY_SHEER_FORCE),
+    [SPECIES_OGERPON_HEARTHFLAME]      = OGERPON_SPECIES_INFO(Hearthflame, Hearthflame,     TYPE_FIRE,  ABILITY_MOLD_BREAKER,                   BODY_COLOR_RED,   2, 0, FALSE, FALSE, 0,  0,  0,  0,  ABILITY_FLASH_FIRE, ABILITY_BRIMSTONE, ABILITY_SHEER_FORCE),
+    [SPECIES_OGERPON_CORNERSTONE]      = OGERPON_SPECIES_INFO(Cornerstone, Cornerstone,     TYPE_ROCK,  ABILITY_STURDY,                         BODY_COLOR_GRAY,  2, 0, FALSE, FALSE, 0,  0,  0,  0,  ABILITY_ROCK_HEAD, ABILITY_BATTLE_ARMOR, ABILITY_SHEER_FORCE),
 #if P_TERA_FORMS
-    [SPECIES_OGERPON_TEAL_TERA]        = OGERPON_SPECIES_INFO(Teal,        TealTera,        TYPE_GRASS, ABILITY_EMBODY_ASPECT_TEAL_MASK,        BODY_COLOR_GREEN, 0, 1, TRUE, ABILITY_DEFIANT, ABILITY_LEAF_GUARD, ABILITY_SHEER_FORCE),
-    [SPECIES_OGERPON_WELLSPRING_TERA]  = OGERPON_SPECIES_INFO(Wellspring,  WellspringTera,  TYPE_WATER, ABILITY_EMBODY_ASPECT_WELLSPRING_MASK,  BODY_COLOR_BLUE,  0, 0, TRUE, ABILITY_WATER_VEIL, ABILITY_MENDING, ABILITY_SHEER_FORCE),
-    [SPECIES_OGERPON_HEARTHFLAME_TERA] = OGERPON_SPECIES_INFO(Hearthflame, HearthflameTera, TYPE_FIRE,  ABILITY_EMBODY_ASPECT_HEARTHFLAME_MASK, BODY_COLOR_RED,   0, 0, TRUE, ABILITY_FLASH_FIRE, ABILITY_BRIMSTONE, ABILITY_SHEER_FORCE),
-    [SPECIES_OGERPON_CORNERSTONE_TERA] = OGERPON_SPECIES_INFO(Cornerstone, CornerstoneTera, TYPE_ROCK,  ABILITY_EMBODY_ASPECT_CORNERSTONE_MASK, BODY_COLOR_GRAY,  0, 0, TRUE, ABILITY_ROCK_HEAD, ABILITY_BATTLE_ARMOR, ABILITY_SHEER_FORCE),
+    [SPECIES_OGERPON_TEAL_TERA]        = OGERPON_SPECIES_INFO(Teal,        TealTera,        TYPE_GRASS, ABILITY_EMBODY_ASPECT_TEAL_MASK,        BODY_COLOR_GREEN, 0, 1, TRUE, TRUE,  25, 0,  25, 0,  ABILITY_DEFIANT, ABILITY_LEAF_GUARD, ABILITY_SHEER_FORCE),
+    [SPECIES_OGERPON_WELLSPRING_TERA]  = OGERPON_SPECIES_INFO(Wellspring,  WellspringTera,  TYPE_WATER, ABILITY_EMBODY_ASPECT_WELLSPRING_MASK,  BODY_COLOR_BLUE,  0, 0, TRUE, TRUE,  25, 0,  0,  25, ABILITY_WATER_VEIL, ABILITY_MENDING, ABILITY_SHEER_FORCE),
+    [SPECIES_OGERPON_HEARTHFLAME_TERA] = OGERPON_SPECIES_INFO(Hearthflame, HearthflameTera, TYPE_FIRE,  ABILITY_EMBODY_ASPECT_HEARTHFLAME_MASK, BODY_COLOR_RED,   0, 0, TRUE, TRUE,  25, 10, 10, 10, ABILITY_FLASH_FIRE, ABILITY_BRIMSTONE, ABILITY_SHEER_FORCE),
+    [SPECIES_OGERPON_CORNERSTONE_TERA] = OGERPON_SPECIES_INFO(Cornerstone, CornerstoneTera, TYPE_ROCK,  ABILITY_EMBODY_ASPECT_CORNERSTONE_MASK, BODY_COLOR_GRAY,  0, 0, TRUE, TRUE,  25, 25, 0,  0,  ABILITY_ROCK_HEAD, ABILITY_BATTLE_ARMOR, ABILITY_SHEER_FORCE),
 #endif //P_TERA_FORMS
 
 #endif //P_FAMILY_OGERPON

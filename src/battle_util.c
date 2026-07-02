@@ -10996,6 +10996,9 @@ bool32 CanUltraBurst(enum BattlerId battler)
 void ActivateMegaEvolution(enum BattlerId battler)
 {
     gLastUsedItem = GetBattlerHeldItemWithEffect(battler, HOLD_EFFECT_MEGA_STONE, FALSE);
+    if (gLastUsedItem == ITEM_NONE && GET_BASE_SPECIES_ID(gBattleMons[battler].species) == SPECIES_OGERPON)
+        gLastUsedItem = GetBattlerHeldItemWithEffect(battler, HOLD_EFFECT_OGERPON_MASK, FALSE);
+
     SetActiveGimmick(battler, GIMMICK_MEGA);
     SetGimmickAsActivated(battler, GIMMICK_MEGA);
 

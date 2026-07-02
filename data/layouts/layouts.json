@@ -9006,8 +9006,8 @@
       "name": "KitakamiMountainEnclave_Layout",
       "width": 35,
       "height": 25,
-      "primary_tileset": "gTileset_Johto_General",
-      "secondary_tileset": "gTileset_Cave_Gray",
+      "primary_tileset": "gTileset_Johto_NorthWest",
+      "secondary_tileset": "gTileset_g4_alt",
       "border_filepath": "data/layouts/KitakamiMountainEnclave/border.bin",
       "blockdata_filepath": "data/layouts/KitakamiMountainEnclave/map.bin"
     },
@@ -9796,6 +9796,26 @@
       "secondary_tileset": "gTileset_g4_alt",
       "border_filepath": "data/layouts/KitakamiMountain3F/border.bin",
       "blockdata_filepath": "data/layouts/KitakamiMountain3F/map.bin"
+    },
+    {
+      "id": "LAYOUT_KITAKAMI_MOUNTAIN4F",
+      "name": "KitakamiMountain4F_Layout",
+      "width": 66,
+      "height": 52,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_g4_alt",
+      "border_filepath": "data/layouts/KitakamiMountain4F/border.bin",
+      "blockdata_filepath": "data/layouts/KitakamiMountain4F/map.bin"
+    },
+    {
+      "id": "LAYOUT_KITAKAMI_TEMPLE",
+      "name": "Kitakami_Temple_Layout",
+      "width": 34,
+      "height": 24,
+      "primary_tileset": "gTileset_Johto_Building",
+      "secondary_tileset": "gTileset_PowerPlant_GeneratorRoom",
+      "border_filepath": "data/layouts/Kitakami_Temple/border.bin",
+      "blockdata_filepath": "data/layouts/Kitakami_Temple/map.bin"
     }
   ]
 }

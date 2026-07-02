@@ -3,6 +3,23 @@
 #include "test/test.h"
 #include "constants/form_change_types.h"
 
+TEST("Ogerpon Mega forms have their intended stat boosts")
+{
+    u32 species, defense, speed, spDefense;
+
+    PARAMETRIZE { species = SPECIES_OGERPON_TEAL_TERA;        defense = 84;  speed = 135; spDefense = 96; }
+    PARAMETRIZE { species = SPECIES_OGERPON_WELLSPRING_TERA;  defense = 84;  speed = 110; spDefense = 121; }
+    PARAMETRIZE { species = SPECIES_OGERPON_HEARTHFLAME_TERA; defense = 94;  speed = 120; spDefense = 106; }
+    PARAMETRIZE { species = SPECIES_OGERPON_CORNERSTONE_TERA; defense = 109; speed = 110; spDefense = 96; }
+
+    EXPECT_EQ(gSpeciesInfo[species].baseHP, 80);
+    EXPECT_EQ(gSpeciesInfo[species].baseAttack, 145);
+    EXPECT_EQ(gSpeciesInfo[species].baseDefense, defense);
+    EXPECT_EQ(gSpeciesInfo[species].baseSpeed, speed);
+    EXPECT_EQ(gSpeciesInfo[species].baseSpAttack, 60);
+    EXPECT_EQ(gSpeciesInfo[species].baseSpDefense, spDefense);
+}
+
 TEST("Form species ID tables are shared between all forms")
 {
     u32 i;

@@ -2293,3 +2293,7 @@ Common_Text_ReceivedMon:
 	.include "data/maps/KitakamiMountain2F/scripts.inc"
 
 	.include "data/maps/KitakamiMountain3F/scripts.inc"
+
+	.include "data/maps/KitakamiMountain4F/scripts.inc"
+
+	.include "data/maps/Kitakami_Temple/scripts.inc"

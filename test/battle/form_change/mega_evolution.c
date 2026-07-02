@@ -17,6 +17,31 @@ SINGLE_BATTLE_TEST("Venusaur can Mega Evolve holding Grasstite")
     }
 }
 
+SINGLE_BATTLE_TEST("Ogerpon can Mega Evolve into its Tera form using a mask")
+{
+    u32 species, targetSpecies, item, ability, stat;
+
+    PARAMETRIZE { species = SPECIES_OGERPON_TEAL;        targetSpecies = SPECIES_OGERPON_TEAL_TERA;        item = ITEM_BONDSTONE;        ability = ABILITY_EMBODY_ASPECT_TEAL_MASK;        stat = STAT_SPEED; }
+    PARAMETRIZE { species = SPECIES_OGERPON_WELLSPRING;  targetSpecies = SPECIES_OGERPON_WELLSPRING_TERA;  item = ITEM_WELLSPRING_MASK;  ability = ABILITY_EMBODY_ASPECT_WELLSPRING_MASK;  stat = STAT_SPDEF; }
+    PARAMETRIZE { species = SPECIES_OGERPON_HEARTHFLAME; targetSpecies = SPECIES_OGERPON_HEARTHFLAME_TERA; item = ITEM_HEARTHFLAME_MASK; ability = ABILITY_EMBODY_ASPECT_HEARTHFLAME_MASK; stat = STAT_ATK; }
+    PARAMETRIZE { species = SPECIES_OGERPON_CORNERSTONE; targetSpecies = SPECIES_OGERPON_CORNERSTONE_TERA; item = ITEM_CORNERSTONE_MASK; ability = ABILITY_EMBODY_ASPECT_CORNERSTONE_MASK; stat = STAT_DEF; }
+
+    GIVEN {
+        PLAYER(species) { Item(item); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, player);
+        ABILITY_POPUP(player, ability);
+    } THEN {
+        EXPECT_EQ(player->species, targetSpecies);
+        EXPECT_EQ(player->ability, ability);
+        EXPECT_EQ(player->statStages[stat], DEFAULT_STAT_STAGE + 1);
+        EXPECT_EQ(gLastUsedItem, item);
+    }
+}
+
 DOUBLE_BATTLE_TEST("Mega Evolution's order is determined by Speed - opponent faster")
 {
     GIVEN {

@@ -2874,6 +2874,7 @@ void MoveGetIdAndSlot(enum BattlerId battlerId, struct MoveContext *ctx, u32 *mo
         enum Item item = ITEM_NONE;
         u32 species = GetMonData(mon, MON_DATA_SPECIES);
         bool32 hasMegaStone = FALSE;
+        bool32 hasItemBasedMegaEvolution = GetFormChangeTargetSpecies(mon, FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM) != species;
         bool32 hasZCrystal = FALSE;
 
         for (u32 i = 0; i < MAX_MON_ITEMS; i++)
@@ -2888,7 +2889,7 @@ void MoveGetIdAndSlot(enum BattlerId battlerId, struct MoveContext *ctx, u32 *mo
         }
 
         // Check invalid item usage.
-        INVALID_IF(ctx->gimmick == GIMMICK_MEGA && !hasMegaStone && species != SPECIES_RAYQUAZA, "Cannot Mega Evolve without a Mega Stone");
+        INVALID_IF(ctx->gimmick == GIMMICK_MEGA && !hasMegaStone && !hasItemBasedMegaEvolution && species != SPECIES_RAYQUAZA, "Cannot Mega Evolve without a Mega Stone");
         INVALID_IF(ctx->gimmick == GIMMICK_Z_MOVE && !hasZCrystal, "Cannot use a Z-Move without a Z-Crystal");
         INVALID_IF(ctx->gimmick == GIMMICK_Z_MOVE && GetItemSecondaryId(item) != GetMoveType(*moveId)
                    && GetSignatureZMove(*moveId, species, item) == MOVE_NONE

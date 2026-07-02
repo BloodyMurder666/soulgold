@@ -2,7 +2,7 @@
   "id": "MAP_KITAKAMI_MOUNTAIN",
   "name": "KitakamiMountain",
   "layout": "LAYOUT_KITAKAMI_MOUNTAIN",
-  "music": "MUS_DP_MT_CORONET",
+  "music": "MUS_CORRIDORS_OF_TIME",
   "region_map_section": "MAPSEC_KITAKAMI_MOUNTAIN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

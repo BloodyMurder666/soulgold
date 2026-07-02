@@ -24,96 +24,132 @@ Kitakami_OgerponTrigger::
 # 19 "data/maps/Kitakami/scripts.pory"
 	applymovement LOCALID_PLAYER, Common_Movement_ExclamationMark
 # 20 "data/maps/Kitakami/scripts.pory"
-	applymovement LOCALID_KITAKAMI_OGERPON, Common_Movement_ExclamationMark
+	turnobject LOCALID_KITAKAMI_OGERPON, DIR_SOUTH
 # 21 "data/maps/Kitakami/scripts.pory"
-	applymovement LOCALID_KITAKAMI_OGERPON, Kitakami_OgerponTrigger_Movement_0
+	applymovement LOCALID_KITAKAMI_OGERPON, Common_Movement_ExclamationMark
 # 22 "data/maps/Kitakami/scripts.pory"
-	waitmovement 0
+	delay 30
 # 23 "data/maps/Kitakami/scripts.pory"
-	delay 48
+	playmoncry SPECIES_OGERPON, CRY_MODE_NORMAL
 # 24 "data/maps/Kitakami/scripts.pory"
-	playmoncry SPECIES_OGERPON, CRY_MODE_NORMAL
+	waitmoncry
 # 25 "data/maps/Kitakami/scripts.pory"
-	waitmoncry
+	playse SE_LEDGE
 # 26 "data/maps/Kitakami/scripts.pory"
-	applymovement LOCALID_KITAKAMI_OGERPON, Kitakami_OgerponTrigger_Movement_1
+	applymovement LOCALID_KITAKAMI_OGERPON, Kitakami_OgerponTrigger_Movement_0
+# 28 "data/maps/Kitakami/scripts.pory"
+	waitmovement 0
+# 29 "data/maps/Kitakami/scripts.pory"
+	playse SE_LEDGE
 # 30 "data/maps/Kitakami/scripts.pory"
-	waitmovement 0
-# 31 "data/maps/Kitakami/scripts.pory"
-	playmoncry SPECIES_OGERPON, CRY_MODE_NORMAL
+	applymovement LOCALID_KITAKAMI_OGERPON, Kitakami_OgerponTrigger_Movement_1
 # 32 "data/maps/Kitakami/scripts.pory"
-	waitmoncry
-# 33 "data/maps/Kitakami/scripts.pory"
-	delay 20
-# 34 "data/maps/Kitakami/scripts.pory"
-	applymovement LOCALID_KITAKAMI_OGERPON, Kitakami_OgerponTrigger_Movement_2
-# 35 "data/maps/Kitakami/scripts.pory"
 	waitmovement 0
+# 33 "data/maps/Kitakami/scripts.pory"
+	playse SE_LEDGE
+# 34 "data/maps/Kitakami/scripts.pory"
+	applymovement LOCALID_KITAKAMI_OGERPON, Kitakami_OgerponTrigger_Movement_0
 # 36 "data/maps/Kitakami/scripts.pory"
-	setflag FLAG_HIDE_KITAKAMI_OGERPON
+	waitmovement 0
 # 37 "data/maps/Kitakami/scripts.pory"
-	removeobject LOCALID_KITAKAMI_OGERPON
+	playmoncry SPECIES_OGERPON, CRY_MODE_NORMAL
 # 38 "data/maps/Kitakami/scripts.pory"
-	setvar VAR_KITAKAMI_STATE, 2
+	waitmoncry
 # 39 "data/maps/Kitakami/scripts.pory"
+	delay 20
+# 40 "data/maps/Kitakami/scripts.pory"
+	playse SE_LEDGE
+# 41 "data/maps/Kitakami/scripts.pory"
+	applymovement LOCALID_KITAKAMI_OGERPON, Kitakami_OgerponTrigger_Movement_2
+# 42 "data/maps/Kitakami/scripts.pory"
+	waitmovement 0
+# 43 "data/maps/Kitakami/scripts.pory"
+	waitse
+# 45 "data/maps/Kitakami/scripts.pory"
+	playse SE_LEDGE
+# 46 "data/maps/Kitakami/scripts.pory"
+	applymovement LOCALID_KITAKAMI_OGERPON, Kitakami_OgerponTrigger_Movement_2
+# 47 "data/maps/Kitakami/scripts.pory"
+	waitmovement 0
+# 48 "data/maps/Kitakami/scripts.pory"
+	waitse
+# 50 "data/maps/Kitakami/scripts.pory"
+	playse SE_LEDGE
+# 51 "data/maps/Kitakami/scripts.pory"
+	applymovement LOCALID_KITAKAMI_OGERPON, Kitakami_OgerponTrigger_Movement_2
+# 52 "data/maps/Kitakami/scripts.pory"
+	waitmovement 0
+# 53 "data/maps/Kitakami/scripts.pory"
+	waitse
+# 55 "data/maps/Kitakami/scripts.pory"
+	playse SE_LEDGE
+# 56 "data/maps/Kitakami/scripts.pory"
+	applymovement LOCALID_KITAKAMI_OGERPON, Kitakami_OgerponTrigger_Movement_2
+# 57 "data/maps/Kitakami/scripts.pory"
+	waitmovement 0
+# 58 "data/maps/Kitakami/scripts.pory"
+	waitse
+# 60 "data/maps/Kitakami/scripts.pory"
+	setflag FLAG_HIDE_KITAKAMI_OGERPON
+# 61 "data/maps/Kitakami/scripts.pory"
+	removeobject LOCALID_KITAKAMI_OGERPON
+# 62 "data/maps/Kitakami/scripts.pory"
+	setvar VAR_KITAKAMI_STATE, 2
+# 63 "data/maps/Kitakami/scripts.pory"
 	release
 	end
 
 
 Kitakami_Fatman::
-# 44 "data/maps/Kitakami/scripts.pory"
+# 68 "data/maps/Kitakami/scripts.pory"
 	msgbox Kitakami_Fatman_Text_0, MSGBOX_NPC
 	return
 
 
 Kitakami_Battlegirl::
-# 49 "data/maps/Kitakami/scripts.pory"
+# 73 "data/maps/Kitakami/scripts.pory"
 	msgbox Kitakami_Battlegirl_Text_0, MSGBOX_NPC
 	return
 
 
 Kitakami_Littlegirl::
-# 55 "data/maps/Kitakami/scripts.pory"
+# 79 "data/maps/Kitakami/scripts.pory"
 	msgbox Kitakami_Littlegirl_Text_0, MSGBOX_NPC
 	return
 
 
 Kitakami_WestSign::
-# 63 "data/maps/Kitakami/scripts.pory"
+# 87 "data/maps/Kitakami/scripts.pory"
 	msgbox Kitakami_WestSign_Text_0, MSGBOX_SIGN
 	return
 
 
 Kitakami_WellSign::
-# 67 "data/maps/Kitakami/scripts.pory"
+# 91 "data/maps/Kitakami/scripts.pory"
 	msgbox Kitakami_WellSign_Text_0, MSGBOX_SIGN
 	return
 
 
-# 21 "data/maps/Kitakami/scripts.pory"
-Kitakami_OgerponTrigger_Movement_0:
-# 21 "data/maps/Kitakami/scripts.pory"
-	face_down
-	step_end
-
 # 26 "data/maps/Kitakami/scripts.pory"
-Kitakami_OgerponTrigger_Movement_1:
+Kitakami_OgerponTrigger_Movement_0:
 # 26 "data/maps/Kitakami/scripts.pory"
 	jump_in_place_down
 # 27 "data/maps/Kitakami/scripts.pory"
-	jump_in_place_up
-# 28 "data/maps/Kitakami/scripts.pory"
-	jump_in_place_down
-# 29 "data/maps/Kitakami/scripts.pory"
 	delay_16
 	step_end
 
-# 34 "data/maps/Kitakami/scripts.pory"
+# 30 "data/maps/Kitakami/scripts.pory"
+Kitakami_OgerponTrigger_Movement_1:
+# 30 "data/maps/Kitakami/scripts.pory"
+	jump_in_place_up
+# 31 "data/maps/Kitakami/scripts.pory"
+	delay_16
+	step_end
+
+# 41 "data/maps/Kitakami/scripts.pory"
 Kitakami_OgerponTrigger_Movement_2:
-# 34 "data/maps/Kitakami/scripts.pory"
-	jump_2_up
-# 34 "data/maps/Kitakami/scripts.pory"
-	jump_2_up
+# 41 "data/maps/Kitakami/scripts.pory"
+	jump_up
 	step_end
 
 Kitakami_OldLady_Text_0:
@@ -124,27 +160,27 @@ Kitakami_OldLady_Text_0:
 	.string "to get here!$"
 
 Kitakami_Fatman_Text_0:
-# 44 "data/maps/Kitakami/scripts.pory"
+# 68 "data/maps/Kitakami/scripts.pory"
 	.string "There's no technology here!\n"
 	.string "WHAT AM I SUPPOSED TO DO??$"
 
 Kitakami_Battlegirl_Text_0:
-# 49 "data/maps/Kitakami/scripts.pory"
+# 73 "data/maps/Kitakami/scripts.pory"
 	.string "I come here to train once a year. It's a\n"
 	.string "nice middle ground between the busy\l"
 	.string "city life and harshness of Mt. Silver.$"
 
 Kitakami_Littlegirl_Text_0:
-# 55 "data/maps/Kitakami/scripts.pory"
+# 79 "data/maps/Kitakami/scripts.pory"
 	.string "Mom used to say bad children are taken\n"
 	.string "to the cave down there. \p"
 	.string "It's a place where Fezandipiti \n"
 	.string "roosts during the summer.$"
 
 Kitakami_WestSign_Text_0:
-# 63 "data/maps/Kitakami/scripts.pory"
+# 87 "data/maps/Kitakami/scripts.pory"
 	.string "Kitakami Town - Timeless traditions$"
 
 Kitakami_WellSign_Text_0:
-# 67 "data/maps/Kitakami/scripts.pory"
-	.string "Kitakami Well - Careful with the ladder!$"
+# 91 "data/maps/Kitakami/scripts.pory"
+	.string "Old Well - Careful with the ladder!$"

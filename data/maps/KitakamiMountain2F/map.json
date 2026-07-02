@@ -2,7 +2,7 @@
   "id": "MAP_KITAKAMI_MOUNTAIN2F",
   "name": "KitakamiMountain2F",
   "layout": "LAYOUT_KITAKAMI_MOUNTAIN2F",
-  "music": "MUS_DP_MT_CORONET",
+  "music": "MUS_CORRIDORS_OF_TIME",
   "region_map_section": "MAPSEC_KITAKAMI_MOUNTAIN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -13,8 +13,50 @@
   "show_map_name": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": null,
-  "object_events": [],
-  "warp_events": [],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 44,
+      "y": 3,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_KITAKAMIMOUNTAIN_ITEM2"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_TMBALL",
+      "x": 5,
+      "y": 36,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_TM_SWORDS_DANCE",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_KITAKAMIMOUNTAIN_ITEM3"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 4,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_KITAKAMI_MOUNTAIN1F",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 44,
+      "y": 34,
+      "elevation": 0,
+      "dest_map": "MAP_KITAKAMI_MOUNTAIN3F",
+      "dest_warp_id": "0"
+    }
+  ],
   "coord_events": [],
   "bg_events": []
 }

@@ -1610,6 +1610,14 @@
 #define FLAG_CAMERON_PHOTO5                         0x946
 #define FLAG_HIDE_RADIOF5DUDE                       0x947
 #define FLAG_ROCKET_TAKEOVER_CAP                    0x948
+#define FLAG_TM_STONE_EDGE                          0x949
+#define FLAG_TM_PROTEIN_EX_WELL                     0x94A
+#define FLAG_KITAKAMIMOUNTAIN_ITEM1                 0x94B
+#define FLAG_KITAKAMIMOUNTAIN_ITEM2                 0x94C
+#define FLAG_KITAKAMIMOUNTAIN_ITEM3                 0x94D
+#define FLAG_KITAKAMIMOUNTAIN_ITEM4                 0x94E
+#define FLAG_KITAKAMIMOUNTAIN_ITEM5                 0x94F
+#define FLAG_KITAKAMIMOUNTAIN_ITEM6                 0x950
 
 #define FLAG_0x1500                                 0x1500
 // Daily Flags

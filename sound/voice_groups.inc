@@ -287,3 +287,5 @@
 .include "sound/voicegroups/voicegroup271.inc"
 .include "sound/voicegroups/voicegroup272.inc"
 .include "sound/voicegroups/voicegroup273.inc"
+.include "sound/voicegroups/drumsets/corridors_of_time.inc"
+.include "sound/voicegroups/corridors_of_time.inc"

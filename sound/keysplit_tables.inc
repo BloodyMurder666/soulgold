@@ -6923,3 +6923,14 @@ keysplit french_horn, 36
 	.byte 6 @ 125
 	.byte 6 @ 126
 	.byte 6 @ 127
+
+keysplit flashing_lights_strings, 25
+	split 0, 69
+	split 1, 81
+	split 2, 108
+	
+keysplit moonlight_sonata_3rd_movement_piano, 31
+    split 0, 55
+    split 1, 70
+    split 2, 91
+    split 3, 108

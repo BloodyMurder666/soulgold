@@ -2,7 +2,7 @@
   "id": "MAP_GATE_KITAKAMI_BORDER",
   "name": "Gate_KitakamiBorder",
   "layout": "LAYOUT_GATE_KITAKAMI_BORDER",
-  "music": "MUS_HG_ROUTE42",
+  "music": "MUS_DP_ROUTE203_NIGHT",
   "region_map_section": "MAPSEC_KITAKAMI_BORDER",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
