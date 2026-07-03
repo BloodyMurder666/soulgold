@@ -52,8 +52,8 @@ script PokemonLeague_ChampionsRoom_TitleDefense_Begin
     waitmovement(LOCALID_TITLE_DEFENSE_CHALLENGER)
     removeobject(LOCALID_TITLE_DEFENSE_CHALLENGER)
 
-    setmetatile(6, 1, 0x3F2, FALSE)
-    setmetatile(6, 2, 0x296, FALSE)
+    setmetatile(6, 1, 0x572, FALSE)
+    setmetatile(6, 2, 0x416, FALSE)
     playse(SE_BANG)
     setvar(VAR_0x8004, 1)
     setvar(VAR_0x8005, 1)
