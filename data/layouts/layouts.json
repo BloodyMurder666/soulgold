@@ -9816,6 +9816,26 @@
       "secondary_tileset": "gTileset_PowerPlant_GeneratorRoom",
       "border_filepath": "data/layouts/Kitakami_Temple/border.bin",
       "blockdata_filepath": "data/layouts/Kitakami_Temple/map.bin"
+    },
+    {
+      "id": "LAYOUT_POKEMON_LEAGUE_CHAMPIONS_ROOM_TITLE_DEFENSE",
+      "name": "PokemonLeague_ChampionsRoom_TitleDefense_Layout",
+      "width": 13,
+      "height": 20,
+      "primary_tileset": "gTileset_Johto_Building",
+      "secondary_tileset": "gTileset_PokemonLeague",
+      "border_filepath": "data/layouts/PokemonLeague_ChampionsRoom_TitleDefense/border.bin",
+      "blockdata_filepath": "data/layouts/PokemonLeague_ChampionsRoom_TitleDefense/map.bin"
+    },
+    {
+      "id": "LAYOUT_POKEMON_LEAGUE_HALL_OF_FAME_TITLE_DEFENSE",
+      "name": "PokemonLeague_HallOfFame_TitleDefense_Layout",
+      "width": 11,
+      "height": 13,
+      "primary_tileset": "gTileset_Johto_Building",
+      "secondary_tileset": "gTileset_HallOfFame",
+      "border_filepath": "data/layouts/PokemonLeague_HallOfFame_TitleDefense/border.bin",
+      "blockdata_filepath": "data/layouts/PokemonLeague_HallOfFame_TitleDefense/map.bin"
     }
   ]
 }

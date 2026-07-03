@@ -291,6 +291,11 @@ gSpecials::
 	def_special SetTrickHouseNuggetFlag
 	def_special ScriptMenu_CreatePCMultichoice
 	def_special AccessHallOfFamePC
+	def_special TitleDefense_SelectChallenger
+	def_special TitleDefense_ShowIntro
+	def_special TitleDefense_ShowFarewell
+	def_special TitleDefense_PrepareBattle
+	def_special TitleDefense_IncrementWins
 	def_special Special_ShowDiploma
 	def_special CheckLeadMonCool
 	def_special CheckLeadMonBeauty

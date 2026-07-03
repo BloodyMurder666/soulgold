@@ -64,6 +64,7 @@ PokemonLeague_WillsRoom_EventScript_LanceRematch::
 
 PokemonLeague_WillsRoom_EventScript_LanceOnDefeatJohto::
 	clearflag FLAG_TEMP_5
+	createfieldmugshot MUGSHOT_LANCE
 	msgbox PokemonLeague_ChampionsRoom_Text_BattleAfter, MSGBOX_DEFAULT
 	closemessage
 	setmetatile 6, 1, 0x3F2, FALSE
@@ -95,6 +96,7 @@ PokemonLeague_WillsRoom_EventScript_LanceOnDefeatJohto::
 	applymovement LOCALID_LEAGUE_MARY, PokemonLeague_ChampionsRoom_Movement_MaryMoveOver
 	waitmovement LOCALID_LEAGUE_MARY
 	waitmovement LOCALID_LEAGUE_OAK
+	createfieldmugshot MUGSHOT_OAK
 	msgbox PokemonLeague_ChampionsRoom_Text_OakCongratulations, MSGBOX_DEFAULT
 	applymovement LOCALID_LEAGUE_MARY, PokemonLeague_ChampionsRoom_Movement_MaryInterview
 	waitmovement 0
@@ -102,6 +104,7 @@ PokemonLeague_WillsRoom_EventScript_LanceOnDefeatJohto::
 	closemessage
 	applymovement LOCALID_LEAGUE_LANCE, PokemonLeague_ChampionsRoom_Movement_LanceAnxious
 	waitmovement 0
+	createfieldmugshot MUGSHOT_LANCE
 	msgbox PokemonLeague_ChampionsRoom_Text_Noisy, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_LEAGUE_LANCE, PokemonLeague_ChampionsRoom_Movement_LanceLeave

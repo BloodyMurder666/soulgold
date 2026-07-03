@@ -14566,3 +14566,274 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Aerodactyl
 Level: 57
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+=== TRAINER_TITLE_DEFENSE_LANCE ===
+Name: Lance
+Class: Champion
+Pic: Champion Lance
+Gender: Male
+Music: Hg Champion
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Purple
+
+Exeggutor-Alola @ Sitrus Berry
+Ability: Harvest
+Level: 84
+EVs: 252 HP / 252 Atk / 4 SpD
+Adamant Nature
+- Dragon Hammer
+- Earthquake
+- Seed Bomb
+- Zen Headbutt
+
+Dragonite @ Dragotite
+Ability: Multiscale
+Level: 86
+Shiny: Yes
+EVs: 252 Atk / 4 SpD / 252 Spe
+Adamant Nature
+- Thunderbolt
+- Dual Wingbeat
+- Iron Head
+- Dragon Claw
+
+Baxcalibur @ Ability Shield
+Ability: Thermal Exchange
+Level: 85
+EVs: 252 HP / 252 Atk / 4 SpD
+Adamant Nature
+- Glaive Rush
+- High Horsepower
+- Icicle Crash
+- Substitute
+
+Hydrapple @ Yache Berry
+Ability: Sticky Hold
+Level: 85
+EVs: 252 Atk / 252 SpA
+- Draco Meteor
+- Leaf Storm
+- Giga Drain
+- Outrage
+
+Dragapult @ Choice Scarf
+Ability: Infiltrator
+Level: 85
+EVs: 252 Atk / 4 SpD / 252 Spe
+Jolly Nature
+- Dragon Darts
+- Phantom Force
+- Body Slam
+- Trick
+
+Archaludon @ Choice Specs
+Level: 85
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 Spe
+Modest Nature
+- Electro Shot
+- Dragon Pulse
+- Flash Cannon
+- Dark Pulse
+
+=== TRAINER_TITLE_DEFENSE_LANCE ===
+Name: Lance
+Class: Champion
+Pic: Champion Lance
+Gender: Male
+Music: Hg Champion
+Double Battle: Yes
+AI: Smart Trainer
+Mugshot: Purple
+Difficulty: Hard
+
+Baxcalibur @ Ability Shield
+Ability: Thermal Exchange
+Level: 85
+EVs: 252 HP / 252 Atk / 4 SpD
+Adamant Nature
+- Glaive Rush
+- High Horsepower
+- Icicle Crash
+- Substitute
+
+Dragonite @ Dragotite
+Ability: Multiscale
+Level: 86
+Shiny: Yes
+EVs: 252 Atk / 4 SpD / 252 Spe
+Adamant Nature
+- Draco Meteor
+- Hurricane
+- Flamethrower
+- Ice Beam
+
+Exeggutor-Alola @ Sitrus Berry
+Ability: Harvest
+Level: 86
+EVs: 252 HP / 252 Atk / 4 SpD
+Adamant Nature
+- Dragon Hammer
+- Earthquake
+- Seed Bomb
+- Zen Headbutt
+
+Hydrapple @ Yache Berry
+Ability: Sticky Hold
+Level: 86
+EVs: 252 Atk / 252 SpA
+- Draco Meteor
+- Leaf Storm
+- Giga Drain
+- Outrage
+
+Dragapult @ Choice Scarf
+Ability: Infiltrator
+Level: 86
+EVs: 252 Atk / 4 SpD / 252 Spe
+Jolly Nature
+- Dragon Darts
+- Phantom Force
+- Body Slam
+- Trick
+
+Archaludon @ Choice Specs
+Level: 86
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 Spe
+Modest Nature
+- Electro Shot
+- Dragon Pulse
+- Flash Cannon
+- Dark Pulse
+
+=== TRAINER_TITLE_DEFENSE_STEVEN ===
+Name: Steven
+Class: Champion
+Pic: Steven
+Gender: Male
+Music: Hg Boy 2
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Purple
+
+Skarmory @ Sitrus Berry
+Ability: Sturdy
+Level: 84
+EVs: 252 HP / 252 SpD / 4 Atk
+- Toxic
+- Spikes
+- Brave Bird
+- Steel Wing
+
+Aggron @ Air Balloon
+Ability: Rock Head
+EVs: 252 HP / 252 Atk
+Level: 85
+- Head Smash
+- Avalanche
+- Earthquake
+- Heavy Slam
+
+Cradily @ Expert Belt
+Ability: Suction Cups
+EVs: 252 HP / 252 SpD
+Level: 84
+- Stone Edge
+- Seed Bomb
+- Sandstorm
+- Earthquake
+
+Excadrill @ Focus Sash
+Ability: Sand Rush
+EVs: 252 Atk / 252 Spe
+Level: 85
+- X-scissor
+- Earthquake
+- Stone Edge
+- Iron Head
+
+Archeops @ Sitrus Berry
+Ability: Defeatist
+EVs: 252 Atk / 252 Spe
+Level: 85
+- Head Smash
+- Acrobatics
+- Earthquake
+- Quick Attack
+
+Metagross @ Steeltite
+Ability: Clear Body
+Level: 86
+EVs: 252 Atk / 252 Spe
+- Bullet Punch
+- Meteor Mash
+- Earthquake
+- Zen Headbutt
+
+=== TRAINER_TITLE_DEFENSE_STEVEN ===
+Name: Steven
+Class: Champion
+Pic: Steven
+Gender: Male
+Music: Hg Boy 2
+Double Battle: Yes
+AI: Smart Trainer
+Mugshot: Purple
+Difficulty: Hard
+
+Gholdengo @ Metal Coat
+Ability: Good As Gold
+Level: 84
+EVs: 252 HP / 252 SpD / 4 Atk
+Nature: Modest
+- Make It Rain
+- Dazzling Gleam
+- Protect
+- Nasty Plot
+
+Aggron @ Air Balloon
+Ability: Rock Head
+EVs: 252 HP / 252 Atk
+Level: 85
+- Head Smash
+- Avalanche
+- Earthquake
+- Heavy Slam
+
+Cradily @ Expert Belt
+Ability: Suction Cups
+EVs: 252 HP / 252 SpD
+Level: 85
+- Stone Edge
+- Seed Bomb
+- Sandstorm
+- Earthquake
+
+Excadrill @ Focus Sash
+Ability: Sand Rush
+EVs: 252 Atk / 252 Spe
+Level: 85
+- X-scissor
+- Earthquake
+- Stone Edge
+- Iron Head
+
+Archeops @ Sitrus Berry
+Ability: Defeatist
+EVs: 252 Atk / 252 Spe
+Level: 85
+- Head Smash
+- Acrobatics
+- Earthquake
+- Quick Attack
+
+Metagross @ Steeltite
+Ability: Clear Body
+Level: 86
+EVs: 252 Atk / 252 Spe
+- Bullet Punch
+- Meteor Mash
+- Earthquake
+- Zen Headbutt

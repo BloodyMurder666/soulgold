@@ -2297,3 +2297,7 @@ Common_Text_ReceivedMon:
 	.include "data/maps/KitakamiMountain4F/scripts.inc"
 
 	.include "data/maps/Kitakami_Temple/scripts.inc"
+
+	.include "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.inc"
+
+	.include "data/maps/PokemonLeague_HallOfFame_TitleDefense/scripts.inc"

@@ -1,8 +1,18 @@
 PokemonLeague_KarensRoom_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PokemonLeague_KarensRoom_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, EliteFourRoom_OnFrame
 	map_script MAP_SCRIPT_ON_RESUME, PokemonLeague_KarensRoom_OnResume
 	map_script MAP_SCRIPT_ON_LOAD, EliteFourRoom_OnLoad
 	.byte 0
+
+PokemonLeague_KarensRoom_OnTransition::
+	goto_if_set FLAG_IS_CHAMPION, PokemonLeague_KarensRoom_SetTitleDefenseWarp
+	setdynamicwarp MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM, 0
+	end
+
+PokemonLeague_KarensRoom_SetTitleDefenseWarp::
+	setdynamicwarp MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM_TITLE_DEFENSE, 0
+	end
 
 PokemonLeague_KarensRoom_OnResume::
 	setvar VAR_0x8004, 3
@@ -29,6 +39,7 @@ PokemonLeague_KarensRoom_EventScript_KarenRematch::
 
 PokemonLeague_KarensRoom_EventScript_KarenOnDefeat::
     clearflag FLAG_TEMP_5
+	createfieldmugshot MUGSHOT_KAREN
 	msgbox PokemonLeague_KarensRoom_Text_Defeat, MSGBOX_DEFAULT
 	closemessage
 	setmetatile 6, 1, 0x40E, FALSE
@@ -90,4 +101,3 @@ PokemonLeague_KarensRoom_Text_Defeat:
     .string "I like your style. You understand\n"
     .string "what's important.\p"
     .string "Go on--the Champion is waiting.$"
-

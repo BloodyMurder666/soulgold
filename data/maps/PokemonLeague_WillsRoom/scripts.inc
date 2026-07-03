@@ -71,6 +71,7 @@ PokemonLeague_WillsRoom_EventScript_WillRematch::
 
 PokemonLeague_WillsRoom_EventScript_WillOnDefeat::
 	clearflag FLAG_TEMP_5
+	createfieldmugshot MUGSHOT_WILL
 	msgbox PokemonLeague_WillsRoom_Text_Defeat, MSGBOX_DEFAULT
 	closemessage
 	setmetatile 6, 1, 0x40E, FALSE

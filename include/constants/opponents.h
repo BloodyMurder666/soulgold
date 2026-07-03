@@ -881,8 +881,8 @@
 #define TRAINER_ORB_EXPERT                874
 #define TRAINER_HERB_EXPERT               875
 #define TRAINER_CHOICE_BAND_EXPERT        876
-#define TRAINER_UNUSED_1                  877
-#define TRAINER_UNUSED_2                  878
+#define TRAINER_TITLE_DEFENSE_LANCE       877
+#define TRAINER_TITLE_DEFENSE_STEVEN      878
 #define TRAINER_RIVAL_GOLD_ICEPATH        879
 #define TRAINER_RIVAL_CRYSTAL_ICEPATH     880
 #define TRAINER_RIVAL_GOLD_FINAL          881

@@ -1,0 +1,26 @@
+mapscripts PokemonLeague_HallOfFame_TitleDefense_MapScripts
+{
+    MAP_SCRIPT_ON_FRAME_TABLE
+    [
+        VAR_LEAGUE_STATE, 6: TitleDefense_RegisterToHallOfFame
+    ]
+}
+
+script TitleDefense_RegisterToHallOfFame
+{
+    lock
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_up * 8, face_up))
+    waitmovement(OBJ_EVENT_ID_PLAYER)
+    delay(20)
+    dofieldeffect(FLDEFF_HALL_OF_FAME_RECORD)
+    waitfieldeffect(FLDEFF_HALL_OF_FAME_RECORD)
+    delay(40)
+    setvar(VAR_TEMP_1, 1)
+    call(PokemonLeague_HallOfFame_EventScript_SetGameClearFlags)
+    setrespawn(HEAL_LOCATION_NEW_BARK_TOWN)
+    fadescreenspeed(FADE_TO_BLACK, 24)
+    special(GameClear)
+    waitstate
+    releaseall
+    end
+}

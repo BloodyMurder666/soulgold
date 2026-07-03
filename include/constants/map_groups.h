@@ -293,13 +293,15 @@ enum
     MAP_CINNABAR_ISLAND_POKEMON_CENTER = (0 | (20 << 8)),
 
     // gMapGroup_IndoorIndigo
-    MAP_INDIGO_PLATEAU_POKEMON_CENTER = (0 | (21 << 8)),
-    MAP_POKEMON_LEAGUE_WILLS_ROOM     = (1 | (21 << 8)),
-    MAP_POKEMON_LEAGUE_KOGAS_ROOM     = (2 | (21 << 8)),
-    MAP_POKEMON_LEAGUE_BRUNOS_ROOM    = (3 | (21 << 8)),
-    MAP_POKEMON_LEAGUE_KARENS_ROOM    = (4 | (21 << 8)),
-    MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM = (5 | (21 << 8)),
-    MAP_POKEMON_LEAGUE_HALL_OF_FAME   = (6 | (21 << 8)),
+    MAP_INDIGO_PLATEAU_POKEMON_CENTER               = (0 | (21 << 8)),
+    MAP_POKEMON_LEAGUE_WILLS_ROOM                   = (1 | (21 << 8)),
+    MAP_POKEMON_LEAGUE_KOGAS_ROOM                   = (2 | (21 << 8)),
+    MAP_POKEMON_LEAGUE_BRUNOS_ROOM                  = (3 | (21 << 8)),
+    MAP_POKEMON_LEAGUE_KARENS_ROOM                  = (4 | (21 << 8)),
+    MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM               = (5 | (21 << 8)),
+    MAP_POKEMON_LEAGUE_HALL_OF_FAME                 = (6 | (21 << 8)),
+    MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM_TITLE_DEFENSE = (7 | (21 << 8)),
+    MAP_POKEMON_LEAGUE_HALL_OF_FAME_TITLE_DEFENSE   = (8 | (21 << 8)),
 
     // gMapGroup_IndoorJohtoRoutes
     MAP_GATE_ROUTE29_ROUTE46                  = (0 | (22 << 8)),

@@ -29,6 +29,7 @@ PokemonLeague_BrunosRoom_EventScript_BrunoRematch::
 
 PokemonLeague_BrunosRoom_EventScript_BrunoOnDefeat::
 	clearflag FLAG_TEMP_5	
+	createfieldmugshot MUGSHOT_BRUNO
 	msgbox PokemonLeague_BrunosRoom_Text_Defeat, MSGBOX_DEFAULT
 	closemessage
 	setmetatile 6, 1, 0x40E, FALSE

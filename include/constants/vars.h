@@ -297,7 +297,8 @@
 #define VAR_ROUTE39_BAOBA_STATE                         0x4112
 #define VAR_ROUTE_EXPERTS_DEFEATED                      0x4113
 #define VAR_ACHIEVEMENT_REWARD_MILESTONE                0x4114 // Highest achievement milestone reward claimed
-#define VAR_0x4115                                      0x4115
+#define VAR_TITLE_DEFENSE_WINS                          0x4115
+#define VAR_TITLE_DEFENSE_LAST_CHALLENGER               0x4116
 
 #define VARS_END                                         0x42FF
 

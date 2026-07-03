@@ -1,0 +1,79 @@
+const LOCALID_TITLE_DEFENSE_CHALLENGER = 1
+
+mapscripts PokemonLeague_ChampionsRoom_TitleDefense_MapScripts
+{
+    MAP_SCRIPT_ON_TRANSITION: PokemonLeague_ChampionsRoom_TitleDefense_OnTransition
+
+    MAP_SCRIPT_ON_FRAME_TABLE
+    [
+        VAR_TEMP_0, 0: PokemonLeague_ChampionsRoom_TitleDefense_Begin
+    ]
+}
+
+script PokemonLeague_ChampionsRoom_TitleDefense_OnTransition
+{
+    setflag(FLAG_TEMP_1)
+    special(TitleDefense_SelectChallenger)
+    end
+}
+
+script PokemonLeague_ChampionsRoom_TitleDefense_Begin
+{
+    lockall
+    setvar(VAR_TEMP_0, 1)
+    setflag(FLAG_TEMP_2)
+    special(DrawWholeMapView)
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_up * 11, face_down))
+    waitmovement(OBJ_EVENT_ID_PLAYER)
+
+    clearflag(FLAG_TEMP_1)
+    addobject(LOCALID_TITLE_DEFENSE_CHALLENGER)
+    applymovement(LOCALID_TITLE_DEFENSE_CHALLENGER, moves(walk_up * 9, face_up))
+    waitmovement(LOCALID_TITLE_DEFENSE_CHALLENGER)
+
+    special(TitleDefense_ShowIntro)
+    waitmessage
+    waitbuttonpress
+    closemessage
+
+    setflag(FLAG_TEMP_3)
+    setflag(FLAG_TEMP_5)
+    special(TitleDefense_PrepareBattle)
+    special(PlayTrainerEncounterMusic)
+    dotrainerbattle
+
+    clearflag(FLAG_TEMP_5)
+    special(TitleDefense_ShowFarewell)
+    waitmessage
+    waitbuttonpress
+    closemessage
+
+    applymovement(LOCALID_TITLE_DEFENSE_CHALLENGER, moves(walk_down * 9, set_invisible))
+    waitmovement(LOCALID_TITLE_DEFENSE_CHALLENGER)
+    removeobject(LOCALID_TITLE_DEFENSE_CHALLENGER)
+
+    setmetatile(6, 1, 0x3F2, FALSE)
+    setmetatile(6, 2, 0x296, FALSE)
+    playse(SE_BANG)
+    setvar(VAR_0x8004, 1)
+    setvar(VAR_0x8005, 1)
+    setvar(VAR_0x8006, 4)
+    setvar(VAR_0x8007, 4)
+    special(ShakeCamera)
+    waitstate
+    special(DrawWholeMapView)
+
+    special(TitleDefense_IncrementWins)
+    setvar(VAR_LEAGUE_STATE, 6)
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_up * 6))
+    waitmovement(OBJ_EVENT_ID_PLAYER)
+    warpsilent(MAP_POKEMON_LEAGUE_HALL_OF_FAME_TITLE_DEFENSE, 0)
+    waitstate
+    releaseall
+    end
+}
+
+script ChampionRoom_DefendTitleTrigger
+{
+    end
+}

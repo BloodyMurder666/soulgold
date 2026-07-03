@@ -29,6 +29,7 @@ PokemonLeague_KogasRoom_EventScript_KogaRematch::
 
 PokemonLeague_KogasRoom_EventScript_KogaOnDefeat::
 	clearflag FLAG_TEMP_5
+	createfieldmugshot MUGSHOT_KOGA
 	msgbox PokemonLeague_KogasRoom_Text_Defeat, MSGBOX_DEFAULT
 	closemessage
 	setmetatile 6, 1, 0x40E, FALSE

@@ -40,7 +40,7 @@
       "x": 6,
       "y": 2,
       "elevation": 0,
-      "dest_map": "MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM",
+      "dest_map": "MAP_DYNAMIC",
       "dest_warp_id": "0"
     }
   ],
