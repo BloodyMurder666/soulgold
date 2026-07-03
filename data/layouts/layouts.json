@@ -9810,10 +9810,10 @@
     {
       "id": "LAYOUT_KITAKAMI_TEMPLE",
       "name": "Kitakami_Temple_Layout",
-      "width": 34,
-      "height": 24,
-      "primary_tileset": "gTileset_Johto_Building",
-      "secondary_tileset": "gTileset_PowerPlant_GeneratorRoom",
+      "width": 35,
+      "height": 35,
+      "primary_tileset": "gTileset_Building_Hoenn",
+      "secondary_tileset": "gTileset_Dojo",
       "border_filepath": "data/layouts/Kitakami_Temple/border.bin",
       "blockdata_filepath": "data/layouts/Kitakami_Temple/map.bin"
     },
@@ -9836,6 +9836,46 @@
       "secondary_tileset": "gTileset_HallOfFame",
       "border_filepath": "data/layouts/PokemonLeague_HallOfFame_TitleDefense/border.bin",
       "blockdata_filepath": "data/layouts/PokemonLeague_HallOfFame_TitleDefense/map.bin"
+    },
+    {
+      "id": "LAYOUT_KITAKAMI_TEMPLE_TRAINING_ROOM",
+      "name": "Kitakami_Temple_TrainingRoom_Layout",
+      "width": 16,
+      "height": 20,
+      "primary_tileset": "gTileset_Building_Hoenn",
+      "secondary_tileset": "gTileset_Dojo",
+      "border_filepath": "data/layouts/Kitakami_Temple_TrainingRoom/border.bin",
+      "blockdata_filepath": "data/layouts/Kitakami_Temple_TrainingRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_KITAKAMI_TEMPLE_BEDROOM",
+      "name": "Kitakami_Temple_Bedroom_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Building_Hoenn",
+      "secondary_tileset": "gTileset_Dojo",
+      "border_filepath": "data/layouts/Kitakami_Temple_Bedroom/border.bin",
+      "blockdata_filepath": "data/layouts/Kitakami_Temple_Bedroom/map.bin"
+    },
+    {
+      "id": "LAYOUT_KITAKAMI_TEMPLE_STORAGE",
+      "name": "Kitakami_Temple_Storage_Layout",
+      "width": 34,
+      "height": 20,
+      "primary_tileset": "gTileset_Building_Hoenn",
+      "secondary_tileset": "gTileset_Dojo",
+      "border_filepath": "data/layouts/Kitakami_Temple_Storage/border.bin",
+      "blockdata_filepath": "data/layouts/Kitakami_Temple_Storage/map.bin"
+    },
+    {
+      "id": "LAYOUT_KITAKAMI_TEMPLE_BATTLE_ROOM",
+      "name": "Kitakami_Temple_BattleRoom_Layout",
+      "width": 24,
+      "height": 24,
+      "primary_tileset": "gTileset_Building_Hoenn",
+      "secondary_tileset": "gTileset_Dojo",
+      "border_filepath": "data/layouts/Kitakami_Temple_BattleRoom/border.bin",
+      "blockdata_filepath": "data/layouts/Kitakami_Temple_BattleRoom/map.bin"
     }
   ]
 }

@@ -1618,6 +1618,10 @@
 #define FLAG_KITAKAMIMOUNTAIN_ITEM4                 0x94E
 #define FLAG_KITAKAMIMOUNTAIN_ITEM5                 0x94F
 #define FLAG_KITAKAMIMOUNTAIN_ITEM6                 0x950
+#define FLAG_RECEIVED_FOCUS_SASH                    0x951
+#define FLAG_TM_SLEEP_TALK                          0x952
+#define FLAG_OBTAINED_OGERPON_MASKS                 0x953
+#define FLAG_ITEM_PROTECTOR                         0x954
 
 #define FLAG_0x1500                                 0x1500
 // Daily Flags

@@ -548,3 +548,9 @@ const u16 gMetatileAttributes_JohtoFactory[] = INCBIN_U16("data/tilesets/seconda
 
 const u16 gMetatiles_MysteryDungeon[] = INCBIN_U16("data/tilesets/secondary/mystery_dungeon/metatiles.bin");
 const u16 gMetatileAttributes_MysteryDungeon[] = INCBIN_U16("data/tilesets/secondary/mystery_dungeon/metatile_attributes.bin");
+
+const u16 gMetatiles_Dojo[] = INCBIN_U16("data/tilesets/secondary/dojo/metatiles.bin");
+const u16 gMetatileAttributes_Dojo[] = INCBIN_U16("data/tilesets/secondary/dojo/metatile_attributes.bin");
+
+const u16 gMetatiles_Building_Hoenn[] = INCBIN_U16("data/tilesets/primary/building_hoenn/metatiles.bin");
+const u16 gMetatileAttributes_Building_Hoenn[] = INCBIN_U16("data/tilesets/primary/building_hoenn/metatile_attributes.bin");

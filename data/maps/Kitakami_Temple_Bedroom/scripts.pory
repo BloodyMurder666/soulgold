@@ -1,0 +1,21 @@
+mapscripts Kitakami_Temple_Bedroom_MapScripts {}
+
+script KitakamiTempleBedroom_Expert {
+    msgbox("It is not uncommon for travellers to
+            spend some time training with us.
+            
+            It helps keep traditions alive in
+            hearts of the Youth.", MSGBOX_NPC)
+}
+
+script KitakamiTempleBedroom_BattleGirl {
+    msgbox("Ugh...
+            
+            They make us wake up at the
+            crack of dawn every day...
+
+            We have to fetch water from the base
+            of the mountains to wash ourselves...
+
+            I'm so sleepy... Zzz....", MSGBOX_NPC)
+}

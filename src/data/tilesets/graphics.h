@@ -4079,3 +4079,41 @@ const u16 gTilesetPalettes_MysteryDungeon[][16] =
 };
 
 const u32 gTilesetTiles_MysteryDungeon[] = INCBIN_U32("data/tilesets/secondary/mystery_dungeon/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_Dojo[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/dojo/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/dojo/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/dojo/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/dojo/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/dojo/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/dojo/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/dojo/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/dojo/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/dojo/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/dojo/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/dojo/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/dojo/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/dojo/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_Dojo[] = INCBIN_U32("data/tilesets/secondary/dojo/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_Building_Hoenn[][16] =
+{
+    INCBIN_U16("data/tilesets/primary/building_hoenn/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/primary/building_hoenn/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/primary/building_hoenn/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/primary/building_hoenn/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/primary/building_hoenn/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/primary/building_hoenn/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/primary/building_hoenn/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/primary/building_hoenn/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/primary/building_hoenn/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/primary/building_hoenn/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/primary/building_hoenn/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/primary/building_hoenn/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/primary/building_hoenn/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_Building_Hoenn[] = INCBIN_U32("data/tilesets/primary/building_hoenn/tiles.4bpp.lz");

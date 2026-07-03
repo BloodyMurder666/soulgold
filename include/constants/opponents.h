@@ -889,7 +889,7 @@
 #define TRAINER_RIVAL_CRYSTAL_FINAL       882
 #define TRAINER_PHILIP                    883
 #define TRAINER_MOULDER                   884
-#define TRAINER_UNUSED_21                 885
+#define TRAINER_DOJO_AUDINO               885
 #define TRAINER_UNUSED_22                 886
 #define TRAINER_UNUSED_23                 887
 #define TRAINER_UNUSED_24                 888

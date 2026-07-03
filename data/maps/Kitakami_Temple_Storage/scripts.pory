@@ -1,0 +1,58 @@
+mapscripts Kitakami_Temple_Storage_MapScripts {}
+
+script StorageMienfoo {
+    lock
+    faceplayer
+    playmoncry(SPECIES_MIENFOO, CRY_MODE_NORMAL)
+    msgbox("Mienfoo: Foo!")
+    waitmoncry
+    release
+    end
+}
+
+script StorageKeeper {
+    lock
+    faceplayer
+    if (flag(FLAG_OBTAINED_OGERPON_MASKS)) {
+        msgbox("These masks allow Ogerpon to wield
+                powers from other types in battle.")
+        release
+        end
+    }
+    msgbox("My task is to manage the sacred relics
+            of Kitakami. 
+            
+            Our villages guardian, Ogerpon once
+            entrusted powerful relics to us.
+            
+            We've been guarding them ever since
+            until Ogerpon once again requires
+            them.")
+    checkspecies(SPECIES_OGERPON)
+    if (var(VAR_RESULT) == TRUE) {
+        playse(SE_PIN)
+        applymovement(LOCALID_TEMPLE_STOREKEEPER, Common_Movement_ExclamationMark)
+        waitse
+        delay(30)
+        msgbox("Could it be...? Ogerpon has chosen you
+                as it's partner?
+                
+                Incredible!
+
+                In that case, you should be the one
+                holding its sacred relics.")
+        giveitem(ITEM_CORNERSTONE_MASK)
+        giveitem(ITEM_WELLSPRING_MASK)
+        giveitem(ITEM_HEARTHFLAME_MASK)
+        setflag(FLAG_OBTAINED_OGERPON_MASKS)
+        msgbox("These masks allow Ogerpon to wield
+                powers from other types in battle.")
+        release
+        end
+    } else {
+        release
+        end
+    }
+    release
+    end
+}

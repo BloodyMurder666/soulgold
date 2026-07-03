@@ -1,1 +1,53 @@
 mapscripts Kitakami_Temple_MapScripts {}
+
+script megaKickTrainer {
+    lock
+    msgbox(format("No no, you don't get it, Mega Punch is the superior move!"))
+    release
+    end
+}
+
+script megaPunchTrainer {
+    lock
+    msgbox(format("Fool! Everyone knows Mega Kick is the true path to power!"))
+    release
+    end
+}
+
+script DojoTourist {
+    lock
+    faceplayer
+    msgbox("The traditions here have been kept
+            alive for countless lifetimes.
+            
+            It is quite impressive!")
+    release
+    end
+}
+
+script DojoTrainee {
+    lock
+    faceplayer
+    msgbox("We offer paid courses for visitors. 
+
+            If you wish to grow stronger fast,
+            please consider supporting our temple.")
+    release
+    end
+}
+
+script DojoTeacher {
+    lock
+    faceplayer
+    msgbox("Behind me is the practice room. 
+    
+            Take care not to disturb their
+            training.")
+    release
+    end
+}
+
+script DojoTeacher2 {
+    msgbox("These doors lead to the sleeping 
+            quarters.", MSGBOX_NPC)
+}

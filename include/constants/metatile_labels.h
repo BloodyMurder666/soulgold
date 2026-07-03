@@ -173,6 +173,10 @@
 #define METATILE_Dewford_Door              0x225
 #define METATILE_Dewford_Door_BattleTower  0x25D
 
+// gTileset_Dojo
+#define METATILE_Dojo_DoorLeft   0x445
+#define METATILE_Dojo_DoorRight  0x446
+
 // gTileset_Ecruteak_City
 #define METATILE_Ecruteak_City_Door  0x4B3
 

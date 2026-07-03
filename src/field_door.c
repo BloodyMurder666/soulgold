@@ -190,6 +190,11 @@ static const u16 sDoorNullPalette73[16] = {};
 static const u8 sDoorAnimTiles_GeneralJohto[] = INCBIN_U8("graphics/door_anims/johtogeneral.4bpp");
 static const u16 sDoorNullPalette74[16] = {};
 
+static const u8 sDoorAnimTiles_DewfordDojoRight[] = INCBIN_U8("graphics/door_anims/dewford_dojo_right.4bpp");
+static const u16 sDoorNullPalette75[16] = {};
+static const u8 sDoorAnimTiles_DewfordDojoLeft[]  = INCBIN_U8("graphics/door_anims/dewford_dojo_left.4bpp");
+static const u16 sDoorNullPalette76[16] = {};
+
 #define CLOSED_DOOR_TILES_OFFSET 0xFFFF
 
 static const struct DoorAnimFrame sDoorOpenAnimFrames[] =
@@ -326,6 +331,9 @@ static const u8 sDoorAnimPalettes_BattleTentInterior[] = {9, 9, 9, 9, 9, 9, 9, 9
 static const u8 sDoorAnimPalettes_TrainerHillLobbyElevator[] = {7, 7, 7, 7, 7, 7, 7, 7};
 static const u8 sDoorAnimPalettes_TrainerHillRoofElevator[] = {9, 9, 7, 7, 7, 7, 7, 7};
 
+static const u8 sDoorAnimPalettes_DewfordDojoRight[] = {8, 8, 8, 8, 8, 8, 8, 8};
+static const u8 sDoorAnimPalettes_DewfordDojoLeft[] = {8, 8, 8, 8, 8, 8, 8, 8};
+
 static const struct DoorGraphics sDoorAnimGraphicsTable[] =
 {
     {METATILE_General_Door,                                 DOOR_SOUND_NORMAL,  DOOR_SIZE_1x1, sDoorAnimTiles_General, sDoorAnimPalettes_General},
@@ -416,6 +424,8 @@ static const struct DoorGraphics sDoorAnimGraphicsTable[] =
     {METATILE_TrainerHill_Door_Elevator_Roof,              DOOR_SOUND_SLIDING, DOOR_SIZE_1x2, sDoorAnimTiles_TrainerHillRoofElevator, sDoorAnimPalettes_TrainerHillRoofElevator},
     {METATILE_General_Frontier_East_PokecenterDoor,         DOOR_SOUND_SLIDING, DOOR_SIZE_1x2, sDoorAnimTiles_PokeCenter_Hoenn, sDoorAnimPalettes_PokeCenter_Hoenn},
     {METATILE_General_Frontier_East_MartDoor,               DOOR_SOUND_SLIDING, DOOR_SIZE_1x2, sDoorAnimTiles_PokeMart, sDoorAnimPalettes_PokeMart},
+    {METATILE_Dojo_DoorLeft,                 DOOR_SOUND_NORMAL,  1, sDoorAnimTiles_DewfordDojoLeft, sDoorAnimPalettes_DewfordDojoLeft},
+    {METATILE_Dojo_DoorRight,                DOOR_SOUND_NORMAL,  1, sDoorAnimTiles_DewfordDojoRight, sDoorAnimPalettes_DewfordDojoRight},
     {},
 };
 

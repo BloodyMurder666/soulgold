@@ -2162,3 +2162,25 @@ const struct Tileset gTileset_MysteryDungeon =
     .metatileAttributes = gMetatileAttributes_MysteryDungeon,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_Dojo =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_Dojo,
+    .palettes = gTilesetPalettes_Dojo,
+    .metatiles = gMetatiles_Dojo,
+    .metatileAttributes = gMetatileAttributes_Dojo,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_Building_Hoenn =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .tiles = gTilesetTiles_Building_Hoenn,
+    .palettes = gTilesetPalettes_Building_Hoenn,
+    .metatiles = gMetatiles_Building_Hoenn,
+    .metatileAttributes = gMetatileAttributes_Building_Hoenn,
+    .callback = NULL,
+};

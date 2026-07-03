@@ -3,30 +3,32 @@ Johto focused hack with curated dex, new areas and various additions.
 Based on expansion port of Pokemon Heart and Soul. Feature list to be made later.
 
 ## CREDITS
-- HnS Dev Team for their amazing work!
+- [HnS Dev Team](https://github.com/PokemonHnS-Development/pokemonHnS) for their amazing work!
 - [smithk200](https://github.com/smithk200/Gold-And-Silver-Gen-3-Decomp) for porting most of HnS to expansion!
 - Rafael Sanna for amazing custom mega sprites for typhlosion, primarina and meowscarada!
-- RHH and pokeemerald expansion dev team, of course!
-- TeamAquaHideout for help, resources and feature branches (new birch case)
-- Estellar for pathfinding
+- RHH and pokeemerald expansion dev team for the expansion base and support
+- [TeamAquaHideout](https://github.com/TeamAquasHideout/Team-Aquas-Asset-Repo/wiki) for help, resources and feature branches
+- [Estellar](https://github.com/estellarc/pokeemerald) for pathfinding
 - [PokemonSanFran/PSF](https://github.com/PokemonSanFran/pokeemerald/wiki/Battle-Arcade) for battle arcade branch and quest menu UI base
 - LinathanZel for help window
-- Kasenn for tinting battle bgs, use how many? in party menu and bp mart
+- [Kasenn](https://github.com/Kasenn) for tinting battle bgs, use how many? in party menu and bp mart
 - [bassforte123](https://github.com/bassforte123/pokeemerald-complete/tree/Trait-and-Items) for multi ability system
-- PurrfectDoodle, RavePossum and Ruki for battle backgrounds
-- Ravepossum for HGSS ui
-- Greenphx9 for party menu, pc wallpapers and pokemon icons for g1-9
+- [PurrfectDoodle](https://github.com/purrfectdoodle/Team-Aquas-Asset-Repo), RavePossum and Ruki for battle backgrounds
+- [Ravepossum](https://github.com/ravepossum/pokeemerald-expansion) for HGSS ui
+- [Greenphx9](https://github.com/Greenphx9/pokeemerald-expansion) for party menu, pc wallpapers and pokemon icons for g1-9
 - devolov for using HMs without teaching
 - fisham33 for level scaling
-- TheXaman for gen 4 party menu 
+- [TheXaman](https://github.com/TheXaman/pokeemerald/) for gen 4 party menu 
 - Lhea for modern type icons
-- Mont for swsh party menu
-- destvol for custom mega sprites
-- Leob0505 for backgrounds
-- Emulator accuracy check by Wiz1989 (also thanks to mudskip, grunt-lucas, archie, drazden)
-- Mudship (field mugshot system)
-- Ghoulslash (sideway stairs)
+- [Mont](https://github.com/montmoguri/pokeemerald-expansion/) for swsh party menu
+- Jordan for music tracks
+- [destvol](https://www.deviantart.com/destvol/gallery/all) for custom mega sprites
+- [Leob0505]() for backgrounds
+- [Wiz1989](https://github.com/wiz1989/pokeemerald-expansion-master) Emulator accuracy check (also thanks to mudskip, grunt-lucas, archie, drazden)
+- [Mudskip](https://github.com/mudskipper13/pokeemerald/) for namebox and field mugshots
+- [Ghoulslash](https://github.com/ghoulslash/pokeemerald) for features such as sideways stairs
 - [James/FosterProgramming](https://github.com/FosterProgramming/pokeemerald-expansion) for their transformation code
+- [Ipatix](https://github.com/ipatix/gba-hq-mixer) for HQ audio mixer
 - Kyledove (various graphics and tiles)
 - Hyo for various sprites including frlg style emerald overworlds and gold sprites
 - Poffin Case various overworld sprites

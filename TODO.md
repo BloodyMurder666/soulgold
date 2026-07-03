@@ -2,20 +2,17 @@
 # Demo 1 MVP
 
 Must have:
-- 3-4 remaining megastones (dragon den trial for dragotite?)
-- Finish redoing the remaining trades (done mostly, could use maybe one more)
+- Sprout tower basement (ghostite)
 - cresselia and darkrai quest (started)
-- end screen
-- route 40, kitakami road house
 - dark crystal...
+- Foggy forest house and 1-2 trainers
+
 
 Nice to have:
 - HGSS/DPPT overworld npc sprite demakes
 - Shaymin event north of tohjo falls
 - Victini reward for beating all gym leader rematches
 - Celebi GS ball event
-- clean flag heaps 
-- south johto surf route to tease postgame
 
 Maybe:
 - remaining mugshots

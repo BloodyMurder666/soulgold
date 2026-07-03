@@ -1,0 +1,94 @@
+mapscripts Kitakami_Temple_BattleRoom_MapScripts {}
+
+script BattleRoom_Audino {
+    lock
+    faceplayer
+    playmoncry(SPECIES_AUDINO, CRY_MODE_NORMAL)
+    msgbox("Audino: Audiini!")
+    waitmoncry
+    release
+    end
+}
+
+script BattleRoom_Machamp {
+    lock
+    playmoncry(SPECIES_MACHAMP, CRY_MODE_NORMAL)
+    msgbox("Machamp: Mach!")
+    waitmoncry
+    release
+    end
+}
+
+script BattleRoom_Mienfoo {
+    lock
+    playmoncry(SPECIES_MIENFOO, CRY_MODE_NORMAL)
+    msgbox("Mienfoo: Mii!")
+    waitmoncry
+    release
+    end
+}
+
+script BattleRoom_BattleGirl {
+    lock
+    msgbox("Now Mienfoo, use Hi Jump Kick!")
+    playmoncry(SPECIES_MIENFOO, CRY_MODE_NORMAL)
+    applymovement(LOCALID_KITAKAMI_MIENFOO, moves(jump_in_place_left*2))
+    waitmovement(0)
+    waitmoncry
+    release
+    end
+}
+
+script BattleRoom_BlackBelt {
+    lock
+    msgbox("Machamp, counter with Protect!")
+    playmoncry(SPECIES_MACHAMP, CRY_MODE_NORMAL)
+    applymovement(LOCALID_KITAKAMI_MACHAMP, moves(jump_in_place_right*2))
+    waitmovement(0)
+    waitmoncry
+    release
+    end
+}
+
+script BattleRoom_MoneyTrainer {
+    lock
+    faceplayer
+    if (flag(FLAG_TEMP_1) == FALSE) {
+        msgbox("Greetings, we offer paid training
+                services for visitors. 
+            
+                The money will be used to support our 
+                temple and the village. Interested?")
+        setflag(FLAG_TEMP_1)   
+    }
+    showmoneybox(0,0)
+    msgbox("For a low price of ¥10,000, we will
+            let you train with our Audinos and 
+            Blisseys.", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        checkmoney(10000)
+        if (var(VAR_RESULT) == FALSE) {
+            msgbox("Oh my, it seems you do not have the
+                    money right now. Please come back
+                    when you have some.")
+            hidemoneybox
+            release
+            end
+        }
+        removemoney(10000)
+        updatemoneybox(0)
+        playse(SE_SHOP)
+        waitse
+        hidemoneybox
+        msgbox("Thank you, let us begin.")
+        trainerbattle_no_intro(TRAINER_DOJO_AUDINO, "Thank you for your support.")
+        msgbox("Come back if you wish to train again.")
+    } else {
+        hidemoneybox
+        msgbox("That's fine.")
+        release
+        end
+    }
+    release
+    end
+}
