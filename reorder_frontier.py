@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
 Reorder the FrontierMon enum so that all high-tier species (legendaries,
-mythicals, and Pokémon with BST >= 600) are grouped after the existing
-FRONTIER_MONS_HIGH_TIER marker. Enum values are assigned automatically.
+mythicals, Paradox Pokémon, and Pokémon with BST >= 600) are grouped after
+the existing FRONTIER_MONS_HIGH_TIER marker. Enum values are assigned
+automatically.
 
 High-tier classification uses two hardcoded sets sourced from Bulbapedia:
   - Legendary Pokémon  (bulbapedia.bulbagarden.net/wiki/Legendary_Pokémon)
@@ -94,7 +95,18 @@ MYTHICAL_STEMS: frozenset[str] = frozenset({
     "PECHARUNT",
 })
 
-HIGH_TIER_STEMS: frozenset[str] = LEGENDARY_STEMS | MYTHICAL_STEMS
+PARADOX_STEMS: frozenset[str] = frozenset({
+    "GREAT_TUSK", "SCREAM_TAIL", "BRUTE_BONNET", "FLUTTER_MANE",
+    "SLITHER_WING", "SANDY_SHOCKS", "ROARING_MOON", "KORAIDON",
+    "IRON_TREADS", "IRON_BUNDLE", "IRON_HANDS", "IRON_JUGULIS",
+    "IRON_MOTH", "IRON_THORNS", "IRON_VALIANT", "MIRAIDON",
+    "WALKING_WAKE", "IRON_LEAVES", "GOUGING_FIRE", "RAGING_BOLT",
+    "IRON_BOULDER", "IRON_CROWN",
+})
+
+HIGH_TIER_STEMS: frozenset[str] = (
+    LEGENDARY_STEMS | MYTHICAL_STEMS | PARADOX_STEMS
+)
 
 
 # ---------------------------------------------------------------------------
@@ -250,8 +262,8 @@ def _base_stem(stem: str, known_stems: frozenset[str]) -> str:
 
 def is_high_tier(stem: str, high_bst: frozenset[str] = _HIGH_BST_600) -> bool:
     """
-    Return True if *stem* is a legendary, mythical, or >= 600 BST species.
-    Resolves forms to their base species for legendary/mythical lookup;
+    Return True if *stem* is a legendary, mythical, Paradox, or >= 600 BST
+    species. Resolves forms to their base species for high-tier lookup;
     checks both the full stem and base stem for BST (a Mega with 600+ BST
     should pull the whole species into high tier).
     """

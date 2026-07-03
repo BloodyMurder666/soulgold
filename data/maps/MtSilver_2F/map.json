@@ -106,7 +106,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CRAMORANT)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GOLISOPOD)",
       "x": 18,
       "y": 21,
       "elevation": 0,
@@ -119,7 +119,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CRAMORANT)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GOLISOPOD)",
       "x": 18,
       "y": 25,
       "elevation": 0,

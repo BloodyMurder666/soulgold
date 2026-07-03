@@ -1,4 +1,5 @@
 static const u16 sUniversalMonSet[] = {UNIVERSAL_TRAINER_POOL};
+STATIC_ASSERT(ARRAY_COUNT(sUniversalMonSet) == NUM_FRONTIER_MONS + 1, UniversalMonSetCount);
 
 const struct BattleFrontierTrainer gBattleFrontierTrainers[FRONTIER_TRAINERS_COUNT] =
 {
