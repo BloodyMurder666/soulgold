@@ -547,7 +547,7 @@
 #define P_FAMILY_MASCHIFF                FALSE
 #define P_FAMILY_SHROODLE                FALSE
 #define P_FAMILY_BRAMBLIN                FALSE
-#define P_FAMILY_TOEDSCOOL               P_GEN_9_POKEMON
+#define P_FAMILY_TOEDSCOOL               FALSE
 #define P_FAMILY_KLAWF                   FALSE
 #define P_FAMILY_CAPSAKID                P_GEN_9_POKEMON
 #define P_FAMILY_RELLOR                  FALSE
