@@ -1,6 +1,29 @@
-Johto focused hack with curated dex, new areas and various additions.
+# Johhto focused expansion hack
+# Features:
+- Explore expanded Johto with new areas and biomes
+- Play through traditional Pokémon adventure in maingame, and experience learning multiple abilities in the postgame
+- Hidden Grottos which contain rare items and Pokémon, resetting daily
+- Various battle tempo improvements such as combining stat up/drop messages into one, and playing them while the stat animation happens.
+- Maingame and Postgame battle facilities with Pokémons from all generations! Factory accessible after Gym 3!
+- Achievement system with over 100 trophies to chase, including milestone rewards!
+- 9 starters to choose from with new Mega Evolutions for starters that are missing them (Typhlosion, Meowscarada, Primarina)
+- Fresh new tileset for entirety of Johto
+- All mega evolutions available, megastones have been turned into type-generic stones.
+- Rocket Arcade where you win Money instead of BP
+- Multiple legendaries to find in maingame and postgame!
+- Fishing for items, including IV raising feathers!
+- Many HGSS features such as Cameron the Cameraman, Buena's password, Pokégear and Rock Smashing for fossils make their return!
+- Various quality of life features and gameplay feel improvements
 
-Based on expansion port of Pokemon Heart and Soul. Feature list to be made later.
+## Documentation
+
+All of the hacks documentation including the Pokédex, wild encounters, TMs/HMs, Items, Trainers and Ability data can be found here
+https://eemeliri.github.io/soulgold/
+
+## Current Progress
+
+The hack is currently under testing. It will be playable up to start of postgame with several legendaries and chase achievements in first beta version coming soon(tm)
+
 
 ## CREDITS
 - [HnS Dev Team](https://github.com/PokemonHnS-Development/pokemonHnS) for their amazing work!
@@ -43,6 +66,8 @@ Based on expansion port of Pokemon Heart and Soul. Feature list to be made later
 - Generation 8 icons: leparagon, LarryTurbo, Phasma, Pokerogue Team, StarrWolf (some shinies), Someonealive-QN (other shinies)
 - [Ezerart:](https://www.deviantart.com/ezerart) [Gen 9 regular icons](https://www.deviantart.com/ezerart/art/Pokemon-Gen-9-Icon-sprites-3DS-Style-944211258), [Gen 9 shiny icons](https://www.deviantart.com/ezerart/art/Shiny-Pokemon-Gen-9-Icon-sprites-3DS-Style-944778082)
 - [mbcmechachu:](https://www.deviantart.com/mbcmechachu) National Dex Icon Resource ([Regular](https://www.deviantart.com/mbcmechachu/art/National-Pokedex-Icon-Dex-824897934), [Shiny](https://www.deviantart.com/mbcmechachu/art/National-Pokedex-Icon-Dex-Shiny-910547529)), Sliggoo-Hisui sprite
+
+- If I forgot anyone, please contact me and I'll update the credits!
 
 Based off RHH's pokeemerald-expansion 1.15.0 https://github.com/rh-hideout/pokeemerald-expansion/
 

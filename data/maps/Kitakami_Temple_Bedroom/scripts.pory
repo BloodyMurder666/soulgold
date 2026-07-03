@@ -5,7 +5,7 @@ script KitakamiTempleBedroom_Expert {
             spend some time training with us.
             
             It helps keep traditions alive in
-            hearts of the Youth.", MSGBOX_NPC)
+            hearts of the youth.", MSGBOX_NPC)
 }
 
 script KitakamiTempleBedroom_BattleGirl {

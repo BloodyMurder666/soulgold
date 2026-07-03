@@ -19,7 +19,7 @@ KitakamiTempleBedroom_Expert_Text_0:
 	.string "It is not uncommon for travellers to\n"
 	.string "spend some time training with us.\p"
 	.string "It helps keep traditions alive in\n"
-	.string "hearts of the Youth.$"
+	.string "hearts of the youth.$"
 
 KitakamiTempleBedroom_BattleGirl_Text_0:
 # 12 "data/maps/Kitakami_Temple_Bedroom/scripts.pory"

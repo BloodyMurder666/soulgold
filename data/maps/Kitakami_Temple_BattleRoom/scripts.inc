@@ -32,13 +32,13 @@ BattleRoom_Machamp::
 	end
 
 
-BattleRoom_Mienfoo::
+BattleRoom_Mienshao::
 # 23 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
 	lock
 # 24 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
-	playmoncry SPECIES_MIENFOO, CRY_MODE_NORMAL
+	playmoncry SPECIES_MIENSHAO, CRY_MODE_NORMAL
 # 25 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
-	msgbox BattleRoom_Mienfoo_Text_0
+	msgbox BattleRoom_Mienshao_Text_0
 # 26 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
 	waitmoncry
 # 27 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
@@ -52,9 +52,9 @@ BattleRoom_BattleGirl::
 # 33 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
 	msgbox BattleRoom_BattleGirl_Text_0
 # 34 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
-	playmoncry SPECIES_MIENFOO, CRY_MODE_NORMAL
+	playmoncry SPECIES_MIENSHAO, CRY_MODE_NORMAL
 # 35 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
-	applymovement LOCALID_KITAKAMI_MIENFOO, BattleRoom_BattleGirl_Movement_0
+	applymovement LOCALID_KITAKAMI_MIENSHAO, BattleRoom_BattleGirl_Movement_0
 # 36 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
 	waitmovement 0
 # 37 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
@@ -175,13 +175,13 @@ BattleRoom_Machamp_Text_0:
 # 16 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
 	.string "Machamp: Mach!$"
 
-BattleRoom_Mienfoo_Text_0:
+BattleRoom_Mienshao_Text_0:
 # 25 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
-	.string "Mienfoo: Mii!$"
+	.string "Mienshao: Mii!$"
 
 BattleRoom_BattleGirl_Text_0:
 # 33 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
-	.string "Now Mienfoo, use Hi Jump Kick!$"
+	.string "Now Mienshao, use Hi Jump Kick!$"
 
 BattleRoom_BlackBelt_Text_0:
 # 44 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"

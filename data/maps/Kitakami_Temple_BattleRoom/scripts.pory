@@ -19,10 +19,10 @@ script BattleRoom_Machamp {
     end
 }
 
-script BattleRoom_Mienfoo {
+script BattleRoom_Mienshao {
     lock
-    playmoncry(SPECIES_MIENFOO, CRY_MODE_NORMAL)
-    msgbox("Mienfoo: Mii!")
+    playmoncry(SPECIES_MIENSHAO, CRY_MODE_NORMAL)
+    msgbox("Mienshao: Mii!")
     waitmoncry
     release
     end
@@ -30,9 +30,9 @@ script BattleRoom_Mienfoo {
 
 script BattleRoom_BattleGirl {
     lock
-    msgbox("Now Mienfoo, use Hi Jump Kick!")
-    playmoncry(SPECIES_MIENFOO, CRY_MODE_NORMAL)
-    applymovement(LOCALID_KITAKAMI_MIENFOO, moves(jump_in_place_left*2))
+    msgbox("Now Mienshao, use Hi Jump Kick!")
+    playmoncry(SPECIES_MIENSHAO, CRY_MODE_NORMAL)
+    applymovement(LOCALID_KITAKAMI_MIENSHAO, moves(jump_in_place_left*2))
     waitmovement(0)
     waitmoncry
     release
@@ -69,8 +69,9 @@ script BattleRoom_MoneyTrainer {
         checkmoney(10000)
         if (var(VAR_RESULT) == FALSE) {
             msgbox("Oh my, it seems you do not have the
-                    money right now. Please come back
-                    when you have some.")
+                    money right now. 
+                    
+                    Please come back when you have some.")
             hidemoneybox
             release
             end
