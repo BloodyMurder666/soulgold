@@ -409,7 +409,15 @@ DragonsDen_Shrine_EventScript_Elder2::
 	end
 
 DragonsDen_Shrine_EventScript_Elder3::
-	msgbox DragonsDen_Shrine_Text_Elder3, MSGBOX_NPC
+	lock
+	faceplayer
+	msgbox DragonsDen_Shrine_Text_DracoMeteorTeach, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, DragonsDen_Shrine_EventScript_DracoMeteorDeclined
+	msgbox DragonsDen_Shrine_Text_DracoMeteorWhichMon, MSGBOX_DEFAULT
+	setvar VAR_0x8005, MOVE_DRACO_METEOR
+	call MoveTutor_EventScript_OpenBox
+	goto_if_eq VAR_RESULT, FALSE, DragonsDen_Shrine_EventScript_DracoMeteorDeclined
+	goto DragonsDen_Shrine_EventScript_DracoMeteorTaught
 	end
 
 DragonsDen_Shrine_Text_Elder2:
@@ -418,11 +426,32 @@ DragonsDen_Shrine_Text_Elder2:
     .string "rare approval.\p"
     .string "In fact, not since Master Lance.$"
 
-DragonsDen_Shrine_Text_Elder3:
-    .string "You know young Master Lance?\p"
-    .string "He looks so much like our Master\n"
-    .string "did in his youth.\p"
-    .string "It's in their blood.$"
+DragonsDen_Shrine_EventScript_DracoMeteorDeclined::
+	msgbox DragonsDen_Shrine_Text_DracoMeteorDeclined, MSGBOX_DEFAULT
+	release
+	end
+
+DragonsDen_Shrine_EventScript_DracoMeteorTaught::
+	msgbox DragonsDen_Shrine_Text_DracoMeteorTaught, MSGBOX_DEFAULT
+	release
+	end
+
+DragonsDen_Shrine_Text_DracoMeteorTeach:
+    .string "Only the strongest Dragon Pokémon\n"
+    .string "can master Draco Meteor.\p"
+    .string "Would you like me to teach it to\n"
+    .string "one of your Pokémon?$"
+
+DragonsDen_Shrine_Text_DracoMeteorWhichMon:
+    .string "Which Pokémon should learn\n"
+    .string "Draco Meteor?$"
+
+DragonsDen_Shrine_Text_DracoMeteorDeclined:
+    .string "Come back whenever you wish to\n"
+    .string "master the ultimate Dragon move.$"
+
+DragonsDen_Shrine_Text_DracoMeteorTaught:
+    .string "May Draco Meteor serve you well.$"
 
 DragonsDen_Shrine_EventScript_ElderChooseDratini::
 	goto_if_eq VAR_DRAGONS_DEN_QUIZ, 0, DragonsDen_Shrine_EventScript_ElderGiveSpecialDratini
@@ -434,7 +463,7 @@ DragonsDen_Shrine_EventScript_ElderGiveBasicDratini::
 
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_DRATINI
 	bufferspeciesname STR_VAR_1, SPECIES_DRATINI
-	givemon SPECIES_DRATINI, 15
+	givemon SPECIES_DRATINI, 15, move1=MOVE_EXTREME_SPEED, move2=MOVE_SPACIAL_REND, shinyMode=SHINY_MODE_ALWAYS
 	call Common_EventScript_GiftMon
 
 	msgbox DragonsDen_Shrine_Text_SymbolicDragon, MSGBOX_DEFAULT
@@ -448,8 +477,8 @@ DragonsDen_Shrine_EventScript_ElderGiveSpecialDratini::
 
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_DRATINI
 	bufferspeciesname STR_VAR_1, SPECIES_DRATINI
-	givenamedmon 4
-	call Common_EventScript_GiftMonNamed
+	givemon SPECIES_DRATINI, 15, move1=MOVE_EXTREME_SPEED, move2=MOVE_SPACIAL_REND, shinyMode=SHINY_MODE_ALWAYS
+	call Common_EventScript_GiftMon
 
 	msgbox DragonsDen_Shrine_Text_SymbolicDragon, MSGBOX_DEFAULT
 	setflag FLAG_GOT_DRATINI

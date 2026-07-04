@@ -415,462 +415,464 @@ BlackthornGym_EventScript_Clair::
 # 208 "data/maps/BlackthornCity_Gym/scripts.pory"
 	trainerbattle_no_intro TRAINER_CLAIR_1, BlackthornGym_Text_ClairWinText
 # 209 "data/maps/BlackthornCity_Gym/scripts.pory"
-	msgbox BlackthornGym_Text_ClairText_GoToDragonsDen, MSGBOX_DEFAULT
+	createfieldmugshot MUGSHOT_CLAIR
 # 210 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setvar VAR_0x8008, 8
+	msgbox BlackthornGym_Text_ClairText_GoToDragonsDen, MSGBOX_DEFAULT
 # 211 "data/maps/BlackthornCity_Gym/scripts.pory"
-	call Common_EventScript_SetGymTrainers
+	setvar VAR_0x8008, 8
 # 212 "data/maps/BlackthornCity_Gym/scripts.pory"
-	setvar VAR_BLACKTHORN_CITY_STATE, 2
+	call Common_EventScript_SetGymTrainers
 # 213 "data/maps/BlackthornCity_Gym/scripts.pory"
-	closemessage
+	setvar VAR_BLACKTHORN_CITY_STATE, 2
 # 214 "data/maps/BlackthornCity_Gym/scripts.pory"
-	release
+	closemessage
 # 215 "data/maps/BlackthornCity_Gym/scripts.pory"
-	end
+	release
 # 216 "data/maps/BlackthornCity_Gym/scripts.pory"
-
+	end
 # 217 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_EventScript_ClairDuringChallenge::
+
 # 218 "data/maps/BlackthornCity_Gym/scripts.pory"
-	msgbox BlackthornGym_Text_ClairText_TooMuchToExpect, MSGBOX_DEFAULT
+BlackthornGym_EventScript_ClairDuringChallenge::
 # 219 "data/maps/BlackthornCity_Gym/scripts.pory"
-	closemessage
+	msgbox BlackthornGym_Text_ClairText_TooMuchToExpect, MSGBOX_DEFAULT
 # 220 "data/maps/BlackthornCity_Gym/scripts.pory"
-	release
+	closemessage
 # 221 "data/maps/BlackthornCity_Gym/scripts.pory"
-	end
+	release
 # 222 "data/maps/BlackthornCity_Gym/scripts.pory"
-
+	end
 # 223 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_EventScript_Clair_Defeated::
+
 # 224 "data/maps/BlackthornCity_Gym/scripts.pory"
-	msgbox BlackthornGym_Text_ClairText_League, MSGBOX_DEFAULT
+BlackthornGym_EventScript_Clair_Defeated::
 # 225 "data/maps/BlackthornCity_Gym/scripts.pory"
-	closemessage
+	msgbox BlackthornGym_Text_ClairText_League, MSGBOX_DEFAULT
 # 226 "data/maps/BlackthornCity_Gym/scripts.pory"
-	release
+	closemessage
 # 227 "data/maps/BlackthornCity_Gym/scripts.pory"
-	end
+	release
 # 228 "data/maps/BlackthornCity_Gym/scripts.pory"
-
+	end
 # 229 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_EventScript_ClairAfterLeague::
+
 # 230 "data/maps/BlackthornCity_Gym/scripts.pory"
-	msgbox BlackthornGym_Text_ClairAfterLeague, MSGBOX_DEFAULT
+BlackthornGym_EventScript_ClairAfterLeague::
 # 231 "data/maps/BlackthornCity_Gym/scripts.pory"
-	closemessage
+	msgbox BlackthornGym_Text_ClairAfterLeague, MSGBOX_DEFAULT
 # 232 "data/maps/BlackthornCity_Gym/scripts.pory"
-	release
-# 233 "data/maps/BlackthornCity_Gym/scripts.pory"
-	end
-# 234 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 235 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_ClairIntroText:
-# 236 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "I am Clair.\p"
-# 237 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "The world's best dragon master.\p"
-# 238 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "I can hold my own against even the\n"
-# 239 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Pokémon League's Elite Four.\p"
-# 240 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Do you still want to take me on?\p"
-# 241 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "…Fine. Let's do it!\p"
-# 242 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "As a Gym Leader, I will use my full\n"
-# 243 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "power against any opponent!$"
-# 244 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 245 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_ClairWinText:
-# 246 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "I lost?\p"
-# 247 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "I don't believe it. There must be\n"
-# 248 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "some mistake…$"
-# 249 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 250 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_ClairText_GoToDragonsDen:
-# 251 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "I won't admit this.\p"
-# 252 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "I may have lost, but you're still\n"
-# 253 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "not ready for the Pokémon League.\p"
-# 254 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "I know. You should take the dragon\n"
-# 255 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "user challenge.\p"
-# 256 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Behind this Gym is a place called\n"
-# 257 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Dragon's Den.\p"
-# 258 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "There is a small shrine at its\n"
-# 259 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "center. Go there.\p"
-# 260 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "If you can prove that you've lost\n"
-# 261 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "your lazy ideals, I will recognize\l"
-# 262 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "you as a trainer worthy of a Gym\l"
-# 263 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Badge!$"
-# 264 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 265 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_ClairText_TooMuchToExpect:
-# 266 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "What's the matter?\p"
-# 267 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Is it too much to expect of you?$"
-# 268 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 269 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_ClairText_YouKeptMeWaiting:
-# 270 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "You've kept me waiting!\p"
-# 271 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Here! Take this!$"
-# 272 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 273 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_ClairText_DescribeTM:
-# 274 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "That contains Dragon Claw.\p"
-# 275 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "You can figure out what it does.$"
-# 276 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 277 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_ClairText_League:
-# 278 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "What's the matter?\p"
-# 279 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Aren't you headed to the Pokémon\n"
-# 280 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "League?\p"
-# 281 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Don't you know where it is?\p"
-# 282 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "From here, go to New Bark Town.\p"
-# 283 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Then Surf east. The route there is\n"
-# 284 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "very tough.\p"
-# 285 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Don't you dare lose at the Pokémon\n"
-# 286 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "League!\p"
-# 287 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "If you do, I'll feel even worse\n"
-# 288 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "about having lost to you!\p"
-# 289 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Give it everything you've got.$"
-# 290 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 291 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_ClairAfterLeague:
-# 292 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "You did it, huh?\p"
-# 293 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "You are now the Johto Champ.$"
-# 294 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 295 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_ClairRematchText:
-# 296 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "You did it, huh?\p"
-# 297 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "You are now the Johto Champ.\p"
-# 298 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "You've proven your strength but can\n"
-# 299 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "you handle me again?\p"
-# 300 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "As a Dragon Master, I won't hold\n"
-# 301 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "back.\p"
-# 302 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Not this time.\p"
-# 303 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Want to have a rematch with me?$"
-# 304 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 305 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_ClairRematchDefeatText:
-# 306 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "I lost?\p"
-# 307 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Again?\p"
-# 308 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "I don't believe it. There must be\n"
-# 309 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "some mistake…$"
-# 310 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 311 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_CooltrainermCodySeenText:
-# 312 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "I just got access to use Dragon-\n"
-# 313 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "type Pokémon!$"
-# 314 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 315 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_CooltrainermCodyBeatenText:
-# 316 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Rats! If only I had a Dragonite!$"
-# 317 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 318 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_CooltrainermCodyAfterBattleText:
-# 319 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Members of our dragon-user clan\n"
-# 320 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "can use dragon Pokémon only after\l"
-# 321 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "our Master allows it.$"
-# 322 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 323 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_CooltrainerfFranSeenText:
-# 324 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "I can't allow a nameless trainer\n"
-# 325 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "past me!\p"
-# 326 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Clair would be livid if I did!$"
-# 327 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 328 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_CooltrainerfFranBeatenText:
-# 329 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Awww… I lost…$"
-# 330 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 331 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_CooltrainerfFranAfterBattleText:
-# 332 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Uh-oh… Clair is going to be mad…$"
-# 333 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 334 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_CooltrainermPaulSeenText:
-# 335 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Your first battle against dragons?\p"
-# 336 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "I'll show you how tough they are!$"
-# 337 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 338 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_CooltrainermPaulBeatenText:
-# 339 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "My dragon Pokémon lost?$"
-# 340 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 341 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_CooltrainermPaulAfterBattleText:
-# 342 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Lance told you that he'd like to\n"
-# 343 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "see you again?\p"
-# 344 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Not a chance!$"
-# 345 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 346 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_CooltrainermMikeSeenText:
-# 347 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "My chance of losing? Not even one\n"
-# 348 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "percent!$"
-# 349 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 350 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_CooltrainermMikeBeatenText:
-# 351 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "That's odd.$"
-# 352 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 353 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_CooltrainermMikeAfterBattleText:
-# 354 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "I know my short-comings now.\p"
-# 355 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Thanks for showing me!$"
-# 356 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 357 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_CooltrainerfLolaSeenText:
-# 358 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Dragons are sacred Pokémon.\p"
-# 359 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "They are full of life energy.\p"
-# 360 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "If you're not serious, you won't\n"
-# 361 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "be able to beat them.$"
-# 362 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 363 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_CooltrainerfLolaBeatenText:
-# 364 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Way to go!$"
-# 365 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 366 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_CooltrainerfLolaAfterBattleText:
-# 367 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Dragons are weak against Dragon-\n"
-# 368 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "type moves.$"
-# 369 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 370 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_EventScript_GymGuy::
-# 371 "data/maps/BlackthornCity_Gym/scripts.pory"
-	lock
-# 372 "data/maps/BlackthornCity_Gym/scripts.pory"
-	faceplayer
-# 373 "data/maps/BlackthornCity_Gym/scripts.pory"
-	goto_if_set FLAG_DEFEATED_BLACKTHORN_GYM, EcruteakCity_Gym_EventScript_GymGuy2
-# 374 "data/maps/BlackthornCity_Gym/scripts.pory"
-	msgbox BlackthornGym_Text_GuideText, MSGBOX_DEFAULT
-# 375 "data/maps/BlackthornCity_Gym/scripts.pory"
 	closemessage
-# 376 "data/maps/BlackthornCity_Gym/scripts.pory"
+# 233 "data/maps/BlackthornCity_Gym/scripts.pory"
 	release
-# 377 "data/maps/BlackthornCity_Gym/scripts.pory"
+# 234 "data/maps/BlackthornCity_Gym/scripts.pory"
 	end
-# 378 "data/maps/BlackthornCity_Gym/scripts.pory"
-	
-# 379 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_EventScript_GymGuy2::
-# 380 "data/maps/BlackthornCity_Gym/scripts.pory"
-	msgbox BlackthornGym_Text_GuideWinText, MSGBOX_DEFAULT
-# 381 "data/maps/BlackthornCity_Gym/scripts.pory"
+# 235 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 236 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_ClairIntroText:
+# 237 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "I am Clair.\p"
+# 238 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "The world's best dragon master.\p"
+# 239 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "I can hold my own against even the\n"
+# 240 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Pokémon League's Elite Four.\p"
+# 241 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Do you still want to take me on?\p"
+# 242 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "…Fine. Let's do it!\p"
+# 243 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "As a Gym Leader, I will use my full\n"
+# 244 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "power against any opponent!$"
+# 245 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 246 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_ClairWinText:
+# 247 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "I lost?\p"
+# 248 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "I don't believe it. There must be\n"
+# 249 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "some mistake…$"
+# 250 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 251 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_ClairText_GoToDragonsDen:
+# 252 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "I won't admit this.\p"
+# 253 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "I may have lost, but you're still\n"
+# 254 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "not ready for the Pokémon League.\p"
+# 255 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "I know. You should take the dragon\n"
+# 256 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "user challenge.\p"
+# 257 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Behind this Gym is a place called\n"
+# 258 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Dragon's Den.\p"
+# 259 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "There is a small shrine at its\n"
+# 260 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "center. Go there.\p"
+# 261 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "If you can prove that you've lost\n"
+# 262 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "your lazy ideals, I will recognize\l"
+# 263 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "you as a trainer worthy of a Gym\l"
+# 264 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Badge!$"
+# 265 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 266 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_ClairText_TooMuchToExpect:
+# 267 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "What's the matter?\p"
+# 268 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Is it too much to expect of you?$"
+# 269 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 270 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_ClairText_YouKeptMeWaiting:
+# 271 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "You've kept me waiting!\p"
+# 272 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Here! Take this!$"
+# 273 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 274 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_ClairText_DescribeTM:
+# 275 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "That contains Dragon Claw.\p"
+# 276 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "You can figure out what it does.$"
+# 277 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 278 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_ClairText_League:
+# 279 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "What's the matter?\p"
+# 280 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Aren't you headed to the Pokémon\n"
+# 281 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "League?\p"
+# 282 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Don't you know where it is?\p"
+# 283 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "From here, go to New Bark Town.\p"
+# 284 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Then Surf east. The route there is\n"
+# 285 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "very tough.\p"
+# 286 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Don't you dare lose at the Pokémon\n"
+# 287 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "League!\p"
+# 288 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "If you do, I'll feel even worse\n"
+# 289 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "about having lost to you!\p"
+# 290 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Give it everything you've got.$"
+# 291 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 292 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_ClairAfterLeague:
+# 293 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "You did it, huh?\p"
+# 294 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "You are now the Johto Champ.$"
+# 295 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 296 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_ClairRematchText:
+# 297 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "You did it, huh?\p"
+# 298 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "You are now the Johto Champ.\p"
+# 299 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "You've proven your strength but can\n"
+# 300 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "you handle me again?\p"
+# 301 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "As a Dragon Master, I won't hold\n"
+# 302 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "back.\p"
+# 303 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Not this time.\p"
+# 304 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Want to have a rematch with me?$"
+# 305 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 306 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_ClairRematchDefeatText:
+# 307 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "I lost?\p"
+# 308 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Again?\p"
+# 309 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "I don't believe it. There must be\n"
+# 310 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "some mistake…$"
+# 311 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 312 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_CooltrainermCodySeenText:
+# 313 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "I just got access to use Dragon-\n"
+# 314 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "type Pokémon!$"
+# 315 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 316 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_CooltrainermCodyBeatenText:
+# 317 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Rats! If only I had a Dragonite!$"
+# 318 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 319 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_CooltrainermCodyAfterBattleText:
+# 320 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Members of our dragon-user clan\n"
+# 321 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "can use dragon Pokémon only after\l"
+# 322 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "our Master allows it.$"
+# 323 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 324 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_CooltrainerfFranSeenText:
+# 325 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "I can't allow a nameless trainer\n"
+# 326 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "past me!\p"
+# 327 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Clair would be livid if I did!$"
+# 328 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 329 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_CooltrainerfFranBeatenText:
+# 330 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Awww… I lost…$"
+# 331 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 332 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_CooltrainerfFranAfterBattleText:
+# 333 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Uh-oh… Clair is going to be mad…$"
+# 334 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 335 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_CooltrainermPaulSeenText:
+# 336 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Your first battle against dragons?\p"
+# 337 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "I'll show you how tough they are!$"
+# 338 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 339 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_CooltrainermPaulBeatenText:
+# 340 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "My dragon Pokémon lost?$"
+# 341 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 342 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_CooltrainermPaulAfterBattleText:
+# 343 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Lance told you that he'd like to\n"
+# 344 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "see you again?\p"
+# 345 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Not a chance!$"
+# 346 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 347 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_CooltrainermMikeSeenText:
+# 348 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "My chance of losing? Not even one\n"
+# 349 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "percent!$"
+# 350 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 351 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_CooltrainermMikeBeatenText:
+# 352 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "That's odd.$"
+# 353 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 354 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_CooltrainermMikeAfterBattleText:
+# 355 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "I know my short-comings now.\p"
+# 356 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Thanks for showing me!$"
+# 357 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 358 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_CooltrainerfLolaSeenText:
+# 359 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Dragons are sacred Pokémon.\p"
+# 360 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "They are full of life energy.\p"
+# 361 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "If you're not serious, you won't\n"
+# 362 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "be able to beat them.$"
+# 363 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 364 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_CooltrainerfLolaBeatenText:
+# 365 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Way to go!$"
+# 366 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 367 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_CooltrainerfLolaAfterBattleText:
+# 368 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Dragons are weak against Dragon-\n"
+# 369 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "type moves.$"
+# 370 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 371 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_EventScript_GymGuy::
+# 372 "data/maps/BlackthornCity_Gym/scripts.pory"
+	lock
+# 373 "data/maps/BlackthornCity_Gym/scripts.pory"
+	faceplayer
+# 374 "data/maps/BlackthornCity_Gym/scripts.pory"
+	goto_if_set FLAG_DEFEATED_BLACKTHORN_GYM, EcruteakCity_Gym_EventScript_GymGuy2
+# 375 "data/maps/BlackthornCity_Gym/scripts.pory"
+	msgbox BlackthornGym_Text_GuideText, MSGBOX_DEFAULT
+# 376 "data/maps/BlackthornCity_Gym/scripts.pory"
+	closemessage
+# 377 "data/maps/BlackthornCity_Gym/scripts.pory"
 	release
+# 378 "data/maps/BlackthornCity_Gym/scripts.pory"
+	end
+# 379 "data/maps/BlackthornCity_Gym/scripts.pory"
+	
+# 380 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_EventScript_GymGuy2::
+# 381 "data/maps/BlackthornCity_Gym/scripts.pory"
+	msgbox BlackthornGym_Text_GuideWinText, MSGBOX_DEFAULT
 # 382 "data/maps/BlackthornCity_Gym/scripts.pory"
-	end	
+	release
 # 383 "data/maps/BlackthornCity_Gym/scripts.pory"
-
+	end	
 # 384 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_GuideText:
+
 # 385 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Yo! Champ in making!\p"
+BlackthornGym_Text_GuideText:
 # 386 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "It's been a long journey, but we\n"
+    .string "Yo! Champ in making!\p"
 # 387 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "are almost done! Count on me!\p"
+    .string "It's been a long journey, but we\n"
 # 388 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "While Clair looks up to the Dragon\n"
+    .string "are almost done! Count on me!\p"
 # 389 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Master, Lance, she's managed to\l"
+    .string "While Clair looks up to the Dragon\n"
 # 390 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "create her own identity with a\l"
+    .string "Master, Lance, she's managed to\l"
 # 391 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "team consisting of dragons from\l"
+    .string "create her own identity with a\l"
 # 392 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "the sea.\p"
+    .string "team consisting of dragons from\l"
 # 393 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Dragons are supposed to be\n"
+    .string "the sea.\p"
 # 394 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "weak against Ice-type moves,\l"
+    .string "Dragons are supposed to be\n"
 # 395 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "but you'll need some Dragon-type\l"
+    .string "weak against Ice-type moves,\l"
 # 396 "data/maps/BlackthornCity_Gym/scripts.pory"
-	.string "or Fairy-type moves of your own if\l"
+    .string "but you'll need some Dragon-type\l"
 # 397 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "you want to win.$"
+	.string "or Fairy-type moves of your own if\l"
 # 398 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "You got this!$"
+    .string "you want to win.$"
 # 399 "data/maps/BlackthornCity_Gym/scripts.pory"
-
+    .string "You got this!$"
 # 400 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_GuideWinText:
-# 401 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "You were great to beat Clair!\p"
-# 402 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "All that's left is the Pokémon\n"
-# 403 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "League challenge.\p"
-# 404 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "You're on the way to becoming the\n"
-# 405 "data/maps/BlackthornCity_Gym/scripts.pory"
-    .string "Pokémon Champion!$"
-# 406 "data/maps/BlackthornCity_Gym/scripts.pory"
 
+# 401 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_GuideWinText:
+# 402 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "You were great to beat Clair!\p"
+# 403 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "All that's left is the Pokémon\n"
+# 404 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "League challenge.\p"
+# 405 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "You're on the way to becoming the\n"
+# 406 "data/maps/BlackthornCity_Gym/scripts.pory"
+    .string "Pokémon Champion!$"
 # 407 "data/maps/BlackthornCity_Gym/scripts.pory"
 
 # 408 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_EventScript_Statue::
+
 # 409 "data/maps/BlackthornCity_Gym/scripts.pory"
-	lock
+BlackthornGym_EventScript_Statue::
 # 410 "data/maps/BlackthornCity_Gym/scripts.pory"
-	goto_if_set FLAG_DEFEATED_BLACKTHORN_GYM, BlackthornGym_EventScript_Statue2
+	lock
 # 411 "data/maps/BlackthornCity_Gym/scripts.pory"
-	msgbox BlackthornGym_Text_GymStatue, MSGBOX_DEFAULT
+	goto_if_set FLAG_DEFEATED_BLACKTHORN_GYM, BlackthornGym_EventScript_Statue2
 # 412 "data/maps/BlackthornCity_Gym/scripts.pory"
-	closemessage
+	msgbox BlackthornGym_Text_GymStatue, MSGBOX_DEFAULT
 # 413 "data/maps/BlackthornCity_Gym/scripts.pory"
-	release
-# 414 "data/maps/BlackthornCity_Gym/scripts.pory"
-	end
-# 415 "data/maps/BlackthornCity_Gym/scripts.pory"
-
-# 416 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_EventScript_Statue2::
-# 417 "data/maps/BlackthornCity_Gym/scripts.pory"
-	msgbox BlackthornGym_Text_GymStatueCertified, MSGBOX_DEFAULT
-# 418 "data/maps/BlackthornCity_Gym/scripts.pory"
 	closemessage
-# 419 "data/maps/BlackthornCity_Gym/scripts.pory"
+# 414 "data/maps/BlackthornCity_Gym/scripts.pory"
 	release
-# 420 "data/maps/BlackthornCity_Gym/scripts.pory"
+# 415 "data/maps/BlackthornCity_Gym/scripts.pory"
 	end
+# 416 "data/maps/BlackthornCity_Gym/scripts.pory"
+
+# 417 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_EventScript_Statue2::
+# 418 "data/maps/BlackthornCity_Gym/scripts.pory"
+	msgbox BlackthornGym_Text_GymStatueCertified, MSGBOX_DEFAULT
+# 419 "data/maps/BlackthornCity_Gym/scripts.pory"
+	closemessage
+# 420 "data/maps/BlackthornCity_Gym/scripts.pory"
+	release
 # 421 "data/maps/BlackthornCity_Gym/scripts.pory"
-
+	end
 # 422 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_GymStatue:
-# 423 "data/maps/BlackthornCity_Gym/scripts.pory"
-	.string "Blackthorn City Pokémon Gym$"
-# 424 "data/maps/BlackthornCity_Gym/scripts.pory"
 
+# 423 "data/maps/BlackthornCity_Gym/scripts.pory"
+BlackthornGym_Text_GymStatue:
+# 424 "data/maps/BlackthornCity_Gym/scripts.pory"
+	.string "Blackthorn City Pokémon Gym$"
 # 425 "data/maps/BlackthornCity_Gym/scripts.pory"
-BlackthornGym_Text_GymStatueCertified:
+
 # 426 "data/maps/BlackthornCity_Gym/scripts.pory"
-	.string "Blackthorn City Pokémon Gym\p"
+BlackthornGym_Text_GymStatueCertified:
 # 427 "data/maps/BlackthornCity_Gym/scripts.pory"
-	.string "Clair's Certified Trainers:\n"
+	.string "Blackthorn City Pokémon Gym\p"
 # 428 "data/maps/BlackthornCity_Gym/scripts.pory"
+	.string "Clair's Certified Trainers:\n"
+# 429 "data/maps/BlackthornCity_Gym/scripts.pory"
 	.string "{PLAYER}$"
 
 BlackthornCity_Gym_EventScript_Kingdra::
-# 431 "data/maps/BlackthornCity_Gym/scripts.pory"
-	lock
 # 432 "data/maps/BlackthornCity_Gym/scripts.pory"
-	faceplayer
+	lock
 # 433 "data/maps/BlackthornCity_Gym/scripts.pory"
-	playmoncry SPECIES_KINGDRA, CRY_MODE_NORMAL
+	faceplayer
 # 434 "data/maps/BlackthornCity_Gym/scripts.pory"
-	msgbox BlackthornCity_Gym_EventScript_Kingdra_Text_0, MSGBOX_NPC
+	playmoncry SPECIES_KINGDRA, CRY_MODE_NORMAL
 # 435 "data/maps/BlackthornCity_Gym/scripts.pory"
-	waitmoncry
+	msgbox BlackthornCity_Gym_EventScript_Kingdra_Text_0, MSGBOX_NPC
 # 436 "data/maps/BlackthornCity_Gym/scripts.pory"
+	waitmoncry
+# 437 "data/maps/BlackthornCity_Gym/scripts.pory"
 	release
 	end
 
 
 BlackthornCity_Gym_EventScript_Kingdra_Text_0:
-# 434 "data/maps/BlackthornCity_Gym/scripts.pory"
+# 435 "data/maps/BlackthornCity_Gym/scripts.pory"
 	.string "King!!$"

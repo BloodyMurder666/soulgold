@@ -24,6 +24,22 @@ FoggyShoreSign::
 	return
 
 
+FoggyShoreBuizel::
+# 29 "data/maps/FoggyShore2/scripts.pory"
+	lock
+# 30 "data/maps/FoggyShore2/scripts.pory"
+	faceplayer
+# 31 "data/maps/FoggyShore2/scripts.pory"
+	playmoncry SPECIES_BUIZEL, CRY_MODE_NORMAL
+# 32 "data/maps/FoggyShore2/scripts.pory"
+	msgbox FoggyShoreBuizel_Text_0
+# 33 "data/maps/FoggyShore2/scripts.pory"
+	waitmoncry
+# 34 "data/maps/FoggyShore2/scripts.pory"
+	release
+	end
+
+
 NijoTrainer_Text_0:
 # 4 "data/maps/FoggyShore2/scripts.pory"
 	.string "What are you doing here so far off the\n"
@@ -57,3 +73,7 @@ SaeTrainer_Text_2:
 FoggyShoreSign_Text_0:
 # 25 "data/maps/FoggyShore2/scripts.pory"
 	.string "{UP_ARROW} Lost Woods$"
+
+FoggyShoreBuizel_Text_0:
+# 32 "data/maps/FoggyShore2/scripts.pory"
+	.string "Buizel: Buibuibuiiii!$"

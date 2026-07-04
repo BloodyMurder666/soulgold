@@ -29,56 +29,26 @@ DragonsDen_Text_Clair:
 	.string "with me, come to the Fighting\l"
 	.string "Dojo in Saffron.$"
 
-DragonsDen_Cavern_Trigger_ClairLeft::
-	lock 
-	playse SE_PIN
-	applymovement LOCALID_DRAGONSDEN2_CLAIR, Common_Movement_ExclamationMark
-	delay 60
-	call DragonsDen_Cavern_EventScript_Clair
-	applymovement LOCALID_DRAGONSDEN2_CLAIR, DragonsDen_Cavern_Movement_ClairLeaveLeft
-	waitmovement 0
-	setflag FLAG_HIDE_DRAGONS_DEN_CAVERN_CLAIR
-	removeobject LOCALID_DRAGONSDEN2_CLAIR
-	playse SE_EXIT
-	setvar VAR_BLACKTHORN_CITY_STATE, 4
-	setrespawn HEAL_LOCATION_BLACKTHORN_CITY
-	release
-	end
+
 
 DragonsDen_Cavern_Trigger_ClairMid::
 	lock 
 	playse SE_PIN
 	applymovement LOCALID_DRAGONSDEN2_CLAIR, Common_Movement_ExclamationMark
 	delay 60
-	applymovement LOCALID_DRAGONSDEN2_CLAIR, Common_Movement_WalkRight1
-	call DragonsDen_Cavern_EventScript_Clair
-	applymovement LOCALID_DRAGONSDEN2_CLAIR, DragonsDen_Cavern_Movement_ClairLeaveMid
+	approachobject LOCALID_DRAGONSDEN2_CLAIR, LOCALID_PLAYER, DIR_EAST, DIR_WEST
 	waitmovement 0
+	turnobject LOCALID_PLAYER, DIR_WEST
+	call DragonsDen_Cavern_EventScript_Clair
+	fadescreen FADE_TO_BLACK
 	setflag FLAG_HIDE_DRAGONS_DEN_CAVERN_CLAIR
 	removeobject LOCALID_DRAGONSDEN2_CLAIR
 	playse SE_EXIT
+	delay 45
+	fadescreen FADE_FROM_BLACK
 	setvar VAR_BLACKTHORN_CITY_STATE, 4
 	release
 	end
-
-DragonsDen_Cavern_Trigger_ClairRight::
-	lock 
-	playse SE_PIN
-	applymovement LOCALID_DRAGONSDEN2_CLAIR, Common_Movement_ExclamationMark
-	delay 60
-	applymovement LOCALID_DRAGONSDEN2_CLAIR, Common_Movement_WalkRight1
-	waitmovement 0
-	applymovement LOCALID_DRAGONSDEN2_CLAIR, Common_Movement_WalkRight1
-	call DragonsDen_Cavern_EventScript_Clair
-	applymovement LOCALID_DRAGONSDEN2_CLAIR, DragonsDen_Cavern_Movement_ClairLeaveRight
-	waitmovement 0
-	setflag FLAG_HIDE_DRAGONS_DEN_CAVERN_CLAIR
-	removeobject LOCALID_DRAGONSDEN2_CLAIR
-	playse SE_EXIT
-	setvar VAR_BLACKTHORN_CITY_STATE, 4
-	release
-	end
-
 
 DragonsDen_Cavern_EventScript_Clair::
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_WEST
