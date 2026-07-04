@@ -189,6 +189,12 @@ static const u8 sText_AchRouteExpertsName[] = _("Now I'm the Expert");
 static const u8 sText_AchRouteExpertsDesc[] = _("Defeat all route experts.");
 static const u8 sText_AchHallOfFameDebutName[] = _("Champion");
 static const u8 sText_AchHallOfFameDebutDesc[] = _("Enter the Hall of Fame\nfor the first time.");
+static const u8 sText_AchTitleDefenderName[] = _("Title Defender");
+static const u8 sText_AchTitleDefenderDesc[] = _("Defend your champion title once.");
+static const u8 sText_AchLongTermCareerName[] = _("Long Term Career");
+static const u8 sText_AchLongTermCareerDesc[] = _("Defend your champion title five times.");
+static const u8 sText_AchUndefeatedChampionName[] = _("Undefeated Champion");
+static const u8 sText_AchUndefeatedChampionDesc[] = _("Defend your champion title 15 times.");
 static const u8 sText_AchBuenaSuperfanName[] = _("Buena Superfan");
 static const u8 sText_AchBuenaSuperfanDesc[] = _("Answer Buena's Password\ncorrectly on 10 days.");
 static const u8 sText_AchTravellingHealerName[] = _("Travelling Healer");
@@ -309,6 +315,9 @@ static const struct Achievement sAchievements[] =
     {ACH_JOHTO_BADGE_GLACIER, sText_AchGlacierBadgeName, sText_AchGlacierBadgeDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateGlacierBadge},
     {ACH_JOHTO_BADGE_RISING, sText_AchRisingBadgeName, sText_AchRisingBadgeDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateRisingBadge},
     {ACH_HALL_OF_FAME_DEBUT, sText_AchHallOfFameDebutName, sText_AchHallOfFameDebutDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, NULL},
+    {ACH_TITLE_DEFENDER, sText_AchTitleDefenderName, sText_AchTitleDefenderDesc, ACH_TIER_SILVER, ACH_COUNTER_TITLE_DEFENSE_WINS, 1, TRAINER_NONE_ACH, NULL},
+    {ACH_LONG_TERM_CAREER, sText_AchLongTermCareerName, sText_AchLongTermCareerDesc, ACH_TIER_GOLD, ACH_COUNTER_TITLE_DEFENSE_WINS, 5, TRAINER_NONE_ACH, NULL},
+    {ACH_UNDEFEATED_CHAMPION, sText_AchUndefeatedChampionName, sText_AchUndefeatedChampionDesc, ACH_TIER_PLATINUM, ACH_COUNTER_TITLE_DEFENSE_WINS, 15, TRAINER_NONE_ACH, NULL},
     {ACH_CATCH_LAPRAS, sText_AchCatchLaprasName, sText_AchCatchLaprasDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtLapras},
 
     // Miscellaneous achievements
@@ -1012,6 +1021,8 @@ u32 Achievement_GetCounter(enum AchievementCounter counter)
         return Achievement_GetBestBattlePyramidRounds();
     case ACH_COUNTER_ROCKET_ARCADE_WINS:
         return gSaveBlock2Ptr->frontier.arcadeTotalWins;
+    case ACH_COUNTER_TITLE_DEFENSE_WINS:
+        return VarGet(VAR_TITLE_DEFENSE_WINS);
     default:
         break;
     }

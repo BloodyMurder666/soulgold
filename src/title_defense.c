@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "battle_setup.h"
 #include "event_data.h"
 #include "field_message_box.h"
@@ -291,4 +292,5 @@ void TitleDefense_IncrementWins(void)
 
     if (wins < MAX_u16)
         VarSet(VAR_TITLE_DEFENSE_WINS, wins + 1);
+    Achievement_CheckAll();
 }

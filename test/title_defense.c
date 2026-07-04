@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "battle_setup.h"
 #include "event_data.h"
 #include "random.h"
@@ -98,9 +99,23 @@ TEST("Title Defense prepares a standard trainer battle")
 
 TEST("Title Defense win counter increments and saturates")
 {
+    VarSet(VAR_TITLE_DEFENSE_WINS, 0);
+    TitleDefense_IncrementWins();
+    EXPECT_EQ(VarGet(VAR_TITLE_DEFENSE_WINS), 1);
+    EXPECT(Achievement_IsUnlocked(ACH_TITLE_DEFENDER));
+    EXPECT(!Achievement_IsUnlocked(ACH_LONG_TERM_CAREER));
+    EXPECT(!Achievement_IsUnlocked(ACH_UNDEFEATED_CHAMPION));
+
     VarSet(VAR_TITLE_DEFENSE_WINS, 4);
     TitleDefense_IncrementWins();
     EXPECT_EQ(VarGet(VAR_TITLE_DEFENSE_WINS), 5);
+    EXPECT(Achievement_IsUnlocked(ACH_LONG_TERM_CAREER));
+    EXPECT(!Achievement_IsUnlocked(ACH_UNDEFEATED_CHAMPION));
+
+    VarSet(VAR_TITLE_DEFENSE_WINS, 14);
+    TitleDefense_IncrementWins();
+    EXPECT_EQ(VarGet(VAR_TITLE_DEFENSE_WINS), 15);
+    EXPECT(Achievement_IsUnlocked(ACH_UNDEFEATED_CHAMPION));
 
     VarSet(VAR_TITLE_DEFENSE_WINS, MAX_u16);
     TitleDefense_IncrementWins();

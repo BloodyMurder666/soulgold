@@ -182,4 +182,4 @@ SproutTower_1F_Guard_Text_1:
 # 89 "data/maps/SproutTower_1F/scripts.pory"
 	.string "Greetings, {PLAYER}.\n"
 	.string "Elder Li would like to speak with you.\p"
-	.string "Please see him in the top floor.$"
+	.string "Please see him on the top floor.$"
