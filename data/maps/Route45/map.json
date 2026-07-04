@@ -304,7 +304,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(REMORAID)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(HORSEA)",
       "x": 23,
       "y": 59,
       "elevation": 0,
@@ -317,7 +317,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(REMORAID)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(HORSEA)",
       "x": 30,
       "y": 97,
       "elevation": 0,
@@ -330,7 +330,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(REMORAID)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(HORSEA)",
       "x": 20,
       "y": 3,
       "elevation": 0,

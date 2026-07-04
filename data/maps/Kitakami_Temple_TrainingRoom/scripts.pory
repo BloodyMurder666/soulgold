@@ -19,8 +19,11 @@ script dojoFexpert {
 }
 
 script dojoTrainer {
+    lock
     msgbox("The trainee is meditating, 
             it would be rude to disturb them.")
+    closemessage
+    release
     end
 }
 

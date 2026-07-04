@@ -2,7 +2,7 @@
   "id": "MAP_KITAKAMI_TEMPLE_BEDROOM",
   "name": "Kitakami_Temple_Bedroom",
   "layout": "LAYOUT_KITAKAMI_TEMPLE_BEDROOM",
-  "music": "MUS_DUMMY",
+  "music": "MUS_HG_SPROUT_TOWER",
   "region_map_section": "MAPSEC_KITAKAMI_VILLAGE",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

@@ -70,3 +70,4 @@ node_modules/
 docs_site/dist/
 !docs_site/src/assets/app.js
 porytiles/
+*.srm

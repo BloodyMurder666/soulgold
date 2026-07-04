@@ -8131,7 +8131,9 @@ BattleScript_TotemFlaredToLife::
 	playanimation BS_ATTACKER, B_ANIM_TOTEM_FLARE, NULL
 	printstring STRINGID_AURAFLAREDTOLIFE
 	waitmessage B_WAIT_TIME_LONG
+	beginstatbuffbatch
 	call BattleScript_ApplyTotemVarBoost
+	flushstatbuffbatch
 	end2
 
 BattleScript_MirrorHerbCopyStatChangeEnd2::
@@ -8166,7 +8168,9 @@ BattleScript_OpportunistCopyStatChangeEnd:
 	return
 
 BattleScript_TotemVar::
+	beginstatbuffbatch
 	call BattleScript_TotemVar_Ret
+	flushstatbuffbatch
 	end2
 
 BattleScript_TotemVar_Ret::
@@ -8175,8 +8179,6 @@ BattleScript_TotemVarEnd:
 	return
 BattleScript_ApplyTotemVarBoost:
 	statbuffchange BS_TARGET, STAT_CHANGE_ALLOW_PTR, BattleScript_TotemVarEnd
-	printfromtable gStatUpStringIds
-	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_TotemVar_Ret  @loop until stats bitfield is empty
 
 

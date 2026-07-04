@@ -28,7 +28,13 @@ dojoFexpert_2:
 
 dojoTrainer::
 # 22 "data/maps/Kitakami_Temple_TrainingRoom/scripts.pory"
+	lock
+# 23 "data/maps/Kitakami_Temple_TrainingRoom/scripts.pory"
 	msgbox dojoTrainer_Text_0
+# 25 "data/maps/Kitakami_Temple_TrainingRoom/scripts.pory"
+	closemessage
+# 26 "data/maps/Kitakami_Temple_TrainingRoom/scripts.pory"
+	release
 	end
 
 
@@ -46,6 +52,6 @@ dojoFexpert_Text_1:
 	.string "training.$"
 
 dojoTrainer_Text_0:
-# 22 "data/maps/Kitakami_Temple_TrainingRoom/scripts.pory"
+# 23 "data/maps/Kitakami_Temple_TrainingRoom/scripts.pory"
 	.string "The trainee is meditating, \n"
 	.string "it would be rude to disturb them.$"
