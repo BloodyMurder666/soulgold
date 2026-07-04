@@ -893,7 +893,7 @@
 #define TRAINER_NIJO                      886
 #define TRAINER_SAE                       887
 #define TRAINER_MINA                      888
-#define TRAINER_UNUSED_25                 889
+#define TRAINER_LI_2                      889
 #define TRAINER_UNUSED_26                 890
 #define TRAINER_UNUSED_27                 891
 #define TRAINER_UNUSED_28                 892

@@ -128,6 +128,32 @@
       "trainer_sight_or_berry_tree_id": "2",
       "script": "SaeTrainer",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ROOKIDEE)",
+      "x": 3,
+      "y": 8,
+      "elevation": 4,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MURKROW)",
+      "x": 26,
+      "y": 4,
+      "elevation": 4,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
     }
   ],
   "warp_events": [
@@ -149,7 +175,7 @@
       "x": 17,
       "y": 10,
       "elevation": 0,
-      "dest_map": "MAP_FOGGY_SHORE2",
+      "dest_map": "MAP_SOUTH_SHORE_HOUSE",
       "dest_warp_id": "0"
     }
   ],

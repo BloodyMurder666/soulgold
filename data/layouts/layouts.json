@@ -9876,6 +9876,16 @@
       "secondary_tileset": "gTileset_Dojo",
       "border_filepath": "data/layouts/Kitakami_Temple_BattleRoom/border.bin",
       "blockdata_filepath": "data/layouts/Kitakami_Temple_BattleRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_SOUTH_SHORE_HOUSE",
+      "name": "SouthShoreHouse_Layout",
+      "width": 13,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Building",
+      "secondary_tileset": "gTileset_House_Lab",
+      "border_filepath": "data/layouts/SouthShoreHouse/border.bin",
+      "blockdata_filepath": "data/layouts/SouthShoreHouse/map.bin"
     }
   ]
 }

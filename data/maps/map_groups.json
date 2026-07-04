@@ -364,7 +364,8 @@
     "Kitakami_Temple_TrainingRoom",
     "Kitakami_Temple_Bedroom",
     "Kitakami_Temple_Storage",
-    "Kitakami_Temple_BattleRoom"
+    "Kitakami_Temple_BattleRoom",
+    "SouthShoreHouse"
   ],
   "gMapGroup_IndoorKantoRoutes": [
     "Route26_House1",

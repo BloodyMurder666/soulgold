@@ -341,6 +341,7 @@ enum
     MAP_KITAKAMI_TEMPLE_BEDROOM               = (34 | (22 << 8)),
     MAP_KITAKAMI_TEMPLE_STORAGE               = (35 | (22 << 8)),
     MAP_KITAKAMI_TEMPLE_BATTLE_ROOM           = (36 | (22 << 8)),
+    MAP_SOUTH_SHORE_HOUSE                     = (37 | (22 << 8)),
 
     // gMapGroup_IndoorKantoRoutes
     MAP_ROUTE26_HOUSE1                = (0 | (23 << 8)),

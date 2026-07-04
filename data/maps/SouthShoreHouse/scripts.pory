@@ -1,0 +1,52 @@
+mapscripts SouthShoreHouse_MapScripts {}
+
+script SouthShoreHouseMan {
+    lock
+    faceplayer
+    msgbox("My grandparent always used to tell
+            stories of a beast hiding in the
+            depths of the forest.
+            
+            No normal person could ever hope to 
+            find it no matter how hard they looked,
+            for it lived on a path that could only
+            be revealed by a mirror that does not
+            reflect its owner.
+            
+            I wonder if such object even exists.")
+    checkitem(ITEM_BLACK_MIRROR)
+    if (var(VAR_RESULT) == TRUE) {
+        if (flag(FLAG_SHOWN_MIRROR) == FALSE) {
+            msgbox("Oh! That object you hold! That looks
+                exactly like the item my grandpa
+                described to me!
+                
+                To think that the stories were true.
+                
+                He told me that the path can be
+                found by following the ravens. 
+                
+                Best of luck finding the beast, trainer.")
+                setflag(FLAG_SHOWN_MIRROR)
+                release
+                end
+        } else {
+            msgbox("You must follow the ravens with the
+                    mirror in hand to find the lair of the
+                    beast.")
+        }
+        
+    }
+    release
+    end
+}
+
+script SouthShoreHouseSableye {
+    lock
+    faceplayer
+    playmoncry(SPECIES_SABLEYE, CRY_MODE_NORMAL)
+    msgbox("Sableye: Sablblbllblb!")
+    waitmoncry
+    release
+    end
+}

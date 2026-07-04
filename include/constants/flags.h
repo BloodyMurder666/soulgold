@@ -1623,6 +1623,7 @@
 #define FLAG_OBTAINED_OGERPON_MASKS                 0x953
 #define FLAG_ITEM_PROTECTOR                         0x954
 #define FLAG_ITEM_CHOICESPECS                       0x955
+#define FLAG_SHOWN_MIRROR                           0x956
 
 #define FLAG_0x1500                                 0x1500
 // Daily Flags
