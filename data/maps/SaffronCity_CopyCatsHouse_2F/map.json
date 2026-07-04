@@ -67,7 +67,7 @@
       "flag": "FLAG_HIDE_COPYCAT_CLEFAIRY_DOLL"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(DODRIO)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CLEFAIRY)",
       "x": 5,
       "y": 5,
       "elevation": 0,

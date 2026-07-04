@@ -39,7 +39,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(LOMBRE)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(QUAGSIRE)",
       "x": 9,
       "y": 33,
       "elevation": 0,
@@ -78,7 +78,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(LOTAD)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CACNEA)",
       "x": 11,
       "y": 18,
       "elevation": 0,

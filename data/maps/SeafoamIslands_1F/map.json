@@ -80,7 +80,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(JYNX)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(DEWGONG)",
       "x": 49,
       "y": 9,
       "elevation": 0,
@@ -93,7 +93,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SMOOCHUM)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SPHEAL)",
       "x": 50,
       "y": 10,
       "elevation": 0,

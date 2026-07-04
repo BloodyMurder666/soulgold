@@ -78,7 +78,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SURSKIT)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ODDISH)",
       "x": 23,
       "y": 28,
       "elevation": 0,
@@ -91,7 +91,7 @@
       "flag": "FLAG_DAY_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SPOINK)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ABRA)",
       "x": 2,
       "y": 34,
       "elevation": 0,

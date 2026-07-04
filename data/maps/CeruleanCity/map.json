@@ -127,7 +127,7 @@
       "flag": "FLAG_HIDE_CERULEANCAVE_GUARD"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(LOTAD)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(POLIWAG)",
       "x": 37,
       "y": 18,
       "elevation": 0,
@@ -140,7 +140,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SPEAROW)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(EXEGGCUTE)",
       "x": 37,
       "y": 9,
       "elevation": 0,

@@ -130,7 +130,7 @@
       "flag": "FLAG_DAY_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(VENONAT)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SPINARAK)",
       "x": 38,
       "y": 9,
       "elevation": 0,
@@ -143,7 +143,7 @@
       "flag": "FLAG_NIGHT_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(VENOMOTH)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ZUBAT)",
       "x": 33,
       "y": 3,
       "elevation": 0,

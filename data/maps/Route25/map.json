@@ -177,7 +177,7 @@
       "flag": "FLAG_NIGHT_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SPEAROW)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SWABLU)",
       "x": 51,
       "y": 5,
       "elevation": 0,
@@ -229,7 +229,7 @@
       "flag": "FLAG_HIDE_ROUTE25_SUICUNE"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(LUVDISC)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(POLIWAG)",
       "x": 73,
       "y": 22,
       "elevation": 0,
@@ -242,7 +242,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(LUVDISC)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(POLIWAG)",
       "x": 74,
       "y": 23,
       "elevation": 0,

@@ -385,7 +385,7 @@
       "flag": "FLAG_NIGHT_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(FURRET)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GIRAFARIG)",
       "x": 38,
       "y": 12,
       "elevation": 0,
@@ -398,7 +398,7 @@
       "flag": "FLAG_DAY_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SENTRET)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(TANDEMAUS)",
       "x": 41,
       "y": 23,
       "elevation": 0,

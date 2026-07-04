@@ -119,7 +119,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(WURMPLE)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CATERPIE)",
       "x": 10,
       "y": 46,
       "elevation": 0,
@@ -158,7 +158,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(PARAS)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(WEEDLE)",
       "x": 6,
       "y": 21,
       "elevation": 0,
@@ -171,7 +171,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(PARAS)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(WEEDLE)",
       "x": 7,
       "y": 22,
       "elevation": 0,

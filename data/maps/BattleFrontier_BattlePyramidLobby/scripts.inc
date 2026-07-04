@@ -457,7 +457,7 @@ BattleFrontier_BattlePyramidLobby_EventScript_GiveHint::
 # 229 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
 
 # 230 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
-@ Shouldnt occur
+@ Shouldn't occur
 # 231 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
 BattleFrontier_BattlePyramidLobby_EventScript_NoHint::
 # 232 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"

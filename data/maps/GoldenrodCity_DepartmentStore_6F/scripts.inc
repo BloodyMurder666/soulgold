@@ -332,7 +332,7 @@ GoldenrodDEpt6F_WhitneyRematch_Text_2:
 
 GoldenrodDEpt6F_WhitneyRematch_Text_3:
 # 152 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"
-	.string "Mustn't cry... Musn't cry...!$"
+	.string "Mustn't cry... Mustn't cry...!$"
 
 GoldenrodDEpt6F_WhitneyRematch_Text_4:
 # 153 "data/maps/GoldenrodCity_DepartmentStore_6F/scripts.pory"

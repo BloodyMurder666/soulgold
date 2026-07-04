@@ -227,7 +227,7 @@ BattleFrontier_BattlePyramidLobby_EventScript_GiveHint::
 	case MULTI_B_PRESSED, BattleFrontier_BattlePyramidLobby_EventScript_NoHint
 	return
 
-@ Shouldnt occur
+@ Shouldn't occur
 BattleFrontier_BattlePyramidLobby_EventScript_NoHint::
 	return
 

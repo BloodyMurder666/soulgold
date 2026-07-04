@@ -374,7 +374,7 @@ EcruteakCity_Text_TinTowerSign:
 
 EcruteakCity_Text_OfficeSign:
 	.string "Barrier Station to Tin Tower\p"
-	.string "No Tresspassing by the Unworthy.$"
+	.string "No Trespassing by the Unworthy.$"
 
 EcruteakCity_Text_GymSign:
 	.string "Ecruteak City Pokémon Gym\n"

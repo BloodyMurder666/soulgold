@@ -117,7 +117,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(VOLBEAT)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(NOCTOWL)",
       "x": 18,
       "y": 1,
       "elevation": 0,
@@ -234,7 +234,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ILLUMISE)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CHANSEY)",
       "x": 18,
       "y": 1,
       "elevation": 0,

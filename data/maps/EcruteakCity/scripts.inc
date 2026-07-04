@@ -751,7 +751,7 @@ EcruteakCity_Text_OfficeSign:
 # 376 "data/maps/EcruteakCity/scripts.pory"
 	.string "Barrier Station to Tin Tower\p"
 # 377 "data/maps/EcruteakCity/scripts.pory"
-	.string "No Tresspassing by the Unworthy.$"
+	.string "No Trespassing by the Unworthy.$"
 # 378 "data/maps/EcruteakCity/scripts.pory"
 
 # 379 "data/maps/EcruteakCity/scripts.pory"

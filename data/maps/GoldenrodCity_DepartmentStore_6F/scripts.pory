@@ -149,7 +149,7 @@ script GoldenrodDEpt6F_WhitneyRematch {
 			I promise I'll make you cry this
 			time instead!", MSGBOX_YESNO)
 	if (var(VAR_RESULT) == TRUE) {
-		trainerbattle_no_intro(TRAINER_WHITNEY_2, "Mustn't cry... Musn't cry...!")
+		trainerbattle_no_intro(TRAINER_WHITNEY_2, "Mustn't cry... Mustn't cry...!")
 		msgbox("Aaaaargh! I thought I had you there!
 				So frustrating...
 				
