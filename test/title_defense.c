@@ -6,6 +6,7 @@
 #include "test/test.h"
 #include "constants/battle_setup.h"
 #include "constants/event_objects.h"
+#include "constants/field_mugshots.h"
 #include "constants/opponents.h"
 
 TEST("Title Defense selects the normal pool for defenses one through five")
@@ -66,6 +67,18 @@ TEST("Title Defense stages the selected challenger's overworld graphics")
 
     EXPECT_EQ(VarGet(VAR_TITLE_DEFENSE_LAST_CHALLENGER), TRAINER_TITLE_DEFENSE_STEVEN);
     EXPECT_EQ(VarGet(VAR_OBJ_GFX_ID_0), OBJ_EVENT_GFX_STEVEN);
+}
+
+TEST("Title Defense derives mugshots from challenger overworld graphics")
+{
+    VarSet(VAR_TITLE_DEFENSE_LAST_CHALLENGER, TRAINER_FALKNER_2);
+    EXPECT_EQ(TitleDefense_GetCurrentMugshotId(), MUGSHOT_FALKNER);
+
+    VarSet(VAR_TITLE_DEFENSE_LAST_CHALLENGER, TRAINER_TITLE_DEFENSE_LANCE);
+    EXPECT_EQ(TitleDefense_GetCurrentMugshotId(), MUGSHOT_LANCE);
+
+    VarSet(VAR_TITLE_DEFENSE_LAST_CHALLENGER, TRAINER_TITLE_DEFENSE_STEVEN);
+    EXPECT_EQ(TitleDefense_GetCurrentMugshotId(), MUGSHOT_STEVEN);
 }
 
 TEST("Title Defense prepares a standard trainer battle")

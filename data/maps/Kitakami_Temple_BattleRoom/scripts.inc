@@ -97,11 +97,11 @@ BattleRoom_MoneyTrainer_1:
 # 68 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq BattleRoom_MoneyTrainer_5
-# 87 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
-	hidemoneybox
 # 88 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
-	msgbox BattleRoom_MoneyTrainer_Text_6
+	hidemoneybox
 # 89 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
+	msgbox BattleRoom_MoneyTrainer_Text_6
+# 90 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
 	release
 	end
 
@@ -113,7 +113,7 @@ BattleRoom_MoneyTrainer_2:
 	goto BattleRoom_MoneyTrainer_1
 
 BattleRoom_MoneyTrainer_4:
-# 92 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
+# 93 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
 	release
 	end
 
@@ -123,30 +123,30 @@ BattleRoom_MoneyTrainer_5:
 # 70 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
 	compare VAR_RESULT, FALSE
 	goto_if_eq BattleRoom_MoneyTrainer_9
-# 78 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
-	removemoney 10000
 # 79 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
-	updatemoneybox 0
+	removemoney 10000
 # 80 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
-	playse SE_SHOP
+	updatemoneybox 0
 # 81 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
-	waitse
+	playse SE_SHOP
 # 82 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
-	hidemoneybox
+	waitse
 # 83 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
-	msgbox BattleRoom_MoneyTrainer_Text_3
+	hidemoneybox
 # 84 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
-	trainerbattle_no_intro TRAINER_DOJO_AUDINO, BattleRoom_MoneyTrainer_Text_4
+	msgbox BattleRoom_MoneyTrainer_Text_3
 # 85 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
+	trainerbattle_no_intro TRAINER_DOJO_AUDINO, BattleRoom_MoneyTrainer_Text_4
+# 86 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
 	msgbox BattleRoom_MoneyTrainer_Text_5
 	goto BattleRoom_MoneyTrainer_4
 
 BattleRoom_MoneyTrainer_9:
 # 71 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
 	msgbox BattleRoom_MoneyTrainer_Text_2
-# 74 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
-	hidemoneybox
 # 75 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
+	hidemoneybox
+# 76 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
 	release
 	end
 
@@ -203,21 +203,21 @@ BattleRoom_MoneyTrainer_Text_1:
 BattleRoom_MoneyTrainer_Text_2:
 # 71 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
 	.string "Oh my, it seems you do not have the\n"
-	.string "money right now. Please come back\l"
-	.string "when you have some.$"
+	.string "money right now. \p"
+	.string "Please come back when you have some.$"
 
 BattleRoom_MoneyTrainer_Text_3:
-# 83 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
+# 84 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
 	.string "Thank you, let us begin.$"
 
 BattleRoom_MoneyTrainer_Text_4:
-# 84 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
+# 85 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
 	.string "Thank you for your support.$"
 
 BattleRoom_MoneyTrainer_Text_5:
-# 85 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
+# 86 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
 	.string "Come back if you wish to train again.$"
 
 BattleRoom_MoneyTrainer_Text_6:
-# 88 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
+# 89 "data/maps/Kitakami_Temple_BattleRoom/scripts.pory"
 	.string "That's fine.$"

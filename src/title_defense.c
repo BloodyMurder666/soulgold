@@ -2,10 +2,12 @@
 #include "battle_setup.h"
 #include "event_data.h"
 #include "field_message_box.h"
+#include "field_mugshot.h"
 #include "random.h"
 #include "title_defense.h"
 #include "constants/battle_setup.h"
 #include "constants/event_objects.h"
+#include "constants/field_mugshots.h"
 #include "constants/opponents.h"
 
 static const u8 sText_FalknerIntro[] = _(
@@ -189,6 +191,22 @@ const struct TitleDefenseChallenger *TitleDefense_GetCurrentChallenger(void)
     return challenger;
 }
 
+u16 TitleDefense_GetCurrentMugshotId(void)
+{
+    return GetFieldMugshotIdByObjectGraphicsId(TitleDefense_GetCurrentChallenger()->objectGfxId);
+}
+
+static void ShowChallengerMessage(const u8 *text)
+{
+    u16 mugshotId = TitleDefense_GetCurrentMugshotId();
+
+    if (mugshotId == MUGSHOT_NONE)
+        RemoveFieldMugshot();
+    else
+        _CreateFieldMugshot(mugshotId, EMOTE_NORMAL);
+    ShowFieldMessage(text);
+}
+
 void TitleDefense_SelectChallenger(void)
 {
     const struct TitleDefenseChallenger *pool;
@@ -247,12 +265,12 @@ void TitleDefense_SelectChallenger(void)
 
 void TitleDefense_ShowIntro(void)
 {
-    ShowFieldMessage(TitleDefense_GetCurrentChallenger()->introText);
+    ShowChallengerMessage(TitleDefense_GetCurrentChallenger()->introText);
 }
 
 void TitleDefense_ShowFarewell(void)
 {
-    ShowFieldMessage(TitleDefense_GetCurrentChallenger()->farewellText);
+    ShowChallengerMessage(TitleDefense_GetCurrentChallenger()->farewellText);
 }
 
 void TitleDefense_PrepareBattle(void)

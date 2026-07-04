@@ -21,5 +21,6 @@ void TitleDefense_ShowFarewell(void);
 void TitleDefense_PrepareBattle(void);
 void TitleDefense_IncrementWins(void);
 const struct TitleDefenseChallenger *TitleDefense_GetCurrentChallenger(void);
+u16 TitleDefense_GetCurrentMugshotId(void);
 
 #endif // GUARD_TITLE_DEFENSE_H

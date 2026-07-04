@@ -48,6 +48,8 @@ static const u32 sFieldMugshotGfx_ClairNormal[] = INCBIN_U32("graphics/field_mug
 static const u16 sFieldMugshotPal_ClairNormal[] = INCBIN_U16("graphics/field_mugshots/clair.gbapal");
 static const u32 sFieldMugshotGfx_LanceNormal[] = INCBIN_U32("graphics/field_mugshots/lance.4bpp.lz");
 static const u16 sFieldMugshotPal_LanceNormal[] = INCBIN_U16("graphics/field_mugshots/lance.gbapal");
+static const u32 sFieldMugshotGfx_StevenNormal[] = INCBIN_U32("graphics/field_mugshots/steven.4bpp.lz");
+static const u16 sFieldMugshotPal_StevenNormal[] = INCBIN_U16("graphics/field_mugshots/steven.gbapal");
 static const u32 sFieldMugshotGfx_EusineNormal[] = INCBIN_U32("graphics/field_mugshots/eusine.4bpp.lz");
 static const u16 sFieldMugshotPal_EusineNormal[] = INCBIN_U16("graphics/field_mugshots/eusine.gbapal");
 
@@ -294,6 +296,14 @@ static const struct MugshotGfx sFieldMugshots[MUGSHOT_COUNT][EMOTE_COUNT] =
         {
             .gfx = sFieldMugshotGfx_LanceNormal,
             .pal = sFieldMugshotPal_LanceNormal,
+        },
+    },
+    [MUGSHOT_STEVEN] =
+    {
+        [EMOTE_NORMAL] =
+        {
+            .gfx = sFieldMugshotGfx_StevenNormal,
+            .pal = sFieldMugshotPal_StevenNormal,
         },
     },
     [MUGSHOT_EUSINE] =

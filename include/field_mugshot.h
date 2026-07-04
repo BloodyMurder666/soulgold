@@ -15,6 +15,7 @@ void TryCreateFieldMugshotFromObjectEventSource(void);
 void CreateAutoFieldMugshot(u32 id, u32 emote);
 void ShowFieldMugshot(void);
 u16 GetFieldMugshotId(void);
+u16 GetFieldMugshotIdByObjectGraphicsId(u16 graphicsId);
 u16 GetFieldMugshotIdFromObjectEventSource(void);
 
 #endif // GUARD_FIELD_MUGSHOTS_H

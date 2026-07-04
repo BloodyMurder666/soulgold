@@ -75,9 +75,9 @@ PokemonLeague_ChampionsRoom_TitleDefense_Begin::
 # 53 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	removeobject 1
 # 55 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	setmetatile 6, 1, 0x3F2, FALSE
+	setmetatile 6, 1, 0x572, FALSE
 # 56 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	setmetatile 6, 2, 0x296, FALSE
+	setmetatile 6, 2, 0x416, FALSE
 # 57 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	playse SE_BANG
 # 58 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"

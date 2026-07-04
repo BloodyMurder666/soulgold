@@ -35,7 +35,6 @@ static EWRAM_DATA u16 sFieldMugshotEmote = EMOTE_NORMAL;
 
 static void SpriteCB_FieldMugshot(struct Sprite *s);
 static bool8 IsFieldMugshotDefined(u32 id, u32 emote);
-static u16 GetFieldMugshotIdByObjectGraphicsId(u16 graphicsId);
 static void CreateFieldMugshotInternal(u32 id, u32 emote, u8 mode);
 static void RemoveAutoFieldMugshot(void);
 
@@ -137,7 +136,7 @@ static bool8 IsFieldMugshotDefined(u32 id, u32 emote)
     return TRUE;
 }
 
-static u16 GetFieldMugshotIdByObjectGraphicsId(u16 graphicsId)
+u16 GetFieldMugshotIdByObjectGraphicsId(u16 graphicsId)
 {
     switch (graphicsId)
     {
@@ -192,6 +191,8 @@ static u16 GetFieldMugshotIdByObjectGraphicsId(u16 graphicsId)
         return MUGSHOT_CLAIR;
     case OBJ_EVENT_GFX_LANCE:
         return MUGSHOT_LANCE;
+    case OBJ_EVENT_GFX_STEVEN:
+        return MUGSHOT_STEVEN;
     case OBJ_EVENT_GFX_EUSINE:
         return MUGSHOT_EUSINE;
     case OBJ_EVENT_GFX_NURSE:
