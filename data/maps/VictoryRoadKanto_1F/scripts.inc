@@ -15,11 +15,13 @@ VictoryRoadKanto_1F_Trigger::
 	call_if_eq VAR_TEMP_0, 27, VictoryRoadKanto_1F_EventScript_SilverEnterLeft
 	call_if_eq VAR_TEMP_0, 28, VictoryRoadKanto_1F_EventScript_SilverEnterMid
 	call_if_eq VAR_TEMP_0, 29, VictoryRoadKanto_1F_EventScript_SilverEnterRight
+	createfieldmugshot MUGSHOT_SILVER
 	msgbox VictoryRoad_Text_RivalBefore, MSGBOX_DEFAULT
 	call_if_eq VAR_STARTER_MON, 0, VictoryRoadKanto_1F_Silver_Battle_Cyndaquil
 	call_if_eq VAR_STARTER_MON, 1, VictoryRoadKanto_1F_Silver_Battle_Totodile
 	call_if_eq VAR_STARTER_MON, 2, VictoryRoadKanto_1F_Silver_Battle_Chikorita
 	playbgm MUS_HG_RIVAL_EXIT, TRUE
+	createfieldmugshot MUGSHOT_SILVER
 	msgbox VictoryRoad_Text_RivalAfter, MSGBOX_DEFAULT
 	giveitem ITEM_HM_ROCK_CLIMB
 	closemessage
