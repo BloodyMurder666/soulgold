@@ -2,11 +2,7 @@
 # Demo 1 MVP
 
 Must have:
-- Sprout tower basement (ghostite)
-- cresselia and darkrai quest (started)
-- dark crystal...
-- Foggy forest house and 1-2 trainers
-
+- meteor island and the dark crystal
 
 Nice to have:
 - HGSS/DPPT overworld npc sprite demakes
