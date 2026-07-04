@@ -438,7 +438,7 @@ VioletTrainerSchool_FalknerRematch_2:
 
 VioletCity_TrainerSchool_Kid::
 # 238 "data/maps/VioletCity_TrainerSchool/scripts.pory"
-	msgbox VioletCity_TrainerSchool_Kid_Text_0
+	msgbox VioletCity_TrainerSchool_Kid_Text_0, MSGBOX_NPC
 	return
 
 
