@@ -13,6 +13,9 @@
 - Multiple legendaries to find in maingame and postgame!
 - Fishing for items, including IV raising feathers!
 - Many HGSS features such as Cameron the Cameraman, Buena's password, Pokégear and Rock Smashing for fossils make their return!
+- Unique battle frame color for shiny Pokémon
+- Music resumes from where it left off after battles instead of starting over
+- Multiple pages of options to customize your playthrough style
 - Various quality of life features and gameplay feel improvements
 
 ## Documentation
