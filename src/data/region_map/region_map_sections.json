@@ -1516,7 +1516,7 @@
     },
     {
       "id": "MAPSEC_FOGGY_SHORE",
-      "name": "Foggy Shore",
+      "name": "South Shore",
       "x": 7,
       "y": 16,
       "width": 3,
@@ -1524,7 +1524,7 @@
     },
     {
       "id": "MAPSEC_FOGGY_FOREST",
-      "name": "Dusk Woods",
+      "name": "Lost Woods",
       "x": 9,
       "y": 15,
       "width": 1,

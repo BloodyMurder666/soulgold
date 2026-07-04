@@ -4117,3 +4117,22 @@ const u16 gTilesetPalettes_Building_Hoenn[][16] =
 };
 
 const u32 gTilesetTiles_Building_Hoenn[] = INCBIN_U32("data/tilesets/primary/building_hoenn/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_AltTrees[][16] =
+{
+    INCBIN_U16("data/tilesets/primary/alt_trees/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/primary/alt_trees/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/primary/alt_trees/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/primary/alt_trees/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/primary/alt_trees/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/primary/alt_trees/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/primary/alt_trees/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/primary/alt_trees/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/primary/alt_trees/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/primary/alt_trees/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/primary/alt_trees/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/primary/alt_trees/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/primary/alt_trees/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_AltTrees[] = INCBIN_U32("data/tilesets/primary/alt_trees/tiles.4bpp.lz");

@@ -890,9 +890,9 @@
 #define TRAINER_PHILIP                    883
 #define TRAINER_MOULDER                   884
 #define TRAINER_DOJO_AUDINO               885
-#define TRAINER_UNUSED_22                 886
-#define TRAINER_UNUSED_23                 887
-#define TRAINER_UNUSED_24                 888
+#define TRAINER_NIJO                      886
+#define TRAINER_SAE                       887
+#define TRAINER_MINA                      888
 #define TRAINER_UNUSED_25                 889
 #define TRAINER_UNUSED_26                 890
 #define TRAINER_UNUSED_27                 891

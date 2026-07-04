@@ -1,1 +1,26 @@
 mapscripts FoggyShore2_MapScripts {}
+
+script NijoTrainer {
+    trainerbattle_single(TRAINER_NIJO, "What are you doing here so far off the
+                                        beaten path?",
+                                        "You'll be fine.")
+    msgbox("Nearby path leads to a forest where
+            many get lost. 
+            
+            Be careful if you decide to 
+            venture there.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script SaeTrainer {
+    trainerbattle_single(TRAINER_SAE, "A quiet beach, the perfect getaway!",
+                                        "Peace, ruined!")
+    msgbox("Not that many wander down here due to
+            the rumours of the spooky woods
+            nearby.", MSGBOX_AUTOCLOSE)
+    end
+}
+
+script FoggyShoreSign {
+    msgbox("{UP_ARROW} Lost Woods", MSGBOX_SIGN)
+}

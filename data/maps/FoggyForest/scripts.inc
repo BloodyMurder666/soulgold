@@ -4,98 +4,110 @@ FoggyForest_MapScripts::
 
 FoggyForest_HexManiac::
 # 4 "data/maps/FoggyForest/scripts.pory"
-	msgbox FoggyForest_HexManiac_Text_0, MSGBOX_NPC
+	trainerbattle_single TRAINER_MINA, FoggyForest_HexManiac_Text_0, FoggyForest_HexManiac_Text_1
+# 5 "data/maps/FoggyForest/scripts.pory"
+	msgbox FoggyForest_HexManiac_Text_2, MSGBOX_AUTOCLOSE
 	return
 
 
 FoggyForest_Girl::
-# 8 "data/maps/FoggyForest/scripts.pory"
+# 10 "data/maps/FoggyForest/scripts.pory"
 	msgbox FoggyForest_Girl_Text_0, MSGBOX_NPC
 	return
 
 
 FoggyForest_Phantump::
-# 12 "data/maps/FoggyForest/scripts.pory"
-	lock
-# 13 "data/maps/FoggyForest/scripts.pory"
-	faceplayer
-# 14 "data/maps/FoggyForest/scripts.pory"
-	playmoncry SPECIES_PHANTUMP, CRY_MODE_NORMAL
 # 15 "data/maps/FoggyForest/scripts.pory"
-	msgbox FoggyForest_Phantump_Text_0
+	lock
 # 16 "data/maps/FoggyForest/scripts.pory"
-	waitmoncry
+	faceplayer
 # 17 "data/maps/FoggyForest/scripts.pory"
+	playmoncry SPECIES_PHANTUMP, CRY_MODE_NORMAL
+# 18 "data/maps/FoggyForest/scripts.pory"
+	msgbox FoggyForest_Phantump_Text_0
+# 19 "data/maps/FoggyForest/scripts.pory"
+	waitmoncry
+# 20 "data/maps/FoggyForest/scripts.pory"
 	release
 	end
 
 
 FoggyForestBMTeleport::
-# 22 "data/maps/FoggyForest/scripts.pory"
+# 25 "data/maps/FoggyForest/scripts.pory"
 	checkitem ITEM_BLACK_MIRROR
-# 23 "data/maps/FoggyForest/scripts.pory"
+# 26 "data/maps/FoggyForest/scripts.pory"
 	compare VAR_RESULT, TRUE
 	goto_if_eq FoggyForestBMTeleport_2
 FoggyForestBMTeleport_1:
-# 27 "data/maps/FoggyForest/scripts.pory"
+# 30 "data/maps/FoggyForest/scripts.pory"
 	release
 	end
 
 FoggyForestBMTeleport_2:
-# 24 "data/maps/FoggyForest/scripts.pory"
+# 27 "data/maps/FoggyForest/scripts.pory"
 	warpwhitefade MAP_FOGGYFOREST_DEPTHS, 8, 24
-# 25 "data/maps/FoggyForest/scripts.pory"
+# 28 "data/maps/FoggyForest/scripts.pory"
 	waitstate
 	goto FoggyForestBMTeleport_1
 
 
 FoggyForestBMTeleportR::
-# 32 "data/maps/FoggyForest/scripts.pory"
+# 35 "data/maps/FoggyForest/scripts.pory"
 	checkitem ITEM_BLACK_MIRROR
-# 33 "data/maps/FoggyForest/scripts.pory"
+# 36 "data/maps/FoggyForest/scripts.pory"
 	compare VAR_RESULT, TRUE
 	goto_if_eq FoggyForestBMTeleportR_2
 FoggyForestBMTeleportR_1:
-# 37 "data/maps/FoggyForest/scripts.pory"
+# 40 "data/maps/FoggyForest/scripts.pory"
 	release
 	end
 
 FoggyForestBMTeleportR_2:
-# 34 "data/maps/FoggyForest/scripts.pory"
+# 37 "data/maps/FoggyForest/scripts.pory"
 	warpwhitefade MAP_FOGGYFOREST_DEPTHS, 9, 24
-# 35 "data/maps/FoggyForest/scripts.pory"
+# 38 "data/maps/FoggyForest/scripts.pory"
 	waitstate
 	goto FoggyForestBMTeleportR_1
 
 
 FoggyForestBMOutTeleport::
-# 42 "data/maps/FoggyForest/scripts.pory"
+# 45 "data/maps/FoggyForest/scripts.pory"
 	warpwhitefade MAP_FOGGY_FOREST, 38, 5
-# 43 "data/maps/FoggyForest/scripts.pory"
+# 46 "data/maps/FoggyForest/scripts.pory"
 	waitstate
-# 44 "data/maps/FoggyForest/scripts.pory"
+# 47 "data/maps/FoggyForest/scripts.pory"
 	release
 	end
 
 
 FoggyForestBMOutTeleportR::
-# 49 "data/maps/FoggyForest/scripts.pory"
+# 52 "data/maps/FoggyForest/scripts.pory"
 	warpwhitefade MAP_FOGGY_FOREST, 39, 5
-# 50 "data/maps/FoggyForest/scripts.pory"
+# 53 "data/maps/FoggyForest/scripts.pory"
 	waitstate
-# 51 "data/maps/FoggyForest/scripts.pory"
+# 54 "data/maps/FoggyForest/scripts.pory"
 	release
 	end
 
 
 FoggyForest_HexManiac_Text_0:
 # 4 "data/maps/FoggyForest/scripts.pory"
-	.string "TODO, Something spooky$"
+	.string "Heeheehee, are you lost?$"
+
+FoggyForest_HexManiac_Text_1:
+# 4 "data/maps/FoggyForest/scripts.pory"
+	.string "The eyes above are watching.$"
+
+FoggyForest_HexManiac_Text_2:
+# 5 "data/maps/FoggyForest/scripts.pory"
+	.string "Bravery or foolishness, which one are\n"
+	.string "you carrying here?$"
 
 FoggyForest_Girl_Text_0:
-# 8 "data/maps/FoggyForest/scripts.pory"
-	.string "Spooky TODO$"
+# 10 "data/maps/FoggyForest/scripts.pory"
+	.string "Round and round, all paths lead back\n"
+	.string "here, la la la!$"
 
 FoggyForest_Phantump_Text_0:
-# 15 "data/maps/FoggyForest/scripts.pory"
+# 18 "data/maps/FoggyForest/scripts.pory"
 	.string "Phantump: Phoo!$"

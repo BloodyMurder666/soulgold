@@ -2184,3 +2184,14 @@ const struct Tileset gTileset_Building_Hoenn =
     .metatileAttributes = gMetatileAttributes_Building_Hoenn,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_AltTrees =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .tiles = gTilesetTiles_AltTrees,
+    .palettes = gTilesetPalettes_AltTrees,
+    .metatiles = gMetatiles_AltTrees,
+    .metatileAttributes = gMetatileAttributes_AltTrees,
+    .callback = NULL,
+};

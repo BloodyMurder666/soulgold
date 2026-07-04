@@ -1,11 +1,14 @@
 mapscripts FoggyForest_MapScripts {}
 
 script FoggyForest_HexManiac {
-    msgbox("TODO, Something spooky", MSGBOX_NPC)
+    trainerbattle_single(TRAINER_MINA, "Heeheehee, are you lost?", "The eyes above are watching.")
+    msgbox("Bravery or foolishness, which one are
+            you carrying here?", MSGBOX_AUTOCLOSE)
 }
 
 script FoggyForest_Girl {
-    msgbox("Spooky TODO", MSGBOX_NPC)
+    msgbox("Round and round, all paths lead back
+            here, la la la!", MSGBOX_NPC)
 }
 
 script FoggyForest_Phantump {

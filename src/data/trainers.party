@@ -14876,3 +14876,59 @@ Blissey @ Toxic Orb
 Level: 55
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Healing Wish
+
+=== TRAINER_NIJO ===
+Name: Nijo
+Class: Psychic M
+Pic: Psychic M
+Gender: Male
+Music: Hg Boy 1
+Double Battle: No
+AI: Basic Trainer
+
+Drifblim
+Level: 39
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Xatu
+Level: 39
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+
+=== TRAINER_SAE ===
+Name: Sae
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Male
+Music: Hg Girl 2
+Double Battle: No
+AI: Basic Trainer
+
+Floatzel
+Level: 39
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Slowbro
+Level: 39
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+=== TRAINER_MINA ===
+Name: Mina
+Class: Hex Maniac
+Pic: Hex Maniac
+Gender: Female
+Music: Hg Suspicious 1
+Double Battle: No
+AI: Basic Trainer
+
+Phantump
+Level: 39
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Trevenant
+Level: 40
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Sableye
+Level: 39
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
