@@ -2893,7 +2893,6 @@ static const struct SpriteSheet sSpriteSheet_MoveInfoWindow =
 #define sSameBall      data[1]
 #define sDisplayedBall data[2]
 #define sTargetBall    data[3]
-#define sQueuedCycles  data[4]
 
 static bool32 IsValidLastUsedBall(enum Item item)
 {
@@ -2921,44 +2920,6 @@ static u8 CreateLastUsedBallIcon(enum Item item)
     // Ensure a recreated icon always receives the palette for its current ball.
     LoadPalette(GetItemIconPalette(item), OBJ_PLTT_ID(paletteNum), PLTT_SIZE_4BPP);
     return spriteId;
-}
-
-static u16 GetPrevLastUsedBall(u16 ballId)
-{
-    s32 i;
-    s32 index = ItemIdToBallId(ballId);
-    u32 newBall = ITEM_NONE;
-
-    for (i = 0; i < POKEBALL_COUNT; i++)
-    {
-        index--;
-        if (index == -1)
-            index = POKEBALL_COUNT - 1;
-        newBall = gPokeBalls[index].itemId;
-        if (CheckBagHasItem(newBall, 1))
-            return newBall;
-    }
-
-    return ballId;
-}
-
-static u16 GetNextLastUsedBall(u16 ballId)
-{
-    s32 i;
-    s32 index = ItemIdToBallId(ballId);
-    u32 newBall = ITEM_NONE;
-
-    for (i = 0; i < POKEBALL_COUNT; i++)
-    {
-        index++;
-        if (index == POKEBALL_COUNT)
-            index = 0;
-        newBall = gPokeBalls[index].itemId;
-        if (CheckBagHasItem(newBall, 1))
-            return newBall;
-    }
-
-    return ballId;
 }
 
 bool32 CanThrowLastUsedBall(void)
@@ -3271,6 +3232,9 @@ static void Task_BounceBall(u8 taskId)
     case 2: //Create New Icon
         if (gBattleStruct->ballSpriteIds[0] == MAX_SPRITES)
         {
+            // Input may have changed while the old icon was bouncing up.
+            // Skip intermediate selections and create only the latest one.
+            task->sTargetBall = gBallToDisplay;
             gBattleStruct->ballSpriteIds[0] = CreateLastUsedBallIcon(task->sTargetBall);
             if (gBattleStruct->ballSpriteIds[0] == MAX_SPRITES)
             {
@@ -3297,32 +3261,7 @@ static void Task_BounceBall(u8 taskId)
         sprite = &gSprites[gBattleStruct->ballSpriteIds[0]];
         if (!sprite->sMoving)
         {
-            if (task->sQueuedCycles != 0)
-            {
-                if (task->sQueuedCycles > 0)
-                {
-                    task->sTargetBall = GetNextLastUsedBall(task->sDisplayedBall);
-                    task->sQueuedCycles--;
-                }
-                else
-                {
-                    task->sTargetBall = GetPrevLastUsedBall(task->sDisplayedBall);
-                    task->sQueuedCycles++;
-                }
-
-                if (task->sTargetBall == task->sDisplayedBall)
-                {
-                    task->sQueuedCycles = 0;
-                    sprite->callback = SpriteCB_LastUsedBall;
-                    DestroyTask(taskId);
-                }
-                else
-                {
-                    task->sSameBall = FALSE;
-                    task->sState = 0;
-                }
-            }
-            else if (task->sDisplayedBall != gBallToDisplay)
+            if (task->sDisplayedBall != gBallToDisplay)
             {
                 task->sSameBall = FALSE;
                 task->sTargetBall = gBallToDisplay;
@@ -3344,16 +3283,17 @@ static void Task_BounceBall(u8 taskId)
     }
 }
 
-void SwapBallToDisplay(bool32 sameBall, s8 direction)
+void SwapBallToDisplay(bool32 sameBall)
 {
     u8 taskId;
+
     if (FuncIsActiveTask(Task_BounceBall))
     {
         taskId = FindTaskIdByFunc(Task_BounceBall);
-        if (!sameBall && direction != 0)
+        if (!sameBall)
         {
             gTasks[taskId].sSameBall = FALSE;
-            gTasks[taskId].sQueuedCycles += direction;
+            gTasks[taskId].sTargetBall = gBallToDisplay;
         }
         return;
     }
@@ -3362,7 +3302,6 @@ void SwapBallToDisplay(bool32 sameBall, s8 direction)
     gTasks[taskId].sSameBall = sameBall;
     gTasks[taskId].sDisplayedBall = gBallToDisplay;
     gTasks[taskId].sTargetBall = gBallToDisplay;
-    gTasks[taskId].sQueuedCycles = 0;
 }
 
 void ArrowsChangeColorLastBallCycle(bool32 showArrows)
@@ -3407,7 +3346,6 @@ void ArrowsChangeColorLastBallCycle(bool32 showArrows)
 #undef sSameBall
 #undef sDisplayedBall
 #undef sTargetBall
-#undef sQueuedCycles
 
 void CategoryIcons_LoadSpritesGfx(void)
 {
