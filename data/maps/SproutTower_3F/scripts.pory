@@ -110,6 +110,7 @@ SproutTower_3F_EventScript_SageLi::
 	end
 
 SproutTower_3F_EventScript_SageLi_Beaten::
+	goto_if_set FLAG_BADGE08_GET, SageLiPostBadges
 	msgbox SproutTower_Text_SageLi_AfterBattle, MSGBOX_DEFAULT
 	closemessage
 	release
@@ -250,9 +251,43 @@ SproutTower_Text_3F_Painting:
 
 `
 
-script ElderPostgame {
-// Elder should test the player again in postgame, and then deem them worthy of entering the basement
-// Basement could contain Chi Yu or Keldeo 
+script SageLiPostBadges {
+	if (flag(FLAG_HIDE_SPROUT_BASEMENT_GUARD) == FALSE) {
+		msgbox("{PLAYER}!
+
+			I have heard of your triumphs across
+			Johto!
+
+			I am overjoyed to see how far
+			the bonds between Trainers and Pokémon
+			can go.
+
+			To that end, I would like to test you
+			once again. This time I won't be holding
+			back.
+
+			Prepare yourself!")
+	trainerbattle_no_intro(TRAINER_LI_2, "Future generations shine brighter than
+									      ever! Walk this path, young Trainer.")
+	msgbox("A marvelous display of skill!
+
+			I believe the borders of Johto won't
+			be enough for you at your current pace.
+
+			I will allow you access to this tower's
+			basement floor.
+
+			A strong Pokémon resides there.
+
+			Guarding it has been one of our
+			tasks for a very long time.")
+	msgbox("I look forward to hearing where your
+			journey next takes you.")
+	setflag(FLAG_HIDE_SPROUT_BASEMENT_GUARD)
+	} else {
+	msgbox("I look forward to hearing where your
+			journey next takes you.")
+	}
 release
 end
 }

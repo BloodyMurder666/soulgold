@@ -73,6 +73,7 @@ static bool32 Achievement_PredicateCaughtDarkrai(void);
 static bool32 Achievement_PredicateCaughtShaymin(void);
 static bool32 Achievement_PredicateCaughtArceus(void);
 static bool32 Achievement_PredicateCaughtMagearna(void);
+static bool32 Achievement_PredicateCaughtMarshadow(void);
 static bool32 Achievement_PredicateCaughtAllParadoxPokemon(void);
 static bool32 Achievement_PredicateHasLevel100Pokemon(void);
 static bool32 Achievement_HasOwnedItem(enum Item item);
@@ -280,6 +281,8 @@ static const u8 sText_AchGainingPowerName[] = _("Gaining Power");
 static const u8 sText_AchGainingPowerDesc[] = _("Evolve 25 Pokémon.");
 static const u8 sText_AchCatchMagearnaName[] = _("Mechanical Soul");
 static const u8 sText_AchCatchMagearnaDesc[] = _("Catch Magearna.");
+static const u8 sText_AchCatchMarshadowName[] = _("Sacred Ghost");
+static const u8 sText_AchCatchMarshadowDesc[] = _("Catch Marshadow.");
 static const u8 sText_AchBugCatcherName[] = _("Bug Catcher");
 static const u8 sText_AchBugCatcherDesc[] = _("Place first in the\nBug-Catching Contest.");
 
@@ -406,6 +409,9 @@ static const struct Achievement sAchievements[] =
 
     // Legendary and Mythical Pokémon - Generation VII
     {ACH_CATCH_MAGEARNA, sText_AchCatchMagearnaName, sText_AchCatchMagearnaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMagearna},
+
+    // Legendary and Mythical Pokémon - Generation VIII
+    {ACH_CATCH_MARSHADOW, sText_AchCatchMarshadowName, sText_AchCatchMarshadowDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMarshadow},
 
     // Legendary and Mythical Pokémon - Generation IX
     {ACH_CATCH_CHIEN_PAO, sText_AchCatchChienPaoName, sText_AchCatchChienPaoDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtChienPao},
@@ -808,6 +814,11 @@ static bool32 Achievement_PredicateCaughtArceus(void)
 static bool32 Achievement_PredicateCaughtMagearna(void)
 {
     return Achievement_PredicateCaughtSpecies(SPECIES_MAGEARNA);
+}
+
+static bool32 Achievement_PredicateCaughtMarshadow(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_MARSHADOW);
 }
 
 static const u16 sParadoxPokemon[] =

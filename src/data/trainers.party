@@ -7278,11 +7278,11 @@ Tangrowth
 Level: 60
 IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
 
-Venusaur
+Venusaur @ Grasstite
 Level: 60
 IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
 
-Victreebel @ Grasstite
+Victreebel
 Level: 60
 IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
 
@@ -14932,3 +14932,66 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Sableye
 Level: 39
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+=== TRAINER_LI_2 ===
+Name: Li
+Class: Sage
+Pic: Elder
+Gender: Male
+Music: Hg Sage
+Double Battle: No
+AI: Smart Trainer
+
+Noctowl @ Choice Scarf
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 Spe
+Timid Nature
+- Moonblast
+- Extrasensory
+- Hurricane
+- Boomburst
+
+Victreebel @ Poisontite
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 HP
+Modest Nature
+- Strength Sap
+- Sludge Bomb
+- Sucker Punch
+- Leaf Storm
+
+Clefable @ Sitrus Berry
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 HP
+Modest Nature
+Ability: Magic Guard
+- Moonblast
+- Cosmic Power
+- Ice Beam
+- Focus Blast
+
+Snorlax @ Leftovers
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 252 HP
+Brave Nature
+Ability: Thick Fat
+- High Horsepower
+- Body Slam
+- Thunder Punch
+- Earthquake
+
+Lilligant-Hisui @ Life Orb
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 252 Spe
+Adamant Nature
+Ability: Hustle
+- Victory Dance
+- Axe Kick
+- Leaf Blade
+- Triple Axel
+

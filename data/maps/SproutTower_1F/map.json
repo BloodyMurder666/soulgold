@@ -142,7 +142,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SproutTower_1F_Guard",
-      "flag": "0"
+      "flag": "FLAG_HIDE_SPROUT_BASEMENT_GUARD"
     }
   ],
   "warp_events": [
@@ -173,6 +173,13 @@
       "elevation": 0,
       "dest_map": "MAP_SPROUT_TOWER_2F",
       "dest_warp_id": "2"
+    },
+    {
+      "x": 16,
+      "y": 13,
+      "elevation": 0,
+      "dest_map": "MAP_SPROUT_TOWER_BASEMENT",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],

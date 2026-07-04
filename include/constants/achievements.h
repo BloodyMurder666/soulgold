@@ -138,6 +138,7 @@ enum AchievementId
     ACH_GAINING_POWER,
     ACH_CATCH_MAGEARNA,
     ACH_BUG_CATCHER,
+    ACH_CATCH_MARSHADOW,
     ACH_COUNT,
 };
 

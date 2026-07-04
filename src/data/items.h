@@ -7947,8 +7947,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "A stone that lets\n"
-            "your starter Mega\n"
-            "Evolve."),
+            "your partner\n"
+            "Mega Evolve."),
         .pocket = POCKET_MEGASTONES,
         .notConsumed = TRUE,
         .sortType = ITEM_TYPE_MEGA_STONE,

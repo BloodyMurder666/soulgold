@@ -157,14 +157,29 @@ SproutTower_1F_Guard::
 # 81 "data/maps/SproutTower_1F/scripts.pory"
 	faceplayer
 # 82 "data/maps/SproutTower_1F/scripts.pory"
+	goto_if_unset FLAG_BADGE08_GET, SproutTower_1F_Guard_2
+# 89 "data/maps/SproutTower_1F/scripts.pory"
+	msgbox SproutTower_1F_Guard_Text_1
+# 93 "data/maps/SproutTower_1F/scripts.pory"
+	release
+	end
+
+SproutTower_1F_Guard_2:
+# 83 "data/maps/SproutTower_1F/scripts.pory"
 	msgbox SproutTower_1F_Guard_Text_0
-# 85 "data/maps/SproutTower_1F/scripts.pory"
+# 86 "data/maps/SproutTower_1F/scripts.pory"
 	release
 	end
 
 
 SproutTower_1F_Guard_Text_0:
-# 82 "data/maps/SproutTower_1F/scripts.pory"
+# 83 "data/maps/SproutTower_1F/scripts.pory"
 	.string "My apologies, but the entry to the lower\n"
 	.string "floors is restricted. Only those\l"
 	.string "approved by the Sage may enter.$"
+
+SproutTower_1F_Guard_Text_1:
+# 89 "data/maps/SproutTower_1F/scripts.pory"
+	.string "Greetings, {PLAYER}.\n"
+	.string "Elder Li would like to speak with you.\p"
+	.string "Please see him in the top floor.$"

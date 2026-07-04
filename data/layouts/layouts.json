@@ -9886,6 +9886,16 @@
       "secondary_tileset": "gTileset_House_Lab",
       "border_filepath": "data/layouts/SouthShoreHouse/border.bin",
       "blockdata_filepath": "data/layouts/SouthShoreHouse/map.bin"
+    },
+    {
+      "id": "LAYOUT_SPROUT_TOWER_BASEMENT",
+      "name": "SproutTower_Basement_Layout",
+      "width": 25,
+      "height": 25,
+      "primary_tileset": "gTileset_Johto_Building",
+      "secondary_tileset": "gTileset_PowerPlant_GeneratorRoom",
+      "border_filepath": "data/layouts/SproutTower_Basement/border.bin",
+      "blockdata_filepath": "data/layouts/SproutTower_Basement/map.bin"
     }
   ]
 }

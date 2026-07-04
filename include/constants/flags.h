@@ -1624,6 +1624,10 @@
 #define FLAG_ITEM_PROTECTOR                         0x954
 #define FLAG_ITEM_CHOICESPECS                       0x955
 #define FLAG_SHOWN_MIRROR                           0x956
+#define FLAG_HIDE_SPROUT_BASEMENT_GUARD             0x957
+#define FLAG_HIDE_MARSHADOW                         0x958
+#define FLAG_HIDE_GHOSTITE                          0x959
+#define FLAG_HIDE_SPROUT_BASEMENT_ITEM              0x95A
 
 #define FLAG_0x1500                                 0x1500
 // Daily Flags

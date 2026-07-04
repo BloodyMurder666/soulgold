@@ -2311,3 +2311,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/Kitakami_Temple_BattleRoom/scripts.inc"
 
 	.include "data/maps/SouthShoreHouse/scripts.inc"
+
+	.include "data/maps/SproutTower_Basement/scripts.inc"

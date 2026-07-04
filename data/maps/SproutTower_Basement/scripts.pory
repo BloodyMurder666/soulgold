@@ -1,0 +1,15 @@
+mapscripts SproutTower_Basement_MapScripts {}
+
+script MarshadowEncounter {
+    lock
+    faceplayer
+    settotemboost(B_POSITION_OPPONENT_LEFT, 1, 1, 1, 1, 1, 0, 0)
+    legendaryencounter(SPECIES_MARSHADOW, 50, LOCALID_MARSHADOW, FLAG_HIDE_MARSHADOW)
+    release
+    end
+}
+
+script BasementSage {
+    msgbox("Guarding Marshadow has been one of our
+            secret tasks for a very long time.", MSGBOX_NPC)
+}

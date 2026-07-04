@@ -79,9 +79,17 @@ SproutTower_Text_1F_Statue:
 script SproutTower_1F_Guard {
     lock
     faceplayer
-    msgbox("My apologies, but the entry to the lower
+    if (flag(FLAG_BADGE08_GET) == FALSE) {
+        msgbox("My apologies, but the entry to the lower
             floors is restricted. Only those
             approved by the Sage may enter.")
+        release
+        end
+    }
+    msgbox("Greetings, {PLAYER}.
+            Elder Li would like to speak with you.
+
+            Please see him on the top floor.")
     release
     end
 }
