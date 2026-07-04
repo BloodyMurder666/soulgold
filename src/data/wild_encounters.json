@@ -6566,7 +6566,7 @@
           "map": "MAP_DRAGONS_DEN_CAVERN",
           "base_label": "gDragonsDen_Cavern",
           "land_mons": {
-            "encounter_rate": 10,
+            "encounter_rate": 5,
             "mons": [
               {
                 "min_level": 42,
@@ -6631,7 +6631,7 @@
             ]
           },
           "water_mons": {
-            "encounter_rate": 7,
+            "encounter_rate": 5,
             "mons": [
               {
                 "min_level": 30,
@@ -6709,9 +6709,9 @@
                 "species": "SPECIES_DRAGONAIR"
               },
               {
-                "min_level": 30,
+                "min_level": 50,
                 "max_level": 55,
-                "species": "SPECIES_DRAGONAIR"
+                "species": "SPECIES_TATSUGIRI"
               }
             ]
           }

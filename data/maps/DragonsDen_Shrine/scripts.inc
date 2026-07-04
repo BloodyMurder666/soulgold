@@ -240,28 +240,37 @@ DragonsDen_Shrine_EventScript_ClairEnter::
 	turnobject LOCALID_DRAGONSDEN3_ELDER, DIR_WEST	
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_WEST
 	turnobject OBJ_EVENT_ID_FOLLOWER, DIR_NORTH
+	createfieldmugshot MUGSHOT_CLAIR
 	msgbox DragonsDen_Shrine_Text_ClairYouPassed, MSGBOX_DEFAULT
 	applymovement LOCALID_DRAGONSDEN3_CLAIR, DragonsDen_Shrine_Movement_ClairBackup1
 	waitmovement 0
+	createfieldmugshot MUGSHOT_CLAIR
 	msgbox DragonsDen_Shrine_Text_ClairThatCantBe, MSGBOX_DEFAULT
 	applymovement LOCALID_DRAGONSDEN3_CLAIR, DragonsDen_Shrine_Movement_ClairBackup2
 	waitmovement 0
+	createfieldmugshot MUGSHOT_CLAIR
 	msgbox DragonsDen_Shrine_Text_ClairYoureLying, MSGBOX_DEFAULT
+	removefieldmugshot
 	applymovement LOCALID_DRAGONSDEN3_ELDER, DragonsDen_Shrine_Movement_ElderWalkToClair
 	waitmovement 0
 	turnobject LOCALID_DRAGONSDEN3_CLAIR, DIR_NORTH
 	msgbox DragonsDen_Shrine_Text_MustIInformLance, MSGBOX_DEFAULT
 	playse SE_PIN
 	applymovement LOCALID_DRAGONSDEN3_CLAIR, Common_Movement_ExclamationMark
+	createfieldmugshot MUGSHOT_CLAIR
 	msgbox DragonsDen_Shrine_Text_IUnderstand, MSGBOX_DEFAULT
+	removefieldmugshot
 	applymovement LOCALID_DRAGONSDEN3_CLAIR, DragonsDen_Shrine_Movement_ClairReturnToPlayer
 	waitmovement 0
+	createfieldmugshot MUGSHOT_CLAIR
 	msgbox DragonsDen_Shrine_Text_HereRisingBadge, MSGBOX_DEFAULT
-
+	removefieldmugshot
 	message DragonsDen_Shrine_Text_PlayerReceivedRisingBadge
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
+	createfieldmugshot MUGSHOT_CLAIR
 	msgbox DragonsDen_Shrine_Text_RisingBadgeExplanation, MSGBOX_DEFAULT
+	removefieldmugshot
 	setflag FLAG_BADGE08_GET
 	setflag FLAG_DEFEATED_BLACKTHORN_GYM
 	addvar VAR_NUM_BADGES, 1
@@ -273,6 +282,7 @@ DragonsDen_Shrine_EventScript_ClairEnter::
 	msgbox DragonsDen_Shrine_Text_ElderScoldsClair, MSGBOX_DEFAULT
 	closemessage
 	delay 20
+	createfieldmugshot MUGSHOT_CLAIR
 	msgbox DragonsDen_Shrine_Text_Speechless, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_DRAGONSDEN3_CLAIR, DragonsDen_Shrine_Movement_ClairLeave

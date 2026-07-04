@@ -82,11 +82,14 @@ DragonsDen_Cavern_Trigger_ClairRight::
 
 DragonsDen_Cavern_EventScript_Clair::
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_WEST
+	createfieldmugshot MUGSHOT_CLAIR
 	msgbox DragonsDen_Cavern_Text_ClairGiveDragonclaw, MSGBOX_DEFAULT
 	giveitem ITEM_TM_DRAGON_CLAW
+	createfieldmugshot MUGSHOT_CLAIR
 	msgbox DragonsDen_Cavern_Text_ClairDescribeDragonclaw, MSGBOX_DEFAULT
 	closemessage
 	delay 30
+	createfieldmugshot MUGSHOT_CLAIR
 	msgbox DragonsDen_Cavern_Text_ClairWhatsTheMatter, MSGBOX_DEFAULT
 	closemessage
 	delay 10

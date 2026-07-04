@@ -24,3 +24,13 @@ script SaeTrainer {
 script FoggyShoreSign {
     msgbox("{UP_ARROW} Lost Woods", MSGBOX_SIGN)
 }
+
+script FoggyShoreBuizel {
+    lock
+    faceplayer
+    playmoncry(SPECIES_BUIZEL, CRY_MODE_NORMAL)
+    msgbox("Buizel: Buibuibuiiii!")
+    waitmoncry
+    release
+    end
+}

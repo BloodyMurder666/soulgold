@@ -3,6 +3,13 @@ mapscripts SouthShoreHouse_MapScripts {}
 script SouthShoreHouseMan {
     lock
     faceplayer
+    if (flag(FLAG_SHOWN_MIRROR)) {
+        msgbox("You must follow the ravens with the
+                mirror in hand to find the lair of the
+                beast.")
+            release
+            end
+    }
     msgbox("My grandparent always used to tell
             stories of a beast hiding in the
             depths of the forest.
@@ -34,6 +41,8 @@ script SouthShoreHouseMan {
             msgbox("You must follow the ravens with the
                     mirror in hand to find the lair of the
                     beast.")
+            release
+            end
         }
         
     }
