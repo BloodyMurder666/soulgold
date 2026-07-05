@@ -6,6 +6,7 @@
 #include "fldeff_misc.h"
 #include "frontier_util.h"
 #include "menu.h"
+#include "metatile_behavior.h"
 #include "mirage_tower.h"
 #include "overworld.h"
 #include "palette.h"
@@ -371,7 +372,12 @@ u32 MapGridGetMetatileIdAt(int x, int y)
 u32 MapGridGetMetatileBehaviorAt(int x, int y)
 {
     u16 metatile = MapGridGetMetatileIdAt(x, y);
-    return UNPACK_BEHAVIOR(GetMetatileAttributesById(metatile));
+    u32 behavior = UNPACK_BEHAVIOR(GetMetatileAttributesById(metatile));
+
+    if (MetatileBehavior_IsOpenSecretBaseDoor(behavior))
+        return MB_NORMAL;
+
+    return behavior;
 }
 
 u8 MapGridGetMetatileLayerTypeAt(int x, int y)

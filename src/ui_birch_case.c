@@ -223,11 +223,13 @@ static const u16 sTextBgPalette[] = INCBIN_U16("graphics/ui_birch_case/text_bg_t
 
 static const u32 sPokeballHand_Gfx[] = INCBIN_U32("graphics/ui_birch_case/pokeball_hand.4bpp.smol");
 static const u16 sPokeballHand_Pal[] = INCBIN_U16("graphics/ui_birch_case/pokeball_hand.gbapal");
+static const u16 sPokeballHandShiny_Pal[] = INCBIN_U16("graphics/ui_birch_case/pokeball_hand.shiny.gbapal");
 
 //
 //  Sprite Data for Pokeball Hand Sprite
 //
 #define TAG_POKEBALL_CURSOR 20001
+#define TAG_POKEBALL_SHINY  20002
 static const struct OamData sOamData_PokeballHand =
 {
     .size = SPRITE_SIZE(32x32),
@@ -246,6 +248,12 @@ static const struct SpritePalette sSpritePal_PokeballHand =
 {
     .data = sPokeballHand_Pal,
     .tag = TAG_POKEBALL_CURSOR
+};
+
+static const struct SpritePalette sSpritePal_PokeballHandShiny =
+{
+    .data = sPokeballHandShiny_Pal,
+    .tag = TAG_POKEBALL_SHINY
 };
 
 static const union AnimCmd sSpriteAnim_PokeballStatic[] =
@@ -280,6 +288,17 @@ static const struct SpriteTemplate sSpriteTemplate_PokeballHandMap =
 {
     .tileTag = TAG_POKEBALL_CURSOR,
     .paletteTag = TAG_POKEBALL_CURSOR,
+    .oam = &sOamData_PokeballHand,
+    .anims = sSpriteAnimTable_PokeballHand,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCallbackDummy
+};
+
+static const struct SpriteTemplate sSpriteTemplate_PokeballShinyMap =
+{
+    .tileTag = TAG_POKEBALL_CURSOR,
+    .paletteTag = TAG_POKEBALL_SHINY,
     .oam = &sOamData_PokeballHand,
     .anims = sSpriteAnimTable_PokeballHand,
     .images = NULL,
@@ -398,6 +417,8 @@ static void CreatePokeballSprites()
     for(i=0; i<9; i++)
     {
         u16 x, y;
+        const struct SpriteTemplate *spriteTemplate;
+
         if(sStarterChoices[i].species == SPECIES_NONE)
             continue;
 
@@ -417,8 +438,14 @@ static void CreatePokeballSprites()
             x = sBallSpriteCords[2][i - 7].x;
             y = sBallSpriteCords[2][i - 7].y;
         }
+
+        if (GetMonData(&sBirchCaseDataPtr->starterMons[i], MON_DATA_IS_SHINY))
+            spriteTemplate = &sSpriteTemplate_PokeballShinyMap;
+        else
+            spriteTemplate = &sSpriteTemplate_PokeballHandMap;
+
         if (sBirchCaseDataPtr->pokeballSpriteIds[i] == SPRITE_NONE)
-            sBirchCaseDataPtr->pokeballSpriteIds[i] = CreateSpriteAtEnd(&sSpriteTemplate_PokeballHandMap, x, y, 1);
+            sBirchCaseDataPtr->pokeballSpriteIds[i] = CreateSpriteAtEnd(spriteTemplate, x, y, 1);
         gSprites[sBirchCaseDataPtr->pokeballSpriteIds[i]].invisible = FALSE;
         StartSpriteAnim(&gSprites[sBirchCaseDataPtr->pokeballSpriteIds[i]], 0);
 
@@ -721,6 +748,7 @@ static bool8 BirchCaseLoadGraphics(void) // load tilesets, tilemaps, spritesheet
     case 2:
         LoadCompressedSpriteSheet(&sSpriteSheet_PokeballHand);
         LoadSpritePalette(&sSpritePal_PokeballHand);
+        LoadSpritePalette(&sSpritePal_PokeballHandShiny);
         LoadPalette(sCasePalette, 32, 32);
         LoadPalette(sTextBgPalette, 16, 16);
         sBirchCaseDataPtr->gfxLoadState++;

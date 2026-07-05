@@ -32,6 +32,7 @@
 #include "fldeff_misc.h"
 #include "trainer_pokemon_sprites.h"
 #include "data.h"
+#include "difficulty.h"
 #include "confetti_util.h"
 #include "constants/rgb.h"
 
@@ -134,6 +135,8 @@ static const struct WindowTemplate sHof_WindowTemplate = {
 static const u8 sMonInfoTextColors[4] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY};
 static const u8 sPlayerInfoTextColors[4] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY};
 static const u8 sUnusedTextColors[4] = {TEXT_COLOR_RED, TEXT_COLOR_LIGHT_RED, TEXT_COLOR_TRANSPARENT};
+static const u8 sText_DifficultyNormal[] = _("Difficulty: Normal");
+static const u8 sText_DifficultyHard[] = _("Difficulty: Hard");
 
 static const struct CompressedSpriteSheet sSpriteSheet_Confetti[] =
 {
@@ -1105,9 +1108,14 @@ static void Task_HofPC_ExitOnButtonPress(u8 taskId)
 
 static void HallOfFame_PrintWelcomeText(u8 unusedPossiblyWindowId, u8 unused2)
 {
+    const u8 *difficultyText = GetCurrentDifficultyLevel() == DIFFICULTY_HARD
+                             ? sText_DifficultyHard
+                             : sText_DifficultyNormal;
+
     FillWindowPixelBuffer(0, PIXEL_FILL(0));
     PutWindowTilemap(0);
     AddTextPrinterParameterized3(0, FONT_NORMAL, GetStringCenterAlignXOffset(FONT_NORMAL, gText_WelcomeToHOF, 0xD0), 1, sMonInfoTextColors, 0, gText_WelcomeToHOF);
+    AddTextPrinterParameterized3(0, FONT_NORMAL, GetStringCenterAlignXOffset(FONT_NORMAL, difficultyText, 0xD0), 17, sMonInfoTextColors, 0, difficultyText);
     CopyWindowToVram(0, COPYWIN_FULL);
 }
 
