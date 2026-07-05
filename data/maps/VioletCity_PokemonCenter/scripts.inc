@@ -302,5 +302,5 @@ VioletPCGiveExpJar_Text_0:
 
 VioletPCGiveExpJar_Text_1:
 # 150 "data/maps/VioletCity_PokemonCenter/scripts.pory"
-	.string "{PLAYER}, you're the only person"
-	.string "we can rely on.$"
+	.string "{PLAYER}, you're the only \n"
+	.string "person we can rely on.$"

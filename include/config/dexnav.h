@@ -2,13 +2,20 @@
 #define GUARD_CONFIG_DEXNAV_H
 
 #define DEXNAV_ENABLED                TRUE  // Whether or not DexNav is enabled. If TRUE, flags/vars below must all be non-zero
-#define USE_DEXNAV_SEARCH_LEVELS      FALSE  /* WARNING: POSSIBLY EXCEEDS SAVEBLOCK SPACE! REQUIRES 1 BYTE PER SPECIES */
+
+// Search level storage modes
+#define DEXNAV_SEARCH_LEVELS_DISABLED            FALSE
+#define DEXNAV_SEARCH_LEVELS_PER_SPECIES         TRUE // Requires NUM_SPECIES bytes in SaveBlock3
+#define DEXNAV_SEARCH_LEVELS_REGISTERED_SPECIES  2    // Uses one saved var; changing targets resets the level
+
+#define USE_DEXNAV_SEARCH_LEVELS      DEXNAV_SEARCH_LEVELS_REGISTERED_SPECIES
 
 // Flag/var defines
 #define DN_FLAG_SEARCHING             FLAG_DEXNAV_SEARCHING // Searching for mon
 #define DN_FLAG_DEXNAV_GET            FLAG_DEXNAV_OBTAINED // DexNav shows in start menu
 #define DN_FLAG_DETECTOR_MODE         FLAG_DN_HIDDEN_MODE // Allow player to find hidden mons
 #define DN_VAR_SPECIES                VAR_DEXNAV_SPECIES // Registered DexNav species
+#define DN_VAR_SEARCH_LEVEL           VAR_DEXNAV_SEARCH_LEVEL // Search level for the registered species
 #define DN_VAR_STEP_COUNTER           VAR_STEP_COUNTER // Steps for finding hidden pokemon
 
 // Search parameters

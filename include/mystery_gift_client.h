@@ -61,12 +61,15 @@ enum {
 };
 
 #define CLIENT_MAX_MSG_SIZE 64
+#define MG_CLIENT_INIT_SCRIPT_CMD_COUNT 2
 
 struct MysteryGiftClientCmd
 {
     u32 instr;
     u32 parameter;
 };
+
+extern const struct MysteryGiftClientCmd gMysteryGiftClientScript_Init[MG_CLIENT_INIT_SCRIPT_CMD_COUNT];
 
 struct MysteryGiftClient
 {

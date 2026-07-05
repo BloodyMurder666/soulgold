@@ -10,7 +10,7 @@ static const u8 sText_CanceledReadingCard[] = _("Canceled reading\nthe Card.");
 // Client scripts
 //==================
 
-const struct MysteryGiftClientCmd gMysteryGiftClientScript_Init[] = {
+const struct MysteryGiftClientCmd gMysteryGiftClientScript_Init[MG_CLIENT_INIT_SCRIPT_CMD_COUNT] = {
     {CLI_RECV, MG_LINKID_CLIENT_SCRIPT},
     {CLI_COPY_RECV}
 };

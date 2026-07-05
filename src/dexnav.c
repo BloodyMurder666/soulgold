@@ -69,6 +69,13 @@ STATIC_ASSERT(DN_FLAG_DETECTOR_MODE != 0, DNFlagDetectorMode_Must_Not_Be_Zero);
 STATIC_ASSERT(DN_VAR_SPECIES != 0, DNVarSpecies_Must_Not_Be_Zero);
 STATIC_ASSERT(DN_VAR_STEP_COUNTER != 0, DNVarStepCounter_Must_Not_Be_Zero);
 #endif
+STATIC_ASSERT(USE_DEXNAV_SEARCH_LEVELS == DEXNAV_SEARCH_LEVELS_DISABLED
+           || USE_DEXNAV_SEARCH_LEVELS == DEXNAV_SEARCH_LEVELS_PER_SPECIES
+           || USE_DEXNAV_SEARCH_LEVELS == DEXNAV_SEARCH_LEVELS_REGISTERED_SPECIES,
+           InvalidDexNavSearchLevelMode);
+#if USE_DEXNAV_SEARCH_LEVELS == DEXNAV_SEARCH_LEVELS_REGISTERED_SPECIES
+STATIC_ASSERT(DN_VAR_SEARCH_LEVEL != 0, DNVarSearchLevel_Must_Not_Be_Zero);
+#endif
 
 // Defines
 enum WindowIds
@@ -777,15 +784,28 @@ static void LoadSearchIconData(void)
     LoadCompressedSpriteSheetUsingHeap(&sHiddenMonIconSpriteSheet);
 }
 
+#if USE_DEXNAV_SEARCH_LEVELS == DEXNAV_SEARCH_LEVELS_REGISTERED_SPECIES
+static bool8 IsRegisteredDexNavSpecies(u16 species)
+{
+    return (VarGet(DN_VAR_SPECIES) & DEXNAV_MASK_SPECIES) == species;
+}
+
+static void ResetRegisteredDexNavProgress(void)
+{
+    VarSet(DN_VAR_SEARCH_LEVEL, 0);
+    gSaveBlock3Ptr->dexNavChain = 0;
+}
+#endif
+
 static u8 GetSearchLevel(u16 species)
 {
-    u8 searchLevel;
-#if USE_DEXNAV_SEARCH_LEVELS == TRUE
-    searchLevel = gSaveBlock3Ptr->dexNavSearchLevels[species];
-#else
-    searchLevel = 0;
+#if USE_DEXNAV_SEARCH_LEVELS == DEXNAV_SEARCH_LEVELS_PER_SPECIES
+    return gSaveBlock3Ptr->dexNavSearchLevels[species];
+#elif USE_DEXNAV_SEARCH_LEVELS == DEXNAV_SEARCH_LEVELS_REGISTERED_SPECIES
+    if (IsRegisteredDexNavSpecies(species))
+        return min(VarGet(DN_VAR_SEARCH_LEVEL), 255);
 #endif
-    return searchLevel;
+    return 0;
 }
 
 static void SetUpDexNavSearch(void)
@@ -837,6 +857,11 @@ static void DexNavSearchBail(const u8 *script)
 
 static bool8 InitDexNavSearch(u32 species, u32 environment)
 {
+#if USE_DEXNAV_SEARCH_LEVELS == DEXNAV_SEARCH_LEVELS_REGISTERED_SPECIES
+    if (!IsRegisteredDexNavSpecies(species))
+        ResetRegisteredDexNavProgress();
+#endif
+
     sDexNavSearchDataPtr = AllocZeroed(sizeof(struct DexNavSearch));
     if (sDexNavSearchDataPtr == NULL)
     {
@@ -2343,8 +2368,12 @@ static void Task_DexNavMain(u8 taskId)
     {
         if ((VarGet(DN_VAR_SPECIES) & DEXNAV_MASK_SPECIES) != SPECIES_NONE)
         {
+#if USE_DEXNAV_SEARCH_LEVELS == DEXNAV_SEARCH_LEVELS_REGISTERED_SPECIES
+            ResetRegisteredDexNavProgress();
+#endif
             VarSet(DN_VAR_SPECIES, SPECIES_NONE);
             PrintSearchableSpecies(SPECIES_NONE);
+            PrintCurrentSpeciesInfo();
             PlaySE(SE_PC_OFF);
         }
         else
@@ -2451,12 +2480,16 @@ static void Task_DexNavMain(u8 taskId)
 
         if ((species != SPECIES_NONE) && !FlagGet(FLAG_SYS_BUG_CONTEST_MODE))
         {
-            PrintSearchableSpecies(species);
-            //PlaySE(SE_DEX_SEARCH);
-            PlayCry_Script(species, 0);
-
+#if USE_DEXNAV_SEARCH_LEVELS == DEXNAV_SEARCH_LEVELS_REGISTERED_SPECIES
+            if (!IsRegisteredDexNavSpecies(species))
+                ResetRegisteredDexNavProgress();
+#endif
             // create value to store in a var
             VarSet(DN_VAR_SPECIES, ((sDexNavUiDataPtr->environment << 14) | species));
+            PrintSearchableSpecies(species);
+            PrintCurrentSpeciesInfo();
+            //PlaySE(SE_DEX_SEARCH);
+            PlayCry_Script(species, 0);
         }
         else
         {
@@ -2669,9 +2702,16 @@ u32 CalculateDexNavShinyRolls(void)
 
 void TryIncrementSpeciesSearchLevel()
 {
-#if USE_DEXNAV_SEARCH_LEVELS == TRUE
+#if USE_DEXNAV_SEARCH_LEVELS == DEXNAV_SEARCH_LEVELS_PER_SPECIES
     if (gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER && gSaveBlock3Ptr->dexNavSearchLevels[gDexNavSpecies] < 255)
         gSaveBlock3Ptr->dexNavSearchLevels[gDexNavSpecies]++;
+#elif USE_DEXNAV_SEARCH_LEVELS == DEXNAV_SEARCH_LEVELS_REGISTERED_SPECIES
+    u16 searchLevel = VarGet(DN_VAR_SEARCH_LEVEL);
+
+    if (gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER
+     && IsRegisteredDexNavSpecies(gDexNavSpecies)
+     && searchLevel < 255)
+        VarSet(DN_VAR_SEARCH_LEVEL, searchLevel + 1);
 #endif
 }
 
@@ -2685,6 +2725,14 @@ void ResetDexNavSearch(void)
 
 void IncrementDexNavChain(void)
 {
+#if USE_DEXNAV_SEARCH_LEVELS == DEXNAV_SEARCH_LEVELS_REGISTERED_SPECIES
+    if (!IsRegisteredDexNavSpecies(gDexNavSpecies))
+    {
+        gSaveBlock3Ptr->dexNavChain = 0;
+        return;
+    }
+#endif
+
     if (gSaveBlock3Ptr->dexNavChain < DEXNAV_CHAIN_MAX)
         gSaveBlock3Ptr->dexNavChain++;
 }
