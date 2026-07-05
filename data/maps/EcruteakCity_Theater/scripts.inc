@@ -698,6 +698,7 @@ EcruteakCity_Theater_EventScript_HoohBuffer::
 EcruteakCity_Theater_EventScript_LegendaryCutscene::
 	call_if_eq VAR_LUGIA_OR_HOOH, 1, EcruteakCity_Theater_EventScript_LugiaBuffer
 	call_if_eq VAR_LUGIA_OR_HOOH, 2, EcruteakCity_Theater_EventScript_HoohBuffer 
+	createfieldmugshot MUGSHOT_KIMONO_GIRL
 	msgbox EcruteakCity_Theater_Text_ZukiSeen, MSGBOX_DEFAULT
 	closemessage
 	delay 20
@@ -706,6 +707,7 @@ EcruteakCity_Theater_EventScript_LegendaryCutscene::
 	waitmovement 0
 	setvar VAR_ECRUTEAK_CITY_THEATER, 6
 EcruteakCity_Theater_EventScript_ZukiBattle::
+	createfieldmugshot MUGSHOT_KIMONO_GIRL
 	msgbox EcruteakCity_Theater_Text_ZukiSeenAgain, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, FALSE, EcruteakCity_Theater_EventScript_LegendaryDenied
 	call_if_eq VAR_FACING, DIR_SOUTH, EcruteakCity_Theater_Movement_SouthCorrection
@@ -720,6 +722,7 @@ EcruteakCity_Theater_EventScript_NaokoBattle::
 	waitmovement 0
 	applymovement LOCALID_ECRUTEAK_NAOKO, EcruteakCity_Theater_Movement_NaokoWalkToPlayer
 	waitmovement 0
+	createfieldmugshot MUGSHOT_KIMONO_GIRL
 	msgbox EcruteakCity_Theater_Text_NaokoSeen, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_NAOKO, EcruteakCity_Theater_Text_KimonoGirlBeaten
 	applymovement LOCALID_ECRUTEAK_NAOKO, EcruteakCity_Theater_Movement_NaokoWalkBack
@@ -730,6 +733,7 @@ EcruteakCity_Theater_EventScript_MikiBattle::
 	waitmovement 0
 	applymovement LOCALID_ECRUTEAK_MIKI, EcruteakCity_Theater_Movement_MikiWalkToPlayer
 	waitmovement 0
+	createfieldmugshot MUGSHOT_KIMONO_GIRL
 	msgbox EcruteakCity_Theater_Text_MikiSeen, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_MIKI, EcruteakCity_Theater_Text_KimonoGirlBeaten
 	applymovement LOCALID_ECRUTEAK_MIKI, EcruteakCity_Theater_Movement_MikiWalkBack
@@ -740,6 +744,7 @@ EcruteakCity_Theater_EventScript_SayoBattle::
 	waitmovement 0
 	applymovement LOCALID_ECRUTEAK_SAYO, EcruteakCity_Theater_Movement_SayoWalkToPlayer
 	waitmovement 0
+	createfieldmugshot MUGSHOT_KIMONO_GIRL
 	msgbox EcruteakCity_Theater_Text_SayoSeen, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_SAYO, EcruteakCity_Theater_Text_KimonoGirlBeaten
 	applymovement LOCALID_ECRUTEAK_SAYO, EcruteakCity_Theater_Movement_SayoWalkBack
@@ -750,6 +755,7 @@ EcruteakCity_Theater_EventScript_KuniBattle::
 	waitmovement 0
 	applymovement LOCALID_ECRUTEAK_KUNI, EcruteakCity_Theater_Movement_KuniWalkToPlayer
 	waitmovement 0
+	createfieldmugshot MUGSHOT_KIMONO_GIRL
 	msgbox EcruteakCity_Theater_Text_KuniSeen, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_KUNI, EcruteakCity_Theater_Text_KimonoGirlBeaten
 	applymovement LOCALID_ECRUTEAK_KUNI, EcruteakCity_Theater_Movement_KuniWalkBack
@@ -757,6 +763,7 @@ EcruteakCity_Theater_EventScript_KuniBattle::
 EcruteakCity_Theater_EventScript_BeatGauntlet::
 	applymovement LOCALID_ECRUTEAK_ZUKI, Common_Movement_WalkDown1
 	waitmovement 0
+	createfieldmugshot MUGSHOT_KIMONO_GIRL
 	msgbox EcruteakCity_Theater_Text_ZukiDone, MSGBOX_DEFAULT
 	goto_if_eq VAR_LUGIA_OR_HOOH, 1, EcruteakCity_Theater_EventScript_Lugia
 	goto_if_eq VAR_LUGIA_OR_HOOH, 2, EcruteakCity_Theater_EventScript_Hooh
@@ -812,6 +819,7 @@ EcruteakCity_Theater_EventScript_Lugia::
 	applymovement LOCALID_ECRUTEAK_ZUKI, Common_Movement_ExclamationMark
 	delay 60
 	turnobject LOCALID_ECRUTEAK_ZUKI, DIR_SOUTH
+	createfieldmugshot MUGSHOT_KIMONO_GIRL
 	msgbox EcruteakCity_Theater_Text_ZukiLugia, MSGBOX_DEFAULT
 	closemessage
 	fadescreenswapbuffers FADE_TO_BLACK
@@ -857,6 +865,7 @@ EcruteakCity_Theater_EventScript_Hooh::
 	applymovement LOCALID_ECRUTEAK_ZUKI, Common_Movement_ExclamationMark
 	delay 60
 	turnobject LOCALID_ECRUTEAK_ZUKI, DIR_SOUTH
+	createfieldmugshot MUGSHOT_KIMONO_GIRL
 	msgbox EcruteakCity_Theater_Text_ZukiHooh, MSGBOX_DEFAULT
 	closemessage
 	fadescreenswapbuffers FADE_TO_BLACK
@@ -900,6 +909,7 @@ EcruteakCity_Theater_Movement_Sister:
 	step_end
 
 EcruteakCity_Theater_EventScript_LegendaryDenied::
+	createfieldmugshot MUGSHOT_KIMONO_GIRL
 	msgbox EcruteakCity_Theater_Text_ZukiNo, MSGBOX_DEFAULT
 	closemessage
 	release

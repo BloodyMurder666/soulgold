@@ -5131,7 +5131,7 @@ $(OBJEVENTGFXDIR)/people/engineer.4bpp: %.4bpp: %.png
 $(OBJEVENTGFXDIR)/pokemon/shiny_gyarados.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 $(OBJEVENTGFXDIR)/misc/tower_beam.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -mwidth 8 -mheight 8
+	$(GFX) $< $@ -mwidth 6 -mheight 6
 $(OBJEVENTGFXDIR)/misc/whirlpool.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 8 -mheight 8
 $(OBJEVENTGFXDIR)/people/biker.4bpp: %.4bpp: %.png

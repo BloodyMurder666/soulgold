@@ -95,7 +95,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_TOWER_BEAM",
       "x": 10,
-      "y": 9,
+      "y": 8,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_TOWER_BEAM",
       "movement_range_x": 0,

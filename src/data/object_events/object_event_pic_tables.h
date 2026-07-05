@@ -1085,11 +1085,11 @@ static const struct SpriteFrameImage sPicTable_RayquazaCutscene[] = {
 };
 
 static const struct SpriteFrameImage sPicTable_TowerBeam[] = {
-    overworld_frame(gObjectEventPic_TowerBeam, 8, 8, 0),
-    overworld_frame(gObjectEventPic_TowerBeam, 8, 8, 1),
-    overworld_frame(gObjectEventPic_TowerBeam, 8, 8, 2),
-    overworld_frame(gObjectEventPic_TowerBeam, 8, 8, 3),
-    overworld_frame(gObjectEventPic_TowerBeam, 8, 8, 4),
+    overworld_frame(gObjectEventPic_TowerBeam, 6, 6, 0),
+    overworld_frame(gObjectEventPic_TowerBeam, 6, 6, 1),
+    overworld_frame(gObjectEventPic_TowerBeam, 6, 6, 2),
+    overworld_frame(gObjectEventPic_TowerBeam, 6, 6, 3),
+    overworld_frame(gObjectEventPic_TowerBeam, 6, 6, 4),
 };
 
 static const struct SpriteFrameImage sPicTable_BirthIslandStone[] = {

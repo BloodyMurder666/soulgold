@@ -502,23 +502,27 @@ SproutTower_Text_3F_Painting:
 SageLiPostBadges::
 # 255 "data/maps/SproutTower_3F/scripts.pory"
 	goto_if_unset FLAG_HIDE_SPROUT_BASEMENT_GUARD, SageLiPostBadges_2
-# 288 "data/maps/SproutTower_3F/scripts.pory"
-	msgbox SageLiPostBadges_Text_3
+# 289 "data/maps/SproutTower_3F/scripts.pory"
+	msgbox SageLiPostBadges_Text_4
 SageLiPostBadges_1:
-# 291 "data/maps/SproutTower_3F/scripts.pory"
+# 292 "data/maps/SproutTower_3F/scripts.pory"
 	release
 	end
 
 SageLiPostBadges_2:
 # 256 "data/maps/SproutTower_3F/scripts.pory"
 	msgbox SageLiPostBadges_Text_0
+# 269 "data/maps/SproutTower_3F/scripts.pory"
+	playbgm MUS_RG_ENCOUNTER_GYM_LEADER, FALSE
 # 270 "data/maps/SproutTower_3F/scripts.pory"
-	trainerbattle_no_intro TRAINER_LI_2, SageLiPostBadges_Text_1
-# 272 "data/maps/SproutTower_3F/scripts.pory"
-	msgbox SageLiPostBadges_Text_2
-# 284 "data/maps/SproutTower_3F/scripts.pory"
+	msgbox SageLiPostBadges_Text_1
+# 271 "data/maps/SproutTower_3F/scripts.pory"
+	trainerbattle_no_intro TRAINER_LI_2, SageLiPostBadges_Text_2
+# 273 "data/maps/SproutTower_3F/scripts.pory"
 	msgbox SageLiPostBadges_Text_3
-# 286 "data/maps/SproutTower_3F/scripts.pory"
+# 285 "data/maps/SproutTower_3F/scripts.pory"
+	msgbox SageLiPostBadges_Text_4
+# 287 "data/maps/SproutTower_3F/scripts.pory"
 	setflag FLAG_HIDE_SPROUT_BASEMENT_GUARD
 	goto SageLiPostBadges_1
 
@@ -528,21 +532,23 @@ SageLiPostBadges_Text_0:
 	.string "{PLAYER}!\p"
 	.string "I have heard of your triumphs across\n"
 	.string "Johto!\p"
-	.string "I am overjoyed to see how far\n"
-	.string "the bonds between Trainers and Pokémon\l"
-	.string "can go.\p"
+	.string "I am overjoyed to see how far the bonds\n"
+	.string "between Trainers and Pokémon can go.\p"
 	.string "To that end, I would like to test you\n"
-	.string "once again. This time I won't be holding\l"
-	.string "back.\p"
-	.string "Prepare yourself!$"
+	.string "once again. \p"
+	.string "This time I won't be holding back.$"
 
 SageLiPostBadges_Text_1:
 # 270 "data/maps/SproutTower_3F/scripts.pory"
+	.string "Prepare yourself!$"
+
+SageLiPostBadges_Text_2:
+# 271 "data/maps/SproutTower_3F/scripts.pory"
 	.string "Future generations shine brighter than\n"
 	.string "ever! Walk this path, young Trainer.$"
 
-SageLiPostBadges_Text_2:
-# 272 "data/maps/SproutTower_3F/scripts.pory"
+SageLiPostBadges_Text_3:
+# 273 "data/maps/SproutTower_3F/scripts.pory"
 	.string "A marvelous display of skill!\p"
 	.string "I believe the borders of Johto won't\n"
 	.string "be enough for you at your current pace.\p"
@@ -552,7 +558,7 @@ SageLiPostBadges_Text_2:
 	.string "Guarding it has been one of our\n"
 	.string "tasks for a very long time.$"
 
-SageLiPostBadges_Text_3:
-# 284 "data/maps/SproutTower_3F/scripts.pory"
+SageLiPostBadges_Text_4:
+# 285 "data/maps/SproutTower_3F/scripts.pory"
 	.string "I look forward to hearing where your\n"
 	.string "journey next takes you.$"

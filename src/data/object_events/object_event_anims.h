@@ -1305,6 +1305,38 @@ static const union AnimCmd sAnim_RayquazaFaceEast[] =
     ANIMCMD_JUMP(0),
 };
 
+static const union AnimCmd sAnim_TowerBeamLoop[] =
+{
+    ANIMCMD_FRAME(0, 8),
+    ANIMCMD_FRAME(1, 8),
+    ANIMCMD_FRAME(2, 8),
+    ANIMCMD_FRAME(3, 8),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd *const sAnimTable_TowerBeam[] = {
+    [ANIM_STD_FACE_SOUTH] = sAnim_TowerBeamLoop,
+    [ANIM_STD_FACE_NORTH] = sAnim_TowerBeamLoop,
+    [ANIM_STD_FACE_WEST] = sAnim_TowerBeamLoop,
+    [ANIM_STD_FACE_EAST] = sAnim_TowerBeamLoop,
+    [ANIM_STD_GO_SOUTH] = sAnim_TowerBeamLoop,
+    [ANIM_STD_GO_NORTH] = sAnim_TowerBeamLoop,
+    [ANIM_STD_GO_WEST] = sAnim_TowerBeamLoop,
+    [ANIM_STD_GO_EAST] = sAnim_TowerBeamLoop,
+    [ANIM_STD_GO_FAST_SOUTH] = sAnim_TowerBeamLoop,
+    [ANIM_STD_GO_FAST_NORTH] = sAnim_TowerBeamLoop,
+    [ANIM_STD_GO_FAST_WEST] = sAnim_TowerBeamLoop,
+    [ANIM_STD_GO_FAST_EAST] = sAnim_TowerBeamLoop,
+    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_TowerBeamLoop,
+    [ANIM_STD_GO_FASTER_NORTH] = sAnim_TowerBeamLoop,
+    [ANIM_STD_GO_FASTER_WEST] = sAnim_TowerBeamLoop,
+    [ANIM_STD_GO_FASTER_EAST] = sAnim_TowerBeamLoop,
+    [ANIM_STD_GO_FASTEST_SOUTH] = sAnim_TowerBeamLoop,
+    [ANIM_STD_GO_FASTEST_NORTH] = sAnim_TowerBeamLoop,
+    [ANIM_STD_GO_FASTEST_WEST] = sAnim_TowerBeamLoop,
+    [ANIM_STD_GO_FASTEST_EAST] = sAnim_TowerBeamLoop,
+};
+
 // Though they correspond to facing/walking movements, Rayquaza doesn't have
 // equivalent images aside from flying up. Its other frames aside from the 'normal'
 // frame are for the sequence where it awakens on Sky Pillar.

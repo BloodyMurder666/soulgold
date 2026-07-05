@@ -815,9 +815,9 @@ NewBarkTown_Lab_EventScript_ElmMasterBall::
 # 408 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox NewBarkTown_Lab_Text_KimonoGirls, MSGBOX_DEFAULT
 # 409 "data/maps/NewBarkTown_Lab/scripts.pory"
-	closemessage
-# 410 "data/maps/NewBarkTown_Lab/scripts.pory"
 	call NewBarkTown_Lab_GiveStarterMega
+# 410 "data/maps/NewBarkTown_Lab/scripts.pory"
+	closemessage
 # 411 "data/maps/NewBarkTown_Lab/scripts.pory"
 	setvar VAR_NEWBARKTOWN_LABSTATE, 8
 # 412 "data/maps/NewBarkTown_Lab/scripts.pory"

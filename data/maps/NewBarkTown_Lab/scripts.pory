@@ -406,8 +406,8 @@ NewBarkTown_Lab_EventScript_ElmMasterBall::
 	applymovement LOCALID_ELM, Common_Movement_ExclamationMark
 	delay 60
 	msgbox NewBarkTown_Lab_Text_KimonoGirls, MSGBOX_DEFAULT
-	closemessage
 	call NewBarkTown_Lab_GiveStarterMega
+	closemessage
 	setvar VAR_NEWBARKTOWN_LABSTATE, 8
 	setvar VAR_ECRUTEAK_CITY_THEATER, 4
 	setflag FLAG_HIDE_ECRUTEAK_SILVER

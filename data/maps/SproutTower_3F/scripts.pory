@@ -258,15 +258,16 @@ script SageLiPostBadges {
 			I have heard of your triumphs across
 			Johto!
 
-			I am overjoyed to see how far
-			the bonds between Trainers and Pokémon
-			can go.
+			I am overjoyed to see how far the bonds
+			between Trainers and Pokémon can go.
 
 			To that end, I would like to test you
-			once again. This time I won't be holding
-			back.
+			once again. 
+			
+			This time I won't be holding back.")
 
-			Prepare yourself!")
+			playbgm(MUS_RG_ENCOUNTER_GYM_LEADER, FALSE)
+			msgbox("Prepare yourself!")
 	trainerbattle_no_intro(TRAINER_LI_2, "Future generations shine brighter than
 									      ever! Walk this path, young Trainer.")
 	msgbox("A marvelous display of skill!

@@ -10469,66 +10469,66 @@
           "map": "MAP_TIN_TOWER_3F",
           "base_label": "gTinTower_3F",
           "land_mons": {
-            "encounter_rate": 20,
+            "encounter_rate": 5,
             "mons": [
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_HAUNTER"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_RATICATE"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_HAUNTER"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_RATICATE"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MANECTRIC"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_FALINKS"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MANECTRIC"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_FALINKS"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               }
             ]
@@ -10538,66 +10538,66 @@
           "map": "MAP_TIN_TOWER_4F",
           "base_label": "gTinTower_4F",
           "land_mons": {
-            "encounter_rate": 20,
+            "encounter_rate": 5,
             "mons": [
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_HAUNTER"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_RATICATE"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_HAUNTER"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_RATICATE"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MANECTRIC"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_FALINKS"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MANECTRIC"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_FALINKS"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               }
             ]
@@ -10607,66 +10607,66 @@
           "map": "MAP_TIN_TOWER_5F",
           "base_label": "gTinTower_5F",
           "land_mons": {
-            "encounter_rate": 20,
+            "encounter_rate": 5,
             "mons": [
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_HAUNTER"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_RATICATE"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_HAUNTER"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_RATICATE"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MANECTRIC"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_FALINKS"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MANECTRIC"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_FALINKS"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               }
             ]
@@ -10676,66 +10676,66 @@
           "map": "MAP_TIN_TOWER_6F",
           "base_label": "gTinTower_6F",
           "land_mons": {
-            "encounter_rate": 20,
+            "encounter_rate": 5,
             "mons": [
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_HAUNTER"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_RATICATE"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_HAUNTER"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_RATICATE"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MANECTRIC"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_FALINKS"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MANECTRIC"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_FALINKS"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               }
             ]
@@ -10745,66 +10745,66 @@
           "map": "MAP_TIN_TOWER_7F",
           "base_label": "gTinTower_7F",
           "land_mons": {
-            "encounter_rate": 20,
+            "encounter_rate": 5,
             "mons": [
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_HAUNTER"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_RATICATE"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_HAUNTER"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_RATICATE"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MANECTRIC"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_FALINKS"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MANECTRIC"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_FALINKS"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               }
             ]
@@ -10814,66 +10814,66 @@
           "map": "MAP_TIN_TOWER_8F",
           "base_label": "gTinTower_8F",
           "land_mons": {
-            "encounter_rate": 20,
+            "encounter_rate": 5,
             "mons": [
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_HAUNTER"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_RATICATE"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_HAUNTER"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_RATICATE"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MANECTRIC"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_FALINKS"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MANECTRIC"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_FALINKS"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               }
             ]
@@ -10883,66 +10883,66 @@
           "map": "MAP_TIN_TOWER_9F",
           "base_label": "gTinTower_9F",
           "land_mons": {
-            "encounter_rate": 20,
+            "encounter_rate": 5,
             "mons": [
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_HAUNTER"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_RATICATE"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_HAUNTER"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_RATICATE"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MANECTRIC"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_FALINKS"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MANECTRIC"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_FALINKS"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               },
               {
-                "min_level": 35,
-                "max_level": 40,
+                "min_level": 40,
+                "max_level": 45,
                 "species": "SPECIES_MIMIKYU"
               }
             ]

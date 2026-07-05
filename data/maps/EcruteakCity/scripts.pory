@@ -88,12 +88,14 @@ EcruteakCity_Trigger_Silver::
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
 	closedoor 39, 40
 	waitdooranim
+	createfieldmugshot MUGSHOT_SILVER
 	msgbox EcruteakCity_Text_Silver2, MSGBOX_DEFAULT
 	closemessage
 	playse SE_PIN
 	applymovement LOCALID_ECRUTEK_SILVER, Common_Movement_ExclamationMark
 	delay 60
 	turnobject LOCALID_ECRUTEK_SILVER, DIR_SOUTH
+	createfieldmugshot MUGSHOT_SILVER
 	msgbox EcruteakCity_Text_Silver3, MSGBOX_DEFAULT
 	closemessage
 
