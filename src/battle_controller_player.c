@@ -650,6 +650,12 @@ static void HideAllTargets(void)
 static void HideShownTargets(enum BattlerId battler)
 {
     s32 i;
+
+    // The acting battler's healthbox should keep bouncing during move selection,
+    // but its sprite still needs to stop blinking when it was also a target.
+    if (gMultiUsePlayerCursor == battler)
+        gSprites[gBattlerSpriteIds[battler]].callback = SpriteCB_HideAsMoveTarget;
+
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
     {
         if (IsBattlerAlive(i) && gBattleSpritesDataPtr->healthBoxesData[i].healthboxIsBouncing && i != battler)

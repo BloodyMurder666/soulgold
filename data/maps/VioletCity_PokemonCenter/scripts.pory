@@ -147,7 +147,7 @@ script VioletPCGiveExpJar {
     msgbox("You should also take this for raising
             more Pokémon.")
     giveitem(ITEM_CANDY_JAR)
-    msgbox("{PLAYER}, you're the only person"
-	       "we can rely on.")
+    msgbox("{PLAYER}, you're the only 
+			person we can rely on.")
     return
 }
