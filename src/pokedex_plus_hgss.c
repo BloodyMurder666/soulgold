@@ -294,6 +294,7 @@ static EWRAM_DATA u16 sLastSelectedPokemon = 0;
 static EWRAM_DATA u8 sPokeBallRotation = 0;
 static EWRAM_DATA MainCallback sPokedexReturnCallback = NULL;
 static EWRAM_DATA enum NationalDexOrder sPokedexOpenDexNum = 0;
+static EWRAM_DATA u16 sPokedexOpenSpecies = SPECIES_NONE;
 static EWRAM_DATA bool8 sPokedexOpenAtInfoScreen = FALSE;
 static EWRAM_DATA struct PokedexListItem *sPokedexListItem = NULL;
 //Pokedex Plus HGSS_Ui
@@ -2063,6 +2064,7 @@ void OpenPokedexPlusHGSSAtSpecies(u16 species, MainCallback callback)
 
     sPokedexReturnCallback = callback;
     sPokedexOpenDexNum = SpeciesToNationalPokedexNum(species);
+    sPokedexOpenSpecies = species;
     sPokedexOpenAtInfoScreen = TRUE;
     SetMainCallback2(CB2_OpenPokedexPlusHGSS);
 }
@@ -2138,12 +2140,13 @@ static void Task_OpenPokedexMainPage(u8 taskId)
 {
     sPokedexView->isSearchResults = FALSE;
     sPokedexView->sEvoScreenData.fromEvoPage = FALSE;
-    sPokedexView->formSpecies = 0;
+    sPokedexView->formSpecies = sPokedexOpenAtInfoScreen ? sPokedexOpenSpecies : SPECIES_NONE;
     if (LoadPokedexListPage(PAGE_MAIN))
     {
         if (sPokedexOpenAtInfoScreen && sPokedexView->pokedexList[sPokedexView->selectedPokemon].seen)
         {
             sPokedexOpenAtInfoScreen = FALSE;
+            sPokedexOpenSpecies = SPECIES_NONE;
             TryDestroyStatBars();
             UpdateSelectedMonSpriteId();
             BeginNormalPaletteFade(~(1 << (gSprites[sPokedexView->selectedMonSpriteId].oam.paletteNum + 16)), 0, 0, 0x10, RGB_BLACK);
@@ -2155,6 +2158,7 @@ static void Task_OpenPokedexMainPage(u8 taskId)
         else
         {
             sPokedexOpenAtInfoScreen = FALSE;
+            sPokedexOpenSpecies = SPECIES_NONE;
             gTasks[taskId].func = Task_HandlePokedexInput;
         }
     }
@@ -2345,6 +2349,7 @@ static void Task_ClosePokedex(u8 taskId)
         Free(sPokedexView);
         sPokedexReturnCallback = NULL;
         sPokedexOpenDexNum = 0;
+        sPokedexOpenSpecies = SPECIES_NONE;
         sPokedexOpenAtInfoScreen = FALSE;
     }
 }
@@ -4722,7 +4727,8 @@ static u16 NationalPokedexNumToSpeciesHGSS(u16 nationalNum)
     if (!nationalNum)
         return 0;
 
-    if (sPokedexView->formSpecies != 0)
+    if (sPokedexView->formSpecies != SPECIES_NONE
+     && SpeciesToNationalPokedexNum(sPokedexView->formSpecies) == nationalNum)
         return sPokedexView->formSpecies;
     else
         return NationalPokedexNumToSpecies(nationalNum);

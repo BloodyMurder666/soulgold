@@ -10887,7 +10887,7 @@ static void Cmd_pickup(void)
     CMD_ARGS();
 
     u32 i, j, k;
-    u16 species, storeItem = ITEM_NONE, giveItem = ITEM_NONE;
+    u16 species, giveItem = ITEM_NONE;
     u8 lvlDivBy10;
     u8 slot = MAX_MON_ITEMS;
 
@@ -10906,39 +10906,36 @@ static void Cmd_pickup(void)
             if (MonHasTrait(&gPlayerParty[i], ABILITY_PICKUP)
                 && species != SPECIES_NONE
                 && species != SPECIES_EGG
-                && (Random() % 1) == 0)
+                && RandomPercentage(RNG_PICKUP_ITEM_CHANCE, 10))
             {
+                giveItem = ITEM_NONE;
                 if (isInPyramid)
                 {
                     giveItem = GetBattlePyramidPickupItemId();
-                    slot = GetMonNextEmptySlot(&gPlayerParty[i], giveItem);
-                    if (slot != MAX_MON_ITEMS)
-                    {
-                        SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM + slot, &giveItem);
-                    }
                 }
                 else
                 {
-                    u32 rand = Random() % 100;
+                    u32 rand = RandomUniform(RNG_PICKUP_ITEM, 0, 99);
                     u32 percentTotal = 0;
 
                     for (j = 0; j < ARRAY_COUNT(sPickupTable); j++)
                     {
                         percentTotal += sPickupTable[j].percentage[lvlDivBy10];
-                        if (rand > percentTotal)
+                        if (rand < percentTotal)
                         {
-                            storeItem = sPickupTable[j].itemId;
-                            slot = GetMonNextEmptySlot(&gPlayerParty[i], storeItem);
-                            if (slot != MAX_MON_ITEMS)
-                            {
-                                giveItem = storeItem; // Gives the rarest chosen item that fits slot categorization
-                            }
+                            giveItem = sPickupTable[j].itemId;
+                            break;
                         }
                     }
+                }
+
+                if (giveItem != ITEM_NONE)
+                {
+                    slot = GetMonNextEmptySlot(&gPlayerParty[i], giveItem);
                     if (slot != MAX_MON_ITEMS)
-                    {
                         SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM + slot, &giveItem);
-                    }
+                    else
+                        AddBagItem(giveItem, 1);
                 }
             }
             else if (MonHasTrait(&gPlayerParty[i], ABILITY_HONEY_GATHER)
