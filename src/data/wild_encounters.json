@@ -4496,7 +4496,7 @@
               {
                 "min_level": 30,
                 "max_level": 33,
-                "species": "SPECIES_FARFETCHD"
+                "species": "SPECIES_ARIADOS"
               },
               {
                 "min_level": 30,
@@ -4521,12 +4521,12 @@
               {
                 "min_level": 30,
                 "max_level": 33,
-                "species": "SPECIES_ARIADOS"
+                "species": "SPECIES_EEVEE"
               },
               {
                 "min_level": 30,
                 "max_level": 34,
-                "species": "SPECIES_FARFETCHD"
+                "species": "SPECIES_EEVEE"
               },
               {
                 "min_level": 30,

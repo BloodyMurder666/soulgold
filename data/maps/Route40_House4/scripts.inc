@@ -229,23 +229,23 @@ AchievementGuy_Reward60::
 # 139 "data/maps/Route40_House4/scripts.pory"
 	msgbox AchievementGuy_Reward60_Text_0
 # 145 "data/maps/Route40_House4/scripts.pory"
-	giveitem ITEM_N_SOLARIZER
+	givemon SPECIES_FLOETTE_ETERNAL, 30
 # 146 "data/maps/Route40_House4/scripts.pory"
-	giveitem ITEM_N_LUNARIZER
-# 147 "data/maps/Route40_House4/scripts.pory"
 	setvar VAR_ACHIEVEMENT_REWARD_MILESTONE, 60
-# 148 "data/maps/Route40_House4/scripts.pory"
+# 147 "data/maps/Route40_House4/scripts.pory"
 	goto keepUpTheGoodWork
-# 149 "data/maps/Route40_House4/scripts.pory"
+# 148 "data/maps/Route40_House4/scripts.pory"
 	release
 	end
 
 
 AchievementGuy_Reward75::
-# 154 "data/maps/Route40_House4/scripts.pory"
+# 153 "data/maps/Route40_House4/scripts.pory"
 	msgbox AchievementGuy_Reward75_Text_0
+# 160 "data/maps/Route40_House4/scripts.pory"
+	giveitem ITEM_N_SOLARIZER
 # 161 "data/maps/Route40_House4/scripts.pory"
-	giveitem ITEM_REINS_OF_UNITY
+	giveitem ITEM_N_LUNARIZER
 # 162 "data/maps/Route40_House4/scripts.pory"
 	setvar VAR_ACHIEVEMENT_REWARD_MILESTONE, 75
 # 163 "data/maps/Route40_House4/scripts.pory"
@@ -331,7 +331,7 @@ AchievementGuy_Reward60_Text_0:
 	.string "to commemorate this achievement!$"
 
 AchievementGuy_Reward75_Text_0:
-# 154 "data/maps/Route40_House4/scripts.pory"
+# 153 "data/maps/Route40_House4/scripts.pory"
 	.string "Incredible! \p"
 	.string "You've achieved {STR_VAR_1}\n"
 	.string "things and reached the next\l"

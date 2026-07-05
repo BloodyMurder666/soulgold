@@ -142,8 +142,7 @@ script AchievementGuy_Reward60 {
             
             I have something for you
             to commemorate this achievement!")
-    giveitem(ITEM_N_SOLARIZER)
-    giveitem(ITEM_N_LUNARIZER)
+    givemon(SPECIES_FLOETTE_ETERNAL, 30)
     setvar(VAR_ACHIEVEMENT_REWARD_MILESTONE, 60)
     goto(keepUpTheGoodWork)
     release
@@ -158,7 +157,8 @@ script AchievementGuy_Reward75 {
             milestone!
             
             Another reward just for you!")
-    giveitem(ITEM_REINS_OF_UNITY)
+    giveitem(ITEM_N_SOLARIZER)
+    giveitem(ITEM_N_LUNARIZER)
     setvar(VAR_ACHIEVEMENT_REWARD_MILESTONE, 75)
     goto(keepUpTheGoodWork)
     release
