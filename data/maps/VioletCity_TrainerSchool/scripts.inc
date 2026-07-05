@@ -442,6 +442,30 @@ VioletCity_TrainerSchool_Kid::
 	return
 
 
+VioletCity_TrainerSchool_Boy1::
+# 243 "data/maps/VioletCity_TrainerSchool/scripts.pory"
+	msgbox VioletCity_TrainerSchool_Boy1_Text_0, MSGBOX_NPC
+	return
+
+
+VioletCity_TrainerSchool_Boy2::
+# 248 "data/maps/VioletCity_TrainerSchool/scripts.pory"
+	msgbox VioletCity_TrainerSchool_Boy2_Text_0, MSGBOX_NPC
+	return
+
+
+VioletCity_TrainerSchool_Twin::
+# 253 "data/maps/VioletCity_TrainerSchool/scripts.pory"
+	msgbox VioletCity_TrainerSchool_Twin_Text_0, MSGBOX_NPC
+	return
+
+
+VioletCity_TrainerSchool_Lass::
+# 264 "data/maps/VioletCity_TrainerSchool/scripts.pory"
+	msgbox VioletCity_TrainerSchool_Lass_Text_0, MSGBOX_NPC
+	return
+
+
 VioletTrainerSchool_FalknerRematch_Text_0:
 # 206 "data/maps/VioletCity_TrainerSchool/scripts.pory"
 	.string "Nice to see you here too, {PLAYER}.\p"
@@ -475,3 +499,29 @@ VioletCity_TrainerSchool_Kid_Text_0:
 # 238 "data/maps/VioletCity_TrainerSchool/scripts.pory"
 	.string "You can simulate trading for evolving\n"
 	.string "Pokémon with Linking Cord!$"
+
+VioletCity_TrainerSchool_Boy1_Text_0:
+# 243 "data/maps/VioletCity_TrainerSchool/scripts.pory"
+	.string "Huh? The Pokémon I just got is\n"
+	.string "holding something!$"
+
+VioletCity_TrainerSchool_Boy2_Text_0:
+# 248 "data/maps/VioletCity_TrainerSchool/scripts.pory"
+	.string "I traded my best Pokémon to the\n"
+	.string "guy beside me.$"
+
+VioletCity_TrainerSchool_Twin_Text_0:
+# 253 "data/maps/VioletCity_TrainerSchool/scripts.pory"
+	.string "Pokémon have what are called\n"
+	.string "abilities!\p"
+	.string "It seems that each kind of Pokémon has\n"
+	.string "distinct abilities.\p"
+	.string "They say these abilities come in handy\n"
+	.string "in battle!$"
+
+VioletCity_TrainerSchool_Lass_Text_0:
+# 264 "data/maps/VioletCity_TrainerSchool/scripts.pory"
+	.string "I'm taking notes of the teacher's\n"
+	.string "lecture.\p"
+	.string "I'd better copy the stuff on the\n"
+	.string "blackboard, too.$"

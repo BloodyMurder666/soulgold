@@ -577,5 +577,5 @@ script berrytrader_juggler {
 
 script DexnavDude {
 	msgbox("If you have a Pokegéar, you should
-			make use of the Dexnav feature in it.")
+			make use of the Dexnav feature in it.", MSGBOX_NPC)
 }

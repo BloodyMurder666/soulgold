@@ -1135,7 +1135,7 @@ berrytrader_juggler_18:
 
 DexnavDude::
 # 579 "data/maps/VioletCity/scripts.pory"
-	msgbox DexnavDude_Text_0
+	msgbox DexnavDude_Text_0, MSGBOX_NPC
 	return
 
 

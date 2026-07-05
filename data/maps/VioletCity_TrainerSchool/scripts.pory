@@ -238,3 +238,32 @@ script VioletCity_TrainerSchool_Kid {
 	msgbox("You can simulate trading for evolving
 			Pokémon with Linking Cord!", MSGBOX_NPC)
 }
+
+script VioletCity_TrainerSchool_Boy1 {
+	msgbox("Huh? The Pokémon I just got is
+			holding something!", MSGBOX_NPC)
+}
+
+script VioletCity_TrainerSchool_Boy2 {
+	msgbox("I traded my best Pokémon to the
+			guy beside me.", MSGBOX_NPC)
+}
+
+script VioletCity_TrainerSchool_Twin {
+	msgbox("Pokémon have what are called
+			abilities!
+			
+			It seems that each kind of Pokémon has
+			distinct abilities.
+			
+			They say these abilities come in handy
+			in battle!", MSGBOX_NPC)
+}
+
+script VioletCity_TrainerSchool_Lass {
+	msgbox("I'm taking notes of the teacher's
+			lecture.
+
+			I'd better copy the stuff on the
+			blackboard, too.", MSGBOX_NPC)
+}
