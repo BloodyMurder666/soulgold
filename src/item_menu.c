@@ -2357,8 +2357,11 @@ static void ItemMenu_Register(u8 taskId)
     if (index >= 0)
     {
         gSaveBlock1Ptr->registeredItems[index] = ITEM_NONE;
-        if (CountRegisteredItems() == 0)
+        // Prevent the vanilla compatibility fallback from restoring the item
+        // that was just removed from the key item wheel.
+        if (gSaveBlock1Ptr->registeredItemCompat == gSpecialVar_ItemId)
             gSaveBlock1Ptr->registeredItemCompat = ITEM_NONE;
+        CountRegisteredItems();
         index = 1; // ensure menu is closed
     }
     // no items registered; register this one in slot 0
