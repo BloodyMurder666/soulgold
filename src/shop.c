@@ -43,10 +43,11 @@
 #define TAG_ITEM_ICON_BASE 9110 // immune to time blending
 
 #define MAX_ITEMS_SHOWN 8
-#define SHOP_MENU_PALETTE_ID          11
-#define SHOP_SCROLLING_BG_PALETTE_ID  12
-#define SHOP_SCROLLING_BG_TILE_OFFSET 0x1C
-#define SHOP_SCROLLING_BG_GFX_SIZE    0x1C0
+#define SHOP_MENU_PALETTE_ID                  11
+#define SHOP_SCROLLING_BG_PALETTE_ID          12
+#define SHOP_SCROLLING_BG_TILEMAP_TILE_OFFSET 0x1C
+#define SHOP_SCROLLING_BG_TILE_OFFSET         0x22
+#define SHOP_SCROLLING_BG_GFX_SIZE            0x1C0
 
 enum {
     WIN_BUY_SELL_QUIT,
@@ -1228,10 +1229,21 @@ static void BuyMenuInitBgs(void)
 
 static void BuyMenuDecompressBgGraphics(void)
 {
+    u32 i;
+
     DecompressAndCopyTileDataToVram(1, gShopMenu_Gfx, 0x3A0, 0x3E3, 0);
     DecompressAndCopyTileDataToVram(3, gShopMenuScrollingBg_Gfx, SHOP_SCROLLING_BG_GFX_SIZE, SHOP_SCROLLING_BG_TILE_OFFSET, 0);
     DecompressDataWithHeaderWram(gShopMenu_Tilemap, sShopData->tilemapBuffers[0]);
     DecompressDataWithHeaderWram(gShopMenuScrollingBg_Tilemap, sShopData->tilemapBuffers[2]);
+    // BG0's temporary Yes/No window extends into charblock 3 through tile 0x21.
+    // Rebase the scrolling background tilemap so its graphics begin after it.
+    for (i = 0; i < ARRAY_COUNT(sShopData->tilemapBuffers[2]); i++)
+    {
+        u16 entry = sShopData->tilemapBuffers[2][i];
+        u16 tile = (entry & 0x3FF) + SHOP_SCROLLING_BG_TILE_OFFSET - SHOP_SCROLLING_BG_TILEMAP_TILE_OFFSET;
+
+        sShopData->tilemapBuffers[2][i] = (entry & 0xFC00) | tile;
+    }
     LoadPalette(gShopMenu_Pal, BG_PLTT_ID(SHOP_MENU_PALETTE_ID), PLTT_SIZE_4BPP);
     LoadPalette(gShopMenuScrollingBg_Pal, BG_PLTT_ID(SHOP_SCROLLING_BG_PALETTE_ID), PLTT_SIZE_4BPP);
 }
