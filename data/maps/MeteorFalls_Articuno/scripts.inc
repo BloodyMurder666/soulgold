@@ -1,5 +1,3 @@
-.set LOCALID_ARTICUNO, 1
-
 MeteorFalls_Articuno_MapScripts::
 	map_script MAP_SCRIPT_ON_RESUME, MeteorFalls_Articuno_OnResume
 	map_script MAP_SCRIPT_ON_TRANSITION, MeteorFalls_Articuno_OnTransition

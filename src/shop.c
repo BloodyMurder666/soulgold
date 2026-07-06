@@ -5,12 +5,9 @@
 #include "decoration.h"
 #include "decoration_inventory.h"
 #include "event_data.h"
-#include "event_object_movement.h"
-#include "field_player_avatar.h"
 #include "field_mugshot.h"
 #include "field_screen_effect.h"
 #include "field_weather.h"
-#include "fieldmap.h"
 #include "gpu_regs.h"
 #include "graphics.h"
 #include "international_string_util.h"
@@ -37,10 +34,8 @@
 #include "text_window.h"
 #include "tv.h"
 #include "constants/decorations.h"
-#include "constants/event_objects.h"
 #include "constants/field_mugshots.h"
 #include "constants/items.h"
-#include "constants/metatile_behaviors.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
 
@@ -48,7 +43,10 @@
 #define TAG_ITEM_ICON_BASE 9110 // immune to time blending
 
 #define MAX_ITEMS_SHOWN 8
-#define SHOP_MENU_PALETTE_ID 12
+#define SHOP_MENU_PALETTE_ID          11
+#define SHOP_SCROLLING_BG_PALETTE_ID  12
+#define SHOP_SCROLLING_BG_TILE_OFFSET 0x1C
+#define SHOP_SCROLLING_BG_GFX_SIZE    0x1C0
 
 enum {
     WIN_BUY_SELL_QUIT,
@@ -77,16 +75,6 @@ enum {
     MART_TYPE_DECOR2,
 };
 
-// shop view window NPC info enum
-enum
-{
-    OBJ_EVENT_ID,
-    X_COORD,
-    Y_COORD,
-    ANIM_NUM,
-    LAYER_TYPE
-};
-
 struct MartInfo
 {
     void (*callback)(void);
@@ -100,7 +88,7 @@ struct MartInfo
 
 struct ShopData
 {
-    u16 tilemapBuffers[4][0x400];
+    u16 tilemapBuffers[3][0x400];
     u32 totalCost;
     u16 itemsShowed;
     u16 selectedRow;
@@ -109,7 +97,6 @@ struct ShopData
     u8 scrollIndicatorsTaskId;
     u8 iconSlot;
     u8 itemSpriteIds[2];
-    s16 viewportObjects[OBJECT_EVENTS_COUNT][5];
 };
 
 static EWRAM_DATA struct MartInfo sMartInfo = {0};
@@ -137,15 +124,7 @@ static void BuyMenuSetListEntry(struct ListMenuItem *, enum Item, u8 *);
 static void BuyMenuAddItemIcon(enum Item, u8);
 static void BuyMenuRemoveItemIcon(enum Item, u8);
 static void BuyMenuPrint(u8 windowId, const u8 *text, u8 x, u8 y, s8 speed, u8 colorSet);
-static void BuyMenuDrawMapGraphics(void);
 static void BuyMenuCopyMenuBgToBg1TilemapBuffer(void);
-static void BuyMenuCollectObjectEventData(void);
-static void BuyMenuDrawObjectEvents(void);
-static void BuyMenuDrawMapBg(void);
-static bool8 BuyMenuCheckForOverlapWithMenuBg(int, int);
-static void BuyMenuDrawMapMetatile(s16, s16, const u16 *, u8);
-static void BuyMenuDrawMapMetatileLayer(u16 *dest, s16 offset1, s16 offset2, const u16 *src);
-static bool8 BuyMenuCheckIfObjectEventOverlapsMenuBg(s16 *);
 static void ExitBuyMenu(u8 taskId);
 static void Task_ExitBuyMenu(u8 taskId);
 static void BuyMenuTryMakePurchase(u8 taskId);
@@ -641,17 +620,8 @@ static const struct BgTemplate sShopBuyMenuBgTemplates[] =
         .baseTile = 0
     },
     {
-        .bg = 2,
-        .charBaseIndex = 0,
-        .mapBaseIndex = 29,
-        .screenSize = 0,
-        .paletteMode = 0,
-        .priority = 2,
-        .baseTile = 0
-    },
-    {
         .bg = 3,
-        .charBaseIndex = 0,
+        .charBaseIndex = 3,
         .mapBaseIndex = 28,
         .screenSize = 0,
         .paletteMode = 0,
@@ -994,6 +964,7 @@ static void ShowShopMenuAfterExitingBuyOrSellMenu(u8 taskId)
 static void CB2_BuyMenu(void)
 {
     RunTasks();
+    ChangeBgY(3, 128, BG_COORD_ADD);
     AnimateSprites();
     BuildOamBuffer();
     DoScheduledBgTilemapCopiesToVram();
@@ -1031,7 +1002,6 @@ static void CB2_InitBuyMenu(void)
         BuyMenuInitBgs();
         FillBgTilemapBufferRect_Palette0(0, 0, 0, 0, 0x20, 0x20);
         FillBgTilemapBufferRect_Palette0(1, 0, 0, 0, 0x20, 0x20);
-        FillBgTilemapBufferRect_Palette0(2, 0, 0, 0, 0x20, 0x20);
         FillBgTilemapBufferRect_Palette0(3, 0, 0, 0, 0x20, 0x20);
         BuyMenuInitWindows();
         BuyMenuDecompressBgGraphics();
@@ -1240,7 +1210,6 @@ static void BuyMenuInitBgs(void)
     ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sShopBuyMenuBgTemplates, ARRAY_COUNT(sShopBuyMenuBgTemplates));
     SetBgTilemapBuffer(1, sShopData->tilemapBuffers[1]);
-    SetBgTilemapBuffer(2, sShopData->tilemapBuffers[3]);
     SetBgTilemapBuffer(3, sShopData->tilemapBuffers[2]);
     SetGpuReg(REG_OFFSET_BG0HOFS, 0);
     SetGpuReg(REG_OFFSET_BG0VOFS, 0);
@@ -1254,15 +1223,17 @@ static void BuyMenuInitBgs(void)
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 | DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
     ShowBg(0);
     ShowBg(1);
-    ShowBg(2);
     ShowBg(3);
 }
 
 static void BuyMenuDecompressBgGraphics(void)
 {
     DecompressAndCopyTileDataToVram(1, gShopMenu_Gfx, 0x3A0, 0x3E3, 0);
+    DecompressAndCopyTileDataToVram(3, gShopMenuScrollingBg_Gfx, SHOP_SCROLLING_BG_GFX_SIZE, SHOP_SCROLLING_BG_TILE_OFFSET, 0);
     DecompressDataWithHeaderWram(gShopMenu_Tilemap, sShopData->tilemapBuffers[0]);
+    DecompressDataWithHeaderWram(gShopMenuScrollingBg_Tilemap, sShopData->tilemapBuffers[2]);
     LoadPalette(gShopMenu_Pal, BG_PLTT_ID(SHOP_MENU_PALETTE_ID), PLTT_SIZE_4BPP);
+    LoadPalette(gShopMenuScrollingBg_Pal, BG_PLTT_ID(SHOP_SCROLLING_BG_PALETTE_ID), PLTT_SIZE_4BPP);
 }
 
 static void BuyMenuInitWindows(void)
@@ -1289,7 +1260,6 @@ static void BuyMenuDisplayMessage(u8 taskId, const u8 *text, TaskFunc callback)
 
 static void BuyMenuDrawGraphics(void)
 {
-    BuyMenuDrawMapGraphics();
     BuyMenuCopyMenuBgToBg1TilemapBuffer();
     if (!IsBPMart())
         AddMoneyLabelObject(19, 11);
@@ -1297,191 +1267,7 @@ static void BuyMenuDrawGraphics(void)
     BuyMenuPrintCurrencyAmountInMoneyBox();
     ScheduleBgCopyTilemapToVram(0);
     ScheduleBgCopyTilemapToVram(1);
-    ScheduleBgCopyTilemapToVram(2);
     ScheduleBgCopyTilemapToVram(3);
-}
-
-static void BuyMenuDrawMapGraphics(void)
-{
-    BuyMenuCollectObjectEventData();
-    BuyMenuDrawObjectEvents();
-    BuyMenuDrawMapBg();
-}
-
-static void BuyMenuDrawMapBg(void)
-{
-    s16 i, j;
-    s16 x, y;
-    const struct MapLayout *mapLayout;
-    u16 metatile;
-    u8 metatileLayerType;
-
-    mapLayout = gMapHeader.mapLayout;
-    GetXYCoordsOneStepInFrontOfPlayer(&x, &y);
-    x -= 4;
-    y -= 4;
-
-    for (j = 0; j < 10; j++)
-    {
-        for (i = 0; i < 15; i++)
-        {
-            metatile = MapGridGetMetatileIdAt(x + i, y + j);
-            if (BuyMenuCheckForOverlapWithMenuBg(i, j) == TRUE)
-                metatileLayerType = METATILE_LAYER_TYPE_NORMAL;
-            else
-                metatileLayerType = METATILE_LAYER_TYPE_COVERED;
-
-            if (metatile < NUM_METATILES_IN_PRIMARY)
-                BuyMenuDrawMapMetatile(i, j, mapLayout->primaryTileset->metatiles + metatile * NUM_TILES_PER_METATILE, metatileLayerType);
-            else
-                BuyMenuDrawMapMetatile(i, j, mapLayout->secondaryTileset->metatiles + ((metatile - NUM_METATILES_IN_PRIMARY) * NUM_TILES_PER_METATILE), metatileLayerType);
-        }
-    }
-}
-
-static bool8 IsMetatileLayerEmpty(const u16 *src)
-{
-    u32 i = 0;
-    for (i = 0; i < 4; ++i)
-    {
-        if ((src[i] & 0x3FF) != 0)
-            return FALSE;
-    }
-    return TRUE;
-}
-
-static void BuyMenuDrawMapMetatile(s16 x, s16 y, const u16 *src, u8 metatileLayerType)
-{
-    u16 offset1 = x * 2;
-    u16 offset2 = y * 64;
-    if (metatileLayerType == METATILE_LAYER_TYPE_NORMAL)
-    {
-        BuyMenuDrawMapMetatileLayer(sShopData->tilemapBuffers[2], offset1, offset2, src + 0);
-         BuyMenuDrawMapMetatileLayer(sShopData->tilemapBuffers[3], offset1, offset2, src + 4);
-        BuyMenuDrawMapMetatileLayer(sShopData->tilemapBuffers[1], offset1, offset2, src + 8);
-    }
-    else
-    {
-        if (IsMetatileLayerEmpty(src))
-        {
-            BuyMenuDrawMapMetatileLayer(sShopData->tilemapBuffers[2], offset1, offset2, src + 4);
-            BuyMenuDrawMapMetatileLayer(sShopData->tilemapBuffers[3], offset1, offset2, src + 8);
-        }
-        else if (IsMetatileLayerEmpty(src + 4))
-        {
-            BuyMenuDrawMapMetatileLayer(sShopData->tilemapBuffers[2], offset1, offset2, src);
-            BuyMenuDrawMapMetatileLayer(sShopData->tilemapBuffers[3], offset1, offset2, src + 8);
-        }
-        else if (IsMetatileLayerEmpty(src + 8))
-        {
-            BuyMenuDrawMapMetatileLayer(sShopData->tilemapBuffers[2], offset1, offset2, src);
-            BuyMenuDrawMapMetatileLayer(sShopData->tilemapBuffers[3], offset1, offset2, src + 4);
-        }
-    }
-}
-
-static void BuyMenuDrawMapMetatileLayer(u16 *dest, s16 offset1, s16 offset2, const u16 *src)
-{
-    // This function draws a whole 2x2 metatile.
-    dest[offset1 + offset2] = src[0]; // top left
-    dest[offset1 + offset2 + 1] = src[1]; // top right
-    dest[offset1 + offset2 + 32] = src[2]; // bottom left
-    dest[offset1 + offset2 + 33] = src[3]; // bottom right
-}
-
-static void BuyMenuCollectObjectEventData(void)
-{
-    s16 facingX;
-    s16 facingY;
-    u8 y;
-    u8 x;
-    u8 numObjects = 0;
-
-    GetXYCoordsOneStepInFrontOfPlayer(&facingX, &facingY);
-
-    for (y = 0; y < OBJECT_EVENTS_COUNT; y++)
-        sShopData->viewportObjects[y][OBJ_EVENT_ID] = OBJECT_EVENTS_COUNT;
-
-    for (y = 0; y < 5; y++)
-    {
-        for (x = 0; x < 7; x++)
-        {
-            u8 objEventId = GetObjectEventIdByXY(facingX - 4 + x, facingY - 2 + y);
-
-            // skip if invalid or an overworld pokemon that is not following the player
-            if (objEventId != OBJECT_EVENTS_COUNT && !(gObjectEvents[objEventId].active && gObjectEvents[objEventId].graphicsId & OBJ_EVENT_MON && gObjectEvents[objEventId].localId != OBJ_EVENT_ID_FOLLOWER))
-            {
-                sShopData->viewportObjects[numObjects][OBJ_EVENT_ID] = objEventId;
-                sShopData->viewportObjects[numObjects][X_COORD] = x;
-                sShopData->viewportObjects[numObjects][Y_COORD] = y;
-                sShopData->viewportObjects[numObjects][LAYER_TYPE] = MapGridGetMetatileLayerTypeAt(facingX - 4 + x, facingY - 2 + y);
-
-                switch (gObjectEvents[objEventId].facingDirection)
-                {
-                case DIR_SOUTH:
-                    sShopData->viewportObjects[numObjects][ANIM_NUM] = ANIM_STD_FACE_SOUTH;
-                    break;
-                case DIR_NORTH:
-                    sShopData->viewportObjects[numObjects][ANIM_NUM] = ANIM_STD_FACE_NORTH;
-                    break;
-                case DIR_WEST:
-                    sShopData->viewportObjects[numObjects][ANIM_NUM] = ANIM_STD_FACE_WEST;
-                    break;
-                case DIR_EAST:
-                default:
-                    sShopData->viewportObjects[numObjects][ANIM_NUM] = ANIM_STD_FACE_EAST;
-                    break;
-                }
-                numObjects++;
-            }
-        }
-    }
-}
-
-static void BuyMenuDrawObjectEvents(void)
-{
-    u8 i;
-    u8 spriteId;
-    const struct ObjectEventGraphicsInfo *graphicsInfo;
-    u8 weatherTemp = gWeatherPtr->palProcessingState;
-
-    // This function runs during fadeout, so the weather palette processing state must be temporarily changed,
-    // so that time-blending will work properly
-    if (weatherTemp == WEATHER_PAL_STATE_SCREEN_FADING_OUT)
-        gWeatherPtr->palProcessingState = WEATHER_PAL_STATE_IDLE;
-    for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
-    {
-        if (sShopData->viewportObjects[i][OBJ_EVENT_ID] == OBJECT_EVENTS_COUNT)
-            continue;
-
-        graphicsInfo = GetObjectEventGraphicsInfo(gObjectEvents[sShopData->viewportObjects[i][OBJ_EVENT_ID]].graphicsId);
-
-        spriteId = CreateObjectGraphicsSprite(
-            gObjectEvents[sShopData->viewportObjects[i][OBJ_EVENT_ID]].graphicsId,
-            SpriteCallbackDummy,
-            (u16)sShopData->viewportObjects[i][X_COORD] * 16 + 8,
-            (u16)sShopData->viewportObjects[i][Y_COORD] * 16 + 48 - graphicsInfo->height / 2,
-            2);
-
-        if (BuyMenuCheckIfObjectEventOverlapsMenuBg(sShopData->viewportObjects[i]) == TRUE)
-        {
-            gSprites[spriteId].subspriteTableNum = 4;
-            gSprites[spriteId].subspriteMode = SUBSPRITES_ON;
-        }
-
-        StartSpriteAnim(&gSprites[spriteId], sShopData->viewportObjects[i][ANIM_NUM]);
-    }
-
-    gWeatherPtr->palProcessingState = weatherTemp; // restore weather state
-    CpuFastCopy(gPlttBufferFaded + 16*16, gPlttBufferUnfaded + 16*16, PLTT_BUFFER_SIZE);
-}
-
-static bool8 BuyMenuCheckIfObjectEventOverlapsMenuBg(s16 *object)
-{
-    if (!BuyMenuCheckForOverlapWithMenuBg(object[X_COORD], object[Y_COORD] + 2) && object[LAYER_TYPE] != METATILE_LAYER_TYPE_COVERED)
-        return TRUE;
-    else
-        return FALSE;
 }
 
 static void BuyMenuCopyMenuBgToBg1TilemapBuffer(void)
@@ -1495,21 +1281,6 @@ static void BuyMenuCopyMenuBgToBg1TilemapBuffer(void)
         if (src[i] != 0)
             dest[i] = src[i] + ((SHOP_MENU_PALETTE_ID << 12) | 0x3E3);
     }
-}
-
-static bool8 BuyMenuCheckForOverlapWithMenuBg(int x, int y)
-{
-    const u16 *metatile = sShopData->tilemapBuffers[0];
-    int offset1 = x * 2;
-    int offset2 = y * 64;
-
-    if (metatile[offset2 + offset1] == 0 &&
-        metatile[offset2 + offset1 + 32] == 0 &&
-        metatile[offset2 + offset1 + 1] == 0 &&
-        metatile[offset2 + offset1 + 33] == 0)
-        return TRUE;
-
-    return FALSE;
 }
 
 static void Task_BuyMenu(u8 taskId)

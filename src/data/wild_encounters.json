@@ -1809,7 +1809,7 @@
               {
                 "min_level": 15,
                 "max_level": 24,
-                "species": "SPECIES_SLOWBRO_GALAR"
+                "species": "SPECIES_SLOWBRO"
               },
               {
                 "min_level": 15,
@@ -1922,8 +1922,8 @@
               },
               {
                 "min_level": 20,
-                "max_level": 20,
-                "species": "SPECIES_NOSEPASS"
+                "max_level": 23,
+                "species": "SPECIES_HAWLUCHA"
               },
               {
                 "min_level": 23,
@@ -1932,8 +1932,8 @@
               },
               {
                 "min_level": 20,
-                "max_level": 20,
-                "species": "SPECIES_NOSEPASS"
+                "max_level": 23,
+                "species": "SPECIES_HAWLUCHA"
               },
               {
                 "min_level": 23,
@@ -3173,73 +3173,89 @@
                 "species": "SPECIES_SCYTHER"
               }
             ]
-          }
-        },
-        {
-          "map": "MAP_NATIONAL_PARK_NORMAL",
-          "base_label": "gNationalPark_Night",
-          "land_mons": {
-            "encounter_rate": 20,
+          },
+          "water_mons": {
+            "encounter_rate": 7,
             "mons": [
               {
-                "min_level": 13,
-                "max_level": 14,
-                "species": "SPECIES_NINCADA"
+                "min_level": 23,
+                "max_level": 25,
+                "species": "SPECIES_MARILL"
               },
               {
-                "min_level": 13,
-                "max_level": 14,
-                "species": "SPECIES_RATTATA_ALOLA"
+                "min_level": 23,
+                "max_level": 25,
+                "species": "SPECIES_MARILL"
               },
               {
-                "min_level": 13,
-                "max_level": 14,
-                "species": "SPECIES_NINCADA"
+                "min_level": 23,
+                "max_level": 25,
+                "species": "SPECIES_MARILL"
               },
               {
-                "min_level": 13,
-                "max_level": 14,
-                "species": "SPECIES_RATTATA_ALOLA"
+                "min_level": 33,
+                "max_level": 35,
+                "species": "SPECIES_AZUMARILL"
               },
               {
-                "min_level": 13,
+                "min_level": 33,
+                "max_level": 35,
+                "species": "SPECIES_AZUMARILL"
+              }
+            ]
+          },
+          "fishing_mons": {
+            "encounter_rate": 30,
+            "mons": [
+              {
+                "min_level": 5,
                 "max_level": 15,
-                "species": "SPECIES_KAKUNA"
+                "species": "SPECIES_MAGIKARP"
               },
               {
-                "min_level": 13,
+                "min_level": 5,
                 "max_level": 15,
-                "species": "SPECIES_METAPOD"
+                "species": "SPECIES_CARVANHA"
               },
               {
-                "min_level": 14,
-                "max_level": 15,
-                "species": "SPECIES_KAKUNA"
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_MAGIKARP"
               },
               {
-                "min_level": 14,
-                "max_level": 15,
-                "species": "SPECIES_METAPOD"
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_CARVANHA"
               },
               {
-                "min_level": 14,
-                "max_level": 17,
-                "species": "SPECIES_WIMPOD"
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_CARVANHA"
               },
               {
-                "min_level": 14,
-                "max_level": 17,
-                "species": "SPECIES_WIMPOD"
+                "min_level": 45,
+                "max_level": 45,
+                "species": "SPECIES_MAGIKARP"
               },
               {
-                "min_level": 17,
-                "max_level": 18,
-                "species": "SPECIES_PINSIR"
+                "min_level": 45,
+                "max_level": 45,
+                "species": "SPECIES_CARVANHA"
               },
               {
-                "min_level": 17,
-                "max_level": 18,
-                "species": "SPECIES_SCYTHER"
+                "min_level": 45,
+                "max_level": 45,
+                "species": "SPECIES_CARVANHA"
+              },
+              {
+                "min_level": 45,
+                "max_level": 55,
+                "species": "SPECIES_SHARPEDO"
+              },
+              {
+                "min_level": 45,
+                "max_level": 55,
+                "species": "SPECIES_SHARPEDO"
               }
             ]
           }
@@ -13804,6 +13820,213 @@
                 "min_level": 45,
                 "max_level": 55,
                 "species": "SPECIES_POLITOED"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_CERULEAN_CAVE_1F",
+          "base_label": "gCeruleanCave_1F",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_SCIZOR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_HONCHKROW"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_TANGROWTH"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_HONCHKROW"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_SCIZOR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_TANGROWTH"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_AEGISLASH"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_CRABOMINABLE"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_AEGISLASH"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_ROTOM"
+              },
+              {
+                "min_level": 58,
+                "max_level": 69,
+                "species": "SPECIES_CRABOMINABLE"
+              },
+              {
+                "min_level": 58,
+                "max_level": 69,
+                "species": "SPECIES_ROTOM"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_CERULEAN_CAVE_B1F",
+          "base_label": "gCeruleanCave_B1F",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_SCIZOR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_HONCHKROW"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_TANGROWTH"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_HONCHKROW"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_SCIZOR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_TANGROWTH"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_AEGISLASH"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_CRABOMINABLE"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_AEGISLASH"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_ROTOM"
+              },
+              {
+                "min_level": 58,
+                "max_level": 69,
+                "species": "SPECIES_CRABOMINABLE"
+              },
+              {
+                "min_level": 58,
+                "max_level": 69,
+                "species": "SPECIES_ROTOM"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_CERULEAN_CAVE_B2F",
+          "base_label": "gCeruleanCave_B2F",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_SCIZOR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_HONCHKROW"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_TANGROWTH"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_HONCHKROW"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_SCIZOR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_TANGROWTH"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_AEGISLASH"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_CRABOMINABLE"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_AEGISLASH"
+              },
+              {
+                "min_level": 58,
+                "max_level": 68,
+                "species": "SPECIES_ROTOM"
+              },
+              {
+                "min_level": 58,
+                "max_level": 69,
+                "species": "SPECIES_CRABOMINABLE"
+              },
+              {
+                "min_level": 58,
+                "max_level": 69,
+                "species": "SPECIES_ROTOM"
               }
             ]
           }

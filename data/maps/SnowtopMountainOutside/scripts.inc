@@ -31,7 +31,7 @@ SnowtopMountainOutside_Articuno::
 # 20 "data/maps/SnowtopMountainOutside/scripts.pory"
 	faceplayer
 # 21 "data/maps/SnowtopMountainOutside/scripts.pory"
-	legendaryencounter SPECIES_ARTICUNO, 50, 1, FLAG_HIDE_ARTICUNO
+	legendaryencounter SPECIES_ARTICUNO, 50, LOCALID_ARTICUNO, FLAG_HIDE_ARTICUNO
 # 22 "data/maps/SnowtopMountainOutside/scripts.pory"
 	release
 	end

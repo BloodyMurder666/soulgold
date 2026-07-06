@@ -8,6 +8,7 @@ Route28House_EventScript_Celebrity::
 	giveitem ITEM_TM_STEEL_WING
 	setflag FLAG_GOT_TM_STEEL_WING
 Route28House_EventScript_CelebrityAfter::
+	createfieldmugshot MUGSHOT_COOLTRAINER_F
 	msgbox Route28House_Text_Celebrity2, MSGBOX_NPC
 	release
 	end

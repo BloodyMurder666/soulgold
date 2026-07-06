@@ -18,7 +18,7 @@ script SnowtopMountainOutside_Snover {
 script SnowtopMountainOutside_Articuno {
     lock
     faceplayer
-    legendaryencounter(SPECIES_ARTICUNO, 50, 1, FLAG_HIDE_ARTICUNO)
+    legendaryencounter(SPECIES_ARTICUNO, 50, LOCALID_ARTICUNO, FLAG_HIDE_ARTICUNO)
     release
     end
 }

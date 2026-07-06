@@ -108,46 +108,6 @@ IndigoPlateau_Text_RivalAfter:
     .string "Pokémon…\p"
     .string "Humph! Try not to lose!$"
 
-IndigoPlateau_EventScript_Psychic::
-	lock
-	faceplayer
-	msgbox IndigoPlateau_Text_TeleportGuy1, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, TRUE, IndigoPlateau_EventScript_PsychicTeleport
-	msgbox IndigoPlateau_Text_TeleportGuyNo, MSGBOX_DEFAULT
-	closemessage
-	release
-	end
-
-IndigoPlateau_EventScript_PsychicTeleport::
-	msgbox IndigoPlateau_Text_TeleportGuyYes, MSGBOX_DEFAULT
-	closemessage
-	turnobject OBJ_EVENT_ID_PLAYER, DIR_SOUTH
-	playbgm MUS_HG_NEW_BARK, TRUE
-	delay 60
-	playmoncry SPECIES_ABRA, CRY_MODE_NORMAL
-	applymovement LOCALID_INDIGOPLATEAU_ABRA, IndigoPLateau_Movement_Abra
-	waitmovement 0
-	fadescreen FADE_TO_WHITE
-	warpteleport MAP_NEW_BARK_TOWN, 20, 12
-	waitstate
-	release
-	end
-	
-IndigoPLateau_Movement_Abra:
-	jump_in_place_right
-	jump_in_place_right
-	step_end
-
-IndigoPlateau_EventScript_Abra::
-	lock
-	faceplayer
-	waitse
-	playmoncry SPECIES_ABRA, CRY_MODE_NORMAL
-	msgbox IndigoPlateau_Text_Abra, MSGBOX_DEFAULT
-	waitmoncry
-	release
-	end
-
 IndigoPlateau_Text_TeleportGuy1:
     .string "Ah! You're challenging the Elite\n"
     .string "Four? Are you sure you're ready?\p"
