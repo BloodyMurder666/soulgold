@@ -2343,7 +2343,13 @@ static bool8 GetMonInfo(struct Pokemon *mon, u32 *species, bool32 *shiny, bool32
     *female = GetMonGender(mon) == MON_FEMALE ? OBJ_EVENT_MON_FEMALE : 0;
 #if OW_BATTLE_ONLY_FORMS
     if (CheckBagHasItem(ITEM_MEGA_RING, 1))
-        *species = GetFormChangeTargetSpecies(mon, FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM);
+    {
+        u32 megaSpecies = GetFormChangeTargetSpecies(mon, FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM);
+
+        // Keep the base form when the Mega form would use the substitute placeholder.
+        if (megaSpecies < NUM_SPECIES && gSpeciesInfo[megaSpecies].overworldData.tileTag != 0)
+            *species = megaSpecies;
+    }
 #endif
     switch (*species)
     {
