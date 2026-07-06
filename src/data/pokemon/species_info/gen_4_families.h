@@ -4755,7 +4755,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             ANIMCMD_FRAME(1, 28),
             ANIMCMD_FRAME(0, 5),
         ),
-        .frontAnimId = ANIM_V_STRETCH,
+        .frontAnimId = ANIM_RAPID_H_HOPS,
         .backPic = gMonBackPic_Riolu,
         .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicYOffset = 8,
