@@ -1,6 +1,5 @@
 raw `
 .set LOCALID_NURSE, 1
-.set LOCALID_INDIGOPLATEAU_ABRA, 6
 
 IndigoPlateau_PokemonCenter_MapScripts::
 	@map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
@@ -130,6 +129,7 @@ IndigoPlateau_EventScript_PsychicTeleport::
 	waitmovement 0
 	fadescreen FADE_TO_WHITE
 	warpteleport MAP_NEW_BARK_TOWN, 20, 12
+	waitstate
 	release
 	end
 	
