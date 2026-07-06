@@ -193,7 +193,7 @@ GoldenrodCity_Bill_GiveEeveeOrPikachu_5:
 # 104 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
 	setflag FLAG_GOT_BILL_GIFTMON
 # 105 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
-	showmonpic SPECIES_EEVEE_STARTER, 10, 3
+	showgivemonpic 10, 3
 # 106 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
 	call Common_EventScript_GiftMon
 # 107 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
@@ -216,7 +216,7 @@ GoldenrodCity_Bill_GiveEeveeOrPikachu_6:
 # 119 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
 	setflag FLAG_GOT_BILL_GIFTMON
 # 120 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
-	showmonpic SPECIES_PIKACHU_STARTER, 10, 3
+	showgivemonpic 10, 3
 # 121 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
 	call Common_EventScript_GiftMon
 # 122 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"

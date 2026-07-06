@@ -723,7 +723,9 @@ static void CB2_EggHatch(void)
             species = GetMonData(&gPlayerParty[sEggHatchData->eggPartyId], MON_DATA_SPECIES);
             gender = GetMonGender(&gPlayerParty[sEggHatchData->eggPartyId]);
             personality = GetMonData(&gPlayerParty[sEggHatchData->eggPartyId], MON_DATA_PERSONALITY, 0);
-            DoNamingScreen(NAMING_SCREEN_NICKNAME, gStringVar3, species, gender, personality, EggHatchSetMonNickname);
+            DoNamingScreen(NAMING_SCREEN_NICKNAME, gStringVar3, species, gender, personality,
+                           GetMonData(&gPlayerParty[sEggHatchData->eggPartyId], MON_DATA_IS_SHINY),
+                           EggHatchSetMonNickname);
             break;
         case 1: // No
         case MENU_B_PRESSED:

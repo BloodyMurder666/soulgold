@@ -18824,6 +18824,13 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_EeveeStarter,
         .shinyPalette = gMonShinyPalette_EeveeStarter,
         .iconSprite = gMonIcon_EeveePartner,
+        .iconPalette = gMonIconPalette_EeveePartner,
+        .shinyIconPalette = gMonShinyIconPalette_EeveePartner,
+#if P_GENDER_DIFFERENCES && P_CUSTOM_GENDER_DIFF_ICONS
+        .iconSpriteFemale = gMonIcon_EeveePartnerF,
+        .iconPaletteFemale = gMonIconPalette_EeveePartner,
+        .shinyIconPaletteFemale = gMonShinyIconPalette_EeveePartner,
+#endif //P_GENDER_DIFFERENCES && P_CUSTOM_GENDER_DIFF_ICONS
         .pokemonJumpType = PKMN_JUMP_TYPE_NORMAL,
         SHADOW(-2, 2, SHADOW_SIZE_S)
         FOOTPRINT(Eevee)

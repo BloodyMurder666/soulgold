@@ -151,9 +151,11 @@ script KitakamiHouses_2_Steven {
             I would like to battle you then 
             in return.")
     setvar(VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_BELDUM)
-	bufferspeciesname(STR_VAR_1, SPECIES_BELDUM)
+    bufferspeciesname(STR_VAR_1, SPECIES_BELDUM)
     givemon(SPECIES_BELDUM, 15, ITEM_IRON_PLATE, ITEM_LUXURY_BALL)
+    showgivemonpic(10, 3)
     call(Common_EventScript_GiftMon)
+    hidemonpic
     setflag(FLAG_MET_STEVEN)
     msgbox("I have high expectations for you.")
     waitmessage

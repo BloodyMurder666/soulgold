@@ -102,7 +102,7 @@ script GoldenrodCity_Bill_GiveEeveeOrPikachu {
             	givemon(SPECIES_EEVEE_STARTER, 25)
                 //removeobject(LOCALID_BILL_EEVEE)
                 setflag(FLAG_GOT_BILL_GIFTMON)
-                showmonpic(SPECIES_EEVEE_STARTER, 10, 3)
+                showgivemonpic(10, 3)
 	            call(Common_EventScript_GiftMon)
 	            hidemonpic
                 bufferspeciesname(STR_VAR_1, SPECIES_EEVEE_STARTER)
@@ -117,7 +117,7 @@ script GoldenrodCity_Bill_GiveEeveeOrPikachu {
             	givemon(SPECIES_PIKACHU_STARTER, 25)
                 //removeobject(LOCALID_BILL_PIKACHU)
                 setflag(FLAG_GOT_BILL_GIFTMON)
-                showmonpic(SPECIES_PIKACHU_STARTER, 10, 3)
+                showgivemonpic(10, 3)
 	            call(Common_EventScript_GiftMon)
                 hidemonpic
                 bufferspeciesname(STR_VAR_1, SPECIES_PIKACHU_STARTER)

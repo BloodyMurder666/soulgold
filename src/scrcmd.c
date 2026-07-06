@@ -2022,6 +2022,34 @@ bool8 ScrCmd_showmonpic(struct ScriptContext *ctx)
     return FALSE;
 }
 
+void ScrCmd_showgivemonpic(struct ScriptContext *ctx)
+{
+    u8 x = ScriptReadByte(ctx);
+    u8 y = ScriptReadByte(ctx);
+    struct BoxPokemon *boxMon = NULL;
+
+    Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
+
+    if (gSpecialVar_Result == MON_GIVEN_TO_PARTY && gPlayerPartyCount != 0)
+    {
+        boxMon = &gPlayerParty[gPlayerPartyCount - 1].box;
+    }
+    else if (gSpecialVar_Result == MON_GIVEN_TO_PC
+          && gSpecialVar_MonBoxId < TOTAL_BOXES_COUNT
+          && gSpecialVar_MonBoxPos < IN_BOX_COUNT)
+    {
+        boxMon = GetBoxedMonPtr(gSpecialVar_MonBoxId, gSpecialVar_MonBoxPos);
+    }
+
+    if (boxMon != NULL && GetBoxMonData(boxMon, MON_DATA_SPECIES) != SPECIES_NONE)
+    {
+        ScriptMenu_ShowPokemonPicShiny(GetBoxMonData(boxMon, MON_DATA_SPECIES),
+                                       GetBoxMonData(boxMon, MON_DATA_IS_SHINY),
+                                       GetBoxMonData(boxMon, MON_DATA_PERSONALITY),
+                                       x, y);
+    }
+}
+
 bool8 ScrCmd_hidemonpic(struct ScriptContext *ctx)
 {
     Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);

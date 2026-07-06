@@ -990,6 +990,14 @@
 	.byte \y
 	.endm
 
+	@ Displays the actual Pokemon created by the immediately preceding givemon.
+	@ This must be used before a command that overwrites VAR_RESULT.
+	.macro showgivemonpic x:req, y:req
+	callnative ScrCmd_showgivemonpic, requests_effects=1
+	.byte \x
+	.byte \y
+	.endm
+
 	@ Hides the box displayed by showmonpic.
 	.macro hidemonpic
 	.byte SCR_OP_HIDEMONPIC

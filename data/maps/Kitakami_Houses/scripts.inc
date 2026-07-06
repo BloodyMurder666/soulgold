@@ -91,14 +91,18 @@ KitakamiHouses_2_Steven::
 # 155 "data/maps/Kitakami_Houses/scripts.pory"
 	givemon SPECIES_BELDUM, 15, ITEM_IRON_PLATE, ITEM_LUXURY_BALL
 # 156 "data/maps/Kitakami_Houses/scripts.pory"
-	call Common_EventScript_GiftMon
+	showgivemonpic 10, 3
 # 157 "data/maps/Kitakami_Houses/scripts.pory"
-	setflag FLAG_MET_STEVEN
+	call Common_EventScript_GiftMon
 # 158 "data/maps/Kitakami_Houses/scripts.pory"
-	msgbox KitakamiHouses_2_Steven_Text_9
+	hidemonpic
 # 159 "data/maps/Kitakami_Houses/scripts.pory"
-	waitmessage
+	setflag FLAG_MET_STEVEN
 # 160 "data/maps/Kitakami_Houses/scripts.pory"
+	msgbox KitakamiHouses_2_Steven_Text_9
+# 161 "data/maps/Kitakami_Houses/scripts.pory"
+	waitmessage
+# 162 "data/maps/Kitakami_Houses/scripts.pory"
 	release
 	end
 
@@ -176,25 +180,25 @@ KitakamiHouses_2_Steven_11:
 
 
 PorygonPC::
-# 165 "data/maps/Kitakami_Houses/scripts.pory"
-	lockall
-# 166 "data/maps/Kitakami_Houses/scripts.pory"
-	playmoncry SPECIES_PORYGON_Z, CRY_MODE_NORMAL
 # 167 "data/maps/Kitakami_Houses/scripts.pory"
-	msgbox PorygonPC_Text_0
+	lockall
+# 168 "data/maps/Kitakami_Houses/scripts.pory"
+	playmoncry SPECIES_PORYGON_Z, CRY_MODE_NORMAL
 # 169 "data/maps/Kitakami_Houses/scripts.pory"
+	msgbox PorygonPC_Text_0
+# 171 "data/maps/Kitakami_Houses/scripts.pory"
 	goto EventScript_PCMainMenu
 	return
 
 
 KitakamiHouses_3_Lady::
-# 173 "data/maps/Kitakami_Houses/scripts.pory"
+# 175 "data/maps/Kitakami_Houses/scripts.pory"
 	msgbox KitakamiHouses_3_Lady_Text_0, MSGBOX_NPC
 	return
 
 
 KitakamiHouses_3_Man::
-# 178 "data/maps/Kitakami_Houses/scripts.pory"
+# 180 "data/maps/Kitakami_Houses/scripts.pory"
 	msgbox KitakamiHouses_3_Man_Text_0, MSGBOX_NPC
 	return
 
@@ -296,21 +300,21 @@ KitakamiHouses_2_Steven_Text_8:
 	.string "in return.$"
 
 KitakamiHouses_2_Steven_Text_9:
-# 158 "data/maps/Kitakami_Houses/scripts.pory"
+# 160 "data/maps/Kitakami_Houses/scripts.pory"
 	.string "I have high expectations for you.$"
 
 PorygonPC_Text_0:
-# 167 "data/maps/Kitakami_Houses/scripts.pory"
+# 169 "data/maps/Kitakami_Houses/scripts.pory"
 	.string "{PLAYER} booted up the Porygon \n"
 	.string "remote PC.$"
 
 KitakamiHouses_3_Lady_Text_0:
-# 173 "data/maps/Kitakami_Houses/scripts.pory"
+# 175 "data/maps/Kitakami_Houses/scripts.pory"
 	.string "Life is peaceful here with my family,\n"
 	.string "I couldn't ask for much else.$"
 
 KitakamiHouses_3_Man_Text_0:
-# 178 "data/maps/Kitakami_Houses/scripts.pory"
+# 180 "data/maps/Kitakami_Houses/scripts.pory"
 	.string "This town is protected by Ogerpon, who\n"
 	.string "sometimes visits this town. \p"
 	.string "Personally I have never seen it, \n"
