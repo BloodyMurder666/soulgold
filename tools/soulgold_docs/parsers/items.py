@@ -9,8 +9,9 @@ from pathlib import Path
 from typing import Mapping
 
 from ..constants import GENERIC_MEGA_STONE_ITEMS, IMPORTANT_ITEM_POCKETS, IMPORTANT_ITEM_SORT_TYPES, ITEMS_HIDDEN_CONSTANTS, ITEMS_HIDDEN_SORT_TYPES, ITEMS_HIDDEN_SUFFIXES
-from ..c_parser import clean_constant_name, collect_strings, extract_field, format_identifier_name, parse_enum_constants, parse_shared_strings, preprocess, read, split_designated_entries
+from ..c_parser import clean_constant_name, collect_strings, extract_field, parse_enum_constants, parse_shared_strings, preprocess, read, split_designated_entries
 from ..image_utils import copy_item_icon
+from ..map_names import map_display_name
 from ..models import ImportantItemRow, ItemLocation, ItemRecord, NamedRecord, SpeciesRow, TMHMRow, TMRow
 from ..paths import ITEMS_H, REPO_ROOT, TMS_HMS_H
 
@@ -78,7 +79,7 @@ def add_location(
 def format_item_location(map_data: Mapping[str, object], fallback_name: str, source: str) -> tuple[str, str]:
     if map_data.get("layout") == "LAYOUT_MAUVILLE_CITY_GAME_CORNER":
         return "Goldenrod City Game Corner", "Bought"
-    return format_identifier_name(map_data.get("name") or fallback_name), source
+    return map_display_name(map_data, fallback_name), source
 
 def format_tmhm_location(map_data: Mapping[str, object], fallback_name: str, source: str) -> tuple[str, str]:
     return format_item_location(map_data, fallback_name, source)

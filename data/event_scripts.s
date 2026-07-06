@@ -2313,3 +2313,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/SouthShoreHouse/scripts.inc"
 
 	.include "data/maps/SproutTower_Basement/scripts.inc"
+
+	.include "data/maps/RuinsOfAlph_SecretRoom/scripts.inc"

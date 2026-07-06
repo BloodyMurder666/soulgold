@@ -114,7 +114,6 @@ SSAqua_1F_EventScript_LeaveBoat::
 
 	setvar VAR_FAN_CLUB_CLEFAIRY, 0
 	setvar VAR_FAN_CLUB_GUY, 0
-	setvar VAR_CLEFAIRY_DOLL_STATE, 0
 	setvar VAR_NUM_BADGES, 8
 	setvar VAR_VERMILION_CITY_STATE, 1
 

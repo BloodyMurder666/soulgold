@@ -40,7 +40,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(POLIWHIRL)",
-      "x": 52,
+      "x": 57,
       "y": 24,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
@@ -154,6 +154,19 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route28Guard",
       "flag": "FLAG_HIDE_MTSILVER_GUARD"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BALDING_MAN",
+      "x": 53,
+      "y": 18,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "CameronCamera5",
+      "flag": "FLAG_HIDE_CAMERON"
     }
   ],
   "warp_events": [
@@ -173,7 +186,7 @@
     },
     {
       "x": 55,
-      "y": 20,
+      "y": 26,
       "elevation": 0,
       "dest_map": "MAP_VICTORY_ROAD_KANTO_1F",
       "dest_warp_id": "0"
@@ -183,8 +196,8 @@
   "bg_events": [
     {
       "type": "sign",
-      "x": 55,
-      "y": 14,
+      "x": 56,
+      "y": 13,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "IndigoPlateau_Sign"

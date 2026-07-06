@@ -1,0 +1,5 @@
+mapscripts RuinsOfAlph_SecretRoom_MapScripts {}
+
+script RuinsSecretRoom {
+    msgbox("Colored symbols fill the wall.", MSGBOX_SIGN)
+}

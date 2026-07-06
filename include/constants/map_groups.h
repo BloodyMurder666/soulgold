@@ -558,6 +558,7 @@ enum
     MAP_KITAKAMI_MOUNTAIN3F           = (18 | (25 << 8)),
     MAP_KITAKAMI_MOUNTAIN4F           = (19 | (25 << 8)),
     MAP_SPROUT_TOWER_BASEMENT         = (20 | (25 << 8)),
+    MAP_RUINS_OF_ALPH_SECRET_ROOM     = (21 | (25 << 8)),
 
     // gMapGroup_JohtoDiveMaps
     MAP_CHERRYGROVE_UNDERWATER = (0 | (26 << 8)),

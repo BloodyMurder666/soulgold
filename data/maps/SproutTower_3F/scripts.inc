@@ -171,19 +171,19 @@ SproutTower_3F_EventScript_TriggerSceneRight::
 # 86 "data/maps/SproutTower_3F/scripts.pory"
 	removeobject LOCALID_SPROUT_TOWER_SILVER
 # 87 "data/maps/SproutTower_3F/scripts.pory"
-	delay 55
-# 88 "data/maps/SproutTower_3F/scripts.pory"
-	fadescreen FADE_FROM_BLACK
-# 89 "data/maps/SproutTower_3F/scripts.pory"
-	special DrawWholeMapView
-# 90 "data/maps/SproutTower_3F/scripts.pory"
-	delay 15
-# 91 "data/maps/SproutTower_3F/scripts.pory"
-	setvar VAR_SPROUT_TOWER, 1
-# 92 "data/maps/SproutTower_3F/scripts.pory"
 	savebgm MUS_DUMMY
-# 93 "data/maps/SproutTower_3F/scripts.pory"
+# 88 "data/maps/SproutTower_3F/scripts.pory"
 	fadedefaultbgm
+# 89 "data/maps/SproutTower_3F/scripts.pory"
+	delay 55
+# 90 "data/maps/SproutTower_3F/scripts.pory"
+	fadescreen FADE_FROM_BLACK
+# 91 "data/maps/SproutTower_3F/scripts.pory"
+	special DrawWholeMapView
+# 92 "data/maps/SproutTower_3F/scripts.pory"
+	delay 15
+# 93 "data/maps/SproutTower_3F/scripts.pory"
+	setvar VAR_SPROUT_TOWER, 1
 # 94 "data/maps/SproutTower_3F/scripts.pory"
 	release
 # 95 "data/maps/SproutTower_3F/scripts.pory"

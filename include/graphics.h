@@ -3497,6 +3497,9 @@ extern const u16 gItemIcon_Palette_Radio[];
 extern const u32 gItemIcon_BlackMirror[];
 extern const u16 gItemIconPalette_BlackMirror[];
 
+extern const u32 gItemIcon_GSBall[];
+extern const u16 gItemIconPalette_GSBall[];
+
 //New Summary Pages
 extern const u32 gSummaryPage_Traits_Tilemap[];
 extern const u32 gSummaryLongDescriptionBox_Tilemap[];

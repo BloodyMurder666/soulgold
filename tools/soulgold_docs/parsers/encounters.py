@@ -8,6 +8,7 @@ from collections import defaultdict
 
 from ..constants import BATTLE_PYRAMID_WILD_LABEL, ENCOUNTER_SLOT_RATES, JOHTO_ROUTE_PROGRESS, TIME_NIGHT_SUFFIX, UNKNOWN_MAP
 from ..c_parser import clean_constant_name, read
+from ..map_names import map_constant_display_name
 from ..models import RawEncounterRow, SpeciesLocation, SpeciesRow, WildEncounterRow
 from ..paths import WILD_ENCOUNTERS_JSON
 
@@ -21,7 +22,7 @@ def parse_wild_encounters(by_species: dict[str, SpeciesRow]) -> list[WildEncount
             continue
         for encounter in group.get("encounters", []):
             map_const = encounter.get("map", UNKNOWN_MAP)
-            label = map_const.removeprefix("MAP_").replace("_", " ").title()
+            label = map_constant_display_name(map_const)
             base_label = encounter.get("base_label", "")
             time_label = "Night" if base_label.endswith(TIME_NIGHT_SUFFIX) else "Day"
             methods = []

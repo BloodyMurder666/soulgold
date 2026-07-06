@@ -193,6 +193,13 @@
       "elevation": 0,
       "dest_map": "MAP_RUINS_OF_ALPH_PUZZLE_AND_REWARD_CHAMBERS",
       "dest_warp_id": "4"
+    },
+    {
+      "x": 12,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_RUINS_OF_ALPH_SECRET_ROOM",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],

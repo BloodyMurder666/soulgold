@@ -231,6 +231,9 @@ const u16 gItemIconPalette_AbilityCapsule[] = INCBIN_U16("graphics/items/icon_pa
 const u32 gItemIcon_AbilityPatch[] = INCBIN_U32("graphics/items/icons/ability_patch.4bpp.smol");
 const u16 gItemIconPalette_AbilityPatch[] = INCBIN_U16("graphics/items/icon_palettes/ability_patch.gbapal");
 
+const u32 gItemIcon_GSBall[] = INCBIN_U32("graphics/items/icons/gs_ball.4bpp.smol");
+const u16 gItemIconPalette_GSBall[] = INCBIN_U16("graphics/items/icon_palettes/gs_ball.gbapal");
+
 // Mints
 
 const u32 gItemIcon_Mint[] = INCBIN_U32("graphics/items/icons/mint.4bpp.smol");

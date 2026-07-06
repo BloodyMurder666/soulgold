@@ -1252,7 +1252,7 @@
 #define FLAG_GOLDENROD_APARTMENTS_SMARTSTRIKE                       0x4AB
 #define FLAG_GOLDENROD_SMACKDOWN                                    0x4AC
 #define FLAG_HIDE_R47_CHUCK                                         0x4AD
-#define FLAG_ITEM_GS_BALL                                           0x4AE // Technically unused
+#define FLAG_ITEM_GS_BALL                                           0x4AE
 #define FLAG_CLAIR_ON_TRIP                                          0x4AF
 #define FLAG_ITEM_ROUTE_32_GREATBALL                                0x4B0 
 #define FLAG_ITEM_ROUTE_32_GREATBALL2                               0x4B1 

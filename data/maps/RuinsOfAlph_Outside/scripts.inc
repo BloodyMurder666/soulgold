@@ -319,9 +319,9 @@ CameronCamera::
 # 170 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq CameronCamera_1
-# 194 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+# 192 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	msgbox CameronCamera_Text_2
-# 195 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+# 193 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	release
 	end
 
@@ -330,39 +330,271 @@ CameronCamera_1:
 	msgbox CameronCamera_Text_1
 # 172 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	closemessage
+# 173 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	fadescreenswapbuffers FADE_TO_BLACK
 # 174 "data/maps/RuinsOfAlph_Outside/scripts.pory"
-	fadescreenswapbuffers FADE_TO_BLACK
-# 175 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	setflag FLAG_HIDE_CAMERON
-# 176 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+# 175 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	removeobject VAR_LAST_TALKED
-# 177 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+# 176 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	special ShowPartyPhotoLineup
-# 178 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+# 177 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	delay 60
+# 178 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	fadescreenswapbuffers FADE_FROM_BLACK
 # 179 "data/maps/RuinsOfAlph_Outside/scripts.pory"
-	fadescreenswapbuffers FADE_FROM_BLACK
-# 180 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	waitbuttonpress
-# 181 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+# 180 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	fadescreenswapbuffers FADE_TO_BLACK
+# 181 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	delay 30
 # 182 "data/maps/RuinsOfAlph_Outside/scripts.pory"
-	delay 30
-# 183 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	special HidePartyPhotoLineup
-# 184 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+# 183 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	delay 30
-# 185 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+# 184 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	setflag FLAG_CAMERON_PHOTO1
-# 186 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+# 185 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	special Achievement_CheckAll
-# 187 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+# 186 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	clearflag FLAG_HIDE_CAMERON
-# 188 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+# 187 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	addobject VAR_LAST_TALKED
-# 190 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+# 188 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	fadescreenswapbuffers FADE_FROM_BLACK
-# 191 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+# 189 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	releaseall
+	end
+
+
+CameronCamera2::
+# 199 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	lock
+# 200 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	faceplayer
+# 201 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	msgbox CameronCamera_Text_0, MSGBOX_YESNO
+# 208 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	compare VAR_RESULT, YES
+	goto_if_eq CameronCamera2_1
+# 230 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	msgbox CameronCamera_Text_2
+# 231 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	release
+	end
+
+CameronCamera2_1:
+# 209 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	msgbox CameronCamera_Text_1
+# 210 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	closemessage
+# 211 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	fadescreenswapbuffers FADE_TO_BLACK
+# 212 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	setflag FLAG_HIDE_CAMERON
+# 213 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	removeobject VAR_LAST_TALKED
+# 214 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	special ShowPartyPhotoLineup
+# 215 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	delay 60
+# 216 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	fadescreenswapbuffers FADE_FROM_BLACK
+# 217 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	waitbuttonpress
+# 218 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	fadescreenswapbuffers FADE_TO_BLACK
+# 219 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	delay 30
+# 220 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	special HidePartyPhotoLineup
+# 221 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	delay 30
+# 222 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	setflag FLAG_CAMERON_PHOTO2
+# 223 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	special Achievement_CheckAll
+# 224 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	clearflag FLAG_HIDE_CAMERON
+# 225 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	addobject VAR_LAST_TALKED
+# 226 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	fadescreenswapbuffers FADE_FROM_BLACK
+# 227 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	releaseall
+	end
+
+
+CameronCamera3::
+# 237 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	lock
+# 238 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	faceplayer
+# 239 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	msgbox CameronCamera_Text_0, MSGBOX_YESNO
+# 246 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	compare VAR_RESULT, YES
+	goto_if_eq CameronCamera3_1
+# 268 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	msgbox CameronCamera_Text_2
+# 269 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	release
+	end
+
+CameronCamera3_1:
+# 247 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	msgbox CameronCamera_Text_1
+# 248 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	closemessage
+# 249 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	fadescreenswapbuffers FADE_TO_BLACK
+# 250 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	setflag FLAG_HIDE_CAMERON
+# 251 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	removeobject VAR_LAST_TALKED
+# 252 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	special ShowPartyPhotoLineup
+# 253 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	delay 60
+# 254 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	fadescreenswapbuffers FADE_FROM_BLACK
+# 255 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	waitbuttonpress
+# 256 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	fadescreenswapbuffers FADE_TO_BLACK
+# 257 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	delay 30
+# 258 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	special HidePartyPhotoLineup
+# 259 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	delay 30
+# 260 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	setflag FLAG_CAMERON_PHOTO3
+# 261 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	special Achievement_CheckAll
+# 262 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	clearflag FLAG_HIDE_CAMERON
+# 263 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	addobject VAR_LAST_TALKED
+# 264 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	fadescreenswapbuffers FADE_FROM_BLACK
+# 265 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	releaseall
+	end
+
+
+CameronCamera4::
+# 275 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	lock
+# 276 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	faceplayer
+# 277 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	msgbox CameronCamera_Text_0, MSGBOX_YESNO
+# 284 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	compare VAR_RESULT, YES
+	goto_if_eq CameronCamera4_1
+# 306 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	msgbox CameronCamera_Text_2
+# 307 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	release
+	end
+
+CameronCamera4_1:
+# 285 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	msgbox CameronCamera_Text_1
+# 286 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	closemessage
+# 287 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	fadescreenswapbuffers FADE_TO_BLACK
+# 288 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	setflag FLAG_HIDE_CAMERON
+# 289 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	removeobject VAR_LAST_TALKED
+# 290 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	special ShowPartyPhotoLineup
+# 291 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	delay 60
+# 292 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	fadescreenswapbuffers FADE_FROM_BLACK
+# 293 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	waitbuttonpress
+# 294 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	fadescreenswapbuffers FADE_TO_BLACK
+# 295 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	delay 30
+# 296 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	special HidePartyPhotoLineup
+# 297 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	delay 30
+# 298 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	setflag FLAG_CAMERON_PHOTO4
+# 299 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	special Achievement_CheckAll
+# 300 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	clearflag FLAG_HIDE_CAMERON
+# 301 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	addobject VAR_LAST_TALKED
+# 302 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	fadescreenswapbuffers FADE_FROM_BLACK
+# 303 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	releaseall
+	end
+
+
+CameronCamera5::
+# 313 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	lock
+# 314 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	faceplayer
+# 315 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	msgbox CameronCamera_Text_0, MSGBOX_YESNO
+# 322 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	compare VAR_RESULT, YES
+	goto_if_eq CameronCamera5_1
+# 344 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	msgbox CameronCamera_Text_2
+# 345 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	release
+	end
+
+CameronCamera5_1:
+# 323 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	msgbox CameronCamera_Text_1
+# 324 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	closemessage
+# 325 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	fadescreenswapbuffers FADE_TO_BLACK
+# 326 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	setflag FLAG_HIDE_CAMERON
+# 327 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	removeobject VAR_LAST_TALKED
+# 328 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	special ShowPartyPhotoLineup
+# 329 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	delay 60
+# 330 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	fadescreenswapbuffers FADE_FROM_BLACK
+# 331 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	waitbuttonpress
+# 332 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	fadescreenswapbuffers FADE_TO_BLACK
+# 333 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	delay 30
+# 334 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	special HidePartyPhotoLineup
+# 335 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	delay 30
+# 336 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	setflag FLAG_CAMERON_PHOTO5
+# 337 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	special Achievement_CheckAll
+# 338 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	clearflag FLAG_HIDE_CAMERON
+# 339 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	addobject VAR_LAST_TALKED
+# 340 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+	fadescreenswapbuffers FADE_FROM_BLACK
+# 341 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	releaseall
 	end
 
@@ -385,5 +617,5 @@ CameronCamera_Text_1:
 	.string "All right, then! Get yourselves ready!$"
 
 CameronCamera_Text_2:
-# 194 "data/maps/RuinsOfAlph_Outside/scripts.pory"
+# 192 "data/maps/RuinsOfAlph_Outside/scripts.pory"
 	.string "Aren't you a shy one?$"

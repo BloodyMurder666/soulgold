@@ -170,7 +170,6 @@ script CameronCamera {
 	if (var(VAR_RESULT) == YES) {
 		msgbox("All right, then! Get yourselves ready!")
 		closemessage
-		//setvar(VAR_TEMP_7, VAR_FACING)
 		fadescreenswapbuffers(FADE_TO_BLACK)
 		setflag(FLAG_HIDE_CAMERON)
 		removeobject(VAR_LAST_TALKED)
@@ -186,7 +185,6 @@ script CameronCamera {
 		special(Achievement_CheckAll)
 		clearflag(FLAG_HIDE_CAMERON)
 		addobject(VAR_LAST_TALKED)
-		//turnobject(LOCALID_PLAYER, VAR_TEMP_7) switch case this when I'm not lazy
 		fadescreenswapbuffers(FADE_FROM_BLACK)
 		releaseall
 		end
@@ -195,5 +193,156 @@ script CameronCamera {
 		release
 		end
 	}
-	
+}
+
+script CameronCamera2 {
+	lock
+	faceplayer
+	msgbox("Hello, 
+			just when you least expect it! 
+			
+			I am Cameron the Photographer. 
+			
+			You look so photogenic! 
+			Why not have a picture taken?", MSGBOX_YESNO)
+	if (var(VAR_RESULT) == YES) {
+		msgbox("All right, then! Get yourselves ready!")
+		closemessage
+		fadescreenswapbuffers(FADE_TO_BLACK)
+		setflag(FLAG_HIDE_CAMERON)
+		removeobject(VAR_LAST_TALKED)
+		special(ShowPartyPhotoLineup)
+		delay(60)
+		fadescreenswapbuffers(FADE_FROM_BLACK)
+		waitbuttonpress
+		fadescreenswapbuffers(FADE_TO_BLACK)
+		delay(30)
+		special(HidePartyPhotoLineup)
+		delay(30)
+		setflag(FLAG_CAMERON_PHOTO2)
+		special(Achievement_CheckAll)
+		clearflag(FLAG_HIDE_CAMERON)
+		addobject(VAR_LAST_TALKED)
+		fadescreenswapbuffers(FADE_FROM_BLACK)
+		releaseall
+		end
+	} else {
+		msgbox("Aren't you a shy one?")
+		release
+		end
+	}
+}
+
+script CameronCamera3 {
+	lock
+	faceplayer
+	msgbox("Hello, 
+			just when you least expect it! 
+			
+			I am Cameron the Photographer. 
+			
+			You look so photogenic! 
+			Why not have a picture taken?", MSGBOX_YESNO)
+	if (var(VAR_RESULT) == YES) {
+		msgbox("All right, then! Get yourselves ready!")
+		closemessage
+		fadescreenswapbuffers(FADE_TO_BLACK)
+		setflag(FLAG_HIDE_CAMERON)
+		removeobject(VAR_LAST_TALKED)
+		special(ShowPartyPhotoLineup)
+		delay(60)
+		fadescreenswapbuffers(FADE_FROM_BLACK)
+		waitbuttonpress
+		fadescreenswapbuffers(FADE_TO_BLACK)
+		delay(30)
+		special(HidePartyPhotoLineup)
+		delay(30)
+		setflag(FLAG_CAMERON_PHOTO3)
+		special(Achievement_CheckAll)
+		clearflag(FLAG_HIDE_CAMERON)
+		addobject(VAR_LAST_TALKED)
+		fadescreenswapbuffers(FADE_FROM_BLACK)
+		releaseall
+		end
+	} else {
+		msgbox("Aren't you a shy one?")
+		release
+		end
+	}
+}
+
+script CameronCamera4 {
+	lock
+	faceplayer
+	msgbox("Hello, 
+			just when you least expect it! 
+			
+			I am Cameron the Photographer. 
+			
+			You look so photogenic! 
+			Why not have a picture taken?", MSGBOX_YESNO)
+	if (var(VAR_RESULT) == YES) {
+		msgbox("All right, then! Get yourselves ready!")
+		closemessage
+		fadescreenswapbuffers(FADE_TO_BLACK)
+		setflag(FLAG_HIDE_CAMERON)
+		removeobject(VAR_LAST_TALKED)
+		special(ShowPartyPhotoLineup)
+		delay(60)
+		fadescreenswapbuffers(FADE_FROM_BLACK)
+		waitbuttonpress
+		fadescreenswapbuffers(FADE_TO_BLACK)
+		delay(30)
+		special(HidePartyPhotoLineup)
+		delay(30)
+		setflag(FLAG_CAMERON_PHOTO4)
+		special(Achievement_CheckAll)
+		clearflag(FLAG_HIDE_CAMERON)
+		addobject(VAR_LAST_TALKED)
+		fadescreenswapbuffers(FADE_FROM_BLACK)
+		releaseall
+		end
+	} else {
+		msgbox("Aren't you a shy one?")
+		release
+		end
+	}
+}
+
+script CameronCamera5 {
+	lock
+	faceplayer
+	msgbox("Hello, 
+			just when you least expect it! 
+			
+			I am Cameron the Photographer. 
+			
+			You look so photogenic! 
+			Why not have a picture taken?", MSGBOX_YESNO)
+	if (var(VAR_RESULT) == YES) {
+		msgbox("All right, then! Get yourselves ready!")
+		closemessage
+		fadescreenswapbuffers(FADE_TO_BLACK)
+		setflag(FLAG_HIDE_CAMERON)
+		removeobject(VAR_LAST_TALKED)
+		special(ShowPartyPhotoLineup)
+		delay(60)
+		fadescreenswapbuffers(FADE_FROM_BLACK)
+		waitbuttonpress
+		fadescreenswapbuffers(FADE_TO_BLACK)
+		delay(30)
+		special(HidePartyPhotoLineup)
+		delay(30)
+		setflag(FLAG_CAMERON_PHOTO5)
+		special(Achievement_CheckAll)
+		clearflag(FLAG_HIDE_CAMERON)
+		addobject(VAR_LAST_TALKED)
+		fadescreenswapbuffers(FADE_FROM_BLACK)
+		releaseall
+		end
+	} else {
+		msgbox("Aren't you a shy one?")
+		release
+		end
+	}
 }
