@@ -218,7 +218,6 @@ EXCLUDED_TRAINER_MAP_NAMES = {
 }
 
 EXCLUDED_TRAINER_MAP_PREFIXES = (
-    "CeruleanCave",
     "DiglettsCave",
     "MtEmber",
     "MtMoon",
