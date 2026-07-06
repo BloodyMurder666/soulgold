@@ -75,7 +75,7 @@ bool32 IsLastHealLocationPlayerHouse()
 
 u32 GetHealNpcLocalId(u32 healLocationId)
 {
-    if (healLocationId == HEAL_LOCATION_NONE || healLocationId >= NUM_HEAL_LOCATIONS)
+    if (healLocationId == HEAL_LOCATION_NONE || healLocationId > ARRAY_COUNT(sWhiteoutRespawnHealerNpcIds))
         return LOCALID_NONE;
 
     return sWhiteoutRespawnHealerNpcIds[healLocationId - 1];
@@ -86,7 +86,7 @@ void SetWhiteoutRespawnWarpAndHealerNPC(struct WarpData *warp)
     u32 healLocationId = GetHealLocationIndexByWarpData(&gSaveBlock1Ptr->lastHealLocation);
     u32 healNpcLocalId = GetHealNpcLocalId(healLocationId);
 
-    if (!healNpcLocalId)
+    if (healNpcLocalId == LOCALID_NONE || healLocationId > ARRAY_COUNT(sWhiteoutRespawnHealCenterMapIdxs))
     {
         *(warp) = gSaveBlock1Ptr->lastHealLocation;
         return;
