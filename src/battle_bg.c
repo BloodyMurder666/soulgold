@@ -696,6 +696,7 @@ static u8 GetBattleEnvironmentOverride(void)
         case SPECIES_KYOGRE:
             return BATTLE_ENVIRONMENT_KYOGRE;
         case SPECIES_RAYQUAZA:
+        case SPECIES_HO_OH:
             return BATTLE_ENVIRONMENT_RAYQUAZA;
         default:
             return gBattleEnvironment;

@@ -1,5 +1,9 @@
 mapscripts KitakamiRoad_House_MapScripts {}
 
-script KitakamiBorder_MirrorLady {
-    
+script KitakamiBorder_VictiniLady {
+    lock
+    faceplayer
+    msgbox("TODO Victini event")
+    release
+    end
 }

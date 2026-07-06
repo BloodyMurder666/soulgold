@@ -43,6 +43,7 @@ TinTower_RoofDay_MapScript_HoohPostStoryEncounter::
 TinTower_RoofDay_EventScript_TalkToKimono::
 	lockall
 	playbgm MUS_HG_KIMONO_GIRL_DANCE, TRUE
+	createfieldmugshot MUGSHOT_KIMONO_GIRL
 	msgbox TinTower_RoofDay_Text_Kimono_Opening, MSGBOX_DEFAULT
 	closemessage
 
@@ -167,6 +168,7 @@ TinTower_RoofDay_EventScript_TalkToKimono::
 	applymovement LOCALID_KIMONO_3, TinTower_RoofDay_Movement_Kimono_Dance_Look_Up
 	applymovement LOCALID_KIMONO_4, TinTower_RoofDay_Movement_Kimono_Dance_Look_Up
 	waitmovement 0
+	createfieldmugshot MUGSHOT_KIMONO_GIRL
 	msgbox TinTower_RoofDay_Text_Kimono_Closing1, MSGBOX_DEFAULT
 	waitmessage
 	closemessage
@@ -185,6 +187,7 @@ TinTower_RoofDay_EventScript_HoOh::
 	playbgm MUS_HG_VS_HO_OH, 0
 	seteventmon SPECIES_HO_OH, 65
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	settotemboost B_POSITION_OPPONENT_LEFT, 1, 1, 1, 1, 1, 0, 0
 	special BattleSetup_StartLegendaryBattle
 	waitstate
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
@@ -212,10 +215,11 @@ TinTower_RoofDay_EventScript_HoOhPostgame::
 	waitmoncry
 	playbgm MUS_HG_VS_HO_OH, 0
 	seteventmon SPECIES_HO_OH, 80
-	setflag FLAG_GARBAGEFLAG
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	settotemboost B_POSITION_OPPONENT_LEFT, 1, 1, 1, 1, 1, 0, 0
 	special BattleSetup_StartLegendaryBattle
 	waitstate
-	clearflag FLAG_GARBAGEFLAG
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
 	setvar VAR_LAST_TALKED, LOCALID_HO_OH
 	specialvar VAR_RESULT, GetBattleOutcome
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, TinTower_RoofDay_EventScript_RanFromHoOh
