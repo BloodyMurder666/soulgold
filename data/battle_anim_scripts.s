@@ -12836,11 +12836,8 @@ gBattleAnimMove_BouncyBubble::
 	end
 
 gBattleAnimMove_BuzzyBuzz::
-	loadspritegfx ANIM_TAG_ELECTRIC_ORBS
 	loadspritegfx ANIM_TAG_CIRCLE_OF_LIGHT
 	loadspritegfx ANIM_TAG_SPARK
-	loadspritegfx ANIM_TAG_LIGHTNING
-	loadspritegfx ANIM_TAG_SHOCK_3
 	loadspritegfx ANIM_TAG_SPARK_2
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_BG, 0, 0, 6, RGB_BLACK
 	waitforvisualfinish
@@ -12907,6 +12904,7 @@ gBattleAnimMove_SizzlySlide::
 	createsprite gSlideMonToOriginalPosSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 9
 	waitforvisualfinish
 	clearmonbg ANIM_ATK_PARTNER
+	blendoff
 	end
 
 gBattleAnimMove_GlitzyGlow::
@@ -12914,7 +12912,6 @@ gBattleAnimMove_GlitzyGlow::
 	loadspritegfx ANIM_TAG_SPARK_2 @yellow color
 	loadspritegfx ANIM_TAG_WATER_ORB @blue color
 	loadspritegfx ANIM_TAG_POISON_BUBBLE @violet color
-	loadspritegfx ANIM_TAG_SMALL_EMBER @flame wheel particle
 	loadspritegfx ANIM_TAG_CIRCLE_OF_LIGHT
 	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_CIRCLE_OF_LIGHT, 0, 12, 12, RGB(31, 4, 10)
 	monbg ANIM_DEF_PARTNER
@@ -12942,7 +12939,6 @@ gBattleAnimMove_GlitzyGlow::
 	unloadspritegfx ANIM_TAG_SPARK_2 @yellow color
 	unloadspritegfx ANIM_TAG_WATER_ORB @blue color
 	unloadspritegfx ANIM_TAG_POISON_BUBBLE @violet color
-	unloadspritegfx ANIM_TAG_SMALL_EMBER @flame wheel particle
 	unloadspritegfx ANIM_TAG_CIRCLE_OF_LIGHT
 	waitforvisualfinish
 	goto gBattleAnimMove_LightScreen

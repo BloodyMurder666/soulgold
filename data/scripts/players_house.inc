@@ -357,15 +357,8 @@ PlayersHouse_1F_EventScript_TryGiveAmuletCoin::
 	end
 
 PlayersHouse_1F_EventScript_MomHealsParty::
-	@specialvar VAR_RESULT, IsPokecenterChallengeActivated
-	goto_if_eq VAR_RESULT, TRUE, PlayersHouse_1F_EventScript_MomHealsParty_PokecenterChallenge
 	msgbox PlayersHouse_1F_Text_YouShouldRestABit, MSGBOX_DEFAULT
 	goto PlayersHouse_1F_EventScript_HealParty
-	end
-
-PlayersHouse_1F_EventScript_MomHealsParty_PokecenterChallenge::
-	msgbox PlayersHouse_1F_Text_YouShouldRestABit_PokecenterChallenge, MSGBOX_DEFAULT
-	closemessage
 	end
 
 PlayersHouse_1F_EventScript_SeeYouHoney::
@@ -692,8 +685,3 @@ PlayersHouse_1F_Movement_PlayerApproachTVForLatiFemale:
 EventScript_RunningShoesManual::
 	msgbox PlayersHouse_1F_Text_RunningShoesManual, MSGBOX_SIGN
 	end
-
-PlayersHouse_1F_Text_YouShouldRestABit_PokecenterChallenge:
-	.string "You need to rest up for a bit\n"
-	.string "before completing the\l"
-	.string "Pokécenter Challenge.$"

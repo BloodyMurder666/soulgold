@@ -9,7 +9,7 @@ MauvilleCity_GameCorner_MapScripts::
 	.set TM_DOUBLE_TEAM_COINS, 1500
 	.set TM_PSYCHIC_COINS, 3500
 	.set TM_FLAMETHROWER_COINS, 4000
-	.set TM_THUNDERBOLT_COINS, 4000
+	.set TM_THUNDER_COINS, 4000
 	.set TM_ICE_BEAM_COINS, 4000
 	.set DOLL_COINS, 1000
 	.set OLD_AMBER_COINS, 4000
@@ -720,7 +720,7 @@ MauvilleCity_GameCorner_EventScript_ChooseTMPrize::
 	case 0, MauvilleCity_GameCorner_EventScript_TMDoubleTeam
 	case 1, MauvilleCity_GameCorner_EventScript_TMPsychic
 	case 2, MauvilleCity_GameCorner_EventScript_TMFlamethrower
-	case 3, MauvilleCity_GameCorner_EventScript_TMThunderbolt
+	case 3, MauvilleCity_GameCorner_EventScript_TMThunder
 	case 4, MauvilleCity_GameCorner_EventScript_TMIceBeam
 	case 5, MauvilleCity_GameCorner_EventScript_CancelTMSelect
 	goto MauvilleCity_GameCorner_EventScript_CancelTMSelect
@@ -936,10 +936,10 @@ MauvilleCity_GameCorner_EventScript_TMFlamethrower::
 	setvar VAR_0x8004, ITEM_TM_FLAMETHROWER
 	goto MauvilleCity_GameCorner_EventScript_ConfirmTMPrize
 
-MauvilleCity_GameCorner_EventScript_TMThunderbolt::
+MauvilleCity_GameCorner_EventScript_TMThunder::
 	setvar VAR_TEMP_1, 4
-	bufferitemname STR_VAR_1, ITEM_TM_THUNDERBOLT
-	setvar VAR_0x8004, ITEM_TM_THUNDERBOLT
+	bufferitemname STR_VAR_1, ITEM_TM_THUNDER
+	setvar VAR_0x8004, ITEM_TM_THUNDER
 	goto MauvilleCity_GameCorner_EventScript_ConfirmTMPrize
 
 MauvilleCity_GameCorner_EventScript_TMIceBeam::
@@ -956,7 +956,7 @@ MauvilleCity_GameCorner_EventScript_ConfirmTMPrize::
 	case 1, MauvilleCity_GameCorner_EventScript_BuyTMDoubleTeam
 	case 2, MauvilleCity_GameCorner_EventScript_BuyTMPsychic
 	case 3, MauvilleCity_GameCorner_EventScript_BuyTMFlamethrower
-	case 4, MauvilleCity_GameCorner_EventScript_BuyTMThunderbolt
+	case 4, MauvilleCity_GameCorner_EventScript_BuyTMThunder
 	case 5, MauvilleCity_GameCorner_EventScript_BuyTMIceBeam
 	end
 
@@ -972,13 +972,13 @@ MauvilleCity_GameCorner_EventScript_BuyTMDoubleTeam::
 	msgbox MauvilleCity_GameCorner_Text_HereYouGo, MSGBOX_DEFAULT
 	goto MauvilleCity_GameCorner_EventScript_ReturnToChooseTMPrize
 	end
-
 MauvilleCity_GameCorner_EventScript_BuyTMPsychic::
 	checkcoins VAR_TEMP_2
 	goto_if_lt VAR_TEMP_2, TM_PSYCHIC_COINS, MauvilleCity_GameCorner_EventScript_NotEnoughCoinsForTM
 	checkitemspace ITEM_TM_PSYCHIC
 	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoRoomForTM
 	removecoins TM_PSYCHIC_COINS
+	giveitem ITEM_TM_PSYCHIC
 	updatecoinsbox 1, 1
 	playse SE_SHOP
 	msgbox MauvilleCity_GameCorner_Text_HereYouGo, MSGBOX_DEFAULT
@@ -997,13 +997,13 @@ MauvilleCity_GameCorner_EventScript_BuyTMFlamethrower::
 	msgbox MauvilleCity_GameCorner_Text_HereYouGo, MSGBOX_DEFAULT
 	goto MauvilleCity_GameCorner_EventScript_ReturnToChooseTMPrize
 	end
-
-MauvilleCity_GameCorner_EventScript_BuyTMThunderbolt::
+MauvilleCity_GameCorner_EventScript_BuyTMThunder::
 	checkcoins VAR_TEMP_2
-	goto_if_lt VAR_TEMP_2, TM_THUNDERBOLT_COINS, MauvilleCity_GameCorner_EventScript_NotEnoughCoinsForTM
-	checkitemspace ITEM_TM_THUNDERBOLT
+	goto_if_lt VAR_TEMP_2, TM_THUNDER_COINS, MauvilleCity_GameCorner_EventScript_NotEnoughCoinsForTM
+	checkitemspace ITEM_TM_THUNDER
 	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoRoomForTM
-	removecoins TM_THUNDERBOLT_COINS
+	removecoins TM_THUNDER_COINS
+	giveitem ITEM_TM_THUNDER
 	updatecoinsbox 1, 1
 	playse SE_SHOP
 	msgbox MauvilleCity_GameCorner_Text_HereYouGo, MSGBOX_DEFAULT
@@ -1543,7 +1543,7 @@ MauvilleCity_GameCorner_Text_WhichPrize:
 
 MauvilleCity_GameCorner_Text_SoYourChoiceIsTheTMX:
 	.string "So your choice is\n"
-	.string "the {STR_VAR_1} {STR_VAR_2}?$"
+	.string "the {STR_VAR_1}?$"
 
 MauvilleCity_GameCorner_Text_SoYourChoiceIsTheNewX:
 	.string "So your choice is\n"

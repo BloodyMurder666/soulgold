@@ -62,6 +62,8 @@ The hack is currently under testing. It will be playable up to start of postgame
 - Pokeabbie battle speed up
 - MrDollStreak for 64x64 trainer sprites
 - PKMNTrainerRick for ethan back sprite frames
+- Whackahack for graphical resources
+- Omega for PSS icons
 - [agsmgmaster64](https://github.com/agsmgmaster64/worldlinkdeluxe-ame) Game corner expansion port
 - [heypc](https://github.com/heyopc/pokeemerald-gamecorner-expansion) game corner expansion
 - [aarant/merrp:](https://github.com/aarant) [icons branch](https://github.com/aarant/pokeemerald/tree/icons) and key item wheel

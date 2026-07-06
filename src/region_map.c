@@ -98,6 +98,7 @@ static u8 MoveRegionMapCursor_Zoomed(void);
 static void CalcZoomScrollParams(s16 scrollX, s16 scrollY, s16 c, s16 d, u16 e, u16 f, u8 rotation);
 static u8 TryScrollRegionMapPage_Full(void);
 static void SetRegionMapPage_Full(u8 page);
+static bool32 IsRegionMapPageValid(u8 page);
 static bool8 StartRegionMapPageScroll_Full(u8 page);
 static void FinishRegionMapPageScroll_Full(void);
 static s16 GetRegionMapPageScrollX(void);
@@ -157,14 +158,19 @@ static const u8 sRegionMapPlayerIcon_LeafGfx[] = INCBIN_U8("graphics/pokenav/reg
 #include "data/region_map/region_map_layout_sevii67.h"
 #include "data/region_map/region_map_entries.h"
 
-// Change this to your second regions sRegionMapSections_
-#define REGION_MAP_SECOND_PAGE_LAYOUT sRegionMapSections_Sevii123
+// Set this to the second region's sRegionMapSections_ layout when its map is ready.
+#define REGION_MAP_SECOND_PAGE_LAYOUT NULL
 
 static const mapsec_u16_t (*const sRegionMapPageLayouts[REGION_MAP_PAGE_COUNT])[MAP_WIDTH] =
 {
     [REGION_MAP_PAGE_MAIN] = sRegionMap_MapSectionLayout,
     [REGION_MAP_PAGE_SECOND] = REGION_MAP_SECOND_PAGE_LAYOUT,
 };
+
+static bool32 IsRegionMapPageValid(u8 page)
+{
+    return page < REGION_MAP_PAGE_COUNT && sRegionMapPageLayouts[page] != NULL;
+}
 
 static const mapsec_u16_t sRegionMap_SpecialPlaceLocations[][2] =
 {
@@ -783,7 +789,8 @@ static u8 TryScrollRegionMapPage_Full(void)
 {
     if (JOY_HELD(DPAD_RIGHT)
         && sRegionMap->mapPage == REGION_MAP_PAGE_MAIN
-        && sRegionMap->cursorPosX == MAPCURSOR_X_MAX)
+        && sRegionMap->cursorPosX == MAPCURSOR_X_MAX
+        && IsRegionMapPageValid(REGION_MAP_PAGE_SECOND))
     {
         if (StartRegionMapPageScroll_Full(REGION_MAP_PAGE_SECOND))
             return MAP_INPUT_MOVE_CONT;
@@ -1176,7 +1183,7 @@ static mapsec_u16_t GetMapSecIdAt(u16 x, u16 y)
     }
     y -= MAPCURSOR_Y_MIN;
     x -= MAPCURSOR_X_MIN;
-    if (sRegionMap->mapPage >= REGION_MAP_PAGE_COUNT)
+    if (!IsRegionMapPageValid(sRegionMap->mapPage))
         return MAPSEC_NONE;
 
     return sRegionMapPageLayouts[sRegionMap->mapPage][y][x];
@@ -2164,6 +2171,9 @@ static bool8 IsMapSecOnFlyMap(mapsec_u16_t mapSecId)
 
     for (page = 0; page < REGION_MAP_PAGE_COUNT; page++)
     {
+        if (!IsRegionMapPageValid(page))
+            continue;
+
         for (y = 0; y < MAP_HEIGHT; y++)
         {
             for (x = 0; x < MAP_WIDTH; x++)

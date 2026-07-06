@@ -21,7 +21,7 @@ MauvilleCity_GameCorner_MapScripts::
 # 11 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	.set TM_FLAMETHROWER_COINS, 4000
 # 12 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	.set TM_THUNDERBOLT_COINS, 4000
+	.set TM_THUNDER_COINS, 4000
 # 13 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	.set TM_ICE_BEAM_COINS, 4000
 # 14 "data/maps/MauvilleCity_GameCorner/scripts.pory"
@@ -1443,7 +1443,7 @@ MauvilleCity_GameCorner_EventScript_ChooseTMPrize::
 # 722 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	case 2, MauvilleCity_GameCorner_EventScript_TMFlamethrower
 # 723 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	case 3, MauvilleCity_GameCorner_EventScript_TMThunderbolt
+	case 3, MauvilleCity_GameCorner_EventScript_TMThunder
 # 724 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	case 4, MauvilleCity_GameCorner_EventScript_TMIceBeam
 # 725 "data/maps/MauvilleCity_GameCorner/scripts.pory"
@@ -1875,13 +1875,13 @@ MauvilleCity_GameCorner_EventScript_TMFlamethrower::
 # 938 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 
 # 939 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-MauvilleCity_GameCorner_EventScript_TMThunderbolt::
+MauvilleCity_GameCorner_EventScript_TMThunder::
 # 940 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	setvar VAR_TEMP_1, 4
 # 941 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	bufferitemname STR_VAR_1, ITEM_TM_THUNDERBOLT
+	bufferitemname STR_VAR_1, ITEM_TM_THUNDER
 # 942 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	setvar VAR_0x8004, ITEM_TM_THUNDERBOLT
+	setvar VAR_0x8004, ITEM_TM_THUNDER
 # 943 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	goto MauvilleCity_GameCorner_EventScript_ConfirmTMPrize
 # 944 "data/maps/MauvilleCity_GameCorner/scripts.pory"
@@ -1915,7 +1915,7 @@ MauvilleCity_GameCorner_EventScript_ConfirmTMPrize::
 # 958 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	case 3, MauvilleCity_GameCorner_EventScript_BuyTMFlamethrower
 # 959 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	case 4, MauvilleCity_GameCorner_EventScript_BuyTMThunderbolt
+	case 4, MauvilleCity_GameCorner_EventScript_BuyTMThunder
 # 960 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	case 5, MauvilleCity_GameCorner_EventScript_BuyTMIceBeam
 # 961 "data/maps/MauvilleCity_GameCorner/scripts.pory"
@@ -1947,19 +1947,19 @@ MauvilleCity_GameCorner_EventScript_BuyTMDoubleTeam::
 # 974 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	end
 # 975 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-
-# 976 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 MauvilleCity_GameCorner_EventScript_BuyTMPsychic::
-# 977 "data/maps/MauvilleCity_GameCorner/scripts.pory"
+# 976 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	checkcoins VAR_TEMP_2
-# 978 "data/maps/MauvilleCity_GameCorner/scripts.pory"
+# 977 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	goto_if_lt VAR_TEMP_2, TM_PSYCHIC_COINS, MauvilleCity_GameCorner_EventScript_NotEnoughCoinsForTM
-# 979 "data/maps/MauvilleCity_GameCorner/scripts.pory"
+# 978 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	checkitemspace ITEM_TM_PSYCHIC
-# 980 "data/maps/MauvilleCity_GameCorner/scripts.pory"
+# 979 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoRoomForTM
-# 981 "data/maps/MauvilleCity_GameCorner/scripts.pory"
+# 980 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	removecoins TM_PSYCHIC_COINS
+# 981 "data/maps/MauvilleCity_GameCorner/scripts.pory"
+	giveitem ITEM_TM_PSYCHIC
 # 982 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	updatecoinsbox 1, 1
 # 983 "data/maps/MauvilleCity_GameCorner/scripts.pory"
@@ -1997,19 +1997,19 @@ MauvilleCity_GameCorner_EventScript_BuyTMFlamethrower::
 # 999 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	end
 # 1000 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-
+MauvilleCity_GameCorner_EventScript_BuyTMThunder::
 # 1001 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-MauvilleCity_GameCorner_EventScript_BuyTMThunderbolt::
-# 1002 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	checkcoins VAR_TEMP_2
+# 1002 "data/maps/MauvilleCity_GameCorner/scripts.pory"
+	goto_if_lt VAR_TEMP_2, TM_THUNDER_COINS, MauvilleCity_GameCorner_EventScript_NotEnoughCoinsForTM
 # 1003 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	goto_if_lt VAR_TEMP_2, TM_THUNDERBOLT_COINS, MauvilleCity_GameCorner_EventScript_NotEnoughCoinsForTM
+	checkitemspace ITEM_TM_THUNDER
 # 1004 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	checkitemspace ITEM_TM_THUNDERBOLT
-# 1005 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoRoomForTM
+# 1005 "data/maps/MauvilleCity_GameCorner/scripts.pory"
+	removecoins TM_THUNDER_COINS
 # 1006 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	removecoins TM_THUNDERBOLT_COINS
+	giveitem ITEM_TM_THUNDER
 # 1007 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	updatecoinsbox 1, 1
 # 1008 "data/maps/MauvilleCity_GameCorner/scripts.pory"
@@ -3089,7 +3089,7 @@ MauvilleCity_GameCorner_Text_SoYourChoiceIsTheTMX:
 # 1545 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	.string "So your choice is\n"
 # 1546 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	.string "the {STR_VAR_1} {STR_VAR_2}?$"
+	.string "the {STR_VAR_1}?$"
 # 1547 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 
 # 1548 "data/maps/MauvilleCity_GameCorner/scripts.pory"

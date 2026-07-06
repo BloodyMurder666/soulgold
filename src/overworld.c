@@ -76,6 +76,7 @@
 #include "constants/abilities.h"
 #include "constants/event_object_movement.h"
 #include "constants/event_objects.h"
+#include "constants/heal_locations.h"
 #include "constants/layouts.h"
 #include "constants/region_map_sections.h"
 #include "constants/songs.h"
@@ -718,8 +719,18 @@ static bool32 IsWhiteoutCutscene(void)
     return GetHealNpcLocalId(GetHealLocationIndexByWarpData(&gSaveBlock1Ptr->lastHealLocation)) != LOCALID_NONE;
 }
 
+static void ValidateLastHealLocation(void)
+{
+    u32 healLocationId = GetHealLocationIndexByWarpData(&gSaveBlock1Ptr->lastHealLocation);
+
+    if (healLocationId < HEAL_LOCATION_NEW_BARK_TOWN || healLocationId >= NUM_HEAL_LOCATIONS)
+        SetLastHealLocationWarp(HEAL_LOCATION_NEW_BARK_TOWN_PLAYERS_HOUSE_2F);
+}
+
 void SetWarpDestinationToLastHealLocation(void)
 {
+    ValidateLastHealLocation();
+
     if (IsWhiteoutCutscene())
         SetWhiteoutRespawnWarpAndHealerNPC(&sWarpDestination);
     else
@@ -728,6 +739,7 @@ void SetWarpDestinationToLastHealLocation(void)
 
 void SetWarpDestinationForTeleport(void)
 {
+    ValidateLastHealLocation();
     sWarpDestination = gSaveBlock1Ptr->lastHealLocation;
 }
 

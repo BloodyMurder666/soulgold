@@ -340,11 +340,11 @@ RocketHideout_B1F_EventScript_TurnOffSwitch::
 	setvar VAR_ROCKET_HIDEOUT_STATUE_3, 0
 	setvar VAR_ROCKET_HIDEOUT_STATUE_4, 0
 	setvar VAR_ROCKET_HIDEOUT_STATUE_5, 0
-	setmetatile 45, 1, 0x2A8, TRUE
-	setmetatile 24, 1, 0x2A8, TRUE
-	setmetatile 45, 6, 0x2A8, TRUE
-	setmetatile 45, 19, 0x2A8, TRUE
-	setmetatile 27, 19, 0x2A8, TRUE
+	setmetatile 45, 1, 0x429, TRUE
+	setmetatile 24, 1, 0x429, TRUE
+	setmetatile 45, 6, 0x429, TRUE
+	setmetatile 45, 19, 0x429, TRUE
+	setmetatile 27, 19, 0x429, TRUE
 	special DrawWholeMapView
 	clearflag FLAG_ROCKETHIDEOUT_SWITCH
 	release

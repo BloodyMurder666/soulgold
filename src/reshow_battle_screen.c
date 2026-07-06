@@ -281,7 +281,7 @@ static bool8 LoadBattlerSpriteGfx(enum BattlerId battler)
                 BattleLoadSubstituteOrMonSpriteGfx(battler, FALSE);
         }
         else if (gBattleTypeFlags & BATTLE_TYPE_SAFARI && position == B_POSITION_PLAYER_LEFT)
-            DecompressTrainerBackPic(gSaveBlock2Ptr->playerGender, battler);
+            DecompressTrainerBackPic((gSaveBlock2Ptr->playerGender == FEMALE) ? TRAINER_BACK_PIC_PLAYER_FEMALE : TRAINER_BACK_PIC_PLAYER_MALE, battler);
         else if (gBattleTypeFlags & BATTLE_TYPE_WALLY_TUTORIAL && position == B_POSITION_PLAYER_LEFT)
             DecompressTrainerBackPic(TRAINER_PIC_BACK_WALLY, battler);
         else if (!gBattleSpritesDataPtr->battlerData[battler].behindSubstitute)
@@ -333,7 +333,7 @@ void CreateBattlerSprite(enum BattlerId battler)
             gBattlerSpriteIds[battler] = CreateSprite(&gMultiuseSpriteTemplate, 0x50,
                                                 (8 - gTrainerBacksprites[trainerPicId].coordinates.size) * 4 + 80,
                                                  GetBattlerSpriteSubpriority(0));
-            gSprites[gBattlerSpriteIds[battler]].oam.paletteNum = IndexOfSpritePaletteTag(gTrainerBacksprites[gSaveBlock2Ptr->playerGender].palette.tag);
+            gSprites[gBattlerSpriteIds[battler]].oam.paletteNum = IndexOfSpritePaletteTag(gTrainerBacksprites[trainerPicId].palette.tag);
             gSprites[gBattlerSpriteIds[battler]].callback = SpriteCallbackDummy;
             gSprites[gBattlerSpriteIds[battler]].data[0] = battler;
         }
