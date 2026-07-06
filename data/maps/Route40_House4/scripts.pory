@@ -83,6 +83,7 @@ script AchievementGuy {
 }
 
 script keepUpTheGoodWork {
+    createfieldmugshot(MUGSHOT_GENTLEMAN)
     msgbox("Never stop reaching for greater
             heights. I look forward to
             seeing what you will do next.")
@@ -113,7 +114,12 @@ script AchievementGuy_Reward30 {
             on your journey! 
             
             I have something nice for you!")
+    setvar(VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_GRENINJA_BOND)
+    bufferspeciesname(STR_VAR_1, SPECIES_GRENINJA_BOND)
     givemon(SPECIES_GRENINJA_BOND, 36)
+    showgivemonpic(10, 3)
+    call(Common_EventScript_GiftMon)
+    hidemonpic
     setvar(VAR_ACHIEVEMENT_REWARD_MILESTONE, 30)
     goto(keepUpTheGoodWork)
     release
@@ -128,7 +134,12 @@ script AchievementGuy_Reward45 {
             milestone!
             
             I have something nice for you!")
+    setvar(VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_POIPOLE)
+    bufferspeciesname(STR_VAR_1, SPECIES_POIPOLE)
     givemon(SPECIES_POIPOLE, 5)
+    showgivemonpic(10, 3)
+    call(Common_EventScript_GiftMon)
+    hidemonpic
     setvar(VAR_ACHIEVEMENT_REWARD_MILESTONE, 45)
     goto(keepUpTheGoodWork)
     release
@@ -142,7 +153,12 @@ script AchievementGuy_Reward60 {
             
             I have something for you
             to commemorate this achievement!")
+    setvar(VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_FLOETTE_ETERNAL)
+    bufferspeciesname(STR_VAR_1, SPECIES_FLOETTE_ETERNAL)
     givemon(SPECIES_FLOETTE_ETERNAL, 30)
+    showgivemonpic(10, 3)
+    call(Common_EventScript_GiftMon)
+    hidemonpic
     setvar(VAR_ACHIEVEMENT_REWARD_MILESTONE, 60)
     goto(keepUpTheGoodWork)
     release

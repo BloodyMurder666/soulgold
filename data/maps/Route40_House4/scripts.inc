@@ -177,77 +177,93 @@ AchievementGuy_47:
 
 keepUpTheGoodWork::
 # 86 "data/maps/Route40_House4/scripts.pory"
+	createfieldmugshot MUGSHOT_GENTLEMAN
+# 87 "data/maps/Route40_House4/scripts.pory"
 	msgbox keepUpTheGoodWork_Text_0
-# 89 "data/maps/Route40_House4/scripts.pory"
+# 90 "data/maps/Route40_House4/scripts.pory"
 	release
 	end
 
 
 AchievementGuy_Reward15::
-# 94 "data/maps/Route40_House4/scripts.pory"
+# 95 "data/maps/Route40_House4/scripts.pory"
 	msgbox AchievementGuy_Reward15_Text_0
-# 101 "data/maps/Route40_House4/scripts.pory"
-	giveitem ITEM_SHIN_GENOME
 # 102 "data/maps/Route40_House4/scripts.pory"
-	setvar VAR_ACHIEVEMENT_REWARD_MILESTONE, 15
+	giveitem ITEM_SHIN_GENOME
 # 103 "data/maps/Route40_House4/scripts.pory"
-	goto keepUpTheGoodWork
+	setvar VAR_ACHIEVEMENT_REWARD_MILESTONE, 15
 # 104 "data/maps/Route40_House4/scripts.pory"
+	goto keepUpTheGoodWork
+# 105 "data/maps/Route40_House4/scripts.pory"
 	release
 	end
 
 
 AchievementGuy_Reward30::
-# 109 "data/maps/Route40_House4/scripts.pory"
+# 110 "data/maps/Route40_House4/scripts.pory"
 	msgbox AchievementGuy_Reward30_Text_0
-# 116 "data/maps/Route40_House4/scripts.pory"
-	givemon SPECIES_GRENINJA_BOND, 36
 # 117 "data/maps/Route40_House4/scripts.pory"
-	setvar VAR_ACHIEVEMENT_REWARD_MILESTONE, 30
+	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_GRENINJA_BOND
 # 118 "data/maps/Route40_House4/scripts.pory"
-	goto keepUpTheGoodWork
+	bufferspeciesname STR_VAR_1, SPECIES_GRENINJA_BOND
 # 119 "data/maps/Route40_House4/scripts.pory"
+	givemon SPECIES_GRENINJA_BOND, 36
+# 120 "data/maps/Route40_House4/scripts.pory"
+	showgivemonpic 10, 3
+# 121 "data/maps/Route40_House4/scripts.pory"
+	call Common_EventScript_GiftMon
+# 122 "data/maps/Route40_House4/scripts.pory"
+	hidemonpic
+# 123 "data/maps/Route40_House4/scripts.pory"
+	setvar VAR_ACHIEVEMENT_REWARD_MILESTONE, 30
+# 124 "data/maps/Route40_House4/scripts.pory"
+	goto keepUpTheGoodWork
+# 125 "data/maps/Route40_House4/scripts.pory"
 	release
 	end
 
 
 AchievementGuy_Reward45::
-# 124 "data/maps/Route40_House4/scripts.pory"
+# 130 "data/maps/Route40_House4/scripts.pory"
 	msgbox AchievementGuy_Reward45_Text_0
-# 131 "data/maps/Route40_House4/scripts.pory"
+# 137 "data/maps/Route40_House4/scripts.pory"
+	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_POIPOLE
+# 138 "data/maps/Route40_House4/scripts.pory"
+	bufferspeciesname STR_VAR_1, SPECIES_POIPOLE
+# 139 "data/maps/Route40_House4/scripts.pory"
 	givemon SPECIES_POIPOLE, 5
-# 132 "data/maps/Route40_House4/scripts.pory"
+# 140 "data/maps/Route40_House4/scripts.pory"
+	showgivemonpic 10, 3
+# 141 "data/maps/Route40_House4/scripts.pory"
+	call Common_EventScript_GiftMon
+# 142 "data/maps/Route40_House4/scripts.pory"
+	hidemonpic
+# 143 "data/maps/Route40_House4/scripts.pory"
 	setvar VAR_ACHIEVEMENT_REWARD_MILESTONE, 45
-# 133 "data/maps/Route40_House4/scripts.pory"
+# 144 "data/maps/Route40_House4/scripts.pory"
 	goto keepUpTheGoodWork
-# 134 "data/maps/Route40_House4/scripts.pory"
+# 145 "data/maps/Route40_House4/scripts.pory"
 	release
 	end
 
 
 AchievementGuy_Reward60::
-# 139 "data/maps/Route40_House4/scripts.pory"
+# 150 "data/maps/Route40_House4/scripts.pory"
 	msgbox AchievementGuy_Reward60_Text_0
-# 145 "data/maps/Route40_House4/scripts.pory"
+# 156 "data/maps/Route40_House4/scripts.pory"
+	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_FLOETTE_ETERNAL
+# 157 "data/maps/Route40_House4/scripts.pory"
+	bufferspeciesname STR_VAR_1, SPECIES_FLOETTE_ETERNAL
+# 158 "data/maps/Route40_House4/scripts.pory"
 	givemon SPECIES_FLOETTE_ETERNAL, 30
-# 146 "data/maps/Route40_House4/scripts.pory"
-	setvar VAR_ACHIEVEMENT_REWARD_MILESTONE, 60
-# 147 "data/maps/Route40_House4/scripts.pory"
-	goto keepUpTheGoodWork
-# 148 "data/maps/Route40_House4/scripts.pory"
-	release
-	end
-
-
-AchievementGuy_Reward75::
-# 153 "data/maps/Route40_House4/scripts.pory"
-	msgbox AchievementGuy_Reward75_Text_0
+# 159 "data/maps/Route40_House4/scripts.pory"
+	showgivemonpic 10, 3
 # 160 "data/maps/Route40_House4/scripts.pory"
-	giveitem ITEM_N_SOLARIZER
+	call Common_EventScript_GiftMon
 # 161 "data/maps/Route40_House4/scripts.pory"
-	giveitem ITEM_N_LUNARIZER
+	hidemonpic
 # 162 "data/maps/Route40_House4/scripts.pory"
-	setvar VAR_ACHIEVEMENT_REWARD_MILESTONE, 75
+	setvar VAR_ACHIEVEMENT_REWARD_MILESTONE, 60
 # 163 "data/maps/Route40_House4/scripts.pory"
 	goto keepUpTheGoodWork
 # 164 "data/maps/Route40_House4/scripts.pory"
@@ -255,18 +271,34 @@ AchievementGuy_Reward75::
 	end
 
 
-AchievementGuy_Reward90::
+AchievementGuy_Reward75::
 # 169 "data/maps/Route40_House4/scripts.pory"
-	msgbox AchievementGuy_Reward90_Text_0
+	msgbox AchievementGuy_Reward75_Text_0
+# 176 "data/maps/Route40_House4/scripts.pory"
+	giveitem ITEM_N_SOLARIZER
+# 177 "data/maps/Route40_House4/scripts.pory"
+	giveitem ITEM_N_LUNARIZER
 # 178 "data/maps/Route40_House4/scripts.pory"
-	giveitem ITEM_RUSTED_SWORD
+	setvar VAR_ACHIEVEMENT_REWARD_MILESTONE, 75
 # 179 "data/maps/Route40_House4/scripts.pory"
-	giveitem ITEM_RUSTED_SHIELD
-# 180 "data/maps/Route40_House4/scripts.pory"
-	setvar VAR_ACHIEVEMENT_REWARD_MILESTONE, 90
-# 181 "data/maps/Route40_House4/scripts.pory"
 	goto keepUpTheGoodWork
-# 182 "data/maps/Route40_House4/scripts.pory"
+# 180 "data/maps/Route40_House4/scripts.pory"
+	release
+	end
+
+
+AchievementGuy_Reward90::
+# 185 "data/maps/Route40_House4/scripts.pory"
+	msgbox AchievementGuy_Reward90_Text_0
+# 194 "data/maps/Route40_House4/scripts.pory"
+	giveitem ITEM_RUSTED_SWORD
+# 195 "data/maps/Route40_House4/scripts.pory"
+	giveitem ITEM_RUSTED_SHIELD
+# 196 "data/maps/Route40_House4/scripts.pory"
+	setvar VAR_ACHIEVEMENT_REWARD_MILESTONE, 90
+# 197 "data/maps/Route40_House4/scripts.pory"
+	goto keepUpTheGoodWork
+# 198 "data/maps/Route40_House4/scripts.pory"
 	release
 	end
 
@@ -293,13 +325,13 @@ AchievementGuy_Text_2:
 	.string "things, I might have something for you!$"
 
 keepUpTheGoodWork_Text_0:
-# 86 "data/maps/Route40_House4/scripts.pory"
+# 87 "data/maps/Route40_House4/scripts.pory"
 	.string "Never stop reaching for greater\n"
 	.string "heights. I look forward to\l"
 	.string "seeing what you will do next.$"
 
 AchievementGuy_Reward15_Text_0:
-# 94 "data/maps/Route40_House4/scripts.pory"
+# 95 "data/maps/Route40_House4/scripts.pory"
 	.string "Hmm! \p"
 	.string "You have at least {STR_VAR_1} \n"
 	.string "achievements under your belt! \p"
@@ -307,7 +339,7 @@ AchievementGuy_Reward15_Text_0:
 	.string "as a reward!$"
 
 AchievementGuy_Reward30_Text_0:
-# 109 "data/maps/Route40_House4/scripts.pory"
+# 110 "data/maps/Route40_House4/scripts.pory"
 	.string "Excellent! \p"
 	.string "You've achieved {STR_VAR_1}\n"
 	.string "things and reached the next step\l"
@@ -315,7 +347,7 @@ AchievementGuy_Reward30_Text_0:
 	.string "I have something nice for you!$"
 
 AchievementGuy_Reward45_Text_0:
-# 124 "data/maps/Route40_House4/scripts.pory"
+# 130 "data/maps/Route40_House4/scripts.pory"
 	.string "Superb! \p"
 	.string "You've achieved {STR_VAR_1}\n"
 	.string "things and reached the next\l"
@@ -323,7 +355,7 @@ AchievementGuy_Reward45_Text_0:
 	.string "I have something nice for you!$"
 
 AchievementGuy_Reward60_Text_0:
-# 139 "data/maps/Route40_House4/scripts.pory"
+# 150 "data/maps/Route40_House4/scripts.pory"
 	.string "Woah! You've achieved {STR_VAR_1}\n"
 	.string "things and are known around\l"
 	.string "the Johto!\p"
@@ -331,7 +363,7 @@ AchievementGuy_Reward60_Text_0:
 	.string "to commemorate this achievement!$"
 
 AchievementGuy_Reward75_Text_0:
-# 153 "data/maps/Route40_House4/scripts.pory"
+# 169 "data/maps/Route40_House4/scripts.pory"
 	.string "Incredible! \p"
 	.string "You've achieved {STR_VAR_1}\n"
 	.string "things and reached the next\l"
@@ -339,7 +371,7 @@ AchievementGuy_Reward75_Text_0:
 	.string "Another reward just for you!$"
 
 AchievementGuy_Reward90_Text_0:
-# 169 "data/maps/Route40_House4/scripts.pory"
+# 185 "data/maps/Route40_House4/scripts.pory"
 	.string "Amazing! \p"
 	.string "You've achieved {STR_VAR_1}\n"
 	.string "things and reached my final\l"
