@@ -642,10 +642,10 @@ static bool8 DexNavPickTile(enum EncounterType environment, u8 areaX, u8 areaY, 
             case ENCOUNTER_TYPE_LAND:
                 if (MetatileBehavior_IsLandWildEncounter(tileBehaviour))
                 {
-                    if (currMapType == MAP_TYPE_UNDERGROUND)
+                    if (currMapType == MAP_TYPE_UNDERGROUND || currMapType == MAP_TYPE_INDOOR)
                     {
-                        // inside (cave)
-                        if (IsElevationMismatchAt(gObjectEvents[gPlayerAvatar.spriteId].currentElevation, topX, topY))
+                        // inside (cave) or indoor (like sprout tower)
+                        if (IsElevationMismatchAt(gObjectEvents[gPlayerAvatar.objectEventId].currentElevation, topX, topY))
                             break; //occurs at same z coord
 
                         weight = !MapGridGetCollisionAt(topX, topY);
