@@ -497,7 +497,7 @@ AzaleaTown_EventScript_GSBall::
 # 249 "data/maps/AzaleaTown/scripts.pory"
 	msgbox AzaleaTown_Text_Kurt2, MSGBOX_DEFAULT
 # 250 "data/maps/AzaleaTown/scripts.pory"
-	giveitem ITEM_HEAVY_BALL
+	giveitem ITEM_GS_BALL
 # 251 "data/maps/AzaleaTown/scripts.pory"
 	waitse
 # 252 "data/maps/AzaleaTown/scripts.pory"

@@ -247,7 +247,7 @@ AzaleaTown_EventScript_GSBall::
 	closemessage
 	playse SE_M_PETAL_DANCE
 	msgbox AzaleaTown_Text_Kurt2, MSGBOX_DEFAULT
-	giveitem ITEM_HEAVY_BALL
+	giveitem ITEM_GS_BALL
 	waitse
 	playse SE_M_PETAL_DANCE
 	turnobject LOCALID_AZALEA_TOWN_KURT_GS, DIR_WEST

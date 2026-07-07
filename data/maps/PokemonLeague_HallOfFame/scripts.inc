@@ -57,6 +57,9 @@ PokemonLeague_HallOfFame_EventScript_CutsceneKantoChamp::
 
 PokemonLeague_HallOfFame_EventScript_SetFirstGameClearFlags::
 	clearflag FLAG_HIDE_LEAGUE_BLACKBELT
+	clearflag FLAG_HIDE_LUGIA
+	clearflag FLAG_HIDE_HO_OH
+	setflag FLAG_HIDE_BATTLEFRONTIER_ENGINEER
 	setflag FLAG_IS_CHAMPION
 	setflag FLAG_HIDE_BATTLEFRONTIER_ENGINEER
 	setvar VAR_SHUCKIE, 2
@@ -77,10 +80,14 @@ PokemonLeague_HallOfFame_EventScript_SetGameClearFlags::
 	clearflag FLAG_HIDE_ZAPDOS
 	clearflag FLAG_HIDE_ARTICUNO
 	clearflag FLAG_HIDE_MOLTRES
+	clearflag FLAG_HIDE_AZELF
+	clearflag FLAG_HIDE_MESPRIT
+	clearflag FLAG_HIDE_UXIE
 	clearflag FLAG_HIDE_CHIENPAO
 	clearflag FLAG_HIDE_MANAPHY
 	clearflag FLAG_HIDE_SHAYMIN 
-	clearflag FLAG_HIDE_VICITNI 
+	clearflag FLAG_HIDE_REGIGIGAS 
+	clearflag FLAG_HIDE_MARSHADOW 
 	clearflag FLAG_HIDE_CHI_YU 
 	clearflag FLAG_HIDE_MELOETTA 
 	clearflag FLAG_HIDE_DIANCIE 

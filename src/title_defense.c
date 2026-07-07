@@ -145,14 +145,14 @@ static const u8 sText_StevenFarewell[] = _(
 
 const struct TitleDefenseChallenger gTitleDefenseNormalChallengers[] =
 {
-    { TRAINER_FALKNER_2, OBJ_EVENT_GFX_FALKNER, sText_FalknerIntro, sText_FalknerDefeat, sText_FalknerFarewell },
-    { TRAINER_BUGSY_2,   OBJ_EVENT_GFX_BUGSY,   sText_BugsyIntro,   sText_BugsyDefeat,   sText_BugsyFarewell },
-    { TRAINER_WHITNEY_2, OBJ_EVENT_GFX_WHITNEY, sText_WhitneyIntro, sText_WhitneyDefeat, sText_WhitneyFarewell },
-    { TRAINER_MORTY_2,   OBJ_EVENT_GFX_MORTY,   sText_MortyIntro,   sText_MortyDefeat,   sText_MortyFarewell },
-    { TRAINER_CHUCK_2,   OBJ_EVENT_GFX_CHUCK,   sText_ChuckIntro,   sText_ChuckDefeat,   sText_ChuckFarewell },
-    { TRAINER_JASMINE_2, OBJ_EVENT_GFX_JASMINE, sText_JasmineIntro, sText_JasmineDefeat, sText_JasmineFarewell },
-    { TRAINER_PRYCE_2,   OBJ_EVENT_GFX_PRYCE,   sText_PryceIntro,   sText_PryceDefeat,   sText_PryceFarewell },
-    { TRAINER_CLAIR_2,   OBJ_EVENT_GFX_CLAIR,   sText_ClairIntro,   sText_ClairDefeat,   sText_ClairFarewell },
+    { TRAINER_TITLE_DEFENSE_FALKNER, OBJ_EVENT_GFX_FALKNER, sText_FalknerIntro, sText_FalknerDefeat, sText_FalknerFarewell },
+    { TRAINER_TITLE_DEFENSE_BUGSY,   OBJ_EVENT_GFX_BUGSY,   sText_BugsyIntro,   sText_BugsyDefeat,   sText_BugsyFarewell },
+    { TRAINER_TITLE_DEFENSE_WHITNEY, OBJ_EVENT_GFX_WHITNEY, sText_WhitneyIntro, sText_WhitneyDefeat, sText_WhitneyFarewell },
+    { TRAINER_TITLE_DEFENSE_MORTY,   OBJ_EVENT_GFX_MORTY,   sText_MortyIntro,   sText_MortyDefeat,   sText_MortyFarewell },
+    { TRAINER_TITLE_DEFENSE_CHUCK,   OBJ_EVENT_GFX_CHUCK,   sText_ChuckIntro,   sText_ChuckDefeat,   sText_ChuckFarewell },
+    { TRAINER_TITLE_DEFENSE_JASMINE, OBJ_EVENT_GFX_JASMINE, sText_JasmineIntro, sText_JasmineDefeat, sText_JasmineFarewell },
+    { TRAINER_TITLE_DEFENSE_PRYCE,   OBJ_EVENT_GFX_PRYCE,   sText_PryceIntro,   sText_PryceDefeat,   sText_PryceFarewell },
+    { TRAINER_TITLE_DEFENSE_CLAIR,   OBJ_EVENT_GFX_CLAIR,   sText_ClairIntro,   sText_ClairDefeat,   sText_ClairFarewell },
 };
 
 const struct TitleDefenseChallenger gTitleDefenseHardChallengers[] =
