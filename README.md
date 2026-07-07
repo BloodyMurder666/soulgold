@@ -8,6 +8,7 @@
 - Achievement system with over 100 trophies to chase, including milestone rewards!
 - 9 starters to choose from with new Mega Evolutions for starters that are missing them (Typhlosion, Meowscarada, Primarina)
 - Fresh new tileset for entirety of Johto
+- Title Defense system, no longer will you face only the same champion at the end of E4
 - All mega evolutions available, megastones have been turned into type-generic stones.
 - Rocket Arcade where you win Money instead of BP
 - Multiple legendaries to find in maingame and postgame!

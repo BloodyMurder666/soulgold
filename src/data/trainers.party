@@ -14995,3 +14995,69 @@ Ability: Hustle
 - Leaf Blade
 - Triple Axel
 
+=== TRAINER_DIRECTOR ===
+Name: Director
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Hg Boy 2
+Double Battle: No
+AI: Smart Trainer / Prediction
+
+Rotom-Wash @ Wiki Berry
+Ability: Levitate
+Level: 80
+EVs: 252 HP / 196 Def / 60 Spe
+Bold Nature
+- Hydro Pump
+- Volt Switch
+- Will-O-Wisp
+- Pain Split
+
+Garchomp @ Rocky Helmet
+Ability: Rough Skin
+EVs: 252 Atk / 4 SpD / 252 Spe
+Level: 81
+Jolly Nature
+- Stealth Rock
+- Swords Dance
+- Earthquake
+- Stone Edge
+
+Ditto @ Choice Scarf
+Ability: Imposter
+Level: 81
+EVs: 248 HP / 8 Atk / 252 Def
+Relaxed Nature
+IVs: 0 Spe
+- Transform
+
+Tornadus-Therian @ Leftovers
+Ability: Regenerator
+Level: 82
+EVs: 88 HP / 164 Def / 32 SpA / 8 SpD / 216 Spe
+Timid Nature
+- Hurricane
+- Knock Off
+- Defog
+- Taunt
+
+Ferrothorn @ Leftovers
+Ability: Iron Barbs
+EVs: 252 HP / 48 Def / 208 SpD
+Level: 82
+Careful Nature
+- Leech Seed
+- Spikes
+- Power Whip
+- Protect
+
+Scizor @ Scizorite
+Ability: Light Metal
+EVs: 248 HP / 44 Def / 216 SpD
+Level: 83
+Impish Nature
+- Bullet Punch
+- Swords Dance
+- Roost
+- U-turn

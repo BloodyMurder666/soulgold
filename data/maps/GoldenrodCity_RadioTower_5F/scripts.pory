@@ -66,13 +66,7 @@ GoldenrodCity_RadioTower_5F_EventScript_Director::
 	lock
 	faceplayer
 	playse SE_SELECT
-	@ If player has either wing, skip to default director
-	checkitem ITEM_SILVER_WING
-	goto_if_eq VAR_RESULT, TRUE, GoldenrodCity_RadioTower_5F_EventScript_DirectorDone
-	checkitem ITEM_RAINBOW_WING
-	goto_if_eq VAR_RESULT, TRUE, GoldenrodCity_RadioTower_5F_EventScript_DirectorDone
-
-
+	goto GoldenrodCity_RadioTower_5F_EventScript_DirectorPath
 	release
 	end
 
@@ -589,4 +583,70 @@ script RadioTower_5F_Archer {
 		fadedefaultbgm
 		release
 		end
+}
+
+script GoldenrodCity_RadioTower_5F_EventScript_DirectorPath {
+	if (flag(FLAG_IS_CHAMPION)) {
+		if (flag(FLAG_BEAT_DIRECTOR)) { // Game and Director beaten
+			goto(GoldenrodCity_RadioTower_5F_EventScript_DirectorDone)
+		} else { // Game beaten but director not
+			msgbox("Ah, {PLAYER}!
+					
+					I heard you became the champion,
+					congratulations!")
+			msgbox("I assume you're here for the other 
+					wing? Ho ho ho!
+					
+					I'd be more than happy to give it
+					to you on one condition.
+					
+					I have been itching for a good
+					battle for a very long time.
+					
+					Team Rocket ambushed me when I had
+					no Pokémon. 
+					
+					They would have stood no chance 
+					against my prized team.")
+			playbgm(MUS_RG_ENCOUNTER_GYM_LEADER, FALSE)
+			msgbox("I'll show you the power of a former
+					Elite Four member, ho ho ho!")
+			trainerbattle_no_intro(TRAINER_DIRECTOR, "What a nostalgic feeling!")
+			createfieldmugshot(MUGSHOT_GENTLEMAN)
+			msgbox("You are truly above and beyond other
+					trainers in Johto, {PLAYER}!
+					
+					I'm more than happy to hand this over
+					to you.")
+			if (var(VAR_LUGIA_OR_HOOH) == 1) {
+				giveitem(ITEM_RAINBOW_WING)
+				setvar(VAR_COMPLETED_HO_OH, 4)
+				setflag(FLAG_HIDE_TINTOWER_GUARD)
+			} else {
+				giveitem(ITEM_SILVER_WING)
+				setvar(VAR_COMPLETED_LUGIA, 4)
+				setflag(FLAG_HIDE_WHIRL_ISLANDS_TENTACRUEL)
+			}
+			setflag(FLAG_BEAT_DIRECTOR)
+			msgbox("Now go on and continue your legend!")
+			release
+			end
+		} 
+	} else {
+		goto(GoldenrodCity_RadioTower_5F_EventScript_DirectorDone)
+	}
+	release
+	end
+}
+
+script DirectorGotSilver {
+	msgbox("You chose Silver Wing")
+	release
+	end
+}
+
+script DirectorGotRainbow {
+	msgbox("You chose Rainbow Wing")
+	release
+	end
 }
