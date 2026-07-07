@@ -1,3 +1,8 @@
+Bugs:
+- Trade screen swap shows all as viable
+- Pryce attackercount assertf
+
+
 
 # Demo 1 MVP
 
