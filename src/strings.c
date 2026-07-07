@@ -1042,7 +1042,7 @@ const u8 gText_FrontierFacilityTotalCaughtSpeciesBanned[] = _(" and {STR_VAR_2} 
 const u8 gText_FrontierFacilityIncluding[] = _(".\pThese include ");
 const u8 gText_FrontierFacilityAreInelegible[] = _(" are inelegible");
 
-const u8 gText_YesNo[] = _("Yes\nNO");
+const u8 gText_YesNo[] = _("Yes\nNo");
 const u8 gText_SelectorArrow3[] = _("▶");
 const u8 gText_Peekaboo[] = _("Peekaboo!");
 const u8 gText_CommErrorCheckConnections[] = _("Communication error…\nPlease check all connections,\nthen turn the power Off and On.");
