@@ -208,6 +208,24 @@
       "var": "VAR_STARTER_PICKING_STATE",
       "var_value": "1",
       "script": "NewBarkTown_Lab_EventScript_ChoseStarter2"
+    },
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 3,
+      "elevation": 0,
+      "var": "VAR_STARTER_PICKING_STATE",
+      "var_value": "1",
+      "script": "NewBarkTown_Lab_EventScript_ChoseStarter2"
+    },
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 2,
+      "elevation": 0,
+      "var": "VAR_STARTER_PICKING_STATE",
+      "var_value": "1",
+      "script": "NewBarkTown_Lab_EventScript_ChoseStarter2"
     }
   ],
   "bg_events": [

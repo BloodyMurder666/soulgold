@@ -366,10 +366,10 @@ PokemonLeague_ChampionsRoom_Text_BattleAfter:
 
 PokemonLeague_ChampionsRoom_Text_MaryOhNoOak:
     .string "Mary: Oh, no! It's all over!\p"
-    .string "Prof.Oak, if you weren't so slow…$"
+    .string "Prof. Oak, if you weren't so slow…$"
 
 PokemonLeague_ChampionsRoom_Text_OakCongratulations:
-    .string "Prof.Oak: Ah, {PLAYER}!\p"
+    .string "Prof. Oak: Ah, {PLAYER}!\p"
     .string "It's been a long while.\p"
     .string "You certainly look more impressive.\p"
     .string "Your conquest of the Johto League\n"
@@ -382,7 +382,7 @@ PokemonLeague_ChampionsRoom_Text_OakCongratulations:
     .string "Congratulations, {PLAYER}!$"
 
 PokemonLeague_ChampionsRoom_Text_RematchOakCongratulations:
-    .string "Prof.Oak: Ah, {PLAYER}!\p"
+    .string "Prof. Oak: Ah, {PLAYER}!\p"
     .string "I've been following your progress\n"
     .string "since Prof. Elm sent you on your\l"
     .string "way.\p"

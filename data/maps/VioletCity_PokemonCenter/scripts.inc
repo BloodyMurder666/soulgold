@@ -165,7 +165,7 @@ VioletCity_PokeCenter_Text_ElmsAideFavor:
 # 83 "data/maps/VioletCity_PokemonCenter/scripts.pory"
 	.string "{PLAYER}, long time, no see.\p"
 # 84 "data/maps/VioletCity_PokemonCenter/scripts.pory"
-	.string "Prof.Elm asked me to find you.\p"
+	.string "Prof. Elm asked me to find you.\p"
 # 85 "data/maps/VioletCity_PokemonCenter/scripts.pory"
 	.string "He has another favor to ask.\p"
 # 86 "data/maps/VioletCity_PokemonCenter/scripts.pory"
@@ -177,7 +177,7 @@ VioletCity_PokeCenter_Text_ElmsAideNoRoom:
 # 89 "data/maps/VioletCity_PokemonCenter/scripts.pory"
 	.string "{PLAYER}, long time, no see.\p"
 # 90 "data/maps/VioletCity_PokemonCenter/scripts.pory"
-	.string "Prof.Elm asked me to find you.\p"
+	.string "Prof. Elm asked me to find you.\p"
 # 91 "data/maps/VioletCity_PokemonCenter/scripts.pory"
 	.string "He has another favor to ask.\p"
 # 92 "data/maps/VioletCity_PokemonCenter/scripts.pory"
@@ -225,7 +225,7 @@ VioletCity_PokeCenter_Text_ElmsAideFullParty:
 # 113 "data/maps/VioletCity_PokemonCenter/scripts.pory"
 VioletCity_PokeCenter_Text_ElmsAideRefuse:
 # 114 "data/maps/VioletCity_PokemonCenter/scripts.pory"
-	.string "B-but… Prof.Elm asked for you…$"
+	.string "B-but… Prof. Elm asked for you…$"
 # 115 "data/maps/VioletCity_PokemonCenter/scripts.pory"
 
 # 116 "data/maps/VioletCity_PokemonCenter/scripts.pory"

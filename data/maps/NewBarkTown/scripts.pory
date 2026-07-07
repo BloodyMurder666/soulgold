@@ -229,7 +229,7 @@ NewBarkTown_Movement_FaceDown:
 	step_end
 
 NewBarkTown_Text_LabSign:
-	.string "Prof.Elm's Lab$"
+	.string "Prof. Elm's Lab$"
 
 NewBarkTown_Text_Door:
 	.string "The door is locked.$"
@@ -243,7 +243,7 @@ NewBarkTown_Text_FatManState2:
 
 NewBarkTown_Text_FatManState3:
 	.string "Yo, {PLAYER}!\p"
-	.string "I hear Prof.Elm discovered\n"
+	.string "I hear Prof. Elm discovered\n"
 	.string "some new Pokémon.$"
 
 NewBarkTown_Text_LassState2:
@@ -291,7 +291,7 @@ NewBarkTown_Text_PlayersHouse:
 	.string "{PLAYER}'s House$"
 
 NewBarkTown_Text_ElmsHouse:
-	.string "Prof.Elm's House$"
+	.string "Prof. Elm's House$"
 `
 
 script NewBarkTown_EventScript_RivalIntro {

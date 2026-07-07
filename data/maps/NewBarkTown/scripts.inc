@@ -461,7 +461,7 @@ NewBarkTown_Movement_FaceDown:
 # 231 "data/maps/NewBarkTown/scripts.pory"
 NewBarkTown_Text_LabSign:
 # 232 "data/maps/NewBarkTown/scripts.pory"
-	.string "Prof.Elm's Lab$"
+	.string "Prof. Elm's Lab$"
 # 233 "data/maps/NewBarkTown/scripts.pory"
 
 # 234 "data/maps/NewBarkTown/scripts.pory"
@@ -489,7 +489,7 @@ NewBarkTown_Text_FatManState3:
 # 245 "data/maps/NewBarkTown/scripts.pory"
 	.string "Yo, {PLAYER}!\p"
 # 246 "data/maps/NewBarkTown/scripts.pory"
-	.string "I hear Prof.Elm discovered\n"
+	.string "I hear Prof. Elm discovered\n"
 # 247 "data/maps/NewBarkTown/scripts.pory"
 	.string "some new Pokémon.$"
 # 248 "data/maps/NewBarkTown/scripts.pory"
@@ -585,7 +585,7 @@ NewBarkTown_Text_PlayersHouse:
 # 293 "data/maps/NewBarkTown/scripts.pory"
 NewBarkTown_Text_ElmsHouse:
 # 294 "data/maps/NewBarkTown/scripts.pory"
-	.string "Prof.Elm's House$"
+	.string "Prof. Elm's House$"
 
 NewBarkTown_EventScript_RivalIntro::
 # 298 "data/maps/NewBarkTown/scripts.pory"

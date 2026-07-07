@@ -342,16 +342,20 @@ NewBarkTown_Lab_EventScript_PoliceYes3::
 	@ setobjectxyperm LOCALID_COP, 25, 4
 	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_Lab_Movement_PlayerStepsToElm
 	waitmovement 0
+	createfieldmugshot MUGSHOT_ELM
 	msgbox NewBarkTown_Lab_Text_ElmAfterTheft1, MSGBOX_DEFAULT
+	removefieldmugshot
 	msgbox NewBarkTown_Lab_Text_ElmAfterTheft2, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_ELM, NewBarkTown_Lab_Movement_ElmStepBack
 	waitmovement 0
+	createfieldmugshot MUGSHOT_ELM
 	msgbox NewBarkTown_Lab_Text_ElmAfterTheft3, MSGBOX_DEFAULT
 	delay 20
 	closemessage
 	applymovement LOCALID_ELM, NewBarkTown_Lab_Movement_ElmStepForward
 	waitmovement 0
+	createfieldmugshot MUGSHOT_ELM
 	msgbox NewBarkTown_Lab_Text_ElmAfterTheft4, MSGBOX_DEFAULT
 	closemessage
 	setvar VAR_NEWBARKTOWN_LABSTATE, 5
@@ -371,16 +375,20 @@ NewBarkTown_Lab_EventScript_PoliceYes2::
 	@ setobjectxyperm LOCALID_COP, 25, 4
 	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_Lab_Movement_PlayerStepsToElm
 	waitmovement 0
+	createfieldmugshot MUGSHOT_ELM
 	msgbox NewBarkTown_Lab_Text_ElmAfterTheft1, MSGBOX_DEFAULT
+	removefieldmugshot
 	msgbox NewBarkTown_Lab_Text_ElmAfterTheft2, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_ELM, NewBarkTown_Lab_Movement_ElmStepBack
 	waitmovement 0
+	createfieldmugshot MUGSHOT_ELM
 	msgbox NewBarkTown_Lab_Text_ElmAfterTheft3, MSGBOX_DEFAULT
 	delay 20
 	closemessage
 	applymovement LOCALID_ELM, NewBarkTown_Lab_Movement_ElmStepForward
 	waitmovement 0
+	createfieldmugshot MUGSHOT_ELM
 	msgbox NewBarkTown_Lab_Text_ElmAfterTheft4, MSGBOX_DEFAULT
 	closemessage
 	setvar VAR_NEWBARKTOWN_LABSTATE, 5
@@ -461,6 +469,7 @@ NewBarkTown_Lab_EventScript_TriggerAideGiveBalls::
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_FIRST_BALLS
 	setvar VAR_NEWBARKTOWN_LABSTATE, 6
+	closemessage
 	applymovement LOCALID_AIDE1, NewBarkTown_Lab_Movement_Aide1LeavePlayer
 	waitmovement 0
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_SOUTH
@@ -730,7 +739,7 @@ NewBarkTown_Lab_Text_ElmDescribesMrPokemon:
 
 NewBarkTown_Lab_Text_ElmPokeBall:
 	.string "It contains Pokémon caught\n"
-	.string "by Prof.Elm.$"
+	.string "by Prof. Elm.$"
 
 @THEFT================================================================================
 
@@ -741,7 +750,7 @@ NewBarkTown_Lab_Text_ElmAfterTheft1:
 
 NewBarkTown_Lab_Text_ElmAfterTheft2:
 	.string "{PLAYER} handed the Mystery Egg\n"
-	.string "to Prof.Elm.$"
+	.string "to Prof. Elm.$"
 
 NewBarkTown_Lab_Text_ElmAfterTheft3:
 	.string "Elm: This?$"
@@ -751,7 +760,7 @@ NewBarkTown_Lab_Text_ElmAfterTheft4:
 	.string "If it is, it is a great\n"
 	.string "discovery!\p"
 	.string "Elm: What?!?\p"
-	.string "Prof.Oak gave you a Pokédex?\p"
+	.string "Prof. Oak gave you a Pokédex?\p"
 	.string "{PLAYER}, is that true?\n"
 	.string "Th-that's incredible!\p"
 	.string "He is superb at seeing the\n"
@@ -899,7 +908,7 @@ NewBarkTown_Lab_Text_ElmGiveTicket2:
 
 NewBarkTown_Lab_Text_LabMonEgg:
 	.string "It's the Pokémon Egg being\n"
-	.string "studied by Prof.Elm.$"
+	.string "studied by Prof. Elm.$"
 
 NewBarkTown_Lab_Text_AideGivePotion:
 	.string "{PLAYER}, I want you to have\n"
@@ -942,7 +951,7 @@ NewBarkTown_Lab_Text_Officer1:
 	.string "I heard a Pokémon was stolen\n"
 	.string "here…\p"
 	.string "I was just getting some\n"
-	.string "information from Prof.Elm.\p"
+	.string "information from Prof. Elm.\p"
 	.string "Apparently, it was a young\n"
 	.string "male with long, red hair…\p"
 	.string "What?\p"

@@ -81,13 +81,13 @@ VioletCity_PokemonCenter_EventScript_Man::
 
 VioletCity_PokeCenter_Text_ElmsAideFavor:
 	.string "{PLAYER}, long time, no see.\p"
-	.string "Prof.Elm asked me to find you.\p"
+	.string "Prof. Elm asked me to find you.\p"
 	.string "He has another favor to ask.\p"
 	.string "Would you take the Pokémon Egg?$"
 
 VioletCity_PokeCenter_Text_ElmsAideNoRoom:
 	.string "{PLAYER}, long time, no see.\p"
-	.string "Prof.Elm asked me to find you.\p"
+	.string "Prof. Elm asked me to find you.\p"
 	.string "He has another favor to ask.\p"
 	.string "Would you take the Pokémon Egg?\p"
 	.string "Oh, wait... You need to make room\n"
@@ -111,7 +111,7 @@ VioletCity_PokeCenter_Text_ElmsAideFullParty:
 	.string "room for the Egg.$"
 
 VioletCity_PokeCenter_Text_ElmsAideRefuse:
-	.string "B-but… Prof.Elm asked for you…$"
+	.string "B-but… Prof. Elm asked for you…$"
 
 VioletCity_PokeCenter_Text_FarawayLink:
 	.string "I've been thinking it'd be great\n"

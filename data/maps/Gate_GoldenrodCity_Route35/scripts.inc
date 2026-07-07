@@ -259,7 +259,7 @@ Route35GoldenrodGate_Text_Fisher:
 # 130 "data/maps/Gate_GoldenrodCity_Route35/scripts.pory"
 	.string "there are in the world.\p"
 # 131 "data/maps/Gate_GoldenrodCity_Route35/scripts.pory"
-	.string "Three years ago, Prof.Oak said that\n"
+	.string "Three years ago, Prof. Oak said that\n"
 # 132 "data/maps/Gate_GoldenrodCity_Route35/scripts.pory"
 	.string "there were 150 different kinds.\p"
 # 133 "data/maps/Gate_GoldenrodCity_Route35/scripts.pory"

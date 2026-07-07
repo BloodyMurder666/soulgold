@@ -202,7 +202,7 @@ static const u8 sMachinePartDesc[] = _(
     "the POWER PLANT.");
 
 static const u8 sMysteryEggDesc[] = _(
-    "Obtained from MR.\n"
+    "Obtained from Mr.\n"
     "Pokémon. Who knows\n"
     "what's inside?");
 

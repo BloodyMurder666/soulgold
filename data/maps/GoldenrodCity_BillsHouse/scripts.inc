@@ -55,7 +55,7 @@ GoldenrodCity_BillsHouse_EventScript_Mom2::
 # 28 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
 BillHouse_Text_EeveeMayEvolve:
 # 29 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
-    .string "Bill: Prof.Elm claims Eevee may\n"
+    .string "Bill: Prof. Elm claims Eevee may\n"
 # 30 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
     .string "evolve in new and unknown ways.$"
 # 31 "data/maps/GoldenrodCity_BillsHouse/scripts.pory"
