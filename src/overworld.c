@@ -1501,6 +1501,9 @@ bool8 IsMapTypeOutdoors(enum MapType mapType)
 
 bool8 Overworld_MapTypeAllowsTeleportAndFly(enum MapType mapType)
 {
+    if (GetBugContestFlag() == TRUE)
+        return FALSE;
+
     if (mapType == MAP_TYPE_ROUTE
      || mapType == MAP_TYPE_TOWN
      || mapType == MAP_TYPE_OCEAN_ROUTE

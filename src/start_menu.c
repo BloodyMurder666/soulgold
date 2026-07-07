@@ -5,6 +5,7 @@
 #include "battle_pyramid.h"
 #include "battle_pyramid_bag.h"
 #include "bg.h"
+#include "bug_contest.h"
 #include "debug.h"
 #include "event_data.h"
 #include "event_object_movement.h"
@@ -304,6 +305,10 @@ static void BuildStartMenuActions(void)
         BuildUnionRoomStartMenu();
     }
     else if (GetSafariZoneFlag() == TRUE)
+    {
+        BuildSafariZoneStartMenu();
+    }
+    else if (GetBugContestFlag() == TRUE)
     {
         BuildSafariZoneStartMenu();
     }
@@ -820,7 +825,10 @@ static bool8 StartMenuSafariZoneRetireCallback(void)
 {
     RemoveExtraStartMenuWindows();
     HideStartMenu();
-    SafariZoneRetirePrompt();
+    if (GetBugContestFlag() == TRUE)
+        BugContestRetirePrompt();
+    else
+        SafariZoneRetirePrompt();
 
     return TRUE;
 }
