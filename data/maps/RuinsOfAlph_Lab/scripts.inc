@@ -625,9 +625,9 @@ RuinsOfAlph_Lab_EventScript_ReceiveKabuto::
 # 313 "data/maps/RuinsOfAlph_Lab/scripts.pory"
 	setvar VAR_TEMP_1, SPECIES_KABUTO
 # 314 "data/maps/RuinsOfAlph_Lab/scripts.pory"
-	call_if_unset FLAG_GARBAGEFLAG, RuinsOfAlph_Lab_EventScript_GiveEarlyKabuto
+	call_if_unset FLAG_BADGE04_GET, RuinsOfAlph_Lab_EventScript_GiveEarlyKabuto
 # 315 "data/maps/RuinsOfAlph_Lab/scripts.pory"
-	call_if_set FLAG_GARBAGEFLAG, RuinsOfAlph_Lab_EventScript_GiveLateKabuto
+	call_if_set FLAG_BADGE04_GET, RuinsOfAlph_Lab_EventScript_GiveLateKabuto
 # 316 "data/maps/RuinsOfAlph_Lab/scripts.pory"
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, RuinsOfAlph_Lab_EventScript_ReceiveKabutoParty
 # 317 "data/maps/RuinsOfAlph_Lab/scripts.pory"

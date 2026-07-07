@@ -301,7 +301,7 @@ GoldenrodUnderground_EventScript_Brother_Haircut1::
 # 151 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	faceplayer
 # 152 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	goto_if_set FLAG_GARBAGEFLAG, GoldenrodUnderground_EventScript_Already_Got_Haircut1
+	goto_if_set FLAG_GOT_HAIRCUT, GoldenrodUnderground_EventScript_Already_Got_Haircut1
 # 153 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	showmoneybox 0, 0
 # 154 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
@@ -369,7 +369,7 @@ GoldenrodUnderground_EventScript_Haircut1::
 # 185 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	hidemoneybox
 # 186 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	setflag FLAG_GARBAGEFLAG
+	setflag FLAG_GOT_HAIRCUT
 # 187 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	release
 # 188 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
@@ -425,7 +425,7 @@ GoldenrodUnderground_EventScript_Brother_Haircut2::
 # 213 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	faceplayer
 # 214 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	goto_if_set FLAG_GARBAGEFLAG, GoldenrodUnderground_EventScript_Already_Got_Haircut2
+	goto_if_set FLAG_GOT_HAIRCUT, GoldenrodUnderground_EventScript_Already_Got_Haircut2
 # 215 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	showmoneybox 0, 0
 # 216 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
@@ -493,7 +493,7 @@ GoldenrodUnderground_EventScript_Haircut2::
 # 247 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	hidemoneybox
 # 248 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	setflag FLAG_GARBAGEFLAG
+	setflag FLAG_GOT_HAIRCUT
 # 249 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	release
 # 250 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"

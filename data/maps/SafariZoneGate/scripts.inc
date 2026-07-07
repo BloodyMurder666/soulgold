@@ -23,7 +23,7 @@ SafariZoneGate_EventScript_Trigger::
 # 12 "data/maps/SafariZoneGate/scripts.pory"
 	clearflag FLAG_SAFARI_ZONE_EAST_EXPANSION
 # 13 "data/maps/SafariZoneGate/scripts.pory"
-	setflag FLAG_GARBAGEFLAG
+	setflag FLAG_VISITED_SAFARI_ZONE_GATE
 # 14 "data/maps/SafariZoneGate/scripts.pory"
 	setvar VAR_SAFARI_ZONE_GATE_STATE, 3
 # 15 "data/maps/SafariZoneGate/scripts.pory"

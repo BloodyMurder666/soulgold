@@ -490,7 +490,7 @@ AzaleaTown_Gym_EventScript_Trigger_11::
 AzaleaTown_Gym_EventScript_GymGuy::
 	lock
 	faceplayer
-	goto_if_set FLAG_GARBAGEFLAG, AzaleaTown_Gym_EventScript_GymGuy2
+	goto_if_set FLAG_BADGE02_GET, AzaleaTown_Gym_EventScript_GymGuy2
 	msgbox AzaleaTown_Gym_Text_GymGuide, MSGBOX_DEFAULT
 	closemessage
 	release

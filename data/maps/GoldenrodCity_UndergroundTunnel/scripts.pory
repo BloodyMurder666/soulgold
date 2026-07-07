@@ -149,7 +149,7 @@ GoldenrodUnderground_EventScript_Donald::
 GoldenrodUnderground_EventScript_Brother_Haircut1::
 	lock
 	faceplayer
-	goto_if_set FLAG_GARBAGEFLAG, GoldenrodUnderground_EventScript_Already_Got_Haircut1
+	goto_if_set FLAG_GOT_HAIRCUT, GoldenrodUnderground_EventScript_Already_Got_Haircut1
 	showmoneybox 0, 0
 	msgbox GoldenrodUnderground_Text_OlderBrotherOffer, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, TRUE, GoldenrodUnderground_EventScript_Haircut1
@@ -183,7 +183,7 @@ GoldenrodUnderground_EventScript_Haircut1::
 	special BufferMonNickname
 	msgbox GoldenrodUnderground_Text_OlderBrotherAllDone
 	hidemoneybox
-	setflag FLAG_GARBAGEFLAG
+	setflag FLAG_GOT_HAIRCUT
 	release
 	end
 
@@ -211,7 +211,7 @@ GoldenrodUnderground_EventScript_NotEnough_Haircut1::
 GoldenrodUnderground_EventScript_Brother_Haircut2::
 	lock
 	faceplayer
-	goto_if_set FLAG_GARBAGEFLAG, GoldenrodUnderground_EventScript_Already_Got_Haircut2
+	goto_if_set FLAG_GOT_HAIRCUT, GoldenrodUnderground_EventScript_Already_Got_Haircut2
 	showmoneybox 0, 0
 	msgbox GoldenrodUnderground_Text_YoungerBrotherOffer, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, TRUE, GoldenrodUnderground_EventScript_Haircut2
@@ -245,7 +245,7 @@ GoldenrodUnderground_EventScript_Haircut2::
 	special BufferMonNickname
 	msgbox GoldenrodUnderground_Text_YoungerBrotherAllDone
 	hidemoneybox
-	setflag FLAG_GARBAGEFLAG
+	setflag FLAG_GOT_HAIRCUT
 	release
 	end
 

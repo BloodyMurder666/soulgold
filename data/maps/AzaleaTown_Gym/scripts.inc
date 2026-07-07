@@ -983,7 +983,7 @@ AzaleaTown_Gym_EventScript_GymGuy::
 # 492 "data/maps/AzaleaTown_Gym/scripts.pory"
 	faceplayer
 # 493 "data/maps/AzaleaTown_Gym/scripts.pory"
-	goto_if_set FLAG_GARBAGEFLAG, AzaleaTown_Gym_EventScript_GymGuy2
+	goto_if_set FLAG_BADGE02_GET, AzaleaTown_Gym_EventScript_GymGuy2
 # 494 "data/maps/AzaleaTown_Gym/scripts.pory"
 	msgbox AzaleaTown_Gym_Text_GymGuide, MSGBOX_DEFAULT
 # 495 "data/maps/AzaleaTown_Gym/scripts.pory"
