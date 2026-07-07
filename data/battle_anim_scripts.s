@@ -30283,6 +30283,7 @@ gBattleAnimMove_SkyUppercut::
 
 gBattleAnimMove_SecretPower::
 	@ No actual animation, uses the animation of a move from src/data/battle_environment.h instead
+	end
 
 gBattleAnimMove_Twister::
 	loadspritegfx ANIM_TAG_LEAF
