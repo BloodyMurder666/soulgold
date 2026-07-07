@@ -13,23 +13,23 @@ Route113_GlassWorkshop_MapScripts::
 
 Route113_GlassWorkshop_OnTransition:
 	setflag FLAG_GARBAGEFLAG
-	call_if_eq VAR_GLASS_WORKSHOP_STATE, 1, Route113_GlassWorkshop_EventScript_ReenterWorkshopAfterSootSack
+	call_if_eq VAR_GARBAGEVAR, 1, Route113_GlassWorkshop_EventScript_ReenterWorkshopAfterSootSack
 	end
 
 Route113_GlassWorkshop_EventScript_ReenterWorkshopAfterSootSack::
-	setvar VAR_GLASS_WORKSHOP_STATE, 2
+	setvar VAR_GARBAGEVAR, 2
 	return
 
 Route113_GlassWorkshop_EventScript_GlassWorker::
 	lock
 	faceplayer
-	goto_if_ge VAR_GLASS_WORKSHOP_STATE, 10, Route113_GlassWorkshop_EventScript_GiveItemAfterNoRoom
-	goto_if_eq VAR_GLASS_WORKSHOP_STATE, 2, Route113_GlassWorkshop_EventScript_CheckCollectedAsh
-	goto_if_eq VAR_GLASS_WORKSHOP_STATE, 1, Route113_GlassWorkshop_EventScript_ExplainSootSack
+	goto_if_ge VAR_GARBAGEVAR, 10, Route113_GlassWorkshop_EventScript_GiveItemAfterNoRoom
+	goto_if_eq VAR_GARBAGEVAR, 2, Route113_GlassWorkshop_EventScript_CheckCollectedAsh
+	goto_if_eq VAR_GARBAGEVAR, 1, Route113_GlassWorkshop_EventScript_ExplainSootSack
 	msgbox Route113_GlassWorkshop_Text_GoCollectAshWithThis, MSGBOX_DEFAULT
 	giveitem ITEM_SOOT_SACK
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
-	setvar VAR_GLASS_WORKSHOP_STATE, 1
+	setvar VAR_GARBAGEVAR, 1
 	msgbox Route113_GlassWorkshop_Text_ExplainSootSack, MSGBOX_DEFAULT
 	release
 	end
@@ -78,7 +78,7 @@ Route113_GlassWorkshop_EventScript_BlueFlute::
 	goto_if_lt VAR_ASH_GATHER_COUNT, BLUE_FLUTE_PRICE, Route113_GlassWorkshop_EventScript_NotEnoughAshForItem
 	msgbox Route113_GlassWorkshop_Text_IsThatTheItemForYou, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, Route113_GlassWorkshop_EventScript_ChooseDifferentItem
-	setvar VAR_GLASS_WORKSHOP_STATE, 10
+	setvar VAR_GARBAGEVAR, 10
 	subvar VAR_ASH_GATHER_COUNT, BLUE_FLUTE_PRICE
 	goto Route113_GlassWorkshop_EventScript_MakeGlassItem
 	end
@@ -90,7 +90,7 @@ Route113_GlassWorkshop_EventScript_YellowFlute::
 	goto_if_lt VAR_ASH_GATHER_COUNT, YELLOW_FLUTE_PRICE, Route113_GlassWorkshop_EventScript_NotEnoughAshForItem
 	msgbox Route113_GlassWorkshop_Text_IsThatTheItemForYou, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, Route113_GlassWorkshop_EventScript_ChooseDifferentItem
-	setvar VAR_GLASS_WORKSHOP_STATE, 11
+	setvar VAR_GARBAGEVAR, 11
 	subvar VAR_ASH_GATHER_COUNT, YELLOW_FLUTE_PRICE
 	goto Route113_GlassWorkshop_EventScript_MakeGlassItem
 	end
@@ -102,7 +102,7 @@ Route113_GlassWorkshop_EventScript_RedFlute::
 	goto_if_lt VAR_ASH_GATHER_COUNT, RED_FLUTE_PRICE, Route113_GlassWorkshop_EventScript_NotEnoughAshForItem
 	msgbox Route113_GlassWorkshop_Text_IsThatTheItemForYou, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, Route113_GlassWorkshop_EventScript_ChooseDifferentItem
-	setvar VAR_GLASS_WORKSHOP_STATE, 12
+	setvar VAR_GARBAGEVAR, 12
 	subvar VAR_ASH_GATHER_COUNT, RED_FLUTE_PRICE
 	goto Route113_GlassWorkshop_EventScript_MakeGlassItem
 	end
@@ -114,7 +114,7 @@ Route113_GlassWorkshop_EventScript_WhiteFlute::
 	goto_if_lt VAR_ASH_GATHER_COUNT, WHITE_FLUTE_PRICE, Route113_GlassWorkshop_EventScript_NotEnoughAshForItem
 	msgbox Route113_GlassWorkshop_Text_IsThatTheItemForYou, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, Route113_GlassWorkshop_EventScript_ChooseDifferentItem
-	setvar VAR_GLASS_WORKSHOP_STATE, 13
+	setvar VAR_GARBAGEVAR, 13
 	subvar VAR_ASH_GATHER_COUNT, WHITE_FLUTE_PRICE
 	goto Route113_GlassWorkshop_EventScript_MakeGlassItem
 	end
@@ -126,7 +126,7 @@ Route113_GlassWorkshop_EventScript_BlackFlute::
 	goto_if_lt VAR_ASH_GATHER_COUNT, BLACK_FLUTE_PRICE, Route113_GlassWorkshop_EventScript_NotEnoughAshForItem
 	msgbox Route113_GlassWorkshop_Text_IsThatTheItemForYou, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, Route113_GlassWorkshop_EventScript_ChooseDifferentItem
-	setvar VAR_GLASS_WORKSHOP_STATE, 14
+	setvar VAR_GARBAGEVAR, 14
 	subvar VAR_ASH_GATHER_COUNT, BLACK_FLUTE_PRICE
 	goto Route113_GlassWorkshop_EventScript_MakeGlassItem
 	end
@@ -139,7 +139,7 @@ Route113_GlassWorkshop_EventScript_PrettyChair::
 	goto_if_lt VAR_ASH_GATHER_COUNT, PRETTY_CHAIR_PRICE, Route113_GlassWorkshop_EventScript_NotEnoughAshForItem
 	msgbox Route113_GlassWorkshop_Text_IsThatTheItemForYou, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, Route113_GlassWorkshop_EventScript_ChooseDifferentItem
-	setvar VAR_GLASS_WORKSHOP_STATE, 15
+	setvar VAR_GARBAGEVAR, 15
 	subvar VAR_ASH_GATHER_COUNT, PRETTY_CHAIR_PRICE
 	goto Route113_GlassWorkshop_EventScript_MakeGlassItem
 	end
@@ -152,7 +152,7 @@ Route113_GlassWorkshop_EventScript_PrettyDesk::
 	goto_if_lt VAR_ASH_GATHER_COUNT, PRETTY_DESK_PRICE, Route113_GlassWorkshop_EventScript_NotEnoughAshForItem
 	msgbox Route113_GlassWorkshop_Text_IsThatTheItemForYou, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, Route113_GlassWorkshop_EventScript_ChooseDifferentItem
-	setvar VAR_GLASS_WORKSHOP_STATE, 16
+	setvar VAR_GARBAGEVAR, 16
 	subvar VAR_ASH_GATHER_COUNT, PRETTY_DESK_PRICE
 	goto Route113_GlassWorkshop_EventScript_MakeGlassItem
 	end
@@ -194,7 +194,7 @@ Route113_GlassWorkshop_EventScript_MakeGlassItem::
 	msgbox Route113_GlassWorkshop_Text_IveFinishedGlassItem, MSGBOX_DEFAULT
 	call_if_eq VAR_0x8009, 0, Route113_GlassWorkshop_EventScript_GiveGlassFlute
 	call_if_eq VAR_0x8009, 1, Route113_GlassWorkshop_EventScript_GiveGlassDecor
-	setvar VAR_GLASS_WORKSHOP_STATE, 2
+	setvar VAR_GARBAGEVAR, 2
 	release
 	end
 
@@ -221,7 +221,7 @@ Route113_GlassWorkshop_EventScript_NoRoomForDecor::
 	end
 
 Route113_GlassWorkshop_EventScript_GiveItemAfterNoRoom::
-	switch VAR_GLASS_WORKSHOP_STATE
+	switch VAR_GARBAGEVAR
 	case 10, Route113_GlassWorkshop_EventScript_GiveBlueFlute
 	case 11, Route113_GlassWorkshop_EventScript_GiveYellowFlute
 	case 12, Route113_GlassWorkshop_EventScript_GiveRedFlute
@@ -284,7 +284,7 @@ Route113_GlassWorkshop_EventScript_TryGiveItemAgain::
 	msgbox Route113_GlassWorkshop_Text_IveFinishedGlassItem, MSGBOX_DEFAULT
 	call_if_eq VAR_0x8009, 0, Route113_GlassWorkshop_EventScript_GiveGlassFlute
 	call_if_eq VAR_0x8009, 1, Route113_GlassWorkshop_EventScript_GiveGlassDecor
-	setvar VAR_GLASS_WORKSHOP_STATE, 2
+	setvar VAR_GARBAGEVAR, 2
 	release
 	end
 

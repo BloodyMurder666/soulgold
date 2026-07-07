@@ -15,6 +15,7 @@ NewBarkTown_OnLoad::
 
 NewBarkTown_OnFrame::
 	map_script_2 VAR_NEWBARK_TOWN_STATE, 6, NewBarkTown_EventScript_ElmCallAfterLeague
+	map_script_2 VAR_NEWBARK_TOWN_STATE, 11, NewBarkTown_EventScript_ArcherArcadeCall
     map_script_2 VAR_RIVAL_STATE, 0, NewBarkTown_EventScript_RivalIntro
     map_script_2 VAR_RIVAL_STATE, 2, NewBarkTown_EventScript_RivalBattle
 	.2byte 0
@@ -410,6 +411,30 @@ script RivalsMailbox {
 	} else {
 		msgbox("Gold's house")
 	}
+	release
+	end
+}
+
+script NewBarkTown_EventScript_ArcherArcadeCall {
+	lock
+	pokenavcall("???: Greetings, {PLAYER}.
+				 
+				 This is Archer speaking.
+	
+			     Archer: I've heard of your victory
+				 in the League and would like to 
+				 offer you an invitation to our 
+				 newly opened Rocket Arcade.
+				 
+				 If you are interested in gambling
+				 your way to the top, come visit us
+				 in the Goldenrod Underground.
+
+				 I assure you no tricks or traps are
+				 planned for you this time.")
+	waitmessage
+	delay(30)
+	setvar(VAR_NEWBARK_TOWN_STATE, 12)
 	release
 	end
 }

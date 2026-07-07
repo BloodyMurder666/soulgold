@@ -5,9 +5,9 @@ GoldenrodCity_UndergroundTunnel_MapScripts::
 	.byte 0
 
 GoldenrodCity_UndergroundTunnel_OnLoad::
-	goto GoldenrodCity_UndergroundTunnel_MapScript_TryOpenDoor
+	call GoldenrodCity_UndergroundTunnel_MapScript_TryOpenDoor
+	call_if_ge VAR_NEWBARK_TOWN_STATE, 12, Goldenrod_TryOpenRocketArcadeDoor
 	end
-	
 GoldenrodCity_UndergroundTunnel_EventScript_KimonoTriggerBot::
 	lock
 	playbgm MUS_HG_KIMONO_GIRL, TRUE
@@ -271,12 +271,12 @@ GoldenrodUnderground_EventScript_NotEnough_Haircut2::
 
 
 GoldenrodCity_UndergroundTunnel_MapScript_TryOpenDoor::
-	goto_if_set FLAG_UNLOCKED_GOLDENROD_UNDERGROUND_DOOR, GoldenrodCity_UndergroundTunnel_MapScript_OpenDoor
-	end
+	call_if_set FLAG_UNLOCKED_GOLDENROD_UNDERGROUND_DOOR, GoldenrodCity_UndergroundTunnel_MapScript_OpenDoor
+	return
 
 GoldenrodCity_UndergroundTunnel_MapScript_OpenDoor::
 	setmetatile 12, 10, 0x45D, FALSE
-	end
+	return
 
 GoldenrodCity_UndergroundTunnel_EventScript_Door::
 	lock
@@ -452,8 +452,18 @@ mart goldenrod_utility_shop {
 
 script suspiciousdoor_goldenrod_underground {
     lock
-    msgbox(format("Door seems to be locked, but you can faintly discern noise coming from somewhere far behind the door."))
-    waitmessage
+	if (var(VAR_NEWBARK_TOWN_STATE) < 12) {
+		msgbox("Door seems to be locked, but you can 
+				faintly discern noise coming from 
+				somewhere far behind the door.")
+    	waitmessage
+    
+	} else {
+		msgbox("The door is now open. 
+		
+				A cacophony of noises is echoing from 
+				the tunnel.")
+	}
     release
     end
 }
@@ -461,11 +471,18 @@ script suspiciousdoor_goldenrod_underground {
 script rocket_bouncer {
     lock
     faceplayer
-    if (flag(FLAG_GOLDEN_COLOSSEUM) == TRUE) {
-        msgbox(format("TODO"))
+    if (var(VAR_NEWBARK_TOWN_STATE) >= 12) {
+        msgbox("Welcome,
+				Boss told to me to let you pass.")
     } else {
         msgbox(format("Sorry kid, only those with special permission are allowed past here."))
     }
     release
     end
 }
+
+script Goldenrod_TryOpenRocketArcadeDoor {
+	setmetatile(12, 28, 0x45D, FALSE)
+	return
+}
+	

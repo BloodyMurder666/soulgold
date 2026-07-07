@@ -181,6 +181,33 @@
       "var": "VAR_NEWBARKTOWN_LABSTATE",
       "var_value": "5",
       "script": "NewBarkTown_Lab_EventScript_TriggerAideGiveBalls"
+    },
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 6,
+      "elevation": 0,
+      "var": "VAR_STARTER_PICKING_STATE",
+      "var_value": "1",
+      "script": "NewBarkTown_Lab_EventScript_ChoseStarter2"
+    },
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 5,
+      "elevation": 0,
+      "var": "VAR_STARTER_PICKING_STATE",
+      "var_value": "1",
+      "script": "NewBarkTown_Lab_EventScript_ChoseStarter2"
+    },
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_STARTER_PICKING_STATE",
+      "var_value": "1",
+      "script": "NewBarkTown_Lab_EventScript_ChoseStarter2"
     }
   ],
   "bg_events": [

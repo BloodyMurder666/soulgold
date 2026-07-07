@@ -178,7 +178,7 @@
 #define VAR_JAGGED_PASS_ASH_WEATHER                      0x409E
 #define VAR_METEOR_FALLS_STATE                           0x409F// HnS Vars end
 #define VAR_SLATEPORT_HARBOR_STATE                       0x40A0
-#define VAR_GLASS_WORKSHOP_STATE                         0x40A1 
+#define VAR_STARTER_PICKING_STATE                        0x40A1 
 #define VAR_SEAFLOOR_CAVERN_STATE                        0x40A2
 #define VAR_CABLE_CAR_STATION_STATE                      0x40A3
 #define VAR_SAFARI_ZONE_STATE                            0x40A4  // 0: In or out of SZ, 1: Player exiting SZ, 2: Player entering SZ

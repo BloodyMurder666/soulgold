@@ -17419,7 +17419,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_SHIN_GENOME] =
     {
         .name = ITEM_NAME("Shiny Genome"),
-        .price = 1500000,
+        .price = 750000,
         .holdEffectParam = 100,
         .description = COMPOUND_STRING(
             "A genome capable\n"

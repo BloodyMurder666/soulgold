@@ -99,7 +99,8 @@ NewBarkTown_Lab_Text_ElmAideIsWaiting:
 
 NewBarkTown_Lab_EventScript_ElmIntro::
 	createfieldmugshot MUGSHOT_ELM
-	msgbox NewBarkTown_Lab_Text_ElmIntro, MSGBOX_YESNO
+	call ElmIntro
+	@msgbox NewBarkTown_Lab_Text_ElmIntro, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, NewBarkTown_Lab_EventScript_ElmAccepted
 	goto_if_eq VAR_RESULT, NO, NewBarkTown_Lab_EventScript_ElmRefused
 	end
@@ -192,6 +193,7 @@ NewBarkTown_Lab_EventScript_ChoseStarter::
 	playfanfare MUS_RG_OBTAIN_KEY_ITEM
 	bufferspeciesname STR_VAR_1, VAR_PLAYER_STARTER_SPECIES
 	message NewBarkTown_Lab_Text_ReceivedStarter
+	setvar VAR_STARTER_PICKING_STATE 1
 	waitfanfare
     hidemonpic
 	createfieldmugshot MUGSHOT_ELM
@@ -199,13 +201,18 @@ NewBarkTown_Lab_EventScript_ChoseStarter::
 	waitmessage
     closemessage
 	removefieldmugshot
-    moveobjecttocoords OBJ_EVENT_ID_PLAYER, 6, 4, DIR_NONE
+	release
+	end
+
+NewBarkTown_Lab_EventScript_ChoseStarter2::
+    moveobjecttocoords OBJ_EVENT_ID_PLAYER, 6, 4, DIR_NORTH
     waitmovement 0
-    applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_Lab_Movement_Look_Up
-    waitmovement 0
+    @applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_Lab_Movement_Look_Up
+    @waitmovement 0
     clearflag FLAG_HIDE_NEWBARK_RIVALMARILL
 	setvar VAR_RIVAL_STATE, 2
-    goto NewBarkTown_Lab_EventScript_Elm
+	setvar VAR_STARTER_PICKING_STATE, 2
+    goto NewBarkTown_Lab_EventScript_MrPokemon
 
 NewBarkTown_Lab_EventScript_DeclinedStarter::
 	hidemonpic
@@ -613,22 +620,6 @@ NewBarkTown_Lab_Movement_ElmStepForward:
 NewBarkTown_Lab_Text_ShouldntTouch:
 	.string "Probably shouldn't touch!$"
 
-NewBarkTown_Lab_Text_ElmIntro:
-	.string "Elm: {PLAYER}! There you are!\p"
-	.string "I needed to ask you a favor.\p"
-	.string "I'm conducting new Pokémon\n"
-	.string "research right now. I was\l"
-	.string "wondering if you could help\l"
-	.string "me with it, {PLAYER}.\p"
-	.string "You see…\p"
-	.string "I'm writing a paper that I\n"
-	.string "want to present at a conference.\p"
-	.string "But there are some things I\n"
-	.string "don't quite understand yet.\p"
-	.string "So!\p"
-	.string "I'd like you to raise a\n"
-	.string "Pokémon that I recently caught.$"
-
 NewBarkTown_Lab_Text_ElmAccepted:
 	.string "Thanks, {PLAYER}!\n"
 	.string "You're a great help!$"
@@ -1028,13 +1019,17 @@ script NewBarkTown_Lab_EventScript_ElmPostgameHint {
 	checkplayergender
 	if (var(VAR_RESULT) == MALE) {
 	msgbox("I also heard that Crystal went to train
-			in Mt. Silver. She looked really tired
+			in Mt. Silver. 
+			
+			She looked really tired
 			the last time I saw her though... 
 			
 			Could you check on her at some point?")
 	} else {
 	msgbox("I also heard that Gold went to train
-			in Mt. Silver. He looked really tired
+			in Mt. Silver. 
+			
+			He looked really tired
 			the last time I saw him thoughö...
 			
 			Could you check on him at some point?")
@@ -1043,7 +1038,33 @@ script NewBarkTown_Lab_EventScript_ElmPostgameHint {
 			pass since you've the new Champion.")
 	setflag(FLAG_HIDE_MTSILVER_GUARD)
 	setflag(FLAG_ALLOW_SOUTH_JOHTO_PASS)
-	setvar(VAR_NEWBARKTOWN_LABSTATE, 11)
+	setvar(VAR_NEWBARK_TOWN_STATE, 11)
 	release
 	end
+}
+
+script ElmIntro {
+	msgbox("Elm: {PLAYER}! There you are!
+
+			I needed to ask you a favor.
+
+			I'm conducting new Pokémon
+			research right now. 
+			
+			I was wondering if you could help
+			me with it, {PLAYER}.
+
+			You see…
+
+			I'm writing a paper that I
+			want to present at a conference.
+
+			But there are some things I
+			don't quite understand yet.
+
+			So!
+
+			I'd like you to raise a
+			Pokémon that I recently caught.", MSGBOX_YESNO)
+	return
 }
