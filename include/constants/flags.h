@@ -1631,6 +1631,7 @@
 #define FLAG_POSTBATTLE_CATCH                       0x95B
 #define FLAG_POSTBATTLE_CATCH_GUARANTEED            0x95C
 #define FLAG_GOT_DARK_CRYSTAL                       0x95D
+#define FLAG_RELEASE_SHINY_ODDS                     0x95E
 
 #define FLAG_0x1500                                 0x1500
 // Daily Flags

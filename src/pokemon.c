@@ -1020,6 +1020,14 @@ void CreateMon(struct Pokemon *mon, u16 species, u8 level, u32 personality, stru
     SetMonData(mon, MON_DATA_MAIL, &mail);
 }
 
+u32 GetCurrentShinyOdds(void)
+{
+    if (FlagGet(FLAG_RELEASE_SHINY_ODDS))
+        return RELEASE_SHINY_ODDS;
+
+    return SHINY_ODDS;
+}
+
 void CreateMonWithIVs(struct Pokemon *mon, u16 species, u8 level, u32 personality, struct OriginalTrainerId trainerId, u8 fixedIV)
 {
     CreateMon(mon, species, level, personality, trainerId);
@@ -1100,6 +1108,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u32 personal
 {
     u8 speciesName[POKEMON_NAME_LENGTH + 1];
     u32 value;
+    u32 shinyOdds = GetCurrentShinyOdds();
     bool32 isShiny;
 
     ZeroBoxMonData(boxMon);
@@ -1112,7 +1121,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u32 personal
     else if (trainerId.method == OT_ID_PRESET)
     {
         value = trainerId.value;
-        isShiny = GET_SHINY_VALUE(value, personality) < SHINY_ODDS;
+        isShiny = GET_SHINY_VALUE(value, personality) < shinyOdds;
     }
     else // Player is the OT
     {
@@ -1145,13 +1154,13 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u32 personal
                 totalRerolls += CalculateDexNavShinyRolls();
 
             u32 shinyPersonality = personality;
-            while (GET_SHINY_VALUE(value, shinyPersonality) >= SHINY_ODDS && totalRerolls > 0)
+            while (GET_SHINY_VALUE(value, shinyPersonality) >= shinyOdds && totalRerolls > 0)
             {
                 shinyPersonality = Random32();
                 totalRerolls--;
             }
 
-            isShiny = GET_SHINY_VALUE(value, shinyPersonality) < SHINY_ODDS;
+            isShiny = GET_SHINY_VALUE(value, shinyPersonality) < shinyOdds;
         }
     }
 
@@ -2511,7 +2520,7 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
         case MON_DATA_IS_SHINY:
         {
             u32 shinyValue = GET_SHINY_VALUE(boxMon->otId, boxMon->personality);
-            retVal = (shinyValue < SHINY_ODDS) ^ boxMon->shinyModifier;
+            retVal = (shinyValue < GetCurrentShinyOdds()) ^ boxMon->shinyModifier;
             break;
         }
         case MON_DATA_HIDDEN_NATURE:
@@ -2899,7 +2908,7 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             u32 shinyValue = GET_SHINY_VALUE(boxMon->otId, boxMon->personality);
             bool32 isShiny;
             SET8(isShiny);
-            boxMon->shinyModifier = (shinyValue < SHINY_ODDS) ^ isShiny;
+            boxMon->shinyModifier = (shinyValue < GetCurrentShinyOdds()) ^ isShiny;
             break;
         }
         case MON_DATA_HIDDEN_NATURE:
