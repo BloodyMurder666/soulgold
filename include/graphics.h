@@ -3500,6 +3500,15 @@ extern const u16 gItemIconPalette_BlackMirror[];
 extern const u32 gItemIcon_GSBall[];
 extern const u16 gItemIconPalette_GSBall[];
 
+extern const u32 gTitleScreenEmeraldVersionGfx[];
+extern const u32 gTitleScreenPressStartGfx[];
+extern const u32 gTitleScreenPokemonLogoGfx[];
+extern const u32 gTitleScreenPokemonLogoTilemap[];
+extern const u32 gTitleScreenCloudsTilemap[];
+extern const u16 gTitleScreenBgPalettes[];
+extern const u16 gTitleScreenPressStartPal[];
+extern const u16 gTitleScreenEmeraldVersionPal[];
+
 //New Summary Pages
 extern const u32 gSummaryPage_Traits_Tilemap[];
 extern const u32 gSummaryLongDescriptionBox_Tilemap[];

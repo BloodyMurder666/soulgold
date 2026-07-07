@@ -6,7 +6,7 @@ GoldenrodCity_UndergroundTunnel_MapScripts::
 
 GoldenrodCity_UndergroundTunnel_OnLoad::
 	call GoldenrodCity_UndergroundTunnel_MapScript_TryOpenDoor
-	call_if_ge VAR_NEWBARK_TOWN_STATE, 12, Goldenrod_TryOpenRocketArcadeDoor
+	call_if_ge VAR_NEWBARK_TOWN_STATE, 11, Goldenrod_TryOpenRocketArcadeDoor
 	end
 GoldenrodCity_UndergroundTunnel_EventScript_KimonoTriggerBot::
 	lock
@@ -452,7 +452,7 @@ mart goldenrod_utility_shop {
 
 script suspiciousdoor_goldenrod_underground {
     lock
-	if (var(VAR_NEWBARK_TOWN_STATE) < 12) {
+	if (var(VAR_NEWBARK_TOWN_STATE) < 11) {
 		msgbox("Door seems to be locked, but you can 
 				faintly discern noise coming from 
 				somewhere far behind the door.")
@@ -471,7 +471,7 @@ script suspiciousdoor_goldenrod_underground {
 script rocket_bouncer {
     lock
     faceplayer
-    if (var(VAR_NEWBARK_TOWN_STATE) >= 12) {
+    if (var(VAR_NEWBARK_TOWN_STATE) >= 11) {
         msgbox("Welcome,
 				Boss told to me to let you pass.")
     } else {

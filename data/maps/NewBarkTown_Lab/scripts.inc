@@ -2081,7 +2081,7 @@ NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_4:
 	.string "I also heard that Gold went to train\n"
 	.string "in Mt. Silver. \p"
 	.string "He looked really tired\n"
-	.string "the last time I saw him thoughö...\p"
+	.string "the last time I saw him though...\p"
 	.string "Could you check on him at some point?$"
 
 NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_5:
