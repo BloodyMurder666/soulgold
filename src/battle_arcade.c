@@ -354,7 +354,14 @@ static const u8 sArcadeTurnPointTable[IMPACT_PERFORMANCE_TABLE_SIZE][2] =
 
 static const u32 sRocketArcadePayouts[] =
 {
-    1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000
+    4000, 
+    8000, 
+    12000, 
+    24000, 
+    48000, 
+    96000, 
+    192000, 
+    384000
 };
 
 void CallBattleArcadeFunc(void)
