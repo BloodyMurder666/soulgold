@@ -1,19 +1,19 @@
-# Johhto focused expansion hack
+# Johto focused expansion hack
 # Features:
 - Explore expanded Johto with new areas and biomes
-- Play through traditional Pokémon adventure in maingame, and experience learning multiple abilities in the postgame
-- Hidden Grottos which contain rare items and Pokémon, resetting daily
-- Various battle tempo improvements such as combining stat up/drop messages into one, and playing them while the stat animation happens.
-- Maingame and Postgame battle facilities with Pokémons from all generations! Factory accessible after Gym 3!
+- Play through the traditional Pokémon adventure in the main game and experience learning multiple abilities in the postgame.
+- Hidden Grottos, which contain rare items and Pokémon, resetting daily
+- Various battle tempo improvements, such as combining stat up/drop messages into one, and playing them while the stat animation happens.
+- Main game and postgame battle facilities with Pokémon from all generations! Factory accessible after Gym 3!
 - Achievement system with over 100 trophies to chase, including milestone rewards!
 - 9 starters to choose from with new Mega Evolutions for starters that are missing them (Typhlosion, Meowscarada, Primarina)
-- Fresh new tileset for entirety of Johto
-- Title Defense system, no longer will you face only the same champion at the end of E4
-- All mega evolutions available, megastones have been turned into type-generic stones.
-- Rocket Arcade where you win Money instead of BP
-- Multiple legendaries to find in maingame and postgame!
-- Fishing for items, including IV raising feathers!
-- Many HGSS features such as Cameron the Cameraman, Buena's password, Pokégear and Rock Smashing for fossils make their return!
+- Fresh new tileset for the entirety of Johto
+- Title Defense system: No longer will you face only the same champion at the end of E4.
+- All mega evolutions are available; megastones have been turned into type-generic stones.
+- Rocket Arcade, where you win money instead of BP
+- Multiple legendaries to find in the main game and postgame!
+- Fishing for items, including IV-raising feathers!
+- Many HGSS features, such as Cameron the Cameraman, Buena's password, Pokégear, and Rock Smashing for fossils, make their return!
 - Unique battle frame color for shiny Pokémon
 - Music resumes from where it left off after battles instead of starting over
 - Multiple pages of options to customize your playthrough style
@@ -21,13 +21,12 @@
 
 ## Documentation
 
-All of the hacks documentation including the Pokédex, wild encounters, TMs/HMs, Items, Trainers and Ability data can be found here
+All the hacks documentation, including the Pokédex, wild encounters, TMs/HMs, items, trainers, and ability data, can be found here.
 https://eemeliri.github.io/soulgold/
 
 ## Current Progress
 
-The hack is currently under testing. It will be playable up to start of postgame with several legendaries and chase achievements in first beta version coming soon(tm)
-
+The hack is currently under testing. It will be playable up to the start of postgame with several legendaries and chase achievements in the first beta version coming soon (tm).
 
 ## CREDITS
 - [HnS Dev Team](https://github.com/PokemonHnS-Development/pokemonHnS) for their amazing work!

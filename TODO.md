@@ -1,7 +1,6 @@
 Bugs:
 - Trade screen swap shows all as viable
-- Pryce attackercount assertf
-
+- Easychat referring to disabled species
 
 
 # Demo 1 MVP
