@@ -243,6 +243,7 @@ OlivineCity_Gym_EventScript_JasmineVictory::
 	setvar VAR_RIVAL_STATE, 9
     setflag FLAG_HIDE_OLIVINE_RIVAL
 	setflag FLAG_HIDE_ECRUTEAK_RIVAL
+	clearflag FLAG_HIDE_ICEPATH_RIVAL
 	call Common_EventScript_SetGymTrainers
 	giveitem ITEM_TM_FLASH_CANNON
 	msgbox OlivineCity_Gym_Text_JasmineIronTailSpeech, MSGBOX_DEFAULT
