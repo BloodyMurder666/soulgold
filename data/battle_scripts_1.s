@@ -8694,6 +8694,7 @@ BattleScript_EndTurnAbilityLowerStatFoe::
 	printfromtable gStatDownStringIds
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_EndTurnAbilityLowerStatFoeEnd:
+	restoreattacker
 	end2
 
 BattleScript_EffectSetWeather::
