@@ -26,12 +26,12 @@ script NewBarkTown_RivalsMom {
     } else {
         if (var(VAR_RIVAL_STATE) >= 4 && var(VAR_RIVAL_STATE) < 12) {
             msgbox("Gold is currently out, if you were
-                    looking for her.")
+                    looking for him.")
                     release
                     end
         }
         msgbox("Gold is currently upstairs if
-                you are looking for her. She is playing
+                you are looking for him. She is playing
                 with his Pokémon.")
     }
     release
