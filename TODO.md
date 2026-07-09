@@ -8,6 +8,8 @@ so went into cave to start lvling and either i ran or defeated the mon and lvls 
 - aerilate in docs shows multiple times same pokemon
 - talonflame page
 - "-----------" ability growlithe glitches out quick ball bar
+- Illusion revealed by type effectiveness
+
 
 # Demo 1 MVP
 
