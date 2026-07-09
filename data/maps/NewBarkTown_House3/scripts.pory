@@ -31,7 +31,7 @@ script NewBarkTown_RivalsMom {
                     end
         }
         msgbox("Gold is currently upstairs if
-                you are looking for him. She is playing
+                you are looking for him. He is playing
                 with his Pokémon.")
     }
     release

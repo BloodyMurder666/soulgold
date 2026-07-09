@@ -201,7 +201,7 @@ NewBarkTown_RivalsMom_Text_3:
 NewBarkTown_RivalsMom_Text_4:
 # 33 "data/maps/NewBarkTown_House3/scripts.pory"
 	.string "Gold is currently upstairs if\n"
-	.string "you are looking for him. She is playing\l"
+	.string "you are looking for him. He is playing\l"
 	.string "with his Pokémon.$"
 
 NewBarkTown_RivalsSister_Text_0:

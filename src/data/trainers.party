@@ -3520,7 +3520,7 @@ Gender: Male
 Music: Silver
 Items: Potion
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Yellow
 
 Haunter
@@ -3528,21 +3528,32 @@ Level: 20
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Shadow Punch
 - Confuse Ray
-- Night Shade
+- Curse
 - Lick
 
 Pawniard
 Level: 20
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Fury Cutter
+- Metal Claw
+- Torment
+- Leer
 
 Pidgeotto
 Level: 21
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Wing Attack
+- Quick Attack
+- Featherdance
+- Mud-Slap
 
 Croconaw
 Level: 21
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
-
+- Water Gun
+- Ice Fang
+- Bite
+- Scary Face
 
 === TRAINER_RIVAL_TOTODILE_3 ===
 Name: {RIVAL}
@@ -4468,7 +4479,7 @@ Gender: Male
 Music: Silver
 Items: Potion
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Yellow
 
 Haunter
@@ -4476,24 +4487,32 @@ Level: 20
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Shadow Punch
 - Confuse Ray
-- Night Shade
+- Curse
 - Lick
 
 Pawniard
 Level: 20
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Fury Cutter
+- Metal Claw
+- Torment
+- Leer
 
 Pidgeotto
 Level: 21
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Wing Attack
+- Quick Attack
+- Featherdance
+- Mud-Slap
 
 Bayleef
 Level: 21
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Razor Leaf
+- Leech Seed
 - Reflect
-- Poison Powder
-- Tackle
+- Magical Leaf
 
 === TRAINER_MISTY ===
 Name: Misty
@@ -6505,7 +6524,7 @@ Gender: Male
 Music: Silver
 Items: Potion
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Yellow
 
 Haunter
@@ -6513,20 +6532,32 @@ Level: 20
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Shadow Punch
 - Confuse Ray
-- Night Shade
+- Curse
 - Lick
 
 Pawniard
 Level: 20
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Fury Cutter
+- Metal Claw
+- Torment
+- Leer
 
 Pidgeotto
 Level: 21
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Wing Attack
+- Quick Attack
+- Featherdance
+- Mud-Slap
 
 Quilava
 Level: 22
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Flame Wheel
+- Mud-Slap
+- Quick Attack
+- Rollout
 
 === TRAINER_HEIDI ===
 Name: Heidi

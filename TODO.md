@@ -7,6 +7,7 @@ to continue leveling and when i checked my party they were lv 70
 so went into cave to start lvling and either i ran or defeated the mon and lvls got fixed"
 - aerilate in docs shows multiple times same pokemon
 - talonflame page
+- "-----------" ability growlithe glitches out quick ball bar
 
 # Demo 1 MVP
 
