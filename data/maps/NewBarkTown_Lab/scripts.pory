@@ -994,19 +994,14 @@ script NewBarkTown_Lab_GiveStarterMega {
 
 script NewBarkTown_Lab_EventScript_ElmPostgameHint {
 	msgbox("Elm: {PLAYER}! There you are!
-			I called because I heard that the way 
-			to the Johto Archipelago is open! 
+			I called because I heard that the 
+			Battle Tower is open! 
 			
 			I hear strong trainers
-			are gathering in there, and many rare
-			Pokémon have been spotted!
+			are gathering in there!
 			
-			You can get there if you surf south
-			from Route 33. But you of course knew
-			that already.
-			
-			After all, you've travelled all over
-			with your Pokémon.")
+			You can get there from Route 40
+			near Olivine City.")
 	msgbox("But first, let me upgrade your Pokédex
 			with a new feature!")
 	playse(SE_CLICK)

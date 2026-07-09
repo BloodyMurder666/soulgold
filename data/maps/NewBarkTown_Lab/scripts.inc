@@ -1972,58 +1972,58 @@ NewBarkTown_Lab_GiveStarterMega::
 NewBarkTown_Lab_EventScript_ElmPostgameHint::
 # 996 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_0
-# 1010 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1005 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_1
+# 1007 "data/maps/NewBarkTown_Lab/scripts.pory"
+	playse SE_CLICK
+# 1008 "data/maps/NewBarkTown_Lab/scripts.pory"
+	delay 10
+# 1009 "data/maps/NewBarkTown_Lab/scripts.pory"
+	playse SE_CLICK
+# 1010 "data/maps/NewBarkTown_Lab/scripts.pory"
+	delay 10
+# 1011 "data/maps/NewBarkTown_Lab/scripts.pory"
+	playse SE_CLICK
 # 1012 "data/maps/NewBarkTown_Lab/scripts.pory"
-	playse SE_CLICK
+	delay 10
 # 1013 "data/maps/NewBarkTown_Lab/scripts.pory"
-	delay 10
-# 1014 "data/maps/NewBarkTown_Lab/scripts.pory"
-	playse SE_CLICK
-# 1015 "data/maps/NewBarkTown_Lab/scripts.pory"
-	delay 10
-# 1016 "data/maps/NewBarkTown_Lab/scripts.pory"
-	playse SE_CLICK
-# 1017 "data/maps/NewBarkTown_Lab/scripts.pory"
-	delay 10
-# 1018 "data/maps/NewBarkTown_Lab/scripts.pory"
 	playse SE_PIN
-# 1019 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1014 "data/maps/NewBarkTown_Lab/scripts.pory"
 	waitse
-# 1020 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1015 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_2
-# 1026 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1021 "data/maps/NewBarkTown_Lab/scripts.pory"
 	setflag FLAG_POSTGAME_FEATURES
-# 1027 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1022 "data/maps/NewBarkTown_Lab/scripts.pory"
 	setflag FLAG_HIDE_VICTORYROAD_RIVAL
-# 1028 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1023 "data/maps/NewBarkTown_Lab/scripts.pory"
 	checkplayergender
-# 1029 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1024 "data/maps/NewBarkTown_Lab/scripts.pory"
 	compare VAR_RESULT, MALE
 	goto_if_eq NewBarkTown_Lab_EventScript_ElmPostgameHint_2
-# 1038 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1033 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_4
 NewBarkTown_Lab_EventScript_ElmPostgameHint_1:
-# 1046 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1041 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_5
-# 1048 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1043 "data/maps/NewBarkTown_Lab/scripts.pory"
 	setflag FLAG_HIDE_MTSILVER_GUARD
-# 1049 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1044 "data/maps/NewBarkTown_Lab/scripts.pory"
 	setflag FLAG_ALLOW_SOUTH_JOHTO_PASS
-# 1050 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1045 "data/maps/NewBarkTown_Lab/scripts.pory"
 	setvar VAR_NEWBARK_TOWN_STATE, 11
-# 1051 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1046 "data/maps/NewBarkTown_Lab/scripts.pory"
 	release
 	end
 
 NewBarkTown_Lab_EventScript_ElmPostgameHint_2:
-# 1030 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1025 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_3
 	goto NewBarkTown_Lab_EventScript_ElmPostgameHint_1
 
 
 ElmIntro::
-# 1056 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1051 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox ElmIntro_Text_0, MSGBOX_YESNO
 	return
 
@@ -2044,24 +2044,20 @@ NewBarkTown_Lab_GiveStarterMega_Text_1:
 NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_0:
 # 996 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "Elm: {PLAYER}! There you are!\n"
-	.string "I called because I heard that the way \l"
-	.string "to the Johto Archipelago is open! \p"
+	.string "I called because I heard that the \l"
+	.string "Battle Tower is open! \p"
 	.string "I hear strong trainers\n"
-	.string "are gathering in there, and many rare\l"
-	.string "Pokémon have been spotted!\p"
-	.string "You can get there if you surf south\n"
-	.string "from Route 33. But you of course knew\l"
-	.string "that already.\p"
-	.string "After all, you've travelled all over\n"
-	.string "with your Pokémon.$"
+	.string "are gathering in there!\p"
+	.string "You can get there from Route 40\n"
+	.string "near Olivine City.$"
 
 NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_1:
-# 1010 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1005 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "But first, let me upgrade your Pokédex\n"
 	.string "with a new feature!$"
 
 NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_2:
-# 1020 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1015 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "Now you can view abilities of the\n"
 	.string "opposing Pokémon with the L-button\l"
 	.string "in battle! \p"
@@ -2069,7 +2065,7 @@ NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_2:
 	.string "battles get tougher!$"
 
 NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_3:
-# 1030 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1025 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "I also heard that Crystal went to train\n"
 	.string "in Mt. Silver. \p"
 	.string "She looked really tired\n"
@@ -2077,7 +2073,7 @@ NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_3:
 	.string "Could you check on her at some point?$"
 
 NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_4:
-# 1038 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1033 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "I also heard that Gold went to train\n"
 	.string "in Mt. Silver. \p"
 	.string "He looked really tired\n"
@@ -2085,12 +2081,12 @@ NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_4:
 	.string "Could you check on him at some point?$"
 
 NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_5:
-# 1046 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1041 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "I asked from the League to let you\n"
 	.string "pass since you've the new Champion.$"
 
 ElmIntro_Text_0:
-# 1056 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1051 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "Elm: {PLAYER}! There you are!\p"
 	.string "I needed to ask you a favor.\p"
 	.string "I'm conducting new Pokémon\n"
