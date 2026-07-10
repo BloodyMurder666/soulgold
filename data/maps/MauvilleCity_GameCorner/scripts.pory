@@ -20,7 +20,7 @@ MauvilleCity_GameCorner_MapScripts::
 	.set WATERSTONE_COINS, 2000
 	.set LEAFSTONE_COINS, 2000
 	.set LINKING_CORD_COINS, 2500
-	.set CANDY_JAR_COINS, 4500
+	.set PRISM_SCALE_COINS, 3000
 
 	.set COINS_PRICE_50,  1000
 	.set COINS_PRICE_500, 10000
@@ -734,10 +734,10 @@ MauvilleCity_GameCorner_EventScript_LinkingCord::
 	setvar VAR_0x8004, ITEM_LINKING_CORD
 	goto MauvilleCity_GameCorner_EventScript_ConfirmNewPrize
 
-MauvilleCity_GameCorner_EventScript_CandyJar::
+MauvilleCity_GameCorner_EventScript_PrismScale::
 	setvar VAR_TEMP_1, 9
-	bufferitemname STR_VAR_1, ITEM_CANDY_JAR
-	setvar VAR_0x8004, ITEM_CANDY_JAR
+	bufferitemname STR_VAR_1, ITEM_PRISM_SCALE
+	setvar VAR_0x8004, ITEM_PRISM_SCALE
 	goto MauvilleCity_GameCorner_EventScript_ConfirmNewPrize
 
 MauvilleCity_GameCorner_EventScript_OldAmber::
@@ -795,18 +795,18 @@ MauvilleCity_GameCorner_EventScript_ConfirmNewPrize::
 	case 6, MauvilleCity_GameCorner_EventScript_BuyWaterStone
 	case 7, MauvilleCity_GameCorner_EventScript_BuyLeafStone
 	case 8, MauvilleCity_GameCorner_EventScript_BuyLinkingCord
-	case 9, MauvilleCity_GameCorner_EventScript_BuyCandyJar
+	case 9, MauvilleCity_GameCorner_EventScript_BuyPrismScale
 
 	end
 
-MauvilleCity_GameCorner_EventScript_BuyCandyJar::
+MauvilleCity_GameCorner_EventScript_BuyPrismScale::
 	checkcoins VAR_TEMP_2
-	goto_if_lt VAR_TEMP_2, CANDY_JAR_COINS, MauvilleCity_GameCorner_EventScript_NotEnoughCoinsForNew
+	goto_if_lt VAR_TEMP_2, PRISM_SCALE_COINS, MauvilleCity_GameCorner_EventScript_NotEnoughCoinsForNew
 	goto_if_set FLAG_BOUGHT_EXP_JAR, MauvilleCity_GameCorner_EventScript_NoRoomForAnother
-	checkitemspace ITEM_CANDY_JAR
+	checkitemspace ITEM_PRISM_SCALE
 	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoRoomForNew
-	removecoins CANDY_JAR_COINS
-	giveitem ITEM_CANDY_JAR
+	removecoins PRISM_SCALE_COINS
+	giveitem ITEM_PRISM_SCALE
 	setflag FLAG_BOUGHT_EXP_JAR
 	updatecoinsbox 1, 1
 	playse SE_SHOP
@@ -1766,7 +1766,7 @@ script MauvilleCity_GameCorner_EventScript_ChooseNewPrize {
 																"Sun Stone{CLEAR_TO 0x40}2000",
 																"Moon Stone{CLEAR_TO 0x40}2000",
 																"Link Cable{CLEAR_TO 0x40}2500",
-																"Candy Jar{CLEAR_TO 0x40}4500",
+																"Prism Scale{CLEAR_TO 0x40}3000",
 																"Cancel")
 	switch (var(VAR_RESULT))
     {
@@ -1774,7 +1774,7 @@ script MauvilleCity_GameCorner_EventScript_ChooseNewPrize {
         case 1: goto(MauvilleCity_GameCorner_EventScript_SunStone)
         case 2: goto(MauvilleCity_GameCorner_EventScript_MoonStone)
         case 3: goto(MauvilleCity_GameCorner_EventScript_LinkingCord)
-        case 4: goto(MauvilleCity_GameCorner_EventScript_CandyJar)
+        case 4: goto(MauvilleCity_GameCorner_EventScript_PrismScale)
         default: goto(MauvilleCity_GameCorner_EventScript_CancelTMSelect)
     }
 	end

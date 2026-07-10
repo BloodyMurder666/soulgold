@@ -43,7 +43,7 @@ MauvilleCity_GameCorner_MapScripts::
 # 22 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	.set LINKING_CORD_COINS, 2500
 # 23 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	.set CANDY_JAR_COINS, 4500
+	.set PRISM_SCALE_COINS, 3000
 # 24 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 
 # 25 "data/maps/MauvilleCity_GameCorner/scripts.pory"
@@ -1471,13 +1471,13 @@ MauvilleCity_GameCorner_EventScript_LinkingCord::
 # 736 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 
 # 737 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-MauvilleCity_GameCorner_EventScript_CandyJar::
+MauvilleCity_GameCorner_EventScript_PrismScale::
 # 738 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	setvar VAR_TEMP_1, 9
 # 739 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	bufferitemname STR_VAR_1, ITEM_CANDY_JAR
+	bufferitemname STR_VAR_1, ITEM_PRISM_SCALE
 # 740 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	setvar VAR_0x8004, ITEM_CANDY_JAR
+	setvar VAR_0x8004, ITEM_PRISM_SCALE
 # 741 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	goto MauvilleCity_GameCorner_EventScript_ConfirmNewPrize
 # 742 "data/maps/MauvilleCity_GameCorner/scripts.pory"
@@ -1593,7 +1593,7 @@ MauvilleCity_GameCorner_EventScript_ConfirmNewPrize::
 # 797 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	case 8, MauvilleCity_GameCorner_EventScript_BuyLinkingCord
 # 798 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	case 9, MauvilleCity_GameCorner_EventScript_BuyCandyJar
+	case 9, MauvilleCity_GameCorner_EventScript_BuyPrismScale
 # 799 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 
 # 800 "data/maps/MauvilleCity_GameCorner/scripts.pory"
@@ -1601,21 +1601,21 @@ MauvilleCity_GameCorner_EventScript_ConfirmNewPrize::
 # 801 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 
 # 802 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-MauvilleCity_GameCorner_EventScript_BuyCandyJar::
+MauvilleCity_GameCorner_EventScript_BuyPrismScale::
 # 803 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	checkcoins VAR_TEMP_2
 # 804 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	goto_if_lt VAR_TEMP_2, CANDY_JAR_COINS, MauvilleCity_GameCorner_EventScript_NotEnoughCoinsForNew
+	goto_if_lt VAR_TEMP_2, PRISM_SCALE_COINS, MauvilleCity_GameCorner_EventScript_NotEnoughCoinsForNew
 # 805 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	goto_if_set FLAG_BOUGHT_EXP_JAR, MauvilleCity_GameCorner_EventScript_NoRoomForAnother
 # 806 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	checkitemspace ITEM_CANDY_JAR
+	checkitemspace ITEM_PRISM_SCALE
 # 807 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoRoomForNew
 # 808 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	removecoins CANDY_JAR_COINS
+	removecoins PRISM_SCALE_COINS
 # 809 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	giveitem ITEM_CANDY_JAR
+	giveitem ITEM_PRISM_SCALE
 # 810 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	setflag FLAG_BOUGHT_EXP_JAR
 # 811 "data/maps/MauvilleCity_GameCorner/scripts.pory"
@@ -3563,7 +3563,7 @@ MauvilleCity_GameCorner_EventScript_ChooseNewPrize_6:
 
 MauvilleCity_GameCorner_EventScript_ChooseNewPrize_7:
 # 1777 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	goto MauvilleCity_GameCorner_EventScript_CandyJar
+	goto MauvilleCity_GameCorner_EventScript_PrismScale
 	goto MauvilleCity_GameCorner_EventScript_ChooseNewPrize_1
 
 
@@ -3637,7 +3637,7 @@ MauvilleCity_GameCorner_EventScript_ChooseNewPrize_Text_3:
 
 MauvilleCity_GameCorner_EventScript_ChooseNewPrize_Text_4:
 # 1769 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	.string "Candy Jar{CLEAR_TO 0x40}4500$"
+	.string "Prism Scale{CLEAR_TO 0x40}3000$"
 
 MauvilleCity_GameCorner_EventScript_ChooseNewPrize_Text_5:
 # 1770 "data/maps/MauvilleCity_GameCorner/scripts.pory"
