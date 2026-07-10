@@ -132,6 +132,32 @@ SINGLE_BATTLE_TEST("Illusion breaks when attacked behind a substitute")
     }
 }
 
+SINGLE_BATTLE_TEST("Move-selection effectiveness uses the Illusion disguise's types")
+{
+    GIVEN {
+        ASSUME(GetMoveType(MOVE_KARATE_CHOP) == TYPE_FIGHTING);
+        PLAYER(SPECIES_WOBBUFFET) { Moves(MOVE_CELEBRATE); }
+        OPPONENT(SPECIES_ZOROARK) { Ability(ABILITY_ILLUSION); Moves(MOVE_CELEBRATE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_CELEBRATE); MOVE(opponent, MOVE_CELEBRATE); }
+    } THEN {
+        enum BattlerId battlerAtk = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+        enum BattlerId battlerDef = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+        struct BattleContext ctx = {
+            .battlerAtk = battlerAtk,
+            .battlerDef = battlerDef,
+            .move = MOVE_KARATE_CHOP,
+            .chosenMove = MOVE_KARATE_CHOP,
+            .moveType = TYPE_FIGHTING,
+        };
+
+        EXPECT_EQ(gBattleStruct->illusion[battlerDef].state, ILLUSION_ON);
+        EXPECT_EQ(CalcTypeEffectivenessMultiplier(&ctx), UQ_4_12(2.0));
+        EXPECT_EQ(CalcVisualTypeEffectivenessMultiplier(&ctx), UQ_4_12(0.5));
+    }
+}
+
 //  This test is eyes on only
 #if MAX_MON_TRAITS > 1
 SINGLE_BATTLE_TEST("Illusion can only imitate Normal Form terapagos (Traits)")

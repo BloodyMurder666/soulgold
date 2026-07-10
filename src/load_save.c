@@ -193,6 +193,13 @@ void LoadPlayerParty(void)
         SetBoxMonData(&gPlayerParty[i].box, MON_DATA_HP_LOST, &data);
         data = gPlayerParty[i].status;
         SetBoxMonData(&gPlayerParty[i].box, MON_DATA_STATUS, &data);
+
+        // Experience is the authoritative level value.  Recalculate after a
+        // party snapshot is restored so a stale cached level/stat block cannot
+        // be reintroduced after battle cleanup.
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) != SPECIES_NONE
+         && !GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
+            CalculateMonStats(&gPlayerParty[i]);
     }
 }
 

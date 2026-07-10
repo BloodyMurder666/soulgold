@@ -2612,12 +2612,17 @@ void CreateAbilityPopUp(enum BattlerId battler, enum Ability ability, bool32 isD
 {
     u8 *spriteIds;
     u32 xSlide, tileTag;
-    enum BattlerPosition battlerPosition = GetBattlerPosition(battler);
+    enum BattlerPosition battlerPosition;
     struct SpriteTemplate template;
     const s16 (*coords)[2];
 
     if (gBattleScripting.abilityPopupOverwrite)
         ability = gBattleScripting.abilityPopupOverwrite;
+
+    if (battler >= gBattlersCount || ability <= ABILITY_NONE || ability >= ABILITIES_COUNT)
+        return;
+
+    battlerPosition = GetBattlerPosition(battler);
 
     if (gTestRunnerEnabled)
     {
@@ -2679,6 +2684,9 @@ void CreateAbilityPopUp(enum BattlerId battler, enum Ability ability, bool32 isD
 
 void UpdateAbilityPopup(enum BattlerId battler)
 {
+    if (battler >= gBattlersCount)
+        return;
+
     u8 *spriteIds = gBattleStruct->abilityPopUpSpriteIds[battler];
     enum Ability ability = (gBattleScripting.abilityPopupOverwrite) ? gBattleScripting.abilityPopupOverwrite
                                                            : gBattleMons[battler].ability;
@@ -2755,6 +2763,9 @@ static void SpriteCb_AbilityPopUp(struct Sprite *sprite)
 
 void DestroyAbilityPopUp(enum BattlerId battler)
 {
+    if (battler >= gBattlersCount)
+        return;
+
     if (gBattleStruct->battlerState[battler].activeAbilityPopUps)
     {
         gSprites[gBattleStruct->abilityPopUpSpriteIds[battler][0]].sAutoDestroy = TRUE;

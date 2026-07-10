@@ -6,9 +6,9 @@ import re
 from collections import defaultdict
 from typing import Mapping
 
-from ..c_parser import clean_constant_name, eval_int_expr, extract_balanced_call, format_identifier_name, read, split_top_level_braces, split_top_level_commas, strip_c_comments
+from ..c_parser import clean_constant_name, collect_strings, eval_int_expr, extract_balanced_call, extract_field, format_identifier_name, parse_define_constants, preprocess_source, read, split_designated_entries, split_top_level_braces, split_top_level_commas, strip_c_comments
 from ..models import EvolutionRow, ItemRecord, MegaEvolutionRow
-from ..paths import FORM_CHANGE_TABLES_H, REPO_ROOT
+from ..paths import FORM_CHANGE_TABLES_H, REPO_ROOT, SPECIES_H
 from .items import item_display_name
 from .species import is_totem_species
 
@@ -142,42 +142,53 @@ def format_evolution_method(method: str, param: str, item_names: Mapping[str, It
         label = f"{label} ({', '.join(conditions)})"
     return label
 
+def preprocess_evolution_entries() -> dict[str, str]:
+    """Expand active species macros while retaining symbolic evolution arguments."""
+    species_info_path = REPO_ROOT / "src/data/pokemon/species_info.h"
+    source = read(species_info_path)
+    source, replacement_count = re.subn(
+        r"^#define EVOLUTION\(\.\.\.\).*$",
+        r"#define EVOLUTION(...) DOC_EVOLUTION(#__VA_ARGS__)",
+        source,
+        count=1,
+        flags=re.MULTILINE,
+    )
+    if replacement_count != 1:
+        raise RuntimeError(f"could not instrument EVOLUTION macro in {species_info_path}")
+    text = preprocess_source(
+        f'#include "global.h"\n{source}',
+        "src/data/pokemon",
+    )
+    return split_designated_entries(text)
+
 def parse_evolutions(item_names: Mapping[str, ItemRecord]) -> dict[str, list[EvolutionRow]]:
     evolutions: dict[str, list[EvolutionRow]] = defaultdict(list)
-    entry_re = re.compile(r"\[\s*(SPECIES_[A-Z0-9_]+)\s*\]\s*=")
-    for path in sorted((REPO_ROOT / "src/data/pokemon/species_info").glob("gen_*_families.h")):
-        text = strip_c_comments(read(path))
-        matches = list(entry_re.finditer(text))
-        for index, match in enumerate(matches):
-            source = match.group(1)
-            end = matches[index + 1].start() if index + 1 < len(matches) else len(text)
-            block = text[match.end():end]
-            evo_index = block.find(".evolutions")
-            if evo_index == -1:
+    _, id_to_species = parse_define_constants(SPECIES_H, "SPECIES_")
+    for key, entry in preprocess_evolution_entries().items():
+        source = id_to_species.get(int(key)) if key.isdigit() else None
+        evolution_expr = extract_field(entry, "evolutions")
+        if source is None or evolution_expr is None:
+            continue
+        body = extract_balanced_call(evolution_expr, 0)
+        if body is None:
+            continue
+        for chunk in split_top_level_braces(collect_strings(body)):
+            parts = split_top_level_commas(chunk)
+            if len(parts) < 3:
                 continue
-            call_index = block.find("EVOLUTION", evo_index)
-            if call_index == -1:
+            method, param, target = parts[0], parts[1], parts[2]
+            conditions = format_evolution_conditions(parts[3], item_names) if len(parts) > 3 else []
+            if method == "EVOLUTIONS_END" or not target.startswith("SPECIES_"):
                 continue
-            body = extract_balanced_call(block, call_index)
-            if body is None:
+            if is_totem_species(source) or is_totem_species(target):
                 continue
-            for chunk in split_top_level_braces(body):
-                parts = split_top_level_commas(chunk)
-                if len(parts) < 3:
-                    continue
-                method, param, target = parts[0], parts[1], parts[2]
-                conditions = format_evolution_conditions(parts[3], item_names) if len(parts) > 3 else []
-                if method == "EVOLUTIONS_END" or not target.startswith("SPECIES_"):
-                    continue
-                if is_totem_species(source) or is_totem_species(target):
-                    continue
-                evolutions[source].append({
-                    "method": method,
-                    "param": param,
-                    "target": target,
-                    "conditions": conditions,
-                    "label": format_evolution_method(method, param, item_names, conditions),
-                })
+            evolutions[source].append({
+                "method": method,
+                "param": param,
+                "target": target,
+                "conditions": conditions,
+                "label": format_evolution_method(method, param, item_names, conditions),
+            })
     return dict(evolutions)
 
 def parse_mega_evolutions(item_names: Mapping[str, ItemRecord]) -> list[MegaEvolutionRow]:

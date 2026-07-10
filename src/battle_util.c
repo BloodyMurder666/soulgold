@@ -3760,7 +3760,6 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
          && shouldAbilityTrigger
          && !IsOpposingSideEmpty(battler))
         {
-            PushTraitStack(battler, ABILITY_INTIMIDATE);
             SaveBattlerAttacker(gBattlerAttacker);
             gBattlerAttacker = battler;
             effect += CommonSwitchInAbilities(battler, ABILITY_INTIMIDATE, traitCheck, BattleScript_IntimidateActivates);
@@ -3769,7 +3768,6 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
          && shouldAbilityTrigger
          && !IsOpposingSideEmpty(battler))
         {
-            PushTraitStack(battler, ABILITY_INFERNAL);
             SaveBattlerAttacker(gBattlerAttacker);
             gBattlerAttacker = battler;
             effect += CommonSwitchInAbilities(battler, ABILITY_INFERNAL, traitCheck, BattleScript_InfernalActivates);
@@ -10732,6 +10730,38 @@ uq4_12_t CalcTypeEffectivenessMultiplier(struct BattleContext *ctx)
     return modifier;
 }
 
+uq4_12_t CalcVisualTypeEffectivenessMultiplier(struct BattleContext *ctx)
+{
+    u32 illusionSpecies = GetIllusionMonSpecies(ctx->battlerDef);
+    u32 actualSpecies = gBattleMons[ctx->battlerDef].species;
+    enum Type actualTypes[3];
+    uq4_12_t modifier;
+
+    // Public type changes (such as Soak, Roost, or Terastallization) take
+    // precedence over the disguise. Otherwise, calculate against the species
+    // the player can actually see so the move-selection UI does not identify
+    // Illusion before a move is used.
+    if (illusionSpecies == SPECIES_NONE
+     || GetActiveGimmick(ctx->battlerDef) == GIMMICK_TERA
+     || gBattleMons[ctx->battlerDef].types[0] != GetSpeciesType(actualSpecies, 0)
+     || gBattleMons[ctx->battlerDef].types[1] != GetSpeciesType(actualSpecies, 1)
+     || gBattleMons[ctx->battlerDef].types[2] != TYPE_MYSTERY
+     || gBattleMons[ctx->battlerDef].volatiles.roostActive)
+        return CalcTypeEffectivenessMultiplier(ctx);
+
+    // Reuse the normal calculation so special moves and public field effects
+    // retain their usual UI behavior, but substitute the visible types for the
+    // duration of the calculation.
+    memcpy(actualTypes, gBattleMons[ctx->battlerDef].types, sizeof(actualTypes));
+    gBattleMons[ctx->battlerDef].types[0] = GetSpeciesType(illusionSpecies, 0);
+    gBattleMons[ctx->battlerDef].types[1] = GetSpeciesType(illusionSpecies, 1);
+    gBattleMons[ctx->battlerDef].types[2] = TYPE_MYSTERY;
+    modifier = CalcTypeEffectivenessMultiplier(ctx);
+    memcpy(gBattleMons[ctx->battlerDef].types, actualTypes, sizeof(actualTypes));
+
+    return modifier;
+}
+
 uq4_12_t CalcPartyMonTypeEffectivenessMultiplier(enum Move move, u16 speciesDef, struct Pokemon *mon)
 {
     uq4_12_t modifier = UQ_4_12(1.0);
@@ -13664,67 +13694,50 @@ u32 BattlerHasTraitPlain(enum BattlerId battlerId, enum Ability ability)
 
 void PushTraitStack(enum BattlerId battlerId, enum Ability ability)
 {
-    u32 newBattlerID = battlerId;
-    u32 newAbility = ability;
+    if (battlerId >= MAX_BATTLERS_COUNT || ability <= ABILITY_NONE || ability >= ABILITIES_COUNT)
+        return;
 
-    for (u32 i = 0; i < (MAX_BATTLERS_COUNT * (4 + MAX_MON_INNATES)); i++) //Needs to be high enough to hold every ability pop up in a turn.
+    for (u32 i = 0; i < ARRAY_COUNT(gTraitStack); i++)
     {
         if (gTraitStack[i][1] == ABILITY_NONE)
         {
-            gTraitStack[i][0] = newBattlerID;
-            gTraitStack[i][1] = newAbility;
+            gTraitStack[i][0] = (enum Ability)battlerId;
+            gTraitStack[i][1] = ability;
             //DebugPrintf("TRAIT STACK: Stack Slot: %d, Battler: %d, Ability: %S", i, gTraitStack[i][0], gAbilitiesInfo[gTraitStack[i][1]].name);
-            break;
+            return;
         }
     }
+
+    DebugPrintf("Trait stack full");
 }
 
-u32 PullTraitStackBattler()
+u32 PullTraitStackBattler(void)
 {
-    u32 newBattlerID = MAX_BATTLERS_COUNT;
+    for (s32 i = ARRAY_COUNT(gTraitStack) - 1; i >= 0; i--)
+        if (gTraitStack[i][1] != ABILITY_NONE)
+            return gTraitStack[i][0];
 
-    for (int i = 0; i < (MAX_BATTLERS_COUNT * (4 + MAX_MON_INNATES)); i++) //Needs to be high enough to hold every ability pop up in a turn.
-    {
-        if (gTraitStack[i][1] == ABILITY_NONE)
-        {
-            if (i == 0)
-                break; //Do nothing if first slot is already empty
-            newBattlerID = gTraitStack[i-1][0];
-            break;
-        }
-    }
-    return newBattlerID;
+    return MAX_BATTLERS_COUNT;
 }
 
-enum Ability PullTraitStackAbility()
+enum Ability PullTraitStackAbility(void)
 {
-    enum Ability ability = ABILITY_NONE;
+    for (s32 i = ARRAY_COUNT(gTraitStack) - 1; i >= 0; i--)
+        if (gTraitStack[i][1] != ABILITY_NONE)
+            return gTraitStack[i][1];
 
-    for (u32 i = 0; i < (MAX_BATTLERS_COUNT * (4 + MAX_MON_INNATES)); i++) //Needs to be high enough to hold every ability pop up in a turn.
-    {
-        if (gTraitStack[i][1] == ABILITY_NONE)
-        {
-            if (i == 0)
-                break; //Do nothing if first slot is already empty
-            ability = gTraitStack[i-1][1]; //Return the ability in the slot before the most recent empty slot
-            break;
-        }
-        // else
-        //     DebugPrintf("TRAIT STACK: [%d] - %S", i, gAbilitiesInfo[gTraitStack[i][1]].name);
-    }
-    return ability;
+    return ABILITY_NONE;
 }
-// Clears the latest ability popup slot.  Searches from the bottom to the top since the stack should generally be small.
-void PopTraitStack()
+
+void PopTraitStack(void)
 {
-    for (u32 i =0; i < (MAX_BATTLERS_COUNT * (4 + MAX_MON_INNATES)); i++) //Needs to be high enough to hold every ability pop up in a turn.
+    for (s32 i = ARRAY_COUNT(gTraitStack) - 1; i >= 0; i--)
     {
-        if (gTraitStack[i][1] == ABILITY_NONE)
+        if (gTraitStack[i][1] != ABILITY_NONE)
         {
-            if (i == 0)
-                break; //Do nothing if first slot is already empty
-            gTraitStack[i-1][0] = gTraitStack[i-1][1] = 0; //Clear the slot
-            break;
+            gTraitStack[i][0] = 0;
+            gTraitStack[i][1] = ABILITY_NONE;
+            return;
         }
     }
 }

@@ -46,8 +46,8 @@ def build_ability_usage(visible_species: list[SpeciesRow]) -> AbilityUsage:
     ability_usage: AbilityUsage = defaultdict(lambda: {"base": [], "innate": []})
     for row in visible_species:
         mini = {"species": row.constant, "name": row.name, "dex": row.display_dex, "sprite": row.sprite}
-        for ability in row.abilities:
+        for ability in dict.fromkeys(row.abilities):
             ability_usage[ability]["base"].append(mini)
-        for ability in row.innates:
+        for ability in dict.fromkeys(row.innates):
             ability_usage[ability]["innate"].append(mini)
     return ability_usage

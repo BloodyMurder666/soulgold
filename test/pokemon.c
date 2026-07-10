@@ -2,6 +2,7 @@
 #include "battle.h"
 #include "egg_hatch.h"
 #include "event_data.h"
+#include "load_save.h"
 #include "move.h"
 #include "new_game.h"
 #include "pokemon.h"
@@ -644,4 +645,28 @@ TEST("CalculateMonStats")
     EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPATK), 83);
     EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPDEF), 134);
 
+}
+
+TEST("LoadPlayerParty derives cached level from experience")
+{
+    u8 staleLevel = 70;
+    u16 staleStat = 1;
+    u32 expectedMaxHP;
+
+    ZeroPlayerPartyMons();
+    CreateMonWithIVs(&gPlayerParty[0], SPECIES_WOBBUFFET, 85, 0, OTID_STRUCT_PLAYER_ID, 0);
+    expectedMaxHP = GetMonData(&gPlayerParty[0], MON_DATA_MAX_HP);
+    SetMonData(&gPlayerParty[0], MON_DATA_LEVEL, &staleLevel);
+    SetMonData(&gPlayerParty[0], MON_DATA_HP, &staleStat);
+    SetMonData(&gPlayerParty[0], MON_DATA_MAX_HP, &staleStat);
+    gPlayerPartyCount = 1;
+    SavePlayerParty();
+
+    ZeroPlayerPartyMons();
+    LoadPlayerParty();
+
+    EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_LEVEL), 85);
+    EXPECT_EQ(GetLevelFromMonExp(&gPlayerParty[0]), 85);
+    EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_MAX_HP), expectedMaxHP);
+    EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_HP), expectedMaxHP);
 }

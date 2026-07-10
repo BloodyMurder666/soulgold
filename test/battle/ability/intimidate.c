@@ -4,6 +4,27 @@
 ASSUMPTIONS
 {
     ASSUME(GetMoveCategory(MOVE_SCRATCH) == DAMAGE_CATEGORY_PHYSICAL);
+    ASSUME(gItemsInfo[ITEM_POKE_TOY].battleUsage == EFFECT_ITEM_ESCAPE);
+}
+
+WILD_BATTLE_TEST("Intimidate popup state does not leak out of a short battle")
+{
+    GIVEN {
+        // Simulate popup state left by a previous battle. Battle startup must
+        // discard it, and Intimidate itself must push only one stack entry.
+        gTraitStack[0][0] = (enum Ability)B_POSITION_PLAYER_LEFT;
+        gTraitStack[0][1] = ABILITY_PRESSURE;
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_GROWLITHE) { Ability(ABILITY_INTIMIDATE); }
+    } WHEN {
+        TURN { USE_ITEM(player, ITEM_POKE_TOY); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_INTIMIDATE);
+        MESSAGE("{PLAY_SE SE_FLEE}You got away safely!\p");
+    } THEN {
+        EXPECT_EQ(PullTraitStackAbility(), ABILITY_NONE);
+        EXPECT_EQ(PullTraitStackBattler(), MAX_BATTLERS_COUNT);
+    }
 }
 
 SINGLE_BATTLE_TEST("Intimidate (opponent) lowers player's attack after switch out", s16 damage)

@@ -581,6 +581,11 @@ static const struct HiddenGrottoData *GetCurrentHiddenGrottoData(void)
     return &sHiddenGrottoData[grottoId];
 }
 
+bool8 IsCurrentMapHiddenGrotto(void)
+{
+    return GetCurrentHiddenGrottoId() < NUM_HIDDEN_GROTTOES;
+}
+
 static u8 GetHiddenGrottoMonLevel(const struct HiddenGrottoData *grotto)
 {
     return grotto->monLevel;

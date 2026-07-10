@@ -107,6 +107,7 @@ static const u8 sText_PlayedPokeFluteCatchy[] = _("Played the POKé FLUTE.\pNow,
 static const u8 sText_PlayedPokeFlute[] = _("Played the POKé FLUTE.");
 static const u8 sText_PokeFluteAwakenedMon[] = _("The POKé FLUTE awakened sleeping\nPOKéMON.{PAUSE_UNTIL_PRESS}");
 static const u8 sText_BeckoningBellChimes[] = _("The bell chimes, renewing all\nhidden grottos!{PAUSE_UNTIL_PRESS}");
+static const u8 sText_BeckoningBellCannotBeUsedHere[] =_("The bell cannot be used\ninside a Hidden Grotto!{PAUSE_UNTIL_PRESS}");
 
 #ifndef UINT16_MAX
 #define UINT16_MAX USHRT_MAX
@@ -1901,10 +1902,26 @@ void ItemUseOutOfBattle_Radio(u8 taskId)
 
 void ItemUseOutOfBattle_BeckoningBell(u8 taskId)
 {
+    if (IsCurrentMapHiddenGrotto())
+    {
+        DisplayItemMessage(
+            taskId,
+            FONT_NORMAL,
+            sText_BeckoningBellCannotBeUsedHere,
+            CloseItemMessage
+        );
+        return;
+    }
+
     DailyResetHiddenGrottoes();
     PlaySE(SE_M_HEAL_BELL);
     RemoveUsedItem();
-    DisplayItemMessage(taskId, FONT_NORMAL, sText_BeckoningBellChimes, CloseItemMessage);
+    DisplayItemMessage(
+        taskId,
+        FONT_NORMAL,
+        sText_BeckoningBellChimes,
+        CloseItemMessage
+    );
 }
 
 #undef tUsingRegisteredKeyItem

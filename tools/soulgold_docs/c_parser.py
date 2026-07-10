@@ -100,18 +100,23 @@ def parse_enum_constants(path: Path, prefix: str) -> tuple[dict[str, int], dict[
         next_value += 1
     return name_to_id, id_to_name
 
-def preprocess(include_path: str) -> str:
+def preprocess_source(source: str, *extra_include_dirs: str) -> str:
+    """Run the C preprocessor over an in-memory translation unit."""
     temp = Path("/tmp/soulgold_docs_preprocess.c")
-    temp.write_text(f'#include "global.h"\n#include "{include_path}"\n', encoding="utf-8")
+    temp.write_text(source, encoding="utf-8")
+    include_args = [f"-I{path}" for path in (".", "include", "src", *extra_include_dirs)]
     result = subprocess.run(
-        ["gcc", "-E", "-P", str(temp), "-I.", "-Iinclude", "-Isrc"],
+        ["gcc", "-E", "-P", str(temp), *include_args],
         cwd=REPO_ROOT,
         capture_output=True,
         text=True,
     )
     if result.returncode != 0:
-        raise RuntimeError(f"gcc failed for {include_path}:\n{result.stderr}")
+        raise RuntimeError(f"gcc failed preprocessing source:\n{result.stderr}")
     return result.stdout
+
+def preprocess(include_path: str) -> str:
+    return preprocess_source(f'#include "global.h"\n#include "{include_path}"\n')
 
 def split_designated_entries(text: str) -> dict[str, str]:
     entries: dict[str, str] = {}

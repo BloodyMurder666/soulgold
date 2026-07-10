@@ -25,6 +25,7 @@ void HiddenGrotto_GetCurrentContentType(void);
 void HiddenGrotto_GetCurrentContentId(void);
 void HiddenGrotto_CreateCurrentMon(void);
 void HiddenGrotto_TestCurrentMonBounds(void);
+bool8 IsCurrentMapHiddenGrotto(void);
 
 #define NUM_HIDDEN_GROTTOES 20
 
