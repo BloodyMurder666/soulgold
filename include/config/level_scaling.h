@@ -22,7 +22,7 @@
 // Trainer scaling can be toggled in the player option menu at runtime.
 // When enabled, this mode chooses the player's level used as the scaling target.
 
-#define B_TRAINER_SCALING_DEFAULT_MODE      LEVEL_SCALING_PARTY_HIGHEST
+#define B_TRAINER_SCALING_DEFAULT_MODE      LEVEL_SCALING_PARTY_AVG
 #define B_TRAINER_SCALING_LEVEL_AUGMENT     1       // Add/subtract levels from base (-127 to +127)
                                                      // Example: -2 makes trainers 2 levels lower
                                                      //          +5 makes trainers 5 levels higher

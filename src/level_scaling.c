@@ -34,17 +34,42 @@ static u8 GetPlayerPartyAverageLevel(bool8 excludeFainted)
     u32 totalLevel = 0;
     u32 count = 0;
     u32 i;
+    u8 highestLevel = 1;
+
+    // Establish the top of the active party first. Pokémon seven or more
+    // levels below it are omitted from the average so a deliberately weak
+    // passenger cannot drag trainer levels down.
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        struct Pokemon *mon = &gPlayerParty[i];
+        u8 level;
+
+        if (GetMonData(mon, MON_DATA_SPECIES) == SPECIES_NONE)
+            break;
+        if (excludeFainted && GetMonData(mon, MON_DATA_HP) == 0)
+            continue;
+
+        level = GetMonData(mon, MON_DATA_LEVEL);
+        if (level > highestLevel)
+            highestLevel = level;
+    }
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
         struct Pokemon *mon = &gPlayerParty[i];
+        u8 level;
+
         if (GetMonData(mon, MON_DATA_SPECIES) == SPECIES_NONE)
             break;
 
         if (excludeFainted && GetMonData(mon, MON_DATA_HP) == 0)
             continue;
 
-        totalLevel += GetMonData(mon, MON_DATA_LEVEL);
+        level = GetMonData(mon, MON_DATA_LEVEL);
+        if (highestLevel - level >= 7)
+            continue;
+
+        totalLevel += level;
         count++;
     }
 

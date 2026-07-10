@@ -1,18 +1,6 @@
 Bugs:
-- Blissey trainer expericing levels being dropped to 70, restored after running?
---> "it happend when i was done training at blissey = had no money left
-to continue leveling and when i checked my party they were lv 70
-so went into cave to start lvling and either i ran or defeated the mon and lvls got fixed"
-- aerilate in docs shows multiple times same pokemon
-- talonflame page
-- "-----------" ability growlithe glitches out quick ball bar
-- Illusion revealed by type effectiveness
-
 - More Berry spots
-- Trainer scaling behaves oddly with levels (see, blissey trainer)
-- Rocket Arcade payout
-- Non registered dexnav chain
-- Dexnav chain resetting without repels
+
 
 # Demo 1 MVP
 

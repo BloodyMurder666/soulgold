@@ -749,8 +749,13 @@ static u32 GetRocketArcadePayoutIndex(void)
         return ARRAY_COUNT(sRocketArcadePayouts) - 1;
     if (winStreak == 0)
         return 0;
-    if (winStreak > FRONTIER_STAGES_PER_CHALLENGE)
-        winStreak = FRONTIER_STAGES_PER_CHALLENGE;
+
+    // The challenge script resolves after game FRONTIER_STAGES_PER_CHALLENGE
+    // plus one, and the table contains one payout for each of those eight
+    // wins. Clamp to the table itself so the final ordinary win can reach the
+    // final payout instead of being forced back to game seven's value.
+    if (winStreak > ARRAY_COUNT(sRocketArcadePayouts))
+        winStreak = ARRAY_COUNT(sRocketArcadePayouts);
 
     return winStreak - 1;
 }

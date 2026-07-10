@@ -1070,9 +1070,10 @@ bool32 OnStep_DexNavSearch(void)
         CreateDexNavWildMon(sDexNavSearchDataPtr->species, sDexNavSearchDataPtr->potential, sDexNavSearchDataPtr->monLevel,
                             sDexNavSearchDataPtr->abilityNum, sDexNavSearchDataPtr->heldItem, sDexNavSearchDataPtr->moves);
 
+        // Remove the search UI and shaking-spot field effect before the
+        // battle-start exclamation mark requests another sprite slot.
+        EndDexNavSearch();
         ScriptContext_SetupScript(EventScript_StartDexNavBattle);
-        FREE_AND_SET_NULL(sDexNavSearchDataPtr);
-        FlagClear(DN_FLAG_SEARCHING);
         return TRUE;
     }
 
@@ -2457,6 +2458,15 @@ static void Task_DexNavMain(u8 taskId)
         }
         else
         {
+#if USE_DEXNAV_SEARCH_LEVELS == DEXNAV_SEARCH_LEVELS_REGISTERED_SPECIES
+            // Manual searches participate in the same search-level and chain
+            // tracking as R-button searches. Selecting a different species
+            // intentionally starts a new chain and makes it the registered
+            // target for subsequent searches.
+            if (!IsRegisteredDexNavSpecies(species))
+                ResetRegisteredDexNavProgress();
+            VarSet(DN_VAR_SPECIES, ((sDexNavUiDataPtr->environment << 14) | species));
+#endif
             gSpecialVar_0x8000 = species;
             gSpecialVar_0x8001 = sDexNavUiDataPtr->environment;
             gSpecialVar_0x8002 = (sDexNavUiDataPtr->cursorRow == ROW_HIDDEN) ? TRUE : FALSE;

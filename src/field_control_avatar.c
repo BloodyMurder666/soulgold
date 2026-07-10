@@ -252,7 +252,14 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
     }
 
     if (input->checkStandardWildEncounter && CheckStandardWildEncounter(metatileBehavior) == TRUE)
+    {
+        // A random encounter can interrupt an active DexNav search before its
+        // step callback runs. Clean it up before battle resets the sprite
+        // array, otherwise the saved DexNav sprite IDs alias new overworld
+        // sprites when the player returns.
+        EndDexNavSearch();
         return TRUE;
+    }
     if (input->heldDirection && input->dpadDirection == playerDirection)
     {
         if (TryArrowWarp(&position, metatileBehavior, playerDirection) == TRUE)
@@ -277,6 +284,10 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
         return TRUE;
     if (input->pressedStartButton)
     {
+        // Menus reset and reuse the overworld sprite array. DexNav searches
+        // are canceled on opening the Start menu, so release their sprites
+        // and field effect before the menu takes ownership of those slots.
+        EndDexNavSearch();
         PlaySE(SE_WIN_OPEN);
         ShowStartMenu();
         return TRUE;

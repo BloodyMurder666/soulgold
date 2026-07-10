@@ -2002,7 +2002,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
         #if B_LEVEL_SCALING_ENABLED
         const struct LevelScalingConfig *scalingConfig = GetTrainerLevelScalingConfig(trainerId);
         u8 originalHighestLevel = 1;
-        u8 scaledHighestLevel = 1;
+        u8 scaledPartyLevel = 1;
 
         if (scalingConfig->mode != LEVEL_SCALING_NONE)
         {
@@ -2011,7 +2011,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 if (partyData[monIndices[i]].lvl > originalHighestLevel)
                     originalHighestLevel = partyData[monIndices[i]].lvl;
             }
-            scaledHighestLevel = CalculateTrainerScaledLevel(scalingConfig, originalHighestLevel, trainerId);
+            scaledPartyLevel = CalculateTrainerScaledLevel(scalingConfig, originalHighestLevel, trainerId);
         }
         #endif
 
@@ -2050,12 +2050,10 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             u16 scaledSpecies = partyData[monIndex].species;
             if (scalingConfig->mode != LEVEL_SCALING_NONE)
             {
-                u8 levelDelta = originalHighestLevel - partyData[monIndex].lvl;
-
-                if (scaledHighestLevel > levelDelta)
-                    scaledLevel = scaledHighestLevel - levelDelta;
-                else
-                    scaledLevel = 1;
+                // Scaling establishes the level for the whole opposing team.
+                // Reapplying authored level gaps here could turn a target of
+                // 100 into a party whose remaining members were around 55.
+                scaledLevel = scaledPartyLevel;
 
                 if (scalingConfig->minLevel > 0 && scaledLevel < scalingConfig->minLevel)
                     scaledLevel = scalingConfig->minLevel;
