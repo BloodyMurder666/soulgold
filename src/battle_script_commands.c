@@ -11808,6 +11808,10 @@ static void Cmd_givecaughtmon(void)
             {
                 //Before sending to PC, we revert battle form
                 TryRevertPartyMonFormChange(gSelectedMonPartyId);
+                // Restore battle-consumed non-berry items before this mon is
+                // copied out of the party. End-of-battle restoration happens
+                // after the caught mon has taken over this party slot.
+                TryRestoreHeldItemsForPartySlot(gSelectedMonPartyId);
                 // Mon chosen, try to put it in the PC
                 if (CopyMonToPC(&gPlayerParty[gSelectedMonPartyId]) == MON_GIVEN_TO_PC)
                 {

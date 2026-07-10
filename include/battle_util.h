@@ -341,6 +341,7 @@ void SetShellSideArmCategory(void);
 bool32 MoveIsAffectedBySheerForce(enum Move move);
 bool32 IsSheerForceAffected(enum Move move, u32 battler);
 void TryRestoreHeldItems(void);
+void TryRestoreHeldItemsForPartySlot(u32 partySlot);
 bool32 CanStealItem(enum BattlerId battlerStealing, enum BattlerId battlerItem, enum Item item);
 void TrySaveExchangedItem(enum BattlerId battler, enum Item stolenItem, u8 slot);
 bool32 IsBattlerAffectedByHazards(enum BattlerId battler, bool32 toxicSpikes);

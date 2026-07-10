@@ -892,52 +892,54 @@ goldenrod_utility_shop:
 	.2byte ITEM_ABILITY_SHIELD
 # 450 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	.2byte ITEM_CLEAR_AMULET
+# 451 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	.2byte ITEM_AIR_BALLOON
 	.2byte ITEM_NONE
 
 suspiciousdoor_goldenrod_underground::
-# 454 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	lock
 # 455 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	lock
+# 456 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	compare VAR_NEWBARK_TOWN_STATE, 12
 	goto_if_lt suspiciousdoor_goldenrod_underground_2
-# 462 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 463 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	msgbox suspiciousdoor_goldenrod_underground_Text_1
 suspiciousdoor_goldenrod_underground_1:
-# 467 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 468 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	release
 	end
 
 suspiciousdoor_goldenrod_underground_2:
-# 456 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 457 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	msgbox suspiciousdoor_goldenrod_underground_Text_0
-# 459 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 460 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	waitmessage
 	goto suspiciousdoor_goldenrod_underground_1
 
 
 rocket_bouncer::
-# 472 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	lock
 # 473 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
-	faceplayer
+	lock
 # 474 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+	faceplayer
+# 475 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	compare VAR_NEWBARK_TOWN_STATE, 12
 	goto_if_ge rocket_bouncer_2
-# 478 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 479 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	msgbox rocket_bouncer_Text_1
 rocket_bouncer_1:
-# 480 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 481 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	release
 	end
 
 rocket_bouncer_2:
-# 475 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 476 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	msgbox rocket_bouncer_Text_0
 	goto rocket_bouncer_1
 
 
 Goldenrod_TryOpenRocketArcadeDoor::
-# 485 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 486 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	setmetatile 12, 28, 0x45D, FALSE
 	return
 
@@ -951,23 +953,23 @@ goldenrod_utility_shop_girl_Text_1:
 	.string "Come on, buy some more!$"
 
 suspiciousdoor_goldenrod_underground_Text_0:
-# 456 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 457 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	.string "Door seems to be locked, but you can \n"
 	.string "faintly discern noise coming from \l"
 	.string "somewhere far behind the door.$"
 
 suspiciousdoor_goldenrod_underground_Text_1:
-# 462 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 463 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	.string "The door is now open. \p"
 	.string "A cacophony of noises is echoing from \n"
 	.string "the tunnel.$"
 
 rocket_bouncer_Text_0:
-# 475 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 476 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	.string "Welcome,\n"
 	.string "Boss told to me to let you pass.$"
 
 rocket_bouncer_Text_1:
-# 478 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
+# 479 "data/maps/GoldenrodCity_UndergroundTunnel/scripts.pory"
 	.string "Sorry kid, only those with special\n"
 	.string "permission are allowed past here.$"
