@@ -448,6 +448,7 @@ mart goldenrod_utility_shop {
     ITEM_COVERT_CLOAK
     ITEM_ABILITY_SHIELD
     ITEM_CLEAR_AMULET
+	ITEM_AIR_BALLOON
 }
 
 script suspiciousdoor_goldenrod_underground {
