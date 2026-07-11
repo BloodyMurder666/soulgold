@@ -94,356 +94,357 @@ EcruteakCity_Gym_EventScript_Morty::
 	msgbox MortyText_FogBadgeSpeech, MSGBOX_DEFAULT
 # 48 "data/maps/EcruteakCity_Gym/scripts.pory"
 	setflag FLAG_BADGE04_GET
-	special Achievement_CheckAll
 # 49 "data/maps/EcruteakCity_Gym/scripts.pory"
-	setflag FLAG_DEFEATED_ECRUTEAK_CITY_GYM
+	special Achievement_CheckAll
 # 50 "data/maps/EcruteakCity_Gym/scripts.pory"
-	clearflag FLAG_HIDE_ECRUTEAK_RIVAL
+	setflag FLAG_DEFEATED_ECRUTEAK_CITY_GYM
 # 51 "data/maps/EcruteakCity_Gym/scripts.pory"
-	addvar VAR_NUM_BADGES, 1
+	clearflag FLAG_HIDE_ECRUTEAK_RIVAL
 # 52 "data/maps/EcruteakCity_Gym/scripts.pory"
-	setvar VAR_0x8008, 4
+	addvar VAR_NUM_BADGES, 1
 # 53 "data/maps/EcruteakCity_Gym/scripts.pory"
-	call Common_EventScript_SetGymTrainers
+	setvar VAR_0x8008, 4
 # 54 "data/maps/EcruteakCity_Gym/scripts.pory"
-	giveitem ITEM_TM_SHADOW_BALL
+	call Common_EventScript_SetGymTrainers
 # 55 "data/maps/EcruteakCity_Gym/scripts.pory"
-	msgbox MortyText_ShadowBallSpeech, MSGBOX_DEFAULT
+	giveitem ITEM_TM_SHADOW_BALL
 # 56 "data/maps/EcruteakCity_Gym/scripts.pory"
-	setvar VAR_ECRUTEAK_CITY_STATE, 4
+	msgbox MortyText_ShadowBallSpeech, MSGBOX_DEFAULT
 # 57 "data/maps/EcruteakCity_Gym/scripts.pory"
-	closemessage
+	setvar VAR_ECRUTEAK_CITY_STATE, 4
 # 58 "data/maps/EcruteakCity_Gym/scripts.pory"
-	release
+	closemessage
 # 59 "data/maps/EcruteakCity_Gym/scripts.pory"
-	end
+	release
 # 60 "data/maps/EcruteakCity_Gym/scripts.pory"
-
+	end
 # 61 "data/maps/EcruteakCity_Gym/scripts.pory"
-EcruteakCity_Gym_EventScript_Morty_Defeated::
+
 # 62 "data/maps/EcruteakCity_Gym/scripts.pory"
-	msgbox MortyFightDoneText, MSGBOX_DEFAULT
+EcruteakCity_Gym_EventScript_Morty_Defeated::
 # 63 "data/maps/EcruteakCity_Gym/scripts.pory"
-	closemessage
+	msgbox MortyFightDoneText, MSGBOX_DEFAULT
 # 64 "data/maps/EcruteakCity_Gym/scripts.pory"
-	release
+	closemessage
 # 65 "data/maps/EcruteakCity_Gym/scripts.pory"
-	end
+	release
 # 66 "data/maps/EcruteakCity_Gym/scripts.pory"
-
+	end
 # 67 "data/maps/EcruteakCity_Gym/scripts.pory"
-EcruteakCity_Gym_EventScript_Statue::
+
 # 68 "data/maps/EcruteakCity_Gym/scripts.pory"
-	lock
+EcruteakCity_Gym_EventScript_Statue::
 # 69 "data/maps/EcruteakCity_Gym/scripts.pory"
-	goto_if_set FLAG_DEFEATED_ECRUTEAK_CITY_GYM, EcruteakCity_Gym_EventScript_Statue2
+	lock
 # 70 "data/maps/EcruteakCity_Gym/scripts.pory"
-	msgbox EcruteakCity_Gym_Text_GymStatue, MSGBOX_DEFAULT
+	goto_if_set FLAG_DEFEATED_ECRUTEAK_CITY_GYM, EcruteakCity_Gym_EventScript_Statue2
 # 71 "data/maps/EcruteakCity_Gym/scripts.pory"
-	closemessage
+	msgbox EcruteakCity_Gym_Text_GymStatue, MSGBOX_DEFAULT
 # 72 "data/maps/EcruteakCity_Gym/scripts.pory"
-	release
-# 73 "data/maps/EcruteakCity_Gym/scripts.pory"
-	end
-# 74 "data/maps/EcruteakCity_Gym/scripts.pory"
-
-# 75 "data/maps/EcruteakCity_Gym/scripts.pory"
-EcruteakCity_Gym_EventScript_Statue2::
-# 76 "data/maps/EcruteakCity_Gym/scripts.pory"
-	msgbox EcruteakCity_Gym_Text_GymStatueCertified, MSGBOX_DEFAULT
-# 77 "data/maps/EcruteakCity_Gym/scripts.pory"
 	closemessage
-# 78 "data/maps/EcruteakCity_Gym/scripts.pory"
+# 73 "data/maps/EcruteakCity_Gym/scripts.pory"
 	release
-# 79 "data/maps/EcruteakCity_Gym/scripts.pory"
+# 74 "data/maps/EcruteakCity_Gym/scripts.pory"
 	end
+# 75 "data/maps/EcruteakCity_Gym/scripts.pory"
+
+# 76 "data/maps/EcruteakCity_Gym/scripts.pory"
+EcruteakCity_Gym_EventScript_Statue2::
+# 77 "data/maps/EcruteakCity_Gym/scripts.pory"
+	msgbox EcruteakCity_Gym_Text_GymStatueCertified, MSGBOX_DEFAULT
+# 78 "data/maps/EcruteakCity_Gym/scripts.pory"
+	closemessage
+# 79 "data/maps/EcruteakCity_Gym/scripts.pory"
+	release
 # 80 "data/maps/EcruteakCity_Gym/scripts.pory"
-
+	end
 # 81 "data/maps/EcruteakCity_Gym/scripts.pory"
-EcruteakCity_Gym_Text_GymStatue:
+
 # 82 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Ecruteak City Pokémon Gym$"
+EcruteakCity_Gym_Text_GymStatue:
 # 83 "data/maps/EcruteakCity_Gym/scripts.pory"
-
+	.string "Ecruteak City Pokémon Gym$"
 # 84 "data/maps/EcruteakCity_Gym/scripts.pory"
-EcruteakCity_Gym_Text_GymStatueCertified:
+
 # 85 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Ecruteak City Pokémon Gym\p"
+EcruteakCity_Gym_Text_GymStatueCertified:
 # 86 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Morty's Certified Trainers:\n"
+	.string "Ecruteak City Pokémon Gym\p"
 # 87 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "{PLAYER}$"
+	.string "Morty's Certified Trainers:\n"
 # 88 "data/maps/EcruteakCity_Gym/scripts.pory"
-
+	.string "{PLAYER}$"
 # 89 "data/maps/EcruteakCity_Gym/scripts.pory"
-MortyIntroText:
+
 # 90 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Good of you to have come.\p"
+MortyIntroText:
 # 91 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Here in Ecruteak, Pokémon have\n"
+	.string "Good of you to have come.\p"
 # 92 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "always been revered.\p"
+	.string "Here in Ecruteak, Pokémon have\n"
 # 93 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "It's said that a rainbow-colored\n"
+	.string "always been revered.\p"
 # 94 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Pokémon will come down to\l"
+	.string "It's said that a rainbow-colored\n"
 # 95 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "appear before a true Trainer.\p"
+	.string "Pokémon will come down to\l"
 # 96 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "I believed that tale, so I've\n"
+	.string "appear before a true Trainer.\p"
 # 97 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "trained here in secret.\p"
+	.string "I believed that tale, so I've\n"
 # 98 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "As a result, I can now see what\n"
+	.string "trained here in secret.\p"
 # 99 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "others cannot.\p"
+	.string "As a result, I can now see what\n"
 # 100 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Just a bit more...\p"
+	.string "others cannot.\p"
 # 101 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "With a little more, I could see\n"
+	.string "Just a bit more...\p"
 # 102 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "a future where I meet the\l"
+	.string "With a little more, I could see\n"
 # 103 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "rainbow-colored Pokémon.\p"
+	.string "a future where I meet the\l"
 # 104 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "You're going to help me reach\n"
+	.string "rainbow-colored Pokémon.\p"
 # 105 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "that level!$"
+	.string "You're going to help me reach\n"
 # 106 "data/maps/EcruteakCity_Gym/scripts.pory"
-
+	.string "that level!$"
 # 107 "data/maps/EcruteakCity_Gym/scripts.pory"
-MortyWinLossText:
+
 # 108 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "I'm not good enough yet...\p"
+MortyWinLossText:
 # 109 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "All right. This Badge is yours.$"
-# 110 "data/maps/EcruteakCity_Gym/scripts.pory"
-
-# 111 "data/maps/EcruteakCity_Gym/scripts.pory"
-Text_ReceivedFogBadge:
-# 112 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "{PLAYER} received the Fogbadge.$"
-# 113 "data/maps/EcruteakCity_Gym/scripts.pory"
-
-# 114 "data/maps/EcruteakCity_Gym/scripts.pory"
-MortyText_FogBadgeSpeech:
-# 115 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "With the Fogbadge, Pokémon up\n"
-# 116 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "to Level 50 will obey you.\p"
-# 117 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Also, any Pokémon that knows\n"
-# 118 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Surf will be able to use it\l"
-# 119 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "anytime.\p"
-# 120 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "I want you to have this too.$"
-# 121 "data/maps/EcruteakCity_Gym/scripts.pory"
-
-# 122 "data/maps/EcruteakCity_Gym/scripts.pory"
-MortyText_ShadowBallSpeech:
-# 123 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "That's Shadow Ball.\n"
-# 124 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "It causes damage and may\l"
-# 125 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "lower Sp. Def.\p"
-# 126 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Use it if it suits you.$"
-# 127 "data/maps/EcruteakCity_Gym/scripts.pory"
-
-# 128 "data/maps/EcruteakCity_Gym/scripts.pory"
-MortyFightDoneText:
-# 129 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "I see...\p"
-# 130 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Your journey has taken you to\n"
-# 131 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "far-off places.\p"
-# 132 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "You've witnessed more than I\n"
-# 133 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "ever have.\p"
-# 134 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "I envy you for that...$"
-# 135 "data/maps/EcruteakCity_Gym/scripts.pory"
-
-# 136 "data/maps/EcruteakCity_Gym/scripts.pory"
-MortyRematchText:
-# 137 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Ah, the Johto Champion!\n"
-# 138 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Good of you to come.\p"
-# 139 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "You've shown strength and skill,\n"
-# 140 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "but have you grown since we\l"
-# 141 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "last battled?\p"
-# 142 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "I've trained with my Ghost-type\n"
-# 143 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Pokémon ever since.\p"
-# 144 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Let's see if you can overcome\n"
-# 145 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "the shadows again.\p"
-# 146 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Want to have a rematch?$"
-# 147 "data/maps/EcruteakCity_Gym/scripts.pory"
-
-# 148 "data/maps/EcruteakCity_Gym/scripts.pory"
-Morty_RematchDefeatText:
-# 149 "data/maps/EcruteakCity_Gym/scripts.pory"
 	.string "I'm not good enough yet...\p"
-# 150 "data/maps/EcruteakCity_Gym/scripts.pory"
+# 110 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "All right. This Badge is yours.$"
+# 111 "data/maps/EcruteakCity_Gym/scripts.pory"
+
+# 112 "data/maps/EcruteakCity_Gym/scripts.pory"
+Text_ReceivedFogBadge:
+# 113 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "{PLAYER} received the Fogbadge.$"
+# 114 "data/maps/EcruteakCity_Gym/scripts.pory"
+
+# 115 "data/maps/EcruteakCity_Gym/scripts.pory"
+MortyText_FogBadgeSpeech:
+# 116 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "With the Fogbadge, Pokémon up\n"
+# 117 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "to Level 50 will obey you.\p"
+# 118 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "Also, any Pokémon that knows\n"
+# 119 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "Surf will be able to use it\l"
+# 120 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "anytime.\p"
+# 121 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "I want you to have this too.$"
+# 122 "data/maps/EcruteakCity_Gym/scripts.pory"
+
+# 123 "data/maps/EcruteakCity_Gym/scripts.pory"
+MortyText_ShadowBallSpeech:
+# 124 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "That's Shadow Ball.\n"
+# 125 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "It causes damage and may\l"
+# 126 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "lower Sp. Def.\p"
+# 127 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "Use it if it suits you.$"
+# 128 "data/maps/EcruteakCity_Gym/scripts.pory"
+
+# 129 "data/maps/EcruteakCity_Gym/scripts.pory"
+MortyFightDoneText:
+# 130 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "I see...\p"
+# 131 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "Your journey has taken you to\n"
+# 132 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "far-off places.\p"
+# 133 "data/maps/EcruteakCity_Gym/scripts.pory"
 	.string "You've witnessed more than I\n"
-# 151 "data/maps/EcruteakCity_Gym/scripts.pory"
+# 134 "data/maps/EcruteakCity_Gym/scripts.pory"
 	.string "ever have.\p"
-# 152 "data/maps/EcruteakCity_Gym/scripts.pory"
+# 135 "data/maps/EcruteakCity_Gym/scripts.pory"
 	.string "I envy you for that...$"
+# 136 "data/maps/EcruteakCity_Gym/scripts.pory"
+
+# 137 "data/maps/EcruteakCity_Gym/scripts.pory"
+MortyRematchText:
+# 138 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "Ah, the Johto Champion!\n"
+# 139 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "Good of you to come.\p"
+# 140 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "You've shown strength and skill,\n"
+# 141 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "but have you grown since we\l"
+# 142 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "last battled?\p"
+# 143 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "I've trained with my Ghost-type\n"
+# 144 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "Pokémon ever since.\p"
+# 145 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "Let's see if you can overcome\n"
+# 146 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "the shadows again.\p"
+# 147 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "Want to have a rematch?$"
+# 148 "data/maps/EcruteakCity_Gym/scripts.pory"
+
+# 149 "data/maps/EcruteakCity_Gym/scripts.pory"
+Morty_RematchDefeatText:
+# 150 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "I'm not good enough yet...\p"
+# 151 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "You've witnessed more than I\n"
+# 152 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "ever have.\p"
 # 153 "data/maps/EcruteakCity_Gym/scripts.pory"
-
+	.string "I envy you for that...$"
 # 154 "data/maps/EcruteakCity_Gym/scripts.pory"
-SageJeffreySeenText:
+
 # 155 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "I spent the spring with my\n"
+SageJeffreySeenText:
 # 156 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Pokémon.\p"
+	.string "I spent the spring with my\n"
 # 157 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Then summer, fall, and winter...\p"
+	.string "Pokémon.\p"
 # 158 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Then spring came again.\n"
+	.string "Then summer, fall, and winter...\p"
 # 159 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "We've been together a long time.$"
+	.string "Then spring came again.\n"
 # 160 "data/maps/EcruteakCity_Gym/scripts.pory"
-
+	.string "We've been together a long time.$"
 # 161 "data/maps/EcruteakCity_Gym/scripts.pory"
-SageJeffreyBeatenText:
+
 # 162 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Wins and losses--I've known\n"
+SageJeffreyBeatenText:
 # 163 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "them both.$"
+	.string "Wins and losses--I've known\n"
 # 164 "data/maps/EcruteakCity_Gym/scripts.pory"
-
+	.string "them both.$"
 # 165 "data/maps/EcruteakCity_Gym/scripts.pory"
-SageJeffreyAfterBattleText:
+
 # 166 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Where did Pokémon come from?$"
+SageJeffreyAfterBattleText:
 # 167 "data/maps/EcruteakCity_Gym/scripts.pory"
-
+	.string "Where did Pokémon come from?$"
 # 168 "data/maps/EcruteakCity_Gym/scripts.pory"
-SagePingSeenText:
+
 # 169 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Can you inflict any damage\n"
+SagePingSeenText:
 # 170 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "on our Pokémon?$"
+	.string "Can you inflict any damage\n"
 # 171 "data/maps/EcruteakCity_Gym/scripts.pory"
-
+	.string "on our Pokémon?$"
 # 172 "data/maps/EcruteakCity_Gym/scripts.pory"
-SagePingBeatenText:
+
 # 173 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Ah! Well done!$"
+SagePingBeatenText:
 # 174 "data/maps/EcruteakCity_Gym/scripts.pory"
-
+	.string "Ah! Well done!$"
 # 175 "data/maps/EcruteakCity_Gym/scripts.pory"
-SagePingAfterBattleText:
+
 # 176 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "We use Ghost-type Pokémon.\p"
+SagePingAfterBattleText:
 # 177 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "No Normal-type attacks can\n"
+	.string "We use Ghost-type Pokémon.\p"
 # 178 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "harm them!$"
+	.string "No Normal-type attacks can\n"
 # 179 "data/maps/EcruteakCity_Gym/scripts.pory"
-
+	.string "harm them!$"
 # 180 "data/maps/EcruteakCity_Gym/scripts.pory"
-MediumMarthaSeenText:
+
 # 181 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "I shall win!$"
+MediumMarthaSeenText:
 # 182 "data/maps/EcruteakCity_Gym/scripts.pory"
-
+	.string "I shall win!$"
 # 183 "data/maps/EcruteakCity_Gym/scripts.pory"
-MediumMarthaBeatenText:
+
 # 184 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "I... I... I lost!$"
+MediumMarthaBeatenText:
 # 185 "data/maps/EcruteakCity_Gym/scripts.pory"
-
+	.string "I... I... I lost!$"
 # 186 "data/maps/EcruteakCity_Gym/scripts.pory"
-MediumMarthaAfterBattleText:
+
 # 187 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "The one who wants to win the\n"
+MediumMarthaAfterBattleText:
 # 188 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "most is the one who will!$"
+	.string "The one who wants to win the\n"
 # 189 "data/maps/EcruteakCity_Gym/scripts.pory"
-
+	.string "most is the one who will!$"
 # 190 "data/maps/EcruteakCity_Gym/scripts.pory"
-MediumGraceSeenText:
+
 # 191 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Stumped by our dark corridors?\n"
+MediumGraceSeenText:
 # 192 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Defeat me if you want a hint!$"
+	.string "Stumped by our dark corridors?\n"
 # 193 "data/maps/EcruteakCity_Gym/scripts.pory"
-
+	.string "Defeat me if you want a hint!$"
 # 194 "data/maps/EcruteakCity_Gym/scripts.pory"
-MediumGraceBeatenText:
+
 # 195 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Wha-what?$"
+MediumGraceBeatenText:
 # 196 "data/maps/EcruteakCity_Gym/scripts.pory"
-
+	.string "Wha-what?$"
 # 197 "data/maps/EcruteakCity_Gym/scripts.pory"
-MediumGraceAfterBattleText:
+
 # 198 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Fine. I'll tell you the secret\n"
+MediumGraceAfterBattleText:
 # 199 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "of the shadows.\p"
+	.string "Fine. I'll tell you the secret\n"
 # 200 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "The path is right in front of\n"
+	.string "of the shadows.\p"
 # 201 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "your eyes!$"
+	.string "The path is right in front of\n"
 # 202 "data/maps/EcruteakCity_Gym/scripts.pory"
-
+	.string "your eyes!$"
 # 203 "data/maps/EcruteakCity_Gym/scripts.pory"
-EcruteakCity_GymGuideText:
+
 # 204 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Hey Champ! You're almost\n"
+EcruteakCity_GymGuideText:
 # 205 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "halfway there!\p"
+	.string "Hey Champ! You're almost\n"
 # 206 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Trainers here use Ghost- and\n"
+	.string "halfway there!\p"
 # 207 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Dark-type Pokémon.\p"
+	.string "Trainers here use Ghost- and\n"
 # 208 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "While Morty is a Ghost-type\n"
+	.string "Dark-type Pokémon.\p"
 # 209 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "expert, be wary of his mystic\l"
+	.string "While Morty is a Ghost-type\n"
 # 210 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "deer.\p"
+	.string "expert, be wary of his mystic\l"
 # 211 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "It's said to cause strange\n"
+	.string "deer.\p"
 # 212 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "nightmares...$"
+	.string "It's said to cause strange\n"
 # 213 "data/maps/EcruteakCity_Gym/scripts.pory"
-
+	.string "nightmares...$"
 # 214 "data/maps/EcruteakCity_Gym/scripts.pory"
-EcruteakCity_GymGuideWinText:
-# 215 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Whew, {PLAYER}. You did great!\p"
-# 216 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "I was cowering in the corner\n"
-# 217 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "out of pure terror!$"
-# 218 "data/maps/EcruteakCity_Gym/scripts.pory"
 
+# 215 "data/maps/EcruteakCity_Gym/scripts.pory"
+EcruteakCity_GymGuideWinText:
+# 216 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "Whew, {PLAYER}. You did great!\p"
+# 217 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "I was cowering in the corner\n"
+# 218 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "out of pure terror!$"
 # 219 "data/maps/EcruteakCity_Gym/scripts.pory"
-EcruteakCity_GymClosedText:
+
 # 220 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Morty, the Gym Leader, is\n"
+EcruteakCity_GymClosedText:
 # 221 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "absent.\p"
+	.string "Morty, the Gym Leader, is\n"
 # 222 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "Sorry, but you'll have to\n"
+	.string "absent.\p"
 # 223 "data/maps/EcruteakCity_Gym/scripts.pory"
-	.string "leave.\p"
+	.string "Sorry, but you'll have to\n"
 # 224 "data/maps/EcruteakCity_Gym/scripts.pory"
+	.string "leave.\p"
+# 225 "data/maps/EcruteakCity_Gym/scripts.pory"
 	.string "Hohohoho.$"

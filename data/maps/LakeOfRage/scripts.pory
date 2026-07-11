@@ -110,7 +110,7 @@ LakeOfRage_EventScript_Defeated_Gyarados::
 	clearflag FLAG_HIDE_LAKE_OF_RAGE_LANCE
 	addobject LOCALID_LAKEOFRAGE_LANCE
 	giveitem ITEM_RED_SCALE
-	setobjectxyperm LOCALID_LAKEOFRAGE_OLDMAN, 32, 38
+	setobjectxyperm LOCALID_LAKEOFRAGE_OLDMAN, 33, 43
 	setvar VAR_MAHOGANY_TOWN_STATE, 2
 	release
 	end

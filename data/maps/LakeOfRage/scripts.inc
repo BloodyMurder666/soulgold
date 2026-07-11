@@ -223,7 +223,7 @@ LakeOfRage_EventScript_Defeated_Gyarados::
 # 112 "data/maps/LakeOfRage/scripts.pory"
 	giveitem ITEM_RED_SCALE
 # 113 "data/maps/LakeOfRage/scripts.pory"
-	setobjectxyperm LOCALID_LAKEOFRAGE_OLDMAN, 32, 38
+	setobjectxyperm LOCALID_LAKEOFRAGE_OLDMAN, 33, 43
 # 114 "data/maps/LakeOfRage/scripts.pory"
 	setvar VAR_MAHOGANY_TOWN_STATE, 2
 # 115 "data/maps/LakeOfRage/scripts.pory"

@@ -110,10 +110,11 @@ MahoganyTown_EventScript_MerchantTrigger::
 	removemoney 300
 	updatemoneybox 0
 	playse SE_SHOP
+	waitse
 	msgbox MahoganyTown_Text_RageCandyBarMerchantSavorIt, MSGBOX_DEFAULT
+	hidemoneybox
 	giveitem ITEM_RAGE_CANDY_BAR
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
-	hidemoneybox
 	closemessage
 	getplayerxy VAR_TEMP_0, VAR_TEMP_1
 	call_if_eq VAR_TEMP_0, 30, MahoganyTown_EventScript_PushPlayer
