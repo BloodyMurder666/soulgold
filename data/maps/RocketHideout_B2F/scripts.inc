@@ -228,6 +228,7 @@ RocketHideout_B2F_Trigger_Ariana::
 	applymovement LOCALID_ROCKETHIDEOUT2_ARIANA, Common_Movement_WalkInPlaceFasterUp
 	msgbox RocketHideout_B2F_Text_ArianaOutraged
 	closemessage
+	special HealPlayerParty
 	goto RocketHideout_B2F_EventScript_ReadyForBattlePrompt
 	end
 	
@@ -724,7 +725,7 @@ RocketHideout_B2F_EventScript_Lance::
 	waitmovement 0
 	msgbox RocketHideout_B2F_Text_LanceHeals1, MSGBOX_DEFAULT
 	closemessage
-	call Common_EventScript_OutOfCenterPartyHeal
+	special HealPlayerParty
 	msgbox RocketHideout_B2F_Text_LanceHeals2, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_ROCKETHIDEOUT2_LANCE, RocketHideout_B2F_Movement_LanceGoDeeper

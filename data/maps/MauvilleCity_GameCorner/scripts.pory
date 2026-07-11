@@ -1781,10 +1781,10 @@ script MauvilleCity_GameCorner_EventScript_ChooseNewPrize {
     }
 
 script MauvilleCity_GameCorner_EventScript_ChooseNewPrize2 {
-	dynmultichoice(12, 0, FALSE, 5, 0, DYN_MULTICHOICE_CB_NONE, "Firestone",
-																"Thunderstone",
-																"Waterstone",
-																"Leafstone",
+	dynmultichoice(12, 0, FALSE, 5, 0, DYN_MULTICHOICE_CB_NONE, "Firestone{CLEAR_TO 0x40}2000",
+																"Thunderstone{CLEAR_TO 0x40}2000",
+																"Waterstone{CLEAR_TO 0x40}2000",
+																"Leafstone{CLEAR_TO 0x40}2000",
 																"Cancel")
 	switch (var(VAR_RESULT)) {
 	case 0: goto(MauvilleCity_GameCorner_EventScript_FireStone)

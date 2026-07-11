@@ -3645,19 +3645,19 @@ MauvilleCity_GameCorner_EventScript_ChooseNewPrize_Text_5:
 
 MauvilleCity_GameCorner_EventScript_ChooseNewPrize2_Text_0:
 # 1784 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	.string "Firestone$"
+	.string "Firestone{CLEAR_TO 0x40}2000$"
 
 MauvilleCity_GameCorner_EventScript_ChooseNewPrize2_Text_1:
 # 1785 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	.string "Thunderstone$"
+	.string "Thunderstone{CLEAR_TO 0x40}2000$"
 
 MauvilleCity_GameCorner_EventScript_ChooseNewPrize2_Text_2:
 # 1786 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	.string "Waterstone$"
+	.string "Waterstone{CLEAR_TO 0x40}2000$"
 
 MauvilleCity_GameCorner_EventScript_ChooseNewPrize2_Text_3:
 # 1787 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	.string "Leafstone$"
+	.string "Leafstone{CLEAR_TO 0x40}2000$"
 
 GachaExplainer_Text_0:
 # 1801 "data/maps/MauvilleCity_GameCorner/scripts.pory"
