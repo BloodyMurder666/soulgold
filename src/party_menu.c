@@ -1578,13 +1578,13 @@ static void HandleChooseMonSelection(u8 taskId, s8 *slotPtr)
                 ScheduleBgCopyTilemapToVram(2);
                 gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
             }
-            else if (DoesSelectedMonKnowHM((u8 *)slotPtr))
+            /*else if (DoesSelectedMonKnowHM((u8 *)slotPtr))
             {
                 PlaySE(SE_FAILURE);
                 DisplayPartyMenuMessage(sText_CannotSendMonToBoxHM, FALSE);
                 ScheduleBgCopyTilemapToVram(2);
                 gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
-            }
+            }*/
             else
             {
                 PlaySE(SE_SELECT);
@@ -1613,7 +1613,7 @@ static bool8 IsSelectedMonNotEgg(u8 *slotPtr)
     return TRUE;
 }
 
-static bool8 DoesSelectedMonKnowHM(u8 *slotPtr)
+static bool8 UNUSED DoesSelectedMonKnowHM(u8 *slotPtr)
 {
     if (B_CATCH_SWAP_CHECK_HMS == FALSE)
         return FALSE;
