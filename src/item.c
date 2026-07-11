@@ -378,8 +378,13 @@ bool32 AddBagItem(enum Item itemId, u16 count)
         added = BagPocket_AddItem(&gBagPockets[GetItemPocket(itemId)], itemId, count);
 
     tmhmIndex = GetItemTMHMIndex(itemId);
-    if (added && tmhmIndex > 0 && tmhmIndex <= NUM_TECHNICAL_MACHINES)
-        Achievement_CheckAll();
+    if (added)
+    {
+        if (tmhmIndex > 0 && tmhmIndex <= NUM_TECHNICAL_MACHINES)
+            Achievement_CheckCounter(ACH_COUNTER_TMS_COLLECTED);
+        else if (GetItemPocket(itemId) == POCKET_MEGASTONES)
+            Achievement_CheckAll();
+    }
 
     return added;
 }

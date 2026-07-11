@@ -27,6 +27,7 @@
 #define tSpriteId data[4]
 #define tAnimId data[5]
 #define tYOffset data[6]
+#define tSavedBg0VOffset data[7]
 #define ACHIEVEMENT_POPUP_ICON_TAG 0xACE0
 #define ACHIEVEMENT_POPUP_WINDOW_WIDTH 15
 #define ACHIEVEMENT_POPUP_ICON_X 124
@@ -38,7 +39,8 @@
 static void Task_AchievementPopup(u8 taskId);
 static u8 GetAchievementPopupTaskId(void);
 static bool32 IsAchievementPopupActive(void);
-static enum AchievementId PopQueuedAchievement(void);
+static enum AchievementId PeekQueuedAchievement(void);
+static bool32 RemoveQueuedAchievement(enum AchievementId id);
 static void StartAchievementPopupSlide(u8 taskId, s16 from, s16 to, u16 duration, ComfyAnimEasingFunc easingFunc);
 static bool8 UpdateAchievementPopupSlide(u8 taskId);
 static void SetAchievementPopupOffset(u8 taskId, s16 yOffset);
@@ -142,15 +144,22 @@ static bool32 IsAchievementPopupActive(void)
     return GetAchievementPopupTaskId() != TASK_NONE;
 }
 
-static enum AchievementId PopQueuedAchievement(void)
+static enum AchievementId PeekQueuedAchievement(void)
+{
+    return gSaveBlock1Ptr->achievements.popupQueue[0] - 1;
+}
+
+static bool32 RemoveQueuedAchievement(enum AchievementId id)
 {
     u8 i;
-    enum AchievementId id = gSaveBlock1Ptr->achievements.popupQueue[0] - 1;
+
+    if (gSaveBlock1Ptr->achievements.popupQueue[0] != id + 1)
+        return FALSE;
 
     for (i = 1; i < ACHIEVEMENT_POPUP_QUEUE_SIZE; i++)
         gSaveBlock1Ptr->achievements.popupQueue[i - 1] = gSaveBlock1Ptr->achievements.popupQueue[i];
     gSaveBlock1Ptr->achievements.popupQueue[ACHIEVEMENT_POPUP_QUEUE_SIZE - 1] = 0;
-    return id;
+    return TRUE;
 }
 
 void Achievement_TryShowQueuedPopup(void)
@@ -167,17 +176,22 @@ void Achievement_TryShowQueuedPopup(void)
      || gPaletteFade.active
      || ScriptContext_IsEnabled()
      || ArePlayerFieldControlsLocked()
-     || gMain.callback2 != CB2_Overworld)
+     || gMain.callback2 != CB2_Overworld
+     || GetTaskCount() >= NUM_TASKS)
         return;
 
-    id = PopQueuedAchievement();
+    id = PeekQueuedAchievement();
     if (Achievement_GetById(id) == NULL)
+    {
+        RemoveQueuedAchievement(id);
         return;
+    }
     taskId = CreateTask(Task_AchievementPopup, 0);
     gTasks[taskId].tWindowId = WINDOW_NONE;
     gTasks[taskId].tSpriteId = MAX_SPRITES;
     gTasks[taskId].tAnimId = INVALID_COMFY_ANIM;
     gTasks[taskId].tAchievementId = id;
+    gTasks[taskId].tSavedBg0VOffset = GetGpuReg(REG_OFFSET_BG0VOFS);
 }
 
 void Achievement_HidePopup(void)
@@ -210,7 +224,7 @@ static void Task_AchievementPopup(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
 
-    if (task->tState != POPUP_STATE_INIT && ShouldYieldAchievementPopup())
+    if (ShouldYieldAchievementPopup())
     {
         DestroyAchievementPopup(taskId);
         return;
@@ -222,7 +236,12 @@ static void Task_AchievementPopup(u8 taskId)
         task->tWindowId = AddWindow(&sPopupWindowTemplate);
         if (task->tWindowId == WINDOW_NONE)
         {
-            DestroyTask(taskId);
+            DestroyAchievementPopup(taskId);
+            return;
+        }
+        if (!RemoveQueuedAchievement(task->tAchievementId))
+        {
+            DestroyAchievementPopup(taskId);
             return;
         }
         SetAchievementPopupOffset(taskId, ACHIEVEMENT_POPUP_OFFSCREEN_Y);
@@ -309,7 +328,7 @@ static void SetAchievementPopupOffset(u8 taskId, s16 yOffset)
     struct Task *task = &gTasks[taskId];
 
     task->tYOffset = yOffset;
-    SetGpuReg(REG_OFFSET_BG0VOFS, yOffset);
+    SetGpuReg(REG_OFFSET_BG0VOFS, task->tSavedBg0VOffset + yOffset);
     if (task->tSpriteId != MAX_SPRITES)
         gSprites[task->tSpriteId].y = ACHIEVEMENT_POPUP_ICON_Y - yOffset;
 }
@@ -336,7 +355,7 @@ static void DestroyAchievementPopup(u8 taskId)
         RemoveWindow(task->tWindowId);
         task->tWindowId = WINDOW_NONE;
     }
-    SetGpuReg(REG_OFFSET_BG0VOFS, 0);
+    SetGpuReg(REG_OFFSET_BG0VOFS, task->tSavedBg0VOffset);
     DestroyTask(taskId);
 }
 
@@ -345,6 +364,8 @@ static bool8 ShouldYieldAchievementPopup(void)
     return gMain.callback2 != CB2_Overworld
         || IsMapNamePopUpWindowActive()
         || GetStartMenuWindowId() != WINDOW_NONE
+        || IsOverworldLinkActive()
+        || gPaletteFade.active
         || ScriptContext_IsEnabled()
         || ArePlayerFieldControlsLocked();
 }
@@ -353,6 +374,7 @@ static u8 CreateAchievementPopupIcon(enum AchievementTier tier)
 {
     struct CompressedSpriteSheet spriteSheet;
     struct SpritePalette spritePalette;
+    u8 spriteId;
 
     if (tier >= ARRAY_COUNT(sBallIconGfxByTier))
         tier = ACH_TIER_BRONZE;
@@ -366,7 +388,13 @@ static u8 CreateAchievementPopupIcon(enum AchievementTier tier)
     spritePalette.tag = ACHIEVEMENT_POPUP_ICON_TAG;
     LoadSpritePalette(&spritePalette);
 
-    return CreateSprite(&sSpriteTemplate_BallIcon, 0, 0, 0);
+    spriteId = CreateSprite(&sSpriteTemplate_BallIcon, 0, 0, 0);
+    if (spriteId == MAX_SPRITES)
+    {
+        FreeSpriteTilesByTag(ACHIEVEMENT_POPUP_ICON_TAG);
+        FreeSpritePaletteByTag(ACHIEVEMENT_POPUP_ICON_TAG);
+    }
+    return spriteId;
 }
 
 #undef tState
@@ -376,6 +404,7 @@ static u8 CreateAchievementPopupIcon(enum AchievementTier tier)
 #undef tSpriteId
 #undef tAnimId
 #undef tYOffset
+#undef tSavedBg0VOffset
 #undef ACHIEVEMENT_POPUP_ICON_TAG
 #undef ACHIEVEMENT_POPUP_WINDOW_WIDTH
 #undef ACHIEVEMENT_POPUP_ICON_X

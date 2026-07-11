@@ -21,6 +21,7 @@ void Achievement_IncrementCounter(enum AchievementCounter counter, u32 amount);
 void Achievement_SetCounterMax(enum AchievementCounter counter, u32 value);
 void Achievement_AddBattlePointsEarned(u32 amount);
 void Achievement_CheckAll(void);
+void Achievement_CheckCounter(enum AchievementCounter counter);
 void Achievement_UnlockHallOfFameDebut(void);
 void Achievement_OnTrainerDefeated(u16 trainerId);
 void Achievement_TryShowQueuedPopup(void);

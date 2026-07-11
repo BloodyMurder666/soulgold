@@ -502,7 +502,11 @@ static void CreateListBallIcon(u8 row, const struct Achievement *achievement)
     spriteId = CreateSprite(spriteTemplate, 0, 0, 0);
 
     if (spriteId == MAX_SPRITES)
+    {
+        FreeSpriteTilesByTag(tag);
+        FreeSpritePaletteByTag(tag);
         return;
+    }
     sListBallIconSpriteIds[row] = spriteId;
     gSprites[spriteId].x = ACHIEVEMENTS_ICON_X;
     gSprites[spriteId].y = ACHIEVEMENTS_ICON_Y(row);

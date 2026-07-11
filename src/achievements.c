@@ -17,6 +17,8 @@
 
 #define TRAINER_NONE_ACH 0xFFFF
 
+STATIC_ASSERT(ITEM_BONDSTONE - ITEM_NORMALITE < 32, MegaCollectorItemsFitInBitset);
+
 static bool32 Achievement_PredicateHoennDexComplete(void);
 static bool32 Achievement_PredicateCameronPhoto(void);
 static bool32 Achievement_PredicateAllCameronPhotos(void);
@@ -76,7 +78,6 @@ static bool32 Achievement_PredicateCaughtMagearna(void);
 static bool32 Achievement_PredicateCaughtMarshadow(void);
 static bool32 Achievement_PredicateCaughtAllParadoxPokemon(void);
 static bool32 Achievement_PredicateHasLevel100Pokemon(void);
-static bool32 Achievement_HasOwnedItem(enum Item item);
 static u32 Achievement_CountCollectedTMs(void);
 static u32 Achievement_GetBestBattlePyramidRounds(void);
 static void Achievement_QueuePopup(enum AchievementId id);
@@ -449,6 +450,15 @@ static const u16 sTierBallItems[] =
     [ACH_TIER_PLATINUM] = ITEM_MASTER_BALL,
 };
 
+static const u16 sRouteExpertFlags[] =
+{
+    FLAG_ROUTE31_EXPERT,
+    FLAG_GOLDENRODSHORE_EXPERT,
+    FLAG_ROUTE43_EXPERT,
+    FLAG_ROUTE47_EXPERT,
+    FLAG_ROUTE27_EXPERT,
+};
+
 void Achievement_EnsureSaveInitialized(void)
 {
     if (gSaveBlock1Ptr->achievements.magic != ACHIEVEMENT_SAVE_MAGIC)
@@ -524,27 +534,31 @@ static bool32 Achievement_PredicateKurtMasterBall(void)
     return FlagGet(FLAG_KURT_CRAFTED_MASTER_BALL);
 }
 
-static bool32 Achievement_HasOwnedItem(enum Item item)
+static void Achievement_RecordOwnedTypeStone(u32 *ownedItems, enum Item item)
 {
+    u32 itemIndex = item - ITEM_NORMALITE;
+
+    if (itemIndex <= ITEM_BONDSTONE - ITEM_NORMALITE)
+        *ownedItems |= 1u << itemIndex;
+}
+
+static bool32 Achievement_PredicateMegaCollector(void)
+{
+    u32 ownedItems = 0;
+    u32 allItems = (1u << (ITEM_BONDSTONE - ITEM_NORMALITE + 1)) - 1;
     u16 i;
     u8 boxId;
     u8 boxPosition;
-    enum Pocket pocket = GetItemPocket(item);
 
-    if (pocket < POCKETS_COUNT)
-    {
-        for (i = 0; i < gBagPockets[pocket].capacity; i++)
-        {
-            if (GetBagItemId(pocket, i) == item && GetBagItemQuantity(pocket, i) > 0)
-                return TRUE;
-        }
-    }
+    for (i = 0; i < gBagPockets[POCKET_MEGASTONES].capacity; i++)
+        Achievement_RecordOwnedTypeStone(&ownedItems, GetBagItemId(POCKET_MEGASTONES, i));
+    if (ownedItems == allItems)
+        return TRUE;
 
     for (i = 0; i < PARTY_SIZE; i++)
-    {
-        if (MonHasItem(&gPlayerParty[i], item))
-            return TRUE;
-    }
+        Achievement_RecordOwnedTypeStone(&ownedItems, (enum Item)GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM));
+    if (ownedItems == allItems)
+        return TRUE;
 
     if (gPokemonStoragePtr == NULL)
         return FALSE;
@@ -553,25 +567,15 @@ static bool32 Achievement_HasOwnedItem(enum Item item)
     {
         for (boxPosition = 0; boxPosition < IN_BOX_COUNT; boxPosition++)
         {
-            if (BoxMonHasItem(GetBoxedMonPtr(boxId, boxPosition), item))
+            Achievement_RecordOwnedTypeStone(
+                &ownedItems,
+                (enum Item)GetBoxMonData(GetBoxedMonPtr(boxId, boxPosition), MON_DATA_HELD_ITEM));
+            if (ownedItems == allItems)
                 return TRUE;
         }
     }
 
     return FALSE;
-}
-
-static bool32 Achievement_PredicateMegaCollector(void)
-{
-    enum Item item;
-
-    for (item = ITEM_NORMALITE; item <= ITEM_BONDSTONE; item++)
-    {
-        if (!Achievement_HasOwnedItem(item))
-            return FALSE;
-    }
-
-    return TRUE;
 }
 
 static bool32 Achievement_PredicateMasterOfMoves(void)
@@ -657,7 +661,14 @@ static bool32 Achievement_PredicateLetsGo(void)
 
 static bool32 Achievement_PredicateRouteExperts(void)
 {
-    return VarGet(VAR_ROUTE_EXPERTS_DEFEATED) >= 6;
+    u16 i;
+
+    for (i = 0; i < ARRAY_COUNT(sRouteExpertFlags); i++)
+    {
+        if (!FlagGet(sRouteExpertFlags[i]))
+            return FALSE;
+    }
+    return TRUE;
 }
 
 static bool32 Achievement_PredicateCaughtCelebi(void)
@@ -857,15 +868,19 @@ static const u16 sParadoxPokemon[] =
 static bool32 Achievement_PredicateCaughtAllParadoxPokemon(void)
 {
     u16 i;
+    bool32 hasEnabledSpecies = FALSE;
 
     for (i = 0; i < ARRAY_COUNT(sParadoxPokemon); i++)
     {
-        if (IsSpeciesEnabled(sParadoxPokemon[i])
-         && !Achievement_PredicateCaughtSpecies(sParadoxPokemon[i]))
-            return FALSE;
+        if (IsSpeciesEnabled(sParadoxPokemon[i]))
+        {
+            hasEnabledSpecies = TRUE;
+            if (!Achievement_PredicateCaughtSpecies(sParadoxPokemon[i]))
+                return FALSE;
+        }
     }
 
-    return TRUE;
+    return hasEnabledSpecies;
 }
 
 static bool32 Achievement_PredicateHasLevel100Pokemon(void)
@@ -972,7 +987,7 @@ u16 Achievement_GetTierBallItem(enum AchievementTier tier)
 
 bool32 Achievement_IsUnlocked(enum AchievementId id)
 {
-    if (id >= ACHIEVEMENTS_MAX)
+    if ((u32)id >= ACHIEVEMENTS_MAX)
         return FALSE;
     Achievement_EnsureSaveInitialized();
     return (gSaveBlock1Ptr->achievements.unlocked[id / 8] & (1 << (id % 8))) != 0;
@@ -985,7 +1000,9 @@ u16 Achievement_CountUnlocked(void)
     Achievement_EnsureSaveInitialized();
     for (i = 0; i < ARRAY_COUNT(sAchievements); i++)
     {
-        if (Achievement_IsUnlocked(sAchievements[i].id))
+        enum AchievementId id = sAchievements[i].id;
+
+        if (gSaveBlock1Ptr->achievements.unlocked[id / 8] & (1 << (id % 8)))
             count++;
     }
     return count;
@@ -1070,7 +1087,7 @@ static void Achievement_QueuePopup(enum AchievementId id)
 
 bool32 Achievement_Unlock(enum AchievementId id)
 {
-    if (id >= ACHIEVEMENTS_MAX || Achievement_GetById(id) == NULL || Achievement_IsUnlocked(id))
+    if ((u32)id >= ACHIEVEMENTS_MAX || Achievement_GetById(id) == NULL || Achievement_IsUnlocked(id))
         return FALSE;
 
     Achievement_EnsureSaveInitialized();
@@ -1094,6 +1111,24 @@ void Achievement_CheckAll(void)
          && Achievement_GetCounter(achievement->counter) >= achievement->targetValue)
             Achievement_Unlock(achievement->id);
         else if (achievement->predicate != NULL && achievement->predicate())
+            Achievement_Unlock(achievement->id);
+    }
+}
+
+void Achievement_CheckCounter(enum AchievementCounter counter)
+{
+    u16 i;
+
+    if (counter == ACH_COUNTER_NONE)
+        return;
+    Achievement_EnsureSaveInitialized();
+    for (i = 0; i < ARRAY_COUNT(sAchievements); i++)
+    {
+        const struct Achievement *achievement = &sAchievements[i];
+
+        if (achievement->counter == counter
+         && !Achievement_IsUnlocked(achievement->id)
+         && Achievement_GetCounter(counter) >= achievement->targetValue)
             Achievement_Unlock(achievement->id);
     }
 }
@@ -1129,7 +1164,7 @@ void Achievement_IncrementCounter(enum AchievementCounter counter, u32 amount)
         else
             value += amount;
         SetGameStat(gameStat, value);
-        Achievement_CheckAll();
+        Achievement_CheckCounter(counter);
         return;
     }
 
@@ -1142,7 +1177,7 @@ void Achievement_IncrementCounter(enum AchievementCounter counter, u32 amount)
     else
         gSaveBlock1Ptr->achievements.counters[counter] += amount;
 
-    Achievement_CheckAll();
+    Achievement_CheckCounter(counter);
 }
 
 void Achievement_AddBattlePointsEarned(u32 amount)
@@ -1152,7 +1187,7 @@ void Achievement_AddBattlePointsEarned(u32 amount)
     if (total > 0xFFFF)
         total = 0xFFFF;
     gSaveBlock2Ptr->frontier.cardBattlePoints = total;
-    Achievement_CheckAll();
+    Achievement_CheckCounter(ACH_COUNTER_BATTLE_POINTS_EARNED);
 }
 
 void Achievement_SetCounterMax(enum AchievementCounter counter, u32 value)
@@ -1164,7 +1199,7 @@ void Achievement_SetCounterMax(enum AchievementCounter counter, u32 value)
     if (gSaveBlock1Ptr->achievements.counters[counter] < value)
     {
         gSaveBlock1Ptr->achievements.counters[counter] = value;
-        Achievement_CheckAll();
+        Achievement_CheckCounter(counter);
     }
 }
 
