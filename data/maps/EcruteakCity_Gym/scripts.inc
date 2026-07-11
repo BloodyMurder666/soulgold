@@ -94,6 +94,7 @@ EcruteakCity_Gym_EventScript_Morty::
 	msgbox MortyText_FogBadgeSpeech, MSGBOX_DEFAULT
 # 48 "data/maps/EcruteakCity_Gym/scripts.pory"
 	setflag FLAG_BADGE04_GET
+	special Achievement_CheckAll
 # 49 "data/maps/EcruteakCity_Gym/scripts.pory"
 	setflag FLAG_DEFEATED_ECRUTEAK_CITY_GYM
 # 50 "data/maps/EcruteakCity_Gym/scripts.pory"

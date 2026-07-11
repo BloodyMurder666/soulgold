@@ -19,6 +19,7 @@ ViridianCity_Gym_EventScript_Blue::
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox ViridianCity_Gym_Text_LeaderBlue_After, MSGBOX_DEFAULT
 	setflag FLAG_BADGE16_GET
+	special Achievement_CheckAll
 	setflag FLAG_DEFEATED_VIRIDIAN_GYM
 	addvar VAR_NUM_BADGES, 1
 	setvar VAR_0x8008, 16
@@ -142,4 +143,3 @@ ViridianCity_Gym_Text_GymStatuePlayerWon::
     .string "Leader: Blue\p"
     .string "Winning Trainers:\n"
 	.string "Blue, Red, {PLAYER}$"
-

@@ -19,6 +19,7 @@ PewterCity_Gym_EventScript_Brock::
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox PewterCity_Gym_Text_Brock_FightDone, MSGBOX_DEFAULT
 	setflag FLAG_BADGE09_GET
+	special Achievement_CheckAll
 	setflag FLAG_DEFEATED_PEWTER_GYM
 	addvar VAR_NUM_BADGES, 1
 	setvar VAR_0x8008, 9
@@ -136,5 +137,4 @@ PewterCity_Gym_Text_GymStatuePlayerWon::
     .string "Leader: Brock\p"
     .string "Winning Trainers:\n"
 	.string "Blue, Red, {PLAYER}$"
-
 

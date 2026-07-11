@@ -76,6 +76,7 @@ VioletCity_Gym_EventScript_Falkner::
 	msgbox VioletGym_Text_Falkner_BadgeExplain, MSGBOX_DEFAULT
 # 39 "data/maps/VioletCity_Gym/scripts.pory"
 	setflag FLAG_BADGE01_GET
+	special Achievement_CheckAll
 # 40 "data/maps/VioletCity_Gym/scripts.pory"
 	setflag FLAG_DEFEATED_VIOLET_GYM
 # 41 "data/maps/VioletCity_Gym/scripts.pory"

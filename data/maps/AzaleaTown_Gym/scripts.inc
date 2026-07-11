@@ -1086,6 +1086,7 @@ AzaleaTown_Gym_EventScript_Bugsy::
 	msgbox AzaleaTown_Gym_Text_HiveBadgeSpeech, MSGBOX_DEFAULT
 # 544 "data/maps/AzaleaTown_Gym/scripts.pory"
 	setflag FLAG_BADGE02_GET
+	special Achievement_CheckAll
 # 545 "data/maps/AzaleaTown_Gym/scripts.pory"
 	setflag FLAG_DEFEATED_AZALEA_TOWN_GYM
 # 546 "data/maps/AzaleaTown_Gym/scripts.pory"

@@ -190,6 +190,7 @@ CeruleanCity_Gym_EventScript_Misty::
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
 	setflag FLAG_BADGE10_GET
+	special Achievement_CheckAll
 	setflag FLAG_DEFEATED_CERULEAN_GYM
 	addvar VAR_NUM_BADGES, 1
 	setvar VAR_0x8008, 10

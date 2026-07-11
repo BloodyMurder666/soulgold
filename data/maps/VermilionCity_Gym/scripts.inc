@@ -259,6 +259,7 @@ VermilionCity_Gym_EventScript_Surge::
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox VermilionGym_Text_ThunderBadgeInfo, MSGBOX_DEFAULT
 	setflag FLAG_BADGE11_GET
+	special Achievement_CheckAll
 	setflag FLAG_DEFEATED_VERMILION_GYM
 	addvar VAR_NUM_BADGES, 1
 	setvar VAR_0x8008, 11
@@ -422,4 +423,3 @@ VermilionCity_Gym_Text_OnlyTrashLocksWereReset::
     .string "There's only trash here.\p"
     .string "Hey!\n"
     .string "The electric locks were reset!$"
-

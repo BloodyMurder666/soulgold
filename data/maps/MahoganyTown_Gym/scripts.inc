@@ -162,6 +162,7 @@ MahoganyTown_Gym_EventScript_PryceVictory::
 	msgbox MahoganyTown_Gym_Text_GlacierBadgeSpeech, MSGBOX_DEFAULT
 # 82 "data/maps/MahoganyTown_Gym/scripts.pory"
 	setflag FLAG_BADGE07_GET
+	special Achievement_CheckAll
 # 83 "data/maps/MahoganyTown_Gym/scripts.pory"
 	setflag FLAG_DEFEATED_MAHOGANY_TOWN_GYM
 # 84 "data/maps/MahoganyTown_Gym/scripts.pory"

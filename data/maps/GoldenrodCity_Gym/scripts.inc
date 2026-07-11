@@ -148,6 +148,7 @@ GoldenrodCity_Gym_EventScript_WhitneyBadge::
 	msgbox GoldenrodCity_Gym_Text_WhitneyPlainBadge, MSGBOX_DEFAULT
 # 75 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	setflag FLAG_BADGE03_GET
+	special Achievement_CheckAll
 # 76 "data/maps/GoldenrodCity_Gym/scripts.pory"
 	setflag FLAG_DEFEATED_GOLDENROD_CITY_GYM
 # 77 "data/maps/GoldenrodCity_Gym/scripts.pory"

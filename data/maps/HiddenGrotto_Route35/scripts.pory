@@ -11,18 +11,22 @@ script handleROUTE35GrottoEvent {
             clearflag(FLAG_ROUTE35_GROTTO) //HIDDEN_GROTTO_UNSET, should never land on this anyway
             setobjectxyperm(1, 28, 27)
             setobjectxyperm(2, 28, 27)
+            setobjectxyperm(LOCALID_GROTTO_HIDDEN_ITEM_ROUTE35, 28, 27)
         case 1:
             setflag(FLAG_ROUTE35_GROTTO) // HIDDEN_GROTTO_EMPTY
             setobjectxyperm(1, 28, 27)
             setobjectxyperm(2, 28, 27)
+            setobjectxyperm(LOCALID_GROTTO_HIDDEN_ITEM_ROUTE35, 28, 27)
         case 2:
             clearflag(FLAG_ROUTE35_GROTTO) //HIDDEN_GROTTO_POKEMON
             setobjectxyperm(1, 28, 27)
             setobjectxyperm(2, 14, 11)
+            setobjectxyperm(LOCALID_GROTTO_HIDDEN_ITEM_ROUTE35, 28, 27)
         case 3:
             clearflag(FLAG_ROUTE35_GROTTO) //HIDDEN_GROTTO_ITEM
             setobjectxyperm(2, 28, 27)
             setobjectxyperm(1, 14, 11)
+            setobjectxyperm(LOCALID_GROTTO_HIDDEN_ITEM_ROUTE35, 28, 27)
         case 4:
             clearflag(FLAG_ROUTE35_GROTTO) //HIDDEN_GROTTO_HIDDEN_ITEM
             setobjectxyperm(LOCALID_GROTTO_ITEM_ROUTE35, 28, 27)
@@ -57,6 +61,9 @@ script ROUTE35_GrottoPokemon {
 script FindItem_ROUTE35_Grotto {
     special(HiddenGrotto_GetCurrentContentId)
 	finditem(VAR_RESULT)
+    if (var(VAR_0x8007) == FALSE) {
+        end
+    }
     special(HiddenGrotto_EmptyCurrent)
     setflag(FLAG_ROUTE35_GROTTO)
 	removeobject(1)
@@ -71,8 +78,10 @@ script FindHiddenItem_ROUTE35_Grotto {
 
     special(HiddenGrotto_GetCurrentContentId)
     finditem(VAR_RESULT)
+    if (var(VAR_0x8007) == FALSE) {
+        end
+    }
     special(HiddenGrotto_EmptyCurrent)
     setflag(FLAG_ROUTE35_GROTTO)
     end
 }
-

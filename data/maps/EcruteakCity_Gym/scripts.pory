@@ -46,6 +46,7 @@ EcruteakCity_Gym_EventScript_Morty::
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox MortyText_FogBadgeSpeech, MSGBOX_DEFAULT
 	setflag FLAG_BADGE04_GET
+	special Achievement_CheckAll
 	setflag FLAG_DEFEATED_ECRUTEAK_CITY_GYM
 	clearflag FLAG_HIDE_ECRUTEAK_RIVAL
 	addvar VAR_NUM_BADGES, 1

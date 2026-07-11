@@ -61,6 +61,7 @@ In the grotto map JSON:
 - The item-ball placeholder should use local id `1` unless you changed `HIDDEN_GROTTO_OBJ_ITEM`.
 - The Pokemon placeholder should use local id `2` unless you changed `HIDDEN_GROTTO_OBJ_MON`.
 - The Pokemon placeholder should use `OBJ_EVENT_GFX_VAR_0` so the C code can push the correct species into `VAR_OBJ_GFX_ID_0`.
+- Give the rare/hidden-item object `OBJ_EVENT_GFX_ITEM_BALL` with `MOVEMENT_TYPE_NONE`, then move it off-map for every non-hidden-item content type. The content category selects a different reward table; it should still look like an ordinary item ball to the player. Object coordinates changed by `setobjectxyperm` persist, so omitting those reset branches can leave a stale object in later rolls.
 
 Example:
 
@@ -88,6 +89,7 @@ Use the same pattern as `data/maps/HiddenGrotto_Route32/scripts.pory`:
 - For visible items and hidden items:
   - call `HiddenGrotto_GetCurrentContentId`
   - give/find the item
+  - if `VAR_RESULT == FALSE`, end without clearing the grotto so a full Bag does not destroy the reward
   - call `HiddenGrotto_EmptyCurrent`
 
 The daily flag on the map objects is still useful for hiding cleared content during the current day, but the actual grotto content state lives in `SaveBlock3`.

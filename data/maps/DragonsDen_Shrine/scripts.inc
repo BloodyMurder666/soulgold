@@ -272,6 +272,7 @@ DragonsDen_Shrine_EventScript_ClairEnter::
 	msgbox DragonsDen_Shrine_Text_RisingBadgeExplanation, MSGBOX_DEFAULT
 	removefieldmugshot
 	setflag FLAG_BADGE08_GET
+	special Achievement_CheckAll
 	setflag FLAG_DEFEATED_BLACKTHORN_GYM
 	addvar VAR_NUM_BADGES, 1
 

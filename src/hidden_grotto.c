@@ -13,9 +13,6 @@
 #include "constants/species.h"
 
 #define ITEM_FROM_GROTTO_DATA 0xFFFF
-#define HIDDEN_GROTTO_MON_TOTAL_WEIGHT 40
-#define HIDDEN_GROTTO_ITEM_TOTAL_WEIGHT 100
-#define HIDDEN_GROTTO_HIDDEN_ITEM_TOTAL_WEIGHT 160
 
 enum HiddenGrottoId
 {
@@ -42,7 +39,10 @@ enum HiddenGrottoId
     HIDDEN_GROTTO_KANTO_UNUSED7,
     HIDDEN_GROTTO_KANTO_UNUSED8,
     HIDDEN_GROTTO_KANTO_UNUSED9,
+    HIDDEN_GROTTO_COUNT,
 };
+
+STATIC_ASSERT(HIDDEN_GROTTO_COUNT == NUM_HIDDEN_GROTTOES, HiddenGrottoCountDoesNotMatchSaveData);
 
 enum
 {
@@ -76,8 +76,9 @@ static u16 GetCurrentHiddenGrottoId(void);
 static struct HiddenGrottoContent *GetCurrentHiddenGrottoContent(void);
 static const struct HiddenGrottoData *GetCurrentHiddenGrottoData(void);
 static u8 GetHiddenGrottoMonLevel(const struct HiddenGrottoData *grotto);
+static bool32 IsHiddenGrottoContentValid(const struct HiddenGrottoContent *content);
 static void PopulateCurrentHiddenGrotto(void);
-static u16 GetWeightedTableEntry(const struct HiddenGrottoWeightedEntry *table, u8 count, u16 totalWeight);
+static u16 GetWeightedTableEntry(const struct HiddenGrottoWeightedEntry *table, u8 count, enum RandomTag tag);
 static u16 GetHiddenGrottoSpecies(const struct HiddenGrottoMonEntry *entry);
 static u16 GetRandomHiddenGrottoSpecies(const struct HiddenGrottoData *grotto);
 static void GiveHiddenGrottoMonPerfectIvs(struct Pokemon *mon);
@@ -442,8 +443,13 @@ void HiddenGrotto_InitializeCurrent(void)
         return;
     }
 
+    if (!IsHiddenGrottoContentValid(content))
+    {
+        content->type = HIDDEN_GROTTO_UNSET;
+        content->id = ITEM_NONE;
+    }
+
     PopulateCurrentHiddenGrotto();
-    content = GetCurrentHiddenGrottoContent();
 
     gSpecialVar_Result = content->type;
     gSpecialVar_0x8004 = content->id;
@@ -481,7 +487,7 @@ void HiddenGrotto_CreateCurrentMon(void)
 {
     const struct HiddenGrottoData *grotto = GetCurrentHiddenGrottoData();
     struct HiddenGrottoContent *content = GetCurrentHiddenGrottoContent();
-    u8 abilityNum = 2;
+    u8 hiddenAbilityNum = NUM_NORMAL_ABILITY_SLOTS;
 
     gSpecialVar_Result = FALSE;
 
@@ -494,7 +500,8 @@ void HiddenGrotto_CreateCurrentMon(void)
 
     CreateScriptedWildMon(content->id, GetHiddenGrottoMonLevel(grotto), ITEM_NONE, ITEM_NONE);
     GiveHiddenGrottoMonPerfectIvs(&gEnemyParty[0]);
-    SetMonData(&gEnemyParty[0], MON_DATA_ABILITY_NUM, &abilityNum);
+    if (GetSpeciesAbility(content->id, hiddenAbilityNum) != ABILITY_NONE)
+        SetMonData(&gEnemyParty[0], MON_DATA_ABILITY_NUM, &hiddenAbilityNum);
     CalculateMonStats(&gEnemyParty[0]);
     gSpecialVar_Result = TRUE;
 }
@@ -591,6 +598,23 @@ static u8 GetHiddenGrottoMonLevel(const struct HiddenGrottoData *grotto)
     return grotto->monLevel;
 }
 
+static bool32 IsHiddenGrottoContentValid(const struct HiddenGrottoContent *content)
+{
+    switch (content->type)
+    {
+    case HIDDEN_GROTTO_UNSET:
+    case HIDDEN_GROTTO_EMPTY:
+        return content->id == ITEM_NONE;
+    case HIDDEN_GROTTO_POKEMON:
+        return content->id != SPECIES_NONE && content->id < NUM_SPECIES;
+    case HIDDEN_GROTTO_ITEM:
+    case HIDDEN_GROTTO_HIDDEN_ITEM:
+        return content->id != ITEM_NONE && content->id < ITEMS_COUNT;
+    default:
+        return FALSE;
+    }
+}
+
 static void PopulateCurrentHiddenGrotto(void)
 {
     const struct HiddenGrottoData *grotto = GetCurrentHiddenGrottoData();
@@ -608,39 +632,39 @@ static void PopulateCurrentHiddenGrotto(void)
         return;
     }
 
-    switch (Random() % 10)
+    switch (RandomWeighted(RNG_HIDDEN_GROTTO_CONTENT, 6, 2, 2))
     {
     case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
         content->type = HIDDEN_GROTTO_POKEMON;
         content->id = GetRandomHiddenGrottoSpecies(grotto);
         break;
-    case 6:
-    case 7:
-        value = GetWeightedTableEntry(sHiddenGrottoItems, ARRAY_COUNT(sHiddenGrottoItems), HIDDEN_GROTTO_ITEM_TOTAL_WEIGHT);
+    case 1:
+        value = GetWeightedTableEntry(sHiddenGrottoItems, ARRAY_COUNT(sHiddenGrottoItems), RNG_HIDDEN_GROTTO_ITEM);
         if (value == ITEM_FROM_GROTTO_DATA)
             value = grotto->rareItem;
         content->type = HIDDEN_GROTTO_ITEM;
         content->id = value;
         break;
-    case 8:
-    case 9:
+    case 2:
     default:
-        value = GetWeightedTableEntry(sHiddenGrottoHiddenItems, ARRAY_COUNT(sHiddenGrottoHiddenItems), HIDDEN_GROTTO_HIDDEN_ITEM_TOTAL_WEIGHT);
+        value = GetWeightedTableEntry(sHiddenGrottoHiddenItems, ARRAY_COUNT(sHiddenGrottoHiddenItems), RNG_HIDDEN_GROTTO_HIDDEN_ITEM);
         content->type = HIDDEN_GROTTO_HIDDEN_ITEM;
         content->id = value;
         break;
     }
 }
 
-static u16 GetWeightedTableEntry(const struct HiddenGrottoWeightedEntry *table, u8 count, u16 totalWeight)
+static u16 GetWeightedTableEntry(const struct HiddenGrottoWeightedEntry *table, u8 count, enum RandomTag tag)
 {
-    u16 roll = Random() % totalWeight;
+    u32 totalWeight = 0;
+    u16 roll;
     u32 i;
+
+    for (i = 0; i < count; i++)
+        totalWeight += table[i].weight;
+
+    assertf(count > 0 && totalWeight > 0 && totalWeight <= MAX_u16);
+    roll = RandomUniform(tag, 0, totalWeight - 1);
 
     for (i = 0; i < count; i++)
     {
@@ -662,7 +686,7 @@ static u16 GetHiddenGrottoSpecies(const struct HiddenGrottoMonEntry *entry)
 
 static u16 GetRandomHiddenGrottoSpecies(const struct HiddenGrottoData *grotto)
 {
-    u16 monIndex = GetWeightedTableEntry(sHiddenGrottoPokemonIndexes, ARRAY_COUNT(sHiddenGrottoPokemonIndexes), HIDDEN_GROTTO_MON_TOTAL_WEIGHT);
+    u16 monIndex = GetWeightedTableEntry(sHiddenGrottoPokemonIndexes, ARRAY_COUNT(sHiddenGrottoPokemonIndexes), RNG_HIDDEN_GROTTO_POKEMON);
 
     return GetHiddenGrottoSpecies(&grotto->mons[monIndex]);
 }
@@ -670,13 +694,12 @@ static u16 GetRandomHiddenGrottoSpecies(const struct HiddenGrottoData *grotto)
 static void GiveHiddenGrottoMonPerfectIvs(struct Pokemon *mon)
 {
     u8 perfectIv = MAX_PER_STAT_IVS;
-    u8 firstStat = Random() % NUM_STATS;
-    u8 secondStat;
+    u8 statPair = RandomUniform(RNG_HIDDEN_GROTTO_IVS, 0, NUM_STATS * (NUM_STATS - 1) - 1);
+    u8 firstStat = statPair / (NUM_STATS - 1);
+    u8 secondStat = statPair % (NUM_STATS - 1);
 
-    do
-    {
-        secondStat = Random() % NUM_STATS;
-    } while (secondStat == firstStat);
+    if (secondStat >= firstStat)
+        secondStat++;
 
     SetMonData(mon, MON_DATA_HP_IV + firstStat, &perfectIv);
     SetMonData(mon, MON_DATA_HP_IV + secondStat, &perfectIv);

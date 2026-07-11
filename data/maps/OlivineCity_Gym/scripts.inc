@@ -476,6 +476,7 @@ OlivineCity_Gym_EventScript_JasmineVictory::
 	msgbox OlivineCity_Gym_Text_JasmineBadgeSpeech, MSGBOX_DEFAULT
 # 239 "data/maps/OlivineCity_Gym/scripts.pory"
 	setflag FLAG_BADGE06_GET
+	special Achievement_CheckAll
 # 240 "data/maps/OlivineCity_Gym/scripts.pory"
 	setflag FLAG_DEFEATED_OLIVINE_CITY_GYM
 # 241 "data/maps/OlivineCity_Gym/scripts.pory"

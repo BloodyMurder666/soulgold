@@ -16,13 +16,13 @@ handleROUTE38GrottoEvent::
 	switch VAR_RESULT
 # 10 "data/maps/HiddenGrotto_Route38/scripts.pory"
 	case 0, handleROUTE38GrottoEvent_2
-# 14 "data/maps/HiddenGrotto_Route38/scripts.pory"
+# 15 "data/maps/HiddenGrotto_Route38/scripts.pory"
 	case 1, handleROUTE38GrottoEvent_3
-# 18 "data/maps/HiddenGrotto_Route38/scripts.pory"
+# 20 "data/maps/HiddenGrotto_Route38/scripts.pory"
 	case 2, handleROUTE38GrottoEvent_4
-# 22 "data/maps/HiddenGrotto_Route38/scripts.pory"
+# 25 "data/maps/HiddenGrotto_Route38/scripts.pory"
 	case 3, handleROUTE38GrottoEvent_5
-# 26 "data/maps/HiddenGrotto_Route38/scripts.pory"
+# 30 "data/maps/HiddenGrotto_Route38/scripts.pory"
 	case 4, handleROUTE38GrottoEvent_6
 	return
 
@@ -33,117 +33,137 @@ handleROUTE38GrottoEvent_2:
 	setobjectxyperm 1, 28, 27
 # 13 "data/maps/HiddenGrotto_Route38/scripts.pory"
 	setobjectxyperm 2, 28, 27
+# 14 "data/maps/HiddenGrotto_Route38/scripts.pory"
+	setobjectxyperm LOCALID_GROTTO_HIDDEN_ITEM_ROUTE38, 28, 27
 	return
 
 handleROUTE38GrottoEvent_3:
-# 15 "data/maps/HiddenGrotto_Route38/scripts.pory"
-	setflag FLAG_ROUTE38_GROTTO
 # 16 "data/maps/HiddenGrotto_Route38/scripts.pory"
-	setobjectxyperm 1, 28, 27
+	setflag FLAG_ROUTE38_GROTTO
 # 17 "data/maps/HiddenGrotto_Route38/scripts.pory"
+	setobjectxyperm 1, 28, 27
+# 18 "data/maps/HiddenGrotto_Route38/scripts.pory"
 	setobjectxyperm 2, 28, 27
+# 19 "data/maps/HiddenGrotto_Route38/scripts.pory"
+	setobjectxyperm LOCALID_GROTTO_HIDDEN_ITEM_ROUTE38, 28, 27
 	return
 
 handleROUTE38GrottoEvent_4:
-# 19 "data/maps/HiddenGrotto_Route38/scripts.pory"
-	clearflag FLAG_ROUTE38_GROTTO
-# 20 "data/maps/HiddenGrotto_Route38/scripts.pory"
-	setobjectxyperm 1, 28, 27
 # 21 "data/maps/HiddenGrotto_Route38/scripts.pory"
+	clearflag FLAG_ROUTE38_GROTTO
+# 22 "data/maps/HiddenGrotto_Route38/scripts.pory"
+	setobjectxyperm 1, 28, 27
+# 23 "data/maps/HiddenGrotto_Route38/scripts.pory"
 	setobjectxyperm 2, 14, 11
+# 24 "data/maps/HiddenGrotto_Route38/scripts.pory"
+	setobjectxyperm LOCALID_GROTTO_HIDDEN_ITEM_ROUTE38, 28, 27
 	return
 
 handleROUTE38GrottoEvent_5:
-# 23 "data/maps/HiddenGrotto_Route38/scripts.pory"
+# 26 "data/maps/HiddenGrotto_Route38/scripts.pory"
 	clearflag FLAG_ROUTE38_GROTTO
-# 24 "data/maps/HiddenGrotto_Route38/scripts.pory"
+# 27 "data/maps/HiddenGrotto_Route38/scripts.pory"
 	setobjectxyperm 2, 28, 27
-# 25 "data/maps/HiddenGrotto_Route38/scripts.pory"
+# 28 "data/maps/HiddenGrotto_Route38/scripts.pory"
 	setobjectxyperm 1, 14, 11
+# 29 "data/maps/HiddenGrotto_Route38/scripts.pory"
+	setobjectxyperm LOCALID_GROTTO_HIDDEN_ITEM_ROUTE38, 28, 27
 	return
 
 handleROUTE38GrottoEvent_6:
-# 27 "data/maps/HiddenGrotto_Route38/scripts.pory"
+# 31 "data/maps/HiddenGrotto_Route38/scripts.pory"
 	clearflag FLAG_ROUTE38_GROTTO
-# 28 "data/maps/HiddenGrotto_Route38/scripts.pory"
+# 32 "data/maps/HiddenGrotto_Route38/scripts.pory"
 	setobjectxyperm LOCALID_GROTTO_ITEM_ROUTE38, 28, 27
-# 29 "data/maps/HiddenGrotto_Route38/scripts.pory"
+# 33 "data/maps/HiddenGrotto_Route38/scripts.pory"
 	setobjectxyperm LOCALID_GROTTO_POKEMON_ROUTE38, 28, 27
-# 30 "data/maps/HiddenGrotto_Route38/scripts.pory"
+# 34 "data/maps/HiddenGrotto_Route38/scripts.pory"
 	setobjectxyperm LOCALID_GROTTO_HIDDEN_ITEM_ROUTE38, 14, 11
 	return
 
 
 ROUTE38_GrottoPokemon::
-# 36 "data/maps/HiddenGrotto_Route38/scripts.pory"
-	lock
-# 37 "data/maps/HiddenGrotto_Route38/scripts.pory"
-	faceplayer
-# 38 "data/maps/HiddenGrotto_Route38/scripts.pory"
-	special HiddenGrotto_GetCurrentContentId
-# 39 "data/maps/HiddenGrotto_Route38/scripts.pory"
-	copyvar VAR_0x8004, VAR_RESULT
 # 40 "data/maps/HiddenGrotto_Route38/scripts.pory"
-	playmoncry VAR_0x8004, CRY_MODE_ENCOUNTER
+	lock
 # 41 "data/maps/HiddenGrotto_Route38/scripts.pory"
-	special HiddenGrotto_CreateCurrentMon
+	faceplayer
 # 42 "data/maps/HiddenGrotto_Route38/scripts.pory"
+	special HiddenGrotto_GetCurrentContentId
+# 43 "data/maps/HiddenGrotto_Route38/scripts.pory"
+	copyvar VAR_0x8004, VAR_RESULT
+# 44 "data/maps/HiddenGrotto_Route38/scripts.pory"
+	playmoncry VAR_0x8004, CRY_MODE_ENCOUNTER
+# 45 "data/maps/HiddenGrotto_Route38/scripts.pory"
+	special HiddenGrotto_CreateCurrentMon
+# 46 "data/maps/HiddenGrotto_Route38/scripts.pory"
 	compare VAR_RESULT, FALSE
 	goto_if_eq ROUTE38_GrottoPokemon_2
-# 46 "data/maps/HiddenGrotto_Route38/scripts.pory"
-	waitse
-# 47 "data/maps/HiddenGrotto_Route38/scripts.pory"
-	delay 40
-# 48 "data/maps/HiddenGrotto_Route38/scripts.pory"
-	waitmoncry
-# 49 "data/maps/HiddenGrotto_Route38/scripts.pory"
-	special HiddenGrotto_EmptyCurrent
 # 50 "data/maps/HiddenGrotto_Route38/scripts.pory"
-	setflag FLAG_ROUTE38_GROTTO
+	waitse
 # 51 "data/maps/HiddenGrotto_Route38/scripts.pory"
-	dowildbattle
+	delay 40
 # 52 "data/maps/HiddenGrotto_Route38/scripts.pory"
-	removeobject 2
+	waitmoncry
 # 53 "data/maps/HiddenGrotto_Route38/scripts.pory"
+	special HiddenGrotto_EmptyCurrent
+# 54 "data/maps/HiddenGrotto_Route38/scripts.pory"
+	setflag FLAG_ROUTE38_GROTTO
+# 55 "data/maps/HiddenGrotto_Route38/scripts.pory"
+	dowildbattle
+# 56 "data/maps/HiddenGrotto_Route38/scripts.pory"
+	removeobject 2
+# 57 "data/maps/HiddenGrotto_Route38/scripts.pory"
 	release
 	end
 
 ROUTE38_GrottoPokemon_2:
-# 43 "data/maps/HiddenGrotto_Route38/scripts.pory"
+# 47 "data/maps/HiddenGrotto_Route38/scripts.pory"
 	release
 	end
 
 
 FindItem_ROUTE38_Grotto::
-# 58 "data/maps/HiddenGrotto_Route38/scripts.pory"
-	special HiddenGrotto_GetCurrentContentId
-# 59 "data/maps/HiddenGrotto_Route38/scripts.pory"
-	finditem VAR_RESULT
-# 60 "data/maps/HiddenGrotto_Route38/scripts.pory"
-	special HiddenGrotto_EmptyCurrent
-# 61 "data/maps/HiddenGrotto_Route38/scripts.pory"
-	setflag FLAG_ROUTE38_GROTTO
 # 62 "data/maps/HiddenGrotto_Route38/scripts.pory"
+	special HiddenGrotto_GetCurrentContentId
+# 63 "data/maps/HiddenGrotto_Route38/scripts.pory"
+	finditem VAR_RESULT
+# 64 "data/maps/HiddenGrotto_Route38/scripts.pory"
+	compare VAR_0x8007, FALSE
+	goto_if_eq FindItem_ROUTE38_Grotto_2
+# 67 "data/maps/HiddenGrotto_Route38/scripts.pory"
+	special HiddenGrotto_EmptyCurrent
+# 68 "data/maps/HiddenGrotto_Route38/scripts.pory"
+	setflag FLAG_ROUTE38_GROTTO
+# 69 "data/maps/HiddenGrotto_Route38/scripts.pory"
 	removeobject 1
+	end
+
+FindItem_ROUTE38_Grotto_2:
 	end
 
 
 FindHiddenItem_ROUTE38_Grotto::
-# 67 "data/maps/HiddenGrotto_Route38/scripts.pory"
+# 74 "data/maps/HiddenGrotto_Route38/scripts.pory"
 	special HiddenGrotto_GetCurrentContentType
-# 68 "data/maps/HiddenGrotto_Route38/scripts.pory"
+# 75 "data/maps/HiddenGrotto_Route38/scripts.pory"
 	compare VAR_RESULT, 4
 	goto_if_ne FindHiddenItem_ROUTE38_Grotto_2
-# 72 "data/maps/HiddenGrotto_Route38/scripts.pory"
+# 79 "data/maps/HiddenGrotto_Route38/scripts.pory"
 	special HiddenGrotto_GetCurrentContentId
-# 73 "data/maps/HiddenGrotto_Route38/scripts.pory"
+# 80 "data/maps/HiddenGrotto_Route38/scripts.pory"
 	finditem VAR_RESULT
-# 74 "data/maps/HiddenGrotto_Route38/scripts.pory"
+# 81 "data/maps/HiddenGrotto_Route38/scripts.pory"
+	compare VAR_0x8007, FALSE
+	goto_if_eq FindHiddenItem_ROUTE38_Grotto_5
+# 84 "data/maps/HiddenGrotto_Route38/scripts.pory"
 	special HiddenGrotto_EmptyCurrent
-# 75 "data/maps/HiddenGrotto_Route38/scripts.pory"
+# 85 "data/maps/HiddenGrotto_Route38/scripts.pory"
 	setflag FLAG_ROUTE38_GROTTO
 	end
 
 FindHiddenItem_ROUTE38_Grotto_2:
+	end
+
+FindHiddenItem_ROUTE38_Grotto_5:
 	end
 

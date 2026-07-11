@@ -62,6 +62,7 @@ CianwoodGym_EventScript_ChuckVictory::
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox CianwoodGym_Text_ChuckBadgeSpeech, MSGBOX_DEFAULT
 	setflag FLAG_BADGE05_GET
+	special Achievement_CheckAll
 	setflag FLAG_DEFEATED_CIANWOOD_GYM
 	addvar VAR_NUM_BADGES, 1
 	setvar VAR_0x8008, 5
@@ -253,4 +254,3 @@ CianwoodGym_Text_BlackbeltLungBeaten:
 CianwoodGym_Text_BlackbeltLungAfter:
 	.string "My Pokémon lost…\n"
 	.string "My… my pride is shattered…$"
-
