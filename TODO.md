@@ -2,6 +2,7 @@ Bugs:
 - More Berry spots
 
 
+
 # Demo 1 MVP
 
 Must have:
@@ -18,7 +19,7 @@ Maybe:
 - mugshot and trainer ow/frontsprite should match
 
 
-
+- Music selector or randomizer for battle facilities
 
 
 
