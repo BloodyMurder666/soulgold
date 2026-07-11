@@ -111,8 +111,8 @@ MahoganyTown_EventScript_MerchantTrigger::
 	updatemoneybox 0
 	playse SE_SHOP
 	waitse
-	msgbox MahoganyTown_Text_RageCandyBarMerchantSavorIt, MSGBOX_DEFAULT
 	hidemoneybox
+	msgbox MahoganyTown_Text_RageCandyBarMerchantSavorIt, MSGBOX_DEFAULT
 	giveitem ITEM_RAGE_CANDY_BAR
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
 	closemessage
@@ -142,6 +142,9 @@ MahoganyTown_EventScript_Merchant::
 	goto_if_eq VAR_RESULT, FALSE, MahoganyTown_EventScript_MerchantBroke
 	removemoney 300
 	updatemoneybox 0
+	playse SE_SHOP
+	waitse
+	hidemoneybox
 	msgbox MahoganyTown_Text_RageCandyBarMerchantSavorIt, MSGBOX_DEFAULT
 	giveitem ITEM_RAGE_CANDY_BAR
 	hidemoneybox
