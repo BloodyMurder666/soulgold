@@ -205,6 +205,34 @@ SINGLE_BATTLE_TEST("Mega Sol lowers the holder's Thunder accuracy like sunlight"
 }
 
 #if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Mega Sol activates the holder's Chlorophyll")
+{
+    GIVEN {
+        PLAYER(SPECIES_MEGANIUM_MEGA) { Ability(ABILITY_MEGA_SOL); Innates(ABILITY_CHLOROPHYLL); Speed(2); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(3); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SCRATCH); MOVE(opponent, MOVE_CELEBRATE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Mega Sol activates the holder's Solar Power at turn end")
+{
+    GIVEN {
+        PLAYER(SPECIES_MEGANIUM_MEGA) { Ability(ABILITY_MEGA_SOL); Innates(ABILITY_SOLAR_POWER); HP(100); MaxHP(100); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_CELEBRATE); }
+    } SCENE {
+        ABILITY_POPUP(player, ABILITY_SOLAR_POWER);
+        HP_BAR(player, damage: 12);
+    } THEN {
+        EXPECT_EQ(player->hp, 88);
+    }
+}
+
 SINGLE_BATTLE_TEST("Mega Sol works as an innate trait", s16 damage)
 {
     enum Ability ability;

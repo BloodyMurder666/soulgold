@@ -4009,6 +4009,7 @@ BattleScript_FaintBattler::
 	dofaintanimation BS_FAINTED
 	copybyte sBATTLER, gBattlerFainted @ for message
 	printstring STRINGID_BATTLERFAINTED
+	tryactivatemartyr BS_FAINTED
 	cleareffectsonfaint BS_FAINTED
 	trytoclearprimalweather
 	call BattleScript_TryRevertWeatherform
@@ -5342,6 +5343,36 @@ BattleScript_DefSpDefDownFlush:
 BattleScript_DefSpDefDownRet::
 	return
 
+BattleScript_TitanGripAtkDefDown::
+	call BattleScript_AbilityPopUpScripting
+	copybyte sBATTLER, gBattlerAttacker
+	beginstatbuffbatch
+	setstatchanger STAT_ATK, 1, TRUE
+	statbuffchange BS_TARGET, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_TitanGripAtkDefDownTryDef, BIT_DEF
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_CHANGE, BattleScript_TitanGripAtkDefDownTryDef
+BattleScript_TitanGripAtkDefDownTryDef:
+	copybyte sBATTLER, gBattlerAttacker
+	setstatchanger STAT_DEF, 1, TRUE
+	statbuffchange BS_TARGET, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_TitanGripAtkDefDownFlush
+BattleScript_TitanGripAtkDefDownFlush:
+	flushstatbuffbatch
+	return
+
+BattleScript_TitanGripDefSpDefDown::
+	call BattleScript_AbilityPopUpScripting
+	copybyte sBATTLER, gBattlerAttacker
+	beginstatbuffbatch
+	setstatchanger STAT_DEF, 1, TRUE
+	statbuffchange BS_TARGET, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_TitanGripDefSpDefDownTrySpDef, BIT_SPDEF
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_CHANGE, BattleScript_TitanGripDefSpDefDownTrySpDef
+BattleScript_TitanGripDefSpDefDownTrySpDef:
+	copybyte sBATTLER, gBattlerAttacker
+	setstatchanger STAT_SPDEF, 1, TRUE
+	statbuffchange BS_TARGET, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_TitanGripDefSpDefDownFlush
+BattleScript_TitanGripDefSpDefDownFlush:
+	flushstatbuffbatch
+	return
+
 BattleScript_DefDownSpeedUp::
 	jumpifstat BS_ATTACKER, CMP_GREATER_THAN, STAT_DEF, MIN_STAT_STAGE, BattleScript_DefDownSpeedUpTryDef
 	jumpifstat BS_ATTACKER, CMP_EQUAL, STAT_SPEED, MAX_STAT_STAGE, BattleScript_DefDownSpeedUpRet
@@ -6217,6 +6248,22 @@ BattleScript_RainDishActivates::
 	call BattleScript_AbilityHpHeal
 	end2
 
+BattleScript_MendingActivates::
+	call BattleScript_AbilityPopUp
+	jumpifbyte CMP_NO_COMMON_BITS, cMULTISTRING_CHOOSER, 1, BattleScript_MendingTryHeal
+	curestatus BS_ATTACKER
+	printstring STRINGID_PKMNSXCUREDYPROBLEM
+	waitmessage B_WAIT_TIME_LONG
+	updatestatusicon BS_ATTACKER
+BattleScript_MendingTryHeal:
+	jumpifbyte CMP_NO_COMMON_BITS, cMULTISTRING_CHOOSER, 2, BattleScript_MendingEnd
+	printstring STRINGID_PKMNSXRESTOREDHPALITTLE2
+	waitmessage B_WAIT_TIME_LONG
+	healthbarupdate BS_ATTACKER, PASSIVE_HP_UPDATE
+	datahpupdate BS_ATTACKER, PASSIVE_HP_UPDATE
+BattleScript_MendingEnd:
+	end2
+
 BattleScript_LifestealActivates::
 	call BattleScript_AbilityHpHeal
 	return
@@ -6261,6 +6308,15 @@ BattleScript_SolarPowerActivates::
 	healthbarupdate BS_ATTACKER, PASSIVE_HP_UPDATE
 	datahpupdate BS_ATTACKER, PASSIVE_HP_UPDATE
 	printstring STRINGID_SOLARPOWERHPDROP
+	waitmessage B_WAIT_TIME_LONG
+	tryfaintmon BS_ATTACKER
+	end2
+
+BattleScript_SplinterActivates::
+	call BattleScript_AbilityPopUp
+	healthbarupdate BS_ATTACKER, PASSIVE_HP_UPDATE
+	datahpupdate BS_ATTACKER, PASSIVE_HP_UPDATE
+	printstring STRINGID_PKMNHURTSWITHABILITY
 	waitmessage B_WAIT_TIME_LONG
 	tryfaintmon BS_ATTACKER
 	end2
@@ -7154,6 +7210,125 @@ BattleScript_BattlerAbilityStatRaiseOnSwitchInGeneric::
 	printstring STRINGID_SCRIPTINGABILITYSTATRAISE
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_BattlerAbilityStatRaiseOnSwitchInGenericRet:
+	return
+
+BattleScript_GlassCannonActivates::
+	call BattleScript_AbilityPopUpScripting
+	beginstatbuffbatch
+	statbuffchange BS_SCRIPTING, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN | STAT_CHANGE_ALLOW_PTR, BattleScript_GlassCannonTryDefense, BIT_DEF | BIT_SPDEF
+BattleScript_GlassCannonTryDefense:
+	setstatchanger STAT_DEF, 2, TRUE
+	statbuffchange BS_SCRIPTING, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN | STAT_CHANGE_ALLOW_PTR, BattleScript_GlassCannonTrySpDefense, BIT_SPDEF
+BattleScript_GlassCannonTrySpDefense:
+	setstatchanger STAT_SPDEF, 2, TRUE
+	statbuffchange BS_SCRIPTING, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN | STAT_CHANGE_ALLOW_PTR, BattleScript_GlassCannonFlush
+BattleScript_GlassCannonFlush:
+	flushstatbuffbatch
+	return
+
+BattleScript_RallyActivates::
+	call BattleScript_AbilityPopUpScripting
+	beginstatbuffbatch
+	statbuffchange BS_TARGET, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN | STAT_CHANGE_ALLOW_PTR, BattleScript_RallyFlush
+BattleScript_RallyFlush:
+	flushstatbuffbatch
+	restoretarget
+	return
+
+BattleScript_TwinStarsActivates::
+	call BattleScript_AbilityPopUpScripting
+	beginstatbuffbatch
+	setstatchanger STAT_ATK, 1, FALSE
+	statbuffchange BS_SCRIPTING, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN | STAT_CHANGE_ALLOW_PTR, BattleScript_TwinStarsOwnerDefense, BIT_DEF | BIT_SPATK | BIT_SPDEF | BIT_SPEED
+BattleScript_TwinStarsOwnerDefense:
+	setstatchanger STAT_DEF, 1, FALSE
+	statbuffchange BS_SCRIPTING, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN | STAT_CHANGE_ALLOW_PTR, BattleScript_TwinStarsOwnerSpAttack, BIT_SPATK | BIT_SPDEF | BIT_SPEED
+BattleScript_TwinStarsOwnerSpAttack:
+	setstatchanger STAT_SPATK, 1, FALSE
+	statbuffchange BS_SCRIPTING, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN | STAT_CHANGE_ALLOW_PTR, BattleScript_TwinStarsOwnerSpDefense, BIT_SPDEF | BIT_SPEED
+BattleScript_TwinStarsOwnerSpDefense:
+	setstatchanger STAT_SPDEF, 1, FALSE
+	statbuffchange BS_SCRIPTING, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN | STAT_CHANGE_ALLOW_PTR, BattleScript_TwinStarsOwnerSpeed, BIT_SPEED
+BattleScript_TwinStarsOwnerSpeed:
+	setstatchanger STAT_SPEED, 1, FALSE
+	statbuffchange BS_SCRIPTING, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN | STAT_CHANGE_ALLOW_PTR, BattleScript_TwinStarsOwnerFlush
+BattleScript_TwinStarsOwnerFlush:
+	flushstatbuffbatch
+	beginstatbuffbatch
+	setstatchanger STAT_ATK, 1, FALSE
+	statbuffchange BS_TARGET, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN | STAT_CHANGE_ALLOW_PTR, BattleScript_TwinStarsPartnerDefense, BIT_DEF | BIT_SPATK | BIT_SPDEF | BIT_SPEED
+BattleScript_TwinStarsPartnerDefense:
+	setstatchanger STAT_DEF, 1, FALSE
+	statbuffchange BS_TARGET, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN | STAT_CHANGE_ALLOW_PTR, BattleScript_TwinStarsPartnerSpAttack, BIT_SPATK | BIT_SPDEF | BIT_SPEED
+BattleScript_TwinStarsPartnerSpAttack:
+	setstatchanger STAT_SPATK, 1, FALSE
+	statbuffchange BS_TARGET, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN | STAT_CHANGE_ALLOW_PTR, BattleScript_TwinStarsPartnerSpDefense, BIT_SPDEF | BIT_SPEED
+BattleScript_TwinStarsPartnerSpDefense:
+	setstatchanger STAT_SPDEF, 1, FALSE
+	statbuffchange BS_TARGET, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN | STAT_CHANGE_ALLOW_PTR, BattleScript_TwinStarsPartnerSpeed, BIT_SPEED
+BattleScript_TwinStarsPartnerSpeed:
+	setstatchanger STAT_SPEED, 1, FALSE
+	statbuffchange BS_TARGET, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN | STAT_CHANGE_ALLOW_PTR, BattleScript_TwinStarsPartnerFlush
+BattleScript_TwinStarsPartnerFlush:
+	flushstatbuffbatch
+	restoretarget
+	return
+
+BattleScript_DesperadoActivates::
+	call BattleScript_AbilityPopUp
+	beginstatbuffbatch
+	setstatchanger STAT_ATK, 1, FALSE
+	statbuffchange BS_TARGET, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN | STAT_CHANGE_ALLOW_PTR, BattleScript_DesperadoSpAttack, BIT_SPATK
+BattleScript_DesperadoSpAttack:
+	setstatchanger STAT_SPATK, 1, FALSE
+	statbuffchange BS_TARGET, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN | STAT_CHANGE_ALLOW_PTR, BattleScript_DesperadoFlush
+BattleScript_DesperadoFlush:
+	flushstatbuffbatch
+	return
+
+BattleScript_BloodlustActivates::
+	call BattleScript_AbilityPopUpScripting
+	beginstatbuffbatch
+	setstatchanger STAT_ATK, 1, FALSE
+	statbuffchange BS_SCRIPTING, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN | STAT_CHANGE_ALLOW_PTR, BattleScript_BloodlustSpeed, BIT_SPEED
+BattleScript_BloodlustSpeed:
+	setstatchanger STAT_SPEED, 1, FALSE
+	statbuffchange BS_SCRIPTING, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN | STAT_CHANGE_ALLOW_PTR, BattleScript_BloodlustFlush
+BattleScript_BloodlustFlush:
+	flushstatbuffbatch
+	return
+
+BattleScript_BackdraftActivates::
+	call BattleScript_AbilityPopUpScripting
+	setbyte gBattlerTarget, 0
+BattleScript_BackdraftLoop:
+	jumpifabsent BS_TARGET, BattleScript_BackdraftNext
+	jumpiftargetally BattleScript_BackdraftNext
+	copybyte sBATTLER, gBattlerAttacker
+	beginstatbuffbatch
+	setstatchanger STAT_SPEED, 1, TRUE
+	statbuffchange BS_TARGET, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_BackdraftFlush
+BattleScript_BackdraftFlush:
+	flushstatbuffbatch
+BattleScript_BackdraftNext:
+	addbyte gBattlerTarget, 1
+	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_BackdraftLoop
+	restoretarget
+	restoreattacker
+	return
+
+BattleScript_MartyrActivates::
+	call BattleScript_AbilityPopUp
+	copybyte sBATTLER, gBattlerTarget
+	printstring STRINGID_HEALINGWISHHEALED
+	waitmessage B_WAIT_TIME_LONG
+	healthbarupdate BS_TARGET, PASSIVE_HP_UPDATE
+	datahpupdate BS_TARGET, PASSIVE_HP_UPDATE
+	restoretarget
+	return
+
+BattleScript_MagnifyFieldActivates::
+	call BattleScript_AbilityPopUpScripting
 	return
 
 BattleScript_BattlerAbilityStatRaiseOnSwitchInWindRider::
@@ -8067,6 +8242,7 @@ BattleScript_ArenaDoJudgment::
 	playfaintcry BS_OPPONENT1
 	waitcry
 	dofaintanimation BS_OPPONENT1
+	tryactivatemartyr BS_OPPONENT1
 	cleareffectsonfaint BS_OPPONENT1
 	waitanimation
 	arenaopponentmonlost
@@ -8083,6 +8259,7 @@ BattleScript_ArenaJudgmentPlayerLoses:
 	playfaintcry BS_PLAYER1
 	waitcry
 	dofaintanimation BS_PLAYER1
+	tryactivatemartyr BS_PLAYER1
 	cleareffectsonfaint BS_PLAYER1
 	waitanimation
 	arenaplayermonlost
@@ -8100,12 +8277,14 @@ BattleScript_ArenaJudgmentDraw:
 	playfaintcry BS_PLAYER1
 	waitcry
 	dofaintanimation BS_PLAYER1
+	tryactivatemartyr BS_PLAYER1
 	cleareffectsonfaint BS_PLAYER1
 	waitanimation
 	undodynamax BS_OPPONENT1
 	playfaintcry BS_OPPONENT1
 	waitcry
 	dofaintanimation BS_OPPONENT1
+	tryactivatemartyr BS_OPPONENT1
 	cleareffectsonfaint BS_OPPONENT1
 	waitanimation
 	end2

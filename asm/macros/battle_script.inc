@@ -1961,6 +1961,11 @@
 	.byte \battler
 	.endm
 
+	.macro tryactivatemartyr battler:req
+	callnative BS_TryActivateMartyr
+	.byte \battler
+	.endm
+
 	.macro tryactivatesoulheart
 	callnative BS_TryActivateSoulheart
 	.endm

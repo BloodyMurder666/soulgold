@@ -292,5 +292,5 @@ void TitleDefense_IncrementWins(void)
 
     if (wins < MAX_u16)
         VarSet(VAR_TITLE_DEFENSE_WINS, wins + 1);
-    Achievement_CheckAll();
+    Achievement_CheckCounter(ACH_COUNTER_TITLE_DEFENSE_WINS);
 }

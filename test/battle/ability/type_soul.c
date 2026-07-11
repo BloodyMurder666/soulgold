@@ -1,6 +1,42 @@
 #include "global.h"
 #include "test/battle.h"
 
+SINGLE_BATTLE_TEST("Each Soul ability adds its described type")
+{
+    enum Ability ability;
+    enum Type type;
+    u32 species;
+    enum Type types[3];
+
+    PARAMETRIZE { ability = ABILITY_PLAIN_SOUL;        type = TYPE_NORMAL;   species = SPECIES_WOBBUFFET; }
+    PARAMETRIZE { ability = ABILITY_FIGHTER_SOUL;      type = TYPE_FIGHTING; species = SPECIES_WOBBUFFET; }
+    PARAMETRIZE { ability = ABILITY_WIND_SOUL;         type = TYPE_FLYING;   species = SPECIES_WOBBUFFET; }
+    PARAMETRIZE { ability = ABILITY_VENOM_SOUL;        type = TYPE_POISON;   species = SPECIES_WOBBUFFET; }
+    PARAMETRIZE { ability = ABILITY_EARTH_SOUL;        type = TYPE_GROUND;   species = SPECIES_WOBBUFFET; }
+    PARAMETRIZE { ability = ABILITY_STONE_SOUL;        type = TYPE_ROCK;     species = SPECIES_WOBBUFFET; }
+    PARAMETRIZE { ability = ABILITY_HIVE_SOUL;         type = TYPE_BUG;      species = SPECIES_WOBBUFFET; }
+    PARAMETRIZE { ability = ABILITY_PHANTOM_SOUL;      type = TYPE_GHOST;    species = SPECIES_WOBBUFFET; }
+    PARAMETRIZE { ability = ABILITY_STEEL_SOUL;        type = TYPE_STEEL;    species = SPECIES_WOBBUFFET; }
+    PARAMETRIZE { ability = ABILITY_FLAME_SOUL;        type = TYPE_FIRE;     species = SPECIES_WOBBUFFET; }
+    PARAMETRIZE { ability = ABILITY_SEA_SOUL;          type = TYPE_WATER;    species = SPECIES_WOBBUFFET; }
+    PARAMETRIZE { ability = ABILITY_VERDANT_SOUL_TYPE; type = TYPE_GRASS;    species = SPECIES_WOBBUFFET; }
+    PARAMETRIZE { ability = ABILITY_THUNDER_SOUL;      type = TYPE_ELECTRIC; species = SPECIES_WOBBUFFET; }
+    PARAMETRIZE { ability = ABILITY_MIND_SOUL;         type = TYPE_PSYCHIC;  species = SPECIES_SNORLAX; }
+    PARAMETRIZE { ability = ABILITY_FROST_SOUL;        type = TYPE_ICE;      species = SPECIES_WOBBUFFET; }
+    PARAMETRIZE { ability = ABILITY_DRAGON_SOUL;       type = TYPE_DRAGON;   species = SPECIES_WOBBUFFET; }
+    PARAMETRIZE { ability = ABILITY_NIGHT_SOUL;        type = TYPE_DARK;     species = SPECIES_WOBBUFFET; }
+    PARAMETRIZE { ability = ABILITY_FAE_SOUL;          type = TYPE_FAIRY;    species = SPECIES_WOBBUFFET; }
+    GIVEN {
+        PLAYER(species) { Ability(ability); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN {}
+    } THEN {
+        GetBattlerTypes((enum BattlerId)B_POSITION_PLAYER_LEFT, FALSE, types);
+        EXPECT_EQ(types[2], type);
+    }
+}
+
 SINGLE_BATTLE_TEST("Fighter Soul adds Fighting STAB to non-Fighting Pokemon", s16 damage)
 {
     enum Ability ability;

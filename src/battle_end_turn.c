@@ -96,21 +96,14 @@ static bool32 HandleEndTurnWeatherDamage(enum BattlerId battler)
 {
     bool32 effect = FALSE;
 
-    u32 currBattleWeather = GetCurrentBattleWeather();
+    u32 battlerWeather = GetBattlerWeather(battler, gBattleWeather);
+    u32 currBattleWeather = (battlerWeather & B_WEATHER_SUN) ? BATTLE_WEATHER_SUN : GetCurrentBattleWeather();
     enum Ability battlerTraits[MAX_MON_TRAITS];
     STORE_BATTLER_TRAITS(battler);
 
-    if (currBattleWeather == 0xFF)
-    {
-        // If there is no weather on the field, no need to check other battlers so go to next state
-        gBattleStruct->eventState.endTurnBattler = 0;
-        gBattleStruct->eventState.endTurn++;
-        return effect;
-    }
-
     gBattleStruct->eventState.endTurnBattler++;
 
-    if (!IsBattlerAlive(battler) || !HasWeatherEffect())
+    if (!IsBattlerAlive(battler) || battlerWeather == B_WEATHER_NONE || currBattleWeather == 0xFF)
         return effect;
 
 
@@ -1310,7 +1303,8 @@ static bool32 HandleEndTurnThirdEventBlock(enum BattlerId battler)
          || SearchTraits(battlerTraits, ABILITY_VOLCANO_HOWL)
          || SearchTraits(battlerTraits, ABILITY_ARCTIC_AURA)
          || SearchTraits(battlerTraits, ABILITY_MENDING)
-         || SearchTraits(battlerTraits, ABILITY_CHANNEL_EARTH))
+         || SearchTraits(battlerTraits, ABILITY_CHANNEL_EARTH)
+         || SearchTraits(battlerTraits, ABILITY_SPLINTER))
             if (AbilityBattleEffects(ABILITYEFFECT_ENDTURN, battler, MOVE_NONE, TRUE))
                 effect = TRUE;
 
@@ -1331,7 +1325,8 @@ static bool32 HandleEndTurnThirdEventBlock(enum BattlerId battler)
          || SearchTraits(battlerTraits, ABILITY_VOLCANO_HOWL)
          || SearchTraits(battlerTraits, ABILITY_ARCTIC_AURA)
          || SearchTraits(battlerTraits, ABILITY_MENDING)
-         || SearchTraits(battlerTraits, ABILITY_CHANNEL_EARTH))
+         || SearchTraits(battlerTraits, ABILITY_CHANNEL_EARTH)
+         || SearchTraits(battlerTraits, ABILITY_SPLINTER))
             effect = TRUE; // Set effect again outside above loop
         break;
     }

@@ -47,6 +47,23 @@ SINGLE_BATTLE_TEST("Eelevate reports itself when paired with Beast Boost")
     }
 }
 
+DOUBLE_BATTLE_TEST("Eelevate does not boost after knocking out an ally")
+{
+    GIVEN {
+        PLAYER(SPECIES_EELEKTROSS_MEGA) { Ability(ABILITY_EELEVATE); Attack(120); Speed(5); }
+        PLAYER(SPECIES_WOBBUFFET) { HP(1); Speed(4); }
+        PLAYER(SPECIES_WOBBUFFET) { Speed(3); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(2); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(1); }
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_SCRATCH, target: playerRight); SEND_OUT(playerRight, 2); }
+    } SCENE {
+        NOT ABILITY_POPUP(playerLeft, ABILITY_EELEVATE);
+    } THEN {
+        EXPECT_EQ(playerLeft->statStages[STAT_ATK], DEFAULT_STAT_STAGE);
+    }
+}
+
 #if MAX_MON_TRAITS > 1
 SINGLE_BATTLE_TEST("Eelevate grants Ground immunity as an innate trait")
 {

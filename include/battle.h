@@ -851,7 +851,8 @@ struct BattleScripting
     s32 savedDmg;
     u16 unused_0x2c;
     u16 moveEffect;
-    u16 unused_0x30;
+    bool8 recordDisplayedAbility;
+    u8 unused_0x31;
     u8 illusionNickHack; // To properly display nick in STRINGID_ENEMYABOUTTOSWITCHPKMN.
     bool8 fixedPopup;   // Force ability popup to stick until manually called back
     u16 abilityPopupOverwrite;

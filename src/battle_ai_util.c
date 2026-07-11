@@ -775,12 +775,34 @@ static inline void AI_RestoreBattlerTypes(enum BattlerId battlerAtk, enum Type *
     gBattleMons[battlerAtk].types[2] = types[2];
 }
 
+static u32 AI_ApplyAegisToHit(struct BattleContext *ctx, u32 damage, bool32 *aegisUsed)
+{
+    u32 cap = max(1, gBattleMons[ctx->battlerDef].maxHP / 4);
+
+    if (!*aegisUsed
+     && !gBattleStruct->aegisUsed[ctx->battlerDef]
+     && AI_BATTLER_HAS_TRAIT(ctx->battlerDef, ABILITY_AEGIS)
+     && IsCustomAbilityDirectDamagingMove(ctx->move)
+     && damage > cap)
+    {
+        *aegisUsed = TRUE;
+        return cap;
+    }
+    return damage;
+}
+
+static s32 AI_ApplyModifiersAfterDmgRoll(struct BattleContext *ctx, s32 dmg);
+
 static inline void CalcDynamicMoveDamage(struct BattleContext *ctx, u16 *medianDamage, u16 *minimumDamage, u16 *maximumDamage)
 {
     enum BattleMoveEffects effect = GetMoveEffect(ctx->move);
     u16 median = *medianDamage;
     u16 minimum = *minimumDamage;
     u16 maximum = *maximumDamage;
+    u16 firstMedian = median;
+    u16 firstMinimum = minimum;
+    u16 firstMaximum = maximum;
+    bool32 aegisHandled = FALSE;
     enum Ability battlerTraits[MAX_MON_TRAITS];
     STORE_BATTLER_TRAITS(ctx->battlerAtk);
 
@@ -793,11 +815,28 @@ static inline void CalcDynamicMoveDamage(struct BattleContext *ctx, u16 *medianD
         gBattleStruct->beatUpSlot = 0;
         ctx->isCrit = FALSE;
         ctx->fixedBasePower = 0;
-        median = 0;
+        median = minimum = maximum = 0;
+        bool32 aegisUsedMinimum = FALSE;
+        bool32 aegisUsedMedian = FALSE;
+        bool32 aegisUsedMaximum = FALSE;
         for (i = 0; i < partyCount; i++)
-            median += CalculateMoveDamage(ctx);
-        maximum = minimum = median;
+        {
+            s32 oneBeatUpHit = CalculateMoveDamageVars(ctx);
+            s32 damageByRollType = GetDamageByRollType(oneBeatUpHit, DMG_ROLL_LOWEST);
+
+            damageByRollType = AI_ApplyModifiersAfterDmgRoll(ctx, damageByRollType);
+            minimum += AI_ApplyAegisToHit(ctx, damageByRollType, &aegisUsedMinimum);
+
+            damageByRollType = GetDamageByRollType(oneBeatUpHit, DMG_ROLL_DEFAULT);
+            damageByRollType = AI_ApplyModifiersAfterDmgRoll(ctx, damageByRollType);
+            median += AI_ApplyAegisToHit(ctx, damageByRollType, &aegisUsedMedian);
+
+            damageByRollType = GetDamageByRollType(oneBeatUpHit, DMG_ROLL_HIGHEST);
+            damageByRollType = AI_ApplyModifiersAfterDmgRoll(ctx, damageByRollType);
+            maximum += AI_ApplyAegisToHit(ctx, damageByRollType, &aegisUsedMaximum);
+        }
         gBattleStruct->beatUpSlot = 0;
+        aegisHandled = TRUE;
     }
     else if (strikeCount > 1 && effect != EFFECT_TRIPLE_KICK)
     {
@@ -833,13 +872,34 @@ static inline void CalcDynamicMoveDamage(struct BattleContext *ctx, u16 *medianD
             maximum *= 5;
         }
     }
-    else if ((AI_BATTLER_HAS_TRAIT(ctx->battlerAtk, ABILITY_PARENTAL_BOND) || AI_BATTLER_HAS_TRAIT(ctx->battlerAtk, ABILITY_DUAL_STRIKE))
+    else if ((AI_BATTLER_HAS_TRAIT(ctx->battlerAtk, ABILITY_PARENTAL_BOND)
+           || AI_BATTLER_HAS_TRAIT(ctx->battlerAtk, ABILITY_DUAL_STRIKE)
+           || (AI_BATTLER_HAS_TRAIT(ctx->battlerAtk, ABILITY_ECHO_CHAMBER) && IsSoundMove(ctx->move)))
           && strikeCount == 0
+          && !IsMoveParentalBondBanned(ctx->move)
+          && GetMoveCategory(ctx->move) != DAMAGE_CATEGORY_STATUS
+          && !gBattleMoveEffects[effect].twoTurnEffect
+          && effect != EFFECT_OHKO
           && !AI_IsDoubleSpreadMove(ctx->battlerAtk, ctx->move))
     {
-        median  += median  / (B_PARENTAL_BOND_DMG >= GEN_7 ? 4 : 2);
-        minimum += minimum / (B_PARENTAL_BOND_DMG >= GEN_7 ? 4 : 2);
-        maximum += maximum / (B_PARENTAL_BOND_DMG >= GEN_7 ? 4 : 2);
+        u32 divisor = AI_BATTLER_HAS_TRAIT(ctx->battlerAtk, ABILITY_ECHO_CHAMBER) && IsSoundMove(ctx->move)
+                    ? 2
+                    : (B_PARENTAL_BOND_DMG >= GEN_7 ? 4 : 2);
+
+        median  += median  / divisor;
+        minimum += minimum / divisor;
+        maximum += maximum / divisor;
+    }
+
+    if (!aegisHandled && effect != EFFECT_TRIPLE_KICK)
+    {
+        bool32 aegisUsed = FALSE;
+
+        median -= firstMedian - AI_ApplyAegisToHit(ctx, firstMedian, &aegisUsed);
+        aegisUsed = FALSE;
+        minimum -= firstMinimum - AI_ApplyAegisToHit(ctx, firstMinimum, &aegisUsed);
+        aegisUsed = FALSE;
+        maximum -= firstMaximum - AI_ApplyAegisToHit(ctx, firstMaximum, &aegisUsed);
     }
 
     if (median == 0)
@@ -982,6 +1042,10 @@ struct SimulatedDamage AI_CalcDamage(enum Move move, enum BattlerId battlerAtk, 
         }
         else if (moveEffect == EFFECT_TRIPLE_KICK)
         {
+            bool32 aegisUsedMinimum = FALSE;
+            bool32 aegisUsedMedian = FALSE;
+            bool32 aegisUsedMaximum = FALSE;
+
             for (gMultiHitCounter = GetMoveStrikeCount(move); gMultiHitCounter > 0; gMultiHitCounter--) // The global is used to simulate actual damage done
             {
                 s32 damageByRollType = 0;
@@ -989,13 +1053,16 @@ struct SimulatedDamage AI_CalcDamage(enum Move move, enum BattlerId battlerAtk, 
                 s32 oneTripleKickHit = CalculateMoveDamageVars(&ctx);
 
                 damageByRollType = GetDamageByRollType(oneTripleKickHit, DMG_ROLL_LOWEST);
-                simDamage.minimum += AI_ApplyModifiersAfterDmgRoll(&ctx, damageByRollType);
+                damageByRollType = AI_ApplyModifiersAfterDmgRoll(&ctx, damageByRollType);
+                simDamage.minimum += AI_ApplyAegisToHit(&ctx, damageByRollType, &aegisUsedMinimum);
 
                 damageByRollType = GetDamageByRollType(oneTripleKickHit, DMG_ROLL_DEFAULT);
-                simDamage.median += AI_ApplyModifiersAfterDmgRoll(&ctx, damageByRollType);
+                damageByRollType = AI_ApplyModifiersAfterDmgRoll(&ctx, damageByRollType);
+                simDamage.median += AI_ApplyAegisToHit(&ctx, damageByRollType, &aegisUsedMedian);
 
                 damageByRollType = GetDamageByRollType(oneTripleKickHit, DMG_ROLL_HIGHEST);
-                simDamage.maximum += AI_ApplyModifiersAfterDmgRoll(&ctx, damageByRollType);
+                damageByRollType = AI_ApplyModifiersAfterDmgRoll(&ctx, damageByRollType);
+                simDamage.maximum += AI_ApplyAegisToHit(&ctx, damageByRollType, &aegisUsedMaximum);
             }
         }
         else
@@ -1014,6 +1081,16 @@ struct SimulatedDamage AI_CalcDamage(enum Move move, enum BattlerId battlerAtk, 
 
         if (GetActiveGimmick(battlerAtk) != GIMMICK_Z_MOVE)
             CalcDynamicMoveDamage(&ctx, &simDamage.median, &simDamage.minimum, &simDamage.maximum);
+        else
+        {
+            bool32 aegisUsed = FALSE;
+
+            simDamage.median = AI_ApplyAegisToHit(&ctx, simDamage.median, &aegisUsed);
+            aegisUsed = FALSE;
+            simDamage.minimum = AI_ApplyAegisToHit(&ctx, simDamage.minimum, &aegisUsed);
+            aegisUsed = FALSE;
+            simDamage.maximum = AI_ApplyAegisToHit(&ctx, simDamage.maximum, &aegisUsed);
+        }
 
         AI_RestoreBattlerTypes(battlerAtk, types);
     }
@@ -1502,16 +1579,40 @@ s32 AI_WhoStrikesFirst(enum BattlerId battlerAI, enum BattlerId battler, enum Mo
 
 bool32 CanEndureHit(enum BattlerId battler, enum BattlerId battlerTarget, enum Move move)
 {
-    if (!AI_BattlerAtMaxHp(battlerTarget) || IsMultiHitMove(move) || AI_BATTLER_HAS_TRAIT(battler, ABILITY_PARENTAL_BOND) || AI_BATTLER_HAS_TRAIT(battler, ABILITY_DUAL_STRIKE))
+    enum BattleMoveEffects effect = GetMoveEffect(move);
+    bool32 echoChamber = AI_BATTLER_HAS_TRAIT(battler, ABILITY_ECHO_CHAMBER)
+                      && IsSoundMove(move)
+                      && !IsMoveParentalBondBanned(move)
+                      && GetMoveCategory(move) != DAMAGE_CATEGORY_STATUS
+                      && !gBattleMoveEffects[effect].twoTurnEffect
+                      && effect != EFFECT_OHKO
+                      && !AI_IsDoubleSpreadMove(battler, move);
+
+    if (IsMultiHitMove(move)
+     || AI_BATTLER_HAS_TRAIT(battler, ABILITY_PARENTAL_BOND)
+     || AI_BATTLER_HAS_TRAIT(battler, ABILITY_DUAL_STRIKE)
+     || echoChamber)
         return FALSE;
     if (GetMoveStrikeCount(move) > 1 && !(AI_GetBattlerMoveTargetType(battler, move) == TARGET_SMART && !HasTwoOpponents(battler)))
         return FALSE;
-    if (Ai_BattlerHasHoldEffect(battlerTarget, HOLD_EFFECT_FOCUS_SASH, gAiLogicData))
+    if (AI_BattlerAtMaxHp(battlerTarget) && Ai_BattlerHasHoldEffect(battlerTarget, HOLD_EFFECT_FOCUS_SASH, gAiLogicData))
         return TRUE;
 
     if (!DoesBattlerIgnoreAbilityChecks(battler, move))
     {
-        if (GetConfig(B_STURDY) >= GEN_5 && AI_BATTLER_HAS_TRAIT(battlerTarget, ABILITY_STURDY))
+        if (AI_BATTLER_HAS_TRAIT(battlerTarget, ABILITY_REBORN)
+         && !(gBattleStruct->rebornUsed[GetBattlerSide(battlerTarget)] & (1u << gBattlerPartyIndexes[battlerTarget])))
+            return TRUE;
+        if (AI_BATTLER_HAS_TRAIT(battlerTarget, ABILITY_AURA_SHIELD)
+         && gBattleMons[battlerTarget].volatiles.auraShieldState <= 1
+         && !gBattleMons[battlerTarget].volatiles.transformed
+         && GetMoveCategory(move) != DAMAGE_CATEGORY_STATUS)
+            return TRUE;
+        if (GetConfig(B_STURDY) >= GEN_5
+         && AI_BattlerAtMaxHp(battlerTarget)
+         && (AI_BATTLER_HAS_TRAIT(battlerTarget, ABILITY_STURDY)
+          || AI_BATTLER_HAS_TRAIT(battlerTarget, ABILITY_STONE_FACE)
+          || AI_BATTLER_HAS_TRAIT(battlerTarget, ABILITY_NINE_LIVES)))
             return TRUE;
         if (IsMimikyuDisguised(battlerTarget))
             return TRUE;

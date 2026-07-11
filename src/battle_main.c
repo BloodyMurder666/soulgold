@@ -3167,7 +3167,7 @@ static void BattleStartClearSetData(void)
         gBattleStruct->pendulumLastMove[i] = MOVE_NONE;
         gBattleStruct->pendulumStreak[i] = 0;
         gBattleStruct->aegisUsed[i] = FALSE;
-        gBattleStruct->blitzReady[i] = TRUE;
+        gBattleStruct->blitzReady[i] = FALSE;
         gBattleStruct->nullSpaceProtectedHit[i] = FALSE;
     }
 
@@ -3373,7 +3373,7 @@ void SwitchInClearSetData(enum BattlerId battler, struct Volatiles *volatilesCop
     gBattleStruct->pendulumLastMove[battler] = MOVE_NONE;
     gBattleStruct->pendulumStreak[battler] = 0;
     gBattleStruct->aegisUsed[battler] = FALSE;
-    gBattleStruct->blitzReady[battler] = TRUE;
+    gBattleStruct->blitzReady[battler] = FALSE;
     gBattleStruct->nullSpaceProtectedHit[battler] = FALSE;
     gBattleStruct->hazardsCounter = 0;
 
@@ -3435,17 +3435,6 @@ void SwitchInClearSetData(enum BattlerId battler, struct Volatiles *volatilesCop
 const u8* FaintClearSetData(enum BattlerId battler)
 {
     const u8 *result = NULL;
-
-    if (BattlerHasTrait(battler, ABILITY_MARTYR))
-    {
-        for (enum BattlerId ally = 0; ally < gBattlersCount; ally++)
-        {
-            if (ally == battler || !IsBattlerAlive(ally) || !IsBattlerAlly(battler, ally))
-                continue;
-
-            gBattleMons[ally].hp = min(gBattleMons[ally].hp + GetNonDynamaxMaxHP(ally) / 4, gBattleMons[ally].maxHP);
-        }
-    }
 
     for (enum Stat i = 0; i < NUM_BATTLE_STATS; i++)
         gBattleMons[battler].statStages[i] = DEFAULT_STAT_STAGE;
@@ -4882,21 +4871,16 @@ u32 GetBattlerTotalSpeedStat(enum BattlerId battler)
     speed *= gStatStageRatios[gBattleMons[battler].statStages[STAT_SPEED]][0];
     speed /= gStatStageRatios[gBattleMons[battler].statStages[STAT_SPEED]][1];
 
-    u16 battlerItems[MAX_MON_ITEMS_INTERNAL];
-    STORE_BATTLER_ITEMS(battler);
-
     // weather abilities
-    if (HasWeatherEffect())
-    {
-        if (SearchTraits(battlerTraits, ABILITY_SWIFT_SWIM)  && !SearchItemSlots(battlerItems, HOLD_EFFECT_UTILITY_UMBRELLA) && gBattleWeather & B_WEATHER_RAIN)
-            speed += baseSpeed;
-        if (SearchTraits(battlerTraits, ABILITY_CHLOROPHYLL) && !SearchItemSlots(battlerItems, HOLD_EFFECT_UTILITY_UMBRELLA) && gBattleWeather & B_WEATHER_SUN)
-            speed += baseSpeed;
-        if (SearchTraits(battlerTraits, ABILITY_SAND_RUSH)   && gBattleWeather & B_WEATHER_SANDSTORM)
-            speed += baseSpeed;
-        if (SearchTraits(battlerTraits, ABILITY_SLUSH_RUSH)  && (gBattleWeather & B_WEATHER_ICY_ANY))
-            speed += baseSpeed;
-    }
+    u32 battlerWeather = GetBattlerWeather(battler, gBattleWeather);
+    if (SearchTraits(battlerTraits, ABILITY_SWIFT_SWIM) && (battlerWeather & B_WEATHER_RAIN))
+        speed += baseSpeed;
+    if (SearchTraits(battlerTraits, ABILITY_CHLOROPHYLL) && (battlerWeather & B_WEATHER_SUN))
+        speed += baseSpeed;
+    if (SearchTraits(battlerTraits, ABILITY_SAND_RUSH) && (battlerWeather & B_WEATHER_SANDSTORM))
+        speed += baseSpeed;
+    if (SearchTraits(battlerTraits, ABILITY_SLUSH_RUSH) && (battlerWeather & B_WEATHER_ICY_ANY))
+        speed += baseSpeed;
 
     // other abilities
     if (SearchTraits(battlerTraits, ABILITY_QUICK_FEET) && BattlerHasEffectiveMajorStatus(battler))
@@ -4909,7 +4893,7 @@ u32 GetBattlerTotalSpeedStat(enum BattlerId battler)
         speed += baseSpeed;
     if (SearchTraits(battlerTraits, ABILITY_ADRENALINE) && gBattleMons[battler].hp <= (gBattleMons[battler].maxHP / 3))
         speed += (baseSpeed * 30) / 100;
-    if (SearchTraits(battlerTraits, ABILITY_PROTOSYNTHESIS) && !(gBattleMons[battler].volatiles.transformed) && ((gBattleWeather & B_WEATHER_SUN && HasWeatherEffect()) || gBattleMons[battler].volatiles.boosterEnergyActivated))
+    if (SearchTraits(battlerTraits, ABILITY_PROTOSYNTHESIS) && !(gBattleMons[battler].volatiles.transformed) && ((battlerWeather & B_WEATHER_SUN) || gBattleMons[battler].volatiles.boosterEnergyActivated))
         speed += (GetHighestStatId(battler) == STAT_SPEED) ? baseSpeed / 2 : 0;
     if (SearchTraits(battlerTraits, ABILITY_QUARK_DRIVE) && !(gBattleMons[battler].volatiles.transformed) && (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN || gBattleMons[battler].volatiles.boosterEnergyActivated))
         speed += (GetHighestStatId(battler) == STAT_SPEED) ? baseSpeed / 2 : 0;

@@ -3210,11 +3210,10 @@ void SetMoveEffect(enum BattlerId battlerAtk, enum BattlerId effectBattler, enum
         {
             if (BattlerHasTrait(gBattlerAttacker, ABILITY_TITAN_GRIP))
             {
-                if (gBattleMons[gBattlerTarget].statStages[STAT_ATK] > MIN_STAT_STAGE)
-                    gBattleMons[gBattlerTarget].statStages[STAT_ATK]--;
-                if (gBattleMons[gBattlerTarget].statStages[STAT_DEF] > MIN_STAT_STAGE)
-                    gBattleMons[gBattlerTarget].statStages[STAT_DEF]--;
-                gBattlescriptCurrInstr = battleScript;
+                gBattleScripting.battler = gBattlerAttacker;
+                PushTraitStack(gBattlerAttacker, ABILITY_TITAN_GRIP);
+                BattleScriptPush(battleScript);
+                gBattlescriptCurrInstr = BattleScript_TitanGripAtkDefDown;
             }
             else
             {
@@ -3228,11 +3227,10 @@ void SetMoveEffect(enum BattlerId battlerAtk, enum BattlerId effectBattler, enum
         {
             if (BattlerHasTrait(gBattlerAttacker, ABILITY_TITAN_GRIP))
             {
-                if (gBattleMons[gBattlerTarget].statStages[STAT_DEF] > MIN_STAT_STAGE)
-                    gBattleMons[gBattlerTarget].statStages[STAT_DEF]--;
-                if (gBattleMons[gBattlerTarget].statStages[STAT_SPDEF] > MIN_STAT_STAGE)
-                    gBattleMons[gBattlerTarget].statStages[STAT_SPDEF]--;
-                gBattlescriptCurrInstr = battleScript;
+                gBattleScripting.battler = gBattlerAttacker;
+                PushTraitStack(gBattlerAttacker, ABILITY_TITAN_GRIP);
+                BattleScriptPush(battleScript);
+                gBattlescriptCurrInstr = BattleScript_TitanGripDefSpDefDown;
             }
             else
             {
@@ -7417,7 +7415,16 @@ static void Cmd_recordability(void)
     CMD_ARGS(u8 battler);
 
     enum BattlerId battler = GetBattlerForBattleScript(cmd->battler);
-    RecordAbilityBattle(battler, gBattleMons[battler].ability);
+    enum Ability ability = gBattleMons[battler].ability;
+
+    // Ability popups may represent an innate rather than the battler's main
+    // ability. Use the trait that was actually displayed when ownership agrees.
+    if (gBattleScripting.recordDisplayedAbility
+     && battler == gDisplayBattler
+     && gDisplayAbility != ABILITY_NONE)
+        ability = gDisplayAbility;
+    gBattleScripting.recordDisplayedAbility = FALSE;
+    RecordAbilityBattle(battler, ability);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
@@ -8278,7 +8285,9 @@ static u32 ChangeStatBuffs(enum BattlerId battler, s8 statValue, enum Stat statI
                                                  || MoveIgnoresTargetAbility(gCurrentMove));
         if (gSideTimers[GetBattlerSide(battler)].mistTimer
             && !flags.certain && effect != EFFECT_CURSE
-            && !(battler == gBattlerTarget && BattlerHasTrait(gBattlerAttacker, ABILITY_INFILTRATOR) && !IsBattlerAlly(gBattlerAttacker, battler)))
+            && !(battler == gBattlerTarget
+              && (BattlerHasTrait(gBattlerAttacker, ABILITY_INFILTRATOR) || BattlerHasTrait(gBattlerAttacker, ABILITY_VOIDTOUCH))
+              && !IsBattlerAlly(gBattlerAttacker, battler)))
         {
             if (flags.allowPtr)
             {
@@ -10858,12 +10867,26 @@ static void Cmd_switchoutabilities(void)
     }
     if (BattlerHasTrait(battler, ABILITY_BACKDRAFT) && IsVoluntarySwitchOut(battler))
     {
+        bool32 hasFoe = FALSE;
+
         for (enum BattlerId target = 0; target < gBattlersCount; target++)
         {
             if (!IsBattlerAlive(target) || IsBattlerAlly(battler, target))
                 continue;
-            if (gBattleMons[target].statStages[STAT_SPEED] > MIN_STAT_STAGE)
-                gBattleMons[target].statStages[STAT_SPEED]--;
+            hasFoe = TRUE;
+            break;
+        }
+
+        if (hasFoe)
+        {
+            SaveBattlerAttacker(gBattlerAttacker);
+            SaveBattlerTarget(gBattlerTarget);
+            gBattlerAttacker = battler;
+            gBattleScripting.battler = battler;
+            PushTraitStack(battler, ABILITY_BACKDRAFT);
+            BattleScriptPush(cmd->nextInstr);
+            gBattlescriptCurrInstr = BattleScript_BackdraftActivates;
+            return;
         }
     }
 
@@ -15103,6 +15126,42 @@ void BS_TryActivateReceiver(void)
     }
 }
 
+void BS_TryActivateMartyr(void)
+{
+    NATIVE_ARGS(u8 battler);
+    enum BattlerId faintedBattler = GetBattlerForBattleScript(cmd->battler);
+
+    // Arena faint scripts do not print a faint message between dofaintanimation
+    // and this command, so wait here before reusing the target controller.
+    if (gBattleControllerExecFlags)
+        return;
+
+    if (gBattleStruct->battlerState[faintedBattler].fainted
+     && BattlerHasTrait(faintedBattler, ABILITY_MARTYR))
+    {
+        for (enum BattlerId ally = 0; ally < gBattlersCount; ally++)
+        {
+            if (ally == faintedBattler
+             || !IsBattlerAlive(ally)
+             || !IsBattlerAlly(faintedBattler, ally)
+             || IsBattlerAtMaxHp(ally)
+             || gBattleMons[ally].volatiles.healBlock)
+                continue;
+
+            SaveBattlerTarget(gBattlerTarget);
+            gBattlerTarget = ally;
+            gBattlerAbility = faintedBattler;
+            SetHealAmount(ally, max(1, GetNonDynamaxMaxHP(ally) / 4));
+            PushTraitStack(faintedBattler, ABILITY_MARTYR);
+            BattleScriptPush(cmd->nextInstr);
+            gBattlescriptCurrInstr = BattleScript_MartyrActivates;
+            return;
+        }
+    }
+
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
 void BS_TryActivateSoulheart(void)
 {
     NATIVE_ARGS();
@@ -15346,9 +15405,13 @@ void BS_ShowAbilityPopup(void)
 
     gDisplayBattler = PullTraitStackBattler();
     gDisplayAbility = PullTraitStackAbility();
+    gBattleScripting.recordDisplayedAbility = !gBattleScripting.fixedPopup;
 
     if (gDisplayBattler != MAX_BATTLERS_COUNT)
+    {
         gBattleScripting.battler = gDisplayBattler;
+        gBattlerAbility = gDisplayBattler;
+    }
 
     PopTraitStack();
 
@@ -15433,6 +15496,7 @@ void BS_CureStatus(void)
         TryDeactivateSleepClause(GetBattlerSide(battler), gBattlerPartyIndexes[battler]);
 
     gBattleMons[battler].status1 = 0;
+    gBattleMons[battler].volatiles.nightmare = FALSE;
     BtlController_EmitSetMonData(battler, B_COMM_TO_CONTROLLER, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[battler].status1), &gBattleMons[battler].status1);
     MarkBattlerForControllerExec(battler);
     gBattlescriptCurrInstr = cmd->nextInstr;
