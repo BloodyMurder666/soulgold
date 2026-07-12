@@ -1,5 +1,6 @@
 #include "global.h"
 #include "achievements.h"
+#include "battle_factory.h"
 #include "event_data.h"
 #include "item.h"
 #include "pokemon.h"
@@ -889,12 +890,17 @@ static bool32 Achievement_PredicateHasLevel100Pokemon(void)
     u8 boxPosition;
     u8 partyIndex;
 
-    for (partyIndex = 0; partyIndex < PARTY_SIZE; partyIndex++)
+    // The Battle Factory temporarily replaces the player's party with rentals.
+    // Chaos rentals are level 100 and must not count as player-raised Pokemon.
+    if (!InBattleFactory() || gSaveBlock2Ptr->frontier.lvlMode != FRONTIER_LVL_OPEN)
     {
-        if (GetMonData(&gPlayerParty[partyIndex], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
-         && GetMonData(&gPlayerParty[partyIndex], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG
-         && GetMonData(&gPlayerParty[partyIndex], MON_DATA_LEVEL) >= MAX_LEVEL)
-            return TRUE;
+        for (partyIndex = 0; partyIndex < PARTY_SIZE; partyIndex++)
+        {
+            if (GetMonData(&gPlayerParty[partyIndex], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
+             && GetMonData(&gPlayerParty[partyIndex], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG
+             && GetMonData(&gPlayerParty[partyIndex], MON_DATA_LEVEL) >= MAX_LEVEL)
+                return TRUE;
+        }
     }
 
     if (gPokemonStoragePtr == NULL)
