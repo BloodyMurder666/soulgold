@@ -1,5 +1,7 @@
 Bugs:
 - More Berry spots
+- End screen remove bikes
+- title screen hackdex thing
 
 # Demo 1 MVP
 
