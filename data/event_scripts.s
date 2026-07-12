@@ -2314,3 +2314,9 @@ Common_Text_ReceivedMon:
 	.include "data/maps/SproutTower_Basement/scripts.inc"
 
 	.include "data/maps/RuinsOfAlph_SecretRoom/scripts.inc"
+
+	.include "data/maps/SouthPassageSide/scripts.inc"
+
+	.include "data/maps/SouthPassageEnd/scripts.inc"
+
+	.include "data/maps/AbandonedRocketHideout/scripts.inc"

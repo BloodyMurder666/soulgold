@@ -71,6 +71,8 @@ enum
     MAP_ROUTE33SOUTH_2            = (56 | (0 << 8)),
     MAP_SOUTHERN_PASSAGE          = (57 | (0 << 8)),
     MAP_METEOR_ISLAND             = (58 | (0 << 8)),
+    MAP_SOUTH_PASSAGE_SIDE        = (59 | (0 << 8)),
+    MAP_SOUTH_PASSAGE_END         = (60 | (0 << 8)),
 
     // gMapGroup_IndoorNewBark
     MAP_NEW_BARK_TOWN_LAB              = (0 | (1 << 8)),
@@ -559,6 +561,7 @@ enum
     MAP_KITAKAMI_MOUNTAIN4F           = (19 | (25 << 8)),
     MAP_SPROUT_TOWER_BASEMENT         = (20 | (25 << 8)),
     MAP_RUINS_OF_ALPH_SECRET_ROOM     = (21 | (25 << 8)),
+    MAP_ABANDONED_ROCKET_HIDEOUT      = (22 | (25 << 8)),
 
     // gMapGroup_JohtoDiveMaps
     MAP_CHERRYGROVE_UNDERWATER = (0 | (26 << 8)),

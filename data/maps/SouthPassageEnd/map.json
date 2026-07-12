@@ -1,0 +1,43 @@
+{
+  "id": "MAP_SOUTH_PASSAGE_END",
+  "name": "SouthPassageEnd",
+  "layout": "LAYOUT_SOUTH_PASSAGE_END",
+  "music": "MUS_DP_ROUTE210_DAY",
+  "region_map_section": "MAPSEC_SOUTH_SEA",
+  "requires_flash": false,
+  "weather": "WEATHER_RAIN",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_SOUTH_PASSAGE_SIDE",
+      "offset": 6,
+      "direction": "left"
+    }
+  ],
+  "object_events": [],
+  "warp_events": [
+    {
+      "x": 13,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_ABANDONED_ROCKET_HIDEOUT",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 15,
+      "y": 15,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "SouthPassageSign"
+    }
+  ]
+}

@@ -94,7 +94,9 @@
     "Route33South",
     "Route33South_2",
     "SouthernPassage",
-    "MeteorIsland"
+    "MeteorIsland",
+    "SouthPassageSide",
+    "SouthPassageEnd"
   ],
   "gMapGroup_IndoorNewBark": [
     "NewBarkTown_Lab",
@@ -582,7 +584,8 @@
     "KitakamiMountain3F",
     "KitakamiMountain4F",
     "SproutTower_Basement",
-    "RuinsOfAlph_SecretRoom"
+    "RuinsOfAlph_SecretRoom",
+    "AbandonedRocketHideout"
   ],
   "gMapGroup_JohtoDiveMaps": [
     "CherrygroveUnderwater"

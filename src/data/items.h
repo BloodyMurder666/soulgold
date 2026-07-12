@@ -15644,12 +15644,12 @@ const struct ItemInfo gItemsInfo[] =
 
     [ITEM_BASEMENT_KEY] =
     {
-        .name = ITEM_NAME("Basement Key"),
+        .name = ITEM_NAME("Underground Key"),
         .price = 0,
         .description = COMPOUND_STRING(
-            "The key for New\n"
-            "Mauville beneath\n"
-            "Mauville City."),
+            "The key for the\n"
+            "Tunnels beneath\n"
+            "the Goldenrod City."),
         .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
         .heldSlot = 0,

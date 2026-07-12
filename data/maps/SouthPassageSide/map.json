@@ -1,7 +1,7 @@
 {
-  "id": "MAP_SOUTHERN_PASSAGE",
-  "name": "SouthernPassage",
-  "layout": "LAYOUT_SOUTHERN_PASSAGE",
+  "id": "MAP_SOUTH_PASSAGE_SIDE",
+  "name": "SouthPassageSide",
+  "layout": "LAYOUT_SOUTH_PASSAGE_SIDE",
   "music": "MUS_DP_ROUTE210_DAY",
   "region_map_section": "MAPSEC_SOUTH_SEA",
   "requires_flash": false,
@@ -10,22 +10,17 @@
   "allow_cycling": true,
   "allow_escaping": false,
   "allow_running": true,
-  "show_map_name": true,
+  "show_map_name": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_ROUTE33SOUTH",
-      "offset": -41,
-      "direction": "up"
+      "map": "MAP_SOUTHERN_PASSAGE",
+      "offset": -11,
+      "direction": "left"
     },
     {
-      "map": "MAP_METEOR_ISLAND",
-      "offset": -9,
-      "direction": "down"
-    },
-    {
-      "map": "MAP_SOUTH_PASSAGE_SIDE",
-      "offset": 11,
+      "map": "MAP_SOUTH_PASSAGE_END",
+      "offset": -6,
       "direction": "right"
     }
   ],

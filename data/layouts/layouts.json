@@ -9763,7 +9763,7 @@
       "width": 20,
       "height": 60,
       "primary_tileset": "gTileset_Johto_General",
-      "secondary_tileset": "gTileset_AzaleaTown",
+      "secondary_tileset": "gTileset_SeviiIslands123",
       "border_filepath": "data/layouts/SouthernPassage/border.bin",
       "blockdata_filepath": "data/layouts/SouthernPassage/map.bin"
     },
@@ -9906,6 +9906,36 @@
       "secondary_tileset": "gTileset_RuinsOfAlphWriting",
       "border_filepath": "data/layouts/RuinsOfAlph_SecretRoom/border.bin",
       "blockdata_filepath": "data/layouts/RuinsOfAlph_SecretRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_SOUTH_PASSAGE_SIDE",
+      "name": "SouthPassageSide_Layout",
+      "width": 49,
+      "height": 25,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_LavenderTown",
+      "border_filepath": "data/layouts/SouthPassageSide/border.bin",
+      "blockdata_filepath": "data/layouts/SouthPassageSide/map.bin"
+    },
+    {
+      "id": "LAYOUT_SOUTH_PASSAGE_END",
+      "name": "SouthPassageEnd_Layout",
+      "width": 28,
+      "height": 24,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_LavenderTown",
+      "border_filepath": "data/layouts/SouthPassageEnd/border.bin",
+      "blockdata_filepath": "data/layouts/SouthPassageEnd/map.bin"
+    },
+    {
+      "id": "LAYOUT_ABANDONED_ROCKET_HIDEOUT",
+      "name": "AbandonedRocketHideout_Layout",
+      "width": 22,
+      "height": 20,
+      "primary_tileset": "gTileset_Johto_Building",
+      "secondary_tileset": "gTileset_GoldenrodUndergroundRocket",
+      "border_filepath": "data/layouts/AbandonedRocketHideout/border.bin",
+      "blockdata_filepath": "data/layouts/AbandonedRocketHideout/map.bin"
     }
   ]
 }

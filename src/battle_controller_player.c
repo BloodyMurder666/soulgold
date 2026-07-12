@@ -10,6 +10,7 @@
 #include "battle_tv.h"
 #include "battle_z_move.h"
 #include "battle_gimmick.h"
+#include "battle_util.h"
 #include "bg.h"
 #include "data.h"
 #include "event_data.h"
@@ -76,6 +77,7 @@ static void PlayerHandleLinkStandbyMsg(enum BattlerId battler);
 static void PlayerHandleResetActionMoveSelection(enum BattlerId battler);
 static void PlayerHandleEndLinkBattle(enum BattlerId battler);
 static void PlayerHandleBattleDebug(enum BattlerId battler);
+static bool32 TryGetWeatherActionPrompt(u8 *dst);
 
 static void PlayerBufferRunCommand(enum BattlerId battler);
 static void MoveSelectionDisplayPpNumber(enum BattlerId battler);
@@ -103,6 +105,34 @@ static void MoveSelectionDisplayMoveEffectiveness(u32 foeEffectiveness, enum Bat
 
 EWRAM_DATA static struct Pokemon sEnemyBattleSummaryMons[MAX_BATTLERS_COUNT / 2] = {0};
 EWRAM_DATA static u8 sEnemyBattleSummaryCount = 0;
+
+static const u8 sText_WeatherPrompt[] = _("Weather: ");
+static const u8 sText_WeatherPromptDuration[] = _("\nDuration: ");
+static const u8 sText_WeatherPromptTurn[] = _(" turn");
+static const u8 sText_WeatherPromptTurns[] = _(" turns");
+static const u8 sText_WeatherRain[] = _("Rain");
+static const u8 sText_WeatherSun[] = _("Sun");
+static const u8 sText_WeatherSandstorm[] = _("Sandstorm");
+static const u8 sText_WeatherHail[] = _("Hail");
+static const u8 sText_WeatherSnow[] = _("Snow");
+static const u8 sText_WeatherFog[] = _("Fog");
+static const u8 sText_WeatherStrongWinds[] = _("Strong Winds");
+static const u8 sText_WeatherTwilight[] = _("Twilight");
+
+static const u8 *const sBattleWeatherActionPromptNames[BATTLE_WEATHER_COUNT] =
+{
+    [BATTLE_WEATHER_RAIN] = sText_WeatherRain,
+    [BATTLE_WEATHER_RAIN_PRIMAL] = sText_WeatherRain,
+    [BATTLE_WEATHER_RAIN_DOWNPOUR] = sText_WeatherRain,
+    [BATTLE_WEATHER_SUN] = sText_WeatherSun,
+    [BATTLE_WEATHER_SUN_PRIMAL] = sText_WeatherSun,
+    [BATTLE_WEATHER_SANDSTORM] = sText_WeatherSandstorm,
+    [BATTLE_WEATHER_HAIL] = sText_WeatherHail,
+    [BATTLE_WEATHER_SNOW] = sText_WeatherSnow,
+    [BATTLE_WEATHER_FOG] = sText_WeatherFog,
+    [BATTLE_WEATHER_STRONG_WINDS] = sText_WeatherStrongWinds,
+    [BATTLE_WEATHER_TWILIGHT] = sText_WeatherTwilight,
+};
 
 static void (*const sPlayerBufferCommands[CONTROLLER_CMDS_COUNT])(enum BattlerId battler) =
 {
@@ -2078,6 +2108,27 @@ static void PlayerHandlePause(enum BattlerId battler)
     BtlController_Complete(battler);
 }
 
+static bool32 TryGetWeatherActionPrompt(u8 *dst)
+{
+    u32 weather = GetCurrentBattleWeather();
+    u8 *txtPtr;
+
+    if (gBattleWeather == B_WEATHER_NONE || !HasWeatherEffect() || weather >= BATTLE_WEATHER_COUNT)
+        return FALSE;
+
+    txtPtr = StringCopy(dst, sText_WeatherPrompt);
+    txtPtr = StringAppend(txtPtr, sBattleWeatherActionPromptNames[weather]);
+
+    if (gBattleStruct->weatherDuration > 0)
+    {
+        txtPtr = StringAppend(txtPtr, sText_WeatherPromptDuration);
+        txtPtr = ConvertIntToDecimalStringN(txtPtr, gBattleStruct->weatherDuration, STR_CONV_MODE_LEFT_ALIGN, 3);
+        StringAppend(txtPtr, gBattleStruct->weatherDuration == 1 ? sText_WeatherPromptTurn : sText_WeatherPromptTurns);
+    }
+
+    return TRUE;
+}
+
 static void HandleChooseActionAfterDma3(enum BattlerId battler)
 {
     if (!IsDma3ManagerBusyWithBgCopy())
@@ -2119,10 +2170,12 @@ static void PlayerHandleChooseAction(enum BattlerId battler)
     TryRestoreLastUsedBall();
     ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
     PREPARE_MON_NICK_BUFFER(gBattleTextBuff1, battler, gBattlerPartyIndexes[battler]);
-    BattleStringExpandPlaceholdersToDisplayedString(gText_WhatWillPkmnDo);
+    bool32 hasWeatherPrompt = TryGetWeatherActionPrompt(gDisplayedStringBattle);
+    if (!hasWeatherPrompt)
+        BattleStringExpandPlaceholdersToDisplayedString(gText_WhatWillPkmnDo);
 
     enum BattlerId partner = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
-    if (B_SHOW_PARTNER_TARGET && gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && IsBattlerAlive(partner))
+    if (!hasWeatherPrompt && B_SHOW_PARTNER_TARGET && gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && IsBattlerAlive(partner))
     {
         StringCopy(gStringVar1, COMPOUND_STRING("Partner will use:\n"));
         enum Move move = GetBattlerChosenMove(partner);

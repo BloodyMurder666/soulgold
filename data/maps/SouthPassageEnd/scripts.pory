@@ -1,0 +1,8 @@
+mapscripts SouthPassageEnd_MapScripts {}
+
+script SouthPassageSign {
+    msgbox("Research Facility, keep out!
+    
+            The text is faded and difficult
+            to read.", MSGBOX_SIGN)
+}
