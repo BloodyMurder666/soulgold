@@ -1637,6 +1637,13 @@
 #define FLAG_ROUTE47_RAZOR_FANG                     0x961
 #define FLAG_HIDE_LEAF_NAMELESS                     0x962
 #define FLAG_HIDE_M_WAREHOUSE                       0x963
+#define FLAG_ARH_PUZZLE1                            0x964
+#define FLAG_ARH_PUZZLE2                            0x965
+#define FLAG_ARH_PUZZLE3                            0x966
+#define FLAG_ARH_MIRROR_HERB                        0x967
+#define FLAG_METEOR_CAVE_BOOSTER                    0x968
+#define FLAG_METEOR_CAVE_DAZZLING_GLM               0x969
+#define FLAG_VISITED_BATTLE_FACTORY                 0x96A
 
 #define FLAG_0x1500                                 0x1500
 // Daily Flags

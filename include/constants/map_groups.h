@@ -562,6 +562,7 @@ enum
     MAP_SPROUT_TOWER_BASEMENT         = (20 | (25 << 8)),
     MAP_RUINS_OF_ALPH_SECRET_ROOM     = (21 | (25 << 8)),
     MAP_ABANDONED_ROCKET_HIDEOUT      = (22 | (25 << 8)),
+    MAP_METEOR_CAVE1                  = (23 | (25 << 8)),
 
     // gMapGroup_JohtoDiveMaps
     MAP_CHERRYGROVE_UNDERWATER = (0 | (26 << 8)),

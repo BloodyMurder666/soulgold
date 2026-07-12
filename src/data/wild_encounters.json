@@ -14297,6 +14297,75 @@
               }
             ]
           }
+        },
+        {
+          "map": "MAP_METEOR_CAVE1",
+          "base_label": "gMeteorCave1",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 56,
+                "max_level": 59,
+                "species": "SPECIES_GREAT_TUSK"
+              },
+              {
+                "min_level": 56,
+                "max_level": 59,
+                "species": "SPECIES_SCREAM_TAIL"
+              },
+              {
+                "min_level": 56,
+                "max_level": 59,
+                "species": "SPECIES_GREAT_TUSK"
+              },
+              {
+                "min_level": 56,
+                "max_level": 59,
+                "species": "SPECIES_SCREAM_TAIL"
+              },
+              {
+                "min_level": 56,
+                "max_level": 59,
+                "species": "SPECIES_BRUTE_BONNET"
+              },
+              {
+                "min_level": 56,
+                "max_level": 59,
+                "species": "SPECIES_IRON_BUNDLE"
+              },
+              {
+                "min_level": 56,
+                "max_level": 59,
+                "species": "SPECIES_BRUTE_BONNET"
+              },
+              {
+                "min_level": 56,
+                "max_level": 59,
+                "species": "SPECIES_IRON_BUNDLE"
+              },
+              {
+                "min_level": 57,
+                "max_level": 60,
+                "species": "SPECIES_SLITHER_WING"
+              },
+              {
+                "min_level": 57,
+                "max_level": 60,
+                "species": "SPECIES_IRON_VALIANT"
+              },
+              {
+                "min_level": 57,
+                "max_level": 60,
+                "species": "SPECIES_SLITHER_WING"
+              },
+              {
+                "min_level": 57,
+                "max_level": 60,
+                "species": "SPECIES_IRON_VALIANT"
+              }
+            ]
+          }
         }
       ]
     },

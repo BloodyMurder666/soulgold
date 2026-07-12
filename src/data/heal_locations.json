@@ -564,6 +564,12 @@
       "map": "MAP_TRAINER_HILL_COURTYARD",
       "x": 13,
       "y": 29
+    },
+    {
+      "id": "HEAL_LOCATION_BATTLE_FACTORY_GROUNDS",
+      "map": "MAP_BATTLE_FACTORY_GROUNDS",
+      "x": 7,
+      "y": 9
     }
   ]
 }

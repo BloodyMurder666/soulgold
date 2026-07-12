@@ -1,1 +1,46 @@
 mapscripts AbandonedRocketHideout_MapScripts {}
+
+script MfirstMeeting {
+    msgbox("TODO; Shadow gem event", MSGBOX_NPC)
+}
+
+script ARH_Note1 {
+    msgbox("Todo notes", MSGBOX_SIGN)
+}
+
+script ARH_MiddleDoor {
+    msgbox("The door is locked.", MSGBOX_SIGN)
+}
+
+script ARH_RightDoor {
+    msgbox("The door is locked.", MSGBOX_SIGN)
+}
+
+script ARH_Note2 {
+    msgbox("Todo notes", MSGBOX_SIGN)
+}
+
+script ARH_Computer1 {
+    msgbox("Todo computa", MSGBOX_SIGN)
+}
+
+script ARH_BoxLeft {
+    msgbox("Very interesting box.", MSGBOX_SIGN)
+}
+
+script ARH_BoxRight1 {
+    msgbox("Very interesting box.", MSGBOX_SIGN)
+}
+
+script ARH_BoxRight2 {
+    msgbox("Very interesting box.", MSGBOX_SIGN)
+}
+
+script ARH_BoxWrong {
+    msgbox("Not very interesting box.", MSGBOX_SIGN)
+}
+
+script ARH_MachineRight {
+    msgbox("A machine.", MSGBOX_SIGN)
+}
+

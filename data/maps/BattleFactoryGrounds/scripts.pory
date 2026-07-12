@@ -1,4 +1,13 @@
-mapscripts BattleFactoryGrounds_MapScripts {}
+mapscripts BattleFactoryGrounds_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+         goto(setFactoryFlightFlag)
+    }
+}
+
+script setFactoryFlightFlag {
+    setflag(FLAG_VISITED_BATTLE_FACTORY)
+    end
+}
 
 script FactoryGrounds_CooltrainerF {
     msgbox("The battles in the Factory are tough!

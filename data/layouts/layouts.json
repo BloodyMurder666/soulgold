@@ -9936,6 +9936,16 @@
       "secondary_tileset": "gTileset_GoldenrodUndergroundRocket",
       "border_filepath": "data/layouts/AbandonedRocketHideout/border.bin",
       "blockdata_filepath": "data/layouts/AbandonedRocketHideout/map.bin"
+    },
+    {
+      "id": "LAYOUT_METEOR_CAVE1",
+      "name": "MeteorCave1_Layout",
+      "width": 42,
+      "height": 43,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_g4_alt",
+      "border_filepath": "data/layouts/MeteorCave1/border.bin",
+      "blockdata_filepath": "data/layouts/MeteorCave1/map.bin"
     }
   ]
 }
