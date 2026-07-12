@@ -6,7 +6,7 @@ static const u32 sHoOhPuzzle_Gfx[]       = INCBIN_U32("graphics/sliding_puzzle/p
 static const struct CompressedSpriteSheet sSpriteSheet_Tiles[SLIDING_PUZZLE_COUNT] =
 {
     [SLIDING_PUZZLE_KABUTO]     = {sKabutoPuzzle_Gfx,     0x400 * 16, GFXTAG_TILES},
-    [SLIDING_PUZZLE_ARCHEN]    = {sOmanytePuzzle_Gfx,    0x400 * 16, GFXTAG_TILES},
+    [SLIDING_PUZZLE_OMANYTE]    = {sOmanytePuzzle_Gfx,    0x400 * 16, GFXTAG_TILES},
     [SLIDING_PUZZLE_AERODACTYL] = {sAerodactylPuzzle_Gfx, 0x400 * 16, GFXTAG_TILES},
     [SLIDING_PUZZLE_HO_OH]      = {sHoOhPuzzle_Gfx,       0x400 * 16, GFXTAG_TILES},
     [SLIDING_PUZZLE_SOLVED]     = {},
@@ -21,7 +21,7 @@ static const u8 sPuzzleLayouts[SLIDING_PUZZLE_COUNT][NUM_SLIDING_PUZZLE_ROWS][NU
         {__,__,10,__,12,__},
         { 2,13,14,15,16, 9},
     },
-    [SLIDING_PUZZLE_ARCHEN] =
+    [SLIDING_PUZZLE_OMANYTE] =
     {
         { 9,__, 2, 3, 4,11},
         {__, 5, 6,12,__,14},
@@ -60,7 +60,7 @@ static const u8 sTileOrientations[SLIDING_PUZZLE_COUNT][NUM_SLIDING_PUZZLE_ROWS]
         {ORIENTATION_0,   ORIENTATION_0,   IMMOVABLE_TILE,  ORIENTATION_0,  IMMOVABLE_TILE, ORIENTATION_0},
         {ORIENTATION_270, IMMOVABLE_TILE,  IMMOVABLE_TILE,  IMMOVABLE_TILE, IMMOVABLE_TILE, ORIENTATION_90},
     },
-    [SLIDING_PUZZLE_ARCHEN] =
+    [SLIDING_PUZZLE_OMANYTE] =
     {
         {ORIENTATION_0,   ORIENTATION_0,   IMMOVABLE_TILE,  IMMOVABLE_TILE, IMMOVABLE_TILE, ORIENTATION_90},
         {ORIENTATION_0,   IMMOVABLE_TILE,  IMMOVABLE_TILE,  ORIENTATION_90, ORIENTATION_0,  ORIENTATION_180},

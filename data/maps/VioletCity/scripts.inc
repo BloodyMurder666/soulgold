@@ -59,7 +59,7 @@ VioletCity_EventScript_Trigger::
 # 30 "data/maps/VioletCity/scripts.pory"
 	clearflag FLAG_HOOH_BROUGHT
 # 31 "data/maps/VioletCity/scripts.pory"
-	clearflag FLAG_ARCHEN_BROUGHT
+	clearflag FLAG_OMANYTE_BROUGHT
 # 32 "data/maps/VioletCity/scripts.pory"
 	clearflag FLAG_AERODACTYL_BROUGHT
 # 33 "data/maps/VioletCity/scripts.pory"

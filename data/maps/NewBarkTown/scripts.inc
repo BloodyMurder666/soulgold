@@ -391,7 +391,7 @@ NewBarkTown_EventScript_TestMan3::
 # 196 "data/maps/NewBarkTown/scripts.pory"
 	clearflag FLAG_COMPLETED_KABUTO_PUZZLE
 # 197 "data/maps/NewBarkTown/scripts.pory"
-	clearflag FLAG_COMPLETED_ARCHEN_PUZZLE
+	clearflag FLAG_COMPLETED_OMANYTE_PUZZLE
 # 198 "data/maps/NewBarkTown/scripts.pory"
 	end
 # 199 "data/maps/NewBarkTown/scripts.pory"

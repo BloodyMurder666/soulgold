@@ -6,7 +6,7 @@
 #include "task.h"
 
 extern const u8 RuinsOfAlph_PuzzleAndRewardChambers_EventScript_UseEscapeRopeOpenKabuto[];
-extern const u8 RuinsOfAlph_PuzzleAndRewardChambers_EventScript_UseWaterStoneOpenArchen[];
+extern const u8 RuinsOfAlph_PuzzleAndRewardChambers_EventScript_UseWaterStoneOpenOmanyte[];
 extern const u8 RuinsOfAlph_PuzzleAndRewardChambers_EventScript_UseFlashOpenAerodactyl[];
 
 static bool8 IsInPuzzleAndRewardChambers(void)
@@ -34,7 +34,7 @@ bool8 ShouldDoRuinsOfAlphEscapeRopePuzzle(void)
 bool8 ShouldDoRuinsOfAlphWaterStonePuzzle(void)
 {
     return IsInPuzzleAndRewardChambers()
-        && !FlagGet(FLAG_ARCHEN_BROUGHT)
+        && !FlagGet(FLAG_OMANYTE_BROUGHT)
         && IsFacingNorthAtRearWall(4, 5, 19);
 }
 
@@ -48,7 +48,7 @@ bool8 ShouldDoRuinsOfAlphFlashPuzzle(void)
 bool8 RuinsOfAlphB1FUnownEncountersUnlocked(void)
 {
     return FlagGet(FLAG_COMPLETED_KABUTO_PUZZLE)
-        || FlagGet(FLAG_COMPLETED_ARCHEN_PUZZLE)
+        || FlagGet(FLAG_COMPLETED_OMANYTE_PUZZLE)
         || FlagGet(FLAG_COMPLETED_AERODACTYL_PUZZLE)
         || FlagGet(FLAG_COMPLETED_HOOH_PUZZLE);
 }
@@ -63,7 +63,7 @@ void StartRuinsOfAlphEscapeRopePuzzle(u8 taskId)
 void StartRuinsOfAlphWaterStonePuzzle(u8 taskId)
 {
     LockPlayerFieldControls();
-    ScriptContext_SetupScript(RuinsOfAlph_PuzzleAndRewardChambers_EventScript_UseWaterStoneOpenArchen);
+    ScriptContext_SetupScript(RuinsOfAlph_PuzzleAndRewardChambers_EventScript_UseWaterStoneOpenOmanyte);
     DestroyTask(taskId);
 }
 

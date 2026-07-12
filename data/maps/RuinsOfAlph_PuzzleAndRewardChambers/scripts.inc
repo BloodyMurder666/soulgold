@@ -4,12 +4,12 @@ RuinsOfAlph_PuzzleAndRewardChambers_MapScripts::
 
 RuinsOfAlph_PuzzleAndRewardChambers_OnLoad::
 	call_if_set FLAG_COMPLETED_KABUTO_PUZZLE, RuinsOfAlph_PuzzleAndRewardChambers_MapScript_KabutoHole
-	call_if_set FLAG_COMPLETED_ARCHEN_PUZZLE, RuinsOfAlph_PuzzleAndRewardChambers_MapScript_ArchenHole
+	call_if_set FLAG_COMPLETED_OMANYTE_PUZZLE, RuinsOfAlph_PuzzleAndRewardChambers_MapScript_OmanyteHole
 	call_if_set FLAG_COMPLETED_AERODACTYL_PUZZLE, RuinsOfAlph_PuzzleAndRewardChambers_MapScript_AerodactylHole
 	call_if_set FLAG_COMPLETED_HOOH_PUZZLE, RuinsOfAlph_PuzzleAndRewardChambers_MapScript_HoohHole
 
 	call_if_set FLAG_KABUTO_BROUGHT, RuinsOfAlph_PuzzleAndRewardChambers_MapScript_KabutoDoor
-	call_if_set FLAG_ARCHEN_BROUGHT, RuinsOfAlph_PuzzleAndRewardChambers_MapScript_ArchenDoor
+	call_if_set FLAG_OMANYTE_BROUGHT, RuinsOfAlph_PuzzleAndRewardChambers_MapScript_OmanyteDoor
 	call_if_set FLAG_AERODACTYL_BROUGHT, RuinsOfAlph_PuzzleAndRewardChambers_MapScript_AerodactylDoor
 	call_if_set FLAG_HOOH_BROUGHT, RuinsOfAlph_PuzzleAndRewardChambers_MapScript_HoohDoor
 	end
@@ -18,7 +18,7 @@ RuinsOfAlph_PuzzleAndRewardChambers_MapScript_KabutoHole::
 	setmetatile 20, 5, 0x482, FALSE
 	setmetatile 21, 5, 0x483, FALSE
 	return
-RuinsOfAlph_PuzzleAndRewardChambers_MapScript_ArchenHole::
+RuinsOfAlph_PuzzleAndRewardChambers_MapScript_OmanyteHole::
 	setmetatile 4, 22, 0x482, FALSE
 	setmetatile 5, 22, 0x483, FALSE
 	return
@@ -35,7 +35,7 @@ RuinsOfAlph_PuzzleAndRewardChambers_MapScript_HoohHole::
 RuinsOfAlph_PuzzleAndRewardChambers_MapScript_KabutoDoor::
 	setmetatile 21, 1, 0x488, FALSE 
 	return
-RuinsOfAlph_PuzzleAndRewardChambers_MapScript_ArchenDoor::
+RuinsOfAlph_PuzzleAndRewardChambers_MapScript_OmanyteDoor::
 	setmetatile 5, 18, 0x488, FALSE 
 	return
 RuinsOfAlph_PuzzleAndRewardChambers_MapScript_AerodactylDoor::
@@ -51,9 +51,9 @@ RuinsOfAlph_PuzzleAndRewardChambers_MapScript_KabutoDescripton::
 	msgbox RuinsOfAlph_PuzzleAndRewardChambers_Text_Kabuto, MSGBOX_DEFAULT
 	release
 	end
-RuinsOfAlph_PuzzleAndRewardChambers_MapScript_ArchenDescription::
+RuinsOfAlph_PuzzleAndRewardChambers_MapScript_OmanyteDescription::
 	lock
-	msgbox RuinsOfAlph_PuzzleAndRewardChambers_Text_Archen, MSGBOX_DEFAULT
+	msgbox RuinsOfAlph_PuzzleAndRewardChambers_Text_Omanyte, MSGBOX_DEFAULT
 	release
 	end
 RuinsOfAlph_PuzzleAndRewardChambers_MapScript_AerodactylDescription::
@@ -145,22 +145,22 @@ RuinsOfAlph_PuzzleAndRewardChambers_Movement_Fall:
 	walk_in_place_fast_up
 	step_end
 
-RuinsOfAlph_PuzzleAndRewardChambers_EventScript_ArchenPuzzle::
+RuinsOfAlph_PuzzleAndRewardChambers_EventScript_OmanytePuzzle::
 	fadescreen FADE_TO_BLACK
-	setvar VAR_0x8004, SLIDING_PUZZLE_ARCHEN
-	goto_if_set FLAG_COMPLETED_ARCHEN_PUZZLE, RuinsOfAlph_PuzzleAndRewardChambers_EventScript_ArchenPuzzleCompleted
+	setvar VAR_0x8004, SLIDING_PUZZLE_OMANYTE
+	goto_if_set FLAG_COMPLETED_OMANYTE_PUZZLE, RuinsOfAlph_PuzzleAndRewardChambers_EventScript_OmanytePuzzleCompleted
 	setvar VAR_0x8005, FALSE // or TRUE if you want to display the solved puzzle
 	special DoSlidingPuzzle
 	waitstate
-	goto_if_eq VAR_RESULT, TRUE, RuinsOfAlph_PuzzleAndRewardChambers_MapScript_ArchenSuccess
+	goto_if_eq VAR_RESULT, TRUE, RuinsOfAlph_PuzzleAndRewardChambers_MapScript_OmanyteSuccess
 	end
-RuinsOfAlph_PuzzleAndRewardChambers_EventScript_ArchenPuzzleCompleted::
+RuinsOfAlph_PuzzleAndRewardChambers_EventScript_OmanytePuzzleCompleted::
 	setvar VAR_0x8005, TRUE // or TRUE if you want to display the solved puzzle
 	special DoSlidingPuzzle
 	waitstate
 	end
-RuinsOfAlph_PuzzleAndRewardChambers_MapScript_ArchenSuccess::
-	setflag FLAG_COMPLETED_ARCHEN_PUZZLE
+RuinsOfAlph_PuzzleAndRewardChambers_MapScript_OmanyteSuccess::
+	setflag FLAG_COMPLETED_OMANYTE_PUZZLE
 	addvar VAR_RUINS_OF_ALPH_PUZZLES, 1
 	clearflag FLAG_HIDE_ALPH_PUZZLE_NPCS
 	setvar VAR_0x8004, 1  @ vertical pan
@@ -273,11 +273,11 @@ RuinsOfAlph_PuzzleAndRewardChambers_EventScript_UseEscapeRopeOpenKabuto::
 	closemessage
 	goto RuinsOfAlph_PuzzleAndRewardChambers_EventScript_RewardKabuto
 
-RuinsOfAlph_PuzzleAndRewardChambers_EventScript_UseWaterStoneOpenArchen::
+RuinsOfAlph_PuzzleAndRewardChambers_EventScript_UseWaterStoneOpenOmanyte::
 	lockall
 	msgbox RuinsOfAlph_PuzzleAndRewardChambers_Text_UsedWaterStone, MSGBOX_DEFAULT
 	closemessage
-	goto RuinsOfAlph_PuzzleAndRewardChambers_EventScript_RewardArchen
+	goto RuinsOfAlph_PuzzleAndRewardChambers_EventScript_RewardOmanyte
 
 RuinsOfAlph_PuzzleAndRewardChambers_EventScript_UseFlashOpenAerodactyl::
 	lockall
@@ -365,15 +365,15 @@ RuinsOfAlph_PuzzleAndRewardChambers_EventScript_RewardKabuto::
 	release
 	end
 
-RuinsOfAlph_PuzzleAndRewardChambers_EventScript_CheckArchen::
+RuinsOfAlph_PuzzleAndRewardChambers_EventScript_CheckOmanyte::
 	lock
-	goto_if_set FLAG_ARCHEN_BROUGHT, RuinsOfAlph_PuzzleAndRewardChambers_EventScript_RewardGotten
+	goto_if_set FLAG_OMANYTE_BROUGHT, RuinsOfAlph_PuzzleAndRewardChambers_EventScript_RewardGotten
 	msgbox RuinsOfAlph_PuzzleAndRewardChambers_Text_WaterWall, MSGBOX_SIGN
 	closemessage
 	release
 	end
-RuinsOfAlph_PuzzleAndRewardChambers_EventScript_RewardArchen::
-	goto_if_set FLAG_ARCHEN_BROUGHT, RuinsOfAlph_PuzzleAndRewardChambers_EventScript_RewardGotten
+RuinsOfAlph_PuzzleAndRewardChambers_EventScript_RewardOmanyte::
+	goto_if_set FLAG_OMANYTE_BROUGHT, RuinsOfAlph_PuzzleAndRewardChambers_EventScript_RewardGotten
 	setvar VAR_0x8004, 1  @ vertical pan
 	setvar VAR_0x8005, 1  @ horizontal pan
 	setvar VAR_0x8006, 20  @ num shakes
@@ -385,7 +385,7 @@ RuinsOfAlph_PuzzleAndRewardChambers_EventScript_RewardArchen::
 	playse SE_CLICK
 	setmetatile 5, 18, 0x488, FALSE 
 	special DrawWholeMapView
-	setflag FLAG_ARCHEN_BROUGHT
+	setflag FLAG_OMANYTE_BROUGHT
 	addvar VAR_RUINS_OF_ALPH_PUZZLES, 1
 	release
 	end
@@ -465,9 +465,9 @@ RuinsOfAlph_PuzzleAndRewardChambers_Text_Aerodactyl:
 	.string "This flying Pokémon attacked its\n"
 	.string "prey with saw-like fangs.$"
 
-RuinsOfAlph_PuzzleAndRewardChambers_Text_Archen:
-	.string "This Pokémon was unable to fly\n"
-	.string "despite having wings.$"
+RuinsOfAlph_PuzzleAndRewardChambers_Text_Omanyte:
+	.string "This Pokémon drifted in the sea\n"
+	.string "by twisting its ten tentacles.$"
 
 RuinsOfAlph_PuzzleAndRewardChambers_Text_Hooh:
 	.string "A Pokémon that flew gracefully on\n"
@@ -477,4 +477,4 @@ RuinsOfAlph_PuzzleAndRewardChambers_Text_Hooh:
 @ Hooh
 @ Aero
 @ Kabuto
-@ Archen
+@ Omanyte

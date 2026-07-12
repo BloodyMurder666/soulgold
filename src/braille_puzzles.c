@@ -136,10 +136,10 @@ bool8 CheckKabuto(void)
     return FALSE;
 }
 
-bool8 CheckArchen(void)
+bool8 CheckOmanyte(void)
 {
  
-    if (GetMonData(&gPlayerParty[0], MON_DATA_SPECIES_OR_EGG, 0) == SPECIES_ARCHEN)
+    if (GetMonData(&gPlayerParty[0], MON_DATA_SPECIES_OR_EGG, 0) == SPECIES_OMANYTE)
     {
         return TRUE;
     }

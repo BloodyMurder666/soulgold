@@ -591,7 +591,7 @@ gSpecials::
 	def_special CheckHooh
 	def_special CheckAerodactyl
 	def_special CheckKabuto
-	def_special CheckArchen
+	def_special CheckOmanyte
 	def_special CheckTogepi
 	def_special CheckCelebi
 	def_special HaircutBrother1
