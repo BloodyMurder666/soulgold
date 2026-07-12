@@ -3977,7 +3977,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_STATIC, ABILITY_NONE, ABILITY_LIGHTNING_ROD },
-        .innates = { ABILITY_PLUS, ABILITY_BATTERY, ABILITY_BATTLE_BOND },
+        .innates = { ABILITY_PLUS, ABILITY_BATTERY, ABILITY_MOXIE },
 		.bodyColor = BODY_COLOR_YELLOW,
         .speciesName = _("Pikachu"),
         .cryId = CRY_PIKACHU,
@@ -4009,13 +4009,13 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         SHADOW(-3, 5, SHADOW_SIZE_M)
         FOOTPRINT(Pikachu)
         OVERWORLD(
-            sPicTable_Pikachu,
+            sPicTable_PikachuStarter,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
             sAnimTable_Following,
-            gOverworldPalette_Pikachu,
-            gShinyOverworldPalette_Pikachu
+            gOverworldPalette_PikachuStarter,
+            gShinyOverworldPalette_PikachuStarter
         )
         .cannotBeTraded = TRUE,
         .perfectIVCount = NUM_STATS,

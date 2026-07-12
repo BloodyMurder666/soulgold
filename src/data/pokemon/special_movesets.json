@@ -27,7 +27,6 @@
       "MOVE_SIZZLY_SLIDE",
       "MOVE_SPARKLY_SWIRL",
       "MOVE_SPLISHY_SPLASH",
-      "MOVE_VOLT_TACKLE",
       "MOVE_ZIPPY_ZAP"
     ],
   "extraTutors":
@@ -81,6 +80,8 @@
       "MOVE_UPPER_HAND",
       "MOVE_UPROAR",
       "MOVE_VACUUM_WAVE",
-      "MOVE_WEATHER_BALL"
+      "MOVE_WEATHER_BALL",
+      "MOVE_AQUA_CUTTER",
+      "MOVE_VOLT_TACKLE"
     ]
 }

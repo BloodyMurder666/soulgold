@@ -200,6 +200,9 @@ static const struct SpriteFrameImage sPicTable_PichuSpikyEared[] = {
 static const struct SpriteFrameImage sPicTable_Pikachu[] = {
     overworld_ascending_frames(gObjectEventPic_Pikachu, 4, 4),
 };
+static const struct SpriteFrameImage sPicTable_PikachuStarter[] = {
+    overworld_ascending_frames(gObjectEventPic_PikachuStarter, 4, 4),
+};
 #if P_GENDER_DIFFERENCES
 static const struct SpriteFrameImage sPicTable_PikachuF[] = {
     overworld_ascending_frames(gObjectEventPic_PikachuF, 4, 4),
