@@ -89,6 +89,14 @@ static const u32 sFieldMugshotGfx_CooltrainerMNormal[] = INCBIN_U32("graphics/fi
 static const u16 sFieldMugshotPal_CooltrainerMNormal[] = INCBIN_U16("graphics/field_mugshots/cooltrainer_m.gbapal");
 static const u32 sFieldMugshotGfx_CooltrainerFNormal[] = INCBIN_U32("graphics/field_mugshots/cooltrainer_f.4bpp.lz");
 static const u16 sFieldMugshotPal_CooltrainerFNormal[] = INCBIN_U16("graphics/field_mugshots/cooltrainer_f.gbapal");
+static const u32 sFieldMugshotGfx_ArcherNormal[] = INCBIN_U32("graphics/field_mugshots/archer.4bpp.lz");
+static const u16 sFieldMugshotPal_ArcherNormal[] = INCBIN_U16("graphics/field_mugshots/archer.gbapal");
+static const u32 sFieldMugshotGfx_ArianaNormal[] = INCBIN_U32("graphics/field_mugshots/ariana.4bpp.lz");
+static const u16 sFieldMugshotPal_ArianaNormal[] = INCBIN_U16("graphics/field_mugshots/ariana.gbapal");
+static const u32 sFieldMugshotGfx_ProtonNormal[] = INCBIN_U32("graphics/field_mugshots/proton.4bpp.lz");
+static const u16 sFieldMugshotPal_ProtonNormal[] = INCBIN_U16("graphics/field_mugshots/proton.gbapal");
+static const u32 sFieldMugshotGfx_PetrelNormal[] = INCBIN_U32("graphics/field_mugshots/petrel.4bpp.lz");
+static const u16 sFieldMugshotPal_PetrelNormal[] = INCBIN_U16("graphics/field_mugshots/petrel.gbapal");
 
 struct MugshotGfx
 {
@@ -456,6 +464,38 @@ static const struct MugshotGfx sFieldMugshots[MUGSHOT_COUNT][EMOTE_COUNT] =
         {
             .gfx = sFieldMugshotGfx_CooltrainerFNormal,
             .pal = sFieldMugshotPal_CooltrainerFNormal,
+        },
+    },
+    [MUGSHOT_ARCHER] =
+    {
+        [EMOTE_NORMAL] =
+        {
+            .gfx = sFieldMugshotGfx_ArcherNormal,
+            .pal = sFieldMugshotPal_ArcherNormal,
+        },
+    },
+    [MUGSHOT_ARIANA] =
+    {
+        [EMOTE_NORMAL] =
+        {
+            .gfx = sFieldMugshotGfx_ArianaNormal,
+            .pal = sFieldMugshotPal_ArianaNormal,
+        },
+    },
+    [MUGSHOT_PETREL] =
+    {
+        [EMOTE_NORMAL] =
+        {
+            .gfx = sFieldMugshotGfx_PetrelNormal,
+            .pal = sFieldMugshotPal_PetrelNormal,
+        },
+    },
+    [MUGSHOT_PROTON] =
+    {
+        [EMOTE_NORMAL] =
+        {
+            .gfx = sFieldMugshotGfx_ProtonNormal,
+            .pal = sFieldMugshotPal_ProtonNormal,
         },
     },
 };

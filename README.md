@@ -31,7 +31,7 @@ The hack is currently under testing. It will be playable up to the start of post
 ## CREDITS
 - [HnS Dev Team](https://github.com/PokemonHnS-Development/pokemonHnS) for their amazing work!
 - [smithk200](https://github.com/smithk200/Gold-And-Silver-Gen-3-Decomp) for porting most of HnS to expansion!
-- Rafael Sanna for amazing custom mega sprites for typhlosion, primarina and meowscarada!
+- Rafael Sanna for amazing custom mega sprites for typhlosion, primarina and meowscarada and mugshots for Kris, Archer and Ariana!
 - RHH and pokeemerald expansion dev team for the expansion base and support
 - [TeamAquaHideout](https://github.com/TeamAquasHideout/Team-Aquas-Asset-Repo/wiki) for help, resources and feature branches
 - [Estellar](https://github.com/estellarc/pokeemerald) for pathfinding

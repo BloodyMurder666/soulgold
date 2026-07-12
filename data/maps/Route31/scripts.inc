@@ -433,7 +433,7 @@ Route31_Expert_Text_0:
 
 Route31_Expert_Text_1:
 # 200 "data/maps/Route31/scripts.pory"
-	.string "I'm what they call a route master. \p"
+	.string "I'm what they call a route expert. \p"
 	.string "If you manage to beat every trainer on \n"
 	.string "Route 30 and 31, come find me again \l"
 	.string "and we will have a battle.\p"

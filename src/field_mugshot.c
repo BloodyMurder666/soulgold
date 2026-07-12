@@ -167,6 +167,14 @@ u16 GetFieldMugshotIdByObjectGraphicsId(u16 graphicsId)
         return MUGSHOT_ROCKET_GRUNT_M;
     case OBJ_EVENT_GFX_ROCKET_F:
         return MUGSHOT_ROCKET_GRUNT_F;
+    case OBJ_EVENT_GFX_ARCHER:
+        return MUGSHOT_ARCHER;
+    case OBJ_EVENT_GFX_ARIANA:
+        return MUGSHOT_ARIANA;
+    case OBJ_EVENT_GFX_PETREL:
+        return MUGSHOT_PETREL;
+    case OBJ_EVENT_GFX_PROTON:
+        return MUGSHOT_PROTON;
     case OBJ_EVENT_GFX_WILL:
         return MUGSHOT_WILL;
     case OBJ_EVENT_GFX_KOGA:

@@ -861,242 +861,244 @@ RadioTower_5F_Archer::
 # 451 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	trainerbattle_no_intro TRAINER_ARCHER, RadioTower_5F_Archer_Text_1
 # 452 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	createfieldmugshot MUGSHOT_ARCHER
+# 453 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	msgbox RadioTower_5F_Archer_Text_2
-# 463 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	closemessage
 # 464 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	fadescreen FADE_TO_BLACK
+	closemessage
 # 465 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	clearflag FLAG_HIDE_GOLDENROD_RADIOTOWER_DIRECTOR_2
+	fadescreen FADE_TO_BLACK
 # 466 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	setflag FLAG_HIDE_GOLDENROD_ROCKETS
+	clearflag FLAG_HIDE_GOLDENROD_RADIOTOWER_DIRECTOR_2
 # 467 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	playse SE_EXIT
+	setflag FLAG_HIDE_GOLDENROD_ROCKETS
 # 468 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	setvar VAR_GOLDENROD_CITY_STATE, 10
+	playse SE_EXIT
 # 469 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	removeobject LOCALID_GOLDENROD_ARCHER
+	setvar VAR_GOLDENROD_CITY_STATE, 10
 # 470 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	removeobject LOCALID_GOLDENROD_ARIANA
+	removeobject LOCALID_GOLDENROD_ARCHER
 # 471 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	setflag FLAG_HIDE_GOLDENROD_RADIOTOWER_PETREL
+	removeobject LOCALID_GOLDENROD_ARIANA
 # 472 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	clearflag FLAG_HIDE_GOLDENROD_RADIOTOWER_DIRECTOR
+	setflag FLAG_HIDE_GOLDENROD_RADIOTOWER_PETREL
 # 473 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	removeobject LOCALID_PETREL_OFFICE
+	clearflag FLAG_HIDE_GOLDENROD_RADIOTOWER_DIRECTOR
 # 474 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	addobject LOCALID_F5_DIRECTOR_2
+	removeobject LOCALID_PETREL_OFFICE
 # 475 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	addobject LOCALID_RADIOTOWER_OAK
+	addobject LOCALID_F5_DIRECTOR_2
 # 476 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	playbgm MUS_HG_GOLDENROD, TRUE
+	addobject LOCALID_RADIOTOWER_OAK
 # 477 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	delay 60
+	playbgm MUS_HG_GOLDENROD, TRUE
 # 478 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	fadescreen FADE_FROM_BLACK
+	delay 60
 # 479 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	approachobject LOCALID_F5_DIRECTOR_2, LOCALID_PLAYER, DIR_WEST, DIR_EAST
+	fadescreen FADE_FROM_BLACK
 # 480 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	waitmovement 0
+	approachobject LOCALID_F5_DIRECTOR_2, LOCALID_PLAYER, DIR_WEST, DIR_EAST
 # 481 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	turnobject LOCALID_PLAYER, DIR_EAST
+	waitmovement 0
 # 482 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	createfieldmugshot MUGSHOT_GENTLEMAN
+	turnobject LOCALID_PLAYER, DIR_EAST
 # 483 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	createfieldmugshot MUGSHOT_GENTLEMAN
+# 484 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	msgbox RadioTower_5F_Archer_Text_3
-# 498 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	dynmultichoice 0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, RadioTower_5F_Archer_Text_4, RadioTower_5F_Archer_Text_5
 # 499 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	switch VAR_RESULT
+	dynmultichoice 0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, RadioTower_5F_Archer_Text_4, RadioTower_5F_Archer_Text_5
 # 500 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	switch VAR_RESULT
+# 501 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	case 0, RadioTower_5F_Archer_3
-# 514 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 515 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	case 1, RadioTower_5F_Archer_4
 RadioTower_5F_Archer_1:
-# 529 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 530 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	msgbox RadioTower_5F_Archer_Text_8
-# 531 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	closemessage
 # 532 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	applymovement LOCALID_F5_DIRECTOR_2, RadioTower_5F_Archer_Movement_0
+	closemessage
 # 533 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	waitmovement 0
+	applymovement LOCALID_F5_DIRECTOR_2, RadioTower_5F_Archer_Movement_0
 # 534 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	playse SE_PIN
+	waitmovement 0
 # 535 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	applymovement LOCALID_F5_DIRECTOR_2, Common_Movement_ExclamationMark
+	playse SE_PIN
 # 536 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	delay 60
+	applymovement LOCALID_F5_DIRECTOR_2, Common_Movement_ExclamationMark
 # 537 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	turnobject LOCALID_F5_DIRECTOR_2, DIR_WEST
+	delay 60
 # 538 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	createfieldmugshot MUGSHOT_GENTLEMAN
+	turnobject LOCALID_F5_DIRECTOR_2, DIR_WEST
 # 539 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	createfieldmugshot MUGSHOT_GENTLEMAN
+# 540 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	msgbox RadioTower_5F_Archer_Text_9
-# 549 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	closemessage
 # 550 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	moveobjecttocoords LOCALID_F5_DIRECTOR_2, 29, 5, DIR_NORTH
-# 551 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	waitmovement 0
-# 552 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	setflag FLAG_HIDE_GOLDENROD_RADIOTOWER_DIRECTOR_2
-# 553 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	removeobject LOCALID_F5_DIRECTOR_2
-# 554 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	setvar VAR_MAHOGANY_TOWN_STATE, 17
-# 555 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	moveobjecttocoords OBJ_EVENT_ID_PLAYER, 28, 11, DIR_NORTH
-# 556 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	waitmovement 0
-# 557 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	playbgm MUS_HG_OAK, TRUE
-# 558 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	moveobjecttocoords LOCALID_RADIOTOWER_OAK, 28, 10, DIR_SOUTH
-# 559 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	waitmovement 0
-# 560 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	createfieldmugshot MUGSHOT_OAK
-# 561 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	msgbox OakRadioTowerF5_Text_0
-# 562 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	msgbox OakRadioTowerF5_Text_1
-# 563 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	giveitem ITEM_MEGA_RING
-# 564 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	createfieldmugshot MUGSHOT_OAK
-# 565 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	msgbox RadioTower_5F_Archer_Text_10
-# 572 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	msgbox RadioTower_5F_Archer_Text_11
-# 573 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	closemessage
-# 574 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	moveobjecttocoords LOCALID_RADIOTOWER_OAK, 24, 5, DIR_WEST
-# 575 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 551 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	moveobjecttocoords LOCALID_F5_DIRECTOR_2, 29, 5, DIR_NORTH
+# 552 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	waitmovement 0
+# 553 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	setflag FLAG_HIDE_GOLDENROD_RADIOTOWER_DIRECTOR_2
+# 554 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	removeobject LOCALID_F5_DIRECTOR_2
+# 555 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	setvar VAR_MAHOGANY_TOWN_STATE, 17
+# 556 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	moveobjecttocoords OBJ_EVENT_ID_PLAYER, 28, 11, DIR_NORTH
+# 557 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	waitmovement 0
+# 558 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	playbgm MUS_HG_OAK, TRUE
+# 559 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	moveobjecttocoords LOCALID_RADIOTOWER_OAK, 28, 10, DIR_SOUTH
+# 560 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	waitmovement 0
+# 561 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	createfieldmugshot MUGSHOT_OAK
+# 562 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	msgbox OakRadioTowerF5_Text_0
+# 563 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	msgbox OakRadioTowerF5_Text_1
+# 564 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	giveitem ITEM_MEGA_RING
+# 565 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	createfieldmugshot MUGSHOT_OAK
+# 566 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	msgbox RadioTower_5F_Archer_Text_10
+# 573 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	msgbox RadioTower_5F_Archer_Text_11
+# 574 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	closemessage
+# 575 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	moveobjecttocoords LOCALID_RADIOTOWER_OAK, 24, 5, DIR_WEST
 # 576 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	clearflag FLAG_HIDE_GOLDENROD_NPCS
+	waitmovement 0
 # 577 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	setvar VAR_GOLDENROD_CITY_STATE, 11
+	clearflag FLAG_HIDE_GOLDENROD_NPCS
 # 578 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	setflag FLAG_ROCKET_TAKEOVER_CAP
+	setvar VAR_GOLDENROD_CITY_STATE, 11
 # 579 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	playse SE_EXIT
+	setflag FLAG_ROCKET_TAKEOVER_CAP
 # 580 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	removeobject LOCALID_RADIOTOWER_OAK
+	playse SE_EXIT
 # 581 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	removeobject LOCALID_RADIOTOWER_OAK
+# 582 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	savebgm MUS_DUMMY
-# 583 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	fadedefaultbgm
 # 584 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	fadedefaultbgm
+# 585 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	release
 	end
 
 RadioTower_5F_Archer_3:
-# 501 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	setvar VAR_LUGIA_OR_HOOH, 2
 # 502 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	giveitem ITEM_RAINBOW_WING
+	setvar VAR_LUGIA_OR_HOOH, 2
 # 503 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	createfieldmugshot MUGSHOT_GENTLEMAN
+	giveitem ITEM_RAINBOW_WING
 # 504 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	createfieldmugshot MUGSHOT_GENTLEMAN
+# 505 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	msgbox RadioTower_5F_Archer_Text_6
 	goto RadioTower_5F_Archer_1
 
 RadioTower_5F_Archer_4:
-# 515 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	setvar VAR_LUGIA_OR_HOOH, 1
 # 516 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	giveitem ITEM_SILVER_WING
+	setvar VAR_LUGIA_OR_HOOH, 1
 # 517 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	createfieldmugshot MUGSHOT_GENTLEMAN
+	giveitem ITEM_SILVER_WING
 # 518 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	createfieldmugshot MUGSHOT_GENTLEMAN
+# 519 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	msgbox RadioTower_5F_Archer_Text_7
 	goto RadioTower_5F_Archer_1
 
 
 GoldenrodCity_RadioTower_5F_EventScript_DirectorPath::
-# 589 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 590 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	goto_if_set FLAG_IS_CHAMPION, GoldenrodCity_RadioTower_5F_EventScript_DirectorPath_2
-# 636 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 637 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	goto GoldenrodCity_RadioTower_5F_EventScript_DirectorDone
 GoldenrodCity_RadioTower_5F_EventScript_DirectorPath_1:
-# 638 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 639 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	release
 	end
 
 GoldenrodCity_RadioTower_5F_EventScript_DirectorPath_2:
-# 590 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 591 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	goto_if_set FLAG_BEAT_DIRECTOR, GoldenrodCity_RadioTower_5F_EventScript_DirectorPath_5
-# 593 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 594 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	msgbox GoldenrodCity_RadioTower_5F_EventScript_DirectorPath_Text_0
-# 597 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 598 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	msgbox GoldenrodCity_RadioTower_5F_EventScript_DirectorPath_Text_1
-# 611 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	playbgm MUS_RG_ENCOUNTER_GYM_LEADER, FALSE
 # 612 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	playbgm MUS_RG_ENCOUNTER_GYM_LEADER, FALSE
+# 613 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	msgbox GoldenrodCity_RadioTower_5F_EventScript_DirectorPath_Text_2
-# 614 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	trainerbattle_no_intro TRAINER_DIRECTOR, GoldenrodCity_RadioTower_5F_EventScript_DirectorPath_Text_3
 # 615 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	createfieldmugshot MUGSHOT_GENTLEMAN
+	trainerbattle_no_intro TRAINER_DIRECTOR, GoldenrodCity_RadioTower_5F_EventScript_DirectorPath_Text_3
 # 616 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	createfieldmugshot MUGSHOT_GENTLEMAN
+# 617 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	msgbox GoldenrodCity_RadioTower_5F_EventScript_DirectorPath_Text_4
-# 621 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 622 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	compare VAR_LUGIA_OR_HOOH, 1
 	goto_if_eq GoldenrodCity_RadioTower_5F_EventScript_DirectorPath_9
-# 626 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	giveitem ITEM_SILVER_WING
 # 627 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	setvar VAR_COMPLETED_LUGIA, 4
+	giveitem ITEM_SILVER_WING
 # 628 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	setvar VAR_COMPLETED_LUGIA, 4
+# 629 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	setflag FLAG_HIDE_WHIRL_ISLANDS_TENTACRUEL
 GoldenrodCity_RadioTower_5F_EventScript_DirectorPath_8:
-# 630 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	setflag FLAG_BEAT_DIRECTOR
 # 631 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	msgbox GoldenrodCity_RadioTower_5F_EventScript_DirectorPath_Text_5
+	setflag FLAG_BEAT_DIRECTOR
 # 632 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	msgbox GoldenrodCity_RadioTower_5F_EventScript_DirectorPath_Text_5
+# 633 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	release
 	end
 
 GoldenrodCity_RadioTower_5F_EventScript_DirectorPath_5:
-# 591 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 592 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	goto GoldenrodCity_RadioTower_5F_EventScript_DirectorDone
 	goto GoldenrodCity_RadioTower_5F_EventScript_DirectorPath_1
 
 GoldenrodCity_RadioTower_5F_EventScript_DirectorPath_9:
-# 622 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	giveitem ITEM_RAINBOW_WING
 # 623 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	setvar VAR_COMPLETED_HO_OH, 4
+	giveitem ITEM_RAINBOW_WING
 # 624 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	setvar VAR_COMPLETED_HO_OH, 4
+# 625 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	setflag FLAG_HIDE_TINTOWER_GUARD
 	goto GoldenrodCity_RadioTower_5F_EventScript_DirectorPath_8
 
 
 DirectorGotSilver::
-# 643 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	msgbox DirectorGotSilver_Text_0
 # 644 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	msgbox DirectorGotSilver_Text_0
+# 645 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	release
 	end
 
 
 DirectorGotRainbow::
-# 649 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
-	msgbox DirectorGotRainbow_Text_0
 # 650 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+	msgbox DirectorGotRainbow_Text_0
+# 651 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	release
 	end
 
 
-# 532 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 533 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 RadioTower_5F_Archer_Movement_0:
-# 532 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 533 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	walk_right
-# 532 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 533 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	walk_right
 	step_end
 
@@ -1147,7 +1149,7 @@ RadioTower_5F_Archer_Text_1:
 	.string "No! Forgive me, Giovanni!$"
 
 RadioTower_5F_Archer_Text_2:
-# 452 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 453 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	.string "Archer: How could this be...?\p"
 	.string "It seems I was not up to the task... \n"
 	.string "Yet.\p"
@@ -1158,7 +1160,7 @@ RadioTower_5F_Archer_Text_2:
 	.string "Farewell...$"
 
 RadioTower_5F_Archer_Text_3:
-# 483 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 484 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	.string "Director: Oh...\p"
 	.string "You have already defeated them?\n"
 	.string "Thank you!\p"
@@ -1171,15 +1173,15 @@ RadioTower_5F_Archer_Text_3:
 	.string "Go ahead and pick one!$"
 
 RadioTower_5F_Archer_Text_4:
-# 498 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 499 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	.string "Rainbow Wing$"
 
 RadioTower_5F_Archer_Text_5:
-# 498 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 499 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	.string "Silver Wing$"
 
 RadioTower_5F_Archer_Text_6:
-# 504 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 505 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	.string "There used to be a tower right here.\p"
 	.string "When the tower was replaced with the\n"
 	.string "Radio Tower, that Rainbow Wing was \l"
@@ -1190,7 +1192,7 @@ RadioTower_5F_Archer_Text_6:
 	.string "Rainbow Wing.$"
 
 RadioTower_5F_Archer_Text_7:
-# 518 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 519 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	.string "There used to be a tower right here.\p"
 	.string "When the tower was replaced with the\n"
 	.string "Radio Tower, that Silver Wing was \l"
@@ -1201,12 +1203,12 @@ RadioTower_5F_Archer_Text_7:
 	.string "Wing.$"
 
 RadioTower_5F_Archer_Text_8:
-# 529 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 530 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	.string "I have to get back to my office.\n"
 	.string "See you!$"
 
 RadioTower_5F_Archer_Text_9:
-# 539 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 540 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	.string "Oh, I almost forgot!\p"
 	.string "According to my friend from Cianwood,\n"
 	.string "the legendary Pokémon will not appear\l"
@@ -1217,7 +1219,7 @@ RadioTower_5F_Archer_Text_9:
 	.string "I can't remember.$"
 
 RadioTower_5F_Archer_Text_10:
-# 565 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 566 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	.string "That is a Mega Ring. \p"
 	.string "When combined with a Mega stone, \n"
 	.string "it allows the bond between trainer \l"
@@ -1225,18 +1227,18 @@ RadioTower_5F_Archer_Text_10:
 	.string "I'm sure you'll be able to pull it off.$"
 
 RadioTower_5F_Archer_Text_11:
-# 572 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 573 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	.string "Now I must get back to my work, I hope\n"
 	.string "you'll tune in to my next radio show!$"
 
 GoldenrodCity_RadioTower_5F_EventScript_DirectorPath_Text_0:
-# 593 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 594 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	.string "Ah, {PLAYER}!\p"
 	.string "I heard you became the champion,\n"
 	.string "congratulations!$"
 
 GoldenrodCity_RadioTower_5F_EventScript_DirectorPath_Text_1:
-# 597 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 598 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	.string "I assume you're here for the other \n"
 	.string "wing? Ho ho ho!\p"
 	.string "I'd be more than happy to give it\n"
@@ -1249,29 +1251,29 @@ GoldenrodCity_RadioTower_5F_EventScript_DirectorPath_Text_1:
 	.string "against my prized team.$"
 
 GoldenrodCity_RadioTower_5F_EventScript_DirectorPath_Text_2:
-# 612 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 613 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	.string "I'll show you the power of a former\n"
 	.string "Elite Four member, ho ho ho!$"
 
 GoldenrodCity_RadioTower_5F_EventScript_DirectorPath_Text_3:
-# 614 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 615 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	.string "What a nostalgic feeling!$"
 
 GoldenrodCity_RadioTower_5F_EventScript_DirectorPath_Text_4:
-# 616 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 617 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	.string "You are truly above and beyond other\n"
 	.string "trainers in Johto, {PLAYER}!\p"
 	.string "I'm more than happy to hand this over\n"
 	.string "to you.$"
 
 GoldenrodCity_RadioTower_5F_EventScript_DirectorPath_Text_5:
-# 631 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 632 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	.string "Now go on and continue your legend!$"
 
 DirectorGotSilver_Text_0:
-# 643 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 644 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	.string "You chose Silver Wing$"
 
 DirectorGotRainbow_Text_0:
-# 649 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
+# 650 "data/maps/GoldenrodCity_RadioTower_5F/scripts.pory"
 	.string "You chose Rainbow Wing$"

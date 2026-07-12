@@ -63,278 +63,280 @@ SlowpokeWell_B1F_EventScript_Proton::
 # 32 "data/maps/SlowpokeWell_B1F/scripts.pory"
 	trainerbattle_no_intro TRAINER_PROTON_1, SlowpokeWell_B1F_Text_ProtonBeaten
 # 33 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	msgbox SlowpokeWell_B1F_Text_ProtonAfter, MSGBOX_DEFAULT
+	createfieldmugshot MUGSHOT_PROTON
 # 34 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	closemessage
+	msgbox SlowpokeWell_B1F_Text_ProtonAfter, MSGBOX_DEFAULT
 # 35 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	fadescreen FADE_TO_BLACK
-# 36 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	setflag FLAG_HIDE_AZALEA_TOWN_ROCKETS
-# 37 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	clearflag FLAG_HIDE_KURT_1
-# 38 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	addobject LOCALID_WELL_KURT
-# 39 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	removeobject 11
-# 40 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	removeobject 12
-# 41 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	removeobject 13
-# 42 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	delay 60
-# 43 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	fadescreen FADE_FROM_BLACK
-# 44 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	special DrawWholeMapView
-# 45 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	turnobject OBJ_EVENT_ID_PLAYER, DIR_SOUTH
-# 46 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	applymovement LOCALID_WELL_KURT, SlowpokeWell_B1F_Movement_Kurt
-# 47 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	waitmovement 0
-# 48 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	msgbox SlowpokeWell_B1F_Text_KurtAfter, MSGBOX_DEFAULT
-# 49 "data/maps/SlowpokeWell_B1F/scripts.pory"
 	closemessage
-# 50 "data/maps/SlowpokeWell_B1F/scripts.pory"
+# 36 "data/maps/SlowpokeWell_B1F/scripts.pory"
 	fadescreen FADE_TO_BLACK
+# 37 "data/maps/SlowpokeWell_B1F/scripts.pory"
+	setflag FLAG_HIDE_AZALEA_TOWN_ROCKETS
+# 38 "data/maps/SlowpokeWell_B1F/scripts.pory"
+	clearflag FLAG_HIDE_KURT_1
+# 39 "data/maps/SlowpokeWell_B1F/scripts.pory"
+	addobject LOCALID_WELL_KURT
+# 40 "data/maps/SlowpokeWell_B1F/scripts.pory"
+	removeobject 11
+# 41 "data/maps/SlowpokeWell_B1F/scripts.pory"
+	removeobject 12
+# 42 "data/maps/SlowpokeWell_B1F/scripts.pory"
+	removeobject 13
+# 43 "data/maps/SlowpokeWell_B1F/scripts.pory"
+	delay 60
+# 44 "data/maps/SlowpokeWell_B1F/scripts.pory"
+	fadescreen FADE_FROM_BLACK
+# 45 "data/maps/SlowpokeWell_B1F/scripts.pory"
+	special DrawWholeMapView
+# 46 "data/maps/SlowpokeWell_B1F/scripts.pory"
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_SOUTH
+# 47 "data/maps/SlowpokeWell_B1F/scripts.pory"
+	applymovement LOCALID_WELL_KURT, SlowpokeWell_B1F_Movement_Kurt
+# 48 "data/maps/SlowpokeWell_B1F/scripts.pory"
+	waitmovement 0
+# 49 "data/maps/SlowpokeWell_B1F/scripts.pory"
+	msgbox SlowpokeWell_B1F_Text_KurtAfter, MSGBOX_DEFAULT
+# 50 "data/maps/SlowpokeWell_B1F/scripts.pory"
+	closemessage
 # 51 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	setflag FLAG_HIDE_SLOWPOKE_WELL_KURT
+	fadescreen FADE_TO_BLACK
 # 52 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	setflag FLAG_HIDE_KURT_1
+	setflag FLAG_HIDE_SLOWPOKE_WELL_KURT
 # 53 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	clearflag FLAG_HIDE_KURT_2
+	setflag FLAG_HIDE_KURT_1
 # 54 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	clearflag FLAG_HIDE_AZALEA_TOWN_SLOWPOKE
+	clearflag FLAG_HIDE_KURT_2
 # 55 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	setvar VAR_AZALEA_TOWN_STATE, 3
+	clearflag FLAG_HIDE_AZALEA_TOWN_SLOWPOKE
 # 56 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	warp MAP_AZALEA_TOWN_KURTS_HOUSE, 15, 4
+	setvar VAR_AZALEA_TOWN_STATE, 3
 # 57 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	waitstate
+	warp MAP_AZALEA_TOWN_KURTS_HOUSE, 15, 4
 # 58 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	release
+	waitstate
 # 59 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	end
+	release
 # 60 "data/maps/SlowpokeWell_B1F/scripts.pory"
-
+	end
 # 61 "data/maps/SlowpokeWell_B1F/scripts.pory"
-SlowpokeWell_B1F_Movement_Kurt:
+
 # 62 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	walk_left
+SlowpokeWell_B1F_Movement_Kurt:
 # 63 "data/maps/SlowpokeWell_B1F/scripts.pory"
 	walk_left
 # 64 "data/maps/SlowpokeWell_B1F/scripts.pory"
 	walk_left
 # 65 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	walk_up
+	walk_left
 # 66 "data/maps/SlowpokeWell_B1F/scripts.pory"
 	walk_up
 # 67 "data/maps/SlowpokeWell_B1F/scripts.pory"
 	walk_up
 # 68 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	step_end
+	walk_up
 # 69 "data/maps/SlowpokeWell_B1F/scripts.pory"
-
+	step_end
 # 70 "data/maps/SlowpokeWell_B1F/scripts.pory"
-SlowpokeWell_B1F_Text_KurtIntro:
+
 # 71 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "Kurt: Hey there, {PLAYER}!\p"
+SlowpokeWell_B1F_Text_KurtIntro:
 # 72 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "The guard up top took off when\n"
+	.string "Kurt: Hey there, {PLAYER}!\p"
 # 73 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "I shouted at him.\p"
+	.string "The guard up top took off when\n"
 # 74 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "But then I took a tumble down\n"
+	.string "I shouted at him.\p"
 # 75 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "the Well.\p"
+	.string "But then I took a tumble down\n"
 # 76 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "I slammed down hard on my back,\n"
+	.string "the Well.\p"
 # 77 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "so I can't move.\p"
+	.string "I slammed down hard on my back,\n"
 # 78 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "Rats! If I were fit, my Pokémon\n"
+	.string "so I can't move.\p"
 # 79 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "would've punished them…\p"
+	.string "Rats! If I were fit, my Pokémon\n"
 # 80 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "Ah, it can't be helped.\p"
+	.string "would've punished them…\p"
 # 81 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "{PLAYER}, show them how gutsy\n"
+	.string "Ah, it can't be helped.\p"
 # 82 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "you are in my place!$"
+	.string "{PLAYER}, show them how gutsy\n"
 # 83 "data/maps/SlowpokeWell_B1F/scripts.pory"
-
+	.string "you are in my place!$"
 # 84 "data/maps/SlowpokeWell_B1F/scripts.pory"
-SlowpokeWell_B1F_Text_KurtAfter:
+
 # 85 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "Kurt: Way to go, {PLAYER}!\p"
+SlowpokeWell_B1F_Text_KurtAfter:
 # 86 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "Team Rocket has taken off.\p"
+	.string "Kurt: Way to go, {PLAYER}!\p"
 # 87 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "My back's better too.\n"
+	.string "Team Rocket has taken off.\p"
 # 88 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "Let's get out of here.$"
+	.string "My back's better too.\n"
 # 89 "data/maps/SlowpokeWell_B1F/scripts.pory"
-
+	.string "Let's get out of here.$"
 # 90 "data/maps/SlowpokeWell_B1F/scripts.pory"
-SlowpokeWell_B1F_Text_GruntM29Seen:
+
 # 91 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "Darn! I was standing guard up\n"
+SlowpokeWell_B1F_Text_GruntM29Seen:
 # 92 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "top when some old coot yelled\l"
+	.string "Darn! I was standing guard up\n"
 # 93 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "at me.\p"
+	.string "top when some old coot yelled\l"
 # 94 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "He startled me so much that\n"
+	.string "at me.\p"
 # 95 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "I fell down here.\p"
+	.string "He startled me so much that\n"
 # 96 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "I think I'll vent my anger by\n"
+	.string "I fell down here.\p"
 # 97 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "taking it out on you!$"
+	.string "I think I'll vent my anger by\n"
 # 98 "data/maps/SlowpokeWell_B1F/scripts.pory"
-
+	.string "taking it out on you!$"
 # 99 "data/maps/SlowpokeWell_B1F/scripts.pory"
-SlowpokeWell_B1F_Text_GruntM29Beaten:
+
 # 100 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "Arrgh! This is Not my day!$"
+SlowpokeWell_B1F_Text_GruntM29Beaten:
 # 101 "data/maps/SlowpokeWell_B1F/scripts.pory"
-
+	.string "Arrgh! This is Not my day!$"
 # 102 "data/maps/SlowpokeWell_B1F/scripts.pory"
-SlowpokeWell_B1F_Text_GruntM29After:
+
 # 103 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "Sure, we've been hacking the\n"
+SlowpokeWell_B1F_Text_GruntM29After:
 # 104 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "tails off Slowpoke and selling\l"
+	.string "Sure, we've been hacking the\n"
 # 105 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "them.\p"
+	.string "tails off Slowpoke and selling\l"
 # 106 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "Everything we do is for profit.\p"
+	.string "them.\p"
 # 107 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "That's right! We're Team Rocket,\n"
+	.string "Everything we do is for profit.\p"
 # 108 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "and we'll do anything for money!$"
+	.string "That's right! We're Team Rocket,\n"
 # 109 "data/maps/SlowpokeWell_B1F/scripts.pory"
-
+	.string "and we'll do anything for money!$"
 # 110 "data/maps/SlowpokeWell_B1F/scripts.pory"
-SlowpokeWell_B1F_Text_ProtonSeen:
+
 # 111 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "What do you want?\p"
+SlowpokeWell_B1F_Text_ProtonSeen:
 # 112 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "If you interrupt our work,\n"
+	.string "What do you want?\p"
 # 113 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "don't expect any mercy!$"
+	.string "If you interrupt our work,\n"
 # 114 "data/maps/SlowpokeWell_B1F/scripts.pory"
-
+	.string "don't expect any mercy!$"
 # 115 "data/maps/SlowpokeWell_B1F/scripts.pory"
-SlowpokeWell_B1F_Text_ProtonBeaten:
+
 # 116 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "You did Ok today,\n"
+SlowpokeWell_B1F_Text_ProtonBeaten:
 # 117 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "but wait till next time!$"
+	.string "You did Ok today,\n"
 # 118 "data/maps/SlowpokeWell_B1F/scripts.pory"
-
+	.string "but wait till next time!$"
 # 119 "data/maps/SlowpokeWell_B1F/scripts.pory"
-SlowpokeWell_B1F_Text_ProtonAfter:
+
 # 120 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "Yeah, Team Rocket was broken up\n"
+SlowpokeWell_B1F_Text_ProtonAfter:
 # 121 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "three years ago.\p"
+	.string "Yeah, Team Rocket was broken up\n"
 # 122 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "The boss went into hiding.\p"
+	.string "three years ago.\p"
 # 123 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "But we continued our activities\n"
+	.string "The boss went into hiding.\p"
 # 124 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "underground!\p"
+	.string "But we continued our activities\n"
 # 125 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "A small obstacle like you won't be\n"
+	.string "underground!\p"
 # 126 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "much of a problem for our mission.\p"
+	.string "A small obstacle like you won't be\n"
 # 127 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "I advise you to be very afraid of\n"
+	.string "much of a problem for our mission.\p"
 # 128 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "what is to come!$"
+	.string "I advise you to be very afraid of\n"
 # 129 "data/maps/SlowpokeWell_B1F/scripts.pory"
-
+	.string "what is to come!$"
 # 130 "data/maps/SlowpokeWell_B1F/scripts.pory"
-SlowpokeWell_B1F_Text_GruntM2Seen:
+
 # 131 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "Hyuck-hyuck-hyuck!\n"
+SlowpokeWell_B1F_Text_GruntM2Seen:
 # 132 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "Quit taking Slowpoketails?\p"
+	.string "Hyuck-hyuck-hyuck!\n"
 # 133 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "You're nuts!\n"
+	.string "Quit taking Slowpoketails?\p"
 # 134 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "If we obeyed you, Team Rocket's\l"
+	.string "You're nuts!\n"
 # 135 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "rep would be ruined!$"
+	.string "If we obeyed you, Team Rocket's\l"
 # 136 "data/maps/SlowpokeWell_B1F/scripts.pory"
-
+	.string "rep would be ruined!$"
 # 137 "data/maps/SlowpokeWell_B1F/scripts.pory"
-SlowpokeWell_B1F_Text_GruntM2Beaten:
+
 # 138 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "Hyuck…\n"
+SlowpokeWell_B1F_Text_GruntM2Beaten:
 # 139 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "Too strong…$"
+	.string "Hyuck…\n"
 # 140 "data/maps/SlowpokeWell_B1F/scripts.pory"
-
+	.string "Too strong…$"
 # 141 "data/maps/SlowpokeWell_B1F/scripts.pory"
-SlowpokeWell_B1F_Text_GruntM2After:
+
 # 142 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "We need the money,\n"
+SlowpokeWell_B1F_Text_GruntM2After:
 # 143 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "but selling Slowpoketails?\p"
+	.string "We need the money,\n"
 # 144 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "It's tough being a Rocket Grunt!$"
+	.string "but selling Slowpoketails?\p"
 # 145 "data/maps/SlowpokeWell_B1F/scripts.pory"
-
+	.string "It's tough being a Rocket Grunt!$"
 # 146 "data/maps/SlowpokeWell_B1F/scripts.pory"
-SlowpokeWell_B1F_Text_GruntF1Seen:
+
 # 147 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "Stop taking Tails?\p"
+SlowpokeWell_B1F_Text_GruntF1Seen:
 # 148 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "Yeah, just try to defeat all\n"
+	.string "Stop taking Tails?\p"
 # 149 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "of us!$"
+	.string "Yeah, just try to defeat all\n"
 # 150 "data/maps/SlowpokeWell_B1F/scripts.pory"
-
+	.string "of us!$"
 # 151 "data/maps/SlowpokeWell_B1F/scripts.pory"
-SlowpokeWell_B1F_Text_GruntF1Beaten:
+
 # 152 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "You rotten brat!$"
+SlowpokeWell_B1F_Text_GruntF1Beaten:
 # 153 "data/maps/SlowpokeWell_B1F/scripts.pory"
-
+	.string "You rotten brat!$"
 # 154 "data/maps/SlowpokeWell_B1F/scripts.pory"
-SlowpokeWell_B1F_Text_GruntF1After:
+
 # 155 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "Slowpoketails grow back fast!\p"
+SlowpokeWell_B1F_Text_GruntF1After:
 # 156 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "What's wrong with selling them?$"
+	.string "Slowpoketails grow back fast!\p"
 # 157 "data/maps/SlowpokeWell_B1F/scripts.pory"
-
+	.string "What's wrong with selling them?$"
 # 158 "data/maps/SlowpokeWell_B1F/scripts.pory"
-SlowpokeWell_B1F_Text_SlowpokeWithMail:
+
 # 159 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "A Slowpoke with its Tail cut off…\p"
+SlowpokeWell_B1F_Text_SlowpokeWithMail:
 # 160 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "Huh? It has Mail.\n"
+	.string "A Slowpoke with its Tail cut off…\p"
 # 161 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "Read it?$"
+	.string "Huh? It has Mail.\n"
 # 162 "data/maps/SlowpokeWell_B1F/scripts.pory"
-
+	.string "Read it?$"
 # 163 "data/maps/SlowpokeWell_B1F/scripts.pory"
-SlowpokeWell_B1F_Text_SlowpokeMail:
-# 164 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "{PLAYER} read the Mail.\p"
-# 165 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "Be good and look after the\n"
-# 166 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "house with Grandpa and Slowpoke.\p"
-# 167 "data/maps/SlowpokeWell_B1F/scripts.pory"
-	.string "Love, Dad$"
-# 168 "data/maps/SlowpokeWell_B1F/scripts.pory"
 
+# 164 "data/maps/SlowpokeWell_B1F/scripts.pory"
+SlowpokeWell_B1F_Text_SlowpokeMail:
+# 165 "data/maps/SlowpokeWell_B1F/scripts.pory"
+	.string "{PLAYER} read the Mail.\p"
+# 166 "data/maps/SlowpokeWell_B1F/scripts.pory"
+	.string "Be good and look after the\n"
+# 167 "data/maps/SlowpokeWell_B1F/scripts.pory"
+	.string "house with Grandpa and Slowpoke.\p"
+# 168 "data/maps/SlowpokeWell_B1F/scripts.pory"
+	.string "Love, Dad$"
 # 169 "data/maps/SlowpokeWell_B1F/scripts.pory"
-SlowpokeWell_B1F_Text_TaillessSlowpoke:
+
 # 170 "data/maps/SlowpokeWell_B1F/scripts.pory"
+SlowpokeWell_B1F_Text_TaillessSlowpoke:
+# 171 "data/maps/SlowpokeWell_B1F/scripts.pory"
 	.string "A Slowpoke with its Tail cut off…$"

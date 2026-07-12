@@ -449,6 +449,7 @@ script RadioTower_5F_Archer {
 			I will not allow you to interfere with
 			our meticulous plans!")
 	trainerbattle_no_intro(TRAINER_ARCHER, "No! Forgive me, Giovanni!")
+	createfieldmugshot(MUGSHOT_ARCHER)
 	msgbox("Archer: How could this be...?
 	
 			It seems I was not up to the task... 

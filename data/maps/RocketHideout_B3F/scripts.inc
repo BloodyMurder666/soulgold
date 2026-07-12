@@ -307,8 +307,10 @@ RocketHideout_B3F_EventScript_Giovanni::
 	waitmovement 0
 	call_if_eq VAR_FACING, DIR_EAST, RocketHideout_B3F_EventScript_FacingEast
 	call_if_eq VAR_FACING, DIR_WEST, RocketHideout_B3F_EventScript_FacingWest
+	createfieldmugshot MUGSHOT_PETREL
 	msgbox RocketHideout_B3F_Text_PetrelReveal, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_PETREL_1, RocketHideout_B3F_Text_PetrelBeaten
+	createfieldmugshot MUGSHOT_PETREL
 	msgbox RocketHideout_B3F_Text_PetrelAfterBattle, MSGBOX_DEFAULT
 	closemessage
 	call_if_eq VAR_FACING, DIR_EAST, RocketHideout_B3F_EventScript_LeaveEast

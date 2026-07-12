@@ -197,7 +197,7 @@ script Route31_Expert {
         release
         end
     }
-    msgbox("I'm what they call a route master. 
+    msgbox("I'm what they call a route expert. 
 	
 			If you manage to beat every trainer on 
 			Route 30 and 31, come find me again 

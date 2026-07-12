@@ -202,6 +202,7 @@ RocketHideout_B2F_Trigger_Ariana::
 	addobject LOCALID_ROCKETHIDEOUT2_ARIANA
 	addobject LOCALID_ROCKETHIDEOUT2_GRUNT
 	delay 20
+	createfieldmugshot MUGSHOT_ARIANA
 	msgbox RocketHideout_B2F_Text_ArianaHoldIt, MSGBOX_AUTOCLOSE
 	playse SE_PIN
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
@@ -214,6 +215,7 @@ RocketHideout_B2F_Trigger_Ariana::
 	delay 20
 	applymovement LOCALID_ROCKETHIDEOUT2_GRUNT, RocketHideout_B2F_Movement_Ariana
 	waitmovement LOCALID_ROCKETHIDEOUT2_GRUNT
+	createfieldmugshot MUGSHOT_ARIANA
 	msgbox RocketHideout_B2F_Text_ArianaChallenge, MSGBOX_DEFAULT
 	closemessage
 	clearflag FLAG_HIDE_ROCKETHIDEOUT2_LANCE_DRAGONITE
@@ -226,6 +228,7 @@ RocketHideout_B2F_Trigger_Ariana::
 	msgbox RocketHideout_B2F_Text_LanceInterrupt, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_ROCKETHIDEOUT2_ARIANA, Common_Movement_WalkInPlaceFasterUp
+	createfieldmugshot MUGSHOT_ARIANA
 	msgbox RocketHideout_B2F_Text_ArianaOutraged
 	closemessage
 	special HealPlayerParty
@@ -351,6 +354,7 @@ RocketHideout_B2F_EventScript_GruntTrainer::
 
 RocketHideout_B2F_EventScript_DefeatedAriana::
 	clearflag FLAG_ROCKETHIDEOUT2_BATTLE
+	createfieldmugshot MUGSHOT_ARIANA
 	msgbox RocketHideout_Text_ArianaRetreat, MSGBOX_DEFAULT
 	closemessage
 	fadescreenswapbuffers FADE_TO_BLACK

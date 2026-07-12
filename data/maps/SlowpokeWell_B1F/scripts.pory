@@ -30,6 +30,7 @@ SlowpokeWell_B1F_EventScript_Proton::
 	faceplayer
     msgbox SlowpokeWell_B1F_Text_ProtonSeen
 	trainerbattle_no_intro TRAINER_PROTON_1, SlowpokeWell_B1F_Text_ProtonBeaten
+	createfieldmugshot MUGSHOT_PROTON
 	msgbox SlowpokeWell_B1F_Text_ProtonAfter, MSGBOX_DEFAULT
 	closemessage
 	fadescreen FADE_TO_BLACK
