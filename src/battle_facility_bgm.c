@@ -32,6 +32,17 @@ static const struct BattleFacilityBgmOption sBattleFacilityBgmOptions[] =
     { COMPOUND_STRING("D/P/Pt Trainer"), MUS_DP_VS_TRAINER },
     { COMPOUND_STRING("HG/SS Trainer"), MUS_HG_VS_TRAINER },
     { COMPOUND_STRING("HG/SS Kanto"), MUS_HG_VS_TRAINER_KANTO },
+    { COMPOUND_STRING("VS Kanto Leader"), MUS_HG_VS_GYM_LEADER_KANTO},
+    { COMPOUND_STRING("VS Johto Leader"), MUS_HG_VS_GYM_LEADER},
+    { COMPOUND_STRING("VS Hoenn Leader"), MUS_VS_GYM_LEADER},
+    { COMPOUND_STRING("VS Sinnioh Leader"), MUS_DP_VS_GYM_LEADER},
+    { COMPOUND_STRING("Kanto Champion"), MUS_RG_VS_CHAMPION },
+    { COMPOUND_STRING("Johto Champion"), MUS_HG_VS_CHAMPION },
+    { COMPOUND_STRING("Hoenn Champion"), MUS_VS_CHAMPION },
+    { COMPOUND_STRING("Sinnioh Champion"), MUS_DP_VS_CHAMPION },
+    { COMPOUND_STRING("VS Rocket"), MUS_HG_VS_ROCKET },
+    { COMPOUND_STRING("VS Brain (RSE)"), MUS_VS_FRONTIER_BRAIN },
+    { COMPOUND_STRING("VS Brain (HGSS)"), MUS_HG_VS_FRONTIER_BRAIN},
 };
 
 #define FACILITY_BGM_TRACK_COUNT (ARRAY_COUNT(sBattleFacilityBgmOptions) - FACILITY_BGM_FIRST_TRACK)

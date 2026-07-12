@@ -1,0 +1,104 @@
+raw `
+CeruleanCave_B2F_MapScripts::
+	.byte 0
+
+CeruleanCave3_EventScript_MewtwoNew::
+	lock
+	faceplayer
+	playmoncry SPECIES_MEWTWO, CRY_MODE_ENCOUNTER
+	waitmoncry
+	seteventmon SPECIES_MEWTWO, 80
+	special BattleSetup_StartLegendaryBattle
+waitstate
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, CeruleanCave3_EventScript_MewtwoRan
+	fadescreenswapbuffers FADE_TO_BLACK
+	removeobject LOCALID_CERULEANCAVE_MEWTWO
+	setflag FLAG_HIDE_MEWTWO
+	fadescreenswapbuffers FADE_FROM_BLACK
+	release
+	end
+
+CeruleanCave3_EventScript_MewtwoRan::
+	release
+	end
+
+`
+
+script NamelessDungeon_Leaf {
+    lock
+    if (!flag(FLAG_TEMP_3)) {
+        msgbox("???: Hmm, Mewtwo should be just ahead...")
+        delay(30)
+        playse(SE_PIN)
+        applymovement(LOCALID_NAMELESS_LEAF, Common_Movement_ExclamationMark)
+        faceplayer
+        waitse
+        msgbox("???: Oh, hello! Who might you be?
+        
+                ...
+                
+                Oh, you're {PLAYER}? Nice to meet you!
+                
+                I'm Leaf. 
+                
+                I'm in search of some rarer
+                than your average rare Pokémon.")
+        turnobject(LOCALID_NAMELESS_LEAF, DIR_WEST)
+        msgbox("I've tracked it down to this cave, and
+                the only place it can be hiding in is
+                just past this pool of water.")
+        faceplayer
+        msgbox("Piqued your interest, eh?
+        
+                Can't blame you, this one is
+                apparently an experiment created
+                from the DNA of another Pokémon!
+                
+                Unfortunately for you, I was here
+                first!
+                
+                Only way to convince me otherwise
+                would involve beating me in a battle.")
+        setflag(FLAG_TEMP_3)
+    }
+    faceplayer
+    msgbox("What do you say? Interested?
+            I'll warn you though, I'm really
+            tough!", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        msgbox("Ah shame, I was hoping you'd say
+                yes.")
+        turnobject(LOCALID_NAMELESS_LEAF, DIR_SOUTH)
+        release
+        end
+    }
+    playbgm(MUS_RG_ENCOUNTER_GYM_LEADER, FALSE)
+    msgbox("Great! Get ready for a beatdown!")
+    trainerbattle_no_intro(TRAINER_NAMELESS_LEAF, "Damn, you're good!")
+    msgbox("Let me tell you, 
+            I was not expecting that!
+            
+            You are a monster in battle!
+            
+            What? You're this region's Champion?
+            
+            Oh...
+            
+            That explains a few things!
+            
+            Anyway, as promised, I'll let you have
+            this one, but mark my words, I'll get
+            the better of you next time we meet!
+            
+            Laters!")
+    closemessage
+    fadescreen(FADE_TO_BLACK)
+    setflag(FLAG_HIDE_LEAF_NAMELESS)
+    playse(SE_EXIT)
+    removeobject(LOCALID_NAMELESS_LEAF)
+    delay(60)
+    fadescreen(FADE_FROM_BLACK)
+    release
+    end
+}

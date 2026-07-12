@@ -1635,6 +1635,7 @@
 #define FLAG_BEAT_DIRECTOR                          0x95F
 #define FLAG_ROUTE41_RAZOR_CLAW                     0x960
 #define FLAG_ROUTE47_RAZOR_FANG                     0x961
+#define FLAG_HIDE_LEAF_NAMELESS                     0x962
 
 #define FLAG_0x1500                                 0x1500
 // Daily Flags

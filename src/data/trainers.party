@@ -15782,3 +15782,82 @@ Timid Nature
 - Flare Blitz
 - Brick Break
 - Shadow Claw
+
+=== TRAINER_NAMELESS_LEAF ===
+Name: Green
+Class: Pkmn Trainer 1
+Pic: Leaf
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Smart Trainer
+
+Chansey @ Eviolite
+Bold Nature
+Level: 85
+Ability: Natural Cure
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 244 HP / 252 Def / 12 SpA
+Ball: Cherish
+- Stealth Rock
+- Toxic
+- Protect
+- Wish
+
+Volcarona @ Heavy-Duty Boots
+Ability: Flame Body
+EVs: 248 HP / 104 Def / 68 SpA / 88 Spe
+IVs: 0 Atk
+Level: 86
+Timid Nature
+- Quiver Dance
+- Flamethrower
+- Roost
+- Giga Drain
+
+
+Thundurus-Therian @ Heavy-Duty Boots
+Level: 85
+Ability: Volt Absorb
+EVs: 4 Def / 252 SpA / 252 Spe
+Timid Nature
+- Volt Switch
+- Psychic
+- Grass Knot
+- Focus Blast
+
+Tapu Fini @ Leftovers
+Timid Nature
+Level: 86
+Ability: Misty Surge
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 248 HP / 8 Def / 252 SpD
+Ball: Master
+- Ice Beam
+- Scald
+- Moonblast
+- Defog
+
+Dragapult @ Choice Specs
+Timid Nature
+Level: 86
+Ability: Infiltrator
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpD / 252 Spe
+Ball: Timer
+- Shadow Ball
+- Draco Meteor
+- U-Turn
+- Hydro Pump
+
+Venusaur @ Grasstite
+Bold Nature
+Level: 87
+Ability: Chlorophyll
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 180 Def / 76 SpA
+Ball: Poke
+- Leech Seed
+- Chloroblast
+- Synthesis
+- Earth Power

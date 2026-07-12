@@ -903,7 +903,7 @@
 #define TRAINER_TITLE_DEFENSE_JASMINE     896
 #define TRAINER_TITLE_DEFENSE_PRYCE       897
 #define TRAINER_TITLE_DEFENSE_CLAIR       898
-#define TRAINER_UNUSED_35                 899
+#define TRAINER_NAMELESS_LEAF             899
 #define TRAINER_UNUSED_36                 900
 #define TRAINER_UNUSED_37                 901
 #define TRAINER_UNUSED_38                 902
