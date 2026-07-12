@@ -2948,12 +2948,33 @@ static u16 TryDoPokedexScroll(u16 selectedMon, u16 ignored)
     u16 startingPos;
     u8 scrollDir = 0;
 
-    if (JOY_HELD(DPAD_UP) && (selectedMon > 0))
+    if (sPokedexView->pokemonListCount == 0)
+        return selectedMon;
+
+    if (JOY_HELD(DPAD_UP) && selectedMon == 0)
+    {
+        selectedMon = sPokedexView->pokemonListCount - 1;
+        sPokedexView->pokeBallRotation -= 16;
+        ClearMonSprites();
+        CreateMonSpritesAtPos(selectedMon, ignored);
+        sPokedexView->justScrolled = TRUE;
+        PlaySE(SE_DEX_SCROLL);
+    }
+    else if (JOY_HELD(DPAD_UP) && (selectedMon > 0))
     {
         scrollDir = 1;
         selectedMon = GetNextPosition(1, selectedMon, 0, sPokedexView->pokemonListCount - 1);
         CreateScrollingPokemonSprite(1, selectedMon);
         CreateMonListEntry(1, selectedMon, ignored);
+        sPokedexView->justScrolled = TRUE;
+        PlaySE(SE_DEX_SCROLL);
+    }
+    else if (JOY_HELD(DPAD_DOWN) && selectedMon == sPokedexView->pokemonListCount - 1)
+    {
+        selectedMon = 0;
+        sPokedexView->pokeBallRotation += 16;
+        ClearMonSprites();
+        CreateMonSpritesAtPos(selectedMon, ignored);
         sPokedexView->justScrolled = TRUE;
         PlaySE(SE_DEX_SCROLL);
     }
@@ -3933,7 +3954,25 @@ static void Task_HandleInfoScreenInput(u8 taskId)
         return;
     }
 
-    if ((JOY_NEW(DPAD_RIGHT) || (JOY_NEW(R_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR)))
+    if (JOY_NEW(DPAD_LEFT)
+     || (JOY_NEW(L_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR))
+    {
+        if (sPokedexListItem->owned)
+        {
+            sPokedexView->selectedScreen = SIZE_SCREEN;
+            sPokedexView->screenSwitchState = 3;
+        }
+        else
+        {
+            sPokedexView->selectedScreen = AREA_SCREEN;
+            sPokedexView->screenSwitchState = 1;
+        }
+        BeginNormalPaletteFade(0xFFFFFFEB, 0, 0, 0x10, RGB_BLACK);
+        gTasks[taskId].func = Task_SwitchScreensFromInfoScreen;
+        PlaySE(SE_PIN);
+    }
+    else if (JOY_NEW(DPAD_RIGHT)
+          || (JOY_NEW(R_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR))
     {
         sPokedexView->selectedScreen = AREA_SCREEN;
         BeginNormalPaletteFade(0xFFFFFFEB, 0, 0, 0x10, RGB_BLACK);
@@ -7564,6 +7603,15 @@ static void Task_HandleSizeScreenInput(u8 taskId)
         gTasks[taskId].func = Task_SwitchScreensFromSizeScreen;
         PlaySE(SE_DEX_PAGE);
     }
+    else if (JOY_NEW(DPAD_RIGHT)
+          || (JOY_NEW(R_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR))
+    {
+        sPokedexView->selectedScreen = INFO_SCREEN;
+        BeginNormalPaletteFade(PALETTES_ALL & ~(0x14), 0, 0, 0x10, RGB_BLACK);
+        sPokedexView->screenSwitchState = 3;
+        gTasks[taskId].func = Task_SwitchScreensFromSizeScreen;
+        PlaySE(SE_DEX_PAGE);
+    }
 }
 
 static void Task_SwitchScreensFromSizeScreen(u8 taskId)
@@ -7580,6 +7628,9 @@ static void Task_SwitchScreensFromSizeScreen(u8 taskId)
             break;
         case 2:
             gTasks[taskId].func = Task_LoadCryScreen;
+            break;
+        case 3:
+            gTasks[taskId].func = Task_LoadInfoScreen;
             break;
         }
     }

@@ -894,10 +894,18 @@ static void Task_HandlePokedexAreaScreenInput(u8 taskId)
         {
             if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(sPokedexAreaScreen->species), FLAG_GET_CAUGHT))
             {
-                PlaySE(SE_FAILURE);
-                return;
+                if (POKEDEX_PLUS_HGSS)
+                    gTasks[taskId].data[1] = 1;
+                else
+                {
+                    PlaySE(SE_FAILURE);
+                    return;
+                }
             }
-            gTasks[taskId].data[1] = 2;
+            else
+            {
+                gTasks[taskId].data[1] = 2;
+            }
             PlaySE(SE_DEX_PAGE);
         }
         else if (JOY_NEW(DPAD_UP) && OW_TIME_OF_DAY_ENCOUNTERS == TRUE)
