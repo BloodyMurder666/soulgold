@@ -31,6 +31,7 @@
                                                      //          Creates variety in trainer teams
 #define B_TRAINER_SCALING_MIN_LEVEL         0       // Minimum level (0 = no minimum)
 #define B_TRAINER_SCALING_MAX_LEVEL         0       // Maximum level (0 = no maximum)
+#define B_TRAINER_SCALING_MAX_AUTHORED_GAP  2       // Preserve authored party level gaps up to this amount
 #define B_TRAINER_SCALING_MANAGE_EVOLUTIONS FALSE    // Auto-devolve Pokemon if level too low
 #define B_TRAINER_SCALING_EXCLUDE_FAINTED   FALSE   // Exclude fainted Pokemon from PARTY_* calculations
 

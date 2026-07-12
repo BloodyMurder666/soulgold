@@ -2050,10 +2050,17 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             u16 scaledSpecies = partyData[monIndex].species;
             if (scalingConfig->mode != LEVEL_SCALING_NONE)
             {
-                // Scaling establishes the level for the whole opposing team.
-                // Reapplying authored level gaps here could turn a target of
-                // 100 into a party whose remaining members were around 55.
+                u8 authoredGap = originalHighestLevel - partyData[monIndex].lvl;
+
+                // Keep intentional variation within a trainer's party without
+                // allowing unusually large authored gaps to defeat scaling.
+                if (authoredGap > B_TRAINER_SCALING_MAX_AUTHORED_GAP)
+                    authoredGap = B_TRAINER_SCALING_MAX_AUTHORED_GAP;
                 scaledLevel = scaledPartyLevel;
+                if (scaledLevel > authoredGap)
+                    scaledLevel -= authoredGap;
+                else
+                    scaledLevel = 1;
 
                 if (scalingConfig->minLevel > 0 && scaledLevel < scalingConfig->minLevel)
                     scaledLevel = scalingConfig->minLevel;

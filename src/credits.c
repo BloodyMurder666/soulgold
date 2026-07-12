@@ -1235,6 +1235,10 @@ static bool8 LoadBikeScene(u8 scene, u8 taskId)
         break;
     case 3:
         SetBikeScene(scene, taskId);
+        // Keep the bike-scene state machine intact, but show only the
+        // scrolling scenery during the credits.
+        gSprites[gTasks[taskId].tPlayerSpriteId].invisible = TRUE;
+        gSprites[gTasks[taskId].tRivalSpriteId].invisible = TRUE;
         SetCreditsSceneBgCnt(scene);
         gMain.state = 0;
         return TRUE;

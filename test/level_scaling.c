@@ -33,7 +33,32 @@ TEST("Trainer scaling average cannot be lowered by a weak passenger")
     EXPECT_EQ(CalculatePlayerPartyBaseLevel(LEVEL_SCALING_PARTY_AVG, FALSE), 100);
 }
 
-TEST("Trainer scaling does not reapply large authored level gaps")
+TEST("Trainer scaling preserves small authored level gaps")
+{
+    static const struct TrainerMon trainerMons[] =
+    {
+        { .species = SPECIES_WOBBUFFET, .lvl = 54 },
+        { .species = SPECIES_WOBBUFFET, .lvl = 55 },
+        { .species = SPECIES_WOBBUFFET, .lvl = 56 },
+    };
+    static const struct Trainer trainer =
+    {
+        .party = trainerMons,
+        .partySize = ARRAY_COUNT(trainerMons),
+    };
+
+    ZeroPlayerPartyMons();
+    CreateMonWithIVs(&gPlayerParty[0], SPECIES_WOBBUFFET, 70, 0, OTID_STRUCT_PLAYER_ID, 0);
+    gPlayerPartyCount = 1;
+    gSaveBlock2Ptr->optionsTrainerLevelScaling = LEVEL_SCALING_OPTION_ON;
+
+    CreateNPCTrainerPartyFromTrainer(gEnemyParty, &trainer, TRUE, BATTLE_TYPE_TRAINER, TRAINER_NONE);
+
+    EXPECT_EQ(GetMonData(&gEnemyParty[0], MON_DATA_LEVEL) + 1, GetMonData(&gEnemyParty[1], MON_DATA_LEVEL));
+    EXPECT_EQ(GetMonData(&gEnemyParty[1], MON_DATA_LEVEL) + 1, GetMonData(&gEnemyParty[2], MON_DATA_LEVEL));
+}
+
+TEST("Trainer scaling caps large authored level gaps")
 {
     static const struct TrainerMon trainerMons[] =
     {
@@ -55,5 +80,6 @@ TEST("Trainer scaling does not reapply large authored level gaps")
 
     CreateNPCTrainerPartyFromTrainer(gEnemyParty, &trainer, TRUE, BATTLE_TYPE_TRAINER, TRAINER_NONE);
 
-    EXPECT_EQ(GetMonData(&gEnemyParty[0], MON_DATA_LEVEL), GetMonData(&gEnemyParty[1], MON_DATA_LEVEL));
+    EXPECT_EQ(GetMonData(&gEnemyParty[0], MON_DATA_LEVEL) - B_TRAINER_SCALING_MAX_AUTHORED_GAP,
+              GetMonData(&gEnemyParty[1], MON_DATA_LEVEL));
 }
