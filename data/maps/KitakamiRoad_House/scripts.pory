@@ -3,7 +3,144 @@ mapscripts KitakamiRoad_House_MapScripts {}
 script KitakamiBorder_VictiniLady {
     lock
     faceplayer
-    msgbox("TODO Victini event")
+
+    if (flag(FLAG_GOT_VICTINI)) {
+        msgbox("Victini chose well.
+
+                Keep our Leaders ambitious, won't
+                you? 
+                
+                Retirement gets dreadfully dull 
+                otherwise.")
+        release
+        end
+    }
+
+    if (!flag(FLAG_IS_CHAMPION)) {
+        if (!flag(FLAG_MET_VICTINI_LADY)) {
+            msgbox("I once served on Johto's Gym
+                    Leader Board.
+
+                    Don't look so impressed. It was
+                    mostly budgets, bickering, and
+                    bruised egos.")
+            msgbox("These days, I watch promising
+                    Trainers.
+
+                    You look like you are still a bit
+                    wet behind the ears.
+                    
+                    Still, I'll keep an eye on you.")
+            setflag(FLAG_MET_VICTINI_LADY)
+            release
+            end
+        }
+
+        msgbox("Still finding your footing? Good.
+
+                I'll keep an eye on you. Try to give
+                me something worth watching.")
+        release
+        end
+    }
+
+    if (!flag(FLAG_STARTED_VICTINI_QUEST)) {
+        if (!flag(FLAG_MET_VICTINI_LADY)) {
+            msgbox("I once served on Johto's Gym
+                    Leader Board.
+
+                    Don't look so impressed. It was
+                    mostly budgets, bickering, and
+                    bruised egos.")
+            msgbox("A Champion, are you? Good.
+
+                    Titles make some Trainers soft.
+                    Let's see what you're made of.")
+            setflag(FLAG_MET_VICTINI_LADY)
+        } else {
+            msgbox("So, our promising Trainer is
+                    a Champion now.
+
+                    Not bad. 
+                    
+                    Do stop looking so pleased though.
+                    Titles breed complacency.")
+        }
+        msgbox("I may be retired, but I still
+                cultivate talent.
+
+                Help me test whether the current Gym 
+                Leaders are still fit for their jobs.
+
+                Beat all eight Leaders at their full
+                strength. 
+                
+                Make them grow and nurture your
+                own potential further.")
+        setflag(FLAG_STARTED_VICTINI_QUEST)
+        release
+        end
+    }
+
+    if (defeated(TRAINER_FALKNER_2)
+        && defeated(TRAINER_BUGSY_2)
+        && defeated(TRAINER_WHITNEY_2)
+        && defeated(TRAINER_MORTY_2)
+        && defeated(TRAINER_CHUCK_2)
+        && defeated(TRAINER_JASMINE_2)
+        && defeated(TRAINER_PRYCE_2)
+        && defeated(TRAINER_CLAIR_2)) {
+        closemessage
+        applymovement(LOCALID_VICTINI_LADY, Common_Movement_ExclamationMark)
+        waitmovement(0)
+        delay(30)
+        msgbox("Well, well. All eight, beaten at
+                their best.
+
+                You didn't merely collect victories.
+
+                You gave every one of them a reason
+                to keep striving for even greater
+                heights.")
+        msgbox("I hope they learned as much from
+                those battles as you did.
+
+                If not, I'll send them a very
+                pointed memo.")
+        msgbox("Talent like yours deserves a proper
+                investment.
+
+                Take this Victini. 
+                
+                It seems rather fond of you now, 
+                having watched you grow stronger 
+                through every victory.")
+        closemessage
+        delay(30)
+        setvar(VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_VICTINI)
+        bufferspeciesname(STR_VAR_1, SPECIES_VICTINI)
+        givemon(SPECIES_VICTINI, 50)
+        showgivemonpic(10, 3)
+        call(Common_EventScript_GiftMon)
+        hidemonpic
+        setflag(FLAG_GOT_VICTINI)
+        special(Achievement_CheckAll)
+        delay(60)
+        msgbox("Don't look so stunned. I said I
+                nurture the region's elite.
+
+                Now off you go. I'm quite busy
+                despite being retired.")
+        release
+        end
+    }
+
+    msgbox("Back already? Unless all eight Leaders
+            have shown you their full strength,
+            you're wasting both our time.
+
+            Go on. Inspire some hope in
+            this old lady.")
     release
     end
 }

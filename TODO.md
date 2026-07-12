@@ -9,8 +9,6 @@ Must have:
 Nice to have:
 - HGSS/DPPT overworld npc sprite demakes
 - Shaymin event north of tohjo falls
-- Victini reward for beating all gym leader rematches
-- Celebi GS ball event
 
 Maybe:
 - remaining mugshots

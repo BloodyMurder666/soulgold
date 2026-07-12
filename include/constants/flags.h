@@ -903,8 +903,8 @@
 #define FLAG_ROUTE47_EXPERT                                         0x354 // Orbs
 #define FLAG_ROUTE43_EXPERT                                         0x355 // Herbs
 #define FLAG_ROUTE27_EXPERT                                         0x356 // Choice Band
-#define FLAG_UNUSED_SET8                                            0x357
-#define FLAG_UNUSED_SET9                                            0x358
+#define FLAG_MET_VICTINI_LADY                                       0x357
+#define FLAG_GOT_VICTINI                                            0x358
 #define FLAG_SPOKEN_VICTORYROAD_RIVAL                               0x359
 #define FLAG_RECEIVED_ODD_EGG                                       0x35A
 #define FLAG_HIDE_CERULEAN_GYM_POKEMON                              0x35B
@@ -1404,7 +1404,7 @@
 #define FLAG_SYS_SAFARI_MODE                        (SYSTEM_FLAGS + 0x2C)
 #define FLAG_SYS_CRUISE_MODE                        (SYSTEM_FLAGS + 0x2D)
 
-#define FLAG_UNUSED_0x88E                           (SYSTEM_FLAGS + 0x2E) // Unused Flag
+#define FLAG_STARTED_VICTINI_QUEST                  (SYSTEM_FLAGS + 0x2E)
 #define FLAG_UNUSED_0x88F                           (SYSTEM_FLAGS + 0x2F) // Unused Flag
 
 #define FLAG_SYS_TV_HOME                            (SYSTEM_FLAGS + 0x30)
