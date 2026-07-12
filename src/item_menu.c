@@ -149,6 +149,7 @@ static void PrepareTMHMMoveWindow(void);
 static bool8 IsWallysBag(void);
 static void Task_WallyTutorialBagMenu(u8);
 static void Task_BagMenu_HandleInput(u8);
+static bool8 BagMenu_TryWrapList(u8);
 static void GetItemNameFromPocket(u8 *dest, enum Item itemId);
 static void PrintItemDescription(int);
 static void BagMenu_PrintCursorAtPos(u8, u8);
@@ -1130,6 +1131,8 @@ static void LoadBagItemListBuffers(u8 pocketId)
     gMultiuseListMenuTemplate.totalItems = gBagMenu->numItemStacks[pocketId];
     gMultiuseListMenuTemplate.items = sListBuffer1->subBuffers;
     gMultiuseListMenuTemplate.maxShowed = gBagMenu->numShownItems[pocketId];
+    if (gSaveBlock2Ptr->optionsButtonMode != OPTIONS_BUTTON_MODE_L_EQUALS_A)
+        gMultiuseListMenuTemplate.scrollMultiple = LIST_MULTIPLE_SCROLL_L_R;
 }
 
 static void GetItemNameFromPocket(u8 *dest, enum Item itemId)
@@ -1523,7 +1526,10 @@ static void Task_BagMenu_HandleInput(u8 taskId)
             break;
         }
 
-        listPosition = ListMenu_ProcessInput(tListTaskId);
+        if (BagMenu_TryWrapList(tListTaskId))
+            listPosition = LIST_NOTHING_CHOSEN;
+        else
+            listPosition = ListMenu_ProcessInput(tListTaskId);
         ListMenuGetScrollAndRow(tListTaskId, scrollPos, cursorPos);
         switch (listPosition)
         {
@@ -1555,6 +1561,34 @@ static void Task_BagMenu_HandleInput(u8 taskId)
     }
 }
 
+static bool8 BagMenu_TryWrapList(u8 listTaskId)
+{
+    struct ListMenu *list = (void *)gTasks[listTaskId].data;
+    u16 listPosition = list->scrollOffset + list->selectedRow;
+
+    if (list->template.totalItems == 0)
+        return FALSE;
+
+    if (JOY_REPEAT(DPAD_UP) && listPosition == 0)
+    {
+        list->scrollOffset = list->template.totalItems - list->template.maxShowed;
+        list->selectedRow = list->template.maxShowed - 1;
+    }
+    else if (JOY_REPEAT(DPAD_DOWN) && listPosition == list->template.totalItems - 1)
+    {
+        list->scrollOffset = 0;
+        list->selectedRow = 0;
+    }
+    else
+    {
+        return FALSE;
+    }
+
+    RedrawListMenu(listTaskId);
+    BagMenu_MoveCursorCallback(list->template.items[list->scrollOffset + list->selectedRow].id, FALSE, list);
+    return TRUE;
+}
+
 static void ReturnToItemList(u8 taskId)
 {
     CreatePocketScrollArrowPair();
@@ -1568,16 +1602,14 @@ static void ReturnToItemList(u8 taskId)
 
 static u8 GetSwitchBagPocketDirection(void)
 {
-    u8 LRKeys;
     if (gBagMenu->pocketSwitchDisabled)
         return SWITCH_POCKET_NONE;
-    LRKeys = GetLRKeysPressed();
-    if (JOY_NEW(DPAD_LEFT) || LRKeys == MENU_L_PRESSED)
+    if (JOY_NEW(DPAD_LEFT))
     {
         PlaySE(SE_SELECT);
         return SWITCH_POCKET_LEFT;
     }
-    if (JOY_NEW(DPAD_RIGHT) || LRKeys == MENU_R_PRESSED)
+    if (JOY_NEW(DPAD_RIGHT))
     {
         PlaySE(SE_SELECT);
         return SWITCH_POCKET_RIGHT;
