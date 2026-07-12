@@ -1,8 +1,6 @@
 Bugs:
 - More Berry spots
 
-
-
 # Demo 1 MVP
 
 Must have:
@@ -17,13 +15,5 @@ Nice to have:
 Maybe:
 - remaining mugshots
 - mugshot and trainer ow/frontsprite should match
-
-
-- Music selector or randomizer for battle facilities
-
-
-
-
-
 
 correct order: down, up, left, up, left, down, right, right

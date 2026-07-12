@@ -94,7 +94,12 @@ script BattleArcade_Registration_EventScript_TryEnterChallenge
 	multichoice(17, 4, MULTI_LEVEL_MODE, FALSE)
 	switch(var(VAR_RESULT))
 	{
-		case FRONTIER_LVL_TENT: goto(BattleArcade_Registration_EventScript_CancelChallenge)
+		case FRONTIER_LEVEL_CHOICE_INFO:
+			call(BattleFrontier_EventScript_ShowLevelModeInfo)
+			goto(BattleArcade_Registration_EventScript_TryEnterChallenge)
+		case FRONTIER_LEVEL_CHOICE_BGM:
+			call(BattleFrontier_EventScript_ChooseBattleBgm)
+			goto(BattleArcade_Registration_EventScript_TryEnterChallenge)
 		case MULTI_B_PRESSED: goto(BattleArcade_Registration_EventScript_CancelChallenge)
 	}
 	frontier_checkineligible

@@ -149,9 +149,10 @@ BattleFrontier_BattleDomeLobby_EventScript_AskTakeChallenge::
 BattleFrontier_BattleDomeLobby_EventScript_TryEnterChallenge::
 	message BattleFrontier_BattleDomeLobby_Text_WhichLevelMode
 	waitmessage
-	multichoice 17, 6, MULTI_LEVEL_MODE, FALSE
+	multichoice 17, 4, MULTI_LEVEL_MODE, FALSE
 	switch VAR_RESULT
-	case FRONTIER_LVL_TENT, BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
+	case FRONTIER_LEVEL_CHOICE_INFO, BattleFrontier_BattleDomeLobby_EventScript_LevelInfo
+	case FRONTIER_LEVEL_CHOICE_BGM, BattleFrontier_BattleDomeLobby_EventScript_Bgm
 	case MULTI_B_PRESSED, BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
 	frontier_checkineligible
 	goto_if_eq VAR_0x8004, TRUE, BattleFrontier_BattleDomeLobby_EventScript_NotEnoughValidMons
@@ -170,6 +171,14 @@ BattleFrontier_BattleDomeLobby_EventScript_TryEnterChallenge::
 	case NO, BattleFrontier_BattleDomeLobby_EventScript_LoadPartyCancelChallenge
 	case YES, BattleFrontier_BattleDomeLobby_EventScript_SaveBeforeChallenge
 	case MULTI_B_PRESSED, BattleFrontier_BattleDomeLobby_EventScript_LoadPartyCancelChallenge
+
+BattleFrontier_BattleDomeLobby_EventScript_LevelInfo::
+	call BattleFrontier_EventScript_ShowLevelModeInfo
+	goto BattleFrontier_BattleDomeLobby_EventScript_TryEnterChallenge
+
+BattleFrontier_BattleDomeLobby_EventScript_Bgm::
+	call BattleFrontier_EventScript_ChooseBattleBgm
+	goto BattleFrontier_BattleDomeLobby_EventScript_TryEnterChallenge
 
 BattleFrontier_BattleDomeLobby_EventScript_SaveBeforeChallenge::
 	setvar VAR_TEMP_CHALLENGE_STATUS, 0

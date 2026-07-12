@@ -143,6 +143,7 @@
 #define MULTI_CHALLENGE_TYPES_INFO          132
 #define MULTI_BATTLE_ARCADE_RECORDS         133
 #define MULTI_ROCKET_ARCADE_CASH_OUT        134
+#define MULTI_LEVEL_MODE_WITH_EXIT           135
 
 // Lilycove SS Tidal Multichoice Selections
 #define SSTIDAL_SELECTION_SLATEPORT        0

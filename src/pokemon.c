@@ -3,6 +3,7 @@
 #include "malloc.h"
 #include "apprentice.h"
 #include "battle.h"
+#include "battle_facility_bgm.h"
 #include "battle_ai_util.h"
 #include "battle_anim.h"
 #include "battle_controllers.h"
@@ -5324,6 +5325,14 @@ bool32 IsSpeciesInHoennDex(u16 species)
 
 u16 GetBattleBGM(void)
 {
+    if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
+    {
+        u16 override = GetBattleFacilityBgmOverride();
+
+        if (override != MUS_NONE)
+            return override;
+    }
+
     if (gBattleTypeFlags & BATTLE_TYPE_ROAMER)
     {
         switch (GetMonData(&gEnemyParty[0], MON_DATA_SPECIES))

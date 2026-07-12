@@ -2199,6 +2199,14 @@ static void GiveBattlePoints(void)
     s32 battleMode = VarGet(VAR_FRONTIER_BATTLE_MODE);
     s32 points;
 
+    if (facility < 0 || facility >= NUM_FRONTIER_FACILITIES
+     || battleMode < 0 || battleMode >= FRONTIER_MODE_COUNT
+     || lvlMode < 0 || lvlMode >= FRONTIER_LVL_MODE_COUNT)
+    {
+        ConvertIntToDecimalStringN(gStringVar1, 0, STR_CONV_MODE_LEFT_ALIGN, 3);
+        return;
+    }
+
     switch (facility)
     {
     case FRONTIER_FACILITY_TOWER:
@@ -2224,8 +2232,10 @@ static void GiveBattlePoints(void)
         break;
     }
 
-    if (challengeNum != 0)
+    if (challengeNum > 0)
         challengeNum--;
+    if (challengeNum < 0)
+        challengeNum = 0;
     if (challengeNum >= ARRAY_COUNT(sBattlePointAwards[0][0]))
         challengeNum = ARRAY_COUNT(sBattlePointAwards[0][0]) - 1;
 
@@ -2235,7 +2245,7 @@ static void GiveBattlePoints(void)
     if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_FRONTIER_BRAIN)
         points += 10;
     gSaveBlock2Ptr->frontier.battlePoints += points;
-    ConvertIntToDecimalStringN(gStringVar1, points, STR_CONV_MODE_LEFT_ALIGN, 2);
+    ConvertIntToDecimalStringN(gStringVar1, points, STR_CONV_MODE_LEFT_ALIGN, 3);
     if (gSaveBlock2Ptr->frontier.battlePoints > MAX_BATTLE_FRONTIER_POINTS)
         gSaveBlock2Ptr->frontier.battlePoints = MAX_BATTLE_FRONTIER_POINTS;
 

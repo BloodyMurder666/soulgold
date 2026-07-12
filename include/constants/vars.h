@@ -300,6 +300,7 @@
 #define VAR_TITLE_DEFENSE_WINS                          0x4115
 #define VAR_TITLE_DEFENSE_LAST_CHALLENGER               0x4116
 #define VAR_DEXNAV_SEARCH_LEVEL                         0x4117
+#define VAR_BATTLE_FACILITY_BGM                         0x4118 // Battle BGM override used only by Battle Frontier facilities
 
 #define VARS_END                                         0x42FF
 

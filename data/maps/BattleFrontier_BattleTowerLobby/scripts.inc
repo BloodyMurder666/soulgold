@@ -379,1915 +379,1915 @@ BattleFrontier_BattleTowerLobby_EventScript_TryEnterSinglesChallenge::
 # 190 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	waitmessage
 # 191 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	multichoice 17, 6, MULTI_LEVEL_MODE, FALSE
+	multichoice 17, 4, MULTI_LEVEL_MODE, FALSE
 # 192 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	switch VAR_RESULT
 # 193 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case FRONTIER_LVL_TENT, BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+	case FRONTIER_LEVEL_CHOICE_INFO, BattleFrontier_BattleTowerLobby_EventScript_SinglesLevelInfo
 # 194 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case MULTI_B_PRESSED, BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+	case FRONTIER_LEVEL_CHOICE_BGM, BattleFrontier_BattleTowerLobby_EventScript_SinglesBgm
 # 195 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	frontier_checkineligible
-# 196 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_0x8004, TRUE, BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMons
-# 197 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	frontier_set FRONTIER_DATA_LVL_MODE, VAR_RESULT
-# 198 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_SelectThreeMons, MSGBOX_DEFAULT
-# 199 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	fadescreen FADE_TO_BLACK
-# 200 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	callnative RemoveFollowingPokemon
-# 201 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call BattleFrontier_EventScript_GetLvlMode
-# 202 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	copyvar VAR_0x8004, VAR_RESULT
-# 203 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_0x8005, FRONTIER_PARTY_SIZE
-# 204 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	special ChoosePartyForBattleFrontier
-# 205 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	waitstate
-# 206 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_RESULT, 0, BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
-# 207 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_OkayToSaveBeforeEntering, MSGBOX_YESNO
-# 208 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	switch VAR_RESULT
-# 209 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case NO, BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
-# 210 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case YES, BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeSinglesChallenge
-# 211 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case MULTI_B_PRESSED, BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
-# 212 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 213 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeSinglesChallenge::
-# 214 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	frontier_set FRONTIER_DATA_SELECTED_MON_ORDER
-# 215 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_TEMP_CHALLENGE_STATUS, 0
-# 216 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	tower_init
-# 217 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	tower_set TOWER_DATA_WIN_STREAK_ACTIVE, TRUE
-# 218 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	frontier_set FRONTIER_DATA_PAUSED, FALSE
-# 219 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	special LoadPlayerParty
-# 220 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	closemessage
-# 221 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	delay 2
-# 222 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call Common_EventScript_SaveGame
-# 223 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_TEMP_CHALLENGE_STATUS, 255
-# 224 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_RESULT, 0, BattleFrontier_BattleTowerLobby_EventScript_CancelChallengeSaveFailed
-# 225 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	incrementgamestat GAME_STAT_ENTERED_BATTLE_TOWER
-# 226 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_BRAVO_TRAINER_BATTLE_TOWER_ON, TRUE
-# 227 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto BattleFrontier_BattleTowerLobby_EventScript_EnterElevator
-# 228 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
-# 229 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 230 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_ExplainSinglesChallenge::
-# 231 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_ExplainSinglesChallenge, MSGBOX_DEFAULT
-# 232 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto BattleFrontier_BattleTowerLobby_EventScript_AskEnterSinglesChallenge
-# 233 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
-# 234 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 235 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_DoublesAttendant::
-# 236 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	lock
-# 237 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	faceplayer
-# 238 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_FRONTIER_FACILITY, FRONTIER_FACILITY_TOWER
-# 239 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	special SavePlayerParty
-# 240 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_WelcomeDoubleBattle, MSGBOX_DEFAULT
-# 241 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_AskEnterDoublesChallenge::
-# 242 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	message BattleFrontier_BattleTowerLobby_Text_TakeDoublesChallenge
-# 243 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	waitmessage
-# 244 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	multichoice 17, 6, MULTI_CHALLENGEINFO, FALSE
-# 245 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	switch VAR_RESULT
-# 246 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case 0, BattleFrontier_BattleTowerLobby_EventScript_TryEnterDoublesChallenge
-# 247 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case 1, BattleFrontier_BattleTowerLobby_EventScript_ExplainDoublesChallenge
-# 248 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case 2, BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
-# 249 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	case MULTI_B_PRESSED, BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
-# 250 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 251 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_TryEnterDoublesChallenge::
-# 252 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_DOUBLES
-# 253 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	message BattleFrontier_BattleTowerLobby_Text_WhichLevelMode
-# 254 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	waitmessage
-# 255 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	multichoice 17, 6, MULTI_LEVEL_MODE, FALSE
-# 256 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 196 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	frontier_checkineligible
+# 197 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto_if_eq VAR_0x8004, TRUE, BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMons
+# 198 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	frontier_set FRONTIER_DATA_LVL_MODE, VAR_RESULT
+# 199 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox BattleFrontier_BattleTowerLobby_Text_SelectThreeMons, MSGBOX_DEFAULT
+# 200 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	fadescreen FADE_TO_BLACK
+# 201 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	callnative RemoveFollowingPokemon
+# 202 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	call BattleFrontier_EventScript_GetLvlMode
+# 203 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	copyvar VAR_0x8004, VAR_RESULT
+# 204 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	setvar VAR_0x8005, FRONTIER_PARTY_SIZE
+# 205 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	special ChoosePartyForBattleFrontier
+# 206 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	waitstate
+# 207 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto_if_eq VAR_RESULT, 0, BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
+# 208 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox BattleFrontier_BattleTowerLobby_Text_OkayToSaveBeforeEntering, MSGBOX_YESNO
+# 209 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	switch VAR_RESULT
+# 210 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	case NO, BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
+# 211 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	case YES, BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeSinglesChallenge
+# 212 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	case MULTI_B_PRESSED, BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
+# 213 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 214 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_SinglesLevelInfo::
+# 215 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	call BattleFrontier_EventScript_ShowLevelModeInfo
+# 216 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto BattleFrontier_BattleTowerLobby_EventScript_TryEnterSinglesChallenge
+# 217 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 218 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_SinglesBgm::
+# 219 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	call BattleFrontier_EventScript_ChooseBattleBgm
+# 220 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto BattleFrontier_BattleTowerLobby_EventScript_TryEnterSinglesChallenge
+# 221 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 222 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeSinglesChallenge::
+# 223 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	frontier_set FRONTIER_DATA_SELECTED_MON_ORDER
+# 224 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	setvar VAR_TEMP_CHALLENGE_STATUS, 0
+# 225 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	tower_init
+# 226 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	tower_set TOWER_DATA_WIN_STREAK_ACTIVE, TRUE
+# 227 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	frontier_set FRONTIER_DATA_PAUSED, FALSE
+# 228 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	special LoadPlayerParty
+# 229 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	closemessage
+# 230 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	delay 2
+# 231 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	call Common_EventScript_SaveGame
+# 232 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	setvar VAR_TEMP_CHALLENGE_STATUS, 255
+# 233 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto_if_eq VAR_RESULT, 0, BattleFrontier_BattleTowerLobby_EventScript_CancelChallengeSaveFailed
+# 234 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	incrementgamestat GAME_STAT_ENTERED_BATTLE_TOWER
+# 235 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	setvar VAR_BRAVO_TRAINER_BATTLE_TOWER_ON, TRUE
+# 236 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto BattleFrontier_BattleTowerLobby_EventScript_EnterElevator
+# 237 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	end
+# 238 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 239 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_ExplainSinglesChallenge::
+# 240 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox BattleFrontier_BattleTowerLobby_Text_ExplainSinglesChallenge, MSGBOX_DEFAULT
+# 241 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto BattleFrontier_BattleTowerLobby_EventScript_AskEnterSinglesChallenge
+# 242 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	end
+# 243 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 244 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_DoublesAttendant::
+# 245 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	lock
+# 246 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	faceplayer
+# 247 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	setvar VAR_FRONTIER_FACILITY, FRONTIER_FACILITY_TOWER
+# 248 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	special SavePlayerParty
+# 249 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox BattleFrontier_BattleTowerLobby_Text_WelcomeDoubleBattle, MSGBOX_DEFAULT
+# 250 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_AskEnterDoublesChallenge::
+# 251 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	message BattleFrontier_BattleTowerLobby_Text_TakeDoublesChallenge
+# 252 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	waitmessage
+# 253 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	multichoice 17, 6, MULTI_CHALLENGEINFO, FALSE
+# 254 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	switch VAR_RESULT
+# 255 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	case 0, BattleFrontier_BattleTowerLobby_EventScript_TryEnterDoublesChallenge
+# 256 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	case 1, BattleFrontier_BattleTowerLobby_EventScript_ExplainDoublesChallenge
 # 257 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case FRONTIER_LVL_TENT, BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+	case 2, BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
 # 258 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	case MULTI_B_PRESSED, BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
 # 259 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	frontier_checkineligible
+
 # 260 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_0x8004, TRUE, BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMons
+BattleFrontier_BattleTowerLobby_EventScript_TryEnterDoublesChallenge::
 # 261 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	frontier_set FRONTIER_DATA_LVL_MODE, VAR_RESULT
+	setvar VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_DOUBLES
 # 262 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_PleaseSelectFourMons, MSGBOX_DEFAULT
+	message BattleFrontier_BattleTowerLobby_Text_WhichLevelMode
 # 263 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	fadescreen FADE_TO_BLACK
+	waitmessage
 # 264 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	callnative RemoveFollowingPokemon
+	multichoice 17, 4, MULTI_LEVEL_MODE, FALSE
 # 265 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call BattleFrontier_EventScript_GetLvlMode
+	switch VAR_RESULT
 # 266 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	copyvar VAR_0x8004, VAR_RESULT
+	case FRONTIER_LEVEL_CHOICE_INFO, BattleFrontier_BattleTowerLobby_EventScript_DoublesLevelInfo
 # 267 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_0x8005, FRONTIER_DOUBLES_PARTY_SIZE
+	case FRONTIER_LEVEL_CHOICE_BGM, BattleFrontier_BattleTowerLobby_EventScript_DoublesBgm
 # 268 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	special ChoosePartyForBattleFrontier
+	case MULTI_B_PRESSED, BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
 # 269 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	waitstate
+	frontier_checkineligible
 # 270 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_RESULT, 0, BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
+	goto_if_eq VAR_0x8004, TRUE, BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMons
 # 271 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_OkayToSaveBeforeEntering, MSGBOX_YESNO
+	frontier_set FRONTIER_DATA_LVL_MODE, VAR_RESULT
 # 272 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	switch VAR_RESULT
+	msgbox BattleFrontier_BattleTowerLobby_Text_PleaseSelectFourMons, MSGBOX_DEFAULT
 # 273 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case NO, BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
+	fadescreen FADE_TO_BLACK
 # 274 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case YES, BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeDoublesChallenge
+	callnative RemoveFollowingPokemon
 # 275 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case MULTI_B_PRESSED, BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
+	call BattleFrontier_EventScript_GetLvlMode
 # 276 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	copyvar VAR_0x8004, VAR_RESULT
 # 277 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeDoublesChallenge::
+	setvar VAR_0x8005, FRONTIER_DOUBLES_PARTY_SIZE
 # 278 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	frontier_set FRONTIER_DATA_SELECTED_MON_ORDER
+	special ChoosePartyForBattleFrontier
 # 279 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_TEMP_CHALLENGE_STATUS, 0
+	waitstate
 # 280 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	tower_init
+	goto_if_eq VAR_RESULT, 0, BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
 # 281 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	tower_set TOWER_DATA_WIN_STREAK_ACTIVE, TRUE
+	msgbox BattleFrontier_BattleTowerLobby_Text_OkayToSaveBeforeEntering, MSGBOX_YESNO
 # 282 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	frontier_set FRONTIER_DATA_PAUSED, FALSE
+	switch VAR_RESULT
 # 283 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	special LoadPlayerParty
-# 284 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	closemessage
-# 285 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	delay 2
-# 286 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call Common_EventScript_SaveGame
-# 287 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_TEMP_CHALLENGE_STATUS, 255
-# 288 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_RESULT, 0, BattleFrontier_BattleTowerLobby_EventScript_CancelChallengeSaveFailed
-# 289 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	incrementgamestat GAME_STAT_ENTERED_BATTLE_TOWER
-# 290 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_BRAVO_TRAINER_BATTLE_TOWER_ON, FALSE
-# 291 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto BattleFrontier_BattleTowerLobby_EventScript_EnterElevator
-# 292 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
-# 293 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 294 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_ExplainDoublesChallenge::
-# 295 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_ExplainDoublesChallenge, MSGBOX_DEFAULT
-# 296 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto BattleFrontier_BattleTowerLobby_EventScript_AskEnterDoublesChallenge
-# 297 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
-# 298 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 299 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_MultisAttendant::
-# 300 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	lock
-# 301 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	faceplayer
-# 302 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_FRONTIER_FACILITY, FRONTIER_FACILITY_TOWER
-# 303 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	clearflag FLAG_CHOSEN_MULTI_BATTLE_NPC_PARTNER
-# 304 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	special SavePlayerParty
-# 305 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_WelcomeMultiBattle, MSGBOX_DEFAULT
-# 306 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_AskEnterMultisChallenge::
-# 307 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	message BattleFrontier_BattleTowerLobby_Text_TakeMultisChallenge
-# 308 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	waitmessage
-# 309 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	multichoice 17, 6, MULTI_CHALLENGEINFO, FALSE
-# 310 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	switch VAR_RESULT
-# 311 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case 0, BattleFrontier_BattleTowerLobby_EventScript_TryEnterMultisChallenge
-# 312 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case 1, BattleFrontier_BattleTowerLobby_EventScript_ExplainMultisChallenge
-# 313 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case 2, BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
-# 314 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case MULTI_B_PRESSED, BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
-# 315 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 316 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_TryEnterMultisChallenge::
-# 317 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_MULTIS
-# 318 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	message BattleFrontier_BattleTowerLobby_Text_WhichLevelMode
-# 319 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	waitmessage
-# 320 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	multichoice 17, 6, MULTI_LEVEL_MODE, FALSE
-# 321 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	switch VAR_RESULT
-# 322 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case FRONTIER_LVL_TENT, BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
-# 323 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case MULTI_B_PRESSED, BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
-# 324 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	frontier_checkineligible
-# 325 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_0x8004, TRUE, BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMons
-# 326 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	frontier_set FRONTIER_DATA_LVL_MODE, VAR_RESULT
-# 327 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_PleaseSelectTwoMons, MSGBOX_DEFAULT
-# 328 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	fadescreen FADE_TO_BLACK
-# 329 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	callnative RemoveFollowingPokemon
-# 330 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call BattleFrontier_EventScript_GetLvlMode
-# 331 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	copyvar VAR_0x8004, VAR_RESULT
-# 332 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_0x8005, FRONTIER_MULTI_PARTY_SIZE
-# 333 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	special ChoosePartyForBattleFrontier
-# 334 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	waitstate
-# 335 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_RESULT, 0, BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
-# 336 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_OkayToSaveBeforeEntering, MSGBOX_YESNO
-# 337 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	switch VAR_RESULT
-# 338 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	case NO, BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
-# 339 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case YES, BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeMultisChallenge
-# 340 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 284 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	case YES, BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeDoublesChallenge
+# 285 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	case MULTI_B_PRESSED, BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
-# 341 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 286 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
-# 342 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeMultisChallenge::
-# 343 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 287 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_DoublesLevelInfo::
+# 288 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	call BattleFrontier_EventScript_ShowLevelModeInfo
+# 289 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto BattleFrontier_BattleTowerLobby_EventScript_TryEnterDoublesChallenge
+# 290 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 291 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_DoublesBgm::
+# 292 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	call BattleFrontier_EventScript_ChooseBattleBgm
+# 293 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto BattleFrontier_BattleTowerLobby_EventScript_TryEnterDoublesChallenge
+# 294 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 295 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeDoublesChallenge::
+# 296 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	frontier_set FRONTIER_DATA_SELECTED_MON_ORDER
-# 344 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 297 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	setvar VAR_TEMP_CHALLENGE_STATUS, 0
-# 345 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 298 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	tower_init
-# 346 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 299 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	tower_set TOWER_DATA_WIN_STREAK_ACTIVE, TRUE
-# 347 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 300 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	frontier_set FRONTIER_DATA_PAUSED, FALSE
-# 348 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 301 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	special LoadPlayerParty
-# 349 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 302 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	closemessage
-# 350 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 303 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	delay 2
-# 351 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 304 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	call Common_EventScript_SaveGame
-# 352 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 305 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	setvar VAR_TEMP_CHALLENGE_STATUS, 255
-# 353 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 306 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	goto_if_eq VAR_RESULT, 0, BattleFrontier_BattleTowerLobby_EventScript_CancelChallengeSaveFailed
-# 354 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 307 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	incrementgamestat GAME_STAT_ENTERED_BATTLE_TOWER
-# 355 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 308 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	setvar VAR_BRAVO_TRAINER_BATTLE_TOWER_ON, FALSE
-# 356 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 309 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	goto BattleFrontier_BattleTowerLobby_EventScript_EnterElevator
-# 357 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 310 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	end
-# 358 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 311 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
-# 359 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_ExplainMultisChallenge::
-# 360 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_ExplainMultisChallenge, MSGBOX_DEFAULT
-# 361 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto BattleFrontier_BattleTowerLobby_EventScript_AskEnterMultisChallenge
-# 362 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 312 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_ExplainDoublesChallenge::
+# 313 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox BattleFrontier_BattleTowerLobby_Text_ExplainDoublesChallenge, MSGBOX_DEFAULT
+# 314 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto BattleFrontier_BattleTowerLobby_EventScript_AskEnterDoublesChallenge
+# 315 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	end
-# 363 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 316 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
-# 364 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_LinkMultisAttendant::
-# 365 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 317 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_MultisAttendant::
+# 318 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	lock
-# 366 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 319 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	faceplayer
-# 367 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 320 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	setvar VAR_FRONTIER_FACILITY, FRONTIER_FACILITY_TOWER
-# 368 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 321 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	clearflag FLAG_CHOSEN_MULTI_BATTLE_NPC_PARTNER
+# 322 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	special SavePlayerParty
-# 369 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_WelcomeLinkMultiBattle, MSGBOX_DEFAULT
-# 370 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_AskEnterLinkMultisChallenge::
-# 371 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	message BattleFrontier_BattleTowerLobby_Text_TakeLinkMultisChallenge
-# 372 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 323 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox BattleFrontier_BattleTowerLobby_Text_WelcomeMultiBattle, MSGBOX_DEFAULT
+# 324 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_AskEnterMultisChallenge::
+# 325 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	message BattleFrontier_BattleTowerLobby_Text_TakeMultisChallenge
+# 326 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	waitmessage
-# 373 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 327 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	multichoice 17, 6, MULTI_CHALLENGEINFO, FALSE
-# 374 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 328 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	switch VAR_RESULT
-# 375 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case 0, BattleFrontier_BattleTowerLobby_EventScript_TryEnterLinkMultisChallenge
-# 376 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case 1, BattleFrontier_BattleTowerLobby_EventScript_ExplainLinkMultisChallenge
-# 377 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 329 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	case 0, BattleFrontier_BattleTowerLobby_EventScript_TryEnterMultisChallenge
+# 330 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	case 1, BattleFrontier_BattleTowerLobby_EventScript_ExplainMultisChallenge
+# 331 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	case 2, BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
-# 378 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 332 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	case MULTI_B_PRESSED, BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
-# 379 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 333 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
-# 380 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_TryEnterLinkMultisChallenge::
-# 381 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_LINK_MULTIS
-# 382 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 334 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_TryEnterMultisChallenge::
+# 335 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	setvar VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_MULTIS
+# 336 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	message BattleFrontier_BattleTowerLobby_Text_WhichLevelMode
-# 383 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 337 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	waitmessage
-# 384 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	multichoice 17, 6, MULTI_LEVEL_MODE, FALSE
-# 385 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 338 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	multichoice 17, 4, MULTI_LEVEL_MODE, FALSE
+# 339 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	switch VAR_RESULT
-# 386 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case FRONTIER_LVL_TENT, BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
-# 387 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 340 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	case FRONTIER_LEVEL_CHOICE_INFO, BattleFrontier_BattleTowerLobby_EventScript_MultisLevelInfo
+# 341 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	case FRONTIER_LEVEL_CHOICE_BGM, BattleFrontier_BattleTowerLobby_EventScript_MultisBgm
+# 342 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	case MULTI_B_PRESSED, BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
-# 388 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 343 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	frontier_checkineligible
-# 389 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 344 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	goto_if_eq VAR_0x8004, TRUE, BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMons
-# 390 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 345 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	frontier_set FRONTIER_DATA_LVL_MODE, VAR_RESULT
-# 391 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_PleaseSelectTwoMons2, MSGBOX_DEFAULT
-# 392 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 346 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox BattleFrontier_BattleTowerLobby_Text_PleaseSelectTwoMons, MSGBOX_DEFAULT
+# 347 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	fadescreen FADE_TO_BLACK
-# 393 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 348 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	callnative RemoveFollowingPokemon
-# 394 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 349 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	call BattleFrontier_EventScript_GetLvlMode
-# 395 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 350 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	copyvar VAR_0x8004, VAR_RESULT
-# 396 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 351 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	setvar VAR_0x8005, FRONTIER_MULTI_PARTY_SIZE
-# 397 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 352 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	special ChoosePartyForBattleFrontier
-# 398 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 353 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	waitstate
-# 399 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 354 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	goto_if_eq VAR_RESULT, 0, BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
-# 400 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 355 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	msgbox BattleFrontier_BattleTowerLobby_Text_OkayToSaveBeforeEntering, MSGBOX_YESNO
+# 356 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	switch VAR_RESULT
+# 357 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	case NO, BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
+# 358 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	case YES, BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeMultisChallenge
+# 359 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	case MULTI_B_PRESSED, BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
+# 360 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 361 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_MultisLevelInfo::
+# 362 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	call BattleFrontier_EventScript_ShowLevelModeInfo
+# 363 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto BattleFrontier_BattleTowerLobby_EventScript_TryEnterMultisChallenge
+# 364 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 365 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_MultisBgm::
+# 366 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	call BattleFrontier_EventScript_ChooseBattleBgm
+# 367 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto BattleFrontier_BattleTowerLobby_EventScript_TryEnterMultisChallenge
+# 368 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 369 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeMultisChallenge::
+# 370 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	frontier_set FRONTIER_DATA_SELECTED_MON_ORDER
+# 371 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	setvar VAR_TEMP_CHALLENGE_STATUS, 0
+# 372 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	tower_init
+# 373 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	tower_set TOWER_DATA_WIN_STREAK_ACTIVE, TRUE
+# 374 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	frontier_set FRONTIER_DATA_PAUSED, FALSE
+# 375 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	special LoadPlayerParty
+# 376 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	closemessage
+# 377 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	delay 2
+# 378 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	call Common_EventScript_SaveGame
+# 379 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	setvar VAR_TEMP_CHALLENGE_STATUS, 255
+# 380 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto_if_eq VAR_RESULT, 0, BattleFrontier_BattleTowerLobby_EventScript_CancelChallengeSaveFailed
+# 381 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	incrementgamestat GAME_STAT_ENTERED_BATTLE_TOWER
+# 382 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	setvar VAR_BRAVO_TRAINER_BATTLE_TOWER_ON, FALSE
+# 383 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto BattleFrontier_BattleTowerLobby_EventScript_EnterElevator
+# 384 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	end
+# 385 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 386 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_ExplainMultisChallenge::
+# 387 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox BattleFrontier_BattleTowerLobby_Text_ExplainMultisChallenge, MSGBOX_DEFAULT
+# 388 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto BattleFrontier_BattleTowerLobby_EventScript_AskEnterMultisChallenge
+# 389 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	end
+# 390 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 391 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_LinkMultisAttendant::
+# 392 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	lock
+# 393 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	faceplayer
+# 394 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	setvar VAR_FRONTIER_FACILITY, FRONTIER_FACILITY_TOWER
+# 395 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	special SavePlayerParty
+# 396 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox BattleFrontier_BattleTowerLobby_Text_WelcomeLinkMultiBattle, MSGBOX_DEFAULT
+# 397 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_AskEnterLinkMultisChallenge::
+# 398 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	message BattleFrontier_BattleTowerLobby_Text_TakeLinkMultisChallenge
+# 399 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	waitmessage
+# 400 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	multichoice 17, 6, MULTI_CHALLENGEINFO, FALSE
 # 401 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	switch VAR_RESULT
 # 402 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case NO, BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
+	case 0, BattleFrontier_BattleTowerLobby_EventScript_TryEnterLinkMultisChallenge
 # 403 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case YES, BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeLinkMultisChallenge
+	case 1, BattleFrontier_BattleTowerLobby_EventScript_ExplainLinkMultisChallenge
 # 404 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case MULTI_B_PRESSED, BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
+	case 2, BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
 # 405 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	case MULTI_B_PRESSED, BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
 # 406 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeLinkMultisChallenge::
+
 # 407 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	frontier_set FRONTIER_DATA_SELECTED_MON_ORDER
+BattleFrontier_BattleTowerLobby_EventScript_TryEnterLinkMultisChallenge::
 # 408 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_TEMP_CHALLENGE_STATUS, 0
+	setvar VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_LINK_MULTIS
 # 409 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	tower_init
+	message BattleFrontier_BattleTowerLobby_Text_WhichLevelMode
 # 410 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	tower_set TOWER_DATA_WIN_STREAK_ACTIVE, TRUE
-# 411 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	frontier_set FRONTIER_DATA_PAUSED, FALSE
-# 412 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	special LoadPlayerParty
-# 413 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	closemessage
-# 414 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	delay 2
-# 415 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-@ The command tower_save ultimately calls TrySavingData(SAVE_LINK), which writes data in SaveBlock1 and SaveBlock2
-# 416 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-@ to the flash, but not data in PokemonStorage. The SaveGame script that follows asks the player to do a full save,
-# 417 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-@ which they can opt out of. As a result the player can save their party and quit without having saved the PC.
-# 418 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-@ This allows players to clone pokemon and their held items by withdrawing them (or erase them by despositing).
-# 419 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-#ifndef BUGFIX
-# 420 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	tower_save 0
-# 421 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-#endif
-# 422 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call Common_EventScript_SaveGame
-# 423 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_TEMP_CHALLENGE_STATUS, 255
-# 424 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_RESULT, 0, BattleFrontier_BattleTowerLobby_EventScript_CancelChallengeSaveFailed
-# 425 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-@ GAME_STAT_ENTERED_BATTLE_TOWER should not be incremented here, for two reasons:
-# 426 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-@ 1. It is incremented again in BattleFrontier_BattleTowerLobby_EventScript_CableLinkSuccessful or BattleFrontier_BattleTowerLobby_EventScript_WirelessLinkSuccessful
-# 427 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-@ 2. If the player tries to connect, but fails, the counter will still be incremented even if the player never enters the tower.
-# 428 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-#ifndef BUGFIX
-# 429 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	incrementgamestat GAME_STAT_ENTERED_BATTLE_TOWER
-# 430 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-#endif
-# 431 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	specialvar VAR_RESULT, IsWirelessAdapterConnected
-# 432 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_RESULT, TRUE, BattleFrontier_BattleTowerLobby_EventScript_TryWirelessLink
-# 433 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto BattleFrontier_BattleTowerLobby_EventScript_TryCableLink
-# 434 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
-# 435 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 436 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_FeelingsMan::
-# 437 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	lock
-# 438 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	faceplayer
-# 439 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	message BattleFrontier_BattleTowerLobby_Text_DescribeFeelingsAboutBattleTower
-# 440 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	waitmessage
-# 441 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	multichoice 16, 4, MULTI_BATTLE_TOWER_FEELINGS, FALSE
-# 442 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 411 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	multichoice 17, 4, MULTI_LEVEL_MODE, FALSE
+# 412 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	switch VAR_RESULT
+# 413 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	case FRONTIER_LEVEL_CHOICE_INFO, BattleFrontier_BattleTowerLobby_EventScript_LinkMultisLevelInfo
+# 414 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	case FRONTIER_LEVEL_CHOICE_BGM, BattleFrontier_BattleTowerLobby_EventScript_LinkMultisBgm
+# 415 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	case MULTI_B_PRESSED, BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+# 416 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	frontier_checkineligible
+# 417 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto_if_eq VAR_0x8004, TRUE, BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMons
+# 418 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	frontier_set FRONTIER_DATA_LVL_MODE, VAR_RESULT
+# 419 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox BattleFrontier_BattleTowerLobby_Text_PleaseSelectTwoMons2, MSGBOX_DEFAULT
+# 420 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	fadescreen FADE_TO_BLACK
+# 421 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	callnative RemoveFollowingPokemon
+# 422 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	call BattleFrontier_EventScript_GetLvlMode
+# 423 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	copyvar VAR_0x8004, VAR_RESULT
+# 424 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	setvar VAR_0x8005, FRONTIER_MULTI_PARTY_SIZE
+# 425 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	special ChoosePartyForBattleFrontier
+# 426 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	waitstate
+# 427 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto_if_eq VAR_RESULT, 0, BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
+# 428 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox BattleFrontier_BattleTowerLobby_Text_OkayToSaveBeforeEntering, MSGBOX_YESNO
+# 429 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	switch VAR_RESULT
+# 430 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	case NO, BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
+# 431 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	case YES, BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeLinkMultisChallenge
+# 432 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	case MULTI_B_PRESSED, BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge
+# 433 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 434 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_LinkMultisLevelInfo::
+# 435 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	call BattleFrontier_EventScript_ShowLevelModeInfo
+# 436 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto BattleFrontier_BattleTowerLobby_EventScript_TryEnterLinkMultisChallenge
+# 437 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 438 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_LinkMultisBgm::
+# 439 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	call BattleFrontier_EventScript_ChooseBattleBgm
+# 440 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto BattleFrontier_BattleTowerLobby_EventScript_TryEnterLinkMultisChallenge
+# 441 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 442 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_SaveBeforeLinkMultisChallenge::
 # 443 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case 0, BattleFrontier_BattleTowerLobby_EventScript_FeelingsBattleNow
+	frontier_set FRONTIER_DATA_SELECTED_MON_ORDER
 # 444 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case 1, BattleFrontier_BattleTowerLobby_EventScript_FeelingsIWon
+	setvar VAR_TEMP_CHALLENGE_STATUS, 0
 # 445 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case 2, BattleFrontier_BattleTowerLobby_EventScript_FeelingsILost
+	tower_init
 # 446 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case 3, BattleFrontier_BattleTowerLobby_EventScript_FeelingsWontTell
+	tower_set TOWER_DATA_WIN_STREAK_ACTIVE, TRUE
 # 447 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case MULTI_B_PRESSED, BattleFrontier_BattleTowerLobby_EventScript_FeelingsWontTell
+	frontier_set FRONTIER_DATA_PAUSED, FALSE
 # 448 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	release
+	special LoadPlayerParty
 # 449 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
+	closemessage
 # 450 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	delay 2
 # 451 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_FeelingsBattleNow::
+@ The command tower_save ultimately calls TrySavingData(SAVE_LINK), which writes data in SaveBlock1 and SaveBlock2
 # 452 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_FeelWhatWhenYouBegin, MSGBOX_DEFAULT
+@ to the flash, but not data in PokemonStorage. The SaveGame script that follows asks the player to do a full save,
 # 453 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_0x8004, EASY_CHAT_TYPE_BATTLE_START
+@ which they can opt out of. As a result the player can save their party and quit without having saved the PC.
 # 454 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call Common_ShowEasyChatScreen
+@ This allows players to clone pokemon and their held items by withdrawing them (or erase them by despositing).
 # 455 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	lock
+#ifndef BUGFIX
 # 456 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	faceplayer
+	tower_save 0
 # 457 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto BattleFrontier_BattleTowerLobby_EventScript_CheckFeelings
+#endif
 # 458 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
+	call Common_EventScript_SaveGame
 # 459 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	setvar VAR_TEMP_CHALLENGE_STATUS, 255
 # 460 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_FeelingsIWon::
+	goto_if_eq VAR_RESULT, 0, BattleFrontier_BattleTowerLobby_EventScript_CancelChallengeSaveFailed
 # 461 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_FeelWhatWhenYouveWon, MSGBOX_DEFAULT
+@ GAME_STAT_ENTERED_BATTLE_TOWER should not be incremented here, for two reasons:
 # 462 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_0x8004, EASY_CHAT_TYPE_BATTLE_WON
+@ 1. It is incremented again in BattleFrontier_BattleTowerLobby_EventScript_CableLinkSuccessful or BattleFrontier_BattleTowerLobby_EventScript_WirelessLinkSuccessful
 # 463 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call Common_ShowEasyChatScreen
+@ 2. If the player tries to connect, but fails, the counter will still be incremented even if the player never enters the tower.
 # 464 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	lock
+#ifndef BUGFIX
 # 465 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	faceplayer
+	incrementgamestat GAME_STAT_ENTERED_BATTLE_TOWER
 # 466 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto BattleFrontier_BattleTowerLobby_EventScript_CheckFeelings
+#endif
 # 467 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
+	specialvar VAR_RESULT, IsWirelessAdapterConnected
 # 468 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	goto_if_eq VAR_RESULT, TRUE, BattleFrontier_BattleTowerLobby_EventScript_TryWirelessLink
 # 469 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_FeelingsILost::
+	goto BattleFrontier_BattleTowerLobby_EventScript_TryCableLink
 # 470 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_FeelWhatWhenYouveLost, MSGBOX_DEFAULT
+	end
 # 471 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_0x8004, EASY_CHAT_TYPE_BATTLE_LOST
+
 # 472 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call Common_ShowEasyChatScreen
+BattleFrontier_BattleTowerLobby_EventScript_FeelingsMan::
 # 473 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	lock
 # 474 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	faceplayer
 # 475 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto BattleFrontier_BattleTowerLobby_EventScript_CheckFeelings
+	message BattleFrontier_BattleTowerLobby_Text_DescribeFeelingsAboutBattleTower
 # 476 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
+	waitmessage
 # 477 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	multichoice 16, 4, MULTI_BATTLE_TOWER_FEELINGS, FALSE
 # 478 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_FeelingsWontTell::
+	switch VAR_RESULT
 # 479 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_DontThinkMuchAboutIt, MSGBOX_DEFAULT
+	case 0, BattleFrontier_BattleTowerLobby_EventScript_FeelingsBattleNow
 # 480 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	release
+	case 1, BattleFrontier_BattleTowerLobby_EventScript_FeelingsIWon
 # 481 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
+	case 2, BattleFrontier_BattleTowerLobby_EventScript_FeelingsILost
 # 482 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	case 3, BattleFrontier_BattleTowerLobby_EventScript_FeelingsWontTell
 # 483 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_CheckFeelings::
+	case MULTI_B_PRESSED, BattleFrontier_BattleTowerLobby_EventScript_FeelingsWontTell
 # 484 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_RESULT, 0, BattleFrontier_BattleTowerLobby_EventScript_CanceledEasyChat
+	release
 # 485 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_RESULT, 1, BattleFrontier_BattleTowerLobby_EventScript_SubmittedFeelings
+	end
 # 486 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
+
 # 487 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+BattleFrontier_BattleTowerLobby_EventScript_FeelingsBattleNow::
 # 488 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_CanceledEasyChat::
+	msgbox BattleFrontier_BattleTowerLobby_Text_FeelWhatWhenYouBegin, MSGBOX_DEFAULT
 # 489 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_ChangedYourMind, MSGBOX_DEFAULT
+	setvar VAR_0x8004, EASY_CHAT_TYPE_BATTLE_START
 # 490 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	release
+	call Common_ShowEasyChatScreen
 # 491 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
+	lock
 # 492 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	faceplayer
 # 493 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_SubmittedFeelings::
+	goto BattleFrontier_BattleTowerLobby_EventScript_CheckFeelings
 # 494 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_ThatsHowYouFeel, MSGBOX_DEFAULT
+	end
 # 495 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	release
+
 # 496 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
+BattleFrontier_BattleTowerLobby_EventScript_FeelingsIWon::
 # 497 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	msgbox BattleFrontier_BattleTowerLobby_Text_FeelWhatWhenYouveWon, MSGBOX_DEFAULT
 # 498 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_Woman::
+	setvar VAR_0x8004, EASY_CHAT_TYPE_BATTLE_WON
 # 499 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_WinsInRowRecorded, MSGBOX_NPC
+	call Common_ShowEasyChatScreen
 # 500 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
+	lock
 # 501 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	faceplayer
 # 502 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_Boy::
+	goto BattleFrontier_BattleTowerLobby_EventScript_CheckFeelings
 # 503 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_CanLeaveUntilLossOrSevenWins, MSGBOX_NPC
-# 504 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	end
-# 505 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 504 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
+# 505 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_FeelingsILost::
 # 506 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_ShowSinglesResults::
+	msgbox BattleFrontier_BattleTowerLobby_Text_FeelWhatWhenYouveLost, MSGBOX_DEFAULT
 # 507 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	lockall
+	setvar VAR_0x8004, EASY_CHAT_TYPE_BATTLE_LOST
 # 508 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	frontier_results FRONTIER_FACILITY_TOWER, FRONTIER_MODE_SINGLES
+	call Common_ShowEasyChatScreen
 # 509 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	waitbuttonpress
+	lock
 # 510 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	special RemoveRecordsWindow
+	faceplayer
 # 511 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	releaseall
+	goto BattleFrontier_BattleTowerLobby_EventScript_CheckFeelings
 # 512 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	end
 # 513 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 514 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_ShowDoublesResults::
+BattleFrontier_BattleTowerLobby_EventScript_FeelingsWontTell::
 # 515 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	lockall
+	msgbox BattleFrontier_BattleTowerLobby_Text_DontThinkMuchAboutIt, MSGBOX_DEFAULT
 # 516 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	frontier_results FRONTIER_FACILITY_TOWER, FRONTIER_MODE_DOUBLES
+	release
 # 517 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	waitbuttonpress
+	end
 # 518 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	special RemoveRecordsWindow
+
 # 519 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	releaseall
+BattleFrontier_BattleTowerLobby_EventScript_CheckFeelings::
 # 520 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
+	goto_if_eq VAR_RESULT, 0, BattleFrontier_BattleTowerLobby_EventScript_CanceledEasyChat
 # 521 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	goto_if_eq VAR_RESULT, 1, BattleFrontier_BattleTowerLobby_EventScript_SubmittedFeelings
 # 522 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_ShowMultisResults::
-# 523 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	lockall
-# 524 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	frontier_results FRONTIER_FACILITY_TOWER, FRONTIER_MODE_MULTIS
-# 525 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	waitbuttonpress
-# 526 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	special RemoveRecordsWindow
-# 527 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	releaseall
-# 528 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	end
-# 529 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 523 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
+# 524 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_CanceledEasyChat::
+# 525 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox BattleFrontier_BattleTowerLobby_Text_ChangedYourMind, MSGBOX_DEFAULT
+# 526 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	release
+# 527 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	end
+# 528 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 529 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_SubmittedFeelings::
 # 530 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_ShowLinkMultisResults::
+	msgbox BattleFrontier_BattleTowerLobby_Text_ThatsHowYouFeel, MSGBOX_DEFAULT
 # 531 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	lockall
+	release
 # 532 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	frontier_results FRONTIER_FACILITY_TOWER, FRONTIER_MODE_LINK_MULTIS
+	end
 # 533 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	waitbuttonpress
+
 # 534 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	special RemoveRecordsWindow
+BattleFrontier_BattleTowerLobby_EventScript_Woman::
 # 535 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	releaseall
+	msgbox BattleFrontier_BattleTowerLobby_Text_WinsInRowRecorded, MSGBOX_NPC
 # 536 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	end
 # 537 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 538 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMons::
+BattleFrontier_BattleTowerLobby_EventScript_Boy::
 # 539 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	switch VAR_RESULT
+	msgbox BattleFrontier_BattleTowerLobby_Text_CanLeaveUntilLossOrSevenWins, MSGBOX_NPC
 # 540 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case FRONTIER_LVL_50, BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLv50
+	end
 # 541 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case FRONTIER_LVL_OPEN, BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLvOpen
+
 # 542 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+BattleFrontier_BattleTowerLobby_EventScript_ShowSinglesResults::
 # 543 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLv50::
+	lockall
 # 544 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	switch VAR_FRONTIER_BATTLE_MODE
+	frontier_results FRONTIER_FACILITY_TOWER, FRONTIER_MODE_SINGLES
 # 545 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case FRONTIER_MODE_SINGLES, BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLv50Singles
+	waitbuttonpress
 # 546 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case FRONTIER_MODE_DOUBLES, BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLv50Doubles
+	special RemoveRecordsWindow
 # 547 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLv50Multis, MSGBOX_DEFAULT
+	releaseall
 # 548 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call BattleFrontier_ShowCaughtBannedSpecies
+	end
 # 549 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsEnd, MSGBOX_DEFAULT
+
 # 550 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
+BattleFrontier_BattleTowerLobby_EventScript_ShowDoublesResults::
 # 551 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
+	lockall
 # 552 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	frontier_results FRONTIER_FACILITY_TOWER, FRONTIER_MODE_DOUBLES
 # 553 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLv50Singles::
+	waitbuttonpress
 # 554 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLv50Singles, MSGBOX_DEFAULT
+	special RemoveRecordsWindow
 # 555 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call BattleFrontier_ShowCaughtBannedSpecies
+	releaseall
 # 556 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsEnd, MSGBOX_DEFAULT
+	end
 # 557 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
+
 # 558 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
+BattleFrontier_BattleTowerLobby_EventScript_ShowMultisResults::
 # 559 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	lockall
 # 560 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLv50Doubles::
+	frontier_results FRONTIER_FACILITY_TOWER, FRONTIER_MODE_MULTIS
 # 561 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLv50Doubles, MSGBOX_DEFAULT
+	waitbuttonpress
 # 562 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call BattleFrontier_ShowCaughtBannedSpecies
+	special RemoveRecordsWindow
 # 563 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsEnd, MSGBOX_DEFAULT
+	releaseall
 # 564 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
+	end
 # 565 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
+
 # 566 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+BattleFrontier_BattleTowerLobby_EventScript_ShowLinkMultisResults::
 # 567 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLvOpen::
+	lockall
 # 568 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	switch VAR_FRONTIER_BATTLE_MODE
+	frontier_results FRONTIER_FACILITY_TOWER, FRONTIER_MODE_LINK_MULTIS
 # 569 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case FRONTIER_MODE_SINGLES, BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLvOpenSingles
+	waitbuttonpress
 # 570 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case FRONTIER_MODE_DOUBLES, BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLvOpenDoubles
+	special RemoveRecordsWindow
 # 571 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLvOpenMultis, MSGBOX_DEFAULT
+	releaseall
 # 572 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call BattleFrontier_ShowCaughtBannedSpecies
+	end
 # 573 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsEnd, MSGBOX_DEFAULT
+
 # 574 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
+BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMons::
 # 575 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
+	switch VAR_RESULT
 # 576 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	case FRONTIER_LVL_50, BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLv50
 # 577 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLvOpenSingles::
+	case FRONTIER_LVL_OPEN, BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLvOpen
 # 578 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLvOpenSingles, MSGBOX_DEFAULT
+
 # 579 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call BattleFrontier_ShowCaughtBannedSpecies
+BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLv50::
 # 580 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsEnd, MSGBOX_DEFAULT
+	switch VAR_FRONTIER_BATTLE_MODE
 # 581 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
+	case FRONTIER_MODE_SINGLES, BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLv50Singles
 # 582 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
+	case FRONTIER_MODE_DOUBLES, BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLv50Doubles
 # 583 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	msgbox BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLv50Multis, MSGBOX_DEFAULT
 # 584 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLvOpenDoubles::
-# 585 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLvOpenDoubles, MSGBOX_DEFAULT
-# 586 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	call BattleFrontier_ShowCaughtBannedSpecies
-# 587 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 585 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	msgbox BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsEnd, MSGBOX_DEFAULT
-# 588 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 586 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	goto BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
-# 589 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 587 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	end
-# 590 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 588 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
+# 589 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLv50Singles::
+# 590 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLv50Singles, MSGBOX_DEFAULT
 # 591 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_CancelChallengeSaveFailed::
+	call BattleFrontier_ShowCaughtBannedSpecies
 # 592 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	frontier_set FRONTIER_DATA_CHALLENGE_STATUS  @ No status provided, so it relies on VAR_0x8006 being 0 already
+	msgbox BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsEnd, MSGBOX_DEFAULT
 # 593 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+	goto BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
 # 594 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	end
 # 595 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 596 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge::
+BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLv50Doubles::
 # 597 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	special LoadPlayerParty
+	msgbox BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLv50Doubles, MSGBOX_DEFAULT
 # 598 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	callnative UpdateFollowingPokemon
+	call BattleFrontier_ShowCaughtBannedSpecies
 # 599 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge::
+	msgbox BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsEnd, MSGBOX_DEFAULT
 # 600 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	special CloseLink
+	goto BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
 # 601 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_LookForwardToAnotherChallenge, MSGBOX_DEFAULT
+	end
 # 602 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge::
+
 # 603 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	release
+BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLvOpen::
 # 604 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
+	switch VAR_FRONTIER_BATTLE_MODE
 # 605 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	case FRONTIER_MODE_SINGLES, BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLvOpenSingles
 # 606 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_EnterElevator::
+	case FRONTIER_MODE_DOUBLES, BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLvOpenDoubles
 # 607 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	special SavePlayerParty
+	msgbox BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLvOpenMultis, MSGBOX_DEFAULT
 # 608 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_0x8004, FRONTIER_UTIL_FUNC_SET_PARTY_ORDER
+	call BattleFrontier_ShowCaughtBannedSpecies
 # 609 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call BattleFrontier_BattleTowerLobby_EventScript_GetPartySize
+	msgbox BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsEnd, MSGBOX_DEFAULT
 # 610 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	special CallFrontierUtilFunc
+	goto BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
 # 611 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_RESULT, 0
-# 612 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_WaitForLinkOpponentLoad::
-# 613 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	tower_loadlinkopponents
-# 614 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	delay 1
-# 615 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_ne VAR_RESULT, 6, BattleFrontier_BattleTowerLobby_EventScript_WaitForLinkOpponentLoad
-# 616 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call BattleFrontier_BattleTowerLobby_EventScript_ShowYouToBattleRoom
-# 617 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	clearflag FLAG_CANCEL_BATTLE_ROOM_CHALLENGE
-# 618 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	warp MAP_BATTLE_FRONTIER_BATTLE_TOWER_ELEVATOR, 1, 6
-# 619 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_TEMP_CHALLENGE_STATUS, 0
-# 620 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	waitstate
-# 621 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	end
+# 612 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 613 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLvOpenSingles::
+# 614 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLvOpenSingles, MSGBOX_DEFAULT
+# 615 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	call BattleFrontier_ShowCaughtBannedSpecies
+# 616 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsEnd, MSGBOX_DEFAULT
+# 617 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
+# 618 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	end
+# 619 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 620 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_NotEnoughValidMonsLvOpenDoubles::
+# 621 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLvOpenDoubles, MSGBOX_DEFAULT
 # 622 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	call BattleFrontier_ShowCaughtBannedSpecies
 # 623 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_ShowYouToBattleRoom::
+	msgbox BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsEnd, MSGBOX_DEFAULT
 # 624 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call BattleFrontier_BattleTowerLobby_EventScript_BufferModeText
+	goto BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge
 # 625 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_LINK_MULTIS, BattleFrontier_BattleTowerLobby_EventScript_ShowYouToLinkMultiBattleRoom
+	end
 # 626 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_ShowYouToBattleRoom, MSGBOX_DEFAULT
+
 # 627 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto BattleFrontier_BattleTowerLobby_EventScript_WalkToElevator
+BattleFrontier_BattleTowerLobby_EventScript_CancelChallengeSaveFailed::
 # 628 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	frontier_set FRONTIER_DATA_CHALLENGE_STATUS  @ No status provided, so it relies on VAR_0x8006 being 0 already
 # 629 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_ShowYouToLinkMultiBattleRoom::
+	goto BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
 # 630 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	messageautoscroll BattleFrontier_BattleTowerLobby_Text_ShowYouToBattleRoom
+	end
 # 631 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	waitmessage
+
 # 632 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	delay 48
+BattleFrontier_BattleTowerLobby_EventScript_LoadPartyCancelChallenge::
 # 633 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_WalkToElevator::
+	special LoadPlayerParty
 # 634 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	closemessage
+	callnative UpdateFollowingPokemon
 # 635 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call BattleFrontier_BattleTowerLobby_EventScript_SetAttendantTalkedTo
+BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge::
 # 636 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoord
+	special CloseLink
 # 637 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	applymovement VAR_LAST_TALKED, BattleFrontier_BattleTowerLobby_Movement_WalkToElevator
+	msgbox BattleFrontier_BattleTowerLobby_Text_LookForwardToAnotherChallenge, MSGBOX_DEFAULT
 # 638 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	applymovement LOCALID_PLAYER, BattleFrontier_BattleTowerLobby_Movement_WalkToElevator
+BattleFrontier_BattleTowerLobby_EventScript_EndCancelChallenge::
 # 639 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	waitmovement 0
+	release
 # 640 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	opendoor VAR_0x8004, 1
+	end
 # 641 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	waitdooranim
+
 # 642 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	applymovement VAR_LAST_TALKED, BattleFrontier_BattleTowerLobby_Movement_AttendantEnterElevator
+BattleFrontier_BattleTowerLobby_EventScript_EnterElevator::
 # 643 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	applymovement LOCALID_PLAYER, BattleFrontier_BattleTowerLobby_Movement_PlayerEnterElevator
+	special SavePlayerParty
 # 644 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	waitmovement 0
+	setvar VAR_0x8004, FRONTIER_UTIL_FUNC_SET_PARTY_ORDER
 # 645 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	closedoor VAR_0x8004, 1
+	call BattleFrontier_BattleTowerLobby_EventScript_GetPartySize
 # 646 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	waitdooranim
+	special CallFrontierUtilFunc
 # 647 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	return
+	setvar VAR_RESULT, 0
 # 648 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+BattleFrontier_BattleTowerLobby_EventScript_WaitForLinkOpponentLoad::
 # 649 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Movement_WalkToElevator:
+	tower_loadlinkopponents
 # 650 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	walk_up
+	delay 1
 # 651 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	walk_up
+	goto_if_ne VAR_RESULT, 6, BattleFrontier_BattleTowerLobby_EventScript_WaitForLinkOpponentLoad
 # 652 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	walk_up
+	call BattleFrontier_BattleTowerLobby_EventScript_ShowYouToBattleRoom
 # 653 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	step_end
+	clearflag FLAG_CANCEL_BATTLE_ROOM_CHALLENGE
 # 654 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	warp MAP_BATTLE_FRONTIER_BATTLE_TOWER_ELEVATOR, 1, 6
 # 655 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Movement_AttendantEnterElevator:
+	setvar VAR_TEMP_CHALLENGE_STATUS, 0
 # 656 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	walk_up
+	waitstate
 # 657 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	set_invisible
+	end
 # 658 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	step_end
+
 # 659 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+BattleFrontier_BattleTowerLobby_EventScript_ShowYouToBattleRoom::
 # 660 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Movement_PlayerEnterElevator:
+	call BattleFrontier_BattleTowerLobby_EventScript_BufferModeText
 # 661 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	walk_up
+	goto_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_LINK_MULTIS, BattleFrontier_BattleTowerLobby_EventScript_ShowYouToLinkMultiBattleRoom
 # 662 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	walk_up
+	msgbox BattleFrontier_BattleTowerLobby_Text_ShowYouToBattleRoom, MSGBOX_DEFAULT
 # 663 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	set_invisible
+	goto BattleFrontier_BattleTowerLobby_EventScript_WalkToElevator
 # 664 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	step_end
+
 # 665 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+BattleFrontier_BattleTowerLobby_EventScript_ShowYouToLinkMultiBattleRoom::
 # 666 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-@ Unused
+	messageautoscroll BattleFrontier_BattleTowerLobby_Text_ShowYouToBattleRoom
 # 667 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Movement_UnusedEnterElevator:
+	waitmessage
 # 668 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	walk_fast_up
+	delay 48
 # 669 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	walk_fast_up
+BattleFrontier_BattleTowerLobby_EventScript_WalkToElevator::
 # 670 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	walk_fast_up
+	closemessage
 # 671 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	walk_fast_up
+	call BattleFrontier_BattleTowerLobby_EventScript_SetAttendantTalkedTo
 # 672 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	walk_fast_up
+	call BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoord
 # 673 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	set_invisible
+	applymovement VAR_LAST_TALKED, BattleFrontier_BattleTowerLobby_Movement_WalkToElevator
 # 674 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	step_end
+	applymovement LOCALID_PLAYER, BattleFrontier_BattleTowerLobby_Movement_WalkToElevator
 # 675 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	waitmovement 0
 # 676 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_BufferModeText::
+	opendoor VAR_0x8004, 1
 # 677 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_SINGLES, BattleFrontier_BattleTowerLobby_EventScript_BufferTextSingle
+	waitdooranim
 # 678 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_DOUBLES, BattleFrontier_BattleTowerLobby_EventScript_BufferTextDouble
+	applymovement VAR_LAST_TALKED, BattleFrontier_BattleTowerLobby_Movement_AttendantEnterElevator
 # 679 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_MULTIS, BattleFrontier_BattleTowerLobby_EventScript_BufferTextMulti
+	applymovement LOCALID_PLAYER, BattleFrontier_BattleTowerLobby_Movement_PlayerEnterElevator
 # 680 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_LINK_MULTIS, BattleFrontier_BattleTowerLobby_EventScript_BufferTextLinkMulti
+	waitmovement 0
 # 681 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	return
+	closedoor VAR_0x8004, 1
 # 682 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	waitdooranim
 # 683 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_BufferTextSingle::
+	return
 # 684 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	bufferstdstring STR_VAR_1, STDSTRING_SINGLE
-# 685 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	return
-# 686 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
+# 685 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_Movement_WalkToElevator:
+# 686 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	walk_up
 # 687 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_BufferTextDouble::
+	walk_up
 # 688 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	bufferstdstring STR_VAR_1, STDSTRING_DOUBLE
+	walk_up
 # 689 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	return
+	step_end
 # 690 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 691 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_BufferTextMulti::
+BattleFrontier_BattleTowerLobby_Movement_AttendantEnterElevator:
 # 692 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	bufferstdstring STR_VAR_1, STDSTRING_MULTI
+	walk_up
 # 693 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	return
+	set_invisible
 # 694 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	step_end
 # 695 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_BufferTextLinkMulti::
+
 # 696 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	bufferstdstring STR_VAR_1, STDSTRING_MULTI_LINK
+BattleFrontier_BattleTowerLobby_Movement_PlayerEnterElevator:
 # 697 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	return
+	walk_up
 # 698 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	walk_up
 # 699 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_SetAttendantTalkedTo::
+	set_invisible
 # 700 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_SINGLES, BattleFrontier_BattleTowerLobby_EventScript_TalkedToSinglesAttendant
+	step_end
 # 701 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_DOUBLES, BattleFrontier_BattleTowerLobby_EventScript_TalkedToDoublesAttendant
+
 # 702 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_MULTIS, BattleFrontier_BattleTowerLobby_EventScript_TalkedToMultisAttendant
+@ Unused
 # 703 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_LINK_MULTIS, BattleFrontier_BattleTowerLobby_EventScript_TalkedToLinkMultisAttendant
+BattleFrontier_BattleTowerLobby_Movement_UnusedEnterElevator:
 # 704 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	return
+	walk_fast_up
 # 705 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	walk_fast_up
 # 706 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_TalkedToSinglesAttendant::
+	walk_fast_up
 # 707 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_LAST_TALKED, LOCALID_TOWER_ATTENDANT_SINGLES
+	walk_fast_up
 # 708 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	return
+	walk_fast_up
 # 709 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	set_invisible
 # 710 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_TalkedToDoublesAttendant::
+	step_end
 # 711 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_LAST_TALKED, LOCALID_TOWER_ATTENDANT_DOUBLES
+
 # 712 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	return
+BattleFrontier_BattleTowerLobby_EventScript_BufferModeText::
 # 713 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_SINGLES, BattleFrontier_BattleTowerLobby_EventScript_BufferTextSingle
 # 714 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_TalkedToMultisAttendant::
+	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_DOUBLES, BattleFrontier_BattleTowerLobby_EventScript_BufferTextDouble
 # 715 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_LAST_TALKED, LOCALID_TOWER_ATTENDANT_MULTIS
+	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_MULTIS, BattleFrontier_BattleTowerLobby_EventScript_BufferTextMulti
 # 716 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	return
+	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_LINK_MULTIS, BattleFrontier_BattleTowerLobby_EventScript_BufferTextLinkMulti
 # 717 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	return
 # 718 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_TalkedToLinkMultisAttendant::
+
 # 719 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_LAST_TALKED, LOCALID_TOWER_ATTENDANT_LINK_MULTIS
+BattleFrontier_BattleTowerLobby_EventScript_BufferTextSingle::
 # 720 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	return
+	bufferstdstring STR_VAR_1, STDSTRING_SINGLE
 # 721 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	return
 # 722 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoord::
+
 # 723 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_SINGLES, BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoordSingles
+BattleFrontier_BattleTowerLobby_EventScript_BufferTextDouble::
 # 724 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_DOUBLES, BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoordDoubles
+	bufferstdstring STR_VAR_1, STDSTRING_DOUBLE
 # 725 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_MULTIS, BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoordMultis
+	return
 # 726 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_LINK_MULTIS, BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoordLinkMultis
+
 # 727 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	return
+BattleFrontier_BattleTowerLobby_EventScript_BufferTextMulti::
 # 728 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	bufferstdstring STR_VAR_1, STDSTRING_MULTI
 # 729 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoordSingles::
+	return
 # 730 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_0x8004, 6
+
 # 731 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	return
+BattleFrontier_BattleTowerLobby_EventScript_BufferTextLinkMulti::
 # 732 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	bufferstdstring STR_VAR_1, STDSTRING_MULTI_LINK
 # 733 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoordDoubles::
+	return
 # 734 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_0x8004, 10
+
 # 735 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	return
+BattleFrontier_BattleTowerLobby_EventScript_SetAttendantTalkedTo::
 # 736 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_SINGLES, BattleFrontier_BattleTowerLobby_EventScript_TalkedToSinglesAttendant
 # 737 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoordMultis::
+	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_DOUBLES, BattleFrontier_BattleTowerLobby_EventScript_TalkedToDoublesAttendant
 # 738 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_0x8004, 14
+	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_MULTIS, BattleFrontier_BattleTowerLobby_EventScript_TalkedToMultisAttendant
 # 739 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	return
+	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_LINK_MULTIS, BattleFrontier_BattleTowerLobby_EventScript_TalkedToLinkMultisAttendant
 # 740 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	return
 # 741 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoordLinkMultis::
+
 # 742 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_0x8004, 18
+BattleFrontier_BattleTowerLobby_EventScript_TalkedToSinglesAttendant::
 # 743 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	return
+	setvar VAR_LAST_TALKED, LOCALID_TOWER_ATTENDANT_SINGLES
 # 744 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	return
 # 745 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_GetPartySize::
+
 # 746 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_SINGLES, BattleFrontier_BattleTowerLobby_EventScript_GetSinglesPartySize
+BattleFrontier_BattleTowerLobby_EventScript_TalkedToDoublesAttendant::
 # 747 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_DOUBLES, BattleFrontier_BattleTowerLobby_EventScript_GetDoublesPartySize
+	setvar VAR_LAST_TALKED, LOCALID_TOWER_ATTENDANT_DOUBLES
 # 748 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_MULTIS, BattleFrontier_BattleTowerLobby_EventScript_GetMultisPartySize
+	return
 # 749 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_LINK_MULTIS, BattleFrontier_BattleTowerLobby_EventScript_GetLinkMultisPartySize
+
 # 750 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	return
+BattleFrontier_BattleTowerLobby_EventScript_TalkedToMultisAttendant::
 # 751 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	setvar VAR_LAST_TALKED, LOCALID_TOWER_ATTENDANT_MULTIS
 # 752 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_GetSinglesPartySize::
+	return
 # 753 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_0x8005, FRONTIER_PARTY_SIZE
+
 # 754 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	return
+BattleFrontier_BattleTowerLobby_EventScript_TalkedToLinkMultisAttendant::
 # 755 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	setvar VAR_LAST_TALKED, LOCALID_TOWER_ATTENDANT_LINK_MULTIS
 # 756 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_GetDoublesPartySize::
+	return
 # 757 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_0x8005, FRONTIER_DOUBLES_PARTY_SIZE
+
 # 758 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	return
+BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoord::
 # 759 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_SINGLES, BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoordSingles
 # 760 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_GetMultisPartySize::
+	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_DOUBLES, BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoordDoubles
 # 761 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_0x8005, FRONTIER_MULTI_PARTY_SIZE
+	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_MULTIS, BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoordMultis
 # 762 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	return
+	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_LINK_MULTIS, BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoordLinkMultis
 # 763 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	return
 # 764 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_GetLinkMultisPartySize::
+
 # 765 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_0x8005, FRONTIER_MULTI_PARTY_SIZE
+BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoordSingles::
 # 766 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	return
+	setvar VAR_0x8004, 6
 # 767 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 768 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_EventScript_GetLvlMode::
-# 769 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	frontier_get FRONTIER_DATA_LVL_MODE
-# 770 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	return
-# 771 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 768 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
+# 769 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoordDoubles::
+# 770 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	setvar VAR_0x8004, 10
+# 771 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	return
 # 772 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_TryCableLink::
+
 # 773 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_0x8004, USING_BATTLE_TOWER
+BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoordMultis::
 # 774 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	message gText_PleaseWaitForLink
+	setvar VAR_0x8004, 14
 # 775 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	waitmessage
+	return
 # 776 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_0x8005, 0
+
 # 777 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	special TryBattleLinkup
+BattleFrontier_BattleTowerLobby_EventScript_GetDoorXCoordLinkMultis::
 # 778 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	waitstate
+	setvar VAR_0x8004, 18
 # 779 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_RESULT, LINKUP_SUCCESS, BattleFrontier_BattleTowerLobby_EventScript_CableLinkSuccessful
+	return
 # 780 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_RESULT, LINKUP_SOMEONE_NOT_READY, CableClub_EventScript_AbortLinkSomeoneNotReady
+
 # 781 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_RESULT, LINKUP_DIFF_SELECTIONS, BattleFrontier_BattleTowerLobby_EventScript_AbortLinkDifferentSelections
+BattleFrontier_BattleTowerLobby_EventScript_GetPartySize::
 # 782 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_RESULT, LINKUP_WRONG_NUM_PLAYERS, BattleFrontier_BattleTowerLobby_EventScript_AbortLinkIncorrectNumberOfPlayers
+	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_SINGLES, BattleFrontier_BattleTowerLobby_EventScript_GetSinglesPartySize
 # 783 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_RESULT, LINKUP_FAILED, BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_DOUBLES, BattleFrontier_BattleTowerLobby_EventScript_GetDoublesPartySize
 # 784 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_RESULT, LINKUP_CONNECTION_ERROR, CableClub_EventScript_AbortLinkConnectionError
+	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_MULTIS, BattleFrontier_BattleTowerLobby_EventScript_GetMultisPartySize
 # 785 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_RESULT, LINKUP_FAILED_BATTLE_TOWER, BattleFrontier_BattleTowerLobby_EventScript_AbortLink
+	call_if_eq VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_LINK_MULTIS, BattleFrontier_BattleTowerLobby_EventScript_GetLinkMultisPartySize
 # 786 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
+	return
 # 787 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 788 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_AbortLinkDifferentSelections::
+BattleFrontier_BattleTowerLobby_EventScript_GetSinglesPartySize::
 # 789 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	special CloseLink
+	setvar VAR_0x8005, FRONTIER_PARTY_SIZE
 # 790 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_0x8005, 3, BattleFrontier_BattleTowerLobby_EventScript_FriendDifferentSelection
+	return
 # 791 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox Text_PlayersMadeDifferentSelections, MSGBOX_DEFAULT
+
 # 792 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	release
+BattleFrontier_BattleTowerLobby_EventScript_GetDoublesPartySize::
 # 793 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
+	setvar VAR_0x8005, FRONTIER_DOUBLES_PARTY_SIZE
 # 794 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	return
 # 795 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_FriendDifferentSelection::
-# 796 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_FriendChoseDifferentLvlMode, MSGBOX_DEFAULT
-# 797 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_ChooseDifferentMonsMatchLvlMode, MSGBOX_DEFAULT
-# 798 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	release
-# 799 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
-# 800 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
+# 796 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_GetMultisPartySize::
+# 797 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	setvar VAR_0x8005, FRONTIER_MULTI_PARTY_SIZE
+# 798 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	return
+# 799 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 800 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_GetLinkMultisPartySize::
 # 801 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_AbortLinkIncorrectNumberOfPlayers::
+	setvar VAR_0x8005, FRONTIER_MULTI_PARTY_SIZE
 # 802 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_LinkMultiOnlyForTwoPlayers, MSGBOX_DEFAULT
+	return
 # 803 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	special CloseLink
+
 # 804 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox CableClub_Text_IncorrectNumberOfParticipants, MSGBOX_DEFAULT
+BattleFrontier_EventScript_GetLvlMode::
 # 805 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	release
+	frontier_get FRONTIER_DATA_LVL_MODE
 # 806 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
+	return
 # 807 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 808 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_AbortLink::
+BattleFrontier_BattleTowerLobby_EventScript_TryCableLink::
 # 809 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	special CloseLink
+	setvar VAR_0x8004, USING_BATTLE_TOWER
 # 810 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call_if_eq VAR_0x8005, 0, BattleFrontier_BattleTowerLobby_EventScript_FriendChoseDifferentLvlMode
+	message gText_PleaseWaitForLink
 # 811 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call_if_eq VAR_0x8005, 1, BattleFrontier_BattleTowerLobby_EventScript_FriendAlsoSelectedMon
-# 812 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call_if_eq VAR_0x8005, 2, BattleFrontier_BattleTowerLobby_EventScript_FriendAlsoSelectedMons
-# 813 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_ChooseDifferentMonsMatchLvlMode, MSGBOX_DEFAULT
-# 814 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	release
-# 815 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
-# 816 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 817 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_FriendChoseDifferentLvlMode::
-# 818 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_FriendChoseDifferentLvlMode, MSGBOX_DEFAULT
-# 819 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	return
-# 820 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 821 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_FriendAlsoSelectedMon::
-# 822 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_FriendAlsoSelectedMon, MSGBOX_DEFAULT
-# 823 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	return
-# 824 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 825 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_FriendAlsoSelectedMons::
-# 826 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_FriendAlsoSelectedMons, MSGBOX_DEFAULT
-# 827 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	return
-# 828 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 829 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_CableLinkSuccessful::
-# 830 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	incrementgamestat GAME_STAT_ENTERED_BATTLE_TOWER
-# 831 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_BRAVO_TRAINER_BATTLE_TOWER_ON, FALSE
-# 832 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	message BattleFrontier_BattleTowerLobby_Text_SaveGameBeforeShowingIn
-# 833 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	waitmessage
-# 834 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	tower_save CHALLENGE_STATUS_SAVING
-# 835 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	special SaveForBattleTowerLink
-# 836 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 812 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	setvar VAR_0x8005, 0
+# 813 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	special TryBattleLinkup
+# 814 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	waitstate
+# 815 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto_if_eq VAR_RESULT, LINKUP_SUCCESS, BattleFrontier_BattleTowerLobby_EventScript_CableLinkSuccessful
+# 816 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto_if_eq VAR_RESULT, LINKUP_SOMEONE_NOT_READY, CableClub_EventScript_AbortLinkSomeoneNotReady
+# 817 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto_if_eq VAR_RESULT, LINKUP_DIFF_SELECTIONS, BattleFrontier_BattleTowerLobby_EventScript_AbortLinkDifferentSelections
+# 818 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto_if_eq VAR_RESULT, LINKUP_WRONG_NUM_PLAYERS, BattleFrontier_BattleTowerLobby_EventScript_AbortLinkIncorrectNumberOfPlayers
+# 819 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto_if_eq VAR_RESULT, LINKUP_FAILED, BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+# 820 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto_if_eq VAR_RESULT, LINKUP_CONNECTION_ERROR, CableClub_EventScript_AbortLinkConnectionError
+# 821 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto_if_eq VAR_RESULT, LINKUP_FAILED_BATTLE_TOWER, BattleFrontier_BattleTowerLobby_EventScript_AbortLink
+# 822 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	end
+# 823 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 824 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_AbortLinkDifferentSelections::
+# 825 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	special CloseLink
+# 826 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto_if_eq VAR_0x8005, 3, BattleFrontier_BattleTowerLobby_EventScript_FriendDifferentSelection
+# 827 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox Text_PlayersMadeDifferentSelections, MSGBOX_DEFAULT
+# 828 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	release
+# 829 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	end
+# 830 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 831 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_FriendDifferentSelection::
+# 832 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox BattleFrontier_BattleTowerLobby_Text_FriendChoseDifferentLvlMode, MSGBOX_DEFAULT
+# 833 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox BattleFrontier_BattleTowerLobby_Text_ChooseDifferentMonsMatchLvlMode, MSGBOX_DEFAULT
+# 834 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	release
+# 835 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	end
+# 836 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
 # 837 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	playse SE_SAVE
+BattleFrontier_BattleTowerLobby_EventScript_AbortLinkIncorrectNumberOfPlayers::
 # 838 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	waitse
+	msgbox BattleFrontier_BattleTowerLobby_Text_LinkMultiOnlyForTwoPlayers, MSGBOX_DEFAULT
 # 839 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	special TrySetBattleTowerLinkType
+	special CloseLink
 # 840 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto BattleFrontier_BattleTowerLobby_EventScript_EnterElevator
+	msgbox CableClub_Text_IncorrectNumberOfParticipants, MSGBOX_DEFAULT
 # 841 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
+	release
 # 842 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 843 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_ExplainLinkMultisChallenge::
-# 844 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_ExplainLinkMultisChallenge, MSGBOX_DEFAULT
-# 845 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto BattleFrontier_BattleTowerLobby_EventScript_AskEnterLinkMultisChallenge
-# 846 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	end
-# 847 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 843 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
+# 844 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_AbortLink::
+# 845 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	special CloseLink
+# 846 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	call_if_eq VAR_0x8005, 0, BattleFrontier_BattleTowerLobby_EventScript_FriendChoseDifferentLvlMode
+# 847 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	call_if_eq VAR_0x8005, 1, BattleFrontier_BattleTowerLobby_EventScript_FriendAlsoSelectedMon
 # 848 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_TryWirelessLink::
+	call_if_eq VAR_0x8005, 2, BattleFrontier_BattleTowerLobby_EventScript_FriendAlsoSelectedMons
 # 849 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	setvar VAR_0x8004, LINK_GROUP_BATTLE_TOWER
+	msgbox BattleFrontier_BattleTowerLobby_Text_ChooseDifferentMonsMatchLvlMode, MSGBOX_DEFAULT
 # 850 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto BattleFrontier_BattleTowerLobby_EventScript_ChooseLeader
+	release
 # 851 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	end
 # 852 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 853 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_ChooseLeader::
+BattleFrontier_BattleTowerLobby_EventScript_FriendChoseDifferentLvlMode::
 # 854 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	message CableClub_Text_ChooseGroupLeaderOfTwo
+	msgbox BattleFrontier_BattleTowerLobby_Text_FriendChoseDifferentLvlMode, MSGBOX_DEFAULT
 # 855 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	waitmessage
+	return
 # 856 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	multichoice 16, 6, MULTI_LINK_LEADER, FALSE
+
 # 857 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	switch VAR_RESULT
+BattleFrontier_BattleTowerLobby_EventScript_FriendAlsoSelectedMon::
 # 858 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case 0, BattleFrontier_BattleTowerLobby_EventScript_TryJoinGroup
+	msgbox BattleFrontier_BattleTowerLobby_Text_FriendAlsoSelectedMon, MSGBOX_DEFAULT
 # 859 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case 1, BattleFrontier_BattleTowerLobby_EventScript_TryBecomeLeader
+	return
 # 860 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case 2, BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+
 # 861 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case MULTI_B_PRESSED, BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+BattleFrontier_BattleTowerLobby_EventScript_FriendAlsoSelectedMons::
 # 862 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
+	msgbox BattleFrontier_BattleTowerLobby_Text_FriendAlsoSelectedMons, MSGBOX_DEFAULT
 # 863 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	return
 # 864 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_TryBecomeLeader::
+
 # 865 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call CableClub_EventScript_TryBecomeLinkLeader
+BattleFrontier_BattleTowerLobby_EventScript_CableLinkSuccessful::
 # 866 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_RESULT, LINKUP_SUCCESS, BattleFrontier_BattleTowerLobby_EventScript_WirelessLinkSuccessful
-# 867 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_RESULT, LINKUP_FAILED, BattleFrontier_BattleTowerLobby_EventScript_ChooseLeader
-# 868 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_RESULT, LINKUP_RETRY_ROLE_ASSIGN, BattleFrontier_BattleTowerLobby_EventScript_TryBecomeLeader
-# 869 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_RESULT, LINKUP_FAILED_BATTLE_TOWER, BattleFrontier_BattleTowerLobby_EventScript_AbortLink
-# 870 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	release
-# 871 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	return
-# 872 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 873 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_TryJoinGroup::
-# 874 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	call CableClub_EventScript_TryJoinLinkGroup
-# 875 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_RESULT, LINKUP_SUCCESS, BattleFrontier_BattleTowerLobby_EventScript_WirelessLinkSuccessful
-# 876 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_RESULT, LINKUP_FAILED, BattleFrontier_BattleTowerLobby_EventScript_ChooseLeader
-# 877 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_RESULT, LINKUP_RETRY_ROLE_ASSIGN, BattleFrontier_BattleTowerLobby_EventScript_TryJoinGroup
-# 878 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto_if_eq VAR_RESULT, LINKUP_FAILED_BATTLE_TOWER, BattleFrontier_BattleTowerLobby_EventScript_AbortLink
-# 879 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	release
-# 880 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	return
-# 881 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 882 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_WirelessLinkSuccessful::
-# 883 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	incrementgamestat GAME_STAT_ENTERED_BATTLE_TOWER
-# 884 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 867 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	setvar VAR_BRAVO_TRAINER_BATTLE_TOWER_ON, FALSE
-# 885 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 868 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	message BattleFrontier_BattleTowerLobby_Text_SaveGameBeforeShowingIn
-# 886 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 869 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	waitmessage
-# 887 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 870 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	tower_save CHALLENGE_STATUS_SAVING
-# 888 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 871 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	special SaveForBattleTowerLink
-# 889 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 872 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	waitstate
-# 890 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 873 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	playse SE_SAVE
-# 891 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 874 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	waitse
-# 892 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 875 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	special TrySetBattleTowerLinkType
+# 876 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	goto BattleFrontier_BattleTowerLobby_EventScript_EnterElevator
-# 893 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 877 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	end
-# 894 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 878 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
-# 895 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_RulesBoard::
-# 896 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	lockall
-# 897 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_RulesAreListed, MSGBOX_DEFAULT
-# 898 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto BattleFrontier_BattleTowerLobby_EventScript_ReadRulesBoard
-# 899 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 879 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_ExplainLinkMultisChallenge::
+# 880 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox BattleFrontier_BattleTowerLobby_Text_ExplainLinkMultisChallenge, MSGBOX_DEFAULT
+# 881 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto BattleFrontier_BattleTowerLobby_EventScript_AskEnterLinkMultisChallenge
+# 882 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	end
-# 900 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 883 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
-# 901 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_ReadRulesBoard::
-# 902 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	message BattleFrontier_BattleTowerLobby_Text_ReadWhichHeading
-# 903 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 884 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_TryWirelessLink::
+# 885 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	setvar VAR_0x8004, LINK_GROUP_BATTLE_TOWER
+# 886 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto BattleFrontier_BattleTowerLobby_EventScript_ChooseLeader
+# 887 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	end
+# 888 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 889 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_ChooseLeader::
+# 890 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	message CableClub_Text_ChooseGroupLeaderOfTwo
+# 891 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	waitmessage
-# 904 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	multichoice 17, 2, MULTI_BATTLE_TOWER_RULES, FALSE
-# 905 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 892 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	multichoice 16, 6, MULTI_LINK_LEADER, FALSE
+# 893 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	switch VAR_RESULT
+# 894 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	case 0, BattleFrontier_BattleTowerLobby_EventScript_TryJoinGroup
+# 895 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	case 1, BattleFrontier_BattleTowerLobby_EventScript_TryBecomeLeader
+# 896 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	case 2, BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+# 897 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	case MULTI_B_PRESSED, BattleFrontier_BattleTowerLobby_EventScript_CancelChallenge
+# 898 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	end
+# 899 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 900 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_TryBecomeLeader::
+# 901 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	call CableClub_EventScript_TryBecomeLinkLeader
+# 902 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto_if_eq VAR_RESULT, LINKUP_SUCCESS, BattleFrontier_BattleTowerLobby_EventScript_WirelessLinkSuccessful
+# 903 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto_if_eq VAR_RESULT, LINKUP_FAILED, BattleFrontier_BattleTowerLobby_EventScript_ChooseLeader
+# 904 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto_if_eq VAR_RESULT, LINKUP_RETRY_ROLE_ASSIGN, BattleFrontier_BattleTowerLobby_EventScript_TryBecomeLeader
+# 905 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto_if_eq VAR_RESULT, LINKUP_FAILED_BATTLE_TOWER, BattleFrontier_BattleTowerLobby_EventScript_AbortLink
 # 906 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case 0, BattleFrontier_BattleTowerLobby_EventScript_RulesTower
+	release
 # 907 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case 1, BattleFrontier_BattleTowerLobby_EventScript_RulesMons
+	return
 # 908 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case 2, BattleFrontier_BattleTowerLobby_EventScript_RulesSalon
+
 # 909 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case 3, BattleFrontier_BattleTowerLobby_EventScript_RulesMultiLink
+BattleFrontier_BattleTowerLobby_EventScript_TryJoinGroup::
 # 910 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case 4, BattleFrontier_BattleTowerLobby_EventScript_ExitRules
+	call CableClub_EventScript_TryJoinLinkGroup
 # 911 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	case MULTI_B_PRESSED, BattleFrontier_BattleTowerLobby_EventScript_ExitRules
+	goto_if_eq VAR_RESULT, LINKUP_SUCCESS, BattleFrontier_BattleTowerLobby_EventScript_WirelessLinkSuccessful
 # 912 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
+	goto_if_eq VAR_RESULT, LINKUP_FAILED, BattleFrontier_BattleTowerLobby_EventScript_ChooseLeader
 # 913 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	goto_if_eq VAR_RESULT, LINKUP_RETRY_ROLE_ASSIGN, BattleFrontier_BattleTowerLobby_EventScript_TryJoinGroup
 # 914 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_RulesTower::
+	goto_if_eq VAR_RESULT, LINKUP_FAILED_BATTLE_TOWER, BattleFrontier_BattleTowerLobby_EventScript_AbortLink
 # 915 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_ExplainTowerRules, MSGBOX_DEFAULT
+	release
 # 916 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto BattleFrontier_BattleTowerLobby_EventScript_ReadRulesBoard
+	return
 # 917 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
+
 # 918 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+BattleFrontier_BattleTowerLobby_EventScript_WirelessLinkSuccessful::
 # 919 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_RulesMons::
+	incrementgamestat GAME_STAT_ENTERED_BATTLE_TOWER
 # 920 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_ExplainMonRules, MSGBOX_DEFAULT
+	setvar VAR_BRAVO_TRAINER_BATTLE_TOWER_ON, FALSE
 # 921 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto BattleFrontier_BattleTowerLobby_EventScript_ReadRulesBoard
+	message BattleFrontier_BattleTowerLobby_Text_SaveGameBeforeShowingIn
 # 922 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
+	waitmessage
 # 923 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	tower_save CHALLENGE_STATUS_SAVING
 # 924 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_RulesSalon::
+	special SaveForBattleTowerLink
 # 925 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_ExplainSalonRules, MSGBOX_DEFAULT
+	waitstate
 # 926 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto BattleFrontier_BattleTowerLobby_EventScript_ReadRulesBoard
+	playse SE_SAVE
 # 927 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
+	waitse
 # 928 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	goto BattleFrontier_BattleTowerLobby_EventScript_EnterElevator
 # 929 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_RulesMultiLink::
+	end
 # 930 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox BattleFrontier_BattleTowerLobby_Text_ExplainMultiLinkRules, MSGBOX_DEFAULT
+
 # 931 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	goto BattleFrontier_BattleTowerLobby_EventScript_ReadRulesBoard
+BattleFrontier_BattleTowerLobby_EventScript_RulesBoard::
 # 932 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	end
+	lockall
 # 933 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	msgbox BattleFrontier_BattleTowerLobby_Text_RulesAreListed, MSGBOX_DEFAULT
 # 934 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_EventScript_ExitRules::
+	goto BattleFrontier_BattleTowerLobby_EventScript_ReadRulesBoard
 # 935 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	releaseall
-# 936 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	end
+# 936 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
 # 937 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+BattleFrontier_BattleTowerLobby_EventScript_ReadRulesBoard::
 # 938 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-@ Unused
+	message BattleFrontier_BattleTowerLobby_Text_ReadWhichHeading
 # 939 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_DirectYouToBattleRoom:
+	waitmessage
 # 940 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "I'll direct you to your Battle Room now.$"
+	multichoice 17, 2, MULTI_BATTLE_TOWER_RULES, FALSE
 # 941 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	switch VAR_RESULT
 # 942 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_DidntSaveBeforeQuitting:
+	case 0, BattleFrontier_BattleTowerLobby_EventScript_RulesTower
 # 943 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Excuse me!\p"
+	case 1, BattleFrontier_BattleTowerLobby_EventScript_RulesMons
 # 944 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You didn't save before you quit your\n"
+	case 2, BattleFrontier_BattleTowerLobby_EventScript_RulesSalon
 # 945 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "challenge last time.\p"
+	case 3, BattleFrontier_BattleTowerLobby_EventScript_RulesMultiLink
 # 946 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Because of that, your challenge so far\n"
+	case 4, BattleFrontier_BattleTowerLobby_EventScript_ExitRules
 # 947 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "has been disqualified. Sorry!$"
+	case MULTI_B_PRESSED, BattleFrontier_BattleTowerLobby_EventScript_ExitRules
 # 948 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	end
 # 949 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_CongratsBeatenSeven:
-# 950 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Congratulations!\n"
-# 951 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You've beaten all seven Trainers!\p"
-# 952 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "$"
-# 953 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
+# 950 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_EventScript_RulesTower::
+# 951 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox BattleFrontier_BattleTowerLobby_Text_ExplainTowerRules, MSGBOX_DEFAULT
+# 952 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	goto BattleFrontier_BattleTowerLobby_EventScript_ReadRulesBoard
+# 953 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	end
 # 954 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-@ Unused
+
 # 955 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_EarnedFabulousPrize:
+BattleFrontier_BattleTowerLobby_EventScript_RulesMons::
 # 956 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "For beating seven Trainers in a row,\n"
+	msgbox BattleFrontier_BattleTowerLobby_Text_ExplainMonRules, MSGBOX_DEFAULT
 # 957 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "you have earned this fabulous prize!\p"
+	goto BattleFrontier_BattleTowerLobby_EventScript_ReadRulesBoard
 # 958 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "$"
+	end
 # 959 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 960 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_ReceivedPrize:
+BattleFrontier_BattleTowerLobby_EventScript_RulesSalon::
 # 961 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "{PLAYER} received the prize\n"
+	msgbox BattleFrontier_BattleTowerLobby_Text_ExplainSalonRules, MSGBOX_DEFAULT
 # 962 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "{STR_VAR_1}.$"
+	goto BattleFrontier_BattleTowerLobby_EventScript_ReadRulesBoard
 # 963 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	end
 # 964 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-@ Unused
+
 # 965 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_BagFullMakeRoom:
+BattleFrontier_BattleTowerLobby_EventScript_RulesMultiLink::
 # 966 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Oh, your Bag appears to be full.\p"
+	msgbox BattleFrontier_BattleTowerLobby_Text_ExplainMultiLinkRules, MSGBOX_DEFAULT
 # 967 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Please make room in your Bag, then come\n"
+	goto BattleFrontier_BattleTowerLobby_EventScript_ReadRulesBoard
 # 968 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "see me.$"
+	end
 # 969 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 970 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_ThankYouForPlaying:
+BattleFrontier_BattleTowerLobby_EventScript_ExitRules::
 # 971 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Thank you for playing!\p"
+	releaseall
 # 972 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "$"
+	end
 # 973 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 974 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_RecordWillBeSaved:
+@ Unused
 # 975 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Your record will be saved.\n"
+BattleFrontier_BattleTowerLobby_Text_DirectYouToBattleRoom:
 # 976 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Please wait.$"
+	.string "I'll direct you to your Battle Room now.$"
 # 977 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 978 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_WeveBeenWaitingForYou:
+BattleFrontier_BattleTowerLobby_Text_DidntSaveBeforeQuitting:
 # 979 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "We've been waiting for you!\p"
+	.string "Excuse me!\p"
 # 980 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "$"
+	.string "You didn't save before you quit your\n"
 # 981 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	.string "challenge last time.\p"
 # 982 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_ProgressWillBeSaved:
+	.string "Because of that, your challenge so far\n"
 # 983 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Before entering a Battle Room, your\n"
+	.string "has been disqualified. Sorry!$"
 # 984 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "progress will be saved. Please wait.$"
+
 # 985 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+BattleFrontier_BattleTowerLobby_Text_CongratsBeatenSeven:
 # 986 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_AboutToFace50thTrainer:
+	.string "Congratulations!\n"
 # 987 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You're finally about to face the\n"
+	.string "You've beaten all seven Trainers!\p"
 # 988 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "50th Trainer.\p"
+	.string "$"
 # 989 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "From here on, every time you beat seven\n"
+
 # 990 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Trainers in a row, your Pokémon will\l"
+@ Unused
 # 991 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "receive a commemorative Ribbon.\p"
+BattleFrontier_BattleTowerLobby_Text_EarnedFabulousPrize:
 # 992 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Good luck!$"
+	.string "For beating seven Trainers in a row,\n"
 # 993 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	.string "you have earned this fabulous prize!\p"
 # 994 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_HereAreSomeRibbons:
+	.string "$"
 # 995 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Here are some Ribbons for beating\n"
+
 # 996 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "seven tough Trainers in a row.\p"
+BattleFrontier_BattleTowerLobby_Text_ReceivedPrize:
 # 997 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "{PLAYER} received some Ribbons!$"
+	.string "{PLAYER} received the prize\n"
 # 998 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	.string "{STR_VAR_1}.$"
 # 999 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_PutRibbonOnMons:
-# 1000 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "{PLAYER} put the Ribbons on\n"
-# 1001 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "the challenger Pokémon.$"
-# 1002 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
+# 1000 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+@ Unused
+# 1001 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_Text_BagFullMakeRoom:
+# 1002 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Oh, your Bag appears to be full.\p"
 # 1003 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_DescribeFeelingsAboutBattleTower:
+	.string "Please make room in your Bag, then come\n"
 # 1004 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Excuse me, do you have a moment?\p"
+	.string "see me.$"
 # 1005 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Can you describe your feelings when\n"
+
 # 1006 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "you're about to begin a Battle Tower\l"
+BattleFrontier_BattleTowerLobby_Text_ThankYouForPlaying:
 # 1007 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "match, or when you've either won or\l"
+	.string "Thank you for playing!\p"
 # 1008 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "lost a match?$"
+	.string "$"
 # 1009 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 1010 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_FeelWhatWhenYouBegin:
+BattleFrontier_BattleTowerLobby_Text_RecordWillBeSaved:
 # 1011 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Okay, what are your feelings when\n"
+	.string "Your record will be saved.\n"
 # 1012 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "you're about to begin a match?$"
+	.string "Please wait.$"
 # 1013 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 1014 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_FeelWhatWhenYouveWon:
+BattleFrontier_BattleTowerLobby_Text_WeveBeenWaitingForYou:
 # 1015 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "What do you feel when you've won\n"
+	.string "We've been waiting for you!\p"
 # 1016 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "a match?$"
+	.string "$"
 # 1017 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 1018 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_FeelWhatWhenYouveLost:
+BattleFrontier_BattleTowerLobby_Text_ProgressWillBeSaved:
 # 1019 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Can I hear about your feelings when\n"
+	.string "Before entering a Battle Room, your\n"
 # 1020 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "you have lost a match?$"
+	.string "progress will be saved. Please wait.$"
 # 1021 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 1022 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_DontThinkMuchAboutIt:
+BattleFrontier_BattleTowerLobby_Text_AboutToFace50thTrainer:
 # 1023 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Oh, so you don't think much about it?\n"
+	.string "You're finally about to face the\n"
 # 1024 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You're one cool customer.$"
+	.string "50th Trainer.\p"
 # 1025 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	.string "From here on, every time you beat seven\n"
 # 1026 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_ChangedYourMind:
+	.string "Trainers in a row, your Pokémon will\l"
 # 1027 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Hunh? You changed your mind?\n"
+	.string "receive a commemorative Ribbon.\p"
 # 1028 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "I guess you're fickle.$"
+	.string "Good luck!$"
 # 1029 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 1030 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_ThatsHowYouFeel:
+BattleFrontier_BattleTowerLobby_Text_HereAreSomeRibbons:
 # 1031 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Okay, so that's how you feel?\n"
+	.string "Here are some Ribbons for beating\n"
 # 1032 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "That's quite original.\p"
+	.string "seven tough Trainers in a row.\p"
 # 1033 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Thanks!$"
+	.string "{PLAYER} received some Ribbons!$"
 # 1034 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 1035 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_WinsInRowRecorded:
+BattleFrontier_BattleTowerLobby_Text_PutRibbonOnMons:
 # 1036 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "The number of matches you win in a row\n"
+	.string "{PLAYER} put the Ribbons on\n"
 # 1037 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "is recorded.\p"
+	.string "the challenger Pokémon.$"
 # 1038 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "I'd better not get beaten in\n"
+
 # 1039 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "an embarrassing way!$"
+BattleFrontier_BattleTowerLobby_Text_DescribeFeelingsAboutBattleTower:
 # 1040 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	.string "Excuse me, do you have a moment?\p"
 # 1041 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_CanLeaveUntilLossOrSevenWins:
+	.string "Can you describe your feelings when\n"
 # 1042 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Once you've entered the Battle Tower,\n"
+	.string "you're about to begin a Battle Tower\l"
 # 1043 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "you can't leave until you either lose\l"
+	.string "match, or when you've either won or\l"
 # 1044 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "or you beat seven Trainers in a row.\p"
+	.string "lost a match?$"
 # 1045 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You'd best be certain that you're up\n"
+
 # 1046 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "to the challenge.$"
+BattleFrontier_BattleTowerLobby_Text_FeelWhatWhenYouBegin:
 # 1047 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	.string "Okay, what are your feelings when\n"
 # 1048 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-@ Unused
+	.string "you're about to begin a match?$"
 # 1049 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_DoubleBattleRoomConstruction:
-# 1050 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Welcome to the Battle Tower\n"
-# 1051 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Double Battle Corner!\p"
-# 1052 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Unfortunately, the Battle Rooms\n"
-# 1053 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "are still under construction.\p"
-# 1054 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Please come back when the work\n"
-# 1055 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "is completed.$"
-# 1056 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
+# 1050 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_Text_FeelWhatWhenYouveWon:
+# 1051 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "What do you feel when you've won\n"
+# 1052 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "a match?$"
+# 1053 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 1054 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_Text_FeelWhatWhenYouveLost:
+# 1055 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Can I hear about your feelings when\n"
+# 1056 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "you have lost a match?$"
 # 1057 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-@ Unused
+
 # 1058 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_MultiBattleRoomConstruction:
+BattleFrontier_BattleTowerLobby_Text_DontThinkMuchAboutIt:
 # 1059 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Welcome to the Battle Tower\n"
+	.string "Oh, so you don't think much about it?\n"
 # 1060 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Multi Battle Corner!\p"
+	.string "You're one cool customer.$"
 # 1061 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Unfortunately, the Battle Rooms\n"
+
 # 1062 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "are still under construction.\p"
+BattleFrontier_BattleTowerLobby_Text_ChangedYourMind:
 # 1063 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Please come back when the work\n"
+	.string "Hunh? You changed your mind?\n"
 # 1064 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "is completed.$"
+	.string "I guess you're fickle.$"
 # 1065 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 1066 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_LookForwardToAnotherChallenge:
+BattleFrontier_BattleTowerLobby_Text_ThatsHowYouFeel:
 # 1067 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "We look forward to seeing you on\n"
+	.string "Okay, so that's how you feel?\n"
 # 1068 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "another challenge!$"
+	.string "That's quite original.\p"
 # 1069 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	.string "Thanks!$"
 # 1070 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_WhichLevelMode:
+
 # 1071 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "The Battle Room offers two levels\n"
+BattleFrontier_BattleTowerLobby_Text_WinsInRowRecorded:
 # 1072 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "of challenge, Classic and Chaos.\l"
+	.string "The number of matches you win in a row\n"
 # 1073 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Which is your choice?$"
+	.string "is recorded.\p"
 # 1074 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	.string "I'd better not get beaten in\n"
 # 1075 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-@ Unused
+	.string "an embarrassing way!$"
 # 1076 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_PleaseSelectMons:
-# 1077 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Please select the Pokémon you wish\n"
-# 1078 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "to enter.$"
-# 1079 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
+# 1077 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_Text_CanLeaveUntilLossOrSevenWins:
+# 1078 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Once you've entered the Battle Tower,\n"
+# 1079 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "you can't leave until you either lose\l"
 # 1080 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_OkayToSaveBeforeEntering:
+	.string "or you beat seven Trainers in a row.\p"
 # 1081 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Before entering a Battle Room, your\n"
+	.string "You'd best be certain that you're up\n"
 # 1082 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "progress must be saved. Is that okay?$"
+	.string "to the challenge.$"
 # 1083 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 1084 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_ShowYouToBattleRoom:
-# 1085 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "I will now show you to the\n"
-# 1086 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "{STR_VAR_1} Battle Room.$"
-# 1087 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 1088 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_RecordLastMatch:
-# 1089 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Shall I record your last Battle Tower\n"
-# 1090 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "match on your Frontier Pass?$"
-# 1091 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 1092 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 @ Unused
+# 1085 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_Text_DoubleBattleRoomConstruction:
+# 1086 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Welcome to the Battle Tower\n"
+# 1087 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Double Battle Corner!\p"
+# 1088 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Unfortunately, the Battle Rooms\n"
+# 1089 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "are still under construction.\p"
+# 1090 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Please come back when the work\n"
+# 1091 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "is completed.$"
+# 1092 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
 # 1093 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLv50:
+@ Unused
 # 1094 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Excuse me!\p"
+BattleFrontier_BattleTowerLobby_Text_MultiBattleRoomConstruction:
 # 1095 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You don't have {STR_VAR_2} eligible Pokémon.\p"
+	.string "Welcome to the Battle Tower\n"
 # 1096 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You must have {STR_VAR_2} different Pokémon\n"
+	.string "Multi Battle Corner!\p"
 # 1097 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "to enter.\p"
+	.string "Unfortunately, the Battle Rooms\n"
 # 1098 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "They also must be holding different\n"
+	.string "are still under construction.\p"
 # 1099 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "kinds of items.\p"
+	.string "Please come back when the work\n"
 # 1100 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Eggs{STR_VAR_1}.$"
+	.string "is completed.$"
 # 1101 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 1102 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsEnd:
+BattleFrontier_BattleTowerLobby_Text_LookForwardToAnotherChallenge:
 # 1103 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Please come see me when you are ready.$"
+	.string "We look forward to seeing you on\n"
 # 1104 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	.string "another challenge!$"
 # 1105 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-@ Unused
-# 1106 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLvOpen:
-# 1107 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Excuse me!\p"
-# 1108 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You don't have {STR_VAR_2} eligible Pokémon.\p"
-# 1109 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You must have {STR_VAR_2} different Pokémon\n"
-# 1110 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "to enter.\p"
-# 1111 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "They also must be holding different\n"
-# 1112 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "kinds of items.\p"
-# 1113 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Eggs{STR_VAR_1}.$"
-# 1114 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
+# 1106 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_Text_WhichLevelMode:
+# 1107 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "The Battle Room offers two levels\n"
+# 1108 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "of challenge, Classic and Chaos.\l"
+# 1109 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Which is your choice?$"
+# 1110 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 1111 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+@ Unused
+# 1112 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_Text_PleaseSelectMons:
+# 1113 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Please select the Pokémon you wish\n"
+# 1114 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "to enter.$"
 # 1115 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLv50Singles:
+
 # 1116 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Excuse me!\p"
+BattleFrontier_BattleTowerLobby_Text_OkayToSaveBeforeEntering:
 # 1117 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You don't have three eligible Pokémon.\p"
+	.string "Before entering a Battle Room, your\n"
 # 1118 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You must have three different Pokémon\n"
+	.string "progress must be saved. Is that okay?$"
 # 1119 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "to enter.\p"
+
 # 1120 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "They also must be holding different\n"
+BattleFrontier_BattleTowerLobby_Text_ShowYouToBattleRoom:
 # 1121 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "kinds of items.\p"
+	.string "I will now show you to the\n"
 # 1122 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Eggs{STR_VAR_1}.$"
+	.string "{STR_VAR_1} Battle Room.$"
 # 1123 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 1124 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLvOpenSingles:
+BattleFrontier_BattleTowerLobby_Text_RecordLastMatch:
 # 1125 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Excuse me!\p"
+	.string "Shall I record your last Battle Tower\n"
 # 1126 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You don't have three eligible Pokémon.\p"
+	.string "match on your Frontier Pass?$"
 # 1127 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You must have three different Pokémon\n"
+
 # 1128 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "to enter.\p"
+@ Unused
 # 1129 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "They also must be holding different\n"
+BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLv50:
 # 1130 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "kinds of items.\p"
-# 1131 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Eggs{STR_VAR_1}.$"
-# 1132 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 1133 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLv50Doubles:
-# 1134 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.string "Excuse me!\p"
-# 1135 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You don't have four eligible Pokémon.\p"
-# 1136 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You must have four different Pokémon\n"
-# 1137 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1131 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "You don't have {STR_VAR_2} eligible Pokémon.\p"
+# 1132 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "You must have {STR_VAR_2} different Pokémon\n"
+# 1133 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.string "to enter.\p"
-# 1138 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1134 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.string "They also must be holding different\n"
-# 1139 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1135 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.string "kinds of items.\p"
-# 1140 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1136 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.string "Eggs{STR_VAR_1}.$"
-# 1141 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1137 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
+# 1138 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsEnd:
+# 1139 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Please come see me when you are ready.$"
+# 1140 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 1141 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+@ Unused
 # 1142 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLvOpenDoubles:
+BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLvOpen:
 # 1143 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.string "Excuse me!\p"
 # 1144 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You don't have four eligible Pokémon.\p"
+	.string "You don't have {STR_VAR_2} eligible Pokémon.\p"
 # 1145 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You must have four different Pokémon\n"
+	.string "You must have {STR_VAR_2} different Pokémon\n"
 # 1146 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.string "to enter.\p"
 # 1147 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
@@ -2299,13 +2299,13 @@ BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLvOpenDoubles:
 # 1150 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 1151 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLv50Multis:
+BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLv50Singles:
 # 1152 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.string "Excuse me!\p"
 # 1153 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You don't have two eligible Pokémon.\p"
+	.string "You don't have three eligible Pokémon.\p"
 # 1154 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You must have two different Pokémon\n"
+	.string "You must have three different Pokémon\n"
 # 1155 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.string "to enter.\p"
 # 1156 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
@@ -2317,13 +2317,13 @@ BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLv50Multis:
 # 1159 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 1160 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLvOpenMultis:
+BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLvOpenSingles:
 # 1161 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.string "Excuse me!\p"
 # 1162 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You don't have two eligible Pokémon.\p"
+	.string "You don't have three eligible Pokémon.\p"
 # 1163 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You must have two different Pokémon\n"
+	.string "You must have three different Pokémon\n"
 # 1164 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.string "to enter.\p"
 # 1165 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
@@ -2335,267 +2335,267 @@ BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLvOpenMultis:
 # 1168 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 1169 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_WelcomSingleBattle:
+BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLv50Doubles:
 # 1170 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Where the talents of Trainers\n"
+	.string "Excuse me!\p"
 # 1171 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "are put to the test!\p"
+	.string "You don't have four eligible Pokémon.\p"
 # 1172 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Welcome to the Battle Tower!\p"
+	.string "You must have four different Pokémon\n"
 # 1173 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "I am your guide to the Single\n"
+	.string "to enter.\p"
 # 1174 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Battle Rooms.$"
+	.string "They also must be holding different\n"
 # 1175 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	.string "kinds of items.\p"
 # 1176 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_TakeSinglesChallenge:
+	.string "Eggs{STR_VAR_1}.$"
 # 1177 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Would you like to take the Single\n"
+
 # 1178 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Battle Room challenge?$"
+BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLvOpenDoubles:
 # 1179 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	.string "Excuse me!\p"
 # 1180 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_ExplainSinglesChallenge:
+	.string "You don't have four eligible Pokémon.\p"
 # 1181 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "The Battle Tower's Single Battle\n"
+	.string "You must have four different Pokémon\n"
 # 1182 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Rooms are facilities for conducting\l"
+	.string "to enter.\p"
 # 1183 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Single Battles with three Pokémon.\p"
+	.string "They also must be holding different\n"
 # 1184 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "There are many Single Battle Rooms\n"
+	.string "kinds of items.\p"
 # 1185 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "in the Battle Tower for team battles.\p"
+	.string "Eggs{STR_VAR_1}.$"
 # 1186 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "In each of the Single Battle Rooms,\n"
+
 # 1187 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "seven Trainers await your challenge.\p"
+BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLv50Multis:
 # 1188 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "If you manage to defeat all seven,\n"
+	.string "Excuse me!\p"
 # 1189 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "you will earn Battle Points.\p"
+	.string "You don't have two eligible Pokémon.\p"
 # 1190 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "If you want to interrupt your\n"
+	.string "You must have two different Pokémon\n"
 # 1191 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "challenge, please save the game.\p"
+	.string "to enter.\p"
 # 1192 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "If you don't save before interrupting,\n"
+	.string "They also must be holding different\n"
 # 1193 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "you will be disqualified.$"
+	.string "kinds of items.\p"
 # 1194 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	.string "Eggs{STR_VAR_1}.$"
 # 1195 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_SelectThreeMons:
+
 # 1196 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Now please select the three Pokémon\n"
+BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLvOpenMultis:
 # 1197 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "that are to be entered.$"
+	.string "Excuse me!\p"
 # 1198 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	.string "You don't have two eligible Pokémon.\p"
 # 1199 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_WelcomeDoubleBattle:
+	.string "You must have two different Pokémon\n"
 # 1200 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Where the talents of Trainers\n"
+	.string "to enter.\p"
 # 1201 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "are put to the test!\p"
+	.string "They also must be holding different\n"
 # 1202 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Welcome to the Battle Tower!\p"
+	.string "kinds of items.\p"
 # 1203 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "I am your guide to the Double\n"
+	.string "Eggs{STR_VAR_1}.$"
 # 1204 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Battle Rooms.$"
+
 # 1205 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+BattleFrontier_BattleTowerLobby_Text_WelcomSingleBattle:
 # 1206 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_TakeDoublesChallenge:
+	.string "Where the talents of Trainers\n"
 # 1207 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Would you like to take the Double\n"
+	.string "are put to the test!\p"
 # 1208 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Battle Room challenge?$"
+	.string "Welcome to the Battle Tower!\p"
 # 1209 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	.string "I am your guide to the Single\n"
 # 1210 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_ExplainDoublesChallenge:
+	.string "Battle Rooms.$"
 # 1211 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "The Battle Tower's Double Battle\n"
+
 # 1212 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Rooms are facilities for conducting\l"
+BattleFrontier_BattleTowerLobby_Text_TakeSinglesChallenge:
 # 1213 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Double Battles with four Pokémon.\p"
+	.string "Would you like to take the Single\n"
 # 1214 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "There are many Double Battle Rooms\n"
+	.string "Battle Room challenge?$"
 # 1215 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "in the Battle Tower for team battles.\p"
+
 # 1216 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "In each of the Double Battle Rooms,\n"
+BattleFrontier_BattleTowerLobby_Text_ExplainSinglesChallenge:
 # 1217 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "seven Trainers await your challenge.\p"
+	.string "The Battle Tower's Single Battle\n"
 # 1218 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "If you manage to defeat all seven,\n"
+	.string "Rooms are facilities for conducting\l"
 # 1219 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "you will earn Battle Points.\p"
+	.string "Single Battles with three Pokémon.\p"
 # 1220 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "If you want to interrupt your\n"
+	.string "There are many Single Battle Rooms\n"
 # 1221 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "challenge, please save the game.\p"
-# 1222 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "If you don't save before interrupting,\n"
-# 1223 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "you will be disqualified.$"
-# 1224 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 1225 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_PleaseSelectFourMons:
-# 1226 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Now please select the four Pokémon\n"
-# 1227 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "that are to be entered.$"
-# 1228 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 1229 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_WelcomeMultiBattle:
-# 1230 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Where the talents of Trainers\n"
-# 1231 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "are put to the test!\p"
-# 1232 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Welcome to the Battle Tower!\p"
-# 1233 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "I am your guide to the Multi\n"
-# 1234 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Battle Rooms.$"
-# 1235 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 1236 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_TakeMultisChallenge:
-# 1237 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Would you like to take the Multi\n"
-# 1238 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Battle Room challenge?$"
-# 1239 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 1240 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_ExplainMultisChallenge:
-# 1241 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "The Battle Tower's Multi Battle\n"
-# 1242 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Rooms are facilities for conducting\l"
-# 1243 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Multi Battles.\p"
-# 1244 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "For Multi Battles, you must partner\n"
-# 1245 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "with a Trainer in the Tower and enter\l"
-# 1246 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "with two Pokémon each.\p"
-# 1247 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Inside the Tower is a room named\n"
-# 1248 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "the Battle Salon where you may meet\l"
-# 1249 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "other Trainers.\p"
-# 1250 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "There, you must find a Trainer to act\n"
-# 1251 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "as your partner in Multi Battles.\p"
-# 1252 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Once you have partnered up, you will\n"
-# 1253 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "be shown to a Multi Battle Room.\p"
-# 1254 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "In the Multi Battle Room, seven\n"
-# 1255 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "tag teams await your challenge.\p"
-# 1256 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "If you manage to defeat all seven\n"
-# 1257 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "teams, you will earn Battle Points.\p"
-# 1258 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "If you want to interrupt your\n"
-# 1259 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "challenge, please save the game.\p"
-# 1260 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "If you don't save before interrupting,\n"
-# 1261 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "you will be disqualified.$"
-# 1262 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 1263 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_PleaseSelectTwoMons:
-# 1264 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Now please select the two Pokémon\n"
-# 1265 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "that are to be entered.$"
-# 1266 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 1267 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_WelcomeLinkMultiBattle:
-# 1268 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Where the talents of Trainers\n"
-# 1269 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "are put to the test!\p"
-# 1270 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Welcome to the Battle Tower!\p"
-# 1271 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "I am your guide to the Link Multi\n"
-# 1272 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Battle Rooms.$"
-# 1273 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 1274 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_TakeLinkMultisChallenge:
-# 1275 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Would you like to take the Link Multi\n"
-# 1276 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Battle Room challenge?$"
-# 1277 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
-# 1278 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_ExplainLinkMultisChallenge:
-# 1279 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "The Battle Tower's Multi Battle\n"
-# 1280 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Rooms are facilities for conducting\l"
-# 1281 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Multi Battles with a friend.\p"
-# 1282 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You must link with your friend using\n"
-# 1283 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Wireless Adapters or a Game Boy\l"
-# 1284 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Advance Game Link cable.\p"
-# 1285 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You must partner with your friend and\n"
-# 1286 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "enter two different kinds of Pokémon.\p"
-# 1287 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "There are many Multi Battle Rooms\n"
-# 1288 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.string "in the Battle Tower for team battles.\p"
+# 1222 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "In each of the Single Battle Rooms,\n"
+# 1223 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "seven Trainers await your challenge.\p"
+# 1224 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "If you manage to defeat all seven,\n"
+# 1225 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "you will earn Battle Points.\p"
+# 1226 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "If you want to interrupt your\n"
+# 1227 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "challenge, please save the game.\p"
+# 1228 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "If you don't save before interrupting,\n"
+# 1229 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "you will be disqualified.$"
+# 1230 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 1231 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_Text_SelectThreeMons:
+# 1232 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Now please select the three Pokémon\n"
+# 1233 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "that are to be entered.$"
+# 1234 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 1235 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_Text_WelcomeDoubleBattle:
+# 1236 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Where the talents of Trainers\n"
+# 1237 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "are put to the test!\p"
+# 1238 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Welcome to the Battle Tower!\p"
+# 1239 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "I am your guide to the Double\n"
+# 1240 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Battle Rooms.$"
+# 1241 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 1242 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_Text_TakeDoublesChallenge:
+# 1243 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Would you like to take the Double\n"
+# 1244 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Battle Room challenge?$"
+# 1245 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 1246 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_Text_ExplainDoublesChallenge:
+# 1247 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "The Battle Tower's Double Battle\n"
+# 1248 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Rooms are facilities for conducting\l"
+# 1249 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Double Battles with four Pokémon.\p"
+# 1250 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "There are many Double Battle Rooms\n"
+# 1251 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "in the Battle Tower for team battles.\p"
+# 1252 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "In each of the Double Battle Rooms,\n"
+# 1253 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "seven Trainers await your challenge.\p"
+# 1254 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "If you manage to defeat all seven,\n"
+# 1255 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "you will earn Battle Points.\p"
+# 1256 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "If you want to interrupt your\n"
+# 1257 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "challenge, please save the game.\p"
+# 1258 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "If you don't save before interrupting,\n"
+# 1259 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "you will be disqualified.$"
+# 1260 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 1261 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_Text_PleaseSelectFourMons:
+# 1262 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Now please select the four Pokémon\n"
+# 1263 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "that are to be entered.$"
+# 1264 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 1265 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_Text_WelcomeMultiBattle:
+# 1266 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Where the talents of Trainers\n"
+# 1267 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "are put to the test!\p"
+# 1268 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Welcome to the Battle Tower!\p"
+# 1269 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "I am your guide to the Multi\n"
+# 1270 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Battle Rooms.$"
+# 1271 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 1272 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_Text_TakeMultisChallenge:
+# 1273 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Would you like to take the Multi\n"
+# 1274 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Battle Room challenge?$"
+# 1275 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 1276 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_Text_ExplainMultisChallenge:
+# 1277 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "The Battle Tower's Multi Battle\n"
+# 1278 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Rooms are facilities for conducting\l"
+# 1279 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Multi Battles.\p"
+# 1280 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "For Multi Battles, you must partner\n"
+# 1281 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "with a Trainer in the Tower and enter\l"
+# 1282 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "with two Pokémon each.\p"
+# 1283 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Inside the Tower is a room named\n"
+# 1284 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "the Battle Salon where you may meet\l"
+# 1285 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "other Trainers.\p"
+# 1286 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "There, you must find a Trainer to act\n"
+# 1287 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "as your partner in Multi Battles.\p"
+# 1288 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Once you have partnered up, you will\n"
 # 1289 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "In a Multi Battle Room, seven\n"
+	.string "be shown to a Multi Battle Room.\p"
 # 1290 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "tag teams await you and your friend\l"
+	.string "In the Multi Battle Room, seven\n"
 # 1291 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "to make a tag-team challenge.\p"
+	.string "tag teams await your challenge.\p"
 # 1292 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.string "If you manage to defeat all seven\n"
 # 1293 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.string "teams, you will earn Battle Points.\p"
 # 1294 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Please beware that unlike other Rooms,\n"
+	.string "If you want to interrupt your\n"
 # 1295 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "you may not interrupt your challenge.\p"
+	.string "challenge, please save the game.\p"
 # 1296 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Once you start, you must battle seven\n"
+	.string "If you don't save before interrupting,\n"
 # 1297 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Multi Battles in a row nonstop.$"
+	.string "you will be disqualified.$"
 # 1298 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 1299 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_PleaseSelectTwoMons2:
+BattleFrontier_BattleTowerLobby_Text_PleaseSelectTwoMons:
 # 1300 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.string "Now please select the two Pokémon\n"
 # 1301 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
@@ -2603,312 +2603,384 @@ BattleFrontier_BattleTowerLobby_Text_PleaseSelectTwoMons2:
 # 1302 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 1303 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-@ Unused
+BattleFrontier_BattleTowerLobby_Text_WelcomeLinkMultiBattle:
 # 1304 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_ChoseSameMonAsFriend:
+	.string "Where the talents of Trainers\n"
 # 1305 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You have chosen the same kind of\n"
+	.string "are put to the test!\p"
 # 1306 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Pokémon as your friend.\p"
+	.string "Welcome to the Battle Tower!\p"
 # 1307 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Please choose two Pokémon different\n"
+	.string "I am your guide to the Link Multi\n"
 # 1308 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "from your friend's, match the level\l"
+	.string "Battle Rooms.$"
 # 1309 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "you wish to enter, and register again.$"
+
 # 1310 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+BattleFrontier_BattleTowerLobby_Text_TakeLinkMultisChallenge:
 # 1311 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_LinkMultiOnlyForTwoPlayers:
+	.string "Would you like to take the Link Multi\n"
 # 1312 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "The Link Multi Battle Room challenge\n"
+	.string "Battle Room challenge?$"
 # 1313 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "is only for two linked players.$"
+
 # 1314 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+BattleFrontier_BattleTowerLobby_Text_ExplainLinkMultisChallenge:
 # 1315 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_FriendAlsoSelectedMon:
+	.string "The Battle Tower's Multi Battle\n"
 # 1316 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Your friend has also selected\n"
+	.string "Rooms are facilities for conducting\l"
 # 1317 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "the Pokémon {STR_VAR_1}.$"
+	.string "Multi Battles with a friend.\p"
 # 1318 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	.string "You must link with your friend using\n"
 # 1319 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_FriendAlsoSelectedMons:
+	.string "Wireless Adapters or a Game Boy\l"
 # 1320 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Your friend has also selected the\n"
+	.string "Advance Game Link cable.\p"
 # 1321 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Pokémon {STR_VAR_1} and {STR_VAR_2}.$"
+	.string "You must partner with your friend and\n"
 # 1322 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	.string "enter two different kinds of Pokémon.\p"
 # 1323 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_FriendChoseDifferentLvlMode:
+	.string "There are many Multi Battle Rooms\n"
 # 1324 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Your friend has chosen a different\n"
+	.string "in the Battle Tower for team battles.\p"
 # 1325 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "battle level.$"
+	.string "In a Multi Battle Room, seven\n"
 # 1326 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	.string "tag teams await you and your friend\l"
 # 1327 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-@ Unused
+	.string "to make a tag-team challenge.\p"
 # 1328 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_FriendChoseDifferentLvlModeSameMon:
+	.string "If you manage to defeat all seven\n"
 # 1329 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Your friend has chosen a different\n"
+	.string "teams, you will earn Battle Points.\p"
 # 1330 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "battle level.\p"
+	.string "Please beware that unlike other Rooms,\n"
 # 1331 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Your friend has also selected\n"
+	.string "you may not interrupt your challenge.\p"
 # 1332 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "the Pokémon {STR_VAR_1}.$"
+	.string "Once you start, you must battle seven\n"
 # 1333 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	.string "Multi Battles in a row nonstop.$"
 # 1334 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-@ Unused
+
 # 1335 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_FriendChoseDifferentLvlModeSameMons:
+BattleFrontier_BattleTowerLobby_Text_PleaseSelectTwoMons2:
 # 1336 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Your friend has chosen a different\n"
+	.string "Now please select the two Pokémon\n"
 # 1337 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "battle level.\p"
+	.string "that are to be entered.$"
 # 1338 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Your friend has also selected the\n"
+
 # 1339 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Pokémon {STR_VAR_1} and {STR_VAR_2}.$"
+@ Unused
 # 1340 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+BattleFrontier_BattleTowerLobby_Text_ChoseSameMonAsFriend:
 # 1341 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_ChooseDifferentMonsMatchLvlMode:
+	.string "You have chosen the same kind of\n"
 # 1342 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Please choose two Pokémon different\n"
+	.string "Pokémon as your friend.\p"
 # 1343 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "from your friend's, match the level\l"
+	.string "Please choose two Pokémon different\n"
 # 1344 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "you wish to enter, and register again.$"
+	.string "from your friend's, match the level\l"
 # 1345 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	.string "you wish to enter, and register again.$"
 # 1346 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_SaveGameBeforeShowingIn:
-# 1347 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "I will save the game before\n"
-# 1348 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "showing you in. Please wait.$"
-# 1349 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
+# 1347 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_Text_LinkMultiOnlyForTwoPlayers:
+# 1348 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "The Link Multi Battle Room challenge\n"
+# 1349 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "is only for two linked players.$"
 # 1350 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_CongratsDefeatedMaiden:
+
 # 1351 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Congratulations!\n"
+BattleFrontier_BattleTowerLobby_Text_FriendAlsoSelectedMon:
 # 1352 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You have defeated the Salon Maiden\l"
+	.string "Your friend has also selected\n"
 # 1353 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "and swept seven Trainers!$"
+	.string "the Pokémon {STR_VAR_1}.$"
 # 1354 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 1355 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_AwardYouTheseBattlePoints:
+BattleFrontier_BattleTowerLobby_Text_FriendAlsoSelectedMons:
 # 1356 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "In recognition of your infinite talent,\n"
+	.string "Your friend has also selected the\n"
 # 1357 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "we award you these Battle Point(s).$"
+	.string "Pokémon {STR_VAR_1} and {STR_VAR_2}.$"
 # 1358 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 1359 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_Text_ObtainedXBattlePoints:
+BattleFrontier_BattleTowerLobby_Text_FriendChoseDifferentLvlMode:
 # 1360 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "{PLAYER} obtained {STR_VAR_1} Battle Point(s).$"
+	.string "Your friend has chosen a different\n"
 # 1361 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	.string "battle level.$"
 # 1362 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_RulesAreListed:
+
 # 1363 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "The Battle Tower rules are listed.$"
+@ Unused
 # 1364 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+BattleFrontier_BattleTowerLobby_Text_FriendChoseDifferentLvlModeSameMon:
 # 1365 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_ReadWhichHeading:
+	.string "Your friend has chosen a different\n"
 # 1366 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Which heading do you want to read?$"
+	.string "battle level.\p"
 # 1367 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+	.string "Your friend has also selected\n"
 # 1368 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_ExplainTowerRules:
+	.string "the Pokémon {STR_VAR_1}.$"
 # 1369 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "The Battle Tower is a facility where\n"
+
 # 1370 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "four types of battles are waged--\l"
+@ Unused
 # 1371 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Single Battle, Double Battle, Multi\l"
+BattleFrontier_BattleTowerLobby_Text_FriendChoseDifferentLvlModeSameMons:
 # 1372 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Battle, and Link Multi Battle.\p"
+	.string "Your friend has chosen a different\n"
 # 1373 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "For each of these types, there are\n"
+	.string "battle level.\p"
 # 1374 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "separate Battle Rooms.\p"
+	.string "Your friend has also selected the\n"
 # 1375 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Please speak with a guide offering\n"
+	.string "Pokémon {STR_VAR_1} and {STR_VAR_2}.$"
 # 1376 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "the type of battle you wish to enter.$"
+
 # 1377 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+BattleFrontier_BattleTowerLobby_Text_ChooseDifferentMonsMatchLvlMode:
 # 1378 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_ExplainMonRules:
+	.string "Please choose two Pokémon different\n"
 # 1379 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Depending on the Battle Room you are\n"
+	.string "from your friend's, match the level\l"
 # 1380 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "entering, you will be required to take\l"
+	.string "you wish to enter, and register again.$"
 # 1381 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "a certain number of Pokémon.\p"
+
 # 1382 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "The Single Battle mode requires\n"
+BattleFrontier_BattleTowerLobby_Text_SaveGameBeforeShowingIn:
 # 1383 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "three Pokémon.\p"
+	.string "I will save the game before\n"
 # 1384 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "The Double Battle mode requires four,\n"
+	.string "showing you in. Please wait.$"
 # 1385 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "and the Multi modes both require two.$"
+
 # 1386 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-
+BattleFrontier_BattleTowerLobby_Text_CongratsDefeatedMaiden:
 # 1387 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_ExplainSalonRules:
+	.string "Congratulations!\n"
 # 1388 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "The Battle Salon is where you must\n"
+	.string "You have defeated the Salon Maiden\l"
 # 1389 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "find a partner to form a tag team for\l"
+	.string "and swept seven Trainers!$"
 # 1390 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "the Multi Battle Room challenge.\p"
-# 1391 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Choose the best partner for you by\n"
-# 1392 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "examining other Trainers'\l"
-# 1393 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Pokémon and their moves.\p"
-# 1394 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You may choose a new tag partner\n"
-# 1395 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "after winning seven straight matches.$"
-# 1396 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
+# 1391 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_Text_AwardYouTheseBattlePoints:
+# 1392 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "In recognition of your infinite talent,\n"
+# 1393 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "we award you these Battle Point(s).$"
+# 1394 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 1395 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_Text_ObtainedXBattlePoints:
+# 1396 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "{PLAYER} obtained {STR_VAR_1} Battle Point(s).$"
 # 1397 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-BattleFrontier_BattleTowerLobby_Text_ExplainMultiLinkRules:
+
 # 1398 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "The Link Multi Battle Mode is for two\n"
+BattleFrontier_BattleTowerLobby_Text_RulesAreListed:
 # 1399 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "friends to mount a challenge together.\p"
+	.string "The Battle Tower rules are listed.$"
 # 1400 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You and your friend must be linked with\n"
+
 # 1401 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "Wireless Adapters or a Gba Game Link\l"
+BattleFrontier_BattleTowerLobby_Text_ReadWhichHeading:
 # 1402 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "cable.\p"
+	.string "Which heading do you want to read?$"
 # 1403 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You must choose two Pokémon at\n"
+
 # 1404 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "the registration counter.\p"
+BattleFrontier_BattleTowerLobby_Text_ExplainTowerRules:
 # 1405 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "These Pokémon must be different\n"
+	.string "The Battle Tower is a facility where\n"
 # 1406 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "from those of your friend.\p"
+	.string "four types of battles are waged--\l"
 # 1407 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You may not interrupt this challenge\n"
+	.string "Single Battle, Double Battle, Multi\l"
 # 1408 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Battle, and Link Multi Battle.\p"
+# 1409 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "For each of these types, there are\n"
+# 1410 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "separate Battle Rooms.\p"
+# 1411 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Please speak with a guide offering\n"
+# 1412 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "the type of battle you wish to enter.$"
+# 1413 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 1414 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_Text_ExplainMonRules:
+# 1415 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Depending on the Battle Room you are\n"
+# 1416 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "entering, you will be required to take\l"
+# 1417 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "a certain number of Pokémon.\p"
+# 1418 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "The Single Battle mode requires\n"
+# 1419 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "three Pokémon.\p"
+# 1420 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "The Double Battle mode requires four,\n"
+# 1421 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "and the Multi modes both require two.$"
+# 1422 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 1423 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_Text_ExplainSalonRules:
+# 1424 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "The Battle Salon is where you must\n"
+# 1425 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "find a partner to form a tag team for\l"
+# 1426 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "the Multi Battle Room challenge.\p"
+# 1427 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Choose the best partner for you by\n"
+# 1428 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "examining other Trainers'\l"
+# 1429 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Pokémon and their moves.\p"
+# 1430 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "You may choose a new tag partner\n"
+# 1431 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "after winning seven straight matches.$"
+# 1432 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+
+# 1433 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+BattleFrontier_BattleTowerLobby_Text_ExplainMultiLinkRules:
+# 1434 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "The Link Multi Battle Mode is for two\n"
+# 1435 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "friends to mount a challenge together.\p"
+# 1436 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "You and your friend must be linked with\n"
+# 1437 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "Wireless Adapters or a Gba Game Link\l"
+# 1438 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "cable.\p"
+# 1439 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "You must choose two Pokémon at\n"
+# 1440 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "the registration counter.\p"
+# 1441 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "These Pokémon must be different\n"
+# 1442 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "from those of your friend.\p"
+# 1443 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "You may not interrupt this challenge\n"
+# 1444 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.string "in the middle, unlike other modes.$"
 
 BattleTowerBPVendor1::
-# 1412 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1448 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	lock
-# 1413 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1449 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	faceplayer
-# 1414 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1450 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	msgbox BattleTowerBPVendor1_Text_0
-# 1415 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1451 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	bpmart BattleTowerBpMart1
-# 1416 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1452 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	msgbox BattleTowerBPVendor1_Text_1
-# 1417 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1453 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	release
 	end
 
 
 BattleTowerBPVendor2::
-# 1422 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1458 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	lock
-# 1423 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1459 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	faceplayer
-# 1424 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1460 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	msgbox BattleTowerBPVendor1_Text_0
-# 1425 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1461 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	bpmart BattleTowerBpMart2
-# 1426 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1462 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	msgbox BattleTowerBPVendor1_Text_1
-# 1427 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1463 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	release
 	end
 
 
 	.align 2
-# 1431 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1467 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 BattleTowerBpMart1:
-# 1432 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1468 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.2byte ITEM_CHOICE_BAND
-# 1433 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1469 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.2byte ITEM_CHOICE_SPECS
-# 1434 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1470 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.2byte ITEM_CHOICE_SCARF
-# 1435 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1471 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.2byte ITEM_HP_UP_EX
-# 1436 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1472 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.2byte ITEM_PROTEIN_EX
-# 1437 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1473 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.2byte ITEM_IRON_EX
-# 1438 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1474 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.2byte ITEM_CARBOS_EX
-# 1439 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1475 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.2byte ITEM_ZINC_EX
-# 1440 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1476 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.2byte ITEM_CALCIUM_EX
 	.2byte ITEM_NONE
 
 	.align 2
-# 1443 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1479 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 BattleTowerBpMart2:
-# 1444 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1480 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.2byte ITEM_ELECTRIC_SEED
-# 1445 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1481 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.2byte ITEM_PSYCHIC_SEED
-# 1446 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1482 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.2byte ITEM_MISTY_SEED
-# 1447 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1483 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.2byte ITEM_GRASSY_SEED
-# 1448 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1484 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.2byte ITEM_LUCKY_EGG
-# 1449 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1485 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.2byte ITEM_ROOM_SERVICE
-# 1450 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1486 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.2byte ITEM_BLUNDER_POLICY
-# 1451 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1487 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.2byte ITEM_WEAKNESS_POLICY
-# 1452 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1488 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.2byte ITEM_HEAVY_DUTY_BOOTS
 	.2byte ITEM_NONE
 
 TowerLobbyDude::
-# 1456 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1492 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	msgbox TowerLobbyDude_Text_0, MSGBOX_NPC
 	return
 
 
 BattleTowerBPVendor1_Text_0:
-# 1414 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1450 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.string "Welcome!$"
 
 BattleTowerBPVendor1_Text_1:
-# 1416 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1452 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.string "Thanks!$"
 
 TowerLobbyDude_Text_0:
-# 1456 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1492 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.string "The battles seem to get tougher\n"
 	.string "over time. They even allow\l"
 	.string "legendaries in the Chaos mode.$"

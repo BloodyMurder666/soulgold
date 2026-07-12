@@ -255,6 +255,9 @@ static void SeedRngWithRtc(void)
         * MINUTES_PER_HOUR + BCD8(rtc.minute))
         * SECONDS_PER_MINUTE + BCD8(rtc.second);
     SeedRng(seconds);
+    // Keep cosmetic/non-battle randomness on its own independently seeded
+    // stream. Without this, Random2 starts from an all-zero state.
+    SeedRng2(seconds);
     #undef BCD8
 }
 #endif

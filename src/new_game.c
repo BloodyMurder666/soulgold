@@ -234,6 +234,7 @@ void NewGameInitData(void)
     ResetContestLinkResults();
     SetCurrentDifficultyLevel(DIFFICULTY_NORMAL);
     VarSet(VAR_BATTLE_SPEED, 1);
+    VarSet(VAR_BATTLE_FACILITY_BGM, 0);
     ResetItemFlags();
     ResetDexNav();
     ClearFollowerNPCData();

@@ -116,12 +116,13 @@ static void Task_PokegearOpenTrophies(u8 taskId);
 static const u32 sPokegearBgTiles[] = INCBIN_U32("graphics/pokegear/tiles.4bpp.smol");
 static const u16 sPokegearBgTilemap[] = INCBIN_U16("graphics/pokegear/tiles.bin");
 static const u16 sPokegearBgPal[] = INCBIN_U16("graphics/pokegear/tiles.gbapal");
-static const u32 sPokegearBgFemaleTiles[] = INCBIN_U32("graphics/pokegear/tiles_f_gba.4bpp.smol");
-static const u16 sPokegearBgFemaleTilemap[] = INCBIN_U16("graphics/pokegear/tiles_f_gba.bin");
-static const u16 sPokegearBgFemalePal[] = INCBIN_U16("graphics/pokegear/tiles_f_gba.gbapal");
+static const u32 sPokegearBgFemaleTiles[] = INCBIN_U32("graphics/pokegear/tiles_f.4bpp.smol");
+static const u16 sPokegearBgFemaleTilemap[] = INCBIN_U16("graphics/pokegear/tiles_f.bin");
+static const u16 sPokegearBgFemalePal[] = INCBIN_U16("graphics/pokegear/tiles_f.gbapal");
 static const u32 sPokegearButtonTiles[] = INCBIN_U32("graphics/pokegear/tiles_button.4bpp.smol");
 static const u16 sPokegearButtonTilemap[] = INCBIN_U16("graphics/pokegear/tiles_button.bin");
 static const u16 sPokegearButtonPal[] = INCBIN_U16("graphics/pokegear/tiles_button.gbapal");
+static const u16 sPokegearButtonPalF[] = INCBIN_U16("graphics/pokegear/tiles_button_f.gbapal");
 static const u32 sPokegearIconsGfx[] = INCBIN_U32("graphics/pokegear/icons.4bpp.smol");
 static const u16 sPokegearIconsPal[] = INCBIN_U16("graphics/pokegear/icons.gbapal");
 
@@ -443,18 +444,21 @@ static bool8 PokegearLoadGraphics(void)
     const u32 *bgTiles;
     const u16 *bgTilemap;
     const u16 *bgPal;
+    const u16 *buttonPal;
 
     if (gSaveBlock2Ptr->playerGender == MALE)
     {
         bgTiles = sPokegearBgTiles;
         bgTilemap = sPokegearBgTilemap;
         bgPal = sPokegearBgPal;
+        buttonPal = sPokegearButtonPal;
     }
     else
     {
         bgTiles = sPokegearBgFemaleTiles;
         bgTilemap = sPokegearBgFemaleTilemap;
         bgPal = sPokegearBgFemalePal;
+        buttonPal = sPokegearButtonPalF;
     }
 
     switch (sPokegear->gfxLoadState)
@@ -475,7 +479,7 @@ static bool8 PokegearLoadGraphics(void)
         break;
     case 2:
         LoadPalette(bgPal, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
-        LoadPalette(sPokegearButtonPal, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
+        LoadPalette(buttonPal, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
         Menu_LoadStdPalAt(BG_PLTT_ID(15));
         LoadCompressedSpriteSheet(&sSpriteSheets_PokegearIcons[0]);
         LoadCompressedSpriteSheet(&sSpriteSheets_PokegearIcons[1]);

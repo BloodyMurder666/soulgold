@@ -123,9 +123,10 @@ BattleFrontier_BattlePyramidLobby_EventScript_AskTakeChallenge::
 BattleFrontier_BattlePyramidLobby_EventScript_TryEnterChallenge::
 	message BattleFrontier_BattlePyramidLobby_Text_WhichLevelMode
 	waitmessage
-	multichoice 17, 6, MULTI_LEVEL_MODE, FALSE
+	multichoice 17, 4, MULTI_LEVEL_MODE, FALSE
 	switch VAR_RESULT
-	case FRONTIER_LVL_TENT, BattleFrontier_BattlePyramidLobby_EventScript_CancelChallenge
+	case FRONTIER_LEVEL_CHOICE_INFO, BattleFrontier_BattlePyramidLobby_EventScript_LevelInfo
+	case FRONTIER_LEVEL_CHOICE_BGM, BattleFrontier_BattlePyramidLobby_EventScript_Bgm
 	case MULTI_B_PRESSED, BattleFrontier_BattlePyramidLobby_EventScript_CancelChallenge
 	frontier_checkineligible
 	goto_if_eq VAR_0x8004, TRUE, BattleFrontier_BattlePyramidLobby_EventScript_NotEnoughValidMons
@@ -144,6 +145,14 @@ BattleFrontier_BattlePyramidLobby_EventScript_TryEnterChallenge::
 	case NO, BattleFrontier_BattlePyramidLobby_EventScript_LoadPartyAndCancelChallenge
 	case YES, BattleFrontier_BattlePyramidLobby_EventScript_SaveBeforeChallenge
 	case MULTI_B_PRESSED, BattleFrontier_BattlePyramidLobby_EventScript_LoadPartyAndCancelChallenge
+
+BattleFrontier_BattlePyramidLobby_EventScript_LevelInfo::
+	call BattleFrontier_EventScript_ShowLevelModeInfo
+	goto BattleFrontier_BattlePyramidLobby_EventScript_TryEnterChallenge
+
+BattleFrontier_BattlePyramidLobby_EventScript_Bgm::
+	call BattleFrontier_EventScript_ChooseBattleBgm
+	goto BattleFrontier_BattlePyramidLobby_EventScript_TryEnterChallenge
 
 BattleFrontier_BattlePyramidLobby_EventScript_SaveBeforeChallenge::
 	setvar VAR_TEMP_CHALLENGE_STATUS, 0
@@ -219,7 +228,7 @@ BattleFrontier_BattlePyramidLobby_EventScript_HintGiver::
 	end
 
 BattleFrontier_BattlePyramidLobby_EventScript_GiveHint::
-	multichoice 17, 6, MULTI_LEVEL_MODE, FALSE
+	multichoice 32, 10, MULTI_LEVEL_MODE_WITH_EXIT, FALSE
 	switch VAR_RESULT
 	case FRONTIER_LVL_50, BattleFrontier_BattlePyramidLobby_EventScript_GiveHintLv50
 	case FRONTIER_LVL_OPEN, BattleFrontier_BattlePyramidLobby_EventScript_GiveHintLvOpen

@@ -100,6 +100,14 @@ static const struct MenuAction MultichoiceList_LevelMode[] =
 {
     {gText_Lv50},
     {gText_OpenLevel},
+    {gText_Info2},
+    {COMPOUND_STRING("BGM")},
+};
+
+static const struct MenuAction MultichoiceList_LevelModeWithExit[] =
+{
+    {gText_Lv50},
+    {gText_OpenLevel},
     {gText_Exit},
 };
 
@@ -1092,6 +1100,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_CHALLENGE_TYPES_INFO]       = MULTICHOICE(MultichoiceList_ChallengeTypesInfo),
     [MULTI_BATTLE_ARCADE_RECORDS]       = MULTICHOICE(MultichoiceList_BattleArcadeRecords),
     [MULTI_ROCKET_ARCADE_CASH_OUT]      = MULTICHOICE(MultichoiceList_RocketArcadeCashOut),
+    [MULTI_LEVEL_MODE_WITH_EXIT]        = MULTICHOICE(MultichoiceList_LevelModeWithExit),
 };
 
 const u8 *const gStdStrings[] =
