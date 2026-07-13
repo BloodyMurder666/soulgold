@@ -12133,7 +12133,7 @@ static void ShowCaughtMonNicknameScreen(void)
 
     GetMonData(caughtMon, MON_DATA_NICKNAME, gBattleStruct->caughtMonNick);
     CloseMainBattleScreen();
-    DoNamingScreen(NAMING_SCREEN_CAUGHT_MON, gBattleStruct->caughtMonNick,
+    DoNamingScreen(NAMING_SCREEN_NICKNAME, gBattleStruct->caughtMonNick,
                    GetMonData(caughtMon, MON_DATA_SPECIES),
                    GetMonGender(caughtMon),
                    GetMonData(caughtMon, MON_DATA_PERSONALITY),
