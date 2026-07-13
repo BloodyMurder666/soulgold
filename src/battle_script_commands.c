@@ -319,15 +319,46 @@ static const s32 sExperienceScalingFactors[] =
 
 static const u16 sWhiteOutBadgeMoney[9] = { 8, 16, 24, 36, 48, 64, 80, 100, 120 };
 
+static EWRAM_DATA struct Pokemon sPostCatchSummaryMon = {0};
+static EWRAM_DATA u16 sPostCatchDpadLatch = 0;
+static EWRAM_DATA bool8 sPostCatchRedrawPrompt = FALSE;
+
 enum GiveCaughtMonStates
 {
-    GIVECAUGHTMON_CHECK_PARTY_SIZE,
-    GIVECAUGHTMON_ASK_ADD_TO_PARTY,
-    GIVECAUGHTMON_HANDLE_INPUT,
-    GIVECAUGHTMON_DO_CHOOSE_MON,
-    GIVECAUGHTMON_HANDLE_CHOSEN_MON,
-    GIVECAUGHTMON_GIVE_AND_SHOW_MSG,
+    // Keep the original state numbers; external controller/test flow can observe them.
+    GIVECAUGHTMON_CHECK_PARTY_SIZE = 0,
+    GIVECAUGHTMON_DO_CHOOSE_MON = 3,
+    GIVECAUGHTMON_HANDLE_CHOSEN_MON = 4,
+    GIVECAUGHTMON_GIVE_AND_SHOW_MSG = 5,
 };
+
+enum PostCatchMenuState
+{
+    POSTCATCH_INIT_MENU,
+    POSTCATCH_DRAW_MENU,
+    POSTCATCH_HANDLE_INPUT,
+    POSTCATCH_FADE_TO_NICKNAME,
+    POSTCATCH_WAIT_NICKNAME,
+    POSTCATCH_FADE_TO_SUMMARY,
+    POSTCATCH_WAIT_SUMMARY,
+    POSTCATCH_DONE,
+};
+
+enum PostCatchMenuOption
+{
+    POSTCATCH_MENU_NICKNAME,
+    POSTCATCH_MENU_ADD_TO_PARTY,
+    POSTCATCH_MENU_SUMMARY,
+    POSTCATCH_MENU_COUNT,
+};
+
+enum PostCatchAction
+{
+    POSTCATCH_ACTION_NONE,
+    POSTCATCH_ACTION_ADD_TO_PARTY,
+};
+
+#define POSTCATCH_ACTION_SELECTION MISS_TYPE
 
 #define STAT_CHANGE_WORKED      0
 #define STAT_CHANGE_DIDNT_WORK  1
@@ -11758,55 +11789,13 @@ static void Cmd_givecaughtmon(void)
     switch (state)
     {
     case GIVECAUGHTMON_CHECK_PARTY_SIZE:
-        if (CalculatePlayerPartyCount() == PARTY_SIZE && B_CATCH_SWAP_INTO_PARTY >= GEN_7)
-        {
-            PrepareStringBattle(STRINGID_SENDCAUGHTMONPARTYORBOX, gBattlerAttacker);
-            gBattleCommunication[MSG_DISPLAY] = 1;
-            gBattleCommunication[MULTIUSE_STATE] = GIVECAUGHTMON_ASK_ADD_TO_PARTY;
-        }
+        if (CalculatePlayerPartyCount() == PARTY_SIZE
+         && B_CATCH_SWAP_INTO_PARTY >= GEN_7
+         && gBattleCommunication[POSTCATCH_ACTION_SELECTION] == POSTCATCH_ACTION_ADD_TO_PARTY)
+            gBattleCommunication[MULTIUSE_STATE] = GIVECAUGHTMON_DO_CHOOSE_MON;
         else
         {
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_NO_MESSSAGE_SKIP;
-            gBattleCommunication[MULTIUSE_STATE] = GIVECAUGHTMON_GIVE_AND_SHOW_MSG;
-        }
-        break;
-    case GIVECAUGHTMON_ASK_ADD_TO_PARTY:
-        HandleBattleWindow(YESNOBOX_X_Y, 0);
-        BattlePutTextOnWindow(gText_BattleYesNoChoice, B_WIN_YESNO);
-        gBattleCommunication[MULTIUSE_STATE] = GIVECAUGHTMON_HANDLE_INPUT;
-        gBattleCommunication[CURSOR_POSITION] = 0;
-        BattleCreateYesNoCursorAt(0);
-        break;
-    case GIVECAUGHTMON_HANDLE_INPUT:
-        if (JOY_NEW(DPAD_UP) && gBattleCommunication[CURSOR_POSITION] != 0)
-        {
-            PlaySE(SE_SELECT);
-            BattleDestroyYesNoCursorAt(gBattleCommunication[CURSOR_POSITION]);
-            gBattleCommunication[CURSOR_POSITION] = 0;
-            BattleCreateYesNoCursorAt(0);
-        }
-        if (JOY_NEW(DPAD_DOWN) && gBattleCommunication[CURSOR_POSITION] == 0)
-        {
-            PlaySE(SE_SELECT);
-            BattleDestroyYesNoCursorAt(gBattleCommunication[CURSOR_POSITION]);
-            gBattleCommunication[CURSOR_POSITION] = 1;
-            BattleCreateYesNoCursorAt(1);
-        }
-        if (JOY_NEW(A_BUTTON))
-        {
-            PlaySE(SE_SELECT);
-            if (gBattleCommunication[CURSOR_POSITION] == 0)
-            {
-                gBattleCommunication[MULTIUSE_STATE] = GIVECAUGHTMON_DO_CHOOSE_MON;
-            }
-            else
-            {
-                gBattleCommunication[MULTIUSE_STATE] = GIVECAUGHTMON_GIVE_AND_SHOW_MSG;
-            }
-        }
-        else if (JOY_NEW(B_BUTTON))
-        {
-            PlaySE(SE_SELECT);
             gBattleCommunication[MULTIUSE_STATE] = GIVECAUGHTMON_GIVE_AND_SHOW_MSG;
         }
         break;
@@ -11912,6 +11901,7 @@ static void Cmd_givecaughtmon(void)
 
         gSelectedMonPartyId = PARTY_SIZE;
         gBattleCommunication[MULTIUSE_STATE] = 0;
+        gBattleCommunication[POSTCATCH_ACTION_SELECTION] = POSTCATCH_ACTION_NONE;
 
         if (gBattleCommunication[MULTISTRING_CHOOSER] == B_MSG_NO_MESSSAGE_SKIP)
             gBattlescriptCurrInstr = cmd->passInstr;
@@ -12069,86 +12059,204 @@ void BattleDestroyYesNoCursorAt(u8 cursorPosition)
     CopyBgTilemapBufferToVram(0);
 }
 
+#define POSTCATCH_MENU_X_Y 19, 6, 29, 13
+#define POSTCATCH_MENU_CURSOR_X 20
+#define POSTCATCH_MENU_CURSOR_Y 7
+
+static void BattleCreatePostCatchMenuCursorAt(u8 cursorPosition)
+{
+    u16 src[2];
+    src[0] = 1;
+    src[1] = 2;
+
+    CopyToBgTilemapBufferRect_ChangePalette(0, src, POSTCATCH_MENU_CURSOR_X, POSTCATCH_MENU_CURSOR_Y + (2 * cursorPosition), 1, 2, 0x11);
+    CopyBgTilemapBufferToVram(0);
+}
+
+static void BattleDestroyPostCatchMenuCursorAt(u8 cursorPosition)
+{
+    u16 src[2];
+    src[0] = 0x1016;
+    src[1] = 0x1016;
+
+    CopyToBgTilemapBufferRect_ChangePalette(0, src, POSTCATCH_MENU_CURSOR_X, POSTCATCH_MENU_CURSOR_Y + (2 * cursorPosition), 1, 2, 0x11);
+    CopyBgTilemapBufferToVram(0);
+}
+
+static void DrawPostCatchMenu(bool8 redrawPrompt)
+{
+    if (redrawPrompt)
+    {
+        PrepareStringBattle(STRINGID_GIVENICKNAMECAPTURED, gBattlerAttacker);
+        BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MSG);
+    }
+
+    HandleBattleWindow(POSTCATCH_MENU_X_Y, 0);
+    BattlePutTextOnWindow(gText_BattlePostCatchMenu, B_WIN_POST_CATCH_MENU);
+    BattleCreatePostCatchMenuCursorAt(gBattleCommunication[CURSOR_POSITION]);
+}
+
+static void ClearPostCatchMenu(void)
+{
+    HandleBattleWindow(POSTCATCH_MENU_X_Y, WINDOW_CLEAR);
+}
+
+static bool8 PostCatchMenuConsumeDpadInput(u16 key)
+{
+    u16 heldDpad = gMain.heldKeys & (DPAD_UP | DPAD_DOWN);
+    u16 newDpad = gMain.newKeys & (DPAD_UP | DPAD_DOWN);
+
+    sPostCatchDpadLatch &= heldDpad;
+    if ((newDpad & key) && !(sPostCatchDpadLatch & key))
+    {
+        sPostCatchDpadLatch |= key;
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+static struct Pokemon *GetPostCatchSummaryMon(void)
+{
+    struct Pokemon *caughtMon = GetBattlerMon(GetCatchingBattler());
+
+    CopyMon(&sPostCatchSummaryMon, caughtMon, sizeof(sPostCatchSummaryMon));
+    SetMonData(&sPostCatchSummaryMon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
+    SetMonData(&sPostCatchSummaryMon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
+    SetMonData(&sPostCatchSummaryMon, MON_DATA_OT_ID, gSaveBlock2Ptr->playerTrainerId);
+    return &sPostCatchSummaryMon;
+}
+
+static void ShowCaughtMonNicknameScreen(void)
+{
+    struct Pokemon *caughtMon = GetBattlerMon(GetCatchingBattler());
+
+    GetMonData(caughtMon, MON_DATA_NICKNAME, gBattleStruct->caughtMonNick);
+    CloseMainBattleScreen();
+    DoNamingScreen(NAMING_SCREEN_CAUGHT_MON, gBattleStruct->caughtMonNick,
+                   GetMonData(caughtMon, MON_DATA_SPECIES),
+                   GetMonGender(caughtMon),
+                   GetMonData(caughtMon, MON_DATA_PERSONALITY),
+                   GetMonData(caughtMon, MON_DATA_IS_SHINY),
+                   ReshowBlankBattleScreenAfterMenu);
+}
+
+static void ShowCaughtMonSummaryScreen(void)
+{
+    struct Pokemon *summaryMon = GetPostCatchSummaryMon();
+
+    CloseMainBattleScreen();
+    ShowPokemonSummaryScreen(SUMMARY_MODE_LOCK_MOVES, summaryMon, 0, 0, ReshowBlankBattleScreenAfterMenu);
+}
+
 static void Cmd_trygivecaughtmonnick(void)
 {
     CMD_ARGS();
 
     switch (gBattleCommunication[MULTIUSE_STATE])
     {
-    case 0:
-        HandleBattleWindow(YESNOBOX_X_Y, 0);
-        BattlePutTextOnWindow(gText_BattleYesNoChoice, B_WIN_YESNO);
-        gBattleCommunication[MULTIUSE_STATE]++;
-        gBattleCommunication[CURSOR_POSITION] = 0;
-        BattleCreateYesNoCursorAt(0);
+    case POSTCATCH_INIT_MENU:
+        gBattleCommunication[POSTCATCH_ACTION_SELECTION] = POSTCATCH_ACTION_NONE;
+        gBattleCommunication[CURSOR_POSITION] = POSTCATCH_MENU_NICKNAME;
+        sPostCatchRedrawPrompt = FALSE;
+        sPostCatchDpadLatch = 0;
+        gBattleCommunication[MULTIUSE_STATE] = POSTCATCH_DRAW_MENU;
         break;
-    case 1:
-        if (JOY_NEW(DPAD_UP) && gBattleCommunication[CURSOR_POSITION] != 0)
+    case POSTCATCH_DRAW_MENU:
+        if (gBattleCommunication[CURSOR_POSITION] >= POSTCATCH_MENU_COUNT)
+            gBattleCommunication[CURSOR_POSITION] = POSTCATCH_MENU_NICKNAME;
+        DrawPostCatchMenu(sPostCatchRedrawPrompt);
+        sPostCatchRedrawPrompt = FALSE;
+        gBattleCommunication[MULTIUSE_STATE] = POSTCATCH_HANDLE_INPUT;
+        break;
+    case POSTCATCH_HANDLE_INPUT:
+        if (PostCatchMenuConsumeDpadInput(DPAD_UP) && gBattleCommunication[CURSOR_POSITION] > 0)
         {
             PlaySE(SE_SELECT);
-            BattleDestroyYesNoCursorAt(gBattleCommunication[CURSOR_POSITION]);
-            gBattleCommunication[CURSOR_POSITION] = 0;
-            BattleCreateYesNoCursorAt(0);
+            BattleDestroyPostCatchMenuCursorAt(gBattleCommunication[CURSOR_POSITION]);
+            gBattleCommunication[CURSOR_POSITION]--;
+            BattleCreatePostCatchMenuCursorAt(gBattleCommunication[CURSOR_POSITION]);
         }
-        if (JOY_NEW(DPAD_DOWN) && gBattleCommunication[CURSOR_POSITION] == 0)
+        else if (PostCatchMenuConsumeDpadInput(DPAD_DOWN) && gBattleCommunication[CURSOR_POSITION] < POSTCATCH_MENU_COUNT - 1)
         {
             PlaySE(SE_SELECT);
-            BattleDestroyYesNoCursorAt(gBattleCommunication[CURSOR_POSITION]);
-            gBattleCommunication[CURSOR_POSITION] = 1;
-            BattleCreateYesNoCursorAt(1);
+            BattleDestroyPostCatchMenuCursorAt(gBattleCommunication[CURSOR_POSITION]);
+            gBattleCommunication[CURSOR_POSITION]++;
+            BattleCreatePostCatchMenuCursorAt(gBattleCommunication[CURSOR_POSITION]);
         }
         if (JOY_NEW(A_BUTTON))
         {
             PlaySE(SE_SELECT);
-            if (gBattleCommunication[CURSOR_POSITION] == 0)
+            ClearPostCatchMenu();
+            switch (gBattleCommunication[CURSOR_POSITION])
             {
-                gBattleCommunication[MULTIUSE_STATE]++;
+            case POSTCATCH_MENU_NICKNAME:
+                gBattleCommunication[MULTIUSE_STATE] = POSTCATCH_FADE_TO_NICKNAME;
                 BeginFastPaletteFade(3);
-            }
-            else
-            {
-                gBattleCommunication[MULTIUSE_STATE] = 4;
+                break;
+            case POSTCATCH_MENU_ADD_TO_PARTY:
+                gBattleCommunication[POSTCATCH_ACTION_SELECTION] = POSTCATCH_ACTION_ADD_TO_PARTY;
+                gBattleCommunication[MULTIUSE_STATE] = POSTCATCH_DONE;
+                break;
+            case POSTCATCH_MENU_SUMMARY:
+                gBattleCommunication[MULTIUSE_STATE] = POSTCATCH_FADE_TO_SUMMARY;
+                BeginFastPaletteFade(3);
+                break;
             }
         }
         else if (JOY_NEW(B_BUTTON))
         {
             PlaySE(SE_SELECT);
-            gBattleCommunication[MULTIUSE_STATE] = 4;
+            ClearPostCatchMenu();
+            gBattleCommunication[POSTCATCH_ACTION_SELECTION] = POSTCATCH_ACTION_NONE;
+            gBattleCommunication[MULTIUSE_STATE] = POSTCATCH_DONE;
         }
         break;
-    case 2:
+    case POSTCATCH_FADE_TO_NICKNAME:
         if (!gPaletteFade.active)
         {
-            struct Pokemon *caughtMon = GetBattlerMon(gBattlerTarget);
-            GetMonData(caughtMon, MON_DATA_NICKNAME, gBattleStruct->caughtMonNick);
-            CloseMainBattleScreen();
-            MainCallback callback = CalculatePlayerPartyCount() == PARTY_SIZE ? ReshowBlankBattleScreenAfterMenu : BattleMainCB2;
-
-            DoNamingScreen(NAMING_SCREEN_CAUGHT_MON, gBattleStruct->caughtMonNick,
-                           GetMonData(caughtMon, MON_DATA_SPECIES),
-                           GetMonGender(caughtMon),
-                           GetMonData(caughtMon, MON_DATA_PERSONALITY),
-                           GetMonData(caughtMon, MON_DATA_IS_SHINY),
-                           callback);
-
-            gBattleCommunication[MULTIUSE_STATE]++;
+            ShowCaughtMonNicknameScreen();
+            gBattleCommunication[MULTIUSE_STATE] = POSTCATCH_WAIT_NICKNAME;
         }
         break;
-    case 3:
+    case POSTCATCH_WAIT_NICKNAME:
         if (gMain.callback2 == BattleMainCB2 && !gPaletteFade.active)
         {
-            struct Pokemon *caughtMon = GetBattlerMon(gBattlerTarget);
+            struct Pokemon *caughtMon = GetBattlerMon(GetCatchingBattler());
+
             SetMonData(caughtMon, MON_DATA_NICKNAME, gBattleStruct->caughtMonNick);
             TryFormChange(caughtMon, FORM_CHANGE_NICKNAME);
-            gBattleCommunication[MULTIUSE_STATE]++;
+            gBattleCommunication[CURSOR_POSITION] = POSTCATCH_MENU_ADD_TO_PARTY;
+            sPostCatchRedrawPrompt = TRUE;
+            gBattleCommunication[MULTIUSE_STATE] = POSTCATCH_DRAW_MENU;
         }
         break;
-    case 4:
+    case POSTCATCH_FADE_TO_SUMMARY:
+        if (!gPaletteFade.active)
+        {
+            ShowCaughtMonSummaryScreen();
+            gBattleCommunication[MULTIUSE_STATE] = POSTCATCH_WAIT_SUMMARY;
+        }
+        break;
+    case POSTCATCH_WAIT_SUMMARY:
+        if (gMain.callback2 == BattleMainCB2 && !gPaletteFade.active)
+        {
+            gBattleCommunication[CURSOR_POSITION] = POSTCATCH_MENU_SUMMARY;
+            sPostCatchRedrawPrompt = TRUE;
+            gBattleCommunication[MULTIUSE_STATE] = POSTCATCH_DRAW_MENU;
+        }
+        break;
+    case POSTCATCH_DONE:
         gBattleCommunication[MULTIUSE_STATE] = 0;
+        sPostCatchDpadLatch = 0;
         gBattlescriptCurrInstr = cmd->nextInstr;
         break;
     }
 }
+
+#undef POSTCATCH_MENU_X_Y
+#undef POSTCATCH_MENU_CURSOR_X
+#undef POSTCATCH_MENU_CURSOR_Y
 
 static void Cmd_sortbattlers(void)
 {

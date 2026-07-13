@@ -14,6 +14,7 @@
 #include "constants/trainers.h"
 #include "battle_interface.h"
 #include "battle_anim.h"
+#include "battle_util2.h"
 #include "data.h"
 
 // this file's functions
@@ -192,6 +193,8 @@ static void CB2_ReshowBlankBattleScreenAfterMenu(void)
     case 0:
         ScanlineEffect_Clear();
         BattleInitBgsAndWindows();
+        if (gBattleAnimBgTileBuffer == NULL && gBattleAnimBgTilemapBuffer == NULL)
+            AllocateBattleGfxResources();
         SetBgAttribute(1, BG_ATTR_CHARBASEINDEX, 0);
         SetBgAttribute(2, BG_ATTR_CHARBASEINDEX, 0);
         ShowBg(0);

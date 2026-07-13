@@ -409,6 +409,15 @@ static const struct WindowTemplate sStandardBattleWindowTemplates[] =
         .paletteNum = 5,
         .baseBlock = 0x03BC,
     },
+    [B_WIN_POST_CATCH_MENU] = {
+        .bg = 0,
+        .tilemapLeft = 21,
+        .tilemapTop = 7,
+        .width = 8,
+        .height = 6,
+        .paletteNum = 5,
+        .baseBlock = 0x03BC,
+    },
     DUMMY_WIN_TEMPLATE
 };
 
