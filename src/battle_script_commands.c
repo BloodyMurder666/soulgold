@@ -954,7 +954,7 @@ static const struct PickupItem sPickupTable[] =
     { ITEM_FULL_HEAL,  {   3,   3,   9,   8,   9,  30,   _,   _,   _,   _, } },
     { ITEM_REVIVE,          {   3,   3,   3,   8,   8,   9,  30,   _,   _,   _, } },
     { ITEM_HYPER_POTION,    {   3,   3,   3,   4,   8,   9,   8,  30,   _,   _, } },
-    { ITEM_SWIFT_FEATHER,   {   1,   1,   3,   4,   4,   _,   _,   _,   _,   _, } },
+    { ITEM_ETHER,   {   1,   1,   3,   4,   4,   _,   _,   _,   _,   _, } },
     { ITEM_MAX_REPEL,       {   _,   3,   3,   4,   4,   9,   8,   8,  30,   _, } },
     { ITEM_MOON_STONE,      {   _,   3,   3,   4,   4,   4,   4,   5,   9,  10, } },
     { ITEM_SUN_STONE,       {   _,   3,   3,   4,   4,   4,   4,   5,   9,  10, } },
