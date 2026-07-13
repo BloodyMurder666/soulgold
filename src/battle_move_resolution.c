@@ -3106,6 +3106,7 @@ static enum MoveEndResult MoveEndMoveBlock(void)
     u32 slot, i;
     u32 index = 0;
     u32 targetableSlots[MAX_MON_ITEMS];
+    bool32 stealToBag;
 
     switch (moveEffect)
     {
@@ -3178,14 +3179,18 @@ static enum MoveEndResult MoveEndMoveBlock(void)
         }
         break;
     case EFFECT_STEAL_ITEM:
+        stealToBag = GetConfig(B_STEAL_WILD_ITEMS) >= GEN_9
+                  && !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_PALACE))
+                  && IsOnPlayerSide(gBattlerAttacker);
         index = 0;
         targetableSlots[0] = MAX_MON_ITEMS; // Invalid value for first slot if no valid slots found
 
         for (i = 0; i < MAX_MON_ITEMS; i++) //Gather all stealable item slots
         {
             if (IsBattlerTurnDamaged(gBattlerTarget, EXCLUDING_SUBSTITUTES)
-                && gBattleMons[gBattlerAttacker].items[i] == ITEM_NONE
                 && gBattleMons[gBattlerTarget].items[i] != ITEM_NONE
+                && ((stealToBag && GetFreeSpaceForItemInBag(gBattleMons[gBattlerTarget].items[i]) > 0)
+                 || (!stealToBag && gBattleMons[gBattlerAttacker].items[i] == ITEM_NONE))
                 && IsBattlerAlive(gBattlerAttacker)
                 && CanStealItem(gBattlerAttacker, gBattlerTarget, gBattleMons[gBattlerTarget].items[i]))
             {

@@ -2625,6 +2625,8 @@ u32 GetBattlerTurnOrderNum(enum BattlerId battler)
 // battlerStealer steals the item of itemBattler
 void StealTargetItem(enum BattlerId battlerStealer, enum BattlerId itemBattler, u8 slot)
 {
+    enum Item previousStealerItem = gBattleMons[battlerStealer].items[slot];
+
     gLastUsedItem = gBattleMons[itemBattler].items[slot];
     gBattleMons[itemBattler].items[slot] = ITEM_NONE;
 #if TESTING
@@ -2635,7 +2637,8 @@ void StealTargetItem(enum BattlerId battlerStealer, enum BattlerId itemBattler, 
     if (GetConfig(B_STEAL_WILD_ITEMS) >= GEN_9
      && !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_PALACE))
      && GetMoveEffect(gCurrentMove) == EFFECT_STEAL_ITEM
-     && battlerStealer == gBattlerAttacker) // ensure that Pickpocket isn't activating this
+     && battlerStealer == gBattlerAttacker
+     && IsOnPlayerSide(battlerStealer)) // ensure that Pickpocket and wild opponents don't activate this
     {
         AddBagItem(gLastUsedItem, 1);
     }
@@ -2662,6 +2665,10 @@ void StealTargetItem(enum BattlerId battlerStealer, enum BattlerId itemBattler, 
     if (!BattlerHasTrait(itemBattler, ABILITY_GORILLA_TACTICS))
         gBattleStruct->choicedMove[itemBattler] = MOVE_NONE;
 
+    // Mark the user's original slot for restoration so items taken from NPC trainers
+    // cannot be kept after battle. Pickpocket and other item transfers are excluded.
+    if (GetMoveEffect(gCurrentMove) == EFFECT_STEAL_ITEM && battlerStealer == gBattlerAttacker)
+        TrySaveExchangedItem(battlerStealer, previousStealerItem, slot);
     TrySaveExchangedItem(itemBattler, gLastUsedItem, slot);
 }
 

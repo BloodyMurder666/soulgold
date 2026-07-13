@@ -1,4 +1,5 @@
 #include "global.h"
+#include "item.h"
 #include "test/battle.h"
 
 ASSUMPTIONS
@@ -24,6 +25,27 @@ SINGLE_BATTLE_TEST("Thief and Covet steal target's held item")
     } THEN {
         EXPECT_EQ(player->item, ITEM_HYPER_POTION);
         EXPECT_EQ(opponent->item, ITEM_NONE);
+    }
+}
+
+SINGLE_BATTLE_TEST("Thief and Covet do not permanently steal a trainer's held item")
+{
+    enum Move move;
+    PARAMETRIZE { move = MOVE_THIEF; }
+    PARAMETRIZE { move = MOVE_COVET; }
+    GIVEN {
+        WITH_CONFIG(B_RETURN_STOLEN_NPC_ITEMS, GEN_5);
+        WITH_CONFIG(B_RESTORE_HELD_BATTLE_ITEMS, GEN_8);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_HYPER_POTION); }
+    } WHEN {
+        TURN { MOVE(player, move); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, move, player);
+        HP_BAR(opponent);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ITEM_STEAL, opponent);
+    } THEN {
+        EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_HELD_ITEM), ITEM_NONE);
     }
 }
 
@@ -106,7 +128,6 @@ SINGLE_BATTLE_TEST("Thief and Covet don't steal target's held item if target has
     }
 }
 
-// Test can't currently verify if the item is sent to Bag
 WILD_BATTLE_TEST("Thief and Covet steal target's held item and it's added to Bag in wild battles (Gen 9+)")
 {
     enum Move move;
@@ -114,6 +135,7 @@ WILD_BATTLE_TEST("Thief and Covet steal target's held item and it's added to Bag
     PARAMETRIZE { move = MOVE_COVET; }
     GIVEN {
         WITH_CONFIG(B_STEAL_WILD_ITEMS, GEN_9);
+        memset(gBagPockets[POCKET_MEDICINE].itemSlots, 0, sizeof(gSaveBlock1Ptr->bag.medicine));
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_HYPER_POTION); }
     } WHEN {
@@ -125,6 +147,62 @@ WILD_BATTLE_TEST("Thief and Covet steal target's held item and it's added to Bag
     } THEN {
         EXPECT_EQ(player->item, ITEM_NONE);
         EXPECT_EQ(opponent->item, ITEM_NONE);
+        EXPECT_EQ(CountTotalItemQuantityInBag(ITEM_HYPER_POTION), 1);
+    }
+}
+
+WILD_BATTLE_TEST("Thief and Covet send a wild target's item to the Bag if the user's held item slot is occupied")
+{
+    enum Move move;
+    PARAMETRIZE { move = MOVE_THIEF; }
+    PARAMETRIZE { move = MOVE_COVET; }
+    GIVEN {
+        WITH_CONFIG(B_STEAL_WILD_ITEMS, GEN_9);
+        memset(gBagPockets[POCKET_MEDICINE].itemSlots, 0, sizeof(gSaveBlock1Ptr->bag.medicine));
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_POTION); }
+        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_HYPER_POTION); }
+    } WHEN {
+        TURN { MOVE(player, move); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, move, player);
+        HP_BAR(opponent);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ITEM_STEAL, opponent);
+    } THEN {
+        EXPECT_EQ(player->item, ITEM_POTION);
+        EXPECT_EQ(opponent->item, ITEM_NONE);
+        EXPECT_EQ(CountTotalItemQuantityInBag(ITEM_HYPER_POTION), 1);
+    }
+}
+
+WILD_BATTLE_TEST("Thief and Covet do not remove a wild target's item if the Bag is full")
+{
+    enum Move move;
+    PARAMETRIZE { move = MOVE_THIEF; }
+    PARAMETRIZE { move = MOVE_COVET; }
+    GIVEN {
+        struct BagPocket *pocket = &gBagPockets[POCKET_MEDICINE];
+
+        WITH_CONFIG(B_STEAL_WILD_ITEMS, GEN_9);
+        memset(pocket->itemSlots, 0, sizeof(gSaveBlock1Ptr->bag.medicine));
+        for (u32 j = 0; j < pocket->capacity; j++)
+        {
+            pocket->itemSlots[j].itemId = ITEM_POTION;
+            pocket->itemSlots[j].quantity = MAX_BAG_ITEM_CAPACITY;
+        }
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_POTION); }
+        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_HYPER_POTION); }
+    } WHEN {
+        TURN { MOVE(player, move); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, move, player);
+        HP_BAR(opponent);
+        NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ITEM_STEAL, opponent);
+    } THEN {
+        EXPECT_EQ(player->item, ITEM_POTION);
+        EXPECT_EQ(opponent->item, ITEM_HYPER_POTION);
+        EXPECT_EQ(CountTotalItemQuantityInBag(ITEM_HYPER_POTION), 0);
+    } FINALLY {
+        memset(gBagPockets[POCKET_MEDICINE].itemSlots, 0, sizeof(gSaveBlock1Ptr->bag.medicine));
     }
 }
 
