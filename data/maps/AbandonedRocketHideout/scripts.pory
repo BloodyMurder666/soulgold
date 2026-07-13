@@ -1,46 +1,238 @@
-mapscripts AbandonedRocketHideout_MapScripts {}
-
-script MfirstMeeting {
-    msgbox("TODO; Shadow gem event", MSGBOX_NPC)
+mapscripts AbandonedRocketHideout_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        if (flag(FLAG_ARH_PUZZLE1)) {
+            setmetatile(17, 10, 0x500, FALSE)
+            setmetatile(18, 10, 0x500, FALSE)
+            setmetatile(19, 10, 0x500, FALSE)
+            setmetatile(17, 11, 0x500, FALSE)
+            setmetatile(18, 11, 0x500, FALSE)
+            setmetatile(19, 11, 0x500, FALSE)
+        }
+        if (flag(FLAG_ARH_PUZZLE3)) {
+            setmetatile(10, 10, 0x500, FALSE)
+            setmetatile(11, 10, 0x500, FALSE)
+            setmetatile(12, 10, 0x500, FALSE)
+            setmetatile(10, 11, 0x500, FALSE)
+            setmetatile(11, 11, 0x500, FALSE)
+            setmetatile(12, 11, 0x500, FALSE)
+        }
+    }
 }
 
 script ARH_Note1 {
-    msgbox("Todo notes", MSGBOX_SIGN)
+    msgbox("A brittle memo is pinned beneath
+            the dust...
+
+            PROJECT SHADOW - CLOSURE ORDER
+
+            All Shadow specimens are to be
+            discarded immediately.
+
+            Burn the research.
+
+            Leave nothing.", MSGBOX_SIGN)
 }
 
 script ARH_MiddleDoor {
-    msgbox("The door is locked.", MSGBOX_SIGN)
+    if (flag(FLAG_ARH_PUZZLE3)) {
+        msgbox("The central shutter is open.", MSGBOX_SIGN)
+    } else {
+        msgbox("CENTRAL ARCHIVE
+
+                POWER RELAY: NOT DETECTED
+
+                The shutter is locked in place.", MSGBOX_SIGN)
+    }
 }
 
 script ARH_RightDoor {
-    msgbox("The door is locked.", MSGBOX_SIGN)
+    if (flag(FLAG_ARH_PUZZLE1)) {
+        msgbox("STORAGE BAY R
+
+                ACCESS GRANTED", MSGBOX_SIGN)
+    } else {
+        msgbox("STORAGE BAY R
+
+                SEALED BY SHADOW PROTOCOL
+
+                Remote authorization is required.", MSGBOX_SIGN)
+    }
 }
 
 script ARH_Note2 {
-    msgbox("Todo notes", MSGBOX_SIGN)
+    msgbox("Most of the report has been shredded.
+            One paragraph survives...
+
+            'Houndour was the first subject to
+            retain a stable Shadow response.
+
+            Earlier Rattata and Zubat trials were
+            judged unusable.'", MSGBOX_SIGN)
 }
 
 script ARH_Computer1 {
-    msgbox("Todo computa", MSGBOX_SIGN)
+    lock
+    if (flag(FLAG_ARH_PUZZLE1)) {
+        msgbox("The terminal displays a single line:
+
+                STORAGE BAY R - UNSEALED", MSGBOX_SIGN)
+        release
+        end
+    }
+    playse(SE_PC_ON)
+    msgbox("The old terminal sputters to life.
+
+            SHADOW FAILSAFE
+            Enter the Pokédex index of the first
+            viable subject.")
+    waitse
+    dynmultichoice(0, 0, FALSE, 5, 0, DYN_MULTICHOICE_CB_NONE,
+                   "019", "041", "198", "228", "Cancel")
+    switch (var(VAR_RESULT)) {
+        case 3:
+            playse(SE_SUCCESS)
+
+            msgbox("SUBJECT 228: HOUNDOUR
+                    AUTHORIZATION CONFIRMED
+
+                    Storage Bay R is now unsealed.")
+            setflag(FLAG_ARH_PUZZLE1)
+            setmetatile(17, 10, 0x500, FALSE)
+            setmetatile(18, 10, 0x500, FALSE)
+            setmetatile(19, 10, 0x500, FALSE)
+            setmetatile(17, 11, 0x500, FALSE)
+            setmetatile(18, 11, 0x500, FALSE)
+            setmetatile(19, 11, 0x500, FALSE)
+            playse(SE_EXIT)
+            special(DrawWholeMapView)
+        case 4:
+            playse(SE_PC_OFF)
+        default:
+            playse(SE_FAILURE)
+
+            msgbox("SUBJECT RECORD REJECTED.")
+            
+    }
+    release
 }
 
 script ARH_BoxLeft {
-    msgbox("Very interesting box.", MSGBOX_SIGN)
+    msgbox("A clipboard is wedged between the
+            packing foam and the crate wall.
+
+            SUBJECT INDEX
+             019 - RATTATA
+             041 - ZUBAT
+             198 - MURKROW
+             228 - HOUNDOUR", MSGBOX_SIGN)
 }
 
 script ARH_BoxRight1 {
-    msgbox("Very interesting box.", MSGBOX_SIGN)
+    msgbox("The crate contains a Rocket uniform
+            and a note written in red ink...
+
+            'My locker code is 041.
+            Markov, stay out this time.'", MSGBOX_SIGN)
 }
 
-script ARH_BoxRight2 {
-    msgbox("Very interesting box.", MSGBOX_SIGN)
+
+script ARH_BoxRightRoomRightOne2 {
+    if (flag(FLAG_ARH_PUZZLE2)) {
+        msgbox("The fitted compartment is empty.", MSGBOX_SIGN)
+        end
+    }
+
+    lock
+    msgbox("Something heavy shifts beneath a false
+            bottom.")
+    playfanfare(MUS_HG_OBTAIN_ITEM)
+    msgbox("{PLAYER} found the Magnetic Relay!
+
+            It looks like it belongs in one of the
+            warehouse machines.")
+    waitfanfare
+    setflag(FLAG_ARH_PUZZLE2)
+    release
 }
 
 script ARH_BoxWrong {
-    msgbox("Not very interesting box.", MSGBOX_SIGN)
+    random(6)
+    switch (var(VAR_RESULT)) {
+        case 0:
+            msgbox("Nothing but crushed Poké Ball
+                    shells. Every one has been neatly
+                    stamped REJECTED.", MSGBOX_SIGN)
+        case 1:
+            msgbox("Hundreds of left-handed black
+                    gloves.
+
+                    There is not one right glove.", MSGBOX_SIGN)
+        case 2:
+            msgbox("A shipping manifest reads:
+
+                    SINISTER CAPES - 40
+                    DRAMATIC WIND MACHINES - 40", MSGBOX_SIGN)
+        case 3:
+            msgbox("A fossilized RageCandyBar sticks
+                    to the packing paper.", MSGBOX_SIGN)
+        case 4:
+            msgbox("The crate is full of fake moustaches
+                    labeled EXECUTIVE EMERGENCY KIT.", MSGBOX_SIGN)
+        case 5:
+            msgbox("This crate is labeled
+                    LOTS OF VOLTORBS.
+
+                    It is empty... 
+                    
+                    You feel a sense of relief.", MSGBOX_SIGN)
+    }
 }
 
 script ARH_MachineRight {
-    msgbox("A machine.", MSGBOX_SIGN)
+    if (flag(FLAG_ARH_PUZZLE3)) {
+        msgbox("The restored relay hums steadily.
+
+                CENTRAL ARCHIVE - ACCESS ONLINE", MSGBOX_SIGN)
+        end
+    }
+    if (!flag(FLAG_ARH_PUZZLE2)) {
+        msgbox("CENTRAL SHUTTER CONTROL
+
+                ERROR: MAGNETIC RELAY MISSING
+
+                A relay-shaped socket is empty.", MSGBOX_SIGN)
+        end
+    }
+
+    lock
+    msgbox("The magnetic relay fits the empty
+            socket perfectly.")
+    playse(SE_CLICK)
+    waitse
+    setflag(FLAG_ARH_PUZZLE3)
+    setmetatile(10, 10, 0x500, FALSE)
+    setmetatile(11, 10, 0x500, FALSE)
+    setmetatile(12, 10, 0x500, FALSE)
+    setmetatile(10, 11, 0x500, FALSE)
+    setmetatile(11, 11, 0x500, FALSE)
+    setmetatile(12, 11, 0x500, FALSE)
+    playse(SE_EXIT)
+    special(DrawWholeMapView)
+    msgbox("The old machinery hums to life.
+
+            The central shutter seems to
+            have opened in the hallway.")
+    release
 }
 
+// Red-herring machine text.
+script ARH_MachineRight2 {
+    msgbox("UMBRA MEASUREMENT MONITOR
+
+            The final readings are frozen on the
+            dim display.
+
+            HEART RATE: 220
+            AGGRESSION: ERROR
+            EMOTION: 0%", MSGBOX_SIGN)
+}

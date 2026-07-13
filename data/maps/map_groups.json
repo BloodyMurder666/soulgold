@@ -586,7 +586,8 @@
     "SproutTower_Basement",
     "RuinsOfAlph_SecretRoom",
     "AbandonedRocketHideout",
-    "MeteorCave1"
+    "MeteorCave1",
+    "AbandonedRocketHideoutBackroom"
   ],
   "gMapGroup_JohtoDiveMaps": [
     "CherrygroveUnderwater"

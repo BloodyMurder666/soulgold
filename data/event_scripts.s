@@ -2322,3 +2322,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/AbandonedRocketHideout/scripts.inc"
 
 	.include "data/maps/MeteorCave1/scripts.inc"
+
+	.include "data/maps/AbandonedRocketHideoutBackroom/scripts.inc"

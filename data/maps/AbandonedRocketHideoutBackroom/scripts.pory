@@ -1,0 +1,33 @@
+mapscripts AbandonedRocketHideoutBackroom_MapScripts {}
+
+script ARH_LaptopBackroom {
+    msgbox("While the laptop no longer has power,
+            there's a small post-it note under it.
+            
+            SUBJECT SHADOW L????
+            
+            The rest of the text has been drenched
+            by what seems to be coffee stains.", MSGBOX_NPC)
+}
+
+script ARH_NotesBackroom {
+    msgbox("Log - Emotion Compression Studies
+            
+            By crystallizing energy found from a
+            certain legendary Pokémon, we have
+            managed to create containers for
+            holding strong negative emotions. 
+            
+            These can be used like magnets on
+            creatures of high purity to invert
+            their emotions to the opposite end.
+            
+            Further testing will be required to
+            see the long term effects.", MSGBOX_SIGN)
+}
+
+script ARH_Strangewall {
+    msgbox("Something about this wall feels off,
+            but there's no visible keyholes or
+            card readers.", MSGBOX_SIGN)
+}
