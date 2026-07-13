@@ -3,8 +3,6 @@ Bugs:
 
 # Demo 1 MVP
 
-Must have:
-- meteor island and the dark crystal
 
 Nice to have:
 - HGSS/DPPT overworld npc sprite demakes

@@ -16,7 +16,7 @@ const statLabels = { hp: "HP", atk: "Atk", def: "Def", spa: "SpA", spd: "SpD", s
 const searchPlaceholders = {
   pokedex: "Search Pokédex…",
   encounters: "Search areas or Pokémon…",
-  machines: "Search TMs, moves, or types…",
+  machines: "Search TMs, moves, types, or locations…",
   items: "Search items or locations…",
   trainers: "Search trainers or parties…",
   abilities: "Search abilities…",
@@ -862,7 +862,7 @@ function fishingMons(mons) {
 
 function renderTms() {
   const tbody = document.getElementById("tmRows");
-  const rows = state.data.tms.filter((tm) => matches(`${tm.label} ${tm.moveName} ${tm.type} ${fmtCategory(tm.category || "")} ${tm.description}`));
+  const rows = state.data.tms.filter((tm) => matches(`${tm.label} ${tm.moveName} ${tm.type} ${fmtCategory(tm.category || "")} ${tm.description} ${tm.location}`));
   tbody.innerHTML = "";
   rows.forEach((tm) => {
     const row = el("tr", "tm-row");

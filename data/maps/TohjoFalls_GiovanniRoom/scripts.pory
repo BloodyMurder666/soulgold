@@ -1,0 +1,20 @@
+raw `
+TohjoFalls_GiovanniRoom_MapScripts::
+	.byte 0
+    
+`
+
+script TohjoPassGuard {
+    lock
+    faceplayer
+    playmoncry(SPECIES_RHYPERIOR, CRY_MODE_NORMAL)
+    msgbox("Rhyperior: Grr...")
+    waitmoncry
+    msgbox("The Rhyperior is guarding the entrance
+            with a menacing presence.
+            
+            You decide to come back another time.")
+    release
+    end
+}
+

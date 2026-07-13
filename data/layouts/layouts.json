@@ -8605,7 +8605,7 @@
       "id": "LAYOUT_TOHJO_FALLS_GIOVANNI_ROOM",
       "name": "TohjoFalls_GiovanniRoom_Layout",
       "width": 11,
-      "height": 11,
+      "height": 29,
       "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_Cave_Default",
       "border_filepath": "data/layouts/TohjoFalls_GiovanniRoom/border.bin",
