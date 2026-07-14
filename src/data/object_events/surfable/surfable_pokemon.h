@@ -837,264 +837,365 @@ const struct RideablePokemon gSurfablePokemon[] =
     },
 #endif // P_FAMILY_BASCULIN && P_HISUIAN_FORMS
 #if P_FAMILY_TIRTOUGA
+#if OW_SURF_TIRTOUGA
 {
         .species = SPECIES_TIRTOUGA,
         .trainerPose = 0,
     },
+#endif // OW_SURF_TIRTOUGA
+#if OW_SURF_CARRACOSTA
 {
         .species = SPECIES_CARRACOSTA,
         .trainerPose = 0,
     },
+#endif // OW_SURF_CARRACOSTA
 #endif // P_FAMILY_TIRTOUGA
 #if P_FAMILY_DUCKLETT
+#if OW_SURF_DUCKLETT
 {
         .species = SPECIES_DUCKLETT,
         .trainerPose = 0,
     },
+#endif // OW_SURF_DUCKLETT
+#if OW_SURF_SWANNA
 {
         .species = SPECIES_SWANNA,
         .trainerPose = 0,
     },
+#endif // OW_SURF_SWANNA
 #endif // P_FAMILY_DUCKLETT
 #if P_FAMILY_FRILLISH
+#if OW_SURF_FRILLISH
 {
         .species = SPECIES_FRILLISH,
         .trainerPose = 0,
     },
+#endif // OW_SURF_FRILLISH
+#if OW_SURF_JELLICENT
 {
         .species = SPECIES_JELLICENT,
         .trainerPose = 0,
     },
+#endif // OW_SURF_JELLICENT
 #endif // P_FAMILY_FRILLISH
 #if P_FAMILY_ALOMOMOLA
+#if OW_SURF_ALOMOMOLA
 {
         .species = SPECIES_ALOMOMOLA,
         .trainerPose = 0,
     },
+#endif // OW_SURF_ALOMOMOLA
 #endif // P_FAMILY_ALOMOMOLA
 #if P_FAMILY_AXEW
+#if OW_SURF_AXEW
 {
         .species = SPECIES_AXEW,
         .trainerPose = 0,
     },
+#endif // OW_SURF_AXEW
+#if OW_SURF_FRAXURE
 {
         .species = SPECIES_FRAXURE,
         .trainerPose = 0,
     },
+#endif // OW_SURF_FRAXURE
+#if OW_SURF_HAXORUS
 {
         .species = SPECIES_HAXORUS,
         .trainerPose = 0,
     },
+#endif // OW_SURF_HAXORUS
 #endif // P_FAMILY_AXEW
 #if P_FAMILY_CUBCHOO
+#if OW_SURF_CUBCHOO
 {
         .species = SPECIES_CUBCHOO,
         .trainerPose = 0,
     },
+#endif // OW_SURF_CUBCHOO
+#if OW_SURF_BEARTIC
 {
         .species = SPECIES_BEARTIC,
         .trainerPose = 0,
     },
+#endif // OW_SURF_BEARTIC
 #endif // P_FAMILY_CUBCHOO
 #if P_FAMILY_STUNFISK
+#if OW_SURF_STUNFISK
 {
         .species = SPECIES_STUNFISK,
         .trainerPose = 0,
     },
+#endif // OW_SURF_STUNFISK
 #endif // P_FAMILY_STUNFISK
 #if P_FAMILY_DRUDDIGON
+#if OW_SURF_DRUDDIGON
 {
         .species = SPECIES_DRUDDIGON,
         .trainerPose = 0,
     },
+#endif // OW_SURF_DRUDDIGON
 #endif // P_FAMILY_DRUDDIGON
 #if P_FAMILY_BOUFFALANT
+#if OW_SURF_BOUFFALANT
 {
         .species = SPECIES_BOUFFALANT,
         .trainerPose = 0,
     },
+#endif // OW_SURF_BOUFFALANT
 #endif // P_FAMILY_BOUFFALANT
 #if P_FAMILY_DEINO
+#if OW_SURF_HYDREIGON
 {
         .species = SPECIES_HYDREIGON,
         .trainerPose = 0,
     },
+#endif // OW_SURF_HYDREIGON
 #endif // P_FAMILY_DEINO
 #if P_FAMILY_KELDEO
+#if OW_SURF_KELDEO
 {
         .species = SPECIES_KELDEO,
         .trainerPose = 0,
     },
+#endif // OW_SURF_KELDEO
 #endif // P_FAMILY_KELDEO
 // Gen VI
 #if P_FAMILY_FROAKIE
+#if OW_SURF_FROAKIE
 {
         .species = SPECIES_FROAKIE,
         .trainerPose = 0,
     },
+#endif // OW_SURF_FROAKIE
+#if OW_SURF_FROGADIER
 {
         .species = SPECIES_FROGADIER,
         .trainerPose = 0,
     },
+#endif // OW_SURF_FROGADIER
+#if OW_SURF_GRENINJA
 {
         .species = SPECIES_GRENINJA,
         .trainerPose = 0,
     },
+#endif // OW_SURF_GRENINJA
 #endif // P_FAMILY_FROAKIE
 #if P_FAMILY_BUNNELBY
+#if OW_SURF_BUNNELBY
 {
         .species = SPECIES_BUNNELBY,
         .trainerPose = 0,
     },
+#endif // OW_SURF_BUNNELBY
+#if OW_SURF_DIGGERSBY
 {
         .species = SPECIES_DIGGERSBY,
         .trainerPose = 0,
     },
+#endif // OW_SURF_DIGGERSBY
 #endif // P_FAMILY_BUNNELBY
 #if P_FAMILY_SKIDDO
+#if OW_SURF_SKIDDO
 {
         .species = SPECIES_SKIDDO,
         .trainerPose = 0,
     },
+#endif // OW_SURF_SKIDDO
+#if OW_SURF_GOGOAT
 {
         .species = SPECIES_GOGOAT,
         .trainerPose = 0,
     },
+#endif // OW_SURF_GOGOAT
 #endif // P_FAMILY_SKIDDO
 #if P_FAMILY_PANCHAM
+#if OW_SURF_PANCHAM
 {
         .species = SPECIES_PANCHAM,
         .trainerPose = 0,
     },
+#endif // OW_SURF_PANCHAM
+#if OW_SURF_PANGORO
 {
         .species = SPECIES_PANGORO,
         .trainerPose = 0,
     },
+#endif // OW_SURF_PANGORO
 #endif // P_FAMILY_PANCHAM
 #if P_FAMILY_FURFROU
+#if OW_SURF_FURFROU
 {
         .species = SPECIES_FURFROU,
         .trainerPose = 0,
     },
+#endif // OW_SURF_FURFROU
 #endif // P_FAMILY_FURFROU
 #if P_FAMILY_SWIRLIX
+#if OW_SURF_SWIRLIX
 {
         .species = SPECIES_SWIRLIX,
         .trainerPose = 0,
     },
+#endif // OW_SURF_SWIRLIX
+#if OW_SURF_SLURPUFF
 {
         .species = SPECIES_SLURPUFF,
         .trainerPose = 0,
     },
+#endif // OW_SURF_SLURPUFF
 #endif // P_FAMILY_SWIRLIX
 #if P_FAMILY_BINACLE
+#if OW_SURF_BINACLE
 {
         .species = SPECIES_BINACLE,
         .trainerPose = 0,
     },
+#endif // OW_SURF_BINACLE
+#if OW_SURF_BARBARACLE
 {
         .species = SPECIES_BARBARACLE,
         .trainerPose = 0,
     },
+#endif // OW_SURF_BARBARACLE
 #endif // P_FAMILY_BINACLE
 #if P_FAMILY_SKRELP
+#if OW_SURF_SKRELP
 {
         .species = SPECIES_SKRELP,
         .trainerPose = 0,
     },
+#endif // OW_SURF_SKRELP
+#if OW_SURF_DRAGALGE
 {
         .species = SPECIES_DRAGALGE,
         .trainerPose = 0,
     },
+#endif // OW_SURF_DRAGALGE
 #endif // P_FAMILY_SKRELP
 #if P_FAMILY_CLAUNCHER
+#if OW_SURF_CLAUNCHER
 {
         .species = SPECIES_CLAUNCHER,
         .trainerPose = 0,
     },
+#endif // OW_SURF_CLAUNCHER
+#if OW_SURF_CLAWITZER
 {
         .species = SPECIES_CLAWITZER,
         .trainerPose = 0,
     },
+#endif // OW_SURF_CLAWITZER
 #endif // P_FAMILY_CLAUNCHER
 #if P_FAMILY_HELIOPTILE
+#if OW_SURF_HELIOPTILE
 {
         .species = SPECIES_HELIOPTILE,
         .trainerPose = 0,
     },
+#endif // OW_SURF_HELIOPTILE
+#if OW_SURF_HELIOLISK
 {
         .species = SPECIES_HELIOLISK,
         .trainerPose = 0,
     },
+#endif // OW_SURF_HELIOLISK
 #endif // P_FAMILY_HELIOPTILE
 #if P_FAMILY_GOOMY
+#if OW_SURF_GOODRA
 {
         .species = SPECIES_GOODRA,
         .trainerPose = 0,
     },
+#endif // OW_SURF_GOODRA
 #endif // P_FAMILY_GOOMY
 #if P_FAMILY_BERGMITE
+#if OW_SURF_BERGMITE
 {
         .species = SPECIES_BERGMITE,
         .trainerPose = 0,
     },
+#endif // OW_SURF_BERGMITE
+#if OW_SURF_AVALUGG
 {
         .species = SPECIES_AVALUGG,
         .trainerPose = 0,
     },
+#endif // OW_SURF_AVALUGG
 #endif // P_FAMILY_BERGMITE
 // Gen VII
 #if P_FAMILY_POPPLIO
+#if OW_SURF_POPPLIO
 {
         .species = SPECIES_POPPLIO,
         .trainerPose = 0,
     },
+#endif // OW_SURF_POPPLIO
+#if OW_SURF_BRIONNE
 {
         .species = SPECIES_BRIONNE,
         .trainerPose = 0,
     },
+#endif // OW_SURF_BRIONNE
+#if OW_SURF_PRIMARINA
 {
         .species = SPECIES_PRIMARINA,
         .trainerPose = 0,
     },
+#endif // OW_SURF_PRIMARINA
 #endif // P_FAMILY_POPPLIO
 #if P_FAMILY_WISHIWASHI
+#if OW_SURF_WISHIWASHI
 {
         .species = SPECIES_WISHIWASHI,
         .trainerPose = 0,
     },
+#endif // OW_SURF_WISHIWASHI
 #endif // P_FAMILY_WISHIWASHI
 #if P_FAMILY_MAREANIE
+#if OW_SURF_MAREANIE
 {
         .species = SPECIES_MAREANIE,
         .trainerPose = 0,
     },
+#endif // OW_SURF_MAREANIE
+#if OW_SURF_TOXAPEX
 {
         .species = SPECIES_TOXAPEX,
         .trainerPose = 0,
     },
+#endif // OW_SURF_TOXAPEX
 #endif // P_FAMILY_MAREANIE
 #if P_FAMILY_DEWPIDER
+#if OW_SURF_DEWPIDER
 {
         .species = SPECIES_DEWPIDER,
         .trainerPose = 0,
     },
+#endif // OW_SURF_DEWPIDER
+#if OW_SURF_ARAQUANID
 {
         .species = SPECIES_ARAQUANID,
         .trainerPose = 0,
     },
+#endif // OW_SURF_ARAQUANID
 #endif // P_FAMILY_DEWPIDER
 #if P_FAMILY_WIMPOD
+#if OW_SURF_WIMPOD
 {
         .species = SPECIES_WIMPOD,
         .trainerPose = 0,
     },
+#endif // OW_SURF_WIMPOD
+#if OW_SURF_GOLISOPOD
 {
         .species = SPECIES_GOLISOPOD,
         .trainerPose = 0,
     },
+#endif // OW_SURF_GOLISOPOD
 #endif // P_FAMILY_WIMPOD
 #if P_FAMILY_TYPE_NULL
+#if OW_SURF_SILVALLY
 {
         .species = SPECIES_SILVALLY_NORMAL,
         .trainerPose = 0,
@@ -1167,141 +1268,190 @@ const struct RideablePokemon gSurfablePokemon[] =
         .species = SPECIES_SILVALLY_FAIRY,
         .trainerPose = 0,
     },
+#endif // OW_SURF_SILVALLY
 #endif // P_FAMILY_TYPE_NULL
 #if P_FAMILY_BRUXISH
+#if OW_SURF_BRUXISH
 {
         .species = SPECIES_BRUXISH,
         .trainerPose = 0,
     },
+#endif // OW_SURF_BRUXISH
 #endif // P_FAMILY_BRUXISH
 #if P_FAMILY_DRAMPA
+#if OW_SURF_DRAMPA
 {
         .species = SPECIES_DRAMPA,
         .trainerPose = 0,
     },
+#endif // OW_SURF_DRAMPA
 #endif // P_FAMILY_DRAMPA
 #if P_FAMILY_DHELMISE
+#if OW_SURF_DHELMISE
 {
         .species = SPECIES_DHELMISE,
         .trainerPose = 0,
     },
+#endif // OW_SURF_DHELMISE
 #endif // P_FAMILY_DHELMISE
 #if P_FAMILY_TAPU_FINI
+#if OW_SURF_TAPU_FINI
 {
         .species = SPECIES_TAPU_FINI,
         .trainerPose = 0,
     },
+#endif // OW_SURF_TAPU_FINI
 #endif // P_FAMILY_TAPU_FINI
 // Gen VIII
 #if P_FAMILY_SOBBLE
+#if OW_SURF_SOBBLE
 {
         .species = SPECIES_SOBBLE,
         .trainerPose = 0,
     },
+#endif // OW_SURF_SOBBLE
+#if OW_SURF_DRIZZILE
 {
         .species = SPECIES_DRIZZILE,
         .trainerPose = 0,
     },
+#endif // OW_SURF_DRIZZILE
+#if OW_SURF_INTELEON
 {
         .species = SPECIES_INTELEON,
         .trainerPose = 0,
     },
+#endif // OW_SURF_INTELEON
 #endif // P_FAMILY_SOBBLE
 #if P_FAMILY_CHEWTLE
+#if OW_SURF_CHEWTLE
 {
         .species = SPECIES_CHEWTLE,
         .trainerPose = 0,
     },
+#endif // OW_SURF_CHEWTLE
+#if OW_SURF_DREDNAW
 {
         .species = SPECIES_DREDNAW,
         .trainerPose = 0,
     },
+#endif // OW_SURF_DREDNAW
 #endif // P_FAMILY_CHEWTLE
 #if P_FAMILY_CRAMORANT
+#if OW_SURF_CRAMORANT
 {
         .species = SPECIES_CRAMORANT,
         .trainerPose = 0,
     },
+#endif // OW_SURF_CRAMORANT
 #endif // P_FAMILY_CRAMORANT
 #if P_FAMILY_ARROKUDA
+#if OW_SURF_ARROKUDA
 {
         .species = SPECIES_ARROKUDA,
         .trainerPose = 0,
     },
+#endif // OW_SURF_ARROKUDA
+#if OW_SURF_BARRASKEWDA
 {
         .species = SPECIES_BARRASKEWDA,
         .trainerPose = 0,
     },
+#endif // OW_SURF_BARRASKEWDA
 #endif // P_FAMILY_ARROKUDA
 #if P_FAMILY_CLOBBOPUS
+#if OW_SURF_GRAPPLOCT
 {
         .species = SPECIES_GRAPPLOCT,
         .trainerPose = 0,
     },
+#endif // OW_SURF_GRAPPLOCT
 #endif // P_FAMILY_CLOBBOPUS
 #if P_FAMILY_ZIGZAGOON && P_GALARIAN_FORMS
+#if OW_SURF_OBSTAGOON
 {
         .species = SPECIES_OBSTAGOON,
         .trainerPose = 0,
     },
+#endif // OW_SURF_OBSTAGOON
 #endif // P_FAMILY_ZIGZAGOON && P_GALARIAN_FORMS
 #if P_FAMILY_CORSOLA && P_GALARIAN_FORMS
+#if OW_SURF_CURSOLA
 {
         .species = SPECIES_CURSOLA,
         .trainerPose = 0,
     },
+#endif // OW_SURF_CURSOLA
 #endif // P_FAMILY_CORSOLA && P_GALARIAN_FORMS
 #if P_FAMILY_PINCURCHIN
+#if OW_SURF_PINCURCHIN
 {
         .species = SPECIES_PINCURCHIN,
         .trainerPose = 0,
     },
+#endif // OW_SURF_PINCURCHIN
 #endif // P_FAMILY_PINCURCHIN
 #if P_FAMILY_EISCUE
+#if OW_SURF_EISCUE
 {
         .species = SPECIES_EISCUE,
         .trainerPose = 0,
     },
+#endif // OW_SURF_EISCUE
 #endif // P_FAMILY_EISCUE
 #if P_FAMILY_ARCTOZOLT
+#if OW_SURF_ARCTOZOLT
 {
         .species = SPECIES_ARCTOZOLT,
         .trainerPose = 0,
     },
+#endif // OW_SURF_ARCTOZOLT
 #endif // P_FAMILY_ARCTOZOLT
 #if P_FAMILY_DRACOVISH
+#if OW_SURF_DRACOVISH
 {
         .species = SPECIES_DRACOVISH,
         .trainerPose = 0,
     },
+#endif // OW_SURF_DRACOVISH
 #endif // P_FAMILY_DRACOVISH
 #if P_FAMILY_ARCTOVISH
+#if OW_SURF_ARCTOVISH
 {
         .species = SPECIES_ARCTOVISH,
         .trainerPose = 0,
     },
+#endif // OW_SURF_ARCTOVISH
 #endif // P_FAMILY_ARCTOVISH
 #if P_FAMILY_DREEPY
+#if OW_SURF_DRAKLOAK
 {
         .species = SPECIES_DRAKLOAK,
         .trainerPose = 0,
     },
+#endif // OW_SURF_DRAKLOAK
+#if OW_SURF_DRAGAPULT
 {
         .species = SPECIES_DRAGAPULT,
         .trainerPose = 0,
     },
+#endif // OW_SURF_DRAGAPULT
 #endif // P_FAMILY_DREEPY
 #if P_FAMILY_BASCULIN && P_HISUIAN_FORMS
+#if OW_SURF_BASCULEGION
 {
         .species = SPECIES_BASCULEGION,
         .trainerPose = 0,
     },
+#endif // OW_SURF_BASCULEGION
 #endif // P_FAMILY_BASCULIN && P_HISUIAN_FORMS
 #if P_FAMILY_QWILFISH && P_HISUIAN_FORMS
+#if OW_SURF_OVERQWIL
 {
         .species = SPECIES_OVERQWIL,
         .trainerPose = 0,
     },
+#endif // OW_SURF_OVERQWIL
 #endif // P_FAMILY_QWILFISH && P_HISUIAN_FORMS
 #if P_FAMILY_KYOGRE && P_PRIMAL_REVERSIONS
     {

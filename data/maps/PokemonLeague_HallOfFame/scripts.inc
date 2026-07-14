@@ -77,6 +77,7 @@ PokemonLeague_HallOfFame_EventScript_SetGameClearFlags::
 	clearflag FLAG_HIDE_VERMILION_SNORLAX
 	clearflag FLAG_HIDE_UNION_CAVE_LAPRAS
 	clearflag FLAG_HIDE_ZAPDOS
+	clearflag FLAG_HIDE_LARVESTA
 	clearflag FLAG_HIDE_ARTICUNO
 	clearflag FLAG_HIDE_MOLTRES
 	clearflag FLAG_HIDE_AZELF

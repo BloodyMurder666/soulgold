@@ -849,468 +849,693 @@ const u16 gSurfablePokemonShinyPalette_Basculin_White_Striped[] = INCBIN_U16("gr
 #endif // P_FAMILY_BASCULIN && P_HISUIAN_FORMS
 
 #if P_FAMILY_TIRTOUGA
+#if OW_SURF_TIRTOUGA
 const u32 gSurfablePokemonPic_Tirtouga[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/tirtouga.4bpp");
 const u16 gSurfablePokemonPalette_Tirtouga[] = INCBIN_U16("graphics/pokemon/tirtouga/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Tirtouga[] = INCBIN_U16("graphics/pokemon/tirtouga/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Tirtouga) == 6144, TirtougaSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_TIRTOUGA
 
+#if OW_SURF_CARRACOSTA
 const u32 gSurfablePokemonPic_Carracosta[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/carracosta.4bpp");
 const u16 gSurfablePokemonPalette_Carracosta[] = INCBIN_U16("graphics/pokemon/carracosta/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Carracosta[] = INCBIN_U16("graphics/pokemon/carracosta/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Carracosta) == 6144, CarracostaSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_CARRACOSTA
 #endif // P_FAMILY_TIRTOUGA
 
 #if P_FAMILY_DUCKLETT
+#if OW_SURF_DUCKLETT
 const u32 gSurfablePokemonPic_Ducklett[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/ducklett.4bpp");
 const u16 gSurfablePokemonPalette_Ducklett[] = INCBIN_U16("graphics/pokemon/ducklett/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Ducklett[] = INCBIN_U16("graphics/pokemon/ducklett/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Ducklett) == 6144, DucklettSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_DUCKLETT
 
+#if OW_SURF_SWANNA
 const u32 gSurfablePokemonPic_Swanna[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/swanna.4bpp");
 const u16 gSurfablePokemonPalette_Swanna[] = INCBIN_U16("graphics/pokemon/swanna/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Swanna[] = INCBIN_U16("graphics/pokemon/swanna/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Swanna) == 6144, SwannaSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_SWANNA
 #endif // P_FAMILY_DUCKLETT
 
 #if P_FAMILY_FRILLISH
+#if OW_SURF_FRILLISH
 const u32 gSurfablePokemonPic_Frillish[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/frillish.4bpp");
 const u16 gSurfablePokemonPalette_Frillish[] = INCBIN_U16("graphics/pokemon/frillish/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Frillish[] = INCBIN_U16("graphics/pokemon/frillish/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Frillish) == 6144, FrillishSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_FRILLISH
 
+#if OW_SURF_JELLICENT
 const u32 gSurfablePokemonPic_Jellicent[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/jellicent.4bpp");
 const u16 gSurfablePokemonPalette_Jellicent[] = INCBIN_U16("graphics/pokemon/jellicent/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Jellicent[] = INCBIN_U16("graphics/pokemon/jellicent/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Jellicent) == 6144, JellicentSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_JELLICENT
 #endif // P_FAMILY_FRILLISH
 
 #if P_FAMILY_ALOMOMOLA
+#if OW_SURF_ALOMOMOLA
 const u32 gSurfablePokemonPic_Alomomola[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/alomomola.4bpp");
 const u16 gSurfablePokemonPalette_Alomomola[] = INCBIN_U16("graphics/pokemon/alomomola/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Alomomola[] = INCBIN_U16("graphics/pokemon/alomomola/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Alomomola) == 6144, AlomomolaSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_ALOMOMOLA
 #endif // P_FAMILY_ALOMOMOLA
 
 #if P_FAMILY_AXEW
+#if OW_SURF_AXEW
 const u32 gSurfablePokemonPic_Axew[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/axew.4bpp");
 const u16 gSurfablePokemonPalette_Axew[] = INCBIN_U16("graphics/pokemon/axew/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Axew[] = INCBIN_U16("graphics/pokemon/axew/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Axew) == 6144, AxewSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_AXEW
 
+#if OW_SURF_FRAXURE
 const u32 gSurfablePokemonPic_Fraxure[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/fraxure.4bpp");
 const u16 gSurfablePokemonPalette_Fraxure[] = INCBIN_U16("graphics/pokemon/fraxure/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Fraxure[] = INCBIN_U16("graphics/pokemon/fraxure/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Fraxure) == 6144, FraxureSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_FRAXURE
 
+#if OW_SURF_HAXORUS
 const u32 gSurfablePokemonPic_Haxorus[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/haxorus.4bpp");
 const u16 gSurfablePokemonPalette_Haxorus[] = INCBIN_U16("graphics/pokemon/haxorus/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Haxorus[] = INCBIN_U16("graphics/pokemon/haxorus/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Haxorus) == 6144, HaxorusSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_HAXORUS
 #endif // P_FAMILY_AXEW
 
 #if P_FAMILY_CUBCHOO
+#if OW_SURF_CUBCHOO
 const u32 gSurfablePokemonPic_Cubchoo[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/cubchoo.4bpp");
 const u16 gSurfablePokemonPalette_Cubchoo[] = INCBIN_U16("graphics/pokemon/cubchoo/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Cubchoo[] = INCBIN_U16("graphics/pokemon/cubchoo/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Cubchoo) == 6144, CubchooSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_CUBCHOO
 
+#if OW_SURF_BEARTIC
 const u32 gSurfablePokemonPic_Beartic[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/beartic.4bpp");
 const u16 gSurfablePokemonPalette_Beartic[] = INCBIN_U16("graphics/pokemon/beartic/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Beartic[] = INCBIN_U16("graphics/pokemon/beartic/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Beartic) == 6144, BearticSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_BEARTIC
 #endif // P_FAMILY_CUBCHOO
 
 #if P_FAMILY_STUNFISK
+#if OW_SURF_STUNFISK
 const u32 gSurfablePokemonPic_Stunfisk[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/stunfisk.4bpp");
 const u16 gSurfablePokemonPalette_Stunfisk[] = INCBIN_U16("graphics/pokemon/stunfisk/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Stunfisk[] = INCBIN_U16("graphics/pokemon/stunfisk/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Stunfisk) == 6144, StunfiskSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_STUNFISK
 #endif // P_FAMILY_STUNFISK
 
 #if P_FAMILY_DRUDDIGON
+#if OW_SURF_DRUDDIGON
 const u32 gSurfablePokemonPic_Druddigon[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/druddigon.4bpp");
 const u16 gSurfablePokemonPalette_Druddigon[] = INCBIN_U16("graphics/pokemon/druddigon/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Druddigon[] = INCBIN_U16("graphics/pokemon/druddigon/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Druddigon) == 6144, DruddigonSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_DRUDDIGON
 #endif // P_FAMILY_DRUDDIGON
 
 #if P_FAMILY_BOUFFALANT
+#if OW_SURF_BOUFFALANT
 const u32 gSurfablePokemonPic_Bouffalant[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/bouffalant.4bpp");
 const u16 gSurfablePokemonPalette_Bouffalant[] = INCBIN_U16("graphics/pokemon/bouffalant/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Bouffalant[] = INCBIN_U16("graphics/pokemon/bouffalant/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Bouffalant) == 6144, BouffalantSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_BOUFFALANT
 #endif // P_FAMILY_BOUFFALANT
 
 #if P_FAMILY_DEINO
+#if OW_SURF_HYDREIGON
 const u32 gSurfablePokemonPic_Hydreigon[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/hydreigon.4bpp");
 const u16 gSurfablePokemonPalette_Hydreigon[] = INCBIN_U16("graphics/pokemon/hydreigon/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Hydreigon[] = INCBIN_U16("graphics/pokemon/hydreigon/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Hydreigon) == 6144, HydreigonSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_HYDREIGON
 #endif // P_FAMILY_DEINO
 
 #if P_FAMILY_KELDEO
+#if OW_SURF_KELDEO
 const u32 gSurfablePokemonPic_Keldeo[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/keldeo.4bpp");
 const u16 gSurfablePokemonPalette_Keldeo[] = INCBIN_U16("graphics/pokemon/keldeo/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Keldeo[] = INCBIN_U16("graphics/pokemon/keldeo/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Keldeo) == 6144, KeldeoSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_KELDEO
 #endif // P_FAMILY_KELDEO
 
 // Gen VI
 #if P_FAMILY_FROAKIE
+#if OW_SURF_FROAKIE
 const u32 gSurfablePokemonPic_Froakie[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/froakie.4bpp");
 const u16 gSurfablePokemonPalette_Froakie[] = INCBIN_U16("graphics/pokemon/froakie/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Froakie[] = INCBIN_U16("graphics/pokemon/froakie/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Froakie) == 6144, FroakieSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_FROAKIE
 
+#if OW_SURF_FROGADIER
 const u32 gSurfablePokemonPic_Frogadier[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/frogadier.4bpp");
 const u16 gSurfablePokemonPalette_Frogadier[] = INCBIN_U16("graphics/pokemon/frogadier/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Frogadier[] = INCBIN_U16("graphics/pokemon/frogadier/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Frogadier) == 6144, FrogadierSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_FROGADIER
 
+#if OW_SURF_GRENINJA
 const u32 gSurfablePokemonPic_Greninja[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/greninja.4bpp");
 const u16 gSurfablePokemonPalette_Greninja[] = INCBIN_U16("graphics/pokemon/greninja/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Greninja[] = INCBIN_U16("graphics/pokemon/greninja/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Greninja) == 6144, GreninjaSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_GRENINJA
 #endif // P_FAMILY_FROAKIE
 
 #if P_FAMILY_BUNNELBY
+#if OW_SURF_BUNNELBY
 const u32 gSurfablePokemonPic_Bunnelby[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/bunnelby.4bpp");
 const u16 gSurfablePokemonPalette_Bunnelby[] = INCBIN_U16("graphics/pokemon/bunnelby/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Bunnelby[] = INCBIN_U16("graphics/pokemon/bunnelby/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Bunnelby) == 6144, BunnelbySurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_BUNNELBY
 
+#if OW_SURF_DIGGERSBY
 const u32 gSurfablePokemonPic_Diggersby[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/diggersby.4bpp");
 const u16 gSurfablePokemonPalette_Diggersby[] = INCBIN_U16("graphics/pokemon/diggersby/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Diggersby[] = INCBIN_U16("graphics/pokemon/diggersby/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Diggersby) == 6144, DiggersbySurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_DIGGERSBY
 #endif // P_FAMILY_BUNNELBY
 
 #if P_FAMILY_SKIDDO
+#if OW_SURF_SKIDDO
 const u32 gSurfablePokemonPic_Skiddo[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/skiddo.4bpp");
 const u16 gSurfablePokemonPalette_Skiddo[] = INCBIN_U16("graphics/pokemon/skiddo/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Skiddo[] = INCBIN_U16("graphics/pokemon/skiddo/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Skiddo) == 6144, SkiddoSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_SKIDDO
 
+#if OW_SURF_GOGOAT
 const u32 gSurfablePokemonPic_Gogoat[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/gogoat.4bpp");
 const u16 gSurfablePokemonPalette_Gogoat[] = INCBIN_U16("graphics/pokemon/gogoat/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Gogoat[] = INCBIN_U16("graphics/pokemon/gogoat/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Gogoat) == 6144, GogoatSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_GOGOAT
 #endif // P_FAMILY_SKIDDO
 
 #if P_FAMILY_PANCHAM
+#if OW_SURF_PANCHAM
 const u32 gSurfablePokemonPic_Pancham[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/pancham.4bpp");
 const u16 gSurfablePokemonPalette_Pancham[] = INCBIN_U16("graphics/pokemon/pancham/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Pancham[] = INCBIN_U16("graphics/pokemon/pancham/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Pancham) == 6144, PanchamSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_PANCHAM
 
+#if OW_SURF_PANGORO
 const u32 gSurfablePokemonPic_Pangoro[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/pangoro.4bpp");
 const u16 gSurfablePokemonPalette_Pangoro[] = INCBIN_U16("graphics/pokemon/pangoro/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Pangoro[] = INCBIN_U16("graphics/pokemon/pangoro/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Pangoro) == 6144, PangoroSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_PANGORO
 #endif // P_FAMILY_PANCHAM
 
 #if P_FAMILY_FURFROU
+#if OW_SURF_FURFROU
 const u32 gSurfablePokemonPic_Furfrou[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/furfrou.4bpp");
 const u16 gSurfablePokemonPalette_Furfrou[] = INCBIN_U16("graphics/pokemon/furfrou/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Furfrou[] = INCBIN_U16("graphics/pokemon/furfrou/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Furfrou) == 6144, FurfrouSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_FURFROU
 #endif // P_FAMILY_FURFROU
 
 #if P_FAMILY_SWIRLIX
+#if OW_SURF_SWIRLIX
 const u32 gSurfablePokemonPic_Swirlix[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/swirlix.4bpp");
 const u16 gSurfablePokemonPalette_Swirlix[] = INCBIN_U16("graphics/pokemon/swirlix/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Swirlix[] = INCBIN_U16("graphics/pokemon/swirlix/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Swirlix) == 6144, SwirlixSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_SWIRLIX
 
+#if OW_SURF_SLURPUFF
 const u32 gSurfablePokemonPic_Slurpuff[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/slurpuff.4bpp");
 const u16 gSurfablePokemonPalette_Slurpuff[] = INCBIN_U16("graphics/pokemon/slurpuff/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Slurpuff[] = INCBIN_U16("graphics/pokemon/slurpuff/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Slurpuff) == 6144, SlurpuffSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_SLURPUFF
 #endif // P_FAMILY_SWIRLIX
 
 #if P_FAMILY_BINACLE
+#if OW_SURF_BINACLE
 const u32 gSurfablePokemonPic_Binacle[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/binacle.4bpp");
 const u16 gSurfablePokemonPalette_Binacle[] = INCBIN_U16("graphics/pokemon/binacle/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Binacle[] = INCBIN_U16("graphics/pokemon/binacle/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Binacle) == 6144, BinacleSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_BINACLE
 
+#if OW_SURF_BARBARACLE
 const u32 gSurfablePokemonPic_Barbaracle[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/barbaracle.4bpp");
 const u16 gSurfablePokemonPalette_Barbaracle[] = INCBIN_U16("graphics/pokemon/barbaracle/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Barbaracle[] = INCBIN_U16("graphics/pokemon/barbaracle/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Barbaracle) == 6144, BarbaracleSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_BARBARACLE
 #endif // P_FAMILY_BINACLE
 
 #if P_FAMILY_SKRELP
+#if OW_SURF_SKRELP
 const u32 gSurfablePokemonPic_Skrelp[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/skrelp.4bpp");
 const u16 gSurfablePokemonPalette_Skrelp[] = INCBIN_U16("graphics/pokemon/skrelp/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Skrelp[] = INCBIN_U16("graphics/pokemon/skrelp/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Skrelp) == 6144, SkrelpSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_SKRELP
 
+#if OW_SURF_DRAGALGE
 const u32 gSurfablePokemonPic_Dragalge[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/dragalge.4bpp");
 const u16 gSurfablePokemonPalette_Dragalge[] = INCBIN_U16("graphics/pokemon/dragalge/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Dragalge[] = INCBIN_U16("graphics/pokemon/dragalge/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Dragalge) == 6144, DragalgeSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_DRAGALGE
 #endif // P_FAMILY_SKRELP
 
 #if P_FAMILY_CLAUNCHER
+#if OW_SURF_CLAUNCHER
 const u32 gSurfablePokemonPic_Clauncher[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/clauncher.4bpp");
 const u16 gSurfablePokemonPalette_Clauncher[] = INCBIN_U16("graphics/pokemon/clauncher/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Clauncher[] = INCBIN_U16("graphics/pokemon/clauncher/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Clauncher) == 6144, ClauncherSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_CLAUNCHER
 
+#if OW_SURF_CLAWITZER
 const u32 gSurfablePokemonPic_Clawitzer[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/clawitzer.4bpp");
 const u16 gSurfablePokemonPalette_Clawitzer[] = INCBIN_U16("graphics/pokemon/clawitzer/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Clawitzer[] = INCBIN_U16("graphics/pokemon/clawitzer/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Clawitzer) == 6144, ClawitzerSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_CLAWITZER
 #endif // P_FAMILY_CLAUNCHER
 
 #if P_FAMILY_HELIOPTILE
+#if OW_SURF_HELIOPTILE
 const u32 gSurfablePokemonPic_Helioptile[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/helioptile.4bpp");
 const u16 gSurfablePokemonPalette_Helioptile[] = INCBIN_U16("graphics/pokemon/helioptile/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Helioptile[] = INCBIN_U16("graphics/pokemon/helioptile/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Helioptile) == 6144, HelioptileSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_HELIOPTILE
 
+#if OW_SURF_HELIOLISK
 const u32 gSurfablePokemonPic_Heliolisk[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/heliolisk.4bpp");
 const u16 gSurfablePokemonPalette_Heliolisk[] = INCBIN_U16("graphics/pokemon/heliolisk/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Heliolisk[] = INCBIN_U16("graphics/pokemon/heliolisk/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Heliolisk) == 6144, HelioliskSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_HELIOLISK
 #endif // P_FAMILY_HELIOPTILE
 
 #if P_FAMILY_GOOMY
+#if OW_SURF_GOODRA
 const u32 gSurfablePokemonPic_Goodra[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/goodra.4bpp");
 const u16 gSurfablePokemonPalette_Goodra[] = INCBIN_U16("graphics/pokemon/goodra/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Goodra[] = INCBIN_U16("graphics/pokemon/goodra/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Goodra) == 6144, GoodraSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_GOODRA
 #endif // P_FAMILY_GOOMY
 
 #if P_FAMILY_BERGMITE
+#if OW_SURF_BERGMITE
 const u32 gSurfablePokemonPic_Bergmite[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/bergmite.4bpp");
 const u16 gSurfablePokemonPalette_Bergmite[] = INCBIN_U16("graphics/pokemon/bergmite/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Bergmite[] = INCBIN_U16("graphics/pokemon/bergmite/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Bergmite) == 6144, BergmiteSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_BERGMITE
 
+#if OW_SURF_AVALUGG
 const u32 gSurfablePokemonPic_Avalugg[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/avalugg.4bpp");
 const u16 gSurfablePokemonPalette_Avalugg[] = INCBIN_U16("graphics/pokemon/avalugg/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Avalugg[] = INCBIN_U16("graphics/pokemon/avalugg/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Avalugg) == 6144, AvaluggSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_AVALUGG
 #endif // P_FAMILY_BERGMITE
 
 // Gen VII
 #if P_FAMILY_POPPLIO
+#if OW_SURF_POPPLIO
 const u32 gSurfablePokemonPic_Popplio[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/popplio.4bpp");
 const u16 gSurfablePokemonPalette_Popplio[] = INCBIN_U16("graphics/pokemon/popplio/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Popplio[] = INCBIN_U16("graphics/pokemon/popplio/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Popplio) == 6144, PopplioSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_POPPLIO
 
+#if OW_SURF_BRIONNE
 const u32 gSurfablePokemonPic_Brionne[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/brionne.4bpp");
 const u16 gSurfablePokemonPalette_Brionne[] = INCBIN_U16("graphics/pokemon/brionne/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Brionne[] = INCBIN_U16("graphics/pokemon/brionne/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Brionne) == 6144, BrionneSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_BRIONNE
 
+#if OW_SURF_PRIMARINA
 const u32 gSurfablePokemonPic_Primarina[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/primarina.4bpp");
 const u16 gSurfablePokemonPalette_Primarina[] = INCBIN_U16("graphics/pokemon/primarina/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Primarina[] = INCBIN_U16("graphics/pokemon/primarina/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Primarina) == 6144, PrimarinaSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_PRIMARINA
 #endif // P_FAMILY_POPPLIO
 
 #if P_FAMILY_WISHIWASHI
+#if OW_SURF_WISHIWASHI
 const u32 gSurfablePokemonPic_Wishiwashi[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/wishiwashi.4bpp");
 const u16 gSurfablePokemonPalette_Wishiwashi[] = INCBIN_U16("graphics/pokemon/wishiwashi/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Wishiwashi[] = INCBIN_U16("graphics/pokemon/wishiwashi/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Wishiwashi) == 6144, WishiwashiSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_WISHIWASHI
 #endif // P_FAMILY_WISHIWASHI
 
 #if P_FAMILY_MAREANIE
+#if OW_SURF_MAREANIE
 const u32 gSurfablePokemonPic_Mareanie[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/mareanie.4bpp");
 const u16 gSurfablePokemonPalette_Mareanie[] = INCBIN_U16("graphics/pokemon/mareanie/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Mareanie[] = INCBIN_U16("graphics/pokemon/mareanie/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Mareanie) == 6144, MareanieSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_MAREANIE
 
+#if OW_SURF_TOXAPEX
 const u32 gSurfablePokemonPic_Toxapex[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/toxapex.4bpp");
 const u16 gSurfablePokemonPalette_Toxapex[] = INCBIN_U16("graphics/pokemon/toxapex/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Toxapex[] = INCBIN_U16("graphics/pokemon/toxapex/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Toxapex) == 6144, ToxapexSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_TOXAPEX
 #endif // P_FAMILY_MAREANIE
 
 #if P_FAMILY_DEWPIDER
+#if OW_SURF_DEWPIDER
 const u32 gSurfablePokemonPic_Dewpider[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/dewpider.4bpp");
 const u16 gSurfablePokemonPalette_Dewpider[] = INCBIN_U16("graphics/pokemon/dewpider/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Dewpider[] = INCBIN_U16("graphics/pokemon/dewpider/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Dewpider) == 6144, DewpiderSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_DEWPIDER
 
+#if OW_SURF_ARAQUANID
 const u32 gSurfablePokemonPic_Araquanid[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/araquanid.4bpp");
 const u16 gSurfablePokemonPalette_Araquanid[] = INCBIN_U16("graphics/pokemon/araquanid/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Araquanid[] = INCBIN_U16("graphics/pokemon/araquanid/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Araquanid) == 6144, AraquanidSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_ARAQUANID
 #endif // P_FAMILY_DEWPIDER
 
 #if P_FAMILY_WIMPOD
+#if OW_SURF_WIMPOD
 const u32 gSurfablePokemonPic_Wimpod[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/wimpod.4bpp");
 const u16 gSurfablePokemonPalette_Wimpod[] = INCBIN_U16("graphics/pokemon/wimpod/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Wimpod[] = INCBIN_U16("graphics/pokemon/wimpod/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Wimpod) == 6144, WimpodSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_WIMPOD
 
+#if OW_SURF_GOLISOPOD
 const u32 gSurfablePokemonPic_Golisopod[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/golisopod.4bpp");
 const u16 gSurfablePokemonPalette_Golisopod[] = INCBIN_U16("graphics/pokemon/golisopod/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Golisopod[] = INCBIN_U16("graphics/pokemon/golisopod/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Golisopod) == 6144, GolisopodSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_GOLISOPOD
 #endif // P_FAMILY_WIMPOD
 
 #if P_FAMILY_TYPE_NULL
+#if OW_SURF_SILVALLY
 const u32 gSurfablePokemonPic_Silvally_Normal[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/silvally.4bpp");
 const u16 gSurfablePokemonPalette_Silvally_Normal[] = INCBIN_U16("graphics/pokemon/silvally/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Silvally_Normal[] = INCBIN_U16("graphics/pokemon/silvally/overworld_shiny.gbapal");
-
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Silvally_Normal) == 6144, Silvally_NormalSurfSheetMustContainTwelve32x32Frames);
 const u32 gSurfablePokemonPic_Silvally_Fighting[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/silvally.4bpp");
 const u16 gSurfablePokemonPalette_Silvally_Fighting[] = INCBIN_U16("graphics/pokemon/silvally/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Silvally_Fighting[] = INCBIN_U16("graphics/pokemon/silvally/overworld_shiny.gbapal");
-
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Silvally_Fighting) == 6144, Silvally_FightingSurfSheetMustContainTwelve32x32Frames);
 const u32 gSurfablePokemonPic_Silvally_Flying[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/silvally.4bpp");
 const u16 gSurfablePokemonPalette_Silvally_Flying[] = INCBIN_U16("graphics/pokemon/silvally/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Silvally_Flying[] = INCBIN_U16("graphics/pokemon/silvally/overworld_shiny.gbapal");
-
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Silvally_Flying) == 6144, Silvally_FlyingSurfSheetMustContainTwelve32x32Frames);
 const u32 gSurfablePokemonPic_Silvally_Poison[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/silvally.4bpp");
 const u16 gSurfablePokemonPalette_Silvally_Poison[] = INCBIN_U16("graphics/pokemon/silvally/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Silvally_Poison[] = INCBIN_U16("graphics/pokemon/silvally/overworld_shiny.gbapal");
-
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Silvally_Poison) == 6144, Silvally_PoisonSurfSheetMustContainTwelve32x32Frames);
 const u32 gSurfablePokemonPic_Silvally_Ground[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/silvally.4bpp");
 const u16 gSurfablePokemonPalette_Silvally_Ground[] = INCBIN_U16("graphics/pokemon/silvally/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Silvally_Ground[] = INCBIN_U16("graphics/pokemon/silvally/overworld_shiny.gbapal");
-
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Silvally_Ground) == 6144, Silvally_GroundSurfSheetMustContainTwelve32x32Frames);
 const u32 gSurfablePokemonPic_Silvally_Rock[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/silvally.4bpp");
 const u16 gSurfablePokemonPalette_Silvally_Rock[] = INCBIN_U16("graphics/pokemon/silvally/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Silvally_Rock[] = INCBIN_U16("graphics/pokemon/silvally/overworld_shiny.gbapal");
-
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Silvally_Rock) == 6144, Silvally_RockSurfSheetMustContainTwelve32x32Frames);
 const u32 gSurfablePokemonPic_Silvally_Bug[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/silvally.4bpp");
 const u16 gSurfablePokemonPalette_Silvally_Bug[] = INCBIN_U16("graphics/pokemon/silvally/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Silvally_Bug[] = INCBIN_U16("graphics/pokemon/silvally/overworld_shiny.gbapal");
-
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Silvally_Bug) == 6144, Silvally_BugSurfSheetMustContainTwelve32x32Frames);
 const u32 gSurfablePokemonPic_Silvally_Ghost[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/silvally.4bpp");
 const u16 gSurfablePokemonPalette_Silvally_Ghost[] = INCBIN_U16("graphics/pokemon/silvally/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Silvally_Ghost[] = INCBIN_U16("graphics/pokemon/silvally/overworld_shiny.gbapal");
-
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Silvally_Ghost) == 6144, Silvally_GhostSurfSheetMustContainTwelve32x32Frames);
 const u32 gSurfablePokemonPic_Silvally_Steel[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/silvally.4bpp");
 const u16 gSurfablePokemonPalette_Silvally_Steel[] = INCBIN_U16("graphics/pokemon/silvally/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Silvally_Steel[] = INCBIN_U16("graphics/pokemon/silvally/overworld_shiny.gbapal");
-
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Silvally_Steel) == 6144, Silvally_SteelSurfSheetMustContainTwelve32x32Frames);
 const u32 gSurfablePokemonPic_Silvally_Fire[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/silvally.4bpp");
 const u16 gSurfablePokemonPalette_Silvally_Fire[] = INCBIN_U16("graphics/pokemon/silvally/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Silvally_Fire[] = INCBIN_U16("graphics/pokemon/silvally/overworld_shiny.gbapal");
-
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Silvally_Fire) == 6144, Silvally_FireSurfSheetMustContainTwelve32x32Frames);
 const u32 gSurfablePokemonPic_Silvally_Water[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/silvally.4bpp");
 const u16 gSurfablePokemonPalette_Silvally_Water[] = INCBIN_U16("graphics/pokemon/silvally/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Silvally_Water[] = INCBIN_U16("graphics/pokemon/silvally/overworld_shiny.gbapal");
-
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Silvally_Water) == 6144, Silvally_WaterSurfSheetMustContainTwelve32x32Frames);
 const u32 gSurfablePokemonPic_Silvally_Grass[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/silvally.4bpp");
 const u16 gSurfablePokemonPalette_Silvally_Grass[] = INCBIN_U16("graphics/pokemon/silvally/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Silvally_Grass[] = INCBIN_U16("graphics/pokemon/silvally/overworld_shiny.gbapal");
-
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Silvally_Grass) == 6144, Silvally_GrassSurfSheetMustContainTwelve32x32Frames);
 const u32 gSurfablePokemonPic_Silvally_Electric[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/silvally.4bpp");
 const u16 gSurfablePokemonPalette_Silvally_Electric[] = INCBIN_U16("graphics/pokemon/silvally/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Silvally_Electric[] = INCBIN_U16("graphics/pokemon/silvally/overworld_shiny.gbapal");
-
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Silvally_Electric) == 6144, Silvally_ElectricSurfSheetMustContainTwelve32x32Frames);
 const u32 gSurfablePokemonPic_Silvally_Psychic[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/silvally.4bpp");
 const u16 gSurfablePokemonPalette_Silvally_Psychic[] = INCBIN_U16("graphics/pokemon/silvally/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Silvally_Psychic[] = INCBIN_U16("graphics/pokemon/silvally/overworld_shiny.gbapal");
-
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Silvally_Psychic) == 6144, Silvally_PsychicSurfSheetMustContainTwelve32x32Frames);
 const u32 gSurfablePokemonPic_Silvally_Ice[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/silvally.4bpp");
 const u16 gSurfablePokemonPalette_Silvally_Ice[] = INCBIN_U16("graphics/pokemon/silvally/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Silvally_Ice[] = INCBIN_U16("graphics/pokemon/silvally/overworld_shiny.gbapal");
-
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Silvally_Ice) == 6144, Silvally_IceSurfSheetMustContainTwelve32x32Frames);
 const u32 gSurfablePokemonPic_Silvally_Dragon[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/silvally.4bpp");
 const u16 gSurfablePokemonPalette_Silvally_Dragon[] = INCBIN_U16("graphics/pokemon/silvally/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Silvally_Dragon[] = INCBIN_U16("graphics/pokemon/silvally/overworld_shiny.gbapal");
-
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Silvally_Dragon) == 6144, Silvally_DragonSurfSheetMustContainTwelve32x32Frames);
 const u32 gSurfablePokemonPic_Silvally_Dark[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/silvally.4bpp");
 const u16 gSurfablePokemonPalette_Silvally_Dark[] = INCBIN_U16("graphics/pokemon/silvally/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Silvally_Dark[] = INCBIN_U16("graphics/pokemon/silvally/overworld_shiny.gbapal");
-
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Silvally_Dark) == 6144, Silvally_DarkSurfSheetMustContainTwelve32x32Frames);
 const u32 gSurfablePokemonPic_Silvally_Fairy[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/silvally.4bpp");
 const u16 gSurfablePokemonPalette_Silvally_Fairy[] = INCBIN_U16("graphics/pokemon/silvally/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Silvally_Fairy[] = INCBIN_U16("graphics/pokemon/silvally/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Silvally_Fairy) == 6144, Silvally_FairySurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_SILVALLY
 #endif // P_FAMILY_TYPE_NULL
 
 #if P_FAMILY_BRUXISH
+#if OW_SURF_BRUXISH
 const u32 gSurfablePokemonPic_Bruxish[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/bruxish.4bpp");
 const u16 gSurfablePokemonPalette_Bruxish[] = INCBIN_U16("graphics/pokemon/bruxish/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Bruxish[] = INCBIN_U16("graphics/pokemon/bruxish/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Bruxish) == 6144, BruxishSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_BRUXISH
 #endif // P_FAMILY_BRUXISH
 
 #if P_FAMILY_DRAMPA
+#if OW_SURF_DRAMPA
 const u32 gSurfablePokemonPic_Drampa[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/drampa.4bpp");
 const u16 gSurfablePokemonPalette_Drampa[] = INCBIN_U16("graphics/pokemon/drampa/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Drampa[] = INCBIN_U16("graphics/pokemon/drampa/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Drampa) == 6144, DrampaSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_DRAMPA
 #endif // P_FAMILY_DRAMPA
 
 #if P_FAMILY_DHELMISE
+#if OW_SURF_DHELMISE
 const u32 gSurfablePokemonPic_Dhelmise[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/dhelmise.4bpp");
 const u16 gSurfablePokemonPalette_Dhelmise[] = INCBIN_U16("graphics/pokemon/dhelmise/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Dhelmise[] = INCBIN_U16("graphics/pokemon/dhelmise/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Dhelmise) == 6144, DhelmiseSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_DHELMISE
 #endif // P_FAMILY_DHELMISE
 
 #if P_FAMILY_TAPU_FINI
+#if OW_SURF_TAPU_FINI
 const u32 gSurfablePokemonPic_Tapu_Fini[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/tapu_fini.4bpp");
 const u16 gSurfablePokemonPalette_Tapu_Fini[] = INCBIN_U16("graphics/pokemon/tapu_fini/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Tapu_Fini[] = INCBIN_U16("graphics/pokemon/tapu_fini/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Tapu_Fini) == 6144, Tapu_FiniSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_TAPU_FINI
 #endif // P_FAMILY_TAPU_FINI
 
 // Gen VIII
 #if P_FAMILY_SOBBLE
+#if OW_SURF_SOBBLE
 const u32 gSurfablePokemonPic_Sobble[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/sobble.4bpp");
 const u16 gSurfablePokemonPalette_Sobble[] = INCBIN_U16("graphics/pokemon/sobble/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Sobble[] = INCBIN_U16("graphics/pokemon/sobble/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Sobble) == 6144, SobbleSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_SOBBLE
 
+#if OW_SURF_DRIZZILE
 const u32 gSurfablePokemonPic_Drizzile[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/drizzile.4bpp");
 const u16 gSurfablePokemonPalette_Drizzile[] = INCBIN_U16("graphics/pokemon/drizzile/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Drizzile[] = INCBIN_U16("graphics/pokemon/drizzile/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Drizzile) == 6144, DrizzileSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_DRIZZILE
 
+#if OW_SURF_INTELEON
 const u32 gSurfablePokemonPic_Inteleon[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/inteleon.4bpp");
 const u16 gSurfablePokemonPalette_Inteleon[] = INCBIN_U16("graphics/pokemon/inteleon/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Inteleon[] = INCBIN_U16("graphics/pokemon/inteleon/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Inteleon) == 6144, InteleonSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_INTELEON
 #endif // P_FAMILY_SOBBLE
 
 #if P_FAMILY_CHEWTLE
+#if OW_SURF_CHEWTLE
 const u32 gSurfablePokemonPic_Chewtle[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/chewtle.4bpp");
 const u16 gSurfablePokemonPalette_Chewtle[] = INCBIN_U16("graphics/pokemon/chewtle/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Chewtle[] = INCBIN_U16("graphics/pokemon/chewtle/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Chewtle) == 6144, ChewtleSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_CHEWTLE
 
+#if OW_SURF_DREDNAW
 const u32 gSurfablePokemonPic_Drednaw[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/drednaw.4bpp");
 const u16 gSurfablePokemonPalette_Drednaw[] = INCBIN_U16("graphics/pokemon/drednaw/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Drednaw[] = INCBIN_U16("graphics/pokemon/drednaw/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Drednaw) == 6144, DrednawSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_DREDNAW
 #endif // P_FAMILY_CHEWTLE
 
 #if P_FAMILY_CRAMORANT
+#if OW_SURF_CRAMORANT
 const u32 gSurfablePokemonPic_Cramorant[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/cramorant.4bpp");
 const u16 gSurfablePokemonPalette_Cramorant[] = INCBIN_U16("graphics/pokemon/cramorant/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Cramorant[] = INCBIN_U16("graphics/pokemon/cramorant/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Cramorant) == 6144, CramorantSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_CRAMORANT
 #endif // P_FAMILY_CRAMORANT
 
 #if P_FAMILY_ARROKUDA
+#if OW_SURF_ARROKUDA
 const u32 gSurfablePokemonPic_Arrokuda[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/arrokuda.4bpp");
 const u16 gSurfablePokemonPalette_Arrokuda[] = INCBIN_U16("graphics/pokemon/arrokuda/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Arrokuda[] = INCBIN_U16("graphics/pokemon/arrokuda/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Arrokuda) == 6144, ArrokudaSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_ARROKUDA
 
+#if OW_SURF_BARRASKEWDA
 const u32 gSurfablePokemonPic_Barraskewda[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/barraskewda.4bpp");
 const u16 gSurfablePokemonPalette_Barraskewda[] = INCBIN_U16("graphics/pokemon/barraskewda/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Barraskewda[] = INCBIN_U16("graphics/pokemon/barraskewda/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Barraskewda) == 6144, BarraskewdaSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_BARRASKEWDA
 #endif // P_FAMILY_ARROKUDA
 
 #if P_FAMILY_CLOBBOPUS
+#if OW_SURF_GRAPPLOCT
 const u32 gSurfablePokemonPic_Grapploct[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/grapploct.4bpp");
 const u16 gSurfablePokemonPalette_Grapploct[] = INCBIN_U16("graphics/pokemon/grapploct/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Grapploct[] = INCBIN_U16("graphics/pokemon/grapploct/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Grapploct) == 6144, GrapploctSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_GRAPPLOCT
 #endif // P_FAMILY_CLOBBOPUS
 
 #if P_FAMILY_ZIGZAGOON && P_GALARIAN_FORMS
+#if OW_SURF_OBSTAGOON
 const u32 gSurfablePokemonPic_Obstagoon[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/obstagoon.4bpp");
 const u16 gSurfablePokemonPalette_Obstagoon[] = INCBIN_U16("graphics/pokemon/obstagoon/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Obstagoon[] = INCBIN_U16("graphics/pokemon/obstagoon/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Obstagoon) == 6144, ObstagoonSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_OBSTAGOON
 #endif // P_FAMILY_ZIGZAGOON && P_GALARIAN_FORMS
 
 #if P_FAMILY_CORSOLA && P_GALARIAN_FORMS
+#if OW_SURF_CURSOLA
 const u32 gSurfablePokemonPic_Cursola[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/cursola.4bpp");
 const u16 gSurfablePokemonPalette_Cursola[] = INCBIN_U16("graphics/pokemon/cursola/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Cursola[] = INCBIN_U16("graphics/pokemon/cursola/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Cursola) == 6144, CursolaSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_CURSOLA
 #endif // P_FAMILY_CORSOLA && P_GALARIAN_FORMS
 
 #if P_FAMILY_PINCURCHIN
+#if OW_SURF_PINCURCHIN
 const u32 gSurfablePokemonPic_Pincurchin[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/pincurchin.4bpp");
 const u16 gSurfablePokemonPalette_Pincurchin[] = INCBIN_U16("graphics/pokemon/pincurchin/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Pincurchin[] = INCBIN_U16("graphics/pokemon/pincurchin/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Pincurchin) == 6144, PincurchinSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_PINCURCHIN
 #endif // P_FAMILY_PINCURCHIN
 
 #if P_FAMILY_EISCUE
+#if OW_SURF_EISCUE
 const u32 gSurfablePokemonPic_Eiscue[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/eiscue.4bpp");
 const u16 gSurfablePokemonPalette_Eiscue[] = INCBIN_U16("graphics/pokemon/eiscue/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Eiscue[] = INCBIN_U16("graphics/pokemon/eiscue/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Eiscue) == 6144, EiscueSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_EISCUE
 #endif // P_FAMILY_EISCUE
 
 #if P_FAMILY_ARCTOZOLT
+#if OW_SURF_ARCTOZOLT
 const u32 gSurfablePokemonPic_Arctozolt[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/arctozolt.4bpp");
 const u16 gSurfablePokemonPalette_Arctozolt[] = INCBIN_U16("graphics/pokemon/arctozolt/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Arctozolt[] = INCBIN_U16("graphics/pokemon/arctozolt/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Arctozolt) == 6144, ArctozoltSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_ARCTOZOLT
 #endif // P_FAMILY_ARCTOZOLT
 
 #if P_FAMILY_DRACOVISH
+#if OW_SURF_DRACOVISH
 const u32 gSurfablePokemonPic_Dracovish[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/dracovish.4bpp");
 const u16 gSurfablePokemonPalette_Dracovish[] = INCBIN_U16("graphics/pokemon/dracovish/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Dracovish[] = INCBIN_U16("graphics/pokemon/dracovish/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Dracovish) == 6144, DracovishSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_DRACOVISH
 #endif // P_FAMILY_DRACOVISH
 
 #if P_FAMILY_ARCTOVISH
+#if OW_SURF_ARCTOVISH
 const u32 gSurfablePokemonPic_Arctovish[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/arctovish.4bpp");
 const u16 gSurfablePokemonPalette_Arctovish[] = INCBIN_U16("graphics/pokemon/arctovish/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Arctovish[] = INCBIN_U16("graphics/pokemon/arctovish/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Arctovish) == 6144, ArctovishSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_ARCTOVISH
 #endif // P_FAMILY_ARCTOVISH
 
 #if P_FAMILY_DREEPY
+#if OW_SURF_DRAKLOAK
 const u32 gSurfablePokemonPic_Drakloak[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/drakloak.4bpp");
 const u16 gSurfablePokemonPalette_Drakloak[] = INCBIN_U16("graphics/pokemon/drakloak/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Drakloak[] = INCBIN_U16("graphics/pokemon/drakloak/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Drakloak) == 6144, DrakloakSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_DRAKLOAK
 
+#if OW_SURF_DRAGAPULT
 const u32 gSurfablePokemonPic_Dragapult[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/dragapult.4bpp");
 const u16 gSurfablePokemonPalette_Dragapult[] = INCBIN_U16("graphics/pokemon/dragapult/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Dragapult[] = INCBIN_U16("graphics/pokemon/dragapult/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Dragapult) == 6144, DragapultSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_DRAGAPULT
 #endif // P_FAMILY_DREEPY
 
 #if P_FAMILY_BASCULIN && P_HISUIAN_FORMS
+#if OW_SURF_BASCULEGION
 const u32 gSurfablePokemonPic_Basculegion[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/basculegion.4bpp");
 const u16 gSurfablePokemonPalette_Basculegion[] = INCBIN_U16("graphics/pokemon/basculegion/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Basculegion[] = INCBIN_U16("graphics/pokemon/basculegion/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Basculegion) == 6144, BasculegionSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_BASCULEGION
 #endif // P_FAMILY_BASCULIN && P_HISUIAN_FORMS
 
 #if P_FAMILY_QWILFISH && P_HISUIAN_FORMS
+#if OW_SURF_OVERQWIL
 const u32 gSurfablePokemonPic_Overqwil[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/overqwil.4bpp");
 const u16 gSurfablePokemonPalette_Overqwil[] = INCBIN_U16("graphics/pokemon/overqwil/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Overqwil[] = INCBIN_U16("graphics/pokemon/overqwil/overworld_shiny.gbapal");
+STATIC_ASSERT(sizeof(gSurfablePokemonPic_Overqwil) == 6144, OverqwilSurfSheetMustContainTwelve32x32Frames);
+#endif // OW_SURF_OVERQWIL
 #endif // P_FAMILY_QWILFISH && P_HISUIAN_FORMS

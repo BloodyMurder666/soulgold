@@ -69,6 +69,7 @@
 #include "task.h"
 #include "text.h"
 #include "text_window.h"
+#include "surfable.h"
 #include "trade.h"
 #include "union_room.h"
 #include "window.h"
@@ -5203,7 +5204,9 @@ static void DisplayCantUseFlashMessage(void)
 
 static void FieldCallback_Surf(void)
 {
-    gFieldEffectArguments[0] = GetCursorSelectionMonId();
+    u8 surfMonPartySlot = GetSurfablePokemonPartySlot();
+
+    gFieldEffectArguments[0] = (surfMonPartySlot == PARTY_SIZE) ? GetCursorSelectionMonId() : surfMonPartySlot;
     FieldEffectStart(FLDEFF_USE_SURF);
 }
 

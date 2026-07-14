@@ -886,114 +886,215 @@ const struct SpritePalette sSurfablePokemonPalettes[] = {
 {gSurfablePokemonPalette_Basculin_White_Striped,  PAL_TAG_BASCULIN_WHITE_STRIPED_SURF},
 #endif // P_FAMILY_BASCULIN && P_HISUIAN_FORMS
 #if P_FAMILY_TIRTOUGA
+#if OW_SURF_TIRTOUGA
 {gSurfablePokemonPalette_Tirtouga,  PAL_TAG_TIRTOUGA_SURF},
+#endif // OW_SURF_TIRTOUGA
+#if OW_SURF_CARRACOSTA
 {gSurfablePokemonPalette_Carracosta,  PAL_TAG_CARRACOSTA_SURF},
+#endif // OW_SURF_CARRACOSTA
 #endif // P_FAMILY_TIRTOUGA
 #if P_FAMILY_DUCKLETT
+#if OW_SURF_DUCKLETT
 {gSurfablePokemonPalette_Ducklett,  PAL_TAG_DUCKLETT_SURF},
+#endif // OW_SURF_DUCKLETT
+#if OW_SURF_SWANNA
 {gSurfablePokemonPalette_Swanna,  PAL_TAG_SWANNA_SURF},
+#endif // OW_SURF_SWANNA
 #endif // P_FAMILY_DUCKLETT
 #if P_FAMILY_FRILLISH
+#if OW_SURF_FRILLISH
 {gSurfablePokemonPalette_Frillish,  PAL_TAG_FRILLISH_SURF},
+#endif // OW_SURF_FRILLISH
+#if OW_SURF_JELLICENT
 {gSurfablePokemonPalette_Jellicent,  PAL_TAG_JELLICENT_SURF},
+#endif // OW_SURF_JELLICENT
 #endif // P_FAMILY_FRILLISH
 #if P_FAMILY_ALOMOMOLA
+#if OW_SURF_ALOMOMOLA
 {gSurfablePokemonPalette_Alomomola,  PAL_TAG_ALOMOMOLA_SURF},
+#endif // OW_SURF_ALOMOMOLA
 #endif // P_FAMILY_ALOMOMOLA
 #if P_FAMILY_AXEW
+#if OW_SURF_AXEW
 {gSurfablePokemonPalette_Axew,  PAL_TAG_AXEW_SURF},
+#endif // OW_SURF_AXEW
+#if OW_SURF_FRAXURE
 {gSurfablePokemonPalette_Fraxure,  PAL_TAG_FRAXURE_SURF},
+#endif // OW_SURF_FRAXURE
+#if OW_SURF_HAXORUS
 {gSurfablePokemonPalette_Haxorus,  PAL_TAG_HAXORUS_SURF},
+#endif // OW_SURF_HAXORUS
 #endif // P_FAMILY_AXEW
 #if P_FAMILY_CUBCHOO
+#if OW_SURF_CUBCHOO
 {gSurfablePokemonPalette_Cubchoo,  PAL_TAG_CUBCHOO_SURF},
+#endif // OW_SURF_CUBCHOO
+#if OW_SURF_BEARTIC
 {gSurfablePokemonPalette_Beartic,  PAL_TAG_BEARTIC_SURF},
+#endif // OW_SURF_BEARTIC
 #endif // P_FAMILY_CUBCHOO
 #if P_FAMILY_STUNFISK
+#if OW_SURF_STUNFISK
 {gSurfablePokemonPalette_Stunfisk,  PAL_TAG_STUNFISK_SURF},
+#endif // OW_SURF_STUNFISK
 #endif // P_FAMILY_STUNFISK
 #if P_FAMILY_DRUDDIGON
+#if OW_SURF_DRUDDIGON
 {gSurfablePokemonPalette_Druddigon,  PAL_TAG_DRUDDIGON_SURF},
+#endif // OW_SURF_DRUDDIGON
 #endif // P_FAMILY_DRUDDIGON
 #if P_FAMILY_BOUFFALANT
+#if OW_SURF_BOUFFALANT
 {gSurfablePokemonPalette_Bouffalant,  PAL_TAG_BOUFFALANT_SURF},
+#endif // OW_SURF_BOUFFALANT
 #endif // P_FAMILY_BOUFFALANT
 #if P_FAMILY_DEINO
+#if OW_SURF_HYDREIGON
 {gSurfablePokemonPalette_Hydreigon,  PAL_TAG_HYDREIGON_SURF},
+#endif // OW_SURF_HYDREIGON
 #endif // P_FAMILY_DEINO
 #if P_FAMILY_KELDEO
+#if OW_SURF_KELDEO
 {gSurfablePokemonPalette_Keldeo,  PAL_TAG_KELDEO_SURF},
+#endif // OW_SURF_KELDEO
 #endif // P_FAMILY_KELDEO
 // Gen VI
 #if P_FAMILY_FROAKIE
+#if OW_SURF_FROAKIE
 {gSurfablePokemonPalette_Froakie,  PAL_TAG_FROAKIE_SURF},
+#endif // OW_SURF_FROAKIE
+#if OW_SURF_FROGADIER
 {gSurfablePokemonPalette_Frogadier,  PAL_TAG_FROGADIER_SURF},
+#endif // OW_SURF_FROGADIER
+#if OW_SURF_GRENINJA
 {gSurfablePokemonPalette_Greninja,  PAL_TAG_GRENINJA_SURF},
+#endif // OW_SURF_GRENINJA
 #endif // P_FAMILY_FROAKIE
 #if P_FAMILY_BUNNELBY
+#if OW_SURF_BUNNELBY
 {gSurfablePokemonPalette_Bunnelby,  PAL_TAG_BUNNELBY_SURF},
+#endif // OW_SURF_BUNNELBY
+#if OW_SURF_DIGGERSBY
 {gSurfablePokemonPalette_Diggersby,  PAL_TAG_DIGGERSBY_SURF},
+#endif // OW_SURF_DIGGERSBY
 #endif // P_FAMILY_BUNNELBY
 #if P_FAMILY_SKIDDO
+#if OW_SURF_SKIDDO
 {gSurfablePokemonPalette_Skiddo,  PAL_TAG_SKIDDO_SURF},
+#endif // OW_SURF_SKIDDO
+#if OW_SURF_GOGOAT
 {gSurfablePokemonPalette_Gogoat,  PAL_TAG_GOGOAT_SURF},
+#endif // OW_SURF_GOGOAT
 #endif // P_FAMILY_SKIDDO
 #if P_FAMILY_PANCHAM
+#if OW_SURF_PANCHAM
 {gSurfablePokemonPalette_Pancham,  PAL_TAG_PANCHAM_SURF},
+#endif // OW_SURF_PANCHAM
+#if OW_SURF_PANGORO
 {gSurfablePokemonPalette_Pangoro,  PAL_TAG_PANGORO_SURF},
+#endif // OW_SURF_PANGORO
 #endif // P_FAMILY_PANCHAM
 #if P_FAMILY_FURFROU
+#if OW_SURF_FURFROU
 {gSurfablePokemonPalette_Furfrou,  PAL_TAG_FURFROU_SURF},
+#endif // OW_SURF_FURFROU
 #endif // P_FAMILY_FURFROU
 #if P_FAMILY_SWIRLIX
+#if OW_SURF_SWIRLIX
 {gSurfablePokemonPalette_Swirlix,  PAL_TAG_SWIRLIX_SURF},
+#endif // OW_SURF_SWIRLIX
+#if OW_SURF_SLURPUFF
 {gSurfablePokemonPalette_Slurpuff,  PAL_TAG_SLURPUFF_SURF},
+#endif // OW_SURF_SLURPUFF
 #endif // P_FAMILY_SWIRLIX
 #if P_FAMILY_BINACLE
+#if OW_SURF_BINACLE
 {gSurfablePokemonPalette_Binacle,  PAL_TAG_BINACLE_SURF},
+#endif // OW_SURF_BINACLE
+#if OW_SURF_BARBARACLE
 {gSurfablePokemonPalette_Barbaracle,  PAL_TAG_BARBARACLE_SURF},
+#endif // OW_SURF_BARBARACLE
 #endif // P_FAMILY_BINACLE
 #if P_FAMILY_SKRELP
+#if OW_SURF_SKRELP
 {gSurfablePokemonPalette_Skrelp,  PAL_TAG_SKRELP_SURF},
+#endif // OW_SURF_SKRELP
+#if OW_SURF_DRAGALGE
 {gSurfablePokemonPalette_Dragalge,  PAL_TAG_DRAGALGE_SURF},
+#endif // OW_SURF_DRAGALGE
 #endif // P_FAMILY_SKRELP
 #if P_FAMILY_CLAUNCHER
+#if OW_SURF_CLAUNCHER
 {gSurfablePokemonPalette_Clauncher,  PAL_TAG_CLAUNCHER_SURF},
+#endif // OW_SURF_CLAUNCHER
+#if OW_SURF_CLAWITZER
 {gSurfablePokemonPalette_Clawitzer,  PAL_TAG_CLAWITZER_SURF},
+#endif // OW_SURF_CLAWITZER
 #endif // P_FAMILY_CLAUNCHER
 #if P_FAMILY_HELIOPTILE
+#if OW_SURF_HELIOPTILE
 {gSurfablePokemonPalette_Helioptile,  PAL_TAG_HELIOPTILE_SURF},
+#endif // OW_SURF_HELIOPTILE
+#if OW_SURF_HELIOLISK
 {gSurfablePokemonPalette_Heliolisk,  PAL_TAG_HELIOLISK_SURF},
+#endif // OW_SURF_HELIOLISK
 #endif // P_FAMILY_HELIOPTILE
 #if P_FAMILY_GOOMY
+#if OW_SURF_GOODRA
 {gSurfablePokemonPalette_Goodra,  PAL_TAG_GOODRA_SURF},
+#endif // OW_SURF_GOODRA
 #endif // P_FAMILY_GOOMY
 #if P_FAMILY_BERGMITE
+#if OW_SURF_BERGMITE
 {gSurfablePokemonPalette_Bergmite,  PAL_TAG_BERGMITE_SURF},
+#endif // OW_SURF_BERGMITE
+#if OW_SURF_AVALUGG
 {gSurfablePokemonPalette_Avalugg,  PAL_TAG_AVALUGG_SURF},
+#endif // OW_SURF_AVALUGG
 #endif // P_FAMILY_BERGMITE
 // Gen VII
 #if P_FAMILY_POPPLIO
+#if OW_SURF_POPPLIO
 {gSurfablePokemonPalette_Popplio,  PAL_TAG_POPPLIO_SURF},
+#endif // OW_SURF_POPPLIO
+#if OW_SURF_BRIONNE
 {gSurfablePokemonPalette_Brionne,  PAL_TAG_BRIONNE_SURF},
+#endif // OW_SURF_BRIONNE
+#if OW_SURF_PRIMARINA
 {gSurfablePokemonPalette_Primarina,  PAL_TAG_PRIMARINA_SURF},
+#endif // OW_SURF_PRIMARINA
 #endif // P_FAMILY_POPPLIO
 #if P_FAMILY_WISHIWASHI
+#if OW_SURF_WISHIWASHI
 {gSurfablePokemonPalette_Wishiwashi,  PAL_TAG_WISHIWASHI_SURF},
+#endif // OW_SURF_WISHIWASHI
 #endif // P_FAMILY_WISHIWASHI
 #if P_FAMILY_MAREANIE
+#if OW_SURF_MAREANIE
 {gSurfablePokemonPalette_Mareanie,  PAL_TAG_MAREANIE_SURF},
+#endif // OW_SURF_MAREANIE
+#if OW_SURF_TOXAPEX
 {gSurfablePokemonPalette_Toxapex,  PAL_TAG_TOXAPEX_SURF},
+#endif // OW_SURF_TOXAPEX
 #endif // P_FAMILY_MAREANIE
 #if P_FAMILY_DEWPIDER
+#if OW_SURF_DEWPIDER
 {gSurfablePokemonPalette_Dewpider,  PAL_TAG_DEWPIDER_SURF},
+#endif // OW_SURF_DEWPIDER
+#if OW_SURF_ARAQUANID
 {gSurfablePokemonPalette_Araquanid,  PAL_TAG_ARAQUANID_SURF},
+#endif // OW_SURF_ARAQUANID
 #endif // P_FAMILY_DEWPIDER
 #if P_FAMILY_WIMPOD
+#if OW_SURF_WIMPOD
 {gSurfablePokemonPalette_Wimpod,  PAL_TAG_WIMPOD_SURF},
+#endif // OW_SURF_WIMPOD
+#if OW_SURF_GOLISOPOD
 {gSurfablePokemonPalette_Golisopod,  PAL_TAG_GOLISOPOD_SURF},
+#endif // OW_SURF_GOLISOPOD
 #endif // P_FAMILY_WIMPOD
 #if P_FAMILY_TYPE_NULL
+#if OW_SURF_SILVALLY
 {gSurfablePokemonPalette_Silvally_Normal,  PAL_TAG_SILVALLY_NORMAL_SURF},
 {gSurfablePokemonPalette_Silvally_Fighting,  PAL_TAG_SILVALLY_FIGHTING_SURF},
 {gSurfablePokemonPalette_Silvally_Flying,  PAL_TAG_SILVALLY_FLYING_SURF},
@@ -1012,69 +1113,118 @@ const struct SpritePalette sSurfablePokemonPalettes[] = {
 {gSurfablePokemonPalette_Silvally_Dragon,  PAL_TAG_SILVALLY_DRAGON_SURF},
 {gSurfablePokemonPalette_Silvally_Dark,  PAL_TAG_SILVALLY_DARK_SURF},
 {gSurfablePokemonPalette_Silvally_Fairy,  PAL_TAG_SILVALLY_FAIRY_SURF},
+#endif // OW_SURF_SILVALLY
 #endif // P_FAMILY_TYPE_NULL
 #if P_FAMILY_BRUXISH
+#if OW_SURF_BRUXISH
 {gSurfablePokemonPalette_Bruxish,  PAL_TAG_BRUXISH_SURF},
+#endif // OW_SURF_BRUXISH
 #endif // P_FAMILY_BRUXISH
 #if P_FAMILY_DRAMPA
+#if OW_SURF_DRAMPA
 {gSurfablePokemonPalette_Drampa,  PAL_TAG_DRAMPA_SURF},
+#endif // OW_SURF_DRAMPA
 #endif // P_FAMILY_DRAMPA
 #if P_FAMILY_DHELMISE
+#if OW_SURF_DHELMISE
 {gSurfablePokemonPalette_Dhelmise,  PAL_TAG_DHELMISE_SURF},
+#endif // OW_SURF_DHELMISE
 #endif // P_FAMILY_DHELMISE
 #if P_FAMILY_TAPU_FINI
+#if OW_SURF_TAPU_FINI
 {gSurfablePokemonPalette_Tapu_Fini,  PAL_TAG_TAPU_FINI_SURF},
+#endif // OW_SURF_TAPU_FINI
 #endif // P_FAMILY_TAPU_FINI
 // Gen VIII
 #if P_FAMILY_SOBBLE
+#if OW_SURF_SOBBLE
 {gSurfablePokemonPalette_Sobble,  PAL_TAG_SOBBLE_SURF},
+#endif // OW_SURF_SOBBLE
+#if OW_SURF_DRIZZILE
 {gSurfablePokemonPalette_Drizzile,  PAL_TAG_DRIZZILE_SURF},
+#endif // OW_SURF_DRIZZILE
+#if OW_SURF_INTELEON
 {gSurfablePokemonPalette_Inteleon,  PAL_TAG_INTELEON_SURF},
+#endif // OW_SURF_INTELEON
 #endif // P_FAMILY_SOBBLE
 #if P_FAMILY_CHEWTLE
+#if OW_SURF_CHEWTLE
 {gSurfablePokemonPalette_Chewtle,  PAL_TAG_CHEWTLE_SURF},
+#endif // OW_SURF_CHEWTLE
+#if OW_SURF_DREDNAW
 {gSurfablePokemonPalette_Drednaw,  PAL_TAG_DREDNAW_SURF},
+#endif // OW_SURF_DREDNAW
 #endif // P_FAMILY_CHEWTLE
 #if P_FAMILY_CRAMORANT
+#if OW_SURF_CRAMORANT
 {gSurfablePokemonPalette_Cramorant,  PAL_TAG_CRAMORANT_SURF},
+#endif // OW_SURF_CRAMORANT
 #endif // P_FAMILY_CRAMORANT
 #if P_FAMILY_ARROKUDA
+#if OW_SURF_ARROKUDA
 {gSurfablePokemonPalette_Arrokuda,  PAL_TAG_ARROKUDA_SURF},
+#endif // OW_SURF_ARROKUDA
+#if OW_SURF_BARRASKEWDA
 {gSurfablePokemonPalette_Barraskewda,  PAL_TAG_BARRASKEWDA_SURF},
+#endif // OW_SURF_BARRASKEWDA
 #endif // P_FAMILY_ARROKUDA
 #if P_FAMILY_CLOBBOPUS
+#if OW_SURF_GRAPPLOCT
 {gSurfablePokemonPalette_Grapploct,  PAL_TAG_GRAPPLOCT_SURF},
+#endif // OW_SURF_GRAPPLOCT
 #endif // P_FAMILY_CLOBBOPUS
 #if P_FAMILY_ZIGZAGOON && P_GALARIAN_FORMS
+#if OW_SURF_OBSTAGOON
 {gSurfablePokemonPalette_Obstagoon,  PAL_TAG_OBSTAGOON_SURF},
+#endif // OW_SURF_OBSTAGOON
 #endif // P_FAMILY_ZIGZAGOON && P_GALARIAN_FORMS
 #if P_FAMILY_CORSOLA && P_GALARIAN_FORMS
+#if OW_SURF_CURSOLA
 {gSurfablePokemonPalette_Cursola,  PAL_TAG_CURSOLA_SURF},
+#endif // OW_SURF_CURSOLA
 #endif // P_FAMILY_CORSOLA && P_GALARIAN_FORMS
 #if P_FAMILY_PINCURCHIN
+#if OW_SURF_PINCURCHIN
 {gSurfablePokemonPalette_Pincurchin,  PAL_TAG_PINCURCHIN_SURF},
+#endif // OW_SURF_PINCURCHIN
 #endif // P_FAMILY_PINCURCHIN
 #if P_FAMILY_EISCUE
+#if OW_SURF_EISCUE
 {gSurfablePokemonPalette_Eiscue,  PAL_TAG_EISCUE_SURF},
+#endif // OW_SURF_EISCUE
 #endif // P_FAMILY_EISCUE
 #if P_FAMILY_ARCTOZOLT
+#if OW_SURF_ARCTOZOLT
 {gSurfablePokemonPalette_Arctozolt,  PAL_TAG_ARCTOZOLT_SURF},
+#endif // OW_SURF_ARCTOZOLT
 #endif // P_FAMILY_ARCTOZOLT
 #if P_FAMILY_DRACOVISH
+#if OW_SURF_DRACOVISH
 {gSurfablePokemonPalette_Dracovish,  PAL_TAG_DRACOVISH_SURF},
+#endif // OW_SURF_DRACOVISH
 #endif // P_FAMILY_DRACOVISH
 #if P_FAMILY_ARCTOVISH
+#if OW_SURF_ARCTOVISH
 {gSurfablePokemonPalette_Arctovish,  PAL_TAG_ARCTOVISH_SURF},
+#endif // OW_SURF_ARCTOVISH
 #endif // P_FAMILY_ARCTOVISH
 #if P_FAMILY_DREEPY
+#if OW_SURF_DRAKLOAK
 {gSurfablePokemonPalette_Drakloak,  PAL_TAG_DRAKLOAK_SURF},
+#endif // OW_SURF_DRAKLOAK
+#if OW_SURF_DRAGAPULT
 {gSurfablePokemonPalette_Dragapult,  PAL_TAG_DRAGAPULT_SURF},
+#endif // OW_SURF_DRAGAPULT
 #endif // P_FAMILY_DREEPY
 #if P_FAMILY_BASCULIN && P_HISUIAN_FORMS
+#if OW_SURF_BASCULEGION
 {gSurfablePokemonPalette_Basculegion,  PAL_TAG_BASCULEGION_SURF},
+#endif // OW_SURF_BASCULEGION
 #endif // P_FAMILY_BASCULIN && P_HISUIAN_FORMS
 #if P_FAMILY_QWILFISH && P_HISUIAN_FORMS
+#if OW_SURF_OVERQWIL
 {gSurfablePokemonPalette_Overqwil,  PAL_TAG_OVERQWIL_SURF},
+#endif // OW_SURF_OVERQWIL
 #endif // P_FAMILY_QWILFISH && P_HISUIAN_FORMS
 #if P_FAMILY_KYOGRE && P_PRIMAL_REVERSIONS
 {gSurfablePokemonPalette_KyogrePrimal, PAL_TAG_KYOGRE_PRIMAL_SURF},
@@ -1427,114 +1577,215 @@ const struct SpritePalette sSurfablePokemonShinyPalettes[] = {
 {gSurfablePokemonShinyPalette_Basculin_White_Striped,  PAL_TAG_BASCULIN_WHITE_STRIPED_SURF},
 #endif // P_FAMILY_BASCULIN && P_HISUIAN_FORMS
 #if P_FAMILY_TIRTOUGA
+#if OW_SURF_TIRTOUGA
 {gSurfablePokemonShinyPalette_Tirtouga,  PAL_TAG_TIRTOUGA_SURF},
+#endif // OW_SURF_TIRTOUGA
+#if OW_SURF_CARRACOSTA
 {gSurfablePokemonShinyPalette_Carracosta,  PAL_TAG_CARRACOSTA_SURF},
+#endif // OW_SURF_CARRACOSTA
 #endif // P_FAMILY_TIRTOUGA
 #if P_FAMILY_DUCKLETT
+#if OW_SURF_DUCKLETT
 {gSurfablePokemonShinyPalette_Ducklett,  PAL_TAG_DUCKLETT_SURF},
+#endif // OW_SURF_DUCKLETT
+#if OW_SURF_SWANNA
 {gSurfablePokemonShinyPalette_Swanna,  PAL_TAG_SWANNA_SURF},
+#endif // OW_SURF_SWANNA
 #endif // P_FAMILY_DUCKLETT
 #if P_FAMILY_FRILLISH
+#if OW_SURF_FRILLISH
 {gSurfablePokemonShinyPalette_Frillish,  PAL_TAG_FRILLISH_SURF},
+#endif // OW_SURF_FRILLISH
+#if OW_SURF_JELLICENT
 {gSurfablePokemonShinyPalette_Jellicent,  PAL_TAG_JELLICENT_SURF},
+#endif // OW_SURF_JELLICENT
 #endif // P_FAMILY_FRILLISH
 #if P_FAMILY_ALOMOMOLA
+#if OW_SURF_ALOMOMOLA
 {gSurfablePokemonShinyPalette_Alomomola,  PAL_TAG_ALOMOMOLA_SURF},
+#endif // OW_SURF_ALOMOMOLA
 #endif // P_FAMILY_ALOMOMOLA
 #if P_FAMILY_AXEW
+#if OW_SURF_AXEW
 {gSurfablePokemonShinyPalette_Axew,  PAL_TAG_AXEW_SURF},
+#endif // OW_SURF_AXEW
+#if OW_SURF_FRAXURE
 {gSurfablePokemonShinyPalette_Fraxure,  PAL_TAG_FRAXURE_SURF},
+#endif // OW_SURF_FRAXURE
+#if OW_SURF_HAXORUS
 {gSurfablePokemonShinyPalette_Haxorus,  PAL_TAG_HAXORUS_SURF},
+#endif // OW_SURF_HAXORUS
 #endif // P_FAMILY_AXEW
 #if P_FAMILY_CUBCHOO
+#if OW_SURF_CUBCHOO
 {gSurfablePokemonShinyPalette_Cubchoo,  PAL_TAG_CUBCHOO_SURF},
+#endif // OW_SURF_CUBCHOO
+#if OW_SURF_BEARTIC
 {gSurfablePokemonShinyPalette_Beartic,  PAL_TAG_BEARTIC_SURF},
+#endif // OW_SURF_BEARTIC
 #endif // P_FAMILY_CUBCHOO
 #if P_FAMILY_STUNFISK
+#if OW_SURF_STUNFISK
 {gSurfablePokemonShinyPalette_Stunfisk,  PAL_TAG_STUNFISK_SURF},
+#endif // OW_SURF_STUNFISK
 #endif // P_FAMILY_STUNFISK
 #if P_FAMILY_DRUDDIGON
+#if OW_SURF_DRUDDIGON
 {gSurfablePokemonShinyPalette_Druddigon,  PAL_TAG_DRUDDIGON_SURF},
+#endif // OW_SURF_DRUDDIGON
 #endif // P_FAMILY_DRUDDIGON
 #if P_FAMILY_BOUFFALANT
+#if OW_SURF_BOUFFALANT
 {gSurfablePokemonShinyPalette_Bouffalant,  PAL_TAG_BOUFFALANT_SURF},
+#endif // OW_SURF_BOUFFALANT
 #endif // P_FAMILY_BOUFFALANT
 #if P_FAMILY_DEINO
+#if OW_SURF_HYDREIGON
 {gSurfablePokemonShinyPalette_Hydreigon,  PAL_TAG_HYDREIGON_SURF},
+#endif // OW_SURF_HYDREIGON
 #endif // P_FAMILY_DEINO
 #if P_FAMILY_KELDEO
+#if OW_SURF_KELDEO
 {gSurfablePokemonShinyPalette_Keldeo,  PAL_TAG_KELDEO_SURF},
+#endif // OW_SURF_KELDEO
 #endif // P_FAMILY_KELDEO
 // Gen VI
 #if P_FAMILY_FROAKIE
+#if OW_SURF_FROAKIE
 {gSurfablePokemonShinyPalette_Froakie,  PAL_TAG_FROAKIE_SURF},
+#endif // OW_SURF_FROAKIE
+#if OW_SURF_FROGADIER
 {gSurfablePokemonShinyPalette_Frogadier,  PAL_TAG_FROGADIER_SURF},
+#endif // OW_SURF_FROGADIER
+#if OW_SURF_GRENINJA
 {gSurfablePokemonShinyPalette_Greninja,  PAL_TAG_GRENINJA_SURF},
+#endif // OW_SURF_GRENINJA
 #endif // P_FAMILY_FROAKIE
 #if P_FAMILY_BUNNELBY
+#if OW_SURF_BUNNELBY
 {gSurfablePokemonShinyPalette_Bunnelby,  PAL_TAG_BUNNELBY_SURF},
+#endif // OW_SURF_BUNNELBY
+#if OW_SURF_DIGGERSBY
 {gSurfablePokemonShinyPalette_Diggersby,  PAL_TAG_DIGGERSBY_SURF},
+#endif // OW_SURF_DIGGERSBY
 #endif // P_FAMILY_BUNNELBY
 #if P_FAMILY_SKIDDO
+#if OW_SURF_SKIDDO
 {gSurfablePokemonShinyPalette_Skiddo,  PAL_TAG_SKIDDO_SURF},
+#endif // OW_SURF_SKIDDO
+#if OW_SURF_GOGOAT
 {gSurfablePokemonShinyPalette_Gogoat,  PAL_TAG_GOGOAT_SURF},
+#endif // OW_SURF_GOGOAT
 #endif // P_FAMILY_SKIDDO
 #if P_FAMILY_PANCHAM
+#if OW_SURF_PANCHAM
 {gSurfablePokemonShinyPalette_Pancham,  PAL_TAG_PANCHAM_SURF},
+#endif // OW_SURF_PANCHAM
+#if OW_SURF_PANGORO
 {gSurfablePokemonShinyPalette_Pangoro,  PAL_TAG_PANGORO_SURF},
+#endif // OW_SURF_PANGORO
 #endif // P_FAMILY_PANCHAM
 #if P_FAMILY_FURFROU
+#if OW_SURF_FURFROU
 {gSurfablePokemonShinyPalette_Furfrou,  PAL_TAG_FURFROU_SURF},
+#endif // OW_SURF_FURFROU
 #endif // P_FAMILY_FURFROU
 #if P_FAMILY_SWIRLIX
+#if OW_SURF_SWIRLIX
 {gSurfablePokemonShinyPalette_Swirlix,  PAL_TAG_SWIRLIX_SURF},
+#endif // OW_SURF_SWIRLIX
+#if OW_SURF_SLURPUFF
 {gSurfablePokemonShinyPalette_Slurpuff,  PAL_TAG_SLURPUFF_SURF},
+#endif // OW_SURF_SLURPUFF
 #endif // P_FAMILY_SWIRLIX
 #if P_FAMILY_BINACLE
+#if OW_SURF_BINACLE
 {gSurfablePokemonShinyPalette_Binacle,  PAL_TAG_BINACLE_SURF},
+#endif // OW_SURF_BINACLE
+#if OW_SURF_BARBARACLE
 {gSurfablePokemonShinyPalette_Barbaracle,  PAL_TAG_BARBARACLE_SURF},
+#endif // OW_SURF_BARBARACLE
 #endif // P_FAMILY_BINACLE
 #if P_FAMILY_SKRELP
+#if OW_SURF_SKRELP
 {gSurfablePokemonShinyPalette_Skrelp,  PAL_TAG_SKRELP_SURF},
+#endif // OW_SURF_SKRELP
+#if OW_SURF_DRAGALGE
 {gSurfablePokemonShinyPalette_Dragalge,  PAL_TAG_DRAGALGE_SURF},
+#endif // OW_SURF_DRAGALGE
 #endif // P_FAMILY_SKRELP
 #if P_FAMILY_CLAUNCHER
+#if OW_SURF_CLAUNCHER
 {gSurfablePokemonShinyPalette_Clauncher,  PAL_TAG_CLAUNCHER_SURF},
+#endif // OW_SURF_CLAUNCHER
+#if OW_SURF_CLAWITZER
 {gSurfablePokemonShinyPalette_Clawitzer,  PAL_TAG_CLAWITZER_SURF},
+#endif // OW_SURF_CLAWITZER
 #endif // P_FAMILY_CLAUNCHER
 #if P_FAMILY_HELIOPTILE
+#if OW_SURF_HELIOPTILE
 {gSurfablePokemonShinyPalette_Helioptile,  PAL_TAG_HELIOPTILE_SURF},
+#endif // OW_SURF_HELIOPTILE
+#if OW_SURF_HELIOLISK
 {gSurfablePokemonShinyPalette_Heliolisk,  PAL_TAG_HELIOLISK_SURF},
+#endif // OW_SURF_HELIOLISK
 #endif // P_FAMILY_HELIOPTILE
 #if P_FAMILY_GOOMY
+#if OW_SURF_GOODRA
 {gSurfablePokemonShinyPalette_Goodra,  PAL_TAG_GOODRA_SURF},
+#endif // OW_SURF_GOODRA
 #endif // P_FAMILY_GOOMY
 #if P_FAMILY_BERGMITE
+#if OW_SURF_BERGMITE
 {gSurfablePokemonShinyPalette_Bergmite,  PAL_TAG_BERGMITE_SURF},
+#endif // OW_SURF_BERGMITE
+#if OW_SURF_AVALUGG
 {gSurfablePokemonShinyPalette_Avalugg,  PAL_TAG_AVALUGG_SURF},
+#endif // OW_SURF_AVALUGG
 #endif // P_FAMILY_BERGMITE
 // Gen VII
 #if P_FAMILY_POPPLIO
+#if OW_SURF_POPPLIO
 {gSurfablePokemonShinyPalette_Popplio,  PAL_TAG_POPPLIO_SURF},
+#endif // OW_SURF_POPPLIO
+#if OW_SURF_BRIONNE
 {gSurfablePokemonShinyPalette_Brionne,  PAL_TAG_BRIONNE_SURF},
+#endif // OW_SURF_BRIONNE
+#if OW_SURF_PRIMARINA
 {gSurfablePokemonShinyPalette_Primarina,  PAL_TAG_PRIMARINA_SURF},
+#endif // OW_SURF_PRIMARINA
 #endif // P_FAMILY_POPPLIO
 #if P_FAMILY_WISHIWASHI
+#if OW_SURF_WISHIWASHI
 {gSurfablePokemonShinyPalette_Wishiwashi,  PAL_TAG_WISHIWASHI_SURF},
+#endif // OW_SURF_WISHIWASHI
 #endif // P_FAMILY_WISHIWASHI
 #if P_FAMILY_MAREANIE
+#if OW_SURF_MAREANIE
 {gSurfablePokemonShinyPalette_Mareanie,  PAL_TAG_MAREANIE_SURF},
+#endif // OW_SURF_MAREANIE
+#if OW_SURF_TOXAPEX
 {gSurfablePokemonShinyPalette_Toxapex,  PAL_TAG_TOXAPEX_SURF},
+#endif // OW_SURF_TOXAPEX
 #endif // P_FAMILY_MAREANIE
 #if P_FAMILY_DEWPIDER
+#if OW_SURF_DEWPIDER
 {gSurfablePokemonShinyPalette_Dewpider,  PAL_TAG_DEWPIDER_SURF},
+#endif // OW_SURF_DEWPIDER
+#if OW_SURF_ARAQUANID
 {gSurfablePokemonShinyPalette_Araquanid,  PAL_TAG_ARAQUANID_SURF},
+#endif // OW_SURF_ARAQUANID
 #endif // P_FAMILY_DEWPIDER
 #if P_FAMILY_WIMPOD
+#if OW_SURF_WIMPOD
 {gSurfablePokemonShinyPalette_Wimpod,  PAL_TAG_WIMPOD_SURF},
+#endif // OW_SURF_WIMPOD
+#if OW_SURF_GOLISOPOD
 {gSurfablePokemonShinyPalette_Golisopod,  PAL_TAG_GOLISOPOD_SURF},
+#endif // OW_SURF_GOLISOPOD
 #endif // P_FAMILY_WIMPOD
 #if P_FAMILY_TYPE_NULL
+#if OW_SURF_SILVALLY
 {gSurfablePokemonShinyPalette_Silvally_Normal,  PAL_TAG_SILVALLY_NORMAL_SURF},
 {gSurfablePokemonShinyPalette_Silvally_Fighting,  PAL_TAG_SILVALLY_FIGHTING_SURF},
 {gSurfablePokemonShinyPalette_Silvally_Flying,  PAL_TAG_SILVALLY_FLYING_SURF},
@@ -1553,69 +1804,118 @@ const struct SpritePalette sSurfablePokemonShinyPalettes[] = {
 {gSurfablePokemonShinyPalette_Silvally_Dragon,  PAL_TAG_SILVALLY_DRAGON_SURF},
 {gSurfablePokemonShinyPalette_Silvally_Dark,  PAL_TAG_SILVALLY_DARK_SURF},
 {gSurfablePokemonShinyPalette_Silvally_Fairy,  PAL_TAG_SILVALLY_FAIRY_SURF},
+#endif // OW_SURF_SILVALLY
 #endif // P_FAMILY_TYPE_NULL
 #if P_FAMILY_BRUXISH
+#if OW_SURF_BRUXISH
 {gSurfablePokemonShinyPalette_Bruxish,  PAL_TAG_BRUXISH_SURF},
+#endif // OW_SURF_BRUXISH
 #endif // P_FAMILY_BRUXISH
 #if P_FAMILY_DRAMPA
+#if OW_SURF_DRAMPA
 {gSurfablePokemonShinyPalette_Drampa,  PAL_TAG_DRAMPA_SURF},
+#endif // OW_SURF_DRAMPA
 #endif // P_FAMILY_DRAMPA
 #if P_FAMILY_DHELMISE
+#if OW_SURF_DHELMISE
 {gSurfablePokemonShinyPalette_Dhelmise,  PAL_TAG_DHELMISE_SURF},
+#endif // OW_SURF_DHELMISE
 #endif // P_FAMILY_DHELMISE
 #if P_FAMILY_TAPU_FINI
+#if OW_SURF_TAPU_FINI
 {gSurfablePokemonShinyPalette_Tapu_Fini,  PAL_TAG_TAPU_FINI_SURF},
+#endif // OW_SURF_TAPU_FINI
 #endif // P_FAMILY_TAPU_FINI
 // Gen VIII
 #if P_FAMILY_SOBBLE
+#if OW_SURF_SOBBLE
 {gSurfablePokemonShinyPalette_Sobble,  PAL_TAG_SOBBLE_SURF},
+#endif // OW_SURF_SOBBLE
+#if OW_SURF_DRIZZILE
 {gSurfablePokemonShinyPalette_Drizzile,  PAL_TAG_DRIZZILE_SURF},
+#endif // OW_SURF_DRIZZILE
+#if OW_SURF_INTELEON
 {gSurfablePokemonShinyPalette_Inteleon,  PAL_TAG_INTELEON_SURF},
+#endif // OW_SURF_INTELEON
 #endif // P_FAMILY_SOBBLE
 #if P_FAMILY_CHEWTLE
+#if OW_SURF_CHEWTLE
 {gSurfablePokemonShinyPalette_Chewtle,  PAL_TAG_CHEWTLE_SURF},
+#endif // OW_SURF_CHEWTLE
+#if OW_SURF_DREDNAW
 {gSurfablePokemonShinyPalette_Drednaw,  PAL_TAG_DREDNAW_SURF},
+#endif // OW_SURF_DREDNAW
 #endif // P_FAMILY_CHEWTLE
 #if P_FAMILY_CRAMORANT
+#if OW_SURF_CRAMORANT
 {gSurfablePokemonShinyPalette_Cramorant,  PAL_TAG_CRAMORANT_SURF},
+#endif // OW_SURF_CRAMORANT
 #endif // P_FAMILY_CRAMORANT
 #if P_FAMILY_ARROKUDA
+#if OW_SURF_ARROKUDA
 {gSurfablePokemonShinyPalette_Arrokuda,  PAL_TAG_ARROKUDA_SURF},
+#endif // OW_SURF_ARROKUDA
+#if OW_SURF_BARRASKEWDA
 {gSurfablePokemonShinyPalette_Barraskewda,  PAL_TAG_BARRASKEWDA_SURF},
+#endif // OW_SURF_BARRASKEWDA
 #endif // P_FAMILY_ARROKUDA
 #if P_FAMILY_CLOBBOPUS
+#if OW_SURF_GRAPPLOCT
 {gSurfablePokemonShinyPalette_Grapploct,  PAL_TAG_GRAPPLOCT_SURF},
+#endif // OW_SURF_GRAPPLOCT
 #endif // P_FAMILY_CLOBBOPUS
 #if P_FAMILY_ZIGZAGOON && P_GALARIAN_FORMS
+#if OW_SURF_OBSTAGOON
 {gSurfablePokemonShinyPalette_Obstagoon,  PAL_TAG_OBSTAGOON_SURF},
+#endif // OW_SURF_OBSTAGOON
 #endif // P_FAMILY_ZIGZAGOON && P_GALARIAN_FORMS
 #if P_FAMILY_CORSOLA && P_GALARIAN_FORMS
+#if OW_SURF_CURSOLA
 {gSurfablePokemonShinyPalette_Cursola,  PAL_TAG_CURSOLA_SURF},
+#endif // OW_SURF_CURSOLA
 #endif // P_FAMILY_CORSOLA && P_GALARIAN_FORMS
 #if P_FAMILY_PINCURCHIN
+#if OW_SURF_PINCURCHIN
 {gSurfablePokemonShinyPalette_Pincurchin,  PAL_TAG_PINCURCHIN_SURF},
+#endif // OW_SURF_PINCURCHIN
 #endif // P_FAMILY_PINCURCHIN
 #if P_FAMILY_EISCUE
+#if OW_SURF_EISCUE
 {gSurfablePokemonShinyPalette_Eiscue,  PAL_TAG_EISCUE_SURF},
+#endif // OW_SURF_EISCUE
 #endif // P_FAMILY_EISCUE
 #if P_FAMILY_ARCTOZOLT
+#if OW_SURF_ARCTOZOLT
 {gSurfablePokemonShinyPalette_Arctozolt,  PAL_TAG_ARCTOZOLT_SURF},
+#endif // OW_SURF_ARCTOZOLT
 #endif // P_FAMILY_ARCTOZOLT
 #if P_FAMILY_DRACOVISH
+#if OW_SURF_DRACOVISH
 {gSurfablePokemonShinyPalette_Dracovish,  PAL_TAG_DRACOVISH_SURF},
+#endif // OW_SURF_DRACOVISH
 #endif // P_FAMILY_DRACOVISH
 #if P_FAMILY_ARCTOVISH
+#if OW_SURF_ARCTOVISH
 {gSurfablePokemonShinyPalette_Arctovish,  PAL_TAG_ARCTOVISH_SURF},
+#endif // OW_SURF_ARCTOVISH
 #endif // P_FAMILY_ARCTOVISH
 #if P_FAMILY_DREEPY
+#if OW_SURF_DRAKLOAK
 {gSurfablePokemonShinyPalette_Drakloak,  PAL_TAG_DRAKLOAK_SURF},
+#endif // OW_SURF_DRAKLOAK
+#if OW_SURF_DRAGAPULT
 {gSurfablePokemonShinyPalette_Dragapult,  PAL_TAG_DRAGAPULT_SURF},
+#endif // OW_SURF_DRAGAPULT
 #endif // P_FAMILY_DREEPY
 #if P_FAMILY_BASCULIN && P_HISUIAN_FORMS
+#if OW_SURF_BASCULEGION
 {gSurfablePokemonShinyPalette_Basculegion,  PAL_TAG_BASCULEGION_SURF},
+#endif // OW_SURF_BASCULEGION
 #endif // P_FAMILY_BASCULIN && P_HISUIAN_FORMS
 #if P_FAMILY_QWILFISH && P_HISUIAN_FORMS
+#if OW_SURF_OVERQWIL
 {gSurfablePokemonShinyPalette_Overqwil,  PAL_TAG_OVERQWIL_SURF},
+#endif // OW_SURF_OVERQWIL
 #endif // P_FAMILY_QWILFISH && P_HISUIAN_FORMS
 #if P_FAMILY_KYOGRE && P_PRIMAL_REVERSIONS
 {gSurfablePokemonShinyPalette_KyogrePrimal, PAL_TAG_KYOGRE_PRIMAL_SURF},
@@ -2020,114 +2320,215 @@ const struct SpriteTemplate gSurfablePokemonOverworldSprites[] =
     {0xFFFF, PAL_TAG_BASCULIN_WHITE_STRIPED_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Basculin_White_Striped,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
 #endif // P_FAMILY_BASCULIN && P_HISUIAN_FORMS
 #if P_FAMILY_TIRTOUGA
+#if OW_SURF_TIRTOUGA
     {0xFFFF, PAL_TAG_TIRTOUGA_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Tirtouga,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_TIRTOUGA
+#if OW_SURF_CARRACOSTA
     {0xFFFF, PAL_TAG_CARRACOSTA_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Carracosta,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_CARRACOSTA
 #endif // P_FAMILY_TIRTOUGA
 #if P_FAMILY_DUCKLETT
+#if OW_SURF_DUCKLETT
     {0xFFFF, PAL_TAG_DUCKLETT_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Ducklett,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_DUCKLETT
+#if OW_SURF_SWANNA
     {0xFFFF, PAL_TAG_SWANNA_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Swanna,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_SWANNA
 #endif // P_FAMILY_DUCKLETT
 #if P_FAMILY_FRILLISH
+#if OW_SURF_FRILLISH
     {0xFFFF, PAL_TAG_FRILLISH_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Frillish,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_FRILLISH
+#if OW_SURF_JELLICENT
     {0xFFFF, PAL_TAG_JELLICENT_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Jellicent,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_JELLICENT
 #endif // P_FAMILY_FRILLISH
 #if P_FAMILY_ALOMOMOLA
+#if OW_SURF_ALOMOMOLA
     {0xFFFF, PAL_TAG_ALOMOMOLA_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Alomomola,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_ALOMOMOLA
 #endif // P_FAMILY_ALOMOMOLA
 #if P_FAMILY_AXEW
+#if OW_SURF_AXEW
     {0xFFFF, PAL_TAG_AXEW_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Axew,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_AXEW
+#if OW_SURF_FRAXURE
     {0xFFFF, PAL_TAG_FRAXURE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Fraxure,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_FRAXURE
+#if OW_SURF_HAXORUS
     {0xFFFF, PAL_TAG_HAXORUS_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Haxorus,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_HAXORUS
 #endif // P_FAMILY_AXEW
 #if P_FAMILY_CUBCHOO
+#if OW_SURF_CUBCHOO
     {0xFFFF, PAL_TAG_CUBCHOO_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Cubchoo,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_CUBCHOO
+#if OW_SURF_BEARTIC
     {0xFFFF, PAL_TAG_BEARTIC_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Beartic,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_BEARTIC
 #endif // P_FAMILY_CUBCHOO
 #if P_FAMILY_STUNFISK
+#if OW_SURF_STUNFISK
     {0xFFFF, PAL_TAG_STUNFISK_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Stunfisk,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_STUNFISK
 #endif // P_FAMILY_STUNFISK
 #if P_FAMILY_DRUDDIGON
+#if OW_SURF_DRUDDIGON
     {0xFFFF, PAL_TAG_DRUDDIGON_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Druddigon,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_DRUDDIGON
 #endif // P_FAMILY_DRUDDIGON
 #if P_FAMILY_BOUFFALANT
+#if OW_SURF_BOUFFALANT
     {0xFFFF, PAL_TAG_BOUFFALANT_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Bouffalant,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_BOUFFALANT
 #endif // P_FAMILY_BOUFFALANT
 #if P_FAMILY_DEINO
+#if OW_SURF_HYDREIGON
     {0xFFFF, PAL_TAG_HYDREIGON_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Hydreigon,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_HYDREIGON
 #endif // P_FAMILY_DEINO
 #if P_FAMILY_KELDEO
+#if OW_SURF_KELDEO
     {0xFFFF, PAL_TAG_KELDEO_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Keldeo,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_KELDEO
 #endif // P_FAMILY_KELDEO
 // Gen VI
 #if P_FAMILY_FROAKIE
+#if OW_SURF_FROAKIE
     {0xFFFF, PAL_TAG_FROAKIE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Froakie,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_FROAKIE
+#if OW_SURF_FROGADIER
     {0xFFFF, PAL_TAG_FROGADIER_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Frogadier,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_FROGADIER
+#if OW_SURF_GRENINJA
     {0xFFFF, PAL_TAG_GRENINJA_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Greninja,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_GRENINJA
 #endif // P_FAMILY_FROAKIE
 #if P_FAMILY_BUNNELBY
+#if OW_SURF_BUNNELBY
     {0xFFFF, PAL_TAG_BUNNELBY_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Bunnelby,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_BUNNELBY
+#if OW_SURF_DIGGERSBY
     {0xFFFF, PAL_TAG_DIGGERSBY_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Diggersby,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_DIGGERSBY
 #endif // P_FAMILY_BUNNELBY
 #if P_FAMILY_SKIDDO
+#if OW_SURF_SKIDDO
     {0xFFFF, PAL_TAG_SKIDDO_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Skiddo,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_SKIDDO
+#if OW_SURF_GOGOAT
     {0xFFFF, PAL_TAG_GOGOAT_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Gogoat,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_GOGOAT
 #endif // P_FAMILY_SKIDDO
 #if P_FAMILY_PANCHAM
+#if OW_SURF_PANCHAM
     {0xFFFF, PAL_TAG_PANCHAM_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Pancham,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_PANCHAM
+#if OW_SURF_PANGORO
     {0xFFFF, PAL_TAG_PANGORO_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Pangoro,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_PANGORO
 #endif // P_FAMILY_PANCHAM
 #if P_FAMILY_FURFROU
+#if OW_SURF_FURFROU
     {0xFFFF, PAL_TAG_FURFROU_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Furfrou,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_FURFROU
 #endif // P_FAMILY_FURFROU
 #if P_FAMILY_SWIRLIX
+#if OW_SURF_SWIRLIX
     {0xFFFF, PAL_TAG_SWIRLIX_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Swirlix,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_SWIRLIX
+#if OW_SURF_SLURPUFF
     {0xFFFF, PAL_TAG_SLURPUFF_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Slurpuff,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_SLURPUFF
 #endif // P_FAMILY_SWIRLIX
 #if P_FAMILY_BINACLE
+#if OW_SURF_BINACLE
     {0xFFFF, PAL_TAG_BINACLE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Binacle,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_BINACLE
+#if OW_SURF_BARBARACLE
     {0xFFFF, PAL_TAG_BARBARACLE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Barbaracle,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_BARBARACLE
 #endif // P_FAMILY_BINACLE
 #if P_FAMILY_SKRELP
+#if OW_SURF_SKRELP
     {0xFFFF, PAL_TAG_SKRELP_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Skrelp,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_SKRELP
+#if OW_SURF_DRAGALGE
     {0xFFFF, PAL_TAG_DRAGALGE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Dragalge,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_DRAGALGE
 #endif // P_FAMILY_SKRELP
 #if P_FAMILY_CLAUNCHER
+#if OW_SURF_CLAUNCHER
     {0xFFFF, PAL_TAG_CLAUNCHER_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Clauncher,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_CLAUNCHER
+#if OW_SURF_CLAWITZER
     {0xFFFF, PAL_TAG_CLAWITZER_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Clawitzer,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_CLAWITZER
 #endif // P_FAMILY_CLAUNCHER
 #if P_FAMILY_HELIOPTILE
+#if OW_SURF_HELIOPTILE
     {0xFFFF, PAL_TAG_HELIOPTILE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Helioptile,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_HELIOPTILE
+#if OW_SURF_HELIOLISK
     {0xFFFF, PAL_TAG_HELIOLISK_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Heliolisk,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_HELIOLISK
 #endif // P_FAMILY_HELIOPTILE
 #if P_FAMILY_GOOMY
+#if OW_SURF_GOODRA
     {0xFFFF, PAL_TAG_GOODRA_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Goodra,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_GOODRA
 #endif // P_FAMILY_GOOMY
 #if P_FAMILY_BERGMITE
+#if OW_SURF_BERGMITE
     {0xFFFF, PAL_TAG_BERGMITE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Bergmite,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_BERGMITE
+#if OW_SURF_AVALUGG
     {0xFFFF, PAL_TAG_AVALUGG_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Avalugg,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_AVALUGG
 #endif // P_FAMILY_BERGMITE
 // Gen VII
 #if P_FAMILY_POPPLIO
+#if OW_SURF_POPPLIO
     {0xFFFF, PAL_TAG_POPPLIO_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Popplio,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_POPPLIO
+#if OW_SURF_BRIONNE
     {0xFFFF, PAL_TAG_BRIONNE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Brionne,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_BRIONNE
+#if OW_SURF_PRIMARINA
     {0xFFFF, PAL_TAG_PRIMARINA_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Primarina,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_PRIMARINA
 #endif // P_FAMILY_POPPLIO
 #if P_FAMILY_WISHIWASHI
+#if OW_SURF_WISHIWASHI
     {0xFFFF, PAL_TAG_WISHIWASHI_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Wishiwashi,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_WISHIWASHI
 #endif // P_FAMILY_WISHIWASHI
 #if P_FAMILY_MAREANIE
+#if OW_SURF_MAREANIE
     {0xFFFF, PAL_TAG_MAREANIE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Mareanie,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_MAREANIE
+#if OW_SURF_TOXAPEX
     {0xFFFF, PAL_TAG_TOXAPEX_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Toxapex,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_TOXAPEX
 #endif // P_FAMILY_MAREANIE
 #if P_FAMILY_DEWPIDER
+#if OW_SURF_DEWPIDER
     {0xFFFF, PAL_TAG_DEWPIDER_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Dewpider,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_DEWPIDER
+#if OW_SURF_ARAQUANID
     {0xFFFF, PAL_TAG_ARAQUANID_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Araquanid,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_ARAQUANID
 #endif // P_FAMILY_DEWPIDER
 #if P_FAMILY_WIMPOD
+#if OW_SURF_WIMPOD
     {0xFFFF, PAL_TAG_WIMPOD_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Wimpod,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_WIMPOD
+#if OW_SURF_GOLISOPOD
     {0xFFFF, PAL_TAG_GOLISOPOD_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Golisopod,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_GOLISOPOD
 #endif // P_FAMILY_WIMPOD
 #if P_FAMILY_TYPE_NULL
+#if OW_SURF_SILVALLY
     {0xFFFF, PAL_TAG_SILVALLY_NORMAL_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Silvally_Normal,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
     {0xFFFF, PAL_TAG_SILVALLY_FIGHTING_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Silvally_Fighting,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
     {0xFFFF, PAL_TAG_SILVALLY_FLYING_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Silvally_Flying,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
@@ -2146,69 +2547,118 @@ const struct SpriteTemplate gSurfablePokemonOverworldSprites[] =
     {0xFFFF, PAL_TAG_SILVALLY_DRAGON_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Silvally_Dragon,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
     {0xFFFF, PAL_TAG_SILVALLY_DARK_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Silvally_Dark,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
     {0xFFFF, PAL_TAG_SILVALLY_FAIRY_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Silvally_Fairy,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_SILVALLY
 #endif // P_FAMILY_TYPE_NULL
 #if P_FAMILY_BRUXISH
+#if OW_SURF_BRUXISH
     {0xFFFF, PAL_TAG_BRUXISH_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Bruxish,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_BRUXISH
 #endif // P_FAMILY_BRUXISH
 #if P_FAMILY_DRAMPA
+#if OW_SURF_DRAMPA
     {0xFFFF, PAL_TAG_DRAMPA_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Drampa,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_DRAMPA
 #endif // P_FAMILY_DRAMPA
 #if P_FAMILY_DHELMISE
+#if OW_SURF_DHELMISE
     {0xFFFF, PAL_TAG_DHELMISE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Dhelmise,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_DHELMISE
 #endif // P_FAMILY_DHELMISE
 #if P_FAMILY_TAPU_FINI
+#if OW_SURF_TAPU_FINI
     {0xFFFF, PAL_TAG_TAPU_FINI_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Tapu_Fini,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_TAPU_FINI
 #endif // P_FAMILY_TAPU_FINI
 // Gen VIII
 #if P_FAMILY_SOBBLE
+#if OW_SURF_SOBBLE
     {0xFFFF, PAL_TAG_SOBBLE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Sobble,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_SOBBLE
+#if OW_SURF_DRIZZILE
     {0xFFFF, PAL_TAG_DRIZZILE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Drizzile,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_DRIZZILE
+#if OW_SURF_INTELEON
     {0xFFFF, PAL_TAG_INTELEON_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Inteleon,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_INTELEON
 #endif // P_FAMILY_SOBBLE
 #if P_FAMILY_CHEWTLE
+#if OW_SURF_CHEWTLE
     {0xFFFF, PAL_TAG_CHEWTLE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Chewtle,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_CHEWTLE
+#if OW_SURF_DREDNAW
     {0xFFFF, PAL_TAG_DREDNAW_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Drednaw,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_DREDNAW
 #endif // P_FAMILY_CHEWTLE
 #if P_FAMILY_CRAMORANT
+#if OW_SURF_CRAMORANT
     {0xFFFF, PAL_TAG_CRAMORANT_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Cramorant,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_CRAMORANT
 #endif // P_FAMILY_CRAMORANT
 #if P_FAMILY_ARROKUDA
+#if OW_SURF_ARROKUDA
     {0xFFFF, PAL_TAG_ARROKUDA_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Arrokuda,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_ARROKUDA
+#if OW_SURF_BARRASKEWDA
     {0xFFFF, PAL_TAG_BARRASKEWDA_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Barraskewda,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_BARRASKEWDA
 #endif // P_FAMILY_ARROKUDA
 #if P_FAMILY_CLOBBOPUS
+#if OW_SURF_GRAPPLOCT
     {0xFFFF, PAL_TAG_GRAPPLOCT_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Grapploct,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_GRAPPLOCT
 #endif // P_FAMILY_CLOBBOPUS
 #if P_FAMILY_ZIGZAGOON && P_GALARIAN_FORMS
+#if OW_SURF_OBSTAGOON
     {0xFFFF, PAL_TAG_OBSTAGOON_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Obstagoon,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_OBSTAGOON
 #endif // P_FAMILY_ZIGZAGOON && P_GALARIAN_FORMS
 #if P_FAMILY_CORSOLA && P_GALARIAN_FORMS
+#if OW_SURF_CURSOLA
     {0xFFFF, PAL_TAG_CURSOLA_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Cursola,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_CURSOLA
 #endif // P_FAMILY_CORSOLA && P_GALARIAN_FORMS
 #if P_FAMILY_PINCURCHIN
+#if OW_SURF_PINCURCHIN
     {0xFFFF, PAL_TAG_PINCURCHIN_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Pincurchin,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_PINCURCHIN
 #endif // P_FAMILY_PINCURCHIN
 #if P_FAMILY_EISCUE
+#if OW_SURF_EISCUE
     {0xFFFF, PAL_TAG_EISCUE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Eiscue,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_EISCUE
 #endif // P_FAMILY_EISCUE
 #if P_FAMILY_ARCTOZOLT
+#if OW_SURF_ARCTOZOLT
     {0xFFFF, PAL_TAG_ARCTOZOLT_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Arctozolt,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_ARCTOZOLT
 #endif // P_FAMILY_ARCTOZOLT
 #if P_FAMILY_DRACOVISH
+#if OW_SURF_DRACOVISH
     {0xFFFF, PAL_TAG_DRACOVISH_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Dracovish,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_DRACOVISH
 #endif // P_FAMILY_DRACOVISH
 #if P_FAMILY_ARCTOVISH
+#if OW_SURF_ARCTOVISH
     {0xFFFF, PAL_TAG_ARCTOVISH_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Arctovish,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_ARCTOVISH
 #endif // P_FAMILY_ARCTOVISH
 #if P_FAMILY_DREEPY
+#if OW_SURF_DRAKLOAK
     {0xFFFF, PAL_TAG_DRAKLOAK_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Drakloak,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_DRAKLOAK
+#if OW_SURF_DRAGAPULT
     {0xFFFF, PAL_TAG_DRAGAPULT_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Dragapult,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_DRAGAPULT
 #endif // P_FAMILY_DREEPY
 #if P_FAMILY_BASCULIN && P_HISUIAN_FORMS
+#if OW_SURF_BASCULEGION
     {0xFFFF, PAL_TAG_BASCULEGION_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Basculegion,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_BASCULEGION
 #endif // P_FAMILY_BASCULIN && P_HISUIAN_FORMS
 #if P_FAMILY_QWILFISH && P_HISUIAN_FORMS
+#if OW_SURF_OVERQWIL
     {0xFFFF, PAL_TAG_OVERQWIL_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Overqwil,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+#endif // OW_SURF_OVERQWIL
 #endif // P_FAMILY_QWILFISH && P_HISUIAN_FORMS
 #if P_FAMILY_KYOGRE && P_PRIMAL_REVERSIONS
     {0xFFFF, PAL_TAG_KYOGRE_PRIMAL_SURF, &gObjectEventBaseOam_64x64, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_KyogrePrimal, gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
@@ -2563,114 +3013,215 @@ const struct SpriteTemplate gSurfablePokemonOverlaySprites[] =
 {0xFFFF, PAL_TAG_BASCULIN_WHITE_STRIPED_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Basculin_White_Striped,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
 #endif // P_FAMILY_BASCULIN && P_HISUIAN_FORMS
 #if P_FAMILY_TIRTOUGA
+#if OW_SURF_TIRTOUGA
 {0xFFFF, PAL_TAG_TIRTOUGA_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Tirtouga,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_TIRTOUGA
+#if OW_SURF_CARRACOSTA
 {0xFFFF, PAL_TAG_CARRACOSTA_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Carracosta,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_CARRACOSTA
 #endif // P_FAMILY_TIRTOUGA
 #if P_FAMILY_DUCKLETT
+#if OW_SURF_DUCKLETT
 {0xFFFF, PAL_TAG_DUCKLETT_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Ducklett,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_DUCKLETT
+#if OW_SURF_SWANNA
 {0xFFFF, PAL_TAG_SWANNA_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Swanna,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_SWANNA
 #endif // P_FAMILY_DUCKLETT
 #if P_FAMILY_FRILLISH
+#if OW_SURF_FRILLISH
 {0xFFFF, PAL_TAG_FRILLISH_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Frillish,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_FRILLISH
+#if OW_SURF_JELLICENT
 {0xFFFF, PAL_TAG_JELLICENT_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Jellicent,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_JELLICENT
 #endif // P_FAMILY_FRILLISH
 #if P_FAMILY_ALOMOMOLA
+#if OW_SURF_ALOMOMOLA
 {0xFFFF, PAL_TAG_ALOMOMOLA_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Alomomola,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_ALOMOMOLA
 #endif // P_FAMILY_ALOMOMOLA
 #if P_FAMILY_AXEW
+#if OW_SURF_AXEW
 {0xFFFF, PAL_TAG_AXEW_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Axew,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_AXEW
+#if OW_SURF_FRAXURE
 {0xFFFF, PAL_TAG_FRAXURE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Fraxure,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_FRAXURE
+#if OW_SURF_HAXORUS
 {0xFFFF, PAL_TAG_HAXORUS_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Haxorus,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_HAXORUS
 #endif // P_FAMILY_AXEW
 #if P_FAMILY_CUBCHOO
+#if OW_SURF_CUBCHOO
 {0xFFFF, PAL_TAG_CUBCHOO_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Cubchoo,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_CUBCHOO
+#if OW_SURF_BEARTIC
 {0xFFFF, PAL_TAG_BEARTIC_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Beartic,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_BEARTIC
 #endif // P_FAMILY_CUBCHOO
 #if P_FAMILY_STUNFISK
+#if OW_SURF_STUNFISK
 {0xFFFF, PAL_TAG_STUNFISK_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Stunfisk,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_STUNFISK
 #endif // P_FAMILY_STUNFISK
 #if P_FAMILY_DRUDDIGON
+#if OW_SURF_DRUDDIGON
 {0xFFFF, PAL_TAG_DRUDDIGON_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Druddigon,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_DRUDDIGON
 #endif // P_FAMILY_DRUDDIGON
 #if P_FAMILY_BOUFFALANT
+#if OW_SURF_BOUFFALANT
 {0xFFFF, PAL_TAG_BOUFFALANT_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Bouffalant,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_BOUFFALANT
 #endif // P_FAMILY_BOUFFALANT
 #if P_FAMILY_DEINO
+#if OW_SURF_HYDREIGON
 {0xFFFF, PAL_TAG_HYDREIGON_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Hydreigon,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_HYDREIGON
 #endif // P_FAMILY_DEINO
 #if P_FAMILY_KELDEO
+#if OW_SURF_KELDEO
 {0xFFFF, PAL_TAG_KELDEO_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Keldeo,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_KELDEO
 #endif // P_FAMILY_KELDEO
 // Gen VI
 #if P_FAMILY_FROAKIE
+#if OW_SURF_FROAKIE
 {0xFFFF, PAL_TAG_FROAKIE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Froakie,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_FROAKIE
+#if OW_SURF_FROGADIER
 {0xFFFF, PAL_TAG_FROGADIER_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Frogadier,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_FROGADIER
+#if OW_SURF_GRENINJA
 {0xFFFF, PAL_TAG_GRENINJA_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Greninja,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_GRENINJA
 #endif // P_FAMILY_FROAKIE
 #if P_FAMILY_BUNNELBY
+#if OW_SURF_BUNNELBY
 {0xFFFF, PAL_TAG_BUNNELBY_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Bunnelby,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_BUNNELBY
+#if OW_SURF_DIGGERSBY
 {0xFFFF, PAL_TAG_DIGGERSBY_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Diggersby,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_DIGGERSBY
 #endif // P_FAMILY_BUNNELBY
 #if P_FAMILY_SKIDDO
+#if OW_SURF_SKIDDO
 {0xFFFF, PAL_TAG_SKIDDO_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Skiddo,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_SKIDDO
+#if OW_SURF_GOGOAT
 {0xFFFF, PAL_TAG_GOGOAT_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Gogoat,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_GOGOAT
 #endif // P_FAMILY_SKIDDO
 #if P_FAMILY_PANCHAM
+#if OW_SURF_PANCHAM
 {0xFFFF, PAL_TAG_PANCHAM_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Pancham,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_PANCHAM
+#if OW_SURF_PANGORO
 {0xFFFF, PAL_TAG_PANGORO_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Pangoro,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_PANGORO
 #endif // P_FAMILY_PANCHAM
 #if P_FAMILY_FURFROU
+#if OW_SURF_FURFROU
 {0xFFFF, PAL_TAG_FURFROU_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Furfrou,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_FURFROU
 #endif // P_FAMILY_FURFROU
 #if P_FAMILY_SWIRLIX
+#if OW_SURF_SWIRLIX
 {0xFFFF, PAL_TAG_SWIRLIX_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Swirlix,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_SWIRLIX
+#if OW_SURF_SLURPUFF
 {0xFFFF, PAL_TAG_SLURPUFF_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Slurpuff,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_SLURPUFF
 #endif // P_FAMILY_SWIRLIX
 #if P_FAMILY_BINACLE
+#if OW_SURF_BINACLE
 {0xFFFF, PAL_TAG_BINACLE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Binacle,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_BINACLE
+#if OW_SURF_BARBARACLE
 {0xFFFF, PAL_TAG_BARBARACLE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Barbaracle,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_BARBARACLE
 #endif // P_FAMILY_BINACLE
 #if P_FAMILY_SKRELP
+#if OW_SURF_SKRELP
 {0xFFFF, PAL_TAG_SKRELP_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Skrelp,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_SKRELP
+#if OW_SURF_DRAGALGE
 {0xFFFF, PAL_TAG_DRAGALGE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Dragalge,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_DRAGALGE
 #endif // P_FAMILY_SKRELP
 #if P_FAMILY_CLAUNCHER
+#if OW_SURF_CLAUNCHER
 {0xFFFF, PAL_TAG_CLAUNCHER_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Clauncher,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_CLAUNCHER
+#if OW_SURF_CLAWITZER
 {0xFFFF, PAL_TAG_CLAWITZER_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Clawitzer,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_CLAWITZER
 #endif // P_FAMILY_CLAUNCHER
 #if P_FAMILY_HELIOPTILE
+#if OW_SURF_HELIOPTILE
 {0xFFFF, PAL_TAG_HELIOPTILE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Helioptile,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_HELIOPTILE
+#if OW_SURF_HELIOLISK
 {0xFFFF, PAL_TAG_HELIOLISK_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Heliolisk,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_HELIOLISK
 #endif // P_FAMILY_HELIOPTILE
 #if P_FAMILY_GOOMY
+#if OW_SURF_GOODRA
 {0xFFFF, PAL_TAG_GOODRA_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Goodra,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_GOODRA
 #endif // P_FAMILY_GOOMY
 #if P_FAMILY_BERGMITE
+#if OW_SURF_BERGMITE
 {0xFFFF, PAL_TAG_BERGMITE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Bergmite,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_BERGMITE
+#if OW_SURF_AVALUGG
 {0xFFFF, PAL_TAG_AVALUGG_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Avalugg,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_AVALUGG
 #endif // P_FAMILY_BERGMITE
 // Gen VII
 #if P_FAMILY_POPPLIO
+#if OW_SURF_POPPLIO
 {0xFFFF, PAL_TAG_POPPLIO_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Popplio,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_POPPLIO
+#if OW_SURF_BRIONNE
 {0xFFFF, PAL_TAG_BRIONNE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Brionne,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_BRIONNE
+#if OW_SURF_PRIMARINA
 {0xFFFF, PAL_TAG_PRIMARINA_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Primarina,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_PRIMARINA
 #endif // P_FAMILY_POPPLIO
 #if P_FAMILY_WISHIWASHI
+#if OW_SURF_WISHIWASHI
 {0xFFFF, PAL_TAG_WISHIWASHI_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Wishiwashi,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_WISHIWASHI
 #endif // P_FAMILY_WISHIWASHI
 #if P_FAMILY_MAREANIE
+#if OW_SURF_MAREANIE
 {0xFFFF, PAL_TAG_MAREANIE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Mareanie,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_MAREANIE
+#if OW_SURF_TOXAPEX
 {0xFFFF, PAL_TAG_TOXAPEX_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Toxapex,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_TOXAPEX
 #endif // P_FAMILY_MAREANIE
 #if P_FAMILY_DEWPIDER
+#if OW_SURF_DEWPIDER
 {0xFFFF, PAL_TAG_DEWPIDER_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Dewpider,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_DEWPIDER
+#if OW_SURF_ARAQUANID
 {0xFFFF, PAL_TAG_ARAQUANID_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Araquanid,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_ARAQUANID
 #endif // P_FAMILY_DEWPIDER
 #if P_FAMILY_WIMPOD
+#if OW_SURF_WIMPOD
 {0xFFFF, PAL_TAG_WIMPOD_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Wimpod,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_WIMPOD
+#if OW_SURF_GOLISOPOD
 {0xFFFF, PAL_TAG_GOLISOPOD_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Golisopod,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_GOLISOPOD
 #endif // P_FAMILY_WIMPOD
 #if P_FAMILY_TYPE_NULL
+#if OW_SURF_SILVALLY
 {0xFFFF, PAL_TAG_SILVALLY_NORMAL_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Silvally_Normal,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
 {0xFFFF, PAL_TAG_SILVALLY_FIGHTING_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Silvally_Fighting,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
 {0xFFFF, PAL_TAG_SILVALLY_FLYING_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Silvally_Flying,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
@@ -2689,69 +3240,118 @@ const struct SpriteTemplate gSurfablePokemonOverlaySprites[] =
 {0xFFFF, PAL_TAG_SILVALLY_DRAGON_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Silvally_Dragon,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
 {0xFFFF, PAL_TAG_SILVALLY_DARK_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Silvally_Dark,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
 {0xFFFF, PAL_TAG_SILVALLY_FAIRY_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Silvally_Fairy,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_SILVALLY
 #endif // P_FAMILY_TYPE_NULL
 #if P_FAMILY_BRUXISH
+#if OW_SURF_BRUXISH
 {0xFFFF, PAL_TAG_BRUXISH_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Bruxish,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_BRUXISH
 #endif // P_FAMILY_BRUXISH
 #if P_FAMILY_DRAMPA
+#if OW_SURF_DRAMPA
 {0xFFFF, PAL_TAG_DRAMPA_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Drampa,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_DRAMPA
 #endif // P_FAMILY_DRAMPA
 #if P_FAMILY_DHELMISE
+#if OW_SURF_DHELMISE
 {0xFFFF, PAL_TAG_DHELMISE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Dhelmise,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_DHELMISE
 #endif // P_FAMILY_DHELMISE
 #if P_FAMILY_TAPU_FINI
+#if OW_SURF_TAPU_FINI
 {0xFFFF, PAL_TAG_TAPU_FINI_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Tapu_Fini,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_TAPU_FINI
 #endif // P_FAMILY_TAPU_FINI
 // Gen VIII
 #if P_FAMILY_SOBBLE
+#if OW_SURF_SOBBLE
 {0xFFFF, PAL_TAG_SOBBLE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Sobble,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_SOBBLE
+#if OW_SURF_DRIZZILE
 {0xFFFF, PAL_TAG_DRIZZILE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Drizzile,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_DRIZZILE
+#if OW_SURF_INTELEON
 {0xFFFF, PAL_TAG_INTELEON_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Inteleon,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_INTELEON
 #endif // P_FAMILY_SOBBLE
 #if P_FAMILY_CHEWTLE
+#if OW_SURF_CHEWTLE
 {0xFFFF, PAL_TAG_CHEWTLE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Chewtle,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_CHEWTLE
+#if OW_SURF_DREDNAW
 {0xFFFF, PAL_TAG_DREDNAW_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Drednaw,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_DREDNAW
 #endif // P_FAMILY_CHEWTLE
 #if P_FAMILY_CRAMORANT
+#if OW_SURF_CRAMORANT
 {0xFFFF, PAL_TAG_CRAMORANT_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Cramorant,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_CRAMORANT
 #endif // P_FAMILY_CRAMORANT
 #if P_FAMILY_ARROKUDA
+#if OW_SURF_ARROKUDA
 {0xFFFF, PAL_TAG_ARROKUDA_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Arrokuda,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_ARROKUDA
+#if OW_SURF_BARRASKEWDA
 {0xFFFF, PAL_TAG_BARRASKEWDA_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Barraskewda,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_BARRASKEWDA
 #endif // P_FAMILY_ARROKUDA
 #if P_FAMILY_CLOBBOPUS
+#if OW_SURF_GRAPPLOCT
 {0xFFFF, PAL_TAG_GRAPPLOCT_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Grapploct,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_GRAPPLOCT
 #endif // P_FAMILY_CLOBBOPUS
 #if P_FAMILY_ZIGZAGOON && P_GALARIAN_FORMS
+#if OW_SURF_OBSTAGOON
 {0xFFFF, PAL_TAG_OBSTAGOON_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Obstagoon,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_OBSTAGOON
 #endif // P_FAMILY_ZIGZAGOON && P_GALARIAN_FORMS
 #if P_FAMILY_CORSOLA && P_GALARIAN_FORMS
+#if OW_SURF_CURSOLA
 {0xFFFF, PAL_TAG_CURSOLA_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Cursola,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_CURSOLA
 #endif // P_FAMILY_CORSOLA && P_GALARIAN_FORMS
 #if P_FAMILY_PINCURCHIN
+#if OW_SURF_PINCURCHIN
 {0xFFFF, PAL_TAG_PINCURCHIN_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Pincurchin,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_PINCURCHIN
 #endif // P_FAMILY_PINCURCHIN
 #if P_FAMILY_EISCUE
+#if OW_SURF_EISCUE
 {0xFFFF, PAL_TAG_EISCUE_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Eiscue,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_EISCUE
 #endif // P_FAMILY_EISCUE
 #if P_FAMILY_ARCTOZOLT
+#if OW_SURF_ARCTOZOLT
 {0xFFFF, PAL_TAG_ARCTOZOLT_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Arctozolt,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_ARCTOZOLT
 #endif // P_FAMILY_ARCTOZOLT
 #if P_FAMILY_DRACOVISH
+#if OW_SURF_DRACOVISH
 {0xFFFF, PAL_TAG_DRACOVISH_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Dracovish,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_DRACOVISH
 #endif // P_FAMILY_DRACOVISH
 #if P_FAMILY_ARCTOVISH
+#if OW_SURF_ARCTOVISH
 {0xFFFF, PAL_TAG_ARCTOVISH_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Arctovish,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_ARCTOVISH
 #endif // P_FAMILY_ARCTOVISH
 #if P_FAMILY_DREEPY
+#if OW_SURF_DRAKLOAK
 {0xFFFF, PAL_TAG_DRAKLOAK_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Drakloak,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_DRAKLOAK
+#if OW_SURF_DRAGAPULT
 {0xFFFF, PAL_TAG_DRAGAPULT_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Dragapult,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_DRAGAPULT
 #endif // P_FAMILY_DREEPY
 #if P_FAMILY_BASCULIN && P_HISUIAN_FORMS
+#if OW_SURF_BASCULEGION
 {0xFFFF, PAL_TAG_BASCULEGION_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Basculegion,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_BASCULEGION
 #endif // P_FAMILY_BASCULIN && P_HISUIAN_FORMS
 #if P_FAMILY_QWILFISH && P_HISUIAN_FORMS
+#if OW_SURF_OVERQWIL
 {0xFFFF, PAL_TAG_OVERQWIL_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Overqwil,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
+#endif // OW_SURF_OVERQWIL
 #endif // P_FAMILY_QWILFISH && P_HISUIAN_FORMS
 
 #if P_FAMILY_KYOGRE && P_PRIMAL_REVERSIONS

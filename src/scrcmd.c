@@ -56,6 +56,7 @@
 #include "slot_machine.h"
 #include "sound.h"
 #include "string_util.h"
+#include "surfable.h"
 #include "text.h"
 #include "text_window.h"
 #include "trainer_see.h"
@@ -2374,6 +2375,17 @@ bool8 ScrCmd_checkfieldmove(struct ScriptContext *ctx)
     if (gSpecialVar_Result == PARTY_SIZE && PlayerHasMove(move)){  // If no mon have the move, but the player has the HM in bag, use the first mon
         gSpecialVar_Result = 0;
         gSpecialVar_0x8004 = GetMonData(&gPlayerParty[0], MON_DATA_SPECIES);
+    }
+
+    if (fieldMove == FIELD_MOVE_SURF && gSpecialVar_Result != PARTY_SIZE)
+    {
+        u8 surfMonPartySlot = GetSurfablePokemonPartySlot();
+
+        if (surfMonPartySlot != PARTY_SIZE)
+        {
+            gSpecialVar_Result = surfMonPartySlot;
+            gSpecialVar_0x8004 = GetMonData(&gPlayerParty[surfMonPartySlot], MON_DATA_SPECIES);
+        }
     }
 
     return FALSE;

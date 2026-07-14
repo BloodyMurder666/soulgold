@@ -4,6 +4,7 @@
 #include "field_effect.h"
 #include "field_effect_helpers.h"
 #include "field_player_avatar.h"
+#include "field_weather.h"
 #include "main.h"
 #include "party_menu.h"
 #include "sprite.h"
@@ -13,6 +14,7 @@
 #include "constants/field_effects.h"
 #include "constants/moves.h"
 #include "constants/species.h"
+#include "config/surfable_species_enabled.h"
 
 extern const struct OamData gObjectEventBaseOam_32x32;
 extern const struct OamData gObjectEventBaseOam_64x64;
@@ -43,7 +45,18 @@ STATIC_ASSERT(ARRAY_COUNT(gSurfablePokemon) == ARRAY_COUNT(gSurfablePokemonOverl
 static EWRAM_DATA u16 sCurrentSurfMon = {0};
 static EWRAM_DATA u8 sCurrentSurfMonPartySlot = {0};
 
-static u16 GetSurfablePokemonSprite(void)
+static u16 GetSurfablePokemonIndex(u16 species)
+{
+    for (u32 surfMon = 1; surfMon < ARRAY_COUNT(gSurfablePokemon); surfMon++)
+    {
+        if (species == gSurfablePokemon[surfMon].species)
+            return surfMon;
+    }
+
+    return 0xFFFF;
+}
+
+u8 GetSurfablePokemonPartySlot(void)
 {
     for (u32 partySlot = 0; partySlot < PARTY_SIZE; partySlot++)
     {
@@ -52,24 +65,33 @@ static u16 GetSurfablePokemonSprite(void)
 
         u16 species = GetMonData(&gPlayerParty[partySlot], MON_DATA_SPECIES);
 
-        for (u32 surfMon = 1; surfMon < ARRAY_COUNT(gSurfablePokemon); surfMon++)
-        {
-            if (species == gSurfablePokemon[surfMon].species)
-            {
-                sCurrentSurfMonPartySlot = partySlot;
-                return surfMon;
-            }
-        }
+        if (GetSurfablePokemonIndex(species) != 0xFFFF)
+            return partySlot;
     }
-    return 0xFFFF;
+
+    return PARTY_SIZE;
+}
+
+static u16 GetSurfablePokemonSprite(void)
+{
+    sCurrentSurfMonPartySlot = GetSurfablePokemonPartySlot();
+    if (sCurrentSurfMonPartySlot == PARTY_SIZE)
+        return 0xFFFF;
+
+    return GetSurfablePokemonIndex(GetMonData(&gPlayerParty[sCurrentSurfMonPartySlot], MON_DATA_SPECIES));
 }
 
 static void LoadSurfOverworldPalette(void)
 {
+    u8 paletteNum;
+
     if (IsMonShiny(&gPlayerParty[sCurrentSurfMonPartySlot]) == TRUE)
-        LoadSpritePalette(&sSurfablePokemonShinyPalettes[sCurrentSurfMon]);
+        paletteNum = LoadSpritePalette(&sSurfablePokemonShinyPalettes[sCurrentSurfMon]);
     else
-        LoadSpritePalette(&sSurfablePokemonPalettes[sCurrentSurfMon]);
+        paletteNum = LoadSpritePalette(&sSurfablePokemonPalettes[sCurrentSurfMon]);
+
+    if (paletteNum != 0xFF)
+        UpdateSpritePaletteWithWeather(paletteNum, FALSE);
 }
 
 u32 CreateSurfablePokemonSprite(void)
