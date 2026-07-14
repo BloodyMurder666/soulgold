@@ -176,192 +176,192 @@ static const u16 sWallpaperPalettes_Space[][16] =
     INCBIN_U16("graphics/pokemon_storage/wallpapers/space/tiles.gbapal"),
     INCBIN_U16("graphics/pokemon_storage/wallpapers/space/tiles.gbapal"),
 };
-static const u32 sWallpaperTiles_Space[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/space/tiles.4bpp.lz");
-static const u32 sWallpaperTilemap_Space[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/space/tilemap.bin.lz");
+static const u32 sWallpaperTiles_Space[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/space/tiles.4bpp.smol");
+static const u32 sWallpaperTilemap_Space[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/space/tilemap.bin.smolTM");
 
 static const u16 sWallpaperPalettes_Backyard[][16] =
 {
     INCBIN_U16("graphics/pokemon_storage/wallpapers/backyard/tiles.gbapal"),
     INCBIN_U16("graphics/pokemon_storage/wallpapers/backyard/tiles.gbapal"),
 };
-static const u32 sWallpaperTiles_Backyard[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/backyard/tiles.4bpp.lz");
-static const u32 sWallpaperTilemap_Backyard[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/backyard/tilemap.bin.lz");
+static const u32 sWallpaperTiles_Backyard[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/backyard/tiles.4bpp.smol");
+static const u32 sWallpaperTilemap_Backyard[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/backyard/tilemap.bin.smolTM");
 
 static const u16 sWallpaperPalettes_Nostalgic1[][16] =
 {
     INCBIN_U16("graphics/pokemon_storage/wallpapers/nostalgic1/tiles.gbapal"),
     INCBIN_U16("graphics/pokemon_storage/wallpapers/nostalgic1/tiles.gbapal"),
 };
-static const u32 sWallpaperTiles_Nostalgic1[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/nostalgic1/tiles.4bpp.lz");
-static const u32 sWallpaperTilemap_Nostalgic1[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/nostalgic1/tilemap.bin.lz");
+static const u32 sWallpaperTiles_Nostalgic1[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/nostalgic1/tiles.4bpp.smol");
+static const u32 sWallpaperTilemap_Nostalgic1[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/nostalgic1/tilemap.bin.smolTM");
 
 static const u16 sWallpaperPalettes_Torchic[][16] =
 {
     INCBIN_U16("graphics/pokemon_storage/wallpapers/torchic/tiles.gbapal"),
     INCBIN_U16("graphics/pokemon_storage/wallpapers/torchic/tiles.gbapal"),
 };
-static const u32 sWallpaperTiles_Torchic[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/torchic/tiles.4bpp.lz");
-static const u32 sWallpaperTilemap_Torchic[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/torchic/tilemap.bin.lz");
+static const u32 sWallpaperTiles_Torchic[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/torchic/tiles.4bpp.smol");
+static const u32 sWallpaperTilemap_Torchic[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/torchic/tilemap.bin.smolTM");
 
 static const u16 sWallpaperPalettes_Trio1[][16] =
 {
     INCBIN_U16("graphics/pokemon_storage/wallpapers/trio1/tiles.gbapal"),
     INCBIN_U16("graphics/pokemon_storage/wallpapers/trio1/tiles.gbapal"),
 };
-static const u32 sWallpaperTiles_Trio1[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/trio1/tiles.4bpp.lz");
-static const u32 sWallpaperTilemap_Trio1[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/trio1/tilemap.bin.lz");
+static const u32 sWallpaperTiles_Trio1[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/trio1/tiles.4bpp.smol");
+static const u32 sWallpaperTilemap_Trio1[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/trio1/tilemap.bin.smolTM");
 
 static const u16 sWallpaperPalettes_Pikapika1[][16] =
 {
     INCBIN_U16("graphics/pokemon_storage/wallpapers/pikapika1/tiles.gbapal"),
     INCBIN_U16("graphics/pokemon_storage/wallpapers/pikapika1/tiles.gbapal"),
 };
-static const u32 sWallpaperTiles_Pikapika1[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/pikapika1/tiles.4bpp.lz");
-static const u32 sWallpaperTilemap_Pikapika1[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/pikapika1/tilemap.bin.lz");
+static const u32 sWallpaperTiles_Pikapika1[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/pikapika1/tiles.4bpp.smol");
+static const u32 sWallpaperTilemap_Pikapika1[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/pikapika1/tilemap.bin.smolTM");
 
 static const u16 sWallpaperPalettes_TimeAndSpace[][16] =
 {
     INCBIN_U16("graphics/pokemon_storage/wallpapers/timeandspace/tiles.gbapal"),
     INCBIN_U16("graphics/pokemon_storage/wallpapers/timeandspace/tiles.gbapal"),
 };
-static const u32 sWallpaperTiles_TimeAndSpace[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/timeandspace/tiles.4bpp.lz");
-static const u32 sWallpaperTilemap_TimeAndSpace[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/timeandspace/tilemap.bin.lz");
+static const u32 sWallpaperTiles_TimeAndSpace[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/timeandspace/tiles.4bpp.smol");
+static const u32 sWallpaperTilemap_TimeAndSpace[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/timeandspace/tilemap.bin.smolTM");
 
 static const u16 sWallpaperPalettes_Galactic1[][16] =
 {
     INCBIN_U16("graphics/pokemon_storage/wallpapers/galactic1/tiles.gbapal"),
     INCBIN_U16("graphics/pokemon_storage/wallpapers/galactic1/tiles.gbapal"),
 };
-static const u32 sWallpaperTiles_Galactic1[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/galactic1/tiles.4bpp.lz");
-static const u32 sWallpaperTilemap_Galactic1[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/galactic1/tilemap.bin.lz");
+static const u32 sWallpaperTiles_Galactic1[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/galactic1/tiles.4bpp.smol");
+static const u32 sWallpaperTilemap_Galactic1[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/galactic1/tilemap.bin.smolTM");
 
 static const u16 sWallpaperPalettes_Distortion[][16] =
 {
     INCBIN_U16("graphics/pokemon_storage/wallpapers/distortion/tiles.gbapal"),
     INCBIN_U16("graphics/pokemon_storage/wallpapers/distortion/tiles.gbapal"),
 };
-static const u32 sWallpaperTiles_Distortion[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/distortion/tiles.4bpp.lz");
-static const u32 sWallpaperTilemap_Distortion[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/distortion/tilemap.bin.lz");
+static const u32 sWallpaperTiles_Distortion[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/distortion/tiles.4bpp.smol");
+static const u32 sWallpaperTilemap_Distortion[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/distortion/tilemap.bin.smolTM");
 
 static const u16 sWallpaperPalettes_Contest[][16] =
 {
     INCBIN_U16("graphics/pokemon_storage/wallpapers/contest/tiles.gbapal"),
     INCBIN_U16("graphics/pokemon_storage/wallpapers/contest/tiles.gbapal"),
 };
-static const u32 sWallpaperTiles_Contest[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/contest/tiles.4bpp.lz");
-static const u32 sWallpaperTilemap_Contest[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/contest/tilemap.bin.lz");
+static const u32 sWallpaperTiles_Contest[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/contest/tiles.4bpp.smol");
+static const u32 sWallpaperTilemap_Contest[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/contest/tilemap.bin.smolTM");
 
 static const u16 sWallpaperPalettes_Nostalgic2[][16] =
 {
     INCBIN_U16("graphics/pokemon_storage/wallpapers/nostalgic2/tiles.gbapal"),
     INCBIN_U16("graphics/pokemon_storage/wallpapers/nostalgic2/tiles.gbapal"),
 };
-static const u32 sWallpaperTiles_Nostalgic2[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/nostalgic2/tiles.4bpp.lz");
-static const u32 sWallpaperTilemap_Nostalgic2[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/nostalgic2/tilemap.bin.lz");
+static const u32 sWallpaperTiles_Nostalgic2[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/nostalgic2/tiles.4bpp.smol");
+static const u32 sWallpaperTilemap_Nostalgic2[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/nostalgic2/tilemap.bin.smolTM");
 
 static const u16 sWallpaperPalettes_Croagunk[][16] =
 {
     INCBIN_U16("graphics/pokemon_storage/wallpapers/croagunk/tiles.gbapal"),
     INCBIN_U16("graphics/pokemon_storage/wallpapers/croagunk/tiles.gbapal"),
 };
-static const u32 sWallpaperTiles_Croagunk[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/croagunk/tiles.4bpp.lz");
-static const u32 sWallpaperTilemap_Croagunk[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/croagunk/tilemap.bin.lz");
+static const u32 sWallpaperTiles_Croagunk[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/croagunk/tiles.4bpp.smol");
+static const u32 sWallpaperTilemap_Croagunk[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/croagunk/tilemap.bin.smolTM");
 
 static const u16 sWallpaperPalettes_Trio2[][16] =
 {
     INCBIN_U16("graphics/pokemon_storage/wallpapers/trio2/tiles.gbapal"),
     INCBIN_U16("graphics/pokemon_storage/wallpapers/trio2/tiles.gbapal"),
 };
-static const u32 sWallpaperTiles_Trio2[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/trio2/tiles.4bpp.lz");
-static const u32 sWallpaperTilemap_Trio2[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/trio2/tilemap.bin.lz");
+static const u32 sWallpaperTiles_Trio2[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/trio2/tiles.4bpp.smol");
+static const u32 sWallpaperTilemap_Trio2[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/trio2/tilemap.bin.smolTM");
 
 static const u16 sWallpaperPalettes_Pikapika2[][16] =
 {
     INCBIN_U16("graphics/pokemon_storage/wallpapers/pikapika2/tiles.gbapal"),
     INCBIN_U16("graphics/pokemon_storage/wallpapers/pikapika2/tiles.gbapal"),
 };
-static const u32 sWallpaperTiles_Pikapika2[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/pikapika2/tiles.4bpp.lz");
-static const u32 sWallpaperTilemap_Pikapika2[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/pikapika2/tilemap.bin.lz");
+static const u32 sWallpaperTiles_Pikapika2[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/pikapika2/tiles.4bpp.smol");
+static const u32 sWallpaperTilemap_Pikapika2[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/pikapika2/tilemap.bin.smolTM");
 
 static const u16 sWallpaperPalettes_Renegade[][16] =
 {
     INCBIN_U16("graphics/pokemon_storage/wallpapers/renegade/tiles.gbapal"),
     INCBIN_U16("graphics/pokemon_storage/wallpapers/renegade/tiles.gbapal"),
 };
-static const u32 sWallpaperTiles_Renegade[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/renegade/tiles.4bpp.lz");
-static const u32 sWallpaperTilemap_Renegade[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/renegade/tilemap.bin.lz");
+static const u32 sWallpaperTiles_Renegade[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/renegade/tiles.4bpp.smol");
+static const u32 sWallpaperTilemap_Renegade[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/renegade/tilemap.bin.smolTM");
 
 static const u16 sWallpaperPalettes_Galactic2[][16] =
 {
     INCBIN_U16("graphics/pokemon_storage/wallpapers/galactic2/tiles.gbapal"),
     INCBIN_U16("graphics/pokemon_storage/wallpapers/galactic2/tiles.gbapal"),
 };
-static const u32 sWallpaperTiles_Galactic2[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/galactic2/tiles.4bpp.lz");
-static const u32 sWallpaperTilemap_Galactic2[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/galactic2/tilemap.bin.lz");
+static const u32 sWallpaperTiles_Galactic2[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/galactic2/tiles.4bpp.smol");
+static const u32 sWallpaperTilemap_Galactic2[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/galactic2/tilemap.bin.smolTM");
 
 static const u16 sWallpaperPalettes_Heart[][16] =
 {
     INCBIN_U16("graphics/pokemon_storage/wallpapers/heart/tiles.gbapal"),
     INCBIN_U16("graphics/pokemon_storage/wallpapers/heart/tiles.gbapal"),
 };
-static const u32 sWallpaperTiles_Heart[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/heart/tiles.4bpp.lz");
-static const u32 sWallpaperTilemap_Heart[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/heart/tilemap.bin.lz");
+static const u32 sWallpaperTiles_Heart[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/heart/tiles.4bpp.smol");
+static const u32 sWallpaperTilemap_Heart[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/heart/tilemap.bin.smolTM");
 
 static const u16 sWallpaperPalettes_Soul[][16] =
 {
     INCBIN_U16("graphics/pokemon_storage/wallpapers/soul/tiles.gbapal"),
     INCBIN_U16("graphics/pokemon_storage/wallpapers/soul/tiles.gbapal"),
 };
-static const u32 sWallpaperTiles_Soul[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/soul/tiles.4bpp.lz");
-static const u32 sWallpaperTilemap_Soul[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/soul/tilemap.bin.lz");
+static const u32 sWallpaperTiles_Soul[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/soul/tiles.4bpp.smol");
+static const u32 sWallpaperTilemap_Soul[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/soul/tilemap.bin.smolTM");
 
 static const u16 sWallpaperPalettes_BigBrother[][16] =
 {
     INCBIN_U16("graphics/pokemon_storage/wallpapers/bigbrother/tiles.gbapal"),
     INCBIN_U16("graphics/pokemon_storage/wallpapers/bigbrother/tiles.gbapal"),
 };
-static const u32 sWallpaperTiles_BigBrother[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/bigbrother/tiles.4bpp.lz");
-static const u32 sWallpaperTilemap_BigBrother[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/bigbrother/tilemap.bin.lz");
+static const u32 sWallpaperTiles_BigBrother[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/bigbrother/tiles.4bpp.smol");
+static const u32 sWallpaperTilemap_BigBrother[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/bigbrother/tilemap.bin.smolTM");
 
 static const u16 sWallpaperPalettes_Pokeathlon[][16] =
 {
     INCBIN_U16("graphics/pokemon_storage/wallpapers/pokeathlon/tiles.gbapal"),
     INCBIN_U16("graphics/pokemon_storage/wallpapers/pokeathlon/tiles.gbapal"),
 };
-static const u32 sWallpaperTiles_Pokeathlon[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/pokeathlon/tiles.4bpp.lz");
-static const u32 sWallpaperTilemap_Pokeathlon[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/pokeathlon/tilemap.bin.lz");
+static const u32 sWallpaperTiles_Pokeathlon[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/pokeathlon/tiles.4bpp.smol");
+static const u32 sWallpaperTilemap_Pokeathlon[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/pokeathlon/tilemap.bin.smolTM");
 
 static const u16 sWallpaperPalettes_Trio3[][16] =
 {
     INCBIN_U16("graphics/pokemon_storage/wallpapers/trio3/tiles.gbapal"),
     INCBIN_U16("graphics/pokemon_storage/wallpapers/trio3/tiles.gbapal"),
 };
-static const u32 sWallpaperTiles_Trio3[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/trio3/tiles.4bpp.lz");
-static const u32 sWallpaperTilemap_Trio3[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/trio3/tilemap.bin.lz");
+static const u32 sWallpaperTiles_Trio3[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/trio3/tiles.4bpp.smol");
+static const u32 sWallpaperTilemap_Trio3[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/trio3/tilemap.bin.smolTM");
 
 static const u16 sWallpaperPalettes_SpikyPika[][16] =
 {
     INCBIN_U16("graphics/pokemon_storage/wallpapers/spikypika/tiles.gbapal"),
     INCBIN_U16("graphics/pokemon_storage/wallpapers/spikypika/tiles.gbapal"),
 };
-static const u32 sWallpaperTiles_SpikyPika[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/spikypika/tiles.4bpp.lz");
-static const u32 sWallpaperTilemap_SpikyPika[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/spikypika/tilemap.bin.lz");
+static const u32 sWallpaperTiles_SpikyPika[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/spikypika/tiles.4bpp.smol");
+static const u32 sWallpaperTilemap_SpikyPika[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/spikypika/tilemap.bin.smolTM");
 
 static const u16 sWallpaperPalettes_KimonoGirl[][16] =
 {
     INCBIN_U16("graphics/pokemon_storage/wallpapers/kimonogirl/tiles.gbapal"),
     INCBIN_U16("graphics/pokemon_storage/wallpapers/kimonogirl/tiles.gbapal"),
 };
-static const u32 sWallpaperTiles_KimonoGirl[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/kimonogirl/tiles.4bpp.lz");
-static const u32 sWallpaperTilemap_KimonoGirl[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/kimonogirl/tilemap.bin.lz");
+static const u32 sWallpaperTiles_KimonoGirl[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/kimonogirl/tiles.4bpp.smol");
+static const u32 sWallpaperTilemap_KimonoGirl[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/kimonogirl/tilemap.bin.smolTM");
 
 static const u16 sWallpaperPalettes_Revival[][16] =
 {
     INCBIN_U16("graphics/pokemon_storage/wallpapers/revival/tiles.gbapal"),
     INCBIN_U16("graphics/pokemon_storage/wallpapers/revival/tiles.gbapal"),
 };
-static const u32 sWallpaperTiles_Revival[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/revival/tiles.4bpp.lz");
-static const u32 sWallpaperTilemap_Revival[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/revival/tilemap.bin.lz");
+static const u32 sWallpaperTiles_Revival[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/revival/tiles.4bpp.smol");
+static const u32 sWallpaperTilemap_Revival[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/revival/tilemap.bin.smolTM");
 
 // 12x18 tilemap
 static const u32 sWallpaperTilemap_Unused[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/unused.bin");

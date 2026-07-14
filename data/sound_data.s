@@ -1,5 +1,7 @@
 	.section .rodata
 
+#include "config/songs_enabled.h"
+
 	.include "asm/macros.inc"
 	.include "constants/constants.inc"
 

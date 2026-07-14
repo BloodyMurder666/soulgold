@@ -3848,7 +3848,7 @@ const u16 gTilesetPalettes_HiddenGrotto1[][16] =
     INCBIN_U16("data/tilesets/secondary/hidden_grotto_1/palettes/12.gbapal"),
 };
 
-const u32 gTilesetTiles_HiddenGrotto1[] = INCBIN_U32("data/tilesets/secondary/hidden_grotto_1/tiles.4bpp.lz");
+const u32 gTilesetTiles_HiddenGrotto1[] = INCBIN_U32("data/tilesets/secondary/hidden_grotto_1/tiles.4bpp.fastSmol");
 
 const u16 gTilesetPalettes_Grotto1[][16] =
 {
@@ -3867,7 +3867,7 @@ const u16 gTilesetPalettes_Grotto1[][16] =
     INCBIN_U16("data/tilesets/primary/grotto_1/palettes/12.gbapal"),
 };
 
-const u32 gTilesetTiles_Grotto1[] = INCBIN_U32("data/tilesets/primary/grotto_1/tiles.4bpp.lz");
+const u32 gTilesetTiles_Grotto1[] = INCBIN_U32("data/tilesets/primary/grotto_1/tiles.4bpp.smol");
 
 const u16 gTilesetPalettes_g4cave[][16] =
 {
@@ -3886,7 +3886,7 @@ const u16 gTilesetPalettes_g4cave[][16] =
     INCBIN_U16("data/tilesets/secondary/g_4cave/palettes/12.gbapal"),
 };
 
-const u32 gTilesetTiles_g4cave[] = INCBIN_U32("data/tilesets/secondary/g_4cave/tiles.4bpp.lz");
+const u32 gTilesetTiles_g4cave[] = INCBIN_U32("data/tilesets/secondary/g_4cave/tiles.4bpp.fastSmol");
 
 const u16 gTilesetPalettes_SeviiIslands123[][16] =
 {
@@ -3905,9 +3905,9 @@ const u16 gTilesetPalettes_SeviiIslands123[][16] =
     INCBIN_U16("data/tilesets/secondary/sevii_islands_123/palettes/12.gbapal"),
 };
 
-const u32 gTilesetTiles_SeviiIslands123[] = INCBIN_U32("data/tilesets/secondary/sevii_islands_123/tiles.4bpp.lz");
+const u32 gTilesetTiles_SeviiIslands123[] = INCBIN_U32("data/tilesets/secondary/sevii_islands_123/tiles.4bpp.fastSmol");
 
-const u32 gTilesetTiles_MtEmber[] = INCBIN_U32("data/tilesets/secondary/mt_ember_frlg/tiles.4bpp.lz");
+const u32 gTilesetTiles_MtEmber[] = INCBIN_U32("data/tilesets/secondary/mt_ember_frlg/tiles.4bpp.fastSmol");
 
 const u16 gTilesetPalettes_MtEmber[][16] =
 {
@@ -3945,7 +3945,7 @@ const u16 gTilesetPalettes_Desert[][16] =
     INCBIN_U16("data/tilesets/secondary/desert/palettes/12.gbapal"),
 };
 
-const u32 gTilesetTiles_Desert[] = INCBIN_U32("data/tilesets/secondary/desert/tiles.4bpp.lz");
+const u32 gTilesetTiles_Desert[] = INCBIN_U32("data/tilesets/secondary/desert/tiles.4bpp.fastSmol");
 
 const u16 gTilesetPalettes_Casino[][16] =
 {
@@ -3964,7 +3964,7 @@ const u16 gTilesetPalettes_Casino[][16] =
     INCBIN_U16("data/tilesets/primary/casino/palettes/12.gbapal"),
 };
 
-const u32 gTilesetTiles_Casino[] = INCBIN_U32("data/tilesets/primary/casino/tiles.4bpp.lz");
+const u32 gTilesetTiles_Casino[] = INCBIN_U32("data/tilesets/primary/casino/tiles.4bpp.smol");
 
 const u16 gTilesetPalettes_g4_alt[][16] =
 {
@@ -3983,7 +3983,7 @@ const u16 gTilesetPalettes_g4_alt[][16] =
     INCBIN_U16("data/tilesets/secondary/g_4_alt/palettes/12.gbapal"),
 };
 
-const u32 gTilesetTiles_g4_alt[] = INCBIN_U32("data/tilesets/secondary/g_4_alt/tiles.4bpp.lz");
+const u32 gTilesetTiles_g4_alt[] = INCBIN_U32("data/tilesets/secondary/g_4_alt/tiles.4bpp.fastSmol");
 
 const u16 gTilesetPalettes_ArcadeBattle[][16] =
 {
@@ -4002,7 +4002,7 @@ const u16 gTilesetPalettes_ArcadeBattle[][16] =
     INCBIN_U16("data/tilesets/primary/arcade_battle/palettes/12.gbapal"),
 };
 
-const u32 gTilesetTiles_ArcadeBattle[] = INCBIN_U32("data/tilesets/primary/arcade_battle/tiles.4bpp.lz");
+const u32 gTilesetTiles_ArcadeBattle[] = INCBIN_U32("data/tilesets/primary/arcade_battle/tiles.4bpp.smol");
 
 const u16 gTilesetPalettes_ArcadeLobby[][16] =
 {
@@ -4021,7 +4021,7 @@ const u16 gTilesetPalettes_ArcadeLobby[][16] =
     INCBIN_U16("data/tilesets/secondary/arcade_lobby/palettes/12.gbapal"),
 };
 
-const u32 gTilesetTiles_ArcadeLobby[] = INCBIN_U32("data/tilesets/secondary/arcade_lobby/tiles.4bpp.lz");
+const u32 gTilesetTiles_ArcadeLobby[] = INCBIN_U32("data/tilesets/secondary/arcade_lobby/tiles.4bpp.fastSmol");
 
 const u16 gTilesetPalettes_DesertVillage[][16] =
 {
@@ -4040,7 +4040,7 @@ const u16 gTilesetPalettes_DesertVillage[][16] =
     INCBIN_U16("data/tilesets/secondary/desert_village/palettes/12.gbapal"),
 };
 
-const u32 gTilesetTiles_DesertVillage[] = INCBIN_U32("data/tilesets/secondary/desert_village/tiles.4bpp.lz");
+const u32 gTilesetTiles_DesertVillage[] = INCBIN_U32("data/tilesets/secondary/desert_village/tiles.4bpp.fastSmol");
 
 const u16 gTilesetPalettes_JohtoFactory[][16] =
 {
@@ -4059,7 +4059,7 @@ const u16 gTilesetPalettes_JohtoFactory[][16] =
     INCBIN_U16("data/tilesets/secondary/johto_factory/palettes/12.gbapal"),
 };
 
-const u32 gTilesetTiles_JohtoFactory[] = INCBIN_U32("data/tilesets/secondary/johto_factory/tiles.4bpp.lz");
+const u32 gTilesetTiles_JohtoFactory[] = INCBIN_U32("data/tilesets/secondary/johto_factory/tiles.4bpp.fastSmol");
 
 const u16 gTilesetPalettes_MysteryDungeon[][16] =
 {
@@ -4078,7 +4078,7 @@ const u16 gTilesetPalettes_MysteryDungeon[][16] =
     INCBIN_U16("data/tilesets/secondary/mystery_dungeon/palettes/12.gbapal"),
 };
 
-const u32 gTilesetTiles_MysteryDungeon[] = INCBIN_U32("data/tilesets/secondary/mystery_dungeon/tiles.4bpp.lz");
+const u32 gTilesetTiles_MysteryDungeon[] = INCBIN_U32("data/tilesets/secondary/mystery_dungeon/tiles.4bpp.fastSmol");
 
 const u16 gTilesetPalettes_Dojo[][16] =
 {
@@ -4097,7 +4097,7 @@ const u16 gTilesetPalettes_Dojo[][16] =
     INCBIN_U16("data/tilesets/secondary/dojo/palettes/12.gbapal"),
 };
 
-const u32 gTilesetTiles_Dojo[] = INCBIN_U32("data/tilesets/secondary/dojo/tiles.4bpp.lz");
+const u32 gTilesetTiles_Dojo[] = INCBIN_U32("data/tilesets/secondary/dojo/tiles.4bpp.fastSmol");
 
 const u16 gTilesetPalettes_Building_Hoenn[][16] =
 {
@@ -4116,7 +4116,7 @@ const u16 gTilesetPalettes_Building_Hoenn[][16] =
     INCBIN_U16("data/tilesets/primary/building_hoenn/palettes/12.gbapal"),
 };
 
-const u32 gTilesetTiles_Building_Hoenn[] = INCBIN_U32("data/tilesets/primary/building_hoenn/tiles.4bpp.lz");
+const u32 gTilesetTiles_Building_Hoenn[] = INCBIN_U32("data/tilesets/primary/building_hoenn/tiles.4bpp.smol");
 
 const u16 gTilesetPalettes_AltTrees[][16] =
 {
@@ -4135,7 +4135,7 @@ const u16 gTilesetPalettes_AltTrees[][16] =
     INCBIN_U16("data/tilesets/primary/alt_trees/palettes/12.gbapal"),
 };
 
-const u32 gTilesetTiles_AltTrees[] = INCBIN_U32("data/tilesets/primary/alt_trees/tiles.4bpp.lz");
+const u32 gTilesetTiles_AltTrees[] = INCBIN_U32("data/tilesets/primary/alt_trees/tiles.4bpp.smol");
 
 const u16 gTilesetPalettes_TohjoPass[][16] =
 {
@@ -4154,4 +4154,4 @@ const u16 gTilesetPalettes_TohjoPass[][16] =
     INCBIN_U16("data/tilesets/secondary/tohjo_pass/palettes/12.gbapal"),
 };
 
-const u32 gTilesetTiles_TohjoPass[] = INCBIN_U32("data/tilesets/secondary/tohjo_pass/tiles.4bpp.lz");
+const u32 gTilesetTiles_TohjoPass[] = INCBIN_U32("data/tilesets/secondary/tohjo_pass/tiles.4bpp.fastSmol");

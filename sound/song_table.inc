@@ -5,6 +5,11 @@
 
 	.align 2
 
+#define SONG_TABLE_ENTRY_0(songName) dummy_song_header
+#define SONG_TABLE_ENTRY_1(songName) songName
+#define SONG_TABLE_ENTRY_EXPAND(enabled, songName) SONG_TABLE_ENTRY_##enabled(songName)
+#define SONG_TABLE_ENTRY(enabled, songName) SONG_TABLE_ENTRY_EXPAND(enabled, songName)
+
 gSongTable::
 	song mus_dummy, MUSIC_PLAYER_BGM, 0
 	song se_use_item, MUSIC_PLAYER_SE1, 1
@@ -616,87 +621,87 @@ gSongTable::
 	song ph_nurse_blend, MUSIC_PLAYER_SE2, 2
 	song ph_nurse_held, MUSIC_PLAYER_SE2, 2
 	song ph_nurse_solo, MUSIC_PLAYER_SE2, 2
-	song mus_dp_twinleaf_day, MUSIC_PLAYER_BGM, 0
-	song mus_dp_sandgem_day, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_TWINLEAF_DAY, mus_dp_twinleaf_day), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_SANDGEM_DAY, mus_dp_sandgem_day), MUSIC_PLAYER_BGM, 0
 	song mus_dp_floaroma_day, MUSIC_PLAYER_BGM, 0
-	song mus_dp_solaceon_day, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_SOLACEON_DAY, mus_dp_solaceon_day), MUSIC_PLAYER_BGM, 0
 	song mus_dp_route225_day, MUSIC_PLAYER_BGM, 0
-	song mus_dp_valor_lakefront_day, MUSIC_PLAYER_BGM, 0
-	song mus_dp_jubilife_day, MUSIC_PLAYER_BGM, 0
-	song mus_dp_canalave_day, MUSIC_PLAYER_BGM, 0
-	song mus_dp_oreburgh_day, MUSIC_PLAYER_BGM, 0
-	song mus_dp_eterna_day, MUSIC_PLAYER_BGM, 0
-	song mus_dp_hearthome_day, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_VALOR_LAKEFRONT_DAY, mus_dp_valor_lakefront_day), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_JUBILIFE_DAY, mus_dp_jubilife_day), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_CANALAVE_DAY, mus_dp_canalave_day), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_OREBURGH_DAY, mus_dp_oreburgh_day), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_ETERNA_DAY, mus_dp_eterna_day), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_HEARTHOME_DAY, mus_dp_hearthome_day), MUSIC_PLAYER_BGM, 0
 	song mus_dp_veilstone_day, MUSIC_PLAYER_BGM, 0
 	song mus_dp_sunyshore_day, MUSIC_PLAYER_BGM, 0
-	song mus_dp_snowpoint_day, MUSIC_PLAYER_BGM, 0
-	song mus_dp_pokemon_league_day, MUSIC_PLAYER_BGM, 0
-	song mus_dp_fight_area_day, MUSIC_PLAYER_BGM, 0
-	song mus_dp_route201_day, MUSIC_PLAYER_BGM, 0
-	song mus_dp_route203_day, MUSIC_PLAYER_BGM, 0
-	song mus_dp_route205_day, MUSIC_PLAYER_BGM, 0
-	song mus_dp_route206_day, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_SNOWPOINT_DAY, mus_dp_snowpoint_day), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_POKEMON_LEAGUE_DAY, mus_dp_pokemon_league_day), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_FIGHT_AREA_DAY, mus_dp_fight_area_day), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_ROUTE201_DAY, mus_dp_route201_day), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_ROUTE203_DAY, mus_dp_route203_day), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_ROUTE205_DAY, mus_dp_route205_day), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_ROUTE206_DAY, mus_dp_route206_day), MUSIC_PLAYER_BGM, 0
 	song mus_dp_route209_day, MUSIC_PLAYER_BGM, 0
 	song mus_dp_route210_day, MUSIC_PLAYER_BGM, 0
-	song mus_dp_route216_day, MUSIC_PLAYER_BGM, 0
-	song mus_dp_route228_day, MUSIC_PLAYER_BGM, 0
-	song mus_dp_rowan, MUSIC_PLAYER_BGM, 0
-	song mus_dp_tv_broadcast, MUSIC_PLAYER_BGM, 0
-	song mus_dp_twinleaf_night, MUSIC_PLAYER_BGM, 0
-	song mus_dp_sandgem_night, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_ROUTE216_DAY, mus_dp_route216_day), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_ROUTE228_DAY, mus_dp_route228_day), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_ROWAN, mus_dp_rowan), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_TV_BROADCAST, mus_dp_tv_broadcast), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_TWINLEAF_NIGHT, mus_dp_twinleaf_night), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_SANDGEM_NIGHT, mus_dp_sandgem_night), MUSIC_PLAYER_BGM, 0
 	song mus_dp_floaroma_night, MUSIC_PLAYER_BGM, 0
-	song mus_dp_solaceon_night, MUSIC_PLAYER_BGM, 0
-	song mus_dp_route225_night, MUSIC_PLAYER_BGM, 0
-	song mus_dp_valor_lakefront_night, MUSIC_PLAYER_BGM, 0
-	song mus_dp_jubilife_night, MUSIC_PLAYER_BGM, 0
-	song mus_dp_canalave_night, MUSIC_PLAYER_BGM, 0
-	song mus_dp_oreburgh_night, MUSIC_PLAYER_BGM, 0
-	song mus_dp_eterna_night, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_SOLACEON_NIGHT, mus_dp_solaceon_night), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_ROUTE225_NIGHT, mus_dp_route225_night), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_VALOR_LAKEFRONT_NIGHT, mus_dp_valor_lakefront_night), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_JUBILIFE_NIGHT, mus_dp_jubilife_night), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_CANALAVE_NIGHT, mus_dp_canalave_night), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_OREBURGH_NIGHT, mus_dp_oreburgh_night), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_ETERNA_NIGHT, mus_dp_eterna_night), MUSIC_PLAYER_BGM, 0
 	song mus_dp_hearthome_night, MUSIC_PLAYER_BGM, 0
-	song mus_dp_veilstone_night, MUSIC_PLAYER_BGM, 0
-	song mus_dp_sunyshore_night, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_VEILSTONE_NIGHT, mus_dp_veilstone_night), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_SUNYSHORE_NIGHT, mus_dp_sunyshore_night), MUSIC_PLAYER_BGM, 0
 	song mus_dp_snowpoint_night, MUSIC_PLAYER_BGM, 0
-	song mus_dp_pokemon_league_night, MUSIC_PLAYER_BGM, 0
-	song mus_dp_fight_area_night, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_POKEMON_LEAGUE_NIGHT, mus_dp_pokemon_league_night), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_FIGHT_AREA_NIGHT, mus_dp_fight_area_night), MUSIC_PLAYER_BGM, 0
 	song mus_dp_route201_night, MUSIC_PLAYER_BGM, 0
 	song mus_dp_route203_night, MUSIC_PLAYER_BGM, 0
 	song mus_dp_route205_night, MUSIC_PLAYER_BGM, 0
-	song mus_dp_route206_night, MUSIC_PLAYER_BGM, 0
-	song mus_dp_route209_night, MUSIC_PLAYER_BGM, 0
-	song mus_dp_route210_night, MUSIC_PLAYER_BGM, 0
-	song mus_dp_route216_night, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_ROUTE206_NIGHT, mus_dp_route206_night), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_ROUTE209_NIGHT, mus_dp_route209_night), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_ROUTE210_NIGHT, mus_dp_route210_night), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_ROUTE216_NIGHT, mus_dp_route216_night), MUSIC_PLAYER_BGM, 0
 	song mus_dp_route228_night, MUSIC_PLAYER_BGM, 0
-	song mus_dp_underground, MUSIC_PLAYER_BGM, 0
-	song mus_dp_flag_captured, MUSIC_PLAYER_BGM, 0
-	song mus_dp_victory_road, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_UNDERGROUND, mus_dp_underground), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_FLAG_CAPTURED, mus_dp_flag_captured), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_VICTORY_ROAD, mus_dp_victory_road), MUSIC_PLAYER_BGM, 0
 	song mus_dp_eterna_forest, MUSIC_PLAYER_BGM, 0
-	song mus_dp_old_chateau, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_OLD_CHATEAU, mus_dp_old_chateau), MUSIC_PLAYER_BGM, 0
 	song mus_dp_lake_caverns, MUSIC_PLAYER_BGM, 0
-	song mus_dp_amity_square, MUSIC_PLAYER_BGM, 0
-	song mus_dp_galactic_hq, MUSIC_PLAYER_BGM, 0
-	song mus_dp_galactic_eterna_building, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_AMITY_SQUARE, mus_dp_amity_square), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_GALACTIC_HQ, mus_dp_galactic_hq), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_GALACTIC_ETERNA_BUILDING, mus_dp_galactic_eterna_building), MUSIC_PLAYER_BGM, 0
 	song mus_dp_great_marsh, MUSIC_PLAYER_BGM, 0
-	song mus_dp_lake, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_LAKE, mus_dp_lake), MUSIC_PLAYER_BGM, 0
 	song mus_dp_mt_coronet, MUSIC_PLAYER_BGM, 0
-	song mus_dp_spear_pillar, MUSIC_PLAYER_BGM, 0
-	song mus_dp_stark_mountain, MUSIC_PLAYER_BGM, 0
-	song mus_dp_oreburgh_gate, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_SPEAR_PILLAR, mus_dp_spear_pillar), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_STARK_MOUNTAIN, mus_dp_stark_mountain), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_OREBURGH_GATE, mus_dp_oreburgh_gate), MUSIC_PLAYER_BGM, 0
 	song mus_dp_oreburgh_mine, MUSIC_PLAYER_BGM, 0
-	song mus_dp_inside_pokemon_league, MUSIC_PLAYER_BGM, 0
-	song mus_dp_hall_of_fame_room, MUSIC_PLAYER_BGM, 0
-	song mus_dp_poke_center_day, MUSIC_PLAYER_BGM, 0
-	song mus_dp_poke_center_night, MUSIC_PLAYER_BGM, 0
-	song mus_dp_gym, MUSIC_PLAYER_BGM, 0
-	song mus_dp_rowan_lab, MUSIC_PLAYER_BGM, 0
-	song mus_dp_contest_lobby, MUSIC_PLAYER_BGM, 0
-	song mus_dp_poke_mart, MUSIC_PLAYER_BGM, 0
-	song mus_dp_game_corner, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_INSIDE_POKEMON_LEAGUE, mus_dp_inside_pokemon_league), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_HALL_OF_FAME_ROOM, mus_dp_hall_of_fame_room), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_POKE_CENTER_DAY, mus_dp_poke_center_day), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_POKE_CENTER_NIGHT, mus_dp_poke_center_night), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_GYM, mus_dp_gym), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_ROWAN_LAB, mus_dp_rowan_lab), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_CONTEST_LOBBY, mus_dp_contest_lobby), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_POKE_MART, mus_dp_poke_mart), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_GAME_CORNER, mus_dp_game_corner), MUSIC_PLAYER_BGM, 0
 	song mus_dp_b_tower, MUSIC_PLAYER_BGM, 0
-	song mus_dp_tv_station, MUSIC_PLAYER_BGM, 0
-	song mus_dp_galactic_hq_basement, MUSIC_PLAYER_BGM, 0
-	song mus_dp_azure_flute, MUSIC_PLAYER_BGM, 0
-	song mus_dp_hall_of_origin, MUSIC_PLAYER_BGM, 0
-	song mus_dp_gts, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_TV_STATION, mus_dp_tv_station), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_GALACTIC_HQ_BASEMENT, mus_dp_galactic_hq_basement), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_AZURE_FLUTE, mus_dp_azure_flute), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_HALL_OF_ORIGIN, mus_dp_hall_of_origin), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_GTS, mus_dp_gts), MUSIC_PLAYER_BGM, 0
 	song mus_dp_encounter_boy, MUSIC_PLAYER_BGM, 0
 	song mus_dp_encounter_twins, MUSIC_PLAYER_BGM, 0
 	song mus_dp_encounter_intense, MUSIC_PLAYER_BGM, 0
@@ -712,111 +717,111 @@ gSongTable::
 	song mus_dp_encounter_artist, MUSIC_PLAYER_BGM, 0
 	song mus_dp_encounter_elite_four, MUSIC_PLAYER_BGM, 0
 	song mus_dp_encounter_champion, MUSIC_PLAYER_BGM, 0
-	song mus_dp_vs_wild, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_VS_WILD, mus_dp_vs_wild), MUSIC_PLAYER_BGM, 0
 	song mus_dp_vs_gym_leader, MUSIC_PLAYER_BGM, 0
 	song mus_dp_vs_uxie_mesprit_azelf, MUSIC_PLAYER_BGM, 0
 	song mus_dp_vs_trainer, MUSIC_PLAYER_BGM, 0
-	song mus_dp_vs_galactic_boss, MUSIC_PLAYER_BGM, 0
-	song mus_dp_vs_dialga_palkia, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_VS_GALACTIC_BOSS, mus_dp_vs_galactic_boss), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_VS_DIALGA_PALKIA, mus_dp_vs_dialga_palkia), MUSIC_PLAYER_BGM, 0
 	song mus_dp_vs_champion, MUSIC_PLAYER_BGM, 0
-	song mus_dp_vs_galactic, MUSIC_PLAYER_BGM, 0
-	song mus_dp_vs_rival, MUSIC_PLAYER_BGM, 0
-	song mus_dp_vs_arceus, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_VS_GALACTIC, mus_dp_vs_galactic), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_VS_RIVAL, mus_dp_vs_rival), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_VS_ARCEUS, mus_dp_vs_arceus), MUSIC_PLAYER_BGM, 0
 	song mus_dp_vs_legend, MUSIC_PLAYER_BGM, 0
-	song mus_dp_victory_wild, MUSIC_PLAYER_BGM, 0
-	song mus_dp_victory_trainer, MUSIC_PLAYER_BGM, 0
-	song mus_dp_victory_gym_leader, MUSIC_PLAYER_BGM, 0
-	song mus_dp_victory_champion, MUSIC_PLAYER_BGM, 0
-	song mus_dp_victory_galactic, MUSIC_PLAYER_BGM, 0
-	song mus_dp_victory_elite_four, MUSIC_PLAYER_BGM, 0
-	song mus_dp_vs_galactic_commander, MUSIC_PLAYER_BGM, 0
-	song mus_dp_contest, MUSIC_PLAYER_BGM, 0
-	song mus_dp_vs_elite_four, MUSIC_PLAYER_BGM, 0
-	song mus_dp_follow_me, MUSIC_PLAYER_BGM, 0
-	song mus_dp_rival, MUSIC_PLAYER_BGM, 0
-	song mus_dp_lake_event, MUSIC_PLAYER_BGM, 0
-	song mus_dp_evolution, MUSIC_PLAYER_BGM, 0
-	song mus_dp_lucas, MUSIC_PLAYER_BGM, 0
-	song mus_dp_dawn, MUSIC_PLAYER_BGM, 0
-	song mus_dp_legend_appears, MUSIC_PLAYER_BGM, 0
-	song mus_dp_catastrophe, MUSIC_PLAYER_BGM, 0
-	song mus_dp_poke_radar, MUSIC_PLAYER_BGM, 0
-	song mus_dp_surf, MUSIC_PLAYER_BGM, 0
-	song mus_dp_cycling, MUSIC_PLAYER_BGM, 0
-	song mus_dp_lets_go_together, MUSIC_PLAYER_SE2, 2
-	song mus_dp_tv_end, MUSIC_PLAYER_SE2, 2
-	song mus_dp_level_up, MUSIC_PLAYER_SE2, 2
-	song mus_dp_evolved, MUSIC_PLAYER_SE2, 2
-	song mus_dp_obtain_key_item, MUSIC_PLAYER_SE2, 2
-	song mus_dp_obtain_item, MUSIC_PLAYER_SE2, 2
-	song mus_dp_caught_intro, MUSIC_PLAYER_SE2, 2
-	song mus_dp_dex_rating, MUSIC_PLAYER_SE2, 2
-	song mus_dp_obtain_badge, MUSIC_PLAYER_SE2, 2
-	song mus_dp_poketch, MUSIC_PLAYER_SE2, 2
-	song mus_dp_obtain_tmhm, MUSIC_PLAYER_SE2, 2
-	song mus_dp_obtain_accessory, MUSIC_PLAYER_SE2, 2
-	song mus_dp_move_deleted, MUSIC_PLAYER_SE2, 2
-	song mus_dp_heal, MUSIC_PLAYER_SE2, 2
-	song mus_dp_obtain_berry, MUSIC_PLAYER_SE2, 2
-	song mus_dp_contest_dress_up, MUSIC_PLAYER_BGM, 0
-	song mus_dp_hall_of_fame, MUSIC_PLAYER_BGM, 0
-	song mus_dp_intro, MUSIC_PLAYER_BGM, 0
-	song mus_dp_title, MUSIC_PLAYER_BGM, 0
-	song mus_dp_mystery_gift, MUSIC_PLAYER_BGM, 0
-	song mus_dp_wfc, MUSIC_PLAYER_BGM, 0
-	song mus_dp_dance_easy, MUSIC_PLAYER_BGM, 0
-	song mus_dp_dance_difficult, MUSIC_PLAYER_BGM, 0
-	song mus_dp_contest_results, MUSIC_PLAYER_BGM, 0
-	song mus_dp_contest_winner, MUSIC_PLAYER_BGM, 0
-	song mus_dp_poffins, MUSIC_PLAYER_BGM, 0
-	song mus_dp_slots_win, MUSIC_PLAYER_BGM, 0
-	song mus_dp_slots_jackpot, MUSIC_PLAYER_BGM, 0
-	song mus_dp_credits, MUSIC_PLAYER_BGM, 0
-	song mus_dp_slots_unused, MUSIC_PLAYER_BGM, 0
-	song mus_pl_fight_area_day, MUSIC_PLAYER_BGM, 0
-	song mus_pl_tv_broadcast, MUSIC_PLAYER_BGM, 0
-	song mus_pl_tv_end, MUSIC_PLAYER_SE2, 2
-	song mus_pl_intro, MUSIC_PLAYER_BGM, 0
-	song mus_pl_title, MUSIC_PLAYER_BGM, 0
-	song mus_pl_distortion_world, MUSIC_PLAYER_BGM, 0
-	song mus_pl_b_arcade, MUSIC_PLAYER_BGM, 0
-	song mus_pl_b_hall, MUSIC_PLAYER_BGM, 0
-	song mus_pl_b_castle, MUSIC_PLAYER_BGM, 0
-	song mus_pl_b_factory, MUSIC_PLAYER_BGM, 0
-	song mus_pl_global_terminal, MUSIC_PLAYER_BGM, 0
-	song mus_pl_lilycove_bossa_nova, MUSIC_PLAYER_BGM, 0
-	song mus_pl_looker, MUSIC_PLAYER_BGM, 0
-	song mus_pl_vs_giratina, MUSIC_PLAYER_BGM, 0
-	song mus_pl_vs_frontier_brain, MUSIC_PLAYER_BGM, 0
-	song mus_pl_victory_frontier_brain, MUSIC_PLAYER_BGM, 0
-	song mus_pl_vs_regi, MUSIC_PLAYER_BGM, 0
-	song mus_pl_contest_cool, MUSIC_PLAYER_BGM, 0
-	song mus_pl_contest_smart, MUSIC_PLAYER_BGM, 0
-	song mus_pl_contest_cute, MUSIC_PLAYER_BGM, 0
-	song mus_pl_contest_tough, MUSIC_PLAYER_BGM, 0
-	song mus_pl_contest_beauty, MUSIC_PLAYER_BGM, 0
-	song mus_pl_spin_trade, MUSIC_PLAYER_BGM, 0
-	song mus_pl_wifi_minigames, MUSIC_PLAYER_BGM, 0
-	song mus_pl_wifi_plaza, MUSIC_PLAYER_BGM, 0
-	song mus_pl_wifi_parade, MUSIC_PLAYER_BGM, 0
-	song mus_pl_giratina_appears_1, MUSIC_PLAYER_BGM, 0
-	song mus_pl_giratina_appears_2, MUSIC_PLAYER_BGM, 0
-	song mus_pl_mystery_gift, MUSIC_PLAYER_BGM, 0
-	song mus_pl_twinleaf_music_box, MUSIC_PLAYER_BGM, 0
-	song mus_pl_obtain_arcade_points, MUSIC_PLAYER_SE2, 2
-	song mus_pl_obtain_castle_points, MUSIC_PLAYER_SE2, 2
-	song mus_pl_obtain_b_points, MUSIC_PLAYER_SE2, 2
-	song mus_pl_win_minigame, MUSIC_PLAYER_SE2, 2
-	song mus_hg_intro, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_VICTORY_WILD, mus_dp_victory_wild), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_VICTORY_TRAINER, mus_dp_victory_trainer), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_VICTORY_GYM_LEADER, mus_dp_victory_gym_leader), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_VICTORY_CHAMPION, mus_dp_victory_champion), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_VICTORY_GALACTIC, mus_dp_victory_galactic), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_VICTORY_ELITE_FOUR, mus_dp_victory_elite_four), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_VS_GALACTIC_COMMANDER, mus_dp_vs_galactic_commander), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_CONTEST, mus_dp_contest), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_VS_ELITE_FOUR, mus_dp_vs_elite_four), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_FOLLOW_ME, mus_dp_follow_me), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_RIVAL, mus_dp_rival), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_LAKE_EVENT, mus_dp_lake_event), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_EVOLUTION, mus_dp_evolution), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_LUCAS, mus_dp_lucas), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_DAWN, mus_dp_dawn), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_LEGEND_APPEARS, mus_dp_legend_appears), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_CATASTROPHE, mus_dp_catastrophe), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_POKE_RADAR, mus_dp_poke_radar), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_SURF, mus_dp_surf), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_CYCLING, mus_dp_cycling), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_LETS_GO_TOGETHER, mus_dp_lets_go_together), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_TV_END, mus_dp_tv_end), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_LEVEL_UP, mus_dp_level_up), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_EVOLVED, mus_dp_evolved), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_OBTAIN_KEY_ITEM, mus_dp_obtain_key_item), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_OBTAIN_ITEM, mus_dp_obtain_item), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_CAUGHT_INTRO, mus_dp_caught_intro), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_DEX_RATING, mus_dp_dex_rating), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_OBTAIN_BADGE, mus_dp_obtain_badge), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_POKETCH, mus_dp_poketch), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_OBTAIN_TMHM, mus_dp_obtain_tmhm), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_OBTAIN_ACCESSORY, mus_dp_obtain_accessory), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_MOVE_DELETED, mus_dp_move_deleted), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_HEAL, mus_dp_heal), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_OBTAIN_BERRY, mus_dp_obtain_berry), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_CONTEST_DRESS_UP, mus_dp_contest_dress_up), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_HALL_OF_FAME, mus_dp_hall_of_fame), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_INTRO, mus_dp_intro), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_TITLE, mus_dp_title), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_MYSTERY_GIFT, mus_dp_mystery_gift), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_WFC, mus_dp_wfc), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_DANCE_EASY, mus_dp_dance_easy), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_DANCE_DIFFICULT, mus_dp_dance_difficult), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_CONTEST_RESULTS, mus_dp_contest_results), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_CONTEST_WINNER, mus_dp_contest_winner), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_POFFINS, mus_dp_poffins), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_SLOTS_WIN, mus_dp_slots_win), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_SLOTS_JACKPOT, mus_dp_slots_jackpot), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_CREDITS, mus_dp_credits), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_DP_SLOTS_UNUSED, mus_dp_slots_unused), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_FIGHT_AREA_DAY, mus_pl_fight_area_day), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_TV_BROADCAST, mus_pl_tv_broadcast), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_TV_END, mus_pl_tv_end), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_INTRO, mus_pl_intro), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_TITLE, mus_pl_title), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_DISTORTION_WORLD, mus_pl_distortion_world), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_B_ARCADE, mus_pl_b_arcade), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_B_HALL, mus_pl_b_hall), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_B_CASTLE, mus_pl_b_castle), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_B_FACTORY, mus_pl_b_factory), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_GLOBAL_TERMINAL, mus_pl_global_terminal), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_LILYCOVE_BOSSA_NOVA, mus_pl_lilycove_bossa_nova), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_LOOKER, mus_pl_looker), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_VS_GIRATINA, mus_pl_vs_giratina), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_VS_FRONTIER_BRAIN, mus_pl_vs_frontier_brain), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_VICTORY_FRONTIER_BRAIN, mus_pl_victory_frontier_brain), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_VS_REGI, mus_pl_vs_regi), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_CONTEST_COOL, mus_pl_contest_cool), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_CONTEST_SMART, mus_pl_contest_smart), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_CONTEST_CUTE, mus_pl_contest_cute), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_CONTEST_TOUGH, mus_pl_contest_tough), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_CONTEST_BEAUTY, mus_pl_contest_beauty), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_SPIN_TRADE, mus_pl_spin_trade), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_WIFI_MINIGAMES, mus_pl_wifi_minigames), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_WIFI_PLAZA, mus_pl_wifi_plaza), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_WIFI_PARADE, mus_pl_wifi_parade), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_GIRATINA_APPEARS_1, mus_pl_giratina_appears_1), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_GIRATINA_APPEARS_2, mus_pl_giratina_appears_2), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_MYSTERY_GIFT, mus_pl_mystery_gift), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_TWINLEAF_MUSIC_BOX, mus_pl_twinleaf_music_box), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_OBTAIN_ARCADE_POINTS, mus_pl_obtain_arcade_points), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_OBTAIN_CASTLE_POINTS, mus_pl_obtain_castle_points), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_OBTAIN_B_POINTS, mus_pl_obtain_b_points), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_PL_WIN_MINIGAME, mus_pl_win_minigame), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_INTRO, mus_hg_intro), MUSIC_PLAYER_BGM, 0
 	song mus_hg_title, MUSIC_PLAYER_BGM, 0
 	song mus_hg_new_game, MUSIC_PLAYER_BGM, 0
-	song mus_hg_evolution, MUSIC_PLAYER_BGM, 0
-	song mus_hg_evolution_no_intro, MUSIC_PLAYER_BGM, 0
-	song mus_hg_cycling, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_EVOLUTION, mus_hg_evolution), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_EVOLUTION_NO_INTRO, mus_hg_evolution_no_intro), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_CYCLING, mus_hg_cycling), MUSIC_PLAYER_BGM, 0
 	song mus_hg_surf, MUSIC_PLAYER_BGM, 0
-	song mus_hg_hall_of_fame, MUSIC_PLAYER_BGM, 0
-	song mus_hg_credits, MUSIC_PLAYER_BGM, 0
-	song mus_hg_end, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_HALL_OF_FAME, mus_hg_hall_of_fame), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_CREDITS, mus_hg_credits), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_END, mus_hg_end), MUSIC_PLAYER_BGM, 0
 	song mus_hg_new_bark, MUSIC_PLAYER_BGM, 0
 	song mus_hg_cherrygrove, MUSIC_PLAYER_BGM, 0
 	song mus_hg_violet, MUSIC_PLAYER_BGM, 0
@@ -848,8 +853,8 @@ gSongTable::
 	song mus_hg_oak, MUSIC_PLAYER_BGM, 0
 	song mus_hg_dance_theater, MUSIC_PLAYER_BGM, 0
     song mus_hg_game_corner, MUSIC_PLAYER_BGM, 0
-	song mus_hg_b_tower, MUSIC_PLAYER_BGM, 0
-	song mus_hg_b_tower_reception, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_B_TOWER, mus_hg_b_tower), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_B_TOWER_RECEPTION, mus_hg_b_tower_reception), MUSIC_PLAYER_BGM, 0
 	song mus_hg_sprout_tower, MUSIC_PLAYER_BGM, 0
     song mus_hg_union_cave, MUSIC_PLAYER_BGM, 0
     song mus_hg_ruins_of_alph, MUSIC_PLAYER_BGM, 0
@@ -865,17 +870,17 @@ gSongTable::
 	song mus_hg_victory_road, MUSIC_PLAYER_BGM, 0
 	song mus_hg_pokemon_league, MUSIC_PLAYER_BGM, 0
 	song mus_hg_follow_me_1, MUSIC_PLAYER_BGM, 0
-	song mus_hg_follow_me_2, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_FOLLOW_ME_2, mus_hg_follow_me_2), MUSIC_PLAYER_BGM, 0
 	song mus_hg_encounter_rival, MUSIC_PLAYER_BGM, 0
 	song mus_hg_rival_exit, MUSIC_PLAYER_BGM, 0
-	song mus_hg_bug_contest_prep, MUSIC_PLAYER_BGM, 0
-	song mus_hg_bug_catching_contest, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_BUG_CONTEST_PREP, mus_hg_bug_contest_prep), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_BUG_CATCHING_CONTEST, mus_hg_bug_catching_contest), MUSIC_PLAYER_BGM, 0
 	song mus_hg_radio_rocket, MUSIC_PLAYER_BGM, 0
 	song mus_hg_rocket_takeover, MUSIC_PLAYER_BGM, 0
-	song mus_hg_magnet_train, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_MAGNET_TRAIN, mus_hg_magnet_train), MUSIC_PLAYER_BGM, 0
 	song mus_hg_ss_aqua, MUSIC_PLAYER_BGM, 0
 	song mus_hg_mt_moon_square, MUSIC_PLAYER_BGM, 0
-    song mus_hg_radio_jingle, MUSIC_PLAYER_BGM, 0
+    song SONG_TABLE_ENTRY(SONG_MUS_HG_RADIO_JINGLE, mus_hg_radio_jingle), MUSIC_PLAYER_BGM, 0
 	song mus_hg_radio_lullaby, MUSIC_PLAYER_BGM, 0
 	song mus_hg_radio_march, MUSIC_PLAYER_BGM, 0
 	song mus_hg_radio_unown, MUSIC_PLAYER_BGM, 0
@@ -883,7 +888,7 @@ gSongTable::
 	song mus_hg_radio_oak, MUSIC_PLAYER_BGM, 0
     song mus_hg_radio_buena, MUSIC_PLAYER_BGM, 0
 	song mus_hg_eusine, MUSIC_PLAYER_BGM, 0
-	song mus_hg_clair, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_CLAIR, mus_hg_clair), MUSIC_PLAYER_BGM, 0
 	song mus_hg_encounter_girl_1, MUSIC_PLAYER_BGM, 0
 	song mus_hg_encounter_boy_1, MUSIC_PLAYER_BGM, 0
 	song mus_hg_encounter_suspicious_1, MUSIC_PLAYER_BGM, 0
@@ -902,56 +907,56 @@ gSongTable::
 	song mus_hg_vs_entei, MUSIC_PLAYER_BGM, 0
 	song mus_hg_vs_raikou, MUSIC_PLAYER_BGM, 0
 	song mus_hg_vs_champion, MUSIC_PLAYER_BGM, 0
-	song mus_hg_vs_wild_kanto, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_VS_WILD_KANTO, mus_hg_vs_wild_kanto), MUSIC_PLAYER_BGM, 0
 	song mus_hg_vs_trainer_kanto, MUSIC_PLAYER_BGM, 0
 	song mus_hg_vs_gym_leader_kanto, MUSIC_PLAYER_BGM, 0
-	song mus_hg_victory_trainer, MUSIC_PLAYER_BGM, 0
-	song mus_hg_victory_wild, MUSIC_PLAYER_BGM, 0
-	song mus_hg_caught, MUSIC_PLAYER_BGM, 0
-	song mus_hg_victory_gym_leader, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_VICTORY_TRAINER, mus_hg_victory_trainer), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_VICTORY_WILD, mus_hg_victory_wild), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_CAUGHT, mus_hg_caught), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_VICTORY_GYM_LEADER, mus_hg_victory_gym_leader), MUSIC_PLAYER_BGM, 0
 	song mus_hg_vs_ho_oh, MUSIC_PLAYER_BGM, 0
 	song mus_hg_vs_lugia, MUSIC_PLAYER_BGM, 0
-	song mus_hg_pokeathlon_lobby, MUSIC_PLAYER_BGM, 0
-	song mus_hg_pokeathlon_start, MUSIC_PLAYER_BGM, 0
-	song mus_hg_pokeathlon_before, MUSIC_PLAYER_BGM, 0
-	song mus_hg_pokeathlon_event, MUSIC_PLAYER_BGM, 0
-	song mus_hg_pokeathlon_finals, MUSIC_PLAYER_BGM, 0
-	song mus_hg_pokeathlon_results, MUSIC_PLAYER_BGM, 0
-	song mus_hg_pokeathlon_end, MUSIC_PLAYER_BGM, 0
-	song mus_hg_pokeathlon_winner, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_POKEATHLON_LOBBY, mus_hg_pokeathlon_lobby), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_POKEATHLON_START, mus_hg_pokeathlon_start), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_POKEATHLON_BEFORE, mus_hg_pokeathlon_before), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_POKEATHLON_EVENT, mus_hg_pokeathlon_event), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_POKEATHLON_FINALS, mus_hg_pokeathlon_finals), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_POKEATHLON_RESULTS, mus_hg_pokeathlon_results), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_POKEATHLON_END, mus_hg_pokeathlon_end), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_POKEATHLON_WINNER, mus_hg_pokeathlon_winner), MUSIC_PLAYER_BGM, 0
 	song mus_hg_b_factory, MUSIC_PLAYER_BGM, 0
-	song mus_hg_b_hall, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_B_HALL, mus_hg_b_hall), MUSIC_PLAYER_BGM, 0
 	song mus_hg_b_arcade, MUSIC_PLAYER_BGM, 0
-	song mus_hg_b_castle, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_B_CASTLE, mus_hg_b_castle), MUSIC_PLAYER_BGM, 0
 	song mus_hg_vs_frontier_brain, MUSIC_PLAYER_BGM, 0
-	song mus_hg_victory_frontier_brain, MUSIC_PLAYER_BGM, 0
-	song mus_hg_wfc, MUSIC_PLAYER_BGM, 0
-	song mus_hg_mystery_gift, MUSIC_PLAYER_BGM, 0
-	song mus_hg_wifi_plaza, MUSIC_PLAYER_BGM, 0
-	song mus_hg_wifi_minigames, MUSIC_PLAYER_BGM, 0
-	song mus_hg_wifi_parade, MUSIC_PLAYER_BGM, 0
-	song mus_hg_global_terminal, MUSIC_PLAYER_BGM, 0
-	song mus_hg_spin_trade, MUSIC_PLAYER_BGM, 0
-	song mus_hg_gts, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_VICTORY_FRONTIER_BRAIN, mus_hg_victory_frontier_brain), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_WFC, mus_hg_wfc), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_MYSTERY_GIFT, mus_hg_mystery_gift), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_WIFI_PLAZA, mus_hg_wifi_plaza), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_WIFI_MINIGAMES, mus_hg_wifi_minigames), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_WIFI_PARADE, mus_hg_wifi_parade), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_GLOBAL_TERMINAL, mus_hg_global_terminal), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_SPIN_TRADE, mus_hg_spin_trade), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_GTS, mus_hg_gts), MUSIC_PLAYER_BGM, 0
 	song mus_hg_route47, MUSIC_PLAYER_BGM, 0
 	song mus_hg_safari_zone_gate, MUSIC_PLAYER_BGM, 0
 	song mus_hg_safari_zone, MUSIC_PLAYER_BGM, 0
-	song mus_hg_ethan, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_ETHAN, mus_hg_ethan), MUSIC_PLAYER_BGM, 0
 	song mus_hg_lyra, MUSIC_PLAYER_BGM, 0
-    song mus_hg_game_corner_win, MUSIC_PLAYER_BGM, 0
+    song SONG_TABLE_ENTRY(SONG_MUS_HG_GAME_CORNER_WIN, mus_hg_game_corner_win), MUSIC_PLAYER_BGM, 0
 	song mus_hg_kimono_girl_dance, MUSIC_PLAYER_BGM, 0
     song mus_hg_kimono_girl, MUSIC_PLAYER_BGM, 0
-	song mus_hg_ho_oh_appears, MUSIC_PLAYER_BGM, 0
-	song mus_hg_lugia_appears, MUSIC_PLAYER_BGM, 0
-	song mus_hg_spiky_eared_pichu, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_HO_OH_APPEARS, mus_hg_ho_oh_appears), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_LUGIA_APPEARS, mus_hg_lugia_appears), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_SPIKY_EARED_PICHU, mus_hg_spiky_eared_pichu), MUSIC_PLAYER_BGM, 0
 	song mus_hg_sinjou_ruins, MUSIC_PLAYER_BGM, 0
-	song mus_hg_radio_route101, MUSIC_PLAYER_BGM, 0
-	song mus_hg_radio_route201, MUSIC_PLAYER_BGM, 0
-	song mus_hg_radio_trainer, MUSIC_PLAYER_BGM, 0
-	song mus_hg_radio_variety, MUSIC_PLAYER_BGM, 0
-	song mus_hg_vs_kyogre_groudon, MUSIC_PLAYER_BGM, 0
-	song mus_hg_pokewalker, MUSIC_PLAYER_BGM, 0
-	song mus_hg_vs_arceus, MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_RADIO_ROUTE101, mus_hg_radio_route101), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_RADIO_ROUTE201, mus_hg_radio_route201), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_RADIO_TRAINER, mus_hg_radio_trainer), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_RADIO_VARIETY, mus_hg_radio_variety), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_VS_KYOGRE_GROUDON, mus_hg_vs_kyogre_groudon), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_POKEWALKER, mus_hg_pokewalker), MUSIC_PLAYER_BGM, 0
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_VS_ARCEUS, mus_hg_vs_arceus), MUSIC_PLAYER_BGM, 0
 	song mus_hg_heal, MUSIC_PLAYER_SE2, 2
 	song mus_hg_level_up, MUSIC_PLAYER_SE2, 2
     song mus_hg_obtain_item, MUSIC_PLAYER_SE2, 2
@@ -959,30 +964,30 @@ gSongTable::
 	song mus_hg_evolved, MUSIC_PLAYER_SE2, 2
 	song mus_hg_obtain_badge, MUSIC_PLAYER_SE2, 2
     song mus_hg_obtain_tmhm, MUSIC_PLAYER_SE2, 2
-	song mus_hg_obtain_accessory, MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_OBTAIN_ACCESSORY, mus_hg_obtain_accessory), MUSIC_PLAYER_SE2, 2
 	song mus_hg_move_deleted, MUSIC_PLAYER_SE2, 2
 	song mus_hg_obtain_berry, MUSIC_PLAYER_SE2, 2
-	song mus_hg_dex_rating_1, MUSIC_PLAYER_SE2, 2
-	song mus_hg_dex_rating_2, MUSIC_PLAYER_SE2, 2
-	song mus_hg_dex_rating_3, MUSIC_PLAYER_SE2, 2
-	song mus_hg_dex_rating_4, MUSIC_PLAYER_SE2, 2
-	song mus_hg_dex_rating_5, MUSIC_PLAYER_SE2, 2
-	song mus_hg_dex_rating_6, MUSIC_PLAYER_SE2, 2
-    song mus_hg_obtain_egg, MUSIC_PLAYER_SE2, 2
-	song mus_hg_bug_contest_1st_place, MUSIC_PLAYER_SE2, 2
-	song mus_hg_bug_contest_2nd_place, MUSIC_PLAYER_SE2, 2
-	song mus_hg_bug_contest_3rd_place, MUSIC_PLAYER_SE2, 2
-	song mus_hg_card_flip, MUSIC_PLAYER_SE2, 2
-	song mus_hg_card_flip_game_over, MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_DEX_RATING_1, mus_hg_dex_rating_1), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_DEX_RATING_2, mus_hg_dex_rating_2), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_DEX_RATING_3, mus_hg_dex_rating_3), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_DEX_RATING_4, mus_hg_dex_rating_4), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_DEX_RATING_5, mus_hg_dex_rating_5), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_DEX_RATING_6, mus_hg_dex_rating_6), MUSIC_PLAYER_SE2, 2
+    song SONG_TABLE_ENTRY(SONG_MUS_HG_OBTAIN_EGG, mus_hg_obtain_egg), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_BUG_CONTEST_1ST_PLACE, mus_hg_bug_contest_1st_place), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_BUG_CONTEST_2ND_PLACE, mus_hg_bug_contest_2nd_place), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_BUG_CONTEST_3RD_PLACE, mus_hg_bug_contest_3rd_place), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_CARD_FLIP, mus_hg_card_flip), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_CARD_FLIP_GAME_OVER, mus_hg_card_flip_game_over), MUSIC_PLAYER_SE2, 2
 	song mus_hg_pokegear_registered, MUSIC_PLAYER_SE2, 2
-	song mus_hg_lets_go_together, MUSIC_PLAYER_SE2, 2
-	song mus_hg_pokeathlon_ready, MUSIC_PLAYER_SE2, 2
-	song mus_hg_pokeathlon_1st_place, MUSIC_PLAYER_SE2, 2
-	song mus_hg_receive_pokemon, MUSIC_PLAYER_SE2, 2
-	song mus_hg_obtain_arcade_points, MUSIC_PLAYER_SE2, 2
-	song mus_hg_obtain_castle_points, MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_LETS_GO_TOGETHER, mus_hg_lets_go_together), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_POKEATHLON_READY, mus_hg_pokeathlon_ready), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_POKEATHLON_1ST_PLACE, mus_hg_pokeathlon_1st_place), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_RECEIVE_POKEMON, mus_hg_receive_pokemon), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_OBTAIN_ARCADE_POINTS, mus_hg_obtain_arcade_points), MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_OBTAIN_CASTLE_POINTS, mus_hg_obtain_castle_points), MUSIC_PLAYER_SE2, 2
 	song mus_hg_obtain_b_points, MUSIC_PLAYER_SE2, 2
-	song mus_hg_hall_of_fame, MUSIC_PLAYER_SE2, 2
+	song SONG_TABLE_ENTRY(SONG_MUS_HG_WIN_MINIGAME, mus_hg_hall_of_fame), MUSIC_PLAYER_SE2, 2
 	song mus_hgss_casino, MUSIC_PLAYER_BGM, 0
 	song mus_casino_plus_1, MUSIC_PLAYER_BGM, 0
 	song mus_casino_plus_2, MUSIC_PLAYER_BGM, 0
@@ -1000,3 +1005,8 @@ gSongTable::
 	.align 2
 dummy_song_header:
 	.byte 0, MUSIC_PLAYER_BGM, 0, 0
+
+#undef SONG_TABLE_ENTRY
+#undef SONG_TABLE_ENTRY_EXPAND
+#undef SONG_TABLE_ENTRY_1
+#undef SONG_TABLE_ENTRY_0

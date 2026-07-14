@@ -54,6 +54,8 @@ The hack is currently under testing. It will be playable up to the start of post
 - [Mudskip](https://github.com/mudskipper13/pokeemerald/) for namebox and field mugshots
 - [Ghoulslash](https://github.com/ghoulslash/pokeemerald) for features such as sideways stairs
 - [James/FosterProgramming](https://github.com/FosterProgramming/pokeemerald-expansion) for their transformation code
+- [AsparagusEduardo](https://github.com/AsparagusEduardo/pokeemerald) for various code snippets and surf ows
+- Slawter666 and Wally-127 for surf ows
 - [Ipatix](https://github.com/ipatix/gba-hq-mixer) for HQ audio mixer
 - Kyledove (various graphics and tiles)
 - Hyo for various sprites including frlg style emerald overworlds and gold sprites

@@ -3259,6 +3259,7 @@ u8 FldEff_UseSurf(void)
         Overworld_ClearSavedMusic();
         Overworld_ChangeMusicTo(MUS_HG_SURF);
     }
+    VarSet(VAR_SURF_MON_SLOT, gFieldEffectArguments[0]);
     return FALSE;
 }
 

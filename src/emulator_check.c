@@ -122,21 +122,21 @@ static const u8 sText_ErrorMessage[] = _(
 );
 static const u8 sText_BottomMessage[] = _("Press START to continue.");
 
-static const u32 sErrorScreen_Gfx[] = INCBIN_U32( "graphics/intro/emulator_check/background.4bpp.lz");
-static const u32 sErrorScreen_Map[] = INCBIN_U32( "graphics/intro/emulator_check/background.bin.lz");
+static const u32 sErrorScreen_Gfx[] = INCBIN_U32( "graphics/intro/emulator_check/background.4bpp.smol");
+static const u32 sErrorScreen_Map[] = INCBIN_U32( "graphics/intro/emulator_check/background.bin.smolTM");
 static const u16 sErrorScreen_Pal[] = INCBIN_U16("graphics/intro/emulator_check/background.gbapal");
 
-static const u32 sWarningLeft_Gfx[]  = INCBIN_U32("graphics/intro/emulator_check/warning_left.4bpp.lz");
-static const u32 sWarningRight_Gfx[] = INCBIN_U32("graphics/intro/emulator_check/warning_right.4bpp.lz");
+static const u32 sWarningLeft_Gfx[]  = INCBIN_U32("graphics/intro/emulator_check/warning_left.4bpp.smol");
+static const u32 sWarningRight_Gfx[] = INCBIN_U32("graphics/intro/emulator_check/warning_right.4bpp.smol");
 static const u16 sWarning_Pal[]      = INCBIN_U16("graphics/intro/emulator_check/warning.gbapal");
 
-static const u32 sDizzyEgg_Gfx[] = INCBIN_U32("graphics/intro/emulator_check/dizzy_egg.4bpp.lz");
+static const u32 sDizzyEgg_Gfx[] = INCBIN_U32("graphics/intro/emulator_check/dizzy_egg.4bpp.smol");
 static const u16 sDizzyEgg_Pal[] = INCBIN_U16("graphics/intro/emulator_check/dizzy_egg.gbapal");
 
-static const u32 sPikachu_Gfx[]  = INCBIN_U32("graphics/intro/emulator_check/pikachu.4bpp.lz");
+static const u32 sPikachu_Gfx[]  = INCBIN_U32("graphics/intro/emulator_check/pikachu.4bpp.smol");
 static const u16 sPikachu_Pal[]  = INCBIN_U16("graphics/intro/emulator_check/pikachu.gbapal");
 
-static const u32 sPorygon_Gfx[]  = INCBIN_U32("graphics/intro/emulator_check/porygon.4bpp.lz");
+static const u32 sPorygon_Gfx[]  = INCBIN_U32("graphics/intro/emulator_check/porygon.4bpp.smol");
 static const u16 sPorygon_Pal[]  = INCBIN_U16("graphics/intro/emulator_check/porygon.gbapal");
 
 // using dummy tag IDs since these are only loaded once during this check UI and will be freed afterwards
