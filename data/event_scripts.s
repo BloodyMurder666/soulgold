@@ -2328,3 +2328,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/TohjoPass/scripts.inc"
 
 	.include "data/maps/DreamGarden/scripts.inc"
+
+	.include "data/maps/LakeOfRageCresseliaDen/scripts.inc"

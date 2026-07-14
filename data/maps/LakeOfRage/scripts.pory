@@ -489,3 +489,26 @@ script LakeOfRagePostgamePoliceman {
 			landslide, we're working on clearing
 			it up, so please have patience.", MSGBOX_NPC)
 }
+
+script LakeOfRageCresseliaPath {
+	lock
+	if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) >= 2) {
+		msgbox("After a careful search, you manage to
+				uncover a barely visible path behind
+				the trees.")
+		msgbox("Enter?", MSGBOX_YESNO)
+		if (var(VAR_RESULT) == YES) {
+			warp(MAP_LAKE_OF_RAGE_CRESSELIA_DEN, 16, 26)
+			waitstate
+			release
+			end
+		} else {
+			release
+			end
+		}
+	}
+	msgbox("Wood yew look at that. An inconspicious 
+			row of trees extends before you.")
+	release
+	end
+}

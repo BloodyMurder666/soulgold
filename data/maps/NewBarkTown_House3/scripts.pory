@@ -106,6 +106,16 @@ script NewBarkTownRivalHouseRival {
             msgbox("I hear that someone living near or in
                     the Lake of Rage might know more.")
         }
+        if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 2) {
+            msgbox("Oh you found Cresselia's location?
+            
+                    That's great! You should catch it
+                    if you're able to!")
+        }
+        if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 3) {
+            msgbox("You caught Cresselia? 
+                    Nice!")
+        }
     }
     release
     end

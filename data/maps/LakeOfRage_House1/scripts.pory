@@ -15,6 +15,7 @@ LakeOfRage_House1_EventScript_HiddenPowerGuy::
 	end
 
 LakeOfRage_House1_EventScript_HiddenPowerGuyAfter::
+	goto_if_eq VAR_POSTGAME_RIVAL_LEGENDARYQ, 1, LakeOfRageMystic_CresseliaQuest
 	msgbox HiddenPowerGuy_Text_Meditating, MSGBOX_DEFAULT
 	closemessage
 	release
@@ -37,3 +38,37 @@ HiddenPowerGuy_Text_Explanation:
 HiddenPowerGuy_Text_Meditating:
     .string "I am meditating…$"
 `
+
+script LakeOfRageMystic_CresseliaQuest {
+	if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 2) {
+		msgbox("Perhaps there is a hidden trail among
+				the trees if you look carefully enough.")
+		release
+		end
+	} 
+	if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) >= 3) {
+		msgbox("I am meditating...")
+		release
+		end
+	}
+	msgbox("Hmm? 
+			You wish to know about Cresselia?
+	
+			Fascinating. 
+			
+			It is quite rare for someone seek me
+			for knowledge willingly.
+			
+			I have indeed seen the creature in
+			question, basking in the bright
+			moonlight on a rare occasion.
+			
+			Then it vanishes into the far corners 
+			of the lake when spotted!
+			
+			Perhaps there is a hidden trail among
+			the trees if you look carefully enough.")
+	setvar(VAR_POSTGAME_RIVAL_LEGENDARYQ, 2)
+	release
+	end
+}

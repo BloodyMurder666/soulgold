@@ -111,7 +111,7 @@ NewBarkTownRivalHouseRival::
 	compare VAR_RIVAL_STATE, 12
 	goto_if_ge NewBarkTownRivalHouseRival_5
 NewBarkTownRivalHouseRival_4:
-# 110 "data/maps/NewBarkTown_House3/scripts.pory"
+# 120 "data/maps/NewBarkTown_House3/scripts.pory"
 	release
 	end
 
@@ -128,7 +128,15 @@ NewBarkTownRivalHouseRival_5:
 	goto_if_eq NewBarkTownRivalHouseRival_8
 # 105 "data/maps/NewBarkTown_House3/scripts.pory"
 	compare VAR_POSTGAME_RIVAL_LEGENDARYQ, 1
-	goto_if_eq NewBarkTownRivalHouseRival_10
+	goto_if_eq NewBarkTownRivalHouseRival_11
+NewBarkTownRivalHouseRival_10:
+# 109 "data/maps/NewBarkTown_House3/scripts.pory"
+	compare VAR_POSTGAME_RIVAL_LEGENDARYQ, 2
+	goto_if_eq NewBarkTownRivalHouseRival_14
+NewBarkTownRivalHouseRival_13:
+# 115 "data/maps/NewBarkTown_House3/scripts.pory"
+	compare VAR_POSTGAME_RIVAL_LEGENDARYQ, 3
+	goto_if_eq NewBarkTownRivalHouseRival_16
 	goto NewBarkTownRivalHouseRival_4
 
 NewBarkTownRivalHouseRival_8:
@@ -140,40 +148,50 @@ NewBarkTownRivalHouseRival_8:
 	release
 	end
 
-NewBarkTownRivalHouseRival_10:
+NewBarkTownRivalHouseRival_11:
 # 106 "data/maps/NewBarkTown_House3/scripts.pory"
 	msgbox NewBarkTownRivalHouseRival_Text_2
+	goto NewBarkTownRivalHouseRival_10
+
+NewBarkTownRivalHouseRival_14:
+# 110 "data/maps/NewBarkTown_House3/scripts.pory"
+	msgbox NewBarkTownRivalHouseRival_Text_3
+	goto NewBarkTownRivalHouseRival_13
+
+NewBarkTownRivalHouseRival_16:
+# 116 "data/maps/NewBarkTown_House3/scripts.pory"
+	msgbox NewBarkTownRivalHouseRival_Text_4
 	goto NewBarkTownRivalHouseRival_4
 
 
 NewBarkTownRivalHouseMarill::
-# 116 "data/maps/NewBarkTown_House3/scripts.pory"
-	lock
-# 117 "data/maps/NewBarkTown_House3/scripts.pory"
-	faceplayer
-# 118 "data/maps/NewBarkTown_House3/scripts.pory"
-	playmoncry SPECIES_MARILL, CRY_MODE_NORMAL
-# 119 "data/maps/NewBarkTown_House3/scripts.pory"
-	msgbox NewBarkTownRivalHouseMarill_Text_0
-# 120 "data/maps/NewBarkTown_House3/scripts.pory"
-	waitmoncry
-# 121 "data/maps/NewBarkTown_House3/scripts.pory"
-	release
-	end
-
-
-NewBarkTownRivalHouseAzumarill::
 # 126 "data/maps/NewBarkTown_House3/scripts.pory"
 	lock
 # 127 "data/maps/NewBarkTown_House3/scripts.pory"
 	faceplayer
 # 128 "data/maps/NewBarkTown_House3/scripts.pory"
-	playmoncry SPECIES_AZUMARILL, CRY_MODE_NORMAL
+	playmoncry SPECIES_MARILL, CRY_MODE_NORMAL
 # 129 "data/maps/NewBarkTown_House3/scripts.pory"
-	msgbox NewBarkTownRivalHouseAzumarill_Text_0
+	msgbox NewBarkTownRivalHouseMarill_Text_0
 # 130 "data/maps/NewBarkTown_House3/scripts.pory"
 	waitmoncry
 # 131 "data/maps/NewBarkTown_House3/scripts.pory"
+	release
+	end
+
+
+NewBarkTownRivalHouseAzumarill::
+# 136 "data/maps/NewBarkTown_House3/scripts.pory"
+	lock
+# 137 "data/maps/NewBarkTown_House3/scripts.pory"
+	faceplayer
+# 138 "data/maps/NewBarkTown_House3/scripts.pory"
+	playmoncry SPECIES_AZUMARILL, CRY_MODE_NORMAL
+# 139 "data/maps/NewBarkTown_House3/scripts.pory"
+	msgbox NewBarkTownRivalHouseAzumarill_Text_0
+# 140 "data/maps/NewBarkTown_House3/scripts.pory"
+	waitmoncry
+# 141 "data/maps/NewBarkTown_House3/scripts.pory"
 	release
 	end
 
@@ -251,10 +269,21 @@ NewBarkTownRivalHouseRival_Text_2:
 	.string "I hear that someone living near or in\n"
 	.string "the Lake of Rage might know more.$"
 
+NewBarkTownRivalHouseRival_Text_3:
+# 110 "data/maps/NewBarkTown_House3/scripts.pory"
+	.string "Oh you found Cresselia's location?\p"
+	.string "That's great! You should catch it\n"
+	.string "if you're able to!$"
+
+NewBarkTownRivalHouseRival_Text_4:
+# 116 "data/maps/NewBarkTown_House3/scripts.pory"
+	.string "You caught Cresselia? \n"
+	.string "Nice!$"
+
 NewBarkTownRivalHouseMarill_Text_0:
-# 119 "data/maps/NewBarkTown_House3/scripts.pory"
+# 129 "data/maps/NewBarkTown_House3/scripts.pory"
 	.string "Marii!$"
 
 NewBarkTownRivalHouseAzumarill_Text_0:
-# 129 "data/maps/NewBarkTown_House3/scripts.pory"
+# 139 "data/maps/NewBarkTown_House3/scripts.pory"
 	.string "Azumarill: Azuu!$"

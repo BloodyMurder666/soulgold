@@ -9976,6 +9976,16 @@
       "secondary_tileset": "gTileset_TohjoPass",
       "border_filepath": "data/layouts/DreamGarden/border.bin",
       "blockdata_filepath": "data/layouts/DreamGarden/map.bin"
+    },
+    {
+      "id": "LAYOUT_LAKE_OF_RAGE_CRESSELIA_DEN",
+      "name": "LakeOfRageCresseliaDen_Layout",
+      "width": 32,
+      "height": 32,
+      "primary_tileset": "gTileset_Grotto1",
+      "secondary_tileset": "gTileset_HiddenGrotto1",
+      "border_filepath": "data/layouts/LakeOfRageCresseliaDen/border.bin",
+      "blockdata_filepath": "data/layouts/LakeOfRageCresseliaDen/map.bin"
     }
   ]
 }

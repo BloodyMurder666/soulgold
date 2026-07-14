@@ -293,6 +293,13 @@
       "elevation": 0,
       "dest_map": "MAP_LAKE_OF_RAGE",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 49,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_LAKE_OF_RAGE",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],
@@ -328,6 +335,22 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Lakeofrage_HiddenGrotto"
+    },
+    {
+      "type": "sign",
+      "x": 49,
+      "y": 5,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "LakeOfRageCresseliaPath"
+    },
+    {
+      "type": "sign",
+      "x": 48,
+      "y": 5,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "LakeOfRageCresseliaPath"
     }
   ]
 }

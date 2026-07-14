@@ -933,6 +933,40 @@ LakeOfRagePostgamePoliceman::
 	return
 
 
+LakeOfRageCresseliaPath::
+# 494 "data/maps/LakeOfRage/scripts.pory"
+	lock
+# 495 "data/maps/LakeOfRage/scripts.pory"
+	compare VAR_POSTGAME_RIVAL_LEGENDARYQ, 2
+	goto_if_ge LakeOfRageCresseliaPath_2
+# 510 "data/maps/LakeOfRage/scripts.pory"
+	msgbox LakeOfRageCresseliaPath_Text_2
+# 512 "data/maps/LakeOfRage/scripts.pory"
+	release
+	end
+
+LakeOfRageCresseliaPath_2:
+# 496 "data/maps/LakeOfRage/scripts.pory"
+	msgbox LakeOfRageCresseliaPath_Text_0
+# 499 "data/maps/LakeOfRage/scripts.pory"
+	msgbox LakeOfRageCresseliaPath_Text_1, MSGBOX_YESNO
+# 500 "data/maps/LakeOfRage/scripts.pory"
+	compare VAR_RESULT, YES
+	goto_if_eq LakeOfRageCresseliaPath_4
+# 506 "data/maps/LakeOfRage/scripts.pory"
+	release
+	end
+
+LakeOfRageCresseliaPath_4:
+# 501 "data/maps/LakeOfRage/scripts.pory"
+	warp MAP_LAKE_OF_RAGE_CRESSELIA_DEN, 16, 26
+# 502 "data/maps/LakeOfRage/scripts.pory"
+	waitstate
+# 503 "data/maps/LakeOfRage/scripts.pory"
+	release
+	end
+
+
 Lakeofrage_HiddenGrotto_Text_0:
 # 440 "data/maps/LakeOfRage/scripts.pory"
 	.string "There seems to be a path behind the\n"
@@ -973,3 +1007,18 @@ LakeOfRagePostgamePoliceman_Text_0:
 	.string "The road has been blocked by a\n"
 	.string "landslide, we're working on clearing\l"
 	.string "it up, so please have patience.$"
+
+LakeOfRageCresseliaPath_Text_0:
+# 496 "data/maps/LakeOfRage/scripts.pory"
+	.string "After a careful search, you manage to\n"
+	.string "uncover a barely visible path behind\l"
+	.string "the trees.$"
+
+LakeOfRageCresseliaPath_Text_1:
+# 499 "data/maps/LakeOfRage/scripts.pory"
+	.string "Enter?$"
+
+LakeOfRageCresseliaPath_Text_2:
+# 510 "data/maps/LakeOfRage/scripts.pory"
+	.string "Wood yew look at that. An inconspicious \n"
+	.string "row of trees extends before you.$"
