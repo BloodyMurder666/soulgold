@@ -217,3 +217,46 @@ mart FlowerShopMulches {
 	ITEM_STABLE_MULCH
 	ITEM_GOOEY_MULCH
 }
+
+script UniversityFlorist {
+	lock
+	faceplayer
+	msgbox("I'm studying to become a botanist!
+		
+			I strive to learn all about rare
+			plants and flowers!")
+	checkspecies(SPECIES_SHAYMIN)
+	if (var(VAR_RESULT) == TRUE) {
+		goto(GiveGracidea)
+	}
+	release
+	end
+}
+
+script GiveGracidea {
+	if (flag(FLAG_GOT_GRACIDEA)) {
+		msgbox("It is said that Shaymin can
+				change its form with that flower.")
+		release
+		end
+	}
+	playse(SE_PIN)
+	applymovement(5, Common_Movement_ExclamationMark)
+	waitse
+	waitmovement(0)
+	msgbox("Oh! That Pokémon you have!
+
+			It really is a Shaymin!
+	
+			I have read about it, but I would never
+			have even dreamed of seeing it!
+			
+			Please, you should try giving it this
+			flower.")
+	giveitem(ITEM_GRACIDEA)
+	msgbox("It is said that Shaymin can
+			change its form with that flower.")
+	setflag(FLAG_GOT_GRACIDEA)
+	release
+	end
+}

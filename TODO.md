@@ -6,7 +6,6 @@ Bugs:
 
 Nice to have:
 - HGSS/DPPT overworld npc sprite demakes
-- Shaymin event north of tohjo falls
 
 Maybe:
 - remaining mugshots

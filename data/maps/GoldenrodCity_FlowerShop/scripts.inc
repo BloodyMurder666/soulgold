@@ -430,6 +430,60 @@ FlowerShopMulches:
 	.2byte ITEM_GOOEY_MULCH
 	.2byte ITEM_NONE
 
+UniversityFlorist::
+# 222 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	lock
+# 223 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	faceplayer
+# 224 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	msgbox UniversityFlorist_Text_0
+# 228 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	checkspecies SPECIES_SHAYMIN
+# 229 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	compare VAR_RESULT, TRUE
+	goto_if_eq UniversityFlorist_2
+UniversityFlorist_1:
+# 232 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	release
+	end
+
+UniversityFlorist_2:
+# 230 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	goto GiveGracidea
+	goto UniversityFlorist_1
+
+
+GiveGracidea::
+# 237 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	goto_if_set FLAG_GOT_GRACIDEA, GiveGracidea_2
+# 243 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	playse SE_PIN
+# 244 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	applymovement 5, Common_Movement_ExclamationMark
+# 245 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	waitse
+# 246 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	waitmovement 0
+# 247 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	msgbox GiveGracidea_Text_1
+# 256 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	giveitem ITEM_GRACIDEA
+# 257 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	msgbox GiveGracidea_Text_0
+# 259 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	setflag FLAG_GOT_GRACIDEA
+# 260 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	release
+	end
+
+GiveGracidea_2:
+# 238 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	msgbox GiveGracidea_Text_0
+# 240 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	release
+	end
+
+
 FlowerShopMulchVendor_Text_0:
 # 205 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
 	.string "Welcome! Have a look at our inventory!$"
@@ -437,3 +491,23 @@ FlowerShopMulchVendor_Text_0:
 FlowerShopMulchVendor_Text_1:
 # 207 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
 	.string "Thank you! Come again!$"
+
+UniversityFlorist_Text_0:
+# 224 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	.string "I'm studying to become a botanist!\p"
+	.string "I strive to learn all about rare\n"
+	.string "plants and flowers!$"
+
+GiveGracidea_Text_0:
+# 238 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	.string "It is said that Shaymin can\n"
+	.string "change its form with that flower.$"
+
+GiveGracidea_Text_1:
+# 247 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	.string "Oh! That Pokémon you have!\p"
+	.string "It really is a Shaymin!\p"
+	.string "I have read about it, but I would never\n"
+	.string "have even dreamed of seeing it!\p"
+	.string "Please, you should try giving it this\n"
+	.string "flower.$"

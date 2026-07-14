@@ -73,6 +73,8 @@ enum
     MAP_METEOR_ISLAND             = (58 | (0 << 8)),
     MAP_SOUTH_PASSAGE_SIDE        = (59 | (0 << 8)),
     MAP_SOUTH_PASSAGE_END         = (60 | (0 << 8)),
+    MAP_TOHJO_PASS                = (61 | (0 << 8)),
+    MAP_DREAM_GARDEN              = (62 | (0 << 8)),
 
     // gMapGroup_IndoorNewBark
     MAP_NEW_BARK_TOWN_LAB              = (0 | (1 << 8)),

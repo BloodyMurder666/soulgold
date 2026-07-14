@@ -169,14 +169,16 @@ Route46_ConfusedBugCatcher::
 # 87 "data/maps/Route46/scripts.pory"
 	lock
 # 88 "data/maps/Route46/scripts.pory"
-	msgbox Route46_ConfusedBugCatcher_Text_0
+	faceplayer
 # 89 "data/maps/Route46/scripts.pory"
+	msgbox Route46_ConfusedBugCatcher_Text_0
+# 90 "data/maps/Route46/scripts.pory"
 	release
 	end
 
 
 Route46_ConfusedBugCatcher_Text_0:
-# 88 "data/maps/Route46/scripts.pory"
+# 89 "data/maps/Route46/scripts.pory"
 	.string "Huh, I was hoping to get to Blackthorn\n"
 	.string "City from here. I guess there's no way\l"
 	.string "to climb those ledges...$"

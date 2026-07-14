@@ -1644,6 +1644,10 @@
 #define FLAG_METEOR_CAVE_BOOSTER                    0x968
 #define FLAG_METEOR_CAVE_DAZZLING_GLM               0x969
 #define FLAG_VISITED_BATTLE_FACTORY                 0x96A
+#define FLAG_TOHJO_PASS_ITEM1                       0x96B
+#define FLAG_TOHJO_PASS_ITEM2                       0x96C
+#define FLAG_TOHJO_PASS_ITEM3                       0x96D
+#define FLAG_GOT_GRACIDEA                           0x96E
 
 #define FLAG_0x1500                                 0x1500
 // Daily Flags

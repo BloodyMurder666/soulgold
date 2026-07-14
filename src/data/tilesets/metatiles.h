@@ -557,3 +557,6 @@ const u16 gMetatileAttributes_Building_Hoenn[] = INCBIN_U16("data/tilesets/prima
 
 const u16 gMetatiles_AltTrees[] = INCBIN_U16("data/tilesets/primary/alt_trees/metatiles.bin");
 const u16 gMetatileAttributes_AltTrees[] = INCBIN_U16("data/tilesets/primary/alt_trees/metatile_attributes.bin");
+
+const u16 gMetatiles_TohjoPass[] = INCBIN_U16("data/tilesets/secondary/tohjo_pass/metatiles.bin");
+const u16 gMetatileAttributes_TohjoPass[] = INCBIN_U16("data/tilesets/secondary/tohjo_pass/metatile_attributes.bin");

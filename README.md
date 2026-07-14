@@ -64,6 +64,7 @@ The hack is currently under testing. It will be playable up to the start of post
 - PKMNTrainerRick for ethan back sprite frames
 - Whackahack for graphical resources
 - Omega for PSS icons
+- [Pret and everyone involved](https://github.com/pret/pokeemerald) for the original emerald decompilation
 - [agsmgmaster64](https://github.com/agsmgmaster64/worldlinkdeluxe-ame) Game corner expansion port
 - [heypc](https://github.com/heyopc/pokeemerald-gamecorner-expansion) game corner expansion
 - [aarant/merrp:](https://github.com/aarant) [icons branch](https://github.com/aarant/pokeemerald/tree/icons) and key item wheel

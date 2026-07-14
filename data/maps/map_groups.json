@@ -96,7 +96,9 @@
     "SouthernPassage",
     "MeteorIsland",
     "SouthPassageSide",
-    "SouthPassageEnd"
+    "SouthPassageEnd",
+    "TohjoPass",
+    "DreamGarden"
   ],
   "gMapGroup_IndoorNewBark": [
     "NewBarkTown_Lab",

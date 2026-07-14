@@ -2324,3 +2324,7 @@ Common_Text_ReceivedMon:
 	.include "data/maps/MeteorCave1/scripts.inc"
 
 	.include "data/maps/AbandonedRocketHideoutBackroom/scripts.inc"
+
+	.include "data/maps/TohjoPass/scripts.inc"
+
+	.include "data/maps/DreamGarden/scripts.inc"

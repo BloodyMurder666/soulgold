@@ -1,0 +1,11 @@
+mapscripts TohjoPass_MapScripts {}
+
+script TohjoPass_Floette {
+    lock
+    faceplayer
+    playmoncry(SPECIES_FLOETTE, CRY_MODE_NORMAL)
+    msgbox("Floette: Floweeeeey!")
+    waitmoncry
+    release
+    end
+}

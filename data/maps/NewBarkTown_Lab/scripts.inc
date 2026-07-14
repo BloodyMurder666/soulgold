@@ -2011,8 +2011,10 @@ NewBarkTown_Lab_EventScript_ElmPostgameHint_1:
 # 1044 "data/maps/NewBarkTown_Lab/scripts.pory"
 	setflag FLAG_ALLOW_SOUTH_JOHTO_PASS
 # 1045 "data/maps/NewBarkTown_Lab/scripts.pory"
-	setvar VAR_NEWBARK_TOWN_STATE, 11
+	setvar VAR_NEWBARKTOWN_LABSTATE, 11
 # 1046 "data/maps/NewBarkTown_Lab/scripts.pory"
+	setvar VAR_NEWBARK_TOWN_STATE, 11
+# 1047 "data/maps/NewBarkTown_Lab/scripts.pory"
 	release
 	end
 
@@ -2023,7 +2025,7 @@ NewBarkTown_Lab_EventScript_ElmPostgameHint_2:
 
 
 ElmIntro::
-# 1051 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1052 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox ElmIntro_Text_0, MSGBOX_YESNO
 	return
 
@@ -2086,7 +2088,7 @@ NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_5:
 	.string "pass since you've the new Champion.$"
 
 ElmIntro_Text_0:
-# 1051 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1052 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "Elm: {PLAYER}! There you are!\p"
 	.string "I needed to ask you a favor.\p"
 	.string "I'm conducting new Pokémon\n"

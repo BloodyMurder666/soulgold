@@ -2195,3 +2195,14 @@ const struct Tileset gTileset_AltTrees =
     .metatileAttributes = gMetatileAttributes_AltTrees,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_TohjoPass =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_TohjoPass,
+    .palettes = gTilesetPalettes_TohjoPass,
+    .metatiles = gMetatiles_TohjoPass,
+    .metatileAttributes = gMetatileAttributes_TohjoPass,
+    .callback = NULL,
+};

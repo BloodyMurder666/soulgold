@@ -85,6 +85,7 @@ Route46_Text_Sign:
 
 script Route46_ConfusedBugCatcher {
     lock
+	faceplayer
     msgbox(format("Huh, I was hoping to get to Blackthorn City from here. I guess there's no way to climb those ledges..."))
     release
     end

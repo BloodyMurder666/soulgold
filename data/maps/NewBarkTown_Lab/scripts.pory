@@ -1042,6 +1042,7 @@ script NewBarkTown_Lab_EventScript_ElmPostgameHint {
 			pass since you've the new Champion.")
 	setflag(FLAG_HIDE_MTSILVER_GUARD)
 	setflag(FLAG_ALLOW_SOUTH_JOHTO_PASS)
+	setvar(VAR_NEWBARKTOWN_LABSTATE, 11)
 	setvar(VAR_NEWBARK_TOWN_STATE, 11)
 	release
 	end

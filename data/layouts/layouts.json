@@ -9956,6 +9956,26 @@
       "secondary_tileset": "gTileset_GoldenrodUndergroundRocket",
       "border_filepath": "data/layouts/AbandonedRocketHideoutBackroom/border.bin",
       "blockdata_filepath": "data/layouts/AbandonedRocketHideoutBackroom/map.bin"
+    },
+    {
+      "id": "LAYOUT_TOHJO_PASS",
+      "name": "TohjoPass_Layout",
+      "width": 66,
+      "height": 58,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_TohjoPass",
+      "border_filepath": "data/layouts/TohjoPass/border.bin",
+      "blockdata_filepath": "data/layouts/TohjoPass/map.bin"
+    },
+    {
+      "id": "LAYOUT_DREAM_GARDEN",
+      "name": "DreamGarden_Layout",
+      "width": 27,
+      "height": 60,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_TohjoPass",
+      "border_filepath": "data/layouts/DreamGarden/border.bin",
+      "blockdata_filepath": "data/layouts/DreamGarden/map.bin"
     }
   ]
 }
