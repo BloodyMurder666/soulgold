@@ -50,6 +50,7 @@
 #include "union_room_chat.h"
 #include "constants/map_groups.h"
 #include "constants/items.h"
+#include "constants/party_menu.h"
 #include "difficulty.h"
 #include "follower_npc.h"
 #include "config/battle.h"
@@ -64,6 +65,7 @@ static void WarpToTruck(void);
 static void ResetMiniGamesRecords(void);
 static void ResetItemFlags(void);
 static void ResetDexNav(void);
+static void SetDefaultPartyMenuStyle(void);
 
 EWRAM_DATA bool8 gDifferentSaveFile = FALSE;
 EWRAM_DATA bool8 gEnableContestDebugging = FALSE;
@@ -120,7 +122,14 @@ static void SetDefaultOptions(void)
     gSaveBlock2Ptr->optionsFastMegas = B_FAST_MEGAS;
     gSaveBlock2Ptr->optionsFastWeather = B_FAST_WEATHER;
     gSaveBlock2Ptr->optionsSurfMusic = OW_SURF_MUSIC;
+    SetDefaultPartyMenuStyle();
                
+}
+
+static void SetDefaultPartyMenuStyle(void)
+{
+    gSaveBlock1Ptr->optionsPartyMenuStyle = PARTY_MENU_DEFAULT_OPTION;
+    gSaveBlock1Ptr->optionsPartyMenuStyleMagic = PARTY_MENU_OPTION_SAVE_MAGIC;
 }
 
 static void ClearPokedexFlags(void)
@@ -184,6 +193,7 @@ void NewGameInitData(void)
     ResetPokedex();
     ClearFrontierRecord();
     ClearSav1();
+    SetDefaultPartyMenuStyle();
     ClearSav3();
     ClearAllMail();
     gSaveBlock2Ptr->specialSaveWarpFlags = 0;

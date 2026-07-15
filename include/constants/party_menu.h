@@ -1,7 +1,8 @@
 #ifndef GUARD_CONSTANTS_PARTY_MENU_H
 #define GUARD_CONSTANTS_PARTY_MENU_H
 
-#define SWSH_PARTY_MENU                   TRUE
+#define SWSH_PARTY_MENU                   TRUE // Default style; sole compiled style if PARTY_MENU_STYLE_OPTION is FALSE
+#define PARTY_MENU_STYLE_OPTION           TRUE // Build Custom, HGSS, and BW menus and allow players to choose at runtime
 #define SWSH_PARTY_MENU_PC_ACCESS         FALSE
 #define SWSH_PARTY_BATTLE_DETAILS         FALSE // Show moves and ability instead of the selected Pokemon in battle
 #define SWSH_PARTY_MON_IDLE_ANIMS         TRUE
@@ -9,6 +10,15 @@
 
 #define PC_MON_CHOSEN 0xFE
 #define PARTY_NOTHING_CHOSEN 0xFF
+
+// Save encodings. BW deliberately remains 1 so saves made with the previous
+// Custom/Classic option continue to select the same menu.
+#define PARTY_MENU_OPTION_CUSTOM  0
+#define PARTY_MENU_OPTION_BW      1
+#define PARTY_MENU_OPTION_HGSS    2
+#define PARTY_MENU_OPTION_COUNT   3
+#define PARTY_MENU_DEFAULT_OPTION PARTY_MENU_OPTION_CUSTOM
+#define PARTY_MENU_OPTION_SAVE_MAGIC 0xA5
 
 #define AILMENT_NONE  0
 #define AILMENT_PSN   1

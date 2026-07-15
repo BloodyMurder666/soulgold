@@ -19,6 +19,7 @@
 #include "text_window.h"
 #include "window.h"
 #include "gba/m4a_internal.h"
+#include "constants/party_menu.h"
 #include "constants/rgb.h"
 #include "constants/vars.h"
 #include "event_data.h"
@@ -78,6 +79,7 @@ enum
     MENUITEM_FAST_MEGAS,
     MENUITEM_FAST_WEATHER,
     MENUITEM_SURF_MUSIC,
+    MENUITEM_PARTY_MENU,
     MENUITEM_BATTLE_FORMAT,
     MENUITEM_COUNT_PG3,
 };
@@ -109,6 +111,7 @@ enum
 #define YPOS_FAST_MEGAS (MENUITEM_FAST_MEGAS * 16)
 #define YPOS_FAST_WEATHER (MENUITEM_FAST_WEATHER * 16)
 #define YPOS_SURF_MUSIC (MENUITEM_SURF_MUSIC * 16)
+#define YPOS_PARTY_MENU (MENUITEM_PARTY_MENU * 16)
 #define YPOS_BATTLE_FORMAT (MENUITEM_BATTLE_FORMAT * 16)
 
 #define PAGE_COUNT  3
@@ -165,6 +168,10 @@ static u8 FastWeather_ProcessInput(u8 selection);
 static void FastWeather_DrawChoices(u8 selection);
 static u8 SurfMusic_ProcessInput(u8 selection);
 static void SurfMusic_DrawChoices(u8 selection);
+static u8 PartyMenuStyle_ProcessInput(u8 selection);
+static void PartyMenuStyle_DrawChoices(u8 selection);
+static u8 GetSavedPartyMenuStyle(void);
+static void SetSavedPartyMenuStyle(u8 selection);
 static u8 BattleFormat_ProcessInput(u8 selection);
 static void BattleFormat_DrawChoices(u8 selection);
 
@@ -178,6 +185,7 @@ EWRAM_DATA static bool8 sArrowPressed = FALSE;
 EWRAM_DATA static bool8 sFastMegas = FALSE;
 EWRAM_DATA static bool8 sFastWeather = FALSE;
 EWRAM_DATA static bool8 sSurfMusic = FALSE;
+EWRAM_DATA static u8 sPartyMenuStyle = PARTY_MENU_DEFAULT_OPTION;
 EWRAM_DATA static u8 sBattleFormat = REPLAY_BATTLE_FORMAT_DESIGNED;
 
 static const u8 gText_Option[]             = _("Options");
@@ -220,6 +228,9 @@ static const u8 gText_FastWeatherOn[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN
 static const u8 gText_FastWeatherOff[]     = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Off");
 static const u8 gText_SurfMusicOn[]        = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}On");
 static const u8 gText_SurfMusicOff[]       = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Off");
+static const u8 gText_PartyMenuCustom[]    = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Custom");
+static const u8 gText_PartyMenuHGSS[]      = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}HGSS");
+static const u8 gText_PartyMenuBW[]        = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}BW");
 static const u8 gText_BattleFormatDefault[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Default");
 static const u8 gText_BattleFormatSingles[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Singles");
 static const u8 gText_BattleFormatDoubles[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Doubles");
@@ -272,6 +283,7 @@ static const u8 *const sOptionMenuItemsNames_Pg3[MENUITEM_COUNT_PG3] =
     [MENUITEM_FAST_MEGAS] = COMPOUND_STRING("Fast megas"),
     [MENUITEM_FAST_WEATHER] = COMPOUND_STRING("Fast weather"),
     [MENUITEM_SURF_MUSIC] = COMPOUND_STRING("Surf music"),
+    [MENUITEM_PARTY_MENU] = COMPOUND_STRING("Party menu"),
     [MENUITEM_BATTLE_FORMAT] = COMPOUND_STRING("Trainer format"),
 };
 
@@ -367,6 +379,11 @@ static const u8 *const sOptionMenuHelpTexts_Pg3[MENUITEM_COUNT_PG3] =
     [MENUITEM_SURF_MUSIC] = COMPOUND_STRING(
         "On plays the Surf theme while\n"
         "surfing. Off keeps map music."),
+    [MENUITEM_PARTY_MENU] = COMPOUND_STRING(
+        "Custom uses the redesigned screen.\n"
+        "HGSS and BW use their respective\n"
+        "DS-style layouts. This applies\n"
+        "wherever the party menu is opened."),
     [MENUITEM_BATTLE_FORMAT] = COMPOUND_STRING(
         "Default uses intended formats.\n"
         "Singles/Doubles override eligible\n"
@@ -462,6 +479,7 @@ static void ReadAllCurrentSettings(u8 taskId)
         sFastMegas = gSaveBlock2Ptr->optionsFastMegas;
         sFastWeather = gSaveBlock2Ptr->optionsFastWeather;
         sSurfMusic = gSaveBlock2Ptr->optionsSurfMusic;
+        sPartyMenuStyle = GetSavedPartyMenuStyle();
         sBattleFormat = GetReplayBattleFormat();
 }
 
@@ -500,6 +518,7 @@ static void DrawOptionsPg3(u8 taskId)
     FastMegas_DrawChoices(sFastMegas);
     FastWeather_DrawChoices(sFastWeather);
     SurfMusic_DrawChoices(sSurfMusic);
+    PartyMenuStyle_DrawChoices(sPartyMenuStyle);
     BattleFormat_DrawChoices(sBattleFormat);
     HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
     CopyWindowToVram(WIN_OPTIONS, COPYWIN_FULL);
@@ -946,6 +965,13 @@ static void Task_OptionMenuProcessInput_Pg3(u8 taskId)
             if (previousOption != sSurfMusic)
                 SurfMusic_DrawChoices(sSurfMusic);
             break;
+        case MENUITEM_PARTY_MENU:
+            previousOption = sPartyMenuStyle;
+            sPartyMenuStyle = PartyMenuStyle_ProcessInput(sPartyMenuStyle);
+
+            if (previousOption != sPartyMenuStyle)
+                PartyMenuStyle_DrawChoices(sPartyMenuStyle);
+            break;
         case MENUITEM_BATTLE_FORMAT:
             previousOption = sBattleFormat;
             sBattleFormat = BattleFormat_ProcessInput(sBattleFormat);
@@ -1009,6 +1035,7 @@ static void SaveCurrentSettings(u8 taskId)
     gSaveBlock2Ptr->optionsFastMegas = sFastMegas;
     gSaveBlock2Ptr->optionsFastWeather = sFastWeather;
     gSaveBlock2Ptr->optionsSurfMusic = sSurfMusic;
+    SetSavedPartyMenuStyle(sPartyMenuStyle);
     SetReplayBattleFormat(sBattleFormat);
 }
 
@@ -1088,6 +1115,7 @@ static void RedrawCurrentOptions(u8 taskId)
         FastMegas_DrawChoices(sFastMegas);
         FastWeather_DrawChoices(sFastWeather);
         SurfMusic_DrawChoices(sSurfMusic);
+        PartyMenuStyle_DrawChoices(sPartyMenuStyle);
         BattleFormat_DrawChoices(sBattleFormat);
         gTasks[taskId].func = Task_OptionMenuProcessInput_Pg3;
         break;
@@ -1660,6 +1688,97 @@ static void SurfMusic_DrawChoices(u8 selection)
 
     DrawOptionMenuChoice(gText_SurfMusicOn, 104, YPOS_SURF_MUSIC, styles[TRUE]);
     DrawOptionMenuChoice(gText_SurfMusicOff, GetStringRightAlignXOffset(FONT_NORMAL, gText_SurfMusicOff, 198), YPOS_SURF_MUSIC, styles[FALSE]);
+}
+
+static u8 PartyMenuStyle_ProcessInput(u8 selection)
+{
+    if (selection >= PARTY_MENU_OPTION_COUNT)
+        selection = PARTY_MENU_DEFAULT_OPTION;
+
+    if (JOY_NEW(DPAD_RIGHT))
+    {
+        switch (selection)
+        {
+        case PARTY_MENU_OPTION_CUSTOM:
+            selection = PARTY_MENU_OPTION_HGSS;
+            break;
+        case PARTY_MENU_OPTION_HGSS:
+            selection = PARTY_MENU_OPTION_BW;
+            break;
+        default:
+            selection = PARTY_MENU_OPTION_CUSTOM;
+            break;
+        }
+        sArrowPressed = TRUE;
+    }
+    if (JOY_NEW(DPAD_LEFT))
+    {
+        switch (selection)
+        {
+        case PARTY_MENU_OPTION_CUSTOM:
+            selection = PARTY_MENU_OPTION_BW;
+            break;
+        case PARTY_MENU_OPTION_BW:
+            selection = PARTY_MENU_OPTION_HGSS;
+            break;
+        default:
+            selection = PARTY_MENU_OPTION_CUSTOM;
+            break;
+        }
+        sArrowPressed = TRUE;
+    }
+
+    return selection;
+}
+
+static void PartyMenuStyle_DrawChoices(u8 selection)
+{
+    s32 widthCustom, widthHGSS, widthBW, xHGSS;
+    u8 styles[PARTY_MENU_OPTION_COUNT] = {0};
+
+    if (selection >= PARTY_MENU_OPTION_COUNT)
+        selection = PARTY_MENU_DEFAULT_OPTION;
+
+    styles[selection] = 1;
+
+    widthCustom = GetStringWidth(FONT_NORMAL, gText_PartyMenuCustom, 0);
+    widthHGSS = GetStringWidth(FONT_NORMAL, gText_PartyMenuHGSS, 0);
+    widthBW = GetStringWidth(FONT_NORMAL, gText_PartyMenuBW, 0);
+    xHGSS = 92 + widthCustom + (106 - widthCustom - widthHGSS - widthBW) / 2;
+
+    DrawOptionMenuChoice(gText_PartyMenuCustom, 92, YPOS_PARTY_MENU, styles[PARTY_MENU_OPTION_CUSTOM]);
+    DrawOptionMenuChoice(gText_PartyMenuHGSS, xHGSS, YPOS_PARTY_MENU, styles[PARTY_MENU_OPTION_HGSS]);
+    DrawOptionMenuChoice(gText_PartyMenuBW, GetStringRightAlignXOffset(FONT_NORMAL, gText_PartyMenuBW, 198), YPOS_PARTY_MENU, styles[PARTY_MENU_OPTION_BW]);
+}
+
+static u8 GetSavedPartyMenuStyle(void)
+{
+    u8 selection;
+
+    if (gSaveBlock1Ptr != NULL && gSaveBlock1Ptr->optionsPartyMenuStyleMagic == PARTY_MENU_OPTION_SAVE_MAGIC)
+    {
+        selection = gSaveBlock1Ptr->optionsPartyMenuStyle;
+        if (selection < PARTY_MENU_OPTION_COUNT)
+            return selection;
+        return PARTY_MENU_DEFAULT_OPTION;
+    }
+
+    if (gSaveBlock2Ptr != NULL && gSaveBlock2Ptr->unused1)
+        return PARTY_MENU_OPTION_BW;
+
+    return PARTY_MENU_DEFAULT_OPTION;
+}
+
+static void SetSavedPartyMenuStyle(u8 selection)
+{
+    if (gSaveBlock1Ptr == NULL)
+        return;
+
+    if (selection >= PARTY_MENU_OPTION_COUNT)
+        selection = PARTY_MENU_DEFAULT_OPTION;
+
+    gSaveBlock1Ptr->optionsPartyMenuStyle = selection;
+    gSaveBlock1Ptr->optionsPartyMenuStyleMagic = PARTY_MENU_OPTION_SAVE_MAGIC;
 }
 
 static u8 BattleFormat_ProcessInput(u8 selection)

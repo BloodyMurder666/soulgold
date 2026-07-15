@@ -620,7 +620,7 @@ struct SaveBlock2
              u16 unused0:1;
              u16 optionsFollowers:1;
              u16 optionsAutorun:1;
-             u16 unused1:1;
+             u16 unused1:1; // Legacy one-bit party-menu style; read only for migration.
              u16 optionsTrainerLevelScaling:1; //0 = off, 1 = on
              u16 optionsWildLevelScaling:1; //0 = off, 1 = on
              u16 optionsDifficulty:1; //0 = normal, 1 = hard
@@ -1244,6 +1244,8 @@ struct SaveBlock1
     //     #define SAVEBLOCK1_FUTURE_RESERVED_BYTES (8192 - 16)
     /*0x3???*/ struct AchievementSaveData achievements;
                u16 registeredItems[MAX_REGISTERED_ITEMS];
+               u8 optionsPartyMenuStyle; // PARTY_MENU_OPTION_*
+               u8 optionsPartyMenuStyleMagic;
     /*0x3???*/ u8 futureReserved[SAVEBLOCK1_FUTURE_RESERVED_BYTES];
     // sizeof: 0x3???
 };
