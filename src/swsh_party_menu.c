@@ -350,6 +350,7 @@ static void UpdatePartyMonSprite(u8);
 static void SpriteCB_PartyMonPokemon(struct Sprite *);
 static void RunMonAnimTimer(void);
 static void PartyPaletteBufferCopy(u8);
+static void ApplyFaintedPartyBoxFrameColors(void);
 static void DisplayPartyPokemonDataForMultiBattle(u8);
 static void LoadPartyBoxPalette(struct PartyMenuBox *, u8);
 static void DrawEmptySlot(u8 windowId);
@@ -1230,6 +1231,7 @@ static bool8 DecompressGraphics(void)
     case 3:
         LoadPalette(sPartyMenuBg_Pal_SwSh, BG_PLTT_ID(0), 11 * PLTT_SIZE_4BPP);
         CpuCopy16(gPlttBufferUnfaded, sPartyMenuInternal->palBuffer, 11 * PLTT_SIZE_4BPP);
+        ApplyFaintedPartyBoxFrameColors();
         sPartyMenuInternal->switchCounter++;
         break;
     case 4:
@@ -1314,6 +1316,22 @@ static void PartyPaletteBufferCopy(u8 palNum)
     u8 offset = PLTT_ID(palNum);
     CpuCopy16(&gPlttBufferUnfaded[BG_PLTT_ID(3)], &gPlttBufferUnfaded[offset], PLTT_SIZE_4BPP);
     CpuCopy16(&gPlttBufferUnfaded[BG_PLTT_ID(3)], &gPlttBufferFaded[offset], PLTT_SIZE_4BPP);
+}
+
+static void ApplyFaintedPartyBoxFrameColors(void)
+{
+    // The source palette leaves the visible slot fill unchanged and uses orange
+    // accents. Replace the fill and accents while keeping text and HP bars intact.
+    sPartyMenuInternal->palBuffer[sPartyBoxFaintedPalIds1[1]] = RGB(31, 8, 8);
+    sPartyMenuInternal->palBuffer[sPartyBoxFaintedPalIds1[2]] = RGB(22, 3, 3);
+    sPartyMenuInternal->palBuffer[sPartyBoxFaintedPalIds2[0]] = RGB(15, 4, 4);
+    sPartyMenuInternal->palBuffer[sPartyBoxFaintedPalIds2[1]] = RGB(27, 5, 5);
+    sPartyMenuInternal->palBuffer[sPartyBoxFaintedPalIds2[2]] = RGB(22, 3, 3);
+    sPartyMenuInternal->palBuffer[sPartyBoxCurrSelectionFaintedPalIds[1]] = RGB(31, 14, 14);
+    sPartyMenuInternal->palBuffer[sPartyBoxCurrSelectionFaintedPalIds[2]] = RGB(26, 6, 6);
+    sPartyMenuInternal->palBuffer[sPartyBoxCurrSelectionFaintedPalIds2[0]] = RGB(31, 18, 18);
+    sPartyMenuInternal->palBuffer[sPartyBoxCurrSelectionFaintedPalIds2[1]] = RGB(31, 12, 12);
+    sPartyMenuInternal->palBuffer[sPartyBoxCurrSelectionFaintedPalIds2[2]] = RGB(26, 6, 6);
 }
 
 static void FreePartyPointers(void)
@@ -3446,7 +3464,7 @@ static void LoadPartyBoxPalette(struct PartyMenuBox *menuBox, u8 palFlags)
         if (palFlags & PARTY_PAL_SELECTED)
         {
             LOAD_PARTY_BOX_PAL(sPartyBoxCurrSelectionFaintedPalIds, sPartyBoxPalOffsets1);
-            LOAD_PARTY_BOX_PAL(sPartyBoxCurrSelectionPalIds2, sPartyBoxPalOffsets2);
+            LOAD_PARTY_BOX_PAL(sPartyBoxCurrSelectionFaintedPalIds2, sPartyBoxPalOffsets2);
             LOAD_PARTY_TEXT_PAL(sPartyBoxCurrSelectionFaintedPalIds3, sPartyBoxPalOffsets3);
         }
         else

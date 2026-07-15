@@ -1059,6 +1059,7 @@ static const u8 sPartyBoxFaintedPalIds1[] = {84, 85, 86};
 static const u8 sPartyBoxCurrSelectionPalIds1[] = {116, 117, 118};
 static const u8 sPartyBoxCurrSelectionMultiPalIds[] = {132, 133, 134};
 static const u8 sPartyBoxCurrSelectionFaintedPalIds[] = {148, 149, 150};
+static const u8 sPartyBoxCurrSelectionFaintedPalIds2[] = {145, 151, 152};
 static const u8 sPartyBoxSelectedForActionPalIds1[] = {100, 101, 102};
 static const u8 sPartyBoxEmptySlotPalIds2[] = {49, 55, 56};
 static const u8 sPartyBoxMultiPalIds2[] = {65, 71, 72};
