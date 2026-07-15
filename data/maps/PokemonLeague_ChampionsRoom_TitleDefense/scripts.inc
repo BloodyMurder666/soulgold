@@ -37,76 +37,80 @@ PokemonLeague_ChampionsRoom_TitleDefense_Begin::
 # 30 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	addobject 1
 # 31 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	applymovement 1, PokemonLeague_ChampionsRoom_TitleDefense_Begin_Movement_1
+	playse SE_EXIT
 # 32 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	waitmovement 1
+	waitse
+# 33 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+	applymovement 1, PokemonLeague_ChampionsRoom_TitleDefense_Begin_Movement_1
 # 34 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	special TitleDefense_ShowIntro
-# 35 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	waitmessage
-# 36 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	waitbuttonpress
-# 37 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	closemessage
-# 39 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	setflag FLAG_TEMP_3
-# 40 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	setflag FLAG_TEMP_5
-# 41 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	special TitleDefense_PrepareBattle
-# 42 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	special PlayTrainerEncounterMusic
-# 43 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	dotrainerbattle
-# 45 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	clearflag FLAG_TEMP_5
-# 46 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	special TitleDefense_ShowFarewell
-# 47 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	waitmessage
-# 48 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	waitbuttonpress
-# 49 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	closemessage
-# 51 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	applymovement 1, PokemonLeague_ChampionsRoom_TitleDefense_Begin_Movement_2
-# 52 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	waitmovement 1
+# 36 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+	special TitleDefense_ShowIntro
+# 37 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+	waitmessage
+# 38 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+	waitbuttonpress
+# 39 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+	closemessage
+# 41 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+	setflag FLAG_TEMP_3
+# 42 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+	setflag FLAG_TEMP_5
+# 43 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+	special TitleDefense_PrepareBattle
+# 44 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+	special PlayTrainerEncounterMusic
+# 45 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+	dotrainerbattle
+# 47 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+	clearflag FLAG_TEMP_5
+# 48 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+	special TitleDefense_ShowFarewell
+# 49 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+	waitmessage
+# 50 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+	waitbuttonpress
+# 51 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+	closemessage
 # 53 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	removeobject 1
+	applymovement 1, PokemonLeague_ChampionsRoom_TitleDefense_Begin_Movement_2
+# 54 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+	waitmovement 1
 # 55 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	setmetatile 6, 1, 0x572, FALSE
-# 56 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	setmetatile 6, 2, 0x416, FALSE
+	removeobject 1
 # 57 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	playse SE_BANG
+	setmetatile 6, 1, 0x572, FALSE
 # 58 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	setvar VAR_0x8004, 1
+	setmetatile 6, 2, 0x416, FALSE
 # 59 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	setvar VAR_0x8005, 1
+	playse SE_BANG
 # 60 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	setvar VAR_0x8006, 4
+	setvar VAR_0x8004, 1
 # 61 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	setvar VAR_0x8007, 4
+	setvar VAR_0x8005, 1
 # 62 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	special ShakeCamera
+	setvar VAR_0x8006, 4
 # 63 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	waitstate
+	setvar VAR_0x8007, 4
 # 64 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	special DrawWholeMapView
-# 66 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	special TitleDefense_IncrementWins
-# 67 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	setvar VAR_LEAGUE_STATE, 6
-# 68 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, PokemonLeague_ChampionsRoom_TitleDefense_Begin_Movement_3
-# 69 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	waitmovement OBJ_EVENT_ID_PLAYER
-# 70 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
-	warpsilent MAP_POKEMON_LEAGUE_HALL_OF_FAME_TITLE_DEFENSE, 0
-# 71 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+	special ShakeCamera
+# 65 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	waitstate
+# 66 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+	special DrawWholeMapView
+# 68 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+	special TitleDefense_IncrementWins
+# 69 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+	setvar VAR_LEAGUE_STATE, 6
+# 70 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, PokemonLeague_ChampionsRoom_TitleDefense_Begin_Movement_3
+# 71 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+	waitmovement OBJ_EVENT_ID_PLAYER
 # 72 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+	warpsilent MAP_POKEMON_LEAGUE_HALL_OF_FAME_TITLE_DEFENSE, 0
+# 73 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+	waitstate
+# 74 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	releaseall
 	end
 
@@ -143,66 +147,66 @@ PokemonLeague_ChampionsRoom_TitleDefense_Begin_Movement_0:
 	face_down
 	step_end
 
-# 31 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 33 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 PokemonLeague_ChampionsRoom_TitleDefense_Begin_Movement_1:
-# 31 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 33 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	walk_up
-# 31 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 33 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	walk_up
-# 31 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 33 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	walk_up
-# 31 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 33 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	walk_up
-# 31 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 33 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	walk_up
-# 31 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 33 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	walk_up
-# 31 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 33 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	walk_up
-# 31 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 33 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	walk_up
-# 31 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 33 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	walk_up
-# 31 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 33 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	face_up
 	step_end
 
-# 51 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 53 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 PokemonLeague_ChampionsRoom_TitleDefense_Begin_Movement_2:
-# 51 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 53 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	walk_down
-# 51 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 53 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	walk_down
-# 51 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 53 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	walk_down
-# 51 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 53 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	walk_down
-# 51 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 53 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	walk_down
-# 51 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 53 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	walk_down
-# 51 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 53 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	walk_down
-# 51 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 53 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	walk_down
-# 51 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 53 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	walk_down
-# 51 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 53 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	set_invisible
 	step_end
 
-# 68 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 70 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 PokemonLeague_ChampionsRoom_TitleDefense_Begin_Movement_3:
-# 68 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 70 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	walk_up
-# 68 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 70 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	walk_up
-# 68 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 70 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	walk_up
-# 68 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 70 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	walk_up
-# 68 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 70 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	walk_up
-# 68 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
+# 70 "data/maps/PokemonLeague_ChampionsRoom_TitleDefense/scripts.pory"
 	walk_up
 	step_end

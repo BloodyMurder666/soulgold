@@ -28,6 +28,8 @@ script PokemonLeague_ChampionsRoom_TitleDefense_Begin
 
     clearflag(FLAG_TEMP_1)
     addobject(LOCALID_TITLE_DEFENSE_CHALLENGER)
+    playse(SE_EXIT)
+    waitse
     applymovement(LOCALID_TITLE_DEFENSE_CHALLENGER, moves(walk_up * 9, face_up))
     waitmovement(LOCALID_TITLE_DEFENSE_CHALLENGER)
 
