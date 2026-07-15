@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "battle.h"
 #include "egg_hatch.h"
 #include "event_data.h"
@@ -179,6 +180,19 @@ TEST("Shininess set on an Egg persists after hatching")
 
     EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_IS_EGG), FALSE);
     EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_IS_SHINY), TRUE);
+}
+
+TEST("Hatching Jirachi unlocks its achievement")
+{
+    bool8 isEgg = TRUE;
+
+    CreateMon(&gPlayerParty[0], SPECIES_JIRACHI, EGG_HATCH_LEVEL, 0, OTID_STRUCT_PLAYER_ID);
+    SetMonData(&gPlayerParty[0], MON_DATA_IS_EGG, &isEgg);
+    gSpecialVar_0x8004 = 0;
+
+    ScriptHatchMon();
+
+    EXPECT(Achievement_IsUnlocked(ACH_OBTAIN_JIRACHI));
 }
 
 TEST("Hyper Training increases stats without affecting IVs")

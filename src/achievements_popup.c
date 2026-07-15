@@ -54,6 +54,8 @@ enum
     POPUP_STATE_SLIDE_IN,
     POPUP_STATE_WAIT,
     POPUP_STATE_SLIDE_OUT,
+    POPUP_STATE_CLEANUP,
+    POPUP_STATE_DESTROY,
 };
 
 static const struct WindowTemplate sPopupWindowTemplate =
@@ -274,7 +276,17 @@ static void Task_AchievementPopup(u8 taskId)
         break;
     case POPUP_STATE_SLIDE_OUT:
         if (UpdateAchievementPopupSlide(taskId))
-            DestroyAchievementPopup(taskId);
+            task->tState = POPUP_STATE_CLEANUP;
+        break;
+    case POPUP_STATE_CLEANUP:
+        // Clear the window while it is offscreen, then wait for the queued
+        // tilemap copy to reach VRAM before restoring the BG offset.
+        if (task->tWindowId != WINDOW_NONE)
+            ClearStdWindowAndFrame(task->tWindowId, TRUE);
+        task->tState = POPUP_STATE_DESTROY;
+        break;
+    case POPUP_STATE_DESTROY:
+        DestroyAchievementPopup(taskId);
         break;
     }
 }
@@ -351,7 +363,8 @@ static void DestroyAchievementPopup(u8 taskId)
     }
     if (task->tWindowId != WINDOW_NONE)
     {
-        ClearStdWindowAndFrame(task->tWindowId, TRUE);
+        if (task->tState != POPUP_STATE_DESTROY)
+            ClearStdWindowAndFrame(task->tWindowId, TRUE);
         RemoveWindow(task->tWindowId);
         task->tWindowId = WINDOW_NONE;
     }
