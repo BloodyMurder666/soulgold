@@ -992,6 +992,8 @@ static enum CancelerResult CancelerPPDeduction(struct BattleContext *ctx)
     else
         gBattleMons[ctx->battlerAtk].pp[movePosition] = 0;
 
+    gLastMoves[ctx->battlerAtk] = gChosenMove;
+
     if (MOVE_IS_PERMANENT(ctx->battlerAtk, movePosition))
     {
         BtlController_EmitSetMonData(
@@ -2765,7 +2767,6 @@ static enum MoveEndResult MoveEndUpdateLastMoves(void)
         }
         else
         {
-            gLastMoves[gBattlerAttacker] = MOVE_UNAVAILABLE;
             gLastResultingMoves[gBattlerAttacker] = MOVE_UNAVAILABLE;
             gLastUsedMoveType[gBattlerAttacker] = 0;
         }
