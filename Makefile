@@ -93,7 +93,7 @@ endif
 CPP := $(PREFIX)cpp
 
 ifeq ($(RELEASE),1)
-	FILE_NAME := $(FILE_NAME)-release
+	FILE_NAME := $(FILE_NAME)
 endif
 
 ROM_NAME := $(FILE_NAME).gba
