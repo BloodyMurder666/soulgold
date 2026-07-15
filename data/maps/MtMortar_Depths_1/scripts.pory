@@ -1,9 +1,9 @@
 mapscripts MtMortar_Depths_1_MapScripts {
     MAP_SCRIPT_ON_LOAD {
         if (flag(FLAG_MTMORTAR_DEPTHS_PUZZLE1SOLVED)) {
-            setmetatile(20, 18, 0x4E5, FALSE)
-            setmetatile(20, 19, 0x4E5, FALSE)
-            setmetatile(20, 20, 0x4E5, FALSE)
+            setmetatile(20, 18, 0x404, FALSE)
+            setmetatile(20, 19, 0x404, FALSE)
+            setmetatile(20, 20, 0x404, FALSE)
         }
         if (flag(FLAG_MTMORTAR_DEPTHS_HEATRANPUZZLED)) {
             setmetatile(40, 1, 0x414, FALSE)

@@ -29,17 +29,10 @@
 #include "config/pokedex_plus_hgss.h"
 
 // There are two types of indicators for the area screen to show where a Pokémon can occur:
-// - Area glows, which highlight any of the maps in MAP_GROUP_TOWNS_AND_ROUTES that have the species.
-//   These are a tilemap with colored rectangular areas that blends in and out. The positions of the
-//   rectangles is determined by the positions of the matching MAPSEC values on the region map layout.
-// - Area markers, which highlight any of the maps in MAP_GROUP_DUNGEONS or MAP_GROUP_SPECIAL_AREA that
-//   have the species. These are circular sprites that flash twice. The positions of the sprites is
-//   determined by the data for the corresponding MAPSEC in gRegionMapEntries.
-
-// Only maps in the following map groups have their encounters considered for the area screen
-#define MAP_GROUP_TOWNS_AND_ROUTES MAP_GROUP(MAP_GOLDENROD_CITY)
-#define MAP_GROUP_DUNGEONS MAP_GROUP(MAP_UNION_CAVE_1F)
-#define MAP_GROUP_SPECIAL_AREA MAP_GROUP(MAP_SAFARI_ZONE_NORTHWEST)
+// - Area glows, which highlight any mapsec that has a tile on the region map layout.
+//   These are a tilemap with colored rectangular areas that blends in and out.
+// - Area markers, which highlight any mapsec that has coordinates in gRegionMapEntries
+//   but is not physically present on the map layout. These are circular sprites that flash twice.
 
 #define AREA_SCREEN_WIDTH 32
 #define AREA_SCREEN_HEIGHT 20
@@ -108,12 +101,14 @@ struct
     /*0xFBC*/ u8 areaUnknownGraphicsBuffer[0x600];
     /*0xFC0*/ u8 areaScreenLabelIds[NUM_LABEL_WINDOWS];
     /*0xFC8*/ u8 areaState;
+    u8 mapPage;
 } static EWRAM_DATA *sPokedexAreaScreen = NULL;
 
 EWRAM_DATA u8 gAreaTimeOfDay = 0;
 
 static void FindMapsWithMon(u16);
 static void BuildAreaGlowTilemap(void);
+static void SetMapHasMon(u16, u16);
 static void SetAreaHasMon(u16, u16);
 static void SetSpecialMapHasMon(u16, u16);
 static mapsec_u16_t GetRegionMapSectionId(u8, u8);
@@ -129,6 +124,14 @@ static void Task_HandlePokedexAreaScreenInput(u8);
 static void ResetPokedexAreaMapBg(void);
 static void DestroyAreaScreenSprites(void);
 static void AddTimeOfDayLabels(void);
+static void PreparePokedexAreaMap(void);
+static u8 GetPokedexAreaMapPage(void);
+static void RemoveAreasNotOnSelectedMapPage(void);
+static bool8 IsMapSecOnSelectedMapPage(mapsec_u16_t mapSecId);
+static s16 GetPokedexAreaBgScrollX(void);
+static s16 GetPokedexAreaBgScrollY(void);
+static s16 GetPokedexAreaRegionMapScrollX(void);
+static s16 GetPokedexAreaRegionMapScrollY(void);
 static void ShowEncounterInfoLabel(void);
 static void ShowAreaUnknownLabel(void);
 static void PrintAreaLabelText(const u8 *text, enum PokedexAreaLabels labelId, int textXPos);
@@ -273,23 +276,20 @@ static bool8 DrawAreaGlow(void)
     switch (sPokedexAreaScreen->drawAreaGlowState)
     {
     case 0:
-        FindMapsWithMon(sPokedexAreaScreen->species);
-        break;
-    case 1:
         BuildAreaGlowTilemap();
         break;
-    case 2:
+    case 1:
         DecompressAndCopyTileDataToVram(2, sAreaGlow_Gfx, 0, 0, 0);
         LoadBgTilemap(2, sPokedexAreaScreen->areaGlowTilemap, sizeof(sPokedexAreaScreen->areaGlowTilemap), 0);
         break;
-    case 3:
+    case 2:
         if (!FreeTempTileDataBuffersIfPossible())
         {
             LoadPalette(sAreaGlow_Pal, BG_PLTT_ID(GLOW_PALETTE), sizeof(sAreaGlow_Pal));
             sPokedexAreaScreen->drawAreaGlowState++;
         }
         return TRUE;
-    case 4:
+    case 3:
         ChangeBgY(2, -BG_SCREEN_SIZE, BG_COORD_SET);
         break;
     default:
@@ -298,6 +298,82 @@ static bool8 DrawAreaGlow(void)
 
     sPokedexAreaScreen->drawAreaGlowState++;
     return TRUE;
+}
+
+static void PreparePokedexAreaMap(void)
+{
+    FindMapsWithMon(sPokedexAreaScreen->species);
+    sPokedexAreaScreen->mapPage = GetPokedexAreaMapPage();
+    RemoveAreasNotOnSelectedMapPage();
+    ResetDrawAreaGlowState();
+}
+
+static u8 GetPokedexAreaMapPage(void)
+{
+    u16 i;
+    u8 page;
+
+    for (i = 0; i < sPokedexAreaScreen->numOverworldAreas; i++)
+    {
+        page = GetRegionMapPageForMapSec(sPokedexAreaScreen->overworldAreasWithMons[i].regionMapSectionId);
+        if (page != REGION_MAP_PAGE_MAIN)
+            return page;
+    }
+
+    for (i = 0; i < sPokedexAreaScreen->numSpecialAreas; i++)
+    {
+        page = GetRegionMapPageForMapSec(sPokedexAreaScreen->specialAreaRegionMapSectionIds[i]);
+        if (page != REGION_MAP_PAGE_MAIN)
+            return page;
+    }
+
+    return REGION_MAP_PAGE_MAIN;
+}
+
+static void RemoveAreasNotOnSelectedMapPage(void)
+{
+    u16 i;
+    u16 count = 0;
+
+    for (i = 0; i < sPokedexAreaScreen->numOverworldAreas; i++)
+    {
+        if (IsMapSecOnSelectedMapPage(sPokedexAreaScreen->overworldAreasWithMons[i].regionMapSectionId))
+            sPokedexAreaScreen->overworldAreasWithMons[count++] = sPokedexAreaScreen->overworldAreasWithMons[i];
+    }
+    sPokedexAreaScreen->numOverworldAreas = count;
+
+    count = 0;
+    for (i = 0; i < sPokedexAreaScreen->numSpecialAreas; i++)
+    {
+        if (IsMapSecOnSelectedMapPage(sPokedexAreaScreen->specialAreaRegionMapSectionIds[i]))
+            sPokedexAreaScreen->specialAreaRegionMapSectionIds[count++] = sPokedexAreaScreen->specialAreaRegionMapSectionIds[i];
+    }
+    sPokedexAreaScreen->numSpecialAreas = count;
+}
+
+static bool8 IsMapSecOnSelectedMapPage(mapsec_u16_t mapSecId)
+{
+    return GetRegionMapPageForMapSec(mapSecId) == sPokedexAreaScreen->mapPage;
+}
+
+static s16 GetPokedexAreaBgScrollX(void)
+{
+    return 0;
+}
+
+static s16 GetPokedexAreaBgScrollY(void)
+{
+    return -8;
+}
+
+static s16 GetPokedexAreaRegionMapScrollX(void)
+{
+    return GetRegionMapPageScrollXForPage(sPokedexAreaScreen->mapPage);
+}
+
+static s16 GetPokedexAreaRegionMapScrollY(void)
+{
+    return GetRegionMapPageScrollYForPage(sPokedexAreaScreen->mapPage) - 8;
 }
 
 static void FindMapsWithMon(u16 species)
@@ -329,18 +405,7 @@ static void FindMapsWithMon(u16 species)
     for (i = 0; sFeebasData[i][0] != NUM_SPECIES; i++)
     {
         if (species == sFeebasData[i][0])
-        {
-            switch (sFeebasData[i][1])
-            {
-            case MAP_GROUP_TOWNS_AND_ROUTES:
-                SetAreaHasMon(sFeebasData[i][1], sFeebasData[i][2]);
-                break;
-            case MAP_GROUP_DUNGEONS:
-            case MAP_GROUP_SPECIAL_AREA:
-                SetSpecialMapHasMon(sFeebasData[i][1], sFeebasData[i][2]);
-                break;
-            }
-        }
+            SetMapHasMon(sFeebasData[i][1], sFeebasData[i][2]);
     }
 
     // Add regular species to the area map
@@ -353,18 +418,7 @@ static void FindMapsWithMon(u16 species)
         //     continue;
 
         if (MapHasSpecies(&gWildMonHeaders[i].encounterTypes[gAreaTimeOfDay], headerSectionId, species))
-        {
-            switch (gWildMonHeaders[i].mapGroup)
-            {
-            case MAP_GROUP_TOWNS_AND_ROUTES:
-                SetAreaHasMon(gWildMonHeaders[i].mapGroup, gWildMonHeaders[i].mapNum);
-                break;
-            case MAP_GROUP_DUNGEONS:
-            case MAP_GROUP_SPECIAL_AREA:
-                SetSpecialMapHasMon(gWildMonHeaders[i].mapGroup, gWildMonHeaders[i].mapNum);
-                break;
-            }
-        }
+            SetMapHasMon(gWildMonHeaders[i].mapGroup, gWildMonHeaders[i].mapNum);
     }
 
     // Add roamers to the area map
@@ -374,12 +428,26 @@ static void FindMapsWithMon(u16 species)
         if (species == roamer->species && roamer->active)
         {
             // This is a roamer's species, show where this roamer is currently
-            struct OverworldArea *roamerLocation = &sPokedexAreaScreen->overworldAreasWithMons[sPokedexAreaScreen->numOverworldAreas];
-            GetRoamerLocation(i, &roamerLocation->mapGroup, &roamerLocation->mapNum);
-            roamerLocation->regionMapSectionId = Overworld_GetMapHeaderByGroupAndId(roamerLocation->mapGroup, roamerLocation->mapNum)->regionMapSectionId;
-            sPokedexAreaScreen->numOverworldAreas++;
+            u8 mapGroup;
+            u8 mapNum;
+
+            GetRoamerLocation(i, &mapGroup, &mapNum);
+            SetMapHasMon(mapGroup, mapNum);
         }
     }
+}
+
+static void SetMapHasMon(u16 mapGroup, u16 mapNum)
+{
+    mapsec_u16_t regionMapSectionId = CorrectSpecialMapSecId(GetRegionMapSectionId(mapGroup, mapNum));
+
+    if (regionMapSectionId >= MAPSEC_NONE)
+        return;
+
+    if (IsRegionMapSecIdInLayout(regionMapSectionId))
+        SetAreaHasMon(mapGroup, mapNum);
+    else
+        SetSpecialMapHasMon(mapGroup, mapNum);
 }
 
 static void SetAreaHasMon(u16 mapGroup, u16 mapNum)
@@ -748,19 +816,19 @@ static void Task_ShowPokedexAreaScreen(u8 taskId)
         HideBg(0);
         break;
     case 1:
+        PreparePokedexAreaMap();
         SetBgAttribute(3, BG_ATTR_CHARBASEINDEX, 3);
-        LoadPokedexAreaMapGfx(&sPokedexAreaMapTemplate);
+        LoadPokedexAreaMapGfx(&sPokedexAreaMapTemplate, sPokedexAreaScreen->mapPage);
         StringFill(sPokedexAreaScreen->charBuffer, CHAR_SPACE, 16);
         break;
     case 2:
         if (TryShowPokedexAreaMap() == TRUE)
             return;
-        PokedexAreaMapChangeBgY(-8);
+        PokedexAreaMapChangeBg(GetPokedexAreaBgScrollX(), GetPokedexAreaBgScrollY());
         break;
     case 3:
-        ResetDrawAreaGlowState();
         InitAreaGlowBg();
-        ShowRegionMapForPokedexAreaScreen(&sPokedexAreaScreen->regionMap);
+        ShowRegionMapForPokedexAreaScreen(&sPokedexAreaScreen->regionMap, sPokedexAreaScreen->mapPage);
         break;
     case 4:
         if (DrawAreaGlow())
@@ -768,7 +836,7 @@ static void Task_ShowPokedexAreaScreen(u8 taskId)
         break;
     case 5:
         CreateRegionMapPlayerIcon(1, 1);
-        PokedexAreaScreen_UpdateRegionMapVariablesAndVideoRegs(0, -8);
+        PokedexAreaScreen_UpdateRegionMapVariablesAndVideoRegs(GetPokedexAreaRegionMapScrollX(), GetPokedexAreaRegionMapScrollY());
         break;
     case 6:
         CreateAreaMarkerSprites();
@@ -823,16 +891,16 @@ static void Task_UpdatePokedexAreaScreen(u8 taskId)
         ClearAreaWindowLabel(DEX_AREA_LABEL_AREA_UNKNOWN);
         ResetSpriteData();
         FreeAllSpritePalettes();
-        ResetDrawAreaGlowState();
+        PreparePokedexAreaMap();
         InitAreaGlowBg();
-        ShowRegionMapForPokedexAreaScreen(&sPokedexAreaScreen->regionMap);
+        ShowRegionMapForPokedexAreaScreen(&sPokedexAreaScreen->regionMap, sPokedexAreaScreen->mapPage);
         HideBg(2);
         HideBg(0);
         break;
     case 1:
         SetBgAttribute(3, BG_ATTR_CHARBASEINDEX, 3);
-        LoadPokedexAreaMapGfx(&sPokedexAreaMapTemplate);
-        PokedexAreaMapChangeBgY(-8);
+        LoadPokedexAreaMapGfx(&sPokedexAreaMapTemplate, sPokedexAreaScreen->mapPage);
+        PokedexAreaMapChangeBg(GetPokedexAreaBgScrollX(), GetPokedexAreaBgScrollY());
         StringFill(sPokedexAreaScreen->charBuffer, CHAR_SPACE, 16);
         break;
     case 2:
@@ -845,7 +913,7 @@ static void Task_UpdatePokedexAreaScreen(u8 taskId)
         break;
     case 4:
         CreateRegionMapPlayerIcon(1, 1);
-        PokedexAreaScreen_UpdateRegionMapVariablesAndVideoRegs(0, -8);
+        PokedexAreaScreen_UpdateRegionMapVariablesAndVideoRegs(GetPokedexAreaRegionMapScrollX(), GetPokedexAreaRegionMapScrollY());
         CreateAreaMarkerSprites();
         break;
     case 5:

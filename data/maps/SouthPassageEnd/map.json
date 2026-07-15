@@ -3,7 +3,7 @@
   "name": "SouthPassageEnd",
   "layout": "LAYOUT_SOUTH_PASSAGE_END",
   "music": "MUS_DP_ROUTE210_DAY",
-  "region_map_section": "MAPSEC_SOUTH_SEA",
+  "region_map_section": "MAPSEC_ABANDONED_LAB",
   "requires_flash": false,
   "weather": "WEATHER_RAIN",
   "map_type": "MAP_TYPE_ROUTE",

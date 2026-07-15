@@ -26,6 +26,13 @@ enum {
     NUM_MAPSEC_TYPES
 };
 
+enum {
+    REGION_MAP_PAGE_MAIN,
+    REGION_MAP_PAGE_SECOND,
+    REGION_MAP_PAGE_THIRD,
+    REGION_MAP_PAGE_COUNT,
+};
+
 struct RegionMap {
     /*0x000*/ mapsec_u16_t mapSecId;
     /*0x002*/ u8 mapSecType;
@@ -103,6 +110,10 @@ void InitRegionMap(struct RegionMap *regionMap, bool8 zoomed);
 u8 DoRegionMapInputCallback(void);
 bool8 UpdateRegionMapZoom(void);
 void FreeRegionMapIconResources(void);
+u8 GetRegionMapPageForMapSec(mapsec_u16_t mapSecId);
+bool8 IsRegionMapSecIdInLayout(mapsec_u16_t mapSecId);
+s16 GetRegionMapPageScrollXForPage(u8 page);
+s16 GetRegionMapPageScrollYForPage(u8 page);
 mapsec_u16_t GetRegionMapSecIdAt(u16 x, u16 y);
 void CreateRegionMapPlayerIcon(u16 tileTag, u16 paletteTag);
 void CreateRegionMapCursor(u16 tileTag, u16 paletteTag);
@@ -111,7 +122,7 @@ u8 *GetMapName(u8 *dest, mapsec_u16_t regionMapId, u16 padLength);
 u8 *GetMapNameGeneric(u8 *dest, mapsec_u16_t mapSecId);
 u8 *GetMapNameHandleAquaHideout(u8 *dest, mapsec_u16_t mapSecId);
 mapsec_u16_t CorrectSpecialMapSecId(mapsec_u16_t mapSecId);
-void ShowRegionMapForPokedexAreaScreen(struct RegionMap *regionMap);
+void ShowRegionMapForPokedexAreaScreen(struct RegionMap *regionMap, u8 mapPage);
 void PokedexAreaScreen_UpdateRegionMapVariablesAndVideoRegs(s16 x, s16 y);
 void CB2_OpenFlyMap(void);
 bool8 IsRegionMapZoomed(void);

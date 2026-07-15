@@ -13,11 +13,11 @@ MtMortar_Depths_1_MapScripts_MAP_SCRIPT_ON_LOAD_1:
 
 MtMortar_Depths_1_MapScripts_MAP_SCRIPT_ON_LOAD_2:
 # 4 "data/maps/MtMortar_Depths_1/scripts.pory"
-	setmetatile 20, 18, 0x4E5, FALSE
+	setmetatile 20, 18, 0x404, FALSE
 # 5 "data/maps/MtMortar_Depths_1/scripts.pory"
-	setmetatile 20, 19, 0x4E5, FALSE
+	setmetatile 20, 19, 0x404, FALSE
 # 6 "data/maps/MtMortar_Depths_1/scripts.pory"
-	setmetatile 20, 20, 0x4E5, FALSE
+	setmetatile 20, 20, 0x404, FALSE
 	goto MtMortar_Depths_1_MapScripts_MAP_SCRIPT_ON_LOAD_1
 
 MtMortar_Depths_1_MapScripts_MAP_SCRIPT_ON_LOAD_4:

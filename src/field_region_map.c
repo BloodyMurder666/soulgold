@@ -140,6 +140,7 @@ static void VBCB_FieldUpdateRegionMap(void)
     LoadOam();
     ProcessSpriteCopyRequests();
     TransferPlttBuffer();
+    UpdateRegionMapVideoRegs();
 }
 
 static void MCB2_FieldUpdateRegionMap(void)

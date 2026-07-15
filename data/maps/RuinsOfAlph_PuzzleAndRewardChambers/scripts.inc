@@ -115,6 +115,7 @@ RuinsOfAlph_PuzzleAndRewardChambers_MapScript_KabutoSuccess::
 	setflag FLAG_COMPLETED_KABUTO_PUZZLE
 	addvar VAR_RUINS_OF_ALPH_PUZZLES, 1
 	clearflag FLAG_HIDE_ALPH_PUZZLE_NPCS
+	setflag FLAG_HIDE_INSIDE_ALPH_NPCS
 	setvar VAR_0x8004, 1  @ vertical pan
 	setvar VAR_0x8005, 1  @ horizontal pan
 	setvar VAR_0x8006, 20  @ num shakes
@@ -163,6 +164,7 @@ RuinsOfAlph_PuzzleAndRewardChambers_MapScript_OmanyteSuccess::
 	setflag FLAG_COMPLETED_OMANYTE_PUZZLE
 	addvar VAR_RUINS_OF_ALPH_PUZZLES, 1
 	clearflag FLAG_HIDE_ALPH_PUZZLE_NPCS
+	setflag FLAG_HIDE_INSIDE_ALPH_NPCS
 	setvar VAR_0x8004, 1  @ vertical pan
 	setvar VAR_0x8005, 1  @ horizontal pan
 	setvar VAR_0x8006, 20  @ num shakes
@@ -204,6 +206,7 @@ RuinsOfAlph_PuzzleAndRewardChambers_MapScript_AerodactylSuccess::
 	setflag FLAG_COMPLETED_AERODACTYL_PUZZLE
 	addvar VAR_RUINS_OF_ALPH_PUZZLES, 1
 	clearflag FLAG_HIDE_ALPH_PUZZLE_NPCS
+	setflag FLAG_HIDE_INSIDE_ALPH_NPCS
 	setvar VAR_0x8004, 1  @ vertical pan
 	setvar VAR_0x8005, 1  @ horizontal pan
 	setvar VAR_0x8006, 20  @ num shakes
@@ -245,6 +248,7 @@ RuinsOfAlph_PuzzleAndRewardChambers_MapScript_HoohSuccess::
 	setflag FLAG_COMPLETED_HOOH_PUZZLE
 	addvar VAR_RUINS_OF_ALPH_PUZZLES, 1
 	clearflag FLAG_HIDE_ALPH_PUZZLE_NPCS
+	setflag FLAG_HIDE_INSIDE_ALPH_NPCS
 	setvar VAR_0x8004, 1  @ vertical pan
 	setvar VAR_0x8005, 1  @ horizontal pan
 	setvar VAR_0x8006, 20  @ num shakes

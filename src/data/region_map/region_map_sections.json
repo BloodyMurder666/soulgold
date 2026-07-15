@@ -1472,7 +1472,7 @@
       "x": 13,
       "y": 14,
       "width": 1,
-      "height": 5
+      "height": 9
     },
     {
       "id": "MAPSEC_TOHJO_PASS",
@@ -1532,7 +1532,171 @@
     },
     {
       "id": "MAPSEC_METEOR_ISLAND",
-      "name": "Meteor Island"
+      "name": "Meteor Island",
+      "x": 10,
+      "y": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_ABANDONED_LAB",
+      "name": "Abandoned Lab",
+      "x": 16,
+      "y": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_MAGELANIA_TOWN",
+      "name": "Magelania Town",
+      "x": 13,
+      "y": 3,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_TOURNA_TOWN",
+      "name": "Tourna Town"
+    },
+    {
+      "id": "MAPSEC_EASTERN_ROAD",
+      "name": "Eastern Road"
+    },
+    {
+      "id": "MAPSEC_WESTERN_ROAD",
+      "name": "Western Road"
+    },
+    {
+      "id": "MAPSEC_KOKO_SHRINE",
+      "name": "Koko Shrine"
+    },
+    {
+      "id": "MAPSEC_LELE_SHRINE",
+      "name": "Lele Shrine"
+    },
+    {
+      "id": "MAPSEC_BULU_SHRINE",
+      "name": "Bulu Shrine"
+    },
+    {
+      "id": "MAPSEC_FINI_SHRINE",
+      "name": "Fini Shrine"
+    },
+    {
+      "id": "MAPSEC_MINSTRAL_ROAD",
+      "name": "Minstral Road"
+    },
+    {
+      "id": "MAPSEC_LOA_ROAD",
+      "name": "Loa Road"
+    },
+    {
+      "id": "MAPSEC_SUMMER_ROAD",
+      "name": "Summer Road"
+    },
+    {
+      "id": "MAPSEC_DUSK_CAVE",
+      "name": "Dusk Cave"
+    },
+    {
+      "id": "MAPSEC_DAWN_TOWN",
+      "name": "Dawn Town"
+    },
+    {
+      "id": "MAPSEC_UMBRAL_WATERWAY",
+      "name": "Umbral Waterway"
+    },
+    {
+      "id": "MAPSEC_COLDARRA_WATERWAY",
+      "name": "Coldarra Waterway"
+    },
+    {
+      "id": "MAPSEC_ICE_SHRINE",
+      "name": "Ice Shrine"
+    },
+    {
+      "id": "MAPSEC_BAY_ROAD",
+      "name": "Bay Road"
+    },
+    {
+      "id": "MAPSEC_EREBON_TOWN",
+      "name": "Erebon Town"
+    },
+    {
+      "id": "MAPSEC_ZERA_TOWN",
+      "name": "Zera Town"
+    },
+    {
+      "id": "MAPSEC_SPRING_WAY",
+      "name": "Spring Waterway",
+      "x": 11,
+      "y": 3,
+      "width": 2,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_JOHTO_ARCHIPELAGO",
+      "name": "Johto Archipelago"
+    },
+    {
+      "id": "MAPSEC_PRAYER_TRAIL",
+      "name": "Prayer Trail"
+    },
+    {
+      "id": "MAPSEC_LOST_TIDES",
+      "name": "Lost Tides"
+    },
+    {
+      "id": "MAPSEC_WINDSTORM_WAY",
+      "name": "Windstorm Way"
+    },
+    {
+      "id": "MAPSEC_TOWER_OF_TRIALS",
+      "name": "Tower of Trials"
+    },
+    {
+      "id": "MAPSEC_AXIS_TRAIL",
+      "name": "Axis Trail"
+    },
+    {
+      "id": "MAPSEC_MALENIA_ROAD",
+      "name": "Malenia Road"
+    },
+    {
+      "id": "MAPSEC_ANCIENT_RUINS",
+      "name": "Ancient Ruins"
+    },
+    {
+      "id": "MAPSEC_TRAILBLAZERS_PATH",
+      "name": "Trailblazer's Path"
+    },
+    {
+      "id": "MAPSEC_PROXIMA_ZONE",
+      "name": "Proxima Zone"
+    },
+    {
+      "id": "MAPSEC_SOUTHERN_SIDEPATH",
+      "name": "Southern Sidepath",
+      "x": 14,
+      "y": 0,
+      "width": 2,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_SOUTHERN_SIDEPATH2",
+      "name": "Southern Sidepath",
+      "x": 11,
+      "y": 0,
+      "width": 2,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_SOUTH_SEA2",
+      "name": "Southern Passage",
+      "x": 13,
+      "y": 0,
+      "width": 1,
+      "height": 3
     }
   ]
 }

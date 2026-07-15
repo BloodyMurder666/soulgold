@@ -1,8 +1,9 @@
 #ifndef GUARD_CONSTANTS_PARTY_MENU_H
 #define GUARD_CONSTANTS_PARTY_MENU_H
 
-#define SWSH_PARTY_MENU                   FALSE
+#define SWSH_PARTY_MENU                   TRUE
 #define SWSH_PARTY_MENU_PC_ACCESS         FALSE
+#define SWSH_PARTY_BATTLE_DETAILS         FALSE // Show moves and ability instead of the selected Pokemon in battle
 #define SWSH_PARTY_MON_IDLE_ANIMS         TRUE
 #define SWSH_PARTY_MON_IDLE_ANIMS_FRAMES  300 // Number of frames before mon animation loops
 

@@ -9,6 +9,8 @@ static const u32 sPartyMenuBg_Scroll_Tilemap_SwSh[] = INCBIN_U32("graphics/party
 #define SWSH_PARTY_MENU_FRAME_TILE_COUNT       13
 #define SWSH_PARTY_SLOT_WINDOW_Y_OFFSET_TILES  1
 #define SWSH_PARTY_SLOT_SPRITE_Y_OFFSET        8
+#define SWSH_PARTY_SELECTED_SLOT_X_OFFSET       8
+#define SWSH_PARTY_SLOT_ANIM_DURATION_FRAMES   12
 #define SWSH_PARTY_FRONT_SPRITE_X              192
 #define SWSH_PARTY_FRONT_SPRITE_Y              82
 #define SWSH_PARTY_HELD_ITEM_X_OFFSET          0
@@ -16,15 +18,18 @@ static const u32 sPartyMenuBg_Scroll_Tilemap_SwSh[] = INCBIN_U32("graphics/party
 #define SWSH_PARTY_SELECTED_ITEM_X_OFFSET      40
 #define SWSH_PARTY_SELECTED_ITEM_Y_OFFSET      58
 #define SWSH_PARTY_FONT_COLOR_BLACK            12
-#define SWSH_PARTY_TOP_INFO_WIDTH              (11 * 8)
-#define SWSH_PARTY_HELD_ITEM_INFO_WIDTH        (10 * 8)
+#define SWSH_PARTY_FONT_COLOR_LIGHT            13
+#define SWSH_PARTY_TEXT_PALETTE_LIGHT          4
+#define SWSH_PARTY_TEXT_PALETTE_DARK           1
+#define SWSH_PARTY_TEXT_PALETTE_MEDIUM         7
+#define SWSH_PARTY_HELD_ITEM_INFO_WIDTH        (9 * 8)
 #define SWSH_PARTY_SPECIES_TEXT_X              8
 #define SWSH_PARTY_SPECIES_TEXT_Y              6
 #define SWSH_PARTY_LEVEL_TEXT_X                8
-#define SWSH_PARTY_LEVEL_TEXT_Y                14
+#define SWSH_PARTY_LEVEL_TEXT_Y                18
 #define SWSH_PARTY_HELD_ITEM_LABEL_TEXT_X      24
 #define SWSH_PARTY_HELD_ITEM_LABEL_TEXT_Y      10
-#define SWSH_PARTY_HELD_ITEM_NAME_TEXT_X       10
+#define SWSH_PARTY_HELD_ITEM_NAME_TEXT_X       24
 #define SWSH_PARTY_HELD_ITEM_NAME_TEXT_Y       24
 
 static const u8 sText_HeldItem[] = _("Held Item");
@@ -194,7 +199,7 @@ static const u32 sCancelButton_Tilemap[] = INCBIN_U32("graphics/party_menu/cance
 // Text colors for BG, FG, and Shadow in that order
 static const u8 sFontColorTable[][3] =
 {
-    {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY,  TEXT_COLOR_TRANSPARENT},// Default
+    {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY,  TEXT_COLOR_LIGHT_GRAY}, // Default
     {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE,      TEXT_COLOR_GREEN},      // Unused
     {TEXT_COLOR_TRANSPARENT, TEXT_DYNAMIC_COLOR_5,  TEXT_DYNAMIC_COLOR_6},  // Gender symbol
     {TEXT_COLOR_WHITE,       TEXT_COLOR_DARK_GRAY,  TEXT_COLOR_LIGHT_GRAY}, // Selection actions
@@ -206,7 +211,8 @@ static const u8 sFontColorTable[][3] =
     {TEXT_COLOR_TRANSPARENT, TEXT_DYNAMIC_COLOR_1,  TEXT_DYNAMIC_COLOR_2},  // PP state 2 (FG 10 / SH 11)
     {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_RED,        TEXT_COLOR_LIGHT_RED},  // PP state 3 (FG 4  / SH  5)
     {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_RED,        TEXT_COLOR_LIGHT_GREEN},  // Item multiuse (FG 4 / SH 7)
-    {TEXT_COLOR_TRANSPARENT, TEXT_DYNAMIC_COLOR_3,  TEXT_COLOR_TRANSPARENT}, // Header/prompts
+    {TEXT_COLOR_TRANSPARENT, TEXT_DYNAMIC_COLOR_3,  SWSH_PARTY_TEXT_PALETTE_MEDIUM}, // Dark text on light panels
+    {TEXT_COLOR_TRANSPARENT, SWSH_PARTY_TEXT_PALETTE_LIGHT, SWSH_PARTY_TEXT_PALETTE_DARK}, // Light text on gray panels
 };
 
 static const struct WindowTemplate sSinglePartyMenuWindowTemplate[] =
@@ -540,7 +546,7 @@ static const struct WindowTemplate sSinglePartyMenuWindowTemplate_SwSh[] =
         .baseBlock = 0x16B,
     },
     [PARTY_LABEL_WINDOW_PROMPT] = {
-        .bg = 0,
+        .bg = 2,
         .tilemapLeft = 16,
         .tilemapTop = 18,
         .width = 14,
@@ -748,22 +754,22 @@ static const struct WindowTemplate sShowcaseMultiPartyMenuWindowTemplate_SwSh[] 
 
 static const struct WindowTemplate sPartyTitleWindowTemplate_SwSh =
 {
-    .bg = 0,
+    .bg = 2,
     .tilemapLeft = 19,
     .tilemapTop = 0,
     .width = 11,
-    .height = 3,
+    .height = 4,
     .paletteNum = 1,
     .baseBlock = 0x20C,
 };
 
 static const struct WindowTemplate sSelectedHeldItemInfoWindowTemplate_SwSh =
 {
-    .bg = 0,
+    .bg = 2,
     .tilemapLeft = 17,
     .tilemapTop = 15,
-    .width = 10,
-    .height = 3,
+    .width = 12,
+    .height = 5,
     .paletteNum = 1,
     .baseBlock = 0x243,
 };
@@ -1064,9 +1070,9 @@ static const u8 sPartyBoxNoMonPalIds[] = {17, 27, 28};
 static const u8 sPartyBoxEmptySlotPalIds3[] = {50, 51};
 static const u8 sPartyBoxMultiPalIds3[] = {66, 67};
 static const u8 sPartyBoxFaintedPalIds3[] = {82, 83};
-static const u8 sPartyBoxCurrSelectionPalIds3[] = {114, 115};
-static const u8 sPartyBoxCurrSelectionMultiPalIds3[] = {130, 131};
-static const u8 sPartyBoxCurrSelectionFaintedPalIds3[] = {146, 147};
+static const u8 sPartyBoxCurrSelectionPalIds3[] = {51, 115};
+static const u8 sPartyBoxCurrSelectionMultiPalIds3[] = {51, 115};
+static const u8 sPartyBoxCurrSelectionFaintedPalIds3[] = {51, 115};
 static const u8 sPartyBoxSelectedForActionPalIds3[] = {98, 99};
 
 static const u8 *const sActionStringTable[] =
@@ -1141,31 +1147,32 @@ struct
     TaskFunc func;
 } static const sCursorOptions[MENU_FIELD_MOVES] =
 {
-    [MENU_SUMMARY]         = {COMPOUND_STRING("SUMMARY"),         CursorCb_Summary},
-    [MENU_SWITCH]          = {COMPOUND_STRING("SWITCH"),          CursorCb_Switch},
+    [MENU_SUMMARY]         = {COMPOUND_STRING("Summary"),         CursorCb_Summary},
+    [MENU_SWITCH]          = {COMPOUND_STRING("Switch"),          CursorCb_Switch},
     [MENU_CANCEL1]         = {gText_Cancel2,                      CursorCb_Cancel1},
-    [MENU_ITEM]            = {COMPOUND_STRING("ITEM"),            CursorCb_Item},
+    [MENU_ITEM]            = {COMPOUND_STRING("Item"),            CursorCb_Item},
+    [MENU_POKEDEX]         = {COMPOUND_STRING("Pokédex"),         CursorCb_Pokedex},
     [MENU_GIVE]            = {gMenuText_Give,                     CursorCb_Give},
-    [MENU_TAKE_ITEM]       = {COMPOUND_STRING("TAKE"),            CursorCb_TakeItem},
-    [MENU_MOVE_ITEM]       = {COMPOUND_STRING("MOVE"),            CursorCb_MoveItem},
-    [MENU_MAIL]            = {COMPOUND_STRING("MAIL"),            CursorCb_Mail},
-    [MENU_TAKE_MAIL]       = {COMPOUND_STRING("TAKE"),            CursorCb_TakeMail},
-    [MENU_READ]            = {COMPOUND_STRING("READ"),            CursorCb_Read},
+    [MENU_TAKE_ITEM]       = {COMPOUND_STRING("Take"),            CursorCb_TakeItem},
+    [MENU_MOVE_ITEM]       = {COMPOUND_STRING("Move"),            CursorCb_MoveItem},
+    [MENU_MAIL]            = {COMPOUND_STRING("Mail"),            CursorCb_Mail},
+    [MENU_TAKE_MAIL]       = {COMPOUND_STRING("Take"),            CursorCb_TakeMail},
+    [MENU_READ]            = {COMPOUND_STRING("Read"),            CursorCb_Read},
     [MENU_CANCEL2]         = {gText_Cancel2,                      CursorCb_Cancel2},
-    [MENU_SHIFT]           = {COMPOUND_STRING("SHIFT"),           CursorCb_SendMon},
-    [MENU_SEND_OUT]        = {COMPOUND_STRING("SEND OUT"),        CursorCb_SendMon},
-    [MENU_ENTER]           = {COMPOUND_STRING("ENTER"),           CursorCb_Enter},
-    [MENU_NO_ENTRY]        = {COMPOUND_STRING("NO ENTRY"),        CursorCb_NoEntry},
-    [MENU_STORE]           = {COMPOUND_STRING("STORE"),           CursorCb_Store},
+    [MENU_SHIFT]           = {COMPOUND_STRING("Shift"),           CursorCb_SendMon},
+    [MENU_SEND_OUT]        = {COMPOUND_STRING("Send out"),        CursorCb_SendMon},
+    [MENU_ENTER]           = {COMPOUND_STRING("Enter"),           CursorCb_Enter},
+    [MENU_NO_ENTRY]        = {COMPOUND_STRING("No entry"),        CursorCb_NoEntry},
+    [MENU_STORE]           = {COMPOUND_STRING("Store"),           CursorCb_Store},
     [MENU_REGISTER]        = {gText_Register,                     CursorCb_Register},
     [MENU_TRADE1]          = {sText_Trade4,                       CursorCb_Trade1},
     [MENU_TRADE2]          = {sText_Trade4,                       CursorCb_Trade2},
     [MENU_TOSS]            = {gMenuText_Toss,                     CursorCb_Toss},
-    [MENU_LEVEL_UP_MOVES]  = {COMPOUND_STRING("LEVEL MOVES"),     CursorCb_ChangeLevelUpMoves},
-	[MENU_EGG_MOVES]       = {COMPOUND_STRING("EGG MOVES"),       CursorCb_ChangeEggMoves},
-	[MENU_TM_MOVES]        = {COMPOUND_STRING("TM MOVES"),        CursorCb_ChangeTMMoves},
-	[MENU_TUTOR_MOVES]     = {COMPOUND_STRING("TUTOR MOVES"),     CursorCb_ChangeTutorMoves},
-    [MENU_SUB_MOVES]       = {COMPOUND_STRING("LEARN MOVES"),     CursorCb_LearnMovesSubMenu},
+    [MENU_LEVEL_UP_MOVES]  = {COMPOUND_STRING("Level moves"),     CursorCb_ChangeLevelUpMoves},
+	[MENU_EGG_MOVES]       = {COMPOUND_STRING("Egg moves"),       CursorCb_ChangeEggMoves},
+	[MENU_TM_MOVES]        = {COMPOUND_STRING("TM moves"),        CursorCb_ChangeTMMoves},
+	[MENU_TUTOR_MOVES]     = {COMPOUND_STRING("Tutor moves"),     CursorCb_ChangeTutorMoves},
+    [MENU_SUB_MOVES]       = {COMPOUND_STRING("Learn moves"),     CursorCb_LearnMovesSubMenu},
     [MENU_CATALOG_BULB]    = {COMPOUND_STRING("Light bulb"),      CursorCb_CatalogBulb},
     [MENU_CATALOG_OVEN]    = {COMPOUND_STRING("Microwave oven"),  CursorCb_CatalogOven},
     [MENU_CATALOG_WASHING] = {COMPOUND_STRING("Washing machine"), CursorCb_CatalogWashing},
