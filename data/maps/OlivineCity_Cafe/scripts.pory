@@ -93,8 +93,8 @@ script OlivineCafe_JasmineRematch {
 			It always makes me feel nostalgic for
 			some reason.")
 	msgbox("I was hoping we could have another 
-			battle again, if that is okay.")
-	if (var(VAR_RESULT) == TRUE) {
+			battle again, if that is okay.", MSGBOX_YESNO)
+	if (var(VAR_RESULT) == YES) {
 		trainerbattle_no_intro(TRAINER_JASMINE_2, "You really are amazing, 
 												   {PLAYER}.")
 		msgbox("You fight with both kindness and grace.

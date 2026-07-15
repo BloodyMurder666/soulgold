@@ -171,9 +171,9 @@ OlivineCafe_JasmineRematch::
 # 89 "data/maps/OlivineCity_Cafe/scripts.pory"
 	msgbox OlivineCafe_JasmineRematch_Text_0
 # 95 "data/maps/OlivineCity_Cafe/scripts.pory"
-	msgbox OlivineCafe_JasmineRematch_Text_1
+	msgbox OlivineCafe_JasmineRematch_Text_1, MSGBOX_YESNO
 # 97 "data/maps/OlivineCity_Cafe/scripts.pory"
-	compare VAR_RESULT, TRUE
+	compare VAR_RESULT, YES
 	goto_if_eq OlivineCafe_JasmineRematch_2
 OlivineCafe_JasmineRematch_1:
 # 111 "data/maps/OlivineCity_Cafe/scripts.pory"
