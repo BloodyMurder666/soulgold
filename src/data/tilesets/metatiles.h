@@ -560,3 +560,9 @@ const u16 gMetatileAttributes_AltTrees[] = INCBIN_U16("data/tilesets/primary/alt
 
 const u16 gMetatiles_TohjoPass[] = INCBIN_U16("data/tilesets/secondary/tohjo_pass/metatiles.bin");
 const u16 gMetatileAttributes_TohjoPass[] = INCBIN_U16("data/tilesets/secondary/tohjo_pass/metatile_attributes.bin");
+
+const u16 gMetatiles_Inn[] = INCBIN_U16("data/tilesets/secondary/inn/metatiles.bin");
+const u16 gMetatileAttributes_Inn[] = INCBIN_U16("data/tilesets/secondary/inn/metatile_attributes.bin");
+
+const u16 gMetatiles_inn[] = INCBIN_U16("data/tilesets/primary/inn/metatiles.bin");
+const u16 gMetatileAttributes_inn[] = INCBIN_U16("data/tilesets/primary/inn/metatile_attributes.bin");

@@ -62,3 +62,29 @@ Terapagos
 G-Zapdos - Roaming South Johto?
 G-Articuno - Roaming South Johto?
 G-Moltres - Roaming South Johto?
+
+Mythicals
+
+Mew - Beat Blaine to get map to sail to faraway isle
+Deoxys - Do something to get birth island map?
+
+Manaphy - Get manaphy egg from ???
+
+Darkrai - Covered by quest
+
+Arceus - Mt Gold
+
+Keldeo - ???
+Meloetta - ???
+Genesect - ???
+
+Diancie - ???
+
+Hoopa - ???
+Volcanion - ???
+
+Magerna - Base form from goldenrod top floor apartment, key from ???
+
+Zeraora - ???
+Zarude - ???
+Pecharunt - ???

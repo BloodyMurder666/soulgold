@@ -9986,6 +9986,16 @@
       "secondary_tileset": "gTileset_HiddenGrotto1",
       "border_filepath": "data/layouts/LakeOfRageCresseliaDen/border.bin",
       "blockdata_filepath": "data/layouts/LakeOfRageCresseliaDen/map.bin"
+    },
+    {
+      "id": "LAYOUT_DARKRAI_INN1",
+      "name": "DarkraiInn1_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_inn",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/DarkraiInn1/border.bin",
+      "blockdata_filepath": "data/layouts/DarkraiInn1/map.bin"
     }
   ]
 }

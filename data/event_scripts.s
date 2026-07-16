@@ -2330,3 +2330,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/DreamGarden/scripts.inc"
 
 	.include "data/maps/LakeOfRageCresseliaDen/scripts.inc"
+
+	.include "data/maps/DarkraiInn1/scripts.inc"
