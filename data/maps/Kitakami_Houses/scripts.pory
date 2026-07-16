@@ -157,6 +157,7 @@ script KitakamiHouses_2_Steven {
     call(Common_EventScript_GiftMon)
     hidemonpic
     setflag(FLAG_MET_STEVEN)
+    createfieldmugshot(MUGSHOT_STEVEN)
     msgbox("I have high expectations for you.")
     waitmessage
     release
