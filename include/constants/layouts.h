@@ -999,6 +999,7 @@
 #define LAYOUT_TOHJO_PASS 992
 #define LAYOUT_DREAM_GARDEN 993
 #define LAYOUT_LAKE_OF_RAGE_CRESSELIA_DEN 994
+#define LAYOUT_DARKRAI_INN1 995
 
 //Constants for unused layouts
 #define LAYOUT_TRAINER_TOWER_1F                   0xFFFF
