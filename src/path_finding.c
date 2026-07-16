@@ -16,7 +16,7 @@
 #pragma GCC optimize("O3")
 
 #define PATH_FINDER_WEIGHT          1.5
-#define PATH_FINDER_MAX_ELEVATION   15
+#define PATH_FINDER_MAX_ELEVATION   7
 #define PATH_FINDER_PRINT_TIME      FALSE
 
 struct PathNode

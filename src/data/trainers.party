@@ -1910,9 +1910,8 @@ Class: Champion
 Pic: Champion Lance
 Gender: Male
 Music: Hg Champion
-Items: Full Restore / Full Restore
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Purple
 
 Salamence
@@ -2288,6 +2287,7 @@ Pic: Elite Four Bruno
 Gender: Male
 Music: Elite Four
 Double Battle: No
+AI: Smart Trainer
 Difficulty: Hard
 
 Hitmontop @ White Herb

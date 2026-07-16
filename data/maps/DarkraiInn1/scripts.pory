@@ -1,0 +1,18 @@
+raw `
+DarkraiInn1_MapScripts::
+	.byte 0
+`
+
+
+script Inn_LockedDoor {
+    msgbox("You try to open the door but it
+            seems to be locked.", MSGBOX_NPC)
+}
+
+script FoggyWindow_Inn {
+    msgbox("You peek out of the window...
+
+
+            A strange fog seems to cover your
+            view of the outside world.", MSGBOX_NPC)
+}

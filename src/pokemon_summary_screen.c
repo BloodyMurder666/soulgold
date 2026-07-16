@@ -5238,11 +5238,14 @@ static void RemoveAndCreateMonMarkingsSprite(struct Pokemon *mon)
 static void CreateCaughtBallSprite(struct Pokemon *mon)
 {
     enum PokeBall ball = GetMonData(mon, MON_DATA_POKEBALL);
+    u8 spriteId;
 
     LoadBallGfx(ball);
-    sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_BALL] = CreateSprite(&gPokeBalls[ball].spriteTemplate, 16, 136, 0);
-    gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_BALL]].callback = SpriteCallbackDummy;
-    gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_BALL]].oam.priority = 3;
+    spriteId = CreateSprite(&gPokeBalls[ball].spriteTemplate, 16, 136, 0);
+    sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_BALL] = spriteId;
+    gSprites[spriteId].callback = SpriteCallbackDummy;
+    gSprites[spriteId].oam.priority = 3;
+    LoadPalette(gPokeBalls[ball].palette.data, OBJ_PLTT_ID(gSprites[spriteId].oam.paletteNum), PLTT_SIZE_4BPP);
 }
 
 static void CreateSetStatusSprite(void)
