@@ -1472,12 +1472,12 @@ static void BufferTrainerIntro(void)
     if (gSpecialVar_0x8005 == 0)
     {
         if (TRAINER_BATTLE_PARAM.opponentA < FRONTIER_TRAINERS_COUNT)
-            FrontierSpeechToString(gFacilityTrainers[TRAINER_BATTLE_PARAM.opponentA].speechBefore);
+            CopyFrontierTrainerText(FRONTIER_BEFORE_TEXT, TRAINER_BATTLE_PARAM.opponentA);
     }
     else if (gSpecialVar_0x8005 == 1)
     {
         if (TRAINER_BATTLE_PARAM.opponentB < FRONTIER_TRAINERS_COUNT)
-            FrontierSpeechToString(gFacilityTrainers[TRAINER_BATTLE_PARAM.opponentB].speechBefore);
+            CopyFrontierTrainerText(FRONTIER_BEFORE_TEXT, TRAINER_BATTLE_PARAM.opponentB);
     }
 }
 

@@ -73,6 +73,21 @@ struct FrontierBrain
     u8 streakAppearances[4];
 };
 
+struct FacilityTrainerQuote
+{
+    const u8 *before;
+    const u8 *win;
+    const u8 *lose;
+};
+
+struct FacilityTrainerQuotePool
+{
+    const struct FacilityTrainerQuote *quotes;
+    u8 count;
+};
+
+#include "data/battle_frontier/battle_frontier_trainer_quotes.h"
+
 // This file's functions.
 static void GetChallengeStatus(void);
 static void GetFrontierData(void);
@@ -108,6 +123,7 @@ static void ShowArenaResultsWindow(void);
 static void ShowPyramidResultsWindow(void);
 static void ShowLinkContestResultsWindow(void);
 static void CopyFrontierBrainText(bool8 playerWonText);
+static bool32 CopyFacilityTrainerClassText(u8 whichText, u16 trainerId);
 static u16 *MakeCaughtBannesSpeciesList(u32 totalBannedSpecies);
 static void PrintBannedSpeciesName(u8 windowId, u32 itemId, u8 y);
 static void Task_BannedSpeciesWindowInput(u8 taskId);
@@ -1928,6 +1944,50 @@ u8 GetFrontierBrainStatus(void)
     return status;
 }
 
+static bool32 CopyFacilityTrainerClassText(u8 whichText, u16 trainerId)
+{
+    const struct FacilityTrainerQuotePool *pool;
+    const u8 *text;
+    u8 facilityClass;
+    u8 poolId;
+    u8 quoteId;
+
+    if (gFacilityTrainers == NULL || trainerId >= FRONTIER_TRAINERS_COUNT)
+        return FALSE;
+
+    facilityClass = gFacilityTrainers[trainerId].facilityClass;
+    if (facilityClass >= ARRAY_COUNT(sFacilityClassQuotePoolIds))
+        return FALSE;
+
+    poolId = sFacilityClassQuotePoolIds[facilityClass];
+    if (poolId == FACILITY_QUOTE_POOL_NONE || poolId >= ARRAY_COUNT(sFacilityTrainerQuotePools))
+        return FALSE;
+
+    pool = &sFacilityTrainerQuotePools[poolId];
+    if (pool->count == 0)
+        return FALSE;
+
+    // Keep all three lines tied to one personality without consuming RNG state.
+    quoteId = ((trainerId * 13) ^ facilityClass) % pool->count;
+    switch (whichText)
+    {
+    case FRONTIER_BEFORE_TEXT:
+        text = pool->quotes[quoteId].before;
+        break;
+    case FRONTIER_PLAYER_LOST_TEXT:
+        text = pool->quotes[quoteId].win;
+        break;
+    case FRONTIER_PLAYER_WON_TEXT:
+        text = pool->quotes[quoteId].lose;
+        break;
+    default:
+        return FALSE;
+    }
+
+    StringCopy(gStringVar4, text);
+    return TRUE;
+}
+
 void CopyFrontierTrainerText(u8 whichText, u16 trainerId)
 {
     switch (whichText)
@@ -1942,7 +2002,10 @@ void CopyFrontierTrainerText(u8 whichText, u16 trainerId)
     #endif //FREE_BATTLE_TOWER_E_READER
             CopyFrontierBrainText(FALSE);
         else if (trainerId < FRONTIER_TRAINERS_COUNT)
-            FrontierSpeechToString(gFacilityTrainers[trainerId].speechBefore);
+        {
+            if (!CopyFacilityTrainerClassText(whichText, trainerId))
+                FrontierSpeechToString(gFacilityTrainers[trainerId].speechBefore);
+        }
         else if (trainerId < TRAINER_RECORD_MIXING_APPRENTICE)
             FrontierSpeechToString(gSaveBlock2Ptr->frontier.towerRecords[trainerId - TRAINER_RECORD_MIXING_FRIEND].greeting);
         else
@@ -1963,7 +2026,8 @@ void CopyFrontierTrainerText(u8 whichText, u16 trainerId)
         }
         else if (trainerId < FRONTIER_TRAINERS_COUNT)
         {
-            FrontierSpeechToString(gFacilityTrainers[trainerId].speechWin);
+            if (!CopyFacilityTrainerClassText(whichText, trainerId))
+                FrontierSpeechToString(gFacilityTrainers[trainerId].speechWin);
         }
         else if (trainerId < TRAINER_RECORD_MIXING_APPRENTICE)
         {
@@ -1993,7 +2057,8 @@ void CopyFrontierTrainerText(u8 whichText, u16 trainerId)
         }
         else if (trainerId < FRONTIER_TRAINERS_COUNT)
         {
-            FrontierSpeechToString(gFacilityTrainers[trainerId].speechLose);
+            if (!CopyFacilityTrainerClassText(whichText, trainerId))
+                FrontierSpeechToString(gFacilityTrainers[trainerId].speechLose);
         }
         else if (trainerId < TRAINER_RECORD_MIXING_APPRENTICE)
         {

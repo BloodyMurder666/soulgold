@@ -33,6 +33,8 @@ enum FacilityMonRequiredRole
     FACILITY_ROLE_ABUSER,
 };
 
+#define FACILITY_RANDOM_CANDIDATE_ATTEMPTS 64
+
 static bool32 TryBuildFacilityTrainerMonSelection(const u16 *monSet, const struct TrainerMon *facilityMons,
                                                   u16 facilityMonsCount, u8 monCount, bool32 doubles,
                                                   enum FacilityTeamArchetype archetype, bool32 fullArchetype,
@@ -498,6 +500,48 @@ static u16 CountFacilityMonSet(const u16 *monSet)
     return count;
 }
 
+static bool32 TrySelectFacilityMonExhaustive(const u16 *monSet, u16 monSetCount,
+                                             const struct TrainerMon *facilityMons,
+                                             u16 facilityMonsCount, u16 maxMonId,
+                                             bool32 doubles, enum FacilityTeamArchetype archetype,
+                                             enum FacilityMonRequiredRole requiredRole,
+                                             const struct Pokemon *existingParty, u8 existingCount,
+                                             const u16 *chosenMonIds, u8 chosenCount,
+                                             u16 *selectedMonId)
+{
+    u16 validCount = 0;
+    u16 target;
+    u32 i;
+
+    for (i = 0; i < monSetCount; i++)
+    {
+        if (IsFacilityMonSelectionCandidate(facilityMons, facilityMonsCount, monSet[i], maxMonId,
+                                            doubles, archetype, requiredRole, existingParty,
+                                            existingCount, chosenMonIds, chosenCount))
+            validCount++;
+    }
+    if (validCount == 0)
+        return FALSE;
+
+    target = Random() % validCount;
+    for (i = 0; i < monSetCount; i++)
+    {
+        if (IsFacilityMonSelectionCandidate(facilityMons, facilityMonsCount, monSet[i], maxMonId,
+                                            doubles, archetype, requiredRole, existingParty,
+                                            existingCount, chosenMonIds, chosenCount))
+        {
+            if (target == 0)
+            {
+                *selectedMonId = monSet[i];
+                return TRUE;
+            }
+            target--;
+        }
+    }
+
+    return FALSE;
+}
+
 static bool32 TryBuildFacilityTrainerMonSelection(const u16 *monSet, const struct TrainerMon *facilityMons,
                                                   u16 facilityMonsCount, u8 monCount, bool32 doubles,
                                                   enum FacilityTeamArchetype archetype, bool32 fullArchetype,
@@ -508,12 +552,13 @@ static bool32 TryBuildFacilityTrainerMonSelection(const u16 *monSet, const struc
     u16 monSetCount = CountFacilityMonSet(monSet);
     u32 slot;
 
+    if (monSetCount == 0)
+        return FALSE;
+
     for (slot = 0; slot < monCount; slot++)
     {
         enum FacilityMonRequiredRole requiredRole = FACILITY_ROLE_ANY;
-        u16 validCount = 0;
-        u16 target;
-        u32 i;
+        u32 attempt;
 
         if (archetype != FACILITY_TEAM_BALANCED)
         {
@@ -523,31 +568,28 @@ static bool32 TryBuildFacilityTrainerMonSelection(const u16 *monSet, const struc
                 requiredRole = FACILITY_ROLE_ABUSER;
         }
 
-        for (i = 0; i < monSetCount; i++)
+        // Most pools have a high proportion of valid candidates. Sample those
+        // directly so the common case does not scan the entire set twice.
+        for (attempt = 0; attempt < FACILITY_RANDOM_CANDIDATE_ATTEMPTS; attempt++)
         {
-            if (IsFacilityMonSelectionCandidate(facilityMons, facilityMonsCount, monSet[i], maxMonId,
-                                                doubles, archetype, requiredRole, existingParty,
-                                                existingCount, chosenMonIds, slot))
-                validCount++;
-        }
-        if (validCount == 0)
-            return FALSE;
+            u16 monId = monSet[Random() % monSetCount];
 
-        target = Random() % validCount;
-        for (i = 0; i < monSetCount; i++)
-        {
-            if (IsFacilityMonSelectionCandidate(facilityMons, facilityMonsCount, monSet[i], maxMonId,
+            if (IsFacilityMonSelectionCandidate(facilityMons, facilityMonsCount, monId, maxMonId,
                                                 doubles, archetype, requiredRole, existingParty,
                                                 existingCount, chosenMonIds, slot))
             {
-                if (target == 0)
-                {
-                    chosenMonIds[slot] = monSet[i];
-                    break;
-                }
-                target--;
+                chosenMonIds[slot] = monId;
+                break;
             }
         }
+
+        // Sparse and impossible role pools are uncommon, but the exhaustive
+        // path preserves guaranteed completion/failure after bounded retries.
+        if (attempt == FACILITY_RANDOM_CANDIDATE_ATTEMPTS
+         && !TrySelectFacilityMonExhaustive(monSet, monSetCount, facilityMons, facilityMonsCount,
+                                            maxMonId, doubles, archetype, requiredRole, existingParty,
+                                            existingCount, chosenMonIds, slot, &chosenMonIds[slot]))
+            return FALSE;
     }
     return TRUE;
 }

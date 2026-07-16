@@ -1,11 +1,17 @@
 #include "global.h"
 #include "battle_frontier.h"
+#include "frontier_util.h"
 #include "item.h"
+#include "string_util.h"
 #include "test/test.h"
 #include "constants/abilities.h"
 #include "constants/battle_frontier_mons.h"
+#include "constants/battle_frontier_trainers.h"
+#include "constants/easy_chat.h"
+#include "constants/frontier_util.h"
 #include "constants/items.h"
 #include "constants/moves.h"
+#include "constants/trainers.h"
 
 TEST("This test checks for rain team creation")
 {
@@ -68,8 +74,17 @@ TEST("This test checks for rain team creation")
     u16 chosen[4];
     u16 actualFacilityTeam[FRONTIER_DOUBLES_PARTY_SIZE];
     u16 singlesChoice;
+    const struct BattleFrontierTrainer *savedFacilityTrainers;
     u32 i;
     u32 megaStoneCount = 0;
+    u8 fallbackText[100];
+    static const struct BattleFrontierTrainer sFallbackTrainer[] =
+    {
+        {
+            .facilityClass = FACILITY_CLASS_AQUA_LEADER_ARCHIE,
+            .speechBefore = {EC_WORD_I_AM, EC_WORD_READY, EC_WORD_EXCL, EC_EMPTY_WORD, EC_EMPTY_WORD, EC_EMPTY_WORD},
+        },
+    };
 
     EXPECT(BuildFacilityTrainerMonSelection(sMonSet, sMons, ARRAY_COUNT(sMons), ARRAY_COUNT(chosen),
                                             TRUE, FACILITY_TEAM_RAIN, TRUE,
@@ -111,4 +126,26 @@ TEST("This test checks for rain team creation")
                                             FALSE,
                                             ARRAY_COUNT(sMons) - 1, &singlesChoice));
     EXPECT_EQ(singlesChoice, 6);
+
+    // Facility dialogue uses a stable class voice across every battle phase.
+    savedFacilityTrainers = gFacilityTrainers;
+    gFacilityTrainers = gBattleFrontierTrainers;
+    CopyFrontierTrainerText(FRONTIER_BEFORE_TEXT, FRONTIER_TRAINER_BRADY);
+    EXPECT_EQ(StringCompare(gStringVar4, COMPOUND_STRING("Ma! Pa! Watch me!\nI'll do my best!")), 0);
+    CopyFrontierTrainerText(FRONTIER_PLAYER_LOST_TEXT, FRONTIER_TRAINER_BRADY);
+    EXPECT_EQ(StringCompare(gStringVar4, COMPOUND_STRING("Ma! Pa! Were you watching?\nI was so strong!")), 0);
+    CopyFrontierTrainerText(FRONTIER_PLAYER_WON_TEXT, FRONTIER_TRAINER_BRADY);
+    EXPECT_EQ(StringCompare(gStringVar4, COMPOUND_STRING("Ma, Pa... I lost...\nGet revenge for me...")), 0);
+
+    // Normal and Super Maison quotes share one class pool regardless of IV tier.
+    CopyFrontierTrainerText(FRONTIER_BEFORE_TEXT, FRONTIER_TRAINER_LEON);
+    EXPECT_EQ(StringCompare(gStringVar4, COMPOUND_STRING("Let me stop your\nwinning streak here.")), 0);
+
+    // An unmapped class retains its authored Easy Chat line.
+    gFacilityTrainers = sFallbackTrainer;
+    FrontierSpeechToString(sFallbackTrainer[0].speechBefore);
+    StringCopy(fallbackText, gStringVar4);
+    CopyFrontierTrainerText(FRONTIER_BEFORE_TEXT, 0);
+    EXPECT_EQ(StringCompare(gStringVar4, fallbackText), 0);
+    gFacilityTrainers = savedFacilityTrainers;
 }

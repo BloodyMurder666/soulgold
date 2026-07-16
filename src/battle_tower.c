@@ -1078,18 +1078,7 @@ static void GetOpponentIntroSpeech(void)
     else
         trainerId = TRAINER_BATTLE_PARAM.opponentA;
 
-#if FREE_BATTLE_TOWER_E_READER == FALSE
-    if (trainerId == TRAINER_EREADER)
-        FrontierSpeechToString(gSaveBlock2Ptr->frontier.ereaderTrainer.greeting);
-    else if (trainerId < FRONTIER_TRAINERS_COUNT)
-#else
-    if (trainerId < FRONTIER_TRAINERS_COUNT)
-#endif //FREE_BATTLE_TOWER_E_READER
-        FrontierSpeechToString(gFacilityTrainers[trainerId].speechBefore);
-    else if (trainerId < TRAINER_RECORD_MIXING_APPRENTICE)
-        FrontierSpeechToString(gSaveBlock2Ptr->frontier.towerRecords[trainerId - TRAINER_RECORD_MIXING_FRIEND].greeting);
-    else
-        BufferApprenticeChallengeText(trainerId - TRAINER_RECORD_MIXING_APPRENTICE);
+    CopyFrontierTrainerText(FRONTIER_BEFORE_TEXT, trainerId);
 }
 
 static void SaveCurrentWinStreak(void)
