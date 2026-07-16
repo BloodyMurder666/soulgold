@@ -57,6 +57,7 @@ The hack is currently under testing. It will be playable up to the start of post
 - [AsparagusEduardo](https://github.com/AsparagusEduardo/pokeemerald) for various code snippets and surf ows
 - Slawter666 and Wally-127 for surf ows
 - [Ipatix](https://github.com/ipatix/gba-hq-mixer) for HQ audio mixer
+- [CFRU/Skeli](https://github.com/Skeli789/Complete-Fire-Red-Upgrade) for many CFRU features I ported over from the repo
 - Kyledove (various graphics and tiles)
 - Hyo for various sprites including frlg style emerald overworlds and gold sprites
 - Poffin Case various overworld sprites

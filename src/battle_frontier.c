@@ -11,6 +11,7 @@
 #include "battle_transition.h"
 #include "event_data.h"
 #include "frontier_util.h"
+#include "item.h"
 #include "overworld.h"
 #include "pokemon.h"
 #include "script.h"
@@ -20,9 +21,24 @@
 #include "constants/abilities.h"
 #include "constants/battle_frontier.h"
 #include "constants/battle_frontier_mons.h"
+#include "constants/moves.h"
 
 static void FillTrainerParty(u16 trainerId, u16 firstMonId, u16 monCount);
 static u32 GetFacilityMonPersonality(const struct TrainerMon *fmon);
+
+enum FacilityMonRequiredRole
+{
+    FACILITY_ROLE_ANY,
+    FACILITY_ROLE_SETTER,
+    FACILITY_ROLE_ABUSER,
+};
+
+static bool32 TryBuildFacilityTrainerMonSelection(const u16 *monSet, const struct TrainerMon *facilityMons,
+                                                  u16 facilityMonsCount, u8 monCount, bool32 doubles,
+                                                  enum FacilityTeamArchetype archetype, bool32 fullArchetype,
+                                                  u16 maxMonId,
+                                                  const struct Pokemon *existingParty, u8 existingCount,
+                                                  u16 *chosenMonIds);
 
 // EWRAM vars.
 EWRAM_DATA const struct BattleFrontierTrainer *gFacilityTrainers = NULL;
@@ -210,13 +226,458 @@ bool32 IsFrontierMonEnabled(enum FrontierMon monId)
         && IsSpeciesEnabled(gBattleFrontierMons[monId].species);
 }
 
+static bool32 FacilityMonHasMove(const struct TrainerMon *mon, enum Move move)
+{
+    u32 i;
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (mon->moves[i] == move)
+            return TRUE;
+    }
+    return FALSE;
+}
+
+static bool32 IsClearlyDoublesOnlyFacilityMon(const struct TrainerMon *mon)
+{
+    static const enum Move sDoublesOnlyMoves[] =
+    {
+        MOVE_FOLLOW_ME,
+        MOVE_RAGE_POWDER,
+        MOVE_HELPING_HAND,
+        MOVE_ALLY_SWITCH,
+        MOVE_INSTRUCT,
+        MOVE_DECORATE,
+    };
+    u32 i;
+
+    for (i = 0; i < ARRAY_COUNT(sDoublesOnlyMoves); i++)
+    {
+        if (FacilityMonHasMove(mon, sDoublesOnlyMoves[i]))
+            return TRUE;
+    }
+    return FALSE;
+}
+
+static bool32 IsFacilityArchetypeSetter(const struct TrainerMon *mon, enum FacilityTeamArchetype archetype)
+{
+    switch (archetype)
+    {
+    case FACILITY_TEAM_RAIN:
+        return mon->ability == ABILITY_DRIZZLE || FacilityMonHasMove(mon, MOVE_RAIN_DANCE);
+    case FACILITY_TEAM_SUN:
+        return mon->ability == ABILITY_DROUGHT || FacilityMonHasMove(mon, MOVE_SUNNY_DAY);
+    case FACILITY_TEAM_SAND:
+        return mon->ability == ABILITY_SAND_STREAM || FacilityMonHasMove(mon, MOVE_SANDSTORM);
+    case FACILITY_TEAM_SNOW:
+        return mon->ability == ABILITY_SNOW_WARNING
+            || FacilityMonHasMove(mon, MOVE_HAIL)
+            || FacilityMonHasMove(mon, MOVE_SNOWSCAPE);
+    case FACILITY_TEAM_TRICK_ROOM:
+        return FacilityMonHasMove(mon, MOVE_TRICK_ROOM);
+    case FACILITY_TEAM_TAILWIND:
+        return FacilityMonHasMove(mon, MOVE_TAILWIND);
+    case FACILITY_TEAM_BALANCED:
+    case FACILITY_TEAM_ARCHETYPE_COUNT:
+    case FACILITY_TEAM_AUTO:
+        return FALSE;
+    }
+    return FALSE;
+}
+
+static bool32 IsFacilityArchetypeAbuser(const struct TrainerMon *mon, enum FacilityTeamArchetype archetype)
+{
+    switch (archetype)
+    {
+    case FACILITY_TEAM_RAIN:
+        return mon->ability == ABILITY_SWIFT_SWIM
+            || mon->ability == ABILITY_RAIN_DISH
+            || mon->ability == ABILITY_HYDRATION
+            || mon->ability == ABILITY_DRY_SKIN
+            || FacilityMonHasMove(mon, MOVE_THUNDER)
+            || FacilityMonHasMove(mon, MOVE_HURRICANE);
+    case FACILITY_TEAM_SUN:
+        return mon->ability == ABILITY_CHLOROPHYLL
+            || mon->ability == ABILITY_SOLAR_POWER
+            || mon->ability == ABILITY_LEAF_GUARD
+            || mon->ability == ABILITY_FLOWER_GIFT
+            || mon->ability == ABILITY_PROTOSYNTHESIS
+            || FacilityMonHasMove(mon, MOVE_SOLAR_BEAM)
+            || FacilityMonHasMove(mon, MOVE_SOLAR_BLADE);
+    case FACILITY_TEAM_SAND:
+        return mon->ability == ABILITY_SAND_RUSH
+            || mon->ability == ABILITY_SAND_FORCE
+            || mon->ability == ABILITY_SAND_VEIL;
+    case FACILITY_TEAM_SNOW:
+        return mon->ability == ABILITY_SLUSH_RUSH
+            || mon->ability == ABILITY_ICE_BODY
+            || mon->ability == ABILITY_SNOW_CLOAK
+            || FacilityMonHasMove(mon, MOVE_AURORA_VEIL)
+            || FacilityMonHasMove(mon, MOVE_BLIZZARD);
+    case FACILITY_TEAM_TRICK_ROOM:
+        return gSpeciesInfo[mon->species].baseSpeed <= 70
+            && (mon->ev == NULL || mon->ev[5] <= 64);
+    case FACILITY_TEAM_TAILWIND:
+        return gSpeciesInfo[mon->species].baseSpeed >= 80;
+    case FACILITY_TEAM_BALANCED:
+    case FACILITY_TEAM_ARCHETYPE_COUNT:
+    case FACILITY_TEAM_AUTO:
+        return FALSE;
+    }
+    return FALSE;
+}
+
+static enum FacilityTeamArchetype GetFacilityWeatherSetterArchetype(const struct TrainerMon *mon)
+{
+    enum FacilityTeamArchetype archetype;
+
+    for (archetype = FACILITY_TEAM_RAIN; archetype <= FACILITY_TEAM_SNOW; archetype++)
+    {
+        if (IsFacilityArchetypeSetter(mon, archetype))
+            return archetype;
+    }
+    return FACILITY_TEAM_BALANCED;
+}
+
+static bool32 FacilitySelectionHasWeatherSetter(const struct TrainerMon *facilityMons,
+                                                const u16 *chosenMonIds, u8 chosenCount)
+{
+    u32 i;
+
+    for (i = 0; i < chosenCount; i++)
+    {
+        if (GetFacilityWeatherSetterArchetype(&facilityMons[chosenMonIds[i]]) != FACILITY_TEAM_BALANCED)
+            return TRUE;
+    }
+    return FALSE;
+}
+
+static bool32 FacilitySelectionHasMove(const struct TrainerMon *facilityMons,
+                                       const u16 *chosenMonIds, u8 chosenCount, enum Move move)
+{
+    u32 i;
+
+    for (i = 0; i < chosenCount; i++)
+    {
+        if (FacilityMonHasMove(&facilityMons[chosenMonIds[i]], move))
+            return TRUE;
+    }
+    return FALSE;
+}
+
+static bool32 FacilitySelectionHasSpecies(const struct TrainerMon *facilityMons, const u16 *chosenMonIds,
+                                          u8 chosenCount, const struct Pokemon *existingParty,
+                                          u8 existingCount, u16 species)
+{
+    u32 i;
+    enum NationalDexOrder natDex = gSpeciesInfo[species].natDexNum;
+
+    for (i = 0; i < chosenCount; i++)
+    {
+        if (gSpeciesInfo[facilityMons[chosenMonIds[i]].species].natDexNum == natDex)
+            return TRUE;
+    }
+    for (i = 0; i < existingCount; i++)
+    {
+        u16 existingSpecies = GetMonData((struct Pokemon *)&existingParty[i], MON_DATA_SPECIES);
+
+        if (existingSpecies != SPECIES_NONE && gSpeciesInfo[existingSpecies].natDexNum == natDex)
+            return TRUE;
+    }
+    return FALSE;
+}
+
+static bool32 FacilitySelectionHasItem(const struct TrainerMon *facilityMons, const u16 *chosenMonIds,
+                                       u8 chosenCount, const struct Pokemon *existingParty,
+                                       u8 existingCount, enum Item item)
+{
+    u32 i;
+
+    if (item == ITEM_NONE)
+        return FALSE;
+    for (i = 0; i < chosenCount; i++)
+    {
+        if (facilityMons[chosenMonIds[i]].heldItem[0] == item)
+            return TRUE;
+    }
+    for (i = 0; i < existingCount; i++)
+    {
+        if (GetMonData((struct Pokemon *)&existingParty[i], MON_DATA_HELD_ITEM) == item)
+            return TRUE;
+    }
+    return FALSE;
+}
+
+static bool32 FacilitySelectionHasItemType(const struct TrainerMon *facilityMons, const u16 *chosenMonIds,
+                                           u8 chosenCount, const struct Pokemon *existingParty,
+                                           u8 existingCount, enum ItemSortType sortType)
+{
+    u32 i;
+
+    for (i = 0; i < chosenCount; i++)
+    {
+        if (gItemsInfo[facilityMons[chosenMonIds[i]].heldItem[0]].sortType == sortType)
+            return TRUE;
+    }
+    for (i = 0; i < existingCount; i++)
+    {
+        enum Item item = GetMonData((struct Pokemon *)&existingParty[i], MON_DATA_HELD_ITEM);
+
+        if (gItemsInfo[item].sortType == sortType)
+            return TRUE;
+    }
+    return FALSE;
+}
+
+static bool32 IsFacilityMonSelectionCandidate(const struct TrainerMon *facilityMons, u16 facilityMonsCount,
+                                              u16 monId, u16 maxMonId, bool32 doubles,
+                                              enum FacilityTeamArchetype archetype,
+                                              enum FacilityMonRequiredRole requiredRole,
+                                              const struct Pokemon *existingParty, u8 existingCount,
+                                              const u16 *chosenMonIds, u8 chosenCount)
+{
+    const struct TrainerMon *mon;
+    enum Item item;
+    enum ItemSortType itemType;
+    enum FacilityTeamArchetype setterArchetype;
+
+    if (monId >= facilityMonsCount || monId > maxMonId)
+        return FALSE;
+    mon = &facilityMons[monId];
+    if (!IsSpeciesEnabled(mon->species))
+        return FALSE;
+    if ((doubles && (mon->tags & FACILITY_MON_TAG_SINGLES_ONLY))
+     || (!doubles && ((mon->tags & FACILITY_MON_TAG_DOUBLES_ONLY) || IsClearlyDoublesOnlyFacilityMon(mon))))
+        return FALSE;
+    if (requiredRole == FACILITY_ROLE_SETTER && !IsFacilityArchetypeSetter(mon, archetype))
+        return FALSE;
+    if (requiredRole == FACILITY_ROLE_ABUSER
+     && (!IsFacilityArchetypeAbuser(mon, archetype) || IsFacilityArchetypeSetter(mon, archetype)))
+        return FALSE;
+
+    setterArchetype = GetFacilityWeatherSetterArchetype(mon);
+    if (archetype >= FACILITY_TEAM_RAIN && archetype <= FACILITY_TEAM_SNOW
+     && setterArchetype != FACILITY_TEAM_BALANCED && setterArchetype != archetype)
+        return FALSE;
+    if (archetype == FACILITY_TEAM_TRICK_ROOM
+     && IsFacilityArchetypeSetter(mon, FACILITY_TEAM_TAILWIND))
+        return FALSE;
+    if (archetype == FACILITY_TEAM_TAILWIND
+     && IsFacilityArchetypeSetter(mon, FACILITY_TEAM_TRICK_ROOM))
+        return FALSE;
+    if (setterArchetype != FACILITY_TEAM_BALANCED
+     && FacilitySelectionHasWeatherSetter(facilityMons, chosenMonIds, chosenCount))
+        return FALSE;
+    if ((FacilityMonHasMove(mon, MOVE_TRICK_ROOM)
+      && FacilitySelectionHasMove(facilityMons, chosenMonIds, chosenCount, MOVE_TAILWIND))
+     || (FacilityMonHasMove(mon, MOVE_TAILWIND)
+      && FacilitySelectionHasMove(facilityMons, chosenMonIds, chosenCount, MOVE_TRICK_ROOM)))
+        return FALSE;
+
+    if (FacilitySelectionHasSpecies(facilityMons, chosenMonIds, chosenCount,
+                                    existingParty, existingCount, mon->species))
+        return FALSE;
+    item = mon->heldItem[0];
+    if (FacilitySelectionHasItem(facilityMons, chosenMonIds, chosenCount,
+                                 existingParty, existingCount, item))
+        return FALSE;
+    itemType = gItemsInfo[item].sortType;
+    if ((itemType == ITEM_TYPE_MEGA_STONE || itemType == ITEM_TYPE_Z_CRYSTAL)
+     && FacilitySelectionHasItemType(facilityMons, chosenMonIds, chosenCount,
+                                     existingParty, existingCount, itemType))
+        return FALSE;
+    return TRUE;
+}
+
+static u16 CountFacilityMonSet(const u16 *monSet)
+{
+    u16 count;
+
+    for (count = 0; monSet[count] != FRONTIER_MON_END; count++)
+        ;
+    return count;
+}
+
+static bool32 TryBuildFacilityTrainerMonSelection(const u16 *monSet, const struct TrainerMon *facilityMons,
+                                                  u16 facilityMonsCount, u8 monCount, bool32 doubles,
+                                                  enum FacilityTeamArchetype archetype, bool32 fullArchetype,
+                                                  u16 maxMonId,
+                                                  const struct Pokemon *existingParty, u8 existingCount,
+                                                  u16 *chosenMonIds)
+{
+    u16 monSetCount = CountFacilityMonSet(monSet);
+    u32 slot;
+
+    for (slot = 0; slot < monCount; slot++)
+    {
+        enum FacilityMonRequiredRole requiredRole = FACILITY_ROLE_ANY;
+        u16 validCount = 0;
+        u16 target;
+        u32 i;
+
+        if (archetype != FACILITY_TEAM_BALANCED)
+        {
+            if (slot == 0)
+                requiredRole = FACILITY_ROLE_SETTER;
+            else if (slot == 1 || fullArchetype)
+                requiredRole = FACILITY_ROLE_ABUSER;
+        }
+
+        for (i = 0; i < monSetCount; i++)
+        {
+            if (IsFacilityMonSelectionCandidate(facilityMons, facilityMonsCount, monSet[i], maxMonId,
+                                                doubles, archetype, requiredRole, existingParty,
+                                                existingCount, chosenMonIds, slot))
+                validCount++;
+        }
+        if (validCount == 0)
+            return FALSE;
+
+        target = Random() % validCount;
+        for (i = 0; i < monSetCount; i++)
+        {
+            if (IsFacilityMonSelectionCandidate(facilityMons, facilityMonsCount, monSet[i], maxMonId,
+                                                doubles, archetype, requiredRole, existingParty,
+                                                existingCount, chosenMonIds, slot))
+            {
+                if (target == 0)
+                {
+                    chosenMonIds[slot] = monSet[i];
+                    break;
+                }
+                target--;
+            }
+        }
+    }
+    return TRUE;
+}
+
+static u8 GetFacilityMonLeadPriority(const struct TrainerMon *mon, bool32 doubles)
+{
+    if (mon->tags & FACILITY_MON_TAG_LEAD)
+        return 100;
+    if (doubles && (FacilityMonHasMove(mon, MOVE_FOLLOW_ME)
+                 || FacilityMonHasMove(mon, MOVE_RAGE_POWDER)))
+        return 90;
+    if (FacilityMonHasMove(mon, MOVE_STEALTH_ROCK)
+     || FacilityMonHasMove(mon, MOVE_SPIKES)
+     || FacilityMonHasMove(mon, MOVE_TOXIC_SPIKES)
+     || FacilityMonHasMove(mon, MOVE_STICKY_WEB))
+        return 60;
+    if (FacilityMonHasMove(mon, MOVE_REFLECT)
+     || FacilityMonHasMove(mon, MOVE_LIGHT_SCREEN)
+     || FacilityMonHasMove(mon, MOVE_AURORA_VEIL))
+        return 50;
+    return 0;
+}
+
+static void OrderBalancedFacilityTeam(const struct TrainerMon *facilityMons, u16 *chosenMonIds,
+                                      u8 monCount, bool32 doubles)
+{
+    u32 leadSlot;
+    u32 leadCount = doubles ? min(2, monCount) : 1;
+
+    for (leadSlot = 0; leadSlot < leadCount; leadSlot++)
+    {
+        u32 i;
+        u8 bestPriority = GetFacilityMonLeadPriority(&facilityMons[chosenMonIds[leadSlot]], doubles);
+        u8 bestIndex = leadSlot;
+
+        for (i = leadSlot + 1; i < monCount; i++)
+        {
+            u8 priority = GetFacilityMonLeadPriority(&facilityMons[chosenMonIds[i]], doubles);
+
+            if (priority > bestPriority)
+            {
+                bestPriority = priority;
+                bestIndex = i;
+            }
+        }
+        if (bestIndex != leadSlot)
+        {
+            u16 temp = chosenMonIds[leadSlot];
+
+            chosenMonIds[leadSlot] = chosenMonIds[bestIndex];
+            chosenMonIds[bestIndex] = temp;
+        }
+    }
+}
+
+static bool32 BuildFacilityTrainerMonSelectionWithExistingParty(const u16 *monSet,
+                                                                const struct TrainerMon *facilityMons,
+                                                                u16 facilityMonsCount, u8 monCount,
+                                                                bool32 doubles,
+                                                                enum FacilityTeamArchetype archetype,
+                                                                bool32 fullArchetype,
+                                                                u16 maxMonId,
+                                                                const struct Pokemon *existingParty,
+                                                                u8 existingCount, u16 *chosenMonIds)
+{
+    enum FacilityTeamArchetype selectedArchetype = archetype;
+
+    if (monCount == 0 || monCount > MAX_FRONTIER_PARTY_SIZE)
+        return FALSE;
+
+    if (archetype == FACILITY_TEAM_AUTO)
+    {
+        // Setup teams should be distinctive rather than the default texture of the
+        // facility. Try one about a third of the time, then use balanced selection.
+        if (Random() % 3 == 0)
+        {
+            enum FacilityTeamArchetype start = FACILITY_TEAM_RAIN + Random() % (FACILITY_TEAM_ARCHETYPE_COUNT - 1);
+            u32 i;
+
+            for (i = 0; i < FACILITY_TEAM_ARCHETYPE_COUNT - 1; i++)
+            {
+                selectedArchetype = FACILITY_TEAM_RAIN
+                    + (start - FACILITY_TEAM_RAIN + i) % (FACILITY_TEAM_ARCHETYPE_COUNT - 1);
+                if (TryBuildFacilityTrainerMonSelection(monSet, facilityMons, facilityMonsCount, monCount,
+                                                        doubles, selectedArchetype, fullArchetype, maxMonId,
+                                                        existingParty, existingCount, chosenMonIds))
+                    break;
+            }
+            if (i == FACILITY_TEAM_ARCHETYPE_COUNT - 1)
+                selectedArchetype = FACILITY_TEAM_AUTO;
+        }
+
+        if (selectedArchetype == FACILITY_TEAM_AUTO)
+        {
+            selectedArchetype = FACILITY_TEAM_BALANCED;
+            if (!TryBuildFacilityTrainerMonSelection(monSet, facilityMons, facilityMonsCount, monCount,
+                                                     doubles, selectedArchetype, FALSE, maxMonId,
+                                                     existingParty, existingCount, chosenMonIds))
+                return FALSE;
+        }
+    }
+    else if (!TryBuildFacilityTrainerMonSelection(monSet, facilityMons, facilityMonsCount, monCount,
+                                                  doubles, archetype, fullArchetype, maxMonId, existingParty,
+                                                  existingCount, chosenMonIds))
+    {
+        return FALSE;
+    }
+
+    if (selectedArchetype == FACILITY_TEAM_BALANCED)
+        OrderBalancedFacilityTeam(facilityMons, chosenMonIds, monCount, doubles);
+    return TRUE;
+}
+
+bool32 BuildFacilityTrainerMonSelection(const u16 *monSet, const struct TrainerMon *facilityMons,
+                                        u16 facilityMonsCount, u8 monCount, bool32 doubles,
+                                        enum FacilityTeamArchetype archetype, bool32 fullArchetype,
+                                        u16 maxMonId,
+                                        u16 *chosenMonIds)
+{
+    return BuildFacilityTrainerMonSelectionWithExistingParty(monSet, facilityMons, facilityMonsCount,
+                                                             monCount, doubles, archetype, fullArchetype, maxMonId,
+                                                             NULL, 0, chosenMonIds);
+}
+
 static void FillTrainerParty(u16 trainerId, u16 firstMonId, u16 monCount)
 {
     s32 i, j;
     u16 chosenMonIndices[MAX_FRONTIER_PARTY_SIZE];
     u8 level = SetFacilityPtrsGetLevel();
     u8 fixedIV = 0;
-    u16 bfMonCount;
     const u16 *monSet = NULL;
     u32 otID = 0;
 
@@ -224,7 +685,7 @@ static void FillTrainerParty(u16 trainerId, u16 firstMonId, u16 monCount)
     {
         // Normal battle frontier trainer.
         fixedIV = GetFrontierTrainerFixedIvs(trainerId);
-        monSet = gFacilityTrainers[TRAINER_BATTLE_PARAM.opponentA].monSet;
+        monSet = gFacilityTrainers[trainerId].monSet;
     }
     else if (trainerId == TRAINER_EREADER)
     {
@@ -260,67 +721,36 @@ static void FillTrainerParty(u16 trainerId, u16 firstMonId, u16 monCount)
         return;
     }
 
-    // Regular battle frontier trainer.
-    // Attempt to fill the trainer's party with random Pokémon until 3 have been
-    // successfully chosen. The trainer's party may not have duplicate Pokémon species
-    // or duplicate held items.
-    for (bfMonCount = 0; monSet[bfMonCount] != FRONTIER_MON_END; bfMonCount++)
-        ;
-    i = 0;
-    otID = Random32();
-    while (i != monCount)
+    // Regular battle frontier trainer. Build the full selection before creating any
+    // Pokémon so format, archetype, and team-wide clauses can be considered together.
     {
-        enum FrontierMon monId = monSet[Random() % bfMonCount];
+        bool32 doubles = (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+            || (gBattleScripting.specialTrainerBattleType == FACILITY_BATTLE_TOWER
+             && VarGet(VAR_FRONTIER_BATTLE_MODE) != FRONTIER_MODE_SINGLES);
+        u16 maxMonId = NUM_FRONTIER_MONS - 1;
 
-        if (!IsFrontierMonEnabled(monId))
-            continue;
+        if (level == FRONTIER_MAX_LEVEL_50
+         || level == 20
+         || GetCurrentFacilityWinStreak() < 21)
+            maxMonId = FRONTIER_MONS_HIGH_TIER;
 
-        // "High tier" Pokémon are never allowed in level 50 mode, and in open
-        // level mode they only appear after HIGH_TIER_MIN_STREAK wins.
-        // 20 is not a possible value for level here.
-        if (monId > FRONTIER_MONS_HIGH_TIER
-            && (level == FRONTIER_MAX_LEVEL_50
-                || level == 20
-                || GetCurrentFacilityWinStreak() < 21))
-            continue;
+        if (!BuildFacilityTrainerMonSelectionWithExistingParty(monSet, gFacilityTrainerMons,
+                                                               NUM_FRONTIER_MONS, monCount, doubles,
+                                                               FACILITY_TEAM_AUTO,
+                                                               GetCurrentFacilityWinStreak() >= 21,
+                                                               maxMonId,
+                                                               gEnemyParty, firstMonId,
+                                                               chosenMonIndices))
+            return;
+    }
 
-        // Ensure this Pokémon species isn't a duplicate.
-        for (j = 0; j < i + firstMonId; j++)
-        {
-            if (GetMonData(&gEnemyParty[j], MON_DATA_SPECIES) == gFacilityTrainerMons[monId].species)
-                break;
-        }
-        if (j != i + firstMonId)
-            continue;
-
-        // Ensure this Pokemon's held item isn't a duplicate.
-        for (j = 0; j < i + firstMonId; j++)
-        {
-            if (GetMonData(&gEnemyParty[j], MON_DATA_HELD_ITEM) != ITEM_NONE
-             && GetMonData(&gEnemyParty[j], MON_DATA_HELD_ITEM) == gFacilityTrainerMons[monId].heldItem[0])
-                break;
-        }
-        if (j != i + firstMonId)
-            continue;
-
-        // Ensure this exact Pokémon index isn't a duplicate. This check doesn't seem necessary
-        // because the species and held items were already checked directly above.
-        for (j = 0; j < i; j++)
-        {
-            if (chosenMonIndices[j] == monId)
-                break;
-        }
-        if (j != i)
-            continue;
-
-        chosenMonIndices[i] = monId;
+    otID = Random32();
+    for (i = 0; i < monCount; i++)
+    {
+        enum FrontierMon monId = chosenMonIndices[i];
 
         // Place the chosen Pokémon into the trainer's party.
         CreateFacilityMon(&gFacilityTrainerMons[monId], level, fixedIV, otID, 0, &gEnemyParty[i + firstMonId]);
-
-        // The Pokémon was successfully added to the trainer's party, so it's safe to move on to
-        // the next party slot.
-        i++;
     }
 }
 

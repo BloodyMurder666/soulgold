@@ -560,6 +560,9 @@ static bool8 ReturnGiveItemToBagOrPC(enum Item);
 static void Task_DisplayGaveMailFromBagMessage(u8);
 static void Task_HandleSwitchItemsFromBagYesNoInput(u8);
 static void Task_ValidateChosenHalfParty(u8);
+static void Task_ShowChosenHalfPartyYesNo(u8);
+static void Task_HandleChosenHalfPartyYesNoInput(u8);
+static void UnselectLastBattleEntry(void);
 static bool8 GetBattleEntryEligibility(struct Pokemon *);
 static bool8 IsFrontierSpeciesBanEnforcedForBattleEntry(void);
 static bool8 HasPartySlotAlreadyBeenSelected(u8);
@@ -660,6 +663,7 @@ static const u8 sText_doneShinyText[] = _("{STR_VAR_1} became shiny!{PAUSE_UNTIL
 static const u8 sText_BasePointsResetToZero[] = _("{STR_VAR_1}'s base points\nwere all reset to zero!{PAUSE_UNTIL_PRESS}");
 static const u8 sText_CannotSendMonToBoxHM[] = _("Cannot send that mon to the box,\nbecause it knows a HM move.{PAUSE_UNTIL_PRESS}");
 static const u8 sText_CannotSendMonToBoxPartner[] = _("Cannot send a mon that doesn't\nbelong to you to the box.{PAUSE_UNTIL_PRESS}");
+static const u8 sText_GoWithThisTeam[] = _("Go with this team?");
 
 #define tItemCount          data[5]
 #define tMaxItemQuantity    data[6]
@@ -3193,8 +3197,7 @@ static void ShowSelectedMonInfo(void)
         PrintTextOnWindowWithFont(sPartyTitleWindowId, gStringVar1, SWSH_PARTY_SPECIES_TEXT_X, SWSH_PARTY_SPECIES_TEXT_Y, 0, SWSH_PARTY_FONT_COLOR_LIGHT, FONT_NORMAL);
         PrintTextOnWindowWithFont(sPartyTitleWindowId, gStringVar2, SWSH_PARTY_LEVEL_TEXT_X, SWSH_PARTY_LEVEL_TEXT_Y, 0, SWSH_PARTY_FONT_COLOR_BLACK, FONT_SMALL);
         PrintTextOnWindowWithFont(sSelectedMonHeldItemInfoWindowId, sText_HeldItem, SWSH_PARTY_HELD_ITEM_LABEL_TEXT_X, SWSH_PARTY_HELD_ITEM_LABEL_TEXT_Y, 0, SWSH_PARTY_FONT_COLOR_LIGHT, FONT_SMALL);
-        if (!IsBattleEntrySelectionComplete())
-            PrintTextOnWindowToFit(sSelectedMonHeldItemInfoWindowId, gStringVar3, SWSH_PARTY_HELD_ITEM_NAME_TEXT_X, SWSH_PARTY_HELD_ITEM_NAME_TEXT_Y, SWSH_PARTY_HELD_ITEM_INFO_WIDTH, SWSH_PARTY_FONT_COLOR_BLACK, FONT_NORMAL);
+        PrintTextOnWindowToFit(sSelectedMonHeldItemInfoWindowId, gStringVar3, SWSH_PARTY_HELD_ITEM_NAME_TEXT_X, SWSH_PARTY_HELD_ITEM_NAME_TEXT_Y, SWSH_PARTY_HELD_ITEM_INFO_WIDTH, SWSH_PARTY_FONT_COLOR_BLACK, FONT_NORMAL);
     }
 
     PutWindowTilemap(sPartyTitleWindowId);
@@ -3207,9 +3210,6 @@ static void ShowSelectedMonInfo(void)
 
 static inline u8 GetButtonPromptType(void)
 {
-    if (IsBattleEntrySelectionComplete())
-        return BUTTON_PROMPT_CONFIRM;
-
     if (SWSH_PARTY_MENU_PC_ACCESS
         && gPartyMenu.action == PARTY_ACTION_CHOOSE_MON
         && gPartyMenu.layout == PARTY_LAYOUT_SINGLE
@@ -5130,7 +5130,10 @@ static void CursorCb_Enter(u8 taskId)
             gSelectedOrderFromParty[i] = gPartyMenu.slotId + 1;
             DisplayPartyPokemonDescriptionText(i + PARTYBOX_DESC_FIRST, &sPartyMenuBoxes[gPartyMenu.slotId], 1);
             RefreshSelectedMonInfoAndPrompt();
-            gTasks[taskId].func = Task_HandleChooseMonInput;
+            if (i == maxBattlers - 1)
+                gPartyMenu.task(taskId);
+            else
+                gTasks[taskId].func = Task_HandleChooseMonInput;
             return;
         }
     }
@@ -9801,8 +9804,52 @@ static void Task_ValidateChosenHalfParty(u8 taskId)
     else
     {
         PlaySE(SE_SELECT);
-        Task_ClosePartyMenu(taskId);
+        DisplayPartyMenuMessage(sText_GoWithThisTeam, TRUE);
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = Task_ShowChosenHalfPartyYesNo;
     }
+}
+
+static void Task_ShowChosenHalfPartyYesNo(u8 taskId)
+{
+    if (IsPartyMenuTextPrinterActive() != TRUE)
+    {
+        PartyMenuDisplayYesNoMenu();
+        gTasks[taskId].func = Task_HandleChosenHalfPartyYesNoInput;
+    }
+}
+
+static void Task_HandleChosenHalfPartyYesNoInput(u8 taskId)
+{
+    switch (Menu_ProcessInputNoWrapClearOnChoose())
+    {
+    case 0:
+        Task_ClosePartyMenu(taskId);
+        break;
+    case MENU_B_PRESSED:
+        PlaySE(SE_SELECT);
+        // fallthrough
+    case 1:
+        UnselectLastBattleEntry();
+        Task_ReturnToChooseMonAfterText(taskId);
+        break;
+    }
+}
+
+static void UnselectLastBattleEntry(void)
+{
+    u8 i;
+    u8 maxBattlers = GetMaxBattleEntries();
+    u8 slot = gSelectedOrderFromParty[maxBattlers - 1] - 1;
+
+    gSelectedOrderFromParty[maxBattlers - 1] = 0;
+    DisplayPartyPokemonDescriptionText(PARTYBOX_DESC_ABLE_3, &sPartyMenuBoxes[slot], 1);
+    for (i = 0; i < maxBattlers - 1; i++)
+    {
+        if (gSelectedOrderFromParty[i] != 0)
+            DisplayPartyPokemonDescriptionText(i + PARTYBOX_DESC_FIRST, &sPartyMenuBoxes[gSelectedOrderFromParty[i] - 1], 1);
+    }
+    RefreshSelectedMonInfoAndPrompt();
 }
 
 static void Task_ContinueChoosingHalfParty(u8 taskId)
