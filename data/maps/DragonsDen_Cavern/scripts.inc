@@ -460,7 +460,7 @@ DragonsDen_ClairRematch::
 	compare VAR_RESULT, TRUE
 	goto_if_eq DragonsDen_ClairRematch_2
 DragonsDen_ClairRematch_1:
-# 258 "data/maps/DragonsDen_Cavern/scripts.pory"
+# 259 "data/maps/DragonsDen_Cavern/scripts.pory"
 	release
 	end
 
@@ -468,20 +468,22 @@ DragonsDen_ClairRematch_2:
 # 240 "data/maps/DragonsDen_Cavern/scripts.pory"
 	trainerbattle_no_intro TRAINER_CLAIR_2, DragonsDen_ClairRematch_Text_2
 # 242 "data/maps/DragonsDen_Cavern/scripts.pory"
+	createfieldmugshot MUGSHOT_CLAIR
+# 243 "data/maps/DragonsDen_Cavern/scripts.pory"
 	msgbox DragonsDen_ClairRematch_Text_3
-# 250 "data/maps/DragonsDen_Cavern/scripts.pory"
-	closemessage
 # 251 "data/maps/DragonsDen_Cavern/scripts.pory"
-	fadescreenswapbuffers FADE_TO_BLACK
+	closemessage
 # 252 "data/maps/DragonsDen_Cavern/scripts.pory"
-	setflag FLAG_HIDE_DEN_CLAIR
+	fadescreenswapbuffers FADE_TO_BLACK
 # 253 "data/maps/DragonsDen_Cavern/scripts.pory"
-	setflag FLAG_CLAIR_ON_TRIP
+	setflag FLAG_HIDE_DEN_CLAIR
 # 254 "data/maps/DragonsDen_Cavern/scripts.pory"
-	removeobject LOCALID_CLAIR_REMATCH
+	setflag FLAG_CLAIR_ON_TRIP
 # 255 "data/maps/DragonsDen_Cavern/scripts.pory"
-	delay 30
+	removeobject LOCALID_CLAIR_REMATCH
 # 256 "data/maps/DragonsDen_Cavern/scripts.pory"
+	delay 30
+# 257 "data/maps/DragonsDen_Cavern/scripts.pory"
 	fadescreenswapbuffers FADE_FROM_BLACK
 	goto DragonsDen_ClairRematch_1
 
@@ -507,7 +509,7 @@ DragonsDen_ClairRematch_Text_2:
 	.string "in such a short amount of time.$"
 
 DragonsDen_ClairRematch_Text_3:
-# 242 "data/maps/DragonsDen_Cavern/scripts.pory"
+# 243 "data/maps/DragonsDen_Cavern/scripts.pory"
 	.string "I've got a long way to go still if I want\n"
 	.string "to surpass you or even Lance. I think\l"
 	.string "I will leave for a trip soon. Go see\l"

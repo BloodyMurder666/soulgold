@@ -1848,10 +1848,11 @@ static u8 GetPartyBoxPaletteFlags(u8 slot, u8 animNum)
         palFlags |= PARTY_PAL_FAINTED;
     if (PartyBoxPal_ParnterOrDisqualifiedInArena(slot) == TRUE)
         palFlags |= PARTY_PAL_MULTI_ALT;
-    if (gPartyMenu.action == PARTY_ACTION_SWITCH && slot == gPartyMenu.slotId)
+    if ((gPartyMenu.action == PARTY_ACTION_SWITCH
+         || gPartyMenu.action == PARTY_ACTION_MOVE_ITEM)
+        && slot == gPartyMenu.slotId)
         palFlags |= PARTY_PAL_SELECTED;
-    if (gPartyMenu.action == PARTY_ACTION_MOVE_ITEM
-        || gPartyMenu.action == PARTY_ACTION_FUSION)
+    if (gPartyMenu.action == PARTY_ACTION_FUSION)
     {
         if (slot == gPartyMenu.slotId)
             palFlags |= PARTY_PAL_TO_SWITCH;
@@ -4587,7 +4588,10 @@ static void CursorCb_Item(u8 taskId)
     sPartyMenuInternal->inItemMode = TRUE;
     for (i = 0; i < PARTY_SIZE; i++)
         UpdatePartyMonHeldItemSprite(&gPlayerParty[i], &sPartyMenuBoxes[i]);
-    UpdateSelectedMonItemSprite();
+
+    // The item selection window and the selected-mon info panels share BG2.
+    // Refreshing the info here would redraw it over the selection window.
+    DestroySelectedMonItemSprite();
 
     gTasks[taskId].data[0] = 0xFF;
     gTasks[taskId].func = Task_HandleSelectionMenuInput;
@@ -4630,16 +4634,9 @@ static void CB2_SelectBagItemToGive(void)
 
 static void CB2_GiveHoldItem(void)
 {
-    u8 i;
-
     if (gSpecialVar_ItemId == ITEM_NONE)
     {
         InitPartyMenu(gPartyMenu.menuType, KEEP_PARTY_LAYOUT, gPartyMenu.action, TRUE, PARTY_MSG_NONE, Task_TryCreateSelectionWindow, gPartyMenu.exitCallback);
-
-        sPartyMenuInternal->inItemMode = FALSE;
-        for (i = 0; i < PARTY_SIZE; i++)
-            UpdatePartyMonHeldItemSprite(&gPlayerParty[i], &sPartyMenuBoxes[i]);
-        UpdateSelectedMonItemSprite();
     }
     else
     {
@@ -4650,12 +4647,6 @@ static void CB2_GiveHoldItem(void)
         {
             InitPartyMenu(gPartyMenu.menuType, KEEP_PARTY_LAYOUT, PARTY_ACTION_GIVE_ITEM, TRUE, PARTY_MSG_NONE, Task_SwitchHoldItemsPrompt, gPartyMenu.exitCallback);
             gPartyMenu.bagItem = gSpecialVar_ItemId;
-
-            // Restore item mode after InitPartyMenu reset it
-            sPartyMenuInternal->inItemMode = TRUE;
-            for (i = 0; i < PARTY_SIZE; i++)
-                UpdatePartyMonHeldItemSprite(&gPlayerParty[i], &sPartyMenuBoxes[i]);
-            UpdateSelectedMonItemSprite();
         }
         // Give mail
         else if (ItemIsMail(gSpecialVar_ItemId))
@@ -4669,12 +4660,6 @@ static void CB2_GiveHoldItem(void)
         {
             InitPartyMenu(gPartyMenu.menuType, KEEP_PARTY_LAYOUT, PARTY_ACTION_GIVE_ITEM, TRUE, PARTY_MSG_NONE, Task_GiveHoldItem, gPartyMenu.exitCallback);
             gPartyMenu.bagItem = gSpecialVar_ItemId;
-
-            // Restore item mode after InitPartyMenu reset it
-            sPartyMenuInternal->inItemMode = TRUE;
-            for (i = 0; i < PARTY_SIZE; i++)
-                UpdatePartyMonHeldItemSprite(&gPlayerParty[i], &sPartyMenuBoxes[i]);
-            UpdateSelectedMonItemSprite();
         }
     }
 }
@@ -10749,14 +10734,13 @@ void CursorCb_MoveItem(u8 taskId)
         gPartyMenu.action = PARTY_ACTION_MOVE_ITEM;
         UpdateSelectedMonItemSprite();
 
-        // update color of first selected box
-        AnimatePartySlot(gPartyMenu.slotId, 1);
+        // Keep the move origin visually selected, but leave its icon idle.
+        AnimatePartySlot(gPartyMenu.slotId, 0);
 
         // Hide the item sprite on the source Pokemon before showing it on cursor
         if (sPartyMenuBoxes[gPartyMenu.slotId].itemSpriteId != MAX_SPRITES)
             gSprites[sPartyMenuBoxes[gPartyMenu.slotId].itemSpriteId].invisible = TRUE;
 
-        CreateSelectFrame(&sPartyMenuBoxes[gPartyMenu.slotId], gPartyMenu.slotId);
         CreateHoverSprite(&sPartyMenuBoxes[gPartyMenu.slotId], gPartyMenu.slotId);
 
         // set up callback

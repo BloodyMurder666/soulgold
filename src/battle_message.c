@@ -2849,7 +2849,11 @@ static const u8 *BattleStringGetOpponentNameByTrainerId(u16 trainerId, u8 *text,
     }
     else
     {
-        toCpy = GetTrainerNameFromId(trainerId);
+        // Trainer names may contain standard string placeholders, such as the
+        // player-selected rival name. Battle placeholders are expanded in one
+        // pass, so resolve the trainer name before inserting it into the text.
+        StringExpandPlaceholders(text, GetTrainerNameFromId(trainerId));
+        toCpy = text;
     }
 
     assertf(DoesStringProperlyTerminate(toCpy, TRAINER_NAME_LENGTH + 1),"Opponent needs a valid name")

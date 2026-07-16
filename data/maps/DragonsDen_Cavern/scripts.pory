@@ -239,6 +239,7 @@ script DragonsDen_ClairRematch {
 	if (var(VAR_RESULT) == TRUE) {
 		trainerbattle_no_intro(TRAINER_CLAIR_2, "Crazy how much stronger you can grow
 												in such a short amount of time.")
+		createfieldmugshot(MUGSHOT_CLAIR)
 		msgbox("I've got a long way to go still if I want
 				to surpass you or even Lance. I think
 				I will leave for a trip soon. Go see

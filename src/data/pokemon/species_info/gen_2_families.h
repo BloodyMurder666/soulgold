@@ -8998,16 +8998,15 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .innates = { ABILITY_WIND_FORCE, ABILITY_BERSERK, ABILITY_FILL_VOID}, 
         .bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Lugia"),
-        .cryId = CRY_NONE,
+        .cryId = CRY_LUGIA,
         .natDexNum = NATIONAL_DEX_LUGIA,
         .categoryName = _("Experiment"),
         .height = 15,
         .weight = 330,
         .description = COMPOUND_STRING(
-            "An experiment from\n"
-            "another region. It\n"
-            "wields tremondous\n"
-            "power."
+            "An experiment from another region\n"
+            "It wields tremondous power and is\n"
+            "driven only by negative emotions."
         ),
         .pokemonScale = 256,
         .pokemonOffset = 0,
