@@ -1,15 +1,7 @@
 Bugs:
 - More Berry spots
 
-# Demo 1 MVP
-
-
-Nice to have:
-- HGSS/DPPT overworld npc sprite demakes
-
-Maybe:
-- remaining mugshots
-- mugshot and trainer ow/frontsprite should match
+- Smart move assignment based on singles/doubles mode for trainers with no assigned moves to mons
 
 correct order: down, up, left, up, left, down, right, right
 
