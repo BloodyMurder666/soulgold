@@ -44,6 +44,10 @@ if not errorLines:
             pass
         elif path == Path("changelogs/template.md"):
             pass
+        elif path.is_relative_to(Path("src/guides")):
+            # Player-facing web guides are indexed by the static docs builder,
+            # not by mdBook's SUMMARY.md.
+            pass
         elif path in summaryContents:
             pass
         else:

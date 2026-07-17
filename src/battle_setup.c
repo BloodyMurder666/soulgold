@@ -1,6 +1,7 @@
 #include "global.h"
 #include "achievements.h"
 #include "battle.h"
+#include "battle_boss.h"
 #include "battle_dome.h"
 #include "load_save.h"
 #include "battle_setup.h"
@@ -507,6 +508,8 @@ void BattleSetup_StartLegendaryBattle(void)
     LockPlayerFieldControls();
     gMain.savedCallback = CB2_EndScriptedWildBattle;
     gBattleTypeFlags = BATTLE_TYPE_LEGENDARY;
+    if (IsBossBattlePending())
+        gBattleTypeFlags |= BATTLE_TYPE_BOSS;
 
     switch (GetMonData(&gEnemyParty[0], MON_DATA_SPECIES))
     {

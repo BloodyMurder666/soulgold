@@ -997,6 +997,16 @@ const u8 *const gBattleStringsTable[STRINGID_COUNT] =
     [STRINGID_ZENMODETRIGGERED]                     = COMPOUND_STRING("{B_SCR_ABILITY} triggered!"),
     [STRINGID_ZENMODEENDED]                         = COMPOUND_STRING("{B_SCR_ABILITY} ended!"),
     [STRINGID_VICTORYCATCH]                         = COMPOUND_STRING("{B_DEF_NAME} is weak!\nThrow a Poké Ball now!"),
+    [STRINGID_BOSSHEALTHBARBREAK]                   = COMPOUND_STRING("{B_DEF_NAME_WITH_PREFIX}'s barrier broke! It's still standing!"),
+    [STRINGID_BOSSLASTSTAND]                        = COMPOUND_STRING("{B_DEF_NAME_WITH_PREFIX}'s barrier broke! It's making a last stand!"),
+    [STRINGID_BOSSSURGINGWITHPOWER]                 = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} is surging with power!"),
+    [STRINGID_BOSSTRANSFORMED]                      = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} transformed into Mega {B_BUFF1}!"),
+};
+
+const u16 gBossHealthBarBreakStringIds[] =
+{
+    STRINGID_BOSSHEALTHBARBREAK,
+    STRINGID_BOSSLASTSTAND,
 };
 
 const u16 gTrainerUsedItemStringIds[] =

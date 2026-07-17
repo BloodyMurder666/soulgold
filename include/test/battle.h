@@ -797,6 +797,12 @@ struct BattleTestData
     u8 forcedEnvironment;
     u16 initialWeather;
     u8 initialWeatherDuration;
+    bool8 hasVictoryCatchChoice;
+    u16 victoryCatchItem;
+    bool8 cancelVictoryCatchBag;
+    bool8 didCancelVictoryCatchBag;
+    bool8 verifyBossCleanupAfterTeardown;
+    u16 bossCleanupSourceLine;
 
     u8 currentMonIndexes[MAX_BATTLERS_COUNT];
     u8 turnState;
@@ -1022,6 +1028,10 @@ struct moveWithPP {
 #define FLAG_SET(flagId) SetFlagForTest(__LINE__, flagId)
 #define VAR_SET(varId, value) SetVarForTest(__LINE__, varId, value)
 #define WITH_CONFIG(configTag, value) TestSetConfig(__LINE__, CONFIG_##configTag, value)
+#define VICTORY_CATCH(item) VictoryCatch_(__LINE__, item)
+#define VICTORY_CATCH_CANCEL_THEN(item) VictoryCatchCancelThen_(__LINE__, item)
+#define DECLINE_VICTORY_CATCH VictoryCatch_(__LINE__, ITEM_NONE)
+#define EXPECT_BOSS_CLEANUP ExpectBossCleanup_(__LINE__)
 #define STARTING_WEATHER(weather) SetInitialWeather(__LINE__, weather, 0)
 #define STARTING_WEATHER_WITH_DURATION(weather, duration) SetInitialWeather(__LINE__, weather, duration)
 
@@ -1072,6 +1082,9 @@ void TieBreakScore(u32 sourceLine, enum RandomTag rngTag, enum ScoreTieResolutio
 void TieBreakTarget(u32 sourceLine, enum TargetTieResolution targetTieRes, u32 value);
 void ClearFlagAfterTest(void);
 void ClearVarAfterTest(void);
+void VictoryCatch_(u32 sourceLine, u16 item);
+void VictoryCatchCancelThen_(u32 sourceLine, u16 item);
+void ExpectBossCleanup_(u32 sourceLine);
 void OpenPokemon(u32 sourceLine, enum BattleTrainer trainer, u32 species);
 void OpenPokemonMulti(u32 sourceLine, enum BattleTrainer trainer, u32 species);
 void ClosePokemon(u32 sourceLine);
@@ -1169,6 +1182,7 @@ enum { TURN_CLOSED, TURN_OPEN, TURN_CLOSING };
 #define SCORE_LT_VAL(battler, ...) Score(__LINE__, battler, CMP_LESS_THAN, TRUE, (struct TestAIScoreStruct) { R_APPEND_TRUE(__VA_ARGS__) } )
 
 #define FORCED_MOVE(battler) ForcedMove(__LINE__, battler)
+#define RUN(battler) Run(__LINE__, battler)
 #define SWITCH(battler, partyIndex) Switch(__LINE__, battler, partyIndex)
 #define SKIP_TURN(battler) SkipTurn(__LINE__, battler)
 #define SEND_OUT(battler, partyIndex) SendOut(__LINE__, battler, partyIndex)
@@ -1225,6 +1239,7 @@ void ExpectSendOut(u32 sourceLine, struct BattlePokemon *battler, u32 partyIndex
 void ExpectSwitch(u32 sourceLine, struct BattlePokemon *battler, u32 partyIndex);
 void Score(u32 sourceLine, struct BattlePokemon *battler, u32 cmp, bool32 toValue, struct TestAIScoreStruct cmpCtx);
 void ForcedMove(u32 sourceLine, struct BattlePokemon *);
+void Run(u32 sourceLine, struct BattlePokemon *);
 void Switch(u32 sourceLine, struct BattlePokemon *, u32 partyIndex);
 void SkipTurn(u32 sourceLine, struct BattlePokemon *);
 void UseItem(u32 sourceLine, struct BattlePokemon *, struct ItemContext);

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "battle.h"
+#include "battle_boss.h"
 #include "battle_ai_main.h"
 #include "battle_anim.h"
 #include "battle_controllers.h"
@@ -38,6 +39,7 @@ void AllocateBattleResources(void)
         InitTrainerHillBattleStruct();
 
     gBattleStruct = AllocZeroed(sizeof(*gBattleStruct));
+    InitBossBattleData();
     gAiBattleData = AllocZeroed(sizeof(*gAiBattleData));
     gAiThinkingStruct = AllocZeroed(sizeof(*gAiThinkingStruct));
     gAiLogicData = AllocZeroed(sizeof(*gAiLogicData));
@@ -68,6 +70,8 @@ void AllocateBattleResources(void)
 
 void FreeBattleResources(void)
 {
+    bool32 wasBossBattle = (gBattleTypeFlags & BATTLE_TYPE_BOSS) || IsBossBattlePending();
+
     if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
         FreeTrainerHillBattleStruct();
 
@@ -93,6 +97,9 @@ void FreeBattleResources(void)
 
         FreeBattleGfxResources();
     }
+
+    if (wasBossBattle)
+        CancelBossBattleConfiguration();
 }
 
 void AdjustFriendshipOnBattleFaint(enum BattlerId battler)

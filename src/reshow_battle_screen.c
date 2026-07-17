@@ -387,6 +387,7 @@ static void CreateHealthboxSprite(enum BattlerId battler)
 
         gHealthboxSpriteIds[battler] = healthboxSpriteId;
         InitBattlerHealthboxCoords(battler);
+        CreateBossHealthBarSprites(battler);
         SetHealthboxSpriteVisible(healthboxSpriteId);
 
         if (!IsOnPlayerSide(battler))

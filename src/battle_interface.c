@@ -1,6 +1,7 @@
 #include "global.h"
 #include "malloc.h"
 #include "battle.h"
+#include "battle_boss.h"
 #include "pokemon.h"
 #include "battle_ai_main.h"
 #include "battle_controllers.h"

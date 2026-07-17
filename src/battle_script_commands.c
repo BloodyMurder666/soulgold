@@ -4334,6 +4334,28 @@ static void Cmd_tryfaintmon(void)
         if (!IsBattlerAlive(battler)
          && !(gBattleStruct->battlerState[battler].fainted))
         {
+            if (TryBossHealthBarBreak(battler))
+            {
+                gBattlerTarget = battler;
+                BattleScriptPush(cmd->nextInstr);
+                gBattlescriptCurrInstr = BattleScript_BossHealthBarBreak;
+                return;
+            }
+
+            if (IsBossBattle()
+             && battler == GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT)
+             && IsVictoryCatch())
+            {
+                u8 hp = 1;
+
+                gBattlerAttacker = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+                gBattlerTarget = battler;
+                SetMonData(GetBattlerMon(battler), MON_DATA_HP, &hp);
+                BattleScriptPush(cmd->nextInstr);
+                gBattlescriptCurrInstr = BattleScript_WildBattleVictory;
+                return;
+            }
+
             if (gBattleMons[battler].volatiles.neutralizingGas)
             {
                 gBattleMons[battler].volatiles.neutralizingGas = FALSE;
@@ -16370,6 +16392,14 @@ void BS_CatchAfterVictory(void)
         gBattleStruct->victoryCatchState = VICTORY_CATCH_OPEN_BAG;
         gSpecialVar_ItemId = ITEM_NONE;
         RecalcBattlerStats(gBattlerTarget, GetBattlerMon(gBattlerTarget), FALSE);
+#if TESTING
+        if (gTestRunnerEnabled && TestRunner_Battle_HasVictoryCatchChoice())
+        {
+            if (!TestRunner_Battle_ShouldCancelVictoryCatchBag())
+                gSpecialVar_ItemId = TestRunner_Battle_GetVictoryCatchItem();
+            return;
+        }
+#endif
         BtlController_EmitChooseItem(gBattlerAttacker, B_COMM_TO_CONTROLLER, gBattleStruct->battlerPartyOrders[gBattlerAttacker]);
         MarkBattlerForControllerExec(gBattlerAttacker);
     }
@@ -16378,10 +16408,10 @@ void BS_CatchAfterVictory(void)
         gLastUsedItem = gSpecialVar_ItemId; // selected ball
         SetBallThrowShakes();
     }
-    else // no item selected, do faint sequence
+    else // Bag was cancelled; return to the Catch / Don't Catch choice.
     {
-        gBattleStruct->victoryCatchState = VICTORY_CATCH_FAINTED;
-        gBattlescriptCurrInstr = cmd->nextInstr;
+        gBattleStruct->victoryCatchState = VICTORY_CATCH_START;
+        gBattlescriptCurrInstr = BattleScript_WildBattleVictoryPrompt;
     }
 }
 
@@ -16389,7 +16419,11 @@ void BS_JumpIfNoBalls(void)
 {
     NATIVE_ARGS(const u8 *jumpInstr);
 
-    if (IsBagPocketNonEmpty(POCKET_POKE_BALLS) && !IsPlayerPartyAndPokemonStorageFull())
+    if (
+#if TESTING
+        (gTestRunnerEnabled && TestRunner_Battle_HasVictoryCatchChoice()) ||
+#endif
+        (IsBagPocketNonEmpty(POCKET_POKE_BALLS) && !IsPlayerPartyAndPokemonStorageFull()))
     {
         gBattleStruct->victoryCatchState = VICTORY_CATCH_START;
         gBattlescriptCurrInstr = cmd->nextInstr;
@@ -16414,9 +16448,18 @@ void BS_HandleFailedVictoryCatch(void)
         gBattleMons[gBattlerTarget].hp = hp;
         SetMonData(GetBattlerMon(gBattlerTarget), MON_DATA_HP, &hp);
         gBattleStruct->victoryCatchState = VICTORY_CATCH_FAINTED;
-        gBattleOutcome |= B_OUTCOME_WON; // need research into what happens when the mon isn't captured after fainting it
+        gBattleOutcome |= B_OUTCOME_WON;
         gBattlescriptCurrInstr = BattleScript_MoveEnd;
     }
+}
+
+void BS_RefreshBossHealthbox(void)
+{
+    NATIVE_ARGS(u8 battler);
+    enum BattlerId battler = GetBattlerForBattleScript(cmd->battler);
+
+    RefreshBossHealthbox(battler);
+    gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 static void BattleCreateCatchOrNotCursorAt(u32 cursorPosition)
@@ -16443,6 +16486,15 @@ static void BattleDestroyCatchOrNotCursorAt(u32 cursorPosition)
 void BS_CatchOrNot(void)
 {
     NATIVE_ARGS();
+
+#if TESTING
+    if (gTestRunnerEnabled && TestRunner_Battle_HasVictoryCatchChoice())
+    {
+        gBattleCommunication[CURSOR_POSITION] = TestRunner_Battle_GetVictoryCatchItem() == ITEM_NONE;
+        gBattlescriptCurrInstr = cmd->nextInstr;
+        return;
+    }
+#endif
 
     switch (gBattleCommunication[0])
     {

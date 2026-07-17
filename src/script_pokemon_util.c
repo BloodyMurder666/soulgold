@@ -192,6 +192,25 @@ void ScriptSetMonMoveSlot(u8 monIndex, enum Move move, u8 slot)
     SetMonMoveSlot(&gPlayerParty[monIndex], move, slot);
 }
 
+void SetEnemyEventMonMoves(enum Move move1, enum Move move2, enum Move move3, enum Move move4)
+{
+    const enum Move moves[MAX_MON_MOVES] = {move1, move2, move3, move4};
+
+    for (u32 slot = 0; slot < MAX_MON_MOVES; slot++)
+        SetMonMoveSlot(&gEnemyParty[0], moves[slot], slot);
+}
+
+void ScriptSetEnemyEventMonMoves(struct ScriptContext *ctx)
+{
+    enum Move move1 = VarGet(ScriptReadHalfword(ctx));
+    enum Move move2 = VarGet(ScriptReadHalfword(ctx));
+    enum Move move3 = VarGet(ScriptReadHalfword(ctx));
+    enum Move move4 = VarGet(ScriptReadHalfword(ctx));
+
+    Script_RequestEffects(SCREFF_V1);
+    SetEnemyEventMonMoves(move1, move2, move3, move4);
+}
+
 // Note: When control returns to the event script, gSpecialVar_Result will be
 // TRUE if the party selection was successful.
 void ChooseHalfPartyForBattle(void)

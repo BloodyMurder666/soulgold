@@ -2163,6 +2163,16 @@
 	special CreateEnemyEventMon
 	.endm
 
+	@ Replaces all four move slots of the event Pokemon prepared by seteventmon.
+	@ MOVE_NONE clears a slot. This must be called before starting the battle.
+	.macro seteventmonmoves move1:req, move2:req, move3:req, move4:req
+	callnative ScriptSetEnemyEventMonMoves, requests_effects=1
+	.2byte \move1
+	.2byte \move2
+	.2byte \move3
+	.2byte \move4
+	.endm
+
 	@ Runs a single static legendary encounter and hides its object unless the player ran.
 	.macro legendaryencounter species:req, level:req, localid:req, flag:req
 	playmoncry \species, CRY_MODE_ENCOUNTER
@@ -2179,6 +2189,60 @@
 	special BattleSetup_FinishLegendaryEncounter
 	fadescreenswapbuffers FADE_FROM_BLACK
 .LlegendaryEncounterRan\@:
+	.endm
+
+	@ Configures the next single legendary battle as a multi-health-bar boss.
+	@ megaSpecies defaults to automatic Mega form detection. Specify a form for
+	@ species with more than one Mega Evolution.
+	.macro setbossbattle bars=2, megaSpecies=SPECIES_NONE, statMultiplier=110
+	callnative ScriptConfigureBossBattle, requests_effects=1
+	.2byte \bars
+	.2byte \megaSpecies
+	.2byte \statMultiplier
+	.endm
+
+	@ Cancels a pending boss battle when an encounter script exits early.
+	.macro clearbossbattle
+	callnative ScriptCancelBossBattle, requests_effects=1
+	.endm
+
+	@ Runs a boss encounter and only removes its object after a successful catch.
+	.macro bosslegendaryencounter species:req, level:req, localid:req, flag:req, bars=2, megaSpecies=SPECIES_NONE, statMultiplier=110
+	setbossbattle \bars, \megaSpecies, \statMultiplier
+	playmoncry \species, CRY_MODE_ENCOUNTER
+	waitmoncry
+	setvar VAR_0x8004, \species
+	setvar VAR_0x8005, \level
+	special BattleSetup_StartLegendaryEncounter
+	waitstate
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, .LbossLegendaryEncounterEnd\@
+	fadescreenswapbuffers FADE_TO_BLACK
+	setvar VAR_0x8006, \localid
+	setvar VAR_0x8007, \flag
+	special BattleSetup_FinishLegendaryEncounter
+	fadescreenswapbuffers FADE_FROM_BLACK
+.LbossLegendaryEncounterEnd\@:
+	.endm
+
+	@ Runs a boss legendary encounter with a curated four-move set. The event
+	@ Pokemon is created normally so captures retain fateful-event metadata.
+	.macro bosslegendaryencounterwithmoves species:req, level:req, localid:req, flag:req, bars=2, megaSpecies=SPECIES_NONE, statMultiplier=110, move1:req, move2:req, move3:req, move4:req
+	setbossbattle \bars, \megaSpecies, \statMultiplier
+	playmoncry \species, CRY_MODE_ENCOUNTER
+	waitmoncry
+	seteventmon \species, \level
+	seteventmonmoves \move1, \move2, \move3, \move4
+	special BattleSetup_StartLegendaryBattle
+	waitstate
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, .LbossLegendaryEncounterWithMovesEnd\@
+	fadescreenswapbuffers FADE_TO_BLACK
+	setvar VAR_0x8006, \localid
+	setvar VAR_0x8007, \flag
+	special BattleSetup_FinishLegendaryEncounter
+	fadescreenswapbuffers FADE_FROM_BLACK
+.LbossLegendaryEncounterWithMovesEnd\@:
 	.endm
 
 	.macro setdynamicaifunc func:req

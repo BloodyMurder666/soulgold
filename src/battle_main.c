@@ -1,5 +1,6 @@
 #include "global.h"
 #include "battle.h"
+#include "battle_boss.h"
 #include "battle_anim.h"
 #include "battle_ai_main.h"
 #include "battle_ai_util.h"
@@ -3990,6 +3991,14 @@ static void TryDoEventsBeforeFirstTurn(void)
         }
         gBattleStruct->eventState.beforeFirstTurn++;
         break;
+    case FIRST_TURN_EVENTS_BOSS:
+        gBattleStruct->eventState.beforeFirstTurn++;
+        if (TryStartBossBattle())
+        {
+            BattleScriptExecute(BattleScript_BossMegaEvolution);
+            return;
+        }
+        break;
     case FIRST_TURN_EVENTS_TOTEM_BOOST:
         for (enum BattlerId battler = 0; battler < gBattlersCount; battler++)
         {
@@ -6523,6 +6532,9 @@ void ScriptSetTotemBoost(struct ScriptContext *ctx)
 
 bool32 IsWildMonSmart(void)
 {
+    if (gBattleTypeFlags & BATTLE_TYPE_BOSS)
+        return TRUE;
+
 #if B_SMART_WILD_AI_FLAG != 0
     return (FlagGet(B_SMART_WILD_AI_FLAG));
 #else

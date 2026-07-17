@@ -2,6 +2,7 @@
 #include "battle.h"
 #include "battle_ai_util.h"
 #include "battle_anim.h"
+#include "battle_boss.h"
 #include "battle_controllers.h"
 #include "battle_setup.h"
 #include "battle_util.h"
@@ -1131,6 +1132,7 @@ static const char *const sBattleActionNames[] =
     [B_ACTION_USE_MOVE] = "MOVE",
     [B_ACTION_USE_ITEM] = "USE_ITEM",
     [B_ACTION_SWITCH] = "SWITCH",
+    [B_ACTION_RUN] = "RUN",
 };
 
 static const char *const sGimmickIdentifiers[GIMMICKS_COUNT] =
@@ -1867,6 +1869,14 @@ static void TearDownBattle(void)
     FreeBattleResources();
     FreeAllWindowBuffers();
     gMain.inBattle = FALSE; // Necessary else some tests report incorrect results when running in same thread as an EXPECT_FAIL test
+
+    if (DATA.verifyBossCleanupAfterTeardown
+     && (IsBossBattlePending()
+      || (gBattleTypeFlags & BATTLE_TYPE_BOSS)))
+    {
+        u32 line = DATA.bossCleanupSourceLine;
+        Test_ExitWithResult(TEST_RESULT_FAIL, line, ":L%s:%d: Boss configuration leaked after battle teardown", gTestRunnerState.test->filename, line);
+    }
 }
 
 static void CB2_BattleTest_NextParameter(void)
@@ -2119,6 +2129,47 @@ void ClearVarAfterTest(void)
         VarSet(DATA.varId, 0);
         DATA.varId = 0;
     }
+}
+
+void VictoryCatch_(u32 sourceLine, u16 item)
+{
+    INVALID_IF(!STATE->runGiven, "VICTORY_CATCH outside of GIVEN");
+    INVALID_IF(item != ITEM_NONE && GetItemPocket(item) != POCKET_POKE_BALLS, "VICTORY_CATCH item is not a Poké Ball");
+    DATA.hasVictoryCatchChoice = TRUE;
+    DATA.victoryCatchItem = item;
+}
+
+void VictoryCatchCancelThen_(u32 sourceLine, u16 item)
+{
+    VictoryCatch_(sourceLine, item);
+    INVALID_IF(item == ITEM_NONE, "VICTORY_CATCH_CANCEL_THEN requires a Poké Ball");
+    DATA.cancelVictoryCatchBag = TRUE;
+}
+
+void ExpectBossCleanup_(u32 sourceLine)
+{
+    INVALID_IF(!STATE->runGiven, "EXPECT_BOSS_CLEANUP outside GIVEN");
+    DATA.verifyBossCleanupAfterTeardown = TRUE;
+    DATA.bossCleanupSourceLine = sourceLine;
+}
+
+bool32 TestRunner_Battle_HasVictoryCatchChoice(void)
+{
+    return DATA.hasVictoryCatchChoice;
+}
+
+u16 TestRunner_Battle_GetVictoryCatchItem(void)
+{
+    return DATA.victoryCatchItem;
+}
+
+bool32 TestRunner_Battle_ShouldCancelVictoryCatchBag(void)
+{
+    if (!DATA.cancelVictoryCatchBag || DATA.didCancelVictoryCatchBag)
+        return FALSE;
+
+    DATA.didCancelVictoryCatchBag = TRUE;
+    return TRUE;
 }
 
 void OpenPokemon(u32 sourceLine, enum BattleTrainer trainer, u32 species)
@@ -3015,6 +3066,18 @@ void ForcedMove(u32 sourceLine, struct BattlePokemon *battler)
         DATA.actionBattlers |= 1 << battlerId;
         DATA.moveBattlers |= 1 << battlerId;
     }
+}
+
+void Run(u32 sourceLine, struct BattlePokemon *battler)
+{
+    enum BattlerId battlerId = battler - gBattleMons;
+
+    INVALID_IF(DATA.turnState == TURN_CLOSED, "RUN outside TURN");
+    INVALID_IF(DATA.actionBattlers & (1 << battlerId), "Multiple battler actions");
+    INVALID_IF((battlerId & BIT_SIDE) != B_SIDE_PLAYER, "Only the player can RUN");
+
+    PushBattlerAction(sourceLine, battlerId, RECORDED_ACTION_TYPE, B_ACTION_RUN);
+    DATA.actionBattlers |= 1 << battlerId;
 }
 
 static void TryMarkExpectMove(u32 sourceLine, struct BattlePokemon *battler, struct MoveContext *ctx)

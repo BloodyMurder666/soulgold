@@ -55,6 +55,7 @@ class SpeciesLocation(TypedDict):
 
 
 class NamedRecord(TypedDict, total=False):
+    id: int
     constant: str
     name: str
     description: str
@@ -65,6 +66,16 @@ class NamedRecord(TypedDict, total=False):
     type: str
     category: str
     usage: "AbilityUsageEntry"
+
+
+class GuideRow(TypedDict):
+    slug: str
+    title: str
+    summary: str
+    category: str
+    order: int
+    source: str
+    content: str
 
 
 class AbilityUsageMini(TypedDict):
@@ -290,3 +301,4 @@ class DocsPayload(TypedDict):
     categoryIcons: dict[str, str]
     uiIcons: dict[str, str]
     megaEvolutions: list[MegaEvolutionRow]
+    guides: list[GuideRow]

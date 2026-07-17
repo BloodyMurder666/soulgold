@@ -2484,3 +2484,480 @@ body[data-active-tab="pokedex"] .type-filter {
     transition-duration: .01ms !important;
   }
 }
+
+/* Movedex */
+#moves th {
+  position: sticky;
+  z-index: 20;
+  top: var(--top-chrome-height);
+}
+
+#moves th:nth-child(1) {
+  width: 58px;
+}
+
+#moves th:nth-child(2) {
+  width: 170px;
+}
+
+#moves th:nth-child(3) {
+  width: 120px;
+}
+
+#moves th:nth-child(4) {
+  width: 70px;
+}
+
+#moves th:nth-child(n + 5):nth-child(-n + 8) {
+  width: 72px;
+}
+
+.move-dex-row {
+  cursor: pointer;
+}
+
+.move-dex-row:hover {
+  background: var(--surface-hover);
+}
+
+.move-dex-row:focus-visible {
+  position: relative;
+  z-index: 2;
+  outline-offset: -2px;
+}
+
+.move-detail-summary {
+  display: grid;
+  gap: 14px;
+}
+
+.move-detail-summary > .type-list {
+  justify-self: start;
+}
+
+.move-detail-summary > .category-display {
+  justify-self: start;
+}
+
+.move-detail-summary dl {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(90px, 1fr));
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.move-detail-summary dl > div {
+  display: grid;
+  padding: 10px 12px;
+  gap: 2px;
+  border-right: 1px solid var(--line);
+}
+
+.move-detail-summary dl > div:last-child {
+  border-right: 0;
+}
+
+.move-detail-summary dt {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.move-detail-summary dd {
+  margin: 0;
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.move-learner-groups {
+  display: grid;
+  gap: 7px;
+}
+
+.move-learner-group {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.move-learner-group > summary {
+  display: flex;
+  min-height: 42px;
+  padding: 8px 12px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.move-learner-group > summary::-webkit-details-marker {
+  display: none;
+}
+
+.move-learner-group > summary span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.move-learner-body {
+  padding: 10px;
+  border-top: 1px solid var(--line);
+}
+
+/* Expandable player guides */
+#guides {
+  width: min(100%, 1280px);
+  margin-inline: auto;
+}
+
+.guide-list {
+  display: grid;
+  gap: 10px;
+}
+
+.guide-card,
+.guide-empty {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(145deg, #0a2135, #061523);
+  box-shadow: 0 12px 30px rgb(0 4 12 / 28%);
+}
+
+.guide-card > summary {
+  display: grid;
+  min-height: 82px;
+  padding: 15px 18px;
+  align-items: center;
+  grid-template-columns: 120px minmax(0, 1fr) 26px;
+  gap: 16px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.guide-card > summary::-webkit-details-marker {
+  display: none;
+}
+
+.guide-card > summary:hover {
+  background: var(--surface-hover);
+}
+
+.guide-card[open] > summary {
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-soft);
+}
+
+.guide-category {
+  display: inline-flex;
+  min-height: 27px;
+  padding: 4px 9px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--gold-soft);
+  border-radius: 999px;
+  background: #2b2213;
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.guide-summary-copy {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+}
+
+.guide-summary-copy strong {
+  color: var(--text);
+  font-size: 18px;
+}
+
+.guide-summary-copy > span {
+  overflow: hidden;
+  color: var(--muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.guide-expand {
+  position: relative;
+  display: block;
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+}
+
+.guide-expand::before,
+.guide-expand::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9px;
+  height: 1px;
+  background: var(--gold);
+  content: "";
+  transform: translate(-50%, -50%);
+}
+
+.guide-expand::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+  transition: transform 140ms ease;
+}
+
+.guide-card[open] .guide-expand::after {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.guide-content {
+  padding: clamp(18px, 3vw, 36px);
+  color: var(--muted-strong);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.guide-content > * + * {
+  margin-top: 16px;
+}
+
+.guide-content h2,
+.guide-content h3,
+.guide-content h4 {
+  color: var(--text);
+  line-height: 1.25;
+}
+
+.guide-content h2 {
+  padding-bottom: 7px;
+  border-bottom: 1px solid var(--line);
+  font-size: 22px;
+}
+
+.guide-content h3 {
+  font-size: 18px;
+}
+
+.guide-content h4 {
+  font-size: 16px;
+}
+
+.guide-content ul,
+.guide-content ol {
+  display: grid;
+  margin-bottom: 0;
+  padding-left: 25px;
+  gap: 7px;
+}
+
+.guide-content a {
+  color: var(--cyan);
+}
+
+.guide-content code {
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: #03101c;
+  color: #d8efff;
+  padding: 2px 5px;
+  font-size: .9em;
+}
+
+.guide-content pre {
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #020b14;
+  padding: 13px;
+}
+
+.guide-content pre code {
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+
+.guide-content blockquote {
+  margin-right: 0;
+  margin-left: 0;
+  border-left: 3px solid var(--gold);
+  background: rgb(243 198 80 / 6%);
+  padding: 11px 14px;
+}
+
+.guide-content figure {
+  display: grid;
+  margin-right: 0;
+  margin-left: 0;
+  justify-items: center;
+  gap: 7px;
+}
+
+.guide-image {
+  display: block;
+  width: auto;
+  max-width: min(100%, 1000px);
+  max-height: 70vh;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  object-fit: contain;
+  box-shadow: var(--shadow);
+}
+
+.guide-content figcaption {
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+.guide-content hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+.guide-empty {
+  padding: 28px;
+  text-align: center;
+}
+
+.guide-empty p {
+  margin-top: 6px;
+}
+
+@media (max-width: 1100px) {
+  #moves .table-shell {
+    overflow: visible;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  #moves table,
+  #moves tbody {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  #moves thead {
+    display: none;
+  }
+
+  #moves .move-dex-row {
+    display: grid;
+    width: 100%;
+    min-width: 0;
+    margin-bottom: 7px;
+    padding: 6px;
+    overflow: hidden;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: linear-gradient(145deg, #0a2338, #061827);
+    box-shadow: 0 8px 24px rgb(0 4 12 / 27%);
+  }
+
+  #moves td {
+    display: block;
+    width: auto;
+    min-width: 0;
+    padding: 5px 6px;
+    border: 0;
+    overflow-wrap: anywhere;
+  }
+
+  #moves td::before {
+    display: block;
+    margin-bottom: 2px;
+    color: var(--muted);
+    content: attr(data-label);
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  #moves td:nth-child(2) {
+    grid-column: 2 / -1;
+  }
+
+  #moves td:nth-child(9) {
+    grid-column: 1 / -1;
+    padding-top: 7px;
+    border-top: 1px solid var(--line);
+    color: var(--muted-strong);
+    font-size: 14px;
+  }
+
+  .move-detail-summary dl {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .move-detail-summary dl > div:nth-child(2) {
+    border-right: 0;
+  }
+
+  .move-detail-summary dl > div:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .guide-card > summary {
+    min-height: 74px;
+    padding: 11px;
+    grid-template-columns: minmax(0, 1fr) 24px;
+    gap: 7px 10px;
+  }
+
+  .guide-category {
+    grid-column: 1;
+    justify-self: start;
+    min-height: 22px;
+    padding: 2px 7px;
+    font-size: 9px;
+  }
+
+  .guide-summary-copy {
+    grid-column: 1;
+  }
+
+  .guide-summary-copy strong {
+    font-size: 16px;
+  }
+
+  .guide-summary-copy > span {
+    display: -webkit-box;
+    font-size: 12px;
+    white-space: normal;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .guide-expand {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: center;
+  }
+
+  .guide-content {
+    padding: 15px 13px 20px;
+    font-size: 14px;
+  }
+
+  .guide-content h2 {
+    font-size: 19px;
+  }
+
+  .guide-image {
+    max-height: 58vh;
+  }
+}

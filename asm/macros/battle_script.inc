@@ -2305,6 +2305,11 @@
 	callnative BS_HandleFailedVictoryCatch
 	.endm
 
+	.macro refreshbosshealthbox battler:req
+	callnative BS_RefreshBossHealthbox
+	.byte \battler
+	.endm
+
 	.macro catchornot
 	callnative BS_CatchOrNot
 	.endm

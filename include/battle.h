@@ -6,6 +6,7 @@
 #include "constants/battle_switch_in.h"
 #include "constants/abilities.h"
 #include "constants/battle.h"
+#include "battle_boss.h"
 #include "constants/battle_move_resolution.h"
 #include "constants/form_change_types.h"
 #include "constants/hold_effects.h"
@@ -729,6 +730,17 @@ struct BattleStruct
     u8 dancerSavedAttacker:3;
     u8 dancerSavedTarget:3;
     enum VictoryCatch victoryCatchState:2;
+    struct
+    {
+        u16 megaSpecies;
+        u8 totalBars;
+        u8 barsRemaining;
+        u8 statMultiplier;
+        bool8 autoMega;
+        u8 barrierSpriteIds[MAX_BOSS_HEALTH_BARS - 1];
+        bool8 active;
+        bool8 initialized;
+    } boss;
 };
 
 struct AiBattleData

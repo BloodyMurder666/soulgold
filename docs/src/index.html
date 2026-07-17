@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Soulgold Documentation</title>
     <meta name="theme-color" content="#020b16">
-    <link rel="stylesheet" href="assets/styles.css?v=20260701">
-    <link rel="stylesheet" href="assets/refined.css?v=20260701-10">
+    <link rel="stylesheet" href="assets/styles.css?v=20260717">
+    <link rel="stylesheet" href="assets/refined.css?v=20260717-1">
   </head>
   <body>
     <div class="top-chrome">
@@ -26,11 +26,13 @@
 
       <nav class="tabs" aria-label="Documentation sections">
         <button class="tab active" data-tab="pokedex">Pokédex</button>
+        <button class="tab" data-tab="moves">Movedex</button>
         <button class="tab" data-tab="encounters">Wild Encounters</button>
         <button class="tab" data-tab="machines">TMs/HMs</button>
         <button class="tab" data-tab="items">Items</button>
         <button class="tab" data-tab="trainers">Trainers</button>
         <button class="tab" data-tab="abilities">Abilities</button>
+        <button class="tab" data-tab="guides">Guides</button>
       </nav>
     </div>
 
@@ -49,6 +51,20 @@
             <div id="dexSpacer"></div>
             <div id="dexRows"></div>
           </div>
+        </div>
+      </section>
+
+      <section id="moves" class="panel">
+        <div class="panel-heading">
+          <div><h2>Movedex</h2></div>
+        </div>
+        <div class="table-shell data-panel">
+          <table>
+            <thead>
+              <tr><th>#</th><th>Move</th><th>Type</th><th>Cat</th><th>Pow</th><th>Acc</th><th>PP</th><th>Priority</th><th>Description</th></tr>
+            </thead>
+            <tbody id="moveRows"></tbody>
+          </table>
         </div>
       </section>
 
@@ -107,6 +123,13 @@
           </table>
         </div>
       </section>
+
+      <section id="guides" class="panel">
+        <div class="panel-heading">
+          <div><h2>Guides</h2></div>
+        </div>
+        <div id="guideList" class="guide-list"></div>
+      </section>
     </main>
 
     <dialog id="detailDialog" aria-labelledby="modalTitle">
@@ -124,6 +147,6 @@
     </div>
     <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top">↑</button>
 
-    <script src="assets/app.js?v=20260701-10"></script>
+    <script src="assets/app.js?v=20260717-1"></script>
   </body>
 </html>

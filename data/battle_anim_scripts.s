@@ -31646,6 +31646,15 @@ gBattleAnimGeneral_TotemFlare::
 	clearmonbg ANIM_ATTACKER
 	end
 
+gBattleAnimGeneral_BossBarrierBreak::
+	playsewithpan SE_M_BRICK_BREAK, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATTACKER, 1, 0, 18, 2
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 0, F_PAL_ATTACKER, 4, 9, 0, RGB_RED
+	waitforvisualfinish
+	waitsound
+	delay 6
+	end
+
 RainbowEndureEffect:
 	createsprite gBlueEndureEnergySpriteTemplate, ANIM_ATTACKER, 2, 0x0, 0xffe8, 0x1a, 0x2
 	delay 3

@@ -330,6 +330,8 @@ extern const u8 BattleScript_MoveUsedHealBlockPrevents[];
 extern const u8 BattleScript_SelectingNotAllowedMoveHealBlockInPalace[];
 extern const u8 BattleScript_DefogClearHazards[];
 extern const u8 BattleScript_MegaEvolution[];
+extern const u8 BattleScript_BossMegaEvolution[];
+extern const u8 BattleScript_BossHealthBarBreak[];
 extern const u8 BattleScript_WishMegaEvolution[];
 extern const u8 BattleScript_MoveEffectClearSmog[];
 extern const u8 BattleScript_SideStatusWoreOffReturn[];
@@ -623,6 +625,7 @@ extern const u8 BattleScript_SkyDropTargetTooHeavy[];
 extern const u8 BattleScript_SkyDropFlyingType[];
 extern const u8 BattleScript_SkyDropNoTarget[];
 extern const u8 BattleScript_WildBattleVictory[];
+extern const u8 BattleScript_WildBattleVictoryPrompt[];
 
 // zmoves
 extern const u8 BattleScript_ZMoveActivateDamaging[];

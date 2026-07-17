@@ -27,6 +27,7 @@ from tools.soulgold_docs.parsers.items import (
     parse_tmhm_list,
     parse_tmhm_locations,
 )
+from tools.soulgold_docs.parsers.guides import parse_guides
 from tools.soulgold_docs.parsers.learnsets import (
     parse_egg_move_learnsets,
     parse_level_up_learnsets,
@@ -97,6 +98,7 @@ def build() -> None:
     ability_usage = build_ability_usage(visible_species)
     tms = build_tms(tmhm_rows, moves, item_records, tmhm_locations)
     important_items = build_important_items(item_records, located_species, output_paths.item_icon_dir)
+    guides = parse_guides()
     payload = build_docs_payload(
         visible_species,
         moves,
@@ -110,6 +112,7 @@ def build() -> None:
         category_icons,
         shiny_toggle_icon,
         mega_evolutions,
+        guides,
     )
     write_docs_payload(payload)
 

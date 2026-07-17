@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import re
 
-from ..c_parser import clean_constant_name, collect_strings, extract_field, extract_number, parse_shared_strings, preprocess, read, split_designated_entries
+from ..c_parser import clean_constant_name, collect_strings, extract_field, extract_number, parse_enum_constants, parse_shared_strings, preprocess, read, split_designated_entries
 from ..models import NamedRecord
-from ..paths import REPO_ROOT
+from ..paths import MOVES_H, REPO_ROOT
 
 
 def parse_moves() -> dict[str, NamedRecord]:
@@ -20,6 +20,9 @@ def parse_moves() -> dict[str, NamedRecord]:
     source_text = read(source_path)
     shared_strings = parse_shared_strings(source_text)
     entries = split_designated_entries(text)
+    # Parse the complete enum so generation sentinels such as MOVES_COUNT_GEN9
+    # and FIRST_Z_MOVE can resolve IDs assigned through aliases.
+    move_ids, _ = parse_enum_constants(MOVES_H, "")
     rows: dict[str, NamedRecord] = {}
 
     for key, entry in entries.items():
@@ -31,7 +34,12 @@ def parse_moves() -> dict[str, NamedRecord]:
         description = collect_strings(desc_expr)
         if not description and desc_expr in shared_strings:
             description = shared_strings[desc_expr]
-        rows[key] = {"constant": key, "name": name, "description": description}
+        rows[key] = {
+            "id": move_ids.get(key, len(rows)),
+            "constant": key,
+            "name": name,
+            "description": description,
+        }
         for field_name in ("power", "accuracy", "pp", "priority"):
             rows[key][field_name] = extract_number(entry, field_name)
         for field_name in ("type", "category"):

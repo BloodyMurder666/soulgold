@@ -100,6 +100,28 @@ TEST("Pokemon save bit repack preserves extended met location and modern fateful
     EXPECT_EQ(GetMonData(&mon, MON_DATA_MODERN_FATEFUL_ENCOUNTER), enabled);
 }
 
+TEST("Custom event boss moves replace every move slot and preserve event metadata")
+{
+    gSpecialVar_0x8004 = SPECIES_DARKRAI;
+    gSpecialVar_0x8005 = 50;
+    gSpecialVar_0x8006 = ITEM_NONE;
+    CreateEnemyEventMon();
+
+    RUN_OVERWORLD_SCRIPT(
+        seteventmonmoves MOVE_DARK_PULSE, MOVE_ICE_BEAM, MOVE_HYPNOSIS, MOVE_NONE;
+    );
+
+    EXPECT_EQ(GetMonData(&gEnemyParty[0], MON_DATA_MODERN_FATEFUL_ENCOUNTER), TRUE);
+    EXPECT_EQ(GetMonData(&gEnemyParty[0], MON_DATA_MOVE1), MOVE_DARK_PULSE);
+    EXPECT_EQ(GetMonData(&gEnemyParty[0], MON_DATA_MOVE2), MOVE_ICE_BEAM);
+    EXPECT_EQ(GetMonData(&gEnemyParty[0], MON_DATA_MOVE3), MOVE_HYPNOSIS);
+    EXPECT_EQ(GetMonData(&gEnemyParty[0], MON_DATA_MOVE4), MOVE_NONE);
+    EXPECT_EQ(GetMonData(&gEnemyParty[0], MON_DATA_PP1), GetMovePP(MOVE_DARK_PULSE));
+    EXPECT_EQ(GetMonData(&gEnemyParty[0], MON_DATA_PP2), GetMovePP(MOVE_ICE_BEAM));
+    EXPECT_EQ(GetMonData(&gEnemyParty[0], MON_DATA_PP3), GetMovePP(MOVE_HYPNOSIS));
+    EXPECT_EQ(GetMonData(&gEnemyParty[0], MON_DATA_PP4), 0);
+}
+
 TEST("Terastallization type defaults to primary or secondary type")
 {
     u32 i;

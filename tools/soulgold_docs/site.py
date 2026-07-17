@@ -8,6 +8,7 @@ import shutil
 from .models import (
     AbilityUsage,
     DocsPayload,
+    GuideRow,
     ImportantItemRow,
     MegaEvolutionRow,
     NamedRecord,
@@ -23,7 +24,12 @@ from .paths import OUT_DIR, SRC_DIR
 def prepare_output_tree() -> OutputPaths:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     for item in SRC_DIR.rglob("*"):
-        dest = OUT_DIR / item.relative_to(SRC_DIR)
+        relative = item.relative_to(SRC_DIR)
+        # Guide Markdown is authoring source embedded into the JSON payload.
+        # Only its attached assets need to be copied to the published site.
+        if relative.parts[0] == "guides" and (item.suffix == ".md" or item.name == ".gitkeep"):
+            continue
+        dest = OUT_DIR / relative
         if item.is_dir():
             dest.mkdir(parents=True, exist_ok=True)
         else:
@@ -50,6 +56,7 @@ def build_docs_payload(
     category_icons: dict[str, str],
     shiny_toggle_icon: str | None,
     mega_evolutions: list[MegaEvolutionRow],
+    guides: list[GuideRow],
 ) -> DocsPayload:
     payload: DocsPayload = {
         "meta": {"generatedFrom": "tools/soulgold_docs/build_docs.py"},
@@ -91,6 +98,7 @@ def build_docs_payload(
         "categoryIcons": category_icons,
         "uiIcons": {"shiny": shiny_toggle_icon} if shiny_toggle_icon else {},
         "megaEvolutions": mega_evolutions,
+        "guides": guides,
     }
     return payload
 

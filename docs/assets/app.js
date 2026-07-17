@@ -15,11 +15,13 @@ const fmtCategory = (value) => fmtTitle(value, "DAMAGE_CATEGORY_");
 const statLabels = { hp: "HP", atk: "Atk", def: "Def", spa: "SpA", spd: "SpD", spe: "Spe" };
 const searchPlaceholders = {
   pokedex: "Search Pokédex…",
+  moves: "Search moves, types, or descriptions…",
   encounters: "Search areas or Pokémon…",
   machines: "Search TMs, moves, types, or locations…",
   items: "Search items or locations…",
   trainers: "Search trainers or parties…",
   abilities: "Search abilities…",
+  guides: "Search guides, FAQs, or secrets…",
 };
 const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({
   "&": "&amp;",
@@ -134,7 +136,7 @@ function speciesSpritePanel(mon) {
 }
 
 async function init() {
-  const response = await fetch("data/romhack-docs.json?v=20260701");
+  const response = await fetch("data/romhack-docs.json?v=20260717");
   state.data = await response.json();
   state.filteredSpecies = state.data.species;
   document.body.dataset.activeTab = state.activeTab;
@@ -208,11 +210,13 @@ function matches(text) {
 
 function renderActive() {
   if (state.activeTab === "pokedex") renderDex();
+  if (state.activeTab === "moves") renderMovedex();
   if (state.activeTab === "encounters") renderEncounters();
   if (state.activeTab === "machines") renderTms();
   if (state.activeTab === "items") renderItems();
   if (state.activeTab === "abilities") renderAbilities();
   if (state.activeTab === "trainers") renderTrainers();
+  if (state.activeTab === "guides") renderGuides();
 }
 
 function renderDex() {
@@ -860,6 +864,81 @@ function fishingMons(mons) {
   `).join("");
 }
 
+function moveMetric(value, options = {}) {
+  if (!value && value !== 0) return "-";
+  if (options.zeroAsDash && Number(value) === 0) return "-";
+  if (options.signed && Number(value) > 0) return `+${value}`;
+  return String(value);
+}
+
+function renderMovedex() {
+  const tbody = document.getElementById("moveRows");
+  const rows = Object.values(state.data.moves || {})
+    .filter((move) => move.constant !== "MOVE_NONE")
+    .filter((move) => matches(`${move.id} ${move.constant} ${move.name} ${move.type} ${fmtCategory(move.category || "")} ${move.description || ""}`))
+    .sort((a, b) => (a.id ?? Number.MAX_SAFE_INTEGER) - (b.id ?? Number.MAX_SAFE_INTEGER));
+
+  tbody.innerHTML = "";
+  rows.forEach((move) => {
+    const row = el("tr", "move-dex-row");
+    row.innerHTML = `
+      <td data-label="#"><strong>${move.id ?? "-"}</strong></td>
+      <td data-label="Move"><strong>${escapeHtml(move.name)}</strong></td>
+      <td data-label="Type">${typePills([move.type])}</td>
+      <td data-label="Cat">${moveCategory(move.category || "")}</td>
+      <td data-label="Pow">${moveMetric(move.power, { zeroAsDash: true })}</td>
+      <td data-label="Acc">${moveMetric(move.accuracy, { zeroAsDash: true })}</td>
+      <td data-label="PP">${moveMetric(move.pp, { zeroAsDash: true })}</td>
+      <td data-label="Priority">${moveMetric(move.priority, { signed: true })}</td>
+      <td data-label="Description">${escapeHtml(move.description || "No description.")}</td>
+    `;
+    bindRowActivation(row, () => openMove(move), `Open details for ${move.name}`);
+    tbody.appendChild(row);
+  });
+
+  if (!rows.length) {
+    const row = el("tr");
+    row.innerHTML = `<td colspan="9" class="muted">No moves found.</td>`;
+    tbody.appendChild(row);
+  }
+}
+
+function moveLearners(moveConstant) {
+  const hasMove = (moves) => (moves || []).some((entry) => (typeof entry === "string" ? entry : entry.move) === moveConstant);
+  return [
+    ["Level-up", state.data.species.filter((mon) => hasMove(mon.levelUp))],
+    ["TM / HM", state.data.species.filter((mon) => hasMove(mon.tmhm))],
+    ["Tutor", state.data.species.filter((mon) => hasMove(mon.tutors))],
+    ["Egg move", state.data.species.filter((mon) => hasMove(mon.eggMoves))],
+  ].filter(([, species]) => species.length);
+}
+
+function openMove(move) {
+  const learners = moveLearners(move.constant);
+  document.getElementById("modalTitle").textContent = `#${move.id ?? "-"} ${move.name}`;
+  document.getElementById("modalBody").innerHTML = `
+    <div class="move-detail-summary">
+      ${typePills([move.type])}
+      <span>${moveCategory(move.category || "")}</span>
+      <dl>
+        <div><dt>Power</dt><dd>${moveMetric(move.power, { zeroAsDash: true })}</dd></div>
+        <div><dt>Accuracy</dt><dd>${moveMetric(move.accuracy, { zeroAsDash: true })}</dd></div>
+        <div><dt>PP</dt><dd>${moveMetric(move.pp, { zeroAsDash: true })}</dd></div>
+        <div><dt>Priority</dt><dd>${moveMetric(move.priority, { signed: true })}</dd></div>
+      </dl>
+      <p>${escapeHtml(move.description || "No description.")}</p>
+    </div>
+    <h3 class="section-title">Learned by</h3>
+    ${learners.length ? `<div class="move-learner-groups">${learners.map(([label, species]) => `
+      <details class="move-learner-group">
+        <summary><strong>${label}</strong><span>${species.length} Pokémon</span></summary>
+        <div class="move-learner-body">${speciesCards(species)}</div>
+      </details>
+    `).join("")}</div>` : `<p class="muted">No documented learn method.</p>`}
+  `;
+  showDetailDialog("move");
+}
+
 function renderTms() {
   const tbody = document.getElementById("tmRows");
   const rows = state.data.tms.filter((tm) => matches(`${tm.label} ${tm.moveName} ${tm.type} ${fmtCategory(tm.category || "")} ${tm.description} ${tm.location}`));
@@ -981,6 +1060,174 @@ function openAbility(ability) {
     ${usageList(ability.usage.innate)}
   `;
   showDetailDialog("ability");
+}
+
+function guideUrl(value, guide, options = {}) {
+  const url = String(value || "").trim().replace(/^<|>$/g, "");
+  if (!url) return "#";
+  if (url.startsWith("#") || url.startsWith("/")) return url;
+  if (/^https?:\/\//i.test(url)) return url;
+  if (options.allowMail && /^mailto:/i.test(url)) return url;
+  if (/^[a-z][a-z0-9+.-]*:/i.test(url)) return "#";
+
+  try {
+    return new URL(url, new URL(guide.source || "guides/", window.location.href)).href;
+  } catch (_error) {
+    return "#";
+  }
+}
+
+function guideInline(markdown, guide) {
+  const tokens = [];
+  const stash = (html) => {
+    const token = `\uE000${tokens.length}\uE001`;
+    tokens.push(html);
+    return token;
+  };
+
+  let value = String(markdown || "");
+  value = value.replace(/!\[([^\]]*)\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g, (_match, alt, url) => stash(
+    `<img class="guide-image" src="${escapeHtml(guideUrl(url, guide))}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async">`
+  ));
+  value = value.replace(/\[([^\]]+)\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g, (_match, label, url) => stash(
+    `<a href="${escapeHtml(guideUrl(url, guide, { allowMail: true }))}">${escapeHtml(label)}</a>`
+  ));
+  value = value.replace(/`([^`]+)`/g, (_match, code) => stash(`<code>${escapeHtml(code)}</code>`));
+  value = escapeHtml(value)
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/~~([^~]+)~~/g, "<s>$1</s>")
+    .replace(/\*([^*]+)\*/g, "<em>$1</em>");
+  return value.replace(/\uE000(\d+)\uE001/g, (_match, index) => tokens[Number(index)] || "");
+}
+
+function renderGuideMarkdown(markdown, guide) {
+  const lines = String(markdown || "").replace(/\r\n?/g, "\n").split("\n");
+  const output = [];
+  let paragraph = [];
+  let listType = "";
+  let codeLines = [];
+  let codeLanguage = "";
+  let inCode = false;
+
+  const flushParagraph = () => {
+    if (!paragraph.length) return;
+    output.push(`<p>${guideInline(paragraph.join(" "), guide)}</p>`);
+    paragraph = [];
+  };
+  const closeList = () => {
+    if (!listType) return;
+    output.push(`</${listType}>`);
+    listType = "";
+  };
+
+  lines.forEach((line) => {
+    const trimmed = line.trim();
+    const fence = trimmed.match(/^```\s*([A-Za-z0-9_-]*)/);
+    if (fence) {
+      flushParagraph();
+      closeList();
+      if (inCode) {
+        output.push(`<pre><code${codeLanguage ? ` class="language-${escapeHtml(codeLanguage)}"` : ""}>${escapeHtml(codeLines.join("\n"))}</code></pre>`);
+        codeLines = [];
+        codeLanguage = "";
+        inCode = false;
+      } else {
+        inCode = true;
+        codeLanguage = fence[1] || "";
+      }
+      return;
+    }
+    if (inCode) {
+      codeLines.push(line);
+      return;
+    }
+
+    if (!trimmed) {
+      flushParagraph();
+      closeList();
+      return;
+    }
+
+    const heading = trimmed.match(/^(#{2,4})\s+(.+)$/);
+    if (heading) {
+      flushParagraph();
+      closeList();
+      const level = heading[1].length;
+      output.push(`<h${level}>${guideInline(heading[2], guide)}</h${level}>`);
+      return;
+    }
+
+    if (/^(?:---+|\*\*\*+)$/.test(trimmed)) {
+      flushParagraph();
+      closeList();
+      output.push("<hr>");
+      return;
+    }
+
+    const image = trimmed.match(/^!\[([^\]]*)\]\(([^)\s]+)(?:\s+"[^"]*")?\)$/);
+    if (image) {
+      flushParagraph();
+      closeList();
+      output.push(`<figure><img class="guide-image" src="${escapeHtml(guideUrl(image[2], guide))}" alt="${escapeHtml(image[1])}" loading="lazy" decoding="async">${image[1] ? `<figcaption>${escapeHtml(image[1])}</figcaption>` : ""}</figure>`);
+      return;
+    }
+
+    const unordered = trimmed.match(/^[-*+]\s+(.+)$/);
+    const ordered = trimmed.match(/^\d+[.)]\s+(.+)$/);
+    if (unordered || ordered) {
+      flushParagraph();
+      const nextType = ordered ? "ol" : "ul";
+      if (listType && listType !== nextType) closeList();
+      if (!listType) {
+        listType = nextType;
+        output.push(`<${listType}>`);
+      }
+      output.push(`<li>${guideInline((ordered || unordered)[1], guide)}</li>`);
+      return;
+    }
+
+    const quote = trimmed.match(/^>\s?(.*)$/);
+    if (quote) {
+      flushParagraph();
+      closeList();
+      output.push(`<blockquote>${guideInline(quote[1], guide)}</blockquote>`);
+      return;
+    }
+
+    closeList();
+    paragraph.push(trimmed);
+  });
+
+  flushParagraph();
+  closeList();
+  if (inCode) output.push(`<pre><code>${escapeHtml(codeLines.join("\n"))}</code></pre>`);
+  return output.join("");
+}
+
+function renderGuides() {
+  const container = document.getElementById("guideList");
+  const guides = (state.data.guides || []).filter((guide) =>
+    matches(`${guide.title} ${guide.summary} ${guide.category} ${guide.content}`)
+  );
+
+  if (!guides.length) {
+    container.innerHTML = `<div class="guide-empty"><h3>No guides found</h3><p class="muted">Try another search, or add a Markdown guide in <code>docs/src/guides</code>.</p></div>`;
+    return;
+  }
+
+  container.innerHTML = guides.map((guide) => `
+    <details class="guide-card" id="guide-${escapeHtml(guide.slug)}">
+      <summary>
+        <span class="guide-category">${escapeHtml(guide.category)}</span>
+        <span class="guide-summary-copy">
+          <strong>${escapeHtml(guide.title)}</strong>
+          ${guide.summary ? `<span>${escapeHtml(guide.summary)}</span>` : ""}
+        </span>
+        <span class="guide-expand" aria-hidden="true"></span>
+      </summary>
+      <article class="guide-content">${renderGuideMarkdown(guide.content, guide)}</article>
+    </details>
+  `).join("");
 }
 
 function renderTrainers() {

@@ -5493,6 +5493,26 @@ BattleScript_MegaEvolutionAfterString:
 	switchinabilities BS_SCRIPTING
 	end3
 
+BattleScript_BossMegaEvolution::
+	flushtextbox
+	printstring STRINGID_BOSSSURGINGWITHPOWER
+	waitmessage B_WAIT_TIME_LONG
+	handleformchange BS_SCRIPTING, 0
+	playanimation BS_SCRIPTING, B_ANIM_MEGA_EVOLUTION
+	waitanimation
+	handleformchange BS_SCRIPTING, 1
+	printstring STRINGID_BOSSTRANSFORMED
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
+BattleScript_BossHealthBarBreak::
+	refreshbosshealthbox BS_TARGET
+	playanimation BS_TARGET, B_ANIM_BOSS_BARRIER_BREAK, NULL
+	waitanimation
+	printfromtable gBossHealthBarBreakStringIds
+	waitmessage B_WAIT_TIME_LONG
+	return
+
 BattleScript_WishMegaEvolution::
 	flushtextbox
 	trytrainerslidemegaevolutionmsg
@@ -9288,6 +9308,7 @@ BattleScript_SwapToSubstituteReturn:
 BattleScript_WildBattleVictory::
 	playfaintcry BS_TARGET
 	waitcry
+BattleScript_WildBattleVictoryPrompt::
 	jumpifnoballs BattleScript_WildBattleVictoryRet
 	printstring STRINGID_VICTORYCATCH
 	setbyte gBattleCommunication, 0

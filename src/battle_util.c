@@ -12140,6 +12140,7 @@ void RecalcBattlerStats(enum BattlerId battler, struct Pokemon *mon, bool32 isDy
     }
     CopyMonLevelAndBaseStatsToBattleMon(battler, mon);
     CopyMonAbilityAndTypesToBattleMon(battler, mon);
+    ApplyBossStatMultiplierAfterRecalculation(battler);
 }
 
 void RemoveConfusionStatus(enum BattlerId battler)
@@ -14159,7 +14160,7 @@ u32 GetSlot(u32 *availableSlots, u32 size)
 
 bool32 IsVictoryCatch(void)
 {
-    if (gBattleTypeFlags & BATTLE_TYPE_RAID)
+    if (gBattleTypeFlags & (BATTLE_TYPE_RAID | BATTLE_TYPE_BOSS))
         return TRUE;
     if (gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_DOUBLE))
         return FALSE;
@@ -14170,7 +14171,7 @@ bool32 IsVictoryCatch(void)
 
 bool32 IsVictoryCatchGuaranteed(void)
 {
-    return (gBattleTypeFlags & BATTLE_TYPE_RAID)
+    return (gBattleTypeFlags & (BATTLE_TYPE_RAID | BATTLE_TYPE_BOSS))
         || (IsVictoryCatch()
          && B_FLAG_VICTORY_CATCH_GUARANTEED != 0
          && FlagGet(B_FLAG_VICTORY_CATCH_GUARANTEED));
