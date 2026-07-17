@@ -1211,7 +1211,7 @@ function renderGuides() {
   );
 
   if (!guides.length) {
-    container.innerHTML = `<div class="guide-empty"><h3>No guides found</h3><p class="muted">Try another search, or add a Markdown guide in <code>docs/src/guides</code>.</p></div>`;
+    container.innerHTML = `<div class="guide-empty"><h3>No guides found</h3><p class="muted">Try another search.</p></div>`;
     return;
   }
 

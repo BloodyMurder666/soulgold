@@ -3039,6 +3039,7 @@ static const struct LevelUpMove sHitmonleeLevelUpLearnset[] = {
     LEVEL_UP_MOVE(44, MOVE_HIGH_JUMP_KICK),
     LEVEL_UP_MOVE(50, MOVE_AXE_KICK),
     LEVEL_UP_MOVE(60, MOVE_TROP_KICK),
+    LEVEL_UP_MOVE(70, MOVE_THUNDEROUS_KICK),
     LEVEL_UP_END
 };
 
