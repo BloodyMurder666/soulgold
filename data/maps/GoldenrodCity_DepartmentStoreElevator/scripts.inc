@@ -22,6 +22,7 @@ GoldenrodDeptElevator_EventScript_Exit::
 	waitdooranim
 	waitdooranim
 	setvar VAR_ELEVATOR, 0
+	setvar VAR_TEMP_0, 0
 	release
 	end
 

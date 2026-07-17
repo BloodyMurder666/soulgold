@@ -1,0 +1,75 @@
+mapscripts DarkrainInnBedroom_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_TEMP_HIDE_FOLLOWER)
+        if(var(VAR_DARKRAI_INN_PROGRESS) == 1) {
+            setdynamicwarp(MAP_DARKRAI_INN1, 0)
+        } else {
+            setdynamicwarp(MAP_DARKRAI_INN1RUINED, 0)
+        }
+    }
+}
+
+script DarkraiInnBedroom_Phone {
+    msgbox("An antique telephone.
+    
+            The cord doesn't seem to connect
+            anywhere.", MSGBOX_SIGN)
+}
+
+script DarkraiInnBedroom_Bed {
+    lock
+    if (var(VAR_DARKRAI_INN_PROGRESS) == 1) {
+        msgbox("Just staring at this bed makes you feel
+                drowsy.
+                
+                Perhaps it's time to take a rest and
+                close your eyes for a little while...")
+    msgbox("Take a short nap..?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        msgbox("Was there something you forgot...?")
+        dynmultichoice(20,4,TRUE,4,0,DYN_MULTICHOICE_CB_NONE, "Sleep", "Sleep", "Sleep", "Sleep", "Resist")
+        switch (var(VAR_RESULT)) {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+                msgbox("It was probably nothing that can't wait
+                        a bit...")
+                applymovement(LOCALID_PLAYER, moves(walk_slow_right, face_down))
+                waitmovement
+                fadescreenspeed(FADE_TO_BLACK, 24)
+                special(DoSoftReset)
+                end
+            case 4:
+                msgbox("You feel a chill and decide to step away
+                        from the bed.")
+                closemessage
+                setvar(VAR_DARKRAI_INN_PROGRESS, 2)
+                setdynamicwarp(MAP_DARKRAI_INN1RUINED, 0)
+                playmoncry(SPECIES_CRESSELIA, CRY_MODE_NORMAL)
+                turnobject(LOCALID_PLAYER, DIR_SOUTH)
+                applymovement(LOCALID_PLAYER, Common_Movement_ExclamationMark)
+                waitmoncry
+                waitmovement(0)
+                release
+                end
+        }
+    } else {
+        msgbox("You decide to step away from the bed.")
+        closemessage
+        setvar(VAR_DARKRAI_INN_PROGRESS, 2)
+        setdynamicwarp(MAP_DARKRAI_INN1RUINED, 0)
+        playmoncry(SPECIES_CRESSELIA, CRY_MODE_NORMAL)
+        turnobject(LOCALID_PLAYER, DIR_SOUTH)
+        applymovement(LOCALID_PLAYER, Common_Movement_ExclamationMark)
+        waitmoncry
+        waitmovement(0)
+        release
+        end
+    }
+    } else {
+        msgbox("Now's not the time to be napping.")
+    }
+    release
+    end
+}

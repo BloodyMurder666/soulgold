@@ -959,7 +959,7 @@ LakeOfRageCresseliaPath_2:
 
 LakeOfRageCresseliaPath_4:
 # 501 "data/maps/LakeOfRage/scripts.pory"
-	warp MAP_LAKE_OF_RAGE_CRESSELIA_DEN, 16, 26
+	warp MAP_LAKE_OF_RAGE_CRESSELIA_DEN, 16, 27
 # 502 "data/maps/LakeOfRage/scripts.pory"
 	waitstate
 # 503 "data/maps/LakeOfRage/scripts.pory"

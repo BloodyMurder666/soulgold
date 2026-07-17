@@ -114,7 +114,52 @@ script NewBarkTownRivalHouseRival {
         }
         if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 3) {
             msgbox("You caught Cresselia? 
-                    Nice!")
+                    Nice!
+                    
+                    I've been researching Darkrai's
+                    meanwhile.
+                    
+                    I'm quite sure that it has something
+                    to do with the old, run down inn in
+                    Cherrygrove City.
+                    
+                    It was closed due to some child
+                    falling to sleep and not waking up, real
+                    bad press for the inn.
+                    
+                    So in short, take Cresselia with you
+                    and go check out the inn in Cherrygrove
+                    City. See if you can find out anything!")
+            setvar(VAR_POSTGAME_RIVAL_LEGENDARYQ, 4)
+            release
+            end
+        }
+        if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 4) {
+            msgbox("Go check out the old inn in
+                    Cherrygrove City. Remember to
+                    take Cresselia with you!")
+        }
+        if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 5) {
+            msgbox("You caught Darkrai! Excellent!
+
+                    You look like you just had a
+                    nightmare though, did something
+                    happen?
+            
+                    Anyway, I'll need a bit more time to pin
+                    down the location of the next 
+                    legendary. 
+                    
+                    I'll call you once I find something
+                    worth investigating.")
+            setvar(VAR_POSTGAME_RIVAL_LEGENDARYQ, 6)
+            release
+            end
+        }
+        if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 6) {
+            msgbox("I'm still looking into possible
+                    leads on legendaries. I'll call you
+                    once I find something!")
         }
     }
     release

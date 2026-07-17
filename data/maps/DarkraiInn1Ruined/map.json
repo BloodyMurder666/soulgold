@@ -1,11 +1,11 @@
 {
-  "id": "MAP_DARKRAI_INN1",
-  "name": "DarkraiInn1",
-  "layout": "LAYOUT_DARKRAI_INN1",
-  "music": "MUS_ABANDONED_SHIP",
+  "id": "MAP_DARKRAI_INN1RUINED",
+  "name": "DarkraiInn1Ruined",
+  "layout": "LAYOUT_DARKRAI_INN1RUINED",
+  "music": "MUS_NONE",
   "region_map_section": "MAPSEC_CHERRYGROVE_CITY",
   "requires_flash": false,
-  "weather": "WEATHER_NONE",
+  "weather": "WEATHER_SHADE",
   "map_type": "MAP_TYPE_INDOOR",
   "allow_cycling": true,
   "allow_escaping": false,
@@ -14,146 +14,29 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_DARKRAI_INN1",
+      "map": "MAP_DARKRAI_INN1RUINED",
       "offset": 0,
       "direction": "left"
     },
     {
-      "map": "MAP_DARKRAI_INN1",
+      "map": "MAP_DARKRAI_INN1RUINED",
       "offset": 0,
       "direction": "right"
     }
   ],
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_ATTENDANT_M",
-      "x": 28,
-      "y": 13,
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CRESSELIA)",
+      "x": 21,
+      "y": 8,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Inn_Keeper",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_LIGHT_SPRITE",
-      "x": 29,
-      "y": 11,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_LIGHT_SPRITE",
-      "x": 37,
-      "y": 11,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_LIGHT_SPRITE",
-      "x": 38,
-      "y": 2,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_LIGHT_SPRITE",
-      "x": 34,
-      "y": 2,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_LIGHT_SPRITE",
-      "x": 26,
-      "y": 2,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_LIGHT_SPRITE",
-      "x": 22,
-      "y": 2,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_LIGHT_SPRITE",
-      "x": 14,
-      "y": 2,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_LIGHT_SPRITE",
-      "x": 10,
-      "y": 2,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_LIGHT_SPRITE",
-      "x": 46,
-      "y": 2,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
+      "flag": "FLAG_HIDE_DARKRAI_INN_NPC"
     }
   ],
   "warp_events": [
@@ -163,24 +46,26 @@
       "elevation": 0,
       "dest_map": "MAP_DARKRAIN_INN_BEDROOM",
       "dest_warp_id": "0"
-    },
-    {
-      "x": 28,
-      "y": 18,
-      "elevation": 0,
-      "dest_map": "MAP_DARKRAI_INN1",
-      "dest_warp_id": "0"
     }
   ],
   "coord_events": [
     {
       "type": "trigger",
-      "x": 28,
-      "y": 18,
+      "x": 48,
+      "y": 5,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "Inn_TryingToExit"
+      "script": "InnHideCresselia"
+    },
+    {
+      "type": "trigger",
+      "x": 48,
+      "y": 6,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "InnHideCresselia"
     }
   ],
   "bg_events": [
@@ -190,7 +75,7 @@
       "y": 14,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Inn_ReceptionPhone"
+      "script": "Inn_RuinedTelephone"
     },
     {
       "type": "sign",
@@ -198,7 +83,7 @@
       "y": 13,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Inn_OrnatePiano"
+      "script": "Inn_RuinedPiano"
     },
     {
       "type": "sign",
@@ -206,7 +91,7 @@
       "y": 14,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Inn_Drums"
+      "script": "Inn_RuinedDrums"
     },
     {
       "type": "sign",
@@ -214,7 +99,7 @@
       "y": 14,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Inn_Drums"
+      "script": "Inn_RuinedDrums"
     },
     {
       "type": "sign",
@@ -222,7 +107,7 @@
       "y": 13,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Inn_LockedSafe"
+      "script": "Inn_RuinedSafe"
     },
     {
       "type": "sign",
@@ -230,7 +115,7 @@
       "y": 12,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Inn_NoteOnWall"
+      "script": "Inn_NotesOnWall"
     },
     {
       "type": "sign",
@@ -238,7 +123,7 @@
       "y": 12,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Inn_LockedDoor"
+      "script": "Inn_RuinedDoor"
     },
     {
       "type": "sign",
@@ -270,7 +155,7 @@
       "y": 3,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Inn_AnimalHead"
+      "script": "Inn_LuxrayHead"
     },
     {
       "type": "sign",
@@ -322,8 +207,8 @@
     },
     {
       "type": "sign",
-      "x": 24,
-      "y": 3,
+      "x": 25,
+      "y": 1,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Inn_Door404"
@@ -494,7 +379,7 @@
       "y": 19,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Inn_TryingToExit"
+      "script": "Inn_LockedDoor"
     }
   ]
 }

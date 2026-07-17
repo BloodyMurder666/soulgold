@@ -1,0 +1,190 @@
+mapscripts DarkraiInn1Ruined_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_TEMP_HIDE_FOLLOWER)
+    }
+}
+
+script Inn_RuinedPiano {
+    lock
+    if (var(VAR_DARKRAI_INN_PROGRESS) < 6) {
+        playse(SE_NOTE_G)
+        msgbox("The piano has a sound, but
+            something feels off.")
+        waitse
+        release
+        end
+    }
+    if (var(VAR_DARKRAI_INN_PROGRESS) == 6) {
+        msgbox("One of the notes is loose now.
+        
+                ...
+                
+                Under it you find a small key!")
+        playfanfare(MUS_HG_OBTAIN_ITEM)
+        msgbox("{PLAYER} obtained a small key!")
+        waitfanfare
+        setvar(VAR_DARKRAI_INN_PROGRESS, 7)
+        release
+        end
+    }
+    if (var(VAR_DARKRAI_INN_PROGRESS) >= 7) {
+        msgbox("Nothing of note is left in the piano.")
+        release
+        end
+    }
+    release
+    end
+    
+}
+
+script Inn_RuinedDrums {
+    msgbox("The drums are covered in dust.", MSGBOX_SIGN)
+}
+
+script Inn_RuinedSafe {
+    if (var(VAR_DARKRAI_INN_PROGRESS) < 7) {
+        msgbox("The safe is locked tight.", MSGBOX_SIGN)
+    }
+    if (var(VAR_DARKRAI_INN_PROGRESS) == 7) {
+        msgbox("The key you found fits perfectly into
+                the lock of the safe.
+                
+                Inside the safe seems to be a hidden
+                tunnel dug through the wall.")
+        msgbox("Enter?", MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES) {
+            warp(MAP_DARKRAI_INN_FINAL_ROOM, 0)
+            waitstate
+            end
+        }
+    }
+    release
+    end
+}
+
+script InnHideCresselia {
+    setflag(FLAG_HIDE_DARKRAI_INN_NPC)
+    removeobject(1)
+    setvar(VAR_TEMP_0, 1)
+}
+
+script Inn_RuinedTelephone {
+    lock
+    if (var(VAR_DARKRAI_INN_PROGRESS) < 4) {
+        msgbox("An old telephone. The dial
+                appears to be missing.")
+        release
+        end
+    }
+    if (var(VAR_DARKRAI_INN_PROGRESS) == 4) {
+        msgbox("You fit the dial to the telephone.
+        
+                ...
+                
+                It fits perfectly!")
+        setvar(VAR_DARKRAI_INN_PROGRESS, 5)
+        msgbox("Which number should you try to dial?")
+        dynmultichoice(20,4,TRUE,4,0,DYN_MULTICHOICE_CB_NONE, "4114", "1144", "4141")
+        switch(var(VAR_RESULT)) {
+            case 0:
+            case 2:
+                msgbox("There's no response...")
+                release
+                end
+            case 1:
+                playse(SE_CLICK)
+                turnobject(LOCALID_PLAYER, DIR_EAST)
+                applymovement(LOCALID_PLAYER, Common_Movement_ExclamationMark)
+                waitmovement(0)
+                setvar(VAR_DARKRAI_INN_PROGRESS, 6)
+                release
+                end
+        }
+    }
+    if (var(VAR_DARKRAI_INN_PROGRESS) == 5) {
+        msgbox("Which number should you try to dial?")
+        dynmultichoice(20,4,TRUE,4,0,DYN_MULTICHOICE_CB_NONE, "4114", "1144", "4141")
+        switch(var(VAR_RESULT)) {
+            case 0:
+            case 2:
+                msgbox("There's no response...")
+                release
+                end
+            case 1:
+                playse(SE_CLICK)
+                turnobject(LOCALID_PLAYER, DIR_EAST)
+                applymovement(LOCALID_PLAYER, Common_Movement_ExclamationMark)
+                waitmovement(0)
+                setvar(VAR_DARKRAI_INN_PROGRESS, 6)
+                release
+                end
+        }
+    }
+    if (var(VAR_DARKRAI_INN_PROGRESS) > 5) {
+        msgbox("The telephone is unresponsive.")
+        release
+        end
+    }
+}
+
+script  Inn_RuinedDoor {
+    msgbox("The door is locked tight, maybe there's
+            a key somewhere?", MSGBOX_SIGN)
+}
+
+script Inn_NotesOnWall {
+    lock
+    if (var(VAR_DARKRAI_INN_PROGRESS) == 2) {
+        msgbox("The notes on the wall seem to detail
+                the floor plan of the inn. 
+                
+                There's a detailed marking for all the
+                furniture.
+                
+                11 Wall Lamps
+                4 Large Windows
+                4 Sawsbuck Trophies
+                
+                ...")
+        setvar(VAR_DARKRAI_INN_PROGRESS, 3)
+    } else {
+        msgbox("11 Wall Lamps
+                4 Large Windows
+                4 Sawsbuck Trophies
+                
+                ...")
+    }
+    release
+    end
+}
+
+script Inn_LuxrayHead {
+    lock
+    if (var(VAR_DARKRAI_INN_PROGRESS) == 3) {
+        msgbox("This trophy was not accounted for
+                in the floor plan. 
+                
+                You take a closer look...
+                
+                In the mouth of the trophy,
+                there's a dial.")
+        playfanfare(MUS_HG_OBTAIN_ITEM)
+        msgbox("{PLAYER} obtained a Dial!")
+        waitfanfare
+        setvar(VAR_DARKRAI_INN_PROGRESS, 4)
+        release
+        end
+    } else {
+        msgbox("A stuffed trophy depicting a head
+                of a Pokémon.
+                
+                ...
+                
+                It feels like the eyes are following 
+                you.")
+        release
+        end
+    }
+}
+
+// Notes -> Trophy -> Phone -> Piano -> Safe

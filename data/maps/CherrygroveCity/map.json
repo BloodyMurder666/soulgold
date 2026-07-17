@@ -317,6 +317,20 @@
       "elevation": 0,
       "dest_map": "MAP_CHERRYGROVE_CITY_HOUSE3",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 34,
+      "y": 34,
+      "elevation": 0,
+      "dest_map": "MAP_DARKRAI_INN1",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 29,
+      "y": 21,
+      "elevation": 0,
+      "dest_map": "MAP_CHERRYGROVE_CITY",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

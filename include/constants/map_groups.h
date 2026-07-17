@@ -91,6 +91,9 @@ enum
     MAP_CHERRYGROVE_CITY_HOUSE2         = (3 | (2 << 8)),
     MAP_CHERRYGROVE_CITY_HOUSE3         = (4 | (2 << 8)),
     MAP_DARKRAI_INN1                    = (5 | (2 << 8)),
+    MAP_DARKRAIN_INN_BEDROOM            = (6 | (2 << 8)),
+    MAP_DARKRAI_INN1RUINED              = (7 | (2 << 8)),
+    MAP_DARKRAI_INN_FINAL_ROOM          = (8 | (2 << 8)),
 
     // gMapGroup_IndoorViolet
     MAP_VIOLET_CITY_POKEMON_CENTER = (0 | (3 << 8)),

@@ -9981,8 +9981,8 @@
       "id": "LAYOUT_LAKE_OF_RAGE_CRESSELIA_DEN",
       "name": "LakeOfRageCresseliaDen_Layout",
       "width": 32,
-      "height": 32,
-      "primary_tileset": "gTileset_Grotto1",
+      "height": 34,
+      "primary_tileset": "gTileset_Johto_NorthEast",
       "secondary_tileset": "gTileset_HiddenGrotto1",
       "border_filepath": "data/layouts/LakeOfRageCresseliaDen/border.bin",
       "blockdata_filepath": "data/layouts/LakeOfRageCresseliaDen/map.bin"
@@ -9996,6 +9996,36 @@
       "secondary_tileset": "gTileset_Inn",
       "border_filepath": "data/layouts/DarkraiInn1/border.bin",
       "blockdata_filepath": "data/layouts/DarkraiInn1/map.bin"
+    },
+    {
+      "id": "LAYOUT_DARKRAIN_INN_BEDROOM",
+      "name": "DarkrainInnBedroom_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_inn",
+      "secondary_tileset": "gTileset_Inn",
+      "border_filepath": "data/layouts/DarkrainInnBedroom/border.bin",
+      "blockdata_filepath": "data/layouts/DarkrainInnBedroom/map.bin"
+    },
+    {
+      "id": "LAYOUT_DARKRAI_INN1RUINED",
+      "name": "DarkraiInn1Ruined_Layout",
+      "width": 58,
+      "height": 20,
+      "primary_tileset": "gTileset_inn",
+      "secondary_tileset": "gTileset_Inn",
+      "border_filepath": "data/layouts/DarkraiInn1Ruined/border.bin",
+      "blockdata_filepath": "data/layouts/DarkraiInn1Ruined/map.bin"
+    },
+    {
+      "id": "LAYOUT_DARKRAI_INN_FINAL_ROOM",
+      "name": "DarkraiInnFinalRoom_Layout",
+      "width": 16,
+      "height": 45,
+      "primary_tileset": "gTileset_inn",
+      "secondary_tileset": "gTileset_Inn",
+      "border_filepath": "data/layouts/DarkraiInnFinalRoom/border.bin",
+      "blockdata_filepath": "data/layouts/DarkraiInnFinalRoom/map.bin"
     }
   ]
 }

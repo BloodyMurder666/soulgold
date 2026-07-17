@@ -47,6 +47,7 @@
 #include "constants/event_objects.h"
 #include "constants/field_effects.h"
 #include "constants/items.h"
+#include "constants/layouts.h"
 #include "constants/mauville_old_man.h"
 #include "constants/metatile_behaviors.h"
 #include "constants/rgb.h"
@@ -2965,6 +2966,27 @@ void GetFollowerAction(struct ScriptContext *ctx) // Essentially a big switch fo
 #define sLightXPos data[6]
 #define sLightYPos data[7]
 
+static bool32 AreLightSpritesAlwaysVisible(void)
+{
+    switch (gMapHeader.mapLayoutId)
+    {
+    case LAYOUT_DARKRAI_INN1:
+    case LAYOUT_DARKRAIN_INN_BEDROOM:
+    case LAYOUT_DARKRAI_INN1RUINED:
+    case LAYOUT_DARKRAI_INN_FINAL_ROOM:
+    case LAYOUT_WHIRL_ISLANDS_1F:
+    case LAYOUT_WHIRL_ISLANDS_B1F:
+    case LAYOUT_WHIRL_ISLANDS_B2F:
+    case LAYOUT_WHIRL_ISLANDS_LUGIA_CHAMBER:
+    case LAYOUT_WHIRL_ISLANDS_DESCENT:
+    case LAYOUT_WHIRL_ISLANDS_B3F:
+    case LAYOUT_WHIRL_ISLANDS_B1F_INNER:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
 // Sprite callback for light sprites
 void UpdateLightSprite(struct Sprite *sprite)
 {
@@ -2987,7 +3009,7 @@ void UpdateLightSprite(struct Sprite *sprite)
         return;
     }
 
-    if (gTimeOfDay != TIME_NIGHT)
+    if (gTimeOfDay != TIME_NIGHT && !AreLightSpritesAlwaysVisible())
     {
         sprite->invisible = TRUE;
         return;

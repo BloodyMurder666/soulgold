@@ -114,7 +114,10 @@
     "CherrygroveCity_House1",
     "CherrygroveCity_House2",
     "CherrygroveCity_House3",
-    "DarkraiInn1"
+    "DarkraiInn1",
+    "DarkrainInnBedroom",
+    "DarkraiInn1Ruined",
+    "DarkraiInnFinalRoom"
   ],
   "gMapGroup_IndoorViolet": [
     "VioletCity_PokemonCenter",

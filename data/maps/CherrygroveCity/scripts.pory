@@ -578,19 +578,65 @@ CherryGroveCity_Movement_Silver_Leave2:
 `
 
 script Cherrygrove_FadedSign {
-    msgbox("Cherrygrove inn...
-            The text is too faded to read.", MSGBOX_SIGN)
+	msgbox("Cherrygrove inn...
+			The text is too faded to read.", MSGBOX_SIGN)
 }
 
 script Cherrygrove_DarkraiEventDoor {
+	lock
+	if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 4) {
+		msgbox("Darkrai might be residing in this 
+				old inn.
+		
+				It would be best to prepare for
+				anything.")
+		checkspecies(SPECIES_CRESSELIA)
+		if (var(VAR_RESULT) == FALSE) {
+			msgbox("You should also bring Cresselia with 
+					you.")
+			release
+			end
+		}
+		msgbox("Are you absolutely sure you are ready?")
+		dynmultichoice(20,8,FALSE,4,0,DYN_MULTICHOICE_CB_NONE, "Prepare first", "Go in")
+		if (var(VAR_RESULT) == 1) {
+			msgbox("You grab the door handle and-")
+			closemessage
+			if (var(VAR_DARKRAI_INN_PROGRESS) >= 2) {
+				warpwhitefade(MAP_DARKRAI_INN1RUINED, 28, 18)
+			} else {
+				warpwhitefade(MAP_DARKRAI_INN1, 1)
+			}
+			waitstate
+			end
+		} else {
+			msgbox("Best to prepare first.")
+			release
+			end
+		}
+		
+	} else {
     msgbox("The door won't budge. It seems
-            to be stuck.", MSGBOX_SIGN)
+            to be stuck.")
+	}
+	release
+	end
 } 
 
 script Cherrygrove_Littlegirl {
+	lock
+	faceplayer	
+	if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 5) {
+		msgbox("I saw you dozing off in front of the
+				old inn's door. Are you okay?")
+		release
+		end
+	}
     msgbox("That inn... I don't think it
             has ever been open. My mom said it was
-            abandoned even in her youth.", MSGBOX_NPC)
+            abandoned even in her youth.")
+	release
+	end
 }
 
 script Cherrygrove_Zigzagoon {

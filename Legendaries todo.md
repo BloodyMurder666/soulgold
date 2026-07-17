@@ -70,8 +70,6 @@ Deoxys - Do something to get birth island map?
 
 Manaphy - Get manaphy egg from ???
 
-Darkrai - Covered by quest
-
 Arceus - Mt Gold
 
 Keldeo - ???

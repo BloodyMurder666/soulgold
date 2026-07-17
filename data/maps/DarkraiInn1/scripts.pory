@@ -1,8 +1,77 @@
-raw `
-DarkraiInn1_MapScripts::
-	.byte 0
-`
+mapscripts DarkraiInn1_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_TEMP_HIDE_FOLLOWER)
+    }
+    MAP_SCRIPT_ON_LOAD {
+        if (flag(FLAG_OPEN_INN_DOOR)) {
+            setmetatile(24, 3, 0x03C, FALSE)
+            setmetatile(24, 2, 0x034, FALSE)
+        }
+    }
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_DARKRAI_INN_PROGRESS, 0 
+        {
+            lock
+            msgbox("Welcome, honored guest!")
+            closemessage
+            moveobjecttocoords(LOCALID_PLAYER, 28, 15, DIR_NORTH)
+            waitmovement(0)
+            msgbox("We are delighted to have you stay
+                    at our humble inn. 
+                    
+                    Here is your room key.")
+            playfanfare(MUS_HG_OBTAIN_ITEM)
+            msgbox("{PLAYER} obtained the Moon Key!")
+            waitfanfare
+            msgbox("Your room is number 404, take the stairs
+                    on your left and it will be right in
+                    front of you.")
+            msgbox("We hope you enjoy your stay.")
+            setvar(VAR_DARKRAI_INN_PROGRESS, 1)
+            release
+            end
+        }
+    ]
+}
 
+script Inn_Door404 {
+    lock
+    if (flag(FLAG_OPEN_INN_DOOR)) {
+        msgbox("The door to your room is now open.")
+        release
+        end
+    } else {
+        msgbox("Room 404
+    
+                You use your key to unlock the door,
+                however the key is now stuck in the
+                lock.")
+        setmetatile(24, 3, 0x03C, FALSE)
+        setmetatile(24, 2, 0x034, FALSE)
+        playse(SE_EXIT)
+        special(DrawWholeMapView)
+        setflag(FLAG_OPEN_INN_DOOR)
+        release
+        end
+    }
+    release
+    end
+}
+
+script Inn_Keeper {
+    msgbox("We hope you enjoy a peaceful rest
+            at our inn.", MSGBOX_NPC)
+}
+
+script Inn_AnimalHead {
+    msgbox("A stuffed trophy depicting a head
+            of a Pokémon.
+            
+            ...
+            
+            It feels like the eyes are following 
+            you.", MSGBOX_NPC)
+}
 
 script Inn_LockedDoor {
     msgbox("You try to open the door but it
@@ -13,6 +82,47 @@ script FoggyWindow_Inn {
     msgbox("You peek out of the window...
 
 
-            A strange fog seems to cover your
-            view of the outside world.", MSGBOX_NPC)
+            A thick fog seems to cover your
+            view.", MSGBOX_NPC)
+}
+
+script Inn_OrnatePiano {
+    msgbox("An ornate piano sits in front of you.
+            It seems to be well maintained.", MSGBOX_SIGN)
+}
+
+script Inn_Drums {
+    msgbox("A seemingly new drumset. How cool!", MSGBOX_SIGN)
+}
+
+script Inn_LockedSafe {
+    msgbox("A locked safe, you wonder what is
+            kept inside.", MSGBOX_SIGN)
+}
+
+script Inn_NoteOnWall {
+    msgbox("Seems to be some sort of notice about
+            closure of the inn. Odd...", MSGBOX_SIGN)
+}
+
+script Inn_PapersOnWall {
+    msgbox("Various notes litter the wall, the text
+            is blurry and hard to read.", MSGBOX_SIGN)
+}
+
+script Inn_TryingToExit {
+    lock
+    turnobject(LOCALID_PLAYER, DIR_SOUTH)
+    msgbox("You just arrived, surely there's no
+            reason to leave just yet...")
+    closemessage
+    applymovement(LOCALID_PLAYER, moves(walk_up))
+    waitmovement
+    release
+    end
+}
+
+script Inn_ReceptionPhone {
+    msgbox("This is probably used to call the 
+            residents.", MSGBOX_SIGN)
 }

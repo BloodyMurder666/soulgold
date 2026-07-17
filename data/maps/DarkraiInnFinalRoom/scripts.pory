@@ -1,0 +1,35 @@
+mapscripts DarkraiInnFinalRoom_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_TEMP_HIDE_FOLLOWER)
+    }
+}
+
+script DarkraiEncounter {
+    lock
+    faceplayer
+    playmoncry(SPECIES_DARKRAI, CRY_MODE_ENCOUNTER)
+    waitmoncry
+    setvar(VAR_0x8004, SPECIES_DARKRAI)
+    setvar(VAR_0x8005, 70)
+    special(BattleSetup_StartLegendaryEncounter)
+    waitstate
+    specialvar(VAR_RESULT, GetBattleOutcome)
+    if (var(VAR_RESULT) == B_OUTCOME_CAUGHT) {
+        fadescreenswapbuffers(FADE_TO_BLACK)
+        setvar(VAR_0x8006, LOCALID_DARKRAI)
+        setvar(VAR_0x8007, FLAG_HIDE_DARKRAI)
+        special(BattleSetup_FinishLegendaryEncounter)
+        fadescreenswapbuffers(FADE_FROM_BLACK)
+        if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 4) {
+            setvar(VAR_POSTGAME_RIVAL_LEGENDARYQ, 5)
+        }
+    }
+    release
+    end
+}
+
+script WarpPlayerOutDarkraiRoom {
+    warpwhitefade(MAP_CHERRYGROVE_CITY, 29, 21)
+    waitstate
+    end
+}

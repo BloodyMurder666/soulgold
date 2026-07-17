@@ -1648,6 +1648,9 @@
 #define FLAG_TOHJO_PASS_ITEM2                       0x96C
 #define FLAG_TOHJO_PASS_ITEM3                       0x96D
 #define FLAG_GOT_GRACIDEA                           0x96E
+#define FLAG_OPEN_INN_DOOR                          0x96F
+#define FLAG_HIDE_DARKRAI                           0x970
+#define FLAG_HIDE_DARKRAI_INN_NPC                   0x971
 
 #define FLAG_0x1500                                 0x1500
 // Daily Flags

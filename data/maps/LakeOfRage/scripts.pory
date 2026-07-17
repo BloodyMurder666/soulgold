@@ -498,7 +498,7 @@ script LakeOfRageCresseliaPath {
 				the trees.")
 		msgbox("Enter?", MSGBOX_YESNO)
 		if (var(VAR_RESULT) == YES) {
-			warp(MAP_LAKE_OF_RAGE_CRESSELIA_DEN, 16, 26)
+			warp(MAP_LAKE_OF_RAGE_CRESSELIA_DEN, 16, 27)
 			waitstate
 			release
 			end

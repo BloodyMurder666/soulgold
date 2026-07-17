@@ -2332,3 +2332,9 @@ Common_Text_ReceivedMon:
 	.include "data/maps/LakeOfRageCresseliaDen/scripts.inc"
 
 	.include "data/maps/DarkraiInn1/scripts.inc"
+
+	.include "data/maps/DarkrainInnBedroom/scripts.inc"
+
+	.include "data/maps/DarkraiInn1Ruined/scripts.inc"
+
+	.include "data/maps/DarkraiInnFinalRoom/scripts.inc"

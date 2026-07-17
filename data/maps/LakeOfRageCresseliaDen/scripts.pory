@@ -3,9 +3,19 @@ mapscripts LakeOfRageCresseliaDen_MapScripts {}
 script CresseliaEncounter {
     lock
     faceplayer
-    legendaryencounter(SPECIES_CRESSELIA, 60, LOCALID_CRESSELIA, FLAG_HIDE_CRESSELIA)
+    playmoncry(SPECIES_CRESSELIA, CRY_MODE_ENCOUNTER)
+    waitmoncry
+    setvar(VAR_0x8004, SPECIES_CRESSELIA)
+    setvar(VAR_0x8005, 60)
+    special(BattleSetup_StartLegendaryEncounter)
+    waitstate
     specialvar(VAR_RESULT, GetBattleOutcome)
     if (var(VAR_RESULT) == B_OUTCOME_CAUGHT) {
+        fadescreenswapbuffers(FADE_TO_BLACK)
+        setvar(VAR_0x8006, LOCALID_CRESSELIA)
+        setvar(VAR_0x8007, FLAG_HIDE_CRESSELIA)
+        special(BattleSetup_FinishLegendaryEncounter)
+        fadescreenswapbuffers(FADE_FROM_BLACK)
         if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 2) {
             setvar(VAR_POSTGAME_RIVAL_LEGENDARYQ, 3)
         }
