@@ -855,7 +855,7 @@ AzaleaTown_Text_Kurt1:
 # 428 "data/maps/AzaleaTown/scripts.pory"
 AzaleaTown_Text_Kurt2:
 # 429 "data/maps/AzaleaTown/scripts.pory"
-	.string "{PLAYER}, here's your Gs Ball back!$"
+	.string "{PLAYER}, here's your GS Ball back!$"
 # 430 "data/maps/AzaleaTown/scripts.pory"
 
 # 431 "data/maps/AzaleaTown/scripts.pory"

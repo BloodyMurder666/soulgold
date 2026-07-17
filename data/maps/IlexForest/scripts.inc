@@ -1485,17 +1485,17 @@ IlexForest_Text_ShrineCelebiEvent:
 # 743 "data/maps/IlexForest/scripts.pory"
 	.string "It's a hole.\n"
 # 744 "data/maps/IlexForest/scripts.pory"
-	.string "It looks like the Gs Ball would fit\l"
+	.string "It looks like the GS Ball would fit\l"
 # 745 "data/maps/IlexForest/scripts.pory"
 	.string "inside it.\p"
 # 746 "data/maps/IlexForest/scripts.pory"
-	.string "Want to put the Gs Ball here?$"
+	.string "Want to put the GS Ball here?$"
 # 747 "data/maps/IlexForest/scripts.pory"
 
 # 748 "data/maps/IlexForest/scripts.pory"
 IlexForest_Text_InsertGSBall:
 # 749 "data/maps/IlexForest/scripts.pory"
-	.string "{PLAYER} put in the Gs Ball.$"
+	.string "{PLAYER} put in the GS Ball.$"
 # 750 "data/maps/IlexForest/scripts.pory"
 
 # 751 "data/maps/IlexForest/scripts.pory"

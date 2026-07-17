@@ -741,12 +741,12 @@ IlexForest_Text_ShrineCelebiEvent:
 	.string "protector…\p"
 	.string "Oh? What is this?\p"
 	.string "It's a hole.\n"
-	.string "It looks like the Gs Ball would fit\l"
+	.string "It looks like the GS Ball would fit\l"
 	.string "inside it.\p"
-	.string "Want to put the Gs Ball here?$"
+	.string "Want to put the GS Ball here?$"
 
 IlexForest_Text_InsertGSBall:
-	.string "{PLAYER} put in the Gs Ball.$"
+	.string "{PLAYER} put in the GS Ball.$"
 
 IlexForest_Text_KurtCaughtCelebi:
 	.string "Whew, wasn't that something!\p"

@@ -5511,7 +5511,7 @@ Pic: Leader Morty
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Smart Trainer
+AI: Basic Trainer
 Mugshot: Purple
 
 Corsola Galar
@@ -12528,7 +12528,7 @@ Pic: Leader Falkner
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Smart Trainer
+AI: Basic Trainer
 Mugshot: Blue
 
 Pidgey
@@ -12548,7 +12548,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Harden
 
 Noctowl @ Oran Berry
-Level: 13
+Level: 12
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Tackle
 - Mud Slap

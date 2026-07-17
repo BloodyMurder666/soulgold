@@ -65,7 +65,7 @@ GoldenrodCity_PokemonCenter_LassText:
 GoldenrodPokeCenter_LinkReceptionistPleaseAcceptGSBallText:
     .string "{PLAYER}, isn't it?\p"
     .string "Congratulations!\p"
-    .string "As a special deal, a Gs Ball has\n"
+    .string "As a special deal, a GS Ball has\n"
     .string "been sent just for you!\p"
     .string "Please accept it!$"
 
