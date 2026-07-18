@@ -20,6 +20,8 @@ from .models import (
 )
 from .paths import OUT_DIR, SRC_DIR
 
+SECTION_ROUTES = ("moves", "encounters", "machines", "items", "trainers", "abilities", "guides")
+
 
 def prepare_output_tree() -> OutputPaths:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -34,6 +36,7 @@ def prepare_output_tree() -> OutputPaths:
             dest.mkdir(parents=True, exist_ok=True)
         else:
             shutil.copy2(item, dest)
+    write_section_routes()
     (OUT_DIR / ".nojekyll").write_text("", encoding="utf-8")
     (OUT_DIR / "data").mkdir(parents=True, exist_ok=True)
     return OutputPaths(
@@ -41,6 +44,18 @@ def prepare_output_tree() -> OutputPaths:
         trainer_sprite_dir=OUT_DIR / "sprites" / "trainers",
         item_icon_dir=OUT_DIR / "sprites" / "items",
     )
+
+
+def write_section_routes() -> None:
+    """Create static entry points so section URLs work without server rewrites."""
+    index_html = (OUT_DIR / "index.html").read_text(encoding="utf-8")
+    route_html = index_html.replace('<base href="./">', '<base href="../">', 1)
+    if route_html == index_html:
+        raise ValueError('docs/src/index.html must contain <base href="./">')
+    for route in SECTION_ROUTES:
+        route_dir = OUT_DIR / route
+        route_dir.mkdir(parents=True, exist_ok=True)
+        (route_dir / "index.html").write_text(route_html, encoding="utf-8")
 
 
 def build_docs_payload(

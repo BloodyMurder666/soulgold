@@ -1,3 +1,7 @@
+const baseElement = document.querySelector("base");
+const siteRootUrl = new URL(baseElement?.getAttribute("href") || "./", window.location.href);
+if (baseElement) baseElement.href = siteRootUrl.href;
+
 const state = {
   data: null,
   activeTab: "pokedex",
@@ -23,6 +27,27 @@ const searchPlaceholders = {
   abilities: "Search abilities…",
   guides: "Search guides, FAQs, or secrets…",
 };
+const tabRoutes = {
+  pokedex: "",
+  moves: "moves",
+  encounters: "encounters",
+  machines: "machines",
+  items: "items",
+  trainers: "trainers",
+  abilities: "abilities",
+  guides: "guides",
+};
+const tabLabels = {
+  pokedex: "Pokédex",
+  moves: "Movedex",
+  encounters: "Wild Encounters",
+  machines: "TMs/HMs",
+  items: "Items",
+  trainers: "Trainers",
+  abilities: "Abilities",
+  guides: "Guides",
+};
+const mobileNavMedia = window.matchMedia("(max-width: 1100px)");
 const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({
   "&": "&amp;",
   "<": "&lt;",
@@ -136,20 +161,30 @@ function speciesSpritePanel(mon) {
 }
 
 async function init() {
-  const response = await fetch("data/romhack-docs.json?v=20260717");
+  state.activeTab = tabFromLocation();
+  syncActiveTabUi();
+  history.replaceState({ tab: state.activeTab }, "");
+  const response = await fetch("data/romhack-docs.json?v=20260718");
   state.data = await response.json();
   state.filteredSpecies = state.data.species;
-  document.body.dataset.activeTab = state.activeTab;
   bindEvents();
   renderTypeFilter();
+  syncMobileNav();
   updateStickyOffset();
   renderActive();
 }
 
 function bindEvents() {
-  document.querySelectorAll(".tab").forEach((button) => {
-    button.addEventListener("click", () => setTab(button.dataset.tab));
+  document.querySelectorAll(".tab").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      setTab(link.dataset.tab);
+    });
   });
+  document.getElementById("mobileMenuToggle").addEventListener("click", openMobileNav);
+  document.getElementById("mobileMenuClose").addEventListener("click", () => closeMobileNav({ restoreFocus: true }));
+  document.getElementById("navBackdrop").addEventListener("click", () => closeMobileNav({ restoreFocus: true }));
   document.getElementById("backToTop").addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
   document.getElementById("globalSearch").addEventListener("input", (event) => {
     state.query = event.target.value.trim().toLowerCase();
@@ -176,7 +211,94 @@ function bindEvents() {
   document.body.addEventListener("pointerover", handleItemHover);
   document.body.addEventListener("pointerout", handleItemOut);
   document.body.addEventListener("click", handleItemTooltipClick, true);
-  window.addEventListener("resize", updateStickyOffset);
+  window.addEventListener("resize", () => {
+    updateStickyOffset();
+    syncMobileNav();
+  });
+  window.addEventListener("popstate", () => setTab(tabFromLocation(), { updateHistory: false }));
+  document.addEventListener("keydown", handleMobileNavKeydown);
+}
+
+function tabFromLocation() {
+  const rootPath = siteRootUrl.pathname.endsWith("/") ? siteRootUrl.pathname : `${siteRootUrl.pathname}/`;
+  let route = window.location.pathname;
+  if (route.startsWith(rootPath)) route = route.slice(rootPath.length);
+  route = route.replace(/^\/+|\/+$/g, "").replace(/\/index\.html$/, "");
+  if (route === "index.html") route = "";
+  return Object.keys(tabRoutes).find((tab) => tabRoutes[tab] === route) || "pokedex";
+}
+
+function routeUrl(tab) {
+  const route = tabRoutes[tab];
+  return new URL(route ? `${route}/` : "./", siteRootUrl);
+}
+
+function syncActiveTabUi() {
+  document.body.dataset.activeTab = state.activeTab;
+  document.title = `${tabLabels[state.activeTab]} · Soulgold Documentation`;
+  const search = document.getElementById("globalSearch");
+  search.placeholder = searchPlaceholders[state.activeTab] || "Search…";
+  document.querySelectorAll(".tab").forEach((link) => {
+    const active = link.dataset.tab === state.activeTab;
+    link.classList.toggle("active", active);
+    if (active) link.setAttribute("aria-current", "page");
+    else link.removeAttribute("aria-current");
+  });
+  document.querySelectorAll(".panel").forEach((panel) => panel.classList.toggle("active", panel.id === state.activeTab));
+}
+
+function openMobileNav() {
+  if (!mobileNavMedia.matches) return;
+  const nav = document.getElementById("sectionNav");
+  const toggle = document.getElementById("mobileMenuToggle");
+  nav.inert = false;
+  nav.setAttribute("aria-hidden", "false");
+  document.body.classList.add("nav-open");
+  toggle.setAttribute("aria-expanded", "true");
+  toggle.setAttribute("aria-label", "Close documentation sections");
+  requestAnimationFrame(() => (nav.querySelector(".tab.active") || document.getElementById("mobileMenuClose")).focus());
+}
+
+function closeMobileNav({ restoreFocus = false } = {}) {
+  const wasOpen = document.body.classList.contains("nav-open");
+  const nav = document.getElementById("sectionNav");
+  const toggle = document.getElementById("mobileMenuToggle");
+  document.body.classList.remove("nav-open");
+  toggle.setAttribute("aria-expanded", "false");
+  toggle.setAttribute("aria-label", "Open documentation sections");
+  if (mobileNavMedia.matches) {
+    nav.inert = true;
+    nav.setAttribute("aria-hidden", "true");
+  } else {
+    nav.inert = false;
+    nav.removeAttribute("aria-hidden");
+  }
+  if (restoreFocus && wasOpen) toggle.focus();
+}
+
+function syncMobileNav() {
+  closeMobileNav();
+}
+
+function handleMobileNavKeydown(event) {
+  if (!document.body.classList.contains("nav-open")) return;
+  if (event.key === "Escape") {
+    event.preventDefault();
+    closeMobileNav({ restoreFocus: true });
+    return;
+  }
+  if (event.key !== "Tab") return;
+  const focusable = [...document.querySelectorAll("#sectionNav button, #sectionNav a")];
+  if (!focusable.length) return;
+  const first = focusable[0];
+  const last = focusable.at(-1);
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  }
 }
 
 function updateStickyOffset() {
@@ -186,21 +308,21 @@ function updateStickyOffset() {
   document.documentElement.style.setProperty("--top-chrome-height", `${Math.ceil(chrome.getBoundingClientRect().height / scale)}px`);
 }
 
-function setTab(tab) {
+function setTab(tab, { updateHistory = true } = {}) {
+  if (!Object.hasOwn(tabRoutes, tab)) tab = "pokedex";
   hideAbilityTooltip();
   hideMoveTooltip();
   hideItemTooltip();
   updateStickyOffset();
   state.activeTab = tab;
-  document.body.dataset.activeTab = tab;
   state.query = "";
   const search = document.getElementById("globalSearch");
   search.value = "";
-  search.placeholder = searchPlaceholders[tab] || "Search…";
   closeTypeFilter();
+  closeMobileNav();
+  if (updateHistory && tabFromLocation() !== tab) history.pushState({ tab }, "", routeUrl(tab));
+  syncActiveTabUi();
   window.scrollTo(0, 0);
-  document.querySelectorAll(".tab").forEach((button) => button.classList.toggle("active", button.dataset.tab === tab));
-  document.querySelectorAll(".panel").forEach((panel) => panel.classList.toggle("active", panel.id === tab));
   renderActive();
 }
 
