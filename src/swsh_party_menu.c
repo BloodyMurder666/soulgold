@@ -3159,6 +3159,11 @@ static bool8 IsBattleEntrySelectionComplete(void)
 static void ShowSelectedMonInfo(void)
 {
     bool8 hasMon = FALSE;
+    u8 slotId = gPartyMenu.slotId;
+
+    if (gPartyMenu.action == PARTY_ACTION_SWITCH
+        || gPartyMenu.action == PARTY_ACTION_MOVE_ITEM)
+        slotId = gPartyMenu.slotId2;
 
     if (sPartyTitleWindowId == WINDOW_NONE)
         sPartyTitleWindowId = AddWindow(&sPartyTitleWindowTemplate_SwSh);
@@ -3171,10 +3176,10 @@ static void ShowSelectedMonInfo(void)
     FillWindowPixelBuffer(sPartyTitleWindowId, PIXEL_FILL(0));
     FillWindowPixelBuffer(sSelectedMonHeldItemInfoWindowId, PIXEL_FILL(0));
 
-    if (gPartyMenu.slotId < gPlayerPartyCount
-        && GetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_SPECIES) != SPECIES_NONE)
+    if (slotId < gPlayerPartyCount
+        && GetMonData(&gPlayerParty[slotId], MON_DATA_SPECIES) != SPECIES_NONE)
     {
-        struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+        struct Pokemon *mon = &gPlayerParty[slotId];
         u16 species = GetMonData(mon, MON_DATA_SPECIES_OR_EGG);
         u8 level = GetMonData(mon, MON_DATA_LEVEL);
         enum Item item = GetMonData(mon, MON_DATA_HELD_ITEM);
@@ -4280,6 +4285,7 @@ static void CursorCb_Switch(u8 taskId)
     // Keep the switch origin visually selected, but leave its icon idle.
     AnimatePartySlot(gPartyMenu.slotId, 0);
     gPartyMenu.slotId2 = gPartyMenu.slotId;
+    UpdateSelectedMonItemSprite();
     gTasks[taskId].func = Task_HandleChooseMonInput;
 }
 
@@ -4572,6 +4578,7 @@ static void CursorCb_Cancel1(u8 taskId)
     PlaySE(SE_SELECT);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
+    RefreshSelectedMonInfoAndPrompt();
     gTasks[taskId].func = Task_HandleChooseMonInput;
 }
 
@@ -4830,8 +4837,6 @@ static void Task_UpdateHeldItemSprite(u8 taskId)
             UpdatePartyMonHeldItemSprite(mon, &sPartyMenuBoxes[gPartyMenu.slotId]);
         }
 
-        UpdateSelectedMonItemSprite();
-
         if (gPartyMenu.menuType == PARTY_MENU_TYPE_STORE_PYRAMID_HELD_ITEMS)
         {
             if (GetMonData(mon, MON_DATA_HELD_ITEM) != ITEM_NONE)
@@ -4853,7 +4858,10 @@ static void Task_UpdateHeldItemSprite(u8 taskId)
             CreateHoverSprite(&sPartyMenuBoxes[gPartyMenu.slotId], gPartyMenu.slotId);
         }
 
+        // The held-item info window overlaps WIN_MSG on BG2. Clear the message
+        // before restoring the info window so its text cannot bleed through.
         Task_ReturnToChooseMonAfterText(taskId);
+        UpdateSelectedMonItemSprite();
     }
 }
 
@@ -10779,6 +10787,7 @@ void CursorCb_MoveItem(u8 taskId)
     {
         gSpecialVar_ItemId = GetMonData(mon, MON_DATA_HELD_ITEM);
         gPartyMenu.action = PARTY_ACTION_MOVE_ITEM;
+        gPartyMenu.slotId2 = gPartyMenu.slotId;
         UpdateSelectedMonItemSprite();
 
         // Keep the move origin visually selected, but leave its icon idle.
@@ -10791,7 +10800,6 @@ void CursorCb_MoveItem(u8 taskId)
         CreateHoverSprite(&sPartyMenuBoxes[gPartyMenu.slotId], gPartyMenu.slotId);
 
         // set up callback
-        gPartyMenu.slotId2 = gPartyMenu.slotId;
         gTasks[taskId].func = CursorCb_MoveItemCallback;
     }
     else
