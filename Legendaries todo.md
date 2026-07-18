@@ -82,7 +82,7 @@ Hoopa - ???
 Volcanion - ???
 
 Magerna - Base form from goldenrod top floor apartment, key from ???
+Magerna Original - 100 achievements
 
 Zeraora - ???
-Zarude - ???
 Pecharunt - ???

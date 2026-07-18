@@ -38,12 +38,12 @@ script AchievementGuy {
         && var(VAR_ACHIEVEMENT_COUNT) >= 75) {
         goto(AchievementGuy_Reward75)
     }
-    if (var(VAR_ACHIEVEMENT_REWARD_MILESTONE) < 90
-        && var(VAR_ACHIEVEMENT_COUNT) >= 90) {
-        goto(AchievementGuy_Reward90)
+    if (var(VAR_ACHIEVEMENT_REWARD_MILESTONE) < 100
+        && var(VAR_ACHIEVEMENT_COUNT) >= 100) {
+        goto(AchievementGuy_Reward100)
     }
 
-    if (var(VAR_ACHIEVEMENT_COUNT) >= 90) {
+    if (var(VAR_ACHIEVEMENT_COUNT) >= 100) {
         msgbox("You've achieved everything possible!
                 There is nothing further I could bestow
                 upon you, true master of Pokémon.")
@@ -65,7 +65,7 @@ script AchievementGuy {
         setvar(VAR_NEXT_ACHIEVEMENT_MILESTONE, 75)
     }
     if (var(VAR_ACHIEVEMENT_COUNT) >= 75) {
-        setvar(VAR_NEXT_ACHIEVEMENT_MILESTONE, 90)
+        setvar(VAR_NEXT_ACHIEVEMENT_MILESTONE, 100)
     }
 
     copyvar(VAR_ACHIEVEMENTS_REMAINING, VAR_NEXT_ACHIEVEMENT_MILESTONE)
@@ -173,15 +173,19 @@ script AchievementGuy_Reward75 {
             milestone!
             
             Another reward just for you!")
-    giveitem(ITEM_N_SOLARIZER)
-    giveitem(ITEM_N_LUNARIZER)
+    setvar(VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_ZARUDE)
+    bufferspeciesname(STR_VAR_1, SPECIES_ZARUDE)
+    givemon(SPECIES_ZARUDE, 50)
+    showgivemonpic(10, 3)
+    call(Common_EventScript_GiftMon)
+    hidemonpic
     setvar(VAR_ACHIEVEMENT_REWARD_MILESTONE, 75)
     goto(keepUpTheGoodWork)
     release
     end
 }
 
-script AchievementGuy_Reward90 {
+script AchievementGuy_Reward100 {
     msgbox("Amazing! 
     
             You've achieved {STR_VAR_1}
@@ -191,9 +195,13 @@ script AchievementGuy_Reward90 {
             These items are the only thing
             left to give. I have nothing
             further for you!")
-    giveitem(ITEM_RUSTED_SWORD)
-    giveitem(ITEM_RUSTED_SHIELD)
-    setvar(VAR_ACHIEVEMENT_REWARD_MILESTONE, 90)
+    setvar(VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_MAGEARNA_ORIGINAL)
+    bufferspeciesname(STR_VAR_1, SPECIES_MAGEARNA_ORIGINAL)
+    givemon(SPECIES_MAGEARNA_ORIGINAL, 80)
+    showgivemonpic(10, 3)
+    call(Common_EventScript_GiftMon)
+    hidemonpic
+    setvar(VAR_ACHIEVEMENT_REWARD_MILESTONE, 100)
     goto(keepUpTheGoodWork)
     release
     end

@@ -6,13 +6,13 @@ order: 40
 ---
 
 ## Trophies
-![Trophies](images/achievements.png){small}
+![](images/achievements.png){small}
 There are over 100 trophies to obtain in Soulgold, and you are rewarded for reaching certain
 milestones when obtaining enough of them.
 
 Speak to the gentleman in Route 40 house to collect rewards and to check your current progress towards the next milestone.
 
-![TrophyGuy](images/achievementdude.png){small}
+![](images/achievementdude.png){small}
 
 ## The rewards
 
@@ -25,7 +25,7 @@ Speak to the gentleman in Route 40 house to collect rewards and to check your cu
 
 - **Reward:** Ash-Greninja
     - This Pokémon has a special ability **Battle Bond** which allows it to transform after KOing an opponent.
-![AshGreninja](images/achievementsdude2.png){small}
+![](images/achievementsdude2.png){small}
 
 ### 45 achievements
 
@@ -35,6 +35,14 @@ Speak to the gentleman in Route 40 house to collect rewards and to check your cu
 ### 60 achievements
 - **Reward:** Eternal Floette
     - A special Floette capable of Mega Evolution and boasting much higher stats than your average Floette. 
+
+### 75 achievements
+- **Reward:** Zarude
+    - A mythical Pokémon from the jungle. Boasting unique skill Jungle Healing. 
+
+### 100 achievements
+- **Reward:** Original Color Magerna
+    - This version of Magerna is usually given for completing the Pokédex, however this time it can be obtained by completing 100 achievemnts. Quite a feat! 
 
 
 
