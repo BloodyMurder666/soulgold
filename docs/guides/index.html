@@ -36,7 +36,7 @@
           <strong>Sections</strong>
           <button id="mobileMenuClose" class="mobile-menu-close" type="button" aria-label="Close documentation sections">×</button>
         </div>
-        <a class="tab active" data-tab="pokedex" href="./">Pokédex</a>
+        <a class="tab active" data-tab="pokedex" href="pokedex/">Pokédex</a>
         <a class="tab" data-tab="moves" href="moves/">Movedex</a>
         <a class="tab" data-tab="encounters" href="encounters/">Wild Encounters</a>
         <a class="tab" data-tab="machines" href="machines/">TMs/HMs</a>
@@ -52,6 +52,7 @@
         <div class="panel-heading">
           <div><h2>Pokédex</h2></div>
         </div>
+        <div id="pokedexStatus" class="panel-status" role="status" aria-live="polite">Loading Pokédex…</div>
         <div class="table-shell data-panel pokedex-shell">
           <div class="dex-head dex-row">
             <span>#</span><span></span><span>Name</span><span>Type</span>
@@ -69,6 +70,7 @@
         <div class="panel-heading">
           <div><h2>Movedex</h2></div>
         </div>
+        <div id="movesStatus" class="panel-status" role="status" aria-live="polite">Loading moves…</div>
         <div class="table-shell data-panel">
           <table>
             <thead>
@@ -83,6 +85,7 @@
         <div class="panel-heading">
           <div><h2>Wild Encounters</h2></div>
         </div>
+        <div id="encountersStatus" class="panel-status" role="status" aria-live="polite">Loading encounters…</div>
         <div id="encounterList" class="stack"></div>
       </section>
 
@@ -90,6 +93,7 @@
         <div class="panel-heading">
           <div><h2>TMs / HMs</h2></div>
         </div>
+        <div id="machinesStatus" class="panel-status" role="status" aria-live="polite">Loading TMs and HMs…</div>
         <div class="table-shell data-panel">
           <table>
             <thead>
@@ -104,6 +108,7 @@
         <div class="panel-heading">
           <div><h2>Abilities</h2></div>
         </div>
+        <div id="abilitiesStatus" class="panel-status" role="status" aria-live="polite">Loading abilities…</div>
         <div id="abilityList" class="ability-list data-panel"></div>
       </section>
 
@@ -111,6 +116,7 @@
         <div class="panel-heading">
           <div><h2>Items</h2></div>
         </div>
+        <div id="itemsStatus" class="panel-status" role="status" aria-live="polite">Loading items…</div>
         <div class="table-shell data-panel">
           <table>
             <thead>
@@ -125,6 +131,7 @@
         <div class="panel-heading">
           <div><h2>Trainers</h2></div>
         </div>
+        <div id="trainersStatus" class="panel-status" role="status" aria-live="polite">Loading trainers…</div>
         <div class="table-shell data-panel">
           <table>
             <thead>
@@ -139,6 +146,7 @@
         <div class="panel-heading">
           <div><h2>Guides</h2></div>
         </div>
+        <div id="guidesStatus" class="panel-status" role="status" aria-live="polite">Loading guides…</div>
         <div id="guideList" class="guide-list"></div>
       </section>
     </main>

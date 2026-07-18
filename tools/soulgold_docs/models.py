@@ -244,6 +244,7 @@ class SpeciesPayloadRow(TypedDict):
     evolutions: list[EvolutionRow]
     locations: list[SpeciesLocation]
     heldItems: list[HeldItemRow]
+    slug: str
 
 
 @dataclass

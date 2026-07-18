@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import re
 from pathlib import Path
+from urllib.parse import unquote
 
 from ..models import GuideRow
 from ..paths import GUIDES_DIR, SRC_DIR
@@ -59,14 +60,44 @@ def _slug(path: Path) -> str:
     return re.sub(r"[^a-z0-9]+", "-", path.stem.lower()).strip("-")
 
 
+def _normalized_slug(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
+
+
+def _local_markdown_targets(content: str) -> list[tuple[bool, str]]:
+    pattern = re.compile(r"(!?)\[[^]]*]\((?:<([^>]+)>|([^\s)]+))(?:\s+\"[^\"]*\")?\)")
+    return [(bool(match.group(1)), match.group(2) or match.group(3)) for match in pattern.finditer(content)]
+
+
+def _validate_local_targets(path: Path, content: str, guide_paths: set[Path]) -> None:
+    guides_root = GUIDES_DIR.resolve()
+    for is_image, raw_target in _local_markdown_targets(content):
+        target = raw_target.split("#", 1)[0].split("?", 1)[0]
+        if not target or target.startswith(("#", "/")) or re.match(r"^[a-z][a-z0-9+.-]*:", target, re.I):
+            continue
+        resolved = (path.parent / unquote(target)).resolve()
+        if not resolved.is_relative_to(guides_root):
+            raise ValueError(f"Guide link escapes docs/src/guides: {path}: {raw_target}")
+        if is_image and (not resolved.is_file() or resolved.suffix.lower() == ".md"):
+            raise ValueError(f"Missing guide image: {path}: {raw_target}")
+        if not is_image and resolved.suffix.lower() == ".md" and resolved not in guide_paths:
+            raise ValueError(f"Guide links to an unpublished Markdown file: {path}: {raw_target}")
+        if not is_image and resolved.suffix.lower() != ".md" and not resolved.exists():
+            raise ValueError(f"Missing guide attachment: {path}: {raw_target}")
+
+
 def parse_guides() -> list[GuideRow]:
     if not GUIDES_DIR.exists():
         return []
 
+    guide_paths = {
+        path.resolve()
+        for path in GUIDES_DIR.rglob("*.md")
+        if path.name.lower() != "readme.md" and not path.name.startswith("_")
+    }
     guides: list[GuideRow] = []
-    for path in sorted(GUIDES_DIR.rglob("*.md")):
-        if path.name.lower() == "readme.md" or path.name.startswith("_"):
-            continue
+    slugs: dict[str, Path] = {}
+    for path in sorted(guide_paths):
 
         metadata, content = _front_matter(path.read_text(encoding="utf-8"))
         fallback_title = path.stem.replace("-", " ").replace("_", " ").title()
@@ -77,8 +108,16 @@ def parse_guides() -> list[GuideRow]:
         except ValueError:
             order = 1000
 
+        slug = _normalized_slug(metadata.get("slug") or _slug(path))
+        if not slug:
+            raise ValueError(f"Guide has an empty slug: {path}")
+        if slug in slugs:
+            raise ValueError(f"Duplicate guide slug '{slug}': {slugs[slug]} and {path}")
+        slugs[slug] = path
+        _validate_local_targets(path, content, guide_paths)
+
         guides.append({
-            "slug": metadata.get("slug") or _slug(path),
+            "slug": slug,
             "title": title,
             "summary": metadata.get("summary") or _plain_summary(content),
             "category": metadata.get("category") or "Guide",

@@ -3,13 +3,31 @@ const siteRootUrl = new URL(baseElement?.getAttribute("href") || "./", window.lo
 if (baseElement) baseElement.href = siteRootUrl.href;
 
 const state = {
-  data: null,
+  data: {
+    species: [],
+    moves: {},
+    abilities: {},
+    tms: [],
+    items: [],
+    encounters: [],
+    trainers: [],
+    guides: [],
+    typeIcons: {},
+    categoryIcons: {},
+    uiIcons: {},
+    megaEvolutions: [],
+  },
   activeTab: "pokedex",
   query: "",
   filteredSpecies: [],
   selectedTypes: new Set(),
   modalScrollY: 0,
+  detail: null,
+  renderToken: 0,
 };
+
+const loadedData = new Set();
+const dataPromises = new Map();
 
 const typeName = (value) => value.replace("TYPE_", "").replaceAll("_", " ");
 const moveName = (constant) => state.data.moves[constant]?.name || constant.replace("MOVE_", "").replaceAll("_", " ");
@@ -28,7 +46,7 @@ const searchPlaceholders = {
   guides: "Search guides, FAQs, or secrets…",
 };
 const tabRoutes = {
-  pokedex: "",
+  pokedex: "pokedex",
   moves: "moves",
   encounters: "encounters",
   machines: "machines",
@@ -36,6 +54,25 @@ const tabRoutes = {
   trainers: "trainers",
   abilities: "abilities",
   guides: "guides",
+};
+const detailKinds = {
+  pokedex: "pokemon",
+  moves: "move",
+  machines: "machine",
+  items: "item",
+  abilities: "ability",
+  guides: "guide",
+};
+const detailTabs = Object.fromEntries(Object.entries(detailKinds).map(([tab, kind]) => [kind, tab]));
+const sectionDataFiles = {
+  pokedex: [["species", "data/species.json"]],
+  moves: [],
+  encounters: [["encounters", "data/encounters.json"]],
+  machines: [["tms", "data/machines.json"]],
+  items: [["items", "data/items.json"]],
+  trainers: [["trainers", "data/trainers.json"]],
+  abilities: [["abilityUsage", "data/ability-usage.json"]],
+  guides: [["guides", "data/guides.json"]],
 };
 const tabLabels = {
   pokedex: "Pokédex",
@@ -161,17 +198,23 @@ function speciesSpritePanel(mon) {
 }
 
 async function init() {
-  state.activeTab = tabFromLocation();
+  const route = routeFromLocation();
+  state.activeTab = route.tab;
+  state.detail = route.detail;
+  applyViewState(route.view);
   syncActiveTabUi();
-  history.replaceState({ tab: state.activeTab }, "");
-  const response = await fetch("data/romhack-docs.json?v=20260718");
-  state.data = await response.json();
-  state.filteredSpecies = state.data.species;
+  history.scrollRestoration = "manual";
+  history.replaceState(historyPayload({ detailOpenedInApp: false }), "");
   bindEvents();
-  renderTypeFilter();
   syncMobileNav();
   updateStickyOffset();
-  renderActive();
+  try {
+    await loadCommonData();
+    await renderActive();
+    await renderDetailFromRoute();
+  } catch (error) {
+    showLoadFailure(error);
+  }
 }
 
 function bindEvents() {
@@ -189,15 +232,20 @@ function bindEvents() {
   document.getElementById("globalSearch").addEventListener("input", (event) => {
     state.query = event.target.value.trim().toLowerCase();
     window.scrollTo(0, 0);
+    syncFilterHistory();
     renderActive();
   });
   document.getElementById("typeFilterToggle").addEventListener("click", toggleTypeFilter);
   document.getElementById("typeFilterPanel").addEventListener("click", handleTypeFilterClick);
   document.addEventListener("click", closeTypeFilterOnOutsideClick);
   const dialog = document.getElementById("detailDialog");
-  document.getElementById("closeDialog").addEventListener("click", () => closeDetailDialog());
+  document.getElementById("closeDialog").addEventListener("click", requestCloseDetail);
   dialog.addEventListener("click", (event) => {
-    if (event.target === dialog) closeDetailDialog();
+    if (event.target === dialog) requestCloseDetail();
+  });
+  dialog.addEventListener("cancel", (event) => {
+    event.preventDefault();
+    requestCloseDetail();
   });
   dialog.addEventListener("close", handleDetailDialogClose);
   document.body.addEventListener("click", handleAbilityClick, true);
@@ -215,22 +263,240 @@ function bindEvents() {
     updateStickyOffset();
     syncMobileNav();
   });
-  window.addEventListener("popstate", () => setTab(tabFromLocation(), { updateHistory: false }));
+  window.addEventListener("popstate", (event) => applyLocationRoute(event.state));
   document.addEventListener("keydown", handleMobileNavKeydown);
+  document.getElementById("guideList").addEventListener("click", handleGuideSummaryClick);
+  document.body.addEventListener("click", handleRetryClick);
 }
 
-function tabFromLocation() {
+function relativeRoutePath() {
   const rootPath = siteRootUrl.pathname.endsWith("/") ? siteRootUrl.pathname : `${siteRootUrl.pathname}/`;
   let route = window.location.pathname;
   if (route.startsWith(rootPath)) route = route.slice(rootPath.length);
   route = route.replace(/^\/+|\/+$/g, "").replace(/\/index\.html$/, "");
   if (route === "index.html") route = "";
-  return Object.keys(tabRoutes).find((tab) => tabRoutes[tab] === route) || "pokedex";
+  return route;
 }
 
-function routeUrl(tab) {
+function viewFromLocation() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    query: (params.get("q") || "").trim().toLowerCase(),
+    types: (params.get("type") || "").split(",").filter(Boolean).map((type) => `TYPE_${type.toUpperCase().replace(/^TYPE_/, "")}`),
+    scrollY: 0,
+  };
+}
+
+function routeFromLocation() {
+  const parts = relativeRoutePath().split("/").filter(Boolean);
+  const tab = Object.keys(tabRoutes).find((key) => tabRoutes[key] === parts[0]) || "pokedex";
+  const detail = parts[1] && detailKinds[tab] ? { kind: detailKinds[tab], slug: parts[1] } : null;
+  return { tab, detail, view: viewFromLocation() };
+}
+
+function routeUrl(tab, detail = null, view = null) {
   const route = tabRoutes[tab];
-  return new URL(route ? `${route}/` : "./", siteRootUrl);
+  const path = detail ? `${route}/${detail.slug}/` : `${route}/`;
+  const url = new URL(path, siteRootUrl);
+  const nextView = view || { query: "", types: [] };
+  if (!detail && nextView.query) url.searchParams.set("q", nextView.query);
+  if (!detail && nextView.types?.length && tab === "pokedex") {
+    url.searchParams.set("type", nextView.types.map((type) => type.replace(/^TYPE_/, "").toLowerCase()).join(","));
+  }
+  return url;
+}
+
+async function loadJson(path) {
+  const response = await fetch(new URL(path, siteRootUrl));
+  if (!response.ok) throw new Error(`${response.status} ${response.statusText} while loading ${path}`);
+  return response.json();
+}
+
+async function loadData(key, path) {
+  if (loadedData.has(key)) return;
+  if (!dataPromises.has(key)) {
+    dataPromises.set(key, loadJson(path).then((payload) => {
+      if (key === "common") {
+        Object.assign(state.data, payload);
+      } else if (key === "speciesDetails") {
+        state.data.species.forEach((mon) => Object.assign(mon, payload[mon.constant] || {}));
+      } else if (key === "abilityUsage") {
+        Object.entries(payload).forEach(([constant, usage]) => {
+          if (state.data.abilities[constant]) state.data.abilities[constant].usage = usage;
+        });
+      } else {
+        state.data[key] = payload;
+      }
+      loadedData.add(key);
+      dataPromises.delete(key);
+    }).catch((error) => {
+      dataPromises.delete(key);
+      throw error;
+    }));
+  }
+  await dataPromises.get(key);
+}
+
+async function loadCommonData() {
+  await loadData("common", "data/common.json");
+}
+
+async function ensureSectionData(tab) {
+  await loadCommonData();
+  await Promise.all((sectionDataFiles[tab] || []).map(([key, path]) => loadData(key, path)));
+}
+
+async function ensureSpeciesDetails() {
+  await loadData("species", "data/species.json");
+  await loadData("speciesDetails", "data/species-details.json");
+}
+
+function currentViewState(scrollY = window.scrollY) {
+  return {
+    query: state.query,
+    types: [...state.selectedTypes],
+    scrollY,
+  };
+}
+
+function applyViewState(view = {}) {
+  state.query = String(view.query || "").toLowerCase();
+  state.selectedTypes = new Set(view.types || []);
+  const search = document.getElementById("globalSearch");
+  if (search) search.value = state.query;
+}
+
+function historyPayload(options = {}) {
+  return {
+    docs: true,
+    tab: state.activeTab,
+    detail: state.detail,
+    view: currentViewState(options.scrollY),
+    detailOpenedInApp: Boolean(options.detailOpenedInApp),
+  };
+}
+
+function snapshotCurrentHistory() {
+  const previous = history.state || {};
+  const payload = historyPayload({
+    scrollY: document.body.classList.contains("modal-open") ? state.modalScrollY : window.scrollY,
+    detailOpenedInApp: previous.detailOpenedInApp,
+  });
+  const url = state.detail ? window.location.href : routeUrl(state.activeTab, null, payload.view);
+  history.replaceState(payload, "", url);
+}
+
+function syncFilterHistory() {
+  if (state.detail) return;
+  const previous = history.state || {};
+  history.replaceState(
+    historyPayload({ detailOpenedInApp: previous.detailOpenedInApp }),
+    "",
+    routeUrl(state.activeTab, null, currentViewState()),
+  );
+}
+
+async function applyLocationRoute(historyState = null) {
+  const route = routeFromLocation();
+  const previousTab = state.activeTab;
+  const previousQuery = state.query;
+  const previousTypes = [...state.selectedTypes].join(",");
+  state.activeTab = route.tab;
+  state.detail = route.detail;
+  applyViewState(historyState?.view || route.view);
+  syncActiveTabUi();
+  closeMobileNav();
+
+  const viewChanged = previousQuery !== state.query || previousTypes !== [...state.selectedTypes].join(",");
+  const sectionNeedsData = (sectionDataFiles[state.activeTab] || [])
+    .some(([key]) => !loadedData.has(key));
+  if (previousTab !== state.activeTab || viewChanged || sectionNeedsData) {
+    await renderActive();
+  }
+  if (state.detail) {
+    await renderDetailFromRoute();
+  } else {
+    closeDetailVisual();
+    const scrollY = Number(historyState?.view?.scrollY || 0);
+    requestAnimationFrame(() => window.scrollTo(0, scrollY));
+  }
+}
+
+async function navigateDetail(kind, slug) {
+  const tab = detailTabs[kind];
+  if (!tab || !slug) return;
+  if (state.detail?.kind === kind && state.detail.slug === slug) return;
+  snapshotCurrentHistory();
+  const tabChanged = state.activeTab !== tab;
+  state.activeTab = tab;
+  state.detail = { kind, slug };
+  if (tabChanged) {
+    state.query = "";
+    state.selectedTypes.clear();
+    syncTypeFilter();
+    document.getElementById("globalSearch").value = "";
+  }
+  history.pushState(
+    historyPayload({ detailOpenedInApp: true }),
+    "",
+    routeUrl(tab, state.detail),
+  );
+  syncActiveTabUi();
+  closeMobileNav();
+  if (tabChanged) {
+    window.scrollTo(0, 0);
+    await renderActive();
+  }
+  await renderDetailFromRoute();
+}
+
+function requestCloseDetail() {
+  if (!state.detail) {
+    closeDetailVisual();
+    return;
+  }
+  if (history.state?.detailOpenedInApp) {
+    history.back();
+    return;
+  }
+  state.detail = null;
+  history.replaceState(historyPayload(), "", routeUrl(state.activeTab, null, currentViewState()));
+  syncActiveTabUi();
+  closeDetailVisual();
+  if (state.activeTab === "guides") renderGuides();
+}
+
+function closeDetailVisual() {
+  const dialog = document.getElementById("detailDialog");
+  if (dialog.open) dialog.close();
+  else unlockBodyScroll();
+  document.querySelectorAll(".guide-card[open]").forEach((guide) => { guide.open = false; });
+}
+
+function setPanelStatus(tab, message, options = {}) {
+  const status = document.getElementById(`${tab}Status`);
+  if (!status) return;
+  status.hidden = false;
+  status.classList.toggle("loading", Boolean(options.loading));
+  status.classList.toggle("error", Boolean(options.error));
+  status.textContent = message;
+}
+
+function setPanelError(tab, error) {
+  const status = document.getElementById(`${tab}Status`);
+  if (!status) return;
+  status.hidden = false;
+  status.className = "panel-status error";
+  status.innerHTML = `<strong>Could not load ${escapeHtml(tabLabels[tab])}.</strong> <button type="button" data-retry-section>Retry</button><span class="sr-only"> ${escapeHtml(error.message || error)}</span>`;
+}
+
+function handleRetryClick(event) {
+  if (!event.target.closest("[data-retry-section]")) return;
+  renderActive();
+}
+
+function showLoadFailure(error) {
+  setPanelError(state.activeTab, error);
 }
 
 function syncActiveTabUi() {
@@ -308,45 +574,71 @@ function updateStickyOffset() {
   document.documentElement.style.setProperty("--top-chrome-height", `${Math.ceil(chrome.getBoundingClientRect().height / scale)}px`);
 }
 
-function setTab(tab, { updateHistory = true } = {}) {
+async function setTab(tab, { updateHistory = true } = {}) {
   if (!Object.hasOwn(tabRoutes, tab)) tab = "pokedex";
+  if (tab === state.activeTab && !state.detail && relativeRoutePath() === tabRoutes[tab]) {
+    closeMobileNav({ restoreFocus: true });
+    return;
+  }
+  snapshotCurrentHistory();
   hideAbilityTooltip();
   hideMoveTooltip();
   hideItemTooltip();
   updateStickyOffset();
   state.activeTab = tab;
+  state.detail = null;
   state.query = "";
+  state.selectedTypes.clear();
+  syncTypeFilter();
   const search = document.getElementById("globalSearch");
   search.value = "";
   closeTypeFilter();
-  closeMobileNav();
-  if (updateHistory && tabFromLocation() !== tab) history.pushState({ tab }, "", routeUrl(tab));
+  closeMobileNav({ restoreFocus: true });
+  if (updateHistory) history.pushState(historyPayload(), "", routeUrl(tab));
   syncActiveTabUi();
+  closeDetailVisual();
   window.scrollTo(0, 0);
-  renderActive();
+  await renderActive();
 }
 
 function matches(text) {
   return !state.query || text.toLowerCase().includes(state.query);
 }
 
-function renderActive() {
-  if (state.activeTab === "pokedex") renderDex();
-  if (state.activeTab === "moves") renderMovedex();
-  if (state.activeTab === "encounters") renderEncounters();
-  if (state.activeTab === "machines") renderTms();
-  if (state.activeTab === "items") renderItems();
-  if (state.activeTab === "abilities") renderAbilities();
-  if (state.activeTab === "trainers") renderTrainers();
-  if (state.activeTab === "guides") renderGuides();
+async function renderActive() {
+  const tab = state.activeTab;
+  const token = ++state.renderToken;
+  setPanelStatus(tab, `Loading ${tabLabels[tab]}…`, { loading: true });
+  try {
+    await ensureSectionData(tab);
+  } catch (error) {
+    if (token === state.renderToken && tab === state.activeTab) setPanelError(tab, error);
+    return;
+  }
+  if (token !== state.renderToken || tab !== state.activeTab) return;
+  if (tab === "pokedex") renderDex();
+  if (tab === "moves") renderMovedex();
+  if (tab === "encounters") renderEncounters();
+  if (tab === "machines") renderTms();
+  if (tab === "items") renderItems();
+  if (tab === "abilities") renderAbilities();
+  if (tab === "trainers") renderTrainers();
+  if (tab === "guides") renderGuides();
 }
 
 function renderDex() {
+  renderTypeFilter();
   state.filteredSpecies = state.data.species.filter((mon) =>
     matches(`${mon.dex} ${mon.name} ${speciesFormLabel(mon)} ${mon.types.map(typeName).join(" ")}`)
     && matchesSelectedTypes(mon)
   );
   renderDexRows();
+  setPanelStatus(
+    "pokedex",
+    state.filteredSpecies.length
+      ? `${state.filteredSpecies.length} Pokémon`
+      : state.query || state.selectedTypes.size ? "No Pokémon match the current search and type filters." : "No Pokémon are available.",
+  );
 }
 
 function dexFilterTypes() {
@@ -422,6 +714,7 @@ function handleTypeFilterClick(event) {
   }
   syncTypeFilter();
   window.scrollTo(0, 0);
+  syncFilterHistory();
   renderDex();
 }
 
@@ -451,15 +744,6 @@ function renderDexRows() {
   });
 }
 
-function closeDetailDialog() {
-  const dialog = document.getElementById("detailDialog");
-  if (dialog.open) {
-    dialog.close();
-  } else {
-    handleDetailDialogClose();
-  }
-}
-
 function handleDetailDialogClose() {
   hideAbilityTooltip();
   hideMoveTooltip();
@@ -480,6 +764,9 @@ function showDetailDialog(kind = "generic") {
   });
   requestAnimationFrame(() => {
     document.getElementById("modalBody").scrollTop = 0;
+    if (!dialog.contains(document.activeElement)) {
+      document.getElementById("closeDialog").focus({ preventScroll: true });
+    }
   });
 }
 
@@ -589,7 +876,8 @@ function handleAbilityClick(event) {
   if (!button) return;
   event.preventDefault();
   event.stopPropagation();
-  showAbilityTooltip(button, event);
+  event.stopImmediatePropagation();
+  openAbilityByReference(button.dataset.ability);
 }
 
 function handleAbilityHover(event) {
@@ -649,7 +937,8 @@ function handleItemTooltipClick(event) {
   if (!button) return;
   event.preventDefault();
   event.stopPropagation();
-  showItemTooltip(button, event);
+  if (button.dataset.item) openItemByConstant(button.dataset.item, button, event);
+  else showItemTooltip(button, event);
 }
 
 function handleMoveHover(event) {
@@ -667,7 +956,8 @@ function handleMoveClick(event) {
   if (!button) return;
   event.preventDefault();
   event.stopPropagation();
-  showMoveTooltip(button, event);
+  event.stopImmediatePropagation();
+  openMoveByReference(button.dataset.move);
 }
 
 function handleSpeciesLinkClick(event) {
@@ -897,6 +1187,10 @@ function heldItemRows(heldItems) {
 }
 
 function openSpecies(mon) {
+  navigateDetail("pokemon", mon.slug);
+}
+
+function renderSpeciesDetail(mon) {
   document.getElementById("modalTitle").textContent = `#${mon.dex || mon.id} ${speciesFormLabel(mon)}`;
   document.getElementById("modalBody").innerHTML = `
     <div class="species-hero-grid">
@@ -920,9 +1214,10 @@ function openSpecies(mon) {
   showDetailDialog("pokemon");
 }
 
-function openSpeciesByConstant(constant) {
+async function openSpeciesByConstant(constant) {
+  await loadData("species", "data/species.json");
   const mon = state.data.species.find((entry) => entry.constant === constant);
-  if (mon) openSpecies(mon);
+  if (mon) await navigateDetail("pokemon", mon.slug);
 }
 
 function renderEncounters() {
@@ -936,6 +1231,7 @@ function renderEncounters() {
       </div>
     </details>
   `).join("");
+  setPanelStatus("encounters", rows.length ? `${rows.length} encounter areas` : "No encounter areas match this search.");
 }
 
 function encounterVariant(variant, showTime) {
@@ -1023,6 +1319,7 @@ function renderMovedex() {
     row.innerHTML = `<td colspan="9" class="muted">No moves found.</td>`;
     tbody.appendChild(row);
   }
+  setPanelStatus("moves", rows.length ? `${rows.length} moves` : "No moves match this search.");
 }
 
 function moveLearners(moveConstant) {
@@ -1036,6 +1333,16 @@ function moveLearners(moveConstant) {
 }
 
 function openMove(move) {
+  navigateDetail("move", move.slug);
+}
+
+function openMoveByReference(reference) {
+  const move = state.data.moves[reference]
+    || Object.values(state.data.moves).find((entry) => entry.name === reference);
+  if (move) openMove(move);
+}
+
+function renderMoveDetail(move) {
   const learners = moveLearners(move.constant);
   document.getElementById("modalTitle").textContent = `#${move.id ?? "-"} ${move.name}`;
   document.getElementById("modalBody").innerHTML = `
@@ -1081,10 +1388,18 @@ function renderTms() {
     bindRowActivation(row, () => openTm(tm), `Open details for ${tm.label} ${tm.moveName}`);
     tbody.appendChild(row);
   });
+  if (!rows.length) {
+    const row = el("tr");
+    row.innerHTML = `<td colspan="9" class="muted">No TMs or HMs match this search.</td>`;
+    tbody.appendChild(row);
+  }
+  setPanelStatus("machines", rows.length ? `${rows.length} machines` : "No TMs or HMs match this search.");
 }
 
 function itemIconHtml(item, className = "item-icon") {
-  return item?.itemIcon ? `<img class="${className}" src="${item.itemIcon}" alt="">` : "";
+  return item?.itemIcon
+    ? `<img class="${className}" src="${item.itemIcon}" alt="" loading="lazy" decoding="async">`
+    : "";
 }
 
 function itemLocationLines(location) {
@@ -1106,9 +1421,26 @@ function renderItems() {
     bindRowActivation(row, () => openItem(item), `Open details for ${item.name}`);
     tbody.appendChild(row);
   });
+  if (!rows.length) {
+    const row = el("tr");
+    row.innerHTML = `<td colspan="3" class="muted">No items match this search.</td>`;
+    tbody.appendChild(row);
+  }
+  setPanelStatus("items", rows.length ? `${rows.length} items` : "No items match this search.");
 }
 
 function openItem(item) {
+  navigateDetail("item", item.slug);
+}
+
+async function openItemByConstant(constant, fallback, event) {
+  await loadData("items", "data/items.json");
+  const item = state.data.items.find((entry) => entry.constant === constant);
+  if (item) openItem(item);
+  else if (fallback) showItemTooltip(fallback, event);
+}
+
+function renderItemDetail(item) {
   document.getElementById("modalTitle").textContent = item.name;
   document.getElementById("modalBody").innerHTML = `
     <p>${item.description || "No description."}</p>
@@ -1138,6 +1470,10 @@ function speciesCards(list) {
 }
 
 function openTm(tm) {
+  navigateDetail("machine", tm.slug);
+}
+
+function renderTmDetail(tm) {
   const compatible = state.data.species.filter((mon) => mon.tmhm.includes(tm.move));
   document.getElementById("modalTitle").textContent = `${tm.label} ${tm.moveName}`;
   document.getElementById("modalBody").innerHTML = `
@@ -1162,10 +1498,12 @@ function renderAbilities() {
   container.innerHTML = `<div class="ability-row ability-head"><span>Name</span><span>Description</span><span>Pokemon</span></div>`;
   abilities.forEach((ability) => {
     const row = el("article", "ability-row");
-    row.innerHTML = `<h2>${ability.name}</h2><p>${ability.description}</p><p class="muted">${ability.usage.base.length} base / ${ability.usage.innate.length} innate</p>`;
+    const usage = ability.usage || { base: [], innate: [] };
+    row.innerHTML = `<h2>${ability.name}</h2><p>${ability.description}</p><p class="muted">${usage.base.length} base / ${usage.innate.length} innate</p>`;
     bindRowActivation(row, () => openAbility(ability), `Open details for ${ability.name}`);
     container.appendChild(row);
   });
+  setPanelStatus("abilities", abilities.length ? `${abilities.length} abilities` : "No abilities match this search.");
 }
 
 function usageList(list) {
@@ -1173,27 +1511,139 @@ function usageList(list) {
 }
 
 function openAbility(ability) {
+  navigateDetail("ability", ability.slug);
+}
+
+function openAbilityByReference(reference) {
+  const ability = state.data.abilities[reference]
+    || Object.values(state.data.abilities).find((entry) => entry.name === reference);
+  if (ability) openAbility(ability);
+}
+
+function renderAbilityDetail(ability) {
+  const usage = ability.usage || { base: [], innate: [] };
   document.getElementById("modalTitle").textContent = ability.name;
   document.getElementById("modalBody").innerHTML = `
     <p>${ability.description}</p>
     <h3 class="section-title">Base Ability Pokémon</h3>
-    ${usageList(ability.usage.base)}
+    ${usageList(usage.base)}
     <h3 class="section-title">Innate Ability Pokémon</h3>
-    ${usageList(ability.usage.innate)}
+    ${usageList(usage.innate)}
   `;
   showDetailDialog("ability");
+}
+
+async function recordForDetail(detail) {
+  if (detail.kind === "pokemon") {
+    await ensureSpeciesDetails();
+    return state.data.species.find((entry) => entry.slug === detail.slug);
+  }
+  if (detail.kind === "move") {
+    await ensureSpeciesDetails();
+    return Object.values(state.data.moves).find((entry) => entry.slug === detail.slug);
+  }
+  if (detail.kind === "machine") {
+    await Promise.all([loadData("tms", "data/machines.json"), ensureSpeciesDetails()]);
+    return state.data.tms.find((entry) => entry.slug === detail.slug);
+  }
+  if (detail.kind === "item") {
+    await loadData("items", "data/items.json");
+    return state.data.items.find((entry) => entry.slug === detail.slug);
+  }
+  if (detail.kind === "ability") {
+    await loadData("abilityUsage", "data/ability-usage.json");
+    return Object.values(state.data.abilities).find((entry) => entry.slug === detail.slug);
+  }
+  if (detail.kind === "guide") {
+    await loadData("guides", "data/guides.json");
+    return state.data.guides.find((entry) => entry.slug === detail.slug);
+  }
+  return null;
+}
+
+async function renderDetailFromRoute() {
+  const detail = state.detail;
+  if (!detail) {
+    closeDetailVisual();
+    return;
+  }
+  const detailKey = `${detail.kind}:${detail.slug}`;
+  if (detail.kind !== "guide") {
+    document.getElementById("modalTitle").textContent = "Loading details…";
+    document.getElementById("modalBody").innerHTML = `<div class="detail-loading" role="status">Loading details…</div>`;
+    showDetailDialog("loading");
+  }
+  try {
+    const record = await recordForDetail(detail);
+    if (!state.detail || `${state.detail.kind}:${state.detail.slug}` !== detailKey) return;
+    if (!record) {
+      if (detail.kind === "guide") {
+        setPanelStatus("guides", "This guide could not be found.", { error: true });
+      } else {
+        document.getElementById("modalTitle").textContent = "Page not found";
+        document.getElementById("modalBody").innerHTML = `<p>The requested documentation entry does not exist.</p>`;
+      }
+      document.title = `Page not found · Soulgold Documentation`;
+      return;
+    }
+    if (detail.kind === "pokemon") renderSpeciesDetail(record);
+    if (detail.kind === "move") renderMoveDetail(record);
+    if (detail.kind === "machine") renderTmDetail(record);
+    if (detail.kind === "item") renderItemDetail(record);
+    if (detail.kind === "ability") renderAbilityDetail(record);
+    if (detail.kind === "guide") {
+      syncGuideDetail();
+      document.title = `${record.title} · Guides · Soulgold Documentation`;
+      return;
+    }
+    document.title = `${document.getElementById("modalTitle").textContent} · ${tabLabels[state.activeTab]} · Soulgold Documentation`;
+  } catch (error) {
+    if (detail.kind === "guide") setPanelError("guides", error);
+    else {
+      document.getElementById("modalTitle").textContent = "Could not load details";
+      document.getElementById("modalBody").innerHTML = `<p>Try again after reloading this page.</p>`;
+    }
+  }
+}
+
+function handleGuideSummaryClick(event) {
+  const summary = event.target.closest(".guide-card > summary");
+  if (!summary) return;
+  event.preventDefault();
+  const guide = summary.closest(".guide-card");
+  const slug = guide.dataset.guideSlug;
+  if (state.detail?.kind === "guide" && state.detail.slug === slug) requestCloseDetail();
+  else navigateDetail("guide", slug);
+}
+
+function syncGuideDetail() {
+  document.querySelectorAll(".guide-card").forEach((guide) => {
+    guide.open = state.detail?.kind === "guide" && guide.dataset.guideSlug === state.detail.slug;
+  });
+  const selected = state.detail?.kind === "guide"
+    ? document.querySelector(`.guide-card[data-guide-slug="${CSS.escape(state.detail.slug)}"]`)
+    : null;
+  if (selected) requestAnimationFrame(() => selected.scrollIntoView({ block: "start" }));
 }
 
 function guideUrl(value, guide, options = {}) {
   const url = String(value || "").trim().replace(/^<|>$/g, "");
   if (!url) return "#";
-  if (url.startsWith("#") || url.startsWith("/")) return url;
+  if (url.startsWith("#")) return url;
+  if (url.startsWith("/")) return new URL(url.replace(/^\/+/, ""), siteRootUrl).href;
   if (/^https?:\/\//i.test(url)) return url;
   if (options.allowMail && /^mailto:/i.test(url)) return url;
   if (/^[a-z][a-z0-9+.-]*:/i.test(url)) return "#";
 
   try {
-    return new URL(url, new URL(guide.source || "guides/", window.location.href)).href;
+    const sourceUrl = new URL(guide.source || "guides/", siteRootUrl);
+    const resolved = new URL(url, sourceUrl);
+    if (resolved.pathname.toLowerCase().endsWith(".md")) {
+      const source = decodeURIComponent(resolved.pathname.slice(siteRootUrl.pathname.length));
+      const targetGuide = state.data.guides.find((entry) => entry.source === source);
+      if (targetGuide) return `${routeUrl("guides", { kind: "guide", slug: targetGuide.slug }).href}${resolved.hash}`;
+    }
+    return resolved.href;
   } catch (_error) {
     return "#";
   }
@@ -1333,12 +1783,16 @@ function renderGuides() {
   );
 
   if (!guides.length) {
-    container.innerHTML = `<div class="guide-empty"><h3>No guides found</h3><p class="muted">Try another search.</p></div>`;
+    const hasPublishedGuides = Boolean(state.data.guides?.length);
+    container.innerHTML = hasPublishedGuides
+      ? `<div class="guide-empty"><h3>No guides found</h3><p class="muted">Try another search.</p></div>`
+      : `<div class="guide-empty"><h3>No guides published yet</h3><p class="muted">Player guides will appear here when they are added.</p></div>`;
+    setPanelStatus("guides", hasPublishedGuides ? "No guides match this search." : "No guides have been published yet.");
     return;
   }
 
   container.innerHTML = guides.map((guide) => `
-    <details class="guide-card" id="guide-${escapeHtml(guide.slug)}">
+    <details class="guide-card" id="guide-${escapeHtml(guide.slug)}" data-guide-slug="${escapeHtml(guide.slug)}">
       <summary>
         <span class="guide-category">${escapeHtml(guide.category)}</span>
         <span class="guide-summary-copy">
@@ -1350,6 +1804,8 @@ function renderGuides() {
       <article class="guide-content">${renderGuideMarkdown(guide.content, guide)}</article>
     </details>
   `).join("");
+  setPanelStatus("guides", `${guides.length} guides`);
+  syncGuideDetail();
 }
 
 function renderTrainers() {
@@ -1379,6 +1835,7 @@ function renderTrainers() {
     row.innerHTML = `<td colspan="2" class="muted">No trainers found.</td>`;
     tbody.appendChild(row);
   }
+  setPanelStatus("trainers", trainers.length ? `${trainers.length} trainers` : "No trainers match this search.");
 }
 
 function trainerPartyHtml(party) {
@@ -1442,6 +1899,7 @@ function trainerHeldItemIcon(mon) {
     <button
       class="trainer-held-item-button item-tooltip-target"
       type="button"
+      data-item="${escapeHtml(mon.itemConstant || "")}"
       data-item-name="${escapeHtml(itemName)}"
       data-item-description="${escapeHtml(itemDescription)}"
       aria-label="${escapeHtml(itemName)}"

@@ -26,5 +26,16 @@ directory:
 ![The entrance to the hidden cave](images/hidden-cave.png)
 ```
 
+Link to another published guide with its relative Markdown filename. The site
+turns it into that guide's shareable URL:
+
+```markdown
+[Read the legendary prerequisites](legendary-prerequisites.md)
+```
+
+Guide slugs, local links, and attached files are validated during the docs
+build. A missing picture, duplicate slug, or link to an unpublished Markdown
+file fails the build instead of publishing a broken guide.
+
 Files named `README.md` and files whose names begin with `_` are authoring aids
 and are not published. Copy `_template.md` when starting a guide.

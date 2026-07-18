@@ -357,6 +357,61 @@ main {
   gap: 18px;
 }
 
+.panel-status {
+  min-height: 1.4rem;
+  margin: -0.15rem 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.panel-status.loading::before {
+  display: inline-block;
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-right: 0.5rem;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  content: "";
+  vertical-align: -0.05rem;
+  animation: docs-spin 0.75s linear infinite;
+}
+
+.panel-status.error {
+  color: #ffb4a8;
+}
+
+.panel-status button {
+  margin-left: 0.45rem;
+  padding: 0.3rem 0.65rem;
+  border: 1px solid currentColor;
+  border-radius: 0.45rem;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+.detail-loading {
+  min-height: 10rem;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.dex-entry,
+.ability-row:not(.ability-head) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 76px;
+}
+
+@keyframes docs-spin {
+  to { transform: rotate(360deg); }
+}
+
 .panel-heading > div {
   display: flex;
   align-items: baseline;
