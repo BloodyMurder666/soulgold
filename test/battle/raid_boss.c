@@ -3,6 +3,7 @@
 #include "battle_util.h"
 #include "event_data.h"
 #include "item_use.h"
+#include "money.h"
 #include "palette.h"
 #include "pokemon.h"
 #include "sprite.h"
@@ -623,10 +624,14 @@ WILD_BATTLE_TEST("Raid boss: confirming Run forfeits and tears down boss configu
         EXPECT_BOSS_CLEANUP;
         PLAYER(SPECIES_WOBBUFFET) { Speed(100); Ability(ABILITY_RUN_AWAY); Item(ITEM_SMOKE_BALL); Moves(MOVE_CELEBRATE); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(1); Moves(MOVE_CELEBRATE); }
+        SetMoney(&gSaveBlock1Ptr->money, 0);
         FlagSet(B_FLAG_NO_RUNNING);
         ConfigureTestBoss(2, SPECIES_NONE, 100);
     } WHEN {
         TURN { RUN(player); }
+    } SCENE {
+        MESSAGE("You panicked and dropped ¥0…");
+        NOT MESSAGE("You gave ¥0 to the winner…");
     } THEN {
         EXPECT_EQ(gBattleOutcome, B_OUTCOME_FORFEITED);
         FlagClear(B_FLAG_NO_RUNNING);
@@ -762,9 +767,13 @@ WILD_BATTLE_TEST("Raid boss: losing tears down boss configuration before the nex
         EXPECT_BOSS_CLEANUP;
         PLAYER(SPECIES_WOBBUFFET) { HP(1); MaxHP(20); Speed(1); Moves(MOVE_CELEBRATE); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(100); Moves(MOVE_DRAGON_RAGE); }
+        SetMoney(&gSaveBlock1Ptr->money, 0);
         ConfigureTestBoss(2, SPECIES_NONE, 100);
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE); MOVE(opponent, MOVE_DRAGON_RAGE); }
+    } SCENE {
+        MESSAGE("You panicked and dropped ¥0…");
+        NOT MESSAGE("You gave ¥0 to the winner…");
     } THEN {
         EXPECT_EQ(gBattleOutcome, B_OUTCOME_LOST);
     }

@@ -9241,10 +9241,15 @@ BattleScript_QuestionForfeitBattle::
 BattleScript_ForfeitBattleGaveMoney::
 	getmoneyreward
 .if B_WHITEOUT_MONEY >= GEN_4
+	jumpifbattletype BATTLE_TYPE_BOSS, BattleScript_ForfeitBattleDroppedMoney
 	printstring STRINGID_PLAYERWHITEOUT2_TRAINER
+	goto BattleScript_ForfeitBattleLostMoneyMessage
+BattleScript_ForfeitBattleDroppedMoney:
+	printstring STRINGID_PLAYERWHITEOUT2_WILD
 .else
 	printstring STRINGID_PLAYERWHITEOUT3
 .endif
+BattleScript_ForfeitBattleLostMoneyMessage:
 	waitmessage B_WAIT_TIME_LONG
 	end2
 
