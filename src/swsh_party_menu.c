@@ -10756,6 +10756,11 @@ void CursorCb_MoveItemCallback(u8 taskId)
             StringExpandPlaceholders(gStringVar4, buffer);
         }
 
+        // WIN_MSG is one tile shorter than the overlapping held-item window.
+        // Hide the full info window so its bottom text row cannot remain visible.
+        if (sSelectedMonHeldItemInfoWindowId != WINDOW_NONE)
+            ClearWindowTilemap(sSelectedMonHeldItemInfoWindowId);
+
         // display the string
         DisplayPartyMenuMessage(gStringVar4, TRUE);
 
