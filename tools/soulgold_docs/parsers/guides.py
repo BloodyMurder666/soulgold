@@ -11,6 +11,7 @@ from ..paths import GUIDES_DIR, SRC_DIR
 
 
 FRONT_MATTER_BOUNDARY = "---"
+IMAGE_SIZES = {"small", "medium", "large"}
 
 
 def _front_matter(text: str) -> tuple[dict[str, str], str]:
@@ -69,6 +70,15 @@ def _local_markdown_targets(content: str) -> list[tuple[bool, str]]:
     return [(bool(match.group(1)), match.group(2) or match.group(3)) for match in pattern.finditer(content)]
 
 
+def _validate_image_sizes(path: Path, content: str) -> None:
+    pattern = re.compile(r"!\[[^]]*]\([^)]+\)\{([^{}]+)\}")
+    for match in pattern.finditer(content):
+        size = match.group(1).strip().lower()
+        if size not in IMAGE_SIZES:
+            choices = ", ".join(sorted(IMAGE_SIZES))
+            raise ValueError(f"Unknown guide image size '{size}' in {path}; use one of: {choices}")
+
+
 def _validate_local_targets(path: Path, content: str, guide_paths: set[Path]) -> None:
     guides_root = GUIDES_DIR.resolve()
     for is_image, raw_target in _local_markdown_targets(content):
@@ -114,6 +124,7 @@ def parse_guides() -> list[GuideRow]:
         if slug in slugs:
             raise ValueError(f"Duplicate guide slug '{slug}': {slugs[slug]} and {path}")
         slugs[slug] = path
+        _validate_image_sizes(path, content)
         _validate_local_targets(path, content, guide_paths)
 
         guides.append({

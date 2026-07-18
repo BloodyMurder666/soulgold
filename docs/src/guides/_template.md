@@ -14,7 +14,7 @@ order: 100
 1. Add the first step.
 2. Add the next step.
 
-![Describe the picture for readers using screen readers](images/example.png)
+![Describe the picture for readers using screen readers](images/example.png){medium}
 
 ## Frequently asked questions
 

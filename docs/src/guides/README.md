@@ -26,6 +26,19 @@ directory:
 ![The entrance to the hidden cave](images/hidden-cave.png)
 ```
 
+Append `{small}`, `{medium}`, or `{large}` to control an image's displayed
+width. Images remain responsive and will shrink further to fit narrow screens:
+
+```markdown
+![A compact dialogue screenshot](images/dialogue.png){small}
+![A regular gameplay screenshot](images/gameplay.png){medium}
+![A detailed map](images/map.png){large}
+```
+
+The maximum widths are 360, 640, and 1000 pixels respectively. Omitting the
+size uses the existing large image limit. Misspelled or unsupported sizes fail
+the documentation build with an explanatory error.
+
 Link to another published guide with its relative Markdown filename. The site
 turns it into that guide's shareable URL:
 

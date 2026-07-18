@@ -1664,8 +1664,8 @@ function guideInline(markdown, guide) {
   };
 
   let value = String(markdown || "");
-  value = value.replace(/!\[([^\]]*)\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g, (_match, alt, url) => stash(
-    `<img class="guide-image" src="${escapeHtml(guideUrl(url, guide))}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async">`
+  value = value.replace(/!\[([^\]]*)\]\(([^)\s]+)(?:\s+"[^"]*")?\)(?:\{(small|medium|large)\})?/gi, (_match, alt, url, size) => stash(
+    guideImageHtml(alt, url, guide, size)
   ));
   value = value.replace(/\[([^\]]+)\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g, (_match, label, url) => stash(
     `<a href="${escapeHtml(guideUrl(url, guide, { allowMail: true }))}">${escapeHtml(label)}</a>`
@@ -1676,6 +1676,14 @@ function guideInline(markdown, guide) {
     .replace(/~~([^~]+)~~/g, "<s>$1</s>")
     .replace(/\*([^*]+)\*/g, "<em>$1</em>");
   return value.replace(/\uE000(\d+)\uE001/g, (_match, index) => tokens[Number(index)] || "");
+}
+
+function guideImageHtml(alt, url, guide, size = "") {
+  const normalizedSize = ["small", "medium", "large"].includes(String(size).toLowerCase())
+    ? String(size).toLowerCase()
+    : "";
+  const sizeClass = normalizedSize ? ` guide-image-${normalizedSize}` : "";
+  return `<img class="guide-image${sizeClass}" src="${escapeHtml(guideUrl(url, guide))}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async">`;
 }
 
 function renderGuideMarkdown(markdown, guide) {
@@ -1742,11 +1750,11 @@ function renderGuideMarkdown(markdown, guide) {
       return;
     }
 
-    const image = trimmed.match(/^!\[([^\]]*)\]\(([^)\s]+)(?:\s+"[^"]*")?\)$/);
+    const image = trimmed.match(/^!\[([^\]]*)\]\(([^)\s]+)(?:\s+"[^"]*")?\)(?:\{(small|medium|large)\})?$/i);
     if (image) {
       flushParagraph();
       closeList();
-      output.push(`<figure><img class="guide-image" src="${escapeHtml(guideUrl(image[2], guide))}" alt="${escapeHtml(image[1])}" loading="lazy" decoding="async">${image[1] ? `<figcaption>${escapeHtml(image[1])}</figcaption>` : ""}</figure>`);
+      output.push(`<figure>${guideImageHtml(image[1], image[2], guide, image[3])}${image[1] ? `<figcaption>${escapeHtml(image[1])}</figcaption>` : ""}</figure>`);
       return;
     }
 

@@ -2937,6 +2937,18 @@ body[data-active-tab="pokedex"] .type-filter {
   box-shadow: var(--shadow);
 }
 
+.guide-image.guide-image-small {
+  max-width: min(100%, 360px);
+}
+
+.guide-image.guide-image-medium {
+  max-width: min(100%, 640px);
+}
+
+.guide-image.guide-image-large {
+  max-width: min(100%, 1000px);
+}
+
 .guide-content figcaption {
   color: var(--muted);
   font-size: 12px;
