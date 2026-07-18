@@ -1453,7 +1453,7 @@ bool32 CannotUseItemsInBattle(enum Item itemId, struct Pokemon *mon)
             cannotUse = TRUE;
         break;
     case EFFECT_ITEM_ESCAPE:
-        if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+        if (gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_BOSS))
             cannotUse = TRUE;
         break;
     case EFFECT_ITEM_THROW_BALL:

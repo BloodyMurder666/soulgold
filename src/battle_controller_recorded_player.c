@@ -34,6 +34,7 @@
 static void RecordedPlayerHandleDrawTrainerPic(enum BattlerId battler);
 static void RecordedPlayerHandleTrainerSlideBack(enum BattlerId battler);
 static void RecordedPlayerHandleChooseAction(enum BattlerId battler);
+static void RecordedPlayerHandleYesNoBox(enum BattlerId battler);
 static void RecordedPlayerHandleChooseMove(enum BattlerId battler);
 static void RecordedPlayerHandleChooseItem(enum BattlerId battler);
 static void RecordedPlayerHandleChoosePokemon(enum BattlerId battler);
@@ -63,7 +64,7 @@ static void (*const sRecordedPlayerBufferCommands[CONTROLLER_CMDS_COUNT])(enum B
     [CONTROLLER_PRINTSTRING]              = BtlController_HandlePrintString,
     [CONTROLLER_PRINTSTRINGPLAYERONLY]    = BtlController_Empty,
     [CONTROLLER_CHOOSEACTION]             = RecordedPlayerHandleChooseAction,
-    [CONTROLLER_YESNOBOX]                 = BtlController_Empty,
+    [CONTROLLER_YESNOBOX]                 = RecordedPlayerHandleYesNoBox,
     [CONTROLLER_CHOOSEMOVE]               = RecordedPlayerHandleChooseMove,
     [CONTROLLER_OPENBAG]                  = RecordedPlayerHandleChooseItem,
     [CONTROLLER_CHOOSEPOKEMON]            = RecordedPlayerHandleChoosePokemon,
@@ -105,6 +106,14 @@ void SetControllerToRecordedPlayer(enum BattlerId battler)
     gBattlerBattleController[battler] = BATTLE_CONTROLLER_RECORDED_PLAYER;
     gBattlerControllerEndFuncs[battler] = RecordedPlayerBufferExecCompleted;
     gBattlerControllerFuncs[battler] = RecordedPlayerBufferRunCommand;
+}
+
+// A recorded Run action has already captured the player's choice to leave the
+// battle, so preserve the affirmative answer when replaying its confirmation.
+static void RecordedPlayerHandleYesNoBox(enum BattlerId battler)
+{
+    BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_NOTHING_FAINTED, 0);
+    BtlController_Complete(battler);
 }
 
 static void RecordedPlayerBufferRunCommand(enum BattlerId battler)

@@ -7,23 +7,26 @@ mapscripts DarkraiInnFinalRoom_MapScripts {
 script DarkraiEncounter {
     lock
     faceplayer
-    playmoncry(SPECIES_DARKRAI, CRY_MODE_ENCOUNTER)
-    waitmoncry
-    setvar(VAR_0x8004, SPECIES_DARKRAI)
-    setvar(VAR_0x8005, 70)
-    special(BattleSetup_StartLegendaryEncounter)
-    waitstate
-    specialvar(VAR_RESULT, GetBattleOutcome)
+
+    bosslegendaryencounterwithmoves(
+        SPECIES_DARKRAI,
+        70,
+        LOCALID_DARKRAI,
+        FLAG_HIDE_DARKRAI,
+        4,
+        SPECIES_DARKRAI_MEGA,
+        110,
+        MOVE_DARK_PULSE,
+        MOVE_ICE_BEAM,
+        MOVE_DARK_VOID,
+        MOVE_DREAM_EATER)
+
     if (var(VAR_RESULT) == B_OUTCOME_CAUGHT) {
-        fadescreenswapbuffers(FADE_TO_BLACK)
-        setvar(VAR_0x8006, LOCALID_DARKRAI)
-        setvar(VAR_0x8007, FLAG_HIDE_DARKRAI)
-        special(BattleSetup_FinishLegendaryEncounter)
-        fadescreenswapbuffers(FADE_FROM_BLACK)
         if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 4) {
             setvar(VAR_POSTGAME_RIVAL_LEGENDARYQ, 5)
         }
     }
+
     release
     end
 }
@@ -33,3 +36,4 @@ script WarpPlayerOutDarkraiRoom {
     waitstate
     end
 }
+

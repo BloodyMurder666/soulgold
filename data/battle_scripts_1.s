@@ -3421,6 +3421,7 @@ BattleScript_EffectFutureSight::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectTeleport::
+	jumpifbattletype BATTLE_TYPE_BOSS, BattleScript_FailedFromAtkCanceler
 	jumpifgenconfiglowerthan CONFIG_B_TELEPORT_BEHAVIOR, GEN_8, BattleScript_EffectTeleportGen7
 	jumpifbattletype BATTLE_TYPE_TRAINER, BattleScript_EffectBatonPass
 	jumpifside BS_ATTACKER, B_SIDE_PLAYER, BattleScript_EffectBatonPass
@@ -4029,7 +4030,7 @@ BattleScript_HandleFaintedMon::
 	setbyte sSHIFT_SWITCHED, 0
 	checkteamslost BattleScript_HandleFaintedMonMultiple
 	jumpifbyte CMP_NOT_EQUAL, gBattleOutcome, 0, BattleScript_FaintedMonEnd
-	jumpifbattletype BATTLE_TYPE_TRAINER | BATTLE_TYPE_DOUBLE, BattleScript_FaintedMonTryChoose
+	jumpifbattletype BATTLE_TYPE_TRAINER | BATTLE_TYPE_DOUBLE | BATTLE_TYPE_BOSS, BattleScript_FaintedMonTryChoose
 	jumpifword CMP_NO_COMMON_BITS, gHitMarker, HITMARKER_PLAYER_FAINTED, BattleScript_FaintedMonTryChoose
 @ Yes/No for sending out a new Pokémon if one is defeated in a wild battle
 	printstring STRINGID_USENEXTPKMN
@@ -6215,6 +6216,7 @@ BattleScript_EmergencyExit::
 	playanimation BS_SCRIPTING, B_ANIM_SLIDE_OFFSCREEN
 	waitanimation
 	jumpifbattletype BATTLE_TYPE_TRAINER, BattleScript_EmergencyExitTrainer
+	jumpifbattletype BATTLE_TYPE_BOSS, BattleScript_EmergencyExitTrainer
 	setteleportoutcome BS_SCRIPTING
 	finishaction
 	return

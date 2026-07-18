@@ -734,13 +734,17 @@ bool32 TryRunFromBattle(enum BattlerId battler)
     u8 pyramidMultiplier;
     u8 speedVar;
 
-    // If this flag is set, running will never be successful under any circumstances.
-    if (FlagGet(B_FLAG_NO_RUNNING))
+    // If this flag is set, running will never be successful under any other circumstances.
+    if (!(gBattleTypeFlags & BATTLE_TYPE_BOSS) && FlagGet(B_FLAG_NO_RUNNING))
         return effect;
 
     gPotentialItemEffectBattler = battler;
 
-    if (BattlerHasHeldItemEffect(battler, HOLD_EFFECT_CAN_ALWAYS_RUN, TRUE))
+    // Boss battles use Run as an explicit forfeit. Once confirmed, it must not
+    // be affected by held items, types, abilities, speed, or trapping effects.
+    if (gBattleTypeFlags & BATTLE_TYPE_BOSS)
+        effect++;
+    else if (BattlerHasHeldItemEffect(battler, HOLD_EFFECT_CAN_ALWAYS_RUN, TRUE))
     {
         gLastUsedItem = GetBattlerHeldItemWithEffect(battler, HOLD_EFFECT_CAN_ALWAYS_RUN, TRUE);
         gProtectStructs[battler].fleeType = FLEE_ITEM;
@@ -12672,7 +12676,7 @@ bool32 EmergencyExitCanBeTriggered(enum BattlerId battler)
 
     if (IsBattlerAlive(battler)
      && HadMoreThanHalfHpNowDoesnt(battler)
-     && (CanBattlerSwitch(battler) || !(gBattleTypeFlags & BATTLE_TYPE_TRAINER))
+     && (CanBattlerSwitch(battler) || !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_BOSS)))
      && !(gBattleTypeFlags & BATTLE_TYPE_ARENA)
      && gBattleMons[battler].volatiles.semiInvulnerable != STATE_SKY_DROP)
      {

@@ -617,17 +617,141 @@ SINGLE_BATTLE_TEST("Raid boss: barrier recreation ignores stale sprite IDs and c
     }
 }
 
-WILD_BATTLE_TEST("Raid boss: running tears down boss configuration before the next battle")
+WILD_BATTLE_TEST("Raid boss: confirming Run forfeits and tears down boss configuration")
 {
     GIVEN {
         EXPECT_BOSS_CLEANUP;
-        PLAYER(SPECIES_WOBBUFFET) { Speed(100); Moves(MOVE_CELEBRATE); }
+        PLAYER(SPECIES_WOBBUFFET) { Speed(100); Ability(ABILITY_RUN_AWAY); Item(ITEM_SMOKE_BALL); Moves(MOVE_CELEBRATE); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(1); Moves(MOVE_CELEBRATE); }
+        FlagSet(B_FLAG_NO_RUNNING);
         ConfigureTestBoss(2, SPECIES_NONE, 100);
     } WHEN {
         TURN { RUN(player); }
     } THEN {
-        EXPECT_EQ(gBattleOutcome, B_OUTCOME_RAN);
+        EXPECT_EQ(gBattleOutcome, B_OUTCOME_FORFEITED);
+        FlagClear(B_FLAG_NO_RUNNING);
+    }
+}
+
+WILD_BATTLE_TEST("Raid boss: escape items are unavailable")
+{
+    u32 item;
+
+    PARAMETRIZE { item = ITEM_POKE_DOLL; }
+    PARAMETRIZE { item = ITEM_FLUFFY_TAIL; }
+    PARAMETRIZE { item = ITEM_POKE_TOY; }
+
+    GIVEN {
+        ASSUME(GetItemBattleUsage(item) == EFFECT_ITEM_ESCAPE);
+        PLAYER(SPECIES_WOBBUFFET) { Moves(MOVE_CELEBRATE); }
+        OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_CELEBRATE); }
+        ConfigureTestBoss(2, SPECIES_NONE, 100);
+    } WHEN {
+        TURN { MOVE(player, MOVE_CELEBRATE); MOVE(opponent, MOVE_CELEBRATE); }
+    } THEN {
+        EXPECT(CannotUseItemsInBattle(item, &gPlayerParty[0]));
+    }
+}
+
+WILD_BATTLE_TEST("Raid boss: Teleport cannot escape or switch the player")
+{
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_TELEPORT) == EFFECT_TELEPORT);
+        WITH_CONFIG(B_TELEPORT_BEHAVIOR, GEN_8);
+        PLAYER(SPECIES_WOBBUFFET) { Speed(100); Moves(MOVE_TELEPORT); }
+        PLAYER(SPECIES_WYNAUT) { Speed(50); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(1); Moves(MOVE_CELEBRATE); }
+        ConfigureTestBoss(2, SPECIES_NONE, 100);
+    } WHEN {
+        TURN { MOVE(player, MOVE_TELEPORT); MOVE(opponent, MOVE_CELEBRATE); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Teleport!");
+        MESSAGE("But it failed!");
+    } THEN {
+        EXPECT_EQ(gBattlerPartyIndexes[B_POSITION_PLAYER_LEFT], 0);
+    }
+}
+
+WILD_BATTLE_TEST("Raid boss: forced switching replaces the player without ending the battle")
+{
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_ROAR) == EFFECT_ROAR);
+        PLAYER(SPECIES_WOBBUFFET) { Speed(1); Moves(MOVE_CELEBRATE); }
+        PLAYER(SPECIES_WYNAUT) { Speed(50); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(100); Moves(MOVE_ROAR); }
+        ConfigureTestBoss(2, SPECIES_NONE, 100);
+    } WHEN {
+        TURN { MOVE(player, MOVE_CELEBRATE); MOVE(opponent, MOVE_ROAR); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROAR, opponent);
+        MESSAGE("Wynaut was dragged out!");
+    } THEN {
+        EXPECT_EQ(gBattlerPartyIndexes[B_POSITION_PLAYER_LEFT], 1);
+    }
+}
+
+WILD_BATTLE_TEST("Raid boss: forced switching cannot remove the boss")
+{
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_ROAR) == EFFECT_ROAR);
+        PLAYER(SPECIES_WOBBUFFET) { Speed(100); Moves(MOVE_ROAR); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(1); Moves(MOVE_CELEBRATE); }
+        ConfigureTestBoss(2, SPECIES_NONE, 100);
+    } WHEN {
+        TURN { MOVE(player, MOVE_ROAR); MOVE(opponent, MOVE_CELEBRATE); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Roar!");
+        MESSAGE("But it failed!");
+    }
+}
+
+WILD_BATTLE_TEST("Raid boss: Emergency Exit switches the player when a reserve is available")
+{
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_SUPER_FANG) == EFFECT_FIXED_PERCENT_DAMAGE);
+        PLAYER(SPECIES_GOLISOPOD) { Ability(ABILITY_EMERGENCY_EXIT); MaxHP(100); HP(100); Speed(1); Moves(MOVE_CELEBRATE); }
+        PLAYER(SPECIES_WYNAUT) { Speed(50); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(100); Moves(MOVE_SUPER_FANG); }
+        ConfigureTestBoss(2, SPECIES_NONE, 100);
+    } WHEN {
+        TURN { MOVE(player, MOVE_CELEBRATE); MOVE(opponent, MOVE_SUPER_FANG); SEND_OUT(player, 1); }
+    } SCENE {
+        ABILITY_POPUP(player, ABILITY_EMERGENCY_EXIT);
+    } THEN {
+        EXPECT_EQ(gBattlerPartyIndexes[B_POSITION_PLAYER_LEFT], 1);
+    }
+}
+
+WILD_BATTLE_TEST("Raid boss: Emergency Exit cannot end the battle without a reserve")
+{
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_SUPER_FANG) == EFFECT_FIXED_PERCENT_DAMAGE);
+        PLAYER(SPECIES_GOLISOPOD) { Ability(ABILITY_EMERGENCY_EXIT); MaxHP(100); HP(100); Speed(1); Moves(MOVE_CELEBRATE); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(100); Moves(MOVE_SUPER_FANG); }
+        ConfigureTestBoss(2, SPECIES_NONE, 100);
+    } WHEN {
+        TURN { MOVE(player, MOVE_CELEBRATE); MOVE(opponent, MOVE_SUPER_FANG); }
+    } SCENE {
+        NOT ABILITY_POPUP(player, ABILITY_EMERGENCY_EXIT);
+    }
+}
+
+WILD_BATTLE_TEST("Raid boss: a fainted player Pokémon must be replaced instead of offering escape")
+{
+    GIVEN {
+        ASSUME(GetMoveFixedHPDamage(MOVE_DRAGON_RAGE) == 40);
+        PLAYER(SPECIES_WOBBUFFET) { HP(20); MaxHP(20); Speed(100); Moves(MOVE_CELEBRATE); }
+        PLAYER(SPECIES_WYNAUT) { Speed(50); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(1); Moves(MOVE_DRAGON_RAGE); }
+        ConfigureTestBoss(2, SPECIES_NONE, 100);
+    } WHEN {
+        TURN { MOVE(player, MOVE_CELEBRATE); MOVE(opponent, MOVE_DRAGON_RAGE); SEND_OUT(player, 1); }
+    } SCENE {
+        MESSAGE("Wobbuffet fainted!");
+        NOT MESSAGE("Use next Pokémon?");
+        SEND_IN_MESSAGE("Wynaut");
+    } THEN {
+        EXPECT_EQ(gBattlerPartyIndexes[B_POSITION_PLAYER_LEFT], 1);
     }
 }
 

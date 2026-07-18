@@ -4547,7 +4547,7 @@ static void HandleTurnActionSelectionState(void)
                     gBattleStruct->stateIdAfterSelScript[battler] = STATE_BEFORE_ACTION_CHOSEN;
                     return;
                 }
-                else if (CanPlayerForfeitNormalTrainerBattle() && gBattleResources->bufferB[battler][1] == B_ACTION_RUN)
+                else if (CanPlayerForfeitBattle() && gBattleResources->bufferB[battler][1] == B_ACTION_RUN)
                 {
                     gSelectionBattleScripts[battler] = BattleScript_QuestionForfeitBattle;
                     gBattleCommunication[battler] = STATE_SELECTION_SCRIPT_MAY_RUN;
@@ -5858,7 +5858,7 @@ static void HandleEndTurn_RanFromBattle(void)
         gBattlescriptCurrInstr = BattleScript_PrintPlayerForfeited;
         gBattleOutcome = B_OUTCOME_FORFEITED;
     }
-    else if (CanPlayerForfeitNormalTrainerBattle())
+    else if (CanPlayerForfeitBattle())
     {
         gBattlescriptCurrInstr = BattleScript_ForfeitBattleGaveMoney;
         gBattleOutcome = B_OUTCOME_FORFEITED;
@@ -6562,6 +6562,14 @@ bool32 CanPlayerForfeitNormalTrainerBattle(void)
         return FALSE;
 
     return (gBattleTypeFlags & BATTLE_TYPE_TRAINER);
+}
+
+bool32 CanPlayerForfeitBattle(void)
+{
+    if (gBattleTypeFlags & BATTLE_TYPE_BOSS)
+        return TRUE;
+
+    return CanPlayerForfeitNormalTrainerBattle();
 }
 
 bool32 DidPlayerForfeitNormalTrainerBattle(void)

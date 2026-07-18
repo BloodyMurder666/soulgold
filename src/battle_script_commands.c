@@ -8741,7 +8741,7 @@ static void Cmd_forcerandomswitch(void)
     // Red card checks against wild pokemon. If we have reached here, the player has a mon to switch into
     // Red card swaps attacker with target to get the animation correct, so here we check attacker which is really the target. Thanks GF...
     if (gBattleScripting.switchCase == B_SWITCH_RED_CARD
-      && !(gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+      && !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_BOSS))
       && !IsOnPlayerSide(gBattlerAttacker))   // Check opponent's red card activating
     {
         if (!WILD_DOUBLE_BATTLE)
@@ -8767,10 +8767,10 @@ static void Cmd_forcerandomswitch(void)
     }
 
     // Swapping pokemon happens in:
-    // trainer battles
+    // trainer and boss battles
     // wild double battles when an opposing pokemon uses it against one of the two alive player mons
     // wild double battle when a player pokemon uses it against its partner
-    if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+    if ((gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_BOSS))
         || (WILD_DOUBLE_BATTLE
             && !IsOnPlayerSide(gBattlerAttacker)
             && IsOnPlayerSide(gBattlerTarget)

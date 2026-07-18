@@ -35,89 +35,91 @@ LakeOfRage_House1_EventScript_HiddenPowerGuyAfter::
 # 18 "data/maps/LakeOfRage_House1/scripts.pory"
 	goto_if_eq VAR_POSTGAME_RIVAL_LEGENDARYQ, 1, LakeOfRageMystic_CresseliaQuest
 # 19 "data/maps/LakeOfRage_House1/scripts.pory"
-	msgbox HiddenPowerGuy_Text_Meditating, MSGBOX_DEFAULT
+	goto_if_eq VAR_POSTGAME_RIVAL_LEGENDARYQ, 2, LakeOfRageMystic_CresseliaQuest
 # 20 "data/maps/LakeOfRage_House1/scripts.pory"
-	closemessage
+	msgbox HiddenPowerGuy_Text_Meditating, MSGBOX_DEFAULT
 # 21 "data/maps/LakeOfRage_House1/scripts.pory"
-	release
+	closemessage
 # 22 "data/maps/LakeOfRage_House1/scripts.pory"
-	end
+	release
 # 23 "data/maps/LakeOfRage_House1/scripts.pory"
-
+	end
 # 24 "data/maps/LakeOfRage_House1/scripts.pory"
-HiddenPowerGuy_Text_Intro:
+
 # 25 "data/maps/LakeOfRage_House1/scripts.pory"
-    .string "…You have strayed far…\p"
+HiddenPowerGuy_Text_Intro:
 # 26 "data/maps/LakeOfRage_House1/scripts.pory"
-    .string "Here I have meditated. Inside me,\n"
+    .string "…You have strayed far…\p"
 # 27 "data/maps/LakeOfRage_House1/scripts.pory"
-    .string "a new power has been awakened.\p"
+    .string "Here I have meditated. Inside me,\n"
 # 28 "data/maps/LakeOfRage_House1/scripts.pory"
-    .string "Let me share my power with your\n"
+    .string "a new power has been awakened.\p"
 # 29 "data/maps/LakeOfRage_House1/scripts.pory"
-    .string "Pokémon. Take this, child.$"
+    .string "Let me share my power with your\n"
 # 30 "data/maps/LakeOfRage_House1/scripts.pory"
-
+    .string "Pokémon. Take this, child.$"
 # 31 "data/maps/LakeOfRage_House1/scripts.pory"
-HiddenPowerGuy_Text_Explanation:
-# 32 "data/maps/LakeOfRage_House1/scripts.pory"
-    .string "Do you see it? It is Hidden Power!\p"
-# 33 "data/maps/LakeOfRage_House1/scripts.pory"
-    .string "It draws out the power of Pokémon\n"
-# 34 "data/maps/LakeOfRage_House1/scripts.pory"
-    .string "for attacking.\p"
-# 35 "data/maps/LakeOfRage_House1/scripts.pory"
-    .string "Remember this: its type and power\n"
-# 36 "data/maps/LakeOfRage_House1/scripts.pory"
-    .string "depend on the Pokémon using it.$"
-# 37 "data/maps/LakeOfRage_House1/scripts.pory"
 
+# 32 "data/maps/LakeOfRage_House1/scripts.pory"
+HiddenPowerGuy_Text_Explanation:
+# 33 "data/maps/LakeOfRage_House1/scripts.pory"
+    .string "Do you see it? It is Hidden Power!\p"
+# 34 "data/maps/LakeOfRage_House1/scripts.pory"
+    .string "It draws out the power of Pokémon\n"
+# 35 "data/maps/LakeOfRage_House1/scripts.pory"
+    .string "for attacking.\p"
+# 36 "data/maps/LakeOfRage_House1/scripts.pory"
+    .string "Remember this: its type and power\n"
+# 37 "data/maps/LakeOfRage_House1/scripts.pory"
+    .string "depend on the Pokémon using it.$"
 # 38 "data/maps/LakeOfRage_House1/scripts.pory"
-HiddenPowerGuy_Text_Meditating:
+
 # 39 "data/maps/LakeOfRage_House1/scripts.pory"
+HiddenPowerGuy_Text_Meditating:
+# 40 "data/maps/LakeOfRage_House1/scripts.pory"
     .string "I am meditating…$"
 
 LakeOfRageMystic_CresseliaQuest::
-# 43 "data/maps/LakeOfRage_House1/scripts.pory"
+# 44 "data/maps/LakeOfRage_House1/scripts.pory"
 	compare VAR_POSTGAME_RIVAL_LEGENDARYQ, 2
 	goto_if_eq LakeOfRageMystic_CresseliaQuest_2
-# 49 "data/maps/LakeOfRage_House1/scripts.pory"
+# 50 "data/maps/LakeOfRage_House1/scripts.pory"
 	compare VAR_POSTGAME_RIVAL_LEGENDARYQ, 3
 	goto_if_ge LakeOfRageMystic_CresseliaQuest_5
-# 54 "data/maps/LakeOfRage_House1/scripts.pory"
+# 55 "data/maps/LakeOfRage_House1/scripts.pory"
 	msgbox LakeOfRageMystic_CresseliaQuest_Text_2
-# 71 "data/maps/LakeOfRage_House1/scripts.pory"
-	setvar VAR_POSTGAME_RIVAL_LEGENDARYQ, 2
 # 72 "data/maps/LakeOfRage_House1/scripts.pory"
+	setvar VAR_POSTGAME_RIVAL_LEGENDARYQ, 2
+# 73 "data/maps/LakeOfRage_House1/scripts.pory"
 	release
 	end
 
 LakeOfRageMystic_CresseliaQuest_2:
-# 44 "data/maps/LakeOfRage_House1/scripts.pory"
+# 45 "data/maps/LakeOfRage_House1/scripts.pory"
 	msgbox LakeOfRageMystic_CresseliaQuest_Text_0
-# 46 "data/maps/LakeOfRage_House1/scripts.pory"
+# 47 "data/maps/LakeOfRage_House1/scripts.pory"
 	release
 	end
 
 LakeOfRageMystic_CresseliaQuest_5:
-# 50 "data/maps/LakeOfRage_House1/scripts.pory"
-	msgbox LakeOfRageMystic_CresseliaQuest_Text_1
 # 51 "data/maps/LakeOfRage_House1/scripts.pory"
+	msgbox LakeOfRageMystic_CresseliaQuest_Text_1
+# 52 "data/maps/LakeOfRage_House1/scripts.pory"
 	release
 	end
 
 
 LakeOfRageMystic_CresseliaQuest_Text_0:
-# 44 "data/maps/LakeOfRage_House1/scripts.pory"
+# 45 "data/maps/LakeOfRage_House1/scripts.pory"
 	.string "Perhaps there is a hidden trail among\n"
 	.string "the trees if you look carefully enough.$"
 
 LakeOfRageMystic_CresseliaQuest_Text_1:
-# 50 "data/maps/LakeOfRage_House1/scripts.pory"
+# 51 "data/maps/LakeOfRage_House1/scripts.pory"
 	.string "I am meditating...$"
 
 LakeOfRageMystic_CresseliaQuest_Text_2:
-# 54 "data/maps/LakeOfRage_House1/scripts.pory"
+# 55 "data/maps/LakeOfRage_House1/scripts.pory"
 	.string "Hmm? \n"
 	.string "You wish to know about Cresselia?\p"
 	.string "Fascinating. \p"
