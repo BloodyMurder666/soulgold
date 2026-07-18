@@ -496,7 +496,7 @@ MtMortarDepthsHeatran::
 # 290 "data/maps/MtMortar_Depths_1/scripts.pory"
 	faceplayer
 # 291 "data/maps/MtMortar_Depths_1/scripts.pory"
-	legendaryencounter SPECIES_HEATRAN, 70, 1, FLAG_HIDE_HEATRAN
+	bosslegendaryencounter SPECIES_HEATRAN, 70, 1, FLAG_HIDE_HEATRAN, 4, SPECIES_NONE, 110
 # 292 "data/maps/MtMortar_Depths_1/scripts.pory"
 	release
 	end

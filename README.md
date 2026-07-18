@@ -3,6 +3,7 @@
 - Explore expanded Johto with new areas and biomes
 - Play through the traditional Pokémon adventure in the main game and experience learning multiple abilities in the postgame.
 - Hidden Grottos, which contain rare items and Pokémon, resetting daily
+- Boss Pokemon, some legendary fights have multiple health bars and are more powerful, but you are guaranteed to catch them with any ball once defeated
 - Various battle tempo improvements, such as combining stat up/drop messages into one, and playing them while the stat animation happens.
 - Main game and postgame battle facilities with Pokémon from all generations! Factory accessible after Gym 3!
 - Achievement system with over 100 trophies to chase, including milestone rewards!

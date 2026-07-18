@@ -564,6 +564,9 @@ void BattleSetup_StartLegendaryBattle(void)
     case SPECIES_HEATRAN:
         CreateBattleStartTask(B_TRANSITION_BLUR, MUS_DP_VS_LEGEND);
         break;
+    case SPECIES_MEWTWO:
+        CreateBattleStartTask(B_TRANSITION_BLACKHOLE_PULSATE, MUS_RG_VS_MEWTWO);
+        break;
     case SPECIES_MOLTRES:
     case SPECIES_ZAPDOS:
     case SPECIES_ARTICUNO:

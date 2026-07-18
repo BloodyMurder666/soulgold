@@ -8,10 +8,8 @@ KitakamiMountainEnclave_Ogerpon::
 # 5 "data/maps/KitakamiMountainEnclave/scripts.pory"
 	faceplayer
 # 6 "data/maps/KitakamiMountainEnclave/scripts.pory"
-	settotemboost B_POSITION_OPPONENT_LEFT, 1, 1, 1, 1, 1, 0, 0
+	bosslegendaryencounter SPECIES_OGERPON, 55, LOCALID_KITAKAMIMOUNTAIN_OGERPON, FLAG_HIDE_OGERPON, 2, SPECIES_OGERPON_TEAL_TERA, 110
 # 7 "data/maps/KitakamiMountainEnclave/scripts.pory"
-	legendaryencounter SPECIES_OGERPON, 55, LOCALID_KITAKAMIMOUNTAIN_OGERPON, FLAG_HIDE_OGERPON
-# 8 "data/maps/KitakamiMountainEnclave/scripts.pory"
 	release
 	end
 

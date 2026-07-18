@@ -14,7 +14,7 @@ script MtSilver_Regigigas {
                         in reaction to your Pokémon!
                         
                         The statue attacked!")
-                legendaryencounter(SPECIES_REGIGIGAS, 70, LOCALID_MTSILVER_REGIGIGAS, FLAG_HIDE_REGIGIGAS)
+                bosslegendaryencounter(SPECIES_REGIGIGAS, 70, LOCALID_MTSILVER_REGIGIGAS, FLAG_HIDE_REGIGIGAS, 4, SPECIES_NONE, 110)
                 release
                 end
             } else {

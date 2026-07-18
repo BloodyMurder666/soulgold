@@ -3,7 +3,7 @@ mapscripts foggyforestDepths_MapScripts {}
 script UrsalunaBM {
     lock
     faceplayer
-    legendaryencounter(SPECIES_URSALUNA_BLOODMOON, 60, 1, FLAG_HIDE_BM_URSALUNA)
+    bosslegendaryencounter(SPECIES_URSALUNA_BLOODMOON, 60, 1, FLAG_HIDE_BM_URSALUNA, 2, SPECIES_NONE, 110)
     release
     end
 }

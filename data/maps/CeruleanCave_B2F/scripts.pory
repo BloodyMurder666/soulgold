@@ -25,6 +25,14 @@ CeruleanCave3_EventScript_MewtwoRan::
 
 `
 
+script NamelessDungeonMewtwo {
+        lock
+        faceplayer
+        bosslegendaryencounterwithmoves(SPECIES_MEWTWO, 80, LOCALID_CERULEANCAVE_MEWTWO, FLAG_HIDE_MEWTWO, 4, SPECIES_MEWTWO_MEGA_Y, 110, MOVE_PSYSTRIKE, MOVE_ICE_BEAM, MOVE_FIRE_BLAST, MOVE_TAUNT)
+        release
+        end
+}
+
 script NamelessDungeon_Leaf {
     lock
     if (!flag(FLAG_TEMP_3)) {

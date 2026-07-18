@@ -11,7 +11,7 @@ icePathDepthsChienPao::
 # 9 "data/maps/IcePath_Depths2/scripts.pory"
 	faceplayer
 # 10 "data/maps/IcePath_Depths2/scripts.pory"
-	legendaryencounter SPECIES_CHIEN_PAO, 50, 1, FLAG_HIDE_CHIENPAO
+	bosslegendaryencounter SPECIES_CHIEN_PAO, 70, 1, FLAG_HIDE_CHIENPAO, 3, SPECIES_NONE, 110
 # 11 "data/maps/IcePath_Depths2/scripts.pory"
 	release
 	end

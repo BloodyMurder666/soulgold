@@ -7,7 +7,7 @@ IcePath_Depths2_MapScripts::
 script icePathDepthsChienPao {
     lock
     faceplayer
-    legendaryencounter(SPECIES_CHIEN_PAO, 50, 1, FLAG_HIDE_CHIENPAO)
+    bosslegendaryencounter(SPECIES_CHIEN_PAO, 70, 1, FLAG_HIDE_CHIENPAO, 3, SPECIES_NONE, 110)
     release
     end
 }

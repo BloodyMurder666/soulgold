@@ -8,7 +8,7 @@ UrsalunaBM::
 # 5 "data/maps/foggyforestDepths/scripts.pory"
 	faceplayer
 # 6 "data/maps/foggyforestDepths/scripts.pory"
-	legendaryencounter SPECIES_URSALUNA_BLOODMOON, 60, 1, FLAG_HIDE_BM_URSALUNA
+	bosslegendaryencounter SPECIES_URSALUNA_BLOODMOON, 60, 1, FLAG_HIDE_BM_URSALUNA, 2, SPECIES_NONE, 110
 # 7 "data/maps/foggyforestDepths/scripts.pory"
 	release
 	end

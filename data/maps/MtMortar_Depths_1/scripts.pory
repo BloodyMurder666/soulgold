@@ -288,7 +288,7 @@ script heatranPuzzleHint {
 script MtMortarDepthsHeatran {
     lock
     faceplayer
-    legendaryencounter(SPECIES_HEATRAN, 70, 1, FLAG_HIDE_HEATRAN)
+    bosslegendaryencounter(SPECIES_HEATRAN, 70, 1, FLAG_HIDE_HEATRAN, 4, SPECIES_NONE, 110)
     release
     end
 }

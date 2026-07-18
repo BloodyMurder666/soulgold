@@ -41,7 +41,7 @@ MtSilver_Regigigas_8:
 # 11 "data/maps/MtSilver_1F_RegigigasRoom/scripts.pory"
 	msgbox MtSilver_Regigigas_Text_0
 # 17 "data/maps/MtSilver_1F_RegigigasRoom/scripts.pory"
-	legendaryencounter SPECIES_REGIGIGAS, 70, LOCALID_MTSILVER_REGIGIGAS, FLAG_HIDE_REGIGIGAS
+	bosslegendaryencounter SPECIES_REGIGIGAS, 70, LOCALID_MTSILVER_REGIGIGAS, FLAG_HIDE_REGIGIGAS, 4, SPECIES_NONE, 110
 # 18 "data/maps/MtSilver_1F_RegigigasRoom/scripts.pory"
 	release
 	end
