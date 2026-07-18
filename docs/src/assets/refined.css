@@ -348,18 +348,9 @@ main {
   animation: panel-in 180ms ease-out both;
 }
 
-.panel-heading {
-  display: flex;
-  min-height: 46px;
-  padding: 0 3px 10px;
-  align-items: end;
-  justify-content: space-between;
-  gap: 18px;
-}
-
 .panel-status {
   min-height: 1.4rem;
-  margin: -0.15rem 0 0.75rem;
+  margin: 0 0 0.75rem;
   color: var(--muted);
   font-size: 0.82rem;
   font-weight: 700;
@@ -410,25 +401,6 @@ main {
 
 @keyframes docs-spin {
   to { transform: rotate(360deg); }
-}
-
-.panel-heading > div {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-}
-
-.panel-heading h2 {
-  font-size: 22px;
-  line-height: 1.1;
-}
-
-.eyebrow {
-  color: var(--gold);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: .12em;
-  text-transform: uppercase;
 }
 
 .data-panel,
@@ -2059,23 +2031,6 @@ body[data-active-tab="pokedex"] .type-filter {
   main {
     width: 100%;
     padding: 0 9px 52px;
-  }
-
-  .panel-heading {
-    min-height: 38px;
-    padding: 0 2px 8px;
-  }
-
-  .panel-heading > div {
-    display: block;
-  }
-
-  .panel-heading h2 {
-    font-size: 18px;
-  }
-
-  .panel-heading .eyebrow {
-    display: none;
   }
 
   .pokedex-shell {

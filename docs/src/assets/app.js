@@ -476,6 +476,12 @@ function closeDetailVisual() {
 function setPanelStatus(tab, message, options = {}) {
   const status = document.getElementById(`${tab}Status`);
   if (!status) return;
+  if (!message) {
+    status.hidden = true;
+    status.className = "panel-status";
+    status.textContent = "";
+    return;
+  }
   status.hidden = false;
   status.classList.toggle("loading", Boolean(options.loading));
   status.classList.toggle("error", Boolean(options.error));
@@ -636,7 +642,7 @@ function renderDex() {
   setPanelStatus(
     "pokedex",
     state.filteredSpecies.length
-      ? `${state.filteredSpecies.length} Pokémon`
+      ? ""
       : state.query || state.selectedTypes.size ? "No Pokémon match the current search and type filters." : "No Pokémon are available.",
   );
 }
@@ -760,7 +766,7 @@ function showDetailDialog(kind = "generic") {
   }
   const mobile = window.matchMedia("(max-width: 1100px)").matches;
   dialog.querySelectorAll(".detail-accordion").forEach((section) => {
-    section.open = !mobile || section.hasAttribute("data-mobile-open");
+    section.open = !mobile || kind === "pokemon" || section.hasAttribute("data-mobile-open");
   });
   requestAnimationFrame(() => {
     document.getElementById("modalBody").scrollTop = 0;
@@ -1231,7 +1237,7 @@ function renderEncounters() {
       </div>
     </details>
   `).join("");
-  setPanelStatus("encounters", rows.length ? `${rows.length} encounter areas` : "No encounter areas match this search.");
+  setPanelStatus("encounters", rows.length ? "" : "No encounter areas match this search.");
 }
 
 function encounterVariant(variant, showTime) {
@@ -1319,7 +1325,7 @@ function renderMovedex() {
     row.innerHTML = `<td colspan="9" class="muted">No moves found.</td>`;
     tbody.appendChild(row);
   }
-  setPanelStatus("moves", rows.length ? `${rows.length} moves` : "No moves match this search.");
+  setPanelStatus("moves", rows.length ? "" : "No moves match this search.");
 }
 
 function moveLearners(moveConstant) {
@@ -1393,7 +1399,7 @@ function renderTms() {
     row.innerHTML = `<td colspan="9" class="muted">No TMs or HMs match this search.</td>`;
     tbody.appendChild(row);
   }
-  setPanelStatus("machines", rows.length ? `${rows.length} machines` : "No TMs or HMs match this search.");
+  setPanelStatus("machines", rows.length ? "" : "No TMs or HMs match this search.");
 }
 
 function itemIconHtml(item, className = "item-icon") {
@@ -1426,7 +1432,7 @@ function renderItems() {
     row.innerHTML = `<td colspan="3" class="muted">No items match this search.</td>`;
     tbody.appendChild(row);
   }
-  setPanelStatus("items", rows.length ? `${rows.length} items` : "No items match this search.");
+  setPanelStatus("items", rows.length ? "" : "No items match this search.");
 }
 
 function openItem(item) {
@@ -1503,7 +1509,7 @@ function renderAbilities() {
     bindRowActivation(row, () => openAbility(ability), `Open details for ${ability.name}`);
     container.appendChild(row);
   });
-  setPanelStatus("abilities", abilities.length ? `${abilities.length} abilities` : "No abilities match this search.");
+  setPanelStatus("abilities", abilities.length ? "" : "No abilities match this search.");
 }
 
 function usageList(list) {
@@ -1804,7 +1810,7 @@ function renderGuides() {
       <article class="guide-content">${renderGuideMarkdown(guide.content, guide)}</article>
     </details>
   `).join("");
-  setPanelStatus("guides", `${guides.length} guides`);
+  setPanelStatus("guides", "");
   syncGuideDetail();
 }
 
@@ -1835,7 +1841,7 @@ function renderTrainers() {
     row.innerHTML = `<td colspan="2" class="muted">No trainers found.</td>`;
     tbody.appendChild(row);
   }
-  setPanelStatus("trainers", trainers.length ? `${trainers.length} trainers` : "No trainers match this search.");
+  setPanelStatus("trainers", trainers.length ? "" : "No trainers match this search.");
 }
 
 function trainerPartyHtml(party) {
