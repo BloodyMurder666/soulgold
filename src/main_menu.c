@@ -108,31 +108,23 @@
  * - Then advance to Task_HandleMainMenuBPressed.
  *
  * Task_NewGameBirchSpeech_Init
- *  - Load the sprites for the intro speech, start playing music
+ *  - Load the Oak portrait and intro background; start playing music
  * Task_NewGameBirchSpeech_WaitToShowBirch
  *  - Spawn Task_NewGameBirchSpeech_FadeInTarget1OutTarget2
- *  - Spawn Task_NewGameBirchSpeech_FadePlatformOut
- *  - Both of these tasks destroy themselves when done.
+ *  - The fade task destroys itself when done.
  * Task_NewGameBirchSpeech_WaitForSpriteFadeInWelcome
  * Task_NewGameBirchSpeech_ThisIsAPokemon
  *  - When the text is done printing, spawns Task_NewGameBirchSpeechSub_InitPokeball
  * Task_NewGameBirchSpeech_MainSpeech
  * Task_NewGameBirchSpeech_AndYouAre
- * Task_NewGameBirchSpeech_StartBirchLotadPlatformFade
- * Task_NewGameBirchSpeech_StartBirchLotadPlatformFade
- * Task_NewGameBirchSpeech_SlidePlatformAway
+ * Task_NewGameBirchSpeech_StartOakAndPokemonFadeOut
+ * Task_NewGameBirchSpeech_WaitForOakFadeOut
  * Task_NewGameBirchSpeech_StartPlayerFadeIn
  * Task_NewGameBirchSpeech_WaitForPlayerFadeIn
- * Task_NewGameBirchSpeech_BoyOrGirl
  * Task_NewGameBirchSpeech_WaitToShowGenderMenu
  * Task_NewGameBirchSpeech_ChooseGender
- *  - Animates by advancing to Task_NewGameBirchSpeech_SlideOutOldGenderSprite
- *    whenever the player's selection changes.
+ *  - Shows both player sprites and dims the unselected gender.
  *  - Advances to Task_NewGameBirchSpeech_WhatsYourName when done.
- *
- * Task_NewGameBirchSpeech_SlideOutOldGenderSprite
- * Task_NewGameBirchSpeech_SlideInNewGenderSprite
- *  - Returns back to Task_NewGameBirchSpeech_ChooseGender.
  *
  * Task_NewGameBirchSpeech_WhatsYourName
  * Task_NewGameBirchSpeech_WaitForWhatsYourNameToPrint
@@ -145,12 +137,13 @@
  * Task_NewGameBirchSpeech_SoItsPlayerName
  * Task_NewGameBirchSpeech_CreateNameYesNo
  * Task_NewGameBirchSpeech_ProcessNameYesNoMenu
- *  - If confirmed, advance to Task_NewGameBirchSpeech_SlidePlatformAway2.
- *  - Otherwise, return to Task_NewGameBirchSpeech_BoyOrGirl.
+ *  - If confirmed, advance to Task_NewGameBirchSpeech_WaitForPlayerFadeOut.
+ *  - Otherwise, fade back to the gender choice.
  *
- * Task_NewGameBirchSpeech_SlidePlatformAway2
+ * Task_NewGameBirchSpeech_WaitForPlayerFadeOut
  * Task_NewGameBirchSpeech_ReshowBirchLotad
- * Task_NewGameBirchSpeech_WaitForSpriteFadeInAndTextPrinter
+ * Task_NewGameBirchSpeech_WaitForOakAndPokemonFadeIn
+ * Task_NewGameBirchSpeech_WaitForFinalSpeech
  * Task_NewGameBirchSpeech_AreYouReady
  * Task_NewGameBirchSpeech_ShrinkPlayer
  * Task_NewGameBirchSpeech_WaitForPlayerShrink
@@ -172,6 +165,7 @@
 
 static EWRAM_DATA bool8 sStartedPokeBallTask = 0;
 static EWRAM_DATA u16 sCurrItemAndOptionMenuCheck = 0;
+static EWRAM_DATA u8 sOakSpeechPicTilemap[BG_SCREEN_SIZE / 2] = {0};
 
 static u8 sBirchSpeechMainTaskId;
 
@@ -193,44 +187,48 @@ static void Task_HandleMainMenuBPressed(u8);
 static void Task_NewGameBirchSpeech_Init(u8);
 static void Task_DisplayMainMenuInvalidActionError(u8);
 static void AddBirchSpeechObjects(u8);
+static void LoadOakSpeechSceneGfx(void);
+static void Task_NewGameBirchSpeech_BeginFadeIn(u8);
 static void Task_NewGameBirchSpeech_WaitToShowBirch(u8);
 static void NewGameBirchSpeech_StartFadeInTarget1OutTarget2(u8, u8);
-static void NewGameBirchSpeech_StartFadePlatformOut(u8, u8);
 static void Task_NewGameBirchSpeech_WaitForSpriteFadeInWelcome(u8);
 static void NewGameBirchSpeech_ClearWindow(u8);
 static void Task_NewGameBirchSpeech_ThisIsAPokemon(u8);
 static void Task_NewGameBirchSpeech_MainSpeech(u8);
-static void NewGameBirchSpeech_WaitForThisIsPokemonText(struct TextPrinterTemplate *, u16);
+static void NewGameBirchSpeech_WaitForWorldText(struct TextPrinterTemplate *, u16);
 static void Task_NewGameBirchSpeech_AndYouAre(u8);
 static void Task_NewGameBirchSpeechSub_WaitForLotad(u8);
-static void Task_NewGameBirchSpeech_StartBirchLotadPlatformFade(u8);
+static void Task_NewGameBirchSpeech_StartOakAndPokemonFadeOut(u8);
 static void NewGameBirchSpeech_StartFadeOutTarget1InTarget2(u8, u8);
-static void NewGameBirchSpeech_StartFadePlatformIn(u8, u8);
-static void Task_NewGameBirchSpeech_SlidePlatformAway(u8);
+static void Task_NewGameBirchSpeech_WaitForOakFadeOut(u8);
 static void Task_NewGameBirchSpeech_StartPlayerFadeIn(u8);
 static void Task_NewGameBirchSpeech_WaitForPlayerFadeIn(u8);
-static void Task_NewGameBirchSpeech_BoyOrGirl(u8);
+static void NewGameBirchSpeech_PrintGenderQuestion(void);
+static void NewGameBirchSpeech_UpdateGenderSprites(u8);
+static void NewGameBirchSpeech_StartGenderConfirmation(u8);
+static void Task_NewGameBirchSpeech_WaitForUnselectedGenderFadeOut(u8);
+static void NewGameBirchSpeech_HideUnselectedGenderSprite(u8);
 static void LoadMainMenuWindowFrameTiles(u8, u16);
 static void DrawMainMenuWindowBorder(const struct WindowTemplate *, u16);
 static void Task_HighlightSelectedMainMenuItem(u8);
 static void Task_NewGameBirchSpeech_WaitToShowGenderMenu(u8);
 static void Task_NewGameBirchSpeech_ChooseGender(u8);
-static void NewGameBirchSpeech_ShowGenderMenu(void);
+static void NewGameBirchSpeech_ShowGenderMenu(u8);
 static s8 NewGameBirchSpeech_ProcessGenderMenuInput(void);
 static void NewGameBirchSpeech_ClearGenderWindow(u8, u8);
 static void Task_NewGameBirchSpeech_WhatsYourName(u8);
-static void Task_NewGameBirchSpeech_SlideOutOldGenderSprite(u8);
-static void Task_NewGameBirchSpeech_SlideInNewGenderSprite(u8);
 static void Task_NewGameBirchSpeech_WaitForWhatsYourNameToPrint(u8);
 static void Task_NewGameBirchSpeech_WaitPressBeforeNameChoice(u8);
 static void Task_NewGameBirchSpeech_StartNamingScreen(u8);
 static void CB2_NewGameBirchSpeech_ReturnFromNamingScreen(void);
 static void Task_NewGameBirchSpeech_CreateNameYesNo(u8);
 static void Task_NewGameBirchSpeech_ProcessNameYesNoMenu(u8);
+static void Task_NewGameBirchSpeech_WaitForPlayerFadeOutToGenderChoice(u8);
 void CreateYesNoMenuParameterized(u8, u8, u16, u16, u8, u8);
-static void Task_NewGameBirchSpeech_SlidePlatformAway2(u8);
+static void Task_NewGameBirchSpeech_WaitForPlayerFadeOut(u8);
 static void Task_NewGameBirchSpeech_ReshowBirchLotad(u8);
-static void Task_NewGameBirchSpeech_WaitForSpriteFadeInAndTextPrinter(u8);
+static void Task_NewGameBirchSpeech_WaitForOakAndPokemonFadeIn(u8);
+static void Task_NewGameBirchSpeech_WaitForFinalSpeech(u8);
 static void Task_NewGameBirchSpeech_AreYouReady(u8);
 static void Task_NewGameBirchSpeech_ShrinkPlayer(u8);
 static void SpriteCB_MovePlayerDownWhileShrinking(struct Sprite *);
@@ -246,15 +244,31 @@ static void MainMenu_FormatSavegameBadges(void);
 
 // .rodata
 
-static const u16 sBirchSpeechBgPals[][16] = {
-    INCBIN_U16("graphics/birch_speech/bg0.gbapal"),
-    INCBIN_U16("graphics/birch_speech/bg1.gbapal")
-};
+static const u16 sOakSpeechBgPal[] = INCBIN_U16("graphics/oak_speech/oak_speech_bg.gbapal");
+static const u32 sOakSpeechBgGfx[] = INCBIN_U32("graphics/oak_speech/oak_speech_bg.4bpp.smol");
+static const u32 sOakSpeechBgMap[] = INCBIN_U32("graphics/oak_speech/oak_speech_bg.bin.smolTM");
+static const u16 sOakSpeechOakPal[] = INCBIN_U16("graphics/oak_speech/oak/pal.gbapal");
+static const u32 sOakSpeechOakGfx[] = INCBIN_U32("graphics/oak_speech/oak/pic.8bpp.smol");
 
-static const u32 sBirchSpeechShadowGfx[] = INCBIN_U32("graphics/birch_speech/shadow.4bpp.smol");
-static const u32 sBirchSpeechBgMap[] = INCBIN_U32("graphics/birch_speech/map.bin.smolTM");
-static const u16 sBirchSpeechBgGradientPal[] = INCBIN_U16("graphics/birch_speech/bg2.gbapal");
-
+#define OAK_SPEECH_PIC_WIDTH       8
+#define OAK_SPEECH_PIC_HEIGHT      12
+#define OAK_SPEECH_PIC_TILE_COUNT  (OAK_SPEECH_PIC_WIDTH * OAK_SPEECH_PIC_HEIGHT)
+#define OAK_SPEECH_BLANK_TILE      OAK_SPEECH_PIC_TILE_COUNT
+#define OAK_SPEECH_BG_PAL_NUM      3
+#define OAK_SPEECH_BG_BACKDROP     14
+#define OAK_SPEECH_BG_MAP_SIZE     (32 * 20)
+#define OAK_SPEECH_POKEBALL_X      104
+#define OAK_SPEECH_POKEBALL_Y      66
+#define NEW_GAME_SPEECH_POKEMON_X  90
+#define NEW_GAME_SPEECH_POKEMON_Y  92
+#define NEW_GAME_SPEECH_BOY_X      145
+#define NEW_GAME_SPEECH_GIRL_X     205
+#define NEW_GAME_SPEECH_PLAYER_X   120
+#define NEW_GAME_SPEECH_PLAYER_Y   80
+#define NEW_GAME_SPEECH_OAK_DELAY  80
+#define NEW_GAME_SPEECH_FADE_DELAY 4
+#define NEW_GAME_SPEECH_SCENE_PAUSE 24
+#define NEW_GAME_SPEECH_GENDER_DIM 8
 static const u8 gText_SaveFileCorrupted[] = _("The save file is corrupted. The\nprevious save file will be loaded.");
 static const u8 gText_SaveFileErased[] = _("The save file has been erased\ndue to corruption or damage.");
 static const u8 gJPText_No1MSubCircuit[] = _("1Mサブきばんが ささっていません！");
@@ -459,6 +473,18 @@ static const struct BgTemplate sBirchBgTemplate = {
     .baseTile = 0
 };
 
+static const struct BgTemplate sOakSpeechPicBgTemplate =
+{
+    .bg = 2,
+    .charBaseIndex = 1,
+    // Screen block 28 overlaps the BG0 message-box tiles at the end of char block 3.
+    .mapBaseIndex = 29,
+    .screenSize = 1,
+    .paletteMode = 1,
+    .priority = 0,
+    .baseTile = 0
+};
+
 static const struct ScrollArrowsTemplate sScrollArrowsTemplate_MainMenu = {2, 0x78, 8, 3, 0x78, 0x98, 3, 4, 1, 1, 0};
 
 static const union AffineAnimCmd sSpriteAffineAnim_PlayerShrink[] = {
@@ -475,6 +501,9 @@ static const struct MenuAction sMenuActions_Gender[] = {
     {COMPOUND_STRING("Boy"), {NULL}},
     {COMPOUND_STRING("Girl"), {NULL}}
 };
+
+static const u8 sText_GenderBoy[] = _("boy");
+static const u8 sText_GenderGirl[] = _("girl");
 
 static const u8 *const sMalePresetNames[] = {
     COMPOUND_STRING("Ethan"),
@@ -1236,20 +1265,21 @@ static void HighlightSelectedMainMenuItem(u8 menuType, u8 selectedMenuItem, s16 
 }
 
 #define tPlayerSpriteId data[2]
-#define tBG1HOFS data[4]
 #define tIsDoneFadingSprites data[5]
 #define tPlayerGender data[6]
 #define tTimer data[7]
-#define tBirchSpriteId data[8]
 #define tLotadSpriteId data[9]
 #define tBrendanSpriteId data[10]
 #define tMaySpriteId data[11]
 
 static void Task_NewGameBirchSpeech_Init(u8 taskId)
 {
-    SetGpuReg(REG_OFFSET_DISPCNT, 0);
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
     InitBgFromTemplate(&sBirchBgTemplate);
+    InitBgFromTemplate(&sOakSpeechPicBgTemplate);
+    SetBgMode(1);
+    SetBgTilemapBuffer(2, sOakSpeechPicTilemap);
+    SetBgAffine(2, 0, 0, 0, 0, 256, 256, 0);
     SetGpuReg(REG_OFFSET_WIN0H, 0);
     SetGpuReg(REG_OFFSET_WIN0V, 0);
     SetGpuReg(REG_OFFSET_WININ, 0);
@@ -1258,43 +1288,43 @@ static void Task_NewGameBirchSpeech_Init(u8 taskId)
     SetGpuReg(REG_OFFSET_BLDALPHA, 0);
     SetGpuReg(REG_OFFSET_BLDY, 0);
 
-    DecompressDataWithHeaderVram(sBirchSpeechShadowGfx, (void *)VRAM);
-    DecompressDataWithHeaderVram(sBirchSpeechBgMap, (void *)(BG_SCREEN_ADDR(7)));
-    LoadPalette(sBirchSpeechBgPals, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
-    LoadPalette(&sBirchSpeechBgGradientPal[8], BG_PLTT_ID(0) + 1, PLTT_SIZEOF(8));
+    LoadOakSpeechSceneGfx();
     ScanlineEffect_Stop();
     ResetSpriteData();
     FreeAllSpritePalettes();
     ResetAllPicSprites();
     AddBirchSpeechObjects(taskId);
-    BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
-    gTasks[taskId].tBG1HOFS = 0;
-    gTasks[taskId].func = Task_NewGameBirchSpeech_WaitToShowBirch;
+    // The menu is already black here. Keep the newly loaded scene black through
+    // the next VBlank instead of exposing the hardware's white forced blank.
+    BlendPalettes(PALETTES_ALL, 16, RGB_BLACK);
+    gTasks[taskId].func = Task_NewGameBirchSpeech_BeginFadeIn;
     gTasks[taskId].tPlayerSpriteId = SPRITE_NONE;
     gTasks[taskId].data[3] = 0xFF;
-    gTasks[taskId].tTimer = 0xD8;
-    PlayBGM(MUS_HG_NEW_GAME);
+    gTasks[taskId].tTimer = NEW_GAME_SPEECH_OAK_DELAY;
+    PlayBGM(MUS_HG_ROUTE30);
     ShowBg(0);
     ShowBg(1);
+    HideBg(2);
+}
+
+static void Task_NewGameBirchSpeech_BeginFadeIn(u8 taskId)
+{
+    // Keep the completed scene black until all graphics and palettes are ready.
+    BlendPalettes(PALETTES_ALL, 16, RGB_BLACK);
+    BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
+    gTasks[taskId].func = Task_NewGameBirchSpeech_WaitToShowBirch;
 }
 
 static void Task_NewGameBirchSpeech_WaitToShowBirch(u8 taskId)
 {
-    u8 spriteId;
-
     if (gTasks[taskId].tTimer)
     {
         gTasks[taskId].tTimer--;
     }
     else
     {
-        spriteId = gTasks[taskId].tBirchSpriteId;
-        gSprites[spriteId].x = 136;
-        gSprites[spriteId].y = 60;
-        gSprites[spriteId].invisible = FALSE;
-        gSprites[spriteId].oam.objMode = ST_OAM_OBJ_BLEND;
+        ShowBg(2);
         NewGameBirchSpeech_StartFadeInTarget1OutTarget2(taskId, 10);
-        NewGameBirchSpeech_StartFadePlatformOut(taskId, 20);
         gTasks[taskId].tTimer = 10;
         gTasks[taskId].func = Task_NewGameBirchSpeech_WaitForSpriteFadeInWelcome;
     }
@@ -1304,7 +1334,6 @@ static void Task_NewGameBirchSpeech_WaitForSpriteFadeInWelcome(u8 taskId)
 {
     if (gTasks[taskId].tIsDoneFadingSprites)
     {
-        gSprites[gTasks[taskId].tBirchSpriteId].oam.objMode = ST_OAM_OBJ_NORMAL;
         if (gTasks[taskId].tTimer)
         {
             gTasks[taskId].tTimer--;
@@ -1331,7 +1360,7 @@ static void Task_NewGameBirchSpeech_ThisIsAPokemon(u8 taskId)
     {
         gTasks[taskId].func = Task_NewGameBirchSpeech_MainSpeech;
         StringExpandPlaceholders(gStringVar4, gText_ThisIsAPokemon);
-        AddTextPrinterWithCallbackForMessage(TRUE, NewGameBirchSpeech_WaitForThisIsPokemonText);
+        AddTextPrinterWithCallbackForMessage(TRUE, NewGameBirchSpeech_WaitForWorldText);
         sBirchSpeechMainTaskId = taskId;
     }
 }
@@ -1352,12 +1381,14 @@ static void Task_NewGameBirchSpeechSub_InitPokeBall(u8 taskId)
 {
     u8 spriteId = gTasks[sBirchSpeechMainTaskId].tLotadSpriteId;
 
-    gSprites[spriteId].x = 100;
-    gSprites[spriteId].y = 75;
+    gSprites[spriteId].x = NEW_GAME_SPEECH_POKEMON_X;
+    gSprites[spriteId].y = NEW_GAME_SPEECH_POKEMON_Y;
     gSprites[spriteId].invisible = FALSE;
     gSprites[spriteId].data[0] = 0;
 
-    CreatePokeballSpriteToReleaseMon(spriteId, gSprites[spriteId].oam.paletteNum, 112, 58, 0, 0, 32, PALETTES_BG, SPECIES_WOOPER);
+    CreatePokeballSpriteToReleaseMon(spriteId, gSprites[spriteId].oam.paletteNum,
+                                    OAK_SPEECH_POKEBALL_X, OAK_SPEECH_POKEBALL_Y,
+                                    0, 0, 32, PALETTES_BG, SPECIES_WOOPER_PALDEA);
     gTasks[taskId].func = Task_NewGameBirchSpeechSub_WaitForLotad;
     gTasks[sBirchSpeechMainTaskId].tTimer = 0;
 }
@@ -1397,42 +1428,31 @@ static void Task_NewGameBirchSpeech_AndYouAre(u8 taskId)
         sStartedPokeBallTask = FALSE;
         StringExpandPlaceholders(gStringVar4, gText_Birch_AndYouAre);
         AddTextPrinterForMessage(TRUE);
-        gTasks[taskId].func = Task_NewGameBirchSpeech_StartBirchLotadPlatformFade;
+        gTasks[taskId].func = Task_NewGameBirchSpeech_StartOakAndPokemonFadeOut;
     }
 }
 
-static void Task_NewGameBirchSpeech_StartBirchLotadPlatformFade(u8 taskId)
+static void Task_NewGameBirchSpeech_StartOakAndPokemonFadeOut(u8 taskId)
 {
     if (!RunTextPrintersAndIsPrinter0Active())
     {
-        gSprites[gTasks[taskId].tBirchSpriteId].oam.objMode = ST_OAM_OBJ_BLEND;
         gSprites[gTasks[taskId].tLotadSpriteId].oam.objMode = ST_OAM_OBJ_BLEND;
         NewGameBirchSpeech_StartFadeOutTarget1InTarget2(taskId, 2);
-        NewGameBirchSpeech_StartFadePlatformIn(taskId, 1);
         gTasks[taskId].tTimer = 16;
-        gTasks[taskId].func = Task_NewGameBirchSpeech_SlidePlatformAway;
+        gTasks[taskId].func = Task_NewGameBirchSpeech_WaitForOakFadeOut;
     }
 }
 
-static void Task_NewGameBirchSpeech_SlidePlatformAway(u8 taskId)
+static void Task_NewGameBirchSpeech_WaitForOakFadeOut(u8 taskId)
 {
-    if (gTasks[taskId].tBG1HOFS != -60)
-    {
-        gTasks[taskId].tBG1HOFS -= 2;
-        SetGpuReg(REG_OFFSET_BG1HOFS, gTasks[taskId].tBG1HOFS);
-    }
-    else
-    {
-        gTasks[taskId].tBG1HOFS = -60;
-        gTasks[taskId].func = Task_NewGameBirchSpeech_StartPlayerFadeIn;
-    }
+    gTasks[taskId].func = Task_NewGameBirchSpeech_StartPlayerFadeIn;
 }
 
 static void Task_NewGameBirchSpeech_StartPlayerFadeIn(u8 taskId)
 {
     if (gTasks[taskId].tIsDoneFadingSprites)
     {
-        gSprites[gTasks[taskId].tBirchSpriteId].invisible = TRUE;
+        HideBg(2);
         gSprites[gTasks[taskId].tLotadSpriteId].invisible = TRUE;
         if (gTasks[taskId].tTimer)
         {
@@ -1440,16 +1460,21 @@ static void Task_NewGameBirchSpeech_StartPlayerFadeIn(u8 taskId)
         }
         else
         {
-            u8 spriteId = gTasks[taskId].tBrendanSpriteId;
+            u8 brendanSpriteId = gTasks[taskId].tBrendanSpriteId;
+            u8 maySpriteId = gTasks[taskId].tMaySpriteId;
 
-            gSprites[spriteId].x = 180;
-            gSprites[spriteId].y = 60;
-            gSprites[spriteId].invisible = FALSE;
-            gSprites[spriteId].oam.objMode = ST_OAM_OBJ_BLEND;
-            gTasks[taskId].tPlayerSpriteId = spriteId;
+            gSprites[brendanSpriteId].x = NEW_GAME_SPEECH_BOY_X;
+            gSprites[brendanSpriteId].y = NEW_GAME_SPEECH_PLAYER_Y;
+            gSprites[brendanSpriteId].invisible = FALSE;
+            gSprites[brendanSpriteId].oam.objMode = ST_OAM_OBJ_BLEND;
+            gSprites[maySpriteId].x = NEW_GAME_SPEECH_GIRL_X;
+            gSprites[maySpriteId].y = NEW_GAME_SPEECH_PLAYER_Y;
+            gSprites[maySpriteId].invisible = FALSE;
+            gSprites[maySpriteId].oam.objMode = ST_OAM_OBJ_BLEND;
+            gTasks[taskId].tPlayerSpriteId = brendanSpriteId;
             gTasks[taskId].tPlayerGender = MALE;
             NewGameBirchSpeech_StartFadeInTarget1OutTarget2(taskId, 2);
-            NewGameBirchSpeech_StartFadePlatformOut(taskId, 1);
+            NewGameBirchSpeech_PrintGenderQuestion();
             gTasks[taskId].func = Task_NewGameBirchSpeech_WaitForPlayerFadeIn;
         }
     }
@@ -1459,24 +1484,25 @@ static void Task_NewGameBirchSpeech_WaitForPlayerFadeIn(u8 taskId)
 {
     if (gTasks[taskId].tIsDoneFadingSprites)
     {
-        gSprites[gTasks[taskId].tPlayerSpriteId].oam.objMode = ST_OAM_OBJ_NORMAL;
-        gTasks[taskId].func = Task_NewGameBirchSpeech_BoyOrGirl;
+        gSprites[gTasks[taskId].tBrendanSpriteId].oam.objMode = ST_OAM_OBJ_NORMAL;
+        gSprites[gTasks[taskId].tMaySpriteId].oam.objMode = ST_OAM_OBJ_NORMAL;
+        NewGameBirchSpeech_UpdateGenderSprites(taskId);
+        gTasks[taskId].func = Task_NewGameBirchSpeech_WaitToShowGenderMenu;
     }
 }
 
-static void Task_NewGameBirchSpeech_BoyOrGirl(u8 taskId)
+static void NewGameBirchSpeech_PrintGenderQuestion(void)
 {
     NewGameBirchSpeech_ClearWindow(0);
     StringExpandPlaceholders(gStringVar4, gText_Birch_BoyOrGirl);
     AddTextPrinterForMessage(TRUE);
-    gTasks[taskId].func = Task_NewGameBirchSpeech_WaitToShowGenderMenu;
 }
 
 static void Task_NewGameBirchSpeech_WaitToShowGenderMenu(u8 taskId)
 {
     if (!RunTextPrintersAndIsPrinter0Active())
     {
-        NewGameBirchSpeech_ShowGenderMenu();
+        NewGameBirchSpeech_ShowGenderMenu(taskId);
         gTasks[taskId].func = Task_NewGameBirchSpeech_ChooseGender;
     }
 }
@@ -1484,81 +1510,94 @@ static void Task_NewGameBirchSpeech_WaitToShowGenderMenu(u8 taskId)
 static void Task_NewGameBirchSpeech_ChooseGender(u8 taskId)
 {
     enum Gender gender = NewGameBirchSpeech_ProcessGenderMenuInput();
-    enum Gender gender2;
+    enum Gender highlightedGender;
 
     switch (gender)
     {
     case MALE:
-        PlaySE(SE_SELECT);
-        gSaveBlock2Ptr->playerGender = gender;
-        NewGameBirchSpeech_ClearGenderWindow(1, 1);
-        gTasks[taskId].func = Task_NewGameBirchSpeech_WhatsYourName;
-        break;
     case FEMALE:
         PlaySE(SE_SELECT);
         gSaveBlock2Ptr->playerGender = gender;
-        NewGameBirchSpeech_ClearGenderWindow(1, 1);
-        gTasks[taskId].func = Task_NewGameBirchSpeech_WhatsYourName;
-        break;
+        gTasks[taskId].tPlayerGender = gender;
+        NewGameBirchSpeech_StartGenderConfirmation(taskId);
+        return;
     default: //repeat task if nothing is selected
         break;
     }
-    gender2 = Menu_GetCursorPos();
-    if (gender2 != gTasks[taskId].tPlayerGender)
+
+    highlightedGender = Menu_GetCursorPos();
+    if (highlightedGender != gTasks[taskId].tPlayerGender)
     {
-        gTasks[taskId].tPlayerGender = gender2;
-        gSprites[gTasks[taskId].tPlayerSpriteId].oam.objMode = ST_OAM_OBJ_BLEND;
-        NewGameBirchSpeech_StartFadeOutTarget1InTarget2(taskId, 0);
-        gTasks[taskId].func = Task_NewGameBirchSpeech_SlideOutOldGenderSprite;
+        gTasks[taskId].tPlayerGender = highlightedGender;
+        NewGameBirchSpeech_UpdateGenderSprites(taskId);
     }
 }
 
-static void Task_NewGameBirchSpeech_SlideOutOldGenderSprite(u8 taskId)
+static void NewGameBirchSpeech_UpdateGenderSprites(u8 taskId)
 {
-    u8 spriteId = gTasks[taskId].tPlayerSpriteId;
-    if (gTasks[taskId].tIsDoneFadingSprites == 0)
-    {
-        gSprites[spriteId].x += 4;
-    }
+    u8 brendanSpriteId = gTasks[taskId].tBrendanSpriteId;
+    u8 maySpriteId = gTasks[taskId].tMaySpriteId;
+    bool8 isMale = gTasks[taskId].tPlayerGender == MALE;
+
+    BlendPalettes(1u << (16 + gSprites[brendanSpriteId].oam.paletteNum),
+                  isMale ? 0 : NEW_GAME_SPEECH_GENDER_DIM, RGB_BLACK);
+    BlendPalettes(1u << (16 + gSprites[maySpriteId].oam.paletteNum),
+                  isMale ? NEW_GAME_SPEECH_GENDER_DIM : 0, RGB_BLACK);
+    gTasks[taskId].tPlayerSpriteId = isMale ? brendanSpriteId : maySpriteId;
+}
+
+static void NewGameBirchSpeech_StartGenderConfirmation(u8 taskId)
+{
+    u8 unselectedSpriteId;
+
+    NewGameBirchSpeech_UpdateGenderSprites(taskId);
+    if (gTasks[taskId].tPlayerGender == MALE)
+        unselectedSpriteId = gTasks[taskId].tMaySpriteId;
     else
+        unselectedSpriteId = gTasks[taskId].tBrendanSpriteId;
+
+    gSprites[unselectedSpriteId].oam.objMode = ST_OAM_OBJ_BLEND;
+    NewGameBirchSpeech_StartFadeOutTarget1InTarget2(taskId, 2);
+    gTasks[taskId].func = Task_NewGameBirchSpeech_WaitForUnselectedGenderFadeOut;
+}
+
+static void Task_NewGameBirchSpeech_WaitForUnselectedGenderFadeOut(u8 taskId)
+{
+    struct Sprite *selectedSprite = &gSprites[gTasks[taskId].tPlayerSpriteId];
+
+    if (selectedSprite->x < 180)
+        selectedSprite->x++;
+    else if (selectedSprite->x > 180)
+        selectedSprite->x--;
+
+    if (gTasks[taskId].tIsDoneFadingSprites)
     {
-        gSprites[spriteId].invisible = TRUE;
-        if (gTasks[taskId].tPlayerGender != MALE)
-            spriteId = gTasks[taskId].tMaySpriteId;
-        else
-            spriteId = gTasks[taskId].tBrendanSpriteId;
-        gSprites[spriteId].x = DISPLAY_WIDTH;
-        gSprites[spriteId].y = 60;
-        gSprites[spriteId].invisible = FALSE;
-        gTasks[taskId].tPlayerSpriteId = spriteId;
-        gSprites[spriteId].oam.objMode = ST_OAM_OBJ_BLEND;
-        NewGameBirchSpeech_StartFadeInTarget1OutTarget2(taskId, 0);
-        gTasks[taskId].func = Task_NewGameBirchSpeech_SlideInNewGenderSprite;
+        NewGameBirchSpeech_HideUnselectedGenderSprite(taskId);
+        NewGameBirchSpeech_ClearGenderWindow(1, 1);
+        gTasks[taskId].func = Task_NewGameBirchSpeech_WhatsYourName;
     }
 }
 
-static void Task_NewGameBirchSpeech_SlideInNewGenderSprite(u8 taskId)
+static void NewGameBirchSpeech_HideUnselectedGenderSprite(u8 taskId)
 {
-    u8 spriteId = gTasks[taskId].tPlayerSpriteId;
+    u8 brendanSpriteId = gTasks[taskId].tBrendanSpriteId;
+    u8 maySpriteId = gTasks[taskId].tMaySpriteId;
+    bool8 isMale = gTasks[taskId].tPlayerGender == MALE;
 
-    if (gSprites[spriteId].x > 180)
-    {
-        gSprites[spriteId].x -= 4;
-    }
-    else
-    {
-        gSprites[spriteId].x = 180;
-        if (gTasks[taskId].tIsDoneFadingSprites)
-        {
-            gSprites[spriteId].oam.objMode = ST_OAM_OBJ_NORMAL;
-            gTasks[taskId].func = Task_NewGameBirchSpeech_ChooseGender;
-        }
-    }
+    BlendPalettes(1u << (16 + gSprites[brendanSpriteId].oam.paletteNum), 0, RGB_BLACK);
+    BlendPalettes(1u << (16 + gSprites[maySpriteId].oam.paletteNum), 0, RGB_BLACK);
+    gSprites[brendanSpriteId].oam.objMode = ST_OAM_OBJ_NORMAL;
+    gSprites[maySpriteId].oam.objMode = ST_OAM_OBJ_NORMAL;
+    gSprites[brendanSpriteId].invisible = !isMale;
+    gSprites[maySpriteId].invisible = isMale;
+    gTasks[taskId].tPlayerSpriteId = isMale ? brendanSpriteId : maySpriteId;
+    gSprites[gTasks[taskId].tPlayerSpriteId].x = 180;
 }
 
 static void Task_NewGameBirchSpeech_WhatsYourName(u8 taskId)
 {
     NewGameBirchSpeech_ClearWindow(0);
+    StringCopy(gStringVar1, gSaveBlock2Ptr->playerGender == MALE ? sText_GenderBoy : sText_GenderGirl);
     StringExpandPlaceholders(gStringVar4, gText_Birch_WhatsYourName);
     AddTextPrinterForMessage(TRUE);
     gTasks[taskId].func = Task_NewGameBirchSpeech_WaitForWhatsYourNameToPrint;
@@ -1615,28 +1654,46 @@ static void Task_NewGameBirchSpeech_ProcessNameYesNoMenu(u8 taskId)
     case 0:
         PlaySE(SE_SELECT);
         gSprites[gTasks[taskId].tPlayerSpriteId].oam.objMode = ST_OAM_OBJ_BLEND;
-        NewGameBirchSpeech_StartFadeOutTarget1InTarget2(taskId, 2);
-        NewGameBirchSpeech_StartFadePlatformIn(taskId, 1);
-        gTasks[taskId].func = Task_NewGameBirchSpeech_SlidePlatformAway2;
+        NewGameBirchSpeech_StartFadeOutTarget1InTarget2(taskId, NEW_GAME_SPEECH_FADE_DELAY);
+        gTasks[taskId].func = Task_NewGameBirchSpeech_WaitForPlayerFadeOut;
         break;
     case MENU_B_PRESSED:
     case 1:
         PlaySE(SE_SELECT);
-        gTasks[taskId].func = Task_NewGameBirchSpeech_BoyOrGirl;
+        gSprites[gTasks[taskId].tPlayerSpriteId].oam.objMode = ST_OAM_OBJ_BLEND;
+        NewGameBirchSpeech_StartFadeOutTarget1InTarget2(taskId, NEW_GAME_SPEECH_FADE_DELAY);
+        gTasks[taskId].func = Task_NewGameBirchSpeech_WaitForPlayerFadeOutToGenderChoice;
     }
 }
 
-static void Task_NewGameBirchSpeech_SlidePlatformAway2(u8 taskId)
+static void Task_NewGameBirchSpeech_WaitForPlayerFadeOutToGenderChoice(u8 taskId)
 {
-    if (gTasks[taskId].tBG1HOFS)
+    if (gTasks[taskId].tIsDoneFadingSprites)
     {
-        gTasks[taskId].tBG1HOFS += 2;
-        SetGpuReg(REG_OFFSET_BG1HOFS, gTasks[taskId].tBG1HOFS);
+        u8 brendanSpriteId = gTasks[taskId].tBrendanSpriteId;
+        u8 maySpriteId = gTasks[taskId].tMaySpriteId;
+
+        gSprites[brendanSpriteId].x = NEW_GAME_SPEECH_BOY_X;
+        gSprites[brendanSpriteId].y = NEW_GAME_SPEECH_PLAYER_Y;
+        gSprites[brendanSpriteId].invisible = FALSE;
+        gSprites[brendanSpriteId].oam.objMode = ST_OAM_OBJ_BLEND;
+        gSprites[maySpriteId].x = NEW_GAME_SPEECH_GIRL_X;
+        gSprites[maySpriteId].y = NEW_GAME_SPEECH_PLAYER_Y;
+        gSprites[maySpriteId].invisible = FALSE;
+        gSprites[maySpriteId].oam.objMode = ST_OAM_OBJ_BLEND;
+        gTasks[taskId].tPlayerGender = gSaveBlock2Ptr->playerGender;
+        gTasks[taskId].tPlayerSpriteId = gTasks[taskId].tPlayerGender == MALE
+                                      ? brendanSpriteId
+                                      : maySpriteId;
+        NewGameBirchSpeech_StartFadeInTarget1OutTarget2(taskId, NEW_GAME_SPEECH_FADE_DELAY);
+        NewGameBirchSpeech_PrintGenderQuestion();
+        gTasks[taskId].func = Task_NewGameBirchSpeech_WaitForPlayerFadeIn;
     }
-    else
-    {
-        gTasks[taskId].func = Task_NewGameBirchSpeech_ReshowBirchLotad;
-    }
+}
+
+static void Task_NewGameBirchSpeech_WaitForPlayerFadeOut(u8 taskId)
+{
+    gTasks[taskId].func = Task_NewGameBirchSpeech_ReshowBirchLotad;
 }
 
 static void Task_NewGameBirchSpeech_ReshowBirchLotad(u8 taskId)
@@ -1647,40 +1704,44 @@ static void Task_NewGameBirchSpeech_ReshowBirchLotad(u8 taskId)
     {
         gSprites[gTasks[taskId].tBrendanSpriteId].invisible = TRUE;
         gSprites[gTasks[taskId].tMaySpriteId].invisible = TRUE;
-        spriteId = gTasks[taskId].tBirchSpriteId;
-        gSprites[spriteId].x = 136;
-        gSprites[spriteId].y = 60;
-        gSprites[spriteId].invisible = FALSE;
-        gSprites[spriteId].oam.objMode = ST_OAM_OBJ_BLEND;
+        ShowBg(2);
         spriteId = gTasks[taskId].tLotadSpriteId;
-        gSprites[spriteId].x = 100;
-        gSprites[spriteId].y = 75;
+        gSprites[spriteId].x = NEW_GAME_SPEECH_POKEMON_X;
+        gSprites[spriteId].y = NEW_GAME_SPEECH_POKEMON_Y;
         gSprites[spriteId].invisible = FALSE;
         gSprites[spriteId].oam.objMode = ST_OAM_OBJ_BLEND;
-        NewGameBirchSpeech_StartFadeInTarget1OutTarget2(taskId, 2);
-        NewGameBirchSpeech_StartFadePlatformOut(taskId, 1);
-        NewGameBirchSpeech_ClearWindow(0);
-        StringExpandPlaceholders(gStringVar4, gText_Birch_YourePlayer);
-        AddTextPrinterForMessage(TRUE);
-        gTasks[taskId].func = Task_NewGameBirchSpeech_WaitForSpriteFadeInAndTextPrinter;
+        NewGameBirchSpeech_StartFadeInTarget1OutTarget2(taskId, NEW_GAME_SPEECH_FADE_DELAY);
+        gTasks[taskId].tTimer = NEW_GAME_SPEECH_SCENE_PAUSE;
+        gTasks[taskId].func = Task_NewGameBirchSpeech_WaitForOakAndPokemonFadeIn;
     }
 }
 
-static void Task_NewGameBirchSpeech_WaitForSpriteFadeInAndTextPrinter(u8 taskId)
+static void Task_NewGameBirchSpeech_WaitForOakAndPokemonFadeIn(u8 taskId)
 {
     if (gTasks[taskId].tIsDoneFadingSprites)
     {
-        gSprites[gTasks[taskId].tBirchSpriteId].oam.objMode = ST_OAM_OBJ_NORMAL;
         gSprites[gTasks[taskId].tLotadSpriteId].oam.objMode = ST_OAM_OBJ_NORMAL;
-        if (!RunTextPrintersAndIsPrinter0Active())
+        if (gTasks[taskId].tTimer)
         {
-            gSprites[gTasks[taskId].tBirchSpriteId].oam.objMode = ST_OAM_OBJ_BLEND;
-            gSprites[gTasks[taskId].tLotadSpriteId].oam.objMode = ST_OAM_OBJ_BLEND;
-            NewGameBirchSpeech_StartFadeOutTarget1InTarget2(taskId, 2);
-            NewGameBirchSpeech_StartFadePlatformIn(taskId, 1);
-            gTasks[taskId].tTimer = 16;
-            gTasks[taskId].func = Task_NewGameBirchSpeech_AreYouReady;
+            gTasks[taskId].tTimer--;
+            return;
         }
+
+        NewGameBirchSpeech_ClearWindow(0);
+        StringExpandPlaceholders(gStringVar4, gText_Birch_YourePlayer);
+        AddTextPrinterForMessage(TRUE);
+        gTasks[taskId].func = Task_NewGameBirchSpeech_WaitForFinalSpeech;
+    }
+}
+
+static void Task_NewGameBirchSpeech_WaitForFinalSpeech(u8 taskId)
+{
+    if (!RunTextPrintersAndIsPrinter0Active())
+    {
+        gSprites[gTasks[taskId].tLotadSpriteId].oam.objMode = ST_OAM_OBJ_BLEND;
+        NewGameBirchSpeech_StartFadeOutTarget1InTarget2(taskId, NEW_GAME_SPEECH_FADE_DELAY);
+        gTasks[taskId].tTimer = NEW_GAME_SPEECH_SCENE_PAUSE;
+        gTasks[taskId].func = Task_NewGameBirchSpeech_AreYouReady;
     }
 }
 
@@ -1690,7 +1751,7 @@ static void Task_NewGameBirchSpeech_AreYouReady(u8 taskId)
 
     if (gTasks[taskId].tIsDoneFadingSprites)
     {
-        gSprites[gTasks[taskId].tBirchSpriteId].invisible = TRUE;
+        HideBg(2);
         gSprites[gTasks[taskId].tLotadSpriteId].invisible = TRUE;
         if (gTasks[taskId].tTimer)
         {
@@ -1701,15 +1762,13 @@ static void Task_NewGameBirchSpeech_AreYouReady(u8 taskId)
             spriteId = gTasks[taskId].tMaySpriteId;
         else
             spriteId = gTasks[taskId].tBrendanSpriteId;
-        gSprites[spriteId].x = 120;
-        gSprites[spriteId].y = 60;
+        gSprites[spriteId].x = NEW_GAME_SPEECH_PLAYER_X;
+        gSprites[spriteId].y = NEW_GAME_SPEECH_PLAYER_Y;
         gSprites[spriteId].invisible = FALSE;
         gSprites[spriteId].oam.objMode = ST_OAM_OBJ_BLEND;
         gTasks[taskId].tPlayerSpriteId = spriteId;
-        NewGameBirchSpeech_StartFadeInTarget1OutTarget2(taskId, 2);
-        NewGameBirchSpeech_StartFadePlatformOut(taskId, 1);
-        StringExpandPlaceholders(gStringVar4, gText_Birch_AreYouReady);
-        AddTextPrinterForMessage(TRUE);
+        NewGameBirchSpeech_StartFadeInTarget1OutTarget2(taskId, NEW_GAME_SPEECH_FADE_DELAY);
+        gTasks[taskId].tTimer = NEW_GAME_SPEECH_SCENE_PAUSE;
         gTasks[taskId].func = Task_NewGameBirchSpeech_ShrinkPlayer;
     }
 }
@@ -1721,6 +1780,11 @@ static void Task_NewGameBirchSpeech_ShrinkPlayer(u8 taskId)
     if (gTasks[taskId].tIsDoneFadingSprites)
     {
         gSprites[gTasks[taskId].tPlayerSpriteId].oam.objMode = ST_OAM_OBJ_NORMAL;
+        if (gTasks[taskId].tTimer)
+        {
+            gTasks[taskId].tTimer--;
+            return;
+        }
         if (!RunTextPrintersAndIsPrinter0Active())
         {
             spriteId = gTasks[taskId].tPlayerSpriteId;
@@ -1779,8 +1843,6 @@ static void CB2_NewGameBirchSpeech_ReturnFromNamingScreen(void)
     ResetBgsAndClearDma3BusyFlags(0);
     SetGpuReg(REG_OFFSET_DISPCNT, 0);
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
-    InitBgsFromTemplates(0, sMainMenuBgTemplates, ARRAY_COUNT(sMainMenuBgTemplates));
-    InitBgFromTemplate(&sBirchBgTemplate);
     SetVBlankCallback(NULL);
     SetGpuReg(REG_OFFSET_BG2CNT, 0);
     SetGpuReg(REG_OFFSET_BG1CNT, 0);
@@ -1791,18 +1853,20 @@ static void CB2_NewGameBirchSpeech_ReturnFromNamingScreen(void)
     SetGpuReg(REG_OFFSET_BG1VOFS, 0);
     SetGpuReg(REG_OFFSET_BG0HOFS, 0);
     SetGpuReg(REG_OFFSET_BG0VOFS, 0);
+    InitBgsFromTemplates(0, sMainMenuBgTemplates, ARRAY_COUNT(sMainMenuBgTemplates));
+    InitBgFromTemplate(&sBirchBgTemplate);
+    InitBgFromTemplate(&sOakSpeechPicBgTemplate);
+    SetBgMode(1);
+    SetBgTilemapBuffer(2, sOakSpeechPicTilemap);
+    SetBgAffine(2, 0, 0, 0, 0, 256, 256, 0);
     DmaFill16(3, 0, VRAM, VRAM_SIZE);
     DmaFill32(3, 0, OAM, OAM_SIZE);
     DmaFill16(3, 0, PLTT, PLTT_SIZE);
     ResetPaletteFade();
-    DecompressDataWithHeaderVram(sBirchSpeechShadowGfx, (u8 *)VRAM);
-    DecompressDataWithHeaderVram(sBirchSpeechBgMap, (u8 *)(BG_SCREEN_ADDR(7)));
-    LoadPalette(sBirchSpeechBgPals, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
-    LoadPalette(&sBirchSpeechBgGradientPal[1], BG_PLTT_ID(0) + 1, PLTT_SIZEOF(8));
+    LoadOakSpeechSceneGfx();
     ResetTasks();
     taskId = CreateTask(Task_NewGameBirchSpeech_ReturnFromNamingScreenShowTextbox, 0);
     gTasks[taskId].tTimer = 5;
-    gTasks[taskId].tBG1HOFS = -60;
     ScanlineEffect_Stop();
     ResetSpriteData();
     FreeAllSpritePalettes();
@@ -1819,10 +1883,9 @@ static void CB2_NewGameBirchSpeech_ReturnFromNamingScreen(void)
         spriteId = gTasks[taskId].tBrendanSpriteId;
     }
     gSprites[spriteId].x = 180;
-    gSprites[spriteId].y = 60;
+    gSprites[spriteId].y = NEW_GAME_SPEECH_PLAYER_Y;
     gSprites[spriteId].invisible = FALSE;
     gTasks[taskId].tPlayerSpriteId = spriteId;
-    SetGpuReg(REG_OFFSET_BG1HOFS, -60);
     BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
     SetGpuReg(REG_OFFSET_WIN0H, 0);
     SetGpuReg(REG_OFFSET_WIN0V, 0);
@@ -1833,6 +1896,7 @@ static void CB2_NewGameBirchSpeech_ReturnFromNamingScreen(void)
     SetGpuReg(REG_OFFSET_BLDY, 0);
     ShowBg(0);
     ShowBg(1);
+    HideBg(2);
     savedIme = REG_IME;
     REG_IME = 0;
     REG_IE |= 1;
@@ -1864,29 +1928,47 @@ static u8 NewGameBirchSpeech_CreateLotadSprite(u8 x, u8 y)
     return CreateMonPicSprite_Affine(SPECIES_WOOPER_PALDEA, FALSE, 0, MON_PIC_AFFINE_FRONT, x, y, 14, TAG_NONE);
 }
 
+static void LoadOakSpeechSceneGfx(void)
+{
+    u32 i;
+    u16 *bgTilemap = (u16 *)BG_SCREEN_ADDR(7);
+
+    DecompressDataWithHeaderVram(sOakSpeechBgGfx, (void *)VRAM);
+    DecompressDataWithHeaderVram(sOakSpeechBgMap, bgTilemap);
+    DecompressDataWithHeaderVram(sOakSpeechOakGfx, (void *)BG_CHAR_ADDR(1));
+    DmaFill32(3, 0, (void *)(BG_CHAR_ADDR(1) + OAK_SPEECH_BLANK_TILE * TILE_SIZE_8BPP), TILE_SIZE_8BPP);
+    LoadPalette(sOakSpeechOakPal, BG_PLTT_ID(0), sizeof(sOakSpeechOakPal));
+    LoadPalette(sOakSpeechBgPal, BG_PLTT_ID(OAK_SPEECH_BG_PAL_NUM), sizeof(sOakSpeechBgPal));
+    LoadPalette(&sOakSpeechBgPal[OAK_SPEECH_BG_BACKDROP], BG_PLTT_ID(0), PLTT_SIZEOF(1));
+
+    // Keep the 4bpp background separate from Oak's 8bpp palette.
+    for (i = 0; i < OAK_SPEECH_BG_MAP_SIZE; i++)
+        bgTilemap[i] |= OAK_SPEECH_BG_PAL_NUM << 12;
+
+    for (i = 0; i < ARRAY_COUNT(sOakSpeechPicTilemap); i++)
+        sOakSpeechPicTilemap[i] = OAK_SPEECH_BLANK_TILE;
+    for (i = 0; i < OAK_SPEECH_PIC_TILE_COUNT; i++)
+        sOakSpeechPicTilemap[(i / OAK_SPEECH_PIC_WIDTH + 2) * 32 + (i % OAK_SPEECH_PIC_WIDTH) + 11] = i;
+    CopyBgTilemapBufferToVram(2);
+}
+
 static void AddBirchSpeechObjects(u8 taskId)
 {
-    u8 birchSpriteId;
     u8 lotadSpriteId;
     u8 brendanSpriteId;
     u8 maySpriteId;
 
-    birchSpriteId = AddNewGameBirchObject(0x88, 0x3C, 1);
-    gSprites[birchSpriteId].callback = SpriteCB_Null;
-    gSprites[birchSpriteId].oam.priority = 0;
-    gSprites[birchSpriteId].invisible = TRUE;
-    gTasks[taskId].tBirchSpriteId = birchSpriteId;
-    lotadSpriteId = NewGameBirchSpeech_CreateLotadSprite(100, 0x4B);
+    lotadSpriteId = NewGameBirchSpeech_CreateLotadSprite(NEW_GAME_SPEECH_POKEMON_X, NEW_GAME_SPEECH_POKEMON_Y);
     gSprites[lotadSpriteId].callback = SpriteCB_Null;
     gSprites[lotadSpriteId].oam.priority = 0;
     gSprites[lotadSpriteId].invisible = TRUE;
     gTasks[taskId].tLotadSpriteId = lotadSpriteId;
-    brendanSpriteId = CreateTrainerSprite(FacilityClassToPicIndex(FACILITY_CLASS_BRENDAN), 120, 60, 0, NULL);
+    brendanSpriteId = CreateTrainerSprite(FacilityClassToPicIndex(FACILITY_CLASS_BRENDAN), 120, NEW_GAME_SPEECH_PLAYER_Y, 0, NULL);
     gSprites[brendanSpriteId].callback = SpriteCB_Null;
     gSprites[brendanSpriteId].invisible = TRUE;
     gSprites[brendanSpriteId].oam.priority = 0;
     gTasks[taskId].tBrendanSpriteId = brendanSpriteId;
-    maySpriteId = CreateTrainerSprite(FacilityClassToPicIndex(FACILITY_CLASS_MAY), 120, 60, 0, NULL);
+    maySpriteId = CreateTrainerSprite(FacilityClassToPicIndex(FACILITY_CLASS_MAY), 120, NEW_GAME_SPEECH_PLAYER_Y, 0, NULL);
     gSprites[maySpriteId].callback = SpriteCB_Null;
     gSprites[maySpriteId].invisible = TRUE;
     gSprites[maySpriteId].oam.priority = 0;
@@ -1894,9 +1976,7 @@ static void AddBirchSpeechObjects(u8 taskId)
 }
 
 #undef tPlayerSpriteId
-#undef tBG1HOFS
 #undef tPlayerGender
-#undef tBirchSpriteId
 #undef tLotadSpriteId
 #undef tBrendanSpriteId
 #undef tMaySpriteId
@@ -1934,7 +2014,7 @@ static void NewGameBirchSpeech_StartFadeOutTarget1InTarget2(u8 taskId, u8 delay)
 {
     u8 taskId2;
 
-    SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT2_BG1 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT1_OBJ);
+    SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG2 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_ALL);
     SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(16, 0));
     SetGpuReg(REG_OFFSET_BLDY, 0);
     gTasks[taskId].tIsDoneFadingSprites = 0;
@@ -1973,7 +2053,7 @@ static void NewGameBirchSpeech_StartFadeInTarget1OutTarget2(u8 taskId, u8 delay)
 {
     u8 taskId2;
 
-    SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT2_BG1 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT1_OBJ);
+    SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG2 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_ALL);
     SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(0, 16));
     SetGpuReg(REG_OFFSET_BLDY, 0);
     gTasks[taskId].tIsDoneFadingSprites = 0;
@@ -1993,92 +2073,12 @@ static void NewGameBirchSpeech_StartFadeInTarget1OutTarget2(u8 taskId, u8 delay)
 
 #undef tIsDoneFadingSprites
 
-#define tMainTask data[0]
-#define tPalIndex data[1]
-#define tDelayBefore data[2]
-#define tDelay data[3]
-#define tDelayTimer data[4]
-
-static void Task_NewGameBirchSpeech_FadePlatformIn(u8 taskId)
-{
-    if (gTasks[taskId].tDelayBefore)
-    {
-        gTasks[taskId].tDelayBefore--;
-    }
-    else if (gTasks[taskId].tPalIndex == 8)
-    {
-        DestroyTask(taskId);
-    }
-    else if (gTasks[taskId].tDelayTimer)
-    {
-        gTasks[taskId].tDelayTimer--;
-    }
-    else
-    {
-        gTasks[taskId].tDelayTimer = gTasks[taskId].tDelay;
-        gTasks[taskId].tPalIndex++;
-        LoadPalette(&sBirchSpeechBgGradientPal[gTasks[taskId].tPalIndex], BG_PLTT_ID(0) + 1, PLTT_SIZEOF(8));
-    }
-}
-
-static void NewGameBirchSpeech_StartFadePlatformIn(u8 taskId, u8 delay)
-{
-    u8 taskId2;
-
-    taskId2 = CreateTask(Task_NewGameBirchSpeech_FadePlatformIn, 0);
-    gTasks[taskId2].tMainTask = taskId;
-    gTasks[taskId2].tPalIndex = 0;
-    gTasks[taskId2].tDelayBefore = 8;
-    gTasks[taskId2].tDelay = delay;
-    gTasks[taskId2].tDelayTimer = delay;
-}
-
-static void Task_NewGameBirchSpeech_FadePlatformOut(u8 taskId)
-{
-    if (gTasks[taskId].tDelayBefore)
-    {
-        gTasks[taskId].tDelayBefore--;
-    }
-    else if (gTasks[taskId].tPalIndex == 0)
-    {
-        DestroyTask(taskId);
-    }
-    else if (gTasks[taskId].tDelayTimer)
-    {
-        gTasks[taskId].tDelayTimer--;
-    }
-    else
-    {
-        gTasks[taskId].tDelayTimer = gTasks[taskId].tDelay;
-        gTasks[taskId].tPalIndex--;
-        LoadPalette(&sBirchSpeechBgGradientPal[gTasks[taskId].tPalIndex], BG_PLTT_ID(0) + 1, PLTT_SIZEOF(8));
-    }
-}
-
-static void NewGameBirchSpeech_StartFadePlatformOut(u8 taskId, u8 delay)
-{
-    u8 taskId2;
-
-    taskId2 = CreateTask(Task_NewGameBirchSpeech_FadePlatformOut, 0);
-    gTasks[taskId2].tMainTask = taskId;
-    gTasks[taskId2].tPalIndex = 8;
-    gTasks[taskId2].tDelayBefore = 8;
-    gTasks[taskId2].tDelay = delay;
-    gTasks[taskId2].tDelayTimer = delay;
-}
-
-#undef tMainTask
-#undef tPalIndex
-#undef tDelayBefore
-#undef tDelay
-#undef tDelayTimer
-
-static void NewGameBirchSpeech_ShowGenderMenu(void)
+static void NewGameBirchSpeech_ShowGenderMenu(u8 taskId)
 {
     DrawMainMenuWindowBorder(&sNewGameBirchSpeechTextWindows[1], 0xF3);
     FillWindowPixelBuffer(1, PIXEL_FILL(1));
     PrintMenuTable(1, ARRAY_COUNT(sMenuActions_Gender), sMenuActions_Gender);
-    InitMenuInUpperLeftCornerNormal(1, ARRAY_COUNT(sMenuActions_Gender), 0);
+    InitMenuInUpperLeftCornerNormal(1, ARRAY_COUNT(sMenuActions_Gender), gTasks[taskId].data[6]);
     PutWindowTilemap(1);
     CopyWindowToVram(1, COPYWIN_FULL);
 }
@@ -2226,19 +2226,15 @@ static void NewGameBirchSpeech_ClearGenderWindow(u8 windowId, bool8 copyToVram)
 static void NewGameBirchSpeech_ClearWindow(u8 windowId)
 {
     u8 bgColor = GetFontAttribute(FONT_NORMAL, FONTATTR_COLOR_BACKGROUND);
-    u8 maxCharWidth = GetFontAttribute(FONT_NORMAL, FONTATTR_MAX_LETTER_WIDTH);
-    u8 maxCharHeight = GetFontAttribute(FONT_NORMAL, FONTATTR_MAX_LETTER_HEIGHT);
-    u8 winWidth = GetWindowAttribute(windowId, WINDOW_WIDTH);
-    u8 winHeight = GetWindowAttribute(windowId, WINDOW_HEIGHT);
 
-    FillWindowPixelRect(windowId, bgColor, 0, 0, maxCharWidth * winWidth, maxCharHeight * winHeight);
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(bgColor));
     CopyWindowToVram(windowId, COPYWIN_GFX);
 }
 
-static void NewGameBirchSpeech_WaitForThisIsPokemonText(struct TextPrinterTemplate *printer, u16 renderCmd)
+static void NewGameBirchSpeech_WaitForWorldText(struct TextPrinterTemplate *printer, u16 renderCmd)
 {
-    // Wait for Birch's "This is a Pokémon" text to reach the pause
-    // Then start the PokéBall release (if it hasn't been started already)
+    // Wait for Oak's description of the Pokémon world to reach the pause,
+    // then start the PokéBall release (if it hasn't been started already).
     if (*(printer->currentChar - 2) == EXT_CTRL_CODE_PAUSE && !sStartedPokeBallTask)
     {
         sStartedPokeBallTask = TRUE;
