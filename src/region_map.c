@@ -163,6 +163,7 @@ static const u8 sRegionMapPlayerIcon_LeafGfx[] = INCBIN_U8("graphics/pokenav/reg
 // Set this to the second region's sRegionMapSections_ layout when its map is ready.
 #define REGION_MAP_SECOND_PAGE_LAYOUT NULL
 #define REGION_MAP_THIRD_PAGE_LAYOUT sRegionMapSections_Sevii123
+//#define REGION_MAP_THIRD_PAGE_LAYOUT NULL
 
 static const mapsec_u16_t (*const sRegionMapPageLayouts[REGION_MAP_PAGE_COUNT])[MAP_WIDTH] =
 {
