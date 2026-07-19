@@ -2118,6 +2118,8 @@ static bool32 TryGetWeatherActionPrompt(u8 *dst)
 
     txtPtr = StringCopy(dst, sText_WeatherPrompt);
     txtPtr = StringAppend(txtPtr, sBattleWeatherActionPromptNames[weather]);
+    if (weather == BATTLE_WEATHER_STRONG_WINDS)
+        txtPtr = WrapFontIdToFit(dst, txtPtr, FONT_NORMAL, WindowWidthPx(B_WIN_ACTION_PROMPT) - 2);
 
     if (gBattleStruct->weatherDuration > 0)
     {

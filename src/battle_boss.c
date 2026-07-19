@@ -47,12 +47,12 @@ static const struct BossPhase sMewtwoBossPhases[] =
         .moves = {MOVE_PSYSTRIKE, MOVE_ICE_BEAM, MOVE_FIRE_BLAST, MOVE_TAUNT},
     },
     {
-        .species = SPECIES_MEWTWO_MEGA_X,
-        .moves = {MOVE_ZEN_HEADBUTT, MOVE_DRAIN_PUNCH, MOVE_ICE_PUNCH, MOVE_BULK_UP},
-    },
-    {
         .species = SPECIES_MEWTWO_MEGA_Y,
         .moves = {MOVE_PSYSTRIKE, MOVE_AURA_SPHERE, MOVE_ICE_BEAM, MOVE_CALM_MIND},
+    },
+    {
+        .species = SPECIES_MEWTWO_MEGA_X,
+        .moves = {MOVE_ZEN_HEADBUTT, MOVE_DRAIN_PUNCH, MOVE_ICE_PUNCH, MOVE_BULK_UP},
     },
     {
         .species = SPECIES_MEWTWO_MEGA_Y,
@@ -65,6 +65,35 @@ static const struct BossPhaseProfile sMewtwoBossProfile =
     .baseSpecies = SPECIES_MEWTWO,
     .phaseCount = ARRAY_COUNT(sMewtwoBossPhases),
     .phases = sMewtwoBossPhases,
+};
+#endif
+
+#if P_FAMILY_RAYQUAZA && P_MEGA_EVOLUTIONS
+static const struct BossPhase sRayquazaBossPhases[] =
+{
+    {
+        .species = SPECIES_RAYQUAZA,
+        .moves = {MOVE_DRAGON_DANCE, MOVE_EARTHQUAKE, MOVE_EXTREMESPEED, MOVE_DRAGON_CLAW},
+    },
+    {
+        .species = SPECIES_RAYQUAZA,
+        .moves = {MOVE_DRAGON_DANCE, MOVE_EARTHQUAKE, MOVE_EXTREMESPEED, MOVE_DRAGON_CLAW},
+    },
+    {
+        .species = SPECIES_RAYQUAZA_MEGA,
+        .moves = {MOVE_DRAGON_ASCENT, MOVE_DRAGON_DANCE, MOVE_EXTREMESPEED, MOVE_V_CREATE},
+    },
+    {
+        .species = SPECIES_RAYQUAZA_MEGA,
+        .moves = {MOVE_DRAGON_ASCENT, MOVE_DRAGON_DANCE, MOVE_EXTREMESPEED, MOVE_V_CREATE},
+    },
+};
+
+static const struct BossPhaseProfile sRayquazaBossProfile =
+{
+    .baseSpecies = SPECIES_RAYQUAZA,
+    .phaseCount = ARRAY_COUNT(sRayquazaBossPhases),
+    .phases = sRayquazaBossPhases,
 };
 #endif
 
@@ -166,6 +195,10 @@ static const struct BossPhaseProfile *GetBossPhaseProfile(u8 profileId)
 #if P_FAMILY_OGERPON && P_TERA_FORMS
     case BOSS_PHASE_PROFILE_OGERPON:
         return &sOgerponBossProfile;
+#endif
+#if P_FAMILY_RAYQUAZA && P_MEGA_EVOLUTIONS
+    case BOSS_PHASE_PROFILE_RAYQUAZA:
+        return &sRayquazaBossProfile;
 #endif
     default:
         return NULL;

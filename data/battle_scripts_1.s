@@ -5521,13 +5521,13 @@ BattleScript_BossHealthBarBreakAndFormChange::
 	printfromtable gBossHealthBarBreakStringIds
 	waitmessage B_WAIT_TIME_LONG
 	flushtextbox
-	printstring STRINGID_BOSSSURGINGWITHPOWER
+	printstring STRINGID_BOSSPHASESURGINGWITHPOWER
 	waitmessage B_WAIT_TIME_LONG
 	handleformchange BS_TARGET, 0
 	playanimation BS_TARGET, B_ANIM_MEGA_EVOLUTION
 	waitanimation
 	handleformchange BS_TARGET, 1
-	printstring STRINGID_BOSSTRANSFORMED
+	printstring STRINGID_BOSSPHASETRANSFORMED
 	waitmessage B_WAIT_TIME_LONG
 	switchinabilities BS_TARGET
 	return

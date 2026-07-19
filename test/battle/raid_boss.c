@@ -482,15 +482,15 @@ SINGLE_BATTLE_TEST("Raid boss: Mewtwo phase profile cycles through stat-oriented
     static const u16 sExpectedSpecies[] =
     {
         SPECIES_MEWTWO,
-        SPECIES_MEWTWO_MEGA_X,
         SPECIES_MEWTWO_MEGA_Y,
+        SPECIES_MEWTWO_MEGA_X,
         SPECIES_MEWTWO_MEGA_Y,
     };
     static const enum Move sExpectedMoves[][MAX_MON_MOVES] =
     {
         {MOVE_PSYSTRIKE, MOVE_ICE_BEAM, MOVE_FIRE_BLAST, MOVE_TAUNT},
-        {MOVE_ZEN_HEADBUTT, MOVE_DRAIN_PUNCH, MOVE_ICE_PUNCH, MOVE_BULK_UP},
         {MOVE_PSYSTRIKE, MOVE_AURA_SPHERE, MOVE_ICE_BEAM, MOVE_CALM_MIND},
+        {MOVE_ZEN_HEADBUTT, MOVE_DRAIN_PUNCH, MOVE_ICE_PUNCH, MOVE_BULK_UP},
         {MOVE_PSYSTRIKE, MOVE_AURA_SPHERE, MOVE_FIRE_BLAST, MOVE_SHADOW_BALL},
     };
     u32 phase;
@@ -526,16 +526,114 @@ SINGLE_BATTLE_TEST("Raid boss: Mewtwo phase profile cycles through stat-oriented
         ExpectBossMoves(opponent, sExpectedMoves[phase]);
         EXPECT_EQ(opponent->pp[3], GetMovePP(sExpectedMoves[phase][3]) - 1);
         EXPECT_EQ(opponent->attack, unboostedAttack * 110 / 100);
-        if (phase == 1)
+        if (sExpectedSpecies[phase] == SPECIES_MEWTWO_MEGA_X)
         {
             EXPECT_EQ(opponent->ability, ABILITY_STEADFAST);
             EXPECT_EQ(opponent->types[1], TYPE_FIGHTING);
         }
-        else if (phase >= 2)
+        else if (sExpectedSpecies[phase] == SPECIES_MEWTWO_MEGA_Y)
         {
             EXPECT_EQ(opponent->ability, ABILITY_INSOMNIA);
             EXPECT_EQ(opponent->types[1], TYPE_PSYCHIC);
         }
+    }
+}
+
+SINGLE_BATTLE_TEST("Raid boss: phase-change messages name the boss rather than the player's Pokémon")
+{
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_HORN_DRILL) == EFFECT_OHKO);
+        PLAYER(SPECIES_LUGIA) { Level(100); Ability(ABILITY_NO_GUARD); Speed(1000); HP(10000); MaxHP(10000); Moves(MOVE_HORN_DRILL); }
+        OPPONENT(SPECIES_MEWTWO) { Level(100); Speed(1); Moves(MOVE_PSYSTRIKE, MOVE_ICE_BEAM, MOVE_FIRE_BLAST, MOVE_TAUNT); }
+        ConfigureTestBossProfile(BOSS_PHASE_PROFILE_MEWTWO);
+    } WHEN {
+        TURN { MOVE(player, MOVE_HORN_DRILL); MOVE(opponent, moveSlot: 3); }
+    } SCENE {
+        MESSAGE("The opposing Mewtwo's barrier broke! It's still standing!");
+        MESSAGE("The opposing Mewtwo is surging with power!");
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, opponent);
+        MESSAGE("The opposing Mewtwo transformed into Mega Mewtwo!");
+        NONE_OF {
+            MESSAGE("Lugia is surging with power!");
+            MESSAGE("Lugia transformed into Mega Mewtwo!");
+        }
+    } THEN {
+        EXPECT_EQ(opponent->species, SPECIES_MEWTWO_MEGA_Y);
+    }
+}
+
+SINGLE_BATTLE_TEST("Raid boss: Rayquaza stays base for two bars then finishes in its Mega form")
+{
+    static const u16 sExpectedSpecies[] =
+    {
+        SPECIES_RAYQUAZA,
+        SPECIES_RAYQUAZA,
+        SPECIES_RAYQUAZA_MEGA,
+        SPECIES_RAYQUAZA_MEGA,
+    };
+    static const enum Move sExpectedMoves[][MAX_MON_MOVES] =
+    {
+        {MOVE_DRAGON_DANCE, MOVE_EARTHQUAKE, MOVE_EXTREMESPEED, MOVE_DRAGON_CLAW},
+        {MOVE_DRAGON_DANCE, MOVE_EARTHQUAKE, MOVE_EXTREMESPEED, MOVE_DRAGON_CLAW},
+        {MOVE_DRAGON_ASCENT, MOVE_DRAGON_DANCE, MOVE_EXTREMESPEED, MOVE_V_CREATE},
+        {MOVE_DRAGON_ASCENT, MOVE_DRAGON_DANCE, MOVE_EXTREMESPEED, MOVE_V_CREATE},
+    };
+    u32 phase;
+
+    PARAMETRIZE { phase = 0; }
+    PARAMETRIZE { phase = 1; }
+    PARAMETRIZE { phase = 2; }
+    PARAMETRIZE { phase = 3; }
+
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_HORN_DRILL) == EFFECT_OHKO);
+        PLAYER(SPECIES_MACHAMP) { Level(100); Ability(ABILITY_NO_GUARD); Speed(1000); HP(10000); MaxHP(10000); Moves(MOVE_HORN_DRILL, MOVE_CELEBRATE); }
+        OPPONENT(SPECIES_RAYQUAZA) { Level(100); Speed(1); Moves(MOVE_DRAGON_DANCE, MOVE_EARTHQUAKE, MOVE_EXTREMESPEED, MOVE_DRAGON_CLAW); }
+        ConfigureTestBossProfile(BOSS_PHASE_PROFILE_RAYQUAZA);
+    } WHEN {
+        if (phase == 0)
+        {
+            TURN { MOVE(player, MOVE_CELEBRATE); MOVE(opponent, moveSlot: 3); }
+        }
+        else
+        {
+            TURN { MOVE(player, MOVE_HORN_DRILL); MOVE(opponent, moveSlot: 3); }
+            if (phase >= 2)
+                TURN { MOVE(player, MOVE_HORN_DRILL); MOVE(opponent, moveSlot: 3); }
+            if (phase >= 3)
+                TURN { MOVE(player, MOVE_HORN_DRILL); MOVE(opponent, moveSlot: 3); }
+        }
+    } THEN {
+        EXPECT_EQ(gBattleStruct->boss.barsRemaining, 4 - phase);
+        EXPECT_EQ(opponent->species, sExpectedSpecies[phase]);
+        EXPECT_EQ(opponent->ability, phase < 2 ? ABILITY_AIR_LOCK : ABILITY_DELTA_STREAM);
+        ExpectBossMoves(opponent, sExpectedMoves[phase]);
+        EXPECT_EQ(opponent->pp[3], GetMovePP(sExpectedMoves[phase][3]) - 1);
+    }
+}
+
+WILD_BATTLE_TEST("Raid boss: captured Rayquaza reverts from Mega and restores its base moveset")
+{
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_HORN_DRILL) == EFFECT_OHKO);
+        VICTORY_CATCH(ITEM_POKE_BALL);
+        EXPECT_BOSS_CLEANUP;
+        PLAYER(SPECIES_MACHAMP) { Level(100); Ability(ABILITY_NO_GUARD); Speed(1000); HP(10000); MaxHP(10000); Moves(MOVE_HORN_DRILL); }
+        OPPONENT(SPECIES_RAYQUAZA) { Level(100); Speed(1); Moves(MOVE_DRAGON_DANCE, MOVE_EARTHQUAKE, MOVE_EXTREMESPEED, MOVE_DRAGON_CLAW); }
+        ConfigureTestBossProfile(BOSS_PHASE_PROFILE_RAYQUAZA);
+    } WHEN {
+        TURN { MOVE(player, MOVE_HORN_DRILL); MOVE(opponent, moveSlot: 1); }
+        TURN { MOVE(player, MOVE_HORN_DRILL); MOVE(opponent, moveSlot: 1); }
+        TURN { MOVE(player, MOVE_HORN_DRILL); MOVE(opponent, moveSlot: 1); }
+        TURN { MOVE(player, MOVE_HORN_DRILL); MOVE(opponent, moveSlot: 1); }
+    } THEN {
+        EXPECT_EQ(gBattleOutcome, B_OUTCOME_CAUGHT);
+        EXPECT_EQ(GetMonData(&gPlayerParty[1], MON_DATA_SPECIES), SPECIES_RAYQUAZA);
+        EXPECT_EQ(GetMonData(&gPlayerParty[1], MON_DATA_MOVE1), MOVE_DRAGON_DANCE);
+        EXPECT_EQ(GetMonData(&gPlayerParty[1], MON_DATA_MOVE2), MOVE_EARTHQUAKE);
+        EXPECT_EQ(GetMonData(&gPlayerParty[1], MON_DATA_MOVE3), MOVE_EXTREMESPEED);
+        EXPECT_EQ(GetMonData(&gPlayerParty[1], MON_DATA_MOVE4), MOVE_DRAGON_CLAW);
+        EXPECT_EQ(GetMonData(&gPlayerParty[1], MON_DATA_PP1), GetMovePP(MOVE_DRAGON_DANCE));
     }
 }
 

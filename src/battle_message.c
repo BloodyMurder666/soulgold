@@ -1001,6 +1001,8 @@ const u8 *const gBattleStringsTable[STRINGID_COUNT] =
     [STRINGID_BOSSLASTSTAND]                        = COMPOUND_STRING("{B_DEF_NAME_WITH_PREFIX}'s barrier broke! It's making a last stand!"),
     [STRINGID_BOSSSURGINGWITHPOWER]                 = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} is surging with power!"),
     [STRINGID_BOSSTRANSFORMED]                      = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} transformed into Mega {B_BUFF1}!"),
+    [STRINGID_BOSSPHASESURGINGWITHPOWER]            = COMPOUND_STRING("{B_DEF_NAME_WITH_PREFIX} is surging with power!"),
+    [STRINGID_BOSSPHASETRANSFORMED]                 = COMPOUND_STRING("{B_DEF_NAME_WITH_PREFIX} transformed into Mega {B_BUFF1}!"),
 };
 
 const u16 gBossHealthBarBreakStringIds[] =
