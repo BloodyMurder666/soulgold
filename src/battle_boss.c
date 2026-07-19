@@ -4,12 +4,14 @@
 #include "battle_boss.h"
 #include "battle_gimmick.h"
 #include "battle_interface.h"
+#include "battle_script_commands.h"
 #include "battle_util.h"
 #include "event_data.h"
 #include "palette.h"
 #include "pokemon.h"
 #include "script.h"
 #include "sprite.h"
+#include "test/battle.h"
 #include "constants/form_change_types.h"
 
 #define TAG_BOSS_BARRIER_TILE  0x57B0
@@ -24,11 +26,83 @@ enum
     BOSS_LAST_STAND,
 };
 
+struct BossPhase
+{
+    u16 species;
+    enum Move moves[MAX_MON_MOVES];
+};
+
+struct BossPhaseProfile
+{
+    u16 baseSpecies;
+    u8 phaseCount;
+    const struct BossPhase *phases;
+};
+
+#if P_FAMILY_MEWTWO && P_MEGA_EVOLUTIONS
+static const struct BossPhase sMewtwoBossPhases[] =
+{
+    {
+        .species = SPECIES_MEWTWO,
+        .moves = {MOVE_PSYSTRIKE, MOVE_ICE_BEAM, MOVE_FIRE_BLAST, MOVE_TAUNT},
+    },
+    {
+        .species = SPECIES_MEWTWO_MEGA_X,
+        .moves = {MOVE_ZEN_HEADBUTT, MOVE_DRAIN_PUNCH, MOVE_ICE_PUNCH, MOVE_BULK_UP},
+    },
+    {
+        .species = SPECIES_MEWTWO_MEGA_Y,
+        .moves = {MOVE_PSYSTRIKE, MOVE_AURA_SPHERE, MOVE_ICE_BEAM, MOVE_CALM_MIND},
+    },
+    {
+        .species = SPECIES_MEWTWO_MEGA_Y,
+        .moves = {MOVE_PSYSTRIKE, MOVE_AURA_SPHERE, MOVE_FIRE_BLAST, MOVE_SHADOW_BALL},
+    },
+};
+
+static const struct BossPhaseProfile sMewtwoBossProfile =
+{
+    .baseSpecies = SPECIES_MEWTWO,
+    .phaseCount = ARRAY_COUNT(sMewtwoBossPhases),
+    .phases = sMewtwoBossPhases,
+};
+#endif
+
+#if P_FAMILY_OGERPON && P_TERA_FORMS
+static const struct BossPhase sOgerponBossPhases[] =
+{
+    {
+        .species = SPECIES_OGERPON_WELLSPRING_TERA,
+        .moves = {MOVE_IVY_CUDGEL, MOVE_HORN_LEECH, MOVE_PLAY_ROUGH, MOVE_SWORDS_DANCE},
+    },
+    {
+        .species = SPECIES_OGERPON_HEARTHFLAME_TERA,
+        .moves = {MOVE_IVY_CUDGEL, MOVE_HORN_LEECH, MOVE_STOMPING_TANTRUM, MOVE_SWORDS_DANCE},
+    },
+    {
+        .species = SPECIES_OGERPON_CORNERSTONE_TERA,
+        .moves = {MOVE_IVY_CUDGEL, MOVE_HORN_LEECH, MOVE_PLAY_ROUGH, MOVE_SPIKY_SHIELD},
+    },
+    {
+        .species = SPECIES_OGERPON_TEAL_TERA,
+        .moves = {MOVE_IVY_CUDGEL, MOVE_HORN_LEECH, MOVE_KNOCK_OFF, MOVE_SWORDS_DANCE},
+    },
+};
+
+static const struct BossPhaseProfile sOgerponBossProfile =
+{
+    .baseSpecies = SPECIES_OGERPON,
+    .phaseCount = ARRAY_COUNT(sOgerponBossPhases),
+    .phases = sOgerponBossPhases,
+};
+#endif
+
 struct PendingBossBattle
 {
     u16 megaSpecies;
     u8 totalBars;
     u8 statMultiplier;
+    u8 phaseProfile;
     bool8 autoMega;
     bool8 active;
 };
@@ -81,6 +155,23 @@ static const struct SpriteTemplate sBossBarrierSpriteTemplate =
     .callback = SpriteCB_BossBarrier,
 };
 
+static const struct BossPhaseProfile *GetBossPhaseProfile(u8 profileId)
+{
+    switch (profileId)
+    {
+#if P_FAMILY_MEWTWO && P_MEGA_EVOLUTIONS
+    case BOSS_PHASE_PROFILE_MEWTWO:
+        return &sMewtwoBossProfile;
+#endif
+#if P_FAMILY_OGERPON && P_TERA_FORMS
+    case BOSS_PHASE_PROFILE_OGERPON:
+        return &sOgerponBossProfile;
+#endif
+    default:
+        return NULL;
+    }
+}
+
 bool32 IsBossBattlePending(void)
 {
     return sPendingBossBattle.active;
@@ -88,9 +179,17 @@ bool32 IsBossBattlePending(void)
 
 void ConfigureBossBattle(u8 totalBars, u16 megaSpecies, u8 statMultiplier)
 {
-    bool8 autoMega = megaSpecies == SPECIES_NONE;
+    ConfigureBossBattleWithProfile(totalBars, megaSpecies, statMultiplier, BOSS_PHASE_PROFILE_NONE);
+}
+
+void ConfigureBossBattleWithProfile(u8 totalBars, u16 megaSpecies, u8 statMultiplier, u8 phaseProfile)
+{
+    bool8 autoMega;
 
     totalBars = min(MAX_BOSS_HEALTH_BARS, max(1, totalBars));
+    if (phaseProfile >= BOSS_PHASE_PROFILE_COUNT)
+        phaseProfile = BOSS_PHASE_PROFILE_NONE;
+    autoMega = megaSpecies == SPECIES_NONE && phaseProfile == BOSS_PHASE_PROFILE_NONE;
     if (statMultiplier == 0)
         statMultiplier = DEFAULT_BOSS_STAT_MULTIPLIER;
     if (!autoMega && (megaSpecies >= NUM_SPECIES || !IsSpeciesEnabled(megaSpecies)))
@@ -108,9 +207,12 @@ void ConfigureBossBattle(u8 totalBars, u16 megaSpecies, u8 statMultiplier)
         gBattleStruct->boss.totalBars = totalBars;
         gBattleStruct->boss.barsRemaining = totalBars;
         gBattleStruct->boss.statMultiplier = statMultiplier;
+        gBattleStruct->boss.phaseProfile = phaseProfile;
         gBattleStruct->boss.autoMega = autoMega;
         gBattleStruct->boss.active = TRUE;
         gBattleStruct->boss.initialized = FALSE;
+        gBattleStruct->boss.originalMovesStored = FALSE;
+        gBattleStruct->boss.phaseChangedForm = FALSE;
         for (u32 i = 0; i < ARRAY_COUNT(gBattleStruct->boss.barrierSpriteIds); i++)
             gBattleStruct->boss.barrierSpriteIds[i] = SPRITE_NONE;
     }
@@ -119,6 +221,7 @@ void ConfigureBossBattle(u8 totalBars, u16 megaSpecies, u8 statMultiplier)
         sPendingBossBattle.megaSpecies = megaSpecies;
         sPendingBossBattle.totalBars = totalBars;
         sPendingBossBattle.statMultiplier = statMultiplier;
+        sPendingBossBattle.phaseProfile = phaseProfile;
         sPendingBossBattle.autoMega = autoMega;
         sPendingBossBattle.active = TRUE;
     }
@@ -135,9 +238,10 @@ void ScriptConfigureBossBattle(struct ScriptContext *ctx)
     u16 totalBars = VarGet(ScriptReadHalfword(ctx));
     u16 megaSpecies = VarGet(ScriptReadHalfword(ctx));
     u16 statMultiplier = VarGet(ScriptReadHalfword(ctx));
+    u16 phaseProfile = VarGet(ScriptReadHalfword(ctx));
 
     Script_RequestEffects(SCREFF_V1);
-    ConfigureBossBattle(totalBars, megaSpecies, statMultiplier);
+    ConfigureBossBattleWithProfile(totalBars, megaSpecies, statMultiplier, phaseProfile);
 }
 
 void ScriptCancelBossBattle(struct ScriptContext *ctx)
@@ -164,9 +268,12 @@ void InitBossBattleData(void)
     gBattleStruct->boss.totalBars = sPendingBossBattle.active ? sPendingBossBattle.totalBars : 2;
     gBattleStruct->boss.barsRemaining = gBattleStruct->boss.totalBars;
     gBattleStruct->boss.statMultiplier = sPendingBossBattle.active ? sPendingBossBattle.statMultiplier : DEFAULT_BOSS_STAT_MULTIPLIER;
+    gBattleStruct->boss.phaseProfile = sPendingBossBattle.active ? sPendingBossBattle.phaseProfile : BOSS_PHASE_PROFILE_NONE;
     gBattleStruct->boss.autoMega = sPendingBossBattle.active ? sPendingBossBattle.autoMega : TRUE;
     gBattleStruct->boss.active = TRUE;
     gBattleStruct->boss.initialized = FALSE;
+    gBattleStruct->boss.originalMovesStored = FALSE;
+    gBattleStruct->boss.phaseChangedForm = FALSE;
     for (u32 i = 0; i < ARRAY_COUNT(gBattleStruct->boss.barrierSpriteIds); i++)
         gBattleStruct->boss.barrierSpriteIds[i] = SPRITE_NONE;
 
@@ -215,6 +322,132 @@ static bool32 IsLegalBossMegaSpecies(u16 baseSpecies, u16 targetSpecies)
     return FALSE;
 }
 
+static bool32 IsBossPhaseProfileValid(const struct BossPhaseProfile *profile, enum BattlerId battler)
+{
+    if (profile == NULL
+     || profile->phaseCount != gBattleStruct->boss.totalBars
+     || GET_BASE_SPECIES_ID(gBattleMons[battler].species) != profile->baseSpecies)
+        return FALSE;
+
+    for (u32 phase = 0; phase < profile->phaseCount; phase++)
+    {
+        u16 species = profile->phases[phase].species;
+
+        if (species == SPECIES_NONE
+         || species >= NUM_SPECIES
+         || !IsSpeciesEnabled(species)
+         || GET_BASE_SPECIES_ID(species) != profile->baseSpecies)
+            return FALSE;
+
+        if (profile->phases[phase].moves[0] != MOVE_NONE)
+        {
+            for (u32 moveSlot = 0; moveSlot < MAX_MON_MOVES; moveSlot++)
+            {
+                if (profile->phases[phase].moves[moveSlot] >= MOVES_COUNT_ALL)
+                    return FALSE;
+            }
+        }
+    }
+
+    return TRUE;
+}
+
+static void StoreBossOriginalMoves(enum BattlerId battler)
+{
+    struct Pokemon *mon = GetBattlerMon(battler);
+
+    if (gBattleStruct->boss.originalMovesStored)
+        return;
+
+    for (u32 moveSlot = 0; moveSlot < MAX_MON_MOVES; moveSlot++)
+    {
+        gBattleStruct->boss.originalMoves[moveSlot] = GetMonData(mon, MON_DATA_MOVE1 + moveSlot);
+        gBattleStruct->boss.originalPp[moveSlot] = GetMonData(mon, MON_DATA_PP1 + moveSlot);
+    }
+    gBattleStruct->boss.originalMovesStored = TRUE;
+}
+
+static void ResetBossMoveLocks(enum BattlerId battler)
+{
+    gBattleMons[battler].volatiles.disabledMove = MOVE_NONE;
+    gBattleMons[battler].volatiles.disableTimer = 0;
+    gBattleMons[battler].volatiles.encoredMove = MOVE_NONE;
+    gBattleMons[battler].volatiles.encoreTimer = 0;
+    gBattleMons[battler].volatiles.torment = FALSE;
+    gBattleMons[battler].volatiles.tormentTimer = 0;
+    gBattleMons[battler].volatiles.multipleTurns = FALSE;
+    gBattleMons[battler].volatiles.rampageTurns = 0;
+    gBattleMons[battler].volatiles.bideTurns = 0;
+    gBattleMons[battler].volatiles.rechargeTimer = 0;
+    gBattleMons[battler].volatiles.usedMoves = 0;
+    gBattleStruct->choicedMove[battler] = MOVE_NONE;
+    gLockedMoves[battler] = MOVE_NONE;
+    gProtectStructs[battler].noValidMoves = FALSE;
+    gProtectStructs[battler].chargingTurn = FALSE;
+}
+
+static enum BattlerId GetBossPhaseMoveTarget(enum BattlerId battler, enum Move move)
+{
+    // Boss battles are restricted to singles, so target selection only needs
+    // to distinguish moves aimed across the field from moves aimed at the user.
+    // Keeping this attacker-explicit avoids mutating battle-script globals in
+    // the middle of the player's move-end processing.
+    switch (GetBattlerMoveTargetType(battler, move))
+    {
+    case TARGET_SELECTED:
+    case TARGET_SMART:
+    case TARGET_OPPONENT:
+    case TARGET_RANDOM:
+    case TARGET_DEPENDS:
+    case TARGET_BOTH:
+    case TARGET_FOES_AND_ALLY:
+    case TARGET_OPPONENTS_FIELD:
+        return GetOpposingSideBattler(battler);
+    default:
+        return battler;
+    }
+}
+
+static void ApplyBossPhaseMoves(enum BattlerId battler, const struct BossPhase *phase)
+{
+    struct Pokemon *mon = GetBattlerMon(battler);
+    u8 ppBonuses;
+
+    // MOVE_NONE in the first slot is an explicit opt-out for profiles that only
+    // need form changes. Other empty slots remain valid moveset entries.
+    if (phase->moves[0] == MOVE_NONE)
+        return;
+
+    StoreBossOriginalMoves(battler);
+    ppBonuses = GetMonData(mon, MON_DATA_PP_BONUSES);
+    for (u32 moveSlot = 0; moveSlot < MAX_MON_MOVES; moveSlot++)
+    {
+        enum Move move = phase->moves[moveSlot];
+        u8 pp = CalculatePPWithBonus(move, ppBonuses, moveSlot);
+
+        SetMonData(mon, MON_DATA_MOVE1 + moveSlot, &move);
+        SetMonData(mon, MON_DATA_PP1 + moveSlot, &pp);
+        gBattleMons[battler].moves[moveSlot] = move;
+        gBattleMons[battler].pp[moveSlot] = pp;
+    }
+
+    ResetBossMoveLocks(battler);
+
+    // If the boss has already selected a move this turn, keep its selected slot
+    // but make that slot use the new phase's move. This avoids executing a stale
+    // move ID after the old moveset has been replaced.
+    if (gChosenActionByBattler[battler] == B_ACTION_USE_MOVE && !HasBattlerActedThisTurn(battler))
+    {
+        u8 moveSlot = gBattleStruct->chosenMovePositions[battler];
+
+        if (moveSlot < MAX_MON_MOVES)
+        {
+            gChosenMoveByBattler[battler] = gBattleMons[battler].moves[moveSlot];
+            gBattleStruct->moveTarget[battler] = GetBossPhaseMoveTarget(battler, gChosenMoveByBattler[battler]);
+        }
+    }
+}
+
 static void ApplyBossStatMultiplier(enum BattlerId battler)
 {
     u32 multiplier = gBattleStruct->boss.statMultiplier;
@@ -238,7 +471,7 @@ void ApplyBossStatMultiplierAfterRecalculation(enum BattlerId battler)
     ApplyBossStatMultiplier(battler);
 }
 
-static bool32 ForceBossMegaEvolution(enum BattlerId battler, u16 targetSpecies)
+static bool32 ForceBossFormChange(enum BattlerId battler, u16 targetSpecies)
 {
     struct Pokemon *mon = GetBattlerMon(battler);
     struct PartyState *partyState = GetBattlerPartyState(battler);
@@ -252,20 +485,62 @@ static bool32 ForceBossMegaEvolution(enum BattlerId battler, u16 targetSpecies)
     SetMonData(mon, MON_DATA_SPECIES, &targetSpecies);
     gBattleMons[battler].species = targetSpecies;
     RecalcBattlerStats(battler, mon, FALSE);
+#if TESTING
+    // Battle tests deliberately control innate slots independently of species.
+    if (!gTestRunnerEnabled)
+#endif
+    {
+        for (u32 innate = 0; innate < MAX_MON_INNATES; innate++)
+            gBattleMons[battler].innates[innate] = GetSpeciesInnate(targetSpecies, innate + 1);
+    }
     SetActiveGimmick(battler, GIMMICK_MEGA);
     SetGimmickAsActivated(battler, GIMMICK_MEGA);
     return TRUE;
+}
+
+static bool32 ApplyBossPhase(enum BattlerId battler, const struct BossPhase *phase)
+{
+    bool32 changedForm = ForceBossFormChange(battler, phase->species);
+
+    ApplyBossPhaseMoves(battler, phase);
+    return changedForm;
 }
 
 bool32 TryStartBossBattle(void)
 {
     enum BattlerId battler;
     u16 megaSpecies;
+    const struct BossPhaseProfile *profile;
 
     if (!IsBossBattle() || gBattleStruct->boss.initialized)
         return FALSE;
 
     battler = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+    profile = GetBossPhaseProfile(gBattleStruct->boss.phaseProfile);
+    if (gBattleStruct->boss.phaseProfile != BOSS_PHASE_PROFILE_NONE)
+    {
+        gBattleStruct->boss.initialized = TRUE;
+        if (IsBossPhaseProfileValid(profile, battler))
+        {
+            gBattleStruct->boss.phaseChangedForm = ApplyBossPhase(battler, &profile->phases[0]);
+            if (!gBattleStruct->boss.phaseChangedForm)
+                ApplyBossStatMultiplierAfterRecalculation(battler);
+            if (gBattleStruct->boss.phaseChangedForm)
+            {
+                gBattlerAttacker = battler;
+                gBattleScripting.battler = battler;
+                return TRUE;
+            }
+            return FALSE;
+        }
+
+        // A profile for the wrong species, bar count, or disabled forms is
+        // ignored safely instead of indexing invalid ROM data.
+        gBattleStruct->boss.phaseProfile = BOSS_PHASE_PROFILE_NONE;
+        ApplyBossStatMultiplierAfterRecalculation(battler);
+        return FALSE;
+    }
+
     megaSpecies = gBattleStruct->boss.megaSpecies;
     if (gBattleStruct->boss.autoMega)
         megaSpecies = GetAutomaticBossMegaSpecies(battler);
@@ -273,7 +548,7 @@ bool32 TryStartBossBattle(void)
         megaSpecies = SPECIES_NONE;
 
     gBattleStruct->boss.initialized = TRUE;
-    if (ForceBossMegaEvolution(battler, megaSpecies))
+    if (ForceBossFormChange(battler, megaSpecies))
     {
         gBattlerAttacker = battler;
         gBattleScripting.battler = battler;
@@ -312,6 +587,7 @@ static void ResetBossPhaseConditions(enum BattlerId battler, bool32 enteringLast
 
 bool32 TryBossHealthBarBreak(enum BattlerId battler)
 {
+    const struct BossPhaseProfile *profile;
     u16 hp;
 
     if (!IsBossBattle()
@@ -321,10 +597,21 @@ bool32 TryBossHealthBarBreak(enum BattlerId battler)
         return FALSE;
 
     gBattleStruct->boss.barsRemaining--;
+    gBattleStruct->boss.phaseChangedForm = FALSE;
     // A phase boundary ends the current attack. Otherwise a multi-hit move
     // would continue striking the freshly restored bar.
     if (gMultiHitCounter > 1)
         gMultiHitCounter = 1;
+
+    profile = GetBossPhaseProfile(gBattleStruct->boss.phaseProfile);
+    if (profile != NULL)
+    {
+        u32 phase = gBattleStruct->boss.totalBars - gBattleStruct->boss.barsRemaining;
+
+        if (phase < profile->phaseCount)
+            gBattleStruct->boss.phaseChangedForm = ApplyBossPhase(battler, &profile->phases[phase]);
+    }
+
     hp = gBattleMons[battler].maxHP;
     gBattleMons[battler].hp = hp;
     SetMonData(GetBattlerMon(battler), MON_DATA_HP, &hp);
@@ -335,6 +622,33 @@ bool32 TryBossHealthBarBreak(enum BattlerId battler)
     ResetBossPhaseConditions(battler, gBattleStruct->boss.barsRemaining == 1);
     SyncBossHealthBarSprites(battler);
     return TRUE;
+}
+
+bool32 DidBossPhaseChangeForm(void)
+{
+    return IsBossBattle() && gBattleStruct->boss.phaseChangedForm;
+}
+
+void RestoreBossOriginalMovesForCapture(enum BattlerId battler)
+{
+    struct Pokemon *mon;
+
+    if (!IsBossBattle()
+     || !gBattleStruct->boss.originalMovesStored
+     || battler != GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT))
+        return;
+
+    mon = GetBattlerMon(battler);
+    for (u32 moveSlot = 0; moveSlot < MAX_MON_MOVES; moveSlot++)
+    {
+        enum Move move = gBattleStruct->boss.originalMoves[moveSlot];
+        u8 pp = gBattleStruct->boss.originalPp[moveSlot];
+
+        SetMonData(mon, MON_DATA_MOVE1 + moveSlot, &move);
+        SetMonData(mon, MON_DATA_PP1 + moveSlot, &pp);
+        gBattleMons[battler].moves[moveSlot] = move;
+        gBattleMons[battler].pp[moveSlot] = pp;
+    }
 }
 
 void RefreshBossHealthbox(enum BattlerId battler)

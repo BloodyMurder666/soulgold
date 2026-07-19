@@ -332,6 +332,7 @@ extern const u8 BattleScript_DefogClearHazards[];
 extern const u8 BattleScript_MegaEvolution[];
 extern const u8 BattleScript_BossMegaEvolution[];
 extern const u8 BattleScript_BossHealthBarBreak[];
+extern const u8 BattleScript_BossHealthBarBreakAndFormChange[];
 extern const u8 BattleScript_WishMegaEvolution[];
 extern const u8 BattleScript_MoveEffectClearSmog[];
 extern const u8 BattleScript_SideStatusWoreOffReturn[];

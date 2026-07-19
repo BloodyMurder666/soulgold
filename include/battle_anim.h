@@ -343,6 +343,7 @@ extern const union AffineAnimCmd *const gHiddenPowerOrbAffineAnimTable[];
 extern const union AffineAnimCmd *const gBulletSeedAffineAnimTable[];
 
 // battle_anim_effects_3.c
+void AnimTask_MegaEvolutionReveal(u8 taskId);
 void AnimKnockOffStrike_Step(struct Sprite *sprite);
 void AnimBlackSmoke(struct Sprite *sprite);
 void AnimSweetScentPetal(struct Sprite *sprite);

@@ -2594,7 +2594,9 @@ static enum MoveEndResult MoveEndFaintBlock(void)
             if (TryBossHealthBarBreak(gBattlerTarget))
             {
                 gBattleStruct->eventState.moveEndBlock = FAINT_BLOCK_COUNT;
-                BattleScriptCall(BattleScript_BossHealthBarBreak);
+                BattleScriptCall(DidBossPhaseChangeForm()
+                    ? BattleScript_BossHealthBarBreakAndFormChange
+                    : BattleScript_BossHealthBarBreak);
                 result = MOVEEND_RESULT_RUN_SCRIPT;
             }
             else

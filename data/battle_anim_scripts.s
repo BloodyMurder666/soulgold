@@ -31483,6 +31483,9 @@ gBattleAnimGeneral_MegaEvolution::
 	waitforvisualfinish
 	clearmonbg ANIM_ATK_PARTNER
 	blendoff
+	delay 2
+	createvisualtask AnimTask_MegaEvolutionReveal, 5, ANIM_TARGET
+	waitforvisualfinish
 	end
 
 MegaEvolutionParticles:

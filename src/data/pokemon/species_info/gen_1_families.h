@@ -21371,7 +21371,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_STEADFAST, ABILITY_STEADFAST, ABILITY_STEADFAST },
-        .innates = { ABILITY_MOXIE, ABILITY_STAMINA, ABILITY_LONG_REACH },
+        .innates = { ABILITY_LIFESTEAL, ABILITY_STAMINA, ABILITY_LONG_REACH },
 		.bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Mewtwo"),
     #if P_MODIFIED_MEGA_CRIES
@@ -21452,7 +21452,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_INSOMNIA, ABILITY_INSOMNIA, ABILITY_INSOMNIA },
-        .innates = { ABILITY_SOUL_HEART, ABILITY_BERSERK, ABILITY_LEVITATE },
+        .innates = { ABILITY_FILTER, ABILITY_BERSERK, ABILITY_LEVITATE },
 		.bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Mewtwo"),
     #if P_MODIFIED_MEGA_CRIES

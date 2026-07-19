@@ -69,6 +69,7 @@ The hack is currently under testing. It will be playable up to the start of post
 - Whackahack for graphical resources
 - Omega for PSS icons
 - Oomer for Gen 4 chatboxes
+- Gridiron for Bag sprites
 - [Pret and everyone involved](https://github.com/pret/pokeemerald) for the original emerald decompilation
 - [agsmgmaster64](https://github.com/agsmgmaster64/worldlinkdeluxe-ame) Game corner expansion port
 - [heypc](https://github.com/heyopc/pokeemerald-gamecorner-expansion) game corner expansion

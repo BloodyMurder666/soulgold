@@ -2194,11 +2194,12 @@
 	@ Configures the next single legendary battle as a multi-health-bar boss.
 	@ megaSpecies defaults to automatic Mega form detection. Specify a form for
 	@ species with more than one Mega Evolution.
-	.macro setbossbattle bars=2, megaSpecies=SPECIES_NONE, statMultiplier=110
+	.macro setbossbattle bars=2, megaSpecies=SPECIES_NONE, statMultiplier=110, phaseProfile=BOSS_PHASE_PROFILE_NONE
 	callnative ScriptConfigureBossBattle, requests_effects=1
 	.2byte \bars
 	.2byte \megaSpecies
 	.2byte \statMultiplier
+	.2byte \phaseProfile
 	.endm
 
 	@ Cancels a pending boss battle when an encounter script exits early.
@@ -2207,8 +2208,8 @@
 	.endm
 
 	@ Runs a boss encounter and only removes its object after a successful catch.
-	.macro bosslegendaryencounter species:req, level:req, localid:req, flag:req, bars=2, megaSpecies=SPECIES_NONE, statMultiplier=110
-	setbossbattle \bars, \megaSpecies, \statMultiplier
+	.macro bosslegendaryencounter species:req, level:req, localid:req, flag:req, bars=2, megaSpecies=SPECIES_NONE, statMultiplier=110, phaseProfile=BOSS_PHASE_PROFILE_NONE
+	setbossbattle \bars, \megaSpecies, \statMultiplier, \phaseProfile
 	playmoncry \species, CRY_MODE_ENCOUNTER
 	waitmoncry
 	setvar VAR_0x8004, \species
@@ -2227,8 +2228,8 @@
 
 	@ Runs a boss legendary encounter with a curated four-move set. The event
 	@ Pokemon is created normally so captures retain fateful-event metadata.
-	.macro bosslegendaryencounterwithmoves species:req, level:req, localid:req, flag:req, bars=2, megaSpecies=SPECIES_NONE, statMultiplier=110, move1:req, move2:req, move3:req, move4:req
-	setbossbattle \bars, \megaSpecies, \statMultiplier
+	.macro bosslegendaryencounterwithmoves species:req, level:req, localid:req, flag:req, bars=2, megaSpecies=SPECIES_NONE, statMultiplier=110, move1:req, move2:req, move3:req, move4:req, phaseProfile=BOSS_PHASE_PROFILE_NONE
+	setbossbattle \bars, \megaSpecies, \statMultiplier, \phaseProfile
 	playmoncry \species, CRY_MODE_ENCOUNTER
 	waitmoncry
 	seteventmon \species, \level

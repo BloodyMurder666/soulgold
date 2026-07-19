@@ -5514,6 +5514,24 @@ BattleScript_BossHealthBarBreak::
 	waitmessage B_WAIT_TIME_LONG
 	return
 
+BattleScript_BossHealthBarBreakAndFormChange::
+	refreshbosshealthbox BS_TARGET
+	playanimation BS_TARGET, B_ANIM_BOSS_BARRIER_BREAK, NULL
+	waitanimation
+	printfromtable gBossHealthBarBreakStringIds
+	waitmessage B_WAIT_TIME_LONG
+	flushtextbox
+	printstring STRINGID_BOSSSURGINGWITHPOWER
+	waitmessage B_WAIT_TIME_LONG
+	handleformchange BS_TARGET, 0
+	playanimation BS_TARGET, B_ANIM_MEGA_EVOLUTION
+	waitanimation
+	handleformchange BS_TARGET, 1
+	printstring STRINGID_BOSSTRANSFORMED
+	waitmessage B_WAIT_TIME_LONG
+	switchinabilities BS_TARGET
+	return
+
 BattleScript_WishMegaEvolution::
 	flushtextbox
 	trytrainerslidemegaevolutionmsg

@@ -7,6 +7,7 @@
 struct ScriptContext;
 
 void ConfigureBossBattle(u8 totalBars, u16 megaSpecies, u8 statMultiplier);
+void ConfigureBossBattleWithProfile(u8 totalBars, u16 megaSpecies, u8 statMultiplier, u8 phaseProfile);
 void CancelBossBattleConfiguration(void);
 void ScriptConfigureBossBattle(struct ScriptContext *ctx);
 void ScriptCancelBossBattle(struct ScriptContext *ctx);
@@ -16,6 +17,8 @@ bool32 IsBossBattle(void);
 bool32 TryStartBossBattle(void);
 void ApplyBossStatMultiplierAfterRecalculation(enum BattlerId battler);
 bool32 TryBossHealthBarBreak(enum BattlerId battler);
+bool32 DidBossPhaseChangeForm(void);
+void RestoreBossOriginalMovesForCapture(enum BattlerId battler);
 void RefreshBossHealthbox(enum BattlerId battler);
 void SyncBossHealthBarSprites(enum BattlerId battler);
 u8 CountVisibleBossHealthBarSprites(void);

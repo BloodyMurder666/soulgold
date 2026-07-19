@@ -15,6 +15,23 @@ static void ConfigureTestBoss(u8 bars, u16 megaSpecies, u8 statMultiplier)
     gBattleTestRunnerState->data.recordedBattle.battleFlags |= BATTLE_TYPE_BOSS;
 }
 
+static void ConfigureTestBossProfile(u8 profile)
+{
+    ConfigureBossBattleWithProfile(4, SPECIES_NONE, 110, profile);
+    gBattleTestRunnerState->data.recordedBattle.battleFlags |= BATTLE_TYPE_BOSS;
+}
+
+static void ExpectBossMoves(struct BattlePokemon *boss, const enum Move moves[MAX_MON_MOVES])
+{
+    struct Pokemon *mon = GetBattlerMon(GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT));
+
+    for (u32 moveSlot = 0; moveSlot < MAX_MON_MOVES; moveSlot++)
+    {
+        EXPECT_EQ(boss->moves[moveSlot], moves[moveSlot]);
+        EXPECT_EQ(GetMonData(mon, MON_DATA_MOVE1 + moveSlot), moves[moveSlot]);
+    }
+}
+
 static void ExpectBossPhaseActive(void)
 {
     enum BattlerId boss = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
@@ -457,6 +474,208 @@ SINGLE_BATTLE_TEST("Raid boss: Mewtwo supports explicit Mega X and Mega Y select
         TURN { MOVE(player, MOVE_CELEBRATE); MOVE(opponent, MOVE_CELEBRATE); }
     } THEN {
         EXPECT_EQ(opponent->species, megaSpecies);
+    }
+}
+
+SINGLE_BATTLE_TEST("Raid boss: Mewtwo phase profile cycles through stat-oriented forms and movesets")
+{
+    static const u16 sExpectedSpecies[] =
+    {
+        SPECIES_MEWTWO,
+        SPECIES_MEWTWO_MEGA_X,
+        SPECIES_MEWTWO_MEGA_Y,
+        SPECIES_MEWTWO_MEGA_Y,
+    };
+    static const enum Move sExpectedMoves[][MAX_MON_MOVES] =
+    {
+        {MOVE_PSYSTRIKE, MOVE_ICE_BEAM, MOVE_FIRE_BLAST, MOVE_TAUNT},
+        {MOVE_ZEN_HEADBUTT, MOVE_DRAIN_PUNCH, MOVE_ICE_PUNCH, MOVE_BULK_UP},
+        {MOVE_PSYSTRIKE, MOVE_AURA_SPHERE, MOVE_ICE_BEAM, MOVE_CALM_MIND},
+        {MOVE_PSYSTRIKE, MOVE_AURA_SPHERE, MOVE_FIRE_BLAST, MOVE_SHADOW_BALL},
+    };
+    u32 phase;
+
+    PARAMETRIZE { phase = 0; }
+    PARAMETRIZE { phase = 1; }
+    PARAMETRIZE { phase = 2; }
+    PARAMETRIZE { phase = 3; }
+
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_HORN_DRILL) == EFFECT_OHKO);
+        PLAYER(SPECIES_MACHAMP) { Level(100); Ability(ABILITY_NO_GUARD); Speed(1000); HP(10000); MaxHP(10000); Moves(MOVE_HORN_DRILL, MOVE_CELEBRATE); }
+        OPPONENT(SPECIES_MEWTWO) { Level(100); Speed(1); Moves(MOVE_PSYSTRIKE, MOVE_ICE_BEAM, MOVE_FIRE_BLAST, MOVE_TAUNT); }
+        ConfigureTestBossProfile(BOSS_PHASE_PROFILE_MEWTWO);
+    } WHEN {
+        if (phase == 0)
+        {
+            TURN { MOVE(player, MOVE_CELEBRATE); MOVE(opponent, moveSlot: 3); }
+        }
+        else
+        {
+            TURN { MOVE(player, MOVE_HORN_DRILL); MOVE(opponent, moveSlot: 3); }
+            if (phase >= 2)
+                TURN { MOVE(player, MOVE_HORN_DRILL); MOVE(opponent, moveSlot: 3); }
+            if (phase >= 3)
+                TURN { MOVE(player, MOVE_HORN_DRILL); MOVE(opponent, moveSlot: 3); }
+        }
+    } THEN {
+        u32 unboostedAttack = GetMonData(GetBattlerMon(GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT)), MON_DATA_ATK);
+
+        EXPECT_EQ(gBattleStruct->boss.barsRemaining, 4 - phase);
+        EXPECT_EQ(opponent->species, sExpectedSpecies[phase]);
+        ExpectBossMoves(opponent, sExpectedMoves[phase]);
+        EXPECT_EQ(opponent->pp[3], GetMovePP(sExpectedMoves[phase][3]) - 1);
+        EXPECT_EQ(opponent->attack, unboostedAttack * 110 / 100);
+        if (phase == 1)
+        {
+            EXPECT_EQ(opponent->ability, ABILITY_STEADFAST);
+            EXPECT_EQ(opponent->types[1], TYPE_FIGHTING);
+        }
+        else if (phase >= 2)
+        {
+            EXPECT_EQ(opponent->ability, ABILITY_INSOMNIA);
+            EXPECT_EQ(opponent->types[1], TYPE_PSYCHIC);
+        }
+    }
+}
+
+SINGLE_BATTLE_TEST("Raid boss: Ogerpon phase profile cycles all four Tera forms and ends in Teal")
+{
+    static const u16 sExpectedSpecies[] =
+    {
+        SPECIES_OGERPON_WELLSPRING_TERA,
+        SPECIES_OGERPON_HEARTHFLAME_TERA,
+        SPECIES_OGERPON_CORNERSTONE_TERA,
+        SPECIES_OGERPON_TEAL_TERA,
+    };
+    static const enum Ability sExpectedAbilities[] =
+    {
+        ABILITY_EMBODY_ASPECT_WELLSPRING_MASK,
+        ABILITY_EMBODY_ASPECT_HEARTHFLAME_MASK,
+        ABILITY_EMBODY_ASPECT_CORNERSTONE_MASK,
+        ABILITY_EMBODY_ASPECT_TEAL_MASK,
+    };
+    static const enum Type sExpectedTypes[] = {TYPE_WATER, TYPE_FIRE, TYPE_ROCK, TYPE_GRASS};
+    static const enum Move sExpectedMoves[][MAX_MON_MOVES] =
+    {
+        {MOVE_IVY_CUDGEL, MOVE_HORN_LEECH, MOVE_PLAY_ROUGH, MOVE_SWORDS_DANCE},
+        {MOVE_IVY_CUDGEL, MOVE_HORN_LEECH, MOVE_STOMPING_TANTRUM, MOVE_SWORDS_DANCE},
+        {MOVE_IVY_CUDGEL, MOVE_HORN_LEECH, MOVE_PLAY_ROUGH, MOVE_SPIKY_SHIELD},
+        {MOVE_IVY_CUDGEL, MOVE_HORN_LEECH, MOVE_KNOCK_OFF, MOVE_SWORDS_DANCE},
+    };
+    u32 phase;
+
+    PARAMETRIZE { phase = 0; }
+    PARAMETRIZE { phase = 1; }
+    PARAMETRIZE { phase = 2; }
+    PARAMETRIZE { phase = 3; }
+
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_HORN_DRILL) == EFFECT_OHKO);
+        PLAYER(SPECIES_MACHAMP) { Level(100); Ability(ABILITY_NO_GUARD); Speed(1000); HP(1000); MaxHP(1000); Moves(MOVE_HORN_DRILL, MOVE_CELEBRATE); }
+        OPPONENT(SPECIES_OGERPON) { Level(100); Speed(1); Moves(MOVE_SWORDS_DANCE); }
+        ConfigureTestBossProfile(BOSS_PHASE_PROFILE_OGERPON);
+    } WHEN {
+        if (phase == 0)
+        {
+            TURN { MOVE(player, MOVE_CELEBRATE); MOVE(opponent, MOVE_SWORDS_DANCE); }
+        }
+        else
+        {
+            TURN { MOVE(player, MOVE_HORN_DRILL); MOVE(opponent, MOVE_SWORDS_DANCE); }
+            if (phase >= 2)
+                TURN { MOVE(player, MOVE_HORN_DRILL); MOVE(opponent, MOVE_SWORDS_DANCE); }
+            if (phase >= 3)
+                TURN { MOVE(player, MOVE_HORN_DRILL); MOVE(opponent, MOVE_SWORDS_DANCE); }
+        }
+    } THEN {
+        EXPECT_EQ(opponent->species, sExpectedSpecies[phase]);
+        EXPECT_EQ(opponent->ability, sExpectedAbilities[phase]);
+        EXPECT_EQ(opponent->types[1], sExpectedTypes[phase]);
+        ExpectBossMoves(opponent, sExpectedMoves[phase]);
+        EXPECT_EQ(opponent->pp[0], GetMovePP(MOVE_IVY_CUDGEL) - 1);
+        EXPECT_EQ(gBattleStruct->boss.barsRemaining, 4 - phase);
+    }
+}
+
+SINGLE_BATTLE_TEST("Raid boss: Ogerpon targets the player with a remapped move after entering Cornerstone form")
+{
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_HORN_DRILL) == EFFECT_OHKO);
+        PLAYER(SPECIES_MACHAMP) { Level(100); Ability(ABILITY_NO_GUARD); Speed(1000); HP(10000); MaxHP(10000); Moves(MOVE_HORN_DRILL); }
+        OPPONENT(SPECIES_OGERPON) { Level(100); Speed(1); Moves(MOVE_IVY_CUDGEL, MOVE_HORN_LEECH, MOVE_PLAY_ROUGH, MOVE_SWORDS_DANCE); }
+        ConfigureTestBossProfile(BOSS_PHASE_PROFILE_OGERPON);
+    } WHEN {
+        TURN { MOVE(player, MOVE_HORN_DRILL); MOVE(opponent, moveSlot: 3); }
+        TURN { MOVE(player, MOVE_HORN_DRILL); MOVE(opponent, moveSlot: 2); }
+    } THEN {
+        EXPECT_EQ(opponent->species, SPECIES_OGERPON_CORNERSTONE_TERA);
+        EXPECT_EQ(gBattleStruct->moveTarget[GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT)], GetBattlerAtPosition(B_POSITION_PLAYER_LEFT));
+        EXPECT_LT(player->hp, player->maxHP);
+        EXPECT_EQ(opponent->hp, opponent->maxHP);
+    }
+}
+
+WILD_BATTLE_TEST("Raid boss: capture restores the original encounter moves after profile phases")
+{
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_HORN_DRILL) == EFFECT_OHKO);
+        VICTORY_CATCH(ITEM_POKE_BALL);
+        EXPECT_BOSS_CLEANUP;
+        PLAYER(SPECIES_MACHAMP) { Level(100); Ability(ABILITY_NO_GUARD); Speed(1000); HP(10000); MaxHP(10000); Moves(MOVE_HORN_DRILL); }
+        OPPONENT(SPECIES_MEWTWO) { Level(100); Speed(1); Moves(MOVE_CELEBRATE, MOVE_SPLASH, MOVE_GROWL, MOVE_TAIL_WHIP); }
+        ConfigureTestBossProfile(BOSS_PHASE_PROFILE_MEWTWO);
+    } WHEN {
+        TURN { MOVE(player, MOVE_HORN_DRILL); MOVE(opponent, MOVE_CELEBRATE); }
+        TURN { MOVE(player, MOVE_HORN_DRILL); MOVE(opponent, MOVE_CELEBRATE); }
+        TURN { MOVE(player, MOVE_HORN_DRILL); MOVE(opponent, MOVE_CELEBRATE); }
+        TURN { MOVE(player, MOVE_HORN_DRILL); }
+    } THEN {
+        EXPECT_EQ(gBattleOutcome, B_OUTCOME_CAUGHT);
+        EXPECT_EQ(GetMonData(&gPlayerParty[1], MON_DATA_SPECIES), SPECIES_MEWTWO);
+        EXPECT_EQ(GetMonData(&gPlayerParty[1], MON_DATA_MOVE1), MOVE_CELEBRATE);
+        EXPECT_EQ(GetMonData(&gPlayerParty[1], MON_DATA_MOVE2), MOVE_SPLASH);
+        EXPECT_EQ(GetMonData(&gPlayerParty[1], MON_DATA_MOVE3), MOVE_GROWL);
+        EXPECT_EQ(GetMonData(&gPlayerParty[1], MON_DATA_MOVE4), MOVE_TAIL_WHIP);
+        EXPECT_EQ(GetMonData(&gPlayerParty[1], MON_DATA_PP1), GetMovePP(MOVE_CELEBRATE));
+    }
+}
+
+WILD_BATTLE_TEST("Raid boss: captured Ogerpon reverts from its final Teal phase to its base form")
+{
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_HORN_DRILL) == EFFECT_OHKO);
+        VICTORY_CATCH(ITEM_POKE_BALL);
+        EXPECT_BOSS_CLEANUP;
+        PLAYER(SPECIES_MACHAMP) { Level(100); Ability(ABILITY_NO_GUARD); Speed(1000); HP(1000); MaxHP(1000); Moves(MOVE_HORN_DRILL); }
+        OPPONENT(SPECIES_OGERPON) { Level(100); Speed(1); Moves(MOVE_CELEBRATE); }
+        ConfigureTestBossProfile(BOSS_PHASE_PROFILE_OGERPON);
+    } WHEN {
+        TURN { MOVE(player, MOVE_HORN_DRILL); MOVE(opponent, MOVE_CELEBRATE); }
+        TURN { MOVE(player, MOVE_HORN_DRILL); MOVE(opponent, MOVE_CELEBRATE); }
+        TURN { MOVE(player, MOVE_HORN_DRILL); MOVE(opponent, MOVE_CELEBRATE); }
+        TURN { MOVE(player, MOVE_HORN_DRILL); }
+    } THEN {
+        EXPECT_EQ(gBattleOutcome, B_OUTCOME_CAUGHT);
+        EXPECT_EQ(GetMonData(&gPlayerParty[1], MON_DATA_SPECIES), SPECIES_OGERPON);
+        EXPECT_EQ(GetMonData(&gPlayerParty[1], MON_DATA_MOVE1), MOVE_CELEBRATE);
+        EXPECT_EQ(GetMonData(&gPlayerParty[1], MON_DATA_PP1), GetMovePP(MOVE_CELEBRATE));
+    }
+}
+
+SINGLE_BATTLE_TEST("Raid boss: an incompatible phase profile is ignored safely")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Moves(MOVE_CELEBRATE); }
+        OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_CELEBRATE); }
+        ConfigureTestBossProfile(BOSS_PHASE_PROFILE_MEWTWO);
+    } WHEN {
+        TURN { MOVE(player, MOVE_CELEBRATE); MOVE(opponent, MOVE_CELEBRATE); }
+    } THEN {
+        EXPECT_EQ(opponent->species, SPECIES_WOBBUFFET);
+        EXPECT_EQ(opponent->moves[0], MOVE_CELEBRATE);
+        EXPECT_EQ(gBattleStruct->boss.phaseProfile, BOSS_PHASE_PROFILE_NONE);
+        EXPECT(gBattleStruct->boss.initialized);
     }
 }
 

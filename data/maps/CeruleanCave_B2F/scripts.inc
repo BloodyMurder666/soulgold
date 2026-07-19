@@ -53,7 +53,7 @@ NamelessDungeonMewtwo::
 # 30 "data/maps/CeruleanCave_B2F/scripts.pory"
 	faceplayer
 # 31 "data/maps/CeruleanCave_B2F/scripts.pory"
-	bosslegendaryencounterwithmoves SPECIES_MEWTWO, 80, LOCALID_CERULEANCAVE_MEWTWO, FLAG_HIDE_MEWTWO, 4, SPECIES_MEWTWO_MEGA_Y, 110, MOVE_PSYSTRIKE, MOVE_ICE_BEAM, MOVE_FIRE_BLAST, MOVE_TAUNT
+	bosslegendaryencounterwithmoves SPECIES_MEWTWO, 80, LOCALID_CERULEANCAVE_MEWTWO, FLAG_HIDE_MEWTWO, 4, SPECIES_NONE, 110, MOVE_PSYSTRIKE, MOVE_ICE_BEAM, MOVE_FIRE_BLAST, MOVE_TAUNT, BOSS_PHASE_PROFILE_MEWTWO
 # 32 "data/maps/CeruleanCave_B2F/scripts.pory"
 	release
 	end

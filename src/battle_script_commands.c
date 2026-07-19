@@ -4338,7 +4338,9 @@ static void Cmd_tryfaintmon(void)
             {
                 gBattlerTarget = battler;
                 BattleScriptPush(cmd->nextInstr);
-                gBattlescriptCurrInstr = BattleScript_BossHealthBarBreak;
+                gBattlescriptCurrInstr = DidBossPhaseChangeForm()
+                    ? BattleScript_BossHealthBarBreakAndFormChange
+                    : BattleScript_BossHealthBarBreak;
                 return;
             }
 
@@ -11369,6 +11371,7 @@ static void FinalizeCapture(void)
 
     BtlController_EmitBallThrowAnim(gBattlerAttacker, B_COMM_TO_CONTROLLER, BALL_3_SHAKES_SUCCESS);
     MarkBattlerForControllerExec(gBattlerAttacker);
+    RestoreBossOriginalMovesForCapture(gBattlerTarget);
     TryBattleFormChange(gBattlerTarget, FORM_CHANGE_END_BATTLE);
     gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
     struct Pokemon *caughtMon = GetBattlerMon(gBattlerTarget);

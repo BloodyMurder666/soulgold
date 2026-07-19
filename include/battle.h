@@ -733,13 +733,18 @@ struct BattleStruct
     struct
     {
         u16 megaSpecies;
+        enum Move originalMoves[MAX_MON_MOVES];
+        u8 originalPp[MAX_MON_MOVES];
         u8 totalBars;
         u8 barsRemaining;
         u8 statMultiplier;
+        u8 phaseProfile;
         bool8 autoMega;
         u8 barrierSpriteIds[MAX_BOSS_HEALTH_BARS - 1];
         bool8 active;
         bool8 initialized;
+        bool8 originalMovesStored;
+        bool8 phaseChangedForm;
     } boss;
 };
 

@@ -10,6 +10,7 @@
 #include "gpu_regs.h"
 #include "graphics.h"
 #include "palette.h"
+#include "pokemon.h"
 #include "pokemon_icon.h"
 #include "random.h"
 #include "scanline_effect.h"
@@ -2390,6 +2391,47 @@ void AnimTask_HideSwapSprite(u8 taskId)
         gSprites[spriteId].x = gTasks[taskId].data[11]; // restores battler position
 
         DestroyAnimVisualTask(taskId);
+        break;
+    }
+}
+
+void AnimTask_MegaEvolutionReveal(u8 taskId)
+{
+    struct Task *task = &gTasks[taskId];
+    u32 spriteId;
+
+    switch (task->data[0])
+    {
+    case 0:
+    {
+        enum BattlerId battler = GetAnimBattlerId(gBattleAnimArgs[0]);
+        u32 species = GetBattlerVisualSpecies(battler);
+
+        spriteId = gBattlerSpriteIds[battler];
+        if (IsOnPlayerSide(battler)
+         || !HasTwoFramesAnimation(species)
+         || spriteId >= MAX_SPRITES
+         || !gSprites[spriteId].inUse)
+        {
+            DestroyAnimVisualTask(taskId);
+            return;
+        }
+
+        task->data[1] = spriteId;
+        task->data[2] = species;
+        gSprites[spriteId].anims = gSpeciesInfo[species].frontAnimFrames;
+        StartSpriteAnim(&gSprites[spriteId], 1);
+        BattleAnimateFrontSprite(&gSprites[spriteId], species, TRUE, 1);
+        task->data[0]++;
+        break;
+    }
+    case 1:
+        spriteId = task->data[1];
+        if (spriteId >= MAX_SPRITES || !gSprites[spriteId].inUse)
+            DestroyAnimVisualTask(taskId);
+        else if (gSprites[spriteId].callback == SpriteCallbackDummy
+         && gSprites[spriteId].animEnded)
+            DestroyAnimVisualTask(taskId);
         break;
     }
 }
