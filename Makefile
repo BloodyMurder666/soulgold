@@ -98,7 +98,7 @@ endif
 
 ROM_NAME := $(FILE_NAME).gba
 BPS_BASE ?= clean.gba
-BPS_PATCH ?= nightly.bps
+BPS_PATCH ?= soulgold.bps
 BPS_TOOL ?= tools/flips/flips$(EXE)
 OBJ_DIR_NAME := $(BUILD_DIR)/$(BUILD_NAME)
 OBJ_DIR_NAME_TEST := $(BUILD_DIR)/$(BUILD_NAME)-test
@@ -348,7 +348,7 @@ $(shell mkdir -p $(SUBDIRS))
 modern: all
 compare: all
 debug: all
-release: all
+release: all bps
 # Uncomment the next line, and then comment the 4 lines after it to reenable agbcc.
 #agbcc: all
 agbcc:
