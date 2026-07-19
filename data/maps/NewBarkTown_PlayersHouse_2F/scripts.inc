@@ -10,6 +10,8 @@ NewBarkTown_PlayersHouse_2F_Script_ClockSetupTrigger1::
     applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_PlayersHouse_2F_Movement_PlayerWalkToClock1
 	waitmovement 0
     msgbox PlayersHouse_2F_Text_ClockIsStopped, MSGBOX_DEFAULT
+	checkplayergender
+	copyvar VAR_0x8004, VAR_RESULT
 	call PlayersHouse_2F_EventScript_SetWallClock
 	delay 30
 	setvar VAR_NEWBARK_TOWN_STATE, 1
@@ -24,7 +26,10 @@ NewBarkTown_PlayersHouse_2F_Script_ClockSetupTrigger2::
 	waitmovement 0
 	delay 60
     applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_PlayersHouse_2F_Movement_PlayerWalkToClock2
+	waitmovement 0
     msgbox PlayersHouse_2F_Text_ClockIsStopped, MSGBOX_DEFAULT
+	checkplayergender
+	copyvar VAR_0x8004, VAR_RESULT
 	call PlayersHouse_2F_EventScript_SetWallClock
 	delay 30
 	setvar VAR_NEWBARK_TOWN_STATE, 1
