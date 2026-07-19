@@ -44,7 +44,7 @@ static void ExpectBossPhaseActive(void)
     EXPECT(!gSprites[gBattlerSpriteIds[boss]].invisible);
 }
 
-SINGLE_BATTLE_TEST("This test checks that raid boss health bars are protected from overkill")
+SINGLE_BATTLE_TEST("Raid boss health bars are protected from overkill")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_DRAGON_RAGE) == EFFECT_FIXED_HP_DAMAGE);

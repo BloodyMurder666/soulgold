@@ -15,12 +15,12 @@
   "connections": [
     {
       "map": "MAP_RINTO_VILLAGE",
-      "offset": -14,
+      "offset": 16,
       "direction": "left"
     },
     {
       "map": "MAP_ROUTE50",
-      "offset": 15,
+      "offset": 35,
       "direction": "right"
     }
   ],
