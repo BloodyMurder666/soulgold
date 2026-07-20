@@ -38,24 +38,15 @@ order: 1
 ### Fossils?
 - Smash rocks in Ruins of Alph.
 
-### Shadow Lugia?
->! Surf on the edges of the visible map and you might find something.
-
-### Heatran puzzle?
->!  all from bottom row and middle top row.
-
-### Blackthorne puzzle?
->! down, up, left, up, left, down, right, right
-
 ### Gym leader rematch locations in postgame?
->! Falkner: Violet City school
->! Bugsy: National Park
->! Whitney: Goldenrod Dept. Store
->! Morty: Bellchime Trail
->! Chuck: Route 47 bridge
->! Jasmine: Olivine cafe
->! Pryce: Lake of Rage
->! Clair: Dragon's Den cave
+- Falkner: Violet City school
+- Bugsy: National Park
+- Whitney: Goldenrod Dept. Store
+- Morty: Bellchime Trail
+- Chuck: Route 47 bridge
+- Jasmine: Olivine cafe
+- Pryce: Lake of Rage
+- Clair: Dragon's Den cave
 
 ### How to access Southern Johto?
 - Not available yet.
