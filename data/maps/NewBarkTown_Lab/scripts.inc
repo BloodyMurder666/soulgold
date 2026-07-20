@@ -973,7 +973,7 @@ NewBarkTown_Lab_EventScript_TriggerAideGiveBalls::
 # 487 "data/maps/NewBarkTown_Lab/scripts.pory"
 	closemessage
 # 488 "data/maps/NewBarkTown_Lab/scripts.pory"
-	giveitem ITEM_POKE_BALL, 5
+	giveitem ITEM_POKE_BALL, 10
 # 489 "data/maps/NewBarkTown_Lab/scripts.pory"
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 # 490 "data/maps/NewBarkTown_Lab/scripts.pory"

@@ -156,7 +156,7 @@ const u8 gText_MatchCallPokefan_Isabel_Intro2[] = _("supper, I battle too.");
 const u8 gText_MatchCallPokefan_Miguel_Strategy[] = _("I battle with love!");
 const u8 gText_MatchCallPokefan_Miguel_Pokemon[] = _("A POKéMON raised with love!");
 const u8 gText_MatchCallPokefan_Miguel_Intro1[] = _("It's important to build");
-const u8 gText_MatchCallPokefan_Miguel_Intro2[] = _("trust with your POKéMON.");
+const u8 gText_MatchCallPokefan_Miguel_Intro2[] = _("trust with your Pokémon.");
 
 const u8 gText_MatchCallExpert_Timothy_Strategy[] = _("I see through your moves!");
 const u8 gText_MatchCallExpert_Timothy_Pokemon[] = _("The essence of FIGHTING.");

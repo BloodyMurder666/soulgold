@@ -265,7 +265,7 @@ const u8 gText_PkmnHasNoEnergy[] = _("{STR_VAR_1} has no energy\nleft to battle!
 const u8 gText_CantSwitchWithAlly[] = _("You can't switch {STR_VAR_1}'s\nPokémon with one of yours!{PAUSE_UNTIL_PRESS}");
 const u8 gText_EggCantBattle[] = _("An Egg can't battle!{PAUSE_UNTIL_PRESS}");
 const u8 gText_CantUseUntilNewBadge[] = _("This can't be used until a new\nBADGE is obtained.{PAUSE_UNTIL_PRESS}");
-const u8 gText_NoMoreThanVar1Pkmn[] = _("No more than {STR_VAR_1} POKéMON\nmay enter.{PAUSE_UNTIL_PRESS}");
+const u8 gText_NoMoreThanVar1Pkmn[] = _("No more than {STR_VAR_1} Pokémon\nmay enter.{PAUSE_UNTIL_PRESS}");
 const u8 gText_SendMailToPC[] = _("Send the removed MAIL to\nyour PC?");
 const u8 gText_MailSentToPC[] = _("The MAIL was sent to your PC.{PAUSE_UNTIL_PRESS}");
 const u8 gText_PCMailboxFull[] = _("Your PC's MAILBOX is full.{PAUSE_UNTIL_PRESS}");
@@ -585,7 +585,7 @@ const u8 gText_Exit[] = _("Exit");
 const u8 gText_YourPartysFull[] = _("Your party's full!{PAUSE_UNTIL_PRESS}");
 const u8 gText_InParty[] = _("In Party");
 
-const u8 gText_YoureHoldingAPkmn[] = _("You're holding a POKéMON!");
+const u8 gText_YoureHoldingAPkmn[] = _("You're holding a Pokémon!");
 const u8 gText_WhichOneWillYouTake[] = _("Which one will you take?");
 const u8 gText_YouCantReleaseAnEgg[] = _("You can't release an EGG.");
 const u8 gText_ContinueBoxOperations[] = _("Continue BOX operations?");
@@ -593,7 +593,7 @@ const u8 gText_PkmnCameBack[] = _("{DYNAMIC 0} came back!");
 const u8 gText_WasItWorriedAboutYou[] = _("Was it worried about you?");
 const u8 gText_FourEllipsesExclamation[] = _("… … … … !");
 const u8 gText_PleaseRemoveTheMail[] = _("Please remove the MAIL.");
-const u8 gText_GiveToAPkmn[] = _("GIVE to a POKéMON?");
+const u8 gText_GiveToAPkmn[] = _("GIVE to a Pokémon?");
 const u8 gText_PlacedItemInBag[] = _("Placed item in the BAG.");
 const u8 gText_BagIsFull2[] = _("The BAG is full.");
 const u8 gText_PutItemInBag[] = _("Put this item in the BAG?");
@@ -751,8 +751,8 @@ const u8 gText_IsThisQuizOK[] = _("Is this quiz Ok?");
 const u8 gText_CreateAQuiz[] = _("Create a quiz!");
 const u8 gText_SelectTheAnswer[] = _("Select the answer!");
 const u8 gText_LyricsCantBeDeleted[] = _("The lyrics can't be deleted.");
-const u8 gText_PokemonLeague[] = _("POKéMON League");
-const u8 gText_PokemonCenter[] = _("POKéMON Center");
+const u8 gText_PokemonLeague[] = _("Pokémon League");
+const u8 gText_PokemonCenter[] = _("Pokémon Center");
 const u8 gText_Coolness[] = _("Coolness ");
 const u8 gText_Beauty3[] = _("Beauty ");
 const u8 gText_Cuteness[] = _("Cuteness ");
@@ -1038,7 +1038,7 @@ ALIGNED(4) const u8 gText_FrontierFacilityRoomsCleared[] = _("Rooms cleared: {ST
 ALIGNED(4) const u8 gText_FrontierFacilityKOsStreak[] = _("KOs in a row: {STR_VAR_2}");
 ALIGNED(4) const u8 gText_FrontierFacilityFloorsCleared[] = _("Floors cleared: {STR_VAR_2}");
 ALIGNED(4) const u8 gText_123Dot[][3] = {_("1."), _("2."), _("3.")};
-const u8 gText_FrontierFacilityTotalCaughtSpeciesBanned[] = _(" and {STR_VAR_2} of the POKéMON species\nyou caught are inelegible");
+const u8 gText_FrontierFacilityTotalCaughtSpeciesBanned[] = _(" and {STR_VAR_2} of the Pokémon species\nyou caught are inelegible");
 const u8 gText_FrontierFacilityIncluding[] = _(".\pThese include ");
 const u8 gText_FrontierFacilityAreInelegible[] = _(" are inelegible");
 
@@ -1125,10 +1125,10 @@ const u8 gText_Plus[] = _("{PLUS}");
 const u8 gText_Dash[] = _("-");
 const u8 gText_MixingRecords[] = _("Mixing records…");
 const u8 gText_RecordMixingComplete[] = _("Record mixing completed.\nThank you for waiting.");
-const u8 gText_RentalPkmn2[] = _("Rental POKéMON");
-const u8 gText_SelectFirstPkmn[] = _("Select the first POKéMON.");
-const u8 gText_SelectSecondPkmn[] = _("Select the second POKéMON.");
-const u8 gText_SelectThirdPkmn[] = _("Select the third POKéMON.");
+const u8 gText_RentalPkmn2[] = _("Rental Pokémon");
+const u8 gText_SelectFirstPkmn[] = _("Select the first Pokémon.");
+const u8 gText_SelectSecondPkmn[] = _("Select the second Pokémon.");
+const u8 gText_SelectThirdPkmn[] = _("Select the third Pokémon.");
 const u8 gText_Rent[] = _("Rent");
 const u8 gText_Summary[] = _("Summary");
 const u8 gText_Others2[] = _("Others");
@@ -1380,7 +1380,7 @@ const u8 gText_Easy[] = _("Easy");
 const u8 gText_Hard[] = _("Hard");
 const u8 gText_Modern[] = _("Modern");
 const u8 gText_OakTalk_Clefairy[] = _(
-    "Mary: Tonight on POKéMON Talk,\n"
+    "Mary: Tonight on Pokémon Talk,\n"
     "a rare moonlight moment!\l"
     "Oak: We're spotlighting the\l"
     "mystical Clefairy!\l"
@@ -1409,7 +1409,7 @@ const u8 gText_OakTalk_Lapras[] = _(
 
 const u8 gText_OakTalk_Ampharos[] = _(
     "Mary: Welcome back, everyone!\n"
-    "Time for POKéMON Talk!\l"
+    "Time for Pokémon Talk!\l"
     "Oak: Let's shine a light on\l"
     "our friend Ampharos!\l"
     "Its bright tail glows through\l"

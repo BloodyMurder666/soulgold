@@ -56,7 +56,7 @@ static const struct FacilityTrainerQuote sWealthQuotes[] =
         .lose = COMPOUND_STRING("Ahaha-argh..."),
     },
     {
-        .before = COMPOUND_STRING("Chosen Trainers will choose\nchosen POKéMON."),
+        .before = COMPOUND_STRING("Chosen Trainers will choose\nchosen Pokémon."),
         .win = COMPOUND_STRING("So it seems victory\nhas chosen me."),
         .lose = COMPOUND_STRING("It seems I have been\nchosen to lose..."),
     },
@@ -86,7 +86,7 @@ static const struct FacilityTrainerQuote sBeautyQuotes[] =
     },
     {
         .before = COMPOUND_STRING("Ready for the big game?\nGot your cap on straight?"),
-        .win = COMPOUND_STRING("My oh my! My POKéMON\nknocked it out of the park!"),
+        .win = COMPOUND_STRING("My oh my! My Pokémon\nknocked it out of the park!"),
         .lose = COMPOUND_STRING("Hey, another out. So what?\nWe'll come back!"),
     },
     {
@@ -140,7 +140,7 @@ static const struct FacilityTrainerQuote sAceQuotes[] =
     {
         .before = COMPOUND_STRING("Let me stop your\nwinning streak here."),
         .win = COMPOUND_STRING("You still have much to learn.\nLet me give you a crash course!"),
-        .lose = COMPOUND_STRING("You didn't win alone.\nYour POKéMON helped you."),
+        .lose = COMPOUND_STRING("You didn't win alone.\nYour Pokémon helped you."),
     },
 };
 
@@ -186,28 +186,28 @@ static const struct FacilityTrainerQuote sMysticQuotes[] =
         .lose = COMPOUND_STRING("Eeeeek!"),
     },
     {
-        .before = COMPOUND_STRING("Heh-heh-heh. If you lose,\nI'll turn you into a POKéMON."),
-        .win = COMPOUND_STRING("Heh-heh-heh. From today on,\nyou are already a POKéMON!"),
-        .lose = COMPOUND_STRING("Next time, I will turn you\ninto a POKéMON with my power."),
+        .before = COMPOUND_STRING("Heh-heh-heh. If you lose,\nI'll turn you into a Pokémon."),
+        .win = COMPOUND_STRING("Heh-heh-heh. From today on,\nyou are already a Pokémon!"),
+        .lose = COMPOUND_STRING("Next time, I will turn you\ninto a Pokémon with my power."),
     },
 };
 
 static const struct FacilityTrainerQuote sNatureQuotes[] =
 {
     {
-        .before = COMPOUND_STRING("There's a lot that goes into\nbeing a POKéMON Breeder."),
-        .win = COMPOUND_STRING("The most fun part is getting\nclose to POKéMON."),
-        .lose = COMPOUND_STRING("The hardest part is saying\nfarewell to POKéMON."),
+        .before = COMPOUND_STRING("There's a lot that goes into\nbeing a Pokémon Breeder."),
+        .win = COMPOUND_STRING("The most fun part is getting\nclose to Pokémon."),
+        .lose = COMPOUND_STRING("The hardest part is saying\nfarewell to Pokémon."),
     },
     {
-        .before = COMPOUND_STRING("I'm a Gardener, but I'm good\nat POKéMON battles, too."),
+        .before = COMPOUND_STRING("I'm a Gardener, but I'm good\nat Pokémon battles, too."),
         .win = COMPOUND_STRING("Maybe I'll try to become\nthe Champion."),
         .lose = COMPOUND_STRING("I'm a Gardener, so my real\njob is gardening."),
     },
     {
-        .before = COMPOUND_STRING("I will test the POKéMON\nyou have been training."),
+        .before = COMPOUND_STRING("I will test the Pokémon\nyou have been training."),
         .win = COMPOUND_STRING("Bah! Is that the best you can\ndo? I expected more..."),
-        .lose = COMPOUND_STRING("Wow! You're amazing! You've\ntrained some great POKéMON!"),
+        .lose = COMPOUND_STRING("Wow! You're amazing! You've\ntrained some great Pokémon!"),
     },
     {
         .before = COMPOUND_STRING("I made them too strong.\nThey are beyond my control..."),
@@ -234,7 +234,7 @@ static const struct FacilityTrainerQuote sTravelerQuotes[] =
         .lose = COMPOUND_STRING("Harrumph!!"),
     },
     {
-        .before = COMPOUND_STRING("Let's take it easy with\nPOKéMON and with life."),
+        .before = COMPOUND_STRING("Let's take it easy with\nPokémon and with life."),
         .win = COMPOUND_STRING("It's OK to bust your tail.\nBut you need breathing room."),
         .lose = COMPOUND_STRING("No problem. No problem.\nI'll have another chance."),
     },
@@ -286,14 +286,14 @@ static const struct FacilityTrainerQuote sAthleteQuotes[] =
 static const struct FacilityTrainerQuote sEnthusiastQuotes[] =
 {
     {
-        .before = COMPOUND_STRING("Listen, I love POKéMON\nmore than life itself!"),
-        .win = COMPOUND_STRING("I'll be a POKéMON\nin my next life."),
-        .lose = COMPOUND_STRING("I love your POKéMON, too!\nPlease, let me pet them!"),
+        .before = COMPOUND_STRING("Listen, I love Pokémon\nmore than life itself!"),
+        .win = COMPOUND_STRING("I'll be a Pokémon\nin my next life."),
+        .lose = COMPOUND_STRING("I love your Pokémon, too!\nPlease, let me pet them!"),
     },
     {
-        .before = COMPOUND_STRING("Want to see the POKéMON\nI am proudest of?"),
-        .win = COMPOUND_STRING("What do you think about\nmy dear POKéMON? Great, right?"),
-        .lose = COMPOUND_STRING("Oh my goodness!\nMy poor POKéMON..."),
+        .before = COMPOUND_STRING("Want to see the Pokémon\nI am proudest of?"),
+        .win = COMPOUND_STRING("What do you think about\nmy dear Pokémon? Great, right?"),
+        .lose = COMPOUND_STRING("Oh my goodness!\nMy poor Pokémon..."),
     },
     {
         .before = COMPOUND_STRING("I think I am a Poké Fan,\ntherefore I am a Poké Fan."),
@@ -301,9 +301,9 @@ static const struct FacilityTrainerQuote sEnthusiastQuotes[] =
         .lose = COMPOUND_STRING("Remember this:\nI am a Poké Fan."),
     },
     {
-        .before = COMPOUND_STRING("Join the POKéMON Fan Club!\nYour life will be happy!"),
-        .win = COMPOUND_STRING("Join the POKéMON Fan Club!\nYou'll be strong, like me!"),
-        .lose = COMPOUND_STRING("Join the POKéMON Fan Club!\nYour life will be saved!"),
+        .before = COMPOUND_STRING("Join the Pokémon Fan Club!\nYour life will be happy!"),
+        .win = COMPOUND_STRING("Join the Pokémon Fan Club!\nYou'll be strong, like me!"),
+        .lose = COMPOUND_STRING("Join the Pokémon Fan Club!\nYour life will be saved!"),
     },
 };
 
@@ -315,12 +315,12 @@ static const struct FacilityTrainerQuote sPerformerQuotes[] =
         .lose = COMPOUND_STRING("Hunnh... Not bad...\nYou've got a realistic side..."),
     },
     {
-        .before = COMPOUND_STRING("Every time a POKéMON moves,\nmy heart trembles!"),
-        .win = COMPOUND_STRING("Nothing stirs the soul\nlike POKéMON moves."),
-        .lose = COMPOUND_STRING("POKéMON moves are so beautiful!\nI could almost faint!"),
+        .before = COMPOUND_STRING("Every time a Pokémon moves,\nmy heart trembles!"),
+        .win = COMPOUND_STRING("Nothing stirs the soul\nlike Pokémon moves."),
+        .lose = COMPOUND_STRING("Pokémon moves are so beautiful!\nI could almost faint!"),
     },
     {
-        .before = COMPOUND_STRING("My POKéMON will trump yours!\nYou can bet on losing!"),
+        .before = COMPOUND_STRING("My Pokémon will trump yours!\nYou can bet on losing!"),
         .win = COMPOUND_STRING("All right! Victory is mine!\nFortune is smiling on me!"),
         .lose = COMPOUND_STRING("Ahh... I'm flat broke...\nI've got nothing left..."),
     },
@@ -334,9 +334,9 @@ static const struct FacilityTrainerQuote sPerformerQuotes[] =
 static const struct FacilityTrainerQuote sBreederQuotes[] =
 {
     {
-        .before = COMPOUND_STRING("There's a lot that goes into\nbeing a POKéMON Breeder."),
-        .win = COMPOUND_STRING("The most fun part is getting\nclose to POKéMON."),
-        .lose = COMPOUND_STRING("The hardest part is saying\nfarewell to POKéMON."),
+        .before = COMPOUND_STRING("There's a lot that goes into\nbeing a Pokémon Breeder."),
+        .win = COMPOUND_STRING("The most fun part is getting\nclose to Pokémon."),
+        .lose = COMPOUND_STRING("The hardest part is saying\nfarewell to Pokémon."),
     },
     {
         .before = COMPOUND_STRING("I made them too strong.\nThey are beyond my control..."),
@@ -344,14 +344,14 @@ static const struct FacilityTrainerQuote sBreederQuotes[] =
         .lose = COMPOUND_STRING("Finally, they calmed down...\nYou've saved me. Thank you!"),
     },
     {
-        .before = COMPOUND_STRING("I am the top Breeder.\nI can tame any kind of POKéMON."),
-        .win = COMPOUND_STRING("You see? My POKéMON are\nvery loyal to me, aren't they?"),
+        .before = COMPOUND_STRING("I am the top Breeder.\nI can tame any kind of Pokémon."),
+        .win = COMPOUND_STRING("You see? My Pokémon are\nvery loyal to me, aren't they?"),
         .lose = COMPOUND_STRING("They are too attached to me.\nThey are not fit for battling."),
     },
     {
-        .before = COMPOUND_STRING("I will test the POKéMON\nyou have been training."),
+        .before = COMPOUND_STRING("I will test the Pokémon\nyou have been training."),
         .win = COMPOUND_STRING("Bah! Is that the best you can\ndo? I expected more..."),
-        .lose = COMPOUND_STRING("Wow! You're amazing! You've\ntrained some great POKéMON!"),
+        .lose = COMPOUND_STRING("Wow! You're amazing! You've\ntrained some great Pokémon!"),
     },
 };
 
