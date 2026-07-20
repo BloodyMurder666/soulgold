@@ -175,11 +175,18 @@ NewBarkTown_Lab_EventScript_hideStarterCase::
 
 NewBarkTown_Lab_EventScript_StarterCase::
     lock
+	goto_if_eq VAR_FACING, DIR_SOUTH, NewBarkTown_Lab_EventScript_StarterCaseWrongSide
     goto_if_set FLAG_SYS_POKEMON_GET, NewBarkTown_Lab_EventScript_ShouldntTouch
     goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 1, NewBarkTown_Lab_EventScript_StarterCase_Choice
     msgbox NewBarkTown_Lab_Text_ShouldntTouch, MSGBOX_DEFAULT
 	release
 	closemessage
+	end
+
+NewBarkTown_Lab_EventScript_StarterCaseWrongSide::
+	msgbox NewBarkTown_Lab_Text_StarterCaseWrongSide, MSGBOX_DEFAULT
+	closemessage
+	release
 	end
 
 NewBarkTown_Lab_EventScript_StarterCase_Choice::
@@ -188,14 +195,27 @@ NewBarkTown_Lab_EventScript_StarterCase_Choice::
    goto NewBarkTown_Lab_EventScript_ChoseStarter
 
 NewBarkTown_Lab_EventScript_ChoseStarter::
-    removeobject VAR_LAST_TALKED
-    showmonpic VAR_PLAYER_STARTER_SPECIES, 10, 3
+	showmonpic VAR_PLAYER_STARTER_SPECIES, 10, 3
 	playfanfare MUS_RG_OBTAIN_KEY_ITEM
 	bufferspeciesname STR_VAR_1, VAR_PLAYER_STARTER_SPECIES
 	message NewBarkTown_Lab_Text_ReceivedStarter
 	setvar VAR_STARTER_PICKING_STATE 1
 	waitfanfare
-    hidemonpic
+	hidemonpic
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_Lab_Movement_StepBackFromStarter
+	waitmovement 0
+	updatefollowingmon
+	setobjectxy OBJ_EVENT_ID_FOLLOWER, 9, 5
+	applymovement OBJ_EVENT_ID_FOLLOWER, NewBarkTown_Lab_Movement_StarterLeavesBall
+	playse SE_BALL_OPEN
+	waitmovement OBJ_EVENT_ID_FOLLOWER
+	playmoncry VAR_PLAYER_STARTER_SPECIES, CRY_MODE_NORMAL
+	playse SE_LEDGE
+	applymovement OBJ_EVENT_ID_FOLLOWER, NewBarkTown_Lab_Movement_StarterGreetsPlayer
+	waitmovement OBJ_EVENT_ID_FOLLOWER
+	waitmoncry
+	delay 45
 	createfieldmugshot MUGSHOT_ELM
 	msgbox NewBarkTown_Lab_Text_ChoseStarter, MSGBOX_DEFAULT
 	waitmessage
@@ -408,7 +428,7 @@ NewBarkTown_Lab_EventScript_ElmState5::
 	applymovement LOCALID_ELM Common_Movement_FaceOriginalDirection
 	release
 	end
-	
+
 NewBarkTown_Lab_EventScript_ElmMasterBall::
 	lock
 	faceplayer
@@ -516,6 +536,25 @@ NewBarkTown_Lab_Movement_WalkRight:
 
 NewBarkTown_Lab_Movement_WalkLeft:
 	walk_left
+	step_end
+
+NewBarkTown_Lab_Movement_StepBackFromStarter:
+	walk_down
+	face_up
+	step_end
+
+NewBarkTown_Lab_Movement_StarterLeavesBall:
+	exit_pokeball
+	face_down
+	set_visible
+	step_end
+
+NewBarkTown_Lab_Movement_StarterGreetsPlayer:
+	face_player
+	delay_4
+	jump_in_place_down
+	emote_heart
+	face_player
 	step_end
 
 NewBarkTown_LabMovement_WalkToElm:
@@ -628,6 +667,10 @@ NewBarkTown_Lab_Movement_ElmStepForward:
 
 NewBarkTown_Lab_Text_ShouldntTouch:
 	.string "Probably shouldn't touch!$"
+
+NewBarkTown_Lab_Text_StarterCaseWrongSide:
+	.string "Oops, the case does not open\n"
+	.string "from this side!$"
 
 NewBarkTown_Lab_Text_ElmAccepted:
 	.string "Thanks, {PLAYER}!\n"
