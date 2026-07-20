@@ -889,5 +889,15 @@
     }
   ],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 21,
+      "y": 51,
+      "elevation": 0,
+      "item": "ITEM_QUIET_MINT",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE41_QUIET_MINT",
+      "quantity": 1
+    }
+  ]
 }

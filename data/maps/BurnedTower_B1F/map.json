@@ -175,5 +175,15 @@
     }
   ],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 21,
+      "y": 16,
+      "elevation": 0,
+      "item": "ITEM_CALCIUM",
+      "flag": "FLAG_HIDDEN_ITEM_BURNED_TOWER_CALCIUM",
+      "quantity": 1
+    }
+  ]
 }

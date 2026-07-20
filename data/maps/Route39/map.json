@@ -383,6 +383,15 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route39_NorthSign"
+    },
+    {
+      "type": "hidden_item",
+      "x": 29,
+      "y": 45,
+      "elevation": 0,
+      "item": "ITEM_HYPER_POTION",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE39_HYPER_POTION",
+      "quantity": 1
     }
   ]
 }

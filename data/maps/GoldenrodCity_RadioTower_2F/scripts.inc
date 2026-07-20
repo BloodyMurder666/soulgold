@@ -180,24 +180,24 @@ GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizes::
 	msgbox GoldenrodCity_RadioTower_2F_Text_BuenaPrizeIntro, MSGBOX_DEFAULT
 
 GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeMenu::
-	dynmultichoice 0, 0, FALSE, 6, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaPrizeUltraBall, GoldenrodCity_RadioTower_2F_Text_BuenaPrizeFullRestore, GoldenrodCity_RadioTower_2F_Text_BuenaPrizeElixir, GoldenrodCity_RadioTower_2F_Text_BuenaPrizeMaxElixir, GoldenrodCity_RadioTower_2F_Text_BuenaPrizeNugget, GoldenrodCity_RadioTower_2F_Text_BuenaPrizeRareCandy, GoldenrodCity_RadioTower_2F_Text_BuenaPrizeEviolite, GoldenrodCity_RadioTower_2F_Text_BuenaPrizePPUp, GoldenrodCity_RadioTower_2F_Text_BuenaPrizeAbilityCapsule, GoldenrodCity_RadioTower_2F_Text_BuenaMenuCancel
+	dynmultichoice 0, 0, FALSE, 6, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaPrizeQuickBall, GoldenrodCity_RadioTower_2F_Text_BuenaPrizeFullRestore, GoldenrodCity_RadioTower_2F_Text_BuenaPrizeElixir, GoldenrodCity_RadioTower_2F_Text_BuenaPrizeMaxElixir, GoldenrodCity_RadioTower_2F_Text_BuenaPrizeNugget, GoldenrodCity_RadioTower_2F_Text_BuenaPrizeExpCandyL, GoldenrodCity_RadioTower_2F_Text_BuenaPrizeEviolite, GoldenrodCity_RadioTower_2F_Text_BuenaPrizePPMax, GoldenrodCity_RadioTower_2F_Text_BuenaPrizeAbilityPatch, GoldenrodCity_RadioTower_2F_Text_BuenaMenuCancel
 	switch VAR_RESULT
-	case 0, GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeUltraBall
+	case 0, GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeQuickBall
 	case 1, GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeFullRestore
 	case 2, GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeElixir
 	case 3, GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeMaxElixir
 	case 4, GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeNugget
-	case 5, GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeRareCandy
+	case 5, GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeExpCandyL
 	case 6, GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeEviolite
-	case 7, GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizePPUp
-	case 8, GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeAbilityCapsule
+	case 7, GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizePPMax
+	case 8, GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeAbilityPatch
 	case 9, GoldenrodCity_RadioTower_2F_EventScript_BuenaDone
 	case MULTI_B_PRESSED, GoldenrodCity_RadioTower_2F_EventScript_BuenaDone
 	end
 
-GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeUltraBall::
-	setvar VAR_0x8008, ITEM_ULTRA_BALL
-	setvar VAR_0x8009, 2
+GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeQuickBall::
+	setvar VAR_0x8008, ITEM_QUICK_BALL
+	setvar VAR_0x8009, 1
 	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaConfirmPrize
 
 GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeFullRestore::
@@ -220,8 +220,8 @@ GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeNugget::
 	setvar VAR_0x8009, 3
 	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaConfirmPrize
 
-GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeRareCandy::
-	setvar VAR_0x8008, ITEM_RARE_CANDY
+GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeExpCandyL::
+	setvar VAR_0x8008, ITEM_EXP_CANDY_L
 	setvar VAR_0x8009, 4
 	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaConfirmPrize
 
@@ -230,13 +230,13 @@ GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeEviolite::
 	setvar VAR_0x8009, 5
 	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaConfirmPrize
 
-GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizePPUp::
-	setvar VAR_0x8008, ITEM_PP_UP
+GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizePPMax::
+	setvar VAR_0x8008, ITEM_PP_MAX
 	setvar VAR_0x8009, 6
 	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaConfirmPrize
 
-GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeAbilityCapsule::
-	setvar VAR_0x8008, ITEM_ABILITY_CAPSULE
+GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeAbilityPatch::
+	setvar VAR_0x8008, ITEM_ABILITY_PATCH
 	setvar VAR_0x8009, 7
 	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaConfirmPrize
 
@@ -473,8 +473,8 @@ GoldenrodCity_RadioTower_2F_Text_BuenaAnswerPokemonMusic:
 GoldenrodCity_RadioTower_2F_Text_BuenaAnswerBuenasPassword:
 	.string "Buena's Password$"
 
-GoldenrodCity_RadioTower_2F_Text_BuenaPrizeUltraBall:
-	.string "Ultra Ball{CLEAR_TO 0x60}2P$"
+GoldenrodCity_RadioTower_2F_Text_BuenaPrizeQuickBall:
+	.string "Quick Ball{CLEAR_TO 0x60}1P$"
 
 GoldenrodCity_RadioTower_2F_Text_BuenaPrizeFullRestore:
 	.string "Full Restore{CLEAR_TO 0x60}2P$"
@@ -488,17 +488,17 @@ GoldenrodCity_RadioTower_2F_Text_BuenaPrizeMaxElixir:
 GoldenrodCity_RadioTower_2F_Text_BuenaPrizeNugget:
 	.string "Nugget{CLEAR_TO 0x60}3P$"
 
-GoldenrodCity_RadioTower_2F_Text_BuenaPrizeRareCandy:
-	.string "Rare Candy{CLEAR_TO 0x60}4P$"
+GoldenrodCity_RadioTower_2F_Text_BuenaPrizeExpCandyL:
+	.string "Exp Candy L{CLEAR_TO 0x60}4P$"
 
 GoldenrodCity_RadioTower_2F_Text_BuenaPrizeEviolite:
 	.string "Eviolite{CLEAR_TO 0x60}5P$"
 
-GoldenrodCity_RadioTower_2F_Text_BuenaPrizePPUp:
-	.string "PP Up{CLEAR_TO 0x60}6P$"
+GoldenrodCity_RadioTower_2F_Text_BuenaPrizePPMax:
+	.string "PP Max{CLEAR_TO 0x60}6P$"
 
-GoldenrodCity_RadioTower_2F_Text_BuenaPrizeAbilityCapsule:
-	.string "Ability Capsule{CLEAR_TO 0x60}7P$"
+GoldenrodCity_RadioTower_2F_Text_BuenaPrizeAbilityPatch:
+	.string "Ability Patch{CLEAR_TO 0x60}7P$"
 
 GoldenrodCity_RadioTower_2F_Text_SuperNerd:
 	.string "You can listen to the radio\n"

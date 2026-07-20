@@ -240,6 +240,15 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "CafeSignRoute40"
+    },
+    {
+      "type": "hidden_item",
+      "x": 23,
+      "y": 14,
+      "elevation": 0,
+      "item": "ITEM_PARALYZE_HEAL",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE40_PARALYZ_HEAL",
+      "quantity": 1
     }
   ]
 }

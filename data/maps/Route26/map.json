@@ -219,5 +219,15 @@
     }
   ],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 10,
+      "y": 61,
+      "elevation": 0,
+      "item": "ITEM_RARE_CANDY",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE26_RARE_CANDY",
+      "quantity": 1
+    }
+  ]
 }

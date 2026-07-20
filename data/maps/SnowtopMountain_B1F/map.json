@@ -92,6 +92,15 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "B1F_Snowtopmountain_Susdoor"
+    },
+    {
+      "type": "hidden_item",
+      "x": 11,
+      "y": 32,
+      "elevation": 0,
+      "item": "ITEM_STAR_PIECE",
+      "flag": "FLAG_HIDDEN_ITEM_SNOWTOPIN_STAR_PIECE",
+      "quantity": 1
     }
   ]
 }

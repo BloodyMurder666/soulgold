@@ -320,6 +320,15 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route27_EventScript_TohjoFallsSign"
+    },
+    {
+      "type": "hidden_item",
+      "x": 50,
+      "y": 26,
+      "elevation": 0,
+      "item": "ITEM_REVIVE",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE27_REVIVE",
+      "quantity": 1
     }
   ]
 }

@@ -1163,14 +1163,14 @@ function megaFormLinks(mon) {
 }
 
 function locationRows(locations) {
-  if (!locations?.length) return `<p class="muted">Not found in wild encounters.</p>`;
+  if (!locations?.length) return `<p class="muted">No wild encounter or Hidden Grotto location found.</p>`;
   return `<div class="location-list">
     <div class="location-row location-head"><span>Area</span><span>Method</span><span>Level</span><span>Odds</span></div>
     ${locations.map((location) => `
       <div class="location-row">
         <strong>${location.name}</strong>
         <span>${location.time ? `${location.time} / ` : ""}${location.method}</span>
-        <span>Lv ${location.minLevel ?? "?"}-${location.maxLevel ?? "?"}</span>
+        <span>${location.minLevel === location.maxLevel ? `Lv ${location.minLevel ?? "?"}` : `Lv ${location.minLevel ?? "?"}-${location.maxLevel ?? "?"}`}</span>
         <span>${location.rate ?? "-"}%</span>
       </div>
     `).join("")}

@@ -143,5 +143,15 @@
       "script": "SafariZoneGate_EventScript_Trigger"
     }
   ],
-  "bg_events": []
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 38,
+      "y": 18,
+      "elevation": 0,
+      "item": "ITEM_IRON",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE48_IRON",
+      "quantity": 1
+    }
+  ]
 }

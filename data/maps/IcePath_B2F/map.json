@@ -181,5 +181,15 @@
     }
   ],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 26,
+      "y": 21,
+      "elevation": 0,
+      "item": "ITEM_ELIXIR",
+      "flag": "FLAG_HIDDEN_ITEM_ICEPATH_ELIXIR",
+      "quantity": 1
+    }
+  ]
 }

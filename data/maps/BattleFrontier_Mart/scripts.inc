@@ -19,12 +19,12 @@ BattleFrontier_Mart_TMClerkCheck::
 	end
 
 BattleFrontier_Mart_HideTMClerk::
-	setflag FLAG_FINITE_TMS_CLERK
+	setflag FLAG_GARBAGEFLAG
 	removeobject LOCALID_TM_CLERK
 	return
 
 BattleFrontier_Mart_ShowTMClerk::
-	clearflag FLAG_FINITE_TMS_CLERK
+	clearflag FLAG_GARBAGEFLAG
 	addobject LOCALID_TM_CLERK
 	return
 

@@ -322,6 +322,15 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route43_EventScript_Sign2"
+    },
+    {
+      "type": "hidden_item",
+      "x": 25,
+      "y": 39,
+      "elevation": 0,
+      "item": "ITEM_QUICK_BALL",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE43_QUICK_BALL",
+      "quantity": 1
     }
   ]
 }

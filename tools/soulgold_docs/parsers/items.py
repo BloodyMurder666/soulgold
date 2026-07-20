@@ -14,6 +14,7 @@ from ..image_utils import copy_item_icon
 from ..map_names import map_display_name
 from ..models import ImportantItemRow, ItemLocation, ItemRecord, NamedRecord, SpeciesRow, TMHMRow, TMRow
 from ..paths import ITEMS_H, REPO_ROOT, TMS_HMS_H
+from .hidden_grottos import HiddenGrottoRow
 
 
 def item_display_name(item: str, item_names: Mapping[str, ItemRecord]) -> str:
@@ -98,6 +99,11 @@ def parse_tmhm_locations() -> dict[str, list[ItemLocation]]:
             item = obj.get("trainer_sight_or_berry_tree_id", "")
             if item_re.fullmatch(item):
                 add_location(locations, item, map_name, source)
+        hidden_map_name, hidden_source = format_tmhm_location(data, map_json.parent.name, "Hidden item")
+        for event in data.get("bg_events") or []:
+            item = event.get("item", "")
+            if event.get("type") == "hidden_item" and item_re.fullmatch(item):
+                add_location(locations, item, hidden_map_name, hidden_source)
 
     for script in sorted((REPO_ROOT / "data/maps").glob("*/scripts.*")):
         text = read(script)
@@ -134,6 +140,11 @@ def parse_item_locations(item_constants: set[str]) -> dict[str, list[ItemLocatio
             item = obj.get("trainer_sight_or_berry_tree_id", "")
             if item in item_constants:
                 add_location(locations, item, map_name, source)
+        hidden_map_name, hidden_source = format_item_location(data, map_json.parent.name, "Hidden item")
+        for event in data.get("bg_events") or []:
+            item = event.get("item", "")
+            if event.get("type") == "hidden_item" and item in item_constants:
+                add_location(locations, item, hidden_map_name, hidden_source)
 
     for script in sorted((REPO_ROOT / "data/maps").glob("*/scripts.*")):
         text = read(script)
@@ -156,6 +167,10 @@ def parse_item_locations(item_constants: set[str]) -> dict[str, list[ItemLocatio
             for item in item_re.findall(match.group(1)):
                 add_location(locations, item, held_map_name, held_source)
 
+        if script.parent.name == "GoldenrodCity_RadioTower_2F":
+            for item in re.findall(rf"\bsetvar\s+VAR_0x8008,\s*({item_pattern})\b", text):
+                add_location(locations, item, map_name, "Buena's Password prize")
+
     return dict(locations)
 
 def add_wild_held_item_locations(
@@ -171,6 +186,17 @@ def add_wild_held_item_locations(
             if item in item_constants:
                 add_location(locations, item, row.name, f"Wild held item ({held_item['rarity']})")
 
+
+def add_hidden_grotto_item_locations(
+    locations: dict[str, list[ItemLocation]],
+    item_constants: set[str],
+    grottos: list[HiddenGrottoRow],
+) -> None:
+    for grotto in grottos:
+        item = grotto["rareItem"]
+        if item in item_constants:
+            add_location(locations, item, grotto["name"], "Hidden Grotto rare item")
+
 def is_hidden_important_item(constant: str, item: ItemRecord) -> bool:
     return (
         item.get("sortType") in ITEMS_HIDDEN_SORT_TYPES
@@ -182,6 +208,7 @@ def build_important_items(
     item_records: dict[str, ItemRecord],
     species: list[SpeciesRow],
     item_icon_dir: Path,
+    grottos: list[HiddenGrottoRow],
 ) -> list[ImportantItemRow]:
     selected = {
         constant
@@ -195,6 +222,7 @@ def build_important_items(
     }
     locations = parse_item_locations(selected)
     add_wild_held_item_locations(locations, selected, species)
+    add_hidden_grotto_item_locations(locations, selected, grottos)
     rows = []
     for constant in sorted(selected, key=lambda item: item_records.get(item, {}).get("id", 0)):
         item = item_records[constant]

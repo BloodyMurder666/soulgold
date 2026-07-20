@@ -18,7 +18,8 @@ from tools.soulgold_docs.image_utils import (
     parse_trainer_front_pic_sources,
 )
 from tools.soulgold_docs.parsers.abilities import build_ability_usage, parse_abilities
-from tools.soulgold_docs.parsers.encounters import build_species_locations, parse_wild_encounters
+from tools.soulgold_docs.parsers.encounters import add_hidden_grotto_species_locations, build_species_locations, parse_wild_encounters
+from tools.soulgold_docs.parsers.hidden_grottos import parse_hidden_grottos
 from tools.soulgold_docs.parsers.evolutions import parse_evolutions, parse_mega_evolutions
 from tools.soulgold_docs.parsers.items import (
     build_important_items,
@@ -80,7 +81,9 @@ def build() -> None:
         item_records,
     )
     encounters = parse_wild_encounters(species_data.by_constant)
+    hidden_grottos = parse_hidden_grottos()
     species_locations = build_species_locations(encounters)
+    add_hidden_grotto_species_locations(species_locations, hidden_grottos)
     located_species = attach_species_locations(enriched_species, species_locations)
     visible_species = visible_species_rows(located_species)
     species_lookup = build_species_lookup(located_species)
@@ -97,7 +100,7 @@ def build() -> None:
     )
     ability_usage = build_ability_usage(visible_species)
     tms = build_tms(tmhm_rows, moves, item_records, tmhm_locations)
-    important_items = build_important_items(item_records, located_species, output_paths.item_icon_dir)
+    important_items = build_important_items(item_records, located_species, output_paths.item_icon_dir, hidden_grottos)
     guides = parse_guides()
     payload = build_docs_payload(
         visible_species,

@@ -232,5 +232,15 @@
     }
   ],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 46,
+      "y": 36,
+      "elevation": 0,
+      "item": "ITEM_ZINC",
+      "flag": "FLAG_HIDDEN_ITEM_KITAKAMIBORDER_ZINC",
+      "quantity": 1
+    }
+  ]
 }

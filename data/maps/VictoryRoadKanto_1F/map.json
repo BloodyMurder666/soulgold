@@ -285,5 +285,15 @@
       "script": "VictoryRoadKanto_1F_Trigger"
     }
   ],
-  "bg_events": []
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 46,
+      "y": 20,
+      "elevation": 0,
+      "item": "ITEM_MAX_REPEL",
+      "flag": "FLAG_HIDDEN_ITEM_VICTORYROAD_MAX_REPEL",
+      "quantity": 1
+    }
+  ]
 }

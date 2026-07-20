@@ -11,6 +11,7 @@ from ..c_parser import clean_constant_name, read
 from ..map_names import map_constant_display_name
 from ..models import RawEncounterRow, SpeciesLocation, SpeciesRow, WildEncounterRow
 from ..paths import WILD_ENCOUNTERS_JSON
+from .hidden_grottos import HiddenGrottoRow
 
 
 def parse_wild_encounters(by_species: dict[str, SpeciesRow]) -> list[WildEncounterRow]:
@@ -130,3 +131,23 @@ def build_species_locations(encounters: list[WildEncounterRow]) -> dict[str, lis
                         "rate": mon.get("rate"),
                     })
     return dict(locations)
+
+
+def add_hidden_grotto_species_locations(
+    locations: dict[str, list[SpeciesLocation]],
+    grottos: list[HiddenGrottoRow],
+) -> None:
+    for grotto in grottos:
+        for species in grotto["species"]:
+            location: SpeciesLocation = {
+                "map": grotto["map"],
+                "name": grotto["name"],
+                "time": "",
+                "method": "Hidden Grotto",
+                "minLevel": grotto["level"],
+                "maxLevel": grotto["level"],
+                "rate": 25,
+            }
+            locations.setdefault(species, [])
+            if location not in locations[species]:
+                locations[species].append(location)

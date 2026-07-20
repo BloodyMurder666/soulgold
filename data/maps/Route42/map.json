@@ -384,6 +384,15 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route42_EventScript_Sign"
+    },
+    {
+      "type": "hidden_item",
+      "x": 12,
+      "y": 15,
+      "elevation": 0,
+      "item": "ITEM_DUSK_BALL",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE42_DUSK_BALL",
+      "quantity": 1
     }
   ]
 }

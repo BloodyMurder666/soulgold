@@ -265,6 +265,15 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "VajraDesertWest_GrottoDoor"
+    },
+    {
+      "type": "hidden_item",
+      "x": 49,
+      "y": 14,
+      "elevation": 0,
+      "item": "ITEM_FULL_HEAL",
+      "flag": "FLAG_HIDDEN_ITEM_VAJRADESERT_FULL_HEAL",
+      "quantity": 1
     }
   ]
 }

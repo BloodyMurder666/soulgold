@@ -80,6 +80,7 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_UNION_CAVE_LAPRAS",
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(LAPRAS)",
       "x": 15,
       "y": 35,
@@ -194,5 +195,15 @@
     }
   ],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 21,
+      "y": 17,
+      "elevation": 0,
+      "item": "ITEM_RED_CARD",
+      "flag": "FLAG_HIDDEN_ITEM_UNIONCAVE3_REDCARD",
+      "quantity": 1
+    }
+  ]
 }

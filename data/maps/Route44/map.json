@@ -426,6 +426,15 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route44_HiddenGrotto"
+    },
+    {
+      "type": "hidden_item",
+      "x": 51,
+      "y": 5,
+      "elevation": 0,
+      "item": "ITEM_MAX_REVIVE",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE44_MAX_REVIVE",
+      "quantity": 1
     }
   ]
 }

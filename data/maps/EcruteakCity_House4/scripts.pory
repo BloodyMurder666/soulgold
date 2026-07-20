@@ -1,0 +1,45 @@
+mapscripts EcruteakCity_House4_MapScripts {}
+
+script Itemfinder_Cooltrainer {
+    lock
+    faceplayer
+    if (flag(FLAG_GOT_DOWSING_MACHINE)) {
+        msgbox("There are many items lying about
+                that aren't obvious.
+                
+                Use the Dowsing Machine for a while
+                to see if it points you towards them.
+                
+                When it does, you know there's an
+                item near you.")
+        release
+        end
+    }
+    msgbox("Ah. You're on an adventure with
+            your Pokémon?
+            
+            Well, what's an adventure without
+            treasure hunting?
+            
+            Am I right, or am I right?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        msgbox("Good! You understand the true
+                spirit of adventure.
+                
+                I like that! Take this with you.")
+        giveitem(ITEM_DOWSING_MACHINE)
+        setflag(FLAG_GOT_DOWSING_MACHINE)
+        msgbox("There are many items lying about
+                that aren't obvious.
+                
+                Use the Dowsing Machine for a while
+                to see if it points you towards them.
+                
+                When it does, you know there's an
+                item near you.")
+    } else {
+        msgbox("Oh... To each his own, I suppose...")
+    }
+    release
+    end
+}

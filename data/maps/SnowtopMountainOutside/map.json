@@ -157,6 +157,15 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "SnowtopMountainOutside_Sign"
+    },
+    {
+      "type": "hidden_item",
+      "x": 15,
+      "y": 41,
+      "elevation": 0,
+      "item": "ITEM_SUPER_REPEL",
+      "flag": "FLAG_HIDDEN_ITEM_SNOWTOPOUT_SUPERREPEL",
+      "quantity": 1
     }
   ]
 }

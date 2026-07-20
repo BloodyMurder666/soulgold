@@ -10026,6 +10026,16 @@
       "secondary_tileset": "gTileset_Inn",
       "border_filepath": "data/layouts/DarkraiInnFinalRoom/border.bin",
       "blockdata_filepath": "data/layouts/DarkraiInnFinalRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_ECRUTEAK_CITY_HOUSE4",
+      "name": "EcruteakCity_House4_Layout",
+      "width": 13,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Building",
+      "secondary_tileset": "gTileset_House_Lab",
+      "border_filepath": "data/layouts/EcruteakCity_House4/border.bin",
+      "blockdata_filepath": "data/layouts/EcruteakCity_House4/map.bin"
     }
   ]
 }

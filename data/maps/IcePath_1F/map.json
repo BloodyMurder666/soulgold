@@ -240,5 +240,15 @@
       "script": "IcePath_1F_Rival"
     }
   ],
-  "bg_events": []
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 35,
+      "y": 21,
+      "elevation": 0,
+      "item": "ITEM_PP_UP",
+      "flag": "FLAG_HIDDEN_ITEM_ICEPATH_PP_MAX",
+      "quantity": 1
+    }
+  ]
 }
