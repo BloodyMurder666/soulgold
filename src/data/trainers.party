@@ -15860,3 +15860,56 @@ Ball: Poke
 - Chloroblast
 - Synthesis
 - Earth Power
+
+=== TRAINER_MAD_SCIENTIST ===
+Name: Maddie
+Class: Collector
+Pic: Collector
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Smart Trainer
+
+Porygon2 @ Eviolite
+Bold Nature
+Level: 85
+EVs: 252 HP / 252 SpA
+- Recover
+- Thunder Wave
+- Tri-Attack
+- Ice Beam
+
+Porygon-Z @ Life Orb
+Modest Nature
+Level: 85
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 Spe
+- Signal Beam
+- Thunderbolt
+- Tri-Attack
+- Ice Beam
+
+Magnezone @ Magnet
+Level: 85
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 252 Spe
+- Flash Cannon
+- Thunderbolt
+- Light Screen
+- Electric Terrain
+
+Yanmega @ Assault Vest
+Level: 85
+EVs: 252 Spe / 252 Atk
+- U-Turn
+- Bug Bite
+- Dual Wingbeat
+- Night Slash
+
+Iron Thorns @ Booster Energy
+Level: 85
+EVs: 252 Atk / 252 HP
+- Earthquake
+- Thunder Fang
+- Stone Edge
+- Electric Terrain

@@ -1,4 +1,10 @@
-mapscripts GoldenrodApartment_MapScripts {}
+mapscripts GoldenrodApartment_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        if (flag(FLAG_MAGERNA_DOOR_OPENED)) {
+            setmetatile(62, 8, 0x401, FALSE)
+        }
+    }
+}
 
 script GoldenrodApartments_BasementGuard {
     msgbox("Sorry but this stairway leads to the
@@ -74,9 +80,35 @@ script GoldenrodApartments_ScientistM {
 }
 
 script GoldenrodApartments_LockedDoor {
+    lock
+    if (flag(FLAG_MAGERNA_DOOR_OPENED)) {
+        msgbox("The door is now open.")
+        release
+        end
+    }
+    if (flag(FLAG_GOT_MAGERNA_KEY)) {
+        msgbox("The way seems to be barred by a metal
+            door. A small keyhole is visible. 
+            
+            You used the Apartment Key.")
+        closemessage
+        playse(SE_UNLOCK)
+        setmetatile(62, 8, 0x401, FALSE)
+        special(DrawWholeMapView)
+        setflag(FLAG_MAGERNA_DOOR_OPENED)
+        waitse
+        setflag(FLAG_HIDE_MAGERNA_POLICE)
+        removeobject(LOCALID_M_POLICE1)
+        removeobject(LOCALID_M_POLICE2)
+        msgbox("The way is now open.")
+        release
+        end
+    }
     msgbox("The way seems to be barred by a metal
             door. A small keyhole is visible, but
-            you have nothing that would fit to it.", MSGBOX_SIGN)
+            you have nothing that would fit it.")
+    release
+    end
 }
 
 script GoldenrodApartments_Apartment1 {
@@ -89,4 +121,167 @@ script GoldenrodApartments_Apartment2 {
 
 script GoldenrodApartments_Apartment3 {
     msgbox("Goldenrod Sky Apartments F3", MSGBOX_SIGN)
+}
+
+// For refight after hall of fame reset
+script MagearnaEncounter {
+    lock
+    faceplayer
+    bosslegendaryencounterwithmoves(SPECIES_MAGEARNA, 
+                                    75, 
+                                    LOCALID_MAGEARNA, 
+                                    FLAG_HIDE_MAGEARNA, 
+                                    4, 
+                                    SPECIES_NONE, 
+                                    110, 
+                                    MOVE_SHIFT_GEAR, 
+                                    MOVE_CALM_MIND, 
+                                    MOVE_DRAINING_KISS, 
+                                    MOVE_STORED_POWER)
+    release
+    end
+}
+
+script MadScientistEvent {
+    lock
+    msgbox("You sense trouble in this direction.")
+    msgbox("Are you prepared to go forward?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        applymovement(LOCALID_PLAYER, moves(walk_right))
+        waitmovement(0)
+        release
+        end
+    }
+    closemessage
+    moveobjecttocoords(LOCALID_PLAYER, 53, 14, DIR_NORTH)
+    waitmovement(0)
+    delay(15)
+    playbgm(MUS_HG_TEAM_ROCKET_HQ, FALSE)
+    applymovement(LOCALID_MADSC, moves(walk_in_place_up))
+    waitmovement(0)
+    msgbox("Scientist: Ha haa! The machine is nearly
+            complete! 
+            
+            I shall have my revenge on those 
+            Rocket executives for taking my
+            research funding!")
+    playse(SE_LEDGE)
+    applymovement(LOCALID_MADSC, moves(jump_in_place_up))
+    playse(SE_LEDGE)
+    applymovement(LOCALID_MADSC, moves(jump_in_place_up))
+    waitmovement
+    msgbox("Scientist: And then! The rest of those
+            snobby scientific committee members!
+            
+            This will be my ultimate creation!
+            Ahahahahahahahahaaaaaaaaaaaaaa!")
+    msgbox("But first...")
+    delay(30)
+    turnobject(LOCALID_MADSC, DIR_SOUTH)
+    msgbox("Scientist: Who are you and how 
+            did you get in?!")
+    msgbox("I don't have time for 
+            debt collectors or salespeople! 
+            
+            I will be rid of you!")
+    closemessage
+    applymovement(LOCALID_MADSC, moves(walk_down))
+    waitmovement(0)
+    trainerbattle_no_intro(TRAINER_MAD_SCIENTIST, "No! I can't afford this!")
+    applymovement(LOCALID_MADSC, moves(walk_in_place_down))
+    msgbox("Scientist: It seems the tax office has 
+            sent quite a tough customer this time. 
+            
+            No matter!
+            
+            I've been looking for volunteers
+            actually, so this will work out nicely!
+            
+            You shall be the first to witness the
+            raw power of my mechanical Pokémon!")
+    closemessage
+    applymovement(LOCALID_MADSC, moves(walk_right, face_up))
+    waitmovement(0)
+    msgbox("Scientist: Magearna! Destroy this 
+            foolish intruder!")
+    closemessage
+    playmoncry(SPECIES_MAGEARNA, CRY_MODE_NORMAL)
+    waitmoncry
+    applymovement(LOCALID_MAGEARNA, moves(walk_down, delay_16, walk_down))
+    waitmovement(0)
+    applymovement(LOCALID_MADSC, moves(face_left))
+    waitmovement(0)
+    bosslegendaryencounterwithmoves(SPECIES_MAGEARNA, 
+                                    75, 
+                                    LOCALID_MAGEARNA, 
+                                    FLAG_HIDE_MAGEARNA, 
+                                    4, 
+                                    SPECIES_NONE, 
+                                    110, 
+                                    MOVE_SHIFT_GEAR, 
+                                    MOVE_CALM_MIND, 
+                                    MOVE_DRAINING_KISS, 
+                                    MOVE_STORED_POWER)
+    playbgm(MUS_HG_TEAM_ROCKET_HQ, FALSE)
+    msgbox("Scientist: This... THIS CANNOT BE!
+    
+            My creation... Gone? JUST LIKE THAT?
+            
+            It was supposed to be invincible!
+            
+            This isn't over! I can still-")
+    msgbox("??? Hold it right there!")
+    closemessage
+    playse(SE_PIN)
+    applymovement(LOCALID_MADSC, Common_Movement_ExclamationMark)
+    applymovement(LOCALID_PLAYER, Common_Movement_ExclamationMark)
+    turnobject(LOCALID_PLAYER, DIR_SOUTH)
+    turnobject(LOCALID_MADSC, DIR_SOUTH)
+    waitse
+    clearflag(FLAG_HIDE_MAGERNA_POLICE)
+    addobject(LOCALID_M_POLICE1)
+    addobject(LOCALID_M_POLICE2)
+    applymovement(LOCALID_M_POLICE1, moves(walk_up*5, walk_left*5, walk_up))
+    applymovement(LOCALID_M_POLICE2, moves(walk_left, walk_up*5, walk_left*4, walk_up*2, face_left))
+    waitmovement(0)
+    turnobject(LOCALID_PLAYER, DIR_EAST)
+    msgbox("Police: You're under arrest for tax 
+            evasion, having ties to the Team Rocket
+            and for developing illegal Pokémon.")
+    applymovement(LOCALID_MADSC, moves(walk_in_place_down))
+    waitmovement(0)
+    msgbox("Scientist: B-But I was the one whom 
+            Team Rocket abandoned!
+            
+            I'm innocent! I just wanted
+            to show them they were in the wrong!")
+    applymovement(LOCALID_M_POLICE2, moves(walk_in_place_left))
+    waitmovement
+    msgbox("Save it for the judge.")
+    turnobject(LOCALID_M_POLICE1, DIR_WEST)
+    fadedefaultbgm
+    msgbox("Police: I thank you for help 
+            subduing this crook. 
+            
+            They've been holed up here
+            for a while, causing all sorts of
+            disturbance.
+            
+            We'll let you keep the Pokémon if
+            you stay quiet about it. 
+            
+            We trust it will be in good 
+            hands with you.")
+    closemessage
+    fadescreen(FADE_TO_BLACK)
+    removeobject(LOCALID_MADSC)
+    removeobject(LOCALID_M_POLICE1)
+    removeobject(LOCALID_M_POLICE2)
+    setflag(FLAG_HIDE_MAGERNA_POLICE)
+    setflag(FLAG_HIDE_MAD_SCIENTIST)
+    delay(45)
+    fadescreen(FADE_FROM_BLACK)
+    setvar(VAR_MAD_SCIENTIST_EVENT_STATE, 1)
+    release
+    end
 }

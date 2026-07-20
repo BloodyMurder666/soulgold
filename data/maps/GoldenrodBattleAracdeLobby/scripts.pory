@@ -87,3 +87,59 @@ script ArcadeLobby_GameMachine {
 			flashing across the screen. Better not
 			try...", MSGBOX_NPC)
 }
+
+script MagernaKeyBurglar {
+	lock
+	faceplayer
+	if (flag(FLAG_GOT_MAGERNA_KEY)) {
+		msgbox("You can use the key to access the top 
+				floor of Goldenrod apartment building.")
+		msgbox("As for me, I'm rich beyond belief 
+				now! Good bye ice soup, hello gravlax!")
+		release
+		end
+	}
+	if (!flag(FLAG_GOT_MAGERNA_KEY_INTRODONE)) {
+		msgbox("Hey there champ, may I interest
+			you in some special wares that
+			may or may not have been legally
+			acquired?
+			
+			For example, this key to the top
+			floor apartment residence in the
+			Goldenrod apartment building!
+			
+			Who knows what kind of riches are
+			available for the taking up there?
+			
+			I just need you to do me a tiny
+			favour and it could be yours for
+			the taking.")
+		setflag(FLAG_GOT_MAGERNA_KEY_INTRODONE)
+	}
+	msgbox("I need you to win at least 25 battles
+			in the Rocket Arcade battles, my
+			bets are riding on you winning
+			me a fortune!")
+
+	specialvar(VAR_RESULT, GetRocketArcadeWins)
+	if (var(VAR_RESULT) >= 25) {
+		msgbox("You... You did it!
+		
+				I can't thank you enough. Here, it's
+				yours as promised.")
+		playfanfare(MUS_HG_OBTAIN_KEY_ITEM)
+		msgbox("{PLAYER} obtained Apartment Key!")
+		waitfanfare
+		msgbox("You can use it to access the top floor
+				of Goldenrod apartment building.")
+		msgbox("As for me, it's time to say goodbye
+				to ice soup!")
+		setflag(FLAG_GOT_MAGERNA_KEY)
+		release
+		end
+	}
+	release
+	end
+	
+}

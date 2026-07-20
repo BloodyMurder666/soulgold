@@ -193,7 +193,7 @@
 #define VAR_TRICK_HOUSE_PUZZLE_3_STATE                   0x40AD
 #define VAR_TRICK_HOUSE_PUZZLE_4_STATE                   0x40AE
 #define VAR_TRICK_HOUSE_PUZZLE_5_STATE                   0x40AF
-#define VAR_TRICK_HOUSE_PUZZLE_6_STATE                   0x40B0
+#define VAR_MAD_SCIENTIST_EVENT_STATE                    0x40B0
 #define VAR_TRICK_HOUSE_PUZZLE_7_STATE                   0x40B1
 #define VAR_TRICK_HOUSE_PUZZLE_8_STATE                   0x40B2
 #define VAR_WEATHER_INSTITUTE_STATE                      0x40B3

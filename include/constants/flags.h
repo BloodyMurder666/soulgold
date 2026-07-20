@@ -742,7 +742,7 @@
 #define FLAG_HIDE_MELOETTA  0x2B7
 #define FLAG_HIDE_DIANCIE  0x2B8
 #define FLAG_HIDE_OGERPON  0x2B9
-#define FLAG_HIDE_MAGERNA  0x2BA
+#define FLAG_HIDE_MAGEARNA  0x2BA
 #define FLAG_HIDE_FEZANDIPITI  0x2BB
 
 // Event Flags
@@ -1652,6 +1652,11 @@
 #define FLAG_HIDE_DARKRAI                           0x970
 #define FLAG_HIDE_DARKRAI_INN_NPC                   0x971
 #define FLAG_GOT_DOWSING_MACHINE                    0x972
+#define FLAG_GOT_MAGERNA_KEY                        0x973
+#define FLAG_GOT_MAGERNA_KEY_INTRODONE              0x974
+#define FLAG_MAGERNA_DOOR_OPENED                    0x975
+#define FLAG_HIDE_MAGERNA_POLICE                    0x976
+#define FLAG_HIDE_MAD_SCIENTIST                     0x977
 
 #define FLAG_0x1500                                 0x1500
 // Daily Flags

@@ -131,6 +131,62 @@
       "trainer_sight_or_berry_tree_id": "ITEM_TM_SMART_STRIKE",
       "script": "Common_EventScript_FindItem",
       "flag": "FLAG_GOLDENROD_APARTMENTS_SMARTSTRIKE"
+    },
+    {
+      "local_id": "LOCALID_MAGEARNA",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MAGEARNA)",
+      "x": 53,
+      "y": 11,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MagearnaEncounter",
+      "flag": "FLAG_HIDE_MAGEARNA"
+    },
+    {
+      "local_id": "LOCALID_MADSC",
+      "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M",
+      "x": 53,
+      "y": 12,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_HIDE_MAD_SCIENTIST"
+    },
+    {
+      "local_id": "LOCALID_M_POLICE1",
+      "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
+      "x": 59,
+      "y": 20,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_HIDE_MAGERNA_POLICE"
+    },
+    {
+      "local_id": "LOCALID_M_POLICE2",
+      "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
+      "x": 60,
+      "y": 20,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_HIDE_MAGERNA_POLICE"
     }
   ],
   "warp_events": [
@@ -177,7 +233,26 @@
       "dest_warp_id": "4"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 57,
+      "y": 15,
+      "elevation": 0,
+      "var": "VAR_MAD_SCIENTIST_EVENT_STATE",
+      "var_value": "0",
+      "script": "MadScientistEvent"
+    },
+    {
+      "type": "trigger",
+      "x": 57,
+      "y": 16,
+      "elevation": 0,
+      "var": "VAR_MAD_SCIENTIST_EVENT_STATE",
+      "var_value": "0",
+      "script": "MadScientistEvent"
+    }
+  ],
   "bg_events": [
     {
       "type": "sign",

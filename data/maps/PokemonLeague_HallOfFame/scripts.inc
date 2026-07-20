@@ -93,7 +93,7 @@ PokemonLeague_HallOfFame_EventScript_SetGameClearFlags::
 	clearflag FLAG_HIDE_MELOETTA 
 	clearflag FLAG_HIDE_DIANCIE 
 	clearflag FLAG_HIDE_OGERPON 
-	clearflag FLAG_HIDE_MAGERNA 
+	clearflag FLAG_HIDE_MAGEARNA 
 	clearflag FLAG_HIDE_FEZANDIPITI 
 	setflag FLAG_HIDE_BATTLEFRONTIER_ENGINEER
 	setvar VAR_COMPLETED_LUGIA, 4

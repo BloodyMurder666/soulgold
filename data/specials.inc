@@ -630,3 +630,4 @@ gSpecials::
 	def_special BuenasPassword_BufferCurrentPassword
 	def_special BuenasPassword_GetCurrentGroup
 	def_special BuenasPassword_GetCorrectAnswer
+	def_special GetRocketArcadeWins

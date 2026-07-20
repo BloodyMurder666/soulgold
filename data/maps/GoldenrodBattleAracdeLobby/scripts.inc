@@ -117,6 +117,63 @@ ArcadeLobby_GameMachine::
 	return
 
 
+MagernaKeyBurglar::
+# 92 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	lock
+# 93 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	faceplayer
+# 94 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	goto_if_set FLAG_GOT_MAGERNA_KEY, MagernaKeyBurglar_2
+# 102 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	goto_if_unset FLAG_GOT_MAGERNA_KEY_INTRODONE, MagernaKeyBurglar_5
+MagernaKeyBurglar_4:
+# 120 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	msgbox MagernaKeyBurglar_Text_3
+# 125 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	specialvar VAR_RESULT, GetRocketArcadeWins
+# 126 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	compare VAR_RESULT, 25
+	goto_if_ge MagernaKeyBurglar_8
+# 142 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	release
+	end
+
+MagernaKeyBurglar_2:
+# 95 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	msgbox MagernaKeyBurglar_Text_0
+# 97 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	msgbox MagernaKeyBurglar_Text_1
+# 99 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	release
+	end
+
+MagernaKeyBurglar_5:
+# 103 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	msgbox MagernaKeyBurglar_Text_2
+# 118 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	setflag FLAG_GOT_MAGERNA_KEY_INTRODONE
+	goto MagernaKeyBurglar_4
+
+MagernaKeyBurglar_8:
+# 127 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	msgbox MagernaKeyBurglar_Text_4
+# 131 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	playfanfare MUS_HG_OBTAIN_KEY_ITEM
+# 132 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	msgbox MagernaKeyBurglar_Text_5
+# 133 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	waitfanfare
+# 134 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	msgbox MagernaKeyBurglar_Text_6
+# 136 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	msgbox MagernaKeyBurglar_Text_7
+# 138 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	setflag FLAG_GOT_MAGERNA_KEY
+# 139 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	release
+	end
+
+
 GoldenrodArcadeLobby_Rocker_Text_0:
 # 26 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
 	.string "These machines have to be rigged!\n"
@@ -159,3 +216,55 @@ ArcadeLobby_GameMachine_Text_0:
 	.string "Bright flashes and vivid pictures are\n"
 	.string "flashing across the screen. Better not\l"
 	.string "try...$"
+
+MagernaKeyBurglar_Text_0:
+# 95 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	.string "You can use the key to access the top \n"
+	.string "floor of Goldenrod apartment building.$"
+
+MagernaKeyBurglar_Text_1:
+# 97 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	.string "As for me, I'm rich beyond belief \n"
+	.string "now! Good bye ice soup, hello gravlax!$"
+
+MagernaKeyBurglar_Text_2:
+# 103 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	.string "Hey there champ, may I interest\n"
+	.string "you in some special wares that\l"
+	.string "may or may not have been legally\l"
+	.string "acquired?\p"
+	.string "For example, this key to the top\n"
+	.string "floor apartment residence in the\l"
+	.string "Goldenrod apartment building!\p"
+	.string "Who knows what kind of riches are\n"
+	.string "available for the taking up there?\p"
+	.string "I just need you to do me a tiny\n"
+	.string "favour and it could be yours for\l"
+	.string "the taking.$"
+
+MagernaKeyBurglar_Text_3:
+# 120 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	.string "I need you to win at least 25 battles\n"
+	.string "in the Rocket Arcade battles, my\l"
+	.string "bets are riding on you winning\l"
+	.string "me a fortune!$"
+
+MagernaKeyBurglar_Text_4:
+# 127 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	.string "You... You did it!\p"
+	.string "I can't thank you enough. Here, it's\n"
+	.string "yours as promised.$"
+
+MagernaKeyBurglar_Text_5:
+# 132 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	.string "{PLAYER} obtained Apartment Key!$"
+
+MagernaKeyBurglar_Text_6:
+# 134 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	.string "You can use it to access the top floor\n"
+	.string "of Goldenrod apartment building.$"
+
+MagernaKeyBurglar_Text_7:
+# 136 "data/maps/GoldenrodBattleAracdeLobby/scripts.pory"
+	.string "As for me, it's time to say goodbye\n"
+	.string "to ice soup!$"

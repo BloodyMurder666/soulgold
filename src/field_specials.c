@@ -1354,6 +1354,11 @@ void BufferEReaderTrainerName(void)
     GetEreaderTrainerName(gStringVar1);
 }
 
+u16 GetRocketArcadeWins(void) 
+{
+    return gSaveBlock2Ptr->frontier.arcadeTotalWins;
+}
+
 u16 GetSlotMachineId(void)
 {
     static const u8 sSlotMachineRandomSeeds[SLOT_MACHINE_COUNT] = {12, 2, 4, 5, 1, 8, 7, 11, 3, 10, 9, 6};

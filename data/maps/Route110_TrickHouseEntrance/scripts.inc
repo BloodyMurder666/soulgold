@@ -608,10 +608,10 @@ Route110_TrickHousePuzzle5_EventScript_Door::
 	end
 
 Route110_TrickHousePuzzle6_EventScript_Door::
-	goto_if_eq VAR_TRICK_HOUSE_PUZZLE_6_STATE, 0, Route110_TrickHousePuzzle_EventScript_DoorLocked
+	goto_if_eq VAR_GARBAGEVAR, 0, Route110_TrickHousePuzzle_EventScript_DoorLocked
 	msgbox Route110_TrickHousePuzzle6_Text_WroteSecretCodeLockOpened, MSGBOX_DEFAULT
 	playse SE_PIN
-	setvar VAR_TRICK_HOUSE_PUZZLE_6_STATE, 2
+	setvar VAR_GARBAGEVAR, 2
 	setmetatile 13, 1, METATILE_TrickHousePuzzle_Stairs_Down, FALSE
 	special DrawWholeMapView
 	releaseall
