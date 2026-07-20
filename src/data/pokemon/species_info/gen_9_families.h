@@ -3814,7 +3814,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .levelUpLearnset = sFlittleLevelUpLearnset,
         .teachableLearnset = sFlittleTeachableLearnset,
         .eggMoveLearnset = sFlittleEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_ESPATHRA}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_ESPATHRA}),
     },
 
     [SPECIES_ESPATHRA] =

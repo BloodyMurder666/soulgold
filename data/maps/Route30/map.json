@@ -414,6 +414,33 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route30_EventScript_Mailbox"
+    },
+    {
+      "type": "hidden_item",
+      "x": 25,
+      "y": 20,
+      "elevation": 0,
+      "item": "ITEM_FULL_HEAL",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE30_FULL_HEAL",
+      "quantity": 1
+    },
+    {
+      "type": "hidden_item",
+      "x": 32,
+      "y": 3,
+      "elevation": 0,
+      "item": "ITEM_POTION",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE30_POTION",
+      "quantity": 1
+    },
+    {
+      "type": "hidden_item",
+      "x": 55,
+      "y": 55,
+      "elevation": 0,
+      "item": "ITEM_NUGGET",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE30_NUGGET",
+      "quantity": 1
     }
   ]
 }

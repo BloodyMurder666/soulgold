@@ -244,6 +244,15 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route33_HiddenGrotto"
+    },
+    {
+      "type": "hidden_item",
+      "x": 20,
+      "y": 18,
+      "elevation": 0,
+      "item": "ITEM_ETHER",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE33_ETHER",
+      "quantity": 1
     }
   ]
 }

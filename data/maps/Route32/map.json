@@ -775,6 +775,15 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route32HiddenGrottoWarp"
+    },
+    {
+      "type": "hidden_item",
+      "x": 19,
+      "y": 55,
+      "elevation": 0,
+      "item": "ITEM_GREAT_BALL",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE32_GREAT_BALL",
+      "quantity": 1
     }
   ]
 }

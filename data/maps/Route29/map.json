@@ -269,6 +269,15 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route29_EventScript_Sign"
+    },
+    {
+      "type": "hidden_item",
+      "x": 27,
+      "y": 19,
+      "elevation": 0,
+      "item": "ITEM_ETHER",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE29_ETHER",
+      "quantity": 1
     }
   ]
 }

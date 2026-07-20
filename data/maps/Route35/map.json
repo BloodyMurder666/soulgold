@@ -369,6 +369,15 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route35_HiddenGrotto"
+    },
+    {
+      "type": "hidden_item",
+      "x": 18,
+      "y": 47,
+      "elevation": 0,
+      "item": "ITEM_STARDUST",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE35_STARDUST",
+      "quantity": 1
     }
   ]
 }

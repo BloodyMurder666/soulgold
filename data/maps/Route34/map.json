@@ -533,6 +533,24 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route34_EventScript_Sign1"
+    },
+    {
+      "type": "hidden_item",
+      "x": 22,
+      "y": 50,
+      "elevation": 0,
+      "item": "ITEM_ULTRA_BALL",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE34_ULTRABALL",
+      "quantity": 1
+    },
+    {
+      "type": "hidden_item",
+      "x": 20,
+      "y": 8,
+      "elevation": 0,
+      "item": "ITEM_AWAKENING",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE34_AWAKENING",
+      "quantity": 1
     }
   ]
 }

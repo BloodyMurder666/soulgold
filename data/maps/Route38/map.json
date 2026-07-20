@@ -205,6 +205,24 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route38_HiddenGrotto"
+    },
+    {
+      "type": "hidden_item",
+      "x": 1,
+      "y": 31,
+      "elevation": 0,
+      "item": "ITEM_HP_UP",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE38_HP_UP",
+      "quantity": 1
+    },
+    {
+      "type": "hidden_item",
+      "x": 39,
+      "y": 11,
+      "elevation": 0,
+      "item": "ITEM_REVIVE",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE38_REVIVE",
+      "quantity": 1
     }
   ]
 }

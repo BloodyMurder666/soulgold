@@ -229,9 +229,9 @@ EventScript_HiddenItemScript::
 	lockall
 	waitse
 	copyvar VAR_0x8006, VAR_0x8005
-	additem VAR_0x8005
+	additem VAR_0x8005, VAR_0x8009
 	copyvar VAR_0x8007, VAR_RESULT
-	bufferitemnameplural STR_VAR_2, VAR_0x8005, 1
+	bufferitemnameplural STR_VAR_2, VAR_0x8005, VAR_0x8009
 	checkitemtype VAR_0x8005
 	call EventScript_BufferPocketNameAndTryFanfare
 	goto_if_eq VAR_0x8007, TRUE, EventScript_PickUpHiddenItem
@@ -253,9 +253,19 @@ EventScript_FoundHiddenTMHM::
 	end
 
 EventScript_FoundHiddenItem::
-	message gText_PlayerFoundOneItem
+	call_if_eq VAR_0x8009, 1, EventScript_FoundSingleHiddenItem
+	call_if_ne VAR_0x8009, 1, EventScript_FoundMultipleHiddenItems
 	goto EventScript_PutHiddenItemInPocket
 	end
+
+EventScript_FoundSingleHiddenItem::
+	message gText_PlayerFoundOneItem
+	return
+
+EventScript_FoundMultipleHiddenItems::
+	buffernumberstring STR_VAR_1, VAR_0x8009
+	message gText_PlayerFoundItems
+	return
 
 EventScript_PutHiddenItemInPocket::
 	callnative Script_ClearDowsingColor

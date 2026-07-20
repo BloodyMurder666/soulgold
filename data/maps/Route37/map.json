@@ -221,6 +221,15 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route37Sign"
+    },
+    {
+      "type": "hidden_item",
+      "x": 35,
+      "y": 19,
+      "elevation": 0,
+      "item": "ITEM_FULL_HEAL",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE37_FULL_HEAL",
+      "quantity": 1
     }
   ]
 }

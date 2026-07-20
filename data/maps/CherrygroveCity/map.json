@@ -413,6 +413,15 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Cherrygrove_DarkraiEventDoor"
+    },
+    {
+      "type": "hidden_item",
+      "x": 22,
+      "y": 7,
+      "elevation": 0,
+      "item": "ITEM_STARDUST",
+      "flag": "FLAG_HIDDEN_ITEM_CHERRYGROVE_STARDUST",
+      "quantity": 1
     }
   ]
 }
