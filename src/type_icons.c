@@ -302,7 +302,7 @@ static enum Type GetMonPublicType(enum BattlerId battlerId, u32 typeNum)
         return TYPE_MYSTERY;
 
     monIllusion = GetIllusionMonPtr(battlerId);
-    illusionSpecies = GetMonData(monIllusion,MON_DATA_SPECIES,NULL);
+    illusionSpecies = monIllusion != NULL ? GetMonData(monIllusion, MON_DATA_SPECIES) : SPECIES_NONE;
 
     if (GetActiveGimmick(battlerId) == GIMMICK_TERA)
         return GetMonDefensiveTeraType(mon,monIllusion,battlerId,typeNum,illusionSpecies,monSpecies);
