@@ -40,6 +40,7 @@
 #line 22
             .nature = NATURE_BRAVE,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
+            .hasExplicitMoves = TRUE,
             .moves = {
 #line 26
                 MOVE_EARTHQUAKE,
@@ -86,6 +87,7 @@
 #line 41
             .nature = NATURE_BRAVE,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
+            .hasExplicitMoves = TRUE,
             .moves = {
 #line 45
                 MOVE_LIGHT_SCREEN,
@@ -108,6 +110,7 @@
 #line 51
             .nature = NATURE_IMPISH,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
+            .hasExplicitMoves = TRUE,
             .moves = {
 #line 55
                 MOVE_TOXIC,
@@ -130,6 +133,7 @@
 #line 61
             .nature = NATURE_ADAMANT,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
+            .hasExplicitMoves = TRUE,
             .moves = {
 #line 65
                 MOVE_THUNDER,

@@ -13,7 +13,7 @@
 #include "constants/battle.h"
 #include "constants/battle_ai.h"
 
-#define NUM_TEST_TRAINERS 15
+#define NUM_TEST_TRAINERS 18
 
 static const struct Trainer sTestTrainers[DIFFICULTY_COUNT][NUM_TEST_TRAINERS] =
 {
@@ -32,4 +32,3 @@ enum DifficultyLevel GetTrainerDifficultyLevelTest(u16 trainerId)
 
     return difficulty;
 }
-

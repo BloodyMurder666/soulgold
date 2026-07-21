@@ -293,3 +293,37 @@ Mew
 Oddish
 
 Aron
+
+=== 15 ===
+Name: Empty
+Class: Pkmn Trainer 1
+Pic: Red
+Gender: Male
+Music: Male
+Battle Type: Singles
+
+Magikarp
+Level: 10
+- None
+
+=== 16 ===
+Name: AI Player
+Class: Pkmn Trainer 1
+Pic: Red
+Gender: Male
+Music: Male
+Battle Type: Singles
+
+Audino
+Level: 48
+
+=== 17 ===
+Name: AI Foe
+Class: Pkmn Trainer 1
+Pic: Red
+Gender: Male
+Music: Male
+Battle Type: Doubles
+
+Magikarp
+Level: 10

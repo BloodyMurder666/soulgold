@@ -30,6 +30,7 @@
 #include "item.h"
 #include "international_string_util.h"
 #include "trainer_pokemon_sprites.h"
+#include "trainer_moves.h"
 #include "scanline_effect.h"
 #include "script_pokemon_util.h"
 #include "graphics.h"
@@ -86,6 +87,17 @@ struct PwtDomeParticipant
     u8 partySize;
     u8 potentialTextId;
     const struct PwtDomeTrainerText *text;
+};
+
+struct PwtDomeMoveCache
+{
+    bool8 valid;
+    u8 level;
+    enum TrainerBattleType battleType;
+    enum DifficultyLevel difficulty;
+    u16 trainerId;
+    u16 monIndex;
+    u16 moves[MAX_MON_MOVES];
 };
 
 #define PWT_DOME_PARTY(partyArray) partyArray, ARRAY_COUNT(partyArray)
@@ -205,6 +217,7 @@ static void InitDomeTrainers(void);
 
 static EWRAM_DATA struct TourneyTreeInfoCard *sInfoCard = {0};
 static EWRAM_DATA u8 *sTilemapBuffer = NULL;
+static EWRAM_DATA struct PwtDomeMoveCache sPwtDomeMoveCache[DOME_TOURNAMENT_TRAINERS_COUNT][FRONTIER_PARTY_SIZE] = {0};
 
 static const u8 sPwtDomeText_DefaultIntro[] = _("Show me what brought you this far.");
 static const u8 sPwtDomeText_DefaultPlayerWon[] = _("That was a championship-caliber battle.");
@@ -487,8 +500,47 @@ static enum Move GetDomeTournamentMove(u16 tournamentTrainerId, u8 tournamentMon
         return gSaveBlock2Ptr->frontier.domePlayerPartyData[tournamentMonId].moves[moveSlot];
     else if (trainerId == TRAINER_FRONTIER_BRAIN)
         return GetFrontierBrainMonMove(tournamentMonId, moveSlot);
+    else if (IsPwtDomeTrainerId(trainerId))
+    {
+        const struct TrainerMon *partyEntry = GetDomeTournamentMon(tournamentTrainerId, tournamentMonId);
+        struct PwtDomeMoveCache *cache = &sPwtDomeMoveCache[tournamentTrainerId][tournamentMonId];
+        enum TrainerBattleType battleType = VarGet(VAR_FRONTIER_BATTLE_MODE) == FRONTIER_MODE_DOUBLES
+                                           ? TRAINER_BATTLE_TYPE_DOUBLES
+                                           : TRAINER_BATTLE_TYPE_SINGLES;
+        enum DifficultyLevel difficulty = GetCurrentDifficultyLevel();
+        u16 monIndex = GetPwtDomeMonIndex(tournamentTrainerId, tournamentMonId);
+        u8 level = SetFacilityPtrsGetLevel();
+
+        if (TrainerMonHasExplicitMoves(partyEntry))
+            return partyEntry->moves[moveSlot];
+
+        if (!cache->valid
+         || cache->trainerId != trainerId
+         || cache->monIndex != monIndex
+         || cache->level != level
+         || cache->battleType != battleType
+         || cache->difficulty != difficulty)
+        {
+            enum Move moves[MAX_MON_MOVES];
+            u32 i;
+
+            BuildTrainerMonMoves(moves, partyEntry, partyEntry->species, level,
+                                 battleType, difficulty);
+            for (i = 0; i < MAX_MON_MOVES; i++)
+                cache->moves[i] = moves[i];
+            cache->trainerId = trainerId;
+            cache->monIndex = monIndex;
+            cache->level = level;
+            cache->battleType = battleType;
+            cache->difficulty = difficulty;
+            cache->valid = TRUE;
+        }
+        return cache->moves[moveSlot];
+    }
     else
+    {
         return GetDomeTournamentMon(tournamentTrainerId, tournamentMonId)->moves[moveSlot];
+    }
 }
 
 static u8 GetDomeTournamentNature(u16 tournamentTrainerId, u8 tournamentMonId)
@@ -2609,7 +2661,11 @@ static void CreatePwtDomeOpponentMon(u8 monPartyId, u16 tournamentTrainerId, u8 
     for (j = 0; j < MAX_MON_ITEMS; j++)
         SetMonData(&gEnemyParty[monPartyId], MON_DATA_HELD_ITEM + j, &partyEntry->heldItem[j]);
 
-    CustomTrainerPartyAssignMoves(&gEnemyParty[monPartyId], partyEntry);
+    AssignTrainerMonMoves(&gEnemyParty[monPartyId], partyEntry,
+                          (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+                              ? TRAINER_BATTLE_TYPE_DOUBLES
+                              : TRAINER_BATTLE_TYPE_SINGLES,
+                          GetCurrentDifficultyLevel());
     SetMonData(&gEnemyParty[monPartyId], MON_DATA_IVS, &partyEntry->iv);
     if (partyEntry->ev != NULL)
     {

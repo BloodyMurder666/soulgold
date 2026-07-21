@@ -4965,14 +4965,17 @@ static void DebugAction_Party_SetParty(u8 taskId)
 
 static void DebugAction_Party_BattleSingle(u8 taskId)
 {
+    u32 battleTypeFlags = BATTLE_TYPE_TRAINER;
+
+    if (sDebugTrainers[DIFFICULTY_NORMAL][DEBUG_TRAINER_AI].battleType == TRAINER_BATTLE_TYPE_DOUBLES)
+        battleTypeFlags |= BATTLE_TYPE_DOUBLE;
+
     ZeroPlayerPartyMons();
     ZeroEnemyPartyMons();
-    CreateNPCTrainerPartyFromTrainer(gPlayerParty, &sDebugTrainers[DIFFICULTY_NORMAL][DEBUG_TRAINER_PLAYER], TRUE, BATTLE_TYPE_TRAINER, TRAINER_NONE);
-    CreateNPCTrainerPartyFromTrainer(gEnemyParty, GetDebugAiTrainer(), FALSE, BATTLE_TYPE_TRAINER, TRAINER_NONE);
+    CreateNPCTrainerPartyFromTrainer(gPlayerParty, &sDebugTrainers[DIFFICULTY_NORMAL][DEBUG_TRAINER_PLAYER], TRUE, battleTypeFlags, TRAINER_NONE);
+    CreateNPCTrainerPartyFromTrainer(gEnemyParty, GetDebugAiTrainer(), FALSE, battleTypeFlags, TRAINER_NONE);
 
-    gBattleTypeFlags = BATTLE_TYPE_TRAINER;
-    if (sDebugTrainers[DIFFICULTY_NORMAL][DEBUG_TRAINER_AI].battleType == TRAINER_BATTLE_TYPE_DOUBLES)
-        gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
+    gBattleTypeFlags = battleTypeFlags;
     gDebugAIFlags = sDebugTrainers[DIFFICULTY_NORMAL][DEBUG_TRAINER_AI].aiFlags;
     gIsDebugBattle = TRUE;
     gBattleEnvironment = BattleSetup_GetEnvironmentId();

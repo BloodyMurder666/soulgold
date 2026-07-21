@@ -8,6 +8,7 @@
 #include "difficulty.h"
 #include "string_util.h"
 #include "text.h"
+#include "trainer_moves.h"
 
 #include "constants/abilities.h"
 #include "constants/battle_ai.h"
@@ -30,7 +31,8 @@ void FillPartnerParty(u16 trainerId)
     u16 monId;
     u32 otID;
     u8 trainerName[(PLAYER_NAME_LENGTH * 3) + 1];
-    enum DifficultyLevel difficulty = GetBattlePartnerDifficultyLevel(trainerId);
+    enum DifficultyLevel dataDifficulty = GetBattlePartnerDifficultyLevel(trainerId);
+    enum DifficultyLevel activeDifficulty = GetCurrentDifficultyLevel();
     SetFacilityPtrsGetLevel();
 
     if (trainerId > TRAINER_PARTNER(PARTNER_NONE))
@@ -38,10 +40,10 @@ void FillPartnerParty(u16 trainerId)
         for (i = 0; i < 3; i++)
             ZeroMonData(&gPlayerParty[i + 3]);
 
-        for (i = 0; i < 3 && i < gBattlePartners[difficulty][trainerId - TRAINER_PARTNER(PARTNER_NONE)].partySize; i++)
+        for (i = 0; i < 3 && i < gBattlePartners[dataDifficulty][trainerId - TRAINER_PARTNER(PARTNER_NONE)].partySize; i++)
         {
-            const struct TrainerMon *partyData = gBattlePartners[difficulty][trainerId - TRAINER_PARTNER(PARTNER_NONE)].party;
-            const u8 *partnerName = gBattlePartners[difficulty][trainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerName;
+            const struct TrainerMon *partyData = gBattlePartners[dataDifficulty][trainerId - TRAINER_PARTNER(PARTNER_NONE)].party;
+            const u8 *partnerName = gBattlePartners[dataDifficulty][trainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerName;
 
             for (k = 0; partnerName[k] != EOS && k < 3; k++)
             {
@@ -76,7 +78,8 @@ void FillPartnerParty(u16 trainerId)
             j = partyData[i].isShiny;
             SetMonData(&gPlayerParty[i + 3], MON_DATA_IS_SHINY, &j);
             SetMonData(&gPlayerParty[i + 3], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
-            CustomTrainerPartyAssignMoves(&gPlayerParty[i + 3], &partyData[i]);
+            AssignTrainerMonMoves(&gPlayerParty[i + 3], &partyData[i],
+                                  TRAINER_BATTLE_TYPE_DOUBLES, activeDifficulty);
 
             SetMonData(&gPlayerParty[i + 3], MON_DATA_IVS, &(partyData[i].iv));
             if (partyData[i].ev != NULL)
@@ -111,9 +114,9 @@ void FillPartnerParty(u16 trainerId)
             }
             CalculateMonStats(&gPlayerParty[i + 3]);
 
-            StringCopy(trainerName, gBattlePartners[difficulty][trainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerName);
+            StringCopy(trainerName, gBattlePartners[dataDifficulty][trainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerName);
             SetMonData(&gPlayerParty[i + 3], MON_DATA_OT_NAME, trainerName);
-            j = gBattlePartners[difficulty][SanitizeTrainerId(trainerId - TRAINER_PARTNER(PARTNER_NONE))].gender;
+            j = gBattlePartners[dataDifficulty][SanitizeTrainerId(trainerId - TRAINER_PARTNER(PARTNER_NONE))].gender;
             SetMonData(&gPlayerParty[i + 3], MON_DATA_OT_GENDER, &j);
         }
     }

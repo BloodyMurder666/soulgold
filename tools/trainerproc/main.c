@@ -2164,6 +2164,7 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
 
             if (pokemon->moves_n > 0)
             {
+                fprintf(f, "            .hasExplicitMoves = TRUE,\n");
                 fprintf(f, "            .moves = {\n");
                 fprintf(f, "#line %d\n", pokemon->move1_line);
                 for (int k = 0; k < pokemon->moves_n; k++)

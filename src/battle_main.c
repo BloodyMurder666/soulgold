@@ -63,6 +63,7 @@
 #include "test_runner.h"
 #include "text.h"
 #include "trainer_pools.h"
+#include "trainer_moves.h"
 #include "trig.h"
 #include "tv.h"
 #include "util.h"
@@ -1919,31 +1920,6 @@ u32 GeneratePersonalityForGender(u32 gender, u32 species)
         return speciesInfo->genderRatio / 2;
 }
 
-void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon *partyEntry)
-{
-    bool32 noMoveSet = TRUE;
-    u32 j;
-
-    for (j = 0; j < MAX_MON_MOVES; ++j)
-    {
-        if (partyEntry->moves[j] != MOVE_NONE)
-            noMoveSet = FALSE;
-    }
-    if (noMoveSet)
-    {
-        GiveMonInitialMoveset(mon);
-        // TODO: Figure out a default strategy when moves are not set, to generate a good moveset
-        return;
-    }
-
-    for (j = 0; j < MAX_MON_MOVES; ++j)
-    {
-        u32 pp = GetMovePP(partyEntry->moves[j]);
-        SetMonData(mon, MON_DATA_MOVE1 + j, &partyEntry->moves[j]);
-        SetMonData(mon, MON_DATA_PP1 + j, &pp);
-    }
-}
-
 static void ApplyReplayTrainerStatOverrides(struct Pokemon *mon)
 {
     if (AreReplayTrainerPerfectIVsForced())
@@ -2080,7 +2056,11 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             for (j = 0; j < MAX_MON_ITEMS; j++)
                 SetMonData(&party[i], MON_DATA_HELD_ITEM + j, &partyData[monIndex].heldItem[j]);
 
-            CustomTrainerPartyAssignMoves(&party[i], &partyData[monIndex]);
+            AssignTrainerMonMoves(&party[i], &partyData[monIndex],
+                                  (battleTypeFlags & BATTLE_TYPE_DOUBLE)
+                                      ? TRAINER_BATTLE_TYPE_DOUBLES
+                                      : TRAINER_BATTLE_TYPE_SINGLES,
+                                  GetCurrentDifficultyLevel());
             SetMonData(&party[i], MON_DATA_IVS, &(partyData[monIndex].iv));
             if (partyData[monIndex].ev != NULL)
             {
@@ -2188,11 +2168,19 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 
 void CreateTrainerPartyForPlayer(void)
 {
+    u32 battleTypeFlags = BATTLE_TYPE_TRAINER;
+
     Script_RequestEffects(SCREFF_V1);
+
+    // ai_vs_ai_battle stores the opposing trainer in VAR_0x8005 before this
+    // call. BattleSetup_StartTrainerBattle later derives the format from that
+    // same trainer, so generate the player-side moves for the matching format.
+    if (GetTrainerBattleType(gSpecialVar_0x8005) == TRAINER_BATTLE_TYPE_DOUBLES)
+        battleTypeFlags |= BATTLE_TYPE_DOUBLE;
 
     ZeroPlayerPartyMons();
     gPartnerTrainerId = gSpecialVar_0x8004;
-    CreateNPCTrainerPartyFromTrainer(gPlayerParty, GetTrainerStructFromId(gSpecialVar_0x8004), TRUE, BATTLE_TYPE_TRAINER, gSpecialVar_0x8004);
+    CreateNPCTrainerPartyFromTrainer(gPlayerParty, GetTrainerStructFromId(gSpecialVar_0x8004), TRUE, battleTypeFlags, gSpecialVar_0x8004);
 }
 
 void VBlankCB_Battle(void)

@@ -57,8 +57,24 @@ Optional fields for Pokemon:
 Moves are defined with a - (dash) followed by a single space, then the move name.
 Either "- Tackle" or "- MOVE_TACKLE" works. One move per line.
 Moves have to be the last lines of a Pokemon.
-If no moves are specified, the Pokemon will use the last 4 moves it learns
-through levelup at its level.
+If no moves are specified, all four move slots remain empty in the generated
+trainer data and the moveset is built when the battle party is created. On
+Normal difficulty it uses the latest four level-up moves available at the
+Pokemon's final species and battle level. Singles omit moves that require or
+only meaningfully affect an active ally; doubles preserve the generic latest
+four level-up behavior. On Hard difficulty, a deterministic improved set is
+chosen from legal level-up and teachable moves, with the same singles filter.
+Levels 1-32 use only level-up moves and levels 33-42 add low-power and basic
+teachable moves. Levels 43-49 add advanced teachables but keep teachable
+attacks with 100 or more nominal power locked; levels 50 and above may use the
+full teachable learnset. These restrictions do not affect level-up moves.
+Hard generation still applies when a trainer has no Hard-specific party and
+falls back to its Normal party definition.
+
+If any move is specified, even if the only entry is None, all four authored
+slots are used exactly as written: automatic generation and gap-filling are
+disabled, including for MOVE_NONE gaps and moves that would normally be
+filtered from singles.
 
 Default IVs and Level can be changed in the "main" function of tools/trainerproc/main.c
 
