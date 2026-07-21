@@ -9480,7 +9480,7 @@
       "name": "Route50_Layout",
       "width": 70,
       "height": 40,
-      "primary_tileset": "gTileset_Johto_NorthEast",
+      "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_DesertVillage",
       "border_filepath": "data/layouts/Route50/border.bin",
       "blockdata_filepath": "data/layouts/Route50/map.bin"

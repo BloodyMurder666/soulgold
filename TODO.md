@@ -3,6 +3,17 @@ Bugs:
 
 - Smart move assignment based on singles/doubles mode for trainers with no assigned moves to mons
 
+- Pyramid of El Prado
+    - Set of 5 floors
+    - Losing means going back to last rest stop
+    - goes up to 25, 50?
+    - Trainer levels scale from 75->, Shift style is respected if toggled
+    - Restoring objects (one time use)? Power ups (gain X-item effect for next Y amount of battles)?
+    - Boss trainer?
+    - Trainer team size? 2-4?
+    - Generating competitive sets?
+
+
 correct order: down, up, left, up, left, down, right, right
 
 
