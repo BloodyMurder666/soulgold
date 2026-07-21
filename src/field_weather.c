@@ -846,6 +846,9 @@ void UpdateSpritePaletteWithWeather(u8 spritePaletteIndex, bool8 allowFog)
     u16 paletteIndex = 16 + spritePaletteIndex;
     u16 i;
 
+    if (spritePaletteIndex >= 16)
+        return;
+
     switch (gWeatherPtr->palProcessingState)
     {
     case WEATHER_PAL_STATE_SCREEN_FADING_IN:
