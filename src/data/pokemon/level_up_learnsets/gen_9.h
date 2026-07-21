@@ -18260,6 +18260,7 @@ static const struct LevelUpMove sNecrozmaLevelUpLearnset[] = {
 static const struct LevelUpMove sMagearnaLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_GYRO_BALL),
     LEVEL_UP_MOVE( 1, MOVE_HELPING_HAND),
+    LEVEL_UP_MOVE( 1, MOVE_DRAINING_KISS),
     LEVEL_UP_MOVE( 6, MOVE_DEFENSE_CURL),
     LEVEL_UP_MOVE(12, MOVE_ROLLOUT),
     LEVEL_UP_MOVE(18, MOVE_IRON_DEFENSE),
