@@ -15,7 +15,7 @@
   "connections": [
     {
       "map": "MAP_RINTO_VILLAGE",
-      "offset": 16,
+      "offset": 21,
       "direction": "left"
     },
     {

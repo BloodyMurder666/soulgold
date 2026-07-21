@@ -9459,7 +9459,7 @@
       "id": "LAYOUT_VAJRA_DESERT_EAST",
       "name": "VajraDesertEast_Layout",
       "width": 86,
-      "height": 67,
+      "height": 71,
       "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_DesertVillage",
       "border_filepath": "data/layouts/VajraDesertEast/border.bin",
