@@ -1660,23 +1660,55 @@ bool8 ScrCmd_lock(struct ScriptContext *ctx)
     }
 }
 
-bool8 ScrCmd_releaseall(struct ScriptContext *ctx)
+static void FinishRelease(bool32 clearSelectedObject)
 {
-    Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
-
     u8 playerObjectId;
     struct ObjectEvent *followerObject = GetFollowerObject();
-    // Release follower from movement iff it exists and is in the shadowing state
+
+    // Release follower from movement iff it exists and is in the shadowing state.
     if (followerObject && gSprites[followerObject->spriteId].data[1] == 0)
         ClearObjectEventMovement(followerObject, &gSprites[followerObject->spriteId]);
 
-    HideFieldMessageBox();
-    ClearFieldMugshotObjectEventSource();
+    if (clearSelectedObject && gObjectEvents[gSelectedObjectEvent].active)
+        ObjectEventClearHeldMovementIfFinished(&gObjectEvents[gSelectedObjectEvent]);
     playerObjectId = GetObjectEventIdByLocalIdAndMap(LOCALID_PLAYER, 0, 0);
     ObjectEventClearHeldMovementIfFinished(&gObjectEvents[playerObjectId]);
     ScriptMovement_UnfreezeObjectEvents();
     UnfreezeObjectEvents();
     gMsgBoxIsCancelable = FALSE;
+}
+
+static bool8 WaitForMessageBoxToCloseBeforeReleaseAll(void)
+{
+    if (!IsFieldMessageBoxHidden())
+        return FALSE;
+
+    FinishRelease(FALSE);
+    return TRUE;
+}
+
+static bool8 WaitForMessageBoxToCloseBeforeRelease(void)
+{
+    if (!IsFieldMessageBoxHidden())
+        return FALSE;
+
+    FinishRelease(TRUE);
+    return TRUE;
+}
+
+bool8 ScrCmd_releaseall(struct ScriptContext *ctx)
+{
+    Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
+
+    HideFieldMessageBox();
+    ClearFieldMugshotObjectEventSource();
+    if (!IsFieldMessageBoxHidden())
+    {
+        SetupNativeScript(ctx, WaitForMessageBoxToCloseBeforeReleaseAll);
+        return TRUE;
+    }
+
+    FinishRelease(FALSE);
     return FALSE;
 }
 
@@ -1684,21 +1716,15 @@ bool8 ScrCmd_release(struct ScriptContext *ctx)
 {
     Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
 
-    u8 playerObjectId;
-    struct ObjectEvent *followerObject = GetFollowerObject();
-    // Release follower from movement iff it exists and is in the shadowing state
-    if (followerObject && gSprites[followerObject->spriteId].data[1] == 0)
-        ClearObjectEventMovement(followerObject, &gSprites[followerObject->spriteId]);
-
     HideFieldMessageBox();
     ClearFieldMugshotObjectEventSource();
-    if (gObjectEvents[gSelectedObjectEvent].active)
-        ObjectEventClearHeldMovementIfFinished(&gObjectEvents[gSelectedObjectEvent]);
-    playerObjectId = GetObjectEventIdByLocalIdAndMap(LOCALID_PLAYER, 0, 0);
-    ObjectEventClearHeldMovementIfFinished(&gObjectEvents[playerObjectId]);
-    ScriptMovement_UnfreezeObjectEvents();
-    UnfreezeObjectEvents();
-    gMsgBoxIsCancelable = FALSE;
+    if (!IsFieldMessageBoxHidden())
+    {
+        SetupNativeScript(ctx, WaitForMessageBoxToCloseBeforeRelease);
+        return TRUE;
+    }
+
+    FinishRelease(TRUE);
     return FALSE;
 }
 

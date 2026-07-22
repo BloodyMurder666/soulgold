@@ -191,6 +191,7 @@ Onix_Not_Enough::
 
 Juice_Not_Enough::
 	msgbox Bjuice_Not_Enough, MSGBOX_DEFAULT
+	hidecoinsbox 0, 5
 	releaseall
 	end
 

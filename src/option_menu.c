@@ -544,6 +544,7 @@ void CB2_InitOptionMenu(void)
         ScanlineEffect_Stop();
         ResetTasks();
         ResetSpriteData();
+        FreeAllSpritePalettes();
         gMain.state++;
         break;
     case 3:
