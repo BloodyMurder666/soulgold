@@ -610,9 +610,9 @@
 #define FLAG_HIDDEN_ITEM_ROUTE_109_ETHER                     (FLAG_HIDDEN_ITEMS_START + 0x40)
 #define FLAG_HIDDEN_ITEM_ROUTE_110_POKE_BALL                 (FLAG_HIDDEN_ITEMS_START + 0x41)
 #define FLAG_HIDDEN_ITEM_ROUTE_118_HEART_SCALE               (FLAG_HIDDEN_ITEMS_START + 0x42)
-#define FLAG_HIDDEN_ITEM_ROUTE_118_IRON                      (FLAG_HIDDEN_ITEMS_START + 0x43)
-#define FLAG_HIDDEN_ITEM_ROUTE_119_FULL_HEAL                 (FLAG_HIDDEN_ITEMS_START + 0x44)
-#define FLAG_HIDDEN_ITEM_ROUTE_120_RARE_CANDY_2              (FLAG_HIDDEN_ITEMS_START + 0x45)
+#define FLAG_HIDDEN_ITEM_VAJRA_EAST_PP_MAX                   (FLAG_HIDDEN_ITEMS_START + 0x43)
+#define FLAG_HIDDEN_ITEM_VAJRA_EAST_STARPIECE                (FLAG_HIDDEN_ITEMS_START + 0x44)
+#define FLAG_HIDDEN_ITEM_VAJRA_EAST_BEAST_BALL               (FLAG_HIDDEN_ITEMS_START + 0x45)
 #define FLAG_HIDDEN_ITEM_ROUTE_120_ZINC                      (FLAG_HIDDEN_ITEMS_START + 0x46)
 #define FLAG_HIDDEN_ITEM_ROUTE_120_RARE_CANDY_1              (FLAG_HIDDEN_ITEMS_START + 0x47)
 #define FLAG_HIDDEN_ITEM_ROUTE_117_REPEL                     (FLAG_HIDDEN_ITEMS_START + 0x48)
@@ -1657,6 +1657,13 @@
 #define FLAG_MAGERNA_DOOR_OPENED                    0x975
 #define FLAG_HIDE_MAGERNA_POLICE                    0x976
 #define FLAG_HIDE_MAD_SCIENTIST                     0x977
+#define FLAG_VAJRADESERT_ITEM1                      0x978
+#define FLAG_VAJRADESERT_ITEM2                      0x979
+#define FLAG_VAJRADESERT_ITEM3                      0x97A
+#define FLAG_VAJRADESERT_ITEM4                      0x97B
+#define FLAG_VAJRADESERT_ITEM5                      0x97C
+#define FLAG_VAJRADESERT_ITEM6                      0x97D
+#define FLAG_UNUSED0X97E                            0x97E
 
 #define FLAG_0x1500                                 0x1500
 // Daily Flags

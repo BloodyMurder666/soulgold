@@ -24,7 +24,86 @@
       "direction": "right"
     }
   ],
-  "object_events": [],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 34,
+      "y": 5,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_GRASSY_SEED",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_VAJRADESERT_ITEM4"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_TMBALL",
+      "x": 58,
+      "y": 8,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_TM_VOLT_SWITCH",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_VAJRADESERT_ITEM2"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 19,
+      "y": 31,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_FULL_RESTORE",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_VAJRADESERT_ITEM5"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_TMBALL",
+      "x": 38,
+      "y": 66,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_TM_FOCUS_BLAST",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_VAJRADESERT_ITEM1"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 37,
+      "y": 51,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_CARBOS_EX",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_VAJRADESERT_ITEM6"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 77,
+      "y": 8,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_SUN_STONE",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_VAJRADESERT_ITEM3"
+    }
+  ],
   "warp_events": [
     {
       "x": 27,
@@ -70,5 +149,33 @@
     }
   ],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 59,
+      "y": 48,
+      "elevation": 0,
+      "item": "ITEM_STAR_PIECE",
+      "flag": "FLAG_HIDDEN_ITEM_VAJRA_EAST_STARPIECE",
+      "quantity": 3
+    },
+    {
+      "type": "hidden_item",
+      "x": 66,
+      "y": 20,
+      "elevation": 0,
+      "item": "ITEM_BEAST_BALL",
+      "flag": "FLAG_HIDDEN_ITEM_VAJRA_EAST_BEAST_BALL",
+      "quantity": 3
+    },
+    {
+      "type": "hidden_item",
+      "x": 41,
+      "y": 42,
+      "elevation": 0,
+      "item": "ITEM_PP_MAX",
+      "flag": "FLAG_HIDDEN_ITEM_VAJRA_EAST_PP_MAX",
+      "quantity": 2
+    }
+  ]
 }
