@@ -22,6 +22,7 @@ static EWRAM_DATA u8 sIsFieldMugshotActive = 0;
 static EWRAM_DATA u8 sFieldMugshotSlot = 0;
 static EWRAM_DATA u8 sFieldMugshotMode = FIELD_MUGSHOT_NONE;
 static EWRAM_DATA u8 sFieldMugshotObjectEventSource = 0;
+static EWRAM_DATA u8 sAutoFieldMugshotSuppressionCount = 0;
 static EWRAM_DATA u16 sFieldMugshotId = MUGSHOT_NONE;
 static EWRAM_DATA u16 sFieldMugshotEmote = EMOTE_NORMAL;
 
@@ -305,12 +306,30 @@ void ClearFieldMugshotObjectEventSource(void)
     sFieldMugshotObjectEventSource = OBJECT_EVENTS_COUNT;
 }
 
+void BeginSuppressingAutoFieldMugshots(void)
+{
+    if (sAutoFieldMugshotSuppressionCount++ == 0)
+        RemoveAutoFieldMugshot();
+}
+
+void EndSuppressingAutoFieldMugshots(void)
+{
+    if (sAutoFieldMugshotSuppressionCount != 0)
+        sAutoFieldMugshotSuppressionCount--;
+}
+
 void TryCreateFieldMugshotFromObjectEventSource(void)
 {
     u16 mugshotId;
 
     if (sFieldMugshotMode == FIELD_MUGSHOT_MANUAL)
         return;
+
+    if (sAutoFieldMugshotSuppressionCount != 0)
+    {
+        RemoveAutoFieldMugshot();
+        return;
+    }
 
     if (sFieldMugshotObjectEventSource >= OBJECT_EVENTS_COUNT
      || !gObjectEvents[sFieldMugshotObjectEventSource].active
@@ -376,6 +395,7 @@ void SetFieldMugshotSpriteId(u32 value)
     sFieldMugshotSlot = 0;
     sFieldMugshotMode = FIELD_MUGSHOT_NONE;
     sFieldMugshotObjectEventSource = OBJECT_EVENTS_COUNT;
+    sAutoFieldMugshotSuppressionCount = 0;
     sFieldMugshotId = MUGSHOT_NONE;
     sFieldMugshotEmote = EMOTE_NORMAL;
 }

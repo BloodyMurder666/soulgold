@@ -1769,6 +1769,11 @@ bool8 ScrCmd_closemessage(struct ScriptContext *ctx)
     Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
 
     HideFieldMessageBox();
+    if (!IsFieldMessageBoxHidden())
+    {
+        SetupNativeScript(ctx, IsFieldMessageBoxHidden);
+        return TRUE;
+    }
     return FALSE;
 }
 

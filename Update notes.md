@@ -1,6 +1,10 @@
 Update notes:
 22.7.2026
-- Add smooth animation to pause menu opening and closing
+- Added smooth animation to pause menu and textbox opening and closing
+- Added new option for disabling smooth animations
+- Options menu is now one-page scrollable list
+- RTC is now automatically initialized at the start of the game, player can freely adjust the time at the clock still
+- Fixed 2x and 3x glitching certain animations such as dragon dance and extrasensory
 - Fix potions restoring twice their intended HP
 
 21.7.2026

@@ -320,6 +320,22 @@ void RtcCalcLocalTime(void)
     RtcCalcTimeDifference(&sRtc, &gLocalTime, &gSaveBlock2Ptr->localTimeOffset);
 }
 
+bool32 RtcInitLocalTimeFromRtc(void)
+{
+    if (RtcGetErrorStatus() != 0)
+        return FALSE;
+
+    RtcGetInfo(&sRtc);
+    // RTC day counts begin at 1, while gLocalTime begins at day 0.
+    // Preserve the RTC's full calendar date without applying a timezone offset.
+    gLocalTime.days = RtcGetDayCount(&sRtc) - 1;
+    gLocalTime.hours = ConvertBcdToBinary(sRtc.hour);
+    gLocalTime.minutes = ConvertBcdToBinary(sRtc.minute);
+    gLocalTime.seconds = ConvertBcdToBinary(sRtc.second);
+    RtcCalcTimeDifference(&sRtc, &gSaveBlock2Ptr->localTimeOffset, &gLocalTime);
+    return TRUE;
+}
+
 bool8 IsBetweenHours(s32 hours, s32 begin, s32 end)
 {
     if (end < begin)
@@ -343,6 +359,12 @@ enum TimeOfDay GetTimeOfDayForDex(void)
 void RtcInitLocalTimeOffset(s32 hour, s32 minute)
 {
     RtcCalcLocalTimeOffset(0, hour, minute, 0);
+}
+
+void RtcAdjustLocalTimeOffset(s32 hour, s32 minute)
+{
+    RtcCalcLocalTime();
+    RtcCalcLocalTimeOffset(gLocalTime.days, hour, minute, 0);
 }
 
 void RtcCalcLocalTimeOffset(s32 days, s32 hours, s32 minutes, s32 seconds)

@@ -1778,21 +1778,11 @@ void BufferExpansionVersion(struct ScriptContext *ctx)
 
 void DebugMenu_CalculateTime(struct ScriptContext *ctx)
 {
-    if (OW_USE_FAKE_RTC)
-    {
-        struct SiiRtcInfo *rtc = FakeRtc_GetCurrentTime();
-        StringExpandPlaceholders(gStringVar1, gDayNameStringsTable[rtc->dayOfWeek]);
-        ConvertIntToDecimalStringN(gStringVar2, rtc->hour, STR_CONV_MODE_LEFT_ALIGN, 3);
-        ConvertIntToDecimalStringN(gStringVar3, rtc->minute, STR_CONV_MODE_LEADING_ZEROS, 2);
-    }
-    else
-    {
-        u32 day = ((gLocalTime.days - 1) + 6) % 7 ;
-        RtcCalcLocalTime();
-        StringExpandPlaceholders(gStringVar1, gDayNameStringsTable[day]);
-        ConvertIntToDecimalStringN(gStringVar2, gLocalTime.hours, STR_CONV_MODE_LEFT_ALIGN, 3);
-        ConvertIntToDecimalStringN(gStringVar3, gLocalTime.minutes, STR_CONV_MODE_LEADING_ZEROS, 2);
-    }
+    enum Weekday day = GetDayOfWeek();
+
+    StringExpandPlaceholders(gStringVar1, gDayNameStringsTable[day]);
+    ConvertIntToDecimalStringN(gStringVar2, gLocalTime.hours, STR_CONV_MODE_LEFT_ALIGN, 3);
+    ConvertIntToDecimalStringN(gStringVar3, gLocalTime.minutes, STR_CONV_MODE_LEADING_ZEROS, 2);
 }
 
 void DebugMenu_CalculateTimeOfDay(struct ScriptContext *ctx)

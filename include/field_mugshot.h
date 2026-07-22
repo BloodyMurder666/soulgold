@@ -11,6 +11,8 @@ u8 IsFieldMugshotActive(void);
 void SetFieldMugshotSpriteId(u32 value);
 void SetFieldMugshotObjectEventSource(u8 objectEventId);
 void ClearFieldMugshotObjectEventSource(void);
+void BeginSuppressingAutoFieldMugshots(void);
+void EndSuppressingAutoFieldMugshots(void);
 void TryCreateFieldMugshotFromObjectEventSource(void);
 void CreateAutoFieldMugshot(u32 id, u32 emote);
 void ShowFieldMugshot(void);

@@ -971,6 +971,11 @@ bool8 ScriptMenu_ShowPokemonPic(u16 species, u8 x, u8 y)
     return ScriptMenu_ShowPokemonPicShiny(species, FALSE, 0x8000, x, y);
 }
 
+bool32 ScriptMenu_IsPokemonPicActive(void)
+{
+    return FindTaskIdByFunc(Task_PokemonPicWindow) != TASK_NONE;
+}
+
 bool8 ScriptMenu_ShowPokemonPicShiny(u16 species, bool8 isShiny, u32 personality, u8 x, u8 y)
 {
     u8 taskId;

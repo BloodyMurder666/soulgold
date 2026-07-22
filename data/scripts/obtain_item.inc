@@ -2,10 +2,12 @@
 .set AMOUNT, VAR_0x8001
 
 Std_ObtainItem::
+	callnative BeginSuppressingAutoFieldMugshots
 	copyvar VAR_0x8006, ITEMID
 	additem ITEMID, AMOUNT
 	copyvar VAR_0x8007, VAR_RESULT
 	call EventScript_ObtainItemMessage
+	callnative EndSuppressingAutoFieldMugshots
 	return
 
 EventScript_ObtainItemMessage::

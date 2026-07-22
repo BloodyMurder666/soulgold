@@ -33,6 +33,9 @@ order: 1
 ### Where is X Item/Pokémon/TM?
 - Check docs or ingame pokedex.
 
+### Shiny locks and shiny rate?
+- No and 1/256. Shinyness is also displayed in the pictures when you receive a gift Pokémon.
+
 ### Should I hold off evolving Growlithe/Vulpix/etc?
 - No, the evolved forms learn all the moves the pre-evoluion form does.
 

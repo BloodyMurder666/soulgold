@@ -16,6 +16,7 @@
 #include "pokeblock.h"
 #include "dewford_trend.h"
 #include "berry.h"
+#include "clock.h"
 #include "rtc.h"
 #include "easy_chat.h"
 #include "event_data.h"
@@ -66,6 +67,7 @@ static void ResetMiniGamesRecords(void);
 static void ResetItemFlags(void);
 static void ResetDexNav(void);
 static void SetDefaultPartyMenuStyle(void);
+static void TryInitializeClockFromRtc(void);
 
 EWRAM_DATA bool8 gDifferentSaveFile = FALSE;
 EWRAM_DATA bool8 gEnableContestDebugging = FALSE;
@@ -112,6 +114,7 @@ static void SetDefaultOptions(void)
     gSaveBlock2Ptr->optionsBattleSceneOff = FALSE;
     gSaveBlock2Ptr->optionsButtonMode = OPTIONS_BUTTON_MODE_NORMAL;
     gSaveBlock2Ptr->regionMapZoom = FALSE;
+    gSaveBlock2Ptr->optionsUiAnimationsOff = FALSE;
     gSaveBlock2Ptr->optionsFollowers = TRUE;
     gSaveBlock2Ptr->optionsAutorun = TRUE;
     gSaveBlock2Ptr->optionsFont = 0;
@@ -249,6 +252,17 @@ void NewGameInitData(void)
     ResetDexNav();
     ClearFollowerNPCData();
     SetLastHealLocationWarp(HEAL_LOCATION_NEW_BARK_TOWN_PLAYERS_HOUSE_2F);
+    TryInitializeClockFromRtc();
+}
+
+static void TryInitializeClockFromRtc(void)
+{
+    if (!RtcInitLocalTimeFromRtc())
+        return;
+
+    InitTimeBasedEvents();
+    FlagSet(FLAG_SET_WALL_CLOCK);
+    VarSet(VAR_NEWBARK_TOWN_STATE, 1);
 }
 
 static void ResetMiniGamesRecords(void)

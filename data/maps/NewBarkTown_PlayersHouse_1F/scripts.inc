@@ -95,12 +95,14 @@ NewBarkTown_PlayersHouse_1F_EventScript_MomsIntro::
 
 NewBarkTown_PlayersHouse_1F_EventScript_GivePokeGear::
 	playfanfare MUS_OBTAIN_ITEM
+	removefieldmugshot
 	message NewBarkTown_PlayersHouse_1F_Text_ObtainedPokeGear
 	waitfanfare
 	setflag FLAG_SYS_POKENAV_GET
 	setflag FLAG_RECEIVED_POKENAV
 	setflag FLAG_ADDED_MATCH_CALL_TO_POKENAV
 	setflag FLAG_REGISTER_RIVAL_POKENAV
+	createfieldmugshot MUGSHOT_MOM
 	msgbox NewBarkTown_PlayersHouse_1F_Text_ExplainPokeGear, MSGBOX_DEFAULT
 	closemessage
 	delay 30

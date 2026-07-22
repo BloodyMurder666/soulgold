@@ -59,7 +59,7 @@ LittlerootTown_MaysHouse_2F_EventScript_WallClock::
 	end
 
 PlayersHouse_2F_EventScript_WallClock::
-	goto_if_set FLAG_SET_WALL_CLOCK, PlayersHouse_2F_EventScript_CheckWallClock
+	goto_if_set FLAG_SET_WALL_CLOCK, PlayersHouse_2F_EventScript_UseWallClock
 	msgbox PlayersHouse_2F_Text_ClockIsStopped, MSGBOX_DEFAULT
 	call PlayersHouse_2F_EventScript_SetWallClock
 	delay 30
@@ -72,6 +72,33 @@ PlayersHouse_2F_EventScript_WallClock::
 	call_if_eq VAR_RESULT, FEMALE, PlayersHouse_2F_EventScript_MomComesUpstairsFemale
 	playse SE_EXIT
 	removeobject VAR_0x8008
+	releaseall
+	end
+
+PlayersHouse_2F_EventScript_UseWallClock::
+	callnative BufferCurrentLocalTime
+	msgbox PlayersHouse_2F_Text_CurrentTime, MSGBOX_DEFAULT
+	dynmultichoice 0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, PlayersHouse_2F_Text_CheckTime, PlayersHouse_2F_Text_AdjustTime, PlayersHouse_2F_Text_Cancel
+	switch VAR_RESULT
+	case 0, PlayersHouse_2F_EventScript_UseWallClockCheckTime
+	case 1, PlayersHouse_2F_EventScript_UseWallClockAdjustTime
+	case 2, PlayersHouse_2F_EventScript_UseWallClockCancel
+	case MULTI_B_PRESSED, PlayersHouse_2F_EventScript_UseWallClockCancel
+	end
+
+PlayersHouse_2F_EventScript_UseWallClockCheckTime::
+	closemessage
+	goto PlayersHouse_2F_EventScript_CheckWallClock
+	end
+
+PlayersHouse_2F_EventScript_UseWallClockAdjustTime::
+	closemessage
+	call PlayersHouse_2F_EventScript_SetWallClock
+	releaseall
+	end
+
+PlayersHouse_2F_EventScript_UseWallClockCancel::
+	closemessage
 	releaseall
 	end
 

@@ -11,6 +11,7 @@
 #include "pokerus.h"
 #include "random.h"
 #include "rtc.h"
+#include "string_util.h"
 #include "time_events.h"
 #include "tv.h"
 #include "wallclock.h"
@@ -95,6 +96,12 @@ void FormChangeTimeUpdate()
     {
         TryFormChange(&gPlayerParty[i], FORM_CHANGE_TIME_OF_DAY);
     }
+}
+
+void BufferCurrentLocalTime(void)
+{
+    RtcCalcLocalTime();
+    FormatDecimalTimeWithoutSeconds(gStringVar1, gLocalTime.hours, gLocalTime.minutes, TRUE);
 }
 
 static void ReturnFromStartWallClock(void)

@@ -14,6 +14,7 @@
 #include "event_scripts.h"
 #include "fieldmap.h"
 #include "field_effect.h"
+#include "field_message_box.h"
 #include "field_player_avatar.h"
 #include "field_specials.h"
 #include "field_weather.h"
@@ -594,7 +595,10 @@ static void InitStartMenu(void)
 
 static bool32 CanAnimateStartMenu(void)
 {
-    return GetFlashLevel() == 0 && !InBattlePyramid_();
+    return GetFlashLevel() == 0
+        && !InBattlePyramid_()
+        && !gSaveBlock2Ptr->optionsUiAnimationsOff
+        && GetFieldMessageBoxMode() == FIELD_MESSAGE_BOX_HIDDEN;
 }
 
 static void SetStartMenuSlideOffset(struct Task *task, s16 offset)
