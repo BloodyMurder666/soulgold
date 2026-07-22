@@ -1782,7 +1782,10 @@ void BattleMainCB2(void)
     //if (gDoingBattleAnim || gAnimScriptActive)
     //    speedScale = 1;
 
-    if (gBattleResults.caughtMonSpecies)
+    // Capture stars flicker every sprite update. Run their success sequence at
+    // normal speed so multiple updates between OAM builds do not hide stars.
+    if (gBattleSpritesDataPtr->animationData->captureSuccessAnimActive
+     || gBattleResults.caughtMonSpecies)
         speedScale = 1;
 
     if(speedScale <= 1)
