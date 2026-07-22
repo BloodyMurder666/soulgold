@@ -145,6 +145,8 @@ static u8 BattlePyramidRetireInputCallback(void);
 // Task callbacks
 static void StartMenuTask(u8 taskId);
 static void Task_AnimateStartMenuSlideIn(u8 taskId);
+static void Task_AnimateStartMenuSlideOut(u8 taskId);
+static void Task_FinishStartMenuSlideOut(u8 taskId);
 static void SaveGameTask(u8 taskId);
 static void Task_SaveAfterLinkBattle(u8 taskId);
 static void Task_WaitForBattleTowerLinkSave(u8 taskId);
@@ -577,7 +579,8 @@ static void InitStartMenu(void)
 }
 
 #define START_MENU_SLIDE_DISTANCE 72
-#define START_MENU_SLIDE_DURATION 12
+#define START_MENU_SLIDE_IN_DURATION  12
+#define START_MENU_SLIDE_OUT_DURATION 6
 #define START_MENU_LEFT           (DISPLAY_WIDTH - START_MENU_SLIDE_DISTANCE)
 
 #define tSlideIn             data[0]
@@ -588,6 +591,11 @@ static void InitStartMenu(void)
 #define tSavedWin0V          data[5]
 #define tSavedWinIn          data[6]
 #define tSavedWinOut         data[7]
+
+static bool32 CanAnimateStartMenu(void)
+{
+    return GetFlashLevel() == 0 && !InBattlePyramid_();
+}
 
 static void SetStartMenuSlideOffset(struct Task *task, s16 offset)
 {
@@ -610,11 +618,8 @@ static void RestoreStartMenuSlideRegs(struct Task *task)
     SetGpuReg(REG_OFFSET_DISPCNT, task->tSavedDispCnt);
 }
 
-static void StartMenuSlideIn(u8 taskId)
+static void PrepareStartMenuSlide(struct Task *task, s16 offset)
 {
-    struct ComfyAnimEasingConfig config;
-    struct Task *task = &gTasks[taskId];
-
     task->tSavedBg0Hofs = GetGpuReg(REG_OFFSET_BG0HOFS);
     task->tSavedDispCnt = GetGpuReg(REG_OFFSET_DISPCNT);
     task->tSavedWin0H = GetGpuReg(REG_OFFSET_WIN0H);
@@ -628,10 +633,18 @@ static void StartMenuSlideIn(u8 taskId)
     SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(0, DISPLAY_HEIGHT));
     SetGpuReg(REG_OFFSET_WININ, (task->tSavedWinIn & ~WININ_WIN0_ALL) | WININ_WIN0_ALL);
     SetGpuReg(REG_OFFSET_WINOUT, (task->tSavedWinOut | WINOUT_WIN01_ALL) & ~WINOUT_WIN01_BG0);
-    SetStartMenuSlideOffset(task, START_MENU_SLIDE_DISTANCE);
+    SetStartMenuSlideOffset(task, offset);
+}
+
+static void StartMenuSlideIn(u8 taskId)
+{
+    struct ComfyAnimEasingConfig config;
+    struct Task *task = &gTasks[taskId];
+
+    PrepareStartMenuSlide(task, START_MENU_SLIDE_DISTANCE);
 
     InitComfyAnimConfig_Easing(&config);
-    config.durationFrames = START_MENU_SLIDE_DURATION;
+    config.durationFrames = START_MENU_SLIDE_IN_DURATION;
     config.from = Q_24_8(START_MENU_SLIDE_DISTANCE);
     config.to = Q_24_8(0);
     config.easingFunc = ComfyAnimEasing_EaseOutCubic;
@@ -662,6 +675,72 @@ static void Task_AnimateStartMenuSlideIn(u8 taskId)
     RestoreStartMenuSlideRegs(task);
     task->data[0] = 0;
     SwitchTaskToFollowupFunc(taskId);
+}
+
+static void StartMenuSlideOut(u8 taskId)
+{
+    struct ComfyAnimEasingConfig config;
+    struct Task *task = &gTasks[taskId];
+
+    PrepareStartMenuSlide(task, 0);
+
+    InitComfyAnimConfig_Easing(&config);
+    config.durationFrames = START_MENU_SLIDE_OUT_DURATION;
+    config.from = Q_24_8(0);
+    config.to = Q_24_8(START_MENU_SLIDE_DISTANCE);
+    config.easingFunc = ComfyAnimEasing_EaseInCubic;
+    task->tSlideAnimId = CreateComfyAnim_Easing(&config);
+    task->func = Task_AnimateStartMenuSlideOut;
+    PlaySE(SE_SELECT);
+}
+
+static void Task_AnimateStartMenuSlideOut(u8 taskId)
+{
+    struct Task *task = &gTasks[taskId];
+
+    if (task->tSlideAnimId != INVALID_COMFY_ANIM)
+    {
+        struct ComfyAnim *anim = &gComfyAnims[task->tSlideAnimId];
+
+        if (anim->inUse)
+        {
+            TryAdvanceComfyAnim(anim);
+            SetStartMenuSlideOffset(task, ReadComfyAnimValueSmooth(anim));
+            if (!anim->completed)
+                return;
+
+            ReleaseComfyAnim(task->tSlideAnimId);
+        }
+    }
+
+    task->tSlideAnimId = INVALID_COMFY_ANIM;
+    RemoveExtraStartMenuWindows();
+    ClearStdWindowAndFrame(GetStartMenuWindowId(), TRUE);
+    RemoveStartMenuWindow();
+    task->func = Task_FinishStartMenuSlideOut;
+}
+
+static void Task_FinishStartMenuSlideOut(u8 taskId)
+{
+    RestoreStartMenuSlideRegs(&gTasks[taskId]);
+    ScriptUnfreezeObjectEvents();
+    UnlockPlayerFieldControls();
+    DestroyTask(taskId);
+}
+
+static bool32 TryStartMenuSlideOut(void)
+{
+    u8 taskId;
+
+    if (!CanAnimateStartMenu())
+        return FALSE;
+
+    taskId = FindTaskIdByFunc(Task_ShowStartMenu);
+    if (taskId == TASK_NONE)
+        return FALSE;
+
+    StartMenuSlideOut(taskId);
+    return TRUE;
 }
 
 static void StartMenuTask(u8 taskId)
@@ -735,8 +814,6 @@ void Task_ShowStartMenu(u8 taskId)
 
 void ShowStartMenu(void)
 {
-    bool32 slideIn = GetFlashLevel() == 0 && !InBattlePyramid_();
-
     Achievement_HidePopup();
     if (!IsOverworldLinkActive())
     {
@@ -744,7 +821,7 @@ void ShowStartMenu(void)
         PlayerFreeze();
         StopPlayerAvatar();
     }
-    CreateStartMenuTask(Task_ShowStartMenu, slideIn);
+    CreateStartMenuTask(Task_ShowStartMenu, CanAnimateStartMenu());
     LockPlayerFieldControls();
 }
 
@@ -790,6 +867,9 @@ static bool8 HandleStartMenuInput(void)
 
     if (JOY_NEW(START_BUTTON | B_BUTTON))
     {
+        if (TryStartMenuSlideOut())
+            return FALSE;
+
         RemoveExtraStartMenuWindows();
         HideStartMenu();
         return TRUE;
@@ -908,6 +988,9 @@ static bool8 StartMenuOptionCallback(void)
 
 static bool8 StartMenuExitCallback(void)
 {
+    if (TryStartMenuSlideOut())
+        return FALSE;
+
     RemoveExtraStartMenuWindows();
     HideStartMenu(); // Hide start menu
 
