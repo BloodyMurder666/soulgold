@@ -11,6 +11,10 @@ order: 1
 ### HMs?
 - Requires only owning them, Fly requires owning a Pokémon that can learn it.
 
+### Hard mode differences?
+- Gym battles are double battles unless enforced into singles by another setting
+- Trainers with no pre-assigned moves for their Pokémon generate slightly smarter movepools based on progression.
+
 ### Strength HM?
 - Olivine Cafe.
 
