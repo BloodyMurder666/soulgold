@@ -6,6 +6,7 @@
 #include "battle_pyramid_bag.h"
 #include "bg.h"
 #include "bug_contest.h"
+#include "comfy_anim.h"
 #include "debug.h"
 #include "event_data.h"
 #include "event_object_movement.h"
@@ -143,6 +144,7 @@ static u8 BattlePyramidRetireInputCallback(void);
 
 // Task callbacks
 static void StartMenuTask(u8 taskId);
+static void Task_AnimateStartMenuSlideIn(u8 taskId);
 static void SaveGameTask(u8 taskId);
 static void Task_SaveAfterLinkBattle(u8 taskId);
 static void Task_WaitForBattleTowerLinkSave(u8 taskId);
@@ -267,7 +269,7 @@ static void RemoveExtraStartMenuWindows(void);
 static bool32 PrintStartMenuActions(s8 *pIndex, u32 count);
 static bool32 InitStartMenuStep(void);
 static void InitStartMenu(void);
-static void CreateStartMenuTask(TaskFunc followupFunc);
+static void CreateStartMenuTask(TaskFunc followupFunc, bool32 slideIn);
 static void InitSave(void);
 static u8 RunSaveCallback(void);
 static void ShowSaveMessage(const u8 *message, u8 (*saveCallback)(void));
@@ -574,13 +576,106 @@ static void InitStartMenu(void)
         ;
 }
 
+#define START_MENU_SLIDE_DISTANCE 72
+#define START_MENU_SLIDE_DURATION 12
+#define START_MENU_LEFT           (DISPLAY_WIDTH - START_MENU_SLIDE_DISTANCE)
+
+#define tSlideIn             data[0]
+#define tSlideAnimId         data[1]
+#define tSavedBg0Hofs        data[2]
+#define tSavedDispCnt        data[3]
+#define tSavedWin0H          data[4]
+#define tSavedWin0V          data[5]
+#define tSavedWinIn          data[6]
+#define tSavedWinOut         data[7]
+
+static void SetStartMenuSlideOffset(struct Task *task, s16 offset)
+{
+    s16 left = START_MENU_LEFT + offset;
+
+    if (left > DISPLAY_WIDTH)
+        left = DISPLAY_WIDTH;
+
+    SetGpuReg(REG_OFFSET_BG0HOFS, task->tSavedBg0Hofs - offset);
+    SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(left, DISPLAY_WIDTH));
+}
+
+static void RestoreStartMenuSlideRegs(struct Task *task)
+{
+    SetGpuReg(REG_OFFSET_BG0HOFS, task->tSavedBg0Hofs);
+    SetGpuReg(REG_OFFSET_WIN0H, task->tSavedWin0H);
+    SetGpuReg(REG_OFFSET_WIN0V, task->tSavedWin0V);
+    SetGpuReg(REG_OFFSET_WININ, task->tSavedWinIn);
+    SetGpuReg(REG_OFFSET_WINOUT, task->tSavedWinOut);
+    SetGpuReg(REG_OFFSET_DISPCNT, task->tSavedDispCnt);
+}
+
+static void StartMenuSlideIn(u8 taskId)
+{
+    struct ComfyAnimEasingConfig config;
+    struct Task *task = &gTasks[taskId];
+
+    task->tSavedBg0Hofs = GetGpuReg(REG_OFFSET_BG0HOFS);
+    task->tSavedDispCnt = GetGpuReg(REG_OFFSET_DISPCNT);
+    task->tSavedWin0H = GetGpuReg(REG_OFFSET_WIN0H);
+    task->tSavedWin0V = GetGpuReg(REG_OFFSET_WIN0V);
+    task->tSavedWinIn = GetGpuReg(REG_OFFSET_WININ);
+    task->tSavedWinOut = GetGpuReg(REG_OFFSET_WINOUT);
+
+    // BG0 is only 256 pixels wide, so scrolling it right would wrap the menu
+    // around to the left edge. Clip BG0 to the menu's visible slide region.
+    SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_WIN0_ON);
+    SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(0, DISPLAY_HEIGHT));
+    SetGpuReg(REG_OFFSET_WININ, (task->tSavedWinIn & ~WININ_WIN0_ALL) | WININ_WIN0_ALL);
+    SetGpuReg(REG_OFFSET_WINOUT, (task->tSavedWinOut | WINOUT_WIN01_ALL) & ~WINOUT_WIN01_BG0);
+    SetStartMenuSlideOffset(task, START_MENU_SLIDE_DISTANCE);
+
+    InitComfyAnimConfig_Easing(&config);
+    config.durationFrames = START_MENU_SLIDE_DURATION;
+    config.from = Q_24_8(START_MENU_SLIDE_DISTANCE);
+    config.to = Q_24_8(0);
+    config.easingFunc = ComfyAnimEasing_EaseOutCubic;
+    task->tSlideAnimId = CreateComfyAnim_Easing(&config);
+    task->func = Task_AnimateStartMenuSlideIn;
+}
+
+static void Task_AnimateStartMenuSlideIn(u8 taskId)
+{
+    struct Task *task = &gTasks[taskId];
+
+    if (task->tSlideAnimId != INVALID_COMFY_ANIM)
+    {
+        struct ComfyAnim *anim = &gComfyAnims[task->tSlideAnimId];
+
+        if (anim->inUse)
+        {
+            TryAdvanceComfyAnim(anim);
+            SetStartMenuSlideOffset(task, ReadComfyAnimValueSmooth(anim));
+            if (!anim->completed)
+                return;
+
+            ReleaseComfyAnim(task->tSlideAnimId);
+        }
+    }
+
+    task->tSlideAnimId = INVALID_COMFY_ANIM;
+    RestoreStartMenuSlideRegs(task);
+    task->data[0] = 0;
+    SwitchTaskToFollowupFunc(taskId);
+}
+
 static void StartMenuTask(u8 taskId)
 {
     if (InitStartMenuStep() == TRUE)
-        SwitchTaskToFollowupFunc(taskId);
+    {
+        if (gTasks[taskId].tSlideIn)
+            StartMenuSlideIn(taskId);
+        else
+            SwitchTaskToFollowupFunc(taskId);
+    }
 }
 
-static void CreateStartMenuTask(TaskFunc followupFunc)
+static void CreateStartMenuTask(TaskFunc followupFunc, bool32 slideIn)
 {
     u8 taskId;
 
@@ -588,7 +683,17 @@ static void CreateStartMenuTask(TaskFunc followupFunc)
     sInitStartMenuData[1] = 0;
     taskId = CreateTask(StartMenuTask, 0x50);
     SetTaskFuncWithFollowupFunc(taskId, StartMenuTask, followupFunc);
+    gTasks[taskId].tSlideIn = slideIn;
 }
+
+#undef tSlideIn
+#undef tSlideAnimId
+#undef tSavedBg0Hofs
+#undef tSavedDispCnt
+#undef tSavedWin0H
+#undef tSavedWin0V
+#undef tSavedWinIn
+#undef tSavedWinOut
 
 static bool8 FieldCB_ReturnToFieldStartMenu(void)
 {
@@ -630,6 +735,8 @@ void Task_ShowStartMenu(u8 taskId)
 
 void ShowStartMenu(void)
 {
+    bool32 slideIn = GetFlashLevel() == 0 && !InBattlePyramid_();
+
     Achievement_HidePopup();
     if (!IsOverworldLinkActive())
     {
@@ -637,7 +744,7 @@ void ShowStartMenu(void)
         PlayerFreeze();
         StopPlayerAvatar();
     }
-    CreateStartMenuTask(Task_ShowStartMenu);
+    CreateStartMenuTask(Task_ShowStartMenu, slideIn);
     LockPlayerFieldControls();
 }
 
@@ -866,7 +973,7 @@ void ShowBattlePyramidStartMenu(void)
 {
     ClearDialogWindowAndFrameToTransparent(0, FALSE);
     ScriptUnfreezeObjectEvents();
-    CreateStartMenuTask(Task_ShowStartMenu);
+    CreateStartMenuTask(Task_ShowStartMenu, FALSE);
     LockPlayerFieldControls();
 }
 
