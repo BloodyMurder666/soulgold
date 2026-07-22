@@ -4338,6 +4338,11 @@ void PreparePartyForSkyBattle(void)
     CompactPartySlots();
 }
 
+void EnableAutorun(void)
+{
+    gSaveBlock2Ptr->optionsAutorun = FALSE;
+}
+
 void GetObjectPosition(u16* xPointer, u16* yPointer, u32 localId, u32 useTemplate)
 {
     u32 objectId;

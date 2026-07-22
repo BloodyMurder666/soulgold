@@ -117,6 +117,7 @@ NewBarkTown_PlayersHouse_1F_EventScript_GiveRunningShoes::
 	closemessage
 	setflag FLAG_RECEIVED_RUNNING_SHOES
 	setflag FLAG_SYS_B_DASH
+	special EnableAutorun
 	createfieldmugshot MUGSHOT_MOM
 	msgbox NewBarkTown_PlayersHouse_1F_Text_ExplainRunningShoes, MSGBOX_DEFAULT
 	closemessage
@@ -185,8 +186,8 @@ NewBarkTown_PlayersHouse_1F_Text_SwitchShoesWithRunningShoes:
 	.string "Running Shoes.$"
 
 NewBarkTown_PlayersHouse_1F_Text_ExplainRunningShoes:
-	.string "Mom: {PLAYER}, press the B Button\n"
-	.string "while wearing these to run fast!$"
+	.string "Mom: You'll get everywhere faster\n"
+	.string "with them!$"
 
 NewBarkTown_PlayersHouse_1F_Text_MomHurryUpElmIsWaiting:
 	.string "Mom: Prof. Elm is waiting for you.\p"
