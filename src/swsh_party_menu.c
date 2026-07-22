@@ -6976,7 +6976,27 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
         }
         else
         {
-            ExecuteTableBasedItemEffect(mon, item, gPartyMenu.slotId, 0, 1, 1);
+            switch (tItemEffect)
+            {
+            case ITEM_EFFECT_HP_EV:
+            case ITEM_EFFECT_ATK_EV:
+            case ITEM_EFFECT_DEF_EV:
+            case ITEM_EFFECT_SPEED_EV:
+            case ITEM_EFFECT_SPATK_EV:
+            case ITEM_EFFECT_SPDEF_EV:
+            case ITEM_EFFECT_HP_IV:
+            case ITEM_EFFECT_ATK_IV:
+            case ITEM_EFFECT_DEF_IV:
+            case ITEM_EFFECT_SPEED_IV:
+            case ITEM_EFFECT_SPATK_IV:
+            case ITEM_EFFECT_SPDEF_IV:
+            case ITEM_EFFECT_ATK_IV_ZERO:
+            case ITEM_EFFECT_SPEED_IV_ZERO:
+                ExecuteTableBasedItemEffect(mon, item, gPartyMenu.slotId, 0, 1, 1);
+                break;
+            default:
+                break;
+            }
             gPartyMenuUseExitCallback = TRUE;
             if (!IsItemFlute(item))
             {
