@@ -3,6 +3,7 @@
 
 // Maximum amount of data we will transfer in one operation
 #define MAX_DMA_BLOCK_SIZE 0x1000
+#define MAX_DMA_REQUESTS 128
 
 #define Dma3CopyLarge_(src, dest, size, bit)               \
 {                                                          \
@@ -45,6 +46,11 @@
 
 #define Dma3FillLarge16_(value, dest, size) Dma3FillLarge_(value, dest, size, 16)
 #define Dma3FillLarge32_(value, dest, size) Dma3FillLarge_(value, dest, size, 32)
+
+extern u8 gDma3RequestCount;
+extern u8 gDma3RequestHighWaterMark;
+extern u32 gDma3RequestOverflowCount;
+extern u32 gDma3BytesTransferredLastVBlank;
 
 void ClearDma3Requests(void);
 void ProcessDma3Requests(void);

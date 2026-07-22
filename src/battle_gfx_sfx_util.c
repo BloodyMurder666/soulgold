@@ -449,7 +449,7 @@ void SpriteCB_TrainerSlideIn(struct Sprite *sprite)
         s16 speedX = sprite->sSpeedX;
         if (speedX < 0)
             speedX *= -1;
-        sprite->x2 = MoveIntroOffsetTowardZero(sprite->x2, speedX * Rogue_GetBattleSpeedScale(FALSE));
+        sprite->x2 = MoveIntroOffsetTowardZero(sprite->x2, speedX);
         if (sprite->x2 == 0)
         {
             if (sprite->y2 != 0)
@@ -475,7 +475,7 @@ void SpriteCB_TrainerSpawn(struct Sprite *sprite)
 // Slide up to 0 if necessary (used by multi battle intro)
 static void SpriteCB_TrainerSlideVertical(struct Sprite *sprite)
 {
-    sprite->y2 = MoveIntroOffsetTowardZero(sprite->y2, 2 * Rogue_GetBattleSpeedScale(FALSE));
+    sprite->y2 = MoveIntroOffsetTowardZero(sprite->y2, 2);
     if (sprite->y2 == 0)
         sprite->callback = SpriteCallbackDummy;
 }

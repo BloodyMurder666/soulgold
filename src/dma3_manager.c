@@ -1,8 +1,6 @@
 #include "global.h"
 #include "dma3.h"
 
-#define MAX_DMA_REQUESTS 128
-
 #define DMA_REQUEST_COPY32 1
 #define DMA_REQUEST_FILL32 2
 #define DMA_REQUEST_COPY16 3
@@ -21,6 +19,10 @@ static struct Dma3Request sDma3Requests[MAX_DMA_REQUESTS];
 
 static vbool8 sDma3ManagerLocked;
 static u8 sDma3RequestCursor;
+EWRAM_DATA u8 gDma3RequestCount;
+EWRAM_DATA u8 gDma3RequestHighWaterMark;
+EWRAM_DATA u32 gDma3RequestOverflowCount;
+EWRAM_DATA u32 gDma3BytesTransferredLastVBlank;
 
 void ClearDma3Requests(void)
 {
@@ -28,6 +30,10 @@ void ClearDma3Requests(void)
 
     sDma3ManagerLocked = TRUE;
     sDma3RequestCursor = 0;
+    gDma3RequestCount = 0;
+    gDma3RequestHighWaterMark = 0;
+    gDma3RequestOverflowCount = 0;
+    gDma3BytesTransferredLastVBlank = 0;
 
     for (i = 0; i < MAX_DMA_REQUESTS; i++)
     {
@@ -47,6 +53,7 @@ void ProcessDma3Requests(void)
         return;
 
     bytesTransferred = 0;
+    gDma3BytesTransferredLastVBlank = 0;
 
     // as long as there are DMA requests to process (unless size or vblank is an issue), do not exit
     while (sDma3Requests[sDma3RequestCursor].size != 0)
@@ -88,6 +95,8 @@ void ProcessDma3Requests(void)
         sDma3Requests[sDma3RequestCursor].size = 0;
         sDma3Requests[sDma3RequestCursor].mode = 0;
         sDma3Requests[sDma3RequestCursor].value = 0;
+        gDma3RequestCount--;
+        gDma3BytesTransferredLastVBlank = bytesTransferred;
 
         sDma3RequestCursor = INCREMENT_OR_WRAP(sDma3RequestCursor, MAX_DMA_REQUESTS); // loop back to the first DMA request
     }
@@ -114,6 +123,10 @@ s16 RequestDma3Copy(const void *src, void *dest, u16 size, u32 mode)
             else
                 sDma3Requests[cursor].mode = DMA_REQUEST_COPY16;
 
+            gDma3RequestCount++;
+            if (gDma3RequestCount > gDma3RequestHighWaterMark)
+                gDma3RequestHighWaterMark = gDma3RequestCount;
+
             sDma3ManagerLocked = FALSE;
             return cursor;
         }
@@ -122,6 +135,7 @@ s16 RequestDma3Copy(const void *src, void *dest, u16 size, u32 mode)
         i++;
     }
     sDma3ManagerLocked = FALSE;
+    gDma3RequestOverflowCount++;
     return -1;  // no free DMA request was found
 }
 
@@ -147,6 +161,10 @@ s16 RequestDma3Fill(s32 value, void *dest, u16 size, u32 mode)
             else
                 sDma3Requests[cursor].mode = DMA_REQUEST_FILL16;
 
+            gDma3RequestCount++;
+            if (gDma3RequestCount > gDma3RequestHighWaterMark)
+                gDma3RequestHighWaterMark = gDma3RequestCount;
+
             sDma3ManagerLocked = FALSE;
             return cursor;
         }
@@ -155,6 +173,7 @@ s16 RequestDma3Fill(s32 value, void *dest, u16 size, u32 mode)
         i++;
     }
     sDma3ManagerLocked = FALSE;
+    gDma3RequestOverflowCount++;
     return -1;  // no free DMA request was found
 }
 

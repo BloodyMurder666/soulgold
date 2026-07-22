@@ -6943,7 +6943,7 @@ static void SpriteCB_MindBlownExplosion(struct Sprite *sprite)
 void SpriteCB_RandomCentredHits(struct Sprite *sprite)
 {
     if (gBattleAnimArgs[1] == -1)
-        gBattleAnimArgs[1] = Random() & 3;
+        gBattleAnimArgs[1] = Random2() & 3;
 
     StartSpriteAffineAnim(sprite, gBattleAnimArgs[1]);
 
@@ -6962,8 +6962,8 @@ void SpriteCB_RandomCentredHits(struct Sprite *sprite)
             InitSpritePosToAnimTarget(sprite, FALSE);
     }
 
-    sprite->x2 += (Random() % 48) - 24;
-    sprite->y2 += (Random() % 24) - 12;
+    sprite->x2 += (Random2() % 48) - 24;
+    sprite->y2 += (Random2() % 24) - 12;
 
     StoreSpriteCallbackInData6(sprite, DestroySpriteAndMatrix);
     sprite->callback = RunStoredCallbackWhenAffineAnimEnds;

@@ -99,6 +99,9 @@ static void CB2_HandleStartBattle(void);
 static void TryCorrectShedinjaLanguage(struct Pokemon *mon);
 static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 firstTrainer);
 static void BattleMainCB1(void);
+static void RunBattleSoftwareTick(void);
+static void AdvanceBattleFrameRng(void);
+static bool32 CanRunExtraBattleTick(void);
 static void CB2_EndLinkBattle(void);
 static void EndLinkBattleInSteps(void);
 static void UNUSED CB2_InitAskRecordBattle(void);
@@ -1772,72 +1775,38 @@ static void CB2_HandleStartMultiBattle(void)
 void BattleMainCB2(void)
 {
     u32 speedScale = Rogue_GetBattleSpeedScale(FALSE);
+    u32 tick;
 
-    // If we are processing a palette fade we need to temporarily fall back to 1x speed otherwise there is graphical corruption
-    if(PrevPaletteFadeResult() == PALETTE_FADE_STATUS_LOADING)
+    if (!CanRunExtraBattleTick())
         speedScale = 1;
 
-    // Battle animation tasks can update VRAM, OAM, and scanline buffers. Advancing
-    // them multiple times before a real VBlank can corrupt effects like Dragon Dance.
-    //if (gDoingBattleAnim || gAnimScriptActive)
-    //    speedScale = 1;
-
-    // Capture stars flicker every sprite update. Run their success sequence at
-    // normal speed so multiple updates between OAM builds do not hide stars.
-    if (gBattleSpritesDataPtr->animationData->captureSuccessAnimActive
-     || gBattleResults.caughtMonSpecies)
-        speedScale = 1;
-
-    if(speedScale <= 1)
+    // callback1 has already run once in CallCallbacks. Each pass here completes
+    // that logical battle tick using the original software update order. Only
+    // the real VBlank interrupt is allowed to upload the final state to hardware.
+    for (tick = 0; tick < speedScale; tick++)
     {
-        // Maintain OG order for compat
-        AnimateSprites();
-        BuildOamBuffer();
-        RunTextPrinters();
-        UpdatePaletteFade();
-        RunTasks();
-    }
-    else
-    {
-        u32 s;
-        u32 fadeResult;
+        RunBattleSoftwareTick();
 
-        // Update select entries at higher speed
-        // disable speed up during palette fades otherwise we run into issues with blending
-        //(e.g. moves that change background like Psychic can get stuck or have their colours overflow)
-        for(s = 1; s < speedScale; ++s)
-        {
-            AnimateSprites();
-            RunTextPrinters();
-            fadeResult = UpdatePaletteFade();
+        // A task can leave the battle or replace either callback. Do not touch
+        // battle-owned state after that transition.
+        if (!gMain.inBattle
+         || gMain.callback1 != BattleMainCB1
+         || gMain.callback2 != BattleMainCB2)
+            return;
 
-            if(fadeResult == PALETTE_FADE_STATUS_LOADING)
-            {
-                // minimal final update as we've just started a fade
-                BuildOamBuffer();
-                RunTasks();
-                break;
-            }
-            else
-            {
-                RunTasks();
-                VBlankCB_Battle();
+        AdvanceBattleFrameRng();
 
-                // Call it again to make sure everything is behaving as it should (this is crazy town now)
-                if (gMain.callback1)
-                    gMain.callback1();
-            }
-        }
+        if (tick + 1 >= speedScale || !CanRunExtraBattleTick())
+            break;
 
-        if (fadeResult != PALETTE_FADE_STATUS_LOADING)
-        {
-            // final update
-            AnimateSprites();
-            BuildOamBuffer();
-            RunTextPrinters();
-            UpdatePaletteFade();
-            RunTasks();
-        }
+        // Start the next logical tick. Call BattleMainCB1 explicitly so a task
+        // cannot make us invoke an unrelated callback from inside BattleMainCB2.
+        BattleMainCB1();
+
+        if (!gMain.inBattle
+         || gMain.callback1 != BattleMainCB1
+         || gMain.callback2 != BattleMainCB2)
+            return;
     }
 
     if (JOY_HELD(B_BUTTON) && gBattleTypeFlags & BATTLE_TYPE_RECORDED && RecordedBattle_CanStopPlayback())
@@ -1848,6 +1817,61 @@ void BattleMainCB2(void)
         BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
         SetMainCallback2(CB2_QuitRecordedBattle);
     }
+}
+
+static void RunBattleSoftwareTick(void)
+{
+    // Preserve the original order for every logical tick. BuildOamBuffer only
+    // creates the software snapshot; the last snapshot is uploaded at VBlank.
+    AnimateSprites();
+    BuildOamBuffer();
+    RunTextPrinters();
+    UpdatePaletteFade();
+    RunTasks();
+}
+
+static void AdvanceBattleFrameRng(void)
+{
+    // Ordinary battles historically advanced the primary RNG twice after each
+    // frame: once in VBlankCB_Battle and once in the global VBlank handler.
+    // Burn those values at the logical frame boundary instead, so waiting at a
+    // battle menu still changes future outcomes while accelerated animations
+    // consume the same RNG sequence at every speed.
+    if (!gTestRunnerEnabled
+     && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_RECORDED)))
+    {
+        AdvanceRandom();
+        AdvanceRandom();
+    }
+}
+
+static bool32 CanRunExtraBattleTick(void)
+{
+    // Link, audio, and receive services advance on physical frames. Keep link
+    // battles at 1x until accelerated link pacing is designed and tested.
+    if (gBattleTypeFlags & BATTLE_TYPE_LINK)
+        return FALSE;
+
+    if (!gMain.inBattle
+     || gMain.callback1 != BattleMainCB1
+     || gMain.callback2 != BattleMainCB2)
+        return FALSE;
+
+    if (InBattleChoosingMoves())
+        return FALSE;
+
+    // Palette fades require a transfer between updates. A fade can begin in
+    // callback1 or RunTasks, so this is checked before every extra tick.
+    if (gPaletteFade.active || IsPaletteFadeTransferPending())
+        return FALSE;
+
+    // Capture stars toggle on logical sprite frames and alias when several
+    // states are sampled into one rendered frame.
+    if (gBattleSpritesDataPtr->animationData->captureSuccessAnimActive
+     || gBattleResults.caughtMonSpecies)
+        return FALSE;
+
+    return TRUE;
 }
 
 static void FreeRestoreBattleData(void)
@@ -2188,10 +2212,6 @@ void CreateTrainerPartyForPlayer(void)
 
 void VBlankCB_Battle(void)
 {
-    // Change gRngSeed every vblank unless the battle could be recorded.
-    if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_RECORDED)))
-        AdvanceRandom();
-
     SetGpuReg(REG_OFFSET_BG0HOFS, gBattle_BG0_X);
     SetGpuReg(REG_OFFSET_BG0VOFS, gBattle_BG0_Y);
     SetGpuReg(REG_OFFSET_BG1HOFS, gBattle_BG1_X);
@@ -2763,7 +2783,7 @@ static void SpriteCB_MoveWildMonToRight(struct Sprite *sprite)
     if ((gIntroSlideFlags & 1) == 0)
     {
         if (!IsFastIntroNoSlideEnabled() && !gTestRunnerHeadless)
-            sprite->x2 = MoveIntroOffsetTowardZero(sprite->x2, 2 * Rogue_GetBattleSpeedScale(FALSE));
+            sprite->x2 = MoveIntroOffsetTowardZero(sprite->x2, 2);
         else
             sprite->x2 = 0;
 
@@ -2899,7 +2919,7 @@ static void SpriteCB_BattleSpriteSlideLeft(struct Sprite *sprite)
 {
     if (!(gIntroSlideFlags & 1))
     {
-        sprite->x2 = MoveIntroOffsetTowardZero(sprite->x2, 2 * Rogue_GetBattleSpeedScale(FALSE));
+        sprite->x2 = MoveIntroOffsetTowardZero(sprite->x2, 2);
         if (sprite->x2 == 0)
         {
             sprite->callback = SpriteCB_Idle;

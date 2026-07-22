@@ -18,6 +18,7 @@
 #include "agb_flash.h"
 #include "sound.h"
 #include "battle.h"
+#include "battle_main.h"
 #include "battle_controllers.h"
 #include "text.h"
 #include "intro.h"
@@ -387,8 +388,21 @@ static void VBlankIntr(void)
     m4aSoundMain();
     TryReceiveLinkBattleData();
 
-    if (!gTestRunnerEnabled && (!gMain.inBattle || !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_RECORDED))))
-        AdvanceRandom();
+    if (!gTestRunnerEnabled)
+    {
+        if (!gMain.inBattle)
+        {
+            AdvanceRandom();
+        }
+        else if (gMain.callback2 != BattleMainCB2
+              && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_RECORDED)))
+        {
+            // BattleMainCB2 advances RNG at logical frame boundaries. Battle
+            // submenus such as the Bag do not run that callback or accelerate,
+            // so retain their original once-per-VBlank entropy.
+            AdvanceRandom();
+        }
+    }
 
     UpdateWirelessStatusIndicatorSprite();
 

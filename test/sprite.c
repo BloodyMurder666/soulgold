@@ -121,6 +121,23 @@ TEST("BuildOamBuffer faster with mix of sprites")
     BenchmarkBuildOamBuffer(FALSE);
 }
 
+TEST("Sprite copy request queue reports overflow")
+{
+    ALIGNED(4) u8 src[4] = {0};
+    ALIGNED(4) u8 dest[4] = {0};
+
+    ClearSpriteCopyRequests();
+    for (u32 i = 0; i < MAX_SPRITE_COPY_REQUESTS + 1; i++)
+        RequestSpriteCopy(src, dest, sizeof(src));
+
+    EXPECT_EQ(gSpriteCopyRequestHighWaterMark, MAX_SPRITE_COPY_REQUESTS);
+    EXPECT_EQ(gSpriteCopyRequestOverflowCount, 1);
+
+    ClearSpriteCopyRequests();
+    EXPECT_EQ(gSpriteCopyRequestHighWaterMark, 0);
+    EXPECT_EQ(gSpriteCopyRequestOverflowCount, 0);
+}
+
 // Old implementation.
 
 #define UBFIX

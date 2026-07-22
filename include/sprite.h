@@ -255,6 +255,8 @@ struct OamDimensions
     s8 height;
 };
 
+#define MAX_SPRITE_COPY_REQUESTS 64
+
 extern const struct OamDimensions gOamDimensions[3][4];
 extern const struct OamData gDummyOamData;
 extern const union AnimCmd *const gDummySpriteAnimTable[];
@@ -269,6 +271,8 @@ extern s16 gSpriteCoordOffsetX;
 extern s16 gSpriteCoordOffsetY;
 extern struct OamMatrix gOamMatrices[OAM_MATRIX_COUNT];
 extern bool8 gAffineAnimsDisabled;
+extern u8 gSpriteCopyRequestHighWaterMark;
+extern u32 gSpriteCopyRequestOverflowCount;
 
 void ResetSpriteData(void);
 void AnimateSprites(void);

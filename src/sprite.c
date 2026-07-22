@@ -5,8 +5,6 @@
 #include "string_util.h"
 #include "text.h"
 
-#define MAX_SPRITE_COPY_REQUESTS 64
-
 #define sAnchorX data[6]
 #define sAnchorY data[7]
 
@@ -33,6 +31,9 @@ EWRAM_DATA bool32 gLoadFail = FALSE;
 EWRAM_DATA bool32 gCountAllocs = FALSE;
 EWRAM_DATA s32 gSpriteAllocs = 0;
 #endif // T_SHOULD_RUN_MOVE_ANIM
+
+EWRAM_DATA u8 gSpriteCopyRequestHighWaterMark = 0;
+EWRAM_DATA u32 gSpriteCopyRequestOverflowCount = 0;
 
 struct SpriteCopyRequest
 {
@@ -587,6 +588,8 @@ void ClearSpriteCopyRequests(void)
 
     sShouldProcessSpriteCopyRequests = FALSE;
     sSpriteCopyRequestCount = 0;
+    gSpriteCopyRequestHighWaterMark = 0;
+    gSpriteCopyRequestOverflowCount = 0;
 
     for (i = 0; i < MAX_SPRITE_COPY_REQUESTS; i++)
     {
@@ -753,7 +756,11 @@ void RequestSpriteFrameImageCopy(u16 index, u16 tileNum, const struct SpriteFram
         }
         sSpriteCopyRequests[sSpriteCopyRequestCount].dest = (u8 *)OBJ_VRAM0 + TILE_SIZE_4BPP * tileNum;
         sSpriteCopyRequestCount++;
+        if (sSpriteCopyRequestCount > gSpriteCopyRequestHighWaterMark)
+            gSpriteCopyRequestHighWaterMark = sSpriteCopyRequestCount;
     }
+    else
+        gSpriteCopyRequestOverflowCount++;
 }
 
 void RequestSpriteCopy(const u8 *src, u8 *dest, u16 size)
@@ -764,7 +771,11 @@ void RequestSpriteCopy(const u8 *src, u8 *dest, u16 size)
         sSpriteCopyRequests[sSpriteCopyRequestCount].dest = dest;
         sSpriteCopyRequests[sSpriteCopyRequestCount].size = size;
         sSpriteCopyRequestCount++;
+        if (sSpriteCopyRequestCount > gSpriteCopyRequestHighWaterMark)
+            gSpriteCopyRequestHighWaterMark = sSpriteCopyRequestCount;
     }
+    else
+        gSpriteCopyRequestOverflowCount++;
 }
 
 void CopyFromSprites(u8 *dest)

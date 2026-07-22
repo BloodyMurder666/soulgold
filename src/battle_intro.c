@@ -236,7 +236,7 @@ void BattleIntroSlide1(u8 taskId)
     if (IsFastIntroNoSlideEnabled() || gTestRunnerHeadless)
         return BattleIntroNoSlide(taskId);
 
-    gBattle_BG1_X += 6 * Rogue_GetBattleSpeedScale(FALSE);
+    gBattle_BG1_X += 6;
     switch (gTasks[taskId].tState)
     {
     case 0:
@@ -259,7 +259,7 @@ void BattleIntroSlide1(u8 taskId)
         }
         break;
     case 2:
-        gBattle_WIN0V = MoveIntroWindowToward(gBattle_WIN0V, 0x3000, 0xFF * Rogue_GetBattleSpeedScale(FALSE));
+        gBattle_WIN0V = MoveIntroWindowToward(gBattle_WIN0V, 0x3000, 0xFF);
         if ((gBattle_WIN0V & 0xFF00) == 0x3000)
         {
             gTasks[taskId].tState++;
@@ -277,19 +277,19 @@ void BattleIntroSlide1(u8 taskId)
         {
             if (gTasks[taskId].tEnvironment == BATTLE_ENVIRONMENT_LONG_GRASS)
             {
-                gBattle_BG1_Y = MoveIntroValueToward((s16)gBattle_BG1_Y, -80, 2 * Rogue_GetBattleSpeedScale(FALSE));
+                gBattle_BG1_Y = MoveIntroValueToward((s16)gBattle_BG1_Y, -80, 2);
             }
             else
             {
-                gBattle_BG1_Y = MoveIntroValueToward((s16)gBattle_BG1_Y, -56, Rogue_GetBattleSpeedScale(FALSE));
+                gBattle_BG1_Y = MoveIntroValueToward((s16)gBattle_BG1_Y, -56, 1);
             }
         }
 
         if (gBattle_WIN0V & 0xFF00)
-            gBattle_WIN0V = MoveIntroWindowToward(gBattle_WIN0V, 0, 0x3FC * Rogue_GetBattleSpeedScale(FALSE));
+            gBattle_WIN0V = MoveIntroWindowToward(gBattle_WIN0V, 0, 0x3FC);
 
         if (gTasks[taskId].data[2])
-            DecrementIntroCounter(&gTasks[taskId].data[2], 2 * Rogue_GetBattleSpeedScale(FALSE));
+            DecrementIntroCounter(&gTasks[taskId].data[2], 2);
 
         // Scanline settings have already been set in CB2_InitBattleInternal()
         for (i = 0; i < DISPLAY_HEIGHT / 2; i++)
@@ -326,11 +326,11 @@ void BattleIntroSlide2(u8 taskId)
     case BATTLE_ENVIRONMENT_SAND:
     case BATTLE_ENVIRONMENT_WATER:
     case BATTLE_ENVIRONMENT_SNOW:
-        gBattle_BG1_X += 8 * Rogue_GetBattleSpeedScale(FALSE);
+        gBattle_BG1_X += 8;
         break;
     case BATTLE_ENVIRONMENT_UNDERWATER:
     case BATTLE_ENVIRONMENT_KYOGRE:
-        gBattle_BG1_X += 6 * Rogue_GetBattleSpeedScale(FALSE);
+        gBattle_BG1_X += 6;
         break;
     }
 
@@ -338,9 +338,9 @@ void BattleIntroSlide2(u8 taskId)
     {
         gBattle_BG1_Y = Cos2(gTasks[taskId].data[6]) / 512 - 8;
         if (gTasks[taskId].data[6] < 180)
-            gTasks[taskId].data[6] += 4 * Rogue_GetBattleSpeedScale(FALSE);
+            gTasks[taskId].data[6] += 4;
         else
-            gTasks[taskId].data[6] += 6 * Rogue_GetBattleSpeedScale(FALSE);
+            gTasks[taskId].data[6] += 6;
 
         if (gTasks[taskId].data[6] >= 360)
             gTasks[taskId].data[6] = 0;
@@ -369,7 +369,7 @@ void BattleIntroSlide2(u8 taskId)
         }
         break;
     case 2:
-        gBattle_WIN0V = MoveIntroWindowToward(gBattle_WIN0V, 0x3000, 0xFF * Rogue_GetBattleSpeedScale(FALSE));
+        gBattle_WIN0V = MoveIntroWindowToward(gBattle_WIN0V, 0x3000, 0xFF);
         if ((gBattle_WIN0V & 0xFF00) == 0x3000)
         {
             gTasks[taskId].tState++;
@@ -399,10 +399,10 @@ void BattleIntroSlide2(u8 taskId)
         }
 
         if (gBattle_WIN0V & 0xFF00)
-            gBattle_WIN0V = MoveIntroWindowToward(gBattle_WIN0V, 0, 0x3FC * Rogue_GetBattleSpeedScale(FALSE));
+            gBattle_WIN0V = MoveIntroWindowToward(gBattle_WIN0V, 0, 0x3FC);
 
         if (gTasks[taskId].data[2])
-            DecrementIntroCounter(&gTasks[taskId].data[2], 2 * Rogue_GetBattleSpeedScale(FALSE));
+            DecrementIntroCounter(&gTasks[taskId].data[2], 2);
 
         // Scanline settings have already been set in CB2_InitBattleInternal()
         for (i = 0; i < DISPLAY_HEIGHT / 2; i++)
@@ -437,7 +437,7 @@ void BattleIntroSlide3(u8 taskId)
     if (IsFastIntroNoSlideEnabled() || gTestRunnerHeadless)
         return BattleIntroNoSlide(taskId);
 
-    gBattle_BG1_X += 8 * Rogue_GetBattleSpeedScale(FALSE);
+    gBattle_BG1_X += 8;
     switch (gTasks[taskId].tState)
     {
     case 0:
@@ -464,7 +464,7 @@ void BattleIntroSlide3(u8 taskId)
         }
         break;
     case 2:
-        gBattle_WIN0V = MoveIntroWindowToward(gBattle_WIN0V, 0x3000, 0xFF * Rogue_GetBattleSpeedScale(FALSE));
+        gBattle_WIN0V = MoveIntroWindowToward(gBattle_WIN0V, 0x3000, 0xFF);
         if ((gBattle_WIN0V & 0xFF00) == 0x3000)
         {
             gTasks[taskId].tState++;
@@ -489,10 +489,10 @@ void BattleIntroSlide3(u8 taskId)
         }
 
         if (gBattle_WIN0V & 0xFF00)
-            gBattle_WIN0V = MoveIntroWindowToward(gBattle_WIN0V, 0, 0x3FC * Rogue_GetBattleSpeedScale(FALSE));
+            gBattle_WIN0V = MoveIntroWindowToward(gBattle_WIN0V, 0, 0x3FC);
 
         if (gTasks[taskId].data[2])
-            DecrementIntroCounter(&gTasks[taskId].data[2], 2 * Rogue_GetBattleSpeedScale(FALSE));
+            DecrementIntroCounter(&gTasks[taskId].data[2], 2);
 
         // Scanline settings have already been set in CB2_InitBattleInternal()
         for (i = 0; i < DISPLAY_HEIGHT / 2; i++)
@@ -530,8 +530,8 @@ static void BattleIntroSlideLink(u8 taskId)
         u16 var0 = gBattle_BG1_X & 0x8000;
         if (var0 || gBattle_BG1_X < 80)
         {
-            gBattle_BG1_X += 3 * Rogue_GetBattleSpeedScale(FALSE);
-            gBattle_BG2_X -= 3 * Rogue_GetBattleSpeedScale(FALSE);
+            gBattle_BG1_X += 3;
+            gBattle_BG2_X -= 3;
         }
         else
         {
@@ -560,7 +560,7 @@ static void BattleIntroSlideLink(u8 taskId)
         }
         break;
     case 2:
-        gBattle_WIN0V = MoveIntroWindowToward(gBattle_WIN0V, 0x3000, 0xFF * Rogue_GetBattleSpeedScale(FALSE));
+        gBattle_WIN0V = MoveIntroWindowToward(gBattle_WIN0V, 0x3000, 0xFF);
         if ((gBattle_WIN0V & 0xFF00) == 0x3000)
         {
             gTasks[taskId].tState++;
@@ -571,10 +571,10 @@ static void BattleIntroSlideLink(u8 taskId)
         break;
     case 3:
         if (gBattle_WIN0V & 0xFF00)
-            gBattle_WIN0V = MoveIntroWindowToward(gBattle_WIN0V, 0, 0x3FC * Rogue_GetBattleSpeedScale(FALSE));
+            gBattle_WIN0V = MoveIntroWindowToward(gBattle_WIN0V, 0, 0x3FC);
 
         if (gTasks[taskId].data[2])
-            DecrementIntroCounter(&gTasks[taskId].data[2], 2 * Rogue_GetBattleSpeedScale(FALSE));
+            DecrementIntroCounter(&gTasks[taskId].data[2], 2);
 
         // Scanline settings have already been set in CB2_InitBattleInternal()
         for (i = 0; i < DISPLAY_HEIGHT / 2; i++)
@@ -622,7 +622,7 @@ static void BattleIntroSlidePartner(u8 taskId)
         }
         break;
     case 2:
-        gBattle_WIN0V = MoveIntroWindowToward(gBattle_WIN0V, 0x2000, 0x100 * Rogue_GetBattleSpeedScale(FALSE));
+        gBattle_WIN0V = MoveIntroWindowToward(gBattle_WIN0V, 0x2000, 0x100);
 
         if ((gBattle_WIN0V & 0xFF00) == 0x2000)
         {
@@ -633,10 +633,10 @@ static void BattleIntroSlidePartner(u8 taskId)
         break;
     case 3:
         if ((gBattle_WIN0V & 0xFF00) != 0x4C00)
-            gBattle_WIN0V = MoveIntroWindowToward(gBattle_WIN0V, 0x4C00, 0x3FC * Rogue_GetBattleSpeedScale(FALSE));
+            gBattle_WIN0V = MoveIntroWindowToward(gBattle_WIN0V, 0x4C00, 0x3FC);
 
         if (gTasks[taskId].data[2])
-            DecrementIntroCounter(&gTasks[taskId].data[2], 2 * Rogue_GetBattleSpeedScale(FALSE));
+            DecrementIntroCounter(&gTasks[taskId].data[2], 2);
 
         gBattle_BG1_X = gTasks[taskId].data[2];
         gBattle_BG2_X = -gTasks[taskId].data[2];
@@ -644,10 +644,10 @@ static void BattleIntroSlidePartner(u8 taskId)
             gTasks[taskId].tState++;
         break;
     case 4:
-        gBattle_BG0_Y = MoveIntroValueToward((s16)gBattle_BG0_Y, 0, 2 * Rogue_GetBattleSpeedScale(FALSE));
-        gBattle_BG2_Y += 2 * Rogue_GetBattleSpeedScale(FALSE);
+        gBattle_BG0_Y = MoveIntroValueToward((s16)gBattle_BG0_Y, 0, 2);
+        gBattle_BG2_Y += 2;
         if ((gBattle_WIN0V & 0xFF00) != 0x5000)
-            gBattle_WIN0V = MoveIntroWindowToward(gBattle_WIN0V, 0x5000, 0xFF * Rogue_GetBattleSpeedScale(FALSE));
+            gBattle_WIN0V = MoveIntroWindowToward(gBattle_WIN0V, 0x5000, 0xFF);
 
         if (!gBattle_BG0_Y)
         {
