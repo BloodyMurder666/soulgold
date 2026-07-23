@@ -1555,7 +1555,7 @@ MauvilleCity_GameCorner_Text_BlackJack:
 	.string "Want to play?$"
 
 MauvilleCity_GameCorner_Text_Derby:
-	.string "It's the Mauville Derby!\n"
+	.string "It's the Goldenrod Derby!\n"
 	.string "Want to place a bet?$"
 
 MauvilleCity_GameCorner_Text_Snake:
@@ -1684,7 +1684,7 @@ MauvilleCity_GameCorner_Text_LuckOnlyLastSoLongTakeCoins:
 	.string "Here, take some Coins!$"
 
 MauvilleCity_GameCorner_Text_MauvilleSomethingForEveryone:
-	.string "Mauville has something for\n"
+	.string "Goldenrod has something for\n"
 	.string "everyone.\p"
 	.string "For me, it's the Game Corner.$"
 

@@ -3113,7 +3113,7 @@ MauvilleCity_GameCorner_Text_BlackJack:
 # 1557 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 MauvilleCity_GameCorner_Text_Derby:
 # 1558 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	.string "It's the Mauville Derby!\n"
+	.string "It's the Goldenrod Derby!\n"
 # 1559 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	.string "Want to place a bet?$"
 # 1560 "data/maps/MauvilleCity_GameCorner/scripts.pory"
@@ -3371,7 +3371,7 @@ MauvilleCity_GameCorner_Text_LuckOnlyLastSoLongTakeCoins:
 # 1686 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 MauvilleCity_GameCorner_Text_MauvilleSomethingForEveryone:
 # 1687 "data/maps/MauvilleCity_GameCorner/scripts.pory"
-	.string "Mauville has something for\n"
+	.string "Goldenrod has something for\n"
 # 1688 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	.string "everyone.\p"
 # 1689 "data/maps/MauvilleCity_GameCorner/scripts.pory"

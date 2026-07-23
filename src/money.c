@@ -15,6 +15,7 @@
 
 EWRAM_DATA static u8 sMoneyBoxWindowId = 0;
 EWRAM_DATA static u8 sMoneyLabelSpriteId = 0;
+EWRAM_DATA static bool8 sMoneyBoxActive = FALSE;
 
 #define MONEY_LABEL_TAG 0x2722
 
@@ -199,6 +200,7 @@ void DrawMoneyBox(int amount, u8 x, u8 y)
     CopyWindowToVram(sMoneyBoxWindowId, COPYWIN_MAP);
     PrintMoneyAmountInMoneyBoxWithBorder(sMoneyBoxWindowId, 0x214, 14, amount);
     AddMoneyLabelObject((8 * x) + 19, (8 * y) + 11);
+    sMoneyBoxActive = TRUE;
 }
 
 void HideMoneyBox(void)
@@ -207,6 +209,12 @@ void HideMoneyBox(void)
     ClearStdWindowAndFrameToTransparent(sMoneyBoxWindowId, FALSE);
     CopyWindowToVram(sMoneyBoxWindowId, COPYWIN_GFX);
     RemoveWindow(sMoneyBoxWindowId);
+    sMoneyBoxActive = FALSE;
+}
+
+bool32 IsMoneyBoxActive(void)
+{
+    return sMoneyBoxActive;
 }
 
 void AddMoneyLabelObject(u16 x, u16 y)

@@ -10,6 +10,7 @@
 #include "constants/coins.h"
 
 static EWRAM_DATA u8 sCoinsWindowId = 0;
+static EWRAM_DATA bool8 sCoinsWindowActive = FALSE;
 
 void PrintCoinsString(u32 coinAmount)
 {
@@ -32,12 +33,19 @@ void ShowCoinsWindow(u32 coinAmount, u8 x, u8 y)
     PutWindowTilemap(sCoinsWindowId);
     DrawStdFrameWithCustomTileAndPalette(sCoinsWindowId, FALSE, 0x214, 0xE);
     PrintCoinsString(coinAmount);
+    sCoinsWindowActive = TRUE;
 }
 
 void HideCoinsWindow(void)
 {
     ClearStdWindowAndFrame(sCoinsWindowId, TRUE);
     RemoveWindow(sCoinsWindowId);
+    sCoinsWindowActive = FALSE;
+}
+
+bool32 IsCoinsWindowActive(void)
+{
+    return sCoinsWindowActive;
 }
 
 u16 GetCoins(void)

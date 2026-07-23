@@ -6,6 +6,7 @@
 #include "battle_pyramid_bag.h"
 #include "bg.h"
 #include "bug_contest.h"
+#include "coins.h"
 #include "comfy_anim.h"
 #include "debug.h"
 #include "event_data.h"
@@ -28,6 +29,7 @@
 #include "load_save.h"
 #include "main.h"
 #include "menu.h"
+#include "money.h"
 #include "new_game.h"
 #include "option_menu.h"
 #include "overworld.h"
@@ -598,6 +600,8 @@ static bool32 CanAnimateStartMenu(void)
     return GetFlashLevel() == 0
         && !InBattlePyramid_()
         && !gSaveBlock2Ptr->optionsUiAnimationsOff
+        && !IsMoneyBoxActive()
+        && !IsCoinsWindowActive()
         && GetFieldMessageBoxMode() == FIELD_MESSAGE_BOX_HIDDEN;
 }
 

@@ -6,7 +6,8 @@ mapscripts RintoVillage_MapScripts {
 }
 
 script Rinto_OldLady {
-    msgbox("More visitors lately...", MSGBOX_NPC)
+    msgbox("The recent heatwaves make it difficult
+            to sleep.", MSGBOX_NPC)
 }
 
 script Rinto_TempleSage {

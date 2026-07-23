@@ -1,8 +1,10 @@
 #include "global.h"
 #include "battle_pyramid.h"
+#include "coins.h"
 #include "comfy_anim.h"
 #include "gpu_regs.h"
 #include "menu.h"
+#include "money.h"
 #include "overworld.h"
 #include "string_util.h"
 #include "task.h"
@@ -60,6 +62,8 @@ static bool32 CanAnimateFieldMessage(void)
     return GetFlashLevel() == 0
         && !InBattlePyramid_()
         && !gSaveBlock2Ptr->optionsUiAnimationsOff
+        && !IsMoneyBoxActive()
+        && !IsCoinsWindowActive()
         && !ScriptMenu_IsPokemonPicActive();
 }
 

@@ -27,6 +27,7 @@ void PrintMoneyAmountInMoneyBoxWithBorder(u8 windowId, u16 tileStart, u8 pallete
 void ChangeAmountInMoneyBox(int amount);
 void DrawMoneyBox(int amount, u8 x, u8 y);
 void HideMoneyBox(void);
+bool32 IsMoneyBoxActive(void);
 void AddMoneyLabelObject(u16 x, u16 y);
 void RemoveMoneyLabelObject(void);
 u32 CalculateMoneyTextHorizontalPosition(u32 amount);
