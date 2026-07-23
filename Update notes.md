@@ -1,4 +1,7 @@
 Update notes:
+23.7.2026
+- Fix LTO bug with healing items.
+
 22.7.2026
 - Added smooth animation to pause menu and textbox opening and closing
 - Added new option for disabling smooth animations
