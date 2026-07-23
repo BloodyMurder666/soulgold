@@ -1443,7 +1443,7 @@ static void ApplyFluteEncounterRateMod(u32 *encRate)
 
 static void ApplyCleanseTagEncounterRateMod(u32 *encRate)
 {
-    if (MonHasItem(&gPlayerParty[0], ITEM_CLEANSE_TAG))
+    if (MonHasItemHoldEffect(&gPlayerParty[0], HOLD_EFFECT_REPEL))
         *encRate = *encRate * 2 / 3;
 }
 
