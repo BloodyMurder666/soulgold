@@ -1,84 +1,84 @@
-const u8 gItemEffect_Potion[7] = {
+const u8 gItemEffect_Potion[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_HEAL_HP,
     [6] = 20, // Amount of HP to recover
 };
 
-const u8 gItemEffect_Antidote[6] = {
+const u8 gItemEffect_Antidote[ITEM_EFFECT_COUNT] = {
     [3] = ITEM3_POISON,
 };
 
-const u8 gItemEffect_BurnHeal[6] = {
+const u8 gItemEffect_BurnHeal[ITEM_EFFECT_COUNT] = {
     [3] = ITEM3_BURN,
 };
 
-const u8 gItemEffect_IceHeal[6] = {
+const u8 gItemEffect_IceHeal[ITEM_EFFECT_COUNT] = {
     [3] = ITEM3_FREEZE,
 };
 
-const u8 gItemEffect_Awakening[6] = {
+const u8 gItemEffect_Awakening[ITEM_EFFECT_COUNT] = {
     [3] = ITEM3_SLEEP,
 };
 
-const u8 gItemEffect_ParalyzeHeal[6] = {
+const u8 gItemEffect_ParalyzeHeal[ITEM_EFFECT_COUNT] = {
     [3] = ITEM3_PARALYSIS,
 };
 
-const u8 gItemEffect_FullRestore[7] = {
+const u8 gItemEffect_FullRestore[ITEM_EFFECT_COUNT] = {
     [3] = ITEM3_STATUS_ALL,
     [4] = ITEM4_HEAL_HP,
     [6] = ITEM6_HEAL_HP_FULL,
 };
 
-const u8 gItemEffect_MaxPotion[7] = {
+const u8 gItemEffect_MaxPotion[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_HEAL_HP,
     [6] = ITEM6_HEAL_HP_FULL,
 };
 
-const u8 gItemEffect_HyperPotion[7] = {
+const u8 gItemEffect_HyperPotion[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_HEAL_HP,
     [6] = I_HEALTH_RECOVERY >= GEN_7 ? 120 : 200, // Amount of HP to recover
 };
 
-const u8 gItemEffect_SuperPotion[7] = {
+const u8 gItemEffect_SuperPotion[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_HEAL_HP,
     [6] = I_HEALTH_RECOVERY >= GEN_7 ? 60 : 50, // Amount of HP to recover
 };
 
-const u8 gItemEffect_FullHeal[6] = {
+const u8 gItemEffect_FullHeal[ITEM_EFFECT_COUNT] = {
     [3] = ITEM3_STATUS_ALL,
 };
 
-const u8 gItemEffect_Revive[7] = {
+const u8 gItemEffect_Revive[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_REVIVE | ITEM4_HEAL_HP,
     [6] = ITEM6_HEAL_HP_HALF,
 };
 
-const u8 gItemEffect_MaxRevive[7] = {
+const u8 gItemEffect_MaxRevive[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_REVIVE | ITEM4_HEAL_HP,
     [6] = ITEM6_HEAL_HP_FULL,
 };
 
-const u8 gItemEffect_FreshWater[7] = {
+const u8 gItemEffect_FreshWater[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_HEAL_HP,
     [6] = I_HEALTH_RECOVERY >= GEN_7 ? 30 : 50, // Amount of HP to recover
 };
 
-const u8 gItemEffect_SodaPop[7] = {
+const u8 gItemEffect_SodaPop[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_HEAL_HP,
     [6] = I_HEALTH_RECOVERY >= GEN_7 ? 50 : 60, // Amount of HP to recover
 };
 
-const u8 gItemEffect_Lemonade[7] = {
+const u8 gItemEffect_Lemonade[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_HEAL_HP,
     [6] = I_HEALTH_RECOVERY >= GEN_7 ? 70 : 80, // Amount of HP to recover
 };
 
-const u8 gItemEffect_MoomooMilk[7] = {
+const u8 gItemEffect_MoomooMilk[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_HEAL_HP,
     [6] = 100, // Amount of HP to recover
 };
 
-const u8 gItemEffect_EnergyPowder[10] = {
+const u8 gItemEffect_EnergyPowder[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_HEAL_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
     [6] = I_HEALTH_RECOVERY >= GEN_7 ? 60 : 50, // Amount of HP to recover
@@ -87,7 +87,7 @@ const u8 gItemEffect_EnergyPowder[10] = {
     [9] = -10, // Friendship change, high
 };
 
-const u8 gItemEffect_EnergyRoot[10] = {
+const u8 gItemEffect_EnergyRoot[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_HEAL_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
     [6] = I_HEALTH_RECOVERY >= GEN_7 ? 120 : 200, // Amount of HP to recover
@@ -96,7 +96,7 @@ const u8 gItemEffect_EnergyRoot[10] = {
     [9] = -15, // Friendship change, high
 };
 
-const u8 gItemEffect_HealPowder[9] = {
+const u8 gItemEffect_HealPowder[ITEM_EFFECT_COUNT] = {
     [3] = ITEM3_STATUS_ALL,
     [5] = ITEM5_FRIENDSHIP_ALL,
     [6] = -5,  // Friendship change, low
@@ -104,7 +104,7 @@ const u8 gItemEffect_HealPowder[9] = {
     [8] = -10, // Friendship change, high
 };
 
-const u8 gItemEffect_RevivalHerb[10] = {
+const u8 gItemEffect_RevivalHerb[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_REVIVE | ITEM4_HEAL_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_HEAL_HP_FULL,
@@ -113,7 +113,7 @@ const u8 gItemEffect_RevivalHerb[10] = {
     [9] = -20, // Friendship change, high
 };
 
-const u8 gItemEffect_Remedy[10] = {
+const u8 gItemEffect_Remedy[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_HEAL_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
     [6] = 20, // Amount of HP to recover
@@ -122,7 +122,7 @@ const u8 gItemEffect_Remedy[10] = {
     [9] = -10, // Friendship change, high
 };
 
-const u8 gItemEffect_FineRemedy[10] = {
+const u8 gItemEffect_FineRemedy[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_HEAL_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
     [6] = I_HEALTH_RECOVERY >= GEN_7 ? 60 : 50, // Amount of HP to recover
@@ -131,7 +131,7 @@ const u8 gItemEffect_FineRemedy[10] = {
     [9] = -15, // Friendship change, high
 };
 
-const u8 gItemEffect_SuperbRemedy[10] = {
+const u8 gItemEffect_SuperbRemedy[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_HEAL_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
     [6] = I_HEALTH_RECOVERY >= GEN_7 ? 120 : 200, // Amount of HP to recover
@@ -140,35 +140,35 @@ const u8 gItemEffect_SuperbRemedy[10] = {
     [9] = -20, // Friendship change, high
 };
 
-const u8 gItemEffect_Ether[7] = {
+const u8 gItemEffect_Ether[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_HEAL_PP_ONE | ITEM4_HEAL_PP,
     [6] = 10,
 };
 
-const u8 gItemEffect_MaxEther[7] = {
+const u8 gItemEffect_MaxEther[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_HEAL_PP_ONE | ITEM4_HEAL_PP,
     [6] = ITEM6_HEAL_PP_FULL,
 };
 
-const u8 gItemEffect_Elixir[7] = {
+const u8 gItemEffect_Elixir[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_HEAL_PP,
     [6] = 10, // Amount of PP to recover
 };
 
-const u8 gItemEffect_MaxElixir[7] = {
+const u8 gItemEffect_MaxElixir[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_HEAL_PP,
     [6] = ITEM6_HEAL_PP_FULL,
 };
 
-const u8 gItemEffect_YellowFlute[6] = {
+const u8 gItemEffect_YellowFlute[ITEM_EFFECT_COUNT] = {
     [3] = ITEM3_CONFUSION,
 };
 
-const u8 gItemEffect_RedFlute[6] = {
+const u8 gItemEffect_RedFlute[ITEM_EFFECT_COUNT] = {
     [0] = ITEM0_INFATUATION,
 };
 
-const u8 gItemEffect_SacredAsh[7] = {
+const u8 gItemEffect_SacredAsh[ITEM_EFFECT_COUNT] = {
     [0] = ITEM0_SACRED_ASH,
     [4] = ITEM4_REVIVE | ITEM4_HEAL_HP,
     [6] = ITEM6_HEAL_HP_FULL,
@@ -179,7 +179,7 @@ const u8 gItemEffect_SacredAsh[7] = {
     [(i) + 1] = 3, /* Friendship change, mid */  \
     [(i) + 2] = 2  /* Friendship change, high */
 
-const u8 gItemEffect_HPUp[11] = {
+const u8 gItemEffect_HPUp[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_EV_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_ADD_EV,
@@ -187,13 +187,13 @@ const u8 gItemEffect_HPUp[11] = {
     [10] = ITEM10_IS_VITAMIN,
 };
 
-const u8 gItemEffect_HPUpEX[11] = {
+const u8 gItemEffect_HPUpEX[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_EV_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_MAX_EV,
 };
 
-const u8 gItemEffect_Protein[11] = {
+const u8 gItemEffect_Protein[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_EV_ATK,
     [5] = ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_ADD_EV,
@@ -201,66 +201,66 @@ const u8 gItemEffect_Protein[11] = {
     [10] = ITEM10_IS_VITAMIN,
 };
 
-const u8 gItemEffect_ProteinEX[11] = {
+const u8 gItemEffect_ProteinEX[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_EV_ATK,
     [5] = ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_MAX_EV,
 };
 
-const u8 gItemEffect_Iron[11] = {
+const u8 gItemEffect_Iron[ITEM_EFFECT_COUNT] = {
     [5] = ITEM5_EV_DEF | ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_ADD_EV,
     VITAMIN_FRIENDSHIP_CHANGE(7),
     [10] = ITEM10_IS_VITAMIN,
 };
 
-const u8 gItemEffect_IronEX[11] = {
+const u8 gItemEffect_IronEX[ITEM_EFFECT_COUNT] = {
     [5] = ITEM5_EV_DEF | ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_MAX_EV,
 };
 
-const u8 gItemEffect_Carbos[11] = {
+const u8 gItemEffect_Carbos[ITEM_EFFECT_COUNT] = {
     [5] = ITEM5_EV_SPEED | ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_ADD_EV,
     VITAMIN_FRIENDSHIP_CHANGE(7),
     [10] = ITEM10_IS_VITAMIN,
 };
 
-const u8 gItemEffect_CarbosEX[11] = {
+const u8 gItemEffect_CarbosEX[ITEM_EFFECT_COUNT] = {
     [5] = ITEM5_EV_SPEED | ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_MAX_EV,
 };
 
-const u8 gItemEffect_Calcium[11] = {
+const u8 gItemEffect_Calcium[ITEM_EFFECT_COUNT] = {
     [5] = ITEM5_EV_SPATK | ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_ADD_EV,
     VITAMIN_FRIENDSHIP_CHANGE(7),
     [10] = ITEM10_IS_VITAMIN,
 };
 
-const u8 gItemEffect_CalciumEX[11] = {
+const u8 gItemEffect_CalciumEX[ITEM_EFFECT_COUNT] = {
     [5] = ITEM5_EV_SPATK | ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_MAX_EV,
 };
 
-const u8 gItemEffect_Zinc[11] = {
+const u8 gItemEffect_Zinc[ITEM_EFFECT_COUNT] = {
     [5] = ITEM5_EV_SPDEF | ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_ADD_EV,
     VITAMIN_FRIENDSHIP_CHANGE(7),
     [10] = ITEM10_IS_VITAMIN,
 };
 
-const u8 gItemEffect_ZincEX[11] = {
+const u8 gItemEffect_ZincEX[ITEM_EFFECT_COUNT] = {
     [5] = ITEM5_EV_SPDEF | ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_MAX_EV,
 };
 
-const u8 gItemEffect_ZeroAtkIV[11] = {
+const u8 gItemEffect_ZeroAtkIV[ITEM_EFFECT_COUNT] = {
     [9] = ITEM9_ZERO_IV_ATK,
     [10] = ITEM10_ZERO_IV,
 };
 
-const u8 gItemEffect_ZeroSpeedIV[11] = {
+const u8 gItemEffect_ZeroSpeedIV[ITEM_EFFECT_COUNT] = {
     [9] = ITEM9_ZERO_IV_SPEED,
     [10] = ITEM10_ZERO_IV,
 };
@@ -270,86 +270,86 @@ const u8 gItemEffect_ZeroSpeedIV[11] = {
     [(i) + 1] = 2, /* Friendship change, mid */  \
     [(i) + 2] = 1  /* Friendship change, high */
 
-const u8 gItemEffect_HpFeather[11] = {
+const u8 gItemEffect_HpFeather[ITEM_EFFECT_COUNT] = {
     [5] = ITEM5_FRIENDSHIP_ALL,
     FEATHER_FRIENDSHIP_CHANGE(6),
     [10] = ITEM10_IV_HP,
 };
 
-const u8 gItemEffect_AtkFeather[11] = {
+const u8 gItemEffect_AtkFeather[ITEM_EFFECT_COUNT] = {
     [5] = ITEM5_FRIENDSHIP_ALL,
     FEATHER_FRIENDSHIP_CHANGE(6),
     [10] = ITEM10_IV_ATK,
 };
 
-const u8 gItemEffect_DefFeather[11] = {
+const u8 gItemEffect_DefFeather[ITEM_EFFECT_COUNT] = {
     [5] = ITEM5_FRIENDSHIP_ALL,
     FEATHER_FRIENDSHIP_CHANGE(6),
     [10] = ITEM10_IV_DEF,
 };
 
-const u8 gItemEffect_SpeedFeather[11] = {
+const u8 gItemEffect_SpeedFeather[ITEM_EFFECT_COUNT] = {
     [5] = ITEM5_FRIENDSHIP_ALL,
     FEATHER_FRIENDSHIP_CHANGE(6),
     [10] = ITEM10_IV_SPEED,
 };
 
-const u8 gItemEffect_SpatkFeather[11] = {
+const u8 gItemEffect_SpatkFeather[ITEM_EFFECT_COUNT] = {
     [5] = ITEM5_FRIENDSHIP_ALL,
     FEATHER_FRIENDSHIP_CHANGE(6),
     [10] = ITEM10_IV_SPATK,
 };
 
-const u8 gItemEffect_SpdefFeather[11] = {
+const u8 gItemEffect_SpdefFeather[ITEM_EFFECT_COUNT] = {
     [5] = ITEM5_FRIENDSHIP_ALL,
     FEATHER_FRIENDSHIP_CHANGE(6),
     [10] = ITEM10_IV_SPDEF,
 };
 
-const u8 gItemEffect_HpMochi[11] = {
+const u8 gItemEffect_HpMochi[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_EV_HP,
     [6] = ITEM6_ADD_EV,
     [10] = 0,
 };
 
-const u8 gItemEffect_AtkMochi[11] = {
+const u8 gItemEffect_AtkMochi[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_EV_ATK,
     [6] = ITEM6_ADD_EV,
     [10] = 0,
 };
 
-const u8 gItemEffect_DefMochi[11] = {
+const u8 gItemEffect_DefMochi[ITEM_EFFECT_COUNT] = {
     [5] = ITEM5_EV_DEF,
     [6] = ITEM6_ADD_EV,
     [10] = 0,
 };
 
-const u8 gItemEffect_SpeedMochi[11] = {
+const u8 gItemEffect_SpeedMochi[ITEM_EFFECT_COUNT] = {
     [5] = ITEM5_EV_SPEED,
     [6] = ITEM6_ADD_EV,
     [10] = 0,
 };
 
-const u8 gItemEffect_SpatkMochi[11] = {
+const u8 gItemEffect_SpatkMochi[ITEM_EFFECT_COUNT] = {
     [5] = ITEM5_EV_SPATK,
     [6] = ITEM6_ADD_EV,
     [10] = 0,
 };
 
-const u8 gItemEffect_SpdefMochi[11] = {
+const u8 gItemEffect_SpdefMochi[ITEM_EFFECT_COUNT] = {
     [5] = ITEM5_EV_SPDEF,
     [6] = ITEM6_ADD_EV,
     [10] = 0,
 };
 
-const u8 gItemEffect_ResetMochi[11] = {
+const u8 gItemEffect_ResetMochi[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_EV_HP | ITEM4_EV_ATK,
     [5] = ITEM5_EV_DEF | ITEM5_EV_SPEED | ITEM5_EV_SPATK | ITEM5_EV_SPDEF,
     [6] = ITEM6_RESET_EV,
     [10] = 0,
 };
 
-const u8 gItemEffect_RareCandy[10] = {
+const u8 gItemEffect_RareCandy[ITEM_EFFECT_COUNT] = {
     [3] = ITEM3_LEVEL_UP,
     [4] = ITEM4_REVIVE | ITEM4_HEAL_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
@@ -357,18 +357,18 @@ const u8 gItemEffect_RareCandy[10] = {
     VITAMIN_FRIENDSHIP_CHANGE(7),
 };
 
-const u8 gItemEffect_PPUp[9] = {
+const u8 gItemEffect_PPUp[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_PP_UP,
     [5] = ITEM5_FRIENDSHIP_ALL,
     VITAMIN_FRIENDSHIP_CHANGE(6),
 };
 
-const u8 gItemEffect_PPMax[9] = {
+const u8 gItemEffect_PPMax[ITEM_EFFECT_COUNT] = {
     [5] = ITEM5_PP_MAX | ITEM5_FRIENDSHIP_ALL,
     VITAMIN_FRIENDSHIP_CHANGE(6),
 };
 
-const u8 gItemEffect_GuardSpec[8] = {
+const u8 gItemEffect_GuardSpec[ITEM_EFFECT_COUNT] = {
     [3] = ITEM3_GUARD_SPEC,
 };
 
@@ -376,53 +376,53 @@ const u8 gItemEffect_GuardSpec[8] = {
 // only uses the least significant bit of its full mask.
 // The full constant is commented next to it
 
-const u8 gItemEffect_DireHit[8] = {
+const u8 gItemEffect_DireHit[ITEM_EFFECT_COUNT] = {
     [0] = 1 << 5, // ITEM0_DIRE_HIT
 };
 
-const u8 gItemEffect_XAttack[8] = {
+const u8 gItemEffect_XAttack[ITEM_EFFECT_COUNT] = {
     [1] = ITEM1_X_ATTACK,
 };
 
-const u8 gItemEffect_XDefense[8] = {
+const u8 gItemEffect_XDefense[ITEM_EFFECT_COUNT] = {
     [1] = ITEM1_X_DEFENSE,
 };
 
-const u8 gItemEffect_XSpeed[8] = {
+const u8 gItemEffect_XSpeed[ITEM_EFFECT_COUNT] = {
     [1] = ITEM1_X_SPEED,
 };
 
-const u8 gItemEffect_XAccuracy[8] = {
+const u8 gItemEffect_XAccuracy[ITEM_EFFECT_COUNT] = {
     [1] = ITEM1_X_ACCURACY,
 };
 
-const u8 gItemEffect_XSpecialAttack[8] = {
+const u8 gItemEffect_XSpecialAttack[ITEM_EFFECT_COUNT] = {
     [1] = ITEM1_X_SPATK,
 };
 
-const u8 gItemEffect_XSpecialDefense[8] = {
+const u8 gItemEffect_XSpecialDefense[ITEM_EFFECT_COUNT] = {
     [1] = ITEM1_X_SPDEF,
 };
 
-const u8 gItemEffect_EvoItem[6] = {
+const u8 gItemEffect_EvoItem[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_EVO_STONE,
 };
 
-const u8 gItemEffect_LeppaBerry[7] = {
+const u8 gItemEffect_LeppaBerry[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_HEAL_PP_ONE | ITEM4_HEAL_PP,
     [6] = 10, // Amount of PP to recover
 };
 
-const u8 gItemEffect_OranBerry[7] = {
+const u8 gItemEffect_OranBerry[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_HEAL_HP,
     [6] = 10, // Amount of HP to recover
 };
 
-const u8 gItemEffect_PersimBerry[6] = {
+const u8 gItemEffect_PersimBerry[ITEM_EFFECT_COUNT] = {
     [3] = ITEM3_CONFUSION,
 };
 
-const u8 gItemEffect_SitrusBerry[7] = {
+const u8 gItemEffect_SitrusBerry[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_HEAL_HP,
 #if I_SITRUS_BERRY_HEAL >= GEN_4
     [6] = ITEM6_HEAL_HP_QUARTER,
@@ -436,39 +436,39 @@ const u8 gItemEffect_SitrusBerry[7] = {
     [8] = 5,  /* Friendship change, mid */  \
     [9] = 2   /* Friendship change, high */
 
-const u8 gItemEffect_PomegBerry[10] = {
+const u8 gItemEffect_PomegBerry[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_EV_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_SUBTRACT_EV,
     EV_BERRY_FRIENDSHIP_CHANGE,
 };
 
-const u8 gItemEffect_KelpsyBerry[10] = {
+const u8 gItemEffect_KelpsyBerry[ITEM_EFFECT_COUNT] = {
     [4] = ITEM4_EV_ATK,
     [5] = ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_SUBTRACT_EV,
     EV_BERRY_FRIENDSHIP_CHANGE,
 };
 
-const u8 gItemEffect_QualotBerry[10] = {
+const u8 gItemEffect_QualotBerry[ITEM_EFFECT_COUNT] = {
     [5] = ITEM5_EV_DEF | ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_SUBTRACT_EV,
     EV_BERRY_FRIENDSHIP_CHANGE,
 };
 
-const u8 gItemEffect_HondewBerry[10] = {
+const u8 gItemEffect_HondewBerry[ITEM_EFFECT_COUNT] = {
     [5] = ITEM5_EV_SPATK | ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_SUBTRACT_EV,
     EV_BERRY_FRIENDSHIP_CHANGE,
 };
 
-const u8 gItemEffect_GrepaBerry[10] = {
+const u8 gItemEffect_GrepaBerry[ITEM_EFFECT_COUNT] = {
     [5] = ITEM5_EV_SPDEF | ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_SUBTRACT_EV,
     EV_BERRY_FRIENDSHIP_CHANGE,
 };
 
-const u8 gItemEffect_TamatoBerry[10] = {
+const u8 gItemEffect_TamatoBerry[ITEM_EFFECT_COUNT] = {
     [5] = ITEM5_EV_SPEED | ITEM5_FRIENDSHIP_ALL,
     [6] = ITEM6_SUBTRACT_EV,
     EV_BERRY_FRIENDSHIP_CHANGE,

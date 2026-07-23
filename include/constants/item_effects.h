@@ -63,6 +63,9 @@
 #define ITEM9_ZERO_IV_ATK       0x1
 #define ITEM9_ZERO_IV_SPEED     0x2
 
+// All item effect tables must include fields 0 through 10.
+#define ITEM_EFFECT_COUNT 11
+
 // fields 6 and onwards (except field 10) are item-specific arguments
 #define ITEM_EFFECT_ARG_START 6
 
