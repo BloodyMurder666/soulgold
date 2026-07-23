@@ -10036,6 +10036,16 @@
       "secondary_tileset": "gTileset_House_Lab",
       "border_filepath": "data/layouts/EcruteakCity_House4/border.bin",
       "blockdata_filepath": "data/layouts/EcruteakCity_House4/map.bin"
+    },
+    {
+      "id": "LAYOUT_RINTO_HOUSE1",
+      "name": "RintoHouse1_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Johto_Building",
+      "secondary_tileset": "gTileset_House_Lab",
+      "border_filepath": "data/layouts/RintoHouse1/border.bin",
+      "blockdata_filepath": "data/layouts/RintoHouse1/map.bin"
     }
   ]
 }

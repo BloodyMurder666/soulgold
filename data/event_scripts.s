@@ -2340,3 +2340,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/DarkraiInnFinalRoom/scripts.inc"
 
 	.include "data/maps/EcruteakCity_House4/scripts.inc"
+
+	.include "data/maps/RintoHouse1/scripts.inc"
