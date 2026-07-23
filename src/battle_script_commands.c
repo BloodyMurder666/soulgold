@@ -4348,7 +4348,7 @@ static void Cmd_tryfaintmon(void)
              && battler == GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT)
              && IsVictoryCatch())
             {
-                u8 hp = 1;
+                u16 hp = 1;
 
                 gBattlerAttacker = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
                 gBattlerTarget = battler;

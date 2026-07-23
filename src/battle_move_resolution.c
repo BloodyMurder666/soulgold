@@ -2610,7 +2610,7 @@ static enum MoveEndResult MoveEndFaintBlock(void)
              && gBattleStruct->victoryCatchState != VICTORY_CATCH_FAINTED
              && !IsOnPlayerSide(gBattlerTarget))
             {
-                u8 hp = 1;
+                u16 hp = 1;
                 SetMonData(GetBattlerMon(gBattlerTarget), MON_DATA_HP, &hp);
                 BattleScriptCall(BattleScript_WildBattleVictory);
                 result = MOVEEND_RESULT_RUN_SCRIPT;

@@ -8,11 +8,13 @@ EventScript_UseSurf::
 	goto_if_eq VAR_RESULT, NO, EventScript_ReleaseUseSurf
 	msgbox gText_PlayerUsedSurf, MSGBOX_DEFAULT
 	dofieldeffect FLDEFF_USE_SURF
+	waitfieldeffect FLDEFF_USE_SURF
 	goto EventScript_EndUseSurf
 
 EventScript_SurfAWave::
 	msgbox gText_PlayerUsedSurf, MSGBOX_DEFAULT
 	dofieldeffect FLDEFF_USE_SURF
+	waitfieldeffect FLDEFF_USE_SURF
 	goto EventScript_EndUseSurf
 
 EventScript_ReleaseUseSurf::

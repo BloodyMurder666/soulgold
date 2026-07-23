@@ -3345,7 +3345,8 @@ static void SurfFieldEffect_End(struct Task *task)
             ObjectEventClearHeldMovementIfFinished(followerObject);
         SetSurfBlob_BobState(objectEvent->fieldEffectSpriteId, BOB_PLAYER_AND_MON);
         UnfreezeObjectEvents();
-        UnlockPlayerFieldControls();
+        if (!ScriptContext_IsEnabled())
+            UnlockPlayerFieldControls();
         FieldEffectActiveListRemove(FLDEFF_USE_SURF);
         DestroyTask(FindTaskIdByFunc(Task_SurfFieldEffect));
     }

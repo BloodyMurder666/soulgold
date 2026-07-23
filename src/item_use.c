@@ -504,10 +504,10 @@ bool8 ItemfinderCheckForHiddenItems(const struct MapEvents *events, u8 taskId)
     }
 
     CheckForHiddenItemsInMapConnection(taskId);
-    if (gTasks[taskId].tItemFound == TRUE || gSprites[gObjectEvents[gPlayerAvatar.objectEventId].fieldEffectSpriteId].tItemFound)
-        return TRUE;
+    if (I_ORAS_DOWSING_FLAG != 0)
+        return gSprites[gObjectEvents[gPlayerAvatar.objectEventId].fieldEffectSpriteId].tItemFound;
     else
-        return FALSE;
+        return gTasks[taskId].tItemFound;
 }
 
 static bool8 IsHiddenItemPresentAtCoords(const struct MapEvents *events, s16 x, s16 y)
@@ -601,10 +601,13 @@ static void CheckForHiddenItemsInMapConnection(u8 taskId)
 
 static void SetDistanceOfClosestHiddenItem(u8 taskId, s16 itemDistanceX, s16 itemDistanceY)
 {
-    s16 *data = gTasks[taskId].data;
+    s16 *data;
     s16 oldItemAbsX, oldItemAbsY, newItemAbsX, newItemAbsY;
+
     if (I_ORAS_DOWSING_FLAG != 0)
         data = gSprites[gObjectEvents[gPlayerAvatar.objectEventId].fieldEffectSpriteId].data;
+    else
+        data = gTasks[taskId].data;
 
     if (tItemFound == FALSE)
     {
