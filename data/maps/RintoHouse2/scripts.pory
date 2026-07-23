@@ -1,1 +1,285 @@
 mapscripts RintoHouse2_MapScripts {}
+
+script RintoHouse2_BottleCapManiac {
+    lock
+    faceplayer
+    msgbox("The name's Mr. Hyper!
+
+            I can put your Pokémon through my
+            amazing Hyper Training!
+
+            A Bottle Cap trains one stat, while a
+            Gold Bottle Cap trains every stat.
+
+            Want to get your Pokémon hyped up?",
+           MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        goto(RintoHouse2_BottleCapManiac_Goodbye)
+    }
+    goto(RintoHouse2_BottleCapManiac_ChooseMon)
+}
+
+script RintoHouse2_BottleCapManiac_ChooseMon {
+    msgbox("Which one of your Pokémon wants some
+            Hyper Training?")
+    special(ChoosePartyMon)
+    waitstate
+    if (var(VAR_0x8004) >= PARTY_SIZE) {
+        goto(RintoHouse2_BottleCapManiac_Goodbye)
+    }
+
+    special(IsSelectedMonEgg)
+    if (var(VAR_RESULT) == TRUE) {
+        msgbox("An Egg?! I admire the enthusiasm,
+                but I can't train that just yet!")
+        goto(RintoHouse2_BottleCapManiac_ChooseMon)
+    }
+
+    bufferpartymonnick(STR_VAR_1, VAR_0x8004)
+    setvar(VAR_0x8005, FALSE)
+    canhypertrain(STAT_HP, VAR_0x8004)
+    if (var(VAR_RESULT) == TRUE) {
+        setvar(VAR_0x8005, TRUE)
+    }
+    canhypertrain(STAT_ATK, VAR_0x8004)
+    if (var(VAR_RESULT) == TRUE) {
+        setvar(VAR_0x8005, TRUE)
+    }
+    canhypertrain(STAT_DEF, VAR_0x8004)
+    if (var(VAR_RESULT) == TRUE) {
+        setvar(VAR_0x8005, TRUE)
+    }
+    canhypertrain(STAT_SPEED, VAR_0x8004)
+    if (var(VAR_RESULT) == TRUE) {
+        setvar(VAR_0x8005, TRUE)
+    }
+    canhypertrain(STAT_SPATK, VAR_0x8004)
+    if (var(VAR_RESULT) == TRUE) {
+        setvar(VAR_0x8005, TRUE)
+    }
+    canhypertrain(STAT_SPDEF, VAR_0x8004)
+    if (var(VAR_RESULT) == TRUE) {
+        setvar(VAR_0x8005, TRUE)
+    }
+    if (var(VAR_0x8005) == FALSE) {
+        msgbox("But {STR_VAR_1} is already so
+                awesome that it doesn't need any
+                training!")
+        goto(RintoHouse2_BottleCapManiac_ChooseMon)
+    }
+    goto(RintoHouse2_BottleCapManiac_ChooseCap)
+}
+
+script RintoHouse2_BottleCapManiac_ChooseCap {
+    msgbox("So, will it be a Bottle Cap or a
+            Gold Bottle Cap?")
+    dynmultichoice(0, 0, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE,
+                   "Bottle Cap",
+                   "Gold Bottle Cap",
+                   "Choose another Pokémon",
+                   "Cancel")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            if (checkitem(ITEM_BOTTLE_CAP) == FALSE) {
+                msgbox("Oh no! You don't have a
+                        Bottle Cap!")
+                goto(RintoHouse2_BottleCapManiac_ChooseCap)
+            }
+            goto(RintoHouse2_BottleCapManiac_ChooseStat)
+        case 1:
+            if (checkitem(ITEM_GOLD_BOTTLE_CAP) == FALSE) {
+                msgbox("Oh no! You don't have a
+                        Gold Bottle Cap!")
+                goto(RintoHouse2_BottleCapManiac_ChooseCap)
+            }
+            msgbox("Exchange a Gold Bottle Cap to
+                    train all of {STR_VAR_1}'s stats?",
+                   MSGBOX_YESNO)
+            if (var(VAR_RESULT) == NO) {
+                goto(RintoHouse2_BottleCapManiac_ChooseCap)
+            }
+            removeitem(ITEM_GOLD_BOTTLE_CAP, 1)
+            canhypertrain(STAT_HP, VAR_0x8004)
+            if (var(VAR_RESULT) == TRUE) {
+                hypertrain(STAT_HP, VAR_0x8004)
+            }
+            canhypertrain(STAT_ATK, VAR_0x8004)
+            if (var(VAR_RESULT) == TRUE) {
+                hypertrain(STAT_ATK, VAR_0x8004)
+            }
+            canhypertrain(STAT_DEF, VAR_0x8004)
+            if (var(VAR_RESULT) == TRUE) {
+                hypertrain(STAT_DEF, VAR_0x8004)
+            }
+            canhypertrain(STAT_SPEED, VAR_0x8004)
+            if (var(VAR_RESULT) == TRUE) {
+                hypertrain(STAT_SPEED, VAR_0x8004)
+            }
+            canhypertrain(STAT_SPATK, VAR_0x8004)
+            if (var(VAR_RESULT) == TRUE) {
+                hypertrain(STAT_SPATK, VAR_0x8004)
+            }
+            canhypertrain(STAT_SPDEF, VAR_0x8004)
+            if (var(VAR_RESULT) == TRUE) {
+                hypertrain(STAT_SPDEF, VAR_0x8004)
+            }
+            goto(RintoHouse2_BottleCapManiac_TrainingDone)
+        case 2:
+            goto(RintoHouse2_BottleCapManiac_ChooseMon)
+        default:
+            goto(RintoHouse2_BottleCapManiac_Goodbye)
+    }
+}
+
+script RintoHouse2_BottleCapManiac_ChooseStat {
+    msgbox("Which one of {STR_VAR_1}'s stats
+            should I train?")
+    dynmultichoice(0, 0, FALSE, 5, 0, DYN_MULTICHOICE_CB_NONE,
+                   "HP",
+                   "Attack",
+                   "Defense",
+                   "Sp. Atk",
+                   "Sp. Def",
+                   "Speed",
+                   "Go back")
+    switch (var(VAR_RESULT)) {
+        case 0:
+            canhypertrain(STAT_HP, VAR_0x8004)
+            if (var(VAR_RESULT) == FALSE) {
+                goto(RintoHouse2_BottleCapManiac_StatAlreadyMaxed)
+            }
+            goto(RintoHouse2_BottleCapManiac_ConfirmHP)
+        case 1:
+            canhypertrain(STAT_ATK, VAR_0x8004)
+            if (var(VAR_RESULT) == FALSE) {
+                goto(RintoHouse2_BottleCapManiac_StatAlreadyMaxed)
+            }
+            goto(RintoHouse2_BottleCapManiac_ConfirmAttack)
+        case 2:
+            canhypertrain(STAT_DEF, VAR_0x8004)
+            if (var(VAR_RESULT) == FALSE) {
+                goto(RintoHouse2_BottleCapManiac_StatAlreadyMaxed)
+            }
+            goto(RintoHouse2_BottleCapManiac_ConfirmDefense)
+        case 3:
+            canhypertrain(STAT_SPATK, VAR_0x8004)
+            if (var(VAR_RESULT) == FALSE) {
+                goto(RintoHouse2_BottleCapManiac_StatAlreadyMaxed)
+            }
+            goto(RintoHouse2_BottleCapManiac_ConfirmSpAttack)
+        case 4:
+            canhypertrain(STAT_SPDEF, VAR_0x8004)
+            if (var(VAR_RESULT) == FALSE) {
+                goto(RintoHouse2_BottleCapManiac_StatAlreadyMaxed)
+            }
+            goto(RintoHouse2_BottleCapManiac_ConfirmSpDefense)
+        case 5:
+            canhypertrain(STAT_SPEED, VAR_0x8004)
+            if (var(VAR_RESULT) == FALSE) {
+                goto(RintoHouse2_BottleCapManiac_StatAlreadyMaxed)
+            }
+            goto(RintoHouse2_BottleCapManiac_ConfirmSpeed)
+        default:
+            goto(RintoHouse2_BottleCapManiac_ChooseCap)
+    }
+}
+
+script RintoHouse2_BottleCapManiac_StatAlreadyMaxed {
+    msgbox("That stat can't get any more hyper!
+            It's already as high as it can get!")
+    goto(RintoHouse2_BottleCapManiac_ChooseStat)
+}
+
+script RintoHouse2_BottleCapManiac_ConfirmHP {
+    msgbox("Exchange a Bottle Cap to train
+            {STR_VAR_1}'s HP?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        goto(RintoHouse2_BottleCapManiac_ChooseStat)
+    }
+    removeitem(ITEM_BOTTLE_CAP, 1)
+    hypertrain(STAT_HP, VAR_0x8004)
+    goto(RintoHouse2_BottleCapManiac_TrainingDone)
+}
+
+script RintoHouse2_BottleCapManiac_ConfirmAttack {
+    msgbox("Exchange a Bottle Cap to train
+            {STR_VAR_1}'s Attack?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        goto(RintoHouse2_BottleCapManiac_ChooseStat)
+    }
+    removeitem(ITEM_BOTTLE_CAP, 1)
+    hypertrain(STAT_ATK, VAR_0x8004)
+    goto(RintoHouse2_BottleCapManiac_TrainingDone)
+}
+
+script RintoHouse2_BottleCapManiac_ConfirmDefense {
+    msgbox("Exchange a Bottle Cap to train
+            {STR_VAR_1}'s Defense?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        goto(RintoHouse2_BottleCapManiac_ChooseStat)
+    }
+    removeitem(ITEM_BOTTLE_CAP, 1)
+    hypertrain(STAT_DEF, VAR_0x8004)
+    goto(RintoHouse2_BottleCapManiac_TrainingDone)
+}
+
+script RintoHouse2_BottleCapManiac_ConfirmSpAttack {
+    msgbox("Exchange a Bottle Cap to train
+            {STR_VAR_1}'s Sp. Atk?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        goto(RintoHouse2_BottleCapManiac_ChooseStat)
+    }
+    removeitem(ITEM_BOTTLE_CAP, 1)
+    hypertrain(STAT_SPATK, VAR_0x8004)
+    goto(RintoHouse2_BottleCapManiac_TrainingDone)
+}
+
+script RintoHouse2_BottleCapManiac_ConfirmSpDefense {
+    msgbox("Exchange a Bottle Cap to train
+            {STR_VAR_1}'s Sp. Def?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        goto(RintoHouse2_BottleCapManiac_ChooseStat)
+    }
+    removeitem(ITEM_BOTTLE_CAP, 1)
+    hypertrain(STAT_SPDEF, VAR_0x8004)
+    goto(RintoHouse2_BottleCapManiac_TrainingDone)
+}
+
+script RintoHouse2_BottleCapManiac_ConfirmSpeed {
+    msgbox("Exchange a Bottle Cap to train
+            {STR_VAR_1}'s Speed?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        goto(RintoHouse2_BottleCapManiac_ChooseStat)
+    }
+    removeitem(ITEM_BOTTLE_CAP, 1)
+    hypertrain(STAT_SPEED, VAR_0x8004)
+    goto(RintoHouse2_BottleCapManiac_TrainingDone)
+}
+
+script RintoHouse2_BottleCapManiac_TrainingDone {
+    msgbox("Then get hyped! It's time for some
+            real Hyper Training!")
+    closemessage
+    fadescreen(FADE_TO_BLACK)
+    delay(30)
+    playse(SE_EXP_MAX)
+    waitse
+    fadescreen(FADE_FROM_BLACK)
+    msgbox("{STR_VAR_1} grew stronger thanks
+            to Hyper Training!
+
+            Want to keep the hype rolling?",
+           MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        goto(RintoHouse2_BottleCapManiac_ChooseMon)
+    }
+    goto(RintoHouse2_BottleCapManiac_Goodbye)
+}
+
+script RintoHouse2_BottleCapManiac_Goodbye {
+    createfieldmugshot(MUGSHOT_GENTLEMAN)
+    msgbox("Come back anytime! I'll always be
+            hyped to see you!")
+    release
+    end
+}
