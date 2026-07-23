@@ -109,7 +109,7 @@ ELF_NAME := $(ROM_NAME:.gba=.elf)
 MAP_NAME := $(ROM_NAME:.gba=.map)
 TESTELF = $(ROM_NAME:.gba=-test.elf)
 HEADLESSELF = $(ROM_NAME:.gba=-test-headless.elf)
-TEST_SHARDS ?= 4
+TEST_SHARDS ?= 2
 
 # Pick our active variables
 ROM := $(ROM_NAME)
