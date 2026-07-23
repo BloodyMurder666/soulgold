@@ -5324,7 +5324,10 @@ bool32 IsSpeciesInHoennDex(u16 species)
 
 u16 GetBattleBGM(void)
 {
-    if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
+    // Pyramid and Pike wild encounters are also marked as Frontier battles,
+    // but the player's facility BGM choice is only for trainer battles.
+    if ((gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
+     && (gBattleTypeFlags & BATTLE_TYPE_TRAINER))
     {
         u16 override = GetBattleFacilityBgmOverride();
 

@@ -1,1 +1,20 @@
 mapscripts RintoVillage_Mart_MapScripts {}
+
+script Rinto_Mart2 {
+    lock
+    faceplayer
+    message("Welcome! How may I help you?")
+    waitmessage
+    pokemart(Rinto2)
+    msgbox("Come back soon!")
+    release
+    end
+}
+
+mart Rinto2 {
+	ITEM_TM_BRICK_BREAK
+	ITEM_TM_FACADE
+    ITEM_TM_PLAY_ROUGH
+    ITEM_DUSK_BALL
+    ITEM_QUICK_BALL
+}

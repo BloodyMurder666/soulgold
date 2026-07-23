@@ -6,23 +6,82 @@ mapscripts RintoVillage_MapScripts {
 }
 
 script Rinto_OldLady {
-    msgbox("The recent heatwaves make it difficult
-            to sleep.", MSGBOX_NPC)
+    msgbox("Oh more tourists?
+    
+            I hope you don't mind the
+            temperature variations! Ho ho ho!", MSGBOX_NPC)
 }
 
 script Rinto_TempleSage {
-    msgbox("Access to the temple is only permitted
-            to those with permission from our Sage.", MSGBOX_NPC)
+    msgbox("I used to be a member of the Team
+            Magma. 
+            
+            After leaving I decided that I want
+            to travel the world as a pilgrim.
+            
+            It has been quite refreshing, seeing
+            the beauty of the world.", MSGBOX_NPC)
+}
+
+script Rinto_Gible {
+    lock
+    faceplayer
+    playmoncry(SPECIES_GIBLE, CRY_MODE_NORMAL)
+    msgbox("Gible: Gibgib!")
+    waitmoncry
+    release
+    end
+}
+
+script Rinto_Maractus {
+    lock
+    faceplayer
+    playmoncry(SPECIES_MARACTUS, CRY_MODE_NORMAL)
+    msgbox("Maractus: Maaaai!")
+    waitmoncry
+    release
+    end
+}
+
+script Rinto_Piplup {
+    lock
+    msgbox("...The Piplup appears to have dozed off.")
+    release
+    end
 }
 
 script Rinto_Gentleman {
-    msgbox("I travelled...", MSGBOX_NPC)
+    lock
+    faceplayer
+    if (flag(FLAG_GOT_TM_REST)) {
+        msgbox("Rest let's you restore health and
+        keep going. 
+        
+        Do not push yourself without taking 
+        the time to heal.")
+        release
+        end
+    }
+    msgbox("Resting after travelling afar is
+            equally important! Do not neglect
+            your health even at a young age!
+            
+            Take this.")
+    giveitem(ITEM_TM_REST)
+    setflag(FLAG_GOT_TM_REST)
+    msgbox("Rest let's you restore health and
+            keep going. 
+            
+            Do not push yourself without taking 
+            the time to heal.")
+    release
+    end
 }
 
 script Rinto_EastGuard {
-    msgbox("The treacherous desert to the east is
-            too dangerous right now. I cannot allow
-            you to pass as you are right now.", MSGBOX_NPC)
+    msgbox("The sandstorms are too intense right
+            now. I cannot allow you to pass until
+            they calm down.", MSGBOX_NPC)
 }
 
 script Rinto_TriggerEastGuard {
@@ -31,10 +90,10 @@ script Rinto_TriggerEastGuard {
     waitmovement
     applymovement(LOCALID_PLAYER, moves(face_up))
     waitmovement
-    msgbox("The treacherous desert to the east is
-            too dangerous right now. I cannot allow
-            you to pass as you are right now.")
-    waitmessage
+    msgbox("The sandstorms are too intense right
+            now. I cannot allow you to pass until
+            they calm down.")
+    closemessage
     applymovement(LOCALID_PLAYER, moves(walk_left))
     waitmovement
     release
@@ -43,11 +102,17 @@ script Rinto_TriggerEastGuard {
 }
 
 script Rinto_LittleGirl {
-    msgbox("Our town...", MSGBOX_NPC)
+    msgbox("I saw it! 
+    
+            Red and blue!
+            
+            They flew over the town to the east!", MSGBOX_NPC)
 }
 
 script Rinto_Fatman {
-    msgbox("The local...", MSGBOX_NPC)
+    msgbox("The blazing sun would make this place
+            uninhabitable if not for the small
+            opening to the sea.", MSGBOX_NPC)
 }
 
 script Rinto_Dancer {
@@ -69,15 +134,26 @@ script Rinto_DancerOricorio {
 script Rinto_Merchant {
     lock
     faceplayer
-    msgbox("Hey check our wares!")
+    msgbox("Hey check out my wares!")
+    pokemart(Rinto_Stall)
+    msgbox("Come back soon!")
     release
     end
 }
 
 mart Rinto_Stall {
-    ITEM_NONE
+    ITEM_RING_TARGET
+    ITEM_BINDING_BAND
+    ITEM_EJECT_BUTTON
+    ITEM_WIDE_LENS
+    ITEM_WISE_GLASSES
+    ITEM_EXPERT_BELT
 }
 
 script Rinto_GameboyKid {
-    msgbox("Yo", MSGBOX_NPC)
+    msgbox("The pyramid in the west has been locked
+            up for a long time. 
+            
+            I wonder if the key to opening 
+            it even exists anymore?", MSGBOX_NPC)
 }

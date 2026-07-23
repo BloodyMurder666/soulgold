@@ -16,164 +16,281 @@ Rinto_OldLady::
 
 
 Rinto_TempleSage::
-# 14 "data/maps/RintoVillage/scripts.pory"
+# 16 "data/maps/RintoVillage/scripts.pory"
 	msgbox Rinto_TempleSage_Text_0, MSGBOX_NPC
 	return
 
 
+Rinto_Gible::
+# 27 "data/maps/RintoVillage/scripts.pory"
+	lock
+# 28 "data/maps/RintoVillage/scripts.pory"
+	faceplayer
+# 29 "data/maps/RintoVillage/scripts.pory"
+	playmoncry SPECIES_GIBLE, CRY_MODE_NORMAL
+# 30 "data/maps/RintoVillage/scripts.pory"
+	msgbox Rinto_Gible_Text_0
+# 31 "data/maps/RintoVillage/scripts.pory"
+	waitmoncry
+# 32 "data/maps/RintoVillage/scripts.pory"
+	release
+	end
+
+
+Rinto_Maractus::
+# 37 "data/maps/RintoVillage/scripts.pory"
+	lock
+# 38 "data/maps/RintoVillage/scripts.pory"
+	faceplayer
+# 39 "data/maps/RintoVillage/scripts.pory"
+	playmoncry SPECIES_MARACTUS, CRY_MODE_NORMAL
+# 40 "data/maps/RintoVillage/scripts.pory"
+	msgbox Rinto_Maractus_Text_0
+# 41 "data/maps/RintoVillage/scripts.pory"
+	waitmoncry
+# 42 "data/maps/RintoVillage/scripts.pory"
+	release
+	end
+
+
+Rinto_Piplup::
+# 47 "data/maps/RintoVillage/scripts.pory"
+	lock
+# 48 "data/maps/RintoVillage/scripts.pory"
+	msgbox Rinto_Piplup_Text_0
+# 49 "data/maps/RintoVillage/scripts.pory"
+	release
+	end
+
+
 Rinto_Gentleman::
-# 19 "data/maps/RintoVillage/scripts.pory"
-	msgbox Rinto_Gentleman_Text_0, MSGBOX_NPC
-	return
+# 54 "data/maps/RintoVillage/scripts.pory"
+	lock
+# 55 "data/maps/RintoVillage/scripts.pory"
+	faceplayer
+# 56 "data/maps/RintoVillage/scripts.pory"
+	goto_if_set FLAG_GOT_TM_REST, Rinto_Gentleman_2
+# 65 "data/maps/RintoVillage/scripts.pory"
+	msgbox Rinto_Gentleman_Text_1
+# 70 "data/maps/RintoVillage/scripts.pory"
+	giveitem ITEM_TM_REST
+# 71 "data/maps/RintoVillage/scripts.pory"
+	setflag FLAG_GOT_TM_REST
+# 72 "data/maps/RintoVillage/scripts.pory"
+	msgbox Rinto_Gentleman_Text_0
+# 77 "data/maps/RintoVillage/scripts.pory"
+	release
+	end
+
+Rinto_Gentleman_2:
+# 57 "data/maps/RintoVillage/scripts.pory"
+	msgbox Rinto_Gentleman_Text_0
+# 62 "data/maps/RintoVillage/scripts.pory"
+	release
+	end
 
 
 Rinto_EastGuard::
-# 23 "data/maps/RintoVillage/scripts.pory"
+# 82 "data/maps/RintoVillage/scripts.pory"
 	msgbox Rinto_EastGuard_Text_0, MSGBOX_NPC
 	return
 
 
 Rinto_TriggerEastGuard::
-# 29 "data/maps/RintoVillage/scripts.pory"
+# 88 "data/maps/RintoVillage/scripts.pory"
 	lock
-# 30 "data/maps/RintoVillage/scripts.pory"
+# 89 "data/maps/RintoVillage/scripts.pory"
 	applymovement LOCALID_RINTO_EAST_GUARD, Rinto_TriggerEastGuard_Movement_0
-# 31 "data/maps/RintoVillage/scripts.pory"
+# 90 "data/maps/RintoVillage/scripts.pory"
 	waitmovement
-# 32 "data/maps/RintoVillage/scripts.pory"
+# 91 "data/maps/RintoVillage/scripts.pory"
 	applymovement LOCALID_PLAYER, Rinto_TriggerEastGuard_Movement_1
-# 33 "data/maps/RintoVillage/scripts.pory"
+# 92 "data/maps/RintoVillage/scripts.pory"
 	waitmovement
-# 34 "data/maps/RintoVillage/scripts.pory"
+# 93 "data/maps/RintoVillage/scripts.pory"
 	msgbox Rinto_EastGuard_Text_0
-# 37 "data/maps/RintoVillage/scripts.pory"
-	waitmessage
-# 38 "data/maps/RintoVillage/scripts.pory"
+# 96 "data/maps/RintoVillage/scripts.pory"
+	closemessage
+# 97 "data/maps/RintoVillage/scripts.pory"
 	applymovement LOCALID_PLAYER, Rinto_TriggerEastGuard_Movement_2
-# 39 "data/maps/RintoVillage/scripts.pory"
+# 98 "data/maps/RintoVillage/scripts.pory"
 	waitmovement
-# 40 "data/maps/RintoVillage/scripts.pory"
+# 99 "data/maps/RintoVillage/scripts.pory"
 	release
 	end
 
 
 Rinto_LittleGirl::
-# 46 "data/maps/RintoVillage/scripts.pory"
+# 105 "data/maps/RintoVillage/scripts.pory"
 	msgbox Rinto_LittleGirl_Text_0, MSGBOX_NPC
 	return
 
 
 Rinto_Fatman::
-# 50 "data/maps/RintoVillage/scripts.pory"
+# 113 "data/maps/RintoVillage/scripts.pory"
 	msgbox Rinto_Fatman_Text_0, MSGBOX_NPC
 	return
 
 
 Rinto_Dancer::
-# 54 "data/maps/RintoVillage/scripts.pory"
+# 119 "data/maps/RintoVillage/scripts.pory"
 	lock
-# 55 "data/maps/RintoVillage/scripts.pory"
+# 120 "data/maps/RintoVillage/scripts.pory"
 	msgbox Rinto_Dancer_Text_0
-# 56 "data/maps/RintoVillage/scripts.pory"
+# 121 "data/maps/RintoVillage/scripts.pory"
 	release
 	end
 
 
 Rinto_DancerOricorio::
-# 61 "data/maps/RintoVillage/scripts.pory"
+# 126 "data/maps/RintoVillage/scripts.pory"
 	lock
-# 62 "data/maps/RintoVillage/scripts.pory"
+# 127 "data/maps/RintoVillage/scripts.pory"
 	playmoncry SPECIES_ORICORIO_SENSU, CRY_MODE_NORMAL
-# 63 "data/maps/RintoVillage/scripts.pory"
+# 128 "data/maps/RintoVillage/scripts.pory"
 	msgbox Rinto_DancerOricorio_Text_0
-# 64 "data/maps/RintoVillage/scripts.pory"
+# 129 "data/maps/RintoVillage/scripts.pory"
 	waitmoncry
-# 65 "data/maps/RintoVillage/scripts.pory"
+# 130 "data/maps/RintoVillage/scripts.pory"
 	release
 	end
 
 
 Rinto_Merchant::
-# 70 "data/maps/RintoVillage/scripts.pory"
+# 135 "data/maps/RintoVillage/scripts.pory"
 	lock
-# 71 "data/maps/RintoVillage/scripts.pory"
+# 136 "data/maps/RintoVillage/scripts.pory"
 	faceplayer
-# 72 "data/maps/RintoVillage/scripts.pory"
+# 137 "data/maps/RintoVillage/scripts.pory"
 	msgbox Rinto_Merchant_Text_0
-# 73 "data/maps/RintoVillage/scripts.pory"
+# 138 "data/maps/RintoVillage/scripts.pory"
+	pokemart Rinto_Stall
+# 139 "data/maps/RintoVillage/scripts.pory"
+	msgbox Rinto_Merchant_Text_1
+# 140 "data/maps/RintoVillage/scripts.pory"
 	release
 	end
 
 
 	.align 2
-# 77 "data/maps/RintoVillage/scripts.pory"
+# 144 "data/maps/RintoVillage/scripts.pory"
 Rinto_Stall:
+# 145 "data/maps/RintoVillage/scripts.pory"
+	.2byte ITEM_RING_TARGET
+# 146 "data/maps/RintoVillage/scripts.pory"
+	.2byte ITEM_BINDING_BAND
+# 147 "data/maps/RintoVillage/scripts.pory"
+	.2byte ITEM_EJECT_BUTTON
+# 148 "data/maps/RintoVillage/scripts.pory"
+	.2byte ITEM_WIDE_LENS
+# 149 "data/maps/RintoVillage/scripts.pory"
+	.2byte ITEM_WISE_GLASSES
+# 150 "data/maps/RintoVillage/scripts.pory"
+	.2byte ITEM_EXPERT_BELT
 	.2byte ITEM_NONE
 
 Rinto_GameboyKid::
-# 82 "data/maps/RintoVillage/scripts.pory"
+# 154 "data/maps/RintoVillage/scripts.pory"
 	msgbox Rinto_GameboyKid_Text_0, MSGBOX_NPC
 	return
 
 
-# 30 "data/maps/RintoVillage/scripts.pory"
+# 89 "data/maps/RintoVillage/scripts.pory"
 Rinto_TriggerEastGuard_Movement_0:
-# 30 "data/maps/RintoVillage/scripts.pory"
+# 89 "data/maps/RintoVillage/scripts.pory"
 	walk_in_place_down
 	step_end
 
-# 32 "data/maps/RintoVillage/scripts.pory"
+# 91 "data/maps/RintoVillage/scripts.pory"
 Rinto_TriggerEastGuard_Movement_1:
-# 32 "data/maps/RintoVillage/scripts.pory"
+# 91 "data/maps/RintoVillage/scripts.pory"
 	face_up
 	step_end
 
-# 38 "data/maps/RintoVillage/scripts.pory"
+# 97 "data/maps/RintoVillage/scripts.pory"
 Rinto_TriggerEastGuard_Movement_2:
-# 38 "data/maps/RintoVillage/scripts.pory"
+# 97 "data/maps/RintoVillage/scripts.pory"
 	walk_left
 	step_end
 
 Rinto_OldLady_Text_0:
 # 9 "data/maps/RintoVillage/scripts.pory"
-	.string "The recent heatwaves make it difficult\n"
-	.string "to sleep.$"
+	.string "Oh more tourists?\p"
+	.string "I hope you don't mind the\n"
+	.string "temperature variations! Ho ho ho!$"
 
 Rinto_TempleSage_Text_0:
-# 14 "data/maps/RintoVillage/scripts.pory"
-	.string "Access to the temple is only permitted\n"
-	.string "to those with permission from our Sage.$"
+# 16 "data/maps/RintoVillage/scripts.pory"
+	.string "I used to be a member of the Team\n"
+	.string "Magma. \p"
+	.string "After leaving I decided that I want\n"
+	.string "to travel the world as a pilgrim.\p"
+	.string "It has been quite refreshing, seeing\n"
+	.string "the beauty of the world.$"
+
+Rinto_Gible_Text_0:
+# 30 "data/maps/RintoVillage/scripts.pory"
+	.string "Gible: Gibgib!$"
+
+Rinto_Maractus_Text_0:
+# 40 "data/maps/RintoVillage/scripts.pory"
+	.string "Maractus: Maaaai!$"
+
+Rinto_Piplup_Text_0:
+# 48 "data/maps/RintoVillage/scripts.pory"
+	.string "...The Piplup appears to have dozed off.$"
 
 Rinto_Gentleman_Text_0:
-# 19 "data/maps/RintoVillage/scripts.pory"
-	.string "I travelled...$"
+# 57 "data/maps/RintoVillage/scripts.pory"
+	.string "Rest let's you restore health and\n"
+	.string "keep going. \p"
+	.string "Do not push yourself without taking \n"
+	.string "the time to heal.$"
+
+Rinto_Gentleman_Text_1:
+# 65 "data/maps/RintoVillage/scripts.pory"
+	.string "Resting after travelling afar is\n"
+	.string "equally important! Do not neglect\l"
+	.string "your health even at a young age!\p"
+	.string "Take this.$"
 
 Rinto_EastGuard_Text_0:
-# 23 "data/maps/RintoVillage/scripts.pory"
-	.string "The treacherous desert to the east is\n"
-	.string "too dangerous right now. I cannot allow\l"
-	.string "you to pass as you are right now.$"
+# 82 "data/maps/RintoVillage/scripts.pory"
+	.string "The sandstorms are too intense right\n"
+	.string "now. I cannot allow you to pass until\l"
+	.string "they calm down.$"
 
 Rinto_LittleGirl_Text_0:
-# 46 "data/maps/RintoVillage/scripts.pory"
-	.string "Our town...$"
+# 105 "data/maps/RintoVillage/scripts.pory"
+	.string "I saw it! \p"
+	.string "Red and blue!\p"
+	.string "They flew over the town to the east!$"
 
 Rinto_Fatman_Text_0:
-# 50 "data/maps/RintoVillage/scripts.pory"
-	.string "The local...$"
+# 113 "data/maps/RintoVillage/scripts.pory"
+	.string "The blazing sun would make this place\n"
+	.string "uninhabitable if not for the small\l"
+	.string "opening to the sea.$"
 
 Rinto_Dancer_Text_0:
-# 55 "data/maps/RintoVillage/scripts.pory"
+# 120 "data/maps/RintoVillage/scripts.pory"
 	.string "Let's go Oricorio, show them our moves!$"
 
 Rinto_DancerOricorio_Text_0:
-# 63 "data/maps/RintoVillage/scripts.pory"
+# 128 "data/maps/RintoVillage/scripts.pory"
 	.string "Oriiii!$"
 
 Rinto_Merchant_Text_0:
-# 72 "data/maps/RintoVillage/scripts.pory"
-	.string "Hey check our wares!$"
+# 137 "data/maps/RintoVillage/scripts.pory"
+	.string "Hey check out my wares!$"
+
+Rinto_Merchant_Text_1:
+# 139 "data/maps/RintoVillage/scripts.pory"
+	.string "Come back soon!$"
 
 Rinto_GameboyKid_Text_0:
-# 82 "data/maps/RintoVillage/scripts.pory"
-	.string "Yo$"
+# 154 "data/maps/RintoVillage/scripts.pory"
+	.string "The pyramid in the west has been locked\n"
+	.string "up for a long time. \p"
+	.string "I wonder if the key to opening \n"
+	.string "it even exists anymore?$"

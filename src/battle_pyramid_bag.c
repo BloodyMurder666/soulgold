@@ -45,6 +45,8 @@ enum {
     WIN_INFO,
     WIN_MSG,
     WIN_TOSS_NUM,
+    WIN_POCKET_NAME,
+    WIN_COUNT,
 };
 
 EWRAM_DATA struct PyramidBagMenu *gPyramidBagMenu = NULL;
@@ -138,6 +140,15 @@ static const struct BgTemplate sBgTemplates[] =
         .priority = 2,
         .baseTile = 0
     },
+    {
+        .bg = 3,
+        .charBaseIndex = 3,
+        .mapBaseIndex = 28,
+        .screenSize = 0,
+        .paletteMode = 0,
+        .priority = 3,
+        .baseTile = 0
+    },
 };
 
 static const struct ListMenuTemplate sListMenuTemplate =
@@ -195,6 +206,7 @@ enum {
     COLORID_DARK_GRAY,
     COLORID_LIGHT_GRAY,
     COLORID_WHITE_BG,
+    COLORID_POCKET_NAME,
     COLORID_NONE = 0xFF
 };
 
@@ -203,6 +215,7 @@ static const u8 sTextColors[][3] =
     [COLORID_DARK_GRAY]  = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY,  TEXT_COLOR_LIGHT_GRAY},
     [COLORID_LIGHT_GRAY] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_LIGHT_GRAY, TEXT_COLOR_WHITE},
     [COLORID_WHITE_BG]   = {TEXT_COLOR_WHITE,       TEXT_COLOR_DARK_GRAY,  TEXT_COLOR_LIGHT_GRAY}, // Unused
+    [COLORID_POCKET_NAME] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE,      TEXT_COLOR_RED},
 };
 
 static const struct WindowTemplate sWindowTemplates[] =
@@ -242,6 +255,15 @@ static const struct WindowTemplate sWindowTemplates[] =
         .height = 2,
         .paletteNum = 15,
         .baseBlock = 462
+    },
+    [WIN_POCKET_NAME] = {
+        .bg = 0,
+        .tilemapLeft = 4,
+        .tilemapTop = 1,
+        .width = 8,
+        .height = 2,
+        .paletteNum = 1,
+        .baseBlock = 600
     },
     DUMMY_WIN_TEMPLATE,
 };
@@ -433,6 +455,7 @@ void GoToBattlePyramidBagMenu(u8 location, MainCallback exitCallback)
 
 static void CB2_PyramidBag(void)
 {
+    ChangeBgY(3, 128, BG_COORD_ADD);
     RunTasks();
     AnimateSprites();
     BuildOamBuffer();
@@ -546,15 +569,18 @@ static void InitPyramidBagBgs(void)
     ResetVramOamAndBgCntRegs();
     ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
-    SetBgTilemapBuffer(2, gPyramidBagMenu->tilemapBuffer);
+    SetBgTilemapBuffer(2, gPyramidBagMenu->tilemapBuffer[PYRAMID_BAG_BG_NORMAL]);
+    SetBgTilemapBuffer(3, gPyramidBagMenu->tilemapBuffer[PYRAMID_BAG_BG_SCROLLING]);
     ResetAllBgsCoordinates();
     ScheduleBgCopyTilemapToVram(2);
+    ScheduleBgCopyTilemapToVram(3);
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 |
                                   DISPCNT_OBJ_1D_MAP |
                                   DISPCNT_OBJ_ON);
     ShowBg(0);
     ShowBg(1);
     ShowBg(2);
+    ShowBg(3);
     SetGpuReg(REG_OFFSET_BLDCNT, 0);
 }
 
@@ -570,19 +596,30 @@ static bool8 LoadPyramidBagGfx(void)
     case 1:
         if (FreeTempTileDataBuffersIfPossible() != TRUE)
         {
-            DecompressDataWithHeaderWram(gBattlePyramidBagTilemap, gPyramidBagMenu->tilemapBuffer);
+            // Keep the regular bag interface in the Pyramid; only the bag
+            // sprite itself is replaced with the Pyramid Bag below.
+            DecompressDataWithHeaderWram(gBagScreen_GfxTileMap,
+                                         gPyramidBagMenu->tilemapBuffer[PYRAMID_BAG_BG_NORMAL]);
             gPyramidBagMenu->state++;
         }
         break;
     case 2:
-        LoadPalette(gBattlePyramidBagInterface_Pal, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
+        DecompressDataWithHeaderVram(gBagScreenScrollingBgTilemap,
+                                     gPyramidBagMenu->tilemapBuffer[PYRAMID_BAG_BG_SCROLLING]);
         gPyramidBagMenu->state++;
         break;
     case 3:
-        LoadCompressedSpriteSheet(&sSpriteSheet_PyramidBag);
+        if (gSaveBlock2Ptr->playerGender == FEMALE)
+            LoadPalette(gBagScreenFemale_Pal, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
+        else
+            LoadPalette(gBagScreenMale_Pal, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
         gPyramidBagMenu->state++;
         break;
     case 4:
+        LoadCompressedSpriteSheet(&sSpriteSheet_PyramidBag);
+        gPyramidBagMenu->state++;
+        break;
+    case 5:
         LoadPyramidBagPalette();
         gPyramidBagMenu->state++;
         break;
@@ -1460,6 +1497,7 @@ void TryStoreHeldItemsInPyramidBag(void)
 static void InitPyramidBagWindows(void)
 {
     u8 i;
+    u8 x;
 
     InitWindows(sWindowTemplates);
     DeactivateAllTextPrinters();
@@ -1467,11 +1505,16 @@ static void InitPyramidBagWindows(void)
     LoadMessageBoxGfx(0, 0xA, BG_PLTT_ID(13));
     LoadPalette(gStandardMenuPalette, BG_PLTT_ID(15), PLTT_SIZE_4BPP);
 
-    for (i = 0; i < ARRAY_COUNT(sWindowTemplates); i++)
+    for (i = 0; i < WIN_COUNT; i++)
         FillWindowPixelBuffer(i, PIXEL_FILL(0));
+
+    x = GetStringCenterAlignXOffset(FONT_NORMAL, gText_Items, 64);
+    PyramidBagPrint(WIN_POCKET_NAME, gText_Items, x, 1, 0, 0, TEXT_SKIP_DRAW, COLORID_POCKET_NAME);
 
     PutWindowTilemap(WIN_LIST);
     PutWindowTilemap(WIN_INFO);
+    PutWindowTilemap(WIN_POCKET_NAME);
+    CopyWindowToVram(WIN_POCKET_NAME, COPYWIN_GFX);
     ScheduleBgCopyTilemapToVram(0);
     ScheduleBgCopyTilemapToVram(1);
 }
@@ -1561,7 +1604,9 @@ static void LoadPyramidBagPalette(void)
 {
     struct SpritePalette spritePalette;
 
-    spritePalette.data = gBattlePyramidBag_Pal + PLTT_ID(gSaveBlock2Ptr->frontier.lvlMode);
+    // There is only one Pyramid Bag variant. Its gold palette is the second
+    // palette in the asset and is shared by both player genders.
+    spritePalette.data = gBattlePyramidBag_Pal + PLTT_ID(1);
     spritePalette.tag = TAG_PYRAMID_BAG;
     LoadSpritePalette(&spritePalette);
 }

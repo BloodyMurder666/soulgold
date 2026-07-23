@@ -13784,7 +13784,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_TM_FACADE] =
     {
         .name = ITEM_NAME("TM42 Facade"),
-        .price = 3000,
+        .price = 4000,
         .description = COMPOUND_STRING(
             "Raises Attack when\n"
             "poisoned, burned,\n"
@@ -14623,7 +14623,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_TM_PLAY_ROUGH] =
     {
         .name = ITEM_NAME("TM98 Play Rough"),
-        .price = 3000,
+        .price = 6000,
         .description = COMPOUND_STRING(
             "Plays rough with\n"
             "the foe. May lower\n"

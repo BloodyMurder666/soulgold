@@ -13,6 +13,29 @@
 #include "constants/characters.h"
 #include "constants/daycare.h"
 #include "constants/move_relearner.h"
+#include "constants/songs.h"
+#include "constants/vars.h"
+
+TEST("Facility BGM overrides exclude Pyramid and Pike wild encounters")
+{
+    u32 savedBattleTypeFlags = gBattleTypeFlags;
+    u16 savedBgmChoice = VarGet(VAR_BATTLE_FACILITY_BGM);
+
+    // First selectable track after Default and Random.
+    VarSet(VAR_BATTLE_FACILITY_BGM, 2);
+
+    gBattleTypeFlags = BATTLE_TYPE_PYRAMID;
+    EXPECT_EQ(GetBattleBGM(), MUS_HG_VS_WILD);
+
+    gBattleTypeFlags = BATTLE_TYPE_PIKE;
+    EXPECT_EQ(GetBattleBGM(), MUS_HG_VS_WILD);
+
+    gBattleTypeFlags = BATTLE_TYPE_PYRAMID | BATTLE_TYPE_TRAINER;
+    EXPECT_EQ(GetBattleBGM(), MUS_VS_TRAINER);
+
+    gBattleTypeFlags = savedBattleTypeFlags;
+    VarSet(VAR_BATTLE_FACILITY_BGM, savedBgmChoice);
+}
 
 TEST("Nature independent from Hidden Nature")
 {

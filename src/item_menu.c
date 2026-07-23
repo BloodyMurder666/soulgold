@@ -1033,8 +1033,6 @@ static void BagMenu_InitBGs(void)
     SetGpuReg(REG_OFFSET_BLDCNT, 0);
 }
 
-const u32 sBagMenuScrollingBGTilemap[] = INCBIN_U32("graphics/bag/scrolling_bg.bin.smolTM");
-
 static bool8 LoadBagMenu_Graphics(void)
 {
     switch (gBagMenu->graphicsLoadState)
@@ -1053,7 +1051,7 @@ static bool8 LoadBagMenu_Graphics(void)
         break;
     case 2:
         //Load Scrolling Background
-        DecompressDataWithHeaderVram(sBagMenuScrollingBGTilemap, gBagMenu->tilemapBuffer[BAG_MENU_BG_SCROLLING]);
+        DecompressDataWithHeaderVram(gBagScreenScrollingBgTilemap, gBagMenu->tilemapBuffer[BAG_MENU_BG_SCROLLING]);
         gBagMenu->graphicsLoadState++;
         break;
     case 3:

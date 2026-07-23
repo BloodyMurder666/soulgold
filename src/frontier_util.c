@@ -3694,9 +3694,8 @@ static u16 *MakeCaughtBannesSpeciesList(u32 totalBannedSpecies)
     u32 count = 0;
     u16 *list = AllocZeroed(sizeof(u16) * totalBannedSpecies);
 
-    if (!IsFrontierSpeciesBanEnforced(gSaveBlock2Ptr->frontier.lvlMode))
-        return list;
-
+    // The count was computed using the newly selected level mode. The saved
+    // level mode is not updated when party validation fails.
     for (u32 i = 0; i < NUM_SPECIES; i++)
     {
         if (!IsSpeciesEnabled(i))

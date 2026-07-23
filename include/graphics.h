@@ -1812,6 +1812,7 @@ extern const u8 gMenuInfoElements_Gfx[];
 // item menu graphics
 extern const u32 gBagScreen_Gfx[];
 extern const u32 gBagScreen_GfxTileMap[];
+extern const u32 gBagScreenScrollingBgTilemap[];
 extern const u16 gBagScreenFemale_Pal[];
 extern const u16 gBagScreenMale_Pal[];
 extern const u8 gBagMenuHMIcon_Gfx[];
@@ -2104,8 +2105,6 @@ extern const u16 gSwapLinePal[];
 
 extern const u32 gBattlePyramidBag_Gfx[];
 extern const u16 gBattlePyramidBag_Pal[];
-extern const u32 gBattlePyramidBagTilemap[];
-extern const u16 gBattlePyramidBagInterface_Pal[];
 extern const u16 gBattlePyramidFloor_Pal[][16];
 
 extern const u16 gStandardMenuPalette[];

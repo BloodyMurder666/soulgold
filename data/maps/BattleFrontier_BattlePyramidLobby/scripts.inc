@@ -1833,17 +1833,17 @@ BattleFrontier_BattlePyramidLobby_Text_ExplainBagRules:
 # 917 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
 	.string "lost if you fail in your quest.$"
 
-PoyramidLobbyBPVendor::
+PyramidLobbyBPVendor::
 # 921 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
 	lock
 # 922 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
 	faceplayer
 # 923 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
-	msgbox PoyramidLobbyBPVendor_Text_0
+	msgbox PyramidLobbyBPVendor_Text_0
 # 924 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
 	bpmart PyramidBPVendor
 # 925 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
-	msgbox PoyramidLobbyBPVendor_Text_1
+	msgbox PyramidLobbyBPVendor_Text_1
 # 926 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
 	release
 	end
@@ -1870,10 +1870,10 @@ PyramidBPVendor:
 	.2byte ITEM_ASSAULT_VEST
 	.2byte ITEM_NONE
 
-PoyramidLobbyBPVendor_Text_0:
+PyramidLobbyBPVendor_Text_0:
 # 923 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
 	.string "Welcome!$"
 
-PoyramidLobbyBPVendor_Text_1:
+PyramidLobbyBPVendor_Text_1:
 # 925 "data/maps/BattleFrontier_BattlePyramidLobby/scripts.pory"
 	.string "Thanks!$"

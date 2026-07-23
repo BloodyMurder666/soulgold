@@ -29,10 +29,16 @@ enum {
 };
 #define NUM_SWAP_LINE_SPRITES (1 + PBAG_SPRITE_SWAP_LINE_END - PBAG_SPRITE_SWAP_LINE_START)
 
+enum {
+    PYRAMID_BAG_BG_NORMAL,
+    PYRAMID_BAG_BG_SCROLLING,
+    PYRAMID_BAG_BG_COUNT,
+};
+
 struct PyramidBagMenu
 {
     MainCallback newScreenCallback;
-    u8 tilemapBuffer[BG_SCREEN_SIZE];
+    u8 tilemapBuffer[PYRAMID_BAG_BG_COUNT][BG_SCREEN_SIZE];
     u8 spriteIds[PBAG_SPRITE_COUNT];
     u8 windowIds[5];
     u8 toSwapPos;

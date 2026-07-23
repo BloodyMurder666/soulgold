@@ -917,7 +917,7 @@ BattleFrontier_BattlePyramidLobby_Text_ExplainBagRules:
 	.string "lost if you fail in your quest.$"
 `
 
-script PoyramidLobbyBPVendor {
+script PyramidLobbyBPVendor {
 	lock
 	faceplayer
 	msgbox("Welcome!")

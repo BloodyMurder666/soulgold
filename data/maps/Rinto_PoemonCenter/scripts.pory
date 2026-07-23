@@ -1,1 +1,24 @@
-mapscripts Rinto_PoemonCenter_MapScripts {}
+mapscripts Rinto_PoemonCenter_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+		setflag(FLAG_TEMP_1)
+		setrespawn(HEAL_LOCATION_RINTO_VILLAGE_POKEMON_CENTER)
+		end
+	}
+}
+
+script RintoPC_Gbakid1 {
+	msgbox("I wish I could fight against my friends
+			around the globe.", MSGBOX_NPC)
+}
+
+script RintoPC_Battlegirl {
+	msgbox("The sandstorms make travelling into
+			this village difficult at times.", MSGBOX_NPC)	
+}
+
+script RintoPC_Hiker {
+	msgbox("I heard that an unusual looking pair of
+			flying Pokémon have been spotted
+			nearby.", MSGBOX_NPC)
+}
+
