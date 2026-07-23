@@ -2342,3 +2342,11 @@ Common_Text_ReceivedMon:
 	.include "data/maps/EcruteakCity_House4/scripts.inc"
 
 	.include "data/maps/RintoHouse1/scripts.inc"
+
+	.include "data/maps/RintoHouse2/scripts.inc"
+
+	.include "data/maps/RintoHouse3/scripts.inc"
+
+	.include "data/maps/Rinto_PoemonCenter/scripts.inc"
+
+	.include "data/maps/RintoVillage_Mart/scripts.inc"

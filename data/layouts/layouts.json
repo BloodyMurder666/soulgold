@@ -10046,6 +10046,46 @@
       "secondary_tileset": "gTileset_House_Lab",
       "border_filepath": "data/layouts/RintoHouse1/border.bin",
       "blockdata_filepath": "data/layouts/RintoHouse1/map.bin"
+    },
+    {
+      "id": "LAYOUT_RINTO_HOUSE2",
+      "name": "RintoHouse2_Layout",
+      "width": 13,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Building",
+      "secondary_tileset": "gTileset_House_Lab",
+      "border_filepath": "data/layouts/RintoHouse2/border.bin",
+      "blockdata_filepath": "data/layouts/RintoHouse2/map.bin"
+    },
+    {
+      "id": "LAYOUT_RINTO_HOUSE3",
+      "name": "RintoHouse3_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Johto_Building",
+      "secondary_tileset": "gTileset_House_Lab",
+      "border_filepath": "data/layouts/RintoHouse3/border.bin",
+      "blockdata_filepath": "data/layouts/RintoHouse3/map.bin"
+    },
+    {
+      "id": "LAYOUT_RINTO_POEMON_CENTER",
+      "name": "Rinto_PoemonCenter_Layout",
+      "width": 16,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Building",
+      "secondary_tileset": "gTileset_Kanto_PokemonCenter",
+      "border_filepath": "data/layouts/Rinto_PoemonCenter/border.bin",
+      "blockdata_filepath": "data/layouts/Rinto_PoemonCenter/map.bin"
+    },
+    {
+      "id": "LAYOUT_RINTO_VILLAGE_MART",
+      "name": "RintoVillage_Mart_Layout",
+      "width": 14,
+      "height": 9,
+      "primary_tileset": "gTileset_Johto_Building",
+      "secondary_tileset": "gTileset_JohtoMart",
+      "border_filepath": "data/layouts/RintoVillage_Mart/border.bin",
+      "blockdata_filepath": "data/layouts/RintoVillage_Mart/map.bin"
     }
   ]
 }

@@ -135,448 +135,174 @@ OlivinePort_EventScript_Youngster::
 # 68 "data/maps/OlivineCity_PortInside/scripts.pory"
 
 # 69 "data/maps/OlivineCity_PortInside/scripts.pory"
-OlivinePort_EventScript_Sailor::
+
 # 70 "data/maps/OlivineCity_PortInside/scripts.pory"
-	lock
+OlivinePort_Movement_SailorEnterBoat:
 # 71 "data/maps/OlivineCity_PortInside/scripts.pory"
-	faceplayer
+	walk_down
 # 72 "data/maps/OlivineCity_PortInside/scripts.pory"
-	goto_if_set FLAG_DEFEATED_MTSILVER_RIVAL, OlivinePort_EventScript_Sailor_AfterRed
+	walk_down
 # 73 "data/maps/OlivineCity_PortInside/scripts.pory"
-	goto_if_ge VAR_SSAQUA_STATE, 7, OlivinePort_EventScript_Sailor_AfterKanto
+	step_end
 # 74 "data/maps/OlivineCity_PortInside/scripts.pory"
-	msgbox OlivinePort_Text_AskBoard, MSGBOX_YESNO
+
 # 75 "data/maps/OlivineCity_PortInside/scripts.pory"
-	goto_if_eq VAR_RESULT, FALSE, OlivinePort_EventScript_Sailor_Refused
+OlivinePort_Movement_PlayerEnterBoat:
 # 76 "data/maps/OlivineCity_PortInside/scripts.pory"
-	checkitem ITEM_SS_TICKET
+	walk_down
 # 77 "data/maps/OlivineCity_PortInside/scripts.pory"
-	goto_if_eq VAR_RESULT, TRUE, OlivinePort_EventScript_Sailor_MaidenVoyage
+	walk_down
 # 78 "data/maps/OlivineCity_PortInside/scripts.pory"
-	msgbox OlivinePort_Text_NoTicket, MSGBOX_DEFAULT
+	walk_in_place_down
 # 79 "data/maps/OlivineCity_PortInside/scripts.pory"
-	closemessage
+	step_end
 # 80 "data/maps/OlivineCity_PortInside/scripts.pory"
-	release
+
 # 81 "data/maps/OlivineCity_PortInside/scripts.pory"
-	end
+OlivinePort_Movement_BoatLeave:
 # 82 "data/maps/OlivineCity_PortInside/scripts.pory"
-
+	walk_right
 # 83 "data/maps/OlivineCity_PortInside/scripts.pory"
-OlivinePort_EventScript_Sailor_AfterKanto::
+	walk_right
 # 84 "data/maps/OlivineCity_PortInside/scripts.pory"
-	message OlivinePort_Text_WhereSail
+	walk_right
 # 85 "data/maps/OlivineCity_PortInside/scripts.pory"
-	multichoice 20, 0, MULTI_OLIVINE_HARBOR, FALSE
+	walk_right
 # 86 "data/maps/OlivineCity_PortInside/scripts.pory"
-	switch VAR_RESULT
+	walk_right
 # 87 "data/maps/OlivineCity_PortInside/scripts.pory"
-	case 0, OlivinePort_EventScript_ChoseVermilion
+	step_end
 # 88 "data/maps/OlivineCity_PortInside/scripts.pory"
-	case 1, OlivinePort_EventScript_ChoseSouthernIsland
+
 # 89 "data/maps/OlivineCity_PortInside/scripts.pory"
-	case 2, OlivinePort_EventScript_ChoseBirthIsland
+OlivinePort_Text_NoPass:
 # 90 "data/maps/OlivineCity_PortInside/scripts.pory"
-	case 3, OlivinePort_EventScript_ChoseFarawayIsland
+    .string "{PLAYER} tried to show the\n"
 # 91 "data/maps/OlivineCity_PortInside/scripts.pory"
-	case 4, OlivinePort_EventScript_Sailor_Refused
+    .string "{STR_VAR_1}…\p"
 # 92 "data/maps/OlivineCity_PortInside/scripts.pory"
-	case MULTI_B_PRESSED, OlivinePort_EventScript_Sailor_Refused
+    .string "…But no {STR_VAR_1}!\p"
 # 93 "data/maps/OlivineCity_PortInside/scripts.pory"
-	release
+    .string "Sorry!\n"
 # 94 "data/maps/OlivineCity_PortInside/scripts.pory"
-	end
+    .string "You may board only if you have an\l"
 # 95 "data/maps/OlivineCity_PortInside/scripts.pory"
-
+    .string "{STR_VAR_1}.$"
 # 96 "data/maps/OlivineCity_PortInside/scripts.pory"
-OlivinePort_EventScript_Sailor_AfterRed::
+
 # 97 "data/maps/OlivineCity_PortInside/scripts.pory"
-	message OlivinePort_Text_WhereSail
+OlivinePort_Text_SailorGetOnBoard:
 # 98 "data/maps/OlivineCity_PortInside/scripts.pory"
-	multichoice 20, 0, MULTI_OLIVINE_HARBOR_RED, FALSE
+    .string "We're departing soon.\n"
 # 99 "data/maps/OlivineCity_PortInside/scripts.pory"
-	switch VAR_RESULT
+    .string "Please get on board.$"
 # 100 "data/maps/OlivineCity_PortInside/scripts.pory"
-	case 0, OlivinePort_EventScript_ChoseVermilion
+
 # 101 "data/maps/OlivineCity_PortInside/scripts.pory"
-	case 1, OlivinePort_EventScript_ChoseSouthernIsland
+OlivinePort_Text_CantBoard:
 # 102 "data/maps/OlivineCity_PortInside/scripts.pory"
-	case 2, OlivinePort_EventScript_ChoseBirthIsland
+    .string "Sorry. You can't board now.$"
 # 103 "data/maps/OlivineCity_PortInside/scripts.pory"
-	case 3, OlivinePort_EventScript_ChoseFarawayIsland
+
 # 104 "data/maps/OlivineCity_PortInside/scripts.pory"
-	case 4, OlivinePort_EventScript_ChoseBattleFrontier
+OlivinePort_Text_WhereSail:
 # 105 "data/maps/OlivineCity_PortInside/scripts.pory"
-	case 5, OlivinePort_EventScript_Sailor_Refused
+    .string "Where would you like to sail?$"
 # 106 "data/maps/OlivineCity_PortInside/scripts.pory"
-	case MULTI_B_PRESSED, OlivinePort_EventScript_Sailor_Refused
+
 # 107 "data/maps/OlivineCity_PortInside/scripts.pory"
-	release
+OlivinePort_Text_AskBoard:
 # 108 "data/maps/OlivineCity_PortInside/scripts.pory"
-	end
+    .string "Welcome to Fast Ship S.S.Aqua.\p"
 # 109 "data/maps/OlivineCity_PortInside/scripts.pory"
-
+    .string "Will you be boarding today?$"
 # 110 "data/maps/OlivineCity_PortInside/scripts.pory"
-OlivinePort_EventScript_ChoseBattleFrontier::
-# 111 "data/maps/OlivineCity_PortInside/scripts.pory"
-	closemessage
-# 112 "data/maps/OlivineCity_PortInside/scripts.pory"
-	delay 20
-# 113 "data/maps/OlivineCity_PortInside/scripts.pory"
-	call OlivinePort_EventScript_EnterShip
-# 114 "data/maps/OlivineCity_PortInside/scripts.pory"
-	warpsilent MAP_BATTLE_FRONTIER_OUTSIDE_WEST, 20, 67
-# 115 "data/maps/OlivineCity_PortInside/scripts.pory"
-	release
-# 116 "data/maps/OlivineCity_PortInside/scripts.pory"
-	end	
-# 117 "data/maps/OlivineCity_PortInside/scripts.pory"
 
+# 111 "data/maps/OlivineCity_PortInside/scripts.pory"
+OlivinePort_Text_AskTicket:
+# 112 "data/maps/OlivineCity_PortInside/scripts.pory"
+    .string "May I see your S.S.Ticket?$"
+# 113 "data/maps/OlivineCity_PortInside/scripts.pory"
+
+# 114 "data/maps/OlivineCity_PortInside/scripts.pory"
+OlivinePort_Text_ComeAgain:
+# 115 "data/maps/OlivineCity_PortInside/scripts.pory"
+    .string "We hope to see you again!$"
+# 116 "data/maps/OlivineCity_PortInside/scripts.pory"
+
+# 117 "data/maps/OlivineCity_PortInside/scripts.pory"
+OlivinePort_Text_FlashTicket:
 # 118 "data/maps/OlivineCity_PortInside/scripts.pory"
-OlivinePort_EventScript_ChoseVermilion::
+    .string "{PLAYER} flashed the S.S.Ticket.\p"
 # 119 "data/maps/OlivineCity_PortInside/scripts.pory"
-	closemessage
+    .string "That's it. Thank you!$"
 # 120 "data/maps/OlivineCity_PortInside/scripts.pory"
-	delay 20
+
 # 121 "data/maps/OlivineCity_PortInside/scripts.pory"
-	checkitem ITEM_SS_TICKET
+OlivinePort_Text_NoTicket:
 # 122 "data/maps/OlivineCity_PortInside/scripts.pory"
-	bufferitemname STR_VAR_1, ITEM_SS_TICKET
+    .string "{PLAYER} tried to show the\n"
 # 123 "data/maps/OlivineCity_PortInside/scripts.pory"
-	goto_if_eq VAR_RESULT, FALSE, OlivinePort_EventScript_Sailor_NoCredentials
+    .string "S.S.Ticket…\p"
 # 124 "data/maps/OlivineCity_PortInside/scripts.pory"
-	call OlivinePort_EventScript_EnterShip
+    .string "…But no Ticket!\p"
 # 125 "data/maps/OlivineCity_PortInside/scripts.pory"
-	warpsilent MAP_VERMILION_CITY_PORT_INSIDE, 8, 9
+    .string "Sorry!\n"
 # 126 "data/maps/OlivineCity_PortInside/scripts.pory"
-	release
+    .string "You may board only\l"
 # 127 "data/maps/OlivineCity_PortInside/scripts.pory"
-	end
+    .string "if you have an S.S.Ticket.$"
 # 128 "data/maps/OlivineCity_PortInside/scripts.pory"
 
 # 129 "data/maps/OlivineCity_PortInside/scripts.pory"
-OlivinePort_EventScript_ChoseSouthernIsland::
-# 130 "data/maps/OlivineCity_PortInside/scripts.pory"
-	closemessage
-# 131 "data/maps/OlivineCity_PortInside/scripts.pory"
-	delay 20
-# 132 "data/maps/OlivineCity_PortInside/scripts.pory"
-	checkitem ITEM_EON_TICKET
-# 133 "data/maps/OlivineCity_PortInside/scripts.pory"
-	bufferitemname STR_VAR_1, ITEM_EON_TICKET
-# 134 "data/maps/OlivineCity_PortInside/scripts.pory"
-	goto_if_eq VAR_RESULT, FALSE, OlivinePort_EventScript_Sailor_NoCredentials
-# 135 "data/maps/OlivineCity_PortInside/scripts.pory"
-	call OlivinePort_EventScript_EnterShip
-# 136 "data/maps/OlivineCity_PortInside/scripts.pory"
-	warpsilent MAP_SOUTHERN_ISLAND_EXTERIOR, 13, 22
-# 137 "data/maps/OlivineCity_PortInside/scripts.pory"
-	release
-# 138 "data/maps/OlivineCity_PortInside/scripts.pory"
-	end
-# 139 "data/maps/OlivineCity_PortInside/scripts.pory"
-
-# 140 "data/maps/OlivineCity_PortInside/scripts.pory"
-OlivinePort_EventScript_ChoseBirthIsland::
-# 141 "data/maps/OlivineCity_PortInside/scripts.pory"
-	closemessage
-# 142 "data/maps/OlivineCity_PortInside/scripts.pory"
-	delay 20
-# 143 "data/maps/OlivineCity_PortInside/scripts.pory"
-	checkitem ITEM_AURORA_TICKET
-# 144 "data/maps/OlivineCity_PortInside/scripts.pory"
-	bufferitemname STR_VAR_1, ITEM_AURORA_TICKET
-# 145 "data/maps/OlivineCity_PortInside/scripts.pory"
-	goto_if_eq VAR_RESULT, FALSE, OlivinePort_EventScript_Sailor_NoCredentials
-# 146 "data/maps/OlivineCity_PortInside/scripts.pory"
-	call OlivinePort_EventScript_EnterShip
-# 147 "data/maps/OlivineCity_PortInside/scripts.pory"
-	warpsilent MAP_BIRTH_ISLAND_EXTERIOR, 13, 23
-# 148 "data/maps/OlivineCity_PortInside/scripts.pory"
-	release
-# 149 "data/maps/OlivineCity_PortInside/scripts.pory"
-	end
-# 150 "data/maps/OlivineCity_PortInside/scripts.pory"
-
-# 151 "data/maps/OlivineCity_PortInside/scripts.pory"
-OlivinePort_EventScript_ChoseFarawayIsland::
-# 152 "data/maps/OlivineCity_PortInside/scripts.pory"
-	closemessage
-# 153 "data/maps/OlivineCity_PortInside/scripts.pory"
-	delay 20
-# 154 "data/maps/OlivineCity_PortInside/scripts.pory"
-	checkitem ITEM_OLD_SEA_MAP
-# 155 "data/maps/OlivineCity_PortInside/scripts.pory"
-	bufferitemname STR_VAR_1, ITEM_OLD_SEA_MAP
-# 156 "data/maps/OlivineCity_PortInside/scripts.pory"
-	goto_if_eq VAR_RESULT, FALSE, OlivinePort_EventScript_Sailor_NoCredentials
-# 157 "data/maps/OlivineCity_PortInside/scripts.pory"
-	call OlivinePort_EventScript_EnterShip
-# 158 "data/maps/OlivineCity_PortInside/scripts.pory"
-	warpsilent MAP_FARAWAY_ISLAND_ENTRANCE, 13, 38
-# 159 "data/maps/OlivineCity_PortInside/scripts.pory"
-	release
-# 160 "data/maps/OlivineCity_PortInside/scripts.pory"
-	end	
-# 161 "data/maps/OlivineCity_PortInside/scripts.pory"
-
-# 162 "data/maps/OlivineCity_PortInside/scripts.pory"
-OlivinePort_EventScript_Sailor_MaidenVoyage::
-# 163 "data/maps/OlivineCity_PortInside/scripts.pory"
-	msgbox OlivinePort_Text_FlashTicket, MSGBOX_DEFAULT
-# 164 "data/maps/OlivineCity_PortInside/scripts.pory"
-	call OlivinePort_EventScript_EnterShip
-# 165 "data/maps/OlivineCity_PortInside/scripts.pory"
-	setvar VAR_SSAQUA_STATE, 1
-# 166 "data/maps/OlivineCity_PortInside/scripts.pory"
-	clearflag FLAG_HIDE_SSAQUA_1F_GRANDPA
-# 167 "data/maps/OlivineCity_PortInside/scripts.pory"
-	setflag FLAG_HIDE_SSAQUA_ROOM_SSE_GRANDDAUGHTER
-# 168 "data/maps/OlivineCity_PortInside/scripts.pory"
-
-# 169 "data/maps/OlivineCity_PortInside/scripts.pory"
-	clearflag FLAG_HIDE_SSAQUA_SAILOR
-# 170 "data/maps/OlivineCity_PortInside/scripts.pory"
-	clearflag FLAG_HIDE_SSAQUA_CAPTAINS_ROOM_GRANDDAUGHTER
-# 171 "data/maps/OlivineCity_PortInside/scripts.pory"
-
-# 172 "data/maps/OlivineCity_PortInside/scripts.pory"
-	warpsilent MAP_SSAQUA_1F, 29, 3
-# 173 "data/maps/OlivineCity_PortInside/scripts.pory"
-	release
-# 174 "data/maps/OlivineCity_PortInside/scripts.pory"
-	end
-# 175 "data/maps/OlivineCity_PortInside/scripts.pory"
-
-# 176 "data/maps/OlivineCity_PortInside/scripts.pory"
-OlivinePort_EventScript_EnterShip::
-# 177 "data/maps/OlivineCity_PortInside/scripts.pory"
-	msgbox OlivinePort_Text_SailorGetOnBoard, MSGBOX_DEFAULT
-# 178 "data/maps/OlivineCity_PortInside/scripts.pory"
-	closemessage
-# 179 "data/maps/OlivineCity_PortInside/scripts.pory"
-	delay 20
-# 180 "data/maps/OlivineCity_PortInside/scripts.pory"
-	applymovement LOCALID_OLIVINEPORT_SAILOR, OlivinePort_Movement_SailorEnterBoat
-# 181 "data/maps/OlivineCity_PortInside/scripts.pory"
-	waitmovement 0
-# 182 "data/maps/OlivineCity_PortInside/scripts.pory"
-	playse SE_EXIT
-# 183 "data/maps/OlivineCity_PortInside/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, OlivinePort_Movement_PlayerEnterBoat
-# 184 "data/maps/OlivineCity_PortInside/scripts.pory"
-	waitmovement 0
-# 185 "data/maps/OlivineCity_PortInside/scripts.pory"
-	special SpawnCameraObject
-# 186 "data/maps/OlivineCity_PortInside/scripts.pory"
-	playse SE_EXIT
-# 187 "data/maps/OlivineCity_PortInside/scripts.pory"
-	removeobject OBJ_EVENT_ID_PLAYER
-# 188 "data/maps/OlivineCity_PortInside/scripts.pory"
-	delay 60
-# 189 "data/maps/OlivineCity_PortInside/scripts.pory"
-	applymovement LOCALID_OLIVINEPORT_SAILOR, OlivinePort_Movement_BoatLeave
-# 190 "data/maps/OlivineCity_PortInside/scripts.pory"
-	applymovement LOCALID_OLIVINEPORT_BOAT, OlivinePort_Movement_BoatLeave
-# 191 "data/maps/OlivineCity_PortInside/scripts.pory"
-	waitmovement LOCALID_OLIVINEPORT_BOAT
-# 192 "data/maps/OlivineCity_PortInside/scripts.pory"
-	setrespawn HEAL_LOCATION_OLIVINE_CITY
-# 193 "data/maps/OlivineCity_PortInside/scripts.pory"
-	return
-# 194 "data/maps/OlivineCity_PortInside/scripts.pory"
-
-# 195 "data/maps/OlivineCity_PortInside/scripts.pory"
-OlivinePort_EventScript_Sailor_Refused::
-# 196 "data/maps/OlivineCity_PortInside/scripts.pory"
-	msgbox OlivinePort_Text_ComeAgain, MSGBOX_DEFAULT
-# 197 "data/maps/OlivineCity_PortInside/scripts.pory"
-	closemessage
-# 198 "data/maps/OlivineCity_PortInside/scripts.pory"
-	release
-# 199 "data/maps/OlivineCity_PortInside/scripts.pory"
-	end
-# 200 "data/maps/OlivineCity_PortInside/scripts.pory"
-
-# 201 "data/maps/OlivineCity_PortInside/scripts.pory"
-OlivinePort_EventScript_Sailor_NoCredentials::
-# 202 "data/maps/OlivineCity_PortInside/scripts.pory"
-	msgbox OlivinePort_Text_NoPass, MSGBOX_DEFAULT
-# 203 "data/maps/OlivineCity_PortInside/scripts.pory"
-	closemessage
-# 204 "data/maps/OlivineCity_PortInside/scripts.pory"
-	release
-# 205 "data/maps/OlivineCity_PortInside/scripts.pory"
-	end
-# 206 "data/maps/OlivineCity_PortInside/scripts.pory"
-
-# 207 "data/maps/OlivineCity_PortInside/scripts.pory"
-OlivinePort_Movement_SailorEnterBoat:
-# 208 "data/maps/OlivineCity_PortInside/scripts.pory"
-	walk_down
-# 209 "data/maps/OlivineCity_PortInside/scripts.pory"
-	walk_down
-# 210 "data/maps/OlivineCity_PortInside/scripts.pory"
-	step_end
-# 211 "data/maps/OlivineCity_PortInside/scripts.pory"
-
-# 212 "data/maps/OlivineCity_PortInside/scripts.pory"
-OlivinePort_Movement_PlayerEnterBoat:
-# 213 "data/maps/OlivineCity_PortInside/scripts.pory"
-	walk_down
-# 214 "data/maps/OlivineCity_PortInside/scripts.pory"
-	walk_down
-# 215 "data/maps/OlivineCity_PortInside/scripts.pory"
-	walk_in_place_down
-# 216 "data/maps/OlivineCity_PortInside/scripts.pory"
-	step_end
-# 217 "data/maps/OlivineCity_PortInside/scripts.pory"
-
-# 218 "data/maps/OlivineCity_PortInside/scripts.pory"
-OlivinePort_Movement_BoatLeave:
-# 219 "data/maps/OlivineCity_PortInside/scripts.pory"
-	walk_right
-# 220 "data/maps/OlivineCity_PortInside/scripts.pory"
-	walk_right
-# 221 "data/maps/OlivineCity_PortInside/scripts.pory"
-	walk_right
-# 222 "data/maps/OlivineCity_PortInside/scripts.pory"
-	walk_right
-# 223 "data/maps/OlivineCity_PortInside/scripts.pory"
-	walk_right
-# 224 "data/maps/OlivineCity_PortInside/scripts.pory"
-	step_end
-# 225 "data/maps/OlivineCity_PortInside/scripts.pory"
-
-# 226 "data/maps/OlivineCity_PortInside/scripts.pory"
-OlivinePort_Text_NoPass:
-# 227 "data/maps/OlivineCity_PortInside/scripts.pory"
-    .string "{PLAYER} tried to show the\n"
-# 228 "data/maps/OlivineCity_PortInside/scripts.pory"
-    .string "{STR_VAR_1}…\p"
-# 229 "data/maps/OlivineCity_PortInside/scripts.pory"
-    .string "…But no {STR_VAR_1}!\p"
-# 230 "data/maps/OlivineCity_PortInside/scripts.pory"
-    .string "Sorry!\n"
-# 231 "data/maps/OlivineCity_PortInside/scripts.pory"
-    .string "You may board only if you have an\l"
-# 232 "data/maps/OlivineCity_PortInside/scripts.pory"
-    .string "{STR_VAR_1}.$"
-# 233 "data/maps/OlivineCity_PortInside/scripts.pory"
-
-# 234 "data/maps/OlivineCity_PortInside/scripts.pory"
-OlivinePort_Text_SailorGetOnBoard:
-# 235 "data/maps/OlivineCity_PortInside/scripts.pory"
-    .string "We're departing soon.\n"
-# 236 "data/maps/OlivineCity_PortInside/scripts.pory"
-    .string "Please get on board.$"
-# 237 "data/maps/OlivineCity_PortInside/scripts.pory"
-
-# 238 "data/maps/OlivineCity_PortInside/scripts.pory"
-OlivinePort_Text_CantBoard:
-# 239 "data/maps/OlivineCity_PortInside/scripts.pory"
-    .string "Sorry. You can't board now.$"
-# 240 "data/maps/OlivineCity_PortInside/scripts.pory"
-
-# 241 "data/maps/OlivineCity_PortInside/scripts.pory"
-OlivinePort_Text_WhereSail:
-# 242 "data/maps/OlivineCity_PortInside/scripts.pory"
-    .string "Where would you like to sail?$"
-# 243 "data/maps/OlivineCity_PortInside/scripts.pory"
-
-# 244 "data/maps/OlivineCity_PortInside/scripts.pory"
-OlivinePort_Text_AskBoard:
-# 245 "data/maps/OlivineCity_PortInside/scripts.pory"
-    .string "Welcome to Fast Ship S.S.Aqua.\p"
-# 246 "data/maps/OlivineCity_PortInside/scripts.pory"
-    .string "Will you be boarding today?$"
-# 247 "data/maps/OlivineCity_PortInside/scripts.pory"
-
-# 248 "data/maps/OlivineCity_PortInside/scripts.pory"
-OlivinePort_Text_AskTicket:
-# 249 "data/maps/OlivineCity_PortInside/scripts.pory"
-    .string "May I see your S.S.Ticket?$"
-# 250 "data/maps/OlivineCity_PortInside/scripts.pory"
-
-# 251 "data/maps/OlivineCity_PortInside/scripts.pory"
-OlivinePort_Text_ComeAgain:
-# 252 "data/maps/OlivineCity_PortInside/scripts.pory"
-    .string "We hope to see you again!$"
-# 253 "data/maps/OlivineCity_PortInside/scripts.pory"
-
-# 254 "data/maps/OlivineCity_PortInside/scripts.pory"
-OlivinePort_Text_FlashTicket:
-# 255 "data/maps/OlivineCity_PortInside/scripts.pory"
-    .string "{PLAYER} flashed the S.S.Ticket.\p"
-# 256 "data/maps/OlivineCity_PortInside/scripts.pory"
-    .string "That's it. Thank you!$"
-# 257 "data/maps/OlivineCity_PortInside/scripts.pory"
-
-# 258 "data/maps/OlivineCity_PortInside/scripts.pory"
-OlivinePort_Text_NoTicket:
-# 259 "data/maps/OlivineCity_PortInside/scripts.pory"
-    .string "{PLAYER} tried to show the\n"
-# 260 "data/maps/OlivineCity_PortInside/scripts.pory"
-    .string "S.S.Ticket…\p"
-# 261 "data/maps/OlivineCity_PortInside/scripts.pory"
-    .string "…But no Ticket!\p"
-# 262 "data/maps/OlivineCity_PortInside/scripts.pory"
-    .string "Sorry!\n"
-# 263 "data/maps/OlivineCity_PortInside/scripts.pory"
-    .string "You may board only\l"
-# 264 "data/maps/OlivineCity_PortInside/scripts.pory"
-    .string "if you have an S.S.Ticket.$"
-# 265 "data/maps/OlivineCity_PortInside/scripts.pory"
-
-# 266 "data/maps/OlivineCity_PortInside/scripts.pory"
 OlivinePort_Text_FishingGuru1:
-# 267 "data/maps/OlivineCity_PortInside/scripts.pory"
+# 130 "data/maps/OlivineCity_PortInside/scripts.pory"
     .string "Mareanie are easy to catch here.\p"
-# 268 "data/maps/OlivineCity_PortInside/scripts.pory"
+# 131 "data/maps/OlivineCity_PortInside/scripts.pory"
     .string "They're kind of rare elsewhere.$"
-# 269 "data/maps/OlivineCity_PortInside/scripts.pory"
+# 132 "data/maps/OlivineCity_PortInside/scripts.pory"
 
-# 270 "data/maps/OlivineCity_PortInside/scripts.pory"
+# 133 "data/maps/OlivineCity_PortInside/scripts.pory"
 OlivinePort_Text_FishingGuru2:
-# 271 "data/maps/OlivineCity_PortInside/scripts.pory"
+# 134 "data/maps/OlivineCity_PortInside/scripts.pory"
     .string "How many Rods do you have?\p"
-# 272 "data/maps/OlivineCity_PortInside/scripts.pory"
+# 135 "data/maps/OlivineCity_PortInside/scripts.pory"
     .string "Different Rods catch different\n"
-# 273 "data/maps/OlivineCity_PortInside/scripts.pory"
+# 136 "data/maps/OlivineCity_PortInside/scripts.pory"
     .string "Pokémon.$"
-# 274 "data/maps/OlivineCity_PortInside/scripts.pory"
+# 137 "data/maps/OlivineCity_PortInside/scripts.pory"
 
-# 275 "data/maps/OlivineCity_PortInside/scripts.pory"
+# 138 "data/maps/OlivineCity_PortInside/scripts.pory"
 OlivinePort_Text_Youngster:
-# 276 "data/maps/OlivineCity_PortInside/scripts.pory"
+# 139 "data/maps/OlivineCity_PortInside/scripts.pory"
     .string "S.S.Aqua uses jets to skim\n"
-# 277 "data/maps/OlivineCity_PortInside/scripts.pory"
+# 140 "data/maps/OlivineCity_PortInside/scripts.pory"
     .string "over the waves!$"
-# 278 "data/maps/OlivineCity_PortInside/scripts.pory"
+# 141 "data/maps/OlivineCity_PortInside/scripts.pory"
 
-# 279 "data/maps/OlivineCity_PortInside/scripts.pory"
+# 142 "data/maps/OlivineCity_PortInside/scripts.pory"
 OlivinePort_Text_CooltrainerF:
-# 280 "data/maps/OlivineCity_PortInside/scripts.pory"
+# 143 "data/maps/OlivineCity_PortInside/scripts.pory"
     .string "There are lots of Pokémon in\p"
-# 281 "data/maps/OlivineCity_PortInside/scripts.pory"
+# 144 "data/maps/OlivineCity_PortInside/scripts.pory"
     .string "the world. I wish I could travel...$"
-# 282 "data/maps/OlivineCity_PortInside/scripts.pory"
+# 145 "data/maps/OlivineCity_PortInside/scripts.pory"
 
-# 283 "data/maps/OlivineCity_PortInside/scripts.pory"
+# 146 "data/maps/OlivineCity_PortInside/scripts.pory"
 OlivinePort_Text_SailorBeforeHOF:
-# 284 "data/maps/OlivineCity_PortInside/scripts.pory"
+# 147 "data/maps/OlivineCity_PortInside/scripts.pory"
     .string "We don't want you to fall into the\n"
-# 285 "data/maps/OlivineCity_PortInside/scripts.pory"
+# 148 "data/maps/OlivineCity_PortInside/scripts.pory"
     .string "sea, so you're not allowed in.$"
 
 OlivinePort_Sailor::
-# 288 "data/maps/OlivineCity_PortInside/scripts.pory"
+# 151 "data/maps/OlivineCity_PortInside/scripts.pory"
 	msgbox OlivinePort_Sailor_Text_0, MSGBOX_NPC
 	return
 
 
 OlivinePort_Sailor_Text_0:
-# 288 "data/maps/OlivineCity_PortInside/scripts.pory"
+# 151 "data/maps/OlivineCity_PortInside/scripts.pory"
 	.string "Sorry, but the ship is not going to\n"
 	.string "leave anywhere anytime soon. \p"
 	.string "Our engines exploded mysteriously.\p"

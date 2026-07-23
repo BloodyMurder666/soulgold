@@ -570,6 +570,12 @@
       "map": "MAP_BATTLE_FACTORY_GROUNDS",
       "x": 7,
       "y": 9
+    },
+    {
+      "id": "HEAL_LOCATION_RINTO_VILLAGE_POKEMON_CENTER",
+      "map": "MAP_RINTO_POEMON_CENTER",
+      "x": 7,
+      "y": 4
     }
   ]
 }

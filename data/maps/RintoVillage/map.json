@@ -175,35 +175,35 @@
       "x": 20,
       "y": 32,
       "elevation": 0,
-      "dest_map": "MAP_RINTO_VILLAGE",
+      "dest_map": "MAP_RINTO_HOUSE1",
       "dest_warp_id": "0"
     },
     {
       "x": 18,
       "y": 42,
       "elevation": 0,
-      "dest_map": "MAP_RINTO_VILLAGE",
+      "dest_map": "MAP_RINTO_HOUSE2",
       "dest_warp_id": "0"
     },
     {
       "x": 17,
       "y": 54,
       "elevation": 0,
-      "dest_map": "MAP_RINTO_VILLAGE",
+      "dest_map": "MAP_RINTO_HOUSE3",
       "dest_warp_id": "0"
     },
     {
       "x": 10,
       "y": 54,
       "elevation": 0,
-      "dest_map": "MAP_RINTO_VILLAGE",
+      "dest_map": "MAP_RINTO_VILLAGE_MART",
       "dest_warp_id": "0"
     },
     {
       "x": 8,
       "y": 42,
       "elevation": 0,
-      "dest_map": "MAP_RINTO_VILLAGE",
+      "dest_map": "MAP_RINTO_POEMON_CENTER",
       "dest_warp_id": "0"
     }
   ],
