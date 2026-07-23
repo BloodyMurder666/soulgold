@@ -904,11 +904,11 @@
 #define TRAINER_TITLE_DEFENSE_PRYCE       897
 #define TRAINER_TITLE_DEFENSE_CLAIR       898
 #define TRAINER_NAMELESS_LEAF             899
-#define TRAINER_UNUSED_36                 900
-#define TRAINER_UNUSED_37                 901
-#define TRAINER_UNUSED_38                 902
-#define TRAINER_UNUSED_39                 903
-#define TRAINER_UNUSED_40                 904
+#define TRAINER_VAJRA_EAST_SIROCCO        900
+#define TRAINER_VAJRA_EAST_SOL            901
+#define TRAINER_VAJRA_EAST_DUNE           902
+#define TRAINER_VAJRA_EAST_NORI           903
+#define TRAINER_VAJRA_EAST_ATLAS          904
 #define TRAINER_UNUSED_41                 905
 #define TRAINER_UNUSED_42                 906
 #define TRAINER_UNUSED_43                 907

@@ -117,12 +117,9 @@ Route35_Text_BirdKeeperBryanBeaten:
 	.string "Yikes! Not fast enough!$"
 
 Route35_Text_BirdKeeperBryanAfter:
-	.string "Some Pokémon flee right away.\p"
-	.string "Try catching them with Kurt's Fast\n"
-	.string "Ball.\p"
-	.string "Whenever I find a Wht Apricorn, I\n"
-	.string "take it to Kurt.\p"
-	.string "He turns it into a custom Ball.$"
+	.string "Whenever I find a Nugget, I\n"
+	.string "take it to Mart.\p"
+	.string "It's an easy way to get money.$"
 
 Route35_Text_JugglerIrwinSeen:
 	.string "Behold my graceful Ball dexterity!$"

@@ -15929,3 +15929,268 @@ EVs: 252 Atk / 252 HP
 - Thunder Fang
 - Stone Edge
 - Electric Terrain
+
+=== TRAINER_VAJRA_EAST_SIROCCO ===
+Name: Sirocco
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Dp Ace Trainer
+Double Battle: No
+AI: Smart Trainer
+
+Tyranitar @ Smooth Rock
+Ability: Sand Stream
+Level: 73
+EVs: 252 HP / 4 Atk / 252 SpD
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Careful Nature
+- Stealth Rock
+- Stone Edge
+- Crunch
+- Thunder Wave
+
+Rotom-Wash @ Leftovers
+Ability: Levitate
+Level: 73
+EVs: 252 HP / 200 Def / 56 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Bold Nature
+- Hydro Pump
+- Volt Switch
+- Will-O-Wisp
+- Pain Split
+
+Excadrill @ Life Orb
+Ability: Sand Rush
+Level: 74
+EVs: 4 HP / 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Jolly Nature
+- Earthquake
+- Iron Head
+- Rock Slide
+- Swords Dance
+
+Dragapult @ Choice Specs
+Ability: Infiltrator
+Level: 75
+EVs: 4 Def / 252 SpA / 252 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Timid Nature
+- Shadow Ball
+- Draco Meteor
+- Flamethrower
+- U-Turn
+
+=== TRAINER_VAJRA_EAST_SOL ===
+Name: Sol
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Hg Boy 1
+Double Battle: Yes
+AI: Smart Trainer
+
+Lilligant-Hisui @ Focus Sash
+Ability: Chlorophyll
+Level: 74
+EVs: 4 HP / 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Jolly Nature
+- After You
+- Close Combat
+- Solar Blade
+- Sleep Powder
+
+Torkoal @ Charcoal
+Ability: Drought
+Level: 75
+EVs: 252 HP / 4 Def / 252 SpA
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+Quiet Nature
+- Eruption
+- Heat Wave
+- Solar Beam
+- Protect
+
+Venusaur @ Life Orb
+Ability: Chlorophyll
+Level: 76
+EVs: 4 HP / 252 SpA / 252 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Timid Nature
+- Sludge Bomb
+- Solar Beam
+- Earth Power
+- Protect
+
+Charizard @ Choice Specs
+Ability: Solar Power
+Level: 76
+EVs: 4 Def / 252 SpA / 252 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Timid Nature
+- Heat Wave
+- Air Slash
+- Solar Beam
+- Dragon Pulse
+
+=== TRAINER_VAJRA_EAST_DUNE ===
+Name: Dune
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Dp Ace Trainer
+Double Battle: No
+AI: Smart Trainer
+
+Glimmora @ Focus Sash
+Ability: Toxic Debris
+Level: 78
+EVs: 4 Def / 252 SpA / 252 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Timid Nature
+- Stealth Rock
+- Mortal Spin
+- Power Gem
+- Earth Power
+
+Gliscor @ Toxic Orb
+Ability: Poison Heal
+Level: 79
+EVs: 244 HP / 252 Def / 12 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Impish Nature
+- Earthquake
+- Toxic
+- Protect
+- Knock Off
+
+Gholdengo @ Air Balloon
+Ability: Good As Gold
+Level: 79
+EVs: 4 Def / 252 SpA / 252 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Timid Nature
+- Nasty Plot
+- Make It Rain
+- Shadow Ball
+- Recover
+
+Dragonite @ Heavy-Duty Boots
+Ability: Multiscale
+Level: 80
+EVs: 4 HP / 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Adamant Nature
+- Dragon Dance
+- Dragon Claw
+- Earthquake
+- Extreme Speed
+
+=== TRAINER_VAJRA_EAST_NORI ===
+Name: Nori
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Hg Boy 2
+Double Battle: Yes
+AI: Smart Trainer
+
+Dondozo @ Leftovers
+Ability: Unaware
+Level: 76
+EVs: 4 HP / 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Adamant Nature
+- Order Up
+- Wave Crash
+- Earthquake
+- Protect
+
+Tatsugiri-Droopy @ Choice Scarf
+Ability: Commander
+Level: 76
+EVs: 4 HP / 252 SpA / 252 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Timid Nature
+- Draco Meteor
+- Muddy Water
+- Icy Wind
+- Helping Hand
+
+Flamigo @ Covert Cloak
+Ability: Costar
+Level: 77
+EVs: 4 HP / 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Jolly Nature
+- Close Combat
+- Brave Bird
+- Wide Guard
+- Protect
+
+Gholdengo @ Life Orb
+Ability: Good As Gold
+Level: 78
+EVs: 4 HP / 252 SpA / 252 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Modest Nature
+- Make It Rain
+- Shadow Ball
+- Dazzling Gleam
+- Protect
+
+=== TRAINER_VAJRA_EAST_ATLAS ===
+Name: Atlas
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Dp Hiker
+Double Battle: Yes
+AI: Smart Trainer
+
+Dusclops @ Eviolite
+Ability: Pressure
+Level: 77
+EVs: 252 HP / 100 Def / 156 SpD
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+Relaxed Nature
+- Trick Room
+- Night Shade
+- Will-O-Wisp
+- Helping Hand
+
+Hariyama @ Flame Orb
+Ability: Guts
+Level: 78
+EVs: 252 HP / 252 Atk / 4 SpD
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+Brave Nature
+- Fake Out
+- Close Combat
+- Knock Off
+- Wide Guard
+
+Rhyperior @ Weakness Policy
+Ability: Solid Rock
+Level: 78
+EVs: 252 HP / 252 Atk / 4 SpD
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+Brave Nature
+- High Horsepower
+- Rock Slide
+- Ice Punch
+- Protect
+
+Snorlax @ Normalite
+Ability: Thick Fat
+Level: 79
+EVs: 252 HP / 252 Atk / 4 SpD
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+Brave Nature
+- Belly Drum
+- Body Slam
+- High Horsepower
+- Crunch

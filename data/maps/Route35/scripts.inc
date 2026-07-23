@@ -237,152 +237,146 @@ Route35_Text_BirdKeeperBryanBeaten:
 # 119 "data/maps/Route35/scripts.pory"
 Route35_Text_BirdKeeperBryanAfter:
 # 120 "data/maps/Route35/scripts.pory"
-	.string "Some Pokémon flee right away.\p"
+	.string "Whenever I find a Nugget, I\n"
 # 121 "data/maps/Route35/scripts.pory"
-	.string "Try catching them with Kurt's Fast\n"
+	.string "take it to Mart.\p"
 # 122 "data/maps/Route35/scripts.pory"
-	.string "Ball.\p"
+	.string "It's an easy way to get money.$"
 # 123 "data/maps/Route35/scripts.pory"
-	.string "Whenever I find a Wht Apricorn, I\n"
+
 # 124 "data/maps/Route35/scripts.pory"
-	.string "take it to Kurt.\p"
+Route35_Text_JugglerIrwinSeen:
 # 125 "data/maps/Route35/scripts.pory"
-	.string "He turns it into a custom Ball.$"
+	.string "Behold my graceful Ball dexterity!$"
 # 126 "data/maps/Route35/scripts.pory"
 
 # 127 "data/maps/Route35/scripts.pory"
-Route35_Text_JugglerIrwinSeen:
+Route35_Text_JugglerIrwinBeaten:
 # 128 "data/maps/Route35/scripts.pory"
-	.string "Behold my graceful Ball dexterity!$"
+	.string "Whew! That was a jolt!$"
 # 129 "data/maps/Route35/scripts.pory"
 
 # 130 "data/maps/Route35/scripts.pory"
-Route35_Text_JugglerIrwinBeaten:
-# 131 "data/maps/Route35/scripts.pory"
-	.string "Whew! That was a jolt!$"
-# 132 "data/maps/Route35/scripts.pory"
-
-# 133 "data/maps/Route35/scripts.pory"
 Route35_Text_JugglerIrwinAfter:
-# 134 "data/maps/Route35/scripts.pory"
+# 131 "data/maps/Route35/scripts.pory"
 	.string "I was going to dazzle you with my\n"
-# 135 "data/maps/Route35/scripts.pory"
+# 132 "data/maps/Route35/scripts.pory"
 	.string "prize Pokémon.\p"
-# 136 "data/maps/Route35/scripts.pory"
+# 133 "data/maps/Route35/scripts.pory"
 	.string "But your prowess electrified me!$"
-# 137 "data/maps/Route35/scripts.pory"
+# 134 "data/maps/Route35/scripts.pory"
 
-# 138 "data/maps/Route35/scripts.pory"
+# 135 "data/maps/Route35/scripts.pory"
 Route35_Text_BugCatcherArnieSeen:
-# 139 "data/maps/Route35/scripts.pory"
+# 136 "data/maps/Route35/scripts.pory"
 	.string "I'll go anywhere if bug Pokémon\n"
-# 140 "data/maps/Route35/scripts.pory"
+# 137 "data/maps/Route35/scripts.pory"
 	.string "appear there.$"
+# 138 "data/maps/Route35/scripts.pory"
+
+# 139 "data/maps/Route35/scripts.pory"
+Route35_Text_BugCatcherArnieBeaten:
+# 140 "data/maps/Route35/scripts.pory"
+	.string "Huh? I shouldn't have lost that…$"
 # 141 "data/maps/Route35/scripts.pory"
 
 # 142 "data/maps/Route35/scripts.pory"
-Route35_Text_BugCatcherArnieBeaten:
-# 143 "data/maps/Route35/scripts.pory"
-	.string "Huh? I shouldn't have lost that…$"
-# 144 "data/maps/Route35/scripts.pory"
-
-# 145 "data/maps/Route35/scripts.pory"
 Route35_Text_BugCatcherArnieAfter:
-# 146 "data/maps/Route35/scripts.pory"
+# 143 "data/maps/Route35/scripts.pory"
 	.string "My Venonat won me the Bug-Catching\n"
-# 147 "data/maps/Route35/scripts.pory"
+# 144 "data/maps/Route35/scripts.pory"
 	.string "Contest at the National Park.$"
-# 148 "data/maps/Route35/scripts.pory"
+# 145 "data/maps/Route35/scripts.pory"
 
-# 149 "data/maps/Route35/scripts.pory"
+# 146 "data/maps/Route35/scripts.pory"
 Route35_Text_BugCatcherArnieYanma:
-# 150 "data/maps/Route35/scripts.pory"
+# 147 "data/maps/Route35/scripts.pory"
 	.string "Wow… Look at all those Yanma!\p"
-# 151 "data/maps/Route35/scripts.pory"
+# 148 "data/maps/Route35/scripts.pory"
 	.string "I'm so blown away, I can't move.$"
+# 149 "data/maps/Route35/scripts.pory"
+
+# 150 "data/maps/Route35/scripts.pory"
+Route35_Text_FirebreatherWaltSeen:
+# 151 "data/maps/Route35/scripts.pory"
+	.string "I'm practicing my fire breathing.$"
 # 152 "data/maps/Route35/scripts.pory"
 
 # 153 "data/maps/Route35/scripts.pory"
-Route35_Text_FirebreatherWaltSeen:
+Route35_Text_FirebreatherWaltBeaten:
 # 154 "data/maps/Route35/scripts.pory"
-	.string "I'm practicing my fire breathing.$"
+	.string "Ow! I scorched the tip of my nose!$"
 # 155 "data/maps/Route35/scripts.pory"
 
 # 156 "data/maps/Route35/scripts.pory"
-Route35_Text_FirebreatherWaltBeaten:
-# 157 "data/maps/Route35/scripts.pory"
-	.string "Ow! I scorched the tip of my nose!$"
-# 158 "data/maps/Route35/scripts.pory"
-
-# 159 "data/maps/Route35/scripts.pory"
 Route35_Text_FirebreatherWaltAfter:
-# 160 "data/maps/Route35/scripts.pory"
+# 157 "data/maps/Route35/scripts.pory"
 	.string "The Pokémon March on the radio\n"
-# 161 "data/maps/Route35/scripts.pory"
+# 158 "data/maps/Route35/scripts.pory"
 	.string "lures wild Pokémon.$"
+# 159 "data/maps/Route35/scripts.pory"
+
+# 160 "data/maps/Route35/scripts.pory"
+Route35_Text_OfficerDirkSeen:
+# 161 "data/maps/Route35/scripts.pory"
+	.string "Danger lurks in the night!$"
 # 162 "data/maps/Route35/scripts.pory"
 
 # 163 "data/maps/Route35/scripts.pory"
-Route35_Text_OfficerDirkSeen:
+Route35_Text_OfficerDirkBeaten:
 # 164 "data/maps/Route35/scripts.pory"
-	.string "Danger lurks in the night!$"
+	.string "Whoops!$"
 # 165 "data/maps/Route35/scripts.pory"
 
 # 166 "data/maps/Route35/scripts.pory"
-Route35_Text_OfficerDirkBeaten:
-# 167 "data/maps/Route35/scripts.pory"
-	.string "Whoops!$"
-# 168 "data/maps/Route35/scripts.pory"
-
-# 169 "data/maps/Route35/scripts.pory"
 Route35_Text_OfficerDirkAfter:
-# 170 "data/maps/Route35/scripts.pory"
+# 167 "data/maps/Route35/scripts.pory"
 	.string "You know, nighttime is fun in its\n"
-# 171 "data/maps/Route35/scripts.pory"
+# 168 "data/maps/Route35/scripts.pory"
 	.string "own ways.\p"
-# 172 "data/maps/Route35/scripts.pory"
+# 169 "data/maps/Route35/scripts.pory"
 	.string "But don't overdo it, Ok?$"
-# 173 "data/maps/Route35/scripts.pory"
+# 170 "data/maps/Route35/scripts.pory"
 
-# 174 "data/maps/Route35/scripts.pory"
+# 171 "data/maps/Route35/scripts.pory"
 Route35_Text_OfficerDirkTough:
-# 175 "data/maps/Route35/scripts.pory"
+# 172 "data/maps/Route35/scripts.pory"
 	.string "Your Pokémon look pretty tough.\p"
-# 176 "data/maps/Route35/scripts.pory"
+# 173 "data/maps/Route35/scripts.pory"
 	.string "You could go anywhere safely.$"
+# 174 "data/maps/Route35/scripts.pory"
+
+# 175 "data/maps/Route35/scripts.pory"
+Route35_Text_Sign:
+# 176 "data/maps/Route35/scripts.pory"
+	.string "Route 35$"
 # 177 "data/maps/Route35/scripts.pory"
 
 # 178 "data/maps/Route35/scripts.pory"
-Route35_Text_Sign:
-# 179 "data/maps/Route35/scripts.pory"
-	.string "Route 35$"
-# 180 "data/maps/Route35/scripts.pory"
-
-# 181 "data/maps/Route35/scripts.pory"
 Route35_Text_Sign2:
-# 182 "data/maps/Route35/scripts.pory"
+# 179 "data/maps/Route35/scripts.pory"
 	.string "National Park Gate$"
 
 Route35_HiddenGrotto::
-# 186 "data/maps/Route35/scripts.pory"
+# 183 "data/maps/Route35/scripts.pory"
 	msgbox Route35_HiddenGrotto_Text_0, MSGBOX_YESNO
-# 188 "data/maps/Route35/scripts.pory"
+# 185 "data/maps/Route35/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq Route35_HiddenGrotto_2
 Route35_HiddenGrotto_1:
-# 192 "data/maps/Route35/scripts.pory"
+# 189 "data/maps/Route35/scripts.pory"
 	release
 	end
 
 Route35_HiddenGrotto_2:
-# 189 "data/maps/Route35/scripts.pory"
+# 186 "data/maps/Route35/scripts.pory"
 	warp MAP_HIDDEN_GROTTO_ROUTE35, 0
-# 190 "data/maps/Route35/scripts.pory"
+# 187 "data/maps/Route35/scripts.pory"
 	waitstate
 	goto Route35_HiddenGrotto_1
 
 
 Route35_HiddenGrotto_Text_0:
-# 186 "data/maps/Route35/scripts.pory"
+# 183 "data/maps/Route35/scripts.pory"
 	.string "There seems to be a path behind the\n"
 	.string "trees. Enter?$"

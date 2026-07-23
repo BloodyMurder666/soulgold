@@ -1,1 +1,55 @@
 mapscripts VajraDesertEast_MapScripts {}
+
+script VajraDesertEast_TrainerSirocco {
+	trainerbattle_single(TRAINER_VAJRA_EAST_SIROCCO, "Let me see how tough you are!", "Tough enough, I guess...")
+	msgbox("The hardest environments make the
+			toughest trainers.
+
+			I hope to become the very best
+			someday!")
+	end
+}
+
+
+script VajraDesertEast_TrainerSol {
+	trainerbattle_double(TRAINER_VAJRA_EAST_SOL, "Huff, huff! One more lap!", "Need... water...!", "Hey, you need two Pokémon ready to
+																											 battle!")
+	msgbox("There's an oasis behind those palm
+			trees, but you can't just go through
+			them!")
+	end
+}
+
+
+script VajraDesertEast_TrainerDune {
+	trainerbattle_single(TRAINER_VAJRA_EAST_DUNE, "Riding high!", "You caught me off guard...")
+	msgbox("Two Pokémon I'd never seen before
+			flew past here. They've returned a
+			few times.
+
+			What were they, I wonder?")
+	end
+}
+
+
+script VajraDesertEast_TrainerNori {
+	trainerbattle_double(TRAINER_VAJRA_EAST_NORI, "Are you the Trainer who beat Lance?", "No way! The Champion beat me!", "How does the Champion not have two
+																													 Pokémon ready to battle?")
+	msgbox("Can't wait to tell all my friends about
+			this!")
+	end
+}
+
+
+script VajraDesertEast_TrainerAtlas {
+	trainerbattle_double(TRAINER_VAJRA_EAST_ATLAS, "Think you can reach the oasis?", "Looks like you won't get lost among
+																										the trees!", "Sorry, bud, but you need two Pokémon
+																													 ready to battle.")
+	msgbox("This place is almost like a savanna,
+			even though it's part of the desert!")
+	end
+}
+
+script VajraDesertEast_LadyofLake {
+	msgbox("", MSGBOX_NPC)
+}
