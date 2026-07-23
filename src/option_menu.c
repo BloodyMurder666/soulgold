@@ -394,7 +394,7 @@ static const u8 *const sOptionMenuHelpTexts_Pg3[MENUITEM_COUNT_PG3] =
         "Off shows them each turn."),
     [MENUITEM_SURF_MUSIC] = COMPOUND_STRING(
         "On plays the Surf theme while\n"
-        "surfing. Off keeps map music."),
+        "surfing. Off keeps the map music."),
     [MENUITEM_PARTY_MENU] = COMPOUND_STRING(
         "Custom uses the redesigned screen.\n"
         "HGSS and BW use their respective\n"
@@ -845,6 +845,35 @@ static void Task_OptionMenuProcessInput(u8 taskId)
     if (JOY_NEW(SELECT_BUTTON))
     {
         ShowOptionMenuHelp(taskId);
+    }
+    else if (JOY_REPEAT(L_BUTTON | R_BUTTON))
+    {
+        if (JOY_REPEAT(L_BUTTON))
+        {
+            if (gTasks[taskId].tMenuSelection > OPTION_MENU_VISIBLE_ROWS)
+                gTasks[taskId].tMenuSelection -= OPTION_MENU_VISIBLE_ROWS;
+            else
+                gTasks[taskId].tMenuSelection = 0;
+
+            if (sOptionScrollOffset > OPTION_MENU_VISIBLE_ROWS)
+                sOptionScrollOffset -= OPTION_MENU_VISIBLE_ROWS;
+            else
+                sOptionScrollOffset = 0;
+        }
+        else
+        {
+            if (gTasks[taskId].tMenuSelection + OPTION_MENU_VISIBLE_ROWS < OPTION_MENU_ITEM_COUNT)
+                gTasks[taskId].tMenuSelection += OPTION_MENU_VISIBLE_ROWS;
+            else
+                gTasks[taskId].tMenuSelection = OPTION_MENU_ITEM_COUNT - 1;
+
+            if (sOptionScrollOffset + OPTION_MENU_VISIBLE_ROWS <= OPTION_MENU_MAX_SCROLL)
+                sOptionScrollOffset += OPTION_MENU_VISIBLE_ROWS;
+            else
+                sOptionScrollOffset = OPTION_MENU_MAX_SCROLL;
+        }
+
+        DrawVisibleOptions(taskId);
     }
     else if (JOY_NEW(A_BUTTON | B_BUTTON))
     {
