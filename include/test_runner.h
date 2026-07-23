@@ -8,6 +8,7 @@ extern const bool8 gTestRunnerHeadless;
 #define gTestRunnerHeadless FALSE
 #endif
 extern const bool8 gTestRunnerSkipIsFail;
+extern const bool8 gTestRunnerSkipDuplicateTraitTests;
 
 #if TESTING
 

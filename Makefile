@@ -50,7 +50,7 @@ RELEASE      ?= 0
 ifeq (compare,$(MAKECMDGOALS))
   COMPARE := 1
 endif
-ifeq (check,$(MAKECMDGOALS))
+ifneq (,$(filter check check-all,$(MAKECMDGOALS)))
   TEST := 1
 endif
 ifeq (debug,$(MAKECMDGOALS))
@@ -273,7 +273,7 @@ MAKEFLAGS += --no-print-directory
 .DELETE_ON_ERROR:
 
 RULES_NO_SCAN += libagbsyscall clean clean-assets tidy tidymodern tidycheck tidyrelease generated clean-generated clean-teachables clean-teachables_intermediates
-.PHONY: all rom check-song-config bps nightly-bps agbcc modern compare check debug release
+.PHONY: all rom check-song-config bps nightly-bps agbcc modern compare check check-all debug release
 .PHONY: $(RULES_NO_SCAN)
 
 infoshell = $(foreach line, $(shell $1 | sed "s/ /__SPACE__/g"), $(info $(subst __SPACE__, ,$(line))))
@@ -391,14 +391,16 @@ else
 TEST_SKIP_IS_FAIL := \x00
 endif
 
-check: $(TEST_SHARD_ELFS)
+check: TEST_SKIP_DUPLICATE_TRAIT_TESTS := \x01
+check-all: TEST_SKIP_DUPLICATE_TRAIT_TESTS := \x00
+check check-all: $(TEST_SHARD_ELFS)
 	@set -e; \
 	printf 'Running %s test shard(s). Each test summary below is for one shard, not the full suite.\n' "$(words $^)"; \
 	for elf in $^; do \
 		headless="$${elf%.elf}-headless.elf"; \
 		printf '\n== Running %s ==\n' "$$elf"; \
 		cp "$$elf" "$$headless"; \
-		$(PATCHELF) "$$headless" gTestRunnerHeadless '\x01' gTestRunnerSkipIsFail "$(TEST_SKIP_IS_FAIL)"; \
+		$(PATCHELF) "$$headless" gTestRunnerHeadless '\x01' gTestRunnerSkipIsFail "$(TEST_SKIP_IS_FAIL)" gTestRunnerSkipDuplicateTraitTests "$(TEST_SKIP_DUPLICATE_TRAIT_TESTS)"; \
 		$(ROMTESTHYDRA) $(ROMTEST) $(OBJCOPY) "$$headless"; \
 	done
 

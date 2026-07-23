@@ -79,6 +79,16 @@ static bool32 InfixMatch(const char *pattern, const char *string)
     return strstr(string, &pattern[1]) != NULL;
 }
 
+static bool32 IsDuplicateTraitTest(const char *name)
+{
+    static const char suffix[] = " (Traits)";
+    size_t nameLength = strlen(name);
+    size_t suffixLength = sizeof(suffix) - 1;
+
+    return nameLength >= suffixLength
+        && strcmp(&name[nameLength - suffixLength], suffix) == 0;
+}
+
 enum
 {
     STATE_INIT,
@@ -282,7 +292,8 @@ top:
             }
             if (gTestRunnerState.test->runner != &gAssumptionsRunner)
             {
-                if ((gTestRunnerState.filterMode == TEST_FILTER_MODE_TEST_NAME_PREFIX && !PrefixMatch(gTestRunnerArgv, gTestRunnerState.test->name))
+                if ((gTestRunnerSkipDuplicateTraitTests && IsDuplicateTraitTest(gTestRunnerState.test->name))
+                 || (gTestRunnerState.filterMode == TEST_FILTER_MODE_TEST_NAME_PREFIX && !PrefixMatch(gTestRunnerArgv, gTestRunnerState.test->name))
                  || (gTestRunnerState.filterMode == TEST_FILTER_MODE_TEST_NAME_INFIX && !InfixMatch(gTestRunnerArgv, gTestRunnerState.test->name))
                  || (gTestRunnerState.filterMode == TEST_FILTER_MODE_FILENAME_EXACT && !ExactMatch(gTestRunnerArgv, gTestRunnerState.test->filename)))
                 {
