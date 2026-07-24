@@ -6,3 +6,44 @@ script SouthPassageSign {
             The text is faded and difficult
             to read.", MSGBOX_SIGN)
 }
+
+script SouthPassageAriana {
+    lock
+    faceplayer
+    msgbox("Oh. It's you.
+    
+            Didn't expect you to wander all the
+            way over here.")
+    turnobject(LOCALID_SP_ARIANA, DIR_NORTH)
+    msgbox("Archer sent me to check on something
+            here.
+            
+            This place had been conducting illegal
+            operations in the name of Team Rocket.
+            
+            Even Giovanni had not given an approval
+            for them. 
+            
+            Once he caught wind of it, he sent an
+            order to cease the operations and fired
+            all the scientists and grunts involved.")
+    faceplayer
+    msgbox("They tried to burn all evidence, but
+            they were caught quickly.
+            
+            If you wish to explore around, then I'm 
+            not going to stop you, but don't expect
+            to find much.
+            
+            I got what I need already, so I'll be
+            heading back.")
+    closemessage
+    setfieldeffectargument(0, 1)
+    dofieldeffect(FLDEFF_NPCFLY_OUT)
+    delay(15)
+    removeobject(LOCALID_SP_ARIANA)
+    waitfieldeffect(FLDEFF_NPCFLY_OUT)
+    setflag(FLAG_SOUTHPASSAGE_ARIANA)
+    release
+    end
+}

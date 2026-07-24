@@ -1666,6 +1666,7 @@
 #define FLAG_MAGMARIZER                             0x97E
 #define FLAG_RINTO_TRADE_COMPLETE                   0x97F
 #define FLAG_VAJRAPYRAMID1_URN                      0x980
+#define FLAG_SOUTHPASSAGE_ARIANA                    0x981
 
 #define FLAG_0x1500                                 0x1500
 // Daily Flags
