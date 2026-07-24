@@ -1,4 +1,8 @@
 Update notes:
+24.7.2026
+- New town, Rinto Village is now open alongside Battle Pyramid in the Vajra Desert!
+- Several new TMs have been made obtainable and one new trade has been added.
+
 23.7.2026
 - Fix LTO bug with healing items.
 

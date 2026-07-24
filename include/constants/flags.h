@@ -1663,7 +1663,8 @@
 #define FLAG_VAJRADESERT_ITEM4                      0x97B
 #define FLAG_VAJRADESERT_ITEM5                      0x97C
 #define FLAG_VAJRADESERT_ITEM6                      0x97D
-#define FLAG_UNUSED0X97E                            0x97E
+#define FLAG_MAGMARIZER                             0x97E
+#define FLAG_RINTO_TRADE_COMPLETE                   0x97F
 
 #define FLAG_0x1500                                 0x1500
 // Daily Flags

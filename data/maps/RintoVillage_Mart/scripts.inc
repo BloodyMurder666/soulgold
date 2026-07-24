@@ -35,6 +35,18 @@ Rinto2:
 	.2byte ITEM_QUICK_BALL
 	.2byte ITEM_NONE
 
+RintoMart_Youngster::
+# 23 "data/maps/RintoVillage_Mart/scripts.pory"
+	msgbox RintoMart_Youngster_Text_0, MSGBOX_NPC
+	return
+
+
+RintoMart_Beauty::
+# 31 "data/maps/RintoVillage_Mart/scripts.pory"
+	msgbox RintoMart_Beauty_Text_0, MSGBOX_NPC
+	return
+
+
 Rinto_Mart2_Text_0:
 # 6 "data/maps/RintoVillage_Mart/scripts.pory"
 	.string "Welcome! How may I help you?$"
@@ -42,3 +54,14 @@ Rinto_Mart2_Text_0:
 Rinto_Mart2_Text_1:
 # 9 "data/maps/RintoVillage_Mart/scripts.pory"
 	.string "Come back soon!$"
+
+RintoMart_Youngster_Text_0:
+# 23 "data/maps/RintoVillage_Mart/scripts.pory"
+	.string "Every Poké Mart in Johto stocks its\n"
+	.string "own selection of TMs.\p"
+	.string "Collecting them all gets expensive!$"
+
+RintoMart_Beauty_Text_0:
+# 31 "data/maps/RintoVillage_Mart/scripts.pory"
+	.string "I'm just hanging out here for the air\n"
+	.string "conditioning.$"

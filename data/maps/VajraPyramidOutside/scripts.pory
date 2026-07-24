@@ -3,3 +3,8 @@ mapscripts VajraPyramidOutside_MapScripts {}
 script VajraPyramidOutside_Door {
     msgbox("The door is sealed shut tightly.", MSGBOX_SIGN)
 }
+
+script VajraPyramidOutside_RuinManiac {
+    msgbox("There's mystery here waiting to be
+            uncovered! I can sense it!", MSGBOX_NPC)
+}

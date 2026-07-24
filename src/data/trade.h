@@ -1112,21 +1112,21 @@ static const struct InGameTrade sIngameTrades[] =
         .sheen = 10,
         .requestedSpecies = SPECIES_XATU
     },
-    [INGAME_TRADE_PIKACHU] =
+    [INGAME_TRADE_MELTAN] =
     {
-        .nickname = _("Volty"),
-        .species = SPECIES_PIKACHU,
-        .ivs = {4, 4, 4, 5, 5, 4},
+        .nickname = _("Brick"),
+        .species = SPECIES_MELTAN,
+        .ivs = {25, 25, 25, 25, 25, 25},
         .abilityNum = 0,
         .otId = 33038,
         .conditions = {5, 5, 30, 5, 5},
         .personality = 0xA0C6230D,
-        .heldItem[0] = ITEM_LIGHT_BALL,
+        .heldItem[0] = ITEM_METAL_ALLOY,
         .mailNum = 0,
-        .otName = _("SURGE"),
+        .otName = _("Vincent"),
         .otGender = MALE,
         .sheen = 10,
-        .requestedSpecies = SPECIES_PIKACHU
+        .requestedSpecies = SPECIES_TINKATON
     },
     [INGAME_TRADE_BELDUM] =
     {

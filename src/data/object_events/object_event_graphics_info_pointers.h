@@ -1,4 +1,5 @@
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BrendanNormal;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RuinManiac;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BrendanMachBike;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BrendanSurfing;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BrendanFieldMove;
@@ -659,6 +660,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_CASE] =                    &gObjectEventGraphicsInfo_Case,
     [OBJ_EVENT_GFX_TMBALL] =                  &gObjectEventGraphicsInfo_TMBall,
     [OBJ_EVENT_GFX_MEGASTONE] =                  &gObjectEventGraphicsInfo_Megastone,
+    [OBJ_EVENT_GFX_RUIN_MANIAC] =                &gObjectEventGraphicsInfo_RuinManiac,
 };
 
 const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {

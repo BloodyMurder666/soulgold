@@ -194,6 +194,45 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Rinto_Piplup",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 20,
+      "y": 10,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_MAGMARIZER",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_MAGMARIZER"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(VULLABY)",
+      "x": 29,
+      "y": 43,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Rinto_Maractus",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(VULLABY)",
+      "x": 18,
+      "y": 51,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Rinto_Maractus",
+      "flag": "0"
     }
   ],
   "warp_events": [

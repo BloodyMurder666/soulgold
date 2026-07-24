@@ -1,1 +1,106 @@
 mapscripts RintoHouse3_MapScripts {}
+
+script RintoHouse3_Guard {
+    msgbox("Downstairs is reserved for researchers
+            only.", MSGBOX_NPC)
+}
+
+script RintoHouse3_ResearchGuide {
+    msgbox("You can see our excavation results
+            here!", MSGBOX_NPC)
+}
+
+script RintoHouse3_Hiker {
+    msgbox("We've made a lot of discoveries near the
+            pyramid, but no one has been able to get
+            in.", MSGBOX_NPC)
+}
+
+
+script RintoHouse3_Researcher {
+    msgbox("The door to the pyramid...
+
+            It's made of a strange metal that can
+            repel even our Excadrill's attacks.", MSGBOX_NPC)
+}
+
+script RintoHouse3_Excadrill {
+    lock
+    faceplayer
+    playmoncry(SPECIES_EXCADRILL, CRY_MODE_NORMAL)
+    msgbox("Excadrill: Caaaaaaaa!")
+    waitmoncry
+    release
+    end
+}
+
+script RintoHouse3_TraderResearcher {
+    lock
+    faceplayer
+    if (flag(FLAG_RINTO_TRADE_COMPLETE)) {
+        msgbox("Thanks to your Tinkaton, we may
+                finally be able to break through one
+                of the pyramid's walls!")
+    } else {
+        ingame_trade(INGAME_TRADE_MELTAN, "I'm researching alternative ways to
+                                           get into the pyramid to the west.
+
+                                           Would you happen to have a Tinkaton?
+
+                                           With its powerful hammer strikes, we
+                                           might be able to break through one of
+                                           the pyramid's walls.
+
+                                           I can offer you this rare Meltan in
+                                           return. What do you say?",
+                                         MeltanTrade_Declined,
+                                         MeltanTrade_NotRequested,
+                                         "Amazing! Thank you on behalf of the
+                                          whole research team!")
+        setflag(FLAG_RINTO_TRADE_COMPLETE)
+    }
+    release
+    end
+}
+
+script MeltanTrade_Declined {
+    msgbox("Oh... Okay, then...
+
+            I guess I'll have to ask someone to
+            find and raise one from the Union Cave...")
+    release
+    end
+}
+
+script MeltanTrade_NotRequested {
+    msgbox("That doesn't look like a Tinkaton to
+            me.")
+    release
+    end
+}
+
+script RintoHouse3_Plaque {
+    msgbox("It appears to be some sort of a
+            Fossil excavated nearby.", MSGBOX_SIGN)
+}
+
+script RintoHouse3_PlaqueBall {
+    msgbox("An ancient Poké Ball. 
+    
+            It looks much like the ones
+            used in ancient Hisui.", MSGBOX_SIGN)
+}
+
+script RintoHouse3_Bookshelf {
+    msgbox("A Bookshelf filled with history books.
+            Some of them look ancient!", MSGBOX_SIGN)
+}
+
+script RintoHouse3_Painting {
+    msgbox("A painting depicting an artist's 
+            interpretation of this land a thousand 
+            years ago.
+            
+            You have a hard time making out the
+            signature.", MSGBOX_SIGN)
+}

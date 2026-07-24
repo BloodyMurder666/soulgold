@@ -452,6 +452,7 @@ const u32 gObjectEventPic_ScientistF[] = INCBIN_U32("graphics/object_events/pics
 const u32 gObjectEventPic_CooltrainerM[] = INCBIN_U32("graphics/object_events/pics/people/cooltrainer_m.4bpp");
 const u32 gObjectEventPic_Biker[] = INCBIN_U32("graphics/object_events/pics/people/biker.4bpp");
 const u32 gObjectEventPic_Captain[] = INCBIN_U32("graphics/object_events/pics/people/captain.4bpp");
+const u32 gObjectEventPic_RuinManiac[] = INCBIN_U32("graphics/object_events/pics/people/ruin_maniac.4bpp");
 
 const u32 gObjectEventPic_VigorothMover[] = INCBIN_U32("graphics/object_events/pics/pokemon_old/vigoroth_mover.4bpp");
 const u32 gObjectEventPic_SudowoodoTree[] = INCBIN_U32("graphics/object_events/pics/pokemon_old/sudowoodo_tree.4bpp");
@@ -509,6 +510,7 @@ const u16 gObjectEventPal_Pink[] = INCBIN_U16("graphics/object_events/palettes/n
 const u16 gObjectEventPal_Case[] = INCBIN_U16("graphics/object_events/palettes/case.gbapal");
 const u16 gObjectEventPal_Bill[] = INCBIN_U16("graphics/object_events/palettes/bill.gbapal");
 const u16 gObjectEventPal_Archer[] = INCBIN_U16("graphics/object_events/palettes/archer.gbapal");
+const u16 gObjectEventPal_RuinManiac[] = INCBIN_U16("graphics/object_events/pics/people/ruin_maniac.gbapal");
 
 #if OW_FOLLOWERS_POKEBALLS
 const u32 gObjectEventPic_MasterBall[] = INCBIN_U32("graphics/object_events/pics/misc/ball_master.4bpp");

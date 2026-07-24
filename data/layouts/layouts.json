@@ -10060,10 +10060,10 @@
     {
       "id": "LAYOUT_RINTO_HOUSE3",
       "name": "RintoHouse3_Layout",
-      "width": 20,
+      "width": 27,
       "height": 20,
       "primary_tileset": "gTileset_Johto_Building",
-      "secondary_tileset": "gTileset_House_Lab",
+      "secondary_tileset": "gTileset_Museum",
       "border_filepath": "data/layouts/RintoHouse3/border.bin",
       "blockdata_filepath": "data/layouts/RintoHouse3/map.bin"
     },

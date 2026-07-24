@@ -6642,6 +6642,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .evYield_SpAttack = 2,
         .genderRatio = PERCENT_FEMALE(50),
         .eggCycles = 30,
+        .itemRare = ITEM_METAL_ALLOY,
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL, EGG_GROUP_DRAGON),

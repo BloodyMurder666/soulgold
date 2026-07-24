@@ -1,1 +1,24 @@
 mapscripts RintoHouse1_MapScripts {}
+
+script RintoHouse1_Vullaby {
+    lock
+    faceplayer
+    playmoncry(SPECIES_VULLABY, CRY_MODE_NORMAL)
+    msgbox("Vullaby: Vuvaaaaaa!")
+    waitmoncry
+    release
+    end
+}
+
+script RintoHouse1_Girl {
+    msgbox("I heard that several Pokémon evolve
+            much earlier in Johto than they do
+            in other regions.", MSGBOX_NPC)
+}
+
+script RintoHouse1_Mom {
+    msgbox("Our Vullaby has been eating a lot
+            lately.
+
+            It might be close to evolving.", MSGBOX_NPC)
+}

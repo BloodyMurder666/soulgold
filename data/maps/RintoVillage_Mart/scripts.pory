@@ -12,9 +12,22 @@ script Rinto_Mart2 {
 }
 
 mart Rinto2 {
-	ITEM_TM_BRICK_BREAK
-	ITEM_TM_FACADE
+    ITEM_TM_BRICK_BREAK
+    ITEM_TM_FACADE
     ITEM_TM_PLAY_ROUGH
     ITEM_DUSK_BALL
     ITEM_QUICK_BALL
+}
+
+script RintoMart_Youngster {
+    msgbox("Every Poké Mart in Johto stocks its
+            own selection of TMs.
+
+            Collecting them all gets expensive!",
+           MSGBOX_NPC)
+}
+
+script RintoMart_Beauty {
+    msgbox("I'm just hanging out here for the air
+            conditioning.", MSGBOX_NPC)
 }

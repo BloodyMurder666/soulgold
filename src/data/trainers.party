@@ -552,8 +552,8 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
 === TRAINER_RICH ===
 Name: Rich
-Class: Collector
-Pic: Collector
+Class: Scientist
+Pic: Scientist
 Gender: Male
 Music: Hg Suspicious 2
 Double Battle: No
@@ -3378,8 +3378,8 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ROSS ===
 Name: Ross
-Class: Collector
-Pic: Collector
+Class: Scientist
+Pic: Scientist
 Gender: Male
 Music: Hg Suspicious 2
 Double Battle: No
@@ -3429,8 +3429,8 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JED ===
 Name: Jed
-Class: Collector
-Pic: Collector
+Class: Scientist
+Pic: Scientist
 Gender: Male
 Music: Male
 Double Battle: No
@@ -7237,8 +7237,8 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_MITCH ===
 Name: Mitch
-Class: Collector
-Pic: Collector
+Class: Scientist
+Pic: Scientist
 Gender: Male
 Music: Hg Suspicious 2
 Double Battle: No
@@ -7407,8 +7407,8 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_MARC ===
 Name: Marc
-Class: Collector
-Pic: Collector
+Class: Scientist
+Pic: Scientist
 Gender: Male
 Music: Hg Suspicious 2
 Double Battle: No
@@ -15879,8 +15879,8 @@ Ball: Poke
 
 === TRAINER_MAD_SCIENTIST ===
 Name: Maddie
-Class: Collector
-Pic: Collector
+Class: Scientist
+Pic: Scientist
 Gender: Male
 Music: Male
 Double Battle: No

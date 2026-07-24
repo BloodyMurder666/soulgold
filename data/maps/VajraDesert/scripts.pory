@@ -3,11 +3,6 @@ mapscripts VajraDesert_MapScripts {
         if (flag(FLAG_SUS_DESERT_DOOR)) {
             setmetatile(37, 6, 0x4AE, FALSE)
         }
-        if (flag(FLAG_SYS_GAME_CLEAR)) {
-            setmetatileinrange(82, 9, 85, 9, 0x408)
-            setmetatileinrange(82, 10, 85, 10, 0x408)
-            setmetatileinrange(82, 11, 85, 11, 0x408)
-        }
     }
 }
 
