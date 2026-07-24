@@ -680,6 +680,14 @@ extern const u8 Common_Movement_FaceDown[];
 extern const u8 Common_Movement_FaceRight[];
 extern const u8 Common_Movement_FaceLeft[];
 
+// Sandpits
+extern const u8 SandpitSW[];
+extern const u8 SandpitNW[];
+extern const u8 SandpitSE[];
+extern const u8 SandpitNE[];
+extern const u8 SandpitWest[];
+extern const u8 SandpitEast[];
+
 extern const u8 EventScript_CancelMessageBox[];
 extern const u8 Common_EventScript_ShowPokemonCenterSign[];
 extern const u8 Common_EventScript_ShowPokemartSign[];

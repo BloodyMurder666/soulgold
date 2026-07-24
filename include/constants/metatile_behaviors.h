@@ -95,8 +95,8 @@ enum {
     MB_UNUSED_5A,
     MB_UNUSED_5B,
     MB_UNUSED_5C,
-    MB_UNUSED_5D,
-    MB_UNUSED_5E,
+    MB_SANDPIT_SW,
+    MB_SANDPIT_SE,
     MB_UNUSED_5F,
     MB_NON_ANIMATED_DOOR,
     MB_LADDER,
@@ -169,7 +169,7 @@ enum {
     MB_UNUSED_A4,
     MB_UNUSED_A5,
     MB_UNUSED_A6,
-    MB_UNUSED_A7,
+    MB_SANDPIT_NW,
     MB_UNUSED_A8,
     MB_UNUSED_A9,
     MB_UNUSED_AA,
@@ -217,7 +217,7 @@ enum {
     MB_ISOLATED_HORIZONTAL_RAIL,
     MB_VERTICAL_RAIL,
     MB_HORIZONTAL_RAIL,
-    MB_UNUSED_D7,
+    MB_SANDPIT_NE,
     MB_UNUSED_D8,
     MB_UNUSED_D9,
     MB_UNUSED_DA,
@@ -242,6 +242,9 @@ enum {
     MB_DOWN_RIGHT_STAIR_WARP,
     MB_DOWN_LEFT_STAIR_WARP,
     MB_ROCK_CLIMB,
+    // 0xF0-0xF4 are already present in imported tileset attributes.
+    MB_SANDPIT_EAST = 0xF5,
+    MB_SANDPIT_WEST,
     NUM_METATILE_BEHAVIORS
 };
 
