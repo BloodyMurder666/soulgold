@@ -643,7 +643,9 @@
     "AbandonedRocketHideout",
     "MeteorCave1",
     "AbandonedRocketHideoutBackroom",
-    "LakeOfRageCresseliaDen"
+    "LakeOfRageCresseliaDen",
+    "VajraPyramidTop",
+    "VajraPyramidFloor1"
   ],
   "gMapGroup_JohtoDiveMaps": [
     "CherrygroveUnderwater"

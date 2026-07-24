@@ -45,7 +45,7 @@
 ../porytiles/porytiles compile-secondary -target-base-game=pokefirered -tiles-primary-override=640 -metatiles-primary-override=1024 -metatiles-total-override=2048 -pals-primary-override=7 -o data/tilesets/secondary/desert_village porytiles/decompiled-desert-village ../porytiles/primary_blank include/constants/metatile_behaviors.h
 
  ../porytiles/porytiles compile-secondary -target-base-game=pokefirered -tiles-primary-override=640 -metatiles-primary-override=1024 -metatiles-total-override=2048 -pals-primary-override=7 -o data/tilesets/secondary/desert porytiles/decompiled-desert-new ../porytiles/primary_blank include/constants/metatile_behaviors.h
-../porytiles/porytiles-legacy compile-primary -target-base-game=pokefirered -tiles-primary-override=640 -metatiles-primary-override=1024 -metatiles-total-override=2048 -pals-primary-override=7 -o data/tilesets/primary/inn porytiles/decompiled-inn-primary include/constants/metatile_behaviors.h
+../porytiles/porytiles-legacy compile-primary -target-base-game=pokefirered -tiles-primary-override=640 -metatiles-primary-override=1024 -metatiles-total-override=2048 -pals-primary-override=7 -o data/tilesets/primary/pyramid porytiles/decompiled-pyramid include/constants/metatile_behaviors.h
 ../porytiles/porytiles-legacy compile-secondary -target-base-game=pokefirered -tiles-primary-override=640 -metatiles-primary-override=1024 -metatiles-total-override=2048 -pals-primary-override=7 -o data/tilesets/secondary/inn porytiles/decompiled-inn-secondary porytiles/decompiled-inn-primary include/constants/metatile_behaviors.h
 
   ../porytiles/porytiles compile-secondary \

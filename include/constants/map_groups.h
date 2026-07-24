@@ -619,6 +619,8 @@ enum
     MAP_METEOR_CAVE1                      = (23 | (25 << 8)),
     MAP_ABANDONED_ROCKET_HIDEOUT_BACKROOM = (24 | (25 << 8)),
     MAP_LAKE_OF_RAGE_CRESSELIA_DEN        = (25 | (25 << 8)),
+    MAP_VAJRA_PYRAMID_TOP                 = (26 | (25 << 8)),
+    MAP_VAJRA_PYRAMID_FLOOR1              = (27 | (25 << 8)),
 
     // gMapGroup_JohtoDiveMaps
     MAP_CHERRYGROVE_UNDERWATER = (0 | (26 << 8)),

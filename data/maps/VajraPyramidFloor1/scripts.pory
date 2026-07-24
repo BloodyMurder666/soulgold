@@ -1,0 +1,14 @@
+mapscripts VajraPyramidFloor1_MapScripts {}
+
+script VajraPyramid1_Urn {
+    lock
+    if (flag(FLAG_VAJRAPYRAMID1_URN)) {
+        msgbox("The urn is empty.")
+        release
+        end
+    }
+    finditem(ITEM_RELIC_COPPER)
+    setflag(FLAG_VAJRAPYRAMID1_URN)
+    release
+    end
+}

@@ -2228,3 +2228,14 @@ const struct Tileset gTileset_inn =
     .metatileAttributes = gMetatileAttributes_inn,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_Pyramid =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .tiles = gTilesetTiles_Pyramid,
+    .palettes = gTilesetPalettes_Pyramid,
+    .metatiles = gMetatiles_Pyramid,
+    .metatileAttributes = gMetatileAttributes_Pyramid,
+    .callback = NULL,
+};

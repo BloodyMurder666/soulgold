@@ -2370,3 +2370,7 @@ Common_Text_ReceivedMon:
 	.include "data/maps/Rinto_PoemonCenter/scripts.inc"
 
 	.include "data/maps/RintoVillage_Mart/scripts.inc"
+
+	.include "data/maps/VajraPyramidTop/scripts.inc"
+
+	.include "data/maps/VajraPyramidFloor1/scripts.inc"
