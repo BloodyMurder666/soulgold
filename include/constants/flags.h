@@ -1667,6 +1667,9 @@
 #define FLAG_RINTO_TRADE_COMPLETE                   0x97F
 #define FLAG_VAJRAPYRAMID1_URN                      0x980
 #define FLAG_SOUTHPASSAGE_ARIANA                    0x981
+#define FLAG_VAJRAPYRAMID2_URN1                     0x982
+#define FLAG_VAJRAPYRAMID2_URN2                     0x983
+#define FLAG_VAJRAPYRAMID3_ITEMBALL                 0x984
 
 #define FLAG_0x1500                                 0x1500
 // Daily Flags

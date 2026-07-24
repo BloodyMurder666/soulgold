@@ -2374,3 +2374,7 @@ Common_Text_ReceivedMon:
 	.include "data/maps/VajraPyramidTop/scripts.inc"
 
 	.include "data/maps/VajraPyramidFloor1/scripts.inc"
+
+	.include "data/maps/VajraPyramidFloor2/scripts.inc"
+
+	.include "data/maps/VajraPyramidFloor3/scripts.inc"

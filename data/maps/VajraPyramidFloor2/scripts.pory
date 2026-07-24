@@ -1,0 +1,38 @@
+mapscripts VajraPyramidFloor2_MapScripts {}
+
+script VajraPyramid2_Urn1 {
+    lock
+    if (flag(FLAG_VAJRAPYRAMID2_URN1)) {
+        msgbox("The urn is empty.")
+        release
+        end
+    }
+    finditem(ITEM_RELIC_SILVER)
+    setflag(FLAG_VAJRAPYRAMID2_URN1)
+    release
+    end
+}
+
+script VajraPyramid2_Urn2 {
+    lock
+    if (flag(FLAG_VAJRAPYRAMID2_URN2)) {
+        msgbox("The urn is empty.")
+        release
+        end
+    }
+    finditem(ITEM_RELIC_COPPER)
+    setflag(FLAG_VAJRAPYRAMID2_URN2)
+    release
+    end
+}
+
+script PyramidDusknoir1 {
+    lockall
+    playmoncry(SPECIES_DUSKNOIR,0)
+    waitmoncry
+    delay(10)
+    warpteleport(MAP_VAJRA_PYRAMID_FLOOR2, 30, 28)
+    waitstate
+    releaseall
+    end
+}
