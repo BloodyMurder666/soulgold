@@ -647,7 +647,11 @@
     "VajraPyramidTop",
     "VajraPyramidFloor1",
     "VajraPyramidFloor2",
-    "VajraPyramidFloor3"
+    "VajraPyramidFloor3",
+    "LatiTempleLobby",
+    "LatiTempleLatias",
+    "LatiTempleLatios",
+    "LatiTempleSouldewRoom"
   ],
   "gMapGroup_JohtoDiveMaps": [
     "CherrygroveUnderwater"

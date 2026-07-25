@@ -348,6 +348,16 @@
 #define METATILE_Johto_General_Fall_TallGrass  0x083
 #define METATILE_Johto_General_Grass           0x008
 
+// gTileset_LatiTemple
+#define METATILE_LatiTemple_ActiveBlue             0x446
+#define METATILE_LatiTemple_ActiveGray             0x40F
+#define METATILE_LatiTemple_ActiveGreen            0x447
+#define METATILE_LatiTemple_CrystalSwitchActive    0x44E
+#define METATILE_LatiTemple_CrystalSwitchInactive  0x456
+#define METATILE_LatiTemple_InactiveBlue           0x43E
+#define METATILE_LatiTemple_InactiveGray           0x407
+#define METATILE_LatiTemple_InactiveGreen          0x43F
+
 // gTileset_Lavaridge
 #define METATILE_Lavaridge_AshGrass             0x207
 #define METATILE_Lavaridge_CaveEntrance_Bottom  0x25E

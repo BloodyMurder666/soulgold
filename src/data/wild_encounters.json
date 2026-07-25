@@ -14435,6 +14435,160 @@
               }
             ]
           }
+        },
+        {
+          "map": "MAP_VAJRA_DESERT_EAST",
+          "base_label": "gVajraDesertEast",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 50,
+                "max_level": 53,
+                "species": "SPECIES_NIDOKING"
+              },
+              {
+                "min_level": 45,
+                "max_level": 47,
+                "species": "SPECIES_VIBRAVA"
+              },
+              {
+                "min_level": 50,
+                "max_level": 53,
+                "species": "SPECIES_NIDOKING"
+              },
+              {
+                "min_level": 45,
+                "max_level": 47,
+                "species": "SPECIES_VIBRAVA"
+              },
+              {
+                "min_level": 50,
+                "max_level": 53,
+                "species": "SPECIES_HIPPOWDON"
+              },
+              {
+                "min_level": 50,
+                "max_level": 53,
+                "species": "SPECIES_MANDIBUZZ"
+              },
+              {
+                "min_level": 50,
+                "max_level": 53,
+                "species": "SPECIES_HIPPOWDON"
+              },
+              {
+                "min_level": 50,
+                "max_level": 53,
+                "species": "SPECIES_MANDIBUZZ"
+              },
+              {
+                "min_level": 53,
+                "max_level": 54,
+                "species": "SPECIES_FLYGON"
+              },
+              {
+                "min_level": 46,
+                "max_level": 47,
+                "species": "SPECIES_GABITE"
+              },
+              {
+                "min_level": 53,
+                "max_level": 54,
+                "species": "SPECIES_FLYGON"
+              },
+              {
+                "min_level": 46,
+                "max_level": 47,
+                "species": "SPECIES_GABITE"
+              }
+            ]
+          },
+          "water_mons": {
+            "encounter_rate": 7,
+            "mons": [
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_OVERQWIL"
+              },
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_STARMIE"
+              },
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_STARMIE"
+              },
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_DONDOZO"
+              },
+              {
+                "min_level": 55,
+                "max_level": 60,
+                "species": "SPECIES_DONDOZO"
+              }
+            ]
+          },
+          "fishing_mons": {
+            "encounter_rate": 30,
+            "mons": [
+              {
+                "min_level": 5,
+                "max_level": 15,
+                "species": "SPECIES_CARVANHA"
+              },
+              {
+                "min_level": 5,
+                "max_level": 15,
+                "species": "SPECIES_CARVANHA"
+              },
+              {
+                "min_level": 20,
+                "max_level": 30,
+                "species": "SPECIES_CARVANHA"
+              },
+              {
+                "min_level": 20,
+                "max_level": 30,
+                "species": "SPECIES_STARYU"
+              },
+              {
+                "min_level": 20,
+                "max_level": 30,
+                "species": "SPECIES_STARYU"
+              },
+              {
+                "min_level": 48,
+                "max_level": 50,
+                "species": "SPECIES_STARMIE"
+              },
+              {
+                "min_level": 48,
+                "max_level": 50,
+                "species": "SPECIES_STARMIE"
+              },
+              {
+                "min_level": 48,
+                "max_level": 50,
+                "species": "SPECIES_STARMIE"
+              },
+              {
+                "min_level": 48,
+                "max_level": 55,
+                "species": "SPECIES_DONDOZO"
+              },
+              {
+                "min_level": 53,
+                "max_level": 55,
+                "species": "SPECIES_DONDOZO"
+              }
+            ]
+          }
         }
       ]
     },

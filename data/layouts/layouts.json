@@ -10126,6 +10126,46 @@
       "secondary_tileset": "gTileset_DesertVillage",
       "border_filepath": "data/layouts/VajraPyramidFloor3/border.bin",
       "blockdata_filepath": "data/layouts/VajraPyramidFloor3/map.bin"
+    },
+    {
+      "id": "LAYOUT_LATI_TEMPLE_LOBBY",
+      "name": "LatiTempleLobby_Layout",
+      "width": 35,
+      "height": 31,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_LatiTemple",
+      "border_filepath": "data/layouts/LatiTempleLobby/border.bin",
+      "blockdata_filepath": "data/layouts/LatiTempleLobby/map.bin"
+    },
+    {
+      "id": "LAYOUT_LATI_TEMPLE_LATIAS",
+      "name": "LatiTempleLatias_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_LatiTemple",
+      "border_filepath": "data/layouts/LatiTempleLatias/border.bin",
+      "blockdata_filepath": "data/layouts/LatiTempleLatias/map.bin"
+    },
+    {
+      "id": "LAYOUT_LATI_TEMPLE_LATIOS",
+      "name": "LatiTempleLatios_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_LatiTemple",
+      "border_filepath": "data/layouts/LatiTempleLatios/border.bin",
+      "blockdata_filepath": "data/layouts/LatiTempleLatios/map.bin"
+    },
+    {
+      "id": "LAYOUT_LATI_TEMPLE_SOULDEW_ROOM",
+      "name": "LatiTempleSouldewRoom_Layout",
+      "width": 19,
+      "height": 38,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_LatiTemple",
+      "border_filepath": "data/layouts/LatiTempleSouldewRoom/border.bin",
+      "blockdata_filepath": "data/layouts/LatiTempleSouldewRoom/map.bin"
     }
   ]
 }

@@ -2239,3 +2239,14 @@ const struct Tileset gTileset_Pyramid =
     .metatileAttributes = gMetatileAttributes_Pyramid,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_LatiTemple =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_LatiTemple,
+    .palettes = gTilesetPalettes_LatiTemple,
+    .metatiles = gMetatiles_LatiTemple,
+    .metatileAttributes = gMetatileAttributes_LatiTemple,
+    .callback = NULL,
+};

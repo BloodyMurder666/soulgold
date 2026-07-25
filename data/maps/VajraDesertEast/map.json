@@ -241,15 +241,15 @@
       "x": 50,
       "y": 56,
       "elevation": 0,
-      "dest_map": "MAP_VAJRA_DESERT_EAST",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_LATI_TEMPLE_LOBBY",
+      "dest_warp_id": "4"
     },
     {
       "x": 51,
       "y": 56,
       "elevation": 0,
-      "dest_map": "MAP_VAJRA_DESERT_EAST",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_LATI_TEMPLE_LOBBY",
+      "dest_warp_id": "4"
     }
   ],
   "coord_events": [],

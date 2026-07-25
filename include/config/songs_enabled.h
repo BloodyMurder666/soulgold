@@ -52,7 +52,7 @@
 #define SONG_MUS_DP_GALACTIC_ETERNA_BUILDING            0
 #define SONG_MUS_DP_LAKE                                0
 #define SONG_MUS_DP_SPEAR_PILLAR                        0
-#define SONG_MUS_DP_STARK_MOUNTAIN                      0
+#define SONG_MUS_DP_STARK_MOUNTAIN                      1
 #define SONG_MUS_DP_OREBURGH_GATE                       0
 #define SONG_MUS_DP_INSIDE_POKEMON_LEAGUE               0
 #define SONG_MUS_DP_HALL_OF_FAME_ROOM                   0

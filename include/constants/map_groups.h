@@ -623,6 +623,10 @@ enum
     MAP_VAJRA_PYRAMID_FLOOR1              = (27 | (25 << 8)),
     MAP_VAJRA_PYRAMID_FLOOR2              = (28 | (25 << 8)),
     MAP_VAJRA_PYRAMID_FLOOR3              = (29 | (25 << 8)),
+    MAP_LATI_TEMPLE_LOBBY                 = (30 | (25 << 8)),
+    MAP_LATI_TEMPLE_LATIAS                = (31 | (25 << 8)),
+    MAP_LATI_TEMPLE_LATIOS                = (32 | (25 << 8)),
+    MAP_LATI_TEMPLE_SOULDEW_ROOM          = (33 | (25 << 8)),
 
     // gMapGroup_JohtoDiveMaps
     MAP_CHERRYGROVE_UNDERWATER = (0 | (26 << 8)),

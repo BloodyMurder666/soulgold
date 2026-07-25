@@ -2378,3 +2378,11 @@ Common_Text_ReceivedMon:
 	.include "data/maps/VajraPyramidFloor2/scripts.inc"
 
 	.include "data/maps/VajraPyramidFloor3/scripts.inc"
+
+	.include "data/maps/LatiTempleLobby/scripts.inc"
+
+	.include "data/maps/LatiTempleLatias/scripts.inc"
+
+	.include "data/maps/LatiTempleLatios/scripts.inc"
+
+	.include "data/maps/LatiTempleSouldewRoom/scripts.inc"

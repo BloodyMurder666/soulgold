@@ -4212,3 +4212,22 @@ const u16 gTilesetPalettes_Pyramid[][16] =
 };
 
 const u32 gTilesetTiles_Pyramid[] = INCBIN_U32("data/tilesets/primary/pyramid/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_LatiTemple[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/lati_temple/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lati_temple/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lati_temple/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lati_temple/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lati_temple/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lati_temple/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lati_temple/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lati_temple/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lati_temple/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lati_temple/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lati_temple/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lati_temple/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lati_temple/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_LatiTemple[] = INCBIN_U32("data/tilesets/secondary/lati_temple/tiles.4bpp.lz");
