@@ -22,7 +22,7 @@
 #define SONG_MUS_DP_ROUTE203_DAY                        0
 #define SONG_MUS_DP_ROUTE205_DAY                        0
 #define SONG_MUS_DP_ROUTE206_DAY                        0
-#define SONG_MUS_DP_ROUTE216_DAY                        0
+#define SONG_MUS_DP_ROUTE216_DAY                        1
 #define SONG_MUS_DP_ROUTE228_DAY                        0
 #define SONG_MUS_DP_ROWAN                               0
 #define SONG_MUS_DP_TV_BROADCAST                        0
@@ -42,7 +42,7 @@
 #define SONG_MUS_DP_ROUTE206_NIGHT                      0
 #define SONG_MUS_DP_ROUTE209_NIGHT                      0
 #define SONG_MUS_DP_ROUTE210_NIGHT                      0
-#define SONG_MUS_DP_ROUTE216_NIGHT                      0
+#define SONG_MUS_DP_ROUTE216_NIGHT                      1
 #define SONG_MUS_DP_UNDERGROUND                         0
 #define SONG_MUS_DP_FLAG_CAPTURED                       0
 #define SONG_MUS_DP_VICTORY_ROAD                        0

@@ -71,6 +71,7 @@ The hack is currently under testing. It will be playable up to the start of post
 - Oomer for Gen 4 chatboxes
 - Gridiron for Bag sprites
 - Young-Dante for some trainer sprites
+- LibertyTwins, princess-phoenix, carchagui, aveontrainer, WesleyFG, kWharever, worldslayer608, knizz for battle backgrounds
 - [Pret and everyone involved](https://github.com/pret/pokeemerald) for the original emerald decompilation
 - [agsmgmaster64](https://github.com/agsmgmaster64/worldlinkdeluxe-ame) Game corner expansion port
 - [heypc](https://github.com/heyopc/pokeemerald-gamecorner-expansion) game corner expansion
