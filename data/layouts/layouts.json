@@ -10140,8 +10140,8 @@
     {
       "id": "LAYOUT_LATI_TEMPLE_LATIAS",
       "name": "LatiTempleLatias_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 57,
+      "height": 35,
       "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_LatiTemple",
       "border_filepath": "data/layouts/LatiTempleLatias/border.bin",
@@ -10150,8 +10150,8 @@
     {
       "id": "LAYOUT_LATI_TEMPLE_LATIOS",
       "name": "LatiTempleLatios_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 69,
+      "height": 67,
       "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_LatiTemple",
       "border_filepath": "data/layouts/LatiTempleLatios/border.bin",

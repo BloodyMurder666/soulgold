@@ -1,1 +1,197 @@
-mapscripts LatiTempleLatias_MapScripts {}
+mapscripts LatiTempleLatias_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        call(LatiTemple_RefreshPuzzle)
+    }
+}
+
+script LatiTemple_Latias {
+    lock
+    faceplayer
+    bosslegendaryencounterwithmoves(SPECIES_LATIAS, 80, LOCALID_LATIAS, FLAG_HIDE_LATIAS, 3, SPECIES_NONE, 110, MOVE_MIST_BALL, MOVE_ICE_BEAM, MOVE_SHADOW_BALL, MOVE_THUNDERBOLT)
+    //legendaryencounter(SPECIES_LATIAS, 80, LOCALID_LATIAS, FLAG_HIDE_LATIAS)
+    if (var(VAR_RESULT) == B_OUTCOME_CAUGHT) {
+        setflag(FLAG_CAUGHT_LATIAS)
+    }
+    release
+    end
+}
+
+script LatiTemple_Switch1 {
+    lockall
+    if (flag(FLAG_LATITEMPLE_SWITCH1)) {
+        clearflag(FLAG_LATITEMPLE_SWITCH1)
+    } else {
+        setflag(FLAG_LATITEMPLE_SWITCH1)
+    }
+    playse(SE_PIN)
+    call(LatiTemple_RefreshPuzzle)
+    special(DrawWholeMapView)
+    waitse
+    releaseall
+}
+
+script LatiTemple_Switch2 {
+    lockall
+    if (flag(FLAG_LATITEMPLE_SWITCH2)) {
+        clearflag(FLAG_LATITEMPLE_SWITCH2)
+    } else {
+        setflag(FLAG_LATITEMPLE_SWITCH2)
+    }
+    playse(SE_PIN)
+    call(LatiTemple_RefreshPuzzle)
+    special(DrawWholeMapView)
+    waitse
+    releaseall
+}
+
+script LatiTemple_Switch3 {
+    lockall
+    if (flag(FLAG_LATITEMPLE_SWITCH3)) {
+        clearflag(FLAG_LATITEMPLE_SWITCH3)
+    } else {
+        setflag(FLAG_LATITEMPLE_SWITCH3)
+    }
+    playse(SE_PIN)
+    call(LatiTemple_RefreshPuzzle)
+    special(DrawWholeMapView)
+    waitse
+    releaseall
+}
+
+script LatiTemple_Switch4 {
+    lockall
+    if (flag(FLAG_LATITEMPLE_SWITCH4)) {
+        clearflag(FLAG_LATITEMPLE_SWITCH4)
+    } else {
+        setflag(FLAG_LATITEMPLE_SWITCH4)
+    }
+    playse(SE_PIN)
+    call(LatiTemple_RefreshPuzzle)
+    special(DrawWholeMapView)
+    waitse
+    releaseall
+}
+
+script LatiTemple_Switch5 {
+    lockall
+    if (flag(FLAG_LATITEMPLE_SWITCH5)) {
+        clearflag(FLAG_LATITEMPLE_SWITCH5)
+    } else {
+        setflag(FLAG_LATITEMPLE_SWITCH5)
+    }
+    playse(SE_PIN)
+    call(LatiTemple_RefreshPuzzle)
+    special(DrawWholeMapView)
+    waitse
+    releaseall
+}
+
+script LatiTemple_RefreshPuzzle {
+    call(LatiTemple_SetSwitch1State)
+    call(LatiTemple_SetSwitch2State)
+    call(LatiTemple_SetSwitch3State)
+    call(LatiTemple_SetSwitch4State)
+    call(LatiTemple_SetSwitch5State)
+    return
+}
+
+script LatiTemple_SetSwitch1State {
+    if (flag(FLAG_LATITEMPLE_SWITCH1)) {
+        setmetatile(17, 27, METATILE_LatiTemple_InactiveGray, TRUE)
+        setmetatile(33, 33, METATILE_LatiTemple_InactiveGray, TRUE)
+
+        setmetatile(36, 21, METATILE_LatiTemple_ActiveGreen, FALSE)
+        setmetatile(18, 23, METATILE_LatiTemple_ActiveGreen, FALSE)
+
+        setmetatile(18, 17, METATILE_LatiTemple_ActiveGray, FALSE)
+        setmetatile(34, 1, METATILE_LatiTemple_ActiveGray, FALSE)
+
+        setmetatile(21, 4, METATILE_LatiTemple_InactiveGreen, TRUE)
+        setmetatile(51, 31, METATILE_LatiTemple_InactiveGreen, TRUE)
+        setmetatile(32, 21, METATILE_LatiTemple_CrystalSwitchActive, TRUE)
+    } else {
+        setmetatile(17, 27, METATILE_LatiTemple_ActiveGray, FALSE)
+        setmetatile(33, 33, METATILE_LatiTemple_ActiveGray, FALSE)
+
+        setmetatile(36, 21, METATILE_LatiTemple_InactiveGreen, TRUE)
+        setmetatile(18, 23, METATILE_LatiTemple_InactiveGreen, TRUE)
+
+        setmetatile(18, 17, METATILE_LatiTemple_InactiveGray, TRUE)
+        setmetatile(34, 1, METATILE_LatiTemple_InactiveGray, TRUE)
+
+        setmetatile(21, 4, METATILE_LatiTemple_ActiveGreen, FALSE)
+        setmetatile(51, 31, METATILE_LatiTemple_ActiveGreen, FALSE)
+        setmetatile(32, 21, METATILE_LatiTemple_CrystalSwitchInactive, TRUE)
+    }
+    return
+}
+
+script LatiTemple_SetSwitch2State {
+    if (flag(FLAG_LATITEMPLE_SWITCH2)) {
+        setmetatile(45, 25, METATILE_LatiTemple_ActiveGray, FALSE)
+        setmetatile(54, 20, METATILE_LatiTemple_ActiveGray, FALSE)
+        setmetatile(32, 3, METATILE_LatiTemple_CrystalSwitchActive, TRUE)
+    } else {
+        setmetatile(45, 25, METATILE_LatiTemple_InactiveGray, TRUE)
+        setmetatile(54, 20, METATILE_LatiTemple_InactiveGray, TRUE)
+        setmetatile(32, 3, METATILE_LatiTemple_CrystalSwitchInactive, TRUE)
+    }
+    return
+}
+
+script LatiTemple_SetSwitch3State {
+    if (flag(FLAG_LATITEMPLE_SWITCH3)) {
+        setmetatile(37, 30, METATILE_LatiTemple_InactiveBlue, TRUE)
+        setmetatile(28, 21, METATILE_LatiTemple_InactiveBlue, TRUE)
+
+        setmetatile(45, 11, METATILE_LatiTemple_InactiveGreen, TRUE)
+        setmetatile(43, 18, METATILE_LatiTemple_InactiveGreen, TRUE)
+
+        setmetatile(51, 23, METATILE_LatiTemple_ActiveBlue, FALSE)
+        setmetatile(14, 10, METATILE_LatiTemple_ActiveBlue, FALSE)
+        setmetatile(46, 21, METATILE_LatiTemple_CrystalSwitchActive, TRUE)
+    } else {
+        setmetatile(37, 30, METATILE_LatiTemple_ActiveBlue, FALSE)
+        setmetatile(28, 21, METATILE_LatiTemple_ActiveBlue, FALSE)
+
+        setmetatile(45, 11, METATILE_LatiTemple_ActiveGreen, FALSE)
+        setmetatile(43, 18, METATILE_LatiTemple_ActiveGreen, FALSE)
+
+        setmetatile(51, 23, METATILE_LatiTemple_InactiveBlue, TRUE)
+        setmetatile(14, 10, METATILE_LatiTemple_InactiveBlue, TRUE)
+        setmetatile(46, 21, METATILE_LatiTemple_CrystalSwitchInactive, TRUE)
+    }
+    return
+}
+
+script LatiTemple_SetSwitch4State {
+    if (flag(FLAG_LATITEMPLE_SWITCH4)) {
+        setmetatile(21, 30, METATILE_LatiTemple_ActiveBlue, FALSE)
+        setmetatile(41, 31, METATILE_LatiTemple_ActiveBlue, FALSE)
+        setmetatile(15, 6, METATILE_LatiTemple_CrystalSwitchActive, TRUE)
+    } else {
+        setmetatile(21, 30, METATILE_LatiTemple_InactiveBlue, TRUE)
+        setmetatile(41, 31, METATILE_LatiTemple_InactiveBlue, TRUE)
+        setmetatile(15, 6, METATILE_LatiTemple_CrystalSwitchInactive, TRUE)
+    }
+    return
+}
+
+script LatiTemple_SetSwitch5State {
+    if (flag(FLAG_LATITEMPLE_SWITCH5)) {
+        setmetatile(30, 5, METATILE_LatiTemple_InactiveBlue, TRUE)
+        setmetatile(51, 11, METATILE_LatiTemple_InactiveBlue, TRUE)
+
+        setmetatile(12, 30, METATILE_LatiTemple_ActiveGreen, FALSE)
+        setmetatile(5, 23, METATILE_LatiTemple_ActiveGreen, FALSE)
+        setmetatile(51, 28, METATILE_LatiTemple_CrystalSwitchActive, TRUE)
+    } else {
+        setmetatile(30, 5, METATILE_LatiTemple_ActiveBlue, FALSE)
+        setmetatile(51, 11, METATILE_LatiTemple_ActiveBlue, FALSE)
+
+        setmetatile(12, 30, METATILE_LatiTemple_InactiveGreen, TRUE)
+        setmetatile(5, 23, METATILE_LatiTemple_InactiveGreen, TRUE)
+        setmetatile(51, 28, METATILE_LatiTemple_CrystalSwitchInactive, TRUE)
+    }
+    return
+}

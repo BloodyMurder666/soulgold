@@ -1,1 +1,14 @@
 mapscripts LatiTempleSouldewRoom_MapScripts {}
+
+script SouldewPlatform {
+    lock
+    if (flag(FLAG_OBTAINED_SOULDEW)) {
+        msgbox("The pedestal is empty.")
+        release
+        end
+    }
+    finditem(ITEM_SOUL_DEW)
+    setflag(FLAG_OBTAINED_SOULDEW)
+    release
+    end
+}

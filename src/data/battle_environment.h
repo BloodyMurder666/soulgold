@@ -575,6 +575,10 @@ const struct BattleEnvironment gBattleEnvironmentInfo[BATTLE_ENVIRONMENT_COUNT] 
         .secretPowerEffect = MOVE_EFFECT_FLINCH,
         .camouflageType = TYPE_DRAGON,
         .camouflageBlend = DEFAULT_CAMOUFLAGE_BLEND,
+        .entry = ENVIRONMENT_ENTRY(Building),
+        .background = ENVIRONMENT_BACKGROUND(Space),
+        .palette = gBattleEnvironmentPalette_Space,
+        .battleIntroSlide = PLAIN_BATTLE_INTRO_SLIDE,
     },
 
     [BATTLE_ENVIRONMENT_ULTRA_SPACE] =

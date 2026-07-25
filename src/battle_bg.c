@@ -707,6 +707,15 @@ static u8 GetBattleEnvironmentOverride(void)
         case SPECIES_RAYQUAZA:
         case SPECIES_HO_OH:
             return BATTLE_ENVIRONMENT_RAYQUAZA;
+        case SPECIES_LATIAS:
+        case SPECIES_LATIAS_MEGA:
+        case SPECIES_LATIOS:
+        case SPECIES_LATIOS_MEGA:
+        case SPECIES_DEOXYS_NORMAL:
+        case SPECIES_DEOXYS_ATTACK:
+        case SPECIES_DEOXYS_DEFENSE:
+        case SPECIES_DEOXYS_SPEED:
+            return BATTLE_ENVIRONMENT_SPACE;
         default:
             return gBattleEnvironment;
         }

@@ -1,1 +1,13 @@
 mapscripts LatiTempleLatios_MapScripts {}
+
+script LatiTemple_Latios {
+    lock
+    faceplayer
+    bosslegendaryencounterwithmoves(SPECIES_LATIOS, 80, LOCALID_LATIOS, FLAG_HIDE_LATIOS, 3, SPECIES_NONE, 110, MOVE_LUSTER_PURGE, MOVE_AURA_SPHERE, MOVE_SURF, MOVE_DRAGON_PULSE)
+    //legendaryencounter(SPECIES_LATIOS, 80, LOCALID_LATIOS, FLAG_HIDE_LATIOS)
+    if (var(VAR_RESULT) == B_OUTCOME_CAUGHT) {
+        setflag(FLAG_CAUGHT_LATIOS)
+    }
+    release
+    end
+}

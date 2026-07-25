@@ -1670,6 +1670,14 @@
 #define FLAG_VAJRAPYRAMID2_URN1                     0x982
 #define FLAG_VAJRAPYRAMID2_URN2                     0x983
 #define FLAG_VAJRAPYRAMID3_ITEMBALL                 0x984
+#define FLAG_LATITEMPLE_SWITCH1                     0x985
+#define FLAG_LATITEMPLE_SWITCH2                     0x986
+#define FLAG_LATITEMPLE_SWITCH3                     0x987
+#define FLAG_LATITEMPLE_SWITCH4                     0x988
+#define FLAG_LATITEMPLE_SWITCH5                     0x989
+#define FLAG_CAUGHT_LATIAS                          0x98A
+#define FLAG_CAUGHT_LATIOS                          0x98B
+#define FLAG_OBTAINED_SOULDEW                       0x98C
 
 #define FLAG_0x1500                                 0x1500
 // Daily Flags

@@ -19,21 +19,21 @@
       "x": 4,
       "y": 10,
       "elevation": 0,
-      "dest_map": "MAP_LATI_TEMPLE_LOBBY",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_LATI_TEMPLE_LATIAS",
+      "dest_warp_id": "45"
     },
     {
       "x": 32,
       "y": 10,
       "elevation": 0,
-      "dest_map": "MAP_LATI_TEMPLE_LOBBY",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_LATI_TEMPLE_LATIOS",
+      "dest_warp_id": "2"
     },
     {
       "x": 18,
       "y": 10,
       "elevation": 0,
-      "dest_map": "MAP_LATI_TEMPLE_LOBBY",
+      "dest_map": "MAP_LATI_TEMPLE_SOULDEW_ROOM",
       "dest_warp_id": "0"
     },
     {
@@ -56,8 +56,24 @@
       "elevation": 0,
       "dest_map": "MAP_VAJRA_DESERT_EAST",
       "dest_warp_id": "5"
+    },
+    {
+      "x": 18,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_LATI_TEMPLE_LOBBY",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 18,
+      "y": 10,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "LobbyDoorLati"
+    }
+  ]
 }

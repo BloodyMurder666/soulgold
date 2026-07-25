@@ -1,3 +1,20 @@
 mapscripts LatiTempleLobby_MapScripts {
-    
+    MAP_SCRIPT_ON_LOAD {
+        if (flag(FLAG_CAUGHT_LATIAS) && flag(FLAG_CAUGHT_LATIOS)) {
+            setmetatile(18, 10, 0x441, FALSE)
+        }
+    }
+}
+
+script LobbyDoorLati {
+    lock
+    if (flag(FLAG_CAUGHT_LATIAS) && flag(FLAG_CAUGHT_LATIOS)) {
+        msgbox("The door is now open.")
+    } else {
+        msgbox("Ancient writings fill the door.
+        
+                It is sealed shut.")
+    }
+    release
+    end
 }

@@ -52,6 +52,10 @@ const u32 gBattleEnvironmentTiles_Rayquaza[] = INCBIN_U32("graphics/battle_envir
 const u32 gBattleEnvironmentTilemap_Rayquaza[] = INCBIN_U32("graphics/battle_environment/sky/map.bin.smolTM");
 const u16 gBattleEnvironmentPalette_Rayquaza[] = INCBIN_U16("graphics/battle_environment/sky/palette.gbapal");
 
+const u32 gBattleEnvironmentTiles_Space[] = INCBIN_U32("graphics/battle_environment/space/tiles.4bpp.smol");
+const u32 gBattleEnvironmentTilemap_Space[] = INCBIN_U32("graphics/battle_environment/space/tiles.bin.smolTM");
+const u16 gBattleEnvironmentPalette_Space[] = INCBIN_U16("graphics/battle_environment/space/palette.gbapal");
+
 const u16 gBattleEnvironmentPalette_StadiumWill[] = INCBIN_U16("graphics/battle_environment/stadium/palette3.gbapal");
 const u16 gBattleEnvironmentPalette_StadiumKoga[] = INCBIN_U16("graphics/battle_environment/stadium/palette4.gbapal");
 const u16 gBattleEnvironmentPalette_StadiumBruno[] = INCBIN_U16("graphics/battle_environment/stadium/palette5.gbapal");
