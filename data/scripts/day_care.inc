@@ -22,8 +22,8 @@ Route117_EventScript_DaycareEggWaiting::
 	end
 
 Route117_EventScript_DaycareAcceptEgg::
-	specialvar VAR_RESULT, CalculatePlayerPartyCount
-	goto_if_ne VAR_RESULT, PARTY_SIZE, Route117_EventScript_DaycareReceiveEgg
+	specialvar VAR_0x8008, GiveEggFromDaycare
+	goto_if_ne VAR_0x8008, MON_CANT_GIVE, Route117_EventScript_DaycareReceiveEgg
 	msgbox Route117_Text_YouHaveNoRoomForIt, MSGBOX_DEFAULT
 	release
 	end
@@ -34,10 +34,14 @@ Route117_EventScript_DaycareReceiveEgg::
 	waitfanfare
 	waitbuttonpress
 	msgbox Route117_Text_TakeGoodCareOfIt, MSGBOX_DEFAULT
-	special GiveEggFromDaycare
+	call_if_eq VAR_0x8008, MON_GIVEN_TO_PC, Route117_EventScript_DaycareEggSentToPC
 	clearflag FLAG_PENDING_DAYCARE_EGG
 	release
 	end
+
+Route117_EventScript_DaycareEggSentToPC::
+	msgbox Route117_Text_EggSentToPC, MSGBOX_DEFAULT
+	return
 
 Route117_EventScript_CheckMonReceivedMail::
 	specialvar VAR_RESULT, CheckDaycareMonReceivedMail
@@ -304,6 +308,10 @@ Route117_Text_ReceivedEgg:
 
 Route117_Text_TakeGoodCareOfIt:
 	.string "Take good care of it.$"
+
+Route117_Text_EggSentToPC:
+	.string "Your party was full, so the Egg was\n"
+	.string "sent to your PC.$"
 
 Route117_Text_FriendlyWithOtherTrainersMon:
 	.string "By the way, about your {STR_VAR_1},\n"

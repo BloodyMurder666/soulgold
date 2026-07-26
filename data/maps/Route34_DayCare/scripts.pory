@@ -233,9 +233,8 @@ Route34_EventScript_DaycareEggWaiting::
 	end
 
 Route34_EventScript_DaycareAcceptEgg::
-	@specialvar VAR_0x8004, GetMaxPartySize @ tx_randomizer_and_challenges
-	specialvar VAR_RESULT, CalculatePlayerPartyCount
-	goto_if_ne VAR_RESULT, VAR_0x8004, Route34_EventScript_DaycareReceiveEgg
+	specialvar VAR_0x8008, GiveEggFromDaycare
+	goto_if_ne VAR_0x8008, MON_CANT_GIVE, Route34_EventScript_DaycareReceiveEgg
 	msgbox Route34_Text_YouHaveNoRoomForIt, MSGBOX_DEFAULT
 	release
 	end
@@ -246,7 +245,7 @@ Route34_EventScript_DaycareReceiveEgg::
 	waitfanfare
 	waitbuttonpress
 	msgbox Route34_Text_TakeGoodCareOfIt, MSGBOX_DEFAULT
-	special GiveEggFromDaycare
+	call_if_eq VAR_0x8008, MON_GIVEN_TO_PC, Route34_EventScript_DaycareEggSentToPC
 	clearflag FLAG_PENDING_DAYCARE_EGG
 	release
 	end
@@ -372,9 +371,8 @@ Route34_DayCare_EventScript_OneMonInDaycare::
 	end
 
 Route34_DayCare_EventScript_TryRetrieveMon::
-	@specialvar VAR_0x8004, GetMaxPartySize @ tx_randomizer_and_challenges
 	specialvar VAR_RESULT, CalculatePlayerPartyCount
-	goto_if_eq VAR_RESULT, VAR_0x8004, Route34_DayCare_EventScript_NoRoom
+	goto_if_eq VAR_RESULT, PARTY_SIZE, Route34_DayCare_EventScript_NoRoom
 	specialvar VAR_RESULT, GetDaycareState
 	setvar VAR_0x8004, 0
 	goto_if_eq VAR_RESULT, DAYCARE_ONE_MON, Route34_DayCare_EventScript_CostPrompt
@@ -627,4 +625,10 @@ script daycareDestinyKnotGift {
 	waitmessage
 	release
 	end
+}
+
+script Route34_EventScript_DaycareEggSentToPC {
+	msgbox("Your party was full, so the Egg was
+			sent to your PC.")
+	return
 }
