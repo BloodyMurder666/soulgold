@@ -537,6 +537,46 @@ const struct BattleEnvironment gBattleEnvironmentInfo[BATTLE_ENVIRONMENT_COUNT] 
         .battleIntroSlide = BattleIntroSlide2,
     },
 
+    [BATTLE_ENVIRONMENT_SNOW_MOUNTAIN] =
+    {
+        .name = _("Snow Mountain"),
+    #if B_NATURE_POWER_MOVES >= GEN_7
+        .naturePower = MOVE_ICE_BEAM,
+    #elif B_NATURE_POWER_MOVES == GEN_6
+        .naturePower = MOVE_FROST_BREATH,
+    #else
+        .naturePower = MOVE_BLIZZARD,
+    #endif
+        .secretPowerAnimation = B_SECRET_POWER_ANIMATION >= GEN_7 ? gBattleAnimMove_IceShard : gBattleAnimMove_Avalanche,
+        .secretPowerEffect = MOVE_EFFECT_FREEZE_OR_FROSTBITE,
+        .camouflageType = TYPE_ICE,
+        .camouflageBlend = DEFAULT_CAMOUFLAGE_BLEND,
+        .entry = ENVIRONMENT_ENTRY(Snow),
+        .background = ENVIRONMENT_BACKGROUND(SnowMountain),
+        .palette = gBattleEnvironmentPalette_SnowMountain,
+        .battleIntroSlide = BattleIntroSlide2,
+    },
+
+    [BATTLE_ENVIRONMENT_SNOW_CAVE] =
+    {
+        .name = _("Snow Cave"),
+    #if B_NATURE_POWER_MOVES >= GEN_7
+        .naturePower = MOVE_ICE_BEAM,
+    #elif B_NATURE_POWER_MOVES == GEN_6
+        .naturePower = MOVE_FROST_BREATH,
+    #else
+        .naturePower = MOVE_BLIZZARD,
+    #endif
+        .secretPowerAnimation = B_SECRET_POWER_ANIMATION >= GEN_7 ? gBattleAnimMove_IceShard : gBattleAnimMove_Avalanche,
+        .secretPowerEffect = MOVE_EFFECT_FREEZE_OR_FROSTBITE,
+        .camouflageType = TYPE_ICE,
+        .camouflageBlend = DEFAULT_CAMOUFLAGE_BLEND,
+        .entry = ENVIRONMENT_ENTRY(Snow),
+        .background = ENVIRONMENT_BACKGROUND(SnowCave),
+        .palette = gBattleEnvironmentPalette_SnowCave,
+        .battleIntroSlide = BattleIntroSlide2,
+    },
+
     [BATTLE_ENVIRONMENT_ICE] =
     {
         .name = _("Ice"),
@@ -555,6 +595,10 @@ const struct BattleEnvironment gBattleEnvironmentInfo[BATTLE_ENVIRONMENT_COUNT] 
         .secretPowerEffect = MOVE_EFFECT_BURN,
         .camouflageType = TYPE_FIRE,
         .camouflageBlend = DEFAULT_CAMOUFLAGE_BLEND,
+        .entry = ENVIRONMENT_ENTRY(Cave),
+        .background = ENVIRONMENT_BACKGROUND(Volcano),
+        .palette = gBattleEnvironmentPalette_Volcano,
+        .battleIntroSlide = CAVE_BATTLE_INTRO_SLIDE,
     },
 
     [BATTLE_ENVIRONMENT_DISTORTION_WORLD] =

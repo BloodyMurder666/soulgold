@@ -5,6 +5,7 @@
 #include "battle_ai_main.h"
 #include "battle_ai_util.h"
 #include "battle_arena.h"
+#include "battle_bg.h"
 #include "battle_controllers.h"
 #include "battle_dome.h"
 #include "battle_end_turn.h"
@@ -194,7 +195,8 @@ EWRAM_DATA enum BattlerId gPotentialItemEffectBattler = 0;
 
 bool32 IsFastIntroNoSlideEnabled(void)
 {
-    return gSaveBlock2Ptr->optionsFastIntroNoSlide;
+    return (gSaveBlock2Ptr->optionsFastIntroNoSlide
+         || BattleEnvironmentForcesNoIntroSlide());
 }
 EWRAM_DATA u8 gAbsentBattlerFlags = 0;
 EWRAM_DATA u8 gMultiHitCounter = 0;
@@ -512,6 +514,13 @@ static void CB2_InitBattleInternal(void)
 
     gBattle_WIN0H = DISPLAY_WIDTH;
 
+    if (!DEBUG_OVERWORLD_MENU || (DEBUG_OVERWORLD_MENU && !gIsDebugBattle))
+        gBattleEnvironment = BattleSetup_GetEnvironmentId();
+    if (gBattleTypeFlags & BATTLE_TYPE_RECORDED)
+        gBattleEnvironment = BATTLE_ENVIRONMENT_BUILDING;
+    if (TestRunner_Battle_GetForcedEnvironment())
+        gBattleEnvironment = TestRunner_Battle_GetForcedEnvironment() - 1;
+
     if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gPartnerTrainerId < TRAINER_PARTNER(PARTNER_NONE))
     {
         gBattle_WIN0V = DISPLAY_HEIGHT - 1;
@@ -549,13 +558,6 @@ static void CB2_InitBattleInternal(void)
     gBattle_BG2_Y = 0;
     gBattle_BG3_X = 0;
     gBattle_BG3_Y = 0;
-
-    if (!DEBUG_OVERWORLD_MENU || (DEBUG_OVERWORLD_MENU && !gIsDebugBattle))
-        gBattleEnvironment = BattleSetup_GetEnvironmentId();
-    if (gBattleTypeFlags & BATTLE_TYPE_RECORDED)
-        gBattleEnvironment = BATTLE_ENVIRONMENT_BUILDING;
-    if (TestRunner_Battle_GetForcedEnvironment())
-        gBattleEnvironment = TestRunner_Battle_GetForcedEnvironment() - 1;
 
     InitBattleBgsVideo();
     LoadBattleTextboxAndBackground();

@@ -14589,6 +14589,75 @@
               }
             ]
           }
+        },
+        {
+          "map": "MAP_VAJRA_DESERT_EAST_CAVE",
+          "base_label": "gVajraDesertEastCave",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 50,
+                "max_level": 53,
+                "species": "SPECIES_NIDOQUEEN"
+              },
+              {
+                "min_level": 45,
+                "max_level": 47,
+                "species": "SPECIES_VIBRAVA"
+              },
+              {
+                "min_level": 50,
+                "max_level": 53,
+                "species": "SPECIES_NIDOQUEEN"
+              },
+              {
+                "min_level": 45,
+                "max_level": 47,
+                "species": "SPECIES_VIBRAVA"
+              },
+              {
+                "min_level": 50,
+                "max_level": 53,
+                "species": "SPECIES_HIPPOWDON"
+              },
+              {
+                "min_level": 50,
+                "max_level": 53,
+                "species": "SPECIES_MANDIBUZZ"
+              },
+              {
+                "min_level": 50,
+                "max_level": 53,
+                "species": "SPECIES_HIPPOWDON"
+              },
+              {
+                "min_level": 50,
+                "max_level": 53,
+                "species": "SPECIES_MANDIBUZZ"
+              },
+              {
+                "min_level": 53,
+                "max_level": 54,
+                "species": "SPECIES_FLYGON"
+              },
+              {
+                "min_level": 46,
+                "max_level": 47,
+                "species": "SPECIES_GABITE"
+              },
+              {
+                "min_level": 53,
+                "max_level": 54,
+                "species": "SPECIES_FLYGON"
+              },
+              {
+                "min_level": 46,
+                "max_level": 47,
+                "species": "SPECIES_GABITE"
+              }
+            ]
+          }
         }
       ]
     },

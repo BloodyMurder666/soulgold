@@ -696,12 +696,14 @@ static u8 GetBattleEnvironmentOverride(void)
     }
     else if (gBattleTypeFlags & (BATTLE_TYPE_FRONTIER | BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK | BATTLE_TYPE_EREADER_TRAINER))
         return BATTLE_ENVIRONMENT_FRONTIER;
+    else if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+          && (GetMonData(&gEnemyParty[0], MON_DATA_SPECIES) == SPECIES_GROUDON
+           || GetMonData(&gEnemyParty[0], MON_DATA_SPECIES) == SPECIES_GROUDON_PRIMAL))
+        return BATTLE_ENVIRONMENT_VOLCANO;
     else if (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY)
     {
         switch (GetMonData(&gEnemyParty[0], MON_DATA_SPECIES))
         {
-        case SPECIES_GROUDON:
-            return BATTLE_ENVIRONMENT_GROUDON;
         case SPECIES_KYOGRE:
             return BATTLE_ENVIRONMENT_KYOGRE;
         case SPECIES_RAYQUAZA:
@@ -733,6 +735,21 @@ static u8 GetBattleEnvironmentOverride(void)
         return gBattleEnvironment;
 
     return GetBattleEnvironmentByMapScene(battleScene);
+}
+
+bool32 BattleEnvironmentForcesNoIntroSlide(void)
+{
+    switch (GetBattleEnvironmentOverride())
+    {
+    case BATTLE_ENVIRONMENT_UNDERWATER:
+    case BATTLE_ENVIRONMENT_SNOW_MOUNTAIN:
+    case BATTLE_ENVIRONMENT_SNOW_CAVE:
+    case BATTLE_ENVIRONMENT_VOLCANO:
+    case BATTLE_ENVIRONMENT_SPACE:
+        return TRUE;
+    default:
+        return FALSE;
+    }
 }
 
 void BattleInitBgsAndWindows(void)

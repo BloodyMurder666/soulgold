@@ -90,6 +90,9 @@ static void HandleBattleVariantEndParty(void);
 static void CB2_EndTrainerBattle(void);
 static bool32 IsPlayerDefeated(u32 battleOutcome);
 static bool32 IsCurrentMap(u32 map);
+static bool32 IsCurrentMapSnowMountainBattleEnvironment(void);
+static bool32 IsCurrentMapSnowCaveBattleEnvironment(void);
+static bool32 IsCurrentMapVolcanoBattleEnvironment(void);
 static bool32 IsCurrentMapSnowBattleEnvironment(void);
 #if FREE_MATCH_CALL == FALSE
 static u16 GetRematchTrainerId(u16 trainerId);
@@ -727,10 +730,18 @@ static bool32 IsCurrentMap(u32 map)
          && gSaveBlock1Ptr->location.mapNum == MAP_NUM(map));
 }
 
-static bool32 IsCurrentMapSnowBattleEnvironment(void)
+static bool32 IsCurrentMapSnowMountainBattleEnvironment(void)
 {
     return (IsCurrentMap(MAP_SNOWTOP_MOUNTAIN_OUTSIDE)
-         || IsCurrentMap(MAP_SNOWTOP_MOUNTAIN)
+         || IsCurrentMap(MAP_ICE_PATH_DEPTHS2)
+         || IsCurrentMap(MAP_MT_SILVER_SNOW)
+         || IsCurrentMap(MAP_MT_SILVER_SUMMIT_DAY)
+         || IsCurrentMap(MAP_MT_SILVER_SUMMIT_NIGHT));
+}
+
+static bool32 IsCurrentMapSnowCaveBattleEnvironment(void)
+{
+    return (IsCurrentMap(MAP_SNOWTOP_MOUNTAIN)
          || IsCurrentMap(MAP_SNOWTOP_MOUNTAIN_B1F)
          || IsCurrentMap(MAP_SNOWTOP_MOUNTAIN_B1F_2)
          || IsCurrentMap(MAP_ICE_PATH_1F)
@@ -738,12 +749,18 @@ static bool32 IsCurrentMapSnowBattleEnvironment(void)
          || IsCurrentMap(MAP_ICE_PATH_B2F)
          || IsCurrentMap(MAP_ICE_PATH_B3F)
          || IsCurrentMap(MAP_ICE_PATH_B4F)
-         || IsCurrentMap(MAP_ICE_PATH_DEPTHS)
-         || IsCurrentMap(MAP_ICE_PATH_DEPTHS2)
-         || IsCurrentMap(MAP_MT_SILVER_SNOW)
-         || IsCurrentMap(MAP_MT_SILVER_SUMMIT_DAY)
-         || IsCurrentMap(MAP_MT_SILVER_SUMMIT_NIGHT)
-         || IsCurrentMap(MAP_SHOAL_CAVE_LOW_TIDE_ICE_ROOM)
+         || IsCurrentMap(MAP_ICE_PATH_DEPTHS));
+}
+
+static bool32 IsCurrentMapVolcanoBattleEnvironment(void)
+{
+    return (IsCurrentMap(MAP_MT_MORTAR_DEPTHS_1)
+         || IsCurrentMap(MAP_MT_MORTAR_DEPTHS_HEATRAN_ROOM));
+}
+
+static bool32 IsCurrentMapSnowBattleEnvironment(void)
+{
+    return (IsCurrentMap(MAP_SHOAL_CAVE_LOW_TIDE_ICE_ROOM)
          || IsCurrentMap(MAP_SHOAL_CAVE_LOW_TIDE_ICE_ROOM_MODERN)
          || IsCurrentMap(MAP_SHOAL_CAVE_LOW_TIDE_ICE_ROOM_SUICUNE));
 }
@@ -766,6 +783,12 @@ enum BattleEnvironments BattleSetup_GetEnvironmentId(void)
             return BATTLE_ENVIRONMENT_WATER;
     }
 
+    if (IsCurrentMapSnowMountainBattleEnvironment())
+        return BATTLE_ENVIRONMENT_SNOW_MOUNTAIN;
+    if (IsCurrentMapSnowCaveBattleEnvironment())
+        return BATTLE_ENVIRONMENT_SNOW_CAVE;
+    if (IsCurrentMapVolcanoBattleEnvironment())
+        return BATTLE_ENVIRONMENT_VOLCANO;
     if (IsCurrentMapSnowBattleEnvironment())
         return BATTLE_ENVIRONMENT_SNOW;
 

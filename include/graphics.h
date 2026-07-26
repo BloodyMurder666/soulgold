@@ -309,6 +309,18 @@ extern const u32 gBattleEnvironmentAnimTiles_Snow[];
 extern const u32 gBattleEnvironmentAnimTilemap_Snow[];
 extern const u16 gBattleEnvironmentPalette_Snow[];
 
+extern const u32 gBattleEnvironmentTiles_SnowMountain[];
+extern const u32 gBattleEnvironmentTilemap_SnowMountain[];
+extern const u16 gBattleEnvironmentPalette_SnowMountain[];
+
+extern const u32 gBattleEnvironmentTiles_SnowCave[];
+extern const u32 gBattleEnvironmentTilemap_SnowCave[];
+extern const u16 gBattleEnvironmentPalette_SnowCave[];
+
+extern const u32 gBattleEnvironmentTiles_Volcano[];
+extern const u32 gBattleEnvironmentTilemap_Volcano[];
+extern const u16 gBattleEnvironmentPalette_Volcano[];
+
 // Pokédex
 extern const u32 gPokedexInterface_Gfx[];
 extern const u16 gPokedexBgHoenn_Pal[];

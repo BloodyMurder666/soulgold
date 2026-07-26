@@ -986,20 +986,27 @@ static void PrintBattleBgName(u8 battleEnvironment)
     AddTextPrinterParameterized(WIN_BOTTOM_RIGHT, fontId, gBattleEnvironmentInfo[battleEnvironment].name, 0, 24, 0, NULL);
 }
 
+static bool32 BattleEnvironmentHasBackground(u8 battleEnvironment)
+{
+    return (gBattleEnvironmentInfo[battleEnvironment].background.tileset != NULL
+         && gBattleEnvironmentInfo[battleEnvironment].background.tilemap != NULL
+         && gBattleEnvironmentInfo[battleEnvironment].palette != NULL);
+}
+
 static void UpdateBattleBg(u8 taskId, bool8 increment)
 {
     struct PokemonSpriteVisualizer *data = GetStructPtr(taskId);
 
-    if (increment) {
-        data->battleEnvironment = (data->battleEnvironment + 1) % (BATTLE_ENVIRONMENT_RAYQUAZA + 1); // Can use BATTLE_ENVIRONMENT_COUNT once the remaining environments have sprites
-    }
-    else
+    do
     {
-        if (data->battleEnvironment == BATTLE_ENVIRONMENT_GRASS)
-            data->battleEnvironment = BATTLE_ENVIRONMENT_RAYQUAZA;
+        if (increment)
+            data->battleEnvironment = (data->battleEnvironment + 1) % BATTLE_ENVIRONMENT_COUNT;
+        else if (data->battleEnvironment == BATTLE_ENVIRONMENT_GRASS)
+            data->battleEnvironment = BATTLE_ENVIRONMENT_COUNT - 1;
         else
             data->battleEnvironment -= 1;
     }
+    while (!BattleEnvironmentHasBackground(data->battleEnvironment));
 
     PrintBattleBgName(data->battleEnvironment);
     LoadBattleBg(data->battleEnvironment);
