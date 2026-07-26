@@ -27,7 +27,6 @@ Route114_FossilManiacsTunnel_EventScript_ManiacMentionCaveIn::
 	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
 	msgbox Route114_FossilManiacsTunnel_Text_NotSafeThatWay, MSGBOX_DEFAULT
-	setvar VAR_FOSSIL_MANIAC_STATE, 2
 	releaseall
 	end
 

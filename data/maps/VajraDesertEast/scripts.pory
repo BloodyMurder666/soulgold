@@ -6,7 +6,7 @@ script VajraDesertEast_TrainerSirocco {
 			toughest trainers.
 
 			I hope to become the very best
-			someday!")
+			someday!", MSGBOX_AUTOCLOSE)
 	end
 }
 
@@ -16,7 +16,7 @@ script VajraDesertEast_TrainerSol {
 																											 battle!")
 	msgbox("There's an oasis behind those palm
 			trees, but you can't just go through
-			them!")
+			them!", MSGBOX_AUTOCLOSE)
 	end
 }
 
@@ -27,7 +27,7 @@ script VajraDesertEast_TrainerDune {
 			flew past here. They've returned a
 			few times.
 
-			What were they, I wonder?")
+			What were they, I wonder?", MSGBOX_AUTOCLOSE)
 	end
 }
 
@@ -36,7 +36,7 @@ script VajraDesertEast_TrainerNori {
 	trainerbattle_double(TRAINER_VAJRA_EAST_NORI, "Are you the Trainer who beat Lance?", "No way! The Champion beat me!", "How does the Champion not have two
 																													 Pokémon ready to battle?")
 	msgbox("Can't wait to tell all my friends about
-			this!")
+			this!", MSGBOX_AUTOCLOSE)
 	end
 }
 
@@ -46,10 +46,11 @@ script VajraDesertEast_TrainerAtlas {
 																										the trees!", "Sorry, bud, but you need two Pokémon
 																													 ready to battle.")
 	msgbox("This place is almost like a savanna,
-			even though it's part of the desert!")
+			even though it's part of the desert!", MSGBOX_AUTOCLOSE)
 	end
 }
 
 script VajraDesertEast_LadyofLake {
-	msgbox("", MSGBOX_NPC)
+	msgbox("This stream of water is crucial for the
+			life here. I hope it never dries up.", MSGBOX_NPC)
 }

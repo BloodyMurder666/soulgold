@@ -1,6 +1,9 @@
 mapscripts RintoVillage_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         setflag(FLAG_VISITED_RINTO_VILLAGE)
+        if (flag(FLAG_IS_CHAMPION)) {
+            setvar(VAR_POSTGAME_UNLOCKS_STATE, 1)
+        }
         end
         }
 }

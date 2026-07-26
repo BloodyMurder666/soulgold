@@ -167,7 +167,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Rinto_EastGuard",
-      "flag": "0"
+      "flag": "FLAG_IS_CHAMPION"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(MARACTUS)",
@@ -278,7 +278,7 @@
       "x": 39,
       "y": 44,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_POSTGAME_UNLOCKS_STATE",
       "var_value": "0",
       "script": "Rinto_TriggerEastGuard"
     },
@@ -287,7 +287,7 @@
       "x": 39,
       "y": 45,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_POSTGAME_UNLOCKS_STATE",
       "var_value": "0",
       "script": "Rinto_TriggerEastGuard"
     }

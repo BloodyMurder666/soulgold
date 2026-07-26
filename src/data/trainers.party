@@ -16194,3 +16194,41 @@ Brave Nature
 - Body Slam
 - High Horsepower
 - Crunch
+
+=== TRAINER_VAJRA_EAST_DYLAN ===
+Name: Dylan
+Class: Ruin Maniac
+Pic: Ruin Maniac
+Gender: Male
+Music: Dp Hiker
+Double Battle: Yes
+AI: Smart Trainer
+
+Claydol @ Focus Sash  
+Ability: Levitate  
+Level: 75  
+EVs: 252 SpA / 252 Spe  
+IVs: 0 Atk  
+- Ancient Power  
+- Earth Power  
+- Psychic  
+- Calm Mind
+
+Ariados @ Choice Scarf  
+Ability: Sniper  
+Level: 76
+EVs: 252 Atk / 252 Spe  
+- X-Scissor  
+- Throat Chop  
+- Poison Jab  
+- Megahorn
+
+Volcarona @ Rocky Helmet  
+Ability: Flame Body  
+Level: 76    
+EVs: 252 HP / 172 Def / 84 SpD  
+Bold Nature  
+- Morning Sun  
+- Quiver Dance  
+- Leech Life  
+- Fiery Dance

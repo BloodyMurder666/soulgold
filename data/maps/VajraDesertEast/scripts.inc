@@ -6,7 +6,7 @@ VajraDesertEast_TrainerSirocco::
 # 4 "data/maps/VajraDesertEast/scripts.pory"
 	trainerbattle_single TRAINER_VAJRA_EAST_SIROCCO, VajraDesertEast_TrainerSirocco_Text_0, VajraDesertEast_TrainerSirocco_Text_1
 # 5 "data/maps/VajraDesertEast/scripts.pory"
-	msgbox VajraDesertEast_TrainerSirocco_Text_2
+	msgbox VajraDesertEast_TrainerSirocco_Text_2, MSGBOX_AUTOCLOSE
 	end
 
 
@@ -14,7 +14,7 @@ VajraDesertEast_TrainerSol::
 # 15 "data/maps/VajraDesertEast/scripts.pory"
 	trainerbattle_double TRAINER_VAJRA_EAST_SOL, VajraDesertEast_TrainerSol_Text_0, VajraDesertEast_TrainerSol_Text_1, VajraDesertEast_TrainerSol_Text_2
 # 17 "data/maps/VajraDesertEast/scripts.pory"
-	msgbox VajraDesertEast_TrainerSol_Text_3
+	msgbox VajraDesertEast_TrainerSol_Text_3, MSGBOX_AUTOCLOSE
 	end
 
 
@@ -22,7 +22,7 @@ VajraDesertEast_TrainerDune::
 # 25 "data/maps/VajraDesertEast/scripts.pory"
 	trainerbattle_single TRAINER_VAJRA_EAST_DUNE, VajraDesertEast_TrainerDune_Text_0, VajraDesertEast_TrainerDune_Text_1
 # 26 "data/maps/VajraDesertEast/scripts.pory"
-	msgbox VajraDesertEast_TrainerDune_Text_2
+	msgbox VajraDesertEast_TrainerDune_Text_2, MSGBOX_AUTOCLOSE
 	end
 
 
@@ -30,7 +30,7 @@ VajraDesertEast_TrainerNori::
 # 36 "data/maps/VajraDesertEast/scripts.pory"
 	trainerbattle_double TRAINER_VAJRA_EAST_NORI, VajraDesertEast_TrainerNori_Text_0, VajraDesertEast_TrainerNori_Text_1, VajraDesertEast_TrainerNori_Text_2
 # 38 "data/maps/VajraDesertEast/scripts.pory"
-	msgbox VajraDesertEast_TrainerNori_Text_3
+	msgbox VajraDesertEast_TrainerNori_Text_3, MSGBOX_AUTOCLOSE
 	end
 
 
@@ -38,7 +38,7 @@ VajraDesertEast_TrainerAtlas::
 # 45 "data/maps/VajraDesertEast/scripts.pory"
 	trainerbattle_double TRAINER_VAJRA_EAST_ATLAS, VajraDesertEast_TrainerAtlas_Text_0, VajraDesertEast_TrainerAtlas_Text_1, VajraDesertEast_TrainerAtlas_Text_2
 # 48 "data/maps/VajraDesertEast/scripts.pory"
-	msgbox VajraDesertEast_TrainerAtlas_Text_3
+	msgbox VajraDesertEast_TrainerAtlas_Text_3, MSGBOX_AUTOCLOSE
 	end
 
 
@@ -136,4 +136,5 @@ VajraDesertEast_TrainerAtlas_Text_3:
 
 VajraDesertEast_LadyofLake_Text_0:
 # 54 "data/maps/VajraDesertEast/scripts.pory"
-	.string "$"
+	.string "This stream of water is crucial for the\n"
+	.string "life here. I hope it never dries up.$"

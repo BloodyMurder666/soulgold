@@ -50,7 +50,7 @@
 #define SONG_MUS_DP_AMITY_SQUARE                        0
 #define SONG_MUS_DP_GALACTIC_HQ                         0
 #define SONG_MUS_DP_GALACTIC_ETERNA_BUILDING            0
-#define SONG_MUS_DP_LAKE                                0
+#define SONG_MUS_DP_LAKE                                1
 #define SONG_MUS_DP_SPEAR_PILLAR                        0
 #define SONG_MUS_DP_STARK_MOUNTAIN                      1
 #define SONG_MUS_DP_OREBURGH_GATE                       0

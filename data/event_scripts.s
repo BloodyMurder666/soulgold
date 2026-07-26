@@ -2386,3 +2386,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/LatiTempleLatios/scripts.inc"
 
 	.include "data/maps/LatiTempleSouldewRoom/scripts.inc"
+
+	.include "data/maps/VajraDesertEastCave/scripts.inc"

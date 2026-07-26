@@ -1,0 +1,13 @@
+mapscripts VajraDesertEastCave_MapScripts {}
+
+script VajraDesertEastCave_TrainerDylan {
+    trainerbattle_single(TRAINER_VAJRA_EAST_DYLAN, "Are you trying to find the hidden 
+                                                    temple?", 
+                                                    "Untold riches await!")
+	msgbox("There's no way to access the oasis
+            either side of the lower areas.
+            
+            Perhaps it might be possible
+            from above?", MSGBOX_AUTOCLOSE)
+	end
+}

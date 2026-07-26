@@ -178,7 +178,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "VajraDesertEast_LadyofLake",
       "flag": "0"
     }
   ],
@@ -187,29 +187,29 @@
       "x": 27,
       "y": 41,
       "elevation": 0,
-      "dest_map": "MAP_VAJRA_DESERT_EAST",
+      "dest_map": "MAP_VAJRA_DESERT_EAST_CAVE",
       "dest_warp_id": "0"
     },
     {
       "x": 28,
       "y": 41,
       "elevation": 0,
-      "dest_map": "MAP_VAJRA_DESERT_EAST",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_VAJRA_DESERT_EAST_CAVE",
+      "dest_warp_id": "1"
     },
     {
       "x": 67,
       "y": 41,
       "elevation": 0,
-      "dest_map": "MAP_VAJRA_DESERT_EAST",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_VAJRA_DESERT_EAST_CAVE",
+      "dest_warp_id": "2"
     },
     {
       "x": 68,
       "y": 41,
       "elevation": 0,
-      "dest_map": "MAP_VAJRA_DESERT_EAST",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_VAJRA_DESERT_EAST_CAVE",
+      "dest_warp_id": "3"
     },
     {
       "x": 50,

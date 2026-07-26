@@ -1,0 +1,63 @@
+{
+  "id": "MAP_VAJRA_DESERT_EAST_CAVE",
+  "name": "VajraDesertEastCave",
+  "layout": "LAYOUT_VAJRA_DESERT_EAST_CAVE",
+  "music": "MUS_DP_ROUTE216_NIGHT",
+  "region_map_section": "MAPSEC_VAJRA_DESERT_EAST",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
+      "x": 28,
+      "y": 12,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "4",
+      "script": "VajraDesertEastCave_TrainerDylan",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 6,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_VAJRA_DESERT_EAST",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 7,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_VAJRA_DESERT_EAST",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 44,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_VAJRA_DESERT_EAST",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 45,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_VAJRA_DESERT_EAST",
+      "dest_warp_id": "3"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": []
+}

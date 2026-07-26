@@ -4,6 +4,7 @@ TrainerHill_Courtyard_MapScripts::
 
 TrainerHill_Courtyard_OnTransition::
 	setvar VAR_TRAINER_HILL_IS_ACTIVE, 0
+	setflag FLAG_VISITED_BATTLE_TOWER
 	end
 
 TrainerHill_Courtyard_EventScript_BattleTowerSign::

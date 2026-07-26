@@ -10166,6 +10166,16 @@
       "secondary_tileset": "gTileset_LatiTemple",
       "border_filepath": "data/layouts/LatiTempleSouldewRoom/border.bin",
       "blockdata_filepath": "data/layouts/LatiTempleSouldewRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_VAJRA_DESERT_EAST_CAVE",
+      "name": "VajraDesertEastCave_Layout",
+      "width": 53,
+      "height": 14,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_DesertVillage",
+      "border_filepath": "data/layouts/VajraDesertEastCave/border.bin",
+      "blockdata_filepath": "data/layouts/VajraDesertEastCave/map.bin"
     }
   ]
 }
