@@ -16195,6 +16195,165 @@ Brave Nature
 - High Horsepower
 - Crunch
 
+=== TRAINER_ROUTE50_ROWAN ===
+Name: Rowan
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Dp Hiker
+Double Battle: No
+AI: Smart Trainer
+
+Cradily @ Leftovers
+Ability: Suction Cups
+Level: 78
+EVs: 252 HP / 4 SpA / 252 SpD
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Calm Nature
+- Stealth Rock
+- Giga Drain
+- Power Gem
+- Recover
+
+Skarmory @ Rocky Helmet
+Ability: Sturdy
+Level: 78
+EVs: 252 HP / 252 Def / 4 SpD
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Impish Nature
+- Spikes
+- Roost
+- Body Press
+- Brave Bird
+
+Gastrodon @ Rindo Berry
+Ability: Storm Drain
+Level: 79
+EVs: 252 HP / 4 SpA / 252 SpD
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Calm Nature
+- Scald
+- Earth Power
+- Ice Beam
+- Recover
+
+Mamoswine @ Choice Band
+Ability: Thick Fat
+Level: 80
+EVs: 4 HP / 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Adamant Nature
+- Earthquake
+- Icicle Crash
+- Ice Shard
+- Knock Off
+
+=== TRAINER_ROUTE50_CASPIAN ===
+Name: Caspian
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Dp Ace Trainer
+Double Battle: Yes
+AI: Smart Trainer
+
+Pelipper @ Damp Rock
+Ability: Drizzle
+Level: 79
+EVs: 4 HP / 252 SpA / 252 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Timid Nature
+- Hurricane
+- Hydro Pump
+- Tailwind
+- Protect
+
+Kingdra @ Life Orb
+Ability: Swift Swim
+Level: 80
+EVs: 4 HP / 252 SpA / 252 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Modest Nature
+- Muddy Water
+- Draco Meteor
+- Ice Beam
+- Protect
+
+Raichu @ Focus Sash
+Ability: Lightning Rod
+Level: 80
+EVs: 4 HP / 252 SpA / 252 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Timid Nature
+- Thunder
+- Fake Out
+- Nuzzle
+- Protect
+
+Scizor @ Assault Vest
+Ability: Technician
+Level: 81
+EVs: 252 HP / 252 Atk / 4 SpD
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Adamant Nature
+- Bullet Punch
+- Bug Bite
+- Close Combat
+- Dual Wingbeat
+
+=== TRAINER_ROUTE50_IGNIS ===
+Name: Ignis
+Class: Firebreather
+Pic: Firebreather
+Gender: Male
+Music: Hg Boy 2
+Double Battle: No
+AI: Smart Trainer
+
+Talonflame @ Heavy-Duty Boots
+Ability: Gale Wings
+Level: 79
+EVs: 4 HP / 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Jolly Nature
+- Brave Bird
+- Flare Blitz
+- U-Turn
+- Roost
+
+Arcanine-Hisui @ Choice Scarf
+Ability: Rock Head
+Level: 80
+EVs: 4 HP / 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Jolly Nature
+- Head Smash
+- Flare Blitz
+- Wild Charge
+- Close Combat
+
+Chandelure @ Choice Specs
+Ability: Flash Fire
+Level: 80
+EVs: 4 Def / 252 SpA / 252 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Timid Nature
+- Shadow Ball
+- Fire Blast
+- Energy Ball
+- Psychic
+
+Houndoom @ Darktite
+Ability: Flash Fire
+Level: 81
+EVs: 4 Def / 252 SpA / 252 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Timid Nature
+- Nasty Plot
+- Dark Pulse
+- Flamethrower
+- Sludge Bomb
+
 === TRAINER_VAJRA_EAST_DYLAN ===
 Name: Dylan
 Class: Ruin Maniac

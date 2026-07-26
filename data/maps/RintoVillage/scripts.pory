@@ -8,6 +8,11 @@ mapscripts RintoVillage_MapScripts {
         }
 }
 
+script Rinto_Sign {
+    msgbox("Rinto Village
+            Sunbathed Village", MSGBOX_SIGN)
+}
+
 script Rinto_OldLady {
     msgbox("Oh more tourists?
     

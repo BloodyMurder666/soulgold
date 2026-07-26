@@ -2,6 +2,15 @@ const baseElement = document.querySelector("base");
 const siteRootUrl = new URL(baseElement?.getAttribute("href") || "./", window.location.href);
 if (baseElement) baseElement.href = siteRootUrl.href;
 
+const themeStorageKey = "soulgold-docs-theme";
+let initialTheme = "light";
+try {
+  if (localStorage.getItem(themeStorageKey) === "dark") initialTheme = "dark";
+} catch {
+  // Storage can be unavailable in privacy-focused browsing contexts.
+}
+document.documentElement.dataset.theme = initialTheme;
+
 const state = {
   data: {
     species: [],
@@ -198,6 +207,7 @@ function speciesSpritePanel(mon) {
 }
 
 async function init() {
+  setupThemeToggle();
   const route = routeFromLocation();
   state.activeTab = route.tab;
   state.detail = route.detail;
@@ -214,6 +224,48 @@ async function init() {
     await renderDetailFromRoute();
   } catch (error) {
     showLoadFailure(error);
+  }
+}
+
+function setupThemeToggle() {
+  const header = document.querySelector(".site-header");
+  const search = document.querySelector(".search-wrap");
+  if (!header || !search) return;
+
+  const actions = el("div", "header-actions");
+  search.before(actions);
+  actions.append(search);
+
+  const button = el("button", "theme-toggle");
+  button.id = "themeToggle";
+  button.type = "button";
+  button.innerHTML = `
+    <span class="theme-toggle-icon" aria-hidden="true"></span>
+    <span class="theme-toggle-label"></span>
+  `;
+  button.addEventListener("click", () => {
+    const theme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    applyTheme(theme);
+    try {
+      localStorage.setItem(themeStorageKey, theme);
+    } catch {
+      // The visual toggle still works when persistence is unavailable.
+    }
+  });
+  actions.append(button);
+  applyTheme(document.documentElement.dataset.theme);
+}
+
+function applyTheme(theme) {
+  const dark = theme === "dark";
+  document.documentElement.dataset.theme = dark ? "dark" : "light";
+
+  const button = document.getElementById("themeToggle");
+  if (button) {
+    const nextTheme = dark ? "light" : "dark";
+    button.setAttribute("aria-label", `Switch to ${nextTheme} mode`);
+    button.setAttribute("aria-pressed", String(dark));
+    button.querySelector(".theme-toggle-label").textContent = dark ? "Light" : "Dark";
   }
 }
 

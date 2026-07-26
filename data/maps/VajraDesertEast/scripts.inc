@@ -48,6 +48,12 @@ VajraDesertEast_LadyofLake::
 	return
 
 
+VajraDesertEastSign::
+# 59 "data/maps/VajraDesertEast/scripts.pory"
+	msgbox VajraDesertEastSign_Text_0, MSGBOX_SIGN
+	return
+
+
 VajraDesertEast_TrainerSirocco_Text_0:
 # 4 "data/maps/VajraDesertEast/scripts.pory"
 	.string "Let me see how tough you are!$"
@@ -138,3 +144,7 @@ VajraDesertEast_LadyofLake_Text_0:
 # 54 "data/maps/VajraDesertEast/scripts.pory"
 	.string "This stream of water is crucial for the\n"
 	.string "life here. I hope it never dries up.$"
+
+VajraDesertEastSign_Text_0:
+# 59 "data/maps/VajraDesertEast/scripts.pory"
+	.string "Vajra Desert East$"

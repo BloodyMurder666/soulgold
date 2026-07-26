@@ -292,5 +292,14 @@
       "script": "Rinto_TriggerEastGuard"
     }
   ],
-  "bg_events": []
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 2,
+      "y": 41,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Rinto_Sign"
+    }
+  ]
 }

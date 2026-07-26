@@ -911,9 +911,9 @@
 #define TRAINER_VAJRA_EAST_NORI           930
 #define TRAINER_VAJRA_EAST_ATLAS          931
 #define TRAINER_VAJRA_EAST_DYLAN          932
-#define TRAINER_UNUSED_69                 933
-#define TRAINER_UNUSED_70                 934
-#define TRAINER_UNUSED_71                 935
+#define TRAINER_ROUTE50_ROWAN             933
+#define TRAINER_ROUTE50_CASPIAN           934
+#define TRAINER_ROUTE50_IGNIS             935
 #define TRAINER_UNUSED_72                 936
 #define TRAINER_UNUSED_73                 937
 #define TRAINER_UNUSED_74                 938

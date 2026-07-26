@@ -1,1 +1,48 @@
 mapscripts Route50_MapScripts {}
+
+script Route50_TrainerRowan {
+	trainerbattle_single(TRAINER_ROUTE50_ROWAN, "Let's see if you still got energy left
+												 to face me!", 
+												 "You never lost your footing!")
+	msgbox("Lake of Rage ain't far away. The climate
+			can change rapidly around here.", MSGBOX_AUTOCLOSE)
+	end
+}
+
+script Route50_TrainerCaspian {
+	trainerbattle_double(TRAINER_ROUTE50_CASPIAN, "I'm doing a tour of all the routes!", "You might be the strongest trainer so
+																						  far.", "Bring two Pokémon ready to battle!")
+	msgbox("Have you been making use of the 
+			weather? It can turn the tide of
+			battle in a flash.", MSGBOX_AUTOCLOSE)
+	end
+}
+
+script Route50_TrainerIgnis {
+	trainerbattle_single(TRAINER_ROUTE50_IGNIS, "This place is perfect for practicing
+												 firebreathing!", "No! My flames!")
+	msgbox("Can't accidentally set anything on fire 
+			here.", MSGBOX_AUTOCLOSE)
+	end
+}
+
+script Route50_Virizion {
+	lock
+	faceplayer
+	legendaryencounter(SPECIES_VIRIZION, 80, LOCALID_VIRIZION, FLAG_HIDE_VIRIZION)
+	release
+	end
+}
+
+script Route50_ObservingWoman {
+	lock
+	if (!flag(FLAG_HIDE_VIRIZION)) {
+		msgbox("What kind of Pokémon is that thing
+				over there?")
+		release
+		end
+	}
+	msgbox("Oh you caught that thing! Nice going!")
+	release
+	end
+}

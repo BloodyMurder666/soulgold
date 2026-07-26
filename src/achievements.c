@@ -67,6 +67,7 @@ static bool32 Achievement_PredicateCaughtEntei(void);
 static bool32 Achievement_PredicateCaughtRaikou(void);
 static bool32 Achievement_PredicateCaughtKyogre(void);
 static bool32 Achievement_PredicateCaughtGroudon(void);
+static bool32 Achievement_PredicateCaughtEonDuo(void);
 static bool32 Achievement_PredicateCaughtJirachi(void);
 static bool32 Achievement_PredicateCaughtDeoxys(void);
 static bool32 Achievement_PredicateCaughtDialga(void);
@@ -77,6 +78,7 @@ static bool32 Achievement_PredicateCaughtShaymin(void);
 static bool32 Achievement_PredicateCaughtArceus(void);
 static bool32 Achievement_PredicateCaughtMagearna(void);
 static bool32 Achievement_PredicateCaughtMarshadow(void);
+static bool32 Achievement_PredicateCaughtVirizion(void);
 static bool32 Achievement_PredicateCaughtAllParadoxPokemon(void);
 static bool32 Achievement_PredicateHasLevel100Pokemon(void);
 static u32 Achievement_CountCollectedTMs(void);
@@ -251,6 +253,8 @@ static const u8 sText_AchCatchKyogreName[] = _("Primal Sea");
 static const u8 sText_AchCatchKyogreDesc[] = _("Catch Kyogre. (NYI)");
 static const u8 sText_AchCatchGroudonName[] = _("Primal Land");
 static const u8 sText_AchCatchGroudonDesc[] = _("Catch Groudon. (NYI)");
+static const u8 sText_AchCatchEonDuoName[] = _("Eon Duo");
+static const u8 sText_AchCatchEonDuoDesc[] = _("Catch both Latias and Latios.");
 static const u8 sText_AchObtainJirachiName[] = _("Wish on a Star");
 static const u8 sText_AchObtainJirachiDesc[] = _("Obtain Jirachi.");
 static const u8 sText_AchCatchDeoxysName[] = _("Interloper");
@@ -273,6 +277,8 @@ static const u8 sText_AchCatchLaprasName[] = _("Gentle Voyager");
 static const u8 sText_AchCatchLaprasDesc[] = _("Catch Lapras in Union Cave.");
 static const u8 sText_AchObtainVictiniName[] = _("Star of Victory");
 static const u8 sText_AchObtainVictiniDesc[] = _("Obtain Victini for overcoming\nall gym leaders in rematches.");
+static const u8 sText_AchCatchVirizionName[] = _("Sword of Justice");
+static const u8 sText_AchCatchVirizionDesc[] = _("Catch Virizion.");
 static const u8 sText_AchDefeatStevenName[] = _("Mineralogy");
 static const u8 sText_AchDefeatStevenDesc[] = _("Defeat Champion from another\nregion.");
 static const u8 sText_AchAutophotographerName[] = _("Autophotographer");
@@ -396,6 +402,7 @@ static const struct Achievement sAchievements[] =
     {ACH_CATCH_REGIROCK, sText_AchCatchRegirockName, sText_AchCatchRegirockDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRegirock},
     {ACH_CATCH_REGICE, sText_AchCatchRegiceName, sText_AchCatchRegiceDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRegice},
     {ACH_CATCH_REGISTEEL, sText_AchCatchRegisteelName, sText_AchCatchRegisteelDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRegisteel},
+    {ACH_CATCH_EON_DUO, sText_AchCatchEonDuoName, sText_AchCatchEonDuoDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtEonDuo},
     {ACH_CATCH_KYOGRE, sText_AchCatchKyogreName, sText_AchCatchKyogreDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtKyogre},
     {ACH_CATCH_GROUDON, sText_AchCatchGroudonName, sText_AchCatchGroudonDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtGroudon},
     {ACH_CATCH_RAYQUAZA, sText_AchRayquazaName, sText_AchRayquazaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRayquaza},
@@ -417,6 +424,7 @@ static const struct Achievement sAchievements[] =
 
     // Legendary and Mythical Pokémon - Generation V
     {ACH_OBTAIN_VICTINI, sText_AchObtainVictiniName, sText_AchObtainVictiniDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtVictini},
+    {ACH_CATCH_VIRIZION, sText_AchCatchVirizionName, sText_AchCatchVirizionDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtVirizion},
 
     // Legendary and Mythical Pokémon - Generation VII
     {ACH_CATCH_MAGEARNA, sText_AchCatchMagearnaName, sText_AchCatchMagearnaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMagearna},
@@ -792,6 +800,12 @@ static bool32 Achievement_PredicateCaughtGroudon(void)
     return Achievement_PredicateCaughtSpecies(SPECIES_GROUDON);
 }
 
+static bool32 Achievement_PredicateCaughtEonDuo(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_LATIAS)
+        && Achievement_PredicateCaughtSpecies(SPECIES_LATIOS);
+}
+
 static bool32 Achievement_PredicateCaughtJirachi(void)
 {
     return Achievement_PredicateCaughtSpecies(SPECIES_JIRACHI);
@@ -840,6 +854,11 @@ static bool32 Achievement_PredicateCaughtMagearna(void)
 static bool32 Achievement_PredicateCaughtMarshadow(void)
 {
     return Achievement_PredicateCaughtSpecies(SPECIES_MARSHADOW);
+}
+
+static bool32 Achievement_PredicateCaughtVirizion(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_VIRIZION);
 }
 
 static const u16 sParadoxPokemon[] =

@@ -14327,7 +14327,7 @@
               {
                 "min_level": 56,
                 "max_level": 59,
-                "species": "SPECIES_BRUTE_BONNET"
+                "species": "SPECIES_ROARING_MOON"
               },
               {
                 "min_level": 56,
@@ -14337,7 +14337,7 @@
               {
                 "min_level": 56,
                 "max_level": 59,
-                "species": "SPECIES_BRUTE_BONNET"
+                "species": "SPECIES_ROARING_MOON"
               },
               {
                 "min_level": 56,
@@ -14655,6 +14655,160 @@
                 "min_level": 46,
                 "max_level": 47,
                 "species": "SPECIES_GABITE"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE50",
+          "base_label": "gRoute50",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_FALINKS"
+              },
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_ROSERADE"
+              },
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_FALINKS"
+              },
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_ROSERADE"
+              },
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_NINJASK"
+              },
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_GARDEVOIR"
+              },
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_NINJASK"
+              },
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_GARDEVOIR"
+              },
+              {
+                "min_level": 50,
+                "max_level": 56,
+                "species": "SPECIES_LEAVANNY"
+              },
+              {
+                "min_level": 50,
+                "max_level": 56,
+                "species": "SPECIES_DARMANITAN"
+              },
+              {
+                "min_level": 50,
+                "max_level": 56,
+                "species": "SPECIES_LEAVANNY"
+              },
+              {
+                "min_level": 50,
+                "max_level": 57,
+                "species": "SPECIES_DARMANITAN"
+              }
+            ]
+          },
+          "water_mons": {
+            "encounter_rate": 7,
+            "mons": [
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_OVERQWIL"
+              },
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_STARMIE"
+              },
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_STARMIE"
+              },
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_DONDOZO"
+              },
+              {
+                "min_level": 55,
+                "max_level": 60,
+                "species": "SPECIES_DONDOZO"
+              }
+            ]
+          },
+          "fishing_mons": {
+            "encounter_rate": 30,
+            "mons": [
+              {
+                "min_level": 5,
+                "max_level": 15,
+                "species": "SPECIES_CARVANHA"
+              },
+              {
+                "min_level": 5,
+                "max_level": 15,
+                "species": "SPECIES_CARVANHA"
+              },
+              {
+                "min_level": 20,
+                "max_level": 30,
+                "species": "SPECIES_CARVANHA"
+              },
+              {
+                "min_level": 20,
+                "max_level": 30,
+                "species": "SPECIES_STARYU"
+              },
+              {
+                "min_level": 20,
+                "max_level": 30,
+                "species": "SPECIES_STARYU"
+              },
+              {
+                "min_level": 48,
+                "max_level": 50,
+                "species": "SPECIES_STARMIE"
+              },
+              {
+                "min_level": 48,
+                "max_level": 50,
+                "species": "SPECIES_STARMIE"
+              },
+              {
+                "min_level": 48,
+                "max_level": 50,
+                "species": "SPECIES_STARMIE"
+              },
+              {
+                "min_level": 48,
+                "max_level": 55,
+                "species": "SPECIES_DONDOZO"
+              },
+              {
+                "min_level": 53,
+                "max_level": 55,
+                "species": "SPECIES_DONDOZO"
               }
             ]
           }

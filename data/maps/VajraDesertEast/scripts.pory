@@ -54,3 +54,7 @@ script VajraDesertEast_LadyofLake {
 	msgbox("This stream of water is crucial for the
 			life here. I hope it never dries up.", MSGBOX_NPC)
 }
+
+script VajraDesertEastSign {
+	msgbox("Vajra Desert East", MSGBOX_SIGN)
+}

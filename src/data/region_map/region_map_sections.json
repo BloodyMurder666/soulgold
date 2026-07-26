@@ -1423,7 +1423,7 @@
       "name": "Vajra Desert East",
       "x": 11,
       "y": 0,
-      "width": 5,
+      "width": 4,
       "height": 1
     },
     {
@@ -1697,6 +1697,14 @@
       "y": 0,
       "width": 1,
       "height": 3
+    },
+    {
+      "id": "MAPSEC_ROUTE50",
+      "name": "Route 50",
+      "x": 15,
+      "y": 0,
+      "width": 1,
+      "height": 1
     }
   ]
 }
