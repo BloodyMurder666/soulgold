@@ -262,7 +262,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LakeOfRagePostgamePoliceman",
-      "flag": "FLAG_HIDE_LAKEOFRAGE_POLICE"
+      "flag": "FLAG_IS_CHAMPION"
     }
   ],
   "warp_events": [
@@ -291,7 +291,7 @@
       "x": 60,
       "y": 11,
       "elevation": 0,
-      "dest_map": "MAP_LAKE_OF_RAGE",
+      "dest_map": "MAP_ROUTE50",
       "dest_warp_id": "0"
     },
     {

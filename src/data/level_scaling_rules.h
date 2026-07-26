@@ -35,6 +35,35 @@
 
 #include "constants/opponents.h"
 
+// Missable optional-area trainers. These use upward-only scaling once the
+// player's anti-sandbag party average is sufficiently above the authored team.
+static const u16 sOptionalScalingTrainerIds[] =
+{
+    // Railway Cave
+    TRAINER_KEIRA,
+    TRAINER_TAMMY,
+    TRAINER_RAILWAYBOB,
+    TRAINER_RAILWAYMASON,
+    TRAINER_RAILWAYYODA,
+    TRAINER_RAILWAYSANADA,
+
+    // Vajra Desert west
+    TRAINER_JILL,
+    TRAINER_RODAROS,
+    TRAINER_BELMARE,
+    TRAINER_KENNEDY,
+
+    // Foggy Shore 2 and Foggy Forest
+    TRAINER_NIJO,
+    TRAINER_SAE,
+    TRAINER_MINA,
+
+    // Snowtop
+    TRAINER_BEARNESE,
+
+    TRAINERS_COUNT,
+};
+
 const struct LevelScalingConfig gTrainerLevelScalingRules[TRAINERS_COUNT] =
 {
     // Trainers not listed here will use the default from config/level_scaling.h

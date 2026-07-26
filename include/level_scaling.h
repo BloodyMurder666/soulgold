@@ -32,6 +32,8 @@ struct LevelScalingConfig
     u8 maxLevel;                // Maximum allowed level (0 = no maximum, use MAX_LEVEL)
     bool8 manageEvolutions;     // Enable automatic evolution validation
     bool8 excludeFainted;       // For PARTY_* modes, exclude fainted mons
+    bool8 useAuthoredLevelFloor;// Never scale a trainer mon below its authored level
+    bool8 evolveAboveLevel;     // Evolve through unambiguous level-only evolutions
 };
 
 // ============================================================================
@@ -92,7 +94,7 @@ struct EvolutionOverride
 #if B_LEVEL_SCALING_ENABLED
 
 // Get current scaling config for a trainer
-const struct LevelScalingConfig *GetTrainerLevelScalingConfig(u16 trainerId);
+const struct LevelScalingConfig *GetTrainerLevelScalingConfig(u16 trainerId, u8 intendedAverageLevel);
 
 // Get current runtime scaling modes from player options
 u8 GetCurrentTrainerLevelScalingMode(void);
@@ -110,6 +112,9 @@ u16 CalculateWildScaledSpecies(u16 species, u8 scaledLevel);
 
 // Validate and potentially devolve species for target level
 u16 ValidateSpeciesForLevel(u16 species, u8 targetLevel, bool8 manageEvolutions);
+
+// Evolve through unambiguous, unconditional level evolutions valid at targetLevel
+u16 EvolveSpeciesForLevel(u16 species, u8 targetLevel);
 
 // Calculate base level from player's party based on mode
 u8 CalculatePlayerPartyBaseLevel(u8 mode, bool8 excludeFainted);

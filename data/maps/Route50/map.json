@@ -25,7 +25,22 @@
     }
   ],
   "object_events": [],
-  "warp_events": [],
+  "warp_events": [
+    {
+      "x": 63,
+      "y": 34,
+      "elevation": 0,
+      "dest_map": "MAP_LAKE_OF_RAGE",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 64,
+      "y": 34,
+      "elevation": 0,
+      "dest_map": "MAP_LAKE_OF_RAGE",
+      "dest_warp_id": "3"
+    }
+  ],
   "coord_events": [],
   "bg_events": []
 }

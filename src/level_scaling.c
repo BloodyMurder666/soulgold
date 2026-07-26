@@ -329,6 +329,48 @@ u16 ValidateSpeciesForLevel(u16 species, u8 targetLevel, bool8 manageEvolutions)
     return currentSpecies;
 }
 
+u16 EvolveSpeciesForLevel(u16 species, u8 targetLevel)
+{
+    u32 maxIterations = 10;
+
+    while (maxIterations-- > 0)
+    {
+        const struct Evolution *evolutions = GetSpeciesEvolutions(species);
+        u16 targetSpecies = SPECIES_NONE;
+        u32 i;
+
+        if (evolutions == NULL)
+            break;
+
+        for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
+        {
+            // Only choose plain level evolutions. Conditional and branching
+            // evolutions need authored trainer data or a future explicit
+            // override so scaling never selects an arbitrary form.
+            if ((evolutions[i].method != EVO_LEVEL
+              && evolutions[i].method != EVO_LEVEL_BATTLE_ONLY)
+             || evolutions[i].param == 0
+             || evolutions[i].params != NULL
+             || targetLevel < evolutions[i].param
+             || !IsSpeciesEnabled(evolutions[i].targetSpecies))
+                continue;
+
+            if (targetSpecies != SPECIES_NONE
+             && targetSpecies != evolutions[i].targetSpecies)
+                return species;
+
+            targetSpecies = evolutions[i].targetSpecies;
+        }
+
+        if (targetSpecies == SPECIES_NONE)
+            break;
+
+        species = targetSpecies;
+    }
+
+    return species;
+}
+
 void InvalidatePartyLevelCache(void)
 {
     sPartyLevelCache.cached = FALSE;
@@ -388,17 +430,43 @@ u8 CalculatePlayerPartyBaseLevel(u8 mode, bool8 excludeFainted)
     return baseLevel;
 }
 
-const struct LevelScalingConfig *GetTrainerLevelScalingConfig(u16 trainerId)
+static bool8 IsOptionalScalingTrainer(u16 trainerId)
 {
-    (void)trainerId;
+    u32 i;
 
-    sTrainerOptionConfig.mode = GetCurrentTrainerLevelScalingMode();
+    for (i = 0; sOptionalScalingTrainerIds[i] != TRAINERS_COUNT; i++)
+    {
+        if (sOptionalScalingTrainerIds[i] == trainerId)
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
+const struct LevelScalingConfig *GetTrainerLevelScalingConfig(u16 trainerId, u8 intendedAverageLevel)
+{
+    bool8 isOptionalTrainer = IsOptionalScalingTrainer(trainerId);
+    bool8 forceScaling = FALSE;
+
+    if (isOptionalTrainer
+     && CalculatePlayerPartyBaseLevel(LEVEL_SCALING_PARTY_AVG, FALSE)
+          > intendedAverageLevel + B_OPTIONAL_TRAINER_SCALING_THRESHOLD)
+        forceScaling = TRUE;
+
+    if (forceScaling)
+        sTrainerOptionConfig.mode = LEVEL_SCALING_PARTY_AVG;
+    else
+        sTrainerOptionConfig.mode = GetCurrentTrainerLevelScalingMode();
     sTrainerOptionConfig.levelAugmentAdd = B_TRAINER_SCALING_LEVEL_AUGMENT;
     sTrainerOptionConfig.levelVariation = B_TRAINER_SCALING_LEVEL_VARIATION;
     sTrainerOptionConfig.minLevel = B_TRAINER_SCALING_MIN_LEVEL;
     sTrainerOptionConfig.maxLevel = B_TRAINER_SCALING_MAX_LEVEL;
-    sTrainerOptionConfig.manageEvolutions = B_TRAINER_SCALING_MANAGE_EVOLUTIONS;
+    sTrainerOptionConfig.manageEvolutions = forceScaling
+                                          ? TRUE
+                                          : B_TRAINER_SCALING_MANAGE_EVOLUTIONS;
     sTrainerOptionConfig.excludeFainted = B_TRAINER_SCALING_EXCLUDE_FAINTED;
+    sTrainerOptionConfig.useAuthoredLevelFloor = isOptionalTrainer;
+    sTrainerOptionConfig.evolveAboveLevel = forceScaling;
 
     return &sTrainerOptionConfig;
 }

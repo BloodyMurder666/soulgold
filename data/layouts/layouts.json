@@ -9478,7 +9478,7 @@
     {
       "id": "LAYOUT_ROUTE50",
       "name": "Route50_Layout",
-      "width": 70,
+      "width": 75,
       "height": 40,
       "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_DesertVillage",

@@ -35,6 +35,11 @@
 #define B_TRAINER_SCALING_MANAGE_EVOLUTIONS FALSE    // Auto-devolve Pokemon if level too low
 #define B_TRAINER_SCALING_EXCLUDE_FAINTED   FALSE   // Exclude fainted Pokemon from PARTY_* calculations
 
+// Trainers in missable optional areas scale even when trainer scaling is off,
+// but only once the anti-sandbag party average is this many levels above their
+// authored average. The comparison is strictly greater than this threshold.
+#define B_OPTIONAL_TRAINER_SCALING_THRESHOLD 5
+
 // ============================================================================
 // WILD POKÉMON SCALING DEFAULTS
 // ============================================================================

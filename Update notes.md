@@ -1,4 +1,9 @@
 Update notes:
+26.7.2026
+- More new battle backgrounds
+- Optional areas enforce level scaling if party average exceeds level by 5 (minus sandbagged levels)
+- Postgame eastern desert accessible with Lati duo (route 50 is not ready yet)
+
 25.7.2026
 - 2 new battle backgrounds
 - Groundwork for several legendary events
