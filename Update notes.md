@@ -1,4 +1,9 @@
 Update notes:
+25.7.2026
+- 2 new battle backgrounds
+- Groundwork for several legendary events
+- Reduce berry watering animation duration from 3 to 1,33 seconds
+
 24.7.2026
 - New town, Rinto Village is now open alongside Battle Pyramid in the Vajra Desert!
 - Several new TMs have been made obtainable and one new trade has been added.
