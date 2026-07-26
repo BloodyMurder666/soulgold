@@ -3,9 +3,9 @@ const siteRootUrl = new URL(baseElement?.getAttribute("href") || "./", window.lo
 if (baseElement) baseElement.href = siteRootUrl.href;
 
 const themeStorageKey = "soulgold-docs-theme";
-let initialTheme = "light";
+let initialTheme = "dark";
 try {
-  if (localStorage.getItem(themeStorageKey) === "dark") initialTheme = "dark";
+  if (localStorage.getItem(themeStorageKey) === "light") initialTheme = "light";
 } catch {
   // Storage can be unavailable in privacy-focused browsing contexts.
 }
