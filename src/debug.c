@@ -1,5 +1,6 @@
 #include "global.h"
 #include "battle.h"
+#include "battle_frontier.h"
 #include "battle_setup.h"
 #include "berry.h"
 #include "clock.h"
@@ -268,6 +269,7 @@ static void DebugAction_Util_Weather(u8 taskId);
 static void DebugAction_Util_Weather_SelectId(u8 taskId);
 static void DebugAction_Util_WatchCredits(u8 taskId);
 static void DebugAction_Util_CheatStart(u8 taskId);
+static void DebugAction_Util_GenerateParties(u8 taskId);
 
 static void DebugAction_TimeMenu_ChangeTimeOfDay(u8 taskId);
 static void DebugAction_TimeMenu_ChangeWeekdays(u8 taskId);
@@ -569,6 +571,7 @@ static const struct DebugMenuOption sDebugMenu_Actions_Utilities[] =
     { COMPOUND_STRING("Time Functions…"),   DebugAction_OpenSubMenu, sDebugMenu_Actions_TimeMenu, },
     { COMPOUND_STRING("Watch credits…"),    DebugAction_Util_WatchCredits },
     { COMPOUND_STRING("Cheat start"),       DebugAction_Util_CheatStart },
+    { COMPOUND_STRING("Generate parties"),  DebugAction_Util_GenerateParties },
     { COMPOUND_STRING("Berry Functions…"),  DebugAction_OpenSubMenu, sDebugMenu_Actions_BerryFunctions },
     { COMPOUND_STRING("EWRAM Counters…"),   DebugAction_ExecuteScript, Debug_EventScript_EWRAMCounters },
     { COMPOUND_STRING("Follower NPC…"),     DebugAction_OpenSubMenu, sDebugMenu_Actions_FollowerNPCMenu },
@@ -1761,6 +1764,57 @@ static void DebugAction_Util_CheatStart(u8 taskId)
 
     InitTimeBasedEvents();
     Debug_DestroyMenu_Full_Script(taskId, Debug_CheatStart);
+}
+
+#define DEBUG_COMPETITIVE_MON(_species, _item, _ability, _nature, _hpEv, _atkEv, _defEv, _speedEv, _spAtkEv, _spDefEv, _move1, _move2, _move3, _move4) \
+    {                                                                                                                                                 \
+        .species = (_species),                                                                                                                        \
+        .moves = {(_move1), (_move2), (_move3), (_move4)},                                                                                           \
+        .heldItem = (_item),                                                                                                                          \
+        .ev = TRAINER_PARTY_EVS((_hpEv), (_atkEv), (_defEv), (_speedEv), (_spAtkEv), (_spDefEv)),                                                   \
+        .iv = TRAINER_PARTY_IVS(MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS),         \
+        .ability = (_ability),                                                                                                                        \
+        .lvl = MAX_LEVEL,                                                                                                                             \
+        .ball = ITEM_POKE_BALL,                                                                                                                       \
+        .friendship = MAX_FRIENDSHIP,                                                                                                                 \
+        .nature = (_nature),                                                                                                                          \
+        .hasExplicitMoves = TRUE,                                                                                                                     \
+        .dynamaxLevel = MAX_DYNAMAX_LEVEL,                                                                                                            \
+    }
+
+static const struct TrainerMon sDebugCompetitiveMons[] =
+{
+#include "data/debug_competitive_mons.h"
+};
+
+#undef DEBUG_COMPETITIVE_MON
+
+STATIC_ASSERT(ARRAY_COUNT(sDebugCompetitiveMons) == PARTY_SIZE + IN_BOX_COUNT, DebugCompetitiveMonsCount);
+
+static void DebugAction_Util_GenerateParties(u8 taskId)
+{
+    struct Pokemon mon;
+    u32 i;
+
+    ZeroPlayerPartyMons();
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        CreateFacilityMon(&sDebugCompetitiveMons[i], MAX_LEVEL, MAX_PER_STAT_IVS,
+                          READ_OTID_FROM_SAVE, 0, &gPlayerParty[i]);
+    }
+    CalculatePlayerPartyCount();
+
+    for (i = 0; i < IN_BOX_COUNT; i++)
+    {
+        CreateFacilityMon(&sDebugCompetitiveMons[PARTY_SIZE + i], MAX_LEVEL, MAX_PER_STAT_IVS,
+                          READ_OTID_FROM_SAVE, 0, &mon);
+        SetBoxMonAt(0, i, &mon.box);
+    }
+
+    FlagSet(FLAG_SYS_POKEMON_GET);
+    PlaySE(SE_SUCCESS);
+    ScriptContext_Enable();
+    Debug_DestroyMenu_Full(taskId);
 }
 
 void BufferExpansionVersion(struct ScriptContext *ctx)
