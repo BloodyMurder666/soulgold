@@ -27,6 +27,12 @@ order: 1
 ### Mega Ring?
 - After Team Rocket takeover event in Goldenrod City.
 
+### Nature mints?
+- Olivine beach cafe sells them.
+
+### Ability changing?
+- Battle Factory (after 3rd gym) offers them for playing a few rounds. Few can also be found in the overworld.
+
 ### How to mega evolve?
 - Press start when selecting moves while the Pokémon is wielding appropriate Mega stone and you have the Mega Ring
 
