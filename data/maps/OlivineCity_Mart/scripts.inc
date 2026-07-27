@@ -89,13 +89,13 @@ Olivine2:
 # 48 "data/maps/OlivineCity_Mart/scripts.pory"
 	.2byte ITEM_TM_BRUTAL_SWING
 # 49 "data/maps/OlivineCity_Mart/scripts.pory"
-	.2byte ITEM_DIVE_BALL
+	.2byte ITEM_TM_CHARGE_BEAM
 # 50 "data/maps/OlivineCity_Mart/scripts.pory"
-	.2byte ITEM_LEVEL_BALL
+	.2byte ITEM_DIVE_BALL
 # 51 "data/maps/OlivineCity_Mart/scripts.pory"
-	.2byte ITEM_NET_BALL
+	.2byte ITEM_LEVEL_BALL
 # 52 "data/maps/OlivineCity_Mart/scripts.pory"
-	.2byte ITEM_HARBOR_MAIL
+	.2byte ITEM_NET_BALL
 	.2byte ITEM_NONE
 
 Olivine_Mart2_Text_0:

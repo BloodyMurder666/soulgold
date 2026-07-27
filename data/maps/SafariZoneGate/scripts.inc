@@ -332,9 +332,11 @@ SafariZoneGateMart2:
 # 170 "data/maps/SafariZoneGate/scripts.pory"
 	.2byte ITEM_TM_GIGA_IMPACT
 # 171 "data/maps/SafariZoneGate/scripts.pory"
-	.2byte ITEM_CRACKED_POT
+	.2byte ITEM_TM_LOW_SWEEP
 # 172 "data/maps/SafariZoneGate/scripts.pory"
-	.2byte ITEM_CHIPPED_POT
+	.2byte ITEM_CRACKED_POT
 # 173 "data/maps/SafariZoneGate/scripts.pory"
+	.2byte ITEM_CHIPPED_POT
+# 174 "data/maps/SafariZoneGate/scripts.pory"
 	.2byte ITEM_UPGRADE
 	.2byte ITEM_NONE

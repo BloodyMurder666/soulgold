@@ -45,6 +45,7 @@ script AzaleaTownMart2 {
 mart GalaricaVendor {
     ITEM_TM_INFESTATION
     ITEM_TM_SWAGGER
+    ITEM_TM_X_SCISSOR
     ITEM_GALARICA_WREATH
     ITEM_GALARICA_CUFF
     ITEM_NEST_BALL

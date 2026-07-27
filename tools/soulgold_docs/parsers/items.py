@@ -17,6 +17,13 @@ from ..paths import ITEMS_H, REPO_ROOT, TMS_HMS_H
 from .hidden_grottos import HiddenGrottoRow
 
 
+TMHM_LOCATION_OVERRIDES: dict[str, list[ItemLocation]] = {
+    "ITEM_TM_X_SCISSOR": [
+        {"map": "Azalea Town", "source": "mart, after 4th badge"},
+    ],
+}
+
+
 def item_display_name(item: str, item_names: Mapping[str, ItemRecord]) -> str:
     return item_names.get(item, {}).get("name") or clean_constant_name(item, "ITEM_")
 
@@ -254,6 +261,10 @@ def build_tms(
     for row in tmhm_rows:
         move = moves.get(row["move"], {})
         item = item_records.get(row["item"], {})
+        locations = TMHM_LOCATION_OVERRIDES.get(
+            row["item"],
+            tmhm_locations.get(row["item"], []),
+        )
         tms.append({
             **row,
             "name": item.get("name") or row["label"],
@@ -264,10 +275,10 @@ def build_tms(
             "power": move.get("power", 0),
             "accuracy": move.get("accuracy", 0),
             "pp": move.get("pp", 0),
-            "locations": tmhm_locations.get(row["item"], []),
+            "locations": locations,
             "location": "; ".join(
                 f"{entry['map']} ({entry['source']})"
-                for entry in tmhm_locations.get(row["item"], [])
+                for entry in locations
             ),
         })
     return tms

@@ -3168,17 +3168,6 @@ summary:focus-visible {
   gap: 12px;
 }
 
-.brand > div::after {
-  display: block;
-  margin-top: 3px;
-  color: #bfc6bf;
-  content: "JOHTO FIELD REFERENCE";
-  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .16em;
-}
-
 .brand-mark {
   border-color: #d8a23f;
   border-radius: 50%;
@@ -3394,6 +3383,34 @@ tbody tr:hover,
   border-color: #b7a46e;
   background: #f2ead2;
   color: #72581f;
+}
+
+.innate-unlock-list {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.innate-unlock {
+  display: inline-grid;
+  width: max-content;
+  gap: 4px;
+}
+
+.innate-unlock-level {
+  color: var(--muted);
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .035em;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.innate-unlock .innate-ability-pill {
+  width: 100%;
 }
 
 .category-badge {
@@ -3687,10 +3704,6 @@ dialog::backdrop {
 
   .site-header {
     padding: 9px 10px 8px;
-  }
-
-  .brand > div::after {
-    display: none;
   }
 
   h1 {

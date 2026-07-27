@@ -1684,6 +1684,8 @@
 #define FLAG_ROUTE50_ITEM1     0x1002
 #define FLAG_ROUTE50_ITEM2     0x1003
 #define FLAG_HIDE_VIRIZION     0x1004
+#define FLAG_TM_AURORA_VEIL    0x1005
+#define FLAG_TM_THUNDER_WAVE   0x1006
 // Continue future flags from 0x1005.
 
 #define FLAG_0x1500                                 0x1500

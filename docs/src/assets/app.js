@@ -44,6 +44,10 @@ const abilityName = (constant) => state.data.abilities[constant]?.name || consta
 const fmtTitle = (value, prefix = "") => value.replace(prefix, "").replaceAll("_", " ").toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
 const fmtCategory = (value) => fmtTitle(value, "DAMAGE_CATEGORY_");
 const statLabels = { hp: "HP", atk: "Atk", def: "Def", spa: "SpA", spd: "SpD", spe: "Spe" };
+const innateUnlockLevels = [75, 85, 95];
+const machineLocationOverrides = {
+  MOVE_X_SCISSOR: "Azalea Town (mart, after 4th badge)",
+};
 const searchPlaceholders = {
   pokedex: "Search Pokédex…",
   moves: "Search moves, types, or descriptions…",
@@ -171,7 +175,21 @@ function pokemonAbilitySections(mon) {
   return `
     <h3 class="section-title">Abilities</h3>
     ${regularAndHiddenAbilityPills(groups) || `<p class="muted">None.</p>`}
-    ${groups.innates.length ? `<h3 class="section-title">Innates</h3>${abilityPills(groups.innates, "innate")}` : ""}
+    ${groups.innates.length ? `<h3 class="section-title">Innates</h3>${innateAbilityUnlocks(groups.innates)}` : ""}
+  `;
+}
+
+function innateAbilityUnlocks(constants) {
+  const innates = uniqueConstants(constants);
+  return `
+    <div class="innate-unlock-list">
+      ${innates.map((constant, index) => `
+        <span class="innate-unlock">
+          <small class="innate-unlock-level">Level ${innateUnlockLevels[index]}</small>
+          <button class="pill ability-pill innate-ability-pill" type="button" data-ability="${constant}">${abilityName(constant)}</button>
+        </span>
+      `).join("")}
+    </div>
   `;
 }
 
@@ -1428,7 +1446,7 @@ function renderMoveDetail(move) {
 
 function renderTms() {
   const tbody = document.getElementById("tmRows");
-  const rows = state.data.tms.filter((tm) => matches(`${tm.label} ${tm.moveName} ${tm.type} ${fmtCategory(tm.category || "")} ${tm.description} ${tm.location}`));
+  const rows = state.data.tms.filter((tm) => matches(`${tm.label} ${tm.moveName} ${tm.type} ${fmtCategory(tm.category || "")} ${tm.description} ${machineLocation(tm)}`));
   tbody.innerHTML = "";
   rows.forEach((tm) => {
     const row = el("tr", "tm-row");
@@ -1441,7 +1459,7 @@ function renderTms() {
       <td data-label="Acc">${tm.accuracy || "-"}</td>
       <td data-label="PP">${tm.pp || "-"}</td>
       <td data-label="Description">${tm.description}</td>
-      <td data-label="Location" class="muted">${tm.location || "TBD"}</td>
+      <td data-label="Location" class="muted">${machineLocation(tm) || "TBD"}</td>
     `;
     bindRowActivation(row, () => openTm(tm), `Open details for ${tm.label} ${tm.moveName}`);
     tbody.appendChild(row);
@@ -1452,6 +1470,10 @@ function renderTms() {
     tbody.appendChild(row);
   }
   setPanelStatus("machines", rows.length ? "" : "No TMs or HMs match this search.");
+}
+
+function machineLocation(tm) {
+  return machineLocationOverrides[tm.move] || tm.location || "";
 }
 
 function itemIconHtml(item, className = "item-icon") {
@@ -1539,7 +1561,7 @@ function renderTmDetail(tm) {
       <div>${typePills([tm.type])}</div>
       <p>${moveCategory(tm.category || "")} Power ${tm.power || "-"} / Accuracy ${tm.accuracy || "-"} / PP ${tm.pp || "-"}</p>
       <p>${tm.description || "No description."}</p>
-      <p class="muted">${tm.location || "Location TBD"}</p>
+      <p class="muted">${machineLocation(tm) || "Location TBD"}</p>
     </div>
     <h3 class="section-title">Compatible Pokémon</h3>
     ${speciesCards(compatible)}
