@@ -10176,6 +10176,16 @@
       "secondary_tileset": "gTileset_DesertVillage",
       "border_filepath": "data/layouts/VajraDesertEastCave/border.bin",
       "blockdata_filepath": "data/layouts/VajraDesertEastCave/map.bin"
+    },
+    {
+      "id": "LAYOUT_SOUTH_PASSAGE_LEFT",
+      "name": "SouthPassageLeft_Layout",
+      "width": 60,
+      "height": 20,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_SeviiIslands123",
+      "border_filepath": "data/layouts/SouthPassageLeft/border.bin",
+      "blockdata_filepath": "data/layouts/SouthPassageLeft/map.bin"
     }
   ]
 }

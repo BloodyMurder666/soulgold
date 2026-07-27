@@ -202,7 +202,7 @@ static const struct HiddenGrottoData sHiddenGrottoData[NUM_HIDDEN_GROTTOES] =
         {
             { SPECIES_CYCLIZAR, 0 },
             { SPECIES_MAUSHOLD, 0 },
-            { SPECIES_INDEEDEE, 0 },
+            { SPECIES_FALINKS, 0 },
             { SPECIES_DRAMPA, 0 },
         },
     },

@@ -281,6 +281,7 @@ EcruteakCity_Theater_EventScript_SurfGuy::
 EcruteakCity_Theater_EventScript_SurfGuy_GiveSurf::
 	msgbox EcruteakCity_Theater_Text_SurfGuyGiveSurf, MSGBOX_DEFAULT
 	giveitem ITEM_HM_SURF
+	setflag FLAG_SOUTHPASSAGE_ARIANA
 	setflag FLAG_RECEIVED_HM_SURF
 	msgbox EcruteakCity_Theater_Text_SurfGuyGaveSurf
 	closemessage

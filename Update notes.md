@@ -1,5 +1,8 @@
 Update notes:
 27.7.2026
+- Added falinks to the Lake of Rage hidden grotto
+- Adjust the water path to south
+
 - Reduced mint costs
 - all 100 TMs obtainable
 - Fix a possible crash in double battles if enemy has too many sparkles in their poke balls

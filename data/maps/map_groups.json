@@ -99,7 +99,8 @@
     "SouthPassageSide",
     "SouthPassageEnd",
     "TohjoPass",
-    "DreamGarden"
+    "DreamGarden",
+    "SouthPassageLeft"
   ],
   "gMapGroup_IndoorNewBark": [
     "NewBarkTown_Lab",

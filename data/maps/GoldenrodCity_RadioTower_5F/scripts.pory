@@ -417,6 +417,7 @@ script OakRadioTowerF5 {
     msgbox(format("{PLAYER}! You've pulled off a miracle by taking down Team Rocket!"))
     msgbox(format("I knew it was the right choice to entrust Pokédex to you. I want you to have this, I think you've more than earned it."))
     giveitem(ITEM_MEGA_RING)
+	clearflag(FLAG_SOUTHPASSAGE_ARIANA)
     msgbox(format("That is a Mega Ring. When combined with a Mega stone, it allows the bond between trainer and Pokémon to fully manifest. I'm sure you'll be able to pull it off."))
     msgbox(format("Now I must start heading back to Kanto, I hope you'll pay a visit to the Pallet Town at some point! Give my regards to Prof. Elm."))
     fadescreenswapbuffers(FADE_TO_BLACK)

@@ -1,1 +1,14 @@
 mapscripts SouthernPassage_MapScripts {}
+
+script BlockSouthJohtoAccess {
+    lock
+    msgbox("The tides ahead seem too strong to 
+            proceed right now. Better turn back
+            for now.
+    
+            System note: The area ahead is not 
+            yet accessible in this version.")
+    applymovement(LOCALID_PLAYER, moves(walk_up))
+    release
+    end
+}

@@ -19,18 +19,55 @@
       "direction": "up"
     },
     {
-      "map": "MAP_METEOR_ISLAND",
-      "offset": -9,
-      "direction": "down"
-    },
-    {
       "map": "MAP_SOUTH_PASSAGE_SIDE",
       "offset": 11,
       "direction": "right"
+    },
+    {
+      "map": "MAP_SOUTH_PASSAGE_LEFT",
+      "offset": 35,
+      "direction": "left"
     }
   ],
   "object_events": [],
   "warp_events": [],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 9,
+      "y": 52,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "BlockSouthJohtoAccess"
+    },
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 52,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "BlockSouthJohtoAccess"
+    },
+    {
+      "type": "trigger",
+      "x": 11,
+      "y": 52,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "BlockSouthJohtoAccess"
+    },
+    {
+      "type": "trigger",
+      "x": 12,
+      "y": 52,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "BlockSouthJohtoAccess"
+    }
+  ],
   "bg_events": []
 }
