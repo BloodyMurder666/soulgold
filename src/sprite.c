@@ -35,6 +35,20 @@ EWRAM_DATA s32 gSpriteAllocs = 0;
 EWRAM_DATA u8 gSpriteCopyRequestHighWaterMark = 0;
 EWRAM_DATA u32 gSpriteCopyRequestOverflowCount = 0;
 
+#ifndef NDEBUG
+struct SpriteDebugInfo
+{
+    const void *creator;
+    SpriteCallback initialCallback;
+    u32 sequence;
+    u16 tileTag;
+    u16 paletteTag;
+};
+
+static EWRAM_DATA struct SpriteDebugInfo sSpriteDebugInfo[MAX_SPRITES] = {0};
+static EWRAM_DATA u32 sSpriteCreationSequence = 0;
+#endif
+
 struct SpriteCopyRequest
 {
     const u8 *src;
@@ -49,7 +63,7 @@ struct OamDimensions32
 };
 
 static void SortSprites(u32 *spritePriorities, s32 n);
-static u32 CreateSpriteAt(u32 index, const struct SpriteTemplate *template, s16 x, s16 y, u32 subpriority);
+static u32 CreateSpriteAt(u32 index, const struct SpriteTemplate *template, s16 x, s16 y, u32 subpriority, const void *creator);
 static void ResetOamMatrices(void);
 static void ResetSprite(struct Sprite *sprite);
 static void ResetAllSprites(void);
@@ -275,6 +289,10 @@ void ResetSpriteData(void)
     ResetOamRange(0, 128);
     sOamDummyIndex = 0;
     ResetAllSprites();
+#ifndef NDEBUG
+    memset(sSpriteDebugInfo, 0, sizeof(sSpriteDebugInfo));
+    sSpriteCreationSequence = 0;
+#endif
     ClearSpriteCopyRequests();
     ResetAffineAnimData();
     FreeSpriteTileRanges();
@@ -428,9 +446,81 @@ static void SortSprites(u32 *spritePriorities, s32 n)
     InsertionSort(spritePriorities, n);
 }
 
+#ifndef NDEBUG
+static void RecordSpriteCreation(u32 spriteId, const struct SpriteTemplate *template, const void *creator)
+{
+    sSpriteDebugInfo[spriteId] = (struct SpriteDebugInfo)
+    {
+        .creator = creator,
+        .initialCallback = template->callback,
+        .sequence = ++sSpriteCreationSequence,
+        .tileTag = template->tileTag,
+        .paletteTag = template->paletteTag,
+    };
+}
+
+static void SetSpriteCreator(u32 spriteId, const void *creator)
+{
+    if (spriteId < MAX_SPRITES)
+        sSpriteDebugInfo[spriteId].creator = creator;
+}
+
+static void DumpSpriteSlots(const struct SpriteTemplate *failedTemplate, s16 x, s16 y, u32 subpriority, const void *failedCreator)
+{
+    DebugPrintfLevel(
+        MGBA_LOG_ERROR,
+        "SPRITE_FULL fail create=%08X tmpl=%08X cb=%08X tile=%04X pal=%04X xy=%d,%d sub=%u seq=%u",
+        (u32)failedCreator,
+        (u32)failedTemplate,
+        (u32)failedTemplate->callback,
+        failedTemplate->tileTag,
+        failedTemplate->paletteTag,
+        x,
+        y,
+        subpriority,
+        sSpriteCreationSequence);
+
+    for (u32 i = 0; i < MAX_SPRITES; i++)
+    {
+        const struct Sprite *sprite = &gSprites[i];
+        const struct SpriteDebugInfo *debug = &sSpriteDebugInfo[i];
+
+        if (!sprite->inUse)
+            continue;
+
+        DebugPrintfLevel(
+            MGBA_LOG_ERROR,
+            "SPR[%02u] create=%08X seq=%u tmpl=%08X init=%08X cur=%08X tile=%04X pal=%04X xy=%d,%d inv=%u aff=%u data=%d,%d,%d,%d",
+            i,
+            (u32)debug->creator,
+            debug->sequence,
+            (u32)sprite->template,
+            (u32)debug->initialCallback,
+            (u32)sprite->callback,
+            debug->tileTag,
+            debug->paletteTag,
+            sprite->x,
+            sprite->y,
+            sprite->invisible,
+            sprite->oam.affineMode,
+            sprite->data[0],
+            sprite->data[1],
+            sprite->data[2],
+            sprite->data[3]);
+    }
+}
+#else
+#define RecordSpriteCreation(spriteId, template, creator)
+#define SetSpriteCreator(spriteId, creator)
+#define DumpSpriteSlots(failedTemplate, x, y, subpriority, failedCreator)
+#endif
+
 u32 CreateSprite(const struct SpriteTemplate *template, s16 x, s16 y, u32 subpriority)
 {
     u32 spriteId = CreateSpriteUnchecked(template, x, y, subpriority);
+    SetSpriteCreator(spriteId, __builtin_return_address(0));
+    if (spriteId >= MAX_SPRITES)
+        DumpSpriteSlots(template, x, y, subpriority, __builtin_return_address(0));
     fatal_assertf(spriteId < MAX_SPRITES, "Out of sprite slots");
     return spriteId;
 }
@@ -439,7 +529,7 @@ u32 CreateSpriteUnchecked(const struct SpriteTemplate *template, s16 x, s16 y, u
 {
     for (u32 i = 0; i < MAX_SPRITES; i++)
         if (!gSprites[i].inUse)
-            return CreateSpriteAt(i, template, x, y, subpriority);
+            return CreateSpriteAt(i, template, x, y, subpriority, __builtin_return_address(0));
 
     return MAX_SPRITES;
 }
@@ -447,6 +537,9 @@ u32 CreateSpriteUnchecked(const struct SpriteTemplate *template, s16 x, s16 y, u
 u32 CreateSpriteAtEnd(const struct SpriteTemplate *template, s16 x, s16 y, u32 subpriority)
 {
     u32 spriteId = CreateSpriteAtEndUnchecked(template, x, y, subpriority);
+    SetSpriteCreator(spriteId, __builtin_return_address(0));
+    if (spriteId >= MAX_SPRITES)
+        DumpSpriteSlots(template, x, y, subpriority, __builtin_return_address(0));
     fatal_assertf(spriteId < MAX_SPRITES, "Out of sprite slots");
     return spriteId;
 }
@@ -455,7 +548,7 @@ u32 CreateSpriteAtEndUnchecked(const struct SpriteTemplate *template, s16 x, s16
 {
     for (s32 i = MAX_SPRITES - 1; i > -1; i--)
         if (!gSprites[i].inUse)
-            return CreateSpriteAt(i, template, x, y, subpriority);
+            return CreateSpriteAt(i, template, x, y, subpriority, __builtin_return_address(0));
 
     return MAX_SPRITES;
 }
@@ -476,7 +569,7 @@ u32 CreateInvisibleSprite(void (*callback)(struct Sprite *))
     }
 }
 
-u32 CreateSpriteAt(u32 index, const struct SpriteTemplate *template, s16 x, s16 y, u32 subpriority)
+u32 CreateSpriteAt(u32 index, const struct SpriteTemplate *template, s16 x, s16 y, u32 subpriority, const void *creator)
 {
     struct Sprite *sprite = &gSprites[index];
 
@@ -524,6 +617,7 @@ u32 CreateSpriteAt(u32 index, const struct SpriteTemplate *template, s16 x, s16 
     if (template->paletteTag != TAG_NONE)
         sprite->oam.paletteNum = IndexOfSpritePaletteTag(template->paletteTag);
 
+    RecordSpriteCreation(index, template, creator);
     return index;
 }
 
@@ -537,7 +631,7 @@ u32 CreateSpriteAndAnimate(const struct SpriteTemplate *template, s16 x, s16 y, 
 
         if (!gSprites[i].inUse)
         {
-            u32 index = CreateSpriteAt(i, template, x, y, subpriority);
+            u32 index = CreateSpriteAt(i, template, x, y, subpriority, __builtin_return_address(0));
 
             if (index == MAX_SPRITES)
                 return MAX_SPRITES;

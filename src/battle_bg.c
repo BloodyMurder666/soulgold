@@ -746,6 +746,7 @@ bool32 BattleEnvironmentForcesNoIntroSlide(void)
     case BATTLE_ENVIRONMENT_SNOW_CAVE:
     case BATTLE_ENVIRONMENT_VOLCANO:
     case BATTLE_ENVIRONMENT_SPACE:
+    case BATTLE_ENVIRONMENT_PLAIN:
         return TRUE;
     default:
         return FALSE;

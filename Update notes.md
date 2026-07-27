@@ -2,7 +2,9 @@ Update notes:
 27.7.2026
 - Reduced mint costs
 - all 100 TMs obtainable
-- Steam Eruption Politoed, Rage Fist+Wave Crash Poliwrath, Eerie Spell Alakazam
+- Fix a possible crash in double battles if enemy has too many sparkles in their poke balls
+- Steam Eruption Politoed, Rage Fist+Wave Crash Poliwrath, Eerie Spell Alakazam, Solar Blade Victreebel
+
 
 26.7.2026
 - More new battle backgrounds

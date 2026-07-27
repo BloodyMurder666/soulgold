@@ -1626,16 +1626,28 @@ static void IncrBallParticleCount(void)
         gBattleSpritesDataPtr->animationData->numBallParticles++;
 }
 
+#define BALL_PARTICLES_PER_RING         8
+#define BALL_PARTICLES_PER_RING_DOUBLES 4
+
+static u32 GetBallParticlesPerRing(void)
+{
+    return (gMain.inBattle && IsDoubleBattle())
+         ? BALL_PARTICLES_PER_RING_DOUBLES
+         : BALL_PARTICLES_PER_RING;
+}
+
 static void PokeBallOpenParticleAnimation(u8 taskId)
 {
     u8 spriteId;
     u8 x, y;
     u8 priority, subpriority;
     u8 ballId;
-    u8 var0;
+    u8 angle, particleCount, particlesPerRing;
 
     ballId = gTasks[taskId].data[15];
-    if (gTasks[taskId].data[0] < 16)
+    particlesPerRing = GetBallParticlesPerRing();
+    particleCount = 2 * particlesPerRing;
+    if (gTasks[taskId].data[0] < particleCount)
     {
         x = gTasks[taskId].data[1];
         y = gTasks[taskId].data[2];
@@ -1650,14 +1662,11 @@ static void PokeBallOpenParticleAnimation(u8 taskId)
             gSprites[spriteId].callback = PokeBallOpenParticleAnimation_Step1;
             gSprites[spriteId].oam.priority = priority;
 
-            var0 = (u8)gTasks[taskId].data[0];
-            if (var0 >= 8)
-                var0 -= 8;
-
-            gSprites[spriteId].data[0] = var0 * 32;
+            angle = gTasks[taskId].data[0] % particlesPerRing;
+            gSprites[spriteId].data[0] = angle * (256 / particlesPerRing);
         }
 
-        if (gTasks[taskId].data[0] == 15)
+        if (gTasks[taskId].data[0] == particleCount - 1)
         {
             if (!gMain.inBattle)
                 gSprites[spriteId].data[7] = 1;
@@ -1825,10 +1834,9 @@ static void UltraBallOpenParticleAnimation(u8 taskId)
     DestroyTask(taskId);
 }
 
-// Also used for Luxury Ball
 static void GreatBallOpenParticleAnimation(u8 taskId)
 {
-    u8 i;
+    u8 i, particleCount;
     u8 x, y, priority, subpriority, ballId;
     u8 spriteId;
 
@@ -1843,8 +1851,9 @@ static void GreatBallOpenParticleAnimation(u8 taskId)
         y = gTasks[taskId].data[2];
         priority = gTasks[taskId].data[3];
         subpriority = gTasks[taskId].data[4];
+        particleCount = GetBallParticlesPerRing();
 
-        for (i = 0; i < 8; i++)
+        for (i = 0; i < particleCount; i++)
         {
             spriteId = CreateSpriteUnchecked(&sBallParticles[ballId].spriteTemplate, x, y, subpriority);
             if (spriteId != MAX_SPRITES)
@@ -1853,7 +1862,7 @@ static void GreatBallOpenParticleAnimation(u8 taskId)
                 StartSpriteAnim(&gSprites[spriteId], sBallParticles[ballId].animNums);
                 gSprites[spriteId].callback = FanOutBallOpenParticles_Step1;
                 gSprites[spriteId].oam.priority = priority;
-                gSprites[spriteId].data[0] = i * 32;
+                gSprites[spriteId].data[0] = i * (256 / particleCount);
                 gSprites[spriteId].data[4] = 8;
                 gSprites[spriteId].data[5] = 2;
                 gSprites[spriteId].data[6] = 2;
@@ -1926,7 +1935,7 @@ static void RepeatBallOpenParticleAnimation_Step1(struct Sprite *sprite)
 
 static void MasterBallOpenParticleAnimation(u8 taskId)
 {
-    u8 i, j;
+    u8 i, j, particlesPerRing;
     u8 x, y, priority, subpriority, ballId;
     u8 spriteId;
 
@@ -1935,10 +1944,11 @@ static void MasterBallOpenParticleAnimation(u8 taskId)
     y = gTasks[taskId].data[2];
     priority = gTasks[taskId].data[3];
     subpriority = gTasks[taskId].data[4];
+    particlesPerRing = GetBallParticlesPerRing();
 
     for (j = 0; j < 2; j++)
     {
-        for (i = 0; i < 8; i++)
+        for (i = 0; i < particlesPerRing; i++)
         {
             spriteId = CreateSpriteUnchecked(&sBallParticles[ballId].spriteTemplate, x, y, subpriority);
             if (spriteId != MAX_SPRITES)
@@ -1947,7 +1957,7 @@ static void MasterBallOpenParticleAnimation(u8 taskId)
                 StartSpriteAnim(&gSprites[spriteId], sBallParticles[ballId].animNums);
                 gSprites[spriteId].callback = FanOutBallOpenParticles_Step1;
                 gSprites[spriteId].oam.priority = priority;
-                gSprites[spriteId].data[0] = i * 32;
+                gSprites[spriteId].data[0] = i * (256 / particlesPerRing);
                 gSprites[spriteId].data[4] = 8;
 
                 if (j == 0)
@@ -1969,6 +1979,9 @@ static void MasterBallOpenParticleAnimation(u8 taskId)
 
     DestroyTask(taskId);
 }
+
+#undef BALL_PARTICLES_PER_RING
+#undef BALL_PARTICLES_PER_RING_DOUBLES
 
 static void PremierBallOpenParticleAnimation(u8 taskId)
 {
