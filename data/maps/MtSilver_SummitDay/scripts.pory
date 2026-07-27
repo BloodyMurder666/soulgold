@@ -120,7 +120,8 @@ script MtSilver_SummitDay_EventScript_Rival {
 	clearflag(FLAG_HIDE_NEWBARK_RIVAL)
 	clearflag(FLAG_HIDE_RIVAL_AZUMARILL)
 	setflag(FLAG_HIDE_RIVAL_MARILL)
-	special(GameClear)
+	delay(40)
+	warp(MAP_NEW_BARK_TOWN_HOUSE3, 33, 3)
 	waitstate
 	releaseall
 	end

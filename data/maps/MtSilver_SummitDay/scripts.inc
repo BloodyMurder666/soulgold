@@ -151,10 +151,12 @@ MtSilver_SummitDay_EventScript_Rival_1:
 # 122 "data/maps/MtSilver_SummitDay/scripts.pory"
 	setflag FLAG_HIDE_RIVAL_MARILL
 # 123 "data/maps/MtSilver_SummitDay/scripts.pory"
-	special GameClear
+	delay 40
 # 124 "data/maps/MtSilver_SummitDay/scripts.pory"
-	waitstate
+	warp MAP_NEW_BARK_TOWN_HOUSE3, 33, 3
 # 125 "data/maps/MtSilver_SummitDay/scripts.pory"
+	waitstate
+# 126 "data/maps/MtSilver_SummitDay/scripts.pory"
 	releaseall
 	end
 
