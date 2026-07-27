@@ -85,6 +85,7 @@ Route32_EventScript_SlowpokeTail_TriggerRight::
 	goto Route32_EventScript_SlowpokeTail_Trigger
 
 Route32_EventScript_SlowpokeTail_Trigger::
+	createfieldmugshot MUGSHOT_ROCKET_GRUNT_M
 	msgbox Route32_Text_SlowpokeTailOffer, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, TRUE, Route32_EventScript_SlowpokeTail_Trigger2
 	msgbox Route32_Text_RefusedSlowpokeTail, MSGBOX_DEFAULT
@@ -123,11 +124,13 @@ Route32_EventScript_SlowpokeTail::
 	goto_if_eq VAR_RESULT, TRUE, Route32_EventScript_SlowpokeTail2
 	msgbox Route32_Text_RefusedSlowpokeTail, MSGBOX_DEFAULT
 	closemessage
+	setvar VAR_SLOWPOKE_TAIL, 1
 	release
 	end
 Route32_EventScript_SlowpokeTail2::
 	msgbox Route32_Text_ThoughtKidsLoaded, MSGBOX_DEFAULT
 	closemessage
+	setvar VAR_SLOWPOKE_TAIL, 1
 	release
 	end
 
