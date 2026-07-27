@@ -1980,6 +1980,8 @@ bool8 FldEff_UseWaterfall(void)
 
 static void Task_UseWaterfall(u8 taskId)
 {
+    LockPlayerFieldControls();
+    gPlayerAvatar.preventStep = TRUE;
     while (sWaterfallFieldEffectFuncs[gTasks[taskId].tState](&gTasks[taskId], &gObjectEvents[gPlayerAvatar.objectEventId]));
 }
 
@@ -2016,7 +2018,15 @@ static bool8 WaterfallFieldEffect_WaitForShowMon(struct Task *task, struct Objec
 
 static bool8 WaterfallFieldEffect_RideUp(struct Task *task, struct ObjectEvent *objectEvent)
 {
-    ObjectEventSetHeldMovement(objectEvent, GetWalkSlowMovementAction(DIR_NORTH));
+    if (ObjectEventIsMovementOverridden(objectEvent))
+    {
+        if (!ObjectEventClearHeldMovementIfFinished(objectEvent))
+            return FALSE;
+    }
+
+    if (ObjectEventSetHeldMovement(objectEvent, GetWalkSlowMovementAction(DIR_NORTH)))
+        return FALSE;
+
     task->tState++;
     return FALSE;
 }

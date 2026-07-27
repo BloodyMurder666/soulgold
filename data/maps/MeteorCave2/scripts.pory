@@ -1,0 +1,14 @@
+mapscripts MeteorCave2_MapScripts {}
+
+
+script IronValiantEnc {
+    lock
+    faceplayer
+    legendaryencounter(SPECIES_IRON_VALIANT, 70, LOCALID_IRON_VALIANT, FLAG_HIDE_IRONVALIANT)
+    release
+    end
+}
+
+script AncientWallMet {
+    msgbox("Ancient writing covers the wall.", MSGBOX_SIGN)
+}

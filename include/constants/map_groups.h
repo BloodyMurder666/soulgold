@@ -629,6 +629,7 @@ enum
     MAP_LATI_TEMPLE_LATIOS                = (32 | (25 << 8)),
     MAP_LATI_TEMPLE_SOULDEW_ROOM          = (33 | (25 << 8)),
     MAP_VAJRA_DESERT_EAST_CAVE            = (34 | (25 << 8)),
+    MAP_METEOR_CAVE2                      = (35 | (25 << 8)),
 
     // gMapGroup_JohtoDiveMaps
     MAP_CHERRYGROVE_UNDERWATER = (0 | (26 << 8)),

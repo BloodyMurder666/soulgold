@@ -572,3 +572,6 @@ const u16 gMetatileAttributes_Pyramid[] = INCBIN_U16("data/tilesets/primary/pyra
 
 const u16 gMetatiles_LatiTemple[] = INCBIN_U16("data/tilesets/secondary/lati_temple/metatiles.bin");
 const u16 gMetatileAttributes_LatiTemple[] = INCBIN_U16("data/tilesets/secondary/lati_temple/metatile_attributes.bin");
+
+const u16 gMetatiles_MeteorCave[] = INCBIN_U16("data/tilesets/secondary/meteor_cave/metatiles.bin");
+const u16 gMetatileAttributes_MeteorCave[] = INCBIN_U16("data/tilesets/secondary/meteor_cave/metatile_attributes.bin");

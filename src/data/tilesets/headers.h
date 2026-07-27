@@ -2250,3 +2250,14 @@ const struct Tileset gTileset_LatiTemple =
     .metatileAttributes = gMetatileAttributes_LatiTemple,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_MeteorCave =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_MeteorCave,
+    .palettes = gTilesetPalettes_MeteorCave,
+    .metatiles = gMetatiles_MeteorCave,
+    .metatileAttributes = gMetatileAttributes_MeteorCave,
+    .callback = NULL,
+};

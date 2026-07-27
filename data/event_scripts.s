@@ -2390,3 +2390,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/VajraDesertEastCave/scripts.inc"
 
 	.include "data/maps/SouthPassageLeft/scripts.inc"
+
+	.include "data/maps/MeteorCave2/scripts.inc"
