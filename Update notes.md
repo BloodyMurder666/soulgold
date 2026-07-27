@@ -2,7 +2,7 @@ Update notes:
 27.7.2026
 - Reduced mint costs
 - all 100 TMs obtainable
-
+- Steam Eruption Politoed, Rage Fist+Wave Crash Poliwrath, Eerie Spell Alakazam
 
 26.7.2026
 - More new battle backgrounds
