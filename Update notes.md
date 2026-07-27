@@ -1,4 +1,9 @@
 Update notes:
+27.7.2026
+- Reduced mint costs
+- all 100 TMs obtainable
+
+
 26.7.2026
 - More new battle backgrounds
 - Optional areas enforce level scaling if party average exceeds level by 5 (minus sandbagged levels)

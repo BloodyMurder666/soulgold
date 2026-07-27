@@ -4145,3 +4145,11 @@ dialog::backdrop {
     background: var(--surface-raised);
   }
 }
+
+@media (min-width: 1600px) {
+  .tab {
+    height: 40px;
+    padding-inline: 18px;
+    font-size: 12px;
+  }
+}
