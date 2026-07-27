@@ -1,4 +1,10 @@
-mapscripts MeteorCave2_MapScripts {}
+mapscripts MeteorCave2_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        if (flag(FLAG_ALL_FUTUREMONS)) {
+            setmetatile(8, 32, 0x4D5, FALSE)
+        }
+    }
+}
 
 
 script IronValiantEnc {
@@ -10,5 +16,49 @@ script IronValiantEnc {
 }
 
 script AncientWallMet {
-    msgbox("Ancient writing covers the wall.", MSGBOX_SIGN)
+   lock
+    if (flag(FLAG_ALL_FUTUREMONS)) {
+        msgbox("The way is open.")
+        release
+        end
+    }
+    msgbox("There's an inscription on the wall.
+    
+            GATHER ALL
+            OF THE FUTURE")
+    getcaughtmon(SPECIES_IRON_TREADS)
+    if (var(VAR_RESULT) == FALSE) {
+        goto(MeteorCave1_NothingHappens)
+    }
+    getcaughtmon(SPECIES_IRON_BUNDLE)
+    if (var(VAR_RESULT) == FALSE) {
+        goto(MeteorCave1_NothingHappens)
+    }
+    getcaughtmon(SPECIES_IRON_HANDS)
+    if (var(VAR_RESULT) == FALSE) {
+        goto(MeteorCave1_NothingHappens)
+    }
+    getcaughtmon(SPECIES_IRON_JUGULIS)
+    if (var(VAR_RESULT) == FALSE) {
+        goto(MeteorCave1_NothingHappens)
+    }
+    getcaughtmon(SPECIES_IRON_MOTH)
+    if (var(VAR_RESULT) == FALSE) {
+        goto(MeteorCave1_NothingHappens)
+    }
+    getcaughtmon(SPECIES_IRON_THORNS)
+    if (var(VAR_RESULT) == FALSE) {
+        goto(MeteorCave1_NothingHappens)
+    }
+    getcaughtmon(SPECIES_IRON_VALIANT)
+    if (var(VAR_RESULT) == FALSE) {
+        goto(MeteorCave1_NothingHappens)
+    }
+    closemessage
+    playse(SE_BANG)
+    setmetatile(8, 32, 0x4D5, FALSE)
+    special(DrawWholeMapView)
+    setflag(FLAG_ALL_FUTUREMONS)
+    waitse
+    release
 }

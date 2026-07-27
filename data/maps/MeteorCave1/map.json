@@ -42,8 +42,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 36,
-      "y": 36,
+      "x": 18,
+      "y": 15,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -106,17 +106,18 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SANDY_SHOCKS)",
-      "x": 35,
-      "y": 34,
+      "local_id": "LOCALID_FLUTTERMANE",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(FLUTTER_MANE)",
+      "x": 36,
+      "y": 36,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-      "movement_range_x": 1,
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
+      "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
+      "script": "FlutterManeEnc",
+      "flag": "FLAG_HIDE_FLUTTERMANE"
     }
   ],
   "warp_events": [
@@ -147,8 +148,40 @@
       "elevation": 0,
       "dest_map": "MAP_METEOR_CAVE2",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 36,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_METEOR_CAVE1_LEGENDARY_ROOM",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 36,
+      "y": 2,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "MeteorCave1_WallIns"
+    },
+    {
+      "type": "sign",
+      "x": 35,
+      "y": 2,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "MeteorCave1_WallIns"
+    },
+    {
+      "type": "sign",
+      "x": 37,
+      "y": 2,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "MeteorCave1_WallIns"
+    }
+  ]
 }

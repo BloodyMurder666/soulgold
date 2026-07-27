@@ -2392,3 +2392,7 @@ Common_Text_ReceivedMon:
 	.include "data/maps/SouthPassageLeft/scripts.inc"
 
 	.include "data/maps/MeteorCave2/scripts.inc"
+
+	.include "data/maps/MeteorCave1_LegendaryRoom/scripts.inc"
+
+	.include "data/maps/MeteorCave2_LegendaryRoom/scripts.inc"

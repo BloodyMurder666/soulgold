@@ -654,7 +654,9 @@
     "LatiTempleLatios",
     "LatiTempleSouldewRoom",
     "VajraDesertEastCave",
-    "MeteorCave2"
+    "MeteorCave2",
+    "MeteorCave1_LegendaryRoom",
+    "MeteorCave2_LegendaryRoom"
   ],
   "gMapGroup_JohtoDiveMaps": [
     "CherrygroveUnderwater"

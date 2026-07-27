@@ -1,1 +1,70 @@
-mapscripts MeteorCave1_MapScripts {}
+mapscripts MeteorCave1_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        if (flag(FLAG_ALL_PASTMONS)) {
+            setmetatile(36, 2, 0x4DD, FALSE)
+        }
+    }
+}
+
+script MeteorCave1_WallIns {
+    lock
+    if (flag(FLAG_ALL_PASTMONS)) {
+        msgbox("The way is open.")
+        release
+        end
+    }
+    msgbox("There's an inscription on the wall.
+    
+            GATHER ALL
+            ANCIENTS")
+    getcaughtmon(SPECIES_GREAT_TUSK)
+    if (var(VAR_RESULT) == FALSE) {
+        goto(MeteorCave1_NothingHappens)
+    }
+    getcaughtmon(SPECIES_SCREAM_TAIL)
+    if (var(VAR_RESULT) == FALSE) {
+        goto(MeteorCave1_NothingHappens)
+    }
+    getcaughtmon(SPECIES_BRUTE_BONNET)
+    if (var(VAR_RESULT) == FALSE) {
+        goto(MeteorCave1_NothingHappens)
+    }
+    getcaughtmon(SPECIES_FLUTTER_MANE)
+    if (var(VAR_RESULT) == FALSE) {
+        goto(MeteorCave1_NothingHappens)
+    }
+    getcaughtmon(SPECIES_SLITHER_WING)
+    if (var(VAR_RESULT) == FALSE) {
+        goto(MeteorCave1_NothingHappens)
+    }
+    getcaughtmon(SPECIES_SANDY_SHOCKS)
+    if (var(VAR_RESULT) == FALSE) {
+        goto(MeteorCave1_NothingHappens)
+    }
+    getcaughtmon(SPECIES_ROARING_MOON)
+    if (var(VAR_RESULT) == FALSE) {
+        goto(MeteorCave1_NothingHappens)
+    }
+    closemessage
+    playse(SE_BANG)
+    setmetatile(36, 2, 0x4DD, FALSE)
+    special(DrawWholeMapView)
+    setflag(FLAG_ALL_PASTMONS)
+    waitse
+    release
+}
+
+script MeteorCave1_NothingHappens {
+    delay(30)
+    msgbox("Nothing seems to happen.")
+    release
+    end
+}
+
+script FlutterManeEnc {
+    lock
+    faceplayer
+    legendaryencounter(SPECIES_FLUTTER_MANE, 70, LOCALID_FLUTTERMANE, FLAG_HIDE_FLUTTERMANE)
+    release
+    end
+}

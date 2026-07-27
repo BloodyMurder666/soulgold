@@ -10196,6 +10196,26 @@
       "secondary_tileset": "gTileset_MeteorCave",
       "border_filepath": "data/layouts/MeteorCave2/border.bin",
       "blockdata_filepath": "data/layouts/MeteorCave2/map.bin"
+    },
+    {
+      "id": "LAYOUT_METEOR_CAVE1_LEGENDARY_ROOM",
+      "name": "MeteorCave1_LegendaryRoom_Layout",
+      "width": 38,
+      "height": 43,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_g4_alt",
+      "border_filepath": "data/layouts/MeteorCave1_LegendaryRoom/border.bin",
+      "blockdata_filepath": "data/layouts/MeteorCave1_LegendaryRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_METEOR_CAVE2_LEGENDARY_ROOM",
+      "name": "MeteorCave2_LegendaryRoom_Layout",
+      "width": 38,
+      "height": 43,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_MeteorCave",
+      "border_filepath": "data/layouts/MeteorCave2_LegendaryRoom/border.bin",
+      "blockdata_filepath": "data/layouts/MeteorCave2_LegendaryRoom/map.bin"
     }
   ]
 }

@@ -1,0 +1,142 @@
+mapscripts MeteorCave1_LegendaryRoom_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        if (flag(FLAG_RAGINGDOOR)) {
+            setmetatileinrange(5, 35, 5, 29, 0x482, TRUE)
+            setmetatileinrange(6, 35, 6, 29, 0x498)
+            setmetatileinrange(7, 35, 7, 29, 0x486)
+            setmetatileinrange(8, 35, 8, 29, 0x49A)
+            setmetatileinrange(9, 34, 9, 29, 0x480, TRUE)
+        }
+        if (flag(FLAG_GOUGINGDOOR)) {
+            setmetatileinrange(17, 34, 17, 29, 0x482, TRUE)
+            setmetatileinrange(18, 35, 18, 29, 0x498)
+            setmetatileinrange(19, 35, 19, 29, 0x486)
+            setmetatileinrange(20, 35, 20, 29, 0x49A)
+            setmetatileinrange(21, 34, 21, 29, 0x480, TRUE)
+        }
+        if (flag(FLAG_WALKINGDOOR)) {
+            setmetatileinrange(29, 34, 29, 29, 0x482, TRUE)
+            setmetatileinrange(30, 35, 30, 29, 0x498)
+            setmetatileinrange(31, 35, 31, 29, 0x486)
+            setmetatileinrange(32, 35, 32, 29, 0x49A)
+            setmetatileinrange(33, 34, 33, 29, 0x480, TRUE)
+        }
+    }
+}
+
+script MeteorCave1_LegendaryRoom_RagingBoltDoor {
+    lock
+    if (flag(FLAG_RAGINGDOOR)) {
+        msgbox("The path is open.")
+        release
+        end
+    }
+    msgbox("There's an inscription on the wall.
+    
+            BRING THUNDER")
+    checkspecies(SPECIES_RAIKOU)
+    if (var(VAR_RESULT) == FALSE) {
+        delay(30)
+        msgbox("Nothing seems to happen.")
+        release
+        end
+    }
+    closemessage
+    playse(SE_BANG)
+    setmetatileinrange(5, 35, 5, 29, 0x482, TRUE)
+    setmetatileinrange(6, 35, 6, 29, 0x498)
+    setmetatileinrange(7, 35, 7, 29, 0x486)
+    setmetatileinrange(8, 35, 8, 29, 0x49A)
+    setmetatileinrange(9, 34, 9, 29, 0x480, TRUE)
+    special(DrawWholeMapView)
+    setflag(FLAG_RAGINGDOOR)
+    waitse
+    release
+    end
+}
+
+script MeteorCave1_LegendaryRoom_GougingFireDoor {
+    lock
+    if (flag(FLAG_GOUGINGDOOR)) {
+        msgbox("The path is open.")
+        release
+        end
+    }
+    msgbox("There's an inscription on the wall.
+    
+            BRING VOLCANO")
+    checkspecies(SPECIES_ENTEI)
+    if (var(VAR_RESULT) == FALSE) {
+        delay(30)
+        msgbox("Nothing seems to happen.")
+        release
+        end
+    }
+    closemessage
+    playse(SE_BANG)
+    setmetatileinrange(17, 34, 17, 29, 0x482, TRUE)
+    setmetatileinrange(18, 35, 18, 29, 0x498)
+    setmetatileinrange(19, 35, 19, 29, 0x486)
+    setmetatileinrange(20, 35, 20, 29, 0x49A)
+    setmetatileinrange(21, 34, 21, 29, 0x480, TRUE)
+    special(DrawWholeMapView)
+    setflag(FLAG_GOUGINGDOOR)
+    waitse
+    release
+    end
+}
+
+script MeteorCave1_LegendaryRoom_WalkingWakeDoor {
+    lock
+    if (flag(FLAG_WALKINGDOOR)) {
+        msgbox("The path is open.")
+        release
+        end
+    }
+    msgbox("There's an inscription on the wall.
+    
+            BRING AURORA")
+    checkspecies(SPECIES_SUICUNE)
+    if (var(VAR_RESULT) == FALSE) {
+        delay(30)
+        msgbox("Nothing seems to happen.")
+        release
+        end
+    }
+    closemessage
+    playse(SE_BANG)
+    setmetatileinrange(29, 34, 29, 29, 0x482, TRUE)
+    setmetatileinrange(30, 35, 30, 29, 0x498)
+    setmetatileinrange(31, 35, 31, 29, 0x486)
+    setmetatileinrange(32, 35, 32, 29, 0x49A)
+    setmetatileinrange(33, 34, 33, 29, 0x480, TRUE)
+    special(DrawWholeMapView)
+    setflag(FLAG_WALKINGDOOR)
+    waitse
+    release
+    end
+}
+
+script MeteorCave1_LegeRoom_RagingBolt {
+    lock
+    faceplayer
+    legendaryencounter(SPECIES_RAGING_BOLT, 75, LOCALID_RAGINGBOLT, FLAG_HIDE_RAGINGBOLT)
+    release
+    end
+}
+
+script MeteorCave1_LegeRoom_GougingFire {
+    lock
+    faceplayer
+    legendaryencounter(SPECIES_GOUGING_FIRE, 75, LOCALID_GOUGINGFIRE, FLAG_HIDE_GOUGINGFIRE)
+    release
+    end
+}
+
+script MeteorCave1_LegeRoom_WalkingWake {
+    lock
+    faceplayer
+    legendaryencounter(SPECIES_WALKING_WAKE, 75, LOCALID_WALKINGWAKE, FLAG_HIDE_WALKINGWAKE)
+    release
+    end
+}

@@ -140,6 +140,13 @@
       "elevation": 0,
       "dest_map": "MAP_METEOR_CAVE1",
       "dest_warp_id": "3"
+    },
+    {
+      "x": 8,
+      "y": 32,
+      "elevation": 0,
+      "dest_map": "MAP_METEOR_CAVE2_LEGENDARY_ROOM",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],
