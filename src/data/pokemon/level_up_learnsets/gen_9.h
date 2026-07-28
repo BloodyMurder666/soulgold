@@ -212,6 +212,8 @@ static const struct LevelUpMove sButterfreeLevelUpLearnset[] = {
     LEVEL_UP_MOVE(36, MOVE_TAILWIND),
     LEVEL_UP_MOVE(40, MOVE_RAGE_POWDER),
     LEVEL_UP_MOVE(44, MOVE_QUIVER_DANCE),
+    LEVEL_UP_MOVE(50, MOVE_HURRICANE),
+    LEVEL_UP_MOVE(56, MOVE_POLLEN_PUFF),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_CATERPIE
@@ -250,6 +252,7 @@ static const struct LevelUpMove sBeedrillLevelUpLearnset[] = {
     LEVEL_UP_MOVE(41, MOVE_ENDEAVOR),
     LEVEL_UP_MOVE(44, MOVE_FELL_STINGER),
     LEVEL_UP_MOVE(50, MOVE_DRILL_RUN),
+    LEVEL_UP_MOVE(56, MOVE_ATTACK_ORDER),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_WEEDLE
