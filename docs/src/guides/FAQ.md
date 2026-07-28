@@ -27,6 +27,9 @@ order: 1
 ### Saves compatible between versions?
 - Always
 
+### What's Candy Jar and how do I get it?
+- After beating the first gym, Elm's aide will give it to you alongside the egg. It will accumulate extra exp from battles and convert them to Exp Candy on use.
+
 ### Shiny odds?
 - 1/256
 
