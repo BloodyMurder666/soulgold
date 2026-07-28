@@ -536,7 +536,7 @@ script KurtDaily {
 	}
 	msgbox("Here's what I got for you today.
 			Stop by tomorrow again for more.")
-	if (var(VAR_KURT_PROFICIENCY) >= 6) {
+	if (var(VAR_KURT_PROFICIENCY) >= 4) {
 		random(16)
 	} else {
 		random(15)

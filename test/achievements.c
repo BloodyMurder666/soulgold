@@ -2,13 +2,16 @@
 #include "achievements.h"
 #include "event_data.h"
 #include "item.h"
+#include "overworld.h"
 #include "test/test.h"
+#include "tv.h"
 #include "constants/flags.h"
+#include "constants/game_stat.h"
 #include "constants/items.h"
 
 TEST("Achievements table contains every id exactly once")
 {
-    bool8 seen[ACH_COUNT] = {0};
+    bool8 seen[ACHIEVEMENTS_MAX] = {0};
     u16 i;
 
     EXPECT_EQ(Achievement_GetCount(), ACH_COUNT);
@@ -17,15 +20,23 @@ TEST("Achievements table contains every id exactly once")
         const struct Achievement *achievement = Achievement_GetByIndex(i);
 
         EXPECT(achievement != NULL);
-        EXPECT((u32)achievement->id < ACH_COUNT);
+        EXPECT((u32)achievement->id < ACHIEVEMENTS_MAX);
         EXPECT(!seen[achievement->id]);
         seen[achievement->id] = TRUE;
         EXPECT(Achievement_GetById(achievement->id) == achievement);
         EXPECT(achievement->name != NULL);
         EXPECT(achievement->description != NULL);
     }
-    for (i = 0; i < ACH_COUNT; i++)
-        EXPECT(seen[i]);
+    for (i = 0; i < ACH_ID_COUNT; i++)
+    {
+        if (i == ACH_LEGACY_SOUTHERN_VACATION
+         || i == ACH_LEGACY_CATCH_KYOGRE
+         || i == ACH_LEGACY_CATCH_GROUDON
+         || i == ACH_LEGACY_CATCH_DEOXYS)
+            EXPECT(!seen[i]);
+        else
+            EXPECT(seen[i]);
+    }
     EXPECT(Achievement_GetByIndex(ACH_COUNT) == NULL);
 }
 
@@ -79,6 +90,60 @@ TEST("Achievement counters saturate and unlock every crossed threshold")
     EXPECT_EQ(Achievement_GetCounter(ACH_COUNTER_CRITICAL_HITS), UINT_MAX);
     EXPECT(Achievement_IsUnlocked(ACH_FIRST_CRITICAL));
     EXPECT(Achievement_IsUnlocked(ACH_CRITICAL_100));
+}
+
+TEST("Planting the tenth Berry unlocks Green Thumb")
+{
+    const struct Achievement *achievement = Achievement_GetById(ACH_PLANT_BERRIES_10);
+    u8 i;
+
+    Achievement_EnsureSaveInitialized();
+    gSaveBlock1Ptr->achievements.unlocked[ACH_LEGACY_SOUTHERN_VACATION / 8] |= 1 << (ACH_LEGACY_SOUTHERN_VACATION % 8);
+    SetGameStat(GAME_STAT_PLANTED_BERRIES, 100);
+
+    EXPECT_EQ(Achievement_GetProgress(achievement), 0);
+    EXPECT_EQ(Achievement_GetTarget(achievement), 10);
+    EXPECT(!Achievement_IsUnlocked(ACH_PLANT_BERRIES_10));
+
+    for (i = 0; i < 9; i++)
+        IncrementDailyPlantedBerries();
+
+    EXPECT_EQ(Achievement_GetProgress(achievement), 9);
+    EXPECT(!Achievement_IsUnlocked(ACH_PLANT_BERRIES_10));
+
+    IncrementDailyPlantedBerries();
+    EXPECT_EQ(Achievement_GetProgress(achievement), 10);
+    EXPECT(Achievement_IsUnlocked(ACH_PLANT_BERRIES_10));
+}
+
+TEST("Legacy Deoxys completion does not unlock Hoopa")
+{
+    Achievement_EnsureSaveInitialized();
+    gSaveBlock1Ptr->achievements.unlocked[ACH_LEGACY_CATCH_DEOXYS / 8] |= 1 << (ACH_LEGACY_CATCH_DEOXYS % 8);
+
+    Achievement_CheckAll();
+
+    EXPECT(Achievement_GetById(ACH_LEGACY_CATCH_DEOXYS) == NULL);
+    EXPECT(Achievement_IsUnlocked(ACH_LEGACY_CATCH_DEOXYS));
+    EXPECT(!Achievement_IsUnlocked(ACH_CATCH_HOOPA));
+    EXPECT_EQ(Achievement_CountUnlocked(), 0);
+}
+
+TEST("Legacy Kyogre and Groudon completions do not unlock the new Swords of Justice")
+{
+    Achievement_EnsureSaveInitialized();
+    gSaveBlock1Ptr->achievements.unlocked[ACH_LEGACY_CATCH_KYOGRE / 8] |= 1 << (ACH_LEGACY_CATCH_KYOGRE % 8);
+    gSaveBlock1Ptr->achievements.unlocked[ACH_LEGACY_CATCH_GROUDON / 8] |= 1 << (ACH_LEGACY_CATCH_GROUDON % 8);
+
+    Achievement_CheckAll();
+
+    EXPECT(Achievement_GetById(ACH_LEGACY_CATCH_KYOGRE) == NULL);
+    EXPECT(Achievement_GetById(ACH_LEGACY_CATCH_GROUDON) == NULL);
+    EXPECT(Achievement_IsUnlocked(ACH_LEGACY_CATCH_KYOGRE));
+    EXPECT(Achievement_IsUnlocked(ACH_LEGACY_CATCH_GROUDON));
+    EXPECT(!Achievement_IsUnlocked(ACH_CATCH_COBALION));
+    EXPECT(!Achievement_IsUnlocked(ACH_CATCH_TERRAKION));
+    EXPECT_EQ(Achievement_CountUnlocked(), 0);
 }
 
 TEST("Battle Point achievement tracking does not alter spendable points")

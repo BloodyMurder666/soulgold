@@ -1135,34 +1135,69 @@ FactoryBpLady::
 # 570 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
 	msgbox FactoryBpLady_Text_0
 # 571 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
+	goto_if_set FLAG_BADGE08_GET, FactoryBpLady_2
+# 574 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
 	bpmart FactoryBpMart
-# 572 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
+FactoryBpLady_1:
+# 576 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
 	msgbox FactoryBpLady_Text_1
-# 573 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
+# 577 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
 	release
 	end
 
+FactoryBpLady_2:
+# 572 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
+	bpmart FactoryBpMart8Badges
+	goto FactoryBpLady_1
+
 
 	.align 2
-# 577 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
-FactoryBpMart:
-# 578 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
-	.2byte ITEM_HEALTH_FEATHER
-# 579 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
-	.2byte ITEM_MUSCLE_FEATHER
-# 580 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
-	.2byte ITEM_RESIST_FEATHER
 # 581 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
-	.2byte ITEM_GENIUS_FEATHER
+FactoryBpMart:
 # 582 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
-	.2byte ITEM_CLEVER_FEATHER
+	.2byte ITEM_HEALTH_FEATHER
 # 583 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
-	.2byte ITEM_SWIFT_FEATHER
+	.2byte ITEM_MUSCLE_FEATHER
 # 584 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
-	.2byte ITEM_ABILITY_CAPSULE
+	.2byte ITEM_RESIST_FEATHER
 # 585 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
-	.2byte ITEM_ABILITY_PATCH
+	.2byte ITEM_GENIUS_FEATHER
 # 586 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
+	.2byte ITEM_CLEVER_FEATHER
+# 587 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
+	.2byte ITEM_SWIFT_FEATHER
+# 588 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
+	.2byte ITEM_ABILITY_CAPSULE
+# 589 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
+	.2byte ITEM_ABILITY_PATCH
+# 590 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
+	.2byte ITEM_BECKONING_BELL
+	.2byte ITEM_NONE
+
+	.align 2
+# 593 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
+FactoryBpMart8Badges:
+# 594 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
+	.2byte ITEM_NUGGET
+# 595 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
+	.2byte ITEM_BIG_NUGGET
+# 596 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
+	.2byte ITEM_HEALTH_FEATHER
+# 597 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
+	.2byte ITEM_MUSCLE_FEATHER
+# 598 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
+	.2byte ITEM_RESIST_FEATHER
+# 599 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
+	.2byte ITEM_GENIUS_FEATHER
+# 600 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
+	.2byte ITEM_CLEVER_FEATHER
+# 601 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
+	.2byte ITEM_SWIFT_FEATHER
+# 602 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
+	.2byte ITEM_ABILITY_CAPSULE
+# 603 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
+	.2byte ITEM_ABILITY_PATCH
+# 604 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
 	.2byte ITEM_BECKONING_BELL
 	.2byte ITEM_NONE
 
@@ -1171,5 +1206,5 @@ FactoryBpLady_Text_0:
 	.string "Welcome!$"
 
 FactoryBpLady_Text_1:
-# 572 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
+# 576 "data/maps/BattleFrontier_BattleFactoryLobby/scripts.pory"
 	.string "Thanks!$"

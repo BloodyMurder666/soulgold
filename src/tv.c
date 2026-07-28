@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "rtc.h"
 #include "overworld.h"
 #include "random.h"
@@ -2508,7 +2509,12 @@ void IncrementDailyBerryBlender(void)
 
 void IncrementDailyPlantedBerries(void)
 {
+    u16 achievementCount = VarGet(VAR_ACHIEVEMENT_PLANTED_BERRIES);
+
     VarSet(VAR_DAILY_PLANTED_BERRIES, VarGet(VAR_DAILY_PLANTED_BERRIES) + 1);
+    if (achievementCount < 10)
+        VarSet(VAR_ACHIEVEMENT_PLANTED_BERRIES, achievementCount + 1);
+    Achievement_CheckCounter(ACH_COUNTER_PLANTED_BERRIES);
 }
 
 void IncrementDailyPickedBerries(void)

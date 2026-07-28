@@ -781,7 +781,7 @@
       "x": 19,
       "y": 55,
       "elevation": 0,
-      "item": "ITEM_GREAT_BALL",
+      "item": "ITEM_ADAMANT_MINT",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE32_GREAT_BALL",
       "quantity": 1
     }

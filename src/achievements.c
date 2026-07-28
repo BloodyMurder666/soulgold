@@ -23,7 +23,6 @@ STATIC_ASSERT(ITEM_BONDSTONE - ITEM_NORMALITE < 32, MegaCollectorItemsFitInBitse
 static bool32 Achievement_PredicateHoennDexComplete(void);
 static bool32 Achievement_PredicateCameronPhoto(void);
 static bool32 Achievement_PredicateAllCameronPhotos(void);
-static bool32 Achievement_PredicateBadge16(void);
 static bool32 Achievement_PredicateBuenaSuperfan(void);
 static bool32 Achievement_PredicateTravellingHealer(void);
 static bool32 Achievement_PredicateKurtMasterBall(void);
@@ -65,11 +64,9 @@ static bool32 Achievement_PredicateCaughtMew(void);
 static bool32 Achievement_PredicateCaughtSuicune(void);
 static bool32 Achievement_PredicateCaughtEntei(void);
 static bool32 Achievement_PredicateCaughtRaikou(void);
-static bool32 Achievement_PredicateCaughtKyogre(void);
-static bool32 Achievement_PredicateCaughtGroudon(void);
 static bool32 Achievement_PredicateCaughtEonDuo(void);
 static bool32 Achievement_PredicateCaughtJirachi(void);
-static bool32 Achievement_PredicateCaughtDeoxys(void);
+static bool32 Achievement_PredicateCaughtHoopa(void);
 static bool32 Achievement_PredicateCaughtDialga(void);
 static bool32 Achievement_PredicateCaughtPalkia(void);
 static bool32 Achievement_PredicateCaughtCresselia(void);
@@ -78,6 +75,8 @@ static bool32 Achievement_PredicateCaughtShaymin(void);
 static bool32 Achievement_PredicateCaughtArceus(void);
 static bool32 Achievement_PredicateCaughtMagearna(void);
 static bool32 Achievement_PredicateCaughtMarshadow(void);
+static bool32 Achievement_PredicateCaughtCobalion(void);
+static bool32 Achievement_PredicateCaughtTerrakion(void);
 static bool32 Achievement_PredicateCaughtVirizion(void);
 static bool32 Achievement_PredicateCaughtAllParadoxPokemon(void);
 static bool32 Achievement_PredicateHasLevel100Pokemon(void);
@@ -117,8 +116,8 @@ static const u8 sText_AchBloodMoonName[] = _("Blood Moon");
 static const u8 sText_AchBloodMoonDesc[] = _("Catch Blood Moon Ursaluna.");
 static const u8 sText_AchRayquazaName[] = _("Ruler of Skies");
 static const u8 sText_AchRayquazaDesc[] = _("Catch Rayquaza.");
-static const u8 sText_AchBadge16Name[] = _("Southern Vacation (NYI)");
-static const u8 sText_AchBadge16Desc[] = _("Complete all challenges in\nSouthern Johto.");
+static const u8 sText_AchPlantBerries10Name[] = _("Green Thumb");
+static const u8 sText_AchPlantBerries10Desc[] = _("Plant 10 Berries.");
 static const u8 sText_AchTm1Name[] = _("TM Student");
 static const u8 sText_AchTm1Desc[] = _("Collect your first TM.");
 static const u8 sText_AchTm20Name[] = _("TM Seeker");
@@ -200,7 +199,7 @@ static const u8 sText_AchLongTermCareerDesc[] = _("Defend your champion title fi
 static const u8 sText_AchUndefeatedChampionName[] = _("Undefeated Champion");
 static const u8 sText_AchUndefeatedChampionDesc[] = _("Defend your champion title 15 times.");
 static const u8 sText_AchBuenaSuperfanName[] = _("Buena Superfan");
-static const u8 sText_AchBuenaSuperfanDesc[] = _("Answer Buena's Password\ncorrectly on 10 days.");
+static const u8 sText_AchBuenaSuperfanDesc[] = _("Answer Buena's Password\ncorrectly on 7 days.");
 static const u8 sText_AchTravellingHealerName[] = _("Travelling Healer");
 static const u8 sText_AchTravellingHealerDesc[] = _("Heal the Miltank\nin Route 39's barn.");
 static const u8 sText_AchMasterpieceName[] = _("Masterpiece");
@@ -249,16 +248,12 @@ static const u8 sText_AchCatchEnteiName[] = _("Roaming Howl");
 static const u8 sText_AchCatchEnteiDesc[] = _("Catch Entei.");
 static const u8 sText_AchCatchRaikouName[] = _("Roaming Surge");
 static const u8 sText_AchCatchRaikouDesc[] = _("Catch Raikou.");
-static const u8 sText_AchCatchKyogreName[] = _("Primal Sea");
-static const u8 sText_AchCatchKyogreDesc[] = _("Catch Kyogre. (NYI)");
-static const u8 sText_AchCatchGroudonName[] = _("Primal Land");
-static const u8 sText_AchCatchGroudonDesc[] = _("Catch Groudon. (NYI)");
 static const u8 sText_AchCatchEonDuoName[] = _("Eon Duo");
 static const u8 sText_AchCatchEonDuoDesc[] = _("Catch both Latias and Latios.");
 static const u8 sText_AchObtainJirachiName[] = _("Wish on a Star");
 static const u8 sText_AchObtainJirachiDesc[] = _("Obtain Jirachi.");
-static const u8 sText_AchCatchDeoxysName[] = _("Interloper");
-static const u8 sText_AchCatchDeoxysDesc[] = _("Catch Deoxys. (NYI)");
+static const u8 sText_AchCatchHoopaName[] = _("Interloper");
+static const u8 sText_AchCatchHoopaDesc[] = _("Catch Hoopa. (NYI)");
 static const u8 sText_AchCatchDialgaName[] = _("Time Warden");
 static const u8 sText_AchCatchDialgaDesc[] = _("Catch Dialga. (NYI)");
 static const u8 sText_AchCatchPalkiaName[] = _("Space Warden");
@@ -277,7 +272,11 @@ static const u8 sText_AchCatchLaprasName[] = _("Gentle Voyager");
 static const u8 sText_AchCatchLaprasDesc[] = _("Catch Lapras in Union Cave.");
 static const u8 sText_AchObtainVictiniName[] = _("Star of Victory");
 static const u8 sText_AchObtainVictiniDesc[] = _("Obtain Victini for overcoming\nall gym leaders in rematches.");
-static const u8 sText_AchCatchVirizionName[] = _("Sword of Justice");
+static const u8 sText_AchCatchCobalionName[] = _("Iron Justice");
+static const u8 sText_AchCatchCobalionDesc[] = _("Catch Cobalion. (NYI)");
+static const u8 sText_AchCatchTerrakionName[] = _("Stone Justice");
+static const u8 sText_AchCatchTerrakionDesc[] = _("Catch Terrakion. (NYI)");
+static const u8 sText_AchCatchVirizionName[] = _("Verdant Justice");
 static const u8 sText_AchCatchVirizionDesc[] = _("Catch Virizion.");
 static const u8 sText_AchDefeatStevenName[] = _("Mineralogy");
 static const u8 sText_AchDefeatStevenDesc[] = _("Defeat Champion from another\nregion.");
@@ -342,7 +341,7 @@ static const struct Achievement sAchievements[] =
     {ACH_POKEDEX_350, sText_AchPokedex350Name, sText_AchPokedex350Desc, ACH_TIER_GOLD, ACH_COUNTER_POKEDEX_CAUGHT, 350, TRAINER_NONE_ACH, NULL},
     {ACH_POKEDEX_500, sText_AchPokedex500Name, sText_AchPokedex500Desc, ACH_TIER_PLATINUM, ACH_COUNTER_POKEDEX_CAUGHT, 500, TRAINER_NONE_ACH, NULL},
     {ACH_COMPLETE_HOENN_DEX, sText_AchHoennDexName, sText_AchHoennDexDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateHoennDexComplete},
-    {ACH_BADGE_16, sText_AchBadge16Name, sText_AchBadge16Desc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateBadge16},
+    {ACH_PLANT_BERRIES_10, sText_AchPlantBerries10Name, sText_AchPlantBerries10Desc, ACH_TIER_BRONZE, ACH_COUNTER_PLANTED_BERRIES, 10, TRAINER_NONE_ACH, NULL},
     {ACH_GAINING_POWER, sText_AchGainingPowerName, sText_AchGainingPowerDesc, ACH_TIER_SILVER, ACH_COUNTER_EVOLVED_POKEMON, 25, TRAINER_NONE_ACH, NULL},
     {ACH_PEAK_OF_POWER, sText_AchPeakOfPowerName, sText_AchPeakOfPowerDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateHasLevel100Pokemon},
     {ACH_BUG_CATCHER, sText_AchBugCatcherName, sText_AchBugCatcherDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, NULL},
@@ -403,12 +402,8 @@ static const struct Achievement sAchievements[] =
     {ACH_CATCH_REGICE, sText_AchCatchRegiceName, sText_AchCatchRegiceDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRegice},
     {ACH_CATCH_REGISTEEL, sText_AchCatchRegisteelName, sText_AchCatchRegisteelDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRegisteel},
     {ACH_CATCH_EON_DUO, sText_AchCatchEonDuoName, sText_AchCatchEonDuoDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtEonDuo},
-    {ACH_CATCH_KYOGRE, sText_AchCatchKyogreName, sText_AchCatchKyogreDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtKyogre},
-    {ACH_CATCH_GROUDON, sText_AchCatchGroudonName, sText_AchCatchGroudonDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtGroudon},
     {ACH_CATCH_RAYQUAZA, sText_AchRayquazaName, sText_AchRayquazaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRayquaza},
     {ACH_OBTAIN_JIRACHI, sText_AchObtainJirachiName, sText_AchObtainJirachiDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtJirachi},
-    {ACH_CATCH_DEOXYS, sText_AchCatchDeoxysName, sText_AchCatchDeoxysDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtDeoxys},
-
     // Legendary and Mythical Pokémon - Generation IV
     {ACH_CATCH_UXIE, sText_AchCatchUxieName, sText_AchCatchUxieDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtUxie},
     {ACH_CATCH_MESPRIT, sText_AchCatchMespritName, sText_AchCatchMespritDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMesprit},
@@ -424,7 +419,12 @@ static const struct Achievement sAchievements[] =
 
     // Legendary and Mythical Pokémon - Generation V
     {ACH_OBTAIN_VICTINI, sText_AchObtainVictiniName, sText_AchObtainVictiniDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtVictini},
+    {ACH_CATCH_COBALION, sText_AchCatchCobalionName, sText_AchCatchCobalionDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtCobalion},
+    {ACH_CATCH_TERRAKION, sText_AchCatchTerrakionName, sText_AchCatchTerrakionDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtTerrakion},
     {ACH_CATCH_VIRIZION, sText_AchCatchVirizionName, sText_AchCatchVirizionDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtVirizion},
+
+    // Legendary and Mythical Pokémon - Generation VI
+    {ACH_CATCH_HOOPA, sText_AchCatchHoopaName, sText_AchCatchHoopaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtHoopa},
 
     // Legendary and Mythical Pokémon - Generation VII
     {ACH_CATCH_MAGEARNA, sText_AchCatchMagearnaName, sText_AchCatchMagearnaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMagearna},
@@ -441,7 +441,15 @@ static const struct Achievement sAchievements[] =
 };
 
 STATIC_ASSERT(ARRAY_COUNT(sAchievements) == ACH_COUNT, AchievementTableMatchesIdCount);
-STATIC_ASSERT(ACH_COUNT <= ACHIEVEMENTS_MAX, AchievementCountWithinSaveBitmap);
+STATIC_ASSERT(ACH_ID_COUNT <= ACHIEVEMENTS_MAX, AchievementIdsWithinSaveBitmap);
+STATIC_ASSERT(ACH_LEGACY_SOUTHERN_VACATION == 14, LegacySouthernVacationIdIsStable);
+STATIC_ASSERT(ACH_LEGACY_CATCH_KYOGRE == 81, LegacyKyogreIdIsStable);
+STATIC_ASSERT(ACH_LEGACY_CATCH_GROUDON == 82, LegacyGroudonIdIsStable);
+STATIC_ASSERT(ACH_LEGACY_CATCH_DEOXYS == 84, LegacyDeoxysIdIsStable);
+STATIC_ASSERT(ACH_PLANT_BERRIES_10 == 107, GreenThumbIdIsStable);
+STATIC_ASSERT(ACH_CATCH_HOOPA == 108, HoopaIdIsStable);
+STATIC_ASSERT(ACH_CATCH_COBALION == 109, CobalionIdIsStable);
+STATIC_ASSERT(ACH_CATCH_TERRAKION == 110, TerrakionIdIsStable);
 
 static const u8 *const sTierLabels[] =
 {
@@ -506,31 +514,9 @@ static bool32 Achievement_PredicateAllCameronPhotos(void)
     return TRUE;
 }
 
-static u8 Achievement_CountBadges(void)
-{
-    u8 i, count = 0;
-
-    for (i = 0; i < NUM_BADGES; i++)
-    {
-        if (FlagGet(FLAG_BADGE01_GET + i))
-            count++;
-    }
-    for (i = 0; i < 8; i++)
-    {
-        if (FlagGet(FLAG_BADGE09_GET + i))
-            count++;
-    }
-    return count;
-}
-
-static bool32 Achievement_PredicateBadge16(void)
-{
-    return Achievement_CountBadges() >= 16;
-}
-
 static bool32 Achievement_PredicateBuenaSuperfan(void)
 {
-    return VarGet(VAR_BUENA_PASSWORDS_CORRECT) >= 10;
+    return VarGet(VAR_BUENA_PASSWORDS_CORRECT) >= 7;
 }
 
 static bool32 Achievement_PredicateTravellingHealer(void)
@@ -790,16 +776,6 @@ static bool32 Achievement_PredicateCaughtRaikou(void)
     return Achievement_PredicateCaughtSpecies(SPECIES_RAIKOU);
 }
 
-static bool32 Achievement_PredicateCaughtKyogre(void)
-{
-    return Achievement_PredicateCaughtSpecies(SPECIES_KYOGRE);
-}
-
-static bool32 Achievement_PredicateCaughtGroudon(void)
-{
-    return Achievement_PredicateCaughtSpecies(SPECIES_GROUDON);
-}
-
 static bool32 Achievement_PredicateCaughtEonDuo(void)
 {
     return Achievement_PredicateCaughtSpecies(SPECIES_LATIAS)
@@ -811,9 +787,9 @@ static bool32 Achievement_PredicateCaughtJirachi(void)
     return Achievement_PredicateCaughtSpecies(SPECIES_JIRACHI);
 }
 
-static bool32 Achievement_PredicateCaughtDeoxys(void)
+static bool32 Achievement_PredicateCaughtHoopa(void)
 {
-    return Achievement_PredicateCaughtSpecies(SPECIES_DEOXYS);
+    return Achievement_PredicateCaughtSpecies(SPECIES_HOOPA);
 }
 
 static bool32 Achievement_PredicateCaughtDialga(void)
@@ -854,6 +830,16 @@ static bool32 Achievement_PredicateCaughtMagearna(void)
 static bool32 Achievement_PredicateCaughtMarshadow(void)
 {
     return Achievement_PredicateCaughtSpecies(SPECIES_MARSHADOW);
+}
+
+static bool32 Achievement_PredicateCaughtCobalion(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_COBALION);
+}
+
+static bool32 Achievement_PredicateCaughtTerrakion(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_TERRAKION);
 }
 
 static bool32 Achievement_PredicateCaughtVirizion(void)
@@ -1043,6 +1029,8 @@ u32 Achievement_GetCounter(enum AchievementCounter counter)
 {
     switch (counter)
     {
+    case ACH_COUNTER_PLANTED_BERRIES:
+        return VarGet(VAR_ACHIEVEMENT_PLANTED_BERRIES);
     case ACH_COUNTER_EVOLVED_POKEMON:
         return GetGameStat(GAME_STAT_EVOLVED_POKEMON);
     case ACH_COUNTER_BATTLE_POINTS_EARNED:

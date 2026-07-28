@@ -3126,6 +3126,7 @@ const struct ItemInfo gItemsInfo[] =
         .pocket = POCKET_ITEMS,
         .sortType = ITEM_TYPE_SELLABLE,
         .heldSlot = 0,
+        .bpCost = 30,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = B_UPDATED_MOVE_DATA >= GEN_8 ? 130 : 80,

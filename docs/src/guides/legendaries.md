@@ -14,9 +14,9 @@ order: 3
 - Lugia: Choose Silver Wing after Rocket Takeover, if you chose Rainbow Wing, talk to director after Elite four, prepare for a fight
 - Shadow Lugia: Explore south of Johto and take what you find to regular Lugia encounter. If you have already caught regular lugia, do one round of title defense to reset the spawn.
 - Celebi: Solve all 8 ruins of alph puzzles and then enter a passage in the B1F to find GS Ball. Take this to Kurt in Azalea and then go to Ilex Forest shrine.
-- Regirock: Solve braille in Vajra Desert West
-- Regice: Solve braille in Snowtop Mountain
-- Registeel: Solve braille in Railway Cave
+- Regirock: Solve braille in Vajra Desert West (Bring Tyrannitar to the wall)
+- Regice: Solve braille in Snowtop Mountain (Bring Baxcalibur to the wall)
+- Registeel: Solve braille in Railway Cave (Bring Kommo-O to the wall)
 - Latias: Vajra Desert East Temple in postgame 
 - Latios: Vajra Desert East Temple in postgame
 - Rayquaza: Defeat Steven after becoming Champion (Kitakami house), then go to Embedded Tower
@@ -33,7 +33,7 @@ order: 3
 - Marshadow: After 8th badge, return to Elder Li in the sprout tower. Prepare for a battle. Then explore Sprout tower basement.
 - Poipole: Obtain 45 trophies
 - Meltan: Trade for Tinkaton in Rinto Village
-- Kubfu: Blackthorne City rockclimb cave. Note: evolution not currently accessible!
+- Kubfu: Blackthorne City rockclimb cave (down, up, left, up, left, down, right, right). Note: evolution not currently accessible!
 - Zarude: Obtain 75 trophies
 - Bloodmoon Ursaluna: Explore Kitakami Mountain to find black mirror. Then go to lost woods and follow the murkrows.
 - Ogerpon: Explore Kitakami Mountain

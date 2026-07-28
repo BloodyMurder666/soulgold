@@ -568,13 +568,31 @@ script FactoryBpLady {
     lock
 	faceplayer
 	msgbox("Welcome!")
-	bpmart(FactoryBpMart)
+	if (flag(FLAG_BADGE08_GET)) {
+		bpmart(FactoryBpMart8Badges)
+	} else {
+		bpmart(FactoryBpMart)
+	}
 	msgbox("Thanks!")
 	release
 	end
 }
 
 mart FactoryBpMart {
+    ITEM_HEALTH_FEATHER
+    ITEM_MUSCLE_FEATHER
+    ITEM_RESIST_FEATHER
+    ITEM_GENIUS_FEATHER
+    ITEM_CLEVER_FEATHER
+    ITEM_SWIFT_FEATHER
+    ITEM_ABILITY_CAPSULE
+    ITEM_ABILITY_PATCH
+	ITEM_BECKONING_BELL
+}
+
+mart FactoryBpMart8Badges {
+	ITEM_NUGGET
+	ITEM_BIG_NUGGET
     ITEM_HEALTH_FEATHER
     ITEM_MUSCLE_FEATHER
     ITEM_RESIST_FEATHER

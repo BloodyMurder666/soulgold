@@ -192,7 +192,17 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 53,
+      "y": 13,
+      "elevation": 0,
+      "var": "VAR_SAFFRON_CITY_STATE",
+      "var_value": "0",
+      "script": "SaffronCity_EventScript_BaobaCall"
+    }
+  ],
   "bg_events": [
     {
       "type": "sign",

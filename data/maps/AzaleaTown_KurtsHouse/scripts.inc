@@ -1053,7 +1053,7 @@ KurtDaily::
 # 537 "data/maps/AzaleaTown_KurtsHouse/scripts.pory"
 	msgbox KurtDaily_Text_1
 # 539 "data/maps/AzaleaTown_KurtsHouse/scripts.pory"
-	compare VAR_KURT_PROFICIENCY, 6
+	compare VAR_KURT_PROFICIENCY, 4
 	goto_if_ge KurtDaily_5
 # 542 "data/maps/AzaleaTown_KurtsHouse/scripts.pory"
 	random 15
