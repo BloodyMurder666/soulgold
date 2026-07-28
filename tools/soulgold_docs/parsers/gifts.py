@@ -1,4 +1,4 @@
-"""Parse reachable scripted gift Pokemon for species location documentation."""
+"""Parse reachable scripted Pokemon sources for species location documentation."""
 
 from __future__ import annotations
 
@@ -18,12 +18,20 @@ GIFT_COMMAND_RE = re.compile(
     r"\b(givemon|giveegg)\s+(SPECIES_[A-Z0-9_]+)(?:\s*,\s*(\d+))?",
     re.IGNORECASE,
 )
+LEGENDARY_ENCOUNTER_RE = re.compile(
+    r"\b(?:bosslegendaryencounterwithmoves|bosslegendaryencounter|legendaryencounter)"
+    r"\s+(SPECIES_[A-Z0-9_]+)\s*,\s*(\d+)\b",
+    re.IGNORECASE,
+)
 MASTER_GACHA_ARRAY_RE = re.compile(
     r"static\s+const\s+u16\s+sGachaMasterSpecies(?:Common|Uncommon|Rare|UltraRare)\[\]\s*=\s*\{(.*?)\};",
     re.DOTALL,
 )
 GIFT_LOCATION_NAME_OVERRIDES = {
     ("SPECIES_BELDUM", "MAP_KITAKAMI_HOUSES"): "Gift from Steven in Kitakami",
+}
+LEGENDARY_LOCATION_NAME_OVERRIDES = {
+    "MAP_CERULEAN_CAVE_B2F": "Nameless Cave",
 }
 
 
@@ -125,6 +133,60 @@ def add_gift_species_locations(
     for species, gift_locations in gifts.items():
         locations.setdefault(species, [])
         for location in gift_locations:
+            if location not in locations[species]:
+                locations[species].append(location)
+
+
+def add_scripted_legendary_species_locations(
+    locations: dict[str, list[SpeciesLocation]],
+    by_species: dict[str, SpeciesRow],
+) -> None:
+    """Add reachable encounters created by the supported legendary script macros."""
+    try:
+        map_groups = json.loads(read(MAP_GROUPS_JSON))
+    except (FileNotFoundError, json.JSONDecodeError):
+        return
+
+    aliases = species_aliases()
+    legendary_locations: dict[str, list[SpeciesLocation]] = defaultdict(list)
+    for group_name in map_groups.get("group_order") or []:
+        for map_name in map_groups.get(group_name) or []:
+            if is_docs_excluded_map(map_name, group_name):
+                continue
+            map_dir = REPO_ROOT / "data" / "maps" / map_name
+            try:
+                map_data = json.loads(read(map_dir / "map.json"))
+                blocks = script_blocks(read(map_dir / "scripts.inc"))
+            except (FileNotFoundError, json.JSONDecodeError):
+                continue
+
+            map_constant = str(map_data.get("id") or "")
+            display_name = LEGENDARY_LOCATION_NAME_OVERRIDES.get(
+                map_constant,
+                map_display_name(map_data, map_name),
+            )
+            for label in reachable_script_labels(map_data, blocks):
+                for command in LEGENDARY_ENCOUNTER_RE.finditer(blocks[label]):
+                    raw_species, raw_level = command.groups()
+                    species = aliases.get(raw_species, raw_species)
+                    if species not in by_species:
+                        continue
+                    level = int(raw_level)
+                    location: SpeciesLocation = {
+                        "map": map_constant,
+                        "name": display_name,
+                        "time": "",
+                        "method": "Legendary encounter",
+                        "minLevel": level,
+                        "maxLevel": level,
+                        "rate": None,
+                    }
+                    if location not in legendary_locations[species]:
+                        legendary_locations[species].append(location)
+
+    for species, scripted_locations in legendary_locations.items():
+        locations.setdefault(species, [])
+        for location in scripted_locations:
             if location not in locations[species]:
                 locations[species].append(location)
 

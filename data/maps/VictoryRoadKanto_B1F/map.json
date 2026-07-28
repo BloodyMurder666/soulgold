@@ -168,7 +168,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MtSilver_1F_MoltresRoom_EventScript_Moltres",
+      "script": "VictoryRoadKanto_B1F_EventScript_Moltres",
       "flag": "FLAG_HIDE_MOLTRES"
     },
     {
