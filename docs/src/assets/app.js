@@ -585,6 +585,10 @@ async function navigateDetail(kind, slug) {
   const tab = detailTabs[kind];
   if (!tab || !slug) return;
   if (state.detail?.kind === kind && state.detail.slug === slug) return;
+  const replacingDetail = Boolean(state.detail);
+  const detailOpenedInApp = replacingDetail
+    ? Boolean(history.state?.detailOpenedInApp)
+    : true;
   snapshotCurrentHistory();
   const tabChanged = state.activeTab !== tab;
   state.activeTab = tab;
@@ -596,8 +600,8 @@ async function navigateDetail(kind, slug) {
     syncTypeFilter();
     document.getElementById("globalSearch").value = "";
   }
-  history.pushState(
-    historyPayload({ detailOpenedInApp: true }),
+  history[replacingDetail ? "replaceState" : "pushState"](
+    historyPayload({ detailOpenedInApp }),
     "",
     routeUrl(tab, state.detail),
   );
@@ -1391,8 +1395,9 @@ function megaFormLinks(mon) {
 
 function locationRows(locations) {
   if (!locations?.length) return `<p class="muted">No encounter, gift, or Hidden Grotto location found.</p>`;
-  return `<div class="location-list">
-    <div class="location-row location-head"><span>Area</span><span>Method</span><span>Level</span><span>Odds</span></div>
+  const showOdds = locations.some((location) => location.rate != null);
+  return `<div class="location-list${showOdds ? "" : " without-odds"}">
+    <div class="location-row location-head"><span>Area</span><span>Method</span><span>Level</span>${showOdds ? "<span>Odds</span>" : ""}</div>
     ${locations.map((location) => `
       <div class="location-row">
         <strong>${location.name}</strong>
@@ -1402,7 +1407,7 @@ function locationRows(locations) {
           : location.minLevel === location.maxLevel
             ? `Lv ${location.minLevel}`
             : `Lv ${location.minLevel ?? "?"}-${location.maxLevel ?? "?"}`}</span>
-        <span>${location.rate == null ? "—" : `${location.rate}%`}</span>
+        ${showOdds ? `<span>${location.rate == null ? "" : `${location.rate}%`}</span>` : ""}
       </div>
     `).join("")}
   </div>`;

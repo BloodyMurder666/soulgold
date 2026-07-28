@@ -22,6 +22,9 @@ MASTER_GACHA_ARRAY_RE = re.compile(
     r"static\s+const\s+u16\s+sGachaMasterSpecies(?:Common|Uncommon|Rare|UltraRare)\[\]\s*=\s*\{(.*?)\};",
     re.DOTALL,
 )
+GIFT_LOCATION_NAME_OVERRIDES = {
+    ("SPECIES_BELDUM", "MAP_KITAKAMI_HOUSES"): "Gift from Steven in Kitakami",
+}
 
 
 def species_aliases() -> dict[str, str]:
@@ -103,14 +106,18 @@ def add_gift_species_locations(
                     if species not in by_species:
                         continue
                     level = int(raw_level) if raw_level is not None else None
+                    location_name = GIFT_LOCATION_NAME_OVERRIDES.get(
+                        (species, map_constant),
+                        display_name,
+                    )
                     location: SpeciesLocation = {
                         "map": map_constant,
-                        "name": display_name,
+                        "name": location_name,
                         "time": "",
                         "method": "Gift Egg" if method.lower() == "giveegg" else "Gift",
                         "minLevel": level,
                         "maxLevel": level,
-                        "rate": 100,
+                        "rate": None,
                     }
                     if location not in gifts[species]:
                         gifts[species].append(location)
