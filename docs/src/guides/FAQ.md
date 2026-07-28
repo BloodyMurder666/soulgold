@@ -34,7 +34,7 @@ order: 1
 - 1/256
 
 ### Shiny locks?
-- None. Shinyness is also displayed in the pictures when you receive a gift Pokémon.
+- Only Pokémon received via NPC trade are shiny locked, everything else can be shiny, even gift Pokémon. Shinyness is also displayed in the pictures when you receive a gift Pokémon.
 
 ### Mega Ring?
 - After Team Rocket takeover event in Goldenrod City.
