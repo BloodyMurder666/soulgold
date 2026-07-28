@@ -30,6 +30,8 @@ const state = {
   query: "",
   filteredSpecies: [],
   selectedTypes: new Set(),
+  dexSortKey: "dex",
+  dexSortDirection: "asc",
   modalScrollY: 0,
   detail: null,
   renderToken: 0,
@@ -44,6 +46,67 @@ const abilityName = (constant) => state.data.abilities[constant]?.name || consta
 const fmtTitle = (value, prefix = "") => value.replace(prefix, "").replaceAll("_", " ").toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
 const fmtCategory = (value) => fmtTitle(value, "DAMAGE_CATEGORY_");
 const statLabels = { hp: "HP", atk: "Atk", def: "Def", spa: "SpA", spd: "SpD", spe: "Spe" };
+const dexSortOptions = [
+  { key: "dex", label: "Dex #" },
+  { key: "hp", label: "HP" },
+  { key: "atk", label: "Attack" },
+  { key: "def", label: "Defense" },
+  { key: "spa", label: "Sp. Atk" },
+  { key: "spd", label: "Sp. Def" },
+  { key: "spe", label: "Speed" },
+  { key: "bst", label: "BST" },
+];
+const excludedDexSpecies = new Set([
+  "SPECIES_ETERNATUS_ETERNAMAX",
+  "SPECIES_KYOGRE",
+  "SPECIES_KYOGRE_PRIMAL",
+  "SPECIES_GROUDON",
+  "SPECIES_GROUDON_PRIMAL",
+  "SPECIES_ZYGARDE_50",
+  "SPECIES_ZYGARDE_10_AURA_BREAK",
+  "SPECIES_ZYGARDE_10_POWER_CONSTRUCT",
+  "SPECIES_ZYGARDE_50_POWER_CONSTRUCT",
+  "SPECIES_ZYGARDE_COMPLETE",
+  "SPECIES_ZYGARDE_MEGA",
+  "SPECIES_DEOXYS_NORMAL",
+  "SPECIES_DEOXYS_ATTACK",
+  "SPECIES_DEOXYS_DEFENSE",
+  "SPECIES_DEOXYS_SPEED",
+  "SPECIES_GIRATINA_ALTERED",
+  "SPECIES_GIRATINA_ORIGIN",
+  "SPECIES_XERNEAS_NEUTRAL",
+  "SPECIES_XERNEAS_ACTIVE",
+  "SPECIES_YVELTAL",
+  "SPECIES_DIANCIE",
+  "SPECIES_DIANCIE_MEGA",
+  "SPECIES_VOLCANION",
+  "SPECIES_TAPU_KOKO",
+  "SPECIES_TAPU_LELE",
+  "SPECIES_TAPU_BULU",
+  "SPECIES_TAPU_FINI",
+  "SPECIES_COSMOG",
+  "SPECIES_COSMOEM",
+  "SPECIES_SOLGALEO",
+  "SPECIES_LUNALA",
+  "SPECIES_NECROZMA",
+  "SPECIES_NECROZMA_DUSK_MANE",
+  "SPECIES_NECROZMA_DAWN_WINGS",
+  "SPECIES_NECROZMA_ULTRA",
+  "SPECIES_ZACIAN_HERO",
+  "SPECIES_ZACIAN_CROWNED",
+  "SPECIES_ZAMAZENTA_HERO",
+  "SPECIES_ZAMAZENTA_CROWNED",
+  "SPECIES_REGIELEKI",
+  "SPECIES_REGIDRAGO",
+  "SPECIES_GLASTRIER",
+  "SPECIES_SPECTRIER",
+  "SPECIES_CALYREX",
+  "SPECIES_CALYREX_ICE",
+  "SPECIES_CALYREX_SHADOW",
+  "SPECIES_ENAMORUS_INCARNATE",
+  "SPECIES_ENAMORUS_THERIAN",
+  "SPECIES_PECHARUNT",
+]);
 const innateUnlockLevels = [75, 85, 95];
 const machineLocationOverrides = {
   MOVE_X_SCISSOR: "Azalea Town (mart, after 4th badge)",
@@ -353,6 +416,8 @@ function viewFromLocation() {
   return {
     query: (params.get("q") || "").trim().toLowerCase(),
     types: (params.get("type") || "").split(",").filter(Boolean).map((type) => `TYPE_${type.toUpperCase().replace(/^TYPE_/, "")}`),
+    sortKey: normalizeDexSortKey(params.get("sort")),
+    sortDirection: params.get("dir") === "desc" ? "desc" : "asc",
     scrollY: 0,
   };
 }
@@ -368,10 +433,16 @@ function routeUrl(tab, detail = null, view = null) {
   const route = tabRoutes[tab];
   const path = detail ? `${route}/${detail.slug}/` : `${route}/`;
   const url = new URL(path, siteRootUrl);
-  const nextView = view || { query: "", types: [] };
+  const nextView = view || { query: "", types: [], sortKey: "dex", sortDirection: "asc" };
+  const nextSortKey = normalizeDexSortKey(nextView.sortKey);
+  const nextSortDirection = nextView.sortDirection === "desc" ? "desc" : "asc";
   if (!detail && nextView.query) url.searchParams.set("q", nextView.query);
   if (!detail && nextView.types?.length && tab === "pokedex") {
     url.searchParams.set("type", nextView.types.map((type) => type.replace(/^TYPE_/, "").toLowerCase()).join(","));
+  }
+  if (!detail && tab === "pokedex" && (nextSortKey !== "dex" || nextSortDirection !== "asc")) {
+    url.searchParams.set("sort", nextSortKey);
+    url.searchParams.set("dir", nextSortDirection);
   }
   return url;
 }
@@ -425,6 +496,8 @@ function currentViewState(scrollY = window.scrollY) {
   return {
     query: state.query,
     types: [...state.selectedTypes],
+    sortKey: state.dexSortKey,
+    sortDirection: state.dexSortDirection,
     scrollY,
   };
 }
@@ -432,6 +505,8 @@ function currentViewState(scrollY = window.scrollY) {
 function applyViewState(view = {}) {
   state.query = String(view.query || "").toLowerCase();
   state.selectedTypes = new Set(view.types || []);
+  state.dexSortKey = normalizeDexSortKey(view.sortKey);
+  state.dexSortDirection = view.sortDirection === "desc" ? "desc" : "asc";
   const search = document.getElementById("globalSearch");
   if (search) search.value = state.query;
 }
@@ -471,13 +546,16 @@ async function applyLocationRoute(historyState = null) {
   const previousTab = state.activeTab;
   const previousQuery = state.query;
   const previousTypes = [...state.selectedTypes].join(",");
+  const previousSort = `${state.dexSortKey}:${state.dexSortDirection}`;
   state.activeTab = route.tab;
   state.detail = route.detail;
   applyViewState(historyState?.view || route.view);
   syncActiveTabUi();
   closeMobileNav();
 
-  const viewChanged = previousQuery !== state.query || previousTypes !== [...state.selectedTypes].join(",");
+  const viewChanged = previousQuery !== state.query
+    || previousTypes !== [...state.selectedTypes].join(",")
+    || previousSort !== `${state.dexSortKey}:${state.dexSortDirection}`;
   const sectionNeedsData = (sectionDataFiles[state.activeTab] || [])
     .some(([key]) => !loadedData.has(key));
   if (previousTab !== state.activeTab || viewChanged || sectionNeedsData) {
@@ -503,6 +581,7 @@ async function navigateDetail(kind, slug) {
   if (tabChanged) {
     state.query = "";
     state.selectedTypes.clear();
+    resetDexSort();
     syncTypeFilter();
     document.getElementById("globalSearch").value = "";
   }
@@ -665,6 +744,7 @@ async function setTab(tab, { updateHistory = true } = {}) {
   state.detail = null;
   state.query = "";
   state.selectedTypes.clear();
+  resetDexSort();
   syncTypeFilter();
   const search = document.getElementById("globalSearch");
   search.value = "";
@@ -705,9 +785,11 @@ async function renderActive() {
 function renderDex() {
   renderTypeFilter();
   state.filteredSpecies = state.data.species.filter((mon) =>
-    matches(`${mon.dex} ${mon.name} ${speciesFormLabel(mon)} ${mon.types.map(typeName).join(" ")}`)
+    !excludedDexSpecies.has(mon.constant)
+    && matches(`${mon.dex} ${mon.name} ${speciesFormLabel(mon)} ${mon.types.map(typeName).join(" ")}`)
     && matchesSelectedTypes(mon)
   );
+  sortDexSpecies(state.filteredSpecies);
   renderDexRows();
   setPanelStatus(
     "pokedex",
@@ -728,12 +810,29 @@ function renderTypeFilter() {
   const panel = document.getElementById("typeFilterPanel");
   if (!panel) return;
   panel.innerHTML = `
-    <div class="type-filter-title">Types</div>
-    <button class="type-filter-clear" type="button" data-clear-types>All</button>
-    <div class="type-filter-grid">
-      ${dexFilterTypes().map((type) => `
-        <button class="type-filter-chip type ${type}" type="button" data-type="${type}" aria-pressed="false">${typeName(type)}</button>
-      `).join("")}
+    <div class="type-filter-section">
+      <div class="type-filter-section-head">
+        <div class="type-filter-title">Types</div>
+        <button class="type-filter-clear" type="button" data-clear-types>All types</button>
+      </div>
+      <div class="type-filter-grid">
+        ${dexFilterTypes().map((type) => `
+          <button class="type-filter-chip type ${type}" type="button" data-type="${type}" aria-pressed="false">${typeName(type)}</button>
+        `).join("")}
+      </div>
+    </div>
+    <div class="type-filter-section">
+      <div class="type-filter-title">Sort by</div>
+      <div class="dex-sort-grid">
+        ${dexSortOptions.map((option) => `
+          <button class="dex-sort-chip" type="button" data-sort-key="${option.key}" aria-pressed="false">${option.label}</button>
+        `).join("")}
+      </div>
+      <div class="type-filter-subtitle">Direction</div>
+      <div class="dex-sort-direction">
+        <button class="dex-sort-direction-chip" type="button" data-sort-direction="asc" aria-pressed="false">Low → High</button>
+        <button class="dex-sort-direction-chip" type="button" data-sort-direction="desc" aria-pressed="false">High → Low</button>
+      </div>
     </div>
   `;
   syncTypeFilter();
@@ -742,13 +841,52 @@ function renderTypeFilter() {
 function syncTypeFilter() {
   const toggle = document.getElementById("typeFilterToggle");
   const count = state.selectedTypes.size;
-  toggle.textContent = count ? `Type ${count}` : "Type";
-  toggle.classList.toggle("has-filter", count > 0);
+  const sortOption = dexSortOptions.find((option) => option.key === state.dexSortKey) || dexSortOptions[0];
+  const hasSort = state.dexSortKey !== "dex" || state.dexSortDirection !== "asc";
+  const summary = [];
+  if (count) summary.push(`${count} type${count === 1 ? "" : "s"}`);
+  if (hasSort) summary.push(`${sortOption.label} ${state.dexSortDirection === "asc" ? "↑" : "↓"}`);
+  toggle.textContent = summary.length ? `Filter · ${summary.join(" · ")}` : "Filter";
+  toggle.classList.toggle("has-filter", count > 0 || hasSort);
   document.querySelectorAll(".type-filter-chip").forEach((button) => {
     const active = state.selectedTypes.has(button.dataset.type);
     button.classList.toggle("active", active);
     button.setAttribute("aria-pressed", active ? "true" : "false");
   });
+  document.querySelectorAll(".dex-sort-chip").forEach((button) => {
+    const active = state.dexSortKey === button.dataset.sortKey;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", active ? "true" : "false");
+  });
+  document.querySelectorAll(".dex-sort-direction-chip").forEach((button) => {
+    const active = state.dexSortDirection === button.dataset.sortDirection;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", active ? "true" : "false");
+  });
+}
+
+function normalizeDexSortKey(key) {
+  return dexSortOptions.some((option) => option.key === key) ? key : "dex";
+}
+
+function resetDexSort() {
+  state.dexSortKey = "dex";
+  state.dexSortDirection = "asc";
+}
+
+function dexSortValue(mon) {
+  if (state.dexSortKey === "dex") return mon.dex || mon.id || Number.MAX_SAFE_INTEGER;
+  if (state.dexSortKey === "bst") return mon.bst || 0;
+  return mon.stats?.[state.dexSortKey] || 0;
+}
+
+function sortDexSpecies(species) {
+  const direction = state.dexSortDirection === "desc" ? -1 : 1;
+  species.sort((a, b) =>
+    (dexSortValue(a) - dexSortValue(b)) * direction
+    || ((a.dex || a.id || Number.MAX_SAFE_INTEGER) - (b.dex || b.id || Number.MAX_SAFE_INTEGER))
+    || (a.id || 0) - (b.id || 0)
+  );
 }
 
 function matchesSelectedTypes(mon) {
@@ -779,14 +917,22 @@ function closeTypeFilterOnOutsideClick(event) {
 function handleTypeFilterClick(event) {
   event.stopPropagation();
   const clear = event.target.closest("[data-clear-types]");
-  const button = event.target.closest("[data-type]");
-  if (!clear && !button) return;
+  const typeButton = event.target.closest("[data-type]");
+  const sortButton = event.target.closest("[data-sort-key]");
+  const directionButton = event.target.closest("[data-sort-direction]");
+  if (!clear && !typeButton && !sortButton && !directionButton) return;
   if (clear) {
     state.selectedTypes.clear();
-  } else if (state.selectedTypes.has(button.dataset.type)) {
-    state.selectedTypes.delete(button.dataset.type);
+  } else if (typeButton && state.selectedTypes.has(typeButton.dataset.type)) {
+    state.selectedTypes.delete(typeButton.dataset.type);
+  } else if (typeButton) {
+    state.selectedTypes.add(typeButton.dataset.type);
+  } else if (sortButton) {
+    state.dexSortKey = normalizeDexSortKey(sortButton.dataset.sortKey);
+  } else if (directionButton) {
+    state.dexSortDirection = directionButton.dataset.sortDirection === "desc" ? "desc" : "asc";
   } else {
-    state.selectedTypes.add(button.dataset.type);
+    return;
   }
   syncTypeFilter();
   window.scrollTo(0, 0);

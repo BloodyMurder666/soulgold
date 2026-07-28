@@ -8,8 +8,11 @@ order: 3
 ### Legendaries
 - Zapdos: Olivine Lighthouse top, after 8th badge
 - Articuno: Snowtop Mountain (Rock climb required)
-- Moltres Victory Road
+- Moltres: Victory Road
 - Mewtwo: Nameless Dungeon in Kitakami Border, after Elite Four, requires rock climb
+- Raikou: Roaming after Burned Tower event
+- Entei: Roaming after Burned Tower event
+- Suicune: Roaming after Burned Tower event
 - Ho-Oh: Choose Rainbow Wing after Rocket Takeover, if you chose Silver Wing, talk to director after Elite Four, prepare for a fight
 - Lugia: Choose Silver Wing after Rocket Takeover, if you chose Rainbow Wing, talk to director after Elite four, prepare for a fight
 - Shadow Lugia: Explore south of Johto and take what you find to regular Lugia encounter. If you have already caught regular lugia, do one round of title defense to reset the spawn.
@@ -40,4 +43,6 @@ order: 3
 - Chien Pao: After obtaining Waterfall and Rock Climb, explore Ice Path further
 - Fezandipiti: After obtaining Rock Climb, explore Kitakami
 - Paradox Pokémon: Explore South Johto Meteor Island
+- Paradox Entei/Raikou/Suicune: Register all past paradox pokemon to Pokédex, then interact with the unown wall in the back. Then to open each wall in the next room you will need to bring Entei/Raikou/Suicune to the respective wall.
+- Paradox Virizion: Register all future pokemon to Pokédex, then interact iwth the wall in the back. Bring virizion to one of the walls to unlock it.
 - Eternal Floette: Obtain 60 trophies

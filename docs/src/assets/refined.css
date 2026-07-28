@@ -4153,3 +4153,135 @@ dialog::backdrop {
     font-size: 12px;
   }
 }
+
+/* Combined Pokédex type filter and stat sorting */
+.type-filter-panel {
+  width: min(360px, calc(100vw - 24px));
+  max-height: min(620px, calc(100dvh - 72px));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.type-filter-section + .type-filter-section {
+  margin-top: 11px;
+  padding-top: 11px;
+  border-top: 1px solid var(--line);
+}
+
+.type-filter-section-head {
+  display: flex;
+  margin-bottom: 7px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.type-filter-section-head .type-filter-title {
+  margin: 0;
+}
+
+.type-filter-clear {
+  width: auto;
+  height: 24px;
+  margin: 0;
+  padding: 0 8px;
+  border-color: var(--line);
+  background: transparent;
+  box-shadow: none;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.type-filter-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.type-filter-subtitle {
+  margin: 9px 0 5px;
+  color: var(--muted);
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.dex-sort-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 5px;
+}
+
+.dex-sort-direction {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px;
+}
+
+.dex-sort-chip,
+.dex-sort-direction-chip {
+  min-width: 0;
+  height: 28px;
+  padding: 0 6px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--surface-soft);
+  color: var(--muted-strong);
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.dex-sort-chip:hover,
+.dex-sort-direction-chip:hover,
+.type-filter-clear:hover {
+  border-color: var(--gold-soft);
+  background: var(--surface-hover);
+  color: var(--text);
+}
+
+.dex-sort-chip.active,
+.dex-sort-direction-chip.active {
+  border-color: #9e7343;
+  background: #eee2ca;
+  color: #774322;
+}
+
+:root[data-theme="dark"] .type-filter-clear {
+  border-color: var(--line);
+  background: transparent;
+  box-shadow: none;
+  color: var(--muted);
+}
+
+:root[data-theme="dark"] .dex-sort-chip,
+:root[data-theme="dark"] .dex-sort-direction-chip {
+  border-color: #59625c;
+  background: #303631;
+  color: #d8d9d3;
+}
+
+:root[data-theme="dark"] .dex-sort-chip:hover,
+:root[data-theme="dark"] .dex-sort-direction-chip:hover,
+:root[data-theme="dark"] .type-filter-clear:hover {
+  border-color: var(--gold-soft);
+  background: var(--surface-hover);
+  color: var(--text);
+}
+
+:root[data-theme="dark"] .dex-sort-chip.active,
+:root[data-theme="dark"] .dex-sort-direction-chip.active {
+  border-color: #9e7343;
+  background: #3c3223;
+  color: #e4b983;
+}
+
+@media (max-width: 380px) {
+  .type-filter-panel {
+    width: calc(100vw - 20px);
+  }
+
+  .dex-sort-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
