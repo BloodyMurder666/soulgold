@@ -31,6 +31,7 @@
 #include "map_name_popup.h"
 #include "menu.h"
 #include "money.h"
+#include "achievements.h"
 #include "naming_screen.h"
 #include "hidden_grotto.h"
 #include "new_game.h"
@@ -2470,6 +2471,7 @@ static void DebugAction_FlagsVars_PokedexFlags_All(u8 taskId)
         GetSetPokedexFlag(i + 1, FLAG_SET_CAUGHT);
         GetSetPokedexFlag(i + 1, FLAG_SET_SEEN);
     }
+    Achievement_CheckAll();
     Debug_DestroyMenu_Full(taskId);
     ScriptContext_Enable();
 }

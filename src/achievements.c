@@ -109,7 +109,7 @@ static const u8 sText_AchTower50Desc[] = _("Win 50 Battle Tower battles in total
 static const u8 sText_AchTower100Name[] = _("Tower Master");
 static const u8 sText_AchTower100Desc[] = _("Win 100 Battle Tower battles in total.");
 static const u8 sText_AchHoennDexName[] = _("Johto Professor");
-static const u8 sText_AchHoennDexDesc[] = _("Complete the Johto Pokédex.");
+static const u8 sText_AchHoennDexDesc[] = _("Complete the Johto Pokédex.\n(Excluding Legendaries and Mythicals)");
 static const u8 sText_AchSayCheeseName[] = _("Say Cheese!");
 static const u8 sText_AchSayCheeseDesc[] = _("Have Cameron photograph\nyour party.");
 static const u8 sText_AchBloodMoonName[] = _("Blood Moon");
@@ -487,7 +487,21 @@ void Achievement_EnsureSaveInitialized(void)
 
 static bool32 Achievement_PredicateHoennDexComplete(void)
 {
-    return HasAllHoennMons();
+    u32 i;
+
+    for (i = 1; i < JOHTO_DEX_COUNT; i++)
+    {
+        enum NationalDexOrder nationalDexNum = JohtoToNationalOrder(i);
+
+        if (gSpeciesInfo[nationalDexNum].isRestrictedLegendary
+         || gSpeciesInfo[nationalDexNum].isSubLegendary
+         || gSpeciesInfo[nationalDexNum].isMythical)
+            continue;
+        if (!GetSetPokedexFlag(nationalDexNum, FLAG_GET_CAUGHT))
+            return FALSE;
+    }
+
+    return TRUE;
 }
 
 static bool32 Achievement_PredicateCameronPhoto(void)
