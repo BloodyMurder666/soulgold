@@ -475,8 +475,8 @@
 #define P_FAMILY_MAGEARNA                P_GEN_7_POKEMON
 #define P_FAMILY_MARSHADOW               P_GEN_7_POKEMON
 #define P_FAMILY_POIPOLE                 P_GEN_7_POKEMON
-#define P_FAMILY_STAKATAKA               P_GEN_7_POKEMON
-#define P_FAMILY_BLACEPHALON             P_GEN_7_POKEMON
+#define P_FAMILY_STAKATAKA               FALSE
+#define P_FAMILY_BLACEPHALON             FALSE
 #define P_FAMILY_ZERAORA                 P_GEN_7_POKEMON
 #define P_FAMILY_MELTAN                  P_GEN_7_POKEMON
 
