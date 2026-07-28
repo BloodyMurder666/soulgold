@@ -5,6 +5,7 @@ BattleFrontier_BattlePyramidFloor_MapScripts::
 	.byte 0
 
 BattleFrontier_BattlePyramidFloor_OnFrame:
+	map_script_2 VAR_TEMP_A, 1, BattleFrontier_BattlePyramid_EventScript_WarpToLobby
 	map_script_2 VAR_TEMP_D, 1, BattleFrontier_BattlePyramidFloor_EventScript_UpdateLight
 	map_script_2 VAR_TEMP_PLAYING_PYRAMID_MUSIC, 0, BattleFrontier_BattlePyramidFloor_EventScript_PlayPyramidMusic
 	map_script_2 VAR_TEMP_F, 1, BattleFrontier_BattlePyramidFloor_EventScript_ShowMapName
@@ -41,25 +42,33 @@ BattleFrontier_BattlePyramidFloor_OnResume:
 	frontier_getstatus
 	switch VAR_TEMP_CHALLENGE_STATUS
 	case 0, BattleFrontier_BattlePyramidFloor_EventScript_ReadyChallenge
-	case CHALLENGE_STATUS_SAVING, BattleFrontier_BattlePyramid_EventScript_WarpToLobby
+	case CHALLENGE_STATUS_SAVING, BattleFrontier_BattlePyramid_EventScript_ScheduleWarpToLobby
 	case CHALLENGE_STATUS_PAUSED, BattleFrontier_BattlePyramidFloor_EventScript_ReadyChallenge
 	frontier_get FRONTIER_DATA_BATTLE_OUTCOME
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, BattleFrontier_BattlePyramidFloor_EventScript_ResetParty
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, BattleFrontier_BattlePyramidFloor_EventScript_ResetParty
 	goto_if_eq VAR_RESULT, 0, BattleFrontier_BattlePyramidFloor_EventScript_ResetParty
-	goto_if_eq VAR_RESULT, B_OUTCOME_LOST, BattleFrontier_BattlePyramid_EventScript_WarpToLobbyLost
-	goto_if_eq VAR_RESULT, B_OUTCOME_DREW, BattleFrontier_BattlePyramid_EventScript_WarpToLobbyLost
-	goto_if_eq VAR_RESULT, B_OUTCOME_FORFEITED, BattleFrontier_BattlePyramid_EventScript_WarpToLobbyLost
+	goto_if_eq VAR_RESULT, B_OUTCOME_LOST, BattleFrontier_BattlePyramid_EventScript_ScheduleWarpToLobbyLost
+	goto_if_eq VAR_RESULT, B_OUTCOME_DREW, BattleFrontier_BattlePyramid_EventScript_ScheduleWarpToLobbyLost
+	goto_if_eq VAR_RESULT, B_OUTCOME_FORFEITED, BattleFrontier_BattlePyramid_EventScript_ScheduleWarpToLobbyLost
 	frontier_isbattletype BATTLE_TYPE_TRAINER  @ VAR_RESULT seems to be ignored here
 	setvar VAR_TEMP_D, 1
 BattleFrontier_BattlePyramidFloor_EventScript_ResetParty::
 	pyramid_resetparty
 	end
 
+BattleFrontier_BattlePyramid_EventScript_ScheduleWarpToLobbyLost::
+	frontier_set FRONTIER_DATA_CHALLENGE_STATUS, CHALLENGE_STATUS_LOST
+	pyramid_set PYRAMID_DATA_TRAINER_FLAGS, 255
+BattleFrontier_BattlePyramid_EventScript_ScheduleWarpToLobby::
+	setvar VAR_TEMP_A, 1
+	end
+
 BattleFrontier_BattlePyramid_EventScript_WarpToLobbyLost::
 	frontier_set FRONTIER_DATA_CHALLENGE_STATUS, CHALLENGE_STATUS_LOST
 	pyramid_set PYRAMID_DATA_TRAINER_FLAGS, 255
 BattleFrontier_BattlePyramid_EventScript_WarpToLobby::
+	setvar VAR_TEMP_A, 0
 	pyramid_updatelight 0, PYRAMID_LIGHT_SET_RADIUS
 	pyramid_clearhelditems
 	special HealPlayerParty
