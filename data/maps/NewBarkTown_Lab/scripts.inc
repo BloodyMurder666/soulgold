@@ -251,9 +251,9 @@ NewBarkTown_Lab_EventScript_ElmAccepted::
 # 126 "data/maps/NewBarkTown_Lab/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_Lab_Movement_Look_Left
 # 127 "data/maps/NewBarkTown_Lab/scripts.pory"
-	waitmovement 0
+	waitmovement LOCALID_ELM
 # 128 "data/maps/NewBarkTown_Lab/scripts.pory"
-	waitmovement 0
+	waitmovement OBJ_EVENT_ID_PLAYER
 # 129 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox NewBarkTown_Lab_Text_ElmGotAnEmail, MSGBOX_DEFAULT
 # 130 "data/maps/NewBarkTown_Lab/scripts.pory"

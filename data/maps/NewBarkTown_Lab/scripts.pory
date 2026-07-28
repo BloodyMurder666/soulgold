@@ -124,8 +124,8 @@ NewBarkTown_Lab_EventScript_ElmAccepted::
 	delay 60
 	applymovement LOCALID_ELM, NewBarkTown_Lab_Movement_CheckEmail
 	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_Lab_Movement_Look_Left
-	waitmovement 0
-	waitmovement 0
+	waitmovement LOCALID_ELM
+	waitmovement OBJ_EVENT_ID_PLAYER
 	msgbox NewBarkTown_Lab_Text_ElmGotAnEmail, MSGBOX_DEFAULT
 	removefieldmugshot
 	closemessage
