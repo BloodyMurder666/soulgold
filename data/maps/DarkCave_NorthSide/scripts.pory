@@ -1,0 +1,53 @@
+raw `
+DarkCave2_EventScript_BlackGlasses::
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_BLACK_GLASSES, DarkCave2_EventScript_BlackGlassesGot
+	msgbox DarkCave2_Text_Nerd, MSGBOX_DEFAULT
+	giveitem ITEM_BLACK_GLASSES
+	setflag FLAG_GOT_BLACK_GLASSES
+	closemessage
+	release
+	end
+
+DarkCave2_EventScript_BlackGlassesGot::
+	msgbox DarkCave2_Text_Nerd2, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+DarkCave2_Text_Nerd:
+    .string "Whoa! You startled me there!\p"
+    .string "I had my Black-Glasses on, so I\n"
+    .string "didn't notice you at all.\p"
+    .string "What am I doing here?\p"
+    .string "Hey, don't you worry about it.\p"
+    .string "I'll give you a pair of Black-\n"
+    .string "Glasses, so forget you saw me,\n"
+    .string "Ok?$"
+
+DarkCave2_Text_Nerd2:
+    .string "Black-Glasses ups the power of\n"
+    .string "Dark-type moves.$"
+
+`
+mapscripts DarkCave_NorthSide_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        if (flag(FLAG_IS_CHAMPION) && !flag(FLAG_CAUGHT_TERRAKION)) {
+            clearflag(FLAG_HIDE_TERRAKION)
+        } else {
+            setflag(FLAG_HIDE_TERRAKION)
+        }
+    }
+}
+
+script DarkCave_TerrakionEncounter {
+    lock
+    faceplayer
+    bosslegendaryencounter(SPECIES_TERRAKION, 80, LOCALID_TERRAKION, FLAG_HIDE_TERRAKION, 2, SPECIES_NONE, 110)
+    if (var(VAR_RESULT) == B_OUTCOME_CAUGHT) {
+        setflag(FLAG_CAUGHT_TERRAKION)
+    }
+    release
+    end
+}

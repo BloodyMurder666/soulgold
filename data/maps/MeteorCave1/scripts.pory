@@ -4,6 +4,10 @@ mapscripts MeteorCave1_MapScripts {
             setmetatile(36, 2, 0x4DD, FALSE)
         }
     }
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_VISITED_METEOR_CAVE)
+        end
+    }
 }
 
 script MeteorCave1_WallIns {

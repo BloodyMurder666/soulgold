@@ -576,6 +576,12 @@
       "map": "MAP_RINTO_POEMON_CENTER",
       "x": 7,
       "y": 4
+    },
+    {
+      "id": "HEAL_LOCATION_METEOR_ISLAND",
+      "map": "MAP_METEOR_ISLAND",
+      "x": 21,
+      "y": 16
     }
   ]
 }

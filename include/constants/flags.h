@@ -1391,7 +1391,7 @@
 #define FLAG_VISITED_LAVENDER_TOWN                (SYSTEM_FLAGS + 0x21)
 #define FLAG_VISITED_CELADON_CITY                  (SYSTEM_FLAGS + 0x22)
 #define FLAG_VISITED_SAFFRON_CITY                  (SYSTEM_FLAGS + 0x23)
-#define FLAG_VISITED_FUCHSIA_CITY               (SYSTEM_FLAGS + 0x24) //48
+#define FLAG_VISITED_METEOR_CAVE               (SYSTEM_FLAGS + 0x24) //48
 #define FLAG_VISITED_CINNABAR_ISLAND                          (SYSTEM_FLAGS + 0x25) 
 #define FLAG_VISITED_MT_SILVER                           (SYSTEM_FLAGS + 0x26) //26
 #define FLAG_VISITED_RECEPTION_GATE                           (SYSTEM_FLAGS + 0x27) // 27
@@ -1704,6 +1704,10 @@
 #define FLAG_HIDE_IRONLEAVES   0x1016
 #define FLAG_HIDE_IRONBOULDER  0x1017
 #define FLAG_HIDE_IRONCROWN    0x1018
+#define FLAG_HIDE_COBALION     0x1019
+#define FLAG_HIDE_TERRAKION    0x101A
+#define FLAG_CAUGHT_TERRAKION  0x101B
+#define FLAG_CAUGHT_COBALION   0x101C
 
 
 #define FLAG_0x1500                                 0x1500

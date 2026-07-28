@@ -219,7 +219,7 @@ MeteorCave2_LegeRoom_IronLeaves::
 # 121 "data/maps/MeteorCave2_LegendaryRoom/scripts.pory"
 	faceplayer
 # 122 "data/maps/MeteorCave2_LegendaryRoom/scripts.pory"
-	legendaryencounter SPECIES_IRON_LEAVES, 75, LOCALID_IRONLEAVES, FLAG_HIDE_IRONLEAVES
+	bosslegendaryencounter SPECIES_IRON_LEAVES, 75, LOCALID_IRONLEAVES, FLAG_HIDE_IRONLEAVES
 # 123 "data/maps/MeteorCave2_LegendaryRoom/scripts.pory"
 	release
 	end
@@ -231,7 +231,7 @@ MeteorCave2_LegeRoom_IronBoulder::
 # 129 "data/maps/MeteorCave2_LegendaryRoom/scripts.pory"
 	faceplayer
 # 130 "data/maps/MeteorCave2_LegendaryRoom/scripts.pory"
-	legendaryencounter SPECIES_IRON_BOULDER, 75, LOCALID_IRON_BOULDER, FLAG_HIDE_IRONBOULDER
+	bosslegendaryencounter SPECIES_IRON_BOULDER, 75, LOCALID_IRON_BOULDER, FLAG_HIDE_IRONBOULDER
 # 131 "data/maps/MeteorCave2_LegendaryRoom/scripts.pory"
 	release
 	end
@@ -243,7 +243,7 @@ MeteorCave2_LegeRoom_IronCrown::
 # 137 "data/maps/MeteorCave2_LegendaryRoom/scripts.pory"
 	faceplayer
 # 138 "data/maps/MeteorCave2_LegendaryRoom/scripts.pory"
-	legendaryencounter SPECIES_IRON_CROWN, 75, LOCALID_IRONCROWN, FLAG_HIDE_IRONCROWN
+	bosslegendaryencounter SPECIES_IRON_CROWN, 75, LOCALID_IRONCROWN, FLAG_HIDE_IRONCROWN
 # 139 "data/maps/MeteorCave2_LegendaryRoom/scripts.pory"
 	release
 	end

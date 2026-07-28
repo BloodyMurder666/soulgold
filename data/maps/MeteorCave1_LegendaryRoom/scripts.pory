@@ -120,7 +120,7 @@ script MeteorCave1_LegendaryRoom_WalkingWakeDoor {
 script MeteorCave1_LegeRoom_RagingBolt {
     lock
     faceplayer
-    legendaryencounter(SPECIES_RAGING_BOLT, 75, LOCALID_RAGINGBOLT, FLAG_HIDE_RAGINGBOLT)
+    bosslegendaryencounter(SPECIES_RAGING_BOLT, 75, LOCALID_RAGINGBOLT, FLAG_HIDE_RAGINGBOLT)
     release
     end
 }
@@ -128,7 +128,7 @@ script MeteorCave1_LegeRoom_RagingBolt {
 script MeteorCave1_LegeRoom_GougingFire {
     lock
     faceplayer
-    legendaryencounter(SPECIES_GOUGING_FIRE, 75, LOCALID_GOUGINGFIRE, FLAG_HIDE_GOUGINGFIRE)
+    bosslegendaryencounter(SPECIES_GOUGING_FIRE, 75, LOCALID_GOUGINGFIRE, FLAG_HIDE_GOUGINGFIRE)
     release
     end
 }
@@ -136,7 +136,7 @@ script MeteorCave1_LegeRoom_GougingFire {
 script MeteorCave1_LegeRoom_WalkingWake {
     lock
     faceplayer
-    legendaryencounter(SPECIES_WALKING_WAKE, 75, LOCALID_WALKINGWAKE, FLAG_HIDE_WALKINGWAKE)
+    bosslegendaryencounter(SPECIES_WALKING_WAKE, 75, LOCALID_WALKINGWAKE, FLAG_HIDE_WALKINGWAKE)
     release
     end
 }

@@ -29,7 +29,7 @@ script Route50_TrainerIgnis {
 script Route50_Virizion {
 	lock
 	faceplayer
-	legendaryencounter(SPECIES_VIRIZION, 80, LOCALID_VIRIZION, FLAG_HIDE_VIRIZION)
+	bosslegendaryencounter(SPECIES_VIRIZION, 80, LOCALID_VIRIZION, FLAG_HIDE_VIRIZION, 2, SPECIES_NONE, 110)
 	release
 	end
 }

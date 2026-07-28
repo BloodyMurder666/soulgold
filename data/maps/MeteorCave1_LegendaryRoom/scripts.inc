@@ -219,7 +219,7 @@ MeteorCave1_LegeRoom_RagingBolt::
 # 122 "data/maps/MeteorCave1_LegendaryRoom/scripts.pory"
 	faceplayer
 # 123 "data/maps/MeteorCave1_LegendaryRoom/scripts.pory"
-	legendaryencounter SPECIES_RAGING_BOLT, 75, LOCALID_RAGINGBOLT, FLAG_HIDE_RAGINGBOLT
+	bosslegendaryencounter SPECIES_RAGING_BOLT, 75, LOCALID_RAGINGBOLT, FLAG_HIDE_RAGINGBOLT
 # 124 "data/maps/MeteorCave1_LegendaryRoom/scripts.pory"
 	release
 	end
@@ -231,7 +231,7 @@ MeteorCave1_LegeRoom_GougingFire::
 # 130 "data/maps/MeteorCave1_LegendaryRoom/scripts.pory"
 	faceplayer
 # 131 "data/maps/MeteorCave1_LegendaryRoom/scripts.pory"
-	legendaryencounter SPECIES_GOUGING_FIRE, 75, LOCALID_GOUGINGFIRE, FLAG_HIDE_GOUGINGFIRE
+	bosslegendaryencounter SPECIES_GOUGING_FIRE, 75, LOCALID_GOUGINGFIRE, FLAG_HIDE_GOUGINGFIRE
 # 132 "data/maps/MeteorCave1_LegendaryRoom/scripts.pory"
 	release
 	end
@@ -243,7 +243,7 @@ MeteorCave1_LegeRoom_WalkingWake::
 # 138 "data/maps/MeteorCave1_LegendaryRoom/scripts.pory"
 	faceplayer
 # 139 "data/maps/MeteorCave1_LegendaryRoom/scripts.pory"
-	legendaryencounter SPECIES_WALKING_WAKE, 75, LOCALID_WALKINGWAKE, FLAG_HIDE_WALKINGWAKE
+	bosslegendaryencounter SPECIES_WALKING_WAKE, 75, LOCALID_WALKINGWAKE, FLAG_HIDE_WALKINGWAKE
 # 140 "data/maps/MeteorCave1_LegendaryRoom/scripts.pory"
 	release
 	end

@@ -32,7 +32,7 @@ Route50_Virizion::
 # 31 "data/maps/Route50/scripts.pory"
 	faceplayer
 # 32 "data/maps/Route50/scripts.pory"
-	legendaryencounter SPECIES_VIRIZION, 80, LOCALID_VIRIZION, FLAG_HIDE_VIRIZION
+	bosslegendaryencounter SPECIES_VIRIZION, 80, LOCALID_VIRIZION, FLAG_HIDE_VIRIZION, 2, SPECIES_NONE, 110
 # 33 "data/maps/Route50/scripts.pory"
 	release
 	end

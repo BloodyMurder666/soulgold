@@ -119,7 +119,7 @@ script MeteorCave1_LegendaryRoom_IronCrownDoor {
 script MeteorCave2_LegeRoom_IronLeaves {
     lock
     faceplayer
-    legendaryencounter(SPECIES_IRON_LEAVES, 75, LOCALID_IRONLEAVES, FLAG_HIDE_IRONLEAVES)
+    bosslegendaryencounter(SPECIES_IRON_LEAVES, 75, LOCALID_IRONLEAVES, FLAG_HIDE_IRONLEAVES)
     release
     end
 }
@@ -127,7 +127,7 @@ script MeteorCave2_LegeRoom_IronLeaves {
 script MeteorCave2_LegeRoom_IronBoulder {
     lock
     faceplayer
-    legendaryencounter(SPECIES_IRON_BOULDER, 75, LOCALID_IRON_BOULDER, FLAG_HIDE_IRONBOULDER)
+    bosslegendaryencounter(SPECIES_IRON_BOULDER, 75, LOCALID_IRON_BOULDER, FLAG_HIDE_IRONBOULDER)
     release
     end
 }
@@ -135,7 +135,7 @@ script MeteorCave2_LegeRoom_IronBoulder {
 script MeteorCave2_LegeRoom_IronCrown {
     lock
     faceplayer
-    legendaryencounter(SPECIES_IRON_CROWN, 75, LOCALID_IRONCROWN, FLAG_HIDE_IRONCROWN)
+    bosslegendaryencounter(SPECIES_IRON_CROWN, 75, LOCALID_IRONCROWN, FLAG_HIDE_IRONCROWN)
     release
     end
 }

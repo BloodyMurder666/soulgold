@@ -39,6 +39,20 @@
       "trainer_sight_or_berry_tree_id": "ITEM_TM_THUNDERBOLT",
       "script": "Common_EventScript_FindItem",
       "flag": "FLAG_RAILWAY_THUNDERBOLT"
+    },
+    {
+      "local_id": "LOCALID_COBALION",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(COBALION)",
+      "x": 54,
+      "y": 12,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RailwayCave_Cobalion",
+      "flag": "FLAG_HIDE_COBALION"
     }
   ],
   "warp_events": [

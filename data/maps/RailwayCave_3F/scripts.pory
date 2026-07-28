@@ -1,1 +1,20 @@
-mapscripts RailwayCave_3F_MapScripts {}
+mapscripts RailwayCave_3F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        if (flag(FLAG_IS_CHAMPION) && !flag(FLAG_CAUGHT_COBALION)) {
+            clearflag(FLAG_HIDE_COBALION)
+        } else {
+            setflag(FLAG_HIDE_COBALION)
+        }
+    }
+}
+
+script RailwayCave_Cobalion {
+    lock
+    faceplayer
+    bosslegendaryencounter(SPECIES_COBALION, 80, LOCALID_COBALION, FLAG_HIDE_COBALION, 2, SPECIES_NONE, 110)
+    if (var(VAR_RESULT) == B_OUTCOME_CAUGHT) {
+        setflag(FLAG_CAUGHT_COBALION)
+    }
+    release
+    end
+} 
