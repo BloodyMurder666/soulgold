@@ -1,5 +1,7 @@
 Update notes:
 28.7.2026
+- Milotic innate 2 has been changed to Fae Soul
+
 - After obtaining 8 badges, factory will stock nuggets and big nuggets for BP to allow farming some cash before Rocket Arcade unlocks in postgame.
 - Some achievements have been changed
 - Last area of safari zone now unlocks right before elite four
