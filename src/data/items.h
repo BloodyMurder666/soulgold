@@ -17464,6 +17464,24 @@ const struct ItemInfo gItemsInfo[] =
         .iconPic = gItemIcon_DarkiniumZ,
         .iconPalette = gItemIconPalette_DarkiniumZ,
     },
+    [ITEM_REVERSE_CANDY] =
+    {
+        .name = ITEM_NAME("Reverse Candy"),
+        .pluralName = ITEM_PLURAL_NAME("Reverse Candies"),
+        .price = 10,
+        .bpCost = 1,
+        .description = COMPOUND_STRING(
+            "Lowers the level\n"
+            "of a Pokémon by\n"
+            "one."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_LEVEL_UP_ITEM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
+        .flingPower = 30,
+        .iconPic = gItemIcon_ReverseCandy,
+        .iconPalette = gItemIconPalette_ReverseCandy,
+    },
 };
 
 #undef ITEM_NAME

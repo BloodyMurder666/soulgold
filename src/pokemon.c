@@ -5274,6 +5274,21 @@ bool8 TryIncrementMonLevel(struct Pokemon *mon)
     }
 }
 
+bool8 TryDecrementMonLevel(struct Pokemon *mon)
+{
+    u16 species = GetMonData(mon, MON_DATA_SPECIES);
+    u8 level = GetMonData(mon, MON_DATA_LEVEL);
+    u32 exp;
+
+    if (species == SPECIES_NONE || GetMonData(mon, MON_DATA_IS_EGG) || level <= MIN_LEVEL)
+        return FALSE;
+
+    exp = gExperienceTables[gSpeciesInfo[species].growthRate][level - 1];
+    SetMonData(mon, MON_DATA_EXP, &exp);
+    CalculateMonStats(mon);
+    return TRUE;
+}
+
 u8 CanLearnTeachableMove(u16 species, enum Move move)
 {
     const u16 *teachableLearnset = GetSpeciesTeachableLearnset(species);

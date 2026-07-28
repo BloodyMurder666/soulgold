@@ -74,6 +74,7 @@ Goldenrod_DepartmentStore_3F_EventScript_ClerkLeft::
 
 	.align 2
 Goldenrod_DepartmentStore_3F_Pokemart_Vitamins:
+	.2byte ITEM_REVERSE_CANDY
 	.2byte ITEM_POWER_WEIGHT
 	.2byte ITEM_POWER_BRACER
 	.2byte ITEM_POWER_BELT

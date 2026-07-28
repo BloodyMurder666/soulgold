@@ -1252,7 +1252,9 @@ static void RestorePyramidPlayerParty(void)
                     if (l == MAX_MON_MOVES)
                         SetMonMoveSlot(&gPlayerParty[j], MOVE_SKETCH, k);
                 }
+                RestoreFrontierPlayerPartyMonLevel(j, partyIndex);
                 SavePlayerPartyMon(partyIndex, &gPlayerParty[j]);
+                ScaleFrontierMonToCurrentLevelMode(&gPlayerParty[j]);
                 gSelectedOrderFromParty[j] = partyIndex + 1;
                 break;
             }
