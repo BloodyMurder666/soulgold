@@ -24,8 +24,20 @@ order: 1
 ### Unregistering dexnav species?
 - Select in the dexnav screen.
 
+### Saves compatible between versions?
+- Always
+
+### Shiny odds?
+- 1/256
+
+### Shiny locks?
+- None. Shinyness is also displayed in the pictures when you receive a gift Pokémon.
+
 ### Mega Ring?
 - After Team Rocket takeover event in Goldenrod City.
+
+### How to mega evolve?
+- Press start when selecting moves while the Pokémon is wielding appropriate Mega stone and you have the Mega Ring
 
 ### Nature mints?
 - Olivine beach cafe sells them.
@@ -33,8 +45,8 @@ order: 1
 ### Ability changing?
 - Battle Factory (after 3rd gym) offers them for playing a few rounds. Few can also be found in the overworld.
 
-### How to mega evolve?
-- Press start when selecting moves while the Pokémon is wielding appropriate Mega stone and you have the Mega Ring
+### Why do innates unlock so late?
+- They are meant to act as a form of postgame progression. Most Pokémon stop learning moves around 60~ usually, so this gives something to look forward to after that.
 
 ### Where is X Item/Pokémon/TM?
 - Check docs or ingame pokedex.
@@ -47,9 +59,6 @@ order: 1
 
 ### Regional Pokémon?
 - Most are available in the Baoba's Safari Zone, but several can be found before this.
-
-### Shiny locks and shiny rate?
-- No and 1/256. Shinyness is also displayed in the pictures when you receive a gift Pokémon.
 
 ### Should I hold off evolving Growlithe/Vulpix/etc?
 - No, the evolved forms learn all the moves the pre-evoluion form does.
