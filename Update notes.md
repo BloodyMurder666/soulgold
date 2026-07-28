@@ -1,4 +1,7 @@
 Update notes:
+29.7.2026
+- Beedrill gets attack order, Butterfree gets hurricane and pollen puff
+
 28.7.2026
 - Milotic innate 2 has been changed to Fae Soul
 

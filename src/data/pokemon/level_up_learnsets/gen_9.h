@@ -554,7 +554,6 @@ static const struct LevelUpMove sPikachuPartnerLevelUpLearnset[] = {
     LEVEL_UP_MOVE(50, MOVE_THUNDER),
     LEVEL_UP_MOVE(54, MOVE_PIKA_PAPOW),
     LEVEL_UP_MOVE(58, MOVE_VOLT_TACKLE),
-    LEVEL_UP_MOVE(100, MOVE_10000000_VOLT_THUNDERBOLT),
     LEVEL_UP_END
 };
 
