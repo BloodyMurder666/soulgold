@@ -57,7 +57,13 @@ const dexSortOptions = [
   { key: "bst", label: "BST" },
 ];
 const excludedDexSpecies = new Set([
+  "SPECIES_ETERNATUS",
   "SPECIES_ETERNATUS_ETERNAMAX",
+  "SPECIES_RESHIRAM",
+  "SPECIES_ZEKROM",
+  "SPECIES_KYUREM",
+  "SPECIES_KYUREM_WHITE",
+  "SPECIES_KYUREM_BLACK",
   "SPECIES_KYOGRE",
   "SPECIES_KYOGRE_PRIMAL",
   "SPECIES_GROUDON",
@@ -106,6 +112,11 @@ const excludedDexSpecies = new Set([
   "SPECIES_ENAMORUS_INCARNATE",
   "SPECIES_ENAMORUS_THERIAN",
   "SPECIES_PECHARUNT",
+  "SPECIES_KORAIDON",
+  "SPECIES_MIRAIDON",
+  "SPECIES_TERAPAGOS_NORMAL",
+  "SPECIES_TERAPAGOS_TERASTAL",
+  "SPECIES_TERAPAGOS_STELLAR",
 ]);
 const innateUnlockLevels = [75, 85, 95];
 const machineLocationOverrides = {
@@ -1379,15 +1390,19 @@ function megaFormLinks(mon) {
 }
 
 function locationRows(locations) {
-  if (!locations?.length) return `<p class="muted">No wild encounter or Hidden Grotto location found.</p>`;
+  if (!locations?.length) return `<p class="muted">No encounter, gift, or Hidden Grotto location found.</p>`;
   return `<div class="location-list">
     <div class="location-row location-head"><span>Area</span><span>Method</span><span>Level</span><span>Odds</span></div>
     ${locations.map((location) => `
       <div class="location-row">
         <strong>${location.name}</strong>
         <span>${location.time ? `${location.time} / ` : ""}${location.method}</span>
-        <span>${location.minLevel === location.maxLevel ? `Lv ${location.minLevel ?? "?"}` : `Lv ${location.minLevel ?? "?"}-${location.maxLevel ?? "?"}`}</span>
-        <span>${location.rate ?? "-"}%</span>
+        <span>${location.minLevel == null && location.maxLevel == null
+          ? "—"
+          : location.minLevel === location.maxLevel
+            ? `Lv ${location.minLevel}`
+            : `Lv ${location.minLevel ?? "?"}-${location.maxLevel ?? "?"}`}</span>
+        <span>${location.rate == null ? "—" : `${location.rate}%`}</span>
       </div>
     `).join("")}
   </div>`;

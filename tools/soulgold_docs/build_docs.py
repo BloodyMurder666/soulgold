@@ -19,6 +19,7 @@ from tools.soulgold_docs.image_utils import (
 )
 from tools.soulgold_docs.parsers.abilities import build_ability_usage, parse_abilities
 from tools.soulgold_docs.parsers.encounters import add_hidden_grotto_species_locations, build_species_locations, parse_wild_encounters
+from tools.soulgold_docs.parsers.gifts import add_gift_species_locations, add_master_gachapon_species_locations
 from tools.soulgold_docs.parsers.hidden_grottos import parse_hidden_grottos
 from tools.soulgold_docs.parsers.evolutions import parse_evolutions, parse_mega_evolutions
 from tools.soulgold_docs.parsers.items import (
@@ -84,6 +85,8 @@ def build() -> None:
     hidden_grottos = parse_hidden_grottos()
     species_locations = build_species_locations(encounters)
     add_hidden_grotto_species_locations(species_locations, hidden_grottos)
+    add_gift_species_locations(species_locations, species_data.by_constant)
+    add_master_gachapon_species_locations(species_locations, species_data.by_constant)
     located_species = attach_species_locations(enriched_species, species_locations)
     visible_species = visible_species_rows(located_species)
     species_lookup = build_species_lookup(located_species)

@@ -6,9 +6,10 @@ import json
 import re
 from pathlib import Path
 
-from ..constants import ALWAYS_INCLUDED_TRAINER_CONSTANTS, EXCLUDED_TRAINER_MAP_GROUPS, EXCLUDED_TRAINER_MAP_NAMES, EXCLUDED_TRAINER_MAP_PREFIXES, SPRITE_CACHE_VERSION
+from ..constants import ALWAYS_INCLUDED_TRAINER_CONSTANTS, SPRITE_CACHE_VERSION
 from ..c_parser import clean_constant_name, eval_int_expr, normalize_token, read, slugify, strip_c_comments
 from ..image_utils import copy_item_icon, process_sprite
+from ..map_names import is_docs_excluded_map
 from ..models import ItemRecord, ShowdownMon, SpeciesRow, TrainerMon, TrainerRow
 from ..paths import MAP_GROUPS_JSON, OUT_DIR, REPO_ROOT, TRAINERS_H
 from .species import species_for_trainer_mon
@@ -203,13 +204,6 @@ def enrich_trainer_party(
         })
     return enriched
 
-def is_docs_excluded_trainer_map(map_name: str, group_name: str) -> bool:
-    if group_name in EXCLUDED_TRAINER_MAP_GROUPS:
-        return True
-    if map_name in EXCLUDED_TRAINER_MAP_NAMES:
-        return True
-    return map_name.endswith("_Frlg") or map_name.startswith(EXCLUDED_TRAINER_MAP_PREFIXES)
-
 def trainer_constants_for_docs_maps() -> set[str]:
     """Return trainer constants referenced by non-Kanto, non-Hoenn map scripts."""
     try:
@@ -222,7 +216,7 @@ def trainer_constants_for_docs_maps() -> set[str]:
 
     for group_name in map_groups.get("group_order") or []:
         for map_name in map_groups.get(group_name) or []:
-            if is_docs_excluded_trainer_map(map_name, group_name):
+            if is_docs_excluded_map(map_name, group_name):
                 continue
             map_dir = REPO_ROOT / "data/maps" / map_name
             if not map_dir.is_dir():

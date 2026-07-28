@@ -23,6 +23,8 @@ def parse_wild_encounters(by_species: dict[str, SpeciesRow]) -> list[WildEncount
             continue
         for encounter in group.get("encounters", []):
             map_const = encounter.get("map", UNKNOWN_MAP)
+            if map_const == UNKNOWN_MAP:
+                continue
             label = map_constant_display_name(map_const)
             base_label = encounter.get("base_label", "")
             time_label = "Night" if base_label.endswith(TIME_NIGHT_SUFFIX) else "Day"

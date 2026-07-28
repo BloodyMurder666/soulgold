@@ -6,6 +6,7 @@ import json
 from functools import cache
 from typing import Mapping
 
+from .constants import EXCLUDED_TRAINER_MAP_GROUPS, EXCLUDED_TRAINER_MAP_NAMES, EXCLUDED_TRAINER_MAP_PREFIXES
 from .c_parser import format_identifier_name, normalize_token, read
 from .paths import REGION_MAP_SECTIONS_JSON, REPO_ROOT
 
@@ -65,3 +66,12 @@ def map_constant_display_name(map_constant: str) -> str:
     map_data = map_data_by_constant().get(map_constant, {})
     fallback = map_constant.removeprefix("MAP_").replace("_", " ").title()
     return _renamed_region_map_name(map_data, fallback)
+
+
+def is_docs_excluded_map(map_name: str, group_name: str) -> bool:
+    """Return whether a legacy or currently unreachable map is outside the docs."""
+    if group_name in EXCLUDED_TRAINER_MAP_GROUPS:
+        return True
+    if map_name in EXCLUDED_TRAINER_MAP_NAMES:
+        return True
+    return map_name.endswith("_Frlg") or map_name.startswith(EXCLUDED_TRAINER_MAP_PREFIXES)
