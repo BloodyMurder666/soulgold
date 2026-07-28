@@ -13,7 +13,7 @@ order: 3
 - Ho-Oh: Choose Rainbow Wing after Rocket Takeover, if you chose Silver Wing, talk to director after Elite Four, prepare for a fight
 - Lugia: Choose Silver Wing after Rocket Takeover, if you chose Rainbow Wing, talk to director after Elite four, prepare for a fight
 - Shadow Lugia: Explore south of Johto and take what you find to regular Lugia encounter. If you have already caught regular lugia, do one round of title defense to reset the spawn.
-- Celebi: Solve all 8 ruins of alph puzzles and then enter a passage in the B1F
+- Celebi: Solve all 8 ruins of alph puzzles and then enter a passage in the B1F to find GS Ball. Take this to Kurt in Azalea and then go to Ilex Forest shrine.
 - Regirock: Solve braille in Vajra Desert West
 - Regice: Solve braille in Snowtop Mountain
 - Registeel: Solve braille in Railway Cave
@@ -29,13 +29,15 @@ order: 3
 - Victini: After becoming champion, speak with old lady in Kitakami Border house and defeat all gym leader rematches
 - Virizion: Route 50
 - Magerna: After becoming champion, enter Rocket Arcade and speak with the burglar. Win 25 rounds of Arcade and speak with him again. He will give you a key to Goldenrod Apartment top floor. Prepare for a fight.
+- Original Color Magerna: obtain 100 trophies
 - Marshadow: After 8th badge, return to Elder Li in the sprout tower. Prepare for a battle. Then explore Sprout tower basement.
-- Poipole: Obtain enough trophies
+- Poipole: Obtain 45 trophies
 - Meltan: Trade for Tinkaton in Rinto Village
 - Kubfu: Blackthorne City rockclimb cave. Note: evolution not currently accessible!
-- Zarude: Obtain enough trophies
+- Zarude: Obtain 75 trophies
 - Bloodmoon Ursaluna: Explore Kitakami Mountain to find black mirror. Then go to lost woods and follow the murkrows.
 - Ogerpon: Explore Kitakami Mountain
 - Chien Pao: After obtaining Waterfall and Rock Climb, explore Ice Path further
 - Fezandipiti: After obtaining Rock Climb, explore Kitakami
 - Paradox Pokémon: Explore South Johto Meteor Island
+- Eternal Floette: Obtain 60 trophies
