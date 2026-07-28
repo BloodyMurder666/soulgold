@@ -31,6 +31,8 @@ order: 3
 - Shaymin: Dream Garden, accessible from Tohjo Falls after obtaining Rock Climb
 - Victini: After becoming champion, speak with old lady in Kitakami Border house and defeat all gym leader rematches
 - Virizion: Route 50
+- Cobalion: Railway Cave Route 33 side exit after becoming a champion
+- Terrakion: Dark Cave North after becoming a champion
 - Magerna: After becoming champion, enter Rocket Arcade and speak with the burglar. Win 25 rounds of Arcade and speak with him again. He will give you a key to Goldenrod Apartment top floor. Prepare for a fight.
 - Original Color Magerna: obtain 100 trophies
 - Marshadow: After 8th badge, return to Elder Li in the sprout tower. Prepare for a battle. Then explore Sprout tower basement.
@@ -44,5 +46,5 @@ order: 3
 - Fezandipiti: After obtaining Rock Climb, explore Kitakami
 - Paradox Pokémon: Explore South Johto Meteor Island
 - Paradox Entei/Raikou/Suicune: Register all past paradox pokemon to Pokédex, then interact with the unown wall in the back. Then to open each wall in the next room you will need to bring Entei/Raikou/Suicune to the respective wall.
-- Paradox Virizion: Register all future pokemon to Pokédex, then interact iwth the wall in the back. Bring virizion to one of the walls to unlock it.
+- Paradox Virizion/Cobalion/Terrakion: Register all future pokemon to Pokédex, then interact with the wall in the back. Bring virizion/terrakion/cobalion to each of the walls to unlock it.
 - Eternal Floette: Obtain 60 trophies
