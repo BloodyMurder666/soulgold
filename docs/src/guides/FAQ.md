@@ -69,6 +69,9 @@ order: 1
 ### How often do Hidden Grotto contents respawn?
 - Once per day, but you can also use Beckoning Bell item from Battle Factory after Gym 3.
 
+### Are Pokémon found from Hidden Grottos any different from regular wild ones?
+- Pokémon from Hidden Grottos have atleast two perfect IVs and their Hidden Ability. They have 60% chance of containing a Pokémon, 30% of having a generic item and 10% of having a grotto specific item 
+
 ### Fossils?
 - Smash rocks in Ruins of Alph.
 
