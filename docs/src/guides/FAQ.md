@@ -42,6 +42,9 @@ order: 1
 ### How to mega evolve?
 - Press start when selecting moves while the Pokémon is wielding appropriate Mega stone and you have the Mega Ring
 
+### How to get starter megastone/bondstone?
+- Given to you by Elm at a certain point in story.
+
 ### Coin case?
 - Goldenrod Underground
 

@@ -23,6 +23,12 @@ TMHM_LOCATION_OVERRIDES: dict[str, list[ItemLocation]] = {
     ],
 }
 
+IMPORTANT_ITEM_LOCATION_OVERRIDES: dict[str, list[ItemLocation]] = {
+    "ITEM_BONDSTONE": [
+        {"map": "Given by Elm during the story", "source": ""},
+    ],
+}
+
 
 def item_display_name(item: str, item_names: Mapping[str, ItemRecord]) -> str:
     return item_names.get(item, {}).get("name") or clean_constant_name(item, "ITEM_")
@@ -233,7 +239,10 @@ def build_important_items(
     rows = []
     for constant in sorted(selected, key=lambda item: item_records.get(item, {}).get("id", 0)):
         item = item_records[constant]
-        item_locations = locations.get(constant, [])
+        item_locations = IMPORTANT_ITEM_LOCATION_OVERRIDES.get(
+            constant,
+            locations.get(constant, []),
+        )
         rows.append({
             "id": item.get("id", 0),
             "constant": constant,
@@ -244,7 +253,11 @@ def build_important_items(
             "itemIcon": copy_item_icon(item, item_icon_dir),
             "locations": item_locations,
             "location": "; ".join(
-                f"{entry['map']} ({entry['source']})"
+                (
+                    f"{entry['map']} ({entry['source']})"
+                    if entry["source"]
+                    else entry["map"]
+                )
                 for entry in item_locations
             ),
         })
