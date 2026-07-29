@@ -180,6 +180,8 @@ def parse_evolutions(item_names: Mapping[str, ItemRecord]) -> dict[str, list[Evo
             conditions = format_evolution_conditions(parts[3], item_names) if len(parts) > 3 else []
             if method == "EVOLUTIONS_END" or not target.startswith("SPECIES_"):
                 continue
+            if method == "EVO_TRADE":
+                continue
             if is_totem_species(source) or is_totem_species(target):
                 continue
             evolutions[source].append({

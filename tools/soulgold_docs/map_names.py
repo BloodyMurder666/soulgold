@@ -57,14 +57,29 @@ def _renamed_region_map_name(map_data: Mapping[str, object], fallback: str) -> s
     return fallback
 
 
+def _docs_map_name_override(map_data: Mapping[str, object]) -> str | None:
+    map_constant = str(map_data.get("id") or "")
+    victory_road_prefix = "MAP_VICTORY_ROAD_KANTO"
+    if map_constant == victory_road_prefix:
+        return "Victory Road"
+    if map_constant.startswith(f"{victory_road_prefix}_"):
+        floor = format_identifier_name(map_constant.removeprefix(f"{victory_road_prefix}_"))
+        return f"Victory Road {floor}"
+    return None
+
+
 def map_display_name(map_data: Mapping[str, object], fallback_name: str) -> str:
     fallback = format_identifier_name(str(map_data.get("name") or fallback_name))
+    if override := _docs_map_name_override(map_data):
+        return override
     return _renamed_region_map_name(map_data, fallback)
 
 
 def map_constant_display_name(map_constant: str) -> str:
     map_data = map_data_by_constant().get(map_constant, {})
     fallback = map_constant.removeprefix("MAP_").replace("_", " ").title()
+    if override := _docs_map_name_override(map_data):
+        return override
     return _renamed_region_map_name(map_data, fallback)
 
 

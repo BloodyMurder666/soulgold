@@ -72,12 +72,11 @@ script BattleArcade_BattleRoom_EventScript_SpawnOpponentEntrance
 script BattleArcade_BattleRoom_EventScript_AddSetOpponent
 {
 	addobject(OPPONENT)
-	setobjectxy(OPPONENT,7,11)
 }
 
 script BattleArcade_BattleRoom_EventScript_OpponentIntro
 {
-	applymovement(OPPONENT,moves(walk_up, walk_right * 3, walk_in_place_faster_left))
+	applymovement(OPPONENT,moves(walk_up * 6, walk_right * 2, walk_in_place_faster_left))
 	waitmovement(OPPONENT)
 }
 
@@ -188,38 +187,23 @@ script BattleArcade_BattleRoom_EventScript_AttendantLeave
 script BattleArcade_BattleRoom_EventScript_BrainEntranceMovement
 {
 	special(SpawnCameraObject)
-	applymovement(OPPONENT,Common_Movement_FaceDown)
 	applymovement(PLAYER,Common_Movement_FaceDown)
 	applymovement(CAMERA,moves(walk_down * 4))
+	waitmovement(PLAYER)
 	waitmovement(CAMERA)
 	call(BattleArcade_BattleRoom_EventScript_BrainEntrance)
 }
 
 script BattleArcade_BattleRoom_EventScript_BrainEntrance
 {
-	applymovement(OPPONENT,moves(walk_in_place_right, walk_in_place_up, walk_in_place_left, walk_in_place_down))
-	waitmovement(OPPONENT)
-
 	playse(SE_APPLAUSE)
-	waitse
-
-	applymovement(OPPONENT,moves(walk_in_place_right,walk_in_place_up,walk_in_place_left,walk_in_place_down,walk_in_place_right,walk_in_place_up))
-	waitmovement(OPPONENT)
-
 	applymovement(CAMERA,moves(walk_up * 4))
-
-	applymovement(OPPONENT,moves(walk_up * 2))
-	moveobjecttocoords(OPPONENT, 10, 10, DIR_WEST)
+	applymovement(OPPONENT,moves(walk_up * 6, walk_right * 2, walk_in_place_faster_left))
 	waitmovement(OPPONENT)
-
-	applymovement(OPPONENT,moves(walk_in_place_up, walk_in_place_left, walk_in_place_down, walk_in_place_right, walk_in_place_up ))
-	waitmovement(OPPONENT)
-
-	applymovement(PLAYER,Common_Movement_FaceRight)
-
-	waitmovement(OPPONENT)
-	waitmovement(PLAYER)
 	waitmovement(CAMERA)
+	waitse
+	applymovement(PLAYER,Common_Movement_FaceRight)
+	waitmovement(PLAYER)
 	special(RemoveCameraObject)
 }
 
