@@ -75,6 +75,9 @@ order: 1
 ### Fossils?
 - Smash rocks in Ruins of Alph.
 
+### How do I get other starters?
+- Goldenrod Casino has a gachapon machine that can give starters from any generation.
+
 ### Gym leader rematch locations in postgame?
 - Falkner: Violet City school
 - Bugsy: National Park
