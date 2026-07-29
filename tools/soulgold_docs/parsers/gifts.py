@@ -10,7 +10,7 @@ from typing import Mapping
 from ..c_parser import read, strip_c_comments
 from ..map_names import is_docs_excluded_map, map_display_name
 from ..models import SpeciesLocation, SpeciesRow
-from ..paths import GACHA_C, MAP_GROUPS_JSON, REPO_ROOT, SPECIES_H
+from ..paths import GACHA_C, MAP_GROUPS_JSON, ODD_EGG_C, REPO_ROOT, SPECIES_H
 
 
 SCRIPT_LABEL_RE = re.compile(r"^([A-Za-z_][A-Za-z0-9_]*)(?:::|:)\s*$", re.MULTILINE)
@@ -25,6 +25,10 @@ LEGENDARY_ENCOUNTER_RE = re.compile(
 )
 MASTER_GACHA_ARRAY_RE = re.compile(
     r"static\s+const\s+u16\s+sGachaMasterSpecies(?:Common|Uncommon|Rare|UltraRare)\[\]\s*=\s*\{(.*?)\};",
+    re.DOTALL,
+)
+ODD_EGG_ARRAY_RE = re.compile(
+    r"static\s+const\s+u16\s+sOddEggSpecies(?:\[[^\]]*\])?\s*=\s*\{(.*?)\};",
     re.DOTALL,
 )
 GIFT_LOCATION_NAME_OVERRIDES = {
@@ -218,3 +222,42 @@ def add_master_gachapon_species_locations(
             locations.setdefault(species, [])
             if location not in locations[species]:
                 locations[species].append(location)
+
+
+def add_odd_egg_species_locations(
+    locations: dict[str, list[SpeciesLocation]],
+    by_species: dict[str, SpeciesRow],
+) -> None:
+    """Add the uniformly random, one-time Route 34 Odd Egg pool."""
+    try:
+        text = strip_c_comments(read(ODD_EGG_C))
+    except FileNotFoundError:
+        return
+
+    match = ODD_EGG_ARRAY_RE.search(text)
+    if not match:
+        return
+
+    aliases = species_aliases()
+    pool = []
+    for raw_species in re.findall(r"\bSPECIES_[A-Z0-9_]+\b", match.group(1)):
+        species = aliases.get(raw_species, raw_species)
+        if species != "SPECIES_NONE" and species in by_species and species not in pool:
+            pool.append(species)
+    if not pool:
+        return
+
+    method = f"One-time Odd Egg (1/{len(pool)} chance)"
+    for species in pool:
+        location: SpeciesLocation = {
+            "map": "MAP_ROUTE34",
+            "name": "Route 34",
+            "time": "",
+            "method": method,
+            "minLevel": 1,
+            "maxLevel": 1,
+            "rate": None,
+        }
+        locations.setdefault(species, [])
+        if location not in locations[species]:
+            locations[species].append(location)

@@ -22,6 +22,7 @@ from tools.soulgold_docs.parsers.encounters import add_hidden_grotto_species_loc
 from tools.soulgold_docs.parsers.gifts import (
     add_gift_species_locations,
     add_master_gachapon_species_locations,
+    add_odd_egg_species_locations,
     add_scripted_legendary_species_locations,
 )
 from tools.soulgold_docs.parsers.hidden_grottos import parse_hidden_grottos
@@ -92,6 +93,7 @@ def build() -> None:
     add_gift_species_locations(species_locations, species_data.by_constant)
     add_scripted_legendary_species_locations(species_locations, species_data.by_constant)
     add_master_gachapon_species_locations(species_locations, species_data.by_constant)
+    add_odd_egg_species_locations(species_locations, species_data.by_constant)
     located_species = attach_species_locations(enriched_species, species_locations)
     visible_species = visible_species_rows(located_species)
     species_lookup = build_species_lookup(located_species)
