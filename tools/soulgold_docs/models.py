@@ -29,6 +29,7 @@ class EvolutionRow(TypedDict):
     target: str
     conditions: list[str]
     label: str
+    itemName: str
 
 
 class MegaEvolutionRow(TypedDict):

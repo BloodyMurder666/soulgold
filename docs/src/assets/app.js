@@ -1188,7 +1188,7 @@ function handleItemOut(event) {
 }
 
 function handleItemTooltipClick(event) {
-  const button = event.target.closest(".item-tooltip-target");
+  const button = event.target.closest(".item-tooltip-target, .item-detail-link");
   if (!button) return;
   event.preventDefault();
   event.stopPropagation();
@@ -1297,6 +1297,22 @@ function baseConstantForMega(constant) {
   return constant.replace(/_(?:MEGA(?:_[XYZ])?|GMAX|DMAX)$/, "");
 }
 
+function evolutionMethod(edge) {
+  if (edge.method !== "EVO_ITEM" || !edge.param?.startsWith("ITEM_") || !edge.itemName) {
+    return escapeHtml(edge.label || "");
+  }
+  const conditions = edge.conditions?.length
+    ? ` (${edge.conditions.map((condition) => escapeHtml(condition)).join(", ")})`
+    : "";
+  return `By Using Specific Item (<button
+    class="evolution-item-link item-detail-link"
+    type="button"
+    data-item="${escapeHtml(edge.param)}"
+    data-item-name="${escapeHtml(edge.itemName)}"
+    aria-label="Open ${escapeHtml(edge.itemName)} item details"
+  >${escapeHtml(edge.itemName)}</button>)${conditions}`;
+}
+
 function evolutionChain(mon) {
   const bySpecies = new Map(state.data.species.map((entry) => [entry.constant, entry]));
   const chainMon = baseSpeciesForForms(mon);
@@ -1333,7 +1349,7 @@ function evolutionChain(mon) {
           <button class="evolution-name species-link" type="button" data-species="${source.constant}">${sprite(source.sprite, "tiny-sprite")}<strong>${source.name}</strong></button>
           <span class="evolution-arrow">-&gt;</span>
           <button class="evolution-name species-link" type="button" data-species="${edge.target}">${sprite(target?.sprite, "tiny-sprite")}<strong>${target?.name || edge.target.replace("SPECIES_", "").replaceAll("_", " ")}</strong></button>
-          <span class="evolution-method">${edge.label}</span>
+          <span class="evolution-method">${evolutionMethod(edge)}</span>
         </div>
         ${renderFrom(edge.target)}
       `;

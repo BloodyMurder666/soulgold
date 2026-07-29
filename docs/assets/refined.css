@@ -1411,6 +1411,28 @@ dialog::backdrop {
   font-weight: 700;
 }
 
+.evolution-item-link {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.evolution-item-link:hover,
+.evolution-item-link:focus-visible {
+  color: var(--text);
+}
+
+.evolution-item-link:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
 .held-item-list {
   display: grid;
   gap: 4px;

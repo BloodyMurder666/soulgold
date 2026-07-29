@@ -190,6 +190,7 @@ def parse_evolutions(item_names: Mapping[str, ItemRecord]) -> dict[str, list[Evo
                 "target": target,
                 "conditions": conditions,
                 "label": format_evolution_method(method, param, item_names, conditions),
+                "itemName": item_display_name(param, item_names) if method == "EVO_ITEM" else "",
             })
     return dict(evolutions)
 
