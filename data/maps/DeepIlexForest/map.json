@@ -29,7 +29,7 @@
       "flag": "FLAG_HIDE_LARVESTA"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "graphics_id": "OBJ_EVENT_GFX_MEGASTONE",
       "x": 18,
       "y": 9,
       "elevation": 0,
