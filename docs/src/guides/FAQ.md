@@ -76,7 +76,7 @@ order: 1
 - Check docs or ingame pokedex.
 
 ### Raising IVs?
-- Fishing and Battle Factory (after gym 3) can net you feather items which permanently raise your IVs by 4 with each use. Additionally Hyper Training is available in Rinto Village with Bottle Caps (which can also be obtained with fishing).
+- Fishing and Battle Factory (after gym 3) can net you feather items which permanently raise your IVs by 4 with each use. Additionally Hyper Training is available in Rinto Village with Bottle Caps (which can also be obtained by fishing with Super Rod).
 
 ### Raising EVs?
 - EV items such as Power Weight have been greatly buffed, and they are buyable in Goldenrod. Additionally vitamins like Protein are not capped at 100 EVs anymore, and there are EX versions of the items that raise the stats instantly to max.
