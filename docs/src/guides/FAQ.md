@@ -58,7 +58,16 @@ order: 1
 - There's a tutor move master in Olivine City in the top-right house who will sell you infinite access to all Tutor moves for 44444 pokedollars. After buying it, you can teach tutor moves from the summary screen.
 
 ### Egg moves?
-- Blackthorne City egg move master sells you infinite access to egg moves for 88888 pokedollars similar to tutor move master.
+- Blackthorn City egg move master sells you infinite access to egg moves for 88888 pokedollars similar to tutor move master.
+
+### When does night time start?
+- 20:00 ingame time.
+
+### Tips for finding items that are held by wild Pokémon?
+- Have a Pokémon with ability Compoundeyes or Super Luck in the first party slot to increase the chances of wild Pokémon holding an item.
+
+### Tips for early game money?
+- Have Pokémon with ability Pickup. In this hack if the held item slot is occuped, items picked by Pickup will still go to bag.
 
 ### Why do innates unlock so late?
 - They are meant to act as a form of postgame progression. Most Pokémon stop learning moves around 60~ usually, so this gives something to look forward to after that.
