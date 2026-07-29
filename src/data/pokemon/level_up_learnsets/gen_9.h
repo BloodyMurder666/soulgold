@@ -1297,6 +1297,8 @@ static const struct LevelUpMove sDiglettAlolaLevelUpLearnset[] = {
     LEVEL_UP_MOVE(36, MOVE_EARTH_POWER),
     LEVEL_UP_MOVE(40, MOVE_EARTHQUAKE),
     LEVEL_UP_MOVE(44, MOVE_FISSURE),
+    LEVEL_UP_MOVE(50, MOVE_HEAD_SMASH),
+    LEVEL_UP_MOVE(56, MOVE_DOUBLE_EDGE),
     LEVEL_UP_END
 };
 
@@ -11459,7 +11461,9 @@ static const struct LevelUpMove sPalkiaLevelUpLearnset[] = {
 #if P_FAMILY_HEATRAN
 static const struct LevelUpMove sHeatranLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_LEER),
+    LEVEL_UP_MOVE( 1, MOVE_HEAD_SMASH),
     LEVEL_UP_MOVE( 1, MOVE_FIRE_SPIN),
+    LEVEL_UP_MOVE( 1, MOVE_FLARE_BLITZ),
     LEVEL_UP_MOVE( 6, MOVE_METAL_CLAW),
     LEVEL_UP_MOVE(12, MOVE_ANCIENT_POWER),
     LEVEL_UP_MOVE(18, MOVE_FIRE_FANG),
