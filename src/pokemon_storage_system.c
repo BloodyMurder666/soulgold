@@ -5158,10 +5158,11 @@ static void GetIncomingBoxMonData(u8 boxId)
 
 static void DestroyBoxMonIconAtPosition(u8 boxPosition)
 {
-    if (sStorage->boxMonsSprites[boxPosition] != NULL)
+    if (boxPosition < IN_BOX_COUNT && sStorage->boxMonsSprites[boxPosition] != NULL)
     {
         DestroyBoxMonIcon(sStorage->boxMonsSprites[boxPosition]);
         DisableBoxMonDynamicPalette(boxPosition, 1); // blank dynamic palette
+        sStorage->boxMonsSprites[boxPosition] = NULL;
     }
 }
 

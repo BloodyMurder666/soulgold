@@ -534,12 +534,12 @@ u8 CalculateTrainerScaledLevel(const struct LevelScalingConfig *config, u8 origi
     return (u8)adjustedLevel;
 }
 
-u8 CalculateWildScaledLevel(u16 species, u8 originalLevel)
+u8 CalculateWildScaledLevel(u16 species, u8 originalLevel, u8 minimumLevel)
 {
     sWildOptionConfig.mode = GetCurrentWildLevelScalingMode();
     sWildOptionConfig.levelAugmentAdd = B_WILD_SCALING_LEVEL_AUGMENT;
     sWildOptionConfig.levelVariation = B_WILD_SCALING_LEVEL_VARIATION;
-    sWildOptionConfig.minLevel = B_WILD_SCALING_MIN_LEVEL;
+    sWildOptionConfig.minLevel = max(B_WILD_SCALING_MIN_LEVEL, minimumLevel);
     sWildOptionConfig.maxLevel = B_WILD_SCALING_MAX_LEVEL;
     sWildOptionConfig.manageEvolutions = B_WILD_SCALING_MANAGE_EVOLUTIONS;
     sWildOptionConfig.excludeFainted = B_WILD_SCALING_EXCLUDE_FAINTED;

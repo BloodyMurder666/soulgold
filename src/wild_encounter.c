@@ -568,11 +568,11 @@ static u8 PickWildMonNature(u32 species)
     return GetSynchronizedNature(WILDMON_ORIGIN, species);
 }
 
-void CreateWildMon(u16 species, u8 level)
+static void CreateWildMonWithLevelFloor(u16 species, u8 level, u8 minimumLevel)
 {
     // Apply level scaling for wild encounters
 #if B_LEVEL_SCALING_ENABLED
-    level = CalculateWildScaledLevel(species, level);
+    level = CalculateWildScaledLevel(species, level, minimumLevel);
     // Apply species scaling (evolution management)
     species = CalculateWildScaledSpecies(species, level);
 #endif
@@ -582,6 +582,11 @@ void CreateWildMon(u16 species, u8 level)
     u32 personality = GetMonPersonality(species, GetSynchronizedGender(WILDMON_ORIGIN, species), PickWildMonNature(species), RANDOM_UNOWN_LETTER);
     CreateMonWithIVs(&gEnemyParty[0], species, level, personality, OTID_STRUCT_PLAYER_ID, USE_RANDOM_IVS);
     GiveMonInitialMoveset(&gEnemyParty[0]);
+}
+
+void CreateWildMon(u16 species, u8 level)
+{
+    CreateWildMonWithLevelFloor(species, level, level);
 }
 
 #ifdef BUGFIX
@@ -644,7 +649,11 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, enum 
     if (gMapHeader.mapLayoutId != LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_WILD_MONS && flags & WILD_CHECK_KEEN_EYE && !IsAbilityAllowingEncounter(level))
         return FALSE;
 
-    CreateWildMon(wildMonInfo->wildPokemon[wildMonIndex].species, level);
+    CreateWildMonWithLevelFloor(
+        wildMonInfo->wildPokemon[wildMonIndex].species,
+        level,
+        min(wildMonInfo->wildPokemon[wildMonIndex].minLevel,
+            wildMonInfo->wildPokemon[wildMonIndex].maxLevel));
     return TRUE;
 }
 
@@ -655,7 +664,11 @@ static u16 GenerateFishingWildMon(const struct WildPokemonInfo *wildMonInfo, u8 
     u8 level = ChooseWildMonLevel(wildMonInfo->wildPokemon, wildMonIndex, WILD_AREA_FISHING);
 
     UpdateChainFishingStreak();
-    CreateWildMon(wildMonSpecies, level);
+    CreateWildMonWithLevelFloor(
+        wildMonSpecies,
+        level,
+        min(wildMonInfo->wildPokemon[wildMonIndex].minLevel,
+            wildMonInfo->wildPokemon[wildMonIndex].maxLevel));
     return wildMonSpecies;
 }
 
@@ -1215,7 +1228,10 @@ void FishingWildEncounter(u8 rod)
         u8 level = ChooseWildMonLevel(&sWildFeebas, 0, WILD_AREA_FISHING);
 
         species = sWildFeebas.species;
-        CreateWildMon(species, level);
+        CreateWildMonWithLevelFloor(
+            species,
+            level,
+            min(sWildFeebas.minLevel, sWildFeebas.maxLevel));
     }
     else
     {

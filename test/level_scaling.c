@@ -85,6 +85,26 @@ TEST("Trainer scaling caps large authored level gaps")
               GetMonData(&gEnemyParty[1], MON_DATA_LEVEL));
 }
 
+TEST("Wild scaling respects the authored minimum and rises with the party")
+{
+    u8 scaledLevel;
+
+    ZeroPlayerPartyMons();
+    CreateMonWithIVs(&gPlayerParty[0], SPECIES_WOBBUFFET, 5, 0, OTID_STRUCT_PLAYER_ID, 0);
+    gPlayerPartyCount = 1;
+    gSaveBlock2Ptr->optionsWildLevelScaling = LEVEL_SCALING_OPTION_ON;
+    InvalidatePartyLevelCache();
+
+    EXPECT_EQ(CalculateWildScaledLevel(SPECIES_WOBBUFFET, 12, 10), 10);
+
+    SetMonData(&gPlayerParty[0], MON_DATA_LEVEL, (u8[]){30});
+    InvalidatePartyLevelCache();
+    scaledLevel = CalculateWildScaledLevel(SPECIES_WOBBUFFET, 12, 10);
+
+    EXPECT(scaledLevel >= 20);
+    EXPECT(scaledLevel <= 22);
+}
+
 TEST("Optional trainer scaling activates only when the anti-sandbag average is more than five levels ahead")
 {
     static const struct TrainerMon trainerMons[] =
