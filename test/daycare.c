@@ -68,6 +68,37 @@ TEST("(Daycare) Pokémon can breed with Ditto if they don't belong to the Ditto 
         EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), SPECIES_NONE);
 }
 
+TEST("(Daycare) Bill's Eevee can breed with Ditto and produces a regular Eevee Egg")
+{
+    ASSUME(P_FAMILY_DITTO == TRUE);
+    ASSUME(P_FAMILY_EEVEE == TRUE);
+
+    ZeroPlayerPartyMons();
+    RUN_OVERWORLD_SCRIPT(
+        givemon SPECIES_DITTO, 100;
+        givemon SPECIES_EEVEE_STARTER, 100;
+    );
+    STORE_IN_DAYCARE_AND_GET_EGG();
+
+    EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), SPECIES_EEVEE);
+}
+
+TEST("(Daycare) Bill's Pikachu can breed with Ditto and produces a Pichu Egg")
+{
+    ASSUME(P_FAMILY_DITTO == TRUE);
+    ASSUME(P_FAMILY_PIKACHU == TRUE);
+    ASSUME(P_GEN_2_CROSS_EVOS == TRUE);
+
+    ZeroPlayerPartyMons();
+    RUN_OVERWORLD_SCRIPT(
+        givemon SPECIES_DITTO, 100;
+        givemon SPECIES_PIKACHU_STARTER, 100;
+    );
+    STORE_IN_DAYCARE_AND_GET_EGG();
+
+    EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), SPECIES_PICHU);
+}
+
 TEST("(Daycare) Shellos' form is always based on the mother's form")
 {
     u32 offspring = 0;

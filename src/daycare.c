@@ -1070,6 +1070,10 @@ static u16 DetermineEggSpeciesAndParentSlots(struct DayCare *daycare, u8 *parent
         eggSpecies = P_SCATTERBUG_LINE_FORM_BREED;
     else if (GET_BASE_SPECIES_ID(eggSpecies) == SPECIES_FURFROU)
         eggSpecies = SPECIES_FURFROU;
+    else if (GET_BASE_SPECIES_ID(eggSpecies) == SPECIES_PIKACHU)
+        eggSpecies = GetEggSpecies(SPECIES_PIKACHU);
+    else if (GET_BASE_SPECIES_ID(eggSpecies) == SPECIES_EEVEE)
+        eggSpecies = SPECIES_EEVEE;
     else if (eggSpecies == SPECIES_SINISTEA_ANTIQUE)
         eggSpecies = SPECIES_SINISTEA_PHONY;
     else if (eggSpecies == SPECIES_POLTCHAGEIST_ARTISAN)
