@@ -54,6 +54,12 @@ order: 1
 ### Ability changing?
 - Battle Factory (after 3rd gym) offers them for playing a few rounds. Few can also be found in the overworld.
 
+### Tutor moves?
+- There's a tutor move master in Olivine City in the top-right house who will sell you infinite access to all Tutor moves for 44444 pokedollars. After buying it, you can teach tutor moves from the summary screen.
+
+### Egg moves?
+- Blackthorne City egg move master sells you infinite access to egg moves for 88888 pokedollars similar to tutor move master.
+
 ### Why do innates unlock so late?
 - They are meant to act as a form of postgame progression. Most Pokémon stop learning moves around 60~ usually, so this gives something to look forward to after that.
 
