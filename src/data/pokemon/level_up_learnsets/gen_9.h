@@ -1791,6 +1791,7 @@ static const struct LevelUpMove sMachokeLevelUpLearnset[] = {
 
 static const struct LevelUpMove sMachampLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_WIDE_GUARD),
+    LEVEL_UP_MOVE( 1, MOVE_SUPERPOWER),
     LEVEL_UP_MOVE( 1, MOVE_LOW_KICK),
     LEVEL_UP_MOVE( 1, MOVE_LEER),
     LEVEL_UP_MOVE( 1, MOVE_FOCUS_ENERGY),
@@ -1805,7 +1806,8 @@ static const struct LevelUpMove sMachampLevelUpLearnset[] = {
     LEVEL_UP_MOVE(48, MOVE_SEISMIC_TOSS),
     LEVEL_UP_MOVE(54, MOVE_DYNAMIC_PUNCH),
     LEVEL_UP_MOVE(60, MOVE_CROSS_CHOP),
-    LEVEL_UP_MOVE(66, MOVE_DOUBLE_EDGE),
+    LEVEL_UP_MOVE(66, MOVE_CLOSE_COMBAT),
+    LEVEL_UP_MOVE(70, MOVE_DOUBLE_EDGE),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_MACHOP
@@ -5951,6 +5953,7 @@ static const struct LevelUpMove sDunsparceLevelUpLearnset[] = {
     LEVEL_UP_MOVE(20, MOVE_ANCIENT_POWER),
     LEVEL_UP_MOVE(24, MOVE_DRILL_RUN),
     LEVEL_UP_MOVE(28, MOVE_YAWN),
+    LEVEL_UP_MOVE(30, MOVE_DIG),
     LEVEL_UP_MOVE(32, MOVE_HYPER_DRILL),
     LEVEL_UP_MOVE(36, MOVE_ROOST),
     LEVEL_UP_MOVE(40, MOVE_DRAGON_RUSH),
@@ -5971,6 +5974,7 @@ static const struct LevelUpMove sDudunsparceLevelUpLearnset[] = {
     LEVEL_UP_MOVE(20, MOVE_ANCIENT_POWER),
     LEVEL_UP_MOVE(24, MOVE_DRILL_RUN),
     LEVEL_UP_MOVE(28, MOVE_YAWN),
+    LEVEL_UP_MOVE(28, MOVE_DIG),
     LEVEL_UP_MOVE(32, MOVE_HYPER_DRILL),
     LEVEL_UP_MOVE(36, MOVE_ROOST),
     LEVEL_UP_MOVE(40, MOVE_DRAGON_RUSH),
