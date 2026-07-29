@@ -866,20 +866,41 @@ SINGLE_BATTLE_TEST("Windcaller makes Tailwind last 6 turns")
     }
 }
 
-SINGLE_BATTLE_TEST("Siegebreaker attacks scale from Defense", s16 damage)
+SINGLE_BATTLE_TEST("Siegebreaker attacks use two-thirds of Defense", s16 damage)
 {
+    enum Ability ability;
+    u16 attack;
     u16 defense;
 
-    PARAMETRIZE { defense = 100; }
-    PARAMETRIZE { defense = 200; }
+    PARAMETRIZE
+    {
+        ability = ABILITY_SIEGEBREAKER;
+        attack = 50;
+        defense = 150;
+    }
+    PARAMETRIZE
+    {
+        ability = ABILITY_NONE;
+        attack = 100;
+        defense = 50;
+    }
+
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SIEGEBREAKER); Attack(50); Defense(defense); }
+        ASSUME(GetMoveCategory(MOVE_SCRATCH) == DAMAGE_CATEGORY_PHYSICAL);
+        PLAYER(SPECIES_WOBBUFFET)
+        {
+            Ability(ability);
+            Attack(attack);
+            Defense(defense);
+        }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(player, MOVE_SCRATCH); }
+        TURN {
+            MOVE(player, MOVE_SCRATCH, WITH_RNG(RNG_DAMAGE_MODIFIER, 0));
+        }
     } SCENE {
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
-        EXPECT_MUL_EQ(results[0].damage, Q_4_12(2.0), results[1].damage);
+        EXPECT_EQ(results[0].damage, results[1].damage);
     }
 }

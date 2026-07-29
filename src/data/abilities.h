@@ -4506,7 +4506,7 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
     {
         .name = _("Siegebreaker"),
         .description = COMPOUND_STRING("Attacks use Defense."),
-        .longDescription = COMPOUND_STRING("Attacks use Defense\n"
+        .longDescription = COMPOUND_STRING("Attacks use 2/3 of Defense\n"
                                            "instead of Attack or\n"
                                            "Sp. Atk."),
         .aiRating = 6,
@@ -5002,7 +5002,7 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .name = _("Rejuvenation"),
         .description = COMPOUND_STRING("Heals if unhurt."),
         .longDescription = COMPOUND_STRING("At turn's end, restores\n"
-                                           "1/5 max HP if it took no\n"
+                                           "1/10 max HP if it took no\n"
                                            "damage that turn."),
         .aiRating = 6,
     },
@@ -5294,7 +5294,7 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Next hit is stronger."),
         .longDescription = COMPOUND_STRING("After using Protect, its\n"
                                            "next damaging move deals\n"
-                                           "50% more damage."),
+                                           "20% more damage."),
         .aiRating = 5,
     },
 

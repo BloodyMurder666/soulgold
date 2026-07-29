@@ -4666,7 +4666,7 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
             {
                 gSpecialStatuses[battler].endTurnTraitDone[traitCheck - 1] = TRUE;
                 PushTraitStack(battler, ABILITY_REJUVENATION);
-                SetHealAmount(battler, max(1, GetNonDynamaxMaxHP(battler) / 5));
+                SetHealAmount(battler, max(1, GetNonDynamaxMaxHP(battler) / 10));
                 BattleScriptExecute(BattleScript_IceBodyHeal);
                 effect++;
                 break;
@@ -8601,7 +8601,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct BattleContext *ctx, u32
     if (SearchTraits(battlerTraits, ABILITY_BLITZ)
      && gBattleStruct->blitzReady[battlerAtk]
      && IsCustomAbilityDirectDamagingMove(move))
-        modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
+        modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
     if (SearchTraits(battlerTraits, ABILITY_FLARE)
      && moveType == TYPE_FIRE
      && gBattleMons[battlerDef].status1 & STATUS1_BURN)
@@ -8896,7 +8896,7 @@ static inline u32 CalcAttackStat(struct BattleContext *ctx)
     {
         if (SearchTraits(battlerTraits, ABILITY_SIEGEBREAKER))
         {
-            atkStat = gBattleMons[battlerAtk].defense;
+            atkStat = gBattleMons[battlerAtk].defense * 2 / 3;
             atkStage = gBattleMons[battlerAtk].statStages[STAT_DEF];
         }
         else if (ShouldUseSpAtkForPhysicalMove(move, battlerTraits))

@@ -589,7 +589,7 @@ SINGLE_BATTLE_TEST("Rejuvenation heals if no damage was taken this turn")
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE); MOVE(opponent, MOVE_CELEBRATE); }
     } THEN {
-        EXPECT_EQ(player->hp, 100);
+        EXPECT_EQ(player->hp, 90);
     }
 }
 

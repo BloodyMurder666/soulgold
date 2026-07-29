@@ -1,7 +1,11 @@
 Update notes:
 29.7.2026
+- Heracross is available from Goldenrod Shore hidden grotto and Route 48
+- Innate strength adjustments
 - Beedrill gets attack order, Butterfree gets hurricane and pollen puff
 - Adjusted Kingambit follower sprite to be less floaty when facing upwards
+- Adjusted Gyarados surf sprite
+- "Johto Professor" trophy excludes legendaries and mythicals
 
 28.7.2026
 - Milotic innate 2 has been changed to Fae Soul

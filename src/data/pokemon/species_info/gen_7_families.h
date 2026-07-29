@@ -714,12 +714,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
 #if P_GEN_9_MEGA_EVOLUTIONS
     [SPECIES_PRIMARINA_MEGA] =
     {
-        .baseHP        = 100,
-        .baseAttack    = 126,
-        .baseDefense   = 100,
-        .baseSpeed     = 80,
-        .baseSpAttack  = 126,
-        .baseSpDefense = 126,
+        .baseHP        = 80,
+        .baseAttack    = 74,
+        .baseDefense   = 134,
+        .baseSpeed     = 90,
+        .baseSpAttack  = 124,
+        .baseSpDefense = 128,
         .types = MON_TYPES(TYPE_WATER, TYPE_FAIRY),
         .catchRate = 45,
         .expYield = 265,
@@ -2772,7 +2772,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1),
         .abilities = { ABILITY_MERCILESS, ABILITY_LIMBER, ABILITY_REGENERATOR },
-        .innates = { ABILITY_POISON_POINT, ABILITY_POISON_TOUCH, ABILITY_REJUVENATION },
+        .innates = { ABILITY_POISON_POINT, ABILITY_POISON_TOUCH, ABILITY_WATER_ABSORB },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Toxapex"),
         .cryId = CRY_TOXAPEX,

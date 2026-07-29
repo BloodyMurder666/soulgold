@@ -113,7 +113,7 @@ static const struct HiddenGrottoData sHiddenGrottoData[NUM_HIDDEN_GROTTOES] =
             { SPECIES_MINCCINO, 0 },
             { SPECIES_SHROOMISH, 0 },
             { SPECIES_ROCKRUFF_OWN_TEMPO, 0 },
-            { SPECIES_AIPOM, 0 },
+            { SPECIES_HERACROSS, 0 },
         },
     },
     [HIDDEN_GROTTO_ROUTE35] =

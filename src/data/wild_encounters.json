@@ -4205,7 +4205,7 @@
               {
                 "min_level": 30,
                 "max_level": 32,
-                "species": "SPECIES_TAUROS"
+                "species": "SPECIES_SKIPLOOM"
               },
               {
                 "min_level": 30,
@@ -4225,7 +4225,7 @@
               {
                 "min_level": 30,
                 "max_level": 33,
-                "species": "SPECIES_SKIPLOOM"
+                "species": "SPECIES_GLOOM"
               },
               {
                 "min_level": 30,
@@ -4235,7 +4235,7 @@
               {
                 "min_level": 30,
                 "max_level": 33,
-                "species": "SPECIES_ARIADOS"
+                "species": "SPECIES_HERACROSS"
               },
               {
                 "min_level": 30,

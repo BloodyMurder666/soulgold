@@ -63,7 +63,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route41_EventScript_Tentacruel1",
+      "script": "GuardingDewgong",
       "flag": "FLAG_HIDE_WHIRL_ISLANDS_TENTACRUEL"
     },
     {
@@ -729,7 +729,7 @@
     },
     {
       "type": "trigger",
-      "x": 35,
+      "x": 36,
       "y": 86,
       "elevation": 0,
       "var": "TRIGGER_RUN_IMMEDIATELY",
@@ -738,7 +738,7 @@
     },
     {
       "type": "trigger",
-      "x": 36,
+      "x": 35,
       "y": 86,
       "elevation": 0,
       "var": "TRIGGER_RUN_IMMEDIATELY",
