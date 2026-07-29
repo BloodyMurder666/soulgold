@@ -9,12 +9,15 @@
 #include "bg.h"
 #include "data.h"
 #include "decompress.h"
+#include "dexnav.h"
 #include "event_data.h"
 #include "event_object_lock.h"
 #include "event_object_movement.h"
 #include "event_scripts.h"
 #include "field_player_avatar.h"
+#include "field_screen_effect.h"
 #include "field_specials.h"
+#include "field_weather.h"
 #include "graphics.h"
 #include "gpu_regs.h"
 #include "international_string_util.h"
@@ -36,6 +39,7 @@
 #include "player_pc.h"
 #include "pokemon.h"
 #include "pokemon_summary_screen.h"
+#include "pokegear.h"
 #include "scanline_effect.h"
 #include "script.h"
 #include "shop.h"
@@ -245,6 +249,7 @@ static s32 CompareItemsByType(enum Pocket pocketId, struct ItemSlot item1, struc
 static s32 CompareItemsByIndex(enum Pocket pocketId, struct ItemSlot item1, struct ItemSlot item2);
 // Key item wheel
 static void Task_KeyItemWheel(u8 taskId);
+static void Task_OpenRegisteredPokegearApp(u8 taskId);
 
 static const struct BgTemplate sBgTemplates_ItemMenu[] =
 {
@@ -583,6 +588,32 @@ static const struct SpriteTemplate sSpriteTemplate_KeyItemBoxWin = {
 
 static const u8 sKeyItemBoxXPos[MAX_REGISTERED_ITEMS] = {(DISPLAY_WIDTH / 2), (DISPLAY_WIDTH / 2) + 32, (DISPLAY_WIDTH / 2), (DISPLAY_WIDTH / 2) - 32};
 static const u8 sKeyItemBoxYPos[MAX_REGISTERED_ITEMS] = {(DISPLAY_HEIGHT / 2) - 32, (DISPLAY_HEIGHT / 2), (DISPLAY_HEIGHT / 2) + 32, (DISPLAY_HEIGHT / 2)};
+
+static const u32 sRegisteredPokegearMapIcon[] = INCBIN_U32("graphics/pokegear/registerable_map_icon.4bpp.smol");
+static const u32 sRegisteredPokegearDexNavIcon[] = INCBIN_U32("graphics/pokegear/registerable_dexnav_icon.4bpp.smol");
+static const u32 sRegisteredPokegearTrophiesIcon[] = INCBIN_U32("graphics/pokegear/registerable_trophies_icon.4bpp.smol");
+static const u32 sRegisteredPokegearJukeboxIcon[] = INCBIN_U32("graphics/pokegear/registerable_radio_icon.4bpp.smol");
+
+static const u16 sRegisteredPokegearMapIconPal[] = INCBIN_U16("graphics/pokegear/registerable_map_icon.gbapal");
+static const u16 sRegisteredPokegearDexNavIconPal[] = INCBIN_U16("graphics/pokegear/registerable_dexnav_icon.gbapal");
+static const u16 sRegisteredPokegearTrophiesIconPal[] = INCBIN_U16("graphics/pokegear/registerable_trophies_icon.gbapal");
+static const u16 sRegisteredPokegearJukeboxIconPal[] = INCBIN_U16("graphics/pokegear/registerable_radio_icon.gbapal");
+
+static const u32 *const sRegisteredPokegearIconGfx[POKEGEAR_APP_COUNT] =
+{
+    [POKEGEAR_APP_MAP] = sRegisteredPokegearMapIcon,
+    [POKEGEAR_APP_DEXNAV] = sRegisteredPokegearDexNavIcon,
+    [POKEGEAR_APP_TROPHIES] = sRegisteredPokegearTrophiesIcon,
+    [POKEGEAR_APP_JUKEBOX] = sRegisteredPokegearJukeboxIcon,
+};
+
+static const u16 *const sRegisteredPokegearIconPal[POKEGEAR_APP_COUNT] =
+{
+    [POKEGEAR_APP_MAP] = sRegisteredPokegearMapIconPal,
+    [POKEGEAR_APP_DEXNAV] = sRegisteredPokegearDexNavIconPal,
+    [POKEGEAR_APP_TROPHIES] = sRegisteredPokegearTrophiesIconPal,
+    [POKEGEAR_APP_JUKEBOX] = sRegisteredPokegearJukeboxIconPal,
+};
 
 enum {
     COLORID_NORMAL,
@@ -2220,8 +2251,170 @@ static bool8 IsRegisteredKeyItemUsable(enum Item itemId)
         && GetItemFieldFunc(itemId) != NULL;
 }
 
+static void EnsureRegisteredShortcutsInitialized(void)
+{
+    if (gSaveBlock1Ptr->registeredShortcutsMagic == REGISTERED_SHORTCUTS_SAVE_MAGIC
+     && gSaveBlock1Ptr->registeredShortcutsMagicInv == REGISTERED_SHORTCUTS_SAVE_MAGIC_INV)
+        return;
+
+    // Preserve old registeredItems data and initialize only metadata that
+    // occupies bytes reserved and unused by previous versions.
+    memset(gSaveBlock1Ptr->registeredShortcutTypes, REGISTERED_SHORTCUT_ITEM, sizeof(gSaveBlock1Ptr->registeredShortcutTypes));
+    memset(gSaveBlock1Ptr->registeredPokegearApps, 0, sizeof(gSaveBlock1Ptr->registeredPokegearApps));
+    gSaveBlock1Ptr->registeredShortcutsMagic = REGISTERED_SHORTCUTS_SAVE_MAGIC;
+    gSaveBlock1Ptr->registeredShortcutsMagicInv = REGISTERED_SHORTCUTS_SAVE_MAGIC_INV;
+}
+
+static void MigrateRegisteredItemCompat(u32 slotToAvoid)
+{
+    u32 i;
+    enum Item legacyItem;
+
+    EnsureRegisteredShortcutsInitialized();
+    legacyItem = gSaveBlock1Ptr->registeredItemCompat;
+    if (!IsRegisteredKeyItemUsable(legacyItem))
+        return;
+
+    // If any usable item already occupies the item wheel, the old
+    // compatibility field is not the player's only registration.
+    for (i = 0; i < MAX_REGISTERED_ITEMS; i++)
+    {
+        if (gSaveBlock1Ptr->registeredShortcutTypes[i] == REGISTERED_SHORTCUT_ITEM
+         && IsRegisteredKeyItemUsable(gSaveBlock1Ptr->registeredItems[i]))
+            return;
+    }
+
+    // Preserve a legacy-only registration before an app takes a wheel slot.
+    // Prefer another slot so registering the first app cannot immediately
+    // overwrite the item that was just migrated.
+    for (i = 0; i < MAX_REGISTERED_ITEMS; i++)
+    {
+        if (i != slotToAvoid
+         && gSaveBlock1Ptr->registeredShortcutTypes[i] == REGISTERED_SHORTCUT_ITEM)
+        {
+            gSaveBlock1Ptr->registeredItems[i] = legacyItem;
+            gSaveBlock1Ptr->registeredPokegearApps[i] = POKEGEAR_APP_MAP;
+            return;
+        }
+    }
+
+    if (slotToAvoid < MAX_REGISTERED_ITEMS
+     && gSaveBlock1Ptr->registeredShortcutTypes[slotToAvoid] == REGISTERED_SHORTCUT_ITEM)
+    {
+        gSaveBlock1Ptr->registeredItems[slotToAvoid] = legacyItem;
+        gSaveBlock1Ptr->registeredPokegearApps[slotToAvoid] = POKEGEAR_APP_MAP;
+    }
+}
+
+static bool8 IsRegisteredShortcutUsable(u32 slot)
+{
+    EnsureRegisteredShortcutsInitialized();
+
+    if (slot >= MAX_REGISTERED_ITEMS)
+        return FALSE;
+
+    switch (gSaveBlock1Ptr->registeredShortcutTypes[slot])
+    {
+    case REGISTERED_SHORTCUT_ITEM:
+        return IsRegisteredKeyItemUsable(gSaveBlock1Ptr->registeredItems[slot]);
+    case REGISTERED_SHORTCUT_POKEGEAR_APP:
+        return IsPokegearAppUnlocked(gSaveBlock1Ptr->registeredPokegearApps[slot]);
+    default:
+        return FALSE;
+    }
+}
+
+static void RefreshRegisteredItemCompat(void)
+{
+    u32 i;
+
+    gSaveBlock1Ptr->registeredItemCompat = ITEM_NONE;
+    for (i = 0; i < MAX_REGISTERED_ITEMS; i++)
+    {
+        if (gSaveBlock1Ptr->registeredShortcutTypes[i] == REGISTERED_SHORTCUT_ITEM
+         && IsRegisteredKeyItemUsable(gSaveBlock1Ptr->registeredItems[i]))
+        {
+            gSaveBlock1Ptr->registeredItemCompat = gSaveBlock1Ptr->registeredItems[i];
+            break;
+        }
+    }
+}
+
+s32 RegisteredPokegearAppIndex(u8 app)
+{
+    u32 i;
+
+    EnsureRegisteredShortcutsInitialized();
+
+    if (app >= POKEGEAR_APP_COUNT)
+        return -1;
+
+    for (i = 0; i < MAX_REGISTERED_ITEMS; i++)
+    {
+        if (gSaveBlock1Ptr->registeredShortcutTypes[i] == REGISTERED_SHORTCUT_POKEGEAR_APP
+         && gSaveBlock1Ptr->registeredPokegearApps[i] == app)
+            return i;
+    }
+
+    return -1;
+}
+
+void UnregisterPokegearApp(u8 app)
+{
+    s32 slot;
+
+    MigrateRegisteredItemCompat(MAX_REGISTERED_ITEMS);
+    slot = RegisteredPokegearAppIndex(app);
+
+    if (slot < 0)
+        return;
+
+    gSaveBlock1Ptr->registeredShortcutTypes[slot] = REGISTERED_SHORTCUT_ITEM;
+    gSaveBlock1Ptr->registeredPokegearApps[slot] = POKEGEAR_APP_MAP;
+    gSaveBlock1Ptr->registeredItems[slot] = ITEM_NONE;
+    RefreshRegisteredItemCompat();
+}
+
+void RegisterPokegearApp(u8 app, u8 slot)
+{
+    s32 oldSlot;
+
+    if (app >= POKEGEAR_APP_COUNT || slot >= MAX_REGISTERED_ITEMS || !IsPokegearAppUnlocked(app))
+        return;
+
+    MigrateRegisteredItemCompat(slot);
+    oldSlot = RegisteredPokegearAppIndex(app);
+    if (oldSlot >= 0)
+    {
+        gSaveBlock1Ptr->registeredShortcutTypes[oldSlot] = REGISTERED_SHORTCUT_ITEM;
+        gSaveBlock1Ptr->registeredPokegearApps[oldSlot] = POKEGEAR_APP_MAP;
+        gSaveBlock1Ptr->registeredItems[oldSlot] = ITEM_NONE;
+    }
+
+    gSaveBlock1Ptr->registeredItems[slot] = ITEM_NONE;
+    gSaveBlock1Ptr->registeredPokegearApps[slot] = app;
+    gSaveBlock1Ptr->registeredShortcutTypes[slot] = REGISTERED_SHORTCUT_POKEGEAR_APP;
+    RefreshRegisteredItemCompat();
+}
+
+static u32 CountRegisteredShortcuts(void)
+{
+    u32 i;
+    u32 count = 0;
+
+    EnsureRegisteredShortcutsInitialized();
+
+    for (i = 0; i < MAX_REGISTERED_ITEMS; i++)
+    {
+        if (IsRegisteredShortcutUsable(i))
+            count++;
+    }
+
+    return count;
+}
+
 // Returns [1-4] based on dpad, or 0 otherwise
-static u32 DpadInputToRegisteredItemIndex(bool32 check)
+static u32 DpadInputToRegisteredShortcutIndex(bool32 check)
 {
     u32 i = 0;
 
@@ -2234,8 +2427,8 @@ static u32 DpadInputToRegisteredItemIndex(bool32 check)
     else if (JOY_NEW(DPAD_LEFT))
         i = 4;
 
-    // If `check`, verify that slot actually has an item registered
-    if (i && check && !IsRegisteredKeyItemUsable(gSaveBlock1Ptr->registeredItems[i-1]))
+    // If `check`, verify that slot actually has a usable shortcut registered.
+    if (i && check && !IsRegisteredShortcutUsable(i - 1))
         i = 0;
 
     return i;
@@ -2255,12 +2448,14 @@ static void Task_RegisterUsingDpad(u8 taskId)
         return;
     }
 
-    i = DpadInputToRegisteredItemIndex(FALSE);
+    i = DpadInputToRegisteredShortcutIndex(FALSE);
     if (i == 0)
         return;
 
     PlaySE(SE_SELECT);
     // register and refresh menu
+    gSaveBlock1Ptr->registeredShortcutTypes[i - 1] = REGISTERED_SHORTCUT_ITEM;
+    gSaveBlock1Ptr->registeredPokegearApps[i - 1] = POKEGEAR_APP_MAP;
     gSaveBlock1Ptr->registeredItems[i - 1] = gSpecialVar_ItemId;
     gSaveBlock1Ptr->registeredItemCompat = gSpecialVar_ItemId;
     DestroyListMenuTask(tListTaskId, scrollPos, cursorPos);
@@ -2335,22 +2530,16 @@ static u32 CountRegisteredItems(void)
     u32 count = 0;
     enum Item firstUsableItem = ITEM_NONE;
 
+    MigrateRegisteredItemCompat(MAX_REGISTERED_ITEMS);
     for (i = 0; i < ARRAY_COUNT(gSaveBlock1Ptr->registeredItems); i++)
     {
-        if (IsRegisteredKeyItemUsable(gSaveBlock1Ptr->registeredItems[i]))
+        if (gSaveBlock1Ptr->registeredShortcutTypes[i] == REGISTERED_SHORTCUT_ITEM
+         && IsRegisteredKeyItemUsable(gSaveBlock1Ptr->registeredItems[i]))
         {
             if (firstUsableItem == ITEM_NONE)
                 firstUsableItem = gSaveBlock1Ptr->registeredItems[i];
             count++;
         }
-    }
-
-    // Fallback to vanilla registeredItem
-    if (count == 0 && IsRegisteredKeyItemUsable(gSaveBlock1Ptr->registeredItemCompat))
-    {
-        gSaveBlock1Ptr->registeredItems[0] = gSaveBlock1Ptr->registeredItemCompat;
-        firstUsableItem = gSaveBlock1Ptr->registeredItemCompat;
-        count = 1;
     }
 
     if (count == 0)
@@ -2366,15 +2555,13 @@ s32 RegisteredItemIndex(enum Item item)
 {
     s32 i;
 
-    for (i = 0; i < ARRAY_COUNT(gSaveBlock1Ptr->registeredItems); i++)
-        if (gSaveBlock1Ptr->registeredItems[i] && (!item || gSaveBlock1Ptr->registeredItems[i] == item))
-            return i;
+    MigrateRegisteredItemCompat(MAX_REGISTERED_ITEMS);
 
-    if (item && item == gSaveBlock1Ptr->registeredItemCompat)
-    {
-        gSaveBlock1Ptr->registeredItems[0] = item;
-        return 0;
-    }
+    for (i = 0; i < ARRAY_COUNT(gSaveBlock1Ptr->registeredItems); i++)
+        if (gSaveBlock1Ptr->registeredShortcutTypes[i] == REGISTERED_SHORTCUT_ITEM
+         && gSaveBlock1Ptr->registeredItems[i]
+         && (!item || gSaveBlock1Ptr->registeredItems[i] == item))
+            return i;
 
     return -1;
 }
@@ -2385,11 +2572,13 @@ static void ItemMenu_Register(u8 taskId)
     u16 *scrollPos = &gBagPosition.scrollPosition[gBagPosition.pocket];
     u16 *cursorPos = &gBagPosition.cursorPosition[gBagPosition.pocket];
     s32 index = RegisteredItemIndex(gSpecialVar_ItemId);
-    s32 count = CountRegisteredItems();
+    s32 count = CountRegisteredShortcuts();
     // unregister/deselect item
     if (index >= 0)
     {
         gSaveBlock1Ptr->registeredItems[index] = ITEM_NONE;
+        gSaveBlock1Ptr->registeredPokegearApps[index] = POKEGEAR_APP_MAP;
+        gSaveBlock1Ptr->registeredShortcutTypes[index] = REGISTERED_SHORTCUT_ITEM;
         // Prevent the vanilla compatibility fallback from restoring the item
         // that was just removed from the key item wheel.
         if (gSaveBlock1Ptr->registeredItemCompat == gSpecialVar_ItemId)
@@ -2400,6 +2589,8 @@ static void ItemMenu_Register(u8 taskId)
     // no items registered; register this one in slot 0
     else if (count == 0)
     {
+        gSaveBlock1Ptr->registeredShortcutTypes[0] = REGISTERED_SHORTCUT_ITEM;
+        gSaveBlock1Ptr->registeredPokegearApps[0] = POKEGEAR_APP_MAP;
         gSaveBlock1Ptr->registeredItems[0] = gSpecialVar_ItemId;
         gSaveBlock1Ptr->registeredItemCompat = gSpecialVar_ItemId;
     }
@@ -2541,10 +2732,47 @@ static void Task_ItemContext_GiveToPC(u8 taskId)
 
 #define tUsingRegisteredKeyItem data[3] // See usage in item_use.c
 
-bool8 UseRegisteredKeyItemOnField(void)
+static void Task_OpenRegisteredPokegearApp(u8 taskId)
+{
+#define tPokegearApp data[0]
+#define tOpenState   data[1]
+
+    switch (gTasks[taskId].tOpenState)
+    {
+    case 0:
+        EndDexNavSearch();
+        gFieldCallback = FieldCB_ReturnToFieldNoScript;
+        PlayRainStoppingSoundEffect();
+        FadeScreen(FADE_TO_BLACK, 0);
+        gTasks[taskId].tOpenState++;
+        break;
+    case 1:
+        if (!gPaletteFade.active)
+        {
+            enum PokegearApp app = gTasks[taskId].tPokegearApp;
+
+            CleanupOverworldWindowsAndTilemaps();
+            DestroyTask(taskId);
+            OpenPokegearApp(app, CB2_ReturnToField);
+        }
+        break;
+    }
+
+#undef tPokegearApp
+#undef tOpenState
+}
+
+static void StartRegisteredPokegearAppTask(u8 taskId, enum PokegearApp app)
+{
+    gTasks[taskId].data[0] = app;
+    gTasks[taskId].data[1] = 0;
+    gTasks[taskId].func = Task_OpenRegisteredPokegearApp;
+}
+
+bool8 UseRegisteredShortcutOnField(void)
 {
     u32 taskId;
-    u32 i;
+    u32 i, slot = MAX_REGISTERED_ITEMS;
     ItemUseFunc func = NULL;
 
     if (InUnionRoom() == TRUE || CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE || InBattlePike() || InMultiPartnerRoom() == TRUE)
@@ -2552,24 +2780,32 @@ bool8 UseRegisteredKeyItemOnField(void)
 
     HideMapNamePopUpWindow();
     ChangeBgY_ScreenOff(0, 0, BG_COORD_SET);
-    i = CountRegisteredItems();
+    CountRegisteredItems();
+    i = CountRegisteredShortcuts();
 
-    // Show key item wheel
+    // Show the wheel when more than one shortcut is registered.
     if (i > 1)
     {
         func = Task_KeyItemWheel;
     }
-    // Use the only registered item
+    // Use the only registered shortcut immediately.
     else if (i > 0)
     {
-        if (IsRegisteredKeyItemUsable(gSaveBlock1Ptr->registeredItemCompat))
+        for (slot = 0; slot < MAX_REGISTERED_ITEMS; slot++)
         {
-            gSpecialVar_ItemId = gSaveBlock1Ptr->registeredItemCompat;
-            func = GetItemFieldFunc(gSaveBlock1Ptr->registeredItemCompat);
+            if (IsRegisteredShortcutUsable(slot))
+                break;
+        }
+
+        if (gSaveBlock1Ptr->registeredShortcutTypes[slot] == REGISTERED_SHORTCUT_ITEM)
+        {
+            gSpecialVar_ItemId = gSaveBlock1Ptr->registeredItems[slot];
+            gSaveBlock1Ptr->registeredItemCompat = gSpecialVar_ItemId;
+            func = GetItemFieldFunc(gSpecialVar_ItemId);
         }
         else
         {
-            gSaveBlock1Ptr->registeredItemCompat = ITEM_NONE;
+            func = Task_OpenRegisteredPokegearApp;
         }
     }
 
@@ -2580,7 +2816,15 @@ bool8 UseRegisteredKeyItemOnField(void)
         PlayerFreeze();
         StopPlayerAvatar();
         taskId = CreateTask(func, 8);
-        gTasks[taskId].tUsingRegisteredKeyItem = TRUE;
+        if (slot < MAX_REGISTERED_ITEMS
+         && gSaveBlock1Ptr->registeredShortcutTypes[slot] == REGISTERED_SHORTCUT_POKEGEAR_APP)
+        {
+            StartRegisteredPokegearAppTask(taskId, gSaveBlock1Ptr->registeredPokegearApps[slot]);
+        }
+        else
+        {
+            gTasks[taskId].tUsingRegisteredKeyItem = TRUE;
+        }
         return TRUE;
     }
 
@@ -2604,6 +2848,24 @@ static void HBlankCB_KeyItemWheel(void)
         CpuFastCopy(sKeyItemWheelExtraPalette, (u32*)(BG_PLTT + PLTT_ID(13)*2), PLTT_SIZE_4BPP);
         sKeyItemWheelExtraPalette[0] = 0x8000;
     }
+}
+
+static bool8 BlitPokegearAppIconToWindow(enum PokegearApp app, u8 windowId, u16 x, u16 y, void *paletteDest)
+{
+    if (app >= POKEGEAR_APP_COUNT || !AllocItemIconTemporaryBuffers())
+        return FALSE;
+
+    DecompressDataWithHeaderWram(sRegisteredPokegearIconGfx[app], gItemIconDecompressionBuffer);
+    CopyItemIconPicTo4x4Buffer(gItemIconDecompressionBuffer, gItemIcon4x4Buffer);
+    BlitBitmapToWindow(windowId, gItemIcon4x4Buffer, x, y, 32, 32);
+
+    if (paletteDest != NULL)
+        CpuCopy16(sRegisteredPokegearIconPal[app], paletteDest, PLTT_SIZE_4BPP);
+    else
+        LoadPalette(sRegisteredPokegearIconPal[app], BG_PLTT_ID(gWindows[windowId].window.paletteNum), PLTT_SIZE_4BPP);
+
+    FreeItemIconTemporaryBuffers();
+    return TRUE;
 }
 
 #define tState data[0]
@@ -2670,15 +2932,18 @@ static void Task_KeyItemWheel(u8 taskId)
             if (j < MAX_SPRITES)
                 StartSpriteAffineAnim(&gSprites[j], i);
             tBoxWinSprite[i] = MAX_SPRITES;
-            // For each registered item the player has, create a window and blit its icon to it
+            // For each usable shortcut, create a window and blit its icon to it.
             tIconWindow[i] = WINDOW_NONE;
-            if (!IsRegisteredKeyItemUsable(gSaveBlock1Ptr->registeredItems[i]))
+            if (!IsRegisteredShortcutUsable(i))
                 continue;
             tIconWindow[i] = j = AddWindowParameterized(0, sKeyItemBoxXPos[i] / 8 - 2, sKeyItemBoxYPos[i] / 8 - 2, 4, 4, i == 3 ? 13 : 13 + i, 16*(i+9));
             if (j == WINDOW_NONE)
                 continue;
             PutWindowTilemap(j);
-            BlitItemIconToWindow(gSaveBlock1Ptr->registeredItems[i], j, 4, 4, i == 3 ? sKeyItemWheelExtraPalette : NULL);
+            if (gSaveBlock1Ptr->registeredShortcutTypes[i] == REGISTERED_SHORTCUT_POKEGEAR_APP)
+                BlitPokegearAppIconToWindow(gSaveBlock1Ptr->registeredPokegearApps[i], j, 4, 4, i == 3 ? sKeyItemWheelExtraPalette : NULL);
+            else
+                BlitItemIconToWindow(gSaveBlock1Ptr->registeredItems[i], j, 4, 4, i == 3 ? sKeyItemWheelExtraPalette : NULL);
             CopyWindowToVram(j, COPYWIN_FULL);
         }
         SetHBlankCallback(HBlankCB_KeyItemWheel);
@@ -2696,11 +2961,9 @@ static void Task_KeyItemWheel(u8 taskId)
             tState = 3; // destroy and unfreeze
             break;
         }
-        i = DpadInputToRegisteredItemIndex(TRUE);
+        i = DpadInputToRegisteredShortcutIndex(TRUE);
         if (i == 0 || data[i] == MAX_SPRITES)
             break;
-        // use item as if it was registered
-        gSpecialVar_ItemId = gSaveBlock1Ptr->registeredItemCompat = gSaveBlock1Ptr->registeredItems[i - 1];
         PlaySE(SE_SELECT);
         StartSpriteAffineAnim(&gSprites[data[i]], i + 4 - 1);
         tSelectedSprite = data[i];
@@ -2710,18 +2973,35 @@ static void Task_KeyItemWheel(u8 taskId)
     case 2:
         if (!gSprites[tSelectedSprite].affineAnimEnded)
             break;
-        FreeKeyItemWheelGfx(data);
-        if (IsRegisteredKeyItemUsable(gSaveBlock1Ptr->registeredItemCompat))
+        for (i = 0; i < MAX_REGISTERED_ITEMS; i++)
         {
-            i = CreateTask(GetItemFieldFunc(gSaveBlock1Ptr->registeredItemCompat), 8);
-            gTasks[i].tUsingRegisteredKeyItem = TRUE;
+            if (tBoxSprite[i] == tSelectedSprite)
+                break;
+        }
+        FreeKeyItemWheelGfx(data);
+        if (i < MAX_REGISTERED_ITEMS
+         && gSaveBlock1Ptr->registeredShortcutTypes[i] == REGISTERED_SHORTCUT_POKEGEAR_APP
+         && IsRegisteredShortcutUsable(i))
+        {
+            StartRegisteredPokegearAppTask(taskId, gSaveBlock1Ptr->registeredPokegearApps[i]);
+            break;
+        }
+        if (i < MAX_REGISTERED_ITEMS
+         && IsRegisteredKeyItemUsable(gSaveBlock1Ptr->registeredItems[i]))
+        {
+            u32 itemTaskId;
+
+            gSpecialVar_ItemId = gSaveBlock1Ptr->registeredItemCompat = gSaveBlock1Ptr->registeredItems[i];
+            itemTaskId = CreateTask(GetItemFieldFunc(gSpecialVar_ItemId), 8);
+            gTasks[itemTaskId].tUsingRegisteredKeyItem = TRUE;
         }
         else
         {
             ScriptUnfreezeObjectEvents();
             UnlockPlayerFieldControls();
         }
-        DestroyTask(taskId);
+        if (gTasks[taskId].func != Task_OpenRegisteredPokegearApp)
+            DestroyTask(taskId);
         break;
     case 3:
         FreeKeyItemWheelGfx(data);

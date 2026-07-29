@@ -296,7 +296,7 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
     if (input->tookStep && TryFindHiddenPokemon())
         return TRUE;
 
-    if (input->pressedSelectButton && UseRegisteredKeyItemOnField() == TRUE)
+    if (input->pressedSelectButton && UseRegisteredShortcutOnField() == TRUE)
         return TRUE;
 
     if (input->pressedRButton && TryStartDexNavSearch())

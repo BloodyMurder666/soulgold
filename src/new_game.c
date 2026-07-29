@@ -225,6 +225,10 @@ void NewGameInitData(void)
     DeactivateAllRoamers();
     gSaveBlock1Ptr->registeredItemCompat = ITEM_NONE;
     memset(gSaveBlock1Ptr->registeredItems, 0, sizeof(gSaveBlock1Ptr->registeredItems));
+    memset(gSaveBlock1Ptr->registeredShortcutTypes, REGISTERED_SHORTCUT_ITEM, sizeof(gSaveBlock1Ptr->registeredShortcutTypes));
+    memset(gSaveBlock1Ptr->registeredPokegearApps, 0, sizeof(gSaveBlock1Ptr->registeredPokegearApps));
+    gSaveBlock1Ptr->registeredShortcutsMagic = REGISTERED_SHORTCUTS_SAVE_MAGIC;
+    gSaveBlock1Ptr->registeredShortcutsMagicInv = REGISTERED_SHORTCUTS_SAVE_MAGIC_INV;
     ClearBag();
     NewGameInitPCItems();
     ClearPokeblocks();

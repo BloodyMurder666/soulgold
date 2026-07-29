@@ -7,6 +7,7 @@
 #include "fieldmap.h"
 #include "gpu_regs.h"
 #include "international_string_util.h"
+#include "item_menu.h"
 #include "main.h"
 #include "malloc.h"
 #include "menu.h"
@@ -33,17 +34,9 @@ enum
 
 enum
 {
-    POKEGEAR_APP_MAP,
-    POKEGEAR_APP_DEXNAV,
-    POKEGEAR_APP_TROPHIES,
-    POKEGEAR_APP_JUKEBOX,
-    POKEGEAR_APP_COUNT,
-};
-
-enum
-{
     POKEGEAR_MODE_MAIN,
     POKEGEAR_MODE_JUKEBOX,
+    POKEGEAR_MODE_REGISTER,
 };
 
 struct PokegearResources
@@ -54,6 +47,7 @@ struct PokegearResources
     u8 mode;
     u8 jukeboxCursor;
     u8 iconSpriteIds[POKEGEAR_APP_COUNT];
+    bool8 openedFromShortcut;
 };
 
 struct PokegearTrack
@@ -82,7 +76,7 @@ static EWRAM_DATA u8 *sBg1TilemapBuffer = NULL;
 static EWRAM_DATA u8 *sBg2TilemapBuffer = NULL;
 static EWRAM_DATA u8 sPokegearLastCursor = POKEGEAR_APP_MAP;
 
-static void Pokegear_Init(MainCallback callback);
+static void Pokegear_Init(MainCallback callback, bool8 openJukeboxShortcut);
 static void PokegearRunSetup(void);
 static bool8 PokegearDoGfxSetup(void);
 static bool8 Pokegear_InitBgs(void);
@@ -93,7 +87,6 @@ static void PokegearVBlankCB(void);
 static void PokegearFreeResources(void);
 static void PokegearFadeAndBail(void);
 static bool8 IsDexNavAppUnlocked(void);
-static bool8 IsPokegearAppUnlocked(u8 app);
 static u8 GetButtonY(u8 app);
 static u8 GetNextSelectableApp(u8 app);
 static u8 GetPreviousSelectableApp(u8 app);
@@ -112,6 +105,7 @@ static void Task_PokegearTurnOff(u8 taskId);
 static void Task_PokegearOpenMap(u8 taskId);
 static void Task_PokegearOpenDexNav(u8 taskId);
 static void Task_PokegearOpenTrophies(u8 taskId);
+static void Task_PokegearRegisterApp(u8 taskId);
 
 static const u32 sPokegearBgTiles[] = INCBIN_U32("graphics/pokegear/tiles.4bpp.smol");
 static const u16 sPokegearBgTilemap[] = INCBIN_U16("graphics/pokegear/tiles.bin");
@@ -137,6 +131,8 @@ static const u8 sText_DexNav[] = _("DexNav");
 static const u8 sText_Trophies[] = _("Trophies");
 static const u8 sText_Jukebox[] = _("Jukebox");
 static const u8 sText_Back[] = _("{B_BUTTON} Back");
+static const u8 sText_MainHelp[] = _("{SELECT_BUTTON}Reg. {B_BUTTON}Back");
+static const u8 sText_RegisterHelp[] = _("{DPAD_NONE}Slot {B_BUTTON}Back");
 static const u8 sText_JukeboxTitle[] = _("Jukebox");
 static const u8 sText_PlayMarker[] = _("{RIGHT_ARROW}");
 static const u8 sText_PokemonMarch[] = _("Pokemon March");
@@ -145,6 +141,10 @@ static const u8 sText_UnownRadio[] = _("Unown Radio");
 static const u8 sText_PokeFlute[] = _("Poke Flute");
 static const u8 sText_OaksTalk[] = _("Oak's Talk");
 static const u8 sText_BuenasPassword[] = _("Buena's Password");
+static const u8 sText_DpadUp[] = _(" {DPAD_UP}");
+static const u8 sText_DpadRight[] = _(" {DPAD_RIGHT}");
+static const u8 sText_DpadDown[] = _(" {DPAD_DOWN}");
+static const u8 sText_DpadLeft[] = _(" {DPAD_LEFT}");
 
 static const u8 *const sMainLabels[POKEGEAR_APP_COUNT] =
 {
@@ -152,6 +152,14 @@ static const u8 *const sMainLabels[POKEGEAR_APP_COUNT] =
     [POKEGEAR_APP_DEXNAV] = sText_DexNav,
     [POKEGEAR_APP_TROPHIES] = sText_Trophies,
     [POKEGEAR_APP_JUKEBOX] = sText_Jukebox,
+};
+
+static const u8 *const sRegisteredDirectionLabels[MAX_REGISTERED_ITEMS] =
+{
+    sText_DpadUp,
+    sText_DpadRight,
+    sText_DpadDown,
+    sText_DpadLeft,
 };
 
 static const struct PokegearTrack sJukeboxTracks[] =
@@ -299,15 +307,47 @@ static const struct SpriteTemplate sSpriteTemplates_PokegearIcons[] =
 
 void CB2_InitPokegear(void)
 {
-    Pokegear_Init(CB2_ReturnToFieldWithOpenMenu);
+    Pokegear_Init(CB2_ReturnToFieldWithOpenMenu, FALSE);
 }
 
 void CB2_ReturnToPokegear(void)
 {
-    Pokegear_Init(CB2_ReturnToFieldWithOpenMenu);
+    Pokegear_Init(CB2_ReturnToFieldWithOpenMenu, FALSE);
 }
 
-static void Pokegear_Init(MainCallback callback)
+void OpenPokegearApp(enum PokegearApp app, MainCallback callback)
+{
+    if (callback == NULL)
+        callback = CB2_ReturnToField;
+
+    if (!IsPokegearAppUnlocked(app))
+    {
+        SetMainCallback2(callback);
+        return;
+    }
+    Menu_LoadStdPalAt(BG_PLTT_ID(15));
+
+    switch (app)
+    {
+    case POKEGEAR_APP_MAP:
+        FieldInitRegionMapWithOptions(callback, FALSE);
+        break;
+    case POKEGEAR_APP_DEXNAV:
+        DexNavGuiInit(callback);
+        break;
+    case POKEGEAR_APP_TROPHIES:
+        CB2_InitAchievementsMenuWithCallback(callback);
+        break;
+    case POKEGEAR_APP_JUKEBOX:
+        Pokegear_Init(callback, TRUE);
+        break;
+    default:
+        SetMainCallback2(callback);
+        break;
+    }
+}
+
+static void Pokegear_Init(MainCallback callback, bool8 openJukeboxShortcut)
 {
     u8 i;
 
@@ -321,8 +361,9 @@ static void Pokegear_Init(MainCallback callback)
     sPokegear->cursorPos = sPokegearLastCursor;
     EnsureCursorSelectable();
     sPokegearLastCursor = sPokegear->cursorPos;
-    sPokegear->mode = POKEGEAR_MODE_MAIN;
+    sPokegear->mode = openJukeboxShortcut ? POKEGEAR_MODE_JUKEBOX : POKEGEAR_MODE_MAIN;
     sPokegear->jukeboxCursor = 0;
+    sPokegear->openedFromShortcut = openJukeboxShortcut;
     sPokegear->gfxLoadState = 0;
     for (i = 0; i < POKEGEAR_APP_COUNT; i++)
         sPokegear->iconSpriteIds[i] = SPRITE_NONE;
@@ -397,7 +438,10 @@ static bool8 PokegearDoGfxSetup(void)
         break;
     case 5:
         CreateMainIcons();
-        DrawMainScreen();
+        if (sPokegear->mode == POKEGEAR_MODE_JUKEBOX)
+            DrawJukeboxScreen();
+        else
+            DrawMainScreen();
         CreateTask(Task_PokegearWaitFadeIn, 0);
         BlendPalettes(PALETTES_ALL, 16, RGB_BLACK);
         gMain.state++;
@@ -531,8 +575,31 @@ static void PokegearFadeAndBail(void)
 
 static void DrawHeaderText(void)
 {
+    const u8 *text;
+    u8 fontId;
+    u8 x;
+
+    if (sPokegear->mode == POKEGEAR_MODE_MAIN)
+    {
+        text = sText_MainHelp;
+        fontId = FONT_SMALL;
+        x = 0;
+    }
+    else if (sPokegear->mode == POKEGEAR_MODE_REGISTER)
+    {
+        text = sText_RegisterHelp;
+        fontId = FONT_SMALL;
+        x = 0;
+    }
+    else
+    {
+        text = sText_Back;
+        fontId = FONT_NORMAL;
+        x = 56;
+    }
+
     FillWindowPixelBuffer(WIN_POKEGEAR_HEADER, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
-    AddTextPrinterParameterized4(WIN_POKEGEAR_HEADER, FONT_NORMAL, 56, 0, 0, 0, sTextColor_White, 0, sText_Back);
+    AddTextPrinterParameterized4(WIN_POKEGEAR_HEADER, fontId, x, 0, 0, 0, sTextColor_White, 0, text);
     PutWindowTilemap(WIN_POKEGEAR_HEADER);
     CopyWindowToVram(WIN_POKEGEAR_HEADER, COPYWIN_FULL);
 }
@@ -542,8 +609,10 @@ static bool8 IsDexNavAppUnlocked(void)
     return FlagGet(FLAG_SYS_POKEDEX_GET) && FlagGet(FLAG_RECEIVED_FIRST_BALLS);
 }
 
-static bool8 IsPokegearAppUnlocked(u8 app)
+bool32 IsPokegearAppUnlocked(enum PokegearApp app)
 {
+    if (app >= POKEGEAR_APP_COUNT)
+        return FALSE;
     if (app == POKEGEAR_APP_DEXNAV)
         return IsDexNavAppUnlocked();
     return TRUE;
@@ -634,14 +703,18 @@ static void DrawMainText(void)
     FillWindowPixelBuffer(WIN_POKEGEAR_MAIN, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
     for (i = 0; i < POKEGEAR_APP_COUNT; i++)
     {
+        s32 registeredSlot;
         u8 y;
         u8 x = 88 + GetStringCenterAlignXOffset(FONT_NORMAL, sMainLabels[i], 92);
 
         if (!IsPokegearAppUnlocked(i))
             continue;
 
+        registeredSlot = RegisteredPokegearAppIndex(i);
         y = GetButtonY(i) * 8 - 7;
         AddTextPrinterParameterized4(WIN_POKEGEAR_MAIN, FONT_NORMAL, x, y, 0, 0, sTextColor_White, 0, sMainLabels[i]);
+        if (registeredSlot >= 0)
+            AddTextPrinterParameterized4(WIN_POKEGEAR_MAIN, FONT_NORMAL, 170, y, 0, 0, sTextColor_White, 0, sRegisteredDirectionLabels[registeredSlot]);
     }
     PutWindowTilemap(WIN_POKEGEAR_MAIN);
     CopyWindowToVram(WIN_POKEGEAR_MAIN, COPYWIN_FULL);
@@ -770,6 +843,21 @@ static void Task_PokegearMainMenu(u8 taskId)
         DrawMainText();
         sPokegearLastCursor = sPokegear->cursorPos;
     }
+    else if (JOY_NEW(SELECT_BUTTON))
+    {
+        if (RegisteredPokegearAppIndex(sPokegear->cursorPos) >= 0)
+        {
+            PlaySE(SE_PC_OFF);
+            UnregisterPokegearApp(sPokegear->cursorPos);
+            DrawMainText();
+        }
+        else
+        {
+            PlaySE(SE_SELECT);
+            sPokegear->mode = POKEGEAR_MODE_REGISTER;
+            DrawHeaderText();
+        }
+    }
     else if (JOY_NEW(A_BUTTON))
     {
         PlaySE(SE_SELECT);
@@ -801,6 +889,36 @@ static void Task_PokegearMainMenu(u8 taskId)
     }
 }
 
+static void Task_PokegearRegisterApp(u8 taskId)
+{
+    u8 slot;
+
+    if (JOY_NEW(B_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        sPokegear->mode = POKEGEAR_MODE_MAIN;
+        DrawHeaderText();
+        return;
+    }
+
+    if (JOY_NEW(DPAD_UP))
+        slot = 0;
+    else if (JOY_NEW(DPAD_RIGHT))
+        slot = 1;
+    else if (JOY_NEW(DPAD_DOWN))
+        slot = 2;
+    else if (JOY_NEW(DPAD_LEFT))
+        slot = 3;
+    else
+        return;
+
+    PlaySE(SE_SELECT);
+    RegisterPokegearApp(sPokegear->cursorPos, slot);
+    sPokegear->mode = POKEGEAR_MODE_MAIN;
+    DrawHeaderText();
+    DrawMainText();
+}
+
 static void Task_PokegearJukebox(u8 taskId)
 {
     if (JOY_NEW(DPAD_UP))
@@ -826,7 +944,15 @@ static void Task_PokegearJukebox(u8 taskId)
     else if (JOY_NEW(B_BUTTON))
     {
         PlaySE(SE_SELECT);
-        DrawMainScreen();
+        if (sPokegear->openedFromShortcut)
+        {
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+            gTasks[taskId].func = Task_PokegearTurnOff;
+        }
+        else
+        {
+            DrawMainScreen();
+        }
     }
 }
 
@@ -837,6 +963,8 @@ static void Task_PokegearMain(u8 taskId)
 
     if (sPokegear->mode == POKEGEAR_MODE_JUKEBOX)
         Task_PokegearJukebox(taskId);
+    else if (sPokegear->mode == POKEGEAR_MODE_REGISTER)
+        Task_PokegearRegisterApp(taskId);
     else
         Task_PokegearMainMenu(taskId);
 }
@@ -859,7 +987,7 @@ static void Task_PokegearOpenMap(u8 taskId)
     {
         PokegearFreeResources();
         DestroyTask(taskId);
-        FieldInitRegionMapWithOptions(CB2_ReturnToPokegear, FALSE);
+        OpenPokegearApp(POKEGEAR_APP_MAP, CB2_ReturnToPokegear);
     }
 }
 
@@ -869,7 +997,7 @@ static void Task_PokegearOpenDexNav(u8 taskId)
     {
         PokegearFreeResources();
         DestroyTask(taskId);
-        DexNavGuiInit(CB2_ReturnToPokegear);
+        OpenPokegearApp(POKEGEAR_APP_DEXNAV, CB2_ReturnToPokegear);
     }
 }
 
@@ -879,6 +1007,6 @@ static void Task_PokegearOpenTrophies(u8 taskId)
     {
         PokegearFreeResources();
         DestroyTask(taskId);
-        CB2_InitAchievementsMenuWithCallback(CB2_ReturnToPokegear);
+        OpenPokegearApp(POKEGEAR_APP_TROPHIES, CB2_ReturnToPokegear);
     }
 }

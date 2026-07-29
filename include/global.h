@@ -1246,6 +1246,10 @@ struct SaveBlock1
                u16 registeredItems[MAX_REGISTERED_ITEMS];
                u8 optionsPartyMenuStyle; // PARTY_MENU_OPTION_*
                u8 optionsPartyMenuStyleMagic;
+               u16 registeredShortcutsMagic;
+               u16 registeredShortcutsMagicInv;
+               u8 registeredShortcutTypes[MAX_REGISTERED_ITEMS];
+               u8 registeredPokegearApps[MAX_REGISTERED_ITEMS];
     /*0x3???*/ u8 futureReserved[SAVEBLOCK1_FUTURE_RESERVED_BYTES];
     // sizeof: 0x3???
 };

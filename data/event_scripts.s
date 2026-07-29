@@ -932,8 +932,8 @@ gText_SandstormIsVicious::
 	.string "It's impossible to keep going.$"
 
 gText_SelectWithoutRegisteredItem::
-	.string "Up to four items in the BAG can be\n"
-	.string "registered to SELECT for easy use.$"
+	.string "Up to four Key Items or Pokégear\n"
+	.string "apps can be registered to Select.$"
 
 gText_PokemonTrainerSchoolEmail::
 	.string "There's an e-mail from Pokémon TRAINER\n"

@@ -83,6 +83,24 @@ struct
 STATIC_ASSERT(sizeof(struct SaveBlock3) <= SAVE_BLOCK_3_CHUNK_SIZE * NUM_SECTORS_PER_SLOT, SaveBlock3FreeSpace);
 STATIC_ASSERT(sizeof(struct SaveBlock2) <= SECTOR_DATA_SIZE, SaveBlock2FreeSpace);
 STATIC_ASSERT(sizeof(struct SaveBlock1) <= SECTOR_DATA_SIZE * (SECTOR_ID_SAVEBLOCK1_END - SECTOR_ID_SAVEBLOCK1_START + 1), SaveBlock1FreeSpace);
+STATIC_ASSERT(offsetof(struct SaveBlock2, playerTrainerId) == 0xA, SaveBlock2TrainerIdOffset);
+STATIC_ASSERT(offsetof(struct SaveBlock2, pokedex) == 0x20, SaveBlock2PokedexOffset);
+STATIC_ASSERT(offsetof(struct SaveBlock2, encryptionKey) == 0xB4, SaveBlock2EncryptionKeyOffset);
+STATIC_ASSERT(offsetof(struct SaveBlock2, playerApprentice) == 0xB8, SaveBlock2ApprenticeOffset);
+STATIC_ASSERT(offsetof(struct SaveBlock2, contestLinkResults) == 0x254, SaveBlock2ContestResultsOffset);
+STATIC_ASSERT(offsetof(struct SaveBlock2, frontier) == 0x27C, SaveBlock2FrontierOffset);
+STATIC_ASSERT(sizeof(struct SaveBlock2) == 0xB30, SaveBlock2LegacySize);
+STATIC_ASSERT(offsetof(struct SaveBlock3, dexNavChain) == 0xC, SaveBlock3DexNavChainOffset);
+STATIC_ASSERT(offsetof(struct SaveBlock3, hiddenGrottoContents) == 0x10, SaveBlock3HiddenGrottoOffset);
+STATIC_ASSERT(offsetof(struct SaveBlock3, candyJarExp) == 0x60, SaveBlock3CandyJarOffset);
+STATIC_ASSERT(sizeof(struct SaveBlock3) == 0x64, SaveBlock3LegacySize);
+STATIC_ASSERT(offsetof(struct SaveBlock1, registeredItemCompat) == 0x47E, SaveBlock1LegacyRegisteredItemOffset);
+STATIC_ASSERT(offsetof(struct SaveBlock1, registeredItems) == 0x3484, SaveBlock1RegisteredItemsOffset);
+STATIC_ASSERT(offsetof(struct SaveBlock1, optionsPartyMenuStyle) == 0x348C, SaveBlock1PartyMenuStyleOffset);
+STATIC_ASSERT(offsetof(struct SaveBlock1, registeredShortcutsMagic) == 0x348E, SaveBlock1ShortcutMagicOffset);
+STATIC_ASSERT(offsetof(struct SaveBlock1, registeredShortcutTypes) == 0x3492, SaveBlock1ShortcutTypesOffset);
+STATIC_ASSERT(offsetof(struct SaveBlock1, futureReserved) == 0x349A, SaveBlock1FutureReserveOffset);
+STATIC_ASSERT(sizeof(struct SaveBlock1) == 0x3C54, SaveBlock1LegacySize);
 
 #define PKMN_STORAGE_REGULAR_SIZE (SECTOR_DATA_SIZE * (SECTOR_ID_PKMN_STORAGE_END - SECTOR_ID_PKMN_STORAGE_START + 1))
 #define PKMN_STORAGE_OVERFLOW_SIZE (sizeof(struct PokemonStorage) - PKMN_STORAGE_REGULAR_SIZE)

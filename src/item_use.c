@@ -116,7 +116,7 @@ static const u8 sText_BeckoningBellCannotBeUsedHere[] =_("The bell cannot be use
 // EWRAM variables
 EWRAM_DATA static TaskFunc sItemUseOnFieldCB = NULL;
 
-// Below is set TRUE by UseRegisteredKeyItemOnField
+// Below is set TRUE when an item is launched from the registered shortcut wheel.
 #define tUsingRegisteredKeyItem  data[3]
 
 // UB here if an item with type ITEM_USE_MAIL or ITEM_USE_BAG_MENU uses SetUpItemUseCallback

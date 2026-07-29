@@ -24,6 +24,17 @@ enum {
     ITEMMENULOCATION_LAST,
 };
 
+enum RegisteredShortcutType
+{
+    // Keep items as zero so existing saves interpret their registeredItems
+    // entries correctly when the shortcut metadata is first introduced.
+    REGISTERED_SHORTCUT_ITEM,
+    REGISTERED_SHORTCUT_POKEGEAR_APP,
+};
+
+#define REGISTERED_SHORTCUTS_SAVE_MAGIC 0x4B57 // "KW"
+#define REGISTERED_SHORTCUTS_SAVE_MAGIC_INV 0xB4A8
+
 // Window IDs for the item menu
 enum {
     ITEMWIN_1x1,
@@ -114,7 +125,10 @@ void UpdatePocketListPosition(u8 pocketId);
 void CB2_ReturnToBagMenuPocket(void);
 void CB2_BagMenuFromStartMenu(void);
 u8 GetItemListPosition(u8 pocketId);
-bool8 UseRegisteredKeyItemOnField(void);
+bool8 UseRegisteredShortcutOnField(void);
+s32 RegisteredPokegearAppIndex(u8 app);
+void RegisterPokegearApp(u8 app, u8 slot);
+void UnregisterPokegearApp(u8 app);
 void CB2_GoToSellMenu(void);
 void GoToBagMenu(u8 location, u8 pocket, MainCallback exitCallback);
 void DoWallyTutorialBagMenu(void);
