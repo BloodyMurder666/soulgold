@@ -7907,9 +7907,9 @@ const struct ItemInfo gItemsInfo[] =
         .notConsumed = TRUE,                                  \
         .holdEffect = HOLD_EFFECT_MEGA_STONE,                 \
         .description = COMPOUND_STRING(                       \
-            "A stone that lets\n"                             \
-            typeName "-type\n"                        \
-            "Mega Evolve."),                                  \
+            "allows certain {PKMN}\n"                           \
+            "to Mega Evolve into\n"                            \
+            typeName "-type form."),                          \
         .pocket = POCKET_MEGASTONES,                          \
         .sortType = ITEM_TYPE_MEGA_STONE,                     \
         .heldSlot = 0,                                        \

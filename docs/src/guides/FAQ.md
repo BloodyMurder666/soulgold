@@ -42,6 +42,9 @@ order: 1
 ### How to mega evolve?
 - Press start when selecting moves while the Pokémon is wielding appropriate Mega stone and you have the Mega Ring
 
+### Coin case?
+- Goldenrod Underground
+
 ### Nature mints?
 - Olivine beach cafe sells them.
 
@@ -74,6 +77,9 @@ order: 1
 
 ### Fossils?
 - Smash rocks in Ruins of Alph.
+
+### Kanto?
+- No kanto, pure Johto focus.
 
 ### How do I get other starters?
 - Goldenrod Casino has a gachapon machine that can give starters from any generation.
