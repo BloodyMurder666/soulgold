@@ -325,8 +325,13 @@ script BattleArcade_Challenge_EventScript_CashOutOrDoubleDown
 
 script BattleArcade_Challenge_EventScript_CashOut
 {
+	showmoneybox(0, 0)
 	arcade_awardprize
+	updatemoneybox(0)
+	playse(SE_SHOP)
+	waitse
 	msgbox(format("You cashed out ¥{STR_VAR_1}!"), MSGBOX_DEFAULT)
+	hidemoneybox
 	setvar(VAR_RESULT, B_OUTCOME_WON)
 	goto(BattleArcade_Challenge_EventScript_SaveWarpToLobby)
 }
@@ -365,8 +370,13 @@ script BattleArcade_RoulettRoom_EventScript_ResolveBrainChallenge
 
 script BattleArcade_Challenge_EventScript_GivePrize
 {
+	showmoneybox(0, 0)
 	arcade_awardprize
+	updatemoneybox(0)
+	playse(SE_SHOP)
+	waitse
 	msgbox(format("Congratulations! You earned ¥{STR_VAR_1} as your prize!"), MSGBOX_DEFAULT)
+	hidemoneybox
 }
 
 script BattleArcade_Challenge_EventScript_HealPlayer

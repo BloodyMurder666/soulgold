@@ -17,12 +17,14 @@ BattleArcade_Hallway_EventScript_EnterCorridor::
 # 15 "data/maps/GoldenrodBattleArcadeHallway/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, BattleArcade_Hallway_EventScript_EnterCorridor_Movement_1
 # 16 "data/maps/GoldenrodBattleArcadeHallway/scripts.pory"
-	waitmovement OBJ_EVENT_ID_PLAYER
+	waitmovement LOCALID_HALLWAY_ATTENDANT
 # 17 "data/maps/GoldenrodBattleArcadeHallway/scripts.pory"
-	setvar VAR_TEMP_0, FALSE
+	waitmovement OBJ_EVENT_ID_PLAYER
 # 18 "data/maps/GoldenrodBattleArcadeHallway/scripts.pory"
-	warp MAP_GOLDENROD_BATTLE_ARCADE_BATTLE_ROOM, 7, 16
+	setvar VAR_TEMP_0, FALSE
 # 19 "data/maps/GoldenrodBattleArcadeHallway/scripts.pory"
+	warp MAP_GOLDENROD_BATTLE_ARCADE_BATTLE_ROOM, 7, 16
+# 20 "data/maps/GoldenrodBattleArcadeHallway/scripts.pory"
 	waitstate
 	end
 
@@ -39,6 +41,8 @@ BattleArcade_Hallway_EventScript_EnterCorridor_Movement_0:
 	walk_right
 # 14 "data/maps/GoldenrodBattleArcadeHallway/scripts.pory"
 	walk_right
+# 14 "data/maps/GoldenrodBattleArcadeHallway/scripts.pory"
+	walk_up
 # 14 "data/maps/GoldenrodBattleArcadeHallway/scripts.pory"
 	walk_up
 # 14 "data/maps/GoldenrodBattleArcadeHallway/scripts.pory"
@@ -62,5 +66,5 @@ BattleArcade_Hallway_EventScript_EnterCorridor_Movement_1:
 # 15 "data/maps/GoldenrodBattleArcadeHallway/scripts.pory"
 	walk_up
 # 15 "data/maps/GoldenrodBattleArcadeHallway/scripts.pory"
-	set_invisible
+	walk_up
 	step_end

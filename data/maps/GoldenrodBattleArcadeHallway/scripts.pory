@@ -11,8 +11,9 @@ mapscripts GoldenrodBattleArcadeHallway_MapScripts {
 script BattleArcade_Hallway_EventScript_EnterCorridor
 {
 	setvar(LOCAL_VAR_WALKED_HALLWAY, TRUE)
-	applymovement(LOCALID_HALLWAY_ATTENDANT,moves(walk_right * 5, walk_up, set_invisible))
-	applymovement(OBJ_EVENT_ID_PLAYER,moves(walk_right * 6, walk_up, set_invisible))
+	applymovement(LOCALID_HALLWAY_ATTENDANT, moves(walk_right * 5, walk_up * 2, set_invisible))
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_right * 6, walk_up * 2))
+	waitmovement(LOCALID_HALLWAY_ATTENDANT)
 	waitmovement(OBJ_EVENT_ID_PLAYER)
 	setvar(LOCAL_VAR_WALKED_HALLWAY, FALSE)
 	warp(MAP_GOLDENROD_BATTLE_ARCADE_BATTLE_ROOM, 7, 16)

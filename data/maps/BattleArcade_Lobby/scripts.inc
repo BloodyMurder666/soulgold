@@ -46,12 +46,16 @@ BattleArcade_Lobby_EventScript_WalkToElevator::
 # 40 "data/maps/BattleArcade_Lobby/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, BattleArcade_Lobby_EventScript_WalkToElevator_Movement_1
 # 41 "data/maps/BattleArcade_Lobby/scripts.pory"
+	waitmovement VAR_LAST_TALKED
+# 42 "data/maps/BattleArcade_Lobby/scripts.pory"
 	waitmovement OBJ_EVENT_ID_PLAYER
 	return
 
 
 # 39 "data/maps/BattleArcade_Lobby/scripts.pory"
 BattleArcade_Lobby_EventScript_WalkToElevator_Movement_0:
+# 39 "data/maps/BattleArcade_Lobby/scripts.pory"
+	walk_up
 # 39 "data/maps/BattleArcade_Lobby/scripts.pory"
 	walk_up
 # 39 "data/maps/BattleArcade_Lobby/scripts.pory"
@@ -69,5 +73,5 @@ BattleArcade_Lobby_EventScript_WalkToElevator_Movement_1:
 # 40 "data/maps/BattleArcade_Lobby/scripts.pory"
 	walk_up
 # 40 "data/maps/BattleArcade_Lobby/scripts.pory"
-	set_invisible
+	walk_up
 	step_end
