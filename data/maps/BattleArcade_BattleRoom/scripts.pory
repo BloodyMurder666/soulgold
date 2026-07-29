@@ -123,7 +123,7 @@ script BattleArcade_BattleRoom_EventScript_MoveMCToTrainer
 {
 	if (var(LOCAL_VAR_GAME_BOARD_IMPACT) == ARCADE_IMPACT_PLAYER)
 	{
-		applymovement(MC,moves(walk_down*2, walk_left))
+		applymovement(MC,moves(walk_down, walk_left))
 	}
 	else
 	{
@@ -140,7 +140,7 @@ script BattleArcade_BattleRoom_EventScript_MoveMCFromTrainer
 	}
 	else
 	{
-		applymovement(MC,moves(walk_left, walk_up * 2, walk_in_place_fast_down))
+		applymovement(MC,moves(walk_left * 2, walk_up * 2, walk_in_place_fast_down))
 	}
 }
 

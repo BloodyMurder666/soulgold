@@ -326,6 +326,7 @@ script BattleArcade_Challenge_EventScript_CashOutOrDoubleDown
 script BattleArcade_Challenge_EventScript_CashOut
 {
 	showmoneybox(0, 0)
+	delay(30)
 	arcade_awardprize
 	updatemoneybox(0)
 	playse(SE_SHOP)
@@ -371,6 +372,7 @@ script BattleArcade_RoulettRoom_EventScript_ResolveBrainChallenge
 script BattleArcade_Challenge_EventScript_GivePrize
 {
 	showmoneybox(0, 0)
+	delay(30)
 	arcade_awardprize
 	updatemoneybox(0)
 	playse(SE_SHOP)

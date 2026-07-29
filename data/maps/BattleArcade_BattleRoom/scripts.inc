@@ -400,8 +400,6 @@ BattleArcade_BattleRoom_EventScript_MoveMCToTrainer_Movement_0:
 # 126 "data/maps/BattleArcade_BattleRoom/scripts.pory"
 	walk_down
 # 126 "data/maps/BattleArcade_BattleRoom/scripts.pory"
-	walk_down
-# 126 "data/maps/BattleArcade_BattleRoom/scripts.pory"
 	walk_left
 	step_end
 
@@ -429,6 +427,8 @@ BattleArcade_BattleRoom_EventScript_MoveMCFromTrainer_Movement_0:
 
 # 143 "data/maps/BattleArcade_BattleRoom/scripts.pory"
 BattleArcade_BattleRoom_EventScript_MoveMCFromTrainer_Movement_1:
+# 143 "data/maps/BattleArcade_BattleRoom/scripts.pory"
+	walk_left
 # 143 "data/maps/BattleArcade_BattleRoom/scripts.pory"
 	walk_left
 # 143 "data/maps/BattleArcade_BattleRoom/scripts.pory"
