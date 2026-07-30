@@ -43,6 +43,8 @@ enum __attribute__((__packed__)) Flavor
 #define BERRY_STAGE_BUDDING     7
 #define BERRY_STAGE_SPARKLING   255
 
+#define NATURAL_BERRY_TREE_REGEN_MINUTES (12 * 60)
+
 // Berries can be watered in the following stages:
 // - BERRY_STAGE_PLANTED
 // - BERRY_STAGE_SPROUTED

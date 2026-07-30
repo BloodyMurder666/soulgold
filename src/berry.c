@@ -33,6 +33,11 @@ static u16 GetBerryPestSpecies(u8 berryId);
 static void TryForWeeds(struct BerryTree *tree);
 static void TryForPests(struct BerryTree *tree);
 static void AddTreeBonus(struct BerryTree *tree, u8 bonus);
+static u8 GetNaturalBerryByTreeId(u8 id);
+static void StartNaturalBerryTreeRegeneration(u8 id);
+static bool32 UpdateNaturalBerryTreeRegeneration(u8 id, s32 minutes);
+
+STATIC_ASSERT(NATURAL_BERRY_TREE_REGEN_MINUTES < (1 << 14), NaturalBerryTreeRegenerationTimerFitsInSaveField);
 
 // Check include/config/overworld.h configs and throw an error if illegal
 #if OW_BERRY_GROWTH_RATE < GEN_3 || (OW_BERRY_GROWTH_RATE > GEN_7 && OW_BERRY_GROWTH_RATE != GEN_6_ORAS)
@@ -1694,6 +1699,53 @@ const struct BerryCrushBerryData gBerryCrush_BerryData[] = {
     [ITEM_ENIGMA_BERRY_E_READER - FIRST_BERRY_INDEX] = {.difficulty = 150, .powder = 200}
 };
 
+// Keep this in sync with EventScript_ResetAllBerries. A zero entry identifies
+// soil that should remain empty until the player plants a Berry.
+static const u8 sNaturalBerriesByTreeId[BERRY_TREES_COUNT] =
+{
+    [BERRY_TREE_STARF_1] = ITEM_TO_BERRY(ITEM_STARF_BERRY),
+    [BERRY_TREE_LANSAT_1] = ITEM_TO_BERRY(ITEM_LANSAT_BERRY),
+    [BERRY_TREE_MICLE_1] = ITEM_TO_BERRY(ITEM_MICLE_BERRY),
+    [BERRY_TREE_CHERI_1] = ITEM_TO_BERRY(ITEM_CHERI_BERRY),
+    [BERRY_TREE_CHERI_2] = ITEM_TO_BERRY(ITEM_CHERI_BERRY),
+    [BERRY_TREE_CHESTO_1] = ITEM_TO_BERRY(ITEM_CHESTO_BERRY),
+    [BERRY_TREE_CHESTO_2] = ITEM_TO_BERRY(ITEM_CHESTO_BERRY),
+    [BERRY_TREE_PECHA_1] = ITEM_TO_BERRY(ITEM_PECHA_BERRY),
+    [BERRY_TREE_PECHA_2] = ITEM_TO_BERRY(ITEM_PECHA_BERRY),
+    [BERRY_TREE_RAWST_1] = ITEM_TO_BERRY(ITEM_SITRUS_BERRY),
+    [BERRY_TREE_RAWST_2] = ITEM_TO_BERRY(ITEM_RAWST_BERRY),
+    [BERRY_TREE_ASPEAR_1] = ITEM_TO_BERRY(ITEM_ASPEAR_BERRY),
+    [BERRY_TREE_ASPEAR_2] = ITEM_TO_BERRY(ITEM_ASPEAR_BERRY),
+    [BERRY_TREE_LEPPA_1] = ITEM_TO_BERRY(ITEM_LEPPA_BERRY),
+    [BERRY_TREE_LEPPA_2] = ITEM_TO_BERRY(ITEM_LEPPA_BERRY),
+    [BERRY_TREE_ORAN_1] = ITEM_TO_BERRY(ITEM_ORAN_BERRY),
+    [BERRY_TREE_ORAN_2] = ITEM_TO_BERRY(ITEM_ORAN_BERRY),
+    [BERRY_TREE_PERSIM_1] = ITEM_TO_BERRY(ITEM_PERSIM_BERRY),
+    [BERRY_TREE_PERSIM_2] = ITEM_TO_BERRY(ITEM_PERSIM_BERRY),
+    [BERRY_TREE_LUM_1] = ITEM_TO_BERRY(ITEM_LUM_BERRY),
+    [BERRY_TREE_LUM_2] = ITEM_TO_BERRY(ITEM_LUM_BERRY),
+    [BERRY_TREE_SITRUS_1] = ITEM_TO_BERRY(ITEM_SITRUS_BERRY),
+    [BERRY_TREE_SITRUS_2] = ITEM_TO_BERRY(ITEM_SITRUS_BERRY),
+    [BERRY_TREE_POMEG_1] = ITEM_TO_BERRY(ITEM_POMEG_BERRY),
+    [BERRY_TREE_POMEG_2] = ITEM_TO_BERRY(ITEM_POMEG_BERRY),
+    [BERRY_TREE_POMEG_3] = ITEM_TO_BERRY(ITEM_POMEG_BERRY),
+    [BERRY_TREE_KELPSY_1] = ITEM_TO_BERRY(ITEM_KELPSY_BERRY),
+    [BERRY_TREE_KELPSY_2] = ITEM_TO_BERRY(ITEM_KELPSY_BERRY),
+    [BERRY_TREE_KELPSY_3] = ITEM_TO_BERRY(ITEM_KELPSY_BERRY),
+    [BERRY_TREE_QUALOT_1] = ITEM_TO_BERRY(ITEM_QUALOT_BERRY),
+    [BERRY_TREE_QUALOT_2] = ITEM_TO_BERRY(ITEM_QUALOT_BERRY),
+    [BERRY_TREE_QUALOT_3] = ITEM_TO_BERRY(ITEM_QUALOT_BERRY),
+    [BERRY_TREE_HONDEW_1] = ITEM_TO_BERRY(ITEM_HONDEW_BERRY),
+    [BERRY_TREE_HONDEW_2] = ITEM_TO_BERRY(ITEM_HONDEW_BERRY),
+    [BERRY_TREE_HONDEW_3] = ITEM_TO_BERRY(ITEM_HONDEW_BERRY),
+    [BERRY_TREE_GREPA_1] = ITEM_TO_BERRY(ITEM_GREPA_BERRY),
+    [BERRY_TREE_GREPA_2] = ITEM_TO_BERRY(ITEM_GREPA_BERRY),
+    [BERRY_TREE_GREPA_3] = ITEM_TO_BERRY(ITEM_GREPA_BERRY),
+    [BERRY_TREE_TAMATO_1] = ITEM_TO_BERRY(ITEM_TAMATO_BERRY),
+    [BERRY_TREE_TAMATO_2] = ITEM_TO_BERRY(ITEM_TAMATO_BERRY),
+    [BERRY_TREE_TAMATO_3] = ITEM_TO_BERRY(ITEM_TAMATO_BERRY),
+};
+
 const struct BerryTree gBlankBerryTree = {};
 
 void SetEnigmaBerry(u8 *src)
@@ -1883,6 +1935,9 @@ void BerryTreeTimeUpdate(s32 minutes)
     {
         tree = &gSaveBlock1Ptr->berryTrees[i];
 
+        if (UpdateNaturalBerryTreeRegeneration(i, minutes))
+            continue;
+
         if (tree->berry && tree->stage && !tree->stopGrowth && (!OW_BERRY_IMMORTAL || tree->stage != BERRY_STAGE_BERRIES))
         {
             if ((!OW_BERRY_IMMORTAL) && (minutes >= GetStageDurationByBerryType(tree->berry) * 71))
@@ -1991,6 +2046,52 @@ void PlantBerryTree(u8 id, u8 berry, u8 stage, bool8 allowGrowth)
 void RemoveBerryTree(u8 id)
 {
     gSaveBlock1Ptr->berryTrees[id] = gBlankBerryTree;
+    StartNaturalBerryTreeRegeneration(id);
+}
+
+static u8 GetNaturalBerryByTreeId(u8 id)
+{
+    if (id >= BERRY_TREES_COUNT)
+        return BERRY_NONE;
+
+    return sNaturalBerriesByTreeId[id];
+}
+
+static void StartNaturalBerryTreeRegeneration(u8 id)
+{
+    if (GetNaturalBerryByTreeId(id) != BERRY_NONE)
+        gSaveBlock1Ptr->berryTrees[id].minutesUntilNextStage = NATURAL_BERRY_TREE_REGEN_MINUTES;
+}
+
+static bool32 UpdateNaturalBerryTreeRegeneration(u8 id, s32 minutes)
+{
+    struct BerryTree *tree = GetBerryTreeInfo(id);
+    u8 berry;
+
+    if (tree->stage != BERRY_STAGE_NO_BERRY)
+        return FALSE;
+
+    if (tree->mulch != 0)
+        return TRUE;
+
+    berry = GetNaturalBerryByTreeId(id);
+    if (berry == BERRY_NONE)
+        return TRUE;
+
+    // Empty natural trees from older saves have no regeneration timer yet.
+    if (tree->minutesUntilNextStage == 0
+     || tree->minutesUntilNextStage > NATURAL_BERRY_TREE_REGEN_MINUTES)
+        tree->minutesUntilNextStage = NATURAL_BERRY_TREE_REGEN_MINUTES;
+
+    if (minutes < tree->minutesUntilNextStage)
+    {
+        tree->minutesUntilNextStage -= minutes;
+        return TRUE;
+    }
+
+    gSaveBlock1Ptr->berryTrees[id] = gBlankBerryTree;
+    PlantBerryTree(id, berry, BERRY_STAGE_BERRIES, FALSE);
+    return TRUE;
 }
 
 u8 GetBerryTypeByBerryTreeId(u8 id)
