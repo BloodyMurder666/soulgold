@@ -7,6 +7,7 @@ void ClearDailyFlags(void);
 void DisableNationalPokedex(void);
 void EnableNationalPokedex(void);
 bool32 IsNationalPokedexEnabled(void);
+void MigrateNationalPokedex(void);
 void DisableMysteryEvent(void);
 void EnableMysteryEvent(void);
 bool32 IsMysteryEventEnabled(void);

@@ -176,13 +176,13 @@ NewBarkTown_Lab_EventScript_hideStarterCase::
 NewBarkTown_Lab_EventScript_StarterCase::
     lock
 	goto_if_eq VAR_FACING, DIR_SOUTH, NewBarkTown_Lab_EventScript_StarterCaseWrongSide
+	callnative MigrateNationalPokedex
     goto_if_set FLAG_SYS_POKEMON_GET, NewBarkTown_Lab_EventScript_ShouldntTouch
     goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 1, NewBarkTown_Lab_EventScript_StarterCase_Choice
     msgbox NewBarkTown_Lab_Text_ShouldntTouch, MSGBOX_DEFAULT
 	release
 	closemessage
 	end
-
 NewBarkTown_Lab_EventScript_StarterCaseWrongSide::
 	msgbox NewBarkTown_Lab_Text_StarterCaseWrongSide, MSGBOX_DEFAULT
 	closemessage
@@ -902,7 +902,7 @@ NewBarkTown_Lab_Text_KimonoGirls:
 	.string "A group of beautiful Kimono\l"
 	.string "Girls were looking for you.\p"
 	.string "They told me they are\n"
-	.string "waiting for you at the\l" 
+	.string "waiting for you at the\l"
 	.string "Ecruteak Dance Theater.\p"
 	.string "I know you've gone through many\n"
 	.string "things since that Egg got you\l"

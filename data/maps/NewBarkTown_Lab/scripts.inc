@@ -355,19 +355,19 @@ NewBarkTown_Lab_EventScript_StarterCase::
 # 178 "data/maps/NewBarkTown_Lab/scripts.pory"
 	goto_if_eq VAR_FACING, DIR_SOUTH, NewBarkTown_Lab_EventScript_StarterCaseWrongSide
 # 179 "data/maps/NewBarkTown_Lab/scripts.pory"
-    goto_if_set FLAG_SYS_POKEMON_GET, NewBarkTown_Lab_EventScript_ShouldntTouch
+	callnative MigrateNationalPokedex
 # 180 "data/maps/NewBarkTown_Lab/scripts.pory"
-    goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 1, NewBarkTown_Lab_EventScript_StarterCase_Choice
+    goto_if_set FLAG_SYS_POKEMON_GET, NewBarkTown_Lab_EventScript_ShouldntTouch
 # 181 "data/maps/NewBarkTown_Lab/scripts.pory"
-    msgbox NewBarkTown_Lab_Text_ShouldntTouch, MSGBOX_DEFAULT
+    goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 1, NewBarkTown_Lab_EventScript_StarterCase_Choice
 # 182 "data/maps/NewBarkTown_Lab/scripts.pory"
-	release
+    msgbox NewBarkTown_Lab_Text_ShouldntTouch, MSGBOX_DEFAULT
 # 183 "data/maps/NewBarkTown_Lab/scripts.pory"
-	closemessage
+	release
 # 184 "data/maps/NewBarkTown_Lab/scripts.pory"
-	end
+	closemessage
 # 185 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	end
 # 186 "data/maps/NewBarkTown_Lab/scripts.pory"
 NewBarkTown_Lab_EventScript_StarterCaseWrongSide::
 # 187 "data/maps/NewBarkTown_Lab/scripts.pory"
@@ -1807,7 +1807,7 @@ NewBarkTown_Lab_Text_KimonoGirls:
 # 904 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "They told me they are\n"
 # 905 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "waiting for you at the\l" 
+	.string "waiting for you at the\l"
 # 906 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "Ecruteak Dance Theater.\p"
 # 907 "data/maps/NewBarkTown_Lab/scripts.pory"

@@ -101,6 +101,18 @@ bool32 IsNationalPokedexEnabled(void)
         return FALSE;
 }
 
+void MigrateNationalPokedex(void)
+{
+    if (!FlagGet(FLAG_NATIONAL_DEX_MIGRATION_COMPLETE) || IsNationalPokedexEnabled())
+    {
+        if (VarGet(VAR_NEWBARKTOWN_LABSTATE) <= 1 && CalculatePlayerPartyCount() == 0)
+            FlagClear(FLAG_SYS_POKEMON_GET);
+
+        DisableNationalPokedex();
+        FlagSet(FLAG_NATIONAL_DEX_MIGRATION_COMPLETE);
+    }
+}
+
 void DisableMysteryEvent(void)
 {
     FlagClear(FLAG_SYS_MYSTERY_EVENT_ENABLE);
