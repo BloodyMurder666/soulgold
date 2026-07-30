@@ -2304,6 +2304,75 @@ Gender: Male
 Music: Elite Four
 Double Battle: No
 AI: Smart Trainer
+
+Hitmontop @ White Herb
+Ability: Intimidate
+Level: 85
+EVs: 252 HP / 252 Atk
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Rapid Spin
+- Close Combat
+- Ice Spinner
+- Thunder Punch
+
+Staraptor @ Normalite
+Level: 85
+EVs: 252 Atk / 252 Spe
+Ability: Intimidate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Brave Bird
+- Close Combat
+- Knock Off
+- Blaze Kick
+
+Gallade @ Choice Scarf
+Level: 85
+EVs: 252 Atk / 252 Spe
+Ability: Sharpness
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Shadow Claw
+- Leaf Blade
+- Close Combat
+- Psycho Cut
+
+Annihilape @ Leftovers
+Level: 85
+EVs: 252 Atk / 252 HP
+Ability: Inner Focus
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Rage Fist
+- Bulk Up
+- Drain Punch
+- Outrage
+
+Kommo O @ Dragon Gem
+Level: 85
+EVs: 252 Atk / 252 HP
+Ability: Soundproof
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Dragon Dance
+- Dragon Claw
+- Close Combat
+- Clanging Scales
+
+Machamp @ Expert Belt
+Level: 85
+Ability: No Guard
+EVs: 252 Atk / 252 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Rock Slide
+- Ice Punch
+- Dynamic Punch
+- Fissure
+
+=== TRAINER_BRUNO_2 ===
+Name: Bruno
+Class: Elite Four
+Pic: Elite Four Bruno
+Gender: Male
+Music: Elite Four
+Double Battle: No
+AI: Smart Trainer
 Difficulty: Hard
 
 Hitmontop @ White Herb
@@ -15261,7 +15330,6 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
 Landorus Therian @ Life Orb
 Level: 85
-Ability: Sheer Force
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 252 Spe
 - Outrage
