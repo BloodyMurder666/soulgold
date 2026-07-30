@@ -2820,6 +2820,11 @@ bool8 ScrCmd_setrespawn(struct ScriptContext *ctx)
     u16 healLocationId = VarGet(ScriptReadHalfword(ctx));
 
     Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE);
+    if (!FlagGet(FLAG_NATIONAL_DEX_MIGRATION_COMPLETE) || IsNationalPokedexEnabled())
+    {
+        DisableNationalPokedex();
+        FlagSet(FLAG_NATIONAL_DEX_MIGRATION_COMPLETE);
+    }
 
     SetLastHealLocationWarp(healLocationId);
     return FALSE;

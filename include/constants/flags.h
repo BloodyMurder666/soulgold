@@ -1677,6 +1677,7 @@
 #define FLAG_LATITEMPLE_SWITCH5                     0x989
 #define FLAG_CAUGHT_LATIAS                          0x98A
 #define FLAG_CAUGHT_LATIOS                          0x98B
+#define FLAG_NATIONAL_DEX_MIGRATION_COMPLETE        0x98C
 // BS system flags here
 
 #define FLAG_OBTAINED_SOULDEW  0x1000

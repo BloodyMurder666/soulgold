@@ -58,7 +58,7 @@ gBirchDexRatingText_LessThan100::
 
 gBirchDexRatingText_LessThan110::
 	.string "You've finally reached\n"
-	.string "the 100-kind mark.\p"
+	.string "the halfway mark.\p"
 	.string "This is an impressive POKéDEX!$"
 
 gBirchDexRatingText_LessThan120::
@@ -76,7 +76,7 @@ gBirchDexRatingText_LessThan140::
 
 gBirchDexRatingText_LessThan150::
 	.string "I had no idea that there were so\n"
-	.string "many Pokémon species in the HOENN\l"
+	.string "many Pokémon species in this\l"
 	.string "region.$"
 
 gBirchDexRatingText_LessThan160::
@@ -87,7 +87,7 @@ gBirchDexRatingText_LessThan160::
 
 gBirchDexRatingText_LessThan170::
 	.string "One can get a very good idea about\n"
-	.string "the Pokémon of the HOENN region\l"
+	.string "the Pokémon of this region\l"
 	.string "by looking through your POKéDEX.$"
 
 gBirchDexRatingText_LessThan180::

@@ -11677,14 +11677,19 @@ static bool32 CriticalCapture(u32 odds)
         return FALSE;
 
     if (B_CRITICAL_CAPTURE_LOCAL_DEX == TRUE)
-        totalDexCount = HOENN_DEX_COUNT;
+    {
+        totalDexCount = JOHTO_DEX_COUNT - 1;
+        numCaught = GetHoennPokedexCount(FLAG_GET_CAUGHT);
+    }
     else
+    {
         totalDexCount = NATIONAL_DEX_COUNT;
+        numCaught = GetNationalPokedexCount(FLAG_GET_CAUGHT);
+    }
 
     if (CheckBagHasItem(ITEM_CATCHING_CHARM, 1))
         charmBoost = (100 + B_CATCHING_CHARM_BOOST) / 100;
 
-    numCaught = GetNationalPokedexCount(FLAG_GET_CAUGHT);
     if (numCaught > (totalDexCount * 600) / 650)
         odds = (odds * (250 * charmBoost)) / 100;
     else if (numCaught > (totalDexCount * 450) / 650)
