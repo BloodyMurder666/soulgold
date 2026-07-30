@@ -3412,11 +3412,11 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_HEART_SCALE] =
     {
         .name = ITEM_NAME("Heart Scale"),
-        .price = 100,
+        .price = 10000,
         .description = COMPOUND_STRING(
             "A lovely scale.\n"
-            "It is coveted by\n"
-            "collectors."),
+            "It can be sold at\n"
+            "a high price."),
         .pocket = POCKET_ITEMS,
         .sortType = ITEM_TYPE_SELLABLE,
         .heldSlot = 0,
