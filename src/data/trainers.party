@@ -7757,7 +7757,7 @@ AI: Smart Trainer
 
 Venusaur @ Miracle Seed
 Level: 63
-IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 - Sludge Bomb
 - Weather Ball
 - Sunny Day
@@ -7765,7 +7765,7 @@ IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
 
 Charizard @ Dragotite
 Level: 63
-IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 - Fire Fang
 - Dragon Claw
 - Slash
@@ -7773,7 +7773,7 @@ IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
 
 Blastoise @ White Herb
 Level: 63
-IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 - Shell Smash
 - Hydro Pump
 - Ice Beam
@@ -7781,7 +7781,7 @@ IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
 
 Rhydon @ Eviolite
 Level: 63
-IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
 - Earthquake
 - Rock Blast
 - Iron Tail
@@ -7789,8 +7789,8 @@ IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
 
 Tauros @ Choice Band
 Level: 63
-IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
-- Giga Impact
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
+- Work Up
 - Earthquake
 - Stone Edge
 - Return
