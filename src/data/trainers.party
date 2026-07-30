@@ -2168,57 +2168,51 @@ Mugshot: Yellow
 Hitmontop @ White Herb
 Ability: Intimidate
 Level: 67
-EVs: 252 HP / 252 Atk
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Rapid Spin
-- Close Combat
+- Triple Kick
 - Ice Spinner
 - Thunder Punch
 
 Heracross @ Flame Orb
 Level: 68
-EVs: 252 Atk / 252 Spe
 Ability: Guts
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Shadow Claw
 - Megahorn
-- Close Combat
+- Arm Thrust
 - Earthquake
 
 Staraptor @ Normalite
 Level: 69
-EVs: 252 Atk / 252 Spe
 Ability: Intimidate
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Brave Bird
+- Aerial Ace
 - Close Combat
-- Knock Off
-- Blaze Kick
+- Facade
+- Endeavor
 
 Annihilape @ Leftovers
 Level: 68
-EVs: 252 Atk / 252 HP
 Ability: Inner Focus
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Rage Fist
-- Bulk Up
-- Close Combat
-- Outrage
+- Stomping Tantrum
+- Low Kick
+- Thrash
 
-Kommo O @ Dragon Gem
+Kommo O @ Sitrus Berry
 Level: 69
-EVs: 252 Atk / 252 HP
 Ability: Soundproof
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Dragon Dance
+- Iron Defense
 - Dragon Claw
-- Close Combat
-- Clanging Scales
+- Brick Break
+- Brutal Swing
 
 Machamp @ Expert Belt
 Level: 69
 Ability: No Guard
-EVs: 252 Atk / 252 Spe
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Rock Slide
 - Ice Punch
@@ -3304,7 +3298,6 @@ Mugshot: Purple
 Exeggutor-Alola @ Sitrus Berry  
 Ability: Harvest  
 Level: 69  
-EVs: 252 HP / 252 Atk / 4 SpD  
 Adamant Nature  
 - Dragon Hammer  
 - Earthquake  
@@ -3315,7 +3308,6 @@ Dragonite @ Dragotite
 Ability: Multiscale  
 Level: 71  
 Shiny: Yes
-EVs: 252 Atk / 4 SpD / 252 Spe  
 Adamant Nature  
 - Thunderbolt 
 - Dual Wingbeat  
@@ -3325,7 +3317,6 @@ Adamant Nature
 Baxcalibur @ Ability Shield  
 Ability: Thermal Exchange  
 Level: 70  
-EVs: 252 HP / 252 Atk / 4 SpD  
 Adamant Nature  
 - Glaive Rush  
 - High Horsepower  
@@ -3335,7 +3326,6 @@ Adamant Nature
 Hydrapple @ Yache Berry  
 Ability: Sticky Hold  
 Level: 70  
-EVs: 252 Atk / 252 SpA  
 - Draco Meteor  
 - Leaf Storm  
 - Giga Drain  
@@ -3344,7 +3334,6 @@ EVs: 252 Atk / 252 SpA
 Dragapult @ Choice Scarf  
 Ability: Infiltrator  
 Level: 70  
-EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
 - Dragon Darts  
 - Phantom Force  
@@ -3354,7 +3343,6 @@ Jolly Nature
 Archaludon @ Choice Specs
 Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 252 Spe
 Modest Nature
 - Electro Shot
 - Dragon Pulse
@@ -4932,60 +4920,54 @@ Mugshot: Blue
 Grimmsnarl @ Light Clay
 Level: 69
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP / 252 Atk
 Ability: Prankster
 - Reflect
-- Light Screen
-- Parting Shot
+- Fake Out
+- Hammer Arm
 - Play Rough
 
 Umbreon @ Sitrus Berry
 Level: 69
 Ability: Synchronize
-EVs: 252 HP / 252 Def
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Wish
+IVs: 0 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+- Trailblaze
 - Foul Play
-- Baton Pass
-- Moonlight
+- Rest
+- Sleep Talk
 
 Kingambit @ Blackglasses
 Level: 69
-EVs: 252 Atk / 252 SpD
 Ability: Supreme Overlord
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Kowtow Cleave
+- Night Slash
 - Iron Head
-- Sucker Punch
-- Brick Break
+- Iron Defense
+- Torment
 
 Scrafty @ Leftovers
 Level: 69
 Ability: Shed Skin
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 252 Spe
-- Hi Jump Kick
+- Brick Break
 - Crunch
-- Parting Shot
-- Head Smash
+- Facade
+- Work Up
 
 Honchkrow @ Life Orb
 Level: 69
 Ability: Moxie
-EVs: 252 Atk / 252 Spe
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Heat Wave
+- Aerial Ace
 - Dark Pulse
 - Steel Wing
-- Brave Bird
+- Taunt
 
 Absol @ Darktite
 Level: 70
-EVs: 252 Spe
-IVs: 31 HP / 10 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 0 Def / 31 SpA / 31 SpD / 0 Spe
 - Shadow Claw
+- Will-O-Wisp
 - Night Slash
-- Swords Dance
 - Slash
 
 === TRAINER_KAREN_1 ===
@@ -5536,8 +5518,7 @@ Mugshot: Purple
 
 Farigiraf @ Ability Shield  
 Ability: Armor Tail  
-Level: 66  
-EVs: 252 SpA / 252 Spe  
+Level: 66
 Hasty Nature  
 - Calm Mind  
 - Dazzling Gleam  
@@ -5546,8 +5527,7 @@ Hasty Nature
 
 Espeon @ Choice Specs  
 Ability: Magic Bounce  
-Level: 66  
-EVs: 252 SpA / 252 Spe  
+Level: 66
 - Draining Kiss  
 - Grass Knot  
 - Power Gem  
@@ -5555,8 +5535,7 @@ EVs: 252 SpA / 252 Spe
 
 Slowbro @ Leftovers  
 Ability: Regenerator  
-Level: 66  
-EVs: 192 HP / 64 SpA / 252 SpD  
+Level: 66
 - Blizzard  
 - Scald  
 - Slack Off  
@@ -5564,8 +5543,7 @@ EVs: 192 HP / 64 SpA / 252 SpD
 
 Reuniclus @ Rocky Helmet  
 Ability: Magic Guard  
-Level: 66  
-EVs: 252 Def / 252 SpA  
+Level: 66
 - Acid Armor  
 - Calm Mind  
 - Psychic Noise  
@@ -5573,8 +5551,7 @@ EVs: 252 Def / 252 SpA
 
 Alakazam @ Psychite  
 Ability: Magic Guard  
-Level: 67  
-EVs: 252 SpA / 252 Spe  
+Level: 67
 - Shadow Ball
 - Psychic
 - Recover
@@ -5582,8 +5559,7 @@ EVs: 252 SpA / 252 Spe
 
 Braviary-Hisui @ Twisted Spoon 
 Ability: Tinted Lens  
-Level: 66  
-EVs: 252 SpA / 252 Spe  
+Level: 66
 - Air Slash  
 - Esper Wing  
 - U-turn  
@@ -6063,50 +6039,45 @@ Double Battle: No
 AI: Smart Trainer
 Mugshot: Pink
 
-Toxapex @ Payapa Berry
+Ariados @ Payapa Berry
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP
-- Scald
-- Sludge Bomb
-- Baneful Bunker
-- Toxic
+- Cross Poison
+- Shadow Sneak
+- Bug Bite
+- Swords Dance
 
-Roserade @ Grass Gem
+Roserade @ Expert Belt
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Technician
-EVs: 252 SpA / 252 Spe
+Ability: Natural Cure
 - Weather Ball
-- Toxic
-- Magical Leaf
+- Giga Drain
+- Ingrain
 - Sludge Bomb
 
 Muk Alola @ Leftovers
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP / 252 Atk
 - Gunk Shot
 - Shadow Punch
 - Knock Off
-- Pain Split
+- Screech
 
 Overqwil @ Sitrus Berry 
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 252 Spe
 Ability: Intimidate
 - Barb Barrage
 - Crunch
-- Destiny Bond
-- Fell Stinger
+- Spikes
+- Haze
 
 Scolipede @ Bugtite
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Speed Boost
-EVs: 252 Atk / 252 HP
-- Megahorn
+- Take Down
 - Poison Jab
 - Swords Dance
 - Earthquake
@@ -6114,8 +6085,7 @@ EVs: 252 Atk / 252 HP
 Crobat @ Charti Berry
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 252 Spe
-- Sludge Bomb
+- Torment
 - Air Cutter
 - Leech Life
 - Giga Drain
