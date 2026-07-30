@@ -153,6 +153,17 @@
 
 #define FEATURE_FLAG_ASSERT(flag, id) STATIC_ASSERT(flag > TEMP_FLAGS_END || flag == 0, id)
 
+// Persistent flag allocation guards. The reclaimed block deliberately uses
+// trainer slots that must remain unused; all new standalone flags belong in
+// CUSTOM_FLAGS.
+STATIC_ASSERT(RECLAIMED_TRAINER_FLAGS_START == TRAINER_FLAGS_START + TRAINER_UNUSED_192, ReclaimedFlagsMustStartAtUnusedTrainer);
+STATIC_ASSERT(RECLAIMED_TRAINER_FLAGS_END == TRAINER_FLAGS_END, ReclaimedFlagsMustEndWithTrainerFlags);
+STATIC_ASSERT(TRAINER_ROUTE50_IGNIS < TRAINER_UNUSED_192, TrainersOverlapReclaimedFlags);
+STATIC_ASSERT(RECLAIMED_TRAINER_FLAGS_END < SYSTEM_FLAGS, ReclaimedFlagsOverlapSystemFlags);
+STATIC_ASSERT(SYSTEM_FLAGS_END < CUSTOM_FLAGS_START, CustomFlagsOverlapSystemFlags);
+STATIC_ASSERT(CUSTOM_FLAGS_START <= CUSTOM_FLAGS_END, CustomFlagsEndBeforeStart);
+STATIC_ASSERT(CUSTOM_FLAGS_END < FLAG_0x1500, CustomFlagsOverflowAllocation);
+
 #define READ_OTID_FROM_SAVE T1_READ_32(gSaveBlock2Ptr->playerTrainerId)
 
 // NOTE: This uses hardware timers 2 and 3; this will not work during active link connections or with the eReader

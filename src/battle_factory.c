@@ -630,7 +630,10 @@ static enum FactoryStyle GetMoveBattleStyle(enum Move move)
 bool8 InBattleFactory(void)
 {
     return gMapHeader.mapLayoutId == LAYOUT_BATTLE_FRONTIER_BATTLE_FACTORY_PRE_BATTLE_ROOM
-        || gMapHeader.mapLayoutId == LAYOUT_BATTLE_FRONTIER_BATTLE_FACTORY_BATTLE_ROOM;
+        || gMapHeader.mapLayoutId == LAYOUT_BATTLE_FRONTIER_BATTLE_FACTORY_BATTLE_ROOM
+        // Challenge results are processed in the lobby before rentals are returned.
+        || (gMapHeader.mapLayoutId == LAYOUT_BATTLE_FRONTIER_BATTLE_FACTORY_LOBBY
+         && gSaveBlock2Ptr->frontier.challengeStatus != 0);
 }
 
 static void RestorePlayerPartyHeldItems(void)

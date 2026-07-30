@@ -1340,17 +1340,17 @@
 #define FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER                                           0x4FF // Unused Flag
 
 // Trainer Flags
-// Trainer flags occupy 0x500 - 0x85F, the last 9 of which are unused
-// See constants/opponents.h. The values there + FLAG_TRAINER_FLAG_START are the flag IDs
+// Trainer flags occupy TRAINER_FLAGS_START through TRAINER_FLAGS_END.
+// See constants/opponents.h. The trainer ID + TRAINER_FLAGS_START is the flag ID.
 
 #define TRAINER_FLAGS_START                                         0x500
-#define TRAINER_FLAGS_END                                           (TRAINER_FLAGS_START + MAX_TRAINERS_COUNT - 1) // 0x85F
+#define TRAINER_FLAGS_END                                           (TRAINER_FLAGS_START + MAX_TRAINERS_COUNT - 1)
 
 // System Flags
 
-#define SYSTEM_FLAGS                                   (TRAINER_FLAGS_END + 1) // 0x860
+#define SYSTEM_FLAGS                                   (TRAINER_FLAGS_END + 1)
 
-#define FLAG_SYS_POKEMON_GET                         (SYSTEM_FLAGS + 0x0) // FLAG_0x860
+#define FLAG_SYS_POKEMON_GET                         (SYSTEM_FLAGS + 0x0)
 #define FLAG_SYS_POKEDEX_GET                         (SYSTEM_FLAGS + 0x1)
 #define FLAG_SYS_POKENAV_GET                         (SYSTEM_FLAGS + 0x2)
 #define FLAG_UNUSED_0x863                            (SYSTEM_FLAGS + 0x3) // Unused Flag
@@ -1567,8 +1567,12 @@
 #define FLAG_ICEPATH_BOULDER4                       (SYSTEM_FLAGS + 0xBD)
 #define FLAG_SYS_HIDDEN_GROTTO_FIRST_VISIT          (SYSTEM_FLAGS + 0xBE)
 #define FLAG_SNOWTOP_FROST_BREATH_TM                (SYSTEM_FLAGS + 0xBF)
+#define SYSTEM_FLAGS_END                            FLAG_SNOWTOP_FROST_BREATH_TM
 
-// Infinite free flags
+// unused trainer IDs 1056-1163.
+#define RECLAIMED_TRAINER_FLAGS_START               0x920
+#define RECLAIMED_TRAINER_FLAGS_END                 0x98B
+
 #define FLAG_SNOWTOP_ITEM_SNOWBALL                  0x920
 #define FLAG_SNOWTOP_ICE_STONE                      0x921
 #define FLAG_SNOWTOP_ICY_ROCK                       0x922
@@ -1677,9 +1681,11 @@
 #define FLAG_LATITEMPLE_SWITCH5                     0x989
 #define FLAG_CAUGHT_LATIAS                          0x98A
 #define FLAG_CAUGHT_LATIOS                          0x98B
-// BS system flags here
 
-#define FLAG_OBTAINED_SOULDEW  0x1000
+// Standalone persistent flags. Keep CUSTOM_FLAGS_END on the final allocation.
+#define CUSTOM_FLAGS_START                          0x1000
+
+#define FLAG_OBTAINED_SOULDEW  CUSTOM_FLAGS_START
 #define FLAG_TM_POISON_JAB     0x1001
 #define FLAG_ROUTE50_ITEM1     0x1002
 #define FLAG_ROUTE50_ITEM2     0x1003
@@ -1709,6 +1715,7 @@
 #define FLAG_CAUGHT_TERRAKION  0x101B
 #define FLAG_CAUGHT_COBALION   0x101C
 #define FLAG_NATIONAL_DEX_MIGRATION_COMPLETE 0x101D
+#define CUSTOM_FLAGS_END                            FLAG_NATIONAL_DEX_MIGRATION_COMPLETE
 
 
 #define FLAG_0x1500                                 0x1500

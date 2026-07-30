@@ -8,8 +8,10 @@
 #include "test/test.h"
 #include "tv.h"
 #include "constants/flags.h"
+#include "constants/battle_frontier.h"
 #include "constants/game_stat.h"
 #include "constants/items.h"
+#include "constants/layouts.h"
 #include "constants/species.h"
 
 TEST("Achievements table contains every id exactly once")
@@ -189,6 +191,23 @@ TEST("Counter-specific checks ignore event-only achievements")
     Achievement_CheckCounter(ACH_COUNTER_NONE);
 
     EXPECT_EQ(Achievement_CountUnlocked(), 0);
+}
+
+TEST("Chaos Factory rentals do not unlock Peak of Power in the results lobby")
+{
+    gMapHeader.mapLayoutId = LAYOUT_BATTLE_FRONTIER_BATTLE_FACTORY_LOBBY;
+    gSaveBlock2Ptr->frontier.challengeStatus = CHALLENGE_STATUS_WON;
+    gSaveBlock2Ptr->frontier.lvlMode = FRONTIER_LVL_OPEN;
+    CreateMon(&gPlayerParty[0], SPECIES_BULBASAUR, MAX_LEVEL, 0, OTID_STRUCT_PLAYER_ID);
+
+    Achievement_CheckAll();
+
+    EXPECT(!Achievement_IsUnlocked(ACH_PEAK_OF_POWER));
+
+    // Once the challenge is over, a real level 100 party member still counts.
+    gSaveBlock2Ptr->frontier.challengeStatus = 0;
+    Achievement_CheckAll();
+    EXPECT(Achievement_IsUnlocked(ACH_PEAK_OF_POWER));
 }
 
 TEST("Regular Pikachu and Eevee do not unlock Let's Go")

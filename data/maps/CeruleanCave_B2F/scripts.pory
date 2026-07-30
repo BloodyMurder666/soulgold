@@ -103,6 +103,7 @@ script NamelessDungeon_Leaf {
     closemessage
     fadescreen(FADE_TO_BLACK)
     setflag(FLAG_HIDE_LEAF_NAMELESS)
+    setflag(FLAG_POSTGAME_CAP1)
     playse(SE_EXIT)
     removeobject(LOCALID_NAMELESS_LEAF)
     delay(60)
