@@ -3,11 +3,14 @@
 #include "event_data.h"
 #include "item.h"
 #include "overworld.h"
+#include "pokedex.h"
+#include "pokemon.h"
 #include "test/test.h"
 #include "tv.h"
 #include "constants/flags.h"
 #include "constants/game_stat.h"
 #include "constants/items.h"
+#include "constants/species.h"
 
 TEST("Achievements table contains every id exactly once")
 {
@@ -186,6 +189,55 @@ TEST("Counter-specific checks ignore event-only achievements")
     Achievement_CheckCounter(ACH_COUNTER_NONE);
 
     EXPECT_EQ(Achievement_CountUnlocked(), 0);
+}
+
+TEST("Regular Pikachu and Eevee do not unlock Let's Go")
+{
+    GetSetPokedexFlag(NATIONAL_DEX_PIKACHU, FLAG_SET_CAUGHT);
+    GetSetPokedexFlag(NATIONAL_DEX_EEVEE, FLAG_SET_CAUGHT);
+
+    Achievement_CheckAll();
+
+    EXPECT(!Achievement_IsUnlocked(ACH_LETS_GO));
+}
+
+TEST("Receiving Partner Pikachu as a scripted gift unlocks Let's Go")
+{
+    struct Pokemon mon;
+
+    CreateMon(&mon, SPECIES_PIKACHU_STARTER, 25, 0, OTID_STRUCT_PLAYER_ID);
+
+    EXPECT_NE(GiveScriptedMonToPlayer(&mon, PARTY_SIZE), MON_CANT_GIVE);
+    EXPECT(Achievement_IsUnlocked(ACH_LETS_GO));
+}
+
+TEST("Obtaining Partner Eevee through a captured-mon transfer unlocks Let's Go")
+{
+    struct Pokemon mon;
+
+    CreateMon(&mon, SPECIES_EEVEE_STARTER, 25, 0, OTID_STRUCT_PLAYER_ID);
+
+    EXPECT_NE(GiveCapturedMonToPlayer(&mon), MON_CANT_GIVE);
+    EXPECT(Achievement_IsUnlocked(ACH_LETS_GO));
+}
+
+TEST("Regular Ursaluna does not unlock Blood Moon")
+{
+    GetSetPokedexFlag(NATIONAL_DEX_URSALUNA, FLAG_SET_CAUGHT);
+
+    Achievement_CheckAll();
+
+    EXPECT(!Achievement_IsUnlocked(ACH_CATCH_BLOOD_MOON_URSALUNA));
+}
+
+TEST("Obtaining Blood Moon Ursaluna unlocks Blood Moon")
+{
+    struct Pokemon mon;
+
+    CreateMon(&mon, SPECIES_URSALUNA_BLOODMOON, 70, 0, OTID_STRUCT_PLAYER_ID);
+
+    EXPECT_NE(GiveCapturedMonToPlayer(&mon), MON_CANT_GIVE);
+    EXPECT(Achievement_IsUnlocked(ACH_CATCH_BLOOD_MOON_URSALUNA));
 }
 
 TEST("Route Experts requires every implemented expert")

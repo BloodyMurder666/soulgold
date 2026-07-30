@@ -28,7 +28,6 @@ static bool32 Achievement_PredicateTravellingHealer(void);
 static bool32 Achievement_PredicateKurtMasterBall(void);
 static bool32 Achievement_PredicateMegaCollector(void);
 static bool32 Achievement_PredicateMasterOfMoves(void);
-static bool32 Achievement_PredicateCaughtBloodMoonUrsaluna(void);
 static bool32 Achievement_PredicateCaughtRayquaza(void);
 static bool32 Achievement_PredicateCaughtLugia(void);
 static bool32 Achievement_PredicateCaughtHoOh(void);
@@ -40,7 +39,6 @@ static bool32 Achievement_PredicateStormBadge(void);
 static bool32 Achievement_PredicateMineralBadge(void);
 static bool32 Achievement_PredicateGlacierBadge(void);
 static bool32 Achievement_PredicateRisingBadge(void);
-static bool32 Achievement_PredicateLetsGo(void);
 static bool32 Achievement_PredicateRouteExperts(void);
 static bool32 Achievement_PredicateCaughtCelebi(void);
 static bool32 Achievement_PredicateCaughtArticuno(void);
@@ -311,7 +309,7 @@ static const struct Achievement sAchievements[] =
     {ACH_FIRST_CAPTURE, sText_AchFirstCaptureName, sText_AchFirstCaptureDesc, ACH_TIER_BRONZE, ACH_COUNTER_CAPTURED_MONS, 1, TRAINER_NONE_ACH, NULL},
     {ACH_FIRST_CRITICAL, sText_AchFirstCriticalName, sText_AchFirstCriticalDesc, ACH_TIER_BRONZE, ACH_COUNTER_CRITICAL_HITS, 1, TRAINER_NONE_ACH, NULL},
     {ACH_DAYCARE_EGG_1, sText_AchDaycareEgg1Name, sText_AchDaycareEgg1Desc, ACH_TIER_BRONZE, ACH_COUNTER_DAYCARE_EGGS, 1, TRAINER_NONE_ACH, NULL},
-    {ACH_LETS_GO, sText_AchLetsGoName, sText_AchLetsGoDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateLetsGo},
+    {ACH_LETS_GO, sText_AchLetsGoName, sText_AchLetsGoDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, NULL},
     {ACH_SAY_CHEESE, sText_AchSayCheeseName, sText_AchSayCheeseDesc, ACH_TIER_BRONZE, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCameronPhoto},
     {ACH_JOHTO_BADGE_ZEPHYR, sText_AchZephyrBadgeName, sText_AchZephyrBadgeDesc, ACH_TIER_BRONZE, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateZephyrBadge},
     {ACH_JOHTO_BADGE_HIVE, sText_AchHiveBadgeName, sText_AchHiveBadgeDesc, ACH_TIER_BRONZE, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateHiveBadge},
@@ -379,7 +377,7 @@ static const struct Achievement sAchievements[] =
     {ACH_REMATCH_PRYCE, sText_AchPryceRematchName, sText_AchPryceRematchDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_PRYCE_2, NULL},
     {ACH_REMATCH_CLAIR, sText_AchClairRematchName, sText_AchClairRematchDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_CLAIR_2, NULL},
     {ACH_ROUTE_EXPERTS, sText_AchRouteExpertsName, sText_AchRouteExpertsDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateRouteExperts},
-    {ACH_CATCH_BLOOD_MOON_URSALUNA, sText_AchBloodMoonName, sText_AchBloodMoonDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtBloodMoonUrsaluna},
+    {ACH_CATCH_BLOOD_MOON_URSALUNA, sText_AchBloodMoonName, sText_AchBloodMoonDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, NULL},
     {ACH_DEFEAT_STEVEN, sText_AchDefeatStevenName, sText_AchDefeatStevenDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_STEVEN, NULL},
 
     // Legendary and Mythical Pokémon - Generation I
@@ -602,11 +600,6 @@ static bool32 Achievement_PredicateCaughtSpecies(u16 species)
     return GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT);
 }
 
-static bool32 Achievement_PredicateCaughtBloodMoonUrsaluna(void)
-{
-    return Achievement_PredicateCaughtSpecies(SPECIES_URSALUNA_BLOODMOON);
-}
-
 static bool32 Achievement_PredicateCaughtRayquaza(void)
 {
     return Achievement_PredicateCaughtSpecies(SPECIES_RAYQUAZA);
@@ -660,12 +653,6 @@ static bool32 Achievement_PredicateGlacierBadge(void)
 static bool32 Achievement_PredicateRisingBadge(void)
 {
     return Achievement_PredicateBadgeFlag(FLAG_BADGE08_GET);
-}
-
-static bool32 Achievement_PredicateLetsGo(void)
-{
-    return Achievement_PredicateCaughtSpecies(SPECIES_EEVEE_STARTER)
-        || Achievement_PredicateCaughtSpecies(SPECIES_PIKACHU_STARTER);
 }
 
 static bool32 Achievement_PredicateRouteExperts(void)
@@ -1121,6 +1108,20 @@ bool32 Achievement_Unlock(enum AchievementId id)
     gSaveBlock1Ptr->achievements.unlocked[id / 8] |= (1 << (id % 8));
     Achievement_QueuePopup(id);
     return TRUE;
+}
+
+void Achievement_OnPokemonObtained(u16 species)
+{
+    switch (species)
+    {
+    case SPECIES_EEVEE_STARTER:
+    case SPECIES_PIKACHU_STARTER:
+        Achievement_Unlock(ACH_LETS_GO);
+        break;
+    case SPECIES_URSALUNA_BLOODMOON:
+        Achievement_Unlock(ACH_CATCH_BLOOD_MOON_URSALUNA);
+        break;
+    }
 }
 
 void Achievement_CheckAll(void)

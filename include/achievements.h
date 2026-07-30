@@ -23,6 +23,7 @@ void Achievement_AddBattlePointsEarned(u32 amount);
 void Achievement_CheckAll(void);
 void Achievement_CheckCounter(enum AchievementCounter counter);
 void Achievement_UnlockHallOfFameDebut(void);
+void Achievement_OnPokemonObtained(u16 species);
 void Achievement_OnTrainerDefeated(u16 trainerId);
 void Achievement_TryShowQueuedPopup(void);
 void Achievement_HidePopup(void);

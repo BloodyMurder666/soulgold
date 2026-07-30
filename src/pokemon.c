@@ -2934,6 +2934,7 @@ void CopyMon(void *dest, void *src, size_t size)
 u8 GiveCapturedMonToPlayer(struct Pokemon *mon)
 {
     s32 i;
+    u8 giveResult;
 
     SetMonData(mon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
     SetMonData(mon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
@@ -2947,11 +2948,20 @@ u8 GiveCapturedMonToPlayer(struct Pokemon *mon)
     }
 
     if (i >= PARTY_SIZE)
-        return CopyMonToPC(mon);
+    {
+        giveResult = CopyMonToPC(mon);
+    }
+    else
+    {
+        CopyMon(&gPlayerParty[i], mon, sizeof(*mon));
+        gPlayerPartyCount = i + 1;
+        giveResult = MON_GIVEN_TO_PARTY;
+    }
 
-    CopyMon(&gPlayerParty[i], mon, sizeof(*mon));
-    gPlayerPartyCount = i + 1;
-    return MON_GIVEN_TO_PARTY;
+    if (giveResult != MON_CANT_GIVE)
+        Achievement_OnPokemonObtained(GetMonData(mon, MON_DATA_SPECIES));
+
+    return giveResult;
 }
 
 u8 CopyMonToPC(struct Pokemon *mon)
@@ -7637,6 +7647,7 @@ u32 GiveScriptedMonToPlayer(struct Pokemon *mon, u8 slot)
     {
         HandleSetPokedexFlagFromMon(mon, FLAG_SET_SEEN);
         HandleSetPokedexFlagFromMon(mon, FLAG_SET_CAUGHT);
+        Achievement_OnPokemonObtained(GetMonData(mon, MON_DATA_SPECIES));
     }
     return sentToPc;
 }
