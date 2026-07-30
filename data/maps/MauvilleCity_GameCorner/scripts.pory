@@ -1800,7 +1800,7 @@ script MauvilleCity_GameCorner_EventScript_ChooseNewPrize2 {
 
 script GachaExplainer {
 	msgbox("Hello! Fancy trying your luck with the
-			gachapon? For a minimum wager of 4000
+			gachapon? For a minimum wager of 3000
 			coins, receive one rare Pokémon!
 
 			The grand prize includes a very

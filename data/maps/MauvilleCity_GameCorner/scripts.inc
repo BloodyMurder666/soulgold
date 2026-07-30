@@ -3664,7 +3664,7 @@ MauvilleCity_GameCorner_EventScript_ChooseNewPrize2_Text_3:
 GachaExplainer_Text_0:
 # 1802 "data/maps/MauvilleCity_GameCorner/scripts.pory"
 	.string "Hello! Fancy trying your luck with the\n"
-	.string "gachapon? For a minimum wager of 4000\l"
+	.string "gachapon? For a minimum wager of 3000\l"
 	.string "coins, receive one rare Pokémon!\p"
 	.string "The grand prize includes a very\n"
 	.string "special Eevee and Pikachu! Don't\l"
