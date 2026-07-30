@@ -347,7 +347,7 @@ static void AddStartMenuAction(u8 action)
 
 static bool8 IsInPokemonLeagueChallenge(void)
 {
-    u16 map = (gSaveBlock1Ptr->location.mapGroup << 8) | gSaveBlock1Ptr->location.mapNum;
+    /* u16 map = (gSaveBlock1Ptr->location.mapGroup << 8) | gSaveBlock1Ptr->location.mapNum;
 
     switch (map)
     {
@@ -360,7 +360,8 @@ static bool8 IsInPokemonLeagueChallenge(void)
         return TRUE;
     default:
         return FALSE;
-    }
+    } */
+   return FALSE;
 }
 
 static void BuildNormalStartMenu(void)

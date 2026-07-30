@@ -9,12 +9,12 @@ EliteFourRoom_OnLoad::
 	end
 
 EliteFourRoom_CreateDoor::
-	setmetatile 5, 11, 0x29D, TRUE
-	setmetatile 6, 11, 0x29E, TRUE
-	setmetatile 7, 11, 0x29F, TRUE
-	setmetatile 5, 12, 0x2A5, TRUE
-	setmetatile 6, 12, 0x2A6, TRUE
-	setmetatile 7, 12, 0x2A7, TRUE
+	setmetatile 5, 11, 0x41D, TRUE
+	setmetatile 6, 11, 0x41E, TRUE
+	setmetatile 7, 11, 0x41F, TRUE
+	setmetatile 5, 12, 0x425, TRUE
+	setmetatile 6, 12, 0x426, TRUE
+	setmetatile 7, 12, 0x427, TRUE
 	return
 
 PokemonLeague_WillsRoom_OnResume::

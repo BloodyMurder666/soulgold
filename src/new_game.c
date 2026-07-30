@@ -121,7 +121,7 @@ static void SetDefaultOptions(void)
     gSaveBlock2Ptr->optionsLevelCaps = B_EXP_CAP_TYPE;
     gSaveBlock2Ptr->optionsTrainerLevelScaling = LEVEL_SCALING_OPTION_OFF;
     gSaveBlock2Ptr->optionsWildLevelScaling = LEVEL_SCALING_OPTION_OFF;
-    gSaveBlock2Ptr->optionsFastIntroNoSlide = B_FAST_INTRO_NO_SLIDE;
+    gSaveBlock2Ptr->optionsFastIntroNoSlide = TRUE;
     gSaveBlock2Ptr->optionsFastMegas = B_FAST_MEGAS;
     gSaveBlock2Ptr->optionsFastWeather = B_FAST_WEATHER;
     gSaveBlock2Ptr->optionsSurfMusic = OW_SURF_MUSIC;
