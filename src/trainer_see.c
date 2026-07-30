@@ -374,10 +374,7 @@ bool8 CheckForTrainersWantingBattle(void)
     {
         if (!gObjectEvents[i].active)
             continue;
-        if (gObjectEvents[i].trainerType != TRAINER_TYPE_NORMAL
-         && gObjectEvents[i].trainerType != TRAINER_TYPE_SEE_ALL_DIRECTIONS
-         && gObjectEvents[i].trainerType != TRAINER_TYPE_BURIED
-         && gObjectEvents[i].trainerType != TRAINER_TYPE_SENTRY)
+        if (gObjectEvents[i].trainerType != TRAINER_TYPE_NORMAL && gObjectEvents[i].trainerType != TRAINER_TYPE_SEE_ALL_DIRECTIONS && gObjectEvents[i].trainerType != TRAINER_TYPE_BURIED)
             continue;
         trainerObjects[trainerObjectsCount++] = i;
     }
@@ -489,17 +486,6 @@ static u8 CheckTrainer(u8 objectEventId)
     if (approachDistance == 0)
         return 0;
 
-    // Sentries trigger their object script without approaching or starting a battle.
-    if (gObjectEvents[objectEventId].trainerType == TRAINER_TYPE_SENTRY)
-    {
-        gApproachingTrainers[gNoOfApproachingTrainers].objectEventId = objectEventId;
-        gApproachingTrainers[gNoOfApproachingTrainers].trainerScriptPtr = NULL;
-        gApproachingTrainers[gNoOfApproachingTrainers].radius = approachDistance;
-        InitTrainerApproachTask(&gObjectEvents[objectEventId], 0);
-        gNoOfApproachingTrainers++;
-        return 0xFF;
-    }
-
     if (InTrainerHill() == TRUE)
     {
         trainerBattlePtr = GetTrainerHillTrainerScript();
@@ -585,15 +571,12 @@ static u8 GetTrainerApproachDistance(struct ObjectEvent *trainerObj)
     u8 approachDistance;
 
     PlayerGetDestCoords(&x, &y);
-    if (trainerObj->trainerType == TRAINER_TYPE_NORMAL
-     || trainerObj->trainerType == TRAINER_TYPE_SENTRY)  // can only see in one direction
+    if (trainerObj->trainerType == TRAINER_TYPE_NORMAL)  // can only see in one direction
     {
         // Disable trainer approach while moving diagonally (usually moving on sideway stairs)
         if (trainerObj->facingDirection > DIR_EAST)
             return 0;
         approachDistance = sDirectionalApproachDistanceFuncs[trainerObj->facingDirection - 1](trainerObj, trainerObj->trainerRange_berryTreeId, x, y);
-        if (trainerObj->trainerType == TRAINER_TYPE_SENTRY)
-            return approachDistance;
         return CheckPathBetweenTrainerAndPlayer(trainerObj, approachDistance, trainerObj->facingDirection);
     }
     else // TRAINER_TYPE_SEE_ALL_DIRECTIONS, TRAINER_TYPE_BURIED
@@ -766,12 +749,6 @@ static bool8 WaitTrainerExclamationMark(u8 taskId, struct Task *task, struct Obj
     }
     else
     {
-        if (trainerObj->trainerType == TRAINER_TYPE_SENTRY)
-        {
-            SwitchTaskToFollowupFunc(taskId);
-            return FALSE;
-        }
-
         task->tFuncId++; // TRSEE_MOVE_TO_PLAYER
         if (trainerObj->movementType == MOVEMENT_TYPE_TREE_DISGUISE || trainerObj->movementType == MOVEMENT_TYPE_MOUNTAIN_DISGUISE)
             task->tFuncId = TRSEE_REVEAL_DISGUISE;
