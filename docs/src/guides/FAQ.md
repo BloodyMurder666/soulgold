@@ -36,6 +36,15 @@ order: 1
 ### Shiny locks?
 - Only Pokémon received via NPC trade are shiny locked, everything else can be shiny, even gift Pokémon. Shinyness is also displayed in the pictures when you receive a gift Pokémon.
 
+### Type changes?
+- None during the main game. Only some might gain one extra type during postgame from an innate.
+
+### BST Changes?
+- None.
+
+### Moves changes?
+- Yes, some Pokémon learn extra moves for a bit more late game power. Such as Attack Order Beedrill.
+
 ### Mega Ring?
 - After Team Rocket takeover event in Goldenrod City.
 
@@ -44,6 +53,9 @@ order: 1
 
 ### How to get starter megastone/bondstone?
 - Given to you by Elm at a certain point in story.
+
+### How to get the other starters?
+- Gachapon machine in Goldenrod Casino, behind the rewards counter. 3000 Coins is the minimum entry, but putting more increases the chance of not receiving a duplicate starter.
 
 ### Coin case?
 - Goldenrod Underground
@@ -66,8 +78,8 @@ order: 1
 ### Tips for finding items that are held by wild Pokémon?
 - Have a Pokémon with ability Compoundeyes or Super Luck in the first party slot to increase the chances of wild Pokémon holding an item.
 
-### Tips for early game money?
-- Have Pokémon with ability Pickup. In this hack if the held item slot is occuped, items picked by Pickup will still go to bag.
+### Tips for getting money?
+- Early game, have a Pokémon with ability Pickup. In this hack if the held item slot is occuped, items picked by Pickup will still go to bag. Later on you can fish feathers or smash rocks for shards and sell them for quick cash. After obtaining 8 badges, Battle Factory will stock Nuggets and Big Nuggets. In the post game you can farm money from the Rocket Arcade facility.
 
 ### Why do innates unlock so late?
 - They are meant to act as a form of postgame progression. Most Pokémon stop learning moves around 60~ usually, so this gives something to look forward to after that.
@@ -80,6 +92,9 @@ order: 1
 
 ### Raising EVs?
 - EV items such as Power Weight have been greatly buffed, and they are buyable in Goldenrod. Additionally vitamins like Protein are not capped at 100 EVs anymore, and there are EX versions of the items that raise the stats instantly to max.
+
+### Lowering EVs?
+- Goldenrod Dept. Store sells EV reducing berries?
 
 ### Regional Pokémon?
 - Most are available in the Baoba's Safari Zone, but several can be found before this.
