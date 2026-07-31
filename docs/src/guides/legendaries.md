@@ -40,6 +40,7 @@ order: 3
 - Meltan: Trade for Tinkaton in Rinto Village
 - Kubfu: Blackthorne City rockclimb cave (down, up, left, up, left, down, right, right). Note: evolution not currently accessible!
 - Zarude: Obtain 75 trophies
+- Hoopa: Requires having completed the Rinto Village trade for giving Tinkaton to the scientist in the bottom house of the village. After becoming a Champion, go to Vajra pyramid and explore the depths. Prepare for multiple battles.
 - Bloodmoon Ursaluna: Explore Kitakami Mountain to find black mirror. Then go to lost woods and follow the murkrows.
 - Ogerpon: Explore Kitakami Mountain
 - Chien Pao: After obtaining Waterfall and Rock Climb, explore Ice Path further
