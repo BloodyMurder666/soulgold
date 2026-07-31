@@ -63,7 +63,7 @@ static void HallOfFameRecordEffect_WaitForSoundAndEnd(struct Task *);
 static void CreateHofMonitorSprite(s16, s16, s16, bool8);
 static void SpriteCB_HallOfFameMonitor(struct Sprite *);
 
-static u8 CreateGlowingPokeballsEffect(s16, s16, s16, bool16);
+static u8 CreateGlowingPokeballsEffect(s16, s16, s16, bool16, u8);
 static void SpriteCB_PokeballGlowEffect(struct Sprite *);
 static void PokeballGlowEffect_PlaceBalls(struct Sprite *);
 static void PokeballGlowEffect_TryPlaySe(struct Sprite *);
@@ -1062,12 +1062,13 @@ void MultiplyPaletteRGBComponents(u16 i, u8 r, u8 g, u8 b)
 #define tStartHofFlash   data[15]
 
 // Sprite data for SpriteCB_PokeballGlowEffect
-#define sState      data[0]
-#define sTimer      data[1]
-#define sCounter    data[2]
-#define sPlayHealSe data[5]
-#define sNumMons    data[6]
-#define sSpriteId   data[7]
+#define sState           data[0]
+#define sTimer           data[1]
+#define sCounter         data[2]
+#define sBallSubpriority data[4]
+#define sPlayHealSe      data[5]
+#define sNumMons         data[6]
+#define sSpriteId        data[7]
 
 // Sprite data for SpriteCB_PokeballGlow
 #define sEffectSpriteId data[0]
@@ -1097,7 +1098,7 @@ static void Task_PokecenterHeal(u8 taskId)
 static void PokecenterHealEffect_Init(struct Task *task)
 {
     task->tState++;
-    task->tBallSpriteId = CreateGlowingPokeballsEffect(task->tNumMons, task->tFirstBallX, task->tFirstBallY, TRUE);
+    task->tBallSpriteId = CreateGlowingPokeballsEffect(task->tNumMons, task->tFirstBallX, task->tFirstBallY, TRUE, 0);
     task->tMonitorSpriteId = CreatePokecenterMonitorSprite(task->tMonitorX, task->tMonitorY);
 }
 
@@ -1152,7 +1153,9 @@ static void HallOfFameRecordEffect_Init(struct Task *task)
 {
     u8 taskId;
     task->tState++;
-    task->tBallSpriteId = CreateGlowingPokeballsEffect(task->tNumMons, task->tFirstBallX, task->tFirstBallY, FALSE);
+    // Keep the balls behind the player when the bottom row overlaps their head.
+    task->tBallSpriteId = CreateGlowingPokeballsEffect(task->tNumMons, task->tFirstBallX, task->tFirstBallY,
+                                                      FALSE, gSprites[gPlayerAvatar.spriteId].subpriority + 1);
     taskId = FindTaskIdByFunc(Task_HallOfFameRecord);
     //CreateHofMonitorSprite(taskId, 120, 24, FALSE);
     //CreateHofMonitorSprite(taskId, 40, 8, TRUE);
@@ -1188,7 +1191,7 @@ static void HallOfFameRecordEffect_WaitForSoundAndEnd(struct Task *task)
     }
 }
 
-static u8 CreateGlowingPokeballsEffect(s16 numMons, s16 x, s16 y, bool16 playHealSe)
+static u8 CreateGlowingPokeballsEffect(s16 numMons, s16 x, s16 y, bool16 playHealSe, u8 ballSubpriority)
 {
     u8 spriteId;
     struct Sprite *sprite;
@@ -1196,6 +1199,7 @@ static u8 CreateGlowingPokeballsEffect(s16 numMons, s16 x, s16 y, bool16 playHea
     sprite = &gSprites[spriteId];
     sprite->x2 = x;
     sprite->y2 = y;
+    sprite->sBallSubpriority = ballSubpriority;
     sprite->sPlayHealSe = playHealSe;
     sprite->sNumMons = numMons;
     sprite->sSpriteId = spriteId;
@@ -1213,7 +1217,10 @@ static void PokeballGlowEffect_PlaceBalls(struct Sprite *sprite)
     if (sprite->sTimer == 0 || (--sprite->sTimer) == 0)
     {
         sprite->sTimer = 25;
-        spriteId = CreateSpriteAtEnd(&sSpriteTemplate_PokeballGlow, sPokeballCoordOffsets[sprite->sCounter].x + sprite->x2, sPokeballCoordOffsets[sprite->sCounter].y + sprite->y2, 0);
+        spriteId = CreateSpriteAtEnd(&sSpriteTemplate_PokeballGlow,
+                                     sPokeballCoordOffsets[sprite->sCounter].x + sprite->x2,
+                                     sPokeballCoordOffsets[sprite->sCounter].y + sprite->y2,
+                                     sprite->sBallSubpriority);
         gSprites[spriteId].oam.priority = 2;
         gSprites[spriteId].sEffectSpriteId = sprite->sSpriteId;
         sprite->sCounter++;
@@ -1396,6 +1403,7 @@ static void SpriteCB_HallOfFameMonitor(struct Sprite *sprite)
 #undef sState
 #undef sTimer
 #undef sCounter
+#undef sBallSubpriority
 #undef sPlayHealSe
 #undef sNumMons
 #undef sSpriteId
