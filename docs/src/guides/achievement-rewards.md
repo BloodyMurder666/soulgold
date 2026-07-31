@@ -38,7 +38,7 @@ Speak to the gentleman in Route 40 house to collect rewards and to check your cu
 
 ### 75 achievements
 - **Reward:** Zarude
-    - A mythical Pokémon from the jungle. Boasting unique skill Jungle Healing. 
+    - A mythical Pokémon from the jungle. 
 
 ### 100 achievements
 - **Reward:** Original Color Magerna

@@ -1,12 +1,18 @@
 Update notes:
+1.8.2026
+- Meltan can now breed with mineral egg group.
+
+
 31.7.2026
 - New Location accessible: Vajra Pyramid (Recommended team level: 77-80). Accessible after becoming a Champion and trading Tinkaton to the scientist in the southern house of Rinto Village.
 - New boss legendary encounter: Hoopa.
-- Adjusted normal mode title defense parties.
+- Adjusted Title Defense parties for normal difficulty.
 - Smoothed the difficulty curve of Vajra Desert East and Route 50 trainers on normal mode.
 - Made all types of Poké Balls cheaper from marts.
-- Roselia learns Acid Spray and Venoshock, Togepi learns Metronome earlier.
+- Roselia learns Acid Spray and Venoshock 
+- Togepi learns Metronome earlier.
 - Flamigo learns Jump Kick and Close Combat
+- Kilowattrel learns Air Slash
 - Drifblim learns Air Slash
 - Phione can evolve into Manaphy at level 58
 - Shaymin and Hoopa no longer revert back to their base form unless you use Gracidea/Prison Bottle on them.
@@ -17,7 +23,6 @@ Update notes:
 - Fixed type icons not showing in single battles. They will still display ?-type when the Pokémon is seen for the first time.
 - Shifted Ruins of Alph rewards around.
 - Decapitalized some PC storage text.
-
 
 29.7.2026
 - Heracross is available from Goldenrod Shore hidden grotto and Route 48

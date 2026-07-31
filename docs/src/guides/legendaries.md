@@ -26,6 +26,7 @@ order: 3
 - Jirachi: Finish rival story in Mt. Silver
 - Regigigas: Bring all three Regis to Mt Silver backroom
 - Heatran: Explore Mt. Mortar Depths after obtaining Waterfall and Rock Climb. For the Puzzle: Lower line and middle top.
+- Phione/Manaphy: Fish with Good or Super rod in South Johto Sea area where only Shellos and Gastrodon can be encountered. Evolves to Manaphy at level 58.
 - Cresselia: After finishing rival story in Mt Silver. Talk to them in their house to start the quest. Go to Lake of Rage and speak with Hidden Power Dude, then explore the north-east corner of the lake.
 - Darkrai: After obtaining Cresselia, show it to rival in their house. Then go to cherrygrove and enter the inn with cresselia in party. 
 - Shaymin: Dream Garden, accessible from Tohjo Falls after obtaining Rock Climb

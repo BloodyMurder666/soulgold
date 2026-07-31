@@ -83,6 +83,21 @@ TEST("(Daycare) Bill's Eevee can breed with Ditto and produces a regular Eevee E
     EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), SPECIES_EEVEE);
 }
 
+TEST("(Daycare) Meltan can breed with Ditto and produces a Meltan eggs")
+{
+    ASSUME(P_FAMILY_DITTO == TRUE);
+    ASSUME(P_FAMILY_MELTAN == TRUE);
+
+    ZeroPlayerPartyMons();
+    RUN_OVERWORLD_SCRIPT(
+        givemon SPECIES_DITTO, 100;
+        givemon SPECIES_MELTAN, 100;
+    );
+    STORE_IN_DAYCARE_AND_GET_EGG();
+
+    EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), SPECIES_MELTAN);
+}
+
 TEST("(Daycare) Bill's Pikachu can breed with Ditto and produces a Pichu Egg")
 {
     ASSUME(P_FAMILY_DITTO == TRUE);
