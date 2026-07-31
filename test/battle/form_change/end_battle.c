@@ -88,7 +88,7 @@ SINGLE_BATTLE_TEST("Palafin returns to Zero form upon battle end")
     }
 }
 
-SINGLE_BATTLE_TEST("Shaymin retains Land form if it was frozen or frostbitten in battle")
+SINGLE_BATTLE_TEST("Shaymin retains Sky form if it was frozen or frostbitten in battle")
 {
     GIVEN {
         ASSUME(MoveHasAdditionalEffect(MOVE_POWDER_SNOW, MOVE_EFFECT_FREEZE_OR_FROSTBITE));
@@ -99,10 +99,9 @@ SINGLE_BATTLE_TEST("Shaymin retains Land form if it was frozen or frostbitten in
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_POWDER_SNOW, opponent);
         FREEZE_OR_FROSTBURN_STATUS(player, TRUE);
-        NOT HP_BAR(player); // Regression caused by Mimikyu form change
-        MESSAGE("Shaymin transformed!");
+        NOT MESSAGE("Shaymin transformed!");
     } THEN {
-        EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), SPECIES_SHAYMIN_LAND);
+        EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), SPECIES_SHAYMIN_SKY);
     }
 }
 

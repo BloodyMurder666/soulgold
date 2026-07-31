@@ -1985,20 +1985,6 @@ static void GiveItemToMon(struct Pokemon *mon, enum Item item)
     }
 }
 
-static bool8 AddHeldItemToBag(enum Item item)
-{
-    if (IsItemInfiniteHold(item))
-        return TRUE;
-
-    return AddBagItem(item, 1);
-}
-
-static void RemoveHeldItemFromBag(enum Item item)
-{
-    if (!IsItemInfiniteHold(item))
-        RemoveBagItem(item, 1);
-}
-
 static void BufferBagFullCantTakeItemMessage(u16 itemUnused)
 {
     StringExpandPlaceholders(gStringVar4, gText_BagFullCouldNotRemoveItem);
@@ -3758,6 +3744,11 @@ static void CursorCb_Toss(u8 taskId)
         DisplayPartyMenuMessage(gStringVar4, TRUE);
         gTasks[taskId].func = Task_UpdateHeldItemSprite;
     }
+    else if (!CanItemBeTossed(item))
+    {
+        DisplayPartyMenuMessage(gText_ItemCantBeTossed, TRUE);
+        gTasks[taskId].func = Task_UpdateHeldItemSprite;
+    }
     else
     {
         CopyItemName(item, gStringVar1);
@@ -3793,6 +3784,12 @@ static void Task_HandleTossHeldItemYesNoInput(u8 taskId)
     switch (Menu_ProcessInputNoWrapClearOnChoose())
     {
     case 0:
+        if (!CanItemBeTossed(item))
+        {
+            DisplayPartyMenuMessage(gText_ItemCantBeTossed, FALSE);
+            gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+            break;
+        }
         CopyItemName(item, gStringVar1);
         StringExpandPlaceholders(gStringVar4, gText_ItemThrownAway);
         DisplayPartyMenuMessage(gStringVar4, FALSE);
@@ -3814,6 +3811,7 @@ static void Task_TossHeldItem(u8 taskId)
     if (IsPartyMenuTextPrinterActive() != TRUE)
     {
         enum Item item = ITEM_NONE;
+        enum Item heldItem = ITEM_NONE;
         int i;
         u8 slot = 0;
 
@@ -3822,8 +3820,14 @@ static void Task_TossHeldItem(u8 taskId)
             if (GetMonData(mon, MON_DATA_HELD_ITEM + i) != ITEM_NONE)
             {
                 slot = i; //Battle Pyramid toss when bag is full, targets last held item.
+                heldItem = GetMonData(mon, MON_DATA_HELD_ITEM + i);
                 break;
             }
+        }
+        if (!CanItemBeTossed(heldItem))
+        {
+            gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+            return;
         }
         SetMonData(mon, MON_DATA_HELD_ITEM + slot, &item);
         UpdatePartyMonHeldItemSprite(mon, &sPartyMenuBoxes[gPartyMenu.slotId]);

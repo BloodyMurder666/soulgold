@@ -314,6 +314,7 @@ const u8 gText_PkmnGotOverInfatuation[] = _("{STR_VAR_1} got over its\ninfatuati
 const u8 gText_PkmnTransformed[] = _("{STR_VAR_1} transformed!{PAUSE_UNTIL_PRESS}");
 const u8 gText_ThrowAwayItem[] = _("Throw away this\n{STR_VAR_1}?");
 const u8 gText_ItemThrownAway[] = _("The {STR_VAR_1}\nwas thrown away.{PAUSE_UNTIL_PRESS}");
+const u8 gText_ItemCantBeTossed[] = _("That item can't be\nthrown away!");
 const u8 gText_TeachWhichPokemon2[] = _("Teach which Pokémon?"); // Unused
 const u8 gText_ChoosePokemon[] = _("Choose a Pokémon.");
 const u8 gText_MoveToWhere[] = _("Move to where?");

@@ -138,4 +138,9 @@ bool32 SetUpFieldMove_Dive(void);
 bool32 SetUpFieldMove_RockClimb(void);
 bool32 SetUpFieldMove_Whirlpool(void);
 
+#if TESTING
+bool32 SwShPartyMenu_TestGiveHeldItemToMon(u8 partyId, enum Item item);
+bool32 SwShPartyMenu_TestTossHeldItem(u8 partyId);
+#endif
+
 #endif // GUARD_PARTY_MENU_H

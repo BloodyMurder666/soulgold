@@ -147,4 +147,8 @@ void CB2_ChooseBall(void);
 void SortItemsInBag(struct BagPocket *pocket, enum BagSortOptions type);
 s32 RegisteredItemIndex(enum Item item);
 
+#if TESTING
+bool32 ItemMenu_TestTossItemFromBag(enum Item item, u16 count);
+#endif
+
 #endif //GUARD_ITEM_MENU_H

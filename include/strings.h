@@ -282,6 +282,7 @@ extern const u8 gText_PkmnCantParticipate[];
 extern const u8 gText_PkmnNotHolding[];
 extern const u8 gText_ThrowAwayItem[];
 extern const u8 gText_ItemThrownAway[];
+extern const u8 gText_ItemCantBeTossed[];
 extern const u8 gText_SendMailToPC[];
 extern const u8 gText_MailSentToPC[];
 extern const u8 gText_PCMailboxFull[];

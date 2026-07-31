@@ -1,12 +1,22 @@
 Update notes:
 31.7.2026
-- New boss legendary encounter: Hoopa. After becoming a Champion and trading Tinkaton to the scientist in Rinto village. The door to the Vajra Pyramid will be open
-and you can explore this dungeon to find a new legendary to fight and capture.
+- New Location accessible: Vajra Pyramid (Recommended team level: 77-80). Accessible after becoming a Champion and trading Tinkaton to the scientist in the southern house of Rinto Village.
+- New boss legendary encounter: Hoopa.
 - Adjusted normal mode title defense parties.
+- Smoothed the difficulty curve of Vajra Desert East and Route 50 trainers on normal mode.
 - Made all types of Poké Balls cheaper from marts.
+- Roselia learns Acid Spray and Venoshock, Togepi learns Metronome earlier.
+- Flamigo learns Jump Kick and Close Combat
+- Drifblim learns Air Slash
+- Phione can evolve into Manaphy at level 58
+- Shaymin and Hoopa no longer revert back to their base form unless you use Gracidea/Prison Bottle on them.
+- Gracidea and Prison Bottle transform Shaymin and Hoopa both ways instead of just one-way.
+- Megastones can no longer be tossed.
 - Fixed wrong text with Echoed Voice TM NPC.
+- Maybe fixed X items not working sometimes in trainer battles.
 - Fixed type icons not showing in single battles. They will still display ?-type when the Pokémon is seen for the first time.
 - Shifted Ruins of Alph rewards around.
+- Decapitalized some PC storage text.
 
 
 29.7.2026

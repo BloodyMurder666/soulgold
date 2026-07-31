@@ -1420,17 +1420,29 @@ bool32 CannotUseItemsInBattle(enum Item itemId, struct Pokemon *mon)
     bool8 cannotUse = FALSE;
     const u8* failStr = NULL;
     u32 i, battlerTarget;
+
+    if (mon == NULL)
+    {
+        battlerTarget = gBattlerInMenuId;
+        mon = &gPlayerParty[gBattlerPartyIndexes[battlerTarget]];
+    }
+    else if (gPartyMenu.slotId == 0)
+    {
+        battlerTarget = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+    }
+    else if (IsDoubleBattle() && gPartyMenu.slotId == 1)
+    {
+        battlerTarget = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
+    }
+    else
+    {
+        battlerTarget = MAX_BATTLERS_COUNT;
+    }
+
     u16 hp = GetMonData(mon, MON_DATA_HP);
 
-    if (gPartyMenu.slotId == 0)
-        battlerTarget = B_POSITION_PLAYER_LEFT;
-    else if (gPartyMenu.slotId == 1)
-        battlerTarget = B_POSITION_PLAYER_RIGHT;
-    else
-        battlerTarget = MAX_POSITION_COUNT;
-
     // Embargo Check
-    if (battlerTarget < MAX_POSITION_COUNT && GetItemType(itemId) != ITEM_USE_BAG_MENU)
+    if (battlerTarget < MAX_BATTLERS_COUNT && GetItemType(itemId) != ITEM_USE_BAG_MENU)
     {
         if (gBattleMons[battlerTarget].volatiles.embargo)
             return TRUE;
@@ -1440,13 +1452,13 @@ bool32 CannotUseItemsInBattle(enum Item itemId, struct Pokemon *mon)
     switch (battleUsage)
     {
     case EFFECT_ITEM_INCREASE_STAT:
-        if (hp == 0 || gPartyMenu.slotId > 1)
+        if (battlerTarget >= MAX_BATTLERS_COUNT || !IsBattlerAlive(battlerTarget))
             cannotUse = TRUE;
         else if (CompareStat(battlerTarget, GetItemEffect(itemId)[1], MAX_STAT_STAGE, CMP_EQUAL))
             cannotUse = TRUE;
         break;
     case EFFECT_ITEM_SET_FOCUS_ENERGY:
-        if (hp == 0 ||gPartyMenu.slotId > 1)
+        if (battlerTarget >= MAX_BATTLERS_COUNT || !IsBattlerAlive(battlerTarget))
             cannotUse = TRUE;
         else if (gBattleMons[battlerTarget].volatiles.dragonCheer || gBattleMons[battlerTarget].volatiles.focusEnergy)
             cannotUse = TRUE;
@@ -1482,7 +1494,7 @@ bool32 CannotUseItemsInBattle(enum Item itemId, struct Pokemon *mon)
         break;
     case EFFECT_ITEM_INCREASE_ALL_STATS:
     {
-        if (hp == 0 || gPartyMenu.slotId > 1)
+        if (battlerTarget >= MAX_BATTLERS_COUNT || !IsBattlerAlive(battlerTarget))
         {
             cannotUse = TRUE;
             break;

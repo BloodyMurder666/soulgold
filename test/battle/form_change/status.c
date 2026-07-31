@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("Shaymin-Sky reverts to Shaymin-Land when frozen or frostbitten")
+SINGLE_BATTLE_TEST("Shaymin-Sky does not revert when inflicted with a status")
 {
     enum Move move;
 
@@ -25,15 +25,9 @@ SINGLE_BATTLE_TEST("Shaymin-Sky reverts to Shaymin-Land when frozen or frostbitt
         ANIMATION(ANIM_TYPE_MOVE, move, opponent);
         if (move == MOVE_POWDER_SNOW) {
             FREEZE_OR_FROSTBURN_STATUS(player, TRUE);
-            NOT HP_BAR(player); // Regression caused by Mimikyu form change
-            MESSAGE("Shaymin transformed!");
-        } else {
-            NOT MESSAGE("Shaymin transformed!");
         }
+        NOT MESSAGE("Shaymin transformed!");
     } THEN {
-        if (move == MOVE_POWDER_SNOW)
-            EXPECT_EQ(player->species, SPECIES_SHAYMIN_LAND);
-        else
-            EXPECT_EQ(player->species, SPECIES_SHAYMIN_SKY);
+        EXPECT_EQ(player->species, SPECIES_SHAYMIN_SKY);
     }
 }

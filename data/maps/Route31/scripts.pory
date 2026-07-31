@@ -219,6 +219,7 @@ script Route31_Expert {
         setflag(FLAG_ROUTE31_EXPERT)
         addvar(VAR_ROUTE_EXPERTS_DEFEATED, 1)
         special(Achievement_CheckAll)
+		createfieldmugshot(MUGSHOT_COOLTRAINER_M)
         msgbox("Air Balloon lets a Pokémon avoid 
 				Ground-type moves until it 
 				takes a hit.

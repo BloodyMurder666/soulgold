@@ -368,7 +368,7 @@ Route31_Expert::
 	checktrainerflag TRAINER_WADE
 	goto_if 1, Route31_Expert_7
 Route31_Expert_4:
-# 235 "data/maps/Route31/scripts.pory"
+# 236 "data/maps/Route31/scripts.pory"
 	release
 	end
 
@@ -397,6 +397,8 @@ Route31_Expert_5:
 # 221 "data/maps/Route31/scripts.pory"
 	special Achievement_CheckAll
 # 222 "data/maps/Route31/scripts.pory"
+	createfieldmugshot MUGSHOT_COOLTRAINER_M
+# 223 "data/maps/Route31/scripts.pory"
 	msgbox Route31_Expert_Text_0
 	goto Route31_Expert_4
 

@@ -1173,6 +1173,12 @@ static void BagAction_Toss(u8 taskId)
     s16 *data = gTasks[taskId].data;
 
     CloseMenuActionWindow();
+    if (!CanItemBeTossed(gSpecialVar_ItemId))
+    {
+        DisplayItemMessageInBattlePyramid(taskId, gText_ItemCantBeTossed, Task_WaitCloseErrorMessage);
+        return;
+    }
+
     tNumToToss = 1;
     if (tQuantity == 1)
     {
@@ -1261,6 +1267,12 @@ static void TossItem(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
+    if (!CanItemBeTossed(gSpecialVar_ItemId))
+    {
+        DontTossItem(taskId);
+        return;
+    }
+
     CopyItemName(gSpecialVar_ItemId, gStringVar1);
     ConvertIntToDecimalStringN(gStringVar2, tNumToToss, STR_CONV_MODE_LEFT_ALIGN, MAX_PYRAMID_ITEM_DIGITS);
     StringExpandPlaceholders(gStringVar4, gText_ThrewAwayVar2Var1s);
@@ -1278,7 +1290,8 @@ static void Task_TossItem(u8 taskId)
     if (JOY_NEW(A_BUTTON | B_BUTTON))
     {
         PlaySE(SE_SELECT);
-        RemovePyramidBagItem(gSpecialVar_ItemId, tNumToToss);
+        if (CanItemBeTossed(gSpecialVar_ItemId))
+            RemovePyramidBagItem(gSpecialVar_ItemId, tNumToToss);
         DestroyListMenuTask(tListTaskId, scrollOffset, selectedRow);
         UpdatePyramidBagList();
         UpdatePyramidBagCursorPos();

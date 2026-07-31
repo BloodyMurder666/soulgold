@@ -445,6 +445,22 @@ bool32 RemoveBagItem(enum Item itemId, u16 count)
     return BagPocket_RemoveItem(&gBagPockets[GetItemPocket(itemId)], itemId, count);
 }
 
+bool32 AddHeldItemToBag(enum Item itemId)
+{
+    if (IsItemInfiniteHold(itemId) && CheckBagHasItem(itemId, 1))
+        return TRUE;
+
+    return AddBagItem(itemId, 1);
+}
+
+bool32 RemoveHeldItemFromBag(enum Item itemId)
+{
+    if (IsItemInfiniteHold(itemId))
+        return TRUE;
+
+    return RemoveBagItem(itemId, 1);
+}
+
 // Unsafe function: Only use with functions that already check the slot and count are valid
 void RemoveBagItemFromSlot(struct BagPocket *pocket, u16 slotId, u16 count)
 {
@@ -891,6 +907,15 @@ bool32 IsItemInfiniteHold(enum Item itemId)
     return gItemsInfo[item].notConsumed
         && gItemsInfo[item].sortType == ITEM_TYPE_MEGA_STONE
         && gItemsInfo[item].pocket == POCKET_MEGASTONES;
+}
+
+bool32 CanItemBeTossed(enum Item itemId)
+{
+    enum Item item = SanitizeItemId(itemId);
+
+    return item != ITEM_NONE
+        && !GetItemImportance(item)
+        && !IsItemInfiniteHold(item);
 }
 
 enum Pocket GetItemPocket(enum Item itemId)

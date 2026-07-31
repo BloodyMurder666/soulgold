@@ -16835,11 +16835,61 @@ Pic: Cooltrainer F
 Gender: Female
 Music: Dp Ace Trainer
 Double Battle: No
-AI: Smart Trainer
+AI: Basic Trainer
 
 Tyranitar @ Smooth Rock
 Ability: Sand Stream
-Level: 73
+Level: 70
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Careful Nature
+- Stealth Rock
+- Stone Edge
+- Crunch
+- Thunder Wave
+
+Rotom-Wash @ Leftovers
+Ability: Levitate
+Level: 70
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Bold Nature
+- Hydro Pump
+- Volt Switch
+- Will-O-Wisp
+- Pain Split
+
+Excadrill @ Life Orb
+Ability: Sand Rush
+Level: 71
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Jolly Nature
+- Earthquake
+- Iron Head
+- Rock Slide
+- Swords Dance
+
+Dragapult @ Choice Specs
+Ability: Infiltrator
+Level: 71
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Timid Nature
+- Shadow Ball
+- Draco Meteor
+- Flamethrower
+- U-Turn
+
+=== TRAINER_VAJRA_EAST_SIROCCO ===
+Name: Sirocco
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Dp Ace Trainer
+Double Battle: No
+AI: Smart Trainer
+Difficulty: Hard
+
+Tyranitar @ Smooth Rock
+Ability: Sand Stream
+Level: 70
 EVs: 252 HP / 4 Atk / 252 SpD
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Careful Nature
@@ -16850,7 +16900,7 @@ Careful Nature
 
 Rotom-Wash @ Leftovers
 Ability: Levitate
-Level: 73
+Level: 70
 EVs: 252 HP / 200 Def / 56 Spe
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Bold Nature
@@ -16861,7 +16911,7 @@ Bold Nature
 
 Excadrill @ Life Orb
 Ability: Sand Rush
-Level: 74
+Level: 71
 EVs: 4 HP / 252 Atk / 252 Spe
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Jolly Nature
@@ -16872,7 +16922,7 @@ Jolly Nature
 
 Dragapult @ Choice Specs
 Ability: Infiltrator
-Level: 75
+Level: 71
 EVs: 4 Def / 252 SpA / 252 Spe
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Timid Nature
@@ -16888,11 +16938,61 @@ Pic: Camper
 Gender: Male
 Music: Hg Boy 1
 Double Battle: Yes
-AI: Smart Trainer
+AI: Basic Trainer
 
 Lilligant-Hisui @ Focus Sash
 Ability: Chlorophyll
-Level: 74
+Level: 71
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Jolly Nature
+- After You
+- Close Combat
+- Solar Blade
+- Sleep Powder
+
+Torkoal @ Charcoal
+Ability: Drought
+Level: 71
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+Quiet Nature
+- Eruption
+- Heat Wave
+- Solar Beam
+- Protect
+
+Venusaur @ Life Orb
+Ability: Chlorophyll
+Level: 72
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Timid Nature
+- Sludge Bomb
+- Solar Beam
+- Earth Power
+- Protect
+
+Charizard @ Choice Specs
+Ability: Solar Power
+Level: 72
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Timid Nature
+- Heat Wave
+- Air Slash
+- Solar Beam
+- Dragon Pulse
+
+=== TRAINER_VAJRA_EAST_SOL ===
+Name: Sol
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Hg Boy 1
+Double Battle: Yes
+AI: Smart Trainer
+Difficulty: Hard
+
+Lilligant-Hisui @ Focus Sash
+Ability: Chlorophyll
+Level: 71
 EVs: 4 HP / 252 Atk / 252 Spe
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Jolly Nature
@@ -16903,7 +17003,7 @@ Jolly Nature
 
 Torkoal @ Charcoal
 Ability: Drought
-Level: 75
+Level: 71
 EVs: 252 HP / 4 Def / 252 SpA
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
 Quiet Nature
@@ -16914,7 +17014,7 @@ Quiet Nature
 
 Venusaur @ Life Orb
 Ability: Chlorophyll
-Level: 76
+Level: 72
 EVs: 4 HP / 252 SpA / 252 Spe
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Timid Nature
@@ -16925,7 +17025,7 @@ Timid Nature
 
 Charizard @ Choice Specs
 Ability: Solar Power
-Level: 76
+Level: 72
 EVs: 4 Def / 252 SpA / 252 Spe
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Timid Nature
@@ -16941,11 +17041,61 @@ Pic: Cooltrainer M
 Gender: Male
 Music: Dp Ace Trainer
 Double Battle: No
-AI: Smart Trainer
+AI: Basic Trainer
 
 Glimmora @ Focus Sash
 Ability: Toxic Debris
-Level: 78
+Level: 72
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Timid Nature
+- Stealth Rock
+- Mortal Spin
+- Power Gem
+- Earth Power
+
+Gliscor @ Toxic Orb
+Ability: Poison Heal
+Level: 72
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Impish Nature
+- Earthquake
+- Toxic
+- Protect
+- Knock Off
+
+Gholdengo @ Air Balloon
+Ability: Good As Gold
+Level: 73
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Timid Nature
+- Nasty Plot
+- Make It Rain
+- Shadow Ball
+- Recover
+
+Dragonite @ Heavy-Duty Boots
+Ability: Multiscale
+Level: 73
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Adamant Nature
+- Dragon Dance
+- Dragon Claw
+- Earthquake
+- Extreme Speed
+
+=== TRAINER_VAJRA_EAST_DUNE ===
+Name: Dune
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Dp Ace Trainer
+Double Battle: No
+AI: Smart Trainer
+Difficulty: Hard
+
+Glimmora @ Focus Sash
+Ability: Toxic Debris
+Level: 72
 EVs: 4 Def / 252 SpA / 252 Spe
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Timid Nature
@@ -16956,7 +17106,7 @@ Timid Nature
 
 Gliscor @ Toxic Orb
 Ability: Poison Heal
-Level: 79
+Level: 72
 EVs: 244 HP / 252 Def / 12 Spe
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Impish Nature
@@ -16967,7 +17117,7 @@ Impish Nature
 
 Gholdengo @ Air Balloon
 Ability: Good As Gold
-Level: 79
+Level: 73
 EVs: 4 Def / 252 SpA / 252 Spe
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Timid Nature
@@ -16978,7 +17128,7 @@ Timid Nature
 
 Dragonite @ Heavy-Duty Boots
 Ability: Multiscale
-Level: 80
+Level: 73
 EVs: 4 HP / 252 Atk / 252 Spe
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Adamant Nature
@@ -16994,11 +17144,61 @@ Pic: Youngster
 Gender: Male
 Music: Hg Boy 2
 Double Battle: Yes
-AI: Smart Trainer
+AI: Basic Trainer
 
 Dondozo @ Leftovers
 Ability: Unaware
-Level: 76
+Level: 73
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Adamant Nature
+- Order Up
+- Wave Crash
+- Earthquake
+- Protect
+
+Tatsugiri-Droopy @ Choice Scarf
+Ability: Commander
+Level: 73
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Timid Nature
+- Draco Meteor
+- Muddy Water
+- Icy Wind
+- Helping Hand
+
+Flamigo @ Covert Cloak
+Ability: Costar
+Level: 74
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Jolly Nature
+- Close Combat
+- Brave Bird
+- Wide Guard
+- Protect
+
+Gholdengo @ Life Orb
+Ability: Good As Gold
+Level: 74
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Modest Nature
+- Make It Rain
+- Shadow Ball
+- Dazzling Gleam
+- Protect
+
+=== TRAINER_VAJRA_EAST_NORI ===
+Name: Nori
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Hg Boy 2
+Double Battle: Yes
+AI: Smart Trainer
+Difficulty: Hard
+
+Dondozo @ Leftovers
+Ability: Unaware
+Level: 73
 EVs: 4 HP / 252 Atk / 252 Spe
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Adamant Nature
@@ -17009,7 +17209,7 @@ Adamant Nature
 
 Tatsugiri-Droopy @ Choice Scarf
 Ability: Commander
-Level: 76
+Level: 73
 EVs: 4 HP / 252 SpA / 252 Spe
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Timid Nature
@@ -17020,7 +17220,7 @@ Timid Nature
 
 Flamigo @ Covert Cloak
 Ability: Costar
-Level: 77
+Level: 74
 EVs: 4 HP / 252 Atk / 252 Spe
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Jolly Nature
@@ -17031,7 +17231,7 @@ Jolly Nature
 
 Gholdengo @ Life Orb
 Ability: Good As Gold
-Level: 78
+Level: 74
 EVs: 4 HP / 252 SpA / 252 Spe
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Modest Nature
@@ -17047,11 +17247,61 @@ Pic: Hiker
 Gender: Male
 Music: Dp Hiker
 Double Battle: Yes
-AI: Smart Trainer
+AI: Basic Trainer
 
 Dusclops @ Eviolite
 Ability: Pressure
-Level: 77
+Level: 74
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+Relaxed Nature
+- Trick Room
+- Night Shade
+- Will-O-Wisp
+- Helping Hand
+
+Hariyama @ Flame Orb
+Ability: Guts
+Level: 74
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+Brave Nature
+- Fake Out
+- Close Combat
+- Knock Off
+- Wide Guard
+
+Rhyperior @ Weakness Policy
+Ability: Solid Rock
+Level: 75
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+Brave Nature
+- High Horsepower
+- Rock Slide
+- Ice Punch
+- Protect
+
+Snorlax @ Normalite
+Ability: Thick Fat
+Level: 75
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+Brave Nature
+- Belly Drum
+- Body Slam
+- High Horsepower
+- Crunch
+
+=== TRAINER_VAJRA_EAST_ATLAS ===
+Name: Atlas
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Dp Hiker
+Double Battle: Yes
+AI: Smart Trainer
+Difficulty: Hard
+
+Dusclops @ Eviolite
+Ability: Pressure
+Level: 74
 EVs: 252 HP / 100 Def / 156 SpD
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
 Relaxed Nature
@@ -17062,7 +17312,7 @@ Relaxed Nature
 
 Hariyama @ Flame Orb
 Ability: Guts
-Level: 78
+Level: 74
 EVs: 252 HP / 252 Atk / 4 SpD
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
 Brave Nature
@@ -17073,7 +17323,7 @@ Brave Nature
 
 Rhyperior @ Weakness Policy
 Ability: Solid Rock
-Level: 78
+Level: 75
 EVs: 252 HP / 252 Atk / 4 SpD
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
 Brave Nature
@@ -17084,7 +17334,7 @@ Brave Nature
 
 Snorlax @ Normalite
 Ability: Thick Fat
-Level: 79
+Level: 75
 EVs: 252 HP / 252 Atk / 4 SpD
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
 Brave Nature
@@ -17100,11 +17350,61 @@ Pic: Hiker
 Gender: Male
 Music: Dp Hiker
 Double Battle: No
-AI: Smart Trainer
+AI: Basic Trainer
 
 Cradily @ Leftovers
 Ability: Suction Cups
-Level: 78
+Level: 74
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Calm Nature
+- Stealth Rock
+- Giga Drain
+- Power Gem
+- Recover
+
+Skarmory @ Rocky Helmet
+Ability: Sturdy
+Level: 74
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Impish Nature
+- Spikes
+- Roost
+- Body Press
+- Brave Bird
+
+Gastrodon @ Rindo Berry
+Ability: Storm Drain
+Level: 75
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Calm Nature
+- Scald
+- Earth Power
+- Ice Beam
+- Recover
+
+Mamoswine @ Choice Band
+Ability: Thick Fat
+Level: 75
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Adamant Nature
+- Earthquake
+- Icicle Crash
+- Ice Shard
+- Knock Off
+
+=== TRAINER_ROUTE50_ROWAN ===
+Name: Rowan
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Dp Hiker
+Double Battle: No
+AI: Smart Trainer
+Difficulty: Hard
+
+Cradily @ Leftovers
+Ability: Suction Cups
+Level: 74
 EVs: 252 HP / 4 SpA / 252 SpD
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Calm Nature
@@ -17115,7 +17415,7 @@ Calm Nature
 
 Skarmory @ Rocky Helmet
 Ability: Sturdy
-Level: 78
+Level: 74
 EVs: 252 HP / 252 Def / 4 SpD
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Impish Nature
@@ -17126,7 +17426,7 @@ Impish Nature
 
 Gastrodon @ Rindo Berry
 Ability: Storm Drain
-Level: 79
+Level: 75
 EVs: 252 HP / 4 SpA / 252 SpD
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Calm Nature
@@ -17137,7 +17437,7 @@ Calm Nature
 
 Mamoswine @ Choice Band
 Ability: Thick Fat
-Level: 80
+Level: 75
 EVs: 4 HP / 252 Atk / 252 Spe
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Adamant Nature
@@ -17153,11 +17453,61 @@ Pic: Cooltrainer M
 Gender: Male
 Music: Dp Ace Trainer
 Double Battle: Yes
-AI: Smart Trainer
+AI: Basic Trainer
 
 Pelipper @ Damp Rock
 Ability: Drizzle
-Level: 79
+Level: 74
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Timid Nature
+- Hurricane
+- Hydro Pump
+- Tailwind
+- Protect
+
+Kingdra @ Life Orb
+Ability: Swift Swim
+Level: 75
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Modest Nature
+- Muddy Water
+- Draco Meteor
+- Ice Beam
+- Protect
+
+Raichu @ Focus Sash
+Ability: Lightning Rod
+Level: 75
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Timid Nature
+- Thunder
+- Fake Out
+- Nuzzle
+- Protect
+
+Scizor @ Assault Vest
+Ability: Technician
+Level: 75
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Adamant Nature
+- Bullet Punch
+- Bug Bite
+- Close Combat
+- Dual Wingbeat
+
+=== TRAINER_ROUTE50_CASPIAN ===
+Name: Caspian
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Dp Ace Trainer
+Double Battle: Yes
+AI: Smart Trainer
+Difficulty: Hard
+
+Pelipper @ Damp Rock
+Ability: Drizzle
+Level: 74
 EVs: 4 HP / 252 SpA / 252 Spe
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Timid Nature
@@ -17168,7 +17518,7 @@ Timid Nature
 
 Kingdra @ Life Orb
 Ability: Swift Swim
-Level: 80
+Level: 75
 EVs: 4 HP / 252 SpA / 252 Spe
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Modest Nature
@@ -17179,7 +17529,7 @@ Modest Nature
 
 Raichu @ Focus Sash
 Ability: Lightning Rod
-Level: 80
+Level: 75
 EVs: 4 HP / 252 SpA / 252 Spe
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Timid Nature
@@ -17190,7 +17540,7 @@ Timid Nature
 
 Scizor @ Assault Vest
 Ability: Technician
-Level: 81
+Level: 75
 EVs: 252 HP / 252 Atk / 4 SpD
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Adamant Nature
@@ -17206,11 +17556,61 @@ Pic: Firebreather
 Gender: Male
 Music: Hg Boy 2
 Double Battle: No
-AI: Smart Trainer
+AI: Basic Trainer
 
 Talonflame @ Heavy-Duty Boots
 Ability: Gale Wings
-Level: 79
+Level: 74
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Jolly Nature
+- Brave Bird
+- Flare Blitz
+- U-Turn
+- Roost
+
+Arcanine-Hisui @ Choice Scarf
+Ability: Rock Head
+Level: 75
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Jolly Nature
+- Head Smash
+- Flare Blitz
+- Wild Charge
+- Close Combat
+
+Chandelure @ Choice Specs
+Ability: Flash Fire
+Level: 75
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Timid Nature
+- Shadow Ball
+- Fire Blast
+- Energy Ball
+- Psychic
+
+Houndoom @ Darktite
+Ability: Flash Fire
+Level: 75
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Timid Nature
+- Nasty Plot
+- Dark Pulse
+- Flamethrower
+- Sludge Bomb
+
+=== TRAINER_ROUTE50_IGNIS ===
+Name: Ignis
+Class: Firebreather
+Pic: Firebreather
+Gender: Male
+Music: Hg Boy 2
+Double Battle: No
+AI: Smart Trainer
+Difficulty: Hard
+
+Talonflame @ Heavy-Duty Boots
+Ability: Gale Wings
+Level: 74
 EVs: 4 HP / 252 Atk / 252 Spe
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Jolly Nature
@@ -17221,7 +17621,7 @@ Jolly Nature
 
 Arcanine-Hisui @ Choice Scarf
 Ability: Rock Head
-Level: 80
+Level: 75
 EVs: 4 HP / 252 Atk / 252 Spe
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Jolly Nature
@@ -17232,7 +17632,7 @@ Jolly Nature
 
 Chandelure @ Choice Specs
 Ability: Flash Fire
-Level: 80
+Level: 75
 EVs: 4 Def / 252 SpA / 252 Spe
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Timid Nature
@@ -17243,7 +17643,7 @@ Timid Nature
 
 Houndoom @ Darktite
 Ability: Flash Fire
-Level: 81
+Level: 75
 EVs: 4 Def / 252 SpA / 252 Spe
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Timid Nature
@@ -17259,35 +17659,71 @@ Pic: Ruin Maniac
 Gender: Male
 Music: Dp Hiker
 Double Battle: No
-AI: Smart Trainer
+AI: Basic Trainer
 
-Claydol @ Focus Sash  
-Ability: Levitate  
-Level: 75  
-EVs: 252 SpA / 252 Spe  
-IVs: 0 Atk  
-- Ancient Power  
-- Earth Power  
-- Psychic  
+Claydol @ Focus Sash
+Ability: Levitate
+Level: 72
+IVs: 0 Atk
+- Ancient Power
+- Earth Power
+- Psychic
 - Calm Mind
 
-Ariados @ Choice Scarf  
-Ability: Sniper  
-Level: 76
-EVs: 252 Atk / 252 Spe  
-- X-Scissor  
-- Throat Chop  
-- Poison Jab  
+Ariados @ Choice Scarf
+Ability: Sniper
+Level: 73
+- X-Scissor
+- Throat Chop
+- Poison Jab
 - Megahorn
 
-Volcarona @ Rocky Helmet  
-Ability: Flame Body  
-Level: 76    
-EVs: 252 HP / 172 Def / 84 SpD  
-Bold Nature  
-- Morning Sun  
-- Quiver Dance  
-- Leech Life  
+Volcarona @ Rocky Helmet
+Ability: Flame Body
+Level: 73
+Bold Nature
+- Morning Sun
+- Quiver Dance
+- Leech Life
+- Fiery Dance
+
+=== TRAINER_VAJRA_EAST_DYLAN ===
+Name: Dylan
+Class: Ruin Maniac
+Pic: Ruin Maniac
+Gender: Male
+Music: Dp Hiker
+Double Battle: No
+AI: Smart Trainer
+Difficulty: Hard
+
+Claydol @ Focus Sash
+Ability: Levitate
+Level: 72
+EVs: 252 SpA / 252 Spe
+IVs: 0 Atk
+- Ancient Power
+- Earth Power
+- Psychic
+- Calm Mind
+
+Ariados @ Choice Scarf
+Ability: Sniper
+Level: 73
+EVs: 252 Atk / 252 Spe
+- X-Scissor
+- Throat Chop
+- Poison Jab
+- Megahorn
+
+Volcarona @ Rocky Helmet
+Ability: Flame Body
+Level: 73
+EVs: 252 HP / 172 Def / 84 SpD
+Bold Nature
+- Morning Sun
+- Quiver Dance
+- Leech Life
 - Fiery Dance
 
 === TRAINER_SPIRIT1 ===
@@ -17302,7 +17738,6 @@ AI: Smart Trainer
 Drifblim @ Sitrus Berry
 Ability: Unburden
 Level: 77
-EVs: 100 HP / 100 SpD
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Calm Nature
 - Tailwind
@@ -17313,7 +17748,6 @@ Calm Nature
 Cofagrigus @ Leftovers
 Ability: Mummy
 Level: 77
-EVs: 100 HP / 100 Def
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Bold Nature
 - Shadow Ball
@@ -17324,7 +17758,6 @@ Bold Nature
 Mismagius @ Colbur Berry
 Ability: Levitate
 Level: 77
-EVs: 100 SpA / 100 Spe
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Timid Nature
 - Nasty Plot
@@ -17387,7 +17820,6 @@ AI: Smart Trainer
 Froslass @ Focus Sash
 Ability: Cursed Body
 Level: 78
-EVs: 100 SpA / 100 Spe
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Timid Nature
 - Spikes
@@ -17398,7 +17830,6 @@ Timid Nature
 Runerigus @ Rocky Helmet
 Ability: Wandering Spirit
 Level: 78
-EVs: 100 HP / 100 Def
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Impish Nature
 - Stealth Rock
@@ -17409,7 +17840,6 @@ Impish Nature
 Basculegion @ Choice Band
 Ability: Adaptability
 Level: 78
-EVs: 100 Atk / 100 Spe
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Adamant Nature
 - Wave Crash
@@ -17420,13 +17850,12 @@ Adamant Nature
 Mimikyu @ Life Orb
 Ability: Disguise
 Level: 78
-EVs: 100 Atk / 100 Spe
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Jolly Nature
-- Swords Dance
+- Copycat
 - Play Rough
 - Shadow Sneak
-- Drain Punch
+- Hone Claws
 
 === TRAINER_SPIRIT2 ===
 Name: Haunter
@@ -17494,7 +17923,6 @@ AI: Smart Trainer
 Dragapult @ Choice Specs
 Ability: Infiltrator
 Level: 79
-EVs: 100 SpA / 100 Spe
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Timid Nature
 - Shadow Ball
@@ -17505,7 +17933,6 @@ Timid Nature
 Aegislash @ Sitrus Berry
 Ability: Stance Change
 Level: 79
-EVs: 100 HP / 100 Atk
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Adamant Nature
 - King's Shield
@@ -17516,7 +17943,6 @@ Adamant Nature
 Annihilape @ Assault Vest
 Ability: Defiant
 Level: 79
-EVs: 100 HP / 100 Atk
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Adamant Nature
 - Rage Fist
@@ -17527,7 +17953,6 @@ Adamant Nature
 Skeledirge @ Leftovers
 Ability: Unaware
 Level: 79
-EVs: 100 HP / 100 Def
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Bold Nature
 - Torch Song
@@ -17538,7 +17963,6 @@ Bold Nature
 Gengar @ Ghostite
 Ability: Cursed Body
 Level: 79
-EVs: 100 SpA / 100 Spe
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Timid Nature
 - Nasty Plot

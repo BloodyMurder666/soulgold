@@ -89,6 +89,10 @@ u32 CountStorageNonEggMons(void);
 u32 CountAllStorageMons(void);
 bool32 AnyStorageMonWithMove(enum Move move);
 
+#if TESTING
+bool32 PokemonStorageSystem_TestTakeItemToBag(u8 boxId, u8 boxPosition);
+#endif
+
 void ResetWaldaWallpaper(void);
 void SetWaldaWallpaperLockedOrUnlocked(bool32 unlocked);
 bool32 IsWaldaWallpaperUnlocked(void);

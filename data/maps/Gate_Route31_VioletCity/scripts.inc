@@ -87,36 +87,40 @@ Gate_Route31_VioletCity_RivalExpShare::
 # 46 "data/maps/Gate_Route31_VioletCity/scripts.pory"
 	waitmovement 0
 # 47 "data/maps/Gate_Route31_VioletCity/scripts.pory"
-	msgbox Gate_Route31_VioletCity_RivalExpShare_Text_1
+	createfieldmugshotrival
 # 48 "data/maps/Gate_Route31_VioletCity/scripts.pory"
-	giveitem ITEM_EXP_SHARE
+	msgbox Gate_Route31_VioletCity_RivalExpShare_Text_1
 # 49 "data/maps/Gate_Route31_VioletCity/scripts.pory"
-	setflag FLAG_RECEIVED_EXP_SHARE
+	giveitem ITEM_EXP_SHARE
 # 50 "data/maps/Gate_Route31_VioletCity/scripts.pory"
-	msgbox Gate_Route31_VioletCity_RivalExpShare_Text_2
+	setflag FLAG_RECEIVED_EXP_SHARE
+# 51 "data/maps/Gate_Route31_VioletCity/scripts.pory"
+	createfieldmugshotrival
 # 52 "data/maps/Gate_Route31_VioletCity/scripts.pory"
+	msgbox Gate_Route31_VioletCity_RivalExpShare_Text_2
+# 54 "data/maps/Gate_Route31_VioletCity/scripts.pory"
 	msgbox Gate_Route31_VioletCity_RivalExpShare_Text_3
-# 55 "data/maps/Gate_Route31_VioletCity/scripts.pory"
-	msgbox Gate_Route31_VioletCity_RivalExpShare_Text_4
 # 57 "data/maps/Gate_Route31_VioletCity/scripts.pory"
-	closemessage
-# 58 "data/maps/Gate_Route31_VioletCity/scripts.pory"
-	setflag FLAG_HIDE_RIVAL_VIOLETGATEHOUSE
+	msgbox Gate_Route31_VioletCity_RivalExpShare_Text_4
 # 59 "data/maps/Gate_Route31_VioletCity/scripts.pory"
-	setvar VAR_RIVAL_STATE, 4
+	closemessage
 # 60 "data/maps/Gate_Route31_VioletCity/scripts.pory"
-	applymovement LOCALID_GATEHOUSE_RIVAL, Gate_Route31_VioletCity_RivalExpShare_Movement_1
+	setflag FLAG_HIDE_RIVAL_VIOLETGATEHOUSE
 # 61 "data/maps/Gate_Route31_VioletCity/scripts.pory"
-	waitmovement 0
+	setvar VAR_RIVAL_STATE, 4
 # 62 "data/maps/Gate_Route31_VioletCity/scripts.pory"
-	playse SE_EXIT
+	applymovement LOCALID_GATEHOUSE_RIVAL, Gate_Route31_VioletCity_RivalExpShare_Movement_1
 # 63 "data/maps/Gate_Route31_VioletCity/scripts.pory"
-	removeobject LOCALID_GATEHOUSE_RIVAL
+	waitmovement 0
 # 64 "data/maps/Gate_Route31_VioletCity/scripts.pory"
-	savebgm MUS_DUMMY
+	playse SE_EXIT
 # 65 "data/maps/Gate_Route31_VioletCity/scripts.pory"
-	fadedefaultbgm
+	removeobject LOCALID_GATEHOUSE_RIVAL
 # 66 "data/maps/Gate_Route31_VioletCity/scripts.pory"
+	savebgm MUS_DUMMY
+# 67 "data/maps/Gate_Route31_VioletCity/scripts.pory"
+	fadedefaultbgm
+# 68 "data/maps/Gate_Route31_VioletCity/scripts.pory"
 	release
 	end
 
@@ -133,15 +137,15 @@ Gate_Route31_VioletCity_RivalExpShare_Movement_0:
 	walk_left
 	step_end
 
-# 60 "data/maps/Gate_Route31_VioletCity/scripts.pory"
+# 62 "data/maps/Gate_Route31_VioletCity/scripts.pory"
 Gate_Route31_VioletCity_RivalExpShare_Movement_1:
-# 60 "data/maps/Gate_Route31_VioletCity/scripts.pory"
+# 62 "data/maps/Gate_Route31_VioletCity/scripts.pory"
 	walk_right
-# 60 "data/maps/Gate_Route31_VioletCity/scripts.pory"
+# 62 "data/maps/Gate_Route31_VioletCity/scripts.pory"
 	walk_right
-# 60 "data/maps/Gate_Route31_VioletCity/scripts.pory"
+# 62 "data/maps/Gate_Route31_VioletCity/scripts.pory"
 	walk_right
-# 60 "data/maps/Gate_Route31_VioletCity/scripts.pory"
+# 62 "data/maps/Gate_Route31_VioletCity/scripts.pory"
 	walk_right
 	step_end
 
@@ -150,21 +154,21 @@ Gate_Route31_VioletCity_RivalExpShare_Text_0:
 	.string "{PLAYER}! Wait up!$"
 
 Gate_Route31_VioletCity_RivalExpShare_Text_1:
-# 47 "data/maps/Gate_Route31_VioletCity/scripts.pory"
+# 48 "data/maps/Gate_Route31_VioletCity/scripts.pory"
 	.string "Professor Elm forgot to give you this.$"
 
 Gate_Route31_VioletCity_RivalExpShare_Text_2:
-# 50 "data/maps/Gate_Route31_VioletCity/scripts.pory"
+# 52 "data/maps/Gate_Route31_VioletCity/scripts.pory"
 	.string "It lets you train multiple Pokémon at\n"
 	.string "once, quite a handy piece of tech!$"
 
 Gate_Route31_VioletCity_RivalExpShare_Text_3:
-# 52 "data/maps/Gate_Route31_VioletCity/scripts.pory"
+# 54 "data/maps/Gate_Route31_VioletCity/scripts.pory"
 	.string "If you haven't already, you should make\n"
 	.string "use of those Poké Balls and catch lots\l"
 	.string "of new Pokémon.$"
 
 Gate_Route31_VioletCity_RivalExpShare_Text_4:
-# 55 "data/maps/Gate_Route31_VioletCity/scripts.pory"
+# 57 "data/maps/Gate_Route31_VioletCity/scripts.pory"
 	.string "Anyway, I need to head back home.\n"
 	.string "Hope to see you soon {PLAYER}!$"

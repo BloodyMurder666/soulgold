@@ -2821,6 +2821,7 @@ bool8 ScrCmd_setrespawn(struct ScriptContext *ctx)
 
     Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE);
     MigrateNationalPokedex();
+    MigrateInfiniteHeldItems();
 
     SetLastHealLocationWarp(healLocationId);
     return FALSE;

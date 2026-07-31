@@ -3,6 +3,7 @@
 #include "battle.h"
 #include "egg_hatch.h"
 #include "event_data.h"
+#include "item_menu.h"
 #include "load_save.h"
 #include "move.h"
 #include "new_game.h"
@@ -169,6 +170,45 @@ TEST("Terastallization type can be set to any type except TYPE_NONE")
     CreateRandomMonWithIVs(&mon, SPECIES_WOBBUFFET, 100, 0);
     SetMonData(&mon, MON_DATA_TERA_TYPE, &teraType);
     EXPECT_EQ(teraType, GetMonData(&mon, MON_DATA_TERA_TYPE));
+}
+
+TEST("Gracidea toggles Shaymin form without automatic reversion")
+{
+    struct Pokemon mon;
+    u32 status = STATUS1_FREEZE;
+
+    CreateMon(&mon, SPECIES_SHAYMIN_LAND, 50, 0, OTID_STRUCT_PLAYER_ID);
+    gSpecialVar_ItemId = ITEM_GRACIDEA;
+
+    EXPECT(TryFormChange(&mon, FORM_CHANGE_ITEM_USE));
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES), SPECIES_SHAYMIN_SKY);
+
+    SetMonData(&mon, MON_DATA_STATUS, &status);
+    EXPECT(!TryFormChange(&mon, FORM_CHANGE_STATUS));
+    EXPECT(!TryFormChange(&mon, FORM_CHANGE_TIME_OF_DAY));
+    EXPECT(!TryFormChange(&mon, FORM_CHANGE_WITHDRAW));
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES), SPECIES_SHAYMIN_SKY);
+
+    EXPECT(TryFormChange(&mon, FORM_CHANGE_ITEM_USE));
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES), SPECIES_SHAYMIN_LAND);
+}
+
+TEST("Prison Bottle toggles Hoopa form without automatic reversion")
+{
+    struct Pokemon mon;
+
+    CreateMon(&mon, SPECIES_HOOPA_CONFINED, 50, 0, OTID_STRUCT_PLAYER_ID);
+    gSpecialVar_ItemId = ITEM_PRISON_BOTTLE;
+
+    EXPECT(TryFormChange(&mon, FORM_CHANGE_ITEM_USE));
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES), SPECIES_HOOPA_UNBOUND);
+
+    EXPECT(!TryFormChange(&mon, FORM_CHANGE_WITHDRAW));
+    EXPECT(!TryFormChange(&mon, FORM_CHANGE_DAYS_PASSED));
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES), SPECIES_HOOPA_UNBOUND);
+
+    EXPECT(TryFormChange(&mon, FORM_CHANGE_ITEM_USE));
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES), SPECIES_HOOPA_CONFINED);
 }
 
 TEST("Terastallization type is reset to the default types when setting Tera Type back to TYPE_NONE")

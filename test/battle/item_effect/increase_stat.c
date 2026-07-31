@@ -1,7 +1,78 @@
 #include "global.h"
+#include "item_use.h"
 #include "overworld.h"
+#include "party_menu.h"
 #include "test/battle.h"
 #include "constants/item_effects.h"
+
+SINGLE_BATTLE_TEST("X items can be used on a switched-in battler outside the first two party slots")
+{
+    GIVEN {
+        ASSUME(gItemsInfo[ITEM_X_ATTACK].battleUsage == EFFECT_ITEM_INCREASE_STAT);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WYNAUT);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { SWITCH(player, 2); }
+    } THEN {
+        enum BattlerId battler = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+
+        gBattlerInMenuId = battler;
+        gPartyMenu.slotId = gBattlerPartyIndexes[battler];
+        EXPECT_EQ(gPartyMenu.slotId, 2);
+        EXPECT(!CannotUseItemsInBattle(ITEM_X_ATTACK, NULL));
+    }
+}
+
+SINGLE_BATTLE_TEST("X Speed can be used after switching from Blaziken to Salamence")
+{
+    GIVEN {
+        ASSUME(gItemsInfo[ITEM_X_SPEED].battleUsage == EFFECT_ITEM_INCREASE_STAT);
+        PLAYER(SPECIES_BLAZIKEN);
+        PLAYER(SPECIES_SALAMENCE) { Ability(ABILITY_INTIMIDATE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { SWITCH(player, 1); }
+        TURN { USE_ITEM(player, ITEM_X_SPEED, partyIndex: 1); }
+    } THEN {
+        enum BattlerId battler = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+
+        gBattlerInMenuId = battler;
+        gPartyMenu.slotId = gBattlerPartyIndexes[battler];
+        EXPECT_EQ(gBattleMons[battler].species, SPECIES_SALAMENCE);
+        EXPECT_EQ(gPartyMenu.slotId, 1);
+        EXPECT_EQ(player->statStages[STAT_SPEED], DEFAULT_STAT_STAGE + GetItemHoldEffectParam(ITEM_X_SPEED));
+        EXPECT(!CannotUseItemsInBattle(ITEM_X_SPEED, NULL));
+    }
+}
+
+SINGLE_BATTLE_TEST("X items can be used after the lead battler faints")
+{
+    GIVEN {
+        ASSUME(gItemsInfo[ITEM_X_ATTACK].battleUsage == EFFECT_ITEM_INCREASE_STAT);
+        PLAYER(SPECIES_WYNAUT) { HP(1); }
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_SCRATCH); SEND_OUT(player, 1); }
+        TURN { USE_ITEM(player, ITEM_X_ATTACK, partyIndex: 1); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+    } THEN {
+        enum BattlerId battler = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+        u16 hp = 0;
+
+        gBattlerInMenuId = battler;
+        gPartyMenu.slotId = gBattlerPartyIndexes[battler];
+        EXPECT_EQ(gPartyMenu.slotId, 1);
+        EXPECT_GT(GetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_HP), 0);
+        EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE + GetItemHoldEffectParam(ITEM_X_ATTACK));
+
+        SetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_HP, &hp);
+        EXPECT(!CannotUseItemsInBattle(ITEM_X_ATTACK, NULL));
+    }
+}
 
 SINGLE_BATTLE_TEST("X Attack sharply raises battler's Attack stat", s16 damage)
 {

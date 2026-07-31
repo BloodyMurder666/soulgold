@@ -290,6 +290,10 @@ static EWRAM_DATA u16 sPartyMenuItemId = 0;
 #if !PARTY_MENU_STYLE_OPTION
 EWRAM_DATA u8 gBattlePartyCurrentOrder[PARTY_SIZE / 2] = {0}; // bits 0-3 are the current pos of Slot 1, 4-7 are Slot 2, and so on
 #endif
+#if TESTING
+static EWRAM_DATA bool8 sSkipGiveHeldItemVisualsForTest = FALSE;
+static EWRAM_DATA bool8 sSkipTossHeldItemVisualsForTest = FALSE;
+#endif
 static EWRAM_DATA u8 sFusionFirstMonSlot = 0; // Fusion item: selected first mon slot
 static EWRAM_DATA u16 sFusionFirstMonSpecies = 0; // Fusion item: selected first mon species
 static EWRAM_DATA u8 sInitialLevel = 0;
@@ -2801,7 +2805,7 @@ static u8 TryTakeMonItem(struct Pokemon *mon)
 
     if (item == ITEM_NONE)
         return 0;
-    if (AddBagItem(item, 1) == FALSE)
+    if (AddHeldItemToBag(item) == FALSE)
         return 1;
 
     item = ITEM_NONE;
@@ -4681,7 +4685,12 @@ static void Task_GiveHoldItem(u8 taskId)
     {
         item = gSpecialVar_ItemId;
         GiveItemToMon(&gPlayerParty[gPartyMenu.slotId], item);
-        RemoveBagItem(item, 1);
+        RemoveHeldItemFromBag(item);
+
+#if TESTING
+        if (sSkipGiveHeldItemVisualsForTest)
+            return;
+#endif
 
         // Visually update cursor and held item sprites
         UpdatePartyMonHeldItemSprite(&gPlayerParty[gPartyMenu.slotId], &sPartyMenuBoxes[gPartyMenu.slotId]);
@@ -4693,6 +4702,28 @@ static void Task_GiveHoldItem(u8 taskId)
         gTasks[taskId].func = Task_UpdateHeldItemSprite;
     }
 }
+
+#if TESTING
+bool32 SwShPartyMenu_TestGiveHeldItemToMon(u8 partyId, enum Item item)
+{
+    bool8 paletteFadeActive = gPaletteFade.active;
+    s8 previousSlot = gPartyMenu.slotId;
+    u16 previousItem = gSpecialVar_ItemId;
+
+    gPaletteFade.active = FALSE;
+    gPartyMenu.slotId = partyId;
+    gSpecialVar_ItemId = item;
+    sSkipGiveHeldItemVisualsForTest = TRUE;
+    Task_GiveHoldItem(0);
+    sSkipGiveHeldItemVisualsForTest = FALSE;
+
+    gPaletteFade.active = paletteFadeActive;
+    gPartyMenu.slotId = previousSlot;
+    gSpecialVar_ItemId = previousItem;
+
+    return GetMonData(&gPlayerParty[partyId], MON_DATA_HELD_ITEM) == item;
+}
+#endif
 
 static void Task_SwitchHoldItemsPrompt(u8 taskId)
 {
@@ -4717,12 +4748,12 @@ static void Task_HandleSwitchItemsYesNoInput(u8 taskId)
     switch (Menu_ProcessInputNoWrapClearOnChoose())
     {
     case 0: // Yes, switch items
-        RemoveBagItem(gSpecialVar_ItemId, 1);
+        RemoveHeldItemFromBag(gSpecialVar_ItemId);
 
         // No room to return held item to bag
-        if (AddBagItem(sPartyMenuItemId, 1) == FALSE)
+        if (AddHeldItemToBag(sPartyMenuItemId) == FALSE)
         {
-            AddBagItem(gSpecialVar_ItemId, 1);
+            AddHeldItemToBag(gSpecialVar_ItemId);
             BufferBagFullCantTakeItemMessage(sPartyMenuItemId);
             DisplayPartyMenuMessage(gStringVar4, FALSE);
             gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
@@ -4753,7 +4784,7 @@ static void Task_HandleSwitchItemsYesNoInput(u8 taskId)
         PlaySE(SE_SELECT);
         // fallthrough
     case 1: // No
-        AddBagItem(gSpecialVar_ItemId, 1);
+        AddHeldItemToBag(gSpecialVar_ItemId);
 
         // Reset to choose mon mode via Task_UpdateHeldItemSprite
         gPartyMenu.action = PARTY_ACTION_GIVE_ITEM; // Keep as GIVE_ITEM so cleanup happens
@@ -4793,7 +4824,7 @@ static void CB2_ReturnToPartyMenuFromWritingMail(void)
     {
         TakeMailFromMon(mon);
         SetMonData(mon, MON_DATA_HELD_ITEM, &sPartyMenuItemId);
-        RemoveBagItem(sPartyMenuItemId, 1);
+        RemoveHeldItemFromBag(sPartyMenuItemId);
         AddBagItem(item, 1);
         InitPartyMenu(gPartyMenu.menuType, KEEP_PARTY_LAYOUT, gPartyMenu.action, TRUE, PARTY_MSG_CHOOSE_MON, Task_TryCreateSelectionWindow, gPartyMenu.exitCallback);
     }
@@ -4909,6 +4940,11 @@ static void CursorCb_Toss(u8 taskId)
         DisplayPartyMenuMessage(gStringVar4, TRUE);
         gTasks[taskId].func = Task_UpdateHeldItemSprite;
     }
+    else if (!CanItemBeTossed(item))
+    {
+        DisplayPartyMenuMessage(gText_ItemCantBeTossed, TRUE);
+        gTasks[taskId].func = Task_UpdateHeldItemSprite;
+    }
     else
     {
         CopyItemName(item, gStringVar1);
@@ -4934,6 +4970,12 @@ static void Task_HandleTossHeldItemYesNoInput(u8 taskId)
     switch (Menu_ProcessInputNoWrapClearOnChoose())
     {
     case 0:
+        if (!CanItemBeTossed(GetMonData(mon, MON_DATA_HELD_ITEM)))
+        {
+            DisplayPartyMenuMessage(gText_ItemCantBeTossed, FALSE);
+            gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+            break;
+        }
         CopyItemName(GetMonData(mon, MON_DATA_HELD_ITEM), gStringVar1);
         StringExpandPlaceholders(gStringVar4, gText_ItemThrownAway);
         DisplayPartyMenuMessage(gStringVar4, FALSE);
@@ -4952,16 +4994,50 @@ static void Task_TossHeldItem(u8 taskId)
 {
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
 
-    if (IsPartyMenuTextPrinterActive() != TRUE)
+    if (
+#if TESTING
+        sSkipTossHeldItemVisualsForTest ||
+#endif
+        IsPartyMenuTextPrinterActive() != TRUE)
     {
+        enum Item heldItem = GetMonData(mon, MON_DATA_HELD_ITEM);
         enum Item item = ITEM_NONE;
 
+        if (!CanItemBeTossed(heldItem))
+        {
+#if TESTING
+            if (sSkipTossHeldItemVisualsForTest)
+                return;
+#endif
+            gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+            return;
+        }
+
         SetMonData(mon, MON_DATA_HELD_ITEM, &item);
+#if TESTING
+        if (sSkipTossHeldItemVisualsForTest)
+            return;
+#endif
         UpdatePartyMonHeldItemSprite(mon, &sPartyMenuBoxes[gPartyMenu.slotId]);
         DisplayPartyPokemonDescriptionText(PARTYBOX_DESC_DONT_HAVE, &sPartyMenuBoxes[gPartyMenu.slotId], 1);
         gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
     }
 }
+
+#if TESTING
+bool32 SwShPartyMenu_TestTossHeldItem(u8 partyId)
+{
+    s8 previousSlot = gPartyMenu.slotId;
+
+    gPartyMenu.slotId = partyId;
+    sSkipTossHeldItemVisualsForTest = TRUE;
+    Task_TossHeldItem(0);
+    sSkipTossHeldItemVisualsForTest = FALSE;
+    gPartyMenu.slotId = previousSlot;
+
+    return GetMonData(&gPlayerParty[partyId], MON_DATA_HELD_ITEM) == ITEM_NONE;
+}
+#endif
 
 static void CursorCb_Mail(u8 taskId)
 {
@@ -9587,7 +9663,7 @@ static void GiveItemToSelectedMon(u8 taskId)
     {
         item = gPartyMenu.bagItem;
         GiveItemToMon(&gPlayerParty[gPartyMenu.slotId], item);
-        RemoveBagItem(item, 1);
+        RemoveHeldItemFromBag(item);
 
         // Visually update cursor and held item sprites
         UpdatePartyMonHeldItemSprite(&gPlayerParty[gPartyMenu.slotId], &sPartyMenuBoxes[gPartyMenu.slotId]);
@@ -9634,7 +9710,7 @@ static void CB2_ReturnToPartyOrBagMenuFromWritingMail(void)
     {
         TakeMailFromMon(mon);
         SetMonData(mon, MON_DATA_HELD_ITEM, &sPartyMenuItemId);
-        RemoveBagItem(sPartyMenuItemId, 1);
+        RemoveHeldItemFromBag(sPartyMenuItemId);
         ReturnGiveItemToBagOrPC(item);
         SetMainCallback2(gPartyMenu.exitCallback);
     }
@@ -9674,8 +9750,8 @@ static void Task_HandleSwitchItemsFromBagYesNoInput(u8 taskId)
     {
     case 0: // Yes, switch items
         item = gPartyMenu.bagItem;
-        RemoveBagItem(item, 1);
-        if (AddBagItem(sPartyMenuItemId, 1) == FALSE)
+        RemoveHeldItemFromBag(item);
+        if (AddHeldItemToBag(sPartyMenuItemId) == FALSE)
         {
             ReturnGiveItemToBagOrPC(item);
             BufferBagFullCantTakeItemMessage(sPartyMenuItemId);
@@ -9721,6 +9797,9 @@ static void DisplayItemMustBeRemovedFirstMessage(u8 taskId)
 // but there always should be, and the return is ignored in all uses
 static bool8 ReturnGiveItemToBagOrPC(enum Item item)
 {
+    if (IsItemInfiniteHold(item))
+        return AddHeldItemToBag(item);
+
     if (gPartyMenu.action == PARTY_ACTION_GIVE_ITEM)
         return AddBagItem(item, 1);
     else

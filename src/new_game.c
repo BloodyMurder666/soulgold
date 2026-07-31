@@ -207,6 +207,7 @@ void NewGameInitData(void)
     ClearPokedexFlags();
     InitEventData();
     FlagSet(FLAG_NATIONAL_DEX_MIGRATION_COMPLETE);
+    FlagSet(FLAG_INFINITE_HELD_ITEMS_MIGRATION_COMPLETE);
     ClearTVShowData();
     ResetGabbyAndTy();
     ClearSecretBases();

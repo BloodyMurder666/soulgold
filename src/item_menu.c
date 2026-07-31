@@ -791,6 +791,9 @@ static EWRAM_DATA struct ListBuffer1 *sListBuffer1 = 0;
 static EWRAM_DATA struct ListBuffer2 *sListBuffer2 = 0;
 EWRAM_DATA u16 gSpecialVar_ItemId = 0;
 static EWRAM_DATA struct TempWallyBag *sTempWallyBag = 0;
+#if TESTING
+static EWRAM_DATA bool8 sSkipTossItemVisualsForTest = FALSE;
+#endif
 
 // used to hold the palette for the 4th (clockwise) item in the key item wheel
 // so it can be scanline-copied into place
@@ -923,6 +926,7 @@ void VBlankCB_BagMenuRun(void)
 #define tQuantity          data[2]
 #define tNeverRead         data[3]
 #define tItemCount         data[8]
+#define tRemoveItemIsToss  data[9]
 #define tMsgWindowId       data[10]
 #define tPocketSwitchDir   data[11]
 #define tPocketSwitchTimer data[12]
@@ -1981,6 +1985,8 @@ static void OpenContextMenu(u8 taskId)
                 memcpy(&gBagMenu->contextMenuItemsBuffer, &sContextMenuItems_ItemsPocket, sizeof(sContextMenuItems_ItemsPocket));
                 if (ItemIsMail(gSpecialVar_ItemId) == TRUE)
                     gBagMenu->contextMenuItemsBuffer[0] = ACTION_CHECK;
+                if (!CanItemBeTossed(gSpecialVar_ItemId))
+                    gBagMenu->contextMenuItemsBuffer[2] = ACTION_DUMMY;
                 break;
             case POCKET_KEY_ITEMS:
                 gBagMenu->contextMenuItemsPtr = gBagMenu->contextMenuItemsBuffer;
@@ -2181,6 +2187,12 @@ static void ItemMenu_UseOutOfBattle(u8 taskId)
 static void ItemMenu_Toss(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
+
+    if (!CanItemBeTossed(gSpecialVar_ItemId))
+    {
+        ItemMenu_Cancel(taskId);
+        return;
+    }
 
     RemoveContextWindow();
     tItemCount = 1;
@@ -2469,6 +2481,12 @@ static void ConfirmToss(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
+    if (!CanItemBeTossed(gSpecialVar_ItemId))
+    {
+        CancelToss(taskId);
+        return;
+    }
+
     u8 *end = CopyItemNameHandlePlural(gSpecialVar_ItemId, gStringVar1, tItemCount);
     WrapFontIdToFit(gStringVar1, end, FONT_NORMAL, WindowWidthPx(WIN_DESCRIPTION) - 10 - 6);
     ConvertIntToDecimalStringN(gStringVar2, tItemCount, STR_CONV_MODE_LEFT_ALIGN, MAX_ITEM_DIGITS);
@@ -2476,7 +2494,10 @@ static void ConfirmToss(u8 taskId)
     FillWindowPixelBuffer(WIN_DESCRIPTION, PIXEL_FILL(0));
     BagMenu_Print(WIN_DESCRIPTION, FONT_NORMAL, gStringVar4, 3, 1, 0, 0, 0, COLORID_NORMAL);
     if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE || FlagGet(FLAG_STORING_ITEMS_IN_PYRAMID_BAG) == TRUE)
+    {
+        tRemoveItemIsToss = TRUE;
         gTasks[taskId].func = Task_RemoveItemFromBag;
+    }
     else
         gTasks[taskId].func = Task_TossItemFromBag;
 }
@@ -2490,7 +2511,22 @@ static void Task_TossItemFromBag(u8 taskId)
     if (JOY_NEW(A_BUTTON | B_BUTTON))
     {
         PlaySE(SE_SELECT);
+
+        if (!CanItemBeTossed(gSpecialVar_ItemId))
+        {
+#if TESTING
+            if (sSkipTossItemVisualsForTest)
+                return;
+#endif
+            ReturnToItemList(taskId);
+            return;
+        }
+
         RemoveBagItemFromSlot(&gBagPockets[gBagPosition.pocket], *scrollPos + *cursorPos, tItemCount);
+#if TESTING
+        if (sSkipTossItemVisualsForTest)
+            return;
+#endif
         DestroyListMenuTask(tListTaskId, scrollPos, cursorPos);
         UpdatePocketItemList(gBagPosition.pocket);
         UpdatePocketListPosition(gBagPosition.pocket);
@@ -2500,6 +2536,61 @@ static void Task_TossItemFromBag(u8 taskId)
         ReturnToItemList(taskId);
     }
 }
+
+#if TESTING
+bool32 ItemMenu_TestTossItemFromBag(enum Item item, u16 count)
+{
+    u8 taskId;
+    u32 slotId;
+    u16 quantityBefore;
+    u16 previousKeys = gMain.newKeys;
+    u16 previousItem = gSpecialVar_ItemId;
+    struct BagPosition previousPosition = gBagPosition;
+    enum Pocket pocketId = GetItemPocket(item);
+    struct BagPocket *pocket;
+
+    if (pocketId >= POCKETS_COUNT)
+        return FALSE;
+
+    pocket = &gBagPockets[pocketId];
+    for (slotId = 0; slotId < pocket->capacity; slotId++)
+    {
+        struct ItemSlot slot = BagPocket_GetSlotData(pocket, slotId);
+
+        if (slot.itemId == item)
+        {
+            if (count == 0 || slot.quantity < count)
+                return FALSE;
+            break;
+        }
+    }
+    if (slotId == pocket->capacity)
+        return FALSE;
+
+    taskId = CreateTask(Task_TossItemFromBag, 0);
+    if (taskId == TASK_NONE)
+        return FALSE;
+
+    quantityBefore = CountTotalItemQuantityInBag(item);
+    gBagPosition.pocket = pocketId;
+    gBagPosition.scrollPosition[pocketId] = 0;
+    gBagPosition.cursorPosition[pocketId] = slotId;
+    gTasks[taskId].tItemCount = count;
+    gSpecialVar_ItemId = item;
+    gMain.newKeys = A_BUTTON;
+    sSkipTossItemVisualsForTest = TRUE;
+    Task_TossItemFromBag(taskId);
+    sSkipTossItemVisualsForTest = FALSE;
+    CompactItemsInBagPocket(pocketId);
+
+    DestroyTask(taskId);
+    gMain.newKeys = previousKeys;
+    gSpecialVar_ItemId = previousItem;
+    gBagPosition = previousPosition;
+
+    return CountTotalItemQuantityInBag(item) + count == quantityBefore;
+}
+#endif
 
 // Remove selected item(s) from the bag and update list
 // For when items are deposited
@@ -2512,7 +2603,8 @@ static void Task_RemoveItemFromBag(u8 taskId)
     if (JOY_NEW(A_BUTTON | B_BUTTON))
     {
         PlaySE(SE_SELECT);
-        RemoveBagItem(gSpecialVar_ItemId, tItemCount);
+        if (!tRemoveItemIsToss || CanItemBeTossed(gSpecialVar_ItemId))
+            RemoveBagItem(gSpecialVar_ItemId, tItemCount);
         DestroyListMenuTask(tListTaskId, scrollPos, cursorPos);
         UpdatePocketItemList(gBagPosition.pocket);
         UpdatePocketListPosition(gBagPosition.pocket);
@@ -3224,6 +3316,7 @@ static void TryDepositItem(u8 taskId)
         ConvertIntToDecimalStringN(gStringVar2, tItemCount, STR_CONV_MODE_LEFT_ALIGN, MAX_ITEM_DIGITS);
         StringExpandPlaceholders(gStringVar4, sText_DepositedVar2Var1s);
         BagMenu_Print(WIN_DESCRIPTION, FONT_NORMAL, gStringVar4, 3, 1, 0, 0, 0, COLORID_NORMAL);
+        tRemoveItemIsToss = FALSE;
         gTasks[taskId].func = Task_RemoveItemFromBag;
     }
     else

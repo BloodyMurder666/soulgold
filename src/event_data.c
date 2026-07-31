@@ -1,5 +1,7 @@
 #include "global.h"
+#include "battle_pyramid.h"
 #include "event_data.h"
+#include "item.h"
 #include "pokedex.h"
 
 #define SPECIAL_FLAGS_SIZE  (NUM_SPECIAL_FLAGS / 8)  // 8 flags per byte
@@ -111,6 +113,75 @@ void MigrateNationalPokedex(void)
         DisableNationalPokedex();
         FlagSet(FLAG_NATIONAL_DEX_MIGRATION_COMPLETE);
     }
+}
+
+struct InfiniteHeldItemMigration
+{
+    enum Item item;
+    u16 obtainedFlag;
+};
+
+static const struct InfiniteHeldItemMigration sInfiniteHeldItemMigrations[] =
+{
+    { ITEM_NORMALITE, FLAG_ITEM_TOHJOFALLS_HEART_SCALE },
+    { ITEM_FIRETITE,  FLAG_MTMORTAR_DEPTHS_FIRETITE },
+    { ITEM_WATERTITE, FLAG_ITEM_WHIRL_ISLANDS_B2F_CALCIUM },
+    { ITEM_ELECTRITE, FLAG_RAILWAY_ELECTRITE },
+    { ITEM_GRASSTITE, FLAG_HIDE_GRASSTITE },
+    { ITEM_ICETITE,   FLAG_ICEPATH_DEPTHS_FROSLASSITE },
+    { ITEM_FIGHTITE,  FLAG_ITEM_DARKCAVE2_BLACK_FLUTE },
+    { ITEM_POISONTITE, FLAG_HIDE_POISOTITE },
+    { ITEM_GROUNDITE, FLAG_ITEM_UNION_CAVE_ETHER },
+    { ITEM_FLYINGITE, FLAG_CIANWOOD_FLYINGITE },
+    { ITEM_PSYCHITE,  FLAG_ROUTE42_PSYCHITE },
+    { ITEM_BUGTITE,   FLAG_ITEM_NATIONAL_PARK_HERACRONITE },
+    { ITEM_ROCKTITE,  FLAG_ITEM_ROUTE46_REVIVE },
+    { ITEM_GHOSTITE,  FLAG_HIDE_GHOSTITE },
+    { ITEM_DRAGOTITE, FLAG_ITEM_DRAGONSDEN2_PP_MAX },
+    { ITEM_DARKTITE,  FLAG_HIDE_DARKTITE },
+    { ITEM_STEELTITE, FLAG_ITEM_VICTORYROAD2_MAX_REVIVE },
+};
+
+static bool32 TryRestoreInfiniteHeldItem(enum Item item)
+{
+    if (CheckBagHasItem(item, 1))
+        return TRUE;
+
+    return AddHeldItemToBag(item);
+}
+
+void MigrateInfiniteHeldItems(void)
+{
+    u32 i;
+    bool32 migrationComplete = TRUE;
+
+    if (FlagGet(FLAG_INFINITE_HELD_ITEMS_MIGRATION_COMPLETE))
+        return;
+
+    // AddBagItem targets the Pyramid bag during a challenge, so retry later instead.
+    if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE
+     || FlagGet(FLAG_STORING_ITEMS_IN_PYRAMID_BAG))
+        return;
+
+    for (i = 0; i < ARRAY_COUNT(sInfiniteHeldItemMigrations); i++)
+    {
+        const struct InfiniteHeldItemMigration *migration = &sInfiniteHeldItemMigrations[i];
+
+        if (FlagGet(migration->obtainedFlag) && !TryRestoreInfiniteHeldItem(migration->item))
+            migrationComplete = FALSE;
+    }
+
+    if (FlagGet(FLAG_HIDE_LAKE_OF_RAGE_GYARADOS)
+     && !CheckBagHasItem(ITEM_RED_SCALE, 1)
+     && !TryRestoreInfiniteHeldItem(ITEM_FAIRYTITE))
+        migrationComplete = FALSE;
+
+    if (VarGet(VAR_NEWBARKTOWN_LABSTATE) >= 8
+     && !TryRestoreInfiniteHeldItem(ITEM_BONDSTONE))
+        migrationComplete = FALSE;
+
+    if (migrationComplete)
+        FlagSet(FLAG_INFINITE_HELD_ITEMS_MIGRATION_COMPLETE);
 }
 
 void DisableMysteryEvent(void)
