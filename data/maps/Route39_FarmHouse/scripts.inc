@@ -131,12 +131,6 @@ Route39_Text_FarmerFHealedMiltank:
 	.string "Here's somethin' fer your trouble.$"
 
 Route39_Text_FarmerFSnatchSpeech:
-	.string "That there's Snatch.\p"
-	.string "It's a tricky move that lets\n"
-	.string "a Pokémon steal a foe's move\l"
-	.string "right before it's used.\p"
-	.string "If more than one Pokémon use\n"
-	.string "Snatch, only the slowest one\l"
-	.string "will end up stealing the move.\p"
-	.string "Use it smart, hon. Timing is\n"
-	.string "everything.$"
+	.string "That there's Echoed Voice.\pn"
+	.string "Use it many times, hon.\p"
+	.string "It will grow in power.$"

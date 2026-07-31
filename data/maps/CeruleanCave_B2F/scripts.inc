@@ -87,14 +87,16 @@ NamelessDungeon_Leaf_1:
 # 105 "data/maps/CeruleanCave_B2F/scripts.pory"
 	setflag FLAG_HIDE_LEAF_NAMELESS
 # 106 "data/maps/CeruleanCave_B2F/scripts.pory"
-	playse SE_EXIT
+	setflag FLAG_POSTGAME_CAP1
 # 107 "data/maps/CeruleanCave_B2F/scripts.pory"
-	removeobject LOCALID_NAMELESS_LEAF
+	playse SE_EXIT
 # 108 "data/maps/CeruleanCave_B2F/scripts.pory"
-	delay 60
+	removeobject LOCALID_NAMELESS_LEAF
 # 109 "data/maps/CeruleanCave_B2F/scripts.pory"
-	fadescreen FADE_FROM_BLACK
+	delay 60
 # 110 "data/maps/CeruleanCave_B2F/scripts.pory"
+	fadescreen FADE_FROM_BLACK
+# 111 "data/maps/CeruleanCave_B2F/scripts.pory"
 	release
 	end
 
