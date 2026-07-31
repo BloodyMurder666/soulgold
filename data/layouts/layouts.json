@@ -10216,6 +10216,26 @@
       "secondary_tileset": "gTileset_MeteorCave",
       "border_filepath": "data/layouts/MeteorCave2_LegendaryRoom/border.bin",
       "blockdata_filepath": "data/layouts/MeteorCave2_LegendaryRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_VAJRA_PYRAMID_FLOOR4",
+      "name": "VajraPyramidFloor4_Layout",
+      "width": 51,
+      "height": 47,
+      "primary_tileset": "gTileset_Pyramid",
+      "secondary_tileset": "gTileset_DesertVillage",
+      "border_filepath": "data/layouts/VajraPyramidFloor4/border.bin",
+      "blockdata_filepath": "data/layouts/VajraPyramidFloor4/map.bin"
+    },
+    {
+      "id": "LAYOUT_VAJRA_PYRAMID_FINAL_CHAMBER",
+      "name": "VajraPyramidFinalChamber_Layout",
+      "width": 23,
+      "height": 19,
+      "primary_tileset": "gTileset_Pyramid",
+      "secondary_tileset": "gTileset_DesertVillage",
+      "border_filepath": "data/layouts/VajraPyramidFinalChamber/border.bin",
+      "blockdata_filepath": "data/layouts/VajraPyramidFinalChamber/map.bin"
     }
   ]
 }

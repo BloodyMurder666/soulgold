@@ -7,7 +7,7 @@ script VajraPyramid1_Urn {
         release
         end
     }
-    finditem(ITEM_RELIC_COPPER)
+    finditem(ITEM_RELIC_GOLD)
     setflag(FLAG_VAJRAPYRAMID1_URN)
     release
     end

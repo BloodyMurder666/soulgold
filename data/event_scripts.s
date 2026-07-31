@@ -2396,3 +2396,7 @@ Common_Text_ReceivedMon:
 	.include "data/maps/MeteorCave1_LegendaryRoom/scripts.inc"
 
 	.include "data/maps/MeteorCave2_LegendaryRoom/scripts.inc"
+
+	.include "data/maps/VajraPyramidFloor4/scripts.inc"
+
+	.include "data/maps/VajraPyramidFinalChamber/scripts.inc"

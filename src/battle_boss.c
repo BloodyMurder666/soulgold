@@ -126,6 +126,31 @@ static const struct BossPhaseProfile sOgerponBossProfile =
 };
 #endif
 
+#if P_FAMILY_HOOPA
+static const struct BossPhase sHoopaBossPhases[] =
+{
+    {
+        .species = SPECIES_HOOPA_CONFINED,
+        .moves = {MOVE_PSYSHOCK, MOVE_SHADOW_BALL, MOVE_FOCUS_BLAST, MOVE_LIGHT_SCREEN},
+    },
+    {
+        .species = SPECIES_HOOPA_UNBOUND,
+        .moves = {MOVE_HYPERSPACE_FURY, MOVE_ZEN_HEADBUTT, MOVE_DRAIN_PUNCH, MOVE_GUNK_SHOT},
+    },
+    {
+        .species = SPECIES_HOOPA_UNBOUND,
+        .moves = {MOVE_HYPERSPACE_FURY, MOVE_ZEN_HEADBUTT, MOVE_DRAIN_PUNCH, MOVE_GUNK_SHOT},
+    },
+};
+
+static const struct BossPhaseProfile sHoopaBossProfile =
+{
+    .baseSpecies = SPECIES_HOOPA,
+    .phaseCount = ARRAY_COUNT(sHoopaBossPhases),
+    .phases = sHoopaBossPhases,
+};
+#endif
+
 struct PendingBossBattle
 {
     u16 megaSpecies;
@@ -199,6 +224,10 @@ static const struct BossPhaseProfile *GetBossPhaseProfile(u8 profileId)
 #if P_FAMILY_RAYQUAZA && P_MEGA_EVOLUTIONS
     case BOSS_PHASE_PROFILE_RAYQUAZA:
         return &sRayquazaBossProfile;
+#endif
+#if P_FAMILY_HOOPA
+    case BOSS_PHASE_PROFILE_HOOPA:
+        return &sHoopaBossProfile;
 #endif
     default:
         return NULL;

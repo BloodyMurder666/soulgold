@@ -1,0 +1,92 @@
+{
+  "id": "MAP_VAJRA_PYRAMID_FLOOR4",
+  "name": "VajraPyramidFloor4",
+  "layout": "LAYOUT_VAJRA_PYRAMID_FLOOR4",
+  "music": "MUS_DP_MT_CORONET",
+  "region_map_section": "MAPSEC_VAJRA_PYRAMID",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GASTLY)",
+      "x": 29,
+      "y": 36,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "5",
+      "script": "Floor4_Ghost1",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(HAUNTER)",
+      "x": 23,
+      "y": 22,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "5",
+      "script": "Floor4_Ghost2",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GENGAR)",
+      "x": 29,
+      "y": 9,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "5",
+      "script": "Floor4_Ghost3",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 24,
+      "y": 44,
+      "elevation": 0,
+      "dest_map": "MAP_VAJRA_PYRAMID_FLOOR3",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 26,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_VAJRA_PYRAMID_FINAL_CHAMBER",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 27,
+      "y": 27,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Floor4_Urn1"
+    },
+    {
+      "type": "sign",
+      "x": 25,
+      "y": 4,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Floor4_Urn2"
+    }
+  ]
+}

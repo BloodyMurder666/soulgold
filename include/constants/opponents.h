@@ -914,9 +914,9 @@
 #define TRAINER_ROUTE50_ROWAN             933
 #define TRAINER_ROUTE50_CASPIAN           934
 #define TRAINER_ROUTE50_IGNIS             935
-#define TRAINER_UNUSED_72                 936
-#define TRAINER_UNUSED_73                 937
-#define TRAINER_UNUSED_74                 938
+#define TRAINER_SPIRIT1                   936
+#define TRAINER_SPIRIT2                   937
+#define TRAINER_SPIRIT3                   938
 #define TRAINER_UNUSED_75                 939
 #define TRAINER_UNUSED_76                 940
 #define TRAINER_UNUSED_77                 941
@@ -1034,6 +1034,8 @@
 #define TRAINER_UNUSED_189                1053
 #define TRAINER_UNUSED_190                1054
 #define TRAINER_UNUSED_191                1055
+
+// Never use these, they are used by other flags
 #define TRAINER_UNUSED_192                1056
 #define TRAINER_UNUSED_193                1057
 #define TRAINER_UNUSED_194                1058
@@ -1142,7 +1144,7 @@
 #define TRAINER_UNUSED_297                1161
 #define TRAINER_UNUSED_298                1162
 #define TRAINER_UNUSED_299                1163
-#define TRAINER_UNUSED_300                1164
+#define TRAINER_UNUSED_300                1164 // This is out of range, don't touch (it refers to FLAG_SYS_POKEMON_GET)
 
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 9 additional trainers before trainer flag space overflows
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled

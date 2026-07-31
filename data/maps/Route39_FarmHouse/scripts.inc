@@ -131,6 +131,6 @@ Route39_Text_FarmerFHealedMiltank:
 	.string "Here's somethin' fer your trouble.$"
 
 Route39_Text_FarmerFSnatchSpeech:
-	.string "That there's Echoed Voice.\pn"
+	.string "That there's Echoed Voice.\n"
 	.string "Use it many times, hon.\p"
 	.string "It will grow in power.$"

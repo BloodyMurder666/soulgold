@@ -2,7 +2,7 @@
   "id": "MAP_VAJRA_PYRAMID_FLOOR3",
   "name": "VajraPyramidFloor3",
   "layout": "LAYOUT_VAJRA_PYRAMID_FLOOR3",
-  "music": "MUS_ABANDONED_SHIP",
+  "music": "MUS_DP_MT_CORONET",
   "region_map_section": "MAPSEC_VAJRA_PYRAMID",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -23,7 +23,7 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "ITEM_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_BIG_NUGGET",
       "script": "Common_EventScript_FindItem",
       "flag": "FLAG_VAJRAPYRAMID3_ITEMBALL"
     },
@@ -32,7 +32,7 @@
       "x": 12,
       "y": 29,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_ROTATE_COUNTERCLOCKWISE",
+      "movement_type": "MOVEMENT_TYPE_ROTATE_CLOCKWISE",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_SENTRY",
@@ -58,7 +58,7 @@
       "x": 31,
       "y": 5,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_ROTATE_COUNTERCLOCKWISE",
+      "movement_type": "MOVEMENT_TYPE_ROTATE_CLOCKWISE",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_SENTRY",
@@ -84,7 +84,7 @@
       "x": 36,
       "y": 40,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_ROTATE_COUNTERCLOCKWISE",
+      "movement_type": "MOVEMENT_TYPE_ROTATE_CLOCKWISE",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_SENTRY",
@@ -104,6 +104,32 @@
       "trainer_sight_or_berry_tree_id": "5",
       "script": "PyramidDusknoir2",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(DUSKNOIR)",
+      "x": 27,
+      "y": 21,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_ROTATE_COUNTERCLOCKWISE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_SENTRY",
+      "trainer_sight_or_berry_tree_id": "5",
+      "script": "PyramidDusknoir2",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 46,
+      "y": 34,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_RELIC_GOLD",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_VAJRAPYRAMID3_RELICGOLD2"
     }
   ],
   "warp_events": [
@@ -113,6 +139,13 @@
       "elevation": 0,
       "dest_map": "MAP_VAJRA_PYRAMID_FLOOR2",
       "dest_warp_id": "1"
+    },
+    {
+      "x": 37,
+      "y": 10,
+      "elevation": 0,
+      "dest_map": "MAP_VAJRA_PYRAMID_FLOOR4",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],

@@ -245,7 +245,7 @@
 #define FLAG_RECEIVED_GO_GOGGLES             0xDD
 #define FLAG_WINGULL_SENT_ON_ERRAND          0xDE
 #define FLAG_RECEIVED_MENTAL_HERB            0xDF
-#define FLAG_WINGULL_DELIVERED_MAIL          0xE0
+#define FLAG_CAUGHT_HOOPA                    0xE0
 #define FLAG_RECEIVED_20_COINS               0xE1
 #define FLAG_RECEIVED_STARTER_DOLL           0xE2
 #define FLAG_RECEIVED_GOOD_ROD               0xE3
@@ -267,8 +267,8 @@
 #define FLAG_USED_ROOM_2_KEY                 0xF1
 #define FLAG_USED_ROOM_4_KEY                 0xF2
 #define FLAG_USED_ROOM_6_KEY                 0xF3
-#define FLAG_MET_PROF_COZMO                  0xF4
-#define FLAG_RECEIVED_WAILMER_DOLL           0xF5
+#define FLAG_FLOOR4_URN1LOOT                 0xF4
+#define FLAG_HIDE_PYRAMIDOUT_SCIENTIST       0xF5
 #define FLAG_RECEIVED_CHESTO_BERRY_ROUTE_104 0xF6
 #define FLAG_DEFEATED_SS_TIDAL_TRAINERS      0xF7
 #define FLAG_RECEIVED_SPELON_BERRY           0xF8
@@ -279,7 +279,7 @@
 #define FLAG_ENABLE_RIVAL_MATCH_CALL         0xFD
 #define FLAG_GARBAGEFLAG4               0xFE
 #define FLAG_LATIOS_OR_LATIAS_ROAMING        0xFF
-#define FLAG_RECEIVED_REPEAT_BALL            0x100
+#define FLAG_FLOOR4_URN2LOOT                 0x100
 #define FLAG_RECEIVED_OLD_ROD                0x101
 #define FLAG_RECEIVED_COIN_CASE              0x102
 #define FLAG_RETURNED_RED_OR_BLUE_ORB        0x103
@@ -318,7 +318,7 @@
 #define FLAG_MET_RIVAL_LILYCOVE              0x124
 #define FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE 0x125
 #define FLAG_EXCHANGED_SCANNER               0x126
-#define FLAG_KECLEON_FLED_FORTREE            0x127
+#define FLAG_VAJRAPYRAMID3_RELICGOLD2        0x127
 #define FLAG_PETALBURG_MART_EXPANDED_ITEMS   0x128
 #define FLAG_RECEIVED_MIRACLE_SEED           0x129
 #define FLAG_RECEIVED_BELDUM                 0x12A

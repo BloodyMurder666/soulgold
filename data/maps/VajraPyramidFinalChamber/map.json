@@ -1,8 +1,8 @@
 {
-  "id": "MAP_VAJRA_PYRAMID_FLOOR1",
-  "name": "VajraPyramidFloor1",
-  "layout": "LAYOUT_VAJRA_PYRAMID_FLOOR1",
-  "music": "MUS_DP_MT_CORONET",
+  "id": "MAP_VAJRA_PYRAMID_FINAL_CHAMBER",
+  "name": "VajraPyramidFinalChamber",
+  "layout": "LAYOUT_VAJRA_PYRAMID_FINAL_CHAMBER",
+  "music": "MUS_NONE",
   "region_map_section": "MAPSEC_VAJRA_PYRAMID",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -10,35 +10,28 @@
   "allow_cycling": false,
   "allow_escaping": true,
   "allow_running": true,
-  "show_map_name": true,
+  "show_map_name": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": null,
   "object_events": [],
   "warp_events": [
     {
-      "x": 14,
-      "y": 15,
+      "x": 11,
+      "y": 13,
       "elevation": 0,
-      "dest_map": "MAP_VAJRA_PYRAMID_TOP",
+      "dest_map": "MAP_VAJRA_PYRAMID_FLOOR4",
       "dest_warp_id": "1"
-    },
-    {
-      "x": 24,
-      "y": 23,
-      "elevation": 0,
-      "dest_map": "MAP_VAJRA_PYRAMID_FLOOR2",
-      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],
   "bg_events": [
     {
       "type": "sign",
-      "x": 16,
-      "y": 15,
+      "x": 11,
+      "y": 5,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "VajraPyramid1_Urn"
+      "script": "FinalChamber_HoopaPrison"
     }
   ]
 }

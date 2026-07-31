@@ -38,7 +38,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RintoHouse3_TraderResearcher",
-      "flag": "0"
+      "flag": "FLAG_RINTO_TRADE_COMPLETE"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_F",

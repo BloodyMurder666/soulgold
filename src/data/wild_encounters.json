@@ -14589,6 +14589,282 @@
               }
             ]
           }
+        },
+        {
+          "map": "MAP_VAJRA_PYRAMID_FLOOR1",
+          "base_label": "gVajraPyramidFloor1",
+          "land_mons": {
+            "encounter_rate": 5,
+            "mons": [
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_SABLEYE"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_COFAGRIGUS"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_SABLEYE"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_COFAGRIGUS"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_GENGAR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_MISMAGIUS"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_GENGAR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_MISMAGIUS"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_DUSKNOIR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_GOLURK"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_DUSKNOIR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_GOLURK"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_VAJRA_PYRAMID_FLOOR2",
+          "base_label": "gVajraPyramidFloor2",
+          "land_mons": {
+            "encounter_rate": 5,
+            "mons": [
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_SABLEYE"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_COFAGRIGUS"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_SABLEYE"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_COFAGRIGUS"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_GENGAR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_MISMAGIUS"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_GENGAR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_MISMAGIUS"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_DUSKNOIR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_GOLURK"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_DUSKNOIR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_GOLURK"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_VAJRA_PYRAMID_FLOOR3",
+          "base_label": "gVajraPyramidFloor3",
+          "land_mons": {
+            "encounter_rate": 5,
+            "mons": [
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_SABLEYE"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_COFAGRIGUS"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_SABLEYE"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_COFAGRIGUS"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_GENGAR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_MISMAGIUS"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_GENGAR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_MISMAGIUS"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_DUSKNOIR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_GOLURK"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_DUSKNOIR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 60,
+                "species": "SPECIES_GOLURK"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_VAJRA_PYRAMID_FLOOR4",
+          "base_label": "gVajraPyramidFloor4",
+          "land_mons": {
+            "encounter_rate": 5,
+            "mons": [
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_SABLEYE"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_COFAGRIGUS"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_SABLEYE"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_COFAGRIGUS"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_GENGAR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_MISMAGIUS"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_GENGAR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_MISMAGIUS"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_DUSKNOIR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_GOLURK"
+              },
+              {
+                "min_level": 58,
+                "max_level": 63,
+                "species": "SPECIES_DUSKNOIR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 63,
+                "species": "SPECIES_GOLURK"
+              }
+            ]
+          }
         }
       ]
     },

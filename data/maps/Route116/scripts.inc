@@ -63,7 +63,7 @@ Route116_EventScript_GiveRepeatBall::
 	call_if_eq VAR_FACING, DIR_EAST, Route116_EventScript_DevonEmployeeExitEast
 	removeobject VAR_LAST_TALKED
 	clearflag FLAG_GARBAGEFLAG
-	setflag FLAG_RECEIVED_REPEAT_BALL
+	setflag FLAG_GARBAGEFLAG
 	release
 	end
 

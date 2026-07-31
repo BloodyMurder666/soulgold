@@ -24,8 +24,8 @@ static void CreateSpriteFromType(u32, bool32, enum Type[], u32, enum BattlerId);
 static bool32 ShouldSkipSecondType(enum Type[], u32);
 static void SetTypeIconXY(s32*, s32*, u32, bool32, u32);
 
-static void CreateSpriteAndSetTypeSpriteAttributes(enum Type, u32 x, u32 y, u32, enum BattlerId, bool32);
-static bool32 ShouldFlipTypeIcon(bool32, u32, enum Type);
+static void CreateSpriteAndSetTypeSpriteAttributes(enum Type, u32 x, u32 y, u32, enum BattlerId);
+static bool32 ShouldFlipTypeIcon(u32, enum Type);
 
 static void SpriteCB_TypeIcon(struct Sprite*);
 static void DestroyTypeIcon(struct Sprite*);
@@ -39,13 +39,13 @@ const struct Coords16 sTypeIconPositions[][2] =
 {
     [B_POSITION_PLAYER_LEFT] =
     {
-        [FALSE] = {221, 86},
+        [FALSE] = {144, 86},
         [TRUE] = {144, 71},
     },
     [B_POSITION_OPPONENT_LEFT] =
     {
-        [FALSE] = {20, 26},
-        [TRUE] = {97, 14},
+        [FALSE] = {93, 26},
+        [TRUE] = {101, 14},
     },
     [B_POSITION_PLAYER_RIGHT] =
     {
@@ -53,7 +53,7 @@ const struct Coords16 sTypeIconPositions[][2] =
     },
     [B_POSITION_OPPONENT_RIGHT] =
     {
-        [TRUE] = {85, 39},
+        [TRUE] = {89, 39},
     },
 };
 
@@ -267,7 +267,7 @@ static void LoadTypeIconsPerBattler(enum BattlerId battler, u32 position)
     enum BattlerId battlerId = GetBattlerAtPosition(position);
     bool32 useDoubleBattleCoords = UseDoubleBattleCoords(battlerId);
 
-    if (!IsBattlerAlive(battlerId))
+    if (IsOnPlayerSide(battlerId) || !IsBattlerAlive(battlerId))
         return;
 
     for (typeNum = 0; typeNum < 2; ++typeNum)
@@ -371,7 +371,7 @@ static void CreateSpriteFromType(u32 position, bool32 useDoubleBattleCoords, enu
 
     SetTypeIconXY(&x, &y, position, useDoubleBattleCoords, typeNum);
 
-    CreateSpriteAndSetTypeSpriteAttributes(types[typeNum], x, y, position, battler, useDoubleBattleCoords);
+    CreateSpriteAndSetTypeSpriteAttributes(types[typeNum], x, y, position, battler);
 }
 
 static bool32 ShouldSkipSecondType(enum Type types[], u32 typeNum)
@@ -391,7 +391,7 @@ static void SetTypeIconXY(s32* x, s32* y, u32 position, bool32 useDoubleBattleCo
     *y = sTypeIconPositions[position][useDoubleBattleCoords].y + (11 * typeNum);
 }
 
-static void CreateSpriteAndSetTypeSpriteAttributes(enum Type type, u32 x, u32 y, u32 position, enum BattlerId battler, bool32 useDoubleBattleCoords)
+static void CreateSpriteAndSetTypeSpriteAttributes(enum Type type, u32 x, u32 y, u32 position, enum BattlerId battler)
 {
     struct Sprite* sprite;
     const struct SpriteTemplate* spriteTemplate = gTypesInfo[type].useSecondTypeIconPalette ? &sSpriteTemplate_TypeIcons2 : &sSpriteTemplate_TypeIcons1;
@@ -405,16 +405,14 @@ static void CreateSpriteAndSetTypeSpriteAttributes(enum Type type, u32 x, u32 y,
     sprite->tBattlerId = battler;
     sprite->tVerticalPosition = y;
 
-    sprite->hFlip = ShouldFlipTypeIcon(useDoubleBattleCoords, position, type);
+    sprite->hFlip = ShouldFlipTypeIcon(position, type);
 
     StartSpriteAnim(sprite, type);
 }
 
-static bool32 ShouldFlipTypeIcon(bool32 useDoubleBattleCoords, u32 position, enum Type typeId)
+static bool32 ShouldFlipTypeIcon(u32 position, enum Type typeId)
 {
-    enum BattleSide side = (useDoubleBattleCoords) ? B_SIDE_OPPONENT : B_SIDE_PLAYER;
-
-    if (GetBattlerSide(GetBattlerAtPosition(position)) != side)
+    if (GetBattlerSide(GetBattlerAtPosition(position)) != B_SIDE_OPPONENT)
         return FALSE;
 
     return !gTypesInfo[typeId].isSpecialCaseType;
@@ -518,9 +516,9 @@ static s32 GetTypeIconHideMovement(bool32 useDoubleBattleCoords, u32 position)
     }
 
     if (position == B_POSITION_PLAYER_LEFT)
-        return -1;
-    else
         return 1;
+    else
+        return -1;
 }
 
 static s32 GetTypeIconSlideMovement(bool32 useDoubleBattleCoords, u32 position, s32 xPos)
@@ -546,13 +544,13 @@ static s32 GetTypeIconSlideMovement(bool32 useDoubleBattleCoords, u32 position, 
 
     if (position == B_POSITION_PLAYER_LEFT)
     {
-        if (xPos < sTypeIconPositions[position][useDoubleBattleCoords].x + 10)
-            return 1;
+        if (xPos > sTypeIconPositions[position][useDoubleBattleCoords].x - 10)
+            return -1;
     }
     else
     {
-        if (xPos > sTypeIconPositions[position][useDoubleBattleCoords].x - 10)
-            return -1;
+        if (xPos < sTypeIconPositions[position][useDoubleBattleCoords].x + 10)
+            return 1;
     }
     return 0;
 }

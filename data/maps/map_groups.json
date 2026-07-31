@@ -656,7 +656,9 @@
     "VajraDesertEastCave",
     "MeteorCave2",
     "MeteorCave1_LegendaryRoom",
-    "MeteorCave2_LegendaryRoom"
+    "MeteorCave2_LegendaryRoom",
+    "VajraPyramidFloor4",
+    "VajraPyramidFinalChamber"
   ],
   "gMapGroup_JohtoDiveMaps": [
     "CherrygroveUnderwater"

@@ -17,7 +17,7 @@ MossdeepCity_House2_EventScript_Wingull::
 	msgbox MossdeepCity_House2_Text_Wingull, MSGBOX_DEFAULT
 	waitmoncry
 	closemessage
-	setflag FLAG_WINGULL_DELIVERED_MAIL
+	setflag FLAG_GARBAGEFLAG
 	clearflag FLAG_GARBAGEFLAG
 	call_if_eq VAR_FACING, DIR_NORTH, MossdeepCity_House2_EventScript_WingullExitNorth
 	call_if_eq VAR_FACING, DIR_WEST, MossdeepCity_House2_EventScript_WingullExitWest

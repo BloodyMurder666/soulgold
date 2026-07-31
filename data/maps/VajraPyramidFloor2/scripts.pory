@@ -7,7 +7,7 @@ script VajraPyramid2_Urn1 {
         release
         end
     }
-    finditem(ITEM_RELIC_SILVER)
+    finditem(ITEM_RELIC_GOLD)
     setflag(FLAG_VAJRAPYRAMID2_URN1)
     release
     end
@@ -20,7 +20,7 @@ script VajraPyramid2_Urn2 {
         release
         end
     }
-    finditem(ITEM_RELIC_COPPER)
+    finditem(ITEM_RELIC_GOLD)
     setflag(FLAG_VAJRAPYRAMID2_URN2)
     release
     end
@@ -30,7 +30,6 @@ script PyramidDusknoir1 {
     lockall
     playmoncry(SPECIES_DUSKNOIR,0)
     waitmoncry
-    delay(10)
     warpteleport(MAP_VAJRA_PYRAMID_FLOOR2, 30, 28)
     waitstate
     releaseall

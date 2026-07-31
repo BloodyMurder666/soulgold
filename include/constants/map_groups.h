@@ -632,6 +632,8 @@ enum
     MAP_METEOR_CAVE2                      = (35 | (25 << 8)),
     MAP_METEOR_CAVE1_LEGENDARY_ROOM       = (36 | (25 << 8)),
     MAP_METEOR_CAVE2_LEGENDARY_ROOM       = (37 | (25 << 8)),
+    MAP_VAJRA_PYRAMID_FLOOR4              = (38 | (25 << 8)),
+    MAP_VAJRA_PYRAMID_FINAL_CHAMBER       = (39 | (25 << 8)),
 
     // gMapGroup_JohtoDiveMaps
     MAP_CHERRYGROVE_UNDERWATER = (0 | (26 << 8)),

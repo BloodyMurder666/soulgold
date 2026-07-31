@@ -8,7 +8,7 @@ FortreeCity_House4_EventScript_Woman::
 FortreeCity_House4_EventScript_Boy::
 	lockall
 	goto_if_set FLAG_RECEIVED_MENTAL_HERB, FortreeCity_House4_EventScript_ReceivedMentalHerb
-	goto_if_set FLAG_WINGULL_DELIVERED_MAIL, FortreeCity_House4_EventScript_WingullReturned
+	goto_if_set FLAG_GARBAGEFLAG, FortreeCity_House4_EventScript_WingullReturned
 	goto_if_set FLAG_WINGULL_SENT_ON_ERRAND, FortreeCity_House4_EventScript_WingullOnErrand
 	msgbox FortreeCity_House4_Text_GoBirdPokemon, MSGBOX_DEFAULT
 	closemessage

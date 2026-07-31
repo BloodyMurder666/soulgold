@@ -1,4 +1,14 @@
 Update notes:
+31.7.2026
+- New boss legendary encounter: Hoopa. After becoming a Champion and trading Tinkaton to the scientist in Rinto village. The door to the Vajra Pyramid will be open
+and you can explore this dungeon to find a new legendary to fight and capture.
+- Adjusted normal mode title defense parties.
+- Made all types of Poké Balls cheaper from marts.
+- Fixed wrong text with Echoed Voice TM NPC.
+- Fixed type icons not showing in single battles. They will still display ?-type when the Pokémon is seen for the first time.
+- Shifted Ruins of Alph rewards around.
+
+
 29.7.2026
 - Heracross is available from Goldenrod Shore hidden grotto and Route 48
 - Innate strength adjustments

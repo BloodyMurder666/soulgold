@@ -220,8 +220,8 @@ MeteorFalls_1F_1R_Movement_PushPlayerOutOfWay:
 MeteorFalls_1F_1R_EventScript_ProfCozmo::
 	lock
 	faceplayer
-	goto_if_set FLAG_MET_PROF_COZMO, MeteorFalls_1F_1R_EventScript_MetCozmo
-	setflag FLAG_MET_PROF_COZMO
+	goto_if_set FLAG_GARBAGEFLAG, MeteorFalls_1F_1R_EventScript_MetCozmo
+	setflag FLAG_GARBAGEFLAG
 	msgbox MeteorFalls_1F_1R_Text_MeetProfCozmo, MSGBOX_DEFAULT
 	release
 	end
