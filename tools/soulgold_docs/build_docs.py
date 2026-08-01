@@ -50,7 +50,11 @@ from tools.soulgold_docs.parsers.species import (
     parse_species,
     visible_species_rows,
 )
-from tools.soulgold_docs.parsers.trainers import parse_trainers, trainer_constants_for_docs_maps
+from tools.soulgold_docs.parsers.trainers import (
+    parse_trainers,
+    trainer_constants_for_docs_maps,
+    trainer_locations_for_docs_maps,
+)
 from tools.soulgold_docs.site import build_docs_payload, prepare_output_tree, write_docs_payload
 
 
@@ -97,7 +101,8 @@ def build() -> None:
     located_species = attach_species_locations(enriched_species, species_locations)
     visible_species = visible_species_rows(located_species)
     species_lookup = build_species_lookup(located_species)
-    allowed_trainer_constants = trainer_constants_for_docs_maps()
+    trainer_locations = trainer_locations_for_docs_maps()
+    allowed_trainer_constants = trainer_constants_for_docs_maps(trainer_locations)
     trainers = parse_trainers(
         species_lookup,
         front_sources,
@@ -107,6 +112,7 @@ def build() -> None:
         item_records,
         output_paths.item_icon_dir,
         allowed_trainer_constants,
+        trainer_locations,
     )
     ability_usage = build_ability_usage(visible_species)
     tms = build_tms(tmhm_rows, moves, item_records, tmhm_locations)

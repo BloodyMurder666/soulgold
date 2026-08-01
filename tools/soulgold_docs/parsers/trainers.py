@@ -9,10 +9,57 @@ from pathlib import Path
 from ..constants import ALWAYS_INCLUDED_TRAINER_CONSTANTS, SPRITE_CACHE_VERSION
 from ..c_parser import clean_constant_name, eval_int_expr, normalize_token, read, slugify, strip_c_comments
 from ..image_utils import copy_item_icon, process_sprite
-from ..map_names import is_docs_excluded_map
+from ..map_names import is_docs_excluded_map, map_display_name
 from ..models import ItemRecord, ShowdownMon, SpeciesRow, TrainerMon, TrainerRow
 from ..paths import MAP_GROUPS_JSON, OUT_DIR, REPO_ROOT, TRAINERS_H
 from .species import species_for_trainer_mon
+
+
+GYM_LEADER_POSTGAME_REMATCHES = {
+    "TRAINER_FALKNER_2",
+    "TRAINER_BUGSY_2",
+    "TRAINER_WHITNEY_2",
+    "TRAINER_MORTY_2",
+    "TRAINER_CHUCK_2",
+    "TRAINER_JASMINE_2",
+    "TRAINER_PRYCE_2",
+    "TRAINER_CLAIR_2",
+}
+
+POKEMON_LEAGUE_REMATCHES = {
+    "TRAINER_WILL_2",
+    "TRAINER_KOGA_2",
+    "TRAINER_BRUNO_2",
+    "TRAINER_KAREN_2",
+    "TRAINER_LANCE_2",
+}
+
+TITLE_DEFENSE_TRAINERS = {
+    "TRAINER_TITLE_DEFENSE_FALKNER",
+    "TRAINER_TITLE_DEFENSE_BUGSY",
+    "TRAINER_TITLE_DEFENSE_WHITNEY",
+    "TRAINER_TITLE_DEFENSE_MORTY",
+    "TRAINER_TITLE_DEFENSE_CHUCK",
+    "TRAINER_TITLE_DEFENSE_JASMINE",
+    "TRAINER_TITLE_DEFENSE_PRYCE",
+    "TRAINER_TITLE_DEFENSE_CLAIR",
+    "TRAINER_TITLE_DEFENSE_LANCE",
+    "TRAINER_TITLE_DEFENSE_STEVEN",
+}
+
+GYM_BADGE_COUNT_VARIANTS = {
+    "TRAINER_JASMINE_1": 4,
+    "TRAINER_CHUCK_1": 4,
+    "TRAINER_PRYCE_1": 4,
+    "TRAINER_JASMINE_1_2": 5,
+    "TRAINER_CHUCK_1_2": 5,
+    "TRAINER_PRYCE_1_2": 5,
+    "TRAINER_JASMINE_1_3": 6,
+    "TRAINER_CHUCK_1_3": 6,
+    "TRAINER_PRYCE_1_3": 6,
+}
+
+RIVAL_CONSTANT_RE = re.compile(r"^TRAINER_RIVAL_(CHIKORITA|CYNDAQUIL|TOTODILE)_(\d+)$")
 
 
 def parse_showdown_team(text: str) -> list[ShowdownMon]:
@@ -115,10 +162,49 @@ def normalize_trainer_mon_details(mon: ShowdownMon) -> ShowdownMon:
     normalized["moves"] = [move for move in normalized.get("moves", []) if move]
     return normalized
 
+def trainer_base_name(name: str, constant: str) -> str:
+    rival_match = RIVAL_CONSTANT_RE.fullmatch(constant)
+    if rival_match and name == "???" and rival_match.group(2) == "1":
+        return "Passerby"
+    if rival_match and name == "{RIVAL}":
+        return "Silver"
+    if constant == "TRAINER_LI_2":
+        return "Elder Li"
+    return name
+
+
 def trainer_display_name(name: str, constant: str, difficulty: str) -> str:
-    display_name = name
+    display_name = trainer_base_name(name, constant)
+    suppress_variant_suffix = False
+    rival_match = RIVAL_CONSTANT_RE.fullmatch(constant)
+    if rival_match and name == "{RIVAL}":
+        starter = clean_constant_name(rival_match.group(1), "")
+        display_name = f"Silver {rival_match.group(2)} ({starter})"
+        suppress_variant_suffix = True
+    elif rival_match and name == "???" and rival_match.group(2) == "1":
+        starter = clean_constant_name(rival_match.group(1), "")
+        display_name = f"Passerby ({starter})"
+        suppress_variant_suffix = True
+
+    rematch_label = ""
+    if constant in GYM_LEADER_POSTGAME_REMATCHES:
+        rematch_label = "Postgame Rematch"
+    elif constant in POKEMON_LEAGUE_REMATCHES:
+        rematch_label = "Rematch"
+    elif constant in TITLE_DEFENSE_TRAINERS:
+        rematch_label = "Title Defense"
+    elif constant in GYM_BADGE_COUNT_VARIANTS:
+        rematch_label = f"{GYM_BADGE_COUNT_VARIANTS[constant]} badges"
+    elif constant == "TRAINER_DIRECTOR":
+        rematch_label = "Postgame"
+    elif constant == "TRAINER_LI_2":
+        rematch_label = "8 Badges"
+    if rematch_label:
+        if difficulty.lower() == "hard":
+            rematch_label = f"{rematch_label}, Hard"
+        return f"{display_name} ({rematch_label})"
     variant_match = re.search(r"_(\d+)$", constant)
-    if variant_match and not re.search(rf"\b{variant_match.group(1)}\b$", display_name):
+    if not suppress_variant_suffix and variant_match and not re.search(rf"\b{variant_match.group(1)}\b$", display_name):
         display_name = f"{display_name} {variant_match.group(1)}"
     if difficulty.lower() == "hard":
         display_name = f"{display_name} (Hard)"
@@ -196,6 +282,7 @@ def enrich_trainer_party(
             **mon,
             "constant": species.constant if species else "",
             "displayName": display_name,
+            "innates": list(species.innates) if species else [],
             "itemConstant": held_item["constant"] if held_item else "",
             "itemName": held_item["name"] if held_item else mon["item"],
             "itemDescription": held_item["description"] if held_item else "",
@@ -204,31 +291,55 @@ def enrich_trainer_party(
         })
     return enriched
 
-def trainer_constants_for_docs_maps() -> set[str]:
-    """Return trainer constants referenced by non-Kanto, non-Hoenn map scripts."""
+def trainer_locations_for_docs_maps() -> dict[str, list[str]]:
+    """Return trainer constants and their display locations from included maps."""
     try:
         map_groups = json.loads(read(MAP_GROUPS_JSON))
     except (FileNotFoundError, json.JSONDecodeError):
-        return set()
+        return {}
 
-    constants: set[str] = set()
+    locations: dict[str, list[str]] = {}
     trainer_re = re.compile(r"\btrainerbattle(?:_[a-z0-9_]+)?(?:\s+|\()\s*(TRAINER_[A-Z0-9_]+)\b", re.IGNORECASE)
 
     for group_name in map_groups.get("group_order") or []:
         for map_name in map_groups.get(group_name) or []:
-            if is_docs_excluded_map(map_name, group_name):
+            if map_name.startswith("SSAqua_"):
+                continue
+            excluded_map = is_docs_excluded_map(map_name, group_name)
+            # The Indigo interiors are outside the general trainer-map scope,
+            # but their Elite Four teams are deliberately included in the docs.
+            if excluded_map and group_name != "gMapGroup_IndoorIndigo":
                 continue
             map_dir = REPO_ROOT / "data/maps" / map_name
             if not map_dir.is_dir():
                 continue
+            try:
+                map_data = json.loads(read(map_dir / "map.json"))
+            except (FileNotFoundError, json.JSONDecodeError):
+                map_data = {}
+            display_name = map_display_name(map_data, map_name)
             for script in sorted(map_dir.glob("scripts.*")):
-                constants.update(
-                    constant
-                    for constant in trainer_re.findall(read(script))
-                    if constant != "TRAINER_NONE"
-                )
+                for constant in trainer_re.findall(read(script)):
+                    if constant == "TRAINER_NONE":
+                        continue
+                    if excluded_map and constant not in ALWAYS_INCLUDED_TRAINER_CONSTANTS:
+                        continue
+                    trainer_locations = locations.setdefault(constant, [])
+                    if display_name not in trainer_locations:
+                        trainer_locations.append(display_name)
 
-    return constants | ALWAYS_INCLUDED_TRAINER_CONSTANTS
+    # Title-defense challengers are selected in C rather than through a map
+    # trainerbattle macro, so expose them under their own docs category.
+    for constant in TITLE_DEFENSE_TRAINERS:
+        locations[constant] = ["Title Defense"]
+
+    return locations
+
+
+def trainer_constants_for_docs_maps(locations: dict[str, list[str]] | None = None) -> set[str]:
+    """Return trainer constants referenced by included map scripts."""
+    return set(locations if locations is not None else trainer_locations_for_docs_maps()) | ALWAYS_INCLUDED_TRAINER_CONSTANTS
+
 
 def parse_trainers(
     species_lookup: dict[str, SpeciesRow],
@@ -239,6 +350,7 @@ def parse_trainers(
     item_records: dict[str, ItemRecord],
     item_icon_dir: Path,
     allowed_trainer_constants: set[str] | None = None,
+    trainer_locations: dict[str, list[str]] | None = None,
 ) -> list[TrainerRow]:
     """Read trainers.party and parse each === TRAINER_* === block."""
     if not TRAINERS_H.exists():
@@ -276,12 +388,13 @@ def parse_trainers(
 
         trainers.append({
             "constant": constant,
-            "name": name,
+            "name": trainer_base_name(name, constant),
             "displayName": trainer_display_name(name, constant, difficulty),
             "difficulty": difficulty,
             "averageLevel": round(average_party_level(party), 2),
             "pic": pic,
             "sprite": front_sprite,
+            "locations": list((trainer_locations or {}).get(constant) or ["Special Battles"]),
             "party": party,
         })
     return sorted(trainers, key=lambda trainer: (trainer["averageLevel"], trainer["displayName"], trainer["constant"]))

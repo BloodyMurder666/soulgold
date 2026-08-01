@@ -206,6 +206,7 @@ class ShowdownMon(TypedDict, total=False):
 class TrainerMon(ShowdownMon, total=False):
     constant: str
     displayName: str
+    innates: list[str]
     itemConstant: str
     itemName: str
     itemDescription: str
@@ -221,6 +222,7 @@ class TrainerRow(TypedDict):
     averageLevel: float
     pic: str
     sprite: str | None
+    locations: list[str]
     party: list[TrainerMon]
 
 

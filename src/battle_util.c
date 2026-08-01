@@ -9743,8 +9743,8 @@ static inline uq4_12_t GetDefenderItemsModifier(struct BattleContext *ctx)
     {
         if (IsUnnerveBlocked(ctx->battlerDef, itemDef))
             return UQ_4_12(1.0);
-        if ((ctx->moveType == TYPE_NORMAL || ctx->typeEffectivenessModifier >= UQ_4_12(2.0)))
-        {ctx->updateFlags = TRUE;
+        if (ctx->moveType == TYPE_NORMAL || ctx->typeEffectivenessModifier >= UQ_4_12(2.0))
+        {
             if (ctx->updateFlags)
             {
                 gSpecialStatuses[ctx->battlerDef].berryReduced = TRUE;

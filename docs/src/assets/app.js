@@ -146,10 +146,82 @@ const searchPlaceholders = {
   encounters: "Search areas or Pokémon…",
   machines: "Search TMs, moves, types, or locations…",
   items: "Search items or locations…",
-  trainers: "Search trainers or parties…",
+  trainers: "Search trainers, parties, or locations…",
   abilities: "Search abilities…",
   guides: "Search guides, FAQs, or secrets…",
 };
+// Main-story and notable optional-area order for the trainer location groups.
+// Locations not represented here follow these groups by average trainer level.
+const trainerLocationProgression = [
+  /^New Bark Town$/i,
+  /^Route 29(?:\b|$)/i,
+  /^Cherrygrove City$/i,
+  /^Route 30(?:\b|$)/i,
+  /^Route 31(?:\b|$)/i,
+  /^Sprout Tower [12]F$/i,
+  /^Violet City Gym$/i,
+  /^Dark Cave South(?:\b|$)/i,
+  /^Route 32(?:\b|$)/i,
+  /^Union Cave 1F$/i,
+  /^Route 33(?:\b|$)/i,
+  /^Slowpoke Well(?:\b|$)/i,
+  /^Azalea Town(?: Gym)?$/i,
+  /^Ilex Forest(?:\b|$)/i,
+  /^Route 34(?:\b|$)/i,
+  /^Goldenrod City (?:Gym|Underground Tunnel)$/i,
+  /^Route 35(?:\b|$)/i,
+  /^National Park(?:\b|$)/i,
+  /^Goldenrod Shore(?:\b|$)/i,
+  /^Route 36(?:\b|$)/i,
+  /^Route 37(?:\b|$)/i,
+  /^Burned Tower(?:\b|$)/i,
+  /^Ecruteak City Theater$/i,
+  /^Ecruteak City Gym$/i,
+  /^Union Cave B[12]F$/i,
+  /^Ruins Of Alph(?:\b|$)/i,
+  /^Foggy Shore(?:\b|$)/i,
+  /^Lost Woods(?:\b|$)/i,
+  /^Route 38(?:\b|$)/i,
+  /^Route 39(?:\b|$)/i,
+  /^Route 49(?:\b|$)/i,
+  /^Snowtop Mountain(?:\b|$)/i,
+  /^Vajra Desert$/i,
+  /^Olivine City Gym$/i,
+  /^Olivine City Lighthouse(?:\b|$)/i,
+  /^Railway Cave(?:\b|$)/i,
+  /^Route 40(?:\b|$)/i,
+  /^Route 41(?:\b|$)/i,
+  /^Cianwood City$/i,
+  /^Cianwood Gym$/i,
+  /^Route 47(?:\b|$)/i,
+  /^Route 48(?:\b|$)/i,
+  /^Route 42(?:\b|$)/i,
+  /^Mt Mortar(?:\b|$)/i,
+  /^Route 43(?:\b|$)/i,
+  /^Lake Of Rage(?:\b|$)/i,
+  /^Route 44(?:\b|$)/i,
+  /^Rocket Hideout(?:\b|$)/i,
+  /^Mahogany Town Gym$/i,
+  /^Goldenrod City (?:Radio Tower|Underground (?:Switches|Storage))(?:\b|$)/i,
+  /^Ice Path(?:\b|$)/i,
+  /^Blackthorn City(?:\b|$)/i,
+  /^Dragons Den(?:\b|$)/i,
+  /^Route 45(?:\b|$)/i,
+  /^Route 46(?:\b|$)/i,
+  /^Kitakami Border(?:\b|$)/i,
+  /^Route 27(?:\b|$)/i,
+  /^Route 26$/i,
+  /^Route 26 North(?:\b|$)/i,
+  /^Victory Road(?:\b|$)/i,
+  /^Indigo Plateau(?:\b|$)/i,
+  /^Pokemon League Wills Room$/i,
+  /^Pokemon League Kogas Room$/i,
+  /^Pokemon League Brunos Room$/i,
+  /^Pokemon League Karens Room$/i,
+  /^Pokemon League Champions Room$/i,
+  /^Pokemon League(?:\b|$)/i,
+  /^Vajra Desert East(?:\b|$)/i,
+];
 const tabRoutes = {
   pokedex: "pokedex",
   moves: "moves",
@@ -2098,32 +2170,89 @@ function renderGuides() {
 
 function renderTrainers() {
   const tbody = document.getElementById("trainerRows");
-  const trainers = (state.data.trainers || []).filter((trainer) =>
-    matches(`${trainer.name} ${trainer.displayName || ""} ${trainer.difficulty || ""} ${trainer.party.map((mon) => trainerMonSearchText(mon)).join(" ")}`)
-  ).sort((a, b) =>
-    (a.averageLevel ?? trainerAverageLevel(a.party)) - (b.averageLevel ?? trainerAverageLevel(b.party))
-    || (a.displayName || a.name).localeCompare(b.displayName || b.name)
-  );
-  tbody.innerHTML = "";
-  trainers.forEach((trainer) => {
-    const row = el("tr", "trainer-row");
-    row.innerHTML = `
-      <td data-label="Name">
-        <div class="trainer-name-cell">
-          ${sprite(trainer.sprite, "trainer-sprite")}
-          <strong>${trainer.displayName || trainer.name}</strong>
-        </div>
-      </td>
-      <td data-label="Party"><div class="trainer-party-details">${trainerPartyHtml(trainer.party)}</div></td>
-    `;
-    tbody.appendChild(row);
+  const groups = new Map();
+  (state.data.trainers || []).forEach((trainer) => {
+    const locations = trainer.locations?.length ? trainer.locations : ["Special Battles"];
+    const trainerMatches = matches(`${trainer.name} ${trainer.displayName || ""} ${trainer.difficulty || ""} ${trainer.party.map((mon) => trainerMonSearchText(mon)).join(" ")}`);
+    const matchingLocations = locations.filter((location) => matches(location));
+    if (!trainerMatches && !matchingLocations.length) return;
+
+    // A location-only match should show the requested area, while a trainer or
+    // party match should show every area where that trainer can be found.
+    const visibleLocations = trainerMatches ? locations : matchingLocations;
+    visibleLocations.forEach((location) => {
+      if (!groups.has(location)) groups.set(location, []);
+      groups.get(location).push(trainer);
+    });
   });
-  if (!trainers.length) {
+  const locationGroups = [...groups.entries()].sort(compareTrainerLocationGroups);
+  tbody.innerHTML = "";
+  locationGroups.forEach(([location, trainers]) => {
+    const heading = el("tr", "trainer-location-row");
+    heading.innerHTML = `
+      <th colspan="2">
+        <span class="trainer-location-name">${escapeHtml(location)}</span>
+      </th>
+    `;
+    tbody.appendChild(heading);
+    sortTrainersForLocation(trainers).forEach((trainer) => {
+      const row = el("tr", "trainer-row");
+      row.innerHTML = `
+        <td data-label="Name">
+          <div class="trainer-name-cell">
+            ${sprite(trainer.sprite, "trainer-sprite")}
+            <strong>${trainer.displayName || trainer.name}</strong>
+          </div>
+        </td>
+        <td data-label="Party"><div class="trainer-party-details">${trainerPartyHtml(trainer.party)}</div></td>
+      `;
+      tbody.appendChild(row);
+    });
+  });
+  if (!locationGroups.length) {
     const row = el("tr");
     row.innerHTML = `<td colspan="2" class="muted">No trainers found.</td>`;
     tbody.appendChild(row);
   }
-  setPanelStatus("trainers", trainers.length ? "" : "No trainers match this search.");
+  setPanelStatus("trainers", locationGroups.length ? "" : "No trainers match this search.");
+}
+
+function compareTrainerLocationGroups([aLocation, aTrainers], [bLocation, bTrainers]) {
+  if (aLocation === "Title Defense" || bLocation === "Title Defense") {
+    if (aLocation === bLocation) return 0;
+    return aLocation === "Title Defense" ? 1 : -1;
+  }
+  const aRank = trainerLocationProgression.findIndex((pattern) => pattern.test(aLocation));
+  const bRank = trainerLocationProgression.findIndex((pattern) => pattern.test(bLocation));
+  if (aRank !== bRank) {
+    if (aRank < 0) return 1;
+    if (bRank < 0) return -1;
+    return aRank - bRank;
+  }
+  const levelDifference = trainerLocationAverageLevel(aTrainers) - trainerLocationAverageLevel(bTrainers);
+  return levelDifference || aLocation.localeCompare(bLocation, undefined, { numeric: true });
+}
+
+function sortTrainersForLocation(trainers) {
+  const groupLevels = new Map();
+  trainers.forEach((trainer) => {
+    const level = trainer.averageLevel ?? trainerAverageLevel(trainer.party);
+    groupLevels.set(trainer.constant, Math.min(groupLevels.get(trainer.constant) ?? Number.POSITIVE_INFINITY, level));
+  });
+  return [...trainers].sort((a, b) =>
+    groupLevels.get(a.constant) - groupLevels.get(b.constant)
+    || a.name.localeCompare(b.name)
+    || Number(a.difficulty?.toLowerCase() === "hard") - Number(b.difficulty?.toLowerCase() === "hard")
+    || (a.averageLevel ?? trainerAverageLevel(a.party)) - (b.averageLevel ?? trainerAverageLevel(b.party))
+    || (a.displayName || a.name).localeCompare(b.displayName || b.name)
+  );
+}
+
+function trainerLocationAverageLevel(trainers) {
+  if (!trainers.length) return Number.POSITIVE_INFINITY;
+  return trainers.reduce((sum, trainer) =>
+    sum + (trainer.averageLevel ?? trainerAverageLevel(trainer.party)), 0
+  ) / trainers.length;
 }
 
 function trainerPartyHtml(party) {
@@ -2163,6 +2292,7 @@ function trainerMonSearchText(mon) {
     mon.item,
     mon.itemName,
     mon.ability,
+    ...activeTrainerInnates(mon).flatMap((constant) => [constant, abilityName(constant)]),
     ...(mon.moves || []),
     ...Object.entries(mon.evs || {}).map(([stat, value]) => `${value} ${statLabels[stat] || stat} EV`),
     ...Object.entries(mon.ivs || {}).map(([stat, value]) => `${value} ${statLabels[stat] || stat} IV`),
@@ -2209,6 +2339,10 @@ function trainerMonDetailsHtml(mon) {
   if (mon.ability) {
     rows.push(`<div class="trainer-mon-detail"><span>Ability:</span><strong><button class="trainer-ability ability-pill" type="button" data-ability="${escapeHtml(mon.ability)}">${trainerTokenName(mon.ability, "ABILITY_")}</button></strong></div>`);
   }
+  const innates = activeTrainerInnates(mon);
+  if (innates.length) {
+    rows.push(`<div class="trainer-mon-detail"><span>Innate:</span><strong>${innates.map((constant) => `<button class="trainer-ability ability-pill" type="button" data-ability="${escapeHtml(constant)}">${abilityName(constant)}</button>`).join(", ")}</strong></div>`);
+  }
   const evs = trainerStatSpreadHtml("EVs", mon.evs);
   const ivs = trainerStatSpreadHtml("IVs", mon.ivs);
   if (evs) rows.push(evs);
@@ -2217,6 +2351,11 @@ function trainerMonDetailsHtml(mon) {
     rows.push(`<div class="trainer-mon-detail trainer-moves"><span>Moves:</span><strong>${mon.moves.map((move) => `- <button class="move-name trainer-move-name" type="button" data-move="${escapeHtml(move)}">${trainerMoveLabel(move)}</button>`).join("<br>")}</strong></div>`);
   }
   return rows.length ? `<div class="trainer-mon-details">${rows.join("")}</div>` : "";
+}
+
+function activeTrainerInnates(mon) {
+  const level = Number(mon.level || 100);
+  return uniqueConstants(mon.innates || []).filter((constant, index) => level >= innateUnlockLevels[index]);
 }
 
 init().catch((error) => {

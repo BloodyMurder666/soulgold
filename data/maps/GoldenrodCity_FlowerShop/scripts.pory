@@ -203,13 +203,47 @@ script FlowerShopMulchVendor {
 	lock
 	faceplayer
 	msgbox("Welcome! Have a look at our inventory!")
-	pokemart(FlowerShopMulches)
-	msgbox("Thank you! Come again!")
+	if (flag(FLAG_BADGE06_GET)) {
+		pokemart(FlowerShopMulchesSixBadges)
+		msgbox("Thank you! Come again!")
+	} else {
+		pokemart(FlowerShopMulches)
+		msgbox("Thank you, we hope to stock some 
+				rare berries in the near future!")
+	}
+	
 	release
 	end
 }
 
 mart FlowerShopMulches {
+	ITEM_GRASSY_SEED
+	ITEM_LUMINOUS_MOSS
+	ITEM_GROWTH_MULCH
+	ITEM_DAMP_MULCH
+	ITEM_STABLE_MULCH
+	ITEM_GOOEY_MULCH
+}
+
+mart FlowerShopMulchesSixBadges {
+	ITEM_CHILAN_BERRY
+	ITEM_OCCA_BERRY
+	ITEM_PASSHO_BERRY
+	ITEM_WACAN_BERRY
+	ITEM_RINDO_BERRY
+	ITEM_YACHE_BERRY
+	ITEM_CHOPLE_BERRY
+	ITEM_KEBIA_BERRY
+	ITEM_SHUCA_BERRY
+	ITEM_COBA_BERRY
+	ITEM_PAYAPA_BERRY
+	ITEM_TANGA_BERRY
+	ITEM_CHARTI_BERRY
+	ITEM_KASIB_BERRY
+	ITEM_HABAN_BERRY
+	ITEM_COLBUR_BERRY
+	ITEM_BABIRI_BERRY
+	ITEM_ROSELI_BERRY
 	ITEM_GRASSY_SEED
 	ITEM_LUMINOUS_MOSS
 	ITEM_GROWTH_MULCH

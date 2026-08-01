@@ -1,5 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
+#include "battle_util.h"
 
 static const u16 sMoveItemTable[][4] =
 {
@@ -22,6 +23,40 @@ static const u16 sMoveItemTable[][4] =
     { TYPE_DARK,     MOVE_BITE,            ITEM_COLBUR_BERRY, SPECIES_WOBBUFFET },
     { TYPE_FAIRY,    MOVE_DISARMING_VOICE, ITEM_ROSELI_BERRY, SPECIES_DRAGONAIR },
 };
+
+SINGLE_BATTLE_TEST("Damage preview thingy does not activate SE berries for")
+{
+    GIVEN {
+        ASSUME(GetMoveType(MOVE_KARATE_CHOP) == TYPE_FIGHTING);
+        ASSUME(GetSpeciesType(SPECIES_RAMPARDOS, 0) == TYPE_ROCK);
+        ASSUME(GetItemHoldEffect(ITEM_CHOPLE_BERRY) == HOLD_EFFECT_RESIST_BERRY);
+        ASSUME(GetItemHoldEffectParam(ITEM_CHOPLE_BERRY) == TYPE_FIGHTING);
+        PLAYER(SPECIES_RAMPARDOS) { Item(ITEM_CHOPLE_BERRY); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_CELEBRATE); MOVE(opponent, MOVE_CELEBRATE); }
+    } THEN {
+        enum BattlerId battlerAtk = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+        enum BattlerId battlerDef = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+        struct BattleContext ctx = {0};
+
+        ctx.battlerAtk = battlerAtk;
+        ctx.battlerDef = battlerDef;
+        ctx.move = ctx.chosenMove = MOVE_KARATE_CHOP;
+        ctx.moveType = GetMoveType(ctx.move);
+        ctx.fieldStatuses = gFieldStatuses;
+        ctx.weather = gBattleWeather;
+        ctx.randomFactor = FALSE;
+        ctx.updateFlags = FALSE;
+
+        s32 damage = CalculateMoveDamage(&ctx);
+
+        EXPECT_GT(ApplyModifiersAfterDmgRoll(&ctx, damage), 0);
+        EXPECT(!ctx.updateFlags);
+        EXPECT(!gSpecialStatuses[battlerDef].berryReduced);
+        EXPECT_EQ(gSpecialStatuses[battlerDef].berryReducedType, 0);
+    }
+}
 
 SINGLE_BATTLE_TEST("Weakness berries decrease the base power of moves by half", s16 damage)
 {

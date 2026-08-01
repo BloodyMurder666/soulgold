@@ -1,6 +1,11 @@
 Update notes:
 1.8.2026
 - Meltan can now breed with mineral egg group.
+- Supereffective berries are sold in the Goldenrod Flower Shop after getting Jasmine's badge.
+- Fixed Supereffective damage berries triggering from any attack.
+
+Docs Related:
+- Trainer tab trainers are now grouped by location and sorted in some semblance of progression.
 
 
 31.7.2026
