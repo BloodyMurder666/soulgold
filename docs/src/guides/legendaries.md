@@ -15,8 +15,8 @@ order: 3
 - Suicune: Roaming after Burned Tower event
 - Ho-Oh: Choose Rainbow Wing after Rocket Takeover, if you chose Silver Wing, talk to director after Elite Four, prepare for a fight
 - Lugia: Choose Silver Wing after Rocket Takeover, if you chose Rainbow Wing, talk to director after Elite four, prepare for a fight
-- Shadow Lugia: Explore south of Johto and take what you find to regular Lugia encounter. If you have already caught regular lugia, do one round of title defense to reset the spawn.
-- Celebi: Solve all 8 ruins of alph puzzles and then enter a passage in the B1F to find GS Ball. Take this to Kurt in Azalea and then go to Ilex Forest shrine.
+- Shadow Lugia: Explore south of Johto to find Abandoned Rocket Warehouse. Solve the puzzles inside to find a Dark Crystal. Bring it to regular Lugia Encounter. If you have already caught regular lugia, do one round of title defense to reset the spawn. If you picked Ho-Oh during the main story, then fight the Director in the postgame to obtain Silver Wing.
+- Celebi: Solve all 8 ruins of alph puzzles (4 slider puzzles and 4 wall puzzles. ESCAPE = Use escape rope from the bag. WATER = use water stone from the bag. LIGHT = use flash from the party menu. HOOH = bring Ho-Oh with you.) and then enter a passage in the B1F to find GS Ball. Take this to Kurt in Azalea and then go to Ilex Forest shrine.
 - Regirock: Solve braille in Vajra Desert West (Bring Tyrannitar to the wall)
 - Regice: Solve braille in Snowtop Mountain (Bring Baxcalibur to the wall)
 - Registeel: Solve braille in Railway Cave (Bring Kommo-O to the wall)
