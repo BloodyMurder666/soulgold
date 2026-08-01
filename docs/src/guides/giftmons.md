@@ -5,7 +5,7 @@ category: Unlocks
 order: 50
 ---
 
-# Gift Pokémon
+### Gift Pokémon
 
 
 ### Cherrygrove City: 
@@ -44,7 +44,7 @@ order: 50
 - Achievements Man hands you certain Pokémon for reaching milestones in the amount of trophies you have. The exact Pokémon can be found in the Achievement milestones guide [here](https://eemeliri.github.io/soulgold/guides/achievement-rewards/)
 
 
-# Trade Pokémon
+### Trade Pokémon
 
 
 ### Pawmi 
