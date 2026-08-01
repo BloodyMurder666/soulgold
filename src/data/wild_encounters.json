@@ -1119,7 +1119,7 @@
               {
                 "min_level": 6,
                 "max_level": 8,
-                "species": "SPECIES_BUIZEL"
+                "species": "SPECIES_FLETCHLING"
               },
               {
                 "min_level": 7,
@@ -1129,7 +1129,7 @@
               {
                 "min_level": 7,
                 "max_level": 8,
-                "species": "SPECIES_BUIZEL"
+                "species": "SPECIES_FLETCHLING"
               },
               {
                 "min_level": 7,
@@ -4100,12 +4100,12 @@
               },
               {
                 "min_level": 33,
-                "max_level": 50,
+                "max_level": 60,
                 "species": "SPECIES_BLISSEY"
               },
               {
                 "min_level": 33,
-                "max_level": 50,
+                "max_level": 60,
                 "species": "SPECIES_BLISSEY"
               }
             ]
@@ -11777,7 +11777,7 @@
               {
                 "min_level": 42,
                 "max_level": 48,
-                "species": "SPECIES_SLIGGOO"
+                "species": "SPECIES_AUDINO"
               },
               {
                 "min_level": 42,
@@ -11787,7 +11787,7 @@
               {
                 "min_level": 42,
                 "max_level": 48,
-                "species": "SPECIES_SLIGGOO"
+                "species": "SPECIES_AUDINO"
               },
               {
                 "min_level": 42,
@@ -14401,7 +14401,7 @@
               {
                 "min_level": 50,
                 "max_level": 55,
-                "species": "SPECIES_GARDEVOIR"
+                "species": "SPECIES_TALONFLAME"
               },
               {
                 "min_level": 50,
@@ -14411,7 +14411,7 @@
               {
                 "min_level": 50,
                 "max_level": 55,
-                "species": "SPECIES_GARDEVOIR"
+                "species": "SPECIES_TALONFLAME"
               },
               {
                 "min_level": 50,

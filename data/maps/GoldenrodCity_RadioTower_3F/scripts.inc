@@ -178,8 +178,8 @@ GoldenrodCity_RadioTower_3F_Text_CooltrainerFHeroGift:
 	.string "This is a token of my appreciation.$"
 
 GoldenrodCity_RadioTower_3F_Text_CooltrainerFSunnyDay:
-	.string "It's Skill Swap. It swaps the ability\n"
-	.string "of one Pokémon with another's.$"
+	.string "It's Round. It powers up\n"
+	.string "other Pokémon use it at once.$"
 
 GoldenrodCity_RadioTower_3F_Text_CooltrainerFMarvelous:
 	.string "You were simply marvelous!$"

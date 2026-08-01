@@ -4859,7 +4859,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
 
     [MOVE_DARK_AERO] =
     {
-        .name = COMPOUND_STRING("Dark Aero"),
+        .name = COMPOUND_STRING("Shadow Blast"),
         .description = COMPOUND_STRING(
             "Launches a darkened blast.\n"
             "High critical-hit ratio."),

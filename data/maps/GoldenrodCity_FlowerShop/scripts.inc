@@ -406,141 +406,143 @@ FlowerShopMulchVendor::
 	msgbox FlowerShopMulchVendor_Text_0
 # 206 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
 	goto_if_set FLAG_BADGE06_GET, FlowerShopMulchVendor_2
-# 209 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+# 210 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
 	pokemart FlowerShopMulches
-FlowerShopMulchVendor_1:
 # 211 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	msgbox FlowerShopMulchVendor_Text_1
-# 212 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	msgbox FlowerShopMulchVendor_Text_2
+FlowerShopMulchVendor_1:
+# 215 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
 	release
 	end
 
 FlowerShopMulchVendor_2:
 # 207 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
 	pokemart FlowerShopMulchesSixBadges
+# 208 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	msgbox FlowerShopMulchVendor_Text_1
 	goto FlowerShopMulchVendor_1
 
 
 	.align 2
-# 216 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-FlowerShopMulches:
-# 217 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_GRASSY_SEED
-# 218 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_LUMINOUS_MOSS
 # 219 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_GROWTH_MULCH
+FlowerShopMulches:
 # 220 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_DAMP_MULCH
+	.2byte ITEM_GRASSY_SEED
 # 221 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_STABLE_MULCH
+	.2byte ITEM_LUMINOUS_MOSS
 # 222 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	.2byte ITEM_GROWTH_MULCH
+# 223 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	.2byte ITEM_DAMP_MULCH
+# 224 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	.2byte ITEM_STABLE_MULCH
+# 225 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
 	.2byte ITEM_GOOEY_MULCH
 	.2byte ITEM_NONE
 
 	.align 2
-# 225 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-FlowerShopMulchesSixBadges:
-# 226 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_CHILAN_BERRY
-# 227 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_OCCA_BERRY
 # 228 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_PASSHO_BERRY
+FlowerShopMulchesSixBadges:
 # 229 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_WACAN_BERRY
+	.2byte ITEM_CHILAN_BERRY
 # 230 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_RINDO_BERRY
+	.2byte ITEM_OCCA_BERRY
 # 231 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_YACHE_BERRY
+	.2byte ITEM_PASSHO_BERRY
 # 232 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_CHOPLE_BERRY
+	.2byte ITEM_WACAN_BERRY
 # 233 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_KEBIA_BERRY
+	.2byte ITEM_RINDO_BERRY
 # 234 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_SHUCA_BERRY
+	.2byte ITEM_YACHE_BERRY
 # 235 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_COBA_BERRY
+	.2byte ITEM_CHOPLE_BERRY
 # 236 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_PAYAPA_BERRY
+	.2byte ITEM_KEBIA_BERRY
 # 237 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_TANGA_BERRY
+	.2byte ITEM_SHUCA_BERRY
 # 238 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_CHARTI_BERRY
+	.2byte ITEM_COBA_BERRY
 # 239 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_KASIB_BERRY
+	.2byte ITEM_PAYAPA_BERRY
 # 240 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_HABAN_BERRY
+	.2byte ITEM_TANGA_BERRY
 # 241 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_COLBUR_BERRY
+	.2byte ITEM_CHARTI_BERRY
 # 242 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_BABIRI_BERRY
+	.2byte ITEM_KASIB_BERRY
 # 243 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_ROSELI_BERRY
+	.2byte ITEM_HABAN_BERRY
 # 244 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_GRASSY_SEED
+	.2byte ITEM_COLBUR_BERRY
 # 245 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_LUMINOUS_MOSS
+	.2byte ITEM_BABIRI_BERRY
 # 246 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_GROWTH_MULCH
+	.2byte ITEM_ROSELI_BERRY
 # 247 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_DAMP_MULCH
+	.2byte ITEM_GRASSY_SEED
 # 248 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	.2byte ITEM_STABLE_MULCH
+	.2byte ITEM_LUMINOUS_MOSS
 # 249 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	.2byte ITEM_GROWTH_MULCH
+# 250 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	.2byte ITEM_DAMP_MULCH
+# 251 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	.2byte ITEM_STABLE_MULCH
+# 252 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
 	.2byte ITEM_GOOEY_MULCH
 	.2byte ITEM_NONE
 
 UniversityFlorist::
-# 253 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+# 256 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
 	lock
-# 254 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+# 257 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
 	faceplayer
-# 255 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+# 258 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
 	msgbox UniversityFlorist_Text_0
-# 259 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+# 262 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
 	checkspecies SPECIES_SHAYMIN
-# 260 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+# 263 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
 	compare VAR_RESULT, TRUE
 	goto_if_eq UniversityFlorist_2
 UniversityFlorist_1:
-# 263 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+# 266 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
 	release
 	end
 
 UniversityFlorist_2:
-# 261 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+# 264 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
 	goto GiveGracidea
 	goto UniversityFlorist_1
 
 
 GiveGracidea::
-# 268 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+# 271 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
 	goto_if_set FLAG_GOT_GRACIDEA, GiveGracidea_2
-# 274 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	playse SE_PIN
-# 275 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	applymovement 5, Common_Movement_ExclamationMark
-# 276 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	waitse
 # 277 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	waitmovement 0
+	playse SE_PIN
 # 278 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	applymovement 5, Common_Movement_ExclamationMark
+# 279 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	waitse
+# 280 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	waitmovement 0
+# 281 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
 	msgbox GiveGracidea_Text_1
-# 287 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	giveitem ITEM_GRACIDEA
-# 288 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	msgbox GiveGracidea_Text_0
 # 290 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
-	setflag FLAG_GOT_GRACIDEA
+	giveitem ITEM_GRACIDEA
 # 291 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	msgbox GiveGracidea_Text_0
+# 293 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	setflag FLAG_GOT_GRACIDEA
+# 294 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
 	release
 	end
 
 GiveGracidea_2:
-# 269 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+# 272 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
 	msgbox GiveGracidea_Text_0
-# 271 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+# 274 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
 	release
 	end
 
@@ -550,22 +552,27 @@ FlowerShopMulchVendor_Text_0:
 	.string "Welcome! Have a look at our inventory!$"
 
 FlowerShopMulchVendor_Text_1:
-# 211 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+# 208 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
 	.string "Thank you! Come again!$"
 
+FlowerShopMulchVendor_Text_2:
+# 211 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+	.string "Thank you, we hope to stock some \n"
+	.string "rare berries in the near future!$"
+
 UniversityFlorist_Text_0:
-# 255 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+# 258 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
 	.string "I'm studying to become a botanist!\p"
 	.string "I strive to learn all about rare\n"
 	.string "plants and flowers!$"
 
 GiveGracidea_Text_0:
-# 269 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+# 272 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
 	.string "It is said that Shaymin can\n"
 	.string "change its form with that flower.$"
 
 GiveGracidea_Text_1:
-# 278 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
+# 281 "data/maps/GoldenrodCity_FlowerShop/scripts.pory"
 	.string "Oh! That Pokémon you have!\p"
 	.string "It really is a Shaymin!\p"
 	.string "I have read about it, but I would never\n"

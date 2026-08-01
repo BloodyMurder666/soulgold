@@ -4625,10 +4625,11 @@ bool16 HasCompletedJohtoPokedex(void)
     for (i = 1; i < JOHTO_DEX_COUNT; i++)
     {
         enum NationalDexOrder nationalDexNum = JohtoToNationalOrder(i);
+        u16 species = NationalPokedexNumToSpecies(nationalDexNum);
 
-        if (gSpeciesInfo[nationalDexNum].isRestrictedLegendary
-         || gSpeciesInfo[nationalDexNum].isSubLegendary
-         || gSpeciesInfo[nationalDexNum].isMythical)
+        if (gSpeciesInfo[species].isRestrictedLegendary
+         || gSpeciesInfo[species].isSubLegendary
+         || gSpeciesInfo[species].isMythical)
             continue;
         if (!GetSetPokedexFlag(nationalDexNum, FLAG_GET_CAUGHT))
             return FALSE;

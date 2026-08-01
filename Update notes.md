@@ -1,21 +1,31 @@
 Update notes:
 1.8.2026
-- Meltan can now breed with mineral egg group.
 - Supereffective berries are sold in the Goldenrod Flower Shop after getting Jasmine's badge.
 - Changed the Trainer Card star requirements to following:
     - 1) Hall of Fame entry
     - 2) 50 Win streak in Battle Tower or Factory
     - 3) 80 Trophies
     - 4) Complete Johto Pokédex
+- Meltan can now breed with mineral egg group.
 - Badges in the Trainer Card are now colored.
+- Fletchling is available in Ruins of Alph grass.
+- Audino is available in Kitakami Border.
+- Shadow Lugia level-up learnset has been revised to be more thematic.
 - The last trophy is now called "Master of Johto" and earned from gathering all other trophies.
-- The Tinkaton trade npc now moves in front of the Pyramid, but mentions that it will take some time to open if player is not a champion yet.
-- Tyruntrum learns Outrage
-- Klefki's missing innate is fixed
+- The Tinkaton trade npc now moves in front of the Pyramid, but mentions that it will take some time to open if player is not a Champion yet.
+- Tyrantrum learns Outrage.
+- Changed the wording on Water Shuriken to imply that it is Sharpness boosted.
+- Rotom-Fan's redundant Levitate is now Wind Rider.
+- Klefki's missing innate is fixed.
 - Cherrygrove Inn windows are now dimmed and won't light up at night.
 - Clarified Wild and Trainer scaling help text.
-- Fixed Ogerpon Hearthflame Mask Mega having extra +5 BST
+- Reduced Ogerpon Boss stats by 10%
+- Route 30 Berry man now explains that trees grow back in 12 hours.
+- Fixed the badge order in Trainer Card.
+- Fixed Ogerpon Hearthflame Mask Mega having extra +5 BST.
 - Fixed Supereffective damage berries triggering from any attack.
+- Fixed some settings resetting to default values that were adjusted before pressing New Game.
+- Fixed typos.
 
 Docs Related:
 - Trainer tab trainers are now grouped by location and sorted in some semblance of progression.

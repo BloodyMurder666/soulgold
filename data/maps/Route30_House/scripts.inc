@@ -25,10 +25,8 @@ Route30_BerryHouse_Text_MonEatBerries:
 	.string "Berries.\p"
 	.string "They can even eat Berries\n"
 	.string "they're holding in battle.\p"
-	.string "Berries can also be turned into\n"
-	.string "Balls by Kurt in Azalea Town.\p"
 	.string "Here. I'll share one with you!$"
 
 Route30_BerryHouse_Text_CheckTrees:
 	.string "Check trees for Berries.\n"
-	.string "They grow back after a few hours.$"
+	.string "They grow back after 12 hours.$"

@@ -912,11 +912,11 @@ Common_EventScript_PlayerHandedOverTheItem::
 @ The below and surf.inc could be split into some text/notices.inc
 gText_PokemartSign::
 	.string "“Selected items for your convenience!”\n"
-	.string "Pokémon MART$"
+	.string "Pokémon Mart$"
 
 gText_PokemonCenterSign::
 	.string "“Rejuvenate your tired partners!”\n"
-	.string "Pokémon CENTER$"
+	.string "Pokémon Center$"
 
 gText_MomOrDadMightLikeThisProgram::
 	.string "{STR_VAR_1} might like this program.\n"
@@ -969,7 +969,7 @@ gText_MonsHealedShouldBuyPotions::
 	.string "is down, please come see us.\p"
 	.string "If you're planning to go far in the\n"
 	.string "field, you should buy some Potions\l"
-	.string "at the Pokémon MART.\p"
+	.string "at the Pokémon Mart.\p"
 	.string "We hope you excel!$"
 
 gText_MonsHealed::
@@ -996,7 +996,7 @@ gText_MomExplainHPGetPotions::
 	.string "Pokémon CENTER.\p"
 	.string "If you're going to travel far away,\n"
 	.string "the smart Trainer stocks up on\l"
-	.string "Potions at the Pokémon MART.\p"
+	.string "Potions at the Pokémon Mart.\p"
 	.string "Make me proud, honey!\p"
 	.string "Take care!$"
 

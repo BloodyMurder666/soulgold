@@ -34,6 +34,7 @@
 #include "apprentice.h"
 #include "frontier_util.h"
 #include "pokedex.h"
+#include "replay_options.h"
 #include "save.h"
 #include "link_rfu.h"
 #include "main.h"
@@ -67,7 +68,17 @@ static void ResetMiniGamesRecords(void);
 static void ResetItemFlags(void);
 static void ResetDexNav(void);
 static void SetDefaultPartyMenuStyle(void);
+static u8 GetCurrentPartyMenuStyle(void);
 static void TryInitializeClockFromRtc(void);
+
+struct NewGameOptions
+{
+    enum DifficultyLevel difficulty;
+    u16 overworldSpeed;
+    u8 battleSpeed;
+    u8 partyMenuStyle;
+    enum ReplayBattleFormat battleFormat;
+};
 
 EWRAM_DATA bool8 gDifferentSaveFile = FALSE;
 EWRAM_DATA bool8 gEnableContestDebugging = FALSE;
@@ -125,6 +136,8 @@ static void SetDefaultOptions(void)
     gSaveBlock2Ptr->optionsFastMegas = B_FAST_MEGAS;
     gSaveBlock2Ptr->optionsFastWeather = B_FAST_WEATHER;
     gSaveBlock2Ptr->optionsSurfMusic = OW_SURF_MUSIC;
+    gSaveBlock2Ptr->optionsBattleSpeed = OPTIONS_BATTLE_SCENE_2X;
+    VarSet(VAR_BATTLE_SPEED, OPTIONS_BATTLE_SCENE_2X);
     SetDefaultPartyMenuStyle();
                
 }
@@ -133,6 +146,18 @@ static void SetDefaultPartyMenuStyle(void)
 {
     gSaveBlock1Ptr->optionsPartyMenuStyle = PARTY_MENU_DEFAULT_OPTION;
     gSaveBlock1Ptr->optionsPartyMenuStyleMagic = PARTY_MENU_OPTION_SAVE_MAGIC;
+}
+
+static u8 GetCurrentPartyMenuStyle(void)
+{
+    if (gSaveBlock1Ptr->optionsPartyMenuStyleMagic == PARTY_MENU_OPTION_SAVE_MAGIC
+     && gSaveBlock1Ptr->optionsPartyMenuStyle < PARTY_MENU_OPTION_COUNT)
+        return gSaveBlock1Ptr->optionsPartyMenuStyle;
+
+    if (gSaveBlock2Ptr->unused1)
+        return PARTY_MENU_OPTION_BW;
+
+    return PARTY_MENU_DEFAULT_OPTION;
 }
 
 static void ClearPokedexFlags(void)
@@ -186,6 +211,20 @@ void ResetMenuAndMonGlobals(void)
 
 void NewGameInitData(void)
 {
+    struct NewGameOptions options =
+    {
+        .difficulty = GetCurrentDifficultyLevel(),
+        .overworldSpeed = VarGet(VAR_OVERWORLD_SPEEDUP),
+        .battleSpeed = VarGet(VAR_BATTLE_SPEED),
+        .partyMenuStyle = GetCurrentPartyMenuStyle(),
+        .battleFormat = GetReplayBattleFormat(),
+    };
+
+    if (options.overworldSpeed > OPTIONS_OVERWORLD_SPEED_4X)
+        options.overworldSpeed = OPTIONS_OVERWORLD_SPEED_1X;
+    if (options.battleSpeed > OPTIONS_BATTLE_SCENE_3X)
+        options.battleSpeed = OPTIONS_BATTLE_SCENE_1X;
+
     if ((gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_CORRUPT)
      && RtcGetErrorStatus() != 0)
         RtcReset();
@@ -252,8 +291,13 @@ void NewGameInitData(void)
     WipeTrainerNameRecords();
     ResetTrainerHillResults();
     ResetContestLinkResults();
-    SetCurrentDifficultyLevel(DIFFICULTY_NORMAL);
-    VarSet(VAR_BATTLE_SPEED, 1);
+    SetCurrentDifficultyLevel(options.difficulty);
+    VarSet(VAR_OVERWORLD_SPEEDUP, options.overworldSpeed);
+    gSaveBlock2Ptr->optionsBattleSpeed = options.battleSpeed;
+    VarSet(VAR_BATTLE_SPEED, options.battleSpeed);
+    gSaveBlock1Ptr->optionsPartyMenuStyle = options.partyMenuStyle;
+    gSaveBlock1Ptr->optionsPartyMenuStyleMagic = PARTY_MENU_OPTION_SAVE_MAGIC;
+    SetReplayBattleFormat(options.battleFormat);
     VarSet(VAR_BATTLE_FACILITY_BGM, 0);
     ResetItemFlags();
     ResetDexNav();
