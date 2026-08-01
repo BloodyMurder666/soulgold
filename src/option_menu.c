@@ -359,19 +359,20 @@ static const u8 *const sOptionMenuHelpTexts_Pg2[MENUITEM_COUNT_PG2] =
         "speed. Move selection remains at\n"
         "normal speed. Hold L for 1x."),
     [MENUITEM_TRAINER_LEVEL_SCALING] = COMPOUND_STRING(
-        "On scales trainer levels to your\n"
-        "party using the game's rules.\n"
-        "Off uses each trainer's authored\n"
+        "On scales trainer levels to trail\n"
+        "your party's average level.\n"
+        "Off uses each trainer's default\n"
         "levels."),
     [MENUITEM_WILD_LEVEL_SCALING] = COMPOUND_STRING(
         "On scales wild Pokémon levels to\n"
-        "your party using the game's rules.\n"
-        "Off uses each area's authored\n"
-        "levels."),
+        "trail 8-10 levels behind your party.\n"
+        "Never scales below the nonscaled\n"
+        "wild encounter levels."),
     [MENUITEM_DIFFICULTY] = COMPOUND_STRING(
         "Normal uses standard trainer teams.\n"
         "Hard uses tougher teams for Gym\n"
-        "battles and the Elite Four."),
+        "battles, the Elite Four and\n"
+        "makes some battles Doubles.\n"),
 };
 
 static const u8 *const sOptionMenuHelpTexts_Pg3[MENUITEM_COUNT_PG3] =

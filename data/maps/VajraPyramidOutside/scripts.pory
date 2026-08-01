@@ -1,6 +1,6 @@
 mapscripts VajraPyramidOutside_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
-        if (flag(FLAG_IS_CHAMPION) && flag(FLAG_RINTO_TRADE_COMPLETE)) {
+        if (flag(FLAG_RINTO_TRADE_COMPLETE)) {
             clearflag(FLAG_HIDE_PYRAMIDOUT_SCIENTIST)
         } else {
             setflag(FLAG_HIDE_PYRAMIDOUT_SCIENTIST)
@@ -24,11 +24,20 @@ script VajraPyramidOutside_Door {
 }
 
 script VajraPyramidOutside_ScientistPostgame {
-    msgbox("We finally managed to break down the
-            door to the Pyramid thanks to the
-            Tinkaton you gave us!
+    if (flag(FLAG_IS_CHAMPION)) {
+        msgbox("We finally managed to break down the
+                door to the Pyramid thanks to the
+                Tinkaton you gave us!
 
-            Please, feel free to explore it first!", MSGBOX_NPC)
+                Please, feel free to explore it first!", MSGBOX_NPC)
+    } else {
+        msgbox("We've started working on getting that
+                door opened with the help of your
+                Tinkaton! 
+                
+                It might take some time, so
+                you should come back later.", MSGBOX_NPC)
+    }
 }
 
 script VajraPyramidOutside_ScientistsTinkaton {

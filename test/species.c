@@ -9,7 +9,7 @@ TEST("Ogerpon Mega forms have their intended stat boosts")
 
     PARAMETRIZE { species = SPECIES_OGERPON_TEAL_TERA;        defense = 84;  speed = 135; spDefense = 96; }
     PARAMETRIZE { species = SPECIES_OGERPON_WELLSPRING_TERA;  defense = 84;  speed = 110; spDefense = 121; }
-    PARAMETRIZE { species = SPECIES_OGERPON_HEARTHFLAME_TERA; defense = 94;  speed = 120; spDefense = 106; }
+    PARAMETRIZE { species = SPECIES_OGERPON_HEARTHFLAME_TERA; defense = 89;  speed = 120; spDefense = 106; }
     PARAMETRIZE { species = SPECIES_OGERPON_CORNERSTONE_TERA; defense = 109; speed = 110; spDefense = 96; }
 
     EXPECT_EQ(gSpeciesInfo[species].baseHP, 80);

@@ -4618,6 +4618,25 @@ bool16 HasAllHoennMons(void)
     return TRUE;
 }
 
+bool16 HasCompletedJohtoPokedex(void)
+{
+    u32 i;
+
+    for (i = 1; i < JOHTO_DEX_COUNT; i++)
+    {
+        enum NationalDexOrder nationalDexNum = JohtoToNationalOrder(i);
+
+        if (gSpeciesInfo[nationalDexNum].isRestrictedLegendary
+         || gSpeciesInfo[nationalDexNum].isSubLegendary
+         || gSpeciesInfo[nationalDexNum].isMythical)
+            continue;
+        if (!GetSetPokedexFlag(nationalDexNum, FLAG_GET_CAUGHT))
+            return FALSE;
+    }
+
+    return TRUE;
+}
+
 bool8 HasAllKantoMons(void)
 {
     u32 i;

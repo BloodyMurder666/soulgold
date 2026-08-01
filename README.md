@@ -69,6 +69,7 @@ The hack is currently under testing. It will be playable up to the start of post
 - Whackahack for graphical resources
 - Omega for PSS icons
 - Oomer for Gen 4 chatboxes
+- jcferggy for colored Johto Badges
 - Gridiron for Bag sprites
 - Young-Dante for some trainer sprites
 - LibertyTwins, princess-phoenix, carchagui, aveontrainer, WesleyFG, kWharever, worldslayer608, knizz for battle backgrounds

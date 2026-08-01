@@ -70,7 +70,7 @@ static bool32 Achievement_PredicateCaughtPalkia(void);
 static bool32 Achievement_PredicateCaughtCresselia(void);
 static bool32 Achievement_PredicateCaughtDarkrai(void);
 static bool32 Achievement_PredicateCaughtShaymin(void);
-static bool32 Achievement_PredicateCaughtArceus(void);
+static bool32 Achievement_PredicateAllOtherTrophies(void);
 static bool32 Achievement_PredicateCaughtMagearna(void);
 static bool32 Achievement_PredicateCaughtMarshadow(void);
 static bool32 Achievement_PredicateCaughtCobalion(void);
@@ -264,8 +264,8 @@ static const u8 sText_AchObtainShayminName[] = _("Blooming Flower");
 static const u8 sText_AchObtainShayminDesc[] = _("Obtain Shaymin.");
 static const u8 sText_AchParadoxicalName[] = _("Paradoxical");
 static const u8 sText_AchParadoxicalDesc[] = _("Catch all Paradox Pokémon.");
-static const u8 sText_AchCatchArceusName[] = _("???");
-static const u8 sText_AchCatchArceusDesc[] = _("??? (NYI)");
+static const u8 sText_AchMasterOfJohtoName[] = _("Master of Johto");
+static const u8 sText_AchMasterOfJohtoDesc[] = _("Earn all Trophies.");
 static const u8 sText_AchCatchLaprasName[] = _("Gentle Voyager");
 static const u8 sText_AchCatchLaprasDesc[] = _("Catch Lapras in Union Cave.");
 static const u8 sText_AchObtainVictiniName[] = _("Star of Victory");
@@ -435,7 +435,7 @@ static const struct Achievement sAchievements[] =
     {ACH_CATCH_OGERPON, sText_AchCatchOgerponName, sText_AchCatchOgerponDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtOgerpon},
 
     {ACH_PARADOXICAL, sText_AchParadoxicalName, sText_AchParadoxicalDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtAllParadoxPokemon},
-    {ACH_CATCH_ARCEUS, sText_AchCatchArceusName, sText_AchCatchArceusDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtArceus},
+    {ACH_MASTER_OF_JOHTO, sText_AchMasterOfJohtoName, sText_AchMasterOfJohtoDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateAllOtherTrophies},
 };
 
 STATIC_ASSERT(ARRAY_COUNT(sAchievements) == ACH_COUNT, AchievementTableMatchesIdCount);
@@ -485,21 +485,7 @@ void Achievement_EnsureSaveInitialized(void)
 
 static bool32 Achievement_PredicateHoennDexComplete(void)
 {
-    u32 i;
-
-    for (i = 1; i < JOHTO_DEX_COUNT; i++)
-    {
-        enum NationalDexOrder nationalDexNum = JohtoToNationalOrder(i);
-
-        if (gSpeciesInfo[nationalDexNum].isRestrictedLegendary
-         || gSpeciesInfo[nationalDexNum].isSubLegendary
-         || gSpeciesInfo[nationalDexNum].isMythical)
-            continue;
-        if (!GetSetPokedexFlag(nationalDexNum, FLAG_GET_CAUGHT))
-            return FALSE;
-    }
-
-    return TRUE;
+    return HasCompletedJohtoPokedex();
 }
 
 static bool32 Achievement_PredicateCameronPhoto(void)
@@ -818,9 +804,19 @@ static bool32 Achievement_PredicateCaughtShaymin(void)
     return Achievement_PredicateCaughtSpecies(SPECIES_SHAYMIN);
 }
 
-static bool32 Achievement_PredicateCaughtArceus(void)
+static bool32 Achievement_PredicateAllOtherTrophies(void)
 {
-    return Achievement_PredicateCaughtSpecies(SPECIES_ARCEUS);
+    u16 i;
+
+    for (i = 0; i < ARRAY_COUNT(sAchievements); i++)
+    {
+        enum AchievementId id = sAchievements[i].id;
+
+        if (id != ACH_MASTER_OF_JOHTO && !Achievement_IsUnlocked(id))
+            return FALSE;
+    }
+
+    return TRUE;
 }
 
 static bool32 Achievement_PredicateCaughtMagearna(void)
@@ -1107,6 +1103,8 @@ bool32 Achievement_Unlock(enum AchievementId id)
     Achievement_EnsureSaveInitialized();
     gSaveBlock1Ptr->achievements.unlocked[id / 8] |= (1 << (id % 8));
     Achievement_QueuePopup(id);
+    if (id != ACH_MASTER_OF_JOHTO && Achievement_PredicateAllOtherTrophies())
+        Achievement_Unlock(ACH_MASTER_OF_JOHTO);
     return TRUE;
 }
 

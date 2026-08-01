@@ -5,6 +5,7 @@
 #include "overworld.h"
 #include "pokedex.h"
 #include "pokemon.h"
+#include "string_util.h"
 #include "test/test.h"
 #include "tv.h"
 #include "constants/flags.h"
@@ -271,4 +272,28 @@ TEST("Route Experts requires every implemented expert")
     FlagSet(FLAG_ROUTE27_EXPERT);
     Achievement_CheckAll();
     EXPECT(Achievement_IsUnlocked(ACH_ROUTE_EXPERTS));
+}
+
+TEST("Master of Johto requires every other trophy")
+{
+    const struct Achievement *master = Achievement_GetById(ACH_MASTER_OF_JOHTO);
+    u16 i;
+
+    EXPECT(master != NULL);
+    EXPECT_EQ(StringCompare(master->name, COMPOUND_STRING("Master of Johto")), 0);
+    EXPECT_EQ(StringCompare(master->description, COMPOUND_STRING("Earn all Trophies.")), 0);
+
+    for (i = 0; i < Achievement_GetCount(); i++)
+    {
+        enum AchievementId id = Achievement_GetByIndex(i)->id;
+
+        if (id != ACH_MASTER_OF_JOHTO && id != ACH_RECEIVE_STARTER)
+            Achievement_Unlock(id);
+    }
+
+    Achievement_CheckAll();
+    EXPECT(!Achievement_IsUnlocked(ACH_MASTER_OF_JOHTO));
+
+    Achievement_Unlock(ACH_RECEIVE_STARTER);
+    EXPECT(Achievement_IsUnlocked(ACH_MASTER_OF_JOHTO));
 }

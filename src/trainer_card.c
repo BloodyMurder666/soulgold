@@ -1,4 +1,5 @@
 #include "global.h"
+#include "achievements.h"
 #include "decompress.h"
 #include "scanline_effect.h"
 #include "palette.h"
@@ -40,6 +41,8 @@
 #define NUM_BADGES_FRONT 8                // keep front page at 8
 #define NUM_BADGES_EXTRA 8                // badges 9–16
 #define NUM_BADGES_TOTAL (NUM_BADGES + NUM_BADGES_EXTRA)
+#define TRAINER_CARD_FACILITY_STREAK 50
+#define TRAINER_CARD_TROPHIES 80
 
 // Kanto (badges 9–16) flags (order is shown left-to-right on card back)
 static const u16 sKantoGymFlags[NUM_BADGES_EXTRA] = {
@@ -134,7 +137,7 @@ static bool8 LoadCardGfx(void);
 static void CB2_InitTrainerCard(void);
 static u32 GetCappedGameStat(u8 statId, u32 maxValue);
 static bool8 HasAllFrontierSymbols(void);
-static u8 GetRubyTrainerStars(struct TrainerCard *);
+static bool8 HasRequiredFacilityStreak(void);
 static u16 GetCaughtMonsCount(void);
 static void SetPlayerCardData(struct TrainerCard *, u8);
 static void TrainerCard_GenerateCardForPlayer(struct TrainerCard *);
@@ -302,6 +305,7 @@ static const u16 *const sKantoTrainerCardPals[] =
 };
 
 static const u8 sTrainerCardTextColors[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY};
+static const u8 sTrainerCardWhiteTextColors[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY};
 static const u8 sTrainerCardStatColors[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_RED, TEXT_COLOR_LIGHT_RED};
 static const u8 sTimeColonInvisibleTextColors[6] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_TRANSPARENT, TEXT_COLOR_TRANSPARENT};
 
@@ -681,33 +685,45 @@ static bool8 HasAllFrontierSymbols(void)
     return TRUE;
 }
 
+static bool8 HasRequiredFacilityStreak(void)
+{
+    u32 battleMode;
+    u32 levelMode;
+
+    for (battleMode = 0; battleMode < ARRAY_COUNT(gSaveBlock2Ptr->frontier.towerRecordWinStreaks); battleMode++)
+    {
+        for (levelMode = 0; levelMode < ARRAY_COUNT(gSaveBlock2Ptr->frontier.towerRecordWinStreaks[battleMode]); levelMode++)
+        {
+            if (gSaveBlock2Ptr->frontier.towerRecordWinStreaks[battleMode][levelMode] >= TRAINER_CARD_FACILITY_STREAK
+             || gSaveBlock2Ptr->frontier.towerWinStreaks[battleMode][levelMode] >= TRAINER_CARD_FACILITY_STREAK)
+                return TRUE;
+        }
+    }
+
+    for (battleMode = 0; battleMode < ARRAY_COUNT(gSaveBlock2Ptr->frontier.factoryRecordWinStreaks); battleMode++)
+    {
+        for (levelMode = 0; levelMode < ARRAY_COUNT(gSaveBlock2Ptr->frontier.factoryRecordWinStreaks[battleMode]); levelMode++)
+        {
+            if (gSaveBlock2Ptr->frontier.factoryRecordWinStreaks[battleMode][levelMode] >= TRAINER_CARD_FACILITY_STREAK
+             || gSaveBlock2Ptr->frontier.factoryWinStreaks[battleMode][levelMode] >= TRAINER_CARD_FACILITY_STREAK)
+                return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
 u32 CountPlayerTrainerStars(void)
 {
     u8 stars = 0;
 
     if (GetGameStat(GAME_STAT_ENTERED_HOF))
         stars++;
-    if (HasAllHoennMons())
+    if (HasCompletedJohtoPokedex())
         stars++;
-    if (CountPlayerMuseumPaintings() >= CONTEST_CATEGORIES_COUNT)
+    if (HasRequiredFacilityStreak())
         stars++;
-    if (HasAllFrontierSymbols())
-        stars++;
-
-    return stars;
-}
-
-static u8 GetRubyTrainerStars(struct TrainerCard *trainerCard)
-{
-    u8 stars = 0;
-
-    if (trainerCard->hofDebutHours || trainerCard->hofDebutMinutes || trainerCard->hofDebutSeconds)
-        stars++;
-    if (trainerCard->caughtAllHoenn)
-        stars++;
-    if (trainerCard->battleTowerStraightWins > 49)
-        stars++;
-    if (trainerCard->hasAllPaintings)
+    if (Achievement_CountUnlocked() >= TRAINER_CARD_TROPHIES)
         stars++;
 
     return stars;
@@ -765,7 +781,7 @@ static void SetPlayerCardData(struct TrainerCard *trainerCard, u8 cardType)
         trainerCard->pokeblocksWithFriends = GetCappedGameStat(GAME_STAT_POKEBLOCKS_WITH_FRIENDS, 0xFFFF);
         if (CountPlayerMuseumPaintings() >= CONTEST_CATEGORIES_COUNT)
             trainerCard->hasAllPaintings = TRUE;
-        trainerCard->stars = GetRubyTrainerStars(trainerCard);
+        trainerCard->stars = CountPlayerTrainerStars();
         break;
     case CARD_TYPE_RS:
         trainerCard->battleTowerWins = 0;
@@ -785,8 +801,6 @@ static void TrainerCard_GenerateCardForPlayer(struct TrainerCard *trainerCard)
     SetPlayerCardData(trainerCard, CARD_TYPE_EMERALD);
     trainerCard->hasAllFrontierSymbols = HasAllFrontierSymbols();
     trainerCard->frontierBP = gSaveBlock2Ptr->frontier.cardBattlePoints;
-    if (trainerCard->hasAllFrontierSymbols)
-        trainerCard->stars++;
 
     if (trainerCard->gender == FEMALE)
         trainerCard->unionRoomClass = gUnionRoomFacilityClasses[(trainerCard->trainerId % NUM_UNION_ROOM_CLASSES) + NUM_UNION_ROOM_CLASSES];
@@ -801,8 +815,6 @@ void TrainerCard_GenerateCardForLinkPlayer(struct TrainerCard *trainerCard)
     SetPlayerCardData(trainerCard, CARD_TYPE_EMERALD);
     trainerCard->linkHasAllFrontierSymbols = HasAllFrontierSymbols();
     *((u16 *)&trainerCard->linkPoints.frontier) = gSaveBlock2Ptr->frontier.cardBattlePoints;
-    if (trainerCard->linkHasAllFrontierSymbols)
-        trainerCard->stars++;
 
     if (trainerCard->gender == FEMALE)
         trainerCard->unionRoomClass = gUnionRoomFacilityClasses[(trainerCard->trainerId % NUM_UNION_ROOM_CLASSES) + NUM_UNION_ROOM_CLASSES];
@@ -1038,6 +1050,7 @@ static void PrintIdOnCard(void)
 {
     u8 buffer[32];
     u8 *txtPtr;
+    const u8 *colors;
     s32 xPos;
     u32 top;
     txtPtr = StringCopy(buffer, gText_TrainerCardIDNo);
@@ -1053,7 +1066,10 @@ static void PrintIdOnCard(void)
         top = 9;
     }
 
-    AddTextPrinterParameterized3(WIN_CARD_TEXT, FONT_NORMAL, xPos, top, sTrainerCardTextColors, TEXT_SKIP_DRAW, buffer);
+    colors = sData->trainerCard.stars > 0
+           ? sTrainerCardWhiteTextColors
+           : sTrainerCardTextColors;
+    AddTextPrinterParameterized3(WIN_CARD_TEXT, FONT_NORMAL, xPos, top, colors, TEXT_SKIP_DRAW, buffer);
 }
 
 static void PrintMoneyOnCard(void)
@@ -1197,9 +1213,9 @@ static void BufferNameForCardBack(void)
 static void PrintNameOnCardBack(void)
 {
     if (!sData->isHoenn)
-        AddTextPrinterParameterized3(WIN_CARD_TEXT, FONT_NORMAL, 136, 9, sTrainerCardTextColors, TEXT_SKIP_DRAW, sData->textPlayersCard);
+        AddTextPrinterParameterized3(WIN_CARD_TEXT, FONT_NORMAL, 136, 9, sTrainerCardWhiteTextColors, TEXT_SKIP_DRAW, sData->textPlayersCard);
     else
-        AddTextPrinterParameterized3(WIN_CARD_TEXT, FONT_NORMAL, GetStringRightAlignXOffset(FONT_NORMAL, sData->textPlayersCard, 216), 9, sTrainerCardTextColors, TEXT_SKIP_DRAW, sData->textPlayersCard);
+        AddTextPrinterParameterized3(WIN_CARD_TEXT, FONT_NORMAL, GetStringRightAlignXOffset(FONT_NORMAL, sData->textPlayersCard, 216), 9, sTrainerCardWhiteTextColors, TEXT_SKIP_DRAW, sData->textPlayersCard);
 }
 
 static const u8 sText_HofTime[] = _("{STR_VAR_1}:{STR_VAR_2}:{STR_VAR_3}");

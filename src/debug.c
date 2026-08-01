@@ -108,6 +108,9 @@ enum FlagsVarsDebugMenu
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE,
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING,
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BAG_USE,
+    DEBUG_FLAGVAR_MENU_ITEM_SET_TOWER_STREAK,
+    DEBUG_FLAGVAR_MENU_ITEM_UNLOCK_TROPHIES,
+    DEBUG_FLAGVAR_MENU_ITEM_COUNT,
 };
 
 enum DebugBattleType
@@ -316,6 +319,8 @@ static void DebugAction_FlagsVars_SwitchPokeNav(u8 taskId);
 static void DebugAction_FlagsVars_SwitchMatchCall(u8 taskId);
 static void DebugAction_FlagsVars_ToggleFlyFlags(u8 taskId);
 static void DebugAction_FlagsVars_ToggleBadgeFlags(u8 taskId);
+static void DebugAction_FlagsVars_SetTowerStreak(u8 taskId);
+static void DebugAction_FlagsVars_UnlockTrophies(u8 taskId);
 static void DebugAction_FlagsVars_ToggleGameClear(u8 taskId);
 static void DebugAction_FlagsVars_ToggleFrontierPass(u8 taskId);
 static void DebugAction_FlagsVars_CollisionOnOff(u8 taskId);
@@ -713,8 +718,12 @@ static const struct DebugMenuOption sDebugMenu_Actions_Flags[] =
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE]   = { COMPOUND_STRING("Toggle {STR_VAR_1}Postgame F OFF"), DebugAction_ToggleFlag, DebugAction_FlagsVars_TrainerSeeOnOff },
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING]      = { COMPOUND_STRING("Toggle {STR_VAR_1}Champion OFF"),    DebugAction_ToggleFlag, DebugAction_FlagsVars_CatchingOnOff },
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BAG_USE]       = { COMPOUND_STRING("Toggle {STR_VAR_1}Bag Use OFF"),     DebugAction_ToggleFlag, DebugAction_FlagsVars_BagUseOnOff },
+    [DEBUG_FLAGVAR_MENU_ITEM_SET_TOWER_STREAK]     = { COMPOUND_STRING("100 Tower streak"),                DebugAction_FlagsVars_SetTowerStreak },
+    [DEBUG_FLAGVAR_MENU_ITEM_UNLOCK_TROPHIES]      = { COMPOUND_STRING("Toggle all Trophies"),               DebugAction_FlagsVars_UnlockTrophies },
     { NULL }
 };
+
+STATIC_ASSERT(DEBUG_FLAGVAR_MENU_ITEM_COUNT <= DEBUG_MAX_MENU_ITEMS, TooManyFlagsVarsDebugMenuItems);
 
 static const u8 *const sDebugMenu_Actions_BagUse_Options[] =
 {
@@ -2601,6 +2610,40 @@ static void DebugAction_FlagsVars_ToggleBadgeFlags(u8 taskId)
         for (u32 i = 0; i < ARRAY_COUNT(gBadgeFlags); i++)
             FlagSet(gBadgeFlags[i]);
     }
+}
+
+static void DebugAction_FlagsVars_SetTowerStreak(u8 taskId)
+{
+    u32 battleMode;
+    u32 levelMode;
+
+    for (battleMode = 0; battleMode < ARRAY_COUNT(gSaveBlock2Ptr->frontier.towerWinStreaks); battleMode++)
+    {
+        for (levelMode = 0; levelMode < ARRAY_COUNT(gSaveBlock2Ptr->frontier.towerWinStreaks[battleMode]); levelMode++)
+        {
+            gSaveBlock2Ptr->frontier.towerWinStreaks[battleMode][levelMode] = 100;
+            gSaveBlock2Ptr->frontier.towerRecordWinStreaks[battleMode][levelMode] = 100;
+        }
+    }
+
+    Debug_DestroyMenu_Full(taskId);
+    ScriptContext_Enable();
+}
+
+static void DebugAction_FlagsVars_UnlockTrophies(u8 taskId)
+{
+    u16 i;
+
+    Achievement_EnsureSaveInitialized();
+    for (i = 0; i < Achievement_GetCount(); i++)
+    {
+        enum AchievementId id = Achievement_GetByIndex(i)->id;
+
+        gSaveBlock1Ptr->achievements.unlocked[id / 8] |= 1 << (id % 8);
+    }
+
+    Debug_DestroyMenu_Full(taskId);
+    ScriptContext_Enable();
 }
 
 static void DebugAction_FlagsVars_ToggleGameClear(u8 taskId)

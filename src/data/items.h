@@ -7907,7 +7907,7 @@ const struct ItemInfo gItemsInfo[] =
         .notConsumed = TRUE,                                  \
         .holdEffect = HOLD_EFFECT_MEGA_STONE,                 \
         .description = COMPOUND_STRING(                       \
-            "allows certain {PKMN}\n"                           \
+            "Allows certain {PKMN}\n"                           \
             "to Mega Evolve into\n"                            \
             typeName "-type form."),                          \
         .pocket = POCKET_MEGASTONES,                          \

@@ -7,8 +7,7 @@ VajraPyramidOutside_MapScripts::
 
 VajraPyramidOutside_MapScripts_MAP_SCRIPT_ON_TRANSITION:
 # 3 "data/maps/VajraPyramidOutside/scripts.pory"
-	goto_if_set FLAG_IS_CHAMPION, VajraPyramidOutside_MapScripts_MAP_SCRIPT_ON_TRANSITION_3
-VajraPyramidOutside_MapScripts_MAP_SCRIPT_ON_TRANSITION_2:
+	goto_if_set FLAG_RINTO_TRADE_COMPLETE, VajraPyramidOutside_MapScripts_MAP_SCRIPT_ON_TRANSITION_1
 # 6 "data/maps/VajraPyramidOutside/scripts.pory"
 	setflag FLAG_HIDE_PYRAMIDOUT_SCIENTIST
 	return
@@ -17,11 +16,6 @@ VajraPyramidOutside_MapScripts_MAP_SCRIPT_ON_TRANSITION_1:
 # 4 "data/maps/VajraPyramidOutside/scripts.pory"
 	clearflag FLAG_HIDE_PYRAMIDOUT_SCIENTIST
 	return
-
-VajraPyramidOutside_MapScripts_MAP_SCRIPT_ON_TRANSITION_3:
-# 3 "data/maps/VajraPyramidOutside/scripts.pory"
-	goto_if_set FLAG_RINTO_TRADE_COMPLETE, VajraPyramidOutside_MapScripts_MAP_SCRIPT_ON_TRANSITION_1
-	goto VajraPyramidOutside_MapScripts_MAP_SCRIPT_ON_TRANSITION_2
 
 VajraPyramidOutside_MapScripts_MAP_SCRIPT_ON_LOAD:
 # 10 "data/maps/VajraPyramidOutside/scripts.pory"
@@ -60,30 +54,37 @@ VajraPyramidOutside_Door_3:
 
 VajraPyramidOutside_ScientistPostgame::
 # 27 "data/maps/VajraPyramidOutside/scripts.pory"
+	goto_if_set FLAG_IS_CHAMPION, VajraPyramidOutside_ScientistPostgame_1
+# 34 "data/maps/VajraPyramidOutside/scripts.pory"
+	msgbox VajraPyramidOutside_ScientistPostgame_Text_1, MSGBOX_NPC
+	return
+
+VajraPyramidOutside_ScientistPostgame_1:
+# 28 "data/maps/VajraPyramidOutside/scripts.pory"
 	msgbox VajraPyramidOutside_ScientistPostgame_Text_0, MSGBOX_NPC
 	return
 
 
 VajraPyramidOutside_ScientistsTinkaton::
-# 35 "data/maps/VajraPyramidOutside/scripts.pory"
+# 44 "data/maps/VajraPyramidOutside/scripts.pory"
 	lock
-# 36 "data/maps/VajraPyramidOutside/scripts.pory"
+# 45 "data/maps/VajraPyramidOutside/scripts.pory"
 	faceplayer
-# 37 "data/maps/VajraPyramidOutside/scripts.pory"
+# 46 "data/maps/VajraPyramidOutside/scripts.pory"
 	playmoncry SPECIES_TINKATON, 0
-# 38 "data/maps/VajraPyramidOutside/scripts.pory"
+# 47 "data/maps/VajraPyramidOutside/scripts.pory"
 	msgbox VajraPyramidOutside_ScientistsTinkaton_Text_0
-# 39 "data/maps/VajraPyramidOutside/scripts.pory"
+# 48 "data/maps/VajraPyramidOutside/scripts.pory"
 	waitmoncry
-# 40 "data/maps/VajraPyramidOutside/scripts.pory"
+# 49 "data/maps/VajraPyramidOutside/scripts.pory"
 	msgbox VajraPyramidOutside_ScientistsTinkaton_Text_1
-# 42 "data/maps/VajraPyramidOutside/scripts.pory"
+# 51 "data/maps/VajraPyramidOutside/scripts.pory"
 	release
 	end
 
 
 VajraPyramidOutside_RuinManiac::
-# 47 "data/maps/VajraPyramidOutside/scripts.pory"
+# 56 "data/maps/VajraPyramidOutside/scripts.pory"
 	msgbox VajraPyramidOutside_RuinManiac_Text_0, MSGBOX_NPC
 	return
 
@@ -99,22 +100,30 @@ VajraPyramidOutside_Door_Text_1:
 	.string "The door is sealed shut tightly.$"
 
 VajraPyramidOutside_ScientistPostgame_Text_0:
-# 27 "data/maps/VajraPyramidOutside/scripts.pory"
+# 28 "data/maps/VajraPyramidOutside/scripts.pory"
 	.string "We finally managed to break down the\n"
 	.string "door to the Pyramid thanks to the\l"
 	.string "Tinkaton you gave us!\p"
 	.string "Please, feel free to explore it first!$"
 
+VajraPyramidOutside_ScientistPostgame_Text_1:
+# 34 "data/maps/VajraPyramidOutside/scripts.pory"
+	.string "We've started working on getting that\n"
+	.string "door opened with the help of your\l"
+	.string "Tinkaton! \p"
+	.string "It might take some time, so\n"
+	.string "you should come back later.$"
+
 VajraPyramidOutside_ScientistsTinkaton_Text_0:
-# 38 "data/maps/VajraPyramidOutside/scripts.pory"
+# 47 "data/maps/VajraPyramidOutside/scripts.pory"
 	.string "Tinkaton: Tinktii!$"
 
 VajraPyramidOutside_ScientistsTinkaton_Text_1:
-# 40 "data/maps/VajraPyramidOutside/scripts.pory"
+# 49 "data/maps/VajraPyramidOutside/scripts.pory"
 	.string "Your old Tinkaton seems to be having\n"
 	.string "fun here!$"
 
 VajraPyramidOutside_RuinManiac_Text_0:
-# 47 "data/maps/VajraPyramidOutside/scripts.pory"
+# 56 "data/maps/VajraPyramidOutside/scripts.pory"
 	.string "There's mystery here waiting to be\n"
 	.string "uncovered! I can sense it!$"

@@ -2,11 +2,24 @@ Update notes:
 1.8.2026
 - Meltan can now breed with mineral egg group.
 - Supereffective berries are sold in the Goldenrod Flower Shop after getting Jasmine's badge.
+- Changed the Trainer Card star requirements to following:
+    - 1) Hall of Fame entry
+    - 2) 50 Win streak in Battle Tower or Factory
+    - 3) 80 Trophies
+    - 4) Complete Johto Pokédex
+- Badges in the Trainer Card are now colored.
+- The last trophy is now called "Master of Johto" and earned from gathering all other trophies.
+- The Tinkaton trade npc now moves in front of the Pyramid, but mentions that it will take some time to open if player is not a champion yet.
+- Tyruntrum learns Outrage
+- Klefki's missing innate is fixed
+- Cherrygrove Inn windows are now dimmed and won't light up at night.
+- Clarified Wild and Trainer scaling help text.
+- Fixed Ogerpon Hearthflame Mask Mega having extra +5 BST
 - Fixed Supereffective damage berries triggering from any attack.
 
 Docs Related:
 - Trainer tab trainers are now grouped by location and sorted in some semblance of progression.
-
+- Trainer documentation now shows innates if they are active at that level.
 
 31.7.2026
 - New Location accessible: Vajra Pyramid (Recommended team level: 77-80). Accessible after becoming a Champion and trading Tinkaton to the scientist in the southern house of Rinto Village.
