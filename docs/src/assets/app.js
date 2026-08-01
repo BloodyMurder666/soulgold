@@ -158,7 +158,7 @@ const trainerLocationProgression = [
   /^Cherrygrove City$/i,
   /^Route 30(?:\b|$)/i,
   /^Route 31(?:\b|$)/i,
-  /^Sprout Tower [12]F$/i,
+  /^Sprout Tower [123]F$/i,
   /^Violet City Gym$/i,
   /^Dark Cave South(?:\b|$)/i,
   /^Route 32(?:\b|$)/i,

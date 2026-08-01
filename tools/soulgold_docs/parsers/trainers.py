@@ -168,7 +168,7 @@ def trainer_base_name(name: str, constant: str) -> str:
         return "Passerby"
     if rival_match and name == "{RIVAL}":
         return "Silver"
-    if constant == "TRAINER_LI_2":
+    if constant in {"TRAINER_LI", "TRAINER_LI_2"}:
         return "Elder Li"
     return name
 
