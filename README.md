@@ -27,7 +27,7 @@ https://eemeliri.github.io/soulgold/
 
 ## Current Progress
 
-The hack is currently under testing. It will be playable up to the start of postgame with several legendaries and chase achievements in the first beta version coming soon (tm).
+The hack is currently in Beta.
 
 ## CREDITS
 - [HnS Dev Team](https://github.com/PokemonHnS-Development/pokemonHnS) for their amazing work!
