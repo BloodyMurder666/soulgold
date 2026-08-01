@@ -1,9 +1,12 @@
 ---
-title: Gift Pokémon
-summary: List of all gift Pokémon and their locations
+title: Gift and Trade Pokémon
+summary: List of all gift and trade Pokémon, and their locations
 category: Unlocks
 order: 50
 ---
+
+# Gift Pokémon
+
 
 ### Cherrygrove City: 
 - A Choice between Alolan Rattata and Galarian Zigzagoon after player obtains the first Poké Balls.
@@ -39,3 +42,28 @@ order: 50
 
 ### Route 40: 
 - Achievements Man hands you certain Pokémon for reaching milestones in the amount of trophies you have. The exact Pokémon can be found in the Achievement milestones guide [here](https://eemeliri.github.io/soulgold/guides/achievement-rewards/)
+
+
+# Trade Pokémon
+
+
+### Pawmi 
+- Violet City, requires Cottonee.
+
+
+### Galarian Slowpoke
+- Azalea Town, requires regular Slowpoke.
+
+
+### Honedge 
+- Goldenrod Dept Store, requires Clefairy.
+
+
+### Hisui-Voltorb
+- Olivine City, requires Mareanie.
+
+### Meltan 
+- Rinto Village, requires Tinkaton.
+
+### Gabite
+- Blackthorn City, requires Dragonair.

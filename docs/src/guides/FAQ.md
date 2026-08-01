@@ -120,6 +120,14 @@ order: 1
 ### How do I get other starters?
 - Goldenrod Casino has a gachapon machine that can give starters from any generation.
 
+### What are the ingame trades?
+- Pawmi in Violet (for Cottonee)
+- G-Slowpoke in Azalea (for regular Slowpoke)
+- Honedge in Goldenrod Dept Store (for Clefairy),
+- Hisui-Voltorb in Olivine (for Mareanie)
+- Gabite in Blackthorn City (for Dragonair) 
+- Meltan in Rinto Village (for Tinkaton) 
+
 ### Gym leader rematch locations in postgame?
 - Falkner: Violet City school
 - Bugsy: National Park
