@@ -2406,3 +2406,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/FarawayIslandJungle/scripts.inc"
 
 	.include "data/maps/FarawayIslandDepths/scripts.inc"
+
+	.include "data/maps/SpearPillarTop/scripts.inc"

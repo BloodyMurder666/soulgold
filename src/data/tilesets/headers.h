@@ -2261,3 +2261,14 @@ const struct Tileset gTileset_MeteorCave =
     .metatileAttributes = gMetatileAttributes_MeteorCave,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_SpearPillar =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_SpearPillar,
+    .palettes = gTilesetPalettes_SpearPillar,
+    .metatiles = gMetatiles_SpearPillar,
+    .metatileAttributes = gMetatileAttributes_SpearPillar,
+    .callback = NULL,
+};

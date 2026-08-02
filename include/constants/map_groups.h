@@ -637,6 +637,7 @@ enum
     MAP_VAJRA_PYRAMID_FINAL_CHAMBER       = (39 | (25 << 8)),
     MAP_FARAWAY_ISLAND_JUNGLE             = (40 | (25 << 8)),
     MAP_FARAWAY_ISLAND_DEPTHS             = (41 | (25 << 8)),
+    MAP_SPEAR_PILLAR_TOP                  = (42 | (25 << 8)),
 
     // gMapGroup_JohtoDiveMaps
     MAP_CHERRYGROVE_UNDERWATER = (0 | (26 << 8)),
