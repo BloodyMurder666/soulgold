@@ -13,6 +13,18 @@ SINGLE_BATTLE_TEST("Xerneas returns its Neutral Form upon battle end")
     }
 }
 
+SINGLE_BATTLE_TEST("Eternal Floette retains its form after battle ends")
+{
+    GIVEN {
+        PLAYER(SPECIES_FLOETTE_ETERNAL);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_CELEBRATE); }
+    } THEN {
+        EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), SPECIES_FLOETTE_ETERNAL);
+    }
+}
+
 SINGLE_BATTLE_TEST("Zacian returns its Hero Form upon battle end")
 {
     GIVEN {

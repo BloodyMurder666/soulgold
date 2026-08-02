@@ -1314,8 +1314,8 @@ static const struct FormChange sFloetteEternalFormChangeTable[] =
 #if P_GEN_9_MEGA_EVOLUTIONS
     {FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM,    SPECIES_FLOETTE_MEGA, ITEM_FAIRYTITE},
 #endif
-    {FORM_CHANGE_FAINT,                         SPECIES_FLOETTE},
-    {FORM_CHANGE_END_BATTLE,                    SPECIES_FLOETTE},
+    {FORM_CHANGE_FAINT,                         SPECIES_FLOETTE_ETERNAL},
+    {FORM_CHANGE_END_BATTLE,                    SPECIES_FLOETTE_ETERNAL},
     {FORM_CHANGE_TERMINATOR},
 };
 #endif //P_FAMILY_FLABEBE
