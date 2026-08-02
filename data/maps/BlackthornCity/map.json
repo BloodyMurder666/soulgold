@@ -452,6 +452,33 @@
       "var": "VAR_BLACKTHORN_CITY_STATE",
       "var_value": "1",
       "script": "BlackThornCity_Trigger_Sage"
+    },
+    {
+      "type": "trigger",
+      "x": 41,
+      "y": 23,
+      "elevation": 0,
+      "var": "VAR_ROUTE27_BAOBA_CALL",
+      "var_value": "0",
+      "script": "Route27_EventScript_BaobaCall"
+    },
+    {
+      "type": "trigger",
+      "x": 42,
+      "y": 24,
+      "elevation": 0,
+      "var": "VAR_ROUTE27_BAOBA_CALL",
+      "var_value": "0",
+      "script": "Route27_EventScript_BaobaCall"
+    },
+    {
+      "type": "trigger",
+      "x": 43,
+      "y": 23,
+      "elevation": 0,
+      "var": "VAR_ROUTE27_BAOBA_CALL",
+      "var_value": "0",
+      "script": "Route27_EventScript_BaobaCall"
     }
   ],
   "bg_events": [
