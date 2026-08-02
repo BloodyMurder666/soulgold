@@ -31,10 +31,10 @@ order: 1
 - After beating the first gym, Elm's aide will give it to you alongside the egg. It will accumulate extra exp from battles and convert them to Exp Candy on use.
 
 ### Shiny odds?
-- 1/256
+- 1/256. Eggs will show with blue dots if they are shiny.
 
 ### Shiny locks?
-- Only Pokémon received via NPC trade are shiny locked, everything else can be shiny, even gift Pokémon. Shinyness is also displayed in the pictures when you receive a gift Pokémon.
+- None. Even NPC trades can be shiny.
 
 ### Type changes?
 - None during the main game. Only some might gain one extra type during postgame from an innate.

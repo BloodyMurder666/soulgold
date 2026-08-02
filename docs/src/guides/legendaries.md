@@ -10,6 +10,7 @@ order: 3
 - Articuno: Snowtop Mountain (Rock climb required)
 - Moltres: Victory Road
 - Mewtwo: Nameless Dungeon in Kitakami Border, after Elite Four, requires rock climb
+- Mew: After obtaining 8 badges. Visit Olivine City's port to find Blaine. Fight him to unlock access to Faraway Island where Mew can be found.
 - Raikou: Roaming after Burned Tower event
 - Entei: Roaming after Burned Tower event
 - Suicune: Roaming after Burned Tower event
