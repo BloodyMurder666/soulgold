@@ -48,7 +48,6 @@ IcePath_B3F_EventScript_Swinub::
 	removeitem VAR_ITEM_ID, 1
 	goto_if_ne VAR_ITEM_ID, ITEM_ASPEAR_BERRY, IcePath_B3F_EventScript_SwinubDislikedBerry
 	msgbox IcePath_B3F_Text_SwinubAteBerry, MSGBOX_DEFAULT
-	giveitem ITEM_TM_BLIZZARD
 	setflag FLAG_ITEM_ICEPATH4_TM_BLIZZARD
 IcePath_B3F_EventScript_SwinubBlowPlayer::
 	closemessage
@@ -88,7 +87,6 @@ IcePath_B3F_EventScript_Delibird::
 	removeitem VAR_ITEM_ID, 1
 	goto_if_ne VAR_ITEM_ID, ITEM_ASPEAR_BERRY, IcePath_B3F_EventScript_DelibirdDislikedBerry
 	msgbox IcePath_B3F_Text_DelibirdAteBerry, MSGBOX_DEFAULT
-	giveitem ITEM_TM_BLIZZARD
 	setflag FLAG_ITEM_ICEPATH4_TM_BLIZZARD
 IcePath_B3F_EventScript_DelibirdBlowPlayer::
 	closemessage
