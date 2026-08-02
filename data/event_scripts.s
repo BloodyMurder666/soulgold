@@ -2400,3 +2400,9 @@ Common_Text_ReceivedMon:
 	.include "data/maps/VajraPyramidFloor4/scripts.inc"
 
 	.include "data/maps/VajraPyramidFinalChamber/scripts.inc"
+
+	.include "data/maps/FarawayIsland_Outside/scripts.inc"
+
+	.include "data/maps/FarawayIslandJungle/scripts.inc"
+
+	.include "data/maps/FarawayIslandDepths/scripts.inc"

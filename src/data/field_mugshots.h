@@ -97,6 +97,8 @@ static const u32 sFieldMugshotGfx_ProtonNormal[] = INCBIN_U32("graphics/field_mu
 static const u16 sFieldMugshotPal_ProtonNormal[] = INCBIN_U16("graphics/field_mugshots/proton.gbapal");
 static const u32 sFieldMugshotGfx_PetrelNormal[] = INCBIN_U32("graphics/field_mugshots/petrel.4bpp.smol");
 static const u16 sFieldMugshotPal_PetrelNormal[] = INCBIN_U16("graphics/field_mugshots/petrel.gbapal");
+static const u32 sFieldMugshotGfx_BlaineNormal[] = INCBIN_U32("graphics/field_mugshots/blaine.4bpp.smol");
+static const u16 sFieldMugshotPal_BlaineNormal[] = INCBIN_U16("graphics/field_mugshots/blaine.gbapal");
 
 struct MugshotGfx
 {
@@ -496,6 +498,14 @@ static const struct MugshotGfx sFieldMugshots[MUGSHOT_COUNT][EMOTE_COUNT] =
         {
             .gfx = sFieldMugshotGfx_ProtonNormal,
             .pal = sFieldMugshotPal_ProtonNormal,
+        },
+    },
+    [MUGSHOT_BLAINE] =
+    {
+        [EMOTE_NORMAL] =
+        {
+            .gfx = sFieldMugshotGfx_BlaineNormal,
+            .pal = sFieldMugshotPal_BlaineNormal,
         },
     },
 };

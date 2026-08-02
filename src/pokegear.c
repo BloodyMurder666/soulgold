@@ -330,7 +330,7 @@ void OpenPokegearApp(enum PokegearApp app, MainCallback callback)
     switch (app)
     {
     case POKEGEAR_APP_MAP:
-        FieldInitRegionMapWithOptions(callback, FALSE);
+        FieldInitRegionMapWithOptions(callback, TRUE);
         break;
     case POKEGEAR_APP_DEXNAV:
         DexNavGuiInit(callback);

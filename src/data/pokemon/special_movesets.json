@@ -37,6 +37,7 @@
       "MOVE_BURNING_JEALOUSY",
       "MOVE_CHARGE",
       "MOVE_COACHING",
+      "MOVE_CROSS_POISON",
       "MOVE_CURSE",
       "MOVE_DOUBLE_EDGE",
       "MOVE_DRAGON_CHEER",
@@ -83,5 +84,13 @@
       "MOVE_WEATHER_BALL",
       "MOVE_AQUA_CUTTER",
       "MOVE_VOLT_TACKLE"
-    ]
+    ],
+  "speciesTeachables":
+    {
+      "GRENINJA":
+        [
+          "MOVE_AQUA_CUTTER",
+          "MOVE_CROSS_POISON"
+        ]
+    }
 }

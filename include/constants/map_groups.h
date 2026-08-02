@@ -76,6 +76,7 @@ enum
     MAP_TOHJO_PASS                = (61 | (0 << 8)),
     MAP_DREAM_GARDEN              = (62 | (0 << 8)),
     MAP_SOUTH_PASSAGE_LEFT        = (63 | (0 << 8)),
+    MAP_FARAWAY_ISLAND_OUTSIDE    = (64 | (0 << 8)),
 
     // gMapGroup_IndoorNewBark
     MAP_NEW_BARK_TOWN_LAB              = (0 | (1 << 8)),
@@ -634,6 +635,8 @@ enum
     MAP_METEOR_CAVE2_LEGENDARY_ROOM       = (37 | (25 << 8)),
     MAP_VAJRA_PYRAMID_FLOOR4              = (38 | (25 << 8)),
     MAP_VAJRA_PYRAMID_FINAL_CHAMBER       = (39 | (25 << 8)),
+    MAP_FARAWAY_ISLAND_JUNGLE             = (40 | (25 << 8)),
+    MAP_FARAWAY_ISLAND_DEPTHS             = (41 | (25 << 8)),
 
     // gMapGroup_JohtoDiveMaps
     MAP_CHERRYGROVE_UNDERWATER = (0 | (26 << 8)),

@@ -100,7 +100,8 @@
     "SouthPassageEnd",
     "TohjoPass",
     "DreamGarden",
-    "SouthPassageLeft"
+    "SouthPassageLeft",
+    "FarawayIsland_Outside"
   ],
   "gMapGroup_IndoorNewBark": [
     "NewBarkTown_Lab",
@@ -658,7 +659,9 @@
     "MeteorCave1_LegendaryRoom",
     "MeteorCave2_LegendaryRoom",
     "VajraPyramidFloor4",
-    "VajraPyramidFinalChamber"
+    "VajraPyramidFinalChamber",
+    "FarawayIslandJungle",
+    "FarawayIslandDepths"
   ],
   "gMapGroup_JohtoDiveMaps": [
     "CherrygroveUnderwater"

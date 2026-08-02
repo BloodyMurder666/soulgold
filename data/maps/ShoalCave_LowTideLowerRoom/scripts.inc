@@ -33,10 +33,10 @@ ShoalCave_LowTideLowerRoom_EventScript_ReceivedShoalSalt::
 ShoalCave_LowTideLowerRoom_EventScript_BlackBelt::
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_FOCUS_BAND, ShoalCave_LowTideLowerRoom_EventScript_ReceivedFocusBand
+	goto_if_set FLAG_GARBAGEFLAG, ShoalCave_LowTideLowerRoom_EventScript_ReceivedFocusBand
 	msgbox ShoalCave_LowTideLowerRoom_Text_CanOvercomeColdWithFocus, MSGBOX_DEFAULT
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
-	setflag FLAG_RECEIVED_FOCUS_BAND
+	setflag FLAG_GARBAGEFLAG
 	release
 	end
 

@@ -34,6 +34,9 @@
 #include "data/pokemon/egg_moves.h"
 #include "data/tutor_moves.h"
 
+STATIC_ASSERT(NUM_ALL_MACHINES <= MAX_RELEARNER_MOVES, MoveRelearnerMoves_TooSmallForMachines);
+STATIC_ASSERT(ARRAY_COUNT(gTutorMoves) - 1 <= MAX_RELEARNER_MOVES, MoveRelearnerMoves_TooSmallForTutors);
+
 /*
  * Move relearner state machine
  * ------------------------
@@ -1316,7 +1319,7 @@ static u32 GetRelearnerLevelUpMoves(struct BoxPokemon *mon, u16 *moves)
                 if (learnset[i].move == moves[j])
                     alreadyInList = TRUE;
             }
-            if (!alreadyInList)
+            if (!alreadyInList && numMoves < MAX_RELEARNER_MOVES)
                 moves[numMoves++] = learnset[i].move;
         }
 
@@ -1350,7 +1353,7 @@ static u32 GetRelearnerEggMoves(struct BoxPokemon *mon, u16 *moves)
 
     for (u32 i = 0; eggMoves[i] != MOVE_UNAVAILABLE; i++)
     {
-        if (!BoxMonKnowsMove(mon, eggMoves[i]))
+        if (!BoxMonKnowsMove(mon, eggMoves[i]) && numMoves < MAX_RELEARNER_MOVES)
             moves[numMoves++] = eggMoves[i];
     }
 
@@ -1386,7 +1389,7 @@ static u32 GetRelearnerTMMoves(struct BoxPokemon *mon, u16 *moves)
         if (!CanLearnTeachableMove(species, move))
             continue;
 
-        if (!BoxMonKnowsMove(mon, move))
+        if (!BoxMonKnowsMove(mon, move) && numMoves < MAX_RELEARNER_MOVES)
             moves[numMoves++] = move;
     }
 
@@ -1415,7 +1418,7 @@ static u32 GetRelearnerTutorMoves(struct BoxPokemon *mon, u16 *moves)
         if (!CanLearnTeachableMove(species, move))
             continue;
 
-        if (!BoxMonKnowsMove(mon, move))
+        if (!BoxMonKnowsMove(mon, move) && numMoves < MAX_RELEARNER_MOVES)
             moves[numMoves++] = move;
     }
 

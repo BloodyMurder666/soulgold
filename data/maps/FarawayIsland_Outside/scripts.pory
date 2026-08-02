@@ -1,0 +1,27 @@
+mapscripts FarawayIsland_Outside_MapScripts {}
+
+script FarawayIslandSailor {
+	lock
+	faceplayer
+	msgbox("Do you want to head back to Olivine?", MSGBOX_YESNO)
+	if (var(VAR_RESULT) == NO) {
+		msgbox("Alright, I'll be waiting here.")
+		release
+		end
+	}
+	msgbox("Aye, right!
+			Then sail home we will!")
+	closemessage
+	hidefollower
+	applymovement(VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterDown)
+	waitmovement(0)
+	delay(30)
+	hideobjectat(LOCALID_FARAWAY_SAILOR, MAP_FARAWAY_ISLAND_OUTSIDE)
+	setvar(VAR_0x8004, LOCALID_SS_TIDAL_FARAWAY)
+	call(Common_EventScript_FerryDepartIsland)
+	warpsilent(MAP_OLIVINE_CITY_PORT_INSIDE, 8, 16)
+	waitstate
+	release
+	end
+}
+	

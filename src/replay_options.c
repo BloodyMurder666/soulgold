@@ -39,6 +39,7 @@ bool32 ToggleReplayOption(enum ReplayOption option)
 bool32 ToggleReplayAllInnatesUnlocked(void)
 {
     FlagToggle(FLAG_ALL_INNATES_UNLOCKED);
+    FlagToggle(FLAG_POSTGAME_FEATURES);
     if (FlagGet(FLAG_ALL_INNATES_UNLOCKED))
         FlagClear(FLAG_REPLAY_NO_INNATES);
     return FlagGet(FLAG_ALL_INNATES_UNLOCKED);

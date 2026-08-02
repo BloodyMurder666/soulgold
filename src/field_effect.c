@@ -4213,11 +4213,19 @@ u8 FldEff_CaveDust(void)
     u8 spriteId;
 
     SetSpritePosToOffsetMapCoords((s16 *)&gFieldEffectArguments[0], (s16 *)&gFieldEffectArguments[1], 8, 8);
-    spriteId = CreateSpriteAtEnd(gFieldEffectObjectTemplatePointers[FLDEFFOBJ_CAVE_DUST], gFieldEffectArguments[0], gFieldEffectArguments[1], 0xFF);
+    spriteId = CreateSpriteAtEndUnchecked(gFieldEffectObjectTemplatePointers[FLDEFFOBJ_CAVE_DUST], gFieldEffectArguments[0], gFieldEffectArguments[1], 0xFF);
     if (spriteId != MAX_SPRITES)
     {
         gSprites[spriteId].coordOffsetEnabled = TRUE;
-        gSprites[spriteId].data[0] = 22;
+        gSprites[spriteId].data[0] = FLDEFF_CAVE_DUST;
+    }
+    else
+    {
+        u8 paletteNum = IndexOfSpritePaletteTag(FLDEFF_PAL_TAG_CAVE_DUST);
+
+        if (paletteNum < 16)
+            FieldEffectFreePaletteIfUnused(paletteNum);
+        FieldEffectActiveListRemove(FLDEFF_CAVE_DUST);
     }
 
     return spriteId;

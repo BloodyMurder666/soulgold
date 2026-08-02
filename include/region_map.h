@@ -5,6 +5,7 @@
 
 // Exported type declarations
 #define MAP_NAME_LENGTH 16
+#define FLY_DEST_ICON_GFX_SIZE 0x1C0
 
 enum
 {
@@ -117,6 +118,8 @@ s16 GetRegionMapPageScrollYForPage(u8 page);
 mapsec_u16_t GetRegionMapSecIdAt(u16 x, u16 y);
 void CreateRegionMapPlayerIcon(u16 tileTag, u16 paletteTag);
 void CreateRegionMapCursor(u16 tileTag, u16 paletteTag);
+void LoadRegionMapFlyDestinationIcons(u8 *tileBuffer);
+void FreeRegionMapFlyDestinationIcons(void);
 bool32 IsEventIslandMapSecId(mapsec_u16_t mapSecId);
 u8 *GetMapName(u8 *dest, mapsec_u16_t regionMapId, u16 padLength);
 u8 *GetMapNameGeneric(u8 *dest, mapsec_u16_t mapSecId);

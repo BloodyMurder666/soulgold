@@ -5531,9 +5531,15 @@ const u16 *GetMonSpritePalFromSpeciesIsEgg(u16 species, bool32 isShiny, bool32 i
     if (isEgg)
     {
         if (gSpeciesInfo[species].eggId != EGG_ID_NONE)
-            return gEggDatas[gSpeciesInfo[species].eggId].eggPalette;
+        {
+            const struct EggData *eggData = &gEggDatas[gSpeciesInfo[species].eggId];
+
+            if (isShiny && eggData->eggShinyPalette != NULL)
+                return eggData->eggShinyPalette;
+            return eggData->eggPalette;
+        }
         else
-            return gSpeciesInfo[SPECIES_EGG].palette;
+            return isShiny ? gSpeciesInfo[SPECIES_EGG].shinyPalette : gSpeciesInfo[SPECIES_EGG].palette;
     }
     else if (isShiny)
     {

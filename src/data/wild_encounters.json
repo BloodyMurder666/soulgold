@@ -14865,6 +14865,75 @@
               }
             ]
           }
+        },
+        {
+          "map": "MAP_FARAWAY_ISLAND_JUNGLE",
+          "base_label": "gFarawayIslandJungle",
+          "land_mons": {
+            "encounter_rate": 7,
+            "mons": [
+              {
+                "min_level": 52,
+                "max_level": 55,
+                "species": "SPECIES_CRADILY"
+              },
+              {
+                "min_level": 52,
+                "max_level": 55,
+                "species": "SPECIES_ARCHEOPS"
+              },
+              {
+                "min_level": 52,
+                "max_level": 55,
+                "species": "SPECIES_CRADILY"
+              },
+              {
+                "min_level": 52,
+                "max_level": 55,
+                "species": "SPECIES_ARCHEOPS"
+              },
+              {
+                "min_level": 52,
+                "max_level": 55,
+                "species": "SPECIES_KABUTOPS"
+              },
+              {
+                "min_level": 52,
+                "max_level": 55,
+                "species": "SPECIES_TYRANTRUM"
+              },
+              {
+                "min_level": 52,
+                "max_level": 55,
+                "species": "SPECIES_KABUTOPS"
+              },
+              {
+                "min_level": 52,
+                "max_level": 55,
+                "species": "SPECIES_TYRANTRUM"
+              },
+              {
+                "min_level": 52,
+                "max_level": 55,
+                "species": "SPECIES_AURORUS"
+              },
+              {
+                "min_level": 52,
+                "max_level": 55,
+                "species": "SPECIES_AERODACTYL"
+              },
+              {
+                "min_level": 52,
+                "max_level": 55,
+                "species": "SPECIES_AURORUS"
+              },
+              {
+                "min_level": 52,
+                "max_level": 55,
+                "species": "SPECIES_AERODACTYL"
+              }
+            ]
+          }
         }
       ]
     },

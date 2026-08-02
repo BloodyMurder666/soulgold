@@ -108,7 +108,11 @@ def prepare_output(all_learnables: dict[str, set[str]], tms: list[str], tutors: 
             part2 = list(filter(lambda m: m in learnables, tutors))
 
 
-        repo_species_teachables = part1 + part2
+        repo_species_teachables = (
+            part1
+            + part2
+            + special_movesets.get("speciesTeachables", {}).get(species_upper, [])
+        )
         if species_upper == "TERAPAGOS":
              repo_species_teachables = filter(lambda m: m != "MOVE_TERA_BLAST", repo_species_teachables)
 

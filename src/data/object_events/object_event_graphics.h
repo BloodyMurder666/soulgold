@@ -494,6 +494,7 @@ const u16 gObjectEventPal_Elm[] = INCBIN_U16("graphics/object_events/palettes/el
 const u16 gObjectEventPal_Kimono[] = INCBIN_U16("graphics/object_events/palettes/kimono.gbapal");
 const u16 gObjectEventPal_Firebreather[] = INCBIN_U16("graphics/object_events/palettes/firebreather.gbapal");
 const u16 gObjectEventPal_Sage[] = INCBIN_U16("graphics/object_events/palettes/sage.gbapal");
+const u16 gObjectEventPal_Blaine[] = INCBIN_U16("graphics/object_events/palettes/blaine.gbapal");
 const u16 gObjectEventPal_Steven[] = INCBIN_U16("graphics/object_events/palettes/steven.gbapal");
 const u16 gObjectEventPal_ScientistF[] = INCBIN_U16("graphics/object_events/palettes/scientist_f.gbapal");
 const u16 gObjectEventPal_ShinyGyarados[] = INCBIN_U16("graphics/object_events/palettes/shiny_gyarados.gbapal");

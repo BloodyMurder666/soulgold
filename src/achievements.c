@@ -97,9 +97,9 @@ static const u8 sText_AchCaptureShinyDesc[] = _("Catch a shiny Pokémon.");
 static const u8 sText_AchDaycareEgg1Name[] = _("New Life");
 static const u8 sText_AchDaycareEgg1Desc[] = _("Receive an Egg from Day Care.");
 static const u8 sText_AchDaycareEggs100Name[] = _("Day Care Regular");
-static const u8 sText_AchDaycareEggs100Desc[] = _("Receive 100 Day Care Eggs.");
+static const u8 sText_AchDaycareEggs100Desc[] = _("Receive 30 Day Care Eggs.");
 static const u8 sText_AchHatchEggs100Name[] = _("Shell Breaker");
-static const u8 sText_AchHatchEggs100Desc[] = _("Hatch 100 Eggs.");
+static const u8 sText_AchHatchEggs100Desc[] = _("Hatch 30 Eggs.");
 static const u8 sText_AchTower25Name[] = _("Tower Challenger");
 static const u8 sText_AchTower25Desc[] = _("Win 25 Battle Tower battles in total.");
 static const u8 sText_AchTower50Name[] = _("Tower Expert");
@@ -239,7 +239,7 @@ static const u8 sText_AchCatchAzelfDesc[] = _("Catch Azelf.");
 static const u8 sText_AchCatchMewtwoName[] = _("The Experiment");
 static const u8 sText_AchCatchMewtwoDesc[] = _("Catch Mewtwo.");
 static const u8 sText_AchCatchMewName[] = _("The Original");
-static const u8 sText_AchCatchMewDesc[] = _("Catch Mew. (NYI)");
+static const u8 sText_AchCatchMewDesc[] = _("Catch Mew.");
 static const u8 sText_AchCatchSuicuneName[] = _("Roaming Gale");
 static const u8 sText_AchCatchSuicuneDesc[] = _("Catch Suicune.");
 static const u8 sText_AchCatchEnteiName[] = _("Roaming Howl");
@@ -329,8 +329,8 @@ static const struct Achievement sAchievements[] =
     {ACH_CRITICAL_100, sText_AchCritical100Name, sText_AchCritical100Desc, ACH_TIER_SILVER, ACH_COUNTER_CRITICAL_HITS, 100, TRAINER_NONE_ACH, NULL},
     {ACH_CAPTURE_100, sText_AchCapture100Name, sText_AchCapture100Desc, ACH_TIER_SILVER, ACH_COUNTER_CAPTURED_MONS, 100, TRAINER_NONE_ACH, NULL},
     {ACH_CAPTURE_SHINY, sText_AchCaptureShinyName, sText_AchCaptureShinyDesc, ACH_TIER_GOLD, ACH_COUNTER_SHINY_CAPTURES, 1, TRAINER_NONE_ACH, NULL},
-    {ACH_DAYCARE_EGGS_100, sText_AchDaycareEggs100Name, sText_AchDaycareEggs100Desc, ACH_TIER_GOLD, ACH_COUNTER_DAYCARE_EGGS, 100, TRAINER_NONE_ACH, NULL},
-    {ACH_HATCH_EGGS_100, sText_AchHatchEggs100Name, sText_AchHatchEggs100Desc, ACH_TIER_GOLD, ACH_COUNTER_HATCHED_EGGS, 100, TRAINER_NONE_ACH, NULL},
+    {ACH_DAYCARE_EGGS_100, sText_AchDaycareEggs100Name, sText_AchDaycareEggs100Desc, ACH_TIER_GOLD, ACH_COUNTER_DAYCARE_EGGS, 30, TRAINER_NONE_ACH, NULL},
+    {ACH_HATCH_EGGS_100, sText_AchHatchEggs100Name, sText_AchHatchEggs100Desc, ACH_TIER_GOLD, ACH_COUNTER_HATCHED_EGGS, 30, TRAINER_NONE_ACH, NULL},
     {ACH_TM_1, sText_AchTm1Name, sText_AchTm1Desc, ACH_TIER_BRONZE, ACH_COUNTER_TMS_COLLECTED, 1, TRAINER_NONE_ACH, NULL},
     {ACH_TM_20, sText_AchTm20Name, sText_AchTm20Desc, ACH_TIER_SILVER, ACH_COUNTER_TMS_COLLECTED, 20, TRAINER_NONE_ACH, NULL},
     {ACH_TM_50, sText_AchTm50Name, sText_AchTm50Desc, ACH_TIER_GOLD, ACH_COUNTER_TMS_COLLECTED, 50, TRAINER_NONE_ACH, NULL},

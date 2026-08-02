@@ -2,8 +2,10 @@
 #include "bg.h"
 #include "event_data.h"
 #include "field_effect.h"
+#include "field_move.h"
 #include "gpu_regs.h"
 #include "international_string_util.h"
+#include "item.h"
 #include "main.h"
 #include "malloc.h"
 #include "menu.h"
@@ -15,6 +17,8 @@
 #include "text.h"
 #include "text_window.h"
 #include "window.h"
+#include "constants/field_move.h"
+#include "constants/items.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
 
@@ -42,8 +46,10 @@ static EWRAM_DATA struct {
     MainCallback callback;
     u32 unused;
     struct RegionMap regionMap;
+    u8 flyIconTileBuffer[FLY_DEST_ICON_GFX_SIZE];
     u16 state;
     bool8 allowFly;
+    bool8 choseFlyLocation;
 } *sFieldRegionMapHandler = NULL;
 
 static void MCB2_InitRegionMapRegisters(void);
@@ -52,6 +58,7 @@ static void MCB2_FieldUpdateRegionMap(void);
 static void FieldUpdateRegionMap(void);
 static void PrintRegionMapSecName();
 static void PrintTitleWindowText();
+static bool32 CanUseFlyFromRegionMap(void);
 void FieldInitRegionMapWithOptions(MainCallback callback, bool8 allowFly);
 
 static const struct BgTemplate sFieldRegionMapBgTemplates[] = {
@@ -109,6 +116,7 @@ void FieldInitRegionMapWithOptions(MainCallback callback, bool8 allowFly)
     sFieldRegionMapHandler->state = 0;
     sFieldRegionMapHandler->callback = callback;
     sFieldRegionMapHandler->allowFly = allowFly;
+    sFieldRegionMapHandler->choseFlyLocation = FALSE;
     SetMainCallback2(MCB2_InitRegionMapRegisters);
 }
 
@@ -160,6 +168,8 @@ static void FieldUpdateRegionMap(void)
         InitRegionMap(&sFieldRegionMapHandler->regionMap, FALSE);
         CreateRegionMapPlayerIcon(TAG_PLAYER_ICON, TAG_PLAYER_ICON);
         CreateRegionMapCursor(TAG_CURSOR, TAG_CURSOR);
+        if (sFieldRegionMapHandler->allowFly && CanUseFlyFromRegionMap())
+            LoadRegionMapFlyDestinationIcons(sFieldRegionMapHandler->flyIconTileBuffer);
         sFieldRegionMapHandler->state++;
         break;
     case 1:
@@ -192,19 +202,23 @@ static void FieldUpdateRegionMap(void)
                 PrintTitleWindowText();
                 break;
         case MAP_INPUT_A_BUTTON:
+                if (sFieldRegionMapHandler->allowFly && CanUseFlyFromRegionMap())
+                {
+                    if (sFieldRegionMapHandler->regionMap.mapSecType == MAPSECTYPE_CITY_CANFLY)
+                    {
+                        PlaySE(SE_SELECT);
+                        SetFlyDestination(&sFieldRegionMapHandler->regionMap);
+                        gSkipShowMonAnim = TRUE;
+                        sFieldRegionMapHandler->choseFlyLocation = TRUE;
+                        sFieldRegionMapHandler->state++;
+                    }
+                    break;
+                }
+                sFieldRegionMapHandler->state++;
+                break;
         case MAP_INPUT_B_BUTTON:
                 sFieldRegionMapHandler->state++;
                 break;
-        case MAP_INPUT_R_BUTTON:
-                if (sFieldRegionMapHandler->allowFly
-                    && sFieldRegionMapHandler->regionMap.mapSecType == MAPSECTYPE_CITY_CANFLY
-                    && FlagGet(OW_FLAG_POKE_RIDER) && Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType) == TRUE)
-                {
-                    PlaySE(SE_SELECT);
-                    SetFlyDestination(&sFieldRegionMapHandler->regionMap);
-                    gSkipShowMonAnim = TRUE;
-                    ReturnToFieldFromFlyMapSelect();
-                }
         }
         break;
     case 5:
@@ -214,10 +228,18 @@ static void FieldUpdateRegionMap(void)
     case 6:
         if (!gPaletteFade.active)
         {
+            MainCallback callback = sFieldRegionMapHandler->callback;
+            bool8 choseFlyLocation = sFieldRegionMapHandler->choseFlyLocation;
+
+            FreeRegionMapFlyDestinationIcons();
             FreeRegionMapIconResources();
-            SetMainCallback2(sFieldRegionMapHandler->callback);
             TRY_FREE_AND_SET_NULL(sFieldRegionMapHandler);
             FreeAllWindowBuffers();
+
+            if (choseFlyLocation)
+                ReturnToFieldFromFlyMapSelect();
+            else
+                SetMainCallback2(callback);
         }
         break;
     }
@@ -240,7 +262,7 @@ static void PrintRegionMapSecName(void)
 
 static void PrintTitleWindowText(void)
 {
-    static const u8 FlyPromptText[] = _("{R_BUTTON} FLY");
+    static const u8 FlyPromptText[] = _("{A_BUTTON} Fly");
     u32 hoennOffset = GetStringCenterAlignXOffset(FONT_NORMAL, gText_Map, 0x38);
     u32 flyOffset = GetStringCenterAlignXOffset(FONT_NORMAL, FlyPromptText, 0x38);
 
@@ -248,7 +270,7 @@ static void PrintTitleWindowText(void)
 
     if (sFieldRegionMapHandler->allowFly
         && sFieldRegionMapHandler->regionMap.mapSecType == MAPSECTYPE_CITY_CANFLY
-        && FlagGet(OW_FLAG_POKE_RIDER) && Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType) == TRUE)
+        && CanUseFlyFromRegionMap())
     {
         AddTextPrinterParameterized(WIN_TITLE, FONT_NORMAL, FlyPromptText, flyOffset, 1, 0, NULL);
         ScheduleBgCopyTilemapToVram(WIN_TITLE);
@@ -258,4 +280,11 @@ static void PrintTitleWindowText(void)
         AddTextPrinterParameterized(WIN_TITLE, FONT_NORMAL, gText_Map, hoennOffset, 1, 0, NULL);
         CopyWindowToVram(WIN_TITLE, COPYWIN_FULL);
     }
+}
+
+static bool32 CanUseFlyFromRegionMap(void)
+{
+    return CheckBagHasItem(ITEM_HM02, 1)
+        && IsFieldMoveUnlocked(FIELD_MOVE_FLY)
+        && SetUpFieldMove(FIELD_MOVE_FLY);
 }

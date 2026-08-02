@@ -4,10 +4,10 @@ DewfordTown_House2_MapScripts::
 DewfordTown_House2_EventScript_Man::
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_SILK_SCARF, DewfordTown_House2_EventScript_ExplainSilkScarf
+	goto_if_set FLAG_GARBAGEFLAG, DewfordTown_House2_EventScript_ExplainSilkScarf
 	msgbox DewfordTown_House2_Text_WantYouToHaveSilkScarf, MSGBOX_DEFAULT
 	goto_if_eq VAR_RESULT, FALSE, DewfordTown_House2_EventScript_NoRoomForScarf
-	setflag FLAG_RECEIVED_SILK_SCARF
+	setflag FLAG_GARBAGEFLAG
 	release
 	end
 

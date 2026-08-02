@@ -4006,7 +4006,7 @@
       "name": "FarawayIsland_Interior_Layout",
       "width": 29,
       "height": 26,
-      "primary_tileset": "gTileset_Johto_General",
+      "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_NationalPark",
       "border_filepath": "data/layouts/FarawayIsland_Interior/border.bin",
       "blockdata_filepath": "data/layouts/FarawayIsland_Interior/map.bin"
@@ -10236,6 +10236,36 @@
       "secondary_tileset": "gTileset_DesertVillage",
       "border_filepath": "data/layouts/VajraPyramidFinalChamber/border.bin",
       "blockdata_filepath": "data/layouts/VajraPyramidFinalChamber/map.bin"
+    },
+    {
+      "id": "LAYOUT_FARAWAY_ISLAND_OUTSIDE",
+      "name": "FarawayIsland_Outside_Layout",
+      "width": 34,
+      "height": 46,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_NationalPark",
+      "border_filepath": "data/layouts/FarawayIsland_Outside/border.bin",
+      "blockdata_filepath": "data/layouts/FarawayIsland_Outside/map.bin"
+    },
+    {
+      "id": "LAYOUT_FARAWAY_ISLAND_JUNGLE",
+      "name": "FarawayIslandJungle_Layout",
+      "width": 40,
+      "height": 59,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_NationalPark",
+      "border_filepath": "data/layouts/FarawayIslandJungle/border.bin",
+      "blockdata_filepath": "data/layouts/FarawayIslandJungle/map.bin"
+    },
+    {
+      "id": "LAYOUT_FARAWAY_ISLAND_DEPTHS",
+      "name": "FarawayIslandDepths_Layout",
+      "width": 26,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_NationalPark",
+      "border_filepath": "data/layouts/FarawayIslandDepths/border.bin",
+      "blockdata_filepath": "data/layouts/FarawayIslandDepths/map.bin"
     }
   ]
 }

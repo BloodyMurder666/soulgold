@@ -1,6 +1,7 @@
 #include "global.h"
 #include "achievements.h"
 #include "battle.h"
+#include "data.h"
 #include "egg_hatch.h"
 #include "event_data.h"
 #include "item_menu.h"
@@ -8,6 +9,7 @@
 #include "move.h"
 #include "new_game.h"
 #include "pokemon.h"
+#include "pokemon_icon.h"
 #include "string_util.h"
 #include "test/overworld_script.h"
 #include "test/test.h"
@@ -265,6 +267,21 @@ TEST("Shininess set on an Egg persists after hatching")
 
     EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_IS_EGG), FALSE);
     EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_IS_SHINY), TRUE);
+}
+
+TEST("Egg sprite and icon palettes reflect shininess")
+{
+    EXPECT(GetMonSpritePalFromSpeciesIsEgg(SPECIES_TOGEPI, FALSE, FALSE, TRUE) == gSpeciesInfo[SPECIES_EGG].palette);
+    EXPECT(GetMonSpritePalFromSpeciesIsEgg(SPECIES_TOGEPI, TRUE, FALSE, TRUE) == gSpeciesInfo[SPECIES_EGG].shinyPalette);
+    EXPECT(GetIconPaletteIsEgg(SPECIES_TOGEPI, FALSE, 0, TRUE) == gSpeciesInfo[SPECIES_EGG].iconPalette);
+    EXPECT(GetIconPaletteIsEgg(SPECIES_TOGEPI, TRUE, 0, TRUE) == gSpeciesInfo[SPECIES_EGG].shinyIconPalette);
+
+#if P_FAMILY_MANAPHY
+    EXPECT(GetMonSpritePalFromSpeciesIsEgg(SPECIES_MANAPHY, FALSE, FALSE, TRUE) == gEggDatas[EGG_ID_MANAPHY].eggPalette);
+    EXPECT(GetMonSpritePalFromSpeciesIsEgg(SPECIES_MANAPHY, TRUE, FALSE, TRUE) == gEggDatas[EGG_ID_MANAPHY].eggShinyPalette);
+    EXPECT(GetIconPaletteIsEgg(SPECIES_MANAPHY, FALSE, 0, TRUE) == gEggDatas[EGG_ID_MANAPHY].eggIconPalette);
+    EXPECT(GetIconPaletteIsEgg(SPECIES_MANAPHY, TRUE, 0, TRUE) == gEggDatas[EGG_ID_MANAPHY].eggShinyIconPalette);
+#endif
 }
 
 TEST("Hatching Jirachi unlocks its achievement")

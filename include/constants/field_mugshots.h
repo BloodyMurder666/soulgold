@@ -52,6 +52,7 @@ enum Mugshots {
     MUGSHOT_ARIANA,
     MUGSHOT_PETREL,
     MUGSHOT_PROTON,
+    MUGSHOT_BLAINE,
     MUGSHOT_COUNT,
 };
 

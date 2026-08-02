@@ -3186,11 +3186,13 @@ static void ShowSelectedMonInfo(void)
         && GetMonData(&gPlayerParty[slotId], MON_DATA_SPECIES) != SPECIES_NONE)
     {
         struct Pokemon *mon = &gPlayerParty[slotId];
-        u16 species = GetMonData(mon, MON_DATA_SPECIES_OR_EGG);
         u8 level = GetMonData(mon, MON_DATA_LEVEL);
         enum Item item = GetMonData(mon, MON_DATA_HELD_ITEM);
 
-        StringCopy(gStringVar1, GetSpeciesName(species));
+        if (GetMonData(mon, MON_DATA_IS_EGG))
+            StringCopy(gStringVar1, sText_EggNickname);
+        else
+            StringCopy(gStringVar1, GetSpeciesName(GetMonData(mon, MON_DATA_SPECIES)));
         StringCopy(gStringVar2, gText_LevelSymbol);
         ConvertIntToDecimalStringN(gStringVar3, level, STR_CONV_MODE_LEFT_ALIGN, 3);
         StringAppend(gStringVar2, gStringVar3);

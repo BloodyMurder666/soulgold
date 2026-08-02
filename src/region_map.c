@@ -78,7 +78,7 @@ static EWRAM_DATA struct {
     u16 state;
     mapsec_u16_t mapSecId;
     struct RegionMap regionMap;
-    u8 tileBuffer[0x1c0];
+    u8 tileBuffer[FLY_DEST_ICON_GFX_SIZE];
     u8 nameBuffer[0x26]; // never read
     bool8 choseFlyLocation;
 } *sFlyMap = NULL;
@@ -127,7 +127,6 @@ static void VBlankCB_FlyMap(void);
 static void CB2_FlyMap(void);
 static void SetFlyMapCallback(void callback(void));
 static void DrawFlyDestTextWindow(void);
-static void LoadFlyDestIcons(void);
 static void CreateFlyDestIcons(void);
 static void TryCreateRedOutlineFlyDestIcons(void);
 static bool8 IsMapSecOnFlyMap(mapsec_u16_t mapSecId);
@@ -2203,7 +2202,7 @@ void CB2_OpenFlyMap(void)
         gMain.state++;
         break;
     case 8:
-        LoadFlyDestIcons();
+        LoadRegionMapFlyDestinationIcons(sFlyMap->tileBuffer);
         gMain.state++;
         break;
     case 9:
@@ -2307,18 +2306,30 @@ static void DrawFlyDestTextWindow(void)
 }
 
 
-static void LoadFlyDestIcons(void)
+void LoadRegionMapFlyDestinationIcons(u8 *tileBuffer)
 {
     struct SpriteSheet sheet;
 
-    DecompressDataWithHeaderWram(sFlyTargetIcons_Gfx, sFlyMap->tileBuffer);
-    sheet.data = sFlyMap->tileBuffer;
-    sheet.size = sizeof(sFlyMap->tileBuffer);
+    DecompressDataWithHeaderWram(sFlyTargetIcons_Gfx, tileBuffer);
+    sheet.data = tileBuffer;
+    sheet.size = FLY_DEST_ICON_GFX_SIZE;
     sheet.tag = TAG_FLY_ICON;
     LoadSpriteSheet(&sheet);
     LoadSpritePalette(&sFlyTargetIconsSpritePalette);
     CreateFlyDestIcons();
     TryCreateRedOutlineFlyDestIcons();
+}
+
+void FreeRegionMapFlyDestinationIcons(void)
+{
+    for (u32 i = 0; i < MAX_SPRITES; i++)
+    {
+        if (gSprites[i].inUse && gSprites[i].template == &sFlyDestIconSpriteTemplate)
+            DestroySprite(&gSprites[i]);
+    }
+
+    FreeSpriteTilesByTag(TAG_FLY_ICON);
+    FreeSpritePaletteByTag(TAG_FLY_ICON);
 }
 
 // Sprite data for SpriteCB_FlyDestIcon
@@ -2446,8 +2457,8 @@ static bool8 UpdateFlyDestIconPageVisibility(struct Sprite *sprite)
     s16 x;
     s16 y;
 
-    sprite->x2 = -sFlyMap->regionMap.scrollX;
-    sprite->y2 = -sFlyMap->regionMap.scrollY;
+    sprite->x2 = -sRegionMap->scrollX;
+    sprite->y2 = -sRegionMap->scrollY;
     x = sprite->x + sprite->x2 + sprite->centerToCornerVecX;
     y = sprite->y + sprite->y2 + sprite->centerToCornerVecY;
     if (x < -16 || x > DISPLAY_WIDTH + 16 || y < -16 || y > DISPLAY_HEIGHT + 16)
@@ -2465,7 +2476,7 @@ static void SpriteCB_FlyDestIcon(struct Sprite *sprite)
     if (!UpdateFlyDestIconPageVisibility(sprite))
         return;
 
-    if (sFlyMap->regionMap.mapSecId == sprite->sIconMapSec)
+    if (sRegionMap->mapSecId == sprite->sIconMapSec)
     {
         if (++sprite->sFlickerTimer > 16)
         {
@@ -2547,6 +2558,7 @@ static void CB_ExitFlyMap(void)
     case 1:
         if (!UpdatePaletteFade())
         {
+            FreeRegionMapFlyDestinationIcons();
             FreeRegionMapIconResources();
             if (sFlyMap->choseFlyLocation)
             {

@@ -194,7 +194,10 @@ const u8 *const gBagMenu_ReturnToStrings[] =
     [ITEMMENULOCATION_PCBOX]               = gText_ThePC,
     [ITEMMENULOCATION_BERRY_TREE_MULCH]    = gText_TheField,
     [ITEMMENULOCATION_CHOOSE_ITEM]         = gText_TheField,
+    [ITEMMENULOCATION_RAIDEND]             = gText_TheBattle,
 };
+
+STATIC_ASSERT(ARRAY_COUNT(gBagMenu_ReturnToStrings) == ITEMMENULOCATION_LAST, BagMenuReturnStringsMatchLocations);
 
 const u8 *const gPyramidBagMenu_ReturnToStrings[] =
 {

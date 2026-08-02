@@ -1,0 +1,50 @@
+{
+  "id": "MAP_FARAWAY_ISLAND_DEPTHS",
+  "name": "FarawayIslandDepths",
+  "layout": "LAYOUT_FARAWAY_ISLAND_DEPTHS",
+  "music": "MUS_DP_ETERNA_FOREST",
+  "region_map_section": "MAPSEC_FARAWAY_ISLAND",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "local_id": "LOCALID_MEW",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MEW)",
+      "x": 12,
+      "y": 7,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MewEncounter",
+      "flag": "FLAG_HIDE_MEW"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 12,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_FARAWAY_ISLAND_JUNGLE",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 13,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_FARAWAY_ISLAND_JUNGLE",
+      "dest_warp_id": "2"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": []
+}

@@ -17,7 +17,7 @@ MtSilver_1F_MoltresRoom_EventScript_MoltresRan::
 script VictoryRoadKanto_B1F_EventScript_Moltres {
     lock
     faceplayer
-    bosslegendaryencounter(SPECIES_MOLTRES, 60, LOCALID_VICTORYROAD_MOLTRES, FLAG_HIDE_MOLTRES)
+    legendaryencounter(SPECIES_MOLTRES, 60, LOCALID_VICTORYROAD_MOLTRES, FLAG_HIDE_MOLTRES)
     release
     end
 }

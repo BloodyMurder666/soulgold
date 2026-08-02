@@ -317,7 +317,7 @@ static const s32 sExperienceScalingFactors[] =
     159767,
 };
 
-static const u16 sWhiteOutBadgeMoney[9] = { 8, 16, 24, 36, 48, 64, 80, 100, 120 };
+static const u16 sWhiteOutBadgeMoney[9] = { 4, 8, 12, 18, 24, 32, 40, 50, 60 };
 
 static EWRAM_DATA struct Pokemon sPostCatchSummaryMon = {0};
 static EWRAM_DATA u16 sPostCatchDpadLatch = 0;

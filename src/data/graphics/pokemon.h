@@ -17309,10 +17309,14 @@ const u16 gMonPalette_TyphlosionMega[] = INCBIN_U16("graphics/pokemon/typhlosion
     const u16 gMonIconPalette_Manaphy[] = INCBIN_U16("graphics/pokemon/manaphy/icon_normal.gbapal");
     const u16 gMonShinyIconPalette_Manaphy[] = INCBIN_U16("graphics/pokemon/manaphy/icon_shiny.gbapal");
     const u8 gMonEggIcon_Manaphy[] = INCBIN_U8("graphics/pokemon/manaphy/icon_egg.4bpp");
+    const u16 gMonEggIconPal_Manaphy[] = INCBIN_U16("graphics/pokemon/manaphy/icon_egg.gbapal");
+    const u16 gMonEggShinyIconPal_Manaphy[] = INCBIN_U16("graphics/pokemon/manaphy/icon_egg_shiny.gbapal");
     const u32 gMonEggGfx_Manaphy[] = INCBIN_U32("graphics/pokemon/manaphy/egg_sprite.4bpp.smol");
     const u16 gMonEggPal_Manaphy[] = INCBIN_U16("graphics/pokemon/manaphy/egg_sprite.gbapal");
+    const u16 gMonEggShinyPal_Manaphy[] = INCBIN_U16("graphics/pokemon/manaphy/egg_sprite_shiny.gbapal");
     const u32 gMonHatchGfx_Manaphy[] = INCBIN_U32("graphics/pokemon/manaphy/hatch.4bpp.smol");
     const u16 gMonHatchPal_Manaphy[] = INCBIN_U16("graphics/pokemon/manaphy/hatch.gbapal");
+    const u16 gMonShinyHatchPal_Manaphy[] = INCBIN_U16("graphics/pokemon/manaphy/hatch_shiny.gbapal");
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Manaphy[] = INCBIN_U8("graphics/pokemon/manaphy/footprint.1bpp");
 #endif //P_FOOTPRINTS
@@ -30192,6 +30196,7 @@ const u16 gMonPalette_TyphlosionMega[] = INCBIN_U16("graphics/pokemon/typhlosion
 
     const u32 gMonFrontPic_Egg[] = INCBIN_U32("graphics/pokemon/egg/anim_front.4bpp.smol");
     const u16 gMonPalette_Egg[] = INCBIN_U16("graphics/pokemon/egg/normal.gbapal");
+    const u16 gMonShinyPalette_Egg[] = INCBIN_U16("graphics/pokemon/egg/shiny.gbapal");
     const u8 gMonIcon_Egg[] = INCBIN_U8("graphics/pokemon/egg/icon.4bpp");
 
     const u32 gMonFrontPic_LugiaMegaZ[] = INCBIN_U32("graphics/pokemon/lugia_shadow/front.4bpp.smol");
@@ -30212,6 +30217,7 @@ const u16 gMonPalette_TyphlosionMega[] = INCBIN_U16("graphics/pokemon/typhlosion
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
     const u16 gMonIconPalette_Egg[] = INCBIN_U16("graphics/pokemon/egg/icon_normal.gbapal");
+    const u16 gMonShinyIconPalette_Egg[] = INCBIN_U16("graphics/pokemon/egg/icon_shiny.gbapal");
 
     const u32 gMonFrontPic_GardevoirMegaZ[] = INCBIN_U32("graphics/pokemon/gardevoir/mega_z/front.4bpp.smol");
     const u16 gMonPalette_GardevoirMegaZ[] = INCBIN_U16("graphics/pokemon/gardevoir/mega_z/normal.gbapal");

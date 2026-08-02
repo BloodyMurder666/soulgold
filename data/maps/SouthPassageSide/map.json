@@ -22,11 +22,6 @@
       "map": "MAP_SOUTH_PASSAGE_END",
       "offset": -6,
       "direction": "right"
-    },
-    {
-      "map": "MAP_SOUTH_PASSAGE_LEFT",
-      "offset": 4,
-      "direction": "left"
     }
   ],
   "object_events": [],

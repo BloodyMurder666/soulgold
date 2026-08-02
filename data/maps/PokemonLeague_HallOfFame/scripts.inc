@@ -90,6 +90,7 @@ PokemonLeague_HallOfFame_EventScript_SetGameClearFlags::
 	clearflag FLAG_HIDE_SHAYMIN 
 	clearflag FLAG_HIDE_IRONVALIANT
 	clearflag FLAG_HIDE_FLUTTERMANE
+	clearflag FLAG_HIDE_SUDOWOODO
 	clearflag FLAG_HIDE_VIRIZION
 	clearflag FLAG_HIDE_REGIGIGAS 
 	clearflag FLAG_HIDE_MARSHADOW 
@@ -107,7 +108,7 @@ PokemonLeague_HallOfFame_EventScript_SetGameClearFlags::
 	call_if_set FLAG_CAUGHT_RAIKOU, PokemonLeague_HallOfFame_EventScript_SpawnRoamers
 	call_if_ge VAR_SUICUNE_ENCOUNTERS, 8, PokemonLeague_HallOfFame_EventScript_SpawnSuicune
 	call_if_set FLAG_CAUGHT_CELEBI, PokemonLeague_HallOfFame_EventScript_SpawnSecondCelebi
-	clearflag FLAG_DEFEATED_MEW
+	clearflag FLAG_HIDE_MEW
 	clearflag FLAG_CAUGHT_MEW
 	clearflag FLAG_BATTLED_DEOXYS
 	clearflag FLAG_DEFEATED_DEOXYS

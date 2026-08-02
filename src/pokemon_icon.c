@@ -12,7 +12,7 @@
 #define POKE_ICON_SPECIES_BASE_PAL_TAG (POKE_ICON_BASE_PAL_TAG + 16)
 #define POKE_ICON_BLACKENED_PAL_TAG (POKE_ICON_SPECIES_BASE_PAL_TAG + NUM_SPECIES + SPECIES_SHINY_TAG)
 #define POKE_ICON_EGG_SPECIES_BASE_PAL_TAG (POKE_ICON_BLACKENED_PAL_TAG + 1)
-#define POKE_ICON_SPECIES_MAX_PAL_TAG (POKE_ICON_EGG_SPECIES_BASE_PAL_TAG + NUM_SPECIES)
+#define POKE_ICON_SPECIES_MAX_PAL_TAG (POKE_ICON_EGG_SPECIES_BASE_PAL_TAG + EGG_ID_COUNT * 2)
 
 #define IS_MON_ICON_TAG(x) (((x) >= POKE_ICON_BASE_PAL_TAG && (x) < POKE_ICON_BASE_PAL_TAG + ARRAY_COUNT(gMonIconPaletteTable)) || \
                             ((x) >= POKE_ICON_SPECIES_BASE_PAL_TAG && (x) < POKE_ICON_SPECIES_MAX_PAL_TAG))
@@ -29,7 +29,7 @@ struct MonIconSpriteTemplate
     u16 paletteTag;
 };
 
-static u8 CreateMonIconSprite(struct MonIconSpriteTemplate *, s16, s16, u8);
+static u8 CreateMonIconSprite(struct MonIconSpriteTemplate *, s16, s16, u8, bool32);
 static void FreeAndDestroyMonIconSprite_(struct Sprite *sprite);
 
 static const u16 sBlackenedMonIconPalette[16] = {0};
@@ -178,9 +178,17 @@ const u16 *GetIconPaletteIsEgg(u32 species, bool32 isShiny, u32 personality, boo
     {
         enum EggIds eggId = gSpeciesInfo[species].eggId;
 
-        if (eggId != EGG_ID_NONE && gEggDatas[eggId].eggPalette != NULL)
-            return gEggDatas[eggId].eggPalette;
-        return GetIconPalette(SPECIES_EGG, FALSE, FALSE);
+        if (eggId != EGG_ID_NONE)
+        {
+            const struct EggData *eggData = &gEggDatas[eggId];
+
+            if (isShiny && eggData->eggShinyIconPalette != NULL)
+                return eggData->eggShinyIconPalette;
+            if (eggData->eggIconPalette != NULL)
+                return eggData->eggIconPalette;
+            return eggData->eggPalette;
+        }
+        return GetIconPalette(SPECIES_EGG, isShiny, FALSE);
     }
 
     return GetIconPalette(species, isShiny, IsPersonalityFemale(species, personality));
@@ -198,7 +206,11 @@ const u32 GetIconPalTag(u32 species, bool32 isShiny)
 static u32 GetIconPalTagIsEgg(u32 species, bool32 isShiny, bool32 isEgg)
 {
     if (isEgg)
-        return POKE_ICON_EGG_SPECIES_BASE_PAL_TAG + SanitizeSpeciesId(species);
+    {
+        enum EggIds eggId = gSpeciesInfo[SanitizeSpeciesId(species)].eggId;
+
+        return POKE_ICON_EGG_SPECIES_BASE_PAL_TAG + eggId * 2 + isShiny;
+    }
 
     return GetIconPalTag(species, isShiny);
 }
@@ -226,7 +238,8 @@ u32 FindFreeIconPaletteSlot(u16 tag)
 }
 
 // Creates mon icon sprite and overwrites its paletteNum
-u8 CreateMonIcon3(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u32 personality, u8 paletteNum, bool32 isEgg) {
+static u8 CreateMonIcon3Internal(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u32 personality, u8 paletteNum, bool32 isEgg, bool32 failSilently)
+{
     struct MonIconSpriteTemplate iconTemplate =
     {
         .oam = &sMonIconOamData,
@@ -236,12 +249,21 @@ u8 CreateMonIcon3(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, 
         .callback = callback,
         .paletteTag = TAG_NONE,
     };
-    u8 spriteId = CreateMonIconSprite(&iconTemplate, x, y, subpriority);
-    struct Sprite *sprite = &gSprites[spriteId];
+    u8 spriteId = CreateMonIconSprite(&iconTemplate, x, y, subpriority, failSilently);
+    struct Sprite *sprite;
 
+    if (spriteId == MAX_SPRITES)
+        return MAX_SPRITES;
+
+    sprite = &gSprites[spriteId];
     UpdateMonIconFrame(sprite);
     sprite->oam.paletteNum = paletteNum;
     return spriteId;
+}
+
+u8 CreateMonIcon3(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u32 personality, u8 paletteNum, bool32 isEgg)
+{
+    return CreateMonIcon3Internal(species, callback, x, y, subpriority, personality, paletteNum, isEgg, FALSE);
 }
 
 u8 CreateMonIconNoPalette(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u32 personality)
@@ -261,7 +283,7 @@ u8 CreateMonIconNoPalette(u16 species, void (*callback)(struct Sprite *), s16 x,
 }
 
 // Like CreateMonIcon, but also accepts isShiny
-u8 CreateMonIcon2(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, bool32 isShiny, u32 personality, bool32 isEgg)
+static u8 CreateMonIcon2Internal(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, bool32 isShiny, u32 personality, bool32 isEgg, bool32 failSilently)
 {
     u32 paletteNum;
     const u16 *palette = GetIconPaletteIsEgg(species, isShiny, personality, isEgg);
@@ -276,13 +298,23 @@ u8 CreateMonIcon2(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, 
         }
     }
 
-    return CreateMonIcon3(species, callback, x, y, subpriority, personality, paletteNum, isEgg);
+    return CreateMonIcon3Internal(species, callback, x, y, subpriority, personality, paletteNum, isEgg, failSilently);
+}
+
+u8 CreateMonIcon2(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, bool32 isShiny, u32 personality, bool32 isEgg)
+{
+    return CreateMonIcon2Internal(species, callback, x, y, subpriority, isShiny, personality, isEgg, FALSE);
 }
 
 // Compatible with vanilla
 u8 CreateMonIcon(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u32 personality) 
 {
     return CreateMonIconIsEgg(species, callback, x, y, subpriority, personality, FALSE);
+}
+
+u8 CreateMonIconUnchecked(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u32 personality)
+{
+    return CreateMonIcon2Internal(species, callback, x, y, subpriority, FALSE, personality, FALSE, TRUE);
 }
 
 u8 CreateMonIconIsEgg(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u32 personality, bool32 isEgg) 
@@ -470,7 +502,7 @@ u8 UpdateMonIconFrame(struct Sprite *sprite)
     return result;
 }
 
-static u8 CreateMonIconSprite(struct MonIconSpriteTemplate *iconTemplate, s16 x, s16 y, u8 subpriority)
+static u8 CreateMonIconSprite(struct MonIconSpriteTemplate *iconTemplate, s16 x, s16 y, u8 subpriority, bool32 failSilently)
 {
     u8 spriteId;
 
@@ -487,7 +519,14 @@ static u8 CreateMonIconSprite(struct MonIconSpriteTemplate *iconTemplate, s16 x,
         .callback = iconTemplate->callback,
     };
 
-    spriteId = CreateSprite(&spriteTemplate, x, y, subpriority);
+    if (failSilently)
+        spriteId = CreateSpriteUnchecked(&spriteTemplate, x, y, subpriority);
+    else
+        spriteId = CreateSprite(&spriteTemplate, x, y, subpriority);
+
+    if (spriteId == MAX_SPRITES)
+        return MAX_SPRITES;
+
     gSprites[spriteId].animPaused = TRUE;
     gSprites[spriteId].animBeginning = FALSE;
     gSprites[spriteId].images = (const struct SpriteFrameImage *)iconTemplate->image;

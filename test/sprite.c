@@ -1,9 +1,11 @@
 #include "global.h"
 #include "main.h"
 #include "malloc.h"
+#include "pokemon_icon.h"
 #include "random.h"
 #include "sprite.h"
 #include "test/test.h"
+#include "constants/species.h"
 
 #define OAM_MATRIX_COUNT 32
 
@@ -136,6 +138,49 @@ TEST("Sprite copy request queue reports overflow")
     ClearSpriteCopyRequests();
     EXPECT_EQ(gSpriteCopyRequestHighWaterMark, 0);
     EXPECT_EQ(gSpriteCopyRequestOverflowCount, 0);
+}
+
+TEST("Unchecked mon icon creation fails safely when sprite slots are full")
+{
+    u32 i;
+
+    ResetSpriteData_();
+    for (i = 0; i < MAX_SPRITES; i++)
+        CreateSprite(&gDummySpriteTemplate, 0, 0, 0);
+
+    EXPECT_EQ(CreateMonIconUnchecked(SPECIES_BULBASAUR, SpriteCB_MonIcon, 0, 0, 0, 0), MAX_SPRITES);
+    FreeMonIconPalettes();
+    ResetSpriteData_();
+}
+
+TEST("Unchecked mon icon creation fails safely when sprite tile memory is full")
+{
+    ResetSpriteData_();
+    while (AllocSpriteTiles(16) >= 0)
+        ;
+
+    EXPECT_EQ(CreateMonIconUnchecked(SPECIES_BULBASAUR, SpriteCB_MonIcon, 0, 0, 0, 0), MAX_SPRITES);
+    FreeMonIconPalettes();
+    ResetSpriteData_();
+}
+
+TEST("Destroying mon icons repeatedly reclaims their sprite tiles")
+{
+    u32 i;
+
+    ResetSpriteData_();
+    for (i = 0; i < 100; i++)
+    {
+        u8 spriteId = CreateMonIconUnchecked(SPECIES_BULBASAUR, SpriteCB_MonIcon, 0, 0, 0, 0);
+
+        EXPECT_LT(spriteId, MAX_SPRITES);
+        if (spriteId == MAX_SPRITES)
+            break;
+        FreeAndDestroyMonIconSprite(&gSprites[spriteId]);
+    }
+
+    FreeMonIconPalettes();
+    ResetSpriteData_();
 }
 
 // Old implementation.

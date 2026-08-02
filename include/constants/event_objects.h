@@ -502,6 +502,7 @@
 #define OBJ_EVENT_PAL_TAG_BILL                    0x1146
 #define OBJ_EVENT_PAL_TAG_ARCHER                  0x1147
 #define OBJ_EVENT_PAL_TAG_RUIN_MANIAC             0x1148
+#define OBJ_EVENT_PAL_TAG_BLAINE                  0x1149
 
 #if OW_FOLLOWERS_POKEBALLS
 // Vanilla

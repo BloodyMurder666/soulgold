@@ -3067,7 +3067,16 @@ static void DebugAction_Give_Pokemon_SelectId(u8 taskId)
             return;
         }
 
-        ScriptGiveEgg(sDebugMonData->species);
+        {
+            struct Pokemon egg;
+            bool8 isEgg = TRUE;
+            bool8 isShiny = Random() & 1;
+
+            CreateEgg(&egg, sDebugMonData->species, TRUE);
+            SetMonData(&egg, MON_DATA_IS_EGG, &isEgg);
+            SetMonData(&egg, MON_DATA_IS_SHINY, &isShiny);
+            GiveCapturedMonToPlayer(&egg);
+        }
         PlaySE(SE_SELECT);
         Free(sDebugMonData);
         FreeMonIconPalettes();

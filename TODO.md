@@ -1,6 +1,4 @@
-- Allow sorting trainers by locations in the docs
 - Spoiler tags
-- Dim the Cherrygrove Inn windows
 
 
 correct order: down, up, left, up, left, down, right, right

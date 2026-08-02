@@ -46,7 +46,7 @@
 #define TRAINER_ROSE_2                       40
 #define TRAINER_ROSE_3                       41
 #define TRAINER_ROSE_4                       42
-#define TRAINER_ROSE_5                       43
+#define TRAINER_BLAINE_OLIVINE               43
 #define TRAINER_KRISE                      44
 #define TRAINER_GRUNT_16                         45
 #define TRAINER_RAYMOND                       46

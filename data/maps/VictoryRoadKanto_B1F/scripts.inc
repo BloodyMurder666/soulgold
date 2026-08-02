@@ -33,7 +33,7 @@ VictoryRoadKanto_B1F_EventScript_Moltres::
 # 19 "data/maps/VictoryRoadKanto_B1F/scripts.pory"
 	faceplayer
 # 20 "data/maps/VictoryRoadKanto_B1F/scripts.pory"
-	bosslegendaryencounter SPECIES_MOLTRES, 60, LOCALID_VICTORYROAD_MOLTRES, FLAG_HIDE_MOLTRES
+	legendaryencounter SPECIES_MOLTRES, 60, LOCALID_VICTORYROAD_MOLTRES, FLAG_HIDE_MOLTRES
 # 21 "data/maps/VictoryRoadKanto_B1F/scripts.pory"
 	release
 	end

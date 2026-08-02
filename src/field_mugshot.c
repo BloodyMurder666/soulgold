@@ -204,6 +204,8 @@ u16 GetFieldMugshotIdByObjectGraphicsId(u16 graphicsId)
         return MUGSHOT_STEVEN;
     case OBJ_EVENT_GFX_EUSINE:
         return MUGSHOT_EUSINE;
+    case OBJ_EVENT_GFX_BLAINE:
+        return MUGSHOT_BLAINE;
     case OBJ_EVENT_GFX_NURSE:
         return MUGSHOT_NURSE;
     case OBJ_EVENT_GFX_CLERK:

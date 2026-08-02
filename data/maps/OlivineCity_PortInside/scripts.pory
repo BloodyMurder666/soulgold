@@ -1,6 +1,4 @@
 raw `
-OlivineCity_PortInside_MapScripts::
-	.byte 0
 
 
 OlivineCity_PortInside_Movement_OakFixDex:
@@ -147,11 +145,143 @@ OlivinePort_Text_SailorBeforeHOF:
     .string "We don't want you to fall into the\n"
     .string "sea, so you're not allowed in.$"
 `
+
+mapscripts OlivineCity_PortInside_MapScripts {
+	MAP_SCRIPT_ON_TRANSITION {
+        if (flag(FLAG_BADGE08_GET) && !flag(FLAG_CANSAIL_FARAWAYISLAND)) {
+            clearflag(FLAG_HIDE_BLAINE_OLIVINEPORT)
+        } else {
+            setflag(FLAG_HIDE_BLAINE_OLIVINEPORT)
+        }
+    }
+}
+
 script OlivinePort_Sailor {
-	msgbox("Sorry, but the ship is not going to
-			leave anywhere anytime soon. 
+	if (!flag(FLAG_CANSAIL_FARAWAYISLAND)) {
+		msgbox("Sorry, but the ship is not going to
+				leave anywhere anytime soon.", MSGBOX_NPC)
+	} else { 
+		msgbox("I was told to sail you to this
+				oddly specific location. Do you
+				want to go now?", MSGBOX_YESNO)
+		if (var(VAR_RESULT) == NO) {
+			msgbox("Oh, alright...")
+			release
+			end
+		}
+		msgbox("Then let's do it!
+		
+				Anchors aweigh! We're setting sail
+				to the unknown!")
+		closemessage
+		warp(MAP_FARAWAY_ISLAND_OUTSIDE, 13, 38)
+		waitstate
+		release
+		end
+	}	
+}
+
+script OlivinePortBlaine {
+	lock
+	if (flag(FLAG_CANSAIL_FARAWAYISLAND)) {
+		msgbox("Blaine: I let the sailor know about the
+				island.")
+		release
+		end
+	}
+	if (!flag(FLAG_TEMP_5)) {
+		msgbox("???: Ahh... Nothing quite like 
+			a refreshing Soda Pop!")
+		faceplayer
+		msgbox("Oh! Are those all 8 badges of Johto?
+				
+				You must be quite a trainer to have
+				achieved such a feat!
+
+				My name is Blaine. I am a Gym Leader in
+				another region.
+				
+				Blaine: Ooh! I have an idea!
+				
+				Quiz time!")
+		msgbox("Blaine: Are you afraid of the unknown?", MSGBOX_YESNO)
+		if (var(VAR_RESULT) == YES) {
+			msgbox("Oh... Wrong Answer!")
+			release
+			end
+		}
+		msgbox("Blaine: Good!
+		
+				Next question!
+				
+				Do you think you could beat me in
+				a Pokémon battle?", MSGBOX_YESNO)
+		if (var(VAR_RESULT) == NO) {
+			msgbox("Blaine: I respect the honesty, but you
+					should have a bit more confidence
+					in yourself!")
+			setflag(FLAG_TEMP_5)
+			release
+			end
+		}
+	}
+	if (flag(FLAG_TEMP_5)) {
+		msgbox("Changed your mind about the
+				last question?
+				
+				Do you think you could beat me in
+				a Pokémon battle?", MSGBOX_YESNO)
+		if (var(VAR_RESULT) == NO) {
+			msgbox("Blaine: Still not confident enough?
+					Well I can't blame you. 
+					
+					After all, I am quite the fiery soul!
+					Ho ho ho!")
+			release
+			end
+		}
+	}
+	playbgm(MUS_RG_ENCOUNTER_GYM_LEADER, FALSE)
+	msgbox("Blaine: Such a bold statement! 
+			I shall put that to the test right here!")
+	msgbox("Hope you brought a Burn Heal!")
+	trainerbattle_no_intro(TRAINER_BLAINE_OLIVINE, "Wowzers! You scorched me!")
+	createfieldmugshot(MUGSHOT_BLAINE)
+	msgbox("Blaine: Yowch! I got burned!
+			You're the real deal!
 			
-			Our engines exploded mysteriously.
+			Here's the thing. I was visiting
+			Johto to check up on my old friend
+			Oak, who is currently here. 
 			
-			Strange, right?", MSGBOX_NPC)
+			I found this old map of an island
+			we visited long, long ago.
+			
+			I don't think anyone has visited it
+			since then. 
+			
+			I will tell the sailor about the island.
+			Speak to him if you wish to visit it.
+			
+			You might find some rare Pokémon there!")
+	closemessage
+	moveobjecttocoords(LOCALID_OLI_BLAINE, 8, 16, DIR_SOUTH)
+	waitmovement(0)
+	turnobject(LOCALID_PLAYER, DIR_SOUTH)
+	delay(60)
+	moveobjecttocoords(LOCALID_OLI_BLAINE, 8, 12, DIR_NORTH)
+	waitmovement(0)
+	turnobject(LOCALID_PLAYER, DIR_EAST)
+	turnobject(LOCALID_OLI_BLAINE, DIR_WEST)
+	createfieldmugshot(MUGSHOT_BLAINE)
+	msgbox("Good luck out there!")
+	closemessage
+	applymovement(LOCALID_OLI_BLAINE, moves(walk_up*3))
+	waitmovement
+	playse(SE_EXIT)
+	removeobject(LOCALID_OLI_BLAINE)
+	setflag(FLAG_CANSAIL_FARAWAYISLAND)
+	setflag(FLAG_HIDE_BLAINE_OLIVINEPORT)
+	release
+	end
 }

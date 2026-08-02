@@ -418,17 +418,71 @@ static s16 GetSearchWindowY(void)
     return (GetWindowAttribute(sDexNavSearchDataPtr->windowId, WINDOW_TILEMAP_TOP) * 8);
 }
 
+static bool32 HasFreeSpriteSlot(void)
+{
+    u32 i;
+
+    for (i = 0; i < MAX_SPRITES; i++)
+    {
+        if (!gSprites[i].inUse)
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
+static void TryDestroyDexNavSprite(u8 *spriteId)
+{
+    if (*spriteId < MAX_SPRITES && gSprites[*spriteId].inUse)
+        DestroySprite(&gSprites[*spriteId]);
+
+    *spriteId = MAX_SPRITES;
+}
+
+static void TryDestroyDexNavMonIcon(u8 *spriteId)
+{
+    if (*spriteId < MAX_SPRITES && gSprites[*spriteId].inUse)
+        FreeAndDestroyMonIconSprite(&gSprites[*spriteId]);
+
+    *spriteId = MAX_SPRITES;
+}
+
+static const struct SpriteTemplate *GetDexNavFieldEffectTemplate(u8 fieldEffectId)
+{
+    switch (fieldEffectId)
+    {
+    case FLDEFF_SHAKING_GRASS:
+        return gFieldEffectObjectTemplatePointers[FLDEFFOBJ_UNUSED_GRASS];
+    case FLDEFF_SHAKING_LONG_GRASS:
+        return gFieldEffectObjectTemplatePointers[FLDEFFOBJ_UNUSED_GRASS_2];
+    case FLDEFF_SAND_HOLE:
+        return gFieldEffectObjectTemplatePointers[FLDEFFOBJ_UNUSED_SAND];
+    case FLDEFF_WATER_SURFACING:
+        return gFieldEffectObjectTemplatePointers[FLDEFFOBJ_WATER_SURFACING];
+    case FLDEFF_BERRY_TREE_GROWTH_SPARKLE:
+        return gFieldEffectObjectTemplatePointers[FLDEFFOBJ_SPARKLE];
+    case FLDEFF_CAVE_DUST:
+        return gFieldEffectObjectTemplatePointers[FLDEFFOBJ_CAVE_DUST];
+    default:
+        return NULL;
+    }
+}
+
 #define SPECIES_ICON_X 28
 static void DrawDexNavSearchMonIcon(u16 species, u8 *dst, bool8 owned)
 {
     u8 spriteId;
 
-    spriteId = CreateMonIcon(species, SpriteCB_MonIcon, SPECIES_ICON_X - 6, GetSearchWindowY() + 8, 0, 0xFFFFFFFF);
+    *dst = MAX_SPRITES;
+    spriteId = CreateMonIconUnchecked(species, SpriteCB_MonIcon, SPECIES_ICON_X - 6, GetSearchWindowY() + 8, 0, 0xFFFFFFFF);
+    if (spriteId == MAX_SPRITES)
+        return;
+
     gSprites[spriteId].oam.priority = 0;
     *dst = spriteId;
 
     if (owned)
-        sDexNavSearchDataPtr->ownedIconSpriteId = CreateSprite(&sOwnedIconTemplate, SPECIES_ICON_X + 6, GetSearchWindowY() + 4, 0);
+        sDexNavSearchDataPtr->ownedIconSpriteId = CreateSpriteUnchecked(&sOwnedIconTemplate, SPECIES_ICON_X + 6, GetSearchWindowY() + 4, 0);
 }
 
 static void AddSearchWindow(u8 width)
@@ -533,23 +587,17 @@ static void RemoveDexNavWindowAndGfx(void)
 {
     u32 i;
 
-    // try remove sprites
-    if (sDexNavSearchDataPtr->iconSpriteId != MAX_SPRITES)
-        DestroySprite(&gSprites[sDexNavSearchDataPtr->iconSpriteId]);
-    if (sDexNavSearchDataPtr->itemSpriteId != MAX_SPRITES)
-        DestroySprite(&gSprites[sDexNavSearchDataPtr->itemSpriteId]);
-    if (sDexNavSearchDataPtr->eyeSpriteId != MAX_SPRITES)
-        DestroySprite(&gSprites[sDexNavSearchDataPtr->eyeSpriteId]);
-    if (sDexNavSearchDataPtr->ownedIconSpriteId != MAX_SPRITES)
-        DestroySprite(&gSprites[sDexNavSearchDataPtr->ownedIconSpriteId]);
-    if (sDexNavSearchDataPtr->exclamationSpriteId != MAX_SPRITES)
-        DestroySprite(&gSprites[sDexNavSearchDataPtr->exclamationSpriteId]);
+    if (sDexNavSearchDataPtr->hiddenSearch)
+        TryDestroyDexNavSprite(&sDexNavSearchDataPtr->iconSpriteId);
+    else
+        TryDestroyDexNavMonIcon(&sDexNavSearchDataPtr->iconSpriteId);
+    TryDestroyDexNavSprite(&sDexNavSearchDataPtr->itemSpriteId);
+    TryDestroyDexNavSprite(&sDexNavSearchDataPtr->eyeSpriteId);
+    TryDestroyDexNavSprite(&sDexNavSearchDataPtr->ownedIconSpriteId);
+    TryDestroyDexNavSprite(&sDexNavSearchDataPtr->exclamationSpriteId);
 
     for (i = 0; i < NELEMS(sDexNavSearchDataPtr->starSpriteIds); i++)
-    {
-        if (sDexNavSearchDataPtr->starSpriteIds[i] != MAX_SPRITES)
-            DestroySprite(&gSprites[sDexNavSearchDataPtr->starSpriteIds[i]]);
-    }
+        TryDestroyDexNavSprite(&sDexNavSearchDataPtr->starSpriteIds[i]);
 
     FreeSpriteTilesByTag(HELD_ITEM_TAG);
     FreeSpriteTilesByTag(OWNED_ICON_TAG);
@@ -749,6 +797,9 @@ static bool8 TryStartHiddenMonFieldEffect(enum EncounterType environment, u8 xSi
 
         if (fldEffId != 0)
         {
+            if (!HasFreeSpriteSlot())
+                return FALSE;
+
             gFieldEffectArguments[0] = sDexNavSearchDataPtr->tileX;
             gFieldEffectArguments[1] = sDexNavSearchDataPtr->tileY;
             gFieldEffectArguments[2] = 0xFF; // subpriority
@@ -767,7 +818,7 @@ static bool8 TryStartHiddenMonFieldEffect(enum EncounterType environment, u8 xSi
 
 static void DrawDexNavSearchHeldItem(u8 *dst)
 {
-    *dst = CreateSprite(&sHeldItemTemplate, SPECIES_ICON_X + 6, GetSearchWindowY() + 18, 0);
+    *dst = CreateSpriteUnchecked(&sHeldItemTemplate, SPECIES_ICON_X + 6, GetSearchWindowY() + 18, 0);
     if (*dst != MAX_SPRITES)
         gSprites[*dst].invisible = TRUE;
 }
@@ -901,7 +952,7 @@ static void DexNavDrawPotentialStars(u8 potential, u8 *dst)
     {
         spriteId = MAX_SPRITES;
         if (potential > i)
-            spriteId = CreateSprite(&sPotentialStarTemplate, SPECIES_ICON_X - 20, GetSearchWindowY() + 4 + (i * 8), 0);
+            spriteId = CreateSpriteUnchecked(&sPotentialStarTemplate, SPECIES_ICON_X - 20, GetSearchWindowY() + 4 + (i * 8), 0);
 
         dst[i] = spriteId;
         if (spriteId != MAX_SPRITES)
@@ -964,7 +1015,7 @@ static void RevealHiddenSearch(void)
     ClearStdWindowAndFrameToTransparent(sDexNavSearchDataPtr->windowId, FALSE);
     CopyWindowToVram(sDexNavSearchDataPtr->windowId, 3);
     RemoveWindow(sDexNavSearchDataPtr->windowId);
-    DestroySprite(&gSprites[sDexNavSearchDataPtr->iconSpriteId]);
+    TryDestroyDexNavSprite(&sDexNavSearchDataPtr->iconSpriteId);
     sDexNavSearchDataPtr->hiddenSearch = FALSE; //now its a regular dexnav search
     RevealHiddenMon();
 }
@@ -972,6 +1023,11 @@ static void RevealHiddenSearch(void)
 bool32 TryStartDexNavSearch(void)
 {
     u16 val = VarGet(DN_VAR_SPECIES);
+
+    if (FlagGet(DN_FLAG_SEARCHING) && sDexNavSearchDataPtr == NULL)
+        FlagClear(DN_FLAG_SEARCHING);
+    else if (!FlagGet(DN_FLAG_SEARCHING) && sDexNavSearchDataPtr != NULL)
+        EndDexNavSearch();
 
     if (FlagGet(DN_FLAG_SEARCHING) && sDexNavSearchDataPtr->hiddenSearch)
     {
@@ -990,10 +1046,23 @@ bool32 TryStartDexNavSearch(void)
 
 void EndDexNavSearch(void)
 {
-    if (!FlagGet(DN_FLAG_SEARCHING))
+    const struct SpriteTemplate *fieldEffectTemplate;
+
+    if (sDexNavSearchDataPtr == NULL)
+    {
+        FlagClear(DN_FLAG_SEARCHING);
         return;
+    }
+
     RemoveDexNavWindowAndGfx();
-    FieldEffectStop(&gSprites[sDexNavSearchDataPtr->fldEffSpriteId], sDexNavSearchDataPtr->fldEffId);
+    fieldEffectTemplate = GetDexNavFieldEffectTemplate(sDexNavSearchDataPtr->fldEffId);
+    if (sDexNavSearchDataPtr->fldEffSpriteId < MAX_SPRITES
+     && gSprites[sDexNavSearchDataPtr->fldEffSpriteId].inUse
+     && gSprites[sDexNavSearchDataPtr->fldEffSpriteId].template == fieldEffectTemplate)
+        FieldEffectStop(&gSprites[sDexNavSearchDataPtr->fldEffSpriteId], sDexNavSearchDataPtr->fldEffId);
+    else
+        FieldEffectActiveListRemove(sDexNavSearchDataPtr->fldEffId);
+
     FREE_AND_SET_NULL(sDexNavSearchDataPtr);
     FlagClear(DN_FLAG_SEARCHING);
 }
@@ -1003,18 +1072,10 @@ static void RevealHiddenMon(void)
     u16 species = sDexNavSearchDataPtr->species;
 
     // remove owned icon if it exists
-    if (sDexNavSearchDataPtr->ownedIconSpriteId != MAX_SPRITES)
-    {
-        DestroySprite(&gSprites[sDexNavSearchDataPtr->ownedIconSpriteId]);
-        sDexNavSearchDataPtr->ownedIconSpriteId = MAX_SPRITES;
-    }
+    TryDestroyDexNavSprite(&sDexNavSearchDataPtr->ownedIconSpriteId);
 
     // remove exclamation if it exists
-    if (sDexNavSearchDataPtr->exclamationSpriteId != MAX_SPRITES)
-    {
-        DestroySprite(&gSprites[sDexNavSearchDataPtr->exclamationSpriteId]);
-        sDexNavSearchDataPtr->exclamationSpriteId = MAX_SPRITES;
-    }
+    TryDestroyDexNavSprite(&sDexNavSearchDataPtr->exclamationSpriteId);
 
 
     if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN))
@@ -1024,11 +1085,14 @@ static void RevealHiddenMon(void)
         //if not seen, hide name and whiteout mon
         DrawSearchWindow(species, sDexNavSearchDataPtr->potential, TRUE);
         DrawDexNavSearchMonIcon(species, &sDexNavSearchDataPtr->iconSpriteId, FALSE);
-        // whiteout icon
-        index = gSprites[sDexNavSearchDataPtr->iconSpriteId].oam.paletteNum;
-        CpuCopy16(&gPlttBufferUnfaded[OBJ_PLTT_ID(index)], sDexNavSearchDataPtr->palBuffer, 32);
-        TintPalette_CustomTone(sDexNavSearchDataPtr->palBuffer, 16, 510, 510, 510);
-        LoadPalette(sDexNavSearchDataPtr->palBuffer, OBJ_PLTT_ID(index), PLTT_SIZE_4BPP);
+        if (sDexNavSearchDataPtr->iconSpriteId < MAX_SPRITES)
+        {
+            // whiteout icon
+            index = gSprites[sDexNavSearchDataPtr->iconSpriteId].oam.paletteNum;
+            CpuCopy16(&gPlttBufferUnfaded[OBJ_PLTT_ID(index)], sDexNavSearchDataPtr->palBuffer, 32);
+            TintPalette_CustomTone(sDexNavSearchDataPtr->palBuffer, 16, 510, 510, 510);
+            LoadPalette(sDexNavSearchDataPtr->palBuffer, OBJ_PLTT_ID(index), PLTT_SIZE_4BPP);
+        }
     }
     else
     {
@@ -1042,8 +1106,13 @@ static void RevealHiddenMon(void)
 
 bool32 OnStep_DexNavSearch(void)
 {
-    if (!FlagGet(DN_FLAG_SEARCHING))
+    if (sDexNavSearchDataPtr == NULL)
         return FALSE;
+    if (!FlagGet(DN_FLAG_SEARCHING))
+    {
+        EndDexNavSearch();
+        return FALSE;
+    }
 
     u32 frameCount = gMain.vblankCounter1 - sDexNavSearchDataPtr->startingTime;
     DexNavProximityUpdate();
@@ -2579,6 +2648,9 @@ bool32 TryFindHiddenPokemon(void)
             return FALSE;
 
         sDexNavSearchDataPtr = AllocZeroed(sizeof(struct DexNavSearch));
+        if (sDexNavSearchDataPtr == NULL)
+            return FALSE;
+
         FlagSet(DN_FLAG_SEARCHING);
         // init search data
         sDexNavSearchDataPtr->isHiddenMon = isHiddenMon;
@@ -2607,7 +2679,8 @@ bool32 TryFindHiddenPokemon(void)
         gFieldEffectArguments[2] = gSprites[gPlayerAvatar.spriteId].subpriority - 1;
         gFieldEffectArguments[3] = 2;
         ObjectEventGetLocalIdAndMap(&gObjectEvents[gPlayerAvatar.objectEventId], &gFieldEffectArguments[0], &gFieldEffectArguments[1], &gFieldEffectArguments[2]);
-        FieldEffectStart(FLDEFF_EXCLAMATION_MARK_ICON);
+        if (HasFreeSpriteSlot())
+            FieldEffectStart(FLDEFF_EXCLAMATION_MARK_ICON);
 
         PlayCry_Script(species, 0);
         SetUpDexNavSearch();
@@ -2627,7 +2700,7 @@ static void DrawSearchIcon(void)
     spriteSheet.size = 0x200;
     spriteSheet.tag = SELECTION_CURSOR_TAG;
     LoadCompressedSpriteSheet(&spriteSheet);
-    sDexNavSearchDataPtr->iconSpriteId = CreateSprite(&sSearchIconSpriteTemplate, 18, GetSearchWindowY() + 12, 0);
+    sDexNavSearchDataPtr->iconSpriteId = CreateSpriteUnchecked(&sSearchIconSpriteTemplate, 18, GetSearchWindowY() + 12, 0);
 }
 
 // the initial hidden icon window ONLY shows search icon, ??? instead of name, and the search level (and pokeball icon if owned)
@@ -2652,10 +2725,10 @@ static void DexNavDrawHiddenIcons(void)
     DrawSearchIcon();
 
     if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT))
-        sDexNavSearchDataPtr->ownedIconSpriteId = CreateSprite(&sOwnedIconTemplate, SPECIES_ICON_X + 6, GetSearchWindowY() + 2, 0);
+        sDexNavSearchDataPtr->ownedIconSpriteId = CreateSpriteUnchecked(&sOwnedIconTemplate, SPECIES_ICON_X + 6, GetSearchWindowY() + 2, 0);
 
     if (sDexNavSearchDataPtr->isHiddenMon)
-        sDexNavSearchDataPtr->exclamationSpriteId = CreateSprite(&sHiddenMonIconTemplate, SPECIES_ICON_X + 34, GetSearchWindowY() + 8, 0);
+        sDexNavSearchDataPtr->exclamationSpriteId = CreateSpriteUnchecked(&sHiddenMonIconTemplate, SPECIES_ICON_X + 34, GetSearchWindowY() + 8, 0);
 }
 
 /////////////////////////

@@ -169,10 +169,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backPicSize = MON_COORDS_SIZE(24, 24),
         .backPicYOffset = 20,
         .palette = gMonPalette_Egg,
-        .shinyPalette = gMonPalette_Egg,
+        .shinyPalette = gMonShinyPalette_Egg,
         .iconSprite = gMonIcon_Egg,
         .iconPalIndex = 1,
         .iconPalette = gMonIconPalette_Egg,
+        .shinyIconPalette = gMonShinyIconPalette_Egg,
     },
 
     /* You may add any custom species below this point based on the following structure: */

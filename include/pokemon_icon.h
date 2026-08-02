@@ -25,6 +25,7 @@ const u16 *GetIconPaletteIsEgg(u32 species, bool32 isShiny, u32 personality, boo
 const u32 GetIconPalTag(u32 species, bool32 isShiny);
 u32 FindFreeIconPaletteSlot(u16 tag);
 u8 CreateMonIcon(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u32 personality);
+u8 CreateMonIconUnchecked(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u32 personality);
 u8 CreateMonIconNoPalette(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u32 personality);
 u8 CreateMonIcon2(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, bool32 isShiny, u32 personality, bool32 isEgg);
 u8 CreateMonIcon3(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u32 personality, u8 paletteNum, bool32 isEgg);

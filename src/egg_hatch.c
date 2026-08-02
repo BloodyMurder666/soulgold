@@ -83,7 +83,8 @@ static void CreateEggShardSprite(u8, u8, s16, s16, s16, u8);
 
 static struct EggHatchData *sEggHatchData;
 
-static const u16 sEggPalette[]  = INCBIN_U16("graphics/pokemon/egg/normal.gbapal");
+static const u16 sEggPalette[] = INCBIN_U16("graphics/pokemon/egg/normal.gbapal");
+static const u16 sEggShinyHatchPalette[] = INCBIN_U16("graphics/pokemon/egg/hatch_shiny.gbapal");
 static const u8 sEggHatchTiles[] = INCBIN_U8("graphics/pokemon/egg/hatch.4bpp");
 static const u8 sEggShardTiles[] = INCBIN_U8("graphics/pokemon/egg/shard.4bpp");
 
@@ -160,6 +161,12 @@ static const struct SpriteSheet sEggShards_Sheet =
 static const struct SpritePalette sEgg_SpritePalette =
 {
     .data = sEggPalette,
+    .tag = PALTAG_EGG
+};
+
+static const struct SpritePalette sEggShinyHatch_SpritePalette =
+{
+    .data = sEggShinyHatchPalette,
     .tag = PALTAG_EGG
 };
 
@@ -536,10 +543,19 @@ static void CB2_LoadEggHatch(void)
     case 3:
     {
         u32 species = GetMonData(&gPlayerParty[sEggHatchData->eggPartyId], MON_DATA_SPECIES);
+        bool32 isShiny = GetMonData(&gPlayerParty[sEggHatchData->eggPartyId], MON_DATA_IS_SHINY);
+
         if (gSpeciesInfo[species].eggId != EGG_ID_NONE)
         {
-            u32 *tempSprite = malloc_and_decompress(gEggDatas[gSpeciesInfo[species].eggId].eggHatchGfx, NULL);
+            const struct EggData *eggData = &gEggDatas[gSpeciesInfo[species].eggId];
+            const u16 *hatchPal = eggData->eggHatchPal;
+            u32 *tempSprite;
             struct SpriteSheet tempSheet;
+
+            if (isShiny && eggData->eggShinyHatchPal != NULL)
+                hatchPal = eggData->eggShinyHatchPal;
+
+            tempSprite = malloc_and_decompress(eggData->eggHatchGfx, NULL);
             tempSheet.data = tempSprite;
             tempSheet.size = 2048;
             tempSheet.tag = GFXTAG_EGG;
@@ -547,12 +563,12 @@ static void CB2_LoadEggHatch(void)
             Free(tempSprite);
 
             struct SpritePalette tempPal;
-            tempPal.data = gEggDatas[gSpeciesInfo[species].eggId].eggHatchPal;
+            tempPal.data = hatchPal;
             tempPal.tag = PALTAG_EGG;
             LoadSpritePalette(&tempPal);
-            if (gEggDatas[gSpeciesInfo[species].eggId].eggShardsGfx != NULL)
+            if (eggData->eggShardsGfx != NULL)
             {
-                tempSheet.data = gEggDatas[gSpeciesInfo[species].eggId].eggShardsGfx;
+                tempSheet.data = eggData->eggShardsGfx;
                 tempSheet.size = 128;
                 tempSheet.tag = GFXTAG_EGG_SHARD;
                 LoadSpriteSheet(&tempSheet);
@@ -566,7 +582,7 @@ static void CB2_LoadEggHatch(void)
         {
             LoadSpriteSheet(&sEggHatch_Sheet);
             LoadSpriteSheet(&sEggShards_Sheet);
-            LoadSpritePalette(&sEgg_SpritePalette);
+            LoadSpritePalette(isShiny ? &sEggShinyHatch_SpritePalette : &sEgg_SpritePalette);
         }
         gMain.state++;
         break;

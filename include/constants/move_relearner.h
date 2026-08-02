@@ -2,9 +2,9 @@
 #define GUARD_CONSTANTS_MOVE_RELEARNER_H
 
 // Max number of moves shown by the move relearner.
-// Increased from 25 to 60 so Mew can display all TMs/HMs.
-// If you plan on adding more TMs, increase this number too.
-#define MAX_RELEARNER_MOVES 60
+// This must fit the largest move source; compile-time checks in move_relearner.c
+// ensure the TM/HM and tutor pools cannot outgrow it unnoticed.
+#define MAX_RELEARNER_MOVES 110
 
 // Move Relearner menu change constants
 enum MoveRelearnerStates

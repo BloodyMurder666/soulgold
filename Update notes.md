@@ -1,4 +1,23 @@
 Update notes:
+2.8.2026
+- New Mythical: Mew, after obtaining 8 badges, player can find Blaine in the Olivine Port who will fight the player (Recommended level: 60). After beating him, he will let you sail to Faraway Island filled with Fossil Pokémon and Mew.
+- New Feature: Eggs have a different color on the dots if the Pokémon inside is shiny!
+- New Feature: You can now fly from Region Map as long as you own HM02 Fly and have the necessary badge to use it. No need to have a Pokémon that can learn Fly in the party!
+- Protean has Gen 8 behaviour now (meaning it now allows multiple type changes per battle).
+- Greninja learns Fury Cutter from level-up relearning and Aqua Cutter + Cross Poison from tutor move list to benefit more from Mega's Sharpness.
+- Feraligatr learns Fishious Rend.
+- Steelix learns Head Smash.
+- Clawitzer learns Origin Pulse.
+- Moltres in Victory Road is now a non-boss legendary.
+- Reduced the amount of money lost when whiting out.
+- Reduced the Egg hatching and receiving trophy requirement from 100 -> 30.
+- Fixed Dexnav crash when player would repeatedly cancel the search by opening pause menu and restarting the search.
+- Fixed emulator closing when hovering over "Close Bag" button after a boss battle.
+- Title Defense respawns Sudowoodo.
+- Fixed Southern Sidepath map connections being overlapped.
+- Fixed Regirock chamber having "Abandoned Ship" map header.
+- Elevation fixes.
+
 1.8.2026
 - Supereffective berries are sold in the Goldenrod Flower Shop after getting Jasmine's badge.
 - Changed the Trainer Card star requirements to following:

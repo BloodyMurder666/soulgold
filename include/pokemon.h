@@ -462,10 +462,14 @@ struct SpeciesInfo /*0xC4*/
 struct EggData
 {
     const u8 *eggIcon;
+    const u16 *eggIconPalette;
+    const u16 *eggShinyIconPalette;
     const u32 *eggSprite;
     const u16 *eggPalette;
+    const u16 *eggShinyPalette;
     const u32 *eggHatchGfx;
     const u16 *eggHatchPal;
+    const u16 *eggShinyHatchPal;
     const u32 *eggShardsGfx;
     const u8 eggIconPalIndex;
 };
