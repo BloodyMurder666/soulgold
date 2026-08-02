@@ -27,6 +27,12 @@ IMPORTANT_ITEM_LOCATION_OVERRIDES: dict[str, list[ItemLocation]] = {
     "ITEM_BONDSTONE": [
         {"map": "Given by Elm during the story", "source": ""},
     ],
+    "ITEM_GALARICA_CUFF": [
+        {"map": "Azalea Town Mart", "source": "after 4 badges"},
+    ],
+    "ITEM_GALARICA_WREATH": [
+        {"map": "Azalea Town Mart", "source": "after 4 badges"},
+    ],
 }
 
 

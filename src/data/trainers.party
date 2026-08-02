@@ -2310,7 +2310,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Ice Spinner
 - Thunder Punch
 
-Staraptor @ Normalite
+Staraptor @ Flyingite
 Level: 69
 EVs: 252 Atk / 252 Spe
 Ability: Intimidate
@@ -2379,7 +2379,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Ice Spinner
 - Thunder Punch
 
-Staraptor @ Normalite
+Staraptor @ Flyingite
 Level: 85
 EVs: 100 Atk / 100 Spe
 Ability: Intimidate
@@ -2449,7 +2449,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Ice Spinner
 - Thunder Punch
 
-Staraptor @ Normalite
+Staraptor @ Flyingite
 Level: 85
 EVs: 252 Atk / 252 Spe
 Ability: Intimidate
@@ -6146,7 +6146,7 @@ EVs: 100 HP / 100 Atk
 - Knock Off
 - Pain Split
 
-Scolipede @ Bugtite
+Scolipede @ Poisontite
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Speed Boost
@@ -6214,7 +6214,7 @@ EVs: 252 HP / 252 Atk
 - Knock Off
 - Pain Split
 
-Scolipede @ Bugtite
+Scolipede @ Poisontite
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Speed Boost
@@ -6344,7 +6344,7 @@ EVs: 252 HP / 252 Atk
 - Knock Off
 - Pain Split
 
-Scolipede @ Bugtite
+Scolipede @ Poisontite
 Level: 69
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Speed Boost
@@ -13156,7 +13156,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Brave Bird
 - U-Turn
 
-Pidgeot @ Normalite
+Pidgeot @ Flyingite
 Level: 76
 Ability: Keen Eye
 EVs: 252 SpA / 252 Spe
