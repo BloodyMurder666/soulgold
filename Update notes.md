@@ -1,4 +1,8 @@
 Update notes:
+3.8.2026
+- Fixed safari zone remaining ball text display.
+
+
 2.8.2026
 - New Mythical: Mew, after obtaining 8 badges, player can find Blaine in the Olivine Port who will fight the player (Recommended level: 60). After beating him, he will let you sail to Faraway Island filled with Fossil Pokémon and Mew.
 - New Feature: Eggs have a different color on the dots if the Pokémon inside is shiny!
