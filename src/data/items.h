@@ -14148,7 +14148,7 @@ const struct ItemInfo gItemsInfo[] =
         .description = COMPOUND_STRING(
     "The power doubles\n"
     "if the user moves\n"
-    "mafter the target."),
+    "after the target."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .heldSlot = 0,

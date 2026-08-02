@@ -25,6 +25,18 @@ SINGLE_BATTLE_TEST("Eternal Floette retains its form after battle ends")
     }
 }
 
+SINGLE_BATTLE_TEST("Low Key Toxtricity retains its form after battle ends")
+{
+    GIVEN {
+        PLAYER(SPECIES_TOXTRICITY_LOW_KEY);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_CELEBRATE); }
+    } THEN {
+        EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), SPECIES_TOXTRICITY_LOW_KEY);
+    }
+}
+
 SINGLE_BATTLE_TEST("Zacian returns its Hero Form upon battle end")
 {
     GIVEN {
