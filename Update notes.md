@@ -3,11 +3,13 @@ Update notes:
 - New Mythical: Mew, after obtaining 8 badges, player can find Blaine in the Olivine Port who will fight the player (Recommended level: 60). After beating him, he will let you sail to Faraway Island filled with Fossil Pokémon and Mew.
 - New Feature: Eggs have a different color on the dots if the Pokémon inside is shiny!
 - New Feature: You can now fly from Region Map as long as you own HM02 Fly and have the necessary badge to use it. No need to have a Pokémon that can learn Fly in the party!
+- Traded Pokémon from NPCs can now be shiny. The chance is slightly higher than regular shiny rate.
 - Protean has Gen 8 behaviour now (meaning it now allows multiple type changes per battle).
-- Greninja learns Fury Cutter from level-up relearning and Aqua Cutter + Cross Poison from tutor move list to benefit more from Mega's Sharpness.
+- Greninja learns Fury Cutter and Air Cutter from level-up relearning, and Aqua Cutter + Cross Poison from tutor move list to benefit more from Mega's Sharpness.
 - Feraligatr learns Fishious Rend.
 - Steelix learns Head Smash.
 - Clawitzer learns Origin Pulse.
+- Stantler's missing Psyshield Bash in the learnset is now fixed.
 - Moltres in Victory Road is now a non-boss legendary.
 - Reduced the amount of money lost when whiting out.
 - Reduced the Egg hatching and receiving trophy requirement from 100 -> 30.

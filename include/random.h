@@ -263,6 +263,7 @@ enum RandomTag
     RNG_HIDDEN_GROTTO_ITEM,
     RNG_HIDDEN_GROTTO_HIDDEN_ITEM,
     RNG_HIDDEN_GROTTO_IVS,
+    RNG_IN_GAME_TRADE_SHINY,
 };
 
 #define RandomWeighted(tag, ...) \

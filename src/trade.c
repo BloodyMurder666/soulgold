@@ -47,6 +47,7 @@
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/party_menu.h"
+#include "constants/pokemon.h"
 #include "constants/region_map_sections.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
@@ -4574,10 +4575,13 @@ static void CreateInGameTradePokemonInternal(u8 whichPlayerMon, u8 whichInGameTr
 
     struct Mail mail;
     metloc_u16_t metLocation = METLOC_IN_GAME_TRADE;
+    bool8 isShiny;
     u8 mailNum;
     struct Pokemon *pokemon = &gEnemyParty[0];
 
     CreateMon(pokemon, inGameTrade->species, level, inGameTrade->personality, OTID_STRUCT_PRESET(inGameTrade->otId));
+    isShiny = RandomUniform(RNG_IN_GAME_TRADE_SHINY, 0, MAX_u16) < RELEASE_SHINY_ODDS * 12;
+    SetMonData(pokemon, MON_DATA_IS_SHINY, &isShiny);
     GiveMonInitialMoveset(pokemon);
 
     SetMonData(pokemon, MON_DATA_HP_IV, &inGameTrade->ivs[0]);

@@ -36,3 +36,21 @@ SINGLE_BATTLE_TEST("Unstoppable does not block regular confusion")
     }
 }
 
+SINGLE_BATTLE_TEST("Unstoppable does not prevent Berserk Gene confusion")
+{
+    GIVEN {
+        ASSUME(gItemsInfo[ITEM_BERSERK_GENE].holdEffect == HOLD_EFFECT_BERSERK_GENE);
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_UNSTOPPABLE); Item(ITEM_BERSERK_GENE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_CELEBRATE, WITH_RNG(RNG_CONFUSION, FALSE)); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Using Berserk Gene, the Attack of Wobbuffet sharply rose!");
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_CONFUSION, player);
+        MESSAGE("Wobbuffet became confused!");
+    } THEN {
+        EXPECT(player->volatiles.confusionTurns > 0);
+        EXPECT(player->volatiles.infiniteConfusion);
+    }
+}

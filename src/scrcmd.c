@@ -3877,7 +3877,8 @@ static const u8 sOddEggShinyNameList[][PLAYER_NAME_LENGTH + 1] = {
     _("Pate"),
     _("Hilda"),
     _("Athena"),
-    _("Bai")
+    _("Bai"),
+    _("Melia")
 };
 
 static bool8 IsPlayerNameInShinyList(void)
