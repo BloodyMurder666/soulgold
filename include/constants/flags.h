@@ -64,7 +64,7 @@
 #define FLAG_EV_MAN_FIRSTIME                    0x32
 #define FLAG_MODEST_MINT_LILYCOVE               0x33
 #define FLAG_TIMID_MINT_MAUVILLE                0x34 
-#define FLAG_HELIX_FOSSIL_ALTERING              0x35 
+#define FLAG_CAUGHT_MELOETTA                    0x35 
 #define FLAG_HIDE_ZERAORA                       0x36
 #define FLAG_CAUGHT_ZERAORA                     0x37
 #define FLAG_WALLACE_REMATCH                    0x38 //Elite Four Rematch 5, Champion

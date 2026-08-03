@@ -15,7 +15,20 @@ EcruteakCity_Theater_MapScripts::
 EcruteakCity_Theater_OnTransition::
 	call_if_eq VAR_ECRUTEAK_CITY_THEATER, 1, EcruteakCity_Theater_MapScript_SetRocketSceneActive
 	call_if_eq VAR_ECRUTEAK_CITY_THEATER, 7, EcruteakCity_Theater_MapScript_SetKimonoMovement
+	goto_if_set FLAG_IS_CHAMPION, EcruteakTheater_ShowOrHideMeloetta
+	setflag FLAG_HIDE_MELOETTA
 	end
+
+EcruteakTheater_ShowOrHideMeloetta::
+	goto_if_unset FLAG_CAUGHT_MELOETTA, EcruteakTheater_ShowMeloetta
+	goto EcruteakTheater_HideMeloetta
+
+EcruteakTheater_ShowMeloetta::
+	clearflag FLAG_HIDE_MELOETTA
+	return
+EcruteakTheater_HideMeloetta::
+	setflag FLAG_HIDE_MELOETTA
+	return
 
 EcruteakCity_Theater_MapScript_SetRocketSceneActive::
 	setobjectxyperm LOCALID_ECRUTEAK_ZUKI, 10, 2
@@ -894,6 +907,20 @@ EcruteakCity_Theater_EventScript_Hooh::
 	release
 	end
 
+EcruteakCity_Theater_MeloettaEncounter::
+	lock
+	faceplayer
+	legendaryencounter SPECIES_MELOETTA, 65, LOCALID_MELOETTA, FLAG_HIDE_MELOETTA
+	compare VAR_RESULT, B_OUTCOME_CAUGHT
+	goto_if_eq EcruteakTheater_CaughtMeloetta
+	release
+	end
+
+EcruteakTheater_CaughtMeloetta::
+	setflag FLAG_CAUGHT_MELOETTA
+	release
+	end
+
 EcruteakCity_Theater_Movement_Sister:
 	walk_fast_up
 	walk_fast_up
@@ -1101,4 +1128,3 @@ EcruteakCity_Theater_Text_ZukiAfterAll:
 EcruteakCity_Theater_Text_KimonoGirlsBeforeBattle:
 	.string "Talk to Zuki in the middle\n"
 	.string "when you are ready.$"
-

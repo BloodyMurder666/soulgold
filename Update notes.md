@@ -1,5 +1,7 @@
 Update notes:
 3.8.2026
+New Mythical: Meloetta: After becoming a Champion, you can find this dancer Pokémon in the Ecruteak Theater.
+
 - Fixed safari zone remaining ball text display.
 
 
