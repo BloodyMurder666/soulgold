@@ -2116,6 +2116,77 @@ ElmIntro::
 	return
 
 
+NewBarkTown_Lab_EventScript_ArtifactOfChaos::
+# 1121 "data/maps/NewBarkTown_Lab/scripts.pory"
+	lock
+# 1122 "data/maps/NewBarkTown_Lab/scripts.pory"
+	goto_if_set FLAG_ALL_INNATES_UNLOCKED, NewBarkTown_Lab_EventScript_ArtifactOfChaos_2
+# 1146 "data/maps/NewBarkTown_Lab/scripts.pory"
+	msgbox NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_4
+# 1151 "data/maps/NewBarkTown_Lab/scripts.pory"
+	msgbox NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_5
+# 1157 "data/maps/NewBarkTown_Lab/scripts.pory"
+	msgbox NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_6, MSGBOX_YESNO
+# 1163 "data/maps/NewBarkTown_Lab/scripts.pory"
+	compare VAR_RESULT, YES
+	goto_if_eq NewBarkTown_Lab_EventScript_ArtifactOfChaos_8
+# 1176 "data/maps/NewBarkTown_Lab/scripts.pory"
+	msgbox NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_8
+NewBarkTown_Lab_EventScript_ArtifactOfChaos_1:
+# 1180 "data/maps/NewBarkTown_Lab/scripts.pory"
+	closemessage
+# 1181 "data/maps/NewBarkTown_Lab/scripts.pory"
+	release
+	end
+
+NewBarkTown_Lab_EventScript_ArtifactOfChaos_2:
+# 1123 "data/maps/NewBarkTown_Lab/scripts.pory"
+	msgbox NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_0
+# 1127 "data/maps/NewBarkTown_Lab/scripts.pory"
+	msgbox NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_1, MSGBOX_YESNO
+# 1128 "data/maps/NewBarkTown_Lab/scripts.pory"
+	compare VAR_RESULT, YES
+	goto_if_eq NewBarkTown_Lab_EventScript_ArtifactOfChaos_5
+# 1142 "data/maps/NewBarkTown_Lab/scripts.pory"
+	msgbox NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_3
+	goto NewBarkTown_Lab_EventScript_ArtifactOfChaos_1
+
+NewBarkTown_Lab_EventScript_ArtifactOfChaos_5:
+# 1129 "data/maps/NewBarkTown_Lab/scripts.pory"
+	playse SE_PC_OFF
+# 1130 "data/maps/NewBarkTown_Lab/scripts.pory"
+	waitse
+# 1131 "data/maps/NewBarkTown_Lab/scripts.pory"
+	clearflag FLAG_ALL_INNATES_UNLOCKED
+# 1132 "data/maps/NewBarkTown_Lab/scripts.pory"
+	compare VAR_NEWBARKTOWN_LABSTATE, 11
+	goto_if_lt NewBarkTown_Lab_EventScript_ArtifactOfChaos_12
+# 1135 "data/maps/NewBarkTown_Lab/scripts.pory"
+	setflag FLAG_POSTGAME_FEATURES
+NewBarkTown_Lab_EventScript_ArtifactOfChaos_11:
+# 1137 "data/maps/NewBarkTown_Lab/scripts.pory"
+	msgbox NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_2
+	goto NewBarkTown_Lab_EventScript_ArtifactOfChaos_1
+
+NewBarkTown_Lab_EventScript_ArtifactOfChaos_8:
+# 1164 "data/maps/NewBarkTown_Lab/scripts.pory"
+	playse SE_SWITCH
+# 1165 "data/maps/NewBarkTown_Lab/scripts.pory"
+	waitse
+# 1166 "data/maps/NewBarkTown_Lab/scripts.pory"
+	setflag FLAG_ALL_INNATES_UNLOCKED
+# 1167 "data/maps/NewBarkTown_Lab/scripts.pory"
+	clearflag FLAG_REPLAY_NO_INNATES
+# 1168 "data/maps/NewBarkTown_Lab/scripts.pory"
+	msgbox NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_7
+	goto NewBarkTown_Lab_EventScript_ArtifactOfChaos_1
+
+NewBarkTown_Lab_EventScript_ArtifactOfChaos_12:
+# 1133 "data/maps/NewBarkTown_Lab/scripts.pory"
+	clearflag FLAG_POSTGAME_FEATURES
+	goto NewBarkTown_Lab_EventScript_ArtifactOfChaos_11
+
+
 NewBarkTown_Lab_GiveStarterMega_Text_0:
 # 1027 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "Oh, and you got a Mega Ring from \n"
@@ -2189,3 +2260,60 @@ ElmIntro_Text_0:
 	.string "So!\p"
 	.string "I'd like you to raise a\n"
 	.string "Pokémon that I recently caught.$"
+
+NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_0:
+# 1123 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "The Artifact of Chaos is humming.\p"
+	.string "All innate abilities are currently\n"
+	.string "active.$"
+
+NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_1:
+# 1127 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "Deactivate the Artifact?$"
+
+NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_2:
+# 1137 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "The glow from the Artifact fades.\p"
+	.string "Innate abilities will now unlock at\n"
+	.string "their intended levels again.$"
+
+NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_3:
+# 1142 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "The Artifact continues humming.\n"
+	.string "Hope Elm hasn't noticed yet!$"
+
+NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_4:
+# 1146 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "Amidst the books is Elm's very own\n"
+	.string "Artifact of Chaos.\p"
+	.string "There's a small label on the side:\n"
+	.string "DO NOT TOUCH.$"
+
+NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_5:
+# 1151 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "Important! Activating this Artifact\n"
+	.string "unlocks all innate abilities,\l"
+	.string "regardless of a Pokémon's level.\p"
+	.string "It also lets you inspect enemy\n"
+	.string "innates in battle by pressing L.$"
+
+NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_6:
+# 1157 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "This is not the intended way to play\n"
+	.string "the game and will not be balanced\l"
+	.string "at all.\p"
+	.string "If you understand and still wish to\n"
+	.string "activate it, choose Yes.$"
+
+NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_7:
+# 1168 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "{PLAYER} tapped the Artifact.\p"
+	.string "Game balance quietly\n"
+	.string "leaves the building.\p"
+	.string "All innates are now active. Press L\n"
+	.string "in battle to inspect enemy innates.$"
+
+NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_8:
+# 1176 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "{PLAYER} left the Artifact alone.\n"
+	.string "Chaos shall not win today.$"

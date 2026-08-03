@@ -249,7 +249,7 @@ BattleFrontier_BattleTowerBattleRoom_EventScript_BattleAnabelSilver::
 	goto BattleFrontier_BattleTower_EventScript_WarpToLobbyLost
 
 BattleFrontier_BattleTowerBattleRoom_EventScript_DefeatedAnabelSilver::
-	call BattleFrontier_EventScript_IncrementWinStreak
+	call BattleFrontier_BattleTowerBattleRoom_EventScript_RecordBrainWin
 	frontier_getsymbols
 	goto_if_ne VAR_RESULT, 0, BattleFrontier_BattleTowerBattleRoom_EventScript_WarpToLobbyWon
 	msgbox BattleFrontier_BattleTowerBattleRoom_Text_AnabelTalentShallBeRecognized, MSGBOX_DEFAULT
@@ -273,7 +273,7 @@ BattleFrontier_BattleTowerBattleRoom_EventScript_BattleAnabelGold::
 	goto BattleFrontier_BattleTower_EventScript_WarpToLobbyLost
 
 BattleFrontier_BattleTowerBattleRoom_EventScript_DefeatedAnabelGold::
-	call BattleFrontier_EventScript_IncrementWinStreak
+	call BattleFrontier_BattleTowerBattleRoom_EventScript_RecordBrainWin
 	frontier_getsymbols
 	goto_if_eq VAR_RESULT, 2, BattleFrontier_BattleTowerBattleRoom_EventScript_WarpToLobbyWon
 	msgbox BattleFrontier_BattleTowerBattleRoom_Text_AnabelCongratsYourPassPlease, MSGBOX_DEFAULT
@@ -557,6 +557,11 @@ BattleFrontier_BattleTowerBattleRoom_Text_WishICouldBattleYouAgain:
 	.string "I have never had a Pokémon battle\n"
 	.string "so enjoyable before…\p"
 	.string "I wish I could battle with you again…$"
+
+BattleFrontier_BattleTowerBattleRoom_EventScript_RecordBrainWin::
+	call BattleFrontier_EventScript_IncrementWinStreak
+	tower_setbattlewon
+	return
 
 `
 

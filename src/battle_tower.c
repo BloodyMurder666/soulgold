@@ -832,6 +832,9 @@ static void SetTowerData(void)
 
 static void SetTowerBattleWon(void)
 {
+    enum FrontierLevelMode lvlMode = gSaveBlock2Ptr->frontier.lvlMode;
+    u32 battleMode = VarGet(VAR_FRONTIER_BATTLE_MODE);
+
 #if FREE_BATTLE_TOWER_E_READER == FALSE
     if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_EREADER)
         ClearEReaderTrainer(&gSaveBlock2Ptr->frontier.ereaderTrainer);
@@ -840,7 +843,7 @@ static void SetTowerBattleWon(void)
     if (gSaveBlock2Ptr->frontier.towerNumWins < 0xFFFF)
         gSaveBlock2Ptr->frontier.towerNumWins++;
 
-    gSaveBlock2Ptr->frontier.curChallengeBattleNum++;
+    gSaveBlock2Ptr->frontier.curChallengeBattleNum = GetCurrentBattleTowerWinStreak(lvlMode, battleMode) % FRONTIER_STAGES_PER_CHALLENGE;
     SaveCurrentWinStreak();
     Achievement_CheckAll();
     gSpecialVar_Result = gSaveBlock2Ptr->frontier.curChallengeBattleNum;
@@ -926,12 +929,14 @@ static void SetNextTowerOpponent(void)
         u16 id;
         u32 battleMode = VarGet(VAR_FRONTIER_BATTLE_MODE);
         u16 winStreak = GetCurrentFacilityWinStreak();
+        u16 battleNum = winStreak % FRONTIER_STAGES_PER_CHALLENGE;
         u32 challengeNum = winStreak / FRONTIER_STAGES_PER_CHALLENGE;
+        gSaveBlock2Ptr->frontier.curChallengeBattleNum = battleNum;
         SetFacilityPtrsGetLevel();
 
         if (battleMode == FRONTIER_MODE_MULTIS || battleMode == FRONTIER_MODE_LINK_MULTIS)
         {
-            id = gSaveBlock2Ptr->frontier.curChallengeBattleNum;
+            id = battleNum;
             TRAINER_BATTLE_PARAM.opponentA = gSaveBlock2Ptr->frontier.trainerIds[id * 2];
             TRAINER_BATTLE_PARAM.opponentB = gSaveBlock2Ptr->frontier.trainerIds[id * 2 + 1];
             SetBattleFacilityTrainerGfxId(TRAINER_BATTLE_PARAM.opponentA, 0);
@@ -940,29 +945,29 @@ static void SetNextTowerOpponent(void)
         else if (ChooseSpecialBattleTowerTrainer())
         {
             SetBattleFacilityTrainerGfxId(TRAINER_BATTLE_PARAM.opponentA, 0);
-            gSaveBlock2Ptr->frontier.trainerIds[gSaveBlock2Ptr->frontier.curChallengeBattleNum] = TRAINER_BATTLE_PARAM.opponentA;
+            gSaveBlock2Ptr->frontier.trainerIds[battleNum] = TRAINER_BATTLE_PARAM.opponentA;
         }
         else
         {
             s32 i;
             while (1)
             {
-                id = GetRandomScaledFrontierTrainerId(challengeNum, gSaveBlock2Ptr->frontier.curChallengeBattleNum);
+                id = GetRandomScaledFrontierTrainerId(challengeNum, battleNum);
 
                 // Ensure trainer wasn't previously fought in this challenge.
-                for (i = 0; i < gSaveBlock2Ptr->frontier.curChallengeBattleNum; i++)
+                for (i = 0; i < battleNum; i++)
                 {
                     if (gSaveBlock2Ptr->frontier.trainerIds[i] == id)
                         break;
                 }
-                if (i == gSaveBlock2Ptr->frontier.curChallengeBattleNum)
+                if (i == battleNum)
                     break;
             }
 
             TRAINER_BATTLE_PARAM.opponentA = id;
             SetBattleFacilityTrainerGfxId(TRAINER_BATTLE_PARAM.opponentA, 0);
-            if (gSaveBlock2Ptr->frontier.curChallengeBattleNum + 1 < FRONTIER_STAGES_PER_CHALLENGE)
-                gSaveBlock2Ptr->frontier.trainerIds[gSaveBlock2Ptr->frontier.curChallengeBattleNum] = TRAINER_BATTLE_PARAM.opponentA;
+            if (battleNum + 1 < FRONTIER_STAGES_PER_CHALLENGE)
+                gSaveBlock2Ptr->frontier.trainerIds[battleNum] = TRAINER_BATTLE_PARAM.opponentA;
         }
     }
 }
@@ -1143,9 +1148,9 @@ static void SaveTowerChallenge(void)
 {
     enum FrontierLevelMode lvlMode = gSaveBlock2Ptr->frontier.lvlMode;
     u16 battleMode = VarGet(VAR_FRONTIER_BATTLE_MODE);
-    s32 challengeNum = (signed)(gSaveBlock2Ptr->frontier.towerWinStreaks[battleMode][lvlMode] / FRONTIER_STAGES_PER_CHALLENGE);
+    u16 winStreak = gSaveBlock2Ptr->frontier.towerWinStreaks[battleMode][lvlMode];
 
-    if (gSpecialVar_0x8005 == 0 && (challengeNum > 1 || gSaveBlock2Ptr->frontier.curChallengeBattleNum != 0))
+    if (gSpecialVar_0x8005 == 0 && winStreak != 0)
         SaveBattleTowerRecord();
 
     ClearEnemyPartyAfterChallenge();
@@ -1524,7 +1529,8 @@ static void LoadLinkMultiOpponentsData(void)
     s32 trainerId = 0;
     enum FrontierLevelMode lvlMode = gSaveBlock2Ptr->frontier.lvlMode;
     u32 battleMode = VarGet(VAR_FRONTIER_BATTLE_MODE);
-    u32 battleNum = gSaveBlock2Ptr->frontier.curChallengeBattleNum;
+    u32 battleNum = GetCurrentBattleTowerWinStreak(lvlMode, battleMode) % FRONTIER_STAGES_PER_CHALLENGE;
+    gSaveBlock2Ptr->frontier.curChallengeBattleNum = battleNum;
     GetMultiplayerId(); // Yet another pointless function call.
 
     switch (gSpecialVar_Result)

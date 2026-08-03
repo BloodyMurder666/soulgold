@@ -1116,3 +1116,68 @@ script ElmIntro {
 			Pokémon that I recently caught.", MSGBOX_YESNO)
 	return
 }
+
+script NewBarkTown_Lab_EventScript_ArtifactOfChaos {
+	lock
+	if (flag(FLAG_ALL_INNATES_UNLOCKED)) {
+		msgbox("The Artifact of Chaos is humming.
+
+				All innate abilities are currently
+				active.")
+		msgbox("Deactivate the Artifact?", MSGBOX_YESNO)
+		if (var(VAR_RESULT) == YES) {
+			playse(SE_PC_OFF)
+			waitse
+			clearflag(FLAG_ALL_INNATES_UNLOCKED)
+			if (var(VAR_NEWBARKTOWN_LABSTATE) < 11) {
+				clearflag(FLAG_POSTGAME_FEATURES)
+			} else {
+				setflag(FLAG_POSTGAME_FEATURES)
+			}
+			msgbox("The glow from the Artifact fades.
+
+					Innate abilities will now unlock at
+					their intended levels again.")
+		} else {
+			msgbox("The Artifact continues humming.
+					Hope Elm hasn't noticed yet!")
+		}
+	} else {
+		msgbox("Amidst the books is Elm's very own
+				Artifact of Chaos.
+				
+				There's a small label on the side:
+				DO NOT TOUCH.")
+		msgbox("Important! Activating this Artifact
+				unlocks all innate abilities,
+				regardless of a Pokémon's level.
+				
+				It also lets you inspect enemy
+				innates in battle by pressing L.")
+		msgbox("This is not the intended way to play
+				the game and will not be balanced
+				at all.
+				
+				If you understand and still wish to
+				activate it, choose Yes.", MSGBOX_YESNO)
+		if (var(VAR_RESULT) == YES) {
+			playse(SE_SWITCH)
+			waitse
+			setflag(FLAG_ALL_INNATES_UNLOCKED)
+			clearflag(FLAG_REPLAY_NO_INNATES)
+			msgbox("{PLAYER} tapped the Artifact.
+
+					Game balance quietly
+					leaves the building.
+					
+					All innates are now active. Press L
+					in battle to inspect enemy innates.")
+		} else {
+			msgbox("{PLAYER} left the Artifact alone.
+					Chaos shall not win today.")
+		}
+	}
+	closemessage
+	release
+	end
+}

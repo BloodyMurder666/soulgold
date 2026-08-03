@@ -49,7 +49,7 @@ def _title_from_content(content: str, fallback: str) -> tuple[str, str]:
 def _plain_summary(content: str) -> str:
     for block in re.split(r"\n\s*\n", content):
         line = " ".join(part.strip() for part in block.splitlines()).strip()
-        if not line or line.startswith(("#", "!", "```", "- ", "* ", "> ")):
+        if not line or line.startswith(("#", "!", "```", "- ", "* ", "> ")) or line.lower().startswith("[spoiler"):
             continue
         line = re.sub(r"!?\[([^]]+)]\([^)]+\)", r"\1", line)
         line = re.sub(r"[*_`~]", "", line)
@@ -77,6 +77,28 @@ def _validate_image_sizes(path: Path, content: str) -> None:
         if size not in IMAGE_SIZES:
             choices = ", ".join(sorted(IMAGE_SIZES))
             raise ValueError(f"Unknown guide image size '{size}' in {path}; use one of: {choices}")
+
+
+def _validate_spoilers(path: Path, content: str) -> None:
+    open_line: int | None = None
+    in_code = False
+    for line_number, line in enumerate(content.splitlines(), start=1):
+        stripped = line.strip()
+        if stripped.startswith("```"):
+            in_code = not in_code
+            continue
+        if in_code:
+            continue
+        if re.fullmatch(r"\[spoiler(?:=[^\]]+)?\]", stripped, re.I):
+            if open_line is not None:
+                raise ValueError(f"Nested spoiler in {path}:{line_number}; close the spoiler opened on line {open_line} first")
+            open_line = line_number
+        elif re.fullmatch(r"\[/spoiler\]", stripped, re.I):
+            if open_line is None:
+                raise ValueError(f"Closing spoiler without an opening tag in {path}:{line_number}")
+            open_line = None
+    if open_line is not None:
+        raise ValueError(f"Unclosed spoiler in {path}:{open_line}; add [/spoiler]")
 
 
 def _validate_local_targets(path: Path, content: str, guide_paths: set[Path]) -> None:
@@ -125,6 +147,7 @@ def parse_guides() -> list[GuideRow]:
             raise ValueError(f"Duplicate guide slug '{slug}': {slugs[slug]} and {path}")
         slugs[slug] = path
         _validate_image_sizes(path, content)
+        _validate_spoilers(path, content)
         _validate_local_targets(path, content, guide_paths)
 
         guides.append({

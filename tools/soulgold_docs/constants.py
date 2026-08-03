@@ -161,6 +161,25 @@ IMPORTANT_ITEM_POCKETS = {
     "POCKET_BATTLE_ITEMS",
 }
 
+# Useful training consumables live outside the pockets and sort types used by
+# the evolution-item index, so opt them into the Items page explicitly.
+ADDITIONAL_IMPORTANT_ITEMS = {
+    "ITEM_BOTTLE_CAP",
+    "ITEM_GOLD_BOTTLE_CAP",
+    "ITEM_HP_UP",
+    "ITEM_PROTEIN",
+    "ITEM_IRON",
+    "ITEM_CALCIUM",
+    "ITEM_ZINC",
+    "ITEM_CARBOS",
+    "ITEM_HP_UP_EX",
+    "ITEM_PROTEIN_EX",
+    "ITEM_IRON_EX",
+    "ITEM_CALCIUM_EX",
+    "ITEM_ZINC_EX",
+    "ITEM_CARBOS_EX",
+}
+
 EXCLUDED_TRAINER_MAP_GROUPS = {
     "gMapGroup_IndoorPallet",
     "gMapGroup_IndoorViridian",

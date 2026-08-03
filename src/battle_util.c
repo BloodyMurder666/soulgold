@@ -6306,12 +6306,10 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
                 {
                     if (GetConfig(B_BATTLE_BOND) < GEN_9 && gBattleMons[battler].species == SPECIES_GRENINJA_BATTLE_BOND)
                     {
-                        // TODO: Convert this to a proper FORM_CHANGE type.
                         gLastUsedAbility = ABILITY_BATTLE_BOND;
                         GetBattlerPartyState(battler)->battleBondBoost = TRUE;
                         PREPARE_SPECIES_BUFFER(gBattleTextBuff1, gBattleMons[battler].species);
-                        GetBattlerPartyState(battler)->changedSpecies = gBattleMons[battler].species;
-                        gBattleMons[battler].species = SPECIES_GRENINJA_ASH;
+                        TryBattleFormChange(battler, FORM_CHANGE_BATTLE_BOND);
                         PushTraitStack(battler, ABILITY_BATTLE_BOND);
                         BattleScriptCall(BattleScript_BattleBondActivatesOnMoveEndAttacker);
                         effect = TRUE;

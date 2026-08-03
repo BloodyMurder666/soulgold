@@ -103,6 +103,34 @@ SINGLE_BATTLE_TEST("Battle Bond transforms opponent's Greninja - Singles")
     }
 }
 
+SINGLE_BATTLE_TEST("Battle Bond recalculates Ash-Greninja stats")
+{
+    GIVEN {
+        WITH_CONFIG(B_BATTLE_BOND, GEN_8);
+        PLAYER(SPECIES_GRENINJA_BATTLE_BOND) {
+            Level(50);
+            Nature(NATURE_MODEST);
+            SpAttackIV(31);
+        }
+        SetMonData(&PLAYER_PARTY[0], MON_DATA_HIDDEN_NATURE, (u8[]){NATURE_MODEST});
+        SetMonData(&PLAYER_PARTY[0], MON_DATA_SPATK_EV, (u8[]){252});
+        CalculateMonStats(&PLAYER_PARTY[0]);
+        OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_WATER_GUN); SEND_OUT(opponent, 1); }
+    } SCENE {
+        HP_BAR(opponent);
+        MESSAGE("The opposing Wobbuffet fainted!");
+        ABILITY_POPUP(player, ABILITY_BATTLE_BOND);
+        MESSAGE("Greninja became fully charged due to its bond with its trainer!");
+        MESSAGE("Greninja became Ash-Greninja!");
+    } THEN {
+        EXPECT_EQ(player->species, SPECIES_GRENINJA_ASH);
+        EXPECT_EQ(player->spAttack, 225);
+    }
+}
+
 DOUBLE_BATTLE_TEST("Battle Bond transforms player's Greninja when fainting its Ally")
 {
     u32 monsCountPlayer, monsCountOpponent;

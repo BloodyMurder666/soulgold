@@ -64,7 +64,9 @@ struct FrontierBrainMon
 
 struct FrontierBrain
 {
-    u16 trainerId;
+    enum TrainerPicID trainerPic;
+    enum TrainerClassID trainerClass;
+    const u8 *trainerName;
     u16 objEventGfx;
     u8 isFemale;
     const u8 *lostTexts[2];
@@ -134,7 +136,9 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_BRAIN_FACILITIES] =
 {
     [FRONTIER_FACILITY_TOWER] =
     {
-        .trainerId = TRAINER_TUCKER,
+        .trainerPic = TRAINER_PIC_FRONT_SALON_MAIDEN_ANABEL,
+        .trainerClass = TRAINER_CLASS_SALON_MAIDEN,
+        .trainerName = COMPOUND_STRING("Anabel"),
         .objEventGfx = OBJ_EVENT_GFX_ANABEL,
         .isFemale = TRUE,
         .lostTexts = {
@@ -150,7 +154,9 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_BRAIN_FACILITIES] =
     },
     [FRONTIER_FACILITY_DOME] =
     {
-        .trainerId = TRAINER_TUCKER,
+        .trainerPic = TRAINER_PIC_FRONT_DOME_ACE_TUCKER,
+        .trainerClass = TRAINER_CLASS_DOME_ACE,
+        .trainerName = COMPOUND_STRING("Tucker"),
         .objEventGfx = OBJ_EVENT_GFX_TUCKER,
         .isFemale = FALSE,
         .lostTexts = {
@@ -172,7 +178,9 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_BRAIN_FACILITIES] =
     },
     [FRONTIER_FACILITY_PALACE] =
     {
-        .trainerId = TRAINER_SPENSER,
+        .trainerPic = TRAINER_PIC_FRONT_PALACE_MAVEN_SPENSER,
+        .trainerClass = TRAINER_CLASS_PALACE_MAVEN,
+        .trainerName = COMPOUND_STRING("Spenser"),
         .objEventGfx = OBJ_EVENT_GFX_SPENSER,
         .isFemale = FALSE,
         .lostTexts = {
@@ -196,7 +204,9 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_BRAIN_FACILITIES] =
     },
     [FRONTIER_FACILITY_ARENA] =
     {
-        .trainerId = TRAINER_TUCKER,
+        .trainerPic = TRAINER_PIC_FRONT_ARENA_TYCOON_GRETA,
+        .trainerClass = TRAINER_CLASS_ARENA_TYCOON,
+        .trainerName = COMPOUND_STRING("Greta"),
         .objEventGfx = OBJ_EVENT_GFX_GRETA,
         .isFemale = TRUE,
         .lostTexts = {
@@ -220,7 +230,9 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_BRAIN_FACILITIES] =
     },
     [FRONTIER_FACILITY_FACTORY] =
     {
-        .trainerId = TRAINER_NOLAND,
+        .trainerPic = TRAINER_PIC_FRONT_FACTORY_HEAD_NOLAND,
+        .trainerClass = TRAINER_CLASS_FACTORY_HEAD,
+        .trainerName = COMPOUND_STRING("Noland"),
         .objEventGfx = OBJ_EVENT_GFX_NOLAND,
         .isFemale = FALSE,
         .lostTexts = {
@@ -242,7 +254,9 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_BRAIN_FACILITIES] =
     },
     [FRONTIER_FACILITY_PIKE] =
     {
-        .trainerId = TRAINER_LUCY,
+        .trainerPic = TRAINER_PIC_FRONT_PIKE_QUEEN_LUCY,
+        .trainerClass = TRAINER_CLASS_PIKE_QUEEN,
+        .trainerName = COMPOUND_STRING("Lucy"),
         .objEventGfx = OBJ_EVENT_GFX_LUCY,
         .isFemale = TRUE,
         .lostTexts = {
@@ -258,7 +272,9 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_BRAIN_FACILITIES] =
     },
     [FRONTIER_FACILITY_PYRAMID] =
     {
-        .trainerId = TRAINER_BRANDON,
+        .trainerPic = TRAINER_PIC_FRONT_PYRAMID_KING_BRANDON,
+        .trainerClass = TRAINER_CLASS_PYRAMID_KING,
+        .trainerName = COMPOUND_STRING("Brandon"),
         .objEventGfx = OBJ_EVENT_GFX_BRANDON,
         .isFemale = FALSE,
         .lostTexts = {
@@ -282,7 +298,9 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_BRAIN_FACILITIES] =
     },
     [FRONTIER_FACILITY_ARCADE] =
     {
-        .trainerId = TRAINER_ARCHER,
+        .trainerPic = TRAINER_PIC_FRONT_ARCHER,
+        .trainerClass = TRAINER_CLASS_ROCKETA,
+        .trainerName = COMPOUND_STRING("Archer"),
         .objEventGfx = OBJ_EVENT_GFX_ARCHER,
         .isFemale = FALSE,
         .lostTexts = {
@@ -2895,7 +2913,7 @@ enum TrainerPicID GetFrontierBrainTrainerPicIndex(void)
     else
         facility = VarGet(VAR_FRONTIER_FACILITY);
 
-    return GetTrainerPicFromId(gFrontierBrainInfo[facility].trainerId);
+    return gFrontierBrainInfo[facility].trainerPic;
 }
 
 enum TrainerClassID GetFrontierBrainTrainerClass(void)
@@ -2907,25 +2925,19 @@ enum TrainerClassID GetFrontierBrainTrainerClass(void)
     else
         facility = VarGet(VAR_FRONTIER_FACILITY);
 
-    return GetTrainerClassFromId(gFrontierBrainInfo[facility].trainerId);
+    return gFrontierBrainInfo[facility].trainerClass;
 }
 
 void CopyFrontierBrainTrainerName(u8 *dst)
 {
-    s32 i;
     s32 facility;
-    const u8 *trainerName;
 
     if (gBattleTypeFlags & BATTLE_TYPE_RECORDED)
         facility = GetRecordedBattleFrontierFacility();
     else
         facility = VarGet(VAR_FRONTIER_FACILITY);
 
-    trainerName = GetTrainerNameFromId(gFrontierBrainInfo[facility].trainerId);
-    for (i = 0; i < PLAYER_NAME_LENGTH; i++)
-        dst[i] = trainerName[i];
-
-    dst[i] = EOS;
+    StringCopy(dst, gFrontierBrainInfo[facility].trainerName);
 }
 
 bool8 IsFrontierBrainFemale(void)

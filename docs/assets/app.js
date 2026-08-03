@@ -1222,7 +1222,26 @@ function showMoveTooltip(button, event) {
   if (!move) return;
   const root = button.closest("dialog[open]") || document.body;
   const tooltip = getScopedTooltip(root, "moveTooltip", "ability-tooltip move-tooltip");
-  tooltip.innerHTML = `<strong>${move.name}</strong><span>${move.description || "No description."}</span>`;
+  const power = Number(move.power) > 0 ? move.power : "—";
+  const accuracy = Number(move.accuracy) > 0 ? `${move.accuracy}%` : "—";
+  const stats = [
+    ["Type", typeName(move.type || "") || "—"],
+    ["Category", fmtCategory(move.category || "") || "—"],
+    ["Power", power],
+    ["Accuracy", accuracy],
+  ];
+  tooltip.innerHTML = `
+    <strong>${escapeHtml(move.name)}</strong>
+    <span class="move-tooltip-stats">
+      ${stats.map(([label, value]) => `
+        <span class="move-tooltip-stat">
+          <small>${escapeHtml(label)}</small>
+          <b>${escapeHtml(value)}</b>
+        </span>
+      `).join("")}
+    </span>
+    <span class="move-tooltip-description">${escapeHtml(move.description || "No description.")}</span>
+  `;
   placeTooltip(tooltip, root, event, button);
 }
 
@@ -2038,6 +2057,9 @@ function renderGuideMarkdown(markdown, guide) {
   let codeLines = [];
   let codeLanguage = "";
   let inCode = false;
+  let spoilerLines = [];
+  let spoilerTitle = "";
+  let spoilerInCode = false;
 
   const flushParagraph = () => {
     if (!paragraph.length) return;
@@ -2049,9 +2071,29 @@ function renderGuideMarkdown(markdown, guide) {
     output.push(`</${listType}>`);
     listType = "";
   };
+  const flushSpoiler = () => {
+    output.push(`
+      <details class="guide-spoiler">
+        <summary>${guideInline(spoilerTitle || "Show solution", guide)}</summary>
+        <div class="guide-spoiler-content">${renderGuideMarkdown(spoilerLines.join("\n"), guide)}</div>
+      </details>
+    `);
+    spoilerLines = [];
+    spoilerTitle = "";
+    spoilerInCode = false;
+  };
 
   lines.forEach((line) => {
     const trimmed = line.trim();
+    if (spoilerLines.length || spoilerTitle) {
+      if (!spoilerInCode && /^\[\/spoiler\]$/i.test(trimmed)) {
+        flushSpoiler();
+        return;
+      }
+      spoilerLines.push(line);
+      if (/^```/.test(trimmed)) spoilerInCode = !spoilerInCode;
+      return;
+    }
     const fence = trimmed.match(/^```\s*([A-Za-z0-9_-]*)/);
     if (fence) {
       flushParagraph();
@@ -2069,6 +2111,14 @@ function renderGuideMarkdown(markdown, guide) {
     }
     if (inCode) {
       codeLines.push(line);
+      return;
+    }
+
+    const spoiler = trimmed.match(/^\[spoiler(?:=([^\]]+))?\]$/i);
+    if (spoiler) {
+      flushParagraph();
+      closeList();
+      spoilerTitle = (spoiler[1] || "Show solution").trim().replace(/^(?:"([\s\S]*)"|'([\s\S]*)')$/, "$1$2") || "Show solution";
       return;
     }
 
@@ -2131,6 +2181,7 @@ function renderGuideMarkdown(markdown, guide) {
   flushParagraph();
   closeList();
   if (inCode) output.push(`<pre><code>${escapeHtml(codeLines.join("\n"))}</code></pre>`);
+  if (spoilerLines.length || spoilerTitle) flushSpoiler();
   return output.join("");
 }
 

@@ -2773,9 +2773,9 @@ BattleFrontier_BattleTowerLobby_Text_CongratsDefeatedMaiden:
 # 1387 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.string "Congratulations!\n"
 # 1388 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "You have defeated the Salon Maiden\l"
+	.string "You defeated the Salon Maiden as\l"
 # 1389 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	.string "and swept seven Trainers!$"
+	.string "your 21st consecutive victory!$"
 # 1390 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 
 # 1391 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"

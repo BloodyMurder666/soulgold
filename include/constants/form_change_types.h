@@ -179,6 +179,9 @@ enum FormChanges
     // param1: FormChangeNicknameIds value.
     // param2: FormChangeNicknameArguments value.
     FORM_CHANGE_NICKNAME,
+    // Form change that activates when pre-Generation 9 Battle Bond triggers.
+    // - No parameters.
+    FORM_CHANGE_BATTLE_BOND,
 };
 
 #endif // GUARD_CONSTANTS_FORM_CHANGE_TYPES_H

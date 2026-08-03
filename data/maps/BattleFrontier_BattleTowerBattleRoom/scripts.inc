@@ -501,7 +501,7 @@ BattleFrontier_BattleTowerBattleRoom_EventScript_BattleAnabelSilver::
 # 251 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
 BattleFrontier_BattleTowerBattleRoom_EventScript_DefeatedAnabelSilver::
 # 252 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	call BattleFrontier_EventScript_IncrementWinStreak
+	call BattleFrontier_BattleTowerBattleRoom_EventScript_RecordBrainWin
 # 253 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
 	frontier_getsymbols
 # 254 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
@@ -549,7 +549,7 @@ BattleFrontier_BattleTowerBattleRoom_EventScript_BattleAnabelGold::
 # 275 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
 BattleFrontier_BattleTowerBattleRoom_EventScript_DefeatedAnabelGold::
 # 276 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
-	call BattleFrontier_EventScript_IncrementWinStreak
+	call BattleFrontier_BattleTowerBattleRoom_EventScript_RecordBrainWin
 # 277 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
 	frontier_getsymbols
 # 278 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
@@ -1116,21 +1116,31 @@ BattleFrontier_BattleTowerBattleRoom_Text_WishICouldBattleYouAgain:
 	.string "so enjoyable before…\p"
 # 559 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
 	.string "I wish I could battle with you again…$"
+# 560 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+
+# 561 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+BattleFrontier_BattleTowerBattleRoom_EventScript_RecordBrainWin::
+# 562 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+	call BattleFrontier_EventScript_IncrementWinStreak
+# 563 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+	tower_setbattlewon
+# 564 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+	return
 
 BattleFrontier_BattleTowerBattleRoom_EventScript_ReadyForOpponent::
-# 564 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+# 569 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
 	tower_get TOWER_DATA_WIN_STREAK
-# 565 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+# 570 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
 	copyvar VAR_BATTLE_TOWER_STREAK, VAR_RESULT
-# 566 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+# 571 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
 	addvar VAR_RESULT, 1
-# 567 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+# 572 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
 	buffernumberstring STR_VAR_1, VAR_RESULT
-# 568 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+# 573 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
 	msgbox BattleFrontier_BattleTowerBattleRoom_EventScript_ReadyForOpponent_Text_0
 	return
 
 
 BattleFrontier_BattleTowerBattleRoom_EventScript_ReadyForOpponent_Text_0:
-# 568 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
+# 573 "data/maps/BattleFrontier_BattleTowerBattleRoom/scripts.pory"
 	.string "You will be facing opponent\nno. {STR_VAR_1}. Are you ready?$"

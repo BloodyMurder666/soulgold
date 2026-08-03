@@ -1003,6 +1003,51 @@ tbody tr:nth-child(even) {
   display: none;
 }
 
+.move-tooltip {
+  width: min(360px, calc(100vw - 24px));
+  gap: 8px;
+}
+
+.move-tooltip-stats {
+  display: grid;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 18%);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.move-tooltip-stat {
+  display: grid;
+  min-width: 0;
+  padding: 6px 5px;
+  gap: 1px;
+  text-align: center;
+}
+
+.move-tooltip-stat + .move-tooltip-stat {
+  border-left: 1px solid rgb(255 255 255 / 18%);
+}
+
+.move-tooltip-stat small {
+  color: #bdc7c2;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.move-tooltip-stat b {
+  overflow: hidden;
+  color: #f2eee3;
+  font-size: 11px;
+  text-overflow: ellipsis;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.move-tooltip-description {
+  line-height: 1.45;
+}
+
 dialog {
   position: fixed;
   width: min(92vw, 1320px);
@@ -2980,6 +3025,37 @@ body[data-active-tab="pokedex"] .type-filter {
 .guide-content hr {
   border: 0;
   border-top: 1px solid var(--line);
+}
+
+.guide-spoiler {
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  background: var(--surface-soft);
+}
+
+.guide-spoiler > summary {
+  padding: 10px 12px;
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.guide-spoiler > summary:hover {
+  background: var(--surface-hover);
+  color: var(--gold);
+}
+
+.guide-spoiler[open] > summary {
+  border-bottom: 1px solid var(--line);
+}
+
+.guide-spoiler-content {
+  padding: 12px;
+}
+
+.guide-spoiler-content > * + * {
+  margin-top: 12px;
 }
 
 .guide-empty {

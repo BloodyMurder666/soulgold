@@ -8,12 +8,20 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Mapping
 
-from ..constants import GENERIC_MEGA_STONE_ITEMS, IMPORTANT_ITEM_POCKETS, IMPORTANT_ITEM_SORT_TYPES, ITEMS_HIDDEN_CONSTANTS, ITEMS_HIDDEN_SORT_TYPES, ITEMS_HIDDEN_SUFFIXES
+from ..constants import (
+    ADDITIONAL_IMPORTANT_ITEMS,
+    GENERIC_MEGA_STONE_ITEMS,
+    IMPORTANT_ITEM_POCKETS,
+    IMPORTANT_ITEM_SORT_TYPES,
+    ITEMS_HIDDEN_CONSTANTS,
+    ITEMS_HIDDEN_SORT_TYPES,
+    ITEMS_HIDDEN_SUFFIXES,
+)
 from ..c_parser import clean_constant_name, collect_strings, extract_field, parse_enum_constants, parse_shared_strings, preprocess, read, split_designated_entries
 from ..image_utils import copy_item_icon
-from ..map_names import map_display_name
+from ..map_names import is_docs_excluded_map, map_display_name
 from ..models import ImportantItemRow, ItemLocation, ItemRecord, NamedRecord, SpeciesRow, TMHMRow, TMRow
-from ..paths import ITEMS_H, REPO_ROOT, TMS_HMS_H
+from ..paths import ITEMS_H, MAP_GROUPS_JSON, REPO_ROOT, TMS_HMS_H
 from .hidden_grottos import HiddenGrottoRow
 
 
@@ -99,6 +107,10 @@ def add_location(
 def format_item_location(map_data: Mapping[str, object], fallback_name: str, source: str) -> tuple[str, str]:
     if map_data.get("layout") == "LAYOUT_MAUVILLE_CITY_GAME_CORNER":
         return "Goldenrod City Game Corner", "Bought"
+    if source == "Mart" and map_data.get("id") == "MAP_BATTLE_FRONTIER_BATTLE_TOWER_LOBBY":
+        return "Battle Tower", "BP shop"
+    if source == "Mart" and map_data.get("id") == "MAP_GOLDENROD_BATTLE_ARACDE_LOBBY":
+        return "Goldenrod Battle Arcade", "Shop"
     return map_display_name(map_data, fallback_name), source
 
 def format_tmhm_location(map_data: Mapping[str, object], fallback_name: str, source: str) -> tuple[str, str]:
@@ -148,6 +160,30 @@ def parse_item_locations(item_constants: set[str]) -> dict[str, list[ItemLocatio
 
     item_pattern = "|".join(sorted((re.escape(item) for item in item_constants), key=len, reverse=True))
     item_re = re.compile(rf"\b({item_pattern})\b")
+    try:
+        map_groups_data = json.loads(read(MAP_GROUPS_JSON))
+    except (FileNotFoundError, json.JSONDecodeError):
+        map_groups_data = {}
+    ordered_group_names = set(map_groups_data.get("group_order", []))
+    map_groups = {
+        map_name: group_name
+        for group_name, map_names in map_groups_data.items()
+        if group_name in ordered_group_names and isinstance(map_names, list)
+        for map_name in map_names
+    }
+
+    def add_map_location(item: str, folder_name: str, map_name: str, source: str) -> None:
+        # The base project still contains unused Hoenn and Kanto maps. Do not
+        # surface those as obtainable sources for the explicitly added
+        # training items. This hack repurposes VictoryRoadKanto as its real
+        # Victory Road, so retain those maps despite their internal prefix.
+        if (
+            item in ADDITIONAL_IMPORTANT_ITEMS
+            and not folder_name.startswith("VictoryRoadKanto")
+            and is_docs_excluded_map(folder_name, map_groups.get(folder_name, ""))
+        ):
+            return
+        add_location(locations, item, map_name, source)
 
     for map_json in sorted((REPO_ROOT / "data/maps").glob("*/map.json")):
         try:
@@ -158,12 +194,12 @@ def parse_item_locations(item_constants: set[str]) -> dict[str, list[ItemLocatio
         for obj in data.get("object_events") or []:
             item = obj.get("trainer_sight_or_berry_tree_id", "")
             if item in item_constants:
-                add_location(locations, item, map_name, source)
+                add_map_location(item, map_json.parent.name, map_name, source)
         hidden_map_name, hidden_source = format_item_location(data, map_json.parent.name, "Hidden item")
         for event in data.get("bg_events") or []:
             item = event.get("item", "")
             if event.get("type") == "hidden_item" and item in item_constants:
-                add_location(locations, item, hidden_map_name, hidden_source)
+                add_map_location(item, map_json.parent.name, hidden_map_name, hidden_source)
 
     for script in sorted((REPO_ROOT / "data/maps").glob("*/scripts.*")):
         text = read(script)
@@ -177,18 +213,18 @@ def parse_item_locations(item_constants: set[str]) -> dict[str, list[ItemLocatio
         held_map_name, held_source = format_item_location(map_data, script.parent.name, "Gift Pokemon held item")
 
         for item in re.findall(rf"\bgiveitem(?:\s+|\()\s*({item_pattern})\b", text):
-            add_location(locations, item, map_name, gift_source)
+            add_map_location(item, script.parent.name, map_name, gift_source)
         for item in re.findall(rf"\bfinditem(?:\s+|\()\s*({item_pattern})\b", text):
-            add_location(locations, item, hidden_map_name, hidden_source)
+            add_map_location(item, script.parent.name, hidden_map_name, hidden_source)
         for item in re.findall(rf"\.2byte\s+({item_pattern})\b", text):
-            add_location(locations, item, mart_map_name, mart_source)
+            add_map_location(item, script.parent.name, mart_map_name, mart_source)
         for match in re.finditer(rf"\bgivemon(?:\s+|\()(.*?)(?:\n|$)", text):
             for item in item_re.findall(match.group(1)):
-                add_location(locations, item, held_map_name, held_source)
+                add_map_location(item, script.parent.name, held_map_name, held_source)
 
         if script.parent.name == "GoldenrodCity_RadioTower_2F":
             for item in re.findall(rf"\bsetvar\s+VAR_0x8008,\s*({item_pattern})\b", text):
-                add_location(locations, item, map_name, "Buena's Password prize")
+                add_map_location(item, script.parent.name, map_name, "Buena's Password prize")
 
     return dict(locations)
 
@@ -216,6 +252,28 @@ def add_hidden_grotto_item_locations(
         if item in item_constants:
             add_location(locations, item, grotto["name"], "Hidden Grotto rare item")
 
+
+def add_super_rod_item_locations(
+    locations: dict[str, list[ItemLocation]],
+    item_constants: set[str],
+) -> None:
+    """Add bonus items drawn after a successful Super Rod catch."""
+    source_path = REPO_ROOT / "src/wild_encounter.c"
+    try:
+        source_text = read(source_path)
+    except FileNotFoundError:
+        return
+    match = re.search(
+        r"sFishingItems_SuperRod\[\]\s*=\s*\{(.*?)\n\};",
+        source_text,
+        re.DOTALL,
+    )
+    if not match:
+        return
+    for item in re.findall(r"\{\s*(ITEM_[A-Z0-9_]+)\s*,", match.group(1)):
+        if item in item_constants:
+            add_location(locations, item, "Any fishing spot", "Super Rod rare find")
+
 def is_hidden_important_item(constant: str, item: ItemRecord) -> bool:
     return (
         item.get("sortType") in ITEMS_HIDDEN_SORT_TYPES
@@ -236,12 +294,14 @@ def build_important_items(
             item.get("pocket") in IMPORTANT_ITEM_POCKETS
             or item.get("sortType") in IMPORTANT_ITEM_SORT_TYPES
             or constant in GENERIC_MEGA_STONE_ITEMS
+            or constant in ADDITIONAL_IMPORTANT_ITEMS
         )
         and not is_hidden_important_item(constant, item)
     }
     locations = parse_item_locations(selected)
     add_wild_held_item_locations(locations, selected, species)
     add_hidden_grotto_item_locations(locations, selected, grottos)
+    add_super_rod_item_locations(locations, selected)
     rows = []
     for constant in sorted(selected, key=lambda item: item_records.get(item, {}).get("id", 0)):
         item = item_records[constant]

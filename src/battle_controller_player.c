@@ -300,7 +300,7 @@ static u8 BuildEnemyBattleSummaryMons(void)
 
 static bool32 TryOpenEnemyBattleSummary(enum BattlerId battler)
 {
-    if (!FlagGet(FLAG_POSTGAME_FEATURES))
+    if (!FlagGet(FLAG_POSTGAME_FEATURES) && !FlagGet(FLAG_ALL_INNATES_UNLOCKED))
         return FALSE;
     if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED | BATTLE_TYPE_RECORDED_LINK))
         return FALSE;
