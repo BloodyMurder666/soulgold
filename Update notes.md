@@ -1,4 +1,7 @@
 Update notes:
+4.8.2026
+- Nasty Plot is now a tutor move.
+
 3.8.2026
 - New Mythical: Meloetta: After becoming a Champion, you can find this dancer Pokémon in the Ecruteak Theater.
 - New Mythical: Zeraora: After achieving a lifetime winstreak of at least 30 in the Battle Tower, you will find Zeraora outside waiting to challenge you.
