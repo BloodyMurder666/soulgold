@@ -8944,8 +8944,8 @@
     {
       "id": "LAYOUT_CHERRYGROVE_UNDERWATER",
       "name": "CherrygroveUnderwater_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 65,
+      "height": 42,
       "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_Underwater",
       "border_filepath": "data/layouts/CherrygroveUnderwater/border.bin",
