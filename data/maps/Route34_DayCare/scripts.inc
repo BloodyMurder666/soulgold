@@ -447,393 +447,393 @@ Route34_EventScript_DaycareMan::
 # 224 "data/maps/Route34_DayCare/scripts.pory"
 Route34_EventScript_DaycareEggWaiting::
 # 225 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_Text_DoYouWantEgg, MSGBOX_YESNO
+	msgbox Route34_Text_FoundEgg, MSGBOX_DEFAULT
 # 226 "data/maps/Route34_DayCare/scripts.pory"
-	goto_if_eq VAR_RESULT, YES, Route34_EventScript_DaycareAcceptEgg
+	call_if_set FLAG_PENDING_DAYCARE_EGG_SHINY, Route34_EventScript_DaycareShinyEgg
 # 227 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_Text_IWillKeepDoYouWantIt, MSGBOX_YESNO
+	msgbox Route34_Text_DoYouWantEgg, MSGBOX_YESNO
 # 228 "data/maps/Route34_DayCare/scripts.pory"
 	goto_if_eq VAR_RESULT, YES, Route34_EventScript_DaycareAcceptEgg
 # 229 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_Text_IllKeepIt, MSGBOX_DEFAULT
+	msgbox Route34_Text_IWillKeepDoYouWantIt, MSGBOX_YESNO
 # 230 "data/maps/Route34_DayCare/scripts.pory"
-	clearflag FLAG_PENDING_DAYCARE_EGG
+	goto_if_eq VAR_RESULT, YES, Route34_EventScript_DaycareAcceptEgg
 # 231 "data/maps/Route34_DayCare/scripts.pory"
-	special RejectEggFromDayCare
+	msgbox Route34_Text_IllKeepIt, MSGBOX_DEFAULT
 # 232 "data/maps/Route34_DayCare/scripts.pory"
-	release
-# 233 "data/maps/Route34_DayCare/scripts.pory"
-	end
-# 234 "data/maps/Route34_DayCare/scripts.pory"
-
-# 235 "data/maps/Route34_DayCare/scripts.pory"
-Route34_EventScript_DaycareAcceptEgg::
-# 236 "data/maps/Route34_DayCare/scripts.pory"
-	specialvar VAR_0x8008, GiveEggFromDaycare
-# 237 "data/maps/Route34_DayCare/scripts.pory"
-	goto_if_ne VAR_0x8008, MON_CANT_GIVE, Route34_EventScript_DaycareReceiveEgg
-# 238 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_Text_YouHaveNoRoomForIt, MSGBOX_DEFAULT
-# 239 "data/maps/Route34_DayCare/scripts.pory"
-	release
-# 240 "data/maps/Route34_DayCare/scripts.pory"
-	end
-# 241 "data/maps/Route34_DayCare/scripts.pory"
-
-# 242 "data/maps/Route34_DayCare/scripts.pory"
-Route34_EventScript_DaycareReceiveEgg::
-# 243 "data/maps/Route34_DayCare/scripts.pory"
-	message Route34_Text_ReceivedEgg
-# 244 "data/maps/Route34_DayCare/scripts.pory"
-	playfanfare MUS_LEVEL_UP
-# 245 "data/maps/Route34_DayCare/scripts.pory"
-	waitfanfare
-# 246 "data/maps/Route34_DayCare/scripts.pory"
-	waitbuttonpress
-# 247 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_Text_TakeGoodCareOfIt, MSGBOX_DEFAULT
-# 248 "data/maps/Route34_DayCare/scripts.pory"
-	call_if_eq VAR_0x8008, MON_GIVEN_TO_PC, Route34_EventScript_DaycareEggSentToPC
-# 249 "data/maps/Route34_DayCare/scripts.pory"
 	clearflag FLAG_PENDING_DAYCARE_EGG
-# 250 "data/maps/Route34_DayCare/scripts.pory"
+# 233 "data/maps/Route34_DayCare/scripts.pory"
+	special RejectEggFromDayCare
+# 234 "data/maps/Route34_DayCare/scripts.pory"
 	release
-# 251 "data/maps/Route34_DayCare/scripts.pory"
+# 235 "data/maps/Route34_DayCare/scripts.pory"
 	end
-# 252 "data/maps/Route34_DayCare/scripts.pory"
+# 236 "data/maps/Route34_DayCare/scripts.pory"
 
-# 253 "data/maps/Route34_DayCare/scripts.pory"
-Route34_EventScript_CheckMonReceivedMail::
-# 254 "data/maps/Route34_DayCare/scripts.pory"
-	specialvar VAR_RESULT, CheckDaycareMonReceivedMail
-# 255 "data/maps/Route34_DayCare/scripts.pory"
-	call_if_eq VAR_RESULT, 1, Route34_EventScript_MonReceivedMail
-# 256 "data/maps/Route34_DayCare/scripts.pory"
-	return
-# 257 "data/maps/Route34_DayCare/scripts.pory"
-
-# 258 "data/maps/Route34_DayCare/scripts.pory"
-Route34_EventScript_MonReceivedMail::
-# 259 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_Text_FriendlyWithOtherTrainersMon, MSGBOX_DEFAULT
-# 260 "data/maps/Route34_DayCare/scripts.pory"
-	return
-# 261 "data/maps/Route34_DayCare/scripts.pory"
-
-# 262 "data/maps/Route34_DayCare/scripts.pory"
-Route34_EventScript_CheckOnOneMon::
-# 263 "data/maps/Route34_DayCare/scripts.pory"
-	special GetDaycareMonNicknames
-# 264 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_Text_YourMonIsDoingFine, MSGBOX_DEFAULT
-# 265 "data/maps/Route34_DayCare/scripts.pory"
-	setvar VAR_0x8004, 0
-# 266 "data/maps/Route34_DayCare/scripts.pory"
-	call Route34_EventScript_CheckMonReceivedMail
-# 267 "data/maps/Route34_DayCare/scripts.pory"
+# 237 "data/maps/Route34_DayCare/scripts.pory"
+Route34_EventScript_DaycareAcceptEgg::
+# 238 "data/maps/Route34_DayCare/scripts.pory"
+	specialvar VAR_0x8008, GiveEggFromDaycare
+# 239 "data/maps/Route34_DayCare/scripts.pory"
+	goto_if_ne VAR_0x8008, MON_CANT_GIVE, Route34_EventScript_DaycareReceiveEgg
+# 240 "data/maps/Route34_DayCare/scripts.pory"
+	msgbox Route34_Text_YouHaveNoRoomForIt, MSGBOX_DEFAULT
+# 241 "data/maps/Route34_DayCare/scripts.pory"
 	release
-# 268 "data/maps/Route34_DayCare/scripts.pory"
+# 242 "data/maps/Route34_DayCare/scripts.pory"
 	end
-# 269 "data/maps/Route34_DayCare/scripts.pory"
+# 243 "data/maps/Route34_DayCare/scripts.pory"
 
-# 270 "data/maps/Route34_DayCare/scripts.pory"
-Route34_EventScript_CheckOnTwoMons::
-# 271 "data/maps/Route34_DayCare/scripts.pory"
-	special GetDaycareMonNicknames
-# 272 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_Text_YourMonsAreDoingFine, MSGBOX_DEFAULT
-# 273 "data/maps/Route34_DayCare/scripts.pory"
-	special SetDaycareCompatibilityString
-# 274 "data/maps/Route34_DayCare/scripts.pory"
-	special ShowFieldMessageStringVar4
-# 275 "data/maps/Route34_DayCare/scripts.pory"
-	waitmessage
-# 276 "data/maps/Route34_DayCare/scripts.pory"
+# 244 "data/maps/Route34_DayCare/scripts.pory"
+Route34_EventScript_DaycareReceiveEgg::
+# 245 "data/maps/Route34_DayCare/scripts.pory"
+	message Route34_Text_ReceivedEgg
+# 246 "data/maps/Route34_DayCare/scripts.pory"
+	playfanfare MUS_LEVEL_UP
+# 247 "data/maps/Route34_DayCare/scripts.pory"
+	waitfanfare
+# 248 "data/maps/Route34_DayCare/scripts.pory"
 	waitbuttonpress
-# 277 "data/maps/Route34_DayCare/scripts.pory"
+# 249 "data/maps/Route34_DayCare/scripts.pory"
+	msgbox Route34_Text_TakeGoodCareOfIt, MSGBOX_DEFAULT
+# 250 "data/maps/Route34_DayCare/scripts.pory"
+	call_if_eq VAR_0x8008, MON_GIVEN_TO_PC, Route34_EventScript_DaycareEggSentToPC
+# 251 "data/maps/Route34_DayCare/scripts.pory"
+	clearflag FLAG_PENDING_DAYCARE_EGG
+# 252 "data/maps/Route34_DayCare/scripts.pory"
+	release
+# 253 "data/maps/Route34_DayCare/scripts.pory"
+	end
+# 254 "data/maps/Route34_DayCare/scripts.pory"
+
+# 255 "data/maps/Route34_DayCare/scripts.pory"
+Route34_EventScript_DaycareShinyEgg::
+# 256 "data/maps/Route34_DayCare/scripts.pory"
+	msgbox Route34_Text_ShinyEgg, MSGBOX_DEFAULT
+# 257 "data/maps/Route34_DayCare/scripts.pory"
+	return
+# 258 "data/maps/Route34_DayCare/scripts.pory"
+
+# 259 "data/maps/Route34_DayCare/scripts.pory"
+Route34_EventScript_CheckMonReceivedMail::
+# 260 "data/maps/Route34_DayCare/scripts.pory"
+	specialvar VAR_RESULT, CheckDaycareMonReceivedMail
+# 261 "data/maps/Route34_DayCare/scripts.pory"
+	call_if_eq VAR_RESULT, 1, Route34_EventScript_MonReceivedMail
+# 262 "data/maps/Route34_DayCare/scripts.pory"
+	return
+# 263 "data/maps/Route34_DayCare/scripts.pory"
+
+# 264 "data/maps/Route34_DayCare/scripts.pory"
+Route34_EventScript_MonReceivedMail::
+# 265 "data/maps/Route34_DayCare/scripts.pory"
+	msgbox Route34_Text_FriendlyWithOtherTrainersMon, MSGBOX_DEFAULT
+# 266 "data/maps/Route34_DayCare/scripts.pory"
+	return
+# 267 "data/maps/Route34_DayCare/scripts.pory"
+
+# 268 "data/maps/Route34_DayCare/scripts.pory"
+Route34_EventScript_CheckOnOneMon::
+# 269 "data/maps/Route34_DayCare/scripts.pory"
+	special GetDaycareMonNicknames
+# 270 "data/maps/Route34_DayCare/scripts.pory"
+	msgbox Route34_Text_YourMonIsDoingFine, MSGBOX_DEFAULT
+# 271 "data/maps/Route34_DayCare/scripts.pory"
 	setvar VAR_0x8004, 0
+# 272 "data/maps/Route34_DayCare/scripts.pory"
+	call Route34_EventScript_CheckMonReceivedMail
+# 273 "data/maps/Route34_DayCare/scripts.pory"
+	release
+# 274 "data/maps/Route34_DayCare/scripts.pory"
+	end
+# 275 "data/maps/Route34_DayCare/scripts.pory"
+
+# 276 "data/maps/Route34_DayCare/scripts.pory"
+Route34_EventScript_CheckOnTwoMons::
+# 277 "data/maps/Route34_DayCare/scripts.pory"
+	special GetDaycareMonNicknames
 # 278 "data/maps/Route34_DayCare/scripts.pory"
-	call Route34_EventScript_CheckMonReceivedMail
+	msgbox Route34_Text_YourMonsAreDoingFine, MSGBOX_DEFAULT
 # 279 "data/maps/Route34_DayCare/scripts.pory"
-	setvar VAR_0x8004, 1
+	special SetDaycareCompatibilityString
 # 280 "data/maps/Route34_DayCare/scripts.pory"
-	call Route34_EventScript_CheckMonReceivedMail
+	special ShowFieldMessageStringVar4
 # 281 "data/maps/Route34_DayCare/scripts.pory"
-	release
+	waitmessage
 # 282 "data/maps/Route34_DayCare/scripts.pory"
-	end
+	waitbuttonpress
 # 283 "data/maps/Route34_DayCare/scripts.pory"
-
+	setvar VAR_0x8004, 0
 # 284 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_EventScript_DaycareWoman::
+	call Route34_EventScript_CheckMonReceivedMail
 # 285 "data/maps/Route34_DayCare/scripts.pory"
-	lock
+	setvar VAR_0x8004, 1
 # 286 "data/maps/Route34_DayCare/scripts.pory"
-	faceplayer
+	call Route34_EventScript_CheckMonReceivedMail
 # 287 "data/maps/Route34_DayCare/scripts.pory"
-	specialvar VAR_RESULT, GetDaycareState
+	release
 # 288 "data/maps/Route34_DayCare/scripts.pory"
-	goto_if_eq VAR_RESULT, DAYCARE_EGG_WAITING, Route34_DayCare_EventScript_EggWaiting
+	end
 # 289 "data/maps/Route34_DayCare/scripts.pory"
-	goto_if_eq VAR_RESULT, DAYCARE_ONE_MON, Route34_DayCare_EventScript_OneMonInDaycare
+
 # 290 "data/maps/Route34_DayCare/scripts.pory"
-	goto_if_eq VAR_RESULT, DAYCARE_TWO_MONS, Route34_DayCare_EventScript_TwoMonsInDaycare
+Route34_DayCare_EventScript_DaycareWoman::
 # 291 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_DayCare_Text_WouldYouLikeUsToRaiseAMon, MSGBOX_YESNO
+	lock
 # 292 "data/maps/Route34_DayCare/scripts.pory"
-	goto_if_eq VAR_RESULT, YES, Route34_DayCare_EventScript_GiveMonToRaise
+	faceplayer
 # 293 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_DayCare_Text_FineThenComeAgain, MSGBOX_DEFAULT
-# 294 "data/maps/Route34_DayCare/scripts.pory"
-	release
-# 295 "data/maps/Route34_DayCare/scripts.pory"
-	end
-# 296 "data/maps/Route34_DayCare/scripts.pory"
-
-# 297 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_EventScript_GiveMonToRaise::
-# 298 "data/maps/Route34_DayCare/scripts.pory"
-	specialvar VAR_RESULT, CountPartyNonEggMons
-# 299 "data/maps/Route34_DayCare/scripts.pory"
-	goto_if_eq VAR_RESULT, 1, Route34_DayCare_EventScript_OnlyOneMon
-# 300 "data/maps/Route34_DayCare/scripts.pory"
-	specialvar VAR_RESULT, CountPartyAliveNonEggMons
-# 301 "data/maps/Route34_DayCare/scripts.pory"
-	goto_if_eq VAR_RESULT, 2, Route34_DayCare_EventScript_OnlyTwoAliveMons
-# 302 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_DayCare_Text_WhichMonShouldWeRaise, MSGBOX_DEFAULT
-# 303 "data/maps/Route34_DayCare/scripts.pory"
-	fadescreen FADE_TO_BLACK
-# 304 "data/maps/Route34_DayCare/scripts.pory"
-	special ChooseSendDaycareMon
-# 305 "data/maps/Route34_DayCare/scripts.pory"
-	waitstate
-# 306 "data/maps/Route34_DayCare/scripts.pory"
-	goto_if_eq VAR_0x8004, PARTY_NOTHING_CHOSEN, Route34_DayCare_EventScript_ComeAgain
-# 307 "data/maps/Route34_DayCare/scripts.pory"
-	specialvar VAR_RESULT, CountPartyAliveNonEggMons_IgnoreVar0x8004Slot
-# 308 "data/maps/Route34_DayCare/scripts.pory"
-	goto_if_eq VAR_RESULT, 0, Route34_DayCare_EventScript_OnlyOneAliveMon
-# 309 "data/maps/Route34_DayCare/scripts.pory"
-	specialvar VAR_0x8005, GetSelectedMonNicknameAndSpecies
-# 310 "data/maps/Route34_DayCare/scripts.pory"
-	waitse
-# 311 "data/maps/Route34_DayCare/scripts.pory"
-	playmoncry VAR_0x8005, CRY_MODE_NORMAL
-# 312 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_DayCare_Text_WellRaiseYourMon, MSGBOX_DEFAULT
-# 313 "data/maps/Route34_DayCare/scripts.pory"
-	waitmoncry
-# 314 "data/maps/Route34_DayCare/scripts.pory"
-	special StoreSelectedPokemonInDaycare
-# 315 "data/maps/Route34_DayCare/scripts.pory"
-	callnative UpdateFollowingPokemon
-# 316 "data/maps/Route34_DayCare/scripts.pory"
-	incrementgamestat GAME_STAT_USED_DAYCARE
-# 317 "data/maps/Route34_DayCare/scripts.pory"
 	specialvar VAR_RESULT, GetDaycareState
-# 318 "data/maps/Route34_DayCare/scripts.pory"
-	goto_if_eq VAR_RESULT, DAYCARE_ONE_MON, Route34_DayCare_EventScript_CanRaiseOneMore
-# 319 "data/maps/Route34_DayCare/scripts.pory"
-	release
-# 320 "data/maps/Route34_DayCare/scripts.pory"
-	end
-# 321 "data/maps/Route34_DayCare/scripts.pory"
-
-# 322 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_EventScript_ComeAgain::
-# 323 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_DayCare_Text_ComeAgain, MSGBOX_DEFAULT
-# 324 "data/maps/Route34_DayCare/scripts.pory"
-	release
-# 325 "data/maps/Route34_DayCare/scripts.pory"
-	end
-# 326 "data/maps/Route34_DayCare/scripts.pory"
-
-# 327 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_EventScript_CanRaiseOneMore::
-# 328 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_DayCare_Text_WeCanRaiseOneMore, MSGBOX_YESNO
-# 329 "data/maps/Route34_DayCare/scripts.pory"
+# 294 "data/maps/Route34_DayCare/scripts.pory"
+	goto_if_eq VAR_RESULT, DAYCARE_EGG_WAITING, Route34_DayCare_EventScript_EggWaiting
+# 295 "data/maps/Route34_DayCare/scripts.pory"
+	goto_if_eq VAR_RESULT, DAYCARE_ONE_MON, Route34_DayCare_EventScript_OneMonInDaycare
+# 296 "data/maps/Route34_DayCare/scripts.pory"
+	goto_if_eq VAR_RESULT, DAYCARE_TWO_MONS, Route34_DayCare_EventScript_TwoMonsInDaycare
+# 297 "data/maps/Route34_DayCare/scripts.pory"
+	msgbox Route34_DayCare_Text_WouldYouLikeUsToRaiseAMon, MSGBOX_YESNO
+# 298 "data/maps/Route34_DayCare/scripts.pory"
 	goto_if_eq VAR_RESULT, YES, Route34_DayCare_EventScript_GiveMonToRaise
+# 299 "data/maps/Route34_DayCare/scripts.pory"
+	msgbox Route34_DayCare_Text_FineThenComeAgain, MSGBOX_DEFAULT
+# 300 "data/maps/Route34_DayCare/scripts.pory"
+	release
+# 301 "data/maps/Route34_DayCare/scripts.pory"
+	end
+# 302 "data/maps/Route34_DayCare/scripts.pory"
+
+# 303 "data/maps/Route34_DayCare/scripts.pory"
+Route34_DayCare_EventScript_GiveMonToRaise::
+# 304 "data/maps/Route34_DayCare/scripts.pory"
+	specialvar VAR_RESULT, CountPartyNonEggMons
+# 305 "data/maps/Route34_DayCare/scripts.pory"
+	goto_if_eq VAR_RESULT, 1, Route34_DayCare_EventScript_OnlyOneMon
+# 306 "data/maps/Route34_DayCare/scripts.pory"
+	specialvar VAR_RESULT, CountPartyAliveNonEggMons
+# 307 "data/maps/Route34_DayCare/scripts.pory"
+	goto_if_eq VAR_RESULT, 2, Route34_DayCare_EventScript_OnlyTwoAliveMons
+# 308 "data/maps/Route34_DayCare/scripts.pory"
+	msgbox Route34_DayCare_Text_WhichMonShouldWeRaise, MSGBOX_DEFAULT
+# 309 "data/maps/Route34_DayCare/scripts.pory"
+	fadescreen FADE_TO_BLACK
+# 310 "data/maps/Route34_DayCare/scripts.pory"
+	special ChooseSendDaycareMon
+# 311 "data/maps/Route34_DayCare/scripts.pory"
+	waitstate
+# 312 "data/maps/Route34_DayCare/scripts.pory"
+	goto_if_eq VAR_0x8004, PARTY_NOTHING_CHOSEN, Route34_DayCare_EventScript_ComeAgain
+# 313 "data/maps/Route34_DayCare/scripts.pory"
+	specialvar VAR_RESULT, CountPartyAliveNonEggMons_IgnoreVar0x8004Slot
+# 314 "data/maps/Route34_DayCare/scripts.pory"
+	goto_if_eq VAR_RESULT, 0, Route34_DayCare_EventScript_OnlyOneAliveMon
+# 315 "data/maps/Route34_DayCare/scripts.pory"
+	specialvar VAR_0x8005, GetSelectedMonNicknameAndSpecies
+# 316 "data/maps/Route34_DayCare/scripts.pory"
+	waitse
+# 317 "data/maps/Route34_DayCare/scripts.pory"
+	playmoncry VAR_0x8005, CRY_MODE_NORMAL
+# 318 "data/maps/Route34_DayCare/scripts.pory"
+	msgbox Route34_DayCare_Text_WellRaiseYourMon, MSGBOX_DEFAULT
+# 319 "data/maps/Route34_DayCare/scripts.pory"
+	waitmoncry
+# 320 "data/maps/Route34_DayCare/scripts.pory"
+	special StoreSelectedPokemonInDaycare
+# 321 "data/maps/Route34_DayCare/scripts.pory"
+	callnative UpdateFollowingPokemon
+# 322 "data/maps/Route34_DayCare/scripts.pory"
+	incrementgamestat GAME_STAT_USED_DAYCARE
+# 323 "data/maps/Route34_DayCare/scripts.pory"
+	specialvar VAR_RESULT, GetDaycareState
+# 324 "data/maps/Route34_DayCare/scripts.pory"
+	goto_if_eq VAR_RESULT, DAYCARE_ONE_MON, Route34_DayCare_EventScript_CanRaiseOneMore
+# 325 "data/maps/Route34_DayCare/scripts.pory"
+	release
+# 326 "data/maps/Route34_DayCare/scripts.pory"
+	end
+# 327 "data/maps/Route34_DayCare/scripts.pory"
+
+# 328 "data/maps/Route34_DayCare/scripts.pory"
+Route34_DayCare_EventScript_ComeAgain::
+# 329 "data/maps/Route34_DayCare/scripts.pory"
+	msgbox Route34_DayCare_Text_ComeAgain, MSGBOX_DEFAULT
 # 330 "data/maps/Route34_DayCare/scripts.pory"
-	goto Route34_DayCare_EventScript_ComeAgain
+	release
 # 331 "data/maps/Route34_DayCare/scripts.pory"
 	end
 # 332 "data/maps/Route34_DayCare/scripts.pory"
 
 # 333 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_EventScript_OnlyOneMon::
+Route34_DayCare_EventScript_CanRaiseOneMore::
 # 334 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_DayCare_Text_YouHaveJustOneMon, MSGBOX_DEFAULT
-# 335 "data/maps/Route34_DayCare/scripts.pory"
-	release
-# 336 "data/maps/Route34_DayCare/scripts.pory"
-	end
-# 337 "data/maps/Route34_DayCare/scripts.pory"
-
-# 338 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_EventScript_OnlyOneAliveMon::
-# 339 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_DayCare_Text_WhatWillYouBattleWith, MSGBOX_DEFAULT
-# 340 "data/maps/Route34_DayCare/scripts.pory"
-	release
-# 341 "data/maps/Route34_DayCare/scripts.pory"
-	end
-# 342 "data/maps/Route34_DayCare/scripts.pory"
-
-# 343 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_EventScript_OnlyTwoAliveMons::
-# 344 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_DayCare_Text_YoullBeLeftWithJustOne, MSGBOX_DEFAULT
-# 345 "data/maps/Route34_DayCare/scripts.pory"
-	release
-# 346 "data/maps/Route34_DayCare/scripts.pory"
-	end
-# 347 "data/maps/Route34_DayCare/scripts.pory"
-
-# 348 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_EventScript_EggWaiting::
-# 349 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_DayCare_Text_HusbandWasLookingForYou, MSGBOX_DEFAULT
-# 350 "data/maps/Route34_DayCare/scripts.pory"
-	release
-# 351 "data/maps/Route34_DayCare/scripts.pory"
-	end
-# 352 "data/maps/Route34_DayCare/scripts.pory"
-
-# 353 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_EventScript_YourMonHasGrownXLevels::
-# 354 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_DayCare_Text_YourMonHasGrownXLevels, MSGBOX_DEFAULT
-# 355 "data/maps/Route34_DayCare/scripts.pory"
-	return
-# 356 "data/maps/Route34_DayCare/scripts.pory"
-
-# 357 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_EventScript_DisplayLevelsGained::
-# 358 "data/maps/Route34_DayCare/scripts.pory"
-	specialvar VAR_RESULT, GetNumLevelsGainedFromDaycare
-# 359 "data/maps/Route34_DayCare/scripts.pory"
-	call_if_ne VAR_RESULT, 0, Route34_DayCare_EventScript_YourMonHasGrownXLevels
-# 360 "data/maps/Route34_DayCare/scripts.pory"
-	return
-# 361 "data/maps/Route34_DayCare/scripts.pory"
-
-# 362 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_EventScript_OneMonInDaycare::
-# 363 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_DayCare_Text_GoodToSeeYou, MSGBOX_DEFAULT
-# 364 "data/maps/Route34_DayCare/scripts.pory"
-	setvar VAR_0x8004, 0
-# 365 "data/maps/Route34_DayCare/scripts.pory"
-	call Route34_DayCare_EventScript_DisplayLevelsGained
-# 366 "data/maps/Route34_DayCare/scripts.pory"
 	msgbox Route34_DayCare_Text_WeCanRaiseOneMore, MSGBOX_YESNO
-# 367 "data/maps/Route34_DayCare/scripts.pory"
+# 335 "data/maps/Route34_DayCare/scripts.pory"
 	goto_if_eq VAR_RESULT, YES, Route34_DayCare_EventScript_GiveMonToRaise
-# 368 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_DayCare_Text_TakeYourMonBack, MSGBOX_YESNO
-# 369 "data/maps/Route34_DayCare/scripts.pory"
-	goto_if_eq VAR_RESULT, YES, Route34_DayCare_EventScript_TryRetrieveMon
-# 370 "data/maps/Route34_DayCare/scripts.pory"
+# 336 "data/maps/Route34_DayCare/scripts.pory"
 	goto Route34_DayCare_EventScript_ComeAgain
-# 371 "data/maps/Route34_DayCare/scripts.pory"
+# 337 "data/maps/Route34_DayCare/scripts.pory"
 	end
-# 372 "data/maps/Route34_DayCare/scripts.pory"
+# 338 "data/maps/Route34_DayCare/scripts.pory"
 
-# 373 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_EventScript_TryRetrieveMon::
-# 374 "data/maps/Route34_DayCare/scripts.pory"
-	specialvar VAR_RESULT, CalculatePlayerPartyCount
-# 375 "data/maps/Route34_DayCare/scripts.pory"
-	goto_if_eq VAR_RESULT, PARTY_SIZE, Route34_DayCare_EventScript_NoRoom
-# 376 "data/maps/Route34_DayCare/scripts.pory"
-	specialvar VAR_RESULT, GetDaycareState
-# 377 "data/maps/Route34_DayCare/scripts.pory"
-	setvar VAR_0x8004, 0
-# 378 "data/maps/Route34_DayCare/scripts.pory"
-	goto_if_eq VAR_RESULT, DAYCARE_ONE_MON, Route34_DayCare_EventScript_CostPrompt
-# 379 "data/maps/Route34_DayCare/scripts.pory"
-	special ShowDaycareLevelMenu
-# 380 "data/maps/Route34_DayCare/scripts.pory"
-	waitstate
-# 381 "data/maps/Route34_DayCare/scripts.pory"
-	copyvar VAR_0x8004, VAR_RESULT
-# 382 "data/maps/Route34_DayCare/scripts.pory"
-	goto_if_eq VAR_RESULT, DAYCARE_EXITED_LEVEL_MENU, Route34_DayCare_EventScript_ComeAgain
-# 383 "data/maps/Route34_DayCare/scripts.pory"
-	goto Route34_DayCare_EventScript_CostPrompt
-# 384 "data/maps/Route34_DayCare/scripts.pory"
-	end
-# 385 "data/maps/Route34_DayCare/scripts.pory"
-
-# 386 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_EventScript_CostPrompt::
-# 387 "data/maps/Route34_DayCare/scripts.pory"
-	special GetDaycareCost
-# 388 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_DayCare_Text_ItWillCostX, MSGBOX_YESNO
-# 389 "data/maps/Route34_DayCare/scripts.pory"
-	goto_if_eq VAR_RESULT, YES, Route34_DayCare_EventScript_CheckEnoughMoney
-# 390 "data/maps/Route34_DayCare/scripts.pory"
-	goto Route34_DayCare_EventScript_ComeAgain
-# 391 "data/maps/Route34_DayCare/scripts.pory"
-	end
-# 392 "data/maps/Route34_DayCare/scripts.pory"
-
-# 393 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_EventScript_CheckEnoughMoney::
-# 394 "data/maps/Route34_DayCare/scripts.pory"
-	specialvar VAR_RESULT, IsEnoughForCostInVar0x8005
-# 395 "data/maps/Route34_DayCare/scripts.pory"
-	goto_if_eq VAR_RESULT, 1, Route34_DayCare_EventScript_RetrieveMon
-# 396 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_DayCare_Text_NotEnoughMoney, MSGBOX_DEFAULT
-# 397 "data/maps/Route34_DayCare/scripts.pory"
+# 339 "data/maps/Route34_DayCare/scripts.pory"
+Route34_DayCare_EventScript_OnlyOneMon::
+# 340 "data/maps/Route34_DayCare/scripts.pory"
+	msgbox Route34_DayCare_Text_YouHaveJustOneMon, MSGBOX_DEFAULT
+# 341 "data/maps/Route34_DayCare/scripts.pory"
 	release
-# 398 "data/maps/Route34_DayCare/scripts.pory"
+# 342 "data/maps/Route34_DayCare/scripts.pory"
 	end
-# 399 "data/maps/Route34_DayCare/scripts.pory"
+# 343 "data/maps/Route34_DayCare/scripts.pory"
 
-# 400 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_EventScript_RetrieveMon::
-# 401 "data/maps/Route34_DayCare/scripts.pory"
-	@applymovement LOCALID_DAYCARE_LADY, Route34_DayCare_Movement_RetrieveDaycareMon
-# 402 "data/maps/Route34_DayCare/scripts.pory"
-	@waitmovement 0
-# 403 "data/maps/Route34_DayCare/scripts.pory"
-	specialvar VAR_RESULT, TakePokemonFromDaycare
-# 404 "data/maps/Route34_DayCare/scripts.pory"
-	special SubtractMoneyFromVar0x8005
-# 405 "data/maps/Route34_DayCare/scripts.pory"
-	playse SE_SHOP
-# 406 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_DayCare_Text_HeresYourMon, MSGBOX_DEFAULT
-# 407 "data/maps/Route34_DayCare/scripts.pory"
-	waitse
-# 408 "data/maps/Route34_DayCare/scripts.pory"
-	playmoncry VAR_RESULT, CRY_MODE_NORMAL
-# 409 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_DayCare_Text_TookBackMon, MSGBOX_DEFAULT
-# 410 "data/maps/Route34_DayCare/scripts.pory"
-	waitmoncry
-# 411 "data/maps/Route34_DayCare/scripts.pory"
-	specialvar VAR_RESULT, GetDaycareState
-# 412 "data/maps/Route34_DayCare/scripts.pory"
-	goto_if_eq VAR_RESULT, DAYCARE_ONE_MON, Route34_DayCare_EventScript_AskRetrieveOtherMon
-# 413 "data/maps/Route34_DayCare/scripts.pory"
-	goto Route34_DayCare_EventScript_ComeAgain
-# 414 "data/maps/Route34_DayCare/scripts.pory"
+# 344 "data/maps/Route34_DayCare/scripts.pory"
+Route34_DayCare_EventScript_OnlyOneAliveMon::
+# 345 "data/maps/Route34_DayCare/scripts.pory"
+	msgbox Route34_DayCare_Text_WhatWillYouBattleWith, MSGBOX_DEFAULT
+# 346 "data/maps/Route34_DayCare/scripts.pory"
+	release
+# 347 "data/maps/Route34_DayCare/scripts.pory"
 	end
-# 415 "data/maps/Route34_DayCare/scripts.pory"
+# 348 "data/maps/Route34_DayCare/scripts.pory"
 
-# 416 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_EventScript_AskRetrieveOtherMon::
-# 417 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_DayCare_Text_TakeOtherOneBackToo, MSGBOX_YESNO
-# 418 "data/maps/Route34_DayCare/scripts.pory"
+# 349 "data/maps/Route34_DayCare/scripts.pory"
+Route34_DayCare_EventScript_OnlyTwoAliveMons::
+# 350 "data/maps/Route34_DayCare/scripts.pory"
+	msgbox Route34_DayCare_Text_YoullBeLeftWithJustOne, MSGBOX_DEFAULT
+# 351 "data/maps/Route34_DayCare/scripts.pory"
+	release
+# 352 "data/maps/Route34_DayCare/scripts.pory"
+	end
+# 353 "data/maps/Route34_DayCare/scripts.pory"
+
+# 354 "data/maps/Route34_DayCare/scripts.pory"
+Route34_DayCare_EventScript_EggWaiting::
+# 355 "data/maps/Route34_DayCare/scripts.pory"
+	msgbox Route34_DayCare_Text_HusbandWasLookingForYou, MSGBOX_DEFAULT
+# 356 "data/maps/Route34_DayCare/scripts.pory"
+	release
+# 357 "data/maps/Route34_DayCare/scripts.pory"
+	end
+# 358 "data/maps/Route34_DayCare/scripts.pory"
+
+# 359 "data/maps/Route34_DayCare/scripts.pory"
+Route34_DayCare_EventScript_YourMonHasGrownXLevels::
+# 360 "data/maps/Route34_DayCare/scripts.pory"
+	msgbox Route34_DayCare_Text_YourMonHasGrownXLevels, MSGBOX_DEFAULT
+# 361 "data/maps/Route34_DayCare/scripts.pory"
+	return
+# 362 "data/maps/Route34_DayCare/scripts.pory"
+
+# 363 "data/maps/Route34_DayCare/scripts.pory"
+Route34_DayCare_EventScript_DisplayLevelsGained::
+# 364 "data/maps/Route34_DayCare/scripts.pory"
+	specialvar VAR_RESULT, GetNumLevelsGainedFromDaycare
+# 365 "data/maps/Route34_DayCare/scripts.pory"
+	call_if_ne VAR_RESULT, 0, Route34_DayCare_EventScript_YourMonHasGrownXLevels
+# 366 "data/maps/Route34_DayCare/scripts.pory"
+	return
+# 367 "data/maps/Route34_DayCare/scripts.pory"
+
+# 368 "data/maps/Route34_DayCare/scripts.pory"
+Route34_DayCare_EventScript_OneMonInDaycare::
+# 369 "data/maps/Route34_DayCare/scripts.pory"
+	msgbox Route34_DayCare_Text_GoodToSeeYou, MSGBOX_DEFAULT
+# 370 "data/maps/Route34_DayCare/scripts.pory"
+	setvar VAR_0x8004, 0
+# 371 "data/maps/Route34_DayCare/scripts.pory"
+	call Route34_DayCare_EventScript_DisplayLevelsGained
+# 372 "data/maps/Route34_DayCare/scripts.pory"
+	msgbox Route34_DayCare_Text_WeCanRaiseOneMore, MSGBOX_YESNO
+# 373 "data/maps/Route34_DayCare/scripts.pory"
+	goto_if_eq VAR_RESULT, YES, Route34_DayCare_EventScript_GiveMonToRaise
+# 374 "data/maps/Route34_DayCare/scripts.pory"
+	msgbox Route34_DayCare_Text_TakeYourMonBack, MSGBOX_YESNO
+# 375 "data/maps/Route34_DayCare/scripts.pory"
 	goto_if_eq VAR_RESULT, YES, Route34_DayCare_EventScript_TryRetrieveMon
+# 376 "data/maps/Route34_DayCare/scripts.pory"
+	goto Route34_DayCare_EventScript_ComeAgain
+# 377 "data/maps/Route34_DayCare/scripts.pory"
+	end
+# 378 "data/maps/Route34_DayCare/scripts.pory"
+
+# 379 "data/maps/Route34_DayCare/scripts.pory"
+Route34_DayCare_EventScript_TryRetrieveMon::
+# 380 "data/maps/Route34_DayCare/scripts.pory"
+	specialvar VAR_RESULT, CalculatePlayerPartyCount
+# 381 "data/maps/Route34_DayCare/scripts.pory"
+	goto_if_eq VAR_RESULT, PARTY_SIZE, Route34_DayCare_EventScript_NoRoom
+# 382 "data/maps/Route34_DayCare/scripts.pory"
+	specialvar VAR_RESULT, GetDaycareState
+# 383 "data/maps/Route34_DayCare/scripts.pory"
+	setvar VAR_0x8004, 0
+# 384 "data/maps/Route34_DayCare/scripts.pory"
+	goto_if_eq VAR_RESULT, DAYCARE_ONE_MON, Route34_DayCare_EventScript_CostPrompt
+# 385 "data/maps/Route34_DayCare/scripts.pory"
+	special ShowDaycareLevelMenu
+# 386 "data/maps/Route34_DayCare/scripts.pory"
+	waitstate
+# 387 "data/maps/Route34_DayCare/scripts.pory"
+	copyvar VAR_0x8004, VAR_RESULT
+# 388 "data/maps/Route34_DayCare/scripts.pory"
+	goto_if_eq VAR_RESULT, DAYCARE_EXITED_LEVEL_MENU, Route34_DayCare_EventScript_ComeAgain
+# 389 "data/maps/Route34_DayCare/scripts.pory"
+	goto Route34_DayCare_EventScript_CostPrompt
+# 390 "data/maps/Route34_DayCare/scripts.pory"
+	end
+# 391 "data/maps/Route34_DayCare/scripts.pory"
+
+# 392 "data/maps/Route34_DayCare/scripts.pory"
+Route34_DayCare_EventScript_CostPrompt::
+# 393 "data/maps/Route34_DayCare/scripts.pory"
+	special GetDaycareCost
+# 394 "data/maps/Route34_DayCare/scripts.pory"
+	msgbox Route34_DayCare_Text_ItWillCostX, MSGBOX_YESNO
+# 395 "data/maps/Route34_DayCare/scripts.pory"
+	goto_if_eq VAR_RESULT, YES, Route34_DayCare_EventScript_CheckEnoughMoney
+# 396 "data/maps/Route34_DayCare/scripts.pory"
+	goto Route34_DayCare_EventScript_ComeAgain
+# 397 "data/maps/Route34_DayCare/scripts.pory"
+	end
+# 398 "data/maps/Route34_DayCare/scripts.pory"
+
+# 399 "data/maps/Route34_DayCare/scripts.pory"
+Route34_DayCare_EventScript_CheckEnoughMoney::
+# 400 "data/maps/Route34_DayCare/scripts.pory"
+	specialvar VAR_RESULT, IsEnoughForCostInVar0x8005
+# 401 "data/maps/Route34_DayCare/scripts.pory"
+	goto_if_eq VAR_RESULT, 1, Route34_DayCare_EventScript_RetrieveMon
+# 402 "data/maps/Route34_DayCare/scripts.pory"
+	msgbox Route34_DayCare_Text_NotEnoughMoney, MSGBOX_DEFAULT
+# 403 "data/maps/Route34_DayCare/scripts.pory"
+	release
+# 404 "data/maps/Route34_DayCare/scripts.pory"
+	end
+# 405 "data/maps/Route34_DayCare/scripts.pory"
+
+# 406 "data/maps/Route34_DayCare/scripts.pory"
+Route34_DayCare_EventScript_RetrieveMon::
+# 407 "data/maps/Route34_DayCare/scripts.pory"
+	@applymovement LOCALID_DAYCARE_LADY, Route34_DayCare_Movement_RetrieveDaycareMon
+# 408 "data/maps/Route34_DayCare/scripts.pory"
+	@waitmovement 0
+# 409 "data/maps/Route34_DayCare/scripts.pory"
+	specialvar VAR_RESULT, TakePokemonFromDaycare
+# 410 "data/maps/Route34_DayCare/scripts.pory"
+	special SubtractMoneyFromVar0x8005
+# 411 "data/maps/Route34_DayCare/scripts.pory"
+	playse SE_SHOP
+# 412 "data/maps/Route34_DayCare/scripts.pory"
+	msgbox Route34_DayCare_Text_HeresYourMon, MSGBOX_DEFAULT
+# 413 "data/maps/Route34_DayCare/scripts.pory"
+	waitse
+# 414 "data/maps/Route34_DayCare/scripts.pory"
+	playmoncry VAR_RESULT, CRY_MODE_NORMAL
+# 415 "data/maps/Route34_DayCare/scripts.pory"
+	msgbox Route34_DayCare_Text_TookBackMon, MSGBOX_DEFAULT
+# 416 "data/maps/Route34_DayCare/scripts.pory"
+	waitmoncry
+# 417 "data/maps/Route34_DayCare/scripts.pory"
+	specialvar VAR_RESULT, GetDaycareState
+# 418 "data/maps/Route34_DayCare/scripts.pory"
+	goto_if_eq VAR_RESULT, DAYCARE_ONE_MON, Route34_DayCare_EventScript_AskRetrieveOtherMon
 # 419 "data/maps/Route34_DayCare/scripts.pory"
 	goto Route34_DayCare_EventScript_ComeAgain
 # 420 "data/maps/Route34_DayCare/scripts.pory"
@@ -841,412 +841,436 @@ Route34_DayCare_EventScript_AskRetrieveOtherMon::
 # 421 "data/maps/Route34_DayCare/scripts.pory"
 
 # 422 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_EventScript_NoRoom::
+Route34_DayCare_EventScript_AskRetrieveOtherMon::
 # 423 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_DayCare_Text_YourTeamIsFull, MSGBOX_DEFAULT
+	msgbox Route34_DayCare_Text_TakeOtherOneBackToo, MSGBOX_YESNO
 # 424 "data/maps/Route34_DayCare/scripts.pory"
-	release
+	goto_if_eq VAR_RESULT, YES, Route34_DayCare_EventScript_TryRetrieveMon
 # 425 "data/maps/Route34_DayCare/scripts.pory"
-	end
+	goto Route34_DayCare_EventScript_ComeAgain
 # 426 "data/maps/Route34_DayCare/scripts.pory"
-
+	end
 # 427 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_Movement_RetrieveDaycareMon:
+
 # 428 "data/maps/Route34_DayCare/scripts.pory"
-	delay_16
+Route34_DayCare_EventScript_NoRoom::
 # 429 "data/maps/Route34_DayCare/scripts.pory"
-	delay_16
+	msgbox Route34_DayCare_Text_YourTeamIsFull, MSGBOX_DEFAULT
 # 430 "data/maps/Route34_DayCare/scripts.pory"
-	face_left
+	release
 # 431 "data/maps/Route34_DayCare/scripts.pory"
-	delay_16
+	end
 # 432 "data/maps/Route34_DayCare/scripts.pory"
-	delay_16
+
 # 433 "data/maps/Route34_DayCare/scripts.pory"
-	face_right
+Route34_DayCare_Movement_RetrieveDaycareMon:
 # 434 "data/maps/Route34_DayCare/scripts.pory"
 	delay_16
 # 435 "data/maps/Route34_DayCare/scripts.pory"
 	delay_16
 # 436 "data/maps/Route34_DayCare/scripts.pory"
-	face_up
+	face_left
 # 437 "data/maps/Route34_DayCare/scripts.pory"
-	walk_slow_up
-# 438 "data/maps/Route34_DayCare/scripts.pory"
-	set_invisible
-# 439 "data/maps/Route34_DayCare/scripts.pory"
 	delay_16
+# 438 "data/maps/Route34_DayCare/scripts.pory"
+	delay_16
+# 439 "data/maps/Route34_DayCare/scripts.pory"
+	face_right
 # 440 "data/maps/Route34_DayCare/scripts.pory"
 	delay_16
 # 441 "data/maps/Route34_DayCare/scripts.pory"
 	delay_16
 # 442 "data/maps/Route34_DayCare/scripts.pory"
-	delay_16
+	face_up
 # 443 "data/maps/Route34_DayCare/scripts.pory"
-	delay_16
+	walk_slow_up
 # 444 "data/maps/Route34_DayCare/scripts.pory"
-	face_down
+	set_invisible
 # 445 "data/maps/Route34_DayCare/scripts.pory"
-	set_visible
+	delay_16
 # 446 "data/maps/Route34_DayCare/scripts.pory"
-	walk_slow_down
+	delay_16
 # 447 "data/maps/Route34_DayCare/scripts.pory"
-	step_end
+	delay_16
 # 448 "data/maps/Route34_DayCare/scripts.pory"
-
+	delay_16
 # 449 "data/maps/Route34_DayCare/scripts.pory"
-@ Unused. Possibly a commented script, or a typo end added to the above Movement script
+	delay_16
 # 450 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_EventScript_UnusedEnd::
+	face_down
 # 451 "data/maps/Route34_DayCare/scripts.pory"
-	end
+	set_visible
 # 452 "data/maps/Route34_DayCare/scripts.pory"
-
+	walk_slow_down
 # 453 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_EventScript_TwoMonsInDaycare::
+	step_end
 # 454 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_DayCare_Text_GoodToSeeYou, MSGBOX_DEFAULT
+
 # 455 "data/maps/Route34_DayCare/scripts.pory"
-	setvar VAR_0x8004, 0
+@ Unused. Possibly a commented script, or a typo end added to the above Movement script
 # 456 "data/maps/Route34_DayCare/scripts.pory"
-	call Route34_DayCare_EventScript_DisplayLevelsGained
+Route34_DayCare_EventScript_UnusedEnd::
 # 457 "data/maps/Route34_DayCare/scripts.pory"
-	setvar VAR_0x8004, 1
-# 458 "data/maps/Route34_DayCare/scripts.pory"
-	call Route34_DayCare_EventScript_DisplayLevelsGained
-# 459 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_DayCare_Text_TakeYourMonBack, MSGBOX_YESNO
-# 460 "data/maps/Route34_DayCare/scripts.pory"
-	goto_if_eq VAR_RESULT, YES, Route34_DayCare_EventScript_TryRetrieveMon
-# 461 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox Route34_DayCare_Text_ComeAgain, MSGBOX_DEFAULT
-# 462 "data/maps/Route34_DayCare/scripts.pory"
-	release
-# 463 "data/maps/Route34_DayCare/scripts.pory"
 	end
+# 458 "data/maps/Route34_DayCare/scripts.pory"
+
+# 459 "data/maps/Route34_DayCare/scripts.pory"
+Route34_DayCare_EventScript_TwoMonsInDaycare::
+# 460 "data/maps/Route34_DayCare/scripts.pory"
+	msgbox Route34_DayCare_Text_GoodToSeeYou, MSGBOX_DEFAULT
+# 461 "data/maps/Route34_DayCare/scripts.pory"
+	setvar VAR_0x8004, 0
+# 462 "data/maps/Route34_DayCare/scripts.pory"
+	call Route34_DayCare_EventScript_DisplayLevelsGained
+# 463 "data/maps/Route34_DayCare/scripts.pory"
+	setvar VAR_0x8004, 1
 # 464 "data/maps/Route34_DayCare/scripts.pory"
-
+	call Route34_DayCare_EventScript_DisplayLevelsGained
 # 465 "data/maps/Route34_DayCare/scripts.pory"
-Route34_Text_SeeWifeIfYoudLikeMeToRaiseMon:
+	msgbox Route34_DayCare_Text_TakeYourMonBack, MSGBOX_YESNO
 # 466 "data/maps/Route34_DayCare/scripts.pory"
-	.string "I'm the Day-Care Man.\p"
+	goto_if_eq VAR_RESULT, YES, Route34_DayCare_EventScript_TryRetrieveMon
 # 467 "data/maps/Route34_DayCare/scripts.pory"
-	.string "I help take care of the precious\n"
+	msgbox Route34_DayCare_Text_ComeAgain, MSGBOX_DEFAULT
 # 468 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Pokémon of Trainers.\p"
+	release
 # 469 "data/maps/Route34_DayCare/scripts.pory"
-	.string "If you'd like me to raise your Pokémon,\n"
+	end
 # 470 "data/maps/Route34_DayCare/scripts.pory"
-	.string "have a word with my wife.$"
+
 # 471 "data/maps/Route34_DayCare/scripts.pory"
-
+Route34_Text_SeeWifeIfYoudLikeMeToRaiseMon:
 # 472 "data/maps/Route34_DayCare/scripts.pory"
-Route34_Text_DoYouWantEgg:
+	.string "I'm the Day-Care Man.\p"
 # 473 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Ah, it's you!\p"
+	.string "I help take care of the precious\n"
 # 474 "data/maps/Route34_DayCare/scripts.pory"
-	.string "We were raising your Pokémon,\n"
+	.string "Pokémon of Trainers.\p"
 # 475 "data/maps/Route34_DayCare/scripts.pory"
-	.string "and my goodness, were we surprised!\p"
+	.string "If you'd like me to raise your Pokémon,\n"
 # 476 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Your Pokémon had an Egg!\p"
+	.string "have a word with my wife.$"
 # 477 "data/maps/Route34_DayCare/scripts.pory"
-	.string "We don't know how it got there,\n"
+
 # 478 "data/maps/Route34_DayCare/scripts.pory"
-	.string "but your Pokémon had it.\p"
+Route34_Text_FoundEgg:
 # 479 "data/maps/Route34_DayCare/scripts.pory"
-	.string "You do want it, yes?$"
+	.string "Ah, it's you!\p"
 # 480 "data/maps/Route34_DayCare/scripts.pory"
-
+	.string "We were raising your Pokémon,\n"
 # 481 "data/maps/Route34_DayCare/scripts.pory"
-Route34_Text_YourMonIsDoingFine:
+	.string "and my goodness, were we surprised!\p"
 # 482 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Ah, it's you! Good to see you.\n"
+	.string "Your Pokémon had an Egg!\p"
 # 483 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Your {STR_VAR_1}'s doing fine.$"
+	.string "We don't know how it got there,\n"
 # 484 "data/maps/Route34_DayCare/scripts.pory"
-
+	.string "but your Pokémon had it.$"
 # 485 "data/maps/Route34_DayCare/scripts.pory"
-Route34_Text_IllKeepIt:
+
 # 486 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Well then, I'll keep it.\n"
+Route34_Text_DoYouWantEgg:
 # 487 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Thanks!$"
+	.string "You do want it, yes?$"
 # 488 "data/maps/Route34_DayCare/scripts.pory"
 
 # 489 "data/maps/Route34_DayCare/scripts.pory"
-Route34_Text_YouHaveNoRoomForIt:
+Route34_Text_YourMonIsDoingFine:
 # 490 "data/maps/Route34_DayCare/scripts.pory"
-	.string "You have no room for it…\n"
+	.string "Ah, it's you! Good to see you.\n"
 # 491 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Come back when you've made room.$"
+	.string "Your {STR_VAR_1}'s doing fine.$"
 # 492 "data/maps/Route34_DayCare/scripts.pory"
 
 # 493 "data/maps/Route34_DayCare/scripts.pory"
-Route34_Text_ReceivedEgg:
+Route34_Text_IllKeepIt:
 # 494 "data/maps/Route34_DayCare/scripts.pory"
-	.string "{PLAYER} received the Egg from\n"
+	.string "Well then, I'll keep it.\n"
 # 495 "data/maps/Route34_DayCare/scripts.pory"
-	.string "the Day-Care Man.$"
+	.string "Thanks!$"
 # 496 "data/maps/Route34_DayCare/scripts.pory"
 
 # 497 "data/maps/Route34_DayCare/scripts.pory"
-Route34_Text_TakeGoodCareOfIt:
+Route34_Text_YouHaveNoRoomForIt:
 # 498 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Take good care of it.$"
+	.string "You have no room for it…\n"
 # 499 "data/maps/Route34_DayCare/scripts.pory"
-
+	.string "Come back when you've made room.$"
 # 500 "data/maps/Route34_DayCare/scripts.pory"
-Route34_Text_FriendlyWithOtherTrainersMon:
-# 501 "data/maps/Route34_DayCare/scripts.pory"
-	.string "By the way, about your {STR_VAR_1},\n"
-# 502 "data/maps/Route34_DayCare/scripts.pory"
-	.string "it seemed to be friendly with\l"
-# 503 "data/maps/Route34_DayCare/scripts.pory"
-	.string "{STR_VAR_2}'s {STR_VAR_3}.\p"
-# 504 "data/maps/Route34_DayCare/scripts.pory"
-	.string "I may even have seen it receiving\n"
-# 505 "data/maps/Route34_DayCare/scripts.pory"
-	.string "a piece of Mail.$"
-# 506 "data/maps/Route34_DayCare/scripts.pory"
 
+# 501 "data/maps/Route34_DayCare/scripts.pory"
+Route34_Text_ReceivedEgg:
+# 502 "data/maps/Route34_DayCare/scripts.pory"
+	.string "{PLAYER} received the Egg from\n"
+# 503 "data/maps/Route34_DayCare/scripts.pory"
+	.string "the Day-Care Man.$"
+# 504 "data/maps/Route34_DayCare/scripts.pory"
+
+# 505 "data/maps/Route34_DayCare/scripts.pory"
+Route34_Text_TakeGoodCareOfIt:
+# 506 "data/maps/Route34_DayCare/scripts.pory"
+	.string "Take good care of it.$"
 # 507 "data/maps/Route34_DayCare/scripts.pory"
-@ Unused
+
 # 508 "data/maps/Route34_DayCare/scripts.pory"
-Route34_Text_SeeWifeIfYouWantToPickUpMon:
+Route34_Text_ShinyEgg:
 # 509 "data/maps/Route34_DayCare/scripts.pory"
-	.string "If you want to pick up your Pokémon,\n"
+	.string "This Egg looks quite different\n"
 # 510 "data/maps/Route34_DayCare/scripts.pory"
-	.string "have a word with my wife.$"
+	.string "from the ones we usually see!$"
 # 511 "data/maps/Route34_DayCare/scripts.pory"
 
 # 512 "data/maps/Route34_DayCare/scripts.pory"
-Route34_Text_YourMonsAreDoingFine:
+Route34_Text_FriendlyWithOtherTrainersMon:
 # 513 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Ah, it's you! Your {STR_VAR_1} and\n"
+	.string "By the way, about your {STR_VAR_1},\n"
 # 514 "data/maps/Route34_DayCare/scripts.pory"
-	.string "{STR_VAR_2} are doing fine.$"
+	.string "it seemed to be friendly with\l"
 # 515 "data/maps/Route34_DayCare/scripts.pory"
-
+	.string "{STR_VAR_2}'s {STR_VAR_3}.\p"
 # 516 "data/maps/Route34_DayCare/scripts.pory"
-Route34_Text_IWillKeepDoYouWantIt:
+	.string "I may even have seen it receiving\n"
 # 517 "data/maps/Route34_DayCare/scripts.pory"
-	.string "I really will keep it.\n"
+	.string "a piece of Mail.$"
 # 518 "data/maps/Route34_DayCare/scripts.pory"
-	.string "You do want this, yes?$"
+
 # 519 "data/maps/Route34_DayCare/scripts.pory"
-
+@ Unused
 # 520 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_Text_WouldYouLikeUsToRaiseAMon:
+Route34_Text_SeeWifeIfYouWantToPickUpMon:
 # 521 "data/maps/Route34_DayCare/scripts.pory"
-	.string "I'm the Day-Care Lady.\p"
+	.string "If you want to pick up your Pokémon,\n"
 # 522 "data/maps/Route34_DayCare/scripts.pory"
-	.string "We can raise Pokémon for you.\p"
+	.string "have a word with my wife.$"
 # 523 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Would you like us to raise one?$"
+
 # 524 "data/maps/Route34_DayCare/scripts.pory"
-
+Route34_Text_YourMonsAreDoingFine:
 # 525 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_Text_WhichMonShouldWeRaise:
+	.string "Ah, it's you! Your {STR_VAR_1} and\n"
 # 526 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Which Pokémon should we raise for\n"
+	.string "{STR_VAR_2} are doing fine.$"
 # 527 "data/maps/Route34_DayCare/scripts.pory"
-	.string "you?$"
+
 # 528 "data/maps/Route34_DayCare/scripts.pory"
-
+Route34_Text_IWillKeepDoYouWantIt:
 # 529 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_Text_WellRaiseYourMon:
+	.string "I really will keep it.\n"
 # 530 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Fine, we'll raise your {STR_VAR_1}\n"
+	.string "You do want this, yes?$"
 # 531 "data/maps/Route34_DayCare/scripts.pory"
-	.string "for a while.\p"
+
 # 532 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Come back for it later.$"
+Route34_DayCare_Text_WouldYouLikeUsToRaiseAMon:
 # 533 "data/maps/Route34_DayCare/scripts.pory"
-
+	.string "I'm the Day-Care Lady.\p"
 # 534 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_Text_WeCanRaiseOneMore:
+	.string "We can raise Pokémon for you.\p"
 # 535 "data/maps/Route34_DayCare/scripts.pory"
-	.string "We can raise two of your Pokémon.\n"
+	.string "Would you like us to raise one?$"
 # 536 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Would you like us to raise one more?$"
-# 537 "data/maps/Route34_DayCare/scripts.pory"
 
+# 537 "data/maps/Route34_DayCare/scripts.pory"
+Route34_DayCare_Text_WhichMonShouldWeRaise:
 # 538 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_Text_HusbandWasLookingForYou:
+	.string "Which Pokémon should we raise for\n"
 # 539 "data/maps/Route34_DayCare/scripts.pory"
-	.string "My husband was looking for you.$"
+	.string "you?$"
 # 540 "data/maps/Route34_DayCare/scripts.pory"
 
 # 541 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_Text_FineThenComeAgain:
+Route34_DayCare_Text_WellRaiseYourMon:
 # 542 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Oh, fine, then.\n"
+	.string "Fine, we'll raise your {STR_VAR_1}\n"
 # 543 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Come again.$"
+	.string "for a while.\p"
 # 544 "data/maps/Route34_DayCare/scripts.pory"
-
+	.string "Come back for it later.$"
 # 545 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_Text_NotEnoughMoney:
+
 # 546 "data/maps/Route34_DayCare/scripts.pory"
-	.string "You don't have enough money…$"
+Route34_DayCare_Text_WeCanRaiseOneMore:
 # 547 "data/maps/Route34_DayCare/scripts.pory"
-
+	.string "We can raise two of your Pokémon.\n"
 # 548 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_Text_TakeOtherOneBackToo:
+	.string "Would you like us to raise one more?$"
 # 549 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Will you take back the other one,\n"
+
 # 550 "data/maps/Route34_DayCare/scripts.pory"
-	.string "too?$"
+Route34_DayCare_Text_HusbandWasLookingForYou:
 # 551 "data/maps/Route34_DayCare/scripts.pory"
-
+	.string "My husband was looking for you.$"
 # 552 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_Text_ComeAgain:
-# 553 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Fine.\n"
-# 554 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Come again.$"
-# 555 "data/maps/Route34_DayCare/scripts.pory"
 
+# 553 "data/maps/Route34_DayCare/scripts.pory"
+Route34_DayCare_Text_FineThenComeAgain:
+# 554 "data/maps/Route34_DayCare/scripts.pory"
+	.string "Oh, fine, then.\n"
+# 555 "data/maps/Route34_DayCare/scripts.pory"
+	.string "Come again.$"
 # 556 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_Text_GoodToSeeYou:
+
 # 557 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Ah, it's you! Good to see you.\n"
+Route34_DayCare_Text_NotEnoughMoney:
 # 558 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Your Pokémon can only be doing good!$"
+	.string "You don't have enough money…$"
 # 559 "data/maps/Route34_DayCare/scripts.pory"
 
 # 560 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_Text_YourMonHasGrownXLevels:
+Route34_DayCare_Text_TakeOtherOneBackToo:
 # 561 "data/maps/Route34_DayCare/scripts.pory"
-	.string "By level, your {STR_VAR_1} has\n"
+	.string "Will you take back the other one,\n"
 # 562 "data/maps/Route34_DayCare/scripts.pory"
-	.string "grown by {STR_VAR_2}.$"
+	.string "too?$"
 # 563 "data/maps/Route34_DayCare/scripts.pory"
 
 # 564 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_Text_YourTeamIsFull:
+Route34_DayCare_Text_ComeAgain:
 # 565 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Your Pokémon team is full.\n"
+	.string "Fine.\n"
 # 566 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Make room, then come see me.$"
+	.string "Come again.$"
 # 567 "data/maps/Route34_DayCare/scripts.pory"
 
 # 568 "data/maps/Route34_DayCare/scripts.pory"
-@ Unused
+Route34_DayCare_Text_GoodToSeeYou:
 # 569 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_Text_TakeBackWhichMon:
+	.string "Ah, it's you! Good to see you.\n"
 # 570 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Which Pokémon will you take back?$"
+	.string "Your Pokémon can only be doing good!$"
 # 571 "data/maps/Route34_DayCare/scripts.pory"
 
 # 572 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_Text_ItWillCostX:
+Route34_DayCare_Text_YourMonHasGrownXLevels:
 # 573 "data/maps/Route34_DayCare/scripts.pory"
-	.string "If you want your {STR_VAR_1} back,\n"
+	.string "By level, your {STR_VAR_1} has\n"
 # 574 "data/maps/Route34_DayCare/scripts.pory"
-	.string "it will cost ¥{STR_VAR_2}.$"
+	.string "grown by {STR_VAR_2}.$"
 # 575 "data/maps/Route34_DayCare/scripts.pory"
 
 # 576 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_Text_HeresYourMon:
+Route34_DayCare_Text_YourTeamIsFull:
 # 577 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Perfect!\n"
+	.string "Your Pokémon team is full.\n"
 # 578 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Here's your Pokémon.$"
+	.string "Make room, then come see me.$"
 # 579 "data/maps/Route34_DayCare/scripts.pory"
 
 # 580 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_Text_TookBackMon:
+@ Unused
 # 581 "data/maps/Route34_DayCare/scripts.pory"
-	.string "{PLAYER} took back {STR_VAR_1} from\n"
+Route34_DayCare_Text_TakeBackWhichMon:
 # 582 "data/maps/Route34_DayCare/scripts.pory"
-	.string "the Day-Care Lady.$"
+	.string "Which Pokémon will you take back?$"
 # 583 "data/maps/Route34_DayCare/scripts.pory"
 
 # 584 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_Text_YouHaveJustOneMon:
+Route34_DayCare_Text_ItWillCostX:
 # 585 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Oh? But you have just one\n"
+	.string "If you want your {STR_VAR_1} back,\n"
 # 586 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Pokémon.\p"
+	.string "it will cost ¥{STR_VAR_2}.$"
 # 587 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Come back another time.$"
-# 588 "data/maps/Route34_DayCare/scripts.pory"
 
+# 588 "data/maps/Route34_DayCare/scripts.pory"
+Route34_DayCare_Text_HeresYourMon:
 # 589 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_Text_TakeYourMonBack:
+	.string "Perfect!\n"
 # 590 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Will you take your Pokémon back?$"
+	.string "Here's your Pokémon.$"
 # 591 "data/maps/Route34_DayCare/scripts.pory"
 
 # 592 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_Text_WhatWillYouBattleWith:
+Route34_DayCare_Text_TookBackMon:
 # 593 "data/maps/Route34_DayCare/scripts.pory"
-	.string "If you leave me that Pokémon,\n"
+	.string "{PLAYER} took back {STR_VAR_1} from\n"
 # 594 "data/maps/Route34_DayCare/scripts.pory"
-	.string "what will you battle with?\p"
+	.string "the Day-Care Lady.$"
 # 595 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Come back another time.$"
-# 596 "data/maps/Route34_DayCare/scripts.pory"
 
+# 596 "data/maps/Route34_DayCare/scripts.pory"
+Route34_DayCare_Text_YouHaveJustOneMon:
 # 597 "data/maps/Route34_DayCare/scripts.pory"
-Route34_DayCare_Text_YoullBeLeftWithJustOne:
+	.string "Oh? But you have just one\n"
 # 598 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Huh?\n"
+	.string "Pokémon.\p"
 # 599 "data/maps/Route34_DayCare/scripts.pory"
-	.string "Now, now.\p"
+	.string "Come back another time.$"
 # 600 "data/maps/Route34_DayCare/scripts.pory"
-	.string "If you leave that Pokémon with\n"
+
 # 601 "data/maps/Route34_DayCare/scripts.pory"
-	.string "me, you'll be left with just one.\p"
+Route34_DayCare_Text_TakeYourMonBack:
 # 602 "data/maps/Route34_DayCare/scripts.pory"
-	.string "You will be better off if you catch\n"
+	.string "Will you take your Pokémon back?$"
 # 603 "data/maps/Route34_DayCare/scripts.pory"
+
+# 604 "data/maps/Route34_DayCare/scripts.pory"
+Route34_DayCare_Text_WhatWillYouBattleWith:
+# 605 "data/maps/Route34_DayCare/scripts.pory"
+	.string "If you leave me that Pokémon,\n"
+# 606 "data/maps/Route34_DayCare/scripts.pory"
+	.string "what will you battle with?\p"
+# 607 "data/maps/Route34_DayCare/scripts.pory"
+	.string "Come back another time.$"
+# 608 "data/maps/Route34_DayCare/scripts.pory"
+
+# 609 "data/maps/Route34_DayCare/scripts.pory"
+Route34_DayCare_Text_YoullBeLeftWithJustOne:
+# 610 "data/maps/Route34_DayCare/scripts.pory"
+	.string "Huh?\n"
+# 611 "data/maps/Route34_DayCare/scripts.pory"
+	.string "Now, now.\p"
+# 612 "data/maps/Route34_DayCare/scripts.pory"
+	.string "If you leave that Pokémon with\n"
+# 613 "data/maps/Route34_DayCare/scripts.pory"
+	.string "me, you'll be left with just one.\p"
+# 614 "data/maps/Route34_DayCare/scripts.pory"
+	.string "You will be better off if you catch\n"
+# 615 "data/maps/Route34_DayCare/scripts.pory"
 	.string "some more, I dare say.$"
 
 daycareDestinyKnotGift::
-# 607 "data/maps/Route34_DayCare/scripts.pory"
+# 619 "data/maps/Route34_DayCare/scripts.pory"
 	lock
-# 608 "data/maps/Route34_DayCare/scripts.pory"
+# 620 "data/maps/Route34_DayCare/scripts.pory"
 	faceplayer
-# 609 "data/maps/Route34_DayCare/scripts.pory"
-	goto_if_set FLAG_DESTINYKNOT_GIFT, daycareDestinyKnotGift_2
-# 615 "data/maps/Route34_DayCare/scripts.pory"
-	msgbox daycareDestinyKnotGift_Text_1
 # 621 "data/maps/Route34_DayCare/scripts.pory"
+	goto_if_set FLAG_DESTINYKNOT_GIFT, daycareDestinyKnotGift_2
+# 627 "data/maps/Route34_DayCare/scripts.pory"
+	msgbox daycareDestinyKnotGift_Text_1
+# 633 "data/maps/Route34_DayCare/scripts.pory"
 	giveitem ITEM_DESTINY_KNOT
-# 622 "data/maps/Route34_DayCare/scripts.pory"
+# 634 "data/maps/Route34_DayCare/scripts.pory"
 	setflag FLAG_DESTINYKNOT_GIFT
-# 623 "data/maps/Route34_DayCare/scripts.pory"
+# 635 "data/maps/Route34_DayCare/scripts.pory"
 	msgbox daycareDestinyKnotGift_Text_0
-# 625 "data/maps/Route34_DayCare/scripts.pory"
+# 637 "data/maps/Route34_DayCare/scripts.pory"
 	waitmessage
-# 626 "data/maps/Route34_DayCare/scripts.pory"
+# 638 "data/maps/Route34_DayCare/scripts.pory"
 	release
 	end
 
 daycareDestinyKnotGift_2:
-# 610 "data/maps/Route34_DayCare/scripts.pory"
+# 622 "data/maps/Route34_DayCare/scripts.pory"
 	msgbox daycareDestinyKnotGift_Text_0
-# 612 "data/maps/Route34_DayCare/scripts.pory"
+# 624 "data/maps/Route34_DayCare/scripts.pory"
 	release
 	end
 
 
 Route34_EventScript_DaycareEggSentToPC::
-# 631 "data/maps/Route34_DayCare/scripts.pory"
+# 643 "data/maps/Route34_DayCare/scripts.pory"
 	msgbox Route34_EventScript_DaycareEggSentToPC_Text_0
 	return
 
 
 daycareDestinyKnotGift_Text_0:
-# 610 "data/maps/Route34_DayCare/scripts.pory"
+# 622 "data/maps/Route34_DayCare/scripts.pory"
 	.string "Destiny Knot will let Pokémon inherit\n"
 	.string "5 Innate values from their parents.$"
 
 daycareDestinyKnotGift_Text_1:
-# 615 "data/maps/Route34_DayCare/scripts.pory"
+# 627 "data/maps/Route34_DayCare/scripts.pory"
 	.string "Hey! Have you tried putting your\n"
 	.string "Pokémon into daycare yet? Sometimes\l"
 	.string "the daycare couple might find an egg.\p"
@@ -1254,6 +1278,6 @@ daycareDestinyKnotGift_Text_1:
 	.string "you might find this useful.$"
 
 Route34_EventScript_DaycareEggSentToPC_Text_0:
-# 631 "data/maps/Route34_DayCare/scripts.pory"
+# 643 "data/maps/Route34_DayCare/scripts.pory"
 	.string "Your party was full, so the Egg was\n"
 	.string "sent to your PC.$"

@@ -558,6 +558,16 @@ static s32 GetParentToInheritNature(struct DayCare *daycare)
     return Random() & 1 ? slot : -1;
 }
 
+static bool32 IsDaycareEggShiny(u32 personality)
+{
+    if (P_FLAG_FORCE_NO_SHINY != 0 && FlagGet(P_FLAG_FORCE_NO_SHINY))
+        return FALSE;
+    if (P_FLAG_FORCE_SHINY != 0 && FlagGet(P_FLAG_FORCE_SHINY))
+        return TRUE;
+
+    return GET_SHINY_VALUE(READ_OTID_FROM_SAVE, personality) < GetCurrentShinyOdds();
+}
+
 static void _TriggerPendingDaycareEgg(struct DayCare *daycare)
 {
     s32 parent;
@@ -590,6 +600,10 @@ static void _TriggerPendingDaycareEgg(struct DayCare *daycare)
         daycare->offspringPersonality = personality;
     }
 
+    if (IsDaycareEggShiny(daycare->offspringPersonality))
+        FlagSet(FLAG_PENDING_DAYCARE_EGG_SHINY);
+    else
+        FlagClear(FLAG_PENDING_DAYCARE_EGG_SHINY);
     FlagSet(FLAG_PENDING_DAYCARE_EGG);
 }
 
@@ -597,6 +611,10 @@ static void _TriggerPendingDaycareEgg(struct DayCare *daycare)
 static void _TriggerPendingDaycareMaleEgg(struct DayCare *daycare)
 {
     daycare->offspringPersonality = (Random()) | (EGG_GENDER_MALE);
+    if (IsDaycareEggShiny(daycare->offspringPersonality))
+        FlagSet(FLAG_PENDING_DAYCARE_EGG_SHINY);
+    else
+        FlagClear(FLAG_PENDING_DAYCARE_EGG_SHINY);
     FlagSet(FLAG_PENDING_DAYCARE_EGG);
 }
 
@@ -963,6 +981,7 @@ static void RemoveEggFromDayCare(struct DayCare *daycare)
 {
     daycare->offspringPersonality = 0;
     daycare->stepCounter = 0;
+    FlagClear(FLAG_PENDING_DAYCARE_EGG_SHINY);
 }
 
 void RejectEggFromDayCare(void)
@@ -1102,6 +1121,7 @@ static u16 _GiveEggFromDaycare(struct DayCare *daycare)
     u16 giveResult;
     u8 parentSlots[DAYCARE_MON_COUNT] = {0};
     bool8 isEgg;
+    bool32 isShiny;
 
     if (GetDaycareCompatibilityScore(daycare) == PARENTS_INCOMPATIBLE)
         return MON_CANT_GIVE;
@@ -1117,6 +1137,9 @@ static u16 _GiveEggFromDaycare(struct DayCare *daycare)
         InheritAbility(&egg, &daycare->mons[parentSlots[1]].mon, &daycare->mons[parentSlots[0]].mon);
 
     GiveMoveIfItem(&egg, daycare);
+
+    isShiny = FlagGet(FLAG_PENDING_DAYCARE_EGG_SHINY);
+    SetMonData(&egg, MON_DATA_IS_SHINY, &isShiny);
 
     isEgg = TRUE;
     SetMonData(&egg, MON_DATA_IS_EGG, &isEgg);

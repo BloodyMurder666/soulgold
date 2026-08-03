@@ -69,7 +69,7 @@
 #define FLAG_CAUGHT_ZERAORA                     0x37
 #define FLAG_WALLACE_REMATCH                    0x38 //Elite Four Rematch 5, Champion
 #define FLAG_STEVEN_REMATCH                     0x39 // Steven Rematch, true champion
-#define FLAG_SYS_BRAILLE_REGIELEKI_COMPLETED    0x3A
+#define FLAG_PENDING_DAYCARE_EGG_SHINY          0x3A
 #define FLAG_DEFEATED_REGIELEKI                 0x3B 
 #define FLAG_HIDE_REGIELEKI                     0x3C 
 #define FLAG_HIDE_REGIDRAGO                     0x3D

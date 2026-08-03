@@ -222,6 +222,8 @@ Route34_EventScript_DaycareMan::
 	end
 
 Route34_EventScript_DaycareEggWaiting::
+	msgbox Route34_Text_FoundEgg, MSGBOX_DEFAULT
+	call_if_set FLAG_PENDING_DAYCARE_EGG_SHINY, Route34_EventScript_DaycareShinyEgg
 	msgbox Route34_Text_DoYouWantEgg, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, Route34_EventScript_DaycareAcceptEgg
 	msgbox Route34_Text_IWillKeepDoYouWantIt, MSGBOX_YESNO
@@ -249,6 +251,10 @@ Route34_EventScript_DaycareReceiveEgg::
 	clearflag FLAG_PENDING_DAYCARE_EGG
 	release
 	end
+
+Route34_EventScript_DaycareShinyEgg::
+	msgbox Route34_Text_ShinyEgg, MSGBOX_DEFAULT
+	return
 
 Route34_EventScript_CheckMonReceivedMail::
 	specialvar VAR_RESULT, CheckDaycareMonReceivedMail
@@ -469,13 +475,15 @@ Route34_Text_SeeWifeIfYoudLikeMeToRaiseMon:
 	.string "If you'd like me to raise your Pokémon,\n"
 	.string "have a word with my wife.$"
 
-Route34_Text_DoYouWantEgg:
+Route34_Text_FoundEgg:
 	.string "Ah, it's you!\p"
 	.string "We were raising your Pokémon,\n"
 	.string "and my goodness, were we surprised!\p"
 	.string "Your Pokémon had an Egg!\p"
 	.string "We don't know how it got there,\n"
-	.string "but your Pokémon had it.\p"
+	.string "but your Pokémon had it.$"
+
+Route34_Text_DoYouWantEgg:
 	.string "You do want it, yes?$"
 
 Route34_Text_YourMonIsDoingFine:
@@ -496,6 +504,10 @@ Route34_Text_ReceivedEgg:
 
 Route34_Text_TakeGoodCareOfIt:
 	.string "Take good care of it.$"
+
+Route34_Text_ShinyEgg:
+	.string "This Egg looks quite different\n"
+	.string "from the ones we usually see!$"
 
 Route34_Text_FriendlyWithOtherTrainersMon:
 	.string "By the way, about your {STR_VAR_1},\n"
