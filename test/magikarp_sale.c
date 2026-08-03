@@ -217,6 +217,13 @@ TEST("Magikarp sale command reports its save effect before mutating party data")
         removegenericmon SPECIES_MAGIKARP;
     );
 
+    ZeroPlayerPartyMons();
+    CreateSaleMon(0, SPECIES_MAGIKARP, 10);
+    CreateSaleMon(1, SPECIES_BULBASAUR, 10);
+    gSpecialVar_0x8004 = 0;
+
     EXPECT(!Script_HasNoEffect(script));
-    EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), SPECIES_NONE);
+    EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), SPECIES_MAGIKARP);
+    EXPECT_EQ(GetMonData(&gPlayerParty[1], MON_DATA_SPECIES), SPECIES_BULBASAUR);
+    EXPECT_EQ(gPlayerPartyCount, 2);
 }
