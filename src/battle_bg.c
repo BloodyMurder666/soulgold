@@ -704,8 +704,6 @@ static u8 GetBattleEnvironmentOverride(void)
     {
         switch (GetMonData(&gEnemyParty[0], MON_DATA_SPECIES))
         {
-        case SPECIES_KYOGRE:
-            return BATTLE_ENVIRONMENT_KYOGRE;
         case SPECIES_RAYQUAZA:
         case SPECIES_HO_OH:
             return BATTLE_ENVIRONMENT_RAYQUAZA;

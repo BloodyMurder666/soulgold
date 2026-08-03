@@ -2408,3 +2408,13 @@ Common_Text_ReceivedMon:
 	.include "data/maps/FarawayIslandDepths/scripts.inc"
 
 	.include "data/maps/SpearPillarTop/scripts.inc"
+
+	.include "data/maps/Route33South_Underwater/scripts.inc"
+
+	.include "data/maps/Route33South_UnderwaterCave/scripts.inc"
+
+	.include "data/maps/Route50Underwater/scripts.inc"
+
+	.include "data/maps/Route50UnderwaterCave1/scripts.inc"
+
+	.include "data/maps/Route50UnderwaterCave2/scripts.inc"

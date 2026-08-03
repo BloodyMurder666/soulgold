@@ -1,6 +1,9 @@
 Update notes:
 4.8.2026
+- New Legendary: Groudon, after obtaining Dive, can be found on Route 50.
+- New Legendary: Kyogre, after obtaining Dive, can be found South of Route 33.
 - Nasty Plot is now a tutor move.
+- Fixed Archer's face showing up in the whirlpool if you didn't have the HM.
 
 3.8.2026
 - New Mythical: Meloetta: After becoming a Champion, you can find this dancer Pokémon in the Ecruteak Theater.

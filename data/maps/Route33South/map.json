@@ -27,6 +27,11 @@
       "map": "MAP_SOUTHERN_PASSAGE",
       "offset": 41,
       "direction": "down"
+    },
+    {
+      "map": "MAP_ROUTE33SOUTH_UNDERWATER",
+      "offset": 0,
+      "direction": "dive"
     }
   ],
   "object_events": [],

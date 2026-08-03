@@ -39,7 +39,7 @@
 
 ../porytiles/porytiles decompile-primary -tiles-primary-override=640 -pals-primary-override=7 -o porytiles/decompiled-primary-tileset data/tilesets/primary/johto_general include/constants/metatile_behaviors.h
 ../porytiles/porytiles decompile-secondary -tiles-primary-override=640 -pals-primary-override=7 -o porytiles/decompiled-ecruteak-pory data/tilesets/secondary/ecruteak_city data/tilesets/primary/johto_general include/constants/metatile_behaviors.h
-../porytiles/porytiles compile-secondary -target-base-game=pokefirered -tiles-primary-override=640 -metatiles-primary-override=1024 -metatiles-total-override=2048 -pals-primary-override=7 -o data/tilesets/secondary/dojo porytiles/decompiled-dojo ../porytiles/primary_blank include/constants/metatile_behaviors.h
+../porytiles/porytiles compile-primary -target-base-game=pokefirered -tiles-primary-override=640 -metatiles-primary-override=1024 -metatiles-total-override=2048 -pals-primary-override=7 -o data/tilesets/secondary/dojo porytiles/decompiled-dojo ../porytiles/primary_blank include/constants/metatile_behaviors.h
 
 
 ../porytiles/porytiles compile-secondary -target-base-game=pokefirered -tiles-primary-override=640 -metatiles-primary-override=1024 -metatiles-total-override=2048 -pals-primary-override=7 -o data/tilesets/secondary/desert_village porytiles/decompiled-desert-village ../porytiles/primary_blank include/constants/metatile_behaviors.h

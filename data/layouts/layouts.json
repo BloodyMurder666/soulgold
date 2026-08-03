@@ -8946,8 +8946,8 @@
       "name": "CherrygroveUnderwater_Layout",
       "width": 65,
       "height": 42,
-      "primary_tileset": "gTileset_Johto_General",
-      "secondary_tileset": "gTileset_Underwater",
+      "primary_tileset": "gTileset_underwater",
+      "secondary_tileset": "gTileset_g4cave",
       "border_filepath": "data/layouts/CherrygroveUnderwater/border.bin",
       "blockdata_filepath": "data/layouts/CherrygroveUnderwater/map.bin"
     },
@@ -10276,6 +10276,56 @@
       "secondary_tileset": "gTileset_SpearPillar",
       "border_filepath": "data/layouts/SpearPillarTop/border.bin",
       "blockdata_filepath": "data/layouts/SpearPillarTop/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE33SOUTH_UNDERWATER",
+      "name": "Route33South_Underwater_Layout",
+      "width": 63,
+      "height": 23,
+      "primary_tileset": "gTileset_underwater",
+      "secondary_tileset": "gTileset_AzaleaTown",
+      "border_filepath": "data/layouts/Route33South_Underwater/border.bin",
+      "blockdata_filepath": "data/layouts/Route33South_Underwater/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE33SOUTH_UNDERWATER_CAVE",
+      "name": "Route33South_UnderwaterCave_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_underwater",
+      "secondary_tileset": "gTileset_AzaleaTown",
+      "border_filepath": "data/layouts/Route33South_UnderwaterCave/border.bin",
+      "blockdata_filepath": "data/layouts/Route33South_UnderwaterCave/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE50UNDERWATER",
+      "name": "Route50Underwater_Layout",
+      "width": 75,
+      "height": 40,
+      "primary_tileset": "gTileset_underwater",
+      "secondary_tileset": "gTileset_DesertVillage",
+      "border_filepath": "data/layouts/Route50Underwater/border.bin",
+      "blockdata_filepath": "data/layouts/Route50Underwater/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE50UNDERWATER_CAVE1",
+      "name": "Route50UnderwaterCave1_Layout",
+      "width": 22,
+      "height": 20,
+      "primary_tileset": "gTileset_underwater",
+      "secondary_tileset": "gTileset_DesertVillage",
+      "border_filepath": "data/layouts/Route50UnderwaterCave1/border.bin",
+      "blockdata_filepath": "data/layouts/Route50UnderwaterCave1/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE50UNDERWATER_CAVE2",
+      "name": "Route50UnderwaterCave2_Layout",
+      "width": 22,
+      "height": 20,
+      "primary_tileset": "gTileset_Johto_General",
+      "secondary_tileset": "gTileset_MtEmber",
+      "border_filepath": "data/layouts/Route50UnderwaterCave2/border.bin",
+      "blockdata_filepath": "data/layouts/Route50UnderwaterCave2/map.bin"
     }
   ]
 }

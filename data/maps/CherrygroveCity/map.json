@@ -27,11 +27,6 @@
       "map": "MAP_ROUTE32",
       "offset": -68,
       "direction": "left"
-    },
-    {
-      "map": "MAP_CHERRYGROVE_UNDERWATER",
-      "offset": 0,
-      "direction": "dive"
     }
   ],
   "object_events": [

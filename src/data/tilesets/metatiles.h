@@ -578,3 +578,6 @@ const u16 gMetatileAttributes_MeteorCave[] = INCBIN_U16("data/tilesets/secondary
 
 const u16 gMetatiles_SpearPillar[] = INCBIN_U16("data/tilesets/secondary/spear_pillar/metatiles.bin");
 const u16 gMetatileAttributes_SpearPillar[] = INCBIN_U16("data/tilesets/secondary/spear_pillar/metatile_attributes.bin");
+
+const u16 gMetatiles_underwater[] = INCBIN_U16("data/tilesets/primary/underwater/metatiles.bin");
+const u16 gMetatileAttributes_underwater[] = INCBIN_U16("data/tilesets/primary/underwater/metatile_attributes.bin");

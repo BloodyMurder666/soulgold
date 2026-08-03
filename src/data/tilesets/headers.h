@@ -2272,3 +2272,14 @@ const struct Tileset gTileset_SpearPillar =
     .metatileAttributes = gMetatileAttributes_SpearPillar,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_underwater =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .tiles = gTilesetTiles_underwater,
+    .palettes = gTilesetPalettes_underwater,
+    .metatiles = gMetatiles_underwater,
+    .metatileAttributes = gMetatileAttributes_underwater,
+    .callback = NULL,
+};

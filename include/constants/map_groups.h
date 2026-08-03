@@ -77,6 +77,8 @@ enum
     MAP_DREAM_GARDEN              = (62 | (0 << 8)),
     MAP_SOUTH_PASSAGE_LEFT        = (63 | (0 << 8)),
     MAP_FARAWAY_ISLAND_OUTSIDE    = (64 | (0 << 8)),
+    MAP_ROUTE33SOUTH_UNDERWATER   = (65 | (0 << 8)),
+    MAP_ROUTE50UNDERWATER         = (66 | (0 << 8)),
 
     // gMapGroup_IndoorNewBark
     MAP_NEW_BARK_TOWN_LAB              = (0 | (1 << 8)),
@@ -638,6 +640,9 @@ enum
     MAP_FARAWAY_ISLAND_JUNGLE             = (40 | (25 << 8)),
     MAP_FARAWAY_ISLAND_DEPTHS             = (41 | (25 << 8)),
     MAP_SPEAR_PILLAR_TOP                  = (42 | (25 << 8)),
+    MAP_ROUTE33SOUTH_UNDERWATER_CAVE      = (43 | (25 << 8)),
+    MAP_ROUTE50UNDERWATER_CAVE1           = (44 | (25 << 8)),
+    MAP_ROUTE50UNDERWATER_CAVE2           = (45 | (25 << 8)),
 
     // gMapGroup_JohtoDiveMaps
     MAP_CHERRYGROVE_UNDERWATER = (0 | (26 << 8)),

@@ -97,6 +97,64 @@ static const struct BossPhaseProfile sRayquazaBossProfile =
 };
 #endif
 
+#if P_FAMILY_KYOGRE && P_PRIMAL_REVERSIONS
+static const struct BossPhase sKyogreBossPhases[] =
+{
+    {
+        .species = SPECIES_KYOGRE,
+        .moves = {MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_CALM_MIND, MOVE_SURF},
+    },
+    {
+        .species = SPECIES_KYOGRE_PRIMAL,
+        .moves = {MOVE_ORIGIN_PULSE, MOVE_ICE_BEAM, MOVE_THUNDER, MOVE_WATER_SPOUT},
+    },
+    {
+        .species = SPECIES_KYOGRE_PRIMAL,
+        .moves = {MOVE_ORIGIN_PULSE, MOVE_ICE_BEAM, MOVE_THUNDER, MOVE_WATER_SPOUT},
+    },
+    {
+        .species = SPECIES_KYOGRE_PRIMAL,
+        .moves = {MOVE_ORIGIN_PULSE, MOVE_ICE_BEAM, MOVE_THUNDER, MOVE_WATER_SPOUT},
+    },
+};
+
+static const struct BossPhaseProfile sKyogreBossProfile =
+{
+    .baseSpecies = SPECIES_KYOGRE,
+    .phaseCount = ARRAY_COUNT(sKyogreBossPhases),
+    .phases = sKyogreBossPhases,
+};
+#endif
+
+#if P_FAMILY_GROUDON && P_PRIMAL_REVERSIONS
+static const struct BossPhase sGroudonBossPhases[] =
+{
+    {
+        .species = SPECIES_GROUDON,
+        .moves = {MOVE_EARTHQUAKE, MOVE_THUNDER_WAVE, MOVE_STONE_EDGE, MOVE_BULK_UP},
+    },
+    {
+        .species = SPECIES_GROUDON_PRIMAL,
+        .moves = {MOVE_PRECIPICE_BLADES, MOVE_STONE_EDGE, MOVE_FIRE_BLAST, MOVE_DRAGON_PULSE},
+    },
+    {
+        .species = SPECIES_GROUDON_PRIMAL,
+        .moves = {MOVE_PRECIPICE_BLADES, MOVE_STONE_EDGE, MOVE_FIRE_BLAST, MOVE_DRAGON_PULSE},
+    },
+    {
+        .species = SPECIES_GROUDON_PRIMAL,
+        .moves = {MOVE_PRECIPICE_BLADES, MOVE_STONE_EDGE, MOVE_FIRE_BLAST, MOVE_DRAGON_PULSE},
+    },
+};
+
+static const struct BossPhaseProfile sGroudonBossProfile =
+{
+    .baseSpecies = SPECIES_GROUDON,
+    .phaseCount = ARRAY_COUNT(sGroudonBossPhases),
+    .phases = sGroudonBossPhases,
+};
+#endif
+
 #if P_FAMILY_OGERPON && P_TERA_FORMS
 static const struct BossPhase sOgerponBossPhases[] =
 {
@@ -228,6 +286,14 @@ static const struct BossPhaseProfile *GetBossPhaseProfile(u8 profileId)
 #if P_FAMILY_HOOPA
     case BOSS_PHASE_PROFILE_HOOPA:
         return &sHoopaBossProfile;
+#endif
+#if P_FAMILY_KYOGRE && P_PRIMAL_REVERSIONS
+    case BOSS_PHASE_PROFILE_KYOGRE:
+        return &sKyogreBossProfile;
+#endif
+#if P_FAMILY_GROUDON && P_PRIMAL_REVERSIONS
+    case BOSS_PHASE_PROFILE_GROUDON:
+        return &sGroudonBossProfile;
 #endif
     default:
         return NULL;

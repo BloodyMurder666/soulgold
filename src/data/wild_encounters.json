@@ -14934,6 +14934,108 @@
               }
             ]
           }
+        },
+        {
+          "map": "MAP_ROUTE50UNDERWATER_CAVE1",
+          "base_label": "gRoute50UnderwaterCave1",
+          "water_mons": {
+            "encounter_rate": 7,
+            "mons": [
+              {
+                "min_level": 25,
+                "max_level": 35,
+                "species": "SPECIES_CHINCHOU"
+              },
+              {
+                "min_level": 25,
+                "max_level": 35,
+                "species": "SPECIES_CORSOLA"
+              },
+              {
+                "min_level": 25,
+                "max_level": 55,
+                "species": "SPECIES_LANTURN"
+              },
+              {
+                "min_level": 45,
+                "max_level": 55,
+                "species": "SPECIES_PALAFIN"
+              },
+              {
+                "min_level": 45,
+                "max_level": 55,
+                "species": "SPECIES_PALAFIN"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE33SOUTH_UNDERWATER",
+          "base_label": "gRoute33South_Underwater",
+          "water_mons": {
+            "encounter_rate": 7,
+            "mons": [
+              {
+                "min_level": 25,
+                "max_level": 35,
+                "species": "SPECIES_CHINCHOU"
+              },
+              {
+                "min_level": 25,
+                "max_level": 35,
+                "species": "SPECIES_CORSOLA"
+              },
+              {
+                "min_level": 25,
+                "max_level": 55,
+                "species": "SPECIES_LANTURN"
+              },
+              {
+                "min_level": 45,
+                "max_level": 55,
+                "species": "SPECIES_PALAFIN"
+              },
+              {
+                "min_level": 45,
+                "max_level": 55,
+                "species": "SPECIES_PALAFIN"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_ROUTE50UNDERWATER",
+          "base_label": "gRoute50Underwater",
+          "water_mons": {
+            "encounter_rate": 7,
+            "mons": [
+              {
+                "min_level": 25,
+                "max_level": 35,
+                "species": "SPECIES_CHINCHOU"
+              },
+              {
+                "min_level": 25,
+                "max_level": 35,
+                "species": "SPECIES_CORSOLA"
+              },
+              {
+                "min_level": 25,
+                "max_level": 55,
+                "species": "SPECIES_LANTURN"
+              },
+              {
+                "min_level": 45,
+                "max_level": 55,
+                "species": "SPECIES_PALAFIN"
+              },
+              {
+                "min_level": 45,
+                "max_level": 55,
+                "species": "SPECIES_PALAFIN"
+              }
+            ]
+          }
         }
       ]
     },

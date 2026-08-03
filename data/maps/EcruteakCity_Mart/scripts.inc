@@ -93,7 +93,7 @@ Ecruteak2:
 # 50 "data/maps/EcruteakCity_Mart/scripts.pory"
 	.2byte ITEM_NET_BALL
 # 51 "data/maps/EcruteakCity_Mart/scripts.pory"
-	.2byte ITEM_DUSK_BALL
+	.2byte ITEM_TIMER_BALL
 	.2byte ITEM_NONE
 
 Ecruteak_Mart2_Text_0:

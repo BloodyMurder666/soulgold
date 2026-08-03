@@ -351,6 +351,7 @@ EventScript_UseDive::
 	hidefollowernpc
 	setfieldeffectargument 0, VAR_0x8004
 	setfieldeffectargument 1, 1
+	closemessage
 	dofieldeffect FLDEFF_USE_DIVE
 	goto EventScript_EndDive
 	end
@@ -375,6 +376,7 @@ EventScript_UseDiveUnderwater::
 	goto_if_eq VAR_RESULT, NO, EventScript_NoSurface
 	msgbox Text_MonUsedDive, MSGBOX_DEFAULT
 	hidefollowernpc
+	closemessage
 	dofieldeffect FLDEFF_USE_DIVE
 	goto EventScript_EndSurface
 	end
@@ -535,6 +537,7 @@ EventScript_WhirlpoolGoWest::
 	end
 
 EventScript_CantWhirlpool::
+	callnative ClearFieldMugshotObjectEventSource
 	msgbox Text_CantWhirlpool, MSGBOX_DEFAULT
 	closemessage
 	releaseall

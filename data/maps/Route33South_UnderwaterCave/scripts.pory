@@ -1,0 +1,12 @@
+mapscripts Route33South_UnderwaterCave_MapScripts {}
+
+script Route33Kyogre {
+    lock
+    faceplayer
+    bosslegendaryencounter(SPECIES_KYOGRE, 80, LOCALID_KYOGRE, FLAG_HIDE_KYOGRE, 4, SPECIES_NONE, 110, BOSS_PHASE_PROFILE_KYOGRE)
+    if (var(VAR_RESULT) == B_OUTCOME_CAUGHT) {
+        finditem(ITEM_BLUE_ORB)
+    }
+    release
+    end
+}

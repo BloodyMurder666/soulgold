@@ -1,0 +1,12 @@
+mapscripts Route50UnderwaterCave2_MapScripts {}
+
+script GroudonEncounter {
+    lock
+    faceplayer
+    bosslegendaryencounter(SPECIES_GROUDON, 80, LOCALID_GROUDON, FLAG_HIDE_GROUDON, 4, SPECIES_NONE, 110, BOSS_PHASE_PROFILE_GROUDON)
+    if (var(VAR_RESULT) == B_OUTCOME_CAUGHT) {
+        finditem(ITEM_RED_ORB)
+    }
+    release
+    end
+}

@@ -101,7 +101,9 @@
     "TohjoPass",
     "DreamGarden",
     "SouthPassageLeft",
-    "FarawayIsland_Outside"
+    "FarawayIsland_Outside",
+    "Route33South_Underwater",
+    "Route50Underwater"
   ],
   "gMapGroup_IndoorNewBark": [
     "NewBarkTown_Lab",
@@ -662,7 +664,10 @@
     "VajraPyramidFinalChamber",
     "FarawayIslandJungle",
     "FarawayIslandDepths",
-    "SpearPillarTop"
+    "SpearPillarTop",
+    "Route33South_UnderwaterCave",
+    "Route50UnderwaterCave1",
+    "Route50UnderwaterCave2"
   ],
   "gMapGroup_JohtoDiveMaps": [
     "CherrygroveUnderwater"
