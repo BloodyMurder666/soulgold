@@ -69,6 +69,7 @@
 #include "constants/event_objects.h"
 #include "constants/map_types.h"
 #include "constants/battle_frontier.h"
+#include "constants/party_menu.h"
 #include "daycare.h"
 
 typedef u16 (*SpecialFunc)(void);
@@ -3671,15 +3672,37 @@ bool8 ScrCmd_removegenericmon(struct ScriptContext *ctx)
 {
     u16 targetSpecies = ScriptReadHalfword(ctx);
     u8 monIndex = VarGet(VAR_0x8004);
+    bool32 selectedFromPc = monIndex == PC_MON_CHOSEN;
+    struct Pokemon *mon = NULL;
+    struct BoxPokemon *boxMon;
+    u16 species;
+    u32 payout = 0;
+    u8 i;
 
-    if (monIndex >= PARTY_SIZE)
+    Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE);
+
+    if (selectedFromPc)
+    {
+        if (gSpecialVar_MonBoxId >= TOTAL_BOXES_COUNT || gSpecialVar_MonBoxPos >= IN_BOX_COUNT)
+        {
+            gSpecialVar_Result = FALSE;
+            return FALSE;
+        }
+
+        boxMon = GetBoxedMonPtr(gSpecialVar_MonBoxId, gSpecialVar_MonBoxPos);
+    }
+    else if (monIndex < PARTY_SIZE)
+    {
+        mon = &gPlayerParty[monIndex];
+        boxMon = &mon->box;
+    }
+    else
     {
         gSpecialVar_Result = FALSE;
         return FALSE;
     }
 
-    struct Pokemon *mon = &gPlayerParty[monIndex];
-    u16 species = GetMonData(mon, MON_DATA_SPECIES);
+    species = GetBoxMonData(boxMon, MON_DATA_SPECIES);
 
     if (species == SPECIES_NONE || species != targetSpecies)
     {
@@ -3687,22 +3710,59 @@ bool8 ScrCmd_removegenericmon(struct ScriptContext *ctx)
         return FALSE;
     }
 
-    // Special condition: Magikarp at level 100
-    if (species == SPECIES_MAGIKARP)
+    if (GetBoxMonData(boxMon, MON_DATA_IS_EGG))
     {
-        u8 level = GetMonData(mon, MON_DATA_LEVEL);
-        if (level == 100)
+        gSpecialVar_Result = MON_REMOVE_IS_EGG;
+        return FALSE;
+    }
+
+    if (!selectedFromPc && CountPartyAliveNonEggMonsExcept(monIndex) == 0)
+    {
+        gSpecialVar_Result = MON_REMOVE_LAST_USABLE;
+        return FALSE;
+    }
+
+    if (!selectedFromPc && GetMonData(mon, MON_DATA_MAIL) != MAIL_NONE)
+    {
+        gSpecialVar_Result = MON_REMOVE_HAS_HELD_ITEM;
+        return FALSE;
+    }
+
+    for (i = 0; i < MAX_MON_ITEMS; i++)
+    {
+        if (GetBoxMonData(boxMon, MON_DATA_HELD_ITEM + i) != ITEM_NONE)
         {
-            ZeroMonData(mon);
-            CompactPartySlots();
-            gSpecialVar_Result = MON_SATISFACTORY;
+            gSpecialVar_Result = MON_REMOVE_HAS_HELD_ITEM;
             return FALSE;
         }
     }
 
-    ZeroMonData(mon);
-    CompactPartySlots();
-    gSpecialVar_Result = MON_UNSATISFACTORY;
+    // Special condition: Magikarp at level 100
+    if (species == SPECIES_MAGIKARP)
+    {
+        u8 level = selectedFromPc ? GetLevelFromBoxMonExp(boxMon) : GetMonData(mon, MON_DATA_LEVEL);
+
+        payout = (level == MAX_LEVEL) ? 100000 : 2000;
+        if (payout > MAX_MONEY || GetMoney(&gSaveBlock1Ptr->money) > MAX_MONEY - payout)
+        {
+            gSpecialVar_Result = MON_REMOVE_NO_PAYMENT_ROOM;
+            return FALSE;
+        }
+    }
+
+    if (selectedFromPc)
+    {
+        ZeroBoxMonData(boxMon);
+    }
+    else
+    {
+        ZeroMonData(mon);
+        CompactPartySlots();
+        CalculatePlayerPartyCount();
+    }
+    gSpecialVar_Result = (species == SPECIES_MAGIKARP && payout == 100000)
+                       ? MON_SATISFACTORY
+                       : MON_UNSATISFACTORY;
     return FALSE;
 }
 

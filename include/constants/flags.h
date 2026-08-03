@@ -65,8 +65,8 @@
 #define FLAG_MODEST_MINT_LILYCOVE               0x33
 #define FLAG_TIMID_MINT_MAUVILLE                0x34 
 #define FLAG_CAUGHT_MELOETTA                    0x35 
-#define FLAG_HIDE_ZERAORA                       0x36
-#define FLAG_CAUGHT_ZERAORA                     0x37
+#define FLAG_CALM_MINT_SANDTOWER                0x36
+#define FLAG_DRAKE_REMATCH                      0x37 //Elite Four Rematch 4
 #define FLAG_WALLACE_REMATCH                    0x38 //Elite Four Rematch 5, Champion
 #define FLAG_STEVEN_REMATCH                     0x39 // Steven Rematch, true champion
 #define FLAG_PENDING_DAYCARE_EGG_SHINY          0x3A
@@ -1716,7 +1716,9 @@
 #define FLAG_CAUGHT_COBALION   0x101C
 #define FLAG_NATIONAL_DEX_MIGRATION_COMPLETE 0x101D
 #define FLAG_INFINITE_HELD_ITEMS_MIGRATION_COMPLETE 0x101E
-#define CUSTOM_FLAGS_END                            FLAG_INFINITE_HELD_ITEMS_MIGRATION_COMPLETE
+#define FLAG_HIDE_ZERAORA                       0x101F
+#define FLAG_CAUGHT_ZERAORA                     0x1020
+#define CUSTOM_FLAGS_END                            FLAG_CAUGHT_ZERAORA
 
 
 #define FLAG_0x1500                                 0x1500

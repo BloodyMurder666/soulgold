@@ -1,6 +1,5 @@
 #include "global.h"
 #include "achievements.h"
-#include "battle_factory.h"
 #include "event_data.h"
 #include "item.h"
 #include "pokemon.h"
@@ -12,6 +11,7 @@
 #include "constants/flags.h"
 #include "constants/game_stat.h"
 #include "constants/items.h"
+#include "constants/layouts.h"
 #include "constants/opponents.h"
 #include "constants/species.h"
 #include "constants/vars.h"
@@ -76,8 +76,11 @@ static bool32 Achievement_PredicateCaughtMarshadow(void);
 static bool32 Achievement_PredicateCaughtCobalion(void);
 static bool32 Achievement_PredicateCaughtTerrakion(void);
 static bool32 Achievement_PredicateCaughtVirizion(void);
+static bool32 Achievement_PredicateCaughtMeloetta(void);
+static bool32 Achievement_PredicateCaughtZeraora(void);
 static bool32 Achievement_PredicateCaughtAllParadoxPokemon(void);
 static bool32 Achievement_PredicateHasLevel100Pokemon(void);
+static bool32 Achievement_IsInScaledChaosFacility(void);
 static u32 Achievement_CountCollectedTMs(void);
 static u32 Achievement_GetBestBattlePyramidRounds(void);
 static void Achievement_QueuePopup(enum AchievementId id);
@@ -276,6 +279,10 @@ static const u8 sText_AchCatchTerrakionName[] = _("Stone Justice");
 static const u8 sText_AchCatchTerrakionDesc[] = _("Catch Terrakion.");
 static const u8 sText_AchCatchVirizionName[] = _("Verdant Justice");
 static const u8 sText_AchCatchVirizionDesc[] = _("Catch Virizion.");
+static const u8 sText_AchCatchMeloettaName[] = _("Pirouette Melody");
+static const u8 sText_AchCatchMeloettaDesc[] = _("Catch Meloetta.");
+static const u8 sText_AchCatchZeraoraName[] = _("Thunderclap");
+static const u8 sText_AchCatchZeraoraDesc[] = _("Catch Zeraora.");
 static const u8 sText_AchDefeatStevenName[] = _("Mineralogy");
 static const u8 sText_AchDefeatStevenDesc[] = _("Defeat Champion from another\nregion.");
 static const u8 sText_AchAutophotographerName[] = _("Autophotographer");
@@ -420,12 +427,14 @@ static const struct Achievement sAchievements[] =
     {ACH_CATCH_COBALION, sText_AchCatchCobalionName, sText_AchCatchCobalionDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtCobalion},
     {ACH_CATCH_TERRAKION, sText_AchCatchTerrakionName, sText_AchCatchTerrakionDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtTerrakion},
     {ACH_CATCH_VIRIZION, sText_AchCatchVirizionName, sText_AchCatchVirizionDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtVirizion},
+    {ACH_CATCH_MELOETTA, sText_AchCatchMeloettaName, sText_AchCatchMeloettaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMeloetta},
 
     // Legendary and Mythical Pokémon - Generation VI
     {ACH_CATCH_HOOPA, sText_AchCatchHoopaName, sText_AchCatchHoopaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtHoopa},
 
     // Legendary and Mythical Pokémon - Generation VII
     {ACH_CATCH_MAGEARNA, sText_AchCatchMagearnaName, sText_AchCatchMagearnaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMagearna},
+    {ACH_CATCH_ZERAORA, sText_AchCatchZeraoraName, sText_AchCatchZeraoraDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtZeraora},
 
     // Legendary and Mythical Pokémon - Generation VIII
     {ACH_CATCH_MARSHADOW, sText_AchCatchMarshadowName, sText_AchCatchMarshadowDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMarshadow},
@@ -448,6 +457,8 @@ STATIC_ASSERT(ACH_PLANT_BERRIES_10 == 107, GreenThumbIdIsStable);
 STATIC_ASSERT(ACH_CATCH_HOOPA == 108, HoopaIdIsStable);
 STATIC_ASSERT(ACH_CATCH_COBALION == 109, CobalionIdIsStable);
 STATIC_ASSERT(ACH_CATCH_TERRAKION == 110, TerrakionIdIsStable);
+STATIC_ASSERT(ACH_CATCH_MELOETTA == 111, MeloettaIdAppendedAfterExistingIds);
+STATIC_ASSERT(ACH_CATCH_ZERAORA == 112, ZeraoraIdAppendedAfterExistingIds);
 
 static const u8 *const sTierLabels[] =
 {
@@ -844,6 +855,16 @@ static bool32 Achievement_PredicateCaughtVirizion(void)
     return Achievement_PredicateCaughtSpecies(SPECIES_VIRIZION);
 }
 
+static bool32 Achievement_PredicateCaughtMeloetta(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_MELOETTA);
+}
+
+static bool32 Achievement_PredicateCaughtZeraora(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_ZERAORA);
+}
+
 static const u16 sParadoxPokemon[] =
 {
     SPECIES_GREAT_TUSK,
@@ -886,15 +907,61 @@ static bool32 Achievement_PredicateCaughtAllParadoxPokemon(void)
     return hasEnabledSpecies;
 }
 
+static bool32 Achievement_IsInScaledChaosFacility(void)
+{
+    if (gSaveBlock2Ptr->frontier.lvlMode != FRONTIER_LVL_OPEN)
+        return FALSE;
+
+    switch (gMapHeader.mapLayoutId)
+    {
+    case LAYOUT_BATTLE_ELEVATOR:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_TOWER_CORRIDOR:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_TOWER_BATTLE_ROOM:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_TOWER_MULTI_PARTNER_ROOM:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_TOWER_MULTI_CORRIDOR:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_DOME_CORRIDOR:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_DOME_PRE_BATTLE_ROOM:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_DOME_BATTLE_ROOM:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_PALACE_CORRIDOR:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_PALACE_BATTLE_ROOM:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_ARENA_CORRIDOR:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_ARENA_BATTLE_ROOM:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_CORRIDOR:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_THREE_PATH_ROOM:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_NORMAL:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_FINAL:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_WILD_MONS:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_UNUSED:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_PYRAMID_FLOOR:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_PYRAMID_TOP:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_FACTORY_PRE_BATTLE_ROOM:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_FACTORY_BATTLE_ROOM:
+    case LAYOUT_GOLDENROD_BATTLE_ARCADE_HALLWAY:
+    case LAYOUT_GOLDENROD_BATTLE_ARCADE_BATTLE_ROOM:
+        return TRUE;
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_TOWER_LOBBY:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_DOME_LOBBY:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_PALACE_LOBBY:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_ARENA_LOBBY:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_LOBBY:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_PYRAMID_LOBBY:
+    case LAYOUT_BATTLE_FRONTIER_BATTLE_FACTORY_LOBBY:
+    case LAYOUT_GOLDENROD_BATTLE_ARACDE_LOBBY:
+        // Results can be processed before the temporary party is restored.
+        return gSaveBlock2Ptr->frontier.challengeStatus != 0;
+    default:
+        return FALSE;
+    }
+}
+
 static bool32 Achievement_PredicateHasLevel100Pokemon(void)
 {
     u8 boxId;
     u8 boxPosition;
     u8 partyIndex;
 
-    // The Battle Factory temporarily replaces the player's party with rentals.
-    // Chaos rentals are level 100 and must not count as player-raised Pokemon.
-    if (!InBattleFactory() || gSaveBlock2Ptr->frontier.lvlMode != FRONTIER_LVL_OPEN)
+    // Chaos temporarily scales selected parties (and Factory rentals) to level 100.
+    if (!Achievement_IsInScaledChaosFacility())
     {
         for (partyIndex = 0; partyIndex < PARTY_SIZE; partyIndex++)
         {

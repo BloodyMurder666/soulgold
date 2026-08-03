@@ -1,8 +1,24 @@
 Update notes:
 3.8.2026
-New Mythical: Meloetta: After becoming a Champion, you can find this dancer Pokémon in the Ecruteak Theater.
-
+- New Mythical: Meloetta: After becoming a Champion, you can find this dancer Pokémon in the Ecruteak Theater.
+- New Mythical: Zeraora: After achieving a lifetime winstreak of at least 30 in the Battle Tower, you will find Zeraora outside waiting to challenge you.
+- Added trophies for Zeraora and Meloetta
+- Scroll of Waters and Darkness can be bought for a very high price at Rocket Arcade (Temporary, will be moved to a proper content in later update)
+- Kubfu and Urushifu count as Human-like and Field egggroups instead of none.
+- Daycare Man will say that the egg is special if the Pokémon inside is shiny before you accept the egg.
+- Swapped "Check Tag" and "Use" on berries.
+- Changed Raichu-Y mega to use Bondstone as they both cannot share one Electrite.
+- Magikarp man in Lake of Rage now allows selecting Magikarps from the PC directly.
+- Moved Baoba's second safari zone to the point when you arrive in Blackthorn City.
+- Moved Blizzard TM to Ice Path Depths.
+- Fixed Battle Tower not awarding spendable BP.
+- Fixed some collision issues in certain caves.
 - Fixed safari zone remaining ball text display.
+- Fixed certain Bruno and Koga sets having the wrong megastone.
+- Fixed Eternal Floette reverting back to regular red Floette after battle.
+- Fixed typo in Payback TM description.
+- Fixed Safari Zone text bug.
+- Fixed all shiny surf palettes hopefully.
 
 
 2.8.2026

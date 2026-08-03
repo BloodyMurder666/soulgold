@@ -2621,8 +2621,8 @@ static void DebugAction_FlagsVars_SetTowerStreak(u8 taskId)
     {
         for (levelMode = 0; levelMode < ARRAY_COUNT(gSaveBlock2Ptr->frontier.towerWinStreaks[battleMode]); levelMode++)
         {
-            gSaveBlock2Ptr->frontier.towerWinStreaks[battleMode][levelMode] = 100;
-            gSaveBlock2Ptr->frontier.towerRecordWinStreaks[battleMode][levelMode] = 100;
+            gSaveBlock2Ptr->frontier.towerWinStreaks[battleMode][levelMode] = 29;
+            gSaveBlock2Ptr->frontier.towerRecordWinStreaks[battleMode][levelMode] = 29;
         }
     }
 

@@ -101,7 +101,7 @@ static void CheckPutFrontierTVShowOnAir(void);
 static void Script_GetFrontierBrainStatus(void);
 static void IsTrainerFrontierBrain(void);
 static void GiveBattlePoints(void);
-static void GiveTowerBattlePoints();
+static void GiveTowerBattlePoints(void);
 static void GetFacilitySymbolCount(void);
 static void GiveFacilitySymbol(void);
 static void CheckBattleTypeFlag(void);
@@ -2252,6 +2252,10 @@ static void GiveTowerBattlePoints(void)
     }
 
     ConvertIntToDecimalStringN(gStringVar1, toGive, STR_CONV_MODE_LEFT_ALIGN, 5);
+    if (gSaveBlock2Ptr->frontier.battlePoints + toGive > MAX_BATTLE_FRONTIER_POINTS)
+        gSaveBlock2Ptr->frontier.battlePoints = MAX_BATTLE_FRONTIER_POINTS;
+    else
+        gSaveBlock2Ptr->frontier.battlePoints += toGive;
     IncrementDailyBattlePoints(toGive);
     Achievement_AddBattlePointsEarned(toGive);
 }

@@ -5,7 +5,44 @@ TrainerHill_Courtyard_MapScripts::
 TrainerHill_Courtyard_OnTransition::
 	setvar VAR_TRAINER_HILL_IS_ACTIVE, 0
 	setflag FLAG_VISITED_BATTLE_TOWER
+	goto_if_set FLAG_CAUGHT_ZERAORA, TrainerHill_Courtyard_EventScript_HideZeraora
+	specialvar VAR_RESULT, HasBattleTowerStreakForZeraora
+	goto_if_eq VAR_RESULT, FALSE, TrainerHill_Courtyard_EventScript_HideZeraora
+	clearflag FLAG_HIDE_ZERAORA
 	end
+
+TrainerHill_Courtyard_EventScript_HideZeraora::
+	setflag FLAG_HIDE_ZERAORA
+	end
+
+TrainerHill_Courtyard_EventScript_Zeraora::
+	lock
+	faceplayer
+	msgbox TrainerHill_Courtyard_Text_ZeraoraChallenge, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, TrainerHill_Courtyard_EventScript_DeclineZeraora
+	bosslegendaryencounter SPECIES_ZERAORA, 80, LOCALID_ZERAORA, FLAG_HIDE_ZERAORA, 4, SPECIES_NONE, 110
+	call_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, TrainerHill_Courtyard_EventScript_MarkZeraoraCaught
+	release
+	end
+
+TrainerHill_Courtyard_EventScript_MarkZeraoraCaught::
+	setflag FLAG_CAUGHT_ZERAORA
+	return
+
+TrainerHill_Courtyard_EventScript_DeclineZeraora::
+	playmoncry SPECIES_ZERAORA, CRY_MODE_NORMAL
+	msgbox TrainerHill_Courtyard_Text_ZeraoraDisappointed, MSGBOX_DEFAULT
+	waitmoncry
+	release
+	end
+
+TrainerHill_Courtyard_Text_ZeraoraChallenge:
+	.string "Zeraora seems to be challenging\n"
+	.string "you.\p"
+	.string "Will you accept its challenge?$"
+
+TrainerHill_Courtyard_Text_ZeraoraDisappointed:
+	.string "Zeraora howls in disappointment.$"
 
 TrainerHill_Courtyard_EventScript_BattleTowerSign::
 	lock

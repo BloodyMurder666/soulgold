@@ -1349,6 +1349,26 @@ u16 GetBattleTowerSinglesStreak(void)
     return GetGameStat(GAME_STAT_BATTLE_TOWER_SINGLES_STREAK);
 }
 
+#define ZERAORA_BATTLE_TOWER_STREAK 30
+
+u16 HasBattleTowerStreakForZeraora(void)
+{
+    u32 battleMode;
+    u32 lvlMode;
+
+    for (battleMode = 0; battleMode < ARRAY_COUNT(gSaveBlock2Ptr->frontier.towerRecordWinStreaks); battleMode++)
+    {
+        for (lvlMode = 0; lvlMode < ARRAY_COUNT(gSaveBlock2Ptr->frontier.towerRecordWinStreaks[battleMode]); lvlMode++)
+        {
+            if (gSaveBlock2Ptr->frontier.towerRecordWinStreaks[battleMode][lvlMode] >= ZERAORA_BATTLE_TOWER_STREAK
+             || gSaveBlock2Ptr->frontier.towerWinStreaks[battleMode][lvlMode] >= ZERAORA_BATTLE_TOWER_STREAK)
+                return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
 void BufferEReaderTrainerName(void)
 {
     GetEreaderTrainerName(gStringVar1);

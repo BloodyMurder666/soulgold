@@ -2933,8 +2933,9 @@
 	.2byte \number
 	.endm
 
-	@ Removes PokÃ©mon from player's party. If species in VAR_0x8004 matches the species passed in as number, it will remove the mon.
-	@ VAR_RESULT will be set to TRUE if it works. FALSE if it doesn't.
+	@ Removes a valid PokÃ©mon selected from the player's party or PC if its species matches and it is safe to give away.
+	@ VAR_RESULT is MON_UNSATISFACTORY or MON_SATISFACTORY on success, FALSE for a species mismatch,
+	@ or a MON_REMOVE_* error if the selected mon cannot safely be removed.
 	.macro removegenericmon number:req
 	.byte SCR_OP_REMOVEGENERICMON
 	.2byte \number

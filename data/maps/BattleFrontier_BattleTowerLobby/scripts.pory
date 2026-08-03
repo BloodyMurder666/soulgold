@@ -1491,6 +1491,17 @@ mart BattleTowerBpMart2 {
 }
 
 script TowerLobbyDude {
+	if (!flag(FLAG_CAUGHT_ZERAORA)) {
+		specialvar(VAR_RESULT, HasBattleTowerStreakForZeraora)
+		if (var(VAR_RESULT) == TRUE) {
+			msgbox("There's been talk of a strange Pokémon
+					lurking just outside the Tower.
+
+					It seemed to be watching your
+					impressive battles!", MSGBOX_NPC)
+			end
+		}
+	}
 	msgbox("The battles seem to get tougher
 			over time. They even allow
 			legendaries in the Chaos mode.", MSGBOX_NPC)

@@ -2971,8 +2971,24 @@ BattleTowerBpMart2:
 
 TowerLobbyDude::
 # 1494 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
-	msgbox TowerLobbyDude_Text_0, MSGBOX_NPC
+	goto_if_unset FLAG_CAUGHT_ZERAORA, TowerLobbyDude_2
+TowerLobbyDude_1:
+# 1505 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox TowerLobbyDude_Text_1, MSGBOX_NPC
 	return
+
+TowerLobbyDude_2:
+# 1495 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	specialvar VAR_RESULT, HasBattleTowerStreakForZeraora
+# 1496 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	compare VAR_RESULT, TRUE
+	goto_if_eq TowerLobbyDude_4
+	goto TowerLobbyDude_1
+
+TowerLobbyDude_4:
+# 1497 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	msgbox TowerLobbyDude_Text_0, MSGBOX_NPC
+	end
 
 
 BattleTowerBPVendor1_Text_0:
@@ -2984,7 +3000,14 @@ BattleTowerBPVendor1_Text_1:
 	.string "Thanks!$"
 
 TowerLobbyDude_Text_0:
-# 1494 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+# 1497 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
+	.string "There's been talk of a strange Pokémon\n"
+	.string "lurking just outside the Tower.\p"
+	.string "It seemed to be watching your\n"
+	.string "impressive battles!$"
+
+TowerLobbyDude_Text_1:
+# 1505 "data/maps/BattleFrontier_BattleTowerLobby/scripts.pory"
 	.string "The battles seem to get tougher\n"
 	.string "over time. They even allow\l"
 	.string "legendaries in the Chaos mode.$"

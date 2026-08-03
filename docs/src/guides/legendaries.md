@@ -29,7 +29,7 @@ order: 3
 - Heatran: Explore Mt. Mortar Depths after obtaining Waterfall and Rock Climb. For the Puzzle: Lower line and middle top.
 - Phione/Manaphy: Fish with Good or Super rod in South Johto Sea area where only Shellos and Gastrodon can be encountered. Evolves to Manaphy at level 58.
 - Cresselia: After finishing rival story in Mt Silver. Talk to them in their house to start the quest. Go to Lake of Rage and speak with Hidden Power Dude, then explore the north-east corner of the lake.
-- Darkrai: After obtaining Cresselia, show it to rival in their house. Then go to cherrygrove and enter the inn with cresselia in party. 
+- Darkrai: After obtaining Cresselia, show it to rival in their house. Then go to cherrygrove and enter the inn with cresselia in party. To solve this puzzle, you need to do the following actions: Accept the moon key, go to your room at the top of the stairs, examine bed and say no/resist sleeping. Go outside and walk to the lobby to inspect the papers on the wall. Then inspect the Luxray trophy in the long hallway. Now inspect the old telephone on the front desk and call the number that the stack of papers on the wall formed. Examine the piano to find a small key and use it on the safe nearby. Walk up to find darkrai.
 - Shaymin: Dream Garden, accessible from Tohjo Falls after obtaining Rock Climb
 - Victini: After becoming champion, speak with old lady in Kitakami Border house and defeat all gym leader rematches
 - Virizion: Route 50
@@ -40,7 +40,7 @@ order: 3
 - Marshadow: After 8th badge, return to Elder Li in the sprout tower. Prepare for a battle. Then explore Sprout tower basement.
 - Poipole: Obtain 45 trophies
 - Meltan: Trade for Tinkaton in Rinto Village
-- Kubfu: Blackthorne City rockclimb cave (down, up, left, up, left, down, right, right). Note: evolution not currently accessible!
+- Kubfu: Blackthorne City rockclimb cave (down, up, left, up, left, down, right, right). Scrolls to evolve can be bought from Rocket Arcade for a very high price.
 - Zarude: Obtain 75 trophies
 - Hoopa: Requires having completed the Rinto Village trade for giving Tinkaton to the scientist in the bottom house of the village. After becoming a Champion, go to Vajra pyramid and explore the depths. Prepare for multiple battles.
 - Bloodmoon Ursaluna: Explore Kitakami Mountain to find black mirror. Then go to lost woods and follow the murkrows.
@@ -51,3 +51,5 @@ order: 3
 - Paradox Entei/Raikou/Suicune: Register all past paradox pokemon to Pokédex, then interact with the unown wall in the back. Then to open each wall in the next room you will need to bring Entei/Raikou/Suicune to the respective wall.
 - Paradox Virizion/Cobalion/Terrakion: Register all future pokemon to Pokédex, then interact with the wall in the back. Bring virizion/terrakion/cobalion to each of the walls to unlock it.
 - Eternal Floette: Obtain 60 trophies
+- Zeraora: Accumulate 30 winstreak in Battle Tower to spawn Zeraora outside the tower.
+- Meloetta: After becoming a Champion, you can find Meloetta in the Ecruteak Dance Theater.

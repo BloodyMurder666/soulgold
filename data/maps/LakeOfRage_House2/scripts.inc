@@ -20,22 +20,32 @@ LakeOfRage_House2_EventScript_FisherFirstMeeting::
 	end
 
 LakeOfRage_House2_EventScript_FisherAfterRockets::
-	goto_if_eq VAR_LAKE_OF_RAGE_FISHERMAN, 2, LakeOfRage_House2_EventScript_FisherAnotherMagikarp
+	goto_if_ge VAR_LAKE_OF_RAGE_FISHERMAN, 2, LakeOfRage_House2_EventScript_FisherAnotherMagikarp
 	msgbox LakeOfRage_House2_Text_WorldsLargest, MSGBOX_DEFAULT
 	msgbox LakeOfRage_House2_Text_ForMe, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, FALSE, LakeOfRage_House2_EventScript_FisherNo
-	getpartysize
-	goto_if_eq VAR_RESULT, 1, LakeOfRage_House2_EventScript_LastMon
-	special ChoosePartyMon
+	goto LakeOfRage_House2_EventScript_ChooseMagikarp
+
+LakeOfRage_House2_EventScript_FisherAnotherMagikarp::
+	msgbox LakeOfRage_House2_Text_ForMe, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, FALSE, LakeOfRage_House2_EventScript_FisherNo
+
+LakeOfRage_House2_EventScript_ChooseMagikarp::
+	setvar VAR_0x8009, SPECIES_MAGIKARP
+	chooseboxmon SELECT_PC_MON_TRADE
 	waitstate
 	lock
-	showmoneybox 0, 0
-	copyvar VAR_0x800A, VAR_0x8004
-	goto_if_eq VAR_0x8004, PARTY_NOTHING_CHOSEN, LakeOfRage_House2_EventScript_FisherNoMoneyBox
+	faceplayer
+	goto_if_eq VAR_0x8004, PARTY_NOTHING_CHOSEN, LakeOfRage_House2_EventScript_FisherNo
 	removegenericmon SPECIES_MAGIKARP
 	goto_if_eq VAR_RESULT, FALSE, LakeOfRage_House2_EventScript_FisherNotMagikarp
+	goto_if_eq VAR_RESULT, MON_REMOVE_IS_EGG, LakeOfRage_House2_EventScript_FisherEgg
+	goto_if_eq VAR_RESULT, MON_REMOVE_LAST_USABLE, LakeOfRage_House2_EventScript_LastMon
+	goto_if_eq VAR_RESULT, MON_REMOVE_HAS_HELD_ITEM, LakeOfRage_House2_EventScript_FisherHeldItem
+	goto_if_eq VAR_RESULT, MON_REMOVE_NO_PAYMENT_ROOM, LakeOfRage_House2_EventScript_FisherNoPaymentRoom
 	goto_if_eq VAR_RESULT, MON_SATISFACTORY, LakeOfRage_House2_EventScript_FisherSatisfied
 	goto_if_eq VAR_RESULT, MON_UNSATISFACTORY, LakeOfRage_House2_EventScript_FisherSmallMagikarp
+	goto LakeOfRage_House2_EventScript_FisherNotMagikarp
 
 LakeOfRage_House2_EventScript_FisherNo::
 	msgbox LakeOfRage_House2_Text_Refused, MSGBOX_DEFAULT
@@ -43,22 +53,36 @@ LakeOfRage_House2_EventScript_FisherNo::
 	release
 	end
 
-LakeOfRage_House2_EventScript_FisherNoMoneyBox::
-	msgbox LakeOfRage_House2_Text_Refused, MSGBOX_DEFAULT
-	hidemoneybox
+LakeOfRage_House2_EventScript_FisherNotMagikarp::
+	msgbox LakeOfRage_House2_Text_NotMagikarp, MSGBOX_DEFAULT
 	closemessage
 	release
 	end
 
-LakeOfRage_House2_EventScript_FisherNotMagikarp::
-	msgbox LakeOfRage_House2_Text_NotMagikarp, MSGBOX_DEFAULT
-	hidemoneybox
+LakeOfRage_House2_EventScript_FisherEgg::
+	msgbox LakeOfRage_House2_Text_CantAcceptEgg, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+LakeOfRage_House2_EventScript_FisherHeldItem::
+	msgbox LakeOfRage_House2_Text_RemoveHeldItem, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+LakeOfRage_House2_EventScript_FisherNoPaymentRoom::
+	msgbox LakeOfRage_House2_Text_NoPaymentRoom, MSGBOX_DEFAULT
 	closemessage
 	release
 	end
 
 LakeOfRage_House2_EventScript_FisherSmallMagikarp::
+	goto_if_ge VAR_LAKE_OF_RAGE_FISHERMAN, 3, LakeOfRage_House2_EventScript_PayForSmallMagikarp
 	setvar VAR_LAKE_OF_RAGE_FISHERMAN, 2
+LakeOfRage_House2_EventScript_PayForSmallMagikarp::
+	callnative UpdateFollowingPokemon
+	showmoneybox 0, 0
 	msgbox LakeOfRage_House2_Text_TooShort, MSGBOX_DEFAULT
 	addmoney 2000
 	updatemoneybox
@@ -68,23 +92,6 @@ LakeOfRage_House2_EventScript_FisherSmallMagikarp::
 	closemessage
 	release
 	end
-
-LakeOfRage_House2_EventScript_FisherAnotherMagikarp::
-	msgbox LakeOfRage_House2_Text_ForMe, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, FALSE, LakeOfRage_House2_EventScript_FisherNo
-	getpartysize
-	goto_if_eq VAR_RESULT, 1, LakeOfRage_House2_EventScript_LastMon
-	special ChoosePartyMon
-	waitstate
-	lock
-	showmoneybox 0, 0
-	copyvar VAR_0x800A, VAR_0x8004
-	goto_if_eq VAR_0x8004, PARTY_NOTHING_CHOSEN, LakeOfRage_House2_EventScript_FisherNoMoneyBox
-	removegenericmon SPECIES_MAGIKARP
-	goto_if_eq VAR_RESULT, FALSE, LakeOfRage_House2_EventScript_FisherNotMagikarp
-	goto_if_eq VAR_RESULT, MON_SATISFACTORY, LakeOfRage_House2_EventScript_FisherSatisfied
-	goto_if_eq VAR_RESULT, MON_UNSATISFACTORY, LakeOfRage_House2_EventScript_FisherSmallMagikarp
-
 LakeOfRage_House2_EventScript_LastMon::
 	msgbox LakeOfRage_House2_Text_LastMon, MSGBOX_DEFAULT
 	closemessage
@@ -92,7 +99,9 @@ LakeOfRage_House2_EventScript_LastMon::
 	end
 
 LakeOfRage_House2_EventScript_FisherSatisfied::
-	setvar VAR_LAKE_OF_RAGE_FISHERMAN, 2
+	setvar VAR_LAKE_OF_RAGE_FISHERMAN, 3
+	callnative UpdateFollowingPokemon
+	showmoneybox 0, 0
 	msgbox LakeOfRage_House2_Text_BigPayout, MSGBOX_DEFAULT
 	addmoney 100000
 	updatemoneybox
@@ -157,6 +166,17 @@ LakeOfRage_House2_Text_TooShort:
 
 LakeOfRage_House2_Text_NotMagikarp:
     .string "What? That's not a Magikarp!$"
+
+LakeOfRage_House2_Text_CantAcceptEgg:
+	.string "I can't accept a Pokémon Egg.$"
+
+LakeOfRage_House2_Text_RemoveHeldItem:
+	.string "That Magikarp is holding something.\p"
+	.string "Please take it back first.$"
+
+LakeOfRage_House2_Text_NoPaymentRoom:
+	.string "You can't carry the full payment.\p"
+	.string "Come back after spending some money.$"
 
 LakeOfRage_House2_Text_Refused:
     .string "Oh… So you didn't get one good\n"

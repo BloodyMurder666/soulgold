@@ -122,6 +122,25 @@ TEST("Planting the tenth Berry unlocks Green Thumb")
     EXPECT(Achievement_IsUnlocked(ACH_PLANT_BERRIES_10));
 }
 
+TEST("Existing Pokedex catches unlock appended Meloetta and Zeraora achievements")
+{
+    const u16 meloettaByte = (NATIONAL_DEX_MELOETTA - 1) / 8;
+    const u16 zeraoraByte = (NATIONAL_DEX_ZERAORA - 1) / 8;
+    const u8 oldMeloettaCaught = gSaveBlock1Ptr->dexCaught[meloettaByte];
+    const u8 oldZeraoraCaught = gSaveBlock1Ptr->dexCaught[zeraoraByte];
+
+    GetSetPokedexFlag(NATIONAL_DEX_MELOETTA, FLAG_SET_CAUGHT);
+    GetSetPokedexFlag(NATIONAL_DEX_ZERAORA, FLAG_SET_CAUGHT);
+
+    Achievement_CheckAll();
+
+    EXPECT(Achievement_IsUnlocked(ACH_CATCH_MELOETTA));
+    EXPECT(Achievement_IsUnlocked(ACH_CATCH_ZERAORA));
+
+    gSaveBlock1Ptr->dexCaught[meloettaByte] = oldMeloettaCaught;
+    gSaveBlock1Ptr->dexCaught[zeraoraByte] = oldZeraoraCaught;
+}
+
 TEST("Legacy Deoxys completion does not unlock Hoopa")
 {
     Achievement_EnsureSaveInitialized();
@@ -194,18 +213,34 @@ TEST("Counter-specific checks ignore event-only achievements")
     EXPECT_EQ(Achievement_CountUnlocked(), 0);
 }
 
-TEST("Chaos Factory rentals do not unlock Peak of Power in the results lobby")
+TEST("Chaos facility scaling does not unlock Peak of Power")
 {
-    gMapHeader.mapLayoutId = LAYOUT_BATTLE_FRONTIER_BATTLE_FACTORY_LOBBY;
-    gSaveBlock2Ptr->frontier.challengeStatus = CHALLENGE_STATUS_WON;
+    static const u16 scaledPartyLayouts[] =
+    {
+        LAYOUT_BATTLE_FRONTIER_BATTLE_FACTORY_BATTLE_ROOM,
+        LAYOUT_BATTLE_FRONTIER_BATTLE_TOWER_BATTLE_ROOM,
+        LAYOUT_BATTLE_FRONTIER_BATTLE_PYRAMID_FLOOR,
+        LAYOUT_GOLDENROD_BATTLE_ARCADE_BATTLE_ROOM,
+    };
+    u8 i;
+
     gSaveBlock2Ptr->frontier.lvlMode = FRONTIER_LVL_OPEN;
     CreateMon(&gPlayerParty[0], SPECIES_BULBASAUR, MAX_LEVEL, 0, OTID_STRUCT_PLAYER_ID);
 
-    Achievement_CheckAll();
+    for (i = 0; i < ARRAY_COUNT(scaledPartyLayouts); i++)
+    {
+        gMapHeader.mapLayoutId = scaledPartyLayouts[i];
+        Achievement_CheckAll();
+        EXPECT(!Achievement_IsUnlocked(ACH_PEAK_OF_POWER));
+    }
 
+    gMapHeader.mapLayoutId = LAYOUT_BATTLE_FRONTIER_BATTLE_FACTORY_LOBBY;
+    gSaveBlock2Ptr->frontier.challengeStatus = CHALLENGE_STATUS_WON;
+    Achievement_CheckAll();
     EXPECT(!Achievement_IsUnlocked(ACH_PEAK_OF_POWER));
 
-    // Once the challenge is over, a real level 100 party member still counts.
+    // Once the temporary scaling context is gone, a real level 100 party member counts.
+    gMapHeader.mapLayoutId = 0;
     gSaveBlock2Ptr->frontier.challengeStatus = 0;
     Achievement_CheckAll();
     EXPECT(Achievement_IsUnlocked(ACH_PEAK_OF_POWER));

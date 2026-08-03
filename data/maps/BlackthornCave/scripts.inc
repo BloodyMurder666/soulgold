@@ -31,7 +31,7 @@ BlackThornCave_Expert::
 	setflag FLAG_GOT_KUBFU
 # 31 "data/maps/BlackthornCave/scripts.pory"
 	msgbox BlackThornCave_Expert_Text_2
-# 36 "data/maps/BlackthornCave/scripts.pory"
+# 38 "data/maps/BlackthornCave/scripts.pory"
 	release
 	end
 
@@ -64,7 +64,9 @@ BlackThornCave_Expert_Text_1:
 
 BlackThornCave_Expert_Text_2:
 # 31 "data/maps/BlackthornCave/scripts.pory"
-	.string "I hear someone in Johto Archipelago\n"
-	.string "might know how to evolve that Pokémon.\p"
-	.string "But I'm too old to travel anywhere, so\n"
-	.string "leave me to my meditations now!$"
+	.string "I hear a batch of scrolls for evolving\n"
+	.string "that Pokémon were stolen by Team\l"
+	.string "Rocket.\p"
+	.string "Such an act of disgrace! If I was 30\n"
+	.string "years younger, I would hunt them down\l"
+	.string "myself!$"

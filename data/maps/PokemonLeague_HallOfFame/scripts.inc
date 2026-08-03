@@ -94,8 +94,11 @@ PokemonLeague_HallOfFame_EventScript_SetGameClearFlags::
 	clearflag FLAG_HIDE_VIRIZION
 	clearflag FLAG_HIDE_REGIGIGAS 
 	clearflag FLAG_HIDE_MARSHADOW 
-	clearflag FLAG_HIDE_CHI_YU 
-	clearflag FLAG_HIDE_MELOETTA 
+	clearflag FLAG_HIDE_CHI_YU
+	clearflag FLAG_CAUGHT_MELOETTA
+	clearflag FLAG_CAUGHT_ZERAORA
+	clearflag FLAG_CAUGHT_COBALION
+	clearflag FLAG_CAUGHT_TERRAKION
 	clearflag FLAG_HIDE_DIANCIE 
 	clearflag FLAG_HIDE_OGERPON 
 	clearflag FLAG_HIDE_MAGEARNA 

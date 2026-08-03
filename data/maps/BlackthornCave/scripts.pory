@@ -28,11 +28,13 @@ script BlackThornCave_Expert {
     givemon(SPECIES_KUBFU, 5)
     call(Common_EventScript_GiftMon)
     setflag(FLAG_GOT_KUBFU)
-    msgbox("I hear someone in Johto Archipelago
-            might know how to evolve that Pokémon.
+    msgbox("I hear a batch of scrolls for evolving
+            that Pokémon were stolen by Team
+            Rocket.
             
-            But I'm too old to travel anywhere, so
-            leave me to my meditations now!")
+            Such an act of disgrace! If I was 30
+            years younger, I would hunt them down
+            myself!")
     release
     end
 }
