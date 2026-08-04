@@ -59,6 +59,8 @@ static bool32 Achievement_PredicateCaughtMew(void);
 static bool32 Achievement_PredicateCaughtSuicune(void);
 static bool32 Achievement_PredicateCaughtEntei(void);
 static bool32 Achievement_PredicateCaughtRaikou(void);
+static bool32 Achievement_PredicateCaughtKyogre(void);
+static bool32 Achievement_PredicateCaughtGroudon(void);
 static bool32 Achievement_PredicateCaughtEonDuo(void);
 static bool32 Achievement_PredicateCaughtJirachi(void);
 static bool32 Achievement_PredicateCaughtHoopa(void);
@@ -247,6 +249,10 @@ static const u8 sText_AchCatchEnteiName[] = _("Roaming Howl");
 static const u8 sText_AchCatchEnteiDesc[] = _("Catch Entei.");
 static const u8 sText_AchCatchRaikouName[] = _("Roaming Surge");
 static const u8 sText_AchCatchRaikouDesc[] = _("Catch Raikou.");
+static const u8 sText_AchCatchKyogreName[] = _("Primal Sea");
+static const u8 sText_AchCatchKyogreDesc[] = _("Catch Kyogre.");
+static const u8 sText_AchCatchGroudonName[] = _("Primal Land");
+static const u8 sText_AchCatchGroudonDesc[] = _("Catch Groudon.");
 static const u8 sText_AchCatchEonDuoName[] = _("Eon Duo");
 static const u8 sText_AchCatchEonDuoDesc[] = _("Catch both Latias and Latios.");
 static const u8 sText_AchObtainJirachiName[] = _("Wish on a Star");
@@ -409,6 +415,8 @@ static const struct Achievement sAchievements[] =
     {ACH_CATCH_REGICE, sText_AchCatchRegiceName, sText_AchCatchRegiceDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRegice},
     {ACH_CATCH_REGISTEEL, sText_AchCatchRegisteelName, sText_AchCatchRegisteelDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRegisteel},
     {ACH_CATCH_EON_DUO, sText_AchCatchEonDuoName, sText_AchCatchEonDuoDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtEonDuo},
+    {ACH_CATCH_KYOGRE, sText_AchCatchKyogreName, sText_AchCatchKyogreDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtKyogre},
+    {ACH_CATCH_GROUDON, sText_AchCatchGroudonName, sText_AchCatchGroudonDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtGroudon},
     {ACH_CATCH_RAYQUAZA, sText_AchRayquazaName, sText_AchRayquazaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRayquaza},
     {ACH_OBTAIN_JIRACHI, sText_AchObtainJirachiName, sText_AchObtainJirachiDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtJirachi},
     // Legendary and Mythical Pokémon - Generation IV
@@ -465,6 +473,8 @@ STATIC_ASSERT(ACH_CATCH_MELOETTA == 111, MeloettaIdAppendedAfterExistingIds);
 STATIC_ASSERT(ACH_CATCH_ZERAORA == 112, ZeraoraIdAppendedAfterExistingIds);
 STATIC_ASSERT(ACH_OBTAIN_DIANCIE == 113, DiancieIdAppendedAfterExistingIds);
 STATIC_ASSERT(ACH_OBTAIN_GALARIAN_BIRDS == 114, GalarianBirdsIdAppendedAfterExistingIds);
+STATIC_ASSERT(ACH_CATCH_KYOGRE == 115, KyogreIdAppendedAfterExistingIds);
+STATIC_ASSERT(ACH_CATCH_GROUDON == 116, GroudonIdAppendedAfterExistingIds);
 
 static const u8 *const sTierLabels[] =
 {
@@ -763,6 +773,16 @@ static bool32 Achievement_PredicateCaughtEntei(void)
 static bool32 Achievement_PredicateCaughtRaikou(void)
 {
     return Achievement_PredicateCaughtSpecies(SPECIES_RAIKOU);
+}
+
+static bool32 Achievement_PredicateCaughtKyogre(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_KYOGRE);
+}
+
+static bool32 Achievement_PredicateCaughtGroudon(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_GROUDON);
 }
 
 static bool32 Achievement_PredicateCaughtEonDuo(void)
