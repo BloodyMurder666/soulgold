@@ -2152,7 +2152,7 @@ static bool32 BattleArcade_DoSleep(u32 impact)
 }
 static bool32 BattleArcade_DoFreeze(u32 impact)
 {
-    return BattleArcade_DoStatusAilment(impact, STATUS1_FREEZE);
+    return BattleArcade_DoStatusAilment(impact, STATUS1_FROSTBITE);
 }
 
 static bool32 BattleArcade_DoStatusAilment(u32 impact, u32 status)
@@ -2200,7 +2200,7 @@ static void InitalizePartyIndex(u32 *newIndex)
 
 static bool32 IsStatusSleepOrFreeze(u32 status)
 {
-    return ((status == STATUS1_FREEZE) || (status == STATUS1_SLEEP));
+    return ((status == STATUS1_FROSTBITE) || (status == STATUS1_SLEEP));
 }
 
 static void ShufflePartyIndex(u32 *newIndex)

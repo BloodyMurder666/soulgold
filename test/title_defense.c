@@ -25,19 +25,24 @@ TEST("Title Defense selects the normal pool for defenses one through five")
     EXPECT_EQ(VarGet(VAR_TITLE_DEFENSE_LAST_CHALLENGER), TRAINER_TITLE_DEFENSE_FALKNER);
 }
 
-TEST("Title Defense selects the hard pool beginning with defense six")
+TEST("Title Defense adds Lance and Steven to the pool beginning with defense six")
 {
     VarSet(VAR_TITLE_DEFENSE_LAST_CHALLENGER, TRAINER_NONE);
     SetupRiggedRng(__LINE__, RNG_TITLE_DEFENSE_CHALLENGER, 0);
 
     VarSet(VAR_TITLE_DEFENSE_WINS, 5);
     TitleDefense_SelectChallenger();
+    EXPECT_EQ(VarGet(VAR_TITLE_DEFENSE_LAST_CHALLENGER), TRAINER_TITLE_DEFENSE_FALKNER);
+
+    VarSet(VAR_TITLE_DEFENSE_LAST_CHALLENGER, TRAINER_NONE);
+    SetupRiggedRng(__LINE__, RNG_TITLE_DEFENSE_CHALLENGER, 8);
+    TitleDefense_SelectChallenger();
     EXPECT_EQ(VarGet(VAR_TITLE_DEFENSE_LAST_CHALLENGER), TRAINER_TITLE_DEFENSE_LANCE);
 
     VarSet(VAR_TITLE_DEFENSE_LAST_CHALLENGER, TRAINER_NONE);
-    VarSet(VAR_TITLE_DEFENSE_WINS, MAX_u16);
+    SetupRiggedRng(__LINE__, RNG_TITLE_DEFENSE_CHALLENGER, 9);
     TitleDefense_SelectChallenger();
-    EXPECT_EQ(VarGet(VAR_TITLE_DEFENSE_LAST_CHALLENGER), TRAINER_TITLE_DEFENSE_LANCE);
+    EXPECT_EQ(VarGet(VAR_TITLE_DEFENSE_LAST_CHALLENGER), TRAINER_TITLE_DEFENSE_STEVEN);
 }
 
 TEST("Title Defense prevents consecutive challengers")
@@ -51,18 +56,20 @@ TEST("Title Defense prevents consecutive challengers")
 
     VarSet(VAR_TITLE_DEFENSE_WINS, 5);
     VarSet(VAR_TITLE_DEFENSE_LAST_CHALLENGER, TRAINER_TITLE_DEFENSE_LANCE);
+    SetupRiggedRng(__LINE__, RNG_TITLE_DEFENSE_CHALLENGER, 8);
     TitleDefense_SelectChallenger();
     EXPECT_EQ(VarGet(VAR_TITLE_DEFENSE_LAST_CHALLENGER), TRAINER_TITLE_DEFENSE_STEVEN);
 
+    SetupRiggedRng(__LINE__, RNG_TITLE_DEFENSE_CHALLENGER, 0);
     TitleDefense_SelectChallenger();
-    EXPECT_EQ(VarGet(VAR_TITLE_DEFENSE_LAST_CHALLENGER), TRAINER_TITLE_DEFENSE_LANCE);
+    EXPECT_EQ(VarGet(VAR_TITLE_DEFENSE_LAST_CHALLENGER), TRAINER_TITLE_DEFENSE_FALKNER);
 }
 
 TEST("Title Defense stages the selected challenger's overworld graphics")
 {
     VarSet(VAR_TITLE_DEFENSE_WINS, 5);
     VarSet(VAR_TITLE_DEFENSE_LAST_CHALLENGER, TRAINER_NONE);
-    SetupRiggedRng(__LINE__, RNG_TITLE_DEFENSE_CHALLENGER, 1);
+    SetupRiggedRng(__LINE__, RNG_TITLE_DEFENSE_CHALLENGER, 9);
 
     TitleDefense_SelectChallenger();
 

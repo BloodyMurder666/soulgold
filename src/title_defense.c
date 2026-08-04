@@ -164,6 +164,18 @@ const struct TitleDefenseChallenger gTitleDefenseHardChallengers[] =
 const u32 gTitleDefenseNormalChallengerCount = ARRAY_COUNT(gTitleDefenseNormalChallengers);
 const u32 gTitleDefenseHardChallengerCount = ARRAY_COUNT(gTitleDefenseHardChallengers);
 
+static const struct TitleDefenseChallenger *GetChallengerByPoolIndex(u32 index)
+{
+    if (index < gTitleDefenseNormalChallengerCount)
+        return &gTitleDefenseNormalChallengers[index];
+
+    index -= gTitleDefenseNormalChallengerCount;
+    if (index < gTitleDefenseHardChallengerCount)
+        return &gTitleDefenseHardChallengers[index];
+
+    return NULL;
+}
+
 static const struct TitleDefenseChallenger *FindChallenger(u16 trainerId)
 {
     u32 i;
@@ -210,7 +222,6 @@ static void ShowChallengerMessage(const u8 *text)
 
 void TitleDefense_SelectChallenger(void)
 {
-    const struct TitleDefenseChallenger *pool;
     const struct TitleDefenseChallenger *challenger;
     u32 poolCount;
     u32 selectableCount;
@@ -219,22 +230,17 @@ void TitleDefense_SelectChallenger(void)
     u16 lastTrainerId = VarGet(VAR_TITLE_DEFENSE_LAST_CHALLENGER);
     bool32 excludeLast = FALSE;
 
-    if (VarGet(VAR_TITLE_DEFENSE_WINS) < 5)
-    {
-        pool = gTitleDefenseNormalChallengers;
-        poolCount = gTitleDefenseNormalChallengerCount;
-    }
-    else
-    {
-        pool = gTitleDefenseHardChallengers;
-        poolCount = gTitleDefenseHardChallengerCount;
-    }
+    poolCount = gTitleDefenseNormalChallengerCount;
+    if (VarGet(VAR_TITLE_DEFENSE_WINS) >= 5)
+        poolCount += gTitleDefenseHardChallengerCount;
 
     if (poolCount > 1)
     {
         for (i = 0; i < poolCount; i++)
         {
-            if (pool[i].trainerId == lastTrainerId)
+            const struct TitleDefenseChallenger *candidate = GetChallengerByPoolIndex(i);
+
+            if (candidate->trainerId == lastTrainerId)
             {
                 excludeLast = TRUE;
                 break;
@@ -247,18 +253,20 @@ void TitleDefense_SelectChallenger(void)
     challenger = NULL;
     for (i = 0; i < poolCount; i++)
     {
-        if (excludeLast && pool[i].trainerId == lastTrainerId)
+        const struct TitleDefenseChallenger *candidate = GetChallengerByPoolIndex(i);
+
+        if (excludeLast && candidate->trainerId == lastTrainerId)
             continue;
         if (selectedIndex == 0)
         {
-            challenger = &pool[i];
+            challenger = candidate;
             break;
         }
         selectedIndex--;
     }
 
     if (challenger == NULL)
-        challenger = &pool[0];
+        challenger = &gTitleDefenseNormalChallengers[0];
 
     VarSet(VAR_TITLE_DEFENSE_LAST_CHALLENGER, challenger->trainerId);
     VarSet(VAR_OBJ_GFX_ID_0, challenger->objectGfxId);

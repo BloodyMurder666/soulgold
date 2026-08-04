@@ -35,7 +35,7 @@ PokemonLeague_KarensRoom_EventScript_KarenRematch::
 	setflag FLAG_TEMP_3
 	setflag FLAG_TEMP_5
 	trainerbattle_no_intro TRAINER_KAREN_2, PokemonLeague_KarensRoom_Text_Beaten
-	goto PokemonLeague_KarensRoom_EventScript_KarenOnDefeat
+	goto PokemonLeague_KarensRoom_EventScript_KarenOnDefeatPostgame
 
 PokemonLeague_KarensRoom_EventScript_KarenOnDefeat::
     clearflag FLAG_TEMP_5
@@ -58,6 +58,31 @@ PokemonLeague_KarensRoom_EventScript_KarenOnDefeat::
 
 PokemonLeague_KarensRoom_EventScript_KarenDefeated::
 	msgbox PokemonLeague_KarensRoom_Text_Defeat, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+PokemonLeague_KarensRoom_EventScript_KarenOnDefeatPostgame::
+    clearflag FLAG_TEMP_5
+	createfieldmugshot MUGSHOT_KAREN
+	msgbox PokemonLeague_KarensRoom_Text_DefeatPostgame, MSGBOX_DEFAULT
+	closemessage
+	setmetatile 6, 1, 0x40E, FALSE
+	setmetatile 6, 2, 0x416, FALSE	
+	playse SE_BANG
+	setvar VAR_0x8004, 1  @ vertical pan
+	setvar VAR_0x8005, 1  @ horizontal pan
+	setvar VAR_0x8006, 4  @ num shakes
+	setvar VAR_0x8007, 4  @ shake delay
+	special ShakeCamera
+	waitstate
+	special DrawWholeMapView
+	setvar VAR_LEAGUE_STATE, 5
+	release
+	end
+
+PokemonLeague_KarensRoom_EventScript_KarenDefeatedPostgame::
+	msgbox PokemonLeague_KarensRoom_Text_DefeatPostgame, MSGBOX_DEFAULT
 	closemessage
 	release
 	end
@@ -101,3 +126,14 @@ PokemonLeague_KarensRoom_Text_Defeat:
     .string "I like your style. You understand\n"
     .string "what's important.\p"
     .string "Go on--the Champion is waiting.$"
+
+PokemonLeague_KarensRoom_Text_DefeatPostgame:
+    .string "Strong Pokémon.\p"
+    .string "Weak Pokémon.\p"
+    .string "That is only the selfish\n"
+    .string "perception of people.\p"
+    .string "Truly skilled trainers should\n"
+    .string "try to win with their favorites.\p"
+    .string "I like your style. You understand\n"
+    .string "what's important.\p"
+    .string "Go on--the Challenger will arrive.$"
