@@ -1179,6 +1179,14 @@ BattleCafe_TrainerAtlas_2:
 	end
 
 
+BattleCafeVip_Athena::
+# 751 "data/maps/BattleCafe/scripts.pory"
+	trainerbattle_single TRAINER_VIP_ATHENA, BattleCafeVip_Athena_Text_0, BattleCafeVip_Athena_Text_1
+# 753 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafeVip_Athena_Text_2, MSGBOX_AUTOCLOSE
+	return
+
+
 BattleCafe_GiveDiancie_Text_0:
 # 34 "data/maps/BattleCafe/scripts.pory"
 	.string "Well, look at that. You've beaten\n"
@@ -1697,3 +1705,16 @@ BattleCafe_TrainerAtlas_Text_3:
 	.string "Excadrill loves a sandstorm, but your\n"
 	.string "Pokémon looked right at home in it\l"
 	.string "too.$"
+
+BattleCafeVip_Athena_Text_0:
+# 751 "data/maps/BattleCafe/scripts.pory"
+	.string "Let's see if you can survive this\n"
+	.string "stall!$"
+
+BattleCafeVip_Athena_Text_1:
+# 752 "data/maps/BattleCafe/scripts.pory"
+	.string "Huh?$"
+
+BattleCafeVip_Athena_Text_2:
+# 753 "data/maps/BattleCafe/scripts.pory"
+	.string "Did you have fun?$"

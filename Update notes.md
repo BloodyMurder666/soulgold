@@ -3,7 +3,7 @@ Update notes:
 - New Legendary: Groudon, after obtaining Dive, can be found on Route 50.
 - New Legendary: Kyogre, after obtaining Dive, can be found South of Route 33.
 - New mini facility: Battle Cafe. Located on Route 50, this features four daily challenges of varying difficulty. Diancie and the Galarian birds can be obtained here.
-- Nasty Plot and Superpower are now tutor moves.
+- Nasty Plot, Body Press, Close Combat and Superpower are now tutor moves.
 - Lugia and Ho-Oh are now bosses.
 - Synchronize uses Gen 8 effect.
 - Fixed Rocket Arcade payout looping back to 4k on 8th round.

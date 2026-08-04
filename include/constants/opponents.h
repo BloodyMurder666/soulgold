@@ -925,7 +925,7 @@
 #define TRAINER_CAFE_LYSANDER             944
 #define TRAINER_CAFE_JUNA                 945
 #define TRAINER_CAFE_PHAINON              946
-#define TRAINER_UNUSED_83                 947
+#define TRAINER_VIP_ATHENA                947
 #define TRAINER_UNUSED_84                 948
 #define TRAINER_UNUSED_85                 949
 #define TRAINER_UNUSED_86                 950

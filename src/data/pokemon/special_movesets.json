@@ -85,7 +85,9 @@
       "MOVE_AQUA_CUTTER",
       "MOVE_VOLT_TACKLE",
       "MOVE_NASTY_PLOT",
-      "MOVE_SUPERPOWER"
+      "MOVE_SUPERPOWER",
+      "MOVE_BODY_PRESS",
+      "MOVE_CLOSE_COMBAT"
     ],
   "speciesTeachables":
     {

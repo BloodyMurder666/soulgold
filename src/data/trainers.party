@@ -18990,3 +18990,78 @@ Jolly Nature
 - Earthquake
 - Dragon Claw
 - Stone Edge
+
+=== TRAINER_VIP_ATHENA ===
+Name: Athena
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Dp Ace Trainer
+Double Battle: Yes
+AI: Smart Trainer / Prediction
+
+Reuniclus @ Leftovers
+Ability: Magic Guard
+Shiny: Yes
+EVs: 252 HP / 4 Def / 252 SpA
+Quiet Nature
+IVs: 0 Atk / 0 Spe
+- Psychic Noise
+- Focus Blast
+- Thunder Wave
+- Protect
+
+Toxapex @ Rocky Helmet
+Ability: Regenerator
+Shiny: Yes
+EVs: 252 HP / 196 Def / 60 SpD
+Relaxed Nature
+IVs: 0 Atk / 0 Spe
+- Scald
+- Toxic Spikes
+- Wide Guard
+- Recover
+
+Ferrothorn @ Leftovers
+Ability: Iron Barbs
+Shiny: Yes
+EVs: 252 HP / 252 Def / 4 SpD
+Relaxed Nature
+IVs: 0 Spe
+- Leech Seed
+- Spikes
+- Gyro Ball
+- Protect
+
+Ursaluna @ Flame Orb
+Ability: Guts
+Shiny: Yes
+EVs: 252 HP / 252 Atk / 4 SpD
+Brave Nature
+IVs: 0 Spe
+- Facade
+- Headlong Rush
+- Crunch
+- Protect
+
+Dragalge @ Poisontite
+Ability: Adaptability
+Shiny: Yes
+EVs: 252 HP / 156 Def / 100 SpA
+Quiet Nature
+IVs: 0 Atk / 0 Spe
+- Sludge Bomb
+- Draco Meteor
+- Hydro Pump
+- Protect
+
+Cursola @ Focus Sash
+Ability: Perish Body
+Shiny: Yes
+EVs: 252 HP / 252 SpA / 4 SpD
+Quiet Nature
+IVs: 0 Atk / 0 Spe
+- Strength Sap
+- Hex
+- Scald
+- Ice Beam

@@ -746,3 +746,9 @@ script BattleCafe_TrainerAtlas {
     release
     end
 }
+
+script BattleCafeVip_Athena {
+    trainerbattle_single(TRAINER_VIP_ATHENA, "Let's see if you can survive this
+                            stall!", "Huh?")
+    msgbox("Did you have fun?", MSGBOX_AUTOCLOSE)
+}
