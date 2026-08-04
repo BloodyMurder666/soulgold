@@ -51,8 +51,8 @@
 #define FLAG_SYS_PC_FROM_DEBUG_MENU             0x25 // Unused Flag //DEBUG
 #define FLAG_ARCEUS_EGG_GIVE                    0x26
 #define FLAG_SYS_NO_BATTLE_DMG                  0x27 // Unused Flag //DEBUG
-#define FLAG_IV_SETTER                          0x28 
-#define FLAG_SIDNEY_REMATCH                     0x29 //Elite Four Rematch 1
+#define FLAG_ONETIME_GROUDON                    0x28 
+#define FLAG_ONETIME_KYOGRE                     0x29
 #define FLAG_PHOEBE_REMATCH                     0x2A //Elite Four Rematch 2
 #define FLAG_SYS_SET_BATTLE_BGM                 0x2B // Changes BGM
 #define FLAG_WONDERTRADE_FIRSTIME               0x2C 

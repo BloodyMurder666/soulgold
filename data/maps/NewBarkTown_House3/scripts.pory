@@ -157,9 +157,58 @@ script NewBarkTownRivalHouseRival {
             end
         }
         if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 6) {
-            msgbox("I'm still looking into possible
-                    leads on legendaries. I'll call you
-                    once I find something!")
+            msgbox("{PLAYER}! I've found another lead
+                    on legendaries!
+                    
+                    Apparently, Hoenn's very own duo
+                    is resting somewhere underwater
+                    here in Johto.
+                    
+                    There aren't many deep waters in
+                    here, so you'll have to look quite
+                    hard for them.
+                    
+                    You're going to need this!")
+            giveitem(ITEM_HM_DIVE)
+            setvar(VAR_POSTGAME_RIVAL_LEGENDARYQ, 7)
+            msgbox("They are probably quite far away
+                    from each other, so you should
+                    scour the region far and wide.")
+            release
+            end
+        }
+        if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 7 || var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 8) {
+            msgbox("Groudon is likely hidden in a cave which
+                    can only be accessed underwater. Maybe
+                    close to a hotter climate?
+                    
+                    Kyogre might prefer easier access to
+                    the open sea. So check on the
+                    coastlines!")
+            release
+            end
+        }
+        if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 9) {
+            msgbox("You caught them both?!
+            
+                    Send me your Pokédex data about them
+                    later. Elm is going to be thrilled
+                    about this!
+                    
+                    There isn't anything currently I'm
+                    looking for, and it might take a long
+                    while before I find another target
+                    we could search for.
+                    
+                    So, thanks {PLAYER}! For being
+                    a genuine friend!")
+            setvar(VAR_POSTGAME_RIVAL_LEGENDARYQ, 10)
+            release
+            end 
+        }
+        if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 10) {
+            msgbox("Hey {PLAYER}! How's it going?
+                    Caught any new special Pokémon?")
         }
     }
     release

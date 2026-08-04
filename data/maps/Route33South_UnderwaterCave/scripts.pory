@@ -5,7 +5,14 @@ script Route33Kyogre {
     faceplayer
     bosslegendaryencounter(SPECIES_KYOGRE, 80, LOCALID_KYOGRE, FLAG_HIDE_KYOGRE, 4, SPECIES_NONE, 110, BOSS_PHASE_PROFILE_KYOGRE)
     if (var(VAR_RESULT) == B_OUTCOME_CAUGHT) {
-        finditem(ITEM_BLUE_ORB)
+        checkitem(ITEM_BLUE_ORB)
+        if (var(VAR_RESULT)  == FALSE) {
+            finditem(ITEM_BLUE_ORB)
+        }
+        if (!flag(FLAG_ONETIME_KYOGRE)) {
+            addvar(VAR_POSTGAME_RIVAL_LEGENDARYQ, 1)
+            setflag(FLAG_ONETIME_KYOGRE)
+        }
     }
     release
     end

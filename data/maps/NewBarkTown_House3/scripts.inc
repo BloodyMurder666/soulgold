@@ -111,7 +111,7 @@ NewBarkTownRivalHouseRival::
 	compare VAR_RIVAL_STATE, 12
 	goto_if_ge NewBarkTownRivalHouseRival_5
 NewBarkTownRivalHouseRival_4:
-# 165 "data/maps/NewBarkTown_House3/scripts.pory"
+# 214 "data/maps/NewBarkTown_House3/scripts.pory"
 	release
 	end
 
@@ -146,7 +146,19 @@ NewBarkTownRivalHouseRival_19:
 	goto_if_eq NewBarkTownRivalHouseRival_23
 # 159 "data/maps/NewBarkTown_House3/scripts.pory"
 	compare VAR_POSTGAME_RIVAL_LEGENDARYQ, 6
-	goto_if_eq NewBarkTownRivalHouseRival_25
+	goto_if_eq NewBarkTownRivalHouseRival_26
+# 180 "data/maps/NewBarkTown_House3/scripts.pory"
+	compare VAR_POSTGAME_RIVAL_LEGENDARYQ, 7
+	goto_if_eq NewBarkTownRivalHouseRival_29
+# 180 "data/maps/NewBarkTown_House3/scripts.pory"
+	compare VAR_POSTGAME_RIVAL_LEGENDARYQ, 8
+	goto_if_eq NewBarkTownRivalHouseRival_29
+# 191 "data/maps/NewBarkTown_House3/scripts.pory"
+	compare VAR_POSTGAME_RIVAL_LEGENDARYQ, 9
+	goto_if_eq NewBarkTownRivalHouseRival_34
+# 209 "data/maps/NewBarkTown_House3/scripts.pory"
+	compare VAR_POSTGAME_RIVAL_LEGENDARYQ, 10
+	goto_if_eq NewBarkTownRivalHouseRival_36
 	goto NewBarkTownRivalHouseRival_4
 
 NewBarkTownRivalHouseRival_8:
@@ -191,40 +203,69 @@ NewBarkTownRivalHouseRival_23:
 	release
 	end
 
-NewBarkTownRivalHouseRival_25:
+NewBarkTownRivalHouseRival_26:
 # 160 "data/maps/NewBarkTown_House3/scripts.pory"
 	msgbox NewBarkTownRivalHouseRival_Text_7
+# 172 "data/maps/NewBarkTown_House3/scripts.pory"
+	giveitem ITEM_HM_DIVE
+# 173 "data/maps/NewBarkTown_House3/scripts.pory"
+	setvar VAR_POSTGAME_RIVAL_LEGENDARYQ, 7
+# 174 "data/maps/NewBarkTown_House3/scripts.pory"
+	msgbox NewBarkTownRivalHouseRival_Text_8
+# 177 "data/maps/NewBarkTown_House3/scripts.pory"
+	release
+	end
+
+NewBarkTownRivalHouseRival_29:
+# 181 "data/maps/NewBarkTown_House3/scripts.pory"
+	msgbox NewBarkTownRivalHouseRival_Text_9
+# 188 "data/maps/NewBarkTown_House3/scripts.pory"
+	release
+	end
+
+NewBarkTownRivalHouseRival_34:
+# 192 "data/maps/NewBarkTown_House3/scripts.pory"
+	msgbox NewBarkTownRivalHouseRival_Text_10
+# 205 "data/maps/NewBarkTown_House3/scripts.pory"
+	setvar VAR_POSTGAME_RIVAL_LEGENDARYQ, 10
+# 206 "data/maps/NewBarkTown_House3/scripts.pory"
+	release
+	end
+
+NewBarkTownRivalHouseRival_36:
+# 210 "data/maps/NewBarkTown_House3/scripts.pory"
+	msgbox NewBarkTownRivalHouseRival_Text_11
 	goto NewBarkTownRivalHouseRival_4
 
 
 NewBarkTownRivalHouseMarill::
-# 171 "data/maps/NewBarkTown_House3/scripts.pory"
+# 220 "data/maps/NewBarkTown_House3/scripts.pory"
 	lock
-# 172 "data/maps/NewBarkTown_House3/scripts.pory"
+# 221 "data/maps/NewBarkTown_House3/scripts.pory"
 	faceplayer
-# 173 "data/maps/NewBarkTown_House3/scripts.pory"
+# 222 "data/maps/NewBarkTown_House3/scripts.pory"
 	playmoncry SPECIES_MARILL, CRY_MODE_NORMAL
-# 174 "data/maps/NewBarkTown_House3/scripts.pory"
+# 223 "data/maps/NewBarkTown_House3/scripts.pory"
 	msgbox NewBarkTownRivalHouseMarill_Text_0
-# 175 "data/maps/NewBarkTown_House3/scripts.pory"
+# 224 "data/maps/NewBarkTown_House3/scripts.pory"
 	waitmoncry
-# 176 "data/maps/NewBarkTown_House3/scripts.pory"
+# 225 "data/maps/NewBarkTown_House3/scripts.pory"
 	release
 	end
 
 
 NewBarkTownRivalHouseAzumarill::
-# 181 "data/maps/NewBarkTown_House3/scripts.pory"
+# 230 "data/maps/NewBarkTown_House3/scripts.pory"
 	lock
-# 182 "data/maps/NewBarkTown_House3/scripts.pory"
+# 231 "data/maps/NewBarkTown_House3/scripts.pory"
 	faceplayer
-# 183 "data/maps/NewBarkTown_House3/scripts.pory"
+# 232 "data/maps/NewBarkTown_House3/scripts.pory"
 	playmoncry SPECIES_AZUMARILL, CRY_MODE_NORMAL
-# 184 "data/maps/NewBarkTown_House3/scripts.pory"
+# 233 "data/maps/NewBarkTown_House3/scripts.pory"
 	msgbox NewBarkTownRivalHouseAzumarill_Text_0
-# 185 "data/maps/NewBarkTown_House3/scripts.pory"
+# 234 "data/maps/NewBarkTown_House3/scripts.pory"
 	waitmoncry
-# 186 "data/maps/NewBarkTown_House3/scripts.pory"
+# 235 "data/maps/NewBarkTown_House3/scripts.pory"
 	release
 	end
 
@@ -344,14 +385,53 @@ NewBarkTownRivalHouseRival_Text_6:
 
 NewBarkTownRivalHouseRival_Text_7:
 # 160 "data/maps/NewBarkTown_House3/scripts.pory"
-	.string "I'm still looking into possible\n"
-	.string "leads on legendaries. I'll call you\l"
-	.string "once I find something!$"
+	.string "{PLAYER}! I've found another lead\n"
+	.string "on legendaries!\p"
+	.string "Apparently, Hoenn's very own duo\n"
+	.string "is resting somewhere underwater\l"
+	.string "here in Johto.\p"
+	.string "There aren't many deep waters in\n"
+	.string "here, so you'll have to look quite\l"
+	.string "hard for them.\p"
+	.string "You're going to need this!$"
+
+NewBarkTownRivalHouseRival_Text_8:
+# 174 "data/maps/NewBarkTown_House3/scripts.pory"
+	.string "They are probably quite far away\n"
+	.string "from each other, so you should\l"
+	.string "scour the region far and wide.$"
+
+NewBarkTownRivalHouseRival_Text_9:
+# 181 "data/maps/NewBarkTown_House3/scripts.pory"
+	.string "Groudon is likely hidden in a cave which\n"
+	.string "can only be accessed underwater. Maybe\l"
+	.string "close to a hotter climate?\p"
+	.string "Kyogre might prefer easier access to\n"
+	.string "the open sea. So check on the\l"
+	.string "coastlines!$"
+
+NewBarkTownRivalHouseRival_Text_10:
+# 192 "data/maps/NewBarkTown_House3/scripts.pory"
+	.string "You caught them both?!\p"
+	.string "Send me your Pokédex data about them\n"
+	.string "later. Elm is going to be thrilled\l"
+	.string "about this!\p"
+	.string "There isn't anything currently I'm\n"
+	.string "looking for, and it might take a long\l"
+	.string "while before I find another target\l"
+	.string "we could search for.\p"
+	.string "So, thanks {PLAYER}! For being\n"
+	.string "a genuine friend!$"
+
+NewBarkTownRivalHouseRival_Text_11:
+# 210 "data/maps/NewBarkTown_House3/scripts.pory"
+	.string "Hey {PLAYER}! How's it going?\n"
+	.string "Caught any new special Pokémon?$"
 
 NewBarkTownRivalHouseMarill_Text_0:
-# 174 "data/maps/NewBarkTown_House3/scripts.pory"
+# 223 "data/maps/NewBarkTown_House3/scripts.pory"
 	.string "Marii!$"
 
 NewBarkTownRivalHouseAzumarill_Text_0:
-# 184 "data/maps/NewBarkTown_House3/scripts.pory"
+# 233 "data/maps/NewBarkTown_House3/scripts.pory"
 	.string "Azumarill: Azuu!$"

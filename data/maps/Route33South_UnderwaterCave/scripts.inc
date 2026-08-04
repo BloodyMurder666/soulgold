@@ -13,12 +13,30 @@ Route33Kyogre::
 	compare VAR_RESULT, B_OUTCOME_CAUGHT
 	goto_if_eq Route33Kyogre_2
 Route33Kyogre_1:
-# 10 "data/maps/Route33South_UnderwaterCave/scripts.pory"
+# 17 "data/maps/Route33South_UnderwaterCave/scripts.pory"
 	release
 	end
 
 Route33Kyogre_2:
 # 8 "data/maps/Route33South_UnderwaterCave/scripts.pory"
+	checkitem ITEM_BLUE_ORB
+# 9 "data/maps/Route33South_UnderwaterCave/scripts.pory"
+	compare VAR_RESULT, FALSE
+	goto_if_eq Route33Kyogre_5
+Route33Kyogre_4:
+# 12 "data/maps/Route33South_UnderwaterCave/scripts.pory"
+	goto_if_unset FLAG_ONETIME_KYOGRE, Route33Kyogre_7
+	goto Route33Kyogre_1
+
+Route33Kyogre_5:
+# 10 "data/maps/Route33South_UnderwaterCave/scripts.pory"
 	finditem ITEM_BLUE_ORB
+	goto Route33Kyogre_4
+
+Route33Kyogre_7:
+# 13 "data/maps/Route33South_UnderwaterCave/scripts.pory"
+	addvar VAR_POSTGAME_RIVAL_LEGENDARYQ, 1
+# 14 "data/maps/Route33South_UnderwaterCave/scripts.pory"
+	setflag FLAG_ONETIME_KYOGRE
 	goto Route33Kyogre_1
 
