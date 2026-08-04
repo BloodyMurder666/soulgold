@@ -4,6 +4,8 @@ Update notes:
 - New Legendary: Kyogre, after obtaining Dive, can be found South of Route 33.
 - New mini facility: Battle Cafe. Located on Route 50, this features four daily challenges of varying difficulty. Diancie and the Galarian birds can be obtained here.
 - Nasty Plot, Body Press, Close Combat and Superpower are now tutor moves.
+- Added new item, Zeromin. Resets all EVs to 0. Sold in Goldenrod Dept. store.
+- Oak can be found in Radio Tower 2F to give player their Pokédex Rating.
 - Lugia and Ho-Oh are now bosses.
 - Synchronize uses Gen 8 effect.
 - Route 50 has a Fly point after entering Battle Cafe.

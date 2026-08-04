@@ -1538,6 +1538,25 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_HPUp,
     },
 
+    [ITEM_ZEROMIN] =
+    {
+        .name = ITEM_NAME("Zeromin"),
+        .price = 1000,
+        .description = COMPOUND_STRING(
+            "Resets all effort\n"
+            "values of one\n"
+            "Pokémon to zero."),
+        .pocket = POCKET_MEDICINE,
+        .sortType = ITEM_TYPE_STAT_BOOST_DRINK,
+        .heldSlot = 0,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_ResetEVs,
+        .effect = gItemEffect_ResetMochi,
+        .flingPower = 30,
+        .iconPic = gItemIcon_Vitamin,
+        .iconPalette = gItemIconPalette_Zeromin,
+    },
+
     [ITEM_HP_UP_EX] =
     {
         .name = ITEM_NAME("HP Up EX"),

@@ -240,7 +240,9 @@ gSpecials::
 	def_special UpdateShoalTideFlag
 	def_special InitBirchState
 	def_special ScriptGetPokedexInfo
+	def_special ScriptGetJohtoPokedexInfo
 	def_special ShowPokedexRatingMessage
+	def_special ShowJohtoPokedexRatingMessage
 	def_special DoPCTurnOnEffect
 	def_special DoPCTurnOffEffect
 	def_special SetDeptStoreFloor

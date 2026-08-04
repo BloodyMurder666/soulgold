@@ -1,0 +1,670 @@
+raw `
+
+GoldenrodRaidoTower2_EventScript_Grunt3::
+	trainerbattle_single TRAINER_GRUNT_3 GoldenrodCity_RadioTower_2F_Text_GruntM4Seen, GoldenrodCity_RadioTower_2F_Text_GruntM4Beaten
+	msgbox GoldenrodCity_RadioTower_2F_Text_GruntM4After, MSGBOX_AUTOCLOSE
+	end
+GoldenrodRaidoTower2_EventScript_Grunt4::
+	trainerbattle_single TRAINER_GRUNT_4 GoldenrodCity_RadioTower_2F_Text_GruntM5Seen, GoldenrodCity_RadioTower_2F_Text_GruntM5Beaten
+	msgbox GoldenrodCity_RadioTower_2F_Text_GruntM5After, MSGBOX_AUTOCLOSE
+	end
+GoldenrodRaidoTower2_EventScript_Grunt5::
+	trainerbattle_single TRAINER_GRUNT_5 GoldenrodCity_RadioTower_2F_Text_GruntM6Seen, GoldenrodCity_RadioTower_2F_Text_GruntM6Beaten
+	msgbox GoldenrodCity_RadioTower_2F_Text_GruntM6After, MSGBOX_AUTOCLOSE
+	end
+GoldenrodRaidoTower2_EventScript_GruntF2::
+	trainerbattle_single TRAINER_GRUNT_26 GoldenrodCity_RadioTower_2F_Text_GruntF2Seen, GoldenrodCity_RadioTower_2F_Text_GruntF2Beaten
+	msgbox GoldenrodCity_RadioTower_2F_Text_GruntF2After, MSGBOX_AUTOCLOSE
+	end
+
+GoldenrodCity_RadioTower_2F_EventScript_Sign1::
+	lock
+	msgbox GoldenrodCity_RadioTower_2F_Text_SalesSign, MSGBOX_SIGN
+	closemessage
+	release
+	end
+
+GoldenrodCity_RadioTower_2F_EventScript_Sign2::
+	lock
+	msgbox GoldenrodCity_RadioTower_2F_Text_OakTalkSign, MSGBOX_SIGN
+	closemessage
+	release
+	end
+
+GoldenrodCity_RadioTower_2F_EventScript_Boy::
+	lock
+	faceplayer
+	msgbox GoldenrodCity_RadioTower_2F_Text_SuperNerd, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+GoldenrodCity_RadioTower_2F_EventScript_Policeman::
+	lock
+	faceplayer
+	msgbox GoldenrodCity_RadioTower_2F_Text_Policeman, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+GoldenrodCity_RadioTower_2F_EventScript_Buena::
+	lock
+	faceplayer
+	goto_if_eq VAR_GOLDENROD_CITY_STATE, 6, GoldenrodCity_RadioTower_2F_EventScript_Buena2
+	goto_if_eq VAR_GOLDENROD_CITY_STATE, 7, GoldenrodCity_RadioTower_2F_EventScript_Buena2
+	goto_if_eq VAR_GOLDENROD_CITY_STATE, 8, GoldenrodCity_RadioTower_2F_EventScript_Buena2
+	goto_if_eq VAR_GOLDENROD_CITY_STATE, 9, GoldenrodCity_RadioTower_2F_EventScript_Buena2
+	goto_if_unset FLAG_ENABLE_RADIO, GoldenrodCity_RadioTower_2F_EventScript_BuenaNoRadio
+	msgbox GoldenrodCity_RadioTower_2F_Text_BuenaGreeting, MSGBOX_DEFAULT
+	dynmultichoice 0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaMenuPassword, GoldenrodCity_RadioTower_2F_Text_BuenaMenuPrizes, GoldenrodCity_RadioTower_2F_Text_BuenaMenuCancel
+	switch VAR_RESULT
+	case 0, GoldenrodCity_RadioTower_2F_EventScript_BuenaPassword
+	case 1, GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizes
+	case 2, GoldenrodCity_RadioTower_2F_EventScript_BuenaDone
+	case MULTI_B_PRESSED, GoldenrodCity_RadioTower_2F_EventScript_BuenaDone
+	end
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaNoRadio::
+	msgbox GoldenrodCity_RadioTower_2F_Text_BuenaShowPromo, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+GoldenrodCity_RadioTower_2F_EventScript_Buena2::
+	msgbox RadioTower2FBuenaPasswordIsHelpText, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaPassword::
+	specialvar VAR_RESULT, BuenasPassword_IsBroadcastTime
+	goto_if_eq VAR_RESULT, FALSE, GoldenrodCity_RadioTower_2F_EventScript_BuenaOffAir
+	goto_if_set FLAG_DAILY_BUENA_PASSWORD, GoldenrodCity_RadioTower_2F_EventScript_BuenaAlreadyPlayed
+	special BuenasPassword_BufferCurrentPassword
+	msgbox GoldenrodCity_RadioTower_2F_Text_BuenaAskPassword, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, GoldenrodCity_RadioTower_2F_EventScript_BuenaForgotPassword
+	msgbox GoldenrodCity_RadioTower_2F_Text_BuenaJoinShow, MSGBOX_DEFAULT
+	closemessage
+	turnobject LOCALID_BUENA, DIR_EAST
+	moveobjecttocoords LOCALID_PLAYER, 28, 15, DIR_EAST
+	waitmovement 0
+	msgbox GoldenrodCity_RadioTower_2F_Text_BuenaEveryoneReady, MSGBOX_DEFAULT
+	specialvar VAR_0x8004, BuenasPassword_GetCurrentGroup
+	switch VAR_0x8004
+	case 0, GoldenrodCity_RadioTower_2F_EventScript_BuenaAskStarters
+	case 1, GoldenrodCity_RadioTower_2F_EventScript_BuenaAskMedicine
+	case 2, GoldenrodCity_RadioTower_2F_EventScript_BuenaAskBalls
+	case 3, GoldenrodCity_RadioTower_2F_EventScript_BuenaAskRouteMons
+	case 4, GoldenrodCity_RadioTower_2F_EventScript_BuenaAskNightMons
+	case 5, GoldenrodCity_RadioTower_2F_EventScript_BuenaAskTowns
+	case 6, GoldenrodCity_RadioTower_2F_EventScript_BuenaAskCategories
+	case 7, GoldenrodCity_RadioTower_2F_EventScript_BuenaAskMoves
+	case 8, GoldenrodCity_RadioTower_2F_EventScript_BuenaAskXItems
+	case 9, GoldenrodCity_RadioTower_2F_EventScript_BuenaAskRadioShows
+	end
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaForgotPassword::
+	msgbox GoldenrodCity_RadioTower_2F_Text_BuenaForgotPassword, MSGBOX_DEFAULT
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaDone
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaAskStarters::
+	dynmultichoice 0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerCyndaquil, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerTotodile, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerChikorita
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaCheckAnswer
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaAskMedicine::
+	dynmultichoice 0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerPotion, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerAntidote, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerParlyzHeal
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaCheckAnswer
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaAskBalls::
+	dynmultichoice 0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerPokeBall, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerGreatBall, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerUltraBall
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaCheckAnswer
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaAskRouteMons::
+	dynmultichoice 0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerPikachu, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerRattata, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerGeodude
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaCheckAnswer
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaAskNightMons::
+	dynmultichoice 0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerHoothoot, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerSpinarak, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerDrowzee
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaCheckAnswer
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaAskTowns::
+	dynmultichoice 0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerNewBarkTown, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerCherrygroveCity, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerAzaleaTown
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaCheckAnswer
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaAskCategories::
+	dynmultichoice 0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerBugPokemon, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerBirdPokemon, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerGrassPokemon
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaCheckAnswer
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaAskMoves::
+	dynmultichoice 0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerTackle, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerGrowl, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerMudSlap
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaCheckAnswer
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaAskXItems::
+	dynmultichoice 0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerXAttack, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerXDefend, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerXSpeed
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaCheckAnswer
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaAskRadioShows::
+	dynmultichoice 0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerPokemonTalk, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerPokemonMusic, GoldenrodCity_RadioTower_2F_Text_BuenaAnswerBuenasPassword
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaCheckAnswer
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaCheckAnswer::
+	goto_if_eq VAR_RESULT, MULTI_B_PRESSED, GoldenrodCity_RadioTower_2F_EventScript_BuenaDone
+	specialvar VAR_0x8004, BuenasPassword_GetCorrectAnswer
+	setflag FLAG_DAILY_BUENA_PASSWORD
+	goto_if_eq VAR_RESULT, VAR_0x8004, GoldenrodCity_RadioTower_2F_EventScript_BuenaCorrect
+	msgbox GoldenrodCity_RadioTower_2F_Text_BuenaWrong, MSGBOX_DEFAULT
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaDone
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaCorrect::
+	addvar VAR_BUENA_POINTS, 1
+	addvar VAR_BUENA_PASSWORDS_CORRECT, 1
+	special Achievement_CheckAll
+	buffernumberstring STR_VAR_1, VAR_BUENA_POINTS
+	turnobject LOCALID_BUENA, DIR_SOUTH
+	playfanfare(MUS_OBTAIN_ITEM)
+	msgbox GoldenrodCity_RadioTower_2F_Text_BuenaCorrect, MSGBOX_DEFAULT
+	waitfanfare
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaDone
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaOffAir::
+	msgbox GoldenrodCity_RadioTower_2F_Text_BuenaOffAir, MSGBOX_DEFAULT
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaDone
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaAlreadyPlayed::
+	msgbox GoldenrodCity_RadioTower_2F_Text_BuenaAlreadyPlayed, MSGBOX_DEFAULT
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaDone
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizes::
+	buffernumberstring STR_VAR_1, VAR_BUENA_POINTS
+	msgbox GoldenrodCity_RadioTower_2F_Text_BuenaPrizeIntro, MSGBOX_DEFAULT
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeMenu::
+	dynmultichoice 0, 0, FALSE, 6, 0, DYN_MULTICHOICE_CB_NONE, GoldenrodCity_RadioTower_2F_Text_BuenaPrizeQuickBall, GoldenrodCity_RadioTower_2F_Text_BuenaPrizeFullRestore, GoldenrodCity_RadioTower_2F_Text_BuenaPrizeElixir, GoldenrodCity_RadioTower_2F_Text_BuenaPrizeMaxElixir, GoldenrodCity_RadioTower_2F_Text_BuenaPrizeNugget, GoldenrodCity_RadioTower_2F_Text_BuenaPrizeExpCandyL, GoldenrodCity_RadioTower_2F_Text_BuenaPrizeEviolite, GoldenrodCity_RadioTower_2F_Text_BuenaPrizePPMax, GoldenrodCity_RadioTower_2F_Text_BuenaPrizeAbilityPatch, GoldenrodCity_RadioTower_2F_Text_BuenaMenuCancel
+	switch VAR_RESULT
+	case 0, GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeQuickBall
+	case 1, GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeFullRestore
+	case 2, GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeElixir
+	case 3, GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeMaxElixir
+	case 4, GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeNugget
+	case 5, GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeExpCandyL
+	case 6, GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeEviolite
+	case 7, GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizePPMax
+	case 8, GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeAbilityPatch
+	case 9, GoldenrodCity_RadioTower_2F_EventScript_BuenaDone
+	case MULTI_B_PRESSED, GoldenrodCity_RadioTower_2F_EventScript_BuenaDone
+	end
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeQuickBall::
+	setvar VAR_0x8008, ITEM_QUICK_BALL
+	setvar VAR_0x8009, 1
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaConfirmPrize
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeFullRestore::
+	setvar VAR_0x8008, ITEM_FULL_RESTORE
+	setvar VAR_0x8009, 2
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaConfirmPrize
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeElixir::
+	setvar VAR_0x8008, ITEM_ELIXIR
+	setvar VAR_0x8009, 2
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaConfirmPrize
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeMaxElixir::
+	setvar VAR_0x8008, ITEM_MAX_ELIXIR
+	setvar VAR_0x8009, 3
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaConfirmPrize
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeNugget::
+	setvar VAR_0x8008, ITEM_NUGGET
+	setvar VAR_0x8009, 3
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaConfirmPrize
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeExpCandyL::
+	setvar VAR_0x8008, ITEM_EXP_CANDY_L
+	setvar VAR_0x8009, 4
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaConfirmPrize
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeEviolite::
+	setvar VAR_0x8008, ITEM_EVIOLITE
+	setvar VAR_0x8009, 5
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaConfirmPrize
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizePPMax::
+	setvar VAR_0x8008, ITEM_PP_MAX
+	setvar VAR_0x8009, 6
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaConfirmPrize
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeAbilityPatch::
+	setvar VAR_0x8008, ITEM_ABILITY_PATCH
+	setvar VAR_0x8009, 7
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaConfirmPrize
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaConfirmPrize::
+	bufferitemname STR_VAR_1, VAR_0x8008
+	buffernumberstring STR_VAR_2, VAR_0x8009
+	msgbox GoldenrodCity_RadioTower_2F_Text_BuenaConfirmPrize, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeMenu
+	goto_if_lt VAR_BUENA_POINTS, VAR_0x8009, GoldenrodCity_RadioTower_2F_EventScript_BuenaNotEnoughPoints
+	checkitemspace VAR_0x8008
+	goto_if_eq VAR_RESULT, FALSE, GoldenrodCity_RadioTower_2F_EventScript_BuenaBagFull
+	giveitem VAR_0x8008
+	goto_if_eq VAR_RESULT, FALSE, GoldenrodCity_RadioTower_2F_EventScript_BuenaBagFull
+	subvar VAR_BUENA_POINTS, VAR_0x8009
+	buffernumberstring STR_VAR_1, VAR_BUENA_POINTS
+	msgbox GoldenrodCity_RadioTower_2F_Text_BuenaPrizeGiven, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeMenu
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaDone
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaNotEnoughPoints::
+	msgbox GoldenrodCity_RadioTower_2F_Text_BuenaNotEnoughPoints, MSGBOX_DEFAULT
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaPrizeMenu
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaBagFull::
+	msgbox GoldenrodCity_RadioTower_2F_Text_BuenaBagFull, MSGBOX_DEFAULT
+	goto GoldenrodCity_RadioTower_2F_EventScript_BuenaDone
+
+GoldenrodCity_RadioTower_2F_EventScript_BuenaDone::
+	closemessage
+	release
+	end
+
+
+GoldenrodCity_RadioTower_2F_EventScript_Teacher::
+	lock
+	faceplayer
+	goto_if_eq VAR_GOLDENROD_CITY_STATE, 6, GoldenrodCity_RadioTower_2F_EventScript_Teacher2
+	goto_if_eq VAR_GOLDENROD_CITY_STATE, 7, GoldenrodCity_RadioTower_2F_EventScript_Teacher2 
+	goto_if_eq VAR_GOLDENROD_CITY_STATE, 8, GoldenrodCity_RadioTower_2F_EventScript_Teacher2 
+	goto_if_eq VAR_GOLDENROD_CITY_STATE, 9, GoldenrodCity_RadioTower_2F_EventScript_Teacher2 
+	msgbox GoldenrodCity_RadioTower_2F_Text_Teacher, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+GoldenrodCity_RadioTower_2F_EventScript_Teacher2::
+	msgbox GoldenrodCity_RadioTower_2F_Text_TeacherRockets, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+GoldenrodCity_RadioTower_2F_EventScript_Jigglypuff::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_JIGGLYPUFF, CRY_MODE_NORMAL
+	msgbox GoldenrodCity_RadioTower_2F_Text_Jigglypuff, MSGBOX_DEFAULT
+	waitmoncry
+	release
+	end
+
+RadioTower2FBuenaPasswordIsHelpText:
+	.string "Buena: Today's password?\n"
+	.string "Help, of course!$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaGreeting:
+	.string "Buena: Hi! This is the studio\n"
+	.string "for Buena's Password.\p"
+	.string "What can I do for you?$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaMenuPassword:
+	.string "Password$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaMenuPrizes:
+	.string "Prizes$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaMenuCancel:
+	.string "Cancel$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAskPassword:
+	.string "Buena: Thank you for listening\n"
+	.string "in every day!\p"
+	.string "Do you remember today's\n"
+	.string "password?$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaForgotPassword:
+	.string "Buena: Come back after you\n"
+	.string "listen to my show, OK?\p"
+	.string "Catch ya later!$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaJoinShow:
+	.string "Buena: Oh, wow! Thank you!\p"
+	.string "What was your name again?\n"
+	.string "...{PLAYER}!\p"
+	.string "Come on, {PLAYER}.\n"
+	.string "Join the show.$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaEveryoneReady:
+	.string "Buena: Everyone ready?\p"
+	.string "I want to hear you shout out\n"
+	.string "today's password for {PLAYER}!$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaCorrect:
+	.string "Buena: Yippee! That's right!\n"
+	.string "You did tune in!\p"
+	.string "I'm so happy! You earned one\n"
+	.string "point! Congratulations!\p"
+	.string "Tune in to my show again\n"
+	.string "tomorrow!$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaWrong:
+	.string "Buena: Aww... That's not it...\n"
+	.string "Did you forget the password?$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaOffAir:
+	.string "Buena: Thank you for listening\n"
+	.string "in every day!\p"
+	.string "Tune in to my password show!$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAlreadyPlayed:
+	.string "Sorry... You get just one\n"
+	.string "chance each day.\p"
+	.string "Come back tomorrow for\n"
+	.string "another try!$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaPrizeIntro:
+	.string "Buena: You have {STR_VAR_1}P.\n"
+	.string "Which prize do you want?$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaConfirmPrize:
+	.string "Buena: Trade {STR_VAR_2}P for\n"
+	.string "{STR_VAR_1}?$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaPrizeGiven:
+	.string "Buena: Here you go!\p"
+	.string "You have {STR_VAR_1}P left.\p"
+	.string "Want another prize?$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaNotEnoughPoints:
+	.string "Buena: You need more points for\n"
+	.string "that prize.$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaBagFull:
+	.string "Buena: Your Bag is full.\p"
+	.string "Make some room and come back!$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerCyndaquil:
+	.string "Cyndaquil$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerTotodile:
+	.string "Totodile$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerChikorita:
+	.string "Chikorita$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerPotion:
+	.string "Potion$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerAntidote:
+	.string "Antidote$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerParlyzHeal:
+	.string "Parlyz Heal$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerPokeBall:
+	.string "Poke Ball$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerGreatBall:
+	.string "Great Ball$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerUltraBall:
+	.string "Ultra Ball$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerPikachu:
+	.string "Pikachu$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerRattata:
+	.string "Rattata$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerGeodude:
+	.string "Geodude$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerHoothoot:
+	.string "Hoothoot$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerSpinarak:
+	.string "Spinarak$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerDrowzee:
+	.string "Drowzee$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerNewBarkTown:
+	.string "New Bark Town$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerCherrygroveCity:
+	.string "Cherrygrove City$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerAzaleaTown:
+	.string "Azalea Town$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerBugPokemon:
+	.string "Bug Pokemon$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerBirdPokemon:
+	.string "Bird Pokemon$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerGrassPokemon:
+	.string "Grass Pokemon$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerTackle:
+	.string "Tackle$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerGrowl:
+	.string "Growl$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerMudSlap:
+	.string "Mud-Slap$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerXAttack:
+	.string "X Attack$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerXDefend:
+	.string "X Defend$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerXSpeed:
+	.string "X Speed$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerPokemonTalk:
+	.string "Pokemon Talk$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerPokemonMusic:
+	.string "Pokemon Music$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaAnswerBuenasPassword:
+	.string "Buena's Password$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaPrizeQuickBall:
+	.string "Quick Ball{CLEAR_TO 0x60}1P$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaPrizeFullRestore:
+	.string "Full Restore{CLEAR_TO 0x60}2P$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaPrizeElixir:
+	.string "Elixir{CLEAR_TO 0x60}2P$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaPrizeMaxElixir:
+	.string "Max Elixir{CLEAR_TO 0x60}3P$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaPrizeNugget:
+	.string "Nugget{CLEAR_TO 0x60}3P$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaPrizeExpCandyL:
+	.string "Exp Candy L{CLEAR_TO 0x60}4P$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaPrizeEviolite:
+	.string "Eviolite{CLEAR_TO 0x60}5P$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaPrizePPMax:
+	.string "PP Max{CLEAR_TO 0x60}6P$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaPrizeAbilityPatch:
+	.string "Ability Patch{CLEAR_TO 0x60}7P$"
+
+GoldenrodCity_RadioTower_2F_Text_SuperNerd:
+	.string "You can listen to the radio\n"
+	.string "anywhere. Tune in!$"
+
+GoldenrodCity_RadioTower_2F_Text_Policeman:
+	.string "Restricted access beyond this\n"
+	.string "point.$"
+
+GoldenrodCity_RadioTower_2F_Text_Teacher:
+	.string "Lullabies on the radio may make\n"
+	.string "Pokémon sleep.$"
+
+GoldenrodCity_RadioTower_2F_Text_TeacherRockets:
+	.string "Why would they want to take over\n"
+	.string "the Radio Tower?$"
+
+GoldenrodCity_RadioTower_2F_Text_Jigglypuff:
+	.string "Jigglypuff: Jiggly…$"
+
+GoldenrodCity_RadioTower_2F_Text_BlackBelt1:
+	.string "Sorry. Authorized personnel only\n"
+	.string "beyond this point.\p"
+	.string "It wasn't that way before.\p"
+	.string "There's something wrong with the\n"
+	.string "Director…$"
+
+GoldenrodCity_RadioTower_2F_Text_BlackBelt2:
+	.string "Feel free to look around anywhere.\p"
+	.string "The Director is nice again, just\n"
+	.string "as he was before.$"
+
+GoldenrodCity_RadioTower_2F_Text_GruntM4Seen:
+	.string "Three years ago, Team Rocket was\n"
+	.string "forced to disband.\p"
+	.string "But we're making a comeback here!$"
+
+GoldenrodCity_RadioTower_2F_Text_GruntM4Beaten:
+	.string "Gwah! Don't get cute!$"
+
+GoldenrodCity_RadioTower_2F_Text_GruntM4After:
+	.string "We won't let you ruin our plans\n"
+	.string "for our comeback!$"
+
+GoldenrodCity_RadioTower_2F_Text_GruntM5Seen:
+	.string "We're Team Rocket, the exploiters\n"
+	.string "of Pokémon!\p"
+	.string "We love being evil! Scared?$"
+
+GoldenrodCity_RadioTower_2F_Text_GruntM5Beaten:
+	.string "You think you're a hero?$"
+
+GoldenrodCity_RadioTower_2F_Text_GruntM5After:
+	.string "We're not always evil. We just do\n"
+	.string "whatever we like.$"
+
+GoldenrodCity_RadioTower_2F_Text_GruntM6Seen:
+	.string "Hey, hey! Keep out of our way!$"
+
+GoldenrodCity_RadioTower_2F_Text_GruntM6Beaten:
+	.string "Arggh. I give up.$"
+
+GoldenrodCity_RadioTower_2F_Text_GruntM6After:
+	.string "Our Executives are trying to take\n"
+	.string "this place over.\p"
+	.string "They have some big plan. I wonder\n"
+	.string "what that is?$"
+
+GoldenrodCity_RadioTower_2F_Text_GruntF2Seen:
+	.string "Hahaha!\p"
+	.string "How boring. It was far too easy\n"
+	.string "to take over this place!\p"
+	.string "Come on, keep me amused!$"
+
+GoldenrodCity_RadioTower_2F_Text_GruntF2Beaten:
+	.string "Wh-who are you?$"
+
+GoldenrodCity_RadioTower_2F_Text_GruntF2After:
+	.string "You beat me, and I won't forget\n"
+	.string "it!$"
+
+GoldenrodCity_RadioTower_2F_Text_BuenaShowPromo:
+	.string "Buena: Thank you for listening\n"
+	.string "in every day!\p"
+	.string "Tune in to my password show!$"
+
+GoldenrodCity_RadioTower_2F_Text_SalesSign:
+	.string "2F Sales$"
+
+GoldenrodCity_RadioTower_2F_Text_OakTalkSign:
+	.string "Prof. Oak's Pokémon Talk\p"
+	.string "The Hottest Show on the Air!$"
+
+GoldenrodCity_RadioTower_2F_Text_PokemonRadioSign:
+	.string "Anywhere, Anytime Pokémon Radio$"
+`
+mapscripts GoldenrodCity_RadioTower_2F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        if (flag(FLAG_IS_CHAMPION)) {
+            clearflag(FLAG_HIDE_POSTGAME_OAK)
+        } else {
+            setflag(FLAG_HIDE_POSTGAME_OAK)
+        }
+    }
+}
+
+script GoldenrodCity_RadioTower_2F_EventScript_Oak {
+	lock
+	faceplayer
+	specialvar(VAR_0x8007, ScriptGetJohtoPokedexInfo)
+	buffernumberstring(STR_VAR_1, VAR_0x8005)
+	buffernumberstring(STR_VAR_2, VAR_0x8006)
+	msgbox("Oak: Good to see you, {PLAYER}!
+
+			How is your Pokédex coming along?
+			Here, let me take a look.")
+	msgbox("You've seen {STR_VAR_1} Pokémon,
+			and you've caught {STR_VAR_2} Pokémon.
+
+			Here is my Johto Pokédex rating:")
+	special(ShowJohtoPokedexRatingMessage)
+	waitmessage
+	waitbuttonpress
+	if (var(VAR_0x8007) == FALSE) {
+		closemessage
+		release
+		end
+	}
+	if (flag(FLAG_ARCEUS_EGG_GIVE)) {
+		msgbox("Oak: Your completed Johto Pokédex
+				fills me with pride.
+
+				Take good care of that Egg!")
+		closemessage
+		release
+		end
+	}
+	msgbox("Oak: Ah! You've completed the
+			Johto Pokédex!
+
+			This is a magnificent feat!
+
+			I want you to have this very
+			special Pokémon Egg.")
+	giveegg(SPECIES_ARCEUS)
+	if (var(VAR_RESULT) == MON_CANT_GIVE) {
+		msgbox("Oak: Oh! There isn't any room in
+				your party or PC.
+
+				Come back after making some space,
+				and I'll give you the Egg.")
+		closemessage
+		release
+		end
+	}
+	setflag(FLAG_ARCEUS_EGG_GIVE)
+	playfanfare(MUS_OBTAIN_ITEM)
+	message("{PLAYER} received a Special Egg
+			from Prof. Oak!")
+	waitfanfare
+	if (var(VAR_RESULT) == MON_GIVEN_TO_PC) {
+		msgbox("Your party was full, so the Egg was
+				sent to your PC.")
+	}
+	msgbox("Oak: I can't wait to see what you
+			discover. Take good care of it!")
+	closemessage
+	release
+	end
+}

@@ -54,6 +54,7 @@ Goldenrod_3F_Berries_Shop::
 
 	.align 2
 Goldenrod_3f_Berries:
+	.2byte ITEM_ZEROMIN
 	.2byte ITEM_POMEG_BERRY
 	.2byte ITEM_KELPSY_BERRY
 	.2byte ITEM_QUALOT_BERRY

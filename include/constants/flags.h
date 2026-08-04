@@ -61,7 +61,7 @@
 #define FLAG_DOME_FOSSIL_ALTERING_CAVE          0x2F 
 #define FLAG_CAVE_MOONSTONE                     0x30 
 #define FLAG_CAVE_SUNSTONE                      0x31 
-#define FLAG_EV_MAN_FIRSTIME                    0x32
+#define FLAG_HIDE_POSTGAME_OAK                  0x32
 #define FLAG_MODEST_MINT_LILYCOVE               0x33
 #define FLAG_HIDE_BATTLE_CAFE_OPPONENT          0x34
 #define FLAG_CAUGHT_MELOETTA                    0x35 

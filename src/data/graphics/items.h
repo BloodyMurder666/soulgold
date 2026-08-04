@@ -195,6 +195,7 @@ const u16 gItemIconPalette_BigMalasada[] = INCBIN_U16("graphics/items/icon_palet
 
 const u32 gItemIcon_HPUp[] = INCBIN_U32("graphics/items/icons/hp_up.4bpp.smol");
 const u16 gItemIconPalette_HPUp[] = INCBIN_U16("graphics/items/icon_palettes/hp_up.gbapal");
+const u16 gItemIconPalette_Zeromin[] = INCBIN_U16("graphics/items/icon_palettes/zeromin.gbapal");
 
 const u32 gItemIcon_Vitamin[] = INCBIN_U32("graphics/items/icons/vitamin.4bpp.smol");
 const u16 gItemIconPalette_Protein[] = INCBIN_U16("graphics/items/icon_palettes/protein.gbapal");

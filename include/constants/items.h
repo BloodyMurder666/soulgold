@@ -1105,6 +1105,7 @@ enum __attribute__((packed)) Item
     ITEM_GS_BALL =     922,
     ITEM_DARK_CRYSTAL =     923,
     ITEM_REVERSE_CANDY = 924,
+    ITEM_ZEROMIN = 925,
 
     ITEMS_COUNT,
     ITEM_FIELD_ARROW = ITEMS_COUNT,

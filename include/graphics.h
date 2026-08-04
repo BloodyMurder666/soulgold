@@ -529,6 +529,7 @@ extern const u16 gItemIconPalette_Iron[];
 extern const u16 gItemIconPalette_Calcium[];
 extern const u16 gItemIconPalette_Zinc[];
 extern const u16 gItemIconPalette_Carbos[];
+extern const u16 gItemIconPalette_Zeromin[];
 extern const u32 gItemIcon_PPUp[];
 extern const u16 gItemIconPalette_PPUp[];
 extern const u32 gItemIcon_PPMax[];

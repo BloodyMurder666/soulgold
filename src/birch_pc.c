@@ -20,6 +20,51 @@ bool16 ScriptGetPokedexInfo(void)
     return IsNationalPokedexEnabled();
 }
 
+static bool32 IsExcludedFromJohtoDexRating(u16 species)
+{
+    return gSpeciesInfo[species].isRestrictedLegendary
+        || gSpeciesInfo[species].isSubLegendary
+        || gSpeciesInfo[species].isMythical;
+}
+
+#define JOHTO_DEX(name) SPECIES_##name,
+static const u16 sJohtoDexSpecies[] =
+{
+#include "constants/johto_dex_order.h"
+};
+#undef JOHTO_DEX
+
+STATIC_ASSERT(ARRAY_COUNT(sJohtoDexSpecies) == JOHTO_DEX_COUNT - 1, JohtoDexSpeciesCount);
+
+bool16 ScriptGetJohtoPokedexInfo(void)
+{
+    u32 i;
+    bool16 isComplete = TRUE;
+
+    gSpecialVar_0x8005 = 0;
+    gSpecialVar_0x8006 = 0;
+    gSpecialVar_0x8008 = 0;
+
+    for (i = 0; i < ARRAY_COUNT(sJohtoDexSpecies); i++)
+    {
+        u16 species = sJohtoDexSpecies[i];
+        enum NationalDexOrder dexNum = gSpeciesInfo[species].natDexNum;
+        bool32 caught = GetSetPokedexFlag(dexNum, FLAG_GET_CAUGHT);
+
+        if (IsExcludedFromJohtoDexRating(species))
+            continue;
+        gSpecialVar_0x8008++;
+        if (GetSetPokedexFlag(dexNum, FLAG_GET_SEEN))
+            gSpecialVar_0x8005++;
+        if (caught)
+            gSpecialVar_0x8006++;
+        else
+            isComplete = FALSE;
+    }
+
+    return isComplete;
+}
+
 #define BIRCH_DEX_STRINGS 21
 
 static const u8 *const sBirchDexRatingTexts[BIRCH_DEX_STRINGS] =
@@ -47,30 +92,44 @@ static const u8 *const sBirchDexRatingTexts[BIRCH_DEX_STRINGS] =
     gBirchDexRatingText_DexCompleted,
 };
 
+static const u8 *GetScaledPokedexRatingText(u32 count, u32 maxDex)
+{
+    if (maxDex == 0)
+        return gBirchDexRatingText_DexCompleted;
+
+    count = min(count, maxDex);
+    return sBirchDexRatingTexts[(count * (BIRCH_DEX_STRINGS - 1)) / maxDex];
+}
+
 // This shows your Johto Pokédex rating and not your National Dex.
 const u8 *GetPokedexRatingText(u32 count)
 {
     u32 i;
-    u32 maxDex = JOHTO_DEX_COUNT - 1;
+    u32 maxDex = ARRAY_COUNT(sJohtoDexSpecies);
 
-    for (i = 1; i < JOHTO_DEX_COUNT; i++)
+    for (i = 0; i < ARRAY_COUNT(sJohtoDexSpecies); i++)
     {
-        enum NationalDexOrder dexNum = JohtoToNationalOrder(i);
-        u16 species = NationalPokedexNumToSpecies(dexNum);
+        u16 species = sJohtoDexSpecies[i];
 
-        if (gSpeciesInfo[species].isMythical && !gSpeciesInfo[species].dexForceRequired)
+        if (IsExcludedFromJohtoDexRating(species))
         {
+            enum NationalDexOrder dexNum = gSpeciesInfo[species].natDexNum;
+
             if (count != 0 && GetSetPokedexFlag(dexNum, FLAG_GET_CAUGHT))
                 count--;
             maxDex--;
         }
     }
 
-    count = min(count, maxDex);
-    return sBirchDexRatingTexts[(count * (BIRCH_DEX_STRINGS - 1)) / maxDex];
+    return GetScaledPokedexRatingText(count, maxDex);
 }
 
 void ShowPokedexRatingMessage(void)
 {
     ShowFieldMessage(GetPokedexRatingText(gSpecialVar_0x8004));
+}
+
+void ShowJohtoPokedexRatingMessage(void)
+{
+    ShowFieldMessage(GetScaledPokedexRatingText(gSpecialVar_0x8006, gSpecialVar_0x8008));
 }
