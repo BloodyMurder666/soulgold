@@ -49,6 +49,9 @@ Bring Kommo-o to the wall.
 - Jirachi: Finish rival story in Mt. Silver
 - Regigigas: Bring all three Regis to Mt Silver backroom
 - Heatran: Explore Mt. Mortar Depths after obtaining Waterfall and Rock Climb.
+- Uxie: Route 30 Rock Climb spot near the Berry man house.
+- Mesprit: Route 47 Rock Climb spot near the last bridge before Route 48.
+- Azelf: Mahogany Town Rock Climb spot.
 
 [spoiler=Heatran puzzle solution]
 Select the lower line and the middle top.

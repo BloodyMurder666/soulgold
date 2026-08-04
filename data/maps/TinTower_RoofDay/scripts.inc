@@ -181,18 +181,10 @@ TinTower_RoofDay_EventScript_HoOh::
 	setweather WEATHER_NONE
 	doweather
 	waitse
-	playmoncry SPECIES_HO_OH, CRY_MODE_ENCOUNTER
-	delay 30
-	waitmoncry
-	playbgm MUS_HG_VS_HO_OH, 0
-	seteventmon SPECIES_HO_OH, 65
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
-	settotemboost B_POSITION_OPPONENT_LEFT, 1, 1, 1, 1, 1, 0, 0
-	special BattleSetup_StartLegendaryBattle
-	waitstate
+	bosslegendaryencounter SPECIES_HO_OH, 65, LOCALID_HO_OH, FLAG_HIDE_HO_OH, 2, SPECIES_NONE, 110
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
 	setvar VAR_LAST_TALKED, LOCALID_HO_OH
-	specialvar VAR_RESULT, GetBattleOutcome
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, TinTower_RoofDay_EventScript_RanFromHoOh
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, TinTower_RoofDay_EventScript_RanFromHoOh
 	call_if_eq VAR_RESULT, B_OUTCOME_WON, TinTower_RoofDay_EventScript_HoohFlewAway
@@ -210,21 +202,13 @@ TinTower_RoofDay_EventScript_HoOh::
 	end
 
 TinTower_RoofDay_EventScript_HoOhPostgame::
-	playmoncry SPECIES_HO_OH, CRY_MODE_ENCOUNTER
-	delay 30
-	waitmoncry
-	playbgm MUS_HG_VS_HO_OH, 0
-	seteventmon SPECIES_HO_OH, 80
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
-	settotemboost B_POSITION_OPPONENT_LEFT, 1, 1, 1, 1, 1, 0, 0
-	special BattleSetup_StartLegendaryBattle
-	waitstate
+	bosslegendaryencounter SPECIES_HO_OH, 80, LOCALID_HO_OH, FLAG_HIDE_HO_OH, 4, SPECIES_NONE, 110
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
 	setvar VAR_LAST_TALKED, LOCALID_HO_OH
-	specialvar VAR_RESULT, GetBattleOutcome
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, TinTower_RoofDay_EventScript_RanFromHoOh
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, TinTower_RoofDay_EventScript_RanFromHoOh
-	call_if_eq VAR_RESULT, B_OUTCOME_WON, TinTower_RoofDay_EventScript_HoohFlewAway
+	call_if_eq VAR_RESULT, B_OUTCOME_WON, TinTower_RoofDay_EventScript_RanFromHoOh
 	call_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, TinTower_RoofDay_EventScript_CaughtHooh
 	setvar VAR_COMPLETED_HO_OH, 3
 	releaseall
@@ -241,10 +225,8 @@ TinTower_RoofDay_EventScript_HoohFlewAway::
 
 TinTower_RoofDay_EventScript_CaughtHooh::
 	setflag FLAG_CAUGHT_HO_OH
-	fadescreenswapbuffers FADE_TO_BLACK
 	removeobject LOCALID_HO_OH
 	setflag FLAG_HIDE_HO_OH
-	fadescreenswapbuffers FADE_FROM_BLACK
 	return
 
 TinTower_RoofDay_EventScript_RanFromHoOh::
