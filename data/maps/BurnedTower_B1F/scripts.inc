@@ -122,6 +122,9 @@ BurnedTower_B1F_EventScript_ReleaseBeasts::
 	removeobject LOCALID_BURNEDTOWER2_EUSINE
 	setflag FLAG_HIDE_BURNED_TOWER_NPCS
 	setflag FLAG_HIDE_ECRUTEAK_CITY_SAGE
+	setseenmon SPECIES_RAIKOU
+	setseenmon SPECIES_ENTEI
+	setseenmon SPECIES_SUICUNE
 	setvar VAR_0x8004, 1
 	special InitRoamer
 	setflag FLAG_RELEASED_BEASTS

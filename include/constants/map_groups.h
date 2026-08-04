@@ -402,6 +402,7 @@ enum
     MAP_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_FINAL          = (81 | (22 << 8)),
     MAP_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_WILD_MONS      = (82 | (22 << 8)),
     MAP_BATTLE_FRONTIER_RANKING_HALL                    = (83 | (22 << 8)),
+    MAP_BATTLE_CAFE                                     = (84 | (22 << 8)),
 
     // gMapGroup_IndoorKantoRoutes
     MAP_ROUTE26_HOUSE1                = (0 | (23 << 8)),

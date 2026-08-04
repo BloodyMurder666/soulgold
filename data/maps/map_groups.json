@@ -426,7 +426,8 @@
     "BattleFrontier_BattlePikeRoomNormal",
     "BattleFrontier_BattlePikeRoomFinal",
     "BattleFrontier_BattlePikeRoomWildMons",
-    "BattleFrontier_RankingHall"
+    "BattleFrontier_RankingHall",
+    "BattleCafe"
   ],
   "gMapGroup_IndoorKantoRoutes": [
     "Route26_House1",
