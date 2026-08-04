@@ -395,6 +395,10 @@ script BattleCafe_RewardMenu {
                    "G. Articuno - 5",
                    "G. Zapdos - 5",
                    "G. Moltres - 5",
+                   "Tornadus - 5",
+                   "Thundurus - 5",
+                   "Landorus - 5",
+                   "Enamorus - 5",
                    "Shiny Genome - 3",
                    "2 Gold Caps - 3",
                    "¥250,000 - 3",
@@ -403,9 +407,13 @@ script BattleCafe_RewardMenu {
         case 0: goto(BattleCafe_ChooseArticuno)
         case 1: goto(BattleCafe_ChooseZapdos)
         case 2: goto(BattleCafe_ChooseMoltres)
-        case 3: goto(BattleCafe_ChooseShinyGenome)
-        case 4: goto(BattleCafe_ChooseGoldBottleCaps)
-        case 5: goto(BattleCafe_ChooseMoney)
+        case 3: goto(BattleCafe_ChooseTornadus)
+        case 4: goto(BattleCafe_ChooseThundurus)
+        case 5: goto(BattleCafe_ChooseLandorus)
+        case 6: goto(BattleCafe_ChooseEnamorus)
+        case 7: goto(BattleCafe_ChooseShinyGenome)
+        case 8: goto(BattleCafe_ChooseGoldBottleCaps)
+        case 9: goto(BattleCafe_ChooseMoney)
         default: goto(BattleCafe_OwnerMenu)
     }
 }
@@ -443,6 +451,50 @@ script BattleCafe_ChooseMoltres {
     goto(BattleCafe_ConfirmRewardMon)
 }
 
+script BattleCafe_ChooseTornadus {
+    if (flag(FLAG_BATTLE_CAFE_TORNADUS_RECEIVED)) {
+        msgbox("I've already entrusted Tornadus
+                to you.")
+        goto(BattleCafe_RewardMenu)
+    }
+    setvar(VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TORNADUS)
+    setvar(VAR_TEMP_B, 3)
+    goto(BattleCafe_ConfirmRewardMon)
+}
+
+script BattleCafe_ChooseThundurus {
+    if (flag(FLAG_BATTLE_CAFE_THUNDURUS_RECEIVED)) {
+        msgbox("I've already entrusted Thundurus
+                to you.")
+        goto(BattleCafe_RewardMenu)
+    }
+    setvar(VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_THUNDURUS)
+    setvar(VAR_TEMP_B, 4)
+    goto(BattleCafe_ConfirmRewardMon)
+}
+
+script BattleCafe_ChooseLandorus {
+    if (flag(FLAG_BATTLE_CAFE_LANDORUS_RECEIVED)) {
+        msgbox("I've already entrusted Landorus
+                to you.")
+        goto(BattleCafe_RewardMenu)
+    }
+    setvar(VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_LANDORUS)
+    setvar(VAR_TEMP_B, 5)
+    goto(BattleCafe_ConfirmRewardMon)
+}
+
+script BattleCafe_ChooseEnamorus {
+    if (flag(FLAG_BATTLE_CAFE_ENAMORUS_RECEIVED)) {
+        msgbox("I've already entrusted Enamorus
+                to you.")
+        goto(BattleCafe_RewardMenu)
+    }
+    setvar(VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_ENAMORUS)
+    setvar(VAR_TEMP_B, 6)
+    goto(BattleCafe_ConfirmRewardMon)
+}
+
 script BattleCafe_ConfirmRewardMon {
     if (var(VAR_BATTLE_CAFE_POINTS) < 5) {
         goto(BattleCafe_NotEnoughPoints)
@@ -466,6 +518,16 @@ script BattleCafe_ConfirmRewardMon {
         case 0: setflag(FLAG_BATTLE_CAFE_ARTICUNO_RECEIVED)
         case 1: setflag(FLAG_BATTLE_CAFE_ZAPDOS_RECEIVED)
         case 2: setflag(FLAG_BATTLE_CAFE_MOLTRES_RECEIVED)
+        case 3: setflag(FLAG_BATTLE_CAFE_TORNADUS_RECEIVED)
+        case 4: setflag(FLAG_BATTLE_CAFE_THUNDURUS_RECEIVED)
+        case 5: setflag(FLAG_BATTLE_CAFE_LANDORUS_RECEIVED)
+        case 6: setflag(FLAG_BATTLE_CAFE_ENAMORUS_RECEIVED)
+    }
+    if (var(VAR_TEMP_B) >= 3) {
+        if (checkitem(ITEM_REVEAL_GLASS) == FALSE) {
+            msgbox("You might find this useful.")
+            giveitem(ITEM_REVEAL_GLASS)
+        }
     }
     msgbox("A fair trade. I'm sure it'll fit right
             into your team.")

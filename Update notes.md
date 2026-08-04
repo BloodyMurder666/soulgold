@@ -1,12 +1,12 @@
 Update notes:
 4.8.2026
-- New Legendary: Groudon, after obtaining Dive, can be found on Route 50.
-- New Legendary: Kyogre, after obtaining Dive, can be found South of Route 33.
-- New mini facility: Battle Cafe. Located on Route 50, this features four daily challenges of varying difficulty. Diancie and the Galarian birds can be obtained here.
+- Final part of the rival legendary quest is added, after obtaining Darkrai, rival will offer HM Dive to lead to the final two legendaries.
+- New mini facility: Battle Cafe. Located on Route 50, this features four daily challenges of varying difficulty. Diancie, forces of the nature and the Galarian birds can be obtained here, atleast for now.
 - Nasty Plot, Body Press, Close Combat and Superpower are now tutor moves.
 - Added new item, Zeromin. Resets all EVs to 0. Sold in Goldenrod Dept. store.
 - Oak can be found in Radio Tower 2F to give player their Pokédex Rating.
 - Lugia and Ho-Oh are now bosses.
+- Some new achievements have been added for newly added legendaries.
 - Synchronize uses Gen 8 effect.
 - Route 50 has a Fly point after entering Battle Cafe.
 - Nerf last title defense achievement from 15 -> 10 defenses.

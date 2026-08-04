@@ -78,6 +78,7 @@ static bool32 Achievement_PredicateCaughtVirizion(void);
 static bool32 Achievement_PredicateCaughtMeloetta(void);
 static bool32 Achievement_PredicateCaughtZeraora(void);
 static bool32 Achievement_PredicateObtainedGalarianBirds(void);
+static bool32 Achievement_PredicateObtainedWeatherGenies(void);
 static bool32 Achievement_PredicateCaughtAllParadoxPokemon(void);
 static bool32 Achievement_PredicateHasLevel100Pokemon(void);
 static bool32 Achievement_IsInScaledChaosFacility(void);
@@ -291,6 +292,8 @@ static const u8 sText_AchObtainDiancieName[] = _("Crown Jewel");
 static const u8 sText_AchObtainDiancieDesc[] = _("Obtain Diancie.");
 static const u8 sText_AchObtainGalarianBirdsName[] = _("Galarian Special");
 static const u8 sText_AchObtainGalarianBirdsDesc[] = _("Obtain all three Galarian\nlegendary birds.");
+static const u8 sText_AchMasterOfWishesName[] = _("Master of Wishes");
+static const u8 sText_AchMasterOfWishesDesc[] = _("Obtain all four forces of nature.");
 static const u8 sText_AchDefeatStevenName[] = _("Mineralogy");
 static const u8 sText_AchDefeatStevenDesc[] = _("Defeat Champion from another\nregion.");
 static const u8 sText_AchAutophotographerName[] = _("Autophotographer");
@@ -438,6 +441,7 @@ static const struct Achievement sAchievements[] =
     {ACH_CATCH_TERRAKION, sText_AchCatchTerrakionName, sText_AchCatchTerrakionDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtTerrakion},
     {ACH_CATCH_VIRIZION, sText_AchCatchVirizionName, sText_AchCatchVirizionDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtVirizion},
     {ACH_CATCH_MELOETTA, sText_AchCatchMeloettaName, sText_AchCatchMeloettaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMeloetta},
+    {ACH_MASTER_OF_WISHES, sText_AchMasterOfWishesName, sText_AchMasterOfWishesDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateObtainedWeatherGenies},
 
     // Legendary and Mythical Pokémon - Generation VI
     {ACH_CATCH_HOOPA, sText_AchCatchHoopaName, sText_AchCatchHoopaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtHoopa},
@@ -475,6 +479,7 @@ STATIC_ASSERT(ACH_OBTAIN_DIANCIE == 113, DiancieIdAppendedAfterExistingIds);
 STATIC_ASSERT(ACH_OBTAIN_GALARIAN_BIRDS == 114, GalarianBirdsIdAppendedAfterExistingIds);
 STATIC_ASSERT(ACH_CATCH_KYOGRE == 115, KyogreIdAppendedAfterExistingIds);
 STATIC_ASSERT(ACH_CATCH_GROUDON == 116, GroudonIdAppendedAfterExistingIds);
+STATIC_ASSERT(ACH_MASTER_OF_WISHES == 117, MasterOfWishesIdAppendedAfterExistingIds);
 
 static const u8 *const sTierLabels[] =
 {
@@ -883,6 +888,14 @@ static bool32 Achievement_PredicateObtainedGalarianBirds(void)
         && FlagGet(FLAG_BATTLE_CAFE_MOLTRES_RECEIVED);
 }
 
+static bool32 Achievement_PredicateObtainedWeatherGenies(void)
+{
+    return FlagGet(FLAG_BATTLE_CAFE_TORNADUS_RECEIVED)
+        && FlagGet(FLAG_BATTLE_CAFE_THUNDURUS_RECEIVED)
+        && FlagGet(FLAG_BATTLE_CAFE_LANDORUS_RECEIVED)
+        && FlagGet(FLAG_BATTLE_CAFE_ENAMORUS_RECEIVED);
+}
+
 static const u16 sParadoxPokemon[] =
 {
     SPECIES_GREAT_TUSK,
@@ -1230,6 +1243,30 @@ void Achievement_OnPokemonObtained(u16 species)
         if (FlagGet(FLAG_BATTLE_CAFE_ARTICUNO_RECEIVED)
          && FlagGet(FLAG_BATTLE_CAFE_ZAPDOS_RECEIVED))
             Achievement_Unlock(ACH_OBTAIN_GALARIAN_BIRDS);
+        break;
+    case SPECIES_TORNADUS:
+        if (FlagGet(FLAG_BATTLE_CAFE_THUNDURUS_RECEIVED)
+         && FlagGet(FLAG_BATTLE_CAFE_LANDORUS_RECEIVED)
+         && FlagGet(FLAG_BATTLE_CAFE_ENAMORUS_RECEIVED))
+            Achievement_Unlock(ACH_MASTER_OF_WISHES);
+        break;
+    case SPECIES_THUNDURUS:
+        if (FlagGet(FLAG_BATTLE_CAFE_TORNADUS_RECEIVED)
+         && FlagGet(FLAG_BATTLE_CAFE_LANDORUS_RECEIVED)
+         && FlagGet(FLAG_BATTLE_CAFE_ENAMORUS_RECEIVED))
+            Achievement_Unlock(ACH_MASTER_OF_WISHES);
+        break;
+    case SPECIES_LANDORUS:
+        if (FlagGet(FLAG_BATTLE_CAFE_TORNADUS_RECEIVED)
+         && FlagGet(FLAG_BATTLE_CAFE_THUNDURUS_RECEIVED)
+         && FlagGet(FLAG_BATTLE_CAFE_ENAMORUS_RECEIVED))
+            Achievement_Unlock(ACH_MASTER_OF_WISHES);
+        break;
+    case SPECIES_ENAMORUS:
+        if (FlagGet(FLAG_BATTLE_CAFE_TORNADUS_RECEIVED)
+         && FlagGet(FLAG_BATTLE_CAFE_THUNDURUS_RECEIVED)
+         && FlagGet(FLAG_BATTLE_CAFE_LANDORUS_RECEIVED))
+            Achievement_Unlock(ACH_MASTER_OF_WISHES);
         break;
     }
 }

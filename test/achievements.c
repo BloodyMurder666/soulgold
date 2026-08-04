@@ -379,6 +379,46 @@ TEST("Existing Galarian bird rewards unlock Galarian Special")
     EXPECT(Achievement_IsUnlocked(ACH_OBTAIN_GALARIAN_BIRDS));
 }
 
+TEST("Master of Wishes requires all four weather genies")
+{
+    static const u16 species[] =
+    {
+        SPECIES_TORNADUS,
+        SPECIES_THUNDURUS,
+        SPECIES_LANDORUS,
+        SPECIES_ENAMORUS,
+    };
+    static const u16 receivedFlags[] =
+    {
+        FLAG_BATTLE_CAFE_TORNADUS_RECEIVED,
+        FLAG_BATTLE_CAFE_THUNDURUS_RECEIVED,
+        FLAG_BATTLE_CAFE_LANDORUS_RECEIVED,
+        FLAG_BATTLE_CAFE_ENAMORUS_RECEIVED,
+    };
+    struct Pokemon mon;
+    u8 i;
+
+    for (i = 0; i < ARRAY_COUNT(species); i++)
+    {
+        CreateMon(&mon, species[i], 70, 0, OTID_STRUCT_PLAYER_ID);
+        EXPECT_NE(GiveScriptedMonToPlayer(&mon, PARTY_SIZE), MON_CANT_GIVE);
+        EXPECT_EQ(Achievement_IsUnlocked(ACH_MASTER_OF_WISHES), i == ARRAY_COUNT(species) - 1);
+        FlagSet(receivedFlags[i]);
+    }
+}
+
+TEST("Existing weather genie rewards unlock Master of Wishes")
+{
+    FlagSet(FLAG_BATTLE_CAFE_TORNADUS_RECEIVED);
+    FlagSet(FLAG_BATTLE_CAFE_THUNDURUS_RECEIVED);
+    FlagSet(FLAG_BATTLE_CAFE_LANDORUS_RECEIVED);
+    FlagSet(FLAG_BATTLE_CAFE_ENAMORUS_RECEIVED);
+
+    Achievement_CheckAll();
+
+    EXPECT(Achievement_IsUnlocked(ACH_MASTER_OF_WISHES));
+}
+
 TEST("Route Experts requires every implemented expert")
 {
     FlagSet(FLAG_ROUTE31_EXPERT);
