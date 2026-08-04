@@ -119,9 +119,9 @@ TEST("Title Defense win counter increments and saturates")
     EXPECT(Achievement_IsUnlocked(ACH_LONG_TERM_CAREER));
     EXPECT(!Achievement_IsUnlocked(ACH_UNDEFEATED_CHAMPION));
 
-    VarSet(VAR_TITLE_DEFENSE_WINS, 14);
+    VarSet(VAR_TITLE_DEFENSE_WINS, 9);
     TitleDefense_IncrementWins();
-    EXPECT_EQ(VarGet(VAR_TITLE_DEFENSE_WINS), 15);
+    EXPECT_EQ(VarGet(VAR_TITLE_DEFENSE_WINS), 10);
     EXPECT(Achievement_IsUnlocked(ACH_UNDEFEATED_CHAMPION));
 
     VarSet(VAR_TITLE_DEFENSE_WINS, MAX_u16);

@@ -6,6 +6,7 @@ Update notes:
 - Nasty Plot, Body Press, Close Combat and Superpower are now tutor moves.
 - Lugia and Ho-Oh are now bosses.
 - Synchronize uses Gen 8 effect.
+- Nerf last title defense achievement from 15 -> 10 defenses.
 - Fixed Rocket Arcade payout looping back to 4k on 8th round.
 - Fixed Archer's face showing up in the whirlpool if you didn't have the HM.
 

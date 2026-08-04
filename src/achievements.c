@@ -198,7 +198,7 @@ static const u8 sText_AchTitleDefenderDesc[] = _("Defend your champion title onc
 static const u8 sText_AchLongTermCareerName[] = _("Long Term Career");
 static const u8 sText_AchLongTermCareerDesc[] = _("Defend your champion title five times.");
 static const u8 sText_AchUndefeatedChampionName[] = _("Undefeated Champion");
-static const u8 sText_AchUndefeatedChampionDesc[] = _("Defend your champion title 15 times.");
+static const u8 sText_AchUndefeatedChampionDesc[] = _("Defend your champion title 10 times.");
 static const u8 sText_AchBuenaSuperfanName[] = _("Buena Superfan");
 static const u8 sText_AchBuenaSuperfanDesc[] = _("Answer Buena's Password\ncorrectly on 7 days.");
 static const u8 sText_AchTravellingHealerName[] = _("Travelling Healer");
@@ -337,7 +337,7 @@ static const struct Achievement sAchievements[] =
     {ACH_HALL_OF_FAME_DEBUT, sText_AchHallOfFameDebutName, sText_AchHallOfFameDebutDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, NULL},
     {ACH_TITLE_DEFENDER, sText_AchTitleDefenderName, sText_AchTitleDefenderDesc, ACH_TIER_SILVER, ACH_COUNTER_TITLE_DEFENSE_WINS, 1, TRAINER_NONE_ACH, NULL},
     {ACH_LONG_TERM_CAREER, sText_AchLongTermCareerName, sText_AchLongTermCareerDesc, ACH_TIER_GOLD, ACH_COUNTER_TITLE_DEFENSE_WINS, 5, TRAINER_NONE_ACH, NULL},
-    {ACH_UNDEFEATED_CHAMPION, sText_AchUndefeatedChampionName, sText_AchUndefeatedChampionDesc, ACH_TIER_PLATINUM, ACH_COUNTER_TITLE_DEFENSE_WINS, 15, TRAINER_NONE_ACH, NULL},
+    {ACH_UNDEFEATED_CHAMPION, sText_AchUndefeatedChampionName, sText_AchUndefeatedChampionDesc, ACH_TIER_PLATINUM, ACH_COUNTER_TITLE_DEFENSE_WINS, 10, TRAINER_NONE_ACH, NULL},
     {ACH_CATCH_LAPRAS, sText_AchCatchLaprasName, sText_AchCatchLaprasDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtLapras},
 
     // Miscellaneous achievements
