@@ -105,6 +105,7 @@ static void ClearRocketArcadePrize(void);
 static void CheckRocketArcadeDoubleDown(void);
 static u32 GetRocketArcadePrize(void);
 static u32 GetRocketArcadePayoutIndex(void);
+static bool32 IsArcadeBrainBattle(void);
 static void BufferEarnedArcadePrint(void);
 static u32 GetEarnedArcadePrint(void);
 static bool32 ShouldGetGoldPrint(u32);
@@ -123,7 +124,7 @@ static void GenerateArcadeOpponent(void);
 u32 GetArcadePrintCount(void);
 static void SetArcadeBrainObjectEvent(void);
 static void BufferPrintFromCurrentStreak(void);
-static u32 GetPrintFromCurrentStreak(void);
+static u32 GetPendingArcadePrint(void);
 void ShowArcadeRecordsFromOverworld(void);
 void DoArcadeTrainerBattle(void);
 static void SetArcadeBattleFlags(void);
@@ -735,7 +736,12 @@ static void CheckRocketArcadeDoubleDown(void)
 
 static u32 GetRocketArcadePrize(void)
 {
-    return sRocketArcadePayouts[GetRocketArcadePayoutIndex()];
+    u32 prize = sRocketArcadePayouts[GetRocketArcadePayoutIndex()];
+
+    if (IsArcadeBrainBattle())
+        prize *= 2;
+
+    return prize;
 }
 
 static u32 GetRocketArcadePayoutIndex(void)
@@ -749,6 +755,11 @@ static u32 GetRocketArcadePayoutIndex(void)
         winStreak = ARRAY_COUNT(sRocketArcadePayouts);
 
     return winStreak - 1;
+}
+
+static bool32 IsArcadeBrainBattle(void)
+{
+    return TRAINER_BATTLE_PARAM.opponentA == TRAINER_FRONTIER_BRAIN;
 }
 
 static void BufferEarnedArcadePrint(void)
@@ -782,7 +793,7 @@ static bool32 ShouldGetPrint(u32 print, u32 numWins, u32 battleNum)
     if (FlagGet(print))
         return FALSE;
 
-    if (numWins != battleNum)
+    if (numWins < battleNum)
         return FALSE;
 
     return TRUE;
@@ -795,7 +806,8 @@ static void TakeEnemyHeldItems(void)
 
 static void GetArcadeBrainStatus(void)
 {
-    if (VarGet(VAR_FRONTIER_BATTLE_MODE) == FRONTIER_MODE_LINK_MULTIS)
+    if (VarGet(VAR_FRONTIER_BATTLE_MODE) == FRONTIER_MODE_LINK_MULTIS
+     || FRONTIER_SAVEDATA.curChallengeBattleNum != FRONTIER_STAGES_PER_CHALLENGE - 1)
     {
         gSpecialVar_Result = FRONTIER_BRAIN_NOT_READY;
         return;
@@ -896,7 +908,7 @@ static void GenerateArcadeOpponent(void)
 
 u32 GetArcadePrintCount(void)
 {
-    return (GetPrintFromCurrentStreak() - 1);
+    return GetPendingArcadePrint() == ARCADE_SYMBOL_GOLD;
 }
 
 static void SetArcadeBrainObjectEvent(void)
@@ -906,20 +918,19 @@ static void SetArcadeBrainObjectEvent(void)
 
 static void BufferPrintFromCurrentStreak(void)
 {
-    gSpecialVar_Result = GetPrintFromCurrentStreak();
+    gSpecialVar_Result = GetPendingArcadePrint();
 }
 
-static u32 GetPrintFromCurrentStreak(void)
+static u32 GetPendingArcadePrint(void)
 {
-    switch(GetCurrentStreak())
-    {
-        case (ARCADE_SILVER_BATTLE_NUMBER - 1):
-            return ARCADE_SYMBOL_SILVER;
-        case (ARCADE_GOLD_BATTLE_NUMBER - 1):
-            return ARCADE_SYMBOL_GOLD;
-        default:
-            return ARCADE_SYMBOL_NONE;
-    }
+    u32 currentStreak = GetCurrentStreak();
+
+    if (!FlagGet(FLAG_ARCADE_SILVER_PRINT) && currentStreak >= ARCADE_SILVER_BATTLE_NUMBER - 1)
+        return ARCADE_SYMBOL_SILVER;
+    if (!FlagGet(FLAG_ARCADE_GOLD_PRINT) && currentStreak >= ARCADE_GOLD_BATTLE_NUMBER - 1)
+        return ARCADE_SYMBOL_GOLD;
+
+    return ARCADE_SYMBOL_NONE;
 }
 
 void ShowArcadeRecordsFromOverworld(void)

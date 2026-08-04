@@ -1017,7 +1017,10 @@ static void SetNextTowerOpponent(void)
         u16 winStreak = GetCurrentFacilityWinStreak();
         u16 battleNum = winStreak % FRONTIER_STAGES_PER_CHALLENGE;
         u32 challengeNum = winStreak / FRONTIER_STAGES_PER_CHALLENGE;
-        gSaveBlock2Ptr->frontier.curChallengeBattleNum = battleNum;
+        if (VarGet(VAR_FRONTIER_FACILITY) == FRONTIER_FACILITY_ARCADE)
+            battleNum = gSaveBlock2Ptr->frontier.curChallengeBattleNum;
+        else
+            gSaveBlock2Ptr->frontier.curChallengeBattleNum = battleNum;
         SetFacilityPtrsGetLevel();
 
         if (battleMode == FRONTIER_MODE_MULTIS || battleMode == FRONTIER_MODE_LINK_MULTIS)

@@ -1,6 +1,7 @@
 #include "global.h"
 #include "battle_arcade.h"
 #include "battle_setup.h"
+#include "battle_tower.h"
 #include "event_data.h"
 #include "money.h"
 #include "pokemon.h"
@@ -11,6 +12,8 @@
 #include "constants/battle_arcade.h"
 #include "constants/battle.h"
 #include "constants/battle_frontier.h"
+#include "constants/battle_tower.h"
+#include "constants/frontier_util.h"
 #include "constants/opponents.h"
 
 TEST("Rocket Arcade exposes seven payouts ending at 384000")
@@ -47,6 +50,22 @@ TEST("Rocket Arcade clamps prize money to the seventh round payout")
     CallBattleArcadeFunc();
     EXPECT_EQ(gSaveBlock1Ptr->money, 384000);
     EXPECT_EQ(StringCompare(gStringVar2, COMPOUND_STRING("384000")), 0);
+}
+
+TEST("Rocket Arcade doubles the final payout for defeating its Brain")
+{
+    TRAINER_BATTLE_PARAM.opponentA = TRAINER_FRONTIER_BRAIN;
+    FRONTIER_SAVEDATA.curChallengeBattleNum = FRONTIER_STAGES_PER_CHALLENGE;
+    SetMoney(&gSaveBlock1Ptr->money, 0);
+
+    gSpecialVar_0x8004 = ARCADE_FUNC_AWARD_PRIZE;
+    CallBattleArcadeFunc();
+    EXPECT_EQ(GetMoney(&gSaveBlock1Ptr->money), 768000);
+    EXPECT_EQ(StringCompare(gStringVar2, COMPOUND_STRING("768000")), 0);
+
+    SetMoney(&gSaveBlock1Ptr->money, MAX_MONEY - 1000);
+    CallBattleArcadeFunc();
+    EXPECT_EQ(GetMoney(&gSaveBlock1Ptr->money), MAX_MONEY);
 }
 
 TEST("Rocket Arcade double down follows the fixed round payouts")
@@ -92,18 +111,68 @@ TEST("Rocket Arcade initializes its first battle as round one")
     EXPECT_EQ(gSpecialVar_Result, 1);
 }
 
+TEST("Rocket Arcade opponent setup preserves the local round after an early cash out")
+{
+    VarSet(VAR_FRONTIER_FACILITY, FRONTIER_FACILITY_ARCADE);
+    VarSet(VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_SINGLES);
+    FRONTIER_SAVEDATA.lvlMode = FRONTIER_LVL_50;
+    ARCADE_SAVEDATA_CURRENT_STREAK[FRONTIER_MODE_SINGLES][FRONTIER_LVL_50] = 1;
+    FRONTIER_SAVEDATA.winStreakActiveFlags = STREAK_ARCADE_SINGLES_50;
+
+    gSpecialVar_0x8004 = ARCADE_FUNC_INIT;
+    CallBattleArcadeFunc();
+    EXPECT_EQ(FRONTIER_SAVEDATA.curChallengeBattleNum, 0);
+
+    gSpecialVar_0x8004 = BATTLE_TOWER_FUNC_SET_OPPONENT;
+    CallBattleTowerFunc();
+    EXPECT_EQ(FRONTIER_SAVEDATA.curChallengeBattleNum, 0);
+
+    gSpecialVar_0x8004 = ARCADE_FUNC_SET_BATTLE_WON;
+    CallBattleArcadeFunc();
+    EXPECT_EQ(gSpecialVar_Result, 1);
+
+    gSpecialVar_0x8004 = BATTLE_TOWER_FUNC_SET_OPPONENT;
+    CallBattleTowerFunc();
+    EXPECT_EQ(FRONTIER_SAVEDATA.curChallengeBattleNum, 1);
+}
+
 TEST("Rocket Arcade schedules the Brain for the final battle of a set")
 {
     VarSet(VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_SINGLES);
     FRONTIER_SAVEDATA.lvlMode = FRONTIER_LVL_50;
-    FRONTIER_SAVEDATA.curChallengeBattleNum = FRONTIER_STAGES_PER_CHALLENGE - 1;
-    ARCADE_SAVEDATA_CURRENT_STREAK[FRONTIER_MODE_SINGLES][FRONTIER_LVL_50] = ARCADE_SILVER_BATTLE_NUMBER - 1;
+    FlagClear(FLAG_ARCADE_SILVER_PRINT);
+    FlagClear(FLAG_ARCADE_GOLD_PRINT);
+    FRONTIER_SAVEDATA.curChallengeBattleNum = FRONTIER_STAGES_PER_CHALLENGE - 2;
+    ARCADE_SAVEDATA_CURRENT_STREAK[FRONTIER_MODE_SINGLES][FRONTIER_LVL_50] = ARCADE_SILVER_BATTLE_NUMBER + 1;
 
     gSpecialVar_0x8004 = ARCADE_FUNC_CHECK_BRAIN_STATUS;
     CallBattleArcadeFunc();
+    EXPECT_EQ(gSpecialVar_Result, FRONTIER_BRAIN_NOT_READY);
+
+    FRONTIER_SAVEDATA.curChallengeBattleNum = FRONTIER_STAGES_PER_CHALLENGE - 1;
+    CallBattleArcadeFunc();
     EXPECT_EQ(gSpecialVar_Result, ARCADE_SYMBOL_SILVER);
 
-    ARCADE_SAVEDATA_CURRENT_STREAK[FRONTIER_MODE_SINGLES][FRONTIER_LVL_50] = ARCADE_GOLD_BATTLE_NUMBER - 1;
+    FlagSet(FLAG_ARCADE_SILVER_PRINT);
+    ARCADE_SAVEDATA_CURRENT_STREAK[FRONTIER_MODE_SINGLES][FRONTIER_LVL_50] = ARCADE_GOLD_BATTLE_NUMBER + 1;
+    CallBattleArcadeFunc();
+    EXPECT_EQ(gSpecialVar_Result, ARCADE_SYMBOL_GOLD);
+}
+
+TEST("Rocket Arcade awards prints when a Brain milestone was delayed until the final battle")
+{
+    VarSet(VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_SINGLES);
+    FRONTIER_SAVEDATA.lvlMode = FRONTIER_LVL_50;
+    FlagClear(FLAG_ARCADE_SILVER_PRINT);
+    FlagClear(FLAG_ARCADE_GOLD_PRINT);
+    ARCADE_SAVEDATA_CURRENT_STREAK[FRONTIER_MODE_SINGLES][FRONTIER_LVL_50] = ARCADE_SILVER_BATTLE_NUMBER + 2;
+
+    gSpecialVar_0x8004 = ARCADE_FUNC_CHECK_SYMBOL;
+    CallBattleArcadeFunc();
+    EXPECT_EQ(gSpecialVar_Result, ARCADE_SYMBOL_SILVER);
+
+    FlagSet(FLAG_ARCADE_SILVER_PRINT);
+    ARCADE_SAVEDATA_CURRENT_STREAK[FRONTIER_MODE_SINGLES][FRONTIER_LVL_50] = ARCADE_GOLD_BATTLE_NUMBER + 2;
     CallBattleArcadeFunc();
     EXPECT_EQ(gSpecialVar_Result, ARCADE_SYMBOL_GOLD);
 }
