@@ -9431,6 +9431,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS, EGG_GROUP_MINERAL),
         .abilities = { ABILITY_IRON_BARBS, ABILITY_NONE, ABILITY_NONE },
+        .innates = { ABILITY_BULLETPROOF, ABILITY_STEELY_SPIRIT },
         .bodyColor = BODY_COLOR_GRAY,
         .speciesName = _("Ferroseed"),
         .cryId = CRY_FERROSEED,
@@ -9508,6 +9509,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
     #else
         .abilities = { ABILITY_IRON_BARBS, ABILITY_NONE, ABILITY_NONE },
     #endif
+        .innates = { ABILITY_BULLETPROOF, ABILITY_STEELY_SPIRIT, ABILITY_OBLIVIOUS },
         .bodyColor = BODY_COLOR_GRAY,
         .speciesName = _("Ferrothorn"),
         .cryId = CRY_FERROTHORN,
