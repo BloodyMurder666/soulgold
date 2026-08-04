@@ -1,5 +1,8 @@
 #include "global.h"
 #include "battle_frontier.h"
+#include "battle_setup.h"
+#include "battle_tower.h"
+#include "event_data.h"
 #include "frontier_util.h"
 #include "item.h"
 #include "string_util.h"
@@ -148,4 +151,26 @@ TEST("This test checks for rain team creation")
     CopyFrontierTrainerText(FRONTIER_BEFORE_TEXT, 0);
     EXPECT_EQ(StringCompare(gStringVar4, fallbackText), 0);
     gFacilityTrainers = savedFacilityTrainers;
+}
+
+TEST("Every Frontier trainer supports a genuine six-Pokemon singles team")
+{
+    u16 chosen[PARTY_SIZE];
+    u16 trainerId;
+    u32 i;
+
+    for (trainerId = FRONTIER_TRAINER_BRADY; trainerId <= FRONTIER_TRAINER_GRETEL; trainerId++)
+    {
+        EXPECT(BuildFacilityTrainerMonSelection(gBattleFrontierTrainers[trainerId].monSet,
+                                                gBattleFrontierMons, NUM_FRONTIER_MONS,
+                                                ARRAY_COUNT(chosen), FALSE,
+                                                FACILITY_TEAM_BALANCED, FALSE,
+                                                NUM_FRONTIER_MONS - 1, chosen));
+
+        for (i = 0; i < ARRAY_COUNT(chosen); i++)
+        {
+            EXPECT_LT(chosen[i], NUM_FRONTIER_MONS);
+            EXPECT(IsFrontierMonEnabled(chosen[i]));
+        }
+    }
 }

@@ -1150,6 +1150,7 @@ static const u16 sLocationFlags[] =
     FLAG_VISITED_RINTO_VILLAGE,
     FLAG_VISITED_BATTLE_FACTORY,
     FLAG_VISITED_BATTLE_TOWER,
+    FLAG_VISITED_ROUTE50,
 };
 
 static u32 Debug_CheckToggleFlags(u8 id)

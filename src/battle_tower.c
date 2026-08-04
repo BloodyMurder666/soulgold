@@ -687,6 +687,13 @@ static const u8 *const *const sPartnerApprenticeTextTables[NUM_APPRENTICES] =
     sPartnerApprenticeTexts16
 };
 
+static EWRAM_DATA u16 sBattleCafeTrainerIds[3] = {TRAINER_NONE, TRAINER_NONE, TRAINER_NONE};
+static EWRAM_DATA u16 sBattleCafeSavedBattleMode = FRONTIER_MODE_SINGLES;
+static EWRAM_DATA u16 sBattleCafeSavedFacility = FRONTIER_FACILITY_TOWER;
+static EWRAM_DATA u8 sBattleCafeSavedLevelMode = FRONTIER_LVL_50;
+static EWRAM_DATA u8 sBattleCafeChallengeMode = BATTLE_CAFE_MODE_DAILY;
+static EWRAM_DATA bool8 sBattleCafeChallengeActive = FALSE;
+
 #include "data/battle_frontier/battle_tent.h"
 
 static void (* const sBattleTowerFuncs[])(void) =
@@ -765,6 +772,85 @@ static const u16 sRecordTrainerSpeechLost[] =
 void CallBattleTowerFunc(void)
 {
     sBattleTowerFuncs[gSpecialVar_0x8004]();
+}
+
+void BattleCafe_InitChallenge(void)
+{
+    u32 i;
+
+    sBattleCafeSavedLevelMode = gSaveBlock2Ptr->frontier.lvlMode;
+    sBattleCafeSavedBattleMode = VarGet(VAR_FRONTIER_BATTLE_MODE);
+    sBattleCafeSavedFacility = VarGet(VAR_FRONTIER_FACILITY);
+    sBattleCafeChallengeMode = VarGet(VAR_TEMP_8);
+    sBattleCafeChallengeActive = TRUE;
+
+    // The Cafe uses the standard Frontier trainer data, but always runs as
+    // an open-level singles challenge regardless of the player's last visit
+    // to another facility.
+    gSaveBlock2Ptr->frontier.lvlMode = FRONTIER_LVL_OPEN;
+    VarSet(VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_SINGLES);
+    VarSet(VAR_FRONTIER_FACILITY, FRONTIER_FACILITY_TOWER);
+    SetFacilityPtrsGetLevel();
+
+    for (i = 0; i < ARRAY_COUNT(sBattleCafeTrainerIds); i++)
+        sBattleCafeTrainerIds[i] = TRAINER_NONE;
+}
+
+void BattleCafe_SelectOpponent(void)
+{
+    u32 i;
+    u32 round = min(gSpecialVar_0x8004, ARRAY_COUNT(sBattleCafeTrainerIds) - 1);
+    u16 trainerId;
+
+    do
+    {
+        if (sBattleCafeChallengeMode == BATTLE_CAFE_MODE_DAILY)
+        {
+            // Daily uses a mid-range trainer pool so its lower-tier teams and
+            // between-round healing remain approachable for average players.
+            trainerId = GetRandomScaledFrontierTrainerId(5, 0);
+        }
+        else if (sBattleCafeChallengeMode == BATTLE_CAFE_MODE_RUSH)
+        {
+            // Rush draws from the strongest normal Frontier trainers, all of
+            // whom use perfect IVs.
+            trainerId = GetRandomScaledFrontierTrainerId(7, FRONTIER_STAGES_PER_CHALLENGE - 1);
+        }
+        else
+        {
+            // Both six-Pokemon modes draw from the entire Frontier roster so
+            // their full-team battles have the broadest possible variety.
+            trainerId = FRONTIER_TRAINER_BRADY
+                + Random() % (FRONTIER_TRAINER_GRETEL - FRONTIER_TRAINER_BRADY + 1);
+        }
+        for (i = 0; i < round; i++)
+        {
+            if (sBattleCafeTrainerIds[i] == trainerId)
+                break;
+        }
+    } while (i != round);
+
+    sBattleCafeTrainerIds[round] = trainerId;
+    TRAINER_BATTLE_PARAM.opponentA = trainerId;
+    SetBattleFacilityTrainerGfxId(trainerId, 0);
+}
+
+u8 BattleCafe_GetChallengeMode(void)
+{
+    return sBattleCafeChallengeMode;
+}
+
+void BattleCafe_EndChallenge(void)
+{
+    if (!sBattleCafeChallengeActive)
+        return;
+
+    gSaveBlock2Ptr->frontier.lvlMode = sBattleCafeSavedLevelMode;
+    VarSet(VAR_FRONTIER_BATTLE_MODE, sBattleCafeSavedBattleMode);
+    VarSet(VAR_FRONTIER_FACILITY, sBattleCafeSavedFacility);
+    SetFacilityPtrsGetLevel();
+    sBattleCafeChallengeMode = BATTLE_CAFE_MODE_DAILY;
+    sBattleCafeChallengeActive = FALSE;
 }
 
 static void InitTowerChallenge(void)

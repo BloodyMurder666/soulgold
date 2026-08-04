@@ -56,6 +56,14 @@
 #define FACILITY_BATTLE_PYRAMID         7
 #define FACILITY_BATTLE_TRAINER_HILL    8
 #define FACILITY_BATTLE_ARCADE          9
+#define FACILITY_BATTLE_CAFE           10
+
+// Battle Cafe challenge modes. VAR_TEMP_8 carries the selected mode from the
+// map script into BattleCafe_InitChallenge.
+#define BATTLE_CAFE_MODE_DAILY           0
+#define BATTLE_CAFE_MODE_RUSH            1
+#define BATTLE_CAFE_MODE_SUPER_CHALLENGE 2
+#define BATTLE_CAFE_MODE_SUPER_RUSH      3
 
 #define MAX_BATTLE_FRONTIER_POINTS 9999
 #define MAX_STREAK 29999

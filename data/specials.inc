@@ -277,6 +277,9 @@ gSpecials::
 	def_special ValidateEReaderTrainer
 	def_special GetBattleTowerSinglesStreak
 	def_special HasBattleTowerStreakForZeraora
+	def_special BattleCafe_InitChallenge
+	def_special BattleCafe_SelectOpponent
+	def_special BattleCafe_EndChallenge
 	def_special ReducePlayerPartyToSelectedMons
 	def_special BedroomPC
 	def_special PlayerPC

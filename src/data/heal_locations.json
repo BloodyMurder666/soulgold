@@ -582,6 +582,12 @@
       "map": "MAP_METEOR_ISLAND",
       "x": 21,
       "y": 16
+    },
+    {
+      "id": "HEAL_LOCATION_ROUTE50",
+      "map": "MAP_ROUTE50",
+      "x": 51,
+      "y": 7
     }
   ]
 }

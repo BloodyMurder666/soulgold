@@ -63,9 +63,9 @@
 #define FLAG_CAVE_SUNSTONE                      0x31 
 #define FLAG_EV_MAN_FIRSTIME                    0x32
 #define FLAG_MODEST_MINT_LILYCOVE               0x33
-#define FLAG_TIMID_MINT_MAUVILLE                0x34 
+#define FLAG_HIDE_BATTLE_CAFE_OPPONENT          0x34
 #define FLAG_CAUGHT_MELOETTA                    0x35 
-#define FLAG_CALM_MINT_SANDTOWER                0x36
+#define FLAG_CAFE_INTRO_DONE                    0x36
 #define FLAG_DRAKE_REMATCH                      0x37 //Elite Four Rematch 4
 #define FLAG_WALLACE_REMATCH                    0x38 //Elite Four Rematch 5, Champion
 #define FLAG_STEVEN_REMATCH                     0x39 // Steven Rematch, true champion
@@ -1718,7 +1718,13 @@
 #define FLAG_INFINITE_HELD_ITEMS_MIGRATION_COMPLETE 0x101E
 #define FLAG_HIDE_ZERAORA                       0x101F
 #define FLAG_CAUGHT_ZERAORA                     0x1020
-#define CUSTOM_FLAGS_END                            FLAG_CAUGHT_ZERAORA
+#define FLAG_BATTLE_CAFE_DIANCIE_RECEIVED       0x1021
+#define FLAG_BATTLE_CAFE_ARTICUNO_RECEIVED      0x1022
+#define FLAG_BATTLE_CAFE_ZAPDOS_RECEIVED        0x1023
+#define FLAG_BATTLE_CAFE_MOLTRES_RECEIVED       0x1024
+#define FLAG_BATTLE_CAFE_DIANCIE_READY          0x1025
+#define FLAG_VISITED_ROUTE50                    0x1026
+#define CUSTOM_FLAGS_END                        FLAG_VISITED_ROUTE50
 
 
 #define FLAG_0x1500                                 0x1500
@@ -1755,18 +1761,18 @@
 #define FLAG_DAILY_KURT_FREE_BALLS                  (DAILY_FLAGS_START + 0x19)
 #define FLAG_DAILY_BUENA_PASSWORD                   (DAILY_FLAGS_START + 0x1A)
 #define FLAG_GOT_HAIRCUT                            (DAILY_FLAGS_START + 0x1B) // Unused Flag
-#define FLAG_UNUSED_0x93C                           (DAILY_FLAGS_START + 0x1C) // Unused Flag
-#define FLAG_UNUSED_0x93D                           (DAILY_FLAGS_START + 0x1D) // Unused Flag
-#define FLAG_UNUSED_0x93E                           (DAILY_FLAGS_START + 0x1E) // Unused Flag
-#define FLAG_UNUSED_0x93F                           (DAILY_FLAGS_START + 0x1F) // Unused Flag
-#define FLAG_UNUSED_0x940                           (DAILY_FLAGS_START + 0x20) // Unused Flag
-#define FLAG_UNUSED_0x941                           (DAILY_FLAGS_START + 0x21) // Unused Flag
-#define FLAG_UNUSED_0x942                           (DAILY_FLAGS_START + 0x22) // Unused Flag
-#define FLAG_UNUSED_0x943                           (DAILY_FLAGS_START + 0x23) // Unused Flag
-#define FLAG_UNUSED_0x944                           (DAILY_FLAGS_START + 0x24) // Unused Flag
-#define FLAG_UNUSED_0x945                           (DAILY_FLAGS_START + 0x25) // Unused Flag
-#define FLAG_UNUSED_0x946                           (DAILY_FLAGS_START + 0x26) // Unused Flag
-#define FLAG_UNUSED_0x947                           (DAILY_FLAGS_START + 0x27) // Unused Flag
+#define FLAG_DAILY_BATTLE_CAFE_ASTRA                (DAILY_FLAGS_START + 0x1C)
+#define FLAG_DAILY_BATTLE_CAFE_MOIRA                (DAILY_FLAGS_START + 0x1D)
+#define FLAG_DAILY_BATTLE_CAFE_MAUGA                (DAILY_FLAGS_START + 0x1E)
+#define FLAG_DAILY_BATTLE_CAFE_DARIUS               (DAILY_FLAGS_START + 0x1F)
+#define FLAG_DAILY_BATTLE_CAFE_IVY                  (DAILY_FLAGS_START + 0x20)
+#define FLAG_DAILY_BATTLE_CAFE_LYSANDER             (DAILY_FLAGS_START + 0x21)
+#define FLAG_DAILY_BATTLE_CAFE_JUNA                 (DAILY_FLAGS_START + 0x22)
+#define FLAG_DAILY_BATTLE_CAFE_PHAINON              (DAILY_FLAGS_START + 0x23)
+#define FLAG_DAILY_BATTLE_CAFE_CHALLENGE_WON        (DAILY_FLAGS_START + 0x24)
+#define FLAG_DAILY_BATTLE_CAFE_RUSH_WON             (DAILY_FLAGS_START + 0x25)
+#define FLAG_DAILY_BATTLE_CAFE_SUPER_RUSH_WON       (DAILY_FLAGS_START + 0x26)
+#define FLAG_DAILY_BATTLE_CAFE_SUPER_CHALLENGE_WON  (DAILY_FLAGS_START + 0x27)
 #define FLAG_UNUSED_0x948                           (DAILY_FLAGS_START + 0x28) // Unused Flag
 #define FLAG_UNUSED_0x949                           (DAILY_FLAGS_START + 0x29) // Unused Flag
 #define FLAG_UNUSED_0x94A                           (DAILY_FLAGS_START + 0x2A) // Unused Flag

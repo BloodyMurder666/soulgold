@@ -292,15 +292,12 @@ script BattleArcade_Challenge_EventScript_DefeatedOpponent
 	if(var(VAR_RESULT))
 	{
 		call(BattleArcade_Challenge_EventScript_BrainCongratsText)
-		arcade_setbattlewon
-		call(BattleArcade_BattleRoom_EventScript_MoveBattlersBack)
-		goto(BattleArcade_RoulettRoom_EventScript_ResolveBrainChallenge)
 	}
 
 	arcade_setbattlewon
 
 	call(BattleArcade_BattleRoom_EventScript_MoveBattlersBack)
-	if (var(VAR_RESULT) > FRONTIER_STAGES_PER_CHALLENGE)
+	if (var(VAR_RESULT) >= FRONTIER_STAGES_PER_CHALLENGE)
 	{
 		goto(BattleArcade_RoulettRoom_EventScript_ResolveEndChallenge)
 	}
@@ -331,7 +328,7 @@ script BattleArcade_Challenge_EventScript_CashOut
 	updatemoneybox(0)
 	playse(SE_SHOP)
 	waitse
-	msgbox(format("You cashed out ¥{STR_VAR_1}!"), MSGBOX_DEFAULT)
+	msgbox(format("You cashed out ¥{STR_VAR_2}!"), MSGBOX_DEFAULT)
 	hidemoneybox
 	setvar(VAR_RESULT, B_OUTCOME_WON)
 	goto(BattleArcade_Challenge_EventScript_SaveWarpToLobby)
@@ -357,18 +354,6 @@ script BattleArcade_RoulettRoom_EventScript_ResolveEndChallenge
 	goto(BattleArcade_Challenge_EventScript_SaveWarpToLobby)
 }
 
-script BattleArcade_RoulettRoom_EventScript_ResolveBrainChallenge
-{
-	call(BattleFrontier_EventScript_GetCantRecordBattle)
-	if(var(VAR_RESULT) == FALSE)
-	{
-		call(BattleArcade_Challenge_EventScript_AskRecordBattle)
-	}
-	call(BattleArcade_Challenge_EventScript_GivePrize)
-	msgbox(format("We will return any items we were holding for you."))
-	goto(BattleArcade_Challenge_EventScript_SaveWarpToLobby)
-}
-
 script BattleArcade_Challenge_EventScript_GivePrize
 {
 	showmoneybox(0, 0)
@@ -377,7 +362,7 @@ script BattleArcade_Challenge_EventScript_GivePrize
 	updatemoneybox(0)
 	playse(SE_SHOP)
 	waitse
-	msgbox(format("Congratulations! You earned ¥{STR_VAR_1} as your prize!"), MSGBOX_DEFAULT)
+	msgbox(format("Congratulations! You earned ¥{STR_VAR_2} as your prize!"), MSGBOX_DEFAULT)
 	hidemoneybox
 }
 

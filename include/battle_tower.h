@@ -37,6 +37,7 @@ u8 SetTentPtrsGetLevel(void);
 bool32 ValidateBattleTowerRecord(u8 recordId); // unused
 void TrySetLinkBattleTowerEnemyPartyLevel(void);
 void FillTentTrainerParty(u8 monsCount);
+u8 BattleCafe_GetChallengeMode(void);
 
 
 #endif //GUARD_BATTLE_TOWER_H

@@ -84,7 +84,8 @@
       "MOVE_WEATHER_BALL",
       "MOVE_AQUA_CUTTER",
       "MOVE_VOLT_TACKLE",
-      "MOVE_NASTY_PLOT"
+      "MOVE_NASTY_PLOT",
+      "MOVE_SUPERPOWER"
     ],
   "speciesTeachables":
     {

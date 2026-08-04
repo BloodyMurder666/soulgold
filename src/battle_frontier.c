@@ -65,6 +65,7 @@ static void HandleFacilityTrainerBattleEnd(void)
     case FACILITY_BATTLE_PIKE_DOUBLE:
     case FACILITY_BATTLE_PYRAMID:
     case FACILITY_BATTLE_ARCADE:
+    case FACILITY_BATTLE_CAFE:
         if (gSaveBlock2Ptr->frontier.battlesCount < 0xFFFFFF)
         {
             gSaveBlock2Ptr->frontier.battlesCount++;
@@ -122,6 +123,17 @@ static void DoFacilityTrainerBattleInternal(u8 facility)
             FillFrontierTrainersParties(FRONTIER_MULTI_PARTY_SIZE);
             break;
         }
+        CreateTask(Task_StartBattleAfterTransition, 1);
+        PlayMapChosenOrBattleBGM(0);
+        BattleTransition_StartOnField(GetSpecialBattleTransition(B_TRANSITION_GROUP_B_TOWER));
+        break;
+    case FACILITY_BATTLE_CAFE:
+        gBattleTypeFlags = BATTLE_TYPE_TRAINER | BATTLE_TYPE_BATTLE_TOWER;
+        if (BattleCafe_GetChallengeMode() == BATTLE_CAFE_MODE_SUPER_CHALLENGE
+         || BattleCafe_GetChallengeMode() == BATTLE_CAFE_MODE_SUPER_RUSH)
+            FillFrontierTrainerParty(PARTY_SIZE);
+        else
+            FillFrontierTrainerParty(FRONTIER_DOUBLES_PARTY_SIZE);
         CreateTask(Task_StartBattleAfterTransition, 1);
         PlayMapChosenOrBattleBGM(0);
         BattleTransition_StartOnField(GetSpecialBattleTransition(B_TRANSITION_GROUP_B_TOWER));
@@ -657,7 +669,7 @@ static bool32 BuildFacilityTrainerMonSelectionWithExistingParty(const u16 *monSe
 {
     enum FacilityTeamArchetype selectedArchetype = archetype;
 
-    if (monCount == 0 || monCount > MAX_FRONTIER_PARTY_SIZE)
+    if (monCount == 0 || monCount > PARTY_SIZE)
         return FALSE;
 
     if (archetype == FACILITY_TEAM_AUTO)
@@ -717,11 +729,14 @@ bool32 BuildFacilityTrainerMonSelection(const u16 *monSet, const struct TrainerM
 static void FillTrainerParty(u16 trainerId, u16 firstMonId, u16 monCount)
 {
     s32 i, j;
-    u16 chosenMonIndices[MAX_FRONTIER_PARTY_SIZE];
+    u16 chosenMonIndices[PARTY_SIZE];
     u8 level = SetFacilityPtrsGetLevel();
     u8 fixedIV = 0;
     const u16 *monSet = NULL;
     u32 otID = 0;
+
+    if (gBattleScripting.specialTrainerBattleType == FACILITY_BATTLE_CAFE)
+        level = max(GetHighestLevelInPlayerParty(), FRONTIER_MIN_LEVEL_OPEN);
 
     if (trainerId < FRONTIER_TRAINERS_COUNT)
     {
@@ -769,17 +784,22 @@ static void FillTrainerParty(u16 trainerId, u16 firstMonId, u16 monCount)
         bool32 doubles = (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
             || (gBattleScripting.specialTrainerBattleType == FACILITY_BATTLE_TOWER
              && VarGet(VAR_FRONTIER_BATTLE_MODE) != FRONTIER_MODE_SINGLES);
+        bool32 isCafe = gBattleScripting.specialTrainerBattleType == FACILITY_BATTLE_CAFE;
+        bool32 isDailyCafe = isCafe && BattleCafe_GetChallengeMode() == BATTLE_CAFE_MODE_DAILY;
+        bool32 fullArchetype = isCafe ? !isDailyCafe : GetCurrentFacilityWinStreak() >= 21;
         u16 maxMonId = NUM_FRONTIER_MONS - 1;
 
-        if (level == FRONTIER_MAX_LEVEL_50
-         || level == 20
-         || GetCurrentFacilityWinStreak() < 21)
+        if (isDailyCafe
+         || (!isCafe
+          && (level == FRONTIER_MAX_LEVEL_50
+           || level == 20
+           || GetCurrentFacilityWinStreak() < 21)))
             maxMonId = FRONTIER_MONS_HIGH_TIER;
 
         if (!BuildFacilityTrainerMonSelectionWithExistingParty(monSet, gFacilityTrainerMons,
                                                                NUM_FRONTIER_MONS, monCount, doubles,
                                                                FACILITY_TEAM_AUTO,
-                                                               GetCurrentFacilityWinStreak() >= 21,
+                                                               fullArchetype,
                                                                maxMonId,
                                                                gEnemyParty, firstMonId,
                                                                chosenMonIndices))

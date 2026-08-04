@@ -46,3 +46,8 @@ script Route50_ObservingWoman {
 	release
 	end
 }
+
+script Route50CafeSign {
+	msgbox("Battle Cafe
+			All challengers welcome!", MSGBOX_SIGN)
+}

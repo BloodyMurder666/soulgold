@@ -105,7 +105,6 @@ static void ClearRocketArcadePrize(void);
 static void CheckRocketArcadeDoubleDown(void);
 static u32 GetRocketArcadePrize(void);
 static u32 GetRocketArcadePayoutIndex(void);
-static bool32 IsArcadeBrainBattle(void);
 static void BufferEarnedArcadePrint(void);
 static u32 GetEarnedArcadePrint(void);
 static bool32 ShouldGetGoldPrint(u32);
@@ -354,13 +353,12 @@ static const u8 sArcadeTurnPointTable[IMPACT_PERFORMANCE_TABLE_SIZE][2] =
 
 static const u32 sRocketArcadePayouts[] =
 {
-    4000, 
-    8000, 
-    12000, 
-    24000, 
-    48000, 
-    96000, 
-    192000, 
+    4000,
+    8000,
+    12000,
+    24000,
+    48000,
+    96000,
     384000
 };
 
@@ -712,15 +710,14 @@ static void AwardRocketArcadePrize(void)
 {
     u32 prize = GetRocketArcadePrize();
 
+    ConvertIntToDecimalStringN(gStringVar2, prize, STR_CONV_MODE_LEFT_ALIGN, CountDigits(prize));
     AddMoney(&gSaveBlock1Ptr->money, prize);
     FRONTIER_SAVEDATA.rocketArcadePendingPrize = 0;
     FlagClear(FLAG_ROCKET_ARCADE_DOUBLED_DOWN);
-    BufferRocketArcadePrize();
 }
 
 static void DoubleDownRocketArcadePrize(void)
 {
-    FRONTIER_SAVEDATA.rocketArcadePendingPrize = GetRocketArcadePrize();
     FlagSet(FLAG_ROCKET_ARCADE_DOUBLED_DOWN);
     BufferRocketArcadePrize();
 }
@@ -745,24 +742,13 @@ static u32 GetRocketArcadePayoutIndex(void)
 {
     u32 winStreak = FRONTIER_SAVEDATA.curChallengeBattleNum;
 
-    if (IsArcadeBrainBattle())
-        return ARRAY_COUNT(sRocketArcadePayouts) - 1;
     if (winStreak == 0)
         return 0;
 
-    // The challenge script resolves after game FRONTIER_STAGES_PER_CHALLENGE
-    // plus one, and the table contains one payout for each of those eight
-    // wins. Clamp to the table itself so the final ordinary win can reach the
-    // final payout instead of being forced back to game seven's value.
     if (winStreak > ARRAY_COUNT(sRocketArcadePayouts))
         winStreak = ARRAY_COUNT(sRocketArcadePayouts);
 
     return winStreak - 1;
-}
-
-static bool32 IsArcadeBrainBattle(void)
-{
-    return TRAINER_BATTLE_PARAM.opponentA == TRAINER_FRONTIER_BRAIN;
 }
 
 static void BufferEarnedArcadePrint(void)
@@ -815,10 +801,7 @@ static void GetArcadeBrainStatus(void)
         return;
     }
 
-    if (FRONTIER_SAVEDATA.curChallengeBattleNum == FRONTIER_STAGES_PER_CHALLENGE)
-        BufferPrintFromCurrentStreak();
-    else
-        gSpecialVar_Result = FRONTIER_BRAIN_NOT_READY;
+    BufferPrintFromCurrentStreak();
 }
 
 void ArcadeBattleCleanup(void)

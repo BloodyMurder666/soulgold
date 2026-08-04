@@ -312,7 +312,7 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_BRAIN_FACILITIES] =
             COMPOUND_STRING("Cover before the might of Team Rocket.")     // Gold
         },
         .battledBit = {1 << 14, 1 << 15},
-        .streakAppearances = {8, 16, 8, 0},
+        .streakAppearances = {21, 49, 28, 0},
     },
 };
 

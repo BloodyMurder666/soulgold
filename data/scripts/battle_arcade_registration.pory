@@ -77,7 +77,7 @@ script BattleArcade_Registration_EventScript_ExplainChallenge
 {
 	if (var(VAR_ATTENDANT_TALKED) == FRONTIER_MODE_SINGLES)
 	{
-		msgbox(format("At the Rocket Arcade, you may take a Single or Double Battle challenge. Here, a game board is activated before every match. Depending on what comes up on the game board, an event takes place. Some events will be good for the challenger, while others won't be. The objective is to keep a winning streak alive as long as possible. After each win, you may cash out your prize money or risk it all on the next round. If you want to interrupt your challenge, please save the game. If you don't save, you will be disqualified from your challenge. Please be aware of that!"), MSGBOX_DEFAULT)
+		msgbox(format("At the Rocket Arcade, you may take a Single or Double Battle challenge. Each challenge lasts seven games, with the game board activated before every match. Depending on what comes up on the game board, an event takes place. Some events will be good for the challenger, while others won't be. After each of the first six wins, you may cash out your prize money or risk it all on the next round. Win game seven to receive the top prize automatically. If you want to interrupt your challenge, please save the game. If you don't save, you will be disqualified from your challenge. Please be aware of that!"), MSGBOX_DEFAULT)
 		goto(BattleArcade_Registration_EventScript_AskEnterChallenge)
 	}
 	else

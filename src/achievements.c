@@ -41,9 +41,6 @@ static bool32 Achievement_PredicateGlacierBadge(void);
 static bool32 Achievement_PredicateRisingBadge(void);
 static bool32 Achievement_PredicateRouteExperts(void);
 static bool32 Achievement_PredicateCaughtCelebi(void);
-static bool32 Achievement_PredicateCaughtArticuno(void);
-static bool32 Achievement_PredicateCaughtMoltres(void);
-static bool32 Achievement_PredicateCaughtZapdos(void);
 static bool32 Achievement_PredicateCaughtRegice(void);
 static bool32 Achievement_PredicateCaughtRegisteel(void);
 static bool32 Achievement_PredicateCaughtRegirock(void);
@@ -78,6 +75,7 @@ static bool32 Achievement_PredicateCaughtTerrakion(void);
 static bool32 Achievement_PredicateCaughtVirizion(void);
 static bool32 Achievement_PredicateCaughtMeloetta(void);
 static bool32 Achievement_PredicateCaughtZeraora(void);
+static bool32 Achievement_PredicateObtainedGalarianBirds(void);
 static bool32 Achievement_PredicateCaughtAllParadoxPokemon(void);
 static bool32 Achievement_PredicateHasLevel100Pokemon(void);
 static bool32 Achievement_IsInScaledChaosFacility(void);
@@ -283,6 +281,10 @@ static const u8 sText_AchCatchMeloettaName[] = _("Pirouette Melody");
 static const u8 sText_AchCatchMeloettaDesc[] = _("Catch Meloetta.");
 static const u8 sText_AchCatchZeraoraName[] = _("Thunderclap");
 static const u8 sText_AchCatchZeraoraDesc[] = _("Catch Zeraora.");
+static const u8 sText_AchObtainDiancieName[] = _("Crown Jewel");
+static const u8 sText_AchObtainDiancieDesc[] = _("Obtain Diancie.");
+static const u8 sText_AchObtainGalarianBirdsName[] = _("Galarian Special");
+static const u8 sText_AchObtainGalarianBirdsDesc[] = _("Obtain all three Galarian\nlegendary birds.");
 static const u8 sText_AchDefeatStevenName[] = _("Mineralogy");
 static const u8 sText_AchDefeatStevenDesc[] = _("Defeat Champion from another\nregion.");
 static const u8 sText_AchAutophotographerName[] = _("Autophotographer");
@@ -388,9 +390,9 @@ static const struct Achievement sAchievements[] =
     {ACH_DEFEAT_STEVEN, sText_AchDefeatStevenName, sText_AchDefeatStevenDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_STEVEN, NULL},
 
     // Legendary and Mythical Pokémon - Generation I
-    {ACH_CATCH_ARTICUNO, sText_AchCatchArticunoName, sText_AchCatchArticunoDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtArticuno},
-    {ACH_CATCH_ZAPDOS, sText_AchCatchZapdosName, sText_AchCatchZapdosDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtZapdos},
-    {ACH_CATCH_MOLTRES, sText_AchCatchMoltresName, sText_AchCatchMoltresDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMoltres},
+    {ACH_CATCH_ARTICUNO, sText_AchCatchArticunoName, sText_AchCatchArticunoDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, NULL},
+    {ACH_CATCH_ZAPDOS, sText_AchCatchZapdosName, sText_AchCatchZapdosDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, NULL},
+    {ACH_CATCH_MOLTRES, sText_AchCatchMoltresName, sText_AchCatchMoltresDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, NULL},
     {ACH_CATCH_MEWTWO, sText_AchCatchMewtwoName, sText_AchCatchMewtwoDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMewtwo},
     {ACH_CATCH_MEW, sText_AchCatchMewName, sText_AchCatchMewDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMew},
 
@@ -431,6 +433,7 @@ static const struct Achievement sAchievements[] =
 
     // Legendary and Mythical Pokémon - Generation VI
     {ACH_CATCH_HOOPA, sText_AchCatchHoopaName, sText_AchCatchHoopaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtHoopa},
+    {ACH_OBTAIN_DIANCIE, sText_AchObtainDiancieName, sText_AchObtainDiancieDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, NULL},
 
     // Legendary and Mythical Pokémon - Generation VII
     {ACH_CATCH_MAGEARNA, sText_AchCatchMagearnaName, sText_AchCatchMagearnaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMagearna},
@@ -438,6 +441,7 @@ static const struct Achievement sAchievements[] =
 
     // Legendary and Mythical Pokémon - Generation VIII
     {ACH_CATCH_MARSHADOW, sText_AchCatchMarshadowName, sText_AchCatchMarshadowDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMarshadow},
+    {ACH_OBTAIN_GALARIAN_BIRDS, sText_AchObtainGalarianBirdsName, sText_AchObtainGalarianBirdsDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateObtainedGalarianBirds},
 
     // Legendary and Mythical Pokémon - Generation IX
     {ACH_CATCH_CHIEN_PAO, sText_AchCatchChienPaoName, sText_AchCatchChienPaoDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtChienPao},
@@ -459,6 +463,8 @@ STATIC_ASSERT(ACH_CATCH_COBALION == 109, CobalionIdIsStable);
 STATIC_ASSERT(ACH_CATCH_TERRAKION == 110, TerrakionIdIsStable);
 STATIC_ASSERT(ACH_CATCH_MELOETTA == 111, MeloettaIdAppendedAfterExistingIds);
 STATIC_ASSERT(ACH_CATCH_ZERAORA == 112, ZeraoraIdAppendedAfterExistingIds);
+STATIC_ASSERT(ACH_OBTAIN_DIANCIE == 113, DiancieIdAppendedAfterExistingIds);
+STATIC_ASSERT(ACH_OBTAIN_GALARIAN_BIRDS == 114, GalarianBirdsIdAppendedAfterExistingIds);
 
 static const u8 *const sTierLabels[] =
 {
@@ -669,21 +675,6 @@ static bool32 Achievement_PredicateCaughtCelebi(void)
     return Achievement_PredicateCaughtSpecies(SPECIES_CELEBI);
 }
 
-static bool32 Achievement_PredicateCaughtArticuno(void)
-{
-    return Achievement_PredicateCaughtSpecies(SPECIES_ARTICUNO);
-}
-
-static bool32 Achievement_PredicateCaughtMoltres(void)
-{
-    return Achievement_PredicateCaughtSpecies(SPECIES_MOLTRES);
-}
-
-static bool32 Achievement_PredicateCaughtZapdos(void)
-{
-    return Achievement_PredicateCaughtSpecies(SPECIES_ZAPDOS);
-}
-
 static bool32 Achievement_PredicateCaughtRegice(void)
 {
     return Achievement_PredicateCaughtSpecies(SPECIES_REGICE);
@@ -863,6 +854,13 @@ static bool32 Achievement_PredicateCaughtMeloetta(void)
 static bool32 Achievement_PredicateCaughtZeraora(void)
 {
     return Achievement_PredicateCaughtSpecies(SPECIES_ZERAORA);
+}
+
+static bool32 Achievement_PredicateObtainedGalarianBirds(void)
+{
+    return FlagGet(FLAG_BATTLE_CAFE_ARTICUNO_RECEIVED)
+        && FlagGet(FLAG_BATTLE_CAFE_ZAPDOS_RECEIVED)
+        && FlagGet(FLAG_BATTLE_CAFE_MOLTRES_RECEIVED);
 }
 
 static const u16 sParadoxPokemon[] =
@@ -1185,6 +1183,33 @@ void Achievement_OnPokemonObtained(u16 species)
         break;
     case SPECIES_URSALUNA_BLOODMOON:
         Achievement_Unlock(ACH_CATCH_BLOOD_MOON_URSALUNA);
+        break;
+    case SPECIES_ARTICUNO:
+        Achievement_Unlock(ACH_CATCH_ARTICUNO);
+        break;
+    case SPECIES_ZAPDOS:
+        Achievement_Unlock(ACH_CATCH_ZAPDOS);
+        break;
+    case SPECIES_MOLTRES:
+        Achievement_Unlock(ACH_CATCH_MOLTRES);
+        break;
+    case SPECIES_DIANCIE:
+        Achievement_Unlock(ACH_OBTAIN_DIANCIE);
+        break;
+    case SPECIES_ARTICUNO_GALAR:
+        if (FlagGet(FLAG_BATTLE_CAFE_ZAPDOS_RECEIVED)
+         && FlagGet(FLAG_BATTLE_CAFE_MOLTRES_RECEIVED))
+            Achievement_Unlock(ACH_OBTAIN_GALARIAN_BIRDS);
+        break;
+    case SPECIES_ZAPDOS_GALAR:
+        if (FlagGet(FLAG_BATTLE_CAFE_ARTICUNO_RECEIVED)
+         && FlagGet(FLAG_BATTLE_CAFE_MOLTRES_RECEIVED))
+            Achievement_Unlock(ACH_OBTAIN_GALARIAN_BIRDS);
+        break;
+    case SPECIES_MOLTRES_GALAR:
+        if (FlagGet(FLAG_BATTLE_CAFE_ARTICUNO_RECEIVED)
+         && FlagGet(FLAG_BATTLE_CAFE_ZAPDOS_RECEIVED))
+            Achievement_Unlock(ACH_OBTAIN_GALARIAN_BIRDS);
         break;
     }
 }

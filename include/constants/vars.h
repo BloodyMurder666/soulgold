@@ -304,6 +304,7 @@
 #define VAR_ARH_PROGRESS                                0x4119
 #define VAR_DARKRAI_INN_PROGRESS                        0x411A
 #define VAR_ACHIEVEMENT_PLANTED_BERRIES                 0x411B
+#define VAR_BATTLE_CAFE_POINTS                          0x411C
 
 #define VARS_END                                         0x42FF
 

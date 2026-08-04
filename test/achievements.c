@@ -295,6 +295,90 @@ TEST("Obtaining Blood Moon Ursaluna unlocks Blood Moon")
     EXPECT(Achievement_IsUnlocked(ACH_CATCH_BLOOD_MOON_URSALUNA));
 }
 
+TEST("Obtaining Diancie unlocks Crown Jewel")
+{
+    struct Pokemon mon;
+
+    CreateMon(&mon, SPECIES_DIANCIE, 70, 0, OTID_STRUCT_PLAYER_ID);
+
+    EXPECT_NE(GiveScriptedMonToPlayer(&mon, PARTY_SIZE), MON_CANT_GIVE);
+    EXPECT(Achievement_IsUnlocked(ACH_OBTAIN_DIANCIE));
+}
+
+TEST("Regular legendary birds do not unlock Galarian Special")
+{
+    struct Pokemon mon;
+
+    ZeroPlayerPartyMons();
+    CreateMon(&mon, SPECIES_ARTICUNO, 70, 0, OTID_STRUCT_PLAYER_ID);
+    EXPECT_NE(GiveScriptedMonToPlayer(&mon, PARTY_SIZE), MON_CANT_GIVE);
+    EXPECT(Achievement_IsUnlocked(ACH_CATCH_ARTICUNO));
+    CreateMon(&mon, SPECIES_ZAPDOS, 70, 0, OTID_STRUCT_PLAYER_ID);
+    EXPECT_NE(GiveScriptedMonToPlayer(&mon, PARTY_SIZE), MON_CANT_GIVE);
+    EXPECT(Achievement_IsUnlocked(ACH_CATCH_ZAPDOS));
+    CreateMon(&mon, SPECIES_MOLTRES, 70, 0, OTID_STRUCT_PLAYER_ID);
+    EXPECT_NE(GiveScriptedMonToPlayer(&mon, PARTY_SIZE), MON_CANT_GIVE);
+    EXPECT(Achievement_IsUnlocked(ACH_CATCH_MOLTRES));
+
+    EXPECT(!Achievement_IsUnlocked(ACH_OBTAIN_GALARIAN_BIRDS));
+    ZeroPlayerPartyMons();
+}
+
+TEST("Galarian legendary birds do not unlock regular bird achievements")
+{
+    struct Pokemon mon;
+
+    ZeroPlayerPartyMons();
+    CreateMon(&mon, SPECIES_ARTICUNO_GALAR, 70, 0, OTID_STRUCT_PLAYER_ID);
+    EXPECT_NE(GiveScriptedMonToPlayer(&mon, PARTY_SIZE), MON_CANT_GIVE);
+    CreateMon(&mon, SPECIES_ZAPDOS_GALAR, 70, 0, OTID_STRUCT_PLAYER_ID);
+    EXPECT_NE(GiveScriptedMonToPlayer(&mon, PARTY_SIZE), MON_CANT_GIVE);
+    CreateMon(&mon, SPECIES_MOLTRES_GALAR, 70, 0, OTID_STRUCT_PLAYER_ID);
+    EXPECT_NE(GiveScriptedMonToPlayer(&mon, PARTY_SIZE), MON_CANT_GIVE);
+
+    EXPECT(!Achievement_IsUnlocked(ACH_CATCH_ARTICUNO));
+    EXPECT(!Achievement_IsUnlocked(ACH_CATCH_ZAPDOS));
+    EXPECT(!Achievement_IsUnlocked(ACH_CATCH_MOLTRES));
+    ZeroPlayerPartyMons();
+}
+
+TEST("Galarian Special requires all three exact Galarian bird forms")
+{
+    static const u16 species[] =
+    {
+        SPECIES_ARTICUNO_GALAR,
+        SPECIES_ZAPDOS_GALAR,
+        SPECIES_MOLTRES_GALAR,
+    };
+    static const u16 receivedFlags[] =
+    {
+        FLAG_BATTLE_CAFE_ARTICUNO_RECEIVED,
+        FLAG_BATTLE_CAFE_ZAPDOS_RECEIVED,
+        FLAG_BATTLE_CAFE_MOLTRES_RECEIVED,
+    };
+    struct Pokemon mon;
+    u8 i;
+
+    for (i = 0; i < ARRAY_COUNT(species); i++)
+    {
+        CreateMon(&mon, species[i], 70, 0, OTID_STRUCT_PLAYER_ID);
+        EXPECT_NE(GiveScriptedMonToPlayer(&mon, PARTY_SIZE), MON_CANT_GIVE);
+        EXPECT_EQ(Achievement_IsUnlocked(ACH_OBTAIN_GALARIAN_BIRDS), i == ARRAY_COUNT(species) - 1);
+        FlagSet(receivedFlags[i]);
+    }
+}
+
+TEST("Existing Galarian bird rewards unlock Galarian Special")
+{
+    FlagSet(FLAG_BATTLE_CAFE_ARTICUNO_RECEIVED);
+    FlagSet(FLAG_BATTLE_CAFE_ZAPDOS_RECEIVED);
+    FlagSet(FLAG_BATTLE_CAFE_MOLTRES_RECEIVED);
+
+    Achievement_CheckAll();
+
+    EXPECT(Achievement_IsUnlocked(ACH_OBTAIN_GALARIAN_BIRDS));
+}
+
 TEST("Route Experts requires every implemented expert")
 {
     FlagSet(FLAG_ROUTE31_EXPERT);

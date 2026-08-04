@@ -57,6 +57,12 @@ Route50_ObservingWoman_2:
 	end
 
 
+Route50CafeSign::
+# 51 "data/maps/Route50/scripts.pory"
+	msgbox Route50CafeSign_Text_0, MSGBOX_SIGN
+	return
+
+
 Route50_TrainerRowan_Text_0:
 # 4 "data/maps/Route50/scripts.pory"
 	.string "Let's see if you still got energy left\n"
@@ -112,3 +118,8 @@ Route50_ObservingWoman_Text_0:
 Route50_ObservingWoman_Text_1:
 # 45 "data/maps/Route50/scripts.pory"
 	.string "Oh you caught that thing! Nice going!$"
+
+Route50CafeSign_Text_0:
+# 51 "data/maps/Route50/scripts.pory"
+	.string "Battle Cafe\n"
+	.string "All challengers welcome!$"
