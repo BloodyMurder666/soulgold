@@ -21,6 +21,7 @@
 #include "field_specials.h"
 #include "fldeff.h"
 #include "region_map.h"
+#include "roamer.h"
 #include "decompress.h"
 #include "constants/region_map_sections.h"
 #include "heal_location.h"
@@ -48,8 +49,7 @@
 #define MAP_PAGE_SCROLL_X DISPLAY_WIDTH
 #define MAP_PAGE_SCROLL_Y DISPLAY_HEIGHT
 #define MAP_PAGE_SCROLL_DURATION 20
-
-#define FLYDESTICON_RED_OUTLINE 6
+#define PLAYER_ROAMER_BLINK_FRAMES 16
 
 enum {
     TAG_CURSOR,
@@ -86,6 +86,9 @@ static EWRAM_DATA struct {
 static bool32 sDrawFlyDestTextWindow;
 static bool8 sRegionMapPageScrollVertical;
 static u8 sRegionMapPlayerIconPage;
+static mapsec_u16_t sRegionMapPlayerIconMapSec;
+static bool8 sAlternatePlayerAndRoamerIcons;
+static u8 sPlayerRoamerBlinkTimer;
 
 static u8 ProcessRegionMapInput_Full(void);
 static u8 MoveRegionMapCursor_Full(void);
@@ -128,11 +131,11 @@ static void CB2_FlyMap(void);
 static void SetFlyMapCallback(void callback(void));
 static void DrawFlyDestTextWindow(void);
 static void CreateFlyDestIcons(void);
-static void TryCreateRedOutlineFlyDestIcons(void);
 static bool8 IsMapSecOnFlyMap(mapsec_u16_t mapSecId);
 static bool8 UpdateFlyDestIconPageVisibility(struct Sprite *sprite);
 static void SpriteCB_FlyDestIcon(struct Sprite *sprite);
 static void SpriteCB_FlyDestIconCantFly(struct Sprite *sprite);
+static void SpriteCB_RoamerIcon(struct Sprite *sprite);
 static void CB_FadeInFlyMap(void);
 static void CB_HandleFlyMapInput(void);
 static void CB_ExitFlyMap(void);
@@ -469,18 +472,6 @@ static const struct SpritePalette sFlyTargetIconsSpritePalette =
     .tag = TAG_FLY_ICON
 };
 
-static const mapsec_u16_t sRedOutlineFlyDestinations[][2] =
-{
-    {
-        FLAG_LANDMARK_BATTLE_FRONTIER,
-        MAPSEC_BATTLE_FRONTIER
-    },
-    {
-        -1,
-        MAPSEC_NONE
-    }
-};
-
 static const mapsec_u16_t sFlyDestinations[][2] =
 {
     {MAPSEC_VIOLET_CITY,      FLAG_VISITED_VIOLET_CITY},
@@ -553,13 +544,6 @@ static const union AnimCmd sFlyDestIcon_Anim_8x16CantFly[] =
     ANIMCMD_END
 };
 
-// Only used by Battle Frontier
-static const union AnimCmd sFlyDestIcon_Anim_RedOutline[] =
-{
-    ANIMCMD_FRAME(10, 5),
-    ANIMCMD_END
-};
-
 static const union AnimCmd *const sFlyDestIcon_Anims[] =
 {
     [SPRITE_SHAPE(8x8)]       = sFlyDestIcon_Anim_8x8CanFly,
@@ -568,7 +552,6 @@ static const union AnimCmd *const sFlyDestIcon_Anims[] =
     [SPRITE_SHAPE(8x8)  + 3]  = sFlyDestIcon_Anim_8x8CantFly,
     [SPRITE_SHAPE(16x8) + 3]  = sFlyDestIcon_Anim_16x8CantFly,
     [SPRITE_SHAPE(8x16) + 3]  = sFlyDestIcon_Anim_8x16CantFly,
-    [FLYDESTICON_RED_OUTLINE] = sFlyDestIcon_Anim_RedOutline
 };
 
 static const struct SpriteTemplate sFlyDestIconSpriteTemplate =
@@ -577,6 +560,27 @@ static const struct SpriteTemplate sFlyDestIconSpriteTemplate =
     .paletteTag = TAG_FLY_ICON,
     .oam = &sFlyDestIcon_OamData,
     .anims = sFlyDestIcon_Anims,
+};
+
+static const union AnimCmd sRoamerIcon_Anim[] =
+{
+    ANIMCMD_FRAME(10, 48),
+    ANIMCMD_FRAME(11, 8),
+    ANIMCMD_JUMP(0)
+};
+
+static const union AnimCmd *const sRoamerIcon_Anims[] =
+{
+    sRoamerIcon_Anim
+};
+
+static const struct SpriteTemplate sRoamerIconSpriteTemplate =
+{
+    .tileTag = TAG_FLY_ICON,
+    .paletteTag = TAG_FLY_ICON,
+    .oam = &sFlyDestIcon_OamData,
+    .anims = sRoamerIcon_Anims,
+    .callback = SpriteCB_RoamerIcon,
 };
 
 void InitRegionMap(struct RegionMap *regionMap, bool8 zoomed)
@@ -593,6 +597,9 @@ void InitRegionMapData(struct RegionMap *regionMap, const struct BgTemplate *tem
     sRegionMap->mapPage = REGION_MAP_PAGE_MAIN;
     sRegionMap->targetMapPage = REGION_MAP_PAGE_MAIN;
     sRegionMapPlayerIconPage = REGION_MAP_PAGE_MAIN;
+    sRegionMapPlayerIconMapSec = MAPSEC_NONE;
+    sAlternatePlayerAndRoamerIcons = FALSE;
+    sPlayerRoamerBlinkTimer = 0;
     sRegionMap->mapPageScrollAnim = INVALID_COMFY_ANIM;
     sRegionMap->inputCallback = zoomed == TRUE ? ProcessRegionMapInput_Zoomed : ProcessRegionMapInput_Full;
     if (template != NULL)
@@ -624,7 +631,8 @@ void ShowRegionMapForPokedexAreaScreen(struct RegionMap *regionMap, u8 mapPage)
     InitMapBasedOnPlayerLocation();
     sRegionMap->playerIconSpritePosX = sRegionMap->cursorPosX;
     sRegionMap->playerIconSpritePosY = sRegionMap->cursorPosY;
-    sRegionMapPlayerIconPage = GetRegionMapPageForMapSec(CorrectSpecialMapSecId_Internal(sRegionMap->mapSecId));
+    sRegionMapPlayerIconMapSec = CorrectSpecialMapSecId_Internal(sRegionMap->mapSecId);
+    sRegionMapPlayerIconPage = GetRegionMapPageForMapSec(sRegionMapPlayerIconMapSec);
     sRegionMap->scrollX = GetRegionMapPageScrollX();
     sRegionMap->scrollY = GetRegionMapPageScrollY();
 }
@@ -665,6 +673,7 @@ bool8 LoadRegionMapGfx(void)
         sRegionMap->playerIconSpritePosX = sRegionMap->cursorPosX;
         sRegionMap->playerIconSpritePosY = sRegionMap->cursorPosY;
         sRegionMap->mapSecId = CorrectSpecialMapSecId_Internal(sRegionMap->mapSecId);
+        sRegionMapPlayerIconMapSec = sRegionMap->mapSecId;
         sRegionMap->mapPage = GetRegionMapPageForMapSec(sRegionMap->mapSecId);
         sRegionMap->targetMapPage = sRegionMap->mapPage;
         sRegionMapPlayerIconPage = sRegionMap->mapPage;
@@ -2031,7 +2040,13 @@ static void SpriteCB_PlayerIconMapFull(struct Sprite *sprite)
 
 static void SpriteCB_PlayerIcon(struct Sprite *sprite)
 {
-    if (sRegionMap->blinkPlayerIcon)
+    if (sAlternatePlayerAndRoamerIcons)
+    {
+        if (++sPlayerRoamerBlinkTimer >= PLAYER_ROAMER_BLINK_FRAMES * 2)
+            sPlayerRoamerBlinkTimer = 0;
+        sprite->invisible = sPlayerRoamerBlinkTimer >= PLAYER_ROAMER_BLINK_FRAMES;
+    }
+    else if (sRegionMap->blinkPlayerIcon)
     {
         if (++sprite->sTimer > 16)
         {
@@ -2321,14 +2336,16 @@ void LoadRegionMapFlyDestinationIcons(u8 *tileBuffer)
     LoadSpriteSheet(&sheet);
     LoadSpritePalette(&sFlyTargetIconsSpritePalette);
     CreateFlyDestIcons();
-    TryCreateRedOutlineFlyDestIcons();
+    SetRegionMapFlyDestinationIconsVisible(TRUE);
 }
 
 void FreeRegionMapFlyDestinationIcons(void)
 {
     for (u32 i = 0; i < MAX_SPRITES; i++)
     {
-        if (gSprites[i].inUse && gSprites[i].template == &sFlyDestIconSpriteTemplate)
+        if (gSprites[i].inUse
+            && (gSprites[i].template == &sFlyDestIconSpriteTemplate
+                || gSprites[i].template == &sRoamerIconSpriteTemplate))
             DestroySprite(&gSprites[i]);
     }
 
@@ -2337,8 +2354,9 @@ void FreeRegionMapFlyDestinationIcons(void)
 }
 
 // Sprite data for SpriteCB_FlyDestIcon
-#define sIconMapSec   data[0]
-#define sFlickerTimer data[1]
+#define sIconMapSec     data[0]
+#define sFlickerTimer   data[1]
+#define sIconModeVisible data[2]
 
 static void CreateFlyDestIcons(void)
 {
@@ -2391,40 +2409,86 @@ static void CreateFlyDestIcons(void)
     }
 }
 
-
-// Draw a red outline box on the mapsec if its corresponding flag has been set
-// Only used for Battle Frontier, but set up to handle more
-static void TryCreateRedOutlineFlyDestIcons(void)
+void CreateRegionMapRoamerIcons(void)
 {
+    mapsec_u16_t createdMapSecs[ROAMER_COUNT];
+    mapsec_u16_t mapSecId;
+    u16 createdCount = 0;
     u16 i;
+    u16 j;
     u16 x;
     u16 y;
     u16 width;
     u16 height;
-    mapsec_u16_t mapSecId;
+    u8 mapGroup;
+    u8 mapNum;
     u8 page;
     u8 spriteId;
 
-    for (i = 0; sRedOutlineFlyDestinations[i][1] != MAPSEC_NONE; i++)
+    for (i = 0; i < ROAMER_COUNT; i++)
     {
-        if (FlagGet(sRedOutlineFlyDestinations[i][0]))
-        {
-            mapSecId = sRedOutlineFlyDestinations[i][1];
-            if (!IsMapSecOnFlyMap(mapSecId))
-                continue;
+        if (!gSaveBlock1Ptr->roamer[i].active)
+            continue;
 
-            page = GetRegionMapPageForMapSec(mapSecId);
-            GetMapSecDimensions(mapSecId, &x, &y, &width, &height);
-            x = GetRegionMapPageScrollXForPage(page) + (x + MAPCURSOR_X_MIN) * 8;
-            y = GetRegionMapPageScrollYForPage(page) + (y + MAPCURSOR_Y_MIN) * 8;
-            spriteId = CreateSprite(&sFlyDestIconSpriteTemplate, x, y, 10);
-            if (spriteId != MAX_SPRITES)
-            {
-                gSprites[spriteId].oam.size = SPRITE_SIZE(16x16);
-                gSprites[spriteId].callback = SpriteCB_FlyDestIcon;
-                StartSpriteAnim(&gSprites[spriteId], FLYDESTICON_RED_OUTLINE);
-                gSprites[spriteId].sIconMapSec = mapSecId;
-            }
+        GetRoamerLocation(i, &mapGroup, &mapNum);
+        mapSecId = CorrectSpecialMapSecId_Internal(
+            Overworld_GetMapHeaderByGroupAndId(mapGroup, mapNum)->regionMapSectionId);
+        if (mapSecId >= MAPSEC_NONE || !IsRegionMapSecIdInLayout(mapSecId))
+            continue;
+
+        for (j = 0; j < createdCount; j++)
+        {
+            if (createdMapSecs[j] == mapSecId)
+                break;
+        }
+        if (j != createdCount)
+            continue;
+
+        page = GetRegionMapPageForMapSec(mapSecId);
+        GetMapSecDimensions(mapSecId, &x, &y, &width, &height);
+        x = GetRegionMapPageScrollXForPage(page) + (x + MAPCURSOR_X_MIN) * 8 + width * 4;
+        y = GetRegionMapPageScrollYForPage(page) + (y + MAPCURSOR_Y_MIN) * 8 + height * 4;
+        spriteId = CreateSprite(&sRoamerIconSpriteTemplate, x, y, 9);
+        if (spriteId == MAX_SPRITES)
+            continue;
+
+        gSprites[spriteId].sIconMapSec = mapSecId;
+        gSprites[spriteId].sIconModeVisible = FALSE;
+        gSprites[spriteId].invisible = TRUE;
+        createdMapSecs[createdCount++] = mapSecId;
+    }
+}
+
+void SetRegionMapFlyDestinationIconsVisible(bool8 visible)
+{
+    u32 i;
+
+    for (i = 0; i < MAX_SPRITES; i++)
+    {
+        if (gSprites[i].inUse && gSprites[i].template == &sFlyDestIconSpriteTemplate)
+        {
+            gSprites[i].sIconModeVisible = visible;
+            if (!visible)
+                gSprites[i].invisible = TRUE;
+        }
+    }
+}
+
+void SetRegionMapRoamerIconsVisible(bool8 visible)
+{
+    u32 i;
+
+    sAlternatePlayerAndRoamerIcons = FALSE;
+    sPlayerRoamerBlinkTimer = 0;
+    for (i = 0; i < MAX_SPRITES; i++)
+    {
+        if (gSprites[i].inUse && gSprites[i].template == &sRoamerIconSpriteTemplate)
+        {
+            gSprites[i].sIconModeVisible = visible;
+            if (visible && gSprites[i].sIconMapSec == sRegionMapPlayerIconMapSec)
+                sAlternatePlayerAndRoamerIcons = TRUE;
+            if (!visible)
+                gSprites[i].invisible = TRUE;
         }
     }
 }
@@ -2460,6 +2524,12 @@ static bool8 UpdateFlyDestIconPageVisibility(struct Sprite *sprite)
 {
     s16 x;
     s16 y;
+
+    if (!sprite->sIconModeVisible)
+    {
+        sprite->invisible = TRUE;
+        return FALSE;
+    }
 
     sprite->x2 = -sRegionMap->scrollX;
     sprite->y2 = -sRegionMap->scrollY;
@@ -2501,8 +2571,20 @@ static void SpriteCB_FlyDestIconCantFly(struct Sprite *sprite)
         sprite->invisible = FALSE;
 }
 
+static void SpriteCB_RoamerIcon(struct Sprite *sprite)
+{
+    if (UpdateFlyDestIconPageVisibility(sprite))
+    {
+        if (sAlternatePlayerAndRoamerIcons && sprite->sIconMapSec == sRegionMapPlayerIconMapSec)
+            sprite->invisible = sPlayerRoamerBlinkTimer < PLAYER_ROAMER_BLINK_FRAMES;
+        else
+            sprite->invisible = FALSE;
+    }
+}
+
 #undef sIconMapSec
 #undef sFlickerTimer
+#undef sIconModeVisible
 
 static void CB_FadeInFlyMap(void)
 {

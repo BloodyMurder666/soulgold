@@ -1832,6 +1832,7 @@ const struct ItemInfo gItemsInfo[] =
             "Raises the PP of a\n"
             "move to its maximum\n"
             "points."),
+        .bpCost = 8,
         .pocket = POCKET_MEDICINE,
         .sortType = ITEM_TYPE_STAT_BOOST_DRINK,
         .heldSlot = 0,

@@ -148,6 +148,19 @@ bool8 TryAddRoamer(u16 species, u8 level)
     return FALSE;
 }
 
+bool8 HasActiveRoamers(void)
+{
+    u32 i;
+
+    for (i = 0; i < ROAMER_COUNT; i++)
+    {
+        if (ROAMER(i)->active)
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
 // gSpecialVar_0x8004 here corresponds to the options in the multichoice MULTI_TV_LATI (0 for 'Red', 1 for 'Blue')
 void InitRoamer(void)
 {

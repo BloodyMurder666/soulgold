@@ -55,6 +55,6 @@ void MapGridSetMetatileImpassabilityAt(int x, int y, bool32 impassable);
 
 // field_region_map.c
 void FieldInitRegionMap(MainCallback callback);
-void FieldInitRegionMapWithOptions(MainCallback callback, bool8 allowFly);
+void FieldInitRegionMapWithOptions(MainCallback callback, bool8 allowFly, bool8 allowRoamerTracking);
 
 #endif //GUARD_FIELDMAP_H

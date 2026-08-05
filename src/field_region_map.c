@@ -12,6 +12,7 @@
 #include "overworld.h"
 #include "palette.h"
 #include "region_map.h"
+#include "roamer.h"
 #include "sound.h"
 #include "strings.h"
 #include "text.h"
@@ -42,6 +43,8 @@ enum {
     TAG_CURSOR,
 };
 
+#define WINDOW_BORDER_TILE 0x27
+
 static EWRAM_DATA struct {
     MainCallback callback;
     u32 unused;
@@ -49,8 +52,14 @@ static EWRAM_DATA struct {
     u8 flyIconTileBuffer[FLY_DEST_ICON_GFX_SIZE];
     u16 state;
     bool8 allowFly;
+    bool8 allowRoamerTracking;
+    bool8 canFly;
+    bool8 hasActiveRoamers;
+    bool8 trackerMode;
     bool8 choseFlyLocation;
 } *sFieldRegionMapHandler = NULL;
+
+static EWRAM_DATA bool8 sPokegearMapTrackerMode = FALSE;
 
 static void MCB2_InitRegionMapRegisters(void);
 static void VBCB_FieldUpdateRegionMap(void);
@@ -59,7 +68,7 @@ static void FieldUpdateRegionMap(void);
 static void PrintRegionMapSecName();
 static void PrintTitleWindowText();
 static bool32 CanUseFlyFromRegionMap(void);
-void FieldInitRegionMapWithOptions(MainCallback callback, bool8 allowFly);
+void FieldInitRegionMapWithOptions(MainCallback callback, bool8 allowFly, bool8 allowRoamerTracking);
 
 static const struct BgTemplate sFieldRegionMapBgTemplates[] = {
     {
@@ -106,16 +115,20 @@ static const struct WindowTemplate sFieldRegionMapWindowTemplates[] =
 
 void FieldInitRegionMap(MainCallback callback)
 {
-    FieldInitRegionMapWithOptions(callback, TRUE);
+    FieldInitRegionMapWithOptions(callback, TRUE, FALSE);
 }
 
-void FieldInitRegionMapWithOptions(MainCallback callback, bool8 allowFly)
+void FieldInitRegionMapWithOptions(MainCallback callback, bool8 allowFly, bool8 allowRoamerTracking)
 {
     SetVBlankCallback(NULL);
     sFieldRegionMapHandler = Alloc(sizeof(*sFieldRegionMapHandler));
     sFieldRegionMapHandler->state = 0;
     sFieldRegionMapHandler->callback = callback;
     sFieldRegionMapHandler->allowFly = allowFly;
+    sFieldRegionMapHandler->allowRoamerTracking = allowRoamerTracking;
+    sFieldRegionMapHandler->canFly = FALSE;
+    sFieldRegionMapHandler->hasActiveRoamers = FALSE;
+    sFieldRegionMapHandler->trackerMode = FALSE;
     sFieldRegionMapHandler->choseFlyLocation = FALSE;
     SetMainCallback2(MCB2_InitRegionMapRegisters);
 }
@@ -137,7 +150,7 @@ static void MCB2_InitRegionMapRegisters(void)
     InitBgsFromTemplates(1, sFieldRegionMapBgTemplates, ARRAY_COUNT(sFieldRegionMapBgTemplates));
     InitWindows(sFieldRegionMapWindowTemplates);
     DeactivateAllTextPrinters();
-    LoadUserWindowBorderGfx(0, 0x27, BG_PLTT_ID(13));
+    LoadUserWindowBorderGfx(0, WINDOW_BORDER_TILE, BG_PLTT_ID(13));
     ClearScheduledBgCopiesToVram();
     SetMainCallback2(MCB2_FieldUpdateRegionMap);
     SetVBlankCallback(VBCB_FieldUpdateRegionMap);
@@ -168,16 +181,34 @@ static void FieldUpdateRegionMap(void)
         InitRegionMap(&sFieldRegionMapHandler->regionMap, FALSE);
         CreateRegionMapPlayerIcon(TAG_PLAYER_ICON, TAG_PLAYER_ICON);
         CreateRegionMapCursor(TAG_CURSOR, TAG_CURSOR);
-        if (sFieldRegionMapHandler->allowFly && CanUseFlyFromRegionMap())
+        sFieldRegionMapHandler->canFly = sFieldRegionMapHandler->allowFly && CanUseFlyFromRegionMap();
+        sFieldRegionMapHandler->hasActiveRoamers = sFieldRegionMapHandler->allowRoamerTracking && HasActiveRoamers();
+        if (sFieldRegionMapHandler->allowRoamerTracking)
+        {
+            if (!sFieldRegionMapHandler->hasActiveRoamers)
+                sPokegearMapTrackerMode = FALSE;
+            sFieldRegionMapHandler->trackerMode = sFieldRegionMapHandler->hasActiveRoamers
+                                                 && sPokegearMapTrackerMode;
+        }
+        if (sFieldRegionMapHandler->canFly || sFieldRegionMapHandler->hasActiveRoamers)
+        {
             LoadRegionMapFlyDestinationIcons(sFieldRegionMapHandler->flyIconTileBuffer);
+            SetRegionMapFlyDestinationIconsVisible(sFieldRegionMapHandler->canFly
+                                                    && !sFieldRegionMapHandler->trackerMode);
+            if (sFieldRegionMapHandler->hasActiveRoamers)
+            {
+                CreateRegionMapRoamerIcons();
+                SetRegionMapRoamerIconsVisible(sFieldRegionMapHandler->trackerMode);
+            }
+        }
         sFieldRegionMapHandler->state++;
         break;
     case 1:
-        DrawStdFrameWithCustomTileAndPalette(WIN_TITLE, FALSE, 0x27, 0xd);
+        DrawStdFrameWithCustomTileAndPalette(WIN_TITLE, FALSE, WINDOW_BORDER_TILE, 0xd);
         FillWindowPixelBuffer(WIN_TITLE, PIXEL_FILL(1));
         PrintTitleWindowText();
         ScheduleBgCopyTilemapToVram(0);
-        DrawStdFrameWithCustomTileAndPalette(WIN_MAPSEC_NAME, FALSE, 0x27, 0xd);
+        DrawStdFrameWithCustomTileAndPalette(WIN_MAPSEC_NAME, FALSE, WINDOW_BORDER_TILE, 0xd);
         PrintRegionMapSecName();
         BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
         sFieldRegionMapHandler->state++;
@@ -202,7 +233,9 @@ static void FieldUpdateRegionMap(void)
                 PrintTitleWindowText();
                 break;
         case MAP_INPUT_A_BUTTON:
-                if (sFieldRegionMapHandler->allowFly && CanUseFlyFromRegionMap())
+                if (sFieldRegionMapHandler->trackerMode)
+                    break;
+                if (sFieldRegionMapHandler->canFly)
                 {
                     if (sFieldRegionMapHandler->regionMap.mapSecType == MAPSECTYPE_CITY_CANFLY)
                     {
@@ -218,6 +251,18 @@ static void FieldUpdateRegionMap(void)
                 break;
         case MAP_INPUT_B_BUTTON:
                 sFieldRegionMapHandler->state++;
+                break;
+        case MAP_INPUT_R_BUTTON:
+                if (sFieldRegionMapHandler->hasActiveRoamers)
+                {
+                    sFieldRegionMapHandler->trackerMode ^= TRUE;
+                    sPokegearMapTrackerMode = sFieldRegionMapHandler->trackerMode;
+                    SetRegionMapFlyDestinationIconsVisible(!sFieldRegionMapHandler->trackerMode
+                                                           && sFieldRegionMapHandler->canFly);
+                    SetRegionMapRoamerIconsVisible(sFieldRegionMapHandler->trackerMode);
+                    PlaySE(SE_SELECT);
+                    PrintTitleWindowText();
+                }
                 break;
         }
         break;
@@ -262,24 +307,36 @@ static void PrintRegionMapSecName(void)
 
 static void PrintTitleWindowText(void)
 {
-    static const u8 FlyPromptText[] = _("{A_BUTTON} Fly");
-    u32 hoennOffset = GetStringCenterAlignXOffset(FONT_NORMAL, gText_Map, 0x38);
-    u32 flyOffset = GetStringCenterAlignXOffset(FONT_NORMAL, FlyPromptText, 0x38);
+    static const u8 sText_FlyPrompt[] = _("{A_BUTTON} Fly");
+    static const u8 sText_TrackPrompt[] = _("{R_BUTTON} Track");
+    static const u8 sText_ReturnToFlyPrompt[] = _("{R_BUTTON} Fly");
+    static const u8 sText_ReturnToMapPrompt[] = _("{R_BUTTON} Map");
+    const u8 *text;
+    u32 x;
 
     FillWindowPixelBuffer(WIN_TITLE, PIXEL_FILL(1));
 
-    if (sFieldRegionMapHandler->allowFly
-        && sFieldRegionMapHandler->regionMap.mapSecType == MAPSECTYPE_CITY_CANFLY
-        && CanUseFlyFromRegionMap())
+    if (sFieldRegionMapHandler->trackerMode)
     {
-        AddTextPrinterParameterized(WIN_TITLE, FONT_NORMAL, FlyPromptText, flyOffset, 1, 0, NULL);
-        ScheduleBgCopyTilemapToVram(WIN_TITLE);
+        text = sFieldRegionMapHandler->canFly ? sText_ReturnToFlyPrompt : sText_ReturnToMapPrompt;
+    }
+    else if (sFieldRegionMapHandler->canFly
+             && sFieldRegionMapHandler->regionMap.mapSecType == MAPSECTYPE_CITY_CANFLY)
+    {
+        text = sText_FlyPrompt;
+    }
+    else if (sFieldRegionMapHandler->hasActiveRoamers)
+    {
+        text = sText_TrackPrompt;
     }
     else
     {
-        AddTextPrinterParameterized(WIN_TITLE, FONT_NORMAL, gText_Map, hoennOffset, 1, 0, NULL);
-        CopyWindowToVram(WIN_TITLE, COPYWIN_FULL);
+        text = gText_Map;
     }
+
+    x = GetStringCenterAlignXOffset(FONT_NORMAL, text, 0x38);
+    AddTextPrinterParameterized(WIN_TITLE, FONT_NORMAL, text, x, 1, 0, NULL);
+    ScheduleBgCopyTilemapToVram(WIN_TITLE);
 }
 
 static bool32 CanUseFlyFromRegionMap(void)

@@ -1476,6 +1476,7 @@ mart BattleTowerBpMart1 {
 	ITEM_CARBOS_EX
 	ITEM_ZINC_EX
 	ITEM_CALCIUM_EX
+	ITEM_PP_MAX
 }
 
 mart BattleTowerBpMart2 {
