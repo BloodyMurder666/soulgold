@@ -262,7 +262,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MEGASTONE",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "x": 33,
       "y": 6,
       "elevation": 0,
@@ -270,9 +270,9 @@
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "ITEM_PSYCHITE",
+      "trainer_sight_or_berry_tree_id": "ITEM_ROOM_SERVICE",
       "script": "Common_EventScript_FindItem",
-      "flag": "FLAG_ROUTE42_PSYCHITE"
+      "flag": "FLAG_ROUTE42_ROOMSERVICE"
     }
   ],
   "warp_events": [

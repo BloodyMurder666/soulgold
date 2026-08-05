@@ -71,7 +71,7 @@
 #define FLAG_TM_TORMENT                         0x39
 #define FLAG_PENDING_DAYCARE_EGG_SHINY          0x3A
 #define FLAG_DEFEATED_REGIELEKI                 0x3B 
-#define FLAG_HIDE_REGIELEKI                     0x3C 
+#define FLAG_ROUTE42_ROOMSERVICE                0x3C 
 #define FLAG_HIDE_REGIDRAGO                     0x3D
 #define FLAG_SAPPHIRE_KECLEON                   0x3E 
 #define FLAG_SYS_BRAILLE_REGIDRAGO_COMPLETED    0x3F

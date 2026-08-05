@@ -4,11 +4,12 @@ Update notes:
 - Final part of the rival legendary quest is added, after obtaining Darkrai, rival will offer HM Dive to lead to the final two legendaries.
 - New mini location: Spear Pillar Summit. After obtaining Hoopa and solving all 8 puzzles in Ruins of Alph, interact with the back wall in the secret room of the ruins with Hoopa in party to be teleported there.
 - Added 1 secret legendary to Spear Pillar. Hint: What three Pokémon were present in Special Episode 5 of a certain Pokémon spinoff? 
-- New way to replay: Chaos mode. Activating an artifact of chaos behind the starter case table in Elm's lab allows activating all innates from the start. WARNING: This is not balanced in any way and not the intended way to play. Expect a very unbalanced and untested experience. This can be toggled on and off freely mid-playthrough.
+- New way to replay: Chaos mode. Activating an artifact of chaos behind the starter case table in Elm's lab allows activating all innates from the start. WARNING: This is not balanced in any way and not the intended way to play. Expect a very unbalanced and untested experience. This can be toggled on and off freely mid-playthrough. Balancing won't be done with this mode in mind.
 - QoL: Roamer tracker mode: After Burned Tower event, players can press R button in region map view to toggle between regular map and roamer tracker modes. When roamer is on the same route as the player, the roamer icon and the player icon will blink. 
 - QoL: New vitamin, Zeromin. Resets all EVs to 0. Sold in Goldenrod Dept. store.
 - Oak can be found in Radio Tower 2F to give player their Pokédex Rating.
 - There are now 119 trophies.
+- Moved Psychite to inside Mt Mortar post-Strength. Outside rock climb spot now rewards Room Service held item.
 - Added over 50 new tutor moves based on later gens Technical Records.
 - Meowth line learns Thief at level 18, Butterfree learns Covet at 22.
 - Litten and Impidimp families learn Parting Shot via Egg Move.
