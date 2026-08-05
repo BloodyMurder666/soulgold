@@ -7324,7 +7324,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_CLEAR_BODY, ABILITY_NONE, ABILITY_NONE },
-        .innates = { ABILITY_FILTER, ABILITY_BATTLE_ARMOR },
+        .innates = { ABILITY_FILTER, ABILITY_SOLID_ROCK, ABILITY_GUARD_STANCE },
         .bodyColor = BODY_COLOR_PINK,
         .speciesName = _("Diancie"),
         .cryId = CRY_DIANCIE,
@@ -7400,7 +7400,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE },
-        .innates = { ABILITY_FILTER, ABILITY_BATTLE_ARMOR, ABILITY_GUARD_STANCE },
+        .innates = { ABILITY_FILTER, ABILITY_SOLID_ROCK, ABILITY_GUARD_STANCE },
         .bodyColor = BODY_COLOR_PINK,
         .speciesName = _("Diancie"),
     #if P_MODIFIED_MEGA_CRIES

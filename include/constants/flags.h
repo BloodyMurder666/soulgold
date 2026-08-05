@@ -68,7 +68,7 @@
 #define FLAG_CAFE_INTRO_DONE                    0x36
 #define FLAG_GOT_ADAMANT_ORB                    0x37
 #define FLAG_GOT_LUSTROUS_ORB                   0x38
-#define FLAG_STEVEN_REMATCH                     0x39 // Steven Rematch, true champion
+#define FLAG_TM_TORMENT                         0x39
 #define FLAG_PENDING_DAYCARE_EGG_SHINY          0x3A
 #define FLAG_DEFEATED_REGIELEKI                 0x3B 
 #define FLAG_HIDE_REGIELEKI                     0x3C 
@@ -1769,14 +1769,14 @@
 #define FLAG_DAILY_KURT_FREE_BALLS                  (DAILY_FLAGS_START + 0x19)
 #define FLAG_DAILY_BUENA_PASSWORD                   (DAILY_FLAGS_START + 0x1A)
 #define FLAG_GOT_HAIRCUT                            (DAILY_FLAGS_START + 0x1B) // Unused Flag
-#define FLAG_DAILY_BATTLE_CAFE_ASTRA                (DAILY_FLAGS_START + 0x1C)
-#define FLAG_DAILY_BATTLE_CAFE_MOIRA                (DAILY_FLAGS_START + 0x1D)
-#define FLAG_DAILY_BATTLE_CAFE_MAUGA                (DAILY_FLAGS_START + 0x1E)
-#define FLAG_DAILY_BATTLE_CAFE_DARIUS               (DAILY_FLAGS_START + 0x1F)
-#define FLAG_DAILY_BATTLE_CAFE_IVY                  (DAILY_FLAGS_START + 0x20)
-#define FLAG_DAILY_BATTLE_CAFE_LYSANDER             (DAILY_FLAGS_START + 0x21)
+#define FLAG_DAILY_BATTLE_CAFE_ATHENA               (DAILY_FLAGS_START + 0x1C)
+#define FLAG_DAILY_BATTLE_CAFE_DOVES                (DAILY_FLAGS_START + 0x1D)
+#define FLAG_DAILY_BATTLE_CAFE_ELTON                (DAILY_FLAGS_START + 0x1E)
+#define FLAG_DAILY_BATTLE_CAFE_NEM               (DAILY_FLAGS_START + 0x1F)
+#define FLAG_DAILY_BATTLE_CAFE_BAI                  (DAILY_FLAGS_START + 0x20)
+#define FLAG_DAILY_BATTLE_CAFE_DRAC             (DAILY_FLAGS_START + 0x21)
 #define FLAG_DAILY_BATTLE_CAFE_JUNA                 (DAILY_FLAGS_START + 0x22)
-#define FLAG_DAILY_BATTLE_CAFE_PHAINON              (DAILY_FLAGS_START + 0x23)
+#define FLAG_DAILY_BATTLE_CAFE_TYLARIE              (DAILY_FLAGS_START + 0x23)
 #define FLAG_DAILY_BATTLE_CAFE_CHALLENGE_WON        (DAILY_FLAGS_START + 0x24)
 #define FLAG_DAILY_BATTLE_CAFE_RUSH_WON             (DAILY_FLAGS_START + 0x25)
 #define FLAG_DAILY_BATTLE_CAFE_SUPER_RUSH_WON       (DAILY_FLAGS_START + 0x26)

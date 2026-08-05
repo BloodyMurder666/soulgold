@@ -8973,7 +8973,6 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sLugiaLevelUpLearnset,
         .teachableLearnset = sLugiaTeachableLearnset,
         .formSpeciesIdTable = sLugiaFormSpeciesIdTable,
-        .formChangeTable = sLugiaFormChangeTable,
     },
 #endif //P_FAMILY_LUGIA
 
@@ -9047,7 +9046,6 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .teachableLearnset = sLugiaTeachableLearnset,
 #if P_FAMILY_LUGIA
         .formSpeciesIdTable = sLugiaFormSpeciesIdTable,
-        .formChangeTable = sLugiaFormChangeTable,
 #endif //P_FAMILY_LUGIA
     },
 

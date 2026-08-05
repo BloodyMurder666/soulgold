@@ -18167,366 +18167,346 @@ Adamant Nature
 - Wild Charge
 - Yawn
 
-=== TRAINER_CAFE_ASTRA ===
-Name: Astra
-Class: Cooltrainer
-Pic: Cooltrainer F
-Gender: Female
-Music: Dp Ace Trainer
-Double Battle: No
-AI: Basic Trainer
-
-Ninetales-Alola @ Light Clay
-Ability: Snow Warning
-Level: 82
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Timid Nature
-- Aurora Veil
-- Freeze-Dry
-- Moonblast
-- Encore
-
-Mamoswine @ Life Orb
-Ability: Snow Cloak
-Level: 82
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Adamant Nature
-- Icicle Crash
-- Earthquake
-- Ice Shard
-- Knock Off
-
-Rotom-Frost @ Choice Scarf
-Ability: Levitate
-Level: 82
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Timid Nature
-- Blizzard
-- Volt Switch
-- Thunderbolt
-- Trick
-
-Baxcalibur @ Loaded Dice
-Ability: Thermal Exchange
-Level: 83
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Jolly Nature
-- Dragon Dance
-- Icicle Spear
-- Glaive Rush
-- Earthquake
-
-=== TRAINER_CAFE_ASTRA ===
-Name: Astra
-Class: Cooltrainer
-Pic: Cooltrainer F
-Gender: Female
-Music: Dp Ace Trainer
-Double Battle: No
-AI: Smart Trainer
-Difficulty: Hard
-
-Ninetales-Alola @ Light Clay
-Ability: Snow Warning
-Level: 82
-EVs: 4 HP / 252 SpA / 252 Spe
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Timid Nature
-- Aurora Veil
-- Freeze-Dry
-- Moonblast
-- Encore
-
-Mamoswine @ Life Orb
-Ability: Snow Cloak
-Level: 82
-EVs: 4 HP / 252 Atk / 252 Spe
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Adamant Nature
-- Icicle Crash
-- Earthquake
-- Ice Shard
-- Knock Off
-
-Rotom-Frost @ Choice Scarf
-Ability: Levitate
-Level: 82
-EVs: 4 Def / 252 SpA / 252 Spe
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Timid Nature
-- Blizzard
-- Volt Switch
-- Thunderbolt
-- Trick
-
-Baxcalibur @ Loaded Dice
-Ability: Thermal Exchange
-Level: 83
-EVs: 4 HP / 252 Atk / 252 Spe
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Jolly Nature
-- Dragon Dance
-- Icicle Spear
-- Glaive Rush
-- Earthquake
-
-=== TRAINER_CAFE_MOIRA ===
-Name: Moira
-Class: Hex Maniac
-Pic: Hex Maniac
-Gender: Female
-Music: Hg Suspicious 1
-Double Battle: No
-AI: Basic Trainer
-
-Farigiraf @ Mental Herb
-Ability: Armor Tail
-Level: 82
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
-Quiet Nature
-- Trick Room
-- Psychic
-- Hyper Voice
-- Thunderbolt
-
-Porygon2 @ Eviolite
-Ability: Download
-Level: 82
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
-Quiet Nature
-- Trick Room
-- Recover
-- Tri-Attack
-- Ice Beam
-
-Ursaluna @ Flame Orb
-Ability: Guts
-Level: 82
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
-Brave Nature
-- Facade
-- Headlong Rush
-- Crunch
-- Protect
-
-Torkoal @ Charcoal
-Ability: Drought
-Level: 83
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
-Quiet Nature
-- Eruption
-- Flamethrower
-- Earth Power
-- Solar Beam
-
-=== TRAINER_CAFE_MOIRA ===
-Name: Moira
+=== TRAINER_CAFE_DOVES ===
+Name: Doves
 Class: Hex Maniac
 Pic: Hex Maniac
 Gender: Female
 Music: Hg Suspicious 1
 Double Battle: No
 AI: Smart Trainer
-Difficulty: Hard
 
-Farigiraf @ Mental Herb
-Ability: Armor Tail
-Level: 82
-EVs: 252 HP / 4 Def / 252 SpA
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
-Quiet Nature
-- Trick Room
-- Psychic
-- Hyper Voice
-- Thunderbolt
-
-Porygon2 @ Eviolite
-Ability: Download
-Level: 82
-EVs: 252 HP / 4 Def / 252 SpA
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
-Quiet Nature
-- Trick Room
-- Recover
-- Tri-Attack
-- Ice Beam
-
-Ursaluna @ Flame Orb
-Ability: Guts
-Level: 82
-EVs: 252 HP / 252 Atk / 4 SpD
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
-Brave Nature
-- Facade
-- Headlong Rush
-- Crunch
-- Protect
-
-Torkoal @ Charcoal
-Ability: Drought
-Level: 83
-EVs: 252 HP / 4 Def / 252 SpA
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
-Quiet Nature
-- Eruption
-- Flamethrower
-- Earth Power
-- Solar Beam
-
-=== TRAINER_CAFE_MAUGA ===
-Name: Mauga
-Class: Cooltrainer
-Pic: Cooltrainer M
-Gender: Male
-Music: Dp Ace Trainer
-Double Battle: No
-AI: Basic Trainer
-
-Meowscarada @ Heavy-Duty Boots
-Ability: Protean
-Level: 82
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Excadrill @ Expert Belt
+Ability: Mold Breaker
+Level: 90
 Jolly Nature
-- Flower Trick
-- Knock Off
-- U-Turn
-- Taunt
-
-Skeledirge @ Leftovers
-Ability: Unaware
-Level: 82
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Bold Nature
-- Torch Song
-- Shadow Ball
-- Will-O-Wisp
-- Slack Off
-
-Iron Hands @ Assault Vest
-Ability: Quark Drive
-Level: 82
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Adamant Nature
-- Fake Out
-- Drain Punch
-- Thunder Punch
-- Ice Punch
-
-Sableye @ Darktite
-Ability: Prankster
-Level: 83
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Careful Nature
-- Knock Off
-- Foul Play
-- Will-O-Wisp
-- Recover
-
-=== TRAINER_CAFE_MAUGA ===
-Name: Mauga
-Class: Cooltrainer
-Pic: Cooltrainer M
-Gender: Male
-Music: Dp Ace Trainer
-Double Battle: No
-AI: Smart Trainer
-Difficulty: Hard
-
-Meowscarada @ Heavy-Duty Boots
-Ability: Protean
-Level: 82
-EVs: 4 HP / 252 Atk / 252 Spe
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Jolly Nature
-- Flower Trick
-- Knock Off
-- U-Turn
-- Taunt
-
-Skeledirge @ Leftovers
-Ability: Unaware
-Level: 82
-EVs: 252 HP / 252 Def / 4 SpA
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Bold Nature
-- Torch Song
-- Shadow Ball
-- Will-O-Wisp
-- Slack Off
-
-Iron Hands @ Assault Vest
-Ability: Quark Drive
-Level: 82
-EVs: 252 HP / 252 Atk / 4 SpD
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Adamant Nature
-- Fake Out
-- Drain Punch
-- Thunder Punch
-- Ice Punch
-
-Sableye @ Darktite
-Ability: Prankster
-Level: 83
-EVs: 252 HP / 4 Def / 252 SpD
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Careful Nature
-- Knock Off
-- Foul Play
-- Will-O-Wisp
-- Recover
-
-=== TRAINER_CAFE_DARIUS ===
-Name: Darius
-Class: Expert
-Pic: Expert M
-Gender: Male
-Music: Dp Ace Trainer
-Double Battle: No
-AI: Basic Trainer
-
-Rillaboom @ Terrain Extender
-Ability: Grassy Surge
-Level: 82
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Adamant Nature
-- Grassy Glide
-- Wood Hammer
-- U-Turn
-- High Horsepower
-
-Scizor @ Steeltite
-Ability: Technician
-Level: 82
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Adamant Nature
-- Bullet Punch
-- U-Turn
-- Close Combat
 - Swords Dance
-
-Dragonite @ Heavy-Duty Boots
-Ability: Multiscale
-Level: 82
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Adamant Nature
-- Dragon Dance
-- Extreme Speed
 - Earthquake
-- Roost
+- Rock Slide
+- Iron Head
 
-Kingambit @ Black Glasses
+Reuniclus @ Life Orb
+Ability: Magic Guard
+Level: 90
+IVs: 0 Atk
+Modest Nature
+- Calm Mind
+- Psyshock
+- Recover
+- Focus Blast
+
+Tentacruel @ Black Sludge
+Ability: Clear Body
+Level: 90
+Calm Nature
+- Scald
+- Sludge Bomb
+- Flip Turn
+- Toxic Spikes
+
+Genesect @ Choice Scarf
+Ability: Download
+Level: 90
+Timid Nature
+- U-Turn
+- Flamethrower
+- Ice Beam
+- Thunderbolt
+
+Kingambit @ Leftovers
 Ability: Supreme Overlord
-Level: 83
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Level: 90
 Adamant Nature
-- Swords Dance
 - Kowtow Cleave
 - Sucker Punch
 - Iron Head
+- Swords Dance
 
-=== TRAINER_CAFE_DARIUS ===
-Name: Darius
+Chandelure @ Ghostite
+Ability: Flash Fire
+Level: 90
+IVs: 0 Atk
+Timid Nature
+- Calm Mind
+- Shadow Ball
+- Pain Split
+- Energy Ball
+
+=== TRAINER_CAFE_DOVES ===
+Name: Doves
+Class: Hex Maniac
+Pic: Hex Maniac
+Gender: Female
+Music: Hg Suspicious 1
+Double Battle: No
+AI: Smart Trainer
+Difficulty: Hard
+
+Excadrill @ Expert Belt
+Ability: Mold Breaker
+Level: 100
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Swords Dance
+- Earthquake
+- Rock Slide
+- Iron Head
+
+Reuniclus @ Life Orb
+Ability: Magic Guard
+Level: 100
+EVs: 252 HP / 252 SpA / 4 SpD
+IVs: 0 Atk
+Modest Nature
+- Calm Mind
+- Psyshock
+- Recover
+- Focus Blast
+
+Tentacruel @ Black Sludge
+Ability: Clear Body
+Level: 100
+EVs: 252 HP / 160 Def / 40 SpD / 56 Spe
+Calm Nature
+- Scald
+- Sludge Bomb
+- Flip Turn
+- Toxic Spikes
+
+Genesect @ Choice Scarf
+Ability: Download
+Level: 100
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- U-Turn
+- Flamethrower
+- Ice Beam
+- Thunderbolt
+
+Kingambit @ Leftovers
+Ability: Supreme Overlord
+Level: 100
+EVs: 252 HP / 252 Atk / 4 SpD
+Adamant Nature
+- Kowtow Cleave
+- Sucker Punch
+- Iron Head
+- Swords Dance
+
+Chandelure @ Ghostite
+Ability: Flash Fire
+Level: 100
+EVs: 4 HP / 252 SpA / 252 Spe
+IVs: 0 Atk
+Timid Nature
+- Calm Mind
+- Shadow Ball
+- Pain Split
+- Energy Ball
+
+=== TRAINER_CAFE_ELTON ===
+Name: Elton
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Dp Ace Trainer
+Double Battle: No
+AI: Smart Trainer
+
+Infernape (M) @ Life Orb
+Ability: Blaze
+Level: 90
+Naive Nature
+- Flare Blitz
+- Earthquake
+- Close Combat
+- Grass Knot
+
+Luxray (M) @ Expert Belt
+Ability: Intimidate
+Level: 90
+IVs: 30 HP / 30 Def
+Naive Nature
+- Thunderbolt
+- Crunch
+- Hidden Power
+- Signal Beam
+
+Roserade (M) @ Black Sludge
+Ability: Poison Point
+Level: 90
+Bold Nature
+- Spikes
+- Energy Ball
+- Sludge Bomb
+- Toxic Spikes
+
+Glaceon (M) @ Choice Specs
+Ability: Snow Cloak
+Level: 90
+IVs: 30 Atk / 30 SpA / 30 SpD
+Modest Nature
+- Ice Beam
+- Shadow Ball
+- Hidden Power
+- Blizzard
+
+Crobat (M) @ Heavy-Duty Boots
+Ability: Inner Focus
+Level: 90
+Jolly Nature
+- Brave Bird
+- Roost
+- U-Turn
+- Defog
+
+Gengar (M) @ Life Orb
+Level: 90
+Timid Nature
+- Shadow Ball
+- Thunderbolt
+- Focus Blast
+- Psychic
+
+=== TRAINER_CAFE_ELTON ===
+Name: Elton
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Dp Ace Trainer
+Double Battle: No
+AI: Smart Trainer
+Difficulty: Hard
+
+Infernape (M) @ Life Orb
+Ability: Blaze
+Level: 100
+EVs: 252 Atk / 4 Def / 252 Spe
+Naive Nature
+- Flare Blitz
+- Earthquake
+- Close Combat
+- Grass Knot
+
+Luxray (M) @ Expert Belt
+Ability: Intimidate
+Level: 100
+EVs: 4 HP / 252 SpA / 252 Spe
+IVs: 30 HP / 30 Def
+Naive Nature
+- Thunderbolt
+- Crunch
+- Hidden Power
+- Signal Beam
+
+Roserade (M) @ Black Sludge
+Ability: Poison Point
+Level: 100
+EVs: 252 HP / 232 Def / 24 Spe
+Bold Nature
+- Spikes
+- Energy Ball
+- Sludge Bomb
+- Toxic Spikes
+
+Glaceon (M) @ Choice Specs
+Ability: Snow Cloak
+Level: 100
+EVs: 252 SpA / 4 SpD / 252 Spe
+IVs: 30 Atk / 30 SpA / 30 SpD
+Modest Nature
+- Ice Beam
+- Shadow Ball
+- Hidden Power
+- Blizzard
+
+Crobat (M) @ Heavy-Duty Boots
+Ability: Inner Focus
+Level: 100
+EVs: 112 HP / 140 Atk / 4 SpD / 252 Spe
+Jolly Nature
+- Brave Bird
+- Roost
+- U-Turn
+- Defog
+
+Gengar (M) @ Life Orb
+Level: 100
+EVs: 4 Def / 252 SpA / 252 Spe
+Timid Nature
+- Shadow Ball
+- Thunderbolt
+- Focus Blast
+- Psychic
+
+=== TRAINER_CAFE_NEM ===
+Name: Nem
+Class: Expert
+Pic: Expert M
+Gender: Male
+Music: Dp Ace Trainer
+Double Battle: No
+AI: Smart Trainer
+
+Sableye @ Darktite
+Ability: Prankster
+Level: 90
+Careful Nature
+- Knock Off
+- Recover
+- Protect
+- Will-O-Wisp
+
+Flutter Mane @ Choice Specs
+Ability: Protosynthesis
+Level: 90
+IVs: 0 Atk
+Timid Nature
+- Shadow Ball
+- Moonblast
+- Mystical Fire
+- Power Gem
+
+Annihilape @ Chesto Berry
+Ability: Defiant
+Level: 90
+Adamant Nature
+- Bulk Up
+- Rest
+- Drain Punch
+- Rage Fist
+
+Gholdengo @ Metal Coat
+Ability: Good as Gold
+Level: 90
+IVs: 0 Atk
+Timid Nature
+- Nasty Plot
+- Make It Rain
+- Thunderbolt
+- Recover
+
+Gengar @ Choice Scarf
+Ability: Cursed Body
+Level: 90
+IVs: 0 Atk
+Timid Nature
+- Shadow Ball
+- Sludge Wave
+- Focus Blast
+- Trick
+
+Marshadow @ Life Orb
+Ability: Technician
+Level: 90
+Jolly Nature
+- Spectral Thief
+- Ice Punch
+- Low Kick
+- Shadow Sneak
+
+=== TRAINER_CAFE_NEM ===
+Name: Nem
 Class: Expert
 Pic: Expert M
 Gender: Male
@@ -18535,255 +18515,322 @@ Double Battle: No
 AI: Smart Trainer
 Difficulty: Hard
 
-Rillaboom @ Terrain Extender
-Ability: Grassy Surge
-Level: 82
-EVs: 252 HP / 252 Atk / 4 SpD
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Adamant Nature
-- Grassy Glide
-- Wood Hammer
-- U-Turn
-- High Horsepower
+Sableye @ Darktite
+Ability: Prankster
+Level: 100
+EVs: 252 HP / 100 Def / 156 SpD
+Careful Nature
+- Knock Off
+- Recover
+- Protect
+- Will-O-Wisp
 
-Scizor @ Steeltite
+Flutter Mane @ Choice Specs
+Ability: Protosynthesis
+Level: 100
+EVs: 252 SpA / 4 SpD / 252 Spe
+IVs: 0 Atk
+Timid Nature
+- Shadow Ball
+- Moonblast
+- Mystical Fire
+- Power Gem
+
+Annihilape @ Chesto Berry
+Ability: Defiant
+Level: 100
+EVs: 252 Atk / 4 SpD / 252 Spe
+Adamant Nature
+- Bulk Up
+- Rest
+- Drain Punch
+- Rage Fist
+
+Gholdengo @ Metal Coat
+Ability: Good as Gold
+Level: 100
+EVs: 4 HP / 252 SpA / 252 Spe
+IVs: 0 Atk
+Timid Nature
+- Nasty Plot
+- Make It Rain
+- Thunderbolt
+- Recover
+
+Gengar @ Choice Scarf
+Ability: Cursed Body
+Level: 100
+EVs: 4 HP / 252 SpA / 252 Spe
+IVs: 0 Atk
+Timid Nature
+- Shadow Ball
+- Sludge Wave
+- Focus Blast
+- Trick
+
+Marshadow @ Life Orb
 Ability: Technician
-Level: 82
+Level: 100
+EVs: 252 Atk / 4 Def / 252 Spe
+Jolly Nature
+- Spectral Thief
+- Ice Punch
+- Low Kick
+- Shadow Sneak
+
+=== TRAINER_CAFE_BAI ===
+Name: Bai
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer
+
+Scizor (M) @ Choice Band
+Ability: Technician
+Level: 90
+Adamant Nature
+- Bullet Punch
+- U-Turn
+- Superpower
+- Knock Off
+
+Aegislash (F) @ Leftovers
+Ability: Stance Change
+Level: 90
+Quiet Nature
+- King's Shield
+- Shadow Ball
+- Flash Cannon
+- Sacred Sword
+
+Garchomp (F) @ Life Orb
+Ability: Rough Skin
+Level: 90
+Jolly Nature
+- Earthquake
+- Dragon Claw
+- Stone Edge
+- Swords Dance
+
+Rotom-Wash @ Leftovers
+Ability: Levitate
+Level: 90
+IVs: 0 Atk
+Bold Nature
+- Volt Switch
+- Hydro Pump
+- Will-O-Wisp
+- Pain Split
+
+Volcarona (M) @ Heavy-Duty Boots
+Ability: Flame Body
+Level: 90
+IVs: 0 Atk
+Timid Nature
+- Quiver Dance
+- Fiery Dance
+- Bug Buzz
+- Giga Drain
+
+Gardevoir (F) @ Bondstone
+Ability: Telepathy
+Level: 90
+Shiny: Yes
+IVs: 0 Atk
+Timid Nature
+- Psychic
+- Shadow Ball
+- Energy Ball
+- Calm Mind
+
+=== TRAINER_CAFE_BAI ===
+Name: Bai
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer
+Difficulty: Hard
+
+Scizor (M) @ Choice Band
+Ability: Technician
+Level: 100
 EVs: 248 HP / 252 Atk / 8 SpD
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Adamant Nature
 - Bullet Punch
 - U-Turn
-- Close Combat
-- Swords Dance
+- Superpower
+- Knock Off
 
-Dragonite @ Heavy-Duty Boots
-Ability: Multiscale
-Level: 82
+Aegislash (F) @ Leftovers
+Ability: Stance Change
+Level: 100
+EVs: 252 HP / 4 Atk / 52 SpA / 116 SpD
+Quiet Nature
+- King's Shield
+- Shadow Ball
+- Flash Cannon
+- Sacred Sword
+
+Garchomp (F) @ Life Orb
+Ability: Rough Skin
+Level: 100
 EVs: 4 HP / 252 Atk / 252 Spe
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Adamant Nature
-- Dragon Dance
-- Extreme Speed
+Jolly Nature
 - Earthquake
-- Roost
-
-Kingambit @ Black Glasses
-Ability: Supreme Overlord
-Level: 83
-EVs: 252 HP / 252 Atk / 4 SpD
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Adamant Nature
+- Dragon Claw
+- Stone Edge
 - Swords Dance
-- Kowtow Cleave
-- Sucker Punch
+
+Rotom-Wash @ Leftovers
+Ability: Levitate
+Level: 100
+EVs: 252 HP / 96 Def / 140 SpA / 4 SpD
+IVs: 0 Atk
+Bold Nature
+- Volt Switch
+- Hydro Pump
+- Will-O-Wisp
+- Pain Split
+
+Volcarona (M) @ Heavy-Duty Boots
+Ability: Flame Body
+Level: 100
+EVs: 8 HP / 248 SpA / 252 Spe
+IVs: 0 Atk
+Timid Nature
+- Quiver Dance
+- Fiery Dance
+- Bug Buzz
+- Giga Drain
+
+Gardevoir (F) @ Bondstone
+Ability: Telepathy
+Level: 100
+Shiny: Yes
+EVs: 4 HP / 252 SpA / 252 Spe
+IVs: 0 Atk
+Timid Nature
+- Psychic
+- Shadow Ball
+- Energy Ball
+- Calm Mind
+
+=== TRAINER_CAFE_DRAC ===
+Name: Drac
+Class: Juggler
+Pic: Juggler
+Gender: Male
+Music: Hg Boy 1
+Double Battle: Yes
+AI: Smart Trainer
+
+Dragonite @ Yache Berry
+Level: 90
+- Ice Punch
+- Fire Punch
+- Earthquake
+- Dragon Dance
+
+Blaziken @ Life Orb
+Ability: Speed Boost
+Level: 90
+- Earthquake
+- Flare Blitz
+- Protect
+- Close Combat
+
+Ampharos @ Light Clay
+Level: 90
+- Volt Switch
+- Focus Blast
+- Dragon Pulse
+- Reflect
+
+Scizor @ Occa Berry
+Ability: Technician
+Level: 90
+- Swords Dance
+- U-Turn
+- Bullet Punch
+- Knock Off
+
+Gallade @ Psychite
+Level: 90
+- Rock Slide
+- Leaf Blade
+- Psycho Cut
+- Trick Room
+
+Dialga @ Adamant Orb
+Level: 90
+- Draco Meteor
+- Toxic
+- Earthquake
 - Iron Head
 
-=== TRAINER_CAFE_IVY ===
-Name: Ivy
-Class: Lass
-Pic: Lass
-Gender: Female
-Music: Hg Girl 1
-Double Battle: No
-AI: Basic Trainer
-
-Glimmora @ Focus Sash
-Ability: Toxic Debris
-Level: 82
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Timid Nature
-- Stealth Rock
-- Mortal Spin
-- Power Gem
-- Earth Power
-
-Samurott-Hisui @ Assault Vest
-Ability: Sharpness
-Level: 82
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Jolly Nature
-- Ceaseless Edge
-- Razor Shell
-- Sacred Sword
-- Aqua Jet
-
-Gholdengo @ Air Balloon
-Ability: Good as Gold
-Level: 82
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Timid Nature
-- Make It Rain
-- Shadow Ball
-- Nasty Plot
-- Recover
-
-Dragapult @ Choice Specs
-Ability: Infiltrator
-Level: 83
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Timid Nature
-- Draco Meteor
-- Shadow Ball
-- Flamethrower
-- U-Turn
-
-=== TRAINER_CAFE_IVY ===
-Name: Ivy
-Class: Lass
-Pic: Lass
-Gender: Female
-Music: Hg Girl 1
-Double Battle: No
+=== TRAINER_CAFE_DRAC ===
+Name: Drac
+Class: Juggler
+Pic: Juggler
+Gender: Male
+Music: Hg Boy 1
+Double Battle: Yes
 AI: Smart Trainer
 Difficulty: Hard
 
-Glimmora @ Focus Sash
-Ability: Toxic Debris
-Level: 82
-EVs: 4 Def / 252 SpA / 252 Spe
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Timid Nature
-- Stealth Rock
-- Mortal Spin
-- Power Gem
-- Earth Power
+Dragonite @ Yache Berry
+Level: 100
+EVs: 252 Atk / 4 SpD / 252 Spe
+- Ice Punch
+- Fire Punch
+- Earthquake
+- Dragon Dance
 
-Samurott-Hisui @ Assault Vest
-Ability: Sharpness
-Level: 82
-EVs: 4 HP / 252 Atk / 252 Spe
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Jolly Nature
-- Ceaseless Edge
-- Razor Shell
-- Sacred Sword
-- Aqua Jet
+Blaziken @ Life Orb
+Ability: Speed Boost
+Level: 100
+EVs: 252 Atk / 4 SpD / 252 Spe
+- Earthquake
+- Flare Blitz
+- Protect
+- Close Combat
 
-Gholdengo @ Air Balloon
-Ability: Good as Gold
-Level: 82
-EVs: 4 Def / 252 SpA / 252 Spe
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Timid Nature
-- Make It Rain
-- Shadow Ball
-- Nasty Plot
-- Recover
+Ampharos @ Light Clay
+Level: 100
+EVs: 252 HP / 252 SpA / 4 SpD
+- Volt Switch
+- Focus Blast
+- Dragon Pulse
+- Reflect
 
-Dragapult @ Choice Specs
-Ability: Infiltrator
-Level: 83
-EVs: 4 Def / 252 SpA / 252 Spe
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Timid Nature
-- Draco Meteor
-- Shadow Ball
-- Flamethrower
+Scizor @ Occa Berry
+Ability: Technician
+Level: 100
+EVs: 248 HP / 252 Atk / 8 SpD
+- Swords Dance
 - U-Turn
-
-=== TRAINER_CAFE_LYSANDER ===
-Name: Lysander
-Class: Firebreather
-Pic: Firebreather
-Gender: Male
-Music: Hg Boy 1
-Double Battle: No
-AI: Basic Trainer
-
-Ninetales @ Heat Rock
-Ability: Drought
-Level: 82
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Timid Nature
-- Flamethrower
-- Solar Beam
-- Will-O-Wisp
-- Encore
-
-Venusaur @ Life Orb
-Ability: Chlorophyll
-Level: 82
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Modest Nature
-- Growth
-- Giga Drain
-- Sludge Bomb
-- Earth Power
-
-Great Tusk @ Choice Scarf
-Ability: Protosynthesis
-Level: 82
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Jolly Nature
-- Headlong Rush
-- Close Combat
-- Ice Spinner
+- Bullet Punch
 - Knock Off
 
-Charizard @ Firetite
-Ability: Solar Power
-Level: 83
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Timid Nature
-- Flamethrower
-- Air Slash
-- Solar Beam
-- Roost
+Gallade @ Psychite
+Level: 100
+EVs: 252 HP / 252 Atk / 4 SpD
+- Rock Slide
+- Leaf Blade
+- Psycho Cut
+- Trick Room
 
-=== TRAINER_CAFE_LYSANDER ===
-Name: Lysander
-Class: Firebreather
-Pic: Firebreather
-Gender: Male
-Music: Hg Boy 1
-Double Battle: No
-AI: Smart Trainer
-Difficulty: Hard
-
-Ninetales @ Heat Rock
-Ability: Drought
-Level: 82
-EVs: 4 HP / 252 SpA / 252 Spe
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Timid Nature
-- Flamethrower
-- Solar Beam
-- Will-O-Wisp
-- Encore
-
-Venusaur @ Life Orb
-Ability: Chlorophyll
-Level: 82
-EVs: 4 Def / 252 SpA / 252 Spe
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Modest Nature
-- Growth
-- Giga Drain
-- Sludge Bomb
-- Earth Power
-
-Great Tusk @ Choice Scarf
-Ability: Protosynthesis
-Level: 82
-EVs: 4 HP / 252 Atk / 252 Spe
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Jolly Nature
-- Headlong Rush
-- Close Combat
-- Ice Spinner
-- Knock Off
-
-Charizard @ Firetite
-Ability: Solar Power
-Level: 83
-EVs: 4 Def / 252 SpA / 252 Spe
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Timid Nature
-- Flamethrower
-- Air Slash
-- Solar Beam
-- Roost
+Dialga @ Adamant Orb
+Level: 100
+EVs: 252 HP / 252 Atk / 4 SpA
+- Draco Meteor
+- Toxic
+- Earthquake
+- Iron Head
 
 === TRAINER_CAFE_JUNA ===
 Name: Juna
@@ -18792,11 +18839,11 @@ Pic: Swimmer F
 Gender: Female
 Music: Hg Girl 1
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
 Pelipper @ Damp Rock
 Ability: Drizzle
-Level: 82
+Level: 90
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Bold Nature
 - Hurricane
@@ -18806,7 +18853,7 @@ Bold Nature
 
 Floatzel @ Choice Band
 Ability: Swift Swim
-Level: 82
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Adamant Nature
 - Wave Crash
@@ -18816,7 +18863,7 @@ Adamant Nature
 
 Archaludon @ Assault Vest
 Ability: Stamina
-Level: 82
+Level: 90
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Modest Nature
 - Electro Shot
@@ -18825,8 +18872,7 @@ Modest Nature
 - Body Press
 
 Swampert @ Watertite
-Ability: Swift Swim
-Level: 83
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Adamant Nature
 - Liquidation
@@ -18846,7 +18892,7 @@ Difficulty: Hard
 
 Pelipper @ Damp Rock
 Ability: Drizzle
-Level: 82
+Level: 100
 EVs: 252 HP / 252 Def / 4 SpA
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Bold Nature
@@ -18857,7 +18903,7 @@ Bold Nature
 
 Floatzel @ Choice Band
 Ability: Swift Swim
-Level: 82
+Level: 100
 EVs: 4 HP / 252 Atk / 252 Spe
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Adamant Nature
@@ -18868,7 +18914,7 @@ Adamant Nature
 
 Archaludon @ Assault Vest
 Ability: Stamina
-Level: 82
+Level: 100
 EVs: 252 HP / 252 SpA / 4 SpD
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Modest Nature
@@ -18878,8 +18924,7 @@ Modest Nature
 - Body Press
 
 Swampert @ Watertite
-Ability: Swift Swim
-Level: 83
+Level: 100
 EVs: 4 HP / 252 Atk / 252 Spe
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Adamant Nature
@@ -18888,57 +18933,75 @@ Adamant Nature
 - Ice Punch
 - Flip Turn
 
-=== TRAINER_CAFE_PHAINON ===
-Name: Phainon
+=== TRAINER_CAFE_TYLARIE ===
+Name: Tylarie
 Class: Ruin Maniac
 Pic: Ruin Maniac
 Gender: Male
 Music: Dp Hiker
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
-Tyranitar @ Smooth Rock
-Ability: Sand Stream
-Level: 82
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Careful Nature
+Nidoking @ Life Orb
+Ability: Sheer Force
+Level: 90
+Timid Nature
+- Earth Power
+- Sludge Wave
+- Ice Beam
+- Substitute
+
+Mismagius @ Choice Scarf
+Ability: Levitate
+Level: 90
+IVs: 0 Atk
+Timid Nature
+- Shadow Ball
+- Dazzling Gleam
+- Thunderbolt
+- Mystical Fire
+
+Steelix @ Steeltite
+Ability: Sturdy
+Level: 90
+IVs: 0 Spe
+Brave Nature
 - Stealth Rock
-- Stone Edge
-- Crunch
-- Thunder Wave
-
-Excadrill @ Life Orb
-Ability: Sand Rush
-Level: 82
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Jolly Nature
+- Gyro Ball
 - Earthquake
-- Iron Head
-- Rock Slide
-- Swords Dance
+- Curse
 
-Lycanroc @ Choice Band
-Ability: Sand Rush
-Level: 82
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Adamant Nature
-- Stone Edge
-- Accelerock
-- Close Combat
-- Crunch
+Sceptile @ Life Orb
+Ability: Overgrow
+Level: 90
+IVs: 30 HP / 1 Atk / 30 Def
+Timid Nature
+- Leaf Storm
+- Giga Drain
+- Focus Blast
+- Hidden Power
 
-Garchomp @ Groundite
-Ability: Rough Skin
-Level: 83
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Gliscor @ Toxic Orb
+Ability: Poison Heal
+Level: 90
 Jolly Nature
 - Swords Dance
 - Earthquake
-- Dragon Claw
-- Stone Edge
+- Facade
+- Roost
 
-=== TRAINER_CAFE_PHAINON ===
-Name: Phainon
+Magmortar @ Choice Specs
+Ability: Vital Spirit
+Level: 90
+IVs: 30 Atk / 30 SpA
+Modest Nature
+- Fire Blast
+- Focus Blast
+- Thunderbolt
+- Hidden Power
+
+=== TRAINER_CAFE_TYLARIE ===
+Name: Tylarie
 Class: Ruin Maniac
 Pic: Ruin Maniac
 Gender: Male
@@ -18947,51 +19010,146 @@ Double Battle: No
 AI: Smart Trainer
 Difficulty: Hard
 
-Tyranitar @ Smooth Rock
-Ability: Sand Stream
-Level: 82
-EVs: 252 HP / 4 Atk / 252 SpD
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Careful Nature
+Nidoking @ Life Orb
+Ability: Sheer Force
+Level: 100
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Earth Power
+- Sludge Wave
+- Ice Beam
+- Substitute
+
+Mismagius @ Choice Scarf
+Ability: Levitate
+Level: 100
+EVs: 252 SpA / 4 SpD / 252 Spe
+IVs: 0 Atk
+Timid Nature
+- Shadow Ball
+- Dazzling Gleam
+- Thunderbolt
+- Mystical Fire
+
+Steelix @ Steeltite
+Ability: Sturdy
+Level: 100
+EVs: 252 HP / 208 Atk / 48 SpD
+IVs: 0 Spe
+Brave Nature
 - Stealth Rock
-- Stone Edge
-- Crunch
+- Gyro Ball
+- Earthquake
+- Curse
+
+Sceptile @ Life Orb
+Ability: Overgrow
+Level: 100
+EVs: 4 Def / 252 SpA / 252 Spe
+IVs: 30 HP / 1 Atk / 30 Def
+Timid Nature
+- Leaf Storm
+- Giga Drain
+- Focus Blast
+- Hidden Power
+
+Gliscor @ Toxic Orb
+Ability: Poison Heal
+Level: 100
+EVs: 248 HP / 240 SpD / 20 Spe
+Jolly Nature
+- Swords Dance
+- Earthquake
+- Facade
+- Roost
+
+Magmortar @ Choice Specs
+Ability: Vital Spirit
+Level: 100
+EVs: 252 SpA / 4 SpD / 252 Spe
+IVs: 30 Atk / 30 SpA
+Modest Nature
+- Fire Blast
+- Focus Blast
+- Thunderbolt
+- Hidden Power
+
+=== TRAINER_CAFE_ATHENA ===
+Name: Athena
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Dp Ace Trainer
+Double Battle: Yes
+AI: Smart Trainer
+
+Reuniclus @ Leftovers
+Ability: Magic Guard
+Level: 90
+Shiny: Yes
+Quiet Nature
+IVs: 0 Atk / 0 Spe
+- Psychic Noise
+- Focus Blast
 - Thunder Wave
+- Protect
 
-Excadrill @ Life Orb
-Ability: Sand Rush
-Level: 82
-EVs: 4 HP / 252 Atk / 252 Spe
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Jolly Nature
-- Earthquake
-- Iron Head
-- Rock Slide
-- Swords Dance
+Toxapex @ Rocky Helmet
+Ability: Regenerator
+Level: 90
+Shiny: Yes
+Relaxed Nature
+IVs: 0 Atk / 0 Spe
+- Scald
+- Toxic Spikes
+- Wide Guard
+- Recover
 
-Lycanroc @ Choice Band
-Ability: Sand Rush
-Level: 82
-EVs: 4 HP / 252 Atk / 252 Spe
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Adamant Nature
-- Stone Edge
-- Accelerock
-- Close Combat
+Ferrothorn @ Leftovers
+Ability: Iron Barbs
+Level: 90
+Shiny: Yes
+Relaxed Nature
+IVs: 0 Spe
+- Leech Seed
+- Spikes
+- Gyro Ball
+- Protect
+
+Ursaluna @ Flame Orb
+Ability: Guts
+Level: 90
+Shiny: Yes
+Brave Nature
+IVs: 0 Spe
+- Facade
+- Headlong Rush
 - Crunch
+- Protect
 
-Garchomp @ Groundite
-Ability: Rough Skin
-Level: 83
-EVs: 4 HP / 252 Atk / 252 Spe
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Jolly Nature
-- Swords Dance
-- Earthquake
-- Dragon Claw
-- Stone Edge
+Dragalge @ Poisontite
+Ability: Adaptability
+Level: 90
+Shiny: Yes
+Quiet Nature
+IVs: 0 Atk / 0 Spe
+- Sludge Bomb
+- Draco Meteor
+- Hydro Pump
+- Protect
 
-=== TRAINER_VIP_ATHENA ===
+Cursola @ Focus Sash
+Ability: Perish Body
+Level: 90
+Shiny: Yes
+Quiet Nature
+IVs: 0 Atk / 0 Spe
+- Strength Sap
+- Hex
+- Trick Room
+- Ice Beam
+
+=== TRAINER_CAFE_ATHENA ===
 Name: Athena
 Class: Cooltrainer
 Pic: Cooltrainer F
@@ -18999,9 +19157,11 @@ Gender: Female
 Music: Dp Ace Trainer
 Double Battle: Yes
 AI: Smart Trainer / Prediction
+Difficulty: Hard
 
 Reuniclus @ Leftovers
 Ability: Magic Guard
+Level: 100
 Shiny: Yes
 EVs: 252 HP / 4 Def / 252 SpA
 Quiet Nature
@@ -19013,6 +19173,7 @@ IVs: 0 Atk / 0 Spe
 
 Toxapex @ Rocky Helmet
 Ability: Regenerator
+Level: 100
 Shiny: Yes
 EVs: 252 HP / 196 Def / 60 SpD
 Relaxed Nature
@@ -19024,6 +19185,7 @@ IVs: 0 Atk / 0 Spe
 
 Ferrothorn @ Leftovers
 Ability: Iron Barbs
+Level: 100
 Shiny: Yes
 EVs: 252 HP / 252 Def / 4 SpD
 Relaxed Nature
@@ -19035,6 +19197,7 @@ IVs: 0 Spe
 
 Ursaluna @ Flame Orb
 Ability: Guts
+Level: 100
 Shiny: Yes
 EVs: 252 HP / 252 Atk / 4 SpD
 Brave Nature
@@ -19046,6 +19209,7 @@ IVs: 0 Spe
 
 Dragalge @ Poisontite
 Ability: Adaptability
+Level: 100
 Shiny: Yes
 EVs: 252 HP / 156 Def / 100 SpA
 Quiet Nature
@@ -19057,6 +19221,7 @@ IVs: 0 Atk / 0 Spe
 
 Cursola @ Focus Sash
 Ability: Perish Body
+Level: 100
 Shiny: Yes
 EVs: 252 HP / 252 SpA / 4 SpD
 Quiet Nature

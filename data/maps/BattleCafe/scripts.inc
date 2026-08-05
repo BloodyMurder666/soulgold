@@ -20,73 +20,70 @@ BattleCafe_Owner::
 	lock
 # 15 "data/maps/BattleCafe/scripts.pory"
 	faceplayer
-# 16 "data/maps/BattleCafe/scripts.pory"
-	dotimebasedevents
-# 18 "data/maps/BattleCafe/scripts.pory"
+# 17 "data/maps/BattleCafe/scripts.pory"
 	goto_if_unset FLAG_BATTLE_CAFE_DIANCIE_RECEIVED, BattleCafe_Owner_4
 BattleCafe_Owner_1:
-# 29 "data/maps/BattleCafe/scripts.pory"
+# 28 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_OwnerMenu
 	return
 
 BattleCafe_Owner_2:
-# 27 "data/maps/BattleCafe/scripts.pory"
+# 26 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_GiveDiancie
 	goto BattleCafe_Owner_1
 
 BattleCafe_Owner_3:
-# 20 "data/maps/BattleCafe/scripts.pory"
-	checktrainerflag TRAINER_CAFE_MOIRA
+# 19 "data/maps/BattleCafe/scripts.pory"
+	checktrainerflag TRAINER_CAFE_DOVES
 	goto_if 1, BattleCafe_Owner_8
 	goto BattleCafe_Owner_1
 
 BattleCafe_Owner_4:
-# 19 "data/maps/BattleCafe/scripts.pory"
-	checktrainerflag TRAINER_CAFE_ASTRA
+# 18 "data/maps/BattleCafe/scripts.pory"
+	checktrainerflag TRAINER_CAFE_ATHENA
 	goto_if 1, BattleCafe_Owner_3
 	goto BattleCafe_Owner_1
 
 BattleCafe_Owner_7:
-# 22 "data/maps/BattleCafe/scripts.pory"
-	checktrainerflag TRAINER_CAFE_DARIUS
+# 21 "data/maps/BattleCafe/scripts.pory"
+	checktrainerflag TRAINER_CAFE_NEM
 	goto_if 1, BattleCafe_Owner_12
 	goto BattleCafe_Owner_1
 
 BattleCafe_Owner_8:
-# 21 "data/maps/BattleCafe/scripts.pory"
-	checktrainerflag TRAINER_CAFE_MAUGA
+# 20 "data/maps/BattleCafe/scripts.pory"
+	checktrainerflag TRAINER_CAFE_ELTON
 	goto_if 1, BattleCafe_Owner_7
 	goto BattleCafe_Owner_1
 
 BattleCafe_Owner_11:
-# 24 "data/maps/BattleCafe/scripts.pory"
-	checktrainerflag TRAINER_CAFE_LYSANDER
+# 23 "data/maps/BattleCafe/scripts.pory"
+	checktrainerflag TRAINER_CAFE_DRAC
 	goto_if 1, BattleCafe_Owner_16
 	goto BattleCafe_Owner_1
 
 BattleCafe_Owner_12:
-# 23 "data/maps/BattleCafe/scripts.pory"
-	checktrainerflag TRAINER_CAFE_IVY
+# 22 "data/maps/BattleCafe/scripts.pory"
+	checktrainerflag TRAINER_CAFE_BAI
 	goto_if 1, BattleCafe_Owner_11
 	goto BattleCafe_Owner_1
 
 BattleCafe_Owner_15:
-# 26 "data/maps/BattleCafe/scripts.pory"
-	checktrainerflag TRAINER_CAFE_PHAINON
+# 25 "data/maps/BattleCafe/scripts.pory"
+	checktrainerflag TRAINER_CAFE_TYLARIE
 	goto_if 1, BattleCafe_Owner_2
 	goto BattleCafe_Owner_1
 
 BattleCafe_Owner_16:
-# 25 "data/maps/BattleCafe/scripts.pory"
+# 24 "data/maps/BattleCafe/scripts.pory"
 	checktrainerflag TRAINER_CAFE_JUNA
 	goto_if 1, BattleCafe_Owner_15
 	goto BattleCafe_Owner_1
 
 
 BattleCafe_GiveDiancie::
-# 33 "data/maps/BattleCafe/scripts.pory"
+# 32 "data/maps/BattleCafe/scripts.pory"
 	goto_if_unset FLAG_BATTLE_CAFE_DIANCIE_READY, BattleCafe_GiveDiancie_2
-BattleCafe_GiveDiancie_1:
 # 48 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_GiveDiancie_Text_2, MSGBOX_YESNO
 # 52 "data/maps/BattleCafe/scripts.pory"
@@ -120,15 +117,15 @@ BattleCafe_GiveDiancie_7:
 	return
 
 BattleCafe_GiveDiancie_2:
-# 34 "data/maps/BattleCafe/scripts.pory"
+# 33 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_GiveDiancie_Text_0
-# 40 "data/maps/BattleCafe/scripts.pory"
+# 39 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_GiveDiancie_Text_1
-# 44 "data/maps/BattleCafe/scripts.pory"
+# 43 "data/maps/BattleCafe/scripts.pory"
 	setflag FLAG_BATTLE_CAFE_DIANCIE_READY
-# 45 "data/maps/BattleCafe/scripts.pory"
-	goto BattleCafe_OwnerMenu
-	goto BattleCafe_GiveDiancie_1
+# 44 "data/maps/BattleCafe/scripts.pory"
+	release
+	end
 
 BattleCafe_GiveDiancie_5:
 # 53 "data/maps/BattleCafe/scripts.pory"
@@ -1101,256 +1098,258 @@ BattleCafe_Goodbye::
 	end
 
 
-BattleCafe_TrainerAstra::
+BattleCafe_GiveDailyCandyReward::
 # 634 "data/maps/BattleCafe/scripts.pory"
-	lock
+	random 3
 # 635 "data/maps/BattleCafe/scripts.pory"
-	faceplayer
+	addvar VAR_RESULT, 1
 # 636 "data/maps/BattleCafe/scripts.pory"
-	dotimebasedevents
-# 637 "data/maps/BattleCafe/scripts.pory"
-	goto_if_set FLAG_DAILY_BATTLE_CAFE_ASTRA, BattleCafe_TrainerAstra_2
-# 645 "data/maps/BattleCafe/scripts.pory"
-	setflag FLAG_DAILY_BATTLE_CAFE_ASTRA
-# 646 "data/maps/BattleCafe/scripts.pory"
-	msgbox BattleCafe_TrainerAstra_Text_1
-# 649 "data/maps/BattleCafe/scripts.pory"
-	trainerbattle_no_intro TRAINER_CAFE_ASTRA, BattleCafe_TrainerAstra_Text_2
-# 650 "data/maps/BattleCafe/scripts.pory"
-	msgbox BattleCafe_TrainerAstra_Text_3
-# 653 "data/maps/BattleCafe/scripts.pory"
-	release
-	end
+	giveitem ITEM_EXP_CANDY_XL, VAR_RESULT
+	return
 
-BattleCafe_TrainerAstra_2:
-# 638 "data/maps/BattleCafe/scripts.pory"
-	msgbox BattleCafe_TrainerAstra_Text_0
+
+BattleCafe_TrainerAthena::
+# 641 "data/maps/BattleCafe/scripts.pory"
+	lock
 # 642 "data/maps/BattleCafe/scripts.pory"
+	faceplayer
+# 644 "data/maps/BattleCafe/scripts.pory"
+	goto_if_set FLAG_DAILY_BATTLE_CAFE_ATHENA, BattleCafe_TrainerAthena_2
+# 650 "data/maps/BattleCafe/scripts.pory"
+	setflag FLAG_DAILY_BATTLE_CAFE_ATHENA
+# 651 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_TrainerAthena_Text_1
+# 653 "data/maps/BattleCafe/scripts.pory"
+	trainerbattle_no_intro TRAINER_CAFE_ATHENA, BattleCafe_TrainerAthena_Text_2
+# 654 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_TrainerAthena_Text_3
+# 655 "data/maps/BattleCafe/scripts.pory"
+	call BattleCafe_GiveDailyCandyReward
+# 656 "data/maps/BattleCafe/scripts.pory"
+	release
+	end
+
+BattleCafe_TrainerAthena_2:
+# 645 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_TrainerAthena_Text_0
+# 647 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 
-BattleCafe_TrainerMora::
-# 658 "data/maps/BattleCafe/scripts.pory"
-	lock
-# 659 "data/maps/BattleCafe/scripts.pory"
-	faceplayer
-# 660 "data/maps/BattleCafe/scripts.pory"
-	dotimebasedevents
+BattleCafe_TrainerDoves::
 # 661 "data/maps/BattleCafe/scripts.pory"
-	goto_if_set FLAG_DAILY_BATTLE_CAFE_MOIRA, BattleCafe_TrainerMora_2
-# 668 "data/maps/BattleCafe/scripts.pory"
-	setflag FLAG_DAILY_BATTLE_CAFE_MOIRA
-# 669 "data/maps/BattleCafe/scripts.pory"
-	msgbox BattleCafe_TrainerMora_Text_1
-# 672 "data/maps/BattleCafe/scripts.pory"
-	trainerbattle_no_intro TRAINER_CAFE_MOIRA, BattleCafe_TrainerMora_Text_2
-# 673 "data/maps/BattleCafe/scripts.pory"
-	msgbox BattleCafe_TrainerMora_Text_3
-# 676 "data/maps/BattleCafe/scripts.pory"
-	release
-	end
-
-BattleCafe_TrainerMora_2:
+	lock
 # 662 "data/maps/BattleCafe/scripts.pory"
-	msgbox BattleCafe_TrainerMora_Text_0
+	faceplayer
+# 664 "data/maps/BattleCafe/scripts.pory"
+	goto_if_set FLAG_DAILY_BATTLE_CAFE_DOVES, BattleCafe_TrainerDoves_2
+# 671 "data/maps/BattleCafe/scripts.pory"
+	setflag FLAG_DAILY_BATTLE_CAFE_DOVES
+# 672 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_TrainerDoves_Text_1
+# 674 "data/maps/BattleCafe/scripts.pory"
+	trainerbattle_no_intro TRAINER_CAFE_DOVES, BattleCafe_TrainerDoves_Text_2
+# 675 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_TrainerDoves_Text_3
+# 678 "data/maps/BattleCafe/scripts.pory"
+	call BattleCafe_GiveDailyCandyReward
+# 679 "data/maps/BattleCafe/scripts.pory"
+	release
+	end
+
+BattleCafe_TrainerDoves_2:
 # 665 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_TrainerDoves_Text_0
+# 668 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 
-BattleCafe_TrainerRook::
-# 681 "data/maps/BattleCafe/scripts.pory"
-	lock
-# 682 "data/maps/BattleCafe/scripts.pory"
-	faceplayer
-# 683 "data/maps/BattleCafe/scripts.pory"
-	dotimebasedevents
+BattleCafe_TrainerElton::
 # 684 "data/maps/BattleCafe/scripts.pory"
-	goto_if_set FLAG_DAILY_BATTLE_CAFE_MAUGA, BattleCafe_TrainerRook_2
-# 691 "data/maps/BattleCafe/scripts.pory"
-	setflag FLAG_DAILY_BATTLE_CAFE_MAUGA
-# 692 "data/maps/BattleCafe/scripts.pory"
-	msgbox BattleCafe_TrainerRook_Text_1
-# 695 "data/maps/BattleCafe/scripts.pory"
-	trainerbattle_no_intro TRAINER_CAFE_MAUGA, BattleCafe_TrainerRook_Text_2
-# 696 "data/maps/BattleCafe/scripts.pory"
-	msgbox BattleCafe_TrainerRook_Text_3
-# 698 "data/maps/BattleCafe/scripts.pory"
-	release
-	end
-
-BattleCafe_TrainerRook_2:
+	lock
 # 685 "data/maps/BattleCafe/scripts.pory"
-	msgbox BattleCafe_TrainerRook_Text_0
+	faceplayer
+# 687 "data/maps/BattleCafe/scripts.pory"
+	goto_if_set FLAG_DAILY_BATTLE_CAFE_ELTON, BattleCafe_TrainerElton_2
+# 692 "data/maps/BattleCafe/scripts.pory"
+	setflag FLAG_DAILY_BATTLE_CAFE_ELTON
+# 693 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_TrainerElton_Text_1
+# 695 "data/maps/BattleCafe/scripts.pory"
+	trainerbattle_no_intro TRAINER_CAFE_ELTON, BattleCafe_TrainerElton_Text_2
+# 696 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_TrainerElton_Text_3
+# 698 "data/maps/BattleCafe/scripts.pory"
+	call BattleCafe_GiveDailyCandyReward
+# 699 "data/maps/BattleCafe/scripts.pory"
+	release
+	end
+
+BattleCafe_TrainerElton_2:
 # 688 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_TrainerElton_Text_0
+# 689 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 
-BattleCafe_TrainerDarius::
-# 703 "data/maps/BattleCafe/scripts.pory"
-	lock
+BattleCafe_TrainerNem::
 # 704 "data/maps/BattleCafe/scripts.pory"
-	faceplayer
+	lock
 # 705 "data/maps/BattleCafe/scripts.pory"
-	dotimebasedevents
-# 706 "data/maps/BattleCafe/scripts.pory"
-	goto_if_set FLAG_DAILY_BATTLE_CAFE_DARIUS, BattleCafe_TrainerDarius_2
-# 713 "data/maps/BattleCafe/scripts.pory"
-	setflag FLAG_DAILY_BATTLE_CAFE_DARIUS
-# 714 "data/maps/BattleCafe/scripts.pory"
-	msgbox BattleCafe_TrainerDarius_Text_1
-# 717 "data/maps/BattleCafe/scripts.pory"
-	trainerbattle_no_intro TRAINER_CAFE_DARIUS, BattleCafe_TrainerDarius_Text_2
-# 719 "data/maps/BattleCafe/scripts.pory"
-	msgbox BattleCafe_TrainerDarius_Text_3
-# 722 "data/maps/BattleCafe/scripts.pory"
-	release
-	end
-
-BattleCafe_TrainerDarius_2:
+	faceplayer
 # 707 "data/maps/BattleCafe/scripts.pory"
-	msgbox BattleCafe_TrainerDarius_Text_0
-# 710 "data/maps/BattleCafe/scripts.pory"
+	goto_if_set FLAG_DAILY_BATTLE_CAFE_NEM, BattleCafe_TrainerNem_2
+# 712 "data/maps/BattleCafe/scripts.pory"
+	setflag FLAG_DAILY_BATTLE_CAFE_NEM
+# 713 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_TrainerNem_Text_1
+# 714 "data/maps/BattleCafe/scripts.pory"
+	trainerbattle_no_intro TRAINER_CAFE_NEM, BattleCafe_TrainerNem_Text_2
+# 715 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_TrainerNem_Text_3
+# 716 "data/maps/BattleCafe/scripts.pory"
+	call BattleCafe_GiveDailyCandyReward
+# 717 "data/maps/BattleCafe/scripts.pory"
+	release
+	end
+
+BattleCafe_TrainerNem_2:
+# 708 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_TrainerNem_Text_0
+# 709 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 
-BattleCafe_TrainerIvy::
-# 727 "data/maps/BattleCafe/scripts.pory"
+BattleCafe_TrainerBai::
+# 722 "data/maps/BattleCafe/scripts.pory"
 	lock
-# 728 "data/maps/BattleCafe/scripts.pory"
+# 723 "data/maps/BattleCafe/scripts.pory"
 	faceplayer
-# 729 "data/maps/BattleCafe/scripts.pory"
-	dotimebasedevents
-# 730 "data/maps/BattleCafe/scripts.pory"
-	goto_if_set FLAG_DAILY_BATTLE_CAFE_IVY, BattleCafe_TrainerIvy_2
-# 736 "data/maps/BattleCafe/scripts.pory"
-	setflag FLAG_DAILY_BATTLE_CAFE_IVY
-# 737 "data/maps/BattleCafe/scripts.pory"
-	msgbox BattleCafe_TrainerIvy_Text_1
-# 740 "data/maps/BattleCafe/scripts.pory"
-	trainerbattle_no_intro TRAINER_CAFE_IVY, BattleCafe_TrainerIvy_Text_2
-# 741 "data/maps/BattleCafe/scripts.pory"
-	msgbox BattleCafe_TrainerIvy_Text_3
-# 743 "data/maps/BattleCafe/scripts.pory"
-	release
-	end
-
-BattleCafe_TrainerIvy_2:
+# 725 "data/maps/BattleCafe/scripts.pory"
+	goto_if_set FLAG_DAILY_BATTLE_CAFE_BAI, BattleCafe_TrainerBai_2
 # 731 "data/maps/BattleCafe/scripts.pory"
-	msgbox BattleCafe_TrainerIvy_Text_0
+	setflag FLAG_DAILY_BATTLE_CAFE_BAI
+# 732 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_TrainerBai_Text_1
 # 733 "data/maps/BattleCafe/scripts.pory"
+	trainerbattle_no_intro TRAINER_CAFE_BAI, BattleCafe_TrainerBai_Text_2
+# 734 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_TrainerBai_Text_3
+# 736 "data/maps/BattleCafe/scripts.pory"
+	call BattleCafe_GiveDailyCandyReward
+# 737 "data/maps/BattleCafe/scripts.pory"
+	release
+	end
+
+BattleCafe_TrainerBai_2:
+# 726 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_TrainerBai_Text_0
+# 728 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 
-BattleCafe_TrainerIgnis::
-# 748 "data/maps/BattleCafe/scripts.pory"
+BattleCafe_TrainerDrac::
+# 742 "data/maps/BattleCafe/scripts.pory"
 	lock
-# 749 "data/maps/BattleCafe/scripts.pory"
+# 743 "data/maps/BattleCafe/scripts.pory"
 	faceplayer
-# 750 "data/maps/BattleCafe/scripts.pory"
-	dotimebasedevents
+# 745 "data/maps/BattleCafe/scripts.pory"
+	goto_if_set FLAG_DAILY_BATTLE_CAFE_DRAC, BattleCafe_TrainerDrac_2
 # 751 "data/maps/BattleCafe/scripts.pory"
-	goto_if_set FLAG_DAILY_BATTLE_CAFE_LYSANDER, BattleCafe_TrainerIgnis_2
-# 758 "data/maps/BattleCafe/scripts.pory"
-	setflag FLAG_DAILY_BATTLE_CAFE_LYSANDER
-# 759 "data/maps/BattleCafe/scripts.pory"
-	msgbox BattleCafe_TrainerIgnis_Text_1
-# 762 "data/maps/BattleCafe/scripts.pory"
-	trainerbattle_no_intro TRAINER_CAFE_LYSANDER, BattleCafe_TrainerIgnis_Text_2
-# 763 "data/maps/BattleCafe/scripts.pory"
-	msgbox BattleCafe_TrainerIgnis_Text_3
-# 765 "data/maps/BattleCafe/scripts.pory"
+	setflag FLAG_DAILY_BATTLE_CAFE_DRAC
+# 752 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_TrainerDrac_Text_1
+# 753 "data/maps/BattleCafe/scripts.pory"
+	trainerbattle_no_intro TRAINER_CAFE_DRAC, BattleCafe_TrainerDrac_Text_2
+# 754 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_TrainerDrac_Text_0
+# 756 "data/maps/BattleCafe/scripts.pory"
+	call BattleCafe_GiveDailyCandyReward
+# 757 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
-BattleCafe_TrainerIgnis_2:
-# 752 "data/maps/BattleCafe/scripts.pory"
-	msgbox BattleCafe_TrainerIgnis_Text_0
-# 755 "data/maps/BattleCafe/scripts.pory"
+BattleCafe_TrainerDrac_2:
+# 746 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_TrainerDrac_Text_0
+# 748 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 
 BattleCafe_TrainerMarina::
-# 770 "data/maps/BattleCafe/scripts.pory"
+# 762 "data/maps/BattleCafe/scripts.pory"
 	lock
-# 771 "data/maps/BattleCafe/scripts.pory"
+# 763 "data/maps/BattleCafe/scripts.pory"
 	faceplayer
-# 772 "data/maps/BattleCafe/scripts.pory"
-	dotimebasedevents
-# 773 "data/maps/BattleCafe/scripts.pory"
+# 765 "data/maps/BattleCafe/scripts.pory"
 	goto_if_set FLAG_DAILY_BATTLE_CAFE_JUNA, BattleCafe_TrainerMarina_2
-# 779 "data/maps/BattleCafe/scripts.pory"
+# 771 "data/maps/BattleCafe/scripts.pory"
 	setflag FLAG_DAILY_BATTLE_CAFE_JUNA
-# 780 "data/maps/BattleCafe/scripts.pory"
+# 772 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerMarina_Text_1
-# 782 "data/maps/BattleCafe/scripts.pory"
+# 774 "data/maps/BattleCafe/scripts.pory"
 	trainerbattle_no_intro TRAINER_CAFE_JUNA, BattleCafe_TrainerMarina_Text_2
-# 783 "data/maps/BattleCafe/scripts.pory"
+# 775 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerMarina_Text_3
-# 785 "data/maps/BattleCafe/scripts.pory"
+# 777 "data/maps/BattleCafe/scripts.pory"
+	call BattleCafe_GiveDailyCandyReward
+# 778 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 BattleCafe_TrainerMarina_2:
-# 774 "data/maps/BattleCafe/scripts.pory"
+# 766 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerMarina_Text_0
-# 776 "data/maps/BattleCafe/scripts.pory"
+# 768 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 
-BattleCafe_TrainerAtlas::
-# 790 "data/maps/BattleCafe/scripts.pory"
+BattleCafe_TrainerTylarie::
+# 783 "data/maps/BattleCafe/scripts.pory"
 	lock
-# 791 "data/maps/BattleCafe/scripts.pory"
+# 784 "data/maps/BattleCafe/scripts.pory"
 	faceplayer
+# 786 "data/maps/BattleCafe/scripts.pory"
+	goto_if_set FLAG_DAILY_BATTLE_CAFE_TYLARIE, BattleCafe_TrainerTylarie_2
 # 792 "data/maps/BattleCafe/scripts.pory"
-	dotimebasedevents
+	setflag FLAG_DAILY_BATTLE_CAFE_TYLARIE
 # 793 "data/maps/BattleCafe/scripts.pory"
-	goto_if_set FLAG_DAILY_BATTLE_CAFE_PHAINON, BattleCafe_TrainerAtlas_2
-# 800 "data/maps/BattleCafe/scripts.pory"
-	setflag FLAG_DAILY_BATTLE_CAFE_PHAINON
-# 801 "data/maps/BattleCafe/scripts.pory"
-	msgbox BattleCafe_TrainerAtlas_Text_1
-# 804 "data/maps/BattleCafe/scripts.pory"
-	trainerbattle_no_intro TRAINER_CAFE_PHAINON, BattleCafe_TrainerAtlas_Text_2
-# 805 "data/maps/BattleCafe/scripts.pory"
-	msgbox BattleCafe_TrainerAtlas_Text_3
-# 808 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_TrainerTylarie_Text_1
+# 795 "data/maps/BattleCafe/scripts.pory"
+	trainerbattle_no_intro TRAINER_CAFE_TYLARIE, BattleCafe_TrainerTylarie_Text_2
+# 796 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_TrainerTylarie_Text_3
+# 798 "data/maps/BattleCafe/scripts.pory"
+	call BattleCafe_GiveDailyCandyReward
+# 799 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
-BattleCafe_TrainerAtlas_2:
-# 794 "data/maps/BattleCafe/scripts.pory"
-	msgbox BattleCafe_TrainerAtlas_Text_0
-# 797 "data/maps/BattleCafe/scripts.pory"
+BattleCafe_TrainerTylarie_2:
+# 787 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_TrainerTylarie_Text_0
+# 789 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
-
-
-BattleCafeVip_Athena::
-# 813 "data/maps/BattleCafe/scripts.pory"
-	trainerbattle_single TRAINER_VIP_ATHENA, BattleCafeVip_Athena_Text_0, BattleCafeVip_Athena_Text_1
-# 815 "data/maps/BattleCafe/scripts.pory"
-	msgbox BattleCafeVip_Athena_Text_2, MSGBOX_AUTOCLOSE
-	return
 
 
 BattleCafe_GiveDiancie_Text_0:
-# 34 "data/maps/BattleCafe/scripts.pory"
+# 33 "data/maps/BattleCafe/scripts.pory"
 	.string "Well, look at that. You've beaten\n"
 	.string "every one of my regulars at least\l"
 	.string "once.\p"
 	.string "Seems only right you leave with a\n"
-	.string "rare dining companion: Diancie!$"
+	.string "rare dining companion, Diancie!$"
 
 BattleCafe_GiveDiancie_Text_1:
-# 40 "data/maps/BattleCafe/scripts.pory"
+# 39 "data/maps/BattleCafe/scripts.pory"
 	.string "It'll be waiting right here. Make\n"
 	.string "whatever preparations you need, then\l"
 	.string "come talk to me when you're ready to\l"
@@ -1730,185 +1729,144 @@ BattleCafe_Goodbye_Text_0:
 # 628 "data/maps/BattleCafe/scripts.pory"
 	.string "Come back hungry for another battle!$"
 
-BattleCafe_TrainerAstra_Text_0:
-# 638 "data/maps/BattleCafe/scripts.pory"
-	.string "Ninetales has curled up by\n"
-	.string "the stove.\p"
-	.string "We'll bring the snow again tomorrow!$"
-
-BattleCafe_TrainerAstra_Text_1:
-# 646 "data/maps/BattleCafe/scripts.pory"
-	.string "Ninetales called down the\n"
-	.string "snow! Let's see how well your team\l"
-	.string "handles the cold!$"
-
-BattleCafe_TrainerAstra_Text_2:
-# 649 "data/maps/BattleCafe/scripts.pory"
-	.string "Even Aurora Veil couldn't save me from that!$"
-
-BattleCafe_TrainerAstra_Text_3:
-# 650 "data/maps/BattleCafe/scripts.pory"
-	.string "Your Pokémon never lost their footing\n"
-	.string "in the blizzard. They trust you\l"
-	.string "completely.$"
-
-BattleCafe_TrainerMora_Text_0:
-# 662 "data/maps/BattleCafe/scripts.pory"
-	.string "Farigiraf says time is\n"
-	.string "flowing normally again. Come back\l"
-	.string "tomorrow!$"
-
-BattleCafe_TrainerMora_Text_1:
-# 669 "data/maps/BattleCafe/scripts.pory"
-	.string "Farigiraf, twist the dimensions!\n"
-	.string "Let's make slow Pokémon the stars for\l"
-	.string "once.$"
-
-BattleCafe_TrainerMora_Text_2:
-# 672 "data/maps/BattleCafe/scripts.pory"
-	.string "You're a tricky customer, huh.$"
-
-BattleCafe_TrainerMora_Text_3:
-# 673 "data/maps/BattleCafe/scripts.pory"
-	.string "Ursaluna's never minded moving last,\n"
-	.string "but today you were always a step\l"
-	.string "ahead of it.$"
-
-BattleCafe_TrainerRook_Text_0:
-# 685 "data/maps/BattleCafe/scripts.pory"
-	.string "Meowscarada and Skeledirge\n"
-	.string "are sharing a table. Rematch\l"
-	.string "tomorrow!$"
-
-BattleCafe_TrainerRook_Text_1:
-# 692 "data/maps/BattleCafe/scripts.pory"
-	.string "My team never battles the same\n"
-	.string "way twice. Ready for a few\l"
-	.string "surprises?$"
-
-BattleCafe_TrainerRook_Text_2:
-# 695 "data/maps/BattleCafe/scripts.pory"
-	.string "I got played!$"
-
-BattleCafe_TrainerRook_Text_3:
-# 696 "data/maps/BattleCafe/scripts.pory"
-	.string "Even Sableye's impressed, and it\n"
-	.string "barely takes anything seriously.$"
-
-BattleCafe_TrainerDarius_Text_0:
-# 707 "data/maps/BattleCafe/scripts.pory"
-	.string "Scizor's polishing its\n"
-	.string "pincers. We'll strike again\l"
-	.string "tomorrow!$"
-
-BattleCafe_TrainerDarius_Text_1:
-# 714 "data/maps/BattleCafe/scripts.pory"
-	.string "Rillaboom sets the rhythm,\n"
-	.string "then my whole team strikes. Think\l"
-	.string "you can keep up?$"
-
-BattleCafe_TrainerDarius_Text_2:
-# 717 "data/maps/BattleCafe/scripts.pory"
-	.string "Not even my Kingambit could turn\n"
-	.string "that one around.$"
-
-BattleCafe_TrainerDarius_Text_3:
-# 719 "data/maps/BattleCafe/scripts.pory"
-	.string "Your Pokémon held their ground\n"
-	.string "against every quick attack we threw.\l"
-	.string "Nice work.$"
-
-BattleCafe_TrainerIvy_Text_0:
-# 731 "data/maps/BattleCafe/scripts.pory"
-	.string "Glimmora needs time to grow\n"
-	.string "fresh crystals. Tomorrow!$"
-
-BattleCafe_TrainerIvy_Text_1:
-# 737 "data/maps/BattleCafe/scripts.pory"
-	.string "Glimmora and Samurott have set\n"
-	.string "up quite a welcome for you. Watch\l"
-	.string "your footing.$"
-
-BattleCafe_TrainerIvy_Text_2:
-# 740 "data/maps/BattleCafe/scripts.pory"
-	.string "You cleared every hazard I laid out?!$"
-
-BattleCafe_TrainerIvy_Text_3:
-# 741 "data/maps/BattleCafe/scripts.pory"
-	.string "Gholdengo hates admitting defeat, but\n"
-	.string "even it knows you earned that one.$"
-
-BattleCafe_TrainerIgnis_Text_0:
-# 752 "data/maps/BattleCafe/scripts.pory"
-	.string "Charizard's warming\n"
-	.string "itself by the ovens. We'll blaze\l"
+BattleCafe_TrainerAthena_Text_0:
+# 645 "data/maps/BattleCafe/scripts.pory"
+	.string "Did you have fun? Let's try this\n"
 	.string "again tomorrow!$"
 
-BattleCafe_TrainerIgnis_Text_1:
-# 759 "data/maps/BattleCafe/scripts.pory"
-	.string "Ninetales brought the sun,\n"
-	.string "and Charizard brought the heat.\l"
-	.string "Let's battle!$"
+BattleCafe_TrainerAthena_Text_1:
+# 651 "data/maps/BattleCafe/scripts.pory"
+	.string "Let's see if you can survive this\n"
+	.string "stall!$"
 
-BattleCafe_TrainerIgnis_Text_2:
-# 762 "data/maps/BattleCafe/scripts.pory"
-	.string "You outlasted my whole team.$"
+BattleCafe_TrainerAthena_Text_2:
+# 653 "data/maps/BattleCafe/scripts.pory"
+	.string "Huh?$"
 
-BattleCafe_TrainerIgnis_Text_3:
-# 763 "data/maps/BattleCafe/scripts.pory"
-	.string "Venusaur thrives in sunlight, but\n"
-	.string "your Pokémon shone brighter today.$"
+BattleCafe_TrainerAthena_Text_3:
+# 654 "data/maps/BattleCafe/scripts.pory"
+	.string "Did you have fun?$"
+
+BattleCafe_TrainerDoves_Text_0:
+# 665 "data/maps/BattleCafe/scripts.pory"
+	.string "Doves: Let's fight again tomorrow when \n"
+	.string "my Genesect is allowed on the \l"
+	.string "battlefield.$"
+
+BattleCafe_TrainerDoves_Text_1:
+# 672 "data/maps/BattleCafe/scripts.pory"
+	.string "Doves: Let me show you the power of \n"
+	.string "Genesect!$"
+
+BattleCafe_TrainerDoves_Text_2:
+# 674 "data/maps/BattleCafe/scripts.pory"
+	.string "Banned again from Overused...$"
+
+BattleCafe_TrainerDoves_Text_3:
+# 675 "data/maps/BattleCafe/scripts.pory"
+	.string "Doves: Let's fight again tomorrow when\n"
+	.string "my Genesect is allowed on the \l"
+	.string "battlefield.$"
+
+BattleCafe_TrainerElton_Text_0:
+# 688 "data/maps/BattleCafe/scripts.pory"
+	.string "Elton: Rematch tomorrow! Be there!$"
+
+BattleCafe_TrainerElton_Text_1:
+# 693 "data/maps/BattleCafe/scripts.pory"
+	.string "Elton: Let's have a battle with our\n"
+	.string "favourite Pokémon!$"
+
+BattleCafe_TrainerElton_Text_2:
+# 695 "data/maps/BattleCafe/scripts.pory"
+	.string "You handled every trick I had!$"
+
+BattleCafe_TrainerElton_Text_3:
+# 696 "data/maps/BattleCafe/scripts.pory"
+	.string "Elton: Even Gengar's impressed, and it\n"
+	.string "rarely takes a loss seriously.$"
+
+BattleCafe_TrainerNem_Text_0:
+# 708 "data/maps/BattleCafe/scripts.pory"
+	.string "Nem: Come back tomorrow.$"
+
+BattleCafe_TrainerNem_Text_1:
+# 713 "data/maps/BattleCafe/scripts.pory"
+	.string "Nem: Think fast!$"
+
+BattleCafe_TrainerNem_Text_2:
+# 714 "data/maps/BattleCafe/scripts.pory"
+	.string "I'll be watching.$"
+
+BattleCafe_TrainerNem_Text_3:
+# 715 "data/maps/BattleCafe/scripts.pory"
+	.string "Nem: We can fight again tomorrow.$"
+
+BattleCafe_TrainerBai_Text_0:
+# 726 "data/maps/BattleCafe/scripts.pory"
+	.string "Bai: That was a good match!\n"
+	.string "Let's fight again tomorrow!$"
+
+BattleCafe_TrainerBai_Text_1:
+# 732 "data/maps/BattleCafe/scripts.pory"
+	.string "Bai: Money money money, Ready?$"
+
+BattleCafe_TrainerBai_Text_2:
+# 733 "data/maps/BattleCafe/scripts.pory"
+	.string "No money...$"
+
+BattleCafe_TrainerBai_Text_3:
+# 734 "data/maps/BattleCafe/scripts.pory"
+	.string "Bai: Good match! Let's try this again \n"
+	.string "tomorrow!$"
+
+BattleCafe_TrainerDrac_Text_0:
+# 746 "data/maps/BattleCafe/scripts.pory"
+	.string "Drac: You're really tough! Let's fight\n"
+	.string "again tomorrow!$"
+
+BattleCafe_TrainerDrac_Text_1:
+# 752 "data/maps/BattleCafe/scripts.pory"
+	.string "Drac: Care for a double battle?$"
+
+BattleCafe_TrainerDrac_Text_2:
+# 753 "data/maps/BattleCafe/scripts.pory"
+	.string "Soothed.$"
 
 BattleCafe_TrainerMarina_Text_0:
-# 774 "data/maps/BattleCafe/scripts.pory"
+# 766 "data/maps/BattleCafe/scripts.pory"
 	.string "Pelipper says the rain has\n"
 	.string "passed for today. Tomorrow!$"
 
 BattleCafe_TrainerMarina_Text_1:
-# 780 "data/maps/BattleCafe/scripts.pory"
+# 772 "data/maps/BattleCafe/scripts.pory"
 	.string "Pelipper, call in the rain!\n"
 	.string "Let's make some waves.$"
 
 BattleCafe_TrainerMarina_Text_2:
-# 782 "data/maps/BattleCafe/scripts.pory"
+# 774 "data/maps/BattleCafe/scripts.pory"
 	.string "You weathered the whole storm.$"
 
 BattleCafe_TrainerMarina_Text_3:
-# 783 "data/maps/BattleCafe/scripts.pory"
+# 775 "data/maps/BattleCafe/scripts.pory"
 	.string "Even Swampert couldn't stop you once\n"
 	.string "you found your rhythm.$"
 
-BattleCafe_TrainerAtlas_Text_0:
-# 794 "data/maps/BattleCafe/scripts.pory"
-	.string "Tyranitar has settled\n"
-	.string "down for lunch. The sandstorm\l"
-	.string "returns tomorrow!$"
+BattleCafe_TrainerTylarie_Text_0:
+# 787 "data/maps/BattleCafe/scripts.pory"
+	.string "Steelix has settled down for\n"
+	.string "lunch. We'll be ready tomorrow!$"
 
-BattleCafe_TrainerAtlas_Text_1:
-# 801 "data/maps/BattleCafe/scripts.pory"
-	.string "Tyranitar, whip up a\n"
-	.string "sandstorm! Let's see how sturdy your\l"
-	.string "team really is.$"
+BattleCafe_TrainerTylarie_Text_1:
+# 793 "data/maps/BattleCafe/scripts.pory"
+	.string "Tylarie: Let me show you how sturdy my\n"
+	.string "team is!$"
 
-BattleCafe_TrainerAtlas_Text_2:
-# 804 "data/maps/BattleCafe/scripts.pory"
-	.string "You stood firm right to the end.$"
+BattleCafe_TrainerTylarie_Text_2:
+# 795 "data/maps/BattleCafe/scripts.pory"
+	.string "Ouch.$"
 
-BattleCafe_TrainerAtlas_Text_3:
-# 805 "data/maps/BattleCafe/scripts.pory"
-	.string "Excadrill loves a sandstorm, but your\n"
-	.string "Pokémon looked right at home in it\l"
-	.string "too.$"
-
-BattleCafeVip_Athena_Text_0:
-# 813 "data/maps/BattleCafe/scripts.pory"
-	.string "Let's see if you can survive this\n"
-	.string "stall!$"
-
-BattleCafeVip_Athena_Text_1:
-# 814 "data/maps/BattleCafe/scripts.pory"
-	.string "Huh?$"
-
-BattleCafeVip_Athena_Text_2:
-# 815 "data/maps/BattleCafe/scripts.pory"
-	.string "Did you have fun?$"
+BattleCafe_TrainerTylarie_Text_3:
+# 796 "data/maps/BattleCafe/scripts.pory"
+	.string "Tylarie: Not bad. We can go at it again\n"
+	.string "another day.$"

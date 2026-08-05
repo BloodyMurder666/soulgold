@@ -249,7 +249,6 @@ Route14_EventScript_Pidgeotto::
 	removeitem VAR_ITEM_ID, 1
 	goto_if_ne VAR_ITEM_ID, ITEM_QUALOT_BERRY, Route14_EventScript_PidgeottoDislikedBerry
 	msgbox Route14_Text_PidgeottoAteBerry, MSGBOX_DEFAULT
-	giveitem ITEM_TM_AERIAL_ACE
 	setflag FLAG_GOT_ROUTE_14_AERIAL_ACE
 Route14_EventScript_PidgeottoBlowPlayer::
 	closemessage

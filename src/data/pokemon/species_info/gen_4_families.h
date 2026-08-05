@@ -6979,7 +6979,6 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .levelUpLearnset = sDialgaLevelUpLearnset,
         .teachableLearnset = sDialgaTeachableLearnset,
         .formSpeciesIdTable = sDialgaFormSpeciesIdTable,
-        .formChangeTable = sDialgaPrimalFormChangeTable,
     },
 #endif //P_FAMILY_DIALGA
 

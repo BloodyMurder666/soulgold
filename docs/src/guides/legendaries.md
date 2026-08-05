@@ -9,6 +9,7 @@ order: 3
 - Zapdos: Olivine Lighthouse top, after 8th badge
 - Articuno: Snowtop Mountain (Rock climb required)
 - Moltres: Victory Road
+- Galarian Zapdos/Moltres/Articuno: Battle Cafe on route 50, purchased for 5 points per bird.
 - Mewtwo: Nameless Dungeon in Kitakami Border, after Elite Four, requires rock climb
 - Mew: After obtaining 8 badges. Visit Olivine City's port to find Blaine. Fight him to unlock access to Faraway Island where Mew can be found.
 - Raikou: Roaming after Burned Tower event
@@ -45,6 +46,8 @@ Bring Kommo-o to the wall.
 [/spoiler]
 - Latias: Vajra Desert East Temple in postgame 
 - Latios: Vajra Desert East Temple in postgame
+- Kyogre: After completing Darkrai event, Rival will give you Dive HM. Surf down from Route 33 and take the first left turn, you'll find a dive spot here with Kyogre.
+- Groudon: After completing Darkrai event, Rival will give you Dive HM. There's a dive spot on route 50 with a small cave containing Groudon.
 - Rayquaza: Defeat Steven after becoming Champion (Kitakami house), then go to Embedded Tower
 - Jirachi: Finish rival story in Mt. Silver
 - Regigigas: Bring all three Regis to Mt Silver backroom
@@ -52,6 +55,7 @@ Bring Kommo-o to the wall.
 - Uxie: Route 30 Rock Climb spot near the Berry man house.
 - Mesprit: Route 47 Rock Climb spot near the last bridge before Route 48.
 - Azelf: Mahogany Town Rock Climb spot.
+- Dialga/Palkia/Giratina: After obtaining Hoopa and solving all 8 puzzles of the Ruins of Alph. Go to the secret room that held Celebi, and with Hoopa in party interact with the back wall. Here you will find portals to fight against the three legendaries.
 
 [spoiler=Heatran puzzle solution]
 Select the lower line and the middle top.
@@ -74,7 +78,9 @@ Select the lower line and the middle top.
 - Virizion: Route 50
 - Cobalion: Railway Cave Route 33 side exit after becoming a champion
 - Terrakion: Dark Cave North after becoming a champion
+- Landorus, Thundurus, Tornadus, Enamorus: Battle Cafe, bought for 5 points per force. First purchase grants Reveal Glass.
 - Magerna: After becoming champion, enter Rocket Arcade and speak with the burglar. Win 25 rounds of Arcade and speak with him again. He will give you a key to Goldenrod Apartment top floor. Prepare for a fight.
+- Diancie: Defeat all Battle Cafe regulars once, then claim the Pokémon from cafe owner.
 - Original Color Magerna: obtain 100 trophies
 - Marshadow: After 8th badge, return to Elder Li in the sprout tower. Prepare for a battle. Then explore Sprout tower basement.
 - Poipole: Obtain 45 trophies

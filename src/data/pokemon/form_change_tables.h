@@ -446,13 +446,6 @@ static const struct FormChange sTyranitarFormChangeTable[] =
 };
 #endif //P_FAMILY_LARVITAR
 
-#if P_FAMILY_LUGIA
-static const struct FormChange sLugiaFormChangeTable[] =
-{
-    {FORM_CHANGE_TERMINATOR},
-};
-#endif //P_FAMILY_LUGIA
-
 #if P_FAMILY_TREECKO
 static const struct FormChange sSceptileFormChangeTable[] =
 {
@@ -937,13 +930,6 @@ static const struct FormChange sDialgaFormChangeTable[] =
 {
     {FORM_CHANGE_ITEM_HOLD, SPECIES_DIALGA, ITEM_NONE},
     {FORM_CHANGE_ITEM_HOLD, SPECIES_DIALGA_ORIGIN, ITEM_ADAMANT_CRYSTAL},
-    {FORM_CHANGE_NICKNAME, SPECIES_DIALGA_PRIMAL, FORM_CHANGE_NICKNAME_PRIMAL, FORM_CHANGE_NICKNAME_EQUALS},
-    {FORM_CHANGE_TERMINATOR},
-};
-
-static const struct FormChange sDialgaPrimalFormChangeTable[] =
-{
-    {FORM_CHANGE_NICKNAME, SPECIES_DIALGA, FORM_CHANGE_NICKNAME_PRIMAL, FORM_CHANGE_NICKNAME_NOT_EQUALS},
     {FORM_CHANGE_TERMINATOR},
 };
 #endif //P_FAMILY_DIALGA

@@ -1,17 +1,21 @@
 Update notes:
 4.8.2026
-- Final part of the rival legendary quest is added, after obtaining Darkrai, rival will offer HM Dive to lead to the final two legendaries.
 - New mini facility: Battle Cafe. Located on Route 50, this features four daily challenges of varying difficulty. Diancie, forces of the nature and the Galarian birds can be obtained here, atleast for now.
+- Final part of the rival legendary quest is added, after obtaining Darkrai, rival will offer HM Dive to lead to the final two legendaries.
+- New mini location: Spear Pillar. After obtaining Hoopa and solving all 8 puzzles in Ruins of Alph, interact with the back wall in the secret room of the ruins with Hoopa in party to be teleported there.
+- Added 1 secret legendary to Spear Pillar. Hint: What three Pokémon were present in Special Episode 5 of a certain Pokémon spinoff? 
 - New way to replay: Chaos mode. Activating an artifact of chaos behind the starter case table in Elm's lab allows activating all innates from the start. WARNING: This is not balanced in any way and not the intended way to play. Expect a very unbalanced and untested experience.
 - QoL: Roamer tracker mode: After Burned Tower event, players can press R button in region map view to toggle between regular map and roamer tracker modes. When roamer is on the same route as the player, the roamer icon and the player icon will blink. 
 - QoL: New vitamin, Zeromin. Resets all EVs to 0. Sold in Goldenrod Dept. store.
-- Added over 50 new tutor moves based on later gens Technical Records.
 - Oak can be found in Radio Tower 2F to give player their Pokédex Rating.
+- Added over 50 new tutor moves based on later gens Technical Records.
+- Meowth line learns Thief at level 18, Butterfree learns Covet at 22.
 - Lugia and Ho-Oh are now bosses.
 - Some new achievements have been added for newly added legendaries.
 - Synchronize uses Gen 8 effect.
 - Route 50 has a Fly point after entering Battle Cafe.
 - Nerf last title defense achievement from 15 -> 10 defenses.
+- Fixed TM Torment and Aerial Ace being unobtainable.
 - Fixed Meteor Assault crashing the game in doubles due to lack of sprite slots.
 - Fixed Rocket Arcade payout looping back to 4k on 8th round.
 - Fixed Archer's face showing up in the whirlpool if you didn't have the HM.

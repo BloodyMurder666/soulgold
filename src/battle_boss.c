@@ -167,12 +167,12 @@ static const struct BossPhase sDialgaBossPhases[] =
         .moves = {MOVE_DRACO_METEOR, MOVE_FLASH_CANNON, MOVE_AURA_SPHERE, MOVE_THUNDER},
     },
     {
-        .species = SPECIES_DIALGA,
-        .moves = {MOVE_ROAR_OF_TIME, MOVE_FLASH_CANNON, MOVE_EARTH_POWER, MOVE_POWER_GEM},
+        .species = SPECIES_DIALGA_ORIGIN,
+        .moves = {MOVE_DRACO_METEOR, MOVE_FLASH_CANNON, MOVE_AURA_SPHERE, MOVE_THUNDER},
     },
     {
-        .species = SPECIES_DIALGA_ORIGIN,
-        .moves = {MOVE_DRACO_METEOR, MOVE_FLASH_CANNON, MOVE_EARTH_POWER, MOVE_THUNDER},
+        .species = SPECIES_DIALGA,
+        .moves = {MOVE_ROAR_OF_TIME, MOVE_FLASH_CANNON, MOVE_EARTH_POWER, MOVE_POWER_GEM},
     },
 };
 
@@ -196,12 +196,12 @@ static const struct BossPhase sPalkiaBossPhases[] =
         .moves = {MOVE_SPACIAL_REND, MOVE_SURF, MOVE_EARTH_POWER, MOVE_THUNDER},
     },
     {
-        .species = SPECIES_PALKIA,
-        .moves = {MOVE_DRACO_METEOR, MOVE_HYDRO_PUMP, MOVE_AURA_SPHERE, MOVE_POWER_GEM},
-    },
-    {
         .species = SPECIES_PALKIA_ORIGIN,
         .moves = {MOVE_SPACIAL_REND, MOVE_SURF, MOVE_EARTH_POWER, MOVE_THUNDER},
+    },
+    {
+        .species = SPECIES_PALKIA,
+        .moves = {MOVE_DRACO_METEOR, MOVE_HYDRO_PUMP, MOVE_AURA_SPHERE, MOVE_POWER_GEM},
     },
 };
 
@@ -225,12 +225,12 @@ static const struct BossPhase sGiratinaBossPhases[] =
         .moves = {MOVE_SHADOW_BALL, MOVE_DRACO_METEOR, MOVE_AURA_SPHERE, MOVE_CALM_MIND},
     },
     {
-        .species = SPECIES_GIRATINA,
-        .moves = {MOVE_SHADOW_FORCE, MOVE_DRAGON_CLAW, MOVE_EARTHQUAKE, MOVE_WILL_O_WISP},
-    },
-    {
         .species = SPECIES_GIRATINA_ORIGIN,
         .moves = {MOVE_SHADOW_BALL, MOVE_DRACO_METEOR, MOVE_AURA_SPHERE, MOVE_CALM_MIND},
+    },
+    {
+        .species = SPECIES_GIRATINA,
+        .moves = {MOVE_SHADOW_FORCE, MOVE_DRAGON_CLAW, MOVE_EARTHQUAKE, MOVE_WILL_O_WISP},
     },
 };
 

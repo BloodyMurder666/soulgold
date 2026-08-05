@@ -93,336 +93,334 @@ Route31_EventScript_SleepyMan_GiveKenya::
 # 47 "data/maps/Route31/scripts.pory"
 	msgbox Route31_Text_ReadingMail, MSGBOX_DEFAULT
 # 48 "data/maps/Route31/scripts.pory"
-	giveitem ITEM_TM_TORMENT
-# 49 "data/maps/Route31/scripts.pory"
 	msgbox Route31_Text_DescribeNightmare, MSGBOX_DEFAULT
-# 50 "data/maps/Route31/scripts.pory"
+# 49 "data/maps/Route31/scripts.pory"
 	closemessage
-# 51 "data/maps/Route31/scripts.pory"
+# 50 "data/maps/Route31/scripts.pory"
 	setvar VAR_KENYA, 2
+# 51 "data/maps/Route31/scripts.pory"
+	release
 # 52 "data/maps/Route31/scripts.pory"
-	release
+	end
 # 53 "data/maps/Route31/scripts.pory"
-	end
-# 54 "data/maps/Route31/scripts.pory"
 
-# 55 "data/maps/Route31/scripts.pory"
+# 54 "data/maps/Route31/scripts.pory"
 Route31_EventScript_SleepyMan_Fail::
-# 56 "data/maps/Route31/scripts.pory"
+# 55 "data/maps/Route31/scripts.pory"
 	msgbox Route31_Text_SleepyManFail, MSGBOX_DEFAULT
-# 57 "data/maps/Route31/scripts.pory"
+# 56 "data/maps/Route31/scripts.pory"
 	release
-# 58 "data/maps/Route31/scripts.pory"
+# 57 "data/maps/Route31/scripts.pory"
 	end
+# 58 "data/maps/Route31/scripts.pory"
+
 # 59 "data/maps/Route31/scripts.pory"
 
 # 60 "data/maps/Route31/scripts.pory"
-
-# 61 "data/maps/Route31/scripts.pory"
 Route31_EventScript_Boy::
+# 61 "data/maps/Route31/scripts.pory"
+	lock
 # 62 "data/maps/Route31/scripts.pory"
-	lock
-# 63 "data/maps/Route31/scripts.pory"
 	faceplayer
-# 64 "data/maps/Route31/scripts.pory"
+# 63 "data/maps/Route31/scripts.pory"
 	msgbox Route31_Text_Youngster, MSGBOX_DEFAULT
+# 64 "data/maps/Route31/scripts.pory"
+	closemessage
 # 65 "data/maps/Route31/scripts.pory"
-	closemessage
+	release
 # 66 "data/maps/Route31/scripts.pory"
-	release
+	end
 # 67 "data/maps/Route31/scripts.pory"
-	end
+
 # 68 "data/maps/Route31/scripts.pory"
-
-# 69 "data/maps/Route31/scripts.pory"
 Route31_EventScript_DarkCaveSign::
+# 69 "data/maps/Route31/scripts.pory"
+	lock
 # 70 "data/maps/Route31/scripts.pory"
-	lock
-# 71 "data/maps/Route31/scripts.pory"
 	msgbox Route31_Text_DarkCaveSign, MSGBOX_SIGN
+# 71 "data/maps/Route31/scripts.pory"
+	closemessage
 # 72 "data/maps/Route31/scripts.pory"
-	closemessage
+	release
 # 73 "data/maps/Route31/scripts.pory"
-	release
+	end
 # 74 "data/maps/Route31/scripts.pory"
-	end
+
 # 75 "data/maps/Route31/scripts.pory"
-
-# 76 "data/maps/Route31/scripts.pory"
 Route31_EventScript_Sign::
-# 77 "data/maps/Route31/scripts.pory"
+# 76 "data/maps/Route31/scripts.pory"
 	lock
-# 78 "data/maps/Route31/scripts.pory"
+# 77 "data/maps/Route31/scripts.pory"
 	msgbox Route31_Text_Sign, MSGBOX_SIGN
-# 79 "data/maps/Route31/scripts.pory"
+# 78 "data/maps/Route31/scripts.pory"
 	closemessage
-# 80 "data/maps/Route31/scripts.pory"
+# 79 "data/maps/Route31/scripts.pory"
 	release
+# 80 "data/maps/Route31/scripts.pory"
+	end
 # 81 "data/maps/Route31/scripts.pory"
-	end
+
 # 82 "data/maps/Route31/scripts.pory"
-
-# 83 "data/maps/Route31/scripts.pory"
 Route31_EventScript_ItemPokeBall::
-# 84 "data/maps/Route31/scripts.pory"
+# 83 "data/maps/Route31/scripts.pory"
 	finditem ITEM_POKE_BALL
+# 84 "data/maps/Route31/scripts.pory"
+	end
 # 85 "data/maps/Route31/scripts.pory"
-	end
+
 # 86 "data/maps/Route31/scripts.pory"
-
-# 87 "data/maps/Route31/scripts.pory"
 Route31_EventScript_ItemAntidote::
-# 88 "data/maps/Route31/scripts.pory"
+# 87 "data/maps/Route31/scripts.pory"
 	finditem ITEM_ANTIDOTE
-# 89 "data/maps/Route31/scripts.pory"
+# 88 "data/maps/Route31/scripts.pory"
 	end
+# 89 "data/maps/Route31/scripts.pory"
+
 # 90 "data/maps/Route31/scripts.pory"
-
-# 91 "data/maps/Route31/scripts.pory"
 Route31_Text_CooltrainerM:
-# 92 "data/maps/Route31/scripts.pory"
+# 91 "data/maps/Route31/scripts.pory"
 	.string "Dark Cave…\p"
-# 93 "data/maps/Route31/scripts.pory"
+# 92 "data/maps/Route31/scripts.pory"
 	.string "If Pokémon could light it up,\n"
-# 94 "data/maps/Route31/scripts.pory"
+# 93 "data/maps/Route31/scripts.pory"
 	.string "I'd explore it.$"
+# 94 "data/maps/Route31/scripts.pory"
+
 # 95 "data/maps/Route31/scripts.pory"
-
-# 96 "data/maps/Route31/scripts.pory"
 Route31_Text_BugCatcherWade1_Seen:
-# 97 "data/maps/Route31/scripts.pory"
+# 96 "data/maps/Route31/scripts.pory"
 	.string "I caught a bunch of Pokémon.\n"
-# 98 "data/maps/Route31/scripts.pory"
+# 97 "data/maps/Route31/scripts.pory"
 	.string "Let me battle with you!$"
+# 98 "data/maps/Route31/scripts.pory"
+
 # 99 "data/maps/Route31/scripts.pory"
-
-# 100 "data/maps/Route31/scripts.pory"
 Route31_Text_BugCatcherWade1_Beaten:
-# 101 "data/maps/Route31/scripts.pory"
+# 100 "data/maps/Route31/scripts.pory"
 	.string "Awwwww…$"
+# 101 "data/maps/Route31/scripts.pory"
+
 # 102 "data/maps/Route31/scripts.pory"
-
-# 103 "data/maps/Route31/scripts.pory"
 Route31_Text_BugCatcherWade1_After:
-# 104 "data/maps/Route31/scripts.pory"
+# 103 "data/maps/Route31/scripts.pory"
 	.string "You can catch Pokémon even if\n"
-# 105 "data/maps/Route31/scripts.pory"
+# 104 "data/maps/Route31/scripts.pory"
 	.string "you have six with you.\p"
-# 106 "data/maps/Route31/scripts.pory"
+# 105 "data/maps/Route31/scripts.pory"
 	.string "If you catch one, it'll go to\n"
-# 107 "data/maps/Route31/scripts.pory"
+# 106 "data/maps/Route31/scripts.pory"
 	.string "your Box automatically.$"
+# 107 "data/maps/Route31/scripts.pory"
+
 # 108 "data/maps/Route31/scripts.pory"
-
-# 109 "data/maps/Route31/scripts.pory"
 Route31_Text_SleepyMan:
-# 110 "data/maps/Route31/scripts.pory"
+# 109 "data/maps/Route31/scripts.pory"
 	.string "… Hnuurg… Huh?\p"
-# 111 "data/maps/Route31/scripts.pory"
+# 110 "data/maps/Route31/scripts.pory"
 	.string "I walked too far today looking\n"
-# 112 "data/maps/Route31/scripts.pory"
+# 111 "data/maps/Route31/scripts.pory"
 	.string "for Pokémon.\p"
-# 113 "data/maps/Route31/scripts.pory"
+# 112 "data/maps/Route31/scripts.pory"
 	.string "My feet hurt and I'm sleepy…\p"
-# 114 "data/maps/Route31/scripts.pory"
+# 113 "data/maps/Route31/scripts.pory"
 	.string "If I were a wild Pokémon, I'd\n"
-# 115 "data/maps/Route31/scripts.pory"
+# 114 "data/maps/Route31/scripts.pory"
 	.string "be easy to catch…\p"
+# 115 "data/maps/Route31/scripts.pory"
+	.string "…Zzzz…$"
 # 116 "data/maps/Route31/scripts.pory"
-	.string "…Zzzz…$"
+
 # 117 "data/maps/Route31/scripts.pory"
-
-# 118 "data/maps/Route31/scripts.pory"
 Route31_Text_SleepyManGotMail:
-# 119 "data/maps/Route31/scripts.pory"
+# 118 "data/maps/Route31/scripts.pory"
 	.string "…Zzzz… Huh?\p"
-# 120 "data/maps/Route31/scripts.pory"
+# 119 "data/maps/Route31/scripts.pory"
 	.string "What's that? You have Mail\n"
-# 121 "data/maps/Route31/scripts.pory"
+# 120 "data/maps/Route31/scripts.pory"
 	.string "for me?$"
+# 121 "data/maps/Route31/scripts.pory"
+
 # 122 "data/maps/Route31/scripts.pory"
-
-# 123 "data/maps/Route31/scripts.pory"
 Route31_Text_SleepyManFail:
-# 124 "data/maps/Route31/scripts.pory"
+# 123 "data/maps/Route31/scripts.pory"
 	.string "…Zzzz…$"
+# 124 "data/maps/Route31/scripts.pory"
+
 # 125 "data/maps/Route31/scripts.pory"
-
-# 126 "data/maps/Route31/scripts.pory"
 Route31_Text_HandOverMailMon:
-# 127 "data/maps/Route31/scripts.pory"
+# 126 "data/maps/Route31/scripts.pory"
 	.string "{PLAYER} handed over the\n"
-# 128 "data/maps/Route31/scripts.pory"
+# 127 "data/maps/Route31/scripts.pory"
 	.string "Pokémon holding the Mail.$"
+# 128 "data/maps/Route31/scripts.pory"
+
 # 129 "data/maps/Route31/scripts.pory"
-
-# 130 "data/maps/Route31/scripts.pory"
 Route31_Text_ReadingMail:
-# 131 "data/maps/Route31/scripts.pory"
+# 130 "data/maps/Route31/scripts.pory"
 	.string "Let's see…\p"
-# 132 "data/maps/Route31/scripts.pory"
+# 131 "data/maps/Route31/scripts.pory"
 	.string "Thanks for bringing this to\n"
-# 133 "data/maps/Route31/scripts.pory"
+# 132 "data/maps/Route31/scripts.pory"
 	.string "me.\p"
-# 134 "data/maps/Route31/scripts.pory"
+# 133 "data/maps/Route31/scripts.pory"
 	.string "My friend's a good guy, and\n"
-# 135 "data/maps/Route31/scripts.pory"
+# 134 "data/maps/Route31/scripts.pory"
 	.string "you're swell too!\p"
-# 136 "data/maps/Route31/scripts.pory"
+# 135 "data/maps/Route31/scripts.pory"
 	.string "I'd like to do something good\n"
-# 137 "data/maps/Route31/scripts.pory"
+# 136 "data/maps/Route31/scripts.pory"
 	.string "in return too!\p"
-# 138 "data/maps/Route31/scripts.pory"
+# 137 "data/maps/Route31/scripts.pory"
 	.string "I know! I want you to have\n"
-# 139 "data/maps/Route31/scripts.pory"
+# 138 "data/maps/Route31/scripts.pory"
 	.string "this!$"
+# 139 "data/maps/Route31/scripts.pory"
+
 # 140 "data/maps/Route31/scripts.pory"
-
-# 141 "data/maps/Route31/scripts.pory"
 Route31_Text_DescribeNightmare:
-# 142 "data/maps/Route31/scripts.pory"
+# 141 "data/maps/Route31/scripts.pory"
 	.string "That TM contains Torment.\p"
-# 143 "data/maps/Route31/scripts.pory"
+# 142 "data/maps/Route31/scripts.pory"
 	.string "It's a wicked move that\n"
-# 144 "data/maps/Route31/scripts.pory"
+# 143 "data/maps/Route31/scripts.pory"
 	.string "makes the enemy super nervous and\l"
-# 145 "data/maps/Route31/scripts.pory"
+# 144 "data/maps/Route31/scripts.pory"
 	.string "stops them from using the same\p"
-# 146 "data/maps/Route31/scripts.pory"
+# 145 "data/maps/Route31/scripts.pory"
 	.string "move multiple times in a row.$"
+# 146 "data/maps/Route31/scripts.pory"
+
 # 147 "data/maps/Route31/scripts.pory"
-
-# 148 "data/maps/Route31/scripts.pory"
 Route31_Text_WrongMail:
-# 149 "data/maps/Route31/scripts.pory"
+# 148 "data/maps/Route31/scripts.pory"
 	.string "This Mail isn't for me.$"
+# 149 "data/maps/Route31/scripts.pory"
+
 # 150 "data/maps/Route31/scripts.pory"
-
-# 151 "data/maps/Route31/scripts.pory"
 Route31_Text_MissingMail:
-# 152 "data/maps/Route31/scripts.pory"
+# 151 "data/maps/Route31/scripts.pory"
 	.string "Why is this Pokémon so special?\p"
-# 153 "data/maps/Route31/scripts.pory"
+# 152 "data/maps/Route31/scripts.pory"
 	.string "It doesn't have any Mail.$"
+# 153 "data/maps/Route31/scripts.pory"
+
 # 154 "data/maps/Route31/scripts.pory"
-
-# 155 "data/maps/Route31/scripts.pory"
 Route31_Text_DeclinedToHandOverMail:
-# 156 "data/maps/Route31/scripts.pory"
+# 155 "data/maps/Route31/scripts.pory"
 	.string "What? You don't want\n"
-# 157 "data/maps/Route31/scripts.pory"
+# 156 "data/maps/Route31/scripts.pory"
 	.string "anything?$"
+# 157 "data/maps/Route31/scripts.pory"
+
 # 158 "data/maps/Route31/scripts.pory"
-
-# 159 "data/maps/Route31/scripts.pory"
 Route31_Text_CantTakeLastMon:
-# 160 "data/maps/Route31/scripts.pory"
+# 159 "data/maps/Route31/scripts.pory"
 	.string "If I take that Pokémon from\n"
-# 161 "data/maps/Route31/scripts.pory"
+# 160 "data/maps/Route31/scripts.pory"
 	.string "you,\p"
-# 162 "data/maps/Route31/scripts.pory"
+# 161 "data/maps/Route31/scripts.pory"
 	.string "what are you going to use in\n"
-# 163 "data/maps/Route31/scripts.pory"
+# 162 "data/maps/Route31/scripts.pory"
 	.string "battle?$"
+# 163 "data/maps/Route31/scripts.pory"
+
 # 164 "data/maps/Route31/scripts.pory"
-
-# 165 "data/maps/Route31/scripts.pory"
 Route31_Text_Youngster:
-# 166 "data/maps/Route31/scripts.pory"
+# 165 "data/maps/Route31/scripts.pory"
 	.string "I found a good Pokémon in Dark\n"
-# 167 "data/maps/Route31/scripts.pory"
+# 166 "data/maps/Route31/scripts.pory"
 	.string "Cave.\p"
-# 168 "data/maps/Route31/scripts.pory"
+# 167 "data/maps/Route31/scripts.pory"
 	.string "I'm going to raise it to take\n"
-# 169 "data/maps/Route31/scripts.pory"
+# 168 "data/maps/Route31/scripts.pory"
 	.string "on Falkner.\p"
-# 170 "data/maps/Route31/scripts.pory"
+# 169 "data/maps/Route31/scripts.pory"
 	.string "He's the leader of Violet\n"
-# 171 "data/maps/Route31/scripts.pory"
+# 170 "data/maps/Route31/scripts.pory"
 	.string "City's Gym.$"
+# 171 "data/maps/Route31/scripts.pory"
+
 # 172 "data/maps/Route31/scripts.pory"
-
-# 173 "data/maps/Route31/scripts.pory"
 Route31_Text_Sign:
-# 174 "data/maps/Route31/scripts.pory"
+# 173 "data/maps/Route31/scripts.pory"
 	.string "Route 31\p"
-# 175 "data/maps/Route31/scripts.pory"
+# 174 "data/maps/Route31/scripts.pory"
 	.string "Violet City - Cherrygrove City$"
-# 176 "data/maps/Route31/scripts.pory"
+# 175 "data/maps/Route31/scripts.pory"
 
-# 177 "data/maps/Route31/scripts.pory"
+# 176 "data/maps/Route31/scripts.pory"
 Route31_Text_DarkCaveSign:
-# 178 "data/maps/Route31/scripts.pory"
+# 177 "data/maps/Route31/scripts.pory"
 	.string "Dark Cave$"
 
 Route31_Expert::
-# 182 "data/maps/Route31/scripts.pory"
+# 181 "data/maps/Route31/scripts.pory"
 	lock
-# 183 "data/maps/Route31/scripts.pory"
+# 182 "data/maps/Route31/scripts.pory"
 	faceplayer
-# 184 "data/maps/Route31/scripts.pory"
+# 183 "data/maps/Route31/scripts.pory"
 	goto_if_set FLAG_ROUTE31_EXPERT, Route31_Expert_2
-# 200 "data/maps/Route31/scripts.pory"
+# 199 "data/maps/Route31/scripts.pory"
 	msgbox Route31_Expert_Text_1
-# 208 "data/maps/Route31/scripts.pory"
+# 207 "data/maps/Route31/scripts.pory"
 	checktrainerflag TRAINER_WADE
 	goto_if 1, Route31_Expert_7
 Route31_Expert_4:
-# 236 "data/maps/Route31/scripts.pory"
+# 235 "data/maps/Route31/scripts.pory"
 	release
 	end
 
 Route31_Expert_2:
-# 185 "data/maps/Route31/scripts.pory"
+# 184 "data/maps/Route31/scripts.pory"
 	msgbox Route31_Expert_Text_0
-# 197 "data/maps/Route31/scripts.pory"
+# 196 "data/maps/Route31/scripts.pory"
 	release
 	end
 
 Route31_Expert_5:
-# 209 "data/maps/Route31/scripts.pory"
+# 208 "data/maps/Route31/scripts.pory"
 	msgbox Route31_Expert_Text_2
-# 213 "data/maps/Route31/scripts.pory"
+# 212 "data/maps/Route31/scripts.pory"
 	trainerbattle_no_intro TRAINER_ROUTE_31_EXPERT, Route31_Expert_Text_3
+# 213 "data/maps/Route31/scripts.pory"
+	createfieldmugshot MUGSHOT_COOLTRAINER_M
 # 214 "data/maps/Route31/scripts.pory"
-	createfieldmugshot MUGSHOT_COOLTRAINER_M
-# 215 "data/maps/Route31/scripts.pory"
 	msgbox Route31_Expert_Text_4
-# 218 "data/maps/Route31/scripts.pory"
+# 217 "data/maps/Route31/scripts.pory"
 	giveitem ITEM_AIR_BALLOON
-# 219 "data/maps/Route31/scripts.pory"
+# 218 "data/maps/Route31/scripts.pory"
 	setflag FLAG_ROUTE31_EXPERT
-# 220 "data/maps/Route31/scripts.pory"
+# 219 "data/maps/Route31/scripts.pory"
 	addvar VAR_ROUTE_EXPERTS_DEFEATED, 1
-# 221 "data/maps/Route31/scripts.pory"
+# 220 "data/maps/Route31/scripts.pory"
 	special Achievement_CheckAll
-# 222 "data/maps/Route31/scripts.pory"
+# 221 "data/maps/Route31/scripts.pory"
 	createfieldmugshot MUGSHOT_COOLTRAINER_M
-# 223 "data/maps/Route31/scripts.pory"
+# 222 "data/maps/Route31/scripts.pory"
 	msgbox Route31_Expert_Text_0
 	goto Route31_Expert_4
 
 Route31_Expert_6:
-# 208 "data/maps/Route31/scripts.pory"
+# 207 "data/maps/Route31/scripts.pory"
 	checktrainerflag TRAINER_MIKEY
 	goto_if 1, Route31_Expert_10
 	goto Route31_Expert_4
 
 Route31_Expert_7:
-# 208 "data/maps/Route31/scripts.pory"
+# 207 "data/maps/Route31/scripts.pory"
 	checktrainerflag TRAINER_JOEY
 	goto_if 1, Route31_Expert_6
 	goto Route31_Expert_4
 
 Route31_Expert_10:
-# 208 "data/maps/Route31/scripts.pory"
+# 207 "data/maps/Route31/scripts.pory"
 	checktrainerflag TRAINER_DON
 	goto_if 1, Route31_Expert_5
 	goto Route31_Expert_4
 
 
 Route31_Expert_Text_0:
-# 185 "data/maps/Route31/scripts.pory"
+# 184 "data/maps/Route31/scripts.pory"
 	.string "Air Balloon lets a Pokémon avoid \n"
 	.string "Ground-type moves until it \l"
 	.string "takes a hit.\p"
@@ -434,7 +432,7 @@ Route31_Expert_Text_0:
 	.string "battle is over.$"
 
 Route31_Expert_Text_1:
-# 200 "data/maps/Route31/scripts.pory"
+# 199 "data/maps/Route31/scripts.pory"
 	.string "I'm what they call a route expert. \p"
 	.string "If you manage to beat every trainer on \n"
 	.string "Route 30 and 31, come find me again \l"
@@ -443,16 +441,16 @@ Route31_Expert_Text_1:
 	.string "if you manage to win.$"
 
 Route31_Expert_Text_2:
-# 209 "data/maps/Route31/scripts.pory"
+# 208 "data/maps/Route31/scripts.pory"
 	.string "Oh, you have indeed defeated \n"
 	.string "all the trainers on this route.\p"
 	.string "I will battle you as promised.$"
 
 Route31_Expert_Text_3:
-# 213 "data/maps/Route31/scripts.pory"
+# 212 "data/maps/Route31/scripts.pory"
 	.string "Popped off...$"
 
 Route31_Expert_Text_4:
-# 215 "data/maps/Route31/scripts.pory"
+# 214 "data/maps/Route31/scripts.pory"
 	.string "You are better than I had assumed. \p"
 	.string "Take this for your victory.$"

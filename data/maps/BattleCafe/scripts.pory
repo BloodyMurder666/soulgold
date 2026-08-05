@@ -13,17 +13,16 @@ script BattleCafe_OnTransition {
 script BattleCafe_Owner {
     lock
     faceplayer
-    dotimebasedevents
 
     if (!flag(FLAG_BATTLE_CAFE_DIANCIE_RECEIVED)
-        && defeated(TRAINER_CAFE_ASTRA)
-        && defeated(TRAINER_CAFE_MOIRA)
-        && defeated(TRAINER_CAFE_MAUGA)
-        && defeated(TRAINER_CAFE_DARIUS)
-        && defeated(TRAINER_CAFE_IVY)
-        && defeated(TRAINER_CAFE_LYSANDER)
+        && defeated(TRAINER_CAFE_ATHENA)
+        && defeated(TRAINER_CAFE_DOVES)
+        && defeated(TRAINER_CAFE_ELTON)
+        && defeated(TRAINER_CAFE_NEM)
+        && defeated(TRAINER_CAFE_BAI)
+        && defeated(TRAINER_CAFE_DRAC)
         && defeated(TRAINER_CAFE_JUNA)
-        && defeated(TRAINER_CAFE_PHAINON)) {
+        && defeated(TRAINER_CAFE_TYLARIE)) {
         goto(BattleCafe_GiveDiancie)
     }
     goto(BattleCafe_OwnerMenu)
@@ -36,13 +35,14 @@ script BattleCafe_GiveDiancie {
                 once.
 
                 Seems only right you leave with a
-                rare dining companion: Diancie!")
+                rare dining companion, Diancie!")
         msgbox("It'll be waiting right here. Make
                 whatever preparations you need, then
                 come talk to me when you're ready to
                 welcome it aboard.")
         setflag(FLAG_BATTLE_CAFE_DIANCIE_READY)
-        goto(BattleCafe_OwnerMenu)
+        release
+        end
     }
 
     msgbox("Diancie is waiting for you.
@@ -630,138 +630,130 @@ script BattleCafe_Goodbye {
     end
 }
 
-script BattleCafe_TrainerAstra {
-    lock
-    faceplayer
-    dotimebasedevents
-    if (flag(FLAG_DAILY_BATTLE_CAFE_ASTRA)) {
-        msgbox("Ninetales has curled up by
-                the stove.
-
-                We'll bring the snow again tomorrow!")
-        release
-        end
-    }
-    setflag(FLAG_DAILY_BATTLE_CAFE_ASTRA)
-    msgbox("Ninetales called down the
-            snow! Let's see how well your team
-            handles the cold!")
-    trainerbattle_no_intro(TRAINER_CAFE_ASTRA, "Even Aurora Veil couldn't save me from that!")
-    msgbox("Your Pokémon never lost their footing
-            in the blizzard. They trust you
-            completely.")
-    release
-    end
+script BattleCafe_GiveDailyCandyReward {
+    random(3)
+    addvar(VAR_RESULT, 1)
+    giveitem(ITEM_EXP_CANDY_XL, VAR_RESULT)
+    return
 }
 
-script BattleCafe_TrainerMora {
+script BattleCafe_TrainerAthena {
     lock
     faceplayer
-    dotimebasedevents
-    if (flag(FLAG_DAILY_BATTLE_CAFE_MOIRA)) {
-        msgbox("Farigiraf says time is
-                flowing normally again. Come back
-                tomorrow!")
-        release
-        end
-    }
-    setflag(FLAG_DAILY_BATTLE_CAFE_MOIRA)
-    msgbox("Farigiraf, twist the dimensions!
-            Let's make slow Pokémon the stars for
-            once.")
-    trainerbattle_no_intro(TRAINER_CAFE_MOIRA, "You're a tricky customer, huh.")
-    msgbox("Ursaluna's never minded moving last,
-            but today you were always a step
-            ahead of it.")
-    release
-    end
-}
-
-script BattleCafe_TrainerRook {
-    lock
-    faceplayer
-    dotimebasedevents
-    if (flag(FLAG_DAILY_BATTLE_CAFE_MAUGA)) {
-        msgbox("Meowscarada and Skeledirge
-                are sharing a table. Rematch
-                tomorrow!")
-        release
-        end
-    }
-    setflag(FLAG_DAILY_BATTLE_CAFE_MAUGA)
-    msgbox("My team never battles the same
-            way twice. Ready for a few
-            surprises?")
-    trainerbattle_no_intro(TRAINER_CAFE_MAUGA, "I got played!")
-    msgbox("Even Sableye's impressed, and it
-            barely takes anything seriously.")
-    release
-    end
-}
-
-script BattleCafe_TrainerDarius {
-    lock
-    faceplayer
-    dotimebasedevents
-    if (flag(FLAG_DAILY_BATTLE_CAFE_DARIUS)) {
-        msgbox("Scizor's polishing its
-                pincers. We'll strike again
-                tomorrow!")
-        release
-        end
-    }
-    setflag(FLAG_DAILY_BATTLE_CAFE_DARIUS)
-    msgbox("Rillaboom sets the rhythm,
-            then my whole team strikes. Think
-            you can keep up?")
-    trainerbattle_no_intro(TRAINER_CAFE_DARIUS, "Not even my Kingambit could turn
-                                                that one around.")
-    msgbox("Your Pokémon held their ground
-            against every quick attack we threw.
-            Nice work.")
-    release
-    end
-}
-
-script BattleCafe_TrainerIvy {
-    lock
-    faceplayer
-    dotimebasedevents
-    if (flag(FLAG_DAILY_BATTLE_CAFE_IVY)) {
-        msgbox("Glimmora needs time to grow
-                fresh crystals. Tomorrow!")
-        release
-        end
-    }
-    setflag(FLAG_DAILY_BATTLE_CAFE_IVY)
-    msgbox("Glimmora and Samurott have set
-            up quite a welcome for you. Watch
-            your footing.")
-    trainerbattle_no_intro(TRAINER_CAFE_IVY, "You cleared every hazard I laid out?!")
-    msgbox("Gholdengo hates admitting defeat, but
-            even it knows you earned that one.")
-    release
-    end
-}
-
-script BattleCafe_TrainerIgnis {
-    lock
-    faceplayer
-    dotimebasedevents
-    if (flag(FLAG_DAILY_BATTLE_CAFE_LYSANDER)) {
-        msgbox("Charizard's warming
-                itself by the ovens. We'll blaze
+    
+    if (flag(FLAG_DAILY_BATTLE_CAFE_ATHENA)) {
+        msgbox("Did you have fun? Let's try this
                 again tomorrow!")
         release
         end
     }
-    setflag(FLAG_DAILY_BATTLE_CAFE_LYSANDER)
-    msgbox("Ninetales brought the sun,
-            and Charizard brought the heat.
-            Let's battle!")
-    trainerbattle_no_intro(TRAINER_CAFE_LYSANDER, "You outlasted my whole team.")
-    msgbox("Venusaur thrives in sunlight, but
-            your Pokémon shone brighter today.")
+    setflag(FLAG_DAILY_BATTLE_CAFE_ATHENA)
+    msgbox("Let's see if you can survive this
+            stall!")
+    trainerbattle_no_intro(TRAINER_CAFE_ATHENA, "Huh?")
+    msgbox("Did you have fun?")
+    call(BattleCafe_GiveDailyCandyReward)
+    release
+    end
+}
+
+script BattleCafe_TrainerDoves {
+    lock
+    faceplayer
+    
+    if (flag(FLAG_DAILY_BATTLE_CAFE_DOVES)) {
+        msgbox("Doves: Let's fight again tomorrow when 
+                my Genesect is allowed on the 
+                battlefield.")
+        release
+        end
+    }
+    setflag(FLAG_DAILY_BATTLE_CAFE_DOVES)
+    msgbox("Doves: Let me show you the power of 
+            Genesect!")
+    trainerbattle_no_intro(TRAINER_CAFE_DOVES, "Banned again from Overused...")
+    msgbox("Doves: Let's fight again tomorrow when
+            my Genesect is allowed on the 
+            battlefield.")
+    call(BattleCafe_GiveDailyCandyReward)
+    release
+    end
+}
+
+script BattleCafe_TrainerElton {
+    lock
+    faceplayer
+    
+    if (flag(FLAG_DAILY_BATTLE_CAFE_ELTON)) {
+        msgbox("Elton: Rematch tomorrow! Be there!")
+        release
+        end
+    }
+    setflag(FLAG_DAILY_BATTLE_CAFE_ELTON)
+    msgbox("Elton: Let's have a battle with our
+            favourite Pokémon!")
+    trainerbattle_no_intro(TRAINER_CAFE_ELTON, "You handled every trick I had!")
+    msgbox("Elton: Even Gengar's impressed, and it
+            rarely takes a loss seriously.")
+    call(BattleCafe_GiveDailyCandyReward)
+    release
+    end
+}
+
+script BattleCafe_TrainerNem {
+    lock
+    faceplayer
+    
+    if (flag(FLAG_DAILY_BATTLE_CAFE_NEM)) {
+        msgbox("Nem: Come back tomorrow.")
+        release
+        end
+    }
+    setflag(FLAG_DAILY_BATTLE_CAFE_NEM)
+    msgbox("Nem: Think fast!")
+    trainerbattle_no_intro(TRAINER_CAFE_NEM, "I'll be watching.")
+    msgbox("Nem: We can fight again tomorrow.")
+    call(BattleCafe_GiveDailyCandyReward)
+    release
+    end
+}
+
+script BattleCafe_TrainerBai {
+    lock
+    faceplayer
+    
+    if (flag(FLAG_DAILY_BATTLE_CAFE_BAI)) {
+        msgbox("Bai: That was a good match!
+                Let's fight again tomorrow!")
+        release
+        end
+    }
+    setflag(FLAG_DAILY_BATTLE_CAFE_BAI)
+    msgbox("Bai: Money money money, Ready?")
+    trainerbattle_no_intro(TRAINER_CAFE_BAI, "No money...")
+    msgbox("Bai: Good match! Let's try this again 
+            tomorrow!")
+    call(BattleCafe_GiveDailyCandyReward)
+    release
+    end
+}
+
+script BattleCafe_TrainerDrac {
+    lock
+    faceplayer
+    
+    if (flag(FLAG_DAILY_BATTLE_CAFE_DRAC)) {
+        msgbox("Drac: You're really tough! Let's fight
+                again tomorrow!")
+        release
+        end
+    }
+    setflag(FLAG_DAILY_BATTLE_CAFE_DRAC)
+    msgbox("Drac: Care for a double battle?")
+    trainerbattle_no_intro(TRAINER_CAFE_DRAC, "Soothed.")
+    msgbox("Drac: You're really tough! Let's fight
+            again tomorrow!")
+    call(BattleCafe_GiveDailyCandyReward)
     release
     end
 }
@@ -769,7 +761,7 @@ script BattleCafe_TrainerIgnis {
 script BattleCafe_TrainerMarina {
     lock
     faceplayer
-    dotimebasedevents
+    
     if (flag(FLAG_DAILY_BATTLE_CAFE_JUNA)) {
         msgbox("Pelipper says the rain has
                 passed for today. Tomorrow!")
@@ -782,35 +774,28 @@ script BattleCafe_TrainerMarina {
     trainerbattle_no_intro(TRAINER_CAFE_JUNA, "You weathered the whole storm.")
     msgbox("Even Swampert couldn't stop you once
             you found your rhythm.")
+    call(BattleCafe_GiveDailyCandyReward)
     release
     end
 }
 
-script BattleCafe_TrainerAtlas {
+script BattleCafe_TrainerTylarie {
     lock
     faceplayer
-    dotimebasedevents
-    if (flag(FLAG_DAILY_BATTLE_CAFE_PHAINON)) {
-        msgbox("Tyranitar has settled
-                down for lunch. The sandstorm
-                returns tomorrow!")
+    
+    if (flag(FLAG_DAILY_BATTLE_CAFE_TYLARIE)) {
+        msgbox("Steelix has settled down for
+                lunch. We'll be ready tomorrow!")
         release
         end
     }
-    setflag(FLAG_DAILY_BATTLE_CAFE_PHAINON)
-    msgbox("Tyranitar, whip up a
-            sandstorm! Let's see how sturdy your
-            team really is.")
-    trainerbattle_no_intro(TRAINER_CAFE_PHAINON, "You stood firm right to the end.")
-    msgbox("Excadrill loves a sandstorm, but your
-            Pokémon looked right at home in it
-            too.")
+    setflag(FLAG_DAILY_BATTLE_CAFE_TYLARIE)
+    msgbox("Tylarie: Let me show you how sturdy my
+            team is!")
+    trainerbattle_no_intro(TRAINER_CAFE_TYLARIE, "Ouch.")
+    msgbox("Tylarie: Not bad. We can go at it again
+            another day.")
+    call(BattleCafe_GiveDailyCandyReward)
     release
     end
-}
-
-script BattleCafeVip_Athena {
-    trainerbattle_single(TRAINER_VIP_ATHENA, "Let's see if you can survive this
-                            stall!", "Huh?")
-    msgbox("Did you have fun?", MSGBOX_AUTOCLOSE)
 }

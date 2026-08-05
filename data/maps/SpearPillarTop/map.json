@@ -15,6 +15,7 @@
   "connections": null,
   "object_events": [
     {
+      "local_id": "LOCALID_SPEAR_PILLAR_EXIT_PORTAL",
       "graphics_id": "OBJ_EVENT_GFX_PORTAL",
       "x": 16,
       "y": 34,
@@ -28,6 +29,7 @@
       "flag": "0"
     },
     {
+      "local_id": "LOCALID_SPEAR_PILLAR_DIALGA_PORTAL",
       "graphics_id": "OBJ_EVENT_GFX_PORTAL",
       "x": 13,
       "y": 13,
@@ -41,6 +43,7 @@
       "flag": "FLAG_HIDE_SPEAR_PILLAR_DIALGA_PORTAL"
     },
     {
+      "local_id": "LOCALID_SPEAR_PILLAR_GIRATINA_PORTAL",
       "graphics_id": "OBJ_EVENT_GFX_PORTAL",
       "x": 16,
       "y": 10,
@@ -54,6 +57,7 @@
       "flag": "FLAG_HIDE_SPEAR_PILLAR_GIRATINA_PORTAL"
     },
     {
+      "local_id": "LOCALID_SPEAR_PILLAR_PALKIA_PORTAL",
       "graphics_id": "OBJ_EVENT_GFX_PORTAL",
       "x": 18,
       "y": 14,
@@ -67,6 +71,7 @@
       "flag": "FLAG_HIDE_SPEAR_PILLAR_PALKIA_PORTAL"
     },
     {
+      "local_id": "LOCALID_SPEAR_PILLAR_TIME_GEAR",
       "graphics_id": "OBJ_EVENT_GFX_TIMEGEAR",
       "x": 22,
       "y": 7,

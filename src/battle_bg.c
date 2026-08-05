@@ -711,11 +711,15 @@ static u8 GetBattleEnvironmentOverride(void)
         case SPECIES_LATIAS_MEGA:
         case SPECIES_LATIOS:
         case SPECIES_LATIOS_MEGA:
+        case SPECIES_DIALGA:
+        case SPECIES_PALKIA:
+        case SPECIES_GIRATINA:
+        case SPECIES_DIALGA_PRIMAL:
         case SPECIES_DEOXYS_NORMAL:
         case SPECIES_DEOXYS_ATTACK:
         case SPECIES_DEOXYS_DEFENSE:
         case SPECIES_DEOXYS_SPEED:
-            return BATTLE_ENVIRONMENT_SPACE;
+        return BATTLE_ENVIRONMENT_SPACE;
         default:
             return gBattleEnvironment;
         }

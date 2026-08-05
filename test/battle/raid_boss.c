@@ -444,7 +444,7 @@ SINGLE_BATTLE_TEST("Raid boss: Mega animation, message, ability, and boosted sta
     } SCENE {
         MESSAGE("The opposing Manectric is surging with power!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, opponent);
-        MESSAGE("The opposing Manectric transformed into Mega Manectric!");
+        MESSAGE("The opposing Manectric transformed!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, opponent);
             MESSAGE("The opposing Manectric is surging with power!");
@@ -552,10 +552,10 @@ SINGLE_BATTLE_TEST("Raid boss: phase-change messages name the boss rather than t
         MESSAGE("The opposing Mewtwo's barrier broke! It's still standing!");
         MESSAGE("The opposing Mewtwo is surging with power!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, opponent);
-        MESSAGE("The opposing Mewtwo transformed into Mega Mewtwo!");
+        MESSAGE("The opposing Mewtwo transformed!");
         NONE_OF {
             MESSAGE("Lugia is surging with power!");
-            MESSAGE("Lugia transformed into Mega Mewtwo!");
+            MESSAGE("Lugia transformed!");
         }
     } THEN {
         EXPECT_EQ(opponent->species, SPECIES_MEWTWO_MEGA_Y);

@@ -109,6 +109,42 @@ TEST("Setting a nickname terminates unused nickname storage")
     EXPECT_EQ(storedNickname[11], EOS);
 }
 
+TEST("Primal Dialga is independent of nickname form changes")
+{
+    struct Pokemon mon;
+    u8 nickname[POKEMON_NAME_LENGTH + 1];
+
+    StringCopy(nickname, COMPOUND_STRING("Primal"));
+    CreateMon(&mon, SPECIES_DIALGA, 50, 0, OTID_STRUCT_PLAYER_ID);
+    SetMonData(&mon, MON_DATA_NICKNAME, nickname);
+    EXPECT(!TryFormChange(&mon, FORM_CHANGE_NICKNAME));
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES), SPECIES_DIALGA);
+
+    StringCopy(nickname, COMPOUND_STRING("Dialga"));
+    CreateMon(&mon, SPECIES_DIALGA_PRIMAL, 50, 0, OTID_STRUCT_PLAYER_ID);
+    SetMonData(&mon, MON_DATA_NICKNAME, nickname);
+    EXPECT(!TryFormChange(&mon, FORM_CHANGE_NICKNAME));
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES), SPECIES_DIALGA_PRIMAL);
+}
+
+TEST("Lugia and Shadow Lugia are independent of nickname form changes")
+{
+    struct Pokemon mon;
+    u8 nickname[POKEMON_NAME_LENGTH + 1];
+
+    StringCopy(nickname, COMPOUND_STRING("XD001"));
+    CreateMon(&mon, SPECIES_LUGIA, 50, 0, OTID_STRUCT_PLAYER_ID);
+    SetMonData(&mon, MON_DATA_NICKNAME, nickname);
+    EXPECT(!TryFormChange(&mon, FORM_CHANGE_NICKNAME));
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES), SPECIES_LUGIA);
+
+    StringCopy(nickname, COMPOUND_STRING("Lugia"));
+    CreateMon(&mon, SPECIES_LUGIA_SHADOW, 50, 0, OTID_STRUCT_PLAYER_ID);
+    SetMonData(&mon, MON_DATA_NICKNAME, nickname);
+    EXPECT(!TryFormChange(&mon, FORM_CHANGE_NICKNAME));
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES), SPECIES_LUGIA_SHADOW);
+}
+
 TEST("Pokemon save bit repack preserves extended met location and modern fateful encounter")
 {
     struct Pokemon mon;
