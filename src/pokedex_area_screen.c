@@ -935,11 +935,10 @@ static void Task_UpdatePokedexAreaScreen(u8 taskId)
         InitPokedexAreaMapBg();
         InitAreaGlowBg();
         ShowRegionMapForPokedexAreaScreen(&sPokedexAreaScreen->regionMap, sPokedexAreaScreen->mapPage);
-        HideBg(AREA_MAP_BG);
+        UpdatePokedexAreaMapScroll();
         HideBg(AREA_GLOW_BG);
         break;
     case 1:
-        LoadPokedexAreaMapGfx(&sPokedexAreaMapTemplate);
         StringFill(sPokedexAreaScreen->charBuffer, CHAR_SPACE, 16);
         break;
     case 2:
@@ -1053,9 +1052,12 @@ static void Task_HandlePokedexAreaScreenInput(u8 taskId)
         }
 
         sPokedexAreaScreen->screenSwitchState[0] = gTasks[taskId].data[1];
-        ResetPokedexAreaMapBg();
+        if (sPokedexAreaScreen->areaState != DEX_UPDATE_AREA_SCREEN)
+        {
+            ResetPokedexAreaMapBg();
+            FreePokedexAreaMapBgNum();
+        }
         DestroyTask(taskId);
-        FreePokedexAreaMapBgNum();
         FREE_AND_SET_NULL(sPokedexAreaScreen);
         return;
     }
