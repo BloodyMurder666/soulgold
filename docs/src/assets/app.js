@@ -45,7 +45,13 @@ const moveName = (constant) => state.data.moves[constant]?.name || constant.repl
 const abilityName = (constant) => state.data.abilities[constant]?.name || constant.replace("ABILITY_", "").replaceAll("_", " ");
 const fmtTitle = (value, prefix = "") => value.replace(prefix, "").replaceAll("_", " ").toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
 const fmtCategory = (value) => fmtTitle(value, "DAMAGE_CATEGORY_");
+const hoverTooltipMedia = window.matchMedia("(any-hover: hover) and (any-pointer: fine)");
 const statLabels = { hp: "HP", atk: "Atk", def: "Def", spa: "SpA", spd: "SpD", spe: "Spe" };
+
+function canShowHoverTooltip(event) {
+  return hoverTooltipMedia.matches && event.pointerType !== "touch";
+}
+
 const dexSortOptions = [
   { key: "dex", label: "Dex #" },
   { key: "hp", label: "HP" },
@@ -1193,10 +1199,12 @@ function handleAbilityClick(event) {
   event.preventDefault();
   event.stopPropagation();
   event.stopImmediatePropagation();
+  hideAbilityTooltip();
   openAbilityByReference(button.dataset.ability);
 }
 
 function handleAbilityHover(event) {
+  if (!canShowHoverTooltip(event)) return;
   const button = event.target.closest(".ability-pill");
   if (button && !button.contains(event.relatedTarget)) showAbilityTooltip(button, event);
 }
@@ -1277,6 +1285,7 @@ function handleItemTooltipClick(event) {
 }
 
 function handleMoveHover(event) {
+  if (!canShowHoverTooltip(event)) return;
   const button = event.target.closest(".move-name");
   if (button && !button.contains(event.relatedTarget)) showMoveTooltip(button, event);
 }
@@ -1292,6 +1301,7 @@ function handleMoveClick(event) {
   event.preventDefault();
   event.stopPropagation();
   event.stopImmediatePropagation();
+  hideMoveTooltip();
   openMoveByReference(button.dataset.move);
 }
 
