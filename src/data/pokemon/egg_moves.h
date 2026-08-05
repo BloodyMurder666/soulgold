@@ -5314,6 +5314,7 @@ static const u16 sLittenEggMoveLearnset[] = {
     MOVE_REVENGE,
     MOVE_HEAT_WAVE,
     MOVE_POWER_TRIP,
+    MOVE_PARTING_SHOT,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_LITTEN
@@ -5859,6 +5860,13 @@ static const u16 sHatennaEggMoveLearnset[] = {
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_HATENNA
+
+#if P_FAMILY_IMPIDIMP
+static const u16 sImpidimpEggMoveLearnset[] = {
+    MOVE_PARTING_SHOT,
+    MOVE_UNAVAILABLE,
+};
+#endif //P_FAMILY_IMPIDIMP
 
 #if P_FAMILY_MILCERY
 static const u16 sMilceryEggMoveLearnset[] = {
