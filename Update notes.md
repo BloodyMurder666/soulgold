@@ -10,6 +10,7 @@ Update notes:
 - Oak can be found in Radio Tower 2F to give player their Pokédex Rating.
 - There are now 119 trophies.
 - Moved Psychite to inside Mt Mortar post-Strength. Outside rock climb spot now rewards Room Service held item.
+- Moved Flyingite next to Embedded Tower, Cianwood rock climb spot item is replaced by Gold Bottle Cap. Razor Fang moved near the old location.
 - Added over 50 new tutor moves based on later gens Technical Records.
 - Meowth line learns Thief at level 18, Butterfree learns Covet at 22.
 - Litten and Impidimp families learn Parting Shot via Egg Move.

@@ -57,7 +57,7 @@
 #define FLAG_SYS_SET_BATTLE_BGM                 0x2B // Changes BGM
 #define FLAG_WONDERTRADE_FIRSTIME               0x2C 
 #define FLAG_NO_WT_BECAUSE_CHALLENGE            0x2D 
-#define FLAG_GLACIA_REMATCH                     0x2E //Elite Four Rematch 3
+#define FLAG_CIANWOOD_GOLDEN_BOTTLECAP          0x2E
 #define FLAG_DOME_FOSSIL_ALTERING_CAVE          0x2F 
 #define FLAG_GOT_REDORB                         0x30 
 #define FLAG_GOT_BLUEORB                        0x31 
