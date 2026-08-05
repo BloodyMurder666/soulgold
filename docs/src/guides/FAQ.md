@@ -137,7 +137,3 @@ order: 1
 - Jasmine: Olivine cafe
 - Pryce: Lake of Rage
 - Clair: Dragon's Den cave
-
-### How to access Southern Johto?
-- Not available yet.
-
