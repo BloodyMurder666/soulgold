@@ -856,6 +856,11 @@ u8 BattleCafe_GetChallengeMode(void)
     return sBattleCafeChallengeMode;
 }
 
+bool32 BattleCafe_AreInnatesDisabled(void)
+{
+    return sBattleCafeChallengeActive && FlagGet(FLAG_BATTLE_CAFE_NO_INNATES);
+}
+
 void BattleCafe_UnlockClearAchievement(void)
 {
     switch (VarGet(VAR_TEMP_8))

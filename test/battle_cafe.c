@@ -3,8 +3,10 @@
 #include "battle_tower.h"
 #include "event_data.h"
 #include "item.h"
+#include "replay_options.h"
 #include "test/test.h"
 #include "constants/battle_frontier.h"
+#include "constants/flags.h"
 #include "constants/items.h"
 #include "constants/vars.h"
 
@@ -174,4 +176,31 @@ TEST("Battle Cafe vitamin sets do not charge or give items without enough points
     EXPECT_EQ(VarGet(VAR_BATTLE_CAFE_POINTS), 3);
     EXPECT(!CheckBagHasItem(ITEM_PROTEIN_EX, 1));
     EXPECT(!CheckBagHasItem(ITEM_CALCIUM_EX, 1));
+}
+
+TEST("Battle Cafe no-innates preference applies only while a challenge is active")
+{
+    FlagClear(FLAG_REPLAY_NO_INNATES);
+    FlagSet(FLAG_BATTLE_CAFE_NO_INNATES);
+
+    EXPECT(!AreReplayInnatesDisabled());
+
+    VarSet(VAR_TEMP_8, BATTLE_CAFE_MODE_DAILY);
+    BattleCafe_InitChallenge();
+    EXPECT(AreReplayInnatesDisabled());
+
+    BattleCafe_EndChallenge();
+    EXPECT(!AreReplayInnatesDisabled());
+}
+
+TEST("Battle Cafe challenges keep innates when the preference is enabled")
+{
+    FlagClear(FLAG_REPLAY_NO_INNATES);
+    FlagClear(FLAG_BATTLE_CAFE_NO_INNATES);
+
+    VarSet(VAR_TEMP_8, BATTLE_CAFE_MODE_ENDLESS_CHALLENGE);
+    BattleCafe_InitChallenge();
+    EXPECT(!AreReplayInnatesDisabled());
+
+    BattleCafe_EndChallenge();
 }

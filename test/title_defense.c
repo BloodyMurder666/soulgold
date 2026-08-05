@@ -25,7 +25,7 @@ TEST("Title Defense selects the normal pool for defenses one through five")
     EXPECT_EQ(VarGet(VAR_TITLE_DEFENSE_LAST_CHALLENGER), TRAINER_TITLE_DEFENSE_FALKNER);
 }
 
-TEST("Title Defense adds Lance and Steven to the pool beginning with defense six")
+TEST("Title Defense adds advanced challengers to the pool beginning with defense six")
 {
     VarSet(VAR_TITLE_DEFENSE_LAST_CHALLENGER, TRAINER_NONE);
     SetupRiggedRng(__LINE__, RNG_TITLE_DEFENSE_CHALLENGER, 0);
@@ -43,6 +43,21 @@ TEST("Title Defense adds Lance and Steven to the pool beginning with defense six
     SetupRiggedRng(__LINE__, RNG_TITLE_DEFENSE_CHALLENGER, 9);
     TitleDefense_SelectChallenger();
     EXPECT_EQ(VarGet(VAR_TITLE_DEFENSE_LAST_CHALLENGER), TRAINER_TITLE_DEFENSE_STEVEN);
+
+    VarSet(VAR_TITLE_DEFENSE_LAST_CHALLENGER, TRAINER_NONE);
+    SetupRiggedRng(__LINE__, RNG_TITLE_DEFENSE_CHALLENGER, 10);
+    TitleDefense_SelectChallenger();
+    EXPECT_EQ(VarGet(VAR_TITLE_DEFENSE_LAST_CHALLENGER), TRAINER_TITLE_DEFENSE_ELDER_LI);
+
+    VarSet(VAR_TITLE_DEFENSE_LAST_CHALLENGER, TRAINER_NONE);
+    SetupRiggedRng(__LINE__, RNG_TITLE_DEFENSE_CHALLENGER, 11);
+    TitleDefense_SelectChallenger();
+    EXPECT_EQ(VarGet(VAR_TITLE_DEFENSE_LAST_CHALLENGER), TRAINER_TITLE_DEFENSE_DIRECTOR);
+
+    VarSet(VAR_TITLE_DEFENSE_LAST_CHALLENGER, TRAINER_NONE);
+    SetupRiggedRng(__LINE__, RNG_TITLE_DEFENSE_CHALLENGER, 12);
+    TitleDefense_SelectChallenger();
+    EXPECT_EQ(VarGet(VAR_TITLE_DEFENSE_LAST_CHALLENGER), TRAINER_TITLE_DEFENSE_LEAF);
 }
 
 TEST("Title Defense prevents consecutive challengers")
@@ -87,6 +102,15 @@ TEST("Title Defense derives mugshots from challenger overworld graphics")
 
     VarSet(VAR_TITLE_DEFENSE_LAST_CHALLENGER, TRAINER_TITLE_DEFENSE_STEVEN);
     EXPECT_EQ(TitleDefense_GetCurrentMugshotId(), MUGSHOT_STEVEN);
+
+    VarSet(VAR_TITLE_DEFENSE_LAST_CHALLENGER, TRAINER_TITLE_DEFENSE_ELDER_LI);
+    EXPECT_EQ(TitleDefense_GetCurrentMugshotId(), MUGSHOT_NONE);
+
+    VarSet(VAR_TITLE_DEFENSE_LAST_CHALLENGER, TRAINER_TITLE_DEFENSE_DIRECTOR);
+    EXPECT_EQ(TitleDefense_GetCurrentMugshotId(), MUGSHOT_GENTLEMAN);
+
+    VarSet(VAR_TITLE_DEFENSE_LAST_CHALLENGER, TRAINER_TITLE_DEFENSE_LEAF);
+    EXPECT_EQ(TitleDefense_GetCurrentMugshotId(), MUGSHOT_NONE);
 }
 
 TEST("Title Defense prepares a standard trainer battle")

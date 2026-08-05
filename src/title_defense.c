@@ -59,9 +59,8 @@ static const u8 sText_MortyDefeat[] = _(
     "So this was the future waiting\n"
     "beyond my vision…$");
 static const u8 sText_MortyFarewell[] = _(
-    "Morty: Your bond with your Pokémon\n"
-    "shaped a future I couldn't see.\p"
-    "Guard that bond well, Champion.$");
+    "Morty: I didn't see this coming.\p"
+    "Guess my visions still need work.$");
 
 static const u8 sText_ChuckIntro[] = _(
     "Chuck: Hwaaah!\p"
@@ -87,8 +86,8 @@ static const u8 sText_JasmineDefeat[] = _(
 static const u8 sText_JasmineFarewell[] = _(
     "Jasmine: Thank you for a wonderful\n"
     "battle.\p"
-    "Please continue to shine brightly\n"
-    "as our Champion.$");
+    "I hope I can be even half as strong\n"
+    "someday.$");
 
 static const u8 sText_PryceIntro[] = _(
     "Pryce: Experience alone does not\n"
@@ -99,9 +98,8 @@ static const u8 sText_PryceDefeat[] = _(
     "Your unwavering spirit thawed\n"
     "every obstacle before it.$");
 static const u8 sText_PryceFarewell[] = _(
-    "Pryce: You remain calm without\n"
-    "letting your passion fade.\p"
-    "That balance makes you formidable.$");
+    "Pryce: Calm, but never lukewarm.\p"
+    "That's a dangerous combination.$");
 
 static const u8 sText_ClairIntro[] = _(
     "Clair: I've waited long enough for\n"
@@ -131,10 +129,10 @@ static const u8 sText_LanceFarewell[] = _(
     "cross in battle again.$");
 
 static const u8 sText_StevenIntro[] = _(
-    "Steven: A title reveals its true\n"
-    "value when it is tested.\p"
-    "Allow my Pokémon and me to examine\n"
-    "the strength of this Champion.$");
+    "Steven: I collect rare stones for a\n"
+    "living, but a Champion's title is\p"
+    "rarer than any of them.\n"
+    "Let's see if it suits you.$");
 static const u8 sText_StevenDefeat[] = _(
     "What a dazzling battle! Your team\n"
     "is a treasure beyond compare.$");
@@ -142,6 +140,44 @@ static const u8 sText_StevenFarewell[] = _(
     "Steven: Your title has lost none of\n"
     "its brilliance.\p"
     "Thank you for showing me its worth.$");
+
+static const u8 sText_ElderLiIntro[] = _(
+    "Elder Li: So, you've become Champion.\p"
+    "Let's see if you're still as sharp\n"
+    "without a Gym Leader's restraint.$");
+static const u8 sText_ElderLiDefeat[] = _(
+    "Future generations shine brighter\n"
+    "than ever!$");
+static const u8 sText_ElderLiFarewell[] = _(
+    "Elder Li: A marvelous display.\p"
+    "Go on, then! Johto's waiting to\n"
+    "hear your name.$");
+
+static const u8 sText_DirectorIntro[] = _(
+    "Director: Ho ho ho! The Champion\n"
+    "makes headlines wherever they go!\p"
+    "Today, I'll show you the power of a\n"
+    "former Elite Four member!$");
+static const u8 sText_DirectorDefeat[] = _(
+    "What a nostalgic feeling!$");
+static const u8 sText_DirectorFarewell[] = _(
+    "Director: That battle will be the\n"
+    "talk of Johto for weeks!\p"
+    "Now go on!$");
+
+static const u8 sText_LeafIntro[] = _(
+    "Leaf: Hey, Champion! Remember me?\p"
+    "I told you I'd get the better of you\n"
+    "next time, and that time is now!\p"
+    "Get ready for a beatdown!$");
+static const u8 sText_LeafDefeat[] = _(
+    "Damn, you're good!\p"
+    "I wasn't expecting that… again!$");
+static const u8 sText_LeafFarewell[] = _(
+    "Leaf: You're still a monster in\n"
+    "battle!\p"
+    "Keep the title warm for me. I'll be\n"
+    "back for another shot! Laters!$");
 
 const struct TitleDefenseChallenger gTitleDefenseNormalChallengers[] =
 {
@@ -157,8 +193,11 @@ const struct TitleDefenseChallenger gTitleDefenseNormalChallengers[] =
 
 const struct TitleDefenseChallenger gTitleDefenseHardChallengers[] =
 {
-    { TRAINER_TITLE_DEFENSE_LANCE,  OBJ_EVENT_GFX_LANCE,  sText_LanceIntro,  sText_LanceDefeat,  sText_LanceFarewell },
-    { TRAINER_TITLE_DEFENSE_STEVEN, OBJ_EVENT_GFX_STEVEN, sText_StevenIntro, sText_StevenDefeat, sText_StevenFarewell },
+    { TRAINER_TITLE_DEFENSE_LANCE,    OBJ_EVENT_GFX_LANCE,     sText_LanceIntro,    sText_LanceDefeat,    sText_LanceFarewell },
+    { TRAINER_TITLE_DEFENSE_STEVEN,   OBJ_EVENT_GFX_STEVEN,    sText_StevenIntro,   sText_StevenDefeat,   sText_StevenFarewell },
+    { TRAINER_TITLE_DEFENSE_ELDER_LI, OBJ_EVENT_GFX_SAGE,      sText_ElderLiIntro,  sText_ElderLiDefeat,  sText_ElderLiFarewell },
+    { TRAINER_TITLE_DEFENSE_DIRECTOR, OBJ_EVENT_GFX_GENTLEMAN, sText_DirectorIntro, sText_DirectorDefeat, sText_DirectorFarewell },
+    { TRAINER_TITLE_DEFENSE_LEAF,     OBJ_EVENT_GFX_LEAF,      sText_LeafIntro,     sText_LeafDefeat,     sText_LeafFarewell },
 };
 
 const u32 gTitleDefenseNormalChallengerCount = ARRAY_COUNT(gTitleDefenseNormalChallengers);

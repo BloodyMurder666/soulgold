@@ -8,6 +8,7 @@ Update notes:
 - QoL: Roamer tracker mode: After Burned Tower event, players can press R button in region map view to toggle between regular map and roamer tracker modes. When roamer is on the same route as the player, the roamer icon and the player icon will blink. 
 - QoL: New vitamin, Zeromin. Resets all EVs to 0. Sold in Goldenrod Dept. store.
 - Oak can be found in Radio Tower 2F to give player their Pokédex Rating.
+- There are now 119 trophies.
 - Added over 50 new tutor moves based on later gens Technical Records.
 - Meowth line learns Thief at level 18, Butterfree learns Covet at 22.
 - Litten and Impidimp families learn Parting Shot via Egg Move.

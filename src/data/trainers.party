@@ -16617,6 +16617,417 @@ Jolly Nature
 - Brick Break
 - Shadow Claw
 
+=== TRAINER_TITLE_DEFENSE_ELDER_LI ===
+Name: Elder Li
+Class: Sage
+Pic: Elder
+Gender: Male
+Music: Hg Sage
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Purple
+
+Xatu @ Light Clay
+Ability: Magic Bounce
+Level: 84
+Timid Nature
+- Reflect
+- Light Screen
+- Psychic
+- Dazzling Gleam
+
+Noctowl @ Choice Scarf
+Level: 85
+Timid Nature
+- Moonblast
+- Extrasensory
+- Hurricane
+- Boomburst
+
+Clefable @ Sitrus Berry
+Ability: Magic Guard
+Level: 85
+Modest Nature
+- Moonblast
+- Cosmic Power
+- Ice Beam
+- Focus Blast
+
+Snorlax @ Leftovers
+Ability: Thick Fat
+Level: 85
+Brave Nature
+- High Horsepower
+- Body Slam
+- Thunder Punch
+- Earthquake
+
+Lilligant-Hisui @ Life Orb
+Ability: Hustle
+Level: 85
+Adamant Nature
+- Victory Dance
+- Axe Kick
+- Leaf Blade
+- Triple Axel
+
+Victreebel @ Poisontite
+Level: 86
+Modest Nature
+- Strength Sap
+- Sludge Bomb
+- Sucker Punch
+- Leaf Storm
+
+=== TRAINER_TITLE_DEFENSE_ELDER_LI ===
+Name: Elder Li
+Class: Sage
+Pic: Elder
+Gender: Male
+Music: Hg Sage
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Purple
+Difficulty: Hard
+
+Xatu @ Light Clay
+Ability: Magic Bounce
+Level: 84
+EVs: 252 HP / 4 SpA / 252 Spe
+Timid Nature
+- Reflect
+- Light Screen
+- Psychic
+- Dazzling Gleam
+
+Noctowl @ Choice Scarf
+Level: 85
+EVs: 4 Def / 252 SpA / 252 Spe
+Timid Nature
+- Moonblast
+- Extrasensory
+- Hurricane
+- Boomburst
+
+Clefable @ Sitrus Berry
+Ability: Magic Guard
+Level: 85
+EVs: 252 HP / 4 Def / 252 SpA
+Modest Nature
+- Moonblast
+- Cosmic Power
+- Ice Beam
+- Focus Blast
+
+Snorlax @ Leftovers
+Ability: Thick Fat
+Level: 85
+EVs: 252 HP / 252 Atk / 4 SpD
+Brave Nature
+- High Horsepower
+- Body Slam
+- Thunder Punch
+- Earthquake
+
+Lilligant-Hisui @ Life Orb
+Ability: Hustle
+Level: 85
+EVs: 252 Atk / 4 SpD / 252 Spe
+Adamant Nature
+- Victory Dance
+- Axe Kick
+- Leaf Blade
+- Triple Axel
+
+Victreebel @ Poisontite
+Level: 86
+EVs: 252 HP / 4 Def / 252 SpA
+Modest Nature
+- Strength Sap
+- Sludge Bomb
+- Sucker Punch
+- Leaf Storm
+
+=== TRAINER_TITLE_DEFENSE_DIRECTOR ===
+Name: Director
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Hg Boy 2
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Purple
+
+Rotom-Wash @ Wiki Berry
+Ability: Levitate
+Level: 84
+Bold Nature
+- Hydro Pump
+- Volt Switch
+- Will-O-Wisp
+- Pain Split
+
+Garchomp @ Rocky Helmet
+Ability: Rough Skin
+Level: 85
+Jolly Nature
+- Stealth Rock
+- Swords Dance
+- Earthquake
+- Stone Edge
+
+Ditto @ Choice Scarf
+Ability: Imposter
+Level: 85
+Relaxed Nature
+IVs: 0 Spe
+- Transform
+
+Mandibuzz @ Leftovers
+Ability: Overcoat
+Level: 85
+Timid Nature
+- Brave Bird
+- Dark Pulse
+- Defog
+- Taunt
+
+Ferrothorn @ Leftovers
+Ability: Iron Barbs
+Level: 85
+Careful Nature
+- Leech Seed
+- Spikes
+- Power Whip
+- Protect
+
+Scizor @ Bugtite
+Ability: Light Metal
+Level: 86
+Impish Nature
+- Bullet Punch
+- Swords Dance
+- Roost
+- U-turn
+
+=== TRAINER_TITLE_DEFENSE_DIRECTOR ===
+Name: Director
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Hg Boy 2
+Double Battle: No
+AI: Smart Trainer / Prediction
+Mugshot: Purple
+Difficulty: Hard
+
+Rotom-Wash @ Wiki Berry
+Ability: Levitate
+Level: 84
+EVs: 252 HP / 196 Def / 60 Spe
+Bold Nature
+- Hydro Pump
+- Volt Switch
+- Will-O-Wisp
+- Pain Split
+
+Garchomp @ Rocky Helmet
+Ability: Rough Skin
+Level: 85
+EVs: 252 Atk / 4 SpD / 252 Spe
+Jolly Nature
+- Stealth Rock
+- Swords Dance
+- Earthquake
+- Stone Edge
+
+Ditto @ Choice Scarf
+Ability: Imposter
+Level: 85
+EVs: 248 HP / 8 Atk / 252 Def
+Relaxed Nature
+IVs: 0 Spe
+- Transform
+
+Tornadus-Therian @ Leftovers
+Ability: Regenerator
+Level: 85
+EVs: 88 HP / 164 Def / 32 SpA / 8 SpD / 216 Spe
+Timid Nature
+- Hurricane
+- Knock Off
+- Defog
+- Taunt
+
+Ferrothorn @ Leftovers
+Ability: Iron Barbs
+Level: 85
+EVs: 252 HP / 48 Def / 208 SpD
+Careful Nature
+- Leech Seed
+- Spikes
+- Power Whip
+- Protect
+
+Scizor @ Bugtite
+Ability: Light Metal
+Level: 86
+EVs: 248 HP / 44 Def / 216 SpD
+Impish Nature
+- Bullet Punch
+- Swords Dance
+- Roost
+- U-turn
+
+=== TRAINER_TITLE_DEFENSE_LEAF ===
+Name: Leaf
+Class: Pkmn Trainer 1
+Pic: Leaf
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Purple
+
+Chansey @ Eviolite
+Ability: Natural Cure
+Level: 85
+Bold Nature
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ball: Cherish
+- Stealth Rock
+- Seismic Toss
+- Protect
+- Wish
+
+Volcarona @ Heavy-Duty Boots
+Ability: Flame Body
+Level: 86
+Timid Nature
+IVs: 0 Atk
+- Quiver Dance
+- Flamethrower
+- Roost
+- Giga Drain
+
+Thundurus-Therian @ Heavy-Duty Boots
+Ability: Volt Absorb
+Level: 85
+Timid Nature
+- Volt Switch
+- Psychic
+- Grass Knot
+- Focus Blast
+
+Tapu Fini @ Leftovers
+Ability: Misty Surge
+Level: 86
+Timid Nature
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ball: Master
+- Ice Beam
+- Scald
+- Moonblast
+- Defog
+
+Dragapult @ Choice Specs
+Ability: Infiltrator
+Level: 86
+Timid Nature
+Ball: Timer
+- Shadow Ball
+- Draco Meteor
+- U-Turn
+- Hydro Pump
+
+Venusaur @ Grasstite
+Ability: Chlorophyll
+Level: 87
+Bold Nature
+Ball: Poke
+- Leech Seed
+- Chloroblast
+- Synthesis
+- Earth Power
+
+=== TRAINER_TITLE_DEFENSE_LEAF ===
+Name: Leaf
+Class: Pkmn Trainer 1
+Pic: Leaf
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Purple
+Difficulty: Hard
+
+Chansey @ Eviolite
+Ability: Natural Cure
+Level: 85
+EVs: 244 HP / 252 Def / 12 SpA
+Bold Nature
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ball: Cherish
+- Stealth Rock
+- Seismic Toss
+- Protect
+- Wish
+
+Volcarona @ Heavy-Duty Boots
+Ability: Flame Body
+Level: 86
+EVs: 248 HP / 104 Def / 68 SpA / 88 Spe
+Timid Nature
+IVs: 0 Atk
+- Quiver Dance
+- Flamethrower
+- Roost
+- Giga Drain
+
+Thundurus-Therian @ Heavy-Duty Boots
+Ability: Volt Absorb
+Level: 85
+EVs: 4 Def / 252 SpA / 252 Spe
+Timid Nature
+- Volt Switch
+- Psychic
+- Grass Knot
+- Focus Blast
+
+Tapu Fini @ Leftovers
+Ability: Misty Surge
+Level: 86
+EVs: 248 HP / 8 Def / 252 SpD
+Timid Nature
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ball: Master
+- Ice Beam
+- Scald
+- Moonblast
+- Defog
+
+Dragapult @ Choice Specs
+Ability: Infiltrator
+Level: 86
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+Ball: Timer
+- Shadow Ball
+- Draco Meteor
+- U-Turn
+- Hydro Pump
+
+Venusaur @ Grasstite
+Ability: Chlorophyll
+Level: 87
+EVs: 252 HP / 180 Def / 76 SpA
+Bold Nature
+Ball: Poke
+- Leech Seed
+- Chloroblast
+- Synthesis
+- Earth Power
+
 === TRAINER_NAMELESS_LEAF ===
 Name: Green
 Class: Pkmn Trainer 1

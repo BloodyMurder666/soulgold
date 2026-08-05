@@ -926,9 +926,9 @@
 #define TRAINER_CAFE_JUNA                 945
 #define TRAINER_CAFE_TYLARIE              946
 #define TRAINER_CAFE_ATHENA                947
-#define TRAINER_UNUSED_84                 948
-#define TRAINER_UNUSED_85                 949
-#define TRAINER_UNUSED_86                 950
+#define TRAINER_TITLE_DEFENSE_ELDER_LI    948
+#define TRAINER_TITLE_DEFENSE_DIRECTOR    949
+#define TRAINER_TITLE_DEFENSE_LEAF        950
 #define TRAINER_UNUSED_87                 951
 #define TRAINER_UNUSED_88                 952
 #define TRAINER_UNUSED_89                 953

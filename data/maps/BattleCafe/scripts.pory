@@ -154,12 +154,14 @@ script BattleCafe_OptionsMenu {
     dynmultichoice(0, 0, FALSE, 6, 0, DYN_MULTICHOICE_CB_NONE,
                    "Battle BGM",
                    "High Scores",
+                   "Innates",
                    "Café Rules",
                    "Back")
     switch (var(VAR_RESULT)) {
         case 0: goto(BattleCafe_ChooseBattleBgm)
         case 1: goto(BattleCafe_ViewHighScores)
-        case 2: goto(BattleCafe_ExplainRules)
+        case 2: goto(BattleCafe_ChooseInnates)
+        case 3: goto(BattleCafe_ExplainRules)
         default: goto(BattleCafe_OwnerMenu)
     }
 }
@@ -175,6 +177,35 @@ script BattleCafe_ViewHighScores {
     waitbuttonpress
     special(RemoveRecordsWindow)
     goto(BattleCafe_OwnerMenu)
+}
+
+script BattleCafe_ChooseInnates {
+    if (flag(FLAG_BATTLE_CAFE_NO_INNATES)) {
+        msgbox("Innates are disabled for both sides
+                in every Café challenge.
+
+                Enable innates?", MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES) {
+            clearflag(FLAG_BATTLE_CAFE_NO_INNATES)
+            playse(SE_SWITCH)
+            waitse
+            msgbox("Innates are now enabled for
+                    all Café challenges.")
+        }
+    } else {
+        msgbox("Innates are enabled for both sides
+                in every Café challenge.
+
+                Disable innates?", MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES) {
+            setflag(FLAG_BATTLE_CAFE_NO_INNATES)
+            playse(SE_SWITCH)
+            waitse
+            msgbox("Innates are now disabled for
+                    all Café challenges.")
+        }
+    }
+    goto(BattleCafe_OptionsMenu)
 }
 
 script BattleCafe_ExplainRules {
@@ -263,8 +294,8 @@ script BattleCafe_AskRushMode {
     msgbox("Three seasoned visitors are waiting
             with teams of four.
 
-            I can't tend to
-            your party between these battles.
+            I can't tend to your party between 
+            these battles.
 
             Begin today's rush?", MSGBOX_YESNO)
     if (var(VAR_RESULT) != YES) {
