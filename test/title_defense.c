@@ -104,13 +104,13 @@ TEST("Title Defense derives mugshots from challenger overworld graphics")
     EXPECT_EQ(TitleDefense_GetCurrentMugshotId(), MUGSHOT_STEVEN);
 
     VarSet(VAR_TITLE_DEFENSE_LAST_CHALLENGER, TRAINER_TITLE_DEFENSE_ELDER_LI);
-    EXPECT_EQ(TitleDefense_GetCurrentMugshotId(), MUGSHOT_NONE);
+    EXPECT_EQ(TitleDefense_GetCurrentMugshotId(), MUGSHOT_ELDER_LI);
 
     VarSet(VAR_TITLE_DEFENSE_LAST_CHALLENGER, TRAINER_TITLE_DEFENSE_DIRECTOR);
     EXPECT_EQ(TitleDefense_GetCurrentMugshotId(), MUGSHOT_GENTLEMAN);
 
     VarSet(VAR_TITLE_DEFENSE_LAST_CHALLENGER, TRAINER_TITLE_DEFENSE_LEAF);
-    EXPECT_EQ(TitleDefense_GetCurrentMugshotId(), MUGSHOT_NONE);
+    EXPECT_EQ(TitleDefense_GetCurrentMugshotId(), MUGSHOT_LEAF);
 }
 
 TEST("Title Defense prepares a standard trainer battle")

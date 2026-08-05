@@ -42,6 +42,7 @@ script NamelessDungeon_Leaf {
         applymovement(LOCALID_NAMELESS_LEAF, Common_Movement_ExclamationMark)
         faceplayer
         waitse
+        createfieldmugshot(MUGSHOT_LEAF)
         msgbox("???: Oh, hello! Who might you be?
         
                 ...
@@ -84,6 +85,7 @@ script NamelessDungeon_Leaf {
     playbgm(MUS_RG_ENCOUNTER_GYM_LEADER, FALSE)
     msgbox("Great! Get ready for a beatdown!")
     trainerbattle_no_intro(TRAINER_NAMELESS_LEAF, "Damn, you're good!")
+    createfieldmugshot(MUGSHOT_LEAF)
     msgbox("Let me tell you, 
             I was not expecting that!
             

@@ -36,6 +36,7 @@ SproutTower_3F_EventScript_TriggerSceneLeft::
 	playbgm MUS_HG_ENCOUNTER_RIVAL, TRUE
 	applymovement LOCALID_SPROUT_TOWER_SILVER, SproutTower_3F_Movement_Silver1
 	waitmovement 0
+	createfieldmugshot MUGSHOT_ELDER_LI
 	msgbox SproutTower_Text_ElderLecturesRival, MSGBOX_DEFAULT
 	closemessage
 	playse SE_PIN
@@ -43,8 +44,10 @@ SproutTower_3F_EventScript_TriggerSceneLeft::
 	delay 60
 	applymovement LOCALID_SPROUT_TOWER_SILVER, SproutTower_3F_Movement_SilverLeft
 	waitmovement 0
+	createfieldmugshot MUGSHOT_SILVER
 	msgbox SproutTower_Text_RivalOnlyCaresStrong, MSGBOX_DEFAULT
 	delay 30
+	removefieldmugshot
 	msgbox SproutTower_Text_RivalUsedEscapeRope, MSGBOX_DEFAULT
 	applymovement LOCALID_SPROUT_TOWER_SILVER SproutTower_3F_Movement_EscapeRope
 	waitmovement 0
@@ -67,6 +70,7 @@ SproutTower_3F_EventScript_TriggerSceneRight::
 	playbgm MUS_HG_ENCOUNTER_RIVAL, TRUE
 	applymovement LOCALID_SPROUT_TOWER_SILVER, SproutTower_3F_Movement_Silver1
 	waitmovement 0
+	createfieldmugshot MUGSHOT_ELDER_LI
 	msgbox SproutTower_Text_ElderLecturesRival, MSGBOX_DEFAULT
 	closemessage
 	playse SE_PIN
@@ -75,7 +79,9 @@ SproutTower_3F_EventScript_TriggerSceneRight::
 	applymovement LOCALID_SPROUT_TOWER_SILVER, SproutTower_3F_Movement_SilverRight
 	waitmovement 0
 	waitmovement 0
+	createfieldmugshot MUGSHOT_SILVER
 	msgbox SproutTower_Text_RivalOnlyCaresStrong, MSGBOX_DEFAULT
+	removefieldmugshot
 	msgbox SproutTower_Text_RivalUsedEscapeRope, MSGBOX_DEFAULT
 	applymovement LOCALID_SPROUT_TOWER_SILVER SproutTower_3F_Movement_EscapeRope
 	waitmovement 0
@@ -101,9 +107,11 @@ SproutTower_3F_EventScript_SageLi::
 	msgbox SproutTower_Text_SageLi_Seen, MSGBOX_DEFAULT
 	closemessage
 	trainerbattle_no_intro TRAINER_LI, SproutTower_Text_SageLi_Beaten
+	createfieldmugshot MUGSHOT_ELDER_LI
 	msgbox SproutTower_Text_SageLi_TakeFlash, MSGBOX_DEFAULT
 	giveitem ITEM_HM_FLASH
 	setflag FLAG_RECEIVED_HM_FLASH
+	createfieldmugshot MUGSHOT_ELDER_LI
 	msgbox SproutTower_Text_SageLi_FlashExplain, MSGBOX_DEFAULT
 	closemessage
 	release
@@ -270,6 +278,7 @@ script SageLiPostBadges {
 			msgbox("Prepare yourself!")
 	trainerbattle_no_intro(TRAINER_LI_2, "Future generations shine brighter than
 									      ever! Walk this path, young Trainer.")
+	createfieldmugshot(MUGSHOT_ELDER_LI)
 	msgbox("A marvelous display of skill!
 
 			I believe the borders of Johto won't

@@ -99,6 +99,10 @@ static const u32 sFieldMugshotGfx_PetrelNormal[] = INCBIN_U32("graphics/field_mu
 static const u16 sFieldMugshotPal_PetrelNormal[] = INCBIN_U16("graphics/field_mugshots/petrel.gbapal");
 static const u32 sFieldMugshotGfx_BlaineNormal[] = INCBIN_U32("graphics/field_mugshots/blaine.4bpp.smol");
 static const u16 sFieldMugshotPal_BlaineNormal[] = INCBIN_U16("graphics/field_mugshots/blaine.gbapal");
+static const u32 sFieldMugshotGfx_ElderLiNormal[] = INCBIN_U32("graphics/field_mugshots/elder.4bpp.smol");
+static const u16 sFieldMugshotPal_ElderLiNormal[] = INCBIN_U16("graphics/field_mugshots/elder.gbapal");
+static const u32 sFieldMugshotGfx_LeafNormal[] = INCBIN_U32("graphics/field_mugshots/leaf.4bpp.smol");
+static const u16 sFieldMugshotPal_LeafNormal[] = INCBIN_U16("graphics/field_mugshots/leaf.gbapal");
 
 struct MugshotGfx
 {
@@ -506,6 +510,22 @@ static const struct MugshotGfx sFieldMugshots[MUGSHOT_COUNT][EMOTE_COUNT] =
         {
             .gfx = sFieldMugshotGfx_BlaineNormal,
             .pal = sFieldMugshotPal_BlaineNormal,
+        },
+    },
+    [MUGSHOT_ELDER_LI] =
+    {
+        [EMOTE_NORMAL] =
+        {
+            .gfx = sFieldMugshotGfx_ElderLiNormal,
+            .pal = sFieldMugshotPal_ElderLiNormal,
+        },
+    },
+    [MUGSHOT_LEAF] =
+    {
+        [EMOTE_NORMAL] =
+        {
+            .gfx = sFieldMugshotGfx_LeafNormal,
+            .pal = sFieldMugshotPal_LeafNormal,
         },
     },
 };

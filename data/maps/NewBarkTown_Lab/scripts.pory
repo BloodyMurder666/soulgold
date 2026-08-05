@@ -489,6 +489,7 @@ NewBarkTown_Lab_EventScript_TriggerAideGiveBalls::
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_FIRST_BALLS
 	setvar VAR_NEWBARKTOWN_LABSTATE, 6
+	msgbox NewBarkTown_Lab_Text_ExplainDexnav, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_AIDE1, NewBarkTown_Lab_Movement_Aide1LeavePlayer
 	waitmovement 0
@@ -983,6 +984,11 @@ NewBarkTown_Lab_Text_AideGiveBalls:
 	.string "{PLAYER}!\p"
 	.string "Use these on your Pokédex\n"
 	.string "quest!$"
+
+NewBarkTown_Lab_Text_ExplainDexnav:
+	.string "We've also sent a Dexnav\n"
+	.string "application to your Pokégear!\p"
+	.string "Use it to catch lots of Pokémon!$"
 
 NewBarkTown_Lab_Text_AideExplainBalls:
 	.string "To add to your Pokédex, you\n"

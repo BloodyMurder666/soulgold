@@ -981,273 +981,273 @@ NewBarkTown_Lab_EventScript_TriggerAideGiveBalls::
 # 491 "data/maps/NewBarkTown_Lab/scripts.pory"
 	setvar VAR_NEWBARKTOWN_LABSTATE, 6
 # 492 "data/maps/NewBarkTown_Lab/scripts.pory"
-	closemessage
+	msgbox NewBarkTown_Lab_Text_ExplainDexnav, MSGBOX_DEFAULT
 # 493 "data/maps/NewBarkTown_Lab/scripts.pory"
-	applymovement LOCALID_AIDE1, NewBarkTown_Lab_Movement_Aide1LeavePlayer
+	closemessage
 # 494 "data/maps/NewBarkTown_Lab/scripts.pory"
-	waitmovement 0
+	applymovement LOCALID_AIDE1, NewBarkTown_Lab_Movement_Aide1LeavePlayer
 # 495 "data/maps/NewBarkTown_Lab/scripts.pory"
-	turnobject OBJ_EVENT_ID_PLAYER, DIR_SOUTH
+	waitmovement 0
 # 496 "data/maps/NewBarkTown_Lab/scripts.pory"
-	release
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_SOUTH
 # 497 "data/maps/NewBarkTown_Lab/scripts.pory"
-	end
+	release
 # 498 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	end
 # 499 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_EventScript_Elm_Check_WhereIsEgg::
+
 # 500 "data/maps/NewBarkTown_Lab/scripts.pory"
-	msgbox NewBarkTown_Lab_Text_ElmWaitingEggHatch, MSGBOX_DEFAULT
+NewBarkTown_Lab_EventScript_Elm_Check_WhereIsEgg::
 # 501 "data/maps/NewBarkTown_Lab/scripts.pory"
-	closemessage
+	msgbox NewBarkTown_Lab_Text_ElmWaitingEggHatch, MSGBOX_DEFAULT
 # 502 "data/maps/NewBarkTown_Lab/scripts.pory"
-	release
+	closemessage
 # 503 "data/maps/NewBarkTown_Lab/scripts.pory"
-	end
+	release
 # 504 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	end
 # 505 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_EventScript_Elm_Check_Togepi::
+
 # 506 "data/maps/NewBarkTown_Lab/scripts.pory"
-	specialvar VAR_RESULT, CheckTogepi
+NewBarkTown_Lab_EventScript_Elm_Check_Togepi::
 # 507 "data/maps/NewBarkTown_Lab/scripts.pory"
-	goto_if_eq VAR_RESULT, TRUE, NewBarkTown_Lab_EventScript_Elm_Togepi_Seen
+	specialvar VAR_RESULT, CheckTogepi
 # 508 "data/maps/NewBarkTown_Lab/scripts.pory"
-	return
+	goto_if_eq VAR_RESULT, TRUE, NewBarkTown_Lab_EventScript_Elm_Togepi_Seen
 # 509 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	return
 # 510 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_EventScript_Elm_Togepi_Seen::
+
 # 511 "data/maps/NewBarkTown_Lab/scripts.pory"
-	msgbox NewBarkTown_Lab_Text_ShowTogepi1, MSGBOX_DEFAULT
+NewBarkTown_Lab_EventScript_Elm_Togepi_Seen::
 # 512 "data/maps/NewBarkTown_Lab/scripts.pory"
-	waitmessage
+	msgbox NewBarkTown_Lab_Text_ShowTogepi1, MSGBOX_DEFAULT
 # 513 "data/maps/NewBarkTown_Lab/scripts.pory"
-	msgbox NewBarkTown_Lab_Text_ShowTogepi2, MSGBOX_DEFAULT
+	waitmessage
 # 514 "data/maps/NewBarkTown_Lab/scripts.pory"
-	waitmessage
+	msgbox NewBarkTown_Lab_Text_ShowTogepi2, MSGBOX_DEFAULT
 # 515 "data/maps/NewBarkTown_Lab/scripts.pory"
-	msgbox NewBarkTown_Lab_Text_ShowTogepi3, MSGBOX_DEFAULT
+	waitmessage
 # 516 "data/maps/NewBarkTown_Lab/scripts.pory"
-	waitmessage
+	msgbox NewBarkTown_Lab_Text_ShowTogepi3, MSGBOX_DEFAULT
 # 517 "data/maps/NewBarkTown_Lab/scripts.pory"
-	msgbox NewBarkTown_Lab_Text_ElmGiveEverstone1, MSGBOX_DEFAULT
-# 518 "data/maps/NewBarkTown_Lab/scripts.pory"
 	waitmessage
+# 518 "data/maps/NewBarkTown_Lab/scripts.pory"
+	msgbox NewBarkTown_Lab_Text_ElmGiveEverstone1, MSGBOX_DEFAULT
 # 519 "data/maps/NewBarkTown_Lab/scripts.pory"
-	giveitem ITEM_SHINY_STONE
+	waitmessage
 # 520 "data/maps/NewBarkTown_Lab/scripts.pory"
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	giveitem ITEM_SHINY_STONE
 # 521 "data/maps/NewBarkTown_Lab/scripts.pory"
-	msgbox NewBarkTown_Lab_Text_ElmGiveEverstone2, MSGBOX_DEFAULT
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 # 522 "data/maps/NewBarkTown_Lab/scripts.pory"
-	closemessage
+	msgbox NewBarkTown_Lab_Text_ElmGiveEverstone2, MSGBOX_DEFAULT
 # 523 "data/maps/NewBarkTown_Lab/scripts.pory"
-	setflag FLAG_SHOWN_ELM_TOGEPI
-# 524 "data/maps/NewBarkTown_Lab/scripts.pory"
-	release
-# 525 "data/maps/NewBarkTown_Lab/scripts.pory"
-	end
-# 526 "data/maps/NewBarkTown_Lab/scripts.pory"
-
-# 527 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_EventScript_Elm_CallMe::
-# 528 "data/maps/NewBarkTown_Lab/scripts.pory"
-	msgbox NewBarkTown_Lab_Text_Elm_CallMe, MSGBOX_DEFAULT
-# 529 "data/maps/NewBarkTown_Lab/scripts.pory"
 	closemessage
-# 530 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 524 "data/maps/NewBarkTown_Lab/scripts.pory"
+	setflag FLAG_SHOWN_ELM_TOGEPI
+# 525 "data/maps/NewBarkTown_Lab/scripts.pory"
 	release
-# 531 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 526 "data/maps/NewBarkTown_Lab/scripts.pory"
 	end
+# 527 "data/maps/NewBarkTown_Lab/scripts.pory"
+
+# 528 "data/maps/NewBarkTown_Lab/scripts.pory"
+NewBarkTown_Lab_EventScript_Elm_CallMe::
+# 529 "data/maps/NewBarkTown_Lab/scripts.pory"
+	msgbox NewBarkTown_Lab_Text_Elm_CallMe, MSGBOX_DEFAULT
+# 530 "data/maps/NewBarkTown_Lab/scripts.pory"
+	closemessage
+# 531 "data/maps/NewBarkTown_Lab/scripts.pory"
+	release
 # 532 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	end
 # 533 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Movement_WalkRight:
+
 # 534 "data/maps/NewBarkTown_Lab/scripts.pory"
-	walk_right
+NewBarkTown_Lab_Movement_WalkRight:
 # 535 "data/maps/NewBarkTown_Lab/scripts.pory"
-	step_end
+	walk_right
 # 536 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	step_end
 # 537 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Movement_WalkLeft:
+
 # 538 "data/maps/NewBarkTown_Lab/scripts.pory"
-	walk_left
+NewBarkTown_Lab_Movement_WalkLeft:
 # 539 "data/maps/NewBarkTown_Lab/scripts.pory"
-	step_end
+	walk_left
 # 540 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	step_end
 # 541 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Movement_StepBackFromStarter:
+
 # 542 "data/maps/NewBarkTown_Lab/scripts.pory"
-	walk_down
+NewBarkTown_Lab_Movement_StepBackFromStarter:
 # 543 "data/maps/NewBarkTown_Lab/scripts.pory"
-	face_up
+	walk_down
 # 544 "data/maps/NewBarkTown_Lab/scripts.pory"
-	step_end
+	face_up
 # 545 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	step_end
 # 546 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Movement_StarterLeavesBall:
+
 # 547 "data/maps/NewBarkTown_Lab/scripts.pory"
-	exit_pokeball
+NewBarkTown_Lab_Movement_StarterLeavesBall:
 # 548 "data/maps/NewBarkTown_Lab/scripts.pory"
-	face_down
+	exit_pokeball
 # 549 "data/maps/NewBarkTown_Lab/scripts.pory"
-	set_visible
+	face_down
 # 550 "data/maps/NewBarkTown_Lab/scripts.pory"
-	step_end
+	set_visible
 # 551 "data/maps/NewBarkTown_Lab/scripts.pory"
-
-# 552 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Movement_StarterGreetsPlayer:
-# 553 "data/maps/NewBarkTown_Lab/scripts.pory"
-	face_player
-# 554 "data/maps/NewBarkTown_Lab/scripts.pory"
-	delay_4
-# 555 "data/maps/NewBarkTown_Lab/scripts.pory"
-	jump_in_place_down
-# 556 "data/maps/NewBarkTown_Lab/scripts.pory"
-	emote_heart
-# 557 "data/maps/NewBarkTown_Lab/scripts.pory"
-	face_player
-# 558 "data/maps/NewBarkTown_Lab/scripts.pory"
 	step_end
-# 559 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 552 "data/maps/NewBarkTown_Lab/scripts.pory"
 
+# 553 "data/maps/NewBarkTown_Lab/scripts.pory"
+NewBarkTown_Lab_Movement_StarterGreetsPlayer:
+# 554 "data/maps/NewBarkTown_Lab/scripts.pory"
+	face_player
+# 555 "data/maps/NewBarkTown_Lab/scripts.pory"
+	delay_4
+# 556 "data/maps/NewBarkTown_Lab/scripts.pory"
+	jump_in_place_down
+# 557 "data/maps/NewBarkTown_Lab/scripts.pory"
+	emote_heart
+# 558 "data/maps/NewBarkTown_Lab/scripts.pory"
+	face_player
+# 559 "data/maps/NewBarkTown_Lab/scripts.pory"
+	step_end
 # 560 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_LabMovement_WalkToElm:
+
 # 561 "data/maps/NewBarkTown_Lab/scripts.pory"
-	walk_up
+NewBarkTown_LabMovement_WalkToElm:
 # 562 "data/maps/NewBarkTown_Lab/scripts.pory"
 	walk_up
 # 563 "data/maps/NewBarkTown_Lab/scripts.pory"
 	walk_up
 # 564 "data/maps/NewBarkTown_Lab/scripts.pory"
-	step_end
-# 565 "data/maps/NewBarkTown_Lab/scripts.pory"
-
-# 566 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Movement_ReturnPlayer:
-# 567 "data/maps/NewBarkTown_Lab/scripts.pory"
 	walk_up
-# 568 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 565 "data/maps/NewBarkTown_Lab/scripts.pory"
 	step_end
-# 569 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 566 "data/maps/NewBarkTown_Lab/scripts.pory"
 
+# 567 "data/maps/NewBarkTown_Lab/scripts.pory"
+NewBarkTown_Lab_Movement_ReturnPlayer:
+# 568 "data/maps/NewBarkTown_Lab/scripts.pory"
+	walk_up
+# 569 "data/maps/NewBarkTown_Lab/scripts.pory"
+	step_end
 # 570 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Movement_CheckEmail:
+
 # 571 "data/maps/NewBarkTown_Lab/scripts.pory"
-	walk_fast_left
+NewBarkTown_Lab_Movement_CheckEmail:
 # 572 "data/maps/NewBarkTown_Lab/scripts.pory"
 	walk_fast_left
 # 573 "data/maps/NewBarkTown_Lab/scripts.pory"
 	walk_fast_left
 # 574 "data/maps/NewBarkTown_Lab/scripts.pory"
-	walk_fast_up
+	walk_fast_left
 # 575 "data/maps/NewBarkTown_Lab/scripts.pory"
-	step_end
+	walk_fast_up
 # 576 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	step_end
 # 577 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Movement_CheckEmailSlow:
+
 # 578 "data/maps/NewBarkTown_Lab/scripts.pory"
-	walk_left
+NewBarkTown_Lab_Movement_CheckEmailSlow:
 # 579 "data/maps/NewBarkTown_Lab/scripts.pory"
 	walk_left
 # 580 "data/maps/NewBarkTown_Lab/scripts.pory"
 	walk_left
 # 581 "data/maps/NewBarkTown_Lab/scripts.pory"
-	walk_up
-# 582 "data/maps/NewBarkTown_Lab/scripts.pory"
-	step_end
-# 583 "data/maps/NewBarkTown_Lab/scripts.pory"
-
-# 584 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Movement_GotoComputerSafe:
-# 585 "data/maps/NewBarkTown_Lab/scripts.pory"
-	walk_up
-# 586 "data/maps/NewBarkTown_Lab/scripts.pory"
 	walk_left
+# 582 "data/maps/NewBarkTown_Lab/scripts.pory"
+	walk_up
+# 583 "data/maps/NewBarkTown_Lab/scripts.pory"
+	step_end
+# 584 "data/maps/NewBarkTown_Lab/scripts.pory"
+
+# 585 "data/maps/NewBarkTown_Lab/scripts.pory"
+NewBarkTown_Lab_Movement_GotoComputerSafe:
+# 586 "data/maps/NewBarkTown_Lab/scripts.pory"
+	walk_up
 # 587 "data/maps/NewBarkTown_Lab/scripts.pory"
 	walk_left
 # 588 "data/maps/NewBarkTown_Lab/scripts.pory"
 	walk_left
 # 589 "data/maps/NewBarkTown_Lab/scripts.pory"
-	face_up
+	walk_left
 # 590 "data/maps/NewBarkTown_Lab/scripts.pory"
-	step_end
+	face_up
 # 591 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	step_end
 # 592 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Movement_ReturnFromEmail:
+
 # 593 "data/maps/NewBarkTown_Lab/scripts.pory"
-	walk_fast_down
+NewBarkTown_Lab_Movement_ReturnFromEmail:
 # 594 "data/maps/NewBarkTown_Lab/scripts.pory"
-	walk_fast_right
+	walk_fast_down
 # 595 "data/maps/NewBarkTown_Lab/scripts.pory"
 	walk_fast_right
 # 596 "data/maps/NewBarkTown_Lab/scripts.pory"
 	walk_fast_right
 # 597 "data/maps/NewBarkTown_Lab/scripts.pory"
-	face_down
+	walk_fast_right
 # 598 "data/maps/NewBarkTown_Lab/scripts.pory"
-	step_end
+	face_down
 # 599 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	step_end
 # 600 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Movement_Look_Left:
+
 # 601 "data/maps/NewBarkTown_Lab/scripts.pory"
-	face_left
+NewBarkTown_Lab_Movement_Look_Left:
 # 602 "data/maps/NewBarkTown_Lab/scripts.pory"
-	step_end
+	face_left
 # 603 "data/maps/NewBarkTown_Lab/scripts.pory"
-
-# 604 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Movement_Look_Up:
-# 605 "data/maps/NewBarkTown_Lab/scripts.pory"
-	face_up
-# 606 "data/maps/NewBarkTown_Lab/scripts.pory"
 	step_end
-# 607 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 604 "data/maps/NewBarkTown_Lab/scripts.pory"
 
+# 605 "data/maps/NewBarkTown_Lab/scripts.pory"
+NewBarkTown_Lab_Movement_Look_Up:
+# 606 "data/maps/NewBarkTown_Lab/scripts.pory"
+	face_up
+# 607 "data/maps/NewBarkTown_Lab/scripts.pory"
+	step_end
 # 608 "data/maps/NewBarkTown_Lab/scripts.pory"
 
 # 609 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Movement_Aide1WalkToPlayer:
+
 # 610 "data/maps/NewBarkTown_Lab/scripts.pory"
-	walk_down
+NewBarkTown_Lab_Movement_Aide1WalkToPlayer:
 # 611 "data/maps/NewBarkTown_Lab/scripts.pory"
 	walk_down
 # 612 "data/maps/NewBarkTown_Lab/scripts.pory"
-	walk_right
+	walk_down
 # 613 "data/maps/NewBarkTown_Lab/scripts.pory"
 	walk_right
 # 614 "data/maps/NewBarkTown_Lab/scripts.pory"
-	step_end
+	walk_right
 # 615 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	step_end
 # 616 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Movement_Aide1LeavePlayer:
+
 # 617 "data/maps/NewBarkTown_Lab/scripts.pory"
-	walk_left
+NewBarkTown_Lab_Movement_Aide1LeavePlayer:
 # 618 "data/maps/NewBarkTown_Lab/scripts.pory"
 	walk_left
 # 619 "data/maps/NewBarkTown_Lab/scripts.pory"
-	walk_up
+	walk_left
 # 620 "data/maps/NewBarkTown_Lab/scripts.pory"
 	walk_up
 # 621 "data/maps/NewBarkTown_Lab/scripts.pory"
-	face_down
+	walk_up
 # 622 "data/maps/NewBarkTown_Lab/scripts.pory"
-	step_end
+	face_down
 # 623 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	step_end
 # 624 "data/maps/NewBarkTown_Lab/scripts.pory"
-NeBarkTownLab_Movement_PlayerWalkToCop:
+
 # 625 "data/maps/NewBarkTown_Lab/scripts.pory"
-	walk_fast_up
+NeBarkTownLab_Movement_PlayerWalkToCop:
 # 626 "data/maps/NewBarkTown_Lab/scripts.pory"
 	walk_fast_up
 # 627 "data/maps/NewBarkTown_Lab/scripts.pory"
@@ -1261,35 +1261,35 @@ NeBarkTownLab_Movement_PlayerWalkToCop:
 # 631 "data/maps/NewBarkTown_Lab/scripts.pory"
 	walk_fast_up
 # 632 "data/maps/NewBarkTown_Lab/scripts.pory"
-	walk_fast_left
-# 633 "data/maps/NewBarkTown_Lab/scripts.pory"
 	walk_fast_up
+# 633 "data/maps/NewBarkTown_Lab/scripts.pory"
+	walk_fast_left
 # 634 "data/maps/NewBarkTown_Lab/scripts.pory"
-	face_right
+	walk_fast_up
 # 635 "data/maps/NewBarkTown_Lab/scripts.pory"
-	step_end
+	face_right
 # 636 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	step_end
 # 637 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTownLab_Movement_Elm_Right:
+
 # 638 "data/maps/NewBarkTown_Lab/scripts.pory"
-    face_right
+NewBarkTownLab_Movement_Elm_Right:
 # 639 "data/maps/NewBarkTown_Lab/scripts.pory"
-    step_end
+    face_right
 # 640 "data/maps/NewBarkTown_Lab/scripts.pory"
-
-# 641 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTownLab_Movement_Elm_Down:
-# 642 "data/maps/NewBarkTown_Lab/scripts.pory"
-    face_down
-# 643 "data/maps/NewBarkTown_Lab/scripts.pory"
     step_end
-# 644 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 641 "data/maps/NewBarkTown_Lab/scripts.pory"
 
+# 642 "data/maps/NewBarkTown_Lab/scripts.pory"
+NewBarkTownLab_Movement_Elm_Down:
+# 643 "data/maps/NewBarkTown_Lab/scripts.pory"
+    face_down
+# 644 "data/maps/NewBarkTown_Lab/scripts.pory"
+    step_end
 # 645 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Movement_CopLeaves:
+
 # 646 "data/maps/NewBarkTown_Lab/scripts.pory"
-	walk_down
+NewBarkTown_Lab_Movement_CopLeaves:
 # 647 "data/maps/NewBarkTown_Lab/scripts.pory"
 	walk_down
 # 648 "data/maps/NewBarkTown_Lab/scripts.pory"
@@ -1299,909 +1299,921 @@ NewBarkTown_Lab_Movement_CopLeaves:
 # 650 "data/maps/NewBarkTown_Lab/scripts.pory"
 	walk_down
 # 651 "data/maps/NewBarkTown_Lab/scripts.pory"
-	step_end
+	walk_down
 # 652 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	step_end
 # 653 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Movement_PlayerStepsToElm:
+
 # 654 "data/maps/NewBarkTown_Lab/scripts.pory"
-	walk_right
+NewBarkTown_Lab_Movement_PlayerStepsToElm:
 # 655 "data/maps/NewBarkTown_Lab/scripts.pory"
-	face_up
+	walk_right
 # 656 "data/maps/NewBarkTown_Lab/scripts.pory"
-	step_end
+	face_up
 # 657 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	step_end
 # 658 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Movement_ElmStepBack:
+
 # 659 "data/maps/NewBarkTown_Lab/scripts.pory"
-	lock_facing_direction
+NewBarkTown_Lab_Movement_ElmStepBack:
 # 660 "data/maps/NewBarkTown_Lab/scripts.pory"
-	walk_fast_up
+	lock_facing_direction
 # 661 "data/maps/NewBarkTown_Lab/scripts.pory"
-	unlock_facing_direction
+	walk_fast_up
 # 662 "data/maps/NewBarkTown_Lab/scripts.pory"
-	step_end
+	unlock_facing_direction
 # 663 "data/maps/NewBarkTown_Lab/scripts.pory"
-
-# 664 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Movement_ElmStepForward:
-# 665 "data/maps/NewBarkTown_Lab/scripts.pory"
-	walk_fast_down
-# 666 "data/maps/NewBarkTown_Lab/scripts.pory"
 	step_end
+# 664 "data/maps/NewBarkTown_Lab/scripts.pory"
+
+# 665 "data/maps/NewBarkTown_Lab/scripts.pory"
+NewBarkTown_Lab_Movement_ElmStepForward:
+# 666 "data/maps/NewBarkTown_Lab/scripts.pory"
+	walk_fast_down
 # 667 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	step_end
 # 668 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ShouldntTouch:
+
 # 669 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Probably shouldn't touch!$"
+NewBarkTown_Lab_Text_ShouldntTouch:
 # 670 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "Probably shouldn't touch!$"
 # 671 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_StarterCaseWrongSide:
+
 # 672 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Oops, the case does not open\n"
+NewBarkTown_Lab_Text_StarterCaseWrongSide:
 # 673 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "from this side!$"
+	.string "Oops, the case does not open\n"
 # 674 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "from this side!$"
 # 675 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmAccepted:
+
 # 676 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Thanks, {PLAYER}!\n"
+NewBarkTown_Lab_Text_ElmAccepted:
 # 677 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "You're a great help!$"
+	.string "Thanks, {PLAYER}!\n"
 # 678 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "You're a great help!$"
 # 679 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmRefused:
+
 # 680 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "But… Please, I need your\n"
+NewBarkTown_Lab_Text_ElmRefused:
 # 681 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "help!$"
+	.string "But… Please, I need your\n"
 # 682 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "help!$"
 # 683 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmResearchAmbitions:
+
 # 684 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "When I announce my findings,\n"
+NewBarkTown_Lab_Text_ElmResearchAmbitions:
 # 685 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "I'm sure we'll delve deeper\p"
+	.string "When I announce my findings,\n"
 # 686 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "into the many mysteries of\n"
+	.string "I'm sure we'll delve deeper\p"
 # 687 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Pokémon.\p"
+	.string "into the many mysteries of\n"
 # 688 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "You can count on it!$"
+	.string "Pokémon.\p"
 # 689 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "You can count on it!$"
 # 690 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmGotAnEmail:
+
 # 691 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Oh, hey! I got an e-mail!\p"
+NewBarkTown_Lab_Text_ElmGotAnEmail:
 # 692 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "… … … … … … … …\n"
+	.string "Oh, hey! I got an e-mail!\p"
 # 693 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Hm… Uh-huh…\p"
+	.string "… … … … … … … …\n"
 # 694 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Okay…$"
+	.string "Hm… Uh-huh…\p"
 # 695 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "Okay…$"
 # 696 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmMissionFromMrPokemon:
+
 # 697 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Hey, listen.\p"
+NewBarkTown_Lab_Text_ElmMissionFromMrPokemon:
 # 698 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "I have an acquaintance called\n"
+	.string "Hey, listen.\p"
 # 699 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Mr. Pokémon.\p"
+	.string "I have an acquaintance called\n"
 # 700 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "He keeps finding weird things and\n"
+	.string "Mr. Pokémon.\p"
 # 701 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "raving about his discoveries.\p"
+	.string "He keeps finding weird things and\n"
 # 702 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Anyway, I just got an e-mail\n"
+	.string "raving about his discoveries.\p"
 # 703 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "from him saying that this\l"
+	.string "Anyway, I just got an e-mail\n"
 # 704 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "time it's real.\p"
+	.string "from him saying that this\l"
 # 705 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "It is intriguing, but we're\n"
+	.string "time it's real.\p"
 # 706 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "busy with our Pokémon research...\p"
+	.string "It is intriguing, but we're\n"
 # 707 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Wait!\n"
+	.string "busy with our Pokémon research...\p"
 # 708 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "I know!\p"
+	.string "Wait!\n"
 # 709 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "{PLAYER}, can you go in our\n"
+	.string "I know!\p"
 # 710 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "place?$"
+	.string "{PLAYER}, can you go in our\n"
 # 711 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "place?$"
 # 712 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmChooseAPokemon:
+
 # 713 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "I want you to raise one of\n"
+NewBarkTown_Lab_Text_ElmChooseAPokemon:
 # 714 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "the Pokémon contained in this case.\p"
+	.string "I want you to raise one of\n"
 # 715 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "You'll be that Pokémon's\n"
+	.string "the Pokémon contained in this case.\p"
 # 716 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "first partner, {PLAYER}!\p"
+	.string "You'll be that Pokémon's\n"
 # 717 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Go on. Pick one!$"
+	.string "first partner, {PLAYER}!\p"
 # 718 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "Go on. Pick one!$"
 # 719 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmWhereGoing:
+
 # 720 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Elm: Wait! Where are you\n"
+NewBarkTown_Lab_Text_ElmWhereGoing:
 # 721 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "going?$"
+	.string "Elm: Wait! Where are you\n"
 # 722 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "going?$"
 # 723 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ChooseCyndaquil:
+
 # 724 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Elm: You'll take Cyndaquil,\n"
+NewBarkTown_Lab_Text_ChooseCyndaquil:
 # 725 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "the fire Pokémon?$"
+	.string "Elm: You'll take Cyndaquil,\n"
 # 726 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "the fire Pokémon?$"
 # 727 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ChooseTotodile:
+
 # 728 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Elm: Do you want Totodile,\n"
+NewBarkTown_Lab_Text_ChooseTotodile:
 # 729 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "the water Pokémon?$"
+	.string "Elm: Do you want Totodile,\n"
 # 730 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "the water Pokémon?$"
 # 731 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ChooseChikorita:
+
 # 732 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Elm: So, you like Chikorita,\n"
+NewBarkTown_Lab_Text_ChooseChikorita:
 # 733 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "the grass Pokémon?$"
+	.string "Elm: So, you like Chikorita,\n"
 # 734 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "the grass Pokémon?$"
 # 735 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_DidntChooseStarter:
+
 # 736 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Elm: Think it over carefully.\p"
+NewBarkTown_Lab_Text_DidntChooseStarter:
 # 737 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Your partner is important.$"
+	.string "Elm: Think it over carefully.\p"
 # 738 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "Your partner is important.$"
 # 739 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ChoseStarter:
+
 # 740 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Elm: I think that's a great\n"
+NewBarkTown_Lab_Text_ChoseStarter:
 # 741 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Pokémon too!$"
+	.string "Elm: I think that's a great\n"
 # 742 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "Pokémon too!$"
 # 743 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ReceivedStarter:
+
 # 744 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "{PLAYER} received {STR_VAR_1}!$"
+NewBarkTown_Lab_Text_ReceivedStarter:
 # 745 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "{PLAYER} received {STR_VAR_1}!$"
 # 746 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_Nickname:
+
 # 747 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Would you like to give your\n"
+NewBarkTown_Lab_Text_Nickname:
 # 748 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "{STR_VAR_1} a nickname?$"
+	.string "Would you like to give your\n"
 # 749 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "{STR_VAR_1} a nickname?$"
 # 750 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmDirections1:
-# 751 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Mr. Pokémon lives a little bit\n"
-# 752 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "beyond Cherrygrove, the next\l"
-# 753 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "city over.\p"
-# 754 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "It's almost a direct route\n"
-# 755 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "there, so you can't miss it.\p"
-# 756 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "But just in case, you have my\n"
-# 757 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "phone number. Call me if\l"
-# 758 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "anything comes up!$"
-# 759 "data/maps/NewBarkTown_Lab/scripts.pory"
 
+# 751 "data/maps/NewBarkTown_Lab/scripts.pory"
+NewBarkTown_Lab_Text_ElmDirections1:
+# 752 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "Mr. Pokémon lives a little bit\n"
+# 753 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "beyond Cherrygrove, the next\l"
+# 754 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "city over.\p"
+# 755 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "It's almost a direct route\n"
+# 756 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "there, so you can't miss it.\p"
+# 757 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "But just in case, you have my\n"
+# 758 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "phone number. Call me if\l"
+# 759 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "anything comes up!$"
 # 760 "data/maps/NewBarkTown_Lab/scripts.pory"
 
 # 761 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmLetYourMonBattle:
+
 # 762 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "If a wild Pokémon appears,\n"
+NewBarkTown_Lab_Text_ElmLetYourMonBattle:
 # 763 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "let your Pokémon battle it!$"
+	.string "If a wild Pokémon appears,\n"
 # 764 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "let your Pokémon battle it!$"
 # 765 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmDirections2:
+
 # 766 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "If a wild Pokémon appears, let\n"
+NewBarkTown_Lab_Text_ElmDirections2:
 # 767 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "your Pokémon battle it!\p"
+	.string "If a wild Pokémon appears, let\n"
 # 768 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "If your Pokémon is hurt, you\n"
+	.string "your Pokémon battle it!\p"
 # 769 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "should heal it with the machine\l"
+	.string "If your Pokémon is hurt, you\n"
 # 770 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "to my right, or at the Pokémon Center.\p"
+	.string "should heal it with the machine\l"
 # 771 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "I'm counting on you!$"
+	.string "to my right, or at the Pokémon Center.\p"
 # 772 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "I'm counting on you!$"
 # 773 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_GotElmsNumber:
+
 # 774 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "{PLAYER} got Elm's phone\n"
+NewBarkTown_Lab_Text_GotElmsNumber:
 # 775 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "number.$"
+	.string "{PLAYER} got Elm's phone\n"
 # 776 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "number.$"
 # 777 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmDescribesMrPokemon:
+
 # 778 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Mr. Pokémon goes everywhere and\n"
+NewBarkTown_Lab_Text_ElmDescribesMrPokemon:
 # 779 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "finds rarities.\p"
+	.string "Mr. Pokémon goes everywhere and\n"
 # 780 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Too bad they're just rare and\n"
+	.string "finds rarities.\p"
 # 781 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "not very useful…$"
+	.string "Too bad they're just rare and\n"
 # 782 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "not very useful…$"
 # 783 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmPokeBall:
+
 # 784 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "It contains Pokémon caught\n"
+NewBarkTown_Lab_Text_ElmPokeBall:
 # 785 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "by Prof. Elm.$"
+	.string "It contains Pokémon caught\n"
 # 786 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "by Prof. Elm.$"
 # 787 "data/maps/NewBarkTown_Lab/scripts.pory"
-@THEFT================================================================================
+
 # 788 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+@THEFT================================================================================
 # 789 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmAfterTheft1:
+
 # 790 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Elm: {PLAYER}, this is terrible…\p"
+NewBarkTown_Lab_Text_ElmAfterTheft1:
 # 791 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Oh, yes, what was Mr. Pokémon's\n"
+	.string "Elm: {PLAYER}, this is terrible…\p"
 # 792 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "big discovery?$"
+	.string "Oh, yes, what was Mr. Pokémon's\n"
 # 793 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "big discovery?$"
 # 794 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmAfterTheft2:
+
 # 795 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "{PLAYER} handed the Mystery Egg\n"
+NewBarkTown_Lab_Text_ElmAfterTheft2:
 # 796 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "to Prof. Elm.$"
+	.string "{PLAYER} handed the Mystery Egg\n"
 # 797 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "to Prof. Elm.$"
 # 798 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmAfterTheft3:
+
 # 799 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Elm: This?$"
+NewBarkTown_Lab_Text_ElmAfterTheft3:
 # 800 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "Elm: This?$"
 # 801 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmAfterTheft4:
+
 # 802 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "But… Is it a Pokémon Egg?\p"
+NewBarkTown_Lab_Text_ElmAfterTheft4:
 # 803 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "If it is, it is a great\n"
+	.string "But… Is it a Pokémon Egg?\p"
 # 804 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "discovery!\p"
+	.string "If it is, it is a great\n"
 # 805 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Elm: What?!?\p"
+	.string "discovery!\p"
 # 806 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Prof. Oak gave you a Pokédex?\p"
+	.string "Elm: What?!?\p"
 # 807 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "{PLAYER}, is that true?\n"
+	.string "Prof. Oak gave you a Pokédex?\p"
 # 808 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Th-that's incredible!\p"
+	.string "{PLAYER}, is that true?\n"
 # 809 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "He is superb at seeing the\n"
+	.string "Th-that's incredible!\p"
 # 810 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "potential of people as trainers.\p"
+	.string "He is superb at seeing the\n"
 # 811 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Wow, {PLAYER}. You may have what\n"
+	.string "potential of people as trainers.\p"
 # 812 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "it takes to become the Champion.\p"
+	.string "Wow, {PLAYER}. You may have what\n"
 # 813 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "You seem to be getting on\n"
+	.string "it takes to become the Champion.\p"
 # 814 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "great with Pokémon too.\p"
+	.string "You seem to be getting on\n"
 # 815 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "You should take the Pokémon\n"
+	.string "great with Pokémon too.\p"
 # 816 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Gym challenge.\p"
+	.string "You should take the Pokémon\n"
 # 817 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "The closest Gym would be the\n"
+	.string "Gym challenge.\p"
 # 818 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "one in Violet City.\p"
+	.string "The closest Gym would be the\n"
 # 819 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "…{PLAYER}. The road to the\n"
+	.string "one in Violet City.\p"
 # 820 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "championship will be a long one.\p"
+	.string "…{PLAYER}. The road to the\n"
 # 821 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Before you leave, make sure\n"
+	.string "championship will be a long one.\p"
 # 822 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "that you talk to your mom.$"
+	.string "Before you leave, make sure\n"
 # 823 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "that you talk to your mom.$"
 # 824 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmStudyingEgg:
+
 # 825 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Elm: Don't give up!\n"
+NewBarkTown_Lab_Text_ElmStudyingEgg:
 # 826 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "I'll call if I learn anything\l"
+	.string "Elm: Don't give up!\n"
 # 827 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "about that Egg!$"
+	.string "I'll call if I learn anything\l"
 # 828 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "about that Egg!$"
 # 829 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmAideHasEgg:
+
 # 830 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Elm: {PLAYER}? Didn't you meet\n"
+NewBarkTown_Lab_Text_ElmAideHasEgg:
 # 831 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "my assistant?\p"
+	.string "Elm: {PLAYER}? Didn't you meet\n"
 # 832 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "He should have met you with\n"
+	.string "my assistant?\p"
 # 833 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "the Egg at Violet City's\p"
+	.string "He should have met you with\n"
 # 834 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Pokémon Center.\p"
+	.string "the Egg at Violet City's\p"
 # 835 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "You must have just missed him.\n"
+	.string "Pokémon Center.\p"
 # 836 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Try to catch him there.$"
+	.string "You must have just missed him.\n"
 # 837 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "Try to catch him there.$"
 # 838 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmWaitingEggHatch:
+
 # 839 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Elm: Hey, has that Egg changed\n"
+NewBarkTown_Lab_Text_ElmWaitingEggHatch:
 # 840 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "any?$"
+	.string "Elm: Hey, has that Egg changed\n"
 # 841 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "any?$"
 # 842 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmThoughtEggHatched:
+
 # 843 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "{PLAYER}? I thought the Egg\n"
+NewBarkTown_Lab_Text_ElmThoughtEggHatched:
 # 844 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "hatched.\p"
+	.string "{PLAYER}? I thought the Egg\n"
 # 845 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Where is the Pokémon?$"
+	.string "hatched.\p"
 # 846 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "Where is the Pokémon?$"
 # 847 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ShowTogepi1:
+
 # 848 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Elm: {PLAYER}, you look great!$"
+NewBarkTown_Lab_Text_ShowTogepi1:
 # 849 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "Elm: {PLAYER}, you look great!$"
 # 850 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ShowTogepi2:
+
 # 851 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "What? That Pokémon!?!$"
+NewBarkTown_Lab_Text_ShowTogepi2:
 # 852 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "What? That Pokémon!?!$"
 # 853 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ShowTogepi3:
+
 # 854 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "The Egg hatched! So, Pokémon\n"
+NewBarkTown_Lab_Text_ShowTogepi3:
 # 855 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "are born from Eggs…\p"
+	.string "The Egg hatched! So, Pokémon\n"
 # 856 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "No, perhaps not all Pokémon\n"
+	.string "are born from Eggs…\p"
 # 857 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "are.\p"
+	.string "No, perhaps not all Pokémon\n"
 # 858 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Wow, there's still a lot of\n"
+	.string "are.\p"
 # 859 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "research to be done.$"
+	.string "Wow, there's still a lot of\n"
 # 860 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "research to be done.$"
 # 861 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmGiveEverstone1:
+
 # 862 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Thanks, {PLAYER}! You're helping\n"
+NewBarkTown_Lab_Text_ElmGiveEverstone1:
 # 863 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "unravel Pokémon mysteries for us!\p"
+	.string "Thanks, {PLAYER}! You're helping\n"
 # 864 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "I want you to have this as a\n"
+	.string "unravel Pokémon mysteries for us!\p"
 # 865 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "token of our appreciation.$"
+	.string "I want you to have this as a\n"
 # 866 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "token of our appreciation.$"
 # 867 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmGiveEverstone2:
+
 # 868 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "That's a Shiny Stone.\p"
+NewBarkTown_Lab_Text_ElmGiveEverstone2:
 # 869 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Some species of Pokémon evolve\n"
+	.string "That's a Shiny Stone.\p"
 # 870 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "when they grow to certain levels.\p"
+	.string "Some species of Pokémon evolve\n"
 # 871 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "A Togetic will evolve\n"
+	.string "when they grow to certain levels.\p"
 # 872 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "with this one.$"
+	.string "A Togetic will evolve\n"
 # 873 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "with this one.$"
 # 874 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmCallYou:
+
 # 875 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Elm: {PLAYER}, I'll call you if\n"
+NewBarkTown_Lab_Text_ElmCallYou:
 # 876 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "anything comes up.$"
+	.string "Elm: {PLAYER}, I'll call you if\n"
 # 877 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "anything comes up.$"
 # 878 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_AideAfterTheft:
+
 # 879 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "…sigh… That stolen Pokémon.\p"
+NewBarkTown_Lab_Text_AideAfterTheft:
 # 880 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "I wonder how it's doing.\p"
+	.string "…sigh… That stolen Pokémon.\p"
 # 881 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "They say a Pokémon raised by a\n"
+	.string "I wonder how it's doing.\p"
 # 882 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "bad person turns bad itself.$"
+	.string "They say a Pokémon raised by a\n"
 # 883 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "bad person turns bad itself.$"
 # 884 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmGiveMasterBall1:
+
 # 885 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Elm: Hi, {PLAYER}!\p"
+NewBarkTown_Lab_Text_ElmGiveMasterBall1:
 # 886 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Thanks to you, my research is\n"
+	.string "Elm: Hi, {PLAYER}!\p"
 # 887 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "going great!\p"
+	.string "Thanks to you, my research is\n"
 # 888 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Take this as a token of my\n"
+	.string "going great!\p"
 # 889 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "appreciation.$"
+	.string "Take this as a token of my\n"
 # 890 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "appreciation.$"
 # 891 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmGiveMasterBall2:
+
 # 892 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "The Master Ball is the best!\p"
+NewBarkTown_Lab_Text_ElmGiveMasterBall2:
 # 893 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "It's the ultimate Ball! It'll\n"
+	.string "The Master Ball is the best!\p"
 # 894 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "catch any Pokémon without fail.\p"
+	.string "It's the ultimate Ball! It'll\n"
 # 895 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "It's given only to recognized\n"
+	.string "catch any Pokémon without fail.\p"
 # 896 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Pokémon researchers.\p"
+	.string "It's given only to recognized\n"
 # 897 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "I think you can make much better\n"
+	.string "Pokémon researchers.\p"
 # 898 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "use of it than I can, {PLAYER}!$"
+	.string "I think you can make much better\n"
 # 899 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "use of it than I can, {PLAYER}!$"
 # 900 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_KimonoGirls:
+
 # 901 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "By the way...\n"
+NewBarkTown_Lab_Text_KimonoGirls:
 # 902 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "A group of beautiful Kimono\l"
+	.string "By the way...\n"
 # 903 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Girls were looking for you.\p"
+	.string "A group of beautiful Kimono\l"
 # 904 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "They told me they are\n"
+	.string "Girls were looking for you.\p"
 # 905 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "waiting for you at the\l"
+	.string "They told me they are\n"
 # 906 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Ecruteak Dance Theater.\p"
+	.string "waiting for you at the\l"
 # 907 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "I know you've gone through many\n"
+	.string "Ecruteak Dance Theater.\p"
 # 908 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "things since that Egg got you\l"
+	.string "I know you've gone through many\n"
 # 909 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "involved in all this...\p"
+	.string "things since that Egg got you\l"
 # 910 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "I hope you'll carry through it.$"
+	.string "involved in all this...\p"
 # 911 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "I hope you'll carry through it.$"
 # 912 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_KimonoWaiting:
+
 # 913 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Prof. Elm: The Kimono\n"
+NewBarkTown_Lab_Text_KimonoWaiting:
 # 914 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Girls are waiting for you at\l"
+	.string "Prof. Elm: The Kimono\n"
 # 915 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "the Ecruteak Dance Theater.$"
+	.string "Girls are waiting for you at\l"
 # 916 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "the Ecruteak Dance Theater.$"
 # 917 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_League:
-# 918 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Prof. Elm: Hahaha...\n"
-# 919 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Good job!\p"
-# 920 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "That rare Egg has brought you\n"
-# 921 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "a lot of trouble, huh?\p"
-# 922 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "The Kimono Girls said something\n"
-# 923 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "about me?\p"
-# 924 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "I have nothing to do with it.\p"
-# 925 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "You made your decision and went\n"
-# 926 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "through with it.\p"
-# 927 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Having done so much, you should\n"
-# 928 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "be able to face the League now!\p"
-# 929 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "You should head for Indigo\n"
-# 930 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Plateau!\p"
-# 931 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Do you know how to get there?\n"
-# 932 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Follow Route 27 to Route 26.\p"
-# 933 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Once there, go straight north!$"
-# 934 "data/maps/NewBarkTown_Lab/scripts.pory"
 
+# 918 "data/maps/NewBarkTown_Lab/scripts.pory"
+NewBarkTown_Lab_Text_League:
+# 919 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "Prof. Elm: Hahaha...\n"
+# 920 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "Good job!\p"
+# 921 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "That rare Egg has brought you\n"
+# 922 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "a lot of trouble, huh?\p"
+# 923 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "The Kimono Girls said something\n"
+# 924 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "about me?\p"
+# 925 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "I have nothing to do with it.\p"
+# 926 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "You made your decision and went\n"
+# 927 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "through with it.\p"
+# 928 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "Having done so much, you should\n"
+# 929 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "be able to face the League now!\p"
+# 930 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "You should head for Indigo\n"
+# 931 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "Plateau!\p"
+# 932 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "Do you know how to get there?\n"
+# 933 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "Follow Route 27 to Route 26.\p"
+# 934 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "Once there, go straight north!$"
 # 935 "data/maps/NewBarkTown_Lab/scripts.pory"
 
 # 936 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmGiveTicket1:
+
 # 937 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Elm: {PLAYER}! There you are!\p"
+NewBarkTown_Lab_Text_ElmGiveTicket1:
 # 938 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "I called because I have\n"
+	.string "Elm: {PLAYER}! There you are!\p"
 # 939 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "something for you.\p"
+	.string "I called because I have\n"
 # 940 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "See? It's an S.S.Ticket.\p"
+	.string "something for you.\p"
 # 941 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Now you can catch Pokémon in\n"
+	.string "See? It's an S.S.Ticket.\p"
 # 942 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Sevii.$"
+	.string "Now you can catch Pokémon in\n"
 # 943 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "Sevii.$"
 # 944 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_ElmGiveTicket2:
+
 # 945 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "The ship departs from Olivine\n"
+NewBarkTown_Lab_Text_ElmGiveTicket2:
 # 946 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "City.\p"
+	.string "The ship departs from Olivine\n"
 # 947 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "But you knew that already,\n"
+	.string "City.\p"
 # 948 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "{PLAYER}.\p"
+	.string "But you knew that already,\n"
 # 949 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "After all, you've traveled all\n"
+	.string "{PLAYER}.\p"
 # 950 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "over with your Pokémon.$"
+	.string "After all, you've traveled all\n"
 # 951 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "over with your Pokémon.$"
 # 952 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_LabMonEgg:
+
 # 953 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "It's the Pokémon Egg being\n"
+NewBarkTown_Lab_Text_LabMonEgg:
 # 954 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "studied by Prof. Elm.$"
+	.string "It's the Pokémon Egg being\n"
 # 955 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "studied by Prof. Elm.$"
 # 956 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_AideGivePotion:
+
 # 957 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "{PLAYER}, I want you to have\n"
+NewBarkTown_Lab_Text_AideGivePotion:
 # 958 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "this for your errand.$"
+	.string "{PLAYER}, I want you to have\n"
 # 959 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "this for your errand.$"
 # 960 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_AideAlwaysBusy:
+
 # 961 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "There are only three of us, so\n"
+NewBarkTown_Lab_Text_AideAlwaysBusy:
 # 962 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "we're always busy.$"
+	.string "There are only three of us, so\n"
 # 963 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "we're always busy.$"
 # 964 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_AideSave:
+
 # 965 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Don't forget to save your game\n"
+NewBarkTown_Lab_Text_AideSave:
 # 966 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "regularly!\p"
+	.string "Don't forget to save your game\n"
 # 967 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Press the Start button, then\n"
+	.string "regularly!\p"
 # 968 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Save the game!$"
+	.string "Press the Start button, then\n"
 # 969 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "Save the game!$"
 # 970 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_AideTheftTestimony:
+
 # 971 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "There was a loud noise\n"
+NewBarkTown_Lab_Text_AideTheftTestimony:
 # 972 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "outside…\p"
+	.string "There was a loud noise\n"
 # 973 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "When we went to look,\n"
+	.string "outside…\p"
 # 974 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "someone stole a Pokémon.\p"
+	.string "When we went to look,\n"
 # 975 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "It's unbelievable that anyone\n"
+	.string "someone stole a Pokémon.\p"
 # 976 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "would do that!\p"
+	.string "It's unbelievable that anyone\n"
 # 977 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "…sigh… That stolen Pokémon.\p"
+	.string "would do that!\p"
 # 978 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "I wonder how it's doing.\p"
+	.string "…sigh… That stolen Pokémon.\p"
 # 979 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "They say a Pokémon raised by a\n"
+	.string "I wonder how it's doing.\p"
 # 980 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "bad person turns bad itself.$"
+	.string "They say a Pokémon raised by a\n"
 # 981 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "bad person turns bad itself.$"
 # 982 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_AideGiveBalls:
-# 983 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "{PLAYER}!\p"
-# 984 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Use these on your Pokédex\n"
-# 985 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "quest!$"
-# 986 "data/maps/NewBarkTown_Lab/scripts.pory"
 
+# 983 "data/maps/NewBarkTown_Lab/scripts.pory"
+NewBarkTown_Lab_Text_AideGiveBalls:
+# 984 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "{PLAYER}!\p"
+# 985 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "Use these on your Pokédex\n"
+# 986 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "quest!$"
 # 987 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_AideExplainBalls:
+
 # 988 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "To add to your Pokédex, you\n"
+NewBarkTown_Lab_Text_ExplainDexnav:
 # 989 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "have to catch Pokémon.\p"
+	.string "We've also sent a Dexnav\n"
 # 990 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Throw Poké Balls at wild\n"
+	.string "application to your Pokégear!\p"
 # 991 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Pokémon to get them.$"
+	.string "Use it to catch lots of Pokémon!$"
 # 992 "data/maps/NewBarkTown_Lab/scripts.pory"
 
 # 993 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_Officer1:
+NewBarkTown_Lab_Text_AideExplainBalls:
 # 994 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "I heard a Pokémon was stolen\n"
+	.string "To add to your Pokédex, you\n"
 # 995 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "here…\p"
+	.string "have to catch Pokémon.\p"
 # 996 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "I was just getting some\n"
+	.string "Throw Poké Balls at wild\n"
 # 997 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "information from Prof. Elm.\p"
+	.string "Pokémon to get them.$"
 # 998 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Apparently, it was a young\n"
+
 # 999 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "male with long, red hair…\p"
+NewBarkTown_Lab_Text_Officer1:
 # 1000 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "What?\p"
+	.string "I heard a Pokémon was stolen\n"
 # 1001 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "You battled a trainer like\n"
+	.string "here…\p"
 # 1002 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "that?\p"
+	.string "I was just getting some\n"
 # 1003 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Did you happen to get his\n"
+	.string "information from Prof. Elm.\p"
 # 1004 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "name?$"
+	.string "Apparently, it was a young\n"
 # 1005 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "male with long, red hair…\p"
 # 1006 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_Officer2:
+	.string "What?\p"
 # 1007 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Ok! So Silver was his name.\p"
+	.string "You battled a trainer like\n"
 # 1008 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Thanks for helping my\n"
+	.string "that?\p"
 # 1009 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "investigation!$"
+	.string "Did you happen to get his\n"
 # 1010 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "name?$"
 # 1011 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_Officer3:
+
 # 1012 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Ok! So {RIVAL} was his name.\p"
+NewBarkTown_Lab_Text_Officer2:
 # 1013 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Thanks for helping my\n"
+	.string "Ok! So Silver was his name.\p"
 # 1014 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "investigation!$"
+	.string "Thanks for helping my\n"
 # 1015 "data/maps/NewBarkTown_Lab/scripts.pory"
-
+	.string "investigation!$"
 # 1016 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_OfficerNo:
-# 1017 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Surely you got his name?!$"
-# 1018 "data/maps/NewBarkTown_Lab/scripts.pory"
 
+# 1017 "data/maps/NewBarkTown_Lab/scripts.pory"
+NewBarkTown_Lab_Text_Officer3:
+# 1018 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "Ok! So {RIVAL} was his name.\p"
 # 1019 "data/maps/NewBarkTown_Lab/scripts.pory"
-NewBarkTown_Lab_Text_Elm_CallMe:
+	.string "Thanks for helping my\n"
 # 1020 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "Ah, {PLAYER}!\p"
+	.string "investigation!$"
 # 1021 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "How's your Pokédex coming along?\n"
+
 # 1022 "data/maps/NewBarkTown_Lab/scripts.pory"
-	.string "I'm busy now, but call me sometime\l"
+NewBarkTown_Lab_Text_OfficerNo:
 # 1023 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "Surely you got his name?!$"
+# 1024 "data/maps/NewBarkTown_Lab/scripts.pory"
+
+# 1025 "data/maps/NewBarkTown_Lab/scripts.pory"
+NewBarkTown_Lab_Text_Elm_CallMe:
+# 1026 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "Ah, {PLAYER}!\p"
+# 1027 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "How's your Pokédex coming along?\n"
+# 1028 "data/maps/NewBarkTown_Lab/scripts.pory"
+	.string "I'm busy now, but call me sometime\l"
+# 1029 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "and I can check your progress!$"
 
 NewBarkTown_Lab_GiveStarterMega::
-# 1027 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1033 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox NewBarkTown_Lab_GiveStarterMega_Text_0
-# 1031 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1037 "data/maps/NewBarkTown_Lab/scripts.pory"
 	giveitem ITEM_BONDSTONE, 1
-# 1032 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1038 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox NewBarkTown_Lab_GiveStarterMega_Text_1
 	return
 
 
 NewBarkTown_Lab_EventScript_ElmPostgameHint::
-# 1039 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1045 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_0
-# 1048 "data/maps/NewBarkTown_Lab/scripts.pory"
-	msgbox NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_1
-# 1050 "data/maps/NewBarkTown_Lab/scripts.pory"
-	playse SE_CLICK
-# 1051 "data/maps/NewBarkTown_Lab/scripts.pory"
-	delay 10
-# 1052 "data/maps/NewBarkTown_Lab/scripts.pory"
-	playse SE_CLICK
-# 1053 "data/maps/NewBarkTown_Lab/scripts.pory"
-	delay 10
 # 1054 "data/maps/NewBarkTown_Lab/scripts.pory"
-	playse SE_CLICK
-# 1055 "data/maps/NewBarkTown_Lab/scripts.pory"
-	delay 10
+	msgbox NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_1
 # 1056 "data/maps/NewBarkTown_Lab/scripts.pory"
-	playse SE_PIN
+	playse SE_CLICK
 # 1057 "data/maps/NewBarkTown_Lab/scripts.pory"
-	waitse
+	delay 10
 # 1058 "data/maps/NewBarkTown_Lab/scripts.pory"
-	msgbox NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_2
+	playse SE_CLICK
+# 1059 "data/maps/NewBarkTown_Lab/scripts.pory"
+	delay 10
+# 1060 "data/maps/NewBarkTown_Lab/scripts.pory"
+	playse SE_CLICK
+# 1061 "data/maps/NewBarkTown_Lab/scripts.pory"
+	delay 10
+# 1062 "data/maps/NewBarkTown_Lab/scripts.pory"
+	playse SE_PIN
+# 1063 "data/maps/NewBarkTown_Lab/scripts.pory"
+	waitse
 # 1064 "data/maps/NewBarkTown_Lab/scripts.pory"
+	msgbox NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_2
+# 1070 "data/maps/NewBarkTown_Lab/scripts.pory"
 	setflag FLAG_POSTGAME_FEATURES
-# 1065 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1071 "data/maps/NewBarkTown_Lab/scripts.pory"
 	setflag FLAG_HIDE_VICTORYROAD_RIVAL
-# 1066 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1072 "data/maps/NewBarkTown_Lab/scripts.pory"
 	checkplayergender
-# 1067 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1073 "data/maps/NewBarkTown_Lab/scripts.pory"
 	compare VAR_RESULT, MALE
 	goto_if_eq NewBarkTown_Lab_EventScript_ElmPostgameHint_2
-# 1076 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1082 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_4
 NewBarkTown_Lab_EventScript_ElmPostgameHint_1:
-# 1084 "data/maps/NewBarkTown_Lab/scripts.pory"
-	msgbox NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_5
-# 1086 "data/maps/NewBarkTown_Lab/scripts.pory"
-	setflag FLAG_HIDE_MTSILVER_GUARD
-# 1087 "data/maps/NewBarkTown_Lab/scripts.pory"
-	setflag FLAG_ALLOW_SOUTH_JOHTO_PASS
-# 1088 "data/maps/NewBarkTown_Lab/scripts.pory"
-	setvar VAR_NEWBARKTOWN_LABSTATE, 11
-# 1089 "data/maps/NewBarkTown_Lab/scripts.pory"
-	setvar VAR_NEWBARK_TOWN_STATE, 11
 # 1090 "data/maps/NewBarkTown_Lab/scripts.pory"
+	msgbox NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_5
+# 1092 "data/maps/NewBarkTown_Lab/scripts.pory"
+	setflag FLAG_HIDE_MTSILVER_GUARD
+# 1093 "data/maps/NewBarkTown_Lab/scripts.pory"
+	setflag FLAG_ALLOW_SOUTH_JOHTO_PASS
+# 1094 "data/maps/NewBarkTown_Lab/scripts.pory"
+	setvar VAR_NEWBARKTOWN_LABSTATE, 11
+# 1095 "data/maps/NewBarkTown_Lab/scripts.pory"
+	setvar VAR_NEWBARK_TOWN_STATE, 11
+# 1096 "data/maps/NewBarkTown_Lab/scripts.pory"
 	release
 	end
 
 NewBarkTown_Lab_EventScript_ElmPostgameHint_2:
-# 1068 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1074 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_3
 	goto NewBarkTown_Lab_EventScript_ElmPostgameHint_1
 
 
 ElmIntro::
-# 1095 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1101 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox ElmIntro_Text_0, MSGBOX_YESNO
 	return
 
 
 NewBarkTown_Lab_EventScript_ArtifactOfChaos::
-# 1121 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1127 "data/maps/NewBarkTown_Lab/scripts.pory"
 	lock
-# 1122 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1128 "data/maps/NewBarkTown_Lab/scripts.pory"
 	goto_if_set FLAG_ALL_INNATES_UNLOCKED, NewBarkTown_Lab_EventScript_ArtifactOfChaos_2
-# 1146 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1152 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_4
-# 1151 "data/maps/NewBarkTown_Lab/scripts.pory"
-	msgbox NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_5
 # 1157 "data/maps/NewBarkTown_Lab/scripts.pory"
-	msgbox NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_6, MSGBOX_YESNO
+	msgbox NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_5
 # 1163 "data/maps/NewBarkTown_Lab/scripts.pory"
+	msgbox NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_6, MSGBOX_YESNO
+# 1169 "data/maps/NewBarkTown_Lab/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq NewBarkTown_Lab_EventScript_ArtifactOfChaos_8
-# 1176 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1182 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_8
 NewBarkTown_Lab_EventScript_ArtifactOfChaos_1:
-# 1180 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1186 "data/maps/NewBarkTown_Lab/scripts.pory"
 	closemessage
-# 1181 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1187 "data/maps/NewBarkTown_Lab/scripts.pory"
 	release
 	end
 
 NewBarkTown_Lab_EventScript_ArtifactOfChaos_2:
-# 1123 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1129 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_0
-# 1127 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1133 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_1, MSGBOX_YESNO
-# 1128 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1134 "data/maps/NewBarkTown_Lab/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq NewBarkTown_Lab_EventScript_ArtifactOfChaos_5
-# 1142 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1148 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_3
 	goto NewBarkTown_Lab_EventScript_ArtifactOfChaos_1
 
 NewBarkTown_Lab_EventScript_ArtifactOfChaos_5:
-# 1129 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1135 "data/maps/NewBarkTown_Lab/scripts.pory"
 	playse SE_PC_OFF
-# 1130 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1136 "data/maps/NewBarkTown_Lab/scripts.pory"
 	waitse
-# 1131 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1137 "data/maps/NewBarkTown_Lab/scripts.pory"
 	clearflag FLAG_ALL_INNATES_UNLOCKED
-# 1132 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1138 "data/maps/NewBarkTown_Lab/scripts.pory"
 	compare VAR_NEWBARKTOWN_LABSTATE, 11
 	goto_if_lt NewBarkTown_Lab_EventScript_ArtifactOfChaos_12
-# 1135 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1141 "data/maps/NewBarkTown_Lab/scripts.pory"
 	setflag FLAG_POSTGAME_FEATURES
 NewBarkTown_Lab_EventScript_ArtifactOfChaos_11:
-# 1137 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1143 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_2
 	goto NewBarkTown_Lab_EventScript_ArtifactOfChaos_1
 
 NewBarkTown_Lab_EventScript_ArtifactOfChaos_8:
-# 1164 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1170 "data/maps/NewBarkTown_Lab/scripts.pory"
 	playse SE_SWITCH
-# 1165 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1171 "data/maps/NewBarkTown_Lab/scripts.pory"
 	waitse
-# 1166 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1172 "data/maps/NewBarkTown_Lab/scripts.pory"
 	setflag FLAG_ALL_INNATES_UNLOCKED
-# 1167 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1173 "data/maps/NewBarkTown_Lab/scripts.pory"
 	clearflag FLAG_REPLAY_NO_INNATES
-# 1168 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1174 "data/maps/NewBarkTown_Lab/scripts.pory"
 	msgbox NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_7
 	goto NewBarkTown_Lab_EventScript_ArtifactOfChaos_1
 
 NewBarkTown_Lab_EventScript_ArtifactOfChaos_12:
-# 1133 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1139 "data/maps/NewBarkTown_Lab/scripts.pory"
 	clearflag FLAG_POSTGAME_FEATURES
 	goto NewBarkTown_Lab_EventScript_ArtifactOfChaos_11
 
 
 NewBarkTown_Lab_GiveStarterMega_Text_0:
-# 1027 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1033 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "Oh, and you got a Mega Ring from \n"
 	.string "Prof. Oak?\l"
 	.string "Then I think you are ready to handle\l"
 	.string "this.$"
 
 NewBarkTown_Lab_GiveStarterMega_Text_1:
-# 1032 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1038 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "It's a special Mega Stone, specifically\n"
 	.string "for your starter Pokémon. I expect \l"
 	.string "great things from you, {PLAYER}!$"
 
 NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_0:
-# 1039 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1045 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "Elm: {PLAYER}! There you are!\n"
 	.string "I called because I heard that the \l"
 	.string "Battle Tower is open! \p"
@@ -2211,12 +2223,12 @@ NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_0:
 	.string "near Olivine City.$"
 
 NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_1:
-# 1048 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1054 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "But first, let me upgrade your Pokédex\n"
 	.string "with a new feature!$"
 
 NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_2:
-# 1058 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1064 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "Now you can view abilities of the\n"
 	.string "opposing Pokémon with the L-button\l"
 	.string "in battle! \p"
@@ -2224,7 +2236,7 @@ NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_2:
 	.string "battles get tougher!$"
 
 NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_3:
-# 1068 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1074 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "I also heard that Crystal went to train\n"
 	.string "in Mt. Silver. \p"
 	.string "She looked really tired\n"
@@ -2232,7 +2244,7 @@ NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_3:
 	.string "Could you check on her at some point?$"
 
 NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_4:
-# 1076 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1082 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "I also heard that Gold went to train\n"
 	.string "in Mt. Silver. \p"
 	.string "He looked really tired\n"
@@ -2240,12 +2252,12 @@ NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_4:
 	.string "Could you check on him at some point?$"
 
 NewBarkTown_Lab_EventScript_ElmPostgameHint_Text_5:
-# 1084 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1090 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "I asked from the League to let you\n"
 	.string "pass since you've the new Champion.$"
 
 ElmIntro_Text_0:
-# 1095 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1101 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "Elm: {PLAYER}! There you are!\p"
 	.string "I needed to ask you a favor.\p"
 	.string "I'm conducting new Pokémon\n"
@@ -2262,35 +2274,35 @@ ElmIntro_Text_0:
 	.string "Pokémon that I recently caught.$"
 
 NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_0:
-# 1123 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1129 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "The Artifact of Chaos is humming.\p"
 	.string "All innate abilities are currently\n"
 	.string "active.$"
 
 NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_1:
-# 1127 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1133 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "Deactivate the Artifact?$"
 
 NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_2:
-# 1137 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1143 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "The glow from the Artifact fades.\p"
 	.string "Innate abilities will now unlock at\n"
 	.string "their intended levels again.$"
 
 NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_3:
-# 1142 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1148 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "The Artifact continues humming.\n"
 	.string "Hope Elm hasn't noticed yet!$"
 
 NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_4:
-# 1146 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1152 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "Amidst the books is Elm's very own\n"
 	.string "Artifact of Chaos.\p"
 	.string "There's a small label on the side:\n"
 	.string "DO NOT TOUCH.$"
 
 NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_5:
-# 1151 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1157 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "Important! Activating this Artifact\n"
 	.string "unlocks all innate abilities,\l"
 	.string "regardless of a Pokémon's level.\p"
@@ -2298,7 +2310,7 @@ NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_5:
 	.string "innates in battle by pressing L.$"
 
 NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_6:
-# 1157 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1163 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "This is not the intended way to play\n"
 	.string "the game and will not be balanced\l"
 	.string "at all.\p"
@@ -2306,7 +2318,7 @@ NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_6:
 	.string "activate it, choose Yes.$"
 
 NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_7:
-# 1168 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1174 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "{PLAYER} tapped the Artifact.\p"
 	.string "Game balance quietly\n"
 	.string "leaves the building.\p"
@@ -2314,6 +2326,6 @@ NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_7:
 	.string "in battle to inspect enemy innates.$"
 
 NewBarkTown_Lab_EventScript_ArtifactOfChaos_Text_8:
-# 1176 "data/maps/NewBarkTown_Lab/scripts.pory"
+# 1182 "data/maps/NewBarkTown_Lab/scripts.pory"
 	.string "{PLAYER} left the Artifact alone.\n"
 	.string "Chaos shall not win today.$"

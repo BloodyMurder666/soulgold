@@ -65,38 +65,40 @@ NamelessDungeon_Leaf::
 # 38 "data/maps/CeruleanCave_B2F/scripts.pory"
 	goto_if_unset FLAG_TEMP_3, NamelessDungeon_Leaf_2
 NamelessDungeon_Leaf_1:
-# 73 "data/maps/CeruleanCave_B2F/scripts.pory"
-	faceplayer
 # 74 "data/maps/CeruleanCave_B2F/scripts.pory"
+	faceplayer
+# 75 "data/maps/CeruleanCave_B2F/scripts.pory"
 	msgbox NamelessDungeon_Leaf_Text_4, MSGBOX_YESNO
-# 77 "data/maps/CeruleanCave_B2F/scripts.pory"
+# 78 "data/maps/CeruleanCave_B2F/scripts.pory"
 	compare VAR_RESULT, NO
 	goto_if_eq NamelessDungeon_Leaf_5
-# 84 "data/maps/CeruleanCave_B2F/scripts.pory"
-	playbgm MUS_RG_ENCOUNTER_GYM_LEADER, FALSE
 # 85 "data/maps/CeruleanCave_B2F/scripts.pory"
-	msgbox NamelessDungeon_Leaf_Text_6
+	playbgm MUS_RG_ENCOUNTER_GYM_LEADER, FALSE
 # 86 "data/maps/CeruleanCave_B2F/scripts.pory"
-	trainerbattle_no_intro TRAINER_NAMELESS_LEAF, NamelessDungeon_Leaf_Text_7
+	msgbox NamelessDungeon_Leaf_Text_6
 # 87 "data/maps/CeruleanCave_B2F/scripts.pory"
+	trainerbattle_no_intro TRAINER_NAMELESS_LEAF, NamelessDungeon_Leaf_Text_7
+# 88 "data/maps/CeruleanCave_B2F/scripts.pory"
+	createfieldmugshot MUGSHOT_LEAF
+# 89 "data/maps/CeruleanCave_B2F/scripts.pory"
 	msgbox NamelessDungeon_Leaf_Text_8
-# 103 "data/maps/CeruleanCave_B2F/scripts.pory"
-	closemessage
-# 104 "data/maps/CeruleanCave_B2F/scripts.pory"
-	fadescreen FADE_TO_BLACK
 # 105 "data/maps/CeruleanCave_B2F/scripts.pory"
-	setflag FLAG_HIDE_LEAF_NAMELESS
+	closemessage
 # 106 "data/maps/CeruleanCave_B2F/scripts.pory"
-	setflag FLAG_POSTGAME_CAP1
+	fadescreen FADE_TO_BLACK
 # 107 "data/maps/CeruleanCave_B2F/scripts.pory"
-	playse SE_EXIT
+	setflag FLAG_HIDE_LEAF_NAMELESS
 # 108 "data/maps/CeruleanCave_B2F/scripts.pory"
-	removeobject LOCALID_NAMELESS_LEAF
+	setflag FLAG_POSTGAME_CAP1
 # 109 "data/maps/CeruleanCave_B2F/scripts.pory"
-	delay 60
+	playse SE_EXIT
 # 110 "data/maps/CeruleanCave_B2F/scripts.pory"
-	fadescreen FADE_FROM_BLACK
+	removeobject LOCALID_NAMELESS_LEAF
 # 111 "data/maps/CeruleanCave_B2F/scripts.pory"
+	delay 60
+# 112 "data/maps/CeruleanCave_B2F/scripts.pory"
+	fadescreen FADE_FROM_BLACK
+# 113 "data/maps/CeruleanCave_B2F/scripts.pory"
 	release
 	end
 
@@ -114,25 +116,27 @@ NamelessDungeon_Leaf_2:
 # 44 "data/maps/CeruleanCave_B2F/scripts.pory"
 	waitse
 # 45 "data/maps/CeruleanCave_B2F/scripts.pory"
+	createfieldmugshot MUGSHOT_LEAF
+# 46 "data/maps/CeruleanCave_B2F/scripts.pory"
 	msgbox NamelessDungeon_Leaf_Text_1
-# 55 "data/maps/CeruleanCave_B2F/scripts.pory"
-	turnobject LOCALID_NAMELESS_LEAF, DIR_WEST
 # 56 "data/maps/CeruleanCave_B2F/scripts.pory"
+	turnobject LOCALID_NAMELESS_LEAF, DIR_WEST
+# 57 "data/maps/CeruleanCave_B2F/scripts.pory"
 	msgbox NamelessDungeon_Leaf_Text_2
-# 59 "data/maps/CeruleanCave_B2F/scripts.pory"
-	faceplayer
 # 60 "data/maps/CeruleanCave_B2F/scripts.pory"
+	faceplayer
+# 61 "data/maps/CeruleanCave_B2F/scripts.pory"
 	msgbox NamelessDungeon_Leaf_Text_3
-# 71 "data/maps/CeruleanCave_B2F/scripts.pory"
+# 72 "data/maps/CeruleanCave_B2F/scripts.pory"
 	setflag FLAG_TEMP_3
 	goto NamelessDungeon_Leaf_1
 
 NamelessDungeon_Leaf_5:
-# 78 "data/maps/CeruleanCave_B2F/scripts.pory"
+# 79 "data/maps/CeruleanCave_B2F/scripts.pory"
 	msgbox NamelessDungeon_Leaf_Text_5
-# 80 "data/maps/CeruleanCave_B2F/scripts.pory"
-	turnobject LOCALID_NAMELESS_LEAF, DIR_SOUTH
 # 81 "data/maps/CeruleanCave_B2F/scripts.pory"
+	turnobject LOCALID_NAMELESS_LEAF, DIR_SOUTH
+# 82 "data/maps/CeruleanCave_B2F/scripts.pory"
 	release
 	end
 
@@ -142,7 +146,7 @@ NamelessDungeon_Leaf_Text_0:
 	.string "???: Hmm, Mewtwo should be just ahead...$"
 
 NamelessDungeon_Leaf_Text_1:
-# 45 "data/maps/CeruleanCave_B2F/scripts.pory"
+# 46 "data/maps/CeruleanCave_B2F/scripts.pory"
 	.string "???: Oh, hello! Who might you be?\p"
 	.string "...\p"
 	.string "Oh, you're {PLAYER}? Nice to meet you!\p"
@@ -151,13 +155,13 @@ NamelessDungeon_Leaf_Text_1:
 	.string "than your average rare Pokémon.$"
 
 NamelessDungeon_Leaf_Text_2:
-# 56 "data/maps/CeruleanCave_B2F/scripts.pory"
+# 57 "data/maps/CeruleanCave_B2F/scripts.pory"
 	.string "I've tracked it down to this cave, and\n"
 	.string "the only place it can be hiding in is\l"
 	.string "just past this pool of water.$"
 
 NamelessDungeon_Leaf_Text_3:
-# 60 "data/maps/CeruleanCave_B2F/scripts.pory"
+# 61 "data/maps/CeruleanCave_B2F/scripts.pory"
 	.string "Piqued your interest, eh?\p"
 	.string "Can't blame you, this one is\n"
 	.string "apparently an experiment created\l"
@@ -168,26 +172,26 @@ NamelessDungeon_Leaf_Text_3:
 	.string "would involve beating me in a battle.$"
 
 NamelessDungeon_Leaf_Text_4:
-# 74 "data/maps/CeruleanCave_B2F/scripts.pory"
+# 75 "data/maps/CeruleanCave_B2F/scripts.pory"
 	.string "What do you say? Interested?\n"
 	.string "I'll warn you though, I'm really\l"
 	.string "tough!$"
 
 NamelessDungeon_Leaf_Text_5:
-# 78 "data/maps/CeruleanCave_B2F/scripts.pory"
+# 79 "data/maps/CeruleanCave_B2F/scripts.pory"
 	.string "Ah shame, I was hoping you'd say\n"
 	.string "yes.$"
 
 NamelessDungeon_Leaf_Text_6:
-# 85 "data/maps/CeruleanCave_B2F/scripts.pory"
+# 86 "data/maps/CeruleanCave_B2F/scripts.pory"
 	.string "Great! Get ready for a beatdown!$"
 
 NamelessDungeon_Leaf_Text_7:
-# 86 "data/maps/CeruleanCave_B2F/scripts.pory"
+# 87 "data/maps/CeruleanCave_B2F/scripts.pory"
 	.string "Damn, you're good!$"
 
 NamelessDungeon_Leaf_Text_8:
-# 87 "data/maps/CeruleanCave_B2F/scripts.pory"
+# 89 "data/maps/CeruleanCave_B2F/scripts.pory"
 	.string "Let me tell you, \n"
 	.string "I was not expecting that!\p"
 	.string "You are a monster in battle!\p"
