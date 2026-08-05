@@ -1337,6 +1337,35 @@ static void ShowTowerResultsWindow(u8 battleMode)
     CopyWindowToVram(gRecordsWindowId, COPYWIN_FULL);
 }
 
+void BattleCafe_ShowRecordsWindow(void)
+{
+    static const u8 sText_Title[] = _("BATTLE CAFÉ RECORDS");
+    static const u8 sText_EndlessChallenge[] = _("Endless Challenge");
+    static const u8 sText_EndlessRush[] = _("Endless Rush");
+    static const u8 sText_Record[] = _("Record: {STR_VAR_1} wins");
+    u16 record;
+
+    gRecordsWindowId = AddWindow(&sFrontierResultsWindowTemplate);
+    DrawStdWindowFrame(gRecordsWindowId, FALSE);
+    FillWindowPixelBuffer(gRecordsWindowId, PIXEL_FILL(1));
+    PrintAligned(sText_Title, 2);
+
+    AddTextPrinterParameterized(gRecordsWindowId, FONT_NORMAL, sText_EndlessChallenge, 24, 49, TEXT_SKIP_DRAW, NULL);
+    record = min(VarGet(VAR_BATTLE_CAFE_ENDLESS_CHALLENGE_RECORD), BATTLE_CAFE_MAX_STREAK);
+    ConvertIntToDecimalStringN(gStringVar1, record, STR_CONV_MODE_LEFT_ALIGN, 5);
+    StringExpandPlaceholders(gStringVar4, sText_Record);
+    AddTextPrinterParameterized(gRecordsWindowId, FONT_NORMAL, gStringVar4, 40, 65, TEXT_SKIP_DRAW, NULL);
+
+    AddTextPrinterParameterized(gRecordsWindowId, FONT_NORMAL, sText_EndlessRush, 24, 97, TEXT_SKIP_DRAW, NULL);
+    record = min(VarGet(VAR_BATTLE_CAFE_ENDLESS_RUSH_RECORD), BATTLE_CAFE_MAX_STREAK);
+    ConvertIntToDecimalStringN(gStringVar1, record, STR_CONV_MODE_LEFT_ALIGN, 5);
+    StringExpandPlaceholders(gStringVar4, sText_Record);
+    AddTextPrinterParameterized(gRecordsWindowId, FONT_NORMAL, gStringVar4, 40, 113, TEXT_SKIP_DRAW, NULL);
+
+    PutWindowTilemap(gRecordsWindowId);
+    CopyWindowToVram(gRecordsWindowId, COPYWIN_FULL);
+}
+
 // Battle Dome records.
 static u16 DomeGetWinStreak(u8 battleMode, enum FrontierLevelMode lvlMode)
 {

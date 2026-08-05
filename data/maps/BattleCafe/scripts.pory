@@ -82,17 +82,61 @@ script BattleCafe_OwnerMenu {
         for good food and good battles, right
         here in Johto.
 
+        There's even a special prize if you
+        manage to beat all the regulars here.
+
         Anyway, enough about me...")
         setflag(FLAG_CAFE_INTRO_DONE)
     }
+
+    if (!flag(FLAG_BATTLE_CAFE_ENDLESS_CHALLENGE_UNLOCKED)
+        && flag(FLAG_DAILY_BATTLE_CAFE_SUPER_CHALLENGE_WON)) {
+        msgbox("After seeing you clear Super Challenge,
+                I can offer you a new format:
+
+                Endless Challenge!")
+        setflag(FLAG_BATTLE_CAFE_ENDLESS_CHALLENGE_UNLOCKED)
+    }
+    if (!flag(FLAG_BATTLE_CAFE_ENDLESS_RUSH_UNLOCKED)
+        && flag(FLAG_DAILY_BATTLE_CAFE_SUPER_RUSH_WON)) {
+        msgbox("After seeing you conquer Super Rush,
+                I can offer you one final format:
+
+                Endless Rush!")
+        setflag(FLAG_BATTLE_CAFE_ENDLESS_RUSH_UNLOCKED)
+    }
+
     msgbox("Welcome! What'll it be today?")
+    if (flag(FLAG_BATTLE_CAFE_ENDLESS_CHALLENGE_UNLOCKED)
+        || flag(FLAG_BATTLE_CAFE_ENDLESS_RUSH_UNLOCKED)) {
+        dynmultichoice(0, 0, FALSE, 6, 0, DYN_MULTICHOICE_CB_NONE,
+                       "Daily Challenge",
+                       "Rush Mode",
+                       "Super Challenge",
+                       "Super Rush",
+                       "Endless Modes",
+                       "Exchange Points",
+                       "Café Options",
+                       "Leave")
+        switch (var(VAR_RESULT)) {
+            case 0: goto(BattleCafe_AskDailyChallenge)
+            case 1: goto(BattleCafe_AskRushMode)
+            case 2: goto(BattleCafe_AskSuperChallenge)
+            case 3: goto(BattleCafe_AskSuperRush)
+            case 4: goto(BattleCafe_EndlessMenu)
+            case 5: goto(BattleCafe_RewardMenu)
+            case 6: goto(BattleCafe_OptionsMenu)
+            default: goto(BattleCafe_Goodbye)
+        }
+    }
+
     dynmultichoice(0, 0, FALSE, 6, 0, DYN_MULTICHOICE_CB_NONE,
                    "Daily Challenge",
                    "Rush Mode",
                    "Super Challenge",
                    "Super Rush",
                    "Exchange Points",
-                   "Café Rules",
+                   "Café Options",
                    "Leave")
     switch (var(VAR_RESULT)) {
         case 0: goto(BattleCafe_AskDailyChallenge)
@@ -100,9 +144,37 @@ script BattleCafe_OwnerMenu {
         case 2: goto(BattleCafe_AskSuperChallenge)
         case 3: goto(BattleCafe_AskSuperRush)
         case 4: goto(BattleCafe_RewardMenu)
-        case 5: goto(BattleCafe_ExplainRules)
+        case 5: goto(BattleCafe_OptionsMenu)
         default: goto(BattleCafe_Goodbye)
     }
+}
+
+script BattleCafe_OptionsMenu {
+    msgbox("What would you like to check?")
+    dynmultichoice(0, 0, FALSE, 6, 0, DYN_MULTICHOICE_CB_NONE,
+                   "Battle BGM",
+                   "High Scores",
+                   "Café Rules",
+                   "Back")
+    switch (var(VAR_RESULT)) {
+        case 0: goto(BattleCafe_ChooseBattleBgm)
+        case 1: goto(BattleCafe_ViewHighScores)
+        case 2: goto(BattleCafe_ExplainRules)
+        default: goto(BattleCafe_OwnerMenu)
+    }
+}
+
+script BattleCafe_ChooseBattleBgm {
+    call(BattleFrontier_EventScript_ChooseBattleBgm)
+    goto(BattleCafe_OwnerMenu)
+}
+
+script BattleCafe_ViewHighScores {
+    closemessage
+    special(BattleCafe_ShowRecordsWindow)
+    waitbuttonpress
+    special(RemoveRecordsWindow)
+    goto(BattleCafe_OwnerMenu)
 }
 
 script BattleCafe_ExplainRules {
@@ -138,6 +210,21 @@ script BattleCafe_ExplainRules {
             you may retry until you win.
 
             Each challenge can be won once per day.")
+    if (flag(FLAG_BATTLE_CAFE_ENDLESS_CHALLENGE_UNLOCKED)
+        || flag(FLAG_BATTLE_CAFE_ENDLESS_RUSH_UNLOCKED)) {
+        msgbox("Both Endless formats use full teams
+                of six and continue until you lose
+                or choose to retire.
+
+                Endless Challenge heals your party
+                after every win and awards 1 point.")
+        msgbox("Endless Rush restores your party
+                after every third victory and awards
+                2 points per win.
+
+                Your best streak in each format is
+                saved under High Scores.")
+    }
     goto(BattleCafe_OwnerMenu)
 }
 
@@ -248,6 +335,100 @@ script BattleCafe_AskSuperRush {
     goto(BattleCafe_BeginChallenge)
 }
 
+script BattleCafe_EndlessMenu {
+    msgbox("Which Endless format will you try?")
+    dynmultichoice(0, 0, FALSE, 6, 0, DYN_MULTICHOICE_CB_NONE,
+                   "Endless Challenge",
+                   "Endless Rush",
+                   "Endless Rules",
+                   "Back")
+    switch (var(VAR_RESULT)) {
+        case 0: goto(BattleCafe_AskEndlessChallenge)
+        case 1: goto(BattleCafe_AskEndlessRush)
+        case 2: goto(BattleCafe_ExplainEndlessRules)
+        default: goto(BattleCafe_OwnerMenu)
+    }
+}
+
+script BattleCafe_ExplainEndlessRules {
+    msgbox("Endless Challenge restores your party
+            after every victory. 
+            
+            Each win immediately awards 1 
+            Café Point.
+
+            Clear Super Challenge to unlock it.")
+    msgbox("Endless Rush restores your party after
+            every third victory. 
+            
+            Each win immediately awards 2 
+            Café Points.
+
+            Clear Super Rush to unlock it.")
+    msgbox("Both formats use full 6-vs-6 battles.
+            You may retire after any victory,
+            and your best streak is saved.")
+    goto(BattleCafe_EndlessMenu)
+}
+
+script BattleCafe_AskEndlessChallenge {
+    if (!flag(FLAG_BATTLE_CAFE_ENDLESS_CHALLENGE_UNLOCKED)) {
+        msgbox("Clear Super Challenge to unlock
+                Endless Challenge.")
+        goto(BattleCafe_EndlessMenu)
+    }
+    specialvar(VAR_RESULT, CountPartyNonEggMons)
+    if (var(VAR_RESULT) < PARTY_SIZE) {
+        msgbox("Every Endless opponent brings
+                six Pokémon.
+
+                Bring a full party of six before
+                taking your seat.")
+        goto(BattleCafe_EndlessMenu)
+    }
+    msgbox("Full teams of six will keep coming
+            until you lose or retire.
+
+            I'll restore your party after every win,
+            and each victory earns 1 Café Point.
+
+            Begin Endless Challenge?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) != YES) {
+        goto(BattleCafe_EndlessMenu)
+    }
+    setvar(VAR_TEMP_8, BATTLE_CAFE_MODE_ENDLESS_CHALLENGE)
+    goto(BattleCafe_BeginChallenge)
+}
+
+script BattleCafe_AskEndlessRush {
+    if (!flag(FLAG_BATTLE_CAFE_ENDLESS_RUSH_UNLOCKED)) {
+        msgbox("Clear Super Rush to unlock
+                Endless Rush.")
+        goto(BattleCafe_EndlessMenu)
+    }
+    specialvar(VAR_RESULT, CountPartyNonEggMons)
+    if (var(VAR_RESULT) < PARTY_SIZE) {
+        msgbox("Every Endless opponent brings
+                six Pokémon.
+
+                Bring a full party of six before
+                taking your seat.")
+        goto(BattleCafe_EndlessMenu)
+    }
+    msgbox("Full teams of six will keep coming
+            until you lose or retire.
+
+            I'll restore your party after every third
+            victory. Each win earns 2 Café Points.
+
+            Begin Endless Rush?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) != YES) {
+        goto(BattleCafe_EndlessMenu)
+    }
+    setvar(VAR_TEMP_8, BATTLE_CAFE_MODE_ENDLESS_RUSH)
+    goto(BattleCafe_BeginChallenge)
+}
+
 script BattleCafe_BeginChallenge {
     closemessage
     hidefollower
@@ -256,8 +437,15 @@ script BattleCafe_BeginChallenge {
     moveobjecttocoords(LOCALID_PLAYER, 6, 13, DIR_EAST)
     waitmovement(0)
     setvar(VAR_TEMP_9, 0)
-    msgbox("Three courses. Three opponents.
-            Service begins now!")
+    setvar(VAR_TEMP_C, 0)
+    if (var(VAR_TEMP_8) == BATTLE_CAFE_MODE_ENDLESS_CHALLENGE
+        || var(VAR_TEMP_8) == BATTLE_CAFE_MODE_ENDLESS_RUSH) {
+        msgbox("No final course. No final opponent.
+                Endless service begins now!")
+    } else {
+        msgbox("Three courses. Three opponents.
+                Service begins now!")
+    }
     closemessage
     goto(BattleCafe_ChallengeNextRound)
 }
@@ -268,7 +456,60 @@ script BattleCafe_ChallengeNextRound {
         goto(BattleCafe_ChallengeLost)
     }
 
-    addvar(VAR_TEMP_9, 1)
+    special(BattleCafe_AdvanceWinCount)
+    if (var(VAR_TEMP_8) == BATTLE_CAFE_MODE_ENDLESS_CHALLENGE) {
+        setvar(VAR_0x8004, 1)
+        special(BattleCafe_AwardPoints)
+        copyvar(VAR_TEMP_B, VAR_RESULT)
+        special(HealPlayerParty)
+        playse(SE_SHOP)
+        waitse
+        buffernumberstring(STR_VAR_1, VAR_TEMP_9)
+        buffernumberstring(STR_VAR_2, VAR_TEMP_B)
+        msgbox("Victory! Streak: {STR_VAR_1}.
+                You received {STR_VAR_2} Café Points,
+                and your party was restored.
+
+                Continue the run?", MSGBOX_YESNO)
+        if (var(VAR_RESULT) != YES) {
+            goto(BattleCafe_EndlessRetired)
+        }
+        closemessage
+        goto(BattleCafe_ChallengeNextRound)
+    }
+
+    if (var(VAR_TEMP_8) == BATTLE_CAFE_MODE_ENDLESS_RUSH) {
+        setvar(VAR_0x8004, 2)
+        special(BattleCafe_AwardPoints)
+        copyvar(VAR_TEMP_B, VAR_RESULT)
+        addvar(VAR_TEMP_C, 1)
+        playse(SE_SHOP)
+        waitse
+        buffernumberstring(STR_VAR_1, VAR_TEMP_9)
+        buffernumberstring(STR_VAR_2, VAR_TEMP_B)
+        if (var(VAR_TEMP_C) >= 3) {
+            setvar(VAR_TEMP_C, 0)
+            special(HealPlayerParty)
+            playse(SE_USE_ITEM)
+            msgbox("Victory! Streak: {STR_VAR_1}.
+                    You received {STR_VAR_2} Café Points.
+
+                    Three battles cleared! Your party
+                    was restored. Continue the run?", MSGBOX_YESNO)
+        } else {
+            msgbox("Victory! Streak: {STR_VAR_1}.
+                    You received {STR_VAR_2} Café Points.
+
+                    Your party has not been restored.
+                    Continue the run?", MSGBOX_YESNO)
+        }
+        if (var(VAR_RESULT) != YES) {
+            goto(BattleCafe_EndlessRetired)
+        }
+        closemessage
+        goto(BattleCafe_ChallengeNextRound)
+    }
+
     if (var(VAR_TEMP_9) >= 3) {
         goto(BattleCafe_ChallengeWon)
     }
@@ -296,6 +537,21 @@ script BattleCafe_ChallengeNextRound {
     }
     closemessage
     goto(BattleCafe_ChallengeNextRound)
+}
+
+script BattleCafe_EndlessRetired {
+    closemessage
+    special(BattleCafe_EndChallenge)
+    special(HealPlayerParty)
+    moveobjecttocoords(LOCALID_PLAYER, 6, 24, DIR_NORTH)
+    waitmovement(0)
+    turnobject(LOCALID_CAFE_OWNER, DIR_SOUTH)
+    buffernumberstring(STR_VAR_1, VAR_TEMP_9)
+    msgbox("Run retired at {STR_VAR_1} wins.
+
+            Your party is fully restored, your record
+            is safe, and every point is yours to keep.")
+    goto(BattleCafe_OwnerMenu)
 }
 
 script BattleCafe_RunRound {
@@ -331,12 +587,24 @@ script BattleCafe_ChallengeLost {
     moveobjecttocoords(LOCALID_PLAYER, 6, 24, DIR_NORTH)
     waitmovement(0)
     turnobject(LOCALID_CAFE_OWNER, DIR_SOUTH)
-    msgbox("Tough course, huh? I've fully restored
-            your party.
+    if (var(VAR_TEMP_8) == BATTLE_CAFE_MODE_ENDLESS_CHALLENGE
+        || var(VAR_TEMP_8) == BATTLE_CAFE_MODE_ENDLESS_RUSH) {
+        buffernumberstring(STR_VAR_1, VAR_TEMP_9)
+        msgbox("Your Endless run ends at {STR_VAR_1}
+                wins. I've fully
+                restored your party.
 
-            Catch your breath, rework
-            your strategy, and come at it again
-            whenever you like!")
+                Every Café Point you earned is yours
+                to keep. Try to push even farther
+                next time!")
+    } else {
+        msgbox("Tough course, huh? I've fully restored
+                your party.
+
+                Catch your breath, rework
+                your strategy, and come at it again
+                whenever you like!")
+    }
     goto(BattleCafe_OwnerMenu)
 }
 
@@ -349,39 +617,52 @@ script BattleCafe_ChallengeWon {
 
     if (var(VAR_TEMP_8) == BATTLE_CAFE_MODE_DAILY) {
         setflag(FLAG_DAILY_BATTLE_CAFE_CHALLENGE_WON)
-        addvar(VAR_BATTLE_CAFE_POINTS, 3)
+        setvar(VAR_0x8004, 3)
+        special(BattleCafe_AwardPoints)
+        copyvar(VAR_TEMP_B, VAR_RESULT)
+        buffernumberstring(STR_VAR_1, VAR_TEMP_B)
         msgbox("Daily Challenge complete!
 
-                That's 3 Café Points for you.")
+                That's {STR_VAR_1} Café Points for you.")
     } else {
         if (var(VAR_TEMP_8) == BATTLE_CAFE_MODE_RUSH) {
             setflag(FLAG_DAILY_BATTLE_CAFE_RUSH_WON)
-            addvar(VAR_BATTLE_CAFE_POINTS, 5)
+            setvar(VAR_0x8004, 5)
+            special(BattleCafe_AwardPoints)
+            copyvar(VAR_TEMP_B, VAR_RESULT)
+            buffernumberstring(STR_VAR_1, VAR_TEMP_B)
             msgbox("Rush Mode complete! That took
                     some real grit.
 
-                    Here's 5 Café Points.")
+                    Here's {STR_VAR_1} Café Points.")
         } else {
             if (var(VAR_TEMP_8) == BATTLE_CAFE_MODE_SUPER_CHALLENGE) {
                 setflag(FLAG_DAILY_BATTLE_CAFE_SUPER_CHALLENGE_WON)
-                addvar(VAR_BATTLE_CAFE_POINTS, 5)
+                setvar(VAR_0x8004, 5)
+                special(BattleCafe_AwardPoints)
+                copyvar(VAR_TEMP_B, VAR_RESULT)
+                buffernumberstring(STR_VAR_1, VAR_TEMP_B)
                 msgbox("Super Challenge complete!
                         Full team, full effort!
 
-                        that's 5 Café Points.")
+                        That's {STR_VAR_1} Café Points.")
             } else {
                 setflag(FLAG_DAILY_BATTLE_CAFE_SUPER_RUSH_WON)
-                addvar(VAR_BATTLE_CAFE_POINTS, 10)
+                setvar(VAR_0x8004, 10)
+                special(BattleCafe_AwardPoints)
+                copyvar(VAR_TEMP_B, VAR_RESULT)
+                buffernumberstring(STR_VAR_1, VAR_TEMP_B)
                 msgbox("Incredible! You have beaten
                         the Super Rush mode!
 
                         I can hardly believe it!
 
                         Here's your reward of
-                        10 Café Points.")
+                        {STR_VAR_1} Café Points.")
             }
         }
     }
+    special(BattleCafe_UnlockClearAchievement)
     playse(SE_SHOP)
     waitse
     goto(BattleCafe_OwnerMenu)
@@ -399,9 +680,12 @@ script BattleCafe_RewardMenu {
                    "Thundurus - 5",
                    "Landorus - 5",
                    "Enamorus - 5",
-                   "Shiny Genome - 3",
-                   "2 Gold Caps - 3",
-                   "¥250,000 - 3",
+                   "Shiny Genome - 4",
+                   "2 Gold Caps - 5",
+                   "¥250,000 - 5",
+                   "Vitamin Set Atk - 4",
+                   "Vitamin Set Def - 4",
+                   "Vitamin Set Spe - 2",
                    "Back")
     switch (var(VAR_RESULT)) {
         case 0: goto(BattleCafe_ChooseArticuno)
@@ -414,6 +698,9 @@ script BattleCafe_RewardMenu {
         case 7: goto(BattleCafe_ChooseShinyGenome)
         case 8: goto(BattleCafe_ChooseGoldBottleCaps)
         case 9: goto(BattleCafe_ChooseMoney)
+        case 10: goto(BattleCafe_ChooseVitaminSetAtk)
+        case 11: goto(BattleCafe_ChooseVitaminSetDef)
+        case 12: goto(BattleCafe_ChooseVitaminSetSpe)
         default: goto(BattleCafe_OwnerMenu)
     }
 }
@@ -506,6 +793,13 @@ script BattleCafe_ConfirmRewardMon {
         goto(BattleCafe_RewardMenu)
     }
 
+    if (var(VAR_TEMP_B) >= 3 && checkitem(ITEM_REVEAL_GLASS) == FALSE) {
+        checkitemspace(ITEM_REVEAL_GLASS, 1)
+        if (var(VAR_RESULT) == FALSE) {
+            goto(BattleCafe_NotEnoughBagSpace)
+        }
+    }
+
     givemon(VAR_TEMP_TRANSFERRED_SPECIES, 70)
     if (var(VAR_RESULT) == MON_CANT_GIVE) {
         goto(Common_EventScript_NoMoreRoomForPokemon)
@@ -554,7 +848,7 @@ script BattleCafe_ChooseShinyGenome {
     subvar(VAR_BATTLE_CAFE_POINTS, 4)
     msgbox("A rare find. Use it on whichever
             Pokémon you want to bring out the
-            shine in.")
+            shine.")
     goto(BattleCafe_RewardMenu)
 }
 
@@ -577,8 +871,7 @@ script BattleCafe_ChooseGoldBottleCaps {
     }
     subvar(VAR_BATTLE_CAFE_POINTS, 5)
     msgbox("Two Gold Bottle Caps, polished up and
-            ready. They'll bring out the very
-            best in your Pokémon.")
+            ready. Here you go!")
     goto(BattleCafe_RewardMenu)
 }
 
@@ -603,6 +896,77 @@ script BattleCafe_ChooseMoney {
     goto(BattleCafe_RewardMenu)
 }
 
+script BattleCafe_ChooseVitaminSetAtk {
+    if (var(VAR_BATTLE_CAFE_POINTS) < 4) {
+        goto(BattleCafe_NotEnoughVitaminSetPoints)
+    }
+    msgbox("Exchange 4 Café Points for two each of
+            Protein EX and Calcium EX?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) != YES) {
+        goto(BattleCafe_RewardMenu)
+    }
+    setvar(VAR_0x8004, BATTLE_CAFE_VITAMIN_SET_ATK)
+    special(BattleCafe_TryPurchaseVitaminSet)
+    if (var(VAR_RESULT) == BATTLE_CAFE_VITAMIN_PURCHASE_NOT_ENOUGH_POINTS) {
+        goto(BattleCafe_NotEnoughVitaminSetPoints)
+    }
+    if (var(VAR_RESULT) != BATTLE_CAFE_VITAMIN_PURCHASE_SUCCESS) {
+        goto(BattleCafe_NotEnoughBagSpace)
+    }
+    playse(SE_SHOP)
+    waitse
+    msgbox("Two Protein EX and two Calcium EX,
+            power and wisdom!")
+    goto(BattleCafe_RewardMenu)
+}
+
+script BattleCafe_ChooseVitaminSetDef {
+    if (var(VAR_BATTLE_CAFE_POINTS) < 4) {
+        goto(BattleCafe_NotEnoughVitaminSetPoints)
+    }
+    msgbox("Exchange 4 Café Points for two each of
+            Iron EX and Zinc EX?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) != YES) {
+        goto(BattleCafe_RewardMenu)
+    }
+    setvar(VAR_0x8004, BATTLE_CAFE_VITAMIN_SET_DEF)
+    special(BattleCafe_TryPurchaseVitaminSet)
+    if (var(VAR_RESULT) == BATTLE_CAFE_VITAMIN_PURCHASE_NOT_ENOUGH_POINTS) {
+        goto(BattleCafe_NotEnoughVitaminSetPoints)
+    }
+    if (var(VAR_RESULT) != BATTLE_CAFE_VITAMIN_PURCHASE_SUCCESS) {
+        goto(BattleCafe_NotEnoughBagSpace)
+    }
+    playse(SE_SHOP)
+    waitse
+    msgbox("Two Iron EX and two Zinc EX,
+            time to bulk up!")
+    goto(BattleCafe_RewardMenu)
+}
+
+script BattleCafe_ChooseVitaminSetSpe {
+    if (var(VAR_BATTLE_CAFE_POINTS) < 2) {
+        goto(BattleCafe_NotEnoughVitaminSetPoints)
+    }
+    msgbox("Exchange 2 Café Points for
+            two Carbos EX?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) != YES) {
+        goto(BattleCafe_RewardMenu)
+    }
+    setvar(VAR_0x8004, BATTLE_CAFE_VITAMIN_SET_SPE)
+    special(BattleCafe_TryPurchaseVitaminSet)
+    if (var(VAR_RESULT) == BATTLE_CAFE_VITAMIN_PURCHASE_NOT_ENOUGH_POINTS) {
+        goto(BattleCafe_NotEnoughVitaminSetPoints)
+    }
+    if (var(VAR_RESULT) != BATTLE_CAFE_VITAMIN_PURCHASE_SUCCESS) {
+        goto(BattleCafe_NotEnoughBagSpace)
+    }
+    playse(SE_SHOP)
+    waitse
+    msgbox("Two Carbos EX, ready to speed up!")
+    goto(BattleCafe_RewardMenu)
+}
+
 script BattleCafe_NotEnoughPoints {
     msgbox("That prize costs 5 Café Points.
             Complete one of my challenges and try
@@ -614,6 +978,15 @@ script BattleCafe_NotEnoughFourPoints {
     msgbox("The Shiny Genome costs 4 Café Points.
             Complete one of my challenges and try
             again!")
+    goto(BattleCafe_RewardMenu)
+}
+
+script BattleCafe_NotEnoughVitaminSetPoints {
+    msgbox("You don't have enough Café Points for
+            that vitamin set. 
+            
+            Complete one of my
+            challenges and try again!")
     goto(BattleCafe_RewardMenu)
 }
 
@@ -647,10 +1020,10 @@ script BattleCafe_TrainerAthena {
         release
         end
     }
-    setflag(FLAG_DAILY_BATTLE_CAFE_ATHENA)
     msgbox("Let's see if you can survive this
             stall!")
     trainerbattle_no_intro(TRAINER_CAFE_ATHENA, "Huh?")
+    setflag(FLAG_DAILY_BATTLE_CAFE_ATHENA)
     msgbox("Did you have fun?")
     call(BattleCafe_GiveDailyCandyReward)
     release
@@ -668,10 +1041,10 @@ script BattleCafe_TrainerDoves {
         release
         end
     }
-    setflag(FLAG_DAILY_BATTLE_CAFE_DOVES)
     msgbox("Doves: Let me show you the power of 
             Genesect!")
     trainerbattle_no_intro(TRAINER_CAFE_DOVES, "Banned again from Overused...")
+    setflag(FLAG_DAILY_BATTLE_CAFE_DOVES)
     msgbox("Doves: Let's fight again tomorrow when
             my Genesect is allowed on the 
             battlefield.")
@@ -689,10 +1062,10 @@ script BattleCafe_TrainerElton {
         release
         end
     }
-    setflag(FLAG_DAILY_BATTLE_CAFE_ELTON)
     msgbox("Elton: Let's have a battle with our
             favourite Pokémon!")
     trainerbattle_no_intro(TRAINER_CAFE_ELTON, "You handled every trick I had!")
+    setflag(FLAG_DAILY_BATTLE_CAFE_ELTON)
     msgbox("Elton: Even Gengar's impressed, and it
             rarely takes a loss seriously.")
     call(BattleCafe_GiveDailyCandyReward)
@@ -709,9 +1082,9 @@ script BattleCafe_TrainerNem {
         release
         end
     }
-    setflag(FLAG_DAILY_BATTLE_CAFE_NEM)
     msgbox("Nem: Think fast!")
     trainerbattle_no_intro(TRAINER_CAFE_NEM, "I'll be watching.")
+    setflag(FLAG_DAILY_BATTLE_CAFE_NEM)
     msgbox("Nem: We can fight again tomorrow.")
     call(BattleCafe_GiveDailyCandyReward)
     release
@@ -728,9 +1101,10 @@ script BattleCafe_TrainerBai {
         release
         end
     }
+    msgbox("Bai: Let's see what you bring to 
+            the table!")
+    trainerbattle_no_intro(TRAINER_CAFE_BAI, "Guess I'm cooked this time...")
     setflag(FLAG_DAILY_BATTLE_CAFE_BAI)
-    msgbox("Bai: Money money money, Ready?")
-    trainerbattle_no_intro(TRAINER_CAFE_BAI, "No money...")
     msgbox("Bai: Good match! Let's try this again 
             tomorrow!")
     call(BattleCafe_GiveDailyCandyReward)
@@ -748,9 +1122,9 @@ script BattleCafe_TrainerDrac {
         release
         end
     }
-    setflag(FLAG_DAILY_BATTLE_CAFE_DRAC)
     msgbox("Drac: Care for a double battle?")
     trainerbattle_no_intro(TRAINER_CAFE_DRAC, "Soothed.")
+    setflag(FLAG_DAILY_BATTLE_CAFE_DRAC)
     msgbox("Drac: You're really tough! Let's fight
             again tomorrow!")
     call(BattleCafe_GiveDailyCandyReward)
@@ -768,10 +1142,10 @@ script BattleCafe_TrainerMarina {
         release
         end
     }
-    setflag(FLAG_DAILY_BATTLE_CAFE_JUNA)
     msgbox("Pelipper, call in the rain!
             Let's make some waves.")
     trainerbattle_no_intro(TRAINER_CAFE_JUNA, "You weathered the whole storm.")
+    setflag(FLAG_DAILY_BATTLE_CAFE_JUNA)
     msgbox("Even Swampert couldn't stop you once
             you found your rhythm.")
     call(BattleCafe_GiveDailyCandyReward)
@@ -789,10 +1163,10 @@ script BattleCafe_TrainerTylarie {
         release
         end
     }
-    setflag(FLAG_DAILY_BATTLE_CAFE_TYLARIE)
     msgbox("Tylarie: Let me show you how sturdy my
             team is!")
     trainerbattle_no_intro(TRAINER_CAFE_TYLARIE, "Ouch.")
+    setflag(FLAG_DAILY_BATTLE_CAFE_TYLARIE)
     msgbox("Tylarie: Not bad. We can go at it again
             another day.")
     call(BattleCafe_GiveDailyCandyReward)

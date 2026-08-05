@@ -145,16 +145,9 @@ script NewBarkTownRivalHouseRival {
                     You look like you just had a
                     nightmare though, did something
                     happen?
-            
-                    Anyway, I'll need a bit more time to pin
-                    down the location of the next 
-                    legendary. 
                     
-                    I'll call you once I find something
-                    worth investigating.")
+                    Anyway!")
             setvar(VAR_POSTGAME_RIVAL_LEGENDARYQ, 6)
-            release
-            end
         }
         if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 6) {
             msgbox("{PLAYER}! I've found another lead
@@ -171,6 +164,7 @@ script NewBarkTownRivalHouseRival {
                     You're going to need this!")
             giveitem(ITEM_HM_DIVE)
             setvar(VAR_POSTGAME_RIVAL_LEGENDARYQ, 7)
+            createfieldmugshotrival
             msgbox("They are probably quite far away
                     from each other, so you should
                     scour the region far and wide.")
@@ -199,8 +193,12 @@ script NewBarkTownRivalHouseRival {
                     looking for, and it might take a long
                     while before I find another target
                     we could search for.
-                    
-                    So, thanks {PLAYER}! For being
+
+                    I don't have much to give, but you
+                    can have this!")
+            giveitem(ITEM_OVAL_CHARM)
+            createfieldmugshotrival
+            msgbox("So, thanks {PLAYER}! For being
                     a genuine friend!")
             setvar(VAR_POSTGAME_RIVAL_LEGENDARYQ, 10)
             release

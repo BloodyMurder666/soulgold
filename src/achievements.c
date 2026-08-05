@@ -317,6 +317,14 @@ static const u8 sText_AchCatchMarshadowName[] = _("Sacred Ghost");
 static const u8 sText_AchCatchMarshadowDesc[] = _("Catch Marshadow.");
 static const u8 sText_AchBugCatcherName[] = _("Bug Catcher");
 static const u8 sText_AchBugCatcherDesc[] = _("Place first in the\nBug-Catching Contest.");
+static const u8 sText_AchBattleCafeDailyName[] = _("Café Regular");
+static const u8 sText_AchBattleCafeDailyDesc[] = _("Clear the Battle Café Daily Challenge.");
+static const u8 sText_AchBattleCafeRushName[] = _("Rush Hour");
+static const u8 sText_AchBattleCafeRushDesc[] = _("Clear the Battle Café Rush Mode.");
+static const u8 sText_AchBattleCafeSuperChallengeName[] = _("Full Course");
+static const u8 sText_AchBattleCafeSuperChallengeDesc[] = _("Clear the Battle Café Super Challenge.");
+static const u8 sText_AchBattleCafeEndlessMasterName[] = _("Endless Master");
+static const u8 sText_AchBattleCafeEndlessMasterDesc[] = _("Win 15 consecutive battles in Endless Challenge.");
 
 static const u8 sText_TierBronze[] = _("POKE BALL");
 static const u8 sText_TierSilver[] = _("GREAT BALL");
@@ -387,6 +395,10 @@ static const struct Achievement sAchievements[] =
     {ACH_BATTLE_PYRAMID_3, sText_AchPyramid3Name, sText_AchPyramid3Desc, ACH_TIER_SILVER, ACH_COUNTER_BATTLE_PYRAMID_ROUNDS, 3, TRAINER_NONE_ACH, NULL},
     {ACH_BATTLE_PYRAMID_10, sText_AchPyramid10Name, sText_AchPyramid10Desc, ACH_TIER_GOLD, ACH_COUNTER_BATTLE_PYRAMID_ROUNDS, 10, TRAINER_NONE_ACH, NULL},
     {ACH_BATTLE_PYRAMID_20, sText_AchPyramid20Name, sText_AchPyramid20Desc, ACH_TIER_PLATINUM, ACH_COUNTER_BATTLE_PYRAMID_ROUNDS, 20, TRAINER_NONE_ACH, NULL},
+    {ACH_BATTLE_CAFE_DAILY, sText_AchBattleCafeDailyName, sText_AchBattleCafeDailyDesc, ACH_TIER_BRONZE, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, NULL},
+    {ACH_BATTLE_CAFE_RUSH, sText_AchBattleCafeRushName, sText_AchBattleCafeRushDesc, ACH_TIER_SILVER, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, NULL},
+    {ACH_BATTLE_CAFE_SUPER_CHALLENGE, sText_AchBattleCafeSuperChallengeName, sText_AchBattleCafeSuperChallengeDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, NULL},
+    {ACH_BATTLE_CAFE_ENDLESS_MASTER, sText_AchBattleCafeEndlessMasterName, sText_AchBattleCafeEndlessMasterDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, NULL},
 
     // Superboss achievements
     {ACH_REMATCH_FALKNER, sText_AchFalknerRematchName, sText_AchFalknerRematchDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_FALKNER_2, NULL},
@@ -485,6 +497,10 @@ STATIC_ASSERT(ACH_CATCH_KYOGRE == 115, KyogreIdAppendedAfterExistingIds);
 STATIC_ASSERT(ACH_CATCH_GROUDON == 116, GroudonIdAppendedAfterExistingIds);
 STATIC_ASSERT(ACH_MASTER_OF_WISHES == 117, MasterOfWishesIdAppendedAfterExistingIds);
 STATIC_ASSERT(ACH_CATCH_GIRATINA == 118, GiratinaIdAppendedAfterExistingIds);
+STATIC_ASSERT(ACH_BATTLE_CAFE_DAILY == 119, BattleCafeDailyIdAppendedAfterExistingIds);
+STATIC_ASSERT(ACH_BATTLE_CAFE_RUSH == 120, BattleCafeRushIdAppendedAfterExistingIds);
+STATIC_ASSERT(ACH_BATTLE_CAFE_SUPER_CHALLENGE == 121, BattleCafeSuperChallengeIdAppendedAfterExistingIds);
+STATIC_ASSERT(ACH_BATTLE_CAFE_ENDLESS_MASTER == 122, BattleCafeEndlessMasterIdAppendedAfterExistingIds);
 
 static const u8 *const sTierLabels[] =
 {

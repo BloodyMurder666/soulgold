@@ -48,5 +48,6 @@ u8 GetFrontierEnemyMonLevel(enum FrontierLevelMode lvlMode);
 s32 GetHighestLevelInPlayerParty(void);
 u16 FacilityClassToGraphicsId(u8 facilityClass);
 void ShowBattleFrontierCaughtBannedSpecies(void);
+void BattleCafe_ShowRecordsWindow(void);
 
 #endif // GUARD_FRONTIER_UTIL_H

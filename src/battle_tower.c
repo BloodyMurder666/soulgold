@@ -10,6 +10,7 @@
 #include "text.h"
 #include "main.h"
 #include "international_string_util.h"
+#include "item.h"
 #include "battle.h"
 #include "battle_partner.h"
 #include "frontier_util.h"
@@ -694,6 +695,20 @@ static EWRAM_DATA u8 sBattleCafeSavedLevelMode = FRONTIER_LVL_50;
 static EWRAM_DATA u8 sBattleCafeChallengeMode = BATTLE_CAFE_MODE_DAILY;
 static EWRAM_DATA bool8 sBattleCafeChallengeActive = FALSE;
 
+struct BattleCafeVitaminSet
+{
+    u16 firstItem;
+    u16 secondItem;
+    u8 cost;
+};
+
+static const struct BattleCafeVitaminSet sBattleCafeVitaminSets[] =
+{
+    [BATTLE_CAFE_VITAMIN_SET_ATK] = {ITEM_PROTEIN_EX, ITEM_CALCIUM_EX, 4},
+    [BATTLE_CAFE_VITAMIN_SET_DEF] = {ITEM_IRON_EX, ITEM_ZINC_EX, 4},
+    [BATTLE_CAFE_VITAMIN_SET_SPE] = {ITEM_CARBOS_EX, ITEM_NONE, 2},
+};
+
 #include "data/battle_frontier/battle_tent.h"
 
 static void (* const sBattleTowerFuncs[])(void) =
@@ -799,7 +814,8 @@ void BattleCafe_InitChallenge(void)
 void BattleCafe_SelectOpponent(void)
 {
     u32 i;
-    u32 round = min(gSpecialVar_0x8004, ARRAY_COUNT(sBattleCafeTrainerIds) - 1);
+    u32 round = gSpecialVar_0x8004;
+    u32 trainerSlot = round % ARRAY_COUNT(sBattleCafeTrainerIds);
     u16 trainerId;
 
     do
@@ -818,19 +834,19 @@ void BattleCafe_SelectOpponent(void)
         }
         else
         {
-            // Both six-Pokemon modes draw from the entire Frontier roster so
+            // The six-Pokemon modes draw from the entire Frontier roster so
             // their full-team battles have the broadest possible variety.
             trainerId = FRONTIER_TRAINER_BRADY
                 + Random() % (FRONTIER_TRAINER_GRETEL - FRONTIER_TRAINER_BRADY + 1);
         }
-        for (i = 0; i < round; i++)
+        for (i = 0; i < min(round, ARRAY_COUNT(sBattleCafeTrainerIds)); i++)
         {
             if (sBattleCafeTrainerIds[i] == trainerId)
                 break;
         }
-    } while (i != round);
+    } while (i != min(round, ARRAY_COUNT(sBattleCafeTrainerIds)));
 
-    sBattleCafeTrainerIds[round] = trainerId;
+    sBattleCafeTrainerIds[trainerSlot] = trainerId;
     TRAINER_BATTLE_PARAM.opponentA = trainerId;
     SetBattleFacilityTrainerGfxId(trainerId, 0);
 }
@@ -838,6 +854,116 @@ void BattleCafe_SelectOpponent(void)
 u8 BattleCafe_GetChallengeMode(void)
 {
     return sBattleCafeChallengeMode;
+}
+
+void BattleCafe_UnlockClearAchievement(void)
+{
+    switch (VarGet(VAR_TEMP_8))
+    {
+    case BATTLE_CAFE_MODE_DAILY:
+        Achievement_Unlock(ACH_BATTLE_CAFE_DAILY);
+        break;
+    case BATTLE_CAFE_MODE_RUSH:
+        Achievement_Unlock(ACH_BATTLE_CAFE_RUSH);
+        break;
+    case BATTLE_CAFE_MODE_SUPER_CHALLENGE:
+        Achievement_Unlock(ACH_BATTLE_CAFE_SUPER_CHALLENGE);
+        break;
+    }
+}
+
+void BattleCafe_AdvanceWinCount(void)
+{
+    u16 wins = VarGet(VAR_TEMP_9);
+    u16 recordVar;
+    u16 record;
+
+    if (wins < BATTLE_CAFE_MAX_STREAK)
+        wins++;
+    VarSet(VAR_TEMP_9, wins);
+
+    switch (VarGet(VAR_TEMP_8))
+    {
+    case BATTLE_CAFE_MODE_ENDLESS_CHALLENGE:
+        recordVar = VAR_BATTLE_CAFE_ENDLESS_CHALLENGE_RECORD;
+        if (wins >= BATTLE_CAFE_ENDLESS_MASTER_STREAK)
+            Achievement_Unlock(ACH_BATTLE_CAFE_ENDLESS_MASTER);
+        break;
+    case BATTLE_CAFE_MODE_ENDLESS_RUSH:
+        recordVar = VAR_BATTLE_CAFE_ENDLESS_RUSH_RECORD;
+        break;
+    default:
+        return;
+    }
+
+    record = VarGet(recordVar);
+    if (record > BATTLE_CAFE_MAX_STREAK)
+    {
+        record = BATTLE_CAFE_MAX_STREAK;
+        VarSet(recordVar, record);
+    }
+    if (wins > record)
+        VarSet(recordVar, wins);
+}
+
+void BattleCafe_AwardPoints(void)
+{
+    u16 points = VarGet(VAR_BATTLE_CAFE_POINTS);
+    u16 award = gSpecialVar_0x8004;
+
+    if (points >= BATTLE_CAFE_MAX_POINTS)
+    {
+        VarSet(VAR_BATTLE_CAFE_POINTS, BATTLE_CAFE_MAX_POINTS);
+        gSpecialVar_Result = 0;
+        return;
+    }
+
+    if (award > BATTLE_CAFE_MAX_POINTS - points)
+        award = BATTLE_CAFE_MAX_POINTS - points;
+
+    VarSet(VAR_BATTLE_CAFE_POINTS, points + award);
+    gSpecialVar_Result = award;
+}
+
+void BattleCafe_TryPurchaseVitaminSet(void)
+{
+    u16 setId = gSpecialVar_0x8004;
+    u16 points = VarGet(VAR_BATTLE_CAFE_POINTS);
+    const struct BattleCafeVitaminSet *set;
+
+    if (setId >= ARRAY_COUNT(sBattleCafeVitaminSets))
+    {
+        gSpecialVar_Result = BATTLE_CAFE_VITAMIN_PURCHASE_INVALID_SET;
+        return;
+    }
+
+    if (points > BATTLE_CAFE_MAX_POINTS)
+    {
+        points = BATTLE_CAFE_MAX_POINTS;
+        VarSet(VAR_BATTLE_CAFE_POINTS, points);
+    }
+
+    set = &sBattleCafeVitaminSets[setId];
+    if (points < set->cost)
+    {
+        gSpecialVar_Result = BATTLE_CAFE_VITAMIN_PURCHASE_NOT_ENOUGH_POINTS;
+        return;
+    }
+
+    if (!AddBagItem(set->firstItem, 2))
+    {
+        gSpecialVar_Result = BATTLE_CAFE_VITAMIN_PURCHASE_NO_BAG_SPACE;
+        return;
+    }
+    if (set->secondItem != ITEM_NONE && !AddBagItem(set->secondItem, 2))
+    {
+        RemoveBagItem(set->firstItem, 2);
+        gSpecialVar_Result = BATTLE_CAFE_VITAMIN_PURCHASE_NO_BAG_SPACE;
+        return;
+    }
+
+    VarSet(VAR_BATTLE_CAFE_POINTS, points - set->cost);
+    gSpecialVar_Result = BATTLE_CAFE_VITAMIN_PURCHASE_SUCCESS;
 }
 
 void BattleCafe_EndChallenge(void)

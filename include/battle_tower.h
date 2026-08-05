@@ -38,6 +38,10 @@ bool32 ValidateBattleTowerRecord(u8 recordId); // unused
 void TrySetLinkBattleTowerEnemyPartyLevel(void);
 void FillTentTrainerParty(u8 monsCount);
 u8 BattleCafe_GetChallengeMode(void);
+void BattleCafe_UnlockClearAchievement(void);
+void BattleCafe_AdvanceWinCount(void);
+void BattleCafe_AwardPoints(void);
+void BattleCafe_TryPurchaseVitaminSet(void);
 
 
 #endif //GUARD_BATTLE_TOWER_H

@@ -305,6 +305,8 @@
 #define VAR_DARKRAI_INN_PROGRESS                        0x411A
 #define VAR_ACHIEVEMENT_PLANTED_BERRIES                 0x411B
 #define VAR_BATTLE_CAFE_POINTS                          0x411C
+#define VAR_BATTLE_CAFE_ENDLESS_CHALLENGE_RECORD        0x411D
+#define VAR_BATTLE_CAFE_ENDLESS_RUSH_RECORD             0x411E
 
 #define VARS_END                                         0x42FF
 

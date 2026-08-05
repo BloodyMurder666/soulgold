@@ -1,5 +1,6 @@
 #include "global.h"
 #include "achievements.h"
+#include "battle_tower.h"
 #include "event_data.h"
 #include "item.h"
 #include "overworld.h"
@@ -14,6 +15,7 @@
 #include "constants/items.h"
 #include "constants/layouts.h"
 #include "constants/species.h"
+#include "constants/vars.h"
 
 TEST("Achievements table contains every id exactly once")
 {
@@ -469,4 +471,52 @@ TEST("Master of Johto requires every other trophy")
 
     Achievement_Unlock(ACH_RECEIVE_STARTER);
     EXPECT(Achievement_IsUnlocked(ACH_MASTER_OF_JOHTO));
+}
+
+TEST("Battle Cafe Daily Challenge unlocks its achievement")
+{
+    VarSet(VAR_TEMP_8, BATTLE_CAFE_MODE_DAILY);
+
+    BattleCafe_UnlockClearAchievement();
+
+    EXPECT(Achievement_IsUnlocked(ACH_BATTLE_CAFE_DAILY));
+    EXPECT(!Achievement_IsUnlocked(ACH_BATTLE_CAFE_RUSH));
+    EXPECT(!Achievement_IsUnlocked(ACH_BATTLE_CAFE_SUPER_CHALLENGE));
+}
+
+TEST("Battle Cafe Rush unlocks its achievement")
+{
+    VarSet(VAR_TEMP_8, BATTLE_CAFE_MODE_RUSH);
+
+    BattleCafe_UnlockClearAchievement();
+
+    EXPECT(!Achievement_IsUnlocked(ACH_BATTLE_CAFE_DAILY));
+    EXPECT(Achievement_IsUnlocked(ACH_BATTLE_CAFE_RUSH));
+    EXPECT(!Achievement_IsUnlocked(ACH_BATTLE_CAFE_SUPER_CHALLENGE));
+}
+
+TEST("Battle Cafe Super Challenge unlocks its achievement")
+{
+    VarSet(VAR_TEMP_8, BATTLE_CAFE_MODE_SUPER_CHALLENGE);
+
+    BattleCafe_UnlockClearAchievement();
+
+    EXPECT(!Achievement_IsUnlocked(ACH_BATTLE_CAFE_DAILY));
+    EXPECT(!Achievement_IsUnlocked(ACH_BATTLE_CAFE_RUSH));
+    EXPECT(Achievement_IsUnlocked(ACH_BATTLE_CAFE_SUPER_CHALLENGE));
+}
+
+TEST("Battle Cafe hard modes have no clear achievements")
+{
+    VarSet(VAR_TEMP_8, BATTLE_CAFE_MODE_SUPER_RUSH);
+    BattleCafe_UnlockClearAchievement();
+    VarSet(VAR_TEMP_8, BATTLE_CAFE_MODE_ENDLESS_CHALLENGE);
+    BattleCafe_UnlockClearAchievement();
+    VarSet(VAR_TEMP_8, BATTLE_CAFE_MODE_ENDLESS_RUSH);
+    BattleCafe_UnlockClearAchievement();
+
+    EXPECT(!Achievement_IsUnlocked(ACH_BATTLE_CAFE_DAILY));
+    EXPECT(!Achievement_IsUnlocked(ACH_BATTLE_CAFE_RUSH));
+    EXPECT(!Achievement_IsUnlocked(ACH_BATTLE_CAFE_SUPER_CHALLENGE));
+    EXPECT(!Achievement_IsUnlocked(ACH_BATTLE_CAFE_ENDLESS_MASTER));
 }

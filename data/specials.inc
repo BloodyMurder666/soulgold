@@ -282,6 +282,11 @@ gSpecials::
 	def_special BattleCafe_InitChallenge
 	def_special BattleCafe_SelectOpponent
 	def_special BattleCafe_EndChallenge
+	def_special BattleCafe_UnlockClearAchievement
+	def_special BattleCafe_AdvanceWinCount
+	def_special BattleCafe_AwardPoints
+	def_special BattleCafe_TryPurchaseVitaminSet
+	def_special BattleCafe_ShowRecordsWindow
 	def_special ReducePlayerPartyToSelectedMons
 	def_special BedroomPC
 	def_special PlayerPC

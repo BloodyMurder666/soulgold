@@ -54,6 +54,9 @@ static EWRAM_DATA struct SpriteFrameImage sShinySurfOverlayFrames[SURFABLE_POKEM
 
 static u16 GetSurfablePokemonIndex(u16 species)
 {
+    if (species == SPECIES_PIKACHU_PARTNER || species == SPECIES_PIKACHU_STARTER)
+        species = SPECIES_PIKACHU;
+
     for (u32 surfMon = 1; surfMon < ARRAY_COUNT(gSurfablePokemon); surfMon++)
     {
         if (species == gSurfablePokemon[surfMon].species)
