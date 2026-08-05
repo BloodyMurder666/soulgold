@@ -90,10 +90,12 @@ def parse_species() -> SpeciesParseResult:
         teach_expr = extract_field(entry, "teachableLearnset") or ""
         egg_expr = extract_field(entry, "eggMoveLearnset") or ""
         front_expr = extract_field(entry, "frontPic") or ""
+        shiny_palette_expr = extract_field(entry, "shinyPalette") or ""
         level_symbol = re.search(r"\bs[A-Za-z0-9_]+LevelUpLearnset\b", level_expr)
         teach_symbol = re.search(r"\bs[A-Za-z0-9_]+TeachableLearnset\b", teach_expr)
         egg_symbol = re.search(r"\bs[A-Za-z0-9_]+EggMoveLearnset\b", egg_expr)
         front_symbol = re.search(r"\bgMonFrontPic_[A-Za-z0-9_]+\b", front_expr)
+        shiny_palette = re.search(r"\bgMonShinyPalette_[A-Za-z0-9_]+\b", shiny_palette_expr)
         held_items = []
         seen_held_items = set()
         for field_name, rarity in (("itemCommon", "common"), ("itemRare", "rare")):
@@ -118,6 +120,7 @@ def parse_species() -> SpeciesParseResult:
             teachable_symbol=teach_symbol.group(0) if teach_symbol else None,
             egg_move_symbol=egg_symbol.group(0) if egg_symbol else None,
             front_pic_symbol=front_symbol.group(0) if front_symbol else None,
+            shiny_palette_symbol=shiny_palette.group(0) if shiny_palette else None,
             held_items=held_items,
         )
         rows.append(row)
@@ -195,10 +198,12 @@ def enrich_species_rows(
             sprite_path = sprite_dir / f"{row.constant.removeprefix('SPECIES_').lower()}.png"
             process_sprite(front_sources[row.front_pic_symbol], sprite_path)
             row.sprite = str(sprite_path.relative_to(OUT_DIR))
-            shiny_palette = shiny_palette_sources.get(shiny_palette_symbol(row.front_pic_symbol))
-            if shiny_palette:
+            palette_source = shiny_palette_sources.get(
+                row.shiny_palette_symbol or shiny_palette_symbol(row.front_pic_symbol)
+            )
+            if palette_source:
                 shiny_sprite_path = sprite_dir / f"{row.constant.removeprefix('SPECIES_').lower()}_shiny.png"
-                process_sprite(front_sources[row.front_pic_symbol], shiny_sprite_path, shiny_palette)
+                process_sprite(front_sources[row.front_pic_symbol], shiny_sprite_path, palette_source)
                 row.shiny_sprite = str(shiny_sprite_path.relative_to(OUT_DIR))
     return species
 

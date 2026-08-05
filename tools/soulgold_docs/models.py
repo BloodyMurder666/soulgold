@@ -268,6 +268,7 @@ class SpeciesRow:
     teachable_symbol: str | None
     egg_move_symbol: str | None
     front_pic_symbol: str | None
+    shiny_palette_symbol: str | None
     sprite: str | None = None
     shiny_sprite: str | None = None
     level_up: list[LevelUpMove] = field(default_factory=list)

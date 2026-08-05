@@ -33,6 +33,7 @@ def slugify(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "_", value.lower()).strip("_")
 
 def asset_stem(value: str) -> str:
+    value = re.sub(r"([A-Z]+)([A-Z][a-z])", r"\1_\2", value)
     value = re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", value)
     return slugify(value)
 
