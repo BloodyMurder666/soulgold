@@ -528,6 +528,17 @@ void BattleSetup_StartLegendaryBattle(void)
     case SPECIES_RAYQUAZA_MEGA:
         CreateBattleStartTask(B_TRANSITION_RAYQUAZA, MUS_VS_RAYQUAZA);
         break;
+    case SPECIES_DIALGA:
+    case SPECIES_PALKIA:
+    case SPECIES_DIALGA_ORIGIN:
+    case SPECIES_DIALGA_PRIMAL:
+    case SPECIES_PALKIA_ORIGIN:
+        CreateBattleStartTask(B_TRANSITION_BLUR, MUS_DP_VS_DIALGA_PALKIA);
+        break;
+    case SPECIES_GIRATINA:
+    case SPECIES_GIRATINA_ORIGIN:
+        CreateBattleStartTask(B_TRANSITION_BLUR, MUS_DP_VS_LEGEND);
+        break;
     case SPECIES_DEOXYS_NORMAL:
     case SPECIES_DEOXYS_ATTACK:
     case SPECIES_DEOXYS_DEFENSE:

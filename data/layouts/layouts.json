@@ -10271,7 +10271,7 @@
       "id": "LAYOUT_SPEAR_PILLAR_TOP",
       "name": "SpearPillarTop_Layout",
       "width": 32,
-      "height": 32,
+      "height": 45,
       "primary_tileset": "gTileset_Johto_General",
       "secondary_tileset": "gTileset_SpearPillar",
       "border_filepath": "data/layouts/SpearPillarTop/border.bin",

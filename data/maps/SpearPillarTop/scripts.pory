@@ -1,1 +1,101 @@
 mapscripts SpearPillarTop_MapScripts {}
+
+script exitPortalSP {
+    lock
+    warp(MAP_RUINS_OF_ALPH_SECRET_ROOM, 9, 7)
+    waitstate
+    release
+    end
+}
+
+script PortalDialga {
+    lock
+    faceplayer
+    msgbox("You gaze deep into the portal.
+
+            It shows you the sea of flowing time.")
+    msgbox("Touch the portal?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        bosslegendaryencounter(SPECIES_DIALGA, 85, LOCALID_SPEAR_PILLAR_DIALGA_PORTAL, FLAG_HIDE_SPEAR_PILLAR_DIALGA_PORTAL, 4, SPECIES_NONE, 110, BOSS_PHASE_PROFILE_DIALGA)
+        if (var(VAR_RESULT) == B_OUTCOME_CAUGHT) {
+            if (!flag(FLAG_GOT_ADAMANT_ORB)) {
+                finditem(ITEM_ADAMANT_ORB)
+                setflag(FLAG_GOT_ADAMANT_ORB)
+            }
+        }
+    }
+    release
+    end
+}
+
+script PortalPalkia {
+    lock
+    faceplayer
+    msgbox("You gaze deep into the portal.
+
+            It shows you a vast and endless space.")
+    msgbox("Touch the portal?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        bosslegendaryencounter(SPECIES_PALKIA, 85, LOCALID_SPEAR_PILLAR_PALKIA_PORTAL, FLAG_HIDE_SPEAR_PILLAR_PALKIA_PORTAL, 4, SPECIES_NONE, 110, BOSS_PHASE_PROFILE_PALKIA)
+        if (var(VAR_RESULT) == B_OUTCOME_CAUGHT) {
+            if (!flag(FLAG_GOT_LUSTROUS_ORB)) {
+                finditem(ITEM_LUSTROUS_ORB)
+                setflag(FLAG_GOT_LUSTROUS_ORB)
+            }
+        }
+    }
+    release
+    end
+}
+
+script PortalGiratina {
+    lock
+    faceplayer
+    msgbox("You gaze deep into the portal.
+
+            It shows you a bottomless abyss.")
+    msgbox("Touch the portal?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        bosslegendaryencounter(SPECIES_GIRATINA, 85, LOCALID_SPEAR_PILLAR_GIRATINA_PORTAL, FLAG_HIDE_SPEAR_PILLAR_GIRATINA_PORTAL, 4, SPECIES_NONE, 110, BOSS_PHASE_PROFILE_GIRATINA)
+        if (var(VAR_RESULT) == B_OUTCOME_CAUGHT) {
+            if (!flag(FLAG_GOT_GRISEOUS_ORB)) {
+                finditem(ITEM_GRISEOUS_ORB)
+                setflag(FLAG_GOT_GRISEOUS_ORB)
+            }
+        }
+    }
+    release
+    end
+}
+
+script TimeGearPrimal {
+    lock
+    faceplayer
+    msgbox("A strange gear lies on the ground.")
+    checkspecies(SPECIES_GROVYLE)
+    if (var(VAR_RESULT) == FALSE) {
+        goto(TimeGearDoesNotReact)
+    }
+    checkspecies(SPECIES_DUSKNOIR)
+    if (var(VAR_RESULT) == FALSE) {
+        goto(TimeGearDoesNotReact)
+    }
+    checkspecies(SPECIES_CELEBI)
+    if (var(VAR_RESULT) == FALSE) {
+        goto(TimeGearDoesNotReact)
+    }
+    msgbox("The Time Gear suddenly started glowing!
+
+            Touch it?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        bosslegendaryencounterwithmoves(SPECIES_DIALGA_PRIMAL, 85, LOCALID_SPEAR_PILLAR_TIME_GEAR, FLAG_HIDE_SPEAR_PILLAR_TIME_GEAR, 4, SPECIES_NONE, 110, MOVE_ROAR_OF_TIME, MOVE_FLASH_CANNON, MOVE_EARTH_POWER, MOVE_THUNDER)
+    }
+    release
+    end
+}
+
+script TimeGearDoesNotReact {
+    msgbox("It does not react to your presence.")
+    release
+    end
+}

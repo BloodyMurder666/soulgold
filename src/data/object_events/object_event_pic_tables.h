@@ -2210,3 +2210,11 @@ static const struct SpriteFrameImage sPicTable_Megastone[] = {
 static const struct SpriteFrameImage sPicTable_Case[] = {
     overworld_frame(gObjectEventPic_Case, 2, 2, 0),
 };
+
+static const struct SpriteFrameImage sPicTable_Portal[] = {
+    overworld_frame(gObjectEventPic_Portal, 2, 2, 0),
+};
+
+static const struct SpriteFrameImage sPicTable_Timegear[] = {
+    overworld_frame(gObjectEventPic_Timegear, 2, 2, 0),
+};

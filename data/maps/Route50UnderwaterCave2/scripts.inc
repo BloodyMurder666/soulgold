@@ -19,18 +19,17 @@ GroudonEncounter_1:
 
 GroudonEncounter_2:
 # 8 "data/maps/Route50UnderwaterCave2/scripts.pory"
-	checkitem ITEM_RED_ORB
-# 9 "data/maps/Route50UnderwaterCave2/scripts.pory"
-	compare VAR_RESULT, FALSE
-	goto_if_eq GroudonEncounter_5
+	goto_if_unset FLAG_GOT_REDORB, GroudonEncounter_5
 GroudonEncounter_4:
 # 12 "data/maps/Route50UnderwaterCave2/scripts.pory"
 	goto_if_unset FLAG_ONETIME_GROUDON, GroudonEncounter_7
 	goto GroudonEncounter_1
 
 GroudonEncounter_5:
-# 10 "data/maps/Route50UnderwaterCave2/scripts.pory"
+# 9 "data/maps/Route50UnderwaterCave2/scripts.pory"
 	finditem ITEM_RED_ORB
+# 10 "data/maps/Route50UnderwaterCave2/scripts.pory"
+	setflag FLAG_GOT_REDORB
 	goto GroudonEncounter_4
 
 GroudonEncounter_7:

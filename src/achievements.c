@@ -66,6 +66,7 @@ static bool32 Achievement_PredicateCaughtJirachi(void);
 static bool32 Achievement_PredicateCaughtHoopa(void);
 static bool32 Achievement_PredicateCaughtDialga(void);
 static bool32 Achievement_PredicateCaughtPalkia(void);
+static bool32 Achievement_PredicateCaughtGiratina(void);
 static bool32 Achievement_PredicateCaughtCresselia(void);
 static bool32 Achievement_PredicateCaughtDarkrai(void);
 static bool32 Achievement_PredicateCaughtShaymin(void);
@@ -261,9 +262,11 @@ static const u8 sText_AchObtainJirachiDesc[] = _("Obtain Jirachi.");
 static const u8 sText_AchCatchHoopaName[] = _("Interloper");
 static const u8 sText_AchCatchHoopaDesc[] = _("Catch Hoopa.");
 static const u8 sText_AchCatchDialgaName[] = _("Time Warden");
-static const u8 sText_AchCatchDialgaDesc[] = _("Catch Dialga. (NYI)");
+static const u8 sText_AchCatchDialgaDesc[] = _("Catch Dialga.");
 static const u8 sText_AchCatchPalkiaName[] = _("Space Warden");
-static const u8 sText_AchCatchPalkiaDesc[] = _("Catch Palkia. (NYI)");
+static const u8 sText_AchCatchPalkiaDesc[] = _("Catch Palkia.");
+static const u8 sText_AchCatchGiratinaName[] = _("Lord of Abyss");
+static const u8 sText_AchCatchGiratinaDesc[] = _("Catch Giratina.");
 static const u8 sText_AchCatchCresseliaName[] = _("Pleasant Dreams");
 static const u8 sText_AchCatchCresseliaDesc[] = _("Catch Cresselia.");
 static const u8 sText_AchCatchDarkraiName[] = _("Nightmare's End");
@@ -428,6 +431,7 @@ static const struct Achievement sAchievements[] =
     {ACH_CATCH_AZELF, sText_AchCatchAzelfName, sText_AchCatchAzelfDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtAzelf},
     {ACH_CATCH_DIALGA, sText_AchCatchDialgaName, sText_AchCatchDialgaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtDialga},
     {ACH_CATCH_PALKIA, sText_AchCatchPalkiaName, sText_AchCatchPalkiaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtPalkia},
+    {ACH_CATCH_GIRATINA, sText_AchCatchGiratinaName, sText_AchCatchGiratinaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtGiratina},
     {ACH_CATCH_HEATRAN, sText_AchCatchHeatranName, sText_AchCatchHeatranDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtHeatran},
     {ACH_CATCH_REGIGIGAS, sText_AchCatchRegigigasName, sText_AchCatchRegigigasDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtRegigigas},
     {ACH_CATCH_CRESSELIA, sText_AchCatchCresseliaName, sText_AchCatchCresseliaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtCresselia},
@@ -480,6 +484,7 @@ STATIC_ASSERT(ACH_OBTAIN_GALARIAN_BIRDS == 114, GalarianBirdsIdAppendedAfterExis
 STATIC_ASSERT(ACH_CATCH_KYOGRE == 115, KyogreIdAppendedAfterExistingIds);
 STATIC_ASSERT(ACH_CATCH_GROUDON == 116, GroudonIdAppendedAfterExistingIds);
 STATIC_ASSERT(ACH_MASTER_OF_WISHES == 117, MasterOfWishesIdAppendedAfterExistingIds);
+STATIC_ASSERT(ACH_CATCH_GIRATINA == 118, GiratinaIdAppendedAfterExistingIds);
 
 static const u8 *const sTierLabels[] =
 {
@@ -814,6 +819,11 @@ static bool32 Achievement_PredicateCaughtDialga(void)
 static bool32 Achievement_PredicateCaughtPalkia(void)
 {
     return Achievement_PredicateCaughtSpecies(SPECIES_PALKIA);
+}
+
+static bool32 Achievement_PredicateCaughtGiratina(void)
+{
+    return Achievement_PredicateCaughtSpecies(SPECIES_GIRATINA);
 }
 
 static bool32 Achievement_PredicateCaughtCresselia(void)

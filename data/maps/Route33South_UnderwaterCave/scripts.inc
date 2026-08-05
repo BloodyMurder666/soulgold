@@ -19,18 +19,17 @@ Route33Kyogre_1:
 
 Route33Kyogre_2:
 # 8 "data/maps/Route33South_UnderwaterCave/scripts.pory"
-	checkitem ITEM_BLUE_ORB
-# 9 "data/maps/Route33South_UnderwaterCave/scripts.pory"
-	compare VAR_RESULT, FALSE
-	goto_if_eq Route33Kyogre_5
+	goto_if_unset FLAG_GOT_BLUEORB, Route33Kyogre_5
 Route33Kyogre_4:
 # 12 "data/maps/Route33South_UnderwaterCave/scripts.pory"
 	goto_if_unset FLAG_ONETIME_KYOGRE, Route33Kyogre_7
 	goto Route33Kyogre_1
 
 Route33Kyogre_5:
-# 10 "data/maps/Route33South_UnderwaterCave/scripts.pory"
+# 9 "data/maps/Route33South_UnderwaterCave/scripts.pory"
 	finditem ITEM_BLUE_ORB
+# 10 "data/maps/Route33South_UnderwaterCave/scripts.pory"
+	setflag FLAG_GOT_BLUEORB
 	goto Route33Kyogre_4
 
 Route33Kyogre_7:

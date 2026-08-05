@@ -1,5 +1,24 @@
 mapscripts RuinsOfAlph_SecretRoom_MapScripts {}
 
 script RuinsSecretRoom {
+    lock
+    checkspecies(SPECIES_HOOPA)
+    if (var(VAR_RESULT) == FALSE) {
+        checkspecies(SPECIES_HOOPA_UNBOUND)
+    }
+    if (var(VAR_RESULT) == TRUE) {
+        msgbox("Hoopa seems to want to show you
+                something.
+
+                Allow it to interact with the wall?", MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES) {
+            warp(MAP_SPEAR_PILLAR_TOP, 16, 33)
+            waitstate
+        }
+        release
+        end
+    }
     msgbox("Colored symbols fill the wall.", MSGBOX_SIGN)
+    release
+    end
 }

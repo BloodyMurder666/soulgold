@@ -5,9 +5,9 @@ script GroudonEncounter {
     faceplayer
     bosslegendaryencounter(SPECIES_GROUDON, 80, LOCALID_GROUDON, FLAG_HIDE_GROUDON, 4, SPECIES_NONE, 110, BOSS_PHASE_PROFILE_GROUDON)
     if (var(VAR_RESULT) == B_OUTCOME_CAUGHT) {
-        checkitem(ITEM_RED_ORB)
-        if (var(VAR_RESULT)  == FALSE) {
+        if (!flag(FLAG_GOT_REDORB)) {
             finditem(ITEM_RED_ORB)
+            setflag(FLAG_GOT_REDORB)
         }
         if (!flag(FLAG_ONETIME_GROUDON)) {
             addvar(VAR_POSTGAME_RIVAL_LEGENDARYQ, 1)

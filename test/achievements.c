@@ -141,6 +141,20 @@ TEST("Existing Pokedex catches unlock appended Meloetta and Zeraora achievements
     gSaveBlock1Ptr->dexCaught[zeraoraByte] = oldZeraoraCaught;
 }
 
+TEST("Existing Pokedex catches unlock the Giratina achievement")
+{
+    const u16 giratinaByte = (NATIONAL_DEX_GIRATINA - 1) / 8;
+    const u8 oldGiratinaCaught = gSaveBlock1Ptr->dexCaught[giratinaByte];
+
+    GetSetPokedexFlag(NATIONAL_DEX_GIRATINA, FLAG_SET_CAUGHT);
+
+    Achievement_CheckAll();
+
+    EXPECT(Achievement_IsUnlocked(ACH_CATCH_GIRATINA));
+
+    gSaveBlock1Ptr->dexCaught[giratinaByte] = oldGiratinaCaught;
+}
+
 TEST("Legacy Deoxys completion does not unlock Hoopa")
 {
     Achievement_EnsureSaveInitialized();

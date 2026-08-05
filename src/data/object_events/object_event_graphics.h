@@ -509,6 +509,8 @@ const u16 gObjectEventPal_Green[] = INCBIN_U16("graphics/object_events/palettes/
 const u16 gObjectEventPal_Blue[] = INCBIN_U16("graphics/object_events/palettes/npc_blue.gbapal");
 const u16 gObjectEventPal_Pink[] = INCBIN_U16("graphics/object_events/palettes/npc_pink.gbapal");
 const u16 gObjectEventPal_Case[] = INCBIN_U16("graphics/object_events/palettes/case.gbapal");
+const u16 gObjectEventPal_Portal[] = INCBIN_U16("graphics/object_events/palettes/portal.gbapal");
+const u16 gObjectEventPal_Timegear[] = INCBIN_U16("graphics/object_events/palettes/timegear.gbapal");
 const u16 gObjectEventPal_Bill[] = INCBIN_U16("graphics/object_events/palettes/bill.gbapal");
 const u16 gObjectEventPal_Archer[] = INCBIN_U16("graphics/object_events/palettes/archer.gbapal");
 const u16 gObjectEventPal_RuinManiac[] = INCBIN_U16("graphics/object_events/pics/people/ruin_maniac.gbapal");
@@ -589,5 +591,7 @@ const u16 gFieldEffectObjectPalette_CaveDust[] = INCBIN_U16("graphics/field_effe
 
 const u32 gObjectEventPic_ApricornTree[] = INCBIN_U32("graphics/object_events/pics/misc/apricorn_tree.4bpp");
 const u32 gObjectEventPic_Case[] = INCBIN_U32("graphics/object_events/pics/misc/case.4bpp");
+const u32 gObjectEventPic_Portal[] = INCBIN_U32("graphics/object_events/pics/misc/portal.4bpp");
+const u32 gObjectEventPic_Timegear[] = INCBIN_U32("graphics/object_events/pics/misc/timegear.4bpp");
 const u32 gObjectEventPic_TMBall[] = INCBIN_U32("graphics/object_events/pics/misc/tm_ball.4bpp");
 const u32 gObjectEventPic_Megastone[] = INCBIN_U32("graphics/object_events/pics/misc/megastone.4bpp");

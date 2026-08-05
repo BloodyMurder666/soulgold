@@ -59,15 +59,15 @@
 #define FLAG_NO_WT_BECAUSE_CHALLENGE            0x2D 
 #define FLAG_GLACIA_REMATCH                     0x2E //Elite Four Rematch 3
 #define FLAG_DOME_FOSSIL_ALTERING_CAVE          0x2F 
-#define FLAG_CAVE_MOONSTONE                     0x30 
-#define FLAG_CAVE_SUNSTONE                      0x31 
+#define FLAG_GOT_REDORB                         0x30 
+#define FLAG_GOT_BLUEORB                        0x31 
 #define FLAG_HIDE_POSTGAME_OAK                  0x32
-#define FLAG_MODEST_MINT_LILYCOVE               0x33
+#define FLAG_GOT_GRISEOUS_ORB                   0x33
 #define FLAG_HIDE_BATTLE_CAFE_OPPONENT          0x34
 #define FLAG_CAUGHT_MELOETTA                    0x35 
 #define FLAG_CAFE_INTRO_DONE                    0x36
-#define FLAG_DRAKE_REMATCH                      0x37 //Elite Four Rematch 4
-#define FLAG_WALLACE_REMATCH                    0x38 //Elite Four Rematch 5, Champion
+#define FLAG_GOT_ADAMANT_ORB                    0x37
+#define FLAG_GOT_LUSTROUS_ORB                   0x38
 #define FLAG_STEVEN_REMATCH                     0x39 // Steven Rematch, true champion
 #define FLAG_PENDING_DAYCARE_EGG_SHINY          0x3A
 #define FLAG_DEFEATED_REGIELEKI                 0x3B 
@@ -1728,7 +1728,11 @@
 #define FLAG_BATTLE_CAFE_THUNDURUS_RECEIVED     0x1028
 #define FLAG_BATTLE_CAFE_LANDORUS_RECEIVED      0x1029
 #define FLAG_BATTLE_CAFE_ENAMORUS_RECEIVED      0x102A
-#define CUSTOM_FLAGS_END                        FLAG_BATTLE_CAFE_ENAMORUS_RECEIVED
+#define FLAG_HIDE_SPEAR_PILLAR_DIALGA_PORTAL    0x102B
+#define FLAG_HIDE_SPEAR_PILLAR_PALKIA_PORTAL    0x102C
+#define FLAG_HIDE_SPEAR_PILLAR_GIRATINA_PORTAL  0x102D
+#define FLAG_HIDE_SPEAR_PILLAR_TIME_GEAR        0x102E
+#define CUSTOM_FLAGS_END                        FLAG_HIDE_SPEAR_PILLAR_TIME_GEAR
 
 
 #define FLAG_0x1500                                 0x1500
