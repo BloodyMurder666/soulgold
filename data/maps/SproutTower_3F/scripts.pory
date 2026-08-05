@@ -104,6 +104,7 @@ SproutTower_3F_EventScript_SageLi::
 	lock
 	faceplayer
 	goto_if_set FLAG_RECEIVED_HM_FLASH, SproutTower_3F_EventScript_SageLi_Beaten
+	createfieldmugshot MUGSHOT_ELDER_LI
 	msgbox SproutTower_Text_SageLi_Seen, MSGBOX_DEFAULT
 	closemessage
 	trainerbattle_no_intro TRAINER_LI, SproutTower_Text_SageLi_Beaten
@@ -119,6 +120,7 @@ SproutTower_3F_EventScript_SageLi::
 
 SproutTower_3F_EventScript_SageLi_Beaten::
 	goto_if_set FLAG_BADGE08_GET, SageLiPostBadges
+	createfieldmugshot MUGSHOT_ELDER_LI
 	msgbox SproutTower_Text_SageLi_AfterBattle, MSGBOX_DEFAULT
 	closemessage
 	release
@@ -261,6 +263,7 @@ SproutTower_Text_3F_Painting:
 
 script SageLiPostBadges {
 	if (flag(FLAG_HIDE_SPROUT_BASEMENT_GUARD) == FALSE) {
+		createfieldmugshot(MUGSHOT_ELDER_LI)
 		msgbox("{PLAYER}!
 
 			I have heard of your triumphs across

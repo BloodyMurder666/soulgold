@@ -2,6 +2,7 @@
 #include "achievements.h"
 #include "battle_setup.h"
 #include "event_data.h"
+#include "field_mugshot.h"
 #include "random.h"
 #include "title_defense.h"
 #include "test/test.h"
@@ -90,10 +91,19 @@ TEST("Title Defense stages the selected challenger's overworld graphics")
 
     EXPECT_EQ(VarGet(VAR_TITLE_DEFENSE_LAST_CHALLENGER), TRAINER_TITLE_DEFENSE_STEVEN);
     EXPECT_EQ(VarGet(VAR_OBJ_GFX_ID_0), OBJ_EVENT_GFX_STEVEN);
+
+    VarSet(VAR_TITLE_DEFENSE_LAST_CHALLENGER, TRAINER_NONE);
+    SetupRiggedRng(__LINE__, RNG_TITLE_DEFENSE_CHALLENGER, 10);
+    TitleDefense_SelectChallenger();
+
+    EXPECT_EQ(VarGet(VAR_TITLE_DEFENSE_LAST_CHALLENGER), TRAINER_TITLE_DEFENSE_ELDER_LI);
+    EXPECT_EQ(VarGet(VAR_OBJ_GFX_ID_0), OBJ_EVENT_GFX_EXPERT_M);
 }
 
 TEST("Title Defense derives mugshots from challenger overworld graphics")
 {
+    EXPECT_EQ(GetFieldMugshotIdByObjectGraphicsId(OBJ_EVENT_GFX_SAGE), MUGSHOT_NONE);
+
     VarSet(VAR_TITLE_DEFENSE_LAST_CHALLENGER, TRAINER_TITLE_DEFENSE_FALKNER);
     EXPECT_EQ(TitleDefense_GetCurrentMugshotId(), MUGSHOT_FALKNER);
 

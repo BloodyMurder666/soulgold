@@ -211,342 +211,346 @@ SproutTower_3F_EventScript_SageLi::
 # 106 "data/maps/SproutTower_3F/scripts.pory"
 	goto_if_set FLAG_RECEIVED_HM_FLASH, SproutTower_3F_EventScript_SageLi_Beaten
 # 107 "data/maps/SproutTower_3F/scripts.pory"
-	msgbox SproutTower_Text_SageLi_Seen, MSGBOX_DEFAULT
+	createfieldmugshot MUGSHOT_ELDER_LI
 # 108 "data/maps/SproutTower_3F/scripts.pory"
-	closemessage
+	msgbox SproutTower_Text_SageLi_Seen, MSGBOX_DEFAULT
 # 109 "data/maps/SproutTower_3F/scripts.pory"
-	trainerbattle_no_intro TRAINER_LI, SproutTower_Text_SageLi_Beaten
+	closemessage
 # 110 "data/maps/SproutTower_3F/scripts.pory"
-	createfieldmugshot MUGSHOT_ELDER_LI
+	trainerbattle_no_intro TRAINER_LI, SproutTower_Text_SageLi_Beaten
 # 111 "data/maps/SproutTower_3F/scripts.pory"
-	msgbox SproutTower_Text_SageLi_TakeFlash, MSGBOX_DEFAULT
-# 112 "data/maps/SproutTower_3F/scripts.pory"
-	giveitem ITEM_HM_FLASH
-# 113 "data/maps/SproutTower_3F/scripts.pory"
-	setflag FLAG_RECEIVED_HM_FLASH
-# 114 "data/maps/SproutTower_3F/scripts.pory"
 	createfieldmugshot MUGSHOT_ELDER_LI
+# 112 "data/maps/SproutTower_3F/scripts.pory"
+	msgbox SproutTower_Text_SageLi_TakeFlash, MSGBOX_DEFAULT
+# 113 "data/maps/SproutTower_3F/scripts.pory"
+	giveitem ITEM_HM_FLASH
+# 114 "data/maps/SproutTower_3F/scripts.pory"
+	setflag FLAG_RECEIVED_HM_FLASH
 # 115 "data/maps/SproutTower_3F/scripts.pory"
-	msgbox SproutTower_Text_SageLi_FlashExplain, MSGBOX_DEFAULT
+	createfieldmugshot MUGSHOT_ELDER_LI
 # 116 "data/maps/SproutTower_3F/scripts.pory"
-	closemessage
+	msgbox SproutTower_Text_SageLi_FlashExplain, MSGBOX_DEFAULT
 # 117 "data/maps/SproutTower_3F/scripts.pory"
-	release
-# 118 "data/maps/SproutTower_3F/scripts.pory"
-	end
-# 119 "data/maps/SproutTower_3F/scripts.pory"
-
-# 120 "data/maps/SproutTower_3F/scripts.pory"
-SproutTower_3F_EventScript_SageLi_Beaten::
-# 121 "data/maps/SproutTower_3F/scripts.pory"
-	goto_if_set FLAG_BADGE08_GET, SageLiPostBadges
-# 122 "data/maps/SproutTower_3F/scripts.pory"
-	msgbox SproutTower_Text_SageLi_AfterBattle, MSGBOX_DEFAULT
-# 123 "data/maps/SproutTower_3F/scripts.pory"
 	closemessage
-# 124 "data/maps/SproutTower_3F/scripts.pory"
+# 118 "data/maps/SproutTower_3F/scripts.pory"
 	release
-# 125 "data/maps/SproutTower_3F/scripts.pory"
+# 119 "data/maps/SproutTower_3F/scripts.pory"
 	end
+# 120 "data/maps/SproutTower_3F/scripts.pory"
+
+# 121 "data/maps/SproutTower_3F/scripts.pory"
+SproutTower_3F_EventScript_SageLi_Beaten::
+# 122 "data/maps/SproutTower_3F/scripts.pory"
+	goto_if_set FLAG_BADGE08_GET, SageLiPostBadges
+# 123 "data/maps/SproutTower_3F/scripts.pory"
+	createfieldmugshot MUGSHOT_ELDER_LI
+# 124 "data/maps/SproutTower_3F/scripts.pory"
+	msgbox SproutTower_Text_SageLi_AfterBattle, MSGBOX_DEFAULT
+# 125 "data/maps/SproutTower_3F/scripts.pory"
+	closemessage
 # 126 "data/maps/SproutTower_3F/scripts.pory"
-
+	release
 # 127 "data/maps/SproutTower_3F/scripts.pory"
-SproutTower_3F_Movement_Silver1:
+	end
 # 128 "data/maps/SproutTower_3F/scripts.pory"
-	walk_fast_up
+
 # 129 "data/maps/SproutTower_3F/scripts.pory"
-	walk_fast_up
+SproutTower_3F_Movement_Silver1:
 # 130 "data/maps/SproutTower_3F/scripts.pory"
-	step_end
+	walk_fast_up
 # 131 "data/maps/SproutTower_3F/scripts.pory"
-
+	walk_fast_up
 # 132 "data/maps/SproutTower_3F/scripts.pory"
-SproutTower_3F_Movement_SilverLeft:
-# 133 "data/maps/SproutTower_3F/scripts.pory"
-	face_down
-# 134 "data/maps/SproutTower_3F/scripts.pory"
-	delay_16
-# 135 "data/maps/SproutTower_3F/scripts.pory"
-	walk_right
-# 136 "data/maps/SproutTower_3F/scripts.pory"
-	walk_right
-# 137 "data/maps/SproutTower_3F/scripts.pory"
-	walk_down
-# 138 "data/maps/SproutTower_3F/scripts.pory"
-	walk_down
-# 139 "data/maps/SproutTower_3F/scripts.pory"
 	step_end
-# 140 "data/maps/SproutTower_3F/scripts.pory"
+# 133 "data/maps/SproutTower_3F/scripts.pory"
 
-# 141 "data/maps/SproutTower_3F/scripts.pory"
-SproutTower_3F_Movement_SilverRight:
-# 142 "data/maps/SproutTower_3F/scripts.pory"
+# 134 "data/maps/SproutTower_3F/scripts.pory"
+SproutTower_3F_Movement_SilverLeft:
+# 135 "data/maps/SproutTower_3F/scripts.pory"
 	face_down
-# 143 "data/maps/SproutTower_3F/scripts.pory"
+# 136 "data/maps/SproutTower_3F/scripts.pory"
 	delay_16
+# 137 "data/maps/SproutTower_3F/scripts.pory"
+	walk_right
+# 138 "data/maps/SproutTower_3F/scripts.pory"
+	walk_right
+# 139 "data/maps/SproutTower_3F/scripts.pory"
+	walk_down
+# 140 "data/maps/SproutTower_3F/scripts.pory"
+	walk_down
+# 141 "data/maps/SproutTower_3F/scripts.pory"
+	step_end
+# 142 "data/maps/SproutTower_3F/scripts.pory"
+
+# 143 "data/maps/SproutTower_3F/scripts.pory"
+SproutTower_3F_Movement_SilverRight:
 # 144 "data/maps/SproutTower_3F/scripts.pory"
-	walk_right
+	face_down
 # 145 "data/maps/SproutTower_3F/scripts.pory"
-	walk_right
+	delay_16
 # 146 "data/maps/SproutTower_3F/scripts.pory"
 	walk_right
 # 147 "data/maps/SproutTower_3F/scripts.pory"
-	walk_down
+	walk_right
 # 148 "data/maps/SproutTower_3F/scripts.pory"
-	walk_down
+	walk_right
 # 149 "data/maps/SproutTower_3F/scripts.pory"
-	step_end
+	walk_down
 # 150 "data/maps/SproutTower_3F/scripts.pory"
-
+	walk_down
 # 151 "data/maps/SproutTower_3F/scripts.pory"
-SproutTower_3F_Movement_EscapeRope:
-# 152 "data/maps/SproutTower_3F/scripts.pory"
-	face_right
-# 153 "data/maps/SproutTower_3F/scripts.pory"
-	face_up
-# 154 "data/maps/SproutTower_3F/scripts.pory"
-	face_left
-# 155 "data/maps/SproutTower_3F/scripts.pory"
-	face_down
-# 156 "data/maps/SproutTower_3F/scripts.pory"
-	face_right
-# 157 "data/maps/SproutTower_3F/scripts.pory"
-	face_up
-# 158 "data/maps/SproutTower_3F/scripts.pory"
-	face_left
-# 159 "data/maps/SproutTower_3F/scripts.pory"
-	face_down
-# 160 "data/maps/SproutTower_3F/scripts.pory"
-	face_right
-# 161 "data/maps/SproutTower_3F/scripts.pory"
-	face_up
-# 162 "data/maps/SproutTower_3F/scripts.pory"
-	face_left
-# 163 "data/maps/SproutTower_3F/scripts.pory"
-	face_down
-# 164 "data/maps/SproutTower_3F/scripts.pory"
 	step_end
+# 152 "data/maps/SproutTower_3F/scripts.pory"
+
+# 153 "data/maps/SproutTower_3F/scripts.pory"
+SproutTower_3F_Movement_EscapeRope:
+# 154 "data/maps/SproutTower_3F/scripts.pory"
+	face_right
+# 155 "data/maps/SproutTower_3F/scripts.pory"
+	face_up
+# 156 "data/maps/SproutTower_3F/scripts.pory"
+	face_left
+# 157 "data/maps/SproutTower_3F/scripts.pory"
+	face_down
+# 158 "data/maps/SproutTower_3F/scripts.pory"
+	face_right
+# 159 "data/maps/SproutTower_3F/scripts.pory"
+	face_up
+# 160 "data/maps/SproutTower_3F/scripts.pory"
+	face_left
+# 161 "data/maps/SproutTower_3F/scripts.pory"
+	face_down
+# 162 "data/maps/SproutTower_3F/scripts.pory"
+	face_right
+# 163 "data/maps/SproutTower_3F/scripts.pory"
+	face_up
+# 164 "data/maps/SproutTower_3F/scripts.pory"
+	face_left
 # 165 "data/maps/SproutTower_3F/scripts.pory"
-
+	face_down
 # 166 "data/maps/SproutTower_3F/scripts.pory"
-SproutTower_Text_ElderLecturesRival:
+	step_end
 # 167 "data/maps/SproutTower_3F/scripts.pory"
-	.string "Elder: You are indeed skilled\n"
+
 # 168 "data/maps/SproutTower_3F/scripts.pory"
-	.string "as a trainer.\p"
+SproutTower_Text_ElderLecturesRival:
 # 169 "data/maps/SproutTower_3F/scripts.pory"
-	.string "As promised, here is your HM.\p"
+	.string "Elder: You are indeed skilled\n"
 # 170 "data/maps/SproutTower_3F/scripts.pory"
-	.string "But let me say this: You should\n"
+	.string "as a trainer.\p"
 # 171 "data/maps/SproutTower_3F/scripts.pory"
-	.string "treat your Pokémon better.\p"
+	.string "As promised, here is your HM.\p"
 # 172 "data/maps/SproutTower_3F/scripts.pory"
-	.string "The way you battle is far too\n"
+	.string "But let me say this: You should\n"
 # 173 "data/maps/SproutTower_3F/scripts.pory"
-	.string "harsh.\p"
+	.string "treat your Pokémon better.\p"
 # 174 "data/maps/SproutTower_3F/scripts.pory"
-	.string "Pokémon are not tools of war…$"
+	.string "The way you battle is far too\n"
 # 175 "data/maps/SproutTower_3F/scripts.pory"
-
+	.string "harsh.\p"
 # 176 "data/maps/SproutTower_3F/scripts.pory"
-SproutTower_Text_RivalOnlyCaresStrong:
+	.string "Pokémon are not tools of war…$"
 # 177 "data/maps/SproutTower_3F/scripts.pory"
-	.string "…\n"
+
 # 178 "data/maps/SproutTower_3F/scripts.pory"
-	.string "…Humph!\p"
+SproutTower_Text_RivalOnlyCaresStrong:
 # 179 "data/maps/SproutTower_3F/scripts.pory"
-	.string "He claims to be the Elder but\n"
+	.string "…\n"
 # 180 "data/maps/SproutTower_3F/scripts.pory"
-	.string "he's weak.\p"
+	.string "…Humph!\p"
 # 181 "data/maps/SproutTower_3F/scripts.pory"
-	.string "It stands to reason.\p"
+	.string "He claims to be the Elder but\n"
 # 182 "data/maps/SproutTower_3F/scripts.pory"
-	.string "I'd never lose to fools who babble\n"
+	.string "he's weak.\p"
 # 183 "data/maps/SproutTower_3F/scripts.pory"
-	.string "about being nice to Pokémon.\p"
+	.string "It stands to reason.\p"
 # 184 "data/maps/SproutTower_3F/scripts.pory"
-	.string "I only care about strong\n"
+	.string "I'd never lose to fools who babble\n"
 # 185 "data/maps/SproutTower_3F/scripts.pory"
-	.string "Pokémon that can win.\p"
+	.string "about being nice to Pokémon.\p"
 # 186 "data/maps/SproutTower_3F/scripts.pory"
-	.string "I really couldn't care less\n"
+	.string "I only care about strong\n"
 # 187 "data/maps/SproutTower_3F/scripts.pory"
-	.string "about weak Pokémon.$"
+	.string "Pokémon that can win.\p"
 # 188 "data/maps/SproutTower_3F/scripts.pory"
-
+	.string "I really couldn't care less\n"
 # 189 "data/maps/SproutTower_3F/scripts.pory"
-SproutTower_Text_RivalUsedEscapeRope:
+	.string "about weak Pokémon.$"
 # 190 "data/maps/SproutTower_3F/scripts.pory"
-	.string "{RIVAL} used an Escape Rope!$"
+
 # 191 "data/maps/SproutTower_3F/scripts.pory"
-
+SproutTower_Text_RivalUsedEscapeRope:
 # 192 "data/maps/SproutTower_3F/scripts.pory"
-SproutTower_Text_SageLi_Seen:
+	.string "{RIVAL} used an Escape Rope!$"
 # 193 "data/maps/SproutTower_3F/scripts.pory"
-	.string "So good of you to come here!\p"
+
 # 194 "data/maps/SproutTower_3F/scripts.pory"
-	.string "Sprout Tower is a place of\n"
+SproutTower_Text_SageLi_Seen:
 # 195 "data/maps/SproutTower_3F/scripts.pory"
-	.string "training.\p"
+	.string "So good of you to come here!\p"
 # 196 "data/maps/SproutTower_3F/scripts.pory"
-	.string "People and Pokémon test their\n"
+	.string "Sprout Tower is a place of\n"
 # 197 "data/maps/SproutTower_3F/scripts.pory"
-	.string "bonds to build a bright future\l"
+	.string "training.\p"
 # 198 "data/maps/SproutTower_3F/scripts.pory"
-	.string "together.\p"
+	.string "People and Pokémon test their\n"
 # 199 "data/maps/SproutTower_3F/scripts.pory"
-	.string "I am the final test.\p"
+	.string "bonds to build a bright future\l"
 # 200 "data/maps/SproutTower_3F/scripts.pory"
-	.string "Allow me to check the ties\n"
+	.string "together.\p"
 # 201 "data/maps/SproutTower_3F/scripts.pory"
-	.string "between your Pokémon and you!$"
+	.string "I am the final test.\p"
 # 202 "data/maps/SproutTower_3F/scripts.pory"
-
+	.string "Allow me to check the ties\n"
 # 203 "data/maps/SproutTower_3F/scripts.pory"
-SproutTower_Text_SageLi_Beaten:
+	.string "between your Pokémon and you!$"
 # 204 "data/maps/SproutTower_3F/scripts.pory"
-	.string "Ah, excellent!$"
+
 # 205 "data/maps/SproutTower_3F/scripts.pory"
-
+SproutTower_Text_SageLi_Beaten:
 # 206 "data/maps/SproutTower_3F/scripts.pory"
-SproutTower_Text_SageLi_TakeFlash:
+	.string "Ah, excellent!$"
 # 207 "data/maps/SproutTower_3F/scripts.pory"
-	.string "You and your Pokémon should\n"
+
 # 208 "data/maps/SproutTower_3F/scripts.pory"
-	.string "have no problem using this move.\p"
+SproutTower_Text_SageLi_TakeFlash:
 # 209 "data/maps/SproutTower_3F/scripts.pory"
-	.string "Take this Flash HM.$"
+	.string "You and your Pokémon should\n"
 # 210 "data/maps/SproutTower_3F/scripts.pory"
-
+	.string "have no problem using this move.\p"
 # 211 "data/maps/SproutTower_3F/scripts.pory"
-SproutTower_Text_SageLi_FlashExplain:
+	.string "Take this Flash HM.$"
 # 212 "data/maps/SproutTower_3F/scripts.pory"
-	.string "Flash illuminates even the\n"
+
 # 213 "data/maps/SproutTower_3F/scripts.pory"
-	.string "darkest of all places.\p"
+SproutTower_Text_SageLi_FlashExplain:
 # 214 "data/maps/SproutTower_3F/scripts.pory"
-	.string "But to use it out of battle, you\n"
+	.string "Flash illuminates even the\n"
 # 215 "data/maps/SproutTower_3F/scripts.pory"
-	.string "need the Badge from Violet's Gym.$"
+	.string "darkest of all places.\p"
 # 216 "data/maps/SproutTower_3F/scripts.pory"
-
+	.string "But to use it out of battle, you\n"
 # 217 "data/maps/SproutTower_3F/scripts.pory"
-SproutTower_Text_SageLi_AfterBattle:
+	.string "need the Badge from Violet's Gym.$"
 # 218 "data/maps/SproutTower_3F/scripts.pory"
-	.string "I hope you learn and grow from\n"
+
 # 219 "data/maps/SproutTower_3F/scripts.pory"
-	.string "your journey.$"
+SproutTower_Text_SageLi_AfterBattle:
 # 220 "data/maps/SproutTower_3F/scripts.pory"
-
+	.string "I hope you learn and grow from\n"
 # 221 "data/maps/SproutTower_3F/scripts.pory"
-SproutTower_Text_SageJin_Seen:
+	.string "your journey.$"
 # 222 "data/maps/SproutTower_3F/scripts.pory"
-	.string "I train to find enlightenment\n"
+
 # 223 "data/maps/SproutTower_3F/scripts.pory"
-	.string "in Pokémon!$"
+SproutTower_Text_SageJin_Seen:
 # 224 "data/maps/SproutTower_3F/scripts.pory"
-
+	.string "I train to find enlightenment\n"
 # 225 "data/maps/SproutTower_3F/scripts.pory"
-SproutTower_Text_SageJin_Beaten:
+	.string "in Pokémon!$"
 # 226 "data/maps/SproutTower_3F/scripts.pory"
-	.string "My training is incomplete…$"
+
 # 227 "data/maps/SproutTower_3F/scripts.pory"
-
+SproutTower_Text_SageJin_Beaten:
 # 228 "data/maps/SproutTower_3F/scripts.pory"
-SproutTower_Text_SageJin_AfterBattle:
+	.string "My training is incomplete…$"
 # 229 "data/maps/SproutTower_3F/scripts.pory"
-	.string "As Pokémon grow stronger,\n"
+
 # 230 "data/maps/SproutTower_3F/scripts.pory"
-	.string "so does the trainer.\p"
+SproutTower_Text_SageJin_AfterBattle:
 # 231 "data/maps/SproutTower_3F/scripts.pory"
-	.string "No, wait. As the trainer\n"
+	.string "As Pokémon grow stronger,\n"
 # 232 "data/maps/SproutTower_3F/scripts.pory"
-	.string "grows stronger, so do the\l"
+	.string "so does the trainer.\p"
 # 233 "data/maps/SproutTower_3F/scripts.pory"
-	.string "Pokémon.$"
+	.string "No, wait. As the trainer\n"
 # 234 "data/maps/SproutTower_3F/scripts.pory"
-
+	.string "grows stronger, so do the\l"
 # 235 "data/maps/SproutTower_3F/scripts.pory"
-SproutTower_Text_SageTroy_Seen:
+	.string "Pokémon.$"
 # 236 "data/maps/SproutTower_3F/scripts.pory"
-	.string "Let me see how much you trust\n"
+
 # 237 "data/maps/SproutTower_3F/scripts.pory"
-	.string "your Pokémon.$"
+SproutTower_Text_SageTroy_Seen:
 # 238 "data/maps/SproutTower_3F/scripts.pory"
-
+	.string "Let me see how much you trust\n"
 # 239 "data/maps/SproutTower_3F/scripts.pory"
-SproutTower_Text_SageTroy_Beaten:
+	.string "your Pokémon.$"
 # 240 "data/maps/SproutTower_3F/scripts.pory"
-	.string "Yes, your trust is real!$"
+
 # 241 "data/maps/SproutTower_3F/scripts.pory"
-
+SproutTower_Text_SageTroy_Beaten:
 # 242 "data/maps/SproutTower_3F/scripts.pory"
-SproutTower_Text_SageTroy_AfterBattle:
+	.string "Yes, your trust is real!$"
 # 243 "data/maps/SproutTower_3F/scripts.pory"
-	.string "It is not far to the Elder.$"
+
 # 244 "data/maps/SproutTower_3F/scripts.pory"
-
+SproutTower_Text_SageTroy_AfterBattle:
 # 245 "data/maps/SproutTower_3F/scripts.pory"
-SproutTower_Text_SageNeal_Seen:
+	.string "It is not far to the Elder.$"
 # 246 "data/maps/SproutTower_3F/scripts.pory"
-	.string "The Elder's HM lights even\n"
+
 # 247 "data/maps/SproutTower_3F/scripts.pory"
-	.string "pitch-black darkness.$"
+SproutTower_Text_SageNeal_Seen:
 # 248 "data/maps/SproutTower_3F/scripts.pory"
-
+	.string "The Elder's HM lights even\n"
 # 249 "data/maps/SproutTower_3F/scripts.pory"
-SproutTower_Text_SageNeal_Beaten:
+	.string "pitch-black darkness.$"
 # 250 "data/maps/SproutTower_3F/scripts.pory"
-	.string "It is my head that is bright!$"
+
 # 251 "data/maps/SproutTower_3F/scripts.pory"
-
+SproutTower_Text_SageNeal_Beaten:
 # 252 "data/maps/SproutTower_3F/scripts.pory"
-SproutTower_Text_SageNeal_AfterBattle:
+	.string "It is my head that is bright!$"
 # 253 "data/maps/SproutTower_3F/scripts.pory"
-	.string "Let there be light on your\n"
-# 254 "data/maps/SproutTower_3F/scripts.pory"
-	.string "journey.$"
-# 255 "data/maps/SproutTower_3F/scripts.pory"
 
+# 254 "data/maps/SproutTower_3F/scripts.pory"
+SproutTower_Text_SageNeal_AfterBattle:
+# 255 "data/maps/SproutTower_3F/scripts.pory"
+	.string "Let there be light on your\n"
 # 256 "data/maps/SproutTower_3F/scripts.pory"
-SproutTower_Text_3F_Painting:
+	.string "journey.$"
 # 257 "data/maps/SproutTower_3F/scripts.pory"
-	.string "It's a powerful painting of a\n"
+
 # 258 "data/maps/SproutTower_3F/scripts.pory"
+SproutTower_Text_3F_Painting:
+# 259 "data/maps/SproutTower_3F/scripts.pory"
+	.string "It's a powerful painting of a\n"
+# 260 "data/maps/SproutTower_3F/scripts.pory"
 	.string "Bellsprout.$"
 
 SageLiPostBadges::
-# 263 "data/maps/SproutTower_3F/scripts.pory"
+# 265 "data/maps/SproutTower_3F/scripts.pory"
 	goto_if_unset FLAG_HIDE_SPROUT_BASEMENT_GUARD, SageLiPostBadges_2
-# 298 "data/maps/SproutTower_3F/scripts.pory"
+# 300 "data/maps/SproutTower_3F/scripts.pory"
 	msgbox SageLiPostBadges_Text_4
 SageLiPostBadges_1:
-# 301 "data/maps/SproutTower_3F/scripts.pory"
+# 303 "data/maps/SproutTower_3F/scripts.pory"
 	release
 	end
 
 SageLiPostBadges_2:
-# 264 "data/maps/SproutTower_3F/scripts.pory"
+# 266 "data/maps/SproutTower_3F/scripts.pory"
 	msgbox SageLiPostBadges_Text_0
-# 277 "data/maps/SproutTower_3F/scripts.pory"
-	playbgm MUS_RG_ENCOUNTER_GYM_LEADER, FALSE
-# 278 "data/maps/SproutTower_3F/scripts.pory"
-	msgbox SageLiPostBadges_Text_1
 # 279 "data/maps/SproutTower_3F/scripts.pory"
-	trainerbattle_no_intro TRAINER_LI_2, SageLiPostBadges_Text_2
+	playbgm MUS_RG_ENCOUNTER_GYM_LEADER, FALSE
+# 280 "data/maps/SproutTower_3F/scripts.pory"
+	msgbox SageLiPostBadges_Text_1
 # 281 "data/maps/SproutTower_3F/scripts.pory"
+	trainerbattle_no_intro TRAINER_LI_2, SageLiPostBadges_Text_2
+# 283 "data/maps/SproutTower_3F/scripts.pory"
 	createfieldmugshot MUGSHOT_ELDER_LI
-# 282 "data/maps/SproutTower_3F/scripts.pory"
+# 284 "data/maps/SproutTower_3F/scripts.pory"
 	msgbox SageLiPostBadges_Text_3
-# 294 "data/maps/SproutTower_3F/scripts.pory"
-	msgbox SageLiPostBadges_Text_4
 # 296 "data/maps/SproutTower_3F/scripts.pory"
+	msgbox SageLiPostBadges_Text_4
+# 298 "data/maps/SproutTower_3F/scripts.pory"
 	setflag FLAG_HIDE_SPROUT_BASEMENT_GUARD
 	goto SageLiPostBadges_1
 
 
 SageLiPostBadges_Text_0:
-# 264 "data/maps/SproutTower_3F/scripts.pory"
+# 266 "data/maps/SproutTower_3F/scripts.pory"
 	.string "{PLAYER}!\p"
 	.string "I have heard of your triumphs across\n"
 	.string "Johto!\p"
@@ -557,16 +561,16 @@ SageLiPostBadges_Text_0:
 	.string "This time I won't be holding back.$"
 
 SageLiPostBadges_Text_1:
-# 278 "data/maps/SproutTower_3F/scripts.pory"
+# 280 "data/maps/SproutTower_3F/scripts.pory"
 	.string "Prepare yourself!$"
 
 SageLiPostBadges_Text_2:
-# 279 "data/maps/SproutTower_3F/scripts.pory"
+# 281 "data/maps/SproutTower_3F/scripts.pory"
 	.string "Future generations shine brighter than\n"
 	.string "ever! Walk this path, young Trainer.$"
 
 SageLiPostBadges_Text_3:
-# 282 "data/maps/SproutTower_3F/scripts.pory"
+# 284 "data/maps/SproutTower_3F/scripts.pory"
 	.string "A marvelous display of skill!\p"
 	.string "I believe the borders of Johto won't\n"
 	.string "be enough for you at your current pace.\p"
@@ -577,6 +581,6 @@ SageLiPostBadges_Text_3:
 	.string "tasks for a very long time.$"
 
 SageLiPostBadges_Text_4:
-# 294 "data/maps/SproutTower_3F/scripts.pory"
+# 296 "data/maps/SproutTower_3F/scripts.pory"
 	.string "I look forward to hearing where your\n"
 	.string "journey next takes you.$"

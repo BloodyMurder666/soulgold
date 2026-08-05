@@ -195,7 +195,7 @@ const struct TitleDefenseChallenger gTitleDefenseHardChallengers[] =
 {
     { TRAINER_TITLE_DEFENSE_LANCE,    OBJ_EVENT_GFX_LANCE,     sText_LanceIntro,    sText_LanceDefeat,    sText_LanceFarewell },
     { TRAINER_TITLE_DEFENSE_STEVEN,   OBJ_EVENT_GFX_STEVEN,    sText_StevenIntro,   sText_StevenDefeat,   sText_StevenFarewell },
-    { TRAINER_TITLE_DEFENSE_ELDER_LI, OBJ_EVENT_GFX_SAGE,      sText_ElderLiIntro,  sText_ElderLiDefeat,  sText_ElderLiFarewell },
+    { TRAINER_TITLE_DEFENSE_ELDER_LI, OBJ_EVENT_GFX_EXPERT_M,  sText_ElderLiIntro,  sText_ElderLiDefeat,  sText_ElderLiFarewell },
     { TRAINER_TITLE_DEFENSE_DIRECTOR, OBJ_EVENT_GFX_GENTLEMAN, sText_DirectorIntro, sText_DirectorDefeat, sText_DirectorFarewell },
     { TRAINER_TITLE_DEFENSE_LEAF,     OBJ_EVENT_GFX_LEAF,      sText_LeafIntro,     sText_LeafDefeat,     sText_LeafFarewell },
 };
@@ -245,7 +245,12 @@ const struct TitleDefenseChallenger *TitleDefense_GetCurrentChallenger(void)
 
 u16 TitleDefense_GetCurrentMugshotId(void)
 {
-    return GetFieldMugshotIdByObjectGraphicsId(TitleDefense_GetCurrentChallenger()->objectGfxId);
+    const struct TitleDefenseChallenger *challenger = TitleDefense_GetCurrentChallenger();
+
+    if (challenger->trainerId == TRAINER_TITLE_DEFENSE_ELDER_LI)
+        return MUGSHOT_ELDER_LI;
+
+    return GetFieldMugshotIdByObjectGraphicsId(challenger->objectGfxId);
 }
 
 static void ShowChallengerMessage(const u8 *text)
