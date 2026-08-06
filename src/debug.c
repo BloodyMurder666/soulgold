@@ -44,6 +44,7 @@
 #include "pokemon_storage_system.h"
 #include "random.h"
 #include "region_map.h"
+#include "roamer.h"
 #include "rtc.h"
 #include "script.h"
 #include "script_pokemon_util.h"
@@ -274,6 +275,12 @@ static void DebugAction_Util_Weather_SelectId(u8 taskId);
 static void DebugAction_Util_WatchCredits(u8 taskId);
 static void DebugAction_Util_CheatStart(u8 taskId);
 static void DebugAction_Util_GenerateParties(u8 taskId);
+static void DebugAction_Roamers_SetNone(u8 taskId);
+static void DebugAction_Roamers_SetEntei(u8 taskId);
+static void DebugAction_Roamers_SetEnteiRaikou(u8 taskId);
+static void DebugAction_Roamers_SetAll(u8 taskId);
+static void DebugAction_Roamers_RespawnMissing(u8 taskId);
+static void DebugAction_Roamers_Print(u8 taskId);
 
 static void DebugAction_TimeMenu_ChangeTimeOfDay(u8 taskId);
 static void DebugAction_TimeMenu_ChangeWeekdays(u8 taskId);
@@ -568,6 +575,17 @@ static const struct DebugMenuOption sDebugMenu_Actions_FollowerNPCMenu[] =
     { NULL }
 };
 
+static const struct DebugMenuOption sDebugMenu_Actions_Roamers[] =
+{
+    { COMPOUND_STRING("Set 0 active"), DebugAction_Roamers_SetNone },
+    { COMPOUND_STRING("Set 1 active"), DebugAction_Roamers_SetEntei },
+    { COMPOUND_STRING("Set 2 active"), DebugAction_Roamers_SetEnteiRaikou },
+    { COMPOUND_STRING("Set 3 active"), DebugAction_Roamers_SetAll },
+    { COMPOUND_STRING("Respawn missing"), DebugAction_Roamers_RespawnMissing },
+    { COMPOUND_STRING("Print slots"), DebugAction_Roamers_Print },
+    { NULL }
+};
+
 static const struct DebugMenuOption sDebugMenu_Actions_Utilities[] =
 {
     { COMPOUND_STRING("Fly to map…"),       DebugAction_Util_Fly },
@@ -581,6 +599,7 @@ static const struct DebugMenuOption sDebugMenu_Actions_Utilities[] =
     { COMPOUND_STRING("Berry Functions…"),  DebugAction_OpenSubMenu, sDebugMenu_Actions_BerryFunctions },
     { COMPOUND_STRING("EWRAM Counters…"),   DebugAction_ExecuteScript, Debug_EventScript_EWRAMCounters },
     { COMPOUND_STRING("Follower NPC…"),     DebugAction_OpenSubMenu, sDebugMenu_Actions_FollowerNPCMenu },
+    { COMPOUND_STRING("Roamers…"),          DebugAction_OpenSubMenu, sDebugMenu_Actions_Roamers },
     { COMPOUND_STRING("Wally Tutorial"),    DebugAction_ExecuteScript, Debug_EventScript_WallyTutorial },
     { COMPOUND_STRING("Steven Multi"),      DebugAction_ExecuteScript, Debug_EventScript_Steven_Multi },
     { NULL }
@@ -1743,6 +1762,75 @@ static void DebugAction_Util_WatchCredits(u8 taskId)
 {
     Debug_DestroyMenu_Full(taskId);
     SetMainCallback2(CB2_StartCreditsSequence);
+}
+
+static void DebugAction_Roamers_SetCount(u8 taskId, u32 count)
+{
+    static const u16 sRoamerSpecies[] =
+    {
+        SPECIES_ENTEI,
+        SPECIES_RAIKOU,
+        SPECIES_SUICUNE,
+    };
+    u32 i;
+
+    DeactivateAllRoamers();
+    for (i = 0; i < count; i++)
+        TryAddRoamer(sRoamerSpecies[i], 40);
+
+    Debug_DestroyMenu_Full(taskId);
+    ScriptContext_Enable();
+}
+
+static void DebugAction_Roamers_SetNone(u8 taskId)
+{
+    DebugAction_Roamers_SetCount(taskId, 0);
+}
+
+static void DebugAction_Roamers_SetEntei(u8 taskId)
+{
+    DebugAction_Roamers_SetCount(taskId, 1);
+}
+
+static void DebugAction_Roamers_SetEnteiRaikou(u8 taskId)
+{
+    DebugAction_Roamers_SetCount(taskId, 2);
+}
+
+static void DebugAction_Roamers_SetAll(u8 taskId)
+{
+    DebugAction_Roamers_SetCount(taskId, 3);
+}
+
+static void DebugAction_Roamers_RespawnMissing(u8 taskId)
+{
+    InitRoamer();
+    DebugAction_Roamers_Print(taskId);
+}
+
+static void DebugAction_Roamers_Print(u8 taskId)
+{
+    u32 i;
+
+    StringCopy(gStringVar4, COMPOUND_STRING("Roamer slots:"));
+    for (i = 0; i < ROAMER_COUNT; i++)
+    {
+        if (i == 0)
+            StringAppend(gStringVar4, COMPOUND_STRING("\n"));
+        else
+            StringAppend(gStringVar4, COMPOUND_STRING("\l"));
+        if (gSaveBlock1Ptr->roamer[i].active)
+            StringAppend(gStringVar4, COMPOUND_STRING("Active: "));
+        else
+            StringAppend(gStringVar4, COMPOUND_STRING("Inactive: "));
+
+        if (gSaveBlock1Ptr->roamer[i].species == SPECIES_NONE)
+            StringAppend(gStringVar4, COMPOUND_STRING("Empty"));
+        else
+            StringAppend(gStringVar4, GetSpeciesName(gSaveBlock1Ptr->roamer[i].species));
+    }
+
+    Debug_DestroyMenu_Full_Script(taskId, Debug_ShowFieldMessageStringVar4);
 }
 
 static void DebugAction_Player_Name(u8 taskId)

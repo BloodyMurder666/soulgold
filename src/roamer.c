@@ -161,12 +161,55 @@ bool8 HasActiveRoamers(void)
     return FALSE;
 }
 
-// gSpecialVar_0x8004 here corresponds to the options in the multichoice MULTI_TV_LATI (0 for 'Red', 1 for 'Blue')
+static const u16 sLegendaryBeastSpecies[] =
+{
+    SPECIES_ENTEI,
+    SPECIES_RAIKOU,
+    SPECIES_SUICUNE,
+};
+
+static bool8 IsRoamerSpeciesActive(u16 species)
+{
+    u32 i;
+
+    for (i = 0; i < ROAMER_COUNT; i++)
+    {
+        if (ROAMER(i)->active && ROAMER(i)->species == species)
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
 void InitRoamer(void)
 {
-    TryAddRoamer(SPECIES_ENTEI, 40);
-    TryAddRoamer(SPECIES_RAIKOU, 40);
-    TryAddRoamer(SPECIES_SUICUNE, 40);
+    bool8 found[ARRAY_COUNT(sLegendaryBeastSpecies)] = {FALSE};
+    u32 i;
+    u32 j;
+
+    for (i = 0; i < ROAMER_COUNT; i++)
+    {
+        if (!ROAMER(i)->active)
+            continue;
+
+        for (j = 0; j < ARRAY_COUNT(sLegendaryBeastSpecies); j++)
+        {
+            if (ROAMER(i)->species == sLegendaryBeastSpecies[j])
+            {
+                if (found[j])
+                    SetRoamerInactive(i);
+                else
+                    found[j] = TRUE;
+                break;
+            }
+        }
+    }
+
+    for (i = 0; i < ARRAY_COUNT(sLegendaryBeastSpecies); i++)
+    {
+        if (!IsRoamerSpeciesActive(sLegendaryBeastSpecies[i]))
+            TryAddRoamer(sLegendaryBeastSpecies[i], 40);
+    }
 }
 
 void UpdateLocationHistoryForRoamer(void)
