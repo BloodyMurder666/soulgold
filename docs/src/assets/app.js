@@ -345,8 +345,14 @@ function regularAndHiddenAbilityPills(groups) {
   ]);
 }
 
-function sprite(src, className = "sprite") {
-  return src ? `<img class="${className}" src="${src}" alt="" loading="lazy" decoding="async">` : `<span class="muted">No sprite</span>`;
+function sprite(src, className = "sprite", { defer = false } = {}) {
+  if (!src) {
+    return `<span class="muted">No sprite</span>`;
+  }
+  if (defer) {
+    return `<img class="${className}" data-src="${src}" alt="" decoding="async">`;
+  }
+  return `<img class="${className}" src="${src}" alt="" loading="lazy" decoding="async">`;
 }
 
 function moveCategory(category) {
@@ -1713,10 +1719,11 @@ function renderMoveDetail(move) {
     ${learners.length ? `<div class="move-learner-groups">${learners.map(([label, species]) => `
       <details class="move-learner-group">
         <summary><strong>${label}</strong><span>${species.length} Pokémon</span></summary>
-        <div class="move-learner-body">${speciesCards(species)}</div>
+        <div class="move-learner-body">${speciesCards(species, { deferSprites: true })}</div>
       </details>
     `).join("")}</div>` : `<p class="muted">No documented learn method.</p>`}
   `;
+  bindMoveLearnerGroups();
   showDetailDialog("move");
 }
 
@@ -1815,14 +1822,36 @@ function renderItemDetail(item) {
   showDetailDialog("item");
 }
 
-function speciesCards(list) {
-  if (!list.length) return `<p class="muted">None.</p>`;
+function speciesCards(list, { deferSprites = false } = {}) {
+  if (!list.length) {
+    return `<p class="muted">None.</p>`;
+  }
   return `<div class="ability-grid">${list.map((mon) => `
     <button class="card species-card species-link" type="button" data-species="${mon.constant || mon.species}">
-      ${sprite(mon.sprite, "mini-sprite")}
+      ${sprite(mon.sprite, "mini-sprite", { defer: deferSprites })}
       <strong>#${mon.dex || ""} ${mon.name}</strong>
     </button>
   `).join("")}</div>`;
+}
+
+function hydrateMoveLearnerSprites(group) {
+  group.querySelectorAll("img[data-src]").forEach((img) => {
+    img.loading = "eager";
+    img.src = img.dataset.src;
+    img.removeAttribute("data-src");
+  });
+}
+
+function bindMoveLearnerGroups() {
+  document
+    .querySelectorAll("#modalBody .move-learner-group")
+    .forEach((group) => {
+      group.addEventListener("toggle", () => {
+        if (group.open) {
+          hydrateMoveLearnerSprites(group);
+        }
+      });
+    });
 }
 
 function openTm(tm) {
