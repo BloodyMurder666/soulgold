@@ -4745,6 +4745,40 @@ static void Task_SwitchItemsYesNo(u8 taskId)
     }
 }
 
+static void CancelHeldItemSwitch(u8 taskId)
+{
+    gPartyMenu.action = PARTY_ACTION_GIVE_ITEM;
+    gSpecialVar_ItemId = ITEM_NONE;
+    gTasks[taskId].func = Task_UpdateHeldItemSprite;
+}
+
+#if TESTING
+bool32 SwShPartyMenu_TestCancelHeldItemSwitch(enum Item item)
+{
+    u8 taskId;
+    u8 previousAction = gPartyMenu.action;
+    u16 previousItem = gSpecialVar_ItemId;
+    bool32 canceled;
+
+    taskId = CreateTask(TaskDummy, 0);
+    if (taskId == TASK_NONE)
+        return FALSE;
+
+    gPartyMenu.action = PARTY_ACTION_CHOOSE_MON;
+    gSpecialVar_ItemId = item;
+    CancelHeldItemSwitch(taskId);
+    canceled = (gPartyMenu.action == PARTY_ACTION_GIVE_ITEM
+             && gSpecialVar_ItemId == ITEM_NONE
+             && gTasks[taskId].func == Task_UpdateHeldItemSprite);
+
+    DestroyTask(taskId);
+    gPartyMenu.action = previousAction;
+    gSpecialVar_ItemId = previousItem;
+
+    return canceled;
+}
+#endif
+
 static void Task_HandleSwitchItemsYesNoInput(u8 taskId)
 {
     switch (Menu_ProcessInputNoWrapClearOnChoose())
@@ -4786,12 +4820,7 @@ static void Task_HandleSwitchItemsYesNoInput(u8 taskId)
         PlaySE(SE_SELECT);
         // fallthrough
     case 1: // No
-        AddHeldItemToBag(gSpecialVar_ItemId);
-
-        // Reset to choose mon mode via Task_UpdateHeldItemSprite
-        gPartyMenu.action = PARTY_ACTION_GIVE_ITEM; // Keep as GIVE_ITEM so cleanup happens
-        gSpecialVar_ItemId = ITEM_NONE;
-        gTasks[taskId].func = Task_UpdateHeldItemSprite;
+        CancelHeldItemSwitch(taskId);
         break;
     }
 }

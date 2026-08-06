@@ -1090,319 +1090,515 @@ BattleCafe_RewardMenu::
 # 704 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_RewardMenu_Text_0
 # 706 "data/maps/BattleCafe/scripts.pory"
-	dynmultichoice 0, 0, FALSE, 6, 0, DYN_MULTICHOICE_CB_NONE, BattleCafe_RewardMenu_Text_1, BattleCafe_RewardMenu_Text_2, BattleCafe_RewardMenu_Text_3, BattleCafe_RewardMenu_Text_4, BattleCafe_RewardMenu_Text_5, BattleCafe_RewardMenu_Text_6, BattleCafe_RewardMenu_Text_7, BattleCafe_RewardMenu_Text_8, BattleCafe_RewardMenu_Text_9, BattleCafe_RewardMenu_Text_10, BattleCafe_RewardMenu_Text_11, BattleCafe_RewardMenu_Text_12, BattleCafe_RewardMenu_Text_13, BattleCafe_OptionsMenu_Text_5
+	special BattleCafe_GetParadoxRewardEligibility
+# 707 "data/maps/BattleCafe/scripts.pory"
+	copyvar VAR_TEMP_C, VAR_RESULT
+# 708 "data/maps/BattleCafe/scripts.pory"
+	dynmultipush BattleCafe_RewardMenu_Text_1, 0
+# 709 "data/maps/BattleCafe/scripts.pory"
+	dynmultipush BattleCafe_RewardMenu_Text_2, 1
+# 710 "data/maps/BattleCafe/scripts.pory"
+	dynmultipush BattleCafe_RewardMenu_Text_3, 2
+# 711 "data/maps/BattleCafe/scripts.pory"
+	dynmultipush BattleCafe_RewardMenu_Text_4, 3
+# 712 "data/maps/BattleCafe/scripts.pory"
+	dynmultipush BattleCafe_RewardMenu_Text_5, 4
+# 713 "data/maps/BattleCafe/scripts.pory"
+	dynmultipush BattleCafe_RewardMenu_Text_6, 5
+# 714 "data/maps/BattleCafe/scripts.pory"
+	dynmultipush BattleCafe_RewardMenu_Text_7, 6
+# 715 "data/maps/BattleCafe/scripts.pory"
+	dynmultipush BattleCafe_RewardMenu_Text_8, 16
+# 716 "data/maps/BattleCafe/scripts.pory"
+	dynmultipush BattleCafe_RewardMenu_Text_9, 17
+# 717 "data/maps/BattleCafe/scripts.pory"
+	dynmultipush BattleCafe_RewardMenu_Text_10, 18
+# 718 "data/maps/BattleCafe/scripts.pory"
+	dynmultipush BattleCafe_RewardMenu_Text_11, 19
+# 719 "data/maps/BattleCafe/scripts.pory"
+	dynmultipush BattleCafe_RewardMenu_Text_12, 7
+# 720 "data/maps/BattleCafe/scripts.pory"
+	dynmultipush BattleCafe_RewardMenu_Text_13, 8
 # 721 "data/maps/BattleCafe/scripts.pory"
-	switch VAR_RESULT
+	dynmultipush BattleCafe_RewardMenu_Text_14, 9
 # 722 "data/maps/BattleCafe/scripts.pory"
-	case 0, BattleCafe_RewardMenu_2
+	dynmultipush BattleCafe_RewardMenu_Text_15, 10
 # 723 "data/maps/BattleCafe/scripts.pory"
-	case 1, BattleCafe_RewardMenu_3
+	dynmultipush BattleCafe_RewardMenu_Text_16, 11
 # 724 "data/maps/BattleCafe/scripts.pory"
-	case 2, BattleCafe_RewardMenu_4
+	dynmultipush BattleCafe_RewardMenu_Text_17, 12
 # 725 "data/maps/BattleCafe/scripts.pory"
-	case 3, BattleCafe_RewardMenu_5
+	compare VAR_TEMP_C, BATTLE_CAFE_PARADOX_REWARD_MIRAIDON
+	goto_if_eq BattleCafe_RewardMenu_2
 # 726 "data/maps/BattleCafe/scripts.pory"
-	case 4, BattleCafe_RewardMenu_6
-# 727 "data/maps/BattleCafe/scripts.pory"
-	case 5, BattleCafe_RewardMenu_7
-# 728 "data/maps/BattleCafe/scripts.pory"
-	case 6, BattleCafe_RewardMenu_8
+	compare VAR_TEMP_C, BATTLE_CAFE_PARADOX_REWARD_MIRAIDON + BATTLE_CAFE_PARADOX_REWARD_KORAIDON
+	goto_if_eq BattleCafe_RewardMenu_2
+BattleCafe_RewardMenu_1:
 # 729 "data/maps/BattleCafe/scripts.pory"
-	case 7, BattleCafe_RewardMenu_9
+	compare VAR_TEMP_C, BATTLE_CAFE_PARADOX_REWARD_KORAIDON
+	goto_if_eq BattleCafe_RewardMenu_7
 # 730 "data/maps/BattleCafe/scripts.pory"
-	case 8, BattleCafe_RewardMenu_10
-# 731 "data/maps/BattleCafe/scripts.pory"
-	case 9, BattleCafe_RewardMenu_11
-# 732 "data/maps/BattleCafe/scripts.pory"
-	case 10, BattleCafe_RewardMenu_12
+	compare VAR_TEMP_C, BATTLE_CAFE_PARADOX_REWARD_MIRAIDON + BATTLE_CAFE_PARADOX_REWARD_KORAIDON
+	goto_if_eq BattleCafe_RewardMenu_7
+BattleCafe_RewardMenu_6:
 # 733 "data/maps/BattleCafe/scripts.pory"
-	case 11, BattleCafe_RewardMenu_13
+	dynmultipush BattleCafe_OptionsMenu_Text_5, 15
 # 734 "data/maps/BattleCafe/scripts.pory"
-	case 12, BattleCafe_RewardMenu_14
+	dynmultistack 0, 0, FALSE, 6, FALSE, 0, DYN_MULTICHOICE_CB_NONE
 # 735 "data/maps/BattleCafe/scripts.pory"
+	switch VAR_RESULT
+# 736 "data/maps/BattleCafe/scripts.pory"
+	case 0, BattleCafe_RewardMenu_12
+# 737 "data/maps/BattleCafe/scripts.pory"
+	case 1, BattleCafe_RewardMenu_13
+# 738 "data/maps/BattleCafe/scripts.pory"
+	case 2, BattleCafe_RewardMenu_14
+# 739 "data/maps/BattleCafe/scripts.pory"
+	case 3, BattleCafe_RewardMenu_15
+# 740 "data/maps/BattleCafe/scripts.pory"
+	case 4, BattleCafe_RewardMenu_16
+# 741 "data/maps/BattleCafe/scripts.pory"
+	case 5, BattleCafe_RewardMenu_17
+# 742 "data/maps/BattleCafe/scripts.pory"
+	case 6, BattleCafe_RewardMenu_18
+# 743 "data/maps/BattleCafe/scripts.pory"
+	case 7, BattleCafe_RewardMenu_19
+# 744 "data/maps/BattleCafe/scripts.pory"
+	case 8, BattleCafe_RewardMenu_20
+# 745 "data/maps/BattleCafe/scripts.pory"
+	case 9, BattleCafe_RewardMenu_21
+# 746 "data/maps/BattleCafe/scripts.pory"
+	case 10, BattleCafe_RewardMenu_22
+# 747 "data/maps/BattleCafe/scripts.pory"
+	case 11, BattleCafe_RewardMenu_23
+# 748 "data/maps/BattleCafe/scripts.pory"
+	case 12, BattleCafe_RewardMenu_24
+# 749 "data/maps/BattleCafe/scripts.pory"
+	case 13, BattleCafe_RewardMenu_25
+# 750 "data/maps/BattleCafe/scripts.pory"
+	case 14, BattleCafe_RewardMenu_26
+# 751 "data/maps/BattleCafe/scripts.pory"
+	case 16, BattleCafe_RewardMenu_27
+# 752 "data/maps/BattleCafe/scripts.pory"
+	case 17, BattleCafe_RewardMenu_28
+# 753 "data/maps/BattleCafe/scripts.pory"
+	case 18, BattleCafe_RewardMenu_29
+# 754 "data/maps/BattleCafe/scripts.pory"
+	case 19, BattleCafe_RewardMenu_30
+# 755 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_OwnerMenu
 	return
 
 BattleCafe_RewardMenu_2:
-# 722 "data/maps/BattleCafe/scripts.pory"
+# 727 "data/maps/BattleCafe/scripts.pory"
+	dynmultipush BattleCafe_RewardMenu_Text_18, 13
+	goto BattleCafe_RewardMenu_1
+
+BattleCafe_RewardMenu_7:
+# 731 "data/maps/BattleCafe/scripts.pory"
+	dynmultipush BattleCafe_RewardMenu_Text_19, 14
+	goto BattleCafe_RewardMenu_6
+
+BattleCafe_RewardMenu_12:
+# 736 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_ChooseArticuno
 	return
 
-BattleCafe_RewardMenu_3:
-# 723 "data/maps/BattleCafe/scripts.pory"
+BattleCafe_RewardMenu_13:
+# 737 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_ChooseZapdos
 	return
 
-BattleCafe_RewardMenu_4:
-# 724 "data/maps/BattleCafe/scripts.pory"
+BattleCafe_RewardMenu_14:
+# 738 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_ChooseMoltres
 	return
 
-BattleCafe_RewardMenu_5:
-# 725 "data/maps/BattleCafe/scripts.pory"
+BattleCafe_RewardMenu_15:
+# 739 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_ChooseTornadus
 	return
 
-BattleCafe_RewardMenu_6:
-# 726 "data/maps/BattleCafe/scripts.pory"
+BattleCafe_RewardMenu_16:
+# 740 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_ChooseThundurus
 	return
 
-BattleCafe_RewardMenu_7:
-# 727 "data/maps/BattleCafe/scripts.pory"
+BattleCafe_RewardMenu_17:
+# 741 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_ChooseLandorus
 	return
 
-BattleCafe_RewardMenu_8:
-# 728 "data/maps/BattleCafe/scripts.pory"
+BattleCafe_RewardMenu_18:
+# 742 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_ChooseEnamorus
 	return
 
-BattleCafe_RewardMenu_9:
-# 729 "data/maps/BattleCafe/scripts.pory"
+BattleCafe_RewardMenu_19:
+# 743 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_ChooseShinyGenome
 	return
 
-BattleCafe_RewardMenu_10:
-# 730 "data/maps/BattleCafe/scripts.pory"
+BattleCafe_RewardMenu_20:
+# 744 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_ChooseGoldBottleCaps
 	return
 
-BattleCafe_RewardMenu_11:
-# 731 "data/maps/BattleCafe/scripts.pory"
+BattleCafe_RewardMenu_21:
+# 745 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_ChooseMoney
 	return
 
-BattleCafe_RewardMenu_12:
-# 732 "data/maps/BattleCafe/scripts.pory"
+BattleCafe_RewardMenu_22:
+# 746 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_ChooseVitaminSetAtk
 	return
 
-BattleCafe_RewardMenu_13:
-# 733 "data/maps/BattleCafe/scripts.pory"
+BattleCafe_RewardMenu_23:
+# 747 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_ChooseVitaminSetDef
 	return
 
-BattleCafe_RewardMenu_14:
-# 734 "data/maps/BattleCafe/scripts.pory"
+BattleCafe_RewardMenu_24:
+# 748 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_ChooseVitaminSetSpe
+	return
+
+BattleCafe_RewardMenu_25:
+# 749 "data/maps/BattleCafe/scripts.pory"
+	goto BattleCafe_ChooseMiraidon
+	return
+
+BattleCafe_RewardMenu_26:
+# 750 "data/maps/BattleCafe/scripts.pory"
+	goto BattleCafe_ChooseKoraidon
+	return
+
+BattleCafe_RewardMenu_27:
+# 751 "data/maps/BattleCafe/scripts.pory"
+	goto BattleCafe_ChooseTapuKoko
+	return
+
+BattleCafe_RewardMenu_28:
+# 752 "data/maps/BattleCafe/scripts.pory"
+	goto BattleCafe_ChooseTapuLele
+	return
+
+BattleCafe_RewardMenu_29:
+# 753 "data/maps/BattleCafe/scripts.pory"
+	goto BattleCafe_ChooseTapuBulu
+	return
+
+BattleCafe_RewardMenu_30:
+# 754 "data/maps/BattleCafe/scripts.pory"
+	goto BattleCafe_ChooseTapuFini
 	return
 
 
 BattleCafe_ChooseArticuno::
-# 740 "data/maps/BattleCafe/scripts.pory"
+# 760 "data/maps/BattleCafe/scripts.pory"
 	goto_if_set FLAG_BATTLE_CAFE_ARTICUNO_RECEIVED, BattleCafe_ChooseArticuno_2
 BattleCafe_ChooseArticuno_1:
-# 745 "data/maps/BattleCafe/scripts.pory"
+# 765 "data/maps/BattleCafe/scripts.pory"
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_ARTICUNO_GALAR
-# 746 "data/maps/BattleCafe/scripts.pory"
+# 766 "data/maps/BattleCafe/scripts.pory"
 	setvar VAR_TEMP_B, 0
-# 747 "data/maps/BattleCafe/scripts.pory"
+# 767 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_ConfirmRewardMon
 	return
 
 BattleCafe_ChooseArticuno_2:
-# 741 "data/maps/BattleCafe/scripts.pory"
+# 761 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_ChooseArticuno_Text_0
-# 743 "data/maps/BattleCafe/scripts.pory"
+# 763 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	goto BattleCafe_ChooseArticuno_1
 
 
 BattleCafe_ChooseZapdos::
-# 751 "data/maps/BattleCafe/scripts.pory"
+# 771 "data/maps/BattleCafe/scripts.pory"
 	goto_if_set FLAG_BATTLE_CAFE_ZAPDOS_RECEIVED, BattleCafe_ChooseZapdos_2
 BattleCafe_ChooseZapdos_1:
-# 756 "data/maps/BattleCafe/scripts.pory"
+# 776 "data/maps/BattleCafe/scripts.pory"
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_ZAPDOS_GALAR
-# 757 "data/maps/BattleCafe/scripts.pory"
+# 777 "data/maps/BattleCafe/scripts.pory"
 	setvar VAR_TEMP_B, 1
-# 758 "data/maps/BattleCafe/scripts.pory"
+# 778 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_ConfirmRewardMon
 	return
 
 BattleCafe_ChooseZapdos_2:
-# 752 "data/maps/BattleCafe/scripts.pory"
+# 772 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_ChooseZapdos_Text_0
-# 754 "data/maps/BattleCafe/scripts.pory"
+# 774 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	goto BattleCafe_ChooseZapdos_1
 
 
 BattleCafe_ChooseMoltres::
-# 762 "data/maps/BattleCafe/scripts.pory"
+# 782 "data/maps/BattleCafe/scripts.pory"
 	goto_if_set FLAG_BATTLE_CAFE_MOLTRES_RECEIVED, BattleCafe_ChooseMoltres_2
 BattleCafe_ChooseMoltres_1:
-# 767 "data/maps/BattleCafe/scripts.pory"
+# 787 "data/maps/BattleCafe/scripts.pory"
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_MOLTRES_GALAR
-# 768 "data/maps/BattleCafe/scripts.pory"
+# 788 "data/maps/BattleCafe/scripts.pory"
 	setvar VAR_TEMP_B, 2
-# 769 "data/maps/BattleCafe/scripts.pory"
+# 789 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_ConfirmRewardMon
 	return
 
 BattleCafe_ChooseMoltres_2:
-# 763 "data/maps/BattleCafe/scripts.pory"
+# 783 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_ChooseMoltres_Text_0
-# 765 "data/maps/BattleCafe/scripts.pory"
+# 785 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	goto BattleCafe_ChooseMoltres_1
 
 
 BattleCafe_ChooseTornadus::
-# 773 "data/maps/BattleCafe/scripts.pory"
+# 793 "data/maps/BattleCafe/scripts.pory"
 	goto_if_set FLAG_BATTLE_CAFE_TORNADUS_RECEIVED, BattleCafe_ChooseTornadus_2
 BattleCafe_ChooseTornadus_1:
-# 778 "data/maps/BattleCafe/scripts.pory"
+# 798 "data/maps/BattleCafe/scripts.pory"
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TORNADUS
-# 779 "data/maps/BattleCafe/scripts.pory"
+# 799 "data/maps/BattleCafe/scripts.pory"
 	setvar VAR_TEMP_B, 3
-# 780 "data/maps/BattleCafe/scripts.pory"
+# 800 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_ConfirmRewardMon
 	return
 
 BattleCafe_ChooseTornadus_2:
-# 774 "data/maps/BattleCafe/scripts.pory"
+# 794 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_ChooseTornadus_Text_0
-# 776 "data/maps/BattleCafe/scripts.pory"
+# 796 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	goto BattleCafe_ChooseTornadus_1
 
 
 BattleCafe_ChooseThundurus::
-# 784 "data/maps/BattleCafe/scripts.pory"
+# 804 "data/maps/BattleCafe/scripts.pory"
 	goto_if_set FLAG_BATTLE_CAFE_THUNDURUS_RECEIVED, BattleCafe_ChooseThundurus_2
 BattleCafe_ChooseThundurus_1:
-# 789 "data/maps/BattleCafe/scripts.pory"
+# 809 "data/maps/BattleCafe/scripts.pory"
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_THUNDURUS
-# 790 "data/maps/BattleCafe/scripts.pory"
+# 810 "data/maps/BattleCafe/scripts.pory"
 	setvar VAR_TEMP_B, 4
-# 791 "data/maps/BattleCafe/scripts.pory"
+# 811 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_ConfirmRewardMon
 	return
 
 BattleCafe_ChooseThundurus_2:
-# 785 "data/maps/BattleCafe/scripts.pory"
+# 805 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_ChooseThundurus_Text_0
-# 787 "data/maps/BattleCafe/scripts.pory"
+# 807 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	goto BattleCafe_ChooseThundurus_1
 
 
 BattleCafe_ChooseLandorus::
-# 795 "data/maps/BattleCafe/scripts.pory"
+# 815 "data/maps/BattleCafe/scripts.pory"
 	goto_if_set FLAG_BATTLE_CAFE_LANDORUS_RECEIVED, BattleCafe_ChooseLandorus_2
 BattleCafe_ChooseLandorus_1:
-# 800 "data/maps/BattleCafe/scripts.pory"
+# 820 "data/maps/BattleCafe/scripts.pory"
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_LANDORUS
-# 801 "data/maps/BattleCafe/scripts.pory"
+# 821 "data/maps/BattleCafe/scripts.pory"
 	setvar VAR_TEMP_B, 5
-# 802 "data/maps/BattleCafe/scripts.pory"
+# 822 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_ConfirmRewardMon
 	return
 
 BattleCafe_ChooseLandorus_2:
-# 796 "data/maps/BattleCafe/scripts.pory"
+# 816 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_ChooseLandorus_Text_0
-# 798 "data/maps/BattleCafe/scripts.pory"
+# 818 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	goto BattleCafe_ChooseLandorus_1
 
 
 BattleCafe_ChooseEnamorus::
-# 806 "data/maps/BattleCafe/scripts.pory"
+# 826 "data/maps/BattleCafe/scripts.pory"
 	goto_if_set FLAG_BATTLE_CAFE_ENAMORUS_RECEIVED, BattleCafe_ChooseEnamorus_2
 BattleCafe_ChooseEnamorus_1:
-# 811 "data/maps/BattleCafe/scripts.pory"
+# 831 "data/maps/BattleCafe/scripts.pory"
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_ENAMORUS
-# 812 "data/maps/BattleCafe/scripts.pory"
+# 832 "data/maps/BattleCafe/scripts.pory"
 	setvar VAR_TEMP_B, 6
-# 813 "data/maps/BattleCafe/scripts.pory"
+# 833 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_ConfirmRewardMon
 	return
 
 BattleCafe_ChooseEnamorus_2:
-# 807 "data/maps/BattleCafe/scripts.pory"
+# 827 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_ChooseEnamorus_Text_0
-# 809 "data/maps/BattleCafe/scripts.pory"
+# 829 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	goto BattleCafe_ChooseEnamorus_1
 
 
+BattleCafe_ChooseTapuKoko::
+# 837 "data/maps/BattleCafe/scripts.pory"
+	goto_if_set FLAG_BATTLE_CAFE_TAPU_KOKO_RECEIVED, BattleCafe_ChooseTapuKoko_2
+BattleCafe_ChooseTapuKoko_1:
+# 842 "data/maps/BattleCafe/scripts.pory"
+	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TAPU_KOKO
+# 843 "data/maps/BattleCafe/scripts.pory"
+	setvar VAR_TEMP_B, 7
+# 844 "data/maps/BattleCafe/scripts.pory"
+	goto BattleCafe_ConfirmRewardMon
+	return
+
+BattleCafe_ChooseTapuKoko_2:
+# 838 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_ChooseTapuKoko_Text_0
+# 840 "data/maps/BattleCafe/scripts.pory"
+	goto BattleCafe_RewardMenu
+	goto BattleCafe_ChooseTapuKoko_1
+
+
+BattleCafe_ChooseTapuLele::
+# 848 "data/maps/BattleCafe/scripts.pory"
+	goto_if_set FLAG_BATTLE_CAFE_TAPU_LELE_RECEIVED, BattleCafe_ChooseTapuLele_2
+BattleCafe_ChooseTapuLele_1:
+# 853 "data/maps/BattleCafe/scripts.pory"
+	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TAPU_LELE
+# 854 "data/maps/BattleCafe/scripts.pory"
+	setvar VAR_TEMP_B, 8
+# 855 "data/maps/BattleCafe/scripts.pory"
+	goto BattleCafe_ConfirmRewardMon
+	return
+
+BattleCafe_ChooseTapuLele_2:
+# 849 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_ChooseTapuLele_Text_0
+# 851 "data/maps/BattleCafe/scripts.pory"
+	goto BattleCafe_RewardMenu
+	goto BattleCafe_ChooseTapuLele_1
+
+
+BattleCafe_ChooseTapuBulu::
+# 859 "data/maps/BattleCafe/scripts.pory"
+	goto_if_set FLAG_BATTLE_CAFE_TAPU_BULU_RECEIVED, BattleCafe_ChooseTapuBulu_2
+BattleCafe_ChooseTapuBulu_1:
+# 864 "data/maps/BattleCafe/scripts.pory"
+	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TAPU_BULU
+# 865 "data/maps/BattleCafe/scripts.pory"
+	setvar VAR_TEMP_B, 9
+# 866 "data/maps/BattleCafe/scripts.pory"
+	goto BattleCafe_ConfirmRewardMon
+	return
+
+BattleCafe_ChooseTapuBulu_2:
+# 860 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_ChooseTapuBulu_Text_0
+# 862 "data/maps/BattleCafe/scripts.pory"
+	goto BattleCafe_RewardMenu
+	goto BattleCafe_ChooseTapuBulu_1
+
+
+BattleCafe_ChooseTapuFini::
+# 870 "data/maps/BattleCafe/scripts.pory"
+	goto_if_set FLAG_BATTLE_CAFE_TAPU_FINI_RECEIVED, BattleCafe_ChooseTapuFini_2
+BattleCafe_ChooseTapuFini_1:
+# 875 "data/maps/BattleCafe/scripts.pory"
+	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TAPU_FINI
+# 876 "data/maps/BattleCafe/scripts.pory"
+	setvar VAR_TEMP_B, 10
+# 877 "data/maps/BattleCafe/scripts.pory"
+	goto BattleCafe_ConfirmRewardMon
+	return
+
+BattleCafe_ChooseTapuFini_2:
+# 871 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_ChooseTapuFini_Text_0
+# 873 "data/maps/BattleCafe/scripts.pory"
+	goto BattleCafe_RewardMenu
+	goto BattleCafe_ChooseTapuFini_1
+
+
 BattleCafe_ConfirmRewardMon::
-# 817 "data/maps/BattleCafe/scripts.pory"
+# 881 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_BATTLE_CAFE_POINTS, 5
 	goto_if_lt BattleCafe_ConfirmRewardMon_2
 BattleCafe_ConfirmRewardMon_1:
-# 820 "data/maps/BattleCafe/scripts.pory"
+# 884 "data/maps/BattleCafe/scripts.pory"
 	bufferspeciesname STR_VAR_1, VAR_TEMP_TRANSFERRED_SPECIES
-# 821 "data/maps/BattleCafe/scripts.pory"
+# 885 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_ConfirmRewardMon_Text_0, MSGBOX_YESNO
-# 823 "data/maps/BattleCafe/scripts.pory"
+# 887 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_ne BattleCafe_ConfirmRewardMon_5
 BattleCafe_ConfirmRewardMon_4:
-# 827 "data/maps/BattleCafe/scripts.pory"
+# 891 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_TEMP_B, 3
-	goto_if_ge BattleCafe_ConfirmRewardMon_9
+	goto_if_ge BattleCafe_ConfirmRewardMon_10
 BattleCafe_ConfirmRewardMon_7:
-# 834 "data/maps/BattleCafe/scripts.pory"
+# 898 "data/maps/BattleCafe/scripts.pory"
 	givemon VAR_TEMP_TRANSFERRED_SPECIES, 70
-# 835 "data/maps/BattleCafe/scripts.pory"
+# 899 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_RESULT, MON_CANT_GIVE
-	goto_if_eq BattleCafe_ConfirmRewardMon_13
-BattleCafe_ConfirmRewardMon_12:
-# 838 "data/maps/BattleCafe/scripts.pory"
+	goto_if_eq BattleCafe_ConfirmRewardMon_15
+BattleCafe_ConfirmRewardMon_14:
+# 902 "data/maps/BattleCafe/scripts.pory"
 	showgivemonpic 10, 3
-# 839 "data/maps/BattleCafe/scripts.pory"
+# 903 "data/maps/BattleCafe/scripts.pory"
 	call Common_EventScript_GiftMon
-# 840 "data/maps/BattleCafe/scripts.pory"
+# 904 "data/maps/BattleCafe/scripts.pory"
 	hidemonpic
-# 841 "data/maps/BattleCafe/scripts.pory"
+# 905 "data/maps/BattleCafe/scripts.pory"
 	subvar VAR_BATTLE_CAFE_POINTS, 5
-# 842 "data/maps/BattleCafe/scripts.pory"
+# 906 "data/maps/BattleCafe/scripts.pory"
 	switch VAR_TEMP_B
-# 843 "data/maps/BattleCafe/scripts.pory"
-	case 0, BattleCafe_ConfirmRewardMon_19
-# 844 "data/maps/BattleCafe/scripts.pory"
-	case 1, BattleCafe_ConfirmRewardMon_20
-# 845 "data/maps/BattleCafe/scripts.pory"
-	case 2, BattleCafe_ConfirmRewardMon_21
-# 846 "data/maps/BattleCafe/scripts.pory"
-	case 3, BattleCafe_ConfirmRewardMon_22
-# 847 "data/maps/BattleCafe/scripts.pory"
-	case 4, BattleCafe_ConfirmRewardMon_23
-# 848 "data/maps/BattleCafe/scripts.pory"
-	case 5, BattleCafe_ConfirmRewardMon_24
-# 849 "data/maps/BattleCafe/scripts.pory"
-	case 6, BattleCafe_ConfirmRewardMon_25
-BattleCafe_ConfirmRewardMon_17:
-# 851 "data/maps/BattleCafe/scripts.pory"
+# 907 "data/maps/BattleCafe/scripts.pory"
+	case 0, BattleCafe_ConfirmRewardMon_21
+# 908 "data/maps/BattleCafe/scripts.pory"
+	case 1, BattleCafe_ConfirmRewardMon_22
+# 909 "data/maps/BattleCafe/scripts.pory"
+	case 2, BattleCafe_ConfirmRewardMon_23
+# 910 "data/maps/BattleCafe/scripts.pory"
+	case 3, BattleCafe_ConfirmRewardMon_24
+# 911 "data/maps/BattleCafe/scripts.pory"
+	case 4, BattleCafe_ConfirmRewardMon_25
+# 912 "data/maps/BattleCafe/scripts.pory"
+	case 5, BattleCafe_ConfirmRewardMon_26
+# 913 "data/maps/BattleCafe/scripts.pory"
+	case 6, BattleCafe_ConfirmRewardMon_27
+# 914 "data/maps/BattleCafe/scripts.pory"
+	case 7, BattleCafe_ConfirmRewardMon_28
+# 915 "data/maps/BattleCafe/scripts.pory"
+	case 8, BattleCafe_ConfirmRewardMon_29
+# 916 "data/maps/BattleCafe/scripts.pory"
+	case 9, BattleCafe_ConfirmRewardMon_30
+# 917 "data/maps/BattleCafe/scripts.pory"
+	case 10, BattleCafe_ConfirmRewardMon_31
+BattleCafe_ConfirmRewardMon_19:
+# 919 "data/maps/BattleCafe/scripts.pory"
+	special Achievement_CheckAll
+# 920 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_TEMP_B, 3
-	goto_if_ge BattleCafe_ConfirmRewardMon_27
-BattleCafe_ConfirmRewardMon_26:
-# 857 "data/maps/BattleCafe/scripts.pory"
+	goto_if_ge BattleCafe_ConfirmRewardMon_34
+BattleCafe_ConfirmRewardMon_32:
+# 926 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_ConfirmRewardMon_Text_2
-# 859 "data/maps/BattleCafe/scripts.pory"
+# 928 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	return
 
 BattleCafe_ConfirmRewardMon_2:
-# 818 "data/maps/BattleCafe/scripts.pory"
+# 882 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_NotEnoughPoints
 	goto BattleCafe_ConfirmRewardMon_1
 
 BattleCafe_ConfirmRewardMon_5:
-# 824 "data/maps/BattleCafe/scripts.pory"
+# 888 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	goto BattleCafe_ConfirmRewardMon_4
 
 BattleCafe_ConfirmRewardMon_8:
-# 828 "data/maps/BattleCafe/scripts.pory"
+# 892 "data/maps/BattleCafe/scripts.pory"
 	checkitemspace ITEM_REVEAL_GLASS, 1
-# 829 "data/maps/BattleCafe/scripts.pory"
+# 893 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_RESULT, FALSE
-	goto_if_eq BattleCafe_ConfirmRewardMon_15
+	goto_if_eq BattleCafe_ConfirmRewardMon_17
 	goto BattleCafe_ConfirmRewardMon_7
 
 BattleCafe_ConfirmRewardMon_9:
@@ -1412,652 +1608,800 @@ BattleCafe_ConfirmRewardMon_9:
 	goto_if_eq BattleCafe_ConfirmRewardMon_8
 	goto BattleCafe_ConfirmRewardMon_7
 
-BattleCafe_ConfirmRewardMon_13:
-# 836 "data/maps/BattleCafe/scripts.pory"
-	goto Common_EventScript_NoMoreRoomForPokemon
-	goto BattleCafe_ConfirmRewardMon_12
+BattleCafe_ConfirmRewardMon_10:
+# 891 "data/maps/BattleCafe/scripts.pory"
+	compare VAR_TEMP_B, 6
+	goto_if_le BattleCafe_ConfirmRewardMon_9
+	goto BattleCafe_ConfirmRewardMon_7
 
 BattleCafe_ConfirmRewardMon_15:
-# 830 "data/maps/BattleCafe/scripts.pory"
+# 900 "data/maps/BattleCafe/scripts.pory"
+	goto Common_EventScript_NoMoreRoomForPokemon
+	goto BattleCafe_ConfirmRewardMon_14
+
+BattleCafe_ConfirmRewardMon_17:
+# 894 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_NotEnoughBagSpace
 	goto BattleCafe_ConfirmRewardMon_7
 
-BattleCafe_ConfirmRewardMon_19:
-# 843 "data/maps/BattleCafe/scripts.pory"
-	setflag FLAG_BATTLE_CAFE_ARTICUNO_RECEIVED
-	goto BattleCafe_ConfirmRewardMon_17
-
-BattleCafe_ConfirmRewardMon_20:
-# 844 "data/maps/BattleCafe/scripts.pory"
-	setflag FLAG_BATTLE_CAFE_ZAPDOS_RECEIVED
-	goto BattleCafe_ConfirmRewardMon_17
-
 BattleCafe_ConfirmRewardMon_21:
-# 845 "data/maps/BattleCafe/scripts.pory"
-	setflag FLAG_BATTLE_CAFE_MOLTRES_RECEIVED
-	goto BattleCafe_ConfirmRewardMon_17
+# 907 "data/maps/BattleCafe/scripts.pory"
+	setflag FLAG_BATTLE_CAFE_ARTICUNO_RECEIVED
+	goto BattleCafe_ConfirmRewardMon_19
 
 BattleCafe_ConfirmRewardMon_22:
-# 846 "data/maps/BattleCafe/scripts.pory"
-	setflag FLAG_BATTLE_CAFE_TORNADUS_RECEIVED
-	goto BattleCafe_ConfirmRewardMon_17
+# 908 "data/maps/BattleCafe/scripts.pory"
+	setflag FLAG_BATTLE_CAFE_ZAPDOS_RECEIVED
+	goto BattleCafe_ConfirmRewardMon_19
 
 BattleCafe_ConfirmRewardMon_23:
-# 847 "data/maps/BattleCafe/scripts.pory"
-	setflag FLAG_BATTLE_CAFE_THUNDURUS_RECEIVED
-	goto BattleCafe_ConfirmRewardMon_17
+# 909 "data/maps/BattleCafe/scripts.pory"
+	setflag FLAG_BATTLE_CAFE_MOLTRES_RECEIVED
+	goto BattleCafe_ConfirmRewardMon_19
 
 BattleCafe_ConfirmRewardMon_24:
-# 848 "data/maps/BattleCafe/scripts.pory"
-	setflag FLAG_BATTLE_CAFE_LANDORUS_RECEIVED
-	goto BattleCafe_ConfirmRewardMon_17
+# 910 "data/maps/BattleCafe/scripts.pory"
+	setflag FLAG_BATTLE_CAFE_TORNADUS_RECEIVED
+	goto BattleCafe_ConfirmRewardMon_19
 
 BattleCafe_ConfirmRewardMon_25:
-# 849 "data/maps/BattleCafe/scripts.pory"
-	setflag FLAG_BATTLE_CAFE_ENAMORUS_RECEIVED
-	goto BattleCafe_ConfirmRewardMon_17
+# 911 "data/maps/BattleCafe/scripts.pory"
+	setflag FLAG_BATTLE_CAFE_THUNDURUS_RECEIVED
+	goto BattleCafe_ConfirmRewardMon_19
+
+BattleCafe_ConfirmRewardMon_26:
+# 912 "data/maps/BattleCafe/scripts.pory"
+	setflag FLAG_BATTLE_CAFE_LANDORUS_RECEIVED
+	goto BattleCafe_ConfirmRewardMon_19
 
 BattleCafe_ConfirmRewardMon_27:
+# 913 "data/maps/BattleCafe/scripts.pory"
+	setflag FLAG_BATTLE_CAFE_ENAMORUS_RECEIVED
+	goto BattleCafe_ConfirmRewardMon_19
+
+BattleCafe_ConfirmRewardMon_28:
+# 914 "data/maps/BattleCafe/scripts.pory"
+	setflag FLAG_BATTLE_CAFE_TAPU_KOKO_RECEIVED
+	goto BattleCafe_ConfirmRewardMon_19
+
+BattleCafe_ConfirmRewardMon_29:
+# 915 "data/maps/BattleCafe/scripts.pory"
+	setflag FLAG_BATTLE_CAFE_TAPU_LELE_RECEIVED
+	goto BattleCafe_ConfirmRewardMon_19
+
+BattleCafe_ConfirmRewardMon_30:
+# 916 "data/maps/BattleCafe/scripts.pory"
+	setflag FLAG_BATTLE_CAFE_TAPU_BULU_RECEIVED
+	goto BattleCafe_ConfirmRewardMon_19
+
+BattleCafe_ConfirmRewardMon_31:
+# 917 "data/maps/BattleCafe/scripts.pory"
+	setflag FLAG_BATTLE_CAFE_TAPU_FINI_RECEIVED
+	goto BattleCafe_ConfirmRewardMon_19
+
+BattleCafe_ConfirmRewardMon_33:
 	checkitem ITEM_REVEAL_GLASS
 # 0 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_RESULT, FALSE
-	goto_if_eq BattleCafe_ConfirmRewardMon_29
-	goto BattleCafe_ConfirmRewardMon_26
+	goto_if_eq BattleCafe_ConfirmRewardMon_37
+	goto BattleCafe_ConfirmRewardMon_32
 
-BattleCafe_ConfirmRewardMon_29:
-# 853 "data/maps/BattleCafe/scripts.pory"
+BattleCafe_ConfirmRewardMon_34:
+# 920 "data/maps/BattleCafe/scripts.pory"
+	compare VAR_TEMP_B, 6
+	goto_if_le BattleCafe_ConfirmRewardMon_33
+	goto BattleCafe_ConfirmRewardMon_32
+
+BattleCafe_ConfirmRewardMon_37:
+# 922 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_ConfirmRewardMon_Text_1
-# 854 "data/maps/BattleCafe/scripts.pory"
+# 923 "data/maps/BattleCafe/scripts.pory"
 	giveitem ITEM_REVEAL_GLASS
-	goto BattleCafe_ConfirmRewardMon_26
+	goto BattleCafe_ConfirmRewardMon_32
+
+
+BattleCafe_ChooseMiraidon::
+# 932 "data/maps/BattleCafe/scripts.pory"
+	goto_if_set FLAG_BATTLE_CAFE_MIRAIDON_RECEIVED, BattleCafe_ChooseMiraidon_2
+BattleCafe_ChooseMiraidon_1:
+# 937 "data/maps/BattleCafe/scripts.pory"
+	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_MIRAIDON
+# 938 "data/maps/BattleCafe/scripts.pory"
+	setvar VAR_TEMP_B, 0
+# 939 "data/maps/BattleCafe/scripts.pory"
+	goto BattleCafe_ConfirmParadoxLegend
+	return
+
+BattleCafe_ChooseMiraidon_2:
+# 933 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_ChooseMiraidon_Text_0
+# 935 "data/maps/BattleCafe/scripts.pory"
+	goto BattleCafe_RewardMenu
+	goto BattleCafe_ChooseMiraidon_1
+
+
+BattleCafe_ChooseKoraidon::
+# 943 "data/maps/BattleCafe/scripts.pory"
+	goto_if_set FLAG_BATTLE_CAFE_KORAIDON_RECEIVED, BattleCafe_ChooseKoraidon_2
+BattleCafe_ChooseKoraidon_1:
+# 948 "data/maps/BattleCafe/scripts.pory"
+	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_KORAIDON
+# 949 "data/maps/BattleCafe/scripts.pory"
+	setvar VAR_TEMP_B, 1
+# 950 "data/maps/BattleCafe/scripts.pory"
+	goto BattleCafe_ConfirmParadoxLegend
+	return
+
+BattleCafe_ChooseKoraidon_2:
+# 944 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_ChooseKoraidon_Text_0
+# 946 "data/maps/BattleCafe/scripts.pory"
+	goto BattleCafe_RewardMenu
+	goto BattleCafe_ChooseKoraidon_1
+
+
+BattleCafe_ConfirmParadoxLegend::
+# 954 "data/maps/BattleCafe/scripts.pory"
+	compare VAR_BATTLE_CAFE_POINTS, 25
+	goto_if_lt BattleCafe_ConfirmParadoxLegend_2
+BattleCafe_ConfirmParadoxLegend_1:
+# 957 "data/maps/BattleCafe/scripts.pory"
+	bufferspeciesname STR_VAR_1, VAR_TEMP_TRANSFERRED_SPECIES
+# 958 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_ConfirmParadoxLegend_Text_0, MSGBOX_YESNO
+# 960 "data/maps/BattleCafe/scripts.pory"
+	compare VAR_RESULT, YES
+	goto_if_ne BattleCafe_ConfirmParadoxLegend_5
+BattleCafe_ConfirmParadoxLegend_4:
+# 963 "data/maps/BattleCafe/scripts.pory"
+	givemon VAR_TEMP_TRANSFERRED_SPECIES, 70
+# 964 "data/maps/BattleCafe/scripts.pory"
+	compare VAR_RESULT, MON_CANT_GIVE
+	goto_if_eq BattleCafe_ConfirmParadoxLegend_8
+BattleCafe_ConfirmParadoxLegend_7:
+# 967 "data/maps/BattleCafe/scripts.pory"
+	showgivemonpic 10, 3
+# 968 "data/maps/BattleCafe/scripts.pory"
+	call Common_EventScript_GiftMon
+# 969 "data/maps/BattleCafe/scripts.pory"
+	hidemonpic
+# 970 "data/maps/BattleCafe/scripts.pory"
+	subvar VAR_BATTLE_CAFE_POINTS, 25
+# 971 "data/maps/BattleCafe/scripts.pory"
+	switch VAR_TEMP_B
+# 972 "data/maps/BattleCafe/scripts.pory"
+	case 0, BattleCafe_ConfirmParadoxLegend_12
+# 973 "data/maps/BattleCafe/scripts.pory"
+	case 1, BattleCafe_ConfirmParadoxLegend_13
+BattleCafe_ConfirmParadoxLegend_10:
+# 975 "data/maps/BattleCafe/scripts.pory"
+	special Achievement_CheckAll
+# 976 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_ConfirmParadoxLegend_Text_1
+# 978 "data/maps/BattleCafe/scripts.pory"
+	goto BattleCafe_RewardMenu
+	return
+
+BattleCafe_ConfirmParadoxLegend_2:
+# 955 "data/maps/BattleCafe/scripts.pory"
+	goto BattleCafe_NotEnoughLegendPoints
+	goto BattleCafe_ConfirmParadoxLegend_1
+
+BattleCafe_ConfirmParadoxLegend_5:
+# 961 "data/maps/BattleCafe/scripts.pory"
+	goto BattleCafe_RewardMenu
+	goto BattleCafe_ConfirmParadoxLegend_4
+
+BattleCafe_ConfirmParadoxLegend_8:
+# 965 "data/maps/BattleCafe/scripts.pory"
+	goto Common_EventScript_NoMoreRoomForPokemon
+	goto BattleCafe_ConfirmParadoxLegend_7
+
+BattleCafe_ConfirmParadoxLegend_12:
+# 972 "data/maps/BattleCafe/scripts.pory"
+	setflag FLAG_BATTLE_CAFE_MIRAIDON_RECEIVED
+	goto BattleCafe_ConfirmParadoxLegend_10
+
+BattleCafe_ConfirmParadoxLegend_13:
+# 973 "data/maps/BattleCafe/scripts.pory"
+	setflag FLAG_BATTLE_CAFE_KORAIDON_RECEIVED
+	goto BattleCafe_ConfirmParadoxLegend_10
 
 
 BattleCafe_ChooseShinyGenome::
-# 863 "data/maps/BattleCafe/scripts.pory"
+# 982 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_BATTLE_CAFE_POINTS, 4
 	goto_if_lt BattleCafe_ChooseShinyGenome_2
 BattleCafe_ChooseShinyGenome_1:
-# 866 "data/maps/BattleCafe/scripts.pory"
+# 985 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_ChooseShinyGenome_Text_0, MSGBOX_YESNO
-# 868 "data/maps/BattleCafe/scripts.pory"
+# 987 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_ne BattleCafe_ChooseShinyGenome_5
 BattleCafe_ChooseShinyGenome_4:
-# 871 "data/maps/BattleCafe/scripts.pory"
+# 990 "data/maps/BattleCafe/scripts.pory"
 	checkitemspace ITEM_SHIN_GENOME, 1
-# 872 "data/maps/BattleCafe/scripts.pory"
+# 991 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_RESULT, FALSE
 	goto_if_eq BattleCafe_ChooseShinyGenome_8
 BattleCafe_ChooseShinyGenome_7:
-# 875 "data/maps/BattleCafe/scripts.pory"
+# 994 "data/maps/BattleCafe/scripts.pory"
 	giveitem ITEM_SHIN_GENOME
-# 876 "data/maps/BattleCafe/scripts.pory"
+# 995 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_RESULT, TRUE
 	goto_if_ne BattleCafe_ChooseShinyGenome_11
 BattleCafe_ChooseShinyGenome_10:
-# 879 "data/maps/BattleCafe/scripts.pory"
+# 998 "data/maps/BattleCafe/scripts.pory"
 	subvar VAR_BATTLE_CAFE_POINTS, 4
-# 880 "data/maps/BattleCafe/scripts.pory"
+# 999 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_ChooseShinyGenome_Text_1
-# 883 "data/maps/BattleCafe/scripts.pory"
+# 1002 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	return
 
 BattleCafe_ChooseShinyGenome_2:
-# 864 "data/maps/BattleCafe/scripts.pory"
+# 983 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_NotEnoughFourPoints
 	goto BattleCafe_ChooseShinyGenome_1
 
 BattleCafe_ChooseShinyGenome_5:
-# 869 "data/maps/BattleCafe/scripts.pory"
+# 988 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	goto BattleCafe_ChooseShinyGenome_4
 
 BattleCafe_ChooseShinyGenome_8:
-# 873 "data/maps/BattleCafe/scripts.pory"
+# 992 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_NotEnoughBagSpace
 	goto BattleCafe_ChooseShinyGenome_7
 
 BattleCafe_ChooseShinyGenome_11:
-# 877 "data/maps/BattleCafe/scripts.pory"
+# 996 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	goto BattleCafe_ChooseShinyGenome_10
 
 
 BattleCafe_ChooseGoldBottleCaps::
-# 887 "data/maps/BattleCafe/scripts.pory"
+# 1006 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_BATTLE_CAFE_POINTS, 5
 	goto_if_lt BattleCafe_ChooseGoldBottleCaps_2
 BattleCafe_ChooseGoldBottleCaps_1:
-# 890 "data/maps/BattleCafe/scripts.pory"
+# 1009 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_ChooseGoldBottleCaps_Text_0, MSGBOX_YESNO
-# 892 "data/maps/BattleCafe/scripts.pory"
+# 1011 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_ne BattleCafe_ChooseGoldBottleCaps_5
 BattleCafe_ChooseGoldBottleCaps_4:
-# 895 "data/maps/BattleCafe/scripts.pory"
+# 1014 "data/maps/BattleCafe/scripts.pory"
 	checkitemspace ITEM_GOLD_BOTTLE_CAP, 2
-# 896 "data/maps/BattleCafe/scripts.pory"
+# 1015 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_RESULT, FALSE
 	goto_if_eq BattleCafe_ChooseGoldBottleCaps_8
 BattleCafe_ChooseGoldBottleCaps_7:
-# 899 "data/maps/BattleCafe/scripts.pory"
+# 1018 "data/maps/BattleCafe/scripts.pory"
 	giveitem ITEM_GOLD_BOTTLE_CAP, 2
-# 900 "data/maps/BattleCafe/scripts.pory"
+# 1019 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_RESULT, TRUE
 	goto_if_ne BattleCafe_ChooseGoldBottleCaps_11
 BattleCafe_ChooseGoldBottleCaps_10:
-# 903 "data/maps/BattleCafe/scripts.pory"
+# 1022 "data/maps/BattleCafe/scripts.pory"
 	subvar VAR_BATTLE_CAFE_POINTS, 5
-# 904 "data/maps/BattleCafe/scripts.pory"
+# 1023 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_ChooseGoldBottleCaps_Text_1
-# 906 "data/maps/BattleCafe/scripts.pory"
+# 1025 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	return
 
 BattleCafe_ChooseGoldBottleCaps_2:
-# 888 "data/maps/BattleCafe/scripts.pory"
+# 1007 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_NotEnoughPoints
 	goto BattleCafe_ChooseGoldBottleCaps_1
 
 BattleCafe_ChooseGoldBottleCaps_5:
-# 893 "data/maps/BattleCafe/scripts.pory"
+# 1012 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	goto BattleCafe_ChooseGoldBottleCaps_4
 
 BattleCafe_ChooseGoldBottleCaps_8:
-# 897 "data/maps/BattleCafe/scripts.pory"
+# 1016 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_NotEnoughBagSpace
 	goto BattleCafe_ChooseGoldBottleCaps_7
 
 BattleCafe_ChooseGoldBottleCaps_11:
-# 901 "data/maps/BattleCafe/scripts.pory"
+# 1020 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	goto BattleCafe_ChooseGoldBottleCaps_10
 
 
 BattleCafe_ChooseMoney::
-# 910 "data/maps/BattleCafe/scripts.pory"
+# 1029 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_BATTLE_CAFE_POINTS, 5
 	goto_if_lt BattleCafe_ChooseMoney_2
 BattleCafe_ChooseMoney_1:
-# 913 "data/maps/BattleCafe/scripts.pory"
+# 1032 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_ChooseMoney_Text_0, MSGBOX_YESNO
-# 915 "data/maps/BattleCafe/scripts.pory"
+# 1034 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_ne BattleCafe_ChooseMoney_5
 BattleCafe_ChooseMoney_4:
-# 918 "data/maps/BattleCafe/scripts.pory"
+# 1037 "data/maps/BattleCafe/scripts.pory"
 	subvar VAR_BATTLE_CAFE_POINTS, 5
-# 919 "data/maps/BattleCafe/scripts.pory"
+# 1038 "data/maps/BattleCafe/scripts.pory"
 	showmoneybox 0, 0
-# 920 "data/maps/BattleCafe/scripts.pory"
+# 1039 "data/maps/BattleCafe/scripts.pory"
 	addmoney 250000
-# 921 "data/maps/BattleCafe/scripts.pory"
+# 1040 "data/maps/BattleCafe/scripts.pory"
 	updatemoneybox 0
-# 922 "data/maps/BattleCafe/scripts.pory"
+# 1041 "data/maps/BattleCafe/scripts.pory"
 	playse SE_SHOP
-# 923 "data/maps/BattleCafe/scripts.pory"
+# 1042 "data/maps/BattleCafe/scripts.pory"
 	waitse
-# 924 "data/maps/BattleCafe/scripts.pory"
+# 1043 "data/maps/BattleCafe/scripts.pory"
 	hidemoneybox
-# 925 "data/maps/BattleCafe/scripts.pory"
+# 1044 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_ChooseMoney_Text_1
-# 927 "data/maps/BattleCafe/scripts.pory"
+# 1046 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	return
 
 BattleCafe_ChooseMoney_2:
-# 911 "data/maps/BattleCafe/scripts.pory"
+# 1030 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_NotEnoughPoints
 	goto BattleCafe_ChooseMoney_1
 
 BattleCafe_ChooseMoney_5:
-# 916 "data/maps/BattleCafe/scripts.pory"
+# 1035 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	goto BattleCafe_ChooseMoney_4
 
 
 BattleCafe_ChooseVitaminSetAtk::
-# 931 "data/maps/BattleCafe/scripts.pory"
+# 1050 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_BATTLE_CAFE_POINTS, 4
 	goto_if_lt BattleCafe_ChooseVitaminSetAtk_2
 BattleCafe_ChooseVitaminSetAtk_1:
-# 934 "data/maps/BattleCafe/scripts.pory"
+# 1053 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_ChooseVitaminSetAtk_Text_0, MSGBOX_YESNO
-# 936 "data/maps/BattleCafe/scripts.pory"
+# 1055 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_ne BattleCafe_ChooseVitaminSetAtk_5
 BattleCafe_ChooseVitaminSetAtk_4:
-# 939 "data/maps/BattleCafe/scripts.pory"
+# 1058 "data/maps/BattleCafe/scripts.pory"
 	setvar VAR_0x8004, BATTLE_CAFE_VITAMIN_SET_ATK
-# 940 "data/maps/BattleCafe/scripts.pory"
+# 1059 "data/maps/BattleCafe/scripts.pory"
 	special BattleCafe_TryPurchaseVitaminSet
-# 941 "data/maps/BattleCafe/scripts.pory"
+# 1060 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_RESULT, BATTLE_CAFE_VITAMIN_PURCHASE_NOT_ENOUGH_POINTS
 	goto_if_eq BattleCafe_ChooseVitaminSetAtk_8
 BattleCafe_ChooseVitaminSetAtk_7:
-# 944 "data/maps/BattleCafe/scripts.pory"
+# 1063 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_RESULT, BATTLE_CAFE_VITAMIN_PURCHASE_SUCCESS
 	goto_if_ne BattleCafe_ChooseVitaminSetAtk_11
 BattleCafe_ChooseVitaminSetAtk_10:
-# 947 "data/maps/BattleCafe/scripts.pory"
+# 1066 "data/maps/BattleCafe/scripts.pory"
 	playse SE_SHOP
-# 948 "data/maps/BattleCafe/scripts.pory"
+# 1067 "data/maps/BattleCafe/scripts.pory"
 	waitse
-# 949 "data/maps/BattleCafe/scripts.pory"
+# 1068 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_ChooseVitaminSetAtk_Text_1
-# 951 "data/maps/BattleCafe/scripts.pory"
+# 1070 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	return
 
 BattleCafe_ChooseVitaminSetAtk_2:
-# 932 "data/maps/BattleCafe/scripts.pory"
+# 1051 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_NotEnoughVitaminSetPoints
 	goto BattleCafe_ChooseVitaminSetAtk_1
 
 BattleCafe_ChooseVitaminSetAtk_5:
-# 937 "data/maps/BattleCafe/scripts.pory"
+# 1056 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	goto BattleCafe_ChooseVitaminSetAtk_4
 
 BattleCafe_ChooseVitaminSetAtk_8:
-# 942 "data/maps/BattleCafe/scripts.pory"
+# 1061 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_NotEnoughVitaminSetPoints
 	goto BattleCafe_ChooseVitaminSetAtk_7
 
 BattleCafe_ChooseVitaminSetAtk_11:
-# 945 "data/maps/BattleCafe/scripts.pory"
+# 1064 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_NotEnoughBagSpace
 	goto BattleCafe_ChooseVitaminSetAtk_10
 
 
 BattleCafe_ChooseVitaminSetDef::
-# 955 "data/maps/BattleCafe/scripts.pory"
+# 1074 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_BATTLE_CAFE_POINTS, 4
 	goto_if_lt BattleCafe_ChooseVitaminSetDef_2
 BattleCafe_ChooseVitaminSetDef_1:
-# 958 "data/maps/BattleCafe/scripts.pory"
+# 1077 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_ChooseVitaminSetDef_Text_0, MSGBOX_YESNO
-# 960 "data/maps/BattleCafe/scripts.pory"
+# 1079 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_ne BattleCafe_ChooseVitaminSetDef_5
 BattleCafe_ChooseVitaminSetDef_4:
-# 963 "data/maps/BattleCafe/scripts.pory"
+# 1082 "data/maps/BattleCafe/scripts.pory"
 	setvar VAR_0x8004, BATTLE_CAFE_VITAMIN_SET_DEF
-# 964 "data/maps/BattleCafe/scripts.pory"
+# 1083 "data/maps/BattleCafe/scripts.pory"
 	special BattleCafe_TryPurchaseVitaminSet
-# 965 "data/maps/BattleCafe/scripts.pory"
+# 1084 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_RESULT, BATTLE_CAFE_VITAMIN_PURCHASE_NOT_ENOUGH_POINTS
 	goto_if_eq BattleCafe_ChooseVitaminSetDef_8
 BattleCafe_ChooseVitaminSetDef_7:
-# 968 "data/maps/BattleCafe/scripts.pory"
+# 1087 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_RESULT, BATTLE_CAFE_VITAMIN_PURCHASE_SUCCESS
 	goto_if_ne BattleCafe_ChooseVitaminSetDef_11
 BattleCafe_ChooseVitaminSetDef_10:
-# 971 "data/maps/BattleCafe/scripts.pory"
+# 1090 "data/maps/BattleCafe/scripts.pory"
 	playse SE_SHOP
-# 972 "data/maps/BattleCafe/scripts.pory"
+# 1091 "data/maps/BattleCafe/scripts.pory"
 	waitse
-# 973 "data/maps/BattleCafe/scripts.pory"
+# 1092 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_ChooseVitaminSetDef_Text_1
-# 975 "data/maps/BattleCafe/scripts.pory"
+# 1094 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	return
 
 BattleCafe_ChooseVitaminSetDef_2:
-# 956 "data/maps/BattleCafe/scripts.pory"
+# 1075 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_NotEnoughVitaminSetPoints
 	goto BattleCafe_ChooseVitaminSetDef_1
 
 BattleCafe_ChooseVitaminSetDef_5:
-# 961 "data/maps/BattleCafe/scripts.pory"
+# 1080 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	goto BattleCafe_ChooseVitaminSetDef_4
 
 BattleCafe_ChooseVitaminSetDef_8:
-# 966 "data/maps/BattleCafe/scripts.pory"
+# 1085 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_NotEnoughVitaminSetPoints
 	goto BattleCafe_ChooseVitaminSetDef_7
 
 BattleCafe_ChooseVitaminSetDef_11:
-# 969 "data/maps/BattleCafe/scripts.pory"
+# 1088 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_NotEnoughBagSpace
 	goto BattleCafe_ChooseVitaminSetDef_10
 
 
 BattleCafe_ChooseVitaminSetSpe::
-# 979 "data/maps/BattleCafe/scripts.pory"
+# 1098 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_BATTLE_CAFE_POINTS, 2
 	goto_if_lt BattleCafe_ChooseVitaminSetSpe_2
 BattleCafe_ChooseVitaminSetSpe_1:
-# 982 "data/maps/BattleCafe/scripts.pory"
+# 1101 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_ChooseVitaminSetSpe_Text_0, MSGBOX_YESNO
-# 984 "data/maps/BattleCafe/scripts.pory"
+# 1103 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_ne BattleCafe_ChooseVitaminSetSpe_5
 BattleCafe_ChooseVitaminSetSpe_4:
-# 987 "data/maps/BattleCafe/scripts.pory"
+# 1106 "data/maps/BattleCafe/scripts.pory"
 	setvar VAR_0x8004, BATTLE_CAFE_VITAMIN_SET_SPE
-# 988 "data/maps/BattleCafe/scripts.pory"
+# 1107 "data/maps/BattleCafe/scripts.pory"
 	special BattleCafe_TryPurchaseVitaminSet
-# 989 "data/maps/BattleCafe/scripts.pory"
+# 1108 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_RESULT, BATTLE_CAFE_VITAMIN_PURCHASE_NOT_ENOUGH_POINTS
 	goto_if_eq BattleCafe_ChooseVitaminSetSpe_8
 BattleCafe_ChooseVitaminSetSpe_7:
-# 992 "data/maps/BattleCafe/scripts.pory"
+# 1111 "data/maps/BattleCafe/scripts.pory"
 	compare VAR_RESULT, BATTLE_CAFE_VITAMIN_PURCHASE_SUCCESS
 	goto_if_ne BattleCafe_ChooseVitaminSetSpe_11
 BattleCafe_ChooseVitaminSetSpe_10:
-# 995 "data/maps/BattleCafe/scripts.pory"
+# 1114 "data/maps/BattleCafe/scripts.pory"
 	playse SE_SHOP
-# 996 "data/maps/BattleCafe/scripts.pory"
+# 1115 "data/maps/BattleCafe/scripts.pory"
 	waitse
-# 997 "data/maps/BattleCafe/scripts.pory"
+# 1116 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_ChooseVitaminSetSpe_Text_1
-# 998 "data/maps/BattleCafe/scripts.pory"
+# 1117 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	return
 
 BattleCafe_ChooseVitaminSetSpe_2:
-# 980 "data/maps/BattleCafe/scripts.pory"
+# 1099 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_NotEnoughVitaminSetPoints
 	goto BattleCafe_ChooseVitaminSetSpe_1
 
 BattleCafe_ChooseVitaminSetSpe_5:
-# 985 "data/maps/BattleCafe/scripts.pory"
+# 1104 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	goto BattleCafe_ChooseVitaminSetSpe_4
 
 BattleCafe_ChooseVitaminSetSpe_8:
-# 990 "data/maps/BattleCafe/scripts.pory"
+# 1109 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_NotEnoughVitaminSetPoints
 	goto BattleCafe_ChooseVitaminSetSpe_7
 
 BattleCafe_ChooseVitaminSetSpe_11:
-# 993 "data/maps/BattleCafe/scripts.pory"
+# 1112 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_NotEnoughBagSpace
 	goto BattleCafe_ChooseVitaminSetSpe_10
 
 
 BattleCafe_NotEnoughPoints::
-# 1002 "data/maps/BattleCafe/scripts.pory"
+# 1121 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_NotEnoughPoints_Text_0
-# 1005 "data/maps/BattleCafe/scripts.pory"
+# 1124 "data/maps/BattleCafe/scripts.pory"
+	goto BattleCafe_RewardMenu
+	return
+
+
+BattleCafe_NotEnoughLegendPoints::
+# 1128 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_NotEnoughLegendPoints_Text_0
+# 1131 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	return
 
 
 BattleCafe_NotEnoughFourPoints::
-# 1009 "data/maps/BattleCafe/scripts.pory"
+# 1135 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_NotEnoughFourPoints_Text_0
-# 1012 "data/maps/BattleCafe/scripts.pory"
+# 1138 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	return
 
 
 BattleCafe_NotEnoughVitaminSetPoints::
-# 1016 "data/maps/BattleCafe/scripts.pory"
+# 1142 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_NotEnoughVitaminSetPoints_Text_0
-# 1021 "data/maps/BattleCafe/scripts.pory"
+# 1147 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	return
 
 
 BattleCafe_NotEnoughBagSpace::
-# 1025 "data/maps/BattleCafe/scripts.pory"
+# 1151 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_NotEnoughBagSpace_Text_0
-# 1028 "data/maps/BattleCafe/scripts.pory"
+# 1154 "data/maps/BattleCafe/scripts.pory"
 	goto BattleCafe_RewardMenu
 	return
 
 
 BattleCafe_Goodbye::
-# 1032 "data/maps/BattleCafe/scripts.pory"
+# 1158 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_Goodbye_Text_0
-# 1033 "data/maps/BattleCafe/scripts.pory"
+# 1159 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 
 BattleCafe_GiveDailyCandyReward::
-# 1038 "data/maps/BattleCafe/scripts.pory"
+# 1164 "data/maps/BattleCafe/scripts.pory"
 	random 3
-# 1039 "data/maps/BattleCafe/scripts.pory"
+# 1165 "data/maps/BattleCafe/scripts.pory"
 	addvar VAR_RESULT, 1
-# 1040 "data/maps/BattleCafe/scripts.pory"
+# 1166 "data/maps/BattleCafe/scripts.pory"
 	giveitem ITEM_EXP_CANDY_XL, VAR_RESULT
 	return
 
 
 BattleCafe_TrainerAthena::
-# 1045 "data/maps/BattleCafe/scripts.pory"
+# 1171 "data/maps/BattleCafe/scripts.pory"
 	lock
-# 1046 "data/maps/BattleCafe/scripts.pory"
+# 1172 "data/maps/BattleCafe/scripts.pory"
 	faceplayer
-# 1048 "data/maps/BattleCafe/scripts.pory"
+# 1174 "data/maps/BattleCafe/scripts.pory"
 	goto_if_set FLAG_DAILY_BATTLE_CAFE_ATHENA, BattleCafe_TrainerAthena_2
-# 1054 "data/maps/BattleCafe/scripts.pory"
+# 1180 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerAthena_Text_1
-# 1056 "data/maps/BattleCafe/scripts.pory"
+# 1182 "data/maps/BattleCafe/scripts.pory"
 	trainerbattle_no_intro TRAINER_CAFE_ATHENA, BattleCafe_TrainerAthena_Text_2
-# 1057 "data/maps/BattleCafe/scripts.pory"
+# 1183 "data/maps/BattleCafe/scripts.pory"
 	setflag FLAG_DAILY_BATTLE_CAFE_ATHENA
-# 1058 "data/maps/BattleCafe/scripts.pory"
+# 1184 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerAthena_Text_3
-# 1059 "data/maps/BattleCafe/scripts.pory"
+# 1185 "data/maps/BattleCafe/scripts.pory"
 	call BattleCafe_GiveDailyCandyReward
-# 1060 "data/maps/BattleCafe/scripts.pory"
+# 1186 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 BattleCafe_TrainerAthena_2:
-# 1049 "data/maps/BattleCafe/scripts.pory"
+# 1175 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerAthena_Text_0
-# 1051 "data/maps/BattleCafe/scripts.pory"
+# 1177 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 
 BattleCafe_TrainerDoves::
-# 1065 "data/maps/BattleCafe/scripts.pory"
+# 1191 "data/maps/BattleCafe/scripts.pory"
 	lock
-# 1066 "data/maps/BattleCafe/scripts.pory"
+# 1192 "data/maps/BattleCafe/scripts.pory"
 	faceplayer
-# 1068 "data/maps/BattleCafe/scripts.pory"
+# 1194 "data/maps/BattleCafe/scripts.pory"
 	goto_if_set FLAG_DAILY_BATTLE_CAFE_DOVES, BattleCafe_TrainerDoves_2
-# 1075 "data/maps/BattleCafe/scripts.pory"
+# 1201 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerDoves_Text_1
-# 1077 "data/maps/BattleCafe/scripts.pory"
+# 1203 "data/maps/BattleCafe/scripts.pory"
 	trainerbattle_no_intro TRAINER_CAFE_DOVES, BattleCafe_TrainerDoves_Text_2
-# 1078 "data/maps/BattleCafe/scripts.pory"
+# 1204 "data/maps/BattleCafe/scripts.pory"
 	setflag FLAG_DAILY_BATTLE_CAFE_DOVES
-# 1079 "data/maps/BattleCafe/scripts.pory"
+# 1205 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerDoves_Text_3
-# 1082 "data/maps/BattleCafe/scripts.pory"
+# 1208 "data/maps/BattleCafe/scripts.pory"
 	call BattleCafe_GiveDailyCandyReward
-# 1083 "data/maps/BattleCafe/scripts.pory"
+# 1209 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 BattleCafe_TrainerDoves_2:
-# 1069 "data/maps/BattleCafe/scripts.pory"
+# 1195 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerDoves_Text_0
-# 1072 "data/maps/BattleCafe/scripts.pory"
+# 1198 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 
 BattleCafe_TrainerElton::
-# 1088 "data/maps/BattleCafe/scripts.pory"
+# 1214 "data/maps/BattleCafe/scripts.pory"
 	lock
-# 1089 "data/maps/BattleCafe/scripts.pory"
+# 1215 "data/maps/BattleCafe/scripts.pory"
 	faceplayer
-# 1091 "data/maps/BattleCafe/scripts.pory"
+# 1217 "data/maps/BattleCafe/scripts.pory"
 	goto_if_set FLAG_DAILY_BATTLE_CAFE_ELTON, BattleCafe_TrainerElton_2
-# 1096 "data/maps/BattleCafe/scripts.pory"
+# 1222 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerElton_Text_1
-# 1098 "data/maps/BattleCafe/scripts.pory"
+# 1224 "data/maps/BattleCafe/scripts.pory"
 	trainerbattle_no_intro TRAINER_CAFE_ELTON, BattleCafe_TrainerElton_Text_2
-# 1099 "data/maps/BattleCafe/scripts.pory"
+# 1225 "data/maps/BattleCafe/scripts.pory"
 	setflag FLAG_DAILY_BATTLE_CAFE_ELTON
-# 1100 "data/maps/BattleCafe/scripts.pory"
+# 1226 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerElton_Text_3
-# 1102 "data/maps/BattleCafe/scripts.pory"
+# 1228 "data/maps/BattleCafe/scripts.pory"
 	call BattleCafe_GiveDailyCandyReward
-# 1103 "data/maps/BattleCafe/scripts.pory"
+# 1229 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 BattleCafe_TrainerElton_2:
-# 1092 "data/maps/BattleCafe/scripts.pory"
+# 1218 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerElton_Text_0
-# 1093 "data/maps/BattleCafe/scripts.pory"
+# 1219 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 
 BattleCafe_TrainerNem::
-# 1108 "data/maps/BattleCafe/scripts.pory"
+# 1234 "data/maps/BattleCafe/scripts.pory"
 	lock
-# 1109 "data/maps/BattleCafe/scripts.pory"
+# 1235 "data/maps/BattleCafe/scripts.pory"
 	faceplayer
-# 1111 "data/maps/BattleCafe/scripts.pory"
+# 1237 "data/maps/BattleCafe/scripts.pory"
 	goto_if_set FLAG_DAILY_BATTLE_CAFE_NEM, BattleCafe_TrainerNem_2
-# 1116 "data/maps/BattleCafe/scripts.pory"
+# 1242 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerNem_Text_1
-# 1117 "data/maps/BattleCafe/scripts.pory"
+# 1243 "data/maps/BattleCafe/scripts.pory"
 	trainerbattle_no_intro TRAINER_CAFE_NEM, BattleCafe_TrainerNem_Text_2
-# 1118 "data/maps/BattleCafe/scripts.pory"
+# 1244 "data/maps/BattleCafe/scripts.pory"
 	setflag FLAG_DAILY_BATTLE_CAFE_NEM
-# 1119 "data/maps/BattleCafe/scripts.pory"
+# 1245 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerNem_Text_3
-# 1120 "data/maps/BattleCafe/scripts.pory"
+# 1246 "data/maps/BattleCafe/scripts.pory"
 	call BattleCafe_GiveDailyCandyReward
-# 1121 "data/maps/BattleCafe/scripts.pory"
+# 1247 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 BattleCafe_TrainerNem_2:
-# 1112 "data/maps/BattleCafe/scripts.pory"
+# 1238 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerNem_Text_0
-# 1113 "data/maps/BattleCafe/scripts.pory"
+# 1239 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 
 BattleCafe_TrainerBai::
-# 1126 "data/maps/BattleCafe/scripts.pory"
+# 1252 "data/maps/BattleCafe/scripts.pory"
 	lock
-# 1127 "data/maps/BattleCafe/scripts.pory"
+# 1253 "data/maps/BattleCafe/scripts.pory"
 	faceplayer
-# 1129 "data/maps/BattleCafe/scripts.pory"
+# 1255 "data/maps/BattleCafe/scripts.pory"
 	goto_if_set FLAG_DAILY_BATTLE_CAFE_BAI, BattleCafe_TrainerBai_2
-# 1135 "data/maps/BattleCafe/scripts.pory"
+# 1261 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerBai_Text_1
-# 1137 "data/maps/BattleCafe/scripts.pory"
+# 1263 "data/maps/BattleCafe/scripts.pory"
 	trainerbattle_no_intro TRAINER_CAFE_BAI, BattleCafe_TrainerBai_Text_2
-# 1138 "data/maps/BattleCafe/scripts.pory"
+# 1264 "data/maps/BattleCafe/scripts.pory"
 	setflag FLAG_DAILY_BATTLE_CAFE_BAI
-# 1139 "data/maps/BattleCafe/scripts.pory"
+# 1265 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerBai_Text_3
-# 1141 "data/maps/BattleCafe/scripts.pory"
+# 1267 "data/maps/BattleCafe/scripts.pory"
 	call BattleCafe_GiveDailyCandyReward
-# 1142 "data/maps/BattleCafe/scripts.pory"
+# 1268 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 BattleCafe_TrainerBai_2:
-# 1130 "data/maps/BattleCafe/scripts.pory"
+# 1256 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerBai_Text_0
-# 1132 "data/maps/BattleCafe/scripts.pory"
+# 1258 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 
 BattleCafe_TrainerDrac::
-# 1147 "data/maps/BattleCafe/scripts.pory"
+# 1273 "data/maps/BattleCafe/scripts.pory"
 	lock
-# 1148 "data/maps/BattleCafe/scripts.pory"
+# 1274 "data/maps/BattleCafe/scripts.pory"
 	faceplayer
-# 1150 "data/maps/BattleCafe/scripts.pory"
+# 1276 "data/maps/BattleCafe/scripts.pory"
 	goto_if_set FLAG_DAILY_BATTLE_CAFE_DRAC, BattleCafe_TrainerDrac_2
-# 1156 "data/maps/BattleCafe/scripts.pory"
+# 1282 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerDrac_Text_1
-# 1157 "data/maps/BattleCafe/scripts.pory"
+# 1283 "data/maps/BattleCafe/scripts.pory"
 	trainerbattle_no_intro TRAINER_CAFE_DRAC, BattleCafe_TrainerDrac_Text_2
-# 1158 "data/maps/BattleCafe/scripts.pory"
+# 1284 "data/maps/BattleCafe/scripts.pory"
 	setflag FLAG_DAILY_BATTLE_CAFE_DRAC
-# 1159 "data/maps/BattleCafe/scripts.pory"
+# 1285 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerDrac_Text_0
-# 1161 "data/maps/BattleCafe/scripts.pory"
+# 1287 "data/maps/BattleCafe/scripts.pory"
 	call BattleCafe_GiveDailyCandyReward
-# 1162 "data/maps/BattleCafe/scripts.pory"
+# 1288 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 BattleCafe_TrainerDrac_2:
-# 1151 "data/maps/BattleCafe/scripts.pory"
+# 1277 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerDrac_Text_0
-# 1153 "data/maps/BattleCafe/scripts.pory"
+# 1279 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 
 BattleCafe_TrainerMarina::
-# 1167 "data/maps/BattleCafe/scripts.pory"
+# 1293 "data/maps/BattleCafe/scripts.pory"
 	lock
-# 1168 "data/maps/BattleCafe/scripts.pory"
+# 1294 "data/maps/BattleCafe/scripts.pory"
 	faceplayer
-# 1170 "data/maps/BattleCafe/scripts.pory"
+# 1296 "data/maps/BattleCafe/scripts.pory"
 	goto_if_set FLAG_DAILY_BATTLE_CAFE_JUNA, BattleCafe_TrainerMarina_2
-# 1176 "data/maps/BattleCafe/scripts.pory"
+# 1302 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerMarina_Text_1
-# 1178 "data/maps/BattleCafe/scripts.pory"
+# 1304 "data/maps/BattleCafe/scripts.pory"
 	trainerbattle_no_intro TRAINER_CAFE_JUNA, BattleCafe_TrainerMarina_Text_2
-# 1179 "data/maps/BattleCafe/scripts.pory"
+# 1305 "data/maps/BattleCafe/scripts.pory"
 	setflag FLAG_DAILY_BATTLE_CAFE_JUNA
-# 1180 "data/maps/BattleCafe/scripts.pory"
+# 1306 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerMarina_Text_3
-# 1182 "data/maps/BattleCafe/scripts.pory"
+# 1308 "data/maps/BattleCafe/scripts.pory"
 	call BattleCafe_GiveDailyCandyReward
-# 1183 "data/maps/BattleCafe/scripts.pory"
+# 1309 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 BattleCafe_TrainerMarina_2:
-# 1171 "data/maps/BattleCafe/scripts.pory"
+# 1297 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerMarina_Text_0
-# 1173 "data/maps/BattleCafe/scripts.pory"
+# 1299 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 
 BattleCafe_TrainerTylarie::
-# 1188 "data/maps/BattleCafe/scripts.pory"
+# 1314 "data/maps/BattleCafe/scripts.pory"
 	lock
-# 1189 "data/maps/BattleCafe/scripts.pory"
+# 1315 "data/maps/BattleCafe/scripts.pory"
 	faceplayer
-# 1191 "data/maps/BattleCafe/scripts.pory"
+# 1317 "data/maps/BattleCafe/scripts.pory"
 	goto_if_set FLAG_DAILY_BATTLE_CAFE_TYLARIE, BattleCafe_TrainerTylarie_2
-# 1197 "data/maps/BattleCafe/scripts.pory"
+# 1323 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerTylarie_Text_1
-# 1199 "data/maps/BattleCafe/scripts.pory"
+# 1325 "data/maps/BattleCafe/scripts.pory"
 	trainerbattle_no_intro TRAINER_CAFE_TYLARIE, BattleCafe_TrainerTylarie_Text_2
-# 1200 "data/maps/BattleCafe/scripts.pory"
+# 1326 "data/maps/BattleCafe/scripts.pory"
 	setflag FLAG_DAILY_BATTLE_CAFE_TYLARIE
-# 1201 "data/maps/BattleCafe/scripts.pory"
+# 1327 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerTylarie_Text_3
-# 1203 "data/maps/BattleCafe/scripts.pory"
+# 1329 "data/maps/BattleCafe/scripts.pory"
 	call BattleCafe_GiveDailyCandyReward
-# 1204 "data/maps/BattleCafe/scripts.pory"
+# 1330 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 BattleCafe_TrainerTylarie_2:
-# 1192 "data/maps/BattleCafe/scripts.pory"
+# 1318 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerTylarie_Text_0
-# 1194 "data/maps/BattleCafe/scripts.pory"
+# 1320 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
@@ -2497,334 +2841,404 @@ BattleCafe_RewardMenu_Text_0:
 	.string "Anything you want to exchange for?$"
 
 BattleCafe_RewardMenu_Text_1:
-# 707 "data/maps/BattleCafe/scripts.pory"
+# 708 "data/maps/BattleCafe/scripts.pory"
 	.string "G. Articuno - 5$"
 
 BattleCafe_RewardMenu_Text_2:
-# 708 "data/maps/BattleCafe/scripts.pory"
+# 709 "data/maps/BattleCafe/scripts.pory"
 	.string "G. Zapdos - 5$"
 
 BattleCafe_RewardMenu_Text_3:
-# 709 "data/maps/BattleCafe/scripts.pory"
+# 710 "data/maps/BattleCafe/scripts.pory"
 	.string "G. Moltres - 5$"
 
 BattleCafe_RewardMenu_Text_4:
-# 710 "data/maps/BattleCafe/scripts.pory"
+# 711 "data/maps/BattleCafe/scripts.pory"
 	.string "Tornadus - 5$"
 
 BattleCafe_RewardMenu_Text_5:
-# 711 "data/maps/BattleCafe/scripts.pory"
+# 712 "data/maps/BattleCafe/scripts.pory"
 	.string "Thundurus - 5$"
 
 BattleCafe_RewardMenu_Text_6:
-# 712 "data/maps/BattleCafe/scripts.pory"
+# 713 "data/maps/BattleCafe/scripts.pory"
 	.string "Landorus - 5$"
 
 BattleCafe_RewardMenu_Text_7:
-# 713 "data/maps/BattleCafe/scripts.pory"
+# 714 "data/maps/BattleCafe/scripts.pory"
 	.string "Enamorus - 5$"
 
 BattleCafe_RewardMenu_Text_8:
-# 714 "data/maps/BattleCafe/scripts.pory"
-	.string "Shiny Genome - 4$"
+# 715 "data/maps/BattleCafe/scripts.pory"
+	.string "Tapu Koko - 5$"
 
 BattleCafe_RewardMenu_Text_9:
-# 715 "data/maps/BattleCafe/scripts.pory"
-	.string "2 Gold Caps - 5$"
+# 716 "data/maps/BattleCafe/scripts.pory"
+	.string "Tapu Lele - 5$"
 
 BattleCafe_RewardMenu_Text_10:
-# 716 "data/maps/BattleCafe/scripts.pory"
-	.string "¥250,000 - 5$"
+# 717 "data/maps/BattleCafe/scripts.pory"
+	.string "Tapu Bulu - 5$"
 
 BattleCafe_RewardMenu_Text_11:
-# 717 "data/maps/BattleCafe/scripts.pory"
-	.string "Vitamin Set Atk - 4$"
+# 718 "data/maps/BattleCafe/scripts.pory"
+	.string "Tapu Fini - 5$"
 
 BattleCafe_RewardMenu_Text_12:
-# 718 "data/maps/BattleCafe/scripts.pory"
-	.string "Vitamin Set Def - 4$"
+# 719 "data/maps/BattleCafe/scripts.pory"
+	.string "Shiny Genome - 4$"
 
 BattleCafe_RewardMenu_Text_13:
-# 719 "data/maps/BattleCafe/scripts.pory"
+# 720 "data/maps/BattleCafe/scripts.pory"
+	.string "2 Gold Caps - 5$"
+
+BattleCafe_RewardMenu_Text_14:
+# 721 "data/maps/BattleCafe/scripts.pory"
+	.string "¥250,000 - 5$"
+
+BattleCafe_RewardMenu_Text_15:
+# 722 "data/maps/BattleCafe/scripts.pory"
+	.string "Vitamin Set Atk - 4$"
+
+BattleCafe_RewardMenu_Text_16:
+# 723 "data/maps/BattleCafe/scripts.pory"
+	.string "Vitamin Set Def - 4$"
+
+BattleCafe_RewardMenu_Text_17:
+# 724 "data/maps/BattleCafe/scripts.pory"
 	.string "Vitamin Set Spe - 2$"
 
+BattleCafe_RewardMenu_Text_18:
+# 727 "data/maps/BattleCafe/scripts.pory"
+	.string "Miraidon - 25$"
+
+BattleCafe_RewardMenu_Text_19:
+# 731 "data/maps/BattleCafe/scripts.pory"
+	.string "Koraidon - 25$"
+
 BattleCafe_ChooseArticuno_Text_0:
-# 741 "data/maps/BattleCafe/scripts.pory"
+# 761 "data/maps/BattleCafe/scripts.pory"
 	.string "I've already entrusted Galarian\n"
 	.string "Articuno to you.$"
 
 BattleCafe_ChooseZapdos_Text_0:
-# 752 "data/maps/BattleCafe/scripts.pory"
+# 772 "data/maps/BattleCafe/scripts.pory"
 	.string "I've already entrusted Galarian\n"
 	.string "Zapdos to you.$"
 
 BattleCafe_ChooseMoltres_Text_0:
-# 763 "data/maps/BattleCafe/scripts.pory"
+# 783 "data/maps/BattleCafe/scripts.pory"
 	.string "I've already entrusted Galarian\n"
 	.string "Moltres to you.$"
 
 BattleCafe_ChooseTornadus_Text_0:
-# 774 "data/maps/BattleCafe/scripts.pory"
+# 794 "data/maps/BattleCafe/scripts.pory"
 	.string "I've already entrusted Tornadus\n"
 	.string "to you.$"
 
 BattleCafe_ChooseThundurus_Text_0:
-# 785 "data/maps/BattleCafe/scripts.pory"
+# 805 "data/maps/BattleCafe/scripts.pory"
 	.string "I've already entrusted Thundurus\n"
 	.string "to you.$"
 
 BattleCafe_ChooseLandorus_Text_0:
-# 796 "data/maps/BattleCafe/scripts.pory"
+# 816 "data/maps/BattleCafe/scripts.pory"
 	.string "I've already entrusted Landorus\n"
 	.string "to you.$"
 
 BattleCafe_ChooseEnamorus_Text_0:
-# 807 "data/maps/BattleCafe/scripts.pory"
+# 827 "data/maps/BattleCafe/scripts.pory"
 	.string "I've already entrusted Enamorus\n"
 	.string "to you.$"
 
+BattleCafe_ChooseTapuKoko_Text_0:
+# 838 "data/maps/BattleCafe/scripts.pory"
+	.string "I've already entrusted Tapu Koko\n"
+	.string "to you.$"
+
+BattleCafe_ChooseTapuLele_Text_0:
+# 849 "data/maps/BattleCafe/scripts.pory"
+	.string "I've already entrusted Tapu Lele\n"
+	.string "to you.$"
+
+BattleCafe_ChooseTapuBulu_Text_0:
+# 860 "data/maps/BattleCafe/scripts.pory"
+	.string "I've already entrusted Tapu Bulu\n"
+	.string "to you.$"
+
+BattleCafe_ChooseTapuFini_Text_0:
+# 871 "data/maps/BattleCafe/scripts.pory"
+	.string "I've already entrusted Tapu Fini\n"
+	.string "to you.$"
+
 BattleCafe_ConfirmRewardMon_Text_0:
-# 821 "data/maps/BattleCafe/scripts.pory"
+# 885 "data/maps/BattleCafe/scripts.pory"
 	.string "Exchange 5 Café Points for\n"
 	.string "{STR_VAR_1}?$"
 
 BattleCafe_ConfirmRewardMon_Text_1:
-# 853 "data/maps/BattleCafe/scripts.pory"
+# 922 "data/maps/BattleCafe/scripts.pory"
 	.string "You might find this useful.$"
 
 BattleCafe_ConfirmRewardMon_Text_2:
-# 857 "data/maps/BattleCafe/scripts.pory"
+# 926 "data/maps/BattleCafe/scripts.pory"
 	.string "A fair trade. I'm sure it'll fit right\n"
 	.string "into your team.$"
 
+BattleCafe_ChooseMiraidon_Text_0:
+# 933 "data/maps/BattleCafe/scripts.pory"
+	.string "I've already entrusted Miraidon\n"
+	.string "to you.$"
+
+BattleCafe_ChooseKoraidon_Text_0:
+# 944 "data/maps/BattleCafe/scripts.pory"
+	.string "I've already entrusted Koraidon\n"
+	.string "to you.$"
+
+BattleCafe_ConfirmParadoxLegend_Text_0:
+# 958 "data/maps/BattleCafe/scripts.pory"
+	.string "Exchange 25 Café Points for\n"
+	.string "{STR_VAR_1}?$"
+
+BattleCafe_ConfirmParadoxLegend_Text_1:
+# 976 "data/maps/BattleCafe/scripts.pory"
+	.string "A rare specimen from Paldea. Take good\n"
+	.string "care of it!$"
+
 BattleCafe_ChooseShinyGenome_Text_0:
-# 866 "data/maps/BattleCafe/scripts.pory"
+# 985 "data/maps/BattleCafe/scripts.pory"
 	.string "Exchange 4 Café Points for a\n"
 	.string "Shiny Genome?$"
 
 BattleCafe_ChooseShinyGenome_Text_1:
-# 880 "data/maps/BattleCafe/scripts.pory"
+# 999 "data/maps/BattleCafe/scripts.pory"
 	.string "A rare find. Use it on whichever\n"
 	.string "Pokémon you want to bring out the\l"
 	.string "shine.$"
 
 BattleCafe_ChooseGoldBottleCaps_Text_0:
-# 890 "data/maps/BattleCafe/scripts.pory"
+# 1009 "data/maps/BattleCafe/scripts.pory"
 	.string "Exchange 5 Café Points for two\n"
 	.string "Gold Bottle Caps?$"
 
 BattleCafe_ChooseGoldBottleCaps_Text_1:
-# 904 "data/maps/BattleCafe/scripts.pory"
+# 1023 "data/maps/BattleCafe/scripts.pory"
 	.string "Two Gold Bottle Caps, polished up and\n"
 	.string "ready. Here you go!$"
 
 BattleCafe_ChooseMoney_Text_0:
-# 913 "data/maps/BattleCafe/scripts.pory"
+# 1032 "data/maps/BattleCafe/scripts.pory"
 	.string "Exchange 5 Café Points for\n"
 	.string "¥250,000?$"
 
 BattleCafe_ChooseMoney_Text_1:
-# 925 "data/maps/BattleCafe/scripts.pory"
+# 1044 "data/maps/BattleCafe/scripts.pory"
 	.string "Use it well, and perhaps spend a little\n"
 	.string "on dessert!$"
 
 BattleCafe_ChooseVitaminSetAtk_Text_0:
-# 934 "data/maps/BattleCafe/scripts.pory"
+# 1053 "data/maps/BattleCafe/scripts.pory"
 	.string "Exchange 4 Café Points for two each of\n"
 	.string "Protein EX and Calcium EX?$"
 
 BattleCafe_ChooseVitaminSetAtk_Text_1:
-# 949 "data/maps/BattleCafe/scripts.pory"
+# 1068 "data/maps/BattleCafe/scripts.pory"
 	.string "Two Protein EX and two Calcium EX,\n"
 	.string "power and wisdom!$"
 
 BattleCafe_ChooseVitaminSetDef_Text_0:
-# 958 "data/maps/BattleCafe/scripts.pory"
+# 1077 "data/maps/BattleCafe/scripts.pory"
 	.string "Exchange 4 Café Points for two each of\n"
 	.string "Iron EX and Zinc EX?$"
 
 BattleCafe_ChooseVitaminSetDef_Text_1:
-# 973 "data/maps/BattleCafe/scripts.pory"
+# 1092 "data/maps/BattleCafe/scripts.pory"
 	.string "Two Iron EX and two Zinc EX,\n"
 	.string "time to bulk up!$"
 
 BattleCafe_ChooseVitaminSetSpe_Text_0:
-# 982 "data/maps/BattleCafe/scripts.pory"
+# 1101 "data/maps/BattleCafe/scripts.pory"
 	.string "Exchange 2 Café Points for\n"
 	.string "two Carbos EX?$"
 
 BattleCafe_ChooseVitaminSetSpe_Text_1:
-# 997 "data/maps/BattleCafe/scripts.pory"
+# 1116 "data/maps/BattleCafe/scripts.pory"
 	.string "Two Carbos EX, ready to speed up!$"
 
 BattleCafe_NotEnoughPoints_Text_0:
-# 1002 "data/maps/BattleCafe/scripts.pory"
+# 1121 "data/maps/BattleCafe/scripts.pory"
 	.string "That prize costs 5 Café Points.\n"
 	.string "Complete one of my challenges and try\l"
 	.string "again!$"
 
+BattleCafe_NotEnoughLegendPoints_Text_0:
+# 1128 "data/maps/BattleCafe/scripts.pory"
+	.string "That prize costs 25 Café Points.\n"
+	.string "Complete more of my challenges and\l"
+	.string "try again!$"
+
 BattleCafe_NotEnoughFourPoints_Text_0:
-# 1009 "data/maps/BattleCafe/scripts.pory"
+# 1135 "data/maps/BattleCafe/scripts.pory"
 	.string "The Shiny Genome costs 4 Café Points.\n"
 	.string "Complete one of my challenges and try\l"
 	.string "again!$"
 
 BattleCafe_NotEnoughVitaminSetPoints_Text_0:
-# 1016 "data/maps/BattleCafe/scripts.pory"
+# 1142 "data/maps/BattleCafe/scripts.pory"
 	.string "You don't have enough Café Points for\n"
 	.string "that vitamin set. \p"
 	.string "Complete one of my\n"
 	.string "challenges and try again!$"
 
 BattleCafe_NotEnoughBagSpace_Text_0:
-# 1025 "data/maps/BattleCafe/scripts.pory"
+# 1151 "data/maps/BattleCafe/scripts.pory"
 	.string "Your Bag is too full for that prize.\n"
 	.string "Make some room and come back whenever\l"
 	.string "you're ready!$"
 
 BattleCafe_Goodbye_Text_0:
-# 1032 "data/maps/BattleCafe/scripts.pory"
+# 1158 "data/maps/BattleCafe/scripts.pory"
 	.string "Come back hungry for another battle!$"
 
 BattleCafe_TrainerAthena_Text_0:
-# 1049 "data/maps/BattleCafe/scripts.pory"
+# 1175 "data/maps/BattleCafe/scripts.pory"
 	.string "Did you have fun? Let's try this\n"
 	.string "again tomorrow!$"
 
 BattleCafe_TrainerAthena_Text_1:
-# 1054 "data/maps/BattleCafe/scripts.pory"
+# 1180 "data/maps/BattleCafe/scripts.pory"
 	.string "Let's see if you can survive this\n"
 	.string "stall!$"
 
 BattleCafe_TrainerAthena_Text_2:
-# 1056 "data/maps/BattleCafe/scripts.pory"
+# 1182 "data/maps/BattleCafe/scripts.pory"
 	.string "Huh?$"
 
 BattleCafe_TrainerAthena_Text_3:
-# 1058 "data/maps/BattleCafe/scripts.pory"
+# 1184 "data/maps/BattleCafe/scripts.pory"
 	.string "Did you have fun?$"
 
 BattleCafe_TrainerDoves_Text_0:
-# 1069 "data/maps/BattleCafe/scripts.pory"
+# 1195 "data/maps/BattleCafe/scripts.pory"
 	.string "Doves: Let's fight again tomorrow when \n"
 	.string "my Genesect is allowed on the \l"
 	.string "battlefield.$"
 
 BattleCafe_TrainerDoves_Text_1:
-# 1075 "data/maps/BattleCafe/scripts.pory"
+# 1201 "data/maps/BattleCafe/scripts.pory"
 	.string "Doves: Let me show you the power of \n"
 	.string "Genesect!$"
 
 BattleCafe_TrainerDoves_Text_2:
-# 1077 "data/maps/BattleCafe/scripts.pory"
+# 1203 "data/maps/BattleCafe/scripts.pory"
 	.string "Banned again from Overused...$"
 
 BattleCafe_TrainerDoves_Text_3:
-# 1079 "data/maps/BattleCafe/scripts.pory"
+# 1205 "data/maps/BattleCafe/scripts.pory"
 	.string "Doves: Let's fight again tomorrow when\n"
 	.string "my Genesect is allowed on the \l"
 	.string "battlefield.$"
 
 BattleCafe_TrainerElton_Text_0:
-# 1092 "data/maps/BattleCafe/scripts.pory"
+# 1218 "data/maps/BattleCafe/scripts.pory"
 	.string "Elton: Rematch tomorrow! Be there!$"
 
 BattleCafe_TrainerElton_Text_1:
-# 1096 "data/maps/BattleCafe/scripts.pory"
+# 1222 "data/maps/BattleCafe/scripts.pory"
 	.string "Elton: Let's have a battle with our\n"
 	.string "favourite Pokémon!$"
 
 BattleCafe_TrainerElton_Text_2:
-# 1098 "data/maps/BattleCafe/scripts.pory"
+# 1224 "data/maps/BattleCafe/scripts.pory"
 	.string "You handled every trick I had!$"
 
 BattleCafe_TrainerElton_Text_3:
-# 1100 "data/maps/BattleCafe/scripts.pory"
+# 1226 "data/maps/BattleCafe/scripts.pory"
 	.string "Elton: Even Gengar's impressed, and it\n"
 	.string "rarely takes a loss seriously.$"
 
 BattleCafe_TrainerNem_Text_0:
-# 1112 "data/maps/BattleCafe/scripts.pory"
+# 1238 "data/maps/BattleCafe/scripts.pory"
 	.string "Nem: Come back tomorrow.$"
 
 BattleCafe_TrainerNem_Text_1:
-# 1116 "data/maps/BattleCafe/scripts.pory"
+# 1242 "data/maps/BattleCafe/scripts.pory"
 	.string "Nem: Think fast!$"
 
 BattleCafe_TrainerNem_Text_2:
-# 1117 "data/maps/BattleCafe/scripts.pory"
+# 1243 "data/maps/BattleCafe/scripts.pory"
 	.string "I'll be watching.$"
 
 BattleCafe_TrainerNem_Text_3:
-# 1119 "data/maps/BattleCafe/scripts.pory"
+# 1245 "data/maps/BattleCafe/scripts.pory"
 	.string "Nem: We can fight again tomorrow.$"
 
 BattleCafe_TrainerBai_Text_0:
-# 1130 "data/maps/BattleCafe/scripts.pory"
+# 1256 "data/maps/BattleCafe/scripts.pory"
 	.string "Bai: That was a good match!\n"
 	.string "Let's fight again tomorrow!$"
 
 BattleCafe_TrainerBai_Text_1:
-# 1135 "data/maps/BattleCafe/scripts.pory"
+# 1261 "data/maps/BattleCafe/scripts.pory"
 	.string "Bai: Let's see what you bring to \n"
 	.string "the table!$"
 
 BattleCafe_TrainerBai_Text_2:
-# 1137 "data/maps/BattleCafe/scripts.pory"
+# 1263 "data/maps/BattleCafe/scripts.pory"
 	.string "Guess I'm cooked this time...$"
 
 BattleCafe_TrainerBai_Text_3:
-# 1139 "data/maps/BattleCafe/scripts.pory"
+# 1265 "data/maps/BattleCafe/scripts.pory"
 	.string "Bai: Good match! Let's try this again \n"
 	.string "tomorrow!$"
 
 BattleCafe_TrainerDrac_Text_0:
-# 1151 "data/maps/BattleCafe/scripts.pory"
+# 1277 "data/maps/BattleCafe/scripts.pory"
 	.string "Drac: You're really tough! Let's fight\n"
 	.string "again tomorrow!$"
 
 BattleCafe_TrainerDrac_Text_1:
-# 1156 "data/maps/BattleCafe/scripts.pory"
+# 1282 "data/maps/BattleCafe/scripts.pory"
 	.string "Drac: Care for a double battle?$"
 
 BattleCafe_TrainerDrac_Text_2:
-# 1157 "data/maps/BattleCafe/scripts.pory"
+# 1283 "data/maps/BattleCafe/scripts.pory"
 	.string "Soothed.$"
 
 BattleCafe_TrainerMarina_Text_0:
-# 1171 "data/maps/BattleCafe/scripts.pory"
+# 1297 "data/maps/BattleCafe/scripts.pory"
 	.string "Pelipper says the rain has\n"
 	.string "passed for today. Tomorrow!$"
 
 BattleCafe_TrainerMarina_Text_1:
-# 1176 "data/maps/BattleCafe/scripts.pory"
+# 1302 "data/maps/BattleCafe/scripts.pory"
 	.string "Pelipper, call in the rain!\n"
 	.string "Let's make some waves.$"
 
 BattleCafe_TrainerMarina_Text_2:
-# 1178 "data/maps/BattleCafe/scripts.pory"
+# 1304 "data/maps/BattleCafe/scripts.pory"
 	.string "You weathered the whole storm.$"
 
 BattleCafe_TrainerMarina_Text_3:
-# 1180 "data/maps/BattleCafe/scripts.pory"
+# 1306 "data/maps/BattleCafe/scripts.pory"
 	.string "Even Swampert couldn't stop you once\n"
 	.string "you found your rhythm.$"
 
 BattleCafe_TrainerTylarie_Text_0:
-# 1192 "data/maps/BattleCafe/scripts.pory"
+# 1318 "data/maps/BattleCafe/scripts.pory"
 	.string "Steelix has settled down for\n"
 	.string "lunch. We'll be ready tomorrow!$"
 
 BattleCafe_TrainerTylarie_Text_1:
-# 1197 "data/maps/BattleCafe/scripts.pory"
+# 1323 "data/maps/BattleCafe/scripts.pory"
 	.string "Tylarie: Let me show you how sturdy my\n"
 	.string "team is!$"
 
 BattleCafe_TrainerTylarie_Text_2:
-# 1199 "data/maps/BattleCafe/scripts.pory"
+# 1325 "data/maps/BattleCafe/scripts.pory"
 	.string "Ouch.$"
 
 BattleCafe_TrainerTylarie_Text_3:
-# 1201 "data/maps/BattleCafe/scripts.pory"
+# 1327 "data/maps/BattleCafe/scripts.pory"
 	.string "Tylarie: Not bad. We can go at it again\n"
 	.string "another day.$"

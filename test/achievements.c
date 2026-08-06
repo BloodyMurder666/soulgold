@@ -260,6 +260,7 @@ TEST("Chaos facility scaling does not unlock Peak of Power")
     gSaveBlock2Ptr->frontier.challengeStatus = 0;
     Achievement_CheckAll();
     EXPECT(Achievement_IsUnlocked(ACH_PEAK_OF_POWER));
+    ZeroPlayerPartyMons();
 }
 
 TEST("Regular Pikachu and Eevee do not unlock Let's Go")
@@ -433,6 +434,44 @@ TEST("Existing weather genie rewards unlock Master of Wishes")
     Achievement_CheckAll();
 
     EXPECT(Achievement_IsUnlocked(ACH_MASTER_OF_WISHES));
+}
+
+TEST("Island Guardians requires all four Battle Cafe Tapus")
+{
+    static const u16 receivedFlags[] =
+    {
+        FLAG_BATTLE_CAFE_TAPU_KOKO_RECEIVED,
+        FLAG_BATTLE_CAFE_TAPU_LELE_RECEIVED,
+        FLAG_BATTLE_CAFE_TAPU_BULU_RECEIVED,
+        FLAG_BATTLE_CAFE_TAPU_FINI_RECEIVED,
+    };
+    const struct Achievement *achievement = Achievement_GetById(ACH_OBTAIN_TAPUS);
+    u8 i;
+
+    EXPECT(achievement != NULL);
+    EXPECT_EQ(achievement->tier, ACH_TIER_GOLD);
+    for (i = 0; i < ARRAY_COUNT(receivedFlags); i++)
+    {
+        FlagSet(receivedFlags[i]);
+        Achievement_CheckAll();
+        EXPECT_EQ(Achievement_IsUnlocked(ACH_OBTAIN_TAPUS), i == ARRAY_COUNT(receivedFlags) - 1);
+    }
+}
+
+TEST("Across the Ages requires both Battle Cafe Paradox legends")
+{
+    const struct Achievement *achievement = Achievement_GetById(ACH_OBTAIN_PARADOX_LEGENDS);
+
+    EXPECT(achievement != NULL);
+    EXPECT_EQ(achievement->tier, ACH_TIER_PLATINUM);
+
+    FlagSet(FLAG_BATTLE_CAFE_MIRAIDON_RECEIVED);
+    Achievement_CheckAll();
+    EXPECT(!Achievement_IsUnlocked(ACH_OBTAIN_PARADOX_LEGENDS));
+
+    FlagSet(FLAG_BATTLE_CAFE_KORAIDON_RECEIVED);
+    Achievement_CheckAll();
+    EXPECT(Achievement_IsUnlocked(ACH_OBTAIN_PARADOX_LEGENDS));
 }
 
 TEST("Route Experts requires every implemented expert")

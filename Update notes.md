@@ -1,14 +1,14 @@
 Update notes:
 4.8.2026
-- New Battle Facility: Battle Cafe. Located on Route 50, this features four daily challenges of varying difficulty and two unlockable endless modes. Diancie, forces of the nature and the Galarian birds can be obtained here.
+- New Battle Facility: Battle Cafe. Located on Route 50, this features four daily challenges of varying difficulty and two unlockable endless modes. Various legendaries can be obtained from here.
 - Final part of the rival legendary quest is added, after obtaining Darkrai, rival will offer HM Dive to lead to the final two legendaries.
 - New mini location: Spear Pillar Summit. After obtaining Hoopa and solving all 8 puzzles in Ruins of Alph, interact with the back wall in the secret room of the ruins with Hoopa in party to be teleported there.
 - Added 1 secret legendary to Spear Pillar. Hint: What three Pokémon were present in Special Episode 5 of a certain Pokémon spinoff? 
-- New way to replay: Chaos mode. Activating an artifact of chaos behind the starter case table in Elm's lab allows activating all innates from the start. WARNING: This is not balanced in any way and not the intended way to play. Expect a very unbalanced and untested experience. This can be toggled on and off freely mid-playthrough. Balancing won't be done with this mode in mind.
+- Option: Chaos mode. Activating an artifact of chaos behind the starter case table in Elm's lab allows activating all innates from the start. WARNING: This is not balanced in any way and not the intended way to play. Expect a very unbalanced and untested experience. This can be toggled on and off freely mid-playthrough. Balancing won't be done with this mode in mind.
 - QoL: Roamer tracker mode: After Burned Tower event, players can press R button in region map view to toggle between regular map and roamer tracker modes. When roamer is on the same route as the player, the roamer icon and the player icon will blink. 
 - QoL: New vitamin, Zeromin. Resets all EVs to 0. Sold in Goldenrod Dept. store.
 - Oak can be found in Radio Tower 2F to give player their Pokédex Rating.
-- There are now 119 trophies.
+- There are now 121 trophies.
 - Moved Psychite to inside Mt Mortar post-Strength. Outside rock climb spot now rewards Room Service held item.
 - Moved Flyingite next to Embedded Tower, Cianwood rock climb spot item is replaced by Gold Bottle Cap. Razor Fang moved near the old location.
 - Added over 50 new tutor moves based on later gens Technical Records.

@@ -286,6 +286,7 @@ gSpecials::
 	def_special BattleCafe_AdvanceWinCount
 	def_special BattleCafe_AwardPoints
 	def_special BattleCafe_TryPurchaseVitaminSet
+	def_special BattleCafe_GetParadoxRewardEligibility
 	def_special BattleCafe_ShowRecordsWindow
 	def_special ReducePlayerPartyToSelectedMons
 	def_special BedroomPC

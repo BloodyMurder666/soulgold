@@ -3,12 +3,51 @@
 #include "battle_tower.h"
 #include "event_data.h"
 #include "item.h"
+#include "pokedex.h"
+#include "pokemon.h"
 #include "replay_options.h"
 #include "test/test.h"
 #include "constants/battle_frontier.h"
 #include "constants/flags.h"
 #include "constants/items.h"
+#include "constants/pokedex.h"
 #include "constants/vars.h"
+
+static const u16 sTestBattleCafePastParadoxDexNums[] =
+{
+    NATIONAL_DEX_GREAT_TUSK,
+    NATIONAL_DEX_SCREAM_TAIL,
+    NATIONAL_DEX_BRUTE_BONNET,
+    NATIONAL_DEX_FLUTTER_MANE,
+    NATIONAL_DEX_SLITHER_WING,
+    NATIONAL_DEX_SANDY_SHOCKS,
+    NATIONAL_DEX_ROARING_MOON,
+    NATIONAL_DEX_WALKING_WAKE,
+    NATIONAL_DEX_GOUGING_FIRE,
+    NATIONAL_DEX_RAGING_BOLT,
+};
+
+static const u16 sTestBattleCafeFutureParadoxDexNums[] =
+{
+    NATIONAL_DEX_IRON_TREADS,
+    NATIONAL_DEX_IRON_BUNDLE,
+    NATIONAL_DEX_IRON_HANDS,
+    NATIONAL_DEX_IRON_JUGULIS,
+    NATIONAL_DEX_IRON_MOTH,
+    NATIONAL_DEX_IRON_THORNS,
+    NATIONAL_DEX_IRON_VALIANT,
+    NATIONAL_DEX_IRON_LEAVES,
+    NATIONAL_DEX_IRON_BOULDER,
+    NATIONAL_DEX_IRON_CROWN,
+};
+
+static void CatchBattleCafeTestSpecies(const u16 *dexNums, u32 count)
+{
+    u32 i;
+
+    for (i = 0; i < count; i++)
+        GetSetPokedexFlag(dexNums[i], FLAG_SET_CAUGHT);
+}
 
 TEST("Battle Cafe Endless Challenge records its own streak")
 {
@@ -123,6 +162,40 @@ TEST("Battle Cafe point awards repair an out-of-range saved total")
     EXPECT_EQ(gSpecialVar_Result, 0);
 }
 
+TEST("Battle Cafe Miraidon reward requires every future Paradox Pokemon")
+{
+    CatchBattleCafeTestSpecies(sTestBattleCafeFutureParadoxDexNums, ARRAY_COUNT(sTestBattleCafeFutureParadoxDexNums) - 1);
+
+    BattleCafe_GetParadoxRewardEligibility();
+    EXPECT_EQ(gSpecialVar_Result & BATTLE_CAFE_PARADOX_REWARD_MIRAIDON, 0);
+
+    GetSetPokedexFlag(NATIONAL_DEX_IRON_CROWN, FLAG_SET_CAUGHT);
+    BattleCafe_GetParadoxRewardEligibility();
+    EXPECT_EQ(gSpecialVar_Result, BATTLE_CAFE_PARADOX_REWARD_MIRAIDON);
+}
+
+TEST("Battle Cafe Koraidon reward requires every past Paradox Pokemon")
+{
+    CatchBattleCafeTestSpecies(sTestBattleCafePastParadoxDexNums, ARRAY_COUNT(sTestBattleCafePastParadoxDexNums) - 1);
+
+    BattleCafe_GetParadoxRewardEligibility();
+    EXPECT_EQ(gSpecialVar_Result & BATTLE_CAFE_PARADOX_REWARD_KORAIDON, 0);
+
+    GetSetPokedexFlag(NATIONAL_DEX_RAGING_BOLT, FLAG_SET_CAUGHT);
+    BattleCafe_GetParadoxRewardEligibility();
+    EXPECT_EQ(gSpecialVar_Result, BATTLE_CAFE_PARADOX_REWARD_KORAIDON);
+}
+
+TEST("Battle Cafe can unlock both Paradox legendary rewards")
+{
+    CatchBattleCafeTestSpecies(sTestBattleCafeFutureParadoxDexNums, ARRAY_COUNT(sTestBattleCafeFutureParadoxDexNums));
+    CatchBattleCafeTestSpecies(sTestBattleCafePastParadoxDexNums, ARRAY_COUNT(sTestBattleCafePastParadoxDexNums));
+
+    BattleCafe_GetParadoxRewardEligibility();
+    EXPECT_EQ(gSpecialVar_Result,
+              BATTLE_CAFE_PARADOX_REWARD_MIRAIDON | BATTLE_CAFE_PARADOX_REWARD_KORAIDON);
+}
+
 TEST("Battle Cafe Attack vitamin set gives two Protein EX and Calcium EX for four points")
 {
     ClearBag();
@@ -201,6 +274,32 @@ TEST("Battle Cafe challenges keep innates when the preference is enabled")
     VarSet(VAR_TEMP_8, BATTLE_CAFE_MODE_ENDLESS_CHALLENGE);
     BattleCafe_InitChallenge();
     EXPECT(!AreReplayInnatesDisabled());
+
+    BattleCafe_EndChallenge();
+}
+
+TEST("Battle Cafe restores held items changed by battle effects after every round")
+{
+    enum Item item;
+
+    CreateMon(&gPlayerParty[0], SPECIES_UMBREON, 50, 0, OTID_STRUCT_PLAYER_ID);
+    CreateMon(&gPlayerParty[1], SPECIES_KROOKODILE, 50, 0, OTID_STRUCT_PLAYER_ID);
+    item = ITEM_LEFTOVERS;
+    SetMonData(&gPlayerParty[0], MON_DATA_HELD_ITEM, &item);
+
+    VarSet(VAR_TEMP_8, BATTLE_CAFE_MODE_SUPER_RUSH);
+    BattleCafe_InitChallenge();
+
+    // Simulate Trick replacing Umbreon's item and giving Krookodile an item.
+    item = ITEM_FLAME_ORB;
+    SetMonData(&gPlayerParty[0], MON_DATA_HELD_ITEM, &item);
+    item = ITEM_CHOICE_SCARF;
+    SetMonData(&gPlayerParty[1], MON_DATA_HELD_ITEM, &item);
+
+    BattleCafe_RestoreHeldItems();
+
+    EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_HELD_ITEM), ITEM_LEFTOVERS);
+    EXPECT_EQ(GetMonData(&gPlayerParty[1], MON_DATA_HELD_ITEM), ITEM_NONE);
 
     BattleCafe_EndChallenge();
 }

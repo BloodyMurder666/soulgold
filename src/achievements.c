@@ -80,6 +80,8 @@ static bool32 Achievement_PredicateCaughtMeloetta(void);
 static bool32 Achievement_PredicateCaughtZeraora(void);
 static bool32 Achievement_PredicateObtainedGalarianBirds(void);
 static bool32 Achievement_PredicateObtainedWeatherGenies(void);
+static bool32 Achievement_PredicateObtainedTapus(void);
+static bool32 Achievement_PredicateObtainedParadoxLegends(void);
 static bool32 Achievement_PredicateCaughtAllParadoxPokemon(void);
 static bool32 Achievement_PredicateHasLevel100Pokemon(void);
 static bool32 Achievement_IsInScaledChaosFacility(void);
@@ -202,7 +204,7 @@ static const u8 sText_AchLongTermCareerDesc[] = _("Defend your champion title fi
 static const u8 sText_AchUndefeatedChampionName[] = _("Undefeated Champion");
 static const u8 sText_AchUndefeatedChampionDesc[] = _("Defend your champion title 10 times.");
 static const u8 sText_AchBuenaSuperfanName[] = _("Buena Superfan");
-static const u8 sText_AchBuenaSuperfanDesc[] = _("Answer Buena's Password\ncorrectly on 7 days.");
+static const u8 sText_AchBuenaSuperfanDesc[] = _("Answer Buena's Password\ncorrectly on 3 days.");
 static const u8 sText_AchTravellingHealerName[] = _("Travelling Healer");
 static const u8 sText_AchTravellingHealerDesc[] = _("Heal the Miltank\nin Route 39's barn.");
 static const u8 sText_AchMasterpieceName[] = _("Masterpiece");
@@ -297,6 +299,10 @@ static const u8 sText_AchObtainGalarianBirdsName[] = _("Galarian Special");
 static const u8 sText_AchObtainGalarianBirdsDesc[] = _("Obtain all three Galarian\nlegendary birds.");
 static const u8 sText_AchMasterOfWishesName[] = _("Master of Wishes");
 static const u8 sText_AchMasterOfWishesDesc[] = _("Obtain all four forces of nature.");
+static const u8 sText_AchObtainTapusName[] = _("Island Guardians");
+static const u8 sText_AchObtainTapusDesc[] = _("Obtain all four guardian deities.");
+static const u8 sText_AchObtainParadoxLegendsName[] = _("Across the Ages");
+static const u8 sText_AchObtainParadoxLegendsDesc[] = _("Obtain both Koraidon and Miraidon.");
 static const u8 sText_AchDefeatStevenName[] = _("Mineralogy");
 static const u8 sText_AchDefeatStevenDesc[] = _("Defeat Champion from another\nregion.");
 static const u8 sText_AchAutophotographerName[] = _("Autophotographer");
@@ -466,6 +472,7 @@ static const struct Achievement sAchievements[] =
     // Legendary and Mythical Pokémon - Generation VII
     {ACH_CATCH_MAGEARNA, sText_AchCatchMagearnaName, sText_AchCatchMagearnaDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMagearna},
     {ACH_CATCH_ZERAORA, sText_AchCatchZeraoraName, sText_AchCatchZeraoraDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtZeraora},
+    {ACH_OBTAIN_TAPUS, sText_AchObtainTapusName, sText_AchObtainTapusDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateObtainedTapus},
 
     // Legendary and Mythical Pokémon - Generation VIII
     {ACH_CATCH_MARSHADOW, sText_AchCatchMarshadowName, sText_AchCatchMarshadowDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtMarshadow},
@@ -474,6 +481,7 @@ static const struct Achievement sAchievements[] =
     // Legendary and Mythical Pokémon - Generation IX
     {ACH_CATCH_CHIEN_PAO, sText_AchCatchChienPaoName, sText_AchCatchChienPaoDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtChienPao},
     {ACH_CATCH_OGERPON, sText_AchCatchOgerponName, sText_AchCatchOgerponDesc, ACH_TIER_GOLD, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtOgerpon},
+    {ACH_OBTAIN_PARADOX_LEGENDS, sText_AchObtainParadoxLegendsName, sText_AchObtainParadoxLegendsDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateObtainedParadoxLegends},
 
     {ACH_PARADOXICAL, sText_AchParadoxicalName, sText_AchParadoxicalDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateCaughtAllParadoxPokemon},
     {ACH_MASTER_OF_JOHTO, sText_AchMasterOfJohtoName, sText_AchMasterOfJohtoDesc, ACH_TIER_PLATINUM, ACH_COUNTER_NONE, 0, TRAINER_NONE_ACH, Achievement_PredicateAllOtherTrophies},
@@ -501,6 +509,8 @@ STATIC_ASSERT(ACH_BATTLE_CAFE_DAILY == 119, BattleCafeDailyIdAppendedAfterExisti
 STATIC_ASSERT(ACH_BATTLE_CAFE_RUSH == 120, BattleCafeRushIdAppendedAfterExistingIds);
 STATIC_ASSERT(ACH_BATTLE_CAFE_SUPER_CHALLENGE == 121, BattleCafeSuperChallengeIdAppendedAfterExistingIds);
 STATIC_ASSERT(ACH_BATTLE_CAFE_ENDLESS_MASTER == 122, BattleCafeEndlessMasterIdAppendedAfterExistingIds);
+STATIC_ASSERT(ACH_OBTAIN_TAPUS == 123, TapusIdAppendedAfterExistingIds);
+STATIC_ASSERT(ACH_OBTAIN_PARADOX_LEGENDS == 124, ParadoxLegendsIdAppendedAfterExistingIds);
 
 static const u8 *const sTierLabels[] =
 {
@@ -567,7 +577,7 @@ static bool32 Achievement_PredicateAllCameronPhotos(void)
 
 static bool32 Achievement_PredicateBuenaSuperfan(void)
 {
-    return VarGet(VAR_BUENA_PASSWORDS_CORRECT) >= 7;
+    return VarGet(VAR_BUENA_PASSWORDS_CORRECT) >= 3;
 }
 
 static bool32 Achievement_PredicateTravellingHealer(void)
@@ -920,6 +930,20 @@ static bool32 Achievement_PredicateObtainedWeatherGenies(void)
         && FlagGet(FLAG_BATTLE_CAFE_THUNDURUS_RECEIVED)
         && FlagGet(FLAG_BATTLE_CAFE_LANDORUS_RECEIVED)
         && FlagGet(FLAG_BATTLE_CAFE_ENAMORUS_RECEIVED);
+}
+
+static bool32 Achievement_PredicateObtainedTapus(void)
+{
+    return FlagGet(FLAG_BATTLE_CAFE_TAPU_KOKO_RECEIVED)
+        && FlagGet(FLAG_BATTLE_CAFE_TAPU_LELE_RECEIVED)
+        && FlagGet(FLAG_BATTLE_CAFE_TAPU_BULU_RECEIVED)
+        && FlagGet(FLAG_BATTLE_CAFE_TAPU_FINI_RECEIVED);
+}
+
+static bool32 Achievement_PredicateObtainedParadoxLegends(void)
+{
+    return FlagGet(FLAG_BATTLE_CAFE_MIRAIDON_RECEIVED)
+        && FlagGet(FLAG_BATTLE_CAFE_KORAIDON_RECEIVED);
 }
 
 static const u16 sParadoxPokemon[] =

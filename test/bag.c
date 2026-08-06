@@ -99,6 +99,21 @@ TEST("Infinite held item unlocks cannot be tossed from the bag or a Pokemon")
     EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_HELD_ITEM), ITEM_NONE);
 }
 
+TEST("Canceling a held item switch from the party menu does not duplicate the selected item")
+{
+    enum Item heldItem = ITEM_POWER_ANKLET;
+    struct BagPocket *pocket = &gBagPockets[POCKET_ITEMS];
+
+    memset(pocket->itemSlots, 0, sizeof(gSaveBlock1Ptr->bag.items));
+    CreateMon(&gPlayerParty[0], SPECIES_PIKACHU, 50, 0, OTID_STRUCT_PLAYER_ID);
+    SetMonData(&gPlayerParty[0], MON_DATA_HELD_ITEM, &heldItem);
+    EXPECT(AddBagItem(ITEM_BOTTLE_CAP, 1));
+
+    EXPECT(SwShPartyMenu_TestCancelHeldItemSwitch(ITEM_BOTTLE_CAP));
+    EXPECT_EQ(CountTotalItemQuantityInBag(ITEM_BOTTLE_CAP), 1);
+    EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_HELD_ITEM), ITEM_POWER_ANKLET);
+}
+
 TEST("Infinite held item migration flag does not alias Pokemon received progress")
 {
     FlagClear(FLAG_SYS_POKEMON_GET);

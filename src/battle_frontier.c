@@ -54,6 +54,10 @@ STATIC_ASSERT(sizeof(enum FrontierMon) == sizeof(u16), FrontierMonSize_MustBeTwo
 static void HandleFacilityTrainerBattleEnd(void)
 {
     u8 facility = gBattleScripting.specialTrainerBattleType;
+
+    if (facility == FACILITY_BATTLE_CAFE)
+        BattleCafe_RestoreHeldItems();
+
     switch (facility) 
     {
     case FACILITY_BATTLE_TOWER:

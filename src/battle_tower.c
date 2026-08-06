@@ -21,6 +21,7 @@
 #include "battle_transition.h"
 #include "trainer_see.h"
 #include "new_game.h"
+#include "pokedex.h"
 #include "string_util.h"
 #include "data.h"
 #include "link.h"
@@ -692,6 +693,7 @@ static EWRAM_DATA u16 sBattleCafeTrainerIds[3] = {TRAINER_NONE, TRAINER_NONE, TR
 static EWRAM_DATA u16 sBattleCafeSavedBattleMode = FRONTIER_MODE_SINGLES;
 static EWRAM_DATA u16 sBattleCafeSavedFacility = FRONTIER_FACILITY_TOWER;
 static EWRAM_DATA u8 sBattleCafeSavedLevelMode = FRONTIER_LVL_50;
+static EWRAM_DATA u16 sBattleCafeSavedHeldItems[PARTY_SIZE][MAX_MON_ITEMS] = {0};
 static EWRAM_DATA u8 sBattleCafeChallengeMode = BATTLE_CAFE_MODE_DAILY;
 static EWRAM_DATA bool8 sBattleCafeChallengeActive = FALSE;
 
@@ -707,6 +709,34 @@ static const struct BattleCafeVitaminSet sBattleCafeVitaminSets[] =
     [BATTLE_CAFE_VITAMIN_SET_ATK] = {ITEM_PROTEIN_EX, ITEM_CALCIUM_EX, 4},
     [BATTLE_CAFE_VITAMIN_SET_DEF] = {ITEM_IRON_EX, ITEM_ZINC_EX, 4},
     [BATTLE_CAFE_VITAMIN_SET_SPE] = {ITEM_CARBOS_EX, ITEM_NONE, 2},
+};
+
+static const u16 sBattleCafePastParadoxSpecies[] =
+{
+    SPECIES_GREAT_TUSK,
+    SPECIES_SCREAM_TAIL,
+    SPECIES_BRUTE_BONNET,
+    SPECIES_FLUTTER_MANE,
+    SPECIES_SLITHER_WING,
+    SPECIES_SANDY_SHOCKS,
+    SPECIES_ROARING_MOON,
+    SPECIES_WALKING_WAKE,
+    SPECIES_GOUGING_FIRE,
+    SPECIES_RAGING_BOLT,
+};
+
+static const u16 sBattleCafeFutureParadoxSpecies[] =
+{
+    SPECIES_IRON_TREADS,
+    SPECIES_IRON_BUNDLE,
+    SPECIES_IRON_HANDS,
+    SPECIES_IRON_JUGULIS,
+    SPECIES_IRON_MOTH,
+    SPECIES_IRON_THORNS,
+    SPECIES_IRON_VALIANT,
+    SPECIES_IRON_LEAVES,
+    SPECIES_IRON_BOULDER,
+    SPECIES_IRON_CROWN,
 };
 
 #include "data/battle_frontier/battle_tent.h"
@@ -791,13 +821,19 @@ void CallBattleTowerFunc(void)
 
 void BattleCafe_InitChallenge(void)
 {
-    u32 i;
+    u32 i, j;
 
     sBattleCafeSavedLevelMode = gSaveBlock2Ptr->frontier.lvlMode;
     sBattleCafeSavedBattleMode = VarGet(VAR_FRONTIER_BATTLE_MODE);
     sBattleCafeSavedFacility = VarGet(VAR_FRONTIER_FACILITY);
     sBattleCafeChallengeMode = VarGet(VAR_TEMP_8);
     sBattleCafeChallengeActive = TRUE;
+
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        for (j = 0; j < MAX_MON_ITEMS; j++)
+            sBattleCafeSavedHeldItems[i][j] = GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM + j);
+    }
 
     // The Cafe uses the standard Frontier trainer data, but always runs as
     // an open-level singles challenge regardless of the player's last visit
@@ -809,6 +845,20 @@ void BattleCafe_InitChallenge(void)
 
     for (i = 0; i < ARRAY_COUNT(sBattleCafeTrainerIds); i++)
         sBattleCafeTrainerIds[i] = TRAINER_NONE;
+}
+
+void BattleCafe_RestoreHeldItems(void)
+{
+    u32 i, j;
+
+    if (!sBattleCafeChallengeActive)
+        return;
+
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        for (j = 0; j < MAX_MON_ITEMS; j++)
+            SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM + j, &sBattleCafeSavedHeldItems[i][j]);
+    }
 }
 
 void BattleCafe_SelectOpponent(void)
@@ -971,11 +1021,35 @@ void BattleCafe_TryPurchaseVitaminSet(void)
     gSpecialVar_Result = BATTLE_CAFE_VITAMIN_PURCHASE_SUCCESS;
 }
 
+static bool32 BattleCafe_HasCaughtAllSpecies(const u16 *species, u32 count)
+{
+    u32 i;
+
+    for (i = 0; i < count; i++)
+    {
+        if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species[i]), FLAG_GET_CAUGHT))
+            return FALSE;
+    }
+
+    return TRUE;
+}
+
+void BattleCafe_GetParadoxRewardEligibility(void)
+{
+    gSpecialVar_Result = 0;
+
+    if (BattleCafe_HasCaughtAllSpecies(sBattleCafeFutureParadoxSpecies, ARRAY_COUNT(sBattleCafeFutureParadoxSpecies)))
+        gSpecialVar_Result |= BATTLE_CAFE_PARADOX_REWARD_MIRAIDON;
+    if (BattleCafe_HasCaughtAllSpecies(sBattleCafePastParadoxSpecies, ARRAY_COUNT(sBattleCafePastParadoxSpecies)))
+        gSpecialVar_Result |= BATTLE_CAFE_PARADOX_REWARD_KORAIDON;
+}
+
 void BattleCafe_EndChallenge(void)
 {
     if (!sBattleCafeChallengeActive)
         return;
 
+    BattleCafe_RestoreHeldItems();
     gSaveBlock2Ptr->frontier.lvlMode = sBattleCafeSavedLevelMode;
     VarSet(VAR_FRONTIER_BATTLE_MODE, sBattleCafeSavedBattleMode);
     VarSet(VAR_FRONTIER_FACILITY, sBattleCafeSavedFacility);
