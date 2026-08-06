@@ -371,6 +371,8 @@ const u32 gTrainerFrontPic_Scientist[] = INCBIN_U32("graphics/trainers/front_pic
 const u16 gTrainerPalette_Scientist[] = INCBIN_U16("graphics/trainers/front_pics/scientist.gbapal");
 const u32 gTrainerFrontPic_Ghost[] = INCBIN_U32("graphics/trainers/front_pics/ghost.4bpp.smol");
 const u16 gTrainerPalette_Ghost[16] = INCBIN_U16("graphics/trainers/front_pics/ghost.gbapal");
+const u32 gTrainerFrontPic_Gambler[] = INCBIN_U32("graphics/trainers/front_pics/gambler.4bpp.smol");
+const u16 gTrainerPalette_Gambler[] = INCBIN_U16("graphics/trainers/front_pics/gambler.gbapal");
 
 const u8 gTrainerBackPic_Brendan[] = INCBIN_U8("graphics/trainers/back_pics/brendan.4bpp");
 const u8 gTrainerBackPic_May[] = INCBIN_U8("graphics/trainers/back_pics/may.4bpp");
@@ -537,6 +539,7 @@ const struct TrainerSprite gTrainerSprites[] =
     TRAINER_SPRITE(TRAINER_PIC_FRONT_SILVER, gTrainerFrontPic_Silver, gTrainerPalette_Silver),
     TRAINER_SPRITE(TRAINER_PIC_FRONT_SCIENTIST, gTrainerFrontPic_Scientist, gTrainerPalette_Scientist),
     TRAINER_SPRITE(TRAINER_PIC_FRONT_GHOST, gTrainerFrontPic_Ghost, gTrainerPalette_Ghost),
+    TRAINER_SPRITE(TRAINER_PIC_FRONT_GAMBLER, gTrainerFrontPic_Gambler, gTrainerPalette_Gambler),
 };
 
 static const union AnimCmd sAnimCmd_Hoenn[] =

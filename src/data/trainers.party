@@ -18719,7 +18719,7 @@ Timid Nature
 === TRAINER_CAFE_ELTON ===
 Name: Elton
 Class: Cooltrainer
-Pic: Cooltrainer M
+Pic: Gambler
 Gender: Male
 Music: Dp Ace Trainer
 Double Battle: No
@@ -19245,105 +19245,135 @@ EVs: 252 HP / 252 Atk / 4 SpA
 - Iron Head
 
 === TRAINER_CAFE_JUNA ===
-Name: Juna
-Class: Swimmer F
-Pic: Swimmer F
-Gender: Female
-Music: Hg Girl 1
+Name: Simpli
+Class: Cooltrainer
+Pic: Elite Four Drake
+Gender: Male
+Music: Hg Boy 2
 Double Battle: No
 AI: Smart Trainer
 
-Pelipper @ Damp Rock
-Ability: Drizzle
+Grimmsnarl @ Light Clay  
+Ability: Prankster  
 Level: 90
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Bold Nature
-- Hurricane
-- Surf
-- U-Turn
-- Roost
+Careful Nature  
+- Reflect  
+- Light Screen  
+- Parting Shot  
+- Spirit Break  
 
-Floatzel @ Choice Band
-Ability: Swift Swim
+Palafin @ Choice Band  
+Ability: Zero to Hero  
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Adamant Nature
-- Wave Crash
-- Close Combat
-- Ice Spinner
-- Aqua Jet
+Adamant Nature  
+- Jet Punch  
+- Flip Turn  
+- Close Combat  
+- Wave Crash  
 
-Archaludon @ Assault Vest
-Ability: Stamina
+Kyogre @ Blue Orb  
+Ability: Drizzle  
 Level: 90
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Modest Nature
-- Electro Shot
-- Draco Meteor
-- Flash Cannon
-- Body Press
+Timid Nature  
+IVs: 0 Atk  
+- Origin Pulse  
+- Water Spout  
+- Ice Beam  
+- Thunder  
 
-Swampert @ Watertite
+Swampert @ Swampertite  
+Ability: Damp  
+Level: 90  
+Shiny: Yes
+Jolly Nature  
+- Wave Crash  
+- Earthquake  
+- Flip Turn  
+- Ice Punch  
+
+Dragapult @ Life Orb  
+Ability: Clear Body  
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Adamant Nature
-- Liquidation
-- Earthquake
-- Ice Punch
-- Flip Turn
+Timid Nature  
+- Draco Meteor  
+- Will-O-Wisp  
+- Hex  
+- U-turn  
+
+Kingambit @ Leftovers  
+Ability: Supreme Overlord  
+Level: 90
+Adamant Nature  
+- Kowtow Cleave  
+- Iron Head  
+- Sucker Punch  
+- Swords Dance  
 
 === TRAINER_CAFE_JUNA ===
-Name: Juna
-Class: Swimmer F
-Pic: Swimmer F
-Gender: Female
-Music: Hg Girl 1
-Double Battle: No
+Name: Simpli
+Class: Cooltrainer
+Pic: Elite Four Drake
+Gender: Male
+Music: Hg Boy 2
+Double Battle: Yes
 AI: Smart Trainer
 Difficulty: Hard
 
-Pelipper @ Damp Rock
-Ability: Drizzle
-Level: 100
-EVs: 252 HP / 252 Def / 4 SpA
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Bold Nature
-- Hurricane
-- Surf
-- U-Turn
-- Roost
+Grimmsnarl @ Light Clay  
+Ability: Prankster  
+EVs: 252 HP / 128 Def / 128 SpD  
+Careful Nature  
+- Reflect  
+- Light Screen  
+- Parting Shot  
+- Spirit Break  
 
-Floatzel @ Choice Band
-Ability: Swift Swim
-Level: 100
-EVs: 4 HP / 252 Atk / 252 Spe
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Adamant Nature
-- Wave Crash
-- Close Combat
-- Ice Spinner
-- Aqua Jet
+Palafin @ Choice Band  
+Ability: Zero to Hero  
+EVs: 8 HP / 248 Atk / 248 Spe  
+Adamant Nature  
+- Jet Punch  
+- Flip Turn  
+- Close Combat  
+- Wave Crash  
 
-Archaludon @ Assault Vest
-Ability: Stamina
-Level: 100
-EVs: 252 HP / 252 SpA / 4 SpD
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Modest Nature
-- Electro Shot
-- Draco Meteor
-- Flash Cannon
-- Body Press
+Kyogre @ Blue Orb  
+Ability: Drizzle  
+EVs: 252 SpA / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Origin Pulse  
+- Water Spout  
+- Ice Beam  
+- Thunder  
 
-Swampert @ Watertite
-Level: 100
-EVs: 4 HP / 252 Atk / 252 Spe
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Adamant Nature
-- Liquidation
-- Earthquake
-- Ice Punch
-- Flip Turn
+Swampert @ Swampertite  
+Ability: Damp
+Shiny: Yes   
+EVs: 252 Atk / 252 Spe  
+Jolly Nature  
+- Wave Crash  
+- Earthquake  
+- Flip Turn  
+- Ice Punch  
+
+Dragapult @ Life Orb  
+Ability: Clear Body  
+EVs: 4 HP / 252 SpA / 252 Spe  
+Timid Nature  
+- Draco Meteor  
+- Will-O-Wisp  
+- Hex  
+- U-turn  
+
+Kingambit @ Leftovers  
+Ability: Supreme Overlord  
+EVs: 252 HP / 252 Atk / 4 SpD  
+Adamant Nature  
+- Kowtow Cleave  
+- Iron Head  
+- Sucker Punch  
+- Swords Dance  
 
 === TRAINER_CAFE_TYLARIE ===
 Name: Tylarie

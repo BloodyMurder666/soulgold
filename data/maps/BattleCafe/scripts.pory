@@ -1289,20 +1289,19 @@ script BattleCafe_TrainerDrac {
     end
 }
 
-script BattleCafe_TrainerMarina {
+script BattleCafe_TrainerSimpli {
     lock
     faceplayer
     
-    if (flag(FLAG_DAILY_BATTLE_CAFE_JUNA)) {
-        msgbox("Tomorrow will surely be better...")
+    if (flag(FLAG_DAILY_BATTLE_CAFE_SIMPLI)) {
+        msgbox("Tomorrow will surely be better.")
         release
         end
     }
-    msgbox("I'm on a rainy mood.
-            Fight me!")
+    msgbox("Gamble with the rain!")
     trainerbattle_no_intro(TRAINER_CAFE_JUNA, "Weathered...")
-    setflag(FLAG_DAILY_BATTLE_CAFE_JUNA)
-    msgbox("Maybe tomorrow will be better...")
+    setflag(FLAG_DAILY_BATTLE_CAFE_SIMPLI)
+    msgbox("Maybe tomorrow will go better.")
     call(BattleCafe_GiveDailyCandyReward)
     release
     end
