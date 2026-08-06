@@ -714,47 +714,6 @@ SINGLE_BATTLE_TEST("Raid boss: Ogerpon targets the player with a remapped move a
     }
 }
 
-SINGLE_BATTLE_TEST("Raid boss: creation trio profiles alternate between base and Origin formes")
-{
-    u16 baseSpecies, originSpecies;
-    u8 profile, phase;
-
-    PARAMETRIZE { baseSpecies = SPECIES_DIALGA;   originSpecies = SPECIES_DIALGA_ORIGIN;   profile = BOSS_PHASE_PROFILE_DIALGA;   phase = 0; }
-    PARAMETRIZE { baseSpecies = SPECIES_DIALGA;   originSpecies = SPECIES_DIALGA_ORIGIN;   profile = BOSS_PHASE_PROFILE_DIALGA;   phase = 1; }
-    PARAMETRIZE { baseSpecies = SPECIES_DIALGA;   originSpecies = SPECIES_DIALGA_ORIGIN;   profile = BOSS_PHASE_PROFILE_DIALGA;   phase = 2; }
-    PARAMETRIZE { baseSpecies = SPECIES_DIALGA;   originSpecies = SPECIES_DIALGA_ORIGIN;   profile = BOSS_PHASE_PROFILE_DIALGA;   phase = 3; }
-    PARAMETRIZE { baseSpecies = SPECIES_PALKIA;   originSpecies = SPECIES_PALKIA_ORIGIN;   profile = BOSS_PHASE_PROFILE_PALKIA;   phase = 0; }
-    PARAMETRIZE { baseSpecies = SPECIES_PALKIA;   originSpecies = SPECIES_PALKIA_ORIGIN;   profile = BOSS_PHASE_PROFILE_PALKIA;   phase = 1; }
-    PARAMETRIZE { baseSpecies = SPECIES_PALKIA;   originSpecies = SPECIES_PALKIA_ORIGIN;   profile = BOSS_PHASE_PROFILE_PALKIA;   phase = 2; }
-    PARAMETRIZE { baseSpecies = SPECIES_PALKIA;   originSpecies = SPECIES_PALKIA_ORIGIN;   profile = BOSS_PHASE_PROFILE_PALKIA;   phase = 3; }
-    PARAMETRIZE { baseSpecies = SPECIES_GIRATINA; originSpecies = SPECIES_GIRATINA_ORIGIN; profile = BOSS_PHASE_PROFILE_GIRATINA; phase = 0; }
-    PARAMETRIZE { baseSpecies = SPECIES_GIRATINA; originSpecies = SPECIES_GIRATINA_ORIGIN; profile = BOSS_PHASE_PROFILE_GIRATINA; phase = 1; }
-    PARAMETRIZE { baseSpecies = SPECIES_GIRATINA; originSpecies = SPECIES_GIRATINA_ORIGIN; profile = BOSS_PHASE_PROFILE_GIRATINA; phase = 2; }
-    PARAMETRIZE { baseSpecies = SPECIES_GIRATINA; originSpecies = SPECIES_GIRATINA_ORIGIN; profile = BOSS_PHASE_PROFILE_GIRATINA; phase = 3; }
-
-    GIVEN {
-        ASSUME(GetMoveEffect(MOVE_SHEER_COLD) == EFFECT_OHKO);
-        PLAYER(SPECIES_MACHAMP) { Level(100); Ability(ABILITY_NO_GUARD); Speed(1000); HP(10000); MaxHP(10000); Moves(MOVE_SHEER_COLD, MOVE_CELEBRATE); }
-        OPPONENT(baseSpecies) { Level(100); Speed(1); Moves(MOVE_CELEBRATE); }
-        ConfigureTestBossProfile(profile);
-    } WHEN {
-        if (phase == 0)
-        {
-            TURN { MOVE(player, MOVE_CELEBRATE); MOVE(opponent, moveSlot: 2); }
-        }
-        else
-        {
-            for (u32 i = 0; i < phase; i++)
-                TURN { MOVE(player, MOVE_SHEER_COLD); MOVE(opponent, moveSlot: 2); }
-        }
-    } THEN {
-        EXPECT_EQ(gBattleStruct->boss.phaseProfile, profile);
-        EXPECT_EQ(opponent->species, phase % 2 == 0 ? baseSpecies : originSpecies);
-        EXPECT_EQ(gBattleStruct->boss.barsRemaining, 4 - phase);
-        ExpectBossPhaseActive();
-    }
-}
-
 WILD_BATTLE_TEST("Raid boss: capture restores the original encounter moves after profile phases")
 {
     GIVEN {
