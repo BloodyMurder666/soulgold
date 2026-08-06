@@ -1,18 +1,1 @@
-- Spoiler tags
-
-
-correct order: down, up, left, up, left, down, right, right
-
-
-    bosslegendaryencounterwithmoves(
-        SPECIES_DARKRAI,
-        50,
-        LOCALID_ARTICUNO,
-        FLAG_HIDE_ARTICUNO,
-        4,
-        SPECIES_DARKRAI_MEGA,
-        110,
-        MOVE_DARK_PULSE,
-        MOVE_ICE_BEAM,
-        MOVE_DARK_VOID,
-        MOVE_DREAM_EATER)
+- Turboblaze ability pop up corrupts other ability popups?
