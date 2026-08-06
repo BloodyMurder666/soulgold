@@ -210,7 +210,7 @@
 #define SONG_MUS_HG_RADIO_ROUTE201                      0
 #define SONG_MUS_HG_RADIO_TRAINER                       0
 #define SONG_MUS_HG_RADIO_VARIETY                       0
-#define SONG_MUS_HG_VS_KYOGRE_GROUDON                   0
+#define SONG_MUS_HG_VS_KYOGRE_GROUDON                   1
 #define SONG_MUS_HG_POKEWALKER                          0
 #define SONG_MUS_HG_VS_ARCEUS                           0
 #define SONG_MUS_HG_OBTAIN_ACCESSORY                    0
