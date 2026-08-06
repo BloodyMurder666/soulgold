@@ -15,6 +15,12 @@ order: 1
 - Gym battles are double battles unless enforced into singles by another setting
 - Trainers with no pre-assigned moves for their Pokémon generate slightly smarter movepools based on progression.
 
+### How do I access Whitney's Gym?
+- Go to the Radio Tower and complete the quiz on the first floor
+
+### How do I remove the weird tree after beating 3rd Gym?
+- Go to Goldenrod Flower Shop next to the gym and get Squirtbottle to wake up the tree.
+
 ### Strength HM?
 - Olivine Cafe.
 

@@ -16,7 +16,7 @@ RuinsSecretRoom_1:
 	goto_if_eq RuinsSecretRoom_5
 # 21 "data/maps/RuinsOfAlph_SecretRoom/scripts.pory"
 	msgbox RuinsSecretRoom_Text_1, MSGBOX_SIGN
-# 22 "data/maps/RuinsOfAlph_SecretRoom/scripts.pory"
+# 24 "data/maps/RuinsOfAlph_SecretRoom/scripts.pory"
 	release
 	end
 
@@ -52,4 +52,6 @@ RuinsSecretRoom_Text_0:
 
 RuinsSecretRoom_Text_1:
 # 21 "data/maps/RuinsOfAlph_SecretRoom/scripts.pory"
-	.string "Colored symbols fill the wall.$"
+	.string "The wall depicts a small creature\n"
+	.string "opening a portal to some distant\l"
+	.string "place.$"

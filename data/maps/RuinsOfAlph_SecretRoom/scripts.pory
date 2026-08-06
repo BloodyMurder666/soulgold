@@ -18,7 +18,9 @@ script RuinsSecretRoom {
         release
         end
     }
-    msgbox("Colored symbols fill the wall.", MSGBOX_SIGN)
+    msgbox("The wall depicts a small creature
+            opening a portal to some distant
+            place.", MSGBOX_SIGN)
     release
     end
 }
