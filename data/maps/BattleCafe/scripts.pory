@@ -1294,17 +1294,15 @@ script BattleCafe_TrainerMarina {
     faceplayer
     
     if (flag(FLAG_DAILY_BATTLE_CAFE_JUNA)) {
-        msgbox("Pelipper says the rain has
-                passed for today. Tomorrow!")
+        msgbox("Tomorrow will surely be better...")
         release
         end
     }
-    msgbox("Pelipper, call in the rain!
-            Let's make some waves.")
-    trainerbattle_no_intro(TRAINER_CAFE_JUNA, "You weathered the whole storm.")
+    msgbox("I'm on a rainy mood.
+            Fight me!")
+    trainerbattle_no_intro(TRAINER_CAFE_JUNA, "Weathered...")
     setflag(FLAG_DAILY_BATTLE_CAFE_JUNA)
-    msgbox("Even Swampert couldn't stop you once
-            you found your rhythm.")
+    msgbox("Maybe tomorrow will be better...")
     call(BattleCafe_GiveDailyCandyReward)
     release
     end

@@ -2355,53 +2355,53 @@ BattleCafe_TrainerMarina::
 	faceplayer
 # 1296 "data/maps/BattleCafe/scripts.pory"
 	goto_if_set FLAG_DAILY_BATTLE_CAFE_JUNA, BattleCafe_TrainerMarina_2
-# 1302 "data/maps/BattleCafe/scripts.pory"
+# 1301 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerMarina_Text_1
-# 1304 "data/maps/BattleCafe/scripts.pory"
+# 1303 "data/maps/BattleCafe/scripts.pory"
 	trainerbattle_no_intro TRAINER_CAFE_JUNA, BattleCafe_TrainerMarina_Text_2
-# 1305 "data/maps/BattleCafe/scripts.pory"
+# 1304 "data/maps/BattleCafe/scripts.pory"
 	setflag FLAG_DAILY_BATTLE_CAFE_JUNA
-# 1306 "data/maps/BattleCafe/scripts.pory"
+# 1305 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerMarina_Text_3
-# 1308 "data/maps/BattleCafe/scripts.pory"
+# 1306 "data/maps/BattleCafe/scripts.pory"
 	call BattleCafe_GiveDailyCandyReward
-# 1309 "data/maps/BattleCafe/scripts.pory"
+# 1307 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 BattleCafe_TrainerMarina_2:
 # 1297 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerMarina_Text_0
-# 1299 "data/maps/BattleCafe/scripts.pory"
+# 1298 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 
 BattleCafe_TrainerTylarie::
-# 1314 "data/maps/BattleCafe/scripts.pory"
+# 1312 "data/maps/BattleCafe/scripts.pory"
 	lock
-# 1315 "data/maps/BattleCafe/scripts.pory"
+# 1313 "data/maps/BattleCafe/scripts.pory"
 	faceplayer
-# 1317 "data/maps/BattleCafe/scripts.pory"
+# 1315 "data/maps/BattleCafe/scripts.pory"
 	goto_if_set FLAG_DAILY_BATTLE_CAFE_TYLARIE, BattleCafe_TrainerTylarie_2
-# 1323 "data/maps/BattleCafe/scripts.pory"
+# 1321 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerTylarie_Text_1
-# 1325 "data/maps/BattleCafe/scripts.pory"
+# 1323 "data/maps/BattleCafe/scripts.pory"
 	trainerbattle_no_intro TRAINER_CAFE_TYLARIE, BattleCafe_TrainerTylarie_Text_2
-# 1326 "data/maps/BattleCafe/scripts.pory"
+# 1324 "data/maps/BattleCafe/scripts.pory"
 	setflag FLAG_DAILY_BATTLE_CAFE_TYLARIE
-# 1327 "data/maps/BattleCafe/scripts.pory"
+# 1325 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerTylarie_Text_3
-# 1329 "data/maps/BattleCafe/scripts.pory"
+# 1327 "data/maps/BattleCafe/scripts.pory"
 	call BattleCafe_GiveDailyCandyReward
-# 1330 "data/maps/BattleCafe/scripts.pory"
+# 1328 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
 BattleCafe_TrainerTylarie_2:
-# 1318 "data/maps/BattleCafe/scripts.pory"
+# 1316 "data/maps/BattleCafe/scripts.pory"
 	msgbox BattleCafe_TrainerTylarie_Text_0
-# 1320 "data/maps/BattleCafe/scripts.pory"
+# 1318 "data/maps/BattleCafe/scripts.pory"
 	release
 	end
 
@@ -3207,38 +3207,36 @@ BattleCafe_TrainerDrac_Text_2:
 
 BattleCafe_TrainerMarina_Text_0:
 # 1297 "data/maps/BattleCafe/scripts.pory"
-	.string "Pelipper says the rain has\n"
-	.string "passed for today. Tomorrow!$"
+	.string "Tomorrow will surely be better...$"
 
 BattleCafe_TrainerMarina_Text_1:
-# 1302 "data/maps/BattleCafe/scripts.pory"
-	.string "Pelipper, call in the rain!\n"
-	.string "Let's make some waves.$"
+# 1301 "data/maps/BattleCafe/scripts.pory"
+	.string "I'm on a rainy mood.\n"
+	.string "Fight me!$"
 
 BattleCafe_TrainerMarina_Text_2:
-# 1304 "data/maps/BattleCafe/scripts.pory"
-	.string "You weathered the whole storm.$"
+# 1303 "data/maps/BattleCafe/scripts.pory"
+	.string "Weathered...$"
 
 BattleCafe_TrainerMarina_Text_3:
-# 1306 "data/maps/BattleCafe/scripts.pory"
-	.string "Even Swampert couldn't stop you once\n"
-	.string "you found your rhythm.$"
+# 1305 "data/maps/BattleCafe/scripts.pory"
+	.string "Maybe tomorrow will be better...$"
 
 BattleCafe_TrainerTylarie_Text_0:
-# 1318 "data/maps/BattleCafe/scripts.pory"
+# 1316 "data/maps/BattleCafe/scripts.pory"
 	.string "Steelix has settled down for\n"
 	.string "lunch. We'll be ready tomorrow!$"
 
 BattleCafe_TrainerTylarie_Text_1:
-# 1323 "data/maps/BattleCafe/scripts.pory"
+# 1321 "data/maps/BattleCafe/scripts.pory"
 	.string "Tylarie: Let me show you how sturdy my\n"
 	.string "team is!$"
 
 BattleCafe_TrainerTylarie_Text_2:
-# 1325 "data/maps/BattleCafe/scripts.pory"
+# 1323 "data/maps/BattleCafe/scripts.pory"
 	.string "Ouch.$"
 
 BattleCafe_TrainerTylarie_Text_3:
-# 1327 "data/maps/BattleCafe/scripts.pory"
+# 1325 "data/maps/BattleCafe/scripts.pory"
 	.string "Tylarie: Not bad. We can go at it again\n"
 	.string "another day.$"
