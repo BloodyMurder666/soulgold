@@ -1,4 +1,8 @@
 Update notes:
+5.8.2026
+- Added some moves to level-up or tutor learnsets based on Champions M-B regulation such as Wave Crash Swampert.
+
+
 4.8.2026
 - New Battle Facility: Battle Cafe. Located on Route 50, this features four daily challenges of varying difficulty and two unlockable endless modes. Various legendaries can be obtained from here.
 - Final part of the rival legendary quest is added, after obtaining Darkrai, rival will offer HM Dive to lead to the final two legendaries.

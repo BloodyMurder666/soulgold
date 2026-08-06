@@ -7060,6 +7060,7 @@ static const struct LevelUpMove sGrovyleLevelUpLearnset[] = {
 
 static const struct LevelUpMove sSceptileLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 0, MOVE_LEAF_BLADE),
+    LEVEL_UP_MOVE( 1, MOVE_EARTH_POWER),
     LEVEL_UP_MOVE( 1, MOVE_FALSE_SWIPE),
     LEVEL_UP_MOVE( 1, MOVE_FURY_CUTTER),
     LEVEL_UP_MOVE( 1, MOVE_X_SCISSOR),
@@ -7079,6 +7080,7 @@ static const struct LevelUpMove sSceptileLevelUpLearnset[] = {
     LEVEL_UP_MOVE(42, MOVE_SCREECH),
     LEVEL_UP_MOVE(49, MOVE_ENDEAVOR),
     LEVEL_UP_MOVE(56, MOVE_LEAF_STORM),
+    LEVEL_UP_MOVE(60, MOVE_DRAGON_RUSH),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_TREECKO
@@ -7146,6 +7148,7 @@ static const struct LevelUpMove sBlazikenLevelUpLearnset[] = {
     LEVEL_UP_MOVE(49, MOVE_REVERSAL),
     LEVEL_UP_MOVE(56, MOVE_FLARE_BLITZ),
     LEVEL_UP_MOVE(63, MOVE_BRAVE_BIRD),
+    LEVEL_UP_MOVE(70, MOVE_HI_JUMP_KICK),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_TORCHIC
@@ -10261,6 +10264,9 @@ static const struct LevelUpMove sStaraviaLevelUpLearnset[] = {
 
 static const struct LevelUpMove sStaraptorLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 0, MOVE_CLOSE_COMBAT),
+    LEVEL_UP_MOVE( 1, MOVE_BLAZE_KICK),
+    LEVEL_UP_MOVE( 1, MOVE_BULK_UP),
+    LEVEL_UP_MOVE( 1, MOVE_ROOST),
     LEVEL_UP_MOVE( 1, MOVE_WING_ATTACK),
     LEVEL_UP_MOVE( 1, MOVE_TACKLE),
     LEVEL_UP_MOVE( 1, MOVE_GROWL),
@@ -10272,7 +10278,8 @@ static const struct LevelUpMove sStaraptorLevelUpLearnset[] = {
     LEVEL_UP_MOVE(33, MOVE_TAKE_DOWN),
     LEVEL_UP_MOVE(41, MOVE_AGILITY),
     LEVEL_UP_MOVE(49, MOVE_BRAVE_BIRD),
-    LEVEL_UP_MOVE(57, MOVE_FINAL_GAMBIT),
+    LEVEL_UP_MOVE(53, MOVE_FINAL_GAMBIT),
+    LEVEL_UP_MOVE(57, MOVE_SKY_ATTACK),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_STARLY
@@ -15479,6 +15486,7 @@ static const struct LevelUpMove sPyroarLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_LEER),
     LEVEL_UP_MOVE( 1, MOVE_EMBER),
     LEVEL_UP_MOVE( 1, MOVE_HYPER_BEAM),
+    LEVEL_UP_MOVE( 1, MOVE_SCORCHING_SANDS),
     LEVEL_UP_MOVE( 1, MOVE_WORK_UP),
     LEVEL_UP_MOVE(11, MOVE_HEADBUTT),
     LEVEL_UP_MOVE(15, MOVE_NOBLE_ROAR),
@@ -15952,6 +15960,7 @@ static const struct LevelUpMove sBarbaracleLevelUpLearnset[] = {
     LEVEL_UP_MOVE(42, MOVE_SHELL_SMASH),
     LEVEL_UP_MOVE(48, MOVE_CROSS_CHOP),
     LEVEL_UP_MOVE(54, MOVE_STONE_EDGE),
+    LEVEL_UP_MOVE(60, MOVE_CLOSE_COMBAT),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_BINACLE
