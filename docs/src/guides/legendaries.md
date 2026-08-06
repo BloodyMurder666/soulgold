@@ -210,6 +210,10 @@ Obtain 100 trophies.
 
 After obtaining the eighth badge, return to Elder Li in Sprout Tower and prepare for a battle. Afterwards, explore the Sprout Tower basement.
 
+#### Tapus
+
+Each tapu can be purchased from the Route 50 Battle Café for 5 points.
+
 #### Poipole
 
 Obtain 45 trophies.
@@ -265,6 +269,10 @@ Register every future Paradox Pokémon in the Pokédex, then interact with the w
 [spoiler=Future Paradox wall puzzle solution]
 Bring Virizion, Terrakion, and Cobalion to their respective walls to unlock them.
 [/spoiler]
+
+#### Koraidon/Miraidon
+
+Both can be purchased from the Route 50 Battle Café for 25 points after obtaining all other Paradox Pokémon.
 
 #### Fezandipiti
 
