@@ -1,5 +1,5 @@
 ---
-title: Legendary locations (WIP)
+title: Legendary locations
 summary: Where to find currently obtainable legendaries
 category: Guide
 order: 3
