@@ -4442,3 +4442,16 @@ dialog::backdrop {
     padding: 8px 10px;
   }
 }
+
+.move-learner-body .species-card {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+@media (max-width: 1100px) {
+  #detailDialog[open] {
+    animation: none;
+    transform: none;
+  }
+}

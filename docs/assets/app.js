@@ -1835,11 +1835,36 @@ function speciesCards(list, { deferSprites = false } = {}) {
 }
 
 function hydrateMoveLearnerSprites(group) {
-  group.querySelectorAll("img[data-src]").forEach((img) => {
-    img.loading = "eager";
-    img.src = img.dataset.src;
-    img.removeAttribute("data-src");
-  });
+  if (group.dataset.spritesQueued === "true") {
+    return;
+  }
+  group.dataset.spritesQueued = "true";
+
+  const images = [...group.querySelectorAll("img[data-src]")];
+  const batchSize = 24;
+  let nextImage = 0;
+
+  function loadNextBatch() {
+    const batchEnd = Math.min(nextImage + batchSize, images.length);
+
+    for (; nextImage < batchEnd; nextImage += 1) {
+      const img = images[nextImage];
+      const src = img.dataset.src;
+
+      if (!src) {
+        continue;
+      }
+
+      img.src = src;
+      img.removeAttribute("data-src");
+    }
+
+    if (nextImage < images.length) {
+      window.setTimeout(loadNextBatch, 50);
+    }
+  }
+
+  loadNextBatch();
 }
 
 function bindMoveLearnerGroups() {
