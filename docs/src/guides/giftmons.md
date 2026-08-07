@@ -15,6 +15,9 @@ order: 50
 ### Ruins of Alph. 
 - Handing fossils from smashing rocks in the Ruins of Alph to the scientist in the building will give player an appropriate Fossil Pokémon.
 
+### Odd Egg from rival
+- Bagon, Gible, Feebas, Riolu, Jangmo-o, H-Zorua or Goomy.
+
 
 ### Goldenrod: 
 - Bill gives a choice between Let's Go Eevee and Pikachu after speaking to him in the Ecruteak Pokémon Center.
