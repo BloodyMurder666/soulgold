@@ -10115,6 +10115,7 @@ static const struct LevelUpMove sTorterraLevelUpLearnset[] = {
     LEVEL_UP_MOVE(51, MOVE_GIGA_DRAIN),
     LEVEL_UP_MOVE(57, MOVE_LEAF_STORM),
     LEVEL_UP_MOVE(63, MOVE_HEADLONG_RUSH),
+    LEVEL_UP_MOVE(70, MOVE_SHELL_SMASH),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_TURTWIG

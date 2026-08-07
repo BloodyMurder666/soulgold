@@ -1718,7 +1718,7 @@ function renderMoveDetail(move) {
     <h3 class="section-title">Learned by</h3>
     ${learners.length ? `<div class="move-learner-groups">${learners.map(([label, species]) => `
       <details class="move-learner-group">
-        <summary><strong>${label}</strong><span>${species.length} Pokémon</span></summary>
+        <summary><strong>${label}</strong></summary>
         <div class="move-learner-body">${speciesCards(species, { deferSprites: true })}</div>
       </details>
     `).join("")}</div>` : `<p class="muted">No documented learn method.</p>`}
