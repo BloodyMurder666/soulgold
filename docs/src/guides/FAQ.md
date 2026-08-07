@@ -21,6 +21,9 @@ order: 1
 ### How do I remove the weird tree after beating 3rd Gym?
 - Go to Goldenrod Flower Shop next to the gym and get Squirtbottle to wake up the tree.
 
+### How do I go past level 85 cap?
+- If you are on old version, beat Leaf in the Nameless Cave accessible via Rock Climb from Kitakami Border. Newer versions don't have this level cap.
+
 ### Strength HM?
 - Olivine Cafe.
 
