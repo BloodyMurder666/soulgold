@@ -1,6 +1,7 @@
 #include "global.h"
 #include "battle.h"
 #include "battle_interface.h"
+#include "battle_util.h"
 #include "sprite.h"
 #include "constants/items.h"
 #include "constants/abilities.h"
@@ -55,6 +56,32 @@ TEST("Ability pop-up fails cleanly when no task slot is available")
     EXPECT_EQ(GetTaskCount(), NUM_TASKS);
 
     ResetTasks();
+    gBattleStruct = savedBattleStruct;
+    gBattlersCount = savedBattlersCount;
+    gBattlerPositions[0] = savedBattlerPosition;
+}
+
+TEST("Ability pop-up update is ignored after creation fails")
+{
+    struct BattleStruct battleStruct;
+    struct BattleStruct *savedBattleStruct = gBattleStruct;
+    u8 savedBattlersCount = gBattlersCount;
+    u8 savedBattlerPosition = gBattlerPositions[0];
+    enum Ability savedAbility = gBattleMons[0].ability;
+
+    SetUpAbilityPopUpFailureTest(&battleStruct);
+    gBattleMons[0].ability = ABILITY_DRIZZLE;
+    for (u32 i = 0; i < NUM_TASKS; i++)
+        EXPECT_NE(TryCreateTask(TaskDummy, i), TASK_NONE);
+
+    EXPECT(!BattleInterface_TestCreateAbilityPopUp(0, ABILITY_DRIZZLE, FALSE));
+    PushTraitStack(0, ABILITY_DRIZZLE);
+    EXPECT(!BattleInterface_TestUpdateAbilityPopUp(0));
+    EXPECT_EQ(PullTraitStackAbility(), ABILITY_NONE);
+    EXPECT(!battleStruct.battlerState[0].activeAbilityPopUps);
+
+    ResetTasks();
+    gBattleMons[0].ability = savedAbility;
     gBattleStruct = savedBattleStruct;
     gBattlersCount = savedBattlersCount;
     gBattlerPositions[0] = savedBattlerPosition;

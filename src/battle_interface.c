@@ -2760,23 +2760,62 @@ void CreateAbilityPopUp(enum BattlerId battler, enum Ability ability, bool32 isD
     TryCreateAbilityPopUp(battler, ability, isDoubleBattle);
 }
 
+static bool32 IsAbilityPopUpValid(enum BattlerId battler)
+{
+    u8 *spriteIds = gBattleStruct->abilityPopUpSpriteIds[battler];
+
+    if (!gBattleStruct->battlerState[battler].activeAbilityPopUps)
+        return FALSE;
+
+    for (u32 i = 0; i < NUM_BATTLE_SIDES; i++)
+    {
+        u8 spriteId = spriteIds[i];
+
+        if (spriteId >= MAX_SPRITES
+         || !gSprites[spriteId].inUse
+         || gSprites[spriteId].callback != SpriteCb_AbilityPopUp
+         || gSprites[spriteId].sBattlerId != battler)
+            return FALSE;
+    }
+
+    return TRUE;
+}
+
+static bool32 TryUpdateAbilityPopup(enum BattlerId battler)
+{
+    enum Ability ability;
+
+    if (battler >= gBattlersCount)
+        return FALSE;
+
+    ability = (gBattleScripting.abilityPopupOverwrite) ? gBattleScripting.abilityPopupOverwrite
+                                                      : gBattleMons[battler].ability;
+    PopTraitStack();
+
+    if (ability <= ABILITY_NONE || ability >= ABILITIES_COUNT || !IsAbilityPopUpValid(battler))
+        return FALSE;
+
+    PrintAbilityOnAbilityPopUp(ability,
+                               gBattleStruct->abilityPopUpSpriteIds[battler][0],
+                               gBattleStruct->abilityPopUpSpriteIds[battler][1]);
+    return TRUE;
+}
+
 #if TESTING
 bool32 BattleInterface_TestCreateAbilityPopUp(enum BattlerId battler, enum Ability ability, bool32 isDoubleBattle)
 {
     return TryCreateAbilityPopUp(battler, ability, isDoubleBattle);
 }
+
+bool32 BattleInterface_TestUpdateAbilityPopUp(enum BattlerId battler)
+{
+    return TryUpdateAbilityPopup(battler);
+}
 #endif
 
 void UpdateAbilityPopup(enum BattlerId battler)
 {
-    if (battler >= gBattlersCount)
-        return;
-
-    u8 *spriteIds = gBattleStruct->abilityPopUpSpriteIds[battler];
-    enum Ability ability = (gBattleScripting.abilityPopupOverwrite) ? gBattleScripting.abilityPopupOverwrite
-                                                           : gBattleMons[battler].ability;
-    PopTraitStack();
-    PrintAbilityOnAbilityPopUp(ability, spriteIds[0], spriteIds[1]);
+    TryUpdateAbilityPopup(battler);
 }
 
 static void SpriteCb_AbilityPopUp(struct Sprite *sprite)
