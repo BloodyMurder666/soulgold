@@ -60,6 +60,7 @@ PokemonLeague_HallOfFame_EventScript_SetFirstGameClearFlags::
 	clearflag FLAG_HIDE_LUGIA
 	clearflag FLAG_HIDE_HO_OH
 	setflag FLAG_HIDE_BATTLEFRONTIER_ENGINEER
+	setflag FLAG_LEGENDARY_STORY_CAP
 	setflag FLAG_IS_CHAMPION
 	setvar VAR_SHUCKIE, 2
 	setvar VAR_LEAGUE_STATE, 1
@@ -108,6 +109,7 @@ PokemonLeague_HallOfFame_EventScript_SetGameClearFlags::
 	clearflag FLAG_HIDE_SPEAR_PILLAR_GIRATINA_PORTAL
 	clearflag FLAG_HIDE_SPEAR_PILLAR_TIME_GEAR
 	setflag FLAG_HIDE_BATTLEFRONTIER_ENGINEER
+	setflag FLAG_LEGENDARY_STORY_CAP
 	setvar VAR_COMPLETED_LUGIA, 4
 	clearflag FLAG_HIDE_LUGIA
 	setvar VAR_COMPLETED_HO_OH, 4

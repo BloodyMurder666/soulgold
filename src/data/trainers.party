@@ -12799,21 +12799,20 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - None
 
 Gligar
-Level: 12
+Level: 11
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Quick Attack
 - Poison Sting
 - Harden
 - None
 
-Noctowl @ Oran Berry
+Pidgeotto @ Oran Berry
 Level: 12
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-Ability: Insomnia
 - Tackle
 - Mud Slap
-- Confusion
 - Peck
+- None
 
 === TRAINER_FALKNER_1 ===
 Name: Falkner

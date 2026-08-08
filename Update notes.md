@@ -4,9 +4,12 @@ Update notes:
 - Added Helping Hand, Bullet Seed, Rock Blast, Fire Fang, Ice Fang, Thunder Fang, and all four Terrain setting moves to the tutor move list.
 - Due to the Slowpoke Well incident, Slowpoke lines can now learn Shed Tail via level up.
 - Smoothed out the final rival battle levels in Mt. Silver if player wants to go there straight after E4 instead of doing gym leader rematches first.
+- Blackjack bets are now in increments of 100 instead of 10.
+- Exp. Share now defaults to ON after being received.
 - Reduced the amount of first-strike innates on several legendaries.
 - Gen 4 Adamant Orb/Lustrous Glove/Griseous Core now transform Dialga/Palkia/Giratina (was previously locked to the newer gen 9 items with similar names...)
 - Fixed the first party slot follower Pokémon not being restored until going through a warp after healing.
+- Fixed a possible sequence break with the legendary events.
 - Re-ordered Battle Cafe rewards list for repeat purchasing consumables.
 - Fix Tether ability's message when copying stats.
 - Experimental bugfixes:

@@ -48,6 +48,7 @@ script Gate_Route31_VioletCity_RivalExpShare {
     msgbox("Professor Elm forgot to give you this.")
     giveitem(ITEM_EXP_SHARE)
     setflag(FLAG_RECEIVED_EXP_SHARE)
+    setflag(FLAG_EXP_SHARE_OPTION)
     createfieldmugshotrival
     msgbox("It lets you train multiple Pokémon at
             once, quite a handy piece of tech!")

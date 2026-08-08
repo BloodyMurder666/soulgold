@@ -209,6 +209,8 @@ enum {
 #define MAX_PLAYER_CARDS 9
 #define MAX_DEALER_CARDS 9
 
+#define BLACKJACK_BET_INCREMENT 100
+
 #define CARD_SCORE_2     2
 #define CARD_SCORE_3     3
 #define CARD_SCORE_4     4
@@ -2354,7 +2356,7 @@ static void InitBJScreen(void)
     sBlackJack->playerScore = 0;
     sBlackJack->dealerScore = 0;
     
-    if ((GetCoins()) >= 10) // If you can afford to play
+    if (GetCoins() >= BLACKJACK_BET_INCREMENT) // If you can afford to play
         sBlackJack->optionMode = OPTION_BET;
     else // Not enough coins
         sBlackJack->optionMode = OPTION_NONE;
@@ -2459,7 +2461,7 @@ static void PrintInitMessage(void)
     u8 bet;
     bet = sBlackJack->betBlackJack;
     
-    if (GetCoins() > 9)
+    if (GetCoins() >= BLACKJACK_BET_INCREMENT)
     { // You can play
         ConvertUIntToDecimalStringN(gStringVar1, bet, STR_CONV_MODE_LEFT_ALIGN, 3);
         ShowMessage(sText_NoBetting);
@@ -2585,7 +2587,10 @@ static void ResetBlackJack(void)
     LoadSpritePalettes(sSpritePalettes);
     ShuffleCards();
     AdjustCards();
-    SetOptionMode(OPTION_BET);
+    if (GetCoins() >= BLACKJACK_BET_INCREMENT)
+        SetOptionMode(OPTION_BET);
+    else
+        SetOptionMode(OPTION_NONE);
     sBlackJack->exitToggle = FALSE;
     sBlackJack->clearBlackJack = TRUE;
     DeactivateAllTextPrinters();
@@ -3119,12 +3124,12 @@ static void AButton(void)
         {
             if (sBlackJack->optionMode == OPTION_BET) // +100
             {
-                if ((GetCoins()) > 9) // enough
+                if (GetCoins() >= BLACKJACK_BET_INCREMENT) // enough
                 {
                     RefreshBlackJackBG();
                     PlaySE(SE_VEND);
-                    RemoveCoins(10);
-                    sBlackJack->betBlackJack += 10;
+                    RemoveCoins(BLACKJACK_BET_INCREMENT);
+                    sBlackJack->betBlackJack += BLACKJACK_BET_INCREMENT;
                     bet = sBlackJack->betBlackJack;
                     num = CountDigits(sBlackJack->betBlackJack);
                     SetCreditDigits(GetCoins());
@@ -3142,7 +3147,7 @@ static void AButton(void)
              || (sBlackJack->optionMode == OPTION_DOUBLE)
              || (sBlackJack->optionMode == OPTION_INSURANCE))
             {
-                if (sBlackJack->betBlackJack > 9) // Enough
+                if (sBlackJack->betBlackJack >= BLACKJACK_BET_INCREMENT) // Enough
                 {
                     PlaySE(SE_CARD);
                     //delay?
@@ -3170,8 +3175,8 @@ static void AButton(void)
                 {
                     RefreshBlackJackBG();
                     PlaySE(SE_VEND);
-                    AddCoins(10);
-                    sBlackJack->betBlackJack -= 10;
+                    AddCoins(BLACKJACK_BET_INCREMENT);
+                    sBlackJack->betBlackJack -= BLACKJACK_BET_INCREMENT;
                     bet = sBlackJack->betBlackJack;
                     num = CountDigits(sBlackJack->betBlackJack);
                     SetCreditDigits(GetCoins());
@@ -3202,7 +3207,7 @@ static void AButton(void)
         {
             if (sBlackJack->optionMode == OPTION_BET) // Bet
             {
-                if (sBlackJack->betBlackJack > 9) // Enough
+                if (sBlackJack->betBlackJack >= BLACKJACK_BET_INCREMENT) // Enough
                     {
                         sBlackJack->exitToggle = TRUE;
                         PlaySE(SE_SHOP);
