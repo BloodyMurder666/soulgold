@@ -71,7 +71,7 @@ Blackthorn2:
 # 39 "data/maps/BlackthornCity_Mart/scripts.pory"
 	.2byte ITEM_TM_DRAGON_TAIL
 # 40 "data/maps/BlackthornCity_Mart/scripts.pory"
-	.2byte ITEM_TM_EXPLOSION
+	.2byte ITEM_TM_SKY_DROP
 # 41 "data/maps/BlackthornCity_Mart/scripts.pory"
 	.2byte ITEM_QUICK_BALL
 # 42 "data/maps/BlackthornCity_Mart/scripts.pory"

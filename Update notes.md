@@ -1,7 +1,14 @@
 Update notes:
 5.8.2026
-- Added some moves to level-up or tutor learnsets based on Champions M-B regulation such as Wave Crash Swampert.
-
+- Replaced TM64 Explosion with Draining Kiss, TM77 Psych Up with Dig, TM87 Swagger with Giga Drain, and TM88 Sleep Talk with Water Pulse. Explosion, Swagger and Sleep Talk remain available as tutor moves.
+- Added Helping Hand, Bullet Seed, Rock Blast, Fire Fang, Ice Fang, Thunder Fang, and all four terrain moves to the tutor move list.
+- Due to the Slowpoke Well incident, Slowpoke lines can now learn Shed Tail via level up.
+- Reduced the amount of first-strike innates on several legendaries.
+- Fixed the first party slot follower Pokémon not being restored until going through a warp after healing.
+- Experimental bugfixes:
+    - Maybe fixed the black ability box bug that could happen rarely.
+    - Maybe fixed the rival/kimono girl/silver music overriding map music after their events.
+    - Maybe fixed an extremely rare chance of getting stuck in a black screen after a warp if all planets aligned in the sky. (I cannot reproduce this bug so it's just a guess)
 
 4.8.2026
 - New Battle Facility: Battle Cafe. Located on Route 50, this features four daily challenges of varying difficulty and two unlockable endless modes. Various legendaries can be obtained from here.

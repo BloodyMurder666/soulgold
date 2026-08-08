@@ -85,7 +85,7 @@ Olivine_Mart2::
 # 46 "data/maps/OlivineCity_Mart/scripts.pory"
 Olivine2:
 # 47 "data/maps/OlivineCity_Mart/scripts.pory"
-	.2byte ITEM_TM_SKY_DROP
+	.2byte ITEM_TM_DRAINING_KISS
 # 48 "data/maps/OlivineCity_Mart/scripts.pory"
 	.2byte ITEM_TM_BRUTAL_SWING
 # 49 "data/maps/OlivineCity_Mart/scripts.pory"

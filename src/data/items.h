@@ -14131,14 +14131,14 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM_EXPLOSION] =
+    [ITEM_TM_DRAINING_KISS] =
     {
-        .name = ITEM_NAME("TM64 Explosion"),
+        .name = ITEM_NAME("TM64 Draining Kiss"),
         .price = 3000,
         .description = COMPOUND_STRING(
-    "The user explodes\n"
-    "to inflict damage.\n"
-    "The user faints."),
+            "Steals the foe's HP\n"
+            "with a kiss, healing\n"
+            "over half the damage."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .heldSlot = 0,
@@ -14326,14 +14326,14 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM_PSYCH_UP] =
+    [ITEM_TM_DIG] =
     {
-        .name = ITEM_NAME("TM77 Psych Up"),
+        .name = ITEM_NAME("TM77 Dig"),
         .price = 3000,
         .description = COMPOUND_STRING(
-    "User hypnotizes\n"
-    "to copy the foe's\n"
-    "stat changes."),
+            "Burrows on the first\n"
+            "turn, then strikes\n"
+            "on the next turn."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .heldSlot = 0,
@@ -14476,14 +14476,14 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM_SWAGGER] =
+    [ITEM_TM_GIGA_DRAIN] =
     {
-        .name = ITEM_NAME("TM87 Swagger"),
-        .price = 3000,
+        .name = ITEM_NAME("TM87 Giga Drain"),
+        .price = 4000,
         .description = COMPOUND_STRING(
-            "Confuses the foe\n"
-            "but sharply raises\n"
-            "its Attack."),
+            "Drains the foe's HP,\n"
+            "healing half of the\n"
+            "damage dealt."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .heldSlot = 0,
@@ -14491,14 +14491,14 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM_SLEEP_TALK] =
+    [ITEM_TM_WATER_PULSE] =
     {
-        .name = ITEM_NAME("TM88 Sleep Talk"),
+        .name = ITEM_NAME("TM88 Water Pulse"),
         .price = 3000,
         .description = COMPOUND_STRING(
-    "Uses a random move\n"
-    "while the user is\n"
-    "asleep."),
+            "Attacks with a water\n"
+            "pulse that may also\n"
+            "confuse the foe."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .heldSlot = 0,

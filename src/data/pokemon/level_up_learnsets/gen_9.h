@@ -2144,6 +2144,7 @@ static const struct LevelUpMove sSlowpokeLevelUpLearnset[] = {
     LEVEL_UP_MOVE(39, MOVE_PSYCH_UP),
     LEVEL_UP_MOVE(42, MOVE_RAIN_DANCE),
     LEVEL_UP_MOVE(45, MOVE_HEAL_PULSE),
+    LEVEL_UP_MOVE(49, MOVE_SHED_TAIL),
     LEVEL_UP_END
 };
 
@@ -2167,6 +2168,7 @@ static const struct LevelUpMove sSlowbroLevelUpLearnset[] = {
     LEVEL_UP_MOVE(41, MOVE_PSYCH_UP),
     LEVEL_UP_MOVE(46, MOVE_RAIN_DANCE),
     LEVEL_UP_MOVE(51, MOVE_HEAL_PULSE),
+    LEVEL_UP_MOVE(55, MOVE_SHED_TAIL),
     LEVEL_UP_END
 };
 
@@ -2193,6 +2195,7 @@ static const struct LevelUpMove sSlowkingLevelUpLearnset[] = {
     LEVEL_UP_MOVE(39, MOVE_PSYCH_UP),
     LEVEL_UP_MOVE(42, MOVE_RAIN_DANCE),
     LEVEL_UP_MOVE(45, MOVE_HEAL_PULSE),
+    LEVEL_UP_MOVE(55, MOVE_SHED_TAIL),
     LEVEL_UP_END
 };
 #endif //P_GEN_2_CROSS_EVOS
@@ -2216,6 +2219,7 @@ static const struct LevelUpMove sSlowpokeGalarLevelUpLearnset[] = {
     LEVEL_UP_MOVE(39, MOVE_PSYCH_UP),
     LEVEL_UP_MOVE(42, MOVE_RAIN_DANCE),
     LEVEL_UP_MOVE(45, MOVE_HEAL_PULSE),
+    LEVEL_UP_MOVE(52, MOVE_SHED_TAIL),
     LEVEL_UP_END
 };
 
@@ -2239,6 +2243,7 @@ static const struct LevelUpMove sSlowbroGalarLevelUpLearnset[] = {
     LEVEL_UP_MOVE(39, MOVE_PSYCH_UP),
     LEVEL_UP_MOVE(42, MOVE_RAIN_DANCE),
     LEVEL_UP_MOVE(45, MOVE_HEAL_PULSE),
+    LEVEL_UP_MOVE(52, MOVE_SHED_TAIL),
     LEVEL_UP_END
 };
 
@@ -2268,6 +2273,7 @@ static const struct LevelUpMove sSlowkingGalarLevelUpLearnset[] = {
     LEVEL_UP_MOVE(39, MOVE_PSYCH_UP),
     LEVEL_UP_MOVE(42, MOVE_RAIN_DANCE),
     LEVEL_UP_MOVE(45, MOVE_HEAL_PULSE),
+    LEVEL_UP_MOVE(52, MOVE_SHED_TAIL),
     LEVEL_UP_END
 };
 #endif //P_GEN_2_CROSS_EVOS

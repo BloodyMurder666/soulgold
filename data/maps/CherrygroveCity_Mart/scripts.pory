@@ -85,7 +85,7 @@ script Cherrygrove_Mart2 {
 }
 
 mart Cherrygrove2 {
-	ITEM_TM_PSYCH_UP
+	ITEM_TM_SAFEGUARD
     ITEM_HEAL_BALL
     ITEM_ORANGE_MAIL
 }

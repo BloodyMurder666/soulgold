@@ -165,7 +165,7 @@ Cherrygrove_Mart2_2:
 # 87 "data/maps/CherrygroveCity_Mart/scripts.pory"
 Cherrygrove2:
 # 88 "data/maps/CherrygroveCity_Mart/scripts.pory"
-	.2byte ITEM_TM_PSYCH_UP
+	.2byte ITEM_TM_SAFEGUARD
 # 89 "data/maps/CherrygroveCity_Mart/scripts.pory"
 	.2byte ITEM_HEAL_BALL
 # 90 "data/maps/CherrygroveCity_Mart/scripts.pory"

@@ -65,7 +65,7 @@
     F(WILL_O_WISP) \
     F(ACROBATICS) \
     F(THUNDER_PUNCH) \
-    F(EXPLOSION) \
+    F(DRAINING_KISS) \
     F(SHADOW_CLAW) \
     F(PAYBACK) \
     F(SMART_STRIKE) \
@@ -78,7 +78,7 @@
     F(GYRO_BALL) \
     F(SWORDS_DANCE) \
     F(HONE_CLAWS) \
-    F(PSYCH_UP) \
+    F(DIG) \
     F(BULLDOZE) \
     F(FROST_BREATH) \
     F(ROCK_SLIDE) \
@@ -88,8 +88,8 @@
     F(POISON_JAB) \
     F(DRAIN_PUNCH) \
     F(GRASS_KNOT) \
-    F(SWAGGER) \
-    F(SLEEP_TALK) \
+    F(GIGA_DRAIN) \
+    F(WATER_PULSE) \
     F(U_TURN) \
     F(SUBSTITUTE) \
     F(FLASH_CANNON) \

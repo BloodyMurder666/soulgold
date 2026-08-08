@@ -228,7 +228,7 @@ Goldenrod_F5_TMMart:
 # 127 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
 	.2byte ITEM_TM_LIGHT_SCREEN
 # 128 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
-	.2byte ITEM_TM_SAFEGUARD
+	.2byte ITEM_TM_DIG
 # 129 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"
 	.2byte ITEM_TM_FIRE_PUNCH
 # 130 "data/maps/GoldenrodCity_DepartmentStore_5F/scripts.pory"

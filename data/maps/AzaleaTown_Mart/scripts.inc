@@ -72,7 +72,7 @@ GalaricaVendor:
 # 46 "data/maps/AzaleaTown_Mart/scripts.pory"
 	.2byte ITEM_TM_INFESTATION
 # 47 "data/maps/AzaleaTown_Mart/scripts.pory"
-	.2byte ITEM_TM_SWAGGER
+	.2byte ITEM_TM_GIGA_DRAIN
 # 48 "data/maps/AzaleaTown_Mart/scripts.pory"
 	.2byte ITEM_TM_X_SCISSOR
 # 49 "data/maps/AzaleaTown_Mart/scripts.pory"
@@ -91,7 +91,7 @@ GalaricaNoneVendor:
 # 56 "data/maps/AzaleaTown_Mart/scripts.pory"
 	.2byte ITEM_TM_INFESTATION
 # 57 "data/maps/AzaleaTown_Mart/scripts.pory"
-	.2byte ITEM_TM_SWAGGER
+	.2byte ITEM_TM_GIGA_DRAIN
 # 58 "data/maps/AzaleaTown_Mart/scripts.pory"
 	.2byte ITEM_NEST_BALL
 # 59 "data/maps/AzaleaTown_Mart/scripts.pory"
