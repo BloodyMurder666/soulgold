@@ -24,6 +24,7 @@ extern struct Task gTasks[];
 
 void ResetTasks(void);
 u8 CreateTask(TaskFunc func, u8 priority);
+u8 TryCreateTask(TaskFunc func, u8 priority);
 void DestroyTask(u8 taskId);
 void RunTasks(void);
 void TaskDummy(u8 taskId);

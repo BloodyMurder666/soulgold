@@ -521,13 +521,15 @@ static bool32 WaitForWeatherFadeIn(void)
 
 void DoWarp(void)
 {
+    if (TryCreateTask(Task_WarpAndLoadMap, 10) == TASK_NONE)
+        return;
+
     LockPlayerFieldControls();
     TryFadeOutOldMapMusic();
     WarpFadeOutScreen();
     PlayRainStoppingSoundEffect();
     PlaySE(SE_EXIT);
     gFieldCallback = FieldCB_DefaultWarpExit;
-    CreateTask(Task_WarpAndLoadMap, 10);
 }
 
 static void FieldCB_InstantWarpExit(void)
@@ -571,9 +573,11 @@ void DoWhiteFadeWarp(void)
 
 void DoDoorWarp(void)
 {
+    if (TryCreateTask(Task_DoDoorWarp, 10) == TASK_NONE)
+        return;
+
     LockPlayerFieldControls();
     gFieldCallback = FieldCB_DefaultWarpExit;
-    CreateTask(Task_DoDoorWarp, 10);
 }
 
 void DoFallWarp(void)

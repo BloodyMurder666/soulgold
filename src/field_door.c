@@ -609,7 +609,10 @@ static s8 StartDoorAnimationTask(const struct DoorGraphics *gfx, const struct Do
     }
     else
     {
-        u8 taskId = CreateTask(Task_AnimateDoor, 0x50);
+        u8 taskId = TryCreateTask(Task_AnimateDoor, 0x50);
+        if (taskId == TASK_NONE)
+            return -1;
+
         s16 *data = gTasks[taskId].data;
 
         tX = x;

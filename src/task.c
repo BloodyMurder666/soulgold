@@ -24,7 +24,7 @@ void ResetTasks(void)
     gTasks[NUM_TASKS - 1].next = TAIL_SENTINEL;
 }
 
-u8 CreateTask(TaskFunc func, u8 priority)
+u8 TryCreateTask(TaskFunc func, u8 priority)
 {
     u8 i;
 
@@ -41,7 +41,14 @@ u8 CreateTask(TaskFunc func, u8 priority)
         }
     }
 
-    return 0;
+    return TASK_NONE;
+}
+
+u8 CreateTask(TaskFunc func, u8 priority)
+{
+    u8 taskId = TryCreateTask(func, priority);
+
+    return taskId == TASK_NONE ? 0 : taskId;
 }
 
 static void InsertTask(u8 newTaskId)

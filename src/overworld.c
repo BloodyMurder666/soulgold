@@ -1330,6 +1330,9 @@ static void TransitionMapMusic(void)
 void Overworld_ChangeMusicToDefault(void)
 {
     u16 currentMusic = GetCurrentMapMusic();
+
+    Overworld_ClearSavedMusic();
+
     if (currentMusic != GetCurrLocationDefaultMusic())
         FadeOutAndPlayNewMapMusic(GetCurrLocationDefaultMusic(), 8);
 }

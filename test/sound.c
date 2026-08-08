@@ -1,8 +1,10 @@
 #include "global.h"
 #include "m4a.h"
+#include "overworld.h"
 #include "pokemon.h"
 #include "sound.h"
 #include "test/test.h"
+#include "constants/maps.h"
 #include "constants/songs.h"
 
 static void ResetSoundTestState(void)
@@ -115,4 +117,39 @@ TEST("Map music battle resume clears on expected music mismatch")
 #else
     EXPECT(!TryResumeMapMusicAfterBattle(MUS_POKE_CENTER));
 #endif
+}
+
+TEST("Default map music wins if a battle starts during its fade from saved script music")
+{
+    struct WarpData savedLocation = gSaveBlock1Ptr->location;
+    u16 savedMusic = gSaveBlock1Ptr->savedMusic;
+    u8 savedMapType = gMapHeader.mapType;
+    bool8 savedSurfMusic = gSaveBlock2Ptr->optionsSurfMusic;
+    u16 defaultMusic;
+
+    ResetSoundTestState();
+    gSaveBlock1Ptr->location.mapGroup = MAP_GROUP(MAP_ROUTE101);
+    gSaveBlock1Ptr->location.mapNum = MAP_NUM(MAP_ROUTE101);
+    gMapHeader.mapType = MAP_TYPE_ROUTE;
+    gSaveBlock2Ptr->optionsSurfMusic = FALSE;
+    defaultMusic = GetCurrLocationDefaultMusic();
+    ASSUME(defaultMusic != MUS_HG_ENCOUNTER_RIVAL);
+
+    StartMapSong(MUS_HG_ENCOUNTER_RIVAL);
+    Overworld_SetSavedMusic(MUS_HG_ENCOUNTER_RIVAL);
+    Overworld_ChangeMusicToDefault();
+
+    EXPECT(!IsNotWaitingForBGMStop());
+
+    // Starting the battle before MapMusicMain finishes the fade used to leave
+    // savedMusic pointing at the script theme, which won on the field return.
+    StartBattleSong(MUS_VS_WILD);
+    Overworld_PlaySpecialMapMusic();
+    EXPECT_EQ(GetCurrentMapMusic(), defaultMusic);
+    EXPECT_EQ(gSaveBlock1Ptr->savedMusic, MUS_DUMMY);
+
+    gSaveBlock1Ptr->location = savedLocation;
+    gSaveBlock1Ptr->savedMusic = savedMusic;
+    gMapHeader.mapType = savedMapType;
+    gSaveBlock2Ptr->optionsSurfMusic = savedSurfMusic;
 }

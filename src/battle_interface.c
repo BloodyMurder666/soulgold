@@ -2609,56 +2609,111 @@ static inline bool32 IsAnyAbilityPopUpActive(void)
     return activeAbilityPopUps;
 }
 
-void CreateAbilityPopUp(enum BattlerId battler, enum Ability ability, bool32 isDoubleBattle)
+static void FreeAbilityPopUpGfx(void)
+{
+    for (enum BattlerId battler = 0; battler < gBattlersCount; battler++)
+    {
+        if (IndexOfSpriteTileTag(TAG_ABILITY_POP_UP_PLAYER1 + battler) != 0xFF)
+            FreeSpriteTilesByTag(TAG_ABILITY_POP_UP_PLAYER1 + battler);
+    }
+
+    if (GetSpriteTileStartByTag(TAG_LAST_BALL_WINDOW) == 0xFFFF
+     && GetSpriteTileStartByTag(TAG_MOVE_INFO_WINDOW) == 0xFFFF)
+        FreeSpritePaletteByTag(TAG_ABILITY_POP_UP);
+}
+
+static bool32 TryLoadAbilityPopUpGfx(enum BattlerId battler)
+{
+    u32 tileTag = TAG_ABILITY_POP_UP_PLAYER1 + battler;
+
+    if (IndexOfSpritePaletteTag(TAG_ABILITY_POP_UP) == 0xFF
+     && LoadSpritePalette(&sSpritePalette_AbilityPopUp) == 0xFF)
+        return FALSE;
+
+    if (IndexOfSpriteTileTag(tileTag) == 0xFF)
+    {
+        struct SpriteSheet sheet = sSpriteSheet_AbilityPopUp;
+
+        sheet.tag = tileTag;
+        LoadSpriteSheet(&sheet);
+        if (IndexOfSpriteTileTag(tileTag) == 0xFF)
+            return FALSE;
+    }
+
+    return TRUE;
+}
+
+static u32 CountFreeSpriteSlots(void)
+{
+    u32 count = 0;
+
+    for (u32 i = 0; i < MAX_SPRITES; i++)
+    {
+        if (!gSprites[i].inUse)
+            count++;
+    }
+
+    return count;
+}
+
+static bool32 TryCreateAbilityPopUp(enum BattlerId battler, enum Ability ability, bool32 isDoubleBattle)
 {
     u8 *spriteIds;
-    u32 xSlide, tileTag;
+    u32 xSlide, tileTag, spriteId;
+    u8 cleanupTaskId;
+    bool32 wasActive;
     enum BattlerPosition battlerPosition;
     struct SpriteTemplate template;
     const s16 (*coords)[2];
 
-    if (gBattleScripting.abilityPopupOverwrite)
-        ability = gBattleScripting.abilityPopupOverwrite;
-
-    if (battler >= gBattlersCount || ability <= ABILITY_NONE || ability >= ABILITIES_COUNT)
-        return;
-
-    battlerPosition = GetBattlerPosition(battler);
-
-    if (gTestRunnerEnabled)
-    {
-        TestRunner_Battle_RecordAbilityPopUp(battler, ability);
-        if (gTestRunnerHeadless)
-            return;
-    }
-
     spriteIds = gBattleStruct->abilityPopUpSpriteIds[battler];
-    if (gBattleStruct->battlerState[battler].activeAbilityPopUps)
+    wasActive = gBattleStruct->battlerState[battler].activeAbilityPopUps;
+
+    cleanupTaskId = FindTaskIdByFunc(Task_FreeAbilityPopUpGfx);
+    if (cleanupTaskId == TASK_NONE)
     {
-        DestroySprite(&gSprites[spriteIds[0]]);
-        DestroySprite(&gSprites[spriteIds[1]]);
+        cleanupTaskId = TryCreateTask(Task_FreeAbilityPopUpGfx, 5);
+        if (cleanupTaskId == TASK_NONE)
+            return FALSE;
     }
 
-    if (!IsAnyAbilityPopUpActive())
-        LoadSpritePalette(&sSpritePalette_AbilityPopUp);
+    if (!TryLoadAbilityPopUpGfx(battler)
+     || CountFreeSpriteSlots() + (wasActive ? NUM_BATTLE_SIDES : 0) < NUM_BATTLE_SIDES)
+        goto fail;
 
     tileTag = (TAG_ABILITY_POP_UP_PLAYER1 + battler);
-    if (IndexOfSpriteTileTag(tileTag) == 0xFF)
+    if (wasActive)
     {
-        struct SpriteSheet sheet = sSpriteSheet_AbilityPopUp;
-        sheet.tag = tileTag;
-        LoadSpriteSheet(&sheet);
+        for (u32 i = 0; i < NUM_BATTLE_SIDES; i++)
+        {
+            if (spriteIds[i] < MAX_SPRITES && gSprites[spriteIds[i]].inUse)
+                DestroySprite(&gSprites[spriteIds[i]]);
+            spriteIds[i] = MAX_SPRITES;
+        }
+        gBattleStruct->battlerState[battler].activeAbilityPopUps = FALSE;
     }
 
+    battlerPosition = GetBattlerPosition(battler);
     coords = isDoubleBattle ? sAbilityPopUpCoordsDoubles : sAbilityPopUpCoordsSingles;
     xSlide = IsOnPlayerSide(battler) ? -ABILITY_POP_UP_POS_X_SLIDE : ABILITY_POP_UP_POS_X_SLIDE;
 
     template = sSpriteTemplate_AbilityPopUp;
     template.tileTag = tileTag;
-    spriteIds[0] = CreateSprite(&template, coords[battlerPosition][0] + xSlide,
-                                           coords[battlerPosition][1], 0);
-    spriteIds[1] = CreateSprite(&template, coords[battlerPosition][0] + xSlide + ABILITY_POP_UP_POS_X_DIFF,
-                                           coords[battlerPosition][1], 0);
+    spriteId = CreateSpriteUnchecked(&template, coords[battlerPosition][0] + xSlide,
+                                               coords[battlerPosition][1], 0);
+    if (spriteId == MAX_SPRITES)
+        goto fail;
+    spriteIds[0] = spriteId;
+
+    spriteId = CreateSpriteUnchecked(&template, coords[battlerPosition][0] + xSlide + ABILITY_POP_UP_POS_X_DIFF,
+                                               coords[battlerPosition][1], 0);
+    if (spriteId == MAX_SPRITES)
+    {
+        DestroySprite(&gSprites[spriteIds[0]]);
+        spriteIds[0] = MAX_SPRITES;
+        goto fail;
+    }
+    spriteIds[1] = spriteId;
 
     if (IsOnPlayerSide(battler))
     {
@@ -2668,11 +2723,6 @@ void CreateAbilityPopUp(enum BattlerId battler, enum Ability ability, bool32 isD
 
     gSprites[spriteIds[1]].oam.tileNum += 32; // Second half of the pop up tiles.
 
-    // Create only one instance, as it's only used for
-    // tracking the SpriteSheet(s) and SpritePalette.
-    if (!IsAnyAbilityPopUpActive())
-        CreateTask(Task_FreeAbilityPopUpGfx, 5);
-
     gBattleStruct->battlerState[battler].activeAbilityPopUps = TRUE;
 
     gSprites[spriteIds[0]].sIsMain = TRUE;
@@ -2681,7 +2731,41 @@ void CreateAbilityPopUp(enum BattlerId battler, enum Ability ability, bool32 isD
 
     PrintBattlerOnAbilityPopUp(battler, spriteIds[0], spriteIds[1]);
     PrintAbilityOnAbilityPopUp(ability, spriteIds[0], spriteIds[1]);
+    return TRUE;
+
+fail:
+    if (!IsAnyAbilityPopUpActive())
+    {
+        FreeAbilityPopUpGfx();
+        DestroyTask(cleanupTaskId);
+    }
+    return FALSE;
 }
+
+void CreateAbilityPopUp(enum BattlerId battler, enum Ability ability, bool32 isDoubleBattle)
+{
+    if (gBattleScripting.abilityPopupOverwrite)
+        ability = gBattleScripting.abilityPopupOverwrite;
+
+    if (battler >= gBattlersCount || ability <= ABILITY_NONE || ability >= ABILITIES_COUNT)
+        return;
+
+    if (gTestRunnerEnabled)
+    {
+        TestRunner_Battle_RecordAbilityPopUp(battler, ability);
+        if (gTestRunnerHeadless)
+            return;
+    }
+
+    TryCreateAbilityPopUp(battler, ability, isDoubleBattle);
+}
+
+#if TESTING
+bool32 BattleInterface_TestCreateAbilityPopUp(enum BattlerId battler, enum Ability ability, bool32 isDoubleBattle)
+{
+    return TryCreateAbilityPopUp(battler, ability, isDoubleBattle);
+}
+#endif
 
 void UpdateAbilityPopup(enum BattlerId battler)
 {
@@ -2778,16 +2862,7 @@ static void Task_FreeAbilityPopUpGfx(u8 taskId)
 {
     if (!IsAnyAbilityPopUpActive())
     {
-        for (enum BattlerId battler = 0; battler < gBattlersCount; battler++)
-        {
-            if (IndexOfSpriteTileTag(TAG_ABILITY_POP_UP_PLAYER1 + battler) != 0xFF)
-                FreeSpriteTilesByTag(TAG_ABILITY_POP_UP_PLAYER1 + battler);
-        }
-        // These interface frames share the ability pop-up palette and can be
-        // created before this deferred cleanup task runs.
-        if (GetSpriteTileStartByTag(TAG_LAST_BALL_WINDOW) == 0xFFFF
-         && GetSpriteTileStartByTag(TAG_MOVE_INFO_WINDOW) == 0xFFFF)
-            FreeSpritePaletteByTag(TAG_ABILITY_POP_UP);
+        FreeAbilityPopUpGfx();
         DestroyTask(taskId);
     }
 }
