@@ -1,7 +1,7 @@
 Update notes:
 5.8.2026
 - Replaced TM64 Explosion with Draining Kiss, TM77 Psych Up with Dig, TM87 Swagger with Giga Drain, and TM88 Sleep Talk with Water Pulse. Explosion, Swagger and Sleep Talk remain available as tutor moves.
-- Added Helping Hand, Bullet Seed, Rock Blast, Fire Fang, Ice Fang, Thunder Fang, and all four terrain moves to the tutor move list.
+- Added Helping Hand, Bullet Seed, Rock Blast, Fire Fang, Ice Fang, Thunder Fang, and all four Terrain setting moves to the tutor move list.
 - Due to the Slowpoke Well incident, Slowpoke lines can now learn Shed Tail via level up.
 - Smoothed out the final rival battle levels in Mt. Silver if player wants to go there straight after E4 instead of doing gym leader rematches first.
 - Reduced the amount of first-strike innates on several legendaries.
