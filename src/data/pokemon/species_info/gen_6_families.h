@@ -3781,7 +3781,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_WATER_2),
         .abilities = { ABILITY_CONTRARY, ABILITY_SUCTION_CUPS, ABILITY_INFILTRATOR },
-        .innates = { ABILITY_INKY, ABILITY_TINTED_LENS, ABILITY_TETHER },
+        .innates = { ABILITY_TELEPATHY, ABILITY_INKY, ABILITY_TINTED_LENS  },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Malamar"),
         .cryId = CRY_MALAMAR,
@@ -3854,7 +3854,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_WATER_2),
         .abilities = { ABILITY_CONTRARY, ABILITY_CONTRARY, ABILITY_CONTRARY },
-        .innates = { ABILITY_UNCANNY, ABILITY_TINTED_LENS, ABILITY_TETHER },
+        .innates = { ABILITY_UNCANNY, ABILITY_INKY, ABILITY_TINTED_LENS },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Malamar"),
     #if P_MODIFIED_MEGA_CRIES

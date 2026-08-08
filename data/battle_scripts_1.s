@@ -8364,27 +8364,43 @@ BattleScript_MirrorHerbCopyStatChange::
 	printstring STRINGID_MIRRORHERBCOPIED
 	waitmessage B_WAIT_TIME_LONG
 	removeitemwitheffect BS_SCRIPTING, HOLD_EFFECT_MIRROR_HERB
+	saveattacker
+	savetarget
 BattleScript_MirrorHerbStartCopyStats:
 	copyfoesstatincrease BS_SCRIPTING, BattleScript_MirrorHerbStartReturn
 	statbuffchange BS_SCRIPTING, STAT_CHANGE_ALLOW_PTR, BattleScript_MirrorHerbStartReturn
 	setbyte sSTAT_ANIM_PLAYED, TRUE @ play stat change animation only once
 	goto BattleScript_MirrorHerbStartCopyStats
 BattleScript_MirrorHerbStartReturn:
+	restoretarget
+	restoreattacker
 	setbyte sSTAT_ANIM_PLAYED, FALSE
 	return
 
 BattleScript_OpportunistCopyStatChange::
 	call BattleScript_AbilityPopUpScripting
+	saveattacker
+	savetarget
+	beginstatbuffbatch
 BattleScript_OpportunistStartCopyStats:
 	copyfoesstatincrease BS_SCRIPTING, BattleScript_OpportunistCopyStatChangeEnd
 	statbuffchange BS_SCRIPTING, STAT_CHANGE_ALLOW_PTR, BattleScript_OpportunistCopyStatChangeEnd
-	printfromtable gStatUpStringIds
-	waitmessage B_WAIT_TIME_LONG
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_CHANGE, BattleScript_OpportunistCopyNextStat
 	setbyte sSTAT_ANIM_PLAYED, TRUE @ play stat change animation only once
+BattleScript_OpportunistCopyNextStat:
 	goto BattleScript_OpportunistStartCopyStats
 BattleScript_OpportunistCopyStatChangeEnd:
+	flushstatbuffbatch
+	jumpifbyte CMP_EQUAL, sSTAT_ANIM_PLAYED, FALSE, BattleScript_OpportunistCopyStatChangeCapped
+BattleScript_OpportunistCopyStatChangeRestore:
+	restoretarget
+	restoreattacker
 	setbyte sSTAT_ANIM_PLAYED, FALSE
 	return
+BattleScript_OpportunistCopyStatChangeCapped:
+	printstring STRINGID_STATSWONTINCREASE2
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_OpportunistCopyStatChangeRestore
 
 BattleScript_TotemVar::
 	beginstatbuffbatch

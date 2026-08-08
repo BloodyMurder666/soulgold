@@ -380,6 +380,52 @@ SINGLE_BATTLE_TEST("Tether copies opposing stat boosts")
     }
 }
 
+SINGLE_BATTLE_TEST("Tether copies each opposing stat boost from Calm Mind and displays the holder")
+{
+    GIVEN {
+        PLAYER(SPECIES_SYLVEON) { Ability(ABILITY_TETHER); }
+        OPPONENT(SPECIES_FLORGES);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_CALM_MIND); }
+    } SCENE {
+        ABILITY_POPUP(player, ABILITY_TETHER);
+        MESSAGE("Sylveon's Sp. Atk and Sp. Def rose!");
+        NONE_OF {
+            MESSAGE("Sylveon's Sp. Atk rose!");
+            MESSAGE("Sylveon's Sp. Def rose!");
+        }
+    } THEN {
+        EXPECT_EQ(player->statStages[STAT_SPATK], DEFAULT_STAT_STAGE + 1);
+        EXPECT_EQ(player->statStages[STAT_SPDEF], DEFAULT_STAT_STAGE + 1);
+    }
+}
+
+SINGLE_BATTLE_TEST("Tether's capped stat message displays the holder once")
+{
+    GIVEN {
+        PLAYER(SPECIES_SYLVEON) { Ability(ABILITY_TETHER); }
+        OPPONENT(SPECIES_FLORGES);
+    } WHEN {
+        TURN { MOVE(player, MOVE_CALM_MIND); }
+        TURN { MOVE(player, MOVE_CALM_MIND); }
+        TURN { MOVE(player, MOVE_CALM_MIND); }
+        TURN { MOVE(player, MOVE_CALM_MIND); }
+        TURN { MOVE(player, MOVE_CALM_MIND); }
+        TURN { MOVE(player, MOVE_CALM_MIND); }
+        TURN { MOVE(opponent, MOVE_CALM_MIND); }
+    } SCENE {
+        ABILITY_POPUP(player, ABILITY_TETHER);
+        MESSAGE("Sylveon's stats won't go any higher!");
+        NONE_OF {
+            MESSAGE("Sylveon's Sp. Atk won't go any higher!");
+            MESSAGE("Sylveon's Sp. Def won't go any higher!");
+        }
+    } THEN {
+        EXPECT_EQ(player->statStages[STAT_SPATK], MAX_STAT_STAGE);
+        EXPECT_EQ(player->statStages[STAT_SPDEF], MAX_STAT_STAGE);
+    }
+}
+
 #if MAX_MON_TRAITS > 1
 
 SINGLE_BATTLE_TEST("Contrary inverts stat boosts copied by Tether")
