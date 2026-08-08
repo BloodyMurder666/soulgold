@@ -63,11 +63,17 @@ order: 50
 - Goldenrod Dept Store, requires Clefairy.
 
 
+### Rotom
+- Route 39-Route 49 Gatehouse, requires Zorua.
+
+
 ### Hisui-Voltorb
 - Olivine City, requires Mareanie.
 
+
 ### Meltan 
 - Rinto Village, requires Tinkaton.
+
 
 ### Gabite
 - Blackthorn City, requires Dragonair.

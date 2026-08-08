@@ -5,11 +5,11 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-from ..constants import DEX_HIDDEN_COLOR_FORMS, DEX_HIDDEN_PREFIXES, DEX_HIDDEN_SPECIES, GMAX_DMAX_FORM_RE, SPECIES_NAME_OVERRIDES, STAT_FIELDS
+from ..constants import DEX_HIDDEN_COLOR_FORMS, DEX_HIDDEN_PREFIXES, DEX_HIDDEN_SPECIES, EV_YIELD_FIELDS, GMAX_DMAX_FORM_RE, SPECIES_NAME_OVERRIDES, STAT_FIELDS
 from ..c_parser import clean_constant_name, collect_strings, extract_braced_constants, extract_constant, extract_field, extract_number, normalize_token, parse_define_constants, parse_enum_constants, preprocess, read, split_designated_entries
 from ..image_utils import process_sprite, shiny_palette_symbol
 from ..models import EvolutionRow, ItemRecord, LevelUpMove, MegaEvolutionRow, SpeciesLocation, SpeciesParseResult, SpeciesRow, Teachables
-from ..paths import OUT_DIR, POKEDEX_H, SPECIES_H
+from ..paths import OUT_DIR, POKEDEX_H, SPECIES_H, TYPES_H
 from .items import item_display_name
 
 
@@ -56,6 +56,7 @@ def parse_species() -> SpeciesParseResult:
     nat_to_id, _ = parse_enum_constants(POKEDEX_H, "NATIONAL_DEX_")
     text = preprocess("data/pokemon/species_info.h")
     entries = split_designated_entries(text)
+    _, egg_group_by_id = parse_define_constants(TYPES_H, "EGG_GROUP_")
     rows: list[SpeciesRow] = []
     by_constant: dict[str, SpeciesRow] = {}
 
@@ -78,6 +79,17 @@ def parse_species() -> SpeciesParseResult:
         else:
             nat_dex = extract_number(entry, "natDexNum")
         stats = {short: extract_number(entry, field_name) for field_name, short in STAT_FIELDS.items()}
+        ev_yield = {
+            short: value
+            for field_name, short in EV_YIELD_FIELDS.items()
+            if (value := extract_number(entry, field_name))
+        }
+        egg_groups = []
+        egg_group_expr = extract_field(entry, "eggGroups") or ""
+        for raw_group in re.findall(r"\b\d+\b", egg_group_expr):
+            egg_group = egg_group_by_id.get(int(raw_group))
+            if egg_group and egg_group != "EGG_GROUP_NONE" and egg_group not in egg_groups:
+                egg_groups.append(egg_group)
         types = extract_braced_constants(entry, "types", "TYPE_") or ["TYPE_NORMAL"]
         if len(types) == 1:
             types.append(types[0])
@@ -112,6 +124,8 @@ def parse_species() -> SpeciesParseResult:
             dex_visible=is_dex_visible_species(constant),
             types=types[:2],
             stats=stats,
+            ev_yield=ev_yield,
+            egg_groups=egg_groups,
             abilities=abilities,
             regular_abilities=regular_abilities,
             hidden_abilities=hidden_abilities,

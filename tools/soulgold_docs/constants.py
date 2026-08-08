@@ -13,6 +13,15 @@ STAT_FIELDS = {
     "baseSpeed": "spe",
 }
 
+EV_YIELD_FIELDS = {
+    "evYield_HP": "hp",
+    "evYield_Attack": "atk",
+    "evYield_Defense": "def",
+    "evYield_SpAttack": "spa",
+    "evYield_SpDefense": "spd",
+    "evYield_Speed": "spe",
+}
+
 ENCOUNTER_SLOT_RATES = {
     "land_mons": [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1],
     "water_mons": [60, 30, 5, 4, 1],

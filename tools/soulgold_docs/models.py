@@ -233,6 +233,8 @@ class SpeciesPayloadRow(TypedDict):
     name: str
     types: list[str]
     stats: dict[str, int]
+    evYield: dict[str, int]
+    eggGroups: list[str]
     bst: int
     abilities: list[str]
     regularAbilities: list[str]
@@ -260,6 +262,8 @@ class SpeciesRow:
     dex_visible: bool
     types: list[str]
     stats: dict[str, int]
+    ev_yield: dict[str, int]
+    egg_groups: list[str]
     abilities: list[str]
     regular_abilities: list[str]
     hidden_abilities: list[str]

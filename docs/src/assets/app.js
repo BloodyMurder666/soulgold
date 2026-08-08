@@ -1510,7 +1510,7 @@ function megaFormLinks(mon) {
 }
 
 function locationRows(locations) {
-  if (!locations?.length) return `<p class="muted">No encounter, gift, or Hidden Grotto location found.</p>`;
+  if (!locations?.length) return `<p class="muted">No encounter, gift, trade, or Hidden Grotto location found.</p>`;
   const showOdds = locations.some((location) => location.rate != null);
   return `<div class="location-list${showOdds ? "" : " without-odds"}">
     <div class="location-row location-head"><span>Area</span><span>Method</span><span>Level</span>${showOdds ? "<span>Odds</span>" : ""}</div>
@@ -1544,6 +1544,32 @@ function heldItemRows(heldItems) {
   `;
 }
 
+function eggGroupName(constant) {
+  if (constant === "EGG_GROUP_NO_EGGS_DISCOVERED") return "Undiscovered";
+  return constant
+    .replace("EGG_GROUP_", "")
+    .replaceAll("_", " ")
+    .toLowerCase()
+    .replace(/\b\w/g, (letter) => letter.toUpperCase())
+    .replace("Human Like", "Human-Like");
+}
+
+function speciesExtraData(mon) {
+  const evLabels = { hp: "HP", atk: "Attack", def: "Defense", spa: "Sp. Atk", spd: "Sp. Def", spe: "Speed" };
+  const evYield = Object.entries(mon.evYield || {})
+    .filter(([, value]) => value)
+    .map(([stat, value]) => `${value} ${evLabels[stat] || stat}`)
+    .join(" · ") || "None";
+  const eggGroups = (mon.eggGroups || []).map(eggGroupName).join(" · ") || "Unknown";
+  return `
+    <h3 class="section-title">Extra Data</h3>
+    <dl class="species-extra-data">
+      <div><dt>EV Yield</dt><dd>${evYield}</dd></div>
+      <div><dt>Egg Groups</dt><dd>${eggGroups}</dd></div>
+    </dl>
+  `;
+}
+
 function openSpecies(mon) {
   navigateDetail("pokemon", mon.slug);
 }
@@ -1558,6 +1584,7 @@ function renderSpeciesDetail(mon) {
           ${typePills(mon.types)}
           ${pokemonAbilitySections(mon)}
           ${heldItemRows(mon.heldItems)}
+          ${speciesExtraData(mon)}
         </div>
       </div>
       ${accordionSection("Base Stats", statBars(mon), { mobileOpen: true })}

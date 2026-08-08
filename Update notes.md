@@ -12,6 +12,12 @@ Update notes:
     - Maybe fixed the rival/kimono girl/silver music overriding map music after their events.
     - Maybe fixed an extremely rare chance of getting stuck in a black screen after a warp if all planets aligned in the sky. (I cannot reproduce this bug so it's just a guess)
 
+Docs related:
+- EV yield and Egg Group are now displayed on the Pokédex pages.
+- Wild encounter percents are now grouped together if Pokémon has multiple slots on the same area.
+- Trades display as a source location.
+- Rotom forms mention how to change the form in the location data.
+
 4.8.2026
 - New Battle Facility: Battle Cafe. Located on Route 50, this features four daily challenges of varying difficulty and two unlockable endless modes. Various legendaries can be obtained from here.
 - Final part of the rival legendary quest is added, after obtaining Darkrai, rival will offer HM Dive to lead to the final two legendaries.

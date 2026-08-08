@@ -9,9 +9,40 @@ from collections import defaultdict
 from ..constants import BATTLE_PYRAMID_WILD_LABEL, ENCOUNTER_SLOT_RATES, JOHTO_ROUTE_PROGRESS, TIME_NIGHT_SUFFIX, UNKNOWN_MAP
 from ..c_parser import clean_constant_name, read
 from ..map_names import map_constant_display_name
-from ..models import RawEncounterRow, SpeciesLocation, SpeciesRow, WildEncounterRow
+from ..models import EncounterMon, RawEncounterRow, SpeciesLocation, SpeciesRow, WildEncounterRow
 from ..paths import WILD_ENCOUNTERS_JSON
 from .hidden_grottos import HiddenGrottoRow
+
+
+def combine_duplicate_species_slots(mons: list[EncounterMon]) -> list[EncounterMon]:
+    """Combine repeated species slots while retaining their full level range."""
+    combined: dict[str, EncounterMon] = {}
+    for mon in mons:
+        species = mon["species"]
+        if species not in combined:
+            combined[species] = mon.copy()
+            continue
+
+        current = combined[species]
+        min_levels = [
+            level
+            for level in (current.get("minLevel"), mon.get("minLevel"))
+            if level is not None
+        ]
+        max_levels = [
+            level
+            for level in (current.get("maxLevel"), mon.get("maxLevel"))
+            if level is not None
+        ]
+        rates = [
+            rate
+            for rate in (current.get("rate"), mon.get("rate"))
+            if rate is not None
+        ]
+        current["minLevel"] = min(min_levels) if min_levels else None
+        current["maxLevel"] = max(max_levels) if max_levels else None
+        current["rate"] = sum(rates) if rates else None
+    return list(combined.values())
 
 
 def parse_wild_encounters(by_species: dict[str, SpeciesRow]) -> list[WildEncounterRow]:
@@ -46,6 +77,10 @@ def parse_wild_encounters(by_species: dict[str, SpeciesRow]) -> list[WildEncount
                         "maxLevel": mon.get("max_level"),
                         "rate": slot_rates[slot] if slot < len(slot_rates) else mon.get("encounter_rate"),
                     })
+                # Fishing odds are scoped to separate rod groups that the UI
+                # derives from slot positions, so those slots must stay intact.
+                if method != "fishing_mons":
+                    mons = combine_duplicate_species_slots(mons)
                 methods.append({"key": method, "method": method.replace("_", " ").title(), "mons": mons})
             if methods:
                 rows.append({

@@ -1495,6 +1495,32 @@ dialog::backdrop {
   text-transform: capitalize;
 }
 
+.species-extra-data {
+  display: grid;
+  margin: 0;
+  gap: 4px;
+  font-size: 13px;
+}
+
+.species-extra-data > div {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 8px;
+}
+
+.species-extra-data dt {
+  color: var(--muted);
+}
+
+.species-extra-data dd {
+  min-width: 0;
+  margin: 0;
+  color: var(--text);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
 .tm-detail {
   display: grid;
   padding: 12px;

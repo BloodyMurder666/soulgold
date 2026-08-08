@@ -128,6 +128,8 @@ def build_docs_payload(
                 "name": row.name,
                 "types": row.types,
                 "stats": row.stats,
+                "evYield": row.ev_yield,
+                "eggGroups": row.egg_groups,
                 "bst": sum(row.stats.values()),
                 "abilities": row.abilities,
                 "regularAbilities": row.regular_abilities,
