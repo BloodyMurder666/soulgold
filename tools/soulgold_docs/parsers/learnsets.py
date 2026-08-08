@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
+import json
 import re
 
 from ..c_parser import parse_enum_constants, read
 from ..models import LevelUpMove, Teachables, TMHMRow
-from ..paths import MOVES_H, REPO_ROOT
+from ..paths import MOVES_H, REPO_ROOT, SPECIAL_MOVESETS_JSON
 
 _move_ids, _ = parse_enum_constants(MOVES_H, "")
 
@@ -54,6 +55,14 @@ def parse_teachable_learnsets(tmhm_moves: set[str]) -> dict[str, Teachables]:
             "tutors": [move for move in moves if move not in tmhm_moves],
         }
     return learnsets
+
+
+def parse_dedicated_tutors() -> dict[str, str]:
+    data = json.loads(read(SPECIAL_MOVESETS_JSON))
+    return {
+        canonical_move(move): note
+        for move, note in data.get("dedicatedTutors", {}).items()
+    }
 
 
 def parse_egg_move_learnsets() -> dict[str, list[str]]:

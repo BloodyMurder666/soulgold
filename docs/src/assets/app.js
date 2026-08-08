@@ -14,6 +14,7 @@ document.documentElement.dataset.theme = initialTheme;
 const state = {
   data: {
     species: [],
+    dedicatedTutors: {},
     moves: {},
     abilities: {},
     tms: [],
@@ -1349,7 +1350,9 @@ function moveRows(moves, options = {}) {
     const level = typeof entry === "string" ? "" : entry.level;
     const move = state.data.moves[constant] || {};
     const cells = showLevel ? `<span>${level}</span>` : "";
-    return `<div class="move-row ${showLevel ? "" : "move-row-compat"}">${cells}<button class="move-name" type="button" data-move="${constant}">${move.name || moveName(constant)}</button><span>${typePills([move.type || ""])}</span><span>${moveCategory(move.category || "")}</span><span>${move.power || "-"}</span><span>${move.accuracy || "-"}</span></div>`;
+    const note = options.moveNotes?.[constant];
+    const moveCell = `<span class="move-name-cell"><button class="move-name" type="button" data-move="${constant}">${move.name || moveName(constant)}</button>${note ? `<small class="move-note">${escapeHtml(note)}</small>` : ""}</span>`;
+    return `<div class="move-row ${showLevel ? "" : "move-row-compat"}">${cells}${moveCell}<span>${typePills([move.type || ""])}</span><span>${moveCategory(move.category || "")}</span><span>${move.power || "-"}</span><span>${move.accuracy || "-"}</span></div>`;
   }).join("")}</div>`;
 }
 
@@ -1593,7 +1596,7 @@ function renderSpeciesDetail(mon) {
     ${accordionSection("Locations", locationRows(mon.locations), { className: "species-locations" })}
     ${learnsetSection("Level-Up Learnset", mon.levelUp)}
     ${learnsetSection("TM / TR Moves", mon.tmhm, { showLevel: false })}
-    ${learnsetSection("Tutor Moves", mon.tutors, { showLevel: false })}
+    ${learnsetSection("Tutor Moves", mon.tutors, { showLevel: false, moveNotes: state.data.dedicatedTutors })}
     ${learnsetSection("Egg Moves", mon.eggMoves || [], { showLevel: false })}
   `;
   showDetailDialog("pokemon");

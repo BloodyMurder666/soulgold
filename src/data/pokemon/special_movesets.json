@@ -29,10 +29,10 @@
       "MOVE_SPLISHY_SPLASH",
       "MOVE_ZIPPY_ZAP"
     ],
-  "relearnerTutorExclusions":
-    [
-      "MOVE_DRACO_METEOR"
-    ],
+  "dedicatedTutors":
+    {
+      "MOVE_DRACO_METEOR": "Exclusive to the Dragon's Den Shrine tutor"
+    },
   "extraTutors":
     [
       "MOVE_ALLURING_VOICE",

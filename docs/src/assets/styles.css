@@ -868,6 +868,18 @@ dialog::backdrop { background: rgb(2 9 18 / 72%); }
   overflow-wrap: anywhere;
 }
 
+.move-name-cell {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+}
+
+.move-note {
+  color: var(--gold);
+  font-size: 11px;
+  line-height: 1.25;
+}
+
 .move-name:hover {
   color: var(--gold);
 }

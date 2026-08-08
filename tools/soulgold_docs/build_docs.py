@@ -38,6 +38,7 @@ from tools.soulgold_docs.parsers.items import (
 )
 from tools.soulgold_docs.parsers.guides import parse_guides
 from tools.soulgold_docs.parsers.learnsets import (
+    parse_dedicated_tutors,
     parse_egg_move_learnsets,
     parse_level_up_learnsets,
     parse_teachable_learnsets,
@@ -73,6 +74,7 @@ def build() -> None:
     species = apply_dex_form_visibility(species_data.rows, mega_evolutions)
     level_up = parse_level_up_learnsets()
     teachables = parse_teachable_learnsets(tmhm_moves)
+    dedicated_tutors = parse_dedicated_tutors()
     egg_moves = parse_egg_move_learnsets()
     front_sources = parse_front_pic_sources()
     shiny_palette_sources = parse_shiny_palette_sources()
@@ -124,6 +126,7 @@ def build() -> None:
     guides = parse_guides()
     payload = build_docs_payload(
         visible_species,
+        dedicated_tutors,
         moves,
         abilities,
         ability_usage,

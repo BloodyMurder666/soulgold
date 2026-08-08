@@ -105,6 +105,7 @@ def write_detail_routes(payload: DocsPayload) -> None:
 
 def build_docs_payload(
     visible_species: list[SpeciesRow],
+    dedicated_tutors: dict[str, str],
     moves: dict[str, NamedRecord],
     abilities: dict[str, NamedRecord],
     ability_usage: AbilityUsage,
@@ -120,6 +121,7 @@ def build_docs_payload(
 ) -> DocsPayload:
     payload: DocsPayload = {
         "meta": {"generatedFrom": "tools/soulgold_docs/build_docs.py"},
+        "dedicatedTutors": dedicated_tutors,
         "species": [
             {
                 "id": row.id,
@@ -190,6 +192,7 @@ def write_docs_payload(payload: DocsPayload) -> None:
     write_json("romhack-docs.json", payload, pretty=True)
     write_json("common.json", {
         "meta": payload["meta"],
+        "dedicatedTutors": payload["dedicatedTutors"],
         "moves": payload["moves"],
         "abilities": {
             key: {field: value for field, value in ability.items() if field != "usage"}

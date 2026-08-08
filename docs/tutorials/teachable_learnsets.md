@@ -15,6 +15,7 @@ When you `make`, a file will be generated in `src/data/pokemon/teachable_learnse
 3. [Available Moves]
     - [TMs/Hms]
     - [Tutors from scripts]
+    - [Dedicated Tutors]
     - [Extra Tutors]
 
 ## Potential Teachables
@@ -55,6 +56,10 @@ The script detects the TMs and HMs available in your game based on the list in `
 ### Tutors from scripts
 
 The script looks for tutor moves in your script files, whether map scripts `/data/maps/*/scripts.inc` or other function scripts `/data/scripts/*.inc`. It looks for the pattern used for move tutors in vanilla Emerald, `setvar VAR_0x8005, MOVE_*`, including scripts that open the shared `MoveTutor_EventScript_OpenPartyMenu` or `MoveTutor_EventScript_OpenBox` helpers. So try to add move tutors this way if you want them to be properly detected.
+
+### Dedicated Tutors
+
+Detected tutor moves normally also appear in the move relearner's Tutor Moves list. To keep a move exclusive to its dedicated overworld tutor, add the move and its Pokédex note to `dedicatedTutors` in `src/data/pokemon/special_movesets.json`. The move remains in species' teachable learnsets so the overworld tutor can still check compatibility, while the note identifies where the move is available in the generated documentation.
 
 ### Extra Tutors
 

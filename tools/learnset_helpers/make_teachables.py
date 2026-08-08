@@ -156,7 +156,7 @@ def prepare_header(h_align: int, tmshms: list[str], tutors: list[str], universal
 
     return "\n".join(lines)
 
-def create_tutor_moves_array(tutors, exclusions):
+def create_tutor_moves_array(tutors, dedicated_tutors):
     """
     Generate gTutorMoves[], omitting tutors that should only be available from
     their dedicated overworld scripts.
@@ -168,7 +168,7 @@ def create_tutor_moves_array(tutors, exclusions):
         const u16 gTutorMoves[] = {
     """)
 
-    lines = [f"    {move}," for move in tutors if move not in exclusions]
+    lines = [f"    {move}," for move in tutors if move not in dedicated_tutors]
     lines.append("    MOVE_UNAVAILABLE\n};\n")
     with open("./src/data/tutor_moves.h", "w") as f:
         f.write(header + "\n".join(lines))
@@ -185,7 +185,7 @@ def make_move_tutors(build_dir, special_movesets):
     repo_tutors = sorted(list(set(repo_tutors + special_movesets["extraTutors"])))
     create_tutor_moves_array(
         repo_tutors,
-        special_movesets.get("relearnerTutorExclusions", []),
+        special_movesets.get("dedicatedTutors", {}),
     )
 
     return repo_tutors

@@ -300,6 +300,7 @@ class OutputPaths:
 class DocsPayload(TypedDict):
     meta: dict[str, str]
     species: list[SpeciesPayloadRow]
+    dedicatedTutors: dict[str, str]
     moves: dict[str, NamedRecord]
     abilities: dict[str, NamedRecord]
     tms: list[TMRow]
