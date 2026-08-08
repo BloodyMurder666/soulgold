@@ -265,7 +265,6 @@ EXCLUDED_TRAINER_MAP_PREFIXES = (
     "RockTunnel",
     "Route19_Cave",
     "SeafoamIslands",
-    "VictoryRoadKanto",
     "ViridianForest",
 )
 
