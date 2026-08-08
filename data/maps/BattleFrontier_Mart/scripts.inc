@@ -7,8 +7,8 @@ BattleFrontier_Mart_MapScripts::
 	.byte 0
 
 BattleFrontier_Mart_OnTransition::
-	call_if_set FLAG_FINITE_TMS, BattleFrontier_Mart_TMClerkCheck
-	call_if_unset FLAG_FINITE_TMS, BattleFrontier_Mart_HideTMClerk
+	call_if_set FLAG_GARBAGEFLAG, BattleFrontier_Mart_TMClerkCheck
+	call_if_unset FLAG_GARBAGEFLAG, BattleFrontier_Mart_HideTMClerk
 	call_if_unset FLAG_DEFEATED_MTSILVER_RIVAL, BattleFrontier_Mart_HideSecondClerk
 	call_if_set FLAG_DEFEATED_MTSILVER_RIVAL, BattleFrontier_Mart_ShowSecondClerk
 	end

@@ -2406,6 +2406,29 @@ BattleCafe_TrainerTylarie_2:
 	end
 
 
+BattleCafe_FreshWaterFountain::
+# 1335 "data/maps/BattleCafe/scripts.pory"
+	goto_if_set FLAG_GOT_FRESH_WATER, BattleCafe_FreshWaterFountain_1
+# 1338 "data/maps/BattleCafe/scripts.pory"
+	lock
+# 1339 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_FreshWaterFountain_Text_1
+# 1341 "data/maps/BattleCafe/scripts.pory"
+	finditem ITEM_FRESH_WATER
+# 1342 "data/maps/BattleCafe/scripts.pory"
+	setflag FLAG_GOT_FRESH_WATER
+# 1343 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_FreshWaterFountain_Text_2
+# 1344 "data/maps/BattleCafe/scripts.pory"
+	release
+	end
+
+BattleCafe_FreshWaterFountain_1:
+# 1336 "data/maps/BattleCafe/scripts.pory"
+	msgbox BattleCafe_FreshWaterFountain_Text_0, MSGBOX_SIGN
+	return
+
+
 BattleCafe_GiveDiancie_Text_0:
 # 33 "data/maps/BattleCafe/scripts.pory"
 	.string "Well, look at that. You've beaten\n"
@@ -3241,3 +3264,16 @@ BattleCafe_TrainerTylarie_Text_3:
 # 1327 "data/maps/BattleCafe/scripts.pory"
 	.string "Tylarie: Not bad. We can go at it again\n"
 	.string "another day.$"
+
+BattleCafe_FreshWaterFountain_Text_0:
+# 1336 "data/maps/BattleCafe/scripts.pory"
+	.string "It's a small fountain of water.$"
+
+BattleCafe_FreshWaterFountain_Text_1:
+# 1339 "data/maps/BattleCafe/scripts.pory"
+	.string "You decide to grab some fresh water\n"
+	.string "from the fountain.$"
+
+BattleCafe_FreshWaterFountain_Text_2:
+# 1343 "data/maps/BattleCafe/scripts.pory"
+	.string "Stay hydrated.$"

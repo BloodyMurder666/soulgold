@@ -6,7 +6,14 @@ import json
 import re
 from collections import defaultdict
 
-from ..constants import BATTLE_PYRAMID_WILD_LABEL, ENCOUNTER_SLOT_RATES, JOHTO_ROUTE_PROGRESS, TIME_NIGHT_SUFFIX, UNKNOWN_MAP
+from ..constants import (
+    BATTLE_PYRAMID_WILD_LABEL,
+    DOCS_HIDDEN_WILD_ENCOUNTER_MAPS,
+    ENCOUNTER_SLOT_RATES,
+    JOHTO_ROUTE_PROGRESS,
+    TIME_NIGHT_SUFFIX,
+    UNKNOWN_MAP,
+)
 from ..c_parser import clean_constant_name, read
 from ..map_names import map_constant_display_name
 from ..models import EncounterMon, RawEncounterRow, SpeciesLocation, SpeciesRow, WildEncounterRow
@@ -54,7 +61,7 @@ def parse_wild_encounters(by_species: dict[str, SpeciesRow]) -> list[WildEncount
             continue
         for encounter in group.get("encounters", []):
             map_const = encounter.get("map", UNKNOWN_MAP)
-            if map_const == UNKNOWN_MAP:
+            if map_const == UNKNOWN_MAP or map_const in DOCS_HIDDEN_WILD_ENCOUNTER_MAPS:
                 continue
             label = map_constant_display_name(map_const)
             base_label = encounter.get("base_label", "")

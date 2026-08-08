@@ -349,6 +349,14 @@ static void ItemUseOnFieldCB_Bike(u8 taskId)
     DestroyTask(taskId);
 }
 
+static bool32 IsBattleCafeFishingSpot(s16 x, s16 y)
+{
+    return gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_BATTLE_CAFE)
+        && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_BATTLE_CAFE)
+        && x == 3 + MAP_OFFSET
+        && y == 2 + MAP_OFFSET;
+}
+
 static bool32 CanFish(void)
 {
     s16 x, y;
@@ -365,7 +373,8 @@ static bool32 CanFish(void)
 
     if (!TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING))
     {
-        if (IsPlayerFacingSurfableFishableWater())
+        if (IsPlayerFacingSurfableFishableWater()
+        || IsBattleCafeFishingSpot(x, y))
             return TRUE;
     }
     else

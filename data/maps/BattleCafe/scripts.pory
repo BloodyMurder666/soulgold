@@ -1330,3 +1330,18 @@ script BattleCafe_TrainerTylarie {
     release
     end
 }
+
+script BattleCafe_FreshWaterFountain {
+    if (flag(FLAG_GOT_FRESH_WATER)) {
+        msgbox("It's a small fountain of water.", MSGBOX_SIGN)
+    } else {
+        lock
+        msgbox("You decide to grab some fresh water
+                from the fountain.")
+        finditem(ITEM_FRESH_WATER)
+        setflag(FLAG_GOT_FRESH_WATER)
+        msgbox("Stay hydrated.")
+        release
+        end
+    }
+}

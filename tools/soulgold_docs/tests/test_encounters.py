@@ -13,6 +13,13 @@ class StubSpecies:
 
 
 class WildEncounterAggregationTests(unittest.TestCase):
+    def test_battle_cafe_encounters_are_hidden(self) -> None:
+        encounters = parse_wild_encounters(
+            {"SPECIES_CHI_YU": StubSpecies("Chi-Yu")}
+        )
+
+        self.assertNotIn("MAP_BATTLE_CAFE", {encounter["map"] for encounter in encounters})
+
     def test_repeated_rotom_slots_are_combined(self) -> None:
         encounters = parse_wild_encounters(
             {"SPECIES_ROTOM": StubSpecies("Rotom")}  # type: ignore[dict-item]
