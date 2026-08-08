@@ -8,6 +8,7 @@ Update notes:
 - Gen 4 Adamant Orb/Lustrous Glove/Griseous Core now transform Dialga/Palkia/Giratina (was previously locked to the newer gen 9 items with similar names...)
 - Fixed the first party slot follower Pokémon not being restored until going through a warp after healing.
 - Re-ordered Battle Cafe rewards list for repeat purchasing consumables.
+- Fix Tether ability's message when copying stats.
 - Experimental bugfixes:
     - Maybe fixed the black ability box bug that could happen rarely.
     - Maybe fixed the rival/kimono girl/silver music overriding map music after their events.
