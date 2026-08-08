@@ -85,6 +85,9 @@ script BattleCafe_OwnerMenu {
         There's even a special prize if you
         manage to beat all the regulars here.
 
+        However I must warn you that all the
+        regulars here are really tough!
+
         Anyway, enough about me...")
         setflag(FLAG_CAFE_INTRO_DONE)
     }
@@ -705,6 +708,12 @@ script BattleCafe_RewardMenu {
             Anything you want to exchange for?")
     special(BattleCafe_GetParadoxRewardEligibility)
     copyvar(VAR_TEMP_C, VAR_RESULT)
+    dynmultipush("Vitamin Set Atk - 4", 10)
+    dynmultipush("Vitamin Set Def - 4", 11)
+    dynmultipush("Vitamin Set Spe - 2", 12)
+    dynmultipush("Shiny Genome - 4", 7)
+    dynmultipush("2 Gold Caps - 5", 8)
+    dynmultipush("¥250,000 - 5", 9)
     dynmultipush("G. Articuno - 5", 0)
     dynmultipush("G. Zapdos - 5", 1)
     dynmultipush("G. Moltres - 5", 2)
@@ -716,12 +725,6 @@ script BattleCafe_RewardMenu {
     dynmultipush("Tapu Lele - 5", 17)
     dynmultipush("Tapu Bulu - 5", 18)
     dynmultipush("Tapu Fini - 5", 19)
-    dynmultipush("Shiny Genome - 4", 7)
-    dynmultipush("2 Gold Caps - 5", 8)
-    dynmultipush("¥250,000 - 5", 9)
-    dynmultipush("Vitamin Set Atk - 4", 10)
-    dynmultipush("Vitamin Set Def - 4", 11)
-    dynmultipush("Vitamin Set Spe - 2", 12)
     if (var(VAR_TEMP_C) == BATTLE_CAFE_PARADOX_REWARD_MIRAIDON
         || var(VAR_TEMP_C) == BATTLE_CAFE_PARADOX_REWARD_MIRAIDON + BATTLE_CAFE_PARADOX_REWARD_KORAIDON) {
         dynmultipush("Miraidon - 25", 13)
@@ -731,7 +734,7 @@ script BattleCafe_RewardMenu {
         dynmultipush("Koraidon - 25", 14)
     }
     dynmultipush("Back", 15)
-    dynmultistack(0, 0, FALSE, 6, FALSE, 0, DYN_MULTICHOICE_CB_NONE)
+    dynmultistack(0, 0, FALSE, 6, FALSE, 10, DYN_MULTICHOICE_CB_NONE)
     switch (var(VAR_RESULT)) {
         case 0: goto(BattleCafe_ChooseArticuno)
         case 1: goto(BattleCafe_ChooseZapdos)
