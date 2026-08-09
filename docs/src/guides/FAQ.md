@@ -90,8 +90,44 @@ order: 1
 ### Tips for getting money?
 - Early game, have a Pokémon with ability Pickup. In this hack if the held item slot is occuped, items picked by Pickup will still go to bag. Later on you can fish feathers or smash rocks for shards and sell them for quick cash. After obtaining 8 badges, Battle Factory will stock Nuggets and Big Nuggets. In the post game you can farm money from the Rocket Arcade facility.
 
+### What items can Pickup find?
+- Below is the table of items found with Pickup. Note that the items go straight to bag if held item slot is occupied.
+
+| Item | Lv. 1–10 | Lv. 11–20 | Lv. 21–30 | Lv. 31–40 | Lv. 41–50 | Lv. 51–60 | Lv. 61–70 | Lv. 71–80 | Lv. 81–90 | Lv. 91–100 |
+| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Potion | 35% | — | — | — | — | — | — | — | — | — |
+| Tiny Mushroom | 25% | 10% | — | — | — | — | — | — | — | — |
+| Repel | 8% | 30% | — | — | — | — | — | — | — | — |
+| Super Potion | 8% | 10% | 30% | — | — | — | — | — | — | — |
+| Poké Doll | 8% | 10% | 9% | 30% | — | — | — | — | — | — |
+| Big Mushroom | 3% | 10% | 9% | — | — | — | — | — | — | — |
+| Super Repel | 3% | 10% | 9% | 9% | 30% | — | — | — | — | — |
+| Full Heal | 3% | 3% | 9% | 8% | 9% | 30% | — | — | — | — |
+| Revive | 3% | 3% | 3% | 8% | 8% | 9% | 30% | — | — | — |
+| Hyper Potion | 3% | 3% | 3% | 4% | 8% | 9% | 8% | 30% | — | — |
+| Ether | 1% | 1% | 3% | 4% | 4% | — | — | — | — | — |
+| Max Repel | — | 3% | 3% | 4% | 4% | 9% | 8% | 8% | 30% | — |
+| Moon Stone | — | 3% | 3% | 4% | 4% | 4% | 4% | 5% | 9% | 10% |
+| Sun Stone | — | 3% | 3% | 4% | 4% | 4% | 4% | 5% | 9% | 10% |
+| Rare Candy | — | 1% | 1% | 1% | 1% | 4% | 4% | 5% | 4% | 5% |
+| Nugget | — | — | 3% | 4% | 4% | 4% | 4% | 5% | 4% | 5% |
+| Max Potion | — | — | 3% | 4% | 4% | 4% | 8% | 8% | 9% | 30% |
+| Max Ether | — | — | 1% | 1% | 4% | 4% | 4% | — | — | — |
+| PP Up | — | — | 1% | 1% | 1% | 4% | 4% | 5% | 4% | 5% |
+| Big Nugget | — | — | 1% | 1% | 1% | 1% | 4% | 5% | 4% | 5% |
+| Destiny Knot | — | — | 1% | 1% | 1% | 1% | 1% | 1% | 1% | 1% |
+| Leftovers | — | — | 1% | 1% | 1% | 1% | 1% | 1% | 1% | 1% |
+| Mental Herb | — | — | 1% | 1% | 1% | 1% | 1% | 1% | 1% | 1% |
+| Power Herb | — | — | 1% | 1% | 1% | 1% | 1% | 1% | 1% | 1% |
+| White Herb | — | — | 1% | 1% | 1% | 1% | 1% | 1% | 1% | 1% |
+| Balm Mushroom | — | — | 1% | 4% | 4% | 4% | 4% | 5% | 4% | 5% |
+| Max Revive | — | — | — | 4% | 4% | 4% | 4% | 7% | 9% | 9% |
+| Ability Capsule | — | — | — | — | 1% | 1% | 4% | 5% | 4% | 5% |
+| Ability Patch | — | — | — | — | — | — | 1% | 1% | 4% | 5% |
+| Bottle Cap | — | — | — | — | — | — | — | 1% | 1% | 1% |
+
 ### Why do innates unlock so late?
-- They are meant to act as a form of postgame progression. Most Pokémon stop learning moves around 60~ usually, so this gives something to look forward to after that.
+- They are meant to act as a form of postgame progression. Most Pokémon stop learning moves around 60~ usually, so this gives something to look forward to after that. If you really want to play with innates during the main game, you can activate them from the bookcase behind the starter case table in Elm's lab. However this will be a very unbalanced experience and not the intended way to play.
 
 ### Where is X Item/Pokémon/TM?
 - Check docs or ingame pokedex.

@@ -120,8 +120,6 @@ const excludedDexSpecies = new Set([
   "SPECIES_CALYREX",
   "SPECIES_CALYREX_ICE",
   "SPECIES_CALYREX_SHADOW",
-  "SPECIES_ENAMORUS_INCARNATE",
-  "SPECIES_ENAMORUS_THERIAN",
   "SPECIES_PECHARUNT",
   "SPECIES_TERAPAGOS_NORMAL",
   "SPECIES_TERAPAGOS_TERASTAL",
@@ -2172,6 +2170,55 @@ function guideImageHtml(alt, url, guide, size = "") {
   return `<img class="guide-image${sizeClass}" src="${escapeHtml(guideUrl(url, guide))}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async">`;
 }
 
+function guideTableCells(line) {
+  const source = String(line || "").trim();
+  const start = source.startsWith("|") ? 1 : 0;
+  const end = source.endsWith("|") && !source.endsWith("\\|") ? source.length - 1 : source.length;
+  const cells = [];
+  let cell = "";
+
+  for (let index = start; index < end; index += 1) {
+    if (source[index] === "\\" && source[index + 1] === "|") {
+      cell += "|";
+      index += 1;
+    } else if (source[index] === "|") {
+      cells.push(cell.trim());
+      cell = "";
+    } else {
+      cell += source[index];
+    }
+  }
+  cells.push(cell.trim());
+  return cells;
+}
+
+function guideTableAlignments(line) {
+  if (!String(line || "").includes("|")) return null;
+  const cells = guideTableCells(line);
+  if (!cells.length || !cells.every((cell) => /^:?-{3,}:?$/.test(cell))) return null;
+  return cells.map((cell) => cell.startsWith(":") && cell.endsWith(":") ? "center" : cell.endsWith(":") ? "right" : "left");
+}
+
+function guideTableHtml(headers, rows, alignments, guide) {
+  const cellClass = (index) => `guide-table-align-${alignments[index] || "left"}`;
+  const headerHtml = headers.map((header, index) =>
+    `<th class="${cellClass(index)}" scope="col">${guideInline(header, guide)}</th>`
+  ).join("");
+  const bodyHtml = rows.map((row) => `
+    <tr>${headers.map((_header, index) =>
+      `<td class="${cellClass(index)}">${guideInline(row[index] || "", guide)}</td>`
+    ).join("")}</tr>
+  `).join("");
+  return `
+    <div class="guide-table-shell" tabindex="0" aria-label="Scrollable guide table">
+      <table class="guide-table">
+        <thead><tr>${headerHtml}</tr></thead>
+        <tbody>${bodyHtml}</tbody>
+      </table>
+    </div>
+  `;
+}
+
 function renderGuideMarkdown(markdown, guide) {
   const lines = String(markdown || "").replace(/\r\n?/g, "\n").split("\n");
   const output = [];
@@ -2183,6 +2230,7 @@ function renderGuideMarkdown(markdown, guide) {
   let spoilerLines = [];
   let spoilerTitle = "";
   let spoilerInCode = false;
+  let tableLinesToSkip = 0;
 
   const flushParagraph = () => {
     if (!paragraph.length) return;
@@ -2206,7 +2254,11 @@ function renderGuideMarkdown(markdown, guide) {
     spoilerInCode = false;
   };
 
-  lines.forEach((line) => {
+  lines.forEach((line, lineIndex) => {
+    if (tableLinesToSkip) {
+      tableLinesToSkip -= 1;
+      return;
+    }
     const trimmed = line.trim();
     if (spoilerLines.length || spoilerTitle) {
       if (!spoilerInCode && /^\[\/spoiler\]$/i.test(trimmed)) {
@@ -2242,6 +2294,22 @@ function renderGuideMarkdown(markdown, guide) {
       flushParagraph();
       closeList();
       spoilerTitle = (spoiler[1] || "Show solution").trim().replace(/^(?:"([\s\S]*)"|'([\s\S]*)')$/, "$1$2") || "Show solution";
+      return;
+    }
+
+    const tableHeaders = trimmed.includes("|") ? guideTableCells(line) : [];
+    const tableAlignments = guideTableAlignments(lines[lineIndex + 1]);
+    if (tableHeaders.length > 1 && tableAlignments?.length === tableHeaders.length) {
+      flushParagraph();
+      closeList();
+      const tableRows = [];
+      let nextLine = lineIndex + 2;
+      while (nextLine < lines.length && lines[nextLine].trim() && lines[nextLine].includes("|")) {
+        tableRows.push(guideTableCells(lines[nextLine]).slice(0, tableHeaders.length));
+        nextLine += 1;
+      }
+      output.push(guideTableHtml(tableHeaders, tableRows, tableAlignments, guide));
+      tableLinesToSkip = nextLine - lineIndex - 1;
       return;
     }
 

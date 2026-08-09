@@ -3014,6 +3014,71 @@ body[data-active-tab="pokedex"] .type-filter {
   padding: 11px 14px;
 }
 
+.guide-table-shell {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  background: var(--surface-raised);
+}
+
+.guide-table-shell:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.guide-table {
+  width: max-content;
+  min-width: 100%;
+  table-layout: auto;
+}
+
+.guide-table tbody tr {
+  transition: none;
+}
+
+.guide-table th,
+.guide-table td {
+  padding: 8px 10px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.guide-table th:first-child,
+.guide-table td:first-child {
+  position: sticky;
+  left: 0;
+}
+
+.guide-table th:first-child {
+  z-index: 2;
+}
+
+.guide-table td:first-child {
+  z-index: 1;
+  min-width: 130px;
+  background: var(--surface-raised);
+  color: var(--text);
+  font-weight: 700;
+}
+
+.guide-table tbody tr:nth-child(even) td:first-child {
+  background: #f1eee6;
+}
+
+.guide-table tbody tr:hover td:first-child {
+  background: var(--surface-hover);
+}
+
+.guide-table .guide-table-align-center {
+  text-align: center;
+}
+
+.guide-table .guide-table-align-right {
+  text-align: right;
+}
+
 .guide-content figure {
   display: grid;
   margin-right: 0;
@@ -4217,6 +4282,14 @@ dialog::backdrop {
 
 :root[data-theme="dark"] .guide-content blockquote {
   background: #343126;
+}
+
+:root[data-theme="dark"] .guide-table tbody tr:nth-child(even) td:first-child {
+  background: #202622;
+}
+
+:root[data-theme="dark"] .guide-table tbody tr:hover td:first-child {
+  background: var(--surface-hover);
 }
 
 @media (max-width: 1100px) {
