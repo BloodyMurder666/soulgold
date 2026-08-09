@@ -33,6 +33,11 @@ ODD_EGG_ARRAY_RE = re.compile(
 )
 GIFT_LOCATION_NAME_OVERRIDES = {
     ("SPECIES_BELDUM", "MAP_KITAKAMI_HOUSES"): "Gift from Steven in Kitakami",
+    ("SPECIES_GRENINJA_BOND", "MAP_ROUTE40_HOUSE4"): "Route 40 Achievement reward (30 trophies)",
+    ("SPECIES_POIPOLE", "MAP_ROUTE40_HOUSE4"): "Route 40 Achievement reward (45 trophies)",
+    ("SPECIES_FLOETTE_ETERNAL", "MAP_ROUTE40_HOUSE4"): "Route 40 Achievement reward (60 trophies)",
+    ("SPECIES_ZARUDE", "MAP_ROUTE40_HOUSE4"): "Route 40 Achievement reward (75 trophies)",
+    ("SPECIES_MAGEARNA_ORIGINAL", "MAP_ROUTE40_HOUSE4"): "Route 40 Achievement reward (100 trophies)",
 }
 LEGENDARY_LOCATION_NAME_OVERRIDES = {
     "MAP_CERULEAN_CAVE_B2F": "Nameless Cave",
