@@ -132,6 +132,7 @@ def build_docs_payload(
                 "stats": row.stats,
                 "evYield": row.ev_yield,
                 "eggGroups": row.egg_groups,
+                "categories": row.categories,
                 "bst": sum(row.stats.values()),
                 "abilities": row.abilities,
                 "regularAbilities": row.regular_abilities,
@@ -205,6 +206,7 @@ def write_docs_payload(payload: DocsPayload) -> None:
     })
     summary_fields = {
         "id", "constant", "dex", "name", "types", "stats", "bst",
+        "categories",
         "abilities", "regularAbilities", "hiddenAbilities", "innates",
         "sprite", "slug",
     }

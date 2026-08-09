@@ -8224,7 +8224,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_ERRATIC,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING, EGG_GROUP_DRAGON),
         .abilities = { ABILITY_PIXILATE, ABILITY_PIXILATE, ABILITY_PIXILATE },
-        .innates = { ABILITY_COTTON_DOWN, ABILITY_UNBURDEN, ABILITY_DRAGONS_MAW },
+        .innates = { ABILITY_COTTON_DOWN, ABILITY_FILTER, ABILITY_DRAGONS_MAW },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Altaria"),
     #if P_MODIFIED_MEGA_CRIES

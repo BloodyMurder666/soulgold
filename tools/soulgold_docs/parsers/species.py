@@ -90,6 +90,20 @@ def parse_species() -> SpeciesParseResult:
             egg_group = egg_group_by_id.get(int(raw_group))
             if egg_group and egg_group != "EGG_GROUP_NONE" and egg_group not in egg_groups:
                 egg_groups.append(egg_group)
+        categories = []
+        if extract_number(entry, "isRestrictedLegendary") or extract_number(entry, "isSubLegendary"):
+            categories.append("legendary")
+        if any(
+            extract_number(entry, field)
+            for field in ("isAlolanForm", "isGalarianForm", "isHisuianForm", "isPaldeanForm")
+        ):
+            categories.append("regional")
+        if extract_number(entry, "isParadox"):
+            categories.append("paradox")
+        if extract_number(entry, "isMythical"):
+            categories.append("mythical")
+        if extract_number(entry, "isMegaEvolution"):
+            categories.append("mega")
         types = extract_braced_constants(entry, "types", "TYPE_") or ["TYPE_NORMAL"]
         if len(types) == 1:
             types.append(types[0])
@@ -126,6 +140,7 @@ def parse_species() -> SpeciesParseResult:
             stats=stats,
             ev_yield=ev_yield,
             egg_groups=egg_groups,
+            categories=categories,
             abilities=abilities,
             regular_abilities=regular_abilities,
             hidden_abilities=hidden_abilities,

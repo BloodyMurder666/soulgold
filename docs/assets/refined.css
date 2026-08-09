@@ -4323,6 +4323,12 @@ dialog::backdrop {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.dex-category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px;
+}
+
 .type-filter-subtitle {
   margin: 9px 0 5px;
   color: var(--muted);
@@ -4345,6 +4351,7 @@ dialog::backdrop {
   gap: 5px;
 }
 
+.dex-category-chip,
 .dex-sort-chip,
 .dex-sort-direction-chip {
   min-width: 0;
@@ -4359,6 +4366,7 @@ dialog::backdrop {
   font-weight: 700;
 }
 
+.dex-category-chip:hover,
 .dex-sort-chip:hover,
 .dex-sort-direction-chip:hover,
 .type-filter-clear:hover {
@@ -4367,6 +4375,7 @@ dialog::backdrop {
   color: var(--text);
 }
 
+.dex-category-chip.active,
 .dex-sort-chip.active,
 .dex-sort-direction-chip.active {
   border-color: #9e7343;
@@ -4381,6 +4390,7 @@ dialog::backdrop {
   color: var(--muted);
 }
 
+:root[data-theme="dark"] .dex-category-chip,
 :root[data-theme="dark"] .dex-sort-chip,
 :root[data-theme="dark"] .dex-sort-direction-chip {
   border-color: #59625c;
@@ -4388,6 +4398,7 @@ dialog::backdrop {
   color: #d8d9d3;
 }
 
+:root[data-theme="dark"] .dex-category-chip:hover,
 :root[data-theme="dark"] .dex-sort-chip:hover,
 :root[data-theme="dark"] .dex-sort-direction-chip:hover,
 :root[data-theme="dark"] .type-filter-clear:hover {
@@ -4396,6 +4407,7 @@ dialog::backdrop {
   color: var(--text);
 }
 
+:root[data-theme="dark"] .dex-category-chip.active,
 :root[data-theme="dark"] .dex-sort-chip.active,
 :root[data-theme="dark"] .dex-sort-direction-chip.active {
   border-color: #9e7343;

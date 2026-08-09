@@ -3869,9 +3869,9 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
     [SPECIES_CENTISKORCH] =
     {
         .baseHP        = 100,
-        .baseAttack    = 145,
-        .baseDefense   = 100,
-        .baseSpeed     = 100,
+        .baseAttack    = 115,
+        .baseDefense   = 65,
+        .baseSpeed     = 65,
         .baseSpAttack  = 90,
         .baseSpDefense = 90,
         .types = MON_TYPES(TYPE_FIRE, TYPE_BUG),
@@ -3940,9 +3940,9 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
     [SPECIES_CENTISKORCH_GMAX] =
     {
         .baseHP        = 100,
-        .baseAttack    = 115,
-        .baseDefense   = 65,
-        .baseSpeed     = 65,
+        .baseAttack    = 145,
+        .baseDefense   = 100,
+        .baseSpeed     = 100,
         .baseSpAttack  = 90,
         .baseSpDefense = 90,
         .types = MON_TYPES(TYPE_FIRE, TYPE_BUG),

@@ -31,6 +31,14 @@ class SpeciesExtraDataTests(unittest.TestCase):
             ["EGG_GROUP_NO_EGGS_DISCOVERED"],
         )
 
+    def test_dex_filter_categories_are_parsed(self) -> None:
+        self.assertIn("legendary", self.species["SPECIES_MEWTWO"].categories)
+        self.assertIn("mythical", self.species["SPECIES_MEW"].categories)
+        self.assertIn("paradox", self.species["SPECIES_GREAT_TUSK"].categories)
+        self.assertIn("mega", self.species["SPECIES_VENUSAUR_MEGA"].categories)
+        self.assertIn("regional", self.species["SPECIES_RAICHU_ALOLA"].categories)
+        self.assertEqual(self.species["SPECIES_RATTATA"].categories, [])
+
 
 if __name__ == "__main__":
     unittest.main()

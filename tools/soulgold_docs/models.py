@@ -235,6 +235,7 @@ class SpeciesPayloadRow(TypedDict):
     stats: dict[str, int]
     evYield: dict[str, int]
     eggGroups: list[str]
+    categories: list[str]
     bst: int
     abilities: list[str]
     regularAbilities: list[str]
@@ -264,6 +265,7 @@ class SpeciesRow:
     stats: dict[str, int]
     ev_yield: dict[str, int]
     egg_groups: list[str]
+    categories: list[str]
     abilities: list[str]
     regular_abilities: list[str]
     hidden_abilities: list[str]

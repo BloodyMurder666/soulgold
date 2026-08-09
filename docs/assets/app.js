@@ -31,6 +31,7 @@ const state = {
   query: "",
   filteredSpecies: [],
   selectedTypes: new Set(),
+  selectedCategories: new Set(),
   dexSortKey: "dex",
   dexSortDirection: "asc",
   modalScrollY: 0,
@@ -63,6 +64,14 @@ const dexSortOptions = [
   { key: "spe", label: "Speed" },
   { key: "bst", label: "BST" },
 ];
+const dexCategoryOptions = [
+  { key: "legendary", label: "Legendary" },
+  { key: "regional", label: "Regional form" },
+  { key: "paradox", label: "Paradox" },
+  { key: "mythical", label: "Mythical" },
+  { key: "mega", label: "Mega" },
+];
+const dexCategoryKeys = new Set(dexCategoryOptions.map((option) => option.key));
 const excludedDexSpecies = new Set([
   "SPECIES_KELDEO",
   "SPECIES_KELDEO_RESOLUTE",
@@ -117,6 +126,7 @@ const excludedDexSpecies = new Set([
   "SPECIES_TERAPAGOS_NORMAL",
   "SPECIES_TERAPAGOS_TERASTAL",
   "SPECIES_TERAPAGOS_STELLAR",
+  "SPECIES_CHI_YU",
 ]);
 const innateUnlockLevels = [75, 85, 95];
 const machineLocationOverrides = {
@@ -505,6 +515,7 @@ function viewFromLocation() {
   return {
     query: (params.get("q") || "").trim().toLowerCase(),
     types: (params.get("type") || "").split(",").filter(Boolean).map((type) => `TYPE_${type.toUpperCase().replace(/^TYPE_/, "")}`),
+    categories: (params.get("category") || "").split(",").filter((category) => dexCategoryKeys.has(category)),
     sortKey: normalizeDexSortKey(params.get("sort")),
     sortDirection: params.get("dir") === "desc" ? "desc" : "asc",
     scrollY: 0,
@@ -522,12 +533,15 @@ function routeUrl(tab, detail = null, view = null) {
   const route = tabRoutes[tab];
   const path = detail ? `${route}/${detail.slug}/` : `${route}/`;
   const url = new URL(path, siteRootUrl);
-  const nextView = view || { query: "", types: [], sortKey: "dex", sortDirection: "asc" };
+  const nextView = view || { query: "", types: [], categories: [], sortKey: "dex", sortDirection: "asc" };
   const nextSortKey = normalizeDexSortKey(nextView.sortKey);
   const nextSortDirection = nextView.sortDirection === "desc" ? "desc" : "asc";
   if (!detail && nextView.query) url.searchParams.set("q", nextView.query);
   if (!detail && nextView.types?.length && tab === "pokedex") {
     url.searchParams.set("type", nextView.types.map((type) => type.replace(/^TYPE_/, "").toLowerCase()).join(","));
+  }
+  if (!detail && nextView.categories?.length && tab === "pokedex") {
+    url.searchParams.set("category", nextView.categories.join(","));
   }
   if (!detail && tab === "pokedex" && (nextSortKey !== "dex" || nextSortDirection !== "asc")) {
     url.searchParams.set("sort", nextSortKey);
@@ -585,6 +599,7 @@ function currentViewState(scrollY = window.scrollY) {
   return {
     query: state.query,
     types: [...state.selectedTypes],
+    categories: [...state.selectedCategories],
     sortKey: state.dexSortKey,
     sortDirection: state.dexSortDirection,
     scrollY,
@@ -594,6 +609,7 @@ function currentViewState(scrollY = window.scrollY) {
 function applyViewState(view = {}) {
   state.query = String(view.query || "").toLowerCase();
   state.selectedTypes = new Set(view.types || []);
+  state.selectedCategories = new Set((view.categories || []).filter((category) => dexCategoryKeys.has(category)));
   state.dexSortKey = normalizeDexSortKey(view.sortKey);
   state.dexSortDirection = view.sortDirection === "desc" ? "desc" : "asc";
   const search = document.getElementById("globalSearch");
@@ -635,6 +651,7 @@ async function applyLocationRoute(historyState = null) {
   const previousTab = state.activeTab;
   const previousQuery = state.query;
   const previousTypes = [...state.selectedTypes].join(",");
+  const previousCategories = [...state.selectedCategories].join(",");
   const previousSort = `${state.dexSortKey}:${state.dexSortDirection}`;
   state.activeTab = route.tab;
   state.detail = route.detail;
@@ -644,6 +661,7 @@ async function applyLocationRoute(historyState = null) {
 
   const viewChanged = previousQuery !== state.query
     || previousTypes !== [...state.selectedTypes].join(",")
+    || previousCategories !== [...state.selectedCategories].join(",")
     || previousSort !== `${state.dexSortKey}:${state.dexSortDirection}`;
   const sectionNeedsData = (sectionDataFiles[state.activeTab] || [])
     .some(([key]) => !loadedData.has(key));
@@ -674,6 +692,7 @@ async function navigateDetail(kind, slug) {
   if (tabChanged) {
     state.query = "";
     state.selectedTypes.clear();
+    state.selectedCategories.clear();
     resetDexSort();
     syncTypeFilter();
     document.getElementById("globalSearch").value = "";
@@ -837,6 +856,7 @@ async function setTab(tab, { updateHistory = true } = {}) {
   state.detail = null;
   state.query = "";
   state.selectedTypes.clear();
+  state.selectedCategories.clear();
   resetDexSort();
   syncTypeFilter();
   const search = document.getElementById("globalSearch");
@@ -881,6 +901,7 @@ function renderDex() {
     !excludedDexSpecies.has(mon.constant)
     && matches(`${mon.dex} ${mon.name} ${speciesFormLabel(mon)} ${mon.types.map(typeName).join(" ")}`)
     && matchesSelectedTypes(mon)
+    && matchesSelectedCategories(mon)
   );
   sortDexSpecies(state.filteredSpecies);
   renderDexRows();
@@ -888,7 +909,7 @@ function renderDex() {
     "pokedex",
     state.filteredSpecies.length
       ? ""
-      : state.query || state.selectedTypes.size ? "No Pokémon match the current search and type filters." : "No Pokémon are available.",
+      : state.query || state.selectedTypes.size || state.selectedCategories.size ? "No Pokémon match the current search and filters." : "No Pokémon are available.",
   );
 }
 
@@ -915,6 +936,17 @@ function renderTypeFilter() {
       </div>
     </div>
     <div class="type-filter-section">
+      <div class="type-filter-section-head">
+        <div class="type-filter-title">Categories</div>
+        <button class="type-filter-clear" type="button" data-clear-categories>All categories</button>
+      </div>
+      <div class="dex-category-grid">
+        ${dexCategoryOptions.map((option) => `
+          <button class="dex-category-chip" type="button" data-category="${option.key}" aria-pressed="false">${option.label}</button>
+        `).join("")}
+      </div>
+    </div>
+    <div class="type-filter-section">
       <div class="type-filter-title">Sort by</div>
       <div class="dex-sort-grid">
         ${dexSortOptions.map((option) => `
@@ -933,14 +965,21 @@ function renderTypeFilter() {
 
 function syncTypeFilter() {
   const toggle = document.getElementById("typeFilterToggle");
-  const count = state.selectedTypes.size;
+  const typeCount = state.selectedTypes.size;
+  const categoryCount = state.selectedCategories.size;
   const sortOption = dexSortOptions.find((option) => option.key === state.dexSortKey) || dexSortOptions[0];
   const hasSort = state.dexSortKey !== "dex" || state.dexSortDirection !== "asc";
   const summary = [];
-  if (count) summary.push(`${count} type${count === 1 ? "" : "s"}`);
+  if (categoryCount) summary.push(`${categoryCount} categor${categoryCount === 1 ? "y" : "ies"}`);
+  if (typeCount) summary.push(`${typeCount} type${typeCount === 1 ? "" : "s"}`);
   if (hasSort) summary.push(`${sortOption.label} ${state.dexSortDirection === "asc" ? "↑" : "↓"}`);
   toggle.textContent = summary.length ? `Filter · ${summary.join(" · ")}` : "Filter";
-  toggle.classList.toggle("has-filter", count > 0 || hasSort);
+  toggle.classList.toggle("has-filter", categoryCount > 0 || typeCount > 0 || hasSort);
+  document.querySelectorAll(".dex-category-chip").forEach((button) => {
+    const active = state.selectedCategories.has(button.dataset.category);
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", active ? "true" : "false");
+  });
   document.querySelectorAll(".type-filter-chip").forEach((button) => {
     const active = state.selectedTypes.has(button.dataset.type);
     button.classList.toggle("active", active);
@@ -987,6 +1026,11 @@ function matchesSelectedTypes(mon) {
   return mon.types.some((type) => state.selectedTypes.has(type));
 }
 
+function matchesSelectedCategories(mon) {
+  if (!state.selectedCategories.size) return true;
+  return (mon.categories || []).some((category) => state.selectedCategories.has(category));
+}
+
 function toggleTypeFilter(event) {
   event.stopPropagation();
   const panel = document.getElementById("typeFilterPanel");
@@ -1009,17 +1053,25 @@ function closeTypeFilterOnOutsideClick(event) {
 
 function handleTypeFilterClick(event) {
   event.stopPropagation();
-  const clear = event.target.closest("[data-clear-types]");
+  const clearTypes = event.target.closest("[data-clear-types]");
+  const clearCategories = event.target.closest("[data-clear-categories]");
   const typeButton = event.target.closest("[data-type]");
+  const categoryButton = event.target.closest("[data-category]");
   const sortButton = event.target.closest("[data-sort-key]");
   const directionButton = event.target.closest("[data-sort-direction]");
-  if (!clear && !typeButton && !sortButton && !directionButton) return;
-  if (clear) {
+  if (!clearTypes && !clearCategories && !typeButton && !categoryButton && !sortButton && !directionButton) return;
+  if (clearTypes) {
     state.selectedTypes.clear();
+  } else if (clearCategories) {
+    state.selectedCategories.clear();
   } else if (typeButton && state.selectedTypes.has(typeButton.dataset.type)) {
     state.selectedTypes.delete(typeButton.dataset.type);
   } else if (typeButton) {
     state.selectedTypes.add(typeButton.dataset.type);
+  } else if (categoryButton && state.selectedCategories.has(categoryButton.dataset.category)) {
+    state.selectedCategories.delete(categoryButton.dataset.category);
+  } else if (categoryButton) {
+    state.selectedCategories.add(categoryButton.dataset.category);
   } else if (sortButton) {
     state.dexSortKey = normalizeDexSortKey(sortButton.dataset.sortKey);
   } else if (directionButton) {
