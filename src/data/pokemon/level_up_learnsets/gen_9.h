@@ -15918,6 +15918,7 @@ static const struct LevelUpMove sInkayLevelUpLearnset[] = {
     LEVEL_UP_MOVE(33, MOVE_FOUL_PLAY),
     LEVEL_UP_MOVE(36, MOVE_TOPSY_TURVY),
     LEVEL_UP_MOVE(39, MOVE_SUPERPOWER),
+    LEVEL_UP_MOVE(47, MOVE_SKILL_SWAP),
     LEVEL_UP_END
 };
 
@@ -15938,6 +15939,7 @@ static const struct LevelUpMove sMalamarLevelUpLearnset[] = {
     LEVEL_UP_MOVE(37, MOVE_FOUL_PLAY),
     LEVEL_UP_MOVE(42, MOVE_TOPSY_TURVY),
     LEVEL_UP_MOVE(47, MOVE_SUPERPOWER),
+    LEVEL_UP_MOVE(55, MOVE_SKILL_SWAP),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_INKAY
