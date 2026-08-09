@@ -5,11 +5,11 @@ SafariZoneGate_MapScripts::
 
 SafariZoneGate_OnTransition::
 	setflag FLAG_VISITED_SAFARI_ZONE_GATE
+	call_if_eq VAR_ROUTE27_BAOBA_CALL, 1, SafariZoneGate_EventScript_RestoreWestExpansion
+	call_if_eq VAR_SAFFRON_CITY_STATE, 1, SafariZoneGate_EventScript_RestoreEastExpansion
 	end
 
 SafariZoneGate_EventScript_Trigger::
-	clearflag FLAG_SAFARI_ZONE_WEST_EXPANSION
-	clearflag FLAG_SAFARI_ZONE_EAST_EXPANSION
 	setflag FLAG_VISITED_SAFARI_ZONE_GATE
 	setvar VAR_SAFARI_ZONE_GATE_STATE, 3
 	end
@@ -155,6 +155,14 @@ SafariZoneGate_EventScript_VitaminGuru::
 SafariZoneGate_Text_VitaminGuruSellWhatYouNeed:
 	.string "I'm the rare item Guru! I'll go for it and\n"
 	.string "sell you what you need!$"
+
+SafariZoneGate_EventScript_RestoreWestExpansion::
+	setflag FLAG_SAFARI_ZONE_WEST_EXPANSION
+	return
+
+SafariZoneGate_EventScript_RestoreEastExpansion::
+	setflag FLAG_SAFARI_ZONE_EAST_EXPANSION
+	return
 
 `
 

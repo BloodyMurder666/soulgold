@@ -13,15 +13,15 @@ SafariZoneGate_OnTransition::
 # 7 "data/maps/SafariZoneGate/scripts.pory"
 	setflag FLAG_VISITED_SAFARI_ZONE_GATE
 # 8 "data/maps/SafariZoneGate/scripts.pory"
-	end
+	call_if_eq VAR_ROUTE27_BAOBA_CALL, 1, SafariZoneGate_EventScript_RestoreWestExpansion
 # 9 "data/maps/SafariZoneGate/scripts.pory"
-
+	call_if_eq VAR_SAFFRON_CITY_STATE, 1, SafariZoneGate_EventScript_RestoreEastExpansion
 # 10 "data/maps/SafariZoneGate/scripts.pory"
-SafariZoneGate_EventScript_Trigger::
+	end
 # 11 "data/maps/SafariZoneGate/scripts.pory"
-	clearflag FLAG_SAFARI_ZONE_WEST_EXPANSION
+
 # 12 "data/maps/SafariZoneGate/scripts.pory"
-	clearflag FLAG_SAFARI_ZONE_EAST_EXPANSION
+SafariZoneGate_EventScript_Trigger::
 # 13 "data/maps/SafariZoneGate/scripts.pory"
 	setflag FLAG_VISITED_SAFARI_ZONE_GATE
 # 14 "data/maps/SafariZoneGate/scripts.pory"
@@ -312,33 +312,49 @@ SafariZoneGate_Text_VitaminGuruSellWhatYouNeed:
 	.string "I'm the rare item Guru! I'll go for it and\n"
 # 157 "data/maps/SafariZoneGate/scripts.pory"
 	.string "sell you what you need!$"
+# 158 "data/maps/SafariZoneGate/scripts.pory"
+
+# 159 "data/maps/SafariZoneGate/scripts.pory"
+SafariZoneGate_EventScript_RestoreWestExpansion::
+# 160 "data/maps/SafariZoneGate/scripts.pory"
+	setflag FLAG_SAFARI_ZONE_WEST_EXPANSION
+# 161 "data/maps/SafariZoneGate/scripts.pory"
+	return
+# 162 "data/maps/SafariZoneGate/scripts.pory"
+
+# 163 "data/maps/SafariZoneGate/scripts.pory"
+SafariZoneGate_EventScript_RestoreEastExpansion::
+# 164 "data/maps/SafariZoneGate/scripts.pory"
+	setflag FLAG_SAFARI_ZONE_EAST_EXPANSION
+# 165 "data/maps/SafariZoneGate/scripts.pory"
+	return
 
 	.align 2
-# 162 "data/maps/SafariZoneGate/scripts.pory"
+# 170 "data/maps/SafariZoneGate/scripts.pory"
 SafariZoneGateMart1:
-# 163 "data/maps/SafariZoneGate/scripts.pory"
+# 171 "data/maps/SafariZoneGate/scripts.pory"
 	.2byte ITEM_FIRE_STONE
-# 164 "data/maps/SafariZoneGate/scripts.pory"
+# 172 "data/maps/SafariZoneGate/scripts.pory"
 	.2byte ITEM_WATER_STONE
-# 165 "data/maps/SafariZoneGate/scripts.pory"
+# 173 "data/maps/SafariZoneGate/scripts.pory"
 	.2byte ITEM_LEAF_STONE
-# 166 "data/maps/SafariZoneGate/scripts.pory"
+# 174 "data/maps/SafariZoneGate/scripts.pory"
 	.2byte ITEM_LINKING_CORD
 	.2byte ITEM_NONE
 
 	.align 2
-# 169 "data/maps/SafariZoneGate/scripts.pory"
+# 177 "data/maps/SafariZoneGate/scripts.pory"
 SafariZoneGateMart2:
-# 170 "data/maps/SafariZoneGate/scripts.pory"
+# 178 "data/maps/SafariZoneGate/scripts.pory"
 	.2byte ITEM_TM_VENOSHOCK
-# 171 "data/maps/SafariZoneGate/scripts.pory"
+# 179 "data/maps/SafariZoneGate/scripts.pory"
 	.2byte ITEM_TM_GIGA_IMPACT
-# 172 "data/maps/SafariZoneGate/scripts.pory"
+# 180 "data/maps/SafariZoneGate/scripts.pory"
 	.2byte ITEM_TM_LOW_SWEEP
-# 173 "data/maps/SafariZoneGate/scripts.pory"
+# 181 "data/maps/SafariZoneGate/scripts.pory"
 	.2byte ITEM_CRACKED_POT
-# 174 "data/maps/SafariZoneGate/scripts.pory"
+# 182 "data/maps/SafariZoneGate/scripts.pory"
 	.2byte ITEM_CHIPPED_POT
-# 175 "data/maps/SafariZoneGate/scripts.pory"
+# 183 "data/maps/SafariZoneGate/scripts.pory"
 	.2byte ITEM_UPGRADE
 	.2byte ITEM_NONE
