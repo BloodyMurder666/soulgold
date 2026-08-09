@@ -115,6 +115,7 @@ enum {
 #define GACHA_GREAT_MIN_WAGER 250
 #define GACHA_ULTRA_MIN_WAGER 1000
 #define GACHA_MASTER_MIN_WAGER 3000
+#define GACHA_GUARANTEED_NEW_WAGER 4999
 
 #define SPR_CREDIT_DIGITS SPR_CREDIT_DIG_1
 #define SPR_PLAYER_DIGITS SPR_PLAYER_DIG_1
@@ -2293,18 +2294,36 @@ static inline bool32 CheckIfOwned(u16 species)
     return GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT);
 }
 
-static inline bool32 IsNotValidOwnedSpecies(u16 species)
+static u16 GetGachaOwnedCount(u32 rarity)
 {
-    if (species == SPECIES_NONE)
-        return TRUE;
-    return !CheckIfOwned(species);
+    switch (rarity)
+    {
+    default:
+    case RARITY_COMMON:
+        return sGacha->ownedCommon;
+    case RARITY_UNCOMMON:
+        return sGacha->ownedUncommon;
+    case RARITY_RARE:
+        return sGacha->ownedRare;
+    case RARITY_ULTRA_RARE:
+        return sGacha->ownedUltraRare;
+    }
 }
 
-static inline bool32 IsNotValidUnownedSpecies(u16 species)
+static u8 GetGachaRarityOdds(u32 rarity)
 {
-    if (species == SPECIES_NONE)
-        return TRUE;
-    return CheckIfOwned(species);
+    switch (rarity)
+    {
+    default:
+    case RARITY_COMMON:
+        return RARITY_COMMON_ODDS;
+    case RARITY_UNCOMMON:
+        return RARITY_UNCOMMON_ODDS;
+    case RARITY_RARE:
+        return RARITY_RARE_ODDS;
+    case RARITY_ULTRA_RARE:
+        return RARITY_ULTRA_RARE_ODDS;
+    }
 }
 
 static void GetPokemonOwned(void)
@@ -2478,123 +2497,85 @@ u8 CalculateChanceForCategory(u16 owned, u16 available, u8 baseChance, u16 wager
     return newChance;
 }
 
-// Function to determine if the player gets a new Pokémon, and the rarity
-void DeterminePokemonRarityAndNewStatus(void)
+static bool32 ChooseGachaRarity(bool32 chooseUnowned)
 {
-    u16 species;
-    u16 totalNotOwned;
-    u8 totalOwned;
-    u16 totalMax;
-    u16 newPokemonChance;
+    u32 rarity;
+    u16 eligibleOdds = 0;
     u16 randomValue;
-    u32 attempts = 1000;
 
-    while (TRUE)
+    for (rarity = RARITY_COMMON; rarity <= RARITY_ULTRA_RARE; rarity++)
     {
-        randomValue = (Random() % 100);  // Generate random value between 0 and 100
+        u16 totalMax = GetMaxAvailableGachaRaritySpecies(sGacha->GachaId, rarity);
+        u16 totalOwned = GetGachaOwnedCount(rarity);
 
-        // Determine Rarity based on the chances
-        if (randomValue < RARITY_COMMON_ODDS)
-            sGacha->Rarity = RARITY_COMMON; // Common
-        else if (randomValue < (RARITY_COMMON_ODDS + RARITY_UNCOMMON_ODDS))
-            sGacha->Rarity = RARITY_UNCOMMON; // Uncommon
-        else if (randomValue < (RARITY_COMMON_ODDS + RARITY_UNCOMMON_ODDS + RARITY_RARE_ODDS))
-            sGacha->Rarity = RARITY_RARE; // Rare
-        else
-            sGacha->Rarity = RARITY_ULTRA_RARE; // Ultra Rare
+        if ((chooseUnowned && totalOwned < totalMax) || (!chooseUnowned && totalOwned > 0))
+            eligibleOdds += GetGachaRarityOdds(rarity);
+    }
 
-        // Get the number of available and owned Pokémon based on rarity
-        totalMax = GetMaxAvailableGachaRaritySpecies(sGacha->GachaId, sGacha->Rarity);
-        switch (sGacha->Rarity)
+    if (eligibleOdds == 0)
+        return FALSE;
+
+    randomValue = Random() % eligibleOdds;
+    for (rarity = RARITY_COMMON; rarity <= RARITY_ULTRA_RARE; rarity++)
+    {
+        u16 totalMax = GetMaxAvailableGachaRaritySpecies(sGacha->GachaId, rarity);
+        u16 totalOwned = GetGachaOwnedCount(rarity);
+        u16 rarityOdds;
+
+        if ((chooseUnowned && totalOwned >= totalMax) || (!chooseUnowned && totalOwned == 0))
+            continue;
+
+        rarityOdds = GetGachaRarityOdds(rarity);
+        if (randomValue < rarityOdds)
         {
-        default:
-        case RARITY_COMMON:
-            totalOwned = sGacha->ownedCommon;
-            break;
-        case RARITY_UNCOMMON:
-            totalOwned = sGacha->ownedUncommon;
-            break;
-        case RARITY_RARE:
-            totalOwned = sGacha->ownedRare;
-            break;
-        case RARITY_ULTRA_RARE:
-            totalOwned = sGacha->ownedUltraRare;
-            break;
+            sGacha->Rarity = rarity;
+            return TRUE;
         }
+        randomValue -= rarityOdds;
+    }
 
-        // Calculate the total number of Pokémon the player doesn't own
-        totalNotOwned = totalMax - totalOwned;
+    return FALSE;
+}
 
-        if (totalNotOwned <= 0)
+static u16 ChooseGachaSpecies(bool32 chooseUnowned)
+{
+    u16 i;
+    u16 totalMax;
+    u16 totalOwned;
+    u16 eligibleCount;
+    u16 target;
+
+    totalMax = GetMaxAvailableGachaRaritySpecies(sGacha->GachaId, sGacha->Rarity);
+    totalOwned = GetGachaOwnedCount(sGacha->Rarity);
+    eligibleCount = chooseUnowned ? totalMax - totalOwned : totalOwned;
+    target = Random() % eligibleCount;
+
+    for (i = 0; i < totalMax; i++)
+    {
+        u16 species = GetGachaMon(i);
+
+        if (species != SPECIES_NONE && CheckIfOwned(species) != chooseUnowned)
         {
-            // If all Pokémon of the selected rarity are owned, restart the process (reroll)
-            continue;  // This will make the loop restart from the beginning
-        }
-
-        // Generate a random value for the chances
-        randomValue = Random() % 100;  // Generate random value between 0-99
-
-        // Check if we should get a new Pokémon based on the odds
-        if (sGacha->newMonOdds >= randomValue)
-        {
-            // Loop until a new (not owned) Pokémon is found
-            do {
-                newPokemonChance = (Random() % totalMax);  // Random pull from the available pool
-                species = GetGachaMon(newPokemonChance);  // Get the Pokémon species based on the random value
-                attempts--;
-                if (attempts < 1)
-                {
-                    attempts = 1000;
-                    randomValue = (Random() % 100);  // Generate random value between 0 and 100
-
-                    // Determine Rarity based on the chances
-                    if (randomValue < RARITY_COMMON_ODDS)
-                        sGacha->Rarity = RARITY_COMMON;
-                    else if (randomValue < (RARITY_COMMON_ODDS + RARITY_UNCOMMON_ODDS))
-                        sGacha->Rarity = RARITY_UNCOMMON;
-                    else if (randomValue < (RARITY_COMMON_ODDS + RARITY_UNCOMMON_ODDS + RARITY_RARE_ODDS))
-                        sGacha->Rarity = RARITY_RARE;
-                    else
-                        sGacha->Rarity = RARITY_ULTRA_RARE;
-                }
-                // If the Pokémon is not owned, we found a new Pokémon
-            } while (IsNotValidUnownedSpecies(species));  // Continue if owned (IsNotValidUnownedSpecies returns TRUE)
-
-            // If we've broken out of the loop, we have a new Pokémon
-            sGacha->CalculatedSpecies = species;  // Store the species of the new Pokémon
-            break;  // Exit the loop after finding a new Pokémon
-        }
-        else
-        {
-            // Loop until an owned Pokémon is found
-            do {
-                newPokemonChance = (Random() % totalMax);  // Random pull from the available pool
-                species = GetGachaMon(newPokemonChance);  // Get the Pokémon species based on the random value
-                attempts--;
-                if (attempts < 1)
-                {
-                    attempts = 1000;
-                    randomValue = (Random() % 100);  // Generate random value between 0 and 100
-
-                    // Determine Rarity based on the chances
-                    if (randomValue < RARITY_COMMON_ODDS)
-                        sGacha->Rarity = RARITY_COMMON;
-                    else if (randomValue < (RARITY_COMMON_ODDS + RARITY_UNCOMMON_ODDS))
-                        sGacha->Rarity = RARITY_UNCOMMON;
-                    else if (randomValue < (RARITY_COMMON_ODDS + RARITY_UNCOMMON_ODDS + RARITY_RARE_ODDS))
-                        sGacha->Rarity = RARITY_RARE;
-                    else
-                        sGacha->Rarity = RARITY_ULTRA_RARE;
-                }
-
-                // If the Pokémon is owned, we have an owned Pokémon
-            } while (IsNotValidOwnedSpecies(species));  // Continue if not owned
-
-            // If we've broken out of the loop, we have an owned Pokémon
-            sGacha->CalculatedSpecies = species;  // Store the species of the owned Pokémon
-            break;  // Exit the loop after finding an owned Pokémon
+            if (target == 0)
+                return species;
+            target--;
         }
     }
+
+    return SPECIES_NONE;
+}
+
+static void DeterminePokemonRarityAndNewStatus(void)
+{
+    bool32 chooseUnowned = (Random() % 100) < sGacha->newMonOdds;
+
+    if (!ChooseGachaRarity(chooseUnowned))
+    {
+        chooseUnowned = !chooseUnowned;
+        ChooseGachaRarity(chooseUnowned);
+    }
+
+    sGacha->CalculatedSpecies = ChooseGachaSpecies(chooseUnowned);
 }
 
 static void CalculatePullOdds(void)
@@ -2605,6 +2586,7 @@ static void CalculatePullOdds(void)
     u16 totalUltraRareAvailable;
     u16 wager;
     u8 totalChance;
+    bool32 hasUnownedSpecies;
 
     totalCommonAvailable = GetMaxAvailableGachaRaritySpecies(sGacha->GachaId, RARITY_COMMON);
     totalUncommonAvailable = GetMaxAvailableGachaRaritySpecies(sGacha->GachaId, RARITY_UNCOMMON);
@@ -2612,6 +2594,16 @@ static void CalculatePullOdds(void)
     totalUltraRareAvailable = GetMaxAvailableGachaRaritySpecies(sGacha->GachaId, RARITY_ULTRA_RARE);
 
     wager = sGacha->wager;  // Player's wager (0-9999)
+    hasUnownedSpecies = sGacha->ownedCommon < totalCommonAvailable
+                     || sGacha->ownedUncommon < totalUncommonAvailable
+                     || sGacha->ownedRare < totalRareAvailable
+                     || sGacha->ownedUltraRare < totalUltraRareAvailable;
+
+    if (wager >= GACHA_GUARANTEED_NEW_WAGER && hasUnownedSpecies)
+    {
+        sGacha->newMonOdds = 100;
+        return;
+    }
 
     // Add up the chances from each rarity
     totalChance = CalculateChanceForCategory(sGacha->ownedCommon, totalCommonAvailable, RARITY_COMMON_ODDS, wager);
