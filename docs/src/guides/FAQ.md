@@ -144,6 +144,9 @@ order: 1
 ### Regional Pokémon?
 - Most are available in the Baoba's Safari Zone, but several can be found before this.
 
+### Baby forms?
+- Breed with incenses, see https://bulbapedia.bulbagarden.net/wiki/Baby_Pok%C3%A9mon#List_of_baby_Pok%C3%A9mon for more information.
+
 ### Should I hold off evolving Growlithe/Vulpix/etc?
 - No, the evolved forms learn all the moves the pre-evoluion form does.
 
