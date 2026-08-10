@@ -9,16 +9,68 @@ GoldenrodUnderground1_OnLoad::
 	goto_if_set FLAG_COMPLETED_SWITCHES, GoldenrodUnderground1_LoadSolved
 	clearflag FLAG_GOLDENROD_ALL_SHUTTERS_OPEN
 	call GoldenrodCity_UndergroundSwitches_EventScript_CloseAllShutters
-	end
+	goto GoldenrodUnderground1_RescuePlayerInShutter
 
 GoldenrodUnderground1_LoadSolved::
 	goto_if_set FLAG_GOLDENROD_ALL_SHUTTERS_OPEN, GoldenrodUnderground1_LoadAllShuttersOpen
 	call GoldenrodUnderground1_ClearTheWay
-	end
+	goto GoldenrodUnderground1_RescuePlayerInShutter
 
 GoldenrodUnderground1_LoadAllShuttersOpen::
 	call GoldenrodCity_UndergroundSwitches_EventScript_OpenAllShutters
+	goto GoldenrodUnderground1_RescuePlayerInShutter
+
+GoldenrodUnderground1_RescuePlayerInShutter::
+	getplayerxy VAR_TEMP_0, VAR_TEMP_1
+	goto_if_lt VAR_TEMP_1, 7, GoldenrodUnderground1_EndLoad
+	goto_if_le VAR_TEMP_1, 8, GoldenrodUnderground1_RescuePlayerInUpperShutter
+	goto_if_lt VAR_TEMP_1, 11, GoldenrodUnderground1_EndLoad
+	goto_if_le VAR_TEMP_1, 12, GoldenrodUnderground1_RescuePlayerInLowerShutter
+
+GoldenrodUnderground1_EndLoad::
 	end
+
+GoldenrodUnderground1_RescuePlayerInUpperShutter::
+	goto_if_lt VAR_TEMP_0, 5, GoldenrodUnderground1_EndLoad
+	goto_if_le VAR_TEMP_0, 7, GoldenrodUnderground1_RescuePlayerInShutter1
+	goto_if_lt VAR_TEMP_0, 14, GoldenrodUnderground1_EndLoad
+	goto_if_le VAR_TEMP_0, 16, GoldenrodUnderground1_RescuePlayerInShutter2
+	goto_if_lt VAR_TEMP_0, 23, GoldenrodUnderground1_EndLoad
+	goto_if_le VAR_TEMP_0, 25, GoldenrodUnderground1_RescuePlayerInShutter3
+	goto GoldenrodUnderground1_EndLoad
+
+GoldenrodUnderground1_RescuePlayerInLowerShutter::
+	goto_if_lt VAR_TEMP_0, 5, GoldenrodUnderground1_EndLoad
+	goto_if_le VAR_TEMP_0, 7, GoldenrodUnderground1_RescuePlayerInShutter4
+	goto_if_lt VAR_TEMP_0, 14, GoldenrodUnderground1_EndLoad
+	goto_if_le VAR_TEMP_0, 16, GoldenrodUnderground1_RescuePlayerInShutter5
+	goto_if_lt VAR_TEMP_0, 23, GoldenrodUnderground1_EndLoad
+	goto_if_le VAR_TEMP_0, 25, GoldenrodUnderground1_RescuePlayerInShutter6
+	goto GoldenrodUnderground1_EndLoad
+
+GoldenrodUnderground1_RescuePlayerInShutter1::
+	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall1
+	goto GoldenrodUnderground1_EndLoad
+
+GoldenrodUnderground1_RescuePlayerInShutter2::
+	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall2
+	goto GoldenrodUnderground1_EndLoad
+
+GoldenrodUnderground1_RescuePlayerInShutter3::
+	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall3
+	goto GoldenrodUnderground1_EndLoad
+
+GoldenrodUnderground1_RescuePlayerInShutter4::
+	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall4
+	goto GoldenrodUnderground1_EndLoad
+
+GoldenrodUnderground1_RescuePlayerInShutter5::
+	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall5
+	goto GoldenrodUnderground1_EndLoad
+
+GoldenrodUnderground1_RescuePlayerInShutter6::
+	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall6
+	goto GoldenrodUnderground1_EndLoad
 
 GoldenrodCity_UndergroundSwitches_EventScript_ClearSwitchState::
 	clearflag FLAG_GOLDENROD_SWITCH_1
