@@ -1,4 +1,9 @@
 Update notes:
+- Malamar learns Skill Swap via level up.
+- Fixed shiny Dragonite using the old shiny color in the surf sprite.
+- Fix a sequence skip where player would never unlock the side safari zone areas if they did not visit the safari zone before elite four. Saves with this issue are automatically repaired to correct state with this update.
+- Fixed a possible softlock in the Goldenrod Underground switches room if the player saved inside the shutter walls. Old saves stuck in this are automatically freed.
+
 5.8.2026
 - Replaced TM64 Explosion with Draining Kiss, TM77 Psych Up with Dig, TM87 Swagger with Giga Drain, and TM88 Sleep Talk with Water Pulse. Explosion, Swagger and Sleep Talk remain available as tutor moves.
 - Added Helping Hand, Bullet Seed, Rock Blast, Fire Fang, Ice Fang, Thunder Fang, and all four Terrain setting moves to the tutor move list.
