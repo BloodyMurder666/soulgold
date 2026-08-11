@@ -19,6 +19,15 @@ struct PokeBallSprite
     u16 itemId;
 };
 
+enum ChangeMonPokeballResult
+{
+    CHANGE_MON_POKEBALL_SUCCESS,
+    CHANGE_MON_POKEBALL_SAME_BALL,
+    CHANGE_MON_POKEBALL_INVALID_MON,
+    CHANGE_MON_POKEBALL_INVALID_ITEM,
+    CHANGE_MON_POKEBALL_ITEM_NOT_OWNED,
+};
+
 extern const struct PokeBallSprite gPokeBalls[];
 
 #define POKEBALL_PLAYER_SENDOUT     0xFF
@@ -33,5 +42,6 @@ void DoHitAnimHealthboxEffect(enum BattlerId battler);
 void LoadBallGfx(u8 ballId);
 void FreeBallGfx(u8 ballId);
 enum PokeBall ItemIdToBallId(u32 ballItem);
+enum ChangeMonPokeballResult TryChangeMonPokeball(struct Pokemon *mon, enum Item ballItem);
 
 #endif // GUARD_POKEBALL_H

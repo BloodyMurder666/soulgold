@@ -1,6 +1,8 @@
 #ifndef GUARD_ITEM_USE_H
 #define GUARD_ITEM_USE_H
 
+#include "task.h"
+
 void ItemUseOutOfBattle_Mail(u8 taskId);
 void ItemUseOutOfBattle_Bike(u8 taskId);
 void ItemUseOutOfBattle_Rod(u8 taskId);
@@ -13,6 +15,7 @@ void ItemUseOutOfBattle_CandyJar(u8 taskId);
 void ItemUseOutOfBattle_SSTicket(u8 taskId);
 void ItemUseOutOfBattle_WailmerPail(u8 taskId);
 void ItemUseOutOfBattle_Medicine(u8 taskId);
+void ItemUseCB_ChangePokeball(u8 taskId, TaskFunc task);
 void ItemUseOutOfBattle_AbilityCapsule(u8 taskId);
 void ItemUseOutOfBattle_AbilityPatch(u8 taskId);
 void ItemUseOutOfBattle_Mint(u8 taskId);

@@ -347,7 +347,7 @@ static const u8 sContextMenuItems_KeyItemsPocket[] = {
 };
 
 static const u8 sContextMenuItems_BallsPocket[] = {
-    ACTION_GIVE,        ACTION_DUMMY,
+    ACTION_USE,         ACTION_GIVE,
     ACTION_TOSS,        ACTION_CANCEL
 };
 
@@ -2165,6 +2165,22 @@ static void RemoveContextWindow(void)
 
 static void ItemMenu_UseOutOfBattle(u8 taskId)
 {
+    if (GetItemPocket(gSpecialVar_ItemId) == POCKET_POKE_BALLS)
+    {
+        RemoveContextWindow();
+        if (CalculatePlayerPartyCount() == 0)
+        {
+            PrintThereIsNoPokemon(taskId);
+        }
+        else
+        {
+            gItemUseCB = ItemUseCB_ChangePokeball;
+            gBagMenu->newScreenCallback = CB2_ShowPartyMenuForItemUse;
+            Task_FadeAndCloseBagMenu(taskId);
+        }
+        return;
+    }
+
     if (GetItemFieldFunc(gSpecialVar_ItemId))
     {
         RemoveContextWindow();

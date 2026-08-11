@@ -1447,3 +1447,29 @@ enum PokeBall ItemIdToBallId(u32 ballItem)
 
     return secondaryId;
 }
+
+enum ChangeMonPokeballResult TryChangeMonPokeball(struct Pokemon *mon, enum Item ballItem)
+{
+    u8 newBall;
+
+    if (mon == NULL
+     || GetMonData(mon, MON_DATA_SPECIES) == SPECIES_NONE
+     || GetMonData(mon, MON_DATA_IS_EGG))
+        return CHANGE_MON_POKEBALL_INVALID_MON;
+
+    if (GetItemPocket(ballItem) != POCKET_POKE_BALLS)
+        return CHANGE_MON_POKEBALL_INVALID_ITEM;
+
+    if (!CheckBagHasItem(ballItem, 1))
+        return CHANGE_MON_POKEBALL_ITEM_NOT_OWNED;
+
+    newBall = ItemIdToBallId(ballItem);
+    if (GetMonData(mon, MON_DATA_POKEBALL) == newBall)
+        return CHANGE_MON_POKEBALL_SAME_BALL;
+
+    if (!RemoveBagItem(ballItem, 1))
+        return CHANGE_MON_POKEBALL_ITEM_NOT_OWNED;
+
+    SetMonData(mon, MON_DATA_POKEBALL, &newBall);
+    return CHANGE_MON_POKEBALL_SUCCESS;
+}
