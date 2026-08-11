@@ -520,7 +520,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_LEVITATE, ABILITY_LEVITATE, ABILITY_LEVITATE },
-        .innates = { ABILITY_MENTAL_SURGE, ABILITY_UNCANNY, ABILITY_MAGIC_GUARD },
+        .innates = { ABILITY_DAZZLING, ABILITY_UNCANNY, ABILITY_MAGIC_GUARD },
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Delphox"),
     #if P_MODIFIED_MEGA_CRIES

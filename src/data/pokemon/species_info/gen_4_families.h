@@ -4586,7 +4586,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_DRAGON),
         .abilities = { ABILITY_SAND_FORCE, ABILITY_SAND_FORCE, ABILITY_SAND_FORCE },
-        .innates = { ABILITY_STRONG_JAW, ABILITY_ROUGH_SKIN, ABILITY_UNSTOPPABLE },
+        .innates = { ABILITY_NEUROFORCE, ABILITY_ROUGH_SKIN, ABILITY_SAND_RUSH },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Garchomp"),
     #if P_MODIFIED_MEGA_CRIES
