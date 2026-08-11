@@ -219,8 +219,8 @@
 #define FLAG_HIDE_ICEPATH_RIVAL              0xC5
 #define FLAG_HIDE_OLIVINE_RIVAL              0xC6
 #define FLAG_RUSTURF_TUNNEL_OPENED           0xC7
-#define FLAG_RECEIVED_RED_SCARF              0xC8
-#define FLAG_RECEIVED_BLUE_SCARF             0xC9
+#define FLAG_HIDE_GENESECT                   0xC8
+#define FLAG_CAUGHT_GENESECT                 0xC9
 #define FLAG_RECEIVED_PINK_SCARF             0xCA
 #define FLAG_RECEIVED_GREEN_SCARF            0xCB
 #define FLAG_RECEIVED_YELLOW_SCARF           0xCC

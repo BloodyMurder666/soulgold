@@ -5,6 +5,9 @@
 // DO NOT MODIFY THIS FILE! It is auto-generated from data/maps/*/map.json
 //
 
+// MAP_ABANDONED_ROCKET_HIDEOUT_BACKROOM
+#define LOCALID_GENESECT 2
+
 // MAP_ACUITY_CAVERN
 #define LOCALID_ACUITY_UXIE 1
 

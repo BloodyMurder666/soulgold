@@ -9193,7 +9193,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_ERRATIC,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_3),
         .abilities = { ABILITY_SUCTION_CUPS, ABILITY_NONE, ABILITY_STORM_DRAIN },
-        .innates = { ABILITY_SOLID_ROCK, ABILITY_REGENERATOR, ABILITY_ROOTED },
+        .innates = { ABILITY_SOLID_ROCK, ABILITY_REJUVENATION, ABILITY_ROOTED },
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Cradily"),
         .cryId = CRY_CRADILY,
@@ -10778,7 +10778,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
         .abilities = { ABILITY_LEVITATE, ABILITY_LEVITATE, ABILITY_LEVITATE },
-        .innates = { ABILITY_SOUNDPROOF, ABILITY_PUNK_ROCK, ABILITY_PSYCHIC_SURGE },
+        .innates = { ABILITY_WIND_RIDER, ABILITY_PUNK_ROCK, ABILITY_PSYCHIC_SURGE },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Chimecho"),
     #if P_MODIFIED_MEGA_CRIES

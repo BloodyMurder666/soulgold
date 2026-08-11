@@ -1,4 +1,12 @@
-mapscripts AbandonedRocketHideoutBackroom_MapScripts {}
+mapscripts AbandonedRocketHideoutBackroom_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        if (flag(FLAG_IS_CHAMPION) && !flag(FLAG_CAUGHT_GENESECT)) {
+            clearflag(FLAG_HIDE_GENESECT)
+        } else {
+            setflag(FLAG_HIDE_GENESECT)
+        }
+    }
+}
 
 script ARH_LaptopBackroom {
     msgbox("While the laptop no longer has power,
@@ -30,4 +38,15 @@ script ARH_Strangewall {
     msgbox("Something about this wall feels off,
             but there's no visible keyholes or
             card readers.", MSGBOX_SIGN)
+}
+
+script GenesectEncounter {
+    lock
+    faceplayer
+    bosslegendaryencounter(SPECIES_GENESECT, 70, LOCALID_GENESECT, FLAG_HIDE_GENESECT, 2, SPECIES_NONE, 110)
+    if (var(VAR_RESULT) == B_OUTCOME_CAUGHT) {
+        setflag(FLAG_CAUGHT_GENESECT)
+    }
+    release
+    end
 }
