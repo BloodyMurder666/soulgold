@@ -9,6 +9,16 @@ from ..models import NamedRecord
 from ..paths import MOVES_H, REPO_ROOT
 
 
+MOVE_ABILITY_BOOSTS = (
+    ("punchingMove", "ABILITY_IRON_FIST", 20, False),
+    ("kickingMove", "ABILITY_STEEL_FEET", 20, False),
+    ("bitingMove", "ABILITY_STRONG_JAW", 50, False),
+    ("pulseMove", "ABILITY_MEGA_LAUNCHER", 50, False),
+    ("soundMove", "ABILITY_PUNK_ROCK", 30, True),
+    ("slicingMove", "ABILITY_SHARPNESS", 50, False),
+)
+
+
 def parse_moves() -> dict[str, NamedRecord]:
     include_path = "data/moves_info.h"
     key_prefix = "MOVE_"
@@ -46,4 +56,13 @@ def parse_moves() -> dict[str, NamedRecord]:
             expr = extract_field(entry, field_name) or ""
             const = re.search(r"\b[A-Z][A-Z0-9_]+\b", expr)
             rows[key][field_name] = const.group(0) if const else ""
+        is_damaging = (
+            rows[key].get("category") != "DAMAGE_CATEGORY_STATUS"
+            and int(rows[key].get("power", 0)) > 0
+        )
+        rows[key]["abilityBoosts"] = [
+            {"ability": ability, "percent": percent}
+            for field_name, ability, percent, damaging_only in MOVE_ABILITY_BOOSTS
+            if extract_number(entry, field_name) and (is_damaging or not damaging_only)
+        ]
     return rows

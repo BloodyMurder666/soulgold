@@ -55,6 +55,11 @@ class SpeciesLocation(TypedDict):
     rate: int | None
 
 
+class MoveAbilityBoost(TypedDict):
+    ability: str
+    percent: int
+
+
 class NamedRecord(TypedDict, total=False):
     id: int
     constant: str
@@ -66,6 +71,7 @@ class NamedRecord(TypedDict, total=False):
     priority: int
     type: str
     category: str
+    abilityBoosts: list[MoveAbilityBoost]
     usage: "AbilityUsageEntry"
 
 

@@ -1048,6 +1048,26 @@ tbody tr:nth-child(even) {
   line-height: 1.45;
 }
 
+.move-description-copy {
+  display: block;
+}
+
+.move-ability-boosts {
+  display: grid;
+  margin-top: 4px;
+  gap: 1px;
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.move-tooltip-description .move-ability-boosts {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgb(255 255 255 / 18%);
+}
+
 dialog {
   position: fixed;
   width: min(92vw, 1320px);

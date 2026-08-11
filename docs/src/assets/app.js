@@ -1282,7 +1282,7 @@ function showMoveTooltip(button, event) {
         </span>
       `).join("")}
     </span>
-    <span class="move-tooltip-description">${escapeHtml(move.description || "No description.")}</span>
+    <span class="move-tooltip-description">${moveDescriptionHtml(move)}</span>
   `;
   placeTooltip(tooltip, root, event, button);
 }
@@ -1727,11 +1727,26 @@ function moveMetric(value, options = {}) {
   return String(value);
 }
 
+function moveAbilityBoostNotes(move) {
+  return (move.abilityBoosts || []).map((boost) => {
+    const abilityName = state.data.abilities?.[boost.ability]?.name || fmtTitle(boost.ability, "ABILITY_");
+    return `Boosted by ${abilityName} (+${boost.percent}%).`;
+  });
+}
+
+function moveDescriptionHtml(move) {
+  const notes = moveAbilityBoostNotes(move);
+  return `
+    <span class="move-description-copy">${escapeHtml(move.description || "No description.")}</span>
+    ${notes.length ? `<span class="move-ability-boosts">${notes.map((note) => `<span>${escapeHtml(note)}</span>`).join("")}</span>` : ""}
+  `;
+}
+
 function renderMovedex() {
   const tbody = document.getElementById("moveRows");
   const rows = Object.values(state.data.moves || {})
     .filter((move) => move.constant !== "MOVE_NONE")
-    .filter((move) => matches(`${move.id} ${move.constant} ${move.name} ${move.type} ${fmtCategory(move.category || "")} ${move.description || ""}`))
+    .filter((move) => matches(`${move.id} ${move.constant} ${move.name} ${move.type} ${fmtCategory(move.category || "")} ${move.description || ""} ${moveAbilityBoostNotes(move).join(" ")}`))
     .sort((a, b) => (a.id ?? Number.MAX_SAFE_INTEGER) - (b.id ?? Number.MAX_SAFE_INTEGER));
 
   tbody.innerHTML = "";
@@ -1746,7 +1761,7 @@ function renderMovedex() {
       <td data-label="Acc">${moveMetric(move.accuracy, { zeroAsDash: true })}</td>
       <td data-label="PP">${moveMetric(move.pp, { zeroAsDash: true })}</td>
       <td data-label="Priority">${moveMetric(move.priority, { signed: true })}</td>
-      <td data-label="Description">${escapeHtml(move.description || "No description.")}</td>
+      <td data-label="Description">${moveDescriptionHtml(move)}</td>
     `;
     bindRowActivation(row, () => openMove(move), `Open details for ${move.name}`);
     tbody.appendChild(row);
@@ -1793,7 +1808,7 @@ function renderMoveDetail(move) {
         <div><dt>PP</dt><dd>${moveMetric(move.pp, { zeroAsDash: true })}</dd></div>
         <div><dt>Priority</dt><dd>${moveMetric(move.priority, { signed: true })}</dd></div>
       </dl>
-      <p>${escapeHtml(move.description || "No description.")}</p>
+      <p class="move-detail-description">${moveDescriptionHtml(move)}</p>
     </div>
     <h3 class="section-title">Learned by</h3>
     ${learners.length ? `<div class="move-learner-groups">${learners.map(([label, species]) => `
