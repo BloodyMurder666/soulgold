@@ -683,8 +683,10 @@ script Cherrygrove_FriendlyTrader {
                 setvar(VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_ZIGZAGOON_GALAR)
 	            bufferspeciesname(STR_VAR_1, SPECIES_ZIGZAGOON_GALAR)
             	givemon(SPECIES_ZIGZAGOON_GALAR, 5)
+                showgivemonpic(10, 3)
                 removeobject(LOCALID_CHERRY_ZIGZAGOON)
 	            call(Common_EventScript_GiftMon)
+                hidemonpic
                 bufferspeciesname(STR_VAR_1, SPECIES_ZIGZAGOON_GALAR)
                 msgbox("Take good care of my {STR_VAR_1}!
 
@@ -696,8 +698,10 @@ script Cherrygrove_FriendlyTrader {
                 setvar(VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_RATTATA_ALOLA)
 	            bufferspeciesname(STR_VAR_1, SPECIES_RATTATA_ALOLA)
             	givemon(SPECIES_RATTATA_ALOLA, 5)
+                showgivemonpic(10, 3)
                 removeobject(LOCALID_CHERRY_RATTATA)
 	            call(Common_EventScript_GiftMon)
+                hidemonpic
                 bufferspeciesname(STR_VAR_1, SPECIES_RATTATA_ALOLA)
                 msgbox("Take good care of my {STR_VAR_1}!
 

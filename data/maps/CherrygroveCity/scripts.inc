@@ -1281,9 +1281,9 @@ Cherrygrove_FriendlyTrader::
 	goto_if_set FLAG_PICKED_RATTATA, Cherrygrove_FriendlyTrader_2
 # 668 "data/maps/CherrygroveCity/scripts.pory"
 	goto_if_set FLAG_RECEIVED_FIRST_BALLS, Cherrygrove_FriendlyTrader_7
-# 714 "data/maps/CherrygroveCity/scripts.pory"
+# 718 "data/maps/CherrygroveCity/scripts.pory"
 	msgbox Cherrygrove_FriendlyTrader_Text_7
-# 721 "data/maps/CherrygroveCity/scripts.pory"
+# 725 "data/maps/CherrygroveCity/scripts.pory"
 	release
 	end
 
@@ -1294,7 +1294,7 @@ Cherrygrove_FriendlyTrader_2:
 	release
 	end
 
-# 724 "data/maps/CherrygroveCity/scripts.pory"
+# 728 "data/maps/CherrygroveCity/scripts.pory"
 	release
 	end
 
@@ -1307,11 +1307,11 @@ Cherrygrove_FriendlyTrader_7:
 	switch VAR_RESULT
 # 682 "data/maps/CherrygroveCity/scripts.pory"
 	case 0, Cherrygrove_FriendlyTrader_11
-# 695 "data/maps/CherrygroveCity/scripts.pory"
+# 697 "data/maps/CherrygroveCity/scripts.pory"
 	case 1, Cherrygrove_FriendlyTrader_12
-# 709 "data/maps/CherrygroveCity/scripts.pory"
+# 713 "data/maps/CherrygroveCity/scripts.pory"
 	msgbox Cherrygrove_FriendlyTrader_Text_6
-# 710 "data/maps/CherrygroveCity/scripts.pory"
+# 714 "data/maps/CherrygroveCity/scripts.pory"
 	release
 	end
 
@@ -1323,33 +1323,41 @@ Cherrygrove_FriendlyTrader_11:
 # 685 "data/maps/CherrygroveCity/scripts.pory"
 	givemon SPECIES_ZIGZAGOON_GALAR, 5
 # 686 "data/maps/CherrygroveCity/scripts.pory"
-	removeobject LOCALID_CHERRY_ZIGZAGOON
+	showgivemonpic 10, 3
 # 687 "data/maps/CherrygroveCity/scripts.pory"
-	call Common_EventScript_GiftMon
+	removeobject LOCALID_CHERRY_ZIGZAGOON
 # 688 "data/maps/CherrygroveCity/scripts.pory"
-	bufferspeciesname STR_VAR_1, SPECIES_ZIGZAGOON_GALAR
+	call Common_EventScript_GiftMon
 # 689 "data/maps/CherrygroveCity/scripts.pory"
+	hidemonpic
+# 690 "data/maps/CherrygroveCity/scripts.pory"
+	bufferspeciesname STR_VAR_1, SPECIES_ZIGZAGOON_GALAR
+# 691 "data/maps/CherrygroveCity/scripts.pory"
 	msgbox Cherrygrove_FriendlyTrader_Text_5
-# 693 "data/maps/CherrygroveCity/scripts.pory"
+# 695 "data/maps/CherrygroveCity/scripts.pory"
 	release
 	end
 
 Cherrygrove_FriendlyTrader_12:
-# 696 "data/maps/CherrygroveCity/scripts.pory"
-	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_RATTATA_ALOLA
-# 697 "data/maps/CherrygroveCity/scripts.pory"
-	bufferspeciesname STR_VAR_1, SPECIES_RATTATA_ALOLA
 # 698 "data/maps/CherrygroveCity/scripts.pory"
-	givemon SPECIES_RATTATA_ALOLA, 5
+	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_RATTATA_ALOLA
 # 699 "data/maps/CherrygroveCity/scripts.pory"
-	removeobject LOCALID_CHERRY_RATTATA
-# 700 "data/maps/CherrygroveCity/scripts.pory"
-	call Common_EventScript_GiftMon
-# 701 "data/maps/CherrygroveCity/scripts.pory"
 	bufferspeciesname STR_VAR_1, SPECIES_RATTATA_ALOLA
+# 700 "data/maps/CherrygroveCity/scripts.pory"
+	givemon SPECIES_RATTATA_ALOLA, 5
+# 701 "data/maps/CherrygroveCity/scripts.pory"
+	showgivemonpic 10, 3
 # 702 "data/maps/CherrygroveCity/scripts.pory"
-	msgbox Cherrygrove_FriendlyTrader_Text_5
+	removeobject LOCALID_CHERRY_RATTATA
+# 703 "data/maps/CherrygroveCity/scripts.pory"
+	call Common_EventScript_GiftMon
+# 704 "data/maps/CherrygroveCity/scripts.pory"
+	hidemonpic
+# 705 "data/maps/CherrygroveCity/scripts.pory"
+	bufferspeciesname STR_VAR_1, SPECIES_RATTATA_ALOLA
 # 706 "data/maps/CherrygroveCity/scripts.pory"
+	msgbox Cherrygrove_FriendlyTrader_Text_5
+# 710 "data/maps/CherrygroveCity/scripts.pory"
 	release
 	end
 
@@ -1443,17 +1451,17 @@ Cherrygrove_FriendlyTrader_Text_4:
 	.string "No thanks$"
 
 Cherrygrove_FriendlyTrader_Text_5:
-# 689 "data/maps/CherrygroveCity/scripts.pory"
+# 691 "data/maps/CherrygroveCity/scripts.pory"
 	.string "Take good care of my {STR_VAR_1}!\p"
 	.string "Say hi to my uncle, Baoba if you are\n"
 	.string "ever visiting the Safari Zone!$"
 
 Cherrygrove_FriendlyTrader_Text_6:
-# 709 "data/maps/CherrygroveCity/scripts.pory"
+# 713 "data/maps/CherrygroveCity/scripts.pory"
 	.string "Oh... That's a shame...$"
 
 Cherrygrove_FriendlyTrader_Text_7:
-# 714 "data/maps/CherrygroveCity/scripts.pory"
+# 718 "data/maps/CherrygroveCity/scripts.pory"
 	.string "Hey! Can I ask you a favour? \p"
 	.string "Wait... You don't have any\n"
 	.string "Poké Balls...\p"

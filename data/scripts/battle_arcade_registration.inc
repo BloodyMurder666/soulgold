@@ -445,12 +445,12 @@ BattleArcade_Registration_EventScript_CheckStreakAndSymbols_4:
 
 BattleArcade_Registration_EventScript_CheckStreakAndSymbols_2:
 # 273 "data/scripts/battle_arcade_registration.pory"
-	call BattleArcade_Registration_EventScript_GiveSilverPrint
+	setflag FLAG_ARCADE_SILVER_PRINT
 	return
 
 BattleArcade_Registration_EventScript_CheckStreakAndSymbols_3:
 # 275 "data/scripts/battle_arcade_registration.pory"
-	call BattleArcade_Registration_EventScript_GiveGoldPrint
+	setflag FLAG_ARCADE_GOLD_PRINT
 	return
 
 

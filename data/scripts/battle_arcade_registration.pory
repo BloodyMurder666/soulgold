@@ -270,9 +270,9 @@ script BattleArcade_Registration_EventScript_CheckStreakAndSymbols
 	switch(var(VAR_RESULT))
 	{
 		case ARCADE_SYMBOL_SILVER:
-			call(BattleArcade_Registration_EventScript_GiveSilverPrint)
+			setflag(FLAG_ARCADE_SILVER_PRINT)
 		case ARCADE_SYMBOL_GOLD:
-			call(BattleArcade_Registration_EventScript_GiveGoldPrint)
+			setflag(FLAG_ARCADE_GOLD_PRINT)
 		case ARCADE_SYMBOL_NONE:
 		default:
 			return
