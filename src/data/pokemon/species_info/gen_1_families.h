@@ -16497,7 +16497,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     [SPECIES_STARMIE_MEGA] =
     {
         .baseHP        = 60,
-        .baseAttack    = 140,
+        .baseAttack    = 100,
         .baseDefense   = 105,
         .baseSpeed     = 120,
         .baseSpAttack  = 130,
