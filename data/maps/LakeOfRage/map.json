@@ -360,6 +360,14 @@
       "item": "ITEM_RARE_CANDY",
       "flag": "FLAG_HIDDEN_ITEM_LAKEOFRAGE_RARE_CANDY",
       "quantity": 1
+    },
+    {
+      "type": "sign",
+      "x": 58,
+      "y": 12,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "LakeOfRageRoute50Sign"
     }
   ]
 }

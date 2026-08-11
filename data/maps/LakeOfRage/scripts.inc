@@ -967,6 +967,12 @@ LakeOfRageCresseliaPath_4:
 	end
 
 
+LakeOfRageRoute50Sign::
+# 517 "data/maps/LakeOfRage/scripts.pory"
+	msgbox LakeOfRageRoute50Sign_Text_0, MSGBOX_SIGN
+	return
+
+
 Lakeofrage_HiddenGrotto_Text_0:
 # 440 "data/maps/LakeOfRage/scripts.pory"
 	.string "There seems to be a path behind the\n"
@@ -1022,3 +1028,7 @@ LakeOfRageCresseliaPath_Text_2:
 # 510 "data/maps/LakeOfRage/scripts.pory"
 	.string "Wood yew look at that. An inconspicious \n"
 	.string "row of trees extends before you.$"
+
+LakeOfRageRoute50Sign_Text_0:
+# 517 "data/maps/LakeOfRage/scripts.pory"
+	.string "Route 50 and Battle Cafe ahead.$"

@@ -512,3 +512,7 @@ script LakeOfRageCresseliaPath {
 	release
 	end
 }
+
+script LakeOfRageRoute50Sign {
+	msgbox("Route 50 and Battle Cafe ahead.", MSGBOX_SIGN)
+}
