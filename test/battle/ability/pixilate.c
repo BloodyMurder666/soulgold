@@ -1,4 +1,5 @@
 #include "global.h"
+#include "pokemon_summary_screen.h"
 #include "test/battle.h"
 
 ASSUMPTIONS
@@ -18,6 +19,101 @@ SINGLE_BATTLE_TEST("Pixilate turns a Normal-type move into a Fairy-type move")
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, opponent);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, opponent);
         MESSAGE("It's super effective!");
+    }
+}
+
+DOUBLE_BATTLE_TEST("Mega Gardevoir's Pixilate does not affect its ally's Normal-type moves")
+{
+    GIVEN {
+        ASSUME(GetSpeciesType(SPECIES_GASTLY, 0) == TYPE_GHOST);
+        PLAYER(SPECIES_GARDEVOIR) { Item(ITEM_FAIRYTITE); }
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_GASTLY);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN {
+            MOVE(playerLeft, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA);
+            MOVE(playerRight, MOVE_SCRATCH, target: opponentLeft);
+        }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, playerLeft);
+        MESSAGE("It doesn't affect the opposing Gastly…");
+    } THEN {
+        const enum BattlerId leftBattler = (enum BattlerId)B_POSITION_PLAYER_LEFT;
+        const enum BattlerId rightBattler = (enum BattlerId)B_POSITION_PLAYER_RIGHT;
+
+        EXPECT_EQ(CheckDynamicMoveType(GetBattlerMon(leftBattler), MOVE_SCRATCH, leftBattler, MON_IN_BATTLE), TYPE_FAIRY);
+        EXPECT_EQ(CheckDynamicMoveType(GetBattlerMon(rightBattler), MOVE_SCRATCH, rightBattler, MON_IN_BATTLE), TYPE_NORMAL);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Summary move types distinguish active right-slot and benched Pokemon")
+{
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_WEATHER_BALL) == EFFECT_WEATHER_BALL);
+        ASSUME(GetMoveEffect(MOVE_TERRAIN_PULSE) == EFFECT_TERRAIN_PULSE);
+        ASSUME(GetMoveEffect(MOVE_NATURE_POWER) == EFFECT_NATURE_POWER);
+        ASSUME(GetSpeciesType(SPECIES_PIDGEY, 0) == TYPE_FLYING || GetSpeciesType(SPECIES_PIDGEY, 1) == TYPE_FLYING);
+        ASSUME(GetItemHoldEffect(ITEM_AIR_BALLOON) == HOLD_EFFECT_AIR_BALLOON);
+        ASSUME(GetItemHoldEffect(ITEM_IRON_BALL) == HOLD_EFFECT_IRON_BALL);
+        ASSUME(gNaturalGiftTable[ITEM_TO_BERRY(ITEM_CHERI_BERRY)].type == TYPE_FIRE);
+        PLAYER(SPECIES_GARDEVOIR) { Item(ITEM_FAIRYTITE); }
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_PIDGEY) { Item(ITEM_CHERI_BERRY); }
+        PLAYER(SPECIES_MISDREAVUS) { Ability(ABILITY_LEVITATE); }
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_AIR_BALLOON); }
+        PLAYER(SPECIES_PIDGEY) { Item(ITEM_IRON_BALL); }
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+        STARTING_WEATHER(B_WEATHER_RAIN_NORMAL);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_ELECTRIC_TERRAIN, gimmick: GIMMICK_MEGA); }
+    } THEN {
+        EXPECT_EQ(GetSummaryMoveType(&gPlayerParty[0], MOVE_SCRATCH, gPlayerParty, 0), TYPE_FAIRY);
+        EXPECT_EQ(GetSummaryMoveType(&gPlayerParty[1], MOVE_SCRATCH, gPlayerParty, 1), TYPE_NORMAL);
+        EXPECT_EQ(GetSummaryMoveType(&gPlayerParty[2], MOVE_SCRATCH, gPlayerParty, 2), TYPE_NORMAL);
+        EXPECT_EQ(GetSummaryMoveType(&gPlayerParty[2], MOVE_WEATHER_BALL, gPlayerParty, 2), TYPE_WATER);
+        EXPECT_EQ(GetSummaryMoveType(&gPlayerParty[2], MOVE_NATURE_POWER, gPlayerParty, 2), TYPE_ELECTRIC);
+        EXPECT_EQ(GetSummaryMoveType(&gPlayerParty[2], MOVE_NATURAL_GIFT, gPlayerParty, 2), TYPE_FIRE);
+        EXPECT_EQ(GetSummaryMoveType(&gPlayerParty[2], MOVE_TERRAIN_PULSE, gPlayerParty, 2), TYPE_NORMAL);
+        EXPECT_EQ(GetSummaryMoveType(&gPlayerParty[3], MOVE_TERRAIN_PULSE, gPlayerParty, 3), TYPE_NORMAL);
+        EXPECT_EQ(GetSummaryMoveType(&gPlayerParty[4], MOVE_TERRAIN_PULSE, gPlayerParty, 4), TYPE_NORMAL);
+        EXPECT_EQ(GetSummaryMoveType(&gPlayerParty[5], MOVE_TERRAIN_PULSE, gPlayerParty, 5), TYPE_ELECTRIC);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Summary move types respect benched held-item suppression")
+{
+    enum Move setupMove;
+
+    PARAMETRIZE { setupMove = MOVE_CELEBRATE; }
+    PARAMETRIZE { setupMove = MOVE_MAGIC_ROOM; }
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_WEATHER_BALL) == EFFECT_WEATHER_BALL);
+        ASSUME(GetMoveEffect(MOVE_JUDGMENT) == EFFECT_CHANGE_TYPE_ON_ITEM);
+        ASSUME(GetMoveType(MOVE_JUDGMENT) == TYPE_NORMAL);
+        ASSUME(GetItemHoldEffect(ITEM_FLAME_PLATE) == HOLD_EFFECT_PLATE);
+        ASSUME(GetItemSecondaryId(ITEM_FLAME_PLATE) == TYPE_FIRE);
+        ASSUME(GetItemHoldEffect(ITEM_UTILITY_UMBRELLA) == HOLD_EFFECT_UTILITY_UMBRELLA);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_UTILITY_UMBRELLA); }
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_FLAME_PLATE); }
+        PLAYER(SPECIES_BUNEARY) { Ability(ABILITY_KLUTZ); Item(ITEM_UTILITY_UMBRELLA); }
+        PLAYER(SPECIES_BUNEARY) { Ability(ABILITY_KLUTZ); Item(ITEM_FLAME_PLATE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+        STARTING_WEATHER(B_WEATHER_RAIN_NORMAL);
+    } WHEN {
+        TURN { MOVE(playerLeft, setupMove); }
+    } THEN {
+        enum Type umbrellaType = setupMove == MOVE_MAGIC_ROOM ? TYPE_WATER : TYPE_NORMAL;
+        enum Type plateType = setupMove == MOVE_MAGIC_ROOM ? TYPE_NORMAL : TYPE_FIRE;
+
+        EXPECT_EQ(GetSummaryMoveType(&gPlayerParty[2], MOVE_WEATHER_BALL, gPlayerParty, 2), umbrellaType);
+        EXPECT_EQ(GetSummaryMoveType(&gPlayerParty[3], MOVE_JUDGMENT, gPlayerParty, 3), plateType);
+        EXPECT_EQ(GetSummaryMoveType(&gPlayerParty[4], MOVE_WEATHER_BALL, gPlayerParty, 4), TYPE_WATER);
+        EXPECT_EQ(GetSummaryMoveType(&gPlayerParty[5], MOVE_JUDGMENT, gPlayerParty, 5), TYPE_NORMAL);
     }
 }
 

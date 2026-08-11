@@ -1448,7 +1448,7 @@ enum PokeBall ItemIdToBallId(u32 ballItem)
     return secondaryId;
 }
 
-enum ChangeMonPokeballResult TryChangeMonPokeball(struct Pokemon *mon, enum Item ballItem)
+enum ChangeMonPokeballResult CanChangeMonPokeball(struct Pokemon *mon, enum Item ballItem)
 {
     u8 newBall;
 
@@ -1467,9 +1467,21 @@ enum ChangeMonPokeballResult TryChangeMonPokeball(struct Pokemon *mon, enum Item
     if (GetMonData(mon, MON_DATA_POKEBALL) == newBall)
         return CHANGE_MON_POKEBALL_SAME_BALL;
 
+    return CHANGE_MON_POKEBALL_SUCCESS;
+}
+
+enum ChangeMonPokeballResult TryChangeMonPokeball(struct Pokemon *mon, enum Item ballItem)
+{
+    enum ChangeMonPokeballResult result = CanChangeMonPokeball(mon, ballItem);
+    u8 newBall;
+
+    if (result != CHANGE_MON_POKEBALL_SUCCESS)
+        return result;
+
     if (!RemoveBagItem(ballItem, 1))
         return CHANGE_MON_POKEBALL_ITEM_NOT_OWNED;
 
+    newBall = ItemIdToBallId(ballItem);
     SetMonData(mon, MON_DATA_POKEBALL, &newBall);
     return CHANGE_MON_POKEBALL_SUCCESS;
 }

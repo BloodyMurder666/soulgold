@@ -36,7 +36,6 @@
 #include "overworld.h"
 #include "palette.h"
 #include "party_menu.h"
-#include "pokeball.h"
 #include "pokeblock.h"
 #include "pokemon.h"
 #include "ruins_of_alph_puzzles.h"
@@ -109,8 +108,6 @@ static const u8 sText_PlayedPokeFlute[] = _("Played the Poké Flute.");
 static const u8 sText_PokeFluteAwakenedMon[] = _("The Poké Flute awakened sleeping\nPokémon.{PAUSE_UNTIL_PRESS}");
 static const u8 sText_BeckoningBellChimes[] = _("The bell chimes, renewing all\nhidden grottos!{PAUSE_UNTIL_PRESS}");
 static const u8 sText_BeckoningBellCannotBeUsedHere[] =_("The bell cannot be used\ninside a Hidden Grotto!{PAUSE_UNTIL_PRESS}");
-static const u8 sText_PokeballAlreadyMatches[] = _("That Pokémon is already in\nthat kind of Ball.{PAUSE_UNTIL_PRESS}");
-static const u8 sText_PokeballChanged[] = _("{STR_VAR_1}'s Ball was changed\nto the {STR_VAR_2}.{PAUSE_UNTIL_PRESS}");
 
 #ifndef UINT16_MAX
 #define UINT16_MAX USHRT_MAX
@@ -1005,33 +1002,6 @@ void ItemUseOutOfBattle_Medicine(u8 taskId)
 {
     gItemUseCB = ItemUseCB_Medicine;
     SetUpItemUseCallback(taskId);
-}
-
-void ItemUseCB_ChangePokeball(u8 taskId, TaskFunc task)
-{
-    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
-    enum ChangeMonPokeballResult result = TryChangeMonPokeball(mon, gSpecialVar_ItemId);
-
-    gPartyMenuUseExitCallback = TRUE;
-    if (result == CHANGE_MON_POKEBALL_SUCCESS)
-    {
-        PlaySE(SE_USE_ITEM);
-        GetMonNickname(mon, gStringVar1);
-        CopyItemName(gSpecialVar_ItemId, gStringVar2);
-        StringExpandPlaceholders(gStringVar4, sText_PokeballChanged);
-    }
-    else
-    {
-        PlaySE(SE_FAILURE);
-        if (result == CHANGE_MON_POKEBALL_SAME_BALL)
-            StringExpandPlaceholders(gStringVar4, sText_PokeballAlreadyMatches);
-        else
-            StringExpandPlaceholders(gStringVar4, gText_WontHaveEffect);
-    }
-
-    DisplayPartyMenuMessage(gStringVar4, TRUE);
-    ScheduleBgCopyTilemapToVram(2);
-    gTasks[taskId].func = task;
 }
 
 void ItemUseOutOfBattle_AbilityCapsule(u8 taskId)

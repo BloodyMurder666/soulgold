@@ -128,6 +128,7 @@ DISPATCH_VOID(ItemUseCB_AbilityCapsule, (u8 taskId, TaskFunc task), (taskId, tas
 DISPATCH_VOID(ItemUseCB_AbilityPatch, (u8 taskId, TaskFunc task), (taskId, task))
 DISPATCH_VOID(ItemUseCB_BattleChooseMove, (u8 taskId, TaskFunc task), (taskId, task))
 DISPATCH_VOID(ItemUseCB_BattleScript, (u8 taskId, TaskFunc task), (taskId, task))
+DISPATCH_VOID(ItemUseCB_ChangePokeball, (u8 taskId, TaskFunc task), (taskId, task))
 DISPATCH_VOID(ItemUseCB_DynamaxCandy, (u8 taskId, TaskFunc task), (taskId, task))
 DISPATCH_VOID(ItemUseCB_EvolutionStone, (u8 taskId, TaskFunc task), (taskId, task))
 DISPATCH_VOID(ItemUseCB_FormChange, (u8 taskId, TaskFunc task), (taskId, task))

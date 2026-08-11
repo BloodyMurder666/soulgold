@@ -6180,7 +6180,40 @@ void RunBattleScriptCommands(void)
         gBattleScriptingCommandsTable[gBattlescriptCurrInstr[0]]();
 }
 
-enum Type TrySetAteType(enum Move move, enum BattlerId battlerAtk, enum Ability attackerAbility)
+static bool32 MoveUserHasTrait(struct Pokemon *mon, enum BattlerId battler, enum MonState state, enum Ability ability)
+{
+    if (state != MON_IN_BATTLE)
+        return MonHasTrait(mon, ability);
+    if (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress)
+        return AI_BATTLER_HAS_TRAIT(battler, ability);
+    return BattlerHasTrait(battler, ability);
+}
+
+static bool32 PartyMonHasHeldItemEffect(struct Pokemon *mon, enum HoldEffect holdEffect)
+{
+    if (gFieldStatuses & STATUS_FIELD_MAGIC_ROOM || MonHasTrait(mon, ABILITY_KLUTZ))
+        return FALSE;
+    return MonHasItemHoldEffect(mon, holdEffect);
+}
+
+static bool32 IsPartyMonGrounded(struct Pokemon *mon)
+{
+    u32 species = GetMonData(mon, MON_DATA_SPECIES);
+
+    if (PartyMonHasHeldItemEffect(mon, HOLD_EFFECT_IRON_BALL))
+        return TRUE;
+    if (gFieldStatuses & STATUS_FIELD_GRAVITY)
+        return TRUE;
+    if (PartyMonHasHeldItemEffect(mon, HOLD_EFFECT_AIR_BALLOON))
+        return FALSE;
+    if (MonHasTrait(mon, ABILITY_LEVITATE) || MonHasTrait(mon, ABILITY_EELEVATE))
+        return FALSE;
+    if (GetSpeciesType(species, 0) == TYPE_FLYING || GetSpeciesType(species, 1) == TYPE_FLYING)
+        return FALSE;
+    return TRUE;
+}
+
+static enum Type TrySetAteType(struct Pokemon *mon, enum Move move, enum BattlerId battlerAtk, enum MonState state)
 {
     enum Type ateType = TYPE_NONE;
     u32 traitCount = MAX_MON_TRAITS;
@@ -6188,11 +6221,11 @@ enum Type TrySetAteType(enum Move move, enum BattlerId battlerAtk, enum Ability 
     switch (GetMoveEffect(move))
     {
     case EFFECT_TERA_BLAST:
-        if (GetActiveGimmick(battlerAtk) == GIMMICK_TERA)
+        if (state == MON_IN_BATTLE && GetActiveGimmick(battlerAtk) == GIMMICK_TERA)
             return ateType;
         break;
     case EFFECT_TERA_STARSTORM:
-        if (gBattleMons[battlerAtk].species == SPECIES_TERAPAGOS_STELLAR)
+        if ((state == MON_IN_BATTLE ? gBattleMons[battlerAtk].species : GetMonData(mon, MON_DATA_SPECIES)) == SPECIES_TERAPAGOS_STELLAR)
             return ateType;
         break;
     case EFFECT_HIDDEN_POWER:
@@ -6204,6 +6237,20 @@ enum Type TrySetAteType(enum Move move, enum BattlerId battlerAtk, enum Ability 
         return ateType;
     default:
         break;
+    }
+
+    if (state != MON_IN_BATTLE)
+    {
+        for (u32 i = 0; i < MAX_MON_TRAITS; i++)
+        {
+            enum Ability ability = (i == 0) ? GetMonAbility(mon) : GetMonData(mon, MON_DATA_INNATE1 + i - 1);
+
+            if (MonHasTrait(mon, ability))
+                ateType = GetAteAbilityType(ability);
+            if (ateType != TYPE_NONE)
+                break;
+        }
+        return ateType;
     }
 
     if (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress)
@@ -6229,7 +6276,7 @@ enum Type GetDynamicMoveType(struct Pokemon *mon, enum Move move, enum BattlerId
     enum BattleMoveEffects moveEffect = GetMoveEffect(move);
     u32 species;
     enum Type type1, type2, type3;
-    enum Gimmick gimmick = GetActiveGimmick(battler);
+    enum Gimmick gimmick = state == MON_IN_BATTLE ? GetActiveGimmick(battler) : GIMMICK_NONE;
     bool32 utilityUmbrellaAffected = FALSE;
 
     if (state == MON_IN_BATTLE)
@@ -6252,15 +6299,36 @@ enum Type GetDynamicMoveType(struct Pokemon *mon, enum Move move, enum BattlerId
         type1 = GetSpeciesType(species, 0);
         type2 = GetSpeciesType(species, 1);
         type3 = TYPE_MYSTERY;
-        utilityUmbrellaAffected = MonHasItemHoldEffect(mon, HOLD_EFFECT_UTILITY_UMBRELLA);
+        utilityUmbrellaAffected = state == MON_BENCHED_IN_BATTLE
+                                ? PartyMonHasHeldItemEffect(mon, HOLD_EFFECT_UTILITY_UMBRELLA)
+                                : MonHasItemHoldEffect(mon, HOLD_EFFECT_UTILITY_UMBRELLA);
     }
 
     switch (moveEffect)
     {
     case EFFECT_WEATHER_BALL:
-        if (state == MON_IN_BATTLE)
+        if (state != MON_OUTSIDE_BATTLE)
         {
-            u32 weather = GetBattlerWeather(battler, gBattleWeather);
+            u32 weather;
+
+            if (state == MON_IN_BATTLE)
+            {
+                weather = GetBattlerWeather(battler, gBattleWeather);
+            }
+            else if (MonHasTrait(mon, ABILITY_MEGA_SOL))
+            {
+                weather = B_WEATHER_SUN_NORMAL;
+            }
+            else if (gBattleWeather == B_WEATHER_NONE || !HasWeatherEffect())
+            {
+                weather = B_WEATHER_NONE;
+            }
+            else
+            {
+                weather = gBattleWeather;
+                if (utilityUmbrellaAffected)
+                    weather &= ~(B_WEATHER_SUN | B_WEATHER_RAIN);
+            }
 
             if (weather & B_WEATHER_RAIN)
                 return TYPE_WATER;
@@ -6332,7 +6400,22 @@ enum Type GetDynamicMoveType(struct Pokemon *mon, enum Move move, enum BattlerId
         }
         break;
     case EFFECT_CHANGE_TYPE_ON_ITEM:
-        if (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress)
+        if (state != MON_IN_BATTLE)
+        {
+            enum HoldEffect holdEffect = GetMoveEffectArg_HoldEffect(move);
+
+            if (state != MON_BENCHED_IN_BATTLE || PartyMonHasHeldItemEffect(mon, holdEffect))
+            {
+                for (u32 i = 0; i < MAX_MON_ITEMS; i++)
+                {
+                    enum Item item = GetMonData(mon, MON_DATA_HELD_ITEM + i);
+
+                    if (GetItemHoldEffect(item) == holdEffect)
+                        return GetItemSecondaryId(item);
+                }
+            }
+        }
+        else if (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress)
         {
             for (u32 i = 0; i < MAX_MON_ITEMS; i++)
             {
@@ -6351,11 +6434,11 @@ enum Type GetDynamicMoveType(struct Pokemon *mon, enum Move move, enum BattlerId
             enum Type teraType;
             if (gimmick == GIMMICK_TERA && ((teraType = GetMonData(mon, MON_DATA_TERA_TYPE)) != TYPE_STELLAR))
                 return teraType;
-            else if (type1 != TYPE_MYSTERY && !(gBattleMons[battler].volatiles.roostActive && type1 == TYPE_FLYING))
+            else if (type1 != TYPE_MYSTERY && !(state == MON_IN_BATTLE && gBattleMons[battler].volatiles.roostActive && type1 == TYPE_FLYING))
                 return type1;
-            else if (type2 != TYPE_MYSTERY && !(gBattleMons[battler].volatiles.roostActive && type2 == TYPE_FLYING))
+            else if (type2 != TYPE_MYSTERY && !(state == MON_IN_BATTLE && gBattleMons[battler].volatiles.roostActive && type2 == TYPE_FLYING))
                 return type2;
-            else if (gBattleMons[battler].volatiles.roostActive)
+            else if (state == MON_IN_BATTLE && gBattleMons[battler].volatiles.roostActive)
                 return (B_ROOST_PURE_FLYING >= GEN_5 ? TYPE_NORMAL : TYPE_MYSTERY);
             else if (type3 != TYPE_MYSTERY)
                 return type3;
@@ -6394,15 +6477,21 @@ enum Type GetDynamicMoveType(struct Pokemon *mon, enum Move move, enum BattlerId
             }
             else
             {
-                if (GetItemPocket(GetMonData(mon, MON_DATA_HELD_ITEM + i)) == POCKET_BERRIES)
-                    return gNaturalGiftTable[GetMonData(mon, MON_DATA_HELD_ITEM + i)].type;
+                enum Item item = GetMonData(mon, MON_DATA_HELD_ITEM + i);
+
+                if (GetItemPocket(item) == POCKET_BERRIES)
+                    return gNaturalGiftTable[ITEM_TO_BERRY(item)].type;
             }
         }
         return moveType;
     case EFFECT_TERRAIN_PULSE:
-        if (state == MON_IN_BATTLE)
+        if (state != MON_OUTSIDE_BATTLE)
         {
-            if (IsAnyTerrainAffected(battler, gFieldStatuses))
+            bool32 terrainAffected = state == MON_IN_BATTLE
+                                   ? IsAnyTerrainAffected(battler, gFieldStatuses)
+                                   : (gFieldStatuses & STATUS_FIELD_TERRAIN_ANY) && IsPartyMonGrounded(mon);
+
+            if (terrainAffected)
             {
                 if (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
                     return TYPE_ELECTRIC;
@@ -6444,29 +6533,29 @@ enum Type GetDynamicMoveType(struct Pokemon *mon, enum Move move, enum BattlerId
             return TYPE_STELLAR;
         break;
     case EFFECT_NATURE_POWER:
-        if (state == MON_IN_BATTLE)
+        if (state != MON_OUTSIDE_BATTLE)
             return GetMoveType(GetNaturePowerMove());
         break;
     default:
         break;
     }
 
-    if (IsSoundMove(move) && (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress ? AI_BATTLER_HAS_TRAIT(battler, ABILITY_LIQUID_VOICE) : BattlerHasTrait(battler, ABILITY_LIQUID_VOICE)))
+    if (IsSoundMove(move) && MoveUserHasTrait(mon, battler, state, ABILITY_LIQUID_VOICE))
     {
         return TYPE_WATER;
     }
     else if (moveEffect == EFFECT_AURA_WHEEL
      && species == SPECIES_MORPEKO_HANGRY 
-     && !(gAiLogicData != NULL && gAiLogicData->aiCalcInProgress ? AI_BATTLER_HAS_TRAIT(battler, ABILITY_NORMALIZE) : BattlerHasTrait(battler, ABILITY_NORMALIZE)))
+     && !MoveUserHasTrait(mon, battler, state, ABILITY_NORMALIZE))
     {
         return TYPE_DARK;
     }
     else if (moveType == TYPE_NORMAL
-          && !(gAiLogicData != NULL && gAiLogicData->aiCalcInProgress ? AI_BATTLER_HAS_TRAIT(battler, ABILITY_NORMALIZE) : BattlerHasTrait(battler, ABILITY_NORMALIZE))
+          && !MoveUserHasTrait(mon, battler, state, ABILITY_NORMALIZE)
           && gimmick != GIMMICK_DYNAMAX
           && gimmick != GIMMICK_Z_MOVE)
     {
-        u32 ateType = TrySetAteType(move, battler, 0);
+        u32 ateType = TrySetAteType(mon, move, battler, state);
         if (ateType != TYPE_NONE && state == MON_IN_BATTLE)
             gBattleStruct->battlerState[battler].ateBoost = TRUE;
         return ateType;
@@ -6476,7 +6565,7 @@ enum Type GetDynamicMoveType(struct Pokemon *mon, enum Move move, enum BattlerId
           && moveEffect != EFFECT_NATURAL_GIFT
           && moveEffect != EFFECT_HIDDEN_POWER
           && moveEffect != EFFECT_WEATHER_BALL
-          && (gAiLogicData != NULL && gAiLogicData->aiCalcInProgress ? AI_BATTLER_HAS_TRAIT(battler, ABILITY_NORMALIZE) : BattlerHasTrait(battler, ABILITY_NORMALIZE))
+          && MoveUserHasTrait(mon, battler, state, ABILITY_NORMALIZE)
           && gimmick != GIMMICK_Z_MOVE)
     {
         if (state == MON_IN_BATTLE && gimmick != GIMMICK_DYNAMAX)

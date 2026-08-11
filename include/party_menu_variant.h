@@ -67,6 +67,7 @@
 #define ItemUseCB_AbilityPatch PARTY_MENU_VARIANT_NAME(ItemUseCB_AbilityPatch)
 #define ItemUseCB_BattleChooseMove PARTY_MENU_VARIANT_NAME(ItemUseCB_BattleChooseMove)
 #define ItemUseCB_BattleScript PARTY_MENU_VARIANT_NAME(ItemUseCB_BattleScript)
+#define ItemUseCB_ChangePokeball PARTY_MENU_VARIANT_NAME(ItemUseCB_ChangePokeball)
 #define ItemUseCB_DynamaxCandy PARTY_MENU_VARIANT_NAME(ItemUseCB_DynamaxCandy)
 #define ItemUseCB_EvolutionStone PARTY_MENU_VARIANT_NAME(ItemUseCB_EvolutionStone)
 #define ItemUseCB_FormChange PARTY_MENU_VARIANT_NAME(ItemUseCB_FormChange)

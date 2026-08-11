@@ -77,6 +77,7 @@ void CB2_ShowPartyMenuForItemUse(void);
 void ItemUseCB_BattleScript(u8 taskId, TaskFunc task);
 void ItemUseCB_BattleChooseMove(u8 taskId, TaskFunc task);
 void ItemUseCB_Medicine(u8 taskId, TaskFunc task);
+void ItemUseCB_ChangePokeball(u8 taskId, TaskFunc task);
 void ItemUseCB_AbilityCapsule(u8 taskId, TaskFunc task);
 void ItemUseCB_AbilityPatch(u8 taskId, TaskFunc task);
 void ItemUseCB_ShinGenome(u8 taskId, TaskFunc task);

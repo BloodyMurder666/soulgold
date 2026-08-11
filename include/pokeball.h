@@ -42,6 +42,7 @@ void DoHitAnimHealthboxEffect(enum BattlerId battler);
 void LoadBallGfx(u8 ballId);
 void FreeBallGfx(u8 ballId);
 enum PokeBall ItemIdToBallId(u32 ballItem);
+enum ChangeMonPokeballResult CanChangeMonPokeball(struct Pokemon *mon, enum Item ballItem);
 enum ChangeMonPokeballResult TryChangeMonPokeball(struct Pokemon *mon, enum Item ballItem);
 
 #endif // GUARD_POKEBALL_H

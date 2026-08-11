@@ -64,6 +64,7 @@
 #include "pokedex.h"
 #include "pokedex_plus_hgss.h"
 #include "pokerus.h"
+#include "pokeball.h"
 #include "region_map.h"
 #include "replay_options.h"
 #include "reshow_battle_screen.h"
@@ -545,6 +546,9 @@ static void ItemUse_ApplyReverseCandy(u8 taskId);
 
 static const u8 sText_askText[] = _("Would you like to change {STR_VAR_1}'s\nability to {STR_VAR_2}?");
 static const u8 sText_doneText[] = _("{STR_VAR_1}'s ability became\n{STR_VAR_2}!{PAUSE_UNTIL_PRESS}");
+static const u8 sText_ChangePokeballAsk[] = _("Use the {STR_VAR_2} to change\n{STR_VAR_1}'s Ball?");
+static const u8 sText_ChangePokeballDone[] = _("{STR_VAR_1}'s Ball was changed\nto the {STR_VAR_2}.{PAUSE_UNTIL_PRESS}");
+static const u8 sText_PokeballAlreadyMatches[] = _("That Pokémon is already in\nthat kind of Ball.{PAUSE_UNTIL_PRESS}");
 static const u8 sText_askShinyText[] = _("Would you like to turn {STR_VAR_1}\nshiny?");
 static const u8 sText_doneShinyText[] = _("{STR_VAR_1} became shiny!{PAUSE_UNTIL_PRESS}");
 static const u8 sText_BasePointsResetToZero[] = _("{STR_VAR_1}'s base points\nwere all reset to zero!{PAUSE_UNTIL_PRESS}");
@@ -5204,6 +5208,102 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
         }
     }
 }
+
+#define tState      data[0]
+#define tMonId      data[1]
+#define tNextFunc   2
+
+static void Task_ChangePokeball(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+    struct Pokemon *mon = &gPlayerParty[tMonId];
+    enum ChangeMonPokeballResult result;
+
+    switch (tState)
+    {
+    case 0:
+        result = CanChangeMonPokeball(mon, gSpecialVar_ItemId);
+        if (result != CHANGE_MON_POKEBALL_SUCCESS)
+        {
+            gPartyMenuUseExitCallback = FALSE;
+            PlaySE(SE_FAILURE);
+            if (result == CHANGE_MON_POKEBALL_SAME_BALL)
+                StringExpandPlaceholders(gStringVar4, sText_PokeballAlreadyMatches);
+            else
+                StringExpandPlaceholders(gStringVar4, gText_WontHaveEffect);
+            DisplayPartyMenuMessage(gStringVar4, TRUE);
+            ScheduleBgCopyTilemapToVram(2);
+            gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+            return;
+        }
+
+        gPartyMenuUseExitCallback = TRUE;
+        GetMonNickname(mon, gStringVar1);
+        CopyItemName(gSpecialVar_ItemId, gStringVar2);
+        StringExpandPlaceholders(gStringVar4, sText_ChangePokeballAsk);
+        PlaySE(SE_SELECT);
+        DisplayPartyMenuMessage(gStringVar4, TRUE);
+        ScheduleBgCopyTilemapToVram(2);
+        tState++;
+        break;
+    case 1:
+        if (!IsPartyMenuTextPrinterActive())
+        {
+            PartyMenuDisplayYesNoMenu();
+            tState++;
+        }
+        break;
+    case 2:
+        switch (Menu_ProcessInputNoWrapClearOnChoose())
+        {
+        case 0:
+            result = TryChangeMonPokeball(mon, gSpecialVar_ItemId);
+            if (result == CHANGE_MON_POKEBALL_SUCCESS)
+            {
+                PlaySE(SE_USE_ITEM);
+                GetMonNickname(mon, gStringVar1);
+                CopyItemName(gSpecialVar_ItemId, gStringVar2);
+                StringExpandPlaceholders(gStringVar4, sText_ChangePokeballDone);
+                gTasks[taskId].func = (void *)GetWordTaskArg(taskId, tNextFunc);
+            }
+            else
+            {
+                gPartyMenuUseExitCallback = FALSE;
+                PlaySE(SE_FAILURE);
+                if (result == CHANGE_MON_POKEBALL_SAME_BALL)
+                    StringExpandPlaceholders(gStringVar4, sText_PokeballAlreadyMatches);
+                else
+                    StringExpandPlaceholders(gStringVar4, gText_WontHaveEffect);
+                gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+            }
+            DisplayPartyMenuMessage(gStringVar4, TRUE);
+            ScheduleBgCopyTilemapToVram(2);
+            break;
+        case 1:
+        case MENU_B_PRESSED:
+            gPartyMenuUseExitCallback = FALSE;
+            PlaySE(SE_SELECT);
+            ScheduleBgCopyTilemapToVram(2);
+            Task_ReturnToChooseMonAfterText(taskId);
+            break;
+        }
+        break;
+    }
+}
+
+void ItemUseCB_ChangePokeball(u8 taskId, TaskFunc task)
+{
+    s16 *data = gTasks[taskId].data;
+
+    tState = 0;
+    tMonId = gPartyMenu.slotId;
+    SetWordTaskArg(taskId, tNextFunc, (uintptr_t)task);
+    gTasks[taskId].func = Task_ChangePokeball;
+}
+
+#undef tState
+#undef tMonId
+#undef tNextFunc
 
 #define tState      data[0]
 #define tSpecies    data[1]

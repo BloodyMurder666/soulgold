@@ -844,6 +844,7 @@ enum SlideMsgStates
 enum MonState
 {
     MON_IN_BATTLE,
+    MON_BENCHED_IN_BATTLE,
     MON_OUTSIDE_BATTLE,
 };
 

@@ -5009,11 +5009,61 @@ static void SetMonTypeIcons(void)
     }
 }
 
+enum Type GetSummaryMoveType(struct Pokemon *mon, enum Move move, struct Pokemon *party, u8 partyIndex)
+{
+    enum BattlerId battler = 0;
+    enum MonState state = MON_OUTSIDE_BATTLE;
+
+    if (gMain.inBattle && party != NULL)
+    {
+        enum BattleSide side = B_SIDE_PLAYER;
+        bool32 hasBattleParty = TRUE;
+
+        if (party == gPlayerParty)
+            side = B_SIDE_PLAYER;
+        else if (party == gEnemyParty)
+            side = B_SIDE_OPPONENT;
+        else
+            hasBattleParty = FALSE;
+
+        if (hasBattleParty)
+        {
+            state = MON_BENCHED_IN_BATTLE;
+            for (battler = 0; battler < gBattlersCount; battler++)
+            {
+                u32 battlerPartyIndex = gBattlerPartyIndexes[battler];
+
+                if (GetBattlerSide(battler) != side)
+                    continue;
+                if (side == B_SIDE_PLAYER)
+                    battlerPartyIndex = GetPartyIdFromBattlePartyId(battlerPartyIndex);
+
+                if (battlerPartyIndex == partyIndex)
+                {
+                    state = MON_IN_BATTLE;
+                    break;
+                }
+            }
+        }
+    }
+
+    if (state != MON_IN_BATTLE)
+        battler = 0;
+
+    return CheckDynamicMoveType(mon, move, battler, state);
+}
+
+static enum Type GetCurrentSummaryMoveType(enum Move move)
+{
+    struct Pokemon *party = sMonSummaryScreen->isBoxMon ? NULL : sMonSummaryScreen->monList.mons;
+
+    return GetSummaryMoveType(&sMonSummaryScreen->currentMon, move, party, sMonSummaryScreen->curMonIndex);
+}
+
 static void SetMoveTypeIcons(void)
 {
     u32 i;
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
-    struct Pokemon *mon = &sMonSummaryScreen->currentMon;
     enum Type type;
 
     for (i = 0; i < MAX_MON_MOVES; i++)
@@ -5022,10 +5072,7 @@ static void SetMoveTypeIcons(void)
         {
             type = GetMoveType(summary->moves[i]);
             if (P_SHOW_DYNAMIC_TYPES)
-            {
-                enum MonState state = gMain.inBattle ? MON_IN_BATTLE : MON_OUTSIDE_BATTLE;
-                type = CheckDynamicMoveType(mon, summary->moves[i], 0, state); // Bug: in battle, this only shows the dynamic type of battler in position 0
-            }
+                type = GetCurrentSummaryMoveType(summary->moves[i]);
 
             SetTypeSpritePosAndPal(type, 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE);
         }
@@ -5039,13 +5086,9 @@ static void SetMoveTypeIcons(void)
 static void SetNewMoveTypeIcon(void)
 {
     enum Type type = GetMoveType(sMonSummaryScreen->newMove);
-    struct Pokemon *mon = &sMonSummaryScreen->currentMon;
 
     if (P_SHOW_DYNAMIC_TYPES)
-    {
-        enum MonState state = gMain.inBattle ? MON_IN_BATTLE : MON_OUTSIDE_BATTLE;
-        type = CheckDynamicMoveType(mon, sMonSummaryScreen->newMove, 0, state);  // Bug: in battle, this only shows the dynamic type of battler in position 0
-    }
+        type = GetCurrentSummaryMoveType(sMonSummaryScreen->newMove);
 
     if (sMonSummaryScreen->newMove == MOVE_NONE)
     {

@@ -48,7 +48,7 @@ static void SetMonPokeball(struct Pokemon *mon, enum PokeBall ball)
     SetMonData(mon, MON_DATA_POKEBALL, &ballId);
 }
 
-TEST("Changing a Pokemon's Poke Ball consumes exactly one selected Ball")
+TEST("Poke Ball change: confirming consumes exactly one selected Ball")
 {
     struct Pokemon mon;
     enum Item heldItem = ITEM_LEFTOVERS;
@@ -66,7 +66,22 @@ TEST("Changing a Pokemon's Poke Ball consumes exactly one selected Ball")
     EXPECT_EQ(CountTotalItemQuantityInBag(ITEM_POKE_BALL), 0);
 }
 
-TEST("Changing away from a Master Ball never returns the original Master Ball")
+TEST("Poke Ball change: checking for confirmation does not consume or change anything")
+{
+    struct Pokemon mon;
+
+    ClearPokeballPocket();
+    CreateMon(&mon, SPECIES_PIKACHU, 50, 0, OTID_STRUCT_PLAYER_ID);
+    SetMonPokeball(&mon, BALL_POKE);
+    EXPECT(AddBagItem(ITEM_GREAT_BALL, 1));
+
+    EXPECT_EQ(CanChangeMonPokeball(&mon, ITEM_GREAT_BALL), CHANGE_MON_POKEBALL_SUCCESS);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_POKEBALL), BALL_POKE);
+    EXPECT_EQ(CountTotalItemQuantityInBag(ITEM_GREAT_BALL), 1);
+    EXPECT_EQ(CountTotalItemQuantityInBag(ITEM_POKE_BALL), 0);
+}
+
+TEST("Poke Ball change: changing away from a Master Ball never returns the original Master Ball")
 {
     struct Pokemon mon;
 
@@ -81,7 +96,7 @@ TEST("Changing away from a Master Ball never returns the original Master Ball")
     EXPECT_EQ(CountTotalItemQuantityInBag(ITEM_MASTER_BALL), 0);
 }
 
-TEST("Changing to a Master Ball consumes it and does not return the original Ball")
+TEST("Poke Ball change: changing to a Master Ball consumes it and does not return the original Ball")
 {
     struct Pokemon mon;
 
@@ -96,7 +111,7 @@ TEST("Changing to a Master Ball consumes it and does not return the original Bal
     EXPECT_EQ(CountTotalItemQuantityInBag(ITEM_POKE_BALL), 0);
 }
 
-TEST("Using the same kind of Poke Ball is rejected without consuming it")
+TEST("Poke Ball change: the same kind of Ball is rejected without being consumed")
 {
     struct Pokemon mon;
 
@@ -110,7 +125,7 @@ TEST("Using the same kind of Poke Ball is rejected without consuming it")
     EXPECT_EQ(CountTotalItemQuantityInBag(ITEM_POKE_BALL), 2);
 }
 
-TEST("A Poke Ball change requires the selected Ball to be in the Bag")
+TEST("Poke Ball change: the selected Ball must be in the Bag")
 {
     struct Pokemon mon;
 
@@ -122,7 +137,7 @@ TEST("A Poke Ball change requires the selected Ball to be in the Bag")
     EXPECT_EQ(GetMonData(&mon, MON_DATA_POKEBALL), BALL_POKE);
 }
 
-TEST("Non-Ball items cannot change a Pokemon's Poke Ball")
+TEST("Poke Ball change: non-Ball items are rejected")
 {
     struct Pokemon mon;
 
@@ -136,7 +151,7 @@ TEST("Non-Ball items cannot change a Pokemon's Poke Ball")
     EXPECT_EQ(CountTotalItemQuantityInBag(ITEM_POTION), 1);
 }
 
-TEST("Eggs and empty party slots cannot have their Poke Ball changed")
+TEST("Poke Ball change: Eggs and empty party slots are rejected")
 {
     struct Pokemon egg;
     struct Pokemon empty = {0};
@@ -154,7 +169,7 @@ TEST("Eggs and empty party slots cannot have their Poke Ball changed")
     EXPECT_EQ(CountTotalItemQuantityInBag(ITEM_GREAT_BALL), 2);
 }
 
-TEST("Poke Ball changes work for fainted Pokemon")
+TEST("Poke Ball change: fainted Pokemon are supported")
 {
     struct Pokemon mon;
     u16 hp = 0;
@@ -170,7 +185,7 @@ TEST("Poke Ball changes work for fainted Pokemon")
     EXPECT_EQ(GetMonData(&mon, MON_DATA_HP), 0);
 }
 
-TEST("Every defined Poke Ball item can become a Pokemon's Poke Ball")
+TEST("Poke Ball change: every defined Poke Ball item is supported")
 {
     struct Pokemon mon;
     u32 i;
@@ -194,7 +209,7 @@ TEST("Every defined Poke Ball item can become a Pokemon's Poke Ball")
     }
 }
 
-TEST("A full Ball pocket does not receive the Pokemon's original Ball")
+TEST("Poke Ball change: a full Ball pocket does not receive the original Ball")
 {
     struct Pokemon mon;
     u32 item;

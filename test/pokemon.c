@@ -210,6 +210,37 @@ TEST("Terastallization type can be set to any type except TYPE_NONE")
     EXPECT_EQ(teraType, GetMonData(&mon, MON_DATA_TERA_TYPE));
 }
 
+TEST("Outside-battle dynamic move types use the displayed Pokemon's traits")
+{
+    struct Pokemon mon;
+    enum Item item = ITEM_FAIRYTITE;
+    enum Ability savedBattlerAbility = gBattleMons[0].ability;
+
+    ASSUME(GetMoveType(MOVE_HYPER_VOICE) == TYPE_NORMAL);
+
+    CreateMon(&mon, SPECIES_GARDEVOIR, 50, 0, OTID_STRUCT_PLAYER_ID);
+    SetMonData(&mon, MON_DATA_HELD_ITEM, &item);
+    gBattleMons[0].ability = ABILITY_PIXILATE;
+    EXPECT_EQ(CheckDynamicMoveType(&mon, MOVE_HYPER_VOICE, 0, MON_OUTSIDE_BATTLE), TYPE_NORMAL);
+
+    CreateMon(&mon, SPECIES_GARDEVOIR_MEGA, 50, 0, OTID_STRUCT_PLAYER_ID);
+    EXPECT_EQ(CheckDynamicMoveType(&mon, MOVE_HYPER_VOICE, 0, MON_OUTSIDE_BATTLE), TYPE_FAIRY);
+
+    gBattleMons[0].ability = savedBattlerAbility;
+}
+
+TEST("Outside-battle Natural Gift uses the held berry's type")
+{
+    struct Pokemon mon;
+    enum Item item = ITEM_CHERI_BERRY;
+
+    ASSUME(GetMoveEffect(MOVE_NATURAL_GIFT) == EFFECT_NATURAL_GIFT);
+
+    CreateMon(&mon, SPECIES_WOBBUFFET, 50, 0, OTID_STRUCT_PLAYER_ID);
+    SetMonData(&mon, MON_DATA_HELD_ITEM, &item);
+    EXPECT_EQ(CheckDynamicMoveType(&mon, MOVE_NATURAL_GIFT, 0, MON_OUTSIDE_BATTLE), TYPE_FIRE);
+}
+
 TEST("Gracidea toggles Shaymin form without automatic reversion")
 {
     struct Pokemon mon;
