@@ -7,7 +7,7 @@ import re
 from collections import defaultdict
 from typing import Mapping
 
-from ..c_parser import read, strip_c_comments
+from ..c_parser import parse_define_aliases, read, strip_c_comments
 from ..map_names import is_docs_excluded_map, map_display_name
 from ..models import SpeciesLocation, SpeciesRow
 from ..paths import GACHA_C, MAP_GROUPS_JSON, ODD_EGG_C, REPO_ROOT, SPECIES_H
@@ -45,19 +45,7 @@ LEGENDARY_LOCATION_NAME_OVERRIDES = {
 
 
 def species_aliases() -> dict[str, str]:
-    aliases = dict(re.findall(
-        r"^#define\s+(SPECIES_[A-Z0-9_]+)\s+(SPECIES_[A-Z0-9_]+)\s*$",
-        read(SPECIES_H),
-        re.MULTILINE,
-    ))
-    for alias in aliases:
-        target = aliases[alias]
-        seen = {alias}
-        while target in aliases and target not in seen:
-            seen.add(target)
-            target = aliases[target]
-        aliases[alias] = target
-    return aliases
+    return parse_define_aliases(SPECIES_H, "SPECIES_")
 
 
 def script_blocks(text: str) -> dict[str, str]:

@@ -14,10 +14,10 @@ from ..constants import (
     TIME_NIGHT_SUFFIX,
     UNKNOWN_MAP,
 )
-from ..c_parser import clean_constant_name, read
+from ..c_parser import clean_constant_name, parse_define_aliases, read
 from ..map_names import map_constant_display_name
 from ..models import EncounterMon, RawEncounterRow, SpeciesLocation, SpeciesRow, WildEncounterRow
-from ..paths import WILD_ENCOUNTERS_JSON
+from ..paths import SPECIES_H, WILD_ENCOUNTERS_JSON
 from .hidden_grottos import HiddenGrottoRow
 
 
@@ -54,6 +54,7 @@ def combine_duplicate_species_slots(mons: list[EncounterMon]) -> list[EncounterM
 
 def parse_wild_encounters(by_species: dict[str, SpeciesRow]) -> list[WildEncounterRow]:
     data = json.loads(read(WILD_ENCOUNTERS_JSON))
+    aliases = parse_define_aliases(SPECIES_H, "SPECIES_")
     rows = []
     original_index = 0
     for group in data.get("wild_encounter_groups", []):
@@ -73,7 +74,8 @@ def parse_wild_encounters(by_species: dict[str, SpeciesRow]) -> list[WildEncount
                 mons = []
                 slot_rates = ENCOUNTER_SLOT_RATES.get(method, [])
                 for slot, mon in enumerate(payload.get("mons", [])):
-                    species_const = mon.get("species", "SPECIES_NONE")
+                    raw_species_const = mon.get("species", "SPECIES_NONE")
+                    species_const = aliases.get(raw_species_const, raw_species_const)
                     species = by_species.get(species_const)
                     mons.append({
                         "species": species_const,

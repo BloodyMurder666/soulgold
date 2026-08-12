@@ -74,6 +74,21 @@ def parse_define_constants(path: Path, prefix: str) -> tuple[dict[str, int], dic
         id_to_name[value] = name
     return name_to_id, id_to_name
 
+def parse_define_aliases(path: Path, prefix: str) -> dict[str, str]:
+    aliases = dict(re.findall(
+        rf"^#define\s+({prefix}[A-Z0-9_]+)\s+({prefix}[A-Z0-9_]+)\s*$",
+        read(path),
+        re.MULTILINE,
+    ))
+    for alias in aliases:
+        target = aliases[alias]
+        seen = {alias}
+        while target in aliases and target not in seen:
+            seen.add(target)
+            target = aliases[target]
+        aliases[alias] = target
+    return aliases
+
 def parse_enum_constants(path: Path, prefix: str) -> tuple[dict[str, int], dict[int, str]]:
     name_to_id: dict[str, int] = {}
     id_to_name: dict[int, str] = {}

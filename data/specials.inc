@@ -644,3 +644,4 @@ gSpecials::
 	def_special BuenasPassword_GetCorrectAnswer
 	def_special GetRocketArcadeWins
 	def_special EnableAutorun
+	def_special BattleSetup_StartDexNavBattle

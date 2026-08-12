@@ -6,7 +6,7 @@ import re
 from pathlib import Path
 
 from ..constants import DEX_HIDDEN_COLOR_FORMS, DEX_HIDDEN_PREFIXES, DEX_HIDDEN_SPECIES, EV_YIELD_FIELDS, GMAX_DMAX_FORM_RE, SPECIES_NAME_OVERRIDES, STAT_FIELDS
-from ..c_parser import clean_constant_name, collect_strings, extract_braced_constants, extract_constant, extract_field, extract_number, normalize_token, parse_define_constants, parse_enum_constants, preprocess, read, split_designated_entries
+from ..c_parser import clean_constant_name, collect_strings, extract_braced_constants, extract_constant, extract_field, extract_number, normalize_token, parse_define_aliases, parse_define_constants, parse_enum_constants, preprocess, preprocess_source, read, split_designated_entries
 from ..image_utils import process_sprite, shiny_palette_symbol
 from ..models import EvolutionRow, ItemRecord, LevelUpMove, MegaEvolutionRow, SpeciesLocation, SpeciesParseResult, SpeciesRow, Teachables
 from ..paths import OUT_DIR, POKEDEX_H, SPECIES_H, TYPES_H
@@ -28,19 +28,27 @@ def is_totem_species(constant: str) -> bool:
 def is_gmax_dmax_form(constant: str) -> bool:
     return bool(GMAX_DMAX_FORM_RE.search(constant))
 
+def johto_dex_species_order() -> list[str]:
+    text = preprocess_source(
+        '#include "global.h"\n'
+        '#define JOHTO_DEX(name) DOCS_JOHTO_DEX_##name\n'
+        '#include "constants/johto_dex_order.h"\n'
+    )
+    return [
+        f"SPECIES_{name}"
+        for name in re.findall(r"\bDOCS_JOHTO_DEX_([A-Z0-9_]+)\b", text)
+    ]
+
 def refresh_display_dex(rows: list[SpeciesRow]) -> None:
-    for row in rows:
-        row.display_dex = 0
+    aliases = parse_define_aliases(SPECIES_H, "SPECIES_")
+    by_constant = {row.constant: row for row in rows}
     display_by_nat_dex: dict[int, int] = {}
+    for display_dex, ordered_constant in enumerate(johto_dex_species_order(), start=1):
+        constant = aliases.get(ordered_constant, ordered_constant)
+        ordered_row = by_constant.get(constant)
+        if ordered_row and ordered_row.nat_dex:
+            display_by_nat_dex.setdefault(ordered_row.nat_dex, display_dex)
     for row in rows:
-        if not row.nat_dex or not row.dex_visible:
-            continue
-        if row.nat_dex not in display_by_nat_dex:
-            display_by_nat_dex[row.nat_dex] = len(display_by_nat_dex) + 1
-        row.display_dex = display_by_nat_dex[row.nat_dex]
-    for row in rows:
-        if row.display_dex or not row.nat_dex:
-            continue
         row.display_dex = display_by_nat_dex.get(row.nat_dex, 0)
 
 def apply_dex_form_visibility(rows: list[SpeciesRow], mega_evolutions: list[MegaEvolutionRow]) -> list[SpeciesRow]:
@@ -186,7 +194,10 @@ def egg_move_symbol_for_family(row: SpeciesRow, by_constant: dict[str, SpeciesRo
         seen.add(current.constant)
         current = by_constant.get(parent_map.get(current.constant, ""))
 
-    for family_row in reversed(lineage):
+    # Prefer the species' own learnset, then fall back to its nearest
+    # pre-evolution. Baby Pokemon can have a different egg-move table from
+    # the next stage in their family (for example, Azurill and Marill).
+    for family_row in lineage:
         if family_row.egg_move_symbol:
             return family_row.egg_move_symbol
     return None

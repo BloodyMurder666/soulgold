@@ -75,7 +75,7 @@ enum TransitionType
 
 // this file's functions
 static void DoBattlePikeWildBattle(void);
-static void DoSafariBattle(void);
+static void DoSafariBattle(MainCallback endCallback);
 static void DoBugContestBattle(void);
 static void DoStandardWildBattle(bool32 isDouble);
 static void CB2_EndWildBattle(void);
@@ -327,7 +327,7 @@ static void CreateBattleStartTask_Debug(u8 transition, u16 song)
 void BattleSetup_StartWildBattle(void)
 {
     if (GetSafariZoneFlag())
-        DoSafariBattle();
+        DoSafariBattle(CB2_EndSafariBattle);
     else if (GetBugContestFlag())
         DoBugContestBattle();
     else
@@ -402,12 +402,12 @@ void BattleSetup_StartRoamerBattle(void)
     TryUpdateGymLeaderRematchFromWild();
 }
 
-static void DoSafariBattle(void)
+static void DoSafariBattle(MainCallback endCallback)
 {
     LockPlayerFieldControls();
     FreezeObjectEvents();
     StopPlayerAvatar();
-    gMain.savedCallback = CB2_EndSafariBattle;
+    gMain.savedCallback = endCallback;
     gBattleTypeFlags = BATTLE_TYPE_SAFARI;
     CreateBattleStartTask(GetWildBattleTransition(), 0);
 }
@@ -492,6 +492,14 @@ void BattleSetup_StartScriptedDoubleWildBattle(void)
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
     IncrementDailyWildBattles();
     TryUpdateGymLeaderRematchFromWild();
+}
+
+void BattleSetup_StartDexNavBattle(void)
+{
+    if (GetSafariZoneFlag())
+        DoSafariBattle(CB2_EndScriptedSafariBattle);
+    else
+        BattleSetup_StartScriptedWildBattle();
 }
 
 void BattleSetup_StartLatiBattle(void)

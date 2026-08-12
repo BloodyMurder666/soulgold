@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from tools.soulgold_docs.parsers.species import parse_species
+from tools.soulgold_docs.parsers.species import egg_move_symbol_for_family, johto_dex_species_order, parse_species
 
 
 class SpeciesExtraDataTests(unittest.TestCase):
@@ -38,6 +38,55 @@ class SpeciesExtraDataTests(unittest.TestCase):
         self.assertIn("mega", self.species["SPECIES_VENUSAUR_MEGA"].categories)
         self.assertIn("regional", self.species["SPECIES_RAICHU_ALOLA"].categories)
         self.assertEqual(self.species["SPECIES_RATTATA"].categories, [])
+
+    def test_display_numbers_follow_the_active_johto_dex_order(self) -> None:
+        order = johto_dex_species_order()
+        tatsugiri_number = order.index("SPECIES_TATSUGIRI") + 1
+
+        self.assertEqual(self.species["SPECIES_BULBASAUR"].display_dex, 1)
+        self.assertEqual(
+            self.species["SPECIES_TATSUGIRI_CURLY"].display_dex,
+            tatsugiri_number,
+        )
+        self.assertEqual(
+            self.species["SPECIES_TATSUGIRI_DROOPY"].display_dex,
+            tatsugiri_number,
+        )
+        self.assertEqual(
+            self.species["SPECIES_TATSUGIRI_STRETCHY"].display_dex,
+            tatsugiri_number,
+        )
+
+    def test_egg_moves_prefer_the_nearest_family_learnset(self) -> None:
+        parent_map = {
+            "SPECIES_MARILL": "SPECIES_AZURILL",
+            "SPECIES_AZUMARILL": "SPECIES_MARILL",
+        }
+
+        self.assertEqual(
+            egg_move_symbol_for_family(
+                self.species["SPECIES_AZURILL"],
+                self.species,
+                parent_map,
+            ),
+            "sAzurillEggMoveLearnset",
+        )
+        self.assertEqual(
+            egg_move_symbol_for_family(
+                self.species["SPECIES_MARILL"],
+                self.species,
+                parent_map,
+            ),
+            "sMarillEggMoveLearnset",
+        )
+        self.assertEqual(
+            egg_move_symbol_for_family(
+                self.species["SPECIES_AZUMARILL"],
+                self.species,
+                parent_map,
+            ),
+            "sMarillEggMoveLearnset",
+        )
 
 
 if __name__ == "__main__":

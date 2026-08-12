@@ -74,7 +74,12 @@ const dexCategoryOptions = [
 const dexCategoryKeys = new Set(dexCategoryOptions.map((option) => option.key));
 const excludedDexSpecies = new Set([
   "SPECIES_KELDEO",
+  "SPECIES_KELDEO_ORDINARY",
   "SPECIES_KELDEO_RESOLUTE",
+  "SPECIES_TATSUGIRI_DROOPY",
+  "SPECIES_TATSUGIRI_DROOPY_MEGA",
+  "SPECIES_TATSUGIRI_STRETCHY",
+  "SPECIES_TATSUGIRI_STRETCHY_MEGA",
   "SPECIES_ETERNATUS",
   "SPECIES_ETERNATUS_ETERNAMAX",
   "SPECIES_RESHIRAM",
@@ -1500,6 +1505,11 @@ function speciesFormLabel(mon) {
   if (ogerponForm) {
     const mask = ogerponForm[1][0] + ogerponForm[1].slice(1).toLowerCase();
     return `${mon.name} (${mask} Mask)`;
+  }
+  const tatsugiriForm = mon.constant.match(/^SPECIES_TATSUGIRI_(CURLY|DROOPY|STRETCHY)(?:_MEGA)?$/);
+  if (tatsugiriForm) {
+    const form = tatsugiriForm[1][0] + tatsugiriForm[1].slice(1).toLowerCase();
+    return `${mon.name} (${form}${mon.constant.endsWith("_MEGA") ? " Mega" : ""})`;
   }
   if (mon.constant === "SPECIES_ZACIAN_CROWNED") return `${mon.name} (Crowned Sword)`;
   if (mon.constant === "SPECIES_ZAMAZENTA_CROWNED") return `${mon.name} (Crowned Shield)`;

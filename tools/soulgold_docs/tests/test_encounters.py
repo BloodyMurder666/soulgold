@@ -41,6 +41,32 @@ class WildEncounterAggregationTests(unittest.TestCase):
         self.assertEqual(rotom[0]["maxLevel"], 69)
         self.assertEqual(rotom[0]["rate"], 5)
 
+    def test_species_aliases_resolve_to_their_documented_form(self) -> None:
+        encounters = parse_wild_encounters(
+            {
+                "SPECIES_TATSUGIRI_CURLY": StubSpecies(
+                    "Tatsugiri",
+                    "sprites/pokemon/tatsugiri_curly.png",
+                )
+            }  # type: ignore[dict-item]
+        )
+        dragons_den = next(
+            encounter
+            for encounter in encounters
+            if encounter["map"] == "MAP_DRAGONS_DEN_CAVERN"
+        )
+        tatsugiri = [
+            mon
+            for variant in dragons_den["variants"]
+            for method in variant["methods"]
+            for mon in method["mons"]
+            if mon["species"] == "SPECIES_TATSUGIRI_CURLY"
+        ]
+
+        self.assertTrue(tatsugiri)
+        self.assertTrue(all(mon["hasSpecies"] for mon in tatsugiri))
+        self.assertTrue(all(mon["sprite"] for mon in tatsugiri))
+
 
 if __name__ == "__main__":
     unittest.main()

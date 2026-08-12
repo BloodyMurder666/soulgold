@@ -406,6 +406,8 @@ static void BuildSafariZoneStartMenu(void)
     AddStartMenuAction(MENU_ACTION_POKEDEX);
     AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_BAG);
+    if (GetSafariZoneFlag() && IsPokegearAppUnlocked(POKEGEAR_APP_DEXNAV))
+        AddStartMenuAction(MENU_ACTION_DEXNAV);
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_OPTION);
 }

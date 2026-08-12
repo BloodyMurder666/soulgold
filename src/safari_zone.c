@@ -94,14 +94,17 @@ void SafariZoneRetirePrompt(void)
     ScriptContext_SetupScript(SafariZone_EventScript_RetirePrompt);
 }
 
-void CB2_EndSafariBattle(void)
+static void EndSafariBattle(bool32 continueScript)
 {
     sSafariZonePkblkUses += gBattleResults.pokeblockThrows;
     if (gBattleOutcome == B_OUTCOME_CAUGHT)
         sSafariZoneCaughtMons++;
     if (gNumSafariBalls != 0)
     {
-        SetMainCallback2(CB2_ReturnToField);
+        if (continueScript)
+            SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+        else
+            SetMainCallback2(CB2_ReturnToField);
     }
     else if (gBattleOutcome == B_OUTCOME_NO_SAFARI_BALLS)
     {
@@ -116,6 +119,16 @@ void CB2_EndSafariBattle(void)
         ScriptContext_Stop();
         SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
     }
+}
+
+void CB2_EndSafariBattle(void)
+{
+    EndSafariBattle(FALSE);
+}
+
+void CB2_EndScriptedSafariBattle(void)
+{
+    EndSafariBattle(TRUE);
 }
 
 static void ClearPokeblockFeeder(u8 index)
