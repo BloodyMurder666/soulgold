@@ -274,6 +274,27 @@ def add_super_rod_item_locations(
         if item in item_constants:
             add_location(locations, item, "Any fishing spot", "Super Rod rare find")
 
+
+def add_bug_contest_reward_locations(
+    locations: dict[str, list[ItemLocation]],
+    item_constants: set[str],
+) -> None:
+    """Add the selectable evolution-stone prizes awarded by contest placing."""
+    source_path = REPO_ROOT / "data/scripts/bug_contest.inc"
+    try:
+        source_text = read(source_path)
+    except FileNotFoundError:
+        return
+
+    reward_re = re.compile(
+        r"BugContest_EventScript_Set(First|Second)Place[A-Za-z0-9_]*::"
+        r"\s*setvar\s+VAR_0x8005,\s*(ITEM_[A-Z0-9_]+)",
+    )
+    place_labels = {"First": "1st place choice", "Second": "2nd place choice"}
+    for place, item in reward_re.findall(source_text):
+        if item in item_constants:
+            add_location(locations, item, "Bug Catching Contest", place_labels[place])
+
 def is_hidden_important_item(constant: str, item: ItemRecord) -> bool:
     return (
         item.get("sortType") in ITEMS_HIDDEN_SORT_TYPES
@@ -302,6 +323,7 @@ def build_important_items(
     add_wild_held_item_locations(locations, selected, species)
     add_hidden_grotto_item_locations(locations, selected, grottos)
     add_super_rod_item_locations(locations, selected)
+    add_bug_contest_reward_locations(locations, selected)
     rows = []
     for constant in sorted(selected, key=lambda item: item_records.get(item, {}).get("id", 0)):
         item = item_records[constant]
