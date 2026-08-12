@@ -1,7 +1,9 @@
 #include "global.h"
 #include "malloc.h"
-#include "test/test.h"
+#include "pokemon.h"
 #include "random.h"
+#include "test/test.h"
+#include "constants/pokemon.h"
 
 // We expect each element to have an indexSum of 3.5 * 1024.
 // Therefore the maximum error is 8*3584, or 28672.
@@ -282,4 +284,59 @@ TEST("Thumb and C SFC32 implementations produce the same results")
     }
 
     EXPECT_EQ(thumbSum, cSum);
+}
+
+TEST("Shiny RNG audit: SFC32 output has balanced bits and transitions")
+{
+    // These bounds are a deterministic regression test, not
+    // a claim that a finite sample can prove randomness by itself.
+    const u32 sampleCount = 1 << 18;
+    const u32 expectedBitCount = sampleCount / 2;
+    const u32 bitTolerance = 2048;
+    const u32 expectedTransitionCount = sampleCount / 256;
+    const u32 transitionTolerance = 256;
+    u32 bitCounts[32] = {0};
+    u16 transitionCounts[256] = {0};
+    u32 i, bit;
+    u8 previousNibble = 0;
+
+    SeedRng(0);
+    for (i = 0; i < sampleCount; i++)
+    {
+        u32 value = Random32();
+        u8 nextNibble = value >> 28;
+
+        for (bit = 0; bit < 32; bit++)
+            bitCounts[bit] += (value >> bit) & 1;
+
+        if (i != 0)
+            transitionCounts[(previousNibble << 4) | nextNibble]++;
+        previousNibble = nextNibble;
+    }
+
+    for (bit = 0; bit < ARRAY_COUNT(bitCounts); bit++)
+        EXPECT_LE((u32)abs((s32)bitCounts[bit] - (s32)expectedBitCount), bitTolerance);
+    for (i = 0; i < ARRAY_COUNT(transitionCounts); i++)
+        EXPECT_LE((u32)abs((s32)transitionCounts[i] - (s32)expectedTransitionCount), transitionTolerance);
+}
+
+TEST("Shiny RNG audit: SFC32 tracks 1-in-256 odds over a large sample")
+{
+    const u32 sampleCount = 1 << 20;
+    const u32 expectedShinies = sampleCount / 256;
+    const u32 tolerance = 512;
+    const u32 trainerId = 0x12345678;
+    u32 shinyCount = 0;
+    u32 i;
+
+    SeedRng(0);
+    for (i = 0; i < sampleCount; i++)
+    {
+        if (GET_SHINY_VALUE(trainerId, Random32()) < RELEASE_SHINY_ODDS)
+            shinyCount++;
+    }
+
+    Test_MgbaPrintf("Shiny RNG audit: %d shinies in %d rolls (expected %d)",
+                    shinyCount, sampleCount, expectedShinies);
+    EXPECT_LE((u32)abs((s32)shinyCount - (s32)expectedShinies), tolerance);
 }
