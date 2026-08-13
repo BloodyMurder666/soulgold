@@ -433,6 +433,8 @@ extern const u8 BattleScript_BackdraftActivates[];
 extern const u8 BattleScript_MartyrActivates[];
 extern const u8 BattleScript_MagnifyFieldActivates[];
 extern const u8 BattleScript_BattlerAbilityStatRaiseOnSwitchInWindRider[];
+extern const u8 BattleScript_BattlerAbilityStatRaiseOnSwitchInWindChime[];
+extern const u8 BattleScript_GravityWellActivates[];
 extern const u8 BattleScript_BattlerAbilityStatRaiseOnSwitchInEmbodyAspectTeal[];
 extern const u8 BattleScript_BattlerAbilityStatRaiseOnSwitchInEmbodyAspectHearthFlame[];
 extern const u8 BattleScript_BattlerAbilityStatRaiseOnSwitchInEmbodyAspectWellSpring[];

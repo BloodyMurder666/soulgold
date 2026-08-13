@@ -13814,6 +13814,8 @@ void BS_TryWindRiderPower(void)
 
     if (BattlerHasTrait(battler, ABILITY_WIND_RIDER))
         ability = ABILITY_WIND_RIDER;
+    else if (BattlerHasTrait(battler, ABILITY_WIND_CHIME))
+        ability = ABILITY_WIND_CHIME;
     else if (BattlerHasTrait(battler, ABILITY_WIND_POWER))
         ability = ABILITY_WIND_POWER;
 

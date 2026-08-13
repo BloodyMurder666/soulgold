@@ -2933,7 +2933,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_KEEN_EYE, ABILITY_INFILTRATOR, ABILITY_COMPETITIVE },
-        .innates = { ABILITY_UNCANNY, ABILITY_PSYCHIC_SURGE, ABILITY_DISQUIET },
+        .innates = { ABILITY_UNCANNY, ABILITY_PSYCHIC_SURGE, ABILITY_GRAVITY_WELL },
         .bodyColor = BODY_COLOR_WHITE,
         .speciesName = _("Meowstic"),
         .cryId = CRY_MEOWSTIC,
@@ -3060,7 +3060,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_TRACE, ABILITY_TRACE, ABILITY_TRACE },
-        .innates = { ABILITY_UNCANNY, ABILITY_PSYCHIC_SURGE, ABILITY_DISQUIET },
+        .innates = { ABILITY_UNCANNY, ABILITY_PSYCHIC_SURGE, ABILITY_GRAVITY_WELL },
         .bodyColor = BODY_COLOR_WHITE,
         .speciesName = _("Meowstic"),
     #if P_MODIFIED_MEGA_CRIES

@@ -9028,7 +9028,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
         .abilities = { ABILITY_LEVITATE, ABILITY_NONE, ABILITY_NONE },
-        .innates = { ABILITY_ANALYTIC, ABILITY_MAGIC_GUARD, ABILITY_ENIGMA },
+        .innates = { ABILITY_GRAVITY_WELL, ABILITY_MAGIC_GUARD, ABILITY_ENIGMA },
         .bodyColor = BODY_COLOR_BLACK,
         .speciesName = _("Claydol"),
         .cryId = CRY_CLAYDOL,
@@ -10778,7 +10778,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
         .abilities = { ABILITY_LEVITATE, ABILITY_LEVITATE, ABILITY_LEVITATE },
-        .innates = { ABILITY_WIND_RIDER, ABILITY_PUNK_ROCK, ABILITY_PSYCHIC_SURGE },
+        .innates = { ABILITY_WIND_CHIME, ABILITY_PUNK_ROCK, ABILITY_PSYCHIC_SURGE },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Chimecho"),
     #if P_MODIFIED_MEGA_CRIES

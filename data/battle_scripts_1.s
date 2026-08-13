@@ -2110,6 +2110,7 @@ BattleScript_TryTailwindAbilitiesLoop:
 BattleScript_TryTailwindAbilitiesLoop_Iter:
 	trywindriderpower BS_TARGET, BattleScript_TryTailwindAbilitiesLoop_Increment
 	jumpifability BS_TARGET, ABILITY_WIND_RIDER, BattleScript_TryTailwindAbilitiesLoop_WindRider
+	jumpifability BS_TARGET, ABILITY_WIND_CHIME, BattleScript_TryTailwindAbilitiesLoop_WindChime
 	jumpifability BS_TARGET, ABILITY_WIND_POWER, BattleScript_TryTailwindAbilitiesLoop_WindPower
 BattleScript_TryTailwindAbilitiesLoop_Increment:
 	addbyte gBattlerTarget, 0x1
@@ -2120,6 +2121,11 @@ BattleScript_TryTailwindAbilitiesLoop_Increment:
 BattleScript_TryTailwindAbilitiesLoop_WindRider:
 	call BattleScript_AbilityPopUp
 	modifybattlerstatstage BS_TARGET, STAT_ATK, INCREASE, 1, BattleScript_TryTailwindAbilitiesLoop_Increment, ANIM_ON
+	goto BattleScript_TryTailwindAbilitiesLoop_Increment
+
+BattleScript_TryTailwindAbilitiesLoop_WindChime:
+	call BattleScript_AbilityPopUp
+	modifybattlerstatstage BS_TARGET, STAT_SPATK, INCREASE, 1, BattleScript_TryTailwindAbilitiesLoop_Increment, ANIM_ON
 	goto BattleScript_TryTailwindAbilitiesLoop_Increment
 
 BattleScript_TryTailwindAbilitiesLoop_WindPower:
@@ -7380,6 +7386,15 @@ BattleScript_BattlerAbilityStatRaiseOnSwitchInWindRider::
 BattleScript_BattlerAbilityStatRaiseOnSwitchInWindRiderRet:
 	return
 
+BattleScript_BattlerAbilityStatRaiseOnSwitchInWindChime::
+	call BattleScript_AbilityPopUpScripting
+	setstatchanger STAT_SPATK, 1, FALSE
+	statbuffchange BS_SCRIPTING, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_CERTAIN, BattleScript_BattlerAbilityStatRaiseOnSwitchInWindChimeRet
+	printstring STRINGID_SCRIPTINGABILITYSTATRAISE
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_BattlerAbilityStatRaiseOnSwitchInWindChimeRet:
+	return
+
 BattleScript_BattlerAbilityStatRaiseOnSwitchInEmbodyAspectTeal::
 	call BattleScript_AbilityPopUpScripting
 	setstatchanger STAT_SPEED, 1, FALSE
@@ -7848,6 +7863,13 @@ BattleScript_ShowtimeActivates::
 	printstring STRINGID_PKMNTWISTEDDIMENSIONS
 	waitmessage B_WAIT_TIME_LONG
 	call BattleScript_TryRoomServiceLoop
+	restoreattacker
+	return
+
+BattleScript_GravityWellActivates::
+	waitstate
+	call BattleScript_AbilityPopUp
+	call BattleScript_EffectGravitySuccess
 	restoreattacker
 	return
 

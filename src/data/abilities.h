@@ -5598,4 +5598,27 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
                                            "burns the attacker."),
         .aiRating = 5,
     },
+
+    [ABILITY_WIND_CHIME] =
+    {
+        .name = _("Wind Chime"),
+        .description = COMPOUND_STRING("Ups Sp. Atk if hit by wind."),
+        .longDescription = COMPOUND_STRING("Immune to wind moves.\n"
+                                           "Instead, they raise\n"
+                                           "Sp. Atk. Tailwind also\n"
+                                           "raises the Pokémon's\n"
+                                           "Sp. Atk."),
+        .aiRating = 4,
+        .breakable = TRUE,
+    },
+
+    [ABILITY_GRAVITY_WELL] =
+    {
+        .name = _("Gravity Well"),
+        .description = COMPOUND_STRING("Sets Gravity on entry."),
+        .longDescription = COMPOUND_STRING("Intensifies Gravity for\n"
+                                           "5 turns when this Pokémon\n"
+                                           "enters battle."),
+        .aiRating = 6,
+    },
 };

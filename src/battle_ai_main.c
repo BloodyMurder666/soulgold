@@ -46,7 +46,7 @@ static inline void BattleAI_DoAIProcessing(struct AiThinkingStruct *aiThink, enu
 static inline void BattleAI_DoAIProcessing_PredictedSwitchin(struct AiThinkingStruct *aiThink, struct AiLogicData *aiData, enum BattlerId battlerAtk, enum BattlerId battlerDef);
 static bool32 DoesBattlerBenefitFromSunOrRain(enum BattlerId battler, u32 weather);
 static void AI_CompareDamagingMoves(enum BattlerId battlerAtk, enum BattlerId battlerDef);
-static u32 GetWindAbilityScore(enum BattlerId battlerAtk, enum BattlerId battlerDef, struct AiLogicData *aiData);
+static u32 GetWindAbilityScore(enum BattlerId battlerAtk, enum BattlerId battlerDef);
 
 // ewram
 EWRAM_DATA const u8 *gAIScriptPtr = NULL;   // Still used in contests
@@ -4129,15 +4129,19 @@ static bool32 DoesBattlerBenefitFromSunOrRain(enum BattlerId battler, u32 weathe
     return FALSE;
 }
 
-static u32 GetWindAbilityScore(enum BattlerId battlerAtk, enum BattlerId battlerDef, struct AiLogicData *aiData)
+static u32 GetWindAbilityScore(enum BattlerId battlerAtk, enum BattlerId battlerDef)
 {
     u32 score = 0;
 
-    if (aiData->abilities[battlerAtk] == ABILITY_WIND_RIDER)
+    if (AI_BATTLER_HAS_TRAIT(battlerAtk, ABILITY_WIND_RIDER))
     {
         score = IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_ATK);
     }
-    else if (aiData->abilities[battlerAtk] == ABILITY_WIND_POWER)
+    else if (AI_BATTLER_HAS_TRAIT(battlerAtk, ABILITY_WIND_CHIME))
+    {
+        score = IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPATK);
+    }
+    else if (AI_BATTLER_HAS_TRAIT(battlerAtk, ABILITY_WIND_POWER))
     {
         if (gBattleMons[battlerAtk].volatiles.chargeTimer == 0
          && HasDamagingMoveOfType(battlerAtk, TYPE_ELECTRIC))
@@ -5839,7 +5843,7 @@ static s32 AI_CalcMoveEffectScore(enum BattlerId battlerAtk, enum BattlerId batt
 
             if (!(gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_TAILWIND))
             {
-                u32 windAbilityScore = GetWindAbilityScore(battlerAtk, battlerDef, aiData);
+                u32 windAbilityScore = GetWindAbilityScore(battlerAtk, battlerDef);
 
                 if (windAbilityScore > 0)
                     ADJUST_SCORE(windAbilityScore);
@@ -5869,10 +5873,10 @@ static s32 AI_CalcMoveEffectScore(enum BattlerId battlerAtk, enum BattlerId batt
 
             if (!(gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_TAILWIND))
             {
-                u32 windAbilityScore = GetWindAbilityScore(battlerAtk, battlerDef, aiData);
+                u32 windAbilityScore = GetWindAbilityScore(battlerAtk, battlerDef);
 
                 if (IsBattlerAlive(BATTLE_PARTNER(battlerAtk)))
-                    windAbilityScore += GetWindAbilityScore(BATTLE_PARTNER(battlerAtk), battlerDef, aiData);
+                    windAbilityScore += GetWindAbilityScore(BATTLE_PARTNER(battlerAtk), battlerDef);
 
                 if (windAbilityScore > 0)
                     ADJUST_SCORE(windAbilityScore);

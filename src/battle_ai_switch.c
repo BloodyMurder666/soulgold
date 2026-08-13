@@ -673,6 +673,7 @@ static bool32 FindMonThatAbsorbsOpponentsMove(enum BattlerId battler)
     if (IsWindMove(incomingMove))
     {
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_WIND_RIDER;
+        absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_WIND_CHIME;
     }
     if (IsPowderMove(incomingMove))
     {

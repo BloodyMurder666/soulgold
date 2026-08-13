@@ -2986,6 +2986,12 @@ bool32 CanAbilityAbsorbMove(struct BattleContext *ctx)
         abilityDef = ABILITY_WIND_RIDER;
         battleScript = AbsorbedByStatIncreaseAbility(ctx->battlerDef, STAT_ATK, 1);
     }
+    else if ((gAiLogicData->aiCalcInProgress ? SearchTraits(AIBattlerTraits, ABILITY_WIND_CHIME) : SearchTraits(battlerTraits, ABILITY_WIND_CHIME))
+     && IsWindMove(ctx->move))
+    {
+        abilityDef = ABILITY_WIND_CHIME;
+        battleScript = AbsorbedByStatIncreaseAbility(ctx->battlerDef, STAT_SPATK, 1);
+    }
     else if (!BattlerHasTrait(ctx->battlerAtk, ABILITY_BRIMSTONE)
      && (gAiLogicData->aiCalcInProgress ? SearchTraits(AIBattlerTraits, ABILITY_FLASH_FIRE) : SearchTraits(battlerTraits, ABILITY_FLASH_FIRE))
      && ctx->moveType == TYPE_FIRE && (B_FLASH_FIRE_FROZEN >= GEN_5 || !(gBattleMons[ctx->battlerDef].status1 & STATUS1_FREEZE)))
@@ -4076,6 +4082,19 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
                 effect += CommonSwitchInAbilities(battler, ABILITY_SHOWTIME, traitCheck, BattleScript_ShowtimeActivates);
             }
         }
+        if ((traitCheck = SearchTraits(battlerTraits, ABILITY_GRAVITY_WELL)) && !gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1]
+         && shouldAbilityTrigger)
+        {
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1] = TRUE;
+            if (!(gFieldStatuses & STATUS_FIELD_GRAVITY))
+            {
+                SaveBattlerAttacker(gBattlerAttacker);
+                gBattlerAttacker = battler;
+                gFieldStatuses |= STATUS_FIELD_GRAVITY;
+                gFieldTimers.gravityTimer = 5;
+                effect += CommonSwitchInAbilities(battler, ABILITY_GRAVITY_WELL, traitCheck, BattleScript_GravityWellActivates);
+            }
+        }
         if ((traitCheck = SearchTraits(battlerTraits, ABILITY_WINDBURST)) && !gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1]
          && shouldAbilityTrigger)
         {
@@ -4161,6 +4180,13 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
          && gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_TAILWIND)
         {
             effect += CommonSwitchInAbilities(battler, ABILITY_WIND_RIDER, traitCheck, BattleScript_BattlerAbilityStatRaiseOnSwitchInWindRider);
+        }
+        if ((traitCheck = SearchTraits(battlerTraits, ABILITY_WIND_CHIME)) && !gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1]
+         && shouldAbilityTrigger
+         && CompareStat(battler, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN)
+         && gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_TAILWIND)
+        {
+            effect += CommonSwitchInAbilities(battler, ABILITY_WIND_CHIME, traitCheck, BattleScript_BattlerAbilityStatRaiseOnSwitchInWindChime);
         }
         if (SearchTraits(battlerTraits, ABILITY_DESOLATE_LAND)
          && shouldAbilityTrigger
