@@ -1,6 +1,9 @@
 const baseElement = document.querySelector("base");
 const siteRootUrl = new URL(baseElement?.getAttribute("href") || "./", window.location.href);
 if (baseElement) baseElement.href = siteRootUrl.href;
+const docsAssetVersion = document.currentScript
+  ? new URL(document.currentScript.src).searchParams.get("v")
+  : "";
 
 const themeStorageKey = "soulgold-docs-theme";
 let initialTheme = "dark";
@@ -554,7 +557,9 @@ function routeUrl(tab, detail = null, view = null) {
 }
 
 async function loadJson(path) {
-  const response = await fetch(new URL(path, siteRootUrl));
+  const url = new URL(path, siteRootUrl);
+  if (docsAssetVersion) url.searchParams.set("v", docsAssetVersion);
+  const response = await fetch(url);
   if (!response.ok) throw new Error(`${response.status} ${response.statusText} while loading ${path}`);
   return response.json();
 }

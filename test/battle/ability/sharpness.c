@@ -1,18 +1,30 @@
 #include "global.h"
 #include "test/battle.h"
 
+TEST("Sharpness recognizes Pokemon Champions claw moves as slicing moves")
+{
+    EXPECT(IsSlicingMove(MOVE_DRAGON_CLAW));
+    EXPECT(IsSlicingMove(MOVE_SHADOW_CLAW));
+    EXPECT(IsSlicingMove(MOVE_CRUSH_CLAW));
+    EXPECT(IsSlicingMove(MOVE_DIRE_CLAW));
+    EXPECT(IsSlicingMove(MOVE_METAL_CLAW));
+    EXPECT(IsSlicingMove(MOVE_SCRATCH));
+    EXPECT(IsSlicingMove(MOVE_FURY_SWIPES));
+    EXPECT(IsSlicingMove(MOVE_PRECIPICE_BLADES));
+}
+
 SINGLE_BATTLE_TEST("Sharpness increases the power of slicing moves by 50%", s16 damage)
 {
     enum Move move;
     enum Ability ability;
     PARAMETRIZE { move = MOVE_AERIAL_ACE; ability = ABILITY_SHARPNESS; }
     PARAMETRIZE { move = MOVE_AERIAL_ACE; ability = ABILITY_STEADFAST; }
-    PARAMETRIZE { move = MOVE_SCRATCH; ability = ABILITY_SHARPNESS; }
-    PARAMETRIZE { move = MOVE_SCRATCH; ability = ABILITY_STEADFAST; }
+    PARAMETRIZE { move = MOVE_TACKLE; ability = ABILITY_SHARPNESS; }
+    PARAMETRIZE { move = MOVE_TACKLE; ability = ABILITY_STEADFAST; }
 
     GIVEN {
         ASSUME(IsSlicingMove(MOVE_AERIAL_ACE));
-        ASSUME(!IsSlicingMove(MOVE_SCRATCH));
+        ASSUME(!IsSlicingMove(MOVE_TACKLE));
         PLAYER(SPECIES_GALLADE) { Ability(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -32,12 +44,12 @@ SINGLE_BATTLE_TEST("Sharpness increases the power of slicing moves by 50% (Trait
     enum Ability ability;
     PARAMETRIZE { move = MOVE_AERIAL_ACE; ability = ABILITY_SHARPNESS; }
     PARAMETRIZE { move = MOVE_AERIAL_ACE; ability = ABILITY_STEADFAST; }
-    PARAMETRIZE { move = MOVE_SCRATCH; ability = ABILITY_SHARPNESS; }
-    PARAMETRIZE { move = MOVE_SCRATCH; ability = ABILITY_STEADFAST; }
+    PARAMETRIZE { move = MOVE_TACKLE; ability = ABILITY_SHARPNESS; }
+    PARAMETRIZE { move = MOVE_TACKLE; ability = ABILITY_STEADFAST; }
 
     GIVEN {
         ASSUME(IsSlicingMove(MOVE_AERIAL_ACE));
-        ASSUME(!IsSlicingMove(MOVE_SCRATCH));
+        ASSUME(!IsSlicingMove(MOVE_TACKLE));
         PLAYER(SPECIES_GALLADE) { Ability(ABILITY_JUSTIFIED); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

@@ -120,6 +120,9 @@ Found at the Rock Climb spot in Mahogany Town.
 
 Obtain Hoopa and solve all eight Ruins of Alph puzzles. Return to the secret room that held Celebi with Hoopa in your party, then interact with the back wall to find portals leading to Dialga, Palkia, and Giratina.
 
+#### Primal Dialga
+Have Grovyle, Dusknoir and Celebi in your party and interact with the Time Gear on Spear Pillar Summit.
+
 #### Heatran
 
 Explore the depths of Mt. Mortar after obtaining Waterfall and Rock Climb.
@@ -185,6 +188,10 @@ Each force can be purchased from the Battle Café for 5 points. Your first force
 #### Meloetta
 
 After becoming Champion, Meloetta can be found in the Ecruteak Dance Theater.
+
+#### Genesect
+
+Can be found in the Abandoned Rocket Warehouse after becoming Champion.
 
 #### Eternal Floette
 
@@ -253,6 +260,10 @@ Explore South Johto's Meteor Island.
 #### Chien-Pao
 
 After obtaining Waterfall and Rock Climb, explore deeper into Ice Path.
+
+#### Chi-Yu
+
+Fish from the water fountain in Battle Cafe.
 
 #### Walking Wake, Gouging Fire, and Raging Bolt
 

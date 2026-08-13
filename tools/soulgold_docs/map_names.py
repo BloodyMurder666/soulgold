@@ -38,7 +38,7 @@ def map_data_by_constant() -> dict[str, Mapping[str, object]]:
 
 
 def _renamed_region_map_name(map_data: Mapping[str, object], fallback: str) -> str:
-    """Apply a renamed region-map name while retaining floor/variant suffixes."""
+    """Use the in-game region-map name while retaining useful map suffixes."""
     map_constant = str(map_data.get("id") or "")
     section_constant = str(map_data.get("region_map_section") or "")
     section_name = region_map_section_names().get(section_constant)
@@ -47,18 +47,37 @@ def _renamed_region_map_name(map_data: Mapping[str, object], fallback: str) -> s
 
     map_key = map_constant.removeprefix("MAP_")
     section_key = section_constant.removeprefix("MAPSEC_")
-    if normalize_token(section_name) == normalize_token(format_identifier_name(section_key)):
-        return fallback
-    if map_key == section_key:
+    if normalize_token(map_key) == normalize_token(section_key):
         return section_name
     if map_key.startswith(f"{section_key}_"):
         suffix = format_identifier_name(map_key.removeprefix(f"{section_key}_"))
         return f"{section_name} {suffix}"
+    if map_key.startswith(section_key):
+        suffix_key = map_key.removeprefix(section_key).lstrip("_")
+        # A bare number generally identifies an internal split of one
+        # displayed area (for example FoggyShore2 is still South Shore).
+        if not suffix_key or suffix_key.isdigit():
+            return section_name
+        return f"{section_name} {format_identifier_name(suffix_key)}"
+    if map_data.get("show_map_name"):
+        return section_name
     return fallback
 
 
 def _docs_map_name_override(map_data: Mapping[str, object]) -> str | None:
     map_constant = str(map_data.get("id") or "")
+    if map_constant == "MAP_FOGGY_SHORE":
+        # This internal connector is part of Route 34; the adjacent
+        # FoggyShore2 map is the area displayed in-game as South Shore.
+        return "Route 34"
+    if map_constant == "MAP_ROUTE33SOUTH_UNDERWATER":
+        return "South Johto Sea Underwater"
+    if map_constant == "MAP_SOUTH_PASSAGE_SIDE":
+        return "Southern Sidepath"
+    if map_constant == "MAP_SOUTH_PASSAGE_END":
+        return "Abandoned Lab"
+    if map_constant == "MAP_METEOR_CAVE2":
+        return "Meteor Island"
     victory_road_prefix = "MAP_VICTORY_ROAD_KANTO"
     if map_constant == victory_road_prefix:
         return "Victory Road"
@@ -77,10 +96,7 @@ def map_display_name(map_data: Mapping[str, object], fallback_name: str) -> str:
 
 def map_constant_display_name(map_constant: str) -> str:
     map_data = map_data_by_constant().get(map_constant, {})
-    fallback = map_constant.removeprefix("MAP_").replace("_", " ").title()
-    if override := _docs_map_name_override(map_data):
-        return override
-    return _renamed_region_map_name(map_data, fallback)
+    return map_display_name(map_data, format_identifier_name(map_constant))
 
 
 def is_docs_excluded_map(map_name: str, group_name: str) -> bool:

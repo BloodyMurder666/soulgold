@@ -208,6 +208,9 @@ static const u8 sText_EVO_Buttons_Decapped_PE[] = _("{DPAD_UPDOWN}Evos  {A_BUTTO
 static const u8 sText_EVO_Name[] = _("{STR_VAR_3}:");
 static const u8 sText_EVO_PreEvo[] = _("{STR_VAR_1} evolves from {STR_VAR_2}");
 static const u8 sText_EVO_PreEvo_PE_Mega[] = _("{STR_VAR_1} Mega Evolves with {STR_VAR_2}");
+static const u8 sText_EVO_PreEvo_PE_MegaMove[] = _("{STR_VAR_1} Mega Evolves knowing {STR_VAR_2}");
+static const u8 sText_EVO_MegaItem[] = _("Mega Evolves with {STR_VAR_2}");
+static const u8 sText_EVO_MegaMove[] = _("Mega Evolves knowing {STR_VAR_2}");
 static const u8 sText_EVO_LEVEL_SILCOON[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, Silcoon persona");
 static const u8 sText_EVO_LEVEL_CASCOON[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, Cascoon persona");
 static const u8 sText_EVO_MOVE[] = _("{LV}{UP_ARROW}, knows {STR_VAR_2}");
@@ -380,6 +383,7 @@ struct EvoScreenData
     u8 menuPos;
     u8 arrowSpriteId;
     bool8 isMega;
+    bool8 isMegaMove;
     u32 arrowSpriteDist[10];
 };
 
@@ -6033,6 +6037,7 @@ static void ResetEvoScreenDataStruct(void)
     {
         sPokedexView->sEvoScreenData.targetSpecies[i] = 0;
         sPokedexView->sEvoScreenData.seen[i] = 0;
+        sPokedexView->sEvoScreenData.arrowSpriteDist[i] = 0;
     }
 
 }
@@ -6044,6 +6049,9 @@ static void GetSeenFlagTargetSpecies(void)
     for (i = 0; i < sPokedexView->sEvoScreenData.numAllEvolutions; i++)
     {
         species = sPokedexView->sEvoScreenData.targetSpecies[i];
+        if (species == SPECIES_NONE)
+            continue;
+
         if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN))
         {
             sPokedexView->sEvoScreenData.seen[i] = TRUE;
@@ -6117,6 +6125,7 @@ static void Task_LoadEvolutionScreen(u8 taskId)
         //Print evo info and icons
         gTasks[taskId].data[3] = 0;
         PrintEvolutionTargetSpeciesAndMethod(taskId, NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum), 0, &depth, alreadyPrintedIcons, &iconDepth, 0);
+        gTasks[taskId].data[3] = iconDepth;
         LoadSpritePalette(&gSpritePalette_Arrow);
         TryLoadDarkModeArrowPalette();
         GetSeenFlagTargetSpecies();
@@ -6291,10 +6300,10 @@ static void HandleTargetSpeciesPrintIcon(u8 taskId, u16 targetSpecies, u8 base_i
 {
     u32 personality = GetPokedexMonPersonality(targetSpecies);
     if (iterations > 6) // Print icons closer to each other if there are many evolutions
-        gTasks[taskId].data[4+base_i] = CreateMonIcon(targetSpecies, SpriteCB_MonIcon, 45 + 26*base_i, 31, 4, personality);
+        gTasks[taskId].data[5+base_i] = CreateMonIcon(targetSpecies, SpriteCB_MonIcon, 45 + 26*base_i, 31, 4, personality);
     else
-        gTasks[taskId].data[4+base_i] = CreateMonIcon(targetSpecies, SpriteCB_MonIcon, 50 + 32*base_i, 31, 4, personality);
-    gSprites[gTasks[taskId].data[4+base_i]].oam.priority = 0;
+        gTasks[taskId].data[5+base_i] = CreateMonIcon(targetSpecies, SpriteCB_MonIcon, 50 + 32*base_i, 31, 4, personality);
+    gSprites[gTasks[taskId].data[5+base_i]].oam.priority = 0;
 }
 
 static void CreateCaughtBallEvolutionScreen(u16 targetSpecies, u8 x, u8 y, u16 unused)
@@ -6316,7 +6325,12 @@ static void HandlePreEvolutionSpeciesPrint(u8 taskId, u16 preSpecies, u16 specie
     StringCopy(gStringVar1, GetSpeciesName(species)); //evolution mon name
 
     if (sPokedexView->sEvoScreenData.isMega)
-        StringExpandPlaceholders(gStringVar3, sText_EVO_PreEvo_PE_Mega);
+    {
+        if (sPokedexView->sEvoScreenData.isMegaMove)
+            StringExpandPlaceholders(gStringVar3, sText_EVO_PreEvo_PE_MegaMove);
+        else
+            StringExpandPlaceholders(gStringVar3, sText_EVO_PreEvo_PE_Mega);
+    }
     else
     {
 
@@ -6334,8 +6348,8 @@ static void HandlePreEvolutionSpeciesPrint(u8 taskId, u16 preSpecies, u16 specie
     if (base_i < 3)
     {
         u32 personality = GetPokedexMonPersonality(preSpecies);
-        gTasks[taskId].data[4+base_i] = CreateMonIcon(preSpecies, SpriteCB_MonIcon, 18 + 32*base_i, 31, 4, personality); //Create pokemon sprite
-        gSprites[gTasks[taskId].data[4+base_i]].oam.priority = 0;
+        gTasks[taskId].data[5+base_i] = CreateMonIcon(preSpecies, SpriteCB_MonIcon, 18 + 32*base_i, 31, 4, personality); //Create pokemon sprite
+        gSprites[gTasks[taskId].data[5+base_i]].oam.priority = 0;
     }
 }
 
@@ -6348,6 +6362,49 @@ static bool32 HasTwoPreEvolutions(u32 species)
     default:
         return FALSE;
     }
+}
+
+static bool32 IsMegaEvolutionFormChange(enum FormChanges method)
+{
+    return method == FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM
+        || method == FORM_CHANGE_BATTLE_MEGA_EVOLUTION_MOVE;
+}
+
+static bool32 TryGetMegaEvolutionSource(u16 targetSpecies, u16 *sourceSpecies, const struct FormChange **megaFormChange)
+{
+    const u16 *formSpeciesIdTable = GetSpeciesFormTable(targetSpecies);
+
+    if (formSpeciesIdTable == NULL)
+        return FALSE;
+
+    for (u32 formId = 0; formSpeciesIdTable[formId] != FORM_SPECIES_END; formId++)
+    {
+        u16 candidateSpecies = formSpeciesIdTable[formId];
+        const struct FormChange *formChanges;
+
+        if (candidateSpecies == targetSpecies
+            || !IsSpeciesEnabled(candidateSpecies)
+            || gSpeciesInfo[candidateSpecies].isMegaEvolution
+            || gSpeciesInfo[candidateSpecies].isPrimalReversion
+            || gSpeciesInfo[candidateSpecies].isUltraBurst
+            || gSpeciesInfo[candidateSpecies].isGigantamax
+            || gSpeciesInfo[candidateSpecies].isTeraForm)
+            continue;
+
+        formChanges = GetSpeciesFormChanges(candidateSpecies);
+        for (u32 i = 0; formChanges != NULL && formChanges[i].method != FORM_CHANGE_TERMINATOR; i++)
+        {
+            if (IsMegaEvolutionFormChange(formChanges[i].method)
+                && formChanges[i].targetSpecies == targetSpecies)
+            {
+                *sourceSpecies = candidateSpecies;
+                *megaFormChange = &formChanges[i];
+                return TRUE;
+            }
+        }
+    }
+
+    return FALSE;
 }
 
 static u8 PrintPreEvolutions(u8 taskId, u16 species)
@@ -6363,31 +6420,29 @@ static u8 PrintPreEvolutions(u8 taskId, u16 species)
     u16 preEvolutionTwo = 0;
     u8 numPreEvolutions = 0;
 
-    u16 baseFormSpecies;
+    u16 megaSourceSpecies;
+    const struct FormChange *megaFormChange;
     sPokedexView->sEvoScreenData.isMega = FALSE;
+    sPokedexView->sEvoScreenData.isMegaMove = FALSE;
 
     //Check if it's a mega
-    baseFormSpecies = GetFormSpeciesId(species, 0);
-    if (baseFormSpecies != species)
+    if (TryGetMegaEvolutionSource(species, &megaSourceSpecies, &megaFormChange))
     {
-        const struct FormChange *formChanges = GetSpeciesFormChanges(baseFormSpecies);
-        for (i = 0; formChanges != NULL && formChanges[i].method != FORM_CHANGE_TERMINATOR; i++)
-        {
-            if (formChanges[i].method == FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM
-                && formChanges[i].targetSpecies == species)
-            {
-                preEvolutionOne = baseFormSpecies;
-                numPreEvolutions += 1;
-                sPokedexView->numPreEvolutions = numPreEvolutions;
-                sPokedexView->sEvoScreenData.numAllEvolutions += numPreEvolutions;
-                sPokedexView->sEvoScreenData.isMega = TRUE;
+        preEvolutionOne = megaSourceSpecies;
+        numPreEvolutions += 1;
+        sPokedexView->numPreEvolutions = numPreEvolutions;
+        sPokedexView->sEvoScreenData.numAllEvolutions += numPreEvolutions;
+        sPokedexView->sEvoScreenData.isMega = TRUE;
+        sPokedexView->sEvoScreenData.isMegaMove = megaFormChange->method == FORM_CHANGE_BATTLE_MEGA_EVOLUTION_MOVE;
+        sPokedexView->sEvoScreenData.targetSpecies[numPreEvolutions - 1] = preEvolutionOne;
 
-                CopyItemName(GetSpeciesFormChanges(species)->param1, gStringVar2); //item
-                CreateCaughtBallEvolutionScreen(preEvolutionOne, base_x - 9 - 8, base_y + base_y_offset*(numPreEvolutions - 1), 0);
-                HandlePreEvolutionSpeciesPrint(taskId, preEvolutionOne, species, base_x - 8, base_y, base_y_offset, numPreEvolutions - 1);
-                return numPreEvolutions;
-            }
-        }
+        if (sPokedexView->sEvoScreenData.isMegaMove)
+            StringCopy(gStringVar2, GetMoveName(megaFormChange->param1));
+        else
+            CopyItemName(megaFormChange->param1, gStringVar2);
+        CreateCaughtBallEvolutionScreen(preEvolutionOne, base_x - 9 - 8, base_y + base_y_offset*(numPreEvolutions - 1), 0);
+        HandlePreEvolutionSpeciesPrint(taskId, preEvolutionOne, species, base_x - 8, base_y, base_y_offset, numPreEvolutions - 1);
+        return numPreEvolutions;
     }
 
     //Calculate previous evolution
@@ -6534,8 +6589,10 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
     u32 base_y = 51;
     u32 base_y_offset = 9;
     u32 times = 0;
+    u32 megaTimes = 0;
     u32 arg; // shorthand for some of the more mathy evolutions
     const struct Evolution *evolutions = GetSpeciesEvolutions(species);
+    const struct FormChange *formChanges = GetSpeciesFormChanges(species);
 
     if (sPokedexView->sEvoScreenData.isMega)
         return;
@@ -6544,8 +6601,15 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
 
     sPokedexView->sEvoScreenData.arrowSpriteDist[depth] = numLines;
 
+    for (i = 0; formChanges != NULL && formChanges[i].method != FORM_CHANGE_TERMINATOR; i++)
+    {
+        if (IsMegaEvolutionFormChange(formChanges[i].method)
+            && IsSpeciesEnabled(formChanges[i].targetSpecies))
+            megaTimes++;
+    }
+
     //If there are no evolutions print text and return
-    if (evolutions == NULL)
+    if (evolutions == NULL && megaTimes == 0)
     {
         if (depth == 0)
         {
@@ -6556,15 +6620,17 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
     }
 
     //Calculate number of possible direct evolutions (e.g. Eevee has 5 but torchic has 1)
-    for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
-        times += 1;
+    if (evolutions != NULL)
+    {
+        for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
+            times += 1;
+    }
 
     if (times > 9 && species == SPECIES_MILCERY)
         times = 9;
     else if (times > 10)
         times = 10;
 
-    gTasks[taskId].data[3] = times;
     sPokedexView->sEvoScreenData.numAllEvolutions += times;
 
     //If there are evolutions find out which and print them 1 by 1
@@ -6915,6 +6981,69 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
 
         PrintEvolutionTargetSpeciesAndMethod(taskId, targetSpecies, depth+1, depth_i, alreadyPrintedIcons, icon_depth_i, numLines);
     }//For loop end
+
+    sPokedexView->sEvoScreenData.numAllEvolutions += megaTimes;
+
+    for (i = 0; formChanges != NULL && formChanges[i].method != FORM_CHANGE_TERMINATOR; i++)
+    {
+        if (!IsMegaEvolutionFormChange(formChanges[i].method)
+            || !IsSpeciesEnabled(formChanges[i].targetSpecies))
+            continue;
+
+        targetSpecies = formChanges[i].targetSpecies;
+
+        u32 speciesNameWidthInChars = GetSpeciesNameWidthInChars(GetSpeciesName(targetSpecies));
+        u32 speciesNameCharWidth = GetFontAttribute(GetSpeciesNameFontId(speciesNameWidthInChars), FONTATTR_MAX_LETTER_WIDTH);
+        u32 speciesNameWidth = speciesNameWidthInChars * speciesNameCharWidth;
+        u32 base_x_offset = speciesNameWidth + base_x + depth_offset;
+        u32 maxScreenWidth = 230 - base_x_offset;
+
+        sPokedexView->sEvoScreenData.arrowSpriteDist[*depth_i] = numLines;
+        sPokedexView->sEvoScreenData.targetSpecies[*depth_i] = targetSpecies;
+        CreateCaughtBallEvolutionScreen(targetSpecies, base_x + depth_x*depth-9, base_y + base_y_offset*(*depth_i) + numLines, 0);
+        HandleTargetSpeciesPrintText(targetSpecies, base_x + depth_x*depth, base_y, base_y_offset + numLines, *depth_i);
+
+        for (u32 j = 0; j < MAX_EVOLUTION_ICONS; j++)
+        {
+            if (alreadyPrintedIcons[j] == targetSpecies)
+                break;
+            if (alreadyPrintedIcons[j] == SPECIES_NONE)
+            {
+                HandleTargetSpeciesPrintIcon(taskId, targetSpecies, *icon_depth_i, megaTimes);
+                alreadyPrintedIcons[j] = targetSpecies;
+                (*icon_depth_i)++;
+                break;
+            }
+        }
+
+        bool32 caught = GetSetPokedexFlag(SpeciesToNationalPokedexNum(targetSpecies), FLAG_GET_CAUGHT);
+        if (HGSS_HIDE_UNOWNED_EVOLUTION_METHODS == TRUE && !caught)
+        {
+            StringExpandPlaceholders(gStringVar4, COMPOUND_STRING("Unknown"));
+        }
+        else
+        {
+            if (formChanges[i].method == FORM_CHANGE_BATTLE_MEGA_EVOLUTION_MOVE)
+            {
+                StringCopy(gStringVar2, GetMoveName(formChanges[i].param1));
+                StringExpandPlaceholders(gStringVar4, sText_EVO_MegaMove);
+            }
+            else
+            {
+                CopyItemName(formChanges[i].param1, gStringVar2);
+                StringExpandPlaceholders(gStringVar4, sText_EVO_MegaItem);
+            }
+        }
+
+        fontId = GetFontIdToFit(gStringVar4, FONT_SMALL, 0, maxScreenWidth);
+        u32 fontHeight = GetFontAttribute(fontId, FONTATTR_MAX_LETTER_HEIGHT);
+
+        StringAppend(gStringVar4, COMPOUND_STRING("."));
+        BreakStringAutomatic(gStringVar4, maxScreenWidth, MAX_EVO_METHOD_LINES, fontId, HIDE_SCROLL_PROMPT);
+        PrintInfoScreenTextSmall(gStringVar4, fontId, base_x_offset, base_y + base_y_offset*(*depth_i) + numLines);
+        (*depth_i)++;
+        numLines = CountLineBreaks(gStringVar4) * fontHeight;
+    }
 }
 
 static void Task_SwitchScreensFromEvolutionScreen(u8 taskId)
