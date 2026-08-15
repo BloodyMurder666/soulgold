@@ -69,6 +69,9 @@ order: 1
 ### Coin case?
 - Goldenrod Underground
 
+### Grinding Exp for late game?
+- Kitakami has an Audino/Blissey trainer for a fee of 10,000 pokedollars.
+
 ### Nature mints?
 - Olivine beach cafe sells them.
 
@@ -88,7 +91,7 @@ order: 1
 - Have a Pokémon with ability Compoundeyes or Super Luck in the first party slot to increase the chances of wild Pokémon holding an item.
 
 ### Tips for getting money?
-- Early game, have a Pokémon with ability Pickup. In this hack if the held item slot is occuped, items picked by Pickup will still go to bag. Later on you can fish feathers or smash rocks for shards and sell them for quick cash. After obtaining 8 badges, Battle Factory will stock Nuggets and Big Nuggets. In the post game you can farm money from the Rocket Arcade facility.
+- Early game, have a Pokémon with ability Pickup. In this hack if the held item slot is occuped, items picked by Pickup will still go to bag. Later on you can fish feathers or smash rocks for shards and sell them for quick cash. After reaching Goldenrod, you can start coveting/thieving Yanmas on Route 35 for Wide Lenses, they sell for a lot of money and can be easily farmed with Dexnav chain. Butterfree learns Covet and Persian learns Thief. After obtaining 8 badges, Battle Factory will stock Nuggets and Big Nuggets. In the post game you can farm money from the Rocket Arcade facility.
 
 ### What items can Pickup find?
 - Below is the table of items found with Pickup. Note that the items go straight to bag if held item slot is occupied.
