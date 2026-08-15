@@ -179,6 +179,9 @@ order: 1
 - Gabite in Blackthorn City (for Dragonair) 
 - Meltan in Rinto Village (for Tinkaton) 
 
+### Where are the Route Experts?
+- Route 31, Goldenrod Shore, Route 47, Route 43 and Route 27.
+
 ### Gym leader rematch locations in postgame?
 - Falkner: Violet City school
 - Bugsy: National Park
