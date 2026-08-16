@@ -27,6 +27,9 @@ order: 1
 ### Strength HM?
 - Olivine Cafe.
 
+### Waterfall hM?
+- Ice path.
+
 ### Dexnav?
 - After obtaining first set of Poké Balls.
 
@@ -53,6 +56,9 @@ order: 1
 
 ### Moves changes?
 - Yes, some Pokémon learn extra moves for a bit more late game power. Such as Attack Order Beedrill.
+
+### When is Morning/Day/Evening/Night?
+- Morning is 06:00-10:00, Day 10:00-19:00, Evening 19:00-20:00 and Night 20:00-06:00.
 
 ### Mega Ring?
 - After Team Rocket takeover event in Goldenrod City.
