@@ -8,6 +8,7 @@
 #include "load_save.h"
 #include "move.h"
 #include "new_game.h"
+#include "ow_synchronize.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "string_util.h"
@@ -18,6 +19,18 @@
 #include "constants/move_relearner.h"
 #include "constants/songs.h"
 #include "constants/vars.h"
+
+TEST("Cute Charm does not request an impossible wild Pokemon gender")
+{
+    CreateMon(&gPlayerParty[0], SPECIES_NINETALES_ALOLA, 100, 0, OTID_STRUCT_PLAYER_ID);
+
+    ASSUME(GetMonGender(&gPlayerParty[0]) == MON_FEMALE);
+    ASSUME(MonHasTrait(&gPlayerParty[0], ABILITY_CUTE_CHARM));
+
+    EXPECT_EQ(GetSynchronizedGender(WILDMON_ORIGIN, SPECIES_CHANSEY), MON_GENDER_RANDOM);
+    EXPECT_EQ(GetSynchronizedGender(WILDMON_ORIGIN, SPECIES_TAUROS), MON_GENDER_RANDOM);
+    EXPECT_EQ(GetSynchronizedGender(WILDMON_ORIGIN, SPECIES_MAGNEMITE), MON_GENDER_RANDOM);
+}
 
 TEST("Facility BGM overrides exclude Pyramid and Pike wild encounters")
 {
